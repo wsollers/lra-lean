@@ -1,1 +1,5 @@
-{"packages": []}
+{"version": "1.1.0",
+ "packagesDir": ".lake/packages",
+ "packages": [],
+ "name": "LRA",
+ "lakeDir": ".lake"}
