@@ -1,0 +1,54 @@
+# =============================================================
+# sync-to-monorepo.yml — lra-lean
+# Syncs repo root content back to Learning-Real-Analysis/lean/
+# whenever changes are pushed to main.
+#
+# Setup:
+#   Add a secret named SYNC_PAT in this repo's settings
+#   (Settings → Secrets and variables → Actions)
+#   with a GitHub PAT that has repo scope.
+# =============================================================
+
+name: Sync lra-lean to monorepo
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '.github/**'
+      - 'README.md'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout lra-lean
+        uses: actions/checkout@v4
+        with:
+          path: source
+
+      - name: Checkout monorepo
+        uses: actions/checkout@v4
+        with:
+          repository: wsollers/Learning-Real-Analysis
+          token: ${{ secrets.SYNC_PAT }}
+          path: monorepo
+
+      - name: Sync repo root into monorepo/lean/
+        run: |
+          # Sync everything except .github/ and README.md
+          rsync -av --delete \
+            --exclude='.github/' \
+            --exclude='README.md' \
+            source/ monorepo/lean/
+
+      - name: Commit and push if changed
+        run: |
+          cd monorepo
+          git config user.name  "lra-sync-bot"
+          git config user.email "sync-bot@noreply.github.com"
+          git add lean/
+          git diff --cached --quiet && echo "No changes to sync" && exit 0
+          git commit -m "chore: sync lean/ from lra-lean"
+          git push
