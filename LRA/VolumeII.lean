@@ -2,10 +2,17 @@
 -- Volume II: Foundations of Formal Number Systems
 -- Project Landau — all proofs from first principles, no Mathlib.
 
-
+-- PeanoSystems layer
 import LRA.VolumeII.PeanoSystems.PeanoSystem
 import LRA.VolumeII.PeanoSystems.Existence
 import LRA.VolumeII.PeanoSystems.Induction
 import LRA.VolumeII.PeanoSystems.BasicTheorems
 import LRA.VolumeII.PeanoSystems.Recursion
+
+-- NaturalNumbers layer
+import LRA.VolumeII.NaturalNumbers.PeanoN
 import LRA.VolumeII.NaturalNumbers.Addition
+import LRA.VolumeII.NaturalNumbers.Multiplication
+import LRA.VolumeII.NaturalNumbers.Order
+import LRA.VolumeII.NaturalNumbers.Utilities
+import LRA.VolumeII.NaturalNumbers.StandardN
