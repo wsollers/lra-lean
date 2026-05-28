@@ -48,31 +48,7 @@ theorem successor_preserves_inequality
         successors_equal)
 
 
-/--
-**[Theorem — Successor Preserves Inequality]**
 
-If two elements of a Peano system are unequal, then their successors
-are unequal.
-
-*Dependencies:* `PeanoSystem.successor_injective`
-
-*Sources:*
-  Landau, *Foundations of Analysis*, §2 Theorem 1
-
-*Notes cross-ref:* §1.1 [#theorem-successor-preserves-inequality](../notes/section_1_1_main.md#theorem-successor-preserves-inequality)
--/
-theorem successor_preserves_inequality
-    (ps : PeanoSystem)
-    (first_element second_element : ps.carrier)
-    (elements_not_equal : first_element ≠ second_element) :
-    ps.successor first_element ≠ ps.successor second_element := by
-  intro successors_equal
-  exact
-    elements_not_equal
-      (ps.successor_injective
-        first_element
-        second_element
-        successors_equal)
 
 /--
 **[Theorem — Every Element Is Either One or a Successor]**
@@ -109,7 +85,7 @@ theorem every_element_is_one_or_successor
   · -- Base case:
     -- Show that the distinguished element belongs to D.
     -- In ordinary notation: prove 1 ∈ D.
-    sorry
+    exact Or.inl rfl
 
   · -- Successor step:
     -- Assume an arbitrary element belongs to D.
@@ -121,7 +97,7 @@ theorem every_element_is_one_or_successor
     --
     -- Since ps.successor element is literally a successor,
     -- choose `element` itself as the predecessor witness.
-    sorry
+    exact Or.inr ⟨element, rfl⟩
 
 /--
 **[Theorem — Successor Is Not Self]**
@@ -272,5 +248,70 @@ theorem one_unique_non_successor
       ps.one_not_successor
         predecessor
         (Eq.trans successor_eq_element element_is_one)
+
+/--
+**[Theorem — Successor Inequality Reflection]**
+
+Let `(P, S, 1)` be a Peano system. For all `a, b ∈ P`, if `a ≠ b`,
+then `S(a) ≠ S(b)`.
+
+*Dependencies:* `PeanoSystem.successor_injective`
+
+*Sources:*
+  Peano axioms.
+
+*Notes cross-ref:* Basic Peano theorems.
+-/
+theorem successor_inequality_reflects
+    (ps : PeanoSystem)
+    (first_element second_element : ps.carrier) :
+    first_element ≠ second_element →
+      ps.successor first_element ≠ ps.successor second_element := by
+  sorry
+
+/--
+**[Theorem — Non-One Elements Have a Predecessor]**
+
+Let `(P, S, 1)` be a Peano system. For every `x ∈ P`, if `x ≠ 1`,
+then there exists `u ∈ P` such that `S(u) = x`.
+
+*Dependencies:* `every_element_is_one_or_successor`
+
+*Sources:*
+  Peano axioms.
+
+*Notes cross-ref:* Basic Peano theorems.
+-/
+theorem predecessor_exists_of_not_one
+    (ps : PeanoSystem)
+    (element : ps.carrier) :
+    element ≠ ps.one →
+      ∃ predecessor : ps.carrier,
+        ps.successor predecessor = element := by
+  sorry
+
+/--
+**[Corollary — Unique Predecessor Characterization Away From One]**
+
+Let `(P, S, 1)` be a Peano system. For every `x ∈ P`, `x ≠ 1` if and only if
+there exists a unique `u ∈ P` such that `S(u) = x`.
+
+*Dependencies:* `predecessor_exists_unique_away_from_one`, `ps.one_not_successor`
+
+*Sources:*
+  Peano axioms.
+
+*Notes cross-ref:* Basic Peano theorems.
+-/
+theorem not_one_iff_has_unique_predecessor
+    (ps : PeanoSystem)
+    (element : ps.carrier) :
+    element ≠ ps.one ↔
+      ∃ unique_predecessor : ps.carrier,
+        ps.successor unique_predecessor = element ∧
+          ∀ other_predecessor : ps.carrier,
+            ps.successor other_predecessor = element →
+              other_predecessor = unique_predecessor := by
+  sorry
 
 end Peano

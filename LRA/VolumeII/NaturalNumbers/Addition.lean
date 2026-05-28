@@ -80,6 +80,33 @@ theorem plus_base
     ps.successor
 
 
+
+/--
+**[Theorem — Addition Successor Clause]**
+
+Adding a successor on the right gives the successor of the sum.
+
+*Dependencies:* `plus`, `iter_step`
+
+*Sources:*
+  Landau, *Foundations of Analysis*, §2
+  Feferman, *The Number Systems*, §3.4
+  Mendelson, *Number Systems*, §2.3
+
+*Notes cross-ref:* §1.2 [#theorem-addition-successor-clause](../notes/section_1_2_main.md#theorem-addition-successor-clause)
+-/
+theorem plus_step
+    (ps : PeanoSystem)
+    (left_input right_input : ps.carrier) :
+    plus ps left_input (ps.successor right_input) =
+      ps.successor (plus ps left_input right_input) :=
+  iter_step
+    ps
+    ps.carrier
+    (ps.successor left_input)
+    ps.successor
+    right_input
+
 /--
 **[Theorem — Addition Is Associative]**
 
@@ -99,29 +126,36 @@ theorem addition_is_associative
       plus ps left_input (plus ps middle_input right_input) := by
 
   -- Landau fixes the first two inputs and inducts on the right input.
-  -- Predicate:
-  --   P(z) := (x + y) + z = x + (y + z)
-  apply induction_principle ps
-
-  · -- Base case:
-    -- Show `(x + y) + one = x + (y + one)`.
-    -- Use the addition base clause on both sides.
-    sorry
-
-  · -- Successor step:
-    -- Assume the associativity statement holds for `right_input`.
-    -- Show it holds for `successor right_input`.
-    intro current_right_input induction_hypothesis
-
-    -- Goal:
-    --   (x + y) + S(current_right_input)
-    --     =
-    --   x + (y + S(current_right_input))
-    --
-    -- Use `plus_step` to rewrite both successor additions,
-    -- then use the induction hypothesis.
-    sorry
-
+  -- The predicate must be supplied explicitly.  If `apply` is used
+  -- bare, Lean can infer the wrong predicate from the equality target.
+  exact
+    induction_principle
+      ps
+      (fun current_right_input : ps.carrier =>
+        plus ps (plus ps left_input middle_input) current_right_input =
+          plus ps left_input (plus ps middle_input current_right_input))
+      (by
+        change
+          plus ps (plus ps left_input middle_input) ps.one =
+            plus ps left_input (plus ps middle_input ps.one)
+        rw [
+          plus_base ps (plus ps left_input middle_input),
+          plus_base ps middle_input,
+          plus_step ps left_input middle_input
+        ])
+      (by
+        intro current_right_input induction_hypothesis
+        change
+          plus ps (plus ps left_input middle_input) (ps.successor current_right_input) =
+            plus ps left_input
+              (plus ps middle_input (ps.successor current_right_input))
+        rw [
+          plus_step ps (plus ps left_input middle_input) current_right_input,
+          plus_step ps middle_input current_right_input,
+          plus_step ps left_input (plus ps middle_input current_right_input),
+          induction_hypothesis
+        ])
+      right_input
 
 
 end Peano
