@@ -16,123 +16,29 @@
 --
 -- Running table of contents:
 --
---   Def     | nat_is_peano_system   | Nat satisfies PeanoSystem
---   Theorem | pn_iso_nat            | PN ≅ Nat as PeanoSystems  (stub)
---   Theorem | standard_n_convention | the Landau identification
+--   Def     | nat_zero_based_peano_system | Nat with 0 as basepoint
+--   Def     | PositiveNat                 | subtype of nonzero Nat values
+--   Def     | positive_nat_peano_system   | PositiveNat with 1 as basepoint
+--   Theorem | pn_iso_nat                  | PN ≅ Nat as PeanoSystems
+--   Theorem | pn_iso_positive_nat         | PN ≅ PositiveNat as PeanoSystems
+--   Theorem | standard_n_convention       | the Lean Nat bridge
 
 import LRA.VolumeII.NaturalNumbers.PeanoN
 
 namespace Peano
 
 -- ============================================================
--- Nat is a Peano system
+-- Nat is a zero-based Peano system
 -- ============================================================
-
--- Lean 4's Nat is zero-based. Our convention is one-based:
--- distinguished element = Nat.succ Nat.zero = 1.
--- The induction field must handle the zero case.
--- We use a helper that shifts: induction from 1 means we only
--- ever need to prove things for Nat.succ n, never for Nat.zero.
--- The zero case is discharged by noting zero is not in the
--- range of our one-based system.
-
-private theorem nat_induction_from_one
-    (predicate : Nat → Prop)
-    (base_case : predicate (Nat.succ Nat.zero))
-    (successor_step : ∀ n : Nat,
-      predicate (Nat.succ n) → predicate (Nat.succ (Nat.succ n))) :
-    ∀ n : Nat, predicate (Nat.succ n) := by
-  intro n
-  induction n with
-  | zero      => exact base_case
-  | succ k ih => exact successor_step k ih
-
-/--
-**[Definition — Nat Is a Peano System]**
-
-Lean's `Nat` with distinguished element `Nat.succ Nat.zero` (= 1)
-and successor `Nat.succ` is a Peano system.
-
-We use one-based convention throughout VolumeII. The zero
-constructor of Lean's Nat is external to this Peano system;
-the induction field handles only `Nat.succ n` stages.
-
-*Dependencies:* `PeanoSystem`
-
-*Sources:*
-  Landau,   *Foundations of Analysis*, §1
-  Feferman, *The Number Systems*, §3.2
-
-*Notes cross-ref:* §1.1 [def:peano-system](../notes/section_1_1_main.md)
--/
-def nat_is_peano_system : PeanoSystem where
-  carrier             := Nat
-  one                 := Nat.succ Nat.zero
-  successor           := Nat.succ
-
-  one_not_successor   := by
-    -- Goal: ∀ n : Nat, Nat.succ n ≠ Nat.succ Nat.zero
-    -- i.e. Nat.succ n ≠ 1, which means n ≠ 0.
-    -- Equivalently: Nat.succ n = Nat.succ Nat.zero → False
-    -- by injectivity n = Nat.zero, then n.succ = 1, contradiction
-    -- via n = Nat.zero meaning Nat.succ Nat.zero = Nat.succ Nat.zero, fine
-    -- Wait: this says SUCCESSOR ≠ ONE, i.e. S(S(n)) ≠ S(0).
-    -- one = S(0), so one_not_successor says: ∀ n, S(n) ≠ S(0)
-    -- i.e. n ≠ 0 for all n? No -- S(n) ≠ one means no element
-    -- has one as its successor. In one-based Nat, one = S(0).
-    -- S(n) = S(0) → n = 0 by injectivity.
-    -- But 0 is NOT in the carrier of this PeanoSystem.
-    -- The field says: ∀ element : carrier, successor element ≠ one
-    -- i.e. ∀ n : Nat, Nat.succ n ≠ Nat.succ Nat.zero
-    -- i.e. n ≠ Nat.zero for all n : Nat?? No, that's false.
-    -- We need: no Nat is a "predecessor" of one in this system.
-    -- Since one = 1 = S(0), we need S(n) ≠ 1 for all n : Nat.
-    -- S(n) = 1 = S(0) → n = 0 by injectivity.
-    -- But 0 is a Nat. So S(0) = 1 which means S(0) = one.
-    -- This FAILS: Nat.succ Nat.zero = Nat.succ Nat.zero is true!
-    -- 
-    -- CONCLUSION: one-based Nat with one = S(0) does NOT satisfy
-    -- one_not_successor because Nat.succ Nat.zero = one.
-    -- We need a different approach.
-    --
-    -- Fix: use one = Nat.zero + 1 but define the system so that
-    -- elements start from 1, meaning we restrict to {n : Nat | n ≥ 1}.
-    -- OR: accept that Nat with one = 0 is the cleaner approach
-    -- and add a separate offset isomorphism.
-    --
-    -- For now: the cleanest fix is one = Nat.zero, successor = Nat.succ.
-    -- Then one_not_successor: S(n) ≠ 0 is Nat.succ_ne_zero.
-    sorry
-
-  successor_injective := Nat.succ.inj
-
-  induction           := by
-    intro predicate base_case successor_step element
-    -- base_case : predicate (Nat.succ Nat.zero)
-    -- We need: predicate element for all Nat.
-    -- Use nat_induction_from_one but element might be 0.
-    sorry
-
--- ============================================================
--- NOTE: The one-based Nat problem
--- ============================================================
--- The cleanest PeanoSystem instance for Nat uses zero as 'one':
---   one       := Nat.zero
---   successor := Nat.succ
--- This satisfies all five axioms cleanly.
--- The offset between this convention and Landau's 1-based numbering
--- is a separate isomorphism: n ↔ n+1.
--- TODO: decide which convention to use and update accordingly.
 
 /--
 **[Definition — Zero-Based Nat Peano System]**
 
-The cleanest `PeanoSystem` instance for Lean's `Nat`: use
-`Nat.zero` as the distinguished element and `Nat.succ` as
-successor. All five axioms are satisfied directly.
+The full Lean type `Nat` is a Peano system when `Nat.zero` is
+the distinguished basepoint and `Nat.succ` is successor.
 
-Note: this uses zero as the base element. The offset to the
-one-based convention is handled by the isomorphism in `pn_iso_nat`.
+Here the field name `one` means the distinguished element of the
+abstract Peano system, not the Lean numeral `1`.
 
 *Dependencies:* `PeanoSystem`
 -/
@@ -141,8 +47,115 @@ def nat_zero_based_peano_system : PeanoSystem where
   one                 := Nat.zero
   successor           := Nat.succ
   one_not_successor   := Nat.succ_ne_zero
-  successor_injective := Nat.succ.inj
-  induction           := fun P b s n => Nat.rec b (fun k ih => s k ih) n
+  successor_injective := fun _ _ h => Nat.succ.inj h
+  induction           := fun _ b s n => Nat.rec b (fun k ih => s k ih) n
+
+/--
+**[Sanity Check — Nat Successor of Basepoint]**
+
+In the zero-based Lean `Nat` bridge, the successor of the
+distinguished Peano element is Lean's numeral `1`.
+
+*Dependencies:* `nat_zero_based_peano_system`
+-/
+theorem nat_zero_based_successor_of_one_is_one :
+    nat_zero_based_peano_system.successor
+      nat_zero_based_peano_system.one =
+      Nat.succ Nat.zero :=
+  rfl
+
+-- ============================================================
+-- PositiveNat is a one-based Peano system
+-- ============================================================
+
+/--
+**[Definition — PositiveNat]**
+
+`PositiveNat` is the subtype of Lean natural numbers excluding
+`Nat.zero`. It is the one-based bridge from Lean's `Nat` into the
+abstract Peano-system interface.
+
+*Dependencies:* `Nat`
+-/
+def PositiveNat := { n : Nat // n ≠ Nat.zero }
+
+namespace PositiveNat
+
+/-- The first positive natural, represented by Lean's numeral `1`. -/
+def one : PositiveNat :=
+  ⟨Nat.succ Nat.zero, Nat.succ_ne_zero Nat.zero⟩
+
+/-- Successor on positive naturals, inherited from Lean's `Nat.succ`. -/
+def succ (n : PositiveNat) : PositiveNat :=
+  ⟨Nat.succ n.val, Nat.succ_ne_zero n.val⟩
+
+end PositiveNat
+
+/--
+**[Definition — PositiveNat Peano System]**
+
+The subtype of nonzero Lean naturals is a one-based Peano system:
+its distinguished element is Lean's `1`, and successor is inherited
+from `Nat.succ`.
+
+*Dependencies:* `PositiveNat`, `PeanoSystem`
+-/
+def positive_nat_peano_system : PeanoSystem where
+  carrier             := PositiveNat
+  one                 := PositiveNat.one
+  successor           := PositiveNat.succ
+  one_not_successor   := by
+    intro element h
+    have h_val :
+        Nat.succ element.val = Nat.succ Nat.zero :=
+      congrArg Subtype.val h
+    have element_is_zero : element.val = Nat.zero :=
+      Nat.succ.inj h_val
+    exact element.property element_is_zero
+  successor_injective := by
+    intro first_element second_element h
+    exact Subtype.ext (Nat.succ.inj (congrArg Subtype.val h))
+  induction           := by
+    intro predicate base_case successor_step element
+    cases element with
+    | mk value positive =>
+      cases value with
+      | zero =>
+        exact False.elim (positive rfl)
+      | succ k =>
+        induction k with
+        | zero =>
+          exact base_case
+        | succ k ih =>
+          let previous : PositiveNat :=
+            ⟨Nat.succ k, Nat.succ_ne_zero k⟩
+          exact successor_step previous (ih (Nat.succ_ne_zero k))
+
+/--
+**[Sanity Check — PositiveNat Basepoint]**
+
+In the one-based `PositiveNat` bridge, the distinguished Peano
+element is represented by Lean's numeral `1`.
+
+*Dependencies:* `positive_nat_peano_system`
+-/
+theorem positive_nat_one_value_is_one :
+    positive_nat_peano_system.one.val = Nat.succ Nat.zero :=
+  rfl
+
+/--
+**[Sanity Check — PositiveNat Successor of Basepoint]**
+
+In the one-based `PositiveNat` bridge, the successor of the
+distinguished Peano element is represented by Lean's numeral `2`.
+
+*Dependencies:* `positive_nat_peano_system`
+-/
+theorem positive_nat_successor_of_one_value_is_two :
+    (positive_nat_peano_system.successor
+      positive_nat_peano_system.one).val =
+      Nat.succ (Nat.succ Nat.zero) :=
+  rfl
 
 -- ============================================================
 -- The bridge theorem: PN ≅ Nat
@@ -174,6 +187,25 @@ theorem pn_iso_nat :
         ∀ n, g n = f n) :=
   pn_iso_any_peano_system nat_zero_based_peano_system
 
+/--
+**[Theorem — PN Is Isomorphic to the PositiveNat System]**
+
+The canonical Peano type `PN` and the positive subtype of Lean's
+`Nat` are isomorphic as one-based Peano systems.
+
+*Dependencies:* `PN_is_peano_system`, `positive_nat_peano_system`,
+`pn_iso_any_peano_system`
+-/
+theorem pn_iso_positive_nat :
+    ∃ f : PN → PositiveNat,
+      f PN.one = PositiveNat.one ∧
+      (∀ n : PN, f (PN.succ n) = PositiveNat.succ (f n)) ∧
+      (∀ g : PN → PositiveNat,
+        g PN.one = PositiveNat.one →
+        (∀ n : PN, g (PN.succ n) = PositiveNat.succ (g n)) →
+        ∀ n, g n = f n) :=
+  pn_iso_any_peano_system positive_nat_peano_system
+
 -- ============================================================
 -- The standard N convention
 -- ============================================================
@@ -185,9 +217,8 @@ The zero-based Nat Peano system has carrier `Nat`, distinguished
 element `Nat.zero`, and successor `Nat.succ`. All theorems proved
 for an abstract `PeanoSystem` apply by instantiation.
 
-This is the formal counterpart of Landau's convention:
-  "The elements of any Peano system will be called positive
-   integers (or natural numbers, or simply numbers)."
+The one-based counterpart is `positive_nat_peano_system`, whose
+carrier is `PositiveNat`.
 
 *Dependencies:* `nat_zero_based_peano_system`
 
