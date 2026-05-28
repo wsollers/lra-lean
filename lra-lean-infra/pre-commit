@@ -1,0 +1,147 @@
+#!/usr/bin/env bash
+# ============================================================
+# .git/hooks/pre-commit
+# ============================================================
+# Runs before every git commit. Blocks the commit if:
+#   1. lake build fails
+#   2. 'sorry' is found in VolumeII
+#   3. A .lean file in VolumeII lacks a display name doc-comment
+#      on its first theorem or def (doc-comment coverage check)
+#
+# Installation:
+#   cp scripts/pre-commit .git/hooks/pre-commit
+#   chmod +x .git/hooks/pre-commit
+#
+# Or run install_hooks.sh to do this automatically.
+#
+# To skip for a single commit (use sparingly):
+#   git commit --no-verify -m "wip: ..."
+# ============================================================
+
+set -euo pipefail
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+echo "── lra-lean pre-commit checks ──────────────────────────"
+
+# ── Determine build mode ─────────────────────────────────────
+# Use Docker if available and image exists, otherwise native.
+USE_DOCKER=0
+if command -v docker &>/dev/null && docker image inspect lra-lean &>/dev/null 2>&1; then
+    USE_DOCKER=1
+    RUN="docker run --rm -v $(pwd):/workspace -w /workspace lra-lean"
+    echo "  Mode: Docker (lra-lean image)"
+else
+    RUN=""
+    echo "  Mode: Native ($(cat lean-toolchain 2>/dev/null || echo 'unknown toolchain'))"
+fi
+
+# ── Check 1: Only run if VolumeII files changed ──────────────
+CHANGED_LEAN=$(git diff --cached --name-only | grep "^LRA/VolumeII.*\.lean$" || true)
+
+if [[ -z "$CHANGED_LEAN" ]]; then
+    echo -e "  ${GREEN}✓${NC} No VolumeII .lean files staged — skipping Lean checks"
+    exit 0
+fi
+
+echo "  Staged VolumeII files:"
+echo "$CHANGED_LEAN" | sed 's/^/    /'
+
+# ── Check 2: No sorry in staged VolumeII files ──────────────
+echo ""
+echo "  Checking for 'sorry'..."
+SORRY_FOUND=0
+while IFS= read -r f; do
+    if grep -q "sorry" "$f" 2>/dev/null; then
+        echo -e "  ${RED}✗${NC} sorry found in: $f"
+        grep -n "sorry" "$f" | head -5 | sed 's/^/      /'
+        SORRY_FOUND=1
+    fi
+done <<< "$CHANGED_LEAN"
+
+if [[ $SORRY_FOUND -eq 1 ]]; then
+    echo ""
+    echo -e "  ${RED}BLOCKED:${NC} Remove 'sorry' before committing to VolumeII."
+    echo "  Use '--no-verify' only for WIP branches, never for main."
+    exit 1
+fi
+echo -e "  ${GREEN}✓${NC} No sorry found"
+
+# ── Check 3: lake build ──────────────────────────────────────
+echo ""
+echo "  Running lake build LRAVolumeII..."
+if ! $RUN lake build LRAVolumeII 2>&1; then
+    echo ""
+    echo -e "  ${RED}BLOCKED:${NC} lake build failed."
+    echo "  Fix build errors before committing."
+    exit 1
+fi
+echo -e "  ${GREEN}✓${NC} lake build passed"
+
+# ── Check 4: Doc-comment display name coverage ───────────────
+echo ""
+echo "  Checking doc-comment coverage..."
+MISSING_DOCCOMMENT=0
+while IFS= read -r f; do
+    # Find theorems/defs not immediately preceded by a /-- **[ line
+    # This is a heuristic — looks for theorem/def lines where the
+    # previous non-blank line does not contain **[
+    python3 - "$f" << 'PYEOF'
+import sys, re
+
+path = sys.argv[1]
+lines = open(path).readlines()
+issues = []
+
+i = 0
+while i < len(lines):
+    line = lines[i].strip()
+    # Match theorem/lemma/def declarations
+    if re.match(r'^(theorem|lemma|corollary|noncomputable def|def)\s+', line):
+        # Look backwards for a doc-comment with display name
+        found = False
+        j = i - 1
+        while j >= 0 and lines[j].strip() == '':
+            j -= 1
+        if j >= 0:
+            # Check if we are inside a /-- block ending at or near j
+            # Simple heuristic: look back up to 15 lines for **[
+            for k in range(max(0, j-15), j+1):
+                if '**[' in lines[k]:
+                    found = True
+                    break
+        if not found:
+            # Extract the item name for the message
+            m = re.match(r'^(?:noncomputable\s+)?(?:theorem|lemma|corollary|def)\s+(\w+)', line)
+            name = m.group(1) if m else line[:40]
+            issues.append((i+1, name))
+    i += 1
+
+if issues:
+    for lineno, name in issues:
+        print(f"  MISSING display name doc-comment: {path}:{lineno} ({name})")
+    sys.exit(1)
+PYEOF
+    if [[ $? -ne 0 ]]; then
+        MISSING_DOCCOMMENT=1
+    fi
+done <<< "$CHANGED_LEAN"
+
+if [[ $MISSING_DOCCOMMENT -eq 1 ]]; then
+    echo ""
+    echo -e "  ${YELLOW}WARNING:${NC} Some theorems/defs are missing display name doc-comments."
+    echo "  Every item must have /-- **[Category N — Title]** ... -/"
+    echo "  See DESIGN.md §17 for the doc-comment template."
+    echo ""
+    echo "  This is a warning, not a block. Fix before merging to main."
+    # Not blocking — warning only, since you may be adding doc-comments
+    # incrementally. Change 'echo' to 'exit 1' to make it blocking.
+fi
+
+# ── All checks passed ────────────────────────────────────────
+echo ""
+echo -e "── ${GREEN}All pre-commit checks passed${NC} ──────────────────────"
+exit 0
