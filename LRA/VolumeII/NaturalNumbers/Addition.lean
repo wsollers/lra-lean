@@ -29,7 +29,7 @@
 --   Landau Thm 7 (add_ne_self)             y ≠ x+y
 --   Landau Thm 8 (landau_thm8)             y≠z → x+y ≠ x+z
 
-import LRA.VolumeII.NaturalNumbers.Axioms
+import LRA.VolumeII.PeanoSystems.PeanoSystem
 
 namespace Landau
 
