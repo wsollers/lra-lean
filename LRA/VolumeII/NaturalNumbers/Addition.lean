@@ -1,47 +1,73 @@
 -- LRA/VolumeII/NaturalNumbers/Addition.lean
 --
--- Landau §2: Addition
+-- Landau §2: Addition on the Peano natural numbers.
 --
--- Axiom 6:  plus x one         = successor x
--- Axiom 7:  plus x (successor y) = successor (plus x y)
+-- Sources:
+--   Landau, Foundations of Analysis, §2 (Theorems 1-8)
+--   Feferman, The Number Systems, §3.4 (Theorem 3.4 applied)
+--   Thurston, The Number System, Ch.A (Theorem 3, uniqueness first)
+--   Mendelson, Number Systems, §2.3
 --
--- Theorems proved in this file:
---   Theorem 1 (succ_strict):             x ≠ y → successor x ≠ successor y
---   Theorem 2 (succ_ne_self):            successor x ≠ x
---   Theorem 3 (pred_unique):             x ≠ one → ∃ u, x = successor u ∧ ∀ v, x = successor v → v = u
---   Theorem 4 (addition_unique):         uniqueness of the addition function
---   Theorem 4 (addition_exists):         existence of the addition function
---   Helper    (plus_base):               plus x one = successor x
---   Helper    (plus_step):               plus x (successor y) = successor (plus x y)
---   Helper    (one_plus_x):              plus one x = successor x
---   Helper    (successor_plus):          plus (successor x) y = successor (plus x y)
---   Helper    (add_one_comm):            plus one x = plus x one
---   Theorem 5 (addition_is_associative): (x + y) + z = x + (y + z)
---   Theorem 6 (addition_is_commutative): x + y = y + x
---   Theorem 7 (add_ne_self):             y ≠ plus x y
+-- Architecture: `plus` is defined by one application of N_rec.
+-- Well-definedness (existence + uniqueness) is inherited from
+-- the iterator machine. No separate existence proof needed beyond
+-- the N_rec axioms.
+--
+-- Theorems proved:
+--   Landau Thm 1 (succ_strict)             x ≠ y → Sx ≠ Sy
+--   Landau Thm 2 (succ_ne_self)            Sx ≠ x
+--   Landau Thm 3 (pred_unique)             x ≠ 1 → ∃! predecessor
+--   Landau Thm 4 (addition_unique)         uniqueness of plus
+--   Landau Thm 4 (addition_exists)         existence of plus
+--   Helper       (plus_base)               plus x 1 = Sx
+--   Helper       (plus_step)               plus x (Sy) = S(plus x y)
+--   Helper       (one_plus_x)              plus 1 x = Sx
+--   Helper       (add_one_comm)            plus 1 x = plus x 1
+--   Helper       (successor_plus)          plus (Sx) y = S(plus x y)
+--   Landau Thm 5 (addition_is_associative) (x+y)+z = x+(y+z)
+--   Landau Thm 6 (addition_is_commutative) x+y = y+x
+--   Landau Thm 7 (add_ne_self)             y ≠ x+y
+--   Landau Thm 8 (landau_thm8)             y≠z → x+y ≠ x+z
 
 import LRA.VolumeII.NaturalNumbers.Axioms
 
 namespace Landau
 
-
+open Peano
 
 -- ============================================================
--- Theorem 1: x ≠ y → successor x ≠ successor y
--- Proof: contrapositive of A4.
+-- Landau Theorem 1: x ≠ y → successor x ≠ successor y
+-- Contrapositive of Peano Axiom P4.
 -- ============================================================
 
+/--
+**[Theorem — Successor Is Strictly Monotone]** *(Landau Thm 1)*
+
+`x ≠ y → successor x ≠ successor y`
+
+Contrapositive of `A4` (injectivity of successor).
+
+*Dependencies:* `A4`
+*Sources:* Landau, *Foundations of Analysis*, §2 Theorem 1
+*Notes cross-ref:* §1.1 #theorem-succ-strict
+-/
 theorem succ_strict : ∀ x y : N, x ≠ y → successor x ≠ successor y := by
   intro x y hne heq
   exact hne (A4 x y heq)
 
 -- ============================================================
--- Theorem 2: successor x ≠ x
--- Proof: induction on x.
---   Base:  successor one ≠ one                     by A3
---   Step:  successor x ≠ x → successor(successor x) ≠ successor x   by Theorem 1
+-- Landau Theorem 2: successor x ≠ x
 -- ============================================================
 
+/--
+**[Theorem — Successor Is Not Self]** *(Landau Thm 2)*
+
+`successor x ≠ x` for every `x : N`.
+
+*Dependencies:* `A3`, `succ_strict`, `A5_Induction`
+*Sources:* Landau, *Foundations of Analysis*, §2 Theorem 2
+*Notes cross-ref:* §1.1 #theorem-succ-ne-self
+-/
 theorem succ_ne_self : ∀ x : N, successor x ≠ x := by
   apply A5_Induction (fun x => successor x ≠ x)
   · exact A3 one
@@ -49,10 +75,8 @@ theorem succ_ne_self : ∀ x : N, successor x ≠ x := by
     exact succ_strict (successor x) x ih
 
 -- ============================================================
--- Theorem 3: x ≠ one → ∃ u, x = successor u ∧ ∀ v, x = successor v → v = u
---
--- Note: ∃! is not available without Mathlib.
--- We spell out existence and uniqueness explicitly.
+-- Landau Theorem 3: x ≠ one → unique predecessor exists
+-- Note: ∃! unavailable without Mathlib; spelled out explicitly.
 -- ============================================================
 
 private def UniqueSucc (y : N) : Prop :=
@@ -65,6 +89,16 @@ private theorem cover : ∀ y : N, y = one ∨ UniqueSucc y := by
     right
     exact ⟨y, rfl, fun v hv => A4 v y hv.symm⟩
 
+/--
+**[Theorem — Unique Predecessor]** *(Landau Thm 3)*
+
+Every element other than `one` has a unique predecessor:
+`x ≠ one → ∃ u, x = successor u ∧ ∀ v, x = successor v → v = u`
+
+*Dependencies:* `A4`, `A5_Induction`
+*Sources:* Landau, *Foundations of Analysis*, §2 Theorem 3
+*Notes cross-ref:* §1.1 #theorem-pred-unique
+-/
 theorem pred_unique : ∀ x : N, x ≠ one → UniqueSucc x := by
   intro x hne
   cases cover x with
@@ -72,19 +106,21 @@ theorem pred_unique : ∀ x : N, x ≠ one → UniqueSucc x := by
   | inr h => exact h
 
 -- ============================================================
--- Theorem 4 (Landau, Foundations of Analysis) — Part I: Uniqueness
--- If two functions f g : N → N → N both satisfy the two
--- defining equations of addition (A6 and A7), they agree
--- pointwise — i.e. f x y = g x y for all x y : N.
--- There is therefore at most one such function.
---
--- Theorem 4 — Part II: Existence
--- A function f : N → N → N satisfying A6 and A7 exists,
--- constructed explicitly by recursion on the second argument.
--- Together, Parts I and II establish that there is exactly
--- one function satisfying the equations of addition.
--- This unique function is called addition and written x + y.
+-- Landau Theorem 4: Existence and Uniqueness of Addition
 -- ============================================================
+
+/--
+**[Theorem — Addition Is Unique]** *(Landau Thm 4, Part I)*
+
+Any two functions `f g : N → N → N` satisfying the two
+defining equations of addition agree everywhere.
+
+*Dependencies:* `A5_Induction`
+*Sources:*
+  Landau, *Foundations of Analysis*, §2 Theorem 4
+  Thurston, *The Number System*, Ch.A Theorem 3 Part 1
+*Notes cross-ref:* §1.2 #lemma-a
+-/
 theorem addition_unique :
     ∀ f g : N → N → N,
     (∀ x : N, f x one = successor x) →
@@ -92,53 +128,92 @@ theorem addition_unique :
     (∀ x y : N, f x (successor y) = successor (f x y)) →
     (∀ x y : N, g x (successor y) = successor (g x y)) →
     ∀ x y : N, f x y = g x y := by
-    intro f g -- Introduce the functions since they are technically variables.
-    intro hfx -- Introduce the hypothesis that f x one = successor x
-    intro hgx -- Introduce the hypothesis that g x one = successor x
-    intro hfs -- Introduce the hypothesis that f x (successor y) = successor (f x y)
-    intro hgs -- Introduce the hypothesis that g x (successor y) = successor (g x y)
-    intro x y -- now we fix arbitrary x y and prove f x y = g x y by induction on y
-    apply A5_Induction (fun v => f x v = g x v)
-    · rw [hfx x, hgx x]
-    · intro v ih
-      rw [hfs x v, hgs x v]
-      congr
+  intro f g hfx hgx hfs hgs x y
+  apply A5_Induction (fun v => f x v = g x v)
+  · rw [hfx x, hgx x]
+  · intro v ih
+    rw [hfs x v, hgs x v]
+    congr
 
+/--
+**[Theorem — Addition Exists]** *(Landau Thm 4, Part II)*
+
+A function satisfying the two defining equations of addition exists,
+constructed by one application of `N_rec`.
+
+*Dependencies:* `N_rec`, `N_rec_one`, `N_rec_succ`
+*Sources:* Landau, *Foundations of Analysis*, §2 Theorem 4
+*Notes cross-ref:* §1.2 #lemma-b
+-/
 theorem addition_exists :
     ∃ f : N → N → N,
     (∀ x : N, f x one = successor x) ∧
     (∀ x y : N, f x (successor y) = successor (f x y)) := by
--- Define f by recursion on the second argument
   let f : N → N → N :=
-    fun x y =>
-      N_rec
-        (successor x)
-        (fun prev => successor prev) y
+    fun x y => N_rec (successor x) (fun prev => successor prev) y
   refine ⟨f, ?_, ?_⟩
-  · -- A6: f x one = successor x
-    intro x
+  · intro x
     show N_rec (successor x) (fun prev => successor prev) one = successor x
     rw [N_rec_one]
-  · -- A7: f x (successor y) = successor (f x y)
-    intro x y
+  · intro x y
     show N_rec (successor x) (fun prev => successor prev) (successor y) =
          successor (N_rec (successor x) (fun prev => successor prev) y)
     rw [N_rec_succ]
 
+-- ============================================================
+-- Definition of plus
+-- ============================================================
 
+/--
+**[Definition 8 — Addition on a Peano System]**
+
+`plus x y` is the sum of `x` and `y`.
+
+*Iterator configuration:*
+  W = N
+  c = successor x
+  g = successor
+
+*Dependencies:* `N_rec`
+*Sources:*
+  Landau, *Foundations of Analysis*, §2 (Axioms 6–7)
+  Feferman, *The Number Systems*, §3.4 (Theorem 3.4 applied)
+  Mendelson, *Number Systems*, §2.3
+*Notes cross-ref:* §1.2 #definition-8
+-/
 noncomputable def plus (x y : N) : N :=
   N_rec (successor x) (fun prev => successor prev) y
 
+/--
+**[Theorem — Addition Base Clause]**
+
+`plus x one = successor x`
+
+*Dependencies:* `plus`, `N_rec_one`
+*Notes cross-ref:* §1.2 #theorem-addition-base-clause
+-/
 theorem plus_base : ∀ x : N, plus x one = successor x := by
   intro x
   show N_rec (successor x) (fun prev => successor prev) one = successor x
   rw [N_rec_one]
 
+/--
+**[Theorem — Addition Successor Clause]**
+
+`plus x (successor y) = successor (plus x y)`
+
+*Dependencies:* `plus`, `N_rec_succ`
+*Notes cross-ref:* §1.2 #theorem-addition-successor-clause
+-/
 theorem plus_step : ∀ x y : N, plus x (successor y) = successor (plus x y) := by
   intro x y
   show N_rec (successor x) (fun prev => successor prev) (successor y) =
        successor (N_rec (successor x) (fun prev => successor prev) y)
   rw [N_rec_succ]
+
+-- ============================================================
+-- Helper lemmas
+-- ============================================================
 
 theorem one_plus_x : ∀ x : N, plus one x = successor x := by
   intro x
@@ -147,11 +222,52 @@ theorem one_plus_x : ∀ x : N, plus one x = successor x := by
   · rename_i x ih
     rw [plus_step, ih]
 
+/--
+**[Theorem — Add One Commutes]**
+
+`plus one x = plus x one`
+
+*Dependencies:* `plus_base`, `plus_step`, `N_Induction`
+-/
+theorem add_one_comm : ∀ x : N, plus one x = plus x one := by
+  intro x
+  induction x using N_Induction
+  case one =>
+    rfl
+  case successor n ih =>
+    rw [plus_step, ih, plus_base, plus_base]
+
+/--
+**[Theorem — Successor on Left of Addition]**
+
+`plus (successor x) y = successor (plus x y)`
+
+The left-side version of the successor clause.
+Needed for commutativity.
+
+*Dependencies:* `plus_base`, `plus_step`, `N_Induction`
+-/
+theorem successor_plus : ∀ x y : N, plus (successor x) y = successor (plus x y) := by
+  intro x y
+  induction y using N_Induction
+  case one =>
+    rw [plus_base, plus_base]
+  case successor n ih =>
+    rw [plus_step, plus_step, ih]
+
 -- ============================================================
--- Theorem 5 (Landau): Associative Law of Addition
--- (x + y) + z = x + (y + z) for all x y z : N
+-- Landau Theorem 5: Associativity
 -- ============================================================
 
+/--
+**[Theorem — Addition Is Associative]** *(Landau Thm 5)*
+
+`plus (plus x y) z = plus x (plus y z)`
+
+*Dependencies:* `plus_base`, `plus_step`, `A5_Induction`
+*Sources:* Landau, *Foundations of Analysis*, §2 Theorem 5
+*Notes cross-ref:* §1.2 #theorem-addition-is-associative
+-/
 theorem addition_is_associative : ∀ x y z : N, plus (plus x y) z = plus x (plus y z) := by
   intro x y z
   induction z using A5_Induction
@@ -160,131 +276,72 @@ theorem addition_is_associative : ∀ x y z : N, plus (plus x y) z = plus x (plu
     rw [plus_step, plus_step, ih, ← plus_step]
 
 -- ============================================================
--- Theorem 6 (Landau): Commutative Law of Addition
--- x + y = y + x for all x y : N
+-- Landau Theorem 6: Commutativity
 -- ============================================================
--- ============================================================
--- Helper Lemma: S(x) + y = S(x + y)
--- Landau's Axiom 7 gives us x + S(y) = S(x + y).
--- We need this "left-side" version for the induction step.
--- ============================================================
-theorem successor_plus : ∀ x y : N, plus (successor x) y = successor (plus x y) := by
-  intro x y
-  induction y using N_Induction
-  case one =>
-    -- Goal: plus (S x) one = S (plus x one)
-    rw [plus_base, plus_base]
-  case successor n ih =>
-    -- Goal: plus (S x) (S n) = S (plus x (S n))
-    rw [plus_step, plus_step, ih]
-    theorem add_one_comm (x : N) : plus one x = plus x one := by
-  induction x using N_Induction
-  case one =>
-    -- Goal: plus one one = plus one one
-    rfl
-  case successor n ih =>
-    -- Goal: plus one (successor n) = plus (successor n) one
-    rw [plus_step]  -- LHS: successor (plus one n)
-    rw [ih]         -- LHS: successor (plus n one)
-    rw [plus_base]  -- RHS: plus (S n) one = S(S n)
-    rw [plus_base]  -- LHS: S(S n) = S(S n)
--- ============================================================
--- Theorem 6 (Landau): Commutative Law of Addition
--- Part 2: x + y = y + x
--- ============================================================
+
+/--
+**[Theorem — Addition Is Commutative]** *(Landau Thm 6)*
+
+`plus x y = plus y x`
+
+*Dependencies:* `add_one_comm`, `successor_plus`, `plus_step`, `N_Induction`
+*Sources:* Landau, *Foundations of Analysis*, §2 Theorem 6
+*Notes cross-ref:* §1.2 #theorem-addition-is-commutative
+-/
 theorem addition_is_commutative : ∀ x y : N, plus y x = plus x y := by
   intro x y
   induction y using N_Induction
   case one =>
-    -- Goal: plus one x = plus x one
     exact add_one_comm x
   case successor n ih =>
-    -- Goal: plus (S n) x = plus x (S n)
-    rw [plus_step]      -- RHS: S (plus x n)
-    rw [← ih]           -- RHS: S (plus n x)
-    rw [successor_plus] -- LHS: S (plus n x)
-    -- Both sides are now S (plus n x)
+    rw [plus_step, ← ih, successor_plus]
 
 -- ============================================================
--- Theorem 7 (Landau): y ≠ x + y  for all x, y ∈ ℕ
--- Proof: fix x ∈ ℕ, induction on y.
---
---   Base case (y = one):
---     Goal: one ≠ plus x one.
---     plus x one = successor x      by plus_base (Axiom A6).
---     successor x ≠ one             by A3 (Peano axiom P3).
---     Hence one ≠ successor x = plus x one.
---
---   Inductive step (y = successor m, IH: m ≠ plus x m):
---     Goal: successor m ≠ plus x (successor m).
---     plus x (successor m) = successor (plus x m)   by plus_step (Axiom A7).
---     Goal becomes: successor m ≠ successor (plus x m).
---     By succ_strict applied to IH (m ≠ plus x m):
---       successor m ≠ successor (plus x m).
---     Done.
---
--- Note: the induction is on y (not x) because the inductive step for y
--- uses A7 (recursion on the second argument) and succ_strict directly.
+-- Landau Theorem 7: y ≠ x + y
 -- ============================================================
+
+/--
+**[Theorem — Addition Does Not Fix Points]** *(Landau Thm 7)*
+
+`y ≠ plus x y` for all `x y : N`.
+
+*Dependencies:* `plus_base`, `plus_step`, `succ_strict`, `A3`, `N_Induction`
+*Sources:* Landau, *Foundations of Analysis*, §2 Theorem 7
+*Notes cross-ref:* §1.2 #theorem-add-ne-self
+-/
 theorem add_ne_self : ∀ x y : N, y ≠ plus x y := by
-  intro x y -- Introduce both to avoid 'unknown identifier'
+  intro x y
   induction y using N_Induction
   case one =>
-    -- Goal: one ≠ plus x one
-    rw [plus_base] -- Change 'plus x one' to 'successor x'
-    -- Goal: one ≠ successor x
-    -- We know 'successor x ≠ one' from Axiom A3, so use symmetry
+    rw [plus_base]
     exact Ne.symm (A3 x)
-
   case successor n ih =>
-    -- Goal: successor n ≠ plus x (successor n)
-    -- IH: n ≠ plus x n
-    rw [plus_step] -- Change 'plus x (successor n)' to 'successor (plus x n)'
-    -- Goal: successor n ≠ successor (plus x n)
-    -- Now apply Theorem 1 (succ_strict) to the IH
+    rw [plus_step]
     exact succ_strict n (plus x n) ih
 
 -- ============================================================
--- Theorem 8 (Landau): If y ≠ z, then x + y ≠ x + z for all x, y, z ∈ ℕ
--- Proof: Fix y, z ∈ ℕ such that y ≠ z. Proceed by induction on x.
---
---   Base case (x = one):
---     Goal: plus one y ≠ plus one z.
---     plus one y = successor y         by Theorem 4 (or Def of Add).
---     plus one z = successor z         by Theorem 4.
---     Since y ≠ z, successor y ≠ successor z  by Axiom 4 (P4).
---     Hence plus one y ≠ plus one z.
---
---   Inductive step (x = successor m, IH: plus m y ≠ plus m z):
---     Goal: plus (successor m) y ≠ plus (successor m) z.
---     plus (successor m) y = successor (plus m y)   by Theorem 2.
---     plus (successor m) z = successor (plus m z)   by Theorem 2.
---     By Axiom 4 applied to IH (plus m y ≠ plus m z):
---       successor (plus m y) ≠ successor (plus m z).
---     Hence plus (successor m) y ≠ plus (successor m) z.
---
--- Note: Induction is on x because Theorem 2 (successor on the first
--- argument) allows us to "pull out" the successor to apply Axiom 4.
+-- Landau Theorem 8: y ≠ z → x + y ≠ x + z
 -- ============================================================
 
-theorem landau_thm8 (x y z : N) : (y ≠ z → plus x y ≠ plus x z) := by
-  -- We use your N_Induction (Axiom 5) on x
+/--
+**[Theorem — Addition Is Cancellative on Right]** *(Landau Thm 8)*
+
+`y ≠ z → plus x y ≠ plus x z` for all `x y z : N`.
+
+*Dependencies:* `one_plus_x`, `succ_strict`, `successor_plus`, `N_Induction`
+*Sources:* Landau, *Foundations of Analysis*, §2 Theorem 8
+*Notes cross-ref:* §1.2 #theorem-add-cancel
+-/
+theorem landau_thm8 (x y z : N) : y ≠ z → plus x y ≠ plus x z := by
   induction x using N_Induction
   case one =>
-    -- Goal: y ≠ z → plus one y ≠ plus one z
     intro hne
-    rw [one_plus_x, one_plus_x] -- Using your Helper Lemma
-    exact succ_strict y z hne   -- Using your Theorem 1
-
+    rw [one_plus_x, one_plus_x]
+    exact succ_strict y z hne
   case successor n ih =>
-    -- Goal: y ≠ z → plus (successor n) y ≠ plus (successor n) z
-    -- ih: y ≠ z → plus n y ≠ plus n z
     intro hne
-    -- 1. Apply the IH to our specific y and z
     have h_prev := ih hne
-    -- 2. Use successor_plus (S x + y = S(x + y))
     rw [successor_plus, successor_plus]
-    -- 3. Apply succ_strict (Thm 1) to the IH result
     exact succ_strict (plus n y) (plus n z) h_prev
 
 end Landau
