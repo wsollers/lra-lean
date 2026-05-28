@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+# ============================================================
+# scripts/pre-commit
+# ============================================================
+# Install: bash scripts/install_hooks.sh
+# Skip:    git commit --no-verify
+# ============================================================
+
+set -euo pipefail
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+echo "── lra-lean pre-commit checks ──────────────────────────"
+
+USE_DOCKER=0
+if command -v docker &>/dev/null && docker image inspect lra-lean &>/dev/null 2>&1; then
+    USE_DOCKER=1
+    RUN="docker run --rm -v $(pwd):/workspace -w /workspace lra-lean"
+    echo "  Mode: Docker (lra-lean image)"
+else
+    RUN=""
+    echo "  Mode: Native ($(cat lean-toolchain 2>/dev/null || echo 'unknown toolchain'))"
+fi
+
+CHANGED_LEAN=$(git diff --cached --name-only | grep "^LRA/VolumeII.*\.lean$" || true)
+
+if [[ -z "$CHANGED_LEAN" ]]; then
+    echo -e "  ${GREEN}✓${NC} No VolumeII .lean files staged — skipping Lean checks"
+    exit 0
+fi
+
+echo "  Staged VolumeII files:"
+echo "$CHANGED_LEAN" | sed 's/^/    /'
+
+echo ""
+echo "  Checking for 'sorry'..."
+SORRY_FOUND=0
+while IFS= read -r f; do
+    if grep -q "sorry" "$f" 2>/dev/null; then
+        echo -e "  ${RED}✗${NC} sorry found in: $f"
+        grep -n "sorry" "$f" | head -5 | sed 's/^/      /'
+        SORRY_FOUND=1
+    fi
+done <<< "$CHANGED_LEAN"
+
+if [[ $SORRY_FOUND -eq 1 ]]; then
+    echo -e "  ${RED}BLOCKED:${NC} Remove 'sorry' before committing to VolumeII."
+    exit 1
+fi
+echo -e "  ${GREEN}✓${NC} No sorry found"
+
+echo ""
+echo "  Running lake build LRAVolumeII..."
+if ! $RUN lake build LRAVolumeII 2>&1; then
+    echo -e "  ${RED}BLOCKED:${NC} lake build failed."
+    exit 1
+fi
+echo -e "  ${GREEN}✓${NC} lake build passed"
+
+echo ""
+echo -e "── ${GREEN}All pre-commit checks passed${NC} ──────────────────────"
+exit 0
