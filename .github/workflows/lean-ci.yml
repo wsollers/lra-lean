@@ -15,6 +15,7 @@ on:
       - 'lakefile.lean'
       - 'lean-toolchain'
       - 'lake-manifest.json'
+  workflow_dispatch:
 
 jobs:
   build:
