@@ -25,6 +25,7 @@ def evaluate (v : SimpleAtoms → Bool) : SimpleFormula → Bool
   | Formula.atom a => v a
   | Formula.binary op ϕ ψ => match op with
     | SimpleBinary.nand => !(evaluate v ϕ && evaluate v ψ)
+  | Formula.unary _ _ => false
   | Formula.neg _ => false
   | Formula.conj _ _ => false
 

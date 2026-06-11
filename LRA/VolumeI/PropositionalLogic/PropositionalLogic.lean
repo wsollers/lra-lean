@@ -1,13 +1,29 @@
 import LRA.VolumeI.PropositionalLogic.MetaLogic
 
+-- Define the "lemma" command macro for Lean 4 core compatibility
+macro "lemma" id:ident binders:bracketedBinder* ":" type:term ":=" "by" val:tacticSeq : command =>
+  `(theorem $id $binders* : $type := by $val)
+
 namespace LRA.VolumeI.PropositionalLogic
 
--- 1. Define your specific universe of Atoms
+-- 1. Define your specific universe of Atoms and Operators
 inductive StandardAtoms where
   | P | Q | R
 
--- 2. Instantiate the Meta-Model with your Atoms
-def PropSig : Signature := { Atoms := StandardAtoms }
+inductive PropUnary where
+  | id
+
+inductive PropBinary where
+  | or
+  | impl
+  | iff
+
+-- 2. Instantiate the Meta-Model with your Atoms and Operators
+def PropSig : Signature := { 
+  Atoms := StandardAtoms 
+  UnaryOps := PropUnary
+  BinOps := PropBinary
+}
 
 -- 3. LOCK IN YOUR SYSTEM
 abbrev PropFormula := Formula PropSig
@@ -30,5 +46,44 @@ def test_model : PropModel := {
 }
 
 #eval evaluate test_model test_formula  -- Outputs: true
+
+
+-- ====================================================================
+-- Lemma: Closure Properties of Formula Formation
+-- ====================================================================
+
+  namespace FormulaFormation
+    
+    lemma closedUnderUnaryOperation (op : PropUnary) (φ : PropFormula) : 
+      ∃ (ψ : PropFormula), ψ = (Formula.unary op φ) := by
+      exact ⟨Formula.unary op φ, rfl⟩
+
+    lemma closedUnderBinaryOperation (op : PropBinary) (φ ψ : PropFormula) : 
+      ∃ (χ : PropFormula), χ = (Formula.binary op φ ψ) := by
+      exact ⟨Formula.binary op φ ψ, rfl⟩
+
+  end FormulaFormation
+
+
+-- ====================================================================
+-- Theorem: Minimality of Well-Formed Formulas
+-- ====================================================================
+
+-- Let S be a property representing our set of strings
+variable (S : PropFormula → Prop)
+
+-- Assume S is closed under the formation rules:
+variable (H_atom : ∀ a : PropAtoms, S (Formula.atom a))
+variable (H_neg : ∀ φ : PropFormula, S φ → S (Formula.unary PropUnary.not φ))
+variable (H_bin : ∀ (φ ψ : PropFormula) (op : PropBinary), 
+  S φ → S ψ → S (Formula.binary op φ ψ))
+
+-- Prove that every well-formed formula is in S
+theorem minimality_of_wff (φ : PropFormula) : S φ := by
+  sorry
+
+
+
+
 
 end LRA.VolumeI.PropositionalLogic
