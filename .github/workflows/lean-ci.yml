@@ -48,7 +48,7 @@ jobs:
 
       - name: Install Lean toolchain
         run: |
-          elan toolchain install "$(cat lean-toolchain)"
+          elan toolchain install "$(cat lean-toolchain)" || true
           elan default "$(cat lean-toolchain)"
 
       - name: Lake update
