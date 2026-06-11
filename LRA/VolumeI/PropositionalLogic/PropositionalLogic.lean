@@ -73,14 +73,27 @@ def test_model : PropModel := {
 variable (S : PropFormula → Prop)
 
 -- Assume S is closed under the formation rules:
-variable (H_atom : ∀ a : PropAtoms, S (Formula.atom a))
-variable (H_neg : ∀ φ : PropFormula, S φ → S (Formula.unary PropUnary.not φ))
+variable (H_atom : ∀ a : StandardAtoms, S (Formula.atom a))
+variable (H_neg : ∀ φ : PropFormula, S φ → S (Formula.neg φ))
+variable (H_conj : ∀ φ ψ : PropFormula, S φ → S ψ → S (Formula.conj φ ψ))
+variable (H_unary : ∀ (op : PropUnary) (φ : PropFormula),
+  S φ → S (Formula.unary op φ))
 variable (H_bin : ∀ (φ ψ : PropFormula) (op : PropBinary), 
   S φ → S ψ → S (Formula.binary op φ ψ))
 
 -- Prove that every well-formed formula is in S
 theorem minimality_of_wff (φ : PropFormula) : S φ := by
-  sorry
+  induction φ with
+  | atom a =>
+      exact H_atom a
+  | neg φ ih =>
+      exact H_neg φ ih
+  | conj φ ψ ihφ ihψ =>
+      exact H_conj φ ψ ihφ ihψ
+  | unary op φ ih =>
+      exact H_unary op φ ih
+  | binary op φ ψ ihφ ihψ =>
+      exact H_bin φ ψ op ihφ ihψ
 
 
 
