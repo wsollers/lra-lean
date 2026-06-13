@@ -5,3 +5,8 @@ import LRA.VolumeI.BooleanAlgebra.BooleanAlgebra
 import LRA.VolumeI.PropositionalLogic.MetaLogic
 import LRA.VolumeI.PropositionalLogic.PropositionalLogic
 import LRA.VolumeI.PropositionalLogic.SimpleLogic
+import LRA.VolumeI.FirstOrderLogic.Model
+import LRA.VolumeI.FirstOrderLogic.Relations
+import LRA.VolumeI.FirstOrderLogic.PeanoSystemModel
+import LRA.VolumeI.FirstOrderLogic.PresburgerArithmetic
+import LRA.VolumeI.FirstOrderLogic.Comparison

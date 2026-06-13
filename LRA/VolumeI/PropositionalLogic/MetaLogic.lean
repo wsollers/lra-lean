@@ -1,30 +1,77 @@
 namespace LRA.VolumeI.PropositionalLogic
 
--- 1. The Generic Signature
-structure Signature where
+/-!
+  ============================================================
+  Propositional Meta-Logic
+  ============================================================
+
+  A propositional language is the vocabulary: the atoms and
+  connective symbols that formulas may use.
+
+  A propositional structure is an interpretation of that
+  vocabulary: it assigns truth values to atoms and truth
+  functions to connectives.
+  ============================================================
+-/
+
+-- 1. The Generic Language / Signature
+structure PropositionalLanguage where
   Atoms : Type
-  UnaryOps : Type := Empty
-  BinOps : Type := Empty
+  UnaryConnectives : Type := Empty
+  BinaryConnectives : Type := Empty
 
 -- 2. The Generic Language
-inductive Formula (sig : Signature) where
-  | atom : sig.Atoms → Formula sig
-  | neg  : Formula sig → Formula sig
-  | conj : Formula sig → Formula sig → Formula sig
-  | unary : sig.UnaryOps → Formula sig → Formula sig
-  | binary : sig.BinOps → Formula sig → Formula sig → Formula sig
+inductive PropositionalFormula (L : PropositionalLanguage) where
+  | atom : L.Atoms → PropositionalFormula L
+  | unary :
+      L.UnaryConnectives →
+      PropositionalFormula L →
+      PropositionalFormula L
+  | binary :
+      L.BinaryConnectives →
+      PropositionalFormula L →
+      PropositionalFormula L →
+      PropositionalFormula L
 
 -- 3. The Generic Semantics
-structure Structure (sig : Signature) where
-  interpretation : sig.Atoms → Bool
-  evaluateUnary : sig.UnaryOps → Bool → Bool := fun _ _ => false
-  evaluateBinary : sig.BinOps → Bool → Bool → Bool := fun _ _ _ => false
+structure PropositionalStructure (L : PropositionalLanguage) where
+  truthValueOfAtom : L.Atoms → Bool
+  truthFunctionOfUnaryConnective :
+    L.UnaryConnectives → Bool → Bool
+  truthFunctionOfBinaryConnective :
+    L.BinaryConnectives → Bool → Bool → Bool
 
-def evaluate {sig : Signature} (M : Structure sig) : Formula sig → Bool
-  | Formula.atom a   => M.interpretation a
-  | Formula.neg ϕ    => !(evaluate M ϕ)
-  | Formula.conj ϕ ψ => (evaluate M ϕ) && (evaluate M ψ)
-  | Formula.unary op ϕ => M.evaluateUnary op (evaluate M ϕ)
-  | Formula.binary op ϕ ψ => M.evaluateBinary op (evaluate M ϕ) (evaluate M ψ)
+def evaluateFormula {L : PropositionalLanguage}
+    (M : PropositionalStructure L) :
+    PropositionalFormula L → Bool
+  | PropositionalFormula.atom a =>
+      M.truthValueOfAtom a
+  | PropositionalFormula.unary connective ϕ =>
+      M.truthFunctionOfUnaryConnective connective (evaluateFormula M ϕ)
+  | PropositionalFormula.binary connective ϕ ψ =>
+      M.truthFunctionOfBinaryConnective connective
+        (evaluateFormula M ϕ)
+        (evaluateFormula M ψ)
+
+def StructureSatisfiesFormula {L : PropositionalLanguage}
+    (M : PropositionalStructure L)
+    (ϕ : PropositionalFormula L) : Prop :=
+  evaluateFormula M ϕ = true
+
+abbrev PropositionalTheory (L : PropositionalLanguage) :=
+  List (PropositionalFormula L)
+
+def StructureModelsTheory {L : PropositionalLanguage}
+    (M : PropositionalStructure L)
+    (T : PropositionalTheory L) : Prop :=
+  ∀ ϕ, ϕ ∈ T → StructureSatisfiesFormula M ϕ
+
+-- Compatibility names while the surrounding volume migrates.
+abbrev Signature := PropositionalLanguage
+abbrev Formula := PropositionalFormula
+abbrev Structure := PropositionalStructure
+abbrev Theory := PropositionalTheory
+abbrev evaluate {L : PropositionalLanguage} (M : PropositionalStructure L) (ϕ : PropositionalFormula L) : Bool :=
+  evaluateFormula M ϕ
 
 end LRA.VolumeI.PropositionalLogic

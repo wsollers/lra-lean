@@ -1,87 +1,256 @@
-import LRA.VolumeI.PropositionalLogic.MetaLogic
+import LRA.VolumeI.PropositionalLogic.PropositionalLogic
 
 namespace LRA.VolumeI.PropositionalLogic.SimpleLogic
 open LRA.VolumeI.PropositionalLogic
 
--- 0. Define atoms, binary operators, signature, and formula types
-inductive SimpleAtoms where
-  | p | q
+/-!
+  ============================================================
+  Minimal Propositional Logic: NAND-Only Language
+  ============================================================
 
-inductive SimpleBinary where
+  This file instantiates the same propositional meta-logic with
+  a smaller connective vocabulary: NAND as the only primitive
+  connective.
+  ============================================================
+-/
+
+-- 0. Define atoms, the NAND connective, and the language.
+inductive NandOnlyAtoms where
+  | p | q | r
+
+inductive NandOnlyBinaryConnective where
   | nand
 
-def SimpleSig : Signature := {
-  Atoms := SimpleAtoms
-  BinOps := SimpleBinary
+def NandOnlyLanguage : PropositionalLanguage := {
+  Atoms := NandOnlyAtoms
+  BinaryConnectives := NandOnlyBinaryConnective
 }
 
-abbrev SimpleFormula := Formula SimpleSig
+abbrev NandOnlyFormula :=
+  PropositionalFormula NandOnlyLanguage
 
-def nand (ϕ ψ : SimpleFormula) : SimpleFormula :=
-  Formula.binary SimpleBinary.nand ϕ ψ
+abbrev NandOnlyStructure :=
+  PropositionalStructure NandOnlyLanguage
 
--- 1. Define the Semantics (Truth Table for NAND)
-def evaluate (v : SimpleAtoms → Bool) : SimpleFormula → Bool
-  | Formula.atom a => v a
-  | Formula.binary op ϕ ψ => match op with
-    | SimpleBinary.nand => !(evaluate v ϕ && evaluate v ψ)
-  | Formula.unary _ _ => false
-  | Formula.neg _ => false
-  | Formula.conj _ _ => false
+def atom (a : NandOnlyAtoms) : NandOnlyFormula :=
+  PropositionalFormula.atom a
 
--- 2. Construct 'NOT' out of pure NAND
--- In logic, ¬P is equivalent to (P NAND P)
-def build_not (ϕ : SimpleFormula) : SimpleFormula :=
+def nand (ϕ ψ : NandOnlyFormula) : NandOnlyFormula :=
+  PropositionalFormula.binary NandOnlyBinaryConnective.nand ϕ ψ
+
+def NandOnlyBooleanStructure
+    (valuation : NandOnlyAtoms → Bool) :
+    NandOnlyStructure := {
+  truthValueOfAtom := valuation
+  truthFunctionOfUnaryConnective := fun emptyConnective =>
+    Empty.elim emptyConnective
+  truthFunctionOfBinaryConnective := fun connective leftTruthValue rightTruthValue =>
+    match connective with
+    | NandOnlyBinaryConnective.nand =>
+        !(leftTruthValue && rightTruthValue)
+}
+
+-- 1. Construct NOT out of pure NAND.
+-- In logic, ¬P is equivalent to P NAND P.
+def buildNot (ϕ : NandOnlyFormula) : NandOnlyFormula :=
   nand ϕ ϕ
 
--- 3. THE COMPLETENESS THEOREM
--- We formally prove that our 'build_not' function perfectly matches 
--- the mathematical definition of a boolean NOT operation.
-theorem simple_logic_has_not (v : SimpleAtoms → Bool) (ϕ : SimpleFormula) : 
-  evaluate v (build_not ϕ) = !(evaluate v ϕ) := by
-  
-  -- Step 1: Unfold our custom definitions
-  dsimp [build_not, evaluate, nand]
-  
-  -- Step 2: We are left with proving !(b && b) = !b. 
-  -- We tell Lean to test both True and False cases for the evaluated formula.
-  cases h : evaluate v ϕ
-  
-  -- Case: evaluate v ϕ = false
-  case false => rfl  -- !(false && false) = !false (True = True)
-  
-  -- Case: evaluate v ϕ = true
-  case true => rfl   -- !(true && true) = !true (False = False)
+-- 2. Construct AND out of pure NAND.
+-- In logic, P ∧ Q is equivalent to (P NAND Q) NAND (P NAND Q).
+def buildAnd (ϕ ψ : NandOnlyFormula) : NandOnlyFormula :=
+  buildNot (nand ϕ ψ)
 
+-- 3. Construct the remaining standard connectives out of pure NAND.
+def buildOr (ϕ ψ : NandOnlyFormula) : NandOnlyFormula :=
+  nand (buildNot ϕ) (buildNot ψ)
 
--- 4. UNIT TESTS AND NEGATIVE CASES
+def buildImplies (ϕ ψ : NandOnlyFormula) : NandOnlyFormula :=
+  nand ϕ (buildNot ψ)
 
--- Step A: Define a specific test state (Valuation) 
--- We create a universe where both P and Q are explicitly TRUE.
-def test_val_all_true : SimpleAtoms → Bool
-  | SimpleAtoms.p => true
-  | SimpleAtoms.q => true
+def buildIff (ϕ ψ : NandOnlyFormula) : NandOnlyFormula :=
+  buildAnd (buildImplies ϕ ψ) (buildImplies ψ ϕ)
 
--- Step B: Define the formula we want to test: (P NAND Q)
-def test_formula_pq : SimpleFormula :=
-  nand (Formula.atom SimpleAtoms.p) (Formula.atom SimpleAtoms.q)
+-- 4. The first definability theorem: NAND defines NOT.
+theorem nandOnlyLogicCanDefineNegation
+    (valuation : NandOnlyAtoms → Bool)
+    (ϕ : NandOnlyFormula) :
+    evaluateFormula (NandOnlyBooleanStructure valuation) (buildNot ϕ) =
+      !(evaluateFormula (NandOnlyBooleanStructure valuation) ϕ) := by
+  dsimp [buildNot, nand, evaluateFormula]
+  generalize hϕ : evaluateFormula (NandOnlyBooleanStructure valuation) ϕ = bϕ
+  dsimp [NandOnlyBooleanStructure]
+  cases bϕ <;> rfl
 
--- ==========================================
--- TEST 1: The Compile-Time Assertion
--- ==========================================
--- This tests the engine using standard execution.
--- We assert that evaluating the formula MUST equal false.
-#guard (evaluate test_val_all_true test_formula_pq) == false
+-- 5. The second definability theorem: NAND defines AND.
+theorem nandOnlyLogicCanDefineConjunction
+    (valuation : NandOnlyAtoms → Bool)
+    (ϕ ψ : NandOnlyFormula) :
+    evaluateFormula (NandOnlyBooleanStructure valuation) (buildAnd ϕ ψ) =
+      (evaluateFormula (NandOnlyBooleanStructure valuation) ϕ &&
+        evaluateFormula (NandOnlyBooleanStructure valuation) ψ) := by
+  dsimp [buildAnd, buildNot, nand, evaluateFormula]
+  generalize hϕ : evaluateFormula (NandOnlyBooleanStructure valuation) ϕ = bϕ
+  generalize hψ : evaluateFormula (NandOnlyBooleanStructure valuation) ψ = bψ
+  dsimp [NandOnlyBooleanStructure]
+  cases bϕ <;> cases bψ <;> rfl
 
+-- 6. Connective completeness package.
 
--- ==========================================
--- TEST 2: The Formal Proof of the Negative
--- ==========================================
--- This mathematically proves the negative case. 
--- 'example' is just an anonymous theorem.
-example : evaluate test_val_all_true test_formula_pq = false := by
-  -- Because our formula and valuation are finite and fully defined,
-  -- 'rfl' simply computes !(true && true) and sees that it equals false.
+namespace ConnectiveCompleteness
+
+  def standardAtomAsNandOnlyAtom : StandardAtoms → NandOnlyAtoms
+    | StandardAtoms.P => NandOnlyAtoms.p
+    | StandardAtoms.Q => NandOnlyAtoms.q
+    | StandardAtoms.R => NandOnlyAtoms.r
+
+  def standardValuationAsNandOnlyValuation
+      (valuation : StandardAtoms → Bool) :
+      NandOnlyAtoms → Bool
+    | NandOnlyAtoms.p => valuation StandardAtoms.P
+    | NandOnlyAtoms.q => valuation StandardAtoms.Q
+    | NandOnlyAtoms.r => valuation StandardAtoms.R
+
+  def translateStandardFormulaToNandOnlyFormula :
+      PropFormula → NandOnlyFormula
+    | PropositionalFormula.atom atomName =>
+        atom (standardAtomAsNandOnlyAtom atomName)
+    | PropositionalFormula.unary connective ϕ =>
+        match connective with
+        | StandardUnaryConnective.not =>
+            buildNot (translateStandardFormulaToNandOnlyFormula ϕ)
+    | PropositionalFormula.binary connective ϕ ψ =>
+        match connective with
+        | StandardBinaryConnective.and =>
+            buildAnd
+              (translateStandardFormulaToNandOnlyFormula ϕ)
+              (translateStandardFormulaToNandOnlyFormula ψ)
+        | StandardBinaryConnective.or =>
+            buildOr
+              (translateStandardFormulaToNandOnlyFormula ϕ)
+              (translateStandardFormulaToNandOnlyFormula ψ)
+        | StandardBinaryConnective.implies =>
+            buildImplies
+              (translateStandardFormulaToNandOnlyFormula ϕ)
+              (translateStandardFormulaToNandOnlyFormula ψ)
+        | StandardBinaryConnective.iff =>
+            buildIff
+              (translateStandardFormulaToNandOnlyFormula ϕ)
+              (translateStandardFormulaToNandOnlyFormula ψ)
+
+  theorem nandDefinesNegation :
+      ∀ (valuation : NandOnlyAtoms → Bool) (ϕ : NandOnlyFormula),
+        evaluateFormula (NandOnlyBooleanStructure valuation) (buildNot ϕ) =
+          !(evaluateFormula (NandOnlyBooleanStructure valuation) ϕ) := by
+    intro valuation ϕ
+    exact nandOnlyLogicCanDefineNegation valuation ϕ
+
+  theorem nandDefinesConjunction :
+      ∀ (valuation : NandOnlyAtoms → Bool) (ϕ ψ : NandOnlyFormula),
+        evaluateFormula (NandOnlyBooleanStructure valuation) (buildAnd ϕ ψ) =
+          (evaluateFormula (NandOnlyBooleanStructure valuation) ϕ &&
+            evaluateFormula (NandOnlyBooleanStructure valuation) ψ) := by
+    intro valuation ϕ ψ
+    exact nandOnlyLogicCanDefineConjunction valuation ϕ ψ
+
+  theorem nandDefinesDisjunction :
+      ∀ (valuation : NandOnlyAtoms → Bool) (ϕ ψ : NandOnlyFormula),
+        evaluateFormula (NandOnlyBooleanStructure valuation) (buildOr ϕ ψ) =
+          (evaluateFormula (NandOnlyBooleanStructure valuation) ϕ ||
+            evaluateFormula (NandOnlyBooleanStructure valuation) ψ) := by
+    intro valuation ϕ ψ
+    dsimp [buildOr, buildNot, nand, evaluateFormula]
+    generalize hϕ : evaluateFormula (NandOnlyBooleanStructure valuation) ϕ = bϕ
+    generalize hψ : evaluateFormula (NandOnlyBooleanStructure valuation) ψ = bψ
+    dsimp [NandOnlyBooleanStructure]
+    cases bϕ <;> cases bψ <;> rfl
+
+  theorem nandDefinesImplication :
+      ∀ (valuation : NandOnlyAtoms → Bool) (ϕ ψ : NandOnlyFormula),
+        evaluateFormula (NandOnlyBooleanStructure valuation) (buildImplies ϕ ψ) =
+          (!(evaluateFormula (NandOnlyBooleanStructure valuation) ϕ) ||
+            evaluateFormula (NandOnlyBooleanStructure valuation) ψ) := by
+    intro valuation ϕ ψ
+    dsimp [buildImplies, buildNot, nand, evaluateFormula]
+    generalize hϕ : evaluateFormula (NandOnlyBooleanStructure valuation) ϕ = bϕ
+    generalize hψ : evaluateFormula (NandOnlyBooleanStructure valuation) ψ = bψ
+    dsimp [NandOnlyBooleanStructure]
+    cases bϕ <;> cases bψ <;> rfl
+
+  theorem nandDefinesBiconditional :
+      ∀ (valuation : NandOnlyAtoms → Bool) (ϕ ψ : NandOnlyFormula),
+        evaluateFormula (NandOnlyBooleanStructure valuation) (buildIff ϕ ψ) =
+          (evaluateFormula (NandOnlyBooleanStructure valuation) ϕ ==
+            evaluateFormula (NandOnlyBooleanStructure valuation) ψ) := by
+    intro valuation ϕ ψ
+    dsimp [buildIff, buildAnd, buildImplies, buildNot, nand, evaluateFormula]
+    generalize hϕ : evaluateFormula (NandOnlyBooleanStructure valuation) ϕ = bϕ
+    generalize hψ : evaluateFormula (NandOnlyBooleanStructure valuation) ψ = bψ
+    dsimp [NandOnlyBooleanStructure]
+    cases bϕ <;> cases bψ <;> rfl
+
+  theorem nandOnlyLanguageIsFunctionallyCompleteForStandardPropositionalLogic :
+      ∀ (valuation : StandardAtoms → Bool) (ϕ : PropFormula),
+        evaluateFormula
+          (NandOnlyBooleanStructure
+            (standardValuationAsNandOnlyValuation valuation))
+          (translateStandardFormulaToNandOnlyFormula ϕ) =
+        evaluateFormula
+          (StandardBooleanStructure valuation)
+          ϕ := by
+    intro valuation ϕ
+    induction ϕ with
+    | atom a =>
+        cases a <;> rfl
+    | unary connective ϕ ih =>
+        cases connective
+        dsimp [translateStandardFormulaToNandOnlyFormula]
+        rw [nandDefinesNegation]
+        rw [ih]
+        rfl
+    | binary connective ϕ ψ ih_ϕ ih_ψ =>
+        cases connective with
+        | and =>
+            dsimp [translateStandardFormulaToNandOnlyFormula]
+            rw [nandDefinesConjunction]
+            rw [ih_ϕ, ih_ψ]
+            rfl
+        | or =>
+            dsimp [translateStandardFormulaToNandOnlyFormula]
+            rw [nandDefinesDisjunction]
+            rw [ih_ϕ, ih_ψ]
+            rfl
+        | implies =>
+            dsimp [translateStandardFormulaToNandOnlyFormula]
+            rw [nandDefinesImplication]
+            rw [ih_ϕ, ih_ψ]
+            rfl
+        | iff =>
+            dsimp [translateStandardFormulaToNandOnlyFormula]
+            rw [nandDefinesBiconditional]
+            rw [ih_ϕ, ih_ψ]
+            rfl
+
+end ConnectiveCompleteness
+
+-- 7. Unit tests and negative cases.
+
+def testValuationAllTrue : NandOnlyAtoms → Bool
+  | NandOnlyAtoms.p => true
+  | NandOnlyAtoms.q => true
+  | NandOnlyAtoms.r => true
+
+def testFormulaPandQ : NandOnlyFormula :=
+  nand (atom NandOnlyAtoms.p) (atom NandOnlyAtoms.q)
+
+#guard
+  evaluateFormula
+    (NandOnlyBooleanStructure testValuationAllTrue)
+    testFormulaPandQ == false
+
+example :
+    evaluateFormula
+      (NandOnlyBooleanStructure testValuationAllTrue)
+      testFormulaPandQ = false := by
   rfl
 
 end LRA.VolumeI.PropositionalLogic.SimpleLogic
