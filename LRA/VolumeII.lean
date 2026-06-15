@@ -16,3 +16,4 @@ import LRA.VolumeII.NaturalNumbers.Multiplication
 import LRA.VolumeII.NaturalNumbers.Order
 import LRA.VolumeII.NaturalNumbers.Utilities
 import LRA.VolumeII.NaturalNumbers.StandardN
+import LRA.VolumeII.NaturalNumbers.Arithmetic
