@@ -1,4 +1,5 @@
 import LRA.VolumeI.Foundations.Tuple
+import LRA.VolumeI.Foundations.IdentityAxioms
 import LRA.VolumeI.Sets.SetDefinitions
 import LRA.VolumeI.Sets.Sets
 import LRA.VolumeI.Sets.Relations
@@ -10,6 +11,7 @@ import LRA.VolumeI.BooleanAlgebra.BooleanAlgebra
 import LRA.VolumeI.PropositionalLogic.MetaLogic
 import LRA.VolumeI.PropositionalLogic.PropositionalLogic
 import LRA.VolumeI.PropositionalLogic.SimpleLogic
+import LRA.VolumeI.PropositionalLogic.PropositionalAxioms
 import LRA.VolumeI.FirstOrderLogic.Model
 import LRA.VolumeI.FirstOrderLogic.Relations
 import LRA.VolumeI.FirstOrderLogic.PeanoSystemModel
