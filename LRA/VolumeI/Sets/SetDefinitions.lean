@@ -24,14 +24,20 @@ def union (s1 s2 : Set α) : Set α :=
 
 /-
   1. AXIOM OF EXTENSIONALITY
-     Status: NOT built-in for predicates.
-     We must define it (as we did with `axiom_set_extension`) to treat
-     functions as sets.
+     Status: DERIVABLE for predicates — not a primitive axiom.
+     For `Set α := α → Prop`, extensionality follows from Lean's core
+     `funext` + `propext`, so `axiom_set_extension` is proven as a theorem
+     below rather than postulated.
 -/
 
 -- Extensionality: Two sets are equal if they have the same members.
--- This is the only "Axiom" we need for these proofs.
-axiom axiom_set_extension {α : Type} (A B : Set α) : (∀ x, memberOf x A ↔ memberOf x B) → A = B
+-- For `Set α := α → Prop` this is NOT a new axiom — it is provable from
+-- Lean's core `funext` + `propext`, so proving it as a theorem adds nothing
+-- to the trusted base. (Name kept as `axiom_set_extension` so existing
+-- references don't break; it is a theorem now, despite the name.)
+theorem axiom_set_extension {α : Type} (A B : Set α) :
+    (∀ x, memberOf x A ↔ memberOf x B) → A = B :=
+  fun h => funext (fun x => propext (h x))
 
 /-
   2. AXIOM OF EMPTY SET / EXISTENCE
