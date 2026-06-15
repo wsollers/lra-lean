@@ -4,6 +4,7 @@ import LRA.VolumeI.Sets.Sets
 import LRA.VolumeI.Sets.Relations
 import LRA.VolumeI.Algebra.Operations
 import LRA.VolumeI.Algebra.Laws
+import LRA.VolumeI.Algebra.Bundles
 import LRA.VolumeI.BooleanAlgebra.BooleanAlgebraDefinitions
 import LRA.VolumeI.BooleanAlgebra.BooleanAlgebra
 import LRA.VolumeI.PropositionalLogic.MetaLogic
