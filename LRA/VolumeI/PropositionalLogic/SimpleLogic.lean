@@ -3,18 +3,6 @@ import LRA.VolumeI.PropositionalLogic.PropositionalLogic
 namespace LRA.VolumeI.PropositionalLogic.SimpleLogic
 open LRA.VolumeI.PropositionalLogic
 
-/-!
-  ============================================================
-  Minimal Propositional Logic: NAND-Only Language
-  ============================================================
-
-  This file instantiates the same propositional meta-logic with
-  a smaller connective vocabulary: NAND as the only primitive
-  connective.
-  ============================================================
--/
-
--- 0. Define atoms, the NAND connective, and the language.
 inductive NandOnlyAtoms where
   | p | q | r
 
@@ -50,17 +38,12 @@ def NandOnlyBooleanStructure
         !(leftTruthValue && rightTruthValue)
 }
 
--- 1. Construct NOT out of pure NAND.
--- In logic, ¬P is equivalent to P NAND P.
 def buildNot (ϕ : NandOnlyFormula) : NandOnlyFormula :=
   nand ϕ ϕ
 
--- 2. Construct AND out of pure NAND.
--- In logic, P ∧ Q is equivalent to (P NAND Q) NAND (P NAND Q).
 def buildAnd (ϕ ψ : NandOnlyFormula) : NandOnlyFormula :=
   buildNot (nand ϕ ψ)
 
--- 3. Construct the remaining standard connectives out of pure NAND.
 def buildOr (ϕ ψ : NandOnlyFormula) : NandOnlyFormula :=
   nand (buildNot ϕ) (buildNot ψ)
 
@@ -70,7 +53,6 @@ def buildImplies (ϕ ψ : NandOnlyFormula) : NandOnlyFormula :=
 def buildIff (ϕ ψ : NandOnlyFormula) : NandOnlyFormula :=
   buildAnd (buildImplies ϕ ψ) (buildImplies ψ ϕ)
 
--- 4. The first definability theorem: NAND defines NOT.
 theorem nandOnlyLogicCanDefineNegation
     (valuation : NandOnlyAtoms → Bool)
     (ϕ : NandOnlyFormula) :
@@ -81,7 +63,6 @@ theorem nandOnlyLogicCanDefineNegation
   dsimp [NandOnlyBooleanStructure]
   cases bϕ <;> rfl
 
--- 5. The second definability theorem: NAND defines AND.
 theorem nandOnlyLogicCanDefineConjunction
     (valuation : NandOnlyAtoms → Bool)
     (ϕ ψ : NandOnlyFormula) :
@@ -93,8 +74,6 @@ theorem nandOnlyLogicCanDefineConjunction
   generalize hψ : evaluateFormula (NandOnlyBooleanStructure valuation) ψ = bψ
   dsimp [NandOnlyBooleanStructure]
   cases bϕ <;> cases bψ <;> rfl
-
--- 6. Connective completeness package.
 
 namespace ConnectiveCompleteness
 
@@ -231,8 +210,6 @@ namespace ConnectiveCompleteness
             rfl
 
 end ConnectiveCompleteness
-
--- 7. Unit tests and negative cases.
 
 def testValuationAllTrue : NandOnlyAtoms → Bool
   | NandOnlyAtoms.p => true

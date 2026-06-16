@@ -1,22 +1,10 @@
 import LRA.VolumeI.PropositionalLogic.MetaLogic
 
--- Define the "lemma" command macro for Lean 4 core compatibility.
 macro "lemma" id:ident binders:bracketedBinder* ":" type:term ":=" "by" val:tacticSeq : command =>
   `(theorem $id $binders* : $type := by $val)
 
 namespace LRA.VolumeI.PropositionalLogic
 
-/-!
-  ============================================================
-  Standard Propositional Logic
-  ============================================================
-
-  This file instantiates the generic propositional meta-logic
-  with the ordinary Boolean connectives.
-  ============================================================
--/
-
--- 1. Define the specific universe of atoms and connectives.
 inductive StandardAtoms where
   | P | Q | R
 
@@ -29,14 +17,12 @@ inductive StandardBinaryConnective where
   | implies
   | iff
 
--- 2. Instantiate the propositional language with those symbols.
 def StandardPropositionalLanguage : PropositionalLanguage := {
   Atoms := StandardAtoms
   UnaryConnectives := StandardUnaryConnective
   BinaryConnectives := StandardBinaryConnective
 }
 
--- 3. Lock in the standard system names.
 abbrev StandardPropositionalFormula :=
   PropositionalFormula StandardPropositionalLanguage
 
@@ -46,12 +32,10 @@ abbrev StandardPropositionalStructure :=
 abbrev StandardPropositionalTheory :=
   PropositionalTheory StandardPropositionalLanguage
 
--- Compatibility names for the current volume prose.
 abbrev PropFormula := StandardPropositionalFormula
 abbrev PropModel := StandardPropositionalStructure
 abbrev PropTheory := StandardPropositionalTheory
 
--- 4. Formula constructors and notation.
 def atom (a : StandardAtoms) : PropFormula :=
   PropositionalFormula.atom a
 
@@ -76,7 +60,6 @@ infixl:60  " ∨ " => standardOr
 infixr:55  " →ₚ " => standardImplies
 infixl:50  " ↔ₚ " => standardIff
 
--- 5. The intended Boolean semantics for the standard connectives.
 def StandardBooleanStructure
     (valuation : StandardAtoms → Bool) :
     StandardPropositionalStructure := {
@@ -102,12 +85,7 @@ def test_model : PropModel :=
     | StandardAtoms.Q => false
     | StandardAtoms.R => false
 
-#eval evaluateFormula test_model test_formula  -- Outputs: true
-
-
--- ====================================================================
--- Lemma Package: Closure Properties of Formula Formation
--- ====================================================================
+#eval evaluateFormula test_model test_formula
 
 namespace FormulaFormation
 
@@ -149,11 +127,6 @@ namespace FormulaFormation
 
 end FormulaFormation
 
-
--- ====================================================================
--- Theorem Package: Minimality of Well-Formed Formulas
--- ====================================================================
-
 namespace WellFormedFormulaMinimality
 
   theorem minimalityOfWellFormedFormulas
@@ -181,11 +154,6 @@ namespace WellFormedFormulaMinimality
           connective ϕ ψ leftInductionHypothesis rightInductionHypothesis
 
 end WellFormedFormulaMinimality
-
-
--- ====================================================================
--- Lemma Package: Standard Boolean Semantics
--- ====================================================================
 
 namespace StandardBooleanSemantics
 
@@ -229,11 +197,6 @@ namespace StandardBooleanSemantics
     rfl
 
 end StandardBooleanSemantics
-
-
--- ====================================================================
--- Theorem Package: Standard Connective Completeness by DNF
--- ====================================================================
 
 namespace StandardConnectiveCompleteness
 
@@ -328,11 +291,6 @@ namespace StandardConnectiveCompleteness
     sorry
 
 end StandardConnectiveCompleteness
-
-
--- ====================================================================
--- Theorem Package: Standard Propositional Language Metatheory
--- ====================================================================
 
 namespace StandardPropositionalLanguageMetatheory
 
@@ -443,11 +401,6 @@ namespace StandardPropositionalLanguageMetatheory
   }
 
 end StandardPropositionalLanguageMetatheory
-
-
--- ====================================================================
--- Lemma Package: Model Theory of Propositional Theories
--- ====================================================================
 
 namespace PropositionalModelTheory
 

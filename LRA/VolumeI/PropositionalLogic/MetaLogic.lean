@@ -1,26 +1,10 @@
 namespace LRA.VolumeI.PropositionalLogic
 
-/-!
-  ============================================================
-  Propositional Meta-Logic
-  ============================================================
-
-  A propositional language is the vocabulary: the atoms and
-  connective symbols that formulas may use.
-
-  A propositional structure is an interpretation of that
-  vocabulary: it assigns truth values to atoms and truth
-  functions to connectives.
-  ============================================================
--/
-
--- 1. The Generic Language / Signature
 structure PropositionalLanguage where
   Atoms : Type
   UnaryConnectives : Type := Empty
   BinaryConnectives : Type := Empty
 
--- 2. The Generic Language
 inductive PropositionalFormula (L : PropositionalLanguage) where
   | atom : L.Atoms → PropositionalFormula L
   | unary :
@@ -33,7 +17,6 @@ inductive PropositionalFormula (L : PropositionalLanguage) where
       PropositionalFormula L →
       PropositionalFormula L
 
--- 3. The Generic Semantics
 structure PropositionalStructure (L : PropositionalLanguage) where
   truthValueOfAtom : L.Atoms → Bool
   truthFunctionOfUnaryConnective :
@@ -66,7 +49,6 @@ def StructureModelsTheory {L : PropositionalLanguage}
     (T : PropositionalTheory L) : Prop :=
   ∀ ϕ, ϕ ∈ T → StructureSatisfiesFormula M ϕ
 
--- Compatibility names while the surrounding volume migrates.
 abbrev Signature := PropositionalLanguage
 abbrev Formula := PropositionalFormula
 abbrev Structure := PropositionalStructure

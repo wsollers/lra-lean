@@ -1,46 +1,12 @@
--- LRA/VolumeII/PeanoSystems/Recursion.lean
---
--- Recursion and iterator machinery for abstract Peano systems.
--- No Mathlib.
-
 import LRA.VolumeII.PeanoSystems.Induction
 
 namespace Peano
 
-/--
-**[Definition — Iterator Data]**
-
-Iterator data for a Peano system consists of a target type,
-an initial value, and a step rule on the target type.
-
-*Dependencies:* `PeanoSystem`
-
-*Sources:*
-  Feferman, *The Number Systems*, §3.4
-  Mendelson, *Number Systems*, §2.2
-
-*Notes cross-ref:* §1.2 [#definition-iterator-data](../notes/section_1_2_main.md#definition-iterator-data)
--/
 structure IteratorData (ps : PeanoSystem) where
   target : Type
   initial_value : target
   step_rule : target → target
 
-/--
-**[Definition — Iterator Function Clauses]**
-
-A function satisfies the iterator clauses exactly when it sends
-the distinguished element to the initial value and sends successors
-according to the step rule.
-
-*Dependencies:* `PeanoSystem`
-
-*Sources:*
-  Feferman, *The Number Systems*, §3.4
-  Mendelson, *Number Systems*, §2.2
-
-*Notes cross-ref:* §1.2 [#definition-iterator-function-clauses](../notes/section_1_2_main.md#definition-iterator-function-clauses)
--/
 def satisfies_iterator_clauses
     (ps : PeanoSystem)
     (target : Type)
@@ -52,20 +18,6 @@ def satisfies_iterator_clauses
       iterator_function (ps.successor element) =
         step_rule (iterator_function element)
 
-/--
-**[Definition — Iterator Relation]**
-
-An iterator relation contains the initial pair and is closed under
-the iterator step.
-
-*Dependencies:* `IteratorData`
-
-*Sources:*
-  Feferman, *The Number Systems*, §3.4
-  Mendelson, *Number Systems*, §2.2
-
-*Notes cross-ref:* §1.2 [#definition-iterator-relation](../notes/section_1_2_main.md#definition-iterator-relation)
--/
 def iterator_relation
     (ps : PeanoSystem)
     (data : IteratorData ps)
@@ -76,20 +28,6 @@ def iterator_relation
         relation element value →
         relation (ps.successor element) (data.step_rule value)
 
-/--
-**[Definition — Minimal Iterator Relation]**
-
-The minimal iterator relation contains exactly the pairs forced by
-every iterator relation.
-
-*Dependencies:* `iterator_relation`
-
-*Sources:*
-  Feferman, *The Number Systems*, §3.4
-  Mendelson, *Number Systems*, §2.2
-
-*Notes cross-ref:* §1.2 [#definition-minimal-iterator-relation](../notes/section_1_2_main.md#definition-minimal-iterator-relation)
--/
 def minimal_iterator_relation
     (ps : PeanoSystem)
     (data : IteratorData ps)
@@ -99,20 +37,6 @@ def minimal_iterator_relation
     iterator_relation ps data relation →
     relation element value
 
-/--
-**[Theorem — The Minimal Iterator Relation Is an Iterator Relation]**
-
-The minimal iterator relation contains the initial pair and is closed
-under the iterator step.
-
-*Dependencies:* `iterator_relation`, `minimal_iterator_relation`
-
-*Sources:*
-  Feferman, *The Number Systems*, §3.4
-  Mendelson, *Number Systems*, §2.2
-
-*Notes cross-ref:* §1.2 [#theorem-minimal-iterator-relation-is-an-iterator-relation](../notes/section_1_2_main.md#theorem-minimal-iterator-relation-is-an-iterator-relation)
--/
 theorem minimal_iterator_relation_is_iterator_relation
     (ps : PeanoSystem)
     (data : IteratorData ps) :
@@ -130,20 +54,6 @@ theorem minimal_iterator_relation_is_iterator_relation
         value
         (pair_is_forced relation relation_is_iterator)
 
-/--
-**[Theorem — Completeness of the Minimal Iterator Relation]**
-
-Every stage has at least one value in the minimal iterator relation.
-
-*Dependencies:* `minimal_iterator_relation_is_iterator_relation`,
-`induction_principle`
-
-*Sources:*
-  Feferman, *The Number Systems*, §3.4
-  Mendelson, *Number Systems*, §2.2
-
-*Notes cross-ref:* §1.2 [#theorem-completeness-of-the-minimal-iterator-relation](../notes/section_1_2_main.md#theorem-completeness-of-the-minimal-iterator-relation)
--/
 theorem minimal_iterator_relation_complete
     (ps : PeanoSystem)
     (data : IteratorData ps) :
@@ -166,21 +76,6 @@ theorem minimal_iterator_relation_complete
               value
               value_is_forced⟩
 
-/--
-**[Theorem — Base Value Is Unique in the Minimal Iterator Relation]**
-
-If the minimal iterator relation relates the distinguished element
-to a value, then that value must be the initial value.
-
-*Dependencies:* `minimal_iterator_relation`, `iterator_relation`,
-`PeanoSystem.one_not_successor`
-
-*Sources:*
-  Feferman, *The Number Systems*, §3.4
-  Mendelson, *Number Systems*, §2.2
-
-*Notes cross-ref:* §1.2 [#theorem-base-value-is-unique-in-the-minimal-iterator-relation](../notes/section_1_2_main.md#theorem-base-value-is-unique-in-the-minimal-iterator-relation)
--/
 theorem minimal_iterator_relation_base_unique
     (ps : PeanoSystem)
     (data : IteratorData ps)
@@ -218,28 +113,6 @@ theorem minimal_iterator_relation_base_unique
 
   exact value_satisfies_base_unique_relation rfl
 
-
-/--
-**[Theorem — Forced Successor Values Are Unique]**
-
-Assume the minimal iterator relation is already deterministic at an
-element. If a value is forced at that element, and another value is
-forced at its successor, then the successor-stage value is the step
-of the element-stage value.
-
-This is the corrected bridge theorem. Closure is used only because
-`iterator_relation` includes closure as part of its definition.
-
-*Dependencies:* `minimal_iterator_relation`, `iterator_relation`,
-`minimal_iterator_relation_is_iterator_relation`,
-`PeanoSystem.successor_injective`, `PeanoSystem.one_not_successor`
-
-*Sources:*
-  Feferman, *The Number Systems*, §3.4
-  Mendelson, *Number Systems*, §2.2
-
-*Notes cross-ref:* §1.2 [#theorem-forced-successor-values-are-unique](../notes/section_1_2_main.md#theorem-forced-successor-values-are-unique)
--/
 theorem forced_successor_values_are_unique
     (ps : PeanoSystem)
     (data : IteratorData ps)
@@ -319,22 +192,6 @@ theorem forced_successor_values_are_unique
 
   exact successor_value_satisfies_relation.right rfl
 
-/--
-**[Theorem — Determinism of the Minimal Iterator Relation]**
-
-For each element of the Peano system, the minimal iterator relation
-forces at most one value.
-
-*Dependencies:* `minimal_iterator_relation_base_unique`,
-`forced_successor_values_are_unique`, `minimal_iterator_relation_complete`,
-`induction_principle`
-
-*Sources:*
-  Feferman, *The Number Systems*, §3.4
-  Mendelson, *Number Systems*, §2.2
-
-*Notes cross-ref:* §1.2 [#theorem-determinism-of-the-minimal-iterator-relation](../notes/section_1_2_main.md#theorem-determinism-of-the-minimal-iterator-relation)
--/
 theorem minimal_iterator_relation_deterministic
     (ps : PeanoSystem)
     (data : IteratorData ps) :
@@ -401,24 +258,6 @@ theorem minimal_iterator_relation_deterministic
             first_successor_value_is_step
             second_successor_value_is_step.symm
 
-/--
-**[Existence of an Iterator Function]**
-
-For every target type, initial value, and step rule, there exists
-an iterator function satisfying the iterator clauses.
-
-This is the temporary architectural existence interface. It should
-eventually be replaced by the constructed proof from the minimal
-iterator relation.
-
-*Dependencies:* `PeanoSystem`, `satisfies_iterator_clauses`
-
-*Sources:*
-  Feferman, *The Number Systems*, §3.4
-  Mendelson, *Number Systems*, §2.2
-
-*Notes cross-ref:* §1.2 [#existence-of-an-iterator-function](../notes/section_1_2_main.md#existence-of-an-iterator-function)
--/
 theorem iterator_function_exists
     (ps : PeanoSystem)
     (target : Type)
@@ -484,24 +323,6 @@ theorem iterator_function_exists
         current_value_is_forced
         successor_value_is_forced
 
-/--
-**[Uniqueness of Iterator Functions]**
-
-Any two iterator functions satisfying the same iterator clauses
-are pointwise equal.
-
-This is the temporary architectural uniqueness interface. It should
-eventually be replaced by the induction proof.
-
-*Dependencies:* `PeanoSystem`, `induction_principle`,
-`satisfies_iterator_clauses`
-
-*Sources:*
-  Feferman, *The Number Systems*, §3.4
-  Mendelson, *Number Systems*, §2.2
-
-*Notes cross-ref:* §1.2 [#uniqueness-of-iterator-functions](../notes/section_1_2_main.md#uniqueness-of-iterator-functions)
--/
 theorem iterator_function_unique
     (ps : PeanoSystem)
     (target : Type)
@@ -527,20 +348,6 @@ theorem iterator_function_unique
       induction_hypothesis
     ]
 
-/--
-**[Definition — Iterator-Generated Function]**
-
-The iterator-generated function determined by a target type,
-an initial value, and a step rule.
-
-*Dependencies:* `iterator_function_exists`
-
-*Sources:*
-  Feferman, *The Number Systems*, §3.4
-  Mendelson, *Number Systems*, §2.2
-
-*Notes cross-ref:* §1.2 [#definition-iterator-generated-function](../notes/section_1_2_main.md#definition-iterator-generated-function)
--/
 noncomputable def iter
     (ps : PeanoSystem)
     (target : Type)
@@ -554,20 +361,6 @@ noncomputable def iter
       initial_value
       step_rule)
 
-/--
-**[Theorem — Iterator-Generated Function Satisfies the Iterator Clauses]**
-
-The function generated by `iter` satisfies the base and successor
-clauses for the given iterator data.
-
-*Dependencies:* `iter`, `iterator_function_exists`
-
-*Sources:*
-  Feferman, *The Number Systems*, §3.4
-  Mendelson, *Number Systems*, §2.2
-
-*Notes cross-ref:* §1.2 [#theorem-iterator-generated-function-satisfies-the-iterator-clauses](../notes/section_1_2_main.md#theorem-iterator-generated-function-satisfies-the-iterator-clauses)
--/
 theorem iter_satisfies_iterator_clauses
     (ps : PeanoSystem)
     (target : Type)
@@ -586,20 +379,6 @@ theorem iter_satisfies_iterator_clauses
       initial_value
       step_rule)
 
-/--
-**[Theorem — Iterator Base Clause]**
-
-The iterator-generated function sends the distinguished element
-to the initial value.
-
-*Dependencies:* `iter_satisfies_iterator_clauses`
-
-*Sources:*
-  Feferman, *The Number Systems*, §3.4
-  Mendelson, *Number Systems*, §2.2
-
-*Notes cross-ref:* §1.2 [#theorem-iterator-base-clause](../notes/section_1_2_main.md#theorem-iterator-base-clause)
--/
 theorem iter_base
     (ps : PeanoSystem)
     (target : Type)
@@ -612,20 +391,6 @@ theorem iter_base
     initial_value
     step_rule).left
 
-/--
-**[Theorem — Iterator Successor Clause]**
-
-The iterator-generated function sends successors according to
-the step rule.
-
-*Dependencies:* `iter_satisfies_iterator_clauses`
-
-*Sources:*
-  Feferman, *The Number Systems*, §3.4
-  Mendelson, *Number Systems*, §2.2
-
-*Notes cross-ref:* §1.2 [#theorem-iterator-successor-clause](../notes/section_1_2_main.md#theorem-iterator-successor-clause)
--/
 theorem iter_step
     (ps : PeanoSystem)
     (target : Type)
@@ -640,21 +405,6 @@ theorem iter_step
     initial_value
     step_rule).right element
 
-/--
-**[Theorem — Peano Iterator Theorem]**
-
-For every target type, initial value, and step rule, there exists
-an iterator function satisfying the iterator clauses, and any other
-such function is pointwise equal to it.
-
-*Dependencies:* `iterator_function_exists`, `iterator_function_unique`
-
-*Sources:*
-  Feferman, *The Number Systems*, §3.4
-  Mendelson, *Number Systems*, §2.2
-
-*Notes cross-ref:* §1.2 [#theorem-peano-iterator-theorem](../notes/section_1_2_main.md#theorem-peano-iterator-theorem)
--/
 theorem peano_iterator_theorem
     (ps : PeanoSystem)
     (target : Type)
