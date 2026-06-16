@@ -3,3 +3,6 @@
 # Local source PDFs
 # These may include personally purchased or otherwise non-redistributable files.
 *.pdf
+
+lean-decl-inventory.txt
+tex-label-inventory.tsv
