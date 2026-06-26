@@ -2,7 +2,7 @@
 GENERATED FILE — DO NOT EDIT BY HAND.
 
 Source repo: wsollers/lra-governance
-Source commit: 24580f56384be0e7d70066be9a19799f9d1c3e0c
+Source commit: c64f6a812ffb0682bd9b9b53527672cab8c09851
 Generated from:
 - docs/governance/...
 - docs/architecture/...
@@ -51,6 +51,9 @@ It must not be injected into volume content instructions.
 Use the Docker build path for reproducible validation. Do not use LaTeX render
 checks as substitutes for Lean validation.
 
+Canonical architecture and layout guidance lives in
+`docs/architecture/lra-lean-architecture.md`.
+
 ## Implementation Standards
 
 Lean code should be readable formal mathematics, not compressed tactic output.
@@ -64,6 +67,19 @@ File and module organization should mirror the formal subject matter. New
 modules belong under the appropriate `LRA/Volume*/...` tree, imported through
 the relevant volume root, and exposed through stable names that make downstream
 verification and explorer extraction straightforward.
+
+## Layout Overlay
+
+Follow the canonical architecture layout:
+
+- Lean source belongs under `LRA/Volume*/...`.
+- Active volume roots belong at `LRA/Volume*.lean`.
+- Lake library declarations belong in `lakefile.lean`.
+- Lean validation and extraction helpers belong under `scripts/`.
+- Docker and wrapper build entrypoints stay at the repo root.
+
+Do not commit local build products, generated declaration inventories, or
+private source PDFs as architecture.
 
 ## Build And Validation
 
