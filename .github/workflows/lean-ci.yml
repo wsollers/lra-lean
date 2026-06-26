@@ -1,93 +1,96 @@
-name: Lean Build and Check
+name: Lean Docker Build and Check
 
 on:
   push:
     branches: [main, develop]
     paths:
       - 'LRA/**'
+      - 'scripts/**'
+      - 'Dockerfile'
+      - 'Makefile'
+      - 'build.ps1'
       - 'lakefile.lean'
       - 'lean-toolchain'
       - 'lake-manifest.json'
+      - '.github/workflows/lean-ci.yml'
   pull_request:
     branches: [main]
     paths:
       - 'LRA/**'
+      - 'scripts/**'
+      - 'Dockerfile'
+      - 'Makefile'
+      - 'build.ps1'
       - 'lakefile.lean'
       - 'lean-toolchain'
       - 'lake-manifest.json'
+      - '.github/workflows/lean-ci.yml'
   workflow_dispatch:
 
 jobs:
   build:
-    name: Lake Build
+    name: Docker Lake Build
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Read Lean toolchain version
-        id: toolchain
-        run: echo "version=$(cat lean-toolchain)" >> $GITHUB_OUTPUT
+      - name: Build Lean Docker image
+        run: docker build -t lra-lean .
 
-      - name: Cache elan and Lean toolchain
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.elan
-            ~/.cache/mathlib
-          key: lean-${{ steps.toolchain.outputs.version }}-${{ runner.os }}
-          restore-keys: |
-            lean-${{ steps.toolchain.outputs.version }}-
-
-      - name: Install elan
+      - name: Check no Mathlib import in VolumeI / VolumeII
         run: |
-          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
-            | bash -s -- -y --no-modify-path
-          echo "$HOME/.elan/bin" >> $GITHUB_PATH
+          docker run --rm \
+            -v "${{ github.workspace }}:/workspace" \
+            -w /workspace \
+            lra-lean \
+            bash -lc 'if grep -rn "^import Mathlib" LRA/VolumeI/ LRA/VolumeII/ LRA/VolumeI.lean LRA/VolumeII.lean --include="*.lean"; then
+              echo "ERROR: Mathlib import found in VolumeI/VolumeII (must be bare Lean 4)."
+              exit 1
+            fi
+            echo "No Mathlib imports in VolumeI / VolumeII"'
 
-      - name: Install Lean toolchain
-        run: |
-          elan toolchain install "$(cat lean-toolchain)" || true
-          elan default "$(cat lean-toolchain)"
-
-      - name: Lake update
-        run: lake update
-
-      - name: Check no sorry in VolumeII
+      - name: Check no sorry in VolumeI / VolumeII
         continue-on-error: true
         run: |
-          if grep -rn "sorry" LRA/VolumeII/ --include="*.lean"; then
-            echo "::warning::sorry found in VolumeII — proofs are incomplete."
-          else
-            echo "✓ No sorry in VolumeII"
-          fi
+          docker run --rm \
+            -v "${{ github.workspace }}:/workspace" \
+            -w /workspace \
+            lra-lean \
+            bash -lc 'if grep -rn "\bsorry\b" LRA/VolumeI/ LRA/VolumeII/ --include="*.lean"; then
+              echo "::warning::sorry found in VolumeI/VolumeII — proofs are incomplete."
+            else
+              echo "No sorry in VolumeI / VolumeII"
+            fi'
 
-      - name: Check no Mathlib import in VolumeII
+      - name: Build active Lean libraries
         run: |
-          if grep -rn "^import Mathlib" LRA/VolumeII/ --include="*.lean"; then
-            echo "ERROR: Mathlib import found in VolumeII."
-            exit 1
-          fi
-          echo "✓ No Mathlib imports in VolumeII"
-
-      - name: Build VolumeII
-        run: lake build LRAVolumeII
-
-      - name: Build VolumeI
-        run: lake build LRAVolumeI
-        continue-on-error: true
+          docker run --rm \
+            -v "${{ github.workspace }}:/workspace" \
+            -w /workspace \
+            lra-lean \
+            lake build LRAVolumeI LRAVolumeII
 
       - name: Lint doc-comments
+        continue-on-error: true
         run: |
-          if [[ -f scripts/lint_doccomments.sh ]]; then
-            bash scripts/lint_doccomments.sh LRA/VolumeII || true
-          fi
+          docker run --rm \
+            -v "${{ github.workspace }}:/workspace" \
+            -w /workspace \
+            lra-lean \
+            bash -lc 'if [ -f scripts/lint_doccomments.sh ]; then
+              bash scripts/lint_doccomments.sh LRA/VolumeII
+            fi'
 
       - name: Print proof statistics
         run: |
-          find LRA/VolumeII -name "*.lean" | sort | while read f; do
-            thms=$(grep -c "^theorem\|^lemma\|^corollary" "$f" 2>/dev/null || echo 0)
-            defs=$(grep -c "^def\|^noncomputable def" "$f" 2>/dev/null || echo 0)
-            echo "  $f : $thms theorems, $defs defs"
-          done
+          docker run --rm \
+            -v "${{ github.workspace }}:/workspace" \
+            -w /workspace \
+            lra-lean \
+            bash -lc 'find LRA -name "*.lean" | sort | while read f; do
+              thms=$(grep -c "^theorem\|^lemma\|^corollary" "$f" 2>/dev/null || echo 0)
+              defs=$(grep -c "^def\|^noncomputable def" "$f" 2>/dev/null || echo 0)
+              echo "  $f : $thms theorems, $defs defs"
+            done'

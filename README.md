@@ -16,6 +16,22 @@ LRA/                — Lean source modules
 
 ## Building
 
+Docker is the reproducible default used by CI and the local wrappers:
+
+```bash
+docker build -t lra-lean .
+docker run --rm -v "$PWD:/workspace" -w /workspace lra-lean lake build
+```
+
+On Windows:
+
+```powershell
+.\build.ps1 docker-build
+.\build.ps1 build-all
+```
+
+Native builds are allowed when the pinned `lean-toolchain` is installed:
+
 ```bash
 lake build
 ```
