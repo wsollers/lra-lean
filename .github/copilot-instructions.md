@@ -2,14 +2,14 @@
 GENERATED FILE — DO NOT EDIT BY HAND.
 
 Source repo: wsollers/lra-governance
-Source commit: d98bb51fc80e683b38a9d1e76f4a0c91037ede0a
+Source commit: 6b4b1beb46a83f1c6ebb32cdd0866aa7954c0244
 Generated from:
 - docs/governance/...
 - docs/architecture/...
 - docs/governance/repo-overlays/lra-lean.md
 
 Regenerate from lra-governance.
-Emergency downstream edits must be ported upstream before the next sync.
+Emergency downstream edits must be ported upstream before regeneration.
 -->
 
 # Copilot Instructions
@@ -23,7 +23,9 @@ rather than embedding large governance manuals.
 - Follow the owning repository boundary for every task.
 - Do not include secrets, credentials, tokens, or machine-local private values.
 - Do not modify mathematical content during governance or wrapper-generation tasks.
-- Do not touch `Learning-Real-Analysis/scripts/`.
+- Do not touch the retired `Learning-Real-Analysis` monorepo.
+- Keep context small: use governance docs as targeted references, not preload material.
+- Open only the workflow, standard, schema, or overlay needed for the current task.
 - Port emergency downstream instruction repairs back to `lra-governance`.
 
 ## Repo Overlay
@@ -37,16 +39,49 @@ Owned concerns:
 - Lean-specific proof architecture,
 - Mathlib policy,
 - Lean module and namespace rules,
-- Lean CI and validation,
-- sync into the monorepo `lean/` tree.
+- Lean CI and validation.
 
 ## Agent Scope
 
-Lean guidance applies only to `lra-lean` and the monorepo `lean/` mirror.
+Lean guidance applies only to `lra-lean`.
 It must not be injected into volume content instructions.
 
-Use the local Lean build and CI expectations for validation. Do not use
-LaTeX render checks as substitutes for Lean validation.
+Use the Docker build path for reproducible validation. Do not use LaTeX render
+checks as substitutes for Lean validation.
+
+## Build And Validation
+
+CI builds the repo through `Dockerfile`, then runs Lake inside the container:
+
+```bash
+docker build -t lra-lean .
+docker run --rm -v "$PWD:/workspace" -w /workspace lra-lean lake build \
+  LRAVolumeI LRAVolumeII
+```
+
+Local Windows validation should prefer `.\build.ps1 docker-build` followed by
+`.\build.ps1 build-all`, which builds the active libraries declared in
+`lakefile.lean`. Native `lake build` is acceptable only when the pinned
+`lean-toolchain` is installed locally. When adding a Lean volume, add its
+`lean_lib` to `lakefile.lean` before extending CI to build it.
+
+## Volume II Verification Map
+
+For Volume II formalization work, each declaration that mirrors a volume
+artifact should record a stable mapping back to the LaTeX label. Prefer a
+small, grep-friendly metadata comment near the declaration or module section
+that includes:
+
+- the Volume II label,
+- the Lean module,
+- the declaration name,
+- the verification status.
+
+The status must distinguish an accepted statement with unfinished proof work
+from a checked declaration. Report `checked` only when the declaration is
+accepted by the local Lean build without placeholders for that declaration.
+This metadata is the source that downstream explorer extraction may use to
+populate verification fields.
 
 ## Provider Notes
 
