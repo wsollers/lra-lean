@@ -2,7 +2,7 @@
 
 Lean 4 proof formalization for the **Learning Real Analysis** project.
 
-This repo was extracted from `Learning-Real-Analysis/lean/`.
+This repo was extracted from the retired `Learning-Real-Analysis/lean/` tree.
 
 ## Structure
 
@@ -20,6 +20,7 @@ LRA/                — Lean source modules
 lake build
 ```
 
-## Relationship to monorepo
+## Relationship to retired monorepo
 
-This repo is a standalone Lean workspace. The monorepo (`Learning-Real-Analysis`) references it for context but does not build it. Lean files live here and only here.
+This repo is a standalone Lean workspace. `Learning-Real-Analysis` is retired;
+there is no sync workflow back to that tree. Lean files live here and only here.

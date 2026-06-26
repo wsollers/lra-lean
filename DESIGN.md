@@ -467,7 +467,9 @@ Every theorem, definition, lemma, and corollary must contain:
 * sources
 * notes cross-reference
 
-The Lean repository and markdown repository must remain synchronized.
+The Lean repository is standalone. Cross-references to mathematical volume
+content should use current route metadata or explicit source citations, not a
+retired monorepo sync.
 
 ---
 
