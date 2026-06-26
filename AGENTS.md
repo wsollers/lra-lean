@@ -2,7 +2,7 @@
 GENERATED FILE — DO NOT EDIT BY HAND.
 
 Source repo: wsollers/lra-governance
-Source commit: 36fd69ac2e23b406e522c0c753400ce7f3938ff0
+Source commit: b08b957f5a70a9b4bc4db167be8f5fa6e5a94aae
 Generated from:
 - docs/governance/...
 - docs/architecture/...
@@ -21,6 +21,8 @@ Emergency downstream edits must be ported upstream before regeneration.
 - Do not include secrets, credentials, tokens, or machine-local private values.
 - Do not modify mathematical content during governance or wrapper-generation tasks.
 - Do not touch the retired `Learning-Real-Analysis` monorepo.
+- Keep context small: use governance docs as targeted references, not preload material.
+- Open only the workflow, standard, schema, or overlay needed for the current task.
 - Port emergency downstream instruction repairs back to `lra-governance`.
 
 ## Repo Overlay
