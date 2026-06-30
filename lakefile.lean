@@ -3,6 +3,9 @@ open Lake DSL
 
 package LRA where
 
+require mathlib from git
+  "https://github.com/leanprover-community/mathlib4" @ "v4.20.0"
+
 lean_lib LRAVolumeI where
   roots := #[`LRA.VolumeI]
 
@@ -10,6 +13,6 @@ lean_lib LRAVolumeI where
 lean_lib LRAVolumeII where
   roots := #[`LRA.VolumeII]
 
--- Volume III and beyond: Mathlib permitted (add require when needed)
--- lean_lib LRAVolumeIII where
---   roots := #[`LRA.VolumeIII]
+-- Volume III and beyond: Mathlib permitted.
+lean_lib LRAVolumeIII where
+  roots := #[`LRA.VolumeIII]
