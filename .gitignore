@@ -4,3 +4,4 @@ lean-decl-inventory.txt
 # Local source PDFs
 # These may include personally purchased or otherwise non-redistributable files.
 *.pdf
+.claude/
