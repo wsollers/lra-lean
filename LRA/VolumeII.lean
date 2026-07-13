@@ -17,5 +17,5 @@ import LRA.VolumeII.NaturalNumbers.Order
 import LRA.VolumeII.NaturalNumbers.Utilities
 import LRA.VolumeII.NaturalNumbers.StandardN
 
--- Experimental integer constructions
-import LRA.VolumeII.Integers.TwoSidedSuccessor
+-- Integers layer
+import LRA.VolumeII.Integers

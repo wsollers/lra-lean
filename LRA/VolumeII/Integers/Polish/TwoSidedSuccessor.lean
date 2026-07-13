@@ -1,19 +1,24 @@
--- LRA/VolumeII/Integers/TwoSidedSuccessor.lean
--- Experimental two-sided successor construction of the integers.
+-- LRA/VolumeII/Integers/Polish/TwoSidedSuccessor.lean
+-- Experimental Polish-style two-sided successor construction of the integers.
 
 namespace LRA
 namespace VolumeII
 namespace Integers
+namespace Polish
 namespace TwoSidedSuccessor
 
 /-!
-Volume II label: experimental-integers-two-sided-successor
-Lean module: LRA.VolumeII.Integers.TwoSidedSuccessor
+Volume II label: experimental-integers-polish-two-sided-successor
+Lean module: LRA.VolumeII.Integers.Polish.TwoSidedSuccessor
 Verification status: experimental checked core, pending source integration
 
 This module tests a direct construction of the integers as the disjoint union of
 zero, a successor-generated positive ray, and a predecessor-generated negative
 ray. It is intentionally isolated from the canonical integer construction.
+
+Source variant: Polish integer axiomatization tradition, following the
+Peano-like successor/predecessor systems discussed by Iwanuś and
+Wybraniec-Skardowska.
 -/
 
 inductive P : Type where
@@ -212,6 +217,7 @@ theorem mul_neg_predZero (x : Z) : x * neg N.predZero = -x := rfl
 theorem mul_neg_pred (x : Z) (n : N) : x * neg (N.pred n) = x * neg n + -x := rfl
 
 end TwoSidedSuccessor
+end Polish
 end Integers
 end VolumeII
 end LRA
