@@ -2,6 +2,7 @@
 -- Polish-style integer construction family.
 
 import LRA.VolumeII.Integers.Polish.TwoSidedSuccessor
+import LRA.VolumeII.Integers.Polish.LandauWorkup
 
 namespace LRA
 namespace VolumeII
