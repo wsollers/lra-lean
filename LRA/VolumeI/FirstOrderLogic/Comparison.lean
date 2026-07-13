@@ -2,7 +2,8 @@ import LRA.VolumeI.FirstOrderLogic.PeanoSystemModel
 import LRA.VolumeI.FirstOrderLogic.PresburgerArithmetic
 
 namespace LRA.VolumeI.FirstOrderLogic.Comparison
-open Semantics
+open LRA.Foundation.Logic.FirstOrder
+open LRA.Foundation.Logic.FirstOrder.Semantics
 
 /-!
   ============================================================

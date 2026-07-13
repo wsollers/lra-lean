@@ -20,36 +20,42 @@
 -- technique.
 
 import Mathlib
+import LRA.Foundation
 import LRA.VolumeIII.Reals.LraReal
 import LRA.VolumeIII.Bounds        -- IsBoundedAbove / IsSupremum for the completeness clause
 
 namespace LraReals.LraReal
+
+abbrev addOperation : LRA.Foundation.BinaryOperation LraReal := (· + ·)
+abbrev negOperation : LRA.Foundation.UnaryOperation LraReal := Neg.neg
+abbrev mulOperation : LRA.Foundation.BinaryOperation LraReal := (· * ·)
+abbrev leRelation : LRA.Foundation.Endorelation LraReal := (· ≤ ·)
 
 -- ════════════════════════════════════════════════════════════════════
 -- THE OBLIGATIONS.  Each is one `sorry` = one tracked task on the board.
 -- ════════════════════════════════════════════════════════════════════
 
 -- Additive group
-/-- **[Addition Is Commutative]** -/ theorem AdditionIsCommutative (x y : LraReal) : x + y = y + x := sorry
-/-- **[Addition Is Associative]** -/ theorem AdditionIsAssociative (x y z : LraReal) : x + y + z = x + (y + z) := sorry
-/-- **[Zero Is a Left Identity]** -/ theorem ZeroIsLeftIdentity (x : LraReal) : 0 + x = x := sorry
-/-- **[Zero Is a Right Identity]** -/ theorem ZeroIsRightIdentity (x : LraReal) : x + 0 = x := sorry
-/-- **[Negation Is a Left Inverse]** -/ theorem NegationIsLeftInverse (x : LraReal) : -x + x = 0 := sorry
+/-- **[Addition Is Commutative]** -/ theorem AdditionIsCommutative : LRA.Foundation.Algebra.commutative addOperation := sorry
+/-- **[Addition Is Associative]** -/ theorem AdditionIsAssociative : LRA.Foundation.Algebra.associative addOperation := sorry
+/-- **[Zero Is a Left Identity]** -/ theorem ZeroIsLeftIdentity : LRA.Foundation.Algebra.leftIdentity addOperation 0 := sorry
+/-- **[Zero Is a Right Identity]** -/ theorem ZeroIsRightIdentity : LRA.Foundation.Algebra.rightIdentity addOperation 0 := sorry
+/-- **[Negation Is a Left Inverse]** -/ theorem NegationIsLeftInverse : LRA.Foundation.Algebra.leftInverse addOperation 0 negOperation := sorry
 
 -- Multiplicative / ring / field
-/-- **[Multiplication Is Commutative]** -/ theorem MultiplicationIsCommutative (x y : LraReal) : x * y = y * x := sorry
-/-- **[Multiplication Is Associative]** -/ theorem MultiplicationIsAssociative (x y z : LraReal) : x * y * z = x * (y * z) := sorry
-/-- **[One Is a Left Identity]** -/ theorem OneIsLeftIdentity (x : LraReal) : 1 * x = x := sorry
-/-- **[One Is a Right Identity]** -/ theorem OneIsRightIdentity (x : LraReal) : x * 1 = x := sorry
-/-- **[Multiplication Distributes on the Left]** -/ theorem MultiplicationLeftDistributes (x y z : LraReal) : x * (y + z) = x * y + x * z := sorry
+/-- **[Multiplication Is Commutative]** -/ theorem MultiplicationIsCommutative : LRA.Foundation.Algebra.commutative mulOperation := sorry
+/-- **[Multiplication Is Associative]** -/ theorem MultiplicationIsAssociative : LRA.Foundation.Algebra.associative mulOperation := sorry
+/-- **[One Is a Left Identity]** -/ theorem OneIsLeftIdentity : LRA.Foundation.Algebra.leftIdentity mulOperation 1 := sorry
+/-- **[One Is a Right Identity]** -/ theorem OneIsRightIdentity : LRA.Foundation.Algebra.rightIdentity mulOperation 1 := sorry
+/-- **[Multiplication Distributes on the Left]** -/ theorem MultiplicationLeftDistributes : LRA.Foundation.Algebra.leftDistributive mulOperation addOperation := sorry
 /-- **[Inverse Is a Left Inverse]** -/ theorem InverseIsLeftInverse (x : LraReal) (hx : x ≠ 0) : x⁻¹ * x = 1 := sorry
 /-- **[Zero Is Not One]** -/ theorem ZeroIsNotOne : (0 : LraReal) ≠ 1 := sorry
 
 -- Order
-/-- **[Order Is Antisymmetric]** -/ theorem OrderIsAntisymmetric (x y : LraReal) (hxy : x ≤ y) (hyx : y ≤ x) : x = y := sorry
-/-- **[Order Is Total]** -/ theorem OrderIsTotal (x y : LraReal) : x ≤ y ∨ y ≤ x := sorry
-/-- **[Addition Preserves Order]** -/ theorem AdditionPreservesOrder {x y : LraReal} (h : x ≤ y) (z : LraReal) : z + x ≤ z + y := sorry
-/-- **[Multiplication Preserves Positivity]** -/ theorem MultiplicationPreservesPositivity {x y : LraReal} (hx : 0 ≤ x) (hy : 0 ≤ y) : 0 ≤ x * y := sorry
+/-- **[Order Is Antisymmetric]** -/ theorem OrderIsAntisymmetric : LRA.Foundation.Order.antisymmetric leRelation := sorry
+/-- **[Order Is Total]** -/ theorem OrderIsTotal : LRA.Foundation.Order.total leRelation := sorry
+/-- **[Addition Preserves Order]** -/ theorem AdditionPreservesOrder : LRA.Foundation.Order.strictlyPreservesLeftTranslation leRelation addOperation := sorry
+/-- **[Multiplication Preserves Positivity]** -/ theorem MultiplicationPreservesPositivity : LRA.Foundation.Order.multiplicationPreservesNonnegative leRelation mulOperation 0 := sorry
 
 -- Completeness — the obligation that distinguishes ℝ from ℚ.
 /-- **[The Reals Are Complete]** Every nonempty, bounded-above set of reals has a

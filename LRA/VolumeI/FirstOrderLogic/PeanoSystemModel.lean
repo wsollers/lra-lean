@@ -1,7 +1,9 @@
-import LRA.VolumeI.FirstOrderLogic.Model
+import LRA.Foundation.Logic.FirstOrder
 
 namespace LRA.VolumeI.FirstOrderLogic.PeanoArithmetic
-open Semantics ModelTheory
+open LRA.Foundation.Logic.FirstOrder
+open LRA.Foundation.Logic.FirstOrder.Semantics
+open LRA.Foundation.Logic.FirstOrder.ModelTheory
 
 /-!
   ============================================================
@@ -165,7 +167,7 @@ theorem standardModelSatisfiesSuccessorIsInjective :
 -- ════════════════════════════════════════════════════════════
 
 namespace Tests
-open Semantics
+open LRA.Foundation.Logic.FirstOrder.Semantics
 
 -- `numeral 3` evaluates to `3`.
 #guard

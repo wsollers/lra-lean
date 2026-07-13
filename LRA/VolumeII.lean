@@ -2,6 +2,8 @@
 -- Volume II: Foundations of Formal Number Systems
 -- Project Landau — all proofs from first principles, no Mathlib.
 
+import LRA.Foundation
+
 -- PeanoSystems layer
 import LRA.VolumeII.PeanoSystems.PeanoSystem
 import LRA.VolumeII.PeanoSystems.Existence

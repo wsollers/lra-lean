@@ -1,10 +1,11 @@
-import LRA.VolumeI.PropositionalLogic.MetaLogic
+import LRA.Foundation.Logic.Propositional
 
 -- Define the "lemma" command macro for Lean 4 core compatibility.
 macro "lemma" id:ident binders:bracketedBinder* ":" type:term ":=" "by" val:tacticSeq : command =>
   `(theorem $id $binders* : $type := by $val)
 
 namespace LRA.VolumeI.PropositionalLogic
+open LRA.Foundation.Logic.Propositional
 
 /-!
   ============================================================

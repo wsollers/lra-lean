@@ -1,8 +1,8 @@
-namespace LRA.VolumeI.PropositionalLogic
+namespace LRA.Foundation.Logic.Propositional
 
 /-!
   ============================================================
-  Propositional Meta-Logic
+  Propositional Logic: Languages, Structures, and Models
   ============================================================
 
   A propositional language is the vocabulary: the atoms and
@@ -74,4 +74,4 @@ abbrev Theory := PropositionalTheory
 abbrev evaluate {L : PropositionalLanguage} (M : PropositionalStructure L) (ϕ : PropositionalFormula L) : Bool :=
   evaluateFormula M ϕ
 
-end LRA.VolumeI.PropositionalLogic
+end LRA.Foundation.Logic.Propositional

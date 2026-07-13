@@ -1,6 +1,8 @@
 -- LRA/VolumeII/Integers/Interface.lean
 -- Common interface for integer implementations.
 
+import LRA.Foundation
+
 namespace LRA
 namespace VolumeII
 namespace Integers
@@ -17,7 +19,7 @@ primitive structure.
 -/
 
 structure LRAZ where
-  carrier : Type u
+  carrier : Foundation.LRACarrier
   zeroInstance : Zero carrier
   oneInstance : One carrier
   addInstance : Add carrier
@@ -40,11 +42,11 @@ namespace LRAZ
 
 abbrev zero (Z : LRAZ) : Z.carrier := 0
 abbrev one (Z : LRAZ) : Z.carrier := 1
-abbrev add (Z : LRAZ) : Z.carrier → Z.carrier → Z.carrier := (· + ·)
-abbrev neg (Z : LRAZ) : Z.carrier → Z.carrier := Neg.neg
-abbrev mul (Z : LRAZ) : Z.carrier → Z.carrier → Z.carrier := (· * ·)
-abbrev lt (Z : LRAZ) : Z.carrier → Z.carrier → Prop := (· < ·)
-abbrev le (Z : LRAZ) : Z.carrier → Z.carrier → Prop := (· ≤ ·)
+abbrev add (Z : LRAZ) : Foundation.BinaryOperation Z.carrier := (· + ·)
+abbrev neg (Z : LRAZ) : Foundation.UnaryOperation Z.carrier := Neg.neg
+abbrev mul (Z : LRAZ) : Foundation.BinaryOperation Z.carrier := (· * ·)
+abbrev lt (Z : LRAZ) : Foundation.Endorelation Z.carrier := (· < ·)
+abbrev le (Z : LRAZ) : Foundation.Endorelation Z.carrier := (· ≤ ·)
 
 end LRAZ
 

@@ -73,7 +73,7 @@ theorem every_element_is_one_or_successor
 
   -- Define the subset D of elements that already have the desired form:
   -- D = {x ∈ P : x = 1 or ∃u ∈ P, S(u) = x}.
-  let D : ps.carrier → Prop :=
+  let D : LRA.Foundation.LRASet ps.carrier :=
     fun candidate_element =>
       candidate_element = ps.one ∨
         ∃ predecessor : ps.carrier,

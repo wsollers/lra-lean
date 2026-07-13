@@ -8,6 +8,7 @@
 -- Bidirectional partner for the well-formedness tests: Mathlib `ℕ`.
 
 import Mathlib
+import LRA.Foundation
 
 namespace LraNaturals
 
@@ -28,17 +29,21 @@ instance : Preorder LraNat where
   le_refl _ := sorry
   le_trans _ _ _ _ _ := sorry
 
+abbrev addOperation : LRA.Foundation.BinaryOperation LraNat := (· + ·)
+abbrev mulOperation : LRA.Foundation.BinaryOperation LraNat := (· * ·)
+abbrev leRelation : LRA.Foundation.Endorelation LraNat := (· ≤ ·)
+
 -- ── OBLIGATIONS (ordered, cancellative comm. structure; NO additive identity) ──
-/-- **[Addition Is Commutative]** -/ theorem AdditionIsCommutative (a b : LraNat) : a + b = b + a := sorry
-/-- **[Addition Is Associative]** -/ theorem AdditionIsAssociative (a b c : LraNat) : a + b + c = a + (b + c) := sorry
+/-- **[Addition Is Commutative]** -/ theorem AdditionIsCommutative : LRA.Foundation.Algebra.commutative addOperation := sorry
+/-- **[Addition Is Associative]** -/ theorem AdditionIsAssociative : LRA.Foundation.Algebra.associative addOperation := sorry
 /-- **[Addition Is Cancellative]** -/ theorem AdditionIsCancellative {a b c : LraNat} (h : a + c = b + c) : a = b := sorry
-/-- **[Multiplication Is Commutative]** -/ theorem MultiplicationIsCommutative (a b : LraNat) : a * b = b * a := sorry
-/-- **[Multiplication Is Associative]** -/ theorem MultiplicationIsAssociative (a b c : LraNat) : a * b * c = a * (b * c) := sorry
-/-- **[One Is a Left Identity]** -/ theorem OneIsLeftIdentity (a : LraNat) : 1 * a = a := sorry
-/-- **[Multiplication Distributes]** -/ theorem MultiplicationLeftDistributes (a b c : LraNat) : a * (b + c) = a * b + a * c := sorry
-/-- **[Order Is Total]** -/ theorem OrderIsTotal (a b : LraNat) : a ≤ b ∨ b ≤ a := sorry
-/-- **[Order Is Antisymmetric]** -/ theorem OrderIsAntisymmetric {a b : LraNat} (hab : a ≤ b) (hba : b ≤ a) : a = b := sorry
-/-- **[Addition Preserves Order]** -/ theorem AdditionPreservesOrder {a b : LraNat} (h : a ≤ b) (c : LraNat) : c + a ≤ c + b := sorry
+/-- **[Multiplication Is Commutative]** -/ theorem MultiplicationIsCommutative : LRA.Foundation.Algebra.commutative mulOperation := sorry
+/-- **[Multiplication Is Associative]** -/ theorem MultiplicationIsAssociative : LRA.Foundation.Algebra.associative mulOperation := sorry
+/-- **[One Is a Left Identity]** -/ theorem OneIsLeftIdentity : LRA.Foundation.Algebra.leftIdentity mulOperation 1 := sorry
+/-- **[Multiplication Distributes]** -/ theorem MultiplicationLeftDistributes : LRA.Foundation.Algebra.leftDistributive mulOperation addOperation := sorry
+/-- **[Order Is Total]** -/ theorem OrderIsTotal : LRA.Foundation.Order.total leRelation := sorry
+/-- **[Order Is Antisymmetric]** -/ theorem OrderIsAntisymmetric : LRA.Foundation.Order.antisymmetric leRelation := sorry
+/-- **[Addition Preserves Order]** -/ theorem AdditionPreservesOrder : LRA.Foundation.Order.strictlyPreservesLeftTranslation leRelation addOperation := sorry
 /-- **[ℕ Is Well-Ordered]** Every nonempty set of naturals has a least element.
 THE distinguishing obligation (ℕ's analogue of completeness). -/
 theorem IsWellOrdered (S : Set LraNat) (hne : S.Nonempty) : ∃ m ∈ S, ∀ s ∈ S, m ≤ s := sorry

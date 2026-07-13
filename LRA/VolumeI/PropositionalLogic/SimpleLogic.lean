@@ -1,6 +1,7 @@
 import LRA.VolumeI.PropositionalLogic.PropositionalLogic
 
 namespace LRA.VolumeI.PropositionalLogic.SimpleLogic
+open LRA.Foundation.Logic.Propositional
 open LRA.VolumeI.PropositionalLogic
 
 /-!

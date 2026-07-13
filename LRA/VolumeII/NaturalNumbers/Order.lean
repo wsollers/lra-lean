@@ -52,8 +52,9 @@ and `y`.
 *Notes cross-ref:* §1.4 [def:lt-on-a-peano-system](../notes/section_1_4_main.md)
 -/
 def lt
-    (ps : PeanoSystem)
-    (x y : ps.carrier) : Prop :=
+    (ps : PeanoSystem) :
+    LRA.Foundation.Endorelation ps.carrier :=
+  fun x y =>
   ∃ k : ps.carrier, y = plus ps x k
 
 /--
@@ -70,8 +71,9 @@ def lt
 *Notes cross-ref:* §1.4 [def:le-on-a-peano-system](../notes/section_1_4_main.md)
 -/
 def le
-    (ps : PeanoSystem)
-    (x y : ps.carrier) : Prop :=
+    (ps : PeanoSystem) :
+    LRA.Foundation.Endorelation ps.carrier :=
+  fun x y =>
   lt ps x y ∨ x = y
 
 -- ============================================================
@@ -178,9 +180,10 @@ theorem le_antisymm
 -/
 def is_minimum
     (ps : PeanoSystem)
-    (P : ps.carrier → Prop)
+    (P : LRA.Foundation.LRASet ps.carrier)
     (m : ps.carrier) : Prop :=
-  P m ∧ ∀ k : ps.carrier, P k → ¬ lt ps k m
+  LRA.Foundation.LRASet.member m P ∧
+    ∀ k : ps.carrier, LRA.Foundation.LRASet.member k P → ¬ lt ps k m
 
 /--
 **[Theorem — Well-Ordering Principle]**
@@ -201,8 +204,8 @@ It is the key property that distinguishes N from Z and Q.
 -/
 theorem well_ordering
     (ps : PeanoSystem)
-    (P : ps.carrier → Prop)
-    (P_nonempty : ∃ element : ps.carrier, P element) :
+    (P : LRA.Foundation.LRASet ps.carrier)
+    (P_nonempty : LRA.Foundation.LRASet.nonempty P) :
     ∃ minimum : ps.carrier, is_minimum ps P minimum := by
   sorry
 

@@ -7,6 +7,7 @@
 -- exactly what ℝ fills. Partner: Mathlib `ℚ`.
 
 import Mathlib
+import LRA.Foundation
 import LRA.VolumeIII.Contracts.Integer
 
 namespace LraRationals
@@ -34,21 +35,26 @@ instance : Preorder LraRat where
   le_refl _ := sorry
   le_trans _ _ _ _ _ := sorry
 
+abbrev addOperation : LRA.Foundation.BinaryOperation LraRat := (· + ·)
+abbrev negOperation : LRA.Foundation.UnaryOperation LraRat := Neg.neg
+abbrev mulOperation : LRA.Foundation.BinaryOperation LraRat := (· * ·)
+abbrev leRelation : LRA.Foundation.Endorelation LraRat := (· ≤ ·)
+
 -- ── OBLIGATIONS (ordered field + density) ──
-/-- **[Addition Is Commutative]** -/ theorem AdditionIsCommutative (a b : LraRat) : a + b = b + a := sorry
-/-- **[Addition Is Associative]** -/ theorem AdditionIsAssociative (a b c : LraRat) : a + b + c = a + (b + c) := sorry
-/-- **[Zero Is an Additive Identity]** -/ theorem ZeroIsLeftIdentity (a : LraRat) : 0 + a = a := sorry
-/-- **[Negation Is an Additive Inverse]** -/ theorem NegationIsLeftInverse (a : LraRat) : -a + a = 0 := sorry
-/-- **[Multiplication Is Commutative]** -/ theorem MultiplicationIsCommutative (a b : LraRat) : a * b = b * a := sorry
-/-- **[Multiplication Is Associative]** -/ theorem MultiplicationIsAssociative (a b c : LraRat) : a * b * c = a * (b * c) := sorry
-/-- **[One Is a Multiplicative Identity]** -/ theorem OneIsLeftIdentity (a : LraRat) : 1 * a = a := sorry
-/-- **[Multiplication Distributes]** -/ theorem MultiplicationLeftDistributes (a b c : LraRat) : a * (b + c) = a * b + a * c := sorry
+/-- **[Addition Is Commutative]** -/ theorem AdditionIsCommutative : LRA.Foundation.Algebra.commutative addOperation := sorry
+/-- **[Addition Is Associative]** -/ theorem AdditionIsAssociative : LRA.Foundation.Algebra.associative addOperation := sorry
+/-- **[Zero Is an Additive Identity]** -/ theorem ZeroIsLeftIdentity : LRA.Foundation.Algebra.leftIdentity addOperation 0 := sorry
+/-- **[Negation Is an Additive Inverse]** -/ theorem NegationIsLeftInverse : LRA.Foundation.Algebra.leftInverse addOperation 0 negOperation := sorry
+/-- **[Multiplication Is Commutative]** -/ theorem MultiplicationIsCommutative : LRA.Foundation.Algebra.commutative mulOperation := sorry
+/-- **[Multiplication Is Associative]** -/ theorem MultiplicationIsAssociative : LRA.Foundation.Algebra.associative mulOperation := sorry
+/-- **[One Is a Multiplicative Identity]** -/ theorem OneIsLeftIdentity : LRA.Foundation.Algebra.leftIdentity mulOperation 1 := sorry
+/-- **[Multiplication Distributes]** -/ theorem MultiplicationLeftDistributes : LRA.Foundation.Algebra.leftDistributive mulOperation addOperation := sorry
 /-- **[Inverse Is a Left Inverse]** THE field obligation: every nonzero is invertible. -/
 theorem InverseIsLeftInverse {a : LraRat} (ha : a ≠ 0) : a⁻¹ * a = 1 := sorry
 /-- **[Zero Is Not One]** -/ theorem ZeroIsNotOne : (0 : LraRat) ≠ 1 := sorry
-/-- **[Order Is Total]** -/ theorem OrderIsTotal (a b : LraRat) : a ≤ b ∨ b ≤ a := sorry
-/-- **[Order Is Antisymmetric]** -/ theorem OrderIsAntisymmetric {a b : LraRat} (hab : a ≤ b) (hba : b ≤ a) : a = b := sorry
-/-- **[Addition Preserves Order]** -/ theorem AdditionPreservesOrder {a b : LraRat} (h : a ≤ b) (c : LraRat) : c + a ≤ c + b := sorry
+/-- **[Order Is Total]** -/ theorem OrderIsTotal : LRA.Foundation.Order.total leRelation := sorry
+/-- **[Order Is Antisymmetric]** -/ theorem OrderIsAntisymmetric : LRA.Foundation.Order.antisymmetric leRelation := sorry
+/-- **[Addition Preserves Order]** -/ theorem AdditionPreservesOrder : LRA.Foundation.Order.strictlyPreservesLeftTranslation leRelation addOperation := sorry
 /-- **[ℚ Is Densely Ordered]** THE distinguishing obligation: a rational lies
 strictly between any two. (Compare ℝ's completeness — ℚ is dense but has gaps.) -/
 theorem IsDenselyOrdered {a b : LraRat} (h : a < b) : ∃ c, a < c ∧ c < b := sorry

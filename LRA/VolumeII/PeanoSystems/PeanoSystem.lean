@@ -1,8 +1,9 @@
 -- LRA/VolumeII/PeanoSystems/PeanoSystem.lean
 --
 -- Abstract Peano systems — foundational structure for Volume II.
--- No Mathlib. No imports.
+-- No Mathlib.
 
+import LRA.Foundation
 
 namespace Peano
 
@@ -26,9 +27,9 @@ a successor operation, and the Peano axioms.
 *Notes cross-ref:* §1.1 [#definition-peano-system](../notes/section_1_1_main.md#definition-peano-system)
 -/
 structure PeanoSystem where
-  carrier : Type
+  carrier : LRA.Foundation.LRACarrier
   one : carrier
-  successor : carrier → carrier
+  successor : LRA.Foundation.UnaryOperation carrier
   one_not_successor :
     ∀ element : carrier,
       successor element ≠ one
@@ -37,7 +38,7 @@ structure PeanoSystem where
       successor first_element = successor second_element →
       first_element = second_element
   induction :
-    ∀ predicate : carrier → Prop,
+    ∀ predicate : LRA.Foundation.LRASet carrier,
       predicate one →
       (∀ element : carrier,
         predicate element →
@@ -66,10 +67,10 @@ membership is preserved by the successor operation.
 -/
 def successor_closed_subset
     (ps : PeanoSystem)
-    (subset : ps.carrier → Prop) : Prop :=
+    (subset : LRA.Foundation.LRASet ps.carrier) : Prop :=
   ∀ element : ps.carrier,
-    subset element →
-    subset (ps.successor element)
+    LRA.Foundation.LRASet.member element subset →
+    LRA.Foundation.LRASet.member (ps.successor element) subset
 
 /--
 **[Definition — Inductive Subset of a Peano System]**
@@ -86,8 +87,8 @@ element and is successor-closed.
 -/
 def inductive_subset
     (ps : PeanoSystem)
-    (subset : ps.carrier → Prop) : Prop :=
-  subset ps.one ∧
+    (subset : LRA.Foundation.LRASet ps.carrier) : Prop :=
+  LRA.Foundation.LRASet.member ps.one subset ∧
     successor_closed_subset ps subset
 
 

@@ -49,8 +49,9 @@ equal to adding the left input.
 *Notes cross-ref:* §1.3 [def:multiplication-on-a-peano-system](../notes/section_1_3_main.md)
 -/
 noncomputable def mul
-    (ps : PeanoSystem)
-    (left_input right_input : ps.carrier) : ps.carrier :=
+    (ps : PeanoSystem) :
+    LRA.Foundation.BinaryOperation ps.carrier :=
+  fun left_input right_input =>
   iter
     ps ps.carrier
     left_input
@@ -111,7 +112,7 @@ Any two functions satisfying the multiplication clauses agree everywhere.
 theorem mul_unique
     (ps : PeanoSystem)
     (left_input : ps.carrier)
-    (f g : ps.carrier → ps.carrier)
+    (f g : LRA.Foundation.UnaryOperation ps.carrier)
     (hf : satisfies_iterator_clauses
             ps ps.carrier left_input
             (fun prev => plus ps prev left_input) f)

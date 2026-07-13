@@ -1,7 +1,9 @@
-import LRA.VolumeI.FirstOrderLogic.Model
+import LRA.Foundation.Logic.FirstOrder
 
 namespace LRA.VolumeI.FirstOrderLogic.PresburgerArithmetic
-open Semantics ModelTheory
+open LRA.Foundation.Logic.FirstOrder
+open LRA.Foundation.Logic.FirstOrder.Semantics
+open LRA.Foundation.Logic.FirstOrder.ModelTheory
 
 /-!
   ============================================================
@@ -196,7 +198,7 @@ theorem standardModelSatisfiesSuccessorIsInjective :
 -- ════════════════════════════════════════════════════════════
 
 namespace Tests
-open Semantics
+open LRA.Foundation.Logic.FirstOrder.Semantics
 
 -- `2 + 3` evaluates to `5` in the standard model.
 #guard

@@ -1,4 +1,4 @@
-namespace LRA.VolumeI.FirstOrderLogic
+namespace LRA.Foundation.Logic.FirstOrder
 
 /-!
   ============================================================
@@ -17,11 +17,10 @@ namespace LRA.VolumeI.FirstOrderLogic
   handled semantically by extending the assignment. Substitution is
   defined anyway, but only to *state* axiom schemas (induction).
 
-  This file is the generic engine — the first-order analogue of
-  `MetaLogic.lean`. Concrete languages and their models live in
-  sibling instance files (`PeanoSystemModel.lean`,
-  `PresburgerArithmetic.lean`), the way `PropositionalLogic.lean`
-  and `SimpleLogic.lean` instantiate the propositional meta-logic.
+  This file is the generic engine. Concrete languages and their
+  models live in the relevant volume modules; for example, Volume I
+  instantiates this machinery for successor-only Peano systems and
+  Presburger arithmetic.
   ============================================================
 -/
 
@@ -355,4 +354,4 @@ example :
 
 end Tests
 
-end LRA.VolumeI.FirstOrderLogic
+end LRA.Foundation.Logic.FirstOrder

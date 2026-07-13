@@ -43,9 +43,9 @@ and step rule equal to the successor operation.
 *Notes cross-ref:* §1.2 [#definition-addition-on-a-peano-system](../notes/section_1_2_main.md#definition-addition-on-a-peano-system)
 -/
 noncomputable def plus
-    (ps : PeanoSystem)
-    (left_input right_input : ps.carrier) :
-    ps.carrier :=
+    (ps : PeanoSystem) :
+    LRA.Foundation.BinaryOperation ps.carrier :=
+  fun left_input right_input =>
   iter
     ps
     ps.carrier

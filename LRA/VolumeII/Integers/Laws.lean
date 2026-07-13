@@ -24,42 +24,46 @@ structure LRASuccessorLaws (Z : LRAZ) : Prop where
   pred_injective : ∀ ⦃x y : Z.carrier⦄, Z.pred x = Z.pred y → x = y
 
 structure LRAAdditiveLaws (Z : LRAZ) : Prop where
-  add_assoc : ∀ x y z : Z.carrier, (x + y) + z = x + (y + z)
-  add_comm : ∀ x y : Z.carrier, x + y = y + x
-  zero_add : ∀ x : Z.carrier, 0 + x = x
-  add_zero : ∀ x : Z.carrier, x + 0 = x
-  neg_add_self : ∀ x : Z.carrier, -x + x = 0
-  add_neg_self : ∀ x : Z.carrier, x + -x = 0
+  add_assoc : Foundation.Algebra.associative (LRAZ.add Z)
+  add_comm : Foundation.Algebra.commutative (LRAZ.add Z)
+  zero_add : Foundation.Algebra.leftIdentity (LRAZ.add Z) (LRAZ.zero Z)
+  add_zero : Foundation.Algebra.rightIdentity (LRAZ.add Z) (LRAZ.zero Z)
+  neg_add_self :
+    Foundation.Algebra.leftInverse (LRAZ.add Z) (LRAZ.zero Z) (LRAZ.neg Z)
+  add_neg_self :
+    Foundation.Algebra.rightInverse (LRAZ.add Z) (LRAZ.zero Z) (LRAZ.neg Z)
   neg_neg : ∀ x : Z.carrier, -(-x) = x
   neg_add : ∀ x y : Z.carrier, -(x + y) = -x + -y
 
 structure LRAMultiplicativeLaws (Z : LRAZ) : Prop where
-  one_mul : ∀ x : Z.carrier, 1 * x = x
-  mul_zero : ∀ x : Z.carrier, x * 0 = 0
-  zero_mul : ∀ x : Z.carrier, 0 * x = 0
+  one_mul : Foundation.Algebra.leftIdentity (LRAZ.mul Z) (LRAZ.one Z)
+  mul_zero : Foundation.Algebra.rightAbsorbing (LRAZ.mul Z) (LRAZ.zero Z)
+  zero_mul : Foundation.Algebra.leftAbsorbing (LRAZ.mul Z) (LRAZ.zero Z)
   mul_succ : ∀ x y : Z.carrier, x * Z.succ y = x * y + x
   mul_pred : ∀ x y : Z.carrier, x * Z.pred y = x * y + -x
 
 structure LRARingLaws (Z : LRAZ) : Prop extends
     LRAAdditiveLaws Z, LRAMultiplicativeLaws Z where
-  mul_assoc : ∀ x y z : Z.carrier, (x * y) * z = x * (y * z)
-  mul_comm : ∀ x y : Z.carrier, x * y = y * x
-  distrib_left : ∀ x y z : Z.carrier, x * (y + z) = x * y + x * z
-  distrib_right : ∀ x y z : Z.carrier, (x + y) * z = x * z + y * z
+  mul_assoc : Foundation.Algebra.associative (LRAZ.mul Z)
+  mul_comm : Foundation.Algebra.commutative (LRAZ.mul Z)
+  distrib_left : Foundation.Algebra.leftDistributive (LRAZ.mul Z) (LRAZ.add Z)
+  distrib_right : Foundation.Algebra.rightDistributive (LRAZ.mul Z) (LRAZ.add Z)
   mul_neg : ∀ x y : Z.carrier, x * -y = -(x * y)
   neg_mul : ∀ x y : Z.carrier, -x * y = -(x * y)
 
 structure LRAOrderLaws (Z : LRAZ) : Prop where
-  lt_irrefl : ∀ x : Z.carrier, ¬ x < x
-  lt_trans : ∀ {x y z : Z.carrier}, x < y → y < z → x < z
-  le_refl : ∀ x : Z.carrier, x ≤ x
-  le_antisymm : ∀ {x y : Z.carrier}, x ≤ y → y ≤ x → x = y
+  lt_irrefl : Foundation.Order.irreflexive (LRAZ.lt Z)
+  lt_trans : Foundation.Order.transitive (LRAZ.lt Z)
+  le_refl : Foundation.Order.reflexive (LRAZ.le Z)
+  le_antisymm : Foundation.Order.antisymmetric (LRAZ.le Z)
   lt_trichotomy : ∀ x y : Z.carrier, x < y ∨ x = y ∨ y < x
-  add_lt_add_right : ∀ {x y : Z.carrier}, x < y → ∀ z, x + z < y + z
+  add_lt_add_right :
+    Foundation.Order.strictlyPreservesRightTranslation (LRAZ.lt Z) (LRAZ.add Z)
 
 structure LRAOrderedRingLaws (Z : LRAZ) : Prop extends LRARingLaws Z, LRAOrderLaws Z where
   mul_lt_mul_pos_right :
-    ∀ {x y z : Z.carrier}, x < y → 0 < z → x * z < y * z
+    Foundation.Order.preservesPositiveRightMultiplication
+      (LRAZ.lt Z) (LRAZ.mul Z) (LRAZ.zero Z)
 
 end Integers
 end VolumeII

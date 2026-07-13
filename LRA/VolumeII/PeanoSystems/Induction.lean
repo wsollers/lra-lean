@@ -23,7 +23,7 @@ by successor, then it holds for every element of the Peano system.
 -/
 theorem induction_principle
     (ps : PeanoSystem)
-    (predicate : ps.carrier → Prop)
+    (predicate : LRA.Foundation.LRASet ps.carrier)
     (base_case : predicate ps.one)
     (successor_step :
       ∀ element : ps.carrier,
@@ -49,7 +49,7 @@ of the carrier.
 -/
 theorem subset_based_induction_principle
     (ps : PeanoSystem)
-    (subset : ps.carrier → Prop)
+    (subset : LRA.Foundation.LRASet ps.carrier)
     (subset_is_inductive : inductive_subset ps subset) :
     ∀ element : ps.carrier,
       subset element :=

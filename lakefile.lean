@@ -16,3 +16,6 @@ lean_lib LRAVolumeII where
 -- Volume III and beyond: Mathlib permitted.
 lean_lib LRAVolumeIII where
   roots := #[`LRA.VolumeIII]
+
+lean_lib LRAVolumeIV where
+  roots := #[`LRA.VolumeIV]

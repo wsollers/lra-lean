@@ -1,3 +1,5 @@
+import LRA.Foundation
+
 namespace LRA.VolumeI.BooleanAlgebra
 
 /-
@@ -30,18 +32,18 @@ structure BooleanRing where
     Every element x that appears in the ring axioms has type carrier —
     it is a term that inhabits this type.
   -/
-  carrier : Type
+  carrier : LRA.Foundation.LRACarrier
 
   -- ── Operations ────────────────────────────────────────────────────────────
 
   /- Addition: the binary operation written x + y -/
-  Addition : carrier → carrier → carrier
+  Addition : LRA.Foundation.BinaryOperation carrier
 
   /- Multiplication: the binary operation written x · y -/
-  Multiplication : carrier → carrier → carrier
+  Multiplication : LRA.Foundation.BinaryOperation carrier
 
   /- AdditiveInverse: the unary operation sending x to its additive inverse -x -/
-  AdditiveInverse : carrier → carrier
+  AdditiveInverse : LRA.Foundation.UnaryOperation carrier
 
   -- ── Distinguished Elements ────────────────────────────────────────────────
 
@@ -83,24 +85,21 @@ structure BooleanRing where
     Addition does not depend on how terms are grouped.
     Halmos equation (1).
   -/
-  AdditiveAssociativity : ∀ x y z : carrier,
-    Addition (Addition x y) z = Addition x (Addition y z)
+  AdditiveAssociativity : LRA.Foundation.Algebra.associative Addition
 
   /-
     AdditiveCommutativity: x + y = y + x
     The order of addition does not matter.
     Halmos equation (3).
   -/
-  AdditiveCommutativity : ∀ x y : carrier,
-    Addition x y = Addition y x
+  AdditiveCommutativity : LRA.Foundation.Algebra.commutative Addition
 
   /-
     AdditiveIdentityLaw: x + 0 = x
     Adding zero leaves any element unchanged.
     Halmos equation (5).
   -/
-  AdditiveIdentityLaw : ∀ x : carrier,
-    Addition x AdditiveIdentity = x
+  AdditiveIdentityLaw : LRA.Foundation.Algebra.rightIdentity Addition AdditiveIdentity
 
   /-
     AdditiveInverseLaw: x + (−x) = 0
@@ -108,8 +107,8 @@ structure BooleanRing where
     Halmos equation (7). Note: Halmos later replaces this with
     AdditiveIdempotence (x + x = 0), which is a theorem here.
   -/
-  AdditiveInverseLaw : ∀ x : carrier,
-    Addition x (AdditiveInverse x) = AdditiveIdentity
+  AdditiveInverseLaw :
+    LRA.Foundation.Algebra.rightInverse Addition AdditiveIdentity AdditiveInverse
 
   -- ── Layer 1: Multiplicative Semigroup Axiom ───────────────────────────────
 
@@ -118,9 +117,8 @@ structure BooleanRing where
     Multiplication does not depend on how terms are grouped.
     Halmos equation (2).
   -/
-  MultiplicativeAssociativity : ∀ x y z : carrier,
-    Multiplication (Multiplication x y) z =
-    Multiplication x (Multiplication y z)
+  MultiplicativeAssociativity :
+    LRA.Foundation.Algebra.associative Multiplication
 
   -- ── Layer 1: Distributivity ───────────────────────────────────────────────
 
@@ -129,18 +127,16 @@ structure BooleanRing where
     Multiplication distributes over addition from the left.
     Halmos equation (8).
   -/
-  LeftDistributivity : ∀ x y z : carrier,
-    Multiplication x (Addition y z) =
-    Addition (Multiplication x y) (Multiplication x z)
+  LeftDistributivity :
+    LRA.Foundation.Algebra.leftDistributive Multiplication Addition
 
   /-
     RightDistributivity: (x + y) · z = x·z + y·z
     Multiplication distributes over addition from the right.
     Halmos equation (9).
   -/
-  RightDistributivity : ∀ x y z : carrier,
-    Multiplication (Addition x y) z =
-    Addition (Multiplication x z) (Multiplication y z)
+  RightDistributivity :
+    LRA.Foundation.Algebra.rightDistributive Multiplication Addition
 
   -- ── Layer 2: Unit Axioms ──────────────────────────────────────────────────
 
@@ -149,16 +145,16 @@ structure BooleanRing where
     The multiplicative identity leaves any element unchanged from the left.
     Halmos equation (6), left half.
   -/
-  LeftMultiplicativeIdentityLaw : ∀ x : carrier,
-    Multiplication MultiplicativeIdentity x = x
+  LeftMultiplicativeIdentityLaw :
+    LRA.Foundation.Algebra.leftIdentity Multiplication MultiplicativeIdentity
 
   /-
     RightMultiplicativeIdentityLaw: x · 1 = x
     The multiplicative identity leaves any element unchanged from the right.
     Halmos equation (6), right half.
   -/
-  RightMultiplicativeIdentityLaw : ∀ x : carrier,
-    Multiplication x MultiplicativeIdentity = x
+  RightMultiplicativeIdentityLaw :
+    LRA.Foundation.Algebra.rightIdentity Multiplication MultiplicativeIdentity
 
   -- ── Layer 3: Idempotence ──────────────────────────────────────────────────
 
@@ -170,8 +166,7 @@ structure BooleanRing where
       AdditiveIdempotence         (x + x = 0),   proved below, and
       MultiplicativeCommutativity (x·y = y·x),    proved below.
   -/
-  MultiplicativeIdempotence : ∀ x : carrier,
-    Multiplication x x = x
+  MultiplicativeIdempotence : LRA.Foundation.Algebra.idempotent Multiplication
 
 
 /-
