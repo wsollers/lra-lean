@@ -29,13 +29,13 @@ instance : One PolishZCarrier where
 
 def PolishZ : LRAZ where
   carrier := PolishZCarrier
-  zeroInst := inferInstance
-  oneInst := inferInstance
-  addInst := inferInstance
-  negInst := inferInstance
-  mulInst := inferInstance
-  ltInst := inferInstance
-  leInst := inferInstance
+  zeroInstance := inferInstance
+  oneInstance := inferInstance
+  addInstance := inferInstance
+  negInstance := inferInstance
+  mulInstance := inferInstance
+  ltInstance := inferInstance
+  leInstance := inferInstance
   succ := TwoSidedSuccessor.succ
   pred := TwoSidedSuccessor.pred
 
@@ -43,11 +43,11 @@ def PolishSuccessorLaws : LRASuccessorLaws PolishZ where
   pred_succ := TwoSidedSuccessor.pred_succ
   succ_pred := TwoSidedSuccessor.succ_pred
   succ_injective := by
-    intro x y h
-    exact TwoSidedSuccessor.succ_injective h
+    intro firstInteger secondInteger successorEquality
+    exact TwoSidedSuccessor.succ_injective successorEquality
   pred_injective := by
-    intro x y h
-    exact TwoSidedSuccessor.pred_injective h
+    intro firstInteger secondInteger predecessorEquality
+    exact TwoSidedSuccessor.pred_injective predecessorEquality
 
 def PolishAdditiveLaws : LRAAdditiveLaws PolishZ where
   add_assoc := TwoSidedSuccessor.add_assoc
@@ -79,25 +79,25 @@ def PolishRingLaws : LRARingLaws PolishZ where
 def PolishOrderLaws : LRAOrderLaws PolishZ where
   lt_irrefl := TwoSidedSuccessor.lt_irrefl
   lt_trans := by
-    intro x y z hxy hyz
-    exact TwoSidedSuccessor.lt_trans hxy hyz
+    intro firstInteger middleInteger lastInteger firstLessMiddle middleLessLast
+    exact TwoSidedSuccessor.lt_trans firstLessMiddle middleLessLast
   le_refl := TwoSidedSuccessor.le_refl
   le_antisymm := by
-    intro x y hxy hyx
-    exact TwoSidedSuccessor.le_antisymm hxy hyx
+    intro firstInteger secondInteger firstLeSecond secondLeFirst
+    exact TwoSidedSuccessor.le_antisymm firstLeSecond secondLeFirst
   lt_trichotomy := TwoSidedSuccessor.lt_trichotomy
   add_lt_add_right := by
-    intro x y hxy z
-    exact TwoSidedSuccessor.add_lt_add_right hxy z
+    intro firstInteger secondInteger firstLessSecond translatedBy
+    exact TwoSidedSuccessor.add_lt_add_right firstLessSecond translatedBy
 
 def PolishOrderedRingLaws : LRAOrderedRingLaws PolishZ where
   toLRARingLaws := PolishRingLaws
   toLRAOrderLaws := PolishOrderLaws
   mul_lt_mul_pos_right := by
-    intro x y z hxy hz
-    have hzPos : TwoSidedSuccessor.Pos z :=
-      TwoSidedSuccessor.pos_of_zero_lt z hz
-    exact TwoSidedSuccessor.mul_lt_mul_pos_right hxy hzPos
+    intro firstInteger secondInteger positiveMultiplier firstLessSecond zeroLessMultiplier
+    have multiplierIsPositiveRay : TwoSidedSuccessor.Pos positiveMultiplier :=
+      TwoSidedSuccessor.pos_of_zero_lt positiveMultiplier zeroLessMultiplier
+    exact TwoSidedSuccessor.mul_lt_mul_pos_right firstLessSecond multiplierIsPositiveRay
 
 end Polish
 end Integers

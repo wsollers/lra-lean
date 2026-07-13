@@ -19,13 +19,13 @@ recursion uniqueness, additive algebra, negation algebra, and first
 multiplicative clauses needed for a Landau-style integer workup.
 -/
 
-theorem succ_injective {x y : Z} (h : succ x = succ y) : x = y := by
-  have inverseEquality := congrArg pred h
+theorem succ_injective {x y : Z} (successorEquality : succ x = succ y) : x = y := by
+  have inverseEquality := congrArg pred successorEquality
   rw [pred_succ, pred_succ] at inverseEquality
   exact inverseEquality
 
-theorem pred_injective {x y : Z} (h : pred x = pred y) : x = y := by
-  have inverseEquality := congrArg succ h
+theorem pred_injective {x y : Z} (predecessorEquality : pred x = pred y) : x = y := by
+  have inverseEquality := congrArg succ predecessorEquality
   rw [succ_pred, succ_pred] at inverseEquality
   exact inverseEquality
 
@@ -52,20 +52,20 @@ theorem twoSidedInduction
 theorem recursion_unique {α : Type}
     (a0 : α)
     (stepSucc stepPred : α → α)
-    (h₁ h₂ : Z → α)
-    (h1z : h₁ Z.zero = a0)
-    (h1s : ∀ x, h₁ (succ x) = stepSucc (h₁ x))
-    (h1p : ∀ x, h₁ (pred x) = stepPred (h₁ x))
-    (h2z : h₂ Z.zero = a0)
-    (h2s : ∀ x, h₂ (succ x) = stepSucc (h₂ x))
-    (h2p : ∀ x, h₂ (pred x) = stepPred (h₂ x)) :
-    ∀ x, h₁ x = h₂ x := by
+    (firstFunction secondFunction : Z → α)
+    (firstFunction_zero : firstFunction Z.zero = a0)
+    (firstFunction_succ : ∀ x, firstFunction (succ x) = stepSucc (firstFunction x))
+    (firstFunction_pred : ∀ x, firstFunction (pred x) = stepPred (firstFunction x))
+    (secondFunction_zero : secondFunction Z.zero = a0)
+    (secondFunction_succ : ∀ x, secondFunction (succ x) = stepSucc (secondFunction x))
+    (secondFunction_pred : ∀ x, secondFunction (pred x) = stepPred (secondFunction x)) :
+    ∀ x, firstFunction x = secondFunction x := by
   apply twoSidedInduction
-  · rw [h1z, h2z]
-  · intro x ih
-    rw [h1s, h2s, ih]
-  · intro x ih
-    rw [h1p, h2p, ih]
+  · rw [firstFunction_zero, secondFunction_zero]
+  · intro x inductionHypothesis
+    rw [firstFunction_succ, secondFunction_succ, inductionHypothesis]
+  · intro x inductionHypothesis
+    rw [firstFunction_pred, secondFunction_pred, inductionHypothesis]
 
 theorem add_zero (x : Z) : x + Z.zero = x := rfl
 
@@ -320,62 +320,74 @@ theorem trichotomy (z : Z) : z = Z.zero ∨ Pos z ∨ IsNeg z := by
   | pos p => exact Or.inr (Or.inl ⟨p, rfl⟩)
   | neg n => exact Or.inr (Or.inr ⟨n, rfl⟩)
 
-theorem pos_add {x y : Z} (hx : Pos x) (hy : Pos y) : Pos (x + y) := by
-  obtain ⟨p, rfl⟩ := hx
-  induction p with
+theorem pos_add {x y : Z} (leftPositive : Pos x) (rightPositive : Pos y) : Pos (x + y) := by
+  obtain ⟨leftPositiveRay, rfl⟩ := leftPositive
+  induction leftPositiveRay with
   | succZero =>
-      obtain ⟨q, rfl⟩ := hy
-      refine ⟨P.succ q, ?_⟩
-      show Z.pos P.succZero + Z.pos q = Z.pos (P.succ q)
+      obtain ⟨rightPositiveRay, rfl⟩ := rightPositive
+      refine ⟨P.succ rightPositiveRay, ?_⟩
+      show Z.pos P.succZero + Z.pos rightPositiveRay = Z.pos (P.succ rightPositiveRay)
       rw [show Z.pos P.succZero = succ Z.zero from rfl, succ_add, zero_add]
       rfl
-  | succ p' ih =>
-      obtain ⟨r, hr⟩ := ih
-      refine ⟨P.succ r, ?_⟩
-      show Z.pos (P.succ p') + y = Z.pos (P.succ r)
-      rw [show Z.pos (P.succ p') = succ (Z.pos p') from rfl, succ_add, hr]
+  | succ previousPositiveRay inductionHypothesis =>
+      obtain ⟨sumPositiveRay, sumPositiveRayEquality⟩ := inductionHypothesis
+      refine ⟨P.succ sumPositiveRay, ?_⟩
+      show Z.pos (P.succ previousPositiveRay) + y = Z.pos (P.succ sumPositiveRay)
+      rw [
+        show Z.pos (P.succ previousPositiveRay) = succ (Z.pos previousPositiveRay) from rfl,
+        succ_add,
+        sumPositiveRayEquality
+      ]
       rfl
 
-theorem isNeg_neg_of_pos {x : Z} (h : Pos x) : IsNeg (-x) := by
-  obtain ⟨p, rfl⟩ := h
-  induction p with
+theorem isNeg_neg_of_pos {x : Z} (positiveInput : Pos x) : IsNeg (-x) := by
+  obtain ⟨positiveRay, rfl⟩ := positiveInput
+  induction positiveRay with
   | succZero =>
       exact ⟨N.predZero, by
         rw [show Z.pos P.succZero = succ Z.zero from rfl, neg_succ, neg_zero]
         rfl⟩
-  | succ p' ih =>
-      obtain ⟨n, hn⟩ := ih
-      exact ⟨N.pred n, by
-        rw [show Z.pos (P.succ p') = succ (Z.pos p') from rfl, neg_succ, hn]
+  | succ previousPositiveRay inductionHypothesis =>
+      obtain ⟨negativeRay, negativeRayEquality⟩ := inductionHypothesis
+      exact ⟨N.pred negativeRay, by
+        rw [
+          show Z.pos (P.succ previousPositiveRay) = succ (Z.pos previousPositiveRay) from rfl,
+          neg_succ,
+          negativeRayEquality
+        ]
         rfl⟩
 
-theorem pos_neg_of_isNeg {x : Z} (h : IsNeg x) : Pos (-x) := by
-  obtain ⟨n, rfl⟩ := h
-  induction n with
+theorem pos_neg_of_isNeg {x : Z} (negativeInput : IsNeg x) : Pos (-x) := by
+  obtain ⟨negativeRay, rfl⟩ := negativeInput
+  induction negativeRay with
   | predZero =>
       exact ⟨P.succZero, by
         rw [show Z.neg N.predZero = pred Z.zero from rfl, neg_pred, neg_zero]
         rfl⟩
-  | pred n' ih =>
-      obtain ⟨p, hp⟩ := ih
-      exact ⟨P.succ p, by
-        rw [show Z.neg (N.pred n') = pred (Z.neg n') from rfl, neg_pred, hp]
+  | pred previousNegativeRay inductionHypothesis =>
+      obtain ⟨positiveRay, positiveRayEquality⟩ := inductionHypothesis
+      exact ⟨P.succ positiveRay, by
+        rw [
+          show Z.neg (N.pred previousNegativeRay) = pred (Z.neg previousNegativeRay) from rfl,
+          neg_pred,
+          positiveRayEquality
+        ]
         rfl⟩
 
 theorem pos_neg_iff_isNeg (x : Z) : Pos (-x) ↔ IsNeg x := by
   constructor
-  · intro h
-    rcases trichotomy x with hz | hp | hn
+  · intro negatedInputIsPositive
+    rcases trichotomy x with inputIsZero | inputIsPositive | inputIsNegative
     · exfalso
-      rw [hz, neg_zero] at h
-      exact not_pos_zero h
+      rw [inputIsZero, neg_zero] at negatedInputIsPositive
+      exact not_pos_zero negatedInputIsPositive
     · exfalso
-      have h2 := isNeg_neg_of_pos hp
-      obtain ⟨p, hp2⟩ := h
-      obtain ⟨n, hn2⟩ := h2
-      rw [hp2] at hn2
-      injection hn2
-    · exact hn
+      have negatedInputIsNegative := isNeg_neg_of_pos inputIsPositive
+      obtain ⟨positiveRay, positiveRayEquality⟩ := negatedInputIsPositive
+      obtain ⟨negativeRay, negativeRayEquality⟩ := negatedInputIsNegative
+      rw [positiveRayEquality] at negativeRayEquality
+      injection negativeRayEquality
+    · exact inputIsNegative
   · exact pos_neg_of_isNeg
 
 def lt (x y : Z) : Prop := Pos (y + (-x))
@@ -399,9 +411,9 @@ theorem lt_irrefl (x : Z) : ¬ x < x := by
   rw [lt_def, add_neg_self]
   exact not_pos_zero
 
-theorem lt_trans {x y z : Z} (hxy : x < y) (hyz : y < z) : x < z := by
-  have h := pos_add hxy hyz
-  have heq : (y + (-x)) + (z + (-y)) = z + (-x) := by
+theorem lt_trans {x y z : Z} (firstLessSecond : x < y) (secondLessThird : y < z) : x < z := by
+  have positiveSum := pos_add firstLessSecond secondLessThird
+  have collapsedDifferenceEquality : (y + (-x)) + (z + (-y)) = z + (-x) := by
     calc
       (y + -x) + (z + -y)
           = (z + -y) + (y + -x) := add_comm _ _
@@ -410,31 +422,31 @@ theorem lt_trans {x y z : Z} (hxy : x < y) (hyz : y < z) : x < z := by
       _ = z + (Z.zero + -x) := by rw [neg_add_self]
       _ = z + -x := by rw [zero_add]
   rw [lt_def]
-  rw [heq] at h
-  exact h
+  rw [collapsedDifferenceEquality] at positiveSum
+  exact positiveSum
 
 theorem lt_trichotomy (x y : Z) : x < y ∨ x = y ∨ y < x := by
-  rcases trichotomy (y + (-x)) with hz | hp | hn
+  rcases trichotomy (y + (-x)) with differenceIsZero | differenceIsPositive | differenceIsNegative
   · right
     left
-    have hzAdd := congrArg (fun w => w + x) hz
-    have hyx : y = x := by
+    have differencePlusRightEndpoint := congrArg (fun w => w + x) differenceIsZero
+    have endpointsEqualInReverseOrder : y = x := by
       calc
         y = y + Z.zero := (add_zero y).symm
         _ = y + (-x + x) := by rw [neg_add_self]
         _ = (y + -x) + x := (add_assoc y (-x) x).symm
-        _ = Z.zero + x := hzAdd
+        _ = Z.zero + x := differencePlusRightEndpoint
         _ = x := zero_add x
-    exact hyx.symm
+    exact endpointsEqualInReverseOrder.symm
   · left
-    exact hp
+    exact differenceIsPositive
   · right
     right
-    have h2 := pos_neg_of_isNeg hn
-    have heq : -(y + -x) = x + -y := by
+    have negativeDifferenceBecomesPositive := pos_neg_of_isNeg differenceIsNegative
+    have negatedDifferenceEquality : -(y + -x) = x + -y := by
       rw [neg_add, neg_neg, add_comm]
-    rw [lt_def, ← heq]
-    exact h2
+    rw [lt_def, ← negatedDifferenceEquality]
+    exact negativeDifferenceBecomesPositive
 
 theorem lt_succ_self (x : Z) : x < succ x := by
   rw [lt_def, succ_add, add_neg_self]
@@ -444,8 +456,8 @@ theorem pred_lt_self (x : Z) : pred x < x := by
   rw [lt_def, neg_pred, add_succ, add_neg_self]
   exact ⟨P.succZero, rfl⟩
 
-theorem add_lt_add_right {x y : Z} (h : x < y) (z : Z) : x + z < y + z := by
-  have heq : (y + z) + -(x + z) = y + -x := by
+theorem add_lt_add_right {x y : Z} (firstLessSecond : x < y) (z : Z) : x + z < y + z := by
+  have translatedDifferenceEquality : (y + z) + -(x + z) = y + -x := by
     rw [neg_add]
     calc
       (y + z) + (-x + -z)
@@ -454,44 +466,45 @@ theorem add_lt_add_right {x y : Z} (h : x < y) (z : Z) : x + z < y + z := by
       _ = y + ((z + -z) + -x) := by rw [add_assoc]
       _ = y + (Z.zero + -x) := by rw [add_neg_self]
       _ = y + -x := by rw [zero_add]
-  rw [lt_def, heq]
-  exact h
+  rw [lt_def, translatedDifferenceEquality]
+  exact firstLessSecond
 
 theorem le_iff (x y : Z) : x ≤ y ↔ x = y ∨ x < y := Iff.rfl
 
 theorem le_refl (x : Z) : x ≤ x := Or.inl rfl
 
-theorem lt_of_le_of_lt {x y z : Z} (hxy : x ≤ y) (hyz : y < z) : x < z := by
-  rcases hxy with rfl | h
-  · exact hyz
-  · exact lt_trans h hyz
+theorem lt_of_le_of_lt {x y z : Z} (firstLeSecond : x ≤ y) (secondLessThird : y < z) :
+    x < z := by
+  rcases firstLeSecond with rfl | firstLessSecond
+  · exact secondLessThird
+  · exact lt_trans firstLessSecond secondLessThird
 
-theorem le_antisymm {x y : Z} (hxy : x ≤ y) (hyx : y ≤ x) : x = y := by
-  rcases hxy with rfl | h1
+theorem le_antisymm {x y : Z} (firstLeSecond : x ≤ y) (secondLeFirst : y ≤ x) : x = y := by
+  rcases firstLeSecond with rfl | firstLessSecond
   · rfl
-  · rcases hyx with rfl | h2
+  · rcases secondLeFirst with rfl | secondLessFirst
     · rfl
-    · exact absurd (lt_trans h1 h2) (lt_irrefl x)
+    · exact absurd (lt_trans firstLessSecond secondLessFirst) (lt_irrefl x)
 
-theorem pos_mul {x y : Z} (hx : Pos x) (hy : Pos y) : Pos (x * y) := by
-  obtain ⟨p, rfl⟩ := hx
-  induction p with
+theorem pos_mul {x y : Z} (leftPositive : Pos x) (rightPositive : Pos y) : Pos (x * y) := by
+  obtain ⟨leftPositiveRay, rfl⟩ := leftPositive
+  induction leftPositiveRay with
   | succZero =>
       show Pos (Z.pos P.succZero * y)
       rw [show Z.pos P.succZero = one from rfl, one_mul]
-      exact hy
-  | succ p' ih =>
-      show Pos (Z.pos (P.succ p') * y)
-      rw [show Z.pos (P.succ p') = succ (Z.pos p') from rfl, succ_mul]
-      exact pos_add ih hy
+      exact rightPositive
+  | succ previousPositiveRay inductionHypothesis =>
+      show Pos (Z.pos (P.succ previousPositiveRay) * y)
+      rw [show Z.pos (P.succ previousPositiveRay) = succ (Z.pos previousPositiveRay) from rfl, succ_mul]
+      exact pos_add inductionHypothesis rightPositive
 
-theorem mul_lt_mul_pos_right {x y z : Z} (hxy : x < y) (hz : Pos z) :
+theorem mul_lt_mul_pos_right {x y z : Z} (firstLessSecond : x < y) (multiplierPositive : Pos z) :
     x * z < y * z := by
-  have h := pos_mul hxy hz
-  have heq : (y + -x) * z = y * z + -(x * z) := by
+  have productDifferencePositive := pos_mul firstLessSecond multiplierPositive
+  have productDifferenceEquality : (y + -x) * z = y * z + -(x * z) := by
     rw [distrib_right, neg_mul]
-  rw [lt_def, ← heq]
-  exact h
+  rw [lt_def, ← productDifferenceEquality]
+  exact productDifferencePositive
 
 end TwoSidedSuccessor
 end Polish

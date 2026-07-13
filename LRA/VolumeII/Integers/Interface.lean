@@ -18,23 +18,23 @@ primitive structure.
 
 structure LRAZ where
   carrier : Type u
-  zeroInst : Zero carrier
-  oneInst : One carrier
-  addInst : Add carrier
-  negInst : Neg carrier
-  mulInst : Mul carrier
-  ltInst : LT carrier
-  leInst : LE carrier
+  zeroInstance : Zero carrier
+  oneInstance : One carrier
+  addInstance : Add carrier
+  negInstance : Neg carrier
+  mulInstance : Mul carrier
+  ltInstance : LT carrier
+  leInstance : LE carrier
   succ : carrier → carrier
   pred : carrier → carrier
 
-attribute [instance] LRAZ.zeroInst
-attribute [instance] LRAZ.oneInst
-attribute [instance] LRAZ.addInst
-attribute [instance] LRAZ.negInst
-attribute [instance] LRAZ.mulInst
-attribute [instance] LRAZ.ltInst
-attribute [instance] LRAZ.leInst
+attribute [instance] LRAZ.zeroInstance
+attribute [instance] LRAZ.oneInstance
+attribute [instance] LRAZ.addInstance
+attribute [instance] LRAZ.negInstance
+attribute [instance] LRAZ.mulInstance
+attribute [instance] LRAZ.ltInstance
+attribute [instance] LRAZ.leInstance
 
 namespace LRAZ
 
