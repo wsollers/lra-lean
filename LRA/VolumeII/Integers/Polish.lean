@@ -3,6 +3,7 @@
 
 import LRA.VolumeII.Integers.Polish.TwoSidedSuccessor
 import LRA.VolumeII.Integers.Polish.LandauWorkup
+import LRA.VolumeII.Integers.Polish.DiscreteIntegerStructure
 
 namespace LRA
 namespace VolumeII
