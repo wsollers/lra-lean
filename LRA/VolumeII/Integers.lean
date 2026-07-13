@@ -1,6 +1,8 @@
 -- LRA/VolumeII/Integers.lean
 -- Volume II integer construction root.
 
+import LRA.VolumeII.Integers.Interface
+import LRA.VolumeII.Integers.Laws
 import LRA.VolumeII.Integers.Implementation
 import LRA.VolumeII.Integers.ArithmeticTests
 

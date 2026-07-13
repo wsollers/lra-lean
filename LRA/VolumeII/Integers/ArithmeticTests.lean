@@ -19,24 +19,36 @@ checked, the same tests should be run with `Active` switched to each source
 variant.
 -/
 
-def one : Active.Z := Active.succ Active.zero
+def one : Active.Z := Active.one
 def two : Active.Z := Active.succ one
 def minusOne : Active.Z := Active.pred Active.zero
 def minusTwo : Active.Z := Active.pred minusOne
 
 example : Active.pred (Active.succ two) = two :=
-  Polish.TwoSidedSuccessor.pred_succ two
+  Active.successorLaws.pred_succ two
 
 example : Active.succ (Active.pred minusTwo) = minusTwo :=
-  Polish.TwoSidedSuccessor.succ_pred minusTwo
+  Active.successorLaws.succ_pred minusTwo
 
-example : Active.add two Active.zero = two := rfl
+example : two + Active.zero = two :=
+  Active.additiveLaws.add_zero two
 
-example : Active.add two one = Active.succ two := rfl
+example : Active.zero + two = two :=
+  Active.additiveLaws.zero_add two
 
-example : Active.add two minusOne = one := by
-  change two + Active.pred Active.zero = Active.pred (two + Active.zero)
-  rw [Polish.TwoSidedSuccessor.add_pred]
+example : (one + two) + minusOne = one + (two + minusOne) :=
+  Active.additiveLaws.add_assoc one two minusOne
+
+example : one + two = two + one :=
+  Active.additiveLaws.add_comm one two
+
+example : -(-minusTwo) = minusTwo :=
+  Active.additiveLaws.neg_neg minusTwo
+
+example : -minusTwo + minusTwo = Active.zero :=
+  Active.additiveLaws.neg_add_self minusTwo
+
+example : two + minusOne = one := rfl
 
 example : Active.negZ Active.zero = Active.zero := rfl
 
@@ -45,11 +57,40 @@ example : Active.negZ one = minusOne := rfl
 example : Active.negZ minusOne = one := rfl
 
 example : Active.mul two Active.zero = Active.zero :=
-  Polish.TwoSidedSuccessor.mul_zero two
+  Active.multiplicativeLaws.mul_zero two
 
-example : Active.mul two one = two := rfl
+example : Active.one * two = two :=
+  Active.multiplicativeLaws.one_mul two
 
-example : Active.mul two two = Active.add two two := rfl
+example : (one * two) * minusOne = one * (two * minusOne) :=
+  Active.ringLaws.mul_assoc one two minusOne
+
+example : one * two = two * one :=
+  Active.ringLaws.mul_comm one two
+
+example : one * (two + minusOne) = one * two + one * minusOne :=
+  Active.ringLaws.distrib_left one two minusOne
+
+example : (one + minusOne) * two = one * two + minusOne * two :=
+  Active.ringLaws.distrib_right one minusOne two
+
+example : ¬ one < one :=
+  Active.orderLaws.lt_irrefl one
+
+example : one ≤ one :=
+  Active.orderLaws.le_refl one
+
+example : Active.zero < one := by
+  change Polish.TwoSidedSuccessor.Z.zero < Polish.TwoSidedSuccessor.succ Polish.TwoSidedSuccessor.Z.zero
+  exact Polish.TwoSidedSuccessor.lt_succ_self Polish.TwoSidedSuccessor.Z.zero
+
+example : Active.zero < one → Active.zero * two < one * two :=
+  fun h => Active.orderedRingLaws.mul_lt_mul_pos_right h
+    (by
+      change Polish.TwoSidedSuccessor.Z.zero < Polish.TwoSidedSuccessor.succ (Polish.TwoSidedSuccessor.succ Polish.TwoSidedSuccessor.Z.zero)
+      exact Polish.TwoSidedSuccessor.lt_trans
+        (Polish.TwoSidedSuccessor.lt_succ_self Polish.TwoSidedSuccessor.Z.zero)
+        (Polish.TwoSidedSuccessor.lt_succ_self one))
 
 end ArithmeticTests
 end Integers
