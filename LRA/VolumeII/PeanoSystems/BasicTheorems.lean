@@ -267,10 +267,14 @@ theorem successor_inequality_reflects
     (first_element second_element : ps.carrier) :
     first_element ≠ second_element →
       ps.successor first_element ≠ ps.successor second_element := by
-  sorry
+      intro elementsAreDifferent successorsAreEqual
+      exact elementsAreDifferent (ps.successor_injective first_element second_element successorsAreEqual)
+
+
+
 
 /--
-**[Theorem — Non-One Elements Have a Predecessor]**
+**[Theorem — Elements Other Than One Have a Predecessor]**
 
 Let `(P, S, 1)` be a Peano system. For every `x ∈ P`, if `x ≠ 1`,
 then there exists `u ∈ P` such that `S(u) = x`.
