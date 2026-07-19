@@ -1,5 +1,5 @@
 -- LRA/VolumeII/Integers/ConstructionModels.lean
--- Canonical, Tao, and Mendelson integer construction statements.
+-- Canonical scaffold, Tao, and Mendelson integer construction statements.
 
 import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeII.NumberSystems.Models
@@ -16,16 +16,20 @@ Volume II label: alternate-integer-constructions
 Lean module: LRA.VolumeII.Integers.ConstructionModels
 Blueprint label: alternate-integer-constructions
 Verification status: statement-accepted-proof-pending
+
+The Markdown-driven canonical construction is owned exclusively by
+`LRA.VolumeII.Integers.Canonical`. The namespace below retains the older
+model-comparison scaffold without competing for canonical declaration names.
 -/
 
-namespace Canonical
+namespace CanonicalScaffold
 
-/-- **[Definition — Canonical Integer Representative]** -/
+/-- **[Definition — Canonical Integer Representative Scaffold]** -/
 structure Representative (WholeCarrier : Type) where
   positive_coordinate : WholeCarrier
   negative_coordinate : WholeCarrier
 
-/-- **[Definition — Canonical Formal-Difference Relation]** -/
+/-- **[Definition — Canonical Formal-Difference Relation Scaffold]** -/
 def equivalent
     {WholeCarrier : Type}
     (addition : WholeCarrier → WholeCarrier → WholeCarrier)
@@ -50,11 +54,11 @@ theorem equivalent_is_equivalence_relation
     Equivalence (equivalent addition) := by
   sorry
 
-/-- **[Definition — Canonical Integer Model]** -/
+/-- **[Definition — Canonical Integer Model Scaffold]** -/
 noncomputable def integer_model : IntegerModel := by
   sorry
 
-end Canonical
+end CanonicalScaffold
 
 namespace Tao
 
@@ -187,30 +191,33 @@ structure ModelIsomorphism
           (to_function second) ↔
         first_model.signature.nonstrict_order first second
 
-/-- **[Definition — Canonical–Tao Integer Isomorphism]** -/
-noncomputable def canonical_equiv_tao :
-    ModelIsomorphism Canonical.integer_model Tao.integer_model := by
+/-- **[Definition — Canonical-Scaffold–Tao Integer Isomorphism]** -/
+noncomputable def canonical_scaffold_equiv_tao :
+    ModelIsomorphism CanonicalScaffold.integer_model Tao.integer_model := by
   sorry
 
-/-- **[Theorem — Canonical and Tao Integers Are Isomorphic]** -/
-theorem canonical_and_tao_are_isomorphic :
-    Nonempty (ModelIsomorphism Canonical.integer_model Tao.integer_model) :=
-  ⟨canonical_equiv_tao⟩
+/-- **[Theorem — Canonical Scaffold and Tao Integers Are Isomorphic]** -/
+theorem canonical_scaffold_and_tao_are_isomorphic :
+    Nonempty
+      (ModelIsomorphism
+        CanonicalScaffold.integer_model
+        Tao.integer_model) :=
+  ⟨canonical_scaffold_equiv_tao⟩
 
-/-- **[Definition — Canonical–Mendelson Integer Isomorphism]** -/
-noncomputable def canonical_equiv_mendelson :
+/-- **[Definition — Canonical-Scaffold–Mendelson Integer Isomorphism]** -/
+noncomputable def canonical_scaffold_equiv_mendelson :
     ModelIsomorphism
-      Canonical.integer_model
+      CanonicalScaffold.integer_model
       Mendelson.integer_model := by
   sorry
 
-/-- **[Theorem — Canonical and Mendelson Integers Are Isomorphic]** -/
-theorem canonical_and_mendelson_are_isomorphic :
+/-- **[Theorem — Canonical Scaffold and Mendelson Integers Are Isomorphic]** -/
+theorem canonical_scaffold_and_mendelson_are_isomorphic :
     Nonempty
       (ModelIsomorphism
-        Canonical.integer_model
+        CanonicalScaffold.integer_model
         Mendelson.integer_model) :=
-  ⟨canonical_equiv_mendelson⟩
+  ⟨canonical_scaffold_equiv_mendelson⟩
 
 /-- **[Definition — Tao–Mendelson Integer Isomorphism]** -/
 noncomputable def tao_equiv_mendelson :
