@@ -5,10 +5,7 @@ import LRA.VolumeII.PeanoSystems.Recursion
 
 namespace LRA
 namespace VolumeII
-namespace LRA
-namespace VolumeII
 namespace PeanoSystems
-Systems
 
 /-!
 Volume II label: parameterized-peano-iterator-theorem
@@ -25,7 +22,7 @@ obtained as functions of the correct arity.
 **[Definition — Parameterized Iterator Clauses]**
 -/
 def satisfies_parameterized_iterator_clauses
-    (peano_system : LRA.VolumeII.PeanoSystems.PeanoSystem)
+    (peano_system : PeanoSystem)
     (Parameter Target : Type)
     (initial_value : Parameter → Target)
     (step_rule : Parameter → Target → Target)
@@ -49,13 +46,13 @@ For each parameter value, reuse the unique iterator supplied by the existing
 Peano recursion development.
 -/
 noncomputable def parameterized_iter
-    (peano_system : LRA.VolumeII.PeanoSystems.PeanoSystem)
+    (peano_system : PeanoSystem)
     (Parameter Target : Type)
     (initial_value : Parameter → Target)
     (step_rule : Parameter → Target → Target) :
     Parameter → peano_system.carrier → Target :=
   fun parameter_value =>
-    LRA.VolumeII.PeanoSystems.iter
+    iter
       peano_system
       Target
       (initial_value parameter_value)
@@ -65,7 +62,7 @@ noncomputable def parameterized_iter
 **[Lemma — Parameterized Iterator Base Clause]**
 -/
 lemma parameterized_iter_base
-    (peano_system : LRA.VolumeII.PeanoSystems.PeanoSystem)
+    (peano_system : PeanoSystem)
     (Parameter Target : Type)
     (initial_value : Parameter → Target)
     (step_rule : Parameter → Target → Target)
@@ -80,7 +77,7 @@ lemma parameterized_iter_base
 **[Lemma — Parameterized Iterator Successor Clause]**
 -/
 lemma parameterized_iter_step
-    (peano_system : LRA.VolumeII.PeanoSystems.PeanoSystem)
+    (peano_system : PeanoSystem)
     (Parameter Target : Type)
     (initial_value : Parameter → Target)
     (step_rule : Parameter → Target → Target)
@@ -103,7 +100,7 @@ There is exactly one parameterized function satisfying the base and successor
 clauses.
 -/
 theorem parameterized_peano_iterator_theorem
-    (peano_system : LRA.VolumeII.PeanoSystems.PeanoSystem)
+    (peano_system : PeanoSystem)
     (Parameter Target : Type)
     (initial_value : Parameter → Target)
     (step_rule : Parameter → Target → Target) :
@@ -127,7 +124,7 @@ When the parameter and target are the Peano carrier, parameterized iteration
 constructs a unique binary operation.
 -/
 theorem recursive_binary_operation_exists_uniquely
-    (peano_system : LRA.VolumeII.PeanoSystems.PeanoSystem)
+    (peano_system : PeanoSystem)
     (initial_value : peano_system.carrier → peano_system.carrier)
     (step_rule :
       peano_system.carrier →
@@ -160,7 +157,5 @@ theorem recursive_binary_operation_exists_uniquely
   sorry
 
 end PeanoSystems
-end VolumeII
-end LRASystems
 end VolumeII
 end LRA
