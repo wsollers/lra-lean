@@ -1,0 +1,230 @@
+\section{Reusable Construction Machinery}
+
+\begin{definition}[Binary operation respects an equivalence]
+  \label{def:binary-operation-respects-equivalence}
+  \lean{LRA.VolumeII.Foundations.Quotients.binary_operation_respects}
+  Let $A$ be a set, let $\sim$ be an equivalence relation on $A$, and let
+  $O\colon A\times A\to A$. The operation $O$ respects $\sim$ if replacing
+  both inputs by equivalent representatives produces an equivalent output.
+\end{definition}
+
+\begin{lemma}[Binary respect splits by argument]
+  \label{lem:binary-respect-splits}
+  \lean{LRA.VolumeII.Foundations.Quotients.binary_operation_respects_iff_left_and_right}
+  \uses{def:binary-operation-respects-equivalence}
+  A binary operation respects an equivalence relation if and only if it
+  respects the relation separately in its left and right arguments.
+\end{lemma}
+
+\begin{corollary}[Commutative one-sided compatibility criterion]
+  \label{cor:commutative-one-sided-compatibility}
+  \lean{LRA.VolumeII.Foundations.Quotients.commutative_operation_respects_of_respects_left}
+  \uses{lem:binary-respect-splits}
+  A commutative representative operation that respects equivalence in one
+  argument respects equivalence in both arguments.
+\end{corollary}
+
+\begin{theorem}[Induced binary operation on a quotient]
+  \label{thm:induced-binary-operation-on-quotient}
+  \lean{LRA.VolumeII.Foundations.Quotients.induced_binary_operation_exists}
+  \uses{lem:binary-respect-splits}
+  Every representative operation that respects the equivalence relation
+  induces a binary operation on the quotient satisfying the representative
+  computation rule.
+\end{theorem}
+
+\begin{definition}[Parameterized iterator clauses]
+  \label{def:parameterized-iterator-clauses}
+  \lean{LRA.VolumeII.PeanoSystems.satisfies_parameterized_iterator_clauses}
+  Let $(P,S,1)$ be a Peano system, let $A$ be a parameter set, and let $W$ be a
+  target set. Parameterized iterator clauses specify an initial value
+  $c(a)\in W$ and an update function $G(a,-)\colon W\to W$ for each $a\in A$.
+\end{definition}
+
+\begin{theorem}[Parameterized Peano iterator theorem]
+  \label{thm:parameterized-peano-iterator}
+  \lean{LRA.VolumeII.PeanoSystems.parameterized_peano_iterator_theorem}
+  \uses{def:parameterized-iterator-clauses}
+  There exists a unique function $F\colon A\times P\to W$ satisfying
+  \[
+    F(a,1)=c(a),\qquad F(a,S(n))=G(a,F(a,n)).
+  \]
+\end{theorem}
+
+\begin{corollary}[Recursive binary operation exists uniquely]
+  \label{cor:recursive-binary-operation-exists-uniquely}
+  \lean{LRA.VolumeII.PeanoSystems.recursive_binary_operation_exists_uniquely}
+  \uses{thm:parameterized-peano-iterator}
+  Parameterized iteration with parameter and target equal to the Peano carrier
+  produces a unique binary operation satisfying the specified base and
+  successor clauses.
+\end{corollary}
+
+\section{Model Interfaces and Construction Tower}
+
+\begin{definition}[Integer model]
+  \label{def:integer-model}
+  \lean{LRA.VolumeII.NumberSystems.IntegerModel}
+  An integer model is an ordered-ring signature together with the laws of a
+  discretely ordered integral domain.
+\end{definition}
+
+\begin{definition}[Rational model]
+  \label{def:rational-model}
+  \lean{LRA.VolumeII.NumberSystems.RationalModel}
+  \uses{def:integer-model}
+  A rational model is an Archimedean densely ordered field model. Completeness
+  is not part of the rational-model interface.
+\end{definition}
+
+\begin{definition}[Real model]
+  \label{def:real-model}
+  \lean{LRA.VolumeII.NumberSystems.RealModel}
+  \uses{def:rational-model}
+  A real model is a complete Archimedean ordered field model satisfying the
+  least-upper-bound property.
+\end{definition}
+
+\begin{definition}[Number-system construction configuration]
+  \label{def:number-system-construction}
+  \lean{LRA.VolumeII.NumberSystems.NumberSystemConstruction}
+  A construction configuration chooses one integer construction, one rational
+  construction, and one real construction.
+\end{definition}
+
+\begin{definition}[Canonical construction configuration]
+  \label{def:canonical-construction}
+  \lean{LRA.VolumeII.NumberSystems.canonical_construction}
+  \uses{def:number-system-construction}
+  The canonical construction uses the canonical formal-difference integers,
+  the canonical fraction rationals, and Dedekind-cut reals.
+\end{definition}
+
+\begin{theorem}[Every supported configuration builds a tower]
+  \label{thm:number-system-tower-exists}
+  \lean{LRA.VolumeII.NumberSystems.number_system_tower_exists}
+  \uses{def:integer-model,def:rational-model,def:real-model,def:number-system-construction}
+  Every supported construction configuration determines a coherent tower
+  \[
+    \Z\hookrightarrow\Q\hookrightarrow\R.
+  \]
+\end{theorem}
+
+\section{Alternate Integer Constructions}
+
+\begin{definition}[Canonical integer representative]
+  \label{def:canonical-integer-representative}
+  \lean{LRA.VolumeII.Integers.Canonical.Representative}
+  A canonical integer representative is an ordered pair of whole-number
+  coordinates interpreted as a formal difference.
+\end{definition}
+
+\begin{definition}[Tao formal difference]
+  \label{def:tao-formal-difference}
+  \lean{LRA.VolumeII.Integers.Tao.FormalDifference}
+  Tao formal differences form a distinct representative carrier with minuend
+  and subtrahend coordinates.
+\end{definition}
+
+\begin{definition}[Mendelson positive pair]
+  \label{def:mendelson-positive-pair}
+  \lean{LRA.VolumeII.Integers.Mendelson.PositivePair}
+  Mendelson representatives are ordered pairs of positive natural numbers.
+\end{definition}
+
+\begin{proposition}[Mendelson positivity is representative-independent]
+  \label{prop:mendelson-positivity-respects-equivalence}
+  \lean{LRA.VolumeII.Integers.Mendelson.positivity_respects_equivalence}
+  \uses{def:mendelson-positive-pair,def:binary-operation-respects-equivalence}
+  The positivity predicate on Mendelson representatives is constant on each
+  equivalence class.
+\end{proposition}
+
+\begin{theorem}[Canonical and Tao integers are isomorphic]
+  \label{thm:canonical-tao-integer-isomorphism}
+  \lean{LRA.VolumeII.Integers.canonical_equiv_tao}
+  \uses{def:canonical-integer-representative,def:tao-formal-difference,def:integer-model}
+  The canonical and Tao constructions are isomorphic as discretely ordered
+  integral domains.
+\end{theorem}
+
+\begin{theorem}[Canonical and Mendelson integers are isomorphic]
+  \label{thm:canonical-mendelson-integer-isomorphism}
+  \lean{LRA.VolumeII.Integers.canonical_equiv_mendelson}
+  \uses{def:canonical-integer-representative,def:mendelson-positive-pair,def:integer-model}
+  The canonical and Mendelson constructions are isomorphic as discretely
+  ordered integral domains.
+\end{theorem}
+
+\begin{corollary}[Tao and Mendelson integers are isomorphic]
+  \label{cor:tao-mendelson-integer-isomorphism}
+  \lean{LRA.VolumeII.Integers.tao_equiv_mendelson}
+  \uses{thm:canonical-tao-integer-isomorphism,thm:canonical-mendelson-integer-isomorphism}
+  The Tao and Mendelson integer constructions are isomorphic.
+\end{corollary}
+
+\section{Rational and Real Constructions}
+
+\begin{definition}[Canonical rational representative]
+  \label{def:canonical-rational-representative}
+  \lean{LRA.VolumeII.Rationals.Canonical.Representative}
+  A canonical rational representative consists of an integer numerator and a
+  positive-natural denominator.
+\end{definition}
+
+\begin{proposition}[Canonical rationals are not order complete]
+  \label{prop:canonical-rationals-not-complete}
+  \lean{LRA.VolumeII.Rationals.Canonical.is_not_order_complete}
+  \uses{def:canonical-rational-representative,def:rational-model}
+  The canonical rational field does not satisfy the least-upper-bound property.
+\end{proposition}
+
+\begin{definition}[Dedekind cut]
+  \label{def:dedekind-cut}
+  \lean{LRA.VolumeII.Reals.Dedekind.Cut}
+  A Dedekind cut is a nonempty proper lower set of rationals with no greatest
+  element.
+\end{definition}
+
+\begin{theorem}[Dedekind reals are complete]
+  \label{thm:dedekind-reals-complete}
+  \lean{LRA.VolumeII.Reals.Dedekind.reals_are_complete}
+  \uses{def:dedekind-cut,def:real-model}
+  The Dedekind-cut real model satisfies the least-upper-bound property.
+\end{theorem}
+
+\begin{proposition}[Raw interval multiplication is not distributive]
+  \label{prop:raw-interval-multiplication-not-distributive}
+  \lean{LRA.VolumeII.Reals.IntervalQuotient.raw_interval_multiplication_is_not_distributive}
+  Raw interval multiplication does not distribute over raw interval addition.
+\end{proposition}
+
+\begin{corollary}[Distributivity is recovered on the interval quotient]
+  \label{cor:interval-quotient-distributive}
+  \lean{LRA.VolumeII.Reals.IntervalQuotient.quotient_multiplication_is_distributive}
+  \uses{prop:raw-interval-multiplication-not-distributive,thm:induced-binary-operation-on-quotient}
+  After passing to the real quotient, multiplication distributes over addition.
+\end{corollary}
+
+\begin{theorem}[Complete Archimedean ordered fields are uniquely isomorphic]
+  \label{thm:complete-archimedean-fields-unique}
+  \lean{LRA.VolumeII.Reals.complete_archimedean_ordered_fields_are_uniquely_isomorphic}
+  \uses{def:real-model}
+  Any two complete Archimedean ordered-field models are uniquely isomorphic by
+  the structure-preserving map fixing the embedded rationals.
+\end{theorem}
+
+\begin{corollary}[Dedekind and Cauchy reals are isomorphic]
+  \label{cor:dedekind-cauchy-real-isomorphism}
+  \lean{LRA.VolumeII.Reals.dedekind_equiv_cauchy}
+  \uses{thm:complete-archimedean-fields-unique}
+  The Dedekind and Cauchy constructions produce isomorphic real models.
+\end{corollary}
+
+\begin{corollary}[Dedekind and interval-quotient reals are isomorphic]
+  \label{cor:dedekind-interval-real-isomorphism}
+  \lean{LRA.VolumeII.Reals.dedekind_equiv_interval_quotient}
+  \uses{thm:complete-archimedean-fields-unique}
+  The Dedekind and primitive interval-quotient constructions produce
+  isomorphic real models.
+\end{corollary}
