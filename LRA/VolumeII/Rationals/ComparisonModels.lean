@@ -1,5 +1,5 @@
--- LRA/VolumeII/Rationals/ConstructionModels.lean
--- Canonical and alternate rational construction statements.
+-- LRA/VolumeII/Rationals/ComparisonModels.lean
+-- Comparison models for alternate rational constructions.
 
 import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeII.NumberSystems.Models
@@ -13,7 +13,7 @@ open NumberSystems
 
 /-!
 Volume II label: alternate-rational-constructions
-Lean module: LRA.VolumeII.Rationals.ConstructionModels
+ Lean module: LRA.VolumeII.Rationals.ComparisonModels
 Blueprint label: alternate-rational-constructions
 Verification status: statement-accepted-proof-pending
 -/
@@ -41,10 +41,10 @@ def is_order_complete (rational_model : RationalModel) : Prop :=
           rational_model.signature.nonstrict_order member upper_bound) →
         rational_model.signature.nonstrict_order supremum upper_bound)
 
-namespace Canonical
+namespace QuotientFractionsComparison
 
 /--
-**[Definition — Canonical Rational Representative]**
+**[Definition — Rational Quotient-Fractions Representative]**
 
 The denominator carrier is supplied separately so a one-based natural model can
 make positivity and nonzeroness structural rather than proof fields.
@@ -54,7 +54,7 @@ structure Representative
   numerator : IntegerCarrier
   denominator : NaturalCarrier
 
-/-- **[Definition — Canonical Cross-Multiplication Relation]** -/
+/-- **[Definition — Rational Quotient-Fractions Equality]** -/
 def equivalent
     {IntegerCarrier NaturalCarrier : Type}
     (integer_multiplication :
@@ -68,7 +68,7 @@ def equivalent
       second.numerator
       (natural_to_integer first.denominator)
 
-/-- **[Theorem — Canonical Rational Relation Is an Equivalence]** -/
+/-- **[Theorem — Rational Quotient-Fractions Equality Is an Equivalence]** -/
 theorem equivalent_is_equivalence_relation
     {IntegerCarrier NaturalCarrier : Type}
     (integer_multiplication :
@@ -78,7 +78,7 @@ theorem equivalent_is_equivalence_relation
       (equivalent integer_multiplication natural_to_integer) := by
   sorry
 
-/-- **[Lemma — Canonical Representative Addition Respects Equivalence]** -/
+/-- **[Lemma — Rational Quotient-Fractions Addition Respects Equivalence]** -/
 theorem representative_addition_respects_equivalence
     {RepresentativeCarrier : Type}
     (setoid : Setoid RepresentativeCarrier)
@@ -90,7 +90,7 @@ theorem representative_addition_respects_equivalence
       setoid representative_addition := by
   sorry
 
-/-- **[Lemma — Canonical Representative Multiplication Respects Equivalence]** -/
+/-- **[Lemma — Rational Quotient-Fractions Multiplication Respects Equivalence]** -/
 theorem representative_multiplication_respects_equivalence
     {RepresentativeCarrier : Type}
     (setoid : Setoid RepresentativeCarrier)
@@ -102,24 +102,35 @@ theorem representative_multiplication_respects_equivalence
       setoid representative_multiplication := by
   sorry
 
-/-- **[Definition — Canonical Rational Model]** -/
-noncomputable def rational_model
-    (integer_model : IntegerModel) : RationalModel := by
+/-- **[Theorem — Rational Quotient-Fractions Model Exists]** -/
+theorem rational_model_exists
+    (integer_model : IntegerModel) : Nonempty RationalModel := by
   sorry
 
-/-- **[Definition — Canonical Rational Extension]** -/
+/-- **[Definition — Rational Quotient-Fractions Model]** -/
+noncomputable def rational_model
+    (integer_model : IntegerModel) : RationalModel :=
+  Classical.choice (rational_model_exists integer_model)
+
+/-- **[Theorem — Rational Quotient-Fractions Extension Exists]** -/
+theorem rational_extension_exists
+    (integer_model : IntegerModel) :
+    Nonempty (RationalExtension integer_model) := by
+  sorry
+
+/-- **[Definition — Rational Quotient-Fractions Extension]** -/
 noncomputable def rational_extension
     (integer_model : IntegerModel) :
-    RationalExtension integer_model := by
-  sorry
+    RationalExtension integer_model :=
+  Classical.choice (rational_extension_exists integer_model)
 
-/-- **[Proposition — Canonical Rationals Are Not Order Complete]** -/
+/-- **[Proposition — Rational Quotient-Fractions Are Not Order Complete]** -/
 theorem is_not_order_complete
     (integer_model : IntegerModel) :
     ¬ Rationals.is_order_complete (rational_model integer_model) := by
   sorry
 
-end Canonical
+end QuotientFractionsComparison
 
 namespace Reduced
 
@@ -130,28 +141,40 @@ structure Representative
   denominator : NaturalCarrier
   is_reduced : Prop
 
+/-- **[Theorem — Reduced-Fraction Rational Model Exists]** -/
+theorem rational_model_exists
+    (integer_model : IntegerModel) : Nonempty RationalModel := by
+  sorry
+
 /-- **[Definition — Reduced-Fraction Rational Model]** -/
 noncomputable def rational_model
-    (integer_model : IntegerModel) : RationalModel := by
-  sorry
+    (integer_model : IntegerModel) : RationalModel :=
+  Classical.choice (rational_model_exists integer_model)
 
 end Reduced
 
 namespace FractionField
 
 /--
-**[Definition — Fraction-Field Input]**
+**[Definition — Integral-Domain Fraction-Field Data]**
 
 The generic fraction-field construction consumes an integer model and its
 no-zero-divisors law.
 -/
-structure Input where
+structure IntegralDomainFractionFieldData where
   integer_model : IntegerModel
+
+/-- **[Theorem — Fraction-Field Rational Model Exists]** -/
+theorem rational_model_exists
+    (fraction_field_data : IntegralDomainFractionFieldData) :
+    Nonempty RationalModel := by
+  sorry
 
 /-- **[Definition — Fraction-Field Rational Model]** -/
 noncomputable def rational_model
-    (input : Input) : RationalModel := by
-  sorry
+    (fraction_field_data : IntegralDomainFractionFieldData) :
+    RationalModel :=
+  Classical.choice (rational_model_exists fraction_field_data)
 
 end FractionField
 
@@ -202,39 +225,57 @@ structure ModelIsomorphism
           (to_function second) ↔
         first_model.signature.nonstrict_order first second
 
-/-- **[Definition — Canonical–Reduced Rational Isomorphism]** -/
-noncomputable def canonical_equiv_reduced
-    (integer_model : IntegerModel) :
-    ModelIsomorphism
-      (Canonical.rational_model integer_model)
-      (Reduced.rational_model integer_model) := by
-  sorry
-
-/-- **[Theorem — Canonical and Reduced Rationals Are Isomorphic]** -/
-theorem canonical_and_reduced_are_isomorphic
+/-- **[Theorem — Rational Quotient-Fractions–Reduced Rational Isomorphism Exists]** -/
+theorem rational_quotient_fractions_equiv_reduced_exists
     (integer_model : IntegerModel) :
     Nonempty
       (ModelIsomorphism
-        (Canonical.rational_model integer_model)
+        (QuotientFractionsComparison.rational_model integer_model)
+        (Reduced.rational_model integer_model)) := by
+  sorry
+
+/-- **[Definition — Rational Quotient-Fractions–Reduced Rational Isomorphism]** -/
+noncomputable def rational_quotient_fractions_equiv_reduced
+    (integer_model : IntegerModel) :
+    ModelIsomorphism
+      (QuotientFractionsComparison.rational_model integer_model)
+      (Reduced.rational_model integer_model) :=
+  Classical.choice (rational_quotient_fractions_equiv_reduced_exists integer_model)
+
+/-- **[Theorem — Rational Quotient-Fractions and Reduced Rationals Are Isomorphic]** -/
+theorem rational_quotient_fractions_and_reduced_are_isomorphic
+    (integer_model : IntegerModel) :
+    Nonempty
+      (ModelIsomorphism
+        (QuotientFractionsComparison.rational_model integer_model)
         (Reduced.rational_model integer_model)) :=
-  ⟨canonical_equiv_reduced integer_model⟩
+  ⟨rational_quotient_fractions_equiv_reduced integer_model⟩
 
-/-- **[Definition — Canonical–Fraction-Field Rational Isomorphism]** -/
-noncomputable def canonical_equiv_fraction_field
-    (integer_model : IntegerModel) :
-    ModelIsomorphism
-      (Canonical.rational_model integer_model)
-      (FractionField.rational_model ⟨integer_model⟩) := by
-  sorry
-
-/-- **[Theorem — Canonical and Fraction-Field Rationals Are Isomorphic]** -/
-theorem canonical_and_fraction_field_are_isomorphic
+/-- **[Theorem — Rational Quotient-Fractions–Fraction-Field Rational Isomorphism Exists]** -/
+theorem rational_quotient_fractions_equiv_fraction_field_exists
     (integer_model : IntegerModel) :
     Nonempty
       (ModelIsomorphism
-        (Canonical.rational_model integer_model)
+        (QuotientFractionsComparison.rational_model integer_model)
+        (FractionField.rational_model ⟨integer_model⟩)) := by
+  sorry
+
+/-- **[Definition — Rational Quotient-Fractions–Fraction-Field Rational Isomorphism]** -/
+noncomputable def rational_quotient_fractions_equiv_fraction_field
+    (integer_model : IntegerModel) :
+    ModelIsomorphism
+      (QuotientFractionsComparison.rational_model integer_model)
+      (FractionField.rational_model ⟨integer_model⟩) :=
+  Classical.choice (rational_quotient_fractions_equiv_fraction_field_exists integer_model)
+
+/-- **[Theorem — Rational Quotient-Fractions and Fraction-Field Rationals Are Isomorphic]** -/
+theorem rational_quotient_fractions_and_fraction_field_are_isomorphic
+    (integer_model : IntegerModel) :
+    Nonempty
+      (ModelIsomorphism
+        (QuotientFractionsComparison.rational_model integer_model)
         (FractionField.rational_model ⟨integer_model⟩)) :=
-  ⟨canonical_equiv_fraction_field integer_model⟩
+  ⟨rational_quotient_fractions_equiv_fraction_field integer_model⟩
 
 end Rationals
 end VolumeII

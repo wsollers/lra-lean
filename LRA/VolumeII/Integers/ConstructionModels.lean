@@ -1,5 +1,5 @@
 -- LRA/VolumeII/Integers/ConstructionModels.lean
--- Canonical, Tao, and Mendelson integer construction statements.
+-- Comparison models for alternate integer constructions.
 
 import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeII.NumberSystems.Models
@@ -16,16 +16,21 @@ Volume II label: alternate-integer-constructions
 Lean module: LRA.VolumeII.Integers.ConstructionModels
 Blueprint label: alternate-integer-constructions
 Verification status: statement-accepted-proof-pending
+
+The Markdown-driven default construction is owned by
+`LRA.VolumeII.Integers.QuotientOrderedPairs`. This file records comparison-level model
+statements for named integer constructions without competing for the canonical
+construction declarations.
 -/
 
-namespace Canonical
+namespace QuotientOrderedPairsComparison
 
-/-- **[Definition — Canonical Integer Representative]** -/
+/-- **[Definition — Quotient-Ordered-Pairs Integer Representative]** -/
 structure Representative (WholeCarrier : Type) where
   positive_coordinate : WholeCarrier
   negative_coordinate : WholeCarrier
 
-/-- **[Definition — Canonical Formal-Difference Relation]** -/
+/-- **[Definition — Quotient-Ordered-Pairs Equality]** -/
 def equivalent
     {WholeCarrier : Type}
     (addition : WholeCarrier → WholeCarrier → WholeCarrier)
@@ -33,7 +38,7 @@ def equivalent
   addition first.positive_coordinate second.negative_coordinate =
     addition second.positive_coordinate first.negative_coordinate
 
-/-- **[Theorem — Canonical Formal-Difference Relation Is an Equivalence]** -/
+/-- **[Theorem — Quotient-Ordered-Pairs Equality Is an Equivalence]** -/
 theorem equivalent_is_equivalence_relation
     {WholeCarrier : Type}
     (addition : WholeCarrier → WholeCarrier → WholeCarrier)
@@ -50,13 +55,17 @@ theorem equivalent_is_equivalence_relation
     Equivalence (equivalent addition) := by
   sorry
 
-/-- **[Definition — Canonical Integer Model]** -/
-noncomputable def integer_model : IntegerModel := by
+/-- **[Theorem — Quotient-Ordered-Pairs Integer Model Exists]** -/
+theorem integer_model_exists : Nonempty IntegerModel := by
   sorry
 
-end Canonical
+/-- **[Definition — Quotient-Ordered-Pairs Integer Model]** -/
+noncomputable def integer_model : IntegerModel :=
+  Classical.choice integer_model_exists
 
-namespace Tao
+end QuotientOrderedPairsComparison
+
+namespace TaoComparison
 
 /--
 **[Definition — Tao Formal Difference]**
@@ -87,13 +96,17 @@ theorem representative_addition_respects_equivalence_left
       setoid representative_addition := by
   sorry
 
-/-- **[Definition — Tao Integer Model]** -/
-noncomputable def integer_model : IntegerModel := by
+/-- **[Theorem — Tao Integer Model Exists]** -/
+theorem integer_model_exists : Nonempty IntegerModel := by
   sorry
 
-end Tao
+/-- **[Definition — Tao Integer Model]** -/
+noncomputable def integer_model : IntegerModel :=
+  Classical.choice integer_model_exists
 
-namespace Mendelson
+end TaoComparison
+
+namespace MendelsonComparison
 
 /-- **[Definition — Mendelson Positive Pair]** -/
 structure PositivePair (NaturalCarrier : Type) where
@@ -127,14 +140,23 @@ theorem positivity_respects_equivalence
       (is_positive strict_order) := by
   sorry
 
+/-- **[Theorem — Mendelson Integer Model Exists]** -/
+theorem integer_model_exists : Nonempty IntegerModel := by
+  sorry
+
 /-- **[Definition — Mendelson Integer Model]** -/
-noncomputable def integer_model : IntegerModel := by
+noncomputable def integer_model : IntegerModel :=
+  Classical.choice integer_model_exists
+
+/-- **[Theorem — Peano System Recovered from Positive Mendelson Integers Exists]** -/
+theorem recovered_peano_system_exists :
+    Nonempty LRA.VolumeII.PeanoSystems.PeanoSystem.{0} := by
   sorry
 
 /-- **[Definition — Peano System Recovered from Positive Mendelson Integers]** -/
 noncomputable def recovered_peano_system :
-    LRA.VolumeII.PeanoSystems.PeanoSystem.{0} := by
-  sorry
+    LRA.VolumeII.PeanoSystems.PeanoSystem.{0} :=
+  Classical.choice recovered_peano_system_exists
 
 /--
 **[Theorem — Positive Mendelson Integers Recover a Peano System]**
@@ -143,7 +165,7 @@ theorem positive_integers_recover_peano_system :
     Nonempty (LRA.VolumeII.PeanoSystems.PeanoSystem.{0}) :=
   ⟨recovered_peano_system⟩
 
-end Mendelson
+end MendelsonComparison
 
 /-- **[Definition — Ordered-Ring Model Isomorphism]** -/
 structure ModelIsomorphism
@@ -187,39 +209,60 @@ structure ModelIsomorphism
           (to_function second) ↔
         first_model.signature.nonstrict_order first second
 
-/-- **[Definition — Canonical–Tao Integer Isomorphism]** -/
-noncomputable def canonical_equiv_tao :
-    ModelIsomorphism Canonical.integer_model Tao.integer_model := by
+/-- **[Theorem — Quotient-Ordered-Pairs–Tao Integer Isomorphism Exists]** -/
+theorem quotient_ordered_pairs_equiv_tao_exists :
+    Nonempty (ModelIsomorphism QuotientOrderedPairsComparison.integer_model TaoComparison.integer_model) := by
   sorry
 
-/-- **[Theorem — Canonical and Tao Integers Are Isomorphic]** -/
-theorem canonical_and_tao_are_isomorphic :
-    Nonempty (ModelIsomorphism Canonical.integer_model Tao.integer_model) :=
-  ⟨canonical_equiv_tao⟩
+/-- **[Definition — Quotient-Ordered-Pairs–Tao Integer Isomorphism]** -/
+noncomputable def quotient_ordered_pairs_equiv_tao :
+    ModelIsomorphism QuotientOrderedPairsComparison.integer_model TaoComparison.integer_model :=
+  Classical.choice quotient_ordered_pairs_equiv_tao_exists
 
-/-- **[Definition — Canonical–Mendelson Integer Isomorphism]** -/
-noncomputable def canonical_equiv_mendelson :
-    ModelIsomorphism
-      Canonical.integer_model
-      Mendelson.integer_model := by
-  sorry
-
-/-- **[Theorem — Canonical and Mendelson Integers Are Isomorphic]** -/
-theorem canonical_and_mendelson_are_isomorphic :
+/-- **[Theorem — Quotient-Ordered-Pairs and Tao Integers Are Isomorphic]** -/
+theorem quotient_ordered_pairs_and_tao_are_isomorphic :
     Nonempty
       (ModelIsomorphism
-        Canonical.integer_model
-        Mendelson.integer_model) :=
-  ⟨canonical_equiv_mendelson⟩
+        QuotientOrderedPairsComparison.integer_model
+        TaoComparison.integer_model) :=
+  ⟨quotient_ordered_pairs_equiv_tao⟩
+
+/-- **[Theorem — Quotient-Ordered-Pairs–Mendelson Integer Isomorphism Exists]** -/
+theorem quotient_ordered_pairs_equiv_mendelson_exists :
+    Nonempty
+      (ModelIsomorphism
+        QuotientOrderedPairsComparison.integer_model
+        MendelsonComparison.integer_model) := by
+  sorry
+
+/-- **[Definition — Quotient-Ordered-Pairs–Mendelson Integer Isomorphism]** -/
+noncomputable def quotient_ordered_pairs_equiv_mendelson :
+    ModelIsomorphism
+      QuotientOrderedPairsComparison.integer_model
+      MendelsonComparison.integer_model :=
+  Classical.choice quotient_ordered_pairs_equiv_mendelson_exists
+
+/-- **[Theorem — Quotient-Ordered-Pairs and Mendelson Integers Are Isomorphic]** -/
+theorem quotient_ordered_pairs_and_mendelson_are_isomorphic :
+    Nonempty
+      (ModelIsomorphism
+        QuotientOrderedPairsComparison.integer_model
+        MendelsonComparison.integer_model) :=
+  ⟨quotient_ordered_pairs_equiv_mendelson⟩
+
+/-- **[Theorem — Tao–Mendelson Integer Isomorphism Exists]** -/
+theorem tao_equiv_mendelson_exists :
+    Nonempty (ModelIsomorphism TaoComparison.integer_model MendelsonComparison.integer_model) := by
+  sorry
 
 /-- **[Definition — Tao–Mendelson Integer Isomorphism]** -/
 noncomputable def tao_equiv_mendelson :
-    ModelIsomorphism Tao.integer_model Mendelson.integer_model := by
-  sorry
+    ModelIsomorphism TaoComparison.integer_model MendelsonComparison.integer_model :=
+  Classical.choice tao_equiv_mendelson_exists
 
 /-- **[Corollary — Tao and Mendelson Integers Are Isomorphic]** -/
 theorem tao_and_mendelson_are_isomorphic :
-    Nonempty (ModelIsomorphism Tao.integer_model Mendelson.integer_model) :=
+    Nonempty (ModelIsomorphism TaoComparison.integer_model MendelsonComparison.integer_model) :=
   ⟨tao_equiv_mendelson⟩
 
 end Integers

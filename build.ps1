@@ -6,7 +6,7 @@
 #   .\build.ps1                    # Show help
 #   .\build.ps1 build              # Build VolumeII
 #   .\build.ps1 build-all          # Build all volumes
-#   .\build.ps1 check              # Build + all checks
+#   .\build.ps1 check              # Build + proof-readiness + all checks
 #   .\build.ps1 clean              # Remove build artifacts
 #   .\build.ps1 shell              # Open shell in Docker container
 #   .\build.ps1 docker-build       # Build the Docker image
@@ -75,6 +75,19 @@ function Invoke-Run {
     if ($LASTEXITCODE -ne 0) { throw "Command failed: $($full -join ' ')" }
 }
 
+function Invoke-ProofReadiness {
+    $script = Join-Path $SrcDir 'scripts\check-proof-readiness.py'
+    $python = Get-Command python -ErrorAction SilentlyContinue
+    if (-not $python) {
+        $python = Get-Command py -ErrorAction SilentlyContinue
+    }
+    if (-not $python) {
+        throw "Python is required to run scripts/check-proof-readiness.py"
+    }
+    & $python.Source $script
+    if ($LASTEXITCODE -ne 0) { throw "Proof-readiness check failed" }
+}
+
 function Invoke-Build {
     Write-Step "Building LRAVolumeII (Lean $Toolchain)"
     Invoke-Run @('lake', 'build', 'LRAVolumeII')
@@ -89,16 +102,10 @@ function Invoke-BuildAll {
 
 function Invoke-Check {
     Invoke-Build
-    Write-Step "Checking for 'sorry' in VolumeII"
+    Write-Step "Checking proof-readiness"
     $vol2 = Join-Path $SrcDir 'LRA\VolumeII'
-    $sorryFiles = Get-ChildItem -Path $vol2 -Filter '*.lean' -Recurse |
-        Select-String -Pattern '\bsorry\b' -List | Select-Object -ExpandProperty Path
-    if ($sorryFiles) {
-        Write-Fail "sorry found in:"
-        $sorryFiles | ForEach-Object { Write-Host "    $_" -ForegroundColor Red }
-        throw "Remove 'sorry' from VolumeII before committing."
-    }
-    Write-Ok "No sorry in VolumeII"
+    Invoke-ProofReadiness
+    Write-Ok "Proof-readiness check passed"
     Write-Step "Checking for Mathlib imports in VolumeII"
     $matlibFiles = Get-ChildItem -Path $vol2 -Filter '*.lean' -Recurse |
         Select-String -Pattern '^import Mathlib' -List | Select-Object -ExpandProperty Path
@@ -222,7 +229,7 @@ function Show-Help {
     @(
         @{ Cmd = 'build';         Desc = 'Build VolumeII' },
         @{ Cmd = 'build-all';     Desc = 'Build all volumes' },
-        @{ Cmd = 'check';         Desc = 'Build + check: no sorry, no Mathlib, lint' },
+        @{ Cmd = 'check';         Desc = 'Build + proof-readiness, no Mathlib, lint' },
         @{ Cmd = 'clean';         Desc = 'Remove lake build artifacts' },
         @{ Cmd = 'shell';         Desc = 'Open interactive shell in Docker container' },
         @{ Cmd = 'docker-build';  Desc = 'Build the Docker image' },

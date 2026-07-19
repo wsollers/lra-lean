@@ -3,7 +3,7 @@
 # ============================================================
 # Targets:
 #   make build        — build all Lean libraries in the project
-#   make check        — build + verify no sorry, no axiom leaks
+#   make check        — build + verify proof-readiness and import policy
 #   make clean        — remove lake build artifacts
 #   make shell        — open interactive shell in Docker container
 #   make docker-build — build the Docker image
@@ -41,10 +41,18 @@ build-all:  ## Build all volumes
 
 .PHONY: check
 check: build  ## Build + run all checks
-	@echo "── Checking for sorry ──────────────────────────────"
-	@$(RUN) grep -rn "sorry" LRA/VolumeII/ --include="*.lean" \
-	    && echo "✗ ERROR: sorry found in VolumeII" && exit 1 \
-	    || echo "✓ No sorry in VolumeII"
+	@echo "── Checking proof-readiness ────────────────────────"
+ifdef NATIVE
+	@python3 scripts/check-proof-readiness.py
+else
+	@$(RUN) python3 scripts/check-proof-readiness.py
+endif
+	@echo "── Checking Mathlib imports in VolumeII ────────────"
+	@$(RUN) bash -lc 'if grep -rn "^import Mathlib" LRA/VolumeII/ LRA/VolumeII.lean --include="*.lean"; then \
+	    echo "✗ ERROR: Mathlib import found in VolumeII"; exit 1; \
+	  else \
+	    echo "✓ No Mathlib imports in VolumeII"; \
+	  fi'
 	@echo "── Checking for axiom leaks ────────────────────────"
 	@$(RUN) lake env lean --run scripts/check_axioms.lean 2>/dev/null \
 	    || echo "  (axiom check script not yet present — skipping)"

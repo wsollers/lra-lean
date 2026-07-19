@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     make \
     bash \
+    python3 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh \
