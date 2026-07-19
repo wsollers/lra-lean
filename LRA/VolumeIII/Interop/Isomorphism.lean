@@ -18,8 +18,8 @@ Only then do numerical examples test the constructed operations rather than wrap
 operations secretly delegated to the reference type.
 -/
 
-/-- Isomorphism data for an ordered ring presented without requiring typeclass instances. -/
-structure OrderedRingIsomorphism (Constructed Reference : Type) where
+/-- Isomorphism data for a ring presented without requiring typeclass instances. -/
+structure RingIsomorphism (Constructed Reference : Type) where
   equivalence : Constructed ≃ Reference
 
   constructedZero : Constructed
@@ -27,16 +27,12 @@ structure OrderedRingIsomorphism (Constructed Reference : Type) where
   constructedAdd : Constructed → Constructed → Constructed
   constructedNeg : Constructed → Constructed
   constructedMul : Constructed → Constructed → Constructed
-  constructedLt : Constructed → Constructed → Prop
-  constructedLe : Constructed → Constructed → Prop
 
   referenceZero : Reference
   referenceOne : Reference
   referenceAdd : Reference → Reference → Reference
   referenceNeg : Reference → Reference
   referenceMul : Reference → Reference → Reference
-  referenceLt : Reference → Reference → Prop
-  referenceLe : Reference → Reference → Prop
 
   map_zero : equivalence constructedZero = referenceZero
   map_one : equivalence constructedOne = referenceOne
@@ -51,6 +47,14 @@ structure OrderedRingIsomorphism (Constructed Reference : Type) where
     ∀ left right,
       equivalence (constructedMul left right) =
         referenceMul (equivalence left) (equivalence right)
+
+/-- Ordered-ring interoperability adds preservation and reflection of order. -/
+structure OrderedRingIsomorphism (Constructed Reference : Type)
+    extends RingIsomorphism Constructed Reference where
+  constructedLt : Constructed → Constructed → Prop
+  constructedLe : Constructed → Constructed → Prop
+  referenceLt : Reference → Reference → Prop
+  referenceLe : Reference → Reference → Prop
   map_lt :
     ∀ left right,
       constructedLt left right ↔ referenceLt (equivalence left) (equivalence right)
@@ -68,36 +72,42 @@ structure OrderedFieldIsomorphism (Constructed Reference : Type)
       value ≠ constructedZero →
       equivalence (constructedInv value) = referenceInv (equivalence value)
 
-/-- A complex-field bridge adds conjugation. -/
+/-- Complex-field interoperability has no order field; it adds inversion and conjugation. -/
 structure ComplexFieldIsomorphism (Constructed Reference : Type)
-    extends OrderedFieldIsomorphism Constructed Reference where
+    extends RingIsomorphism Constructed Reference where
+  constructedInv : Constructed → Constructed
+  referenceInv : Reference → Reference
+  map_inv :
+    ∀ value,
+      value ≠ constructedZero →
+      equivalence (constructedInv value) = referenceInv (equivalence value)
   constructedConj : Constructed → Constructed
   referenceConj : Reference → Reference
   map_conj :
     ∀ value,
       equivalence (constructedConj value) = referenceConj (equivalence value)
 
-namespace OrderedRingIsomorphism
+namespace RingIsomorphism
 
 variable {Constructed Reference : Type}
 
 /-- Forward transport followed by backward transport returns the original value. -/
 theorem reference_round_trip
-    (bridge : OrderedRingIsomorphism Constructed Reference)
+    (bridge : RingIsomorphism Constructed Reference)
     (value : Reference) :
     bridge.equivalence (bridge.equivalence.symm value) = value :=
   bridge.equivalence.apply_symm_apply value
 
 /-- Backward transport followed by forward transport returns the original value. -/
 theorem constructed_round_trip
-    (bridge : OrderedRingIsomorphism Constructed Reference)
+    (bridge : RingIsomorphism Constructed Reference)
     (value : Constructed) :
     bridge.equivalence.symm (bridge.equivalence value) = value :=
   bridge.equivalence.symm_apply_apply value
 
 /-- Equality may be checked after transport to the reference carrier. -/
 theorem equality_substitutability
-    (bridge : OrderedRingIsomorphism Constructed Reference)
+    (bridge : RingIsomorphism Constructed Reference)
     (left right : Constructed) :
     left = right ↔ bridge.equivalence left = bridge.equivalence right := by
   constructor
@@ -107,7 +117,7 @@ theorem equality_substitutability
 
 /-- Any unary function commuting with the bridge is substitutable across carriers. -/
 theorem unary_function_transport
-    (bridge : OrderedRingIsomorphism Constructed Reference)
+    (bridge : RingIsomorphism Constructed Reference)
     (constructedFunction : Constructed → Constructed)
     (referenceFunction : Reference → Reference)
     (commutes :
@@ -122,7 +132,7 @@ theorem unary_function_transport
 
 /-- Any binary function commuting with the bridge is substitutable across carriers. -/
 theorem binary_function_transport
-    (bridge : OrderedRingIsomorphism Constructed Reference)
+    (bridge : RingIsomorphism Constructed Reference)
     (constructedFunction : Constructed → Constructed → Constructed)
     (referenceFunction : Reference → Reference → Reference)
     (commutes :
@@ -138,7 +148,7 @@ theorem binary_function_transport
   rw [commutes, bridge.equivalence.apply_symm_apply,
     bridge.equivalence.apply_symm_apply]
 
-end OrderedRingIsomorphism
+end RingIsomorphism
 
 end Interop
 end VolumeIII
