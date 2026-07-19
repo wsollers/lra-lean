@@ -17,16 +17,14 @@ Source: docs/number-systems/gpt-08-reals-dyadic.md
 Verification status: definitions and final theorem statements complete; proofs pending
 -/
 
-/-- Binary digits. -/
 inductive Digit where
   | zero
   | one
   deriving DecidableEq
 
-/-- A binary fractional digit sequence. -/
 abbrev FractionalDigits := Nat → Digit
 
-/-- Definition 2.1: every term of a binary digit sequence is zero or one. -/
+/-- Definition 2.1: binary digit sequence. -/
 def IsBinaryDigitSequence (digits : FractionalDigits) : Prop :=
   ∀ index, digits index = Digit.zero ∨ digits index = Digit.one
 
@@ -38,35 +36,41 @@ def IsCanonical (digits : FractionalDigits) : Prop :=
         threshold ≤ index →
         digits index = Digit.one
 
-/-- A canonical binary fractional expansion. -/
 structure CanonicalFraction where
   digits : FractionalDigits
   canonical : IsCanonical digits
 
-/-- A finite canonical binary numeral. -/
+/-- Finite binary numeral with leading digit one. -/
 structure FiniteNumeral where
   highest_exponent : Nat
   digit : Fin (highest_exponent + 1) → Digit
   leading_digit_is_one :
     digit ⟨highest_exponent, Nat.lt_succ_self highest_exponent⟩ = Digit.one
 
-/-- Definition 3.1: an unsigned expansion. -/
+/-- A digit one occurs in the integer or fractional part. -/
+def HasOneDigit
+    (integer_part : FiniteNumeral)
+    (fractional_part : CanonicalFraction) : Prop :=
+  (∃ index, integer_part.digit index = Digit.one) ∨
+    ∃ index, fractional_part.digits index = Digit.one
+
+/-- Definition 3.1: nonzero unsigned binary expansion. -/
 structure UnsignedExpansion where
   integer_part : FiniteNumeral
   fractional_part : CanonicalFraction
+  nonzero : HasOneDigit integer_part fractional_part
 
-/-- Sign of a nonzero expansion. -/
 inductive Sign where
   | negative
   | positive
   deriving DecidableEq
 
-/-- Definition 3.3: a canonical signed binary real. -/
+/-- Definition 3.3: canonical signed binary real. -/
 inductive Expansion where
   | zero
   | nonzero (sign : Sign) (magnitude : UnsignedExpansion)
 
-/-- Data supplied by the integer, whole-number, rational, and Cauchy-real layers. -/
+/-- Data from the integer, whole-number, rational, and Cauchy-real layers. -/
 structure Context where
   rational_model : RationalModel
   absolute_value_data : Cauchy.AbsoluteValueData rational_model
@@ -74,6 +78,7 @@ structure Context where
   integer_carrier : Type
   whole_carrier : Type
   integer_to_rational : integer_carrier → rational_model.signature.carrier
+  exponent_of_index : Nat → whole_carrier
   power_of_two : whole_carrier → rational_model.signature.carrier
 
   digit_to_rational : Digit → rational_model.signature.carrier
@@ -112,7 +117,7 @@ abbrev Rational := context.rational_model.signature.carrier
 abbrev CauchyCarrier :=
   Cauchy.Carrier context.rational_model context.absolute_value_data
 
-/-- Definition 1.1: predicate for dyadic rationals m / 2^n. -/
+/-- Definition 1.1: dyadic rational m / 2^n. -/
 def IsDyadicRational (value : Rational context) : Prop :=
   ∃ numerator : context.integer_carrier,
     ∃ exponent : context.whole_carrier,
@@ -121,7 +126,7 @@ def IsDyadicRational (value : Rational context) : Prop :=
         (context.rational_model.signature.inverse
           (context.power_of_two exponent))
 
-/-- Theorem 1.2: the dyadic rationals form an ordered subring of Q. -/
+/-- Theorem 1.2: dyadic rationals form an ordered subring of Q. -/
 theorem dyadic_subring :
     IsDyadicRational context context.rational_model.signature.zero ∧
     IsDyadicRational context context.rational_model.signature.one ∧
@@ -152,7 +157,7 @@ theorem dyadic_rationals_are_dense
       context.rational_model.signature.strict_order dyadic second := by
   sorry
 
-/-- Definition 2.3: rational partial sums of a binary fractional expansion. -/
+/-- Definition 2.3: partial sums s_N = sum d_n 2^(-n). -/
 def fractional_partial_sum
     (digits : FractionalDigits)
     (bound : Nat) : Rational context :=
@@ -161,21 +166,10 @@ def fractional_partial_sum
       context.rational_model.signature.multiplication
         (context.digit_to_rational (digits index))
         (context.rational_model.signature.inverse
-          (context.power_of_two
-            (Classical.choice
-              (show Nonempty context.whole_carrier from by
-                classical
-                exact Classical.choice (Classical.propComplete (Nonempty context.whole_carrier)))))))
+          (context.power_of_two (context.exponent_of_index index))))
     bound
 
-/-- The supplied powers of two determine the intended weight 2^-(n+1). -/
-def HasBinaryWeights : Prop :=
-  ∃ exponent_of_index : Nat → context.whole_carrier,
-    ∀ index,
-      context.power_of_two (exponent_of_index index) =
-        context.power_of_two (exponent_of_index index)
-
-/-- Theorem 2.4: binary partial sums are Cauchy. -/
+/-- Theorem 2.4: every binary partial-sum sequence is Cauchy. -/
 theorem fractional_partial_sums_are_cauchy
     (digits : FractionalDigits) :
     Cauchy.is_cauchy
@@ -184,14 +178,14 @@ theorem fractional_partial_sums_are_cauchy
       (fractional_partial_sum context digits) := by
   sorry
 
-/-- Definition 2.5: value of a canonical fractional expansion. -/
+/-- Definition 2.5: value of a fractional expansion. -/
 def fractional_value
     (fraction : CanonicalFraction) : CauchyCarrier context :=
   Quotient.mk _
     ⟨fractional_partial_sum context fraction.digits,
       fractional_partial_sums_are_cauchy context fraction.digits⟩
 
-/-- Theorem 2.6: every eventually-one tail carries to a unique terminating expansion. -/
+/-- Theorem 2.6: eventually-one tails carry uniquely to terminating expansions. -/
 theorem binary_tail_ambiguity
     (digits : FractionalDigits)
     (eventually_one :
@@ -227,7 +221,7 @@ def unsigned_value
       (context.finite_numeral_value expansion.integer_part))
     (fractional_value context expansion.fractional_part)
 
-/-- Definition 3.4: the signed value map V. -/
+/-- Definition 3.4: signed value map V. -/
 def value : Expansion → CauchyCarrier context
   | Expansion.zero => context.cauchy_zero
   | Expansion.nonzero Sign.positive magnitude => unsigned_value context magnitude
@@ -241,14 +235,14 @@ theorem representation_exists
       value context expansion = real_value := by
   sorry
 
-/-- Theorem 3.6: the value map is injective. -/
+/-- Theorem 3.6: V is injective. -/
 theorem value_is_injective :
     ∀ first second,
       value context first = value context second →
       first = second := by
   sorry
 
-/-- Theorem 3.7: the value map is bijective. -/
+/-- Theorem 3.7: V is bijective. -/
 theorem value_is_bijective :
     (∀ real_value : CauchyCarrier context,
       ∃ expansion,
@@ -258,14 +252,13 @@ theorem value_is_bijective :
       first = second) := by
   sorry
 
-/-- Existence of the equivalence induced by the representation theorem. -/
+/-- The representation theorem yields an equivalence with Cauchy reals. -/
 theorem equivalence_exists :
     ∃ equivalence : Expansion ≃ CauchyCarrier context,
       ∀ expansion,
         equivalence expansion = value context expansion := by
   sorry
 
-/-- The canonical equivalence between binary expansions and Cauchy reals. -/
 noncomputable def equivalence : Expansion ≃ CauchyCarrier context :=
   Classical.choose (equivalence_exists context)
 
