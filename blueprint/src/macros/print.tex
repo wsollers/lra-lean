@@ -1,1 +1,5 @@
 % Print-only Blueprint macros.
+% Lean Blueprint metadata commands are consumed by the web tooling, but the
+% PDF build must still define them so ordinary LaTeX can parse content.tex.
+\providecommand{\lean}[1]{}
+\providecommand{\uses}[1]{}
