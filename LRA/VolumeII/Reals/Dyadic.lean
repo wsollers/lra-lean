@@ -17,7 +17,6 @@ Source: docs/number-systems/gpt-08-reals-dyadic.md
 Verification status: definitions and final theorem statements complete; proofs pending
 -/
 
-/-- Binary digits. -/
 inductive Digit where
   | zero
   | one
@@ -27,29 +26,25 @@ abbrev FractionalDigits := Nat → Digit
 
 /-- Definition 2.1: every term is a binary digit. -/
 def IsBinaryDigitSequence (digits : FractionalDigits) : Prop :=
-  ∀ index,
-    digits index = Digit.zero ∨ digits index = Digit.one
+  ∀ index, digits index = Digit.zero ∨ digits index = Digit.one
 
 /-- Definition 2.2: canonical sequences are not eventually constantly one. -/
 def IsCanonical (digits : FractionalDigits) : Prop :=
   IsBinaryDigitSequence digits ∧
   ¬ ∃ threshold,
     ∀ index,
-      threshold ≤ index →
-      digits index = Digit.one
+      threshold ≤ index → digits index = Digit.one
 
 structure CanonicalFraction where
   digits : FractionalDigits
   canonical : IsCanonical digits
 
-/-- A finite canonical binary numeral. -/
 structure FiniteNumeral where
   highest_exponent : Nat
   digit : Fin (highest_exponent + 1) → Digit
   leading_digit_is_one :
     digit ⟨highest_exponent, Nat.lt_succ_self highest_exponent⟩ = Digit.one
 
-/-- Definition 3.1: an unsigned expansion. -/
 structure UnsignedExpansion where
   integer_part : FiniteNumeral
   fractional_part : CanonicalFraction
@@ -59,32 +54,26 @@ inductive Sign where
   | positive
   deriving DecidableEq
 
-/-- Definition 3.3: a canonical signed binary real. -/
 inductive Expansion where
   | zero
   | nonzero (sign : Sign) (magnitude : UnsignedExpansion)
 
-/-- Data supplied by the integer, whole-number, rational, and Cauchy-real layers. -/
 structure Context where
   rational_model : RationalModel
   absolute_value_data : Cauchy.AbsoluteValueData rational_model
-
   integer_carrier : Type
   whole_carrier : Type
   integer_to_rational : integer_carrier → rational_model.signature.carrier
   exponent_of_index : Nat → whole_carrier
   power_of_two : whole_carrier → rational_model.signature.carrier
-
   digit_to_rational : Digit → rational_model.signature.carrier
   finite_sum :
     (Nat → rational_model.signature.carrier) →
       Nat → rational_model.signature.carrier
   finite_numeral_value : FiniteNumeral → rational_model.signature.carrier
-
   rational_to_cauchy :
     rational_model.signature.carrier →
       Cauchy.Carrier rational_model absolute_value_data
-
   cauchy_zero : Cauchy.Carrier rational_model absolute_value_data
   cauchy_one : Cauchy.Carrier rational_model absolute_value_data
   cauchy_addition :
@@ -104,7 +93,6 @@ structure Context where
   cauchy_strict_order :
     Cauchy.Carrier rational_model absolute_value_data →
       Cauchy.Carrier rational_model absolute_value_data → Prop
-
   cauchy_complete_archimedean_ordered_field : Prop
 
 variable (context : Context)
@@ -126,16 +114,16 @@ def IsDyadicRational (value : Rational context) : Prop :=
 theorem dyadic_subring :
     IsDyadicRational context context.rational_model.signature.zero ∧
     IsDyadicRational context context.rational_model.signature.one ∧
-    (∀ first second,
+    (∀ first second : Rational context,
       IsDyadicRational context first →
       IsDyadicRational context second →
       IsDyadicRational context
         (context.rational_model.signature.addition first second)) ∧
-    (∀ value,
+    (∀ value : Rational context,
       IsDyadicRational context value →
       IsDyadicRational context
         (context.rational_model.signature.negation value)) ∧
-    (∀ first second,
+    (∀ first second : Rational context,
       IsDyadicRational context first →
       IsDyadicRational context second →
       IsDyadicRational context
@@ -147,7 +135,7 @@ theorem dyadic_rationals_are_dense
     (first second : Rational context)
     (first_lt_second :
       context.rational_model.signature.strict_order first second) :
-    ∃ dyadic,
+    ∃ dyadic : Rational context,
       IsDyadicRational context dyadic ∧
       context.rational_model.signature.strict_order first dyadic ∧
       context.rational_model.signature.strict_order dyadic second := by
@@ -187,8 +175,7 @@ theorem binary_tail_ambiguity
     (eventually_one :
       ∃ threshold,
         ∀ index,
-          threshold ≤ index →
-          digits index = Digit.one) :
+          threshold ≤ index → digits index = Digit.one) :
     ∃ terminating : CanonicalFraction,
       fractional_value context terminating =
         Quotient.mk _
@@ -228,101 +215,107 @@ def value : Expansion → CauchyCarrier context
 /-- Theorem 3.5: every Cauchy real has a canonical binary expansion. -/
 theorem representation_exists
     (real_value : CauchyCarrier context) :
-    ∃ expansion,
+    ∃ expansion : Expansion,
       value context expansion = real_value := by
   sorry
 
 /-- Theorem 3.6: V is injective. -/
 theorem value_is_injective :
-    ∀ first second,
-      value context first = value context second →
-      first = second := by
+    ∀ first second : Expansion,
+      value context first = value context second → first = second := by
   sorry
 
 /-- Theorem 3.7: V is bijective. -/
 theorem value_is_bijective :
     (∀ real_value : CauchyCarrier context,
-      ∃ expansion,
+      ∃ expansion : Expansion,
         value context expansion = real_value) ∧
-    (∀ first second,
-      value context first = value context second →
-      first = second) := by
+    (∀ first second : Expansion,
+      value context first = value context second → first = second) := by
   sorry
 
 /-- The representation theorem yields an equivalence with Cauchy reals. -/
-theorem equivalence_exists :
-    ∃ equivalence : Equiv Expansion (CauchyCarrier context),
-      ∀ expansion,
-        equivalence expansion = value context expansion := by
+theorem binary_real_equiv_exists :
+    ∃ bridge : _root_.Equiv Expansion (CauchyCarrier context),
+      ∀ expansion : Expansion,
+        bridge expansion = value context expansion := by
   sorry
 
-noncomputable def equivalence : Equiv Expansion (CauchyCarrier context) :=
-  Classical.choose (equivalence_exists context)
+noncomputable def binaryRealEquiv :
+    _root_.Equiv Expansion (CauchyCarrier context) :=
+  Classical.choose (binary_real_equiv_exists context)
 
 /-- Definition 4.1: transported constants and operations. -/
 noncomputable def zero : Expansion :=
-  (equivalence context).symm context.cauchy_zero
+  (binaryRealEquiv context).symm context.cauchy_zero
 
 noncomputable def one : Expansion :=
-  (equivalence context).symm context.cauchy_one
+  (binaryRealEquiv context).symm context.cauchy_one
 
 noncomputable def addition (first second : Expansion) : Expansion :=
-  (equivalence context).symm
+  (binaryRealEquiv context).symm
     (context.cauchy_addition
-      (equivalence context first)
-      (equivalence context second))
+      (binaryRealEquiv context first)
+      (binaryRealEquiv context second))
 
 noncomputable def negation (expansion : Expansion) : Expansion :=
-  (equivalence context).symm
-    (context.cauchy_negation (equivalence context expansion))
+  (binaryRealEquiv context).symm
+    (context.cauchy_negation (binaryRealEquiv context expansion))
 
 noncomputable def multiplication (first second : Expansion) : Expansion :=
-  (equivalence context).symm
+  (binaryRealEquiv context).symm
     (context.cauchy_multiplication
-      (equivalence context first)
-      (equivalence context second))
+      (binaryRealEquiv context first)
+      (binaryRealEquiv context second))
 
 noncomputable def inverse (expansion : Expansion) : Expansion :=
-  (equivalence context).symm
-    (context.cauchy_inverse (equivalence context expansion))
+  (binaryRealEquiv context).symm
+    (context.cauchy_inverse (binaryRealEquiv context expansion))
 
 /-- Definition 4.1: transported strict order. -/
 def strict_order (first second : Expansion) : Prop :=
   context.cauchy_strict_order
-    (equivalence context first)
-    (equivalence context second)
+    (binaryRealEquiv context first)
+    (binaryRealEquiv context second)
+
+/-- Proposition expressing that V is an ordered-field isomorphism. -/
+def OrderedFieldIsomorphism : Prop :=
+  binaryRealEquiv context (zero context) = context.cauchy_zero ∧
+  binaryRealEquiv context (one context) = context.cauchy_one ∧
+  (∀ first second : Expansion,
+    binaryRealEquiv context (addition context first second) =
+      context.cauchy_addition
+        (binaryRealEquiv context first)
+        (binaryRealEquiv context second)) ∧
+  (∀ expansion : Expansion,
+    binaryRealEquiv context (negation context expansion) =
+      context.cauchy_negation (binaryRealEquiv context expansion)) ∧
+  (∀ first second : Expansion,
+    binaryRealEquiv context (multiplication context first second) =
+      context.cauchy_multiplication
+        (binaryRealEquiv context first)
+        (binaryRealEquiv context second)) ∧
+  (∀ expansion : Expansion,
+    binaryRealEquiv context (inverse context expansion) =
+      context.cauchy_inverse (binaryRealEquiv context expansion)) ∧
+  (∀ first second : Expansion,
+    strict_order context first second ↔
+      context.cauchy_strict_order
+        (binaryRealEquiv context first)
+        (binaryRealEquiv context second))
 
 /-- Theorem 4.2: V is an ordered-field isomorphism. -/
-theorem ordered_field_isomorphism :
-    equivalence context (zero context) = context.cauchy_zero ∧
-    equivalence context (one context) = context.cauchy_one ∧
-    (∀ first second,
-      equivalence context (addition context first second) =
-        context.cauchy_addition
-          (equivalence context first)
-          (equivalence context second)) ∧
-    (∀ expansion,
-      equivalence context (negation context expansion) =
-        context.cauchy_negation (equivalence context expansion)) ∧
-    (∀ first second,
-      equivalence context (multiplication context first second) =
-        context.cauchy_multiplication
-          (equivalence context first)
-          (equivalence context second)) ∧
-    (∀ expansion,
-      equivalence context (inverse context expansion) =
-        context.cauchy_inverse (equivalence context expansion)) ∧
-    (∀ first second,
-      strict_order context first second ↔
-        context.cauchy_strict_order
-          (equivalence context first)
-          (equivalence context second)) := by
+theorem ordered_field_isomorphism : OrderedFieldIsomorphism context := by
   sorry
+
+/-- Proposition expressing complete Archimedean ordered-field structure. -/
+def CompleteArchimedeanOrderedField : Prop :=
+  OrderedFieldIsomorphism context ∧
+  context.cauchy_complete_archimedean_ordered_field
 
 /-- Corollary 4.3: binary reals are a complete Archimedean ordered field. -/
 theorem complete_archimedean_ordered_field :
-    ordered_field_isomorphism context ∧
-    context.cauchy_complete_archimedean_ordered_field := by
+    CompleteArchimedeanOrderedField context := by
   sorry
 
 end Dyadic
