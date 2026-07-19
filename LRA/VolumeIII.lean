@@ -8,3 +8,4 @@ import LRA.VolumeIII.Bounds
 import LRA.VolumeIII.Contracts
 import LRA.VolumeIII.Interop.Isomorphism
 import LRA.VolumeIII.Interop.PolishInt
+import LRA.VolumeIII.Interop.PolishIntIsomorphism
