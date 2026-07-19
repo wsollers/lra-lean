@@ -31,9 +31,10 @@ chapters:
   - { order: 20, source: gpt-08b-reals-extensions.md, status: active }
   - { order: 21, source: gpt-08c-extended-reals.md, status: active }
   - { order: 22, source: gpt-08d-interval-arithmetic-over-reals.md, status: active }
-  - { order: 23, source: gpt-09-complex.md, status: active }
-  - { order: 24, source: gpt-09a-characteristic-cardinality.md, status: active }
-  - { order: 25, source: gpt-10-comparison-matrix.md, status: active }
-  - { order: 26, source: gpt-09b-isomorphism-requirements.md, status: active }
-  - { order: 27, source: gpt-09c-volume-iii-interoperability-tests.md, status: active }
-  - { order: 28, source: gpt-sequel-p-adic-numbers.md, status: sequel }
+  - { order: 23, source: gpt-08e-irrational-numbers.md, status: active }
+  - { order: 24, source: gpt-09-complex.md, status: active }
+  - { order: 25, source: gpt-09a-characteristic-cardinality.md, status: active }
+  - { order: 26, source: gpt-10-comparison-matrix.md, status: active }
+  - { order: 27, source: gpt-09b-isomorphism-requirements.md, status: active }
+  - { order: 28, source: gpt-09c-volume-iii-interoperability-tests.md, status: active }
+  - { order: 29, source: gpt-sequel-p-adic-numbers.md, status: sequel }
