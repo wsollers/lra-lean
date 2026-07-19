@@ -6,6 +6,7 @@ import LRA.VolumeII.PeanoSystems.ParameterizedIteration
 import LRA.VolumeII.NumberSystems.Signatures
 import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeII.Integers.ConstructionModels
+import LRA.VolumeII.Integers.Canonical
 import LRA.VolumeII.Rationals.ConstructionModels
 import LRA.VolumeII.Rationals.Canonical
 import LRA.VolumeII.Reals.ConstructionModels
