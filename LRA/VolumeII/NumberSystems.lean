@@ -3,6 +3,7 @@
 
 import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeII.PeanoSystems.ParameterizedIteration
+import LRA.VolumeII.WholeNumbers
 import LRA.VolumeII.NumberSystems.Signatures
 import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeII.Integers.ConstructionModels
