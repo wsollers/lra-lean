@@ -234,75 +234,86 @@ theorem value_is_bijective :
       value context first = value context second → first = second) := by
   sorry
 
-/-- The representation theorem yields an equivalence with Cauchy reals. -/
-theorem binary_real_equiv_exists :
-    ∃ bridge : _root_.Equiv Expansion (CauchyCarrier context),
+/-- A bijection between two carriers, given by mutually inverse maps. -/
+structure Bijection (α β : Type) where
+  forward : α → β
+  inverse : β → α
+  left_inverse : ∀ value : α, inverse (forward value) = value
+  right_inverse : ∀ value : β, forward (inverse value) = value
+
+/-- The representation theorem yields a bijection with Cauchy reals. -/
+theorem binary_real_bijection_exists :
+    ∃ bridge : Bijection Expansion (CauchyCarrier context),
       ∀ expansion : Expansion,
-        bridge expansion = value context expansion := by
+        bridge.forward expansion = value context expansion := by
   sorry
 
-noncomputable def binaryRealEquiv :
-    _root_.Equiv Expansion (CauchyCarrier context) :=
-  Classical.choose (binary_real_equiv_exists context)
+noncomputable def binaryRealBijection :
+    Bijection Expansion (CauchyCarrier context) :=
+  Classical.choose (binary_real_bijection_exists context)
 
 /-- Definition 4.1: transported constants and operations. -/
 noncomputable def zero : Expansion :=
-  (binaryRealEquiv context).symm context.cauchy_zero
+  (binaryRealBijection context).inverse context.cauchy_zero
 
 noncomputable def one : Expansion :=
-  (binaryRealEquiv context).symm context.cauchy_one
+  (binaryRealBijection context).inverse context.cauchy_one
 
 noncomputable def addition (first second : Expansion) : Expansion :=
-  (binaryRealEquiv context).symm
+  (binaryRealBijection context).inverse
     (context.cauchy_addition
-      (binaryRealEquiv context first)
-      (binaryRealEquiv context second))
+      ((binaryRealBijection context).forward first)
+      ((binaryRealBijection context).forward second))
 
 noncomputable def negation (expansion : Expansion) : Expansion :=
-  (binaryRealEquiv context).symm
-    (context.cauchy_negation (binaryRealEquiv context expansion))
+  (binaryRealBijection context).inverse
+    (context.cauchy_negation
+      ((binaryRealBijection context).forward expansion))
 
 noncomputable def multiplication (first second : Expansion) : Expansion :=
-  (binaryRealEquiv context).symm
+  (binaryRealBijection context).inverse
     (context.cauchy_multiplication
-      (binaryRealEquiv context first)
-      (binaryRealEquiv context second))
+      ((binaryRealBijection context).forward first)
+      ((binaryRealBijection context).forward second))
 
 noncomputable def inverse (expansion : Expansion) : Expansion :=
-  (binaryRealEquiv context).symm
-    (context.cauchy_inverse (binaryRealEquiv context expansion))
+  (binaryRealBijection context).inverse
+    (context.cauchy_inverse
+      ((binaryRealBijection context).forward expansion))
 
 /-- Definition 4.1: transported strict order. -/
 def strict_order (first second : Expansion) : Prop :=
   context.cauchy_strict_order
-    (binaryRealEquiv context first)
-    (binaryRealEquiv context second)
+    ((binaryRealBijection context).forward first)
+    ((binaryRealBijection context).forward second)
 
 /-- Proposition expressing that V is an ordered-field isomorphism. -/
 def OrderedFieldIsomorphism : Prop :=
-  binaryRealEquiv context (zero context) = context.cauchy_zero ∧
-  binaryRealEquiv context (one context) = context.cauchy_one ∧
+  (binaryRealBijection context).forward (zero context) = context.cauchy_zero ∧
+  (binaryRealBijection context).forward (one context) = context.cauchy_one ∧
   (∀ first second : Expansion,
-    binaryRealEquiv context (addition context first second) =
+    (binaryRealBijection context).forward (addition context first second) =
       context.cauchy_addition
-        (binaryRealEquiv context first)
-        (binaryRealEquiv context second)) ∧
+        ((binaryRealBijection context).forward first)
+        ((binaryRealBijection context).forward second)) ∧
   (∀ expansion : Expansion,
-    binaryRealEquiv context (negation context expansion) =
-      context.cauchy_negation (binaryRealEquiv context expansion)) ∧
+    (binaryRealBijection context).forward (negation context expansion) =
+      context.cauchy_negation
+        ((binaryRealBijection context).forward expansion)) ∧
   (∀ first second : Expansion,
-    binaryRealEquiv context (multiplication context first second) =
+    (binaryRealBijection context).forward (multiplication context first second) =
       context.cauchy_multiplication
-        (binaryRealEquiv context first)
-        (binaryRealEquiv context second)) ∧
+        ((binaryRealBijection context).forward first)
+        ((binaryRealBijection context).forward second)) ∧
   (∀ expansion : Expansion,
-    binaryRealEquiv context (inverse context expansion) =
-      context.cauchy_inverse (binaryRealEquiv context expansion)) ∧
+    (binaryRealBijection context).forward (inverse context expansion) =
+      context.cauchy_inverse
+        ((binaryRealBijection context).forward expansion)) ∧
   (∀ first second : Expansion,
     strict_order context first second ↔
       context.cauchy_strict_order
-        (binaryRealEquiv context first)
-        (binaryRealEquiv context second))
+        ((binaryRealBijection context).forward first)
+        ((binaryRealBijection context).forward second))
 
 /-- Theorem 4.2: V is an ordered-field isomorphism. -/
 theorem ordered_field_isomorphism : OrderedFieldIsomorphism context := by
