@@ -19,9 +19,13 @@ import LRA.VolumeII.NaturalNumbers.Multiplication
 import LRA.VolumeII.NaturalNumbers.Order
 import LRA.VolumeII.NaturalNumbers.Utilities
 import LRA.VolumeII.NaturalNumbers.StandardN
+import LRA.VolumeII.NaturalNumbers.Presburger
+import LRA.VolumeII.NaturalNumbers.Divisibility
+import LRA.VolumeII.NaturalNumbers.PlaceValue
 
 -- Existing integer source-variant layer
 import LRA.VolumeII.Integers
 
 -- Configurable Z → Q → R model tower and construction statements
 import LRA.VolumeII.NumberSystems
+import LRA.VolumeII.NumberSystemTower
