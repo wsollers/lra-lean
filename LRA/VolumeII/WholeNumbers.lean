@@ -1,7 +1,7 @@
 -- LRA/VolumeII/WholeNumbers.lean
 -- Whole-number construction root.
 
-import LRA.VolumeII.WholeNumbers.Construction
+import LRA.VolumeII.WholeNumbers.Core
 
 namespace LRA
 namespace VolumeII
