@@ -28,8 +28,8 @@ def unary_operation_respects
     (setoid : Setoid Carrier)
     (operation : Carrier → Carrier) : Prop :=
   ∀ first_representative second_representative : Carrier,
-    setoid.Rel first_representative second_representative →
-    setoid.Rel
+    setoid.r first_representative second_representative →
+    setoid.r
       (operation first_representative)
       (operation second_representative)
 
@@ -41,8 +41,8 @@ def binary_operation_respects_left
     (setoid : Setoid Carrier)
     (operation : Carrier → Carrier → Carrier) : Prop :=
   ∀ first_representative first_replacement second_representative : Carrier,
-    setoid.Rel first_representative first_replacement →
-    setoid.Rel
+    setoid.r first_representative first_replacement →
+    setoid.r
       (operation first_representative second_representative)
       (operation first_replacement second_representative)
 
@@ -54,8 +54,8 @@ def binary_operation_respects_right
     (setoid : Setoid Carrier)
     (operation : Carrier → Carrier → Carrier) : Prop :=
   ∀ first_representative second_representative second_replacement : Carrier,
-    setoid.Rel second_representative second_replacement →
-    setoid.Rel
+    setoid.r second_representative second_replacement →
+    setoid.r
       (operation first_representative second_representative)
       (operation first_representative second_replacement)
 
@@ -68,9 +68,9 @@ def binary_operation_respects
     (operation : Carrier → Carrier → Carrier) : Prop :=
   ∀ first_representative first_replacement
     second_representative second_replacement : Carrier,
-    setoid.Rel first_representative first_replacement →
-    setoid.Rel second_representative second_replacement →
-    setoid.Rel
+    setoid.r first_representative first_replacement →
+    setoid.r second_representative second_replacement →
+    setoid.r
       (operation first_representative second_representative)
       (operation first_replacement second_replacement)
 
@@ -80,7 +80,7 @@ def binary_operation_respects
 Full representative independence is equivalent to representative independence
 in each argument separately.
 -/
-lemma binary_operation_respects_iff_left_and_right
+theorem binary_operation_respects_iff_left_and_right
     {Carrier : Type}
     (setoid : Setoid Carrier)
     (operation : Carrier → Carrier → Carrier) :
@@ -140,7 +140,7 @@ def predicate_respects
     (setoid : Setoid Carrier)
     (predicate : Carrier → Prop) : Prop :=
   ∀ first_representative second_representative : Carrier,
-    setoid.Rel first_representative second_representative →
+    setoid.r first_representative second_representative →
     (predicate first_representative ↔ predicate second_representative)
 
 /--
@@ -152,8 +152,8 @@ def relation_respects
     (relation : Carrier → Carrier → Prop) : Prop :=
   ∀ first_representative first_replacement
     second_representative second_replacement : Carrier,
-    setoid.Rel first_representative first_replacement →
-    setoid.Rel second_representative second_replacement →
+    setoid.r first_representative first_replacement →
+    setoid.r second_representative second_replacement →
     (relation first_representative second_representative ↔
       relation first_replacement second_replacement)
 
@@ -167,7 +167,7 @@ theorem compatible_predicate_has_constant_truth_on_classes
     (predicate_is_compatible : predicate_respects setoid predicate)
     (first_representative second_representative : Carrier)
     (representatives_are_equivalent :
-      setoid.Rel first_representative second_representative) :
+      setoid.r first_representative second_representative) :
     predicate first_representative ↔ predicate second_representative := by
   sorry
 
