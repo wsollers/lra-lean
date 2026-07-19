@@ -78,17 +78,26 @@ jobs:
 
       - name: Build active Lean libraries
         run: |
+          rm -f lean-build.log
           docker run --rm \
             -v "${{ github.workspace }}:/workspace" \
             -w /workspace \
             lra-lean \
-            bash -lc 'lake build LRAVolumeI LRAVolumeII > /tmp/lake-build.log 2>&1 || {
+            bash -lc 'lake build LRAVolumeI LRAVolumeII > /workspace/lean-build.log 2>&1 || {
               status=$?
               echo "Lean build failed. Final diagnostics:"
-              tail -n 180 /tmp/lake-build.log
+              tail -n 180 /workspace/lean-build.log
               exit $status
             }
-            tail -n 40 /tmp/lake-build.log'
+            tail -n 40 /workspace/lean-build.log'
+
+      - name: Upload Lean build diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-build-diagnostics
+          path: lean-build.log
+          if-no-files-found: error
 
       - name: Lint doc-comments
         continue-on-error: true
