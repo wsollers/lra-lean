@@ -18,6 +18,29 @@ Blueprint label: alternate-rational-constructions
 Verification status: statement-accepted-proof-pending
 -/
 
+/--
+**[Definition — Order Completeness of a Rational Model]**
+
+This predicate is stated separately because rational models deliberately do not
+carry a completeness field.
+-/
+def is_order_complete (rational_model : RationalModel) : Prop :=
+  ∀ subset : rational_model.signature.carrier → Prop,
+    (∃ member, subset member) →
+    (∃ upper_bound,
+      ∀ member,
+        subset member →
+        rational_model.signature.nonstrict_order member upper_bound) →
+    ∃ supremum,
+      (∀ member,
+        subset member →
+        rational_model.signature.nonstrict_order member supremum) ∧
+      (∀ upper_bound,
+        (∀ member,
+          subset member →
+          rational_model.signature.nonstrict_order member upper_bound) →
+        rational_model.signature.nonstrict_order supremum upper_bound)
+
 namespace Canonical
 
 /--
@@ -56,7 +79,7 @@ theorem equivalent_is_equivalence_relation
   sorry
 
 /-- **[Lemma — Canonical Representative Addition Respects Equivalence]** -/
-lemma representative_addition_respects_equivalence
+theorem representative_addition_respects_equivalence
     {RepresentativeCarrier : Type}
     (setoid : Setoid RepresentativeCarrier)
     (representative_addition :
@@ -68,7 +91,7 @@ lemma representative_addition_respects_equivalence
   sorry
 
 /-- **[Lemma — Canonical Representative Multiplication Respects Equivalence]** -/
-lemma representative_multiplication_respects_equivalence
+theorem representative_multiplication_respects_equivalence
     {RepresentativeCarrier : Type}
     (setoid : Setoid RepresentativeCarrier)
     (representative_multiplication :
@@ -79,12 +102,12 @@ lemma representative_multiplication_respects_equivalence
       setoid representative_multiplication := by
   sorry
 
-/-- **[Theorem — Canonical Rational Model]** -/
+/-- **[Definition — Canonical Rational Model]** -/
 noncomputable def rational_model
     (integer_model : IntegerModel) : RationalModel := by
   sorry
 
-/-- **[Theorem — Canonical Rational Extension]** -/
+/-- **[Definition — Canonical Rational Extension]** -/
 noncomputable def rational_extension
     (integer_model : IntegerModel) :
     RationalExtension integer_model := by
@@ -92,7 +115,8 @@ noncomputable def rational_extension
 
 /-- **[Proposition — Canonical Rationals Are Not Order Complete]** -/
 theorem is_not_order_complete
-    (integer_model : IntegerModel) : Prop := by
+    (integer_model : IntegerModel) :
+    ¬ Rationals.is_order_complete (rational_model integer_model) := by
   sorry
 
 end Canonical
@@ -106,7 +130,7 @@ structure Representative
   denominator : NaturalCarrier
   is_reduced : Prop
 
-/-- **[Theorem — Reduced-Fraction Rational Model]** -/
+/-- **[Definition — Reduced-Fraction Rational Model]** -/
 noncomputable def rational_model
     (integer_model : IntegerModel) : RationalModel := by
   sorry
@@ -124,7 +148,7 @@ no-zero-divisors law.
 structure Input where
   integer_model : IntegerModel
 
-/-- **[Theorem — Fraction-Field Rational Model]** -/
+/-- **[Definition — Fraction-Field Rational Model]** -/
 noncomputable def rational_model
     (input : Input) : RationalModel := by
   sorry
@@ -178,21 +202,39 @@ structure ModelIsomorphism
           (to_function second) ↔
         first_model.signature.nonstrict_order first second
 
-/-- **[Theorem — Canonical and Reduced Rationals Are Isomorphic]** -/
-theorem canonical_equiv_reduced
+/-- **[Definition — Canonical–Reduced Rational Isomorphism]** -/
+noncomputable def canonical_equiv_reduced
     (integer_model : IntegerModel) :
     ModelIsomorphism
       (Canonical.rational_model integer_model)
       (Reduced.rational_model integer_model) := by
   sorry
 
-/-- **[Theorem — Canonical and Fraction-Field Rationals Are Isomorphic]** -/
-theorem canonical_equiv_fraction_field
+/-- **[Theorem — Canonical and Reduced Rationals Are Isomorphic]** -/
+theorem canonical_and_reduced_are_isomorphic
+    (integer_model : IntegerModel) :
+    Nonempty
+      (ModelIsomorphism
+        (Canonical.rational_model integer_model)
+        (Reduced.rational_model integer_model)) :=
+  ⟨canonical_equiv_reduced integer_model⟩
+
+/-- **[Definition — Canonical–Fraction-Field Rational Isomorphism]** -/
+noncomputable def canonical_equiv_fraction_field
     (integer_model : IntegerModel) :
     ModelIsomorphism
       (Canonical.rational_model integer_model)
       (FractionField.rational_model ⟨integer_model⟩) := by
   sorry
+
+/-- **[Theorem — Canonical and Fraction-Field Rationals Are Isomorphic]** -/
+theorem canonical_and_fraction_field_are_isomorphic
+    (integer_model : IntegerModel) :
+    Nonempty
+      (ModelIsomorphism
+        (Canonical.rational_model integer_model)
+        (FractionField.rational_model ⟨integer_model⟩)) :=
+  ⟨canonical_equiv_fraction_field integer_model⟩
 
 end Rationals
 end VolumeII
