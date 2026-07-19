@@ -62,7 +62,16 @@ def strict_order (first second : Cut rational_model) : Prop :=
   nonstrict_order rational_model first second ∧ first ≠ second
 
 /-- Theorem 2.2: proper inclusion is a strict total order. -/
-theorem strict_total_order : Prop := by
+theorem strict_total_order :
+    (∀ cut : Cut rational_model, ¬ strict_order rational_model cut cut) ∧
+    (∀ first second third : Cut rational_model,
+      strict_order rational_model first second →
+      strict_order rational_model second third →
+      strict_order rational_model first third) ∧
+    (∀ first second : Cut rational_model,
+      first ≠ second →
+      strict_order rational_model first second ∨
+      strict_order rational_model second first) := by
   sorry
 
 /-- Definition 2.3: the rational lower ray determined by q. -/
@@ -138,7 +147,18 @@ def negation (cut : Cut rational_model) : Cut rational_model :=
     negation_lower_set_is_cut rational_model cut⟩
 
 /-- Theorem 3.6: the cuts form an abelian group under addition. -/
-theorem additive_group_structure : Prop := by
+theorem additive_group_structure :
+    (∀ first second third : Cut rational_model,
+      addition rational_model (addition rational_model first second) third =
+        addition rational_model first (addition rational_model second third)) ∧
+    (∀ first second : Cut rational_model,
+      addition rational_model first second = addition rational_model second first) ∧
+    (∀ cut : Cut rational_model,
+      addition rational_model (zero rational_model) cut = cut ∧
+      addition rational_model cut (zero rational_model) = cut) ∧
+    (∀ cut : Cut rational_model,
+      addition rational_model cut (negation rational_model cut) = zero rational_model ∧
+      addition rational_model (negation rational_model cut) cut = zero rational_model) := by
   sorry
 
 /-- Definition 4.1: positivity and nonnegativity of cuts. -/
@@ -185,27 +205,26 @@ def nonnegative_multiplication
 /-- Definition 4.4: sign-case specification of arbitrary multiplication. -/
 def IsProduct
     (first second product : Cut rational_model) : Prop :=
-  (IsNonnegative rational_model first ∧
-    IsNonnegative rational_model second ∧
-    product = nonnegative_multiplication rational_model first second
-      ‹IsNonnegative rational_model first›
-      ‹IsNonnegative rational_model second›) ∨
+  (∃ first_nonnegative : IsNonnegative rational_model first,
+    ∃ second_nonnegative : IsNonnegative rational_model second,
+      product = nonnegative_multiplication rational_model first second
+        first_nonnegative second_nonnegative) ∨
   (strict_order rational_model first (zero rational_model) ∧
-    IsNonnegative rational_model second ∧
-    ∃ first_neg_nonnegative : IsNonnegative rational_model
-        (negation rational_model first),
-      product = negation rational_model
-        (nonnegative_multiplication rational_model
-          (negation rational_model first) second
-          first_neg_nonnegative ‹IsNonnegative rational_model second›)) ∨
+    ∃ second_nonnegative : IsNonnegative rational_model second,
+      ∃ first_neg_nonnegative : IsNonnegative rational_model
+          (negation rational_model first),
+        product = negation rational_model
+          (nonnegative_multiplication rational_model
+            (negation rational_model first) second
+            first_neg_nonnegative second_nonnegative)) ∨
   (strict_order rational_model second (zero rational_model) ∧
-    IsNonnegative rational_model first ∧
-    ∃ second_neg_nonnegative : IsNonnegative rational_model
-        (negation rational_model second),
-      product = negation rational_model
-        (nonnegative_multiplication rational_model
-          first (negation rational_model second)
-          ‹IsNonnegative rational_model first› second_neg_nonnegative)) ∨
+    ∃ first_nonnegative : IsNonnegative rational_model first,
+      ∃ second_neg_nonnegative : IsNonnegative rational_model
+          (negation rational_model second),
+        product = negation rational_model
+          (nonnegative_multiplication rational_model
+            first (negation rational_model second)
+            first_nonnegative second_neg_nonnegative)) ∨
   (strict_order rational_model first (zero rational_model) ∧
     strict_order rational_model second (zero rational_model) ∧
     ∃ first_neg_nonnegative : IsNonnegative rational_model
@@ -237,7 +256,20 @@ def one : Cut rational_model :=
   rational_embedding rational_model rational_model.signature.one
 
 /-- Theorem 4.6: multiplicative and distributive laws. -/
-theorem multiplicative_and_distributive_laws : Prop := by
+theorem multiplicative_and_distributive_laws :
+    (∀ first second third : Cut rational_model,
+      multiplication rational_model (multiplication rational_model first second) third =
+        multiplication rational_model first (multiplication rational_model second third)) ∧
+    (∀ first second : Cut rational_model,
+      multiplication rational_model first second = multiplication rational_model second first) ∧
+    (∀ cut : Cut rational_model,
+      multiplication rational_model (one rational_model) cut = cut ∧
+      multiplication rational_model cut (one rational_model) = cut) ∧
+    (∀ first second third : Cut rational_model,
+      multiplication rational_model first (addition rational_model second third) =
+        addition rational_model
+          (multiplication rational_model first second)
+          (multiplication rational_model first third)) := by
   sorry
 
 /-- Definition 4.7–4.8: a reciprocal is the unique multiplicative inverse. -/
@@ -273,7 +305,13 @@ theorem inverse_correct
   sorry
 
 /-- Theorem 4.10: Dedekind cuts form a field. -/
-theorem field_structure : Prop := by
+theorem field_structure :
+    additive_group_structure rational_model ∧
+    multiplicative_and_distributive_laws rational_model ∧
+    (∀ cut : Cut rational_model,
+      cut ≠ zero rational_model →
+      ∃ reciprocal,
+        IsReciprocal rational_model cut reciprocal) := by
   sorry
 
 /-- Theorem 5.1: translation invariance of strict order. -/
@@ -295,7 +333,19 @@ theorem positive_products_are_positive
   sorry
 
 /-- Theorem 5.3: Dedekind cuts form an ordered field. -/
-theorem ordered_field_structure : Prop := by
+theorem ordered_field_structure :
+    field_structure rational_model ∧
+    strict_total_order rational_model ∧
+    (∀ first second translation : Cut rational_model,
+      strict_order rational_model first second →
+      strict_order rational_model
+        (addition rational_model first translation)
+        (addition rational_model second translation)) ∧
+    (∀ first second : Cut rational_model,
+      IsPositive rational_model first →
+      IsPositive rational_model second →
+      IsPositive rational_model
+        (multiplication rational_model first second)) := by
   sorry
 
 /-- Definition used in Theorem 6.1: union of a family of cuts. -/
@@ -357,11 +407,28 @@ theorem family_union_is_supremum
   sorry
 
 /-- Corollary 6.3: least-upper-bound property. -/
-theorem least_upper_bound_property : Prop := by
+theorem least_upper_bound_property :
+    ∀ family : Cut rational_model → Prop,
+      (∃ cut, family cut) →
+      (∃ upper,
+        ∀ cut,
+          family cut →
+          nonstrict_order rational_model cut upper) →
+      ∃ supremum,
+        (∀ cut,
+          family cut →
+          nonstrict_order rational_model cut supremum) ∧
+        (∀ upper,
+          (∀ cut,
+            family cut →
+            nonstrict_order rational_model cut upper) →
+          nonstrict_order rational_model supremum upper) := by
   sorry
 
 /-- Theorem 6.4: complete ordered-field structure. -/
-theorem complete_ordered_field_structure : Prop := by
+theorem complete_ordered_field_structure :
+    ordered_field_structure rational_model ∧
+    least_upper_bound_property rational_model := by
   sorry
 
 /-- Theorem 7.1: embedded rationals are order-dense. -/
@@ -388,7 +455,16 @@ theorem archimedean_property
   sorry
 
 /-- Theorem 8.1: final reference-real structural summary. -/
-theorem reference_real_number_construction : Prop := by
+theorem reference_real_number_construction :
+    complete_ordered_field_structure rational_model ∧
+    (∀ first second : Cut rational_model,
+      strict_order rational_model first second →
+      ∃ rational,
+        strict_order rational_model first
+          (rational_embedding rational_model rational) ∧
+        strict_order rational_model
+          (rational_embedding rational_model rational)
+          second) := by
   sorry
 
 end Dedekind
