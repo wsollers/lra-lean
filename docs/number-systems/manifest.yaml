@@ -1,0 +1,36 @@
+version: 1
+source_of_truth: docs/number-systems
+rules:
+  definitions_must_be_complete: true
+  theorem_statements_must_be_final: true
+  sorry_allowed_only_in_proof_bodies: true
+  reject_vacuous_true_results: true
+  preserve_markdown_order: true
+  generate_blueprint_from_markdown: true
+chapters:
+  - { order: 1, source: gpt-00-abstract-laws.md, status: active }
+  - { order: 2, source: gpt-00b-canonical-embeddings.md, status: active }
+  - { order: 3, source: gpt-00c-universal-properties.md, status: active }
+  - { order: 4, source: gpt-00d-streamlined-construction-workflows.md, status: active }
+  - { order: 5, source: gpt-01-natural-numbers.md, status: active }
+  - { order: 6, source: gpt-01b-whole-numbers.md, status: active }
+  - { order: 7, source: gpt-01c-place-value-integers.md, status: active }
+  - { order: 8, source: gpt-01d-divisibility-division.md, status: active }
+  - { order: 9, source: gpt-02-integers.md, status: active }
+  - { order: 10, source: gpt-02a-integers-tao.md, status: active }
+  - { order: 11, source: gpt-02b-integers-mendelson.md, status: active }
+  - { order: 12, source: gpt-03-rationals.md, status: active }
+  - { order: 13, source: gpt-03b-continued-fractions.md, status: active }
+  - { order: 14, source: gpt-04-reals-dedekind.md, status: active }
+  - { order: 15, source: gpt-05-reals-cauchy.md, status: active }
+  - { order: 16, source: gpt-06-reals-cantor.md, status: active }
+  - { order: 17, source: gpt-07-reals-interval-arithmetic.md, status: active }
+  - { order: 18, source: gpt-08-reals-dyadic.md, status: active }
+  - { order: 19, source: gpt-08a-computable-reals.md, status: active }
+  - { order: 20, source: gpt-08b-reals-extensions.md, status: active }
+  - { order: 21, source: gpt-08c-extended-reals.md, status: active }
+  - { order: 22, source: gpt-08d-interval-arithmetic-over-reals.md, status: active }
+  - { order: 23, source: gpt-09-complex.md, status: active }
+  - { order: 24, source: gpt-09a-characteristic-cardinality.md, status: active }
+  - { order: 25, source: gpt-10-comparison-matrix.md, status: active }
+  - { order: 26, source: gpt-sequel-p-adic-numbers.md, status: sequel }
