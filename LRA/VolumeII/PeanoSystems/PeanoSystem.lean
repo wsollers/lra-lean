@@ -5,7 +5,10 @@
 
 import LRA.Foundation
 
-namespace Peano
+namespace LRA
+namespace VolumeII
+namespace PeanoSystems
+
 
 
 -- ============================================================
@@ -115,5 +118,7 @@ def is_predecessor
     (predecessor element : ps.carrier) : Prop :=
   ps.successor predecessor = element
 
-end Peano
+end PeanoSystems
+end VolumeII
+end LRA
 -- ============================================================

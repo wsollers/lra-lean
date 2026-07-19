@@ -19,7 +19,10 @@
 
 import LRA.VolumeII.PeanoSystems.Induction
 
-namespace Peano
+namespace LRA
+namespace VolumeII
+namespace PeanoSystems
+
 
 /--
 **[Theorem — Successor Preserves Inequality]**
@@ -318,4 +321,6 @@ theorem not_one_iff_has_unique_predecessor
               other_predecessor = unique_predecessor := by
   sorry
 
-end Peano
+end PeanoSystems
+end VolumeII
+end LRA

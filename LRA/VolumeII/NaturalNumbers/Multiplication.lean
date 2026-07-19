@@ -25,7 +25,12 @@
 
 import LRA.VolumeII.NaturalNumbers.Addition
 
-namespace Peano
+namespace LRA
+namespace VolumeII
+namespace NaturalNumbers
+
+open LRA.VolumeII.PeanoSystems
+
 
 /--
 **[Definition — Multiplication on a Peano System]**
@@ -185,4 +190,6 @@ theorem mul_commutative
     mul ps x y = mul ps y x := by
   sorry
 
-end Peano
+end NaturalNumbers
+end VolumeII
+end LRA

@@ -27,7 +27,12 @@
 
 import LRA.VolumeII.PeanoSystems.Recursion
 
-namespace Peano
+namespace LRA
+namespace VolumeII
+namespace NaturalNumbers
+
+open LRA.VolumeII.PeanoSystems
+
 
 -- ============================================================
 -- Parity: W = Bool
@@ -199,4 +204,6 @@ theorem string_rep_step
     string_rep ps s (ps.successor n) = string_rep ps s n ++ s :=
   iter_step ps (List Char) s (fun prev => prev ++ s) n
 
-end Peano
+end NaturalNumbers
+end VolumeII
+end LRA

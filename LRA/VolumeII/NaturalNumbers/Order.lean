@@ -29,7 +29,12 @@
 
 import LRA.VolumeII.NaturalNumbers.Addition
 
-namespace Peano
+namespace LRA
+namespace VolumeII
+namespace NaturalNumbers
+
+open LRA.VolumeII.PeanoSystems
+
 
 -- ============================================================
 -- Definitions
@@ -209,4 +214,6 @@ theorem well_ordering
     ∃ minimum : ps.carrier, is_minimum ps P minimum := by
   sorry
 
-end Peano
+end NaturalNumbers
+end VolumeII
+end LRA

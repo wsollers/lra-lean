@@ -37,7 +37,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Lean Docker image
-        run: docker build -t lra-lean .
+        run: docker build --quiet --target lean-build -t lra-lean .
 
       - name: Check no Mathlib import in VolumeI / VolumeII
         run: |
@@ -51,7 +51,19 @@ jobs:
             fi
             echo "No Mathlib imports in VolumeI / VolumeII"'
 
-      - name: Check no sorry in VolumeI / VolumeII
+      - name: Enforce Volume II namespace policy
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/workspace" \
+            -w /workspace \
+            lra-lean \
+            bash -lc 'if grep -R -n -E "^namespace Peano([[:space:]]|$)|^open Peano([[:space:]]|$)|Peano\.[A-Za-z_]" LRA --include="*.lean"; then
+              echo "ERROR: legacy Peano namespace declaration, open command, or qualified reference found."
+              exit 1
+            fi
+            echo "All Peano-system and natural-number declarations use the LRA.VolumeII hierarchy."'
+
+      - name: Report proof placeholders in VolumeI / VolumeII
         continue-on-error: true
         run: |
           docker run --rm \
@@ -59,18 +71,33 @@ jobs:
             -w /workspace \
             lra-lean \
             bash -lc 'if grep -rn "\bsorry\b" LRA/VolumeI/ LRA/VolumeII/ --include="*.lean"; then
-              echo "::warning::sorry found in VolumeI/VolumeII — proofs are incomplete."
+              echo "::warning::sorry found in VolumeI/VolumeII — statements compile, proofs remain pending."
             else
               echo "No sorry in VolumeI / VolumeII"
             fi'
 
       - name: Build active Lean libraries
         run: |
+          rm -f lean-build.log
           docker run --rm \
             -v "${{ github.workspace }}:/workspace" \
             -w /workspace \
             lra-lean \
-            lake build LRAVolumeI LRAVolumeII
+            bash -lc 'lake build LRAVolumeI LRAVolumeII > /workspace/lean-build.log 2>&1 || {
+              status=$?
+              echo "Lean build failed. Final diagnostics:"
+              tail -n 180 /workspace/lean-build.log
+              exit $status
+            }
+            tail -n 40 /workspace/lean-build.log'
+
+      - name: Upload Lean build diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-build-diagnostics
+          path: lean-build.log
+          if-no-files-found: error
 
       - name: Lint doc-comments
         continue-on-error: true

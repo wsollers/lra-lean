@@ -25,7 +25,12 @@
 
 import LRA.VolumeII.NaturalNumbers.PeanoN
 
-namespace Peano
+namespace LRA
+namespace VolumeII
+namespace NaturalNumbers
+
+open LRA.VolumeII.PeanoSystems
+
 
 -- ============================================================
 -- Nat is a zero-based Peano system
@@ -232,4 +237,6 @@ theorem standard_n_convention :
     nat_zero_based_peano_system.successor = Nat.succ :=
   ⟨rfl, rfl, rfl⟩
 
-end Peano
+end NaturalNumbers
+end VolumeII
+end LRA

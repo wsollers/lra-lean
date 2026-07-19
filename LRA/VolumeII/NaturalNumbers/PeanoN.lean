@@ -24,7 +24,12 @@
 import LRA.VolumeII.PeanoSystems.Recursion
 import LRA.VolumeII.PeanoSystems.BasicTheorems
 
-namespace Peano
+namespace LRA
+namespace VolumeII
+namespace NaturalNumbers
+
+open LRA.VolumeII.PeanoSystems
+
 
 -- ============================================================
 -- The PN inductive type
@@ -69,7 +74,7 @@ satisfies all five Peano axioms.
 
 *Notes cross-ref:* §1.1 [ax:peano-system-existence](../notes/section_1_1_main.md)
 -/
-def PN_is_peano_system : PeanoSystem where
+def PN_is_peano_system : PeanoSystem.{0} where
   carrier             := PN
   one                 := PN.one
   successor           := PN.succ
@@ -77,13 +82,14 @@ def PN_is_peano_system : PeanoSystem where
     intro element
     exact PN.noConfusion
   successor_injective := by
-    intro first_element second_element h
-    exact PN.succ.inj h
+    intro first_element second_element equality_of_successors
+    exact PN.succ.inj equality_of_successors
   induction           := by
     intro predicate base_case successor_step element
     induction element with
     | one       => exact base_case
-    | succ n ih => exact successor_step n ih
+    | succ n induction_hypothesis =>
+        exact successor_step n induction_hypothesis
 
 -- ============================================================
 -- PN witnesses the existence of a Peano system
@@ -92,8 +98,8 @@ def PN_is_peano_system : PeanoSystem where
 /--
 **[Theorem — A Peano System Exists]**
 
-`PN` is a concrete witness for the existence of a Peano system,
-discharging the existence axiom `exists_peano_system`.
+`PN` is a concrete witness for the existence of a Peano system in the base Lean
+universe, discharging the concrete existence obligation used by Volume II.
 
 *Dependencies:* `PN_is_peano_system`
 
@@ -101,19 +107,19 @@ discharging the existence axiom `exists_peano_system`.
 
 *Notes cross-ref:* §1.1 [ax:peano-system-existence](../notes/section_1_1_main.md)
 -/
-theorem PN_peano_system_exists : Nonempty PeanoSystem :=
+theorem PN_peano_system_exists : Nonempty (PeanoSystem.{0}) :=
   ⟨PN_is_peano_system⟩
 
 -- ============================================================
--- PN is initial: unique morphism into any Peano system
+-- PN is initial: unique morphism into any base-universe Peano system
 -- ============================================================
 
 /--
 **[Theorem — PN Is Initial Among Peano Systems]**
 
-For any Peano system `ps`, there exists a unique structure-preserving
-map `f : PN → ps.carrier`. This is the Peano Iterator Theorem applied
-with `W = ps.carrier`, `c = ps.one`, `g = ps.successor`.
+For any base-universe Peano system `peano_system`, there exists a unique
+structure-preserving map from `PN` to its carrier. This is the Peano Iterator
+Theorem applied with the target equal to the carrier of `peano_system`.
 
 *Dependencies:* `PN_is_peano_system`, `iter`, `iter_base`, `iter_step`,
 `iterator_function_unique`
@@ -126,28 +132,63 @@ with `W = ps.carrier`, `c = ps.one`, `g = ps.successor`.
 [thm:uniqueness-of-peano-systems-up-to-isomorphism](../notes/section_1_2_main.md)
 -/
 theorem pn_iso_any_peano_system
-    (ps : PeanoSystem) :
-    ∃ f : PN → ps.carrier,
-      f PN.one = ps.one ∧
-      (∀ n : PN, f (PN.succ n) = ps.successor (f n)) ∧
-      (∀ g : PN → ps.carrier,
-        g PN.one = ps.one →
-        (∀ n : PN, g (PN.succ n) = ps.successor (g n)) →
-        ∀ n : PN, g n = f n) := by
-  let f : PN → ps.carrier :=
-    iter PN_is_peano_system ps.carrier ps.one ps.successor
-  refine ⟨f, ?_, ?_, ?_⟩
-  · exact iter_base PN_is_peano_system ps.carrier ps.one ps.successor
-  · intro n
-    exact iter_step PN_is_peano_system ps.carrier ps.one ps.successor n
-  · intro g g_base g_step
+    (peano_system : PeanoSystem.{0}) :
+    ∃ structure_preserving_map : PN → peano_system.carrier,
+      structure_preserving_map PN.one = peano_system.one ∧
+      (∀ natural_value : PN,
+        structure_preserving_map (PN.succ natural_value) =
+          peano_system.successor
+            (structure_preserving_map natural_value)) ∧
+      (∀ other_map : PN → peano_system.carrier,
+        other_map PN.one = peano_system.one →
+        (∀ natural_value : PN,
+          other_map (PN.succ natural_value) =
+            peano_system.successor (other_map natural_value)) →
+        ∀ natural_value : PN,
+          other_map natural_value =
+            structure_preserving_map natural_value) := by
+  let structure_preserving_map : PN → peano_system.carrier :=
+    iter
+      PN_is_peano_system
+      peano_system.carrier
+      peano_system.one
+      peano_system.successor
+  refine ⟨structure_preserving_map, ?_, ?_, ?_⟩
+  · exact
+      iter_base
+        PN_is_peano_system
+        peano_system.carrier
+        peano_system.one
+        peano_system.successor
+  · intro natural_value
+    exact
+      iter_step
+        PN_is_peano_system
+        peano_system.carrier
+        peano_system.one
+        peano_system.successor
+        natural_value
+  · intro other_map other_map_base other_map_step
     exact
       iterator_function_unique
         PN_is_peano_system
-        ps.carrier ps.one ps.successor
-        g f
-        ⟨g_base, g_step⟩
-        ⟨iter_base PN_is_peano_system ps.carrier ps.one ps.successor,
-         iter_step PN_is_peano_system ps.carrier ps.one ps.successor⟩
+        peano_system.carrier
+        peano_system.one
+        peano_system.successor
+        other_map
+        structure_preserving_map
+        ⟨other_map_base, other_map_step⟩
+        ⟨iter_base
+            PN_is_peano_system
+            peano_system.carrier
+            peano_system.one
+            peano_system.successor,
+          iter_step
+            PN_is_peano_system
+            peano_system.carrier
+            peano_system.one
+            peano_system.successor⟩
 
-end Peano
+end NaturalNumbers
+end VolumeII
+end LRA
