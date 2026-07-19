@@ -120,7 +120,11 @@ theorem quotient_negation_exists (input : Input) :
           Quotient.mk _ (representativeNegation input value) := by
   sorry
 
-theorem ordered_field_laws (input : Input) : Prop := by
+theorem quotient_order_exists (input : Input) :
+    ∃ strictOrder : Carrier input → Carrier input → Prop,
+      ∀ first second,
+        strictOrder (Quotient.mk _ first) (Quotient.mk _ second) ↔
+          representativeStrictOrder input first second := by
   sorry
 
 end LRA.VolumeII.Rationals.CanonicalCore
