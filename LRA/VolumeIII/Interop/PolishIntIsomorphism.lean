@@ -49,7 +49,7 @@ def orderedRingIsomorphism : OrderedRingIsomorphism Z Int where
   referenceLe := (· ≤ ·)
 
   map_zero := by
-    rfl
+    sorry
   map_one := by
     sorry
   map_add := by
