@@ -15,6 +15,7 @@ import LRA.VolumeII.Reals.Dedekind
 import LRA.VolumeII.Reals.Cauchy
 import LRA.VolumeII.Reals.PrimitiveIntervals
 import LRA.VolumeII.Reals.Dyadic
+import LRA.VolumeII.Reals.Irrationals
 import LRA.VolumeII.NumberSystems.Construction
 
 namespace LRA
