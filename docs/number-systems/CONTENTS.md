@@ -17,11 +17,12 @@ This package is the mathematical source of truth for the proof-ready Lean and Bl
 11. Reals: Dedekind, Cauchy, Cantor, primitive interval quotient, dyadic
 12. Computable reals and real extensions
 13. Extended reals and interval arithmetic over an existing real field
-14. Complex numbers
-15. Characteristic, cardinality, and comparison matrix
-16. Isomorphism requirements for constructed number systems
-17. Volume III interoperability and substitutability tests
-18. Sequel: p-adic numbers
+14. Irrational numbers and mixed rational–irrational arithmetic
+15. Complex numbers
+16. Characteristic, cardinality, and comparison matrix
+17. Isomorphism requirements for constructed number systems
+18. Volume III interoperability and substitutability tests
+19. Sequel: p-adic numbers
 
 ## Proof-readiness rule
 
