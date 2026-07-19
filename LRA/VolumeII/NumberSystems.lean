@@ -9,12 +9,12 @@ import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeII.Integers.ConstructionModels
 import LRA.VolumeII.Integers.Canonical
 import LRA.VolumeII.Rationals.ConstructionModels
-import LRA.VolumeII.Rationals.CanonicalCore
+import LRA.VolumeII.Rationals.Canonical
 import LRA.VolumeII.Reals.ConstructionModels
-import LRA.VolumeII.Reals.DedekindCore
+import LRA.VolumeII.Reals.Dedekind
 import LRA.VolumeII.Reals.Cauchy
-import LRA.VolumeII.Reals.PrimitiveIntervalsCore
-import LRA.VolumeII.Reals.DyadicCore
+import LRA.VolumeII.Reals.PrimitiveIntervals
+import LRA.VolumeII.Reals.Dyadic
 import LRA.VolumeII.Reals.Irrationals
 import LRA.VolumeII.NumberSystems.Construction
 
