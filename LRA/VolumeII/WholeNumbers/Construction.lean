@@ -64,10 +64,16 @@ def strictOrder : Carrier context → Carrier context → Prop
 def nonstrictOrder (left right : Carrier context) : Prop :=
   strictOrder context left right ∨ left = right
 
-/-- Every whole number is uniquely zero or an embedded positive natural. -/
+/-- Every whole number is exactly one of zero or an embedded positive natural. -/
 theorem basic_decomposition (value : Carrier context) :
-    (value = zero context ∧ ¬ ∃ natural, value = naturalEmbedding context natural) ∨
-    (value ≠ zero context ∧ ∃! natural, value = naturalEmbedding context natural) := by
+    ((value = zero context) ∨
+      (∃ natural, value = naturalEmbedding context natural)) ∧
+    ¬ ((value = zero context) ∧
+      (∃ natural, value = naturalEmbedding context natural)) ∧
+    (∀ first second,
+      value = naturalEmbedding context first →
+      value = naturalEmbedding context second →
+      first = second) := by
   sorry
 
 /-- Zero is not a successor. -/
