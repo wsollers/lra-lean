@@ -61,7 +61,7 @@ noncomputable def parameterized_iter
 /--
 **[Lemma — Parameterized Iterator Base Clause]**
 -/
-lemma parameterized_iter_base
+theorem parameterized_iter_base
     (peano_system : PeanoSystem)
     (Parameter Target : Type)
     (initial_value : Parameter → Target)
@@ -76,7 +76,7 @@ lemma parameterized_iter_base
 /--
 **[Lemma — Parameterized Iterator Successor Clause]**
 -/
-lemma parameterized_iter_step
+theorem parameterized_iter_step
     (peano_system : PeanoSystem)
     (Parameter Target : Type)
     (initial_value : Parameter → Target)
@@ -142,7 +142,10 @@ theorem recursive_binary_operation_exists_uniquely
             (peano_system.successor element) =
           step_rule parameter_value
             (operation parameter_value element)) ∧
-      (∀ other_operation,
+      (∀ other_operation :
+          peano_system.carrier →
+          peano_system.carrier →
+          peano_system.carrier,
         (∀ parameter_value,
           other_operation parameter_value peano_system.one =
             initial_value parameter_value) →
