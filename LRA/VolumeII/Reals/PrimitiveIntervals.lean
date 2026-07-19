@@ -17,13 +17,19 @@ Lean module: LRA.VolumeII.Reals.PrimitiveIntervals
 Source: docs/number-systems/gpt-07-reals-interval-arithmetic.md
 Verification status: definitions and final theorem statements complete; proofs pending
 
-This construction is definitionally independent of all other real constructions.
-Intervals are primitive representatives, and equivalence is persistent cross-level overlap.
+This construction is definitionally independent of the Cantor and Cauchy real
+constructions. Its primitive equivalence is persistent cross-level overlap.
 -/
 
 variable (rational_model : RationalModel)
 
 abbrev Rational := rational_model.signature.carrier
+
+/-- Reflexivity of the rational non-strict order. -/
+theorem nonstrict_order_reflexive
+    (value : Rational rational_model) :
+    rational_model.signature.nonstrict_order value value := by
+  sorry
 
 /-- Definition 1.1: a rational closed interval. -/
 structure RationalInterval where
@@ -32,49 +38,53 @@ structure RationalInterval where
   endpoints_are_ordered :
     rational_model.signature.nonstrict_order left_endpoint right_endpoint
 
-/-- Membership in a rational interval. -/
+/-- Definition 1.2: membership in a rational closed interval. -/
 def contains
     (interval : RationalInterval rational_model)
     (value : Rational rational_model) : Prop :=
   rational_model.signature.nonstrict_order interval.left_endpoint value ∧
-    rational_model.signature.nonstrict_order value interval.right_endpoint
+  rational_model.signature.nonstrict_order value interval.right_endpoint
 
-/-- Inclusion of rational intervals. -/
+/-- Definition 1.3: interval inclusion. -/
 def subset
     (inner outer : RationalInterval rational_model) : Prop :=
   rational_model.signature.nonstrict_order
       outer.left_endpoint inner.left_endpoint ∧
-    rational_model.signature.nonstrict_order
+  rational_model.signature.nonstrict_order
       inner.right_endpoint outer.right_endpoint
 
-/-- Nonempty intersection of rational intervals. -/
+/-- Definition 1.4: interval overlap. -/
 def overlaps
     (first second : RationalInterval rational_model) : Prop :=
   ∃ value,
     contains rational_model first value ∧
-      contains rational_model second value
+    contains rational_model second value
 
-/-- Width of a rational interval. -/
-def width (interval : RationalInterval rational_model) : Rational rational_model :=
+/-- Definition 1.5: interval width. -/
+def width
+    (interval : RationalInterval rational_model) : Rational rational_model :=
   rational_model.signature.subtraction
     interval.right_endpoint interval.left_endpoint
 
-/-- Definition 1.2: an admissible nested shrinking interval sequence. -/
+abbrev IntervalSequence := Nat → RationalInterval rational_model
+
+/-- Definition 1.6: an admissible nested shrinking interval sequence. -/
 structure Representative where
-  interval : Nat → RationalInterval rational_model
+  interval : IntervalSequence rational_model
   nested :
     ∀ index,
       subset rational_model (interval (index + 1)) (interval index)
-  shrinking :
+  widths_converge_to_zero :
     ∀ epsilon,
-      rational_model.signature.strict_order rational_model.signature.zero epsilon →
-      ∃ threshold,
+      rational_model.signature.strict_order
+        rational_model.signature.zero epsilon →
+      ∃ threshold : Nat,
         ∀ index,
           threshold ≤ index →
           rational_model.signature.strict_order
             (width rational_model (interval index)) epsilon
 
-/-- Definition 1.3: persistent cross-level overlap. -/
+/-- Definition 1.7: persistent cross-level overlap. -/
 def equivalent
     (first second : Representative rational_model) : Prop :=
   ∀ first_index second_index,
@@ -82,26 +92,22 @@ def equivalent
       (first.interval first_index)
       (second.interval second_index)
 
-/-- Theorem 1.4: persistent overlap is an equivalence relation. -/
+/-- Theorem 1.8: persistent overlap is an equivalence relation. -/
 theorem equivalent_is_equivalence_relation :
     Equivalence (equivalent rational_model) := by
   sorry
 
-/-- Definition 1.5: the primitive interval real carrier. -/
+/-- Definition 1.9: the representative setoid. -/
 def representative_setoid : Setoid (Representative rational_model) where
   r := equivalent rational_model
   iseqv := equivalent_is_equivalence_relation rational_model
 
+/-- Definition 1.10: the primitive interval real carrier. -/
 abbrev Carrier := Quotient (representative_setoid rational_model)
 
-/-- Reflexivity of rational non-strict order. -/
-theorem nonstrict_order_reflexive (value : Rational rational_model) :
-    rational_model.signature.nonstrict_order value value := by
-  sorry
-
 /-- Definition 2.1: the degenerate interval at a rational point. -/
-def degenerate_interval (value : Rational rational_model) :
-    RationalInterval rational_model where
+def degenerate_interval
+    (value : Rational rational_model) : RationalInterval rational_model where
   left_endpoint := value
   right_endpoint := value
   endpoints_are_ordered := nonstrict_order_reflexive rational_model value
@@ -118,10 +124,11 @@ theorem constant_degenerate_sequence_is_admissible
 /-- Definition 2.1: the constant representative C_q. -/
 noncomputable def rational_representative
     (value : Rational rational_model) : Representative rational_model :=
-  Classical.choose (constant_degenerate_sequence_is_admissible rational_model value)
+  Classical.choose
+    (constant_degenerate_sequence_is_admissible rational_model value)
 
 /-- Definition 2.2: canonical rational embedding. -/
-def rational_embedding
+noncomputable def rational_embedding
     (value : Rational rational_model) : Carrier rational_model :=
   Quotient.mk _ (rational_representative rational_model value)
 
@@ -139,11 +146,11 @@ def IsIntervalSum
   result.left_endpoint =
       rational_model.signature.addition
         first.left_endpoint second.left_endpoint ∧
-    result.right_endpoint =
+  result.right_endpoint =
       rational_model.signature.addition
         first.right_endpoint second.right_endpoint
 
-/-- Existence and uniqueness of the Minkowski sum interval. -/
+/-- The Minkowski sum interval exists uniquely. -/
 theorem interval_sum_exists_uniquely
     (first second : RationalInterval rational_model) :
     ∃ result,
@@ -164,10 +171,10 @@ def IsIntervalNegation
     (interval result : RationalInterval rational_model) : Prop :=
   result.left_endpoint =
       rational_model.signature.negation interval.right_endpoint ∧
-    result.right_endpoint =
+  result.right_endpoint =
       rational_model.signature.negation interval.left_endpoint
 
-/-- Existence and uniqueness of the negated interval. -/
+/-- The negated interval exists uniquely. -/
 theorem interval_negation_exists_uniquely
     (interval : RationalInterval rational_model) :
     ∃ result,
@@ -181,9 +188,10 @@ theorem interval_negation_exists_uniquely
 noncomputable def interval_negation
     (interval : RationalInterval rational_model) :
     RationalInterval rational_model :=
-  Classical.choose (interval_negation_exists_uniquely rational_model interval)
+  Classical.choose
+    (interval_negation_exists_uniquely rational_model interval)
 
-/-- The four corner products of two rational intervals. -/
+/-- The four corner products of two intervals. -/
 def IsCornerProduct
     (first second : RationalInterval rational_model)
     (value : Rational rational_model) : Prop :=
@@ -208,7 +216,7 @@ def IsIntervalProduct
   IsCornerProduct rational_model first second result.left_endpoint ∧
   IsCornerProduct rational_model first second result.right_endpoint
 
-/-- Existence and uniqueness of the minimum/maximum corner enclosure. -/
+/-- The minimum/maximum corner enclosure exists uniquely. -/
 theorem interval_product_exists_uniquely
     (first second : RationalInterval rational_model) :
     ∃ result,
@@ -222,7 +230,8 @@ theorem interval_product_exists_uniquely
 noncomputable def interval_multiplication
     (first second : RationalInterval rational_model) :
     RationalInterval rational_model :=
-  Classical.choose (interval_product_exists_uniquely rational_model first second)
+  Classical.choose
+    (interval_product_exists_uniquely rational_model first second)
 
 /-- Theorem 3.4: termwise addition preserves admissibility. -/
 theorem addition_preserves_admissibility
@@ -240,17 +249,18 @@ theorem negation_preserves_admissibility
     ∃ result : Representative rational_model,
       ∀ index,
         result.interval index =
-          interval_negation rational_model (representative.interval index) := by
+          interval_negation rational_model
+            (representative.interval index) := by
   sorry
 
-/-- Admissible interval sequences are uniformly rationally bounded. -/
+/-- Admissible representatives are uniformly rationally bounded. -/
 theorem admissible_representatives_are_uniformly_bounded
     (representative : Representative rational_model) :
     ∃ lower upper,
       ∀ index value,
         contains rational_model (representative.interval index) value →
         rational_model.signature.nonstrict_order lower value ∧
-          rational_model.signature.nonstrict_order value upper := by
+        rational_model.signature.nonstrict_order value upper := by
   sorry
 
 /-- Theorem 3.4: termwise multiplication preserves admissibility. -/
@@ -263,23 +273,24 @@ theorem multiplication_preserves_admissibility
             (first.interval index) (second.interval index) := by
   sorry
 
-/-- Chosen representative for termwise addition. -/
+/-- Chosen representative operations. -/
 noncomputable def representative_addition
     (first second : Representative rational_model) :
     Representative rational_model :=
-  Classical.choose (addition_preserves_admissibility rational_model first second)
+  Classical.choose
+    (addition_preserves_admissibility rational_model first second)
 
-/-- Chosen representative for termwise negation. -/
 noncomputable def representative_negation
     (representative : Representative rational_model) :
     Representative rational_model :=
-  Classical.choose (negation_preserves_admissibility rational_model representative)
+  Classical.choose
+    (negation_preserves_admissibility rational_model representative)
 
-/-- Chosen representative for termwise multiplication. -/
 noncomputable def representative_multiplication
     (first second : Representative rational_model) :
     Representative rational_model :=
-  Classical.choose (multiplication_preserves_admissibility rational_model first second)
+  Classical.choose
+    (multiplication_preserves_admissibility rational_model first second)
 
 /-- Theorem 3.5: representative operations respect persistent overlap. -/
 theorem representative_operations_respect_equivalence :
@@ -294,7 +305,7 @@ theorem representative_operations_respect_equivalence :
         (representative_multiplication rational_model) := by
   sorry
 
-/-- Definition 3.6: quotient addition. -/
+/-- Definition 3.6: quotient arithmetic. -/
 noncomputable def addition :
     Carrier rational_model → Carrier rational_model → Carrier rational_model :=
   Classical.choose
@@ -308,14 +319,14 @@ theorem quotient_negation_exists :
     ∃ negation : Carrier rational_model → Carrier rational_model,
       ∀ representative,
         negation (Quotient.mk _ representative) =
-          Quotient.mk _ (representative_negation rational_model representative) := by
+          Quotient.mk _
+            (representative_negation rational_model representative) := by
   sorry
 
-/-- Definition 3.6: quotient negation. -/
-noncomputable def negation : Carrier rational_model → Carrier rational_model :=
+noncomputable def negation :
+    Carrier rational_model → Carrier rational_model :=
   Classical.choose (quotient_negation_exists rational_model)
 
-/-- Definition 3.6: quotient multiplication. -/
 noncomputable def multiplication :
     Carrier rational_model → Carrier rational_model → Carrier rational_model :=
   Classical.choose
@@ -325,13 +336,13 @@ noncomputable def multiplication :
       (representative_operations_respect_equivalence rational_model).2.2)
 
 /-- Definition 3.7: zero and one. -/
-def zero : Carrier rational_model :=
+noncomputable def zero : Carrier rational_model :=
   rational_embedding rational_model rational_model.signature.zero
 
-def one : Carrier rational_model :=
+noncomputable def one : Carrier rational_model :=
   rational_embedding rational_model rational_model.signature.one
 
-/-- Definition 4.1: eventual strict separation of representatives. -/
+/-- Definition 4.1: eventual strict separation. -/
 def representative_strict_order
     (first second : Representative rational_model) : Prop :=
   ∃ first_index second_index,
@@ -356,17 +367,27 @@ noncomputable def strict_order :
       (representative_strict_order_respects_equivalence rational_model))
 
 /-- Theorem 4.3: the quotient order is a strict total order. -/
-theorem strict_total_order : Prop := by
+theorem strict_total_order :
+    (∀ value : Carrier rational_model,
+      ¬ strict_order rational_model value value) ∧
+    (∀ first second third : Carrier rational_model,
+      strict_order rational_model first second →
+      strict_order rational_model second third →
+      strict_order rational_model first third) ∧
+    (∀ first second : Carrier rational_model,
+      first ≠ second →
+      strict_order rational_model first second ∨
+      strict_order rational_model second first) := by
   sorry
 
-/-- Theorem 4.4: order compatibility with addition and positive multiplication. -/
+/-- Theorem 4.4: order compatibility. -/
 theorem order_compatibility :
-    (∀ first second translation,
+    (∀ first second translation : Carrier rational_model,
       strict_order rational_model first second →
       strict_order rational_model
         (addition rational_model first translation)
         (addition rational_model second translation)) ∧
-    (∀ first second positive,
+    (∀ first second positive : Carrier rational_model,
       strict_order rational_model first second →
       strict_order rational_model (zero rational_model) positive →
       strict_order rational_model
@@ -430,7 +451,8 @@ theorem nonzero_eventually_separated_from_zero
     ∃ representative : Representative rational_model,
       Quotient.mk _ representative = value ∧
       ∃ delta,
-        rational_model.signature.strict_order rational_model.signature.zero delta ∧
+        rational_model.signature.strict_order
+          rational_model.signature.zero delta ∧
         ((∃ threshold,
           ∀ index,
             threshold ≤ index →
@@ -453,14 +475,16 @@ def IsReciprocalInterval
   reciprocal.right_endpoint =
       rational_model.signature.inverse interval.left_endpoint
 
-/-- Theorem 6.3: reciprocal is representative-independent on nonzero classes. -/
+/-- Theorem 6.3: every nonzero class has a unique reciprocal. -/
 theorem reciprocal_exists_uniquely
     (value : Carrier rational_model)
     (value_nonzero : value ≠ zero rational_model) :
     ∃ inverse_value,
       multiplication rational_model value inverse_value = one rational_model ∧
+      multiplication rational_model inverse_value value = one rational_model ∧
       ∀ other,
         multiplication rational_model value other = one rational_model →
+        multiplication rational_model other value = one rational_model →
         other = inverse_value := by
   sorry
 
@@ -468,27 +492,41 @@ theorem reciprocal_exists_uniquely
 noncomputable def inverse
     (value : Carrier rational_model)
     (value_nonzero : value ≠ zero rational_model) : Carrier rational_model :=
-  Classical.choose (reciprocal_exists_uniquely rational_model value value_nonzero)
+  Classical.choose
+    (reciprocal_exists_uniquely rational_model value value_nonzero)
 
 /-- Theorem 7.1: the quotient is an Archimedean ordered field. -/
-theorem ordered_field_structure : Prop := by
+theorem ordered_field_structure :
+    strict_total_order rational_model ∧
+    order_compatibility rational_model ∧
+    (∀ first second third : Carrier rational_model,
+      multiplication rational_model first
+          (addition rational_model second third) =
+        addition rational_model
+          (multiplication rational_model first second)
+          (multiplication rational_model first third)) ∧
+    (∀ value : Carrier rational_model,
+      value ≠ zero rational_model →
+      ∃ inverse_value,
+        multiplication rational_model value inverse_value = one rational_model ∧
+        multiplication rational_model inverse_value value = one rational_model) := by
   sorry
 
 /-- Theorem 7.2: nested-interval least-upper-bound completeness. -/
 theorem least_upper_bound_property :
-    ∀ subset : Carrier rational_model → Prop,
-      (∃ member, subset member) →
+    ∀ members : Carrier rational_model → Prop,
+      (∃ member, members member) →
       (∃ upper_bound,
         ∀ member,
-          subset member →
+          members member →
           ¬ strict_order rational_model upper_bound member) →
       ∃ supremum,
         (∀ member,
-          subset member →
+          members member →
           ¬ strict_order rational_model supremum member) ∧
         (∀ upper_bound,
           (∀ member,
-            subset member →
+            members member →
             ¬ strict_order rational_model upper_bound member) →
           ¬ strict_order rational_model upper_bound supremum) := by
   sorry
@@ -515,7 +553,15 @@ theorem canonical_comparison_isomorphism_exists :
   sorry
 
 /-- Theorem 9.1: final primitive-interval construction theorem. -/
-theorem primitive_interval_construction_of_reals : Prop := by
+theorem primitive_interval_construction_of_reals :
+    ordered_field_structure rational_model ∧
+    least_upper_bound_property rational_model ∧
+    (∀ first second : Representative rational_model,
+      equivalent rational_model first second ↔
+        ∀ first_index second_index,
+          overlaps rational_model
+            (first.interval first_index)
+            (second.interval second_index)) := by
   sorry
 
 end PrimitiveIntervals
