@@ -4,6 +4,7 @@ rules:
   definitions_must_be_complete: true
   theorem_statements_must_be_final: true
   sorry_allowed_only_in_proof_bodies: true
+  construction_isomorphism_proofs_initially_sorry: true
   reject_vacuous_true_results: true
   preserve_markdown_order: true
   generate_blueprint_from_markdown: true
@@ -33,4 +34,6 @@ chapters:
   - { order: 23, source: gpt-09-complex.md, status: active }
   - { order: 24, source: gpt-09a-characteristic-cardinality.md, status: active }
   - { order: 25, source: gpt-10-comparison-matrix.md, status: active }
-  - { order: 26, source: gpt-sequel-p-adic-numbers.md, status: sequel }
+  - { order: 26, source: gpt-09b-isomorphism-requirements.md, status: active }
+  - { order: 27, source: gpt-09c-volume-iii-interoperability-tests.md, status: active }
+  - { order: 28, source: gpt-sequel-p-adic-numbers.md, status: sequel }
