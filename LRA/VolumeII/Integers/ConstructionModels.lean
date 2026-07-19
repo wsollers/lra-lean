@@ -3,6 +3,7 @@
 
 import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeII.NumberSystems.Models
+import LRA.VolumeII.PeanoSystems.PeanoSystem
 
 namespace LRA
 namespace VolumeII
@@ -75,7 +76,7 @@ def equivalent
     addition second.minuend first.subtrahend
 
 /-- **[Lemma — Tao Representative Addition Respects Equality on the Left]** -/
-lemma representative_addition_respects_equivalence_left
+theorem representative_addition_respects_equivalence_left
     {WholeCarrier : Type}
     (setoid : Setoid (FormalDifference WholeCarrier))
     (representative_addition :
@@ -86,7 +87,7 @@ lemma representative_addition_respects_equivalence_left
       setoid representative_addition := by
   sorry
 
-/-- **[Theorem — Tao Integer Model]** -/
+/-- **[Definition — Tao Integer Model]** -/
 noncomputable def integer_model : IntegerModel := by
   sorry
 
@@ -126,15 +127,21 @@ theorem positivity_respects_equivalence
       (is_positive strict_order) := by
   sorry
 
-/-- **[Theorem — Mendelson Integer Model]** -/
+/-- **[Definition — Mendelson Integer Model]** -/
 noncomputable def integer_model : IntegerModel := by
+  sorry
+
+/-- **[Definition — Peano System Recovered from Positive Mendelson Integers]** -/
+noncomputable def recovered_peano_system :
+    LRA.VolumeII.PeanoSystems.PeanoSystem.{0} := by
   sorry
 
 /--
 **[Theorem — Positive Mendelson Integers Recover a Peano System]**
 -/
-theorem positive_integers_recover_peano_system : Prop := by
-  sorry
+theorem positive_integers_recover_peano_system :
+    Nonempty (LRA.VolumeII.PeanoSystems.PeanoSystem.{0}) :=
+  ⟨recovered_peano_system⟩
 
 end Mendelson
 
@@ -180,22 +187,40 @@ structure ModelIsomorphism
           (to_function second) ↔
         first_model.signature.nonstrict_order first second
 
-/-- **[Theorem — Canonical and Tao Integers Are Isomorphic]** -/
-theorem canonical_equiv_tao :
+/-- **[Definition — Canonical–Tao Integer Isomorphism]** -/
+noncomputable def canonical_equiv_tao :
     ModelIsomorphism Canonical.integer_model Tao.integer_model := by
   sorry
 
-/-- **[Theorem — Canonical and Mendelson Integers Are Isomorphic]** -/
-theorem canonical_equiv_mendelson :
+/-- **[Theorem — Canonical and Tao Integers Are Isomorphic]** -/
+theorem canonical_and_tao_are_isomorphic :
+    Nonempty (ModelIsomorphism Canonical.integer_model Tao.integer_model) :=
+  ⟨canonical_equiv_tao⟩
+
+/-- **[Definition — Canonical–Mendelson Integer Isomorphism]** -/
+noncomputable def canonical_equiv_mendelson :
     ModelIsomorphism
       Canonical.integer_model
       Mendelson.integer_model := by
   sorry
 
-/-- **[Corollary — Tao and Mendelson Integers Are Isomorphic]** -/
-theorem tao_equiv_mendelson :
+/-- **[Theorem — Canonical and Mendelson Integers Are Isomorphic]** -/
+theorem canonical_and_mendelson_are_isomorphic :
+    Nonempty
+      (ModelIsomorphism
+        Canonical.integer_model
+        Mendelson.integer_model) :=
+  ⟨canonical_equiv_mendelson⟩
+
+/-- **[Definition — Tao–Mendelson Integer Isomorphism]** -/
+noncomputable def tao_equiv_mendelson :
     ModelIsomorphism Tao.integer_model Mendelson.integer_model := by
   sorry
+
+/-- **[Corollary — Tao and Mendelson Integers Are Isomorphic]** -/
+theorem tao_and_mendelson_are_isomorphic :
+    Nonempty (ModelIsomorphism Tao.integer_model Mendelson.integer_model) :=
+  ⟨tao_equiv_mendelson⟩
 
 end Integers
 end VolumeII
