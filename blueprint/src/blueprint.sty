@@ -1,4 +1,13 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{blueprint}[2026/07/19 Local compatibility macros]
+
 \DeclareOption*{}
-\ProcessOptions
+\ProcessOptions\relax
 
 \newcommand{\graphcolor}[3]{}
+\newcommand{\lean}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\leanok}[1]{\lean{#1}}
+\newcommand{\uses}[1]{}
+\newcommand{\home}[1]{}
+\newcommand{\github}[1]{}
+\newcommand{\dochome}[1]{}
