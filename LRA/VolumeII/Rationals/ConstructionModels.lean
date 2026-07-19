@@ -41,10 +41,10 @@ def is_order_complete (rational_model : RationalModel) : Prop :=
           rational_model.signature.nonstrict_order member upper_bound) →
         rational_model.signature.nonstrict_order supremum upper_bound)
 
-namespace Canonical
+namespace CanonicalScaffold
 
 /--
-**[Definition — Canonical Rational Representative]**
+**[Definition — Canonical Rational Representative Scaffold]**
 
 The denominator carrier is supplied separately so a one-based natural model can
 make positivity and nonzeroness structural rather than proof fields.
@@ -54,7 +54,7 @@ structure Representative
   numerator : IntegerCarrier
   denominator : NaturalCarrier
 
-/-- **[Definition — Canonical Cross-Multiplication Relation]** -/
+/-- **[Definition — Canonical Cross-Multiplication Relation Scaffold]** -/
 def equivalent
     {IntegerCarrier NaturalCarrier : Type}
     (integer_multiplication :
@@ -68,7 +68,7 @@ def equivalent
       second.numerator
       (natural_to_integer first.denominator)
 
-/-- **[Theorem — Canonical Rational Relation Is an Equivalence]** -/
+/-- **[Theorem — Canonical Rational Relation Scaffold Is an Equivalence]** -/
 theorem equivalent_is_equivalence_relation
     {IntegerCarrier NaturalCarrier : Type}
     (integer_multiplication :
@@ -78,7 +78,7 @@ theorem equivalent_is_equivalence_relation
       (equivalent integer_multiplication natural_to_integer) := by
   sorry
 
-/-- **[Lemma — Canonical Representative Addition Respects Equivalence]** -/
+/-- **[Lemma — Canonical Representative Addition Scaffold Respects Equivalence]** -/
 theorem representative_addition_respects_equivalence
     {RepresentativeCarrier : Type}
     (setoid : Setoid RepresentativeCarrier)
@@ -90,7 +90,7 @@ theorem representative_addition_respects_equivalence
       setoid representative_addition := by
   sorry
 
-/-- **[Lemma — Canonical Representative Multiplication Respects Equivalence]** -/
+/-- **[Lemma — Canonical Representative Multiplication Scaffold Respects Equivalence]** -/
 theorem representative_multiplication_respects_equivalence
     {RepresentativeCarrier : Type}
     (setoid : Setoid RepresentativeCarrier)
@@ -102,24 +102,24 @@ theorem representative_multiplication_respects_equivalence
       setoid representative_multiplication := by
   sorry
 
-/-- **[Definition — Canonical Rational Model]** -/
+/-- **[Definition — Canonical Rational Model Scaffold]** -/
 noncomputable def rational_model
     (integer_model : IntegerModel) : RationalModel := by
   sorry
 
-/-- **[Definition — Canonical Rational Extension]** -/
+/-- **[Definition — Canonical Rational Extension Scaffold]** -/
 noncomputable def rational_extension
     (integer_model : IntegerModel) :
     RationalExtension integer_model := by
   sorry
 
-/-- **[Proposition — Canonical Rationals Are Not Order Complete]** -/
+/-- **[Proposition — Canonical Rational Scaffold Is Not Order Complete]** -/
 theorem is_not_order_complete
     (integer_model : IntegerModel) :
     ¬ Rationals.is_order_complete (rational_model integer_model) := by
   sorry
 
-end Canonical
+end CanonicalScaffold
 
 namespace Reduced
 
@@ -202,39 +202,39 @@ structure ModelIsomorphism
           (to_function second) ↔
         first_model.signature.nonstrict_order first second
 
-/-- **[Definition — Canonical–Reduced Rational Isomorphism]** -/
-noncomputable def canonical_equiv_reduced
+/-- **[Definition — Canonical-Scaffold–Reduced Rational Isomorphism]** -/
+noncomputable def canonical_scaffold_equiv_reduced
     (integer_model : IntegerModel) :
     ModelIsomorphism
-      (Canonical.rational_model integer_model)
+      (CanonicalScaffold.rational_model integer_model)
       (Reduced.rational_model integer_model) := by
   sorry
 
-/-- **[Theorem — Canonical and Reduced Rationals Are Isomorphic]** -/
-theorem canonical_and_reduced_are_isomorphic
+/-- **[Theorem — Canonical Scaffold and Reduced Rationals Are Isomorphic]** -/
+theorem canonical_scaffold_and_reduced_are_isomorphic
     (integer_model : IntegerModel) :
     Nonempty
       (ModelIsomorphism
-        (Canonical.rational_model integer_model)
+        (CanonicalScaffold.rational_model integer_model)
         (Reduced.rational_model integer_model)) :=
-  ⟨canonical_equiv_reduced integer_model⟩
+  ⟨canonical_scaffold_equiv_reduced integer_model⟩
 
-/-- **[Definition — Canonical–Fraction-Field Rational Isomorphism]** -/
-noncomputable def canonical_equiv_fraction_field
+/-- **[Definition — Canonical-Scaffold–Fraction-Field Rational Isomorphism]** -/
+noncomputable def canonical_scaffold_equiv_fraction_field
     (integer_model : IntegerModel) :
     ModelIsomorphism
-      (Canonical.rational_model integer_model)
+      (CanonicalScaffold.rational_model integer_model)
       (FractionField.rational_model ⟨integer_model⟩) := by
   sorry
 
-/-- **[Theorem — Canonical and Fraction-Field Rationals Are Isomorphic]** -/
-theorem canonical_and_fraction_field_are_isomorphic
+/-- **[Theorem — Canonical Scaffold and Fraction-Field Rationals Are Isomorphic]** -/
+theorem canonical_scaffold_and_fraction_field_are_isomorphic
     (integer_model : IntegerModel) :
     Nonempty
       (ModelIsomorphism
-        (Canonical.rational_model integer_model)
+        (CanonicalScaffold.rational_model integer_model)
         (FractionField.rational_model ⟨integer_model⟩)) :=
-  ⟨canonical_equiv_fraction_field integer_model⟩
+  ⟨canonical_scaffold_equiv_fraction_field integer_model⟩
 
 end Rationals
 end VolumeII
