@@ -143,7 +143,7 @@ theorem equivalent_is_equivalence_relation
   sorry
 
 /-- **[Lemma — Raw Interval Multiplication Respects Equivalence]** -/
-lemma representative_multiplication_respects_equivalence
+theorem representative_multiplication_respects_equivalence
     {IntervalSequenceCarrier : Type}
     (setoid : Setoid IntervalSequenceCarrier)
     (representative_multiplication :
@@ -253,37 +253,73 @@ theorem complete_archimedean_ordered_fields_are_uniquely_isomorphic
             isomorphism.to_function value := by
   sorry
 
-/-- **[Corollary — Dedekind and Cauchy Reals Are Isomorphic]** -/
-theorem dedekind_equiv_cauchy
+/-- **[Definition — Dedekind–Cauchy Real Isomorphism]** -/
+noncomputable def dedekind_equiv_cauchy
     (rational_model : RationalModel) :
     ModelIsomorphism
       (Dedekind.real_model rational_model)
       (Cauchy.real_model rational_model) := by
   sorry
 
-/-- **[Corollary — Dedekind and Cantor Reals Are Isomorphic]** -/
-theorem dedekind_equiv_cantor
+/-- **[Corollary — Dedekind and Cauchy Reals Are Isomorphic]** -/
+theorem dedekind_and_cauchy_are_isomorphic
+    (rational_model : RationalModel) :
+    Nonempty
+      (ModelIsomorphism
+        (Dedekind.real_model rational_model)
+        (Cauchy.real_model rational_model)) :=
+  ⟨dedekind_equiv_cauchy rational_model⟩
+
+/-- **[Definition — Dedekind–Cantor Real Isomorphism]** -/
+noncomputable def dedekind_equiv_cantor
     (rational_model : RationalModel) :
     ModelIsomorphism
       (Dedekind.real_model rational_model)
       (Cantor.real_model rational_model) := by
   sorry
 
-/-- **[Corollary — Dedekind and Interval-Quotient Reals Are Isomorphic]** -/
-theorem dedekind_equiv_interval_quotient
+/-- **[Corollary — Dedekind and Cantor Reals Are Isomorphic]** -/
+theorem dedekind_and_cantor_are_isomorphic
+    (rational_model : RationalModel) :
+    Nonempty
+      (ModelIsomorphism
+        (Dedekind.real_model rational_model)
+        (Cantor.real_model rational_model)) :=
+  ⟨dedekind_equiv_cantor rational_model⟩
+
+/-- **[Definition — Dedekind–Interval-Quotient Real Isomorphism]** -/
+noncomputable def dedekind_equiv_interval_quotient
     (rational_model : RationalModel) :
     ModelIsomorphism
       (Dedekind.real_model rational_model)
       (IntervalQuotient.real_model rational_model) := by
   sorry
 
-/-- **[Corollary — Dedekind and Dyadic Reals Are Isomorphic]** -/
-theorem dedekind_equiv_dyadic
+/-- **[Corollary — Dedekind and Interval-Quotient Reals Are Isomorphic]** -/
+theorem dedekind_and_interval_quotient_are_isomorphic
+    (rational_model : RationalModel) :
+    Nonempty
+      (ModelIsomorphism
+        (Dedekind.real_model rational_model)
+        (IntervalQuotient.real_model rational_model)) :=
+  ⟨dedekind_equiv_interval_quotient rational_model⟩
+
+/-- **[Definition — Dedekind–Dyadic Real Isomorphism]** -/
+noncomputable def dedekind_equiv_dyadic
     (rational_model : RationalModel) :
     ModelIsomorphism
       (Dedekind.real_model rational_model)
       (Dyadic.real_model rational_model) := by
   sorry
+
+/-- **[Corollary — Dedekind and Dyadic Reals Are Isomorphic]** -/
+theorem dedekind_and_dyadic_are_isomorphic
+    (rational_model : RationalModel) :
+    Nonempty
+      (ModelIsomorphism
+        (Dedekind.real_model rational_model)
+        (Dyadic.real_model rational_model)) :=
+  ⟨dedekind_equiv_dyadic rational_model⟩
 
 end Reals
 end VolumeII
