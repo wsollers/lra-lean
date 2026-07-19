@@ -56,6 +56,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     texlive-fonts-recommended \
     texlive-science \
     texlive-bibtex-extra \
+    texlive-xetex \
     biber \
     && rm -rf /var/lib/apt/lists/*
 
