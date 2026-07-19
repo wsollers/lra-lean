@@ -1,6 +1,7 @@
 -- LRA/VolumeII/Rationals/Canonical.lean
--- Canonical construction of the rationals from integer numerators and positive natural denominators.
+-- Canonical construction of the rationals from integers and positive naturals.
 
+import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeII.NumberSystems.Models
 
 namespace LRA
@@ -16,36 +17,36 @@ Source: docs/number-systems/gpt-03-rationals.md
 Verification status: definitions and final theorem statements complete; proofs pending
 -/
 
-/-- Data supplied by the previously constructed positive naturals and integers. -/
+/-- Data required to interpret positive natural denominators inside an integer model. -/
 structure Input where
   integer_model : IntegerModel
   natural_carrier : Type
   one : natural_carrier
-  addition : natural_carrier → natural_carrier → natural_carrier
   multiplication : natural_carrier → natural_carrier → natural_carrier
-  strict_order : natural_carrier → natural_carrier → Prop
   to_integer : natural_carrier → integer_model.signature.carrier
-  absolute_numerator : integer_model.signature.carrier → natural_carrier
-  gcd : natural_carrier → natural_carrier → natural_carrier
   denominator_is_positive :
     ∀ denominator,
       integer_model.signature.strict_order
         integer_model.signature.zero
         (to_integer denominator)
-  one_maps_to_one : to_integer one = integer_model.signature.one
+  one_maps_to_one :
+    to_integer one = integer_model.signature.one
   multiplication_is_preserved :
     ∀ first second,
       to_integer (multiplication first second) =
         integer_model.signature.multiplication
           (to_integer first)
           (to_integer second)
+  absolute_numerator :
+    integer_model.signature.carrier → natural_carrier
+  gcd : natural_carrier → natural_carrier → natural_carrier
 
-/-- Definition 1.1: a formal fraction pair. -/
+/-- Definition 1.1: a formal fraction with positive denominator. -/
 structure Representative (input : Input) where
   numerator : input.integer_model.signature.carrier
   denominator : input.natural_carrier
 
-/-- Definition 1.1: cross-multiplication equivalence. -/
+/-- Definition 1.2: cross-multiplication equivalence. -/
 def equivalent
     (input : Input)
     (first second : Representative input) : Prop :=
@@ -56,21 +57,21 @@ def equivalent
       second.numerator
       (input.to_integer first.denominator)
 
-/-- Theorem 1.2: the fraction-pair relation is an equivalence relation. -/
+/-- Theorem 1.3: cross-multiplication is an equivalence relation. -/
 theorem equivalent_is_equivalence_relation
     (input : Input) :
     Equivalence (equivalent input) := by
   sorry
 
-/-- Definition 1.3: the canonical fraction setoid. -/
+/-- Definition 1.4: the fraction setoid. -/
 def representative_setoid (input : Input) : Setoid (Representative input) where
   r := equivalent input
   iseqv := equivalent_is_equivalence_relation input
 
-/-- Definition 1.3: the rational carrier. -/
+/-- Definition 1.5: the rational carrier. -/
 abbrev Carrier (input : Input) := Quotient (representative_setoid input)
 
-/-- Raw fraction addition. -/
+/-- Definition 2.1: raw fraction addition. -/
 def representative_addition
     (input : Input)
     (first second : Representative input) : Representative input where
@@ -84,101 +85,54 @@ def representative_addition
         (input.to_integer first.denominator))
   denominator := input.multiplication first.denominator second.denominator
 
-/-- Theorem 2.2: raw addition respects fraction equivalence. -/
-theorem representative_addition_respects_equivalence
-    (input : Input) :
-    ∀ first first' second second',
-      equivalent input first first' →
-      equivalent input second second' →
-      equivalent input
-        (representative_addition input first second)
-        (representative_addition input first' second') := by
-  sorry
-
-/-- Definition 2.1: rational addition exists on quotient classes. -/
-theorem addition_exists
-    (input : Input) :
-    ∃ addition : Carrier input → Carrier input → Carrier input,
-      ∀ first second : Representative input,
-        addition (Quotient.mk _ first) (Quotient.mk _ second) =
-          Quotient.mk _ (representative_addition input first second) := by
-  sorry
-
-/-- Definition 2.1: rational addition. -/
-noncomputable def addition (input : Input) :
-    Carrier input → Carrier input → Carrier input :=
-  Classical.choose (addition_exists input)
-
-/-- Raw fraction multiplication. -/
+/-- Definition 2.2: raw fraction multiplication. -/
 def representative_multiplication
     (input : Input)
     (first second : Representative input) : Representative input where
-  numerator :=
-    input.integer_model.signature.multiplication
-      first.numerator second.numerator
+  numerator := input.integer_model.signature.multiplication
+    first.numerator second.numerator
   denominator := input.multiplication first.denominator second.denominator
 
-/-- Theorem 2.4: raw multiplication respects fraction equivalence. -/
-theorem representative_multiplication_respects_equivalence
-    (input : Input) :
-    ∀ first first' second second',
-      equivalent input first first' →
-      equivalent input second second' →
-      equivalent input
-        (representative_multiplication input first second)
-        (representative_multiplication input first' second') := by
-  sorry
-
-/-- Definition 2.3: rational multiplication exists on quotient classes. -/
-theorem multiplication_exists
-    (input : Input) :
-    ∃ multiplication : Carrier input → Carrier input → Carrier input,
-      ∀ first second : Representative input,
-        multiplication (Quotient.mk _ first) (Quotient.mk _ second) =
-          Quotient.mk _ (representative_multiplication input first second) := by
-  sorry
-
-/-- Definition 2.3: rational multiplication. -/
-noncomputable def multiplication (input : Input) :
-    Carrier input → Carrier input → Carrier input :=
-  Classical.choose (multiplication_exists input)
-
-/-- Definition 2.5: the zero representative. -/
-def zero_representative (input : Input) : Representative input where
-  numerator := input.integer_model.signature.zero
-  denominator := input.one
-
-/-- Definition 2.5: rational zero. -/
-def zero (input : Input) : Carrier input :=
-  Quotient.mk _ (zero_representative input)
-
-/-- Definition 2.5: the one representative. -/
-def one_representative (input : Input) : Representative input where
-  numerator := input.integer_model.signature.one
-  denominator := input.one
-
-/-- Definition 2.5: rational one. -/
-def one (input : Input) : Carrier input :=
-  Quotient.mk _ (one_representative input)
-
-/-- Definition 2.6: raw additive inverse. -/
+/-- Definition 2.3: raw additive inverse. -/
 def representative_negation
     (input : Input)
     (representative : Representative input) : Representative input where
   numerator := input.integer_model.signature.negation representative.numerator
   denominator := representative.denominator
 
-/-- Theorem 2.7: raw negation respects fraction equivalence. -/
-theorem representative_negation_respects_equivalence
+/-- Theorem 2.4: raw operations respect fraction equivalence. -/
+theorem representative_operations_respect_equivalence
     (input : Input) :
-    ∀ first second,
-      equivalent input first second →
-      equivalent input
-        (representative_negation input first)
-        (representative_negation input second) := by
+    Foundations.Quotients.binary_operation_respects
+        (representative_setoid input)
+        (representative_addition input) ∧
+    Foundations.Quotients.binary_operation_respects
+        (representative_setoid input)
+        (representative_multiplication input) ∧
+    Foundations.Quotients.unary_operation_respects
+        (representative_setoid input)
+        (representative_negation input) := by
   sorry
 
-/-- Definition 2.6: rational negation exists on quotient classes. -/
+/-- Definition 2.5: quotient addition. -/
+noncomputable def addition (input : Input) :
+    Carrier input → Carrier input → Carrier input :=
+  Classical.choose
+    (Foundations.Quotients.induced_binary_operation_exists
+      (representative_setoid input)
+      (representative_addition input)
+      (representative_operations_respect_equivalence input).1)
+
+/-- Definition 2.6: quotient multiplication. -/
+noncomputable def multiplication (input : Input) :
+    Carrier input → Carrier input → Carrier input :=
+  Classical.choose
+    (Foundations.Quotients.induced_binary_operation_exists
+      (representative_setoid input)
+      (representative_multiplication input)
+      (representative_operations_respect_equivalence input).2.1)
+
+/-- Existence of quotient negation with the representative computation rule. -/
 theorem negation_exists
     (input : Input) :
     ∃ negation : Carrier input → Carrier input,
@@ -187,68 +141,74 @@ theorem negation_exists
           Quotient.mk _ (representative_negation input representative) := by
   sorry
 
-/-- Definition 2.6: rational additive inverse. -/
+/-- Definition 2.7: quotient additive inverse. -/
 noncomputable def negation (input : Input) : Carrier input → Carrier input :=
   Classical.choose (negation_exists input)
 
-/-- Theorem 2.8: the rational additive group laws. -/
+/-- Definition 2.8: zero and one representatives. -/
+def zero_representative (input : Input) : Representative input where
+  numerator := input.integer_model.signature.zero
+  denominator := input.one
+
+def one_representative (input : Input) : Representative input where
+  numerator := input.integer_model.signature.one
+  denominator := input.one
+
+/-- Definition 2.8: rational zero and one. -/
+def zero (input : Input) : Carrier input :=
+  Quotient.mk _ (zero_representative input)
+
+def one (input : Input) : Carrier input :=
+  Quotient.mk _ (one_representative input)
+
+/-- Theorem 2.9: additive group laws. -/
 theorem additive_group_laws (input : Input) :
-    (∀ first second third,
+    (∀ first second third : Carrier input,
       addition input (addition input first second) third =
         addition input first (addition input second third)) ∧
-    (∀ first second,
+    (∀ first second : Carrier input,
       addition input first second = addition input second first) ∧
-    (∀ value,
+    (∀ value : Carrier input,
       addition input (zero input) value = value ∧
       addition input value (zero input) = value) ∧
-    (∀ value,
-      addition input (negation input value) value = zero input ∧
-      addition input value (negation input value) = zero input) := by
+    (∀ value : Carrier input,
+      addition input value (negation input value) = zero input ∧
+      addition input (negation input value) value = zero input) := by
   sorry
 
 /-- Theorem 2.9: multiplicative and distributive laws. -/
 theorem multiplicative_and_distributive_laws (input : Input) :
-    (∀ first second third,
+    (∀ first second third : Carrier input,
       multiplication input (multiplication input first second) third =
         multiplication input first (multiplication input second third)) ∧
-    (∀ first second,
+    (∀ first second : Carrier input,
       multiplication input first second = multiplication input second first) ∧
-    (∀ value,
+    (∀ value : Carrier input,
       multiplication input (one input) value = value ∧
       multiplication input value (one input) = value) ∧
-    (∀ first second third,
+    (∀ first second third : Carrier input,
       multiplication input first (addition input second third) =
         addition input
           (multiplication input first second)
           (multiplication input first third)) := by
   sorry
 
-/-- A representative-level specification of the sign-normalized reciprocal formula. -/
-def IsReciprocalRepresentative
+/-- Definition 2.10: reciprocal specification for a nonzero rational. -/
+def IsReciprocal
     (input : Input)
-    (source target : Representative input) : Prop :=
-  (input.integer_model.signature.strict_order
-      input.integer_model.signature.zero source.numerator ∧
-    target.numerator = input.to_integer source.denominator ∧
-    target.denominator = input.absolute_numerator source.numerator) ∨
-  (input.integer_model.signature.strict_order
-      source.numerator input.integer_model.signature.zero ∧
-    target.numerator =
-      input.integer_model.signature.negation
-        (input.to_integer source.denominator) ∧
-    target.denominator = input.absolute_numerator source.numerator)
+    (value reciprocal : Carrier input) : Prop :=
+  multiplication input value reciprocal = one input ∧
+  multiplication input reciprocal value = one input
 
-/-- Definition 2.10 and Theorem 2.11: every nonzero rational has a unique reciprocal. -/
+/-- Theorem 2.11: every nonzero rational has a unique reciprocal. -/
 theorem reciprocal_exists_uniquely
     (input : Input)
     (value : Carrier input)
     (value_nonzero : value ≠ zero input) :
     ∃ reciprocal : Carrier input,
-      multiplication input value reciprocal = one input ∧
-      multiplication input reciprocal value = one input ∧
+      IsReciprocal input value reciprocal ∧
       ∀ other,
-        multiplication input value other = one input →
-        multiplication input other value = one input →
+        IsReciprocal input value other →
         other = reciprocal := by
   sorry
 
@@ -264,12 +224,18 @@ theorem inverse_is_two_sided
     (input : Input)
     (value : Carrier input)
     (value_nonzero : value ≠ zero input) :
-    multiplication input value (inverse input value value_nonzero) = one input ∧
-    multiplication input (inverse input value value_nonzero) value = one input := by
+    IsReciprocal input value (inverse input value value_nonzero) := by
   sorry
 
 /-- Theorem 2.12: the rationals form a field. -/
-theorem field_structure (input : Input) : Prop := by
+theorem field_structure (input : Input) :
+    additive_group_laws input ∧
+    multiplicative_and_distributive_laws input ∧
+    zero input ≠ one input ∧
+    (∀ value : Carrier input,
+      value ≠ zero input →
+      ∃ reciprocal,
+        IsReciprocal input value reciprocal) := by
   sorry
 
 /-- Definition 3.1: representative strict order. -/
@@ -287,43 +253,44 @@ def representative_strict_order
 /-- Theorem 3.2: representative strict order is independent of representatives. -/
 theorem representative_strict_order_respects_equivalence
     (input : Input) :
-    ∀ first first' second second',
-      equivalent input first first' →
-      equivalent input second second' →
-      (representative_strict_order input first second ↔
-        representative_strict_order input first' second') := by
-  sorry
-
-/-- Definition 3.1: strict order exists on quotient classes. -/
-theorem strict_order_exists
-    (input : Input) :
-    ∃ strict_order : Carrier input → Carrier input → Prop,
-      ∀ first second : Representative input,
-        strict_order (Quotient.mk _ first) (Quotient.mk _ second) ↔
-          representative_strict_order input first second := by
+    Foundations.Quotients.relation_respects
+      (representative_setoid input)
+      (representative_strict_order input) := by
   sorry
 
 /-- Definition 3.1: rational strict order. -/
 noncomputable def strict_order (input : Input) :
     Carrier input → Carrier input → Prop :=
-  Classical.choose (strict_order_exists input)
+  Classical.choose
+    (Foundations.Quotients.induced_relation_exists
+      (representative_setoid input)
+      (representative_strict_order input)
+      (representative_strict_order_respects_equivalence input))
 
 /-- Rational non-strict order. -/
 def nonstrict_order (input : Input) (first second : Carrier input) : Prop :=
   strict_order input first second ∨ first = second
 
 /-- Theorem 3.3: rational strict order is a strict total order. -/
-theorem strict_total_order (input : Input) : Prop := by
+theorem strict_total_order (input : Input) :
+    (∀ value : Carrier input, ¬ strict_order input value value) ∧
+    (∀ first second third : Carrier input,
+      strict_order input first second →
+      strict_order input second third →
+      strict_order input first third) ∧
+    (∀ first second : Carrier input,
+      first ≠ second →
+      strict_order input first second ∨ strict_order input second first) := by
   sorry
 
 /-- Theorem 3.4: rational order is compatible with addition and positive multiplication. -/
 theorem ordered_field_compatibility (input : Input) :
-    (∀ first second translation,
+    (∀ first second translation : Carrier input,
       strict_order input first second →
       strict_order input
         (addition input first translation)
         (addition input second translation)) ∧
-    (∀ first second,
+    (∀ first second : Carrier input,
       strict_order input (zero input) first →
       strict_order input (zero input) second →
       strict_order input
@@ -332,7 +299,10 @@ theorem ordered_field_compatibility (input : Input) :
   sorry
 
 /-- Theorem 3.5: the rationals form an ordered field. -/
-theorem ordered_field_structure (input : Input) : Prop := by
+theorem ordered_field_structure (input : Input) :
+    field_structure input ∧
+    strict_total_order input ∧
+    ordered_field_compatibility input := by
   sorry
 
 /-- Definition 4.1: integer representative with denominator one. -/
@@ -494,11 +464,33 @@ theorem square_root_two_cut_has_no_supremum
   sorry
 
 /-- Corollary 7.5: the rationals are not order-complete. -/
-theorem not_order_complete (input : Input) : Prop := by
+theorem not_order_complete (input : Input) :
+    ∃ subset : Carrier input → Prop,
+      (∃ value, subset value) ∧
+      (∃ upper,
+        ∀ value,
+          subset value →
+          nonstrict_order input value upper) ∧
+      ¬ ∃ supremum,
+        (∀ value,
+          subset value →
+          nonstrict_order input value supremum) ∧
+        (∀ upper,
+          (∀ value,
+            subset value →
+            nonstrict_order input value upper) →
+          nonstrict_order input supremum upper) := by
   sorry
 
 /-- Theorem 8.1: final structural summary. -/
-theorem structure_of_the_rationals (input : Input) : Prop := by
+theorem structure_of_the_rationals (input : Input) :
+    ordered_field_structure input ∧
+    (∀ first second : Carrier input,
+      strict_order input first second →
+      ∃ middle,
+        strict_order input first middle ∧
+        strict_order input middle second) ∧
+    not_order_complete input := by
   sorry
 
 end Canonical
