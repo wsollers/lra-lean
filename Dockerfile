@@ -65,18 +65,6 @@ RUN python3 -m venv /opt/lean-blueprint \
     && /opt/lean-blueprint/bin/pip install \
       leanblueprint==0.0.20
 
-# Lean Blueprint ships its LaTeX package inside the Python installation rather
-# than the system TeX tree. Install that package into a standard TEXMF path so
-# both XeLaTeX and latexmk can resolve \usepackage{blueprint} reproducibly.
-RUN set -eux; \
-    blueprint_style="$(find /opt/lean-blueprint -type f -name blueprint.sty -print -quit)"; \
-    test -n "$blueprint_style"; \
-    install -d /usr/local/share/texmf/tex/latex/leanblueprint; \
-    install -m 0644 "$blueprint_style" \
-      /usr/local/share/texmf/tex/latex/leanblueprint/blueprint.sty; \
-    mktexlsr; \
-    kpsewhich blueprint.sty
-
 ENV PATH="/opt/lean-blueprint/bin:/root/.elan/bin:${PATH}"
 
 WORKDIR /workspace
