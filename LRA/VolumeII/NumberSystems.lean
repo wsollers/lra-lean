@@ -8,6 +8,7 @@ import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeII.Integers.ConstructionModels
 import LRA.VolumeII.Rationals.ConstructionModels
 import LRA.VolumeII.Reals.ConstructionModels
+import LRA.VolumeII.Reals.Cauchy
 import LRA.VolumeII.NumberSystems.Construction
 
 namespace LRA
@@ -18,7 +19,7 @@ namespace NumberSystems
 Volume II label: configurable-number-system-root
 Lean module: LRA.VolumeII.NumberSystems
 Blueprint label: configurable-number-system-root
-Verification status: statement-accepted-proof-pending aggregation module
+Verification status: proof-ready refactor in progress
 -/
 
 end NumberSystems
