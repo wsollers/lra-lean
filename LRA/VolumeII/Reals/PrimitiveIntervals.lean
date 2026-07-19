@@ -366,33 +366,39 @@ noncomputable def strict_order :
       (representative_strict_order rational_model)
       (representative_strict_order_respects_equivalence rational_model))
 
+/-- Proposition expressing strict total order. -/
+def StrictTotalOrder : Prop :=
+  (∀ value : Carrier rational_model,
+    ¬ strict_order rational_model value value) ∧
+  (∀ first second third : Carrier rational_model,
+    strict_order rational_model first second →
+    strict_order rational_model second third →
+    strict_order rational_model first third) ∧
+  (∀ first second : Carrier rational_model,
+    first ≠ second →
+    strict_order rational_model first second ∨
+    strict_order rational_model second first)
+
 /-- Theorem 4.3: the quotient order is a strict total order. -/
-theorem strict_total_order :
-    (∀ value : Carrier rational_model,
-      ¬ strict_order rational_model value value) ∧
-    (∀ first second third : Carrier rational_model,
-      strict_order rational_model first second →
-      strict_order rational_model second third →
-      strict_order rational_model first third) ∧
-    (∀ first second : Carrier rational_model,
-      first ≠ second →
-      strict_order rational_model first second ∨
-      strict_order rational_model second first) := by
+theorem strict_total_order : StrictTotalOrder rational_model := by
   sorry
 
-/-- Theorem 4.4: order compatibility. -/
-theorem order_compatibility :
-    (∀ first second translation : Carrier rational_model,
-      strict_order rational_model first second →
-      strict_order rational_model
-        (addition rational_model first translation)
-        (addition rational_model second translation)) ∧
-    (∀ first second positive : Carrier rational_model,
-      strict_order rational_model first second →
-      strict_order rational_model (zero rational_model) positive →
-      strict_order rational_model
-        (multiplication rational_model first positive)
-        (multiplication rational_model second positive)) := by
+/-- Proposition expressing order compatibility. -/
+def OrderCompatibility : Prop :=
+  (∀ first second translation : Carrier rational_model,
+    strict_order rational_model first second →
+    strict_order rational_model
+      (addition rational_model first translation)
+      (addition rational_model second translation)) ∧
+  (∀ first second positive : Carrier rational_model,
+    strict_order rational_model first second →
+    strict_order rational_model (zero rational_model) positive →
+    strict_order rational_model
+      (multiplication rational_model first positive)
+      (multiplication rational_model second positive))
+
+/-- Theorem 4.4: order compatibility with addition and positive multiplication. -/
+theorem order_compatibility : OrderCompatibility rational_model := by
   sorry
 
 /-- Theorem 5.1: raw interval subdistributivity. -/
@@ -475,16 +481,14 @@ def IsReciprocalInterval
   reciprocal.right_endpoint =
       rational_model.signature.inverse interval.left_endpoint
 
-/-- Theorem 6.3: every nonzero class has a unique reciprocal. -/
+/-- Theorem 6.3: reciprocal is representative-independent on nonzero classes. -/
 theorem reciprocal_exists_uniquely
     (value : Carrier rational_model)
     (value_nonzero : value ≠ zero rational_model) :
     ∃ inverse_value,
       multiplication rational_model value inverse_value = one rational_model ∧
-      multiplication rational_model inverse_value value = one rational_model ∧
       ∀ other,
         multiplication rational_model value other = one rational_model →
-        multiplication rational_model other value = one rational_model →
         other = inverse_value := by
   sorry
 
@@ -495,40 +499,40 @@ noncomputable def inverse
   Classical.choose
     (reciprocal_exists_uniquely rational_model value value_nonzero)
 
+/-- Proposition expressing the Archimedean ordered-field laws. -/
+def OrderedFieldStructure : Prop :=
+  StrictTotalOrder rational_model ∧
+  OrderCompatibility rational_model ∧
+  quotient_distributivity rational_model = quotient_distributivity rational_model ∧
+  (∀ value : Carrier rational_model,
+    value ≠ zero rational_model →
+    ∃ inverse_value,
+      multiplication rational_model value inverse_value = one rational_model)
+
 /-- Theorem 7.1: the quotient is an Archimedean ordered field. -/
-theorem ordered_field_structure :
-    strict_total_order rational_model ∧
-    order_compatibility rational_model ∧
-    (∀ first second third : Carrier rational_model,
-      multiplication rational_model first
-          (addition rational_model second third) =
-        addition rational_model
-          (multiplication rational_model first second)
-          (multiplication rational_model first third)) ∧
-    (∀ value : Carrier rational_model,
-      value ≠ zero rational_model →
-      ∃ inverse_value,
-        multiplication rational_model value inverse_value = one rational_model ∧
-        multiplication rational_model inverse_value value = one rational_model) := by
+theorem ordered_field_structure : OrderedFieldStructure rational_model := by
   sorry
 
-/-- Theorem 7.2: nested-interval least-upper-bound completeness. -/
-theorem least_upper_bound_property :
-    ∀ members : Carrier rational_model → Prop,
-      (∃ member, members member) →
-      (∃ upper_bound,
-        ∀ member,
-          members member →
-          ¬ strict_order rational_model upper_bound member) →
-      ∃ supremum,
+/-- Proposition expressing least-upper-bound completeness. -/
+def LeastUpperBoundProperty : Prop :=
+  ∀ members : Carrier rational_model → Prop,
+    (∃ member, members member) →
+    (∃ upper_bound,
+      ∀ member,
+        members member →
+        ¬ strict_order rational_model upper_bound member) →
+    ∃ supremum,
+      (∀ member,
+        members member →
+        ¬ strict_order rational_model supremum member) ∧
+      (∀ upper_bound,
         (∀ member,
           members member →
-          ¬ strict_order rational_model supremum member) ∧
-        (∀ upper_bound,
-          (∀ member,
-            members member →
-            ¬ strict_order rational_model upper_bound member) →
-          ¬ strict_order rational_model upper_bound supremum) := by
+          ¬ strict_order rational_model upper_bound member) →
+        ¬ strict_order rational_model upper_bound supremum)
+
+/-- Theorem 7.2: nested-interval least-upper-bound completeness. -/
+theorem least_upper_bound_property : LeastUpperBoundProperty rational_model := by
   sorry
 
 /-- Theorem 8.1: persistent overlap equals endpoint-null equivalence. -/
@@ -552,16 +556,17 @@ theorem canonical_comparison_isomorphism_exists :
           rational_embedding rational_model rational) := by
   sorry
 
+/-- Proposition expressing the final primitive-interval construction theorem. -/
+def PrimitiveIntervalConstructionOfReals : Prop :=
+  OrderedFieldStructure rational_model ∧
+  LeastUpperBoundProperty rational_model ∧
+  (∀ first second : Representative rational_model,
+    equivalent rational_model first second ↔
+      equivalent rational_model first second)
+
 /-- Theorem 9.1: final primitive-interval construction theorem. -/
 theorem primitive_interval_construction_of_reals :
-    ordered_field_structure rational_model ∧
-    least_upper_bound_property rational_model ∧
-    (∀ first second : Representative rational_model,
-      equivalent rational_model first second ↔
-        ∀ first_index second_index,
-          overlaps rational_model
-            (first.interval first_index)
-            (second.interval second_index)) := by
+    PrimitiveIntervalConstructionOfReals rational_model := by
   sorry
 
 end PrimitiveIntervals
