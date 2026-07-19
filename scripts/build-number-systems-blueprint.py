@@ -44,6 +44,8 @@ ORDER = [
     "gpt-09-complex.md",
     "gpt-09a-characteristic-cardinality.md",
     "gpt-10-comparison-matrix.md",
+    "gpt-09b-isomorphism-requirements.md",
+    "gpt-09c-volume-iii-interoperability-tests.md",
 ]
 
 SPECIAL = {
