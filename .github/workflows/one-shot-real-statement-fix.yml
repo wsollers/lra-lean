@@ -1,0 +1,38 @@
+name: One-shot real construction statement fix
+
+on:
+  push:
+    branches:
+      - agent/number-system-models-blueprint
+    paths:
+      - scripts/fix_real_construction_statements.py
+      - .github/workflows/one-shot-real-statement-fix.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: ${{ !contains(github.event.head_commit.message, '[real-statement-fix]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/number-system-models-blueprint
+          fetch-depth: 0
+
+      - name: Patch real construction statements
+        run: python3 scripts/fix_real_construction_statements.py
+
+      - name: Commit fix
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add LRA/VolumeII/Reals/ConstructionModels.lean
+          if git diff --cached --quiet; then
+            echo 'Real statement fixes already applied.'
+            exit 0
+          fi
+          git commit -m 'fix: repair real construction proposition shapes [real-statement-fix]'
+          git push origin HEAD:agent/number-system-models-blueprint
