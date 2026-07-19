@@ -18,6 +18,16 @@ This module follows `docs/number-systems/gpt-07-reals-interval-arithmetic.md`.
 The construction is definitionally independent of all other real constructions.
 -/
 
+/-- Reflexivity of the non-strict order, derived from its agreement with `<` and `=`. -/
+theorem nonstrict_order_reflexive
+    (rational_model : RationalModel)
+    (value : rational_model.signature.carrier) :
+    rational_model.signature.nonstrict_order value value := by
+  exact
+    rational_model.laws.ordered_integral_domain_laws
+      .toOrderedRingLaws.nonstrict_order_agrees_with_strict_order value value |>.2
+      (Or.inr rfl)
+
 /-- A rational closed interval with ordered endpoints. -/
 structure RationalInterval (rational_model : RationalModel) where
   left_endpoint : rational_model.signature.carrier
@@ -111,8 +121,7 @@ def degenerate_interval
     RationalInterval rational_model where
   left_endpoint := value
   right_endpoint := value
-  endpoints_are_ordered :=
-    rational_model.laws.nonstrict_order_reflexive value
+  endpoints_are_ordered := nonstrict_order_reflexive rational_model value
 
 /-- The constant degenerate sequence representing a rational number. -/
 def rational_representative
@@ -122,8 +131,8 @@ def rational_representative
   interval := fun _ => degenerate_interval rational_model value
   nested := by
     intro index
-    exact ⟨rational_model.laws.nonstrict_order_reflexive value,
-      rational_model.laws.nonstrict_order_reflexive value⟩
+    exact ⟨nonstrict_order_reflexive rational_model value,
+      nonstrict_order_reflexive rational_model value⟩
   widths_converge_to_zero := by
     sorry
 
@@ -137,7 +146,10 @@ def rational_embedding
 /-- The canonical rational embedding is injective. -/
 theorem rational_embedding_is_injective
     (rational_model : RationalModel) :
-    Function.Injective (rational_embedding rational_model) := by
+    ∀ first second,
+      rational_embedding rational_model first =
+          rational_embedding rational_model second →
+        first = second := by
   sorry
 
 /-- Minkowski sum of rational intervals. -/
