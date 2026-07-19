@@ -41,6 +41,7 @@ ORDER = [
     "gpt-08b-reals-extensions.md",
     "gpt-08c-extended-reals.md",
     "gpt-08d-interval-arithmetic-over-reals.md",
+    "gpt-08e-irrational-numbers.md",
     "gpt-09-complex.md",
     "gpt-09a-characteristic-cardinality.md",
     "gpt-10-comparison-matrix.md",
