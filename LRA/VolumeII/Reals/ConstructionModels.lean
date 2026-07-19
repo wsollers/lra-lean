@@ -52,8 +52,26 @@ noncomputable def real_extension
 /-- **[Theorem — Dedekind Reals Are Complete]** -/
 theorem reals_are_complete
     (rational_model : RationalModel) :
-    (real_model rational_model).laws.least_upper_bound_property := by
-  sorry
+    ∀ subset : (real_model rational_model).signature.carrier → Prop,
+      (∃ member, subset member) →
+      (∃ upper_bound,
+        ∀ member,
+          subset member →
+          (real_model rational_model).signature.nonstrict_order
+            member upper_bound) →
+      ∃ supremum,
+        (∀ member,
+          subset member →
+          (real_model rational_model).signature.nonstrict_order
+            member supremum) ∧
+        (∀ upper_bound,
+          (∀ member,
+            subset member →
+            (real_model rational_model).signature.nonstrict_order
+              member upper_bound) →
+          (real_model rational_model).signature.nonstrict_order
+            supremum upper_bound) := by
+  exact (real_model rational_model).laws.least_upper_bound_property
 
 end Dedekind
 
@@ -114,7 +132,7 @@ noncomputable def real_model
 **[Proposition — Cantor Endpoint Sequences Determine a Cauchy Class]**
 -/
 theorem endpoint_sequences_determine_cauchy_class
-    (rational_model : RationalModel) : Prop := by
+    (rational_model : RationalModel) : True := by
   sorry
 
 end Cantor
@@ -157,13 +175,13 @@ theorem representative_multiplication_respects_equivalence
 /--
 **[Proposition — Raw Interval Multiplication Is Not Distributive]**
 -/
-theorem raw_interval_multiplication_is_not_distributive : Prop := by
+theorem raw_interval_multiplication_is_not_distributive : True := by
   sorry
 
 /--
 **[Corollary — Distributivity Is Recovered on the Real Quotient]**
 -/
-theorem quotient_multiplication_is_distributive : Prop := by
+theorem quotient_multiplication_is_distributive : True := by
   sorry
 
 /-- **[Definition — Interval-Quotient Real Model]** -/
