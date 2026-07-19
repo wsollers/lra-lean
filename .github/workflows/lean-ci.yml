@@ -51,6 +51,18 @@ jobs:
             fi
             echo "No Mathlib imports in VolumeI / VolumeII"'
 
+      - name: Enforce Volume II namespace policy
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/workspace" \
+            -w /workspace \
+            lra-lean \
+            bash -lc 'if grep -R -n -E "^namespace Peano([[:space:]]|$)|^open Peano([[:space:]]|$)|Peano\.[A-Za-z_]" LRA --include="*.lean"; then
+              echo "ERROR: legacy Peano namespace declaration, open command, or qualified reference found."
+              exit 1
+            fi
+            echo "All Peano-system and natural-number declarations use the LRA.VolumeII hierarchy."'
+
       - name: Report proof placeholders in VolumeI / VolumeII
         continue-on-error: true
         run: |
