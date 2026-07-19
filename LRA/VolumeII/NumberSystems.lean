@@ -9,6 +9,7 @@ import LRA.VolumeII.Integers.ConstructionModels
 import LRA.VolumeII.Rationals.ConstructionModels
 import LRA.VolumeII.Reals.ConstructionModels
 import LRA.VolumeII.Reals.Cauchy
+import LRA.VolumeII.Reals.PrimitiveIntervals
 import LRA.VolumeII.NumberSystems.Construction
 
 namespace LRA
