@@ -19,8 +19,12 @@ This package is the mathematical source of truth for the proof-ready Lean and Bl
 13. Extended reals and interval arithmetic over an existing real field
 14. Complex numbers
 15. Characteristic, cardinality, and comparison matrix
-16. Sequel: p-adic numbers
+16. Isomorphism requirements for constructed number systems
+17. Volume III interoperability and substitutability tests
+18. Sequel: p-adic numbers
 
 ## Proof-readiness rule
 
 Definitions must be mathematically complete. Theorem statements must be final. Only proof bodies may contain `sorry`.
+
+Construction-specific isomorphism, preservation, reflection, embedding-compatibility, and substitutability theorem proofs are intentionally left as `sorry` until reached in the declared proof order. Concrete tests may compile against these pending theorems, but a suite is not verified while its bridge depends on `sorryAx`.
