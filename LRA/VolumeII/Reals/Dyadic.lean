@@ -17,6 +17,7 @@ Source: docs/number-systems/gpt-08-reals-dyadic.md
 Verification status: definitions and final theorem statements complete; proofs pending
 -/
 
+/-- Binary digits. -/
 inductive Digit where
   | zero
   | one
@@ -24,53 +25,46 @@ inductive Digit where
 
 abbrev FractionalDigits := Nat → Digit
 
-/-- Definition 2.1: binary digit sequence. -/
+/-- Definition 2.1: every term is a binary digit. -/
 def IsBinaryDigitSequence (digits : FractionalDigits) : Prop :=
-  ∀ index, digits index = Digit.zero ∨ digits index = Digit.one
+  ∀ index,
+    digits index = Digit.zero ∨ digits index = Digit.one
 
 /-- Definition 2.2: canonical sequences are not eventually constantly one. -/
 def IsCanonical (digits : FractionalDigits) : Prop :=
   IsBinaryDigitSequence digits ∧
-    ¬ ∃ threshold,
-      ∀ index,
-        threshold ≤ index →
-        digits index = Digit.one
+  ¬ ∃ threshold,
+    ∀ index,
+      threshold ≤ index →
+      digits index = Digit.one
 
 structure CanonicalFraction where
   digits : FractionalDigits
   canonical : IsCanonical digits
 
-/-- Finite binary numeral with leading digit one. -/
+/-- A finite canonical binary numeral. -/
 structure FiniteNumeral where
   highest_exponent : Nat
   digit : Fin (highest_exponent + 1) → Digit
   leading_digit_is_one :
     digit ⟨highest_exponent, Nat.lt_succ_self highest_exponent⟩ = Digit.one
 
-/-- A digit one occurs in the integer or fractional part. -/
-def HasOneDigit
-    (integer_part : FiniteNumeral)
-    (fractional_part : CanonicalFraction) : Prop :=
-  (∃ index, integer_part.digit index = Digit.one) ∨
-    ∃ index, fractional_part.digits index = Digit.one
-
-/-- Definition 3.1: nonzero unsigned binary expansion. -/
+/-- Definition 3.1: an unsigned expansion. -/
 structure UnsignedExpansion where
   integer_part : FiniteNumeral
   fractional_part : CanonicalFraction
-  nonzero : HasOneDigit integer_part fractional_part
 
 inductive Sign where
   | negative
   | positive
   deriving DecidableEq
 
-/-- Definition 3.3: canonical signed binary real. -/
+/-- Definition 3.3: a canonical signed binary real. -/
 inductive Expansion where
   | zero
   | nonzero (sign : Sign) (magnitude : UnsignedExpansion)
 
-/-- Data from the integer, whole-number, rational, and Cauchy-real layers. -/
+/-- Data supplied by the integer, whole-number, rational, and Cauchy-real layers. -/
 structure Context where
   rational_model : RationalModel
   absolute_value_data : Cauchy.AbsoluteValueData rational_model
@@ -111,13 +105,15 @@ structure Context where
     Cauchy.Carrier rational_model absolute_value_data →
       Cauchy.Carrier rational_model absolute_value_data → Prop
 
+  cauchy_complete_archimedean_ordered_field : Prop
+
 variable (context : Context)
 
 abbrev Rational := context.rational_model.signature.carrier
 abbrev CauchyCarrier :=
   Cauchy.Carrier context.rational_model context.absolute_value_data
 
-/-- Definition 1.1: dyadic rational m / 2^n. -/
+/-- Definition 1.1: predicate for dyadic rationals m / 2^n. -/
 def IsDyadicRational (value : Rational context) : Prop :=
   ∃ numerator : context.integer_carrier,
     ∃ exponent : context.whole_carrier,
@@ -157,7 +153,7 @@ theorem dyadic_rationals_are_dense
       context.rational_model.signature.strict_order dyadic second := by
   sorry
 
-/-- Definition 2.3: partial sums s_N = sum d_n 2^(-n). -/
+/-- Definition 2.3: rational partial sums of a binary fractional expansion. -/
 def fractional_partial_sum
     (digits : FractionalDigits)
     (bound : Nat) : Rational context :=
@@ -169,7 +165,7 @@ def fractional_partial_sum
           (context.power_of_two (context.exponent_of_index index))))
     bound
 
-/-- Theorem 2.4: every binary partial-sum sequence is Cauchy. -/
+/-- Theorem 2.4: binary partial sums are Cauchy. -/
 theorem fractional_partial_sums_are_cauchy
     (digits : FractionalDigits) :
     Cauchy.is_cauchy
@@ -178,14 +174,14 @@ theorem fractional_partial_sums_are_cauchy
       (fractional_partial_sum context digits) := by
   sorry
 
-/-- Definition 2.5: value of a fractional expansion. -/
+/-- Definition 2.5: value of a canonical fractional expansion. -/
 def fractional_value
     (fraction : CanonicalFraction) : CauchyCarrier context :=
   Quotient.mk _
     ⟨fractional_partial_sum context fraction.digits,
       fractional_partial_sums_are_cauchy context fraction.digits⟩
 
-/-- Theorem 2.6: eventually-one tails carry uniquely to terminating expansions. -/
+/-- Theorem 2.6: every eventually-one tail carries to a unique terminating expansion. -/
 theorem binary_tail_ambiguity
     (digits : FractionalDigits)
     (eventually_one :
@@ -221,10 +217,11 @@ def unsigned_value
       (context.finite_numeral_value expansion.integer_part))
     (fractional_value context expansion.fractional_part)
 
-/-- Definition 3.4: signed value map V. -/
+/-- Definition 3.4: the signed value map V. -/
 def value : Expansion → CauchyCarrier context
   | Expansion.zero => context.cauchy_zero
-  | Expansion.nonzero Sign.positive magnitude => unsigned_value context magnitude
+  | Expansion.nonzero Sign.positive magnitude =>
+      unsigned_value context magnitude
   | Expansion.nonzero Sign.negative magnitude =>
       context.cauchy_negation (unsigned_value context magnitude)
 
@@ -254,42 +251,37 @@ theorem value_is_bijective :
 
 /-- The representation theorem yields an equivalence with Cauchy reals. -/
 theorem equivalence_exists :
-    ∃ equivalence : Expansion ≃ CauchyCarrier context,
+    ∃ equivalence : Equiv Expansion (CauchyCarrier context),
       ∀ expansion,
         equivalence expansion = value context expansion := by
   sorry
 
-noncomputable def equivalence : Expansion ≃ CauchyCarrier context :=
+noncomputable def equivalence : Equiv Expansion (CauchyCarrier context) :=
   Classical.choose (equivalence_exists context)
 
-/-- Definition 4.1: transported zero. -/
+/-- Definition 4.1: transported constants and operations. -/
 noncomputable def zero : Expansion :=
   (equivalence context).symm context.cauchy_zero
 
-/-- Definition 4.1: transported one. -/
 noncomputable def one : Expansion :=
   (equivalence context).symm context.cauchy_one
 
-/-- Definition 4.1: transported addition. -/
 noncomputable def addition (first second : Expansion) : Expansion :=
   (equivalence context).symm
     (context.cauchy_addition
       (equivalence context first)
       (equivalence context second))
 
-/-- Definition 4.1: transported additive inverse. -/
 noncomputable def negation (expansion : Expansion) : Expansion :=
   (equivalence context).symm
     (context.cauchy_negation (equivalence context expansion))
 
-/-- Definition 4.1: transported multiplication. -/
 noncomputable def multiplication (first second : Expansion) : Expansion :=
   (equivalence context).symm
     (context.cauchy_multiplication
       (equivalence context first)
       (equivalence context second))
 
-/-- Definition 4.1: transported reciprocal. -/
 noncomputable def inverse (expansion : Expansion) : Expansion :=
   (equivalence context).symm
     (context.cauchy_inverse (equivalence context expansion))
@@ -302,6 +294,8 @@ def strict_order (first second : Expansion) : Prop :=
 
 /-- Theorem 4.2: V is an ordered-field isomorphism. -/
 theorem ordered_field_isomorphism :
+    equivalence context (zero context) = context.cauchy_zero ∧
+    equivalence context (one context) = context.cauchy_one ∧
     (∀ first second,
       equivalence context (addition context first second) =
         context.cauchy_addition
@@ -326,7 +320,9 @@ theorem ordered_field_isomorphism :
   sorry
 
 /-- Corollary 4.3: binary reals are a complete Archimedean ordered field. -/
-theorem complete_archimedean_ordered_field : Prop := by
+theorem complete_archimedean_ordered_field :
+    ordered_field_isomorphism context ∧
+    context.cauchy_complete_archimedean_ordered_field := by
   sorry
 
 end Dyadic
