@@ -12,15 +12,20 @@ Volume II label: configurable-number-system-models
 Lean module: LRA.VolumeII.NumberSystems.Models
 Blueprint label: configurable-number-system-models
 Verification status: statement-accepted-proof-pending
+
+The law hierarchy separates properties shared by ordered domains from the
+properties that distinguish the integers, rationals, and reals. In particular,
+discreteness belongs only to integer models, while Archimedean and cofinality
+obligations belong to the extension maps between adjacent number systems.
 -/
 
 /--
-**[Definition — Integer Laws]**
+**[Definition — Ordered Ring Laws]**
 
-The laws of a discretely ordered integral domain, stated directly against an
-ordered-ring signature.
+These are the additive, multiplicative, distributive, and order-compatibility
+laws shared by the ordered number systems.
 -/
-structure IntegerLaws
+structure OrderedRingLaws
     (signature : OrderedRingSignature) : Prop where
   addition_is_associative :
     ∀ first second third : signature.carrier,
@@ -68,11 +73,6 @@ structure IntegerLaws
         signature.addition
           (signature.multiplication first second)
           (signature.multiplication first third)
-  zero_is_not_one : signature.zero ≠ signature.one
-  has_no_zero_divisors :
-    ∀ first second : signature.carrier,
-      signature.multiplication first second = signature.zero →
-      first = signature.zero ∨ second = signature.zero
   strict_order_is_irreflexive :
     ∀ value : signature.carrier,
       ¬ signature.strict_order value value
@@ -103,6 +103,27 @@ structure IntegerLaws
       signature.strict_order
         (signature.multiplication first positive_factor)
         (signature.multiplication second positive_factor)
+
+/--
+**[Definition — Ordered Integral-Domain Laws]**
+-/
+structure OrderedIntegralDomainLaws
+    (signature : OrderedRingSignature) : Prop
+    extends OrderedRingLaws signature where
+  zero_is_not_one : signature.zero ≠ signature.one
+  has_no_zero_divisors :
+    ∀ first second : signature.carrier,
+      signature.multiplication first second = signature.zero →
+      first = signature.zero ∨ second = signature.zero
+
+/--
+**[Definition — Integer Laws]**
+
+The integer laws add discrete order to the ordered integral-domain laws.
+-/
+structure IntegerLaws
+    (signature : OrderedRingSignature) : Prop
+    extends OrderedIntegralDomainLaws signature where
   order_is_discrete :
     ∀ value : signature.carrier,
       ¬ ∃ middle : signature.carrier,
@@ -119,12 +140,14 @@ structure IntegerModel where
 /--
 **[Definition — Rational Laws]**
 
-The rational laws form an Archimedean densely ordered field. Completeness is
-intentionally not included.
+A rational model is a densely ordered field. Its Archimedean relationship to the
+selected integer model is recorded in `RationalExtension`, where the embedding
+needed to state that property is available.
 -/
 structure RationalLaws
     (signature : OrderedFieldSignature) : Prop where
-  integer_like_laws : IntegerLaws signature.toOrderedRingSignature
+  ordered_integral_domain_laws :
+    OrderedIntegralDomainLaws signature.toOrderedRingSignature
   inverse_is_multiplicative_inverse :
     ∀ value : signature.carrier,
       value ≠ signature.zero →
@@ -138,7 +161,6 @@ structure RationalLaws
       ∃ middle : signature.carrier,
         signature.strict_order first middle ∧
         signature.strict_order middle second
-  archimedean_property : Prop
 
 /-- **[Definition — Rational Model]** -/
 structure RationalModel where
@@ -148,8 +170,9 @@ structure RationalModel where
 /--
 **[Definition — Real Laws]**
 
-The real laws form a complete Archimedean ordered field. Completeness is stored
-as an explicit least-upper-bound statement over predicates.
+The real laws add the least-upper-bound property to the densely ordered field
+laws. Archimedean cofinality of the selected rational copy is recorded by the
+adjacent extension structure.
 -/
 structure RealLaws
     (signature : OrderedFieldSignature) : Prop where
@@ -222,12 +245,23 @@ structure IntegerEmbeddingIntoRational
           (to_rational second) ↔
         integer_model.signature.nonstrict_order first second
 
-/-- **[Definition — Rational Extension of an Integer Model]** -/
+/--
+**[Definition — Rational Extension of an Integer Model]**
+
+The Archimedean clause says that the embedded integers are cofinal in the
+rational order.
+-/
 structure RationalExtension
     (integer_model : IntegerModel) where
   rational_model : RationalModel
   integer_embedding :
     IntegerEmbeddingIntoRational integer_model rational_model
+  archimedean_property :
+    ∀ rational_value : rational_model.signature.carrier,
+      ∃ integer_value : integer_model.signature.carrier,
+        rational_model.signature.strict_order
+          rational_value
+          (integer_embedding.to_rational integer_value)
 
 /--
 **[Definition — Rational Embedding into a Real Model]**
@@ -281,12 +315,24 @@ structure RationalEmbeddingIntoReal
           (to_real second) ↔
         rational_model.signature.nonstrict_order first second
 
-/-- **[Definition — Real Extension of a Rational Model]** -/
+/--
+**[Definition — Real Extension of a Rational Model]**
+
+The cofinality clause records that every real lies below an embedded rational.
+Together with the rational extension, this exposes the Archimedean tower
+explicitly.
+-/
 structure RealExtension
     (rational_model : RationalModel) where
   real_model : RealModel
   rational_embedding :
     RationalEmbeddingIntoReal rational_model real_model
+  rational_embedding_is_cofinal :
+    ∀ real_value : real_model.signature.carrier,
+      ∃ rational_value : rational_model.signature.carrier,
+        real_model.signature.strict_order
+          real_value
+          (rational_embedding.to_real rational_value)
 
 /--
 **[Proposition — Every Integer Model Has Zero Absorption]**
