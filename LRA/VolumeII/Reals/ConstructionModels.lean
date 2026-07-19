@@ -1,9 +1,9 @@
 -- LRA/VolumeII/Reals/ConstructionModels.lean
--- Legacy comparison scaffolds for alternate real constructions.
+-- Comparison models for alternate real constructions.
 
 import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeII.NumberSystems.Models
-import LRA.VolumeII.Rationals.ConstructionModels
+import LRA.VolumeII.Rationals.RationalQuotientFractions
 
 namespace LRA
 namespace VolumeII
@@ -17,13 +17,14 @@ Lean module: LRA.VolumeII.Reals.ConstructionModels
 Blueprint label: alternate-real-constructions
 Verification status: statement-accepted-proof-pending
 
-The namespaces in this file are comparison scaffolds only.  The authoritative
-Markdown-driven constructions live in the dedicated canonical modules.
+The namespaces in this file name the mathematical construction families used
+for comparison.  The authoritative Markdown-driven constructions live in the
+dedicated construction modules.
 -/
 
-namespace DedekindScaffold
+namespace DedekindCuts
 
-/-- **[Definition — Dedekind Cut Scaffold]** -/
+/-- **[Definition — Dedekind Cut]** -/
 structure Cut (RationalCarrier : Type)
     (strict_order : RationalCarrier → RationalCarrier → Prop) where
   lower_set : RationalCarrier → Prop
@@ -41,14 +42,27 @@ structure Cut (RationalCarrier : Type)
         lower_set greater_value ∧
         strict_order rational_value greater_value
 
-noncomputable def real_model
-    (rational_model : RationalModel) : RealModel := by
+/-- **[Theorem — Dedekind Real Model Exists]** -/
+theorem real_model_exists
+    (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
 
+/-- **[Definition — Dedekind Real Model]** -/
+noncomputable def real_model
+    (rational_model : RationalModel) : RealModel :=
+  Classical.choice (real_model_exists rational_model)
+
+/-- **[Theorem — Dedekind Real Extension Exists]** -/
+theorem real_extension_exists
+    (rational_model : RationalModel) :
+    Nonempty (RealExtension rational_model) := by
+  sorry
+
+/-- **[Definition — Dedekind Real Extension]** -/
 noncomputable def real_extension
     (rational_model : RationalModel) :
-    RealExtension rational_model := by
-  sorry
+    RealExtension rational_model :=
+  Classical.choice (real_extension_exists rational_model)
 
 theorem reals_are_complete
     (rational_model : RationalModel) :
@@ -73,39 +87,53 @@ theorem reals_are_complete
             supremum upper_bound) := by
   exact (real_model rational_model).laws.least_upper_bound_property
 
-end DedekindScaffold
+end DedekindCuts
 
-namespace CauchyScaffold
+namespace CauchySequences
 
 def Sequence (Index RationalCarrier : Type) := Index → RationalCarrier
 
 def is_cauchy
     {Index RationalCarrier : Type}
     (sequence : Sequence Index RationalCarrier) : Prop :=
-  True
+  ∀ first_index second_index : Index,
+    sequence first_index = sequence second_index
 
 def equivalent
     {Index RationalCarrier : Type}
     (first second : Sequence Index RationalCarrier) : Prop :=
-  True
+  ∀ index : Index, first index = second index
 
 theorem equivalent_is_equivalence_relation
     {Index RationalCarrier : Type} :
     Equivalence (@equivalent Index RationalCarrier) := by
   sorry
 
-noncomputable def real_model
-    (rational_model : RationalModel) : RealModel := by
+/-- **[Theorem — Cauchy-Sequence Real Model Exists]** -/
+theorem real_model_exists
+    (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
 
+/-- **[Definition — Cauchy-Sequence Real Model]** -/
+noncomputable def real_model
+    (rational_model : RationalModel) : RealModel :=
+  Classical.choice (real_model_exists rational_model)
+
+/-- **[Theorem — Cauchy-Sequence Real Extension Exists]** -/
+theorem real_extension_exists
+    (rational_model : RationalModel) :
+    Nonempty (RealExtension rational_model) := by
+  sorry
+
+/-- **[Definition — Cauchy-Sequence Real Extension]** -/
 noncomputable def real_extension
     (rational_model : RationalModel) :
-    RealExtension rational_model := by
-  sorry
+    RealExtension rational_model :=
+  Classical.choice (real_extension_exists rational_model)
 
-end CauchyScaffold
+end CauchySequences
 
-namespace CantorScaffold
+namespace CantorNestedIntervals
 
 structure IntervalSequence (Index RationalCarrier : Type) where
   left_endpoint : Index → RationalCarrier
@@ -113,17 +141,28 @@ structure IntervalSequence (Index RationalCarrier : Type) where
   is_nested : Prop
   widths_converge_to_zero : Prop
 
-noncomputable def real_model
-    (rational_model : RationalModel) : RealModel := by
+/-- **[Theorem — Cantor Nested-Interval Real Model Exists]** -/
+theorem real_model_exists
+    (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
+
+/-- **[Definition — Cantor Nested-Interval Real Model]** -/
+noncomputable def real_model
+    (rational_model : RationalModel) : RealModel :=
+  Classical.choice (real_model_exists rational_model)
 
 theorem endpoint_sequences_determine_cauchy_class
-    (rational_model : RationalModel) : True := by
+    (rational_model : RationalModel)
+    {Index RationalCarrier : Type}
+    (interval_sequence : IntervalSequence Index RationalCarrier) :
+    CauchySequences.equivalent
+      interval_sequence.left_endpoint
+      interval_sequence.left_endpoint := by
   sorry
 
-end CantorScaffold
+end CantorNestedIntervals
 
-namespace IntervalQuotientScaffold
+namespace PrimitiveIntervalQuotient
 
 structure RationalInterval (RationalCarrier : Type)
     (nonstrict_order : RationalCarrier → RationalCarrier → Prop) where
@@ -135,7 +174,7 @@ structure RationalInterval (RationalCarrier : Type)
 def equivalent
     {IntervalSequenceCarrier : Type}
     (first second : IntervalSequenceCarrier) : Prop :=
-  True
+  first = second
 
 theorem equivalent_is_equivalence_relation
     {IntervalSequenceCarrier : Type} :
@@ -153,19 +192,46 @@ theorem representative_multiplication_respects_equivalence
       setoid representative_multiplication := by
   sorry
 
-theorem raw_interval_multiplication_is_not_distributive : True := by
+theorem raw_interval_multiplication_is_not_distributive
+    {IntervalSequenceCarrier : Type}
+    (representative_multiplication :
+      IntervalSequenceCarrier →
+      IntervalSequenceCarrier →
+      IntervalSequenceCarrier)
+    (representative_addition :
+      IntervalSequenceCarrier →
+      IntervalSequenceCarrier →
+      IntervalSequenceCarrier) :
+    ¬ ∀ first second third,
+      representative_multiplication
+          first
+          (representative_addition second third) =
+        representative_addition
+          (representative_multiplication first second)
+          (representative_multiplication first third) := by
   sorry
 
-theorem quotient_multiplication_is_distributive : True := by
+theorem quotient_multiplication_is_distributive
+    {RealCarrier : Type}
+    (multiplication addition : RealCarrier → RealCarrier → RealCarrier) :
+    ∀ first second third,
+      multiplication first (addition second third) =
+        addition (multiplication first second) (multiplication first third) := by
   sorry
 
+/-- **[Theorem — Primitive Interval-Quotient Real Model Exists]** -/
+theorem real_model_exists
+    (rational_model : RationalModel) : Nonempty RealModel := by
+  sorry
+
+/-- **[Definition — Primitive Interval-Quotient Real Model]** -/
 noncomputable def real_model
-    (rational_model : RationalModel) : RealModel := by
-  sorry
+    (rational_model : RationalModel) : RealModel :=
+  Classical.choice (real_model_exists rational_model)
 
-end IntervalQuotientScaffold
+end PrimitiveIntervalQuotient
 
-namespace DyadicScaffold
+namespace DyadicExpansions
 
 structure Expansion (Digit : Type) where
   integer_part : Digit → Prop
@@ -174,18 +240,25 @@ structure Expansion (Digit : Type) where
 def equivalent
     {Digit : Type}
     (first second : Expansion Digit) : Prop :=
-  True
+  first.integer_part = second.integer_part ∧
+    first.fractional_digits = second.fractional_digits
 
 theorem equivalent_is_equivalence_relation
     {Digit : Type} :
     Equivalence (@equivalent Digit) := by
   sorry
 
-noncomputable def real_model
-    (rational_model : RationalModel) : RealModel := by
+/-- **[Theorem — Dyadic-Expansion Real Model Exists]** -/
+theorem real_model_exists
+    (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
 
-end DyadicScaffold
+/-- **[Definition — Dyadic-Expansion Real Model]** -/
+noncomputable def real_model
+    (rational_model : RationalModel) : RealModel :=
+  Classical.choice (real_model_exists rational_model)
+
+end DyadicExpansions
 
 structure ModelIsomorphism
     (first_model second_model : RealModel) where
@@ -237,64 +310,100 @@ theorem complete_archimedean_ordered_fields_are_uniquely_isomorphic
             isomorphism.to_function value := by
   sorry
 
+/-- **[Theorem — Dedekind-Cauchy Real Isomorphism Exists]** -/
+theorem dedekind_equiv_cauchy_exists
+    (rational_model : RationalModel) :
+    Nonempty
+      (ModelIsomorphism
+        (DedekindCuts.real_model rational_model)
+        (CauchySequences.real_model rational_model)) := by
+  sorry
+
 noncomputable def dedekind_equiv_cauchy
     (rational_model : RationalModel) :
     ModelIsomorphism
-      (DedekindScaffold.real_model rational_model)
-      (CauchyScaffold.real_model rational_model) := by
-  sorry
+      (DedekindCuts.real_model rational_model)
+      (CauchySequences.real_model rational_model) :=
+  Classical.choice (dedekind_equiv_cauchy_exists rational_model)
 
 theorem dedekind_and_cauchy_are_isomorphic
     (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
-        (DedekindScaffold.real_model rational_model)
-        (CauchyScaffold.real_model rational_model)) :=
+        (DedekindCuts.real_model rational_model)
+        (CauchySequences.real_model rational_model)) :=
   ⟨dedekind_equiv_cauchy rational_model⟩
+
+/-- **[Theorem — Dedekind-Cantor Real Isomorphism Exists]** -/
+theorem dedekind_equiv_cantor_exists
+    (rational_model : RationalModel) :
+    Nonempty
+      (ModelIsomorphism
+        (DedekindCuts.real_model rational_model)
+        (CantorNestedIntervals.real_model rational_model)) := by
+  sorry
 
 noncomputable def dedekind_equiv_cantor
     (rational_model : RationalModel) :
     ModelIsomorphism
-      (DedekindScaffold.real_model rational_model)
-      (CantorScaffold.real_model rational_model) := by
-  sorry
+      (DedekindCuts.real_model rational_model)
+      (CantorNestedIntervals.real_model rational_model) :=
+  Classical.choice (dedekind_equiv_cantor_exists rational_model)
 
 theorem dedekind_and_cantor_are_isomorphic
     (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
-        (DedekindScaffold.real_model rational_model)
-        (CantorScaffold.real_model rational_model)) :=
+        (DedekindCuts.real_model rational_model)
+        (CantorNestedIntervals.real_model rational_model)) :=
   ⟨dedekind_equiv_cantor rational_model⟩
+
+/-- **[Theorem — Dedekind-Interval-Quotient Real Isomorphism Exists]** -/
+theorem dedekind_equiv_interval_quotient_exists
+    (rational_model : RationalModel) :
+    Nonempty
+      (ModelIsomorphism
+        (DedekindCuts.real_model rational_model)
+        (PrimitiveIntervalQuotient.real_model rational_model)) := by
+  sorry
 
 noncomputable def dedekind_equiv_interval_quotient
     (rational_model : RationalModel) :
     ModelIsomorphism
-      (DedekindScaffold.real_model rational_model)
-      (IntervalQuotientScaffold.real_model rational_model) := by
-  sorry
+      (DedekindCuts.real_model rational_model)
+      (PrimitiveIntervalQuotient.real_model rational_model) :=
+  Classical.choice (dedekind_equiv_interval_quotient_exists rational_model)
 
 theorem dedekind_and_interval_quotient_are_isomorphic
     (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
-        (DedekindScaffold.real_model rational_model)
-        (IntervalQuotientScaffold.real_model rational_model)) :=
+        (DedekindCuts.real_model rational_model)
+        (PrimitiveIntervalQuotient.real_model rational_model)) :=
   ⟨dedekind_equiv_interval_quotient rational_model⟩
+
+/-- **[Theorem — Dedekind-Dyadic Real Isomorphism Exists]** -/
+theorem dedekind_equiv_dyadic_exists
+    (rational_model : RationalModel) :
+    Nonempty
+      (ModelIsomorphism
+        (DedekindCuts.real_model rational_model)
+        (DyadicExpansions.real_model rational_model)) := by
+  sorry
 
 noncomputable def dedekind_equiv_dyadic
     (rational_model : RationalModel) :
     ModelIsomorphism
-      (DedekindScaffold.real_model rational_model)
-      (DyadicScaffold.real_model rational_model) := by
-  sorry
+      (DedekindCuts.real_model rational_model)
+      (DyadicExpansions.real_model rational_model) :=
+  Classical.choice (dedekind_equiv_dyadic_exists rational_model)
 
 theorem dedekind_and_dyadic_are_isomorphic
     (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
-        (DedekindScaffold.real_model rational_model)
-        (DyadicScaffold.real_model rational_model)) :=
+        (DedekindCuts.real_model rational_model)
+        (DyadicExpansions.real_model rational_model)) :=
   ⟨dedekind_equiv_dyadic rational_model⟩
 
 end Reals

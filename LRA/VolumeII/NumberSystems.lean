@@ -7,9 +7,9 @@ import LRA.VolumeII.WholeNumbers
 import LRA.VolumeII.NumberSystems.Signatures
 import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeII.Integers.ConstructionModels
-import LRA.VolumeII.Integers.Canonical
-import LRA.VolumeII.Rationals.ConstructionModels
-import LRA.VolumeII.Rationals.Canonical
+import LRA.VolumeII.Integers.QuotientOrderedPairs
+import LRA.VolumeII.Rationals.RationalQuotientFractions
+import LRA.VolumeII.Rationals.ComparisonModels
 import LRA.VolumeII.Reals.ConstructionModels
 import LRA.VolumeII.Reals.Dedekind
 import LRA.VolumeII.Reals.Cauchy

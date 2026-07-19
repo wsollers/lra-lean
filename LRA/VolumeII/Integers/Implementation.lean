@@ -22,30 +22,43 @@ default target for shared arithmetic tests and downstream examples.
 
 namespace Active
 
-abbrev ZImpl : LRAZ := Polish.PolishZ
+abbrev ZImpl : IntegerStructure := Polish.PolishZ
 
 abbrev Z := ZImpl.carrier
 abbrev P := Polish.TwoSidedSuccessor.P
 abbrev N := Polish.TwoSidedSuccessor.N
 
-abbrev zero : Z := 0
-abbrev one : Z := 1
+instance : Zero Z := ZImpl.zeroInstance
+instance : One Z := ZImpl.oneInstance
+instance : Add Z := ZImpl.addInstance
+instance : Neg Z := ZImpl.negInstance
+instance : Mul Z := ZImpl.mulInstance
+instance : LT Z := ZImpl.ltInstance
+instance : LE Z := ZImpl.leInstance
+
+abbrev zero : Z := IntegerStructure.zero ZImpl
+abbrev one : Z := IntegerStructure.one ZImpl
 abbrev pos : P → Z := Polish.TwoSidedSuccessor.Z.pos
 abbrev neg : N → Z := Polish.TwoSidedSuccessor.Z.neg
 
 abbrev succ : Z → Z := ZImpl.succ
 abbrev pred : Z → Z := ZImpl.pred
 
-abbrev add : Z → Z → Z := (· + ·)
-abbrev negZ : Z → Z := Neg.neg
-abbrev mul : Z → Z → Z := (· * ·)
+abbrev add : Z → Z → Z := IntegerStructure.add ZImpl
+abbrev negZ : Z → Z := IntegerStructure.neg ZImpl
+abbrev mul : Z → Z → Z := IntegerStructure.mul ZImpl
 
-abbrev successorLaws : LRASuccessorLaws ZImpl := Polish.PolishSuccessorLaws
-abbrev additiveLaws : LRAAdditiveLaws ZImpl := Polish.PolishAdditiveLaws
-abbrev multiplicativeLaws : LRAMultiplicativeLaws ZImpl := Polish.PolishMultiplicativeLaws
-abbrev ringLaws : LRARingLaws ZImpl := Polish.PolishRingLaws
-abbrev orderLaws : LRAOrderLaws ZImpl := Polish.PolishOrderLaws
-abbrev orderedRingLaws : LRAOrderedRingLaws ZImpl := Polish.PolishOrderedRingLaws
+abbrev successorLaws : IntegerSuccessorLaws ZImpl := Polish.PolishSuccessorLaws
+abbrev additiveLaws : IntegerAdditiveLaws ZImpl := Polish.PolishAdditiveLaws
+abbrev multiplicativeLaws : IntegerMultiplicativeLaws ZImpl :=
+  Polish.PolishMultiplicativeLaws
+abbrev multiplicationSuccessorLaws :
+    IntegerMultiplicationSuccessorLaws ZImpl :=
+  Polish.PolishMultiplicationSuccessorLaws
+abbrev ringLaws : IntegerRingLaws ZImpl := Polish.PolishRingLaws
+abbrev orderLaws : IntegerOrderLaws ZImpl := Polish.PolishOrderLaws
+abbrev orderedRingLaws : IntegerOrderedRingLaws ZImpl := Polish.PolishOrderedRingLaws
+abbrev integerLaws : IntegerLaws ZImpl := Polish.PolishIntegerLaws
 
 end Active
 

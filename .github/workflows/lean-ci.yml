@@ -63,6 +63,14 @@ jobs:
             fi
             echo "All Peano-system and natural-number declarations use the LRA.VolumeII hierarchy."'
 
+      - name: Check proof-readiness
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/workspace" \
+            -w /workspace \
+            lra-lean \
+            python3 scripts/check-proof-readiness.py
+
       - name: Report proof placeholders in VolumeI / VolumeII
         continue-on-error: true
         run: |

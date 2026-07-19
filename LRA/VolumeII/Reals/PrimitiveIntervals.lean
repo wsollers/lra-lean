@@ -537,7 +537,7 @@ theorem least_upper_bound_property : LeastUpperBoundProperty rational_model := b
 
 /-- Theorem 8.1: persistent overlap equals endpoint-null equivalence. -/
 theorem persistent_overlap_iff_endpoint_null
-    (absolute_value_data : Cauchy.AbsoluteValueData rational_model)
+    (absolute_value_data : Cauchy.RationalMetricData rational_model)
     (first second : Representative rational_model) :
     equivalent rational_model first second ↔
       Cauchy.is_null rational_model absolute_value_data

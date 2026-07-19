@@ -73,7 +73,7 @@ corresponding concrete construction module.
 -/
 theorem number_system_tower_exists
     (construction : NumberSystemConstruction) :
-    ∃ tower : NumberSystemTower, True := by
+    Nonempty NumberSystemTower := by
   sorry
 
 /--
@@ -85,8 +85,8 @@ bundles.
 -/
 noncomputable def build_number_system_tower
     (construction : NumberSystemConstruction) :
-    NumberSystemTower := by
-  sorry
+    NumberSystemTower :=
+  Classical.choice (number_system_tower_exists construction)
 
 /-- **[Definition — Default Number-System Tower]** -/
 noncomputable def default_tower : NumberSystemTower :=

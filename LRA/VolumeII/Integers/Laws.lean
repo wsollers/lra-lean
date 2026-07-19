@@ -12,58 +12,164 @@ Volume II label: integers-law-bundles
 Lean module: LRA.VolumeII.Integers.Laws
 Verification status: checked interface module
 
-These records are deliberately smaller than Mathlib's algebraic classes. They
-use Mathlib-compatible operation notation, but they let each Volume II source
-variant expose checked progress incrementally.
+These records are deliberately smaller than Mathlib's algebraic classes. The
+algebraic and order laws are generic mixins over carrier operation bundles;
+integer-specific successor and discreteness laws are attached only at the
+integer layer.
 -/
 
-structure LRASuccessorLaws (Z : LRAZ) : Prop where
-  pred_succ : ∀ x : Z.carrier, Z.pred (Z.succ x) = x
-  succ_pred : ∀ x : Z.carrier, Z.succ (Z.pred x) = x
-  succ_injective : ∀ ⦃x y : Z.carrier⦄, Z.succ x = Z.succ y → x = y
-  pred_injective : ∀ ⦃x y : Z.carrier⦄, Z.pred x = Z.pred y → x = y
-
-structure LRAAdditiveLaws (Z : LRAZ) : Prop where
-  add_assoc : Foundation.Algebra.associative (LRAZ.add Z)
-  add_comm : Foundation.Algebra.commutative (LRAZ.add Z)
-  zero_add : Foundation.Algebra.leftIdentity (LRAZ.add Z) (LRAZ.zero Z)
-  add_zero : Foundation.Algebra.rightIdentity (LRAZ.add Z) (LRAZ.zero Z)
+structure AdditiveGroupLaws (additive_structure : AdditiveStructure) : Prop where
+  add_assoc : Foundation.Algebra.associative (AdditiveStructure.add additive_structure)
+  add_comm : Foundation.Algebra.commutative (AdditiveStructure.add additive_structure)
+  zero_add :
+    Foundation.Algebra.leftIdentity
+      (AdditiveStructure.add additive_structure)
+      (AdditiveStructure.zero additive_structure)
+  add_zero :
+    Foundation.Algebra.rightIdentity
+      (AdditiveStructure.add additive_structure)
+      (AdditiveStructure.zero additive_structure)
   neg_add_self :
-    Foundation.Algebra.leftInverse (LRAZ.add Z) (LRAZ.zero Z) (LRAZ.neg Z)
+    Foundation.Algebra.leftInverse
+      (AdditiveStructure.add additive_structure)
+      (AdditiveStructure.zero additive_structure)
+      (AdditiveStructure.neg additive_structure)
   add_neg_self :
-    Foundation.Algebra.rightInverse (LRAZ.add Z) (LRAZ.zero Z) (LRAZ.neg Z)
-  neg_neg : ∀ x : Z.carrier, -(-x) = x
-  neg_add : ∀ x y : Z.carrier, -(x + y) = -x + -y
+    Foundation.Algebra.rightInverse
+      (AdditiveStructure.add additive_structure)
+      (AdditiveStructure.zero additive_structure)
+      (AdditiveStructure.neg additive_structure)
+  neg_neg :
+    ∀ x : additive_structure.carrier,
+      AdditiveStructure.neg additive_structure
+          (AdditiveStructure.neg additive_structure x) =
+        x
+  neg_add :
+    ∀ x y : additive_structure.carrier,
+      AdditiveStructure.neg additive_structure
+          (AdditiveStructure.add additive_structure x y) =
+        AdditiveStructure.add additive_structure
+          (AdditiveStructure.neg additive_structure x)
+          (AdditiveStructure.neg additive_structure y)
 
-structure LRAMultiplicativeLaws (Z : LRAZ) : Prop where
-  one_mul : Foundation.Algebra.leftIdentity (LRAZ.mul Z) (LRAZ.one Z)
-  mul_zero : Foundation.Algebra.rightAbsorbing (LRAZ.mul Z) (LRAZ.zero Z)
-  zero_mul : Foundation.Algebra.leftAbsorbing (LRAZ.mul Z) (LRAZ.zero Z)
-  mul_succ : ∀ x y : Z.carrier, x * Z.succ y = x * y + x
-  mul_pred : ∀ x y : Z.carrier, x * Z.pred y = x * y + -x
+structure MultiplicativeMonoidLaws
+    (multiplicative_structure : MultiplicativeStructure) : Prop where
+  one_mul :
+    Foundation.Algebra.leftIdentity
+      (MultiplicativeStructure.mul multiplicative_structure)
+      (MultiplicativeStructure.one multiplicative_structure)
+  mul_one :
+    Foundation.Algebra.rightIdentity
+      (MultiplicativeStructure.mul multiplicative_structure)
+      (MultiplicativeStructure.one multiplicative_structure)
+  mul_zero :
+    Foundation.Algebra.rightAbsorbing
+      (MultiplicativeStructure.mul multiplicative_structure)
+      (MultiplicativeStructure.zero multiplicative_structure)
+  zero_mul :
+    Foundation.Algebra.leftAbsorbing
+      (MultiplicativeStructure.mul multiplicative_structure)
+      (MultiplicativeStructure.zero multiplicative_structure)
+  mul_assoc :
+    Foundation.Algebra.associative
+      (MultiplicativeStructure.mul multiplicative_structure)
+  mul_comm :
+    Foundation.Algebra.commutative
+      (MultiplicativeStructure.mul multiplicative_structure)
 
-structure LRARingLaws (Z : LRAZ) : Prop extends
-    LRAAdditiveLaws Z, LRAMultiplicativeLaws Z where
-  mul_assoc : Foundation.Algebra.associative (LRAZ.mul Z)
-  mul_comm : Foundation.Algebra.commutative (LRAZ.mul Z)
-  distrib_left : Foundation.Algebra.leftDistributive (LRAZ.mul Z) (LRAZ.add Z)
-  distrib_right : Foundation.Algebra.rightDistributive (LRAZ.mul Z) (LRAZ.add Z)
-  mul_neg : ∀ x y : Z.carrier, x * -y = -(x * y)
-  neg_mul : ∀ x y : Z.carrier, -x * y = -(x * y)
+structure RingLaws (ring_structure : RingStructure) : Prop extends
+    AdditiveGroupLaws ring_structure.toAdditiveStructure,
+    MultiplicativeMonoidLaws ring_structure.toMultiplicativeStructure where
+  distrib_left :
+    Foundation.Algebra.leftDistributive
+      (RingStructure.mul ring_structure)
+      (RingStructure.add ring_structure)
+  distrib_right :
+    Foundation.Algebra.rightDistributive
+      (RingStructure.mul ring_structure)
+      (RingStructure.add ring_structure)
+  mul_neg :
+    ∀ x y : ring_structure.carrier,
+      RingStructure.mul ring_structure x (RingStructure.neg ring_structure y) =
+        RingStructure.neg ring_structure (RingStructure.mul ring_structure x y)
+  neg_mul :
+    ∀ x y : ring_structure.carrier,
+      RingStructure.mul ring_structure (RingStructure.neg ring_structure x) y =
+        RingStructure.neg ring_structure (RingStructure.mul ring_structure x y)
 
-structure LRAOrderLaws (Z : LRAZ) : Prop where
-  lt_irrefl : Foundation.Order.irreflexive (LRAZ.lt Z)
-  lt_trans : Foundation.Order.transitive (LRAZ.lt Z)
-  le_refl : Foundation.Order.reflexive (LRAZ.le Z)
-  le_antisymm : Foundation.Order.antisymmetric (LRAZ.le Z)
-  lt_trichotomy : ∀ x y : Z.carrier, x < y ∨ x = y ∨ y < x
+structure OrderLaws (ordered_structure : OrderedStructure) : Prop where
+  lt_irrefl : Foundation.Order.irreflexive (OrderedStructure.lt ordered_structure)
+  lt_trans : Foundation.Order.transitive (OrderedStructure.lt ordered_structure)
+  le_refl : Foundation.Order.reflexive (OrderedStructure.le ordered_structure)
+  le_antisymm : Foundation.Order.antisymmetric (OrderedStructure.le ordered_structure)
+  lt_trichotomy :
+    ∀ x y : ordered_structure.carrier,
+      OrderedStructure.lt ordered_structure x y ∨
+      x = y ∨
+      OrderedStructure.lt ordered_structure y x
+
+structure OrderedRingLaws (ordered_ring_structure : OrderedRingStructure) : Prop
+    extends
+      RingLaws ordered_ring_structure.toRingStructure,
+      OrderLaws ordered_ring_structure.toOrderedStructure where
   add_lt_add_right :
-    Foundation.Order.strictlyPreservesRightTranslation (LRAZ.lt Z) (LRAZ.add Z)
-
-structure LRAOrderedRingLaws (Z : LRAZ) : Prop extends LRARingLaws Z, LRAOrderLaws Z where
+    Foundation.Order.strictlyPreservesRightTranslation
+      (OrderedRingStructure.lt ordered_ring_structure)
+      (OrderedRingStructure.add ordered_ring_structure)
   mul_lt_mul_pos_right :
     Foundation.Order.preservesPositiveRightMultiplication
-      (LRAZ.lt Z) (LRAZ.mul Z) (LRAZ.zero Z)
+      (OrderedRingStructure.lt ordered_ring_structure)
+      (OrderedRingStructure.mul ordered_ring_structure)
+      (OrderedRingStructure.zero ordered_ring_structure)
+
+structure IntegerSuccessorLaws (integer_structure : IntegerStructure) : Prop where
+  pred_succ :
+    ∀ x : integer_structure.carrier,
+      integer_structure.pred (integer_structure.succ x) = x
+  succ_pred :
+    ∀ x : integer_structure.carrier,
+      integer_structure.succ (integer_structure.pred x) = x
+  succ_injective :
+    ∀ ⦃x y : integer_structure.carrier⦄,
+      integer_structure.succ x = integer_structure.succ y → x = y
+  pred_injective :
+    ∀ ⦃x y : integer_structure.carrier⦄,
+      integer_structure.pred x = integer_structure.pred y → x = y
+
+structure IntegerMultiplicationSuccessorLaws
+    (integer_structure : IntegerStructure) : Prop where
+  mul_succ :
+    ∀ x y : integer_structure.carrier,
+      IntegerStructure.mul integer_structure x (integer_structure.succ y) =
+        IntegerStructure.add integer_structure
+          (IntegerStructure.mul integer_structure x y)
+          x
+  mul_pred :
+    ∀ x y : integer_structure.carrier,
+      IntegerStructure.mul integer_structure x (integer_structure.pred y) =
+        IntegerStructure.add integer_structure
+          (IntegerStructure.mul integer_structure x y)
+          (IntegerStructure.neg integer_structure x)
+
+structure IntegerLaws (integer_structure : IntegerStructure) : Prop extends
+    OrderedRingLaws integer_structure.toOrderedRingStructure,
+    IntegerSuccessorLaws integer_structure,
+    IntegerMultiplicationSuccessorLaws integer_structure where
+
+abbrev IntegerAdditiveLaws (integer_structure : IntegerStructure) : Prop :=
+  AdditiveGroupLaws integer_structure.toAdditiveStructure
+
+abbrev IntegerMultiplicativeLaws (integer_structure : IntegerStructure) : Prop :=
+  MultiplicativeMonoidLaws integer_structure.toMultiplicativeStructure
+
+abbrev IntegerRingLaws (integer_structure : IntegerStructure) : Prop :=
+  RingLaws integer_structure.toRingStructure
+
+abbrev IntegerOrderLaws (integer_structure : IntegerStructure) : Prop :=
+  OrderLaws integer_structure.toOrderedStructure
+
+abbrev IntegerOrderedRingLaws (integer_structure : IntegerStructure) : Prop :=
+  OrderedRingLaws integer_structure.toOrderedRingStructure
 
 end Integers
 end VolumeII

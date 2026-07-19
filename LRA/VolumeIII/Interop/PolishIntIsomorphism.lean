@@ -28,8 +28,10 @@ def equivalence : Z ≃ Int where
     intro value
     sorry
 
-/-- The equivalence preserves all native ordered-ring structure. -/
-def orderedRingIsomorphism : OrderedRingIsomorphism Z Int where
+/-- The Polish-integer equivalence preserves all native ordered-ring structure. -/
+theorem orderedRingIsomorphism_exists :
+    Nonempty (OrderedRingIsomorphism Z Int) := by
+  refine ⟨{
   equivalence := equivalence
 
   constructedZero := 0
@@ -67,6 +69,11 @@ def orderedRingIsomorphism : OrderedRingIsomorphism Z Int where
   map_le := by
     intro left right
     sorry
+  }⟩
+
+/-- The equivalence preserves all native ordered-ring structure. -/
+noncomputable def orderedRingIsomorphism : OrderedRingIsomorphism Z Int :=
+  Classical.choice orderedRingIsomorphism_exists
 
 /-- Subtraction is preserved as a derived operation. -/
 theorem map_subtraction

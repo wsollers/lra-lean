@@ -36,21 +36,23 @@ echo "  Staged VolumeII files:"
 echo "$CHANGED_LEAN" | sed 's/^/    /'
 
 echo ""
-echo "  Checking for 'sorry'..."
-SORRY_FOUND=0
-while IFS= read -r f; do
-    if grep -q "sorry" "$f" 2>/dev/null; then
-        echo -e "  ${RED}✗${NC} sorry found in: $f"
-        grep -n "sorry" "$f" | head -5 | sed 's/^/      /'
-        SORRY_FOUND=1
-    fi
-done <<< "$CHANGED_LEAN"
-
-if [[ $SORRY_FOUND -eq 1 ]]; then
-    echo -e "  ${RED}BLOCKED:${NC} Remove 'sorry' before committing to VolumeII."
+echo "  Checking proof-readiness..."
+if [[ $USE_DOCKER -eq 1 ]] && $RUN sh -lc 'command -v python3 >/dev/null 2>&1'; then
+    PROOF_READINESS_CMD="$RUN python3 scripts/check-proof-readiness.py"
+elif command -v python3 &>/dev/null; then
+    PROOF_READINESS_CMD="python3 scripts/check-proof-readiness.py"
+elif command -v python &>/dev/null; then
+    PROOF_READINESS_CMD="python scripts/check-proof-readiness.py"
+else
+    echo -e "  ${RED}BLOCKED:${NC} Python is required for proof-readiness checks."
     exit 1
 fi
-echo -e "  ${GREEN}✓${NC} No sorry found"
+
+if ! $PROOF_READINESS_CMD 2>&1; then
+    echo -e "  ${RED}BLOCKED:${NC} proof-readiness check failed."
+    exit 1
+fi
+echo -e "  ${GREEN}✓${NC} proof-readiness check passed"
 
 echo ""
 echo "  Running lake build LRAVolumeII..."

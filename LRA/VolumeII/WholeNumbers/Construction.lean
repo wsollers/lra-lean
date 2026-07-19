@@ -16,91 +16,91 @@ Verification status: definitions complete; theorem proofs pending
 -/
 
 /-- Arithmetic data already constructed on the one-based natural carrier. -/
-structure NaturalArithmeticContext where
+structure NaturalArithmeticForWholeNumbers where
   peano : PeanoSystem
   addition : peano.carrier → peano.carrier → peano.carrier
   multiplication : peano.carrier → peano.carrier → peano.carrier
   strictOrder : peano.carrier → peano.carrier → Prop
 
-variable (context : NaturalArithmeticContext)
+variable (natural_data : NaturalArithmeticForWholeNumbers)
 
 /-- `none` is the newly adjoined zero; `some n` is the embedded positive natural `n`. -/
-abbrev Carrier := Option context.peano.carrier
+abbrev Carrier := Option natural_data.peano.carrier
 
 /-- The adjoined zero. -/
-def zero : Carrier context := none
+def zero : Carrier natural_data := none
 
 /-- The embedded one. -/
-def one : Carrier context := some context.peano.one
+def one : Carrier natural_data := some natural_data.peano.one
 
 /-- Inclusion of the one-based natural carrier into the whole numbers. -/
-def naturalEmbedding (value : context.peano.carrier) : Carrier context := some value
+def naturalEmbedding (value : natural_data.peano.carrier) : Carrier natural_data := some value
 
 /-- Successor on the whole numbers. -/
-def successor : Carrier context → Carrier context
-  | none => some context.peano.one
-  | some value => some (context.peano.successor value)
+def successor : Carrier natural_data → Carrier natural_data
+  | none => some natural_data.peano.one
+  | some value => some (natural_data.peano.successor value)
 
 /-- Addition extends natural addition and makes the new zero an identity. -/
-def addition : Carrier context → Carrier context → Carrier context
+def addition : Carrier natural_data → Carrier natural_data → Carrier natural_data
   | none, right => right
   | left, none => left
-  | some left, some right => some (context.addition left right)
+  | some left, some right => some (natural_data.addition left right)
 
 /-- Multiplication extends natural multiplication and makes zero absorbing. -/
-def multiplication : Carrier context → Carrier context → Carrier context
+def multiplication : Carrier natural_data → Carrier natural_data → Carrier natural_data
   | none, _ => none
   | _, none => none
-  | some left, some right => some (context.multiplication left right)
+  | some left, some right => some (natural_data.multiplication left right)
 
 /-- Strict order puts zero below every positive natural and otherwise uses natural order. -/
-def strictOrder : Carrier context → Carrier context → Prop
+def strictOrder : Carrier natural_data → Carrier natural_data → Prop
   | none, none => False
   | none, some _ => True
   | some _, none => False
-  | some left, some right => context.strictOrder left right
+  | some left, some right => natural_data.strictOrder left right
 
 /-- Non-strict order is strict order or equality. -/
-def nonstrictOrder (left right : Carrier context) : Prop :=
-  strictOrder context left right ∨ left = right
+def nonstrictOrder (left right : Carrier natural_data) : Prop :=
+  strictOrder natural_data left right ∨ left = right
 
 /-- Every whole number is exactly one of zero or an embedded positive natural. -/
-theorem basic_decomposition (value : Carrier context) :
-    ((value = zero context) ∨
-      (∃ natural, value = naturalEmbedding context natural)) ∧
-    ¬ ((value = zero context) ∧
-      (∃ natural, value = naturalEmbedding context natural)) ∧
+theorem basic_decomposition (value : Carrier natural_data) :
+    ((value = zero natural_data) ∨
+      (∃ natural, value = naturalEmbedding natural_data natural)) ∧
+    ¬ ((value = zero natural_data) ∧
+      (∃ natural, value = naturalEmbedding natural_data natural)) ∧
     (∀ first second,
-      value = naturalEmbedding context first →
-      value = naturalEmbedding context second →
+      value = naturalEmbedding natural_data first →
+      value = naturalEmbedding natural_data second →
       first = second) := by
   sorry
 
 /-- Zero is not a successor. -/
-theorem zero_is_not_successor (value : Carrier context) :
-    successor context value ≠ zero context := by
+theorem zero_is_not_successor (value : Carrier natural_data) :
+    successor natural_data value ≠ zero natural_data := by
   sorry
 
 /-- Successor on whole numbers is injective. -/
 theorem successor_is_injective :
     ∀ first second,
-      successor context first = successor context second → first = second := by
+      successor natural_data first = successor natural_data second → first = second := by
   sorry
 
 /-- Induction from the adjoined zero. -/
 theorem induction_from_zero
-    (predicate : Carrier context → Prop)
-    (zero_case : predicate (zero context))
-    (successor_case : ∀ value, predicate value → predicate (successor context value)) :
+    (predicate : Carrier natural_data → Prop)
+    (zero_case : predicate (zero natural_data))
+    (successor_case : ∀ value, predicate value → predicate (successor natural_data value)) :
     ∀ value, predicate value := by
   sorry
 
 /-- Strong induction on the whole numbers. -/
 theorem strong_induction
-    (predicate : Carrier context → Prop)
+    (predicate : Carrier natural_data → Prop)
     (step :
       ∀ value,
-        (∀ smaller, strictOrder context smaller value → predicate smaller) →
+        (∀ smaller, strictOrder natural_data smaller value → predicate smaller) →
         predicate value) :
     ∀ value, predicate value := by
   sorry
@@ -108,93 +108,93 @@ theorem strong_induction
 /-- Addition forms a commutative cancellative monoid. -/
 theorem additive_structure :
     (∀ first second third,
-      addition context (addition context first second) third =
-        addition context first (addition context second third)) ∧
+      addition natural_data (addition natural_data first second) third =
+        addition natural_data first (addition natural_data second third)) ∧
     (∀ first second,
-      addition context first second = addition context second first) ∧
+      addition natural_data first second = addition natural_data second first) ∧
     (∀ value,
-      addition context (zero context) value = value ∧
-      addition context value (zero context) = value) ∧
+      addition natural_data (zero natural_data) value = value ∧
+      addition natural_data value (zero natural_data) = value) ∧
     (∀ first second common,
-      addition context first common = addition context second common →
+      addition natural_data first common = addition natural_data second common →
       first = second) := by
   sorry
 
 /-- Multiplication and addition form a nontrivial commutative semiring without zero divisors. -/
 theorem semiring_structure :
-    zero context ≠ one context ∧
+    zero natural_data ≠ one natural_data ∧
     (∀ first second third,
-      multiplication context (multiplication context first second) third =
-        multiplication context first (multiplication context second third)) ∧
+      multiplication natural_data (multiplication natural_data first second) third =
+        multiplication natural_data first (multiplication natural_data second third)) ∧
     (∀ first second,
-      multiplication context first second = multiplication context second first) ∧
+      multiplication natural_data first second = multiplication natural_data second first) ∧
     (∀ value,
-      multiplication context (one context) value = value ∧
-      multiplication context value (one context) = value) ∧
+      multiplication natural_data (one natural_data) value = value ∧
+      multiplication natural_data value (one natural_data) = value) ∧
     (∀ value,
-      multiplication context (zero context) value = zero context ∧
-      multiplication context value (zero context) = zero context) ∧
+      multiplication natural_data (zero natural_data) value = zero natural_data ∧
+      multiplication natural_data value (zero natural_data) = zero natural_data) ∧
     (∀ first second third,
-      multiplication context first (addition context second third) =
-        addition context
-          (multiplication context first second)
-          (multiplication context first third)) ∧
+      multiplication natural_data first (addition natural_data second third) =
+        addition natural_data
+          (multiplication natural_data first second)
+          (multiplication natural_data first third)) ∧
     (∀ first second,
-      multiplication context first second = zero context →
-      first = zero context ∨ second = zero context) := by
+      multiplication natural_data first second = zero natural_data →
+      first = zero natural_data ∨ second = zero natural_data) := by
   sorry
 
 /-- The whole-number order is discrete, total, and compatible with arithmetic. -/
 theorem ordered_semiring_structure :
-    (∀ value, nonstrictOrder context (zero context) value) ∧
+    (∀ value, nonstrictOrder natural_data (zero natural_data) value) ∧
     (∀ first second,
-      strictOrder context first second ∨ first = second ∨ strictOrder context second first) ∧
+      strictOrder natural_data first second ∨ first = second ∨ strictOrder natural_data second first) ∧
     (∀ first second third,
-      strictOrder context first second →
-      strictOrder context second third →
-      strictOrder context first third) ∧
+      strictOrder natural_data first second →
+      strictOrder natural_data second third →
+      strictOrder natural_data first third) ∧
     (∀ first second translation,
-      strictOrder context first second ↔
-      strictOrder context
-        (addition context first translation)
-        (addition context second translation)) ∧
+      strictOrder natural_data first second ↔
+      strictOrder natural_data
+        (addition natural_data first translation)
+        (addition natural_data second translation)) ∧
     (∀ first second positive,
-      positive ≠ zero context →
-      (strictOrder context first second ↔
-        strictOrder context
-          (multiplication context first positive)
-          (multiplication context second positive))) := by
+      positive ≠ zero natural_data →
+      (strictOrder natural_data first second ↔
+        strictOrder natural_data
+          (multiplication natural_data first positive)
+          (multiplication natural_data second positive))) := by
   sorry
 
 /-- Every nonempty whole-number subset has a least element. -/
 theorem well_ordering
-    (subset : Carrier context → Prop)
+    (subset : Carrier natural_data → Prop)
     (nonempty : ∃ value, subset value) :
     ∃ least,
       subset least ∧
-      ∀ value, subset value → nonstrictOrder context least value := by
+      ∀ value, subset value → nonstrictOrder natural_data least value := by
   sorry
 
 /-- The natural embedding preserves successor, arithmetic, and order. -/
 theorem natural_embedding_preserves_structure :
     (∀ value,
-      naturalEmbedding context (context.peano.successor value) =
-        successor context (naturalEmbedding context value)) ∧
+      naturalEmbedding natural_data (natural_data.peano.successor value) =
+        successor natural_data (naturalEmbedding natural_data value)) ∧
     (∀ first second,
-      naturalEmbedding context (context.addition first second) =
-        addition context
-          (naturalEmbedding context first)
-          (naturalEmbedding context second)) ∧
+      naturalEmbedding natural_data (natural_data.addition first second) =
+        addition natural_data
+          (naturalEmbedding natural_data first)
+          (naturalEmbedding natural_data second)) ∧
     (∀ first second,
-      naturalEmbedding context (context.multiplication first second) =
-        multiplication context
-          (naturalEmbedding context first)
-          (naturalEmbedding context second)) ∧
+      naturalEmbedding natural_data (natural_data.multiplication first second) =
+        multiplication natural_data
+          (naturalEmbedding natural_data first)
+          (naturalEmbedding natural_data second)) ∧
     (∀ first second,
-      strictOrder context
-          (naturalEmbedding context first)
-          (naturalEmbedding context second) ↔
-        context.strictOrder first second) := by
+      strictOrder natural_data
+          (naturalEmbedding natural_data first)
+          (naturalEmbedding natural_data second) ↔
+        natural_data.strictOrder first second) := by
   sorry
 
 end WholeNumbers

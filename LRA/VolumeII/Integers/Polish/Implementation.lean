@@ -1,5 +1,5 @@
 -- LRA/VolumeII/Integers/Polish/Implementation.lean
--- Polish implementation of the common LRAZ interface.
+-- Polish implementation of the common integer structure.
 
 import LRA.VolumeII.Integers.Laws
 import LRA.VolumeII.Integers.Polish.LandauWorkup
@@ -15,7 +15,7 @@ Lean module: LRA.VolumeII.Integers.Polish.Implementation
 Verification status: checked implementation and law bundles
 
 `PolishZ` exposes the two-sided successor construction through the common
-`LRAZ` interface. The law bundles below are the switchable proof objects used
+`IntegerStructure` interface. The law bundles below are switchable mixins used
 by shared tests and downstream examples.
 -/
 
@@ -27,7 +27,7 @@ instance : Zero PolishZCarrier where
 instance : One PolishZCarrier where
   one := TwoSidedSuccessor.one
 
-def PolishZ : LRAZ where
+def PolishZ : IntegerStructure where
   carrier := PolishZCarrier
   zeroInstance := inferInstance
   oneInstance := inferInstance
@@ -39,7 +39,7 @@ def PolishZ : LRAZ where
   succ := TwoSidedSuccessor.succ
   pred := TwoSidedSuccessor.pred
 
-def PolishSuccessorLaws : LRASuccessorLaws PolishZ where
+def PolishSuccessorLaws : IntegerSuccessorLaws PolishZ where
   pred_succ := TwoSidedSuccessor.pred_succ
   succ_pred := TwoSidedSuccessor.succ_pred
   succ_injective := by
@@ -49,7 +49,7 @@ def PolishSuccessorLaws : LRASuccessorLaws PolishZ where
     intro firstInteger secondInteger predecessorEquality
     exact TwoSidedSuccessor.pred_injective predecessorEquality
 
-def PolishAdditiveLaws : LRAAdditiveLaws PolishZ where
+def PolishAdditiveLaws : IntegerAdditiveLaws PolishZ where
   add_assoc := TwoSidedSuccessor.add_assoc
   add_comm := TwoSidedSuccessor.add_comm
   zero_add := TwoSidedSuccessor.zero_add
@@ -59,24 +59,30 @@ def PolishAdditiveLaws : LRAAdditiveLaws PolishZ where
   neg_neg := TwoSidedSuccessor.neg_neg
   neg_add := TwoSidedSuccessor.neg_add
 
-def PolishMultiplicativeLaws : LRAMultiplicativeLaws PolishZ where
+def PolishMultiplicativeLaws : IntegerMultiplicativeLaws PolishZ where
   one_mul := TwoSidedSuccessor.one_mul
+  mul_one := by
+    intro value
+    cases value <;> rfl
   mul_zero := TwoSidedSuccessor.mul_zero
   zero_mul := TwoSidedSuccessor.zero_mul
+  mul_assoc := TwoSidedSuccessor.mul_assoc
+  mul_comm := TwoSidedSuccessor.mul_comm
+
+def PolishMultiplicationSuccessorLaws :
+    IntegerMultiplicationSuccessorLaws PolishZ where
   mul_succ := TwoSidedSuccessor.mul_succ
   mul_pred := TwoSidedSuccessor.mul_pred
 
-def PolishRingLaws : LRARingLaws PolishZ where
-  toLRAAdditiveLaws := PolishAdditiveLaws
-  toLRAMultiplicativeLaws := PolishMultiplicativeLaws
-  mul_assoc := TwoSidedSuccessor.mul_assoc
-  mul_comm := TwoSidedSuccessor.mul_comm
+def PolishRingLaws : IntegerRingLaws PolishZ where
+  toAdditiveGroupLaws := PolishAdditiveLaws
+  toMultiplicativeMonoidLaws := PolishMultiplicativeLaws
   distrib_left := TwoSidedSuccessor.distrib_left
   distrib_right := TwoSidedSuccessor.distrib_right
   mul_neg := TwoSidedSuccessor.mul_neg
   neg_mul := TwoSidedSuccessor.neg_mul
 
-def PolishOrderLaws : LRAOrderLaws PolishZ where
+def PolishOrderLaws : IntegerOrderLaws PolishZ where
   lt_irrefl := TwoSidedSuccessor.lt_irrefl
   lt_trans := by
     intro firstInteger middleInteger lastInteger firstLessMiddle middleLessLast
@@ -86,18 +92,23 @@ def PolishOrderLaws : LRAOrderLaws PolishZ where
     intro firstInteger secondInteger firstLeSecond secondLeFirst
     exact TwoSidedSuccessor.le_antisymm firstLeSecond secondLeFirst
   lt_trichotomy := TwoSidedSuccessor.lt_trichotomy
+
+def PolishOrderedRingLaws : IntegerOrderedRingLaws PolishZ where
+  toRingLaws := PolishRingLaws
+  toOrderLaws := PolishOrderLaws
   add_lt_add_right := by
     intro firstInteger secondInteger firstLessSecond translatedBy
     exact TwoSidedSuccessor.add_lt_add_right firstLessSecond translatedBy
-
-def PolishOrderedRingLaws : LRAOrderedRingLaws PolishZ where
-  toLRARingLaws := PolishRingLaws
-  toLRAOrderLaws := PolishOrderLaws
   mul_lt_mul_pos_right := by
     intro firstInteger secondInteger positiveMultiplier firstLessSecond zeroLessMultiplier
     have multiplierIsPositiveRay : TwoSidedSuccessor.Pos positiveMultiplier :=
       TwoSidedSuccessor.pos_of_zero_lt positiveMultiplier zeroLessMultiplier
     exact TwoSidedSuccessor.mul_lt_mul_pos_right firstLessSecond multiplierIsPositiveRay
+
+def PolishIntegerLaws : IntegerLaws PolishZ where
+  toOrderedRingLaws := PolishOrderedRingLaws
+  toIntegerSuccessorLaws := PolishSuccessorLaws
+  toIntegerMultiplicationSuccessorLaws := PolishMultiplicationSuccessorLaws
 
 end Polish
 end Integers
