@@ -5,7 +5,10 @@
 
 import LRA.VolumeII.PeanoSystems.PeanoSystem
 
-namespace Peano
+namespace LRA
+namespace VolumeII
+namespace PeanoSystems
+
 
 /--
 **[Theorem — Induction Principle for a Peano System]**
@@ -60,4 +63,6 @@ theorem subset_based_induction_principle
     subset_is_inductive.right
 
 
-end Peano
+end PeanoSystems
+end VolumeII
+end LRA

@@ -24,7 +24,12 @@
 import LRA.VolumeII.PeanoSystems.Recursion
 import LRA.VolumeII.PeanoSystems.BasicTheorems
 
-namespace Peano
+namespace LRA
+namespace VolumeII
+namespace NaturalNumbers
+
+open LRA.VolumeII.PeanoSystems
+
 
 -- ============================================================
 -- The PN inductive type
@@ -150,4 +155,6 @@ theorem pn_iso_any_peano_system
         ⟨iter_base PN_is_peano_system ps.carrier ps.one ps.successor,
          iter_step PN_is_peano_system ps.carrier ps.one ps.successor⟩
 
-end Peano
+end NaturalNumbers
+end VolumeII
+end LRA

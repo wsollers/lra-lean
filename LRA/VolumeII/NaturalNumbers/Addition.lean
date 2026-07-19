@@ -18,7 +18,12 @@
 
 import LRA.VolumeII.PeanoSystems.Recursion
 
-namespace Peano
+namespace LRA
+namespace VolumeII
+namespace NaturalNumbers
+
+open LRA.VolumeII.PeanoSystems
+
 
 
 /--
@@ -158,4 +163,6 @@ theorem addition_is_associative
       right_input
 
 
-end Peano
+end NaturalNumbers
+end VolumeII
+end LRA

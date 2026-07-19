@@ -5,7 +5,10 @@
 
 import LRA.VolumeII.PeanoSystems.Induction
 
-namespace Peano
+namespace LRA
+namespace VolumeII
+namespace PeanoSystems
+
 
 /--
 **[Definition — Iterator Data]**
@@ -698,4 +701,6 @@ theorem peano_iterator_theorem
         other_iterator_satisfies_clauses
         element)
 
-end Peano
+end PeanoSystems
+end VolumeII
+end LRA
