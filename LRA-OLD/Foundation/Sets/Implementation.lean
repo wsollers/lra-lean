@@ -41,13 +41,46 @@ abbrev union {α : LRACarrier} (left right : Set α) : Set α :=
 abbrev intersection {α : LRACarrier} (left right : Set α) : Set α :=
   SetImpl.intersection left right
 
+abbrev complement {α : LRACarrier} (subset : Set α) : Set α :=
+  SetImpl.complement subset
+
+abbrev difference {α : LRACarrier} (left right : Set α) : Set α :=
+  SetImpl.difference left right
+
+abbrev symmetricDifference {α : LRACarrier} (left right : Set α) : Set α :=
+  SetImpl.symmetricDifference left right
+
 abbrev subset {α : LRACarrier} (left right : Set α) : Prop :=
   SetImpl.subset left right
+
+abbrev powerSet {α : LRACarrier} (baseSet : Set α) : Set (Set α) :=
+  SetImpl.powerSet baseSet
 
 abbrev extensionality {α : LRACarrier} {left right : Set α}
     (sameMembers : ∀ element, member element left ↔ member element right) :
     left = right :=
   SetImpl.extensionality sameMembers
+
+abbrev finiteSet {α : LRACarrier} (subset : Set α) : Prop :=
+  SetImpl.finiteSet subset
+
+abbrev covers {α : LRACarrier} (collection : Set (Set α)) (target : Set α) : Prop :=
+  SetImpl.covers collection target
+
+abbrev subcover {α : LRACarrier} (subcollection collection : Set (Set α))
+    (target : Set α) : Prop :=
+  SetImpl.subcover subcollection collection target
+
+abbrev finiteCover {α : LRACarrier} (collection : Set (Set α)) (target : Set α) :
+    Prop :=
+  SetImpl.finiteCover collection target
+
+abbrev openCover {α : LRACarrier} (topology collection : Set (Set α)) (target : Set α) :
+    Prop :=
+  SetImpl.openCover topology collection target
+
+abbrev finiteIntersectionProperty {α : LRACarrier} (collection : Set (Set α)) : Prop :=
+  SetImpl.finiteIntersectionProperty collection
 
 end Active
 

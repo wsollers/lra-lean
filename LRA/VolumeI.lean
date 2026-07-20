@@ -1,8 +1,9 @@
 import LRA.Foundation
-import LRA.VolumeI.BooleanAlgebra.BooleanAlgebraDefinitions
-import LRA.VolumeI.BooleanAlgebra.BooleanAlgebra
-import LRA.VolumeI.PropositionalLogic.PropositionalLogic
-import LRA.VolumeI.PropositionalLogic.SimpleLogic
-import LRA.VolumeI.FirstOrderLogic.PeanoSystemModel
-import LRA.VolumeI.FirstOrderLogic.PresburgerArithmetic
-import LRA.VolumeI.FirstOrderLogic.Comparison
+import LRA.VolumeI.Logic
+
+namespace LRA.VolumeI
+
+theorem wiring_test : True := by
+  trivial
+
+end LRA.VolumeI

@@ -27,7 +27,11 @@ def implementation : LRASetImplementation where
   singleton := LRASet.singleton
   union := LRASet.union
   intersection := LRASet.intersection
+  complement := LRASet.complement
+  difference := LRASet.difference
+  symmetricDifference := LRASet.symmetricDifference
   subset := LRASet.subset
+  powerSet := LRASet.powerSet
   extensionality := by
     intro α left right sameMembers
     exact LRASet.extensionality sameMembers

@@ -60,8 +60,31 @@ def transitive {α : LRACarrier} (relation : Endorelation α) : Prop :=
   ∀ first second third,
     relation first second → relation second third → relation first third
 
+/--
+A relation is connex when any two distinct elements are comparable.
+This is the strict-order analogue of totality for non-strict orders.
+-/
+def connex {α : LRACarrier} (relation : Endorelation α) : Prop :=
+  ∀ first second, first ≠ second → relation first second ∨ relation second first
+
 def total {α : LRACarrier} (relation : Endorelation α) : Prop :=
   ∀ first second, relation first second ∨ relation second first
+
+/--
+Strict trichotomy: exactly one of equality, left-before-right, or
+right-before-left holds.
+-/
+def trichotomous {α : LRACarrier} (relation : Endorelation α) : Prop :=
+  ∀ first second,
+    (first = second ∧ ¬ relation first second ∧ ¬ relation second first) ∨
+    (relation first second ∧ first ≠ second ∧ ¬ relation second first) ∨
+    (relation second first ∧ first ≠ second ∧ ¬ relation first second)
+
+/--
+Lean's well-foundedness predicate, exposed under the project relation vocabulary.
+-/
+def wellFounded {α : LRACarrier} (relation : Endorelation α) : Prop :=
+  WellFounded relation
 
 def equivalence {α : LRACarrier} (relation : Endorelation α) : Prop :=
   reflexive relation ∧ symmetric relation ∧ transitive relation
@@ -78,10 +101,44 @@ def totalOrder {α : LRACarrier} (relation : Endorelation α) : Prop :=
 def strictOrder {α : LRACarrier} (relation : Endorelation α) : Prop :=
   irreflexive relation ∧ transitive relation
 
+def strictTotalOrder {α : LRACarrier} (relation : Endorelation α) : Prop :=
+  strictOrder relation ∧ trichotomous relation
+
+def wellOrder {α : LRACarrier} (relation : Endorelation α) : Prop :=
+  strictOrder relation ∧ wellFounded relation ∧ trichotomous relation
+
 theorem asymmetric_is_irreflexive {α : LRACarrier} {relation : Endorelation α}
     (relationIsAsymmetric : asymmetric relation) :
     irreflexive relation :=
   fun element selfRelated => relationIsAsymmetric element element selfRelated selfRelated
+
+theorem trichotomous_is_connex {α : LRACarrier} {relation : Endorelation α}
+    (relationIsTrichotomous : trichotomous relation) :
+    connex relation := by
+  intro first second distinct
+  cases relationIsTrichotomous first second with
+  | inl equalityCase =>
+      exact False.elim (distinct equalityCase.left)
+  | inr orderCases =>
+      cases orderCases with
+      | inl leftBeforeRight =>
+          exact Or.inl leftBeforeRight.left
+      | inr rightBeforeLeft =>
+          exact Or.inr rightBeforeLeft.left
+
+theorem trichotomous_is_irreflexive {α : LRACarrier} {relation : Endorelation α}
+    (relationIsTrichotomous : trichotomous relation) :
+    irreflexive relation := by
+  intro element selfRelated
+  cases relationIsTrichotomous element element with
+  | inl equalityCase =>
+      exact equalityCase.right.left selfRelated
+  | inr orderCases =>
+      cases orderCases with
+      | inl leftBeforeRight =>
+          exact leftBeforeRight.right.left rfl
+      | inr rightBeforeLeft =>
+          exact rightBeforeLeft.right.left rfl
 
 theorem equality_is_reflexive {α : LRACarrier} :
     reflexive (@Eq α) :=
