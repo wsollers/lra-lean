@@ -85,9 +85,11 @@ number-systems-blueprint:  ## Generate number-system Blueprint inputs
 ifdef NATIVE
 	python3 scripts/build-number-systems-declaration-manifest.py
 	python3 scripts/build-number-systems-blueprint.py
+	python3 scripts/report-number-systems-dependency-order.py --check
 else
 	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(DOC_IMAGE) python3 scripts/build-number-systems-declaration-manifest.py
 	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(DOC_IMAGE) python3 scripts/build-number-systems-blueprint.py
+	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(DOC_IMAGE) python3 scripts/report-number-systems-dependency-order.py --check
 endif
 	@echo "✓ Number-system Blueprint inputs generated"
 

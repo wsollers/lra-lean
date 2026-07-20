@@ -160,6 +160,7 @@ function Invoke-BlueprintInputs {
     Write-Step "Generating number-system Blueprint inputs"
     Invoke-DocsRun @('python3', 'scripts/build-number-systems-declaration-manifest.py')
     Invoke-DocsRun @('python3', 'scripts/build-number-systems-blueprint.py')
+    Invoke-DocsRun @('python3', 'scripts/report-number-systems-dependency-order.py', '--check')
     Write-Ok "Number-system Blueprint inputs generated"
 }
 

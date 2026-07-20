@@ -11,19 +11,20 @@ This package is the mathematical source of truth for the proof-ready Lean and Bl
 5. Proof-preparation roadmap
 6. Natural numbers
 7. Whole numbers
-8. Place-value integers
-9. Divisibility and Euclidean division
+8. Divisibility and Euclidean division
+9. Place-value integers
 10. Integers: canonical, Tao, and Mendelson
-11. Rationals and continued fractions
+11. Rationals
 12. Reals: Dedekind, Cauchy, Cantor, primitive interval quotient, dyadic
-13. Computable reals and real extensions
-14. Extended reals and interval arithmetic over an existing real field
-15. Irrational numbers and mixed rational–irrational arithmetic
+13. Real extensions, extended reals, and interval arithmetic
+14. Irrational numbers and continued fractions
+15. Computable reals
 16. Complex numbers
-17. Characteristic, cardinality, and comparison matrix
+17. Characteristic and cardinality
 18. Isomorphism requirements for constructed number systems
 19. Volume III interoperability and substitutability tests
-20. Sequel: p-adic numbers
+20. Comparison matrix
+21. Sequel: p-adic numbers
 
 ## Proof-readiness rule
 

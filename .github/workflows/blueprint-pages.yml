@@ -58,6 +58,11 @@ jobs:
             -w /workspace \
             lra-lean-docs \
             python3 scripts/build-number-systems-blueprint.py
+          docker run --rm \
+            -v "$PWD:/workspace" \
+            -w /workspace \
+            lra-lean-docs \
+            python3 scripts/report-number-systems-dependency-order.py --check
 
       - name: Compile Blueprint
         run: |
