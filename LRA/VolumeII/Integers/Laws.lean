@@ -82,20 +82,20 @@ structure RingLaws (ring_structure : RingStructure) : Prop extends
     MultiplicativeMonoidLaws ring_structure.toMultiplicativeStructure where
   distrib_left :
     Foundation.Algebra.leftDistributive
-      (RingStructure.mul ring_structure)
-      (RingStructure.add ring_structure)
+      ring_structure.mul
+      ring_structure.add
   distrib_right :
     Foundation.Algebra.rightDistributive
-      (RingStructure.mul ring_structure)
-      (RingStructure.add ring_structure)
+      ring_structure.mul
+      ring_structure.add
   mul_neg :
     ∀ x y : ring_structure.carrier,
-      RingStructure.mul ring_structure x (RingStructure.neg ring_structure y) =
-        RingStructure.neg ring_structure (RingStructure.mul ring_structure x y)
+      ring_structure.mul x (ring_structure.neg y) =
+        ring_structure.neg (ring_structure.mul x y)
   neg_mul :
     ∀ x y : ring_structure.carrier,
-      RingStructure.mul ring_structure (RingStructure.neg ring_structure x) y =
-        RingStructure.neg ring_structure (RingStructure.mul ring_structure x y)
+      ring_structure.mul (ring_structure.neg x) y =
+        ring_structure.neg (ring_structure.mul x y)
 
 structure OrderLaws (ordered_structure : OrderedStructure) : Prop where
   lt_irrefl : Foundation.Order.irreflexive (OrderedStructure.lt ordered_structure)
@@ -108,19 +108,23 @@ structure OrderLaws (ordered_structure : OrderedStructure) : Prop where
       x = y ∨
       OrderedStructure.lt ordered_structure y x
 
+structure OrderedRingCompatibilityLaws
+    (ordered_ring_structure : OrderedRingStructure) : Prop where
+  add_lt_add_right :
+    Foundation.Order.strictlyPreservesRightTranslation
+      ordered_ring_structure.lt
+      ordered_ring_structure.add
+  mul_lt_mul_pos_right :
+    Foundation.Order.preservesPositiveRightMultiplication
+      ordered_ring_structure.lt
+      ordered_ring_structure.mul
+      ordered_ring_structure.zero
+
 structure OrderedRingLaws (ordered_ring_structure : OrderedRingStructure) : Prop
     extends
       RingLaws ordered_ring_structure.toRingStructure,
-      OrderLaws ordered_ring_structure.toOrderedStructure where
-  add_lt_add_right :
-    Foundation.Order.strictlyPreservesRightTranslation
-      (OrderedRingStructure.lt ordered_ring_structure)
-      (OrderedRingStructure.add ordered_ring_structure)
-  mul_lt_mul_pos_right :
-    Foundation.Order.preservesPositiveRightMultiplication
-      (OrderedRingStructure.lt ordered_ring_structure)
-      (OrderedRingStructure.mul ordered_ring_structure)
-      (OrderedRingStructure.zero ordered_ring_structure)
+      OrderLaws ordered_ring_structure.toOrderedStructure,
+      OrderedRingCompatibilityLaws ordered_ring_structure where
 
 structure IntegerSuccessorLaws (integer_structure : IntegerStructure) : Prop where
   pred_succ :
@@ -140,16 +144,16 @@ structure IntegerMultiplicationSuccessorLaws
     (integer_structure : IntegerStructure) : Prop where
   mul_succ :
     ∀ x y : integer_structure.carrier,
-      IntegerStructure.mul integer_structure x (integer_structure.succ y) =
-        IntegerStructure.add integer_structure
-          (IntegerStructure.mul integer_structure x y)
+      integer_structure.mul x (integer_structure.succ y) =
+        integer_structure.add
+          (integer_structure.mul x y)
           x
   mul_pred :
     ∀ x y : integer_structure.carrier,
-      IntegerStructure.mul integer_structure x (integer_structure.pred y) =
-        IntegerStructure.add integer_structure
-          (IntegerStructure.mul integer_structure x y)
-          (IntegerStructure.neg integer_structure x)
+      integer_structure.mul x (integer_structure.pred y) =
+        integer_structure.add
+          (integer_structure.mul x y)
+          (integer_structure.neg x)
 
 structure IntegerLaws (integer_structure : IntegerStructure) : Prop extends
     OrderedRingLaws integer_structure.toOrderedRingStructure,
@@ -167,6 +171,10 @@ abbrev IntegerRingLaws (integer_structure : IntegerStructure) : Prop :=
 
 abbrev IntegerOrderLaws (integer_structure : IntegerStructure) : Prop :=
   OrderLaws integer_structure.toOrderedStructure
+
+abbrev IntegerOrderedRingCompatibilityLaws
+    (integer_structure : IntegerStructure) : Prop :=
+  OrderedRingCompatibilityLaws integer_structure.toOrderedRingStructure
 
 abbrev IntegerOrderedRingLaws (integer_structure : IntegerStructure) : Prop :=
   OrderedRingLaws integer_structure.toOrderedRingStructure

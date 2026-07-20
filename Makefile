@@ -19,9 +19,10 @@
 #   NATIVE=1 make build
 # ============================================================
 
-IMAGE    := lra-lean
-LEAN_VER := $(shell cat lean-toolchain 2>/dev/null || echo "unknown")
-SRC_DIR  := $(CURDIR)
+IMAGE     := lra-lean
+DOC_IMAGE := lra-lean-docs
+LEAN_VER  := $(shell cat lean-toolchain 2>/dev/null || echo "unknown")
+SRC_DIR   := $(CURDIR)
 
 ifdef NATIVE
   RUN :=
@@ -73,6 +74,43 @@ shell:  ## Open interactive shell in Docker container
 docker-build:  ## Build the Docker image
 	docker build -t $(IMAGE) .
 	@echo "✓ Docker image '$(IMAGE)' built (Lean $(LEAN_VER))"
+
+.PHONY: docker-docs-build
+docker-docs-build:  ## Build the Docker documentation image
+	docker build --target documentation-build -t $(DOC_IMAGE) .
+	@echo "✓ Docker image '$(DOC_IMAGE)' built"
+
+.PHONY: number-systems-blueprint
+number-systems-blueprint:  ## Generate number-system Blueprint inputs
+ifdef NATIVE
+	python3 scripts/build-number-systems-declaration-manifest.py
+	python3 scripts/build-number-systems-blueprint.py
+else
+	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(DOC_IMAGE) python3 scripts/build-number-systems-declaration-manifest.py
+	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(DOC_IMAGE) python3 scripts/build-number-systems-blueprint.py
+endif
+	@echo "✓ Number-system Blueprint inputs generated"
+
+.PHONY: blueprint
+blueprint: number-systems-blueprint  ## Compile Blueprint PDF and web output
+ifdef NATIVE
+	leanblueprint pdf
+	leanblueprint web
+	python3 scripts/check-blueprint-declarations.py
+else
+	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(DOC_IMAGE) leanblueprint pdf
+	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(DOC_IMAGE) leanblueprint web
+	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(DOC_IMAGE) python3 scripts/check-blueprint-declarations.py
+endif
+	@echo "✓ Blueprint compiled"
+
+.PHONY: docs
+docs: blueprint  ## Build repository site and attach Blueprint output
+	python3 scripts/build-repository-site.py
+	mkdir -p site/blueprint
+	cp -R blueprint/web/. site/blueprint/
+	cp blueprint/print/print.pdf site/number-systems-blueprint.pdf
+	@echo "✓ Documentation site generated in site/"
 
 .PHONY: docker-pull
 docker-pull:  ## Pull a pre-built image if available

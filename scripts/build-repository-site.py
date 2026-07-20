@@ -15,6 +15,8 @@ from dataclasses import dataclass
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SITE = ROOT / "site"
+BLUEPRINT_WEB = ROOT / "blueprint" / "web" / "index.html"
+BLUEPRINT_PDF = ROOT / "blueprint" / "print" / "print.pdf"
 REPOSITORY_URL = "https://github.com/wsollers/lra-lean"
 
 EXCLUDED_MARKDOWN = {
@@ -40,6 +42,20 @@ class LeanDeclaration:
 
 def page(title: str, body: str, *, depth: int = 0) -> str:
     prefix = "../" * depth
+    blueprint_link = (
+        f'    <a href="{prefix}blueprint/index.html">Blueprint</a>\n'
+        if BLUEPRINT_WEB.exists()
+        else ""
+    )
+    mermaid_script = (
+        """
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, securityLevel: 'strict' });
+  </script>"""
+        if 'class="mermaid"' in body
+        else ""
+    )
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -60,7 +76,9 @@ def page(title: str, body: str, *, depth: int = 0) -> str:
     .tree ul {{ margin-top: .2rem; }}
     .tree li {{ margin: .18rem 0; }}
     blockquote {{ border-left: .25rem solid #8888; padding-left: 1rem; margin-left: 0; }}
+    .mermaid {{ overflow-x: auto; padding: 1rem; border: 1px solid #8885; border-radius: .4rem; }}
   </style>
+{mermaid_script}
 </head>
 <body>
 <header>
@@ -69,6 +87,7 @@ def page(title: str, body: str, *, depth: int = 0) -> str:
     <a href="{prefix}index.html">Home</a>
     <a href="{prefix}markdown/index.html">Markdown</a>
     <a href="{prefix}lean/index.html">Lean modules</a>
+{blueprint_link.rstrip()}
     <a href="{REPOSITORY_URL}">GitHub</a>
   </nav>
 </header>
@@ -96,6 +115,7 @@ def render_markdown(source: str) -> str:
     output: list[str] = []
     paragraph: list[str] = []
     in_code = False
+    code_info = ""
     code_lines: list[str] = []
     list_kind: str | None = None
 
@@ -115,11 +135,17 @@ def render_markdown(source: str) -> str:
             flush_paragraph()
             close_list()
             if in_code:
-                output.append("<pre><code>" + html.escape("\n".join(code_lines)) + "</code></pre>")
+                code_text = "\n".join(code_lines)
+                if code_info.strip().lower() == "mermaid":
+                    output.append(f'<div class="mermaid">{html.escape(code_text)}</div>')
+                else:
+                    output.append("<pre><code>" + html.escape(code_text) + "</code></pre>")
                 code_lines.clear()
                 in_code = False
+                code_info = ""
             else:
                 in_code = True
+                code_info = line[3:].strip()
             continue
         if in_code:
             code_lines.append(line)
@@ -251,12 +277,18 @@ def write_indexes(markdown: list[pathlib.Path], lean: list[pathlib.Path]) -> Non
         page("Lean module tree", '<div class="tree">' + tree_listing(lean, "lean") + "</div>", depth=1),
         encoding="utf-8",
     )
+    blueprint_items = ""
+    if BLUEPRINT_WEB.exists():
+        blueprint_items += '  <li><a href="blueprint/index.html">Number-system Blueprint</a></li>\n'
+    if BLUEPRINT_PDF.exists():
+        blueprint_items += '  <li><a href="number-systems-blueprint.pdf">Number-system Blueprint PDF</a></li>\n'
     home_body = f"""
 <p>This site is generated directly from the tracked repository. It mirrors the actual Markdown files and the <code>LRA/</code> Lean module hierarchy; there is no separate invented mathematical outline.</p>
 <section><h2>Repository views</h2>
 <ul>
   <li><a href="markdown/index.html">Markdown documentation</a> — {len(markdown)} tracked pages</li>
   <li><a href="lean/index.html">Lean module tree</a> — {len(lean)} modules</li>
+{blueprint_items.rstrip()}
   <li><a href="{REPOSITORY_URL}">Source repository</a></li>
 </ul></section>
 """

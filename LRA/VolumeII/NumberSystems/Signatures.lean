@@ -22,8 +22,8 @@ elements, and order relations. Laws are stored separately.
 -/
 structure OrderedRingSignature where
   carrier : Foundation.LRACarrier
-  zero : carrier
-  one : carrier
+  zero : Foundation.NullaryOperation carrier
+  one : Foundation.NullaryOperation carrier
   addition : Foundation.BinaryOperation carrier
   negation : Foundation.UnaryOperation carrier
   multiplication : Foundation.BinaryOperation carrier
@@ -45,6 +45,28 @@ abbrev subtraction
     signature.addition first (signature.negation second)
 
 end OrderedRingSignature
+
+namespace OrderedFieldSignature
+
+def inverse_domain
+    (signature : OrderedFieldSignature)
+    (value : signature.carrier) : Prop :=
+  value ≠ signature.zero
+
+def partial_inverse
+    (signature : OrderedFieldSignature) :
+    Foundation.PartialUnaryOperation signature.carrier where
+  domain := inverse_domain signature
+  apply := fun value _ => signature.inverse value
+
+def partial_division
+    (signature : OrderedFieldSignature) :
+    Foundation.PartialBinaryOperation signature.carrier where
+  domain := fun _ divisor => divisor ≠ signature.zero
+  apply := fun dividend divisor _ =>
+    signature.multiplication dividend (signature.inverse divisor)
+
+end OrderedFieldSignature
 
 end NumberSystems
 end VolumeII

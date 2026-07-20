@@ -24,47 +24,34 @@ structure MagmaLaws {α : Type u} (operation : α → α → α) : Prop where
 
 structure SemigroupLaws {α : Type u} (operation : α → α → α) : Prop
     extends MagmaLaws operation where
-  associative :
-    ∀ first second third : α,
-      operation (operation first second) third =
-        operation first (operation second third)
+  associative : Foundation.Algebra.associative operation
 
 structure CommutativeSemigroupLaws {α : Type u} (operation : α → α → α) : Prop
     extends SemigroupLaws operation where
-  commutative :
-    ∀ first second : α, operation first second = operation second first
+  commutative : Foundation.Algebra.commutative operation
 
 structure MonoidLaws {α : Type u} (operation : α → α → α) (identity : α) : Prop
     extends SemigroupLaws operation where
-  identity_law :
-    ∀ value : α, operation identity value = value ∧ operation value identity = value
+  identity_law : Foundation.Algebra.identity operation identity
 
 structure GroupLaws {α : Type u}
     (operation : α → α → α) (identity : α) (inverse : α → α) : Prop
     extends MonoidLaws operation identity where
   inverse_law :
-    ∀ value : α,
-      operation (inverse value) value = identity ∧
-        operation value (inverse value) = identity
+    Foundation.Algebra.leftInverse operation identity inverse ∧
+      Foundation.Algebra.rightInverse operation identity inverse
 
 structure AbelianGroupLaws {α : Type u}
     (operation : α → α → α) (identity : α) (inverse : α → α) : Prop
     extends GroupLaws operation identity inverse where
-  commutative :
-    ∀ first second : α, operation first second = operation second first
+  commutative : Foundation.Algebra.commutative operation
 
 structure RingLikeLaws {α : Type u}
     (zero one : α) (addition multiplication : α → α → α) (negation : α → α) : Prop where
   additive_laws : AbelianGroupLaws addition zero negation
   multiplicative_laws : MonoidLaws multiplication one
-  left_distributive :
-    ∀ first second third : α,
-      multiplication first (addition second third) =
-        addition (multiplication first second) (multiplication first third)
-  right_distributive :
-    ∀ first second third : α,
-      multiplication (addition first second) third =
-        addition (multiplication first third) (multiplication second third)
+  left_distributive : Foundation.Algebra.leftDistributive multiplication addition
+  right_distributive : Foundation.Algebra.rightDistributive multiplication addition
 
 structure IntegralDomainLaws {α : Type u}
     (zero one : α) (addition multiplication : α → α → α) (negation : α → α) : Prop
@@ -85,23 +72,28 @@ structure FieldLaws {α : Type u}
           multiplication value (inverse value) = one
 
 structure StrictOrderLaws {α : Type u} (lt : α → α → Prop) : Prop where
-  irreflexive : ∀ value : α, ¬ lt value value
-  transitive : ∀ first second third : α, lt first second → lt second third → lt first third
+  irreflexive : Foundation.Order.irreflexive lt
+  transitive : Foundation.Order.transitive lt
   trichotomous : ∀ first second : α, lt first second ∨ first = second ∨ lt second first
+
+structure OrderLaws {α : Type u} (lt le : α → α → Prop) : Prop where
+  strict_order_laws : StrictOrderLaws lt
+  nonstrict_order_agrees : ∀ first second : α, le first second ↔ lt first second ∨ first = second
+
+structure OrderedRingCompatibilityLaws {α : Type u}
+    (zero : α) (addition multiplication : α → α → α)
+    (lt : α → α → Prop) : Prop where
+  addition_preserves_order :
+    Foundation.Order.strictlyPreservesRightTranslation lt addition
+  positive_multiplication_preserves_order :
+    Foundation.Order.preservesPositiveRightMultiplication lt multiplication zero
 
 structure OrderedRingLikeLaws {α : Type u}
     (zero one : α) (addition multiplication : α → α → α)
     (negation : α → α) (lt le : α → α → Prop) : Prop
-    extends RingLikeLaws zero one addition multiplication negation where
-  strict_order_laws : StrictOrderLaws lt
-  nonstrict_order_agrees : ∀ first second : α, le first second ↔ lt first second ∨ first = second
-  addition_preserves_order :
-    ∀ first second translation : α,
-      lt first second → lt (addition first translation) (addition second translation)
-  positive_multiplication_preserves_order :
-    ∀ first second positive_factor : α,
-      lt first second → lt zero positive_factor →
-        lt (multiplication first positive_factor) (multiplication second positive_factor)
+    extends RingLikeLaws zero one addition multiplication negation,
+      OrderLaws lt le,
+      OrderedRingCompatibilityLaws zero addition multiplication lt where
 
 structure LeastUpperBoundProperty {α : Type u} (le : α → α → Prop) : Prop where
   every_nonempty_bounded_subset_has_supremum :

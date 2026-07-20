@@ -10,6 +10,10 @@
 #   .\build.ps1 clean              # Remove build artifacts
 #   .\build.ps1 shell              # Open shell in Docker container
 #   .\build.ps1 docker-build       # Build the Docker image
+#   .\build.ps1 docker-docs-build  # Build the Docker documentation image
+#   .\build.ps1 blueprint-inputs   # Generate number-system Blueprint inputs
+#   .\build.ps1 blueprint          # Compile Blueprint PDF and web output
+#   .\build.ps1 docs               # Build site and attach Blueprint output
 #   .\build.ps1 lint               # Check doc-comment coverage
 #   .\build.ps1 stats              # Print proof counts per file
 #   .\build.ps1 install-hooks      # Install git pre-commit hook
@@ -27,7 +31,8 @@ param(
     [Parameter(Position = 0)]
     [ValidateSet(
         'build', 'build-all', 'check', 'clean', 'shell',
-        'docker-build', 'docker-pull', 'lint', 'stats',
+        'docker-build', 'docker-docs-build', 'docker-pull',
+        'blueprint-inputs', 'blueprint', 'docs', 'lint', 'stats',
         'install-hooks', 'ci', 'help', ''
     )]
     [string]$Command = '',
@@ -44,6 +49,7 @@ function Write-Warn { param($msg) Write-Host "  ! $msg"               -Foregroun
 function Write-Step { param($msg) Write-Host "`n-- $msg" -ForegroundColor Cyan }
 
 $IMAGE     = 'lra-lean'
+$DOC_IMAGE = 'lra-lean-docs'
 $SrcDir    = $PSScriptRoot
 $Toolchain = ''
 
@@ -54,16 +60,6 @@ if (Test-Path $ToolchainFile) {
 
 function Get-RunPrefix {
     if ($Native) { return @() }
-    $dockerOk = $false
-    try {
-        $null = docker image inspect $IMAGE 2>$null
-        $dockerOk = $LASTEXITCODE -eq 0
-    } catch { }
-    if (-not $dockerOk) {
-        Write-Warn "Docker image '$IMAGE' not found."
-        Write-Warn "Run '.\build.ps1 docker-build' first, or use -Native flag."
-        exit 1
-    }
     return @('docker', 'run', '--rm', '-v', "${SrcDir}:/workspace", '-w', '/workspace', $IMAGE)
 }
 
@@ -71,6 +67,17 @@ function Invoke-Run {
     param([string[]]$Cmd)
     $prefix = Get-RunPrefix
     $full   = $prefix + $Cmd
+    & $full[0] $full[1..($full.Length - 1)]
+    if ($LASTEXITCODE -ne 0) { throw "Command failed: $($full -join ' ')" }
+}
+
+function Invoke-DocsRun {
+    param([string[]]$Cmd)
+    if ($Native) {
+        $full = $Cmd
+    } else {
+        $full = @('docker', 'run', '--rm', '-v', "${SrcDir}:/workspace", '-w', '/workspace', $DOC_IMAGE) + $Cmd
+    }
     & $full[0] $full[1..($full.Length - 1)]
     if ($LASTEXITCODE -ne 0) { throw "Command failed: $($full -join ' ')" }
 }
@@ -138,6 +145,50 @@ function Invoke-DockerBuild {
     docker build -t $IMAGE $SrcDir
     if ($LASTEXITCODE -ne 0) { throw "Docker build failed" }
     Write-Ok "Docker image '$IMAGE' built (Lean $Toolchain)"
+}
+
+function Invoke-DockerDocsBuild {
+    Write-Step "Building Docker documentation image '$DOC_IMAGE'"
+    $dockerfile = Join-Path $SrcDir 'Dockerfile'
+    if (-not (Test-Path $dockerfile)) { throw "Dockerfile not found at: $dockerfile" }
+    docker build --target documentation-build -t $DOC_IMAGE $SrcDir
+    if ($LASTEXITCODE -ne 0) { throw "Docker documentation build failed" }
+    Write-Ok "Docker image '$DOC_IMAGE' built"
+}
+
+function Invoke-BlueprintInputs {
+    Write-Step "Generating number-system Blueprint inputs"
+    Invoke-DocsRun @('python3', 'scripts/build-number-systems-declaration-manifest.py')
+    Invoke-DocsRun @('python3', 'scripts/build-number-systems-blueprint.py')
+    Write-Ok "Number-system Blueprint inputs generated"
+}
+
+function Invoke-Blueprint {
+    Invoke-BlueprintInputs
+    Write-Step "Compiling Blueprint PDF and web output"
+    Invoke-DocsRun @('leanblueprint', 'pdf')
+    Invoke-DocsRun @('leanblueprint', 'web')
+    Invoke-DocsRun @('python3', 'scripts/check-blueprint-declarations.py')
+    Write-Ok "Blueprint compiled"
+}
+
+function Invoke-Docs {
+    Invoke-Blueprint
+    Write-Step "Generating repository documentation site"
+    $python = Get-Command python -ErrorAction SilentlyContinue
+    if (-not $python) {
+        $python = Get-Command py -ErrorAction SilentlyContinue
+    }
+    if (-not $python) {
+        throw "Python is required to run scripts/build-repository-site.py"
+    }
+    & $python.Source (Join-Path $SrcDir 'scripts\build-repository-site.py')
+    if ($LASTEXITCODE -ne 0) { throw "Repository site generation failed" }
+    $siteBlueprint = Join-Path $SrcDir 'site\blueprint'
+    New-Item -ItemType Directory -Force -Path $siteBlueprint | Out-Null
+    Copy-Item -Recurse -Force -Path (Join-Path $SrcDir 'blueprint\web\*') -Destination $siteBlueprint
+    Copy-Item -Force -Path (Join-Path $SrcDir 'blueprint\print\print.pdf') -Destination (Join-Path $SrcDir 'site\number-systems-blueprint.pdf')
+    Write-Ok "Documentation site generated in site/"
 }
 
 function Invoke-Lint {
@@ -233,6 +284,10 @@ function Show-Help {
         @{ Cmd = 'clean';         Desc = 'Remove lake build artifacts' },
         @{ Cmd = 'shell';         Desc = 'Open interactive shell in Docker container' },
         @{ Cmd = 'docker-build';  Desc = 'Build the Docker image' },
+        @{ Cmd = 'docker-docs-build'; Desc = 'Build the Docker documentation image' },
+        @{ Cmd = 'blueprint-inputs'; Desc = 'Generate number-system Blueprint inputs' },
+        @{ Cmd = 'blueprint';      Desc = 'Compile Blueprint PDF and web output' },
+        @{ Cmd = 'docs';           Desc = 'Build site and attach Blueprint output' },
         @{ Cmd = 'lint';          Desc = 'Check doc-comment display name coverage' },
         @{ Cmd = 'stats';         Desc = 'Print theorem/def counts per file' },
         @{ Cmd = 'install-hooks'; Desc = 'Install git pre-commit hook' },
@@ -252,6 +307,10 @@ try {
         'clean'         { Invoke-Clean }
         'shell'         { Invoke-Shell }
         'docker-build'  { Invoke-DockerBuild }
+        'docker-docs-build' { Invoke-DockerDocsBuild }
+        'blueprint-inputs' { Invoke-BlueprintInputs }
+        'blueprint'     { Invoke-Blueprint }
+        'docs'          { Invoke-Docs }
         'lint'          { Invoke-Lint }
         'stats'         { Invoke-Stats }
         'install-hooks' { Invoke-InstallHooks }

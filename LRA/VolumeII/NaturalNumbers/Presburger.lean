@@ -31,11 +31,9 @@ structure PresburgerPeanoSystem extends PeanoSystem where
     ∀ left right : carrier,
       addition left (successor right) = successor (addition left right)
   addition_is_associative :
-    ∀ first second third : carrier,
-      addition (addition first second) third =
-        addition first (addition second third)
+    Foundation.Algebra.associative addition
   addition_is_commutative :
-    ∀ first second : carrier, addition first second = addition second first
+    Foundation.Algebra.commutative addition
 
 def as_peano_system (presburger_system : PresburgerPeanoSystem) : PeanoSystem :=
   presburger_system.toPeanoSystem

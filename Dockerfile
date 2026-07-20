@@ -64,7 +64,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN python3 -m venv /opt/lean-blueprint \
     && /opt/lean-blueprint/bin/pip install --upgrade pip \
     && /opt/lean-blueprint/bin/pip install \
-      leanblueprint==0.0.20
+      leanblueprint==0.0.20 \
+      pyyaml
 
 ENV PATH="/opt/lean-blueprint/bin:/root/.elan/bin:${PATH}"
 

@@ -92,25 +92,35 @@ def polynomial_value
     (zero real_model)
 
 structure ComplexFieldLaws (real_model : RealModel) : Prop where
-  addition_is_abelian_group :
-    ∀ value : Complex real_model,
-      addition real_model (zero real_model) value = value ∧
-        addition real_model value (negation real_model value) = zero real_model
-  multiplication_is_commutative_monoid :
-    ∀ value : Complex real_model,
-      multiplication real_model (one real_model) value = value ∧
-        multiplication real_model value (one real_model) = value
-  distributive :
-    ∀ first second third : Complex real_model,
-      multiplication real_model first (addition real_model second third) =
-        addition real_model
-          (multiplication real_model first second)
-          (multiplication real_model first third)
+  addition_is_associative :
+    Foundation.Algebra.associative (addition real_model)
+  addition_is_commutative :
+    Foundation.Algebra.commutative (addition real_model)
+  zero_is_additive_identity :
+    Foundation.Algebra.identity (addition real_model) (zero real_model)
+  negation_is_additive_inverse :
+    Foundation.Algebra.leftInverse
+        (addition real_model) (zero real_model) (negation real_model) ∧
+      Foundation.Algebra.rightInverse
+        (addition real_model) (zero real_model) (negation real_model)
+  multiplication_is_associative :
+    Foundation.Algebra.associative (multiplication real_model)
+  multiplication_is_commutative :
+    Foundation.Algebra.commutative (multiplication real_model)
+  one_is_multiplicative_identity :
+    Foundation.Algebra.identity (multiplication real_model) (one real_model)
+  multiplication_left_distributes_over_addition :
+    Foundation.Algebra.leftDistributive
+      (multiplication real_model) (addition real_model)
+  multiplication_right_distributes_over_addition :
+    Foundation.Algebra.rightDistributive
+      (multiplication real_model) (addition real_model)
   nonzero_inverse_exists :
     ∀ value : Complex real_model,
       value ≠ zero real_model →
         ∃ inverse : Complex real_model,
-          multiplication real_model inverse value = one real_model
+          multiplication real_model inverse value = one real_model ∧
+            multiplication real_model value inverse = one real_model
 
 theorem complex_field_laws
     (real_model : RealModel) :

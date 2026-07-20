@@ -23,21 +23,61 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Build Lean image
-        run: docker build --quiet --target lean-build -t lra-lean .
+      - name: Build documentation image
+        run: docker build --quiet --target documentation-build -t lra-lean-docs .
 
       - name: Build active Lean libraries
         run: |
           docker run --rm \
             -v "$PWD:/workspace" \
             -w /workspace \
-            lra-lean \
+            lra-lean-docs \
             lake build LRAVolumeI LRAVolumeII
         # Lean accepts declarations containing `sorry`; placeholders are shown
         # by the generated site and do not fail the ordinary project build.
 
+      - name: Generate number-system Blueprint sources
+        run: |
+          docker run --rm \
+            -v "$PWD:/workspace" \
+            -w /workspace \
+            lra-lean-docs \
+            python3 scripts/build-number-systems-declaration-manifest.py
+          docker run --rm \
+            -v "$PWD:/workspace" \
+            -w /workspace \
+            lra-lean-docs \
+            python3 scripts/build-number-systems-blueprint.py
+
+      - name: Compile Blueprint
+        run: |
+          docker run --rm \
+            -v "$PWD:/workspace" \
+            -w /workspace \
+            lra-lean-docs \
+            leanblueprint pdf
+          docker run --rm \
+            -v "$PWD:/workspace" \
+            -w /workspace \
+            lra-lean-docs \
+            leanblueprint web
+
+      - name: Check Blueprint declaration mappings
+        run: |
+          docker run --rm \
+            -v "$PWD:/workspace" \
+            -w /workspace \
+            lra-lean-docs \
+            python3 scripts/check-blueprint-declarations.py
+
       - name: Generate repository documentation site
         run: python3 scripts/build-repository-site.py
+
+      - name: Attach Blueprint output to site
+        run: |
+          mkdir -p site/blueprint
+          cp -R blueprint/web/. site/blueprint/
+          cp blueprint/print/print.pdf site/number-systems-blueprint.pdf
 
       - name: Configure GitHub Pages
         if: github.event_name != 'pull_request'

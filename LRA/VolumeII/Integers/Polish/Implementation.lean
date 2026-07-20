@@ -29,13 +29,13 @@ instance : One PolishZCarrier where
 
 def PolishZ : IntegerStructure where
   carrier := PolishZCarrier
-  zeroInstance := inferInstance
-  oneInstance := inferInstance
-  addInstance := inferInstance
-  negInstance := inferInstance
-  mulInstance := inferInstance
-  ltInstance := inferInstance
-  leInstance := inferInstance
+  zero := TwoSidedSuccessor.Z.zero
+  one := TwoSidedSuccessor.one
+  add := (· + ·)
+  neg := Neg.neg
+  mul := (· * ·)
+  lt := (· < ·)
+  le := (· ≤ ·)
   succ := TwoSidedSuccessor.succ
   pred := TwoSidedSuccessor.pred
 

@@ -13,74 +13,54 @@ Lean module: LRA.VolumeII.NumberSystems.Models
 Blueprint label: configurable-number-system-models
 Verification status: statement-accepted-proof-pending
 
-The law hierarchy separates properties shared by ordered domains from the
-properties that distinguish the integers, rationals, and reals. In particular,
-discreteness belongs only to integer models, while Archimedean and cofinality
-obligations belong to the extension maps between adjacent number systems.
+The law hierarchy separates ring algebra, pure order structure, and
+compatibility between the two. Discreteness belongs only to integer models,
+while Archimedean and cofinality obligations belong to the extension maps
+between adjacent number systems.
 -/
 
 /--
-**[Definition — Ordered Ring Laws]**
+**[Definition — Ring Laws]**
 
-These are the additive, multiplicative, distributive, and order-compatibility
-laws shared by the ordered number systems.
+These are the additive, multiplicative, and distributive laws shared by the
+number systems with ring operations.
 -/
-structure OrderedRingLaws
+structure RingLaws
     (signature : OrderedRingSignature) : Prop where
   addition_is_associative :
-    ∀ first second third : signature.carrier,
-      signature.addition
-          (signature.addition first second)
-          third =
-        signature.addition
-          first
-          (signature.addition second third)
+    Foundation.Algebra.associative signature.addition
   addition_is_commutative :
-    ∀ first second : signature.carrier,
-      signature.addition first second =
-        signature.addition second first
+    Foundation.Algebra.commutative signature.addition
   zero_is_additive_identity :
-    ∀ value : signature.carrier,
-      signature.addition signature.zero value = value ∧
-      signature.addition value signature.zero = value
+    Foundation.Algebra.identity signature.addition signature.zero
   negation_is_additive_inverse :
-    ∀ value : signature.carrier,
-      signature.addition (signature.negation value) value =
-        signature.zero ∧
-      signature.addition value (signature.negation value) =
-        signature.zero
+    Foundation.Algebra.leftInverse
+        signature.addition signature.zero signature.negation ∧
+      Foundation.Algebra.rightInverse
+        signature.addition signature.zero signature.negation
   multiplication_is_associative :
-    ∀ first second third : signature.carrier,
-      signature.multiplication
-          (signature.multiplication first second)
-          third =
-        signature.multiplication
-          first
-          (signature.multiplication second third)
+    Foundation.Algebra.associative signature.multiplication
   multiplication_is_commutative :
-    ∀ first second : signature.carrier,
-      signature.multiplication first second =
-        signature.multiplication second first
+    Foundation.Algebra.commutative signature.multiplication
   one_is_multiplicative_identity :
-    ∀ value : signature.carrier,
-      signature.multiplication signature.one value = value ∧
-      signature.multiplication value signature.one = value
-  multiplication_distributes_over_addition :
-    ∀ first second third : signature.carrier,
-      signature.multiplication
-          first
-          (signature.addition second third) =
-        signature.addition
-          (signature.multiplication first second)
-          (signature.multiplication first third)
+    Foundation.Algebra.identity signature.multiplication signature.one
+  multiplication_left_distributes_over_addition :
+    Foundation.Algebra.leftDistributive signature.multiplication signature.addition
+  multiplication_right_distributes_over_addition :
+    Foundation.Algebra.rightDistributive signature.multiplication signature.addition
+
+/--
+**[Definition — Order Laws]**
+
+These are the pure order requirements for the strict and nonstrict order
+relations, independent of the ring operations.
+-/
+structure OrderLaws
+    (signature : OrderedRingSignature) : Prop where
   strict_order_is_irreflexive :
-    ∀ value : signature.carrier,
-      ¬ signature.strict_order value value
+    Foundation.Order.irreflexive signature.strict_order
   strict_order_is_transitive :
-    ∀ first second third : signature.carrier,
-      signature.strict_order first second →
-      signature.strict_order second third →
-      signature.strict_order first third
+    Foundation.Order.transitive signature.strict_order
   strict_order_is_trichotomous :
     ∀ first second : signature.carrier,
       signature.strict_order first second ∨
@@ -90,31 +70,54 @@ structure OrderedRingLaws
     ∀ first second : signature.carrier,
       signature.nonstrict_order first second ↔
         signature.strict_order first second ∨ first = second
+
+/--
+**[Definition — Ordered Ring Compatibility Laws]**
+
+These are exactly the bridge laws saying the ring operations respect the order.
+-/
+structure OrderedRingCompatibilityLaws
+    (signature : OrderedRingSignature) : Prop where
   addition_preserves_strict_order :
-    ∀ first second translation : signature.carrier,
-      signature.strict_order first second →
-      signature.strict_order
-        (signature.addition first translation)
-        (signature.addition second translation)
+    Foundation.Order.strictlyPreservesRightTranslation
+      signature.strict_order signature.addition
   positive_multiplication_preserves_strict_order :
-    ∀ first second positive_factor : signature.carrier,
-      signature.strict_order first second →
-      signature.strict_order signature.zero positive_factor →
-      signature.strict_order
-        (signature.multiplication first positive_factor)
-        (signature.multiplication second positive_factor)
+    Foundation.Order.preservesPositiveRightMultiplication
+      signature.strict_order signature.multiplication signature.zero
+
+/--
+**[Definition — Ordered Ring Laws]**
+
+An ordered ring combines ring laws, order laws, and compatibility laws. The
+component bundles remain separately available for clients that need only one
+part of the interface.
+-/
+structure OrderedRingLaws
+    (signature : OrderedRingSignature) : Prop
+    extends RingLaws signature,
+      OrderLaws signature,
+      OrderedRingCompatibilityLaws signature where
+
+/--
+**[Definition — Integral-Domain Laws]**
+-/
+structure IntegralDomainLaws
+    (signature : OrderedRingSignature) : Prop
+    extends RingLaws signature where
+  zero_is_not_one : signature.zero ≠ signature.one
+  has_no_zero_divisors :
+    ∀ first second : signature.carrier,
+      signature.multiplication first second = signature.zero →
+      first = signature.zero ∨ second = signature.zero
 
 /--
 **[Definition — Ordered Integral-Domain Laws]**
 -/
 structure OrderedIntegralDomainLaws
     (signature : OrderedRingSignature) : Prop
-    extends OrderedRingLaws signature where
-  zero_is_not_one : signature.zero ≠ signature.one
-  has_no_zero_divisors :
-    ∀ first second : signature.carrier,
-      signature.multiplication first second = signature.zero →
-      first = signature.zero ∨ second = signature.zero
+    extends IntegralDomainLaws signature,
+      OrderLaws signature,
+      OrderedRingCompatibilityLaws signature where
 
 /--
 **[Definition — Integer Laws]**
@@ -154,6 +157,10 @@ structure RationalLaws
       signature.multiplication
           (signature.inverse value)
           value =
+        signature.one ∧
+      signature.multiplication
+          value
+          (signature.inverse value) =
         signature.one
   order_is_dense :
     ∀ first second : signature.carrier,

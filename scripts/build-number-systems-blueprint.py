@@ -23,6 +23,7 @@ ORDER = [
     "gpt-00b-canonical-embeddings.md",
     "gpt-00c-universal-properties.md",
     "gpt-00d-streamlined-construction-workflows.md",
+    "gpt-00e-proof-prep-roadmap.md",
     "gpt-01-natural-numbers.md",
     "gpt-01b-whole-numbers.md",
     "gpt-01c-place-value-integers.md",
@@ -56,6 +57,17 @@ SPECIAL = {
     "_": r"\_",
 }
 
+CODE_SPECIAL = {
+    "\\": r"\textbackslash{}",
+    "{": r"\{",
+    "}": r"\}",
+    "&": r"\&",
+    "%": r"\%",
+    "#": r"\#",
+    "_": r"\_",
+    "$": r"\$",
+}
+
 
 def slug(text: str) -> str:
     plain = re.sub(r"\\\(|\\\)|\$|`|\*", "", text)
@@ -72,7 +84,10 @@ def escape_text(text: str) -> str:
             continue
         if part.startswith("$") or part.startswith("`") or part.startswith(r"\("):
             if part.startswith("`"):
-                out.append(r"\texttt{" + part[1:-1].replace("_", r"\_") + "}")
+                code = part[1:-1]
+                for source, target in CODE_SPECIAL.items():
+                    code = code.replace(source, target)
+                out.append(r"\texttt{" + code + "}")
             else:
                 out.append(part)
         else:
@@ -88,6 +103,7 @@ def convert(path: pathlib.Path) -> str:
     in_fence = False
     fence: list[str] = []
     in_display = False
+    label_counts: dict[str, int] = {}
 
     for raw in lines:
         line = raw.rstrip()
@@ -111,7 +127,8 @@ def convert(path: pathlib.Path) -> str:
             in_display = not in_display
             continue
         if in_display:
-            output.append(line)
+            if line.strip():
+                output.append(line)
             continue
 
         heading = re.match(r"^(#{1,4})\s+(.*)$", line)
@@ -119,7 +136,10 @@ def convert(path: pathlib.Path) -> str:
             level = len(heading.group(1))
             title = heading.group(2).strip()
             command = {1: "chapter", 2: "section", 3: "subsection", 4: "subsubsection"}[level]
-            label = f"md:{path.stem}:{slug(title)}"
+            base_label = f"md:{path.stem}:{slug(title)}"
+            count = label_counts.get(base_label, 0) + 1
+            label_counts[base_label] = count
+            label = base_label if count == 1 else f"{base_label}-{count}"
             output.append(f"\\{command}{{{escape_text(title)}}}")
             output.append(f"\\label{{{label}}}")
             continue
@@ -134,7 +154,7 @@ def convert(path: pathlib.Path) -> str:
             output.append(r"\end{itemize}")
             continue
 
-        output.append(escape_text(line) + "\n")
+        output.append(escape_text(line))
 
     return "\n".join(output)
 

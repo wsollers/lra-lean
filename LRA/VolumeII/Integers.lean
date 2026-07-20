@@ -7,7 +7,9 @@ import LRA.VolumeII.Integers.QuotientOrderedPairs
 import LRA.VolumeII.Integers.Tao
 import LRA.VolumeII.Integers.Mendelson
 import LRA.VolumeII.Integers.Implementation
+import LRA.VolumeII.Integers.Conversion
 import LRA.VolumeII.Integers.ArithmeticTests
+import LRA.VolumeII.Integers.ConversionTests
 
 namespace LRA
 namespace VolumeII
