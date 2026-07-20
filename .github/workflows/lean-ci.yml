@@ -36,8 +36,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Build Lean Docker image
-        run: docker build --quiet --target lean-build -t lra-lean .
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          target: lean-build
+          tags: lra-lean:latest
+          load: true
+          cache-from: type=gha,scope=lra-lean-lean-build
+          cache-to: type=gha,scope=lra-lean-lean-build,mode=max
 
       - name: Check no Mathlib import in VolumeI / VolumeII
         run: |

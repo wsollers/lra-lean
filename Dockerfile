@@ -9,6 +9,11 @@
 # Usage:
 #   docker build --target lean-build -t lra-lean .
 #   docker build --target documentation-build -t lra-lean-docs .
+#
+# Layer ordering rule:
+#   keep OS packages, elan, Lean toolchain, and Lake dependency manifests before
+#   anything that changes frequently. CI mounts the repository source into the
+#   container at runtime, so ordinary Lean/doc edits do not invalidate the image.
 # ============================================================
 
 FROM ubuntu:24.04 AS lean-build
