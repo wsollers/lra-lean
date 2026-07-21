@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Model.Propositional.PropositionalModel
 
-namespace LRA.VolumeI.Logic
+namespace LRA.VolumeI.Logic.Propositional
 
 /-!
 The first end-to-end checkpoint: A ∧ B, with A and B both true.
@@ -43,4 +43,4 @@ theorem testModel_satisfies_aAndB :
   rw [Formula.and_evaluatesToConjunction]
   rfl
 
-end LRA.VolumeI.Logic
+end LRA.VolumeI.Logic.Propositional

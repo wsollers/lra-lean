@@ -1,7 +1,7 @@
 import Mathlib.Logic.Function.Basic
 import LRA.VolumeI.Logic.Model.Model
 
-namespace LRA.VolumeI.Logic
+namespace LRA.VolumeI.Logic.FirstOrder
 
 /-!
 Model embeddings.
@@ -45,4 +45,4 @@ structure ModelEmbedding {S : Signature} (M₁ M₂ : Model S) where
       M₁.interpretRelation r args ↔
         M₂.interpretRelation r (fun i => toFun (args i))
 
-end LRA.VolumeI.Logic
+end LRA.VolumeI.Logic.FirstOrder

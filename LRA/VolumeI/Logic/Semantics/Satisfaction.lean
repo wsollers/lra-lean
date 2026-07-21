@@ -3,10 +3,15 @@ import LRA.VolumeI.Logic.Syntax.FirstOrder.Formula
 import LRA.VolumeI.Logic.Semantics.TermEvaluation
 import LRA.VolumeI.Logic.Semantics.Assignment
 
-namespace LRA.VolumeI.Logic
+namespace LRA.VolumeI.Logic.FirstOrder
 
 /-!
 Satisfaction.
+
+Declared in the `LRA.VolumeI.Logic.FirstOrder` namespace, matching every
+other first-order-specific declaration -- second-order logic will need its
+own, different satisfaction relation (`SOSatisfies`), so `Satisfies` here
+is specifically first-order content, not shared across every object logic.
 
 `Satisfies M assignment φ` says the formula `φ` holds in the model `M`
 under the variable assignment `assignment` -- the first-order analogue of
@@ -37,7 +42,7 @@ satisfies the first-order formula `φ`. -/
 def Satisfies
     {S : Signature} {Variable : Type} [DecidableEq Variable]
     (M : Model S) (assignment : Variable -> M.Domain) :
-    FirstOrder.Formula S Variable -> Prop
+    Formula S Variable -> Prop
   | .relation r args =>
       M.interpretRelation r (fun i => evaluateTerm M assignment (args i))
   | .equal t₁ t₂ =>
@@ -49,7 +54,7 @@ def Satisfies
   | .forallQ v φ =>
       ∀ a : M.Domain, Satisfies M (updateAssignment assignment v a) φ
 
-/-- `Satisfies` on a conjunction `φ ∧ ψ` (the derived `FirstOrder.Formula.and`)
+/-- `Satisfies` on a conjunction `φ ∧ ψ` (the derived `Formula.and`)
 holds exactly when both `φ` and `ψ` are satisfied -- the first-order
 analogue of `Formula.and_evaluatesToConjunction` for propositional logic,
 now stated as an `↔` of `Prop`s rather than a `Bool` equation, since
@@ -60,24 +65,23 @@ since `Satisfies` is not decidable in general -- unlike propositional
 theorem satisfiesAndIffSatisfiesBoth
     {S : Signature} {Variable : Type} [DecidableEq Variable]
     (M : Model S) (assignment : Variable -> M.Domain)
-    (φ ψ : FirstOrder.Formula S Variable) :
-    Satisfies M assignment (FirstOrder.Formula.and φ ψ) ↔
+    (φ ψ : Formula S Variable) :
+    Satisfies M assignment (Formula.and φ ψ) ↔
       (Satisfies M assignment φ ∧ Satisfies M assignment ψ) := by
-  simp only [FirstOrder.Formula.and, Satisfies]
+  simp only [Formula.and, Satisfies]
   tauto
 
-/-- `Satisfies` on an existential `∃v. φ` (the derived
-`FirstOrder.Formula.existsQ`) holds exactly when *some* domain element
-witnesses `φ` under the updated assignment -- the expected meaning of
-`∃`, derived here (via classical reasoning, since the definition goes
-through `¬∀¬`) rather than assumed. -/
+/-- `Satisfies` on an existential `∃v. φ` (the derived `Formula.existsQ`)
+holds exactly when *some* domain element witnesses `φ` under the updated
+assignment -- the expected meaning of `∃`, derived here (via classical
+reasoning, since the definition goes through `¬∀¬`) rather than assumed. -/
 theorem satisfiesExistsIffSomeWitness
     {S : Signature} {Variable : Type} [DecidableEq Variable]
     (M : Model S) (assignment : Variable -> M.Domain)
-    (v : Variable) (φ : FirstOrder.Formula S Variable) :
-    Satisfies M assignment (FirstOrder.Formula.existsQ v φ) ↔
+    (v : Variable) (φ : Formula S Variable) :
+    Satisfies M assignment (Formula.existsQ v φ) ↔
       ∃ a : M.Domain, Satisfies M (updateAssignment assignment v a) φ := by
-  simp only [FirstOrder.Formula.existsQ, Satisfies]
+  simp only [Formula.existsQ, Satisfies]
   exact not_forall_not
 
-end LRA.VolumeI.Logic
+end LRA.VolumeI.Logic.FirstOrder

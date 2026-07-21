@@ -1,7 +1,7 @@
 import LRA.VolumeI.Logic.Model.Model
 import LRA.VolumeI.Logic.Language.Examples
 
-namespace LRA.VolumeI.Logic
+namespace LRA.VolumeI.Logic.FirstOrder
 
 /-!
 Worked examples of `Model`.
@@ -132,4 +132,4 @@ theorem intOrderedRingModel.zeroComputesZero :
 theorem intOrderedRingModel.oneComputesOne :
     intOrderedRingModel.interpretConstant .one = (1 : Int) := rfl
 
-end LRA.VolumeI.Logic
+end LRA.VolumeI.Logic.FirstOrder

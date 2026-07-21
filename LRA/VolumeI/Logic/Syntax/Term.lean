@@ -1,9 +1,14 @@
-import LRA.VolumeI.Logic.Language.Symbols.Signature
+import LRA.VolumeI.Logic.Language.FirstOrder.Signature
 
-namespace LRA.VolumeI.Logic
+namespace LRA.VolumeI.Logic.FirstOrder
 
 /-!
 Terms.
+
+Declared in the `LRA.VolumeI.Logic.FirstOrder` namespace, matching
+`FirstOrder.Formula`/`FirstOrder.Model` -- `Term` is first-order-specific
+syntax (built on `Signature`, which is shared, cross-logic vocabulary and
+stays in the bare `LRA.VolumeI.Logic` namespace).
 
 A term over a signature `S`, with variables drawn from some type
 `Variable`, is one of:
@@ -31,9 +36,9 @@ the literal correspondence to the alphabet definition is wanted.
 `const` is a constructor in its own right, not a derived case of `apply` at
 arity `0` -- because `Signature.Constants` is its own independent field
 (constants are not modeled as arity-0 function symbols; see
-`Language.Symbols.Signature`), `Term` needs its own constructor to consume
-it, matching `Model.interpretConstant` being its own independent field
-rather than a special case of `interpretFunction`.
+`Language.FirstOrder.Signature`), `Term` needs its own constructor to
+consume it, matching `Model.interpretConstant` being its own independent
+field rather than a special case of `interpretFunction`.
 -/
 
 inductive Term (S : Signature) (Variable : Type) where
@@ -44,4 +49,4 @@ inductive Term (S : Signature) (Variable : Type) where
       (Fin (S.functionArity f) -> Term S Variable) ->
       Term S Variable
 
-end LRA.VolumeI.Logic
+end LRA.VolumeI.Logic.FirstOrder

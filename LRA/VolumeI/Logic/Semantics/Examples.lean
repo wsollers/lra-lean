@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Semantics.Satisfaction
 
-namespace LRA.VolumeI.Logic
+namespace LRA.VolumeI.Logic.FirstOrder
 
 /-!
 The second end-to-end checkpoint: A ∧ B, with A and B both true -- now for
@@ -14,10 +14,9 @@ This mirrors `Model.Propositional.Examples.testModel_satisfies_aAndB`
 exactly, one layer up: same shape of test, now exercising `Signature`
 (two nullary relation symbols, no functions, no constants), `Model`
 (a trivial one-element domain, since the domain is irrelevant to purely
-nullary-relational content), `FirstOrder.Formula`/`Formula.and` (syntax,
-including the derived connective), and `Satisfies`/
-`satisfiesAndIffSatisfiesBoth` (semantics) -- all connecting for the
-first time in this architecture.
+nullary-relational content), `Formula`/`Formula.and` (syntax, including
+the derived connective), and `Satisfies`/`satisfiesAndIffSatisfiesBoth`
+(semantics) -- all connecting for the first time in this architecture.
 -/
 
 /-- The two nullary relation symbols of the test signature: `A` and `B`,
@@ -45,22 +44,21 @@ def testFOLModel : Model testFOLSignature where
 
 /-- The formula `A ∧ B`, built from two nullary relation applications
 (each applied to the unique `Fin 0 -> Term` argument tuple, via
-`Fin.elim0`) and the derived `FirstOrder.Formula.and` connective. Uses
-`Nat` as the (unused) variable type, since this formula mentions no
-variables at all. -/
-def testFOLFormula : FirstOrder.Formula testFOLSignature Nat :=
-  FirstOrder.Formula.and
-    (FirstOrder.Formula.relation .A Fin.elim0)
-    (FirstOrder.Formula.relation .B Fin.elim0)
+`Fin.elim0`) and the derived `Formula.and` connective. Uses `Nat` as the
+(unused) variable type, since this formula mentions no variables at all. -/
+def testFOLFormula : Formula testFOLSignature Nat :=
+  Formula.and
+    (Formula.relation .A Fin.elim0)
+    (Formula.relation .B Fin.elim0)
 
 /-- The checkpoint: `testFOLModel`, under any assignment (none of its
 variables are used), satisfies `A ∧ B`. -/
 theorem testFOLModel_satisfies_aAndB (assignment : Nat -> testFOLModel.Domain) :
     Satisfies testFOLModel assignment testFOLFormula := by
   show Satisfies testFOLModel assignment
-    (FirstOrder.Formula.and
-      (FirstOrder.Formula.relation .A Fin.elim0)
-      (FirstOrder.Formula.relation .B Fin.elim0))
+    (Formula.and
+      (Formula.relation .A Fin.elim0)
+      (Formula.relation .B Fin.elim0))
   rw [satisfiesAndIffSatisfiesBoth]
   refine ⟨?_, ?_⟩
   · trivial
@@ -119,18 +117,18 @@ supply). -/
 def x : Nat := 0
 
 /-- The formula `∀x. R(x)`. -/
-def forallRFormula : FirstOrder.Formula quantifierSignature Nat :=
-  FirstOrder.Formula.forallQ x (FirstOrder.Formula.relation .R (fun _ => Term.var x))
+def forallRFormula : Formula quantifierSignature Nat :=
+  Formula.forallQ x (Formula.relation .R (fun _ => Term.var x))
 
 /-- The formula `∃x. R(x)`. -/
-def existsRFormula : FirstOrder.Formula quantifierSignature Nat :=
-  FirstOrder.Formula.existsQ x (FirstOrder.Formula.relation .R (fun _ => Term.var x))
+def existsRFormula : Formula quantifierSignature Nat :=
+  Formula.existsQ x (Formula.relation .R (fun _ => Term.var x))
 
 /-- `∀x. R(x)` holds in `alwaysTrueModel`. -/
 theorem alwaysTrueModel_satisfies_forallR (assignment : Nat -> alwaysTrueModel.Domain) :
     Satisfies alwaysTrueModel assignment forallRFormula := by
   show ∀ a : Bool, Satisfies alwaysTrueModel (updateAssignment assignment x a)
-    (FirstOrder.Formula.relation .R (fun _ => Term.var x))
+    (Formula.relation .R (fun _ => Term.var x))
   intro a
   show alwaysTrueModel.interpretRelation .R
     (fun i => evaluateTerm alwaysTrueModel (updateAssignment assignment x a) (Term.var x))
@@ -140,7 +138,7 @@ theorem alwaysTrueModel_satisfies_forallR (assignment : Nat -> alwaysTrueModel.D
 theorem alwaysTrueModel_satisfies_existsR (assignment : Nat -> alwaysTrueModel.Domain) :
     Satisfies alwaysTrueModel assignment existsRFormula := by
   show Satisfies alwaysTrueModel assignment
-    (FirstOrder.Formula.existsQ x (FirstOrder.Formula.relation .R (fun _ => Term.var x)))
+    (Formula.existsQ x (Formula.relation .R (fun _ => Term.var x)))
   rw [satisfiesExistsIffSomeWitness]
   refine ⟨true, ?_⟩
   show alwaysTrueModel.interpretRelation .R
@@ -152,7 +150,7 @@ theorem sometimesFalseModel_not_satisfies_forallR
     (assignment : Nat -> sometimesFalseModel.Domain) :
     ¬ Satisfies sometimesFalseModel assignment forallRFormula := by
   show ¬ ∀ a : Bool, Satisfies sometimesFalseModel (updateAssignment assignment x a)
-    (FirstOrder.Formula.relation .R (fun _ => Term.var x))
+    (Formula.relation .R (fun _ => Term.var x))
   intro h
   have hfalse : sometimesFalseModel.interpretRelation .R
       (fun i => evaluateTerm sometimesFalseModel (updateAssignment assignment x false) (Term.var x)) :=
@@ -165,11 +163,11 @@ theorem sometimesFalseModel_satisfies_existsR
     (assignment : Nat -> sometimesFalseModel.Domain) :
     Satisfies sometimesFalseModel assignment existsRFormula := by
   show Satisfies sometimesFalseModel assignment
-    (FirstOrder.Formula.existsQ x (FirstOrder.Formula.relation .R (fun _ => Term.var x)))
+    (Formula.existsQ x (Formula.relation .R (fun _ => Term.var x)))
   rw [satisfiesExistsIffSomeWitness]
   refine ⟨true, ?_⟩
   show sometimesFalseModel.interpretRelation .R
     (fun i => evaluateTerm sometimesFalseModel (updateAssignment assignment x true) (Term.var x))
   simp [sometimesFalseModel, evaluateTerm, updateAssignment]
 
-end LRA.VolumeI.Logic
+end LRA.VolumeI.Logic.FirstOrder

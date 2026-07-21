@@ -1,4 +1,4 @@
-import LRA.VolumeI.Logic.Language.Symbols.Signature
+import LRA.VolumeI.Logic.Language.FirstOrder.Signature
 
 namespace LRA.VolumeI.Logic
 

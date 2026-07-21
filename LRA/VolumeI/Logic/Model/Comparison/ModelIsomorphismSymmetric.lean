@@ -1,7 +1,7 @@
 import Mathlib.Logic.Equiv.Basic
 import LRA.VolumeI.Logic.Model.Comparison.ModelIsomorphism
 
-namespace LRA.VolumeI.Logic
+namespace LRA.VolumeI.Logic.FirstOrder
 
 /-!
 Isomorphism is symmetric.
@@ -85,4 +85,4 @@ noncomputable def ModelIsomorphism.inverseEmbedding
     rw [hargs] at h
     exact h.symm
 
-end LRA.VolumeI.Logic
+end LRA.VolumeI.Logic.FirstOrder

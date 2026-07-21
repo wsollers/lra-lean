@@ -1,7 +1,7 @@
 import LRA.VolumeI.Logic.Model.Model
 import LRA.VolumeI.Logic.Model.Comparison.SignatureEmbedding
 
-namespace LRA.VolumeI.Logic
+namespace LRA.VolumeI.Logic.FirstOrder
 
 /-!
 Expansions.
@@ -70,4 +70,4 @@ def Model.expand
     | some c => M.interpretConstant c
     | none => newConstants c'
 
-end LRA.VolumeI.Logic
+end LRA.VolumeI.Logic.FirstOrder

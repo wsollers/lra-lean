@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Language.Propositional.PropositionalLanguage
 
-namespace LRA.VolumeI.Logic
+namespace LRA.VolumeI.Logic.Propositional
 
 /-!
 Propositional formulas.
@@ -83,4 +83,4 @@ theorem Formula.iff_evaluatesToBiconditional
   simp only [Formula.iff, Formula.and_evaluatesToConjunction, evaluate]
   cases evaluate valuation φ <;> cases evaluate valuation ψ <;> rfl
 
-end LRA.VolumeI.Logic
+end LRA.VolumeI.Logic.Propositional

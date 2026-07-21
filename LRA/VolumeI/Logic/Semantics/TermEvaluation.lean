@@ -1,10 +1,13 @@
 import LRA.VolumeI.Logic.Syntax.Term
 import LRA.VolumeI.Logic.Model.Model
 
-namespace LRA.VolumeI.Logic
+namespace LRA.VolumeI.Logic.FirstOrder
 
 /-!
 Term evaluation.
+
+Declared in the `LRA.VolumeI.Logic.FirstOrder` namespace, matching every
+other first-order-specific declaration.
 
 This is the first place `Term` (pure syntax) and `Model` (domain plus
 interpretation) actually meet. Evaluating a term needs two further
@@ -33,4 +36,4 @@ def evaluateTerm
   | .const c => M.interpretConstant c
   | .apply f args => M.interpretFunction f (fun i => evaluateTerm M assignment (args i))
 
-end LRA.VolumeI.Logic
+end LRA.VolumeI.Logic.FirstOrder
