@@ -66,4 +66,110 @@ theorem testFOLModel_satisfies_aAndB (assignment : Nat -> testFOLModel.Domain) :
   · trivial
   · trivial
 
+/-!
+The third checkpoint: `∀`/`∃`.
+
+One unary relation symbol `R`, over the domain `Bool` -- small and
+concrete enough to reason about exhaustively. Two models:
+
+  - `alwaysTrueModel`, interpreting `R` as always true: `∀x. R(x)` should
+    hold, and so should `∃x. R(x)`.
+  - `sometimesFalseModel`, interpreting `R(x)` as `x = true`: `∀x. R(x)`
+    should *fail* (witnessed by `x := false`), while `∃x. R(x)` should
+    still hold (witnessed by `x := true`).
+
+The failing direction is the genuinely interesting one: proving a `∀`
+fails means exhibiting a counterexample and showing the body does not
+hold there, exercising negation of a universally quantified statement,
+not just the easy "produce a witness for every input" direction.
+-/
+
+/-- The one unary relation symbol of the quantifier test signature. -/
+inductive QuantifierRelationSymbol where
+  | R
+
+/-- The quantifier test signature: no function symbols, no constants, and
+the one unary relation symbol `R`. -/
+def quantifierSignature : Signature where
+  Functions := ⟨Empty, Empty.elim⟩
+  Relations := ⟨QuantifierRelationSymbol, fun _ => 1⟩
+  Constants := Empty
+
+/-- `R` interpreted as always true, over the two-element domain `Bool`. -/
+def alwaysTrueModel : Model quantifierSignature where
+  Domain := Bool
+  domainNonempty := ⟨true⟩
+  interpretFunction := fun f => Empty.elim f
+  interpretRelation := fun _ _ => True
+  interpretConstant := Empty.elim
+
+/-- `R` interpreted as "the argument is `true`" -- true of `true`, false
+of `false`. -/
+def sometimesFalseModel : Model quantifierSignature where
+  Domain := Bool
+  domainNonempty := ⟨true⟩
+  interpretFunction := fun f => Empty.elim f
+  interpretRelation
+    | .R, args => args ⟨0, by decide⟩ = true
+  interpretConstant := Empty.elim
+
+/-- The variable `x` used in the quantifier test formulas, as a bare
+`Nat`-indexed variable (matching the canonical `Vbl := {vn | n ∈ N0}`
+supply). -/
+def x : Nat := 0
+
+/-- The formula `∀x. R(x)`. -/
+def forallRFormula : FirstOrder.Formula quantifierSignature Nat :=
+  FirstOrder.Formula.forallQ x (FirstOrder.Formula.relation .R (fun _ => Term.var x))
+
+/-- The formula `∃x. R(x)`. -/
+def existsRFormula : FirstOrder.Formula quantifierSignature Nat :=
+  FirstOrder.Formula.existsQ x (FirstOrder.Formula.relation .R (fun _ => Term.var x))
+
+/-- `∀x. R(x)` holds in `alwaysTrueModel`. -/
+theorem alwaysTrueModel_satisfies_forallR (assignment : Nat -> alwaysTrueModel.Domain) :
+    Satisfies alwaysTrueModel assignment forallRFormula := by
+  show ∀ a : Bool, Satisfies alwaysTrueModel (updateAssignment assignment x a)
+    (FirstOrder.Formula.relation .R (fun _ => Term.var x))
+  intro a
+  show alwaysTrueModel.interpretRelation .R
+    (fun i => evaluateTerm alwaysTrueModel (updateAssignment assignment x a) (Term.var x))
+  trivial
+
+/-- `∃x. R(x)` holds in `alwaysTrueModel`. -/
+theorem alwaysTrueModel_satisfies_existsR (assignment : Nat -> alwaysTrueModel.Domain) :
+    Satisfies alwaysTrueModel assignment existsRFormula := by
+  show Satisfies alwaysTrueModel assignment
+    (FirstOrder.Formula.existsQ x (FirstOrder.Formula.relation .R (fun _ => Term.var x)))
+  rw [satisfiesExistsIffSomeWitness]
+  refine ⟨true, ?_⟩
+  show alwaysTrueModel.interpretRelation .R
+    (fun i => evaluateTerm alwaysTrueModel (updateAssignment assignment x true) (Term.var x))
+  trivial
+
+/-- `∀x. R(x)` fails in `sometimesFalseModel`, witnessed by `x := false`. -/
+theorem sometimesFalseModel_not_satisfies_forallR
+    (assignment : Nat -> sometimesFalseModel.Domain) :
+    ¬ Satisfies sometimesFalseModel assignment forallRFormula := by
+  show ¬ ∀ a : Bool, Satisfies sometimesFalseModel (updateAssignment assignment x a)
+    (FirstOrder.Formula.relation .R (fun _ => Term.var x))
+  intro h
+  have hfalse : sometimesFalseModel.interpretRelation .R
+      (fun i => evaluateTerm sometimesFalseModel (updateAssignment assignment x false) (Term.var x)) :=
+    h false
+  simp [sometimesFalseModel, evaluateTerm, updateAssignment] at hfalse
+
+/-- `∃x. R(x)` still holds in `sometimesFalseModel`, witnessed by
+`x := true`. -/
+theorem sometimesFalseModel_satisfies_existsR
+    (assignment : Nat -> sometimesFalseModel.Domain) :
+    Satisfies sometimesFalseModel assignment existsRFormula := by
+  show Satisfies sometimesFalseModel assignment
+    (FirstOrder.Formula.existsQ x (FirstOrder.Formula.relation .R (fun _ => Term.var x)))
+  rw [satisfiesExistsIffSomeWitness]
+  refine ⟨true, ?_⟩
+  show sometimesFalseModel.interpretRelation .R
+    (fun i => evaluateTerm sometimesFalseModel (updateAssignment assignment x true) (Term.var x))
+  simp [sometimesFalseModel, evaluateTerm, updateAssignment]
+
 end LRA.VolumeI.Logic

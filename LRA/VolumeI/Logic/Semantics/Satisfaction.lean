@@ -66,4 +66,18 @@ theorem satisfiesAndIffSatisfiesBoth
   simp only [FirstOrder.Formula.and, Satisfies]
   tauto
 
+/-- `Satisfies` on an existential `∃v. φ` (the derived
+`FirstOrder.Formula.existsQ`) holds exactly when *some* domain element
+witnesses `φ` under the updated assignment -- the expected meaning of
+`∃`, derived here (via classical reasoning, since the definition goes
+through `¬∀¬`) rather than assumed. -/
+theorem satisfiesExistsIffSomeWitness
+    {S : Signature} {Variable : Type} [DecidableEq Variable]
+    (M : Model S) (assignment : Variable -> M.Domain)
+    (v : Variable) (φ : FirstOrder.Formula S Variable) :
+    Satisfies M assignment (FirstOrder.Formula.existsQ v φ) ↔
+      ∃ a : M.Domain, Satisfies M (updateAssignment assignment v a) φ := by
+  simp only [FirstOrder.Formula.existsQ, Satisfies]
+  exact not_forall_not
+
 end LRA.VolumeI.Logic

@@ -75,4 +75,14 @@ def Formula.and {S : Signature} {Variable : Type} (φ ψ : Formula S Variable) :
     Formula S Variable :=
   Formula.neg (Formula.impl φ (Formula.neg ψ))
 
+/-- `∃v. φ := ¬∀v. ¬φ`, the standard reduction of the existential
+quantifier to the universal one, matching
+`Language.Notation.LogicalQuantifier`'s doc-comment. The theorem confirming
+this has the expected satisfaction condition -- holding iff *some* domain
+element witnesses `φ` -- lives in `Semantics`, alongside `Satisfies`
+itself, for the same reason `Formula.and`'s satisfaction theorem does. -/
+def Formula.existsQ {S : Signature} {Variable : Type}
+    (v : Variable) (φ : Formula S Variable) : Formula S Variable :=
+  Formula.neg (Formula.forallQ v (Formula.neg φ))
+
 end LRA.VolumeI.Logic.FirstOrder
