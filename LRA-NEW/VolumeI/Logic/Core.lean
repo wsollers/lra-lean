@@ -132,6 +132,43 @@ def evaluateFormula {L : LogicalLanguage}
         (evaluateFormula M leftFormula)
         (evaluateFormula M rightFormula)
 
+namespace EvaluationUnfolding
+
+/-!
+Generic one-step unfolding facts for `evaluateFormula`.
+
+Every concrete `LogicalLanguage` proves its own connective-specific evaluation
+theorems (e.g. "evaluating a conjunction is the boolean and of the operands")
+by unfolding `evaluateFormula` at a `unary`/`binary` node and then unfolding
+the language's truth-function match arm for the specific connective. The
+first unfolding step is entirely generic -- it holds for any `LogicalLanguage`
+and any `LogicalStructure` on it, before any particular connective is chosen.
+Naming it here means each concrete language states only the second,
+connective-specific step instead of re-deriving both steps from scratch.
+-/
+
+theorem evaluationOfUnaryConnective
+    {L : LogicalLanguage}
+    (M : LogicalStructure L)
+    (connective : L.UnaryConnectives)
+    (formula : LogicalFormula L) :
+    evaluateFormula M (LogicalFormula.unary connective formula) =
+      M.truthFunctionOfUnaryConnective connective (evaluateFormula M formula) := by
+  rfl
+
+theorem evaluationOfBinaryConnective
+    {L : LogicalLanguage}
+    (M : LogicalStructure L)
+    (connective : L.BinaryConnectives)
+    (leftFormula rightFormula : LogicalFormula L) :
+    evaluateFormula M (LogicalFormula.binary connective leftFormula rightFormula) =
+      M.truthFunctionOfBinaryConnective connective
+        (evaluateFormula M leftFormula)
+        (evaluateFormula M rightFormula) := by
+  rfl
+
+end EvaluationUnfolding
+
 def StructureSatisfiesFormula {L : LogicalLanguage}
     (M : LogicalStructure L)
     (formula : LogicalFormula L) : Prop :=

@@ -1,7 +1,14 @@
-import LRA.VolumeI.Logic.Core
-import LRA.VolumeI.Logic.Prelude
+import LRA.VolumeI.Logic.Language
+import LRA.VolumeI.Logic.Model
+import LRA.VolumeI.Logic.Syntax
 import LRA.VolumeI.Logic.Semantics
-import LRA.VolumeI.Logic.PropositionalLogic
-import LRA.VolumeI.Logic.FirstOrderLogic
-import LRA.VolumeI.Logic.ProofTheory
-import LRA.VolumeI.Logic.ModelTheory
+
+/-!
+Aggregate import shim for everything currently under `VolumeI/Logic/`.
+
+`Language` (vocabulary: similarity type plus shared logical symbols),
+`Model` (domain plus interpretation of a signature's vocabulary), `Syntax`
+(terms and propositional formulas), and `Semantics` (term evaluation, and
+eventually first-order formula satisfaction) exist so far. This file is
+expected to grow, not to be written once and left alone.
+-/

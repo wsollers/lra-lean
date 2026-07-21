@@ -146,12 +146,24 @@ end Examples
 
 namespace BooleanSemantics
 
+open EvaluationUnfolding
+
+/-!
+Connective-specific evaluation facts.
+
+Each theorem here reduces to the generic `evaluationOf{Unary,Binary}Connective`
+unfolding lemma from `Core.lean`, instantiated at this language's specific
+connective symbol (`UnaryConnective.not`, `BinaryConnective.and`, etc.) and
+its truth-function match arm. Only the connective-specific unfolding is new
+work; the constructor-level unfolding is inherited, not re-derived.
+-/
+
 theorem evaluationOfNegation
     (valuation : Atom -> Bool)
     (formula : Formula) :
     evaluateFormula (booleanStructure valuation) (¬ₗ formula) =
       !(evaluateFormula (booleanStructure valuation) formula) := by
-  rfl
+  exact evaluationOfUnaryConnective (booleanStructure valuation) UnaryConnective.not formula
 
 theorem evaluationOfConjunction
     (valuation : Atom -> Bool)
@@ -162,7 +174,8 @@ theorem evaluationOfConjunction
       =
       (evaluateFormula (booleanStructure valuation) leftFormula &&
         evaluateFormula (booleanStructure valuation) rightFormula) := by
-  rfl
+  exact evaluationOfBinaryConnective
+    (booleanStructure valuation) BinaryConnective.and leftFormula rightFormula
 
 theorem evaluationOfDisjunction
     (valuation : Atom -> Bool)
@@ -173,7 +186,8 @@ theorem evaluationOfDisjunction
       =
       (evaluateFormula (booleanStructure valuation) leftFormula ||
         evaluateFormula (booleanStructure valuation) rightFormula) := by
-  rfl
+  exact evaluationOfBinaryConnective
+    (booleanStructure valuation) BinaryConnective.or leftFormula rightFormula
 
 theorem evaluationOfImplication
     (valuation : Atom -> Bool)
@@ -184,7 +198,8 @@ theorem evaluationOfImplication
       =
       (!(evaluateFormula (booleanStructure valuation) hypothesis) ||
         evaluateFormula (booleanStructure valuation) conclusion) := by
-  rfl
+  exact evaluationOfBinaryConnective
+    (booleanStructure valuation) BinaryConnective.implies hypothesis conclusion
 
 theorem evaluationOfBiconditional
     (valuation : Atom -> Bool)
@@ -195,7 +210,8 @@ theorem evaluationOfBiconditional
       =
       (evaluateFormula (booleanStructure valuation) leftFormula ==
         evaluateFormula (booleanStructure valuation) rightFormula) := by
-  rfl
+  exact evaluationOfBinaryConnective
+    (booleanStructure valuation) BinaryConnective.iff leftFormula rightFormula
 
 end BooleanSemantics
 
