@@ -1,5 +1,6 @@
 import LRA.VolumeI.Set.ZFC.Syntax.Formula
 import LRA.VolumeI.Set.ZFC.Model.Model
+import LRA.VolumeI.Set.ZFC.Semantics.ClosedAxioms
 import LRA.VolumeI.Set.ZFC.Semantics.SchemaCorrectness
 
 namespace LRA.VolumeI.Set.ZFC
@@ -65,6 +66,26 @@ theorem emptyMembershipTestModel_not_satisfies_one_isMemberOf_zero
     ¬ satisfiesZFCFormula emptyMembershipTestModel assignment (isMemberOf 1 0) := by
   intro h
   exact h
+
+/-- Checkpoint: satisfaction of a named closed ZFC axiom is independent of
+the variable assignment. -/
+example
+    (leftAssignment rightAssignment :
+      ZFCVariable -> emptyMembershipTestModel.Domain) :
+    satisfiesZFCFormula emptyMembershipTestModel leftAssignment extensionalityAxiom ↔
+      satisfiesZFCFormula emptyMembershipTestModel rightAssignment extensionalityAxiom :=
+  extensionalityAxiom_satisfaction_assignment_independent
+    emptyMembershipTestModel leftAssignment rightAssignment
+
+/-- Checkpoint: the generic closed-ZFC-formula bridge applies to named
+closed ZFC axioms. -/
+example
+    (leftAssignment rightAssignment :
+      ZFCVariable -> emptyMembershipTestModel.Domain) :
+    satisfiesZFCFormula emptyMembershipTestModel leftAssignment emptySetAxiom ↔
+      satisfiesZFCFormula emptyMembershipTestModel rightAssignment emptySetAxiom :=
+  satisfiesZFCFormula_iff_of_isClosedZFCFormula
+    emptyMembershipTestModel emptySetAxiom emptySetAxiom_isClosedFormula
 
 /-- Checkpoint: the Separation schema reading is the preferred semantic
 view of the generated Separation formula. -/
