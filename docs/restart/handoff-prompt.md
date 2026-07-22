@@ -19,7 +19,7 @@ git log -1 --oneline
 The latest committed checkpoint is:
 
 ```text
-117dd5f Add clean aggregate ZFC predicates
+bda4019 Add clean ZFC aggregate projection lemmas
 ```
 
 ## Current Restart State
@@ -161,6 +161,8 @@ aff6a0c Refresh handoff after ZFC sentence API
 21cca9a Package basic ZFC axioms as sentences
 285de34 Refresh handoff after basic axiom sentence packaging
 117dd5f Add clean aggregate ZFC predicates
+1db13a7 Refresh handoff after clean aggregate ZFC predicates
+bda4019 Add clean ZFC aggregate projection lemmas
 ```
 
 Those changes add:
@@ -208,6 +210,9 @@ Those changes add:
   Choice;
 - equivalences between those clean aggregates and the existing
   formula-satisfaction aggregate predicates.
+- projection lemmas for the clean aggregate predicates;
+- a monotonicity lemma showing clean ZFC without Choice implies clean ZFC
+  without Replacement.
 
 The working tree should be clean after this handoff is committed.
 
@@ -242,22 +247,16 @@ batteries: repository '.lake/packages/batteries' has local changes
 The package warnings existed before this work and are not caused by the current
 Volume I changes.
 
-## Immediate Next Task
+## Stop Line
 
-First, inspect the current working tree and latest commit. If the tree is
-clean, add small projection and monotonicity lemmas for the clean aggregate
-ZFC predicates, before moving toward any set operations:
+The requested pre-operations foundation work is complete. The next natural
+mathematical development would be set operations such as union, intersection,
+complement, and their algebraic laws. Do not start that work without explicit
+user direction.
 
-1. add named projection lemmas from
-   `SatisfiesZFCAxiomsWithoutReplacementCleanly` to its basic-axiom-sentence
-   and clean-Separation components;
-2. add named projection lemmas from
-   `SatisfiesZFCAxiomsWithoutChoiceCleanly` to its basic-axiom-sentence,
-   clean-Separation, and clean-Replacement components;
-3. prove that `SatisfiesZFCAxiomsWithoutChoiceCleanly M` implies
-   `SatisfiesZFCAxiomsWithoutReplacementCleanly M`;
-4. add small examples/checkpoints showing the projection and monotonicity API;
-5. rerun validation and commit.
+If continuing within the current constraint, inspect the current working tree
+and latest commit, confirm it is clean, and report that the repository is at
+the stop line before set operations.
 
 Keep this in the ZFC syntax/semantics/theory boundary. Do not begin relation
 algebra, general functions, quotients, orders, cardinality, number systems, or
@@ -274,9 +273,8 @@ To continue in a new Codex conversation, paste this:
 We are working in F:\repos\lra-lean.
 
 Read docs/restart/handoff-prompt.md, then inspect git status and the latest
-commit. Continue from the current handoff exactly: add projection and
-monotonicity lemmas for the clean aggregate ZFC predicates, including that clean
-ZFC without Choice implies clean ZFC without Replacement, add small examples,
-rerun validation, and if it passes, commit it. Do not move to relation algebra,
-functions, quotients, orders, cardinality, number systems, or set operations.
+commit. Continue from the current handoff exactly: confirm the working tree is
+clean and report that the Volume I/ZFC foundation has reached the requested
+stop line before set operations. Do not move to relation algebra, functions,
+quotients, orders, cardinality, number systems, or set operations.
 ```
