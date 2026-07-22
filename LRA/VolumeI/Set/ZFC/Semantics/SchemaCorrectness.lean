@@ -1,4 +1,5 @@
 import Mathlib.Tactic.Tauto
+import LRA.VolumeI.Logic.Semantics.Substitution
 import LRA.VolumeI.Set.ZFC.Semantics.Satisfaction
 import LRA.VolumeI.Set.ZFC.Theory.SchemaFacts
 
@@ -181,6 +182,38 @@ def replacementSchemaReading
                 updateAssignment imageElementAssignment inputVariable input
               zfcMembershipHolds M inputAssignment inputVariable sourceSet ∧
                 satisfiesZFCFormula M inputAssignment predicate
+
+/-- The renamed predicate used in the Replacement functionality clause has
+the expected semantic reading: under the substitution side condition, it is
+the original predicate with `outputVariable` assigned the value currently
+carried by Replacement's fresh output-prime variable. -/
+theorem satisfies_replacementRenamedPredicate_iff_updateOutput
+    (M : ZFCModel)
+    (assignment : ZFCVariable -> M.Domain)
+    (inputVariable outputVariable : ZFCVariable)
+    (predicate : ZFCFormula)
+    (captureAvoiding :
+      FirstOrder.IsSubstitutable predicate outputVariable
+        (variableTerm
+          (SchemaFacts.replacementOutputVariablePrime
+            inputVariable outputVariable predicate))) :
+    let outputVariable' :=
+      SchemaFacts.replacementOutputVariablePrime
+        inputVariable outputVariable predicate
+    let renamedPredicate :=
+      FirstOrder.substitute outputVariable (variableTerm outputVariable') predicate
+    satisfiesZFCFormula M assignment renamedPredicate ↔
+      satisfiesZFCFormula M
+        (updateAssignment assignment outputVariable (assignment outputVariable'))
+        predicate := by
+  simp [satisfiesZFCFormula]
+  exact
+    FirstOrder.satisfies_substitute_iff_update
+      M assignment outputVariable
+      (variableTerm
+        (SchemaFacts.replacementOutputVariablePrime
+          inputVariable outputVariable predicate))
+      predicate captureAvoiding
 
 /-- Satisfaction of a generated Replacement formula is exactly the
 model-facing Replacement reading. -/
