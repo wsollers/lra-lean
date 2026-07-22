@@ -19,7 +19,7 @@ git log -1 --oneline
 The latest committed checkpoint is:
 
 ```text
-a39dc9d Clarify Replacement schema semantics API
+5054233 Add clean Separation schema semantics API
 ```
 
 ## Current Restart State
@@ -143,6 +143,8 @@ d9eed0e Discharge Replacement rename capture condition
 2dd08ea Refine Replacement schema semantics API
 a96d329 Refresh handoff after Replacement API refinement
 a39dc9d Clarify Replacement schema semantics API
+f24e7a3 Refresh handoff before Separation schema API
+5054233 Add clean Separation schema semantics API
 ```
 
 Those changes add:
@@ -166,6 +168,8 @@ Those changes add:
   (`SatisfiesReplacementSchemaCleanly`) and examples showing the preferred API;
 - clarified documentation separating the formula-satisfaction Replacement
   predicate from the preferred clean model-facing bridge.
+- a clean model-level Separation schema predicate
+  (`SatisfiesSeparationSchemaCleanly`) and examples showing the preferred API.
 
 The working tree should be clean after this handoff is committed.
 
@@ -198,15 +202,16 @@ Volume I changes.
 ## Immediate Next Task
 
 First, inspect the current working tree and latest commit. If the tree is
-clean, give Separation the same ergonomic model-facing API shape as
-Replacement, without introducing set operations:
+clean, begin closed-formula / sentence infrastructure before moving toward
+any set operations:
 
-1. add a model-level clean Separation predicate, analogous to
-   `SatisfiesReplacementSchemaCleanly`, using `separationSchemaReading`;
-2. prove it equivalent to the existing formula-satisfaction predicate
-   `SatisfiesSeparationSchema`;
-3. add small examples/checkpoints showing the preferred Separation bridge;
-4. rerun the validation above and commit the change.
+1. add first-order syntax support for closed formulas or sentences, likely in
+   a new targeted module under `LRA/VolumeI/Logic/Syntax/FirstOrder/`;
+2. define the closedness predicate in terms of `freeVariables = ∅`;
+3. prove or state the assignment-independence theorem for closed formulas,
+   using `satisfies_iff_of_agrees_on_freeVariables`;
+4. add ZFC-facing aliases or examples only as needed;
+5. rerun validation and commit.
 
 Keep this in the ZFC semantics layer. Do not begin relation algebra, general
 functions, quotients, orders, cardinality, or number systems.
@@ -222,8 +227,8 @@ To continue in a new Codex conversation, paste this:
 We are working in F:\repos\lra-lean.
 
 Read docs/restart/handoff-prompt.md, then inspect git status and the latest
-commit. Continue from the current handoff exactly: add the clean model-facing
-Separation schema predicate and equivalence to `SatisfiesSeparationSchema`,
-rerun the stated validation, and if it passes, commit it. Do not move to
-relation algebra, functions, quotients, orders, cardinality, or number systems.
+commit. Continue from the current handoff exactly: begin closed-formula /
+sentence infrastructure and assignment-independence for closed first-order
+formulas, rerun validation, and if it passes, commit it. Do not move to relation
+algebra, functions, quotients, orders, cardinality, or number systems.
 ```
