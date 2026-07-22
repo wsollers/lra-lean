@@ -19,7 +19,7 @@ git log -1 --oneline
 The latest committed checkpoint is:
 
 ```text
-d9de1c3 Add closed ZFC axiom satisfaction facts
+1820131 Add one-assignment ZFC basic axiom API
 ```
 
 ## Current Restart State
@@ -153,6 +153,8 @@ f24e7a3 Refresh handoff before Separation schema API
 b4ca411 Add first-order sentence infrastructure
 e4d8e2e Refresh handoff after sentence infrastructure
 d9de1c3 Add closed ZFC axiom satisfaction facts
+32b0c40 Refresh handoff after closed ZFC axiom facts
+1820131 Add one-assignment ZFC basic axiom API
 ```
 
 Those changes add:
@@ -184,6 +186,10 @@ Those changes add:
 - named ZFC axiom formulas packaged as closed `ZFCSentence`s;
 - assignment-independence facts for satisfaction of the named closed ZFC
   axioms.
+- a one-assignment predicate for the named basic ZFC axioms
+  (`SatisfiesZFCBasicAxiomsAt`);
+- equivalences showing the one-assignment basic-axiom view matches the existing
+  all-assignments predicate.
 
 The working tree should be clean after this handoff is committed.
 
@@ -199,6 +205,7 @@ These commands passed:
 lake build LRA.VolumeI.Logic.Semantics.Substitution
 lake build LRA.VolumeI.Logic.Semantics.Sentence
 lake build LRA.VolumeI.Set.ZFC.Theory.ClosedAxioms
+lake build LRA.VolumeI.Set.ZFC.Semantics.Satisfaction
 lake build LRA.VolumeI.Set.ZFC.Semantics.ClosedAxioms
 lake build LRA.VolumeI.Set.ZFC.Semantics.SchemaCorrectness
 lake build LRA.VolumeI.Set.ZFC.Semantics.Examples
@@ -220,15 +227,15 @@ Volume I changes.
 ## Immediate Next Task
 
 First, inspect the current working tree and latest commit. If the tree is
-clean, use the closed named ZFC axiom satisfaction facts to clean up the
-model-facing basic axiom predicate, before moving toward any set operations:
+clean, add a ZFC-facing satisfaction API for closed `ZFCSentence`s, before
+moving toward any set operations:
 
-1. define a one-assignment view of the existing basic ZFC axiom predicate,
-   likely near `LRA/VolumeI/Set/ZFC/Semantics/Satisfaction.lean`;
-2. prove it equivalent to `SatisfiesZFCBasicAxioms M` by using
-   `M.domainNonempty` for the forward direction and the named closed-axiom
-   assignment-independence theorems for the reverse direction;
-3. add small examples/checkpoints showing the preferred model-facing API;
+1. define a ZFC-facing sentence satisfaction wrapper for `ZFCSentence`, likely
+   in or near `LRA/VolumeI/Set/ZFC/Semantics/ClosedAxioms.lean`;
+2. prove it agrees with satisfaction of the underlying formula and is
+   assignment-independent by reusing `FirstOrder.satisfies_sentence_iff`;
+3. add named examples/checkpoints for the existing closed axiom sentence
+   wrappers from `LRA/VolumeI/Set/ZFC/Theory/ClosedAxioms.lean`;
 4. rerun validation and commit.
 
 Keep this in the ZFC syntax/semantics/theory boundary. Do not begin relation
@@ -246,9 +253,10 @@ To continue in a new Codex conversation, paste this:
 We are working in F:\repos\lra-lean.
 
 Read docs/restart/handoff-prompt.md, then inspect git status and the latest
-commit. Continue from the current handoff exactly: use the closed named ZFC
-axiom satisfaction facts to add a one-assignment clean API for the basic ZFC
-axiom predicate, prove it equivalent to the existing all-assignments predicate,
-rerun validation, and if it passes, commit it. Do not move to relation algebra,
-functions, quotients, orders, cardinality, number systems, or set operations.
+commit. Continue from the current handoff exactly: add a ZFC-facing satisfaction
+API for closed `ZFCSentence`s, prove it agrees with satisfaction of the
+underlying formula and is assignment-independent, add named axiom-sentence
+examples, rerun validation, and if it passes, commit it. Do not move to
+relation algebra, functions, quotients, orders, cardinality, number systems, or
+set operations.
 ```
