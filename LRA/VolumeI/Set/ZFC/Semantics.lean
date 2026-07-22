@@ -9,6 +9,6 @@ predicates asserting a model satisfies the ZFC axioms
 (`SatisfiesZFCBasicAxioms`, the Separation/Replacement schema predicates,
 and the aggregate ZFC-without-Choice predicate), semantic readings and
 correctness lemmas for the schema constructors, including the cleaned
-Replacement reading preferred for model-facing arguments, and semantic
-checkpoints.
+Replacement reading and `SatisfiesReplacementSchemaCleanly` bridge preferred
+for model-facing arguments, and semantic checkpoints.
 -/

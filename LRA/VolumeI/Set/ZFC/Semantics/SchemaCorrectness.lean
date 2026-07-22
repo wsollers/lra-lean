@@ -407,7 +407,12 @@ theorem satisfies_replacementAxiomFor_iff_cleanReading
         M assignment inputVariable outputVariable predicate)
 
 /-- A ZFC model satisfies every Replacement instance, read through the
-cleaned semantic view rather than the syntactic renamed predicate. -/
+cleaned semantic view rather than the syntactic renamed predicate.
+
+This is the preferred model-facing API for Replacement schema arguments.
+It is equivalent to `SatisfiesReplacementSchema`, whose definition stays in
+`Semantics/Satisfaction.lean` as the lower-level formula-satisfaction
+predicate. -/
 def SatisfiesReplacementSchemaCleanly (M : ZFCModel) : Prop :=
   ∀ (inputVariable outputVariable : ZFCVariable)
     (predicate : ZFCFormula)
