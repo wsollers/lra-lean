@@ -239,6 +239,22 @@ example :
       SatisfiesZFCAxiomsWithoutReplacementCleanly emptyMembershipTestModel :=
   satisfiesZFCAxiomsWithoutReplacement_iff_cleanly emptyMembershipTestModel
 
+/-- Checkpoint: clean ZFC without Replacement projects to the named basic
+axiom sentences. -/
+example
+    (hAxioms :
+      SatisfiesZFCAxiomsWithoutReplacementCleanly emptyMembershipTestModel) :
+    SatisfiesZFCBasicAxiomSentences emptyMembershipTestModel :=
+  satisfiesZFCAxiomsWithoutReplacementCleanly.basicAxiomSentences hAxioms
+
+/-- Checkpoint: clean ZFC without Replacement projects to clean
+Separation. -/
+example
+    (hAxioms :
+      SatisfiesZFCAxiomsWithoutReplacementCleanly emptyMembershipTestModel) :
+    SatisfiesSeparationSchemaCleanly emptyMembershipTestModel :=
+  satisfiesZFCAxiomsWithoutReplacementCleanly.separation hAxioms
+
 /-- Checkpoint: the cleaned Replacement reading is the preferred semantic
 view of the generated Replacement formula. -/
 example
@@ -266,5 +282,35 @@ example :
     SatisfiesZFCAxiomsWithoutChoice emptyMembershipTestModel ↔
       SatisfiesZFCAxiomsWithoutChoiceCleanly emptyMembershipTestModel :=
   satisfiesZFCAxiomsWithoutChoice_iff_cleanly emptyMembershipTestModel
+
+/-- Checkpoint: clean ZFC without Choice projects to the named basic axiom
+sentences. -/
+example
+    (hAxioms :
+      SatisfiesZFCAxiomsWithoutChoiceCleanly emptyMembershipTestModel) :
+    SatisfiesZFCBasicAxiomSentences emptyMembershipTestModel :=
+  satisfiesZFCAxiomsWithoutChoiceCleanly.basicAxiomSentences hAxioms
+
+/-- Checkpoint: clean ZFC without Choice projects to clean Separation. -/
+example
+    (hAxioms :
+      SatisfiesZFCAxiomsWithoutChoiceCleanly emptyMembershipTestModel) :
+    SatisfiesSeparationSchemaCleanly emptyMembershipTestModel :=
+  satisfiesZFCAxiomsWithoutChoiceCleanly.separation hAxioms
+
+/-- Checkpoint: clean ZFC without Choice projects to clean Replacement. -/
+example
+    (hAxioms :
+      SatisfiesZFCAxiomsWithoutChoiceCleanly emptyMembershipTestModel) :
+    SatisfiesReplacementSchemaCleanly emptyMembershipTestModel :=
+  satisfiesZFCAxiomsWithoutChoiceCleanly.replacement hAxioms
+
+/-- Checkpoint: clean ZFC without Choice implies clean ZFC without
+Replacement. -/
+example
+    (hAxioms :
+      SatisfiesZFCAxiomsWithoutChoiceCleanly emptyMembershipTestModel) :
+    SatisfiesZFCAxiomsWithoutReplacementCleanly emptyMembershipTestModel :=
+  satisfiesZFCAxiomsWithoutChoiceCleanly.withoutReplacement hAxioms
 
 end LRA.VolumeI.Set.ZFC

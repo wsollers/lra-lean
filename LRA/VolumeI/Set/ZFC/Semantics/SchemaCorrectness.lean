@@ -479,6 +479,22 @@ def SatisfiesZFCAxiomsWithoutReplacementCleanly (M : ZFCModel) : Prop :=
   SatisfiesZFCBasicAxiomSentences M ∧
     SatisfiesSeparationSchemaCleanly M
 
+/-- Clean ZFC without Replacement includes the named basic axiom
+sentences. -/
+theorem satisfiesZFCAxiomsWithoutReplacementCleanly.basicAxiomSentences
+    {M : ZFCModel}
+    (hAxioms : SatisfiesZFCAxiomsWithoutReplacementCleanly M) :
+    SatisfiesZFCBasicAxiomSentences M :=
+  hAxioms.1
+
+/-- Clean ZFC without Replacement includes the clean Separation schema
+reading. -/
+theorem satisfiesZFCAxiomsWithoutReplacementCleanly.separation
+    {M : ZFCModel}
+    (hAxioms : SatisfiesZFCAxiomsWithoutReplacementCleanly M) :
+    SatisfiesSeparationSchemaCleanly M :=
+  hAxioms.2
+
 /-- The existing formula-satisfaction aggregate for ZFC without Replacement
 is equivalent to the preferred clean aggregate. -/
 theorem satisfiesZFCAxiomsWithoutReplacement_iff_cleanly
@@ -504,6 +520,35 @@ def SatisfiesZFCAxiomsWithoutChoiceCleanly (M : ZFCModel) : Prop :=
   SatisfiesZFCBasicAxiomSentences M ∧
     SatisfiesSeparationSchemaCleanly M ∧
     SatisfiesReplacementSchemaCleanly M
+
+/-- Clean ZFC without Choice includes the named basic axiom sentences. -/
+theorem satisfiesZFCAxiomsWithoutChoiceCleanly.basicAxiomSentences
+    {M : ZFCModel}
+    (hAxioms : SatisfiesZFCAxiomsWithoutChoiceCleanly M) :
+    SatisfiesZFCBasicAxiomSentences M :=
+  hAxioms.1
+
+/-- Clean ZFC without Choice includes the clean Separation schema reading. -/
+theorem satisfiesZFCAxiomsWithoutChoiceCleanly.separation
+    {M : ZFCModel}
+    (hAxioms : SatisfiesZFCAxiomsWithoutChoiceCleanly M) :
+    SatisfiesSeparationSchemaCleanly M :=
+  hAxioms.2.1
+
+/-- Clean ZFC without Choice includes the clean Replacement schema reading. -/
+theorem satisfiesZFCAxiomsWithoutChoiceCleanly.replacement
+    {M : ZFCModel}
+    (hAxioms : SatisfiesZFCAxiomsWithoutChoiceCleanly M) :
+    SatisfiesReplacementSchemaCleanly M :=
+  hAxioms.2.2
+
+/-- Clean ZFC without Choice implies clean ZFC without Replacement. -/
+theorem satisfiesZFCAxiomsWithoutChoiceCleanly.withoutReplacement
+    {M : ZFCModel}
+    (hAxioms : SatisfiesZFCAxiomsWithoutChoiceCleanly M) :
+    SatisfiesZFCAxiomsWithoutReplacementCleanly M :=
+  ⟨satisfiesZFCAxiomsWithoutChoiceCleanly.basicAxiomSentences hAxioms,
+    satisfiesZFCAxiomsWithoutChoiceCleanly.separation hAxioms⟩
 
 /-- The existing formula-satisfaction aggregate for ZFC without Choice is
 equivalent to the preferred clean aggregate. -/
