@@ -125,6 +125,66 @@ theorem choiceAxiom_satisfaction_assignment_independent
   satisfiesZFCFormula_iff_of_isClosedZFCFormula
     M choiceAxiom choiceAxiom_isClosedFormula
 
+/-- A ZFC model satisfies the currently formalized named basic axiom
+sentences: extensionality, empty set, pairing, union, power set,
+foundation, and infinity. Choice is tracked separately because the current
+aggregate predicate is explicitly ZFC without Choice. -/
+def SatisfiesZFCBasicAxiomSentences (M : ZFCModel) : Prop :=
+  satisfiesZFCSentence M extensionalitySentence ∧
+  satisfiesZFCSentence M emptySetSentence ∧
+  satisfiesZFCSentence M pairingSentence ∧
+  satisfiesZFCSentence M unionSentence ∧
+  satisfiesZFCSentence M powerSetSentence ∧
+  satisfiesZFCSentence M foundationSentence ∧
+  satisfiesZFCSentence M infinitySentence
+
+/-- The sentence-level basic axiom predicate agrees with the
+one-assignment basic axiom predicate under any chosen assignment. -/
+theorem satisfiesZFCBasicAxiomSentences_iff_at
+    (M : ZFCModel)
+    (assignment : ZFCVariable -> M.Domain) :
+    SatisfiesZFCBasicAxiomSentences M ↔
+      SatisfiesZFCBasicAxiomsAt M assignment := by
+  constructor
+  · intro sentenceSatisfaction
+    rcases sentenceSatisfaction with
+      ⟨hExtensionality, hEmptySet, hPairing, hUnion, hPowerSet,
+        hFoundation, hInfinity⟩
+    exact
+      ⟨(satisfiesZFCSentence_iff_satisfiesZFCFormula
+          M assignment extensionalitySentence).mp hExtensionality,
+        (satisfiesZFCSentence_iff_satisfiesZFCFormula
+          M assignment emptySetSentence).mp hEmptySet,
+        (satisfiesZFCSentence_iff_satisfiesZFCFormula
+          M assignment pairingSentence).mp hPairing,
+        (satisfiesZFCSentence_iff_satisfiesZFCFormula
+          M assignment unionSentence).mp hUnion,
+        (satisfiesZFCSentence_iff_satisfiesZFCFormula
+          M assignment powerSetSentence).mp hPowerSet,
+        (satisfiesZFCSentence_iff_satisfiesZFCFormula
+          M assignment foundationSentence).mp hFoundation,
+        (satisfiesZFCSentence_iff_satisfiesZFCFormula
+          M assignment infinitySentence).mp hInfinity⟩
+  · intro assignmentSatisfaction
+    rcases assignmentSatisfaction with
+      ⟨hExtensionality, hEmptySet, hPairing, hUnion, hPowerSet,
+        hFoundation, hInfinity⟩
+    exact
+      ⟨(satisfiesZFCSentence_iff_satisfiesZFCFormula
+          M assignment extensionalitySentence).mpr hExtensionality,
+        (satisfiesZFCSentence_iff_satisfiesZFCFormula
+          M assignment emptySetSentence).mpr hEmptySet,
+        (satisfiesZFCSentence_iff_satisfiesZFCFormula
+          M assignment pairingSentence).mpr hPairing,
+        (satisfiesZFCSentence_iff_satisfiesZFCFormula
+          M assignment unionSentence).mpr hUnion,
+        (satisfiesZFCSentence_iff_satisfiesZFCFormula
+          M assignment powerSetSentence).mpr hPowerSet,
+        (satisfiesZFCSentence_iff_satisfiesZFCFormula
+          M assignment foundationSentence).mpr hFoundation,
+        (satisfiesZFCSentence_iff_satisfiesZFCFormula
+          M assignment infinitySentence).mpr hInfinity⟩
+
 /-- The one-assignment view of the basic named ZFC axioms is independent
 of the assignment chosen. -/
 theorem satisfiesZFCBasicAxiomsAt_assignment_independent
@@ -187,6 +247,18 @@ theorem satisfiesZFCBasicAxioms_iff_at
     exact
       (satisfiesZFCBasicAxiomsAt_assignment_independent
         M assignment otherAssignment).mp oneAssignment
+
+/-- The sentence-level basic axiom predicate agrees with the existing
+all-assignments basic axiom predicate. -/
+theorem satisfiesZFCBasicAxiomSentences_iff_basicAxioms
+    (M : ZFCModel) :
+    SatisfiesZFCBasicAxiomSentences M ↔
+      SatisfiesZFCBasicAxioms M := by
+  rcases M.domainNonempty with ⟨defaultElement⟩
+  exact
+    (satisfiesZFCBasicAxiomSentences_iff_at
+      M (fun _ => defaultElement)).trans
+        (satisfiesZFCBasicAxioms_iff_at M (fun _ => defaultElement)).symm
 
 /-- Equivalently, for the named basic ZFC axioms, it is enough to satisfy
 them under some assignment. The model's nonempty domain supplies an

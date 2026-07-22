@@ -34,6 +34,11 @@ a well-formed proposition for a ZFC model. -/
 example (assignment : ZFCVariable -> emptyMembershipTestModel.Domain) : Prop :=
   SatisfiesZFCBasicAxiomsAt emptyMembershipTestModel assignment
 
+/-- Checkpoint: the sentence-level basic-axioms satisfaction predicate is a
+well-formed proposition for a ZFC model. -/
+example : Prop :=
+  SatisfiesZFCBasicAxiomSentences emptyMembershipTestModel
+
 /-- Checkpoint: the Separation schema satisfaction predicate is a
 well-formed proposition for a ZFC model. -/
 example : Prop :=
@@ -171,6 +176,23 @@ example
     SatisfiesZFCBasicAxioms emptyMembershipTestModel ↔
       SatisfiesZFCBasicAxiomsAt emptyMembershipTestModel assignment :=
   satisfiesZFCBasicAxioms_iff_at emptyMembershipTestModel assignment
+
+/-- Checkpoint: the sentence-level named basic ZFC axiom predicate agrees
+with the one-assignment basic-axiom predicate. -/
+example
+    (assignment : ZFCVariable -> emptyMembershipTestModel.Domain) :
+    SatisfiesZFCBasicAxiomSentences emptyMembershipTestModel ↔
+      SatisfiesZFCBasicAxiomsAt emptyMembershipTestModel assignment :=
+  satisfiesZFCBasicAxiomSentences_iff_at
+    emptyMembershipTestModel assignment
+
+/-- Checkpoint: the sentence-level named basic ZFC axiom predicate agrees
+with the existing all-assignments basic-axiom predicate. -/
+example :
+    SatisfiesZFCBasicAxiomSentences emptyMembershipTestModel ↔
+      SatisfiesZFCBasicAxioms emptyMembershipTestModel :=
+  satisfiesZFCBasicAxiomSentences_iff_basicAxioms
+    emptyMembershipTestModel
 
 /-- Checkpoint: for the named basic ZFC axioms, satisfying some assignment
 is equivalent to satisfying every assignment. -/
