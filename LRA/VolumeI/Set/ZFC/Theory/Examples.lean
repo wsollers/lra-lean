@@ -1,6 +1,7 @@
 import LRA.VolumeI.Set.ZFC.Syntax.Formula
 import LRA.VolumeI.Set.ZFC.Theory.Axioms
 import LRA.VolumeI.Set.ZFC.Theory.Schemas
+import LRA.VolumeI.Set.ZFC.Theory.SchemaFacts
 
 namespace LRA.VolumeI.Set.ZFC
 
@@ -54,5 +55,33 @@ example : ZFCFormula :=
 /-- Checkpoint: a replacement schema instance is a ZFC formula. -/
 example : ZFCFormula :=
   replacementAxiomFor 0 1 (isMemberOf 0 1)
+
+/-!
+Capture-regression checkpoint for Replacement.
+
+The predicate below binds variable `4`. Replacement's renamed output
+variable must avoid that bound variable too, not merely the predicate's
+free variables. This exercises the `allVariables`-based freshness choice
+used by `replacementAxiomFor`.
+-/
+
+/-- A predicate with an internal binder that a replacement rename must not
+capture. -/
+def predicateWithBoundVariable : ZFCFormula :=
+  forallVariable 4 (isMemberOf 1 4)
+
+/-- The replacement output-prime variable avoids the predicate's bound
+variable as well as its free variables. -/
+example :
+    SchemaFacts.replacementOutputVariablePrime 0 1 predicateWithBoundVariable ≠ 4 := by
+  intro h
+  have hnot :=
+    SchemaFacts.replacementOutputVariablePrime_not_mem_allVariables
+      0 1 predicateWithBoundVariable
+  apply hnot
+  rw [h]
+  simp [predicateWithBoundVariable, allVariablesInZFCFormula,
+    forallVariable, isMemberOf, variableTerm, allVariables,
+    freeVariablesInTerm]
 
 end LRA.VolumeI.Set.ZFC

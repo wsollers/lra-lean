@@ -1,5 +1,8 @@
 import LRA.VolumeI.Set.ZFC.Theory.Axioms
+import LRA.VolumeI.Set.ZFC.Theory.ClosedAxioms
 import LRA.VolumeI.Set.ZFC.Theory.Schemas
+import LRA.VolumeI.Set.ZFC.Theory.SchemaFacts
+import LRA.VolumeI.Set.ZFC.Theory.SchemaFreeVariables
 import LRA.VolumeI.Set.ZFC.Theory.Examples
 
 /-!
