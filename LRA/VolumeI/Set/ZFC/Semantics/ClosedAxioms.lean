@@ -89,4 +89,84 @@ theorem choiceAxiom_satisfaction_assignment_independent
   satisfiesZFCFormula_iff_of_isClosedZFCFormula
     M choiceAxiom choiceAxiom_isClosedFormula
 
+/-- The one-assignment view of the basic named ZFC axioms is independent
+of the assignment chosen. -/
+theorem satisfiesZFCBasicAxiomsAt_assignment_independent
+    (M : ZFCModel)
+    (leftAssignment rightAssignment : ZFCVariable -> M.Domain) :
+    SatisfiesZFCBasicAxiomsAt M leftAssignment ↔
+      SatisfiesZFCBasicAxiomsAt M rightAssignment := by
+  constructor
+  · intro leftSatisfaction
+    rcases leftSatisfaction with
+      ⟨hExtensionality, hEmptySet, hPairing, hUnion, hPowerSet,
+        hFoundation, hInfinity⟩
+    exact
+      ⟨(extensionalityAxiom_satisfaction_assignment_independent
+          M leftAssignment rightAssignment).mp hExtensionality,
+        (emptySetAxiom_satisfaction_assignment_independent
+          M leftAssignment rightAssignment).mp hEmptySet,
+        (pairingAxiom_satisfaction_assignment_independent
+          M leftAssignment rightAssignment).mp hPairing,
+        (unionAxiom_satisfaction_assignment_independent
+          M leftAssignment rightAssignment).mp hUnion,
+        (powerSetAxiom_satisfaction_assignment_independent
+          M leftAssignment rightAssignment).mp hPowerSet,
+        (foundationAxiom_satisfaction_assignment_independent
+          M leftAssignment rightAssignment).mp hFoundation,
+        (infinityAxiom_satisfaction_assignment_independent
+          M leftAssignment rightAssignment).mp hInfinity⟩
+  · intro rightSatisfaction
+    rcases rightSatisfaction with
+      ⟨hExtensionality, hEmptySet, hPairing, hUnion, hPowerSet,
+        hFoundation, hInfinity⟩
+    exact
+      ⟨(extensionalityAxiom_satisfaction_assignment_independent
+          M leftAssignment rightAssignment).mpr hExtensionality,
+        (emptySetAxiom_satisfaction_assignment_independent
+          M leftAssignment rightAssignment).mpr hEmptySet,
+        (pairingAxiom_satisfaction_assignment_independent
+          M leftAssignment rightAssignment).mpr hPairing,
+        (unionAxiom_satisfaction_assignment_independent
+          M leftAssignment rightAssignment).mpr hUnion,
+        (powerSetAxiom_satisfaction_assignment_independent
+          M leftAssignment rightAssignment).mpr hPowerSet,
+        (foundationAxiom_satisfaction_assignment_independent
+          M leftAssignment rightAssignment).mpr hFoundation,
+        (infinityAxiom_satisfaction_assignment_independent
+          M leftAssignment rightAssignment).mpr hInfinity⟩
+
+/-- Since the named basic ZFC axioms are closed, satisfying them under one
+chosen assignment is equivalent to satisfying them under every assignment. -/
+theorem satisfiesZFCBasicAxioms_iff_at
+    (M : ZFCModel)
+    (assignment : ZFCVariable -> M.Domain) :
+    SatisfiesZFCBasicAxioms M ↔
+      SatisfiesZFCBasicAxiomsAt M assignment := by
+  constructor
+  · intro allAssignments
+    exact allAssignments assignment
+  · intro oneAssignment
+    intro otherAssignment
+    exact
+      (satisfiesZFCBasicAxiomsAt_assignment_independent
+        M assignment otherAssignment).mp oneAssignment
+
+/-- Equivalently, for the named basic ZFC axioms, it is enough to satisfy
+them under some assignment. The model's nonempty domain supplies an
+assignment in the forward direction. -/
+theorem satisfiesZFCBasicAxioms_iff_exists_assignment
+    (M : ZFCModel) :
+    SatisfiesZFCBasicAxioms M ↔
+      ∃ assignment : ZFCVariable -> M.Domain,
+        SatisfiesZFCBasicAxiomsAt M assignment := by
+  constructor
+  · intro allAssignments
+    rcases M.domainNonempty with ⟨defaultElement⟩
+    exact ⟨fun _ => defaultElement, allAssignments (fun _ => defaultElement)⟩
+  · intro someAssignment
+    rcases someAssignment with ⟨assignment, oneAssignment⟩
+    exact
+      (satisfiesZFCBasicAxioms_iff_at M assignment).mpr oneAssignment
+
 end LRA.VolumeI.Set.ZFC

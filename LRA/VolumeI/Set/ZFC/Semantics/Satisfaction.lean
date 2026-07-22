@@ -44,11 +44,14 @@ interpretation. Nothing to add at the model layer; this is a marker for
 that later work.
 -/
 
-/-- A ZFC model satisfies the currently formalized non-schema ZFC axioms:
-extensionality, empty set, pairing, union, power set, foundation, and
-infinity. -/
-def SatisfiesZFCBasicAxioms (M : ZFCModel) : Prop :=
-  ∀ assignment : ZFCVariable -> M.Domain,
+/-- A ZFC model satisfies the currently formalized non-schema ZFC axioms
+under one variable assignment: extensionality, empty set, pairing, union,
+power set, foundation, and infinity. For the named closed axioms, this
+one-assignment view is equivalent to the all-assignments predicate; see
+`Semantics/ClosedAxioms.lean`. -/
+def SatisfiesZFCBasicAxiomsAt
+    (M : ZFCModel)
+    (assignment : ZFCVariable -> M.Domain) : Prop :=
     satisfiesZFCFormula M assignment extensionalityAxiom ∧
     satisfiesZFCFormula M assignment emptySetAxiom ∧
     satisfiesZFCFormula M assignment pairingAxiom ∧
@@ -56,6 +59,13 @@ def SatisfiesZFCBasicAxioms (M : ZFCModel) : Prop :=
     satisfiesZFCFormula M assignment powerSetAxiom ∧
     satisfiesZFCFormula M assignment foundationAxiom ∧
     satisfiesZFCFormula M assignment infinityAxiom
+
+/-- A ZFC model satisfies the currently formalized non-schema ZFC axioms:
+extensionality, empty set, pairing, union, power set, foundation, and
+infinity. -/
+def SatisfiesZFCBasicAxioms (M : ZFCModel) : Prop :=
+  ∀ assignment : ZFCVariable -> M.Domain,
+    SatisfiesZFCBasicAxiomsAt M assignment
 
 /-- A ZFC model satisfies every generated Separation schema formula.
 

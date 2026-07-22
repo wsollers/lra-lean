@@ -29,6 +29,11 @@ proposition for a ZFC model. -/
 example : Prop :=
   SatisfiesZFCBasicAxioms emptyMembershipTestModel
 
+/-- Checkpoint: the one-assignment basic-axioms satisfaction predicate is
+a well-formed proposition for a ZFC model. -/
+example (assignment : ZFCVariable -> emptyMembershipTestModel.Domain) : Prop :=
+  SatisfiesZFCBasicAxiomsAt emptyMembershipTestModel assignment
+
 /-- Checkpoint: the Separation schema satisfaction predicate is a
 well-formed proposition for a ZFC model. -/
 example : Prop :=
@@ -86,6 +91,22 @@ example
       satisfiesZFCFormula emptyMembershipTestModel rightAssignment emptySetAxiom :=
   satisfiesZFCFormula_iff_of_isClosedZFCFormula
     emptyMembershipTestModel emptySetAxiom emptySetAxiom_isClosedFormula
+
+/-- Checkpoint: for the named basic ZFC axioms, satisfying one assignment
+is equivalent to satisfying every assignment. -/
+example
+    (assignment : ZFCVariable -> emptyMembershipTestModel.Domain) :
+    SatisfiesZFCBasicAxioms emptyMembershipTestModel ↔
+      SatisfiesZFCBasicAxiomsAt emptyMembershipTestModel assignment :=
+  satisfiesZFCBasicAxioms_iff_at emptyMembershipTestModel assignment
+
+/-- Checkpoint: for the named basic ZFC axioms, satisfying some assignment
+is equivalent to satisfying every assignment. -/
+example :
+    SatisfiesZFCBasicAxioms emptyMembershipTestModel ↔
+      ∃ assignment : ZFCVariable -> emptyMembershipTestModel.Domain,
+        SatisfiesZFCBasicAxiomsAt emptyMembershipTestModel assignment :=
+  satisfiesZFCBasicAxioms_iff_exists_assignment emptyMembershipTestModel
 
 /-- Checkpoint: the Separation schema reading is the preferred semantic
 view of the generated Separation formula. -/
