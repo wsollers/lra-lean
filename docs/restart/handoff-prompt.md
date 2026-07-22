@@ -19,7 +19,7 @@ git log -1 --oneline
 The latest committed checkpoint is:
 
 ```text
-2dd08ea Refine Replacement schema semantics API
+a39dc9d Clarify Replacement schema semantics API
 ```
 
 ## Current Restart State
@@ -141,6 +141,8 @@ d9eed0e Discharge Replacement rename capture condition
 30fd98f Add cleaned Replacement schema reading
 8914e21 Refresh handoff after cleaned Replacement reading
 2dd08ea Refine Replacement schema semantics API
+a96d329 Refresh handoff after Replacement API refinement
+a39dc9d Clarify Replacement schema semantics API
 ```
 
 Those changes add:
@@ -161,7 +163,9 @@ Those changes add:
 - a cleaned Replacement schema semantic reading that uses the output-updated
   original predicate instead of the syntactic renamed predicate;
 - a clean model-level Replacement schema predicate
-  (`SatisfiesReplacementSchemaCleanly`) and examples showing the preferred API.
+  (`SatisfiesReplacementSchemaCleanly`) and examples showing the preferred API;
+- clarified documentation separating the formula-satisfaction Replacement
+  predicate from the preferred clean model-facing bridge.
 
 The working tree should be clean after this handoff is committed.
 
@@ -194,14 +198,15 @@ Volume I changes.
 ## Immediate Next Task
 
 First, inspect the current working tree and latest commit. If the tree is
-clean, do one more narrow ZFC semantics/documentation pass:
+clean, give Separation the same ergonomic model-facing API shape as
+Replacement, without introducing set operations:
 
-1. decide whether `SatisfiesReplacementSchemaCleanly` should be mentioned in
-   `Semantics/Satisfaction.lean` or only in `Semantics/SchemaCorrectness.lean`;
-2. update doc-comments so the older `SatisfiesReplacementSchema` predicate is
-   clearly the formula-satisfaction definition, while the clean predicate is
-   the preferred model-facing bridge;
-3. rerun the validation above and commit the documentation/API polish.
+1. add a model-level clean Separation predicate, analogous to
+   `SatisfiesReplacementSchemaCleanly`, using `separationSchemaReading`;
+2. prove it equivalent to the existing formula-satisfaction predicate
+   `SatisfiesSeparationSchema`;
+3. add small examples/checkpoints showing the preferred Separation bridge;
+4. rerun the validation above and commit the change.
 
 Keep this in the ZFC semantics layer. Do not begin relation algebra, general
 functions, quotients, orders, cardinality, or number systems.
@@ -217,9 +222,8 @@ To continue in a new Codex conversation, paste this:
 We are working in F:\repos\lra-lean.
 
 Read docs/restart/handoff-prompt.md, then inspect git status and the latest
-commit. Continue from the current handoff exactly: do the narrow ZFC
-semantics documentation/API polish around `SatisfiesReplacementSchema` and
-`SatisfiesReplacementSchemaCleanly`, rerun the stated validation, and if it
-passes, commit it. Do not move to relation algebra, functions, quotients,
-orders, cardinality, or number systems.
+commit. Continue from the current handoff exactly: add the clean model-facing
+Separation schema predicate and equivalence to `SatisfiesSeparationSchema`,
+rerun the stated validation, and if it passes, commit it. Do not move to
+relation algebra, functions, quotients, orders, cardinality, or number systems.
 ```
