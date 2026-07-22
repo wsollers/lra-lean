@@ -19,7 +19,7 @@ git log -1 --oneline
 The latest committed checkpoint is:
 
 ```text
-9e969f2 Add first-order substitution semantics bridge
+d9eed0e Discharge Replacement rename capture condition
 ```
 
 ## Current Restart State
@@ -135,6 +135,9 @@ c437b46 Prove ZFC schema variable infrastructure facts
 81c0391 Add ZFC schema semantic correctness readings
 bd66811 Update foundation restart handoff
 9e969f2 Add first-order substitution semantics bridge
+8327ebe Refresh foundation restart handoff
+a5f49e2 Prove first-order substitution semantics
+d9eed0e Discharge Replacement rename capture condition
 ```
 
 Those changes add:
@@ -147,22 +150,16 @@ Those changes add:
 - semantic readings and satisfaction-correctness lemmas for Separation and
   Replacement schema constructors;
 - generic first-order term-substitution semantics;
-- proof-pending formula-level substitution semantics;
+- proved formula-level substitution semantics;
 - a ZFC-facing lemma reading Replacement's renamed predicate as the original
-  predicate with the output variable updated to the output-prime value.
+  predicate with the output variable updated to the output-prime value;
+- an automatic proof that Replacement's output-prime rename is capture-avoiding.
 
 The working tree should be clean after this handoff is committed.
 
-Known proof-pending declarations:
-
-```text
-LRA.VolumeI.Logic.FirstOrder.satisfies_iff_of_agrees_on_freeVariables
-LRA.VolumeI.Logic.FirstOrder.satisfies_substitute_iff_update
-```
-
-Both are honest theorem statements in
-`LRA/VolumeI/Logic/Semantics/Substitution.lean` and currently use `sorry`.
-There should be no `admit`.
+There are no known proof-pending declarations in
+`LRA/VolumeI/Logic/Semantics/Substitution.lean` or
+`LRA/VolumeI/Set/ZFC/Semantics/SchemaCorrectness.lean`.
 
 ## Most Recent Validation
 
@@ -178,7 +175,6 @@ git diff --check
 Expected warnings:
 
 ```text
-LRA/VolumeI/Logic/Semantics/Substitution.lean: declaration uses 'sorry'
 mathlib: repository '.lake/packages/mathlib' has local changes
 batteries: repository '.lake/packages/batteries' has local changes
 ```
@@ -189,19 +185,21 @@ Volume I changes.
 ## Immediate Next Task
 
 First, inspect the current working tree and latest commit. If the tree is
-clean, continue with the first-order substitution proof obligations in
-`LRA/VolumeI/Logic/Semantics/Substitution.lean`:
+clean, continue in `LRA/VolumeI/Set/ZFC/Semantics/SchemaCorrectness.lean` by
+defining a cleaned Replacement schema reading whose functionality clause states
+the second predicate occurrence using the original predicate under
+`updateAssignment ... outputVariable output'`, instead of mentioning the
+syntactic `renamedPredicate`.
 
-1. complete `satisfies_iff_of_agrees_on_freeVariables`;
-2. complete `satisfies_substitute_iff_update`;
-3. rerun the validation above;
-4. if the warnings disappear except for pre-existing package warnings, commit
-   the proof completion.
+Use the existing theorem:
 
-After that, use the completed substitution theorem to strengthen the ZFC
-Replacement semantic bridge: prove the output-prime substitution side condition
-from the freshness facts, and expose a Replacement reading that does not require
-callers to pass a separate capture-avoidance hypothesis.
+```text
+satisfies_replacementRenamedPredicate_iff_updateOutput'
+```
+
+to prove the cleaned reading equivalent to the current
+`replacementSchemaReading`, or directly prove a `satisfies ... ↔ cleanedReading`
+theorem. Keep this in the ZFC semantics layer.
 
 Do not move to relation algebra, general functions, quotients, orders,
 cardinality, or number systems.
@@ -214,8 +212,8 @@ To continue in a new Codex conversation, paste this:
 We are working in F:\repos\lra-lean.
 
 Read docs/restart/handoff-prompt.md, then inspect git status and the latest
-commit. Continue from the current handoff exactly: complete the proof-pending
-first-order substitution semantics lemmas, rerun the stated validation, and if
-it passes, commit the proof completion. Do not move to relation algebra,
+commit. Continue from the current handoff exactly: add the cleaned Replacement
+schema semantic reading using the output-updated original predicate, rerun the
+stated validation, and if it passes, commit it. Do not move to relation algebra,
 functions, quotients, orders, cardinality, or number systems.
 ```
