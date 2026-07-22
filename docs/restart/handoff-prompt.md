@@ -19,7 +19,7 @@ git log -1 --oneline
 The latest committed checkpoint is:
 
 ```text
-1820131 Add one-assignment ZFC basic axiom API
+0039962 Add ZFC sentence satisfaction API
 ```
 
 ## Current Restart State
@@ -155,6 +155,8 @@ e4d8e2e Refresh handoff after sentence infrastructure
 d9de1c3 Add closed ZFC axiom satisfaction facts
 32b0c40 Refresh handoff after closed ZFC axiom facts
 1820131 Add one-assignment ZFC basic axiom API
+061a935 Refresh handoff after basic axiom API
+0039962 Add ZFC sentence satisfaction API
 ```
 
 Those changes add:
@@ -190,6 +192,10 @@ Those changes add:
   (`SatisfiesZFCBasicAxiomsAt`);
 - equivalences showing the one-assignment basic-axiom view matches the existing
   all-assignments predicate.
+- a ZFC-facing sentence satisfaction wrapper (`satisfiesZFCSentence`);
+- a bridge showing sentence satisfaction agrees with satisfaction of the
+  underlying formula under any chosen assignment;
+- named checkpoints for the closed ZFC axiom sentence wrappers.
 
 The working tree should be clean after this handoff is committed.
 
@@ -227,16 +233,19 @@ Volume I changes.
 ## Immediate Next Task
 
 First, inspect the current working tree and latest commit. If the tree is
-clean, add a ZFC-facing satisfaction API for closed `ZFCSentence`s, before
-moving toward any set operations:
+clean, package the named basic ZFC axioms through the sentence-satisfaction
+API, before moving toward any set operations:
 
-1. define a ZFC-facing sentence satisfaction wrapper for `ZFCSentence`, likely
-   in or near `LRA/VolumeI/Set/ZFC/Semantics/ClosedAxioms.lean`;
-2. prove it agrees with satisfaction of the underlying formula and is
-   assignment-independent by reusing `FirstOrder.satisfies_sentence_iff`;
-3. add named examples/checkpoints for the existing closed axiom sentence
-   wrappers from `LRA/VolumeI/Set/ZFC/Theory/ClosedAxioms.lean`;
-4. rerun validation and commit.
+1. define a sentence-level predicate for the named basic ZFC axiom sentences
+   (`extensionalitySentence`, `emptySetSentence`, `pairingSentence`,
+   `unionSentence`, `powerSetSentence`, `foundationSentence`, and
+   `infinitySentence`);
+2. prove it equivalent to `SatisfiesZFCBasicAxiomsAt M assignment` for any
+   assignment by using `satisfiesZFCSentence_iff_satisfiesZFCFormula`;
+3. prove it equivalent to `SatisfiesZFCBasicAxioms M` by combining that bridge
+   with `satisfiesZFCBasicAxioms_iff_at`;
+4. add small examples/checkpoints showing the sentence-level basic-axiom API;
+5. rerun validation and commit.
 
 Keep this in the ZFC syntax/semantics/theory boundary. Do not begin relation
 algebra, general functions, quotients, orders, cardinality, number systems, or
@@ -253,10 +262,10 @@ To continue in a new Codex conversation, paste this:
 We are working in F:\repos\lra-lean.
 
 Read docs/restart/handoff-prompt.md, then inspect git status and the latest
-commit. Continue from the current handoff exactly: add a ZFC-facing satisfaction
-API for closed `ZFCSentence`s, prove it agrees with satisfaction of the
-underlying formula and is assignment-independent, add named axiom-sentence
-examples, rerun validation, and if it passes, commit it. Do not move to
+commit. Continue from the current handoff exactly: package the named basic ZFC
+axioms through the sentence-satisfaction API, prove the sentence-level predicate
+equivalent to `SatisfiesZFCBasicAxiomsAt` and `SatisfiesZFCBasicAxioms`, add
+small examples, rerun validation, and if it passes, commit it. Do not move to
 relation algebra, functions, quotients, orders, cardinality, number systems, or
 set operations.
 ```
