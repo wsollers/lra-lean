@@ -20,8 +20,9 @@ are grouped the same way that machinery is:
                     has no counterpart in `Logic/`, which is not a theory);
   - `Model/`     -- the `ZFCModel` alias (and, later, the concrete model
                     and its isomorphism to a Mathlib set type);
-  - `Semantics/` -- satisfaction of ZFC formulas and the model-facing
-                    axiom-satisfaction predicates.
+  - `Semantics/` -- satisfaction of ZFC formulas, the model-facing
+                    axiom-satisfaction predicates, and schema-correctness
+                    readings.
 
 Namespaces stay flat (`LRA.VolumeI.Set.ZFC` throughout), matching how
 `Logic/` decouples folder layout from namespace.
