@@ -19,7 +19,7 @@ git log -1 --oneline
 The latest committed checkpoint is:
 
 ```text
-5054233 Add clean Separation schema semantics API
+b4ca411 Add first-order sentence infrastructure
 ```
 
 ## Current Restart State
@@ -83,6 +83,7 @@ LRA/VolumeI/Logic/Syntax/FirstOrder/
   SubstituteInTerm.lean
   SubstitutionFreeVariables.lean
   Subformula.lean
+  Sentence.lean
 ```
 
 First-order semantics:
@@ -94,6 +95,7 @@ LRA/VolumeI/Logic/Semantics/
   TermEvaluation.lean
   Satisfaction.lean
   Substitution.lean
+  Sentence.lean
   Examples.lean
 ```
 
@@ -107,6 +109,7 @@ LRA/VolumeI/Set/ZFC/
   Syntax.lean
   Syntax/Formula.lean
   Syntax/FreeVariables.lean
+  Syntax/Sentence.lean
   Syntax/FreshVariable.lean
   Syntax/Vocabulary.lean
   Syntax/Examples.lean
@@ -145,6 +148,8 @@ a96d329 Refresh handoff after Replacement API refinement
 a39dc9d Clarify Replacement schema semantics API
 f24e7a3 Refresh handoff before Separation schema API
 5054233 Add clean Separation schema semantics API
+91012e0 Refresh handoff before sentence infrastructure
+b4ca411 Add first-order sentence infrastructure
 ```
 
 Those changes add:
@@ -170,6 +175,9 @@ Those changes add:
   predicate from the preferred clean model-facing bridge.
 - a clean model-level Separation schema predicate
   (`SatisfiesSeparationSchemaCleanly`) and examples showing the preferred API.
+- generic first-order closed-formula and sentence syntax;
+- assignment-independence for closed first-order formulas;
+- ZFC-facing sentence aliases and syntax checkpoints.
 
 The working tree should be clean after this handoff is committed.
 
@@ -183,8 +191,10 @@ These commands passed:
 
 ```text
 lake build LRA.VolumeI.Logic.Semantics.Substitution
+lake build LRA.VolumeI.Logic.Semantics.Sentence
 lake build LRA.VolumeI.Set.ZFC.Semantics.SchemaCorrectness
 lake build LRA.VolumeI.Set.ZFC.Semantics.Examples
+lake build LRA.VolumeI.Set.ZFC.Syntax.Sentence
 lake build LRAVolumeI
 git diff --check
 ```
@@ -202,19 +212,21 @@ Volume I changes.
 ## Immediate Next Task
 
 First, inspect the current working tree and latest commit. If the tree is
-clean, begin closed-formula / sentence infrastructure before moving toward
-any set operations:
+clean, use the sentence infrastructure to clean up named ZFC axiom
+satisfaction, before moving toward any set operations:
 
-1. add first-order syntax support for closed formulas or sentences, likely in
-   a new targeted module under `LRA/VolumeI/Logic/Syntax/FirstOrder/`;
-2. define the closedness predicate in terms of `freeVariables = ∅`;
-3. prove or state the assignment-independence theorem for closed formulas,
-   using `satisfies_iff_of_agrees_on_freeVariables`;
-4. add ZFC-facing aliases or examples only as needed;
-5. rerun validation and commit.
+1. connect the existing closedness proofs in
+   `LRA/VolumeI/Set/ZFC/Theory/ClosedAxioms.lean` to `ZFCSentence` or
+   `IsClosedZFCFormula`;
+2. prove assignment-independence facts for named closed ZFC axioms using
+   `satisfies_iff_of_isClosedFormula`;
+3. add small examples/checkpoints showing that named closed axiom satisfaction
+   no longer depends on the assignment chosen;
+4. rerun validation and commit.
 
-Keep this in the ZFC semantics layer. Do not begin relation algebra, general
-functions, quotients, orders, cardinality, or number systems.
+Keep this in the ZFC syntax/semantics/theory boundary. Do not begin relation
+algebra, general functions, quotients, orders, cardinality, number systems, or
+set operations such as union/intersection/complement APIs and laws.
 
 Do not move to relation algebra, general functions, quotients, orders,
 cardinality, or number systems.
@@ -227,8 +239,8 @@ To continue in a new Codex conversation, paste this:
 We are working in F:\repos\lra-lean.
 
 Read docs/restart/handoff-prompt.md, then inspect git status and the latest
-commit. Continue from the current handoff exactly: begin closed-formula /
-sentence infrastructure and assignment-independence for closed first-order
-formulas, rerun validation, and if it passes, commit it. Do not move to relation
-algebra, functions, quotients, orders, cardinality, or number systems.
+commit. Continue from the current handoff exactly: use the sentence
+infrastructure to add assignment-independence facts for named closed ZFC axioms,
+rerun validation, and if it passes, commit it. Do not move to relation algebra,
+functions, quotients, orders, cardinality, number systems, or set operations.
 ```
