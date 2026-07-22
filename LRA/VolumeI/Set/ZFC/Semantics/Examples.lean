@@ -54,6 +54,11 @@ well-formed proposition for a ZFC model. -/
 example : Prop :=
   SatisfiesZFCAxiomsWithoutReplacement emptyMembershipTestModel
 
+/-- Checkpoint: the cleaned ZFC-without-Replacement aggregate predicate is
+a well-formed proposition for a ZFC model. -/
+example : Prop :=
+  SatisfiesZFCAxiomsWithoutReplacementCleanly emptyMembershipTestModel
+
 /-- Checkpoint: the Replacement schema satisfaction predicate is a
 well-formed proposition for a ZFC model. -/
 example : Prop :=
@@ -68,6 +73,11 @@ example : Prop :=
 well-formed proposition for a ZFC model. -/
 example : Prop :=
   SatisfiesZFCAxiomsWithoutChoice emptyMembershipTestModel
+
+/-- Checkpoint: the cleaned ZFC-without-Choice aggregate predicate is a
+well-formed proposition for a ZFC model. -/
+example : Prop :=
+  SatisfiesZFCAxiomsWithoutChoiceCleanly emptyMembershipTestModel
 
 /-- In the test structure with empty membership, variable `1` is not a
 member of variable `0`, under any assignment. -/
@@ -222,6 +232,13 @@ example :
       SatisfiesSeparationSchemaCleanly emptyMembershipTestModel :=
   satisfiesSeparationSchema_iff_cleanReadings emptyMembershipTestModel
 
+/-- Checkpoint: the preferred clean aggregate for ZFC without Replacement
+agrees with the existing formula-satisfaction aggregate. -/
+example :
+    SatisfiesZFCAxiomsWithoutReplacement emptyMembershipTestModel ↔
+      SatisfiesZFCAxiomsWithoutReplacementCleanly emptyMembershipTestModel :=
+  satisfiesZFCAxiomsWithoutReplacement_iff_cleanly emptyMembershipTestModel
+
 /-- Checkpoint: the cleaned Replacement reading is the preferred semantic
 view of the generated Replacement formula. -/
 example
@@ -242,5 +259,12 @@ example :
     SatisfiesReplacementSchema emptyMembershipTestModel ↔
       SatisfiesReplacementSchemaCleanly emptyMembershipTestModel :=
   satisfiesReplacementSchema_iff_cleanReadings emptyMembershipTestModel
+
+/-- Checkpoint: the preferred clean aggregate for ZFC without Choice agrees
+with the existing formula-satisfaction aggregate. -/
+example :
+    SatisfiesZFCAxiomsWithoutChoice emptyMembershipTestModel ↔
+      SatisfiesZFCAxiomsWithoutChoiceCleanly emptyMembershipTestModel :=
+  satisfiesZFCAxiomsWithoutChoice_iff_cleanly emptyMembershipTestModel
 
 end LRA.VolumeI.Set.ZFC

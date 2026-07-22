@@ -1,5 +1,6 @@
 import Mathlib.Tactic.Tauto
 import LRA.VolumeI.Logic.Semantics.Substitution
+import LRA.VolumeI.Set.ZFC.Semantics.ClosedAxioms
 import LRA.VolumeI.Set.ZFC.Semantics.Satisfaction
 import LRA.VolumeI.Set.ZFC.Theory.SchemaFacts
 
@@ -470,5 +471,58 @@ theorem satisfiesReplacementSchema_iff_cleanReadings
       (satisfies_replacementAxiomFor_iff_cleanReading
         M assignment inputVariable outputVariable predicate).mpr
         (hClean inputVariable outputVariable predicate assignment)
+
+/-- Preferred clean aggregate predicate for the currently formalized ZFC
+axioms without Replacement: sentence-level named basic axioms plus the
+model-facing Separation schema reading. -/
+def SatisfiesZFCAxiomsWithoutReplacementCleanly (M : ZFCModel) : Prop :=
+  SatisfiesZFCBasicAxiomSentences M ∧
+    SatisfiesSeparationSchemaCleanly M
+
+/-- The existing formula-satisfaction aggregate for ZFC without Replacement
+is equivalent to the preferred clean aggregate. -/
+theorem satisfiesZFCAxiomsWithoutReplacement_iff_cleanly
+    (M : ZFCModel) :
+    SatisfiesZFCAxiomsWithoutReplacement M ↔
+      SatisfiesZFCAxiomsWithoutReplacementCleanly M := by
+  constructor
+  · intro hAxioms
+    rcases hAxioms with ⟨hBasic, hSeparation⟩
+    exact
+      ⟨(satisfiesZFCBasicAxiomSentences_iff_basicAxioms M).mpr hBasic,
+        (satisfiesSeparationSchema_iff_cleanReadings M).mp hSeparation⟩
+  · intro hClean
+    rcases hClean with ⟨hBasic, hSeparation⟩
+    exact
+      ⟨(satisfiesZFCBasicAxiomSentences_iff_basicAxioms M).mp hBasic,
+        (satisfiesSeparationSchema_iff_cleanReadings M).mpr hSeparation⟩
+
+/-- Preferred clean aggregate predicate for the currently formalized ZFC
+axioms without Choice: sentence-level named basic axioms plus the
+model-facing Separation and Replacement schema readings. -/
+def SatisfiesZFCAxiomsWithoutChoiceCleanly (M : ZFCModel) : Prop :=
+  SatisfiesZFCBasicAxiomSentences M ∧
+    SatisfiesSeparationSchemaCleanly M ∧
+    SatisfiesReplacementSchemaCleanly M
+
+/-- The existing formula-satisfaction aggregate for ZFC without Choice is
+equivalent to the preferred clean aggregate. -/
+theorem satisfiesZFCAxiomsWithoutChoice_iff_cleanly
+    (M : ZFCModel) :
+    SatisfiesZFCAxiomsWithoutChoice M ↔
+      SatisfiesZFCAxiomsWithoutChoiceCleanly M := by
+  constructor
+  · intro hAxioms
+    rcases hAxioms with ⟨hBasic, hSeparation, hReplacement⟩
+    exact
+      ⟨(satisfiesZFCBasicAxiomSentences_iff_basicAxioms M).mpr hBasic,
+        (satisfiesSeparationSchema_iff_cleanReadings M).mp hSeparation,
+        (satisfiesReplacementSchema_iff_cleanReadings M).mp hReplacement⟩
+  · intro hClean
+    rcases hClean with ⟨hBasic, hSeparation, hReplacement⟩
+    exact
+      ⟨(satisfiesZFCBasicAxiomSentences_iff_basicAxioms M).mp hBasic,
+        (satisfiesSeparationSchema_iff_cleanReadings M).mpr hSeparation,
+        (satisfiesReplacementSchema_iff_cleanReadings M).mpr hReplacement⟩
 
 end LRA.VolumeI.Set.ZFC

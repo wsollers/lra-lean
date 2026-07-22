@@ -13,5 +13,6 @@ satisfies the ZFC axioms
 the aggregate ZFC-without-Choice predicate), assignment-independence for closed
 named axioms, semantic readings and correctness lemmas for the schema
 constructors, including the cleaned Separation/Replacement model-facing schema
-bridges preferred for downstream arguments, and semantic checkpoints.
+bridges and clean aggregate ZFC predicates preferred for downstream arguments,
+and semantic checkpoints.
 -/
