@@ -2,163 +2,200 @@
 
 We are working in `F:/repos/lra-lean`.
 
-Start by reading the tracker:
+Start by reading:
 
 ```text
 docs/restart/foundation-restart-plan.md
+docs/restart/foundation-restart-plan/04a-first-order-logic-first-pass.md
 ```
 
-That file is the source of truth for the restart status, step index, design
-decisions, and next action.
+Then inspect the current working tree before editing:
+
+```text
+git status --short
+git log -1 --oneline
+```
+
+The latest committed checkpoint is:
+
+```text
+b4cedb7 Reorganize ZFC syntax and schema infrastructure
+```
 
 ## Current Restart State
 
-The old Lean tree has been archived:
+The old Lean tree is archived and must be preserved for salvage:
 
 ```text
 LRA-OLD/
 ```
 
-The new `LRA/` tree is intentionally minimal. Current focus is Volume I
-first-order logic, before moving to sets.
+The restart has moved beyond the old "begin first-order logic" prompt. Volume I
+now has first-order syntax infrastructure under `LRA/VolumeI/Logic/Syntax/`
+and a first ZFC-on-first-order layer under `LRA/VolumeI/Set/ZFC/`.
 
-Important design decisions:
+Do not build relation algebra, functions, quotients, orders, cardinality, or
+number systems yet.
+
+## Design Decisions To Preserve
 
 - Bourbaki is inspiration for ordering, rigor, and proof-theoretic orientation,
-  not a requirement to preserve Bourbaki's historical notation.
-- The restart targets modern mathematical logic, proof theory, and set theory in
-  contemporary notation and terminology.
-- Lean's native `Prop` is the proof engine for ordinary mathematical
-  formalization.
+  not notation law.
+- Use modern mathematical logic, proof theory, model theory, and set theory
+  terminology.
+- Lean `Prop` remains the proof engine for ordinary mathematical proofs.
 - Object logics are Volume I learning artifacts unless a later design decision
   says otherwise.
 - Shared object-logic vocabulary lives in `LRA/VolumeI/Logic/Core.lean`.
-  The top-level interface is `Logic`, with mixins for truth values, Boolean
-  evaluation, connectives, quantifiers, theoremhood, and semantic entailment.
-  The `LogicalLanguage`/`LogicalFormula` layer remains as a concrete syntax
-  helper for simple connective-based object logics.
+- The top-level `Logic` interface has `Formula`, `Theory`, `Structure`,
+  `satisfies`, and `models`.
+- Logic mixins include truth values, Boolean evaluation, connectives,
+  quantifiers, theoremhood, and semantic entailment.
+- `LogicalLanguage`, `LogicalFormula`, `LogicalStructure`, and
+  `LogicalTheory` remain as a concrete helper layer for simple
+  connective-based object logics.
+- Propositional logic implements the shared interface as `propositionalLogic`.
+- First-order logic has its own syntax: signatures/languages, terms, formulas,
+  variables, structures/models, assignments, term evaluation, satisfaction,
+  substitution, free variables, all variables, and subformulas.
+- Treat `Logic` as an outer mixin/interface target. Do not force first-order
+  syntax into `LogicalFormula` if its own syntax is cleaner.
 - Shared connective notation lives in `LRA.VolumeI.Logic.Notation` and is
-  opt-in through connective classes. Quantifier notation is deliberately
-  delayed until first-order syntax is designed.
-- Generic formula-formation facts live in `LRA.VolumeI.Logic.ClosureRules`.
-  Concrete logic files should use them directly rather than wrapping them under
-  local theorem names.
-- Generic formula minimality/induction facts live in
-  `LRA.VolumeI.Logic.FormulaMinimality`.
-- Generic Bool-valued semantics live under `LRA.VolumeI.Logic.Semantics`, split
-  into `Satisfaction`, `TheoryModels`, and `Entailment`.
-- Do not start relation algebra, functions, quotients, orders, cardinality, or
-  number-system construction until the logic prelude and set architecture are
-  accepted.
+  opt-in through connective classes.
+- Definitions must be real. Theorem statements must be honest. Proof bodies may
+  use `sorry`.
 
-## Current Lean Layout
+## Current Lean Layout Of Interest
+
+First-order syntax:
 
 ```text
-LRA/
-  Foundation.lean
-  Foundation/
-    Sets.lean
-  VolumeI.lean
-  VolumeI/
-    Logic.lean
-    Logic/
-      Core.lean
-      Prelude.lean
-      Semantics.lean
-      Semantics/
-        Satisfaction.lean
-        TheoryModels.lean
-        Entailment.lean
-      PropositionalLogic.lean
-      PropositionalLogic/
-        PropositionalLogic.lean
-        Alternate/
-          BourbakiPropositionalLogic.lean
-          NandBasedPropositionalLogic.lean
-      FirstOrderLogic.lean
-      FirstOrderLogic/
-        FirstOrderLogic.lean
-      ProofTheory.lean
-      ProofTheory/
-        ProofTheory.lean
-      ModelTheory.lean
-      ModelTheory/
-        ModelTheory.lean
+LRA/VolumeI/Logic/Syntax/FirstOrder.lean
+LRA/VolumeI/Logic/Syntax/FirstOrder/
+  AllVariables.lean
+  Formula.lean
+  FreeVariables.lean
+  FreeVariablesInTerm.lean
+  IsSubstitutable.lean
+  Substitute.lean
+  SubstituteInTerm.lean
+  SubstitutionFreeVariables.lean
+  Subformula.lean
 ```
 
-## Current Logic Status
-
-`LRA/VolumeI/Logic/Core.lean` contains the shared abstract interface:
-
-- `Logic`;
-- `Logic` mixins for truth values, Boolean evaluation, connectives,
-  quantifiers, theoremhood, and semantic entailment;
-- `LogicalLanguage`;
-- `LogicalFormula`;
-- `LogicalStructure`;
-- `LogicalTheory`;
-- `evaluateFormula`;
-- `StructureSatisfiesFormula`;
-- `StructureModelsTheory`.
-- `Notation` namespace with opt-in `¬ₗ`, `∧ₗ`, `∨ₗ`, `→ₗ`, and `↔ₗ`
-  constructors.
-- `ClosureRules` namespace with generic atom, unary, binary, and named
-  connective formation facts.
-- `FormulaMinimality` namespace with the generic well-formed-formula
-  minimality theorem.
-
-`LRA/VolumeI/Logic/Semantics/` contains generic Bool-valued semantics:
-
-- `Satisfaction` for formula-level truth/satisfaction facts;
-- `TheoryModels` for theory modeling, satisfiability, and theory-inclusion
-  facts;
-- `Entailment` for semantic consequence.
-
-`LRA/VolumeI/Logic/PropositionalLogic/PropositionalLogic.lean` contains:
-
-- Boolean propositional logic as a specialization of the shared `Logical*`
-  interface;
-- `propositionalLogic`, the first implementation of the shared `Logic`
-  interface;
-- short names: `Atom`, `UnaryConnective`, `BinaryConnective`, `language`,
-  `Formula`, `Structure`, and `Theory`;
-- Boolean evaluation theorems;
-- DNF/connective-completeness statements with `sorry`.
-- `Examples` namespace containing compile-time examples for ordinary
-  evaluation and the shared `Logic` mixin callbacks.
-
-`LRA/VolumeI/Logic/PropositionalLogic/Alternate/BourbakiPropositionalLogic.lean`
-contains the Bourbaki-style proof-theory toy with `S1` through `S4`,
-theoremhood, modus ponens, and `C8_identity` as a `sorry` proof target. This is
-not the core logic direction.
-
-`LRA/VolumeI/Logic/PropositionalLogic/Alternate/NandBasedPropositionalLogic.lean`
-contains the NAND-only alternate/verification development.
-
-## Validation Baseline
-
-The following passed after the latest restructuring:
+ZFC layer:
 
 ```text
-lake -R build LRAVolumeI
+LRA/VolumeI/Set/ZFC.lean
+LRA/VolumeI/Set/ZFC/
+  Language.lean
+  Language/Signature.lean
+  Syntax.lean
+  Syntax/Formula.lean
+  Syntax/FreeVariables.lean
+  Syntax/FreshVariable.lean
+  Syntax/Vocabulary.lean
+  Syntax/Examples.lean
+  Theory.lean
+  Theory/Axioms.lean
+  Theory/Schemas.lean
+  Theory/ClosedAxioms.lean
+  Theory/SchemaFacts.lean
+  Theory/SchemaFreeVariables.lean
+  Theory/Examples.lean
+  Model.lean
+  Model/Model.lean
+  Model/ZFSetModel.lean
+  Semantics.lean
+  Semantics/Satisfaction.lean
+  Semantics/Examples.lean
+```
+
+## Current Uncommitted Work
+
+At the time this handoff was updated, the following files were modified or
+untracked and validated locally:
+
+```text
+M  LRA/VolumeI/Logic/Syntax/FirstOrder.lean
+M  LRA/VolumeI/Set/ZFC/Theory.lean
+M  LRA/VolumeI/Set/ZFC/Theory/Examples.lean
+?? LRA/VolumeI/Logic/Syntax/FirstOrder/SubstitutionFreeVariables.lean
+?? LRA/VolumeI/Set/ZFC/Theory/ClosedAxioms.lean
+?? LRA/VolumeI/Set/ZFC/Theory/SchemaFacts.lean
+?? LRA/VolumeI/Set/ZFC/Theory/SchemaFreeVariables.lean
+```
+
+Those changes add:
+
+- free-variable bounds for first-order substitution;
+- closedness checks for named ZFC axioms;
+- named schema helper variables and freshness facts;
+- free-variable subset theorems for Separation and Replacement schemas;
+- a Replacement capture-regression example showing the output-prime variable
+  avoids bound variables, not just free variables.
+
+The new files should not contain `sorry` or `admit`.
+
+## Most Recent Validation
+
+These commands passed:
+
+```text
+lake build LRA.VolumeI.Set.ZFC.Theory.SchemaFreeVariables
+lake build LRAVolumeI
 git diff --check
 ```
 
-Expected warnings: `sorry` declarations in the main propositional logic file
-and the alternate Bourbaki file.
+Expected warnings:
+
+```text
+mathlib: repository '.lake/packages/mathlib' has local changes
+batteries: repository '.lake/packages/batteries' has local changes
+```
+
+Those package warnings existed before this handoff and are not caused by the
+current Volume I changes.
 
 ## Immediate Next Task
 
-Begin the first-order logic first pass:
+First, review the uncommitted changes and decide whether to commit them as the
+next checkpoint. Do not start a new architecture layer before doing that review.
 
-1. Read
-   `docs/restart/foundation-restart-plan/04a-first-order-logic-first-pass.md`.
-2. Create the first-order child modules under
-   `LRA/VolumeI/Logic/FirstOrderLogic/`.
-3. Start with `Language.lean`, then `Term.lean`, then `Formula.lean`.
-4. Treat `Logic` as a mixin/interface target, but do not force first-order
-   syntax into `LogicalFormula` if its own syntax is cleaner.
-5. Prefer small proof-ready statements with `sorry` over large vague theorem
-   bundles.
+Useful review commands:
 
-Do not move on to sets until the first-order architecture is accepted.
+```text
+git diff -- LRA/VolumeI/Logic/Syntax/FirstOrder.lean
+git diff -- LRA/VolumeI/Set/ZFC/Theory.lean
+git diff -- LRA/VolumeI/Set/ZFC/Theory/Examples.lean
+git diff --stat
+rg -n "\b(sorry|admit)\b" LRA/VolumeI/Logic/Syntax/FirstOrder/SubstitutionFreeVariables.lean LRA/VolumeI/Set/ZFC/Theory/ClosedAxioms.lean LRA/VolumeI/Set/ZFC/Theory/SchemaFacts.lean LRA/VolumeI/Set/ZFC/Theory/SchemaFreeVariables.lean
+```
+
+If the review looks good, commit the validated infrastructure. A reasonable
+commit message is:
+
+```text
+Prove ZFC schema variable infrastructure facts
+```
+
+After that, the next implementation target is the semantic bridge for the ZFC
+schemas: prove or state honest satisfaction/correctness lemmas connecting the
+syntactic Separation and Replacement schema constructors to their intended
+model-theoretic readings. Keep this in the ZFC theory/semantics layer. Do not
+move to relation algebra, general functions, quotients, orders, cardinality, or
+number systems.
+
+## Fresh Conversation Request
+
+To continue in a new Codex conversation, paste this:
+
+```text
+We are working in F:\repos\lra-lean.
+
+Read docs/restart/handoff-prompt.md, then inspect git status and the latest
+commit. Continue from the current handoff exactly: review the validated
+uncommitted Volume I/ZFC schema infrastructure, rerun the stated validation,
+and if it still passes, commit it with a clear message. Do not move to relation
+algebra, functions, quotients, orders, cardinality, or number systems.
+```
