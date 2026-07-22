@@ -1,5 +1,6 @@
 import LRA.VolumeI.Set.ZFC.Syntax.Formula
 import LRA.VolumeI.Set.ZFC.Syntax.FreeVariables
+import LRA.VolumeI.Set.ZFC.Syntax.Sentence
 import LRA.VolumeI.Set.ZFC.Syntax.Vocabulary
 
 namespace LRA.VolumeI.Set.ZFC
@@ -28,6 +29,16 @@ example : freeVariablesInZFCFormula (isMemberOf 0 1) = {0, 1} := by
 /-- Syntax checkpoint: `isEqualTo 0 1` is a ZFC formula. -/
 example : ZFCFormula :=
   isEqualTo 0 1
+
+/-- Syntax checkpoint: `∀ x, x ∈ x` is a ZFC sentence. This is only a
+closed-formula wiring check, not a set-theoretic axiom. -/
+def selfMembershipSentenceCheckpoint : ZFCSentence :=
+  ⟨forallVariable 0 (isMemberOf 0 0), by rfl⟩
+
+/-- Closedness checkpoint for the sample ZFC sentence. -/
+example :
+    freeVariablesInZFCFormula selfMembershipSentenceCheckpoint.val = ∅ :=
+  zfcSentence_hasNoFreeVariables selfMembershipSentenceCheckpoint
 
 /-- Syntax checkpoint: `isSubsetOf 0 1` is a ZFC formula. -/
 example : ZFCFormula :=

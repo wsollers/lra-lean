@@ -1,4 +1,4 @@
-import LRA.VolumeI.Logic.Semantics.Satisfaction
+import LRA.VolumeI.Logic.Semantics.Sentence
 
 namespace LRA.VolumeI.Logic.FirstOrder
 
@@ -51,6 +51,10 @@ def testFOLFormula : Formula testFOLSignature Nat :=
     (Formula.relation .A Fin.elim0)
     (Formula.relation .B Fin.elim0)
 
+/-- `A ∧ B` is a sentence: it has no free variables. -/
+def testFOLSentence : Sentence testFOLSignature Nat :=
+  ⟨testFOLFormula, by rfl⟩
+
 /-- The checkpoint: `testFOLModel`, under any assignment (none of its
 variables are used), satisfies `A ∧ B`. -/
 theorem testFOLModel_satisfies_aAndB (assignment : Nat -> testFOLModel.Domain) :
@@ -63,6 +67,13 @@ theorem testFOLModel_satisfies_aAndB (assignment : Nat -> testFOLModel.Domain) :
   refine ⟨?_, ?_⟩
   · trivial
   · trivial
+
+/-- Sentence checkpoint: satisfaction of `A ∧ B` is assignment-independent. -/
+example
+    (leftAssignment rightAssignment : Nat -> testFOLModel.Domain) :
+    Satisfies testFOLModel leftAssignment testFOLSentence.val ↔
+      Satisfies testFOLModel rightAssignment testFOLSentence.val :=
+  satisfies_sentence_iff testFOLModel testFOLSentence
 
 /-!
 The third checkpoint: `∀`/`∃`.
