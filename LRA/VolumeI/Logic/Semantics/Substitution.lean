@@ -1,4 +1,5 @@
 import LRA.VolumeI.Logic.Semantics.Satisfaction
+import LRA.VolumeI.Logic.Syntax.FirstOrder.AllVariables
 import LRA.VolumeI.Logic.Syntax.FirstOrder.Substitute
 
 namespace LRA.VolumeI.Logic.FirstOrder
@@ -67,6 +68,66 @@ theorem evaluateTerm_eq_of_agrees_on_freeVariablesInTerm
           exact assignmentsAgree candidateVariable (by
             simp [freeVariablesInTerm]
             exact ⟨argumentIndex, candidateVariableInArgument⟩))
+
+/-- A strong syntactic capture-avoidance criterion: if every free variable
+of the replacement term is absent from every variable occurring in the
+formula, then the replacement term is substitutable for any variable in the
+formula. -/
+theorem isSubstitutable_of_freeVariablesInTerm_not_mem_allVariables
+    {S : Signature} {Variable : Type} [DecidableEq Variable]
+    (formula : Formula S Variable)
+    (replacedVariable : Variable)
+    (replacementTerm : Term S Variable)
+    (replacementVariablesAreFresh :
+      ∀ candidateVariable,
+        candidateVariable ∈ freeVariablesInTerm replacementTerm ->
+          candidateVariable ∉ allVariables formula) :
+    IsSubstitutable formula replacedVariable replacementTerm := by
+  induction formula with
+  | relation relationSymbol arguments =>
+      simp [IsSubstitutable]
+  | equal leftTerm rightTerm =>
+      simp [IsSubstitutable]
+  | neg innerFormula inductionHypothesis =>
+      simp [IsSubstitutable]
+      exact inductionHypothesis (by
+        intro candidateVariable candidateVariableInReplacement
+        exact
+          replacementVariablesAreFresh
+            candidateVariable candidateVariableInReplacement)
+  | impl hypothesis conclusion hypothesisInduction conclusionInduction =>
+      simp [IsSubstitutable]
+      constructor
+      · exact hypothesisInduction (by
+          intro candidateVariable candidateVariableInReplacement
+          intro candidateVariableInHypothesis
+          exact
+            replacementVariablesAreFresh
+              candidateVariable candidateVariableInReplacement (by
+                simp [allVariables, candidateVariableInHypothesis]))
+      · exact conclusionInduction (by
+          intro candidateVariable candidateVariableInReplacement
+          intro candidateVariableInConclusion
+          exact
+            replacementVariablesAreFresh
+              candidateVariable candidateVariableInReplacement (by
+                simp [allVariables, candidateVariableInConclusion]))
+  | forallQ boundVariable body inductionHypothesis =>
+      simp [IsSubstitutable]
+      constructor
+      · intro replacedVariableIsFreeAcrossBinder
+        intro boundVariableInReplacement
+        exact
+          replacementVariablesAreFresh
+            boundVariable boundVariableInReplacement (by
+              simp [allVariables])
+      · exact inductionHypothesis (by
+          intro candidateVariable candidateVariableInReplacement
+          intro candidateVariableInBody
+          exact
+            replacementVariablesAreFresh
+              candidateVariable candidateVariableInReplacement (by
+                simp [allVariables, candidateVariableInBody]))
 
 /-- If two assignments agree on every free variable of a formula, then they
 give the same satisfaction value for that formula. -/

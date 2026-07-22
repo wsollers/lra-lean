@@ -183,6 +183,29 @@ def replacementSchemaReading
               zfcMembershipHolds M inputAssignment inputVariable sourceSet ∧
                 satisfiesZFCFormula M inputAssignment predicate
 
+/-- Replacement's fresh output-prime variable makes the renamed predicate
+capture-avoiding automatically. -/
+theorem replacementRenamedPredicate_isSubstitutable
+    (inputVariable outputVariable : ZFCVariable)
+    (predicate : ZFCFormula) :
+    FirstOrder.IsSubstitutable predicate outputVariable
+      (variableTerm
+        (SchemaFacts.replacementOutputVariablePrime
+          inputVariable outputVariable predicate)) := by
+  apply
+    FirstOrder.isSubstitutable_of_freeVariablesInTerm_not_mem_allVariables
+  intro candidateVariable candidateVariableInReplacementTerm
+  have candidateVariableIsOutputPrime :
+      candidateVariable =
+        SchemaFacts.replacementOutputVariablePrime
+          inputVariable outputVariable predicate := by
+    simpa [variableTerm, FirstOrder.freeVariablesInTerm] using
+      candidateVariableInReplacementTerm
+  subst candidateVariable
+  simpa [allVariablesInZFCFormula] using
+    SchemaFacts.replacementOutputVariablePrime_not_mem_allVariables
+      inputVariable outputVariable predicate
+
 /-- The renamed predicate used in the Replacement functionality clause has
 the expected semantic reading: under the substitution side condition, it is
 the original predicate with `outputVariable` assigned the value currently
@@ -214,6 +237,29 @@ theorem satisfies_replacementRenamedPredicate_iff_updateOutput
         (SchemaFacts.replacementOutputVariablePrime
           inputVariable outputVariable predicate))
       predicate captureAvoiding
+
+/-- The renamed predicate used in the Replacement functionality clause has
+the expected semantic reading, with capture-avoidance discharged by the
+schema's output-prime freshness construction. -/
+theorem satisfies_replacementRenamedPredicate_iff_updateOutput'
+    (M : ZFCModel)
+    (assignment : ZFCVariable -> M.Domain)
+    (inputVariable outputVariable : ZFCVariable)
+    (predicate : ZFCFormula) :
+    let outputVariable' :=
+      SchemaFacts.replacementOutputVariablePrime
+        inputVariable outputVariable predicate
+    let renamedPredicate :=
+      FirstOrder.substitute outputVariable (variableTerm outputVariable') predicate
+    satisfiesZFCFormula M assignment renamedPredicate ↔
+      satisfiesZFCFormula M
+        (updateAssignment assignment outputVariable (assignment outputVariable'))
+        predicate := by
+  exact
+    satisfies_replacementRenamedPredicate_iff_updateOutput
+      M assignment inputVariable outputVariable predicate
+      (replacementRenamedPredicate_isSubstitutable
+        inputVariable outputVariable predicate)
 
 /-- Satisfaction of a generated Replacement formula is exactly the
 model-facing Replacement reading. -/
