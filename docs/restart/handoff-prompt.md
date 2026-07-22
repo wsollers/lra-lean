@@ -19,7 +19,7 @@ git log -1 --oneline
 The latest committed checkpoint is:
 
 ```text
-30fd98f Add cleaned Replacement schema reading
+2dd08ea Refine Replacement schema semantics API
 ```
 
 ## Current Restart State
@@ -139,6 +139,8 @@ bd66811 Update foundation restart handoff
 a5f49e2 Prove first-order substitution semantics
 d9eed0e Discharge Replacement rename capture condition
 30fd98f Add cleaned Replacement schema reading
+8914e21 Refresh handoff after cleaned Replacement reading
+2dd08ea Refine Replacement schema semantics API
 ```
 
 Those changes add:
@@ -148,15 +150,18 @@ Those changes add:
 - named schema helper variables and freshness facts;
 - free-variable subset theorems for Separation and Replacement schemas;
 - a Replacement capture-regression example showing the output-prime variable
+  avoids bound variables, not just free variables;
 - semantic readings and satisfaction-correctness lemmas for Separation and
   Replacement schema constructors;
 - generic first-order term-substitution semantics;
 - proved formula-level substitution semantics;
 - a ZFC-facing lemma reading Replacement's renamed predicate as the original
   predicate with the output variable updated to the output-prime value;
-- an automatic proof that Replacement's output-prime rename is capture-avoiding.
+- an automatic proof that Replacement's output-prime rename is capture-avoiding;
 - a cleaned Replacement schema semantic reading that uses the output-updated
-  original predicate instead of the syntactic renamed predicate.
+  original predicate instead of the syntactic renamed predicate;
+- a clean model-level Replacement schema predicate
+  (`SatisfiesReplacementSchemaCleanly`) and examples showing the preferred API.
 
 The working tree should be clean after this handoff is committed.
 
@@ -171,6 +176,7 @@ These commands passed:
 ```text
 lake build LRA.VolumeI.Logic.Semantics.Substitution
 lake build LRA.VolumeI.Set.ZFC.Semantics.SchemaCorrectness
+lake build LRA.VolumeI.Set.ZFC.Semantics.Examples
 lake build LRAVolumeI
 git diff --check
 ```
@@ -188,14 +194,14 @@ Volume I changes.
 ## Immediate Next Task
 
 First, inspect the current working tree and latest commit. If the tree is
-clean, continue improving the ZFC schema semantics API without changing scope:
+clean, do one more narrow ZFC semantics/documentation pass:
 
-1. consider whether `replacementSchemaReading` should remain the primary public
-   name or whether downstream users should prefer
-   `replacementSchemaCleanReading`;
-2. add small API lemmas or examples showing how
-   `satisfies_replacementAxiomFor_iff_cleanReading` is intended to be used;
-3. update aggregate/module comments if the cleaned reading should be called out.
+1. decide whether `SatisfiesReplacementSchemaCleanly` should be mentioned in
+   `Semantics/Satisfaction.lean` or only in `Semantics/SchemaCorrectness.lean`;
+2. update doc-comments so the older `SatisfiesReplacementSchema` predicate is
+   clearly the formula-satisfaction definition, while the clean predicate is
+   the preferred model-facing bridge;
+3. rerun the validation above and commit the documentation/API polish.
 
 Keep this in the ZFC semantics layer. Do not begin relation algebra, general
 functions, quotients, orders, cardinality, or number systems.
@@ -211,8 +217,9 @@ To continue in a new Codex conversation, paste this:
 We are working in F:\repos\lra-lean.
 
 Read docs/restart/handoff-prompt.md, then inspect git status and the latest
-commit. Continue from the current handoff exactly: refine the ZFC schema
-semantics API around the cleaned Replacement reading, rerun the stated
-validation, and if it passes, commit it. Do not move to relation algebra,
-functions, quotients, orders, cardinality, or number systems.
+commit. Continue from the current handoff exactly: do the narrow ZFC
+semantics documentation/API polish around `SatisfiesReplacementSchema` and
+`SatisfiesReplacementSchemaCleanly`, rerun the stated validation, and if it
+passes, commit it. Do not move to relation algebra, functions, quotients,
+orders, cardinality, or number systems.
 ```
