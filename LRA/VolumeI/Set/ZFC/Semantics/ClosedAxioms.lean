@@ -25,6 +25,42 @@ theorem satisfiesZFCFormula_iff_of_isClosedZFCFormula
     FirstOrder.satisfies_iff_of_isClosedFormula
       M formula closedFormula
 
+/-- Satisfaction of a ZFC sentence. Since a sentence is closed, this
+existential packaging is equivalent to satisfaction under any chosen
+assignment. -/
+def satisfiesZFCSentence
+    (M : ZFCModel)
+    (sentence : ZFCSentence) : Prop :=
+  ∃ assignment : ZFCVariable -> M.Domain,
+    satisfiesZFCFormula M assignment sentence.val
+
+/-- Satisfaction of the underlying formula of a ZFC sentence is independent
+of the assignment. -/
+theorem zfcSentence_satisfaction_assignment_independent
+    (M : ZFCModel)
+    (leftAssignment rightAssignment : ZFCVariable -> M.Domain)
+    (sentence : ZFCSentence) :
+    satisfiesZFCFormula M leftAssignment sentence.val ↔
+      satisfiesZFCFormula M rightAssignment sentence.val := by
+  exact FirstOrder.satisfies_sentence_iff M sentence
+
+/-- The assignment-free ZFC sentence satisfaction wrapper agrees with
+satisfaction of the underlying formula under any chosen assignment. -/
+theorem satisfiesZFCSentence_iff_satisfiesZFCFormula
+    (M : ZFCModel)
+    (assignment : ZFCVariable -> M.Domain)
+    (sentence : ZFCSentence) :
+    satisfiesZFCSentence M sentence ↔
+      satisfiesZFCFormula M assignment sentence.val := by
+  constructor
+  · intro sentenceSatisfaction
+    rcases sentenceSatisfaction with ⟨witnessAssignment, witnessSatisfaction⟩
+    exact
+      (zfcSentence_satisfaction_assignment_independent
+        M witnessAssignment assignment sentence).mp witnessSatisfaction
+  · intro assignmentSatisfaction
+    exact ⟨assignment, assignmentSatisfaction⟩
+
 theorem extensionalityAxiom_satisfaction_assignment_independent
     (M : ZFCModel)
     (leftAssignment rightAssignment : ZFCVariable -> M.Domain) :

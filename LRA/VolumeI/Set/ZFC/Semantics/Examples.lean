@@ -92,6 +92,78 @@ example
   satisfiesZFCFormula_iff_of_isClosedZFCFormula
     emptyMembershipTestModel emptySetAxiom emptySetAxiom_isClosedFormula
 
+/-- Checkpoint: the extensionality axiom sentence uses the assignment-free
+sentence-satisfaction API. -/
+example
+    (assignment : ZFCVariable -> emptyMembershipTestModel.Domain) :
+    satisfiesZFCSentence emptyMembershipTestModel extensionalitySentence ↔
+      satisfiesZFCFormula emptyMembershipTestModel assignment extensionalityAxiom :=
+  satisfiesZFCSentence_iff_satisfiesZFCFormula
+    emptyMembershipTestModel assignment extensionalitySentence
+
+/-- Checkpoint: the empty set axiom sentence uses the assignment-free
+sentence-satisfaction API. -/
+example
+    (assignment : ZFCVariable -> emptyMembershipTestModel.Domain) :
+    satisfiesZFCSentence emptyMembershipTestModel emptySetSentence ↔
+      satisfiesZFCFormula emptyMembershipTestModel assignment emptySetAxiom :=
+  satisfiesZFCSentence_iff_satisfiesZFCFormula
+    emptyMembershipTestModel assignment emptySetSentence
+
+/-- Checkpoint: the pairing axiom sentence uses the assignment-free
+sentence-satisfaction API. -/
+example
+    (assignment : ZFCVariable -> emptyMembershipTestModel.Domain) :
+    satisfiesZFCSentence emptyMembershipTestModel pairingSentence ↔
+      satisfiesZFCFormula emptyMembershipTestModel assignment pairingAxiom :=
+  satisfiesZFCSentence_iff_satisfiesZFCFormula
+    emptyMembershipTestModel assignment pairingSentence
+
+/-- Checkpoint: the union axiom sentence uses the assignment-free
+sentence-satisfaction API. -/
+example
+    (assignment : ZFCVariable -> emptyMembershipTestModel.Domain) :
+    satisfiesZFCSentence emptyMembershipTestModel unionSentence ↔
+      satisfiesZFCFormula emptyMembershipTestModel assignment unionAxiom :=
+  satisfiesZFCSentence_iff_satisfiesZFCFormula
+    emptyMembershipTestModel assignment unionSentence
+
+/-- Checkpoint: the power set axiom sentence uses the assignment-free
+sentence-satisfaction API. -/
+example
+    (assignment : ZFCVariable -> emptyMembershipTestModel.Domain) :
+    satisfiesZFCSentence emptyMembershipTestModel powerSetSentence ↔
+      satisfiesZFCFormula emptyMembershipTestModel assignment powerSetAxiom :=
+  satisfiesZFCSentence_iff_satisfiesZFCFormula
+    emptyMembershipTestModel assignment powerSetSentence
+
+/-- Checkpoint: the foundation axiom sentence uses the assignment-free
+sentence-satisfaction API. -/
+example
+    (assignment : ZFCVariable -> emptyMembershipTestModel.Domain) :
+    satisfiesZFCSentence emptyMembershipTestModel foundationSentence ↔
+      satisfiesZFCFormula emptyMembershipTestModel assignment foundationAxiom :=
+  satisfiesZFCSentence_iff_satisfiesZFCFormula
+    emptyMembershipTestModel assignment foundationSentence
+
+/-- Checkpoint: the infinity axiom sentence uses the assignment-free
+sentence-satisfaction API. -/
+example
+    (assignment : ZFCVariable -> emptyMembershipTestModel.Domain) :
+    satisfiesZFCSentence emptyMembershipTestModel infinitySentence ↔
+      satisfiesZFCFormula emptyMembershipTestModel assignment infinityAxiom :=
+  satisfiesZFCSentence_iff_satisfiesZFCFormula
+    emptyMembershipTestModel assignment infinitySentence
+
+/-- Checkpoint: the choice axiom sentence uses the assignment-free
+sentence-satisfaction API. -/
+example
+    (assignment : ZFCVariable -> emptyMembershipTestModel.Domain) :
+    satisfiesZFCSentence emptyMembershipTestModel choiceSentence ↔
+      satisfiesZFCFormula emptyMembershipTestModel assignment choiceAxiom :=
+  satisfiesZFCSentence_iff_satisfiesZFCFormula
+    emptyMembershipTestModel assignment choiceSentence
+
 /-- Checkpoint: for the named basic ZFC axioms, satisfying one assignment
 is equivalent to satisfying every assignment. -/
 example
