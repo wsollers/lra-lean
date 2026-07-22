@@ -19,7 +19,7 @@ git log -1 --oneline
 The latest committed checkpoint is:
 
 ```text
-bda4019 Add clean ZFC aggregate projection lemmas
+c028c3c Add ZFC basic axiom readings API
 ```
 
 ## Current Restart State
@@ -127,6 +127,7 @@ LRA/VolumeI/Set/ZFC/
   Semantics/Satisfaction.lean
   Semantics/ClosedAxioms.lean
   Semantics/SchemaCorrectness.lean
+  Semantics/AxiomReadings.lean
   Semantics/Examples.lean
 ```
 
@@ -163,6 +164,8 @@ aff6a0c Refresh handoff after ZFC sentence API
 117dd5f Add clean aggregate ZFC predicates
 1db13a7 Refresh handoff after clean aggregate ZFC predicates
 bda4019 Add clean ZFC aggregate projection lemmas
+153e596 Refresh handoff at pre-operations stop line
+c028c3c Add ZFC basic axiom readings API
 ```
 
 Those changes add:
@@ -213,12 +216,25 @@ Those changes add:
 - projection lemmas for the clean aggregate predicates;
 - a monotonicity lemma showing clean ZFC without Choice implies clean ZFC
   without Replacement.
+- an element-level ZFC model membership relation named `zfcSetMembership`;
+- proof-pending element-level readings for Extensionality, Pairing, and Union
+  in `Semantics/AxiomReadings.lean`.
 
 The working tree should be clean after this handoff is committed.
 
 There are no known proof-pending declarations in
 `LRA/VolumeI/Logic/Semantics/Substitution.lean` or
 `LRA/VolumeI/Set/ZFC/Semantics/SchemaCorrectness.lean`.
+
+The current proof-pending declarations are in
+`LRA/VolumeI/Set/ZFC/Semantics/AxiomReadings.lean`:
+
+```text
+satisfies_isMemberOf_iff_zfcSetMembership
+extensionalityAxiomReading
+pairingAxiomReading
+unionAxiomReading
+```
 
 ## Most Recent Validation
 
@@ -231,6 +247,7 @@ lake build LRA.VolumeI.Set.ZFC.Theory.ClosedAxioms
 lake build LRA.VolumeI.Set.ZFC.Semantics.Satisfaction
 lake build LRA.VolumeI.Set.ZFC.Semantics.ClosedAxioms
 lake build LRA.VolumeI.Set.ZFC.Semantics.SchemaCorrectness
+lake build LRA.VolumeI.Set.ZFC.Semantics.AxiomReadings
 lake build LRA.VolumeI.Set.ZFC.Semantics.Examples
 lake build LRA.VolumeI.Set.ZFC.Syntax.Sentence
 lake build LRAVolumeI
@@ -247,16 +264,17 @@ batteries: repository '.lake/packages/batteries' has local changes
 The package warnings existed before this work and are not caused by the current
 Volume I changes.
 
-## Stop Line
+## Immediate Next Task
 
-The requested pre-operations foundation work is complete. The next natural
-mathematical development would be set operations such as union, intersection,
-complement, and their algebraic laws. Do not start that work without explicit
-user direction.
+Before starting `Operations/Union.lean`, discharge the proof-pending
+declarations in `Semantics/AxiomReadings.lean`, or at least the membership
+bridge plus the Extensionality/Pairing/Union readings needed by binary union.
+Keep the descriptive naming: use `zfcSetMembership`, not terse names like
+`zfcMem`.
 
-If continuing within the current constraint, inspect the current working tree
-and latest commit, confirm it is clean, and report that the repository is at
-the stop line before set operations.
+After those readings are proved, the next mathematical development is binary
+union. Do not start intersection, complement, indexed union, relation algebra,
+functions, quotients, orders, cardinality, or number systems.
 
 Keep this in the ZFC syntax/semantics/theory boundary. Do not begin relation
 algebra, general functions, quotients, orders, cardinality, number systems, or
@@ -273,8 +291,10 @@ To continue in a new Codex conversation, paste this:
 We are working in F:\repos\lra-lean.
 
 Read docs/restart/handoff-prompt.md, then inspect git status and the latest
-commit. Continue from the current handoff exactly: confirm the working tree is
-clean and report that the Volume I/ZFC foundation has reached the requested
-stop line before set operations. Do not move to relation algebra, functions,
-quotients, orders, cardinality, number systems, or set operations.
+commit. Continue from the current handoff exactly: discharge the proof-pending
+declarations in `LRA/VolumeI/Set/ZFC/Semantics/AxiomReadings.lean`, preserving
+the descriptive name `zfcSetMembership`, rerun validation, and if it passes,
+commit it. Do not move to relation algebra, functions, quotients, orders,
+cardinality, number systems, intersection, complement, indexed union, or
+binary-union operations yet.
 ```
