@@ -19,7 +19,7 @@ git log -1 --oneline
 The latest committed checkpoint is:
 
 ```text
-b4cedb7 Reorganize ZFC syntax and schema infrastructure
+9e969f2 Add first-order substitution semantics bridge
 ```
 
 ## Current Restart State
@@ -32,7 +32,9 @@ LRA-OLD/
 
 The restart has moved beyond the old "begin first-order logic" prompt. Volume I
 now has first-order syntax infrastructure under `LRA/VolumeI/Logic/Syntax/`
-and a first ZFC-on-first-order layer under `LRA/VolumeI/Set/ZFC/`.
+and a first ZFC-on-first-order layer under `LRA/VolumeI/Set/ZFC/`. The ZFC
+schema variable infrastructure and first semantic bridge checkpoints have been
+committed.
 
 Do not build relation algebra, functions, quotients, orders, cardinality, or
 number systems yet.
@@ -83,6 +85,18 @@ LRA/VolumeI/Logic/Syntax/FirstOrder/
   Subformula.lean
 ```
 
+First-order semantics:
+
+```text
+LRA/VolumeI/Logic/Semantics.lean
+LRA/VolumeI/Logic/Semantics/
+  Assignment.lean
+  TermEvaluation.lean
+  Satisfaction.lean
+  Substitution.lean
+  Examples.lean
+```
+
 ZFC layer:
 
 ```text
@@ -108,22 +122,19 @@ LRA/VolumeI/Set/ZFC/
   Model/ZFSetModel.lean
   Semantics.lean
   Semantics/Satisfaction.lean
+  Semantics/SchemaCorrectness.lean
   Semantics/Examples.lean
 ```
 
-## Current Uncommitted Work
+## Current Checkpoints
 
-At the time this handoff was updated, the following files were modified or
-untracked and validated locally:
+Recent committed checkpoints:
 
 ```text
-M  LRA/VolumeI/Logic/Syntax/FirstOrder.lean
-M  LRA/VolumeI/Set/ZFC/Theory.lean
-M  LRA/VolumeI/Set/ZFC/Theory/Examples.lean
-?? LRA/VolumeI/Logic/Syntax/FirstOrder/SubstitutionFreeVariables.lean
-?? LRA/VolumeI/Set/ZFC/Theory/ClosedAxioms.lean
-?? LRA/VolumeI/Set/ZFC/Theory/SchemaFacts.lean
-?? LRA/VolumeI/Set/ZFC/Theory/SchemaFreeVariables.lean
+c437b46 Prove ZFC schema variable infrastructure facts
+81c0391 Add ZFC schema semantic correctness readings
+bd66811 Update foundation restart handoff
+9e969f2 Add first-order substitution semantics bridge
 ```
 
 Those changes add:
@@ -133,16 +144,33 @@ Those changes add:
 - named schema helper variables and freshness facts;
 - free-variable subset theorems for Separation and Replacement schemas;
 - a Replacement capture-regression example showing the output-prime variable
-  avoids bound variables, not just free variables.
+- semantic readings and satisfaction-correctness lemmas for Separation and
+  Replacement schema constructors;
+- generic first-order term-substitution semantics;
+- proof-pending formula-level substitution semantics;
+- a ZFC-facing lemma reading Replacement's renamed predicate as the original
+  predicate with the output variable updated to the output-prime value.
 
-The new files should not contain `sorry` or `admit`.
+The working tree should be clean after this handoff is committed.
+
+Known proof-pending declarations:
+
+```text
+LRA.VolumeI.Logic.FirstOrder.satisfies_iff_of_agrees_on_freeVariables
+LRA.VolumeI.Logic.FirstOrder.satisfies_substitute_iff_update
+```
+
+Both are honest theorem statements in
+`LRA/VolumeI/Logic/Semantics/Substitution.lean` and currently use `sorry`.
+There should be no `admit`.
 
 ## Most Recent Validation
 
 These commands passed:
 
 ```text
-lake build LRA.VolumeI.Set.ZFC.Theory.SchemaFreeVariables
+lake build LRA.VolumeI.Logic.Semantics.Substitution
+lake build LRA.VolumeI.Set.ZFC.Semantics.SchemaCorrectness
 lake build LRAVolumeI
 git diff --check
 ```
@@ -150,41 +178,33 @@ git diff --check
 Expected warnings:
 
 ```text
+LRA/VolumeI/Logic/Semantics/Substitution.lean: declaration uses 'sorry'
 mathlib: repository '.lake/packages/mathlib' has local changes
 batteries: repository '.lake/packages/batteries' has local changes
 ```
 
-Those package warnings existed before this handoff and are not caused by the
-current Volume I changes.
+The package warnings existed before this work and are not caused by the current
+Volume I changes.
 
 ## Immediate Next Task
 
-First, review the uncommitted changes and decide whether to commit them as the
-next checkpoint. Do not start a new architecture layer before doing that review.
+First, inspect the current working tree and latest commit. If the tree is
+clean, continue with the first-order substitution proof obligations in
+`LRA/VolumeI/Logic/Semantics/Substitution.lean`:
 
-Useful review commands:
+1. complete `satisfies_iff_of_agrees_on_freeVariables`;
+2. complete `satisfies_substitute_iff_update`;
+3. rerun the validation above;
+4. if the warnings disappear except for pre-existing package warnings, commit
+   the proof completion.
 
-```text
-git diff -- LRA/VolumeI/Logic/Syntax/FirstOrder.lean
-git diff -- LRA/VolumeI/Set/ZFC/Theory.lean
-git diff -- LRA/VolumeI/Set/ZFC/Theory/Examples.lean
-git diff --stat
-rg -n "\b(sorry|admit)\b" LRA/VolumeI/Logic/Syntax/FirstOrder/SubstitutionFreeVariables.lean LRA/VolumeI/Set/ZFC/Theory/ClosedAxioms.lean LRA/VolumeI/Set/ZFC/Theory/SchemaFacts.lean LRA/VolumeI/Set/ZFC/Theory/SchemaFreeVariables.lean
-```
+After that, use the completed substitution theorem to strengthen the ZFC
+Replacement semantic bridge: prove the output-prime substitution side condition
+from the freshness facts, and expose a Replacement reading that does not require
+callers to pass a separate capture-avoidance hypothesis.
 
-If the review looks good, commit the validated infrastructure. A reasonable
-commit message is:
-
-```text
-Prove ZFC schema variable infrastructure facts
-```
-
-After that, the next implementation target is the semantic bridge for the ZFC
-schemas: prove or state honest satisfaction/correctness lemmas connecting the
-syntactic Separation and Replacement schema constructors to their intended
-model-theoretic readings. Keep this in the ZFC theory/semantics layer. Do not
-move to relation algebra, general functions, quotients, orders, cardinality, or
-number systems.
+Do not move to relation algebra, general functions, quotients, orders,
+cardinality, or number systems.
 
 ## Fresh Conversation Request
 
@@ -194,8 +214,8 @@ To continue in a new Codex conversation, paste this:
 We are working in F:\repos\lra-lean.
 
 Read docs/restart/handoff-prompt.md, then inspect git status and the latest
-commit. Continue from the current handoff exactly: review the validated
-uncommitted Volume I/ZFC schema infrastructure, rerun the stated validation,
-and if it still passes, commit it with a clear message. Do not move to relation
-algebra, functions, quotients, orders, cardinality, or number systems.
+commit. Continue from the current handoff exactly: complete the proof-pending
+first-order substitution semantics lemmas, rerun the stated validation, and if
+it passes, commit the proof completion. Do not move to relation algebra,
+functions, quotients, orders, cardinality, or number systems.
 ```
