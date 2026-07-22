@@ -132,12 +132,17 @@ theorem satisfies_separationAxiomFor_iff_schemaReading
     firstOrder_satisfies_existsVariable_iff, firstOrder_satisfies_iffFormula_iff,
     firstOrder_satisfies_andFormula_iff]
 
-/-- The model-facing reading of a generated Replacement instance.
+/-- The syntax-facing model reading of a generated Replacement instance.
 
 For every source set, if the predicate is single-valued on that source,
 then there is an image set whose elements are exactly the outputs related by
 the predicate to some source element. The functionality clause uses the same
-renamed predicate and fresh output-prime variable as `replacementAxiomFor`. -/
+renamed predicate and fresh output-prime variable as `replacementAxiomFor`.
+
+This is useful for proving that the generated formula unfolds correctly.
+For downstream model-facing use, prefer `replacementSchemaCleanReading`,
+which states the second predicate occurrence with an output-updated
+assignment rather than exposing the syntactic rename. -/
 def replacementSchemaReading
     (M : ZFCModel)
     (assignment : ZFCVariable -> M.Domain)
@@ -400,5 +405,33 @@ theorem satisfies_replacementAxiomFor_iff_cleanReading
       M assignment inputVariable outputVariable predicate).trans
       (replacementSchemaReading_iff_cleanReading
         M assignment inputVariable outputVariable predicate)
+
+/-- A ZFC model satisfies every Replacement instance, read through the
+cleaned semantic view rather than the syntactic renamed predicate. -/
+def SatisfiesReplacementSchemaCleanly (M : ZFCModel) : Prop :=
+  ∀ (inputVariable outputVariable : ZFCVariable)
+    (predicate : ZFCFormula)
+    (assignment : ZFCVariable -> M.Domain),
+      replacementSchemaCleanReading
+        M assignment inputVariable outputVariable predicate
+
+/-- The existing formula-satisfaction definition of the Replacement schema
+is equivalent to the cleaned semantic reading. This is the preferred bridge
+for downstream model-facing arguments. -/
+theorem satisfiesReplacementSchema_iff_cleanReadings
+    (M : ZFCModel) :
+    SatisfiesReplacementSchema M ↔
+      SatisfiesReplacementSchemaCleanly M := by
+  constructor
+  · intro hReplacement inputVariable outputVariable predicate assignment
+    exact
+      (satisfies_replacementAxiomFor_iff_cleanReading
+        M assignment inputVariable outputVariable predicate).mp
+        (hReplacement inputVariable outputVariable predicate assignment)
+  · intro hClean inputVariable outputVariable predicate assignment
+    exact
+      (satisfies_replacementAxiomFor_iff_cleanReading
+        M assignment inputVariable outputVariable predicate).mpr
+        (hClean inputVariable outputVariable predicate assignment)
 
 end LRA.VolumeI.Set.ZFC

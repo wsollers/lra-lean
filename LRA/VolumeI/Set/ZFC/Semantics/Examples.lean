@@ -1,6 +1,6 @@
 import LRA.VolumeI.Set.ZFC.Syntax.Formula
 import LRA.VolumeI.Set.ZFC.Model.Model
-import LRA.VolumeI.Set.ZFC.Semantics.Satisfaction
+import LRA.VolumeI.Set.ZFC.Semantics.SchemaCorrectness
 
 namespace LRA.VolumeI.Set.ZFC
 
@@ -43,6 +43,11 @@ well-formed proposition for a ZFC model. -/
 example : Prop :=
   SatisfiesReplacementSchema emptyMembershipTestModel
 
+/-- Checkpoint: the cleaned Replacement schema satisfaction predicate is a
+well-formed proposition for a ZFC model. -/
+example : Prop :=
+  SatisfiesReplacementSchemaCleanly emptyMembershipTestModel
+
 /-- Checkpoint: the ZFC-without-Choice satisfaction predicate is a
 well-formed proposition for a ZFC model. -/
 example : Prop :=
@@ -55,5 +60,26 @@ theorem emptyMembershipTestModel_not_satisfies_one_isMemberOf_zero
     ¬ satisfiesZFCFormula emptyMembershipTestModel assignment (isMemberOf 1 0) := by
   intro h
   exact h
+
+/-- Checkpoint: the cleaned Replacement reading is the preferred semantic
+view of the generated Replacement formula. -/
+example
+    (assignment : ZFCVariable -> emptyMembershipTestModel.Domain)
+    (inputVariable outputVariable : ZFCVariable)
+    (predicate : ZFCFormula) :
+    satisfiesZFCFormula emptyMembershipTestModel assignment
+      (replacementAxiomFor inputVariable outputVariable predicate) ↔
+        replacementSchemaCleanReading
+          emptyMembershipTestModel assignment inputVariable outputVariable
+          predicate :=
+  satisfies_replacementAxiomFor_iff_cleanReading
+    emptyMembershipTestModel assignment inputVariable outputVariable predicate
+
+/-- Checkpoint: model-level Replacement satisfaction is equivalent to the
+cleaned semantic reading for every schema instance. -/
+example :
+    SatisfiesReplacementSchema emptyMembershipTestModel ↔
+      SatisfiesReplacementSchemaCleanly emptyMembershipTestModel :=
+  satisfiesReplacementSchema_iff_cleanReadings emptyMembershipTestModel
 
 end LRA.VolumeI.Set.ZFC
