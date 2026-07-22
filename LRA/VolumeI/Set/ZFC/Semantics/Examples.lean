@@ -1,5 +1,6 @@
 import LRA.VolumeI.Set.ZFC.Syntax.Formula
 import LRA.VolumeI.Set.ZFC.Model.Model
+import LRA.VolumeI.Set.ZFC.Semantics.AxiomReadings
 import LRA.VolumeI.Set.ZFC.Semantics.ClosedAxioms
 import LRA.VolumeI.Set.ZFC.Semantics.SchemaCorrectness
 
@@ -86,6 +87,57 @@ theorem emptyMembershipTestModel_not_satisfies_one_isMemberOf_zero
     ¬ satisfiesZFCFormula emptyMembershipTestModel assignment (isMemberOf 1 0) := by
   intro h
   exact h
+
+/-- Checkpoint: `zfcSetMembership` is the element-level membership relation
+of a ZFC model. -/
+example : Prop :=
+  zfcSetMembership emptyMembershipTestModel () ()
+
+/-- Checkpoint: satisfaction of an atomic membership formula bridges to
+element-level model membership. -/
+example
+    (assignment : ZFCVariable -> emptyMembershipTestModel.Domain)
+    (x y : ZFCVariable) :
+    satisfiesZFCFormula emptyMembershipTestModel assignment (isMemberOf x y) ↔
+      zfcSetMembership
+        emptyMembershipTestModel (assignment x) (assignment y) :=
+  satisfies_isMemberOf_iff_zfcSetMembership
+    emptyMembershipTestModel assignment x y
+
+/-- Checkpoint: Extensionality has an element-level reading. -/
+example
+    (hBasicAxioms :
+      SatisfiesZFCBasicAxiomSentences emptyMembershipTestModel) :
+    ∀ leftSet rightSet : emptyMembershipTestModel.Domain,
+      (∀ element : emptyMembershipTestModel.Domain,
+        zfcSetMembership emptyMembershipTestModel element leftSet ↔
+          zfcSetMembership emptyMembershipTestModel element rightSet) ->
+        leftSet = rightSet :=
+  extensionalityAxiomReading hBasicAxioms
+
+/-- Checkpoint: Pairing has an element-level reading. -/
+example
+    (hBasicAxioms :
+      SatisfiesZFCBasicAxiomSentences emptyMembershipTestModel) :
+    ∀ leftSet rightSet : emptyMembershipTestModel.Domain,
+      ∃ pairSet : emptyMembershipTestModel.Domain,
+        ∀ element : emptyMembershipTestModel.Domain,
+          zfcSetMembership emptyMembershipTestModel element pairSet ↔
+            element = leftSet ∨ element = rightSet :=
+  pairingAxiomReading hBasicAxioms
+
+/-- Checkpoint: Union has an element-level reading. -/
+example
+    (hBasicAxioms :
+      SatisfiesZFCBasicAxiomSentences emptyMembershipTestModel) :
+    ∀ family : emptyMembershipTestModel.Domain,
+      ∃ unionSet : emptyMembershipTestModel.Domain,
+        ∀ element : emptyMembershipTestModel.Domain,
+          zfcSetMembership emptyMembershipTestModel element unionSet ↔
+            ∃ memberSet : emptyMembershipTestModel.Domain,
+              zfcSetMembership emptyMembershipTestModel memberSet family ∧
+                zfcSetMembership emptyMembershipTestModel element memberSet :=
+  unionAxiomReading hBasicAxioms
 
 /-- Checkpoint: satisfaction of a named closed ZFC axiom is independent of
 the variable assignment. -/

@@ -1,6 +1,7 @@
 import LRA.VolumeI.Set.ZFC.Semantics.Satisfaction
 import LRA.VolumeI.Set.ZFC.Semantics.ClosedAxioms
 import LRA.VolumeI.Set.ZFC.Semantics.SchemaCorrectness
+import LRA.VolumeI.Set.ZFC.Semantics.AxiomReadings
 import LRA.VolumeI.Set.ZFC.Semantics.Examples
 
 /-!
@@ -14,5 +15,5 @@ the aggregate ZFC-without-Choice predicate), assignment-independence for closed
 named axioms, semantic readings and correctness lemmas for the schema
 constructors, including the cleaned Separation/Replacement model-facing schema
 bridges and clean aggregate ZFC predicates preferred for downstream arguments,
-and semantic checkpoints.
+element-level readings of the named basic axioms, and semantic checkpoints.
 -/
