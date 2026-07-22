@@ -19,7 +19,7 @@ git log -1 --oneline
 The latest committed checkpoint is:
 
 ```text
-c028c3c Add ZFC basic axiom readings API
+29db04f Prove ZFC basic axiom readings
 ```
 
 ## Current Restart State
@@ -166,6 +166,7 @@ aff6a0c Refresh handoff after ZFC sentence API
 bda4019 Add clean ZFC aggregate projection lemmas
 153e596 Refresh handoff at pre-operations stop line
 c028c3c Add ZFC basic axiom readings API
+29db04f Prove ZFC basic axiom readings
 ```
 
 Those changes add:
@@ -217,24 +218,15 @@ Those changes add:
 - a monotonicity lemma showing clean ZFC without Choice implies clean ZFC
   without Replacement.
 - an element-level ZFC model membership relation named `zfcSetMembership`;
-- proof-pending element-level readings for Extensionality, Pairing, and Union
-  in `Semantics/AxiomReadings.lean`.
+- proved element-level readings for Extensionality, Pairing, and Union in
+  `Semantics/AxiomReadings.lean`.
 
 The working tree should be clean after this handoff is committed.
 
 There are no known proof-pending declarations in
-`LRA/VolumeI/Logic/Semantics/Substitution.lean` or
-`LRA/VolumeI/Set/ZFC/Semantics/SchemaCorrectness.lean`.
-
-The current proof-pending declarations are in
-`LRA/VolumeI/Set/ZFC/Semantics/AxiomReadings.lean`:
-
-```text
-satisfies_isMemberOf_iff_zfcSetMembership
-extensionalityAxiomReading
-pairingAxiomReading
-unionAxiomReading
-```
+`LRA/VolumeI/Logic/Semantics/Substitution.lean`,
+`LRA/VolumeI/Set/ZFC/Semantics/SchemaCorrectness.lean`, or
+`LRA/VolumeI/Set/ZFC/Semantics/AxiomReadings.lean`.
 
 ## Most Recent Validation
 
@@ -266,15 +258,23 @@ Volume I changes.
 
 ## Immediate Next Task
 
-Before starting `Operations/Union.lean`, discharge the proof-pending
-declarations in `Semantics/AxiomReadings.lean`, or at least the membership
-bridge plus the Extensionality/Pairing/Union readings needed by binary union.
-Keep the descriptive naming: use `zfcSetMembership`, not terse names like
-`zfcMem`.
+Start binary union only. Add the first operations module for binary union,
+using the proved element-level readings in `Semantics/AxiomReadings.lean`.
 
-After those readings are proved, the next mathematical development is binary
-union. Do not start intersection, complement, indexed union, relation algebra,
-functions, quotients, orders, cardinality, or number systems.
+Suggested scope:
+
+1. add `LRA/VolumeI/Set/ZFC/Operations.lean`;
+2. add `LRA/VolumeI/Set/ZFC/Operations/Union.lean`;
+3. define `IsBinaryUnion` using `zfcSetMembership`;
+4. prove `exists_binaryUnion` from `pairingAxiomReading` and
+   `unionAxiomReading`;
+5. prove `isBinaryUnion_unique` from `extensionalityAxiomReading`;
+6. optionally define the selected noncomputable `binaryUnion` and its
+   membership characterization if the first two proofs stay small.
+
+Do not start union algebra laws yet unless explicitly requested after this
+checkpoint. Do not start intersection, complement, indexed union, relation
+algebra, functions, quotients, orders, cardinality, or number systems.
 
 Keep this in the ZFC syntax/semantics/theory boundary. Do not begin relation
 algebra, general functions, quotients, orders, cardinality, number systems, or
@@ -291,10 +291,11 @@ To continue in a new Codex conversation, paste this:
 We are working in F:\repos\lra-lean.
 
 Read docs/restart/handoff-prompt.md, then inspect git status and the latest
-commit. Continue from the current handoff exactly: discharge the proof-pending
-declarations in `LRA/VolumeI/Set/ZFC/Semantics/AxiomReadings.lean`, preserving
-the descriptive name `zfcSetMembership`, rerun validation, and if it passes,
-commit it. Do not move to relation algebra, functions, quotients, orders,
-cardinality, number systems, intersection, complement, indexed union, or
-binary-union operations yet.
+commit. Continue from the current handoff exactly: start binary union only by
+adding `Operations/Union.lean`, defining `IsBinaryUnion`, proving existence
+from Pairing and Union readings, and proving uniqueness from Extensionality.
+Only add the selected `binaryUnion` operation and membership theorem if that
+stays within the same small checkpoint. Do not start union algebra laws,
+intersection, complement, indexed union, relation algebra, functions, quotients,
+orders, cardinality, or number systems.
 ```
