@@ -33,6 +33,11 @@ well-formed proposition for a ZFC model. -/
 example : Prop :=
   SatisfiesSeparationSchema emptyMembershipTestModel
 
+/-- Checkpoint: the cleaned Separation schema satisfaction predicate is a
+well-formed proposition for a ZFC model. -/
+example : Prop :=
+  SatisfiesSeparationSchemaCleanly emptyMembershipTestModel
+
 /-- Checkpoint: the ZFC-without-Replacement satisfaction predicate is a
 well-formed proposition for a ZFC model. -/
 example : Prop :=
@@ -60,6 +65,26 @@ theorem emptyMembershipTestModel_not_satisfies_one_isMemberOf_zero
     ¬ satisfiesZFCFormula emptyMembershipTestModel assignment (isMemberOf 1 0) := by
   intro h
   exact h
+
+/-- Checkpoint: the Separation schema reading is the preferred semantic
+view of the generated Separation formula. -/
+example
+    (assignment : ZFCVariable -> emptyMembershipTestModel.Domain)
+    (elementVariable : ZFCVariable)
+    (predicate : ZFCFormula) :
+    satisfiesZFCFormula emptyMembershipTestModel assignment
+      (separationAxiomFor elementVariable predicate) ↔
+        separationSchemaReading
+          emptyMembershipTestModel assignment elementVariable predicate :=
+  satisfies_separationAxiomFor_iff_schemaReading
+    emptyMembershipTestModel assignment elementVariable predicate
+
+/-- Checkpoint: model-level Separation satisfaction is equivalent to the
+semantic reading for every schema instance. -/
+example :
+    SatisfiesSeparationSchema emptyMembershipTestModel ↔
+      SatisfiesSeparationSchemaCleanly emptyMembershipTestModel :=
+  satisfiesSeparationSchema_iff_cleanReadings emptyMembershipTestModel
 
 /-- Checkpoint: the cleaned Replacement reading is the preferred semantic
 view of the generated Replacement formula. -/

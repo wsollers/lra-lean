@@ -132,6 +132,38 @@ theorem satisfies_separationAxiomFor_iff_schemaReading
     firstOrder_satisfies_existsVariable_iff, firstOrder_satisfies_iffFormula_iff,
     firstOrder_satisfies_andFormula_iff]
 
+/-- A ZFC model satisfies every Separation instance, read through the
+model-facing schema reading.
+
+This is the preferred model-facing API for Separation schema arguments. It
+is equivalent to `SatisfiesSeparationSchema`, whose definition stays in
+`Semantics/Satisfaction.lean` as the lower-level formula-satisfaction
+predicate. -/
+def SatisfiesSeparationSchemaCleanly (M : ZFCModel) : Prop :=
+  ∀ (elementVariable : ZFCVariable)
+    (predicate : ZFCFormula)
+    (assignment : ZFCVariable -> M.Domain),
+      separationSchemaReading M assignment elementVariable predicate
+
+/-- The existing formula-satisfaction definition of the Separation schema
+is equivalent to the model-facing schema reading. This is the preferred
+bridge for downstream model-facing arguments. -/
+theorem satisfiesSeparationSchema_iff_cleanReadings
+    (M : ZFCModel) :
+    SatisfiesSeparationSchema M ↔
+      SatisfiesSeparationSchemaCleanly M := by
+  constructor
+  · intro hSeparation elementVariable predicate assignment
+    exact
+      (satisfies_separationAxiomFor_iff_schemaReading
+        M assignment elementVariable predicate).mp
+        (hSeparation elementVariable predicate assignment)
+  · intro hClean elementVariable predicate assignment
+    exact
+      (satisfies_separationAxiomFor_iff_schemaReading
+        M assignment elementVariable predicate).mpr
+        (hClean elementVariable predicate assignment)
+
 /-- The syntax-facing model reading of a generated Replacement instance.
 
 For every source set, if the predicate is single-valued on that source,
