@@ -2,6 +2,8 @@ import LRA.VolumeI.Logic.Language.FirstOrder.Signature
 
 namespace LRA.VolumeI.Logic.FirstOrder
 
+universe u
+
 /-!
 Models (L-structures) for Volume I.
 
@@ -47,7 +49,7 @@ This is a proof obligation, discharged once per concrete model -- for any
 domain built from an inhabited type, it is typically immediate via
 `inferInstance` or a one-element witness. -/
 structure Model (S : Signature) where
-  Domain : Type
+  Domain : Type u
   domainNonempty : Nonempty Domain
   interpretFunction :
     (f : S.FunctionSymbol) -> (Fin (S.functionArity f) -> Domain) -> Domain

@@ -34,7 +34,7 @@ actually load-bearing: the number-systems work (N, R), not here.
 /-- The one relation symbol of ZFC's signature: membership, `\in`,
 arity 2. -/
 inductive ZFCRelationSymbol where
-  | mem
+  | member
 
 /-- ZFC's signature: no function symbols, no constants, and the single
 binary relation symbol `\in`. -/
@@ -43,7 +43,7 @@ def zfcSignature : Signature where
   Relations := ⟨ZFCRelationSymbol, fun _ => 2⟩
   Constants := Empty
 
-theorem zfcSignature.memIsBinary :
-    zfcSignature.IsBinaryRelationSymbol .mem := rfl
+theorem zfcSignature.memberIsBinary :
+    zfcSignature.IsBinaryRelationSymbol .member := rfl
 
 end LRA.VolumeI.Set.ZFC
