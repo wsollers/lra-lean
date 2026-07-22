@@ -19,7 +19,7 @@ git log -1 --oneline
 The latest committed checkpoint is:
 
 ```text
-d9eed0e Discharge Replacement rename capture condition
+30fd98f Add cleaned Replacement schema reading
 ```
 
 ## Current Restart State
@@ -138,6 +138,7 @@ bd66811 Update foundation restart handoff
 8327ebe Refresh foundation restart handoff
 a5f49e2 Prove first-order substitution semantics
 d9eed0e Discharge Replacement rename capture condition
+30fd98f Add cleaned Replacement schema reading
 ```
 
 Those changes add:
@@ -154,6 +155,8 @@ Those changes add:
 - a ZFC-facing lemma reading Replacement's renamed predicate as the original
   predicate with the output variable updated to the output-prime value;
 - an automatic proof that Replacement's output-prime rename is capture-avoiding.
+- a cleaned Replacement schema semantic reading that uses the output-updated
+  original predicate instead of the syntactic renamed predicate.
 
 The working tree should be clean after this handoff is committed.
 
@@ -185,21 +188,17 @@ Volume I changes.
 ## Immediate Next Task
 
 First, inspect the current working tree and latest commit. If the tree is
-clean, continue in `LRA/VolumeI/Set/ZFC/Semantics/SchemaCorrectness.lean` by
-defining a cleaned Replacement schema reading whose functionality clause states
-the second predicate occurrence using the original predicate under
-`updateAssignment ... outputVariable output'`, instead of mentioning the
-syntactic `renamedPredicate`.
+clean, continue improving the ZFC schema semantics API without changing scope:
 
-Use the existing theorem:
+1. consider whether `replacementSchemaReading` should remain the primary public
+   name or whether downstream users should prefer
+   `replacementSchemaCleanReading`;
+2. add small API lemmas or examples showing how
+   `satisfies_replacementAxiomFor_iff_cleanReading` is intended to be used;
+3. update aggregate/module comments if the cleaned reading should be called out.
 
-```text
-satisfies_replacementRenamedPredicate_iff_updateOutput'
-```
-
-to prove the cleaned reading equivalent to the current
-`replacementSchemaReading`, or directly prove a `satisfies ... ↔ cleanedReading`
-theorem. Keep this in the ZFC semantics layer.
+Keep this in the ZFC semantics layer. Do not begin relation algebra, general
+functions, quotients, orders, cardinality, or number systems.
 
 Do not move to relation algebra, general functions, quotients, orders,
 cardinality, or number systems.
@@ -212,8 +211,8 @@ To continue in a new Codex conversation, paste this:
 We are working in F:\repos\lra-lean.
 
 Read docs/restart/handoff-prompt.md, then inspect git status and the latest
-commit. Continue from the current handoff exactly: add the cleaned Replacement
-schema semantic reading using the output-updated original predicate, rerun the
-stated validation, and if it passes, commit it. Do not move to relation algebra,
+commit. Continue from the current handoff exactly: refine the ZFC schema
+semantics API around the cleaned Replacement reading, rerun the stated
+validation, and if it passes, commit it. Do not move to relation algebra,
 functions, quotients, orders, cardinality, or number systems.
 ```
