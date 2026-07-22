@@ -183,6 +183,58 @@ def replacementSchemaReading
               zfcMembershipHolds M inputAssignment inputVariable sourceSet ∧
                 satisfiesZFCFormula M inputAssignment predicate
 
+/-- A cleaned model-facing reading of a generated Replacement instance.
+
+This is the same reading as `replacementSchemaReading`, but its
+functionality clause no longer mentions the syntactic renamed predicate.
+Instead, the second predicate occurrence is the original predicate evaluated
+under the assignment where the output variable receives the candidate
+output-prime value. -/
+def replacementSchemaCleanReading
+    (M : ZFCModel)
+    (assignment : ZFCVariable -> M.Domain)
+    (inputVariable outputVariable : ZFCVariable)
+    (predicate : ZFCFormula) : Prop :=
+  let sourceSet :=
+    SchemaFacts.replacementSourceSet inputVariable outputVariable predicate
+  let imageSet :=
+    SchemaFacts.replacementImageSet inputVariable outputVariable predicate
+  let outputVariable' :=
+    SchemaFacts.replacementOutputVariablePrime inputVariable outputVariable predicate
+  ∀ source : M.Domain,
+    (∀ input : M.Domain,
+      let inputAssignment :=
+        updateAssignment
+          (updateAssignment assignment sourceSet source)
+          inputVariable input
+      zfcMembershipHolds M inputAssignment inputVariable sourceSet ->
+        ∀ output : M.Domain,
+          ∀ output' : M.Domain,
+            let outputPrimeAssignment :=
+              updateAssignment
+                (updateAssignment inputAssignment outputVariable output)
+                outputVariable' output'
+            satisfiesZFCFormula M outputPrimeAssignment predicate ∧
+              satisfiesZFCFormula M
+                (updateAssignment outputPrimeAssignment outputVariable output')
+                predicate ->
+                outputPrimeAssignment outputVariable =
+                  outputPrimeAssignment outputVariable') ->
+      ∃ image : M.Domain,
+        ∀ output : M.Domain,
+          let outputAssignment :=
+            updateAssignment
+              (updateAssignment assignment sourceSet source)
+              imageSet image
+          let imageElementAssignment :=
+            updateAssignment outputAssignment outputVariable output
+          zfcMembershipHolds M imageElementAssignment outputVariable imageSet ↔
+            ∃ input : M.Domain,
+              let inputAssignment :=
+                updateAssignment imageElementAssignment inputVariable input
+              zfcMembershipHolds M inputAssignment inputVariable sourceSet ∧
+                satisfiesZFCFormula M inputAssignment predicate
+
 /-- Replacement's fresh output-prime variable makes the renamed predicate
 capture-avoiding automatically. -/
 theorem replacementRenamedPredicate_isSubstitutable
@@ -261,6 +313,58 @@ theorem satisfies_replacementRenamedPredicate_iff_updateOutput'
       (replacementRenamedPredicate_isSubstitutable
         inputVariable outputVariable predicate)
 
+/-- The original Replacement schema reading, which mentions the syntactic
+renamed predicate, is equivalent to the cleaned reading that evaluates the
+original predicate under the output-prime value. -/
+theorem replacementSchemaReading_iff_cleanReading
+    (M : ZFCModel)
+    (assignment : ZFCVariable -> M.Domain)
+    (inputVariable outputVariable : ZFCVariable)
+    (predicate : ZFCFormula) :
+    replacementSchemaReading M assignment inputVariable outputVariable predicate ↔
+      replacementSchemaCleanReading M assignment inputVariable outputVariable predicate := by
+  classical
+  simp only [replacementSchemaReading, replacementSchemaCleanReading]
+  apply forall_congr'
+  intro source
+  apply imp_congr
+  · apply forall_congr'
+    intro input
+    apply imp_congr Iff.rfl
+    apply forall_congr'
+    intro output
+    apply forall_congr'
+    intro output'
+    let sourceSet :=
+      SchemaFacts.replacementSourceSet inputVariable outputVariable predicate
+    let outputVariable' :=
+      SchemaFacts.replacementOutputVariablePrime inputVariable outputVariable predicate
+    let inputAssignment :=
+      updateAssignment
+        (updateAssignment assignment sourceSet source)
+        inputVariable input
+    let outputPrimeAssignment :=
+      updateAssignment
+        (updateAssignment inputAssignment outputVariable output)
+        outputVariable' output'
+    have renamedPredicateReading :=
+      satisfies_replacementRenamedPredicate_iff_updateOutput'
+        M outputPrimeAssignment inputVariable outputVariable predicate
+    have outputPrimeAssignmentAtOutputPrime :
+        outputPrimeAssignment outputVariable' = output' := by
+      simp [outputPrimeAssignment, updateAssignment]
+    have renamedPredicateReading' :
+        satisfiesZFCFormula M outputPrimeAssignment
+            (FirstOrder.substitute outputVariable
+              (variableTerm outputVariable') predicate) ↔
+          satisfiesZFCFormula M
+            (updateAssignment outputPrimeAssignment outputVariable output')
+            predicate := by
+      simpa [outputVariable', outputPrimeAssignmentAtOutputPrime] using
+        renamedPredicateReading
+    rw [renamedPredicateReading']
+  · rfl
+
 /-- Satisfaction of a generated Replacement formula is exactly the
 model-facing Replacement reading. -/
 theorem satisfies_replacementAxiomFor_iff_schemaReading
@@ -280,5 +384,21 @@ theorem satisfies_replacementAxiomFor_iff_schemaReading
     FirstOrder.Satisfies, firstOrder_satisfies_existsVariable_iff,
     firstOrder_satisfies_iffFormula_iff, firstOrder_satisfies_andFormula_iff,
     FirstOrder.evaluateTerm]
+
+/-- Satisfaction of a generated Replacement formula is exactly the cleaned
+model-facing Replacement reading. -/
+theorem satisfies_replacementAxiomFor_iff_cleanReading
+    (M : ZFCModel)
+    (assignment : ZFCVariable -> M.Domain)
+    (inputVariable outputVariable : ZFCVariable)
+    (predicate : ZFCFormula) :
+    satisfiesZFCFormula M assignment
+      (replacementAxiomFor inputVariable outputVariable predicate) ↔
+        replacementSchemaCleanReading M assignment inputVariable outputVariable predicate := by
+  exact
+    (satisfies_replacementAxiomFor_iff_schemaReading
+      M assignment inputVariable outputVariable predicate).trans
+      (replacementSchemaReading_iff_cleanReading
+        M assignment inputVariable outputVariable predicate)
 
 end LRA.VolumeI.Set.ZFC
