@@ -19,7 +19,7 @@ git log -1 --oneline
 The latest committed checkpoint is:
 
 ```text
-21cca9a Package basic ZFC axioms as sentences
+117dd5f Add clean aggregate ZFC predicates
 ```
 
 ## Current Restart State
@@ -159,6 +159,8 @@ d9de1c3 Add closed ZFC axiom satisfaction facts
 0039962 Add ZFC sentence satisfaction API
 aff6a0c Refresh handoff after ZFC sentence API
 21cca9a Package basic ZFC axioms as sentences
+285de34 Refresh handoff after basic axiom sentence packaging
+117dd5f Add clean aggregate ZFC predicates
 ```
 
 Those changes add:
@@ -202,6 +204,10 @@ Those changes add:
   (`SatisfiesZFCBasicAxiomSentences`);
 - equivalences from that sentence-level predicate to
   `SatisfiesZFCBasicAxiomsAt` and `SatisfiesZFCBasicAxioms`.
+- preferred clean aggregate ZFC predicates without Replacement and without
+  Choice;
+- equivalences between those clean aggregates and the existing
+  formula-satisfaction aggregate predicates.
 
 The working tree should be clean after this handoff is committed.
 
@@ -239,20 +245,19 @@ Volume I changes.
 ## Immediate Next Task
 
 First, inspect the current working tree and latest commit. If the tree is
-clean, define clean aggregate ZFC predicates that use the sentence-level named
-basic axioms plus the already-clean schema readings, before moving toward any
-set operations:
+clean, add small projection and monotonicity lemmas for the clean aggregate
+ZFC predicates, before moving toward any set operations:
 
-1. define a preferred clean aggregate for ZFC without Replacement using
-   `SatisfiesZFCBasicAxiomSentences` and
-   `SatisfiesSeparationSchemaCleanly`;
-2. prove it equivalent to the existing `SatisfiesZFCAxiomsWithoutReplacement`;
-3. define a preferred clean aggregate for ZFC without Choice using
-   `SatisfiesZFCBasicAxiomSentences`, `SatisfiesSeparationSchemaCleanly`, and
-   `SatisfiesReplacementSchemaCleanly`;
-4. prove it equivalent to the existing `SatisfiesZFCAxiomsWithoutChoice`;
-5. add small examples/checkpoints showing the preferred aggregate APIs;
-6. rerun validation and commit.
+1. add named projection lemmas from
+   `SatisfiesZFCAxiomsWithoutReplacementCleanly` to its basic-axiom-sentence
+   and clean-Separation components;
+2. add named projection lemmas from
+   `SatisfiesZFCAxiomsWithoutChoiceCleanly` to its basic-axiom-sentence,
+   clean-Separation, and clean-Replacement components;
+3. prove that `SatisfiesZFCAxiomsWithoutChoiceCleanly M` implies
+   `SatisfiesZFCAxiomsWithoutReplacementCleanly M`;
+4. add small examples/checkpoints showing the projection and monotonicity API;
+5. rerun validation and commit.
 
 Keep this in the ZFC syntax/semantics/theory boundary. Do not begin relation
 algebra, general functions, quotients, orders, cardinality, number systems, or
@@ -269,10 +274,9 @@ To continue in a new Codex conversation, paste this:
 We are working in F:\repos\lra-lean.
 
 Read docs/restart/handoff-prompt.md, then inspect git status and the latest
-commit. Continue from the current handoff exactly: define clean aggregate ZFC
-predicates using `SatisfiesZFCBasicAxiomSentences` plus the clean Separation and
-Replacement schema readings, prove them equivalent to the existing aggregate
-predicates, add small examples, rerun validation, and if it passes, commit it.
-Do not move to relation algebra, functions, quotients, orders, cardinality,
-number systems, or set operations.
+commit. Continue from the current handoff exactly: add projection and
+monotonicity lemmas for the clean aggregate ZFC predicates, including that clean
+ZFC without Choice implies clean ZFC without Replacement, add small examples,
+rerun validation, and if it passes, commit it. Do not move to relation algebra,
+functions, quotients, orders, cardinality, number systems, or set operations.
 ```
