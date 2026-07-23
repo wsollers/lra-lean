@@ -1,6 +1,10 @@
 /.lake
 lean-decl-inventory.txt
 
+# Local Google Drive upload scratch directories
+.tmp.driveupload/
+**/.tmp.driveupload/
+
 # Local source PDFs
 # These may include personally purchased or otherwise non-redistributable files.
 *.pdf

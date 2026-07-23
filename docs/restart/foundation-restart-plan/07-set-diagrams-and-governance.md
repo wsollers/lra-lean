@@ -29,6 +29,15 @@ docs/foundations/set-book-tweaks.md
   an accepted architecture.
 - Do not add compatibility aliases during the restart.
 
+## Git Considerations
+
+- Do not track local Google Drive upload scratch directories named
+  `.tmp.driveupload`. They are machine-local transfer artifacts, may appear at
+  any depth inside a project, and must be covered by the project `.gitignore`.
+  If one is ever accidentally tracked, remove it from Git, commit the ignore
+  rule, and then recreate the local scratch directory if the local workflow
+  still needs it.
+
 ## Acceptance Criteria
 
 - Set architecture documentation exists.
