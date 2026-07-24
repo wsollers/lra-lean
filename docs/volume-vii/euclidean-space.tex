@@ -1,277 +1,74 @@
 \begin{example*}
-The real plane $\mathbb{R}^2$ carries the usual Euclidean metric
+For Euclidean space, the Mathlib-first construction is to choose a finite index
+type and use
 \[
-  d(p,q)
-  =
-  \sqrt{(p_1-q_1)^2 + (p_2-q_2)^2}.
+  \texttt{EuclideanSpace ℝ I}.
 \]
-In Lean, we represent a point of the plane as an ordered pair
-\[
-  \texttt{p : Real × Real}.
-\]
-The first coordinate is \texttt{p.1}, and the second coordinate is
-\texttt{p.2}. Thus the Euclidean distance formula is written as
-\[
-  \texttt{Real.sqrt ((p.1 - q.1) \char`^ 2 + (p.2 - q.2) \char`^ 2)}.
-\]
-
-The Lean definition begins:
+For the Euclidean plane, we take \(I = \texttt{Fin 2}\). In Lean, the chapter
+uses the alias
 \[
 \begin{gathered}
-  \texttt{noncomputable def realPlaneEuclideanMetric : Metric (Real × Real) where}\\
-  \texttt{\ \ distance p q :=}\\
-  \texttt{\ \ \ \ Real.sqrt ((p.1 - q.1) \char`^ 2 + (p.2 - q.2) \char`^ 2).}
+  \texttt{abbrev cartesianSpace : Type :=}\\
+  \texttt{\ \ EuclideanSpace ℝ (Fin 2).}
 \end{gathered}
 \]
-It is marked \texttt{noncomputable} because \texttt{Real.sqrt} is a
-mathematical real-valued function, not executable computation data.
-
-The first metric axiom is nonnegativity. Mathematically, for arbitrary
-$p,q \in \mathbb{R}^2$, we must show
-\[
-  0 \le
-  \sqrt{(p_1-q_1)^2 + (p_2-q_2)^2}.
-\]
-This follows immediately from the basic fact that real square roots are
-nonnegative.
-
-In Lean, Mathlib provides this theorem as \texttt{Real.sqrt\_nonneg}. The proof
-is:
-\[
-\begin{gathered}
-  \texttt{distance\_nonnegative := by}\\
-  \texttt{\ \ intro p q}\\
-  \texttt{\ \ exact Real.sqrt\_nonneg \_.}
-\end{gathered}
-\]
-The command \texttt{intro p q} introduces arbitrary points
-\texttt{p q : Real × Real}. After this, the goal is the nonnegativity of the
-specific square root expression defining the distance from \texttt{p} to
-\texttt{q}. The theorem \texttt{Real.sqrt\_nonneg} says that
-\[
-  0 \le \sqrt{r}
-\]
-for any real number $r$. The underscore in
-\[
-  \texttt{Real.sqrt\_nonneg \_}
-\]
-asks Lean to infer the real number under the square root from the current goal.
-Here Lean infers
-\[
-  r = (p.1-q.1)^2 + (p.2-q.2)^2.
-\]
-So this proof is not using any special property of sums of squares yet; it only
-uses the general nonnegativity of real square roots.
-
-The next axiom is identity of indiscernibles:
-\[
-  d(p,q) = 0 \iff p = q.
-\]
-For the Euclidean distance, this becomes
-\[
-  \sqrt{(p_1-q_1)^2 + (p_2-q_2)^2} = 0 \iff p = q.
-\]
-As usual, \texttt{constructor} splits the proof into two directions. The
-forward direction assumes that the distance is zero and proves that the points
-are equal. The reverse direction assumes that the points are equal and proves
-that the distance is zero.
-
-The forward direction starts from
-\[
-  \texttt{hypothesis : Real.sqrt ((p.1 - q.1) \char`^ 2 + (p.2 - q.2) \char`^ 2) = 0}.
-\]
-First we prove that the expression under the square root is nonnegative:
-\[
-\begin{gathered}
-  \texttt{have h\_nonneg :}\\
-  \texttt{\ \ 0 <= (p.1 - q.1) \char`^ 2 + (p.2 - q.2) \char`^ 2 := by}\\
-  \texttt{\ \ positivity.}
-\end{gathered}
-\]
-The tactic \texttt{positivity} proves goals that follow from standard
-nonnegativity facts, such as squares being nonnegative and sums of
-nonnegative terms being nonnegative.
-
-Then \texttt{Real.sqrt\_eq\_zero h\_nonneg} rewrites the statement that the
-square root is zero into the statement that the nonnegative expression under
-the square root is zero. After this rewrite, Lean can use \texttt{nlinarith} to
-show that each square must be zero:
-\[
-  (p.1-q.1)^2 = 0,
-  \qquad
-  (p.2-q.2)^2 = 0.
-\]
-The theorem \texttt{sq\_eq\_zero\_iff} turns each squared equation into a
-linear equation, and \texttt{sub\_eq\_zero} turns
-\[
-  p_i-q_i = 0
-\]
-into
-\[
-  p_i=q_i.
-\]
-Finally, \texttt{ext} proves equality of ordered pairs by proving equality of
-their two coordinates.
-
-The reverse direction is simpler. If \texttt{hypothesis : p = q}, then rewriting
-by \texttt{hypothesis} changes the distance from \texttt{p} to \texttt{q} into
-the distance from \texttt{q} to itself. The command \texttt{ring\_nf} reduces
-the expression under the square root to \texttt{0}, and \texttt{Real.sqrt\_zero}
-finishes the proof.
-
-The Lean proof is:
-
-\begin{verbatim}
-distance_eq_zero_iff_equal := by
-  intro p q
-  constructor
-  -- =>
-  . intro hypothesis
-    have sum_of_squares_eq_zero :
-        (p.1 - q.1) ^ 2 + (p.2 - q.2) ^ 2 = 0 := by
-      have h_nonneg : 0 <= (p.1 - q.1) ^ 2 + (p.2 - q.2) ^ 2 := by
-        positivity
-      rwa [Real.sqrt_eq_zero h_nonneg] at hypothesis
-    ext
-    . have h_sq : (p.1 - q.1) ^ 2 = 0 := by
-        nlinarith
-      rwa [sq_eq_zero_iff, sub_eq_zero] at h_sq
-    . have h_sq : (p.2 - q.2) ^ 2 = 0 := by
-        nlinarith
-      rwa [sq_eq_zero_iff, sub_eq_zero] at h_sq
-  -- <=
-  . intro hypothesis
-    rw [hypothesis]
-    ring_nf
-    exact Real.sqrt_zero
-\end{verbatim}
-
-The symmetry axiom asks us to prove
-\[
-  d(x,y) = d(y,x).
-\]
-For the Euclidean metric on \(\mathbb{R}^2\), this means proving
-\[
-  \sqrt{(x_1-y_1)^2 + (x_2-y_2)^2}
-  =
-  \sqrt{(y_1-x_1)^2 + (y_2-x_2)^2}.
-\]
-The proof is:
-\[
-\begin{gathered}
-  \texttt{distance\_symmetric := by}\\
-  \texttt{\ \ intro x y}\\
-  \texttt{\ \ congr 1}\\
-  \texttt{\ \ ring.}
-\end{gathered}
-\]
-The command \texttt{intro x y} introduces arbitrary points
-\texttt{x y : Real × Real}. After this, the goal is the equality of the two
-square-root expressions above.
-
-The command \texttt{congr 1} uses congruence. In this proof, both sides have
-the same outer function, namely \texttt{Real.sqrt}. The goal has the form
-\[
-  \texttt{Real.sqrt A = Real.sqrt B}.
-\]
-To prove this, it is enough to prove
-\[
-  \texttt{A = B}.
-\]
-So \texttt{congr 1} strips away one matching outer layer of the expression and
-leaves the new goal
-\[
-  (x.1-y.1)^2 + (x.2-y.2)^2
-  =
-  (y.1-x.1)^2 + (y.2-x.2)^2.
-\]
-This is now a pure algebraic identity. It follows from the fact that
-\[
-  (a-b)^2 = (b-a)^2.
-\]
-The tactic \texttt{ring} proves this kind of identity by normalizing both sides
-as ring expressions. After normalization, both sides have the same canonical
-form, so Lean recognizes them as equal.
-
-Thus the proof has two conceptual steps: first reduce equality of square roots
-to equality of the expressions under the square roots, and then prove that
-inner equality by algebra.
-
-For the triangle inequality, we can prove the result by connecting our
-coordinate definition on \(\mathbb{R}^2\) to Mathlib's built-in Euclidean
-space. This is an interoperation proof: our metric is still our own
-\texttt{Metric (Real × Real)}, but we temporarily translate points into
-Mathlib's \texttt{EuclideanSpace} so that we can use Mathlib's already-proved
-triangle inequality for its distance function.
-
-The extra import is:
-\[
-  \texttt{import Mathlib.Analysis.InnerProductSpace.PiL2}.
-\]
-This file provides Mathlib's finite-dimensional Euclidean spaces, their
-distance function, and facts such as \texttt{dist\_triangle}. In particular, we
-use \texttt{EuclideanSpace ℝ (Fin 2)}, the Euclidean space of real-valued
-functions on the two-element type \texttt{Fin 2}.
-
-Our points are represented as pairs \texttt{ℝ × ℝ}, while Mathlib's Euclidean
-space represents a point as a length-two coordinate vector. The conversion is:
-\[
-\begin{gathered}
-  \texttt{noncomputable def toE (p : ℝ × ℝ) : EuclideanSpace ℝ (Fin 2) :=}\\
-  \texttt{\ \ (EuclideanSpace.equiv (Fin 2) ℝ).symm ![p.1, p.2].}
-\end{gathered}
-\]
-The vector notation \texttt{![p.1, p.2]} builds the length-two coordinate
-vector whose first coordinate is \texttt{p.1} and whose second coordinate is
-\texttt{p.2}. The equivalence \texttt{EuclideanSpace.equiv (Fin 2) ℝ} relates
-Mathlib's Euclidean space to these coordinate vectors. We use \texttt{.symm}
-because we are moving from coordinates into Euclidean space.
-
-The bridge lemma says that our square-root formula is exactly Mathlib's
-Euclidean distance after this conversion:
-\[
-\begin{gathered}
-  \texttt{lemma distance\_eq\_euclidean (p q : ℝ × ℝ) :}\\
-  \texttt{\ \ Real.sqrt ((p.1 - q.1) \char`^ 2 + (p.2 - q.2) \char`^ 2)}\\
-  \texttt{\ \ \ \ = dist (toE p) (toE q) := by}\\
-  \texttt{\ \ rw [EuclideanSpace.dist\_eq, Fin.sum\_univ\_two]}\\
-  \texttt{\ \ simp [toE, EuclideanSpace.equiv, Real.dist\_eq, sq\_abs].}
-\end{gathered}
-\]
-The proof unfolds Mathlib's Euclidean distance formula with
-\texttt{EuclideanSpace.dist\_eq}, rewrites the sum over \texttt{Fin 2} as the
-two coordinate terms using \texttt{Fin.sum\_univ\_two}, and then simplifies the
-coordinate conversion. The theorem \texttt{Real.dist\_eq} rewrites real
-distance as absolute value, and \texttt{sq\_abs} removes absolute values under
-squares.
-
-With this bridge lemma, the triangle inequality proof becomes:
-\[
-\begin{gathered}
-  \texttt{distance\_triangle := by}\\
-  \texttt{\ \ intro x y z}\\
-  \texttt{\ \ rw [distance\_eq\_euclidean, distance\_eq\_euclidean,}\\
-  \texttt{\ \ \ \ distance\_eq\_euclidean]}\\
-  \texttt{\ \ exact dist\_triangle (toE x) (toE y) (toE z).}
-\end{gathered}
-\]
-After \texttt{intro x y z}, the goal is the triangle inequality for our
-coordinate square-root formula. The three rewrites replace each occurrence of
-our formula with Mathlib's distance between the converted points:
-\[
-  d(x,z),\qquad d(x,y),\qquad d(y,z).
-\]
-The goal is then exactly Mathlib's triangle inequality:
-\[
-  \texttt{dist (toE x) (toE z)}
-  \le
-  \texttt{dist (toE x) (toE y) + dist (toE y) (toE z)}.
-\]
-The theorem \texttt{dist\_triangle} proves this for any pseudo-metric/metric
-space known to Mathlib, including \texttt{EuclideanSpace ℝ (Fin 2)}.
-
-This is a useful shortcut, but it is also a little bit of a cheat for the
-exercise: instead of proving the Euclidean triangle inequality directly from
-algebra and square roots, we proved that our formula matches Mathlib's
-Euclidean distance and then reused Mathlib's triangle inequality.
+This is the correct Mathlib object when we want the usual Euclidean \(L^2\)
+metric on \(\mathbb{R}^2\). We do not need to build a new metric-space
+structure: Mathlib already supplies the metric-space instance.
 \end{example*}
+
+\begin{remark*}
+The points \((0,0)\) and \((1,1)\) are represented by coordinate vectors and
+then transported into \texttt{EuclideanSpace ℝ (Fin 2)}:
+\[
+\begin{gathered}
+  \texttt{noncomputable def cartesianOrigin : cartesianSpace :=}\\
+  \texttt{\ \ (EuclideanSpace.equiv (Fin 2) ℝ).symm ![0, 0]}\\
+  \texttt{noncomputable def cartesianOneOne : cartesianSpace :=}\\
+  \texttt{\ \ (EuclideanSpace.equiv (Fin 2) ℝ).symm ![1, 1].}
+\end{gathered}
+\]
+The vector notation \texttt{![0, 0]} and \texttt{![1, 1]} gives functions out
+of \texttt{Fin 2}. The equivalence \texttt{EuclideanSpace.equiv (Fin 2) ℝ}
+relates those coordinate functions to Mathlib's Euclidean space; \texttt{.symm}
+moves from coordinates into Euclidean space.
+\end{remark*}
+
+\begin{example*}
+The distance from \((0,0)\) to \((1,1)\) is \(\sqrt{2}\):
+\[
+\begin{gathered}
+  \texttt{lemma dist\_cartesianOrigin\_cartesianOneOne :}\\
+  \texttt{\ \ dist cartesianOrigin cartesianOneOne = Real.sqrt 2 := by}\\
+  \texttt{\ \ rw [EuclideanSpace.dist\_eq, Fin.sum\_univ\_two]}\\
+  \texttt{\ \ simp [cartesianOrigin, cartesianOneOne,}\\
+  \texttt{\ \ \ \ EuclideanSpace.equiv, Real.dist\_eq]}\\
+  \texttt{\ \ ring\_nf.}
+\end{gathered}
+\]
+The proof first rewrites Mathlib's Euclidean distance using
+\texttt{EuclideanSpace.dist\_eq}. Since the index type is \texttt{Fin 2}, the
+finite sum is rewritten as two coordinate terms by
+\texttt{Fin.sum\_univ\_two}. The simplifier then evaluates the coordinates and
+\texttt{ring\_nf} normalizes the arithmetic under the square root, leaving
+\[
+  \sqrt{(1-0)^2 + (1-0)^2} = \sqrt{2}.
+\]
+\end{example*}
+
+\begin{remark*}
+The file also keeps a scratch bridge example for the old coordinate formula on
+\(\mathbb{R} \times \mathbb{R}\). The conversion
+\[
+  \texttt{toE : ℝ × ℝ -> EuclideanSpace ℝ (Fin 2)}
+\]
+turns an ordered pair into a Mathlib Euclidean point. The lemma
+\[
+  \texttt{distance\_eq\_euclidean}
+\]
+shows that the hand-written square-root formula agrees with Mathlib's
+\texttt{dist} after this conversion. This is the bridge pattern: prove that a
+scratch formula agrees with Mathlib's API, then use Mathlib theorems such as
+\texttt{dist\_triangle} instead of reproving the coordinate triangle
+inequality.
+\end{remark*}

@@ -1,145 +1,77 @@
 \begin{remark*}
-Mathematically, a metric space is usually presented as a pair $(X,d)$, where
-$X$ is a set and
-\[
-  d : X \times X \to \mathbb{R}
-\]
-is a metric satisfying the metric space axioms: nonnegativity, identity of
-indiscernibles, symmetry, and the triangle inequality.
+The metric-space chapter now uses a Mathlib-first architecture. The old
+hand-rolled metric structures are retained only as a learning model, under the
+names \texttt{ScratchMetric} and \texttt{ScratchMetricSpace}.
 
-In Lean, we formalize this by separating the two pieces. First, we define a
-structure \texttt{Metric Point}. Here \texttt{Point} is the Lean type playing
-the role of the mathematical set $X$, and the field
+The scratch model is bundled: a value of type
 \[
-  \texttt{distance : Point -> Point -> Real}
+  \texttt{ScratchMetricSpace Point}
 \]
-is the Lean version of the function $d : X \times X \to \mathbb{R}$. The metric
-axioms are attached as additional fields of the same structure, so a value of
-type \texttt{Metric Point} is not merely a distance function; it is a distance
-function together with proofs that it satisfies the metric axioms.
+contains a chosen carrier type, a concrete distance function, and proof fields
+for nonnegativity, identity of indiscernibles, symmetry, and the triangle
+inequality. This is useful pedagogically because it exposes the raw proof
+obligations behind the phrase ``is a metric.''
 
-Then we define a metric space as a structure
+The main formalization, however, uses Mathlib's unbundled typeclass interface:
 \[
-  \texttt{MetricSpace Point}
+  \texttt{variable \{X : Type u\} [MetricSpace X]}.
 \]
-with a field
+Here \texttt{X} is the carrier type and \texttt{[MetricSpace X]} asks Lean to
+find a metric-space instance through typeclass search. Once that instance is in
+scope, the distance function is Mathlib's global notation
 \[
-  \texttt{metric : Metric Point}.
+  \texttt{dist x y}.
 \]
-Thus a Lean metric space is a carrier type \texttt{Point} equipped with a chosen
-metric on that type. This is useful because the same underlying type may carry
-different metrics. Switching the metric means changing the value of the
-\texttt{metric} field while keeping the same carrier type.
-
-The declaration
-\[
-  \texttt{variable \{Point : Type u\} (M : MetricSpace Point)}
-\]
-sets up a local context for theorem statements. It says: let \texttt{Point} be
-an arbitrary type, and let \texttt{M} be an arbitrary metric space whose points
-have type \texttt{Point}. The braces around \texttt{Point} make it an implicit
-argument, so Lean will usually infer it from \texttt{M} or from a term such as
-\texttt{x : Point}. The parentheses around \texttt{M} make the metric space an
-explicit argument.
-
-This avoids repeating the same parameters in every theorem. Instead of writing
-\[
-\begin{gathered}
-  \texttt{theorem distance\_self}\\
-  \texttt{\ \ \ \ \{Point : Type u\} (M : MetricSpace Point) (x : Point) :}\\
-  \texttt{\ \ \ \ M.distance x x = 0 := by sorry,}
-\end{gathered}
-\]
-we may first declare the variables and then write simply
-\[
-\begin{gathered}
-  \texttt{variable \{Point : Type u\} (M : MetricSpace Point)}\\
-  \texttt{theorem distance\_self (x : Point) : M.distance x x = 0 := by sorry.}
-\end{gathered}
-\]
-Inside this context, an expression such as \texttt{M.distance x y} means the
-distance from \texttt{x} to \texttt{y} according to the particular metric carried
-by \texttt{M}.
-
-The first generic theorems about \texttt{M.distance} are discharged directly
-from the axiom fields stored in \texttt{M.metric}. For example, the axiom field
-\[
-  \texttt{M.metric.distance\_eq\_zero\_iff\_equal x y}
-\]
-has type
-\[
-  \texttt{M.metric.distance x y = 0 <-> x = y}.
-\]
-Since \texttt{M.distance x y} is defined to be \texttt{M.metric.distance x y},
-this axiom can be used to prove the corresponding theorem stated with
-\texttt{M.distance}.
-
-Lean treats an if-and-only-if proof as having two directions. If
-\[
-  \texttt{h : A <-> B},
-\]
-then \texttt{h.mp} proves the forward direction \texttt{A -> B}, and
-\texttt{h.mpr} proves the reverse direction \texttt{B -> A}. Thus, in the
-theorem
-\[
-\begin{gathered}
-  \texttt{theorem equal\_of\_distance\_eq\_zero}\\
-  \texttt{\ \ \ \ \{x y : Point\} (hypothesis : M.distance x y = 0) : x = y :=}\\
-  \texttt{\ \ (M.metric.distance\_eq\_zero\_iff\_equal x y).mp hypothesis,}
-\end{gathered}
-\]
-the named assumption \texttt{hypothesis} supplies the left side of the
-if-and-only-if, and \texttt{.mp} converts it into the right side. These theorems
-are therefore convenience lemmas, not additional axioms: they repackage the
-metric axioms using the notation attached to the particular metric space
-\texttt{M}.
-
-We call these requirements ``axioms'' because, in the mathematical definition
-of a metric, they are the basic laws that a proposed distance function must
-satisfy in order to count as a metric. This does not mean that we are adding new
-global axioms to Lean's logical foundation. In our Lean structure, the metric
-axioms are fields whose values must be supplied whenever we construct a
-\texttt{Metric Point}. For a concrete example such as
-\texttt{realAbsoluteValueMetric}, the fields
-\texttt{distance\_nonnegative}, \texttt{distance\_eq\_zero\_iff\_equal},
-\texttt{distance\_symmetric}, and \texttt{distance\_triangle} are proof
-obligations. To build the example honestly, we must prove that the proposed
-formula \texttt{|x - y|} satisfies each one. Thus the word ``axiom'' here means
-``defining law of the mathematical structure,'' not ``unproved assumption added
-to the proof system.''
+The standard theorems are also available immediately, such as
+\texttt{dist\_self}, \texttt{dist\_comm}, \texttt{dist\_nonneg}, and
+\texttt{dist\_triangle}.
 \end{remark*}
 
-\begin{example*}
-The real line $\mathbb{R}$ becomes a metric space with the usual absolute-value
-metric
+\begin{remark*}
+The architectural distinction is:
 \[
-  d(x,y) = |x-y|.
+\begin{array}{c|c}
+\text{Scratch model} & \text{Mathlib model}\\
+\hline
+\texttt{ScratchMetricSpace X} & \texttt{[MetricSpace X]}\\
+\texttt{M.distance x y} & \texttt{dist x y}\\
+\text{local bundled proof fields} & \text{global API lemmas}\\
+\text{teaches obligations} & \text{supports theorem proving}
+\end{array}
 \]
-In Lean, the carrier type is \texttt{Real}, and the metric is defined by
-\[
-  \texttt{distance x y := |x - y|}.
-\]
-The metric-space axioms are then attached as proof fields of the structure
-\texttt{Metric Real}. At this stage, those proofs may be left as \texttt{sorry}
-while we focus on setting up the definitions.
 
-The real plane $\mathbb{R}^2$ becomes a metric space with the Euclidean metric
+Mathlib's \texttt{MetricSpace} is not merely a record with a distance function.
+It extends \texttt{PseudoMetricSpace}, and through that hierarchy it carries
+compatible uniform, bornological, and topological structure. Consequently, a
+type with \texttt{[MetricSpace X]} can automatically be used as a topological
+space. This is why Mathlib's design is powerful: metric facts, uniform-space
+facts, and topological facts interoperate through the same typeclass instance.
+
+The scratch-to-Mathlib bridge in Lean is therefore not just a matter of copying
+a distance function. Mathlib also expects the topology to be compatible with
+that distance. The helper
 \[
-  d(p,q)
-  =
-  \sqrt{(p_1-q_1)^2 + (p_2-q_2)^2}.
+  \texttt{ScratchMetricSpace.toMathlibMetricSpace}
 \]
-In Lean, we represent $\mathbb{R}^2$ as the product type
+demonstrates this boundary: it converts a scratch metric space to a Mathlib
+\texttt{MetricSpace} only after a compatible topology has been supplied.
+\end{remark*}
+
+\begin{remark*}
+The active theorem files should use Mathlib notation. For example, a theorem
+about arbitrary metric spaces should start from a context such as
 \[
-  \texttt{Real × Real}.
+\begin{gathered}
+  \texttt{variable \{X : Type u\} [MetricSpace X]}\\
+  \texttt{variable (x y : X) (r : Real).}
+\end{gathered}
 \]
-If \texttt{p q : Real × Real}, then \texttt{p.1} and \texttt{p.2} are the two
-coordinates of \texttt{p}, and similarly for \texttt{q}. Thus the Lean distance
-function is
+Then open balls and closed balls are not new structures. They are sets:
 \[
-  \texttt{Real.sqrt ((p.1 - q.1) \char`^ 2 + (p.2 - q.2) \char`^ 2)}.
+  \texttt{Metric.ball x r : Set X},
+  \qquad
+  \texttt{Metric.closedBall x r : Set X}.
 \]
-This definition is marked \texttt{noncomputable} in Lean because the real square
-root function is not executable data; it is a mathematical object supplied by
-the real-number theory.
-\end{example*}
+This matches the way ordinary mathematics treats a ball: it is a subset of the
+ambient metric space, not a separate object with its own fields.
+\end{remark*}

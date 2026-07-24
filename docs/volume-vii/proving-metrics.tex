@@ -1,29 +1,10 @@
-\begin{definition*}
-Let $X$ be a set. A metric on $X$ is a function
-\[
-  d : X \times X \to \mathbb{R}
-\]
-such that, for all $x,y,z \in X$,
-\[
-  d(x,y) \ge 0,
-\]
-\[
-  d(x,y) = 0 \iff x = y,
-\]
-\[
-  d(x,y) = d(y,x),
-\]
-and
-\[
-  d(x,z) \le d(x,y) + d(y,z).
-\]
-These four requirements are called the metric axioms: nonnegativity, identity
-of indiscernibles, symmetry, and the triangle inequality.
-
-In Lean, we formalize this definition as a structure:
+\begin{remark*}
+The scratch metric files remain useful because they show what Mathlib's
+\texttt{MetricSpace} typeclass is hiding from day-to-day proofs. A scratch
+metric has the form
 \[
 \begin{gathered}
-  \texttt{structure Metric (Point : Type u) where}\\
+  \texttt{structure ScratchMetric (Point : Type u) where}\\
   \texttt{\ \ distance : Point -> Point -> Real}\\
   \texttt{\ \ distance\_nonnegative : forall x y : Point, 0 <= distance x y}\\
   \texttt{\ \ distance\_eq\_zero\_iff\_equal :}\\
@@ -33,359 +14,47 @@ In Lean, we formalize this definition as a structure:
   \texttt{\ \ \ \ forall x y z : Point, distance x z <= distance x y + distance y z.}
 \end{gathered}
 \]
-The field \texttt{distance} is the proposed distance function. The remaining
-fields are the proof obligations saying that this function satisfies the metric
-axioms. Thus, constructing a value of type \texttt{Metric Point} means providing
-both a formula for distance and proofs that the formula behaves like a metric.
-\end{definition*}
+Building a value of this structure means supplying the proposed distance
+function and proving the metric laws by hand.
+\end{remark*}
 
 \begin{example*}
-The real line $\mathbb{R}$ carries the usual absolute-value metric
-\[
-  d(x,y) = |x-y|.
-\]
-In Lean, this example begins as
+For the real line, the scratch metric is
 \[
 \begin{gathered}
-  \texttt{def realAbsoluteValueMetric : Metric Real where}\\
-  \texttt{\ \ distance x y := |x - y|}\\
-  \texttt{\ \ distance\_nonnegative := by sorry}\\
-  \texttt{\ \ distance\_eq\_zero\_iff\_equal := by sorry}\\
-  \texttt{\ \ distance\_symmetric := by sorry}\\
-  \texttt{\ \ distance\_triangle := by sorry.}
+  \texttt{def realScratchMetric : ScratchMetric Real where}\\
+  \texttt{\ \ distance x y := |x - y|.}
 \end{gathered}
 \]
-The distance formula is now fixed. What remains is to prove that this formula
-satisfies each metric axiom. In other words, for arbitrary real numbers
-$x,y,z$, we must show:
-\[
-  0 \le |x-y|,
-\]
-\[
-  |x-y| = 0 \iff x = y,
-\]
-\[
-  |x-y| = |y-x|,
-\]
-and
-\[
-  |x-z| \le |x-y| + |y-z|.
-\]
-These are the next proof tasks for the real-line metric.
-
-For nonnegativity, Mathlib contains the theorem \texttt{abs\_nonneg}. Its
-mathematical content is that the absolute value of any real number is
-nonnegative:
-\[
-  0 \le |a|.
-\]
-The metric axiom for the real-line distance asks us to prove
-\[
-  0 \le |x-y|
-\]
-for arbitrary real numbers \texttt{x} and \texttt{y}. The Lean proof is:
-\[
-\begin{gathered}
-  \texttt{distance\_nonnegative := by}\\
-  \texttt{\ \ intro x y}\\
-  \texttt{\ \ exact abs\_nonneg (x - y).}
-\end{gathered}
-\]
-The line \texttt{intro x y} introduces arbitrary real numbers \texttt{x} and
-\texttt{y}. After that, the goal is
-\[
-  \texttt{0 <= |x - y|}.
-\]
-This is exactly \texttt{abs\_nonneg} applied to the real number
-\texttt{x - y}. So \texttt{exact abs\_nonneg (x - y)} closes the goal.
-
-For identity of indiscernibles, the metric axiom asks us to prove
-\[
-  |x-y| = 0 \iff x = y.
-\]
-Because the goal is an if-and-only-if statement, the proof naturally splits
-into two directions. In Lean, the command \texttt{constructor} turns a goal of
-the form \texttt{A <-> B} into two goals: first \texttt{A -> B}, then
-\texttt{B -> A}. The proof begins:
-\[
-\begin{gathered}
-  \texttt{distance\_eq\_zero\_iff\_equal := by}\\
-  \texttt{\ \ intro x y}\\
-  \texttt{\ \ constructor.}
-\end{gathered}
-\]
-The line \texttt{intro x y} introduces arbitrary real numbers \texttt{x} and
-\texttt{y}. Then \texttt{constructor} asks us to prove both implications in the
-iff.
-
-For the forward direction, the hypothesis is
-\[
-  \texttt{hypothesis : |x - y| = 0}
-\]
-and the goal is \texttt{x = y}. Mathlib's theorem \texttt{abs\_eq\_zero} says
-that an absolute value is zero exactly when the expression inside it is zero.
-Using \texttt{.mp}, the forward direction of that iff, gives
-\[
-  \texttt{x - y = 0}.
-\]
-From there, \texttt{linarith} proves the resulting linear arithmetic goal
-\texttt{x = y}. In Lean:
-\[
-\begin{gathered}
-  \texttt{-- =>}\\
-  \texttt{\ \cdot\ intro hypothesis}\\
-  \texttt{\ \ \ have difference\_eq\_zero : x - y = 0 :=}\\
-  \texttt{\ \ \ \ abs\_eq\_zero.mp hypothesis}\\
-  \texttt{\ \ \ linarith.}
-\end{gathered}
-\]
-The line beginning with \texttt{--} is a one-line Lean comment. It is ignored by
-Lean and is only there to label the forward direction of the proof.
-
-For the reverse direction, the hypothesis is
-\[
-  \texttt{hypothesis : x = y}
-\]
-and the goal is \texttt{|x - y| = 0}. Rewriting by \texttt{hypothesis} changes
-\texttt{x - y} into \texttt{y - y}; then \texttt{sub\_self} simplifies this to
-\texttt{0}. The remaining goal is \texttt{|0| = 0}, which is exactly
-\texttt{abs\_zero}. In Lean:
-\[
-\begin{gathered}
-  \texttt{-- <=}\\
-  \texttt{\ \cdot\ intro hypothesis}\\
-  \texttt{\ \ \ rw [hypothesis, sub\_self]}\\
-  \texttt{\ \ \ exact abs\_zero.}
-\end{gathered}
-\]
-Here the comment \texttt{-- <=} labels the reverse direction of the iff.
-
-For symmetry, Mathlib contains the theorem \texttt{abs\_sub\_comm}. Its
-mathematical content is
-\[
-  |x-y| = |y-x|.
-\]
-This is exactly the symmetry axiom for the absolute-value distance on
-\(\mathbb{R}\). The Lean proof is:
-\[
-\begin{gathered}
-  \texttt{distance\_symmetric := by}\\
-  \texttt{\ \ intro x y}\\
-  \texttt{\ \ exact abs\_sub\_comm x y.}
-\end{gathered}
-\]
-The line \texttt{intro x y} introduces arbitrary real numbers \texttt{x} and
-\texttt{y}. After that, the goal is
-\[
-  \texttt{|x - y| = |y - x|},
-\]
-which is precisely what \texttt{abs\_sub\_comm x y} proves.
-
-For the triangle inequality, Mathlib already contains the theorem
-\texttt{abs\_add\_le}, whose mathematical content is
-\[
-  |a+b| \le |a| + |b|.
-\]
-The documentation describes this as saying that absolute value satisfies the
-triangle inequality. However, Lean can only use that theorem when the current
-goal has been put into a matching form. It is not enough for us to know
-informally that absolute value has the triangle inequality; the expression in
-the proof state must be connected to the theorem's expression.
-
-For the real-line metric, the triangle axiom asks us to prove
-\[
-  |x-z| \le |x-y| + |y-z|.
-\]
-This does not syntactically look like \texttt{|a + b| <= |a| + |b|}. The
-algebraic bridge is
-\[
-  x-z = (x-y) + (y-z).
-\]
-After rewriting the left-hand side using this identity, the goal becomes
-\[
-  |(x-y)+(y-z)| \le |x-y| + |y-z|,
-\]
-which is exactly the theorem \texttt{abs\_add\_le} applied to
-\[
-  a = x-y,
-  \qquad
-  b = y-z.
-\]
-Thus the proof has two conceptual steps: first rewrite the distance
-\texttt{|x - z|} into an absolute value of a sum, and then apply
-\texttt{abs\_add\_le}. This is a common pattern in Lean formalization: a
-library theorem may express the right mathematical fact, but we still have to
-arrange the goal so that Lean can see the theorem applies.
-
-The corresponding Lean proof can be written as follows:
-\[
-\begin{gathered}
-  \texttt{distance\_triangle := by}\\
-  \texttt{\ \ intro x y z}\\
-  \texttt{\ \ calc}\\
-  \texttt{\ \ \ \ |x - z| = |(x - y) + (y - z)| := by}\\
-  \texttt{\ \ \ \ \ \ ring\_nf}\\
-  \texttt{\ \ \ \ \_ <= |x - y| + |y - z| := by}\\
-  \texttt{\ \ \ \ \ \ exact abs\_add\_le (x - y) (y - z).}
-\end{gathered}
-\]
-The line \texttt{distance\_triangle := by} begins the proof of the
-\texttt{distance\_triangle} field of the \texttt{Metric} structure. Since the
-distance on the real line has been defined by \texttt{distance x y := |x - y|},
-the expected proof is
-\[
-  \texttt{forall x y z : Real, |x - z| <= |x - y| + |y - z|}.
-\]
-The command \texttt{intro x y z} introduces arbitrary real numbers
-\texttt{x}, \texttt{y}, and \texttt{z}. This is the Lean version of saying
-``Let $x,y,z \in \mathbb{R}$ be arbitrary.'' After these introductions, the
-goal is
-\[
-  \texttt{|x - z| <= |x - y| + |y - z|}.
-\]
-
-The command \texttt{calc} starts a calculation chain. We prove the desired
-inequality by moving from the left-hand side to the right-hand side through an
-intermediate expression:
-\[
-  |x-z|
-  =
-  |(x-y)+(y-z)|
-  \le
-  |x-y|+|y-z|.
-\]
-The first step,
-\[
-  \texttt{|x - z| = |(x - y) + (y - z)| := by ring\_nf,}
-\]
-is just algebra. The tactic \texttt{ring\_nf} normalizes ring expressions and
-proves identities such as
-\[
-  x-z = (x-y)+(y-z).
-\]
-To normalize a ring expression means to rewrite it into a standard, canonical
-algebraic form: like terms are collected, parentheses are removed according to
-associativity and distributivity, subtractions are treated as additions of
-negatives, and coefficients are simplified. For example, both
-\[
-  x-z
-  \qquad\text{and}\qquad
-  (x-y)+(y-z)
-\]
-normalize to the same formal expression, namely \(x-z\). Once the two sides
-have the same ring normal form, Lean can recognize them as equal. Because the
-expressions inside the absolute values are algebraically equal, Lean can use
-this normalization to prove the equality of the absolute values.
-
-The second step uses an underscore:
-\[
-  \texttt{\_ <= |x - y| + |y - z| := by exact abs\_add\_le (x - y) (y - z).}
-\]
-In a \texttt{calc} block, the underscore means ``the expression from the
-previous line.'' Thus this line is proving
-\[
-  \texttt{|(x - y) + (y - z)| <= |x - y| + |y - z|}.
-\]
-That is exactly the statement of \texttt{abs\_add\_le} with
-\[
-  a = x-y,
-  \qquad
-  b = y-z.
-\]
-The command \texttt{exact abs\_add\_le (x - y) (y - z)} tells Lean that this
-library theorem proves the current goal exactly. The whole calculation gives
-the metric triangle inequality for the absolute-value distance on
-\(\mathbb{R}\).
-
-At this point, the real-line metric proof in Lean is:
-
-\begin{verbatim}
-/-- The usual absolute-value metric on the real line. -/
-def realAbsoluteValueMetric : Metric Real where
-  distance x y := |x - y|
-
-  distance_nonnegative := by
-    intro x y
-    exact abs_nonneg (x - y)
-
-  distance_eq_zero_iff_equal := by
-    intro x y
-    constructor
-    -- =>
-    · intro hypothesis
-      have difference_eq_zero : x - y = 0 := abs_eq_zero.mp hypothesis
-      linarith
-    -- <=
-    · intro hypothesis
-      rw [hypothesis, sub_self]
-      exact abs_zero
-
-  distance_symmetric := by
-    intro x y
-    exact abs_sub_comm x y
-
-  distance_triangle := by
-    intro x y z
-    calc
-      |x - z| = |(x - y) + (y - z)| := by
-        ring_nf
-      _ ≤ |x - y| + |y - z| := by
-        exact abs_add_le (x - y) (y - z)
-\end{verbatim}
+The proof obligations are the familiar facts about absolute value:
+nonnegativity follows from \texttt{abs\_nonneg}; zero distance is equivalent to
+equality by \texttt{abs\_eq\_zero} and elementary arithmetic; symmetry follows
+from \texttt{abs\_sub\_comm}; and the triangle inequality follows from
+\texttt{abs\_add\_le} after rewriting \(x-z\) as \((x-y)+(y-z)\).
 \end{example*}
 
-\begin{example*}
-Every set also carries the discrete metric. Mathematically, this metric is
-defined by
+\begin{remark*}
+The scratch discrete metric is kept as another proof-obligation exercise:
 \[
-  d(x,y)
-  =
-  \begin{cases}
-    0, & x = y,\\
-    1, & x \ne y.
-  \end{cases}
+\begin{gathered}
+  \texttt{def discreteScratchMetric}\\
+  \texttt{\ \ \ \ (Point : Type u) [DecidableEq Point] : ScratchMetric Point where}\\
+  \texttt{\ \ distance x y := if x = y then 0 else 1.}
+\end{gathered}
 \]
-The idea is that distinct points are all placed exactly one unit apart.
+The assumption \texttt{[DecidableEq Point]} lets Lean decide which branch of
+the \texttt{if} expression applies. Proofs about this metric usually proceed by
+\texttt{by\_cases h : x = y} followed by \texttt{simp [h]}.
+\end{remark*}
 
-In Lean, the definition uses an \texttt{if}-expression:
+\begin{remark*}
+The scratch material is not the main development path. Once the raw obligations
+are understood, the main theorems should be stated with Mathlib's context
 \[
-  \texttt{distance x y := if x = y then 0 else 1.}
+  \texttt{\{X : Type u\} [MetricSpace X]}.
 \]
-To write this for an arbitrary type \texttt{Point}, Lean needs the assumption
-\[
-  \texttt{[DecidableEq Point]}.
-\]
-This says that equality of points is decidable: for any two points, Lean can
-choose the \texttt{then} branch or the \texttt{else} branch of the
-\texttt{if}-expression. This is the formal version of being able to determine
-whether \(x=y\) or \(x\ne y\).
-
-The Lean definitions are:
-
-\begin{verbatim}
-/-- The discrete metric on any type of points with decidable equality. -/
-def discreteMetric (Point : Type u) [DecidableEq Point] : Metric Point where
-  distance x y := if x = y then 0 else 1
-  distance_nonnegative := by
-    sorry
-  distance_eq_zero_iff_equal := by
-    sorry
-  distance_symmetric := by
-    sorry
-  distance_triangle := by
-    sorry
-
-/-- Any type with decidable equality equipped with the discrete metric. -/
-def discreteMetricSpace (Point : Type u) [DecidableEq Point] : MetricSpace Point where
-  metric := discreteMetric Point
-\end{verbatim}
-
-The proof obligations are left as exercises. They will mostly involve case
-splits. The command \texttt{by\_cases} introduces one branch where an equality
-holds and another branch where it does not. In each branch, \texttt{simp} can
-reduce the \texttt{if}-expression to either \texttt{0} or \texttt{1}. For
-example, if \texttt{x = y}, then \texttt{if x = y then 0 else 1} simplifies to
-\texttt{0}; if \texttt{x ≠ y}, it simplifies to \texttt{1}. The triangle
-inequality is longer only because there are three relevant equalities:
-\texttt{x = z}, \texttt{x = y}, and \texttt{y = z}.
-\end{example*}
+That shift lets us use Mathlib's API directly: \texttt{dist\_triangle} instead
+of a local triangle field, \texttt{Metric.ball} instead of a custom ball
+structure, and topological facts that come automatically from the metric-space
+typeclass hierarchy.
+\end{remark*}

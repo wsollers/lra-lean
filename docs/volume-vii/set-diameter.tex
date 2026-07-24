@@ -11,21 +11,21 @@ supremized:
 \[
 \begin{gathered}
   \texttt{def diameterSet}\\
-  \texttt{\ \ \ \ \{Point : Type u\}}\\
-  \texttt{\ \ \ \ (M : MetricSpace Point)}\\
-  \texttt{\ \ \ \ (S : Set Point) : Set Real :=}\\
-  \texttt{\ \ \{ r : Real | exists x : Point, x in S and}\\
-  \texttt{\ \ \ \ exists y : Point, y in S and r = M.distance x y \}.}
+  \texttt{\ \ \ \ \{X : Type u\}}\\
+  \texttt{\ \ \ \ [MetricSpace X]}\\
+  \texttt{\ \ \ \ (S : Set X) : Set Real :=}\\
+  \texttt{\ \ \{ r : Real | exists x : X, x in S and}\\
+  \texttt{\ \ \ \ exists y : X, y in S and r = dist x y \}.}
 \end{gathered}
 \]
 Then the diameter itself is just
 \[
 \begin{gathered}
   \texttt{noncomputable def diameter}\\
-  \texttt{\ \ \ \ \{Point : Type u\}}\\
-  \texttt{\ \ \ \ (M : MetricSpace Point)}\\
-  \texttt{\ \ \ \ (S : Set Point) : Real :=}\\
-  \texttt{\ \ sSup (diameterSet M S).}
+  \texttt{\ \ \ \ \{X : Type u\}}\\
+  \texttt{\ \ \ \ [MetricSpace X]}\\
+  \texttt{\ \ \ \ (S : Set X) : Real :=}\\
+  \texttt{\ \ sSup (diameterSet S).}
 \end{gathered}
 \]
 \end{remark*}
@@ -41,11 +41,11 @@ distance sets. If \(A \subseteq B\), then any distance \(d(x,y)\) with
 \[
 \begin{gathered}
   \texttt{theorem diameterSet\_mono}\\
-  \texttt{\ \ \ \ \{Point : Type u\}}\\
-  \texttt{\ \ \ \ (M : MetricSpace Point)}\\
-  \texttt{\ \ \ \ \{A B : Set Point\}}\\
+  \texttt{\ \ \ \ \{X : Type u\}}\\
+  \texttt{\ \ \ \ [MetricSpace X]}\\
+  \texttt{\ \ \ \ \{A B : Set X\}}\\
   \texttt{\ \ \ \ (set\_inclusion : A subset B) :}\\
-  \texttt{\ \ \ \ diameterSet M A subset diameterSet M B := by}\\
+  \texttt{\ \ \ \ diameterSet A subset diameterSet B := by}\\
   \texttt{\ \ intro r r\_in\_diameter\_A}\\
   \texttt{\ \ rcases r\_in\_diameter\_A with}\\
   \texttt{\ \ \ \ <x, x\_in\_A, y, y\_in\_A, rfl>}\\
@@ -54,11 +54,11 @@ distance sets. If \(A \subseteq B\), then any distance \(d(x,y)\) with
 \end{gathered}
 \]
 The proof reads exactly like the hand proof. Start with an arbitrary member
-\texttt{r} of \texttt{diameterSet M A}. By definition, it is
-\texttt{M.distance x y} for some \texttt{x} and \texttt{y} in \texttt{A}. The
+\texttt{r} of \texttt{diameterSet A}. By definition, it is
+\texttt{dist x y} for some \texttt{x} and \texttt{y} in \texttt{A}. The
 hypothesis \texttt{set\_inclusion} converts \texttt{x in A} into
 \texttt{x in B}, and converts \texttt{y in A} into \texttt{y in B}. Therefore
-the same real number \texttt{r} belongs to \texttt{diameterSet M B}.
+the same real number \texttt{r} belongs to \texttt{diameterSet B}.
 
 Second, apply the general supremum theorem:
 \[
@@ -73,17 +73,17 @@ The diameter theorem is then:
 \[
 \begin{gathered}
   \texttt{theorem diameter\_monotone\_under\_inclusion}\\
-  \texttt{\ \ \ \ \{Point : Type u\}}\\
-  \texttt{\ \ \ \ (M : MetricSpace Point)}\\
-  \texttt{\ \ \ \ \{A B : Set Point\}}\\
+  \texttt{\ \ \ \ \{X : Type u\}}\\
+  \texttt{\ \ \ \ [MetricSpace X]}\\
+  \texttt{\ \ \ \ \{A B : Set X\}}\\
   \texttt{\ \ \ \ (set\_inclusion : A subset B)}\\
-  \texttt{\ \ \ \ (A\_diameterSet\_nonempty : (diameterSet M A).Nonempty)}\\
-  \texttt{\ \ \ \ (B\_diameterSet\_bddAbove : BddAbove (diameterSet M B)) :}\\
-  \texttt{\ \ \ \ diameter M A <= diameter M B := by}\\
+  \texttt{\ \ \ \ (A\_diameterSet\_nonempty : (diameterSet A).Nonempty)}\\
+  \texttt{\ \ \ \ (B\_diameterSet\_bddAbove : BddAbove (diameterSet B)) :}\\
+  \texttt{\ \ \ \ diameter A <= diameter B := by}\\
   \texttt{\ \ exact csSup\_le\_csSup}\\
   \texttt{\ \ \ \ B\_diameterSet\_bddAbove}\\
   \texttt{\ \ \ \ A\_diameterSet\_nonempty}\\
-  \texttt{\ \ \ \ (diameterSet\_mono M set\_inclusion).}
+  \texttt{\ \ \ \ (diameterSet\_mono set\_inclusion).}
 \end{gathered}
 \]
 The helper theorem \texttt{diameterSet\_mono} does the metric-space-specific

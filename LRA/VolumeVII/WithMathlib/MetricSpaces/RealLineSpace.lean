@@ -1,11 +1,11 @@
-import LRA.VolumeVII.WithMathlib.MetricSpaces.MetricSpace
+import LRA.VolumeVII.WithMathlib.MetricSpaces.MetricModeling
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Ring
 
 namespace LRA.VolumeVII.WithMathlib
 
 /-- The usual absolute-value metric on the real line. -/
-def realAbsoluteValueMetric : Metric Real where
+def realScratchMetric : ScratchMetric Real where
   distance x y := |x - y|
 
   distance_nonnegative := by
@@ -36,7 +36,7 @@ def realAbsoluteValueMetric : Metric Real where
         exact abs_add_le (x - y) (y - z)
 
 /-- The real line equipped with the usual absolute-value metric. -/
-def realMetricSpace : MetricSpace Real where
-  metric := realAbsoluteValueMetric
+def realScratchMetricSpace : ScratchMetricSpace Real where
+  metric := realScratchMetric
 
 end LRA.VolumeVII.WithMathlib

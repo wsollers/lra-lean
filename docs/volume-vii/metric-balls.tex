@@ -1,0 +1,72 @@
+\begin{remark*}
+The ball theorems are now Mathlib-first. We work in the context
+\[
+  \texttt{variable \{X : Type u\} [MetricSpace X]}.
+\]
+An open ball is the set \texttt{Metric.ball x r}; a closed ball is the set
+\texttt{Metric.closedBall x r}. Membership is rewritten with Mathlib's API:
+\[
+  \texttt{Metric.mem\_ball'}
+  \qquad\text{and}\qquad
+  \texttt{Metric.mem\_closedBall'}.
+\]
+The primed versions state membership using \texttt{dist x y}, matching the
+usual hand notation \(d(x,y)\).
+\end{remark*}
+
+\begin{remark*}
+The center containment theorem is:
+\[
+\begin{gathered}
+  \texttt{theorem center\_mem\_ball}\\
+  \texttt{\ \ \ \ (x : X) \{r : Real\} (radius\_positive : 0 < r) :}\\
+  \texttt{\ \ \ \ x in Metric.ball x r := by}\\
+  \texttt{\ \ exact Metric.mem\_ball\_self radius\_positive.}
+\end{gathered}
+\]
+Mathlib already knows that the center lies in its own open ball when the radius
+is positive. The proof is therefore a direct API call.
+\end{remark*}
+
+\begin{remark*}
+For ball monotonicity, the proof exposes the hidden set-theoretic step. To
+prove
+\[
+  \texttt{Metric.ball x r subset Metric.ball x s},
+\]
+Lean asks for an arbitrary point and its membership proof:
+\[
+\begin{gathered}
+  \texttt{intro y point\_in\_smaller\_ball}\\
+  \texttt{rw [Metric.mem\_ball'] at point\_in\_smaller\_ball ⊢}\\
+  \texttt{exact point\_in\_smaller\_ball.trans\_le radius\_le.}
+\end{gathered}
+\]
+After rewriting membership, the proof is the elementary implication
+\[
+  d(x,y) < r,\quad r \le s
+  \quad\Longrightarrow\quad
+  d(x,y) < s.
+\]
+\end{remark*}
+
+\begin{remark*}
+The theorem
+\[
+  \texttt{ball\_subset\_ball\_of\_mem}
+\]
+formalizes the standard geometric fact that open balls are open. If
+\(y \in B(x,r)\), choose
+\[
+  \epsilon = r - d(x,y).
+\]
+The membership hypothesis says \(d(x,y) < r\), so \(\epsilon > 0\). For any
+\(z \in B(y,\epsilon)\), the triangle inequality gives
+\[
+  d(x,z) \le d(x,y) + d(y,z)
+    < d(x,y) + (r-d(x,y))
+    = r.
+\]
+The Lean proof follows the same chain with \texttt{calc}, \texttt{dist\_triangle},
+\texttt{linarith}, and \texttt{ring}.
+\end{remark*}
