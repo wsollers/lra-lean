@@ -1,0 +1,501 @@
+\begin{remark*}
+The distance from a point to a set is not a new kind of object. It is a number
+defined inside an already chosen ambient metric space.
+
+Mathematically, let $(X,d)$ be a metric space, let $x \in X$, and let
+$A \subseteq X$. The distance from $x$ to $A$ is
+\[
+  \operatorname{dist}(x,A)
+  =
+  \inf \{ d(x,a) : a \in A \}.
+\]
+This is an infimum, not necessarily a minimum. If the closest point belongs to
+$A$, then the infimum is achieved. If the closest point lies only on the
+boundary of $A$, then the infimum may be approached without ever being attained.
+
+In Lean, the ambient space is explicit. The generic declaration is
+\[
+\begin{gathered}
+  \texttt{def distanceSet}\\
+  \texttt{\ \ \ \ \{Point : Type u\}}\\
+  \texttt{\ \ \ \ (M : MetricSpace Point)}\\
+  \texttt{\ \ \ \ (x : Point)}\\
+  \texttt{\ \ \ \ (S : Set Point) : Set Real :=}\\
+  \texttt{\ \ (fun y : Point => M.distance x y) '' S.}
+\end{gathered}
+\]
+This helper definition names the set
+\[
+  \{ d(x,y) : y \in S \}.
+\]
+It is not mathematically necessary: we could write this set inline everywhere.
+However, naming it makes the formal statements match the usual hand proof,
+where one first writes something like
+\[
+  D = \{ d(x,y) : y \in S \}
+\]
+and then proves that the desired distance is the infimum of $D$.
+
+The point-to-set distance is then defined by taking the infimum of that named
+set:
+\[
+\begin{gathered}
+  \texttt{noncomputable def distanceToSet}\\
+  \texttt{\ \ \ \ \{Point : Type u\}}\\
+  \texttt{\ \ \ \ (M : MetricSpace Point)}\\
+  \texttt{\ \ \ \ (x : Point)}\\
+  \texttt{\ \ \ \ (S : Set Point) : Real :=}\\
+  \texttt{\ \ sInf (distanceSet M x S).}
+\end{gathered}
+\]
+Here \texttt{Point} is the carrier type, \texttt{M} is the chosen metric space
+structure on that carrier, \texttt{x} is the point, and \texttt{S} is the set.
+\texttt{distanceSet M x S} is the set of all real numbers that occur as
+\texttt{M.distance x y} for some \texttt{y} in \texttt{S}.
+
+We do not introduce a structure or a named type for this. The point-to-set
+distance is a function of the ambient metric, the point, and the set:
+\[
+  \texttt{distanceToSet M x S}.
+\]
+Different metrics on the same carrier may give different values, so the metric
+space argument must stay visible.
+\end{remark*}
+
+\begin{remark*}
+The Lean primitive is called \texttt{sInf}, the infimum of a set. In ordinary
+mathematical writing we call this simply ``the infimum'' or write
+\[
+  \inf \{ d(x,a) : a \in A \}.
+\]
+The formal bridge is the theorem
+\[
+\begin{gathered}
+  \texttt{distanceToSet\_isGLB :}\\
+  \texttt{\ \ IsGLB (distanceSet M x S) (distanceToSet M x S).}
+\end{gathered}
+\]
+The hypothesis \texttt{S.Nonempty} is required because the usual real-valued
+point-to-set distance is normally discussed for nonempty sets. In this Lean
+development, \texttt{distanceToSet} is real-valued. That is convenient for the
+current metric-space layer, but it means the empty-set case should not be read
+as the usual extended-real convention $\operatorname{dist}(x,\emptyset)=+\infty$.
+\end{remark*}
+
+\begin{remark*}
+The proof of \texttt{distanceToSet\_isGLB} is the formal version of a standard
+hand proof.
+
+Mathematically, write
+\[
+  D = \{ d(x,y) : y \in S \}.
+\]
+Since $S$ is nonempty, choose $y_0 \in S$. Then $d(x,y_0) \in D$, so $D$ is
+nonempty. Also, every metric distance is nonnegative, so
+\[
+  0 \le d(x,y)
+\]
+for every $y \in S$. Therefore $0$ is a lower bound for $D$, and $D$ is bounded
+below. Since $\mathbb{R}$ has greatest lower bounds for nonempty bounded-below
+sets, $\inf D$ is the greatest lower bound of $D$.
+
+In Lean, this breaks into the same pieces. First, prove that the distance set
+is nonempty:
+\[
+\begin{gathered}
+  \texttt{theorem distanceSet\_nonempty}\\
+  \texttt{\ \ \ \ \{Point : Type u\}}\\
+  \texttt{\ \ \ \ (M : MetricSpace Point)}\\
+  \texttt{\ \ \ \ (x : Point)}\\
+  \texttt{\ \ \ \ \{S : Set Point\}}\\
+  \texttt{\ \ \ \ (set\_nonempty : S.Nonempty) :}\\
+  \texttt{\ \ \ \ (distanceSet M x S).Nonempty := by}\\
+  \texttt{\ \ sorry.}
+\end{gathered}
+\]
+The proof begins by unpacking \texttt{set\_nonempty} into a point
+\texttt{y : Point} and a proof \texttt{point\_in\_set : y in S}. Then
+\texttt{M.distance x y} is an explicit element of \texttt{distanceSet M x S}.
+
+Second, prove that the distance set is bounded below:
+\[
+\begin{gathered}
+  \texttt{theorem distanceSet\_bddBelow}\\
+  \texttt{\ \ \ \ \{Point : Type u\}}\\
+  \texttt{\ \ \ \ (M : MetricSpace Point)}\\
+  \texttt{\ \ \ \ (x : Point)}\\
+  \texttt{\ \ \ \ (S : Set Point) :}\\
+  \texttt{\ \ \ \ BddBelow (distanceSet M x S) := by}\\
+  \texttt{\ \ exact M.distance\_image\_bddBelow x S.}
+\end{gathered}
+\]
+The mathematical witness for \texttt{BddBelow} is \texttt{0}. After choosing
+that witness, the remaining obligation is to show that every member of
+\texttt{distanceSet M x S} is at least \texttt{0}. A member of
+\texttt{distanceSet M x S} has the form \texttt{M.distance x y} for some
+\texttt{y in S}, and this is exactly the nonnegativity axiom of the metric.
+Because \texttt{distanceSet M x S} is defined as the image
+\texttt{(fun y : Point => M.distance x y) '' S}, this bounded-below proof can
+reuse the general metric-space theorem
+\[
+  \texttt{M.distance\_image\_bddBelow x S}.
+\]
+
+With those two helper facts, the final theorem has the shape
+\[
+\begin{gathered}
+  \texttt{theorem distanceToSet\_isGLB ... :}\\
+  \texttt{\ \ IsGLB (distanceSet M x S) (distanceToSet M x S) := by}\\
+  \texttt{\ \ exact Real.isGLB\_sInf}\\
+  \texttt{\ \ \ \ (distanceSet\_nonempty M x set\_nonempty)}\\
+  \texttt{\ \ \ \ (distanceSet\_bddBelow M x S).}
+\end{gathered}
+\]
+This is the point where Lean uses the completeness of the real numbers. The
+metric axioms supply nonnegativity; the real-number library supplies the
+existence and correctness of the infimum for nonempty bounded-below subsets of
+\(\mathbb{R}\).
+\end{remark*}
+
+\begin{remark*}
+The next basic theorem says that the distance from a point to a set is bounded
+above by the distance from that point to any particular witness in the set:
+\[
+  \operatorname{dist}(x,A) \le d(x,a)
+  \qquad\text{whenever } a \in A.
+\]
+This direction is important. The distance to the set is the infimum of all
+distances from \(x\) to points of \(A\), so it must be less than or equal to
+each particular distance in that collection.
+
+In Lean, the theorem is:
+\[
+\begin{gathered}
+  \texttt{theorem distanceToSet\_le\_distance\_to\_point\_of\_mem}\\
+  \texttt{\ \ \ \ \{Point : Type u\}}\\
+  \texttt{\ \ \ \ (M : MetricSpace Point)}\\
+  \texttt{\ \ \ \ (x : Point)}\\
+  \texttt{\ \ \ \ \{A : Set Point\}}\\
+  \texttt{\ \ \ \ \{a : Point\}}\\
+  \texttt{\ \ \ \ (point\_in\_set : a in A) :}\\
+  \texttt{\ \ \ \ distanceToSet M x A <= M.distance x a := by}\\
+  \texttt{\ \ have A\_nonempty : A.Nonempty := <a, point\_in\_set>}\\
+  \texttt{\ \ have distance\_value\_in\_set :}\\
+  \texttt{\ \ \ \ M.distance x a in distanceSet M x A := by}\\
+  \texttt{\ \ \ \ exact <a, point\_in\_set, rfl>}\\
+  \texttt{\ \ have infimum\_property :}\\
+  \texttt{\ \ \ \ IsGLB (distanceSet M x A) (distanceToSet M x A) := by}\\
+  \texttt{\ \ \ \ exact distanceToSet\_isGLB M x A\_nonempty}\\
+  \texttt{\ \ exact infimum\_property.1 distance\_value\_in\_set.}
+\end{gathered}
+\]
+No separate nonemptiness hypothesis is needed here: the assumption
+\texttt{point\_in\_set : a in A} already provides a witness that \(A\) is
+nonempty.
+
+The proof follows the ordinary infimum argument. Since \(a \in A\), the number
+\(d(x,a)\) belongs to the distance set
+\[
+  \{d(x,y) : y \in A\}.
+\]
+The theorem \texttt{distanceToSet\_isGLB} says that
+\(\operatorname{dist}(x,A)\) is the greatest lower bound of this distance set.
+In particular, it is a lower bound. Therefore it is less than or equal to every
+member of the distance set, including \(d(x,a)\).
+
+The Lean proof mirrors these sentences. First,
+\[
+  \texttt{A\_nonempty : A.Nonempty}
+\]
+is obtained from the witness \(a \in A\). Second,
+\[
+  \texttt{distance\_value\_in\_set}
+\]
+records that \texttt{M.distance x a} is one of the values in
+\texttt{distanceSet M x A}. Third,
+\[
+  \texttt{infimum\_property}
+\]
+applies \texttt{distanceToSet\_isGLB}. Finally,
+\[
+  \texttt{infimum\_property.1}
+\]
+is the lower-bound half of the \texttt{IsGLB} statement. Applying it to
+\texttt{distance\_value\_in\_set} gives exactly
+\[
+  \texttt{distanceToSet M x A <= M.distance x a}.
+\]
+
+This theorem is often the first useful estimate involving point-to-set
+distance. It lets us replace the abstract infimum \(\operatorname{dist}(x,A)\)
+with any concrete distance \(d(x,a)\) to a chosen point of \(A\). Some
+corollaries of this kind of estimate will be explored later in Volume IV.
+\end{remark*}
+
+\begin{remark*}
+The next theorem says that the distance from a point to a set vanishes when the
+point already belongs to the set:
+\[
+  x \in A \quad\Longrightarrow\quad \operatorname{dist}(x,A) = 0.
+\]
+In Lean:
+\[
+\begin{gathered}
+  \texttt{theorem distanceToSet\_eq\_zero\_of\_mem}\\
+  \texttt{\ \ \ \ \{Point : Type u\}}\\
+  \texttt{\ \ \ \ (M : MetricSpace Point)}\\
+  \texttt{\ \ \ \ \{A : Set Point\}}\\
+  \texttt{\ \ \ \ \{x : Point\}}\\
+  \texttt{\ \ \ \ (point\_in\_set : x in A) :}\\
+  \texttt{\ \ \ \ distanceToSet M x A = 0 := by}\\
+  \texttt{\ \ ...}
+\end{gathered}
+\]
+
+The proof is an equality proof by two inequalities. First,
+\[
+  \operatorname{dist}(x,A) \le d(x,x)
+\]
+by \texttt{distanceToSet\_le\_distance\_to\_point\_of\_mem}, using the witness
+\(x \in A\). Since \(d(x,x)=0\), this gives
+\[
+  \operatorname{dist}(x,A) \le 0.
+\]
+
+Second, every metric distance is nonnegative, so \(0\) is a lower bound for
+\[
+  \{d(x,y) : y \in A\}.
+\]
+Since \(\operatorname{dist}(x,A)\) is the greatest lower bound of this set, it
+is greater than or equal to every lower bound. In particular,
+\[
+  0 \le \operatorname{dist}(x,A).
+\]
+Combining the two inequalities gives
+\[
+  \operatorname{dist}(x,A)=0.
+\]
+
+The Lean proof names these two halves:
+\[
+\begin{gathered}
+  \texttt{have distanceToSet\_nonnegative :}\\
+  \texttt{\ \ 0 <= distanceToSet M x A := by}\\
+  \texttt{\ \ ...}\\
+  \texttt{have distanceToSet\_nonpositive :}\\
+  \texttt{\ \ distanceToSet M x A <= 0 := by}\\
+  \texttt{\ \ ...}\\
+  \texttt{exact le\_antisymm distanceToSet\_nonpositive distanceToSet\_nonnegative.}
+\end{gathered}
+\]
+The final command \texttt{le\_antisymm} is the standard way to prove equality
+in an ordered type: prove \(a \le b\) and \(b \le a\).
+
+For the nonnegative half, Lean uses \texttt{distanceToSet\_isGLB}. The lower
+bound \(0\) is expressed as
+\[
+  \texttt{0 in lowerBounds (distanceSet M x A)}.
+\]
+To prove this, Lean introduces an arbitrary member of the distance set. Since
+\texttt{distanceSet M x A} is an image, that member has the form
+\texttt{M.distance x y} for some \texttt{y in A}. The metric axiom
+\texttt{M.metric.distance\_nonnegative x y} then proves it is at least \(0\).
+
+For the nonpositive half, Lean chains two facts:
+\[
+\begin{gathered}
+  \texttt{distanceToSet M x A <= M.distance x x}\\
+  \texttt{M.distance x x = 0.}
+\end{gathered}
+\]
+The first is the previous witness theorem applied to \texttt{point\_in\_set};
+the second is \texttt{M.distance\_self x}.
+\end{remark*}
+
+\begin{remark*}
+A natural follow-on corollary goes in the other direction for a chosen witness
+point, but it needs more structure. If \(a \in A\), then one expects
+\[
+  d(x,a) \le \operatorname{dist}(x,A) + \operatorname{diam}(A).
+\]
+This says that once \(x\) gets close to the set \(A\), any particular point
+\(a \in A\) is at most one diameter of \(A\) farther away.
+
+This is not a direct consequence of
+\[
+  \operatorname{dist}(x,A) \le d(x,a).
+\]
+It uses the triangle inequality and the definition of diameter. The hand proof
+has the following shape. For any \(y \in A\),
+\[
+  d(x,a) \le d(x,y) + d(y,a)
+\]
+by the triangle inequality. Since \(y \in A\) and \(a \in A\), the distance
+\(d(y,a)\) is one of the pairwise distances used to define
+\(\operatorname{diam}(A)\). Therefore
+\[
+  d(y,a) \le \operatorname{diam}(A).
+\]
+So for every \(y \in A\),
+\[
+  d(x,a) \le d(x,y) + \operatorname{diam}(A).
+\]
+Passing to the infimum over all \(y \in A\) gives
+\[
+  d(x,a) \le \operatorname{dist}(x,A) + \operatorname{diam}(A).
+\]
+
+In Lean, this theorem will involve both \texttt{distanceToSet} and
+\texttt{diameter}. It should therefore not be placed in either
+\texttt{SetDistance.lean} or \texttt{SetDiameter.lean} if doing so would create
+an artificial dependency. A better location is a third interaction file, such
+as
+\[
+  \texttt{SetDistanceDiameter.lean}.
+\]
+That file can import both foundational files:
+\[
+\begin{gathered}
+  \texttt{import ...SetDistance}\\
+  \texttt{import ...SetDiameter.}
+\end{gathered}
+\]
+A good theorem name for the estimate is:
+\[
+  \texttt{distance\_to\_point\_le\_distanceToSet\_add\_diameter\_of\_mem}.
+\]
+The name follows the inequality:
+\[
+  \texttt{M.distance x a <= distanceToSet M x A + diameter M A},
+\]
+and the suffix \texttt{of\_mem} records the membership assumption
+\texttt{a in A}.
+\end{remark*}
+
+\begin{remark*}
+The bounded-below fact is likely to be useful elsewhere, but it should live
+near \texttt{distanceSet}, not in the core metric-space file. The core metric
+file can provide facts about \texttt{M.distance x y}; it should not need to know
+about point-to-set constructions. The reusable lemma here is therefore
+\[
+  \texttt{distanceSet\_bddBelow}.
+\]
+A theorem about the greatest lower bound should remain separate:
+\[
+  \texttt{distanceToSet\_isGLB}.
+\]
+The bounded-below lemma proves only that the set of distances has some lower
+bound. The GLB theorem additionally identifies \texttt{distanceToSet M x S} as
+the greatest lower bound of that set.
+\end{remark*}
+
+\begin{remark*}
+This is a typical Lean pattern: definitions, lemmas, and theorems are arranged
+so that each later proof can cite the exact earlier fact it needs.
+
+At the metric-space level, the basic reusable fact is about the distance
+function itself:
+\[
+\begin{gathered}
+  \texttt{M.distance\_image\_bddBelow x S :}\\
+  \texttt{\ \ BddBelow ((fun y : Point => M.distance x y) '' S).}
+\end{gathered}
+\]
+This theorem knows nothing about point-to-set distance. It only says that the
+image of any set under the function \(y \mapsto d(x,y)\) is bounded below by
+\(0\). The proof uses only the nonnegativity axiom of a metric.
+
+At the set-distance level, we define
+\[
+  \texttt{distanceSet M x S}
+\]
+to be exactly that image:
+\[
+  \texttt{(fun y : Point => M.distance x y) '' S}.
+\]
+Because of this choice, the bounded-below theorem for distance sets becomes a
+short wrapper:
+\[
+\begin{gathered}
+  \texttt{theorem distanceSet\_bddBelow ... :}\\
+  \texttt{\ \ BddBelow (distanceSet M x S) := by}\\
+  \texttt{\ \ exact M.distance\_image\_bddBelow x S.}
+\end{gathered}
+\]
+No metric proof has to be repeated. The old theorem applies because the new
+definition was chosen to expose the same mathematical shape.
+
+Then the final theorem
+\[
+  \texttt{distanceToSet\_isGLB}
+\]
+does not need to prove boundedness from scratch. It can cite
+\texttt{distanceSet\_bddBelow}. It also cites \texttt{distanceSet\_nonempty},
+which comes from the hypothesis \texttt{S.Nonempty}. Once those two inputs are
+available, the real-number theorem \texttt{Real.isGLB\_sInf} supplies the
+infimum conclusion.
+
+So the dependency chain is:
+\[
+\begin{array}{c}
+  \text{metric nonnegativity}\\
+  \Downarrow\\
+  \texttt{M.distance\_image\_bddBelow x S}\\
+  \Downarrow\\
+  \texttt{distanceSet\_bddBelow M x S}\\
+  \Downarrow\\
+  \texttt{distanceToSet\_isGLB M x set\_nonempty.}
+\end{array}
+\]
+This is why small lemmas are useful in formalization. A lemma isolates a piece
+of reasoning that is true for a broad reason. A theorem at a later layer can
+then cite the lemma instead of rebuilding that reasoning. The result is closer
+to a clean mathematical proof: each line says which previously established fact
+is being used.
+\end{remark*}
+
+\begin{example*}
+On the real line with its usual metric,
+\[
+  d(x,y) = |x-y|,
+\]
+the distance from $1$ to the open interval $(2,3)$ is
+\[
+  \operatorname{dist}(1,(2,3)) = 1.
+\]
+The set of distances is
+\[
+  \{ |1-y| : 2 < y < 3 \}.
+\]
+Since every such $y$ satisfies $y>2$, every distance is greater than $1$:
+\[
+  |1-y| = y-1 > 1.
+\]
+But the values can be made arbitrarily close to $1$ by choosing points of the
+interval close to $2$ from the right, for example $y = 2+\varepsilon$ with
+$0<\varepsilon<1$. Then
+\[
+  |1-(2+\varepsilon)| = 1+\varepsilon.
+\]
+Thus $1$ is not a minimum value of the distance set, but it is the greatest
+lower bound.
+
+The corresponding Lean test target is:
+\[
+\begin{gathered}
+  \texttt{theorem realMetricSpace\_distanceToSet\_one\_Ioo\_two\_three :}\\
+  \texttt{\ \ distanceToSet realMetricSpace (1 : Real) (Set.Ioo (2 : Real) 3) = 1.}
+\end{gathered}
+\]
+To prove this in Lean, one proves that \texttt{1} is an
+\texttt{IsGLB} of the set
+\[
+  \texttt{\{ r : Real | exists y : Real, y in Set.Ioo 2 3 and}
+  \quad
+  \texttt{r = realMetricSpace.distance 1 y \}}.
+\]
+The lower-bound half uses $2<y$ to show $1 \le |1-y|$. The greatest-lower-bound
+half uses the Archimedean or density properties of the real numbers to find a
+point $y \in (2,3)$ whose distance from $1$ is below any proposed lower bound
+strictly larger than $1$.
+\end{example*}

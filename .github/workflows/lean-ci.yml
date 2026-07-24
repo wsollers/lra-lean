@@ -81,6 +81,22 @@ jobs:
             lra-lean \
             python3 scripts/check-proof-readiness.py
 
+      - name: Check Volume VII wiring
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/workspace" \
+            -w /workspace \
+            lra-lean \
+            python3 scripts/check-volume-vii-wiring.py
+
+      - name: Build Volume VII Lean library
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/workspace" \
+            -w /workspace \
+            lra-lean \
+            bash -lc 'lake build LRAVolumeVII'
+
       - name: Report proof placeholders in VolumeI / VolumeII
         continue-on-error: true
         run: |
@@ -101,7 +117,7 @@ jobs:
             -v "${{ github.workspace }}:/workspace" \
             -w /workspace \
             lra-lean \
-            bash -lc 'lake build LRAVolumeI LRAVolumeII > /workspace/lean-build.log 2>&1 || {
+            bash -lc 'lake build LRAVolumeI LRAVolumeII LRAVolumeVII > /workspace/lean-build.log 2>&1 || {
               status=$?
               echo "Lean build failed. Final diagnostics:"
               tail -n 180 /workspace/lean-build.log

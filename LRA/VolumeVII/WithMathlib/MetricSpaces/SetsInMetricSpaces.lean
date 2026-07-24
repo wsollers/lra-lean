@@ -1,0 +1,2 @@
+import LRA.VolumeVII.WithMathlib.MetricSpaces.SetsInMetricSpaces.SetDiameter
+import LRA.VolumeVII.WithMathlib.MetricSpaces.SetsInMetricSpaces.SetDistance

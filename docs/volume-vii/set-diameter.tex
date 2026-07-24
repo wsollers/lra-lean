@@ -1,0 +1,97 @@
+\begin{remark*}
+The diameter of a set is defined from all pairwise distances inside that set.
+Mathematically, if \(S\) is a subset of a metric space \((X,d)\), then
+\[
+  \operatorname{diam}(S)
+  =
+  \sup \{ d(x,y) : x \in S,\ y \in S \}.
+\]
+As with point-to-set distance, it is useful in Lean to name the set being
+supremized:
+\[
+\begin{gathered}
+  \texttt{def diameterSet}\\
+  \texttt{\ \ \ \ \{Point : Type u\}}\\
+  \texttt{\ \ \ \ (M : MetricSpace Point)}\\
+  \texttt{\ \ \ \ (S : Set Point) : Set Real :=}\\
+  \texttt{\ \ \{ r : Real | exists x : Point, x in S and}\\
+  \texttt{\ \ \ \ exists y : Point, y in S and r = M.distance x y \}.}
+\end{gathered}
+\]
+Then the diameter itself is just
+\[
+\begin{gathered}
+  \texttt{noncomputable def diameter}\\
+  \texttt{\ \ \ \ \{Point : Type u\}}\\
+  \texttt{\ \ \ \ (M : MetricSpace Point)}\\
+  \texttt{\ \ \ \ (S : Set Point) : Real :=}\\
+  \texttt{\ \ sSup (diameterSet M S).}
+\end{gathered}
+\]
+\end{remark*}
+
+\begin{remark*}
+The monotonicity theorem for diameter is an instance of a more general theorem:
+supremum is monotone under set inclusion. The mathematical proof has two
+layers.
+
+First, set inclusion of the original sets gives set inclusion of the pairwise
+distance sets. If \(A \subseteq B\), then any distance \(d(x,y)\) with
+\(x,y \in A\) is also a distance with \(x,y \in B\). In Lean this is:
+\[
+\begin{gathered}
+  \texttt{theorem diameterSet\_mono}\\
+  \texttt{\ \ \ \ \{Point : Type u\}}\\
+  \texttt{\ \ \ \ (M : MetricSpace Point)}\\
+  \texttt{\ \ \ \ \{A B : Set Point\}}\\
+  \texttt{\ \ \ \ (set\_inclusion : A subset B) :}\\
+  \texttt{\ \ \ \ diameterSet M A subset diameterSet M B := by}\\
+  \texttt{\ \ intro r r\_in\_diameter\_A}\\
+  \texttt{\ \ rcases r\_in\_diameter\_A with}\\
+  \texttt{\ \ \ \ <x, x\_in\_A, y, y\_in\_A, rfl>}\\
+  \texttt{\ \ exact <x, set\_inclusion x\_in\_A,}\\
+  \texttt{\ \ \ \ y, set\_inclusion y\_in\_A, rfl>.}
+\end{gathered}
+\]
+The proof reads exactly like the hand proof. Start with an arbitrary member
+\texttt{r} of \texttt{diameterSet M A}. By definition, it is
+\texttt{M.distance x y} for some \texttt{x} and \texttt{y} in \texttt{A}. The
+hypothesis \texttt{set\_inclusion} converts \texttt{x in A} into
+\texttt{x in B}, and converts \texttt{y in A} into \texttt{y in B}. Therefore
+the same real number \texttt{r} belongs to \texttt{diameterSet M B}.
+
+Second, apply the general supremum theorem:
+\[
+  \texttt{csSup\_le\_csSup}.
+\]
+For real numbers, this theorem says: if \(s \subseteq t\), \(s\) is nonempty,
+and \(t\) is bounded above, then
+\[
+  \sup s \le \sup t.
+\]
+The diameter theorem is then:
+\[
+\begin{gathered}
+  \texttt{theorem diameter\_monotone\_under\_inclusion}\\
+  \texttt{\ \ \ \ \{Point : Type u\}}\\
+  \texttt{\ \ \ \ (M : MetricSpace Point)}\\
+  \texttt{\ \ \ \ \{A B : Set Point\}}\\
+  \texttt{\ \ \ \ (set\_inclusion : A subset B)}\\
+  \texttt{\ \ \ \ (A\_diameterSet\_nonempty : (diameterSet M A).Nonempty)}\\
+  \texttt{\ \ \ \ (B\_diameterSet\_bddAbove : BddAbove (diameterSet M B)) :}\\
+  \texttt{\ \ \ \ diameter M A <= diameter M B := by}\\
+  \texttt{\ \ exact csSup\_le\_csSup}\\
+  \texttt{\ \ \ \ B\_diameterSet\_bddAbove}\\
+  \texttt{\ \ \ \ A\_diameterSet\_nonempty}\\
+  \texttt{\ \ \ \ (diameterSet\_mono M set\_inclusion).}
+\end{gathered}
+\]
+The helper theorem \texttt{diameterSet\_mono} does the metric-space-specific
+work: it turns \(A \subseteq B\) into inclusion of the two distance sets. The
+general theorem \texttt{csSup\_le\_csSup} then does the order-theoretic work:
+it turns inclusion of real sets into an inequality between their suprema.
+
+This separation is useful. If another construction is also defined as the
+supremum of a set of real values, it can reuse \texttt{csSup\_le\_csSup}; only
+the construction-specific set-inclusion lemma has to be proved.
+\end{remark*}

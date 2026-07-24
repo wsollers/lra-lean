@@ -1,0 +1,145 @@
+\begin{remark*}
+Mathematically, a metric space is usually presented as a pair $(X,d)$, where
+$X$ is a set and
+\[
+  d : X \times X \to \mathbb{R}
+\]
+is a metric satisfying the metric space axioms: nonnegativity, identity of
+indiscernibles, symmetry, and the triangle inequality.
+
+In Lean, we formalize this by separating the two pieces. First, we define a
+structure \texttt{Metric Point}. Here \texttt{Point} is the Lean type playing
+the role of the mathematical set $X$, and the field
+\[
+  \texttt{distance : Point -> Point -> Real}
+\]
+is the Lean version of the function $d : X \times X \to \mathbb{R}$. The metric
+axioms are attached as additional fields of the same structure, so a value of
+type \texttt{Metric Point} is not merely a distance function; it is a distance
+function together with proofs that it satisfies the metric axioms.
+
+Then we define a metric space as a structure
+\[
+  \texttt{MetricSpace Point}
+\]
+with a field
+\[
+  \texttt{metric : Metric Point}.
+\]
+Thus a Lean metric space is a carrier type \texttt{Point} equipped with a chosen
+metric on that type. This is useful because the same underlying type may carry
+different metrics. Switching the metric means changing the value of the
+\texttt{metric} field while keeping the same carrier type.
+
+The declaration
+\[
+  \texttt{variable \{Point : Type u\} (M : MetricSpace Point)}
+\]
+sets up a local context for theorem statements. It says: let \texttt{Point} be
+an arbitrary type, and let \texttt{M} be an arbitrary metric space whose points
+have type \texttt{Point}. The braces around \texttt{Point} make it an implicit
+argument, so Lean will usually infer it from \texttt{M} or from a term such as
+\texttt{x : Point}. The parentheses around \texttt{M} make the metric space an
+explicit argument.
+
+This avoids repeating the same parameters in every theorem. Instead of writing
+\[
+\begin{gathered}
+  \texttt{theorem distance\_self}\\
+  \texttt{\ \ \ \ \{Point : Type u\} (M : MetricSpace Point) (x : Point) :}\\
+  \texttt{\ \ \ \ M.distance x x = 0 := by sorry,}
+\end{gathered}
+\]
+we may first declare the variables and then write simply
+\[
+\begin{gathered}
+  \texttt{variable \{Point : Type u\} (M : MetricSpace Point)}\\
+  \texttt{theorem distance\_self (x : Point) : M.distance x x = 0 := by sorry.}
+\end{gathered}
+\]
+Inside this context, an expression such as \texttt{M.distance x y} means the
+distance from \texttt{x} to \texttt{y} according to the particular metric carried
+by \texttt{M}.
+
+The first generic theorems about \texttt{M.distance} are discharged directly
+from the axiom fields stored in \texttt{M.metric}. For example, the axiom field
+\[
+  \texttt{M.metric.distance\_eq\_zero\_iff\_equal x y}
+\]
+has type
+\[
+  \texttt{M.metric.distance x y = 0 <-> x = y}.
+\]
+Since \texttt{M.distance x y} is defined to be \texttt{M.metric.distance x y},
+this axiom can be used to prove the corresponding theorem stated with
+\texttt{M.distance}.
+
+Lean treats an if-and-only-if proof as having two directions. If
+\[
+  \texttt{h : A <-> B},
+\]
+then \texttt{h.mp} proves the forward direction \texttt{A -> B}, and
+\texttt{h.mpr} proves the reverse direction \texttt{B -> A}. Thus, in the
+theorem
+\[
+\begin{gathered}
+  \texttt{theorem equal\_of\_distance\_eq\_zero}\\
+  \texttt{\ \ \ \ \{x y : Point\} (hypothesis : M.distance x y = 0) : x = y :=}\\
+  \texttt{\ \ (M.metric.distance\_eq\_zero\_iff\_equal x y).mp hypothesis,}
+\end{gathered}
+\]
+the named assumption \texttt{hypothesis} supplies the left side of the
+if-and-only-if, and \texttt{.mp} converts it into the right side. These theorems
+are therefore convenience lemmas, not additional axioms: they repackage the
+metric axioms using the notation attached to the particular metric space
+\texttt{M}.
+
+We call these requirements ``axioms'' because, in the mathematical definition
+of a metric, they are the basic laws that a proposed distance function must
+satisfy in order to count as a metric. This does not mean that we are adding new
+global axioms to Lean's logical foundation. In our Lean structure, the metric
+axioms are fields whose values must be supplied whenever we construct a
+\texttt{Metric Point}. For a concrete example such as
+\texttt{realAbsoluteValueMetric}, the fields
+\texttt{distance\_nonnegative}, \texttt{distance\_eq\_zero\_iff\_equal},
+\texttt{distance\_symmetric}, and \texttt{distance\_triangle} are proof
+obligations. To build the example honestly, we must prove that the proposed
+formula \texttt{|x - y|} satisfies each one. Thus the word ``axiom'' here means
+``defining law of the mathematical structure,'' not ``unproved assumption added
+to the proof system.''
+\end{remark*}
+
+\begin{example*}
+The real line $\mathbb{R}$ becomes a metric space with the usual absolute-value
+metric
+\[
+  d(x,y) = |x-y|.
+\]
+In Lean, the carrier type is \texttt{Real}, and the metric is defined by
+\[
+  \texttt{distance x y := |x - y|}.
+\]
+The metric-space axioms are then attached as proof fields of the structure
+\texttt{Metric Real}. At this stage, those proofs may be left as \texttt{sorry}
+while we focus on setting up the definitions.
+
+The real plane $\mathbb{R}^2$ becomes a metric space with the Euclidean metric
+\[
+  d(p,q)
+  =
+  \sqrt{(p_1-q_1)^2 + (p_2-q_2)^2}.
+\]
+In Lean, we represent $\mathbb{R}^2$ as the product type
+\[
+  \texttt{Real × Real}.
+\]
+If \texttt{p q : Real × Real}, then \texttt{p.1} and \texttt{p.2} are the two
+coordinates of \texttt{p}, and similarly for \texttt{q}. Thus the Lean distance
+function is
+\[
+  \texttt{Real.sqrt ((p.1 - q.1) \char`^ 2 + (p.2 - q.2) \char`^ 2)}.
+\]
+This definition is marked \texttt{noncomputable} in Lean because the real square
+root function is not executable data; it is a mathematical object supplied by
+the real-number theory.
+\end{example*}

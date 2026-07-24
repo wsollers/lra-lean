@@ -1,0 +1,70 @@
+\section*{Formalization Tips And Tricks}
+
+\begin{remark*}
+When a proof splits an if-and-only-if statement, it is easy to work in the
+wrong branch by accident. If the goal is
+\[
+  A \leftrightarrow B,
+\]
+then the Lean command
+\[
+  \texttt{constructor}
+\]
+creates two proof goals in order:
+\[
+  A \to B
+\]
+and then
+\[
+  B \to A.
+\]
+Thus a comment such as \texttt{-- =>} labels the forward direction, from the
+left side of the iff to the right side, while \texttt{-- <=} labels the reverse
+direction, from the right side back to the left side.
+
+For example, in the Euclidean metric proof, the goal has the form
+\[
+  \texttt{Real.sqrt (...) = 0 <-> p = q}.
+\]
+After \texttt{constructor}, the first branch is
+\[
+  \texttt{Real.sqrt (...) = 0 -> p = q},
+\]
+and the second branch is
+\[
+  \texttt{p = q -> Real.sqrt (...) = 0}.
+\]
+So the proof that starts by assuming \texttt{p = q} belongs in the second
+branch, not the first.
+
+A useful debugging command is
+\[
+  \texttt{trace\_state}.
+\]
+Temporarily placing it inside a proof asks Lean to print the current local
+context and goal. For example:
+\[
+\begin{gathered}
+  \texttt{distance\_eq\_zero\_iff\_equal := by}\\
+  \texttt{\ \ intro p q}\\
+  \texttt{\ \ constructor}\\
+  \texttt{\ \ -- =>}\\
+  \texttt{\ \ \cdot\ intro hypothesis}\\
+  \texttt{\ \ \ \ trace\_state}\\
+  \texttt{\ \ \ \ sorry}\\
+  \texttt{\ \ -- <=}\\
+  \texttt{\ \ \cdot\ intro hypothesis}\\
+  \texttt{\ \ \ \ trace\_state}\\
+  \texttt{\ \ \ \ sorry.}
+\end{gathered}
+\]
+In the first branch, \texttt{trace\_state} will show that
+\texttt{hypothesis} is the assumption that the distance is zero. In the second
+branch, it will show that \texttt{hypothesis} is the assumption
+\texttt{p = q}. This is often the fastest way to recover your footing when a
+proof attempt that feels mathematically right is failing in Lean.
+
+The command is for exploration, not finished code. Once the proof state has
+taught you what the branch contains, remove \texttt{trace\_state} and continue
+with the actual proof.
+\end{remark*}

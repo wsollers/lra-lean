@@ -32,13 +32,26 @@ endif
 
 .PHONY: build
 build:  ## Build all Lean libraries
-	$(RUN) lake build LRAVolumeII
-	@echo "✓ VolumeII build successful (Lean $(LEAN_VER))"
+	$(RUN) lake build LRAVolumeI LRAVolumeII LRAVolumeVII
+	@echo "✓ Active Lean libraries built successfully (Lean $(LEAN_VER))"
 
 .PHONY: build-all
 build-all:  ## Build all volumes
 	$(RUN) lake build
 	@echo "✓ Full build successful (Lean $(LEAN_VER))"
+
+.PHONY: build-vii
+build-vii:  ## Build Volume VII formalization modules
+	$(RUN) lake build LRAVolumeVII
+	@echo "✓ VolumeVII build successful (Lean $(LEAN_VER))"
+
+.PHONY: check-volume-vii-wiring
+check-volume-vii-wiring:  ## Check Volume VII Lake/module wiring
+ifdef NATIVE
+	python3 scripts/check-volume-vii-wiring.py
+else
+	$(RUN) python3 scripts/check-volume-vii-wiring.py
+endif
 
 .PHONY: check
 check: build  ## Build + run all checks
@@ -48,11 +61,13 @@ ifdef NATIVE
 else
 	@$(RUN) python3 scripts/check-proof-readiness.py
 endif
-	@echo "── Checking Mathlib imports in VolumeII ────────────"
-	@$(RUN) bash -lc 'if grep -rn "^import Mathlib" LRA/VolumeII/ LRA/VolumeII.lean --include="*.lean"; then \
-	    echo "✗ ERROR: Mathlib import found in VolumeII"; exit 1; \
+	@echo "── Checking Volume VII wiring ──────────────────────"
+	@$(MAKE) check-volume-vii-wiring
+	@echo "── Checking Mathlib imports in VolumeI / VolumeII ──"
+	@$(RUN) bash -lc 'if grep -rn "^import Mathlib" LRA/VolumeI/ LRA/VolumeII/ LRA/VolumeI.lean LRA/VolumeII.lean --include="*.lean"; then \
+	    echo "✗ ERROR: Mathlib import found in VolumeI / VolumeII"; exit 1; \
 	  else \
-	    echo "✓ No Mathlib imports in VolumeII"; \
+	    echo "✓ No Mathlib imports in VolumeI / VolumeII"; \
 	  fi'
 	@echo "── Checking for axiom leaks ────────────────────────"
 	@$(RUN) lake env lean --run scripts/check_axioms.lean 2>/dev/null \
