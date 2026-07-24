@@ -1,7 +1,7 @@
 import Mathlib.Topology.MetricSpace.Basic
 import Mathlib.Data.Real.Archimedean
 
-namespace LRA.VolumeVII.WithMathlib
+namespace LRA.VolumeIV
 
 /-! Set distance in metric spaces. -/
 
@@ -100,4 +100,4 @@ theorem distanceToSet_eq_zero_of_mem
         exact dist_self x
   exact le_antisymm distanceToSet_nonpositive distanceToSet_nonnegative
 
-end LRA.VolumeVII.WithMathlib
+end LRA.VolumeIV

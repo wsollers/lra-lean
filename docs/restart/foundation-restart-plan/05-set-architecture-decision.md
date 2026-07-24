@@ -71,9 +71,13 @@ language to Lean language explicitly.
   documented?
 - Should the first set module use classical logic globally, locally, or not at
   all?
+- Which later interfaces must be known before committing to more set API:
+  relations, functions, algebra, identity, order, and `Grundlagen`?
 
 ## Acceptance Criteria
 
 - One representation is chosen.
 - The book-to-Lean translation is documented.
 - Known compromises are listed before implementation begins.
+- The foundational dependency review has either been completed or explicitly
+  marked as unnecessary for the first set core.

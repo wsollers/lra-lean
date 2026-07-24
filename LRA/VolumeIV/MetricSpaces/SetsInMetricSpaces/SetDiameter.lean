@@ -1,7 +1,7 @@
 import Mathlib.Topology.MetricSpace.Basic
 import Mathlib.Data.Real.Archimedean
 
-namespace LRA.VolumeVII.WithMathlib
+namespace LRA.VolumeIV
 
 /-! Set diameter in metric spaces. -/
 
@@ -44,4 +44,4 @@ theorem diameter_monotone_under_inclusion
     A_diameterSet_nonempty
     (diameterSet_mono set_inclusion)
 
-end LRA.VolumeVII.WithMathlib
+end LRA.VolumeIV

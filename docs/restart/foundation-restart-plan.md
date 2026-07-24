@@ -10,9 +10,10 @@ docs/restart/handoff-prompt.md
 ```
 
 The restart begins by archiving the current Lean tree, then rebuilding the
-foundation slowly from a light logic layer into sets. No relation algebra,
-function theory, quotient work, order theory, cardinality, or number-system work
-should begin until the logic prelude and set architecture have been accepted.
+foundation slowly from a light logic layer into sets. Before extending the set
+layer much further, the relation, function, algebra, identity, order, and
+`Grundlagen` interfaces should be considered as design pressure, so the set API
+does not grow in a direction that later foundational layers must undo.
 
 ## Purpose
 
@@ -66,12 +67,15 @@ Lean forces distinctions that the prose notes leave implicit.
 
 Status: restart skeleton created.
 
-Active phase: first-order logic first pass.
+Active phase: first-order logic first pass, with a new checkpoint to review
+foundational dependency pressure before further set expansion.
 
 Current decision:
 
 - Archive completed: previous `LRA/` is now `LRA-OLD/`.
-- Restart scope includes a light logic layer and then stops at sets.
+- Restart scope includes a light logic layer and a set foundation, but set
+  expansion should now pause for a relation/function/algebra/identity/order/
+  `Grundlagen` dependency review.
 - Use Lean's `Prop` for future mathematical proofs where possible.
 - Keep tiny Bourbaki-style propositional proof theory, if retained, under
   `Alternate/` as a learning/reference artifact. The core propositional layer
@@ -99,6 +103,7 @@ Current decision:
 | 4 | checkpointed | [Propositional Logic First Pass](foundation-restart-plan/04-propositional-logic-first-pass.md) | Define regular modern propositional logic and keep Bourbaki/NAND material as alternate artifacts. |
 | 4a | next | [First-Order Logic First Pass](foundation-restart-plan/04a-first-order-logic-first-pass.md) | Define the first-order language, terms, formulas, structures, assignments, and satisfaction. |
 | 5 | planned | [Set Architecture Decision](foundation-restart-plan/05-set-architecture-decision.md) | Choose the Lean representation of sets and document the book-to-Lean translation. |
+| 5a | planned | [Foundational Dependency Review](foundation-restart-plan/05a-foundational-dependency-review.md) | Consider relations, functions, algebra, identity, order, and `Grundlagen` before the set API grows further. |
 | 6 | planned | [First Set Core](foundation-restart-plan/06-first-set-core.md) | Define the smallest proof-ready set foundation. |
 | 7 | planned | [Set Diagrams And Governance](foundation-restart-plan/07-set-diagrams-and-governance.md) | Create diagrams, source-grounding rules, and book-tweak tracking. |
 | 8 | planned | [Set Phase Acceptance Criteria](foundation-restart-plan/08-set-phase-acceptance-criteria.md) | Define the gate for moving beyond sets. |
@@ -111,6 +116,8 @@ Current decision:
   documented Lean-support need.
 - The object-logic layer is a learning artifact; later set proofs should not
   depend on it unless we explicitly choose that for a source-grounded reason.
+- Later foundational topics may shape the set interface during Step 5a, but
+  their full formalization still waits for an accepted dependency design.
 - Volume I learning artifacts live under `LRA/VolumeI/`, not
   `LRA/Foundation/`.
 - Definitions must be real.
@@ -127,16 +134,20 @@ Current decision:
 - Should `ProofTheory.lean` contain theoremhood in general, or should
   propositional theoremhood live entirely in `PropositionalLogic.lean` at first?
 - Should the first set layer use predicate sets directly, structured set
-  objects, or a two-layer design?
+  objects, a ZFC-model-facing layer, or a two-layer design?
 - How should complement be represented: absolute over a carrier, or explicitly
   relative to a universe set?
 - Should `powerSet` be included in the first core, or delayed until universe
   behavior is documented?
 - How much classical logic should the first set file allow?
+- Which relation/function/algebra/order interfaces must be stable before the
+  set API expands?
+- What belongs under explicit `Grundlagen` vocabulary rather than under `Set`,
+  `Relations`, `Functions`, `Algebra`, or `Order`?
 
 ## Next Action
 
-Begin the first-order logic first pass from
-`docs/restart/foundation-restart-plan/04a-first-order-logic-first-pass.md`.
-Start with the file/module layout and a small `Language.lean`; do not move to
-sets until the first-order architecture is accepted.
+Finish stabilizing the first-order logic pass, then run the foundational
+dependency review in
+`docs/restart/foundation-restart-plan/05a-foundational-dependency-review.md`
+before expanding the set layer further.

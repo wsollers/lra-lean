@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check that the Volume VII mathlib formalization track is wired into Lake."""
+"""Check that metric-space formalization is wired into the right volumes."""
 
 from __future__ import annotations
 
@@ -10,7 +10,11 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 EXPECTED = {
     ROOT / "lakefile.lean": [
+        "lean_lib LRAVolumeIV where\n  roots := #[`LRA.VolumeIV]",
         "lean_lib LRAVolumeVII where\n  roots := #[`LRA.VolumeVII]",
+    ],
+    ROOT / "LRA" / "VolumeIV.lean": [
+        "import LRA.VolumeIV.MetricSpaces",
     ],
     ROOT / "LRA" / "VolumeVII.lean": [
         "import LRA.VolumeVII.WithMathlib",
@@ -18,12 +22,16 @@ EXPECTED = {
     ROOT / "LRA" / "VolumeVII" / "WithMathlib.lean": [
         "import LRA.VolumeVII.WithMathlib.MetricSpaces",
     ],
+    ROOT / "LRA" / "VolumeIV" / "MetricSpaces.lean": [
+        "import LRA.VolumeIV.MetricSpaces.MetricBalls",
+        "import LRA.VolumeIV.MetricSpaces.SetsInMetricSpaces",
+    ],
     ROOT / "LRA" / "VolumeVII" / "WithMathlib" / "MetricSpaces.lean": [
         "import LRA.VolumeVII.WithMathlib.MetricSpaces.MetricModeling",
+        "import LRA.VolumeVII.WithMathlib.MetricSpaces.MetricSpace",
         "import LRA.VolumeVII.WithMathlib.MetricSpaces.RealLineSpace",
         "import LRA.VolumeVII.WithMathlib.MetricSpaces.EuclideanSpace",
         "import LRA.VolumeVII.WithMathlib.MetricSpaces.DiscreteMetricSpace",
-        "import LRA.VolumeVII.WithMathlib.MetricSpaces.MetricBalls",
     ],
     ROOT / "LRA" / "VolumeVII" / "WithMathlib" / "MetricSpaces" / "MetricModeling.lean": [
         "import Mathlib.Topology.MetricSpace.Basic",
@@ -47,12 +55,16 @@ EXPECTED = {
         "def discreteScratchMetric",
         "def discreteScratchMetricSpace",
     ],
-    ROOT / "LRA" / "VolumeVII" / "WithMathlib" / "MetricSpaces" / "MetricBalls.lean": [
+    ROOT / "LRA" / "VolumeIV" / "MetricSpaces" / "MetricBalls.lean": [
         "import Mathlib.Topology.MetricSpace.Basic",
         "theorem center_mem_ball",
         "theorem ball_subset_ball",
         "theorem ball_subset_closedBall",
         "theorem ball_subset_ball_of_mem",
+    ],
+    ROOT / "LRA" / "VolumeIV" / "MetricSpaces" / "SetsInMetricSpaces.lean": [
+        "import LRA.VolumeIV.MetricSpaces.SetsInMetricSpaces.SetDiameter",
+        "import LRA.VolumeIV.MetricSpaces.SetsInMetricSpaces.SetDistance",
     ],
 }
 
@@ -71,12 +83,12 @@ def main() -> int:
                 errors.append(f"{path.relative_to(ROOT)} does not contain `{needle}`")
 
     if errors:
-        print("Volume VII wiring check failed:")
+        print("Metric-space wiring check failed:")
         for error in errors:
             print(f"  - {error}")
         return 1
 
-    print("Volume VII wiring check passed.")
+    print("Metric-space wiring check passed.")
     return 0
 
 

@@ -18,20 +18,29 @@ architecture is settled.
 - source-grounding against Volume I set-theory material;
 - diagrams and governance needed to explain the set architecture.
 
-## Out Of Scope
+## Design-Pressure Only Before Set Expansion
+
+These topics may now be considered before the set API grows further, but only
+to settle interface shape and dependency direction:
 
 - relation algebra;
 - functions as relations;
-- equivalence relations and quotients;
+- algebraic laws;
+- identity vocabulary;
 - order theory;
+- `Grundlagen` vocabulary.
+
+## Out Of Scope For Full Formalization
+
+- equivalence relations and quotients;
 - cardinality;
 - natural numbers, integers, rationals, and reals;
 - Blueprint expansion beyond diagrams needed to understand set architecture.
 
 ## Rule
 
-Later topics may inform design questions, but they must not force substantive
-Lean declarations during the logic-and-set phase.
+Later topics may inform design questions, but they must not force broad
+substantive Lean declarations during the logic-and-set phase.
 
 Model theory is accommodated as a future location, but it is not part of the
 restart core. Its initial file should contain only a wiring test and an
@@ -39,6 +48,6 @@ explanatory module comment.
 
 ## Acceptance Criteria
 
-- The first restart milestone has no relation/function/order/cardinality/number
-  declarations.
+- The first restart milestone has no broad relation/function/order/cardinality/
+  number declarations.
 - Any later-layer pressure is recorded as an open question rather than coded.
