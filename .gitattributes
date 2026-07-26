@@ -1,10 +1,11 @@
 * text=auto
 .gitattributes text eol=lf
 
-# Source, prose, and TeX stay LF across platforms.
+# Source, prose, data, and TeX stay LF across platforms.
 *.py text eol=lf
 *.md text eol=lf
 *.txt text eol=lf
+*.csv text eol=lf
 *.yaml text eol=lf
 *.yml text eol=lf
 *.json text eol=lf
