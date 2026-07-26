@@ -10,4 +10,5 @@ import LRA.VolumeIV.MetricSpaces.DistanceToSet
 import LRA.VolumeIV.MetricSpaces.Interior
 import LRA.VolumeIV.MetricSpaces.MetricSpace
 import LRA.VolumeIV.MetricSpaces.OpenSets
+import LRA.VolumeIV.MetricSpaces.Pointlike
 import LRA.VolumeIV.MetricSpaces.SetsInMetricSpaces
