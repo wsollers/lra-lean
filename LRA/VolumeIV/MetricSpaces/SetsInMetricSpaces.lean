@@ -1,2 +1,0 @@
-import LRA.VolumeIV.MetricSpaces.SetsInMetricSpaces.SetDiameter
-import LRA.VolumeIV.MetricSpaces.SetsInMetricSpaces.SetDistance

@@ -23,8 +23,8 @@ EXPECTED = {
         "import LRA.VolumeVII.WithMathlib.MetricSpaces",
     ],
     ROOT / "LRA" / "VolumeIV" / "MetricSpaces.lean": [
-        "import LRA.VolumeIV.MetricSpaces.MetricBalls",
-        "import LRA.VolumeIV.MetricSpaces.SetsInMetricSpaces",
+        "import LRA.VolumeIV.MetricSpaces.Balls",
+        "import LRA.VolumeIV.MetricSpaces.SetGeometry",
     ],
     ROOT / "LRA" / "VolumeVII" / "WithMathlib" / "MetricSpaces.lean": [
         "import LRA.VolumeVII.WithMathlib.MetricSpaces.MetricModeling",
@@ -55,16 +55,16 @@ EXPECTED = {
         "def discreteScratchMetric",
         "def discreteScratchMetricSpace",
     ],
-    ROOT / "LRA" / "VolumeIV" / "MetricSpaces" / "MetricBalls.lean": [
+    ROOT / "LRA" / "VolumeIV" / "MetricSpaces" / "Balls" / "Basic.lean": [
         "import Mathlib.Topology.MetricSpace.Basic",
         "theorem center_mem_ball",
         "theorem ball_subset_ball",
         "theorem ball_subset_closedBall",
         "theorem ball_subset_ball_of_mem",
     ],
-    ROOT / "LRA" / "VolumeIV" / "MetricSpaces" / "SetsInMetricSpaces.lean": [
-        "import LRA.VolumeIV.MetricSpaces.SetsInMetricSpaces.SetDiameter",
-        "import LRA.VolumeIV.MetricSpaces.SetsInMetricSpaces.SetDistance",
+    ROOT / "LRA" / "VolumeIV" / "MetricSpaces" / "SetGeometry.lean": [
+        "import LRA.VolumeIV.MetricSpaces.SetGeometry.Diameter",
+        "import LRA.VolumeIV.MetricSpaces.SetGeometry.DistanceToSet",
     ],
 }
 

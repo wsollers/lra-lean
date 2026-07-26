@@ -1,9 +1,7 @@
-import LRA.VolumeIV.MetricSpaces.MetricBalls
+import LRA.VolumeIV.MetricSpaces.Balls.Basic
 
 /-!
 Metric-space ball material.
 
-This module is the stable topic path for metric balls. Existing declarations
-currently live in `LRA.VolumeIV.MetricSpaces.MetricBalls` and are re-exported
-here while the Volume IV layout is reorganized by topic.
+This module collects metric ball definitions and theorems.
 -/
