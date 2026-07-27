@@ -1,6 +1,7 @@
 import Mathlib.Tactic.FinCases
 import Mathlib.Tactic.Tauto
 import LRA.VolumeI.Set.ZFC.Semantics.ClosedAxioms
+import LRA.VolumeI.Set.ZFC.Semantics.SatisfactionLemmas
 
 namespace LRA.VolumeI.Set.ZFC
 
@@ -26,39 +27,6 @@ def zfcSetMembership
     match argument with
     | ⟨0, _⟩ => element
     | ⟨1, _⟩ => set
-
-private theorem firstOrder_satisfies_andFormula_iff
-    (M : ZFCModel)
-    (assignment : ZFCVariable -> M.Domain)
-    (φ ψ : ZFCFormula) :
-    FirstOrder.Satisfies M assignment (andFormula φ ψ) ↔
-      FirstOrder.Satisfies M assignment φ ∧
-        FirstOrder.Satisfies M assignment ψ := by
-  exact FirstOrder.satisfiesAndIffSatisfiesBoth M assignment φ ψ
-
-private theorem firstOrder_satisfies_existsVariable_iff
-    (M : ZFCModel)
-    (assignment : ZFCVariable -> M.Domain)
-    (v : ZFCVariable)
-    (φ : ZFCFormula) :
-    FirstOrder.Satisfies M assignment (existsVariable v φ) ↔
-      ∃ witness : M.Domain,
-        FirstOrder.Satisfies M
-          (updateAssignment assignment v witness)
-          φ := by
-  exact FirstOrder.satisfiesExistsIffSomeWitness M assignment v φ
-
-private theorem firstOrder_satisfies_iffFormula_iff
-    (M : ZFCModel)
-    (assignment : ZFCVariable -> M.Domain)
-    (φ ψ : ZFCFormula) :
-    FirstOrder.Satisfies M assignment (iffFormula φ ψ) ↔
-      (FirstOrder.Satisfies M assignment φ ↔
-        FirstOrder.Satisfies M assignment ψ) := by
-  rw [show iffFormula φ ψ = andFormula (impliesFormula φ ψ) (impliesFormula ψ φ) by rfl]
-  rw [firstOrder_satisfies_andFormula_iff]
-  simp only [impliesFormula, FirstOrder.Satisfies]
-  tauto
 
 /-- Satisfaction of the atomic formula `x ∈ y` is exactly element-level
 membership between the assigned values of `x` and `y`. -/

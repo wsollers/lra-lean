@@ -1,6 +1,5 @@
 import LRA.VolumeI.Logic.Syntax.FirstOrder.Substitute
-import LRA.VolumeI.Set.ZFC.Syntax.FreeVariables
-import LRA.VolumeI.Set.ZFC.Syntax.Vocabulary
+import LRA.VolumeI.Set.ZFC.Theory.SchemaVariables
 
 namespace LRA.VolumeI.Set.ZFC
 
@@ -30,10 +29,8 @@ parameters of the schema instance rather than taking a universal closure
 over them. -/
 def separationAxiomFor (elementVariable : ZFCVariable) (predicate : ZFCFormula) :
     ZFCFormula :=
-  let predicateVariables := freeVariablesInZFCFormula predicate
-  let sourceSet := freshVariableForFinset ({elementVariable} ∪ predicateVariables)
-  let subsetSet :=
-    freshVariableForFinset ({sourceSet} ∪ {elementVariable} ∪ predicateVariables)
+  let sourceSet := SchemaFacts.separationSourceSet elementVariable predicate
+  let subsetSet := SchemaFacts.separationSubsetSet elementVariable predicate
   forallVariable sourceSet
     (existsVariable subsetSet
       (forallVariable elementVariable
@@ -83,11 +80,10 @@ over them. -/
 def replacementAxiomFor
     (inputVariable outputVariable : ZFCVariable) (predicate : ZFCFormula) :
     ZFCFormula :=
-  let predicateVariables := allVariablesInZFCFormula predicate
-  let baseUsed := {inputVariable} ∪ {outputVariable} ∪ predicateVariables
-  let sourceSet := freshVariableForFinset baseUsed
-  let imageSet := freshVariableForFinset ({sourceSet} ∪ baseUsed)
-  let outputVariable' := freshVariableForFinset ({imageSet} ∪ {sourceSet} ∪ baseUsed)
+  let sourceSet := SchemaFacts.replacementSourceSet inputVariable outputVariable predicate
+  let imageSet := SchemaFacts.replacementImageSet inputVariable outputVariable predicate
+  let outputVariable' :=
+    SchemaFacts.replacementOutputVariablePrime inputVariable outputVariable predicate
   let renamedPredicate :=
     FirstOrder.substitute outputVariable (variableTerm outputVariable') predicate
   forallVariable sourceSet

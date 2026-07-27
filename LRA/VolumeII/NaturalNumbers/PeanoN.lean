@@ -74,7 +74,7 @@ satisfies all five Peano axioms.
 
 *Notes cross-ref:* §1.1 [ax:peano-system-existence](../notes/section_1_1_main.md)
 -/
-def PN_is_peano_system : PeanoSystem.{0} where
+def PN_is_peano_system : PeanoSystem where
   carrier             := PN
   one                 := PN.one
   successor           := PN.succ
@@ -107,7 +107,7 @@ universe, discharging the concrete existence obligation used by Volume II.
 
 *Notes cross-ref:* §1.1 [ax:peano-system-existence](../notes/section_1_1_main.md)
 -/
-theorem PN_peano_system_exists : Nonempty (PeanoSystem.{0}) :=
+theorem PN_peano_system_exists : Nonempty PeanoSystem :=
   ⟨PN_is_peano_system⟩
 
 -- ============================================================
@@ -132,7 +132,7 @@ Theorem applied with the target equal to the carrier of `peano_system`.
 [thm:uniqueness-of-peano-systems-up-to-isomorphism](../notes/section_1_2_main.md)
 -/
 theorem pn_iso_any_peano_system
-    (peano_system : PeanoSystem.{0}) :
+    (peano_system : PeanoSystem) :
     ∃ structure_preserving_map : PN → peano_system.carrier,
       structure_preserving_map PN.one = peano_system.one ∧
       (∀ natural_value : PN,

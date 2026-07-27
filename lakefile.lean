@@ -4,10 +4,7 @@ open Lake DSL
 package LRA where
 
 require mathlib from git
-  "https://github.com/leanprover-community/mathlib4" @ "v4.20.0"
-
-lean_lib LRAFoundation where
-  roots := #[`LRA.Foundation]
+  "https://github.com/leanprover-community/mathlib4" @ "v4.32.1"
 
 lean_lib LRAVolumeI where
   roots := #[`LRA.VolumeI]

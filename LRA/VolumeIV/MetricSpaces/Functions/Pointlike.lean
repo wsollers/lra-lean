@@ -18,10 +18,20 @@ The point function determined by `z` sends `x` to the nonnegative real distance
 `dist z x`.
 -/
 def pointFunction (z : X) : X → NNReal :=
-  fun x => ⟨dist z x, dist_nonneg⟩
+  fun x => NNReal.mk (dist z x) dist_nonneg
 
 -- The source treats point functions as ℝ_{\ge 0}-valued. Mathlib's `dist`
 -- is Real-valued, so `dist_nonneg` packages each distance as an `NNReal`.
+
+@[simp]
+theorem coe_pointFunction (z x : X) :
+    ((pointFunction z x : NNReal) : Real) = dist z x := by
+  rfl
+
+@[simp]
+theorem pointFunction_self (z : X) :
+    pointFunction z z = 0 := by
+  simp [pointFunction]
 
 /-- Source: `def:metric-point-function`.
 

@@ -1,5 +1,6 @@
 import Mathlib.Tactic.FinCases
 import LRA.VolumeI.Logic.Syntax.FirstOrder.SubstitutionFreeVariables
+import LRA.VolumeI.Set.ZFC.Theory.SchemaFacts
 import LRA.VolumeI.Set.ZFC.Theory.Schemas
 
 namespace LRA.VolumeI.Set.ZFC
@@ -123,13 +124,13 @@ theorem replacementAxiomFor_freeVariables_subset_predicateParameters
       candidateIsFreeInRenamedPredicate |
       functionalityPredicateCases
     · let replacementBaseVariables :=
-        {inputVariable} ∪ ({outputVariable} ∪ allVariablesInZFCFormula predicate)
-      let replacementSourceSet := freshVariableForFinset replacementBaseVariables
+        SchemaFacts.replacementBaseUsed inputVariable outputVariable predicate
+      let replacementSourceSet :=
+        SchemaFacts.replacementSourceSet inputVariable outputVariable predicate
       let replacementImageSet :=
-        freshVariableForFinset ({replacementSourceSet} ∪ replacementBaseVariables)
+        SchemaFacts.replacementImageSet inputVariable outputVariable predicate
       let replacementOutputVariablePrime :=
-        freshVariableForFinset
-          ({replacementImageSet} ∪ ({replacementSourceSet} ∪ replacementBaseVariables))
+        SchemaFacts.replacementOutputVariablePrime inputVariable outputVariable predicate
       have candidateIsFreeInPredicateOrReplacementTerm :
           candidateVariable ∈
             FirstOrder.freeVariables predicate ∪
@@ -144,11 +145,11 @@ theorem replacementAxiomFor_freeVariables_subset_predicateParameters
       simp [variableTerm, FirstOrder.freeVariablesInTerm, Finset.mem_union]
         at candidateIsFreeInPredicateOrReplacementTerm
       rcases candidateIsFreeInPredicateOrReplacementTerm with
-        candidateIsFreeInPredicate |
-        candidateEqualsOutputVariablePrime
-      · exact candidateIsFreeInPredicate
+        candidateEqualsOutputVariablePrime |
+        candidateIsFreeInPredicate
       · exact False.elim
           (candidateIsNotOutputVariablePrime candidateEqualsOutputVariablePrime)
+      · exact candidateIsFreeInPredicate
     rcases functionalityPredicateCases with
       candidateIsFreeInOutputVariableTerm |
       candidateIsFreeInOutputVariablePrimeTerm

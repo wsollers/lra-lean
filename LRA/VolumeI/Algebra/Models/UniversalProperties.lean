@@ -1,6 +1,7 @@
 -- LRA/VolumeI/Algebra/Models/UniversalProperties.lean
 -- Universal properties for Z, Q, and R.
 
+import Mathlib.Topology.MetricSpace.Basic
 import LRA.VolumeI.Algebra.Models.CanonicalEmbeddings
 
 namespace LRA
@@ -8,6 +9,8 @@ namespace VolumeI
 namespace Algebra
 namespace Models
 namespace UniversalProperties
+
+universe u v w
 
 /-!
 Volume II label: universal-properties
@@ -37,22 +40,30 @@ structure RationalUniversalProperty
           CanonicalEmbeddings.EmbeddingPreservesOrderedField
             rational_extension.rational_model.signature target.signature rational_map
 
-structure MetricSpace where
+structure MetricSpaceModel where
   carrier : Type u
-  distance : carrier → carrier → Prop
+  metric : _root_.MetricSpace carrier
 
-structure DenseIsometricEmbedding (source target : MetricSpace) where
+structure DenseIsometricEmbedding
+    (source : MetricSpaceModel.{u})
+    (target : MetricSpaceModel.{v}) where
   to_target : source.carrier → target.carrier
   preserves_distance :
     ∀ first second : source.carrier,
-      source.distance first second ↔
-        target.distance (to_target first) (to_target second)
+      letI := source.metric
+      letI := target.metric
+      dist (to_target first) (to_target second) = dist first second
   dense_image :
     ∀ target_value : target.carrier,
-      ∃ approximating_source : source.carrier,
-        target.distance (to_target approximating_source) target_value
+      ∀ ε : ℝ,
+        0 < ε →
+        letI := target.metric
+        ∃ approximating_source : source.carrier,
+          dist (to_target approximating_source) target_value < ε
 
-structure MetricCompletionUniversalProperty (source completion : MetricSpace) where
+structure MetricCompletionUniversalProperty
+    (source : MetricSpaceModel.{u})
+    (completion : MetricSpaceModel.{v}) where
   embedding : DenseIsometricEmbedding source completion
   complete :
     ∀ cauchy_sequence : Nat → completion.carrier,
@@ -60,7 +71,7 @@ structure MetricCompletionUniversalProperty (source completion : MetricSpace) wh
         ∀ neighborhood : completion.carrier → Prop,
           neighborhood limit → ∃ index : Nat, neighborhood (cauchy_sequence index)
   universal_extension :
-    ∀ target : MetricSpace,
+    ∀ target : MetricSpaceModel.{w},
       ∀ dense_map : DenseIsometricEmbedding source target,
         ∃ comparison : completion.carrier → target.carrier,
           ∀ source_value,

@@ -6,50 +6,12 @@ namespace LRA.VolumeI.Set.ZFC
 Small infrastructure facts for ZFC schema constructors.
 
 The schema constructors compute their auxiliary bound variables internally.
-These definitions name the same computations so later correctness proofs can
-refer to the freshness guarantees directly.
+The pure auxiliary-variable definitions live in `SchemaVariables.lean` so the
+schema constructors and later correctness proofs can share them without
+recomputing fresh-variable expressions.
 -/
 
 namespace SchemaFacts
-
-def separationSourceSet
-    (elementVariable : ZFCVariable) (predicate : ZFCFormula) :
-    ZFCVariable :=
-  freshVariableForFinset ({elementVariable} ∪ freeVariablesInZFCFormula predicate)
-
-def separationSubsetSet
-    (elementVariable : ZFCVariable) (predicate : ZFCFormula) :
-    ZFCVariable :=
-  freshVariableForFinset
-    ({separationSourceSet elementVariable predicate} ∪
-      {elementVariable} ∪
-      freeVariablesInZFCFormula predicate)
-
-def replacementBaseUsed
-    (inputVariable outputVariable : ZFCVariable) (predicate : ZFCFormula) :
-    Finset ZFCVariable :=
-  {inputVariable} ∪ {outputVariable} ∪ allVariablesInZFCFormula predicate
-
-def replacementSourceSet
-    (inputVariable outputVariable : ZFCVariable) (predicate : ZFCFormula) :
-    ZFCVariable :=
-  freshVariableForFinset
-    (replacementBaseUsed inputVariable outputVariable predicate)
-
-def replacementImageSet
-    (inputVariable outputVariable : ZFCVariable) (predicate : ZFCFormula) :
-    ZFCVariable :=
-  freshVariableForFinset
-    ({replacementSourceSet inputVariable outputVariable predicate} ∪
-      replacementBaseUsed inputVariable outputVariable predicate)
-
-def replacementOutputVariablePrime
-    (inputVariable outputVariable : ZFCVariable) (predicate : ZFCFormula) :
-    ZFCVariable :=
-  freshVariableForFinset
-    ({replacementImageSet inputVariable outputVariable predicate} ∪
-      {replacementSourceSet inputVariable outputVariable predicate} ∪
-      replacementBaseUsed inputVariable outputVariable predicate)
 
 theorem replacementOutputVariablePrime_not_mem_allVariables
     (inputVariable outputVariable : ZFCVariable) (predicate : ZFCFormula) :

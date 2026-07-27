@@ -150,19 +150,19 @@ noncomputable def integer_model : IntegerModel :=
 
 /-- **[Theorem — Peano System Recovered from Positive Mendelson Integers Exists]** -/
 theorem recovered_peano_system_exists :
-    Nonempty LRA.VolumeII.PeanoSystems.PeanoSystem.{0} := by
+    Nonempty LRA.VolumeII.PeanoSystems.PeanoSystem := by
   sorry
 
 /-- **[Definition — Peano System Recovered from Positive Mendelson Integers]** -/
 noncomputable def recovered_peano_system :
-    LRA.VolumeII.PeanoSystems.PeanoSystem.{0} :=
+    LRA.VolumeII.PeanoSystems.PeanoSystem :=
   Classical.choice recovered_peano_system_exists
 
 /--
 **[Theorem — Positive Mendelson Integers Recover a Peano System]**
 -/
 theorem positive_integers_recover_peano_system :
-    Nonempty (LRA.VolumeII.PeanoSystems.PeanoSystem.{0}) :=
+    Nonempty LRA.VolumeII.PeanoSystems.PeanoSystem :=
   ⟨recovered_peano_system⟩
 
 end MendelsonComparison
