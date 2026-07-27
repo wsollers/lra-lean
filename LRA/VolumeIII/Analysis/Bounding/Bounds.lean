@@ -98,6 +98,8 @@ variable {F : Type*} [Field F] [LinearOrder F] [IsStrictOrderedRing F]
 
 /-- Supremum of a pointwise sum. -/
 theorem SupremumOfSum {sA sB : F} {A B : Set F}
+    (A_nonempty : A.Nonempty)
+    (B_nonempty : B.Nonempty)
     (left_supremum : IsSupremum sA A)
     (right_supremum : IsSupremum sB B) :
     IsSupremum (sA + sB) (A + B) := by
@@ -105,14 +107,17 @@ theorem SupremumOfSum {sA sB : F} {A B : Set F}
 
 /-- Infimum of a pointwise sum. -/
 theorem InfimumOfSum {iA iB : F} {A B : Set F}
+    (A_nonempty : A.Nonempty)
+    (B_nonempty : B.Nonempty)
     (left_infimum : IsInfimum iA A)
     (right_infimum : IsInfimum iB B) :
     IsInfimum (iA + iB) (A + B) := by
   sorry
 
-/-- Supremum under nonnegative scaling. -/
-theorem SupremumOfNonnegScale {a s : F} {A : Set F}
-    (scale_nonnegative : 0 <= a)
+/-- Supremum under positive scaling. -/
+theorem SupremumOfPositiveScale {a s : F} {A : Set F}
+    (A_nonempty : A.Nonempty)
+    (scale_positive : 0 < a)
     (supremum_hypothesis : IsSupremum s A) :
     IsSupremum (a * s) ((fun x => a * x) '' A) := by
   sorry
