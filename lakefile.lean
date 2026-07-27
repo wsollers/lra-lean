@@ -12,7 +12,8 @@ lean_lib LRAFoundation where
 lean_lib LRAVolumeI where
   roots := #[`LRA.VolumeI]
 
--- Volume II: Project Landau — NO Mathlib. Everything proved from axioms.
+-- Volume II: construction modules remain project-owned; active switches and
+-- selected proof-working sections may use Mathlib-backed carriers.
 lean_lib LRAVolumeII where
   roots := #[`LRA.VolumeII]
 
