@@ -1,0 +1,579 @@
+Foundations of Arithmetic and Algebra
+An Omnibus of Operations, Laws, and Axioms, in the Axiomatic Style of Landau
+
+In the manner of Landau's Grundlagen der Analysis: every Definition is a stipulation, every Satz (Theorem) is proved from what precedes it and nothing else, and nothing is asserted without a Beweis (Proof). Numbering is continuous within each chapter. Where Landau builds only N, Z, Q, R concretely, this omnibus first isolates the abstract laws those systems happen to satisfy, states them once and for all for an arbitrary set with arbitrary operations, and then exhibits N, Z, Q, R as particular instances. This is the modern (post-Landau) move—universal algebra—and it is what lets “commutative,” “associative,” “left identity,” and so on be stated exactly once instead of four times.
+
+A one-line remark of orientation opens each chapter; everything after it is formal.
+
+Chapter 0 — Sets, Relations, Operations, and Functions
+
+Note. Everything downstream—laws of +, ×, order, exponentiation, floor—is a special case of one of three primitive notions: a relation (of which order and equality are instances), an operation (of which +, × are instances), and a function (of which every operation, being a function S^n → S, is itself an instance). This chapter treats all three in full generality before Chapter 1 restricts attention to a single binary operation.
+
+0.1 Sets and Cartesian Products
+
+Definition 0.1 (Set, element). We take set and membership (∈) as primitive.
+A ⊆ B :⟺ ∀x (x ∈ A ⇒ x ∈ B).
+A = B :⟺ A ⊆ B ∧ B ⊆ A (extensionality).
+
+Definition 0.2 (Boolean operations on sets).
+A ∪ B := {x : x ∈ A ∨ x ∈ B};
+A ∩ B := {x : x ∈ A ∧ x ∈ B};
+A ∖ B := {x ∈ A : x ∉ B};
+for A a subset of a fixed universe U, A^c := U ∖ A.
+
+Satz 0.3 (De Morgan's laws). (A ∪ B)^c = A^c ∩ B^c and (A ∩ B)^c = A^c ∪ B^c.
+
+Beweis. x ∈ (A ∪ B)^c ⟺ ¬(x ∈ A ∨ x ∈ B) ⟺ ¬(x ∈ A) ∧ ¬(x ∈ B) ⟺ x ∈ A^c ∩ B^c, by the propositional-logic law ¬(P ∨ Q) ⟺ ¬P ∧ ¬Q; the second identity is the dual, using ¬(P ∧ Q) ⟺ ¬P ∨ ¬Q. ■
+
+Definition 0.4 (Ordered pair, Cartesian product). For sets A, B:
+A × B := {(a,b) : a ∈ A, b ∈ B}, with
+(a,b) = (a′,b′) ⟺ a = a′ ∧ b = b′.
+For n ≥ 1 and sets S₁,…,Sₙ, S₁ × ⋯ × Sₙ is defined analogously via n-tuples (x₁,…,xₙ); write S^n := S × ⋯ × S (n factors), and S^0 := {∅}, a fixed one-element set (the empty tuple), by convention.
+
+0.2 n-ary Relations and n-ary Operations
+
+Definition 0.5 (n-ary relation). An n-ary relation on S is a subset R ⊆ S^n. The case n = 2 is a binary relation, written xRy for (x,y) ∈ R; n = 1 is a unary relation (a subset, i.e. a predicate); n = 0 is a nullary relation, i.e. one of the two truth values (since S^0 has one element).
+
+Definition 0.6 (n-ary operation). An n-ary operation on S is a function ω : S^n → S.
+
+n = 0 (nullary operation): a function S^0 → S is, in effect, a single distinguished element c ∈ S (a constant). This is the formal home of “the identity element” and “the zero element”: each is really a nullary operation, singling out one point of S, and Chapter 1's “identity” and “absorbing element” laws are laws relating that nullary operation to a binary one.
+
+n = 1 (unary operation): a function S → S (e.g. negation x ↦ −x, inversion x ↦ x⁻¹, complementation).
+
+n = 2 (binary operation): a function * : S × S → S; write x * y for *(x,y). This is the case Chapters 1–9 study almost exclusively, and the fact that the codomain is S itself is what “closure” means—it is not a separately verified axiom but part of what it is to be an operation on S.
+
+n ≥ 3: ternary, quaternary, ..., generally n-ary operations; not otherwise used in this omnibus.
+
+0.3 Named Properties of a Binary Relation
+
+Note. These properties are the alphabet from which every “kind of order,” “kind of equivalence,” and (in Chapter 4) every ordered algebraic structure is spelled. Fix a binary relation R on S; write xRy.
+
+Definition 0.7. R is:
+
+reflexive iff ∀x: xRx;
+irreflexive iff ∀x: ¬(xRx);
+symmetric iff ∀x,y: xRy ⇒ yRx;
+antisymmetric iff ∀x,y: (xRy ∧ yRx) ⇒ x = y;
+asymmetric iff ∀x,y: xRy ⇒ ¬(yRx);
+transitive iff ∀x,y,z: (xRy ∧ yRz) ⇒ xRz;
+total (connex) iff ∀x,y: xRy ∨ yRx;
+trichotomous iff for all x,y exactly one of xRy, x = y, yRx holds;
+left-Euclidean iff ∀x,y,z: (yRx ∧ zRx) ⇒ yRz;
+right-Euclidean iff ∀x,y,z: (xRy ∧ xRz) ⇒ yRz;
+dense iff ∀x,y: xRy ⇒ ∃z(xRz ∧ zRy);
+well-founded iff every nonempty T ⊆ S has an R-minimal element: ∃m ∈ T ∀t ∈ T ¬(tRm).
+
+Satz 0.8 (Interrelations among these properties).
+(i) R asymmetric ⟺ R irreflexive ∧ R antisymmetric.
+(ii) R irreflexive ∧ transitive ⇒ R asymmetric.
+(iii) R reflexive ∧ transitive ∧ right-Euclidean ⇒ R symmetric.
+(iv) R trichotomous ⇒ R irreflexive ∧ asymmetric.
+
+Beweis. (i) Suppose R is asymmetric. If xRx held, asymmetry with y = x gives ¬(xRx), contradiction; so R is irreflexive. If xRy ∧ yRx, asymmetry gives a contradiction, so the implication (xRy ∧ yRx) ⇒ x = y holds; hence R is antisymmetric. Conversely suppose R is irreflexive and antisymmetric. Suppose xRy and, toward contradiction, yRx. Antisymmetry gives x = y; substituting into xRy gives xRx, contradicting irreflexivity. Thus ¬(yRx), so R is asymmetric.
+(ii) Suppose xRy. If yRx held, transitivity gives xRx, contradicting irreflexivity. Hence ¬(yRx).
+(iii) Suppose xRy. By reflexivity xRx. Right-Euclidean-ness applied to xRy and xRx yields yRx. Hence R is symmetric.
+(iv) Trichotomy's exclusivity forbids xRx and forbids xRy ∧ yRx. ■
+
+0.4 Named Composite Relation Types
+
+Definition 0.9 (Preorder, partial order, total order, equivalence, well-order).
+R on S is a preorder iff reflexive ∧ transitive.
+R is a partial order iff reflexive ∧ antisymmetric ∧ transitive.
+R is a strict partial order iff irreflexive ∧ transitive.
+R is a total (linear) order iff it is a partial order that is also total.
+R is a strict total (linear) order iff it is a strict partial order that is also trichotomous.
+R is an equivalence relation iff reflexive ∧ symmetric ∧ transitive.
+R is a well-order iff it is a total order that is well-founded, i.e. every nonempty subset has a least element.
+
+Satz 0.10 (Strict/non-strict correspondence). Let ≤ be a partial order on S. Define x < y :⟺ (x ≤ y) ∧ (x ≠ y). Then < is a strict partial order on S. Conversely, let < be a strict partial order on S; define x ≤ y :⟺ (x < y) ∨ (x = y). Then ≤ is a partial order. These two constructions are mutually inverse.
+
+Beweis. From ≤ to <: irreflexivity is immediate. If x < y and y < z, then x ≤ z by transitivity. If x = z, then x ≤ y and y ≤ x, so antisymmetry gives x = y, contradicting x ≠ y. Hence x ≠ z and x < z. From < to ≤: reflexivity is the equality disjunct. Antisymmetry follows because x < y and y < x contradict asymmetry of a strict partial order. Transitivity follows by cases. The constructions are mutually inverse by direct simplification. ■
+
+Satz 0.11 (Fundamental theorem of equivalence relations). Let ∼ be an equivalence relation on S. For x ∈ S define [x] := {y ∈ S : y ∼ x}. Then:
+(i) x ∈ [x] for every x;
+(ii) [x] ∩ [y] ≠ ∅ ⟺ [x] = [y].
+Consequently {[x] : x ∈ S} is a partition of S. Conversely, every partition P of S arises this way from a unique equivalence relation, namely x ∼ y iff x and y lie in the same block of P.
+
+Beweis. (i) By reflexivity. (ii) If [x] = [y], then x belongs to both. Conversely suppose z ∈ [x] ∩ [y]. Then z ∼ x and z ∼ y, hence x ∼ y by symmetry and transitivity. Any w ∈ [x] satisfies w ∼ x ∼ y, so w ∈ [y]; symmetrically [y] ⊆ [x]. The partition statement and converse are immediate. ■
+
+Chapter 0A — Functions
+
+Note. A function is a special kind of relation; everything about relations already established is therefore available, but functions earn their own vocabulary because of how they interact with sets (images, preimages) and with each other (composition).
+
+0A.1 Domain, Codomain, Graph, Fibers
+
+Definition 0.13 (Function, domain, codomain, graph). A function f : A → B is a relation f ⊆ A × B such that
+∀a ∈ A ∃!b ∈ B ((a,b) ∈ f).
+A is the domain, B the codomain; write f(a) = b for (a,b) ∈ f. The set f itself is the graph of f—under this convention a function simply is its graph.
+
+Definition 0.14 (Image of a set, direct image). For f : A → B and X ⊆ A:
+f(X) := {f(x) : x ∈ X} = {b ∈ B : ∃x ∈ X (f(x) = b)}.
+f(A) is called the range or image of f.
+
+Definition 0.15 (Preimage / inverse image of a set). For f : A → B and Y ⊆ B:
+f⁻¹(Y) := {x ∈ A : f(x) ∈ Y}.
+This notation is defined for any f and any subset Y, whether or not f is invertible.
+
+Definition 0.16 (Fiber). For b ∈ B, the fiber of f over b is f⁻¹({b}).
+
+Satz 0.17 (Injective/surjective/bijective, restated via fibers). f : A → B is:
+(i) injective iff every fiber has at most one element;
+(ii) surjective iff every fiber is nonempty;
+(iii) bijective iff every fiber has exactly one element.
+
+Beweis. Directly unwind the definitions. ■
+
+0A.2 Restriction, Extension, Inverse Function
+
+Definition 0.18 (Restriction). For f : A → B and X ⊆ A, the restriction f|X : X → B is defined by f|X(x) := f(x) for x ∈ X; formally f|X = f ∩ (X × B).
+
+Definition 0.19 (Extension). g : A′ → B is an extension of f : A → B iff A ⊆ A′ and g|A = f.
+
+Definition 0.20 (Inverse function). If f : A → B is bijective, the inverse function f⁻¹ : B → A is defined by
+f⁻¹(b) := the unique a ∈ A with f(a) = b.
+
+Remark 0.21 (Notational clash). The symbol f⁻¹ is used for two different objects: the inverse function, defined only when f is bijective, and the preimage f⁻¹(Y), defined for every function. When f is bijective these agree in the natural sense.
+
+Satz 0.22 (Consistency of the two f⁻¹'s). If f is bijective with inverse function f⁻¹, then for every Y ⊆ B,
+f⁻¹(Y) = {f⁻¹(y) : y ∈ Y}.
+
+Beweis. x ∈ f⁻¹(Y) iff f(x) ∈ Y iff x = f⁻¹(y) for y := f(x) ∈ Y. ■
+
+0A.3 Composition
+
+Definition 0.23 (Composition). For f : A → B and g : B → C, the composite g ∘ f : A → C is defined by
+(g ∘ f)(x) := g(f(x)).
+
+Satz 0.24 (Inverse function undoes f—two-sided). If f : A → B is bijective with inverse f⁻¹, then
+f⁻¹ ∘ f = id_A, and f ∘ f⁻¹ = id_B,
+where id_S(x) := x.
+
+Beweis. By the defining uniqueness of the inverse. ■
+
+Satz 0.25 (Composition is associative). For f : A → B, g : B → C, h : C → D:
+(h ∘ g) ∘ f = h ∘ (g ∘ f).
+
+Beweis. Both sides send x to h(g(f(x))). ■
+
+Satz 0.26 (The monoid of self-maps). For any set S, let Fun(S,S) := {f : S → S}. Then (Fun(S,S), ∘) is a monoid with identity id_S.
+
+Beweis. Closure is immediate, associativity is Satz 0.25, and id_S is a two-sided identity. ■
+
+Satz 0.27 (Bijections form a group; inverse function = group inverse under composition). The set Sym(S) := {f ∈ Fun(S,S) : f bijective} is a group under composition, and the group inverse of f is exactly its inverse function.
+
+Beweis. A composite of bijections is a bijection; associativity and identity are inherited; Satz 0.24 gives two-sided inverses. ■
+
+Satz 0.28 (Left/right invertibility ↔ injective/surjective). Let f : A → B with A ≠ ∅.
+(i) f has a left inverse g : B → A with g ∘ f = id_A iff f is injective.
+(ii) f has a right inverse g : B → A with f ∘ g = id_B iff f is surjective.
+The reverse direction in (ii) uses the Axiom of Choice.
+
+Beweis. For (i), if f is injective, define g on f(A) by the unique preimage and arbitrarily elsewhere; conversely apply g to f(a) = f(a′). For (ii), a right inverse gives a preimage of every b; conversely choose one point from each nonempty fiber. ■
+
+0A.4 Algebra of Functions (Pointwise Operations)
+
+Definition 0.29 (Pointwise operation on function spaces). Let (S,*) be a set with a binary operation, and X any set. On Fun(X,S) define the pointwise operation ⊛ by
+(f ⊛ g)(x) := f(x) * g(x).
+
+Satz 0.30 (Transfer of laws to function spaces). Fun(X,S) inherits pointwise every property of Chapter 1 that (S,*) has: associativity, commutativity, identity, inverses. Consequently, if (S,*) is a monoid, group, or abelian group, so is (Fun(X,S),⊛).
+
+Beweis. Each clause is verified pointwise and reduces directly to the corresponding law in S. ■
+
+Remark 0.31. For functions into a ring, compositional structure and pointwise algebraic structure coexist and do not agree: the pointwise additive inverse −f is not the compositional inverse of f, and pointwise multiplication fg is not composition f ∘ g. Keep the operation in view.
+
+0A.5 Functions and Set Operations
+
+Note. Images distribute over unions but only sub-distribute over intersections; preimages distribute over everything. Slogan: preimages are perfectly well-behaved; images are not.
+
+Satz 0.32 (Image and union/intersection/difference; arbitrary families). Let f : A → B, X,Y ⊆ A, and {X_i}_{i∈I} a family of subsets of A.
+(i) f(X ∪ Y) = f(X) ∪ f(Y); more generally f(⋃X_i) = ⋃f(X_i).
+(ii) f(X ∩ Y) ⊆ f(X) ∩ f(Y); more generally f(⋂X_i) ⊆ ⋂f(X_i), and equality can fail.
+(iii) f(X) ∖ f(Y) ⊆ f(X ∖ Y), and equality can fail.
+(iv) X ⊆ Y ⇒ f(X) ⊆ f(Y).
+(v) If f is injective, equality holds in (ii) and (iii).
+
+Beweis. Unwind the definitions. For failure of equality in (ii), take a constant map f : {1,2} → {0}, X₁ = {1}, X₂ = {2}. For (v), injectivity forces all witnesses mapping to the same value to coincide. ■
+
+Satz 0.33 (Preimage and union/intersection/difference/complement; full distributivity). Let f : A → B, U,V ⊆ B, and {Y_i}_{i∈I} ⊆ B.
+(i) f⁻¹(U ∪ V) = f⁻¹(U) ∪ f⁻¹(V); more generally f⁻¹(⋃Y_i) = ⋃f⁻¹(Y_i).
+(ii) f⁻¹(U ∩ V) = f⁻¹(U) ∩ f⁻¹(V); more generally f⁻¹(⋂Y_i) = ⋂f⁻¹(Y_i).
+(iii) f⁻¹(U ∖ V) = f⁻¹(U) ∖ f⁻¹(V); in particular f⁻¹(B ∖ U) = A ∖ f⁻¹(U).
+(iv) U ⊆ V ⇒ f⁻¹(U) ⊆ f⁻¹(V).
+
+Beweis. Each identity follows by unwinding membership and matching logical connectives. ■
+
+Satz 0.34 (Round trips: image-of-preimage and preimage-of-image). Let f : A → B.
+(i) For Y ⊆ B, f(f⁻¹(Y)) ⊆ Y, with equality iff Y ⊆ f(A); equality for every Y iff f is surjective.
+(ii) For X ⊆ A, f⁻¹(f(X)) ⊇ X, with equality for every X iff f is injective.
+
+Beweis. Directly from the definitions; the equality conditions express surjectivity and injectivity respectively. ■
+
+Chapter 1 — Laws of a Single Binary Operation
+
+Note. Fix one set S and one operation * : S × S → S. Everything in this chapter is a property * may or may not have; nothing here presumes S is a number system.
+
+1.1 Associativity, Commutativity
+
+Definition 1.1 (Associativity).
+* is associative :⟺ ∀x,y,z ∈ S: (x*y)*z = x*(y*z).
+
+Definition 1.2 (Commutativity).
+* is commutative :⟺ ∀x,y ∈ S: x*y = y*x.
+
+Satz 1.3 (Generalized associativity). If * is associative, every finite product x₁ * x₂ * ⋯ * xₙ (n ≥ 1) is independent of the placement of parentheses.
+
+Beweis. Induction on n, repeatedly applying associativity to move the outermost split. ■
+
+Satz 1.4 (Commuting factors under associativity). If * is associative and commutative, then for any permutation σ of {1,…,n},
+x_{σ(1)} * ⋯ * x_{σ(n)} = x₁ * ⋯ * xₙ.
+
+Beweis. Every permutation is a product of adjacent transpositions; commutativity swaps adjacent factors and generalized associativity makes the product unambiguous. ■
+
+1.2 Identity Elements
+
+Definition 1.5 (Left/right/two-sided identity). e ∈ S is a left identity iff e*x = x for all x; a right identity iff x*e = x for all x; a two-sided identity iff both.
+
+Satz 1.6 (Uniqueness of a two-sided identity). If e is a left identity and e′ a right identity, then e = e′. Hence a two-sided identity is unique.
+
+Beweis. e = e*e′ = e′. ■
+
+Remark 1.7. A left identity need not be unique in the absence of a right identity. For x*y := y on a set with more than one element, every element is a left identity but no right identity exists.
+
+1.3 Absorbing (Zero) Elements
+
+Definition 1.8 (Left/right/two-sided absorbing element). z ∈ S is left absorbing iff z*x = z for all x; right absorbing iff x*z = z for all x; two-sided absorbing iff both.
+
+Satz 1.9 (Uniqueness of a two-sided absorbing element). If z is left absorbing and z′ right absorbing, then z = z′.
+
+Beweis. z = z*z′ = z′. ■
+
+Satz 1.10. If S has more than one element, no element can be simultaneously a two-sided identity and a two-sided absorbing element for the same operation.
+
+Beweis. If e is both, then x = e*x = e for every x. ■
+
+1.4 Idempotence
+
+Definition 1.11 (Idempotent element). x ∈ S is idempotent for * iff x*x = x.
+
+Satz 1.12. A two-sided identity and a two-sided absorbing element are each idempotent.
+
+Beweis. Substitute the element into its defining law. ■
+
+1.5 Inverses
+
+Definition 1.13 (Left/right/two-sided inverse, relative to identity e). Suppose * has identity e. For x ∈ S, y is a left inverse of x iff y*x = e; a right inverse iff x*y = e; a two-sided inverse iff both. Write x⁻¹ for the unique two-sided inverse when uniqueness is established.
+
+Satz 1.14 (Left inverse + right inverse ⇒ equal, if associative). Suppose * is associative with identity e. If y is a left inverse of x and y′ a right inverse, then y = y′.
+
+Beweis. y = y*e = y*(x*y′) = (y*x)*y′ = e*y′ = y′. ■
+
+Satz 1.15 (Uniqueness of two-sided inverses). Under the preceding hypotheses, a two-sided inverse is unique.
+
+Satz 1.16 (Inverse of a product). If x and y have two-sided inverses, then x*y has inverse y⁻¹*x⁻¹.
+
+Beweis. (x*y)*(y⁻¹*x⁻¹) = x*(y*y⁻¹)*x⁻¹ = e; similarly on the other side. ■
+
+Satz 1.17 (Involution of inverse). (x⁻¹)⁻¹ = x.
+
+Beweis. x is a two-sided inverse of x⁻¹; use uniqueness. ■
+
+1.6 Cancellation Laws
+
+Definition 1.18 (Left/right cancellative operation).
+* is left cancellative iff x*y = x*z ⇒ y = z.
+* is right cancellative iff y*x = z*x ⇒ y = z.
+* is cancellative iff both.
+
+Satz 1.19. If * is associative with identity and every element has a two-sided inverse, then * is cancellative.
+
+Beweis. Multiply by the inverse on the appropriate side. ■
+
+Satz 1.20 (Cancellation determines quotient/difference uniquely). If * is left cancellative, then for fixed x,a ∈ S there is at most one y with x*y = a.
+
+Beweis. If x*y = a = x*y′, cancellation yields y = y′. ■
+
+1.7 Left/Right and Two-Sided Laws in General
+
+Definition 1.21 (Paired laws). The principal left/right pairs are:
+identity: e*x = x / x*e = x;
+absorbing: z*x = z / x*z = z;
+inverse: y*x = e / x*y = e;
+cancellation: x*y = x*z ⇒ y = z / y*x = z*x ⇒ y = z;
+distributivity: x*(y+z) = x*y + x*z / (y+z)*x = y*x + z*x.
+
+Satz 1.22 (Commutativity collapses left/right). If * is commutative, every left-version property above holds iff the corresponding right-version property holds.
+
+Beweis. Rewrite by commutativity. ■
+
+Remark 1.23 (Where is transitivity for an operation?). Transitivity is a property of a relation, not an operation. But an associative monoid operation induces a divisibility preorder: x ⪯ y iff ∃z(x*z = y).
+
+Satz 1.24 (The divisibility preorder of a monoid). Let (S,*,e) be a monoid. Then ⪯ is reflexive and transitive. If * is commutative, x ⪯ y ⇒ x*w ⪯ y*w.
+
+Beweis. Reflexivity uses x*e = x. If x*z = y and y*z′ = w, then x*(z*z′) = w. Compatibility follows by associativity and commutativity. ■
+
+Chapter 2 — Two Operations Together: Distributivity and the Ring Skeleton
+
+Note. Arithmetic is never just one operation; + and × interact. Distributivity is the single law tying them together.
+
+Definition 2.1 (Left/right/two-sided distributivity of × over +).
+× left-distributes over + iff x×(y+z) = x×y + x×z.
+× right-distributes over + iff (y+z)×x = y×x + z×x.
+× distributes over + iff both.
+
+Satz 2.2. If × is commutative, left-distributivity is equivalent to right-distributivity.
+
+Satz 2.3 (Distributivity over zero). Suppose + has identity 0, is cancellative, and × distributes over +. Then 0×x = 0 and x×0 = 0.
+
+Beweis. 0×x + 0×x = (0+0)×x = 0×x = 0×x + 0. Cancel. The other side is symmetric. ■
+
+Satz 2.4 (Distributivity and negation—the law of signs, abstractly). Suppose (S,+) is an abelian group and × distributes over +. Then:
+(i) (−x)×y = −(x×y);
+(ii) (−x)×(−y) = x×y.
+
+Beweis. x×y + (−x)×y = (x + (−x))×y = 0×y = 0, so (−x)×y is the additive inverse of x×y. Apply this twice for (ii). ■
+
+Satz 2.5 (Zero has no multiplicative inverse in the nontrivial case). If 1 ≠ 0, there is no y with 0×y = 1.
+
+Beweis. 0×y = 0 for every y. ■
+
+Chapter 3 — The Standard Hierarchy of Algebraic Structures
+
+Definition 3.1 (Magma, semigroup, monoid, group). Let * : S × S → S.
+(S,*) is a magma: no further axioms.
+It is a semigroup iff * is associative.
+It is a monoid iff it is a semigroup with a two-sided identity.
+It is a group iff it is a monoid in which every element has a two-sided inverse.
+Any is abelian iff * is commutative.
+
+Satz 3.2. Every group is cancellative.
+
+Definition 3.3 (Semiring, ring, commutative ring, ring with unity, domain, field). Let +,× : S × S → S.
+(S,+,×) is a semiring iff (S,+) is a commutative monoid, (S,×) is a semigroup, and × distributes over +.
+It is a ring iff additionally (S,+) is a group.
+A ring is commutative iff × is commutative.
+A ring has unity iff (S,×) is a monoid with identity 1.
+A nontrivial commutative ring with unity is an integral domain iff xy = 0 ⇒ x = 0 ∨ y = 0.
+A nontrivial commutative ring with unity is a field iff every x ≠ 0 has a multiplicative inverse.
+
+Satz 3.4 (Every field is an integral domain).
+
+Beweis. If xy = 0 and x ≠ 0, multiply by x⁻¹ to obtain y = 0. ■
+
+Satz 3.5 (Cross-multiplication / determinateness of quotients in a field). In a field, for b,d ≠ 0:
+a/b = c/d ⟺ ad = bc,
+where a/b := a×b⁻¹.
+
+Beweis. Multiply by bd and use associativity, commutativity, and inverses; reverse the steps for the converse. ■
+
+Chapter 4 — Order
+
+Note. This chapter adds < abstractly and asks what it must satisfy to interact sensibly with + and ×.
+
+Definition 4.1 (Strict linear order). A relation < on S is a strict linear order iff:
+(O1) ¬(x < x);
+(O2) x < y ∧ y < z ⇒ x < z;
+(O3) exactly one of x < y, x = y, y < x holds.
+
+Definition 4.2 (Derived relations).
+x > y :⟺ y < x;
+x ≤ y :⟺ x < y ∨ x = y;
+x ≥ y :⟺ x > y ∨ x = y.
+
+Satz 4.3 (Basic properties of ≤). ≤ is reflexive, antisymmetric, transitive, and total.
+
+Definition 4.4 (Compatibility with +: ordered group). Let (S,+) be an abelian group with order <. The order is translation-invariant iff
+x < y ⟺ x+z < y+z.
+Then (S,+,<) is an ordered abelian group.
+
+Satz 4.5 (Adding inequalities). In an ordered group:
+x < y ∧ x′ < y′ ⇒ x+x′ < y+y′.
+
+Beweis. Translate each inequality and use transitivity. ■
+
+Satz 4.6 (Sign of an element vs. sign of its negative). x > 0 ⟺ −x < 0.
+
+Beweis. Add −x to both sides of x > 0. ■
+
+Definition 4.7 (Compatibility with ×: ordered ring / field). An ordered ring satisfies
+x > 0 ∧ y > 0 ⇒ xy > 0.
+An ordered field is a field with such an order.
+
+Satz 4.8 (Rule of signs, order form). In an ordered ring:
+(i) x > 0 ∧ y < 0 ⇒ xy < 0;
+(ii) x < 0 ∧ y < 0 ⇒ xy > 0;
+(iii) x ≠ 0 ⇒ x² > 0; in particular 1 > 0.
+
+Beweis. Use Satz 4.6, the algebraic law of signs, and multiplicative compatibility. ■
+
+Satz 4.9 (Multiplying an inequality by a positive/negative element). If x < y, then:
+(i) z > 0 ⇒ xz < yz;
+(ii) z < 0 ⇒ xz > yz.
+
+Beweis. y−x > 0; multiply by z and expand. For negative z, apply the positive case to −z and negate. ■
+
+Satz 4.10 (No order makes C an ordered field). There is no strict order on C compatible with its usual field operations.
+
+Beweis. In an ordered field i² > 0, hence −1 > 0. But 1 > 0 implies −1 < 0, contradiction. ■
+
+Chapter 5 — Absolute Value
+
+Definition 5.1 (Absolute value). In an ordered group:
+|x| := x if x ≥ 0, and |x| := −x if x < 0.
+
+Satz 5.2 (Basic properties). For all x,y in an ordered ring:
+(i) |x| ≥ 0, with equality iff x = 0;
+(ii) |−x| = |x|;
+(iii) −|x| ≤ x ≤ |x|;
+(iv) |xy| = |x||y|;
+(v) |x+y| ≤ |x|+|y|;
+(vi) ||x|−|y|| ≤ |x−y|.
+
+Beweis. The first four follow by sign cases. For (v), add −|x| ≤ x ≤ |x| and −|y| ≤ y ≤ |y|. For (vi), apply the triangle inequality to x = (x−y)+y and symmetrically. ■
+
+Chapter 6 — Subtraction and Division as Inverse Operations, Abstractly
+
+Definition 6.1 (Inverse operation, generally). Let (S,*) be cancellative with identity e. Define a partial inverse operation by
+a *⁻¹ b := the unique x (if it exists) with x*b = a.
+Uniqueness follows from cancellation.
+
+Satz 6.2 (Subtraction is the inverse operation to addition). For a cancellative commutative monoid (S,+), define a−b as the unique x, when it exists, with x+b = a. Then:
+(a−b)+b = a;
+a−(b+c) = (a−b)−c, where defined;
+a+b−b = a.
+
+Beweis. The first is the definition. The others follow from associativity, commutativity, and uniqueness of solutions. ■
+
+Satz 6.3 (When does a−b always exist?). The inverse operation is defined on all of S×S iff every element has an inverse, i.e. iff (S,*) is a group.
+
+Beweis. In a group, a* b⁻¹ solves x*b = a. Conversely, taking a = e produces an inverse of every b. ■
+
+Satz 6.4 (Division is the inverse operation to multiplication). In a field define a/b := a×b⁻¹ for b ≠ 0. Then:
+(a/b)(c/d) = ac/bd;
+(a/b)/(c/d) = ad/bc;
+a/b ± c/d = (ad ± bc)/bd;
+in an ordered field with b,d > 0, a/b ≷ c/d iff ad ≷ bc.
+
+Beweis. Direct computation using field laws and the order rule for multiplication by positive elements. ■
+
+Satz 6.5 (Division by zero is impossible). In a nontrivial field, 0 has no multiplicative inverse.
+
+Chapter 7 — Exponentiation
+
+Definition 7.1 (Natural-number powers, recursively). Let (S,×) be a monoid with identity 1. For x ∈ S and n ∈ N∪{0}:
+x⁰ := 1;
+xⁿ⁺¹ := xⁿ×x.
+
+Satz 7.2 (Laws of exponents, natural exponents). For m,n ∈ N∪{0}:
+(i) xᵐxⁿ = xᵐ⁺ⁿ;
+(ii) (xᵐ)ⁿ = xᵐⁿ;
+(iii) if × is commutative, (xy)ⁿ = xⁿyⁿ.
+
+Beweis. Each by induction on n. ■
+
+Definition 7.3 (Negative integer exponents). If x is invertible, for n ∈ N define
+x⁻ⁿ := (x⁻¹)ⁿ.
+
+Satz 7.4. (xⁿ)⁻¹ = (x⁻¹)ⁿ.
+
+Beweis. Induction, verifying that (x⁻¹)ⁿ is the two-sided inverse of xⁿ. ■
+
+Satz 7.5 (Laws of exponents extend to all integers). For invertible x, the exponent addition and exponent multiplication laws hold for all m,n ∈ Z.
+
+Beweis. Split into sign cases and reduce to natural exponents and inverse laws. ■
+
+Remark 7.6 (Rational and real exponents). Extending x^q to rational and real q requires analytic input beyond pure algebra—existence of roots, completeness, continuity, exponential and logarithmic functions.
+
+Chapter 8 — Floor and Ceiling
+
+Definition 8.1 (Archimedean ordered field). An ordered field S containing an isomorphic copy of Z is Archimedean iff
+∀x ∈ S ∃n ∈ Z (n > x).
+
+Satz 8.2 (Existence and uniqueness of the floor). If S is Archimedean, then for every x ∈ S there is a unique n ∈ Z with
+n ≤ x < n+1.
+
+Beweis. The set {m ∈ Z : m ≤ x} is nonempty and bounded above; take its greatest element. Uniqueness follows because two integers satisfying the inequalities must differ by less than one. ■
+
+Definition 8.3 (Floor and ceiling).
+⌊x⌋ := the unique n ∈ Z with n ≤ x < n+1.
+⌈x⌉ := the unique n ∈ Z with n−1 < x ≤ n.
+
+Satz 8.4 (Ceiling from floor). ⌈x⌉ = −⌊−x⌋.
+
+Beweis. Negate the floor inequalities for −x. ■
+
+Satz 8.5 (Idempotence and integer fixed points). For n ∈ Z:
+⌊n⌋ = n = ⌈n⌉.
+Consequently ⌊⌊x⌋⌋ = ⌊x⌋ and ⌈⌈x⌉⌉ = ⌈x⌉.
+
+Satz 8.6 (Monotonicity). x ≤ y ⇒ ⌊x⌋ ≤ ⌊y⌋ and ⌈x⌉ ≤ ⌈y⌉.
+
+Satz 8.7 (Floor/ceiling of a sum with an integer). For n ∈ Z:
+⌊x+n⌋ = ⌊x⌋+n;
+⌈x+n⌉ = ⌈x⌉+n.
+
+Satz 8.8 (Bounds for floor of a sum).
+⌊x⌋+⌊y⌋ ≤ ⌊x+y⌋ ≤ ⌊x⌋+⌊y⌋+1.
+
+Beweis. Add the inequalities defining ⌊x⌋ and ⌊y⌋ and split according as the fractional parts sum to less than one or at least one. ■
+
+Satz 8.9 (Equivalent floor characterization). n = ⌊x⌋ iff
+x−1 < n ≤ x.
+
+Definition 8.10 (Fractional part). {x} := x−⌊x⌋.
+
+Satz 8.11. 0 ≤ {x} < 1.
+
+Chapter 9 — Reference Table: The Complete Law Catalogue
+
+L0 Reflexivity (relation): xRx.
+L0′ Symmetry: xRy ⇒ yRx.
+L0″ Transitivity: xRy ∧ yRz ⇒ xRz.
+L1 Associativity: (x*y)*z = x*(y*z).
+L2 Commutativity: x*y = y*x.
+L3 Left identity: e*x = x.
+L4 Right identity: x*e = x.
+L5 Left absorbing element: z*x = z.
+L6 Right absorbing element: x*z = z.
+L7 Idempotence: x*x = x.
+L8 Left inverse: y*x = e.
+L9 Right inverse: x*y = e.
+L10 Left cancellation: x*y = x*z ⇒ y = z.
+L11 Right cancellation: y*x = z*x ⇒ y = z.
+L11′ Induced preorder: x ⪯ y iff ∃z(x*z = y).
+L12 Left distributivity: x(y+z) = xy+xz.
+L13 Right distributivity: (y+z)x = yx+zx.
+L14 No zero divisors: xy = 0 ⇒ x = 0 ∨ y = 0.
+L15 Order irreflexivity: ¬(x<x).
+L16 Order transitivity: x<y ∧ y<z ⇒ x<z.
+L17 Trichotomy: exactly one of <, =, >.
+L18 Translation invariance: x<y iff x+z<y+z.
+L19 Multiplicative compatibility: x,y>0 ⇒ xy>0.
+L20 Rule of signs: (−x)(−y)=xy and (−x)y=−(xy).
+L21 Triangle inequality: |x+y|≤|x|+|y|.
+L22 Exponent addition: xᵐxⁿ=xᵐ⁺ⁿ.
+L23 Exponent multiplication: (xᵐ)ⁿ=xᵐⁿ.
+L24 Power of product: (xy)ⁿ=xⁿyⁿ in the commutative case.
+L25 Floor characterization: n≤x<n+1.
+L26 Ceiling characterization: n−1<x≤n.
+L27 Floor–ceiling duality: ⌈x⌉=−⌊−x⌋.
+L28 Floor of sum bounds: ⌊x⌋+⌊y⌋≤⌊x+y⌋≤⌊x⌋+⌊y⌋+1.
+L29 Image of union: f(X∪Y)=f(X)∪f(Y).
+L30 Image of intersection: f(X∩Y)⊆f(X)∩f(Y).
+L31 Preimage of union: f⁻¹(U∪V)=f⁻¹(U)∪f⁻¹(V).
+L32 Preimage of intersection: f⁻¹(U∩V)=f⁻¹(U)∩f⁻¹(V).
+L33 Preimage of complement: f⁻¹(B∖U)=A∖f⁻¹(U).
+L34 Composition associativity: (h∘g)∘f=h∘(g∘f).
+
+Chapter 10 — Instantiation: Where N, Z, Q, R, C Sit in the Hierarchy
+
+Satz 10.1. (N,+) is a commutative cancellative semigroup without identity in Landau's original one-based construction, or a commutative cancellative monoid if 0 is included. It is not a group.
+
+Satz 10.2. (Z,+,×) is a commutative ring with unity 1 and an integral domain, but not a field.
+
+Satz 10.3. (Q,+,×,<) is an Archimedean ordered field but is not complete.
+
+Satz 10.4. (R,+,×,<) is a complete Archimedean ordered field; up to order- and operation-preserving isomorphism, it is the unique complete ordered field.
+
+Satz 10.5. (C,+,×) is a field and is algebraically closed, but admits no order making it an ordered field. Floor and ceiling are therefore undefined on C.
+
+■ End of omnibus.
