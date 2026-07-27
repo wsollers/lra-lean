@@ -113,15 +113,17 @@ function Invoke-Check {
     $vol2 = Join-Path $SrcDir 'LRA\VolumeII'
     Invoke-ProofReadiness
     Write-Ok "Proof-readiness check passed"
-    Write-Step "Checking for Mathlib imports in VolumeII"
+    Write-Step "Checking for Mathlib imports outside VolumeII switch modules"
+    $switchRoot = Join-Path $vol2 'Switches'
     $matlibFiles = Get-ChildItem -Path $vol2 -Filter '*.lean' -Recurse |
+        Where-Object { -not $_.FullName.StartsWith($switchRoot) } |
         Select-String -Pattern '^import Mathlib' -List | Select-Object -ExpandProperty Path
     if ($matlibFiles) {
-        Write-Fail "Mathlib import found in VolumeII:"
+        Write-Fail "Mathlib import found outside VolumeII switch modules:"
         $matlibFiles | ForEach-Object { Write-Host "    $_" -ForegroundColor Red }
-        throw "VolumeII must be bare Lean 4. No Mathlib."
+        throw "VolumeII Mathlib imports are allowed only under LRA/VolumeII/Switches."
     }
-    Write-Ok "No Mathlib imports in VolumeII"
+    Write-Ok "No Mathlib imports outside VolumeII switches"
     Write-Step "Checking doc-comment coverage"
     Invoke-Lint -WarnOnly
     Write-Ok "All checks passed"

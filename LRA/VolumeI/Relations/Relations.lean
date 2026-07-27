@@ -1,0 +1,38 @@
+import LRA.VolumeI.Set
+
+namespace LRA.VolumeI.Relations
+
+universe u v w
+
+/-- A unary relation, or predicate, on one carrier. -/
+abbrev UnaryRelation (alpha : LRA.VolumeI.Set.LRACarrier) :=
+  alpha -> Prop
+
+/-- A heterogeneous binary relation from one carrier to another. -/
+abbrev HeterogeneousBinaryRelation
+    (alpha beta : LRA.VolumeI.Set.LRACarrier) :=
+  alpha -> beta -> Prop
+
+/-- A homogeneous binary relation on one carrier. -/
+abbrev HomogeneousBinaryRelation (alpha : LRA.VolumeI.Set.LRACarrier) :=
+  HeterogeneousBinaryRelation alpha alpha
+
+/-- The common short name for a homogeneous binary relation. -/
+abbrev BinaryRelation (alpha : LRA.VolumeI.Set.LRACarrier) :=
+  HomogeneousBinaryRelation alpha
+
+/-- Compatibility synonym for a homogeneous binary relation. -/
+abbrev HomogeneousRelation (alpha : LRA.VolumeI.Set.LRACarrier) :=
+  HomogeneousBinaryRelation alpha
+
+/-- Compatibility synonym for a heterogeneous binary relation. -/
+abbrev HeterogeneousRelation
+    (alpha beta : LRA.VolumeI.Set.LRACarrier) :=
+  HeterogeneousBinaryRelation alpha beta
+
+/-- Compatibility synonym for a binary relation on one carrier. -/
+abbrev Endorelation (alpha : LRA.VolumeI.Set.LRACarrier) :=
+  HomogeneousBinaryRelation alpha
+
+end LRA.VolumeI.Relations
+

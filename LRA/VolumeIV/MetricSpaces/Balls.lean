@@ -1,7 +1,9 @@
-import LRA.VolumeIV.MetricSpaces.Balls.Basic
-
 /-!
-Metric-space ball material.
+Volume IV metric spaces: 
+Balls and bounded sets
+.
 
-This module collects metric ball definitions and theorems.
+This aggregate module is intentionally structural for now. Add imports only
+after the corresponding Lean declarations are proved and the TeX material is
+promoted through the active-content workflow.
 -/

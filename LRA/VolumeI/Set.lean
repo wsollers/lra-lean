@@ -1,7 +1,10 @@
+import LRA.VolumeI.Set.Set
+import LRA.VolumeI.Set.Products
 import LRA.VolumeI.Set.ZFC
 
 /-!
-Aggregate import shim for the `Set` layer as a whole (`Set/`): ZFC,
-built as a first-order theory over `Logic.FirstOrder`'s existing
+Aggregate import shim for the `Set` layer as a whole (`Set/`): basic
+model-backed set vocabulary, predicate-set tools, products, and ZFC as a
+first-order theory over `Logic.FirstOrder`'s existing
 `Signature`/`Model`/`Formula`/`Satisfies` machinery.
 -/
