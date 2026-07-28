@@ -21,5 +21,8 @@ lean_lib LRAVolumeIII where
 lean_lib LRAVolumeIV where
   roots := #[`LRA.VolumeIV]
 
+lean_lib LRAVolumeVI where
+  roots := #[`LRA.VolumeVI]
+
 lean_lib LRAVolumeVII where
   roots := #[`LRA.VolumeVII]

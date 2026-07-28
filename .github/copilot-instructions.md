@@ -29,3 +29,10 @@ Follow `AGENTS.md` in this repository as the local pointer wrapper. Do not
 treat this file as a local source of truth.
 
 Provider note: Keep provider-specific guidance concise and defer durable policy to canonical governance.
+
+<!-- mermaid-ai-skills:start -->
+## Mermaid Diagrams
+
+When the user asks to create, edit, or visualize a diagram, follow the
+instructions in `.github/instructions/mermaid.instructions.md`.
+<!-- mermaid-ai-skills:end -->

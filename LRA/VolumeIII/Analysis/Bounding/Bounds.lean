@@ -88,9 +88,16 @@ Bridge from the LRA supremum predicate to Mathlib's `IsLUB`.
 This is intentionally the only direct coupling point between this interface and
 Mathlib's bound vocabulary.
 -/
+#print IsSupremum
 theorem SupremumIffIsLUB [Preorder F] {s : F} {A : Set F} :
     IsSupremum s A <-> IsLUB A s := by
-  sorry
+  constructor
+  case mp =>
+    sorry
+  case mpr =>
+    sorry
+
+
 
 namespace Algebra
 

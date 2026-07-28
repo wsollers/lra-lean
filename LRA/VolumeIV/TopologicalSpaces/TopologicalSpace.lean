@@ -48,6 +48,23 @@ structure TopologicalSpaceDefinition where
   /-- The topology on the carrier. -/
   topology : TopologyDefinition Carrier
 
+/-- Source: Willard, `General Topology`, Definition 3.3.
+
+A subset of a topological space is closed when its complement is open.
+This declaration records the source-facing definition; later formal proofs may
+use Mathlib's `IsClosed` API directly.
+-/
+def ClosedSetDefinition {X : Type u} [TopologicalSpace X] (E : Set X) : Prop :=
+  IsOpen (Eᶜ)
+
+/-- Source-facing closed-set family associated to a topology.
+
+This names the family used in Willard's Theorem 3.4: the subsets whose
+complements are open.
+-/
+def ClosedSetFamilyOfTopology (X : Type u) [TopologicalSpace X] : Set (Set X) :=
+  {F | ClosedSetDefinition F}
+
 /-- Source: Willard, `General Topology`, Theorem 3.4.
 
 Closed sets in a topological space contain `X` and `∅`, are closed under
