@@ -27,14 +27,17 @@ On Windows:
 
 ```powershell
 .\build.ps1 docker-build
-.\build.ps1 build-all
+.\build.ps1 build
 ```
 
 Native builds are allowed when the pinned `lean-toolchain` is installed:
 
 ```bash
-lake build
+lake build LRAVolumeI LRAVolumeII LRAVolumeIII LRAVolumeIV LRAVolumeVI LRAVolumeVII LRATests
 ```
+
+Production Lean modules live under `LRA/`. Build-gated smoke and regression
+checks live under `test/` and are built through `LRATests`.
 
 ## Relationship to monorepo
 

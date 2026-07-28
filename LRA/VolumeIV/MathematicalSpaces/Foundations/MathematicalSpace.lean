@@ -11,6 +11,8 @@ namespace LRA.VolumeIV.MathematicalSpaces
 universe u
 
 /-- Reference data for a mathematical space as a carrier with specified
+
+Mathematical statement (Lean): `structure MathematicalSpaceDefinition`.
 structure. -/
 structure MathematicalSpaceDefinition where
   /-- The underlying carrier. -/

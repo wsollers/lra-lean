@@ -19,7 +19,11 @@ Lean module: LRA.VolumeII.ComplexNumbers.Model
 Verification status: definitions accepted; field laws pending
 -/
 
-/-- Totalized inverse for the first-order field language. -/
+
+/-- Totalized inverse for the first-order field language.
+
+Mathematical statement (Lean): `noncomputable def total_inverse (real_model : RealModel) (value : ComplexNumber real_model) : ComplexNumber real_model`.
+-/
 noncomputable def total_inverse
     (real_model : RealModel)
     (value : ComplexNumber real_model) : ComplexNumber real_model :=
@@ -31,7 +35,11 @@ noncomputable def total_inverse
       else
         zero real_model
 
-/-- The constructed complex numbers as a field operation bundle. -/
+
+/-- The constructed complex numbers as a field operation bundle.
+
+Mathematical statement (Lean): `noncomputable def complexNumbersSignature (real_model : RealModel) : FieldSignature`.
+-/
 noncomputable def complexNumbersSignature
     (real_model : RealModel) : FieldSignature where
   carrier := ComplexNumber real_model
@@ -42,7 +50,11 @@ noncomputable def complexNumbersSignature
   multiplication := multiplication real_model
   inverse := total_inverse real_model
 
-/-- The constructed complex numbers as a first-order model of the field signature. -/
+
+/-- The constructed complex numbers as a first-order model of the field signature.
+
+Mathematical statement (Lean): `noncomputable def complexNumbersModel (real_model : RealModel) : LRA.VolumeI.Logic.FirstOrder.Model fieldSignature`.
+-/
 noncomputable def complexNumbersModel
     (real_model : RealModel) :
     LRA.VolumeI.Logic.FirstOrder.Model fieldSignature :=

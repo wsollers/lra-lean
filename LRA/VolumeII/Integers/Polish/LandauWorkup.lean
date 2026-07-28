@@ -19,17 +19,31 @@ recursion uniqueness, additive algebra, negation algebra, and first
 multiplicative clauses needed for a Landau-style integer workup.
 -/
 
+/--
+**[Theorem — succ_injective]**
+
+Mathematical statement (Lean): `theorem succ_injective {x y : Z} (successorEquality : succ x = succ y) : x = y`.
+-/
 theorem succ_injective {x y : Z} (successorEquality : succ x = succ y) : x = y := by
   have inverseEquality := congrArg pred successorEquality
   rw [pred_succ, pred_succ] at inverseEquality
   exact inverseEquality
 
+/--
+**[Theorem — pred_injective]**
+
+Mathematical statement (Lean): `theorem pred_injective {x y : Z} (predecessorEquality : pred x = pred y) : x = y`.
+-/
 theorem pred_injective {x y : Z} (predecessorEquality : pred x = pred y) : x = y := by
   have inverseEquality := congrArg succ predecessorEquality
   rw [succ_pred, succ_pred] at inverseEquality
   exact inverseEquality
 
-/-- Two-sided induction, proved from the structural definition of `Z`. -/
+
+/-- Two-sided induction, proved from the structural definition of `Z`.
+
+Mathematical statement (Lean): `theorem twoSidedInduction (A : Z → Prop) (zeroCase : A Z.zero) (succStep : ∀ x, A x → A (succ x)) (predStep : ∀ x, A x → A (pred x)) : ∀ x, A x`.
+-/
 theorem twoSidedInduction
     (A : Z → Prop)
     (zeroCase : A Z.zero)
@@ -48,7 +62,11 @@ theorem twoSidedInduction
       | predZero => exact predStep Z.zero zeroCase
       | pred n' ih => exact predStep (Z.neg n') ih
 
-/-- Recursion into a two-sided successor target is unique. -/
+
+/-- Recursion into a two-sided successor target is unique.
+
+Mathematical statement (Lean): `theorem recursion_unique {α : Type} (a0 : α) (stepSucc stepPred : α → α) (firstFunction secondFunction : Z → α) (firstFunction_zero : firstFunction Z.zero = a0) (firstFunction_succ : ∀ x, firstFunction (succ x) = stepSucc (firstFunction x)) (firstFunction_p...`.
+-/
 theorem recursion_unique {α : Type}
     (a0 : α)
     (stepSucc stepPred : α → α)
@@ -67,11 +85,26 @@ theorem recursion_unique {α : Type}
   · intro x inductionHypothesis
     rw [firstFunction_pred, secondFunction_pred, inductionHypothesis]
 
+/--
+**[Theorem — add_zero]**
+
+Mathematical statement (Lean): `theorem add_zero (x : Z) : x + Z.zero = x`.
+-/
 theorem add_zero (x : Z) : x + Z.zero = x := rfl
 
+/--
+**[Theorem — succ_pred_comm]**
+
+Mathematical statement (Lean): `theorem succ_pred_comm (w : Z) : succ (pred w) = pred (succ w)`.
+-/
 theorem succ_pred_comm (w : Z) : succ (pred w) = pred (succ w) := by
   rw [succ_pred, pred_succ]
 
+/--
+**[Theorem — zero_add]**
+
+Mathematical statement (Lean): `theorem zero_add (x : Z) : Z.zero + x = x`.
+-/
 theorem zero_add (x : Z) : Z.zero + x = x := by
   apply twoSidedInduction (fun x => Z.zero + x = x)
   · rfl
@@ -80,6 +113,11 @@ theorem zero_add (x : Z) : Z.zero + x = x := by
   · intro x ih
     rw [add_pred, ih]
 
+/--
+**[Theorem — succ_add]**
+
+Mathematical statement (Lean): `theorem succ_add (x y : Z) : succ x + y = succ (x + y)`.
+-/
 theorem succ_add (x y : Z) : succ x + y = succ (x + y) := by
   revert y
   apply twoSidedInduction
@@ -89,6 +127,11 @@ theorem succ_add (x y : Z) : succ x + y = succ (x + y) := by
   · intro y ih
     rw [add_pred, ih, add_pred, succ_pred_comm]
 
+/--
+**[Theorem — pred_add]**
+
+Mathematical statement (Lean): `theorem pred_add (x y : Z) : pred x + y = pred (x + y)`.
+-/
 theorem pred_add (x y : Z) : pred x + y = pred (x + y) := by
   revert y
   apply twoSidedInduction
@@ -98,6 +141,11 @@ theorem pred_add (x y : Z) : pred x + y = pred (x + y) := by
   · intro y ih
     rw [add_pred, ih, add_pred]
 
+/--
+**[Theorem — add_comm]**
+
+Mathematical statement (Lean): `theorem add_comm (x y : Z) : x + y = y + x`.
+-/
 theorem add_comm (x y : Z) : x + y = y + x := by
   revert y
   apply twoSidedInduction
@@ -107,6 +155,11 @@ theorem add_comm (x y : Z) : x + y = y + x := by
   · intro y ih
     rw [add_pred, ih, pred_add]
 
+/--
+**[Theorem — add_assoc]**
+
+Mathematical statement (Lean): `theorem add_assoc (x y z : Z) : (x + y) + z = x + (y + z)`.
+-/
 theorem add_assoc (x y z : Z) : (x + y) + z = x + (y + z) := by
   revert z
   apply twoSidedInduction
@@ -116,8 +169,18 @@ theorem add_assoc (x y z : Z) : (x + y) + z = x + (y + z) := by
   · intro z ih
     rw [add_pred, add_pred, ih, add_pred]
 
+/--
+**[Theorem — neg_zero]**
+
+Mathematical statement (Lean): `theorem neg_zero : (-Z.zero : Z) = Z.zero`.
+-/
 theorem neg_zero : (-Z.zero : Z) = Z.zero := rfl
 
+/--
+**[Theorem — neg_succ]**
+
+Mathematical statement (Lean): `theorem neg_succ (x : Z) : -(succ x) = pred (-x)`.
+-/
 theorem neg_succ (x : Z) : -(succ x) = pred (-x) := by
   cases x with
   | zero => rfl
@@ -127,6 +190,11 @@ theorem neg_succ (x : Z) : -(succ x) = pred (-x) := by
       | predZero => rfl
       | pred n' => rfl
 
+/--
+**[Theorem — neg_pred]**
+
+Mathematical statement (Lean): `theorem neg_pred (x : Z) : -(pred x) = succ (-x)`.
+-/
 theorem neg_pred (x : Z) : -(pred x) = succ (-x) := by
   cases x with
   | zero => rfl
@@ -136,6 +204,11 @@ theorem neg_pred (x : Z) : -(pred x) = succ (-x) := by
       | succ p' => rfl
   | neg n => rfl
 
+/--
+**[Theorem — neg_neg]**
+
+Mathematical statement (Lean): `theorem neg_neg (x : Z) : -(-x) = x`.
+-/
 theorem neg_neg (x : Z) : -(-x) = x := by
   apply twoSidedInduction (fun x => -(-x) = x)
   · rfl
@@ -144,6 +217,11 @@ theorem neg_neg (x : Z) : -(-x) = x := by
   · intro x ih
     rw [neg_pred, neg_succ, ih]
 
+/--
+**[Theorem — add_neg_self]**
+
+Mathematical statement (Lean): `theorem add_neg_self (x : Z) : x + (-x) = Z.zero`.
+-/
 theorem add_neg_self (x : Z) : x + (-x) = Z.zero := by
   apply twoSidedInduction (fun x => x + (-x) = Z.zero)
   · rfl
@@ -152,9 +230,19 @@ theorem add_neg_self (x : Z) : x + (-x) = Z.zero := by
   · intro x ih
     rw [neg_pred, add_succ, pred_add, ih, succ_pred]
 
+/--
+**[Theorem — neg_add_self]**
+
+Mathematical statement (Lean): `theorem neg_add_self (x : Z) : (-x) + x = Z.zero`.
+-/
 theorem neg_add_self (x : Z) : (-x) + x = Z.zero := by
   rw [add_comm, add_neg_self]
 
+/--
+**[Theorem — neg_add]**
+
+Mathematical statement (Lean): `theorem neg_add (x y : Z) : -(x + y) = (-x) + (-y)`.
+-/
 theorem neg_add (x y : Z) : -(x + y) = (-x) + (-y) := by
   revert y
   apply twoSidedInduction
@@ -164,6 +252,11 @@ theorem neg_add (x y : Z) : -(x + y) = (-x) + (-y) := by
   · intro y ih
     rw [add_pred, neg_pred, ih, neg_pred, add_succ]
 
+/--
+**[Theorem — mul_succ]**
+
+Mathematical statement (Lean): `theorem mul_succ (x y : Z) : x * succ y = x * y + x`.
+-/
 theorem mul_succ (x y : Z) : x * succ y = x * y + x := by
   cases y with
   | zero =>
@@ -179,6 +272,11 @@ theorem mul_succ (x y : Z) : x * succ y = x * y + x := by
           show x * Z.neg n' = x * Z.neg (N.pred n') + x
           rw [mul_neg_pred, add_assoc, neg_add_self, add_zero]
 
+/--
+**[Theorem — mul_pred]**
+
+Mathematical statement (Lean): `theorem mul_pred (x y : Z) : x * pred y = x * y + (-x)`.
+-/
 theorem mul_pred (x y : Z) : x * pred y = x * y + (-x) := by
   cases y with
   | zero =>
@@ -194,6 +292,11 @@ theorem mul_pred (x y : Z) : x * pred y = x * y + (-x) := by
           rw [mul_pos_succ, add_assoc, add_neg_self, add_zero]
   | neg n => exact mul_neg_pred x n
 
+/--
+**[Theorem — zero_mul]**
+
+Mathematical statement (Lean): `theorem zero_mul (x : Z) : Z.zero * x = Z.zero`.
+-/
 theorem zero_mul (x : Z) : Z.zero * x = Z.zero := by
   apply twoSidedInduction (fun x => Z.zero * x = Z.zero)
   · rfl
@@ -202,19 +305,44 @@ theorem zero_mul (x : Z) : Z.zero * x = Z.zero := by
   · intro x ih
     rw [mul_pred, ih, neg_zero, add_zero]
 
+/--
+**[Def — one]**
+
+Mathematical statement (Lean): `def one : Z`.
+-/
 def one : Z := Z.pos P.succZero
 
+/--
+**[Theorem — add_one]**
+
+Mathematical statement (Lean): `theorem add_one (x : Z) : x + one = succ x`.
+-/
 theorem add_one (x : Z) : x + one = succ x := by
   show x + succ Z.zero = succ x
   rw [add_succ, add_zero]
 
+/--
+**[Theorem — neg_one_eq]**
+
+Mathematical statement (Lean): `theorem neg_one_eq : (-one : Z) = pred Z.zero`.
+-/
 theorem neg_one_eq : (-one : Z) = pred Z.zero := by
   show -(succ Z.zero) = pred Z.zero
   rw [neg_succ, neg_zero]
 
+/--
+**[Theorem — add_neg_one]**
+
+Mathematical statement (Lean): `theorem add_neg_one (x : Z) : x + (-one) = pred x`.
+-/
 theorem add_neg_one (x : Z) : x + (-one) = pred x := by
   rw [neg_one_eq, add_pred, add_zero]
 
+/--
+**[Theorem — one_mul]**
+
+Mathematical statement (Lean): `theorem one_mul (x : Z) : one * x = x`.
+-/
 theorem one_mul (x : Z) : one * x = x := by
   apply twoSidedInduction (fun x => one * x = x)
   · rfl
@@ -223,6 +351,11 @@ theorem one_mul (x : Z) : one * x = x := by
   · intro x ih
     rw [mul_pred, ih, add_neg_one]
 
+/--
+**[Theorem — succ_mul]**
+
+Mathematical statement (Lean): `theorem succ_mul (x y : Z) : succ x * y = x * y + y`.
+-/
 theorem succ_mul (x y : Z) : succ x * y = x * y + y := by
   revert y
   apply twoSidedInduction
@@ -235,6 +368,11 @@ theorem succ_mul (x y : Z) : succ x * y = x * y + y := by
       add_comm y (-x), ← add_assoc, ← add_pred
     ]
 
+/--
+**[Theorem — pred_mul]**
+
+Mathematical statement (Lean): `theorem pred_mul (x y : Z) : pred x * y = x * y + (-y)`.
+-/
 theorem pred_mul (x y : Z) : pred x * y = x * y + (-y) := by
   revert y
   apply twoSidedInduction
@@ -250,6 +388,11 @@ theorem pred_mul (x y : Z) : pred x * y = x * y + (-y) := by
       add_assoc, add_comm (-y) (-x), ← add_assoc
     ]
 
+/--
+**[Theorem — mul_comm]**
+
+Mathematical statement (Lean): `theorem mul_comm (x y : Z) : x * y = y * x`.
+-/
 theorem mul_comm (x y : Z) : x * y = y * x := by
   apply twoSidedInduction (fun y => x * y = y * x)
   · rw [mul_zero, zero_mul]
@@ -258,10 +401,19 @@ theorem mul_comm (x y : Z) : x * y = y * x := by
   · intro y ih
     rw [mul_pred, ih, pred_mul]
 
-/-- Rearrangement helper: `(a+b)+(c+d) = (a+c)+(b+d)`. -/
+
+/-- Rearrangement helper: `(a+b)+(c+d) = (a+c)+(b+d)`.
+
+Mathematical statement (Lean): `theorem add_add_comm (a b c d : Z) : (a + b) + (c + d) = (a + c) + (b + d)`.
+-/
 theorem add_add_comm (a b c d : Z) : (a + b) + (c + d) = (a + c) + (b + d) := by
   rw [add_assoc, ← add_assoc b c d, add_comm b c, add_assoc, ← add_assoc]
 
+/--
+**[Theorem — distrib_right]**
+
+Mathematical statement (Lean): `theorem distrib_right (a b c : Z) : (a + b) * c = a * c + b * c`.
+-/
 theorem distrib_right (a b c : Z) : (a + b) * c = a * c + b * c := by
   revert c
   apply twoSidedInduction
@@ -271,9 +423,19 @@ theorem distrib_right (a b c : Z) : (a + b) * c = a * c + b * c := by
   · intro c ih
     rw [mul_pred, ih, mul_pred, mul_pred, neg_add, add_add_comm]
 
+/--
+**[Theorem — distrib_left]**
+
+Mathematical statement (Lean): `theorem distrib_left (a b c : Z) : a * (b + c) = a * b + a * c`.
+-/
 theorem distrib_left (a b c : Z) : a * (b + c) = a * b + a * c := by
   rw [mul_comm a (b + c), distrib_right, mul_comm b a, mul_comm c a]
 
+/--
+**[Theorem — mul_neg]**
+
+Mathematical statement (Lean): `theorem mul_neg (x y : Z) : x * (-y) = -(x * y)`.
+-/
 theorem mul_neg (x y : Z) : x * (-y) = -(x * y) := by
   apply twoSidedInduction (fun y => x * (-y) = -(x * y))
   · rw [neg_zero, mul_zero]
@@ -283,9 +445,19 @@ theorem mul_neg (x y : Z) : x * (-y) = -(x * y) := by
   · intro y ih
     rw [neg_pred, mul_succ, ih, mul_pred, neg_add, neg_neg]
 
+/--
+**[Theorem — neg_mul]**
+
+Mathematical statement (Lean): `theorem neg_mul (x y : Z) : (-x) * y = -(x * y)`.
+-/
 theorem neg_mul (x y : Z) : (-x) * y = -(x * y) := by
   rw [mul_comm, mul_neg, mul_comm]
 
+/--
+**[Theorem — mul_assoc]**
+
+Mathematical statement (Lean): `theorem mul_assoc (x y z : Z) : (x * y) * z = x * (y * z)`.
+-/
 theorem mul_assoc (x y z : Z) : (x * y) * z = x * (y * z) := by
   revert z
   apply twoSidedInduction
@@ -295,31 +467,64 @@ theorem mul_assoc (x y z : Z) : (x * y) * z = x * (y * z) := by
   · intro z ih
     rw [mul_pred, ih, mul_pred, distrib_left, ← mul_neg]
 
-/-- `Pos z` means `z` lies on the positive ray. -/
+
+/-- `Pos z` means `z` lies on the positive ray.
+
+Mathematical statement (Lean): `def Pos (z : Z) : Prop`.
+-/
 def Pos (z : Z) : Prop := ∃ p : P, z = Z.pos p
 
-/-- `IsNeg z` means `z` lies on the negative ray. -/
+
+/-- `IsNeg z` means `z` lies on the negative ray.
+
+Mathematical statement (Lean): `def IsNeg (z : Z) : Prop`.
+-/
 def IsNeg (z : Z) : Prop := ∃ n : N, z = Z.neg n
 
+/--
+**[Theorem — not_pos_zero]**
+
+Mathematical statement (Lean): `theorem not_pos_zero : ¬ Pos Z.zero`.
+-/
 theorem not_pos_zero : ¬ Pos Z.zero := by
   rintro ⟨p, hp⟩
   injection hp
 
+/--
+**[Theorem — not_isNeg_zero]**
+
+Mathematical statement (Lean): `theorem not_isNeg_zero : ¬ IsNeg Z.zero`.
+-/
 theorem not_isNeg_zero : ¬ IsNeg Z.zero := by
   rintro ⟨n, hn⟩
   injection hn
 
+/--
+**[Theorem — not_pos_and_isNeg]**
+
+Mathematical statement (Lean): `theorem not_pos_and_isNeg (z : Z) : ¬ (Pos z ∧ IsNeg z)`.
+-/
 theorem not_pos_and_isNeg (z : Z) : ¬ (Pos z ∧ IsNeg z) := by
   rintro ⟨⟨p, hp⟩, ⟨n, hn⟩⟩
   rw [hp] at hn
   injection hn
 
+/--
+**[Theorem — trichotomy]**
+
+Mathematical statement (Lean): `theorem trichotomy (z : Z) : z = Z.zero ∨ Pos z ∨ IsNeg z`.
+-/
 theorem trichotomy (z : Z) : z = Z.zero ∨ Pos z ∨ IsNeg z := by
   cases z with
   | zero => exact Or.inl rfl
   | pos p => exact Or.inr (Or.inl ⟨p, rfl⟩)
   | neg n => exact Or.inr (Or.inr ⟨n, rfl⟩)
 
+/--
+**[Theorem — pos_add]**
+
+Mathematical statement (Lean): `theorem pos_add {x y : Z} (leftPositive : Pos x) (rightPositive : Pos y) : Pos (x + y)`.
+-/
 theorem pos_add {x y : Z} (leftPositive : Pos x) (rightPositive : Pos y) : Pos (x + y) := by
   obtain ⟨leftPositiveRay, rfl⟩ := leftPositive
   induction leftPositiveRay with
@@ -340,6 +545,11 @@ theorem pos_add {x y : Z} (leftPositive : Pos x) (rightPositive : Pos y) : Pos (
       ]
       rfl
 
+/--
+**[Theorem — isNeg_neg_of_pos]**
+
+Mathematical statement (Lean): `theorem isNeg_neg_of_pos {x : Z} (positiveInput : Pos x) : IsNeg (-x)`.
+-/
 theorem isNeg_neg_of_pos {x : Z} (positiveInput : Pos x) : IsNeg (-x) := by
   obtain ⟨positiveRay, rfl⟩ := positiveInput
   induction positiveRay with
@@ -357,6 +567,11 @@ theorem isNeg_neg_of_pos {x : Z} (positiveInput : Pos x) : IsNeg (-x) := by
         ]
         rfl⟩
 
+/--
+**[Theorem — pos_neg_of_isNeg]**
+
+Mathematical statement (Lean): `theorem pos_neg_of_isNeg {x : Z} (negativeInput : IsNeg x) : Pos (-x)`.
+-/
 theorem pos_neg_of_isNeg {x : Z} (negativeInput : IsNeg x) : Pos (-x) := by
   obtain ⟨negativeRay, rfl⟩ := negativeInput
   induction negativeRay with
@@ -374,6 +589,11 @@ theorem pos_neg_of_isNeg {x : Z} (negativeInput : IsNeg x) : Pos (-x) := by
         ]
         rfl⟩
 
+/--
+**[Theorem — pos_neg_iff_isNeg]**
+
+Mathematical statement (Lean): `theorem pos_neg_iff_isNeg (x : Z) : Pos (-x) ↔ IsNeg x`.
+-/
 theorem pos_neg_iff_isNeg (x : Z) : Pos (-x) ↔ IsNeg x := by
   constructor
   · intro negatedInputIsPositive
@@ -390,27 +610,57 @@ theorem pos_neg_iff_isNeg (x : Z) : Pos (-x) ↔ IsNeg x := by
     · exact inputIsNegative
   · exact pos_neg_of_isNeg
 
+/--
+**[Def — lt]**
+
+Mathematical statement (Lean): `def lt (x y : Z) : Prop`.
+-/
 def lt (x y : Z) : Prop := Pos (y + (-x))
 
 instance : LT Z where
   lt := lt
 
+/--
+**[Def — le]**
+
+Mathematical statement (Lean): `def le (x y : Z) : Prop`.
+-/
 def le (x y : Z) : Prop := x = y ∨ x < y
 
 instance : LE Z where
   le := le
 
+/--
+**[Theorem — lt_def]**
+
+Mathematical statement (Lean): `theorem lt_def (x y : Z) : x < y ↔ Pos (y + (-x))`.
+-/
 theorem lt_def (x y : Z) : x < y ↔ Pos (y + (-x)) := Iff.rfl
 
+/--
+**[Theorem — pos_of_zero_lt]**
+
+Mathematical statement (Lean): `theorem pos_of_zero_lt (x : Z) : Z.zero < x → Pos x`.
+-/
 theorem pos_of_zero_lt (x : Z) : Z.zero < x → Pos x := by
   intro h
   rw [lt_def, neg_zero, add_zero] at h
   exact h
 
+/--
+**[Theorem — lt_irrefl]**
+
+Mathematical statement (Lean): `theorem lt_irrefl (x : Z) : ¬ x < x`.
+-/
 theorem lt_irrefl (x : Z) : ¬ x < x := by
   rw [lt_def, add_neg_self]
   exact not_pos_zero
 
+/--
+**[Theorem — lt_trans]**
+
+Mathematical statement (Lean): `theorem lt_trans {x y z : Z} (firstLessSecond : x < y) (secondLessThird : y < z) : x < z`.
+-/
 theorem lt_trans {x y z : Z} (firstLessSecond : x < y) (secondLessThird : y < z) : x < z := by
   have positiveSum := pos_add firstLessSecond secondLessThird
   have collapsedDifferenceEquality : (y + (-x)) + (z + (-y)) = z + (-x) := by
@@ -425,6 +675,11 @@ theorem lt_trans {x y z : Z} (firstLessSecond : x < y) (secondLessThird : y < z)
   rw [collapsedDifferenceEquality] at positiveSum
   exact positiveSum
 
+/--
+**[Theorem — lt_trichotomy]**
+
+Mathematical statement (Lean): `theorem lt_trichotomy (x y : Z) : x < y ∨ x = y ∨ y < x`.
+-/
 theorem lt_trichotomy (x y : Z) : x < y ∨ x = y ∨ y < x := by
   rcases trichotomy (y + (-x)) with differenceIsZero | differenceIsPositive | differenceIsNegative
   · right
@@ -448,14 +703,29 @@ theorem lt_trichotomy (x y : Z) : x < y ∨ x = y ∨ y < x := by
     rw [lt_def, ← negatedDifferenceEquality]
     exact negativeDifferenceBecomesPositive
 
+/--
+**[Theorem — lt_succ_self]**
+
+Mathematical statement (Lean): `theorem lt_succ_self (x : Z) : x < succ x`.
+-/
 theorem lt_succ_self (x : Z) : x < succ x := by
   rw [lt_def, succ_add, add_neg_self]
   exact ⟨P.succZero, rfl⟩
 
+/--
+**[Theorem — pred_lt_self]**
+
+Mathematical statement (Lean): `theorem pred_lt_self (x : Z) : pred x < x`.
+-/
 theorem pred_lt_self (x : Z) : pred x < x := by
   rw [lt_def, neg_pred, add_succ, add_neg_self]
   exact ⟨P.succZero, rfl⟩
 
+/--
+**[Theorem — add_lt_add_right]**
+
+Mathematical statement (Lean): `theorem add_lt_add_right {x y : Z} (firstLessSecond : x < y) (z : Z) : x + z < y + z`.
+-/
 theorem add_lt_add_right {x y : Z} (firstLessSecond : x < y) (z : Z) : x + z < y + z := by
   have translatedDifferenceEquality : (y + z) + -(x + z) = y + -x := by
     rw [neg_add]
@@ -469,16 +739,36 @@ theorem add_lt_add_right {x y : Z} (firstLessSecond : x < y) (z : Z) : x + z < y
   rw [lt_def, translatedDifferenceEquality]
   exact firstLessSecond
 
+/--
+**[Theorem — le_iff]**
+
+Mathematical statement (Lean): `theorem le_iff (x y : Z) : x ≤ y ↔ x = y ∨ x < y`.
+-/
 theorem le_iff (x y : Z) : x ≤ y ↔ x = y ∨ x < y := Iff.rfl
 
+/--
+**[Theorem — le_refl]**
+
+Mathematical statement (Lean): `theorem le_refl (x : Z) : x ≤ x`.
+-/
 theorem le_refl (x : Z) : x ≤ x := Or.inl rfl
 
+/--
+**[Theorem — lt_of_le_of_lt]**
+
+Mathematical statement (Lean): `theorem lt_of_le_of_lt {x y z : Z} (firstLeSecond : x ≤ y) (secondLessThird : y < z) : x < z`.
+-/
 theorem lt_of_le_of_lt {x y z : Z} (firstLeSecond : x ≤ y) (secondLessThird : y < z) :
     x < z := by
   rcases firstLeSecond with rfl | firstLessSecond
   · exact secondLessThird
   · exact lt_trans firstLessSecond secondLessThird
 
+/--
+**[Theorem — le_antisymm]**
+
+Mathematical statement (Lean): `theorem le_antisymm {x y : Z} (firstLeSecond : x ≤ y) (secondLeFirst : y ≤ x) : x = y`.
+-/
 theorem le_antisymm {x y : Z} (firstLeSecond : x ≤ y) (secondLeFirst : y ≤ x) : x = y := by
   rcases firstLeSecond with rfl | firstLessSecond
   · rfl
@@ -486,6 +776,11 @@ theorem le_antisymm {x y : Z} (firstLeSecond : x ≤ y) (secondLeFirst : y ≤ x
     · rfl
     · exact absurd (lt_trans firstLessSecond secondLessFirst) (lt_irrefl x)
 
+/--
+**[Theorem — pos_mul]**
+
+Mathematical statement (Lean): `theorem pos_mul {x y : Z} (leftPositive : Pos x) (rightPositive : Pos y) : Pos (x * y)`.
+-/
 theorem pos_mul {x y : Z} (leftPositive : Pos x) (rightPositive : Pos y) : Pos (x * y) := by
   obtain ⟨leftPositiveRay, rfl⟩ := leftPositive
   induction leftPositiveRay with
@@ -498,6 +793,11 @@ theorem pos_mul {x y : Z} (leftPositive : Pos x) (rightPositive : Pos y) : Pos (
       rw [show Z.pos (P.succ previousPositiveRay) = succ (Z.pos previousPositiveRay) from rfl, succ_mul]
       exact pos_add inductionHypothesis rightPositive
 
+/--
+**[Theorem — mul_lt_mul_pos_right]**
+
+Mathematical statement (Lean): `theorem mul_lt_mul_pos_right {x y z : Z} (firstLessSecond : x < y) (multiplierPositive : Pos z) : x * z < y * z`.
+-/
 theorem mul_lt_mul_pos_right {x y z : Z} (firstLessSecond : x < y) (multiplierPositive : Pos z) :
     x * z < y * z := by
   have productDifferencePositive := pos_mul firstLessSecond multiplierPositive

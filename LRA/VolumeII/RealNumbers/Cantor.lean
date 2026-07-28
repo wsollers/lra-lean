@@ -17,12 +17,22 @@ Verification status: statement-accepted-proof-pending
 
 open LRA.VolumeI.Algebra.Models
 
+/--
+**[Structure — EndpointInterval]**
+
+Mathematical statement (Lean): `structure EndpointInterval (rational_model : RationalModel)`.
+-/
 structure EndpointInterval (rational_model : RationalModel) where
   lower : rational_model.signature.carrier
   upper : rational_model.signature.carrier
   lower_le_upper :
     rational_model.signature.nonstrict_order lower upper
 
+/--
+**[Structure — NestedIntervalSequence]**
+
+Mathematical statement (Lean): `structure NestedIntervalSequence (rational_model : RationalModel)`.
+-/
 structure NestedIntervalSequence (rational_model : RationalModel) where
   interval : Nat → EndpointInterval rational_model
   nested :
@@ -41,6 +51,11 @@ structure NestedIntervalSequence (rational_model : RationalModel) where
               (rational_model.signature.negation (interval index).lower))
             positive_tolerance
 
+/--
+**[Def — endpoint_equivalent]**
+
+Mathematical statement (Lean): `def endpoint_equivalent (rational_model : RationalModel) (first second : NestedIntervalSequence rational_model) : Prop`.
+-/
 def endpoint_equivalent
     (rational_model : RationalModel)
     (first second : NestedIntervalSequence rational_model) : Prop :=
@@ -53,19 +68,43 @@ def endpoint_equivalent
             (rational_model.signature.negation (second.interval index).upper))
           tolerance
 
+/--
+**[Theorem — endpoint_equivalent_is_equivalence]**
+
+Mathematical statement (Lean): `theorem endpoint_equivalent_is_equivalence (rational_model : RationalModel) : Equivalence (endpoint_equivalent rational_model)`.
+
+*Proof status:* proof pending
+-/
 theorem endpoint_equivalent_is_equivalence
     (rational_model : RationalModel) :
     Equivalence (endpoint_equivalent rational_model) := by
   sorry
 
+/--
+**[Def — setoid]**
+
+Mathematical statement (Lean): `def setoid (rational_model : RationalModel) : Setoid (NestedIntervalSequence rational_model)`.
+-/
 def setoid (rational_model : RationalModel) :
     Setoid (NestedIntervalSequence rational_model) where
   r := endpoint_equivalent rational_model
   iseqv := endpoint_equivalent_is_equivalence rational_model
 
+/--
+**[Abbrev — Carrier]**
+
+Mathematical statement (Lean): `abbrev Carrier (rational_model : RationalModel)`.
+-/
 abbrev Carrier (rational_model : RationalModel) :=
   Quotient (setoid rational_model)
 
+/--
+**[Theorem — cantor_reals_are_isomorphic_to_cauchy_reals]**
+
+Mathematical statement (Lean): `theorem cantor_reals_are_isomorphic_to_cauchy_reals (rational_model : RationalModel) (metric_data : Cauchy.RationalMetricData rational_model) : ∃ comparison : Carrier rational_model → Cauchy.Carrier rational_model metric_data, ∀ first second, comparison fir...`.
+
+*Proof status:* proof pending
+-/
 theorem cantor_reals_are_isomorphic_to_cauchy_reals
     (rational_model : RationalModel)
     (metric_data : Cauchy.RationalMetricData rational_model) :

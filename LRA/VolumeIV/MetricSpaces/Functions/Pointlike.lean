@@ -16,6 +16,8 @@ variable {X : Type u} [MetricSpace X]
 
 The point function determined by `z` sends `x` to the nonnegative real distance
 `dist z x`.
+
+Mathematical statement (Lean): `def pointFunction (z : X) : X → NNReal`.
 -/
 def pointFunction (z : X) : X → NNReal :=
   fun x => NNReal.mk (dist z x) dist_nonneg
@@ -23,11 +25,21 @@ def pointFunction (z : X) : X → NNReal :=
 -- The source treats point functions as ℝ_{\ge 0}-valued. Mathlib's `dist`
 -- is Real-valued, so `dist_nonneg` packages each distance as an `NNReal`.
 
+/--
+**[Theorem — coe_pointFunction]**
+
+Mathematical statement (Lean): `theorem coe_pointFunction (z x : X) : ((pointFunction z x : NNReal) : Real) = dist z x`.
+-/
 @[simp]
 theorem coe_pointFunction (z x : X) :
     ((pointFunction z x : NNReal) : Real) = dist z x := by
   rfl
 
+/--
+**[Theorem — pointFunction_self]**
+
+Mathematical statement (Lean): `theorem pointFunction_self (z : X) : pointFunction z z = 0`.
+-/
 @[simp]
 theorem pointFunction_self (z : X) :
     pointFunction z z = 0 := by
@@ -36,6 +48,8 @@ theorem pointFunction_self (z : X) :
 /-- Source: `def:metric-point-function`.
 
 The set of all point functions on a metric space.
+
+Mathematical statement (Lean): `def pointFunctions (X : Type u) [MetricSpace X] : Set (X → NNReal)`.
 -/
 def pointFunctions (X : Type u) [MetricSpace X] : Set (X → NNReal) :=
   Set.range (pointFunction (X := X))
@@ -45,13 +59,19 @@ def pointFunctions (X : Type u) [MetricSpace X] : Set (X → NNReal) :=
 A nonnegative-real-valued function is pointlike when it satisfies the two metric
 inequalities from the source text. The subtraction and addition are interpreted
 in `Real` after coercing from `NNReal`.
+
+Mathematical statement (Lean): `def Pointlike (u : X → NNReal) : Prop`.
 -/
 def Pointlike (u : X → NNReal) : Prop :=
   ∀ a b : X,
     (u a : Real) - (u b : Real) ≤ dist a b ∧
       dist a b ≤ (u a : Real) + (u b : Real)
 
-/-- A point function belongs to the set of point functions. -/
+
+/-- A point function belongs to the set of point functions.
+
+Mathematical statement (Lean): `theorem pointFunction_mem_pointFunctions (z : X) : pointFunction z ∈ pointFunctions X`.
+-/
 theorem pointFunction_mem_pointFunctions (z : X) :
     pointFunction z ∈ pointFunctions X :=
   ⟨z, rfl⟩
@@ -60,6 +80,8 @@ theorem pointFunction_mem_pointFunctions (z : X) :
 
 The assignment `z ↦ δ_z`, regarded as a map into the set of point functions, is
 bijective.
+
+Mathematical statement (Lean): `theorem point_functions_identify_points : Function.Bijective (fun z : X => (⟨pointFunction z, pointFunction_mem_pointFunctions z⟩ : {u : X → NNReal // u ∈ pointFunctions X}))`.
 -/
 theorem point_functions_identify_points :
     Function.Bijective
@@ -100,6 +122,8 @@ theorem point_functions_identify_points :
 
 Point functions satisfy the defining pointlike inequalities and vanish at their
 base point.
+
+Mathematical statement (Lean): `theorem point_function_inequalities (z : X) : (∀ a b : X, (pointFunction z b : Real) - (pointFunction z a : Real) ≤ dist a b ∧ dist a b ≤ (pointFunction z b : Real) + (pointFunction z a : Real)) ∧ pointFunction z z = 0`.
 -/
 theorem point_function_inequalities
     (z : X) :
@@ -129,7 +153,11 @@ theorem point_function_inequalities
   · -- (ii) Point functions vanish at their base point.
     simp [pointFunction]
 
-/-- Every point function is pointlike. -/
+
+/-- Every point function is pointlike.
+
+Mathematical statement (Lean): `theorem pointFunction_pointlike (z : X) : Pointlike (pointFunction z)`.
+-/
 theorem pointFunction_pointlike (z : X) :
     Pointlike (pointFunction z) := by
   -- Leverage the concrete point-function inequalities proved above; this
@@ -142,6 +170,8 @@ theorem pointFunction_pointlike (z : X) :
 
 If a pointlike function has a zero at `w`, then it is the point function
 determined by `w`.
+
+Mathematical statement (Lean): `theorem pointlike_eq_pointFunction_of_zero {u : X → NNReal} (u_pointlike : Pointlike u) {w : X} (zero_at_w : u w = 0) : u = pointFunction w`.
 -/
 theorem pointlike_eq_pointFunction_of_zero
     {u : X → NNReal}
@@ -179,6 +209,8 @@ theorem pointlike_eq_pointFunction_of_zero
 
 A nonnegative-real-valued function is a point function if and only if it is
 pointlike and has zero in its range.
+
+Mathematical statement (Lean): `theorem pointlike_zero_point_function (u : X → NNReal) : u ∈ pointFunctions X ↔ Pointlike u ∧ 0 ∈ Set.range u`.
 -/
 theorem pointlike_zero_point_function
     (u : X → NNReal) :
@@ -208,6 +240,8 @@ theorem pointlike_zero_point_function
 /-- Source: `thm:metric-pointlike-zero-point-function`.
 
 If a pointlike function has a zero, that zero point is unique.
+
+Mathematical statement (Lean): `theorem pointlike_zero_unique {u : X → NNReal} (u_pointlike : Pointlike u) {w₁ w₂ : X} (zero_at_w₁ : u w₁ = 0) (zero_at_w₂ : u w₂ = 0) : w₁ = w₂`.
 -/
 theorem pointlike_zero_unique
     {u : X → NNReal}

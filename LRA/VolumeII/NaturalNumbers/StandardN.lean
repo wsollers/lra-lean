@@ -46,6 +46,8 @@ Here the field name `one` means the distinguished element of the
 abstract Peano system, not the Lean numeral `1`.
 
 *Dependencies:* `PeanoSystem`
+
+Mathematical statement (Lean): `def nat_zero_based_peano_system : PeanoSystem`.
 -/
 def nat_zero_based_peano_system : PeanoSystem where
   carrier             := Nat
@@ -62,6 +64,8 @@ In the zero-based Lean `Nat` bridge, the successor of the
 distinguished Peano element is Lean's numeral `1`.
 
 *Dependencies:* `nat_zero_based_peano_system`
+
+Mathematical statement (Lean): `theorem nat_zero_based_successor_of_one_is_one : nat_zero_based_peano_system.successor nat_zero_based_peano_system.one = Nat.succ Nat.zero`.
 -/
 theorem nat_zero_based_successor_of_one_is_one :
     nat_zero_based_peano_system.successor
@@ -81,16 +85,26 @@ theorem nat_zero_based_successor_of_one_is_one :
 abstract Peano-system interface.
 
 *Dependencies:* `Nat`
+
+Mathematical statement (Lean): `def PositiveNat`.
 -/
 def PositiveNat := { n : Nat // n ≠ Nat.zero }
 
 namespace PositiveNat
 
-/-- The first positive natural, represented by Lean's numeral `1`. -/
+
+/-- The first positive natural, represented by Lean's numeral `1`.
+
+Mathematical statement (Lean): `def one : PositiveNat`.
+-/
 def one : PositiveNat :=
   ⟨Nat.succ Nat.zero, Nat.succ_ne_zero Nat.zero⟩
 
-/-- Successor on positive naturals, inherited from Lean's `Nat.succ`. -/
+
+/-- Successor on positive naturals, inherited from Lean's `Nat.succ`.
+
+Mathematical statement (Lean): `def succ (n : PositiveNat) : PositiveNat`.
+-/
 def succ (n : PositiveNat) : PositiveNat :=
   ⟨Nat.succ n.val, Nat.succ_ne_zero n.val⟩
 
@@ -104,6 +118,8 @@ its distinguished element is Lean's `1`, and successor is inherited
 from `Nat.succ`.
 
 *Dependencies:* `PositiveNat`, `PeanoSystem`
+
+Mathematical statement (Lean): `def positive_nat_peano_system : PeanoSystem`.
 -/
 def positive_nat_peano_system : PeanoSystem where
   carrier             := PositiveNat
@@ -143,6 +159,8 @@ In the one-based `PositiveNat` bridge, the distinguished Peano
 element is represented by Lean's numeral `1`.
 
 *Dependencies:* `positive_nat_peano_system`
+
+Mathematical statement (Lean): `theorem positive_nat_one_value_is_one : positive_nat_peano_system.one.val = Nat.succ Nat.zero`.
 -/
 theorem positive_nat_one_value_is_one :
     positive_nat_peano_system.one.val = Nat.succ Nat.zero :=
@@ -155,6 +173,8 @@ In the one-based `PositiveNat` bridge, the successor of the
 distinguished Peano element is represented by Lean's numeral `2`.
 
 *Dependencies:* `positive_nat_peano_system`
+
+Mathematical statement (Lean): `theorem positive_nat_successor_of_one_value_is_two : (positive_nat_peano_system.successor positive_nat_peano_system.one).val = Nat.succ (Nat.succ Nat.zero)`.
 -/
 theorem positive_nat_successor_of_one_value_is_two :
     (positive_nat_peano_system.successor
@@ -181,6 +201,8 @@ isomorphic as Peano systems via a unique structure-preserving map.
 
 *Notes cross-ref:* §1.2
 [thm:uniqueness-of-peano-systems-up-to-isomorphism](../notes/section_1_2_main.md)
+
+Mathematical statement (Lean): `theorem pn_iso_nat : ∃ f : PN → Nat, f PN.one = Nat.zero ∧ (∀ n : PN, f (PN.succ n) = Nat.succ (f n)) ∧ (∀ g : PN → Nat, g PN.one = Nat.zero → (∀ n : PN, g (PN.succ n) = Nat.succ (g n)) → ∀ n, g n = f n)`.
 -/
 theorem pn_iso_nat :
     ∃ f : PN → Nat,
@@ -200,6 +222,8 @@ The canonical Peano type `PN` and the positive subtype of Lean's
 
 *Dependencies:* `PN_is_peano_system`, `positive_nat_peano_system`,
 `pn_iso_any_peano_system`
+
+Mathematical statement (Lean): `theorem pn_iso_positive_nat : ∃ f : PN → PositiveNat, f PN.one = PositiveNat.one ∧ (∀ n : PN, f (PN.succ n) = PositiveNat.succ (f n)) ∧ (∀ g : PN → PositiveNat, g PN.one = PositiveNat.one → (∀ n : PN, g (PN.succ n) = PositiveNat.succ (g n)) → ∀ n, g n = f n)`.
 -/
 theorem pn_iso_positive_nat :
     ∃ f : PN → PositiveNat,
@@ -230,6 +254,8 @@ carrier is `PositiveNat`.
 *Sources:* Landau, *Foundations of Analysis*, §1, p.5
 
 *Notes cross-ref:* §1.1 [thm:standard-n-convention](../notes/section_1_1_main.md)
+
+Mathematical statement (Lean): `theorem standard_n_convention : nat_zero_based_peano_system.carrier = Nat ∧ nat_zero_based_peano_system.one = Nat.zero ∧ nat_zero_based_peano_system.successor = Nat.succ`.
 -/
 theorem standard_n_convention :
     nat_zero_based_peano_system.carrier = Nat ∧

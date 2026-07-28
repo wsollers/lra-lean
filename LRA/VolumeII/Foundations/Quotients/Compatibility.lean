@@ -22,6 +22,8 @@ to quotient types.
 
 A unary operation respects a setoid when equivalent inputs have equivalent
 outputs.
+
+Mathematical statement (Lean): `def unary_operation_respects {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier) : Prop`.
 -/
 def unary_operation_respects
     {Carrier : Type}
@@ -35,6 +37,8 @@ def unary_operation_respects
 
 /--
 **[Definition — Binary Operation Respects an Equivalence on the Left]**
+
+Mathematical statement (Lean): `def binary_operation_respects_left {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier) : Prop`.
 -/
 def binary_operation_respects_left
     {Carrier : Type}
@@ -48,6 +52,8 @@ def binary_operation_respects_left
 
 /--
 **[Definition — Binary Operation Respects an Equivalence on the Right]**
+
+Mathematical statement (Lean): `def binary_operation_respects_right {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier) : Prop`.
 -/
 def binary_operation_respects_right
     {Carrier : Type}
@@ -61,6 +67,8 @@ def binary_operation_respects_right
 
 /--
 **[Definition — Binary Operation Respects an Equivalence]**
+
+Mathematical statement (Lean): `def binary_operation_respects {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier) : Prop`.
 -/
 def binary_operation_respects
     {Carrier : Type}
@@ -79,6 +87,10 @@ def binary_operation_respects
 
 Full representative independence is equivalent to representative independence
 in each argument separately.
+
+Mathematical statement (Lean): `theorem binary_operation_respects_iff_left_and_right {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier) : binary_operation_respects setoid operation ↔ binary_operation_respects_left setoid operation ∧ binary_operation_respe...`.
+
+*Proof status:* proof pending
 -/
 theorem binary_operation_respects_iff_left_and_right
     {Carrier : Type}
@@ -94,6 +106,10 @@ theorem binary_operation_respects_iff_left_and_right
 
 For a commutative representative operation, compatibility in either argument
 implies full compatibility.
+
+Mathematical statement (Lean): `theorem commutative_operation_respects_of_respects_left {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier) (operation_is_commutative : ∀ first second : Carrier, operation first second = operation second first) (operation_re...`.
+
+*Proof status:* proof pending
 -/
 theorem commutative_operation_respects_of_respects_left
     {Carrier : Type}
@@ -113,6 +129,10 @@ theorem commutative_operation_respects_of_respects_left
 The theorem states existence and the representative computation rule. The
 construction proof may use `Quotient.lift` twice or an equivalent core Lean
 quotient eliminator.
+
+Mathematical statement (Lean): `theorem induced_binary_operation_exists {Carrier : Type} (setoid : Setoid Carrier) (representative_operation : Carrier → Carrier → Carrier) (representative_operation_respects : binary_operation_respects setoid representative_operation) : ∃ quotient_operatio...`.
+
+*Proof status:* proof pending
 -/
 theorem induced_binary_operation_exists
     {Carrier : Type}
@@ -134,6 +154,8 @@ theorem induced_binary_operation_exists
 
 /--
 **[Definition — Predicate Respects an Equivalence]**
+
+Mathematical statement (Lean): `def predicate_respects {Carrier : Type} (setoid : Setoid Carrier) (predicate : Carrier → Prop) : Prop`.
 -/
 def predicate_respects
     {Carrier : Type}
@@ -145,6 +167,8 @@ def predicate_respects
 
 /--
 **[Definition — Relation Respects an Equivalence]**
+
+Mathematical statement (Lean): `def relation_respects {Carrier : Type} (setoid : Setoid Carrier) (relation : Carrier → Carrier → Prop) : Prop`.
 -/
 def relation_respects
     {Carrier : Type}
@@ -159,6 +183,10 @@ def relation_respects
 
 /--
 **[Proposition — A Compatible Predicate Is Representative-Independent]**
+
+Mathematical statement (Lean): `theorem compatible_predicate_has_constant_truth_on_classes {Carrier : Type} (setoid : Setoid Carrier) (predicate : Carrier → Prop) (predicate_is_compatible : predicate_respects setoid predicate) (first_representative second_representative : Carrier) (repres...`.
+
+*Proof status:* proof pending
 -/
 theorem compatible_predicate_has_constant_truth_on_classes
     {Carrier : Type}
@@ -173,6 +201,10 @@ theorem compatible_predicate_has_constant_truth_on_classes
 
 /--
 **[Theorem — A Compatible Relation Descends to the Quotient]**
+
+Mathematical statement (Lean): `theorem induced_relation_exists {Carrier : Type} (setoid : Setoid Carrier) (representative_relation : Carrier → Carrier → Prop) (representative_relation_respects : relation_respects setoid representative_relation) : ∃ quotient_relation : Quotient setoid → Q...`.
+
+*Proof status:* proof pending
 -/
 theorem induced_relation_exists
     {Carrier : Type}

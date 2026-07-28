@@ -13,7 +13,11 @@ namespace LRA.VolumeIV.BanachSpaces
 
 universe u v
 
-/-- Cauchy sequence predicate induced by reference normed-linear-space data. -/
+
+/-- Cauchy sequence predicate induced by reference normed-linear-space data.
+
+Mathematical statement (Lean): `def IsCauchySequence {K : Type u} [NormedField K] {V : Type v} (space : LRA.VolumeIV.NormedLinearSpaces.NormedLinearSpaceDefinition K V) (sequence : ℕ → V) : Prop`.
+-/
 def IsCauchySequence
     {K : Type u}
     [NormedField K]
@@ -23,7 +27,11 @@ def IsCauchySequence
   ∀ ε : Real, 0 < ε → ∃ N : ℕ, ∀ m n : ℕ, N ≤ m → N ≤ n →
     space.norm (space.vectorSpace.add (sequence m) (space.vectorSpace.neg (sequence n))) < ε
 
-/-- Convergence predicate induced by reference normed-linear-space data. -/
+
+/-- Convergence predicate induced by reference normed-linear-space data.
+
+Mathematical statement (Lean): `def ConvergesTo {K : Type u} [NormedField K] {V : Type v} (space : LRA.VolumeIV.NormedLinearSpaces.NormedLinearSpaceDefinition K V) (sequence : ℕ → V) (limit : V) : Prop`.
+-/
 def ConvergesTo
     {K : Type u}
     [NormedField K]
@@ -34,7 +42,11 @@ def ConvergesTo
   ∀ ε : Real, 0 < ε → ∃ N : ℕ, ∀ n : ℕ, N ≤ n →
     space.norm (space.vectorSpace.add (sequence n) (space.vectorSpace.neg limit)) < ε
 
-/-- Reference data for a Banach space. -/
+
+/-- Reference data for a Banach space.
+
+Mathematical statement (Lean): `structure BanachSpaceDefinition (K : Type u) [NormedField K] (V : Type v)`.
+-/
 structure BanachSpaceDefinition
     (K : Type u)
     [NormedField K]

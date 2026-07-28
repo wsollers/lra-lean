@@ -19,9 +19,29 @@ checked, the same tests should be run with `Active` switched to each source
 variant.
 -/
 
+/--
+**[Def — activeOne]**
+
+Mathematical statement (Lean): `def activeOne : Active.Z`.
+-/
 def activeOne : Active.Z := Active.one
+/--
+**[Def — activeTwo]**
+
+Mathematical statement (Lean): `def activeTwo : Active.Z`.
+-/
 def activeTwo : Active.Z := Active.succ activeOne
+/--
+**[Def — activeMinusOne]**
+
+Mathematical statement (Lean): `def activeMinusOne : Active.Z`.
+-/
 def activeMinusOne : Active.Z := Active.pred Active.zero
+/--
+**[Def — activeMinusTwo]**
+
+Mathematical statement (Lean): `def activeMinusTwo : Active.Z`.
+-/
 def activeMinusTwo : Active.Z := Active.pred activeMinusOne
 
 example : Active.pred (Active.succ activeTwo) = activeTwo :=

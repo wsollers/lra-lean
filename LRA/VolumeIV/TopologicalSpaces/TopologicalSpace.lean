@@ -20,6 +20,8 @@ Reference data for a topology on a carrier type.
 This follows Willard's Definition 3.1: a topology is a collection of subsets
 called open sets, closed under arbitrary unions and finite intersections, and
 containing both the empty set and the full carrier.
+
+Mathematical statement (Lean): `structure TopologyDefinition (X : Type u)`.
 -/
 structure TopologyDefinition (X : Type u) where
   /-- The sets declared open by the topology. -/
@@ -41,6 +43,8 @@ Reference data for a topological space.
 
 This packages a carrier with a topology, matching Willard's convention that
 `(X, τ)` is a topological space.
+
+Mathematical statement (Lean): `structure TopologicalSpaceDefinition`.
 -/
 structure TopologicalSpaceDefinition where
   /-- The underlying carrier of the space. -/
@@ -53,6 +57,8 @@ structure TopologicalSpaceDefinition where
 A subset of a topological space is closed when its complement is open.
 This declaration records the source-facing definition; later formal proofs may
 use Mathlib's `IsClosed` API directly.
+
+Mathematical statement (Lean): `def ClosedSetDefinition {X : Type u} [TopologicalSpace X] (E : Set X) : Prop`.
 -/
 def ClosedSetDefinition {X : Type u} [TopologicalSpace X] (E : Set X) : Prop :=
   IsOpen (Eᶜ)
@@ -61,6 +67,8 @@ def ClosedSetDefinition {X : Type u} [TopologicalSpace X] (E : Set X) : Prop :=
 
 This names the family used in Willard's Theorem 3.4: the subsets whose
 complements are open.
+
+Mathematical statement (Lean): `def ClosedSetFamilyOfTopology (X : Type u) [TopologicalSpace X] : Set (Set X)`.
 -/
 def ClosedSetFamilyOfTopology (X : Type u) [TopologicalSpace X] : Set (Set X) :=
   {F | ClosedSetDefinition F}
@@ -70,6 +78,10 @@ def ClosedSetFamilyOfTopology (X : Type u) [TopologicalSpace X] : Set (Set X) :=
 Closed sets in a topological space contain `X` and `∅`, are closed under
 arbitrary intersections, and are closed under finite unions. Stated using
 Mathlib's topology API.
+
+Mathematical statement (Lean): `theorem closed_sets_in_topological_space {X : Type u} [TopologicalSpace X] : IsClosed (Set.univ : Set X) ∧ IsClosed (∅ : Set X) ∧ (∀ S : Set (Set X), (∀ C, C ∈ S → IsClosed C) → IsClosed (⋂₀ S)) ∧ (∀ C D : Set X, IsClosed C → IsClosed D → IsClosed (C ∪ D))`.
+
+*Proof status:* proof pending
 -/
 theorem closed_sets_in_topological_space
     {X : Type u}
@@ -84,6 +96,10 @@ theorem closed_sets_in_topological_space
 
 A family satisfying the closed-set axioms determines a topology whose closed
 sets are exactly that family. Stated using Mathlib's topology API.
+
+Mathematical statement (Lean): `theorem topology_from_closed_set_axioms {X : Type u} (ClosedSet : Set X → Prop) (closed_univ : ClosedSet Set.univ) (closed_empty : ClosedSet ∅) (closed_sInter : ∀ S : Set (Set X), (∀ C, C ∈ S → ClosedSet C) → ClosedSet (⋂₀ S)) (closed_union : ∀ C D : Set X,...`.
+
+*Proof status:* proof pending
 -/
 theorem topology_from_closed_set_axioms
     {X : Type u}

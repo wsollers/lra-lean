@@ -52,6 +52,8 @@ equal to adding the left input.
   Mendelson, *Number Systems*, §2.4
 
 *Notes cross-ref:* §1.3 [def:multiplication-on-a-peano-system](../notes/section_1_3_main.md)
+
+Mathematical statement (Lean): `noncomputable def mul (ps : PeanoSystem) : LRA.VolumeI.Algebra.Operations.BinaryOperation ps.carrier`.
 -/
 noncomputable def mul
     (ps : PeanoSystem) :
@@ -73,6 +75,8 @@ noncomputable def mul
 *Sources:* Landau, *Foundations of Analysis*, §3
 
 *Notes cross-ref:* §1.3 [thm:multiplication-base-clause](../notes/section_1_3_main.md)
+
+Mathematical statement (Lean): `theorem mul_base (ps : PeanoSystem) (left_input : ps.carrier) : mul ps left_input ps.one = left_input`.
 -/
 theorem mul_base
     (ps : PeanoSystem)
@@ -91,6 +95,8 @@ theorem mul_base
 *Sources:* Landau, *Foundations of Analysis*, §3
 
 *Notes cross-ref:* §1.3 [thm:multiplication-successor-clause](../notes/section_1_3_main.md)
+
+Mathematical statement (Lean): `theorem mul_step (ps : PeanoSystem) (left_input right_input : ps.carrier) : mul ps left_input (ps.successor right_input) = plus ps (mul ps left_input right_input) left_input`.
 -/
 theorem mul_step
     (ps : PeanoSystem)
@@ -113,6 +119,8 @@ Any two functions satisfying the multiplication clauses agree everywhere.
   Landau,   *Foundations of Analysis*, §3 Theorem 11
 
 *Notes cross-ref:* §1.3 [thm:multiplication-is-unique](../notes/section_1_3_main.md)
+
+Mathematical statement (Lean): `theorem mul_unique (ps : PeanoSystem) (left_input : ps.carrier) (f g : LRA.VolumeI.Algebra.Operations.UnaryOperation ps.carrier) (hf : satisfies_iterator_clauses ps ps.carrier left_input (fun prev => plus ps prev left_input) f) (hg : satisfies_iterator_clau...`.
 -/
 theorem mul_unique
     (ps : PeanoSystem)
@@ -139,6 +147,10 @@ theorem mul_unique
 *Dependencies:* `mul_base`, `mul_step`, `plus_base`, `induction_principle`
 *Sources:* Landau, *Foundations of Analysis*, §3 Theorem 12
 *Notes cross-ref:* §1.3 [thm:mul-one-left](../notes/section_1_3_main.md)
+
+Mathematical statement (Lean): `theorem mul_one_left (ps : PeanoSystem) (right_input : ps.carrier) : mul ps ps.one right_input = right_input`.
+
+*Proof status:* proof pending
 -/
 theorem mul_one_left
     (ps : PeanoSystem) (right_input : ps.carrier) :
@@ -153,6 +165,10 @@ theorem mul_one_left
 *Dependencies:* `mul_base`, `mul_step`, `induction_principle`
 *Sources:* Landau, *Foundations of Analysis*, §3 Theorem 13
 *Notes cross-ref:* §1.3 [thm:multiplication-is-associative](../notes/section_1_3_main.md)
+
+Mathematical statement (Lean): `theorem mul_associative (ps : PeanoSystem) (x y z : ps.carrier) : mul ps (mul ps x y) z = mul ps x (mul ps y z)`.
+
+*Proof status:* proof pending
 -/
 theorem mul_associative
     (ps : PeanoSystem) (x y z : ps.carrier) :
@@ -168,6 +184,10 @@ theorem mul_associative
 `induction_principle`
 *Sources:* Landau, *Foundations of Analysis*, §3 Theorem 14
 *Notes cross-ref:* §1.3 [thm:mul-distrib-add](../notes/section_1_3_main.md)
+
+Mathematical statement (Lean): `theorem mul_distrib_add (ps : PeanoSystem) (x y z : ps.carrier) : mul ps x (plus ps y z) = plus ps (mul ps x y) (mul ps x z)`.
+
+*Proof status:* proof pending
 -/
 theorem mul_distrib_add
     (ps : PeanoSystem) (x y z : ps.carrier) :
@@ -184,6 +204,10 @@ theorem mul_distrib_add
 `mul_one_left`, `induction_principle`
 *Sources:* Landau, *Foundations of Analysis*, §3 Theorem 15
 *Notes cross-ref:* §1.3 [thm:multiplication-is-commutative](../notes/section_1_3_main.md)
+
+Mathematical statement (Lean): `theorem mul_commutative (ps : PeanoSystem) (x y : ps.carrier) : mul ps x y = mul ps y x`.
+
+*Proof status:* proof pending
 -/
 theorem mul_commutative
     (ps : PeanoSystem) (x y : ps.carrier) :

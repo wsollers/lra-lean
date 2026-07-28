@@ -18,31 +18,69 @@ The statements use active integers for numerators/denominators and evaluate the
 quotients in the active rational-number switch, currently Mathlib `Rat`.
 -/
 
+/--
+**[Abbrev — Z]**
+
+Mathematical statement (Lean): `abbrev Z`.
+-/
 abbrev Z := LRA.VolumeII.Switches.NumberSystems.IntegerNumbers.Z
+/--
+**[Abbrev — Q]**
+
+Mathematical statement (Lean): `abbrev Q`.
+-/
 abbrev Q := LRA.VolumeII.Switches.NumberSystems.RationalNumbers.Q
 
-/-- Cast an active integer into the active rational carrier. -/
+
+/-- Cast an active integer into the active rational carrier.
+
+Mathematical statement (Lean): `abbrev toQ (value : Z) : Q`.
+-/
 abbrev toQ (value : Z) : Q := value
 
-/-- Cross-multiplication criterion for equality of rational quotients. -/
+
+/-- Cross-multiplication criterion for equality of rational quotients.
+
+Mathematical statement (Lean): `theorem CrossMultiplication {a b c d : Q} (b_nonzero : b ≠ 0) (d_nonzero : d ≠ 0) : a / b = c / d ↔ a * d = c * b`.
+
+*Proof status:* proof pending
+-/
 theorem CrossMultiplication {a b c d : Q}
     (b_nonzero : b ≠ 0) (d_nonzero : d ≠ 0) :
     a / b = c / d ↔ a * d = c * b := by
   sorry
 
-/-- Cancellation rule for fractions: `(a*m)/(a*n) = m/n` when `a,n ≠ 0`. -/
+
+/-- Cancellation rule for fractions: `(a*m)/(a*n) = m/n` when `a,n ≠ 0`.
+
+Mathematical statement (Lean): `theorem FractionCancellation {a m n : Z} (a_nonzero : a ≠ 0) (n_nonzero : n ≠ 0) : toQ (a * m) / toQ (a * n) = toQ m / toQ n`.
+
+*Proof status:* proof pending
+-/
 theorem FractionCancellation {a m n : Z}
     (a_nonzero : a ≠ 0) (n_nonzero : n ≠ 0) :
     toQ (a * m) / toQ (a * n) = toQ m / toQ n := by
   sorry
 
-/-- Moving a sign from the numerator to the denominator preserves a quotient. -/
+
+/-- Moving a sign from the numerator to the denominator preserves a quotient.
+
+Mathematical statement (Lean): `theorem NegativeNumeratorEqualsNegativeDenominator {m n : Z} (n_nonzero : n ≠ 0) : toQ (-m) / toQ n = toQ m / toQ (-n)`.
+
+*Proof status:* proof pending
+-/
 theorem NegativeNumeratorEqualsNegativeDenominator {m n : Z}
     (n_nonzero : n ≠ 0) :
     toQ (-m) / toQ n = toQ m / toQ (-n) := by
   sorry
 
-/-- A common divisor can be cancelled from a rational quotient. -/
+
+/-- A common divisor can be cancelled from a rational quotient.
+
+Mathematical statement (Lean): `theorem CancelCommonIntegerDivisor {d m n r s : Z} (d_nonzero : d ≠ 0) (n_nonzero : n ≠ 0) (m_factor : m = d * r) (n_factor : n = d * s) : toQ m / toQ n = toQ r / toQ s`.
+
+*Proof status:* proof pending
+-/
 theorem CancelCommonIntegerDivisor {d m n r s : Z}
     (d_nonzero : d ≠ 0)
     (n_nonzero : n ≠ 0)

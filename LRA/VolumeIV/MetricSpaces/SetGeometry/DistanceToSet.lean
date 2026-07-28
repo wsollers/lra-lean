@@ -5,7 +5,11 @@ namespace LRA.VolumeIV
 
 /-! Set distance in metric spaces. -/
 
-/-- The set of distances from a point to the points of a set. -/
+
+/-- The set of distances from a point to the points of a set.
+
+Mathematical statement (Lean): `def distanceSet {X : Type u} [MetricSpace X] (x : X) (S : Set X) : Set Real`.
+-/
 def distanceSet
     {X : Type u}
     [MetricSpace X]
@@ -13,7 +17,11 @@ def distanceSet
     (S : Set X) : Set Real :=
   (fun y : X => dist x y) '' S
 
-/-- The distance from a point to a set in an ambient metric space. -/
+
+/-- The distance from a point to a set in an ambient metric space.
+
+Mathematical statement (Lean): `noncomputable def distanceToSet {X : Type u} [MetricSpace X] (x : X) (S : Set X) : Real`.
+-/
 noncomputable def distanceToSet
     {X : Type u}
     [MetricSpace X]
@@ -21,7 +29,13 @@ noncomputable def distanceToSet
     (S : Set X) : Real :=
   sInf (distanceSet x S)
 
-/-- If the original set is nonempty, then its distance set is nonempty. -/
+
+/-- If the original set is nonempty, then its distance set is nonempty.
+
+Mathematical statement (Lean): `theorem distanceSet_nonempty {X : Type u} [MetricSpace X] (x : X) {S : Set X} (set_nonempty : S.Nonempty) : (distanceSet x S).Nonempty`.
+
+*Proof status:* proof pending
+-/
 theorem distanceSet_nonempty
     {X : Type u}
     [MetricSpace X]
@@ -31,7 +45,11 @@ theorem distanceSet_nonempty
     (distanceSet x S).Nonempty := by
   sorry
 
-/-- The distance set is bounded below by zero. -/
+
+/-- The distance set is bounded below by zero.
+
+Mathematical statement (Lean): `theorem distanceSet_bddBelow {X : Type u} [MetricSpace X] (x : X) (S : Set X) : BddBelow (distanceSet x S)`.
+-/
 theorem distanceSet_bddBelow
     {X : Type u}
     [MetricSpace X]
@@ -44,6 +62,10 @@ theorem distanceSet_bddBelow
   exact dist_nonneg
 
 /-- The point-to-set distance is the infimum of all distances from the point to
+
+Mathematical statement (Lean): `theorem distanceToSet_isGLB {X : Type u} [MetricSpace X] (x : X) {S : Set X} (set_nonempty : S.Nonempty) : IsGLB (distanceSet x S) (distanceToSet x S)`.
+
+*Proof status:* proof pending
 points in the set. -/
 theorem distanceToSet_isGLB
     {X : Type u}
@@ -55,6 +77,8 @@ theorem distanceToSet_isGLB
   sorry
 
 /-- The point-to-set distance is bounded above by the distance to any witness
+
+Mathematical statement (Lean): `theorem distanceToSet_le_distance_to_point_of_mem {X : Type u} [MetricSpace X] (x : X) {A : Set X} {a : X} (point_in_set : a ∈ A) : distanceToSet x A ≤ dist x a`.
 point in the set. -/
 theorem distanceToSet_le_distance_to_point_of_mem
     {X : Type u}
@@ -74,6 +98,8 @@ theorem distanceToSet_le_distance_to_point_of_mem
   exact infimum_property.1 distance_value_in_set
 
 /-- The distance from a point to a set is zero when the point belongs to the
+
+Mathematical statement (Lean): `theorem distanceToSet_eq_zero_of_mem {X : Type u} [MetricSpace X] {A : Set X} {x : X} (point_in_set : x ∈ A) : distanceToSet x A = 0`.
 set. -/
 theorem distanceToSet_eq_zero_of_mem
     {X : Type u}

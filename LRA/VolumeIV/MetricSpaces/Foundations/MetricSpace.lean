@@ -20,6 +20,8 @@ Reference data for a metric on a carrier type.
 This follows Ó Searcóid's Definition 1.1.1: a metric is a real-valued function
 on `X × X` satisfying positivity with equality exactly on the diagonal,
 symmetry, and the triangle inequality.
+
+Mathematical statement (Lean): `structure MetricDefinition (X : Type u)`.
 -/
 structure MetricDefinition (X : Type u) where
   /-- The distance function. -/
@@ -38,6 +40,8 @@ Reference data for a metric space.
 
 This packages a carrier with a metric, matching Ó Searcóid's convention that
 `(X, d)` is a metric space when the metric needs to be named.
+
+Mathematical statement (Lean): `structure MetricSpaceDefinition`.
 -/
 structure MetricSpaceDefinition where
   /-- The underlying carrier of the space. -/
@@ -49,6 +53,10 @@ structure MetricSpaceDefinition where
 
 Rearrangement of the triangle inequality. Stated using Mathlib's metric-space
 API: in a metric space, `|dist a b - dist b c| ≤ dist a c`.
+
+Mathematical statement (Lean): `theorem rearrangement_of_triangle_inequality {X : Type u} [MetricSpace X] (a b c : X) : |dist a b - dist b c| ≤ dist a c`.
+
+*Proof status:* proof pending
 -/
 theorem rearrangement_of_triangle_inequality
     {X : Type u}

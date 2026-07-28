@@ -16,6 +16,8 @@ universe u
 
 This is the usual sigma-algebra presentation: the measurable sets contain the
 empty set and are closed under complements and countable unions.
+
+Mathematical statement (Lean): `structure MeasurableSpaceDefinitionOn (X : Type u)`.
 -/
 structure MeasurableSpaceDefinitionOn (X : Type u) where
   /-- The subsets declared measurable. -/
@@ -27,7 +29,11 @@ structure MeasurableSpaceDefinitionOn (X : Type u) where
   /-- Countable unions of measurable sets are measurable, indexed by `ℕ`. -/
   iUnion_mem : ∀ A : ℕ → Set X, (∀ n, IsMeasurable (A n)) → IsMeasurable (⋃ n, A n)
 
-/-- Reference data for a measurable space. -/
+
+/-- Reference data for a measurable space.
+
+Mathematical statement (Lean): `structure MeasurableSpaceDefinition`.
+-/
 structure MeasurableSpaceDefinition where
   /-- The underlying carrier. -/
   Carrier : Type u

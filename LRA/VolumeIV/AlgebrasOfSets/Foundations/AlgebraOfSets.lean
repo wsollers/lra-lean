@@ -16,6 +16,8 @@ universe u
 
 An algebra of sets is a family of subsets containing the whole space and closed
 under complements and finite unions.
+
+Mathematical statement (Lean): `structure AlgebraOfSetsDefinition (X : Type u)`.
 -/
 structure AlgebraOfSetsDefinition (X : Type u) where
   /-- The subsets belonging to the algebra. -/
@@ -27,7 +29,11 @@ structure AlgebraOfSetsDefinition (X : Type u) where
   /-- Finite unions of members belong to the algebra, stated in binary form. -/
   union_mem : ∀ A B : Set X, IsMember A → IsMember B → IsMember (A ∪ B)
 
-/-- Reference data for a space equipped with an algebra of sets. -/
+
+/-- Reference data for a space equipped with an algebra of sets.
+
+Mathematical statement (Lean): `structure AlgebraOfSetsSpaceDefinition`.
+-/
 structure AlgebraOfSetsSpaceDefinition where
   /-- The underlying carrier. -/
   Carrier : Type u

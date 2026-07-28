@@ -12,7 +12,11 @@ namespace LRA.VolumeIV.VectorSpaces
 
 universe u v
 
-/-- Reference data for a vector space over a field. -/
+
+/-- Reference data for a vector space over a field.
+
+Mathematical statement (Lean): `structure VectorSpaceDefinition (K : Type u) [Field K] (V : Type v)`.
+-/
 structure VectorSpaceDefinition (K : Type u) [Field K] (V : Type v) where
   /-- The zero vector. -/
   zero : V
@@ -40,6 +44,8 @@ structure VectorSpaceDefinition (K : Type u) [Field K] (V : Type v) where
   add_smul : ∀ a b : K, ∀ x : V, smul (a + b) x = add (smul a x) (smul b x)
 
 /-- Reference data for a vector space packaged with its carrier and scalar
+
+Mathematical statement (Lean): `structure VectorSpacePackagedDefinition`.
 field. -/
 structure VectorSpacePackagedDefinition where
   /-- The scalar field. -/

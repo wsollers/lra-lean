@@ -17,11 +17,21 @@ Verification status: statement-accepted-proof-pending
 
 open LRA.VolumeI.Algebra.Models
 
+/--
+**[Inductive — ExtendedReal]**
+
+Mathematical statement (Lean): `inductive ExtendedReal (real_model : RealModel)`.
+-/
 inductive ExtendedReal (real_model : RealModel) where
   | negativeInfinity
   | finite (value : real_model.signature.carrier)
   | positiveInfinity
 
+/--
+**[Def — nonstrict_order]**
+
+Mathematical statement (Lean): `def nonstrict_order (real_model : RealModel) : ExtendedReal real_model → ExtendedReal real_model → Prop | .negativeInfinity, _ => True | _, .positiveInfinity => True | .finite first, .finite second => real_model.signature.nonstrict_order first second | _, _...`.
+-/
 def nonstrict_order
     (real_model : RealModel) :
     ExtendedReal real_model → ExtendedReal real_model → Prop
@@ -30,6 +40,11 @@ def nonstrict_order
   | .finite first, .finite second => real_model.signature.nonstrict_order first second
   | _, _ => False
 
+/--
+**[Def — negation]**
+
+Mathematical statement (Lean): `def negation (real_model : RealModel) : ExtendedReal real_model → ExtendedReal real_model | .negativeInfinity => .positiveInfinity | .positiveInfinity => .negativeInfinity | .finite value => .finite (real_model.signature.negation value) def supremum (real_m...`.
+-/
 def negation
     (real_model : RealModel) :
     ExtendedReal real_model → ExtendedReal real_model
@@ -37,6 +52,11 @@ def negation
   | .positiveInfinity => .negativeInfinity
   | .finite value => .finite (real_model.signature.negation value)
 
+/--
+**[Def — supremum]**
+
+Mathematical statement (Lean): `def supremum (real_model : RealModel) (subset : ExtendedReal real_model → Prop) (candidate : ExtendedReal real_model) : Prop`.
+-/
 def supremum
     (real_model : RealModel)
     (subset : ExtendedReal real_model → Prop)
@@ -46,6 +66,13 @@ def supremum
       (∀ member, subset member → nonstrict_order real_model member upper_bound) →
         nonstrict_order real_model candidate upper_bound
 
+/--
+**[Theorem — every_subset_has_supremum]**
+
+Mathematical statement (Lean): `theorem every_subset_has_supremum (real_model : RealModel) (subset : ExtendedReal real_model → Prop) : ∃ candidate : ExtendedReal real_model, supremum real_model subset candidate`.
+
+*Proof status:* proof pending
+-/
 theorem every_subset_has_supremum
     (real_model : RealModel)
     (subset : ExtendedReal real_model → Prop) :
@@ -53,6 +80,11 @@ theorem every_subset_has_supremum
       supremum real_model subset candidate := by
   sorry
 
+/--
+**[Structure — PartialOperation]**
+
+Mathematical statement (Lean): `structure PartialOperation (real_model : RealModel) (operation : ExtendedReal real_model → ExtendedReal real_model → ExtendedReal real_model)`.
+-/
 structure PartialOperation
     (real_model : RealModel)
     (operation : ExtendedReal real_model → ExtendedReal real_model → ExtendedReal real_model) where

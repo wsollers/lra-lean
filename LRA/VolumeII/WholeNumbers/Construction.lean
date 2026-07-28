@@ -15,7 +15,11 @@ Source: docs/number-systems/gpt-01b-whole-numbers.md
 Verification status: definitions complete; theorem proofs pending
 -/
 
-/-- Arithmetic data already constructed on the one-based natural carrier. -/
+
+/-- Arithmetic data already constructed on the one-based natural carrier.
+
+Mathematical statement (Lean): `structure NaturalArithmeticForWholeNumbers`.
+-/
 structure NaturalArithmeticForWholeNumbers where
   peano : PeanoSystem
   addition : peano.carrier → peano.carrier → peano.carrier
@@ -24,47 +28,89 @@ structure NaturalArithmeticForWholeNumbers where
 
 variable (natural_data : NaturalArithmeticForWholeNumbers)
 
-/-- `none` is the newly adjoined zero; `some n` is the embedded positive natural `n`. -/
+
+/-- `none` is the newly adjoined zero; `some n` is the embedded positive natural `n`.
+
+Mathematical statement (Lean): `abbrev Carrier`.
+-/
 abbrev Carrier := Option natural_data.peano.carrier
 
-/-- The adjoined zero. -/
+
+/-- The adjoined zero.
+
+Mathematical statement (Lean): `def zero : Carrier natural_data`.
+-/
 def zero : Carrier natural_data := none
 
-/-- The embedded one. -/
+
+/-- The embedded one.
+
+Mathematical statement (Lean): `def one : Carrier natural_data`.
+-/
 def one : Carrier natural_data := some natural_data.peano.one
 
-/-- Inclusion of the one-based natural carrier into the whole numbers. -/
+
+/-- Inclusion of the one-based natural carrier into the whole numbers.
+
+Mathematical statement (Lean): `def naturalEmbedding (value : natural_data.peano.carrier) : Carrier natural_data`.
+-/
 def naturalEmbedding (value : natural_data.peano.carrier) : Carrier natural_data := some value
 
-/-- Successor on the whole numbers. -/
+
+/-- Successor on the whole numbers.
+
+Mathematical statement (Lean): `def successor : Carrier natural_data → Carrier natural_data | none => some natural_data.peano.one | some value => some (natural_data.peano.successor value) / def addition : Carrier natural_data → Carrier natural_data → Carrier natural_data | none, right =>...`.
+-/
 def successor : Carrier natural_data → Carrier natural_data
   | none => some natural_data.peano.one
   | some value => some (natural_data.peano.successor value)
 
-/-- Addition extends natural addition and makes the new zero an identity. -/
+
+/-- Addition extends natural addition and makes the new zero an identity.
+
+Mathematical statement (Lean): `def addition : Carrier natural_data → Carrier natural_data → Carrier natural_data | none, right => right | left, none => left | some left, some right => some (natural_data.addition left right) / def multiplication : Carrier natural_data → Carrier natural_da...`.
+-/
 def addition : Carrier natural_data → Carrier natural_data → Carrier natural_data
   | none, right => right
   | left, none => left
   | some left, some right => some (natural_data.addition left right)
 
-/-- Multiplication extends natural multiplication and makes zero absorbing. -/
+
+/-- Multiplication extends natural multiplication and makes zero absorbing.
+
+Mathematical statement (Lean): `def multiplication : Carrier natural_data → Carrier natural_data → Carrier natural_data | none, _ => none | _, none => none | some left, some right => some (natural_data.multiplication left right) / def strictOrder : Carrier natural_data → Carrier natural_d...`.
+-/
 def multiplication : Carrier natural_data → Carrier natural_data → Carrier natural_data
   | none, _ => none
   | _, none => none
   | some left, some right => some (natural_data.multiplication left right)
 
-/-- Strict order puts zero below every positive natural and otherwise uses natural order. -/
+
+/-- Strict order puts zero below every positive natural and otherwise uses natural order.
+
+Mathematical statement (Lean): `def strictOrder : Carrier natural_data → Carrier natural_data → Prop | none, none => False | none, some _ => True | some _, none => False | some left, some right => natural_data.strictOrder left right / def nonstrictOrder (left right : Carrier natural_data)...`.
+-/
 def strictOrder : Carrier natural_data → Carrier natural_data → Prop
   | none, none => False
   | none, some _ => True
   | some _, none => False
   | some left, some right => natural_data.strictOrder left right
 
-/-- Non-strict order is strict order or equality. -/
+
+/-- Non-strict order is strict order or equality.
+
+Mathematical statement (Lean): `def nonstrictOrder (left right : Carrier natural_data) : Prop`.
+-/
 def nonstrictOrder (left right : Carrier natural_data) : Prop :=
   strictOrder natural_data left right ∨ left = right
 
-/-- Every whole number is exactly one of zero or an embedded positive natural. -/
+
+/-- Every whole number is exactly one of zero or an embedded positive natural.
+
+Mathematical statement (Lean): `theorem basic_decomposition (value : Carrier natural_data) : ((value = zero natural_data) ∨ (∃ natural, value = naturalEmbedding natural_data natural)) ∧ ¬ ((value = zero natural_data) ∧ (∃ natural, value = naturalEmbedding natural_data natural)) ∧ (∀ first...`.
+
+*Proof status:* proof pending
+-/
 theorem basic_decomposition (value : Carrier natural_data) :
     ((value = zero natural_data) ∨
       (∃ natural, value = naturalEmbedding natural_data natural)) ∧
@@ -76,18 +122,36 @@ theorem basic_decomposition (value : Carrier natural_data) :
       first = second) := by
   sorry
 
-/-- Zero is not a successor. -/
+
+/-- Zero is not a successor.
+
+Mathematical statement (Lean): `theorem zero_is_not_successor (value : Carrier natural_data) : successor natural_data value ≠ zero natural_data`.
+
+*Proof status:* proof pending
+-/
 theorem zero_is_not_successor (value : Carrier natural_data) :
     successor natural_data value ≠ zero natural_data := by
   sorry
 
-/-- Successor on whole numbers is injective. -/
+
+/-- Successor on whole numbers is injective.
+
+Mathematical statement (Lean): `theorem successor_is_injective : ∀ first second, successor natural_data first = successor natural_data second → first = second`.
+
+*Proof status:* proof pending
+-/
 theorem successor_is_injective :
     ∀ first second,
       successor natural_data first = successor natural_data second → first = second := by
   sorry
 
-/-- Induction from the adjoined zero. -/
+
+/-- Induction from the adjoined zero.
+
+Mathematical statement (Lean): `theorem induction_from_zero (predicate : Carrier natural_data → Prop) (zero_case : predicate (zero natural_data)) (successor_case : ∀ value, predicate value → predicate (successor natural_data value)) : ∀ value, predicate value`.
+
+*Proof status:* proof pending
+-/
 theorem induction_from_zero
     (predicate : Carrier natural_data → Prop)
     (zero_case : predicate (zero natural_data))
@@ -95,7 +159,13 @@ theorem induction_from_zero
     ∀ value, predicate value := by
   sorry
 
-/-- Strong induction on the whole numbers. -/
+
+/-- Strong induction on the whole numbers.
+
+Mathematical statement (Lean): `theorem strong_induction (predicate : Carrier natural_data → Prop) (step : ∀ value, (∀ smaller, strictOrder natural_data smaller value → predicate smaller) → predicate value) : ∀ value, predicate value`.
+
+*Proof status:* proof pending
+-/
 theorem strong_induction
     (predicate : Carrier natural_data → Prop)
     (step :
@@ -105,7 +175,13 @@ theorem strong_induction
     ∀ value, predicate value := by
   sorry
 
-/-- Addition forms a commutative cancellative monoid. -/
+
+/-- Addition forms a commutative cancellative monoid.
+
+Mathematical statement (Lean): `theorem additive_structure : (∀ first second third, addition natural_data (addition natural_data first second) third = addition natural_data first (addition natural_data second third)) ∧ (∀ first second, addition natural_data first second = addition natural...`.
+
+*Proof status:* proof pending
+-/
 theorem additive_structure :
     (∀ first second third,
       addition natural_data (addition natural_data first second) third =
@@ -120,7 +196,13 @@ theorem additive_structure :
       first = second) := by
   sorry
 
-/-- Multiplication and addition form a nontrivial commutative semiring without zero divisors. -/
+
+/-- Multiplication and addition form a nontrivial commutative semiring without zero divisors.
+
+Mathematical statement (Lean): `theorem semiring_structure : zero natural_data ≠ one natural_data ∧ (∀ first second third, multiplication natural_data (multiplication natural_data first second) third = multiplication natural_data first (multiplication natural_data second third)) ∧ (∀ firs...`.
+
+*Proof status:* proof pending
+-/
 theorem semiring_structure :
     zero natural_data ≠ one natural_data ∧
     (∀ first second third,
@@ -144,7 +226,13 @@ theorem semiring_structure :
       first = zero natural_data ∨ second = zero natural_data) := by
   sorry
 
-/-- The whole-number order is discrete, total, and compatible with arithmetic. -/
+
+/-- The whole-number order is discrete, total, and compatible with arithmetic.
+
+Mathematical statement (Lean): `theorem ordered_semiring_structure : (∀ value, nonstrictOrder natural_data (zero natural_data) value) ∧ (∀ first second, strictOrder natural_data first second ∨ first = second ∨ strictOrder natural_data second first) ∧ (∀ first second third, strictOrder nat...`.
+
+*Proof status:* proof pending
+-/
 theorem ordered_semiring_structure :
     (∀ value, nonstrictOrder natural_data (zero natural_data) value) ∧
     (∀ first second,
@@ -166,7 +254,13 @@ theorem ordered_semiring_structure :
           (multiplication natural_data second positive))) := by
   sorry
 
-/-- Every nonempty whole-number subset has a least element. -/
+
+/-- Every nonempty whole-number subset has a least element.
+
+Mathematical statement (Lean): `theorem well_ordering (subset : Carrier natural_data → Prop) (nonempty : ∃ value, subset value) : ∃ least, subset least ∧ ∀ value, subset value → nonstrictOrder natural_data least value`.
+
+*Proof status:* proof pending
+-/
 theorem well_ordering
     (subset : Carrier natural_data → Prop)
     (nonempty : ∃ value, subset value) :
@@ -175,7 +269,13 @@ theorem well_ordering
       ∀ value, subset value → nonstrictOrder natural_data least value := by
   sorry
 
-/-- The natural embedding preserves successor, arithmetic, and order. -/
+
+/-- The natural embedding preserves successor, arithmetic, and order.
+
+Mathematical statement (Lean): `theorem natural_embedding_preserves_structure : (∀ value, naturalEmbedding natural_data (natural_data.peano.successor value) = successor natural_data (naturalEmbedding natural_data value)) ∧ (∀ first second, naturalEmbedding natural_data (natural_data.addit...`.
+
+*Proof status:* proof pending
+-/
 theorem natural_embedding_preserves_structure :
     (∀ value,
       naturalEmbedding natural_data (natural_data.peano.successor value) =

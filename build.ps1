@@ -4,8 +4,9 @@
 #
 # Usage:
 #   .\build.ps1                    # Show help
-#   .\build.ps1 build              # Build VolumeII
+#   .\build.ps1 build              # Build all production and test Lean libraries
 #   .\build.ps1 build-all          # Build all volumes
+#   .\build.ps1 test               # Build Lean test targets
 #   .\build.ps1 check              # Build + proof-readiness + all checks
 #   .\build.ps1 clean              # Remove build artifacts
 #   .\build.ps1 shell              # Open shell in Docker container
@@ -30,7 +31,7 @@
 param(
     [Parameter(Position = 0)]
     [ValidateSet(
-        'build', 'build-all', 'check', 'clean', 'shell',
+        'build', 'build-all', 'test', 'check', 'clean', 'shell',
         'docker-build', 'docker-docs-build', 'docker-pull',
         'blueprint-inputs', 'blueprint', 'docs', 'lint', 'stats',
         'install-hooks', 'ci', 'help', ''
@@ -96,15 +97,30 @@ function Invoke-ProofReadiness {
 }
 
 function Invoke-Build {
-    Write-Step "Building LRAVolumeII (Lean $Toolchain)"
-    Invoke-Run @('lake', 'build', 'LRAVolumeII')
-    Write-Ok "VolumeII build successful"
+    Write-Step "Building all production and test Lean libraries (Lean $Toolchain)"
+    Invoke-Run @(
+        'lake', 'build',
+        'LRAVolumeI', 'LRAVolumeII', 'LRAVolumeIII',
+        'LRAVolumeIV', 'LRAVolumeVI', 'LRAVolumeVII',
+        'LRATests'
+    )
+    Write-Ok "All production and test Lean libraries built successfully"
 }
 
 function Invoke-BuildAll {
     Write-Step "Building all volumes (Lean $Toolchain)"
-    Invoke-Run @('lake', 'build')
+    Invoke-Run @(
+        'lake', 'build',
+        'LRAVolumeI', 'LRAVolumeII', 'LRAVolumeIII',
+        'LRAVolumeIV', 'LRAVolumeVI', 'LRAVolumeVII'
+    )
     Write-Ok "Full build successful"
+}
+
+function Invoke-Test {
+    Write-Step "Building Lean test targets (Lean $Toolchain)"
+    Invoke-Run @('lake', 'build', 'LRATests')
+    Write-Ok "Lean test targets built successfully"
 }
 
 function Invoke-Check {
@@ -281,8 +297,9 @@ function Show-Help {
     Write-Host ""
     Write-Host "Commands:" -ForegroundColor White
     @(
-        @{ Cmd = 'build';         Desc = 'Build VolumeII' },
+        @{ Cmd = 'build';         Desc = 'Build all production and test Lean libraries' },
         @{ Cmd = 'build-all';     Desc = 'Build all volumes' },
+        @{ Cmd = 'test';          Desc = 'Build Lean test targets' },
         @{ Cmd = 'check';         Desc = 'Build + proof-readiness, no Mathlib, lint' },
         @{ Cmd = 'clean';         Desc = 'Remove lake build artifacts' },
         @{ Cmd = 'shell';         Desc = 'Open interactive shell in Docker container' },
@@ -306,6 +323,7 @@ try {
     switch ($Command) {
         'build'         { Invoke-Build }
         'build-all'     { Invoke-BuildAll }
+        'test'          { Invoke-Test }
         'check'         { Invoke-Check }
         'clean'         { Invoke-Clean }
         'shell'         { Invoke-Shell }

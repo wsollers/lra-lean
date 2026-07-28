@@ -13,7 +13,11 @@ namespace LRA.VolumeIV.NormedLinearSpaces
 
 universe u v
 
-/-- Reference data for a normed linear space over a normed field. -/
+
+/-- Reference data for a normed linear space over a normed field.
+
+Mathematical statement (Lean): `structure NormedLinearSpaceDefinition (K : Type u) [NormedField K] (V : Type v)`.
+-/
 structure NormedLinearSpaceDefinition
     (K : Type u)
     [NormedField K]

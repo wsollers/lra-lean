@@ -23,6 +23,11 @@ number-system interface needed by Volume II.
 
 open LRA.VolumeII.PeanoSystems
 
+/--
+**[Structure — PresburgerPeanoSystem]**
+
+Mathematical statement (Lean): `structure PresburgerPeanoSystem extends PeanoSystem`.
+-/
 structure PresburgerPeanoSystem extends PeanoSystem where
   addition : carrier → carrier → carrier
   addition_base :
@@ -35,9 +40,21 @@ structure PresburgerPeanoSystem extends PeanoSystem where
   addition_is_commutative :
     LRA.VolumeI.Algebra.commutative addition
 
+/--
+**[Def — as_peano_system]**
+
+Mathematical statement (Lean): `def as_peano_system (presburger_system : PresburgerPeanoSystem) : PeanoSystem`.
+-/
 def as_peano_system (presburger_system : PresburgerPeanoSystem) : PeanoSystem :=
   presburger_system.toPeanoSystem
 
+/--
+**[Theorem — presburger_addition_agrees_with_peano_iteration]**
+
+Mathematical statement (Lean): `theorem presburger_addition_agrees_with_peano_iteration (presburger_system : PresburgerPeanoSystem) (left right : presburger_system.carrier) : presburger_system.addition left right = plus (as_peano_system presburger_system) left right`.
+
+*Proof status:* proof pending
+-/
 theorem presburger_addition_agrees_with_peano_iteration
     (presburger_system : PresburgerPeanoSystem)
     (left right : presburger_system.carrier) :
@@ -45,6 +62,13 @@ theorem presburger_addition_agrees_with_peano_iteration
       plus (as_peano_system presburger_system) left right := by
   sorry
 
+/--
+**[Theorem — volume_i_standard_presburger_model_yields_volume_ii_system]**
+
+Mathematical statement (Lean): `theorem volume_i_standard_presburger_model_yields_volume_ii_system : ∃ presburger_system : PresburgerPeanoSystem, Nonempty presburger_system.carrier`.
+
+*Proof status:* proof pending
+-/
 theorem volume_i_standard_presburger_model_yields_volume_ii_system :
     ∃ presburger_system : PresburgerPeanoSystem,
       Nonempty presburger_system.carrier := by

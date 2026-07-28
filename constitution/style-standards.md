@@ -5,19 +5,38 @@
 
 ## 1. Namespace
 
-All VolumeII definitions live in `namespace Landau`.
-Do not use dot notation on N (e.g. do not write `N.add_comm`).
-Cite theorems as `Landau.add_comm`.
+Source-facing volume modules live under the corresponding `LRA.Volume*`
+namespace hierarchy. Keep chapter and section namespaces aligned with the
+file path so a VS Code user can locate declarations from their qualified names.
+
+Legacy Landau arithmetic files may still use `namespace Landau`. In those files,
+do not use dot notation on `N` (for example, do not write `N.add_comm`); cite
+theorems as `Landau.add_comm`.
 
 ---
 
 ## 2. Naming Convention
 
 ### Definitions
-`snake_case` noun: `plus`, `mul`, `exp`, `is_odd`, `is_even`
+Use source-facing PascalCase names for chapter statements, structures, and
+definition/theorem packages:
+
+```
+TopologyDefinition
+ClosedSetFamilyOfTopology
+RealHilbertSpaceDefinition
+```
+
+Use `snake_case` only for legacy Landau arithmetic declarations and local
+helper operations whose surrounding file already follows that convention:
+`plus`, `mul`, `exp`, `is_odd`, `is_even`.
 
 ### Theorems
-`snake_case` verb phrase from the conclusion:
+Use source-facing PascalCase names for theorem statements that correspond to
+book definitions, propositions, lemmas, theorems, and corollaries.
+
+Legacy Landau arithmetic theorems keep `snake_case` verb phrases from the
+conclusion:
 
 ```
 add_comm          -- plus x y = plus y x
@@ -44,8 +63,10 @@ Do NOT name from the proof method:
 
 ## 3. Doc-Comment Requirement
 
-Every `theorem`, `lemma`, `corollary`, and `def` must have a
-doc-comment with a display name in this exact format:
+Every source-facing `theorem`, `lemma`, `corollary`, `def`, `structure`,
+`class`, and `axiom` must have a doc-comment with a display name and a
+mathematical statement that can be read in VS Code without consulting the
+source notes.
 
 ```lean4
 /--
@@ -53,14 +74,29 @@ doc-comment with a display name in this exact format:
 
 One sentence description.
 
+Mathematical statement: In ordinary mathematical language, state exactly what
+object is being defined or what theorem is being asserted, including the
+hypotheses and conclusion.
+
 *Dependencies:* `dep1`, `dep2`
 *Sources:* Author, Title, §Section
 *Notes cross-ref:* §X.Y [#anchor](path/to/file.md#anchor)
+*Proof status:* proved | proof pending
 -/
 ```
 
 The display name must exactly match the bold header in the
 corresponding markdown notes file.
+
+During statement-import passes, a temporary Lean-signature statement is
+acceptable when the source prose is not yet curated:
+
+```lean4
+Mathematical statement (Lean): `theorem Foo (x : X) : P x`.
+```
+
+Replace temporary Lean-signature statements with ordinary mathematical language
+before marking the chapter complete.
 
 ---
 

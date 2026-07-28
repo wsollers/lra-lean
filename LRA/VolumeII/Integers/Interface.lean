@@ -18,33 +18,57 @@ implementations extend them with successor and predecessor so construction
 variants can attach law bundles as mixins at the level they have proved.
 -/
 
-/-- Carrier with additive group operations. -/
+
+/-- Carrier with additive group operations.
+
+Mathematical statement (Lean): `structure AdditiveStructure`.
+-/
 structure AdditiveStructure where
   carrier : LRA.VolumeI.Set.LRACarrier
   zero : LRA.VolumeI.Algebra.Operations.NullaryOperation carrier
   add : LRA.VolumeI.Algebra.Operations.BinaryOperation carrier
   neg : LRA.VolumeI.Algebra.Operations.UnaryOperation carrier
 
-/-- Carrier with multiplicative operations. -/
+
+/-- Carrier with multiplicative operations.
+
+Mathematical statement (Lean): `structure MultiplicativeStructure`.
+-/
 structure MultiplicativeStructure where
   carrier : LRA.VolumeI.Set.LRACarrier
   zero : LRA.VolumeI.Algebra.Operations.NullaryOperation carrier
   one : LRA.VolumeI.Algebra.Operations.NullaryOperation carrier
   mul : LRA.VolumeI.Algebra.Operations.BinaryOperation carrier
 
-/-- Carrier with strict and non-strict order relations. -/
+
+/-- Carrier with strict and non-strict order relations.
+
+Mathematical statement (Lean): `structure OrderedStructure`.
+-/
 structure OrderedStructure where
   carrier : LRA.VolumeI.Set.LRACarrier
   lt : LRA.VolumeI.Relations.Endorelation carrier
   le : LRA.VolumeI.Relations.Endorelation carrier
 
-/-- Carrier with ring operations. -/
+
+/-- Carrier with ring operations.
+
+Mathematical statement (Lean): `structure RingStructure extends AdditiveStructure, MultiplicativeStructure`.
+-/
 structure RingStructure extends AdditiveStructure, MultiplicativeStructure where
 
-/-- Carrier with ordered-ring operations. -/
+
+/-- Carrier with ordered-ring operations.
+
+Mathematical statement (Lean): `structure OrderedRingStructure extends RingStructure, OrderedStructure`.
+-/
 structure OrderedRingStructure extends RingStructure, OrderedStructure where
 
-/-- Public structure for integer implementations. -/
+
+/-- Public structure for integer implementations.
+
+Mathematical statement (Lean): `structure IntegerStructure extends OrderedRingStructure`.
+-/
 structure IntegerStructure extends OrderedRingStructure where
   succ : carrier → carrier
   pred : carrier → carrier

@@ -18,6 +18,8 @@ universe u
 
 The countable-additivity axiom is stated for pairwise disjoint sequences whose
 union is measurable.
+
+Mathematical statement (Lean): `structure MeasureDefinition (X : Type u) (measurableSets : LRA.VolumeIV.MeasurableSpaces.MeasurableSpaceDefinitionOn X)`.
 -/
 structure MeasureDefinition
     (X : Type u)
@@ -34,7 +36,11 @@ structure MeasureDefinition
       measurableSets.IsMeasurable (⋃ n, A n) →
       measure (⋃ n, A n) = ∑' n, measure (A n)
 
-/-- Reference data for a measure space. -/
+
+/-- Reference data for a measure space.
+
+Mathematical statement (Lean): `structure MeasureSpaceDefinition`.
+-/
 structure MeasureSpaceDefinition where
   /-- The underlying carrier. -/
   Carrier : Type u

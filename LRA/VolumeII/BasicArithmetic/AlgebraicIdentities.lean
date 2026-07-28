@@ -18,17 +18,35 @@ not number-system constructions; they are the kind of arithmetic moves that
 later proofs should be able to cite directly.
 -/
 
-/-- Difference of squares. -/
+
+/-- Difference of squares.
+
+Mathematical statement (Lean): `theorem SqSubSqExpanded {R : Type*} [CommRing R] (a b : R) : a ^ 2 - b ^ 2 = (a + b) * (a - b)`.
+
+*Proof status:* proof pending
+-/
 theorem SqSubSqExpanded {R : Type*} [CommRing R] (a b : R) :
     a ^ 2 - b ^ 2 = (a + b) * (a - b) := by
   sorry
 
-/-- Square of a sum. -/
+
+/-- Square of a sum.
+
+Mathematical statement (Lean): `theorem SqAddExpanded {R : Type*} [CommRing R] (a b : R) : (a + b) ^ 2 = a ^ 2 + 2 * a * b + b ^ 2`.
+
+*Proof status:* proof pending
+-/
 theorem SqAddExpanded {R : Type*} [CommRing R] (a b : R) :
     (a + b) ^ 2 = a ^ 2 + 2 * a * b + b ^ 2 := by
   sorry
 
-/-- Square of a difference. -/
+
+/-- Square of a difference.
+
+Mathematical statement (Lean): `theorem SqSubExpanded {R : Type*} [CommRing R] (a b : R) : (a - b) ^ 2 = a ^ 2 - 2 * a * b + b ^ 2`.
+
+*Proof status:* proof pending
+-/
 theorem SqSubExpanded {R : Type*} [CommRing R] (a b : R) :
     (a - b) ^ 2 = a ^ 2 - 2 * a * b + b ^ 2 := by
   sorry

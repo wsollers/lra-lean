@@ -2,7 +2,8 @@
 # lra-lean — Makefile
 # ============================================================
 # Targets:
-#   make build        — build all Lean libraries in the project
+#   make build        — build all production and test Lean libraries
+#   make test         — build Lean test libraries
 #   make check        — build + verify proof-readiness and import policy
 #   make clean        — remove lake build artifacts
 #   make shell        — open interactive shell in Docker container
@@ -31,13 +32,18 @@ else
 endif
 
 .PHONY: build
-build:  ## Build all Lean libraries
-	$(RUN) lake build LRAVolumeI LRAVolumeII LRAVolumeVII
-	@echo "✓ Active Lean libraries built successfully (Lean $(LEAN_VER))"
+build:  ## Build all production and test Lean libraries
+	$(RUN) lake build LRAVolumeI LRAVolumeII LRAVolumeIII LRAVolumeIV LRAVolumeVI LRAVolumeVII LRATests
+	@echo "✓ All production and test Lean libraries built successfully (Lean $(LEAN_VER))"
+
+.PHONY: test
+test:  ## Build Lean test libraries
+	$(RUN) lake build LRATests
+	@echo "✓ Lean test libraries built successfully (Lean $(LEAN_VER))"
 
 .PHONY: build-all
 build-all:  ## Build all volumes
-	$(RUN) lake build
+	$(RUN) lake build LRAVolumeI LRAVolumeII LRAVolumeIII LRAVolumeIV LRAVolumeVI LRAVolumeVII
 	@echo "✓ Full build successful (Lean $(LEAN_VER))"
 
 .PHONY: build-vii
@@ -54,7 +60,7 @@ else
 endif
 
 .PHONY: check
-check: build  ## Build + run all checks
+check: build  ## Build all libraries + run all checks
 	@echo "── Checking proof-readiness ────────────────────────"
 ifdef NATIVE
 	@python3 scripts/check-proof-readiness.py

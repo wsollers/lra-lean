@@ -7,11 +7,7 @@ import Mathlib.Order.Bounds.Defs
 
 open scoped Pointwise
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Bounding
-namespace Bounds
+namespace LRA.VolumeIII.Analysis.Bounding.Bounds
 
 /-!
 Volume III label: analysis-bounding-bounds
@@ -88,7 +84,6 @@ Bridge from the LRA supremum predicate to Mathlib's `IsLUB`.
 This is intentionally the only direct coupling point between this interface and
 Mathlib's bound vocabulary.
 -/
-#print IsSupremum
 theorem SupremumIffIsLUB [Preorder F] {s : F} {A : Set F} :
     IsSupremum s A <-> IsLUB A s := by
   constructor
@@ -144,8 +139,4 @@ theorem SupremumMonotone {sA sB : F} {A B : Set F}
 
 end Algebra
 
-end Bounds
-end Bounding
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Bounding.Bounds

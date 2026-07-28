@@ -13,7 +13,11 @@ namespace LRA.VolumeIV.InnerProductSpaces
 
 universe u
 
-/-- Reference data for a real inner product space. -/
+
+/-- Reference data for a real inner product space.
+
+Mathematical statement (Lean): `structure RealInnerProductSpaceDefinition (V : Type u)`.
+-/
 structure RealInnerProductSpaceDefinition (V : Type u) where
   /-- The underlying real vector-space data. -/
   vectorSpace : LRA.VolumeIV.VectorSpaces.VectorSpaceDefinition Real V

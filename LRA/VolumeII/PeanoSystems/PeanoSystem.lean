@@ -10,6 +10,8 @@ namespace PeanoSystems
 
 A one-based Peano system is a carrier equipped with a distinguished element,
 a successor operation, and the Peano axioms.
+
+Mathematical statement (Lean): `structure PeanoSystem`.
 -/
 structure PeanoSystem where
   carrier : LRA.VolumeI.Set.LRACarrier
@@ -36,6 +38,8 @@ structure PeanoSystem where
 
 A subset of a Peano system is successor-closed exactly when membership is
 preserved by the successor operation.
+
+Mathematical statement (Lean): `def successor_closed_subset (ps : PeanoSystem) (subset : LRA.VolumeI.Set.LRASet ps.carrier) : Prop`.
 -/
 def successor_closed_subset
     (ps : PeanoSystem)
@@ -49,6 +53,8 @@ def successor_closed_subset
 
 A subset is inductive exactly when it contains the distinguished element and is
 successor-closed.
+
+Mathematical statement (Lean): `def inductive_subset (ps : PeanoSystem) (subset : LRA.VolumeI.Set.LRASet ps.carrier) : Prop`.
 -/
 def inductive_subset
     (ps : PeanoSystem)
@@ -61,6 +67,8 @@ def inductive_subset
 
 An element is a predecessor of another element exactly when its successor equals
 that element.
+
+Mathematical statement (Lean): `def is_predecessor (ps : PeanoSystem) (predecessor element : ps.carrier) : Prop`.
 -/
 def is_predecessor
     (ps : PeanoSystem)

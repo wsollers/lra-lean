@@ -15,7 +15,11 @@ Lean module: LRA.VolumeII.RealNumbers.Model
 Verification status: definitions accepted
 -/
 
-/-- A real operation bundle as a first-order model of ordered fields. -/
+
+/-- A real operation bundle as a first-order model of ordered fields.
+
+Mathematical statement (Lean): `def realNumbersModel (real_model : RealModel) : LRA.VolumeI.Logic.FirstOrder.Model orderedFieldSignature`.
+-/
 def realNumbersModel
     (real_model : RealModel) :
     LRA.VolumeI.Logic.FirstOrder.Model orderedFieldSignature :=

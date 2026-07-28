@@ -42,7 +42,7 @@ jobs:
             -v "$PWD:/workspace" \
             -w /workspace \
             lra-lean-docs \
-            lake build LRAVolumeI LRAVolumeII
+            lake build LRAVolumeI LRAVolumeII LRAVolumeIII LRAVolumeIV LRAVolumeVI LRAVolumeVII LRATests
         # Lean accepts declarations containing `sorry`; placeholders are shown
         # by the generated site and do not fail the ordinary project build.
 

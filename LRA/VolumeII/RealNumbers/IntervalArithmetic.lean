@@ -17,15 +17,30 @@ Verification status: statement-accepted-proof-pending
 
 open LRA.VolumeI.Algebra.Models
 
+/--
+**[Structure — Interval]**
+
+Mathematical statement (Lean): `structure Interval (real_model : RealModel)`.
+-/
 structure Interval (real_model : RealModel) where
   lower : real_model.signature.carrier
   upper : real_model.signature.carrier
 
+/--
+**[Def — valid]**
+
+Mathematical statement (Lean): `def valid (real_model : RealModel) (interval : Interval real_model) : Prop`.
+-/
 def valid
     (real_model : RealModel)
     (interval : Interval real_model) : Prop :=
   real_model.signature.nonstrict_order interval.lower interval.upper
 
+/--
+**[Def — contains]**
+
+Mathematical statement (Lean): `def contains (real_model : RealModel) (interval : Interval real_model) (value : real_model.signature.carrier) : Prop`.
+-/
 def contains
     (real_model : RealModel)
     (interval : Interval real_model)
@@ -33,18 +48,35 @@ def contains
   real_model.signature.nonstrict_order interval.lower value ∧
     real_model.signature.nonstrict_order value interval.upper
 
+/--
+**[Def — width]**
+
+Mathematical statement (Lean): `def width (real_model : RealModel) (interval : Interval real_model) : real_model.signature.carrier`.
+-/
 def width
     (real_model : RealModel)
     (interval : Interval real_model) : real_model.signature.carrier :=
   real_model.signature.addition interval.upper
     (real_model.signature.negation interval.lower)
 
+/--
+**[Def — enclosure_addition]**
+
+Mathematical statement (Lean): `def enclosure_addition (real_model : RealModel) (first second : Interval real_model) : Interval real_model`.
+-/
 def enclosure_addition
     (real_model : RealModel)
     (first second : Interval real_model) : Interval real_model where
   lower := real_model.signature.addition first.lower second.lower
   upper := real_model.signature.addition first.upper second.upper
 
+/--
+**[Theorem — enclosure_addition_is_valid]**
+
+Mathematical statement (Lean): `theorem enclosure_addition_is_valid (real_model : RealModel) (first second : Interval real_model) (first_valid : valid real_model first) (second_valid : valid real_model second) : valid real_model (enclosure_addition real_model first second)`.
+
+*Proof status:* proof pending
+-/
 theorem enclosure_addition_is_valid
     (real_model : RealModel)
     (first second : Interval real_model)
@@ -53,6 +85,11 @@ theorem enclosure_addition_is_valid
     valid real_model (enclosure_addition real_model first second) := by
   sorry
 
+/--
+**[Structure — EnclosesBinaryOperation]**
+
+Mathematical statement (Lean): `structure EnclosesBinaryOperation (real_model : RealModel) (interval_operation : Interval real_model → Interval real_model → Interval real_model) (point_operation : real_model.signature.carrier → real_model.signature.carrier → real_model.signature.carrier)...`.
+-/
 structure EnclosesBinaryOperation
     (real_model : RealModel)
     (interval_operation : Interval real_model → Interval real_model → Interval real_model)
@@ -69,6 +106,13 @@ structure EnclosesBinaryOperation
           (interval_operation first_interval second_interval)
           (point_operation first_value second_value)
 
+/--
+**[Theorem — addition_enclosure_is_sound]**
+
+Mathematical statement (Lean): `theorem addition_enclosure_is_sound (real_model : RealModel) : EnclosesBinaryOperation real_model (enclosure_addition real_model) real_model.signature.addition`.
+
+*Proof status:* proof pending
+-/
 theorem addition_enclosure_is_sound
     (real_model : RealModel) :
     EnclosesBinaryOperation real_model
@@ -76,6 +120,13 @@ theorem addition_enclosure_is_sound
       real_model.signature.addition := by
   sorry
 
+/--
+**[Theorem — dependency_can_make_enclosures_strict]**
+
+Mathematical statement (Lean): `theorem dependency_can_make_enclosures_strict (real_model : RealModel) : ∃ interval : Interval real_model, ∃ expression_enclosure direct_enclosure : Interval real_model, (∀ value, contains real_model direct_enclosure value → contains real_model expression_e...`.
+
+*Proof status:* proof pending
+-/
 theorem dependency_can_make_enclosures_strict
     (real_model : RealModel) :
     ∃ interval : Interval real_model,

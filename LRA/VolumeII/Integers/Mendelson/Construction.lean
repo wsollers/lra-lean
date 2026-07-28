@@ -17,50 +17,91 @@ Source: docs/number-systems/gpt-02b-integers-mendelson.md
 Verification status: definitions complete; proofs pending
 -/
 
+/--
+**[Abbrev — PositiveNaturalPairData]**
+
+Mathematical statement (Lean): `abbrev PositiveNaturalPairData`.
+-/
 abbrev PositiveNaturalPairData :=
   QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs
 
-/-- Definition 1.1: a Mendelson representative is a pair of positive naturals. -/
+
+/-- Definition 1.1: a Mendelson representative is a pair of positive naturals.
+
+Mathematical statement (Lean): `structure PositivePair (positive_data : PositiveNaturalPairData)`.
+-/
 structure PositivePair (positive_data : PositiveNaturalPairData) where
   left : positive_data.carrier
   right : positive_data.carrier
 
-/-- Definition 1.2: Mendelson positive-pair equivalence. -/
+
+/-- Definition 1.2: Mendelson positive-pair equivalence.
+
+Mathematical statement (Lean): `def equivalent (positive_data : PositiveNaturalPairData) (first second : PositivePair positive_data) : Prop`.
+-/
 def equivalent
     (positive_data : PositiveNaturalPairData)
     (first second : PositivePair positive_data) : Prop :=
   positive_data.addition first.left second.right =
     positive_data.addition second.left first.right
 
+/--
+**[Theorem — equivalent_is_equivalence_relation]**
+
+Mathematical statement (Lean): `theorem equivalent_is_equivalence_relation (positive_data : PositiveNaturalPairData) : Equivalence (equivalent positive_data)`.
+
+*Proof status:* proof pending
+-/
 theorem equivalent_is_equivalence_relation
     (positive_data : PositiveNaturalPairData) :
     Equivalence (equivalent positive_data) := by
   sorry
 
+/--
+**[Def — setoid]**
+
+Mathematical statement (Lean): `def setoid (positive_data : PositiveNaturalPairData) : Setoid (PositivePair positive_data)`.
+-/
 def setoid (positive_data : PositiveNaturalPairData) :
     Setoid (PositivePair positive_data) where
   r := equivalent positive_data
   iseqv := equivalent_is_equivalence_relation positive_data
 
-/-- Definition 1.3: Mendelson integer carrier. -/
+
+/-- Definition 1.3: Mendelson integer carrier.
+
+Mathematical statement (Lean): `abbrev Carrier (positive_data : PositiveNaturalPairData)`.
+-/
 abbrev Carrier (positive_data : PositiveNaturalPairData) :=
   Quotient (setoid positive_data)
 
-/-- Definition 2.1: raw Mendelson addition. -/
+
+/-- Definition 2.1: raw Mendelson addition.
+
+Mathematical statement (Lean): `def representative_addition (positive_data : PositiveNaturalPairData) (first second : PositivePair positive_data) : PositivePair positive_data`.
+-/
 def representative_addition
     (positive_data : PositiveNaturalPairData)
     (first second : PositivePair positive_data) : PositivePair positive_data where
   left := positive_data.addition first.left second.left
   right := positive_data.addition first.right second.right
 
-/-- Definition 2.2: raw additive inverse. -/
+
+/-- Definition 2.2: raw additive inverse.
+
+Mathematical statement (Lean): `def representative_negation (positive_data : PositiveNaturalPairData) (value : PositivePair positive_data) : PositivePair positive_data`.
+-/
 def representative_negation
     (positive_data : PositiveNaturalPairData)
     (value : PositivePair positive_data) : PositivePair positive_data where
   left := value.right
   right := value.left
 
-/-- Definition 3.1: raw Mendelson multiplication. -/
+
+/-- Definition 3.1: raw Mendelson multiplication.
+
+Mathematical statement (Lean): `def representative_multiplication (positive_data : PositiveNaturalPairData) (first second : PositivePair positive_data) : PositivePair positive_data`.
+-/
 def representative_multiplication
     (positive_data : PositiveNaturalPairData)
     (first second : PositivePair positive_data) : PositivePair positive_data where
@@ -73,6 +114,13 @@ def representative_multiplication
       (positive_data.multiplication first.left second.right)
       (positive_data.multiplication first.right second.left)
 
+/--
+**[Theorem — representative_operations_respect_equivalence]**
+
+Mathematical statement (Lean): `theorem representative_operations_respect_equivalence (positive_data : PositiveNaturalPairData) : (∀ first₁ first₂ second₁ second₂, equivalent positive_data first₁ first₂ → equivalent positive_data second₁ second₂ → equivalent positive_data (representative_...`.
+
+*Proof status:* proof pending
+-/
 theorem representative_operations_respect_equivalence
     (positive_data : PositiveNaturalPairData) :
     (∀ first₁ first₂ second₁ second₂,
@@ -94,6 +142,11 @@ theorem representative_operations_respect_equivalence
           (representative_multiplication positive_data first₂ second₂)) := by
   sorry
 
+/--
+**[Def — positive_class]**
+
+Mathematical statement (Lean): `def positive_class (positive_data : PositiveNaturalPairData) (value : PositivePair positive_data) : Prop`.
+-/
 def positive_class
     (positive_data : PositiveNaturalPairData)
     (value : PositivePair positive_data) : Prop :=
@@ -101,6 +154,11 @@ def positive_class
     ¬ equivalent positive_data value
       { left := positive_data.one, right := positive_data.one }
 
+/--
+**[Def — representative_strict_order]**
+
+Mathematical statement (Lean): `def representative_strict_order (positive_data : PositiveNaturalPairData) (first second : PositivePair positive_data) : Prop`.
+-/
 def representative_strict_order
     (positive_data : PositiveNaturalPairData)
     (first second : PositivePair positive_data) : Prop :=
@@ -108,18 +166,39 @@ def representative_strict_order
     { left := positive_data.addition second.left first.right
       right := positive_data.addition first.left second.right }
 
+/--
+**[Theorem — positive_classes_recover_peano_system]**
+
+Mathematical statement (Lean): `theorem positive_classes_recover_peano_system (positive_data : PositiveNaturalPairData) : ∃ peano_system : PeanoSystems.PeanoSystem, Nonempty peano_system.carrier`.
+
+*Proof status:* proof pending
+-/
 theorem positive_classes_recover_peano_system
     (positive_data : PositiveNaturalPairData) :
     ∃ peano_system : PeanoSystems.PeanoSystem,
       Nonempty peano_system.carrier := by
   sorry
 
+/--
+**[Theorem — mendelson_integers_form_ordered_ring]**
+
+Mathematical statement (Lean): `theorem mendelson_integers_form_ordered_ring (positive_data : PositiveNaturalPairData) : ∃ integer_model : LRA.VolumeI.Algebra.Models.IntegerModel, integer_model.signature.carrier = Carrier positive_data`.
+
+*Proof status:* proof pending
+-/
 theorem mendelson_integers_form_ordered_ring
     (positive_data : PositiveNaturalPairData) :
     ∃ integer_model : LRA.VolumeI.Algebra.Models.IntegerModel,
       integer_model.signature.carrier = Carrier positive_data := by
   sorry
 
+/--
+**[Theorem — mendelson_compares_with_quotient_ordered_pairs]**
+
+Mathematical statement (Lean): `theorem mendelson_compares_with_quotient_ordered_pairs (positive_data : PositiveNaturalPairData) : ∃ comparison : Carrier positive_data → QuotientOrderedPairs.Carrier positive_data, ∀ first second, comparison first = comparison second → first = second`.
+
+*Proof status:* proof pending
+-/
 theorem mendelson_compares_with_quotient_ordered_pairs
     (positive_data : PositiveNaturalPairData) :
     ∃ comparison :

@@ -18,10 +18,20 @@ Verification status: statement-accepted-proof-pending
 
 open LRA.VolumeI.Algebra.Models
 
+/--
+**[Structure — FiniteSimpleContinuedFraction]**
+
+Mathematical statement (Lean): `structure FiniteSimpleContinuedFraction (integer_model : IntegerModel)`.
+-/
 structure FiniteSimpleContinuedFraction (integer_model : IntegerModel) where
   head : integer_model.signature.carrier
   tail : List integer_model.signature.carrier
 
+/--
+**[Structure — FiniteValue]**
+
+Mathematical statement (Lean): `structure FiniteValue (integer_model : IntegerModel) (rational_model : RationalModel) (integer_embedding : IntegerEmbeddingIntoRational integer_model rational_model) (fraction : FiniteSimpleContinuedFraction integer_model) (value : rational_model.signature....`.
+-/
 structure FiniteValue
     (integer_model : IntegerModel)
     (rational_model : RationalModel)
@@ -33,6 +43,11 @@ structure FiniteValue
       partial_values.length = fraction.tail.length + 1 ∧
         partial_values.head? = some value
 
+/--
+**[Def — canonical]**
+
+Mathematical statement (Lean): `def canonical (integer_model : IntegerModel) (fraction : FiniteSimpleContinuedFraction integer_model) : Prop`.
+-/
 def canonical
     (integer_model : IntegerModel)
     (fraction : FiniteSimpleContinuedFraction integer_model) : Prop :=
@@ -41,6 +56,11 @@ def canonical
       last ∈ fraction.tail ∧
         integer_model.signature.strict_order integer_model.signature.one last
 
+/--
+**[Structure — Convergents]**
+
+Mathematical statement (Lean): `structure Convergents (integer_model : IntegerModel) (fraction : Nat → integer_model.signature.carrier)`.
+-/
 structure Convergents
     (integer_model : IntegerModel)
     (fraction : Nat → integer_model.signature.carrier) where
@@ -54,9 +74,19 @@ structure Convergents
             (fraction (index + 2)) (numerator (index + 1)))
           (numerator index)
 
+/--
+**[Def — InfiniteSimpleContinuedFraction]**
+
+Mathematical statement (Lean): `def InfiniteSimpleContinuedFraction (integer_model : IntegerModel) : Type`.
+-/
 def InfiniteSimpleContinuedFraction (integer_model : IntegerModel) : Type :=
   Nat → integer_model.signature.carrier
 
+/--
+**[Def — eventually_periodic]**
+
+Mathematical statement (Lean): `def eventually_periodic {integer_model : IntegerModel} (fraction : InfiniteSimpleContinuedFraction integer_model) : Prop`.
+-/
 def eventually_periodic
     {integer_model : IntegerModel}
     (fraction : InfiniteSimpleContinuedFraction integer_model) : Prop :=
@@ -65,6 +95,13 @@ def eventually_periodic
       ∀ index : Nat,
         start ≤ index → fraction (index + period) = fraction index
 
+/--
+**[Theorem — rational_has_unique_canonical_finite_expansion]**
+
+Mathematical statement (Lean): `theorem rational_has_unique_canonical_finite_expansion (integer_model : IntegerModel) (rational_model : RationalModel) (integer_embedding : IntegerEmbeddingIntoRational integer_model rational_model) (value : rational_model.signature.carrier) : ∃ fraction :...`.
+
+*Proof status:* proof pending
+-/
 theorem rational_has_unique_canonical_finite_expansion
     (integer_model : IntegerModel)
     (rational_model : RationalModel)
@@ -79,6 +116,13 @@ theorem rational_has_unique_canonical_finite_expansion
                 other = fraction := by
   sorry
 
+/--
+**[Theorem — infinite_continued_fraction_converges]**
+
+Mathematical statement (Lean): `theorem infinite_continued_fraction_converges (real_model : RealModel) (integer_model : IntegerModel) (fraction : InfiniteSimpleContinuedFraction integer_model) : ∃ value : real_model.signature.carrier, ∀ neighborhood : real_model.signature.carrier → Prop,...`.
+
+*Proof status:* proof pending
+-/
 theorem infinite_continued_fraction_converges
     (real_model : RealModel)
     (integer_model : IntegerModel)
@@ -89,6 +133,13 @@ theorem infinite_continued_fraction_converges
           ∃ index : Nat, neighborhood value := by
   sorry
 
+/--
+**[Theorem — quadratic_irrational_iff_eventually_periodic]**
+
+Mathematical statement (Lean): `theorem quadratic_irrational_iff_eventually_periodic (real_model : RealModel) (integer_model : IntegerModel) (fraction : InfiniteSimpleContinuedFraction integer_model) (value : real_model.signature.carrier) : eventually_periodic fraction ↔ ∃ coefficient_a c...`.
+
+*Proof status:* proof pending
+-/
 theorem quadratic_irrational_iff_eventually_periodic
     (real_model : RealModel)
     (integer_model : IntegerModel)

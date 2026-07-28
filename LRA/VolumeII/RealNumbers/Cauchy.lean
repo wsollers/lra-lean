@@ -20,7 +20,11 @@ Definitions are genuine mathematical definitions. Pending work appears only in
 proof bodies.
 -/
 
-/-- Absolute-value data required to state the rational Cauchy condition. -/
+
+/-- Absolute-value data required to state the rational Cauchy condition.
+
+Mathematical statement (Lean): `structure RationalMetricData (rational_model : RationalModel)`.
+-/
 structure RationalMetricData (rational_model : RationalModel) where
   absolute_value :
     rational_model.signature.carrier → rational_model.signature.carrier
@@ -48,11 +52,19 @@ structure RationalMetricData (rational_model : RationalModel) where
       absolute_value value = rational_model.signature.zero ↔
         value = rational_model.signature.zero
 
-/-- A rational sequence is a function from the natural numbers to the rational carrier. -/
+
+/-- A rational sequence is a function from the natural numbers to the rational carrier.
+
+Mathematical statement (Lean): `abbrev Sequence (rational_model : RationalModel)`.
+-/
 abbrev Sequence (rational_model : RationalModel) :=
   Nat → rational_model.signature.carrier
 
-/-- The distance induced by rational subtraction and absolute value. -/
+
+/-- The distance induced by rational subtraction and absolute value.
+
+Mathematical statement (Lean): `def distance (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (first second : rational_model.signature.carrier) : rational_model.signature.carrier`.
+-/
 def distance
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model)
@@ -61,13 +73,21 @@ def distance
   absolute_value_data.absolute_value
     (rational_model.signature.subtraction first second)
 
-/-- A rational number is positive when it is strictly greater than zero. -/
+
+/-- A rational number is positive when it is strictly greater than zero.
+
+Mathematical statement (Lean): `def is_positive (rational_model : RationalModel) (value : rational_model.signature.carrier) : Prop`.
+-/
 def is_positive
     (rational_model : RationalModel)
     (value : rational_model.signature.carrier) : Prop :=
   rational_model.signature.strict_order rational_model.signature.zero value
 
-/-- The epsilon-tail definition of a rational Cauchy sequence. -/
+
+/-- The epsilon-tail definition of a rational Cauchy sequence.
+
+Mathematical statement (Lean): `def is_cauchy (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (sequence : Sequence rational_model) : Prop`.
+-/
 def is_cauchy
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model)
@@ -84,7 +104,11 @@ def is_cauchy
             (sequence second_index))
           epsilon
 
-/-- A null sequence converges to rational zero. -/
+
+/-- A null sequence converges to rational zero.
+
+Mathematical statement (Lean): `def is_null (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (sequence : Sequence rational_model) : Prop`.
+-/
 def is_null
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model)
@@ -98,7 +122,11 @@ def is_null
           (absolute_value_data.absolute_value (sequence index))
           epsilon
 
-/-- Two rational sequences are equivalent when their pointwise difference is null. -/
+
+/-- Two rational sequences are equivalent when their pointwise difference is null.
+
+Mathematical statement (Lean): `def equivalent (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (first second : Sequence rational_model) : Prop`.
+-/
 def equivalent
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model)
@@ -109,7 +137,11 @@ def equivalent
         (first index)
         (second index))
 
-/-- The carrier of admissible Cauchy-sequence representatives. -/
+
+/-- The carrier of admissible Cauchy-sequence representatives.
+
+Mathematical statement (Lean): `structure Representative (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model)`.
+-/
 structure Representative
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model) where
@@ -117,14 +149,24 @@ structure Representative
   sequence_is_cauchy :
     is_cauchy rational_model absolute_value_data sequence
 
-/-- Null-difference equivalence restricted to Cauchy representatives. -/
+
+/-- Null-difference equivalence restricted to Cauchy representatives.
+
+Mathematical statement (Lean): `def representative_equivalent (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (first second : Representative rational_model absolute_value_data) : Prop`.
+-/
 def representative_equivalent
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model)
     (first second : Representative rational_model absolute_value_data) : Prop :=
   equivalent rational_model absolute_value_data first.sequence second.sequence
 
-/-- Cauchy equivalence is reflexive, symmetric, and transitive. -/
+
+/-- Cauchy equivalence is reflexive, symmetric, and transitive.
+
+Mathematical statement (Lean): `theorem representative_equivalent_is_equivalence (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) : Equivalence (representative_equivalent rational_model absolute_value_data)`.
+
+*Proof status:* proof pending
+-/
 theorem representative_equivalent_is_equivalence
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model) :
@@ -132,7 +174,11 @@ theorem representative_equivalent_is_equivalence
       (representative_equivalent rational_model absolute_value_data) := by
   sorry
 
-/-- The setoid used for the Cauchy quotient. -/
+
+/-- The setoid used for the Cauchy quotient.
+
+Mathematical statement (Lean): `def representative_setoid (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) : Setoid (Representative rational_model absolute_value_data)`.
+-/
 def representative_setoid
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model) :
@@ -141,13 +187,21 @@ def representative_setoid
   iseqv := representative_equivalent_is_equivalence
     rational_model absolute_value_data
 
-/-- The Cauchy real carrier is the quotient of rational Cauchy sequences. -/
+
+/-- The Cauchy real carrier is the quotient of rational Cauchy sequences.
+
+Mathematical statement (Lean): `abbrev Carrier (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model)`.
+-/
 abbrev Carrier
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model) :=
   Quotient (representative_setoid rational_model absolute_value_data)
 
-/-- Pointwise addition of rational-sequence representatives. -/
+
+/-- Pointwise addition of rational-sequence representatives.
+
+Mathematical statement (Lean): `def representative_addition (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (first second : Representative rational_model absolute_value_data) : Sequence rational_model`.
+-/
 def representative_addition
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model)
@@ -158,7 +212,11 @@ def representative_addition
       (first.sequence index)
       (second.sequence index)
 
-/-- Pointwise negation of a rational-sequence representative. -/
+
+/-- Pointwise negation of a rational-sequence representative.
+
+Mathematical statement (Lean): `def representative_negation (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (representative : Representative rational_model absolute_value_data) : Sequence rational_model`.
+-/
 def representative_negation
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model)
@@ -167,7 +225,11 @@ def representative_negation
   fun index =>
     rational_model.signature.negation (representative.sequence index)
 
-/-- Pointwise multiplication of rational-sequence representatives. -/
+
+/-- Pointwise multiplication of rational-sequence representatives.
+
+Mathematical statement (Lean): `def representative_multiplication (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (first second : Representative rational_model absolute_value_data) : Sequence rational_model`.
+-/
 def representative_multiplication
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model)
@@ -178,7 +240,13 @@ def representative_multiplication
       (first.sequence index)
       (second.sequence index)
 
-/-- Pointwise addition preserves the Cauchy property. -/
+
+/-- Pointwise addition preserves the Cauchy property.
+
+Mathematical statement (Lean): `theorem representative_addition_is_cauchy (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (first second : Representative rational_model absolute_value_data) : is_cauchy rational_model absolute_value_data (represent...`.
+
+*Proof status:* proof pending
+-/
 theorem representative_addition_is_cauchy
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model)
@@ -187,7 +255,13 @@ theorem representative_addition_is_cauchy
       (representative_addition rational_model absolute_value_data first second) := by
   sorry
 
-/-- Pointwise negation preserves the Cauchy property. -/
+
+/-- Pointwise negation preserves the Cauchy property.
+
+Mathematical statement (Lean): `theorem representative_negation_is_cauchy (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (representative : Representative rational_model absolute_value_data) : is_cauchy rational_model absolute_value_data (represe...`.
+
+*Proof status:* proof pending
+-/
 theorem representative_negation_is_cauchy
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model)
@@ -196,7 +270,13 @@ theorem representative_negation_is_cauchy
       (representative_negation rational_model absolute_value_data representative) := by
   sorry
 
-/-- Pointwise multiplication preserves the Cauchy property. -/
+
+/-- Pointwise multiplication preserves the Cauchy property.
+
+Mathematical statement (Lean): `theorem representative_multiplication_is_cauchy (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (first second : Representative rational_model absolute_value_data) : is_cauchy rational_model absolute_value_data (rep...`.
+
+*Proof status:* proof pending
+-/
 theorem representative_multiplication_is_cauchy
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model)
@@ -205,7 +285,13 @@ theorem representative_multiplication_is_cauchy
       (representative_multiplication rational_model absolute_value_data first second) := by
   sorry
 
-/-- Pointwise addition is independent of the chosen representatives. -/
+
+/-- Pointwise addition is independent of the chosen representatives.
+
+Mathematical statement (Lean): `theorem representative_addition_respects_equivalence (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) : Foundations.Quotients.binary_operation_respects (representative_setoid rational_model absolute_value_data) (fun...`.
+
+*Proof status:* proof pending
+-/
 theorem representative_addition_respects_equivalence
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model) :
@@ -217,7 +303,13 @@ theorem representative_addition_respects_equivalence
             rational_model absolute_value_data first second⟩) := by
   sorry
 
-/-- Pointwise multiplication is independent of the chosen representatives. -/
+
+/-- Pointwise multiplication is independent of the chosen representatives.
+
+Mathematical statement (Lean): `theorem representative_multiplication_respects_equivalence (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) : Foundations.Quotients.binary_operation_respects (representative_setoid rational_model absolute_value_data...`.
+
+*Proof status:* proof pending
+-/
 theorem representative_multiplication_respects_equivalence
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model) :

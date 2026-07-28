@@ -9,6 +9,8 @@ namespace PeanoSystems
 
 Iterator data for a Peano system consists of a target type, an initial value,
 and a step rule on the target type.
+
+Mathematical statement (Lean): `structure IteratorData (ps : PeanoSystem)`.
 -/
 structure IteratorData (ps : PeanoSystem) where
   target : Type
@@ -21,6 +23,8 @@ structure IteratorData (ps : PeanoSystem) where
 A function satisfies the iterator clauses exactly when it sends the
 distinguished element to the initial value and sends successors according to the
 step rule.
+
+Mathematical statement (Lean): `def satisfies_iterator_clauses (ps : PeanoSystem) (target : Type) (initial_value : target) (step_rule : target -> target) (iterator_function : ps.carrier -> target) : Prop`.
 -/
 def satisfies_iterator_clauses
     (ps : PeanoSystem)
@@ -38,6 +42,8 @@ def satisfies_iterator_clauses
 
 An iterator relation contains the initial pair and is closed under the iterator
 step.
+
+Mathematical statement (Lean): `def iterator_relation (ps : PeanoSystem) (data : IteratorData ps) (relation : ps.carrier -> data.target -> Prop) : Prop`.
 -/
 def iterator_relation
     (ps : PeanoSystem)
@@ -54,6 +60,8 @@ def iterator_relation
 
 The minimal iterator relation contains exactly the pairs forced by every
 iterator relation.
+
+Mathematical statement (Lean): `def minimal_iterator_relation (ps : PeanoSystem) (data : IteratorData ps) (element : ps.carrier) (value : data.target) : Prop`.
 -/
 def minimal_iterator_relation
     (ps : PeanoSystem)
@@ -69,6 +77,8 @@ def minimal_iterator_relation
 
 The minimal iterator relation contains the initial pair and is closed under the
 iterator step.
+
+Mathematical statement (Lean): `theorem minimal_iterator_relation_is_iterator_relation (ps : PeanoSystem) (data : IteratorData ps) : iterator_relation ps data (minimal_iterator_relation ps data)`.
 -/
 theorem minimal_iterator_relation_is_iterator_relation
     (ps : PeanoSystem)
@@ -91,6 +101,8 @@ theorem minimal_iterator_relation_is_iterator_relation
 **[Theorem - Completeness of the Minimal Iterator Relation]**
 
 Every stage has at least one value in the minimal iterator relation.
+
+Mathematical statement (Lean): `theorem minimal_iterator_relation_complete (ps : PeanoSystem) (data : IteratorData ps) : forall element : ps.carrier, exists value : data.target, minimal_iterator_relation ps data element value`.
 -/
 theorem minimal_iterator_relation_complete
     (ps : PeanoSystem)
@@ -119,6 +131,8 @@ theorem minimal_iterator_relation_complete
 
 If the minimal iterator relation relates the distinguished element to a value,
 then that value must be the initial value.
+
+Mathematical statement (Lean): `theorem minimal_iterator_relation_base_unique (ps : PeanoSystem) (data : IteratorData ps) (value : data.target) (value_is_forced : minimal_iterator_relation ps data ps.one value) : value = data.initial_value`.
 -/
 theorem minimal_iterator_relation_base_unique
     (ps : PeanoSystem)
@@ -163,6 +177,8 @@ theorem minimal_iterator_relation_base_unique
 Assume the minimal iterator relation is already deterministic at an element. If
 a value is forced at that element, and another value is forced at its successor,
 then the successor-stage value is the step of the element-stage value.
+
+Mathematical statement (Lean): `theorem forced_successor_values_are_unique (ps : PeanoSystem) (data : IteratorData ps) (element : ps.carrier) (current_value successor_value : data.target) (prior_stage_is_deterministic : forall first_value second_value : data.target, minimal_iterator_relat...`.
 -/
 theorem forced_successor_values_are_unique
     (ps : PeanoSystem)
@@ -248,6 +264,8 @@ theorem forced_successor_values_are_unique
 
 For each element of the Peano system, the minimal iterator relation forces at
 most one value.
+
+Mathematical statement (Lean): `theorem minimal_iterator_relation_deterministic (ps : PeanoSystem) (data : IteratorData ps) : forall element : ps.carrier, forall first_value second_value : data.target, minimal_iterator_relation ps data element first_value -> minimal_iterator_relation ps d...`.
 -/
 theorem minimal_iterator_relation_deterministic
     (ps : PeanoSystem)
@@ -320,6 +338,8 @@ theorem minimal_iterator_relation_deterministic
 
 For every target type, initial value, and step rule, there exists an iterator
 function satisfying the iterator clauses.
+
+Mathematical statement (Lean): `theorem iterator_function_exists (ps : PeanoSystem) (target : Type) (initial_value : target) (step_rule : target -> target) : exists iterator_function : ps.carrier -> target, satisfies_iterator_clauses ps target initial_value step_rule iterator_function`.
 -/
 theorem iterator_function_exists
     (ps : PeanoSystem)
@@ -391,6 +411,8 @@ theorem iterator_function_exists
 
 Any two iterator functions satisfying the same iterator clauses are pointwise
 equal.
+
+Mathematical statement (Lean): `theorem iterator_function_unique (ps : PeanoSystem) (target : Type) (initial_value : target) (step_rule : target -> target) (first_iterator second_iterator : ps.carrier -> target) (first_satisfies : satisfies_iterator_clauses ps target initial_value step_ru...`.
 -/
 theorem iterator_function_unique
     (ps : PeanoSystem)
@@ -422,6 +444,8 @@ theorem iterator_function_unique
 
 The iterator-generated function determined by a target type, an initial value,
 and a step rule.
+
+Mathematical statement (Lean): `noncomputable def iter (ps : PeanoSystem) (target : Type) (initial_value : target) (step_rule : target -> target) : ps.carrier -> target`.
 -/
 noncomputable def iter
     (ps : PeanoSystem)
@@ -441,6 +465,8 @@ noncomputable def iter
 
 The iterator-generated function sends the distinguished element to the initial
 value.
+
+Mathematical statement (Lean): `theorem iter_base (ps : PeanoSystem) (target : Type) (initial_value : target) (step_rule : target -> target) : iter ps target initial_value step_rule ps.one = initial_value`.
 -/
 theorem iter_base
     (ps : PeanoSystem)
@@ -459,6 +485,8 @@ theorem iter_base
 **[Theorem - Iterator Successor Clause]**
 
 The iterator-generated function sends successors according to the step rule.
+
+Mathematical statement (Lean): `theorem iter_step (ps : PeanoSystem) (target : Type) (initial_value : target) (step_rule : target -> target) (element : ps.carrier) : iter ps target initial_value step_rule (ps.successor element) = step_rule (iter ps target initial_value step_rule element)`.
 -/
 theorem iter_step
     (ps : PeanoSystem)
@@ -481,6 +509,8 @@ theorem iter_step
 For every target type, initial value, and step rule, there exists an iterator
 function satisfying the iterator clauses, and any other such function is
 pointwise equal to it.
+
+Mathematical statement (Lean): `theorem peano_iterator_theorem (ps : PeanoSystem) (target : Type) (initial_value : target) (step_rule : target -> target) : exists iterator_function : ps.carrier -> target, satisfies_iterator_clauses ps target initial_value step_rule iterator_function /\ fo...`.
 -/
 theorem peano_iterator_theorem
     (ps : PeanoSystem)

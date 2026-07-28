@@ -14,10 +14,20 @@ Verification status: pending
 This module is reserved for the Pfefer canonical construction of the integers.
 -/
 
+/--
+**[Structure — ConstructionPlan]**
+
+Mathematical statement (Lean): `structure ConstructionPlan`.
+-/
 structure ConstructionPlan where
   source : String
   status : String
 
+/--
+**[Def — plan]**
+
+Mathematical statement (Lean): `def plan : ConstructionPlan`.
+-/
 def plan : ConstructionPlan where
   source := "Pfefer canonical integer construction"
   status := "pending formalization"

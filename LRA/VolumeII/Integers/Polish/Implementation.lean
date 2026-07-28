@@ -19,6 +19,11 @@ Verification status: checked implementation and law bundles
 by shared tests and downstream examples.
 -/
 
+/--
+**[Abbrev — PolishZCarrier]**
+
+Mathematical statement (Lean): `abbrev PolishZCarrier`.
+-/
 abbrev PolishZCarrier := TwoSidedSuccessor.Z
 
 instance : Zero PolishZCarrier where
@@ -27,6 +32,11 @@ instance : Zero PolishZCarrier where
 instance : One PolishZCarrier where
   one := TwoSidedSuccessor.one
 
+/--
+**[Def — PolishZ]**
+
+Mathematical statement (Lean): `def PolishZ : IntegerStructure`.
+-/
 def PolishZ : IntegerStructure where
   carrier := PolishZCarrier
   zero := TwoSidedSuccessor.Z.zero
@@ -39,6 +49,11 @@ def PolishZ : IntegerStructure where
   succ := TwoSidedSuccessor.succ
   pred := TwoSidedSuccessor.pred
 
+/--
+**[Def — PolishSuccessorLaws]**
+
+Mathematical statement (Lean): `def PolishSuccessorLaws : IntegerSuccessorLaws PolishZ`.
+-/
 def PolishSuccessorLaws : IntegerSuccessorLaws PolishZ where
   pred_succ := TwoSidedSuccessor.pred_succ
   succ_pred := TwoSidedSuccessor.succ_pred
@@ -49,6 +64,11 @@ def PolishSuccessorLaws : IntegerSuccessorLaws PolishZ where
     intro firstInteger secondInteger predecessorEquality
     exact TwoSidedSuccessor.pred_injective predecessorEquality
 
+/--
+**[Def — PolishAdditiveLaws]**
+
+Mathematical statement (Lean): `def PolishAdditiveLaws : IntegerAdditiveLaws PolishZ`.
+-/
 def PolishAdditiveLaws : IntegerAdditiveLaws PolishZ where
   add_assoc := TwoSidedSuccessor.add_assoc
   add_comm := TwoSidedSuccessor.add_comm
@@ -59,6 +79,11 @@ def PolishAdditiveLaws : IntegerAdditiveLaws PolishZ where
   neg_neg := TwoSidedSuccessor.neg_neg
   neg_add := TwoSidedSuccessor.neg_add
 
+/--
+**[Def — PolishMultiplicativeLaws]**
+
+Mathematical statement (Lean): `def PolishMultiplicativeLaws : IntegerMultiplicativeLaws PolishZ`.
+-/
 def PolishMultiplicativeLaws : IntegerMultiplicativeLaws PolishZ where
   one_mul := TwoSidedSuccessor.one_mul
   mul_one := by
@@ -69,11 +94,21 @@ def PolishMultiplicativeLaws : IntegerMultiplicativeLaws PolishZ where
   mul_assoc := TwoSidedSuccessor.mul_assoc
   mul_comm := TwoSidedSuccessor.mul_comm
 
+/--
+**[Def — PolishMultiplicationSuccessorLaws]**
+
+Mathematical statement (Lean): `def PolishMultiplicationSuccessorLaws : IntegerMultiplicationSuccessorLaws PolishZ`.
+-/
 def PolishMultiplicationSuccessorLaws :
     IntegerMultiplicationSuccessorLaws PolishZ where
   mul_succ := TwoSidedSuccessor.mul_succ
   mul_pred := TwoSidedSuccessor.mul_pred
 
+/--
+**[Def — PolishRingLaws]**
+
+Mathematical statement (Lean): `def PolishRingLaws : IntegerRingLaws PolishZ`.
+-/
 def PolishRingLaws : IntegerRingLaws PolishZ where
   toAdditiveGroupLaws := PolishAdditiveLaws
   toMultiplicativeMonoidLaws := PolishMultiplicativeLaws
@@ -82,6 +117,11 @@ def PolishRingLaws : IntegerRingLaws PolishZ where
   mul_neg := TwoSidedSuccessor.mul_neg
   neg_mul := TwoSidedSuccessor.neg_mul
 
+/--
+**[Def — PolishOrderLaws]**
+
+Mathematical statement (Lean): `def PolishOrderLaws : IntegerOrderLaws PolishZ`.
+-/
 def PolishOrderLaws : IntegerOrderLaws PolishZ where
   lt_irrefl := TwoSidedSuccessor.lt_irrefl
   lt_trans := by
@@ -93,6 +133,11 @@ def PolishOrderLaws : IntegerOrderLaws PolishZ where
     exact TwoSidedSuccessor.le_antisymm firstLeSecond secondLeFirst
   lt_trichotomy := TwoSidedSuccessor.lt_trichotomy
 
+/--
+**[Def — PolishOrderedRingLaws]**
+
+Mathematical statement (Lean): `def PolishOrderedRingLaws : IntegerOrderedRingLaws PolishZ`.
+-/
 def PolishOrderedRingLaws : IntegerOrderedRingLaws PolishZ where
   toRingLaws := PolishRingLaws
   toOrderLaws := PolishOrderLaws
@@ -105,6 +150,11 @@ def PolishOrderedRingLaws : IntegerOrderedRingLaws PolishZ where
       TwoSidedSuccessor.pos_of_zero_lt positiveMultiplier zeroLessMultiplier
     exact TwoSidedSuccessor.mul_lt_mul_pos_right firstLessSecond multiplierIsPositiveRay
 
+/--
+**[Def — PolishIntegerLaws]**
+
+Mathematical statement (Lean): `def PolishIntegerLaws : IntegerLaws PolishZ`.
+-/
 def PolishIntegerLaws : IntegerLaws PolishZ where
   toOrderedRingLaws := PolishOrderedRingLaws
   toIntegerSuccessorLaws := PolishSuccessorLaws

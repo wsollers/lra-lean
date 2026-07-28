@@ -51,6 +51,8 @@ from `one`. The name PN stands for Peano Natural, analogous to ℕ.
   Dedekind, *Essays on the Theory of Numbers*, §6
 
 *Notes cross-ref:* §1.1 [def:peano-system](../notes/section_1_1_main.md)
+
+Mathematical statement (Lean): `inductive PN : Type`.
 -/
 inductive PN : Type where
   | one  : PN
@@ -73,6 +75,8 @@ satisfies all five Peano axioms.
   Feferman, *The Number Systems*, §3.2
 
 *Notes cross-ref:* §1.1 [ax:peano-system-existence](../notes/section_1_1_main.md)
+
+Mathematical statement (Lean): `def PN_is_peano_system : PeanoSystem`.
 -/
 def PN_is_peano_system : PeanoSystem where
   carrier             := PN
@@ -106,6 +110,8 @@ universe, discharging the concrete existence obligation used by Volume II.
 *Sources:* Feferman, *The Number Systems*, §3.2 Axiom 3.2
 
 *Notes cross-ref:* §1.1 [ax:peano-system-existence](../notes/section_1_1_main.md)
+
+Mathematical statement (Lean): `theorem PN_peano_system_exists : Nonempty PeanoSystem`.
 -/
 theorem PN_peano_system_exists : Nonempty PeanoSystem :=
   ⟨PN_is_peano_system⟩
@@ -130,6 +136,8 @@ Theorem applied with the target equal to the carrier of `peano_system`.
 
 *Notes cross-ref:* §1.2
 [thm:uniqueness-of-peano-systems-up-to-isomorphism](../notes/section_1_2_main.md)
+
+Mathematical statement (Lean): `theorem pn_iso_any_peano_system (peano_system : PeanoSystem) : ∃ structure_preserving_map : PN → peano_system.carrier, structure_preserving_map PN.one = peano_system.one ∧ (∀ natural_value : PN, structure_preserving_map (PN.succ natural_value) = peano_syste...`.
 -/
 theorem pn_iso_any_peano_system
     (peano_system : PeanoSystem) :

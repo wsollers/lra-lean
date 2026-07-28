@@ -83,16 +83,29 @@ produces the shortest proofs.
 
 ## 6. Proof Stubs
 
-A proof stub is permitted only when:
-- The theorem is marked with `-- STUB` on the theorem line
-- The stub contains `sorry` and is on a branch, not main
-- The strategy comment explains the proof method
+For active formalization passes, a source-facing theorem may be introduced with
+`sorry` when the goal is to import and typecheck the mathematical statement
+before completing the proof.
+
+A proof-pending statement is permitted only when:
+- the Lean type states the intended definition or theorem accurately;
+- the doc-comment includes a mathematical statement readable outside the notes;
+- the doc-comment records `*Proof status:* proof pending`;
+- the module remains buildable under the relevant volume root.
 
 Format:
 ```lean4
-theorem foo ... := by -- STUB
+/--
+**[Theorem N — Name]**
+
+Mathematical statement: ...
+
+*Proof status:* proof pending
+-/
+theorem Foo ... := by
   sorry
-  -- Strategy: induction on y using plus_base, plus_step
 ```
 
-Stubs are forbidden on main branch.
+Do not use proof-pending statements to hide incomplete definitions or
+ill-typed theorem signatures. A statement-import pass is successful only when
+Lean accepts the declarations.

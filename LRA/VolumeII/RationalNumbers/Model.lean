@@ -15,7 +15,11 @@ Lean module: LRA.VolumeII.RationalNumbers.Model
 Verification status: definitions accepted
 -/
 
-/-- A rational operation bundle as a first-order model of ordered fields. -/
+
+/-- A rational operation bundle as a first-order model of ordered fields.
+
+Mathematical statement (Lean): `def rationalNumbersModel (rational_model : RationalModel) : LRA.VolumeI.Logic.FirstOrder.Model orderedFieldSignature`.
+-/
 def rationalNumbersModel
     (rational_model : RationalModel) :
     LRA.VolumeI.Logic.FirstOrder.Model orderedFieldSignature :=

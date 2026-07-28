@@ -20,12 +20,27 @@ open LRA.VolumeII.WholeNumbers
 
 variable (natural_data : NaturalArithmeticForWholeNumbers)
 
+/--
+**[Abbrev — Whole]**
+
+Mathematical statement (Lean): `abbrev Whole`.
+-/
 abbrev Whole := Carrier natural_data
 
+/--
+**[Def — divides]**
+
+Mathematical statement (Lean): `def divides (divisor dividend : Whole natural_data) : Prop`.
+-/
 def divides (divisor dividend : Whole natural_data) : Prop :=
   ∃ quotient : Whole natural_data,
     multiplication natural_data divisor quotient = dividend
 
+/--
+**[Structure — EuclideanDivision]**
+
+Mathematical statement (Lean): `structure EuclideanDivision (dividend divisor : Whole natural_data) (divisor_nonzero : divisor ≠ zero natural_data)`.
+-/
 structure EuclideanDivision
     (dividend divisor : Whole natural_data)
     (divisor_nonzero : divisor ≠ zero natural_data) where
@@ -39,6 +54,13 @@ structure EuclideanDivision
   remainder_is_smaller :
     strictOrder natural_data remainder divisor
 
+/--
+**[Theorem — euclidean_division_exists_unique]**
+
+Mathematical statement (Lean): `theorem euclidean_division_exists_unique (dividend divisor : Whole natural_data) (divisor_nonzero : divisor ≠ zero natural_data) : ∃ division : EuclideanDivision natural_data dividend divisor divisor_nonzero, ∀ other : EuclideanDivision natural_data dividen...`.
+
+*Proof status:* proof pending
+-/
 theorem euclidean_division_exists_unique
     (dividend divisor : Whole natural_data)
     (divisor_nonzero : divisor ≠ zero natural_data) :
@@ -48,6 +70,11 @@ theorem euclidean_division_exists_unique
           other.remainder = division.remainder := by
   sorry
 
+/--
+**[Def — congruent_mod]**
+
+Mathematical statement (Lean): `def congruent_mod (modulus first second : Whole natural_data) : Prop`.
+-/
 def congruent_mod
     (modulus first second : Whole natural_data) : Prop :=
   ∃ difference : Whole natural_data,
@@ -56,15 +83,30 @@ def congruent_mod
     second = addition natural_data first
       (multiplication natural_data modulus difference)
 
+/--
+**[Def — is_even]**
+
+Mathematical statement (Lean): `def is_even (value : Whole natural_data) : Prop`.
+-/
 def is_even (value : Whole natural_data) : Prop :=
   ∃ half : Whole natural_data,
     value =
       addition natural_data half half
 
+/--
+**[Def — is_odd]**
+
+Mathematical statement (Lean): `def is_odd (value : Whole natural_data) : Prop`.
+-/
 def is_odd (value : Whole natural_data) : Prop :=
   ∃ previous : Whole natural_data,
     value = successor natural_data previous ∧ is_even natural_data previous
 
+/--
+**[Def — is_greatest_common_divisor]**
+
+Mathematical statement (Lean): `def is_greatest_common_divisor (candidate first second : Whole natural_data) : Prop`.
+-/
 def is_greatest_common_divisor
     (candidate first second : Whole natural_data) : Prop :=
   divides natural_data candidate first ∧
@@ -74,6 +116,13 @@ def is_greatest_common_divisor
       divides natural_data common_divisor second →
         divides natural_data common_divisor candidate
 
+/--
+**[Theorem — gcd_exists_unique]**
+
+Mathematical statement (Lean): `theorem gcd_exists_unique (first second : Whole natural_data) (not_both_zero : first ≠ zero natural_data ∨ second ≠ zero natural_data) : ∃ gcd : Whole natural_data, is_greatest_common_divisor natural_data gcd first second ∧ ∀ other : Whole natural_data, is_...`.
+
+*Proof status:* proof pending
+-/
 theorem gcd_exists_unique
     (first second : Whole natural_data)
     (not_both_zero :
@@ -86,10 +135,20 @@ theorem gcd_exists_unique
             other = gcd := by
   sorry
 
+/--
+**[Def — relatively_prime]**
+
+Mathematical statement (Lean): `def relatively_prime (first second : Whole natural_data) : Prop`.
+-/
 def relatively_prime (first second : Whole natural_data) : Prop :=
   is_greatest_common_divisor natural_data
     (one natural_data) first second
 
+/--
+**[Def — prime]**
+
+Mathematical statement (Lean): `def prime (value : natural_data.peano.carrier) : Prop`.
+-/
 def prime (value : natural_data.peano.carrier) : Prop :=
   value ≠ natural_data.peano.one ∧
     ∀ divisor : natural_data.peano.carrier,
@@ -98,6 +157,13 @@ def prime (value : natural_data.peano.carrier) : Prop :=
         (naturalEmbedding natural_data value) →
         divisor = natural_data.peano.one ∨ divisor = value
 
+/--
+**[Theorem — euclid_lemma]**
+
+Mathematical statement (Lean): `theorem euclid_lemma (prime_value first second : natural_data.peano.carrier) (prime_is_prime : prime natural_data prime_value) (divides_product : divides natural_data (naturalEmbedding natural_data prime_value) (multiplication natural_data (naturalEmbedding...`.
+
+*Proof status:* proof pending
+-/
 theorem euclid_lemma
     (prime_value first second : natural_data.peano.carrier)
     (prime_is_prime : prime natural_data prime_value)

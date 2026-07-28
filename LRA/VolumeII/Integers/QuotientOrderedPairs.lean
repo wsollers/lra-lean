@@ -19,7 +19,11 @@ integers from formal differences of whole numbers. It follows the mathematical o
 `docs/number-systems/gpt-02-integers.md`.
 -/
 
-/-- Algebraic data required from the whole-number carrier. -/
+
+/-- Algebraic data required from the whole-number carrier.
+
+Mathematical statement (Lean): `structure WholeNumberArithmeticForQuotientPairs`.
+-/
 structure WholeNumberArithmeticForQuotientPairs where
   carrier : Type
   zero : carrier
@@ -73,35 +77,61 @@ structure WholeNumberArithmeticForQuotientPairs where
         (addition first translation)
         (addition second translation)
 
-/-- A formal difference `(positive_coordinate, negative_coordinate)`. -/
+
+/-- A formal difference `(positive_coordinate, negative_coordinate)`.
+
+Mathematical statement (Lean): `structure Representative (whole_data : WholeNumberArithmeticForQuotientPairs)`.
+-/
 structure Representative (whole_data : WholeNumberArithmeticForQuotientPairs) where
   positive_coordinate : whole_data.carrier
   negative_coordinate : whole_data.carrier
 
-/-- Equality of formal differences by cross-addition. -/
+
+/-- Equality of formal differences by cross-addition.
+
+Mathematical statement (Lean): `def equivalent (whole_data : WholeNumberArithmeticForQuotientPairs) (first second : Representative whole_data) : Prop`.
+-/
 def equivalent
     (whole_data : WholeNumberArithmeticForQuotientPairs)
     (first second : Representative whole_data) : Prop :=
   whole_data.addition first.positive_coordinate second.negative_coordinate =
     whole_data.addition second.positive_coordinate first.negative_coordinate
 
-/-- Formal-difference equality is an equivalence relation. -/
+
+/-- Formal-difference equality is an equivalence relation.
+
+Mathematical statement (Lean): `theorem equivalent_is_equivalence_relation (whole_data : WholeNumberArithmeticForQuotientPairs) : Equivalence (equivalent whole_data)`.
+
+*Proof status:* proof pending
+-/
 theorem equivalent_is_equivalence_relation
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     Equivalence (equivalent whole_data) := by
   sorry
 
-/-- Setoid of formal differences. -/
+
+/-- Setoid of formal differences.
+
+Mathematical statement (Lean): `def representative_setoid (whole_data : WholeNumberArithmeticForQuotientPairs) : Setoid (Representative whole_data)`.
+-/
 def representative_setoid (whole_data : WholeNumberArithmeticForQuotientPairs) :
     Setoid (Representative whole_data) where
   r := equivalent whole_data
   iseqv := equivalent_is_equivalence_relation whole_data
 
-/-- Canonical integer carrier. -/
+
+/-- Canonical integer carrier.
+
+Mathematical statement (Lean): `abbrev Carrier (whole_data : WholeNumberArithmeticForQuotientPairs)`.
+-/
 abbrev Carrier (whole_data : WholeNumberArithmeticForQuotientPairs) :=
   Quotient (representative_setoid whole_data)
 
-/-- Raw addition of formal differences. -/
+
+/-- Raw addition of formal differences.
+
+Mathematical statement (Lean): `def representative_addition (whole_data : WholeNumberArithmeticForQuotientPairs) (first second : Representative whole_data) : Representative whole_data`.
+-/
 def representative_addition
     (whole_data : WholeNumberArithmeticForQuotientPairs)
     (first second : Representative whole_data) : Representative whole_data where
@@ -110,14 +140,22 @@ def representative_addition
   negative_coordinate :=
     whole_data.addition first.negative_coordinate second.negative_coordinate
 
-/-- Raw negation swaps the coordinates. -/
+
+/-- Raw negation swaps the coordinates.
+
+Mathematical statement (Lean): `def representative_negation (whole_data : WholeNumberArithmeticForQuotientPairs) (value : Representative whole_data) : Representative whole_data`.
+-/
 def representative_negation
     (whole_data : WholeNumberArithmeticForQuotientPairs)
     (value : Representative whole_data) : Representative whole_data where
   positive_coordinate := value.negative_coordinate
   negative_coordinate := value.positive_coordinate
 
-/-- Raw multiplication of formal differences. -/
+
+/-- Raw multiplication of formal differences.
+
+Mathematical statement (Lean): `def representative_multiplication (whole_data : WholeNumberArithmeticForQuotientPairs) (first second : Representative whole_data) : Representative whole_data`.
+-/
 def representative_multiplication
     (whole_data : WholeNumberArithmeticForQuotientPairs)
     (first second : Representative whole_data) : Representative whole_data where
@@ -130,7 +168,11 @@ def representative_multiplication
       (whole_data.multiplication first.positive_coordinate second.negative_coordinate)
       (whole_data.multiplication first.negative_coordinate second.positive_coordinate)
 
-/-- Raw non-strict order on formal differences. -/
+
+/-- Raw non-strict order on formal differences.
+
+Mathematical statement (Lean): `def representative_nonstrict_order (whole_data : WholeNumberArithmeticForQuotientPairs) (first second : Representative whole_data) : Prop`.
+-/
 def representative_nonstrict_order
     (whole_data : WholeNumberArithmeticForQuotientPairs)
     (first second : Representative whole_data) : Prop :=
@@ -138,7 +180,13 @@ def representative_nonstrict_order
     (whole_data.addition first.positive_coordinate second.negative_coordinate)
     (whole_data.addition second.positive_coordinate first.negative_coordinate)
 
-/-- Addition respects formal-difference equality. -/
+
+/-- Addition respects formal-difference equality.
+
+Mathematical statement (Lean): `theorem representative_addition_respects_equivalence (whole_data : WholeNumberArithmeticForQuotientPairs) : Foundations.Quotients.binary_operation_respects (representative_setoid whole_data) (representative_addition whole_data)`.
+
+*Proof status:* proof pending
+-/
 theorem representative_addition_respects_equivalence
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     Foundations.Quotients.binary_operation_respects
@@ -146,7 +194,13 @@ theorem representative_addition_respects_equivalence
       (representative_addition whole_data) := by
   sorry
 
-/-- Negation respects formal-difference equality. -/
+
+/-- Negation respects formal-difference equality.
+
+Mathematical statement (Lean): `theorem representative_negation_respects_equivalence (whole_data : WholeNumberArithmeticForQuotientPairs) : Foundations.Quotients.unary_operation_respects (representative_setoid whole_data) (representative_negation whole_data)`.
+
+*Proof status:* proof pending
+-/
 theorem representative_negation_respects_equivalence
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     Foundations.Quotients.unary_operation_respects
@@ -154,7 +208,13 @@ theorem representative_negation_respects_equivalence
       (representative_negation whole_data) := by
   sorry
 
-/-- Multiplication respects formal-difference equality. -/
+
+/-- Multiplication respects formal-difference equality.
+
+Mathematical statement (Lean): `theorem representative_multiplication_respects_equivalence (whole_data : WholeNumberArithmeticForQuotientPairs) : Foundations.Quotients.binary_operation_respects (representative_setoid whole_data) (representative_multiplication whole_data)`.
+
+*Proof status:* proof pending
+-/
 theorem representative_multiplication_respects_equivalence
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     Foundations.Quotients.binary_operation_respects
@@ -162,7 +222,13 @@ theorem representative_multiplication_respects_equivalence
       (representative_multiplication whole_data) := by
   sorry
 
-/-- Order is representative-independent. -/
+
+/-- Order is representative-independent.
+
+Mathematical statement (Lean): `theorem representative_order_respects_equivalence (whole_data : WholeNumberArithmeticForQuotientPairs) : Foundations.Quotients.relation_respects (representative_setoid whole_data) (representative_nonstrict_order whole_data)`.
+
+*Proof status:* proof pending
+-/
 theorem representative_order_respects_equivalence
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     Foundations.Quotients.relation_respects
@@ -170,17 +236,29 @@ theorem representative_order_respects_equivalence
       (representative_nonstrict_order whole_data) := by
   sorry
 
-/-- Zero representative. -/
+
+/-- Zero representative.
+
+Mathematical statement (Lean): `def zero_representative (whole_data : WholeNumberArithmeticForQuotientPairs) : Representative whole_data`.
+-/
 def zero_representative (whole_data : WholeNumberArithmeticForQuotientPairs) : Representative whole_data where
   positive_coordinate := whole_data.zero
   negative_coordinate := whole_data.zero
 
-/-- One representative. -/
+
+/-- One representative.
+
+Mathematical statement (Lean): `def one_representative (whole_data : WholeNumberArithmeticForQuotientPairs) : Representative whole_data`.
+-/
 def one_representative (whole_data : WholeNumberArithmeticForQuotientPairs) : Representative whole_data where
   positive_coordinate := whole_data.one
   negative_coordinate := whole_data.zero
 
-/-- Canonical embedding of whole numbers into the integer quotient. -/
+
+/-- Canonical embedding of whole numbers into the integer quotient.
+
+Mathematical statement (Lean): `def embed (whole_data : WholeNumberArithmeticForQuotientPairs) (value : whole_data.carrier) : Carrier whole_data`.
+-/
 def embed
     (whole_data : WholeNumberArithmeticForQuotientPairs)
     (value : whole_data.carrier) : Carrier whole_data :=
@@ -188,14 +266,24 @@ def embed
     { positive_coordinate := value
       negative_coordinate := whole_data.zero }
 
-/-- The whole-number embedding is injective. -/
+
+/-- The whole-number embedding is injective.
+
+Mathematical statement (Lean): `theorem embedding_is_injective (whole_data : WholeNumberArithmeticForQuotientPairs) : ∀ first second, embed whole_data first = embed whole_data second → first = second`.
+
+*Proof status:* proof pending
+-/
 theorem embedding_is_injective
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     ∀ first second,
       embed whole_data first = embed whole_data second → first = second := by
   sorry
 
-/-- Quotient addition exists with the expected representative computation rule. -/
+
+/-- Quotient addition exists with the expected representative computation rule.
+
+Mathematical statement (Lean): `theorem quotient_addition_exists (whole_data : WholeNumberArithmeticForQuotientPairs) : ∃ addition : Carrier whole_data → Carrier whole_data → Carrier whole_data, ∀ first second, addition (Quotient.mk _ first) (Quotient.mk _ second) = Quotient.mk _ (represe...`.
+-/
 theorem quotient_addition_exists
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     ∃ addition : Carrier whole_data → Carrier whole_data → Carrier whole_data,
@@ -207,7 +295,11 @@ theorem quotient_addition_exists
     (representative_addition whole_data)
     (representative_addition_respects_equivalence whole_data)
 
-/-- Quotient multiplication exists with the expected representative computation rule. -/
+
+/-- Quotient multiplication exists with the expected representative computation rule.
+
+Mathematical statement (Lean): `theorem quotient_multiplication_exists (whole_data : WholeNumberArithmeticForQuotientPairs) : ∃ multiplication : Carrier whole_data → Carrier whole_data → Carrier whole_data, ∀ first second, multiplication (Quotient.mk _ first) (Quotient.mk _ second) = Quot...`.
+-/
 theorem quotient_multiplication_exists
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     ∃ multiplication : Carrier whole_data → Carrier whole_data → Carrier whole_data,
@@ -219,7 +311,11 @@ theorem quotient_multiplication_exists
     (representative_multiplication whole_data)
     (representative_multiplication_respects_equivalence whole_data)
 
-/-- Quotient order exists with the expected representative characterization. -/
+
+/-- Quotient order exists with the expected representative characterization.
+
+Mathematical statement (Lean): `theorem quotient_order_exists (whole_data : WholeNumberArithmeticForQuotientPairs) : ∃ nonstrict_order : Carrier whole_data → Carrier whole_data → Prop, ∀ first second, nonstrict_order (Quotient.mk _ first) (Quotient.mk _ second) ↔ representative_nonstrict_...`.
+-/
 theorem quotient_order_exists
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     ∃ nonstrict_order : Carrier whole_data → Carrier whole_data → Prop,
@@ -231,7 +327,13 @@ theorem quotient_order_exists
     (representative_nonstrict_order whole_data)
     (representative_order_respects_equivalence whole_data)
 
-/-- The quotient addition is associative. -/
+
+/-- The quotient addition is associative.
+
+Mathematical statement (Lean): `theorem quotient_addition_is_associative (whole_data : WholeNumberArithmeticForQuotientPairs) (addition : Carrier whole_data → Carrier whole_data → Carrier whole_data) (addition_computes : ∀ first second, addition (Quotient.mk _ first) (Quotient.mk _ second...`.
+
+*Proof status:* proof pending
+-/
 theorem quotient_addition_is_associative
     (whole_data : WholeNumberArithmeticForQuotientPairs)
     (addition : Carrier whole_data → Carrier whole_data → Carrier whole_data)
@@ -244,7 +346,13 @@ theorem quotient_addition_is_associative
         addition first (addition second third) := by
   sorry
 
-/-- The quotient addition is commutative. -/
+
+/-- The quotient addition is commutative.
+
+Mathematical statement (Lean): `theorem quotient_addition_is_commutative (whole_data : WholeNumberArithmeticForQuotientPairs) (addition : Carrier whole_data → Carrier whole_data → Carrier whole_data) (addition_computes : ∀ first second, addition (Quotient.mk _ first) (Quotient.mk _ second...`.
+
+*Proof status:* proof pending
+-/
 theorem quotient_addition_is_commutative
     (whole_data : WholeNumberArithmeticForQuotientPairs)
     (addition : Carrier whole_data → Carrier whole_data → Carrier whole_data)
@@ -256,7 +364,13 @@ theorem quotient_addition_is_commutative
       addition first second = addition second first := by
   sorry
 
-/-- Negation supplies additive inverses in the quotient. -/
+
+/-- Negation supplies additive inverses in the quotient.
+
+Mathematical statement (Lean): `theorem quotient_negation_is_additive_inverse (whole_data : WholeNumberArithmeticForQuotientPairs) (addition : Carrier whole_data → Carrier whole_data → Carrier whole_data) (negation : Carrier whole_data → Carrier whole_data) (addition_computes : ∀ first se...`.
+
+*Proof status:* proof pending
+-/
 theorem quotient_negation_is_additive_inverse
     (whole_data : WholeNumberArithmeticForQuotientPairs)
     (addition : Carrier whole_data → Carrier whole_data → Carrier whole_data)
@@ -274,7 +388,13 @@ theorem quotient_negation_is_additive_inverse
         Quotient.mk _ (zero_representative whole_data) := by
   sorry
 
-/-- Multiplication distributes over addition in the quotient. -/
+
+/-- Multiplication distributes over addition in the quotient.
+
+Mathematical statement (Lean): `theorem quotient_multiplication_distributes_over_addition (whole_data : WholeNumberArithmeticForQuotientPairs) (addition multiplication : Carrier whole_data → Carrier whole_data → Carrier whole_data) (addition_computes : ∀ first second, addition (Quotient.m...`.
+
+*Proof status:* proof pending
+-/
 theorem quotient_multiplication_distributes_over_addition
     (whole_data : WholeNumberArithmeticForQuotientPairs)
     (addition multiplication : Carrier whole_data → Carrier whole_data → Carrier whole_data)

@@ -26,3 +26,9 @@ lean_lib LRAVolumeVI where
 
 lean_lib LRAVolumeVII where
   roots := #[`LRA.VolumeVII]
+
+-- Build-gated smoke and regression checks. Production volume roots must not
+-- import these modules.
+lean_lib LRATests where
+  srcDir := "test"
+  roots := #[`LRA.VolumeIII.Analysis.Bounding.BoundsTests]

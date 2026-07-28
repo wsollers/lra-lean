@@ -45,12 +45,18 @@ Subtraction is defined on Z in a later volume.
 
 ---
 
-## 4. No sorry in VolumeII
+## 4. Proof-Pending Statement Modules
 
-The `sorry` tactic is forbidden in any file under `LRA/VolumeII/`.
-Every proof must be complete. Use proof stubs with explicit
-`sorry`-free placeholders only on named `theorem` lines in
-draft files, and only when the theorem is marked `-- STUB`.
+Source-facing statement modules may use `sorry` while definitions and theorems
+are being imported from the notes and formalized into Lean signatures.
+
+Every proof-pending declaration must:
+- preserve the intended mathematical statement in its Lean type;
+- include a doc-comment mathematical statement;
+- include `*Proof status:* proof pending` when the body uses `sorry`;
+- remain buildable under the appropriate `lake build` target.
+
+Do not report a proof-pending theorem as proved, checked, or complete.
 
 ---
 

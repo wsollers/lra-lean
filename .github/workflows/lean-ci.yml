@@ -5,6 +5,7 @@ on:
     branches: [main, develop]
     paths:
       - 'LRA/**'
+      - 'test/**'
       - 'scripts/**'
       - 'Dockerfile'
       - 'Makefile'
@@ -17,6 +18,7 @@ on:
     branches: [main]
     paths:
       - 'LRA/**'
+      - 'test/**'
       - 'scripts/**'
       - 'Dockerfile'
       - 'Makefile'
@@ -89,14 +91,6 @@ jobs:
             lra-lean \
             python3 scripts/check-volume-vii-wiring.py
 
-      - name: Build Volume VII Lean library
-        run: |
-          docker run --rm \
-            -v "${{ github.workspace }}:/workspace" \
-            -w /workspace \
-            lra-lean \
-            bash -lc 'lake build LRAVolumeVII'
-
       - name: Report proof placeholders in VolumeI / VolumeII
         continue-on-error: true
         run: |
@@ -117,7 +111,7 @@ jobs:
             -v "${{ github.workspace }}:/workspace" \
             -w /workspace \
             lra-lean \
-            bash -lc 'lake build LRAVolumeI LRAVolumeII LRAVolumeVII > /workspace/lean-build.log 2>&1 || {
+            bash -lc 'lake build LRAVolumeI LRAVolumeII LRAVolumeIII LRAVolumeIV LRAVolumeVI LRAVolumeVII > /workspace/lean-build.log 2>&1 || {
               status=$?
               echo "Lean build failed. Final diagnostics:"
               tail -n 180 /workspace/lean-build.log
@@ -125,12 +119,29 @@ jobs:
             }
             tail -n 40 /workspace/lean-build.log'
 
+      - name: Build Lean test libraries
+        run: |
+          rm -f lean-test-build.log
+          docker run --rm \
+            -v "${{ github.workspace }}:/workspace" \
+            -w /workspace \
+            lra-lean \
+            bash -lc 'lake build LRATests > /workspace/lean-test-build.log 2>&1 || {
+              status=$?
+              echo "Lean test build failed. Final diagnostics:"
+              tail -n 180 /workspace/lean-test-build.log
+              exit $status
+            }
+            tail -n 40 /workspace/lean-test-build.log'
+
       - name: Upload Lean build diagnostics
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: lean-build-diagnostics
-          path: lean-build.log
+          path: |
+            lean-build.log
+            lean-test-build.log
           if-no-files-found: error
 
       - name: Lint doc-comments

@@ -55,6 +55,8 @@ and `y`.
   Mendelson, *Number Systems*, §2.5
 
 *Notes cross-ref:* §1.4 [def:lt-on-a-peano-system](../notes/section_1_4_main.md)
+
+Mathematical statement (Lean): `def lt (ps : PeanoSystem) : ps.carrier -> ps.carrier -> Prop`.
 -/
 def lt
     (ps : PeanoSystem) :
@@ -74,6 +76,8 @@ def lt
   Mendelson, *Number Systems*, §2.5
 
 *Notes cross-ref:* §1.4 [def:le-on-a-peano-system](../notes/section_1_4_main.md)
+
+Mathematical statement (Lean): `def le (ps : PeanoSystem) : ps.carrier -> ps.carrier -> Prop`.
 -/
 def le
     (ps : PeanoSystem) :
@@ -93,6 +97,10 @@ def le
 *Dependencies:* `lt`, `add_ne_self`
 *Sources:* Landau, *Foundations of Analysis*, §4 Theorem 16
 *Notes cross-ref:* §1.4 [thm:lt-irrefl](../notes/section_1_4_main.md)
+
+Mathematical statement (Lean): `theorem lt_irrefl (ps : PeanoSystem) (x : ps.carrier) : ¬ lt ps x x`.
+
+*Proof status:* proof pending
 -/
 theorem lt_irrefl
     (ps : PeanoSystem) (x : ps.carrier) :
@@ -107,6 +115,10 @@ theorem lt_irrefl
 *Dependencies:* `lt`, `addition_is_associative`
 *Sources:* Landau, *Foundations of Analysis*, §4 Theorem 17
 *Notes cross-ref:* §1.4 [thm:lt-trans](../notes/section_1_4_main.md)
+
+Mathematical statement (Lean): `theorem lt_trans (ps : PeanoSystem) (x y z : ps.carrier) : lt ps x y → lt ps y z → lt ps x z`.
+
+*Proof status:* proof pending
 -/
 theorem lt_trans
     (ps : PeanoSystem) (x y z : ps.carrier) :
@@ -121,6 +133,10 @@ theorem lt_trans
 *Dependencies:* `lt_irrefl`, `lt_trans`
 *Sources:* Landau, *Foundations of Analysis*, §4 Theorem 18
 *Notes cross-ref:* §1.4 [thm:lt-asymm](../notes/section_1_4_main.md)
+
+Mathematical statement (Lean): `theorem lt_asymm (ps : PeanoSystem) (x y : ps.carrier) : lt ps x y → ¬ lt ps y x`.
+
+*Proof status:* proof pending
 -/
 theorem lt_asymm
     (ps : PeanoSystem) (x y : ps.carrier) :
@@ -135,6 +151,10 @@ For all `x y`, exactly one of `x < y`, `x = y`, `y < x` holds.
 *Dependencies:* `lt`, `induction_principle`
 *Sources:* Landau, *Foundations of Analysis*, §4 Theorem 19
 *Notes cross-ref:* §1.4 [thm:lt-trichotomy](../notes/section_1_4_main.md)
+
+Mathematical statement (Lean): `theorem lt_trichotomy (ps : PeanoSystem) (x y : ps.carrier) : lt ps x y ∨ x = y ∨ lt ps y x`.
+
+*Proof status:* proof pending
 -/
 theorem lt_trichotomy
     (ps : PeanoSystem) (x y : ps.carrier) :
@@ -149,6 +169,10 @@ theorem lt_trichotomy
 *Dependencies:* `lt`, `plus_base`
 *Sources:* Landau, *Foundations of Analysis*, §4
 *Notes cross-ref:* §1.4 [thm:lt-succ](../notes/section_1_4_main.md)
+
+Mathematical statement (Lean): `theorem lt_succ (ps : PeanoSystem) (x : ps.carrier) : lt ps x (ps.successor x)`.
+
+*Proof status:* proof pending
 -/
 theorem lt_succ
     (ps : PeanoSystem) (x : ps.carrier) :
@@ -163,6 +187,10 @@ theorem lt_succ
 *Dependencies:* `le`, `lt_asymm`
 *Sources:* Landau, *Foundations of Analysis*, §4
 *Notes cross-ref:* §1.4 [thm:le-antisymm](../notes/section_1_4_main.md)
+
+Mathematical statement (Lean): `theorem le_antisymm (ps : PeanoSystem) (x y : ps.carrier) : le ps x y → le ps y x → x = y`.
+
+*Proof status:* proof pending
 -/
 theorem le_antisymm
     (ps : PeanoSystem) (x y : ps.carrier) :
@@ -182,6 +210,8 @@ theorem le_antisymm
 *Dependencies:* `lt`
 
 *Notes cross-ref:* §1.4 [def:minimum-element](../notes/section_1_4_main.md)
+
+Mathematical statement (Lean): `def is_minimum (ps : PeanoSystem) (P : LRA.VolumeI.Set.LRASet ps.carrier) (m : ps.carrier) : Prop`.
 -/
 def is_minimum
     (ps : PeanoSystem)
@@ -206,6 +236,10 @@ It is the key property that distinguishes N from Z and Q.
   Feferman, *The Number Systems*, §3.6
 
 *Notes cross-ref:* §1.4 [thm:well-ordering-principle](../notes/section_1_4_main.md)
+
+Mathematical statement (Lean): `theorem well_ordering (ps : PeanoSystem) (P : LRA.VolumeI.Set.LRASet ps.carrier) (P_nonempty : LRA.VolumeI.Set.LRASet.nonempty P) : ∃ minimum : ps.carrier, is_minimum ps P minimum`.
+
+*Proof status:* proof pending
 -/
 theorem well_ordering
     (ps : PeanoSystem)

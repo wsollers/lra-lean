@@ -1,0 +1,70 @@
+import Mathlib.Algebra.Order.Archimedean.Basic
+import Mathlib.Data.Real.Basic
+import Mathlib.Order.Filter.AtTopBot.Basic
+import Mathlib.Topology.Instances.Real.Lemmas
+import Mathlib.Topology.Order.MonotoneContinuity
+import LRA.VolumeIII.Analysis.Completeness.ArchimedeanProperty
+import LRA.VolumeIII.Analysis.Completeness.AxiomOfCompleteness
+import LRA.VolumeIII.Analysis.Completeness.NestedIntervalProperty
+
+/-!
+Process-level consequences of completeness used before the sequence chapter.
+-/
+
+namespace LRA.VolumeIII.Analysis.Completeness
+
+open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
+
+variable (F : Type*)
+
+/-- Every bounded increasing process has a limiting endpoint. -/
+def IncreasingBoundedProcessesConverge [Preorder F] [TopologicalSpace F] : Prop :=
+  ∀ a : ℕ → F, Monotone a → (∃ u, IsUpperBound u (Set.range a)) →
+    ∃ L, IsSupremum L (Set.range a) ∧ Filter.Tendsto a Filter.atTop (nhds L)
+
+/-- Every bounded decreasing process has a limiting endpoint. -/
+def DecreasingBoundedProcessesConverge [Preorder F] [TopologicalSpace F] : Prop :=
+  ∀ a : ℕ → F, Antitone a → (∃ l, IsLowerBound l (Set.range a)) →
+    ∃ L, IsInfimum L (Set.range a) ∧ Filter.Tendsto a Filter.atTop (nhds L)
+
+/-- The Archimedean reciprocal process tends to zero. -/
+def ArchimedeanReciprocalProperty : Prop :=
+  Filter.Tendsto (fun n : ℕ => 1 / (n : ℝ)) Filter.atTop (nhds 0)
+
+/-- A monotone bounded process has a limiting endpoint under completeness. -/
+theorem IncreasingBoundedProcessHasLimit
+    [LinearOrder F] [TopologicalSpace F] [OrderTopology F]
+    (leastUpperBoundProperty : HasLeastUpperBoundProperty F)
+    {a : ℕ → F}
+    (monotoneHypothesis : Monotone a)
+    (boundedAboveHypothesis : ∃ u, IsUpperBound u (Set.range a)) :
+    ∃ L, IsSupremum L (Set.range a) ∧ Filter.Tendsto a Filter.atTop (nhds L) := by
+  sorry
+
+/-- A decreasing bounded process has a limiting endpoint under completeness. -/
+theorem DecreasingBoundedProcessHasLimit
+    [LinearOrder F] [TopologicalSpace F] [OrderTopology F]
+    (leastUpperBoundProperty : HasLeastUpperBoundProperty F)
+    {a : ℕ → F}
+    (antitoneHypothesis : Antitone a)
+    (boundedBelowHypothesis : ∃ l, IsLowerBound l (Set.range a)) :
+    ∃ L, IsInfimum L (Set.range a) ∧ Filter.Tendsto a Filter.atTop (nhds L) := by
+  sorry
+
+/-- A nested shrinking interval process determines a unique point. -/
+theorem ShrinkingNestedIntervalProcessHasUniqueLimit
+    {a b : ℕ → ℝ}
+    (orderedEndpointHypothesis : ∀ n, a n ≤ b n)
+    (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n))
+    (vanishingLengthHypothesis : ∀ ε > 0, ∃ N, ∀ n ≥ N, b n - a n < ε) :
+    ∃! x : ℝ, (∀ n, a n ≤ x ∧ x ≤ b n) ∧
+      Filter.Tendsto a Filter.atTop (nhds x) ∧
+        Filter.Tendsto b Filter.atTop (nhds x) := by
+  sorry
+
+/-- The reciprocal Archimedean process tends to zero. -/
+theorem ArchimedeanReciprocalProcessTendsToZero :
+    ArchimedeanReciprocalProperty := by
+  sorry
+
+end LRA.VolumeIII.Analysis.Completeness

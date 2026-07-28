@@ -1,0 +1,108 @@
+/-
+Draft module; not yet imported by the active Volume III root.
+Source: notes-real-valued-functions.tex (second of 8 files for this
+section — see ISSUES.md #30-#32 for the file-wide findings).
+
+This cluster (14 nodes): the 9 pointwise operation definitions (sum,
+difference, product, scalar multiple, absolute value, max, min,
+quotient, reciprocal), function-algebra-closure, function-quotient-
+closure, and 3 supporting propositions (max/min via absolute value,
+max/min bounds, quotient undefined when denominator vanishes). All 14
+are mathematically correct.
+
+Finding (see ISSUES.md #31, 🟡): `thm:function-algebra-closure`'s own
+dependency list cites only `def:pointwise-sum-of-functions` and
+`def:pointwise-minimum-of-two-functions` — but the theorem's conclusion
+covers ALL SEVEN operations (f+g, f-g, fg, λf, |f|, max(f,g), min(f,g)),
+so five of the seven relevant definitions (difference, product, scalar
+multiple, absolute value, maximum) are missing from the dependency list.
+
+Note on `prop:quotient-undefined-when-denominator-vanishes`: Lean's `ℝ`
+has TOTAL division (`x/0 := 0`), so nothing in Lean literally "fails to
+be a function" the way the `.tex`'s own semi-formal function-with-a-
+domain-restriction framework does. Formalized faithfully below as: a
+zero of the denominator on `A` means the WELL-DEFINEDNESS PRECONDITION
+of `def:pointwise-quotient-of-functions` (`∀x∈A, g x ≠ 0`) fails — which
+is the actual content the `.tex` is asserting, translated to a setting
+where the quotient function itself is always total.
+-/
+
+import Mathlib.Data.Real.Basic
+
+namespace LRA
+namespace VolumeIII
+namespace Analysis
+namespace Functions
+
+/-- `def:pointwise-sum-of-functions`. -/
+def PointwiseSum (f g : ℝ → ℝ) : ℝ → ℝ := fun x => f x + g x
+
+/-- `def:pointwise-difference-of-functions`. -/
+def PointwiseDiff (f g : ℝ → ℝ) : ℝ → ℝ := fun x => f x - g x
+
+/-- `def:pointwise-product-of-functions`. -/
+def PointwiseProd (f g : ℝ → ℝ) : ℝ → ℝ := fun x => f x * g x
+
+/-- `def:pointwise-scalar-multiple-of-a-function`. -/
+def PointwiseScalarMul (lam : ℝ) (f : ℝ → ℝ) : ℝ → ℝ := fun x => lam * f x
+
+/-- `def:pointwise-absolute-value-of-a-function`. -/
+def PointwiseAbs (f : ℝ → ℝ) : ℝ → ℝ := fun x => |f x|
+
+/-- `def:pointwise-maximum-of-two-functions`. -/
+def PointwiseMax (f g : ℝ → ℝ) : ℝ → ℝ := fun x => max (f x) (g x)
+
+/-- `def:pointwise-minimum-of-two-functions`. -/
+def PointwiseMin (f g : ℝ → ℝ) : ℝ → ℝ := fun x => min (f x) (g x)
+
+/-- `def:pointwise-quotient-of-functions`. Total in Lean (division by
+zero is `0`); the `.tex`'s nonvanishing-denominator hypothesis is
+carried as a separate hypothesis on theorems that need it. -/
+noncomputable def PointwiseQuotient (f g : ℝ → ℝ) : ℝ → ℝ := fun x => f x / g x
+
+/-- `def:pointwise-reciprocal-of-a-function`. -/
+noncomputable def PointwiseReciprocal (f : ℝ → ℝ) : ℝ → ℝ := fun x => 1 / f x
+
+/-- `thm:function-algebra-closure`. In Lean's total-function setting,
+closure is automatic by typing — formalized as the defining evaluation
+equations, matching how `prop:pointwise-operation-evaluation` treats the
+general case one cluster earlier. -/
+theorem FunctionAlgebraClosure (f g : ℝ → ℝ) (lam : ℝ) (A : Set ℝ) :
+    (∀ x ∈ A, PointwiseSum f g x = f x + g x) ∧
+      (∀ x ∈ A, PointwiseDiff f g x = f x - g x) ∧
+      (∀ x ∈ A, PointwiseProd f g x = f x * g x) ∧
+      (∀ x ∈ A, PointwiseScalarMul lam f x = lam * f x) ∧
+      (∀ x ∈ A, PointwiseAbs f x = |f x|) ∧
+      (∀ x ∈ A, PointwiseMax f g x = max (f x) (g x)) ∧
+      (∀ x ∈ A, PointwiseMin f g x = min (f x) (g x)) := by
+  sorry
+
+/-- `thm:function-quotient-closure`. -/
+theorem FunctionQuotientClosure (f g : ℝ → ℝ) (A : Set ℝ)
+    (h : ∀ x ∈ A, g x ≠ 0) : ∀ x ∈ A, PointwiseQuotient f g x = f x / g x := by
+  sorry
+
+/-- `prop:pointwise-max-min-absolute-value-formulas`. -/
+theorem PointwiseMaxMinAbsoluteValueFormulas (f g : ℝ → ℝ) (A : Set ℝ) :
+    ∀ x ∈ A, PointwiseMax f g x = (f x + g x + |f x - g x|) / 2 ∧
+      PointwiseMin f g x = (f x + g x - |f x - g x|) / 2 := by
+  sorry
+
+/-- `prop:pointwise-max-min-bounds`. -/
+theorem PointwiseMaxMinBounds (f g : ℝ → ℝ) (A : Set ℝ) :
+    ∀ x ∈ A, PointwiseMin f g x ≤ f x ∧ f x ≤ PointwiseMax f g x ∧
+      PointwiseMin f g x ≤ g x ∧ g x ≤ PointwiseMax f g x := by
+  sorry
+
+/-- `prop:quotient-undefined-when-denominator-vanishes`. See header note
+above on why this is stated as precondition-failure rather than
+"is not a function." -/
+theorem QuotientUndefinedWhenDenominatorVanishes (f g : ℝ → ℝ)
+    (A : Set ℝ) (x₀ : ℝ) (hx₀ : x₀ ∈ A) (hg : g x₀ = 0) :
+    ¬ (∀ x ∈ A, g x ≠ 0) := by
+  sorry
+
+end Functions
+end Analysis
+end VolumeIII
+end LRA

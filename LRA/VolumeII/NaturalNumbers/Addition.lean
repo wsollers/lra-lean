@@ -46,6 +46,8 @@ and step rule equal to the successor operation.
   Mendelson, *Number Systems*, §2.3
 
 *Notes cross-ref:* §1.2 [#definition-addition-on-a-peano-system](../notes/section_1_2_main.md#definition-addition-on-a-peano-system)
+
+Mathematical statement (Lean): `noncomputable def plus (ps : PeanoSystem) : LRA.VolumeI.Algebra.Operations.BinaryOperation ps.carrier`.
 -/
 noncomputable def plus
     (ps : PeanoSystem) :
@@ -72,6 +74,8 @@ of the left input.
   Mendelson, *Number Systems*, §2.3
 
 *Notes cross-ref:* §1.2 [#theorem-addition-base-clause](../notes/section_1_2_main.md#theorem-addition-base-clause)
+
+Mathematical statement (Lean): `theorem plus_base (ps : PeanoSystem) (left_input : ps.carrier) : plus ps left_input ps.one = ps.successor left_input`.
 -/
 theorem plus_base
     (ps : PeanoSystem)
@@ -99,6 +103,8 @@ Adding a successor on the right gives the successor of the sum.
   Mendelson, *Number Systems*, §2.3
 
 *Notes cross-ref:* §1.2 [#theorem-addition-successor-clause](../notes/section_1_2_main.md#theorem-addition-successor-clause)
+
+Mathematical statement (Lean): `theorem plus_step (ps : PeanoSystem) (left_input right_input : ps.carrier) : plus ps left_input (ps.successor right_input) = ps.successor (plus ps left_input right_input)`.
 -/
 theorem plus_step
     (ps : PeanoSystem)
@@ -123,6 +129,8 @@ Addition on a Peano system is associative.
   Landau, *Foundations of Analysis*, §2 Theorem 5
 
 *Notes cross-ref:* §1.2 [#theorem-addition-is-associative](../notes/section_1_2_main.md#theorem-addition-is-associative)
+
+Mathematical statement (Lean): `theorem addition_is_associative (ps : PeanoSystem) (left_input middle_input right_input : ps.carrier) : plus ps (plus ps left_input middle_input) right_input = plus ps left_input (plus ps middle_input right_input)`.
 -/
 theorem addition_is_associative
     (ps : PeanoSystem)
