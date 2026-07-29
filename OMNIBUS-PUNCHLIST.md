@@ -98,6 +98,34 @@ spine rather than rebuilding it.
   - Acceptance: finite Boolean set-operation structures have canonical Lean
     declarations before topology/measure chapters consume them.
 
+- [ ] Clarify predicate-set versus ZFC set-object architecture before deep set proofs.
+  - Home: `LRA/VolumeI/Set/Set.lean`, a future
+    `LRA/VolumeI/Set/PredicateSet.lean`, `LRA/VolumeI/Set/ZFC/Model/`,
+    and bridge files such as `LRA/VolumeI/Set/ZFC/Semantics/SetObjectBridge.lean`.
+  - Problem: the current public `LRASet Alpha := Alpha -> Prop` is a
+    predicate-set over a Lean carrier, not an object inside a `ZFCModel`.
+    That is the right working surface for set algebra over an ambient carrier,
+    but the name can be mistaken for the LRA-native ZFC set-object
+    implementation analogous to a concrete number-system model.
+  - Scope: decide whether to rename the current `LRASet` API to
+    `PredicateSet` or equivalent; reserve `LRASet` for a later canonical
+    set-object implementation if desired; add `ToPredicateSet` from
+    `M.Domain`/`ModelSet M` to predicate-sets; and document that the reverse
+    direction needs a set-existence theorem such as Separation, Pairing, Union,
+    or Replacement rather than an arbitrary predicate.
+  - ZFC bridge target: state model-internal existence theorems such as
+    `UnionSetExists` and `BinaryUnionSetExists` from the ZFC axioms, then prove
+    that any chosen witness maps through `ToPredicateSet` to the corresponding
+    predicate-set union. Do the same later for bounded separation,
+    intersections, relative complements, products, and indexed constructions.
+  - Volume IV target: keep `SetAlgebra`/`AlgebraOfSets` as the consumer-facing
+    structure used by topology, measure, and metric-space chapters; it should
+    depend on the predicate-set law catalogue first, with optional ZFC-object
+    realization theorems added as bridges rather than prerequisites.
+  - Acceptance: proof work can proceed over predicate-sets without claiming
+    every predicate is a ZFC set-object, and later ZFC/model bridges can reuse
+    the same algebraic laws through `ToPredicateSet` instead of rewriting them.
+
 - [ ] Add sigma-algebra compatibility bridge.
   - Home: `LRA/VolumeI/Set/Algebras.lean` or
     `LRA/VolumeIV/MeasureSpaces/Foundations/`.
