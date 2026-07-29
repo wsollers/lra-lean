@@ -1,5 +1,5 @@
 import LRA.VolumeII.PeanoSystems.Presburger.Presburger
-import LRA.VolumeI.Logic.Model.Model
+import LRA.VolumeII.PeanoSystems.PeanoSystem
 
 /-!
 First-order model data for the Presburger signature.
@@ -11,23 +11,31 @@ structure PresburgerModel where
   carrier : Type
   zero : carrier
   successor : carrier -> carrier
-  addition : carrier -> carrier -> carrier
+  zero_not_successor :
+    forall element : carrier,
+      successor element ≠ zero
+  successor_injective :
+    forall first_element second_element : carrier,
+      successor first_element = successor second_element ->
+      first_element = second_element
+  induction :
+    forall predicate : LRA.VolumeI.Set.LRASet carrier,
+      predicate zero ->
+      (forall element : carrier,
+        predicate element ->
+        predicate (successor element)) ->
+      forall element : carrier,
+        predicate element
   lessThan : carrier -> carrier -> Prop
 
-def PresburgerModel.toFirstOrderModel
-    (model : PresburgerModel) :
-    LRA.VolumeI.Logic.FirstOrder.Model PresburgerSignature where
-  Domain := model.carrier
-  domainNonempty := ⟨model.zero⟩
-  interpretFunction
-    | .successor, args => model.successor (args ⟨0, by decide⟩)
-    | .addition, args =>
-        model.addition (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
-  interpretRelation
-    | .lessThan, args =>
-        model.lessThan (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
-  interpretConstant
-    | .zero => model.zero
+def PresburgerModel.toPeanoSystem
+    (model : PresburgerModel) : PeanoSystem where
+  carrier := model.carrier
+  one := model.zero
+  successor := model.successor
+  one_not_successor := model.zero_not_successor
+  successor_injective := model.successor_injective
+  induction := model.induction
 
 /- Volume II label: def:presburger-arithmetic
    Lean declaration: LRA.VolumeII.PeanoSystems.PresburgerArithmetic

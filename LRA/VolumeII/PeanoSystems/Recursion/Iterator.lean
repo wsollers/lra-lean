@@ -170,6 +170,35 @@ theorem UniquenessOfIteratorFunctions
   sorry
 
 /--
+**[Theorem - Iterator Function Well-Definedness]**
+
+Iterator data determines exactly one iterator function.
+
+Mathematical statement (Lean): `theorem IteratorFunctionWellDefined`.
+-/
+theorem IteratorFunctionWellDefined
+    (ps : PeanoSystem)
+    (target : Type)
+    (initial_value : target)
+    (step_rule : target -> target) :
+    exists iterator_function : ps.carrier -> target,
+      IteratorFunctionClauses
+        ps
+        target
+        initial_value
+        step_rule
+        iterator_function /\
+      forall other_iterator : ps.carrier -> target,
+        IteratorFunctionClauses
+          ps
+          target
+          initial_value
+          step_rule
+          other_iterator ->
+        other_iterator = iterator_function := by
+  sorry
+
+/--
 **[Definition - Iterator-Generated Function]**
 
 The iterator-generated function determined by a target type, an initial value,

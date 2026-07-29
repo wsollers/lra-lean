@@ -23,11 +23,9 @@
 --   Theorem | pn_iso_positive_nat         | PN ≅ PositiveNat as PeanoSystems
 --   Theorem | standard_n_convention       | the Lean Nat bridge
 
-import LRA.VolumeII.NaturalNumbers.PeanoN
+import LRA.VolumeII.NaturalNumbers.Old.PeanoN
 
-namespace LRA
-namespace VolumeII
-namespace NaturalNumbers
+namespace LRA.VolumeII.NaturalNumbers.Old
 
 open LRA.VolumeII.PeanoSystems.Old
 
@@ -263,6 +261,4 @@ theorem standard_n_convention :
     nat_zero_based_peano_system.successor = Nat.succ :=
   ⟨rfl, rfl, rfl⟩
 
-end NaturalNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.NaturalNumbers.Old

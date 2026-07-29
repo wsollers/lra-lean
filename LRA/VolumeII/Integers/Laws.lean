@@ -24,23 +24,23 @@ integer layer.
 Mathematical statement (Lean): `structure AdditiveGroupLaws (additive_structure : AdditiveStructure) : Prop`.
 -/
 structure AdditiveGroupLaws (additive_structure : AdditiveStructure) : Prop where
-  add_assoc : LRA.VolumeI.Algebra.associative (AdditiveStructure.add additive_structure)
-  add_comm : LRA.VolumeI.Algebra.commutative (AdditiveStructure.add additive_structure)
+  add_assoc : LRA.VolumeI.Algebra.Associative (AdditiveStructure.add additive_structure)
+  add_comm : LRA.VolumeI.Algebra.Commutative (AdditiveStructure.add additive_structure)
   zero_add :
-    LRA.VolumeI.Algebra.leftIdentity
+    LRA.VolumeI.Algebra.LeftIdentity
       (AdditiveStructure.add additive_structure)
       (AdditiveStructure.zero additive_structure)
   add_zero :
-    LRA.VolumeI.Algebra.rightIdentity
+    LRA.VolumeI.Algebra.RightIdentity
       (AdditiveStructure.add additive_structure)
       (AdditiveStructure.zero additive_structure)
   neg_add_self :
-    LRA.VolumeI.Algebra.leftInverse
+    LRA.VolumeI.Algebra.LeftInverse
       (AdditiveStructure.add additive_structure)
       (AdditiveStructure.zero additive_structure)
       (AdditiveStructure.neg additive_structure)
   add_neg_self :
-    LRA.VolumeI.Algebra.rightInverse
+    LRA.VolumeI.Algebra.RightInverse
       (AdditiveStructure.add additive_structure)
       (AdditiveStructure.zero additive_structure)
       (AdditiveStructure.neg additive_structure)
@@ -65,26 +65,26 @@ Mathematical statement (Lean): `structure MultiplicativeMonoidLaws (multiplicati
 structure MultiplicativeMonoidLaws
     (multiplicative_structure : MultiplicativeStructure) : Prop where
   one_mul :
-    LRA.VolumeI.Algebra.leftIdentity
+    LRA.VolumeI.Algebra.LeftIdentity
       (MultiplicativeStructure.mul multiplicative_structure)
       (MultiplicativeStructure.one multiplicative_structure)
   mul_one :
-    LRA.VolumeI.Algebra.rightIdentity
+    LRA.VolumeI.Algebra.RightIdentity
       (MultiplicativeStructure.mul multiplicative_structure)
       (MultiplicativeStructure.one multiplicative_structure)
   mul_zero :
-    LRA.VolumeI.Algebra.rightAbsorbing
+    LRA.VolumeI.Algebra.RightAbsorbing
       (MultiplicativeStructure.mul multiplicative_structure)
       (MultiplicativeStructure.zero multiplicative_structure)
   zero_mul :
-    LRA.VolumeI.Algebra.leftAbsorbing
+    LRA.VolumeI.Algebra.LeftAbsorbing
       (MultiplicativeStructure.mul multiplicative_structure)
       (MultiplicativeStructure.zero multiplicative_structure)
   mul_assoc :
-    LRA.VolumeI.Algebra.associative
+    LRA.VolumeI.Algebra.Associative
       (MultiplicativeStructure.mul multiplicative_structure)
   mul_comm :
-    LRA.VolumeI.Algebra.commutative
+    LRA.VolumeI.Algebra.Commutative
       (MultiplicativeStructure.mul multiplicative_structure)
 
 /--
@@ -96,11 +96,11 @@ structure RingLaws (ring_structure : RingStructure) : Prop extends
     AdditiveGroupLaws ring_structure.toAdditiveStructure,
     MultiplicativeMonoidLaws ring_structure.toMultiplicativeStructure where
   distrib_left :
-    LRA.VolumeI.Algebra.leftDistributive
+    LRA.VolumeI.Algebra.LeftDistributive
       ring_structure.mul
       ring_structure.add
   distrib_right :
-    LRA.VolumeI.Algebra.rightDistributive
+    LRA.VolumeI.Algebra.RightDistributive
       ring_structure.mul
       ring_structure.add
   mul_neg :

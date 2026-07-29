@@ -25,34 +25,34 @@ structure MagmaLaws {α : Type u} (operation : α → α → α) : Prop where
 
 structure SemigroupLaws {α : Type u} (operation : α → α → α) : Prop
     extends MagmaLaws operation where
-  associative : LRA.VolumeI.Algebra.associative operation
+  associative : LRA.VolumeI.Algebra.Associative operation
 
 structure CommutativeSemigroupLaws {α : Type u} (operation : α → α → α) : Prop
     extends SemigroupLaws operation where
-  commutative : LRA.VolumeI.Algebra.commutative operation
+  commutative : LRA.VolumeI.Algebra.Commutative operation
 
 structure MonoidLaws {α : Type u} (operation : α → α → α) (identity : α) : Prop
     extends SemigroupLaws operation where
-  identity_law : LRA.VolumeI.Algebra.identity operation identity
+  identity_law : LRA.VolumeI.Algebra.Identity operation identity
 
 structure GroupLaws {α : Type u}
     (operation : α → α → α) (identity : α) (inverse : α → α) : Prop
     extends MonoidLaws operation identity where
   inverse_law :
-    LRA.VolumeI.Algebra.leftInverse operation identity inverse ∧
-      LRA.VolumeI.Algebra.rightInverse operation identity inverse
+    LRA.VolumeI.Algebra.LeftInverse operation identity inverse ∧
+      LRA.VolumeI.Algebra.RightInverse operation identity inverse
 
 structure AbelianGroupLaws {α : Type u}
     (operation : α → α → α) (identity : α) (inverse : α → α) : Prop
     extends GroupLaws operation identity inverse where
-  commutative : LRA.VolumeI.Algebra.commutative operation
+  commutative : LRA.VolumeI.Algebra.Commutative operation
 
 structure RingLikeLaws {α : Type u}
     (zero one : α) (addition multiplication : α → α → α) (negation : α → α) : Prop where
   additive_laws : AbelianGroupLaws addition zero negation
   multiplicative_laws : MonoidLaws multiplication one
-  left_distributive : LRA.VolumeI.Algebra.leftDistributive multiplication addition
-  right_distributive : LRA.VolumeI.Algebra.rightDistributive multiplication addition
+  left_distributive : LRA.VolumeI.Algebra.LeftDistributive multiplication addition
+  right_distributive : LRA.VolumeI.Algebra.RightDistributive multiplication addition
 
 structure IntegralDomainLaws {α : Type u}
     (zero one : α) (addition multiplication : α → α → α) (negation : α → α) : Prop

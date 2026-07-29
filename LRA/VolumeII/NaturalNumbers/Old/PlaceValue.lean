@@ -1,16 +1,14 @@
 -- LRA/VolumeII/NaturalNumbers/PlaceValue.lean
 -- Finite base-b representation of whole numbers.
 
-import LRA.VolumeII.NaturalNumbers.Divisibility
+import LRA.VolumeII.NaturalNumbers.Old.Divisibility
 
-namespace LRA
-namespace VolumeII
-namespace NaturalNumbers
+namespace LRA.VolumeII.NaturalNumbers.Old
 namespace PlaceValue
 
 /-!
 Volume II label: place-value-representation
-Lean module: LRA.VolumeII.NaturalNumbers.PlaceValue
+Lean module: LRA.VolumeII.NaturalNumbers.Old.PlaceValue
 Source: docs/number-systems/gpt-01c-place-value-integers.md
 Verification status: statement-accepted-proof-pending
 -/
@@ -121,6 +119,4 @@ theorem canonical_base_representation_unique
   sorry
 
 end PlaceValue
-end NaturalNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.NaturalNumbers.Old

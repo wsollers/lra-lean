@@ -24,9 +24,7 @@
 import LRA.VolumeII.PeanoSystems.Old.Recursion
 import LRA.VolumeII.PeanoSystems.Old.BasicTheorems
 
-namespace LRA
-namespace VolumeII
-namespace NaturalNumbers
+namespace LRA.VolumeII.NaturalNumbers.Old
 
 open LRA.VolumeII.PeanoSystems.Old
 
@@ -197,6 +195,4 @@ theorem pn_iso_any_peano_system
             peano_system.one
             peano_system.successor⟩
 
-end NaturalNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.NaturalNumbers.Old

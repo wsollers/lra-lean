@@ -1,17 +1,15 @@
 -- LRA/VolumeII/NaturalNumbers/Presburger.lean
 -- Presburger arithmetic as a Peano system with primitive addition.
 
-import LRA.VolumeII.NaturalNumbers.Order
+import LRA.VolumeII.NaturalNumbers.Old.Order
 import LRA.VolumeI.Operations.Laws
 
-namespace LRA
-namespace VolumeII
-namespace NaturalNumbers
+namespace LRA.VolumeII.NaturalNumbers.Old
 namespace Presburger
 
 /-!
 Volume II label: presburger-natural-number-system
-Lean module: LRA.VolumeII.NaturalNumbers.Presburger
+Lean module: LRA.VolumeII.NaturalNumbers.Old.Presburger
 Source: Volume I Presburger arithmetic, brought into Volume II as a Peano system
 Verification status: statement-accepted-proof-pending
 
@@ -36,9 +34,9 @@ structure PresburgerPeanoSystem extends PeanoSystem where
     ∀ left right : carrier,
       addition left (successor right) = successor (addition left right)
   addition_is_associative :
-    LRA.VolumeI.Algebra.associative addition
+    LRA.VolumeI.Algebra.Associative addition
   addition_is_commutative :
-    LRA.VolumeI.Algebra.commutative addition
+    LRA.VolumeI.Algebra.Commutative addition
 
 /--
 **[Def — as_peano_system]**
@@ -75,6 +73,4 @@ theorem volume_i_standard_presburger_model_yields_volume_ii_system :
   sorry
 
 end Presburger
-end NaturalNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.NaturalNumbers.Old

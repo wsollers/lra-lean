@@ -23,11 +23,9 @@
 --   Theorem    | mul_distrib_add | x·(y+z) = x·y + x·z            (stub)
 --   Theorem    | mul_commutative | x·y = y·x                      (stub)
 
-import LRA.VolumeII.NaturalNumbers.Addition
+import LRA.VolumeII.NaturalNumbers.Old.Addition
 
-namespace LRA
-namespace VolumeII
-namespace NaturalNumbers
+namespace LRA.VolumeII.NaturalNumbers.Old
 
 open LRA.VolumeII.PeanoSystems.Old
 
@@ -214,6 +212,4 @@ theorem mul_commutative
     mul ps x y = mul ps y x := by
   sorry
 
-end NaturalNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.NaturalNumbers.Old

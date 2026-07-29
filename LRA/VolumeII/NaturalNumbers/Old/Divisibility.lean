@@ -3,14 +3,12 @@
 
 import LRA.VolumeII.WholeNumbers.Construction
 
-namespace LRA
-namespace VolumeII
-namespace NaturalNumbers
+namespace LRA.VolumeII.NaturalNumbers.Old
 namespace Divisibility
 
 /-!
 Volume II label: divisibility-and-euclidean-division
-Lean module: LRA.VolumeII.NaturalNumbers.Divisibility
+Lean module: LRA.VolumeII.NaturalNumbers.Old.Divisibility
 Source: docs/number-systems/gpt-01d-divisibility-division.md
 Verification status: statement-accepted-proof-pending
 -/
@@ -182,6 +180,4 @@ theorem euclid_lemma
   sorry
 
 end Divisibility
-end NaturalNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.NaturalNumbers.Old

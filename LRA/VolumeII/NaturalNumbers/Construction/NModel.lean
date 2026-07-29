@@ -6,7 +6,7 @@ First-order signature and model data for the Peano-system natural-number
 language.
 -/
 
-namespace LRA.VolumeII.PeanoSystems
+namespace LRA.VolumeII.NaturalNumbers
 
 inductive NFunctionSymbol where
   | successor
@@ -30,7 +30,7 @@ def NSignature : LRA.VolumeI.Logic.Signature where
   Relations := NRelations
   Constants := NConstantSymbol
 
-structure NModel extends PeanoSystem
+structure NModel extends LRA.VolumeII.PeanoSystems.PeanoSystem
 
 def NModel.toFirstOrderModel
     (model : NModel) :
@@ -43,4 +43,4 @@ def NModel.toFirstOrderModel
   interpretConstant
     | .one => model.one
 
-end LRA.VolumeII.PeanoSystems
+end LRA.VolumeII.NaturalNumbers

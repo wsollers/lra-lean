@@ -1,14 +1,6 @@
-import LRA.VolumeII.NaturalNumbers.PeanoN
-import LRA.VolumeII.NaturalNumbers.Addition
-import LRA.VolumeII.NaturalNumbers.Multiplication
-import LRA.VolumeII.NaturalNumbers.Order
-import LRA.VolumeII.NaturalNumbers.Utilities
-import LRA.VolumeII.NaturalNumbers.StandardN
-import LRA.VolumeII.NaturalNumbers.Presburger
-import LRA.VolumeII.NaturalNumbers.Divisibility
-import LRA.VolumeII.NaturalNumbers.PlaceValue
+import LRA.VolumeII.NaturalNumbers.Construction
+import LRA.VolumeII.NaturalNumbers.Operations
 
 /-!
-Aggregate import for Volume II natural-number modules.
+Natural-number construction layer for Volume II.
 -/
-

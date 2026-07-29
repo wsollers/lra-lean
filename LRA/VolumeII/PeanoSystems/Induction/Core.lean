@@ -22,6 +22,18 @@ theorem PeanoSystemInductionPrinciple
       predicate element := by
   sorry
 
+theorem InductionPrincipleForPeanoSystem
+    (ps : PeanoSystem)
+    (predicate : LRA.VolumeI.Set.LRASet ps.carrier)
+    (base_case : predicate ps.one)
+    (successor_step :
+      forall element : ps.carrier,
+        predicate element ->
+        predicate (ps.successor element)) :
+    forall element : ps.carrier,
+      predicate element := by
+  sorry
+
 /--
 **[Theorem - Subset-Based Induction Principle for a Peano System]**
 
@@ -44,6 +56,14 @@ theorem PeanoMinimality
     (ps : PeanoSystem)
     (subset : LRA.VolumeI.Set.LRASet ps.carrier)
     (subset_is_inductive : InductiveSubsetOfPeanoSystem ps subset) :
+    ∀ element : ps.carrier, subset element := by
+  sorry
+
+theorem SuccessorClosedSubsetMinimality
+    (ps : PeanoSystem)
+    (subset : LRA.VolumeI.Set.LRASet ps.carrier)
+    (contains_one : subset ps.one)
+    (successor_closed : SuccessorClosedSubset ps subset) :
     ∀ element : ps.carrier, subset element := by
   sorry
 

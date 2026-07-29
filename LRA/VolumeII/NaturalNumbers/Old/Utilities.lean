@@ -27,9 +27,7 @@
 
 import LRA.VolumeII.PeanoSystems.Old.Recursion
 
-namespace LRA
-namespace VolumeII
-namespace NaturalNumbers
+namespace LRA.VolumeII.NaturalNumbers.Old
 
 open LRA.VolumeII.PeanoSystems.Old
 
@@ -226,6 +224,4 @@ theorem string_rep_step
     string_rep ps s (ps.successor n) = string_rep ps s n ++ s :=
   iter_step ps (List Char) s (fun prev => prev ++ s) n
 
-end NaturalNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.NaturalNumbers.Old

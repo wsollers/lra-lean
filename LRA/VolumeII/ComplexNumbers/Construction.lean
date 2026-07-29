@@ -185,90 +185,90 @@ theorem ext
 
 /-- Theorem 2.1: complex addition is associative.
 
-Mathematical statement (Lean): `theorem addition_is_associative : LRA.VolumeI.Algebra.associative (addition real_model)`.
+Mathematical statement (Lean): `theorem addition_is_associative : LRA.VolumeI.Algebra.Associative (addition real_model)`.
 
 *Proof status:* proof pending
 -/
 theorem addition_is_associative :
-    LRA.VolumeI.Algebra.associative (addition real_model) := by
+    LRA.VolumeI.Algebra.Associative (addition real_model) := by
   sorry
 
 
 /-- Theorem 2.2: complex addition is commutative.
 
-Mathematical statement (Lean): `theorem addition_is_commutative : LRA.VolumeI.Algebra.commutative (addition real_model)`.
+Mathematical statement (Lean): `theorem addition_is_commutative : LRA.VolumeI.Algebra.Commutative (addition real_model)`.
 
 *Proof status:* proof pending
 -/
 theorem addition_is_commutative :
-    LRA.VolumeI.Algebra.commutative (addition real_model) := by
+    LRA.VolumeI.Algebra.Commutative (addition real_model) := by
   sorry
 
 
 /-- Theorem 2.3: zero is the additive identity.
 
-Mathematical statement (Lean): `theorem zero_is_additive_identity : LRA.VolumeI.Algebra.identity (addition real_model) (zero real_model)`.
+Mathematical statement (Lean): `theorem zero_is_additive_identity : LRA.VolumeI.Algebra.Identity (addition real_model) (zero real_model)`.
 
 *Proof status:* proof pending
 -/
 theorem zero_is_additive_identity :
-    LRA.VolumeI.Algebra.identity (addition real_model) (zero real_model) := by
+    LRA.VolumeI.Algebra.Identity (addition real_model) (zero real_model) := by
   sorry
 
 
 /-- Theorem 2.4: negation gives additive inverses.
 
-Mathematical statement (Lean): `theorem negation_is_additive_inverse : LRA.VolumeI.Algebra.inverse (addition real_model) (zero real_model) (negation real_model)`.
+Mathematical statement (Lean): `theorem negation_is_additive_inverse : LRA.VolumeI.Algebra.Inverse (addition real_model) (zero real_model) (negation real_model)`.
 
 *Proof status:* proof pending
 -/
 theorem negation_is_additive_inverse :
-    LRA.VolumeI.Algebra.inverse
+    LRA.VolumeI.Algebra.Inverse
       (addition real_model) (zero real_model) (negation real_model) := by
   sorry
 
 
 /-- Theorem 2.5: complex multiplication is associative.
 
-Mathematical statement (Lean): `theorem multiplication_is_associative : LRA.VolumeI.Algebra.associative (multiplication real_model)`.
+Mathematical statement (Lean): `theorem multiplication_is_associative : LRA.VolumeI.Algebra.Associative (multiplication real_model)`.
 
 *Proof status:* proof pending
 -/
 theorem multiplication_is_associative :
-    LRA.VolumeI.Algebra.associative (multiplication real_model) := by
+    LRA.VolumeI.Algebra.Associative (multiplication real_model) := by
   sorry
 
 
 /-- Theorem 2.6: complex multiplication is commutative.
 
-Mathematical statement (Lean): `theorem multiplication_is_commutative : LRA.VolumeI.Algebra.commutative (multiplication real_model)`.
+Mathematical statement (Lean): `theorem multiplication_is_commutative : LRA.VolumeI.Algebra.Commutative (multiplication real_model)`.
 
 *Proof status:* proof pending
 -/
 theorem multiplication_is_commutative :
-    LRA.VolumeI.Algebra.commutative (multiplication real_model) := by
+    LRA.VolumeI.Algebra.Commutative (multiplication real_model) := by
   sorry
 
 
 /-- Theorem 2.7: one is the multiplicative identity.
 
-Mathematical statement (Lean): `theorem one_is_multiplicative_identity : LRA.VolumeI.Algebra.identity (multiplication real_model) (one real_model)`.
+Mathematical statement (Lean): `theorem one_is_multiplicative_identity : LRA.VolumeI.Algebra.Identity (multiplication real_model) (one real_model)`.
 
 *Proof status:* proof pending
 -/
 theorem one_is_multiplicative_identity :
-    LRA.VolumeI.Algebra.identity (multiplication real_model) (one real_model) := by
+    LRA.VolumeI.Algebra.Identity (multiplication real_model) (one real_model) := by
   sorry
 
 
 /-- Theorem 2.8: multiplication distributes over addition.
 
-Mathematical statement (Lean): `theorem multiplication_distributes_over_addition : LRA.VolumeI.Algebra.distributive (multiplication real_model) (addition real_model)`.
+Mathematical statement (Lean): `theorem multiplication_distributes_over_addition : LRA.VolumeI.Algebra.Distributive (multiplication real_model) (addition real_model)`.
 
 *Proof status:* proof pending
 -/
 theorem multiplication_distributes_over_addition :
-    LRA.VolumeI.Algebra.distributive
+    LRA.VolumeI.Algebra.Distributive
       (multiplication real_model) (addition real_model) := by
   sorry
 

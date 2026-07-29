@@ -30,26 +30,26 @@ number systems with ring operations.
 structure RingLaws
     (signature : OrderedRingSignature) : Prop where
   addition_is_associative :
-    LRA.VolumeI.Algebra.associative signature.addition
+    LRA.VolumeI.Algebra.Associative signature.addition
   addition_is_commutative :
-    LRA.VolumeI.Algebra.commutative signature.addition
+    LRA.VolumeI.Algebra.Commutative signature.addition
   zero_is_additive_identity :
-    LRA.VolumeI.Algebra.identity signature.addition signature.zero
+    LRA.VolumeI.Algebra.Identity signature.addition signature.zero
   negation_is_additive_inverse :
-    LRA.VolumeI.Algebra.leftInverse
+    LRA.VolumeI.Algebra.LeftInverse
         signature.addition signature.zero signature.negation ∧
-      LRA.VolumeI.Algebra.rightInverse
+      LRA.VolumeI.Algebra.RightInverse
         signature.addition signature.zero signature.negation
   multiplication_is_associative :
-    LRA.VolumeI.Algebra.associative signature.multiplication
+    LRA.VolumeI.Algebra.Associative signature.multiplication
   multiplication_is_commutative :
-    LRA.VolumeI.Algebra.commutative signature.multiplication
+    LRA.VolumeI.Algebra.Commutative signature.multiplication
   one_is_multiplicative_identity :
-    LRA.VolumeI.Algebra.identity signature.multiplication signature.one
+    LRA.VolumeI.Algebra.Identity signature.multiplication signature.one
   multiplication_left_distributes_over_addition :
-    LRA.VolumeI.Algebra.leftDistributive signature.multiplication signature.addition
+    LRA.VolumeI.Algebra.LeftDistributive signature.multiplication signature.addition
   multiplication_right_distributes_over_addition :
-    LRA.VolumeI.Algebra.rightDistributive signature.multiplication signature.addition
+    LRA.VolumeI.Algebra.RightDistributive signature.multiplication signature.addition
 
 /--
 **[Definition — Order Laws]**
