@@ -3,6 +3,7 @@ import LRA.VolumeII.PeanoSystems
 import LRA.VolumeII.NaturalNumbers
 import LRA.VolumeII.WholeNumbers
 import LRA.VolumeII.Integers
+import LRA.VolumeII.GaussianIntegers
 import LRA.VolumeII.RationalNumbers
 import LRA.VolumeII.RealNumbers
 import LRA.VolumeII.RationalNumbers.ContinuedFractions

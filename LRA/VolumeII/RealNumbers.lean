@@ -9,7 +9,7 @@ import LRA.VolumeII.RealNumbers.Extended
 import LRA.VolumeII.RealNumbers.IntervalArithmetic
 import LRA.VolumeII.RealNumbers.Irrationals
 import LRA.VolumeII.RealNumbers.Computable
-import LRA.VolumeII.RealNumbers.Model
+import LRA.VolumeII.RealNumbers.Construction
 
 /-!
 Aggregate import for Volume II real-number constructions.

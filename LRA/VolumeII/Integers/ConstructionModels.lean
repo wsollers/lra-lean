@@ -3,7 +3,7 @@
 
 import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeI.Algebra.Models.Models
-import LRA.VolumeII.PeanoSystems.Old.PeanoSystem
+import LRA.VolumeII.NaturalNumbers
 
 namespace LRA
 namespace VolumeII
@@ -223,33 +223,33 @@ noncomputable def integer_model : IntegerModel :=
   Classical.choice integer_model_exists
 
 
-/-- **[Theorem — Peano System Recovered from Positive Mendelson Integers Exists]**
+/-- **[Theorem — Natural-Number Model Recovered from Positive Mendelson Integers Exists]**
 
-Mathematical statement (Lean): `theorem recovered_peano_system_exists : Nonempty LRA.VolumeII.PeanoSystems.Old.PeanoSystem`.
+Mathematical statement (Lean): `theorem recovered_natural_number_model_exists : Nonempty LRA.VolumeII.NaturalNumbers.NModel`.
 
 *Proof status:* proof pending
 -/
-theorem recovered_peano_system_exists :
-    Nonempty LRA.VolumeII.PeanoSystems.Old.PeanoSystem := by
+theorem recovered_natural_number_model_exists :
+    Nonempty LRA.VolumeII.NaturalNumbers.NModel := by
   sorry
 
 
-/-- **[Definition — Peano System Recovered from Positive Mendelson Integers]**
+/-- **[Definition — Natural-Number Model Recovered from Positive Mendelson Integers]**
 
-Mathematical statement (Lean): `noncomputable def recovered_peano_system : LRA.VolumeII.PeanoSystems.Old.PeanoSystem`.
+Mathematical statement (Lean): `noncomputable def recovered_natural_number_model : LRA.VolumeII.NaturalNumbers.NModel`.
 -/
-noncomputable def recovered_peano_system :
-    LRA.VolumeII.PeanoSystems.Old.PeanoSystem :=
-  Classical.choice recovered_peano_system_exists
+noncomputable def recovered_natural_number_model :
+    LRA.VolumeII.NaturalNumbers.NModel :=
+  Classical.choice recovered_natural_number_model_exists
 
 /--
-**[Theorem — Positive Mendelson Integers Recover a Peano System]**
+**[Theorem — Positive Mendelson Integers Recover a Natural-Number Model]**
 
-Mathematical statement (Lean): `theorem positive_integers_recover_peano_system : Nonempty LRA.VolumeII.PeanoSystems.Old.PeanoSystem`.
+Mathematical statement (Lean): `theorem positive_integers_recover_natural_number_model : Nonempty LRA.VolumeII.NaturalNumbers.NModel`.
 -/
-theorem positive_integers_recover_peano_system :
-    Nonempty LRA.VolumeII.PeanoSystems.Old.PeanoSystem :=
-  ⟨recovered_peano_system⟩
+theorem positive_integers_recover_natural_number_model :
+    Nonempty LRA.VolumeII.NaturalNumbers.NModel :=
+  ⟨recovered_natural_number_model⟩
 
 end MendelsonComparison
 

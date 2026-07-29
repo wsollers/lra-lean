@@ -1,8 +1,8 @@
--- LRA/VolumeII/ComplexNumbers/Model.lean
+-- LRA/VolumeII/ComplexNumbers/Construction/Model.lean
 -- Complex numbers as a Volume I first-order algebraic model.
 
 import LRA.VolumeI.Algebra.Models
-import LRA.VolumeII.ComplexNumbers.Construction
+import LRA.VolumeII.ComplexNumbers.Construction.Construction
 
 namespace LRA
 namespace VolumeII
@@ -15,7 +15,7 @@ namespace ComplexNumber
 
 /-!
 Volume II label: complex-number-model
-Lean module: LRA.VolumeII.ComplexNumbers.Model
+Lean module: LRA.VolumeII.ComplexNumbers.Construction.Model
 Verification status: definitions accepted; field laws pending
 -/
 

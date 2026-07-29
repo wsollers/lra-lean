@@ -1,4 +1,4 @@
--- LRA/VolumeII/Integers/Model.lean
+-- LRA/VolumeII/Integers/Construction/Model.lean
 -- Active integer construction as a Volume I first-order algebraic model.
 
 import LRA.VolumeI.Algebra.Models
@@ -14,7 +14,7 @@ namespace Active
 
 /-!
 Volume II label: active-integer-model
-Lean module: LRA.VolumeII.Integers.Model
+Lean module: LRA.VolumeII.Integers.Construction.Model
 Verification status: definitions accepted; model laws pending
 -/
 

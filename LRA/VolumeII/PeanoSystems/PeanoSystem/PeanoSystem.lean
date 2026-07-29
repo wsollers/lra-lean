@@ -3,8 +3,7 @@ import LRA.VolumeI.Set
 /-!
 Current TeX-facing Peano-system carrier for Volume II.
 
-This is the root namespace reserved for the new buildout.  The earlier
-implementation is quarantined under `LRA.VolumeII.PeanoSystems.Old`.
+This is the root namespace for the active Volume II Peano-system buildout.
 -/
 
 namespace LRA.VolumeII.PeanoSystems

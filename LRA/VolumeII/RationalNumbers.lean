@@ -1,6 +1,6 @@
 import LRA.VolumeII.RationalNumbers.RationalQuotientFractions
 import LRA.VolumeII.RationalNumbers.ComparisonModels
-import LRA.VolumeII.RationalNumbers.Model
+import LRA.VolumeII.RationalNumbers.Construction
 
 /-!
 Aggregate import for Volume II rational-number constructions.
