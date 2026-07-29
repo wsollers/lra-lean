@@ -157,6 +157,7 @@ LRA
       Inverses.lean
       Distributivity.lean
       Compatibility.lean
+      Divisibility.lean
 
     Algebra.lean
     Algebra
@@ -514,6 +515,9 @@ Monotone
 StrictMonotone
 TranslationInvariant
 PositiveMultiplicationCompatible
+Divides
+AssociatedByDivisibility
+DivisibilityPreorder
 ```
 
 ### Algebra.Structures

@@ -43,19 +43,19 @@ be organized.
 | Ordered pair and Cartesian product | Present in `LRA/VolumeI/Set/Products.lean` | Need product extensionality theorem and stronger set-level product laws. |
 | n-tuples and powers `S^n` | Partial via `Tuple` in `LRA/VolumeI/Set/Products.lean` | Need explicit `S^0`, `S^n`, and relation to product conventions if the omnibus numbering is formalized directly. |
 | n-ary relations | Partial in `LRA/VolumeI/Relations/Basic/Relations.lean` | Unary and binary relations exist; general `n`-ary relations are not yet exposed as a reusable abstraction. |
-| n-ary operations | Partial in `LRA/VolumeI/Operations/Operations.lean` | Nullary, unary, binary, external binary, and partial operations exist; general `n`-ary operations are missing. |
+| n-ary operations | Present in `LRA/VolumeI/Operations/Arity.lean` | Need theorem catalogue relating n-ary presentation to ordinary unary/binary operation laws. |
 | Named binary relation properties | Partial in `LRA/VolumeI/Relations/Basic/Properties.lean` | Reflexive, irreflexive, symmetric, antisymmetric, transitive, connex, trichotomous, equivalence exist. Missing asymmetric, left-Euclidean, right-Euclidean, dense, well-founded as named primitive relation properties. Trichotomy currently states inclusive alternatives, not exactly-one exclusivity. |
 | Interrelations among relation properties, Satz 0.8 | Missing | Need statements/proofs for asymmetry equivalences, irreflexive+transitive implies asymmetric, reflexive+transitive+right-Euclidean implies symmetric, trichotomy consequences. |
-| Composite relation types | Partial in `LRA/VolumeI/Relations/Order/OrderStructures/` and `LRA/VolumeI/Relations/Basic/Properties.lean` | Preorder, partial order, strict order, total order, well-order, equivalence exist. Missing theorem-level correspondence between strict/non-strict orders. |
-| Equivalence relations and partitions | Partial | Equivalence law bundle exists; equivalence classes, partitions, and the fundamental theorem of equivalence relations are missing. |
+| Composite relation types | Partial in `LRA/VolumeI/Relations/Order/OrderStructures/`, `Correspondence.lean`, and `Basic/Properties.lean` | Preorder, partial order, strict order, total order, well-order, equivalence, and strict/non-strict correspondence statements exist; proofs are pending. |
+| Equivalence relations and partitions | Partial in `LRA/VolumeI/Relations/Equivalence/` | Equivalence classes, partitions, quotient sets, and the fundamental theorem statement exist; proofs are pending. |
 
 ## Chapter 0A: Functions
 
 | Omnibus item | Current state | Gap |
 | --- | --- | --- |
-| Function as graph, domain, codomain | Missing as a set-theoretic layer | Lean functions and first-order model interpretations exist, but there is no `VolumeI/Functions` layer for graph-based functions. |
-| Image, preimage, fibers | Missing | Need definitions over the project set layer. |
-| Injective, surjective, bijective via fibers | Partial elsewhere | Embedding/injectivity fields exist in model files, but no general function theorem catalogue. |
+| Function as graph, domain, codomain | Present in `LRA/VolumeI/Functions/Functions.lean` | Need theorem catalogue connecting graph relations and Lean functions. |
+| Image, preimage, fibers | Present in `LRA/VolumeI/Functions/Images.lean`, `Preimages.lean`, and `Fibers.lean` | Need image/preimage/fiber laws. |
+| Injective, surjective, bijective via fibers | Partial in `LRA/VolumeI/Functions/` | Definitions and fiber formulations exist; theorem catalogue is missing. |
 | Restriction, extension, inverse function | Missing | Need definitions and theorem statements. |
 | Composition, identity, inverse laws | Missing as general functions | Model embeddings/isomorphisms use maps, but no general composition algebra for functions. |
 | Monoid of self-maps and group of bijections | Missing | Depends on the general function layer and the algebra structure layer. |
@@ -70,10 +70,10 @@ be organized.
 | Left/right/two-sided identity | Present | Need uniqueness of identity theorem. |
 | Left/right/two-sided absorbing element | Present | Need uniqueness theorem and incompatibility with identity in nontrivial carrier. |
 | Idempotence | Present as operation-wide idempotence | Omnibus also needs idempotent element. Current definition says every element is idempotent for the operation. |
-| Left/right/two-sided inverses | Partial | Current inverse laws use a unary inverse operation. Need elementwise inverse relation and uniqueness theorems. |
+| Left/right/two-sided inverses | Partial in `LRA/VolumeI/Operations/Inverses.lean` | Unary inverse and elementwise inverse statements exist; proofs are pending. |
 | Cancellation laws | Missing in core `Operations/Laws.lean` | Some model-specific cancellation statements exist, but generic left/right cancellative laws are not present. |
 | Commutativity collapses left/right laws | Missing | Needs theorem statements and proofs. |
-| Divisibility preorder induced by a monoid | Missing | Need induced relation definition and preorder/compatibility theorem. |
+| Divisibility preorder induced by a monoid | Partial in `LRA/VolumeI/Operations/Divisibility.lean` | Induced relation and preorder statement exist; proof is pending. |
 
 ## Chapter 2: Two Operations and Ring Skeleton
 
