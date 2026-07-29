@@ -40,6 +40,8 @@ structure PeanoSystem where
       forall element : carrier,
         predicate element
 
+abbrev PeanoSystemFromTex := PeanoSystem
+
 /--
 **[Definition - Successor-Closed Subset of a Peano System]**
 
@@ -55,6 +57,11 @@ def successor_closed_subset
     LRA.VolumeI.Set.LRASet.member element subset ->
     LRA.VolumeI.Set.LRASet.member (ps.successor element) subset
 
+def SuccessorClosedSubset
+    (ps : PeanoSystem)
+    (subset : LRA.VolumeI.Set.LRASet ps.carrier) : Prop :=
+  successor_closed_subset ps subset
+
 /--
 **[Definition - Inductive Subset of a Peano System]**
 
@@ -69,6 +76,11 @@ def inductive_subset
   LRA.VolumeI.Set.LRASet.member ps.one subset /\
     successor_closed_subset ps subset
 
+def InductiveSubsetOfPeanoSystem
+    (ps : PeanoSystem)
+    (subset : LRA.VolumeI.Set.LRASet ps.carrier) : Prop :=
+  inductive_subset ps subset
+
 /--
 **[Definition - Predecessor in a Peano System]**
 
@@ -81,5 +93,10 @@ def is_predecessor
     (ps : PeanoSystem)
     (predecessor element : ps.carrier) : Prop :=
   ps.successor predecessor = element
+
+def PredecessorInPeanoSystem
+    (ps : PeanoSystem)
+    (predecessor element : ps.carrier) : Prop :=
+  is_predecessor ps predecessor element
 
 end LRA.VolumeII.PeanoSystems

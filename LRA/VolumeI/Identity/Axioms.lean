@@ -40,22 +40,22 @@ theorem EqualityTransitivity {Carrier : Type u} {first second third : Carrier}
 
 /-- Equality is reflexive as a named binary-relation predicate. -/
 theorem EqualityRelationIsReflexive (Carrier : Type u) :
-    LRA.VolumeI.Relations.reflexive (EqualityRelation Carrier) := by
+    LRA.VolumeI.Relations.Reflexive (EqualityRelation Carrier) := by
   sorry
 
 /-- Equality is symmetric as a named binary-relation predicate. -/
 theorem EqualityRelationIsSymmetric (Carrier : Type u) :
-    LRA.VolumeI.Relations.symmetric (EqualityRelation Carrier) := by
+    LRA.VolumeI.Relations.Symmetric (EqualityRelation Carrier) := by
   sorry
 
 /-- Equality is transitive as a named binary-relation predicate. -/
 theorem EqualityRelationIsTransitive (Carrier : Type u) :
-    LRA.VolumeI.Relations.transitive (EqualityRelation Carrier) := by
+    LRA.VolumeI.Relations.Transitive (EqualityRelation Carrier) := by
   sorry
 
 /-- Equality is an equivalence relation. -/
 theorem EqualityRelationIsEquivalence (Carrier : Type u) :
-    LRA.VolumeI.Relations.equivalence (EqualityRelation Carrier) := by
+    LRA.VolumeI.Relations.Equivalence (EqualityRelation Carrier) := by
   sorry
 
 /-- TeX label: `ax:leibniz-law`. -/

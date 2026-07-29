@@ -2,6 +2,7 @@
 -- Shared model and extension interfaces for Z, Q, and R.
 
 import LRA.VolumeI.Algebra.Models.Signatures
+import LRA.VolumeI.Order.Relations
 
 namespace LRA
 namespace VolumeI
@@ -59,9 +60,9 @@ relations, independent of the ring operations.
 structure OrderLaws
     (signature : OrderedRingSignature) : Prop where
   strict_order_is_irreflexive :
-    LRA.VolumeI.Relations.irreflexive signature.strict_order
+    LRA.VolumeI.Relations.Irreflexive signature.strict_order
   strict_order_is_transitive :
-    LRA.VolumeI.Relations.transitive signature.strict_order
+    LRA.VolumeI.Relations.Transitive signature.strict_order
   strict_order_is_trichotomous :
     ∀ first second : signature.carrier,
       signature.strict_order first second ∨
@@ -80,10 +81,10 @@ These are exactly the bridge laws saying the ring operations respect the order.
 structure OrderedRingCompatibilityLaws
     (signature : OrderedRingSignature) : Prop where
   addition_preserves_strict_order :
-    LRA.VolumeI.Relations.Order.strictlyPreservesRightTranslation
+    LRA.VolumeI.Order.StrictlyPreservesRightTranslation
       signature.strict_order signature.addition
   positive_multiplication_preserves_strict_order :
-    LRA.VolumeI.Relations.Order.preservesPositiveRightMultiplication
+    LRA.VolumeI.Order.PreservesPositiveRightMultiplication
       signature.strict_order signature.multiplication signature.zero
 
 /--

@@ -11,36 +11,20 @@ as TeX-linked formal objects.
 namespace LRA.VolumeII.PeanoSystems
 namespace InductionPrinciple
 
-universe u
-
-structure HelperPeanoData where
-  carrier : Type u
-  one : carrier
-  successor : carrier -> carrier
-
-def HelperPredicateOn (system : HelperPeanoData.{u}) : Type u :=
-  system.carrier -> Prop
-
-def HelperBaseCase
-    (system : HelperPeanoData.{u})
-    (predicate : HelperPredicateOn system) : Prop :=
-  predicate system.one
-
-def HelperSuccessorStep
-    (system : HelperPeanoData.{u})
-    (predicate : HelperPredicateOn system) : Prop :=
-  ∀ element : system.carrier,
-    predicate element -> predicate (system.successor element)
-
+/- Volume II label: thm:induction-principle-for-peano-system
+   Lean declaration:
+     LRA.VolumeII.PeanoSystems.InductionPrinciple.InductionPrincipleForPeanoSystem
+   Status: pending -/
 theorem InductionPrincipleForPeanoSystem
-    (system : HelperPeanoData.{u})
-    (predicate : HelperPredicateOn system)
-    (base_case : HelperBaseCase system predicate)
-    (successor_step : HelperSuccessorStep system predicate) :
-    ∀ element : system.carrier, predicate element :=
+    (ps : PeanoSystem)
+    (predicate : LRA.VolumeI.Set.LRASet ps.carrier)
+    (base_case : predicate ps.one)
+    (successor_step :
+      ∀ element : ps.carrier,
+        predicate element -> predicate (ps.successor element)) :
+    ∀ element : ps.carrier, predicate element :=
   PeanoAxioms.PeanoInduction
-    system.one
-    system.successor
+    ps
     predicate
     base_case
     successor_step

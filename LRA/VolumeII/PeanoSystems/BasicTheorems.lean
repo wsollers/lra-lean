@@ -1,4 +1,4 @@
-import LRA.VolumeII.PeanoSystems.Induction
+import LRA.VolumeII.PeanoSystems.Induction.Core
 
 namespace LRA.VolumeII.PeanoSystems
 
@@ -8,9 +8,9 @@ namespace LRA.VolumeII.PeanoSystems
 If two elements of a Peano system are unequal, then their successors are
 unequal.
 
-Mathematical statement (Lean): `theorem successor_preserves_inequality (ps : PeanoSystem) (first_element second_element : ps.carrier) (elements_not_equal : first_element ≠ second_element) : ps.successor first_element ≠ ps.successor second_element`.
+Mathematical statement (Lean): `theorem SuccessorPreservesInequality (ps : PeanoSystem) (first_element second_element : ps.carrier) (elements_not_equal : first_element ≠ second_element) : ps.successor first_element ≠ ps.successor second_element`.
 -/
-theorem successor_preserves_inequality
+theorem SuccessorPreservesInequality
     (ps : PeanoSystem)
     (first_element second_element : ps.carrier)
     (elements_not_equal : first_element ≠ second_element) :
@@ -23,9 +23,9 @@ theorem successor_preserves_inequality
 Every element of a Peano system is either the distinguished element or the
 successor of some element of the system.
 
-Mathematical statement (Lean): `theorem every_element_is_one_or_successor (ps : PeanoSystem) : forall element : ps.carrier, element = ps.one \/ exists predecessor : ps.carrier, ps.successor predecessor = element`.
+Mathematical statement (Lean): `theorem EveryElementIsOneOrASuccessor (ps : PeanoSystem) : forall element : ps.carrier, element = ps.one \/ exists predecessor : ps.carrier, ps.successor predecessor = element`.
 -/
-theorem every_element_is_one_or_successor
+theorem EveryElementIsOneOrASuccessor
     (ps : PeanoSystem) :
     forall element : ps.carrier,
       element = ps.one \/
@@ -33,14 +33,20 @@ theorem every_element_is_one_or_successor
           ps.successor predecessor = element := by
   sorry
 
+theorem SuccessorInequalityReflection
+    (ps : PeanoSystem)
+    (first second : ps.carrier) :
+    ps.successor first ≠ ps.successor second -> first ≠ second := by
+  sorry
+
 /--
 **[Theorem - Successor Is Not Self]**
 
 No element of a Peano system is equal to its own successor.
 
-Mathematical statement (Lean): `theorem successor_not_self (ps : PeanoSystem) : forall element : ps.carrier, ps.successor element ≠ element`.
+Mathematical statement (Lean): `theorem NoObjectIsItsOwnSuccessor (ps : PeanoSystem) : forall element : ps.carrier, ps.successor element ≠ element`.
 -/
-theorem successor_not_self
+theorem NoObjectIsItsOwnSuccessor
     (ps : PeanoSystem) :
     forall element : ps.carrier,
       ps.successor element ≠ element := by
@@ -52,9 +58,9 @@ theorem successor_not_self
 An element has a unique predecessor exactly when there exists a predecessor and
 every other predecessor is equal to it.
 
-Mathematical statement (Lean): `def unique_predecessor (ps : PeanoSystem) (element : ps.carrier) : Prop`.
+Mathematical statement (Lean): `def UniquePredecessor (ps : PeanoSystem) (element : ps.carrier) : Prop`.
 -/
-def unique_predecessor
+def UniquePredecessor
     (ps : PeanoSystem)
     (element : ps.carrier) : Prop :=
   exists predecessor : ps.carrier,
@@ -68,12 +74,12 @@ def unique_predecessor
 
 The successor of an element has that element as its unique predecessor.
 
-Mathematical statement (Lean): `theorem successor_has_unique_predecessor (ps : PeanoSystem) (element : ps.carrier) : unique_predecessor ps (ps.successor element)`.
+Mathematical statement (Lean): `theorem SuccessorsHaveUniquePredecessors (ps : PeanoSystem) (element : ps.carrier) : UniquePredecessor ps (ps.successor element)`.
 -/
-theorem successor_has_unique_predecessor
+theorem SuccessorsHaveUniquePredecessors
     (ps : PeanoSystem)
     (element : ps.carrier) :
-    unique_predecessor ps (ps.successor element) := by
+    UniquePredecessor ps (ps.successor element) := by
   sorry
 
 /--
@@ -81,13 +87,12 @@ theorem successor_has_unique_predecessor
 
 Every element different from the distinguished element has a unique predecessor.
 
-Mathematical statement (Lean): `theorem predecessor_exists_unique_away_from_one (ps : PeanoSystem) (element : ps.carrier) (element_not_one : element ≠ ps.one) : unique_predecessor ps element`.
+Mathematical statement (Lean): `theorem PredecessorExistsUniqueAwayFromOne (ps : PeanoSystem) (element : ps.carrier) (element_not_one : element ≠ ps.one) : UniquePredecessor ps element`.
 -/
-theorem predecessor_exists_unique_away_from_one
+theorem PredecessorExistsUniqueAwayFromOne
     (ps : PeanoSystem)
-    (element : ps.carrier)
-    (element_not_one : element ≠ ps.one) :
-    unique_predecessor ps element := by
+    (element : ps.carrier) :
+    element ≠ ps.one -> UniquePredecessor ps element := by
   sorry
 
 /--
@@ -96,9 +101,9 @@ theorem predecessor_exists_unique_away_from_one
 An element of a Peano system is not a successor of any element if and only if it
 is the distinguished element.
 
-Mathematical statement (Lean): `theorem one_unique_non_successor (ps : PeanoSystem) (element : ps.carrier) : (forall predecessor : ps.carrier, ps.successor predecessor ≠ element) <-> element = ps.one`.
+Mathematical statement (Lean): `theorem OneIsTheUniqueNonSuccessor (ps : PeanoSystem) (element : ps.carrier) : (forall predecessor : ps.carrier, ps.successor predecessor ≠ element) <-> element = ps.one`.
 -/
-theorem one_unique_non_successor
+theorem OneIsTheUniqueNonSuccessor
     (ps : PeanoSystem)
     (element : ps.carrier) :
     (forall predecessor : ps.carrier,
@@ -106,14 +111,20 @@ theorem one_unique_non_successor
     element = ps.one := by
   sorry
 
+theorem OneIsUniqueNonSuccessor
+    (ps : PeanoSystem)
+    (element : ps.carrier) :
+    (∀ predecessor : ps.carrier, ps.successor predecessor ≠ element) ↔ element = ps.one := by
+  sorry
+
 /--
 **[Theorem - Elements Other Than One Have a Predecessor]**
 
 Every element other than the distinguished element is a successor.
 
-Mathematical statement (Lean): `theorem predecessor_exists_of_not_one (ps : PeanoSystem) (element : ps.carrier) : element ≠ ps.one -> exists predecessor : ps.carrier, ps.successor predecessor = element`.
+Mathematical statement (Lean): `theorem NonOneElementsHaveAPredecessor (ps : PeanoSystem) (element : ps.carrier) : element ≠ ps.one -> exists predecessor : ps.carrier, ps.successor predecessor = element`.
 -/
-theorem predecessor_exists_of_not_one
+theorem NonOneElementsHaveAPredecessor
     (ps : PeanoSystem)
     (element : ps.carrier) :
     element ≠ ps.one ->
@@ -127,17 +138,12 @@ theorem predecessor_exists_of_not_one
 An element is not the distinguished element if and only if it has a unique
 predecessor.
 
-Mathematical statement (Lean): `theorem not_one_iff_has_unique_predecessor (ps : PeanoSystem) (element : ps.carrier) : element ≠ ps.one <-> exists unique_predecessor : ps.carrier, ps.successor unique_predecessor = element /\ forall other_predecessor : ps.carrier, ps.successor other_predec...`.
+Mathematical statement (Lean): `theorem UniquePredecessorCharacterizationAwayFromOne (ps : PeanoSystem) (element : ps.carrier) : element ≠ ps.one <-> exists chosen_predecessor : ps.carrier, ps.successor chosen_predecessor = element /\ forall other_predecessor : ps.carrier, ps.successor other_predec...`.
 -/
-theorem not_one_iff_has_unique_predecessor
+theorem UniquePredecessorCharacterizationAwayFromOne
     (ps : PeanoSystem)
     (element : ps.carrier) :
-    element ≠ ps.one <->
-      exists unique_predecessor : ps.carrier,
-        ps.successor unique_predecessor = element /\
-          forall other_predecessor : ps.carrier,
-            ps.successor other_predecessor = element ->
-              other_predecessor = unique_predecessor := by
+    element ≠ ps.one ↔ UniquePredecessor ps element := by
   sorry
 
 end LRA.VolumeII.PeanoSystems

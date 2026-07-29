@@ -73,8 +73,8 @@ structure FieldLaws {α : Type u}
           multiplication value (inverse value) = one
 
 structure StrictOrderLaws {α : Type u} (lt : α → α → Prop) : Prop where
-  irreflexive : LRA.VolumeI.Relations.irreflexive lt
-  transitive : LRA.VolumeI.Relations.transitive lt
+  irreflexive : LRA.VolumeI.Relations.Irreflexive lt
+  transitive : LRA.VolumeI.Relations.Transitive lt
   trichotomous : ∀ first second : α, lt first second ∨ first = second ∨ lt second first
 
 structure OrderLaws {α : Type u} (lt le : α → α → Prop) : Prop where
@@ -85,9 +85,9 @@ structure OrderedRingCompatibilityLaws {α : Type u}
     (zero : α) (addition multiplication : α → α → α)
     (lt : α → α → Prop) : Prop where
   addition_preserves_order :
-    LRA.VolumeI.Relations.Order.strictlyPreservesRightTranslation lt addition
+    LRA.VolumeI.Order.StrictlyPreservesRightTranslation lt addition
   positive_multiplication_preserves_order :
-    LRA.VolumeI.Relations.Order.preservesPositiveRightMultiplication lt multiplication zero
+    LRA.VolumeI.Order.PreservesPositiveRightMultiplication lt multiplication zero
 
 structure OrderedRingLikeLaws {α : Type u}
     (zero one : α) (addition multiplication : α → α → α)

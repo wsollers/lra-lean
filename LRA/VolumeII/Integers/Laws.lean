@@ -118,10 +118,10 @@ structure RingLaws (ring_structure : RingStructure) : Prop extends
 Mathematical statement (Lean): `structure OrderLaws (ordered_structure : OrderedStructure) : Prop`.
 -/
 structure OrderLaws (ordered_structure : OrderedStructure) : Prop where
-  lt_irrefl : LRA.VolumeI.Relations.irreflexive (OrderedStructure.lt ordered_structure)
-  lt_trans : LRA.VolumeI.Relations.transitive (OrderedStructure.lt ordered_structure)
-  le_refl : LRA.VolumeI.Relations.reflexive (OrderedStructure.le ordered_structure)
-  le_antisymm : LRA.VolumeI.Relations.antisymmetric (OrderedStructure.le ordered_structure)
+  lt_irrefl : LRA.VolumeI.Relations.Irreflexive (OrderedStructure.lt ordered_structure)
+  lt_trans : LRA.VolumeI.Relations.Transitive (OrderedStructure.lt ordered_structure)
+  le_refl : LRA.VolumeI.Relations.Reflexive (OrderedStructure.le ordered_structure)
+  le_antisymm : LRA.VolumeI.Relations.Antisymmetric (OrderedStructure.le ordered_structure)
   lt_trichotomy :
     ∀ x y : ordered_structure.carrier,
       OrderedStructure.lt ordered_structure x y ∨
@@ -136,11 +136,11 @@ Mathematical statement (Lean): `structure OrderedRingCompatibilityLaws (ordered_
 structure OrderedRingCompatibilityLaws
     (ordered_ring_structure : OrderedRingStructure) : Prop where
   add_lt_add_right :
-    LRA.VolumeI.Relations.Order.strictlyPreservesRightTranslation
+    LRA.VolumeI.Order.StrictlyPreservesRightTranslation
       ordered_ring_structure.lt
       ordered_ring_structure.add
   mul_lt_mul_pos_right :
-    LRA.VolumeI.Relations.Order.preservesPositiveRightMultiplication
+    LRA.VolumeI.Order.PreservesPositiveRightMultiplication
       ordered_ring_structure.lt
       ordered_ring_structure.mul
       ordered_ring_structure.zero
