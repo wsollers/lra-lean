@@ -167,6 +167,7 @@ LRA
         Elementary
           Magma.lean
           Semigroup.lean
+          CommutativeSemigroup.lean
           Monoid.lean
           Group.lean
           AbelianGroup.lean
@@ -175,6 +176,9 @@ LRA
         RingLike
           Semiring.lean
           Ring.lean
+          RingWithUnity.lean
+          CommutativeRing.lean
+          NontrivialRing.lean
           IntegralDomain.lean
           Field.lean
 
@@ -531,6 +535,7 @@ Elementary one-operation structures:
 ```text
 Magma
 Semigroup
+CommutativeSemigroup
 Monoid
 CommutativeMonoid
 Group
@@ -542,6 +547,9 @@ Ring-like two-operation structures:
 ```text
 Semiring
 Ring
+RingWithUnity
+CommutativeRing
+NontrivialRing
 IntegralDomain
 Field
 ```

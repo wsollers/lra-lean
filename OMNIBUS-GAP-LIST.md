@@ -88,8 +88,8 @@ be organized.
 
 | Omnibus item | Current state | Gap |
 | --- | --- | --- |
-| Magma, semigroup, monoid, group, abelian variants | Partial in `LRA/VolumeI/Algebra/Structures/Elementary/` and `Algebra/Models/AbstractLaws.lean` | Magma, semigroup, monoid, group, commutative monoid, and abelian group exist. Need commutative semigroup and clearer alignment between `Structures` and `AbstractLaws`. |
-| Semiring, ring | Present but thin in `LRA/VolumeI/Algebra/Structures/RingLike/` | Need variants: commutative ring, ring with unity, nontrivial ring, integral domain, field as plain structures, not only model-law bundles. |
+| Magma, semigroup, monoid, group, abelian variants | Partial in `LRA/VolumeI/Algebra/Structures/Elementary/` and `Algebra/Models/AbstractLaws.lean` | Magma, semigroup, commutative semigroup, monoid, commutative monoid, group, and abelian group exist. Need clearer alignment between `Structures` and `AbstractLaws`. |
+| Semiring, ring | Present but thin in `LRA/VolumeI/Algebra/Structures/RingLike/` | Semiring, ring, ring with unity, commutative ring, nontrivial ring, integral domain, and field exist as structures. Proof catalogue and model-law alignment are still thin. |
 | Integral domain and field laws | Present in `LRA/VolumeI/Algebra/Models/Models.lean` and `AbstractLaws.lean` | Proof catalogue is missing: every field is an integral domain; cross-multiplication in a field. |
 
 ## Chapter 4: Order
