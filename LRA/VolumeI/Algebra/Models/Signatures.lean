@@ -306,7 +306,9 @@ structure ArithmeticRingSignature where
   addition : LRA.VolumeI.Operations.BinaryOperation carrier
   multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
 
-namespace OrderedRingSignature
+end LRA.VolumeI.Algebra.Models
+
+namespace LRA.VolumeI.Algebra.Models.OrderedRingSignature
 
 abbrev Subtraction
     (signature : OrderedRingSignature) :
@@ -314,9 +316,9 @@ abbrev Subtraction
   fun first second =>
     signature.addition first (signature.negation second)
 
-end OrderedRingSignature
+end LRA.VolumeI.Algebra.Models.OrderedRingSignature
 
-namespace OrderedFieldSignature
+namespace LRA.VolumeI.Algebra.Models.OrderedFieldSignature
 
 def InverseDomain
     (signature : OrderedFieldSignature)
@@ -336,7 +338,9 @@ def PartialDivision
   value := fun dividend divisor _ =>
     signature.multiplication dividend (signature.inverse divisor)
 
-end OrderedFieldSignature
+end LRA.VolumeI.Algebra.Models.OrderedFieldSignature
+
+namespace LRA.VolumeI.Algebra.Models
 
 /-- Build a first-order model of the Peano signature from a carrier and operations. -/
 def BuildPeanoModel

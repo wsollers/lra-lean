@@ -133,6 +133,10 @@ Working branch: `codex/volume-i-restructure`.
 | `upper_bound` | `UpperBound` | PascalCase local mathematical object |
 | `source_*` / `target_*` | `Source*` / `Target*` | PascalCase local structure parameters |
 | `*_map`, `*_value`, `*_ledger` | `*Map`, `*Value`, `*Ledger` | PascalCase local mathematical objects |
+| `namespace ModelSet` | `namespace LRA.VolumeI.Set.ModelSet` | Horizontal dotted namespace |
+| `namespace LRASet` | `namespace LRA.VolumeI.Set.LRASet` | Horizontal dotted namespace |
+| `namespace OrderedRingSignature` | `namespace LRA.VolumeI.Algebra.Models.OrderedRingSignature` | Horizontal dotted namespace |
+| `namespace OrderedFieldSignature` | `namespace LRA.VolumeI.Algebra.Models.OrderedFieldSignature` | Horizontal dotted namespace |
 
 ## Deferred
 
@@ -142,3 +146,5 @@ Working branch: `codex/volume-i-restructure`.
   into final homes.
 - Replacing downstream short `Equivalence` references with
   `EquivalenceRelation`, if desired, during the TeX/Volume II pass.
+- Internal ZFC `SchemaFacts` namespace normalization, if/when the ZFC internals
+  are included in a naming pass.

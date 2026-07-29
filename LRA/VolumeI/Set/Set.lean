@@ -1,8 +1,8 @@
 import LRA.VolumeI.Set.ZFC.Model.Model
 
-namespace LRA.VolumeI.Set
-
 universe u
+
+namespace LRA.VolumeI.Set
 
 /-!
 The primitive set layer.
@@ -24,14 +24,20 @@ abbrev SetModel := LRA.VolumeI.Set.ZFC.ZFCModel
 /-- A set in a model is an element of that model's domain. -/
 abbrev ModelSet (model : SetModel) := model.Domain
 
-namespace ModelSet
+end LRA.VolumeI.Set
+
+namespace LRA.VolumeI.Set.ModelSet
+
+open LRA.VolumeI.Set
 
 /-- Model-internal membership, interpreted by the model's `∈` relation. -/
 def member {model : SetModel} (element set : ModelSet model) : Prop :=
   model.interpretRelation .member (fun index =>
     if index.val = 0 then element else set)
 
-end ModelSet
+end LRA.VolumeI.Set.ModelSet
+
+namespace LRA.VolumeI.Set
 
 /-- The project-level name for an arbitrary Lean carrier type. -/
 abbrev LRACarrier := Type u
@@ -49,7 +55,11 @@ abbrev Set := LRASet
 abbrev SetFamily (index : LRACarrier) (alpha : LRACarrier) :=
   index -> LRASet alpha
 
-namespace LRASet
+end LRA.VolumeI.Set
+
+namespace LRA.VolumeI.Set.LRASet
+
+open LRA.VolumeI.Set
 
 /-- Membership in a project predicate-set. -/
 def member {alpha : LRACarrier} (element : alpha) (subset : LRASet alpha) : Prop :=
@@ -108,7 +118,4 @@ theorem extensionality {alpha : LRACarrier} {left right : LRASet alpha}
   funext element
   exact propext (sameMembers element)
 
-end LRASet
-
-end LRA.VolumeI.Set
-
+end LRA.VolumeI.Set.LRASet
