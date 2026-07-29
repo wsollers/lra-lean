@@ -2,6 +2,9 @@ import LRA.VolumeI.Algebra.Signatures.Algebraic.MagmaSignature
 
 namespace LRA.VolumeI.Algebra.Signatures.Ordered
 
-/-! Home for ordered magma signatures. -/
+/-- An ordered magma signature adds an order relation symbol. -/
+structure OrderedMagmaSignature extends
+    LRA.VolumeI.Algebra.Signatures.Algebraic.MagmaSignature where
+  orderSymbol : Type
 
 end LRA.VolumeI.Algebra.Signatures.Ordered

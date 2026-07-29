@@ -2,6 +2,9 @@ import LRA.VolumeI.Algebra.Signatures.Algebraic.FieldSignature
 
 namespace LRA.VolumeI.Algebra.Signatures.Ordered
 
-/-! Home for ordered field signatures. -/
+/-- An ordered field signature adds an order relation symbol to a field language. -/
+structure OrderedFieldSignature extends
+    LRA.VolumeI.Algebra.Signatures.Algebraic.FieldSignature where
+  orderSymbol : Type
 
 end LRA.VolumeI.Algebra.Signatures.Ordered

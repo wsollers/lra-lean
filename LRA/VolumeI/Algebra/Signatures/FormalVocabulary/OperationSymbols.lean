@@ -1,7 +1,10 @@
-import LRA.VolumeI.Logic.Language.Symbols
+import LRA.VolumeI.Algebra.Signatures.FormalVocabulary.Arity
 
 namespace LRA.VolumeI.Algebra.Signatures.FormalVocabulary
 
-/-! Home for operation-symbol vocabulary. -/
+/-- Operation symbols with assigned arities. -/
+structure OperationSymbols where
+  Symbol : Type
+  arity : Symbol -> Arity
 
 end LRA.VolumeI.Algebra.Signatures.FormalVocabulary

@@ -2,6 +2,8 @@ import LRA.VolumeI.Logic.Language.Symbols
 
 namespace LRA.VolumeI.Algebra.Signatures.FormalVocabulary
 
-/-! Home for constant-symbol vocabulary. -/
+/-- Constant symbols are nullary operation symbols. -/
+structure ConstantSymbols where
+  Symbol : Type
 
 end LRA.VolumeI.Algebra.Signatures.FormalVocabulary

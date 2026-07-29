@@ -2,6 +2,8 @@ import LRA.VolumeI.Algebra.Signatures.Algebraic.RingSignature
 
 namespace LRA.VolumeI.Algebra.Signatures.Algebraic
 
-/-! Home for field signatures. -/
+/-- A field signature adds multiplicative inverse notation to a ring signature. -/
+structure FieldSignature extends RingSignature where
+  inverseSymbol : Type
 
 end LRA.VolumeI.Algebra.Signatures.Algebraic

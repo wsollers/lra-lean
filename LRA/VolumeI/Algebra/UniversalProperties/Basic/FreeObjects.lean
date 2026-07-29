@@ -1,5 +1,24 @@
 namespace LRA.VolumeI.Algebra.UniversalProperties.Basic
 
-/-! Home for free-object universal properties. -/
+universe u v w
+
+/--
+A free object over generators extends every generator map uniquely along the
+chosen interpretation of arrows.
+-/
+structure FreeObject
+    (Generator Object : Type u)
+    (Arrow : Object -> Object -> Type v)
+    (Carrier : Object -> Type w)
+    (freeObject : Object)
+    (includeGenerator : Generator -> Carrier freeObject) : Prop where
+  existsExtension :
+    forall targetObject (_generatorMap : Generator -> Carrier targetObject),
+      Nonempty (Arrow freeObject targetObject)
+  uniqueExtension :
+    forall targetObject
+      (_generatorMap : Generator -> Carrier targetObject)
+      (firstArrow secondArrow : Arrow freeObject targetObject),
+        firstArrow = secondArrow
 
 end LRA.VolumeI.Algebra.UniversalProperties.Basic
