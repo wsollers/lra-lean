@@ -19,11 +19,11 @@ def CharacteristicZero (signature : OrderedRingSignature) : Prop :=
         (fun _ previous => signature.addition previous signature.one)
         n ≠ signature.zero
 
-def countable (α : Type u) : Prop :=
+def Countable (α : Type u) : Prop :=
   ∃ enumerate : Nat → α, ∀ value : α, ∃ index, enumerate index = value
 
-def uncountable (α : Type u) : Prop :=
-  ¬ countable α
+def Uncountable (α : Type u) : Prop :=
+  ¬ Countable α
 
 theorem IntegerRationalRealHaveCharacteristicZero
     (integer_model : IntegerModel)
@@ -36,12 +36,12 @@ theorem IntegerRationalRealHaveCharacteristicZero
 
 theorem RationalsAreCountable
     (rational_model : RationalModel) :
-    countable rational_model.signature.carrier := by
+    Countable rational_model.signature.carrier := by
   sorry
 
 theorem RealsAreUncountable
     (real_model : RealModel) :
-    uncountable real_model.signature.carrier := by
+    Uncountable real_model.signature.carrier := by
   sorry
 
 end LRA.VolumeI.Algebra.Models.CharacteristicCardinality

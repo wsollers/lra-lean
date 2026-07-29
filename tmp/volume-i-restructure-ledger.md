@@ -92,6 +92,8 @@ Working branch: `codex/volume-i-restructure`.
 | `fieldModel` | `BuildFieldModel` | PascalCase model builder |
 | `orderedFieldModel` | `BuildOrderedFieldModel` | PascalCase model builder |
 | `OrderedRingSignature.subtraction` | `OrderedRingSignature.Subtraction` | PascalCase derived operation |
+| `countable` | `Countable` | PascalCase cardinality predicate |
+| `uncountable` | `Uncountable` | PascalCase cardinality predicate |
 
 ## Deferred
 
