@@ -5,14 +5,12 @@ import LRA.VolumeII.PeanoSystems.BasicTheorems
 TeX-first Peano-system skeleton.
 
 This pilot module is generated from the Volume II Peano Systems chapter
-inventory.  It keeps every statement tied to the existing `PeanoSystem`
-contract so future proof work can replace the `sorry`s without changing the
+inventory.  It keeps every statement tied to the current root `PeanoSystem`
+contract so future proof work can replace placeholders without changing the
 TeX-facing declaration names.
 -/
 
-namespace LRA
-namespace VolumeII
-namespace PeanoSystems
+namespace LRA.VolumeII.PeanoSystems
 namespace TexSkeleton
 
 abbrev PeanoSystemFromTex := PeanoSystem
@@ -244,6 +242,4 @@ theorem UniquenessOfPeanoSystemsUpToIsomorphism
   sorry
 
 end TexSkeleton
-end PeanoSystems
-end VolumeII
-end LRA
+end LRA.VolumeII.PeanoSystems

@@ -33,7 +33,7 @@ namespace LRA
 namespace VolumeII
 namespace NaturalNumbers
 
-open LRA.VolumeII.PeanoSystems
+open LRA.VolumeII.PeanoSystems.Old
 
 
 -- ============================================================
@@ -171,8 +171,6 @@ theorem lt_trichotomy
 *Notes cross-ref:* §1.4 [thm:lt-succ](../notes/section_1_4_main.md)
 
 Mathematical statement (Lean): `theorem lt_succ (ps : PeanoSystem) (x : ps.carrier) : lt ps x (ps.successor x)`.
-
-*Proof status:* proof pending
 -/
 theorem lt_succ
     (ps : PeanoSystem) (x : ps.carrier) :

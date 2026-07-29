@@ -21,14 +21,14 @@
 --   Theorem   | PN_peano_system_exists  | witness for existence axiom
 --   Theorem   | pn_iso_any_peano_system | unique iso to any PeanoSystem
 
-import LRA.VolumeII.PeanoSystems.Recursion
-import LRA.VolumeII.PeanoSystems.BasicTheorems
+import LRA.VolumeII.PeanoSystems.Old.Recursion
+import LRA.VolumeII.PeanoSystems.Old.BasicTheorems
 
 namespace LRA
 namespace VolumeII
 namespace NaturalNumbers
 
-open LRA.VolumeII.PeanoSystems
+open LRA.VolumeII.PeanoSystems.Old
 
 
 -- ============================================================

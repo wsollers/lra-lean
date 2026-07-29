@@ -1,4 +1,4 @@
-import LRA.VolumeII.Foundations.IdentityEquality
+import LRA.VolumeI.Identity
 
 /-!
 TeX-facing Peano axioms.
@@ -8,9 +8,7 @@ These declarations intentionally do not import or depend on the existing
 Volume II TeX Peano-system section.
 -/
 
-namespace LRA
-namespace VolumeII
-namespace PeanoSystems
+namespace LRA.VolumeII.PeanoSystems
 namespace PeanoAxioms
 
 universe u
@@ -41,6 +39,4 @@ axiom PeanoSystemExistence :
     ∃ carrier : Type, Nonempty carrier
 
 end PeanoAxioms
-end PeanoSystems
-end VolumeII
-end LRA
+end LRA.VolumeII.PeanoSystems

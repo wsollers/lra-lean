@@ -29,7 +29,7 @@ namespace LRA
 namespace VolumeII
 namespace NaturalNumbers
 
-open LRA.VolumeII.PeanoSystems
+open LRA.VolumeII.PeanoSystems.Old
 
 
 /--

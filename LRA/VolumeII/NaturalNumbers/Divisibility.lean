@@ -15,7 +15,7 @@ Source: docs/number-systems/gpt-01d-divisibility-division.md
 Verification status: statement-accepted-proof-pending
 -/
 
-open LRA.VolumeII.PeanoSystems
+open LRA.VolumeII.PeanoSystems.Old
 open LRA.VolumeII.WholeNumbers
 
 variable (natural_data : NaturalArithmeticForWholeNumbers)

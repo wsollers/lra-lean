@@ -3,7 +3,7 @@
 
 import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeI.Algebra.Models.Models
-import LRA.VolumeII.PeanoSystems.PeanoSystem
+import LRA.VolumeII.PeanoSystems.Old.PeanoSystem
 
 namespace LRA
 namespace VolumeII
@@ -225,30 +225,30 @@ noncomputable def integer_model : IntegerModel :=
 
 /-- **[Theorem — Peano System Recovered from Positive Mendelson Integers Exists]**
 
-Mathematical statement (Lean): `theorem recovered_peano_system_exists : Nonempty LRA.VolumeII.PeanoSystems.PeanoSystem`.
+Mathematical statement (Lean): `theorem recovered_peano_system_exists : Nonempty LRA.VolumeII.PeanoSystems.Old.PeanoSystem`.
 
 *Proof status:* proof pending
 -/
 theorem recovered_peano_system_exists :
-    Nonempty LRA.VolumeII.PeanoSystems.PeanoSystem := by
+    Nonempty LRA.VolumeII.PeanoSystems.Old.PeanoSystem := by
   sorry
 
 
 /-- **[Definition — Peano System Recovered from Positive Mendelson Integers]**
 
-Mathematical statement (Lean): `noncomputable def recovered_peano_system : LRA.VolumeII.PeanoSystems.PeanoSystem`.
+Mathematical statement (Lean): `noncomputable def recovered_peano_system : LRA.VolumeII.PeanoSystems.Old.PeanoSystem`.
 -/
 noncomputable def recovered_peano_system :
-    LRA.VolumeII.PeanoSystems.PeanoSystem :=
+    LRA.VolumeII.PeanoSystems.Old.PeanoSystem :=
   Classical.choice recovered_peano_system_exists
 
 /--
 **[Theorem — Positive Mendelson Integers Recover a Peano System]**
 
-Mathematical statement (Lean): `theorem positive_integers_recover_peano_system : Nonempty LRA.VolumeII.PeanoSystems.PeanoSystem`.
+Mathematical statement (Lean): `theorem positive_integers_recover_peano_system : Nonempty LRA.VolumeII.PeanoSystems.Old.PeanoSystem`.
 -/
 theorem positive_integers_recover_peano_system :
-    Nonempty LRA.VolumeII.PeanoSystems.PeanoSystem :=
+    Nonempty LRA.VolumeII.PeanoSystems.Old.PeanoSystem :=
   ⟨recovered_peano_system⟩
 
 end MendelsonComparison

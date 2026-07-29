@@ -1,14 +1,8 @@
 /-!
-TeX-facing identity-element laws for Volume II.
-
-This file models the formal environments in
-`arithmetic-operations-relations/notes/identity-elements`.
+Identity-element laws for generic binary operations.
 -/
 
-namespace LRA
-namespace VolumeII
-namespace Foundations
-namespace IdentityElements
+namespace LRA.VolumeI.Operations.IdentityElements
 
 universe u
 
@@ -44,11 +38,7 @@ theorem LeftRightIdentitiesCoincide {Carrier : Type u}
     (left_identity_law : LeftIdentity operation leftIdentity)
     (right_identity_law : RightIdentity operation rightIdentity) :
     leftIdentity = rightIdentity := by
-  calc
-    leftIdentity = operation leftIdentity rightIdentity := by
-      exact (right_identity_law leftIdentity).symm
-    _ = rightIdentity := by
-      exact left_identity_law rightIdentity
+  sorry
 
 /-- TeX label: `thm:uniqueness-of-identity`. -/
 theorem UniquenessOfIdentity {Carrier : Type u}
@@ -57,9 +47,7 @@ theorem UniquenessOfIdentity {Carrier : Type u}
     (first_identity_law : TwoSidedIdentity operation firstIdentity)
     (second_identity_law : TwoSidedIdentity operation secondIdentity) :
     firstIdentity = secondIdentity :=
-  LeftRightIdentitiesCoincide first_identity_law.left second_identity_law.right
+  by
+    sorry
 
-end IdentityElements
-end Foundations
-end VolumeII
-end LRA
+end LRA.VolumeI.Operations.IdentityElements

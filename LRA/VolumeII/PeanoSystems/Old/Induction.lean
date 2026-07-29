@@ -1,6 +1,6 @@
-import LRA.VolumeII.PeanoSystems.PeanoSystem
+import LRA.VolumeII.PeanoSystems.Old.PeanoSystem
 
-namespace LRA.VolumeII.PeanoSystems
+namespace LRA.VolumeII.PeanoSystems.Old
 
 /--
 **[Theorem - Induction Principle for a Peano System]**
@@ -19,8 +19,8 @@ theorem induction_principle
         predicate element ->
         predicate (ps.successor element)) :
     forall element : ps.carrier,
-      predicate element := by
-  sorry
+      predicate element :=
+  ps.induction predicate base_case successor_step
 
 /--
 **[Theorem - Subset-Based Induction Principle for a Peano System]**
@@ -34,7 +34,12 @@ theorem subset_based_induction_principle
     (subset : LRA.VolumeI.Set.LRASet ps.carrier)
     (subset_is_inductive : inductive_subset ps subset) :
     forall element : ps.carrier,
-      subset element := by
-  sorry
+      subset element :=
+  induction_principle
+    ps
+    subset
+    subset_is_inductive.left
+    subset_is_inductive.right
 
-end LRA.VolumeII.PeanoSystems
+end LRA.VolumeII.PeanoSystems.Old
+

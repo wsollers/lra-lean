@@ -1,13 +1,13 @@
 -- LRA/VolumeII/WholeNumbers/Construction.lean
 -- Construction of whole numbers by adjoining zero to a one-based Peano carrier.
 
-import LRA.VolumeII.PeanoSystems.PeanoSystem
+import LRA.VolumeII.PeanoSystems.Old.PeanoSystem
 
 namespace LRA
 namespace VolumeII
 namespace WholeNumbers
 
-open PeanoSystems
+open PeanoSystems.Old
 
 /-!
 Lean module: LRA.VolumeII.WholeNumbers.Construction

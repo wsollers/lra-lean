@@ -25,13 +25,13 @@
 --   Theorem    | string_rep_base     | string_rep ps s one = s
 --   Theorem    | string_rep_step     | string_rep ps s (S n) = string_rep ps s n ++ s
 
-import LRA.VolumeII.PeanoSystems.Recursion
+import LRA.VolumeII.PeanoSystems.Old.Recursion
 
 namespace LRA
 namespace VolumeII
 namespace NaturalNumbers
 
-open LRA.VolumeII.PeanoSystems
+open LRA.VolumeII.PeanoSystems.Old
 
 
 -- ============================================================

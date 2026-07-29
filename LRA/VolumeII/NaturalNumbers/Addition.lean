@@ -16,13 +16,13 @@
 --   Definition  | plus       | Addition on a Peano system
 --   Theorem     | plus_base  | plus ps x one = successor x
 
-import LRA.VolumeII.PeanoSystems.Recursion
+import LRA.VolumeII.PeanoSystems.Old.Recursion
 
 namespace LRA
 namespace VolumeII
 namespace NaturalNumbers
 
-open LRA.VolumeII.PeanoSystems
+open LRA.VolumeII.PeanoSystems.Old
 
 
 

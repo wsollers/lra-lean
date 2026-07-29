@@ -2,7 +2,7 @@
 -- Mendelson positive-pair quotient construction of the integers.
 
 import LRA.VolumeII.Integers.QuotientOrderedPairs
-import LRA.VolumeII.PeanoSystems.PeanoSystem
+import LRA.VolumeII.PeanoSystems.Old.PeanoSystem
 import LRA.VolumeI.Algebra.Models.Models
 
 namespace LRA
@@ -169,13 +169,13 @@ def representative_strict_order
 /--
 **[Theorem — positive_classes_recover_peano_system]**
 
-Mathematical statement (Lean): `theorem positive_classes_recover_peano_system (positive_data : PositiveNaturalPairData) : ∃ peano_system : PeanoSystems.PeanoSystem, Nonempty peano_system.carrier`.
+Mathematical statement (Lean): `theorem positive_classes_recover_peano_system (positive_data : PositiveNaturalPairData) : ∃ peano_system : PeanoSystems.Old.PeanoSystem, Nonempty peano_system.carrier`.
 
 *Proof status:* proof pending
 -/
 theorem positive_classes_recover_peano_system
     (positive_data : PositiveNaturalPairData) :
-    ∃ peano_system : PeanoSystems.PeanoSystem,
+    ∃ peano_system : PeanoSystems.Old.PeanoSystem,
       Nonempty peano_system.carrier := by
   sorry
 

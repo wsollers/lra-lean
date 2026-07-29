@@ -7,5 +7,5 @@ import LRA.VolumeII.PeanoSystems.Recursion
 import LRA.VolumeII.PeanoSystems.TexSkeleton
 
 /-!
-Aggregate import for abstract one-based Peano systems.
+Aggregate import for the current TeX-facing Volume II Peano-system layer.
 -/

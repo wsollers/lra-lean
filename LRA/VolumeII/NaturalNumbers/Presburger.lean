@@ -21,7 +21,7 @@ Volume I file formalizes the first-order theory; this file exposes the
 number-system interface needed by Volume II.
 -/
 
-open LRA.VolumeII.PeanoSystems
+open LRA.VolumeII.PeanoSystems.Old
 
 /--
 **[Structure — PresburgerPeanoSystem]**

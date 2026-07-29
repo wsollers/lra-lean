@@ -1,16 +1,7 @@
 import LRA.VolumeI.Set
 import LRA.VolumeI.Operations.Operations
 
-/-!
-Current TeX-facing Peano-system carrier for Volume II.
-
-This is the root namespace reserved for the new buildout.  The earlier
-implementation is quarantined under `LRA.VolumeII.PeanoSystems.Old`.
--/
-
-namespace LRA.VolumeII.PeanoSystems
-
-universe u
+namespace LRA.VolumeII.PeanoSystems.Old
 
 /--
 **[Definition - Peano System]**
@@ -21,9 +12,9 @@ a successor operation, and the Peano axioms.
 Mathematical statement (Lean): `structure PeanoSystem`.
 -/
 structure PeanoSystem where
-  carrier : Type u
+  carrier : LRA.VolumeI.Set.LRACarrier
   one : carrier
-  successor : carrier -> carrier
+  successor : LRA.VolumeI.Algebra.Operations.UnaryOperation carrier
   one_not_successor :
     forall element : carrier,
       successor element ≠ one
@@ -82,4 +73,4 @@ def is_predecessor
     (predecessor element : ps.carrier) : Prop :=
   ps.successor predecessor = element
 
-end LRA.VolumeII.PeanoSystems
+end LRA.VolumeII.PeanoSystems.Old

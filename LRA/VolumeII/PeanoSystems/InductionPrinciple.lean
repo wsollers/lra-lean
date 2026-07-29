@@ -8,9 +8,7 @@ Helper declarations in this file are local Lean plumbing and are not intended
 as TeX-linked formal objects.
 -/
 
-namespace LRA
-namespace VolumeII
-namespace PeanoSystems
+namespace LRA.VolumeII.PeanoSystems
 namespace InductionPrinciple
 
 universe u
@@ -48,6 +46,4 @@ theorem InductionPrincipleForPeanoSystem
     successor_step
 
 end InductionPrinciple
-end PeanoSystems
-end VolumeII
-end LRA
+end LRA.VolumeII.PeanoSystems
