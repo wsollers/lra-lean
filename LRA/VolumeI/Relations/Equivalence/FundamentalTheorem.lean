@@ -8,7 +8,7 @@ universe u
 def EquivalenceFromPartition {Alpha : LRA.VolumeI.Set.LRACarrier}
     (partition : Partition Alpha) : Endorelation Alpha :=
   fun first second =>
-    exists index, partition.block index first /\ partition.block index second
+    exists index, partition.Block index first /\ partition.Block index second
 
 /--
 Equivalence relations and partitions determine one another.

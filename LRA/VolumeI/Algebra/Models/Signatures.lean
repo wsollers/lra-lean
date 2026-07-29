@@ -328,14 +328,14 @@ def InverseDomain
 def PartialInverse
     (signature : OrderedFieldSignature) :
     LRA.VolumeI.Operations.PartialUnaryOperation signature.carrier where
-  domain := InverseDomain signature
-  value := fun value _ => signature.inverse value
+  Domain := InverseDomain signature
+  Value := fun value _ => signature.inverse value
 
 def PartialDivision
     (signature : OrderedFieldSignature) :
     LRA.VolumeI.Operations.PartialBinaryOperation signature.carrier where
-  domain := fun _ divisor => divisor ≠ signature.zero
-  value := fun dividend divisor _ =>
+  Domain := fun _ divisor => divisor ≠ signature.zero
+  Value := fun dividend divisor _ =>
     signature.multiplication dividend (signature.inverse divisor)
 
 end LRA.VolumeI.Algebra.Models.OrderedFieldSignature

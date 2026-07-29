@@ -25,15 +25,15 @@ abbrev ExternalBinaryOperation
 /-- A partial unary operation on a carrier. -/
 structure PartialUnaryOperation (alpha : LRA.VolumeI.Set.LRACarrier) where
   /-- The operation's domain of definition. -/
-  domain : LRA.VolumeI.Set.LRASet alpha
+  Domain : LRA.VolumeI.Set.LRASet alpha
   /-- The value of the operation at a point in its domain. -/
-  value : forall input, LRA.VolumeI.Set.LRASet.Member input domain -> alpha
+  Value : forall input, LRA.VolumeI.Set.LRASet.Member input Domain -> alpha
 
 /-- A partial binary operation on a carrier. -/
 structure PartialBinaryOperation (alpha : LRA.VolumeI.Set.LRACarrier) where
   /-- The operation's domain of definition. -/
-  domain : alpha -> alpha -> Prop
+  Domain : alpha -> alpha -> Prop
   /-- The value of the operation at a pair in its domain. -/
-  value : forall left right, domain left right -> alpha
+  Value : forall left right, Domain left right -> alpha
 
 end LRA.VolumeI.Operations

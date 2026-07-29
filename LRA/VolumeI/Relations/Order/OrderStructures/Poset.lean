@@ -4,8 +4,8 @@ namespace LRA.VolumeI.Relations.Order
 
 /-- A poset is a carrier equipped with a partial order. -/
 structure Poset where
-  carrier : LRA.VolumeI.Set.LRACarrier
-  order : LRA.VolumeI.Relations.Endorelation carrier
-  orderIsPartial : PartialOrder order
+  Carrier : LRA.VolumeI.Set.LRACarrier
+  Relation : LRA.VolumeI.Relations.Endorelation Carrier
+  RelationIsPartialOrder : PartialOrder Relation
 
 end LRA.VolumeI.Relations.Order

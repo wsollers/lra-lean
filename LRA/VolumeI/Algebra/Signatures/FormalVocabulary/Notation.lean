@@ -11,8 +11,8 @@ inductive NotationRole where
 
 /-- A symbolic notation assignment for a formal symbol. -/
 structure NotationAssignment (Symbol : Type) where
-  symbol : Symbol
-  token : String
-  role : NotationRole
+  SymbolValue : Symbol
+  Token : String
+  Role : NotationRole
 
 end LRA.VolumeI.Algebra.Signatures.FormalVocabulary

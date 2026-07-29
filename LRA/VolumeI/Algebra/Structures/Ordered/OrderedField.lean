@@ -6,6 +6,6 @@ namespace LRA.VolumeI.Algebra.Structures.Ordered
 /-- A field equipped with an order relation. -/
 structure OrderedField
     extends LRA.VolumeI.Algebra.Structures.RingLike.Field where
-  order : LRA.VolumeI.Relations.Endorelation carrier
+  Order : LRA.VolumeI.Relations.Endorelation Carrier
 
 end LRA.VolumeI.Algebra.Structures.Ordered

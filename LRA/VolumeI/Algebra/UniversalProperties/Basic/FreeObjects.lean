@@ -12,10 +12,10 @@ structure FreeObject
     (Carrier : Object -> Type w)
     (freeObject : Object)
     (includeGenerator : Generator -> Carrier freeObject) : Prop where
-  existsExtension :
+  ExistsExtension :
     forall targetObject (_generatorMap : Generator -> Carrier targetObject),
       Nonempty (Arrow freeObject targetObject)
-  uniqueExtension :
+  UniqueExtension :
     forall targetObject
       (_generatorMap : Generator -> Carrier targetObject)
       (firstArrow secondArrow : Arrow freeObject targetObject),

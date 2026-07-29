@@ -4,7 +4,7 @@ namespace LRA.VolumeI.Algebra.Signatures.Algebraic
 
 /-- A magma signature has one binary operation symbol. -/
 structure MagmaSignature where
-  operationSymbol : Type
-  operationArityIsBinary : operationSymbol -> Prop
+  OperationSymbol : Type
+  OperationArityIsBinary : OperationSymbol -> Prop
 
 end LRA.VolumeI.Algebra.Signatures.Algebraic

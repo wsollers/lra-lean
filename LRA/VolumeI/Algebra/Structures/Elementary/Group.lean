@@ -4,8 +4,8 @@ namespace LRA.VolumeI.Algebra.Structures.Elementary
 
 /-- A group is a monoid with a two-sided inverse operation. -/
 structure Group extends Monoid where
-  inverseOperation : LRA.VolumeI.Operations.UnaryOperation carrier
-  inverseLaw :
-    LRA.VolumeI.Operations.Inverse operation identityElement inverseOperation
+  InverseOperation : LRA.VolumeI.Operations.UnaryOperation Carrier
+  InverseLaw :
+    LRA.VolumeI.Operations.Inverse Operation IdentityElement InverseOperation
 
 end LRA.VolumeI.Algebra.Structures.Elementary

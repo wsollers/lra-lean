@@ -4,7 +4,7 @@ namespace LRA.VolumeI.Algebra.Structures.Elementary
 
 /-- A carrier equipped with one binary operation. -/
 structure Magma where
-  carrier : LRA.VolumeI.Set.LRACarrier
-  operation : LRA.VolumeI.Operations.BinaryOperation carrier
+  Carrier : LRA.VolumeI.Set.LRACarrier
+  Operation : LRA.VolumeI.Operations.BinaryOperation Carrier
 
 end LRA.VolumeI.Algebra.Structures.Elementary

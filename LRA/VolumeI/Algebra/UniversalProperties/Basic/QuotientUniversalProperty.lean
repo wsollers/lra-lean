@@ -10,11 +10,11 @@ structure QuotientUniversalProperty
     (projection : Arrow sourceObject quotientObject)
     (RespectsKernel : forall targetObject, Arrow sourceObject targetObject -> Prop) :
     Prop where
-  existsFactor :
+  ExistsFactor :
     forall targetObject (map : Arrow sourceObject targetObject),
       RespectsKernel targetObject map ->
         Nonempty (Arrow quotientObject targetObject)
-  uniqueFactor :
+  UniqueFactor :
     forall targetObject
       (map : Arrow sourceObject targetObject)
       (_mapRespectsKernel : RespectsKernel targetObject map)

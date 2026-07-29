@@ -4,6 +4,6 @@ namespace LRA.VolumeI.Algebra.Structures.RingLike
 
 /-- Placeholder interface for a field. -/
 structure Field extends IntegralDomain where
-  inverse : LRA.VolumeI.Operations.PartialUnaryOperation carrier
+  Inverse : LRA.VolumeI.Operations.PartialUnaryOperation Carrier
 
 end LRA.VolumeI.Algebra.Structures.RingLike

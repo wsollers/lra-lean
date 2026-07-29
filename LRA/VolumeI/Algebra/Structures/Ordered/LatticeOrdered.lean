@@ -5,6 +5,6 @@ namespace LRA.VolumeI.Algebra.Structures.Ordered
 
 /-- A structure whose order relation also carries lattice operations. -/
 structure LatticeOrderedStructure extends OrderedGroup where
-  orderIsLattice : LRA.VolumeI.Relations.Order.Lattice order
+  OrderIsLattice : LRA.VolumeI.Relations.Order.Lattice Order
 
 end LRA.VolumeI.Algebra.Structures.Ordered

@@ -10,7 +10,7 @@ choice, even where Fine-style prose later derives the symbol by solving an
 equation.
 -/
 structure GroupSignature extends MonoidSignature where
-  inverseSymbol : Type
-  inverseArityIsUnary : inverseSymbol -> Nat
+  InverseSymbol : Type
+  InverseArityIsUnary : InverseSymbol -> Nat
 
 end LRA.VolumeI.Algebra.Signatures.Algebraic

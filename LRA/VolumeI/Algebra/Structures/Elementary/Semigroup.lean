@@ -4,6 +4,6 @@ namespace LRA.VolumeI.Algebra.Structures.Elementary
 
 /-- A semigroup is a magma whose operation is associative. -/
 structure Semigroup extends Magma where
-  operationAssociative : LRA.VolumeI.Operations.Associative operation
+  OperationAssociative : LRA.VolumeI.Operations.Associative Operation
 
 end LRA.VolumeI.Algebra.Structures.Elementary

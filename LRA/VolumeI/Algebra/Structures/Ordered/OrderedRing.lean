@@ -6,6 +6,6 @@ namespace LRA.VolumeI.Algebra.Structures.Ordered
 /-- A ring equipped with an order relation. -/
 structure OrderedRing
     extends LRA.VolumeI.Algebra.Structures.RingLike.Ring where
-  order : LRA.VolumeI.Relations.Endorelation carrier
+  Order : LRA.VolumeI.Relations.Endorelation Carrier
 
 end LRA.VolumeI.Algebra.Structures.Ordered

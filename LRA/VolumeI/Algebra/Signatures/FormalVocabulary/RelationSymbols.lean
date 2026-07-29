@@ -5,6 +5,6 @@ namespace LRA.VolumeI.Algebra.Signatures.FormalVocabulary
 /-- Relation symbols with assigned arities. -/
 structure RelationSymbols where
   Symbol : Type
-  arity : Symbol -> Arity
+  ArityOf : Symbol -> Arity
 
 end LRA.VolumeI.Algebra.Signatures.FormalVocabulary

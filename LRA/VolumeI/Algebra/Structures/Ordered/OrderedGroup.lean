@@ -6,6 +6,6 @@ namespace LRA.VolumeI.Algebra.Structures.Ordered
 /-- A group equipped with an order relation. -/
 structure OrderedGroup
     extends LRA.VolumeI.Algebra.Structures.Elementary.Group where
-  order : LRA.VolumeI.Relations.Endorelation carrier
+  Order : LRA.VolumeI.Relations.Endorelation Carrier
 
 end LRA.VolumeI.Algebra.Structures.Ordered

@@ -4,6 +4,6 @@ namespace LRA.VolumeI.Algebra.Structures.Elementary
 
 /-- A commutative semigroup is a semigroup whose operation is commutative. -/
 structure CommutativeSemigroup extends Semigroup where
-  operationCommutative : LRA.VolumeI.Operations.Commutative operation
+  OperationCommutative : LRA.VolumeI.Operations.Commutative Operation
 
 end LRA.VolumeI.Algebra.Structures.Elementary

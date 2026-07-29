@@ -151,6 +151,17 @@ Working branch: `codex/volume-i-restructure`.
 | `LRASet.indexedUnion` | `LRASet.IndexedUnion` | PascalCase public operation |
 | `LRASet.indexedIntersection` | `LRASet.IndexedIntersection` | PascalCase public operation |
 | `LRASet.extensionality` | `LRASet.Extensionality` | PascalCase public principle |
+| `PartialUnaryOperation.domain` / `.value` | `PartialUnaryOperation.Domain` / `.Value` | PascalCase public fields |
+| `PartialBinaryOperation.domain` / `.value` | `PartialBinaryOperation.Domain` / `.Value` | PascalCase public fields |
+| `Partition.block` / `.covers` / `.nonemptyBlocks` / `.disjointOrEqual` | `Partition.Block` / `.Covers` / `.NonemptyBlocks` / `.DisjointOrEqual` | PascalCase public fields |
+| `Poset.carrier` / `.order` / `.orderIsPartial` | `Poset.Carrier` / `.Relation` / `.RelationIsPartialOrder` | PascalCase public fields; avoids duplicated `Order` namespace |
+| `Algebra.Structures.*` lowerCamel fields | PascalCase semantic fields | Examples: `Carrier`, `Operation`, `IdentityElement`, `Addition`, `Multiplication`, `Negation`, `Inverse`, `Order`. |
+| `Algebra.Signatures.Algebraic.*` lowerCamel symbol fields | PascalCase symbol fields | Examples: `OperationSymbol`, `IdentitySymbol`, `ZeroSymbol`, `MultiplicationSymbol`, `InverseSymbol`. |
+| `Algebra.Signatures.Ordered.*.orderSymbol` | `OrderSymbol` | PascalCase public field |
+| `FormalVocabulary.OperationSymbols.arity` | `FormalVocabulary.OperationSymbols.ArityOf` | PascalCase public field |
+| `FormalVocabulary.RelationSymbols.arity` | `FormalVocabulary.RelationSymbols.ArityOf` | PascalCase public field |
+| `NotationAssignment.symbol` / `.token` / `.role` | `NotationAssignment.SymbolValue` / `.Token` / `.Role` | PascalCase public fields |
+| Universal-property record fields | PascalCase fields | `ExistsArrow`, `UniqueArrow`, `LeftProjection`, `RightProjection`, `ExistsMediator`, `UniqueMediator`, `ExistsFactor`, `UniqueFactor`, `ExistsExtension`, `UniqueExtension`. |
 
 ## Deferred
 

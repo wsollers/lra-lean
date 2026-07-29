@@ -4,6 +4,6 @@ namespace LRA.VolumeI.Algebra.Structures.Elementary
 
 /-- An abelian group is a group whose operation is commutative. -/
 structure AbelianGroup extends Group where
-  operationCommutative : LRA.VolumeI.Operations.Commutative operation
+  OperationCommutative : LRA.VolumeI.Operations.Commutative Operation
 
 end LRA.VolumeI.Algebra.Structures.Elementary

@@ -4,17 +4,18 @@ namespace LRA.VolumeI.Algebra.Structures.RingLike
 
 /-- A semiring-like structure with addition, multiplication, zero, and one. -/
 structure Semiring where
-  carrier : LRA.VolumeI.Set.LRACarrier
-  zero : carrier
-  one : carrier
-  add : LRA.VolumeI.Operations.BinaryOperation carrier
-  mul : LRA.VolumeI.Operations.BinaryOperation carrier
-  addAssociative : LRA.VolumeI.Operations.Associative add
-  addCommutative : LRA.VolumeI.Operations.Commutative add
-  zeroAddIdentity : LRA.VolumeI.Operations.Identity add zero
-  mulAssociative : LRA.VolumeI.Operations.Associative mul
-  oneMulIdentity : LRA.VolumeI.Operations.Identity mul one
-  mulDistributesOverAdd : LRA.VolumeI.Operations.Distributive mul add
-  zeroMulAbsorbing : LRA.VolumeI.Operations.Absorbing mul zero
+  Carrier : LRA.VolumeI.Set.LRACarrier
+  Zero : Carrier
+  One : Carrier
+  Addition : LRA.VolumeI.Operations.BinaryOperation Carrier
+  Multiplication : LRA.VolumeI.Operations.BinaryOperation Carrier
+  AdditionAssociative : LRA.VolumeI.Operations.Associative Addition
+  AdditionCommutative : LRA.VolumeI.Operations.Commutative Addition
+  ZeroAdditionIdentity : LRA.VolumeI.Operations.Identity Addition Zero
+  MultiplicationAssociative : LRA.VolumeI.Operations.Associative Multiplication
+  OneMultiplicationIdentity : LRA.VolumeI.Operations.Identity Multiplication One
+  MultiplicationDistributesOverAddition :
+    LRA.VolumeI.Operations.Distributive Multiplication Addition
+  ZeroMultiplicationAbsorbing : LRA.VolumeI.Operations.Absorbing Multiplication Zero
 
 end LRA.VolumeI.Algebra.Structures.RingLike

@@ -4,6 +4,6 @@ namespace LRA.VolumeI.Algebra.Structures.RingLike
 
 /-- A commutative ring is a ring with commutative multiplication. -/
 structure CommutativeRing extends Ring where
-  multiplicationCommutative : LRA.VolumeI.Operations.Commutative mul
+  MultiplicationCommutative : LRA.VolumeI.Operations.Commutative Multiplication
 
 end LRA.VolumeI.Algebra.Structures.RingLike
