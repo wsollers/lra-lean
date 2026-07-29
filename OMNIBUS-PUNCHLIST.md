@@ -118,14 +118,14 @@ spine rather than rebuilding it.
     bridge statement to the corresponding set operation on pair-sets.
 
 - [ ] Add missing named relation predicates.
-  - Home: `LRA/VolumeI/Relations/NamedRelations.lean`.
+  - Home: `LRA/VolumeI/Relations/Basic/Properties.lean`.
   - Scope: asymmetric, left-Euclidean, right-Euclidean, dense, well-founded,
     exact trichotomy.
   - Acceptance: definitions are available for homogeneous binary relations and
     use PascalCase source-facing names when appropriate.
 
 - [ ] Add relation-property theorem catalogue.
-  - Home: `LRA/VolumeI/Relations/Laws.lean`.
+  - Home: `LRA/VolumeI/Relations/Basic/Theorems.lean`.
   - Scope: asymmetry equivalences, irreflexive plus transitive implies
     asymmetric, reflexive plus transitive plus Euclidean consequences,
     trichotomy consequences.
@@ -138,7 +138,7 @@ spine rather than rebuilding it.
   - Acceptance: order law bundles use named relation predicates directly.
 
 - [ ] Add equivalence classes and partitions.
-  - Home: `LRA/VolumeI/Relations/Equivalence.lean`.
+  - Home: `LRA/VolumeI/Relations/Equivalence/`.
   - Scope: equivalence class, quotient carrier placeholder if needed,
     partition, class membership laws, equivalence-relation/partition theorem.
   - Acceptance: Chapter 0.4 equivalence material has formal definitions and
@@ -162,19 +162,26 @@ spine rather than rebuilding it.
     hiding that they are constructed from relations.
 
 - [ ] Add image, preimage, and fiber definitions.
-  - Home: `LRA/VolumeI/Functions/ImagePreimage.lean`.
+  - Home: `LRA/VolumeI/Functions/Images.lean`,
+    `LRA/VolumeI/Functions/Preimages.lean`, and
+    `LRA/VolumeI/Functions/Fibers.lean`.
   - Scope: image of a set, preimage of a set, fibers of values.
   - Acceptance: later injective/surjective/bijective definitions can use these.
 
 - [ ] Add injective, surjective, bijective, and inverse definitions.
-  - Home: `LRA/VolumeI/Functions/Bijections.lean`.
+  - Home: `LRA/VolumeI/Functions/Injective.lean`,
+    `LRA/VolumeI/Functions/Surjective.lean`,
+    `LRA/VolumeI/Functions/Bijective.lean`, and
+    `LRA/VolumeI/Functions/Inverses.lean`.
   - Scope: fiber-based injectivity, surjectivity, bijectivity, inverse relation,
     inverse function when bijective.
   - Acceptance: theorem statements include inverse uniqueness and basic
     round-trip laws.
 
 - [ ] Add composition, identity, restriction, and extension.
-  - Home: `LRA/VolumeI/Functions/Composition.lean`.
+  - Home: `LRA/VolumeI/Functions/Composition.lean`,
+    `LRA/VolumeI/Functions/IdentityFunction.lean`, and
+    `LRA/VolumeI/Functions/SectionsRetractions.lean`.
   - Scope: identity function, composition, associativity, left/right identity,
     restriction, extension, graph-of-composite, graph-of-restriction.
   - Acceptance: reusable function algebra exists before algebraic structures
@@ -189,7 +196,7 @@ spine rather than rebuilding it.
 ## Phase 4: Volume I Operations
 
 - [ ] Add general n-ary relation and operation layer.
-  - Home: `LRA/VolumeI/Relations/Relations.lean` and
+  - Home: `LRA/VolumeI/Relations/Basic/Relations.lean` and
     `LRA/VolumeI/Operations/Operations.lean`.
   - Scope: arity-indexed relations and operations over finite powers, with
     nullary operations as distinguished elements and binary operations as
@@ -220,7 +227,7 @@ spine rather than rebuilding it.
 ## Phase 5: Algebraic Structures
 
 - [ ] Normalize `Structures` versus `Algebra/Models/AbstractLaws`.
-  - Home: `LRA/VolumeI/Structures/Structures.lean` and
+  - Home: `LRA/VolumeI/Algebra/Structures/` and
     `LRA/VolumeI/Algebra/Models/AbstractLaws.lean`.
   - Scope: decide which files define structures, which files define law
     bundles, which files define first-order model signatures, and which files
@@ -229,7 +236,7 @@ spine rather than rebuilding it.
     duplicate hierarchy names compete.
 
 - [ ] Make abstract structures the canonical source of reusable laws.
-  - Home: `LRA/VolumeI/Structures/` and `LRA/VolumeI/Algebra/`.
+  - Home: `LRA/VolumeI/Algebra/Structures/` and `LRA/VolumeI/Algebra/`.
   - Scope: semigroup, monoid, group, abelian group, ring, integral domain,
     field, ordered group, ordered ring, ordered field are stated once over an
     arbitrary carrier and operation data.
@@ -237,8 +244,7 @@ spine rather than rebuilding it.
     rather than restating the same laws ad hoc.
 
 - [ ] Add Boolean algebra hierarchy.
-  - Home: `LRA/VolumeI/Structures/BooleanAlgebra.lean` or
-    `LRA/VolumeI/Algebra/BooleanAlgebra.lean`.
+  - Home: `LRA/VolumeI/Algebra/Structures/BooleanAlgebra.lean`.
   - Scope: bounded distributive lattice, complement operation, Boolean algebra
     laws, Boolean ring bridge if useful, homomorphisms and subalgebras if
     needed by later chapters.
@@ -247,7 +253,7 @@ spine rather than rebuilding it.
 
 - [ ] Prove or state set algebras instantiate Boolean algebras.
   - Home: `LRA/VolumeI/Set/Algebras.lean` and
-    `LRA/VolumeI/Structures/BooleanAlgebra.lean`.
+    `LRA/VolumeI/Algebra/Structures/BooleanAlgebra.lean`.
   - Scope: union as join, intersection as meet, complement as Boolean
     complement, empty set as bottom, universe as top, difference as derived
     meet-with-complement.
@@ -255,7 +261,8 @@ spine rather than rebuilding it.
     has a documented Boolean-algebra instance or theorem statement.
 
 - [ ] Fill basic algebra hierarchy variants.
-  - Home: `LRA/VolumeI/Structures/Structures.lean`.
+  - Home: `LRA/VolumeI/Algebra/Structures/Elementary/` and
+    `LRA/VolumeI/Algebra/Structures/RingLike/`.
   - Scope: commutative semigroup, abelian group, ring with unity, commutative
     ring, nontrivial ring, integral domain, field.
   - Acceptance: Chapter 3 hierarchy can be stated without importing Volume II.
@@ -275,13 +282,14 @@ spine rather than rebuilding it.
   - Acceptance: later ordered structures do not redefine these ad hoc.
 
 - [ ] Add ordered group theorem catalogue.
-  - Home: `LRA/VolumeI/Structures/OrderedGroup.lean`.
+  - Home: `LRA/VolumeI/Algebra/Structures/Ordered/OrderedGroup.lean`.
   - Scope: translation invariance, adding inequalities, sign of negatives,
     compatibility with subtraction.
   - Acceptance: Chapter 4 ordered group material has generic statements.
 
 - [ ] Add ordered ring and field theorem catalogue.
-  - Home: `LRA/VolumeI/Structures/OrderedRing.lean`.
+  - Home: `LRA/VolumeI/Algebra/Structures/Ordered/OrderedRing.lean` and
+    `LRA/VolumeI/Algebra/Structures/Ordered/OrderedField.lean`.
   - Scope: sign rules, products of positives/negatives, multiplying
     inequalities by positive or negative elements, no compatible ordered field
     structure on complex numbers as a later instantiation statement.
@@ -290,7 +298,7 @@ spine rather than rebuilding it.
 ## Phase 7: Absolute Value, Subtraction, Division, Powers
 
 - [ ] Add abstract absolute-value layer.
-  - Home: `LRA/VolumeI/Structures/AbsoluteValue.lean`.
+  - Home: `LRA/VolumeI/Algebra/Structures/Ordered/AbsoluteValue.lean`.
   - Scope: absolute value operation on ordered algebraic structures,
     nonnegativity, zero iff zero, negation invariance, multiplicativity,
     triangle inequality, reverse triangle inequality.
@@ -318,13 +326,13 @@ spine rather than rebuilding it.
 ## Phase 8: Floor And Ceiling
 
 - [ ] Add Archimedean ordered-field abstraction for floor work.
-  - Home: `LRA/VolumeI/Structures/Archimedean.lean`.
+  - Home: `LRA/VolumeI/Algebra/Structures/Ordered/Archimedean.lean`.
   - Scope: embedded integers, Archimedean property, integer cofinality.
   - Acceptance: floor/ceiling files can state existence without importing
     Volume II constructions.
 
 - [ ] Add floor and ceiling definitions and laws.
-  - Home: `LRA/VolumeI/Structures/FloorCeiling.lean`.
+  - Home: `LRA/VolumeI/Algebra/Structures/Ordered/FloorCeiling.lean`.
   - Scope: existence, uniqueness, floor, ceiling, ceiling duality,
     idempotence, monotonicity, integer shifts, floor sum bounds, fractional
     part.

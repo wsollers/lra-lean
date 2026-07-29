@@ -42,11 +42,11 @@ be organized.
 | Indexed unions/intersections | Present in `LRA/VolumeI/Set/Set.lean` | Need theorem catalogue for arbitrary-family identities. |
 | Ordered pair and Cartesian product | Present in `LRA/VolumeI/Set/Products.lean` | Need product extensionality theorem and stronger set-level product laws. |
 | n-tuples and powers `S^n` | Partial via `Tuple` in `LRA/VolumeI/Set/Products.lean` | Need explicit `S^0`, `S^n`, and relation to product conventions if the omnibus numbering is formalized directly. |
-| n-ary relations | Partial in `LRA/VolumeI/Relations/Relations.lean` | Unary and binary relations exist; general `n`-ary relations are not yet exposed as a reusable abstraction. |
+| n-ary relations | Partial in `LRA/VolumeI/Relations/Basic/Relations.lean` | Unary and binary relations exist; general `n`-ary relations are not yet exposed as a reusable abstraction. |
 | n-ary operations | Partial in `LRA/VolumeI/Operations/Operations.lean` | Nullary, unary, binary, external binary, and partial operations exist; general `n`-ary operations are missing. |
-| Named binary relation properties | Partial in `LRA/VolumeI/Relations/NamedRelations.lean` | Reflexive, irreflexive, symmetric, antisymmetric, transitive, connex, trichotomous, equivalence exist. Missing asymmetric, left-Euclidean, right-Euclidean, dense, well-founded as named primitive relation properties. Trichotomy currently states inclusive alternatives, not exactly-one exclusivity. |
+| Named binary relation properties | Partial in `LRA/VolumeI/Relations/Basic/Properties.lean` | Reflexive, irreflexive, symmetric, antisymmetric, transitive, connex, trichotomous, equivalence exist. Missing asymmetric, left-Euclidean, right-Euclidean, dense, well-founded as named primitive relation properties. Trichotomy currently states inclusive alternatives, not exactly-one exclusivity. |
 | Interrelations among relation properties, Satz 0.8 | Missing | Need statements/proofs for asymmetry equivalences, irreflexive+transitive implies asymmetric, reflexive+transitive+right-Euclidean implies symmetric, trichotomy consequences. |
-| Composite relation types | Partial in `LRA/VolumeI/Relations/Order/Laws.lean` and `NamedRelations.lean` | Preorder, partial order, strict order, total order, well-order, equivalence exist. Missing strict total order and theorem-level correspondence between strict/non-strict orders. |
+| Composite relation types | Partial in `LRA/VolumeI/Relations/Order/OrderStructures/` and `LRA/VolumeI/Relations/Basic/Properties.lean` | Preorder, partial order, strict order, total order, well-order, equivalence exist. Missing theorem-level correspondence between strict/non-strict orders. |
 | Equivalence relations and partitions | Partial | Equivalence law bundle exists; equivalence classes, partitions, and the fundamental theorem of equivalence relations are missing. |
 
 ## Chapter 0A: Functions
@@ -88,8 +88,8 @@ be organized.
 
 | Omnibus item | Current state | Gap |
 | --- | --- | --- |
-| Magma, semigroup, monoid, group, abelian variants | Partial in `LRA/VolumeI/Structures/Structures.lean` and `Algebra/Models/AbstractLaws.lean` | Magma, semigroup, monoid, group, commutative monoid exist. Need commutative semigroup, abelian group structure, and clearer alignment between `Structures` and `AbstractLaws`. |
-| Semiring, ring | Present but thin in `Structures.lean` | Need variants: commutative ring, ring with unity, nontrivial ring, integral domain, field as plain structures, not only model-law bundles. |
+| Magma, semigroup, monoid, group, abelian variants | Partial in `LRA/VolumeI/Algebra/Structures/Elementary/` and `Algebra/Models/AbstractLaws.lean` | Magma, semigroup, monoid, group, commutative monoid, and abelian group exist. Need commutative semigroup and clearer alignment between `Structures` and `AbstractLaws`. |
+| Semiring, ring | Present but thin in `LRA/VolumeI/Algebra/Structures/RingLike/` | Need variants: commutative ring, ring with unity, nontrivial ring, integral domain, field as plain structures, not only model-law bundles. |
 | Integral domain and field laws | Present in `LRA/VolumeI/Algebra/Models/Models.lean` and `AbstractLaws.lean` | Proof catalogue is missing: every field is an integral domain; cross-multiplication in a field. |
 
 ## Chapter 4: Order

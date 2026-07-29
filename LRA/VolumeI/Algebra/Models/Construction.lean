@@ -81,14 +81,14 @@ This noncomputable selector returns the bundled tower for a configuration.
 Different branches may have different carrier types hidden inside the model
 bundles.
 -/
-noncomputable def build_number_system_tower
+noncomputable def BuildNumberSystemTower
     (construction : NumberSystemConstruction) :
     NumberSystemTower :=
   Classical.choice (NumberSystemTowerExists construction)
 
 /-- **[Definition — Default Number-System Tower]** -/
-noncomputable def default_tower : NumberSystemTower :=
-  build_number_system_tower CanonicalConstruction
+noncomputable def DefaultTower : NumberSystemTower :=
+  BuildNumberSystemTower CanonicalConstruction
 
 /--
 **[Proposition — The Default Real Construction Is Dedekind]**
