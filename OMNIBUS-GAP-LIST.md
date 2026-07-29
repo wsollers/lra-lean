@@ -80,7 +80,7 @@ be organized.
 | Omnibus item | Current state | Gap |
 | --- | --- | --- |
 | Left/right/two-sided distributivity | Present in `LRA/VolumeI/Operations/Laws.lean` | Need theorem: commutative multiplication makes left/right distributivity equivalent. |
-| Zero absorption from distributivity/cancellation | Partial | `integer_zero_is_absorbing` exists in `Models.lean` as a proof-pending model theorem; generic theorem is missing. |
+| Zero absorption from distributivity/cancellation | Partial | `IntegerZeroIsAbsorbing` exists in `Models.lean` as a proof-pending model theorem; generic theorem is missing. |
 | Abstract law of signs | Missing as generic theorem | Some sign/order obligations appear in model laws, but not the omnibus theorem. |
 | Zero has no multiplicative inverse in nontrivial case | Missing generic theorem | Field laws have inverse requirements; no generic theorem. |
 
@@ -117,7 +117,7 @@ be organized.
 | --- | --- | --- |
 | General partial inverse operation from cancellation | Partial | `PartialUnaryOperation` and `PartialBinaryOperation` exist; no generic construction from cancellativity. |
 | Subtraction as inverse to addition | Partial | `OrderedRingSignature.subtraction` exists; theorem catalogue is missing. |
-| Division as inverse to multiplication | Partial | `OrderedFieldSignature.partial_division` exists; theorem catalogue is missing. |
+| Division as inverse to multiplication | Partial | `OrderedFieldSignature.PartialDivision` exists; theorem catalogue is missing. |
 | Fraction arithmetic and cross-ordering | Partial in rational-number construction | Specific rational quotient construction has many statements; generic field-level division laws are missing. |
 | Division by zero impossible | Missing generic theorem | Needs statement in field/integral-domain layer. |
 
