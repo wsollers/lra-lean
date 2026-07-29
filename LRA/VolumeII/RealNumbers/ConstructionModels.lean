@@ -114,7 +114,7 @@ theorem reals_are_complete
               member upper_bound) →
           (real_model rational_model).signature.NonstrictOrder
             supremum upper_bound) := by
-  exact (real_model rational_model).laws.least_upper_bound_property
+  exact (real_model rational_model).laws.LeastUpperBoundProperty
 
 end DedekindCuts
 

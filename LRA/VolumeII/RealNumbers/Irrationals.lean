@@ -30,7 +30,7 @@ variable
 
 Mathematical statement (Lean): `abbrev RealCarrier`.
 -/
-abbrev RealCarrier := real_extension.real_model.signature.carrier
+abbrev RealCarrier := real_extension.RealModel.signature.carrier
 /--
 **[Abbrev — RationalCarrier]**
 
@@ -45,7 +45,7 @@ Mathematical statement (Lean): `def embedRational (value : RationalCarrier ratio
 -/
 def embedRational (value : RationalCarrier rational_model) :
     RealCarrier rational_model real_extension :=
-  real_extension.rational_embedding.to_real value
+  real_extension.RationalEmbedding.ToReal value
 
 
 /-- A real number is rational when it lies in the image of the selected embedding.
@@ -89,25 +89,25 @@ theorem embedded_rational_is_rational
 
 /-- Real zero is rational.
 
-Mathematical statement (Lean): `theorem zero_is_rational : IsRational rational_model real_extension real_extension.real_model.signature.zero`.
+Mathematical statement (Lean): `theorem zero_is_rational : IsRational rational_model real_extension real_extension.RealModel.signature.zero`.
 
 *Proof status:* proof pending
 -/
 theorem zero_is_rational :
     IsRational rational_model real_extension
-      real_extension.real_model.signature.zero := by
+      real_extension.RealModel.signature.zero := by
   sorry
 
 
 /-- Real one is rational.
 
-Mathematical statement (Lean): `theorem one_is_rational : IsRational rational_model real_extension real_extension.real_model.signature.one`.
+Mathematical statement (Lean): `theorem one_is_rational : IsRational rational_model real_extension real_extension.RealModel.signature.one`.
 
 *Proof status:* proof pending
 -/
 theorem one_is_rational :
     IsRational rational_model real_extension
-      real_extension.real_model.signature.one := by
+      real_extension.RealModel.signature.one := by
   sorry
 
 
@@ -122,13 +122,13 @@ theorem rational_addition_is_rational
     (first_is_rational : IsRational rational_model real_extension first)
     (second_is_rational : IsRational rational_model real_extension second) :
     IsRational rational_model real_extension
-      (real_extension.real_model.signature.addition first second) := by
+      (real_extension.RealModel.signature.addition first second) := by
   sorry
 
 
 /-- Rational real numbers are closed under negation.
 
-Mathematical statement (Lean): `theorem rational_negation_is_rational {value : RealCarrier rational_model real_extension} (value_is_rational : IsRational rational_model real_extension value) : IsRational rational_model real_extension (real_extension.real_model.signature.negation value)`.
+Mathematical statement (Lean): `theorem rational_negation_is_rational {value : RealCarrier rational_model real_extension} (value_is_rational : IsRational rational_model real_extension value) : IsRational rational_model real_extension (real_extension.RealModel.signature.negation value)`.
 
 *Proof status:* proof pending
 -/
@@ -136,7 +136,7 @@ theorem rational_negation_is_rational
     {value : RealCarrier rational_model real_extension}
     (value_is_rational : IsRational rational_model real_extension value) :
     IsRational rational_model real_extension
-      (real_extension.real_model.signature.negation value) := by
+      (real_extension.RealModel.signature.negation value) := by
   sorry
 
 
@@ -151,7 +151,7 @@ theorem rational_subtraction_is_rational
     (first_is_rational : IsRational rational_model real_extension first)
     (second_is_rational : IsRational rational_model real_extension second) :
     IsRational rational_model real_extension
-      (real_extension.real_model.signature.Subtraction first second) := by
+      (real_extension.RealModel.signature.Subtraction first second) := by
   sorry
 
 
@@ -166,22 +166,22 @@ theorem rational_multiplication_is_rational
     (first_is_rational : IsRational rational_model real_extension first)
     (second_is_rational : IsRational rational_model real_extension second) :
     IsRational rational_model real_extension
-      (real_extension.real_model.signature.multiplication first second) := by
+      (real_extension.RealModel.signature.multiplication first second) := by
   sorry
 
 
 /-- A nonzero rational real has rational inverse.
 
-Mathematical statement (Lean): `theorem rational_inverse_is_rational {value : RealCarrier rational_model real_extension} (value_is_rational : IsRational rational_model real_extension value) (value_is_nonzero : value ≠ real_extension.real_model.signature.zero) : IsRational rational_model r...`.
+Mathematical statement (Lean): `theorem rational_inverse_is_rational {value : RealCarrier rational_model real_extension} (value_is_rational : IsRational rational_model real_extension value) (value_is_nonzero : value ≠ real_extension.RealModel.signature.zero) : IsRational rational_model r...`.
 
 *Proof status:* proof pending
 -/
 theorem rational_inverse_is_rational
     {value : RealCarrier rational_model real_extension}
     (value_is_rational : IsRational rational_model real_extension value)
-    (value_is_nonzero : value ≠ real_extension.real_model.signature.zero) :
+    (value_is_nonzero : value ≠ real_extension.RealModel.signature.zero) :
     IsRational rational_model real_extension
-      (real_extension.real_model.signature.inverse value) := by
+      (real_extension.RealModel.signature.inverse value) := by
   sorry
 
 
@@ -195,17 +195,17 @@ theorem rational_division_is_rational
     {numerator denominator : RealCarrier rational_model real_extension}
     (numerator_is_rational : IsRational rational_model real_extension numerator)
     (denominator_is_rational : IsRational rational_model real_extension denominator)
-    (denominator_is_nonzero : denominator ≠ real_extension.real_model.signature.zero) :
+    (denominator_is_nonzero : denominator ≠ real_extension.RealModel.signature.zero) :
     IsRational rational_model real_extension
-      (real_extension.real_model.signature.multiplication
+      (real_extension.RealModel.signature.multiplication
         numerator
-        (real_extension.real_model.signature.inverse denominator)) := by
+        (real_extension.RealModel.signature.inverse denominator)) := by
   sorry
 
 
 /-- The negation of an irrational is irrational.
 
-Mathematical statement (Lean): `theorem negation_is_irrational {value : RealCarrier rational_model real_extension} (value_is_irrational : IsIrrational rational_model real_extension value) : IsIrrational rational_model real_extension (real_extension.real_model.signature.negation value)`.
+Mathematical statement (Lean): `theorem negation_is_irrational {value : RealCarrier rational_model real_extension} (value_is_irrational : IsIrrational rational_model real_extension value) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.negation value)`.
 
 *Proof status:* proof pending
 -/
@@ -213,7 +213,7 @@ theorem negation_is_irrational
     {value : RealCarrier rational_model real_extension}
     (value_is_irrational : IsIrrational rational_model real_extension value) :
     IsIrrational rational_model real_extension
-      (real_extension.real_model.signature.negation value) := by
+      (real_extension.RealModel.signature.negation value) := by
   sorry
 
 
@@ -228,7 +228,7 @@ theorem rational_add_irrational_is_irrational
     (rational_is_rational : IsRational rational_model real_extension rational_value)
     (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) :
     IsIrrational rational_model real_extension
-      (real_extension.real_model.signature.addition rational_value irrational_value) := by
+      (real_extension.RealModel.signature.addition rational_value irrational_value) := by
   sorry
 
 
@@ -243,7 +243,7 @@ theorem irrational_add_rational_is_irrational
     (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value)
     (rational_is_rational : IsRational rational_model real_extension rational_value) :
     IsIrrational rational_model real_extension
-      (real_extension.real_model.signature.addition irrational_value rational_value) := by
+      (real_extension.RealModel.signature.addition irrational_value rational_value) := by
   sorry
 
 
@@ -258,7 +258,7 @@ theorem rational_sub_irrational_is_irrational
     (rational_is_rational : IsRational rational_model real_extension rational_value)
     (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) :
     IsIrrational rational_model real_extension
-      (real_extension.real_model.signature.Subtraction rational_value irrational_value) := by
+      (real_extension.RealModel.signature.Subtraction rational_value irrational_value) := by
   sorry
 
 
@@ -273,7 +273,7 @@ theorem irrational_sub_rational_is_irrational
     (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value)
     (rational_is_rational : IsRational rational_model real_extension rational_value) :
     IsIrrational rational_model real_extension
-      (real_extension.real_model.signature.Subtraction irrational_value rational_value) := by
+      (real_extension.RealModel.signature.Subtraction irrational_value rational_value) := by
   sorry
 
 
@@ -286,10 +286,10 @@ Mathematical statement (Lean): `theorem nonzero_rational_mul_irrational_is_irrat
 theorem nonzero_rational_mul_irrational_is_irrational
     {rational_value irrational_value : RealCarrier rational_model real_extension}
     (rational_is_rational : IsRational rational_model real_extension rational_value)
-    (rational_is_nonzero : rational_value ≠ real_extension.real_model.signature.zero)
+    (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero)
     (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) :
     IsIrrational rational_model real_extension
-      (real_extension.real_model.signature.multiplication rational_value irrational_value) := by
+      (real_extension.RealModel.signature.multiplication rational_value irrational_value) := by
   sorry
 
 
@@ -303,9 +303,9 @@ theorem irrational_mul_nonzero_rational_is_irrational
     {irrational_value rational_value : RealCarrier rational_model real_extension}
     (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value)
     (rational_is_rational : IsRational rational_model real_extension rational_value)
-    (rational_is_nonzero : rational_value ≠ real_extension.real_model.signature.zero) :
+    (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) :
     IsIrrational rational_model real_extension
-      (real_extension.real_model.signature.multiplication irrational_value rational_value) := by
+      (real_extension.RealModel.signature.multiplication irrational_value rational_value) := by
   sorry
 
 
@@ -319,11 +319,11 @@ theorem irrational_div_nonzero_rational_is_irrational
     {irrational_value rational_value : RealCarrier rational_model real_extension}
     (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value)
     (rational_is_rational : IsRational rational_model real_extension rational_value)
-    (rational_is_nonzero : rational_value ≠ real_extension.real_model.signature.zero) :
+    (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) :
     IsIrrational rational_model real_extension
-      (real_extension.real_model.signature.multiplication
+      (real_extension.RealModel.signature.multiplication
         irrational_value
-        (real_extension.real_model.signature.inverse rational_value)) := by
+        (real_extension.RealModel.signature.inverse rational_value)) := by
   sorry
 
 
@@ -336,25 +336,25 @@ Mathematical statement (Lean): `theorem nonzero_rational_div_irrational_is_irrat
 theorem nonzero_rational_div_irrational_is_irrational
     {rational_value irrational_value : RealCarrier rational_model real_extension}
     (rational_is_rational : IsRational rational_model real_extension rational_value)
-    (rational_is_nonzero : rational_value ≠ real_extension.real_model.signature.zero)
+    (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero)
     (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) :
     IsIrrational rational_model real_extension
-      (real_extension.real_model.signature.multiplication
+      (real_extension.RealModel.signature.multiplication
         rational_value
-        (real_extension.real_model.signature.inverse irrational_value)) := by
+        (real_extension.RealModel.signature.inverse irrational_value)) := by
   sorry
 
 
 /-- Every irrational real is nonzero because zero is rational.
 
-Mathematical statement (Lean): `theorem irrational_is_nonzero {value : RealCarrier rational_model real_extension} (value_is_irrational : IsIrrational rational_model real_extension value) : value ≠ real_extension.real_model.signature.zero`.
+Mathematical statement (Lean): `theorem irrational_is_nonzero {value : RealCarrier rational_model real_extension} (value_is_irrational : IsIrrational rational_model real_extension value) : value ≠ real_extension.RealModel.signature.zero`.
 
 *Proof status:* proof pending
 -/
 theorem irrational_is_nonzero
     {value : RealCarrier rational_model real_extension}
     (value_is_irrational : IsIrrational rational_model real_extension value) :
-    value ≠ real_extension.real_model.signature.zero := by
+    value ≠ real_extension.RealModel.signature.zero := by
   sorry
 
 
@@ -365,7 +365,7 @@ Mathematical statement (Lean): `structure SquareRootTwoWitness`.
 structure SquareRootTwoWitness where
   value : RealCarrier rational_model real_extension
   square_is_two :
-    real_extension.real_model.signature.multiplication value value =
+    real_extension.RealModel.signature.multiplication value value =
       embedRational rational_model real_extension
         (rational_model.signature.addition
           rational_model.signature.one
@@ -385,7 +385,7 @@ theorem irrationals_not_closed_under_addition
       IsIrrational rational_model real_extension first ∧
       IsIrrational rational_model real_extension second ∧
       IsRational rational_model real_extension
-        (real_extension.real_model.signature.addition first second) := by
+        (real_extension.RealModel.signature.addition first second) := by
   sorry
 
 
@@ -401,7 +401,7 @@ theorem irrationals_not_closed_under_subtraction
       IsIrrational rational_model real_extension first ∧
       IsIrrational rational_model real_extension second ∧
       IsRational rational_model real_extension
-        (real_extension.real_model.signature.Subtraction first second) := by
+        (real_extension.RealModel.signature.Subtraction first second) := by
   sorry
 
 
@@ -417,7 +417,7 @@ theorem irrationals_not_closed_under_multiplication
       IsIrrational rational_model real_extension first ∧
       IsIrrational rational_model real_extension second ∧
       IsRational rational_model real_extension
-        (real_extension.real_model.signature.multiplication first second) := by
+        (real_extension.RealModel.signature.multiplication first second) := by
   sorry
 
 
@@ -433,9 +433,9 @@ theorem irrationals_not_closed_under_division
       IsIrrational rational_model real_extension first ∧
       IsIrrational rational_model real_extension second ∧
       IsRational rational_model real_extension
-        (real_extension.real_model.signature.multiplication
+        (real_extension.RealModel.signature.multiplication
           first
-          (real_extension.real_model.signature.inverse second)) := by
+          (real_extension.RealModel.signature.inverse second)) := by
   sorry
 
 end Irrationals

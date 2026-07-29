@@ -58,10 +58,10 @@ A tower stores an integer model, a rational extension of it, and a real
 extension of the selected rational model.
 -/
 structure NumberSystemTower where
-  integer_model : IntegerModel
-  rational_extension : RationalExtension integer_model
-  real_extension :
-    RealExtension rational_extension.rational_model
+  IntegerModel : IntegerModel
+  RationalExtension : RationalExtension IntegerModel
+  RealExtension :
+    RealExtension RationalExtension.RationalModel
 
 /--
 **[Theorem — Every Supported Construction Configuration Builds a Tower]**

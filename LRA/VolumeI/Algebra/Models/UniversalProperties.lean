@@ -16,7 +16,7 @@ Verification status: statement-accepted-proof-pending
 -/
 
 structure IntegerUniversalProperty (integer_model : IntegerModel) : Prop where
-  initial_for_discrete_ordered_rings :
+  InitialForDiscreteOrderedRings :
     ∀ target : IntegerModel,
       ∃ map : integer_model.signature.carrier → target.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedRing
@@ -25,16 +25,16 @@ structure IntegerUniversalProperty (integer_model : IntegerModel) : Prop where
 structure RationalUniversalProperty
     (integer_model : IntegerModel)
     (rational_extension : RationalExtension integer_model) : Prop where
-  fraction_field_property :
+  FractionFieldProperty :
     ∀ target : RationalModel,
       ∀ integer_map :
         integer_model.signature.carrier → target.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedRing
           integer_model.signature target.signature.toOrderedRingSignature integer_map →
         ∃ rational_map :
-          rational_extension.rational_model.signature.carrier → target.signature.carrier,
+          rational_extension.RationalModel.signature.carrier → target.signature.carrier,
           CanonicalEmbeddings.EmbeddingPreservesOrderedField
-            rational_extension.rational_model.signature target.signature rational_map
+            rational_extension.RationalModel.signature target.signature rational_map
 
 structure MetricSpaceModel where
   carrier : Type u
@@ -43,19 +43,19 @@ structure MetricSpaceModel where
 structure DenseIsometricEmbedding
     (source : MetricSpaceModel.{u})
     (target : MetricSpaceModel.{v}) where
-  to_target : source.carrier → target.carrier
-  preserves_distance :
+  ToTarget : source.carrier → target.carrier
+  PreservesDistance :
     ∀ first second : source.carrier,
       letI := source.metric
       letI := target.metric
-      dist (to_target first) (to_target second) = dist first second
-  dense_image :
+      dist (ToTarget first) (ToTarget second) = dist first second
+  DenseImage :
     ∀ target_value : target.carrier,
       ∀ ε : ℝ,
         0 < ε →
         letI := target.metric
         ∃ approximating_source : source.carrier,
-          dist (to_target approximating_source) target_value < ε
+          dist (ToTarget approximating_source) target_value < ε
 
 structure MetricCompletionUniversalProperty
     (source : MetricSpaceModel.{u})
@@ -66,17 +66,17 @@ structure MetricCompletionUniversalProperty
       ∃ limit : completion.carrier,
         ∀ neighborhood : completion.carrier → Prop,
           neighborhood limit → ∃ index : Nat, neighborhood (cauchy_sequence index)
-  universal_extension :
+  UniversalExtension :
     ∀ target : MetricSpaceModel.{w},
       ∀ dense_map : DenseIsometricEmbedding source target,
         ∃ comparison : completion.carrier → target.carrier,
           ∀ source_value,
-            comparison (embedding.to_target source_value) =
-              dense_map.to_target source_value
+            comparison (embedding.ToTarget source_value) =
+              dense_map.ToTarget source_value
 
 structure CompleteOrderedFieldCharacterization (real_model : RealModel) : Prop where
-  real_laws : RealLaws real_model.signature
-  unique_up_to_ordered_field_isomorphism :
+  RealLaws : RealLaws real_model.signature
+  UniqueUpToOrderedFieldIsomorphism :
     ∀ other : RealModel,
       ∃ comparison : real_model.signature.carrier → other.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedField

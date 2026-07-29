@@ -16,19 +16,19 @@ structure EmbeddingPreservesOrderedRing
     (source target : OrderedRingSignature)
     (map : source.carrier → target.carrier) : Prop where
   injective : ∀ first second, map first = map second → first = second
-  preserves_zero : map source.zero = target.zero
-  preserves_one : map source.one = target.one
-  preserves_addition :
+  PreservesZero : map source.zero = target.zero
+  PreservesOne : map source.one = target.one
+  PreservesAddition :
     ∀ first second,
       map (source.addition first second) =
         target.addition (map first) (map second)
-  preserves_negation :
+  PreservesNegation :
     ∀ value, map (source.negation value) = target.negation (map value)
-  preserves_multiplication :
+  PreservesMultiplication :
     ∀ first second,
       map (source.multiplication first second) =
         target.multiplication (map first) (map second)
-  preserves_and_reflects_order :
+  PreservesAndReflectsOrder :
     ∀ first second,
       target.NonstrictOrder (map first) (map second) ↔
         source.NonstrictOrder first second
@@ -38,7 +38,7 @@ structure EmbeddingPreservesOrderedField
     (map : source.carrier → target.carrier) : Prop
     extends EmbeddingPreservesOrderedRing
       source.toOrderedRingSignature target.toOrderedRingSignature map where
-  preserves_inverse :
+  PreservesInverse :
     ∀ value,
       value ≠ source.zero →
         map (source.inverse value) = target.inverse (map value)
@@ -46,36 +46,36 @@ structure EmbeddingPreservesOrderedField
 structure AdjacentTowerEmbeddings
     (integer_model : IntegerModel)
     (rational_extension : RationalExtension integer_model)
-    (real_extension : RealExtension rational_extension.rational_model) : Prop where
-  integer_to_rational_preserves :
+    (real_extension : RealExtension rational_extension.RationalModel) : Prop where
+  IntegerToRationalPreserves :
     EmbeddingPreservesOrderedRing
       integer_model.signature
-      rational_extension.rational_model.signature.toOrderedRingSignature
-      rational_extension.integer_embedding.to_rational
-  rational_to_real_preserves :
+      rational_extension.RationalModel.signature.toOrderedRingSignature
+      rational_extension.IntegerEmbedding.ToRational
+  RationalToRealPreserves :
     EmbeddingPreservesOrderedField
-      rational_extension.rational_model.signature
-      real_extension.real_model.signature
-      real_extension.rational_embedding.to_real
+      rational_extension.RationalModel.signature
+      real_extension.RealModel.signature
+      real_extension.RationalEmbedding.ToReal
 
 def CompositeIntegerToReal
     {integer_model : IntegerModel}
     (rational_extension : RationalExtension integer_model)
-    (real_extension : RealExtension rational_extension.rational_model) :
-    integer_model.signature.carrier → real_extension.real_model.signature.carrier :=
+    (real_extension : RealExtension rational_extension.RationalModel) :
+    integer_model.signature.carrier → real_extension.RealModel.signature.carrier :=
   fun value =>
-    real_extension.rational_embedding.to_real
-      (rational_extension.integer_embedding.to_rational value)
+    real_extension.RationalEmbedding.ToReal
+      (rational_extension.IntegerEmbedding.ToRational value)
 
 theorem CompositeIntegerToRealIsEmbedding
     {integer_model : IntegerModel}
     (rational_extension : RationalExtension integer_model)
-    (real_extension : RealExtension rational_extension.rational_model)
+    (real_extension : RealExtension rational_extension.RationalModel)
     (adjacent_embeddings :
       AdjacentTowerEmbeddings integer_model rational_extension real_extension) :
     EmbeddingPreservesOrderedRing
       integer_model.signature
-      real_extension.real_model.signature.toOrderedRingSignature
+      real_extension.RealModel.signature.toOrderedRingSignature
       (CompositeIntegerToReal rational_extension real_extension) := by
   sorry
 

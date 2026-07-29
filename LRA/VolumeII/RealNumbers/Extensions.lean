@@ -44,24 +44,24 @@ def is_nth_root
 /--
 **[Theorem — archimedean_integer_part]**
 
-Mathematical statement (Lean): `theorem archimedean_integer_part (integer_model : IntegerModel) (rational_extension : RationalExtension integer_model) (real_extension : RealExtension rational_extension.rational_model) (value : real_extension.real_model.signature.carrier) : ∃ lower upper :...`.
+Mathematical statement (Lean): `theorem archimedean_integer_part (integer_model : IntegerModel) (rational_extension : RationalExtension integer_model) (real_extension : RealExtension rational_extension.RationalModel) (value : real_extension.RealModel.signature.carrier) : ∃ lower upper :...`.
 
 *Proof status:* proof pending
 -/
 theorem archimedean_integer_part
     (integer_model : IntegerModel)
     (rational_extension : RationalExtension integer_model)
-    (real_extension : RealExtension rational_extension.rational_model)
-    (value : real_extension.real_model.signature.carrier) :
+    (real_extension : RealExtension rational_extension.RationalModel)
+    (value : real_extension.RealModel.signature.carrier) :
     ∃ lower upper : integer_model.signature.carrier,
-      real_extension.real_model.signature.NonstrictOrder
-        (real_extension.rational_embedding.to_real
-          (rational_extension.integer_embedding.to_rational lower))
+      real_extension.RealModel.signature.NonstrictOrder
+        (real_extension.RationalEmbedding.ToReal
+          (rational_extension.IntegerEmbedding.ToRational lower))
         value ∧
-      real_extension.real_model.signature.StrictOrder
+      real_extension.RealModel.signature.StrictOrder
         value
-        (real_extension.rational_embedding.to_real
-          (rational_extension.integer_embedding.to_rational upper)) := by
+        (real_extension.RationalEmbedding.ToReal
+          (rational_extension.IntegerEmbedding.ToRational upper)) := by
   sorry
 
 /--

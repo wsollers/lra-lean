@@ -100,6 +100,31 @@ Working branch: `codex/volume-i-restructure`.
 | `OrderedSemiringSignature.nonstrict_order` | `OrderedSemiringSignature.NonstrictOrder` | PascalCase operation-bundle field |
 | `AdditiveOrderedSignature.strict_order` | `AdditiveOrderedSignature.StrictOrder` | PascalCase operation-bundle field |
 | `AdditiveOrderedSignature.nonstrict_order` | `AdditiveOrderedSignature.NonstrictOrder` | PascalCase operation-bundle field |
+| `Algebra.Models.RingLaws.addition_is_associative` | `Algebra.Models.RingLaws.AdditionIsAssociative` | PascalCase public field |
+| `Algebra.Models.RingLaws.zero_is_additive_identity` | `Algebra.Models.RingLaws.ZeroIsAdditiveIdentity` | PascalCase public field |
+| `Algebra.Models.RingLaws.negation_is_additive_inverse` | `Algebra.Models.RingLaws.NegationIsAdditiveInverse` | PascalCase public field |
+| `Algebra.Models.RingLaws.multiplication_left_distributes_over_addition` | `Algebra.Models.RingLaws.MultiplicationLeftDistributesOverAddition` | PascalCase public field |
+| `Algebra.Models.OrderLaws.nonstrict_order_agrees_with_strict_order` | `Algebra.Models.OrderLaws.NonstrictOrderAgreesWithStrictOrder` | PascalCase public field |
+| `Algebra.Models.OrderedRingCompatibilityLaws.addition_preserves_strict_order` | `Algebra.Models.OrderedRingCompatibilityLaws.AdditionPreservesStrictOrder` | PascalCase public field |
+| `Algebra.Models.IntegralDomainLaws.zero_is_not_one` | `Algebra.Models.IntegralDomainLaws.ZeroIsNotOne` | PascalCase public field |
+| `Algebra.Models.IntegralDomainLaws.has_no_zero_divisors` | `Algebra.Models.IntegralDomainLaws.HasNoZeroDivisors` | PascalCase public field |
+| `Algebra.Models.IntegerLaws.order_is_discrete` | `Algebra.Models.IntegerLaws.OrderIsDiscrete` | PascalCase public field |
+| `Algebra.Models.RationalLaws.ordered_integral_domain_laws` | `Algebra.Models.RationalLaws.OrderedIntegralDomainLaws` | PascalCase public field |
+| `Algebra.Models.RationalLaws.inverse_is_multiplicative_inverse` | `Algebra.Models.RationalLaws.InverseIsMultiplicativeInverse` | PascalCase public field |
+| `Algebra.Models.RationalLaws.order_is_dense` | `Algebra.Models.RationalLaws.OrderIsDense` | PascalCase public field |
+| `Algebra.Models.RealLaws.rational_like_laws` | `Algebra.Models.RealLaws.RationalLikeLaws` | PascalCase public field |
+| `Algebra.Models.RealLaws.least_upper_bound_property` | `Algebra.Models.RealLaws.LeastUpperBoundProperty` | PascalCase public field |
+| `Algebra.Models.IntegerEmbeddingIntoRational.to_rational` | `Algebra.Models.IntegerEmbeddingIntoRational.ToRational` | PascalCase public field |
+| `Algebra.Models.RationalExtension.rational_model` | `Algebra.Models.RationalExtension.RationalModel` | PascalCase public field |
+| `Algebra.Models.RationalExtension.integer_embedding` | `Algebra.Models.RationalExtension.IntegerEmbedding` | PascalCase public field |
+| `Algebra.Models.RationalExtension.archimedean_property` | `Algebra.Models.RationalExtension.ArchimedeanProperty` | PascalCase public field |
+| `Algebra.Models.RationalEmbeddingIntoReal.to_real` | `Algebra.Models.RationalEmbeddingIntoReal.ToReal` | PascalCase public field |
+| `Algebra.Models.RealExtension.real_model` | `Algebra.Models.RealExtension.RealModel` | PascalCase public field |
+| `Algebra.Models.RealExtension.rational_embedding` | `Algebra.Models.RealExtension.RationalEmbedding` | PascalCase public field |
+| `Algebra.Models.RealExtension.rational_embedding_is_cofinal` | `Algebra.Models.RealExtension.RationalEmbeddingIsCofinal` | PascalCase public field |
+| `Algebra.Models.CanonicalEmbeddings.*.preserves_*` | `Algebra.Models.CanonicalEmbeddings.*.Preserves*` | PascalCase public fields |
+| `Algebra.Models.ComparisonMatrix.*_structure` | `Algebra.Models.ComparisonMatrix.*Structure` | PascalCase public fields |
+| `Algebra.Models.UniversalProperties.*_property` | `Algebra.Models.UniversalProperties.*Property` | PascalCase public fields |
 
 ## Deferred
 
