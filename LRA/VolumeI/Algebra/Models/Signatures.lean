@@ -254,8 +254,8 @@ structure OrderedRingSignature where
   addition : LRA.VolumeI.Operations.BinaryOperation carrier
   negation : LRA.VolumeI.Operations.UnaryOperation carrier
   multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
-  strict_order : LRA.VolumeI.Relations.Endorelation carrier
-  nonstrict_order : LRA.VolumeI.Relations.Endorelation carrier
+  StrictOrder : LRA.VolumeI.Relations.Endorelation carrier
+  NonstrictOrder : LRA.VolumeI.Relations.Endorelation carrier
 
 /-- The operation bundle for an ordered semiring. -/
 structure OrderedSemiringSignature where
@@ -264,8 +264,8 @@ structure OrderedSemiringSignature where
   one : LRA.VolumeI.Operations.NullaryOperation carrier
   addition : LRA.VolumeI.Operations.BinaryOperation carrier
   multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
-  strict_order : LRA.VolumeI.Relations.Endorelation carrier
-  nonstrict_order : LRA.VolumeI.Relations.Endorelation carrier
+  StrictOrder : LRA.VolumeI.Relations.Endorelation carrier
+  NonstrictOrder : LRA.VolumeI.Relations.Endorelation carrier
 
 /--
 **[Definition — Ordered Field Signature]**
@@ -295,8 +295,8 @@ structure AdditiveOrderedSignature where
   zero : LRA.VolumeI.Operations.NullaryOperation carrier
   one : LRA.VolumeI.Operations.NullaryOperation carrier
   addition : LRA.VolumeI.Operations.BinaryOperation carrier
-  strict_order : LRA.VolumeI.Relations.Endorelation carrier
-  nonstrict_order : LRA.VolumeI.Relations.Endorelation carrier
+  StrictOrder : LRA.VolumeI.Relations.Endorelation carrier
+  NonstrictOrder : LRA.VolumeI.Relations.Endorelation carrier
 
 /-- The operation bundle for the arithmetic ring language. -/
 structure ArithmeticRingSignature where
@@ -361,7 +361,7 @@ def BuildAdditiveOrderedModel
         signature.addition (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
   interpretRelation
     | .lt, args =>
-        signature.strict_order (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+        signature.StrictOrder (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
   interpretConstant
     | .zero => signature.zero
     | .one => signature.one
@@ -395,7 +395,7 @@ def BuildOrderedSemiringModel
         signature.multiplication (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
   interpretRelation
     | .lt, args =>
-        signature.strict_order (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+        signature.StrictOrder (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
   interpretConstant
     | .zero => signature.zero
     | .one => signature.one
@@ -414,7 +414,7 @@ def BuildOrderedRingModel
     | .neg, args => signature.negation (args ⟨0, by decide⟩)
   interpretRelation
     | .lt, args =>
-        signature.strict_order (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+        signature.StrictOrder (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
   interpretConstant
     | .zero => signature.zero
     | .one => signature.one
@@ -452,7 +452,7 @@ def BuildOrderedFieldModel
     | .inv, args => signature.inverse (args ⟨0, by decide⟩)
   interpretRelation
     | .lt, args =>
-        signature.strict_order (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+        signature.StrictOrder (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
   interpretConstant
     | .zero => signature.zero
     | .one => signature.one

@@ -33,13 +33,13 @@ abbrev Rational := rational_model.signature.carrier
 
 /-- Reflexivity of the rational non-strict order.
 
-Mathematical statement (Lean): `theorem nonstrict_order_reflexive (value : Rational rational_model) : rational_model.signature.nonstrict_order value value`.
+Mathematical statement (Lean): `theorem nonstrict_order_reflexive (value : Rational rational_model) : rational_model.signature.NonstrictOrder value value`.
 
 *Proof status:* proof pending
 -/
 theorem nonstrict_order_reflexive
     (value : Rational rational_model) :
-    rational_model.signature.nonstrict_order value value := by
+    rational_model.signature.NonstrictOrder value value := by
   sorry
 
 
@@ -51,7 +51,7 @@ structure RationalInterval where
   left_endpoint : Rational rational_model
   right_endpoint : Rational rational_model
   endpoints_are_ordered :
-    rational_model.signature.nonstrict_order left_endpoint right_endpoint
+    rational_model.signature.NonstrictOrder left_endpoint right_endpoint
 
 
 /-- Definition 1.2: membership in a rational closed interval.
@@ -61,8 +61,8 @@ Mathematical statement (Lean): `def contains (interval : RationalInterval ration
 def contains
     (interval : RationalInterval rational_model)
     (value : Rational rational_model) : Prop :=
-  rational_model.signature.nonstrict_order interval.left_endpoint value ∧
-  rational_model.signature.nonstrict_order value interval.right_endpoint
+  rational_model.signature.NonstrictOrder interval.left_endpoint value ∧
+  rational_model.signature.NonstrictOrder value interval.right_endpoint
 
 
 /-- Definition 1.3: interval inclusion.
@@ -71,9 +71,9 @@ Mathematical statement (Lean): `def subset (inner outer : RationalInterval ratio
 -/
 def subset
     (inner outer : RationalInterval rational_model) : Prop :=
-  rational_model.signature.nonstrict_order
+  rational_model.signature.NonstrictOrder
       outer.left_endpoint inner.left_endpoint ∧
-  rational_model.signature.nonstrict_order
+  rational_model.signature.NonstrictOrder
       inner.right_endpoint outer.right_endpoint
 
 
@@ -116,12 +116,12 @@ structure Representative where
       subset rational_model (interval (index + 1)) (interval index)
   widths_converge_to_zero :
     ∀ epsilon,
-      rational_model.signature.strict_order
+      rational_model.signature.StrictOrder
         rational_model.signature.zero epsilon →
       ∃ threshold : Nat,
         ∀ index,
           threshold ≤ index →
-          rational_model.signature.strict_order
+          rational_model.signature.StrictOrder
             (width rational_model (interval index)) epsilon
 
 
@@ -327,10 +327,10 @@ def IsIntervalProduct
     (first second result : RationalInterval rational_model) : Prop :=
   (∀ corner,
     IsCornerProduct rational_model first second corner →
-    rational_model.signature.nonstrict_order result.left_endpoint corner) ∧
+    rational_model.signature.NonstrictOrder result.left_endpoint corner) ∧
   (∀ corner,
     IsCornerProduct rational_model first second corner →
-    rational_model.signature.nonstrict_order corner result.right_endpoint) ∧
+    rational_model.signature.NonstrictOrder corner result.right_endpoint) ∧
   IsCornerProduct rational_model first second result.left_endpoint ∧
   IsCornerProduct rational_model first second result.right_endpoint
 
@@ -396,7 +396,7 @@ theorem negation_preserves_admissibility
 
 /-- Admissible representatives are uniformly rationally bounded.
 
-Mathematical statement (Lean): `theorem admissible_representatives_are_uniformly_bounded (representative : Representative rational_model) : ∃ lower upper, ∀ index value, contains rational_model (representative.interval index) value → rational_model.signature.nonstrict_order lower value ∧...`.
+Mathematical statement (Lean): `theorem admissible_representatives_are_uniformly_bounded (representative : Representative rational_model) : ∃ lower upper, ∀ index value, contains rational_model (representative.interval index) value → rational_model.signature.NonstrictOrder lower value ∧...`.
 
 *Proof status:* proof pending
 -/
@@ -405,8 +405,8 @@ theorem admissible_representatives_are_uniformly_bounded
     ∃ lower upper,
       ∀ index value,
         contains rational_model (representative.interval index) value →
-        rational_model.signature.nonstrict_order lower value ∧
-        rational_model.signature.nonstrict_order value upper := by
+        rational_model.signature.NonstrictOrder lower value ∧
+        rational_model.signature.NonstrictOrder value upper := by
   sorry
 
 
@@ -551,7 +551,7 @@ Mathematical statement (Lean): `def representative_strict_order (first second : 
 def representative_strict_order
     (first second : Representative rational_model) : Prop :=
   ∃ first_index second_index,
-    rational_model.signature.strict_order
+    rational_model.signature.StrictOrder
       (first.interval first_index).right_endpoint
       (second.interval second_index).left_endpoint
 
@@ -722,17 +722,17 @@ theorem nonzero_eventually_separated_from_zero
     ∃ representative : Representative rational_model,
       Quotient.mk _ representative = value ∧
       ∃ delta,
-        rational_model.signature.strict_order
+        rational_model.signature.StrictOrder
           rational_model.signature.zero delta ∧
         ((∃ threshold,
           ∀ index,
             threshold ≤ index →
-            rational_model.signature.nonstrict_order delta
+            rational_model.signature.NonstrictOrder delta
               (representative.interval index).left_endpoint) ∨
          (∃ threshold,
           ∀ index,
             threshold ≤ index →
-            rational_model.signature.nonstrict_order
+            rational_model.signature.NonstrictOrder
               (representative.interval index).right_endpoint
               (rational_model.signature.negation delta))) := by
   sorry

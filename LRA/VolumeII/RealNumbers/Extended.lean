@@ -30,14 +30,14 @@ inductive ExtendedReal (real_model : RealModel) where
 /--
 **[Def — nonstrict_order]**
 
-Mathematical statement (Lean): `def nonstrict_order (real_model : RealModel) : ExtendedReal real_model → ExtendedReal real_model → Prop | .negativeInfinity, _ => True | _, .positiveInfinity => True | .finite first, .finite second => real_model.signature.nonstrict_order first second | _, _...`.
+Mathematical statement (Lean): `def nonstrict_order (real_model : RealModel) : ExtendedReal real_model → ExtendedReal real_model → Prop | .negativeInfinity, _ => True | _, .positiveInfinity => True | .finite first, .finite second => real_model.signature.NonstrictOrder first second | _, _...`.
 -/
 def nonstrict_order
     (real_model : RealModel) :
     ExtendedReal real_model → ExtendedReal real_model → Prop
   | .negativeInfinity, _ => True
   | _, .positiveInfinity => True
-  | .finite first, .finite second => real_model.signature.nonstrict_order first second
+  | .finite first, .finite second => real_model.signature.NonstrictOrder first second
   | _, _ => False
 
 /--

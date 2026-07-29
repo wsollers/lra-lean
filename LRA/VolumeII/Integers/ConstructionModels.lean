@@ -294,10 +294,10 @@ structure ModelIsomorphism
           (to_function second)
   preserves_and_reflects_order :
     ∀ first second,
-      second_model.signature.nonstrict_order
+      second_model.signature.NonstrictOrder
           (to_function first)
           (to_function second) ↔
-        first_model.signature.nonstrict_order first second
+        first_model.signature.NonstrictOrder first second
 
 
 /-- **[Theorem — Quotient-Ordered-Pairs–Tao Integer Isomorphism Exists]**

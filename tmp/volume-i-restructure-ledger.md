@@ -94,6 +94,12 @@ Working branch: `codex/volume-i-restructure`.
 | `OrderedRingSignature.subtraction` | `OrderedRingSignature.Subtraction` | PascalCase derived operation |
 | `countable` | `Countable` | PascalCase cardinality predicate |
 | `uncountable` | `Uncountable` | PascalCase cardinality predicate |
+| `OrderedRingSignature.strict_order` | `OrderedRingSignature.StrictOrder` | PascalCase operation-bundle field |
+| `OrderedRingSignature.nonstrict_order` | `OrderedRingSignature.NonstrictOrder` | PascalCase operation-bundle field |
+| `OrderedSemiringSignature.strict_order` | `OrderedSemiringSignature.StrictOrder` | PascalCase operation-bundle field |
+| `OrderedSemiringSignature.nonstrict_order` | `OrderedSemiringSignature.NonstrictOrder` | PascalCase operation-bundle field |
+| `AdditiveOrderedSignature.strict_order` | `AdditiveOrderedSignature.StrictOrder` | PascalCase operation-bundle field |
+| `AdditiveOrderedSignature.nonstrict_order` | `AdditiveOrderedSignature.NonstrictOrder` | PascalCase operation-bundle field |
 
 ## Deferred
 

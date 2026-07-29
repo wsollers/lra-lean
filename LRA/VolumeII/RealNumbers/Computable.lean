@@ -30,7 +30,7 @@ structure EffectiveApproximation (rational_model : RationalModel) where
       modulus precision ≤ index₁ →
       modulus precision ≤ index₂ →
         ∃ bound : rational_model.signature.carrier,
-          rational_model.signature.strict_order
+          rational_model.signature.StrictOrder
             (rational_model.signature.addition
               (approximate index₁)
               (rational_model.signature.negation (approximate index₂)))

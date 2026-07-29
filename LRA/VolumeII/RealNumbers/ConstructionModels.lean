@@ -91,7 +91,7 @@ noncomputable def real_extension
 /--
 **[Theorem — reals_are_complete]**
 
-Mathematical statement (Lean): `theorem reals_are_complete (rational_model : RationalModel) : ∀ subset : (real_model rational_model).signature.carrier → Prop, (∃ member, subset member) → (∃ upper_bound, ∀ member, subset member → (real_model rational_model).signature.nonstrict_order member...`.
+Mathematical statement (Lean): `theorem reals_are_complete (rational_model : RationalModel) : ∀ subset : (real_model rational_model).signature.carrier → Prop, (∃ member, subset member) → (∃ upper_bound, ∀ member, subset member → (real_model rational_model).signature.NonstrictOrder member...`.
 -/
 theorem reals_are_complete
     (rational_model : RationalModel) :
@@ -100,19 +100,19 @@ theorem reals_are_complete
       (∃ upper_bound,
         ∀ member,
           subset member →
-          (real_model rational_model).signature.nonstrict_order
+          (real_model rational_model).signature.NonstrictOrder
             member upper_bound) →
       ∃ supremum,
         (∀ member,
           subset member →
-          (real_model rational_model).signature.nonstrict_order
+          (real_model rational_model).signature.NonstrictOrder
             member supremum) ∧
         (∀ upper_bound,
           (∀ member,
             subset member →
-            (real_model rational_model).signature.nonstrict_order
+            (real_model rational_model).signature.NonstrictOrder
               member upper_bound) →
-          (real_model rational_model).signature.nonstrict_order
+          (real_model rational_model).signature.NonstrictOrder
             supremum upper_bound) := by
   exact (real_model rational_model).laws.least_upper_bound_property
 
@@ -469,10 +469,10 @@ structure ModelIsomorphism
           (to_function second)
   preserves_and_reflects_order :
     ∀ first second,
-      second_model.signature.nonstrict_order
+      second_model.signature.NonstrictOrder
           (to_function first)
           (to_function second) ↔
-        first_model.signature.nonstrict_order first second
+        first_model.signature.NonstrictOrder first second
 
 /--
 **[Theorem — complete_archimedean_ordered_fields_are_uniquely_isomorphic]**

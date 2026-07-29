@@ -201,18 +201,18 @@ theorem dyadic_subring :
 
 /-- Theorem 1.3: dyadic rationals are dense in Q.
 
-Mathematical statement (Lean): `theorem dyadic_rationals_are_dense (first second : Rational dyadic_data) (first_lt_second : dyadic_data.rational_model.signature.strict_order first second) : ∃ dyadic : Rational dyadic_data, IsDyadicRational dyadic_data dyadic ∧ dyadic_data.rational_model.s...`.
+Mathematical statement (Lean): `theorem dyadic_rationals_are_dense (first second : Rational dyadic_data) (first_lt_second : dyadic_data.rational_model.signature.StrictOrder first second) : ∃ dyadic : Rational dyadic_data, IsDyadicRational dyadic_data dyadic ∧ dyadic_data.rational_model.s...`.
 
 *Proof status:* proof pending
 -/
 theorem dyadic_rationals_are_dense
     (first second : Rational dyadic_data)
     (first_lt_second :
-      dyadic_data.rational_model.signature.strict_order first second) :
+      dyadic_data.rational_model.signature.StrictOrder first second) :
     ∃ dyadic : Rational dyadic_data,
       IsDyadicRational dyadic_data dyadic ∧
-      dyadic_data.rational_model.signature.strict_order first dyadic ∧
-      dyadic_data.rational_model.signature.strict_order dyadic second := by
+      dyadic_data.rational_model.signature.StrictOrder first dyadic ∧
+      dyadic_data.rational_model.signature.StrictOrder dyadic second := by
   sorry
 
 

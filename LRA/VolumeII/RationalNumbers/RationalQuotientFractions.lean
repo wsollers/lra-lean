@@ -30,7 +30,7 @@ structure IntegerAndPositiveNaturalData where
   to_integer : natural_carrier → integer_model.signature.carrier
   denominator_is_positive :
     ∀ denominator,
-      integer_model.signature.strict_order
+      integer_model.signature.StrictOrder
         integer_model.signature.zero
         (to_integer denominator)
   one_maps_to_one : to_integer one = integer_model.signature.one
@@ -358,7 +358,7 @@ Mathematical statement (Lean): `def representative_strict_order (rational_data :
 -/
 def representative_strict_order (rational_data : IntegerAndPositiveNaturalData)
     (first second : Representative rational_data) : Prop :=
-  rational_data.integer_model.signature.strict_order
+  rational_data.integer_model.signature.StrictOrder
     (rational_data.integer_model.signature.multiplication
       first.numerator (rational_data.to_integer second.denominator))
     (rational_data.integer_model.signature.multiplication
@@ -509,7 +509,7 @@ theorem integer_embedding_properties (rational_data : IntegerAndPositiveNaturalD
         multiplication rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧
     (∀ first second,
       strict_order rational_data (integer_embedding rational_data first) (integer_embedding rational_data second) ↔
-        rational_data.integer_model.signature.strict_order first second) := by
+        rational_data.integer_model.signature.StrictOrder first second) := by
   sorry
 
 

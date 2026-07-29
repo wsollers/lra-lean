@@ -34,7 +34,7 @@ Mathematical statement (Lean): `def valid (real_model : RealModel) (interval : I
 def valid
     (real_model : RealModel)
     (interval : Interval real_model) : Prop :=
-  real_model.signature.nonstrict_order interval.lower interval.upper
+  real_model.signature.NonstrictOrder interval.lower interval.upper
 
 /--
 **[Def — contains]**
@@ -45,8 +45,8 @@ def contains
     (real_model : RealModel)
     (interval : Interval real_model)
     (value : real_model.signature.carrier) : Prop :=
-  real_model.signature.nonstrict_order interval.lower value ∧
-    real_model.signature.nonstrict_order value interval.upper
+  real_model.signature.NonstrictOrder interval.lower value ∧
+    real_model.signature.NonstrictOrder value interval.upper
 
 /--
 **[Def — width]**

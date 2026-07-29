@@ -45,8 +45,8 @@ def ActiveOrderedSemiringSignature : OrderedSemiringSignature where
   one := 1
   addition := Nat.add
   multiplication := Nat.mul
-  strict_order := fun left right => left < right
-  nonstrict_order := fun left right => left <= right
+  StrictOrder := fun left right => left < right
+  NonstrictOrder := fun left right => left <= right
 
 
 /-- Active natural numbers as a first-order model of `(0, 1, +, *, <)`.
@@ -80,8 +80,8 @@ def ActiveOrderedSemiringSignature : OrderedSemiringSignature where
   one := 1
   addition := Nat.add
   multiplication := Nat.mul
-  strict_order := fun left right => left < right
-  nonstrict_order := fun left right => left <= right
+  StrictOrder := fun left right => left < right
+  NonstrictOrder := fun left right => left <= right
 
 
 /-- Active whole numbers as a first-order model of `(0, 1, +, *, <)`.
@@ -116,8 +116,8 @@ def ActiveOrderedRingSignature : OrderedRingSignature where
   addition := Int.add
   negation := Int.neg
   multiplication := Int.mul
-  strict_order := fun left right => left < right
-  nonstrict_order := fun left right => left <= right
+  StrictOrder := fun left right => left < right
+  NonstrictOrder := fun left right => left <= right
 
 
 /-- Active integers as a first-order model of `(0, 1, +, *, -, <)`.
@@ -139,8 +139,8 @@ def ActiveAdditiveOrderedSignature : AdditiveOrderedSignature where
   zero := 0
   one := 1
   addition := Int.add
-  strict_order := fun left right => left < right
-  nonstrict_order := fun left right => left <= right
+  StrictOrder := fun left right => left < right
+  NonstrictOrder := fun left right => left <= right
 
 
 /-- Active integers as a first-order model of `(0, 1, +, <)`.
@@ -217,8 +217,8 @@ def ActiveOrderedFieldSignature : OrderedFieldSignature where
   addition := Rat.add
   negation := Rat.neg
   multiplication := Rat.mul
-  strict_order := fun left right => left < right
-  nonstrict_order := fun left right => left <= right
+  StrictOrder := fun left right => left < right
+  NonstrictOrder := fun left right => left <= right
   inverse := Inv.inv
 
 
@@ -274,8 +274,8 @@ noncomputable def ActiveOrderedFieldSignature : OrderedFieldSignature where
   addition := HAdd.hAdd
   negation := Neg.neg
   multiplication := HMul.hMul
-  strict_order := fun left right => left < right
-  nonstrict_order := fun left right => left <= right
+  StrictOrder := fun left right => left < right
+  NonstrictOrder := fun left right => left <= right
   inverse := Inv.inv
 
 

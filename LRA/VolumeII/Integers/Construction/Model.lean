@@ -30,8 +30,8 @@ def integerNumbersSignature : OrderedRingSignature where
   addition := add
   negation := negZ
   multiplication := mul
-  strict_order := ZImpl.lt
-  nonstrict_order := ZImpl.le
+  StrictOrder := ZImpl.lt
+  NonstrictOrder := ZImpl.le
 
 
 /-- The active integers as a first-order model of the ordered-ring signature.
@@ -53,8 +53,8 @@ def additiveOrderedIntegerSignature : AdditiveOrderedSignature where
   zero := zero
   one := one
   addition := add
-  strict_order := ZImpl.lt
-  nonstrict_order := ZImpl.le
+  StrictOrder := ZImpl.lt
+  NonstrictOrder := ZImpl.le
 
 
 /-- The active integers as a model of the additive ordered language.

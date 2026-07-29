@@ -54,7 +54,7 @@ def canonical
   fraction.tail = [] ∨
     ∃ last : integer_model.signature.carrier,
       last ∈ fraction.tail ∧
-        integer_model.signature.strict_order integer_model.signature.one last
+        integer_model.signature.StrictOrder integer_model.signature.one last
 
 /--
 **[Structure — Convergents]**

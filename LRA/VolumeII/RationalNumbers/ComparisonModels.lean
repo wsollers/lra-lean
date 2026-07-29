@@ -32,16 +32,16 @@ def is_order_complete (rational_model : RationalModel) : Prop :=
     (∃ upper_bound,
       ∀ member,
         subset member →
-        rational_model.signature.nonstrict_order member upper_bound) →
+        rational_model.signature.NonstrictOrder member upper_bound) →
     ∃ supremum,
       (∀ member,
         subset member →
-        rational_model.signature.nonstrict_order member supremum) ∧
+        rational_model.signature.NonstrictOrder member supremum) ∧
       (∀ upper_bound,
         (∀ member,
           subset member →
-          rational_model.signature.nonstrict_order member upper_bound) →
-        rational_model.signature.nonstrict_order supremum upper_bound)
+          rational_model.signature.NonstrictOrder member upper_bound) →
+        rational_model.signature.NonstrictOrder supremum upper_bound)
 
 namespace QuotientFractionsComparison
 
@@ -302,10 +302,10 @@ structure ModelIsomorphism
         second_model.signature.inverse (to_function value)
   preserves_and_reflects_order :
     ∀ first second,
-      second_model.signature.nonstrict_order
+      second_model.signature.NonstrictOrder
           (to_function first)
           (to_function second) ↔
-        first_model.signature.nonstrict_order first second
+        first_model.signature.NonstrictOrder first second
 
 
 /-- **[Theorem — Rational Quotient-Fractions–Reduced Rational Isomorphism Exists]**

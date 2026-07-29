@@ -54,11 +54,11 @@ theorem archimedean_integer_part
     (real_extension : RealExtension rational_extension.rational_model)
     (value : real_extension.real_model.signature.carrier) :
     ∃ lower upper : integer_model.signature.carrier,
-      real_extension.real_model.signature.nonstrict_order
+      real_extension.real_model.signature.NonstrictOrder
         (real_extension.rational_embedding.to_real
           (rational_extension.integer_embedding.to_rational lower))
         value ∧
-      real_extension.real_model.signature.strict_order
+      real_extension.real_model.signature.StrictOrder
         value
         (real_extension.rational_embedding.to_real
           (rational_extension.integer_embedding.to_rational upper)) := by
@@ -67,7 +67,7 @@ theorem archimedean_integer_part
 /--
 **[Theorem — nth_root_exists_for_nonnegative_reals]**
 
-Mathematical statement (Lean): `theorem nth_root_exists_for_nonnegative_reals (real_model : RealModel) (degree : Nat) (degree_positive : 0 < degree) (radicand : real_model.signature.carrier) (radicand_nonnegative : real_model.signature.nonstrict_order real_model.signature.zero radicand) :...`.
+Mathematical statement (Lean): `theorem nth_root_exists_for_nonnegative_reals (real_model : RealModel) (degree : Nat) (degree_positive : 0 < degree) (radicand : real_model.signature.carrier) (radicand_nonnegative : real_model.signature.NonstrictOrder real_model.signature.zero radicand) :...`.
 
 *Proof status:* proof pending
 -/
@@ -77,9 +77,9 @@ theorem nth_root_exists_for_nonnegative_reals
     (degree_positive : 0 < degree)
     (radicand : real_model.signature.carrier)
     (radicand_nonnegative :
-      real_model.signature.nonstrict_order real_model.signature.zero radicand) :
+      real_model.signature.NonstrictOrder real_model.signature.zero radicand) :
     ∃ root : real_model.signature.carrier,
-      real_model.signature.nonstrict_order real_model.signature.zero root ∧
+      real_model.signature.NonstrictOrder real_model.signature.zero root ∧
         is_nth_root real_model degree root radicand := by
   sorry
 

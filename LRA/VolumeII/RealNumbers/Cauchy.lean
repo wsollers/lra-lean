@@ -36,7 +36,7 @@ structure RationalMetricData (rational_model : RationalModel) where
         absolute_value value
   triangle_inequality :
     ∀ first second,
-      rational_model.signature.nonstrict_order
+      rational_model.signature.NonstrictOrder
         (absolute_value
           (rational_model.signature.addition first second))
         (rational_model.signature.addition
@@ -44,7 +44,7 @@ structure RationalMetricData (rational_model : RationalModel) where
           (absolute_value second))
   absolute_value_nonnegative :
     ∀ value,
-      rational_model.signature.nonstrict_order
+      rational_model.signature.NonstrictOrder
         rational_model.signature.zero
         (absolute_value value)
   absolute_value_eq_zero_iff :
@@ -81,7 +81,7 @@ Mathematical statement (Lean): `def is_positive (rational_model : RationalModel)
 def is_positive
     (rational_model : RationalModel)
     (value : rational_model.signature.carrier) : Prop :=
-  rational_model.signature.strict_order rational_model.signature.zero value
+  rational_model.signature.StrictOrder rational_model.signature.zero value
 
 
 /-- The epsilon-tail definition of a rational Cauchy sequence.
@@ -98,7 +98,7 @@ def is_cauchy
       ∀ first_index second_index : Nat,
         threshold ≤ first_index →
         threshold ≤ second_index →
-        rational_model.signature.strict_order
+        rational_model.signature.StrictOrder
           (distance rational_model absolute_value_data
             (sequence first_index)
             (sequence second_index))
@@ -118,7 +118,7 @@ def is_null
     ∃ threshold : Nat,
       ∀ index : Nat,
         threshold ≤ index →
-        rational_model.signature.strict_order
+        rational_model.signature.StrictOrder
           (absolute_value_data.absolute_value (sequence index))
           epsilon
 

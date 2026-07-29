@@ -57,18 +57,18 @@ relations, independent of the ring operations.
 structure OrderLaws
     (signature : OrderedRingSignature) : Prop where
   strict_order_is_irreflexive :
-    LRA.VolumeI.Relations.Irreflexive signature.strict_order
+    LRA.VolumeI.Relations.Irreflexive signature.StrictOrder
   strict_order_is_transitive :
-    LRA.VolumeI.Relations.Transitive signature.strict_order
+    LRA.VolumeI.Relations.Transitive signature.StrictOrder
   strict_order_is_trichotomous :
     ∀ first second : signature.carrier,
-      signature.strict_order first second ∨
+      signature.StrictOrder first second ∨
       first = second ∨
-      signature.strict_order second first
+      signature.StrictOrder second first
   nonstrict_order_agrees_with_strict_order :
     ∀ first second : signature.carrier,
-      signature.nonstrict_order first second ↔
-        signature.strict_order first second ∨ first = second
+      signature.NonstrictOrder first second ↔
+        signature.StrictOrder first second ∨ first = second
 
 /--
 **[Definition — Ordered Ring Compatibility Laws]**
@@ -79,10 +79,10 @@ structure OrderedRingCompatibilityLaws
     (signature : OrderedRingSignature) : Prop where
   addition_preserves_strict_order :
     LRA.VolumeI.Relations.Order.StrictlyPreservesRightTranslation
-      signature.strict_order signature.addition
+      signature.StrictOrder signature.addition
   positive_multiplication_preserves_strict_order :
     LRA.VolumeI.Relations.Order.PreservesPositiveRightMultiplication
-      signature.strict_order signature.multiplication signature.zero
+      signature.StrictOrder signature.multiplication signature.zero
 
 /--
 **[Definition — Ordered Ring Laws]**
@@ -129,8 +129,8 @@ structure IntegerLaws
   order_is_discrete :
     ∀ value : signature.carrier,
       ¬ ∃ middle : signature.carrier,
-        signature.strict_order value middle ∧
-        signature.strict_order
+        signature.StrictOrder value middle ∧
+        signature.StrictOrder
           middle
           (signature.addition value signature.one)
 
@@ -163,10 +163,10 @@ structure RationalLaws
         signature.one
   order_is_dense :
     ∀ first second : signature.carrier,
-      signature.strict_order first second →
+      signature.StrictOrder first second →
       ∃ middle : signature.carrier,
-        signature.strict_order first middle ∧
-        signature.strict_order middle second
+        signature.StrictOrder first middle ∧
+        signature.StrictOrder middle second
 
 /-- **[Definition — Rational Model]** -/
 structure RationalModel where
@@ -189,16 +189,16 @@ structure RealLaws
       (∃ upper_bound,
         ∀ member,
           subset member →
-          signature.nonstrict_order member upper_bound) →
+          signature.NonstrictOrder member upper_bound) →
       ∃ supremum,
         (∀ member,
           subset member →
-          signature.nonstrict_order member supremum) ∧
+          signature.NonstrictOrder member supremum) ∧
         (∀ upper_bound,
           (∀ member,
             subset member →
-            signature.nonstrict_order member upper_bound) →
-          signature.nonstrict_order supremum upper_bound)
+            signature.NonstrictOrder member upper_bound) →
+          signature.NonstrictOrder supremum upper_bound)
 
 /-- **[Definition — Real Model]** -/
 structure RealModel where
@@ -246,10 +246,10 @@ structure IntegerEmbeddingIntoRational
           (to_rational second)
   preserves_and_reflects_order :
     ∀ first second,
-      rational_model.signature.nonstrict_order
+      rational_model.signature.NonstrictOrder
           (to_rational first)
           (to_rational second) ↔
-        integer_model.signature.nonstrict_order first second
+        integer_model.signature.NonstrictOrder first second
 
 /--
 **[Definition — Rational Extension of an Integer Model]**
@@ -265,7 +265,7 @@ structure RationalExtension
   archimedean_property :
     ∀ rational_value : rational_model.signature.carrier,
       ∃ integer_value : integer_model.signature.carrier,
-        rational_model.signature.strict_order
+        rational_model.signature.StrictOrder
           rational_value
           (integer_embedding.to_rational integer_value)
 
@@ -316,10 +316,10 @@ structure RationalEmbeddingIntoReal
         real_model.signature.inverse (to_real value)
   preserves_and_reflects_order :
     ∀ first second,
-      real_model.signature.nonstrict_order
+      real_model.signature.NonstrictOrder
           (to_real first)
           (to_real second) ↔
-        rational_model.signature.nonstrict_order first second
+        rational_model.signature.NonstrictOrder first second
 
 /--
 **[Definition — Real Extension of a Rational Model]**
@@ -336,7 +336,7 @@ structure RealExtension
   rational_embedding_is_cofinal :
     ∀ real_value : real_model.signature.carrier,
       ∃ rational_value : rational_model.signature.carrier,
-        real_model.signature.strict_order
+        real_model.signature.StrictOrder
           real_value
           (rational_embedding.to_real rational_value)
 

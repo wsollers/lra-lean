@@ -30,8 +30,8 @@ structure EmbeddingPreservesOrderedRing
         target.multiplication (map first) (map second)
   preserves_and_reflects_order :
     ∀ first second,
-      target.nonstrict_order (map first) (map second) ↔
-        source.nonstrict_order first second
+      target.NonstrictOrder (map first) (map second) ↔
+        source.NonstrictOrder first second
 
 structure EmbeddingPreservesOrderedField
     (source target : OrderedFieldSignature)

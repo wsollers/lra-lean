@@ -41,13 +41,13 @@ def IsCut (lower_set : RationalSet rational_model) : Prop :=
   (∃ value, ¬ lower_set value) ∧
   (∀ upper lower,
     lower_set upper →
-    rational_model.signature.strict_order lower upper →
+    rational_model.signature.StrictOrder lower upper →
     lower_set lower) ∧
   (∀ value,
     lower_set value →
     ∃ greater,
       lower_set greater ∧
-      rational_model.signature.strict_order value greater)
+      rational_model.signature.StrictOrder value greater)
 
 
 /-- Definition 1.2: the Dedekind-real carrier.
@@ -128,7 +128,7 @@ theorem strict_total_order : StrictTotalOrder rational_model := by
 Mathematical statement (Lean): `def rational_lower_ray (value : Rational rational_model) : RationalSet rational_model`.
 -/
 def rational_lower_ray (value : Rational rational_model) : RationalSet rational_model :=
-  fun candidate => rational_model.signature.strict_order candidate value
+  fun candidate => rational_model.signature.StrictOrder candidate value
 
 
 /-- Theorem 2.4: every rational lower ray is a cut.
@@ -153,7 +153,7 @@ def rational_embedding (value : Rational rational_model) : Cut rational_model :=
 
 /-- Theorem 2.5: the rational embedding is injective and order preserving/reflection.
 
-Mathematical statement (Lean): `theorem rational_embedding_is_order_embedding : (∀ first second, rational_embedding rational_model first = rational_embedding rational_model second → first = second) ∧ (∀ first second, rational_model.signature.strict_order first second ↔ strict_order ration...`.
+Mathematical statement (Lean): `theorem rational_embedding_is_order_embedding : (∀ first second, rational_embedding rational_model first = rational_embedding rational_model second → first = second) ∧ (∀ first second, rational_model.signature.StrictOrder first second ↔ strict_order ration...`.
 
 *Proof status:* proof pending
 -/
@@ -162,7 +162,7 @@ theorem rational_embedding_is_order_embedding :
       rational_embedding rational_model first =
         rational_embedding rational_model second → first = second) ∧
     (∀ first second,
-      rational_model.signature.strict_order first second ↔
+      rational_model.signature.StrictOrder first second ↔
         strict_order rational_model
           (rational_embedding rational_model first)
           (rational_embedding rational_model second)) := by
@@ -217,7 +217,7 @@ def negation_lower_set (cut : Cut rational_model) : RationalSet rational_model :
   fun value =>
     ∃ excluded,
       ¬ contains rational_model cut excluded ∧
-      rational_model.signature.strict_order
+      rational_model.signature.StrictOrder
         value (rational_model.signature.negation excluded)
 
 
@@ -292,13 +292,13 @@ Mathematical statement (Lean): `def nonnegative_product_lower_set (first second 
 def nonnegative_product_lower_set
     (first second : Cut rational_model) : RationalSet rational_model :=
   fun value =>
-    rational_model.signature.strict_order value rational_model.signature.zero ∨
+    rational_model.signature.StrictOrder value rational_model.signature.zero ∨
     ∃ left right,
       contains rational_model first left ∧
       contains rational_model second right ∧
-      rational_model.signature.strict_order rational_model.signature.zero left ∧
-      rational_model.signature.strict_order rational_model.signature.zero right ∧
-      rational_model.signature.strict_order
+      rational_model.signature.StrictOrder rational_model.signature.zero left ∧
+      rational_model.signature.StrictOrder rational_model.signature.zero right ∧
+      rational_model.signature.StrictOrder
         value (rational_model.signature.multiplication left right)
 
 
