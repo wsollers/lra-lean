@@ -9,7 +9,7 @@ structure Partition (Alpha : LRA.VolumeI.Set.LRACarrier) where
   Index : Type u
   block : Index -> LRA.VolumeI.Set.LRASet Alpha
   covers : forall element : Alpha, exists index, block index element
-  nonemptyBlocks : forall index, LRA.VolumeI.Set.LRASet.nonempty (block index)
+  nonemptyBlocks : forall index, LRA.VolumeI.Set.LRASet.Nonempty (block index)
   disjointOrEqual :
     forall firstIndex secondIndex,
       (exists element, block firstIndex element /\ block secondIndex element) ->

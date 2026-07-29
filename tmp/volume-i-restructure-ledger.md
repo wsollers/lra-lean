@@ -137,6 +137,20 @@ Working branch: `codex/volume-i-restructure`.
 | `namespace LRASet` | `namespace LRA.VolumeI.Set.LRASet` | Horizontal dotted namespace |
 | `namespace OrderedRingSignature` | `namespace LRA.VolumeI.Algebra.Models.OrderedRingSignature` | Horizontal dotted namespace |
 | `namespace OrderedFieldSignature` | `namespace LRA.VolumeI.Algebra.Models.OrderedFieldSignature` | Horizontal dotted namespace |
+| `ModelSet.member` | `ModelSet.Member` | PascalCase public field |
+| `LRASet.member` | `LRASet.Member` | PascalCase public field |
+| `LRASet.empty` | `LRASet.Empty` | PascalCase public operation |
+| `LRASet.universal` | `LRASet.Universal` | PascalCase public operation |
+| `LRASet.singleton` | `LRASet.Singleton` | PascalCase public operation |
+| `LRASet.union` | `LRASet.Union` | PascalCase public operation |
+| `LRASet.intersection` | `LRASet.Intersection` | PascalCase public operation |
+| `LRASet.complement` | `LRASet.Complement` | PascalCase public operation |
+| `LRASet.difference` | `LRASet.Difference` | PascalCase public operation |
+| `LRASet.subset` | `LRASet.Subset` | PascalCase public relation |
+| `LRASet.nonempty` | `LRASet.Nonempty` | PascalCase public predicate |
+| `LRASet.indexedUnion` | `LRASet.IndexedUnion` | PascalCase public operation |
+| `LRASet.indexedIntersection` | `LRASet.IndexedIntersection` | PascalCase public operation |
+| `LRASet.extensionality` | `LRASet.Extensionality` | PascalCase public principle |
 
 ## Deferred
 

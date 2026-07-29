@@ -8,7 +8,7 @@ universe u
 def LeastUpperBoundProperty {alpha : LRA.VolumeI.Set.LRACarrier}
     (relation : LRA.VolumeI.Relations.Endorelation alpha) : Prop :=
   forall subset : LRA.VolumeI.Set.LRASet alpha,
-    LRA.VolumeI.Set.LRASet.nonempty subset ->
+    LRA.VolumeI.Set.LRASet.Nonempty subset ->
       (exists upperBound, UpperBound relation subset upperBound) ->
         exists supremum, Supremum relation subset supremum
 
@@ -16,7 +16,7 @@ def LeastUpperBoundProperty {alpha : LRA.VolumeI.Set.LRACarrier}
 def GreatestLowerBoundProperty {alpha : LRA.VolumeI.Set.LRACarrier}
     (relation : LRA.VolumeI.Relations.Endorelation alpha) : Prop :=
   forall subset : LRA.VolumeI.Set.LRASet alpha,
-    LRA.VolumeI.Set.LRASet.nonempty subset ->
+    LRA.VolumeI.Set.LRASet.Nonempty subset ->
       (exists lowerBound, LowerBound relation subset lowerBound) ->
         exists infimum, Infimum relation subset infimum
 

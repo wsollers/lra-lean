@@ -21,14 +21,14 @@ def SecondProjection {Alpha Beta : LRACarrier} (Pair : Product Alpha Beta) : Bet
 /-- Cartesian product of two predicate-sets. -/
 def CartesianProduct {Alpha Beta : LRACarrier}
     (Left : LRASet Alpha) (Right : LRASet Beta) : LRASet (Product Alpha Beta) :=
-  fun Pair => LRASet.member Pair.1 Left /\ LRASet.member Pair.2 Right
+  fun Pair => LRASet.Member Pair.1 Left /\ LRASet.Member Pair.2 Right
 
 /-- Membership criterion for a Cartesian product. -/
 theorem CartesianProductMembershipIff {Alpha Beta : LRACarrier}
     (Left : LRASet Alpha) (Right : LRASet Beta) (Pair : Product Alpha Beta) :
-    LRASet.member Pair (CartesianProduct Left Right) ↔
-      LRASet.member (FirstProjection Pair) Left ∧
-        LRASet.member (SecondProjection Pair) Right := by
+    LRASet.Member Pair (CartesianProduct Left Right) ↔
+      LRASet.Member (FirstProjection Pair) Left ∧
+        LRASet.Member (SecondProjection Pair) Right := by
   rfl
 
 /-- A product element is determined by its two projections. -/

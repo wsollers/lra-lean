@@ -86,16 +86,16 @@ def MinimalElement {alpha : LRA.VolumeI.Set.LRACarrier}
     (relation : Endorelation alpha)
     (subset : LRA.VolumeI.Set.LRASet alpha)
     (minimum : alpha) : Prop :=
-  LRA.VolumeI.Set.LRASet.member minimum subset /\
+  LRA.VolumeI.Set.LRASet.Member minimum subset /\
     forall element,
-      LRA.VolumeI.Set.LRASet.member element subset ->
+      LRA.VolumeI.Set.LRASet.Member element subset ->
         Not (relation element minimum)
 
 /-- Well-foundedness of an endorelation in the omnibus subset-minimal sense. -/
 def WellFounded {alpha : LRA.VolumeI.Set.LRACarrier}
     (relation : Endorelation alpha) : Prop :=
   forall subset : LRA.VolumeI.Set.LRASet alpha,
-    LRA.VolumeI.Set.LRASet.nonempty subset ->
+    LRA.VolumeI.Set.LRASet.Nonempty subset ->
       exists minimum, MinimalElement relation subset minimum
 
 /-- Equivalence-relation laws for an endorelation. -/

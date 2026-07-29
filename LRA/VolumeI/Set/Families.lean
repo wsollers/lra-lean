@@ -15,33 +15,33 @@ abbrev IndexedFamily (Index : LRACarrier) (Alpha : LRACarrier) :=
 /-- Public name for the indexed union of a family of predicate-sets. -/
 def IndexedUnion {Index Alpha : LRACarrier}
     (Family : IndexedFamily Index Alpha) : LRASet Alpha :=
-  LRASet.indexedUnion Family
+  LRASet.IndexedUnion Family
 
 /-- Public name for the indexed intersection of a family of predicate-sets. -/
 def IndexedIntersection {Index Alpha : LRACarrier}
     (Family : IndexedFamily Index Alpha) : LRASet Alpha :=
-  LRASet.indexedIntersection Family
+  LRASet.IndexedIntersection Family
 
 /-- Membership criterion for indexed unions. -/
 theorem IndexedUnionMembershipIff {Index Alpha : LRACarrier}
     (Family : IndexedFamily Index Alpha) (Element : Alpha) :
-    LRASet.member Element (IndexedUnion Family) ↔
-      ∃ IndexValue, LRASet.member Element (Family IndexValue) := by
+    LRASet.Member Element (IndexedUnion Family) ↔
+      ∃ IndexValue, LRASet.Member Element (Family IndexValue) := by
   rfl
 
 /-- Membership criterion for indexed intersections. -/
 theorem IndexedIntersectionMembershipIff {Index Alpha : LRACarrier}
     (Family : IndexedFamily Index Alpha) (Element : Alpha) :
-    LRASet.member Element (IndexedIntersection Family) ↔
-      ∀ IndexValue, LRASet.member Element (Family IndexValue) := by
+    LRASet.Member Element (IndexedIntersection Family) ↔
+      ∀ IndexValue, LRASet.Member Element (Family IndexValue) := by
   rfl
 
 /-- Pointwise inclusion of families induces inclusion of indexed unions. -/
 theorem IndexedUnionMonotone {Index Alpha : LRACarrier}
     {LeftFamily RightFamily : IndexedFamily Index Alpha}
     (PointwiseInclusion :
-      ∀ IndexValue, LRASet.subset (LeftFamily IndexValue) (RightFamily IndexValue)) :
-    LRASet.subset (IndexedUnion LeftFamily) (IndexedUnion RightFamily) := by
+      ∀ IndexValue, LRASet.Subset (LeftFamily IndexValue) (RightFamily IndexValue)) :
+    LRASet.Subset (IndexedUnion LeftFamily) (IndexedUnion RightFamily) := by
   intro Element ElementInLeftUnion
   rcases ElementInLeftUnion with ⟨IndexValue, ElementInLeftSet⟩
   exact ⟨IndexValue, PointwiseInclusion IndexValue Element ElementInLeftSet⟩
@@ -50,8 +50,8 @@ theorem IndexedUnionMonotone {Index Alpha : LRACarrier}
 theorem IndexedIntersectionMonotone {Index Alpha : LRACarrier}
     {LeftFamily RightFamily : IndexedFamily Index Alpha}
     (PointwiseInclusion :
-      ∀ IndexValue, LRASet.subset (LeftFamily IndexValue) (RightFamily IndexValue)) :
-    LRASet.subset (IndexedIntersection LeftFamily) (IndexedIntersection RightFamily) := by
+      ∀ IndexValue, LRASet.Subset (LeftFamily IndexValue) (RightFamily IndexValue)) :
+    LRASet.Subset (IndexedIntersection LeftFamily) (IndexedIntersection RightFamily) := by
   intro Element ElementInLeftIntersection IndexValue
   exact PointwiseInclusion IndexValue Element (ElementInLeftIntersection IndexValue)
 

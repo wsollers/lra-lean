@@ -27,7 +27,7 @@ structure PartialUnaryOperation (alpha : LRA.VolumeI.Set.LRACarrier) where
   /-- The operation's domain of definition. -/
   domain : LRA.VolumeI.Set.LRASet alpha
   /-- The value of the operation at a point in its domain. -/
-  value : forall input, LRA.VolumeI.Set.LRASet.member input domain -> alpha
+  value : forall input, LRA.VolumeI.Set.LRASet.Member input domain -> alpha
 
 /-- A partial binary operation on a carrier. -/
 structure PartialBinaryOperation (alpha : LRA.VolumeI.Set.LRACarrier) where

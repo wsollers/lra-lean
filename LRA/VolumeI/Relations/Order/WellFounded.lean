@@ -17,7 +17,7 @@ theorem MinimalElementPrinciple
     {strictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
     (strictRelationIsWellFounded : WellFoundedRelation strictRelation)
     (subset : LRA.VolumeI.Set.LRASet Alpha)
-    (subsetIsNonempty : LRA.VolumeI.Set.LRASet.nonempty subset) :
+    (subsetIsNonempty : LRA.VolumeI.Set.LRASet.Nonempty subset) :
     exists minimalElement, MinimalElement strictRelation subset minimalElement := by
   exact strictRelationIsWellFounded subset subsetIsNonempty
 
@@ -27,7 +27,7 @@ theorem WellOrderingPrinciple
     {nonStrictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
     (nonStrictRelationIsWellOrder : WellOrder nonStrictRelation)
     (subset : LRA.VolumeI.Set.LRASet Alpha)
-    (subsetIsNonempty : LRA.VolumeI.Set.LRASet.nonempty subset) :
+    (subsetIsNonempty : LRA.VolumeI.Set.LRASet.Nonempty subset) :
     exists leastElement, LeastElement nonStrictRelation subset leastElement :=
   nonStrictRelationIsWellOrder.right subset subsetIsNonempty
 

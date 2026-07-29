@@ -15,18 +15,18 @@ def PowerSet (Alpha : LRACarrier) : LRASet (LRASet Alpha) :=
 /-- The relative power set of an ambient predicate-set. -/
 def RelativePowerSet {Alpha : LRACarrier} (Ambient : LRASet Alpha) :
     LRASet (LRASet Alpha) :=
-  fun Subset => LRASet.subset Subset Ambient
+  fun Subset => LRASet.Subset Subset Ambient
 
 /-- Every predicate-set over a carrier belongs to its absolute power set. -/
 theorem MemberOfPowerSet {Alpha : LRACarrier} (Subset : LRASet Alpha) :
-    LRASet.member Subset (PowerSet Alpha) := by
+    LRASet.Member Subset (PowerSet Alpha) := by
   trivial
 
 /-- Membership in the relative power set is exactly inclusion in the ambient set. -/
 theorem RelativePowerSetMembershipIff {Alpha : LRACarrier}
     (Ambient Subset : LRASet Alpha) :
-    LRASet.member Subset (RelativePowerSet Ambient) ↔
-      LRASet.subset Subset Ambient := by
+    LRASet.Member Subset (RelativePowerSet Ambient) ↔
+      LRASet.Subset Subset Ambient := by
   rfl
 
 end LRA.VolumeI.Set

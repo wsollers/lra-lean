@@ -52,8 +52,8 @@ def SuccessorClosedSubset
     (ps : PeanoSystem)
     (subset : LRA.VolumeI.Set.LRASet ps.carrier) : Prop :=
   forall element : ps.carrier,
-    LRA.VolumeI.Set.LRASet.member element subset ->
-    LRA.VolumeI.Set.LRASet.member (ps.successor element) subset
+    LRA.VolumeI.Set.LRASet.Member element subset ->
+    LRA.VolumeI.Set.LRASet.Member (ps.successor element) subset
 
 /--
 **[Definition - Inductive Subset of a Peano System]**
@@ -66,7 +66,7 @@ Mathematical statement (Lean): `def InductiveSubsetOfPeanoSystem (ps : PeanoSyst
 def InductiveSubsetOfPeanoSystem
     (ps : PeanoSystem)
     (subset : LRA.VolumeI.Set.LRASet ps.carrier) : Prop :=
-  LRA.VolumeI.Set.LRASet.member ps.one subset /\
+  LRA.VolumeI.Set.LRASet.Member ps.one subset /\
     SuccessorClosedSubset ps subset
 
 end LRA.VolumeII.PeanoSystems

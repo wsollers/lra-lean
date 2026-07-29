@@ -11,6 +11,6 @@ def Surjective {Domain Codomain : Type u} (map : Domain -> Codomain) : Prop :=
 /-- Fiber formulation of surjectivity. -/
 def SurjectiveByFibers {Domain Codomain : Type u}
     (map : Function Domain Codomain) : Prop :=
-  forall output, LRA.VolumeI.Set.LRASet.nonempty (Fiber map output)
+  forall output, LRA.VolumeI.Set.LRASet.Nonempty (Fiber map output)
 
 end LRA.VolumeI.Functions

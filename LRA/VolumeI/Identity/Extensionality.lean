@@ -15,9 +15,9 @@ theorem ExtensionalEqualityForPredicateSets
     {Left Right : LRA.VolumeI.Set.LRASet Alpha}
     (SameMembers :
       ∀ Element,
-        LRA.VolumeI.Set.LRASet.member Element Left ↔
-          LRA.VolumeI.Set.LRASet.member Element Right) :
+        LRA.VolumeI.Set.LRASet.Member Element Left ↔
+          LRA.VolumeI.Set.LRASet.Member Element Right) :
     Left = Right :=
-  LRA.VolumeI.Set.LRASet.extensionality SameMembers
+  LRA.VolumeI.Set.LRASet.Extensionality SameMembers
 
 end LRA.VolumeI.Identity
