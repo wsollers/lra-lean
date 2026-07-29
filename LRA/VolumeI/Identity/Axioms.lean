@@ -27,14 +27,14 @@ theorem EqualityReflexivity {Carrier : Type u} (element : Carrier) :
 
 /-- Equality axiom: equality is symmetric. -/
 theorem EqualitySymmetry {Carrier : Type u} {left right : Carrier}
-    (objects_are_equal : left = right) :
+    (ObjectsAreEqual : left = right) :
     right = left := by
   sorry
 
 /-- Equality axiom: equality is transitive. -/
 theorem EqualityTransitivity {Carrier : Type u} {first second third : Carrier}
-    (first_equals_second : first = second)
-    (second_equals_third : second = third) :
+    (FirstEqualsSecond : first = second)
+    (SecondEqualsThird : second = third) :
     first = third := by
   sorry
 
@@ -60,7 +60,7 @@ theorem EqualityRelationIsEquivalence (Carrier : Type u) :
 
 /-- TeX label: `ax:leibniz-law`. -/
 theorem LeibnizLaw {Carrier : Type u} {left right : Carrier}
-    (objects_are_identical : left = right) :
+    (ObjectsAreIdentical : left = right) :
     ∀ property : Carrier -> Prop, property left ↔ property right := by
   sorry
 
@@ -70,7 +70,7 @@ def PropositionalEquality {Carrier : Type u} (left right : Carrier) : Prop :=
 
 /-- TeX label: `ax:equality-substitution`. -/
 theorem EqualitySubstitution {Carrier : Type u} {left right : Carrier}
-    (objects_are_equal : left = right)
+    (ObjectsAreEqual : left = right)
     (formula : Carrier -> Prop) :
     formula left ↔ formula right :=
   by
@@ -79,7 +79,7 @@ theorem EqualitySubstitution {Carrier : Type u} {left right : Carrier}
 /-- TeX label: `prop:substitution-preserves-predicates`. -/
 theorem SubstitutionPreservesPredicates {Carrier : Type u}
     {left right : Carrier}
-    (objects_are_equal : left = right)
+    (ObjectsAreEqual : left = right)
     (predicate : Carrier -> Prop) :
     predicate left ↔ predicate right :=
   by
@@ -88,7 +88,7 @@ theorem SubstitutionPreservesPredicates {Carrier : Type u}
 /-- TeX label: `prop:substitution-preserves-relations-left`. -/
 theorem SubstitutionPreservesRelationsLeft {Carrier : Type u}
     {left right fixed : Carrier}
-    (objects_are_equal : left = right)
+    (ObjectsAreEqual : left = right)
     (relation : Carrier -> Carrier -> Prop) :
     relation left fixed ↔ relation right fixed := by
   sorry
@@ -96,7 +96,7 @@ theorem SubstitutionPreservesRelationsLeft {Carrier : Type u}
 /-- TeX label: `prop:substitution-preserves-relations-right`. -/
 theorem SubstitutionPreservesRelationsRight {Carrier : Type u}
     {left right fixed : Carrier}
-    (objects_are_equal : left = right)
+    (ObjectsAreEqual : left = right)
     (relation : Carrier -> Carrier -> Prop) :
     relation fixed left ↔ relation fixed right := by
   sorry
@@ -104,8 +104,8 @@ theorem SubstitutionPreservesRelationsRight {Carrier : Type u}
 /-- TeX label: `prop:substitution-preserves-relations-full`. -/
 theorem SubstitutionPreservesRelations {Carrier : Type u}
     {left left' right right' : Carrier}
-    (lefts_are_equal : left = left')
-    (rights_are_equal : right = right')
+    (LeftsAreEqual : left = left')
+    (RightsAreEqual : right = right')
     (relation : Carrier -> Carrier -> Prop) :
     relation left right ↔ relation left' right' := by
   sorry
@@ -113,7 +113,7 @@ theorem SubstitutionPreservesRelations {Carrier : Type u}
 /-- TeX label: `prop:substitution-preserves-functions`. -/
 theorem SubstitutionPreservesFunctions {Domain : Type u} {Codomain : Type v}
     {left right : Domain}
-    (objects_are_equal : left = right)
+    (ObjectsAreEqual : left = right)
     (function : Domain -> Codomain) :
     function left = function right := by
   sorry
@@ -121,7 +121,7 @@ theorem SubstitutionPreservesFunctions {Domain : Type u} {Codomain : Type v}
 /-- TeX label: `prop:substitution-preserves-operations-left`. -/
 theorem SubstitutionPreservesOperationsLeft {Carrier : Type u}
     {left left' right : Carrier}
-    (lefts_are_equal : left = left')
+    (LeftsAreEqual : left = left')
     (operation : Carrier -> Carrier -> Carrier) :
     operation left right = operation left' right := by
   sorry
@@ -129,7 +129,7 @@ theorem SubstitutionPreservesOperationsLeft {Carrier : Type u}
 /-- TeX label: `prop:substitution-preserves-operations-right`. -/
 theorem SubstitutionPreservesOperationsRight {Carrier : Type u}
     {left right right' : Carrier}
-    (rights_are_equal : right = right')
+    (RightsAreEqual : right = right')
     (operation : Carrier -> Carrier -> Carrier) :
     operation left right = operation left right' := by
   sorry
@@ -137,8 +137,8 @@ theorem SubstitutionPreservesOperationsRight {Carrier : Type u}
 /-- TeX label: `prop:substitution-preserves-operations-full`. -/
 theorem SubstitutionPreservesOperations {Carrier : Type u}
     {left left' right right' : Carrier}
-    (lefts_are_equal : left = left')
-    (rights_are_equal : right = right')
+    (LeftsAreEqual : left = left')
+    (RightsAreEqual : right = right')
     (operation : Carrier -> Carrier -> Carrier) :
     operation left right = operation left' right' := by
   sorry

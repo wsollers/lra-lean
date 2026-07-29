@@ -39,9 +39,9 @@ be organized.
 | --- | --- | --- |
 | Primitive set, membership, subset, extensionality | Present in `LRA/VolumeI/Set/Set.lean` | The predicate-set layer has extensionality; model-internal ZFC set objects are present but not yet connected to the predicate-set theorem catalogue. |
 | Union, intersection, complement, difference, empty, universal, singleton | Present in `LRA/VolumeI/Set/Set.lean` | Need named theorem catalogue: De Morgan, union/intersection identities, subset laws, complement laws, difference laws. |
-| Indexed unions/intersections | Present in `LRA/VolumeI/Set/Set.lean` | Need theorem catalogue for arbitrary-family identities. |
-| Ordered pair and Cartesian product | Present in `LRA/VolumeI/Set/Products.lean` | Need product extensionality theorem and stronger set-level product laws. |
-| n-tuples and powers `S^n` | Partial via `Tuple` in `LRA/VolumeI/Set/Products.lean` | Need explicit `S^0`, `S^n`, and relation to product conventions if the omnibus numbering is formalized directly. |
+| Indexed unions/intersections | Present in `LRA/VolumeI/Set/Set.lean` and public wrappers in `LRA/VolumeI/Set/Families.lean` | Membership criteria and monotonicity statements exist. Need full theorem catalogue for arbitrary-family identities. |
+| Ordered pair and Cartesian product | Present in `LRA/VolumeI/Set/Products.lean` | PascalCase projections, Cartesian product membership, and product extensionality exist. Need stronger set-level product laws. |
+| n-tuples and powers `S^n` | Partial via `Tuple` and `FinitePower` in `LRA/VolumeI/Set/Products.lean` | Need explicit `S^0` laws and relation to product conventions if the omnibus numbering is formalized directly. |
 | n-ary relations | Partial in `LRA/VolumeI/Relations/Basic/Relations.lean` | Unary and binary relations exist; general `n`-ary relations are not yet exposed as a reusable abstraction. |
 | n-ary operations | Present in `LRA/VolumeI/Operations/Arity.lean` | Need theorem catalogue relating n-ary presentation to ordinary unary/binary operation laws. |
 | Named binary relation properties | Partial in `LRA/VolumeI/Relations/Basic/Properties.lean` | Reflexive, irreflexive, symmetric, antisymmetric, transitive, connex, trichotomous, equivalence exist. Missing asymmetric, left-Euclidean, right-Euclidean, dense, well-founded as named primitive relation properties. Trichotomy currently states inclusive alternatives, not exactly-one exclusivity. |

@@ -69,9 +69,14 @@ LRA
     Set.lean
     Set
       Set.lean
-      Products.lean
-      Families.lean
-      PowerSets.lean
+      Products.lean              -- Product, Tuple, FirstProjection,
+                                    SecondProjection, CartesianProduct,
+                                    ProductExtensionality, FinitePower
+      Families.lean              -- IndexedFamily, IndexedUnion,
+                                    IndexedIntersection, membership criteria,
+                                    monotonicity statements
+      PowerSets.lean             -- PowerSet, RelativePowerSet,
+                                    membership criteria
       ZFC.lean
       ZFC
         Language.lean
@@ -92,10 +97,10 @@ LRA
 
     Identity.lean
     Identity
-      Equality.lean
-      Substitution.lean
-      Extensionality.lean
-      EqualityCongruence.lean
+      Equality.lean              -- EqualityIsEquivalenceRelation
+      Substitution.lean          -- LeibnizSubstitution
+      Extensionality.lean        -- ExtensionalEqualityForPredicateSets
+      EqualityCongruence.lean    -- EqualityCongruence
 
     Relations.lean
     Relations

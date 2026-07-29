@@ -32,9 +32,9 @@ Working branch: `codex/volume-i-restructure`.
 | Module | Status | Notes |
 | --- | --- | --- |
 | `LRA.VolumeI.Functions` and children | added | First-pass compile-safe function vocabulary homes. |
-| `LRA.VolumeI.Set.Families` | added | Public set-interface placeholder. |
-| `LRA.VolumeI.Set.PowerSets` | added | Public set-interface placeholder. |
-| `LRA.VolumeI.Identity.{Equality,Substitution,Extensionality,EqualityCongruence}` | added | Contract homes currently import existing `Identity.Axioms`. |
+| `LRA.VolumeI.Set.Families` | added and filled | Public indexed-family wrappers, membership criteria, and monotonicity statements. |
+| `LRA.VolumeI.Set.PowerSets` | added and filled | Public absolute and relative power-set vocabulary. |
+| `LRA.VolumeI.Identity.{Equality,Substitution,Extensionality,EqualityCongruence}` | added and filled | Contract homes now expose named equality, substitution, extensionality, and equality-congruence bridge statements. |
 | `LRA.VolumeI.Relations.Equivalence` and children | added | Canonical homes for equivalence vocabulary. |
 | `LRA.VolumeI.Algebra.Signatures` and children | added | First-pass signature/notation tree; number-system-heavy implementation remains deferred. |
 | `LRA.VolumeI.Algebra.Models.{Interpretations,Satisfaction,Homomorphism,Embedding,Isomorphism,Substructure,ProductStructure,QuotientStructure,KernelRelation,KernelCongruence}` | added | Contract homes; existing number-system model implementation remains build-preserving carry-forward. |
@@ -74,6 +74,9 @@ Working branch: `codex/volume-i-restructure`.
 | `inverse_domain` | `InverseDomain` | PascalCase |
 | `partial_inverse` | `PartialInverse` | PascalCase |
 | `partial_division` | `PartialDivision` | PascalCase |
+| `LRA.VolumeI.Set.first` | `LRA.VolumeI.Set.FirstProjection` | PascalCase |
+| `LRA.VolumeI.Set.second` | `LRA.VolumeI.Set.SecondProjection` | PascalCase |
+| `LRA.VolumeI.Set.cartesianProduct` | `LRA.VolumeI.Set.CartesianProduct` | PascalCase |
 
 ## Deferred
 
@@ -83,4 +86,3 @@ Working branch: `codex/volume-i-restructure`.
   into final homes.
 - Replacing downstream short `Equivalence` references with
   `EquivalenceRelation`, if desired, during the TeX/Volume II pass.
-
