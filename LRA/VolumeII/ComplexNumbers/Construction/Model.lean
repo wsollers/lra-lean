@@ -38,7 +38,7 @@ noncomputable def total_inverse
 
 /-- The constructed complex numbers as a field operation bundle.
 
-Mathematical statement (Lean): `noncomputable def complexNumbersSignature (real_model : RealModel) : FieldSignature`.
+Mathematical statement (Lean): `noncomputable def complexNumbersSignature (real_model : RealModel) : FieldFirstOrderSignature`.
 -/
 noncomputable def complexNumbersSignature
     (real_model : RealModel) : FieldSignature where
@@ -53,12 +53,12 @@ noncomputable def complexNumbersSignature
 
 /-- The constructed complex numbers as a first-order model of the field signature.
 
-Mathematical statement (Lean): `noncomputable def complexNumbersModel (real_model : RealModel) : LRA.VolumeI.Logic.FirstOrder.Model fieldSignature`.
+Mathematical statement (Lean): `noncomputable def complexNumbersModel (real_model : RealModel) : LRA.VolumeI.Logic.FirstOrder.Model FieldFirstOrderSignature`.
 -/
 noncomputable def complexNumbersModel
     (real_model : RealModel) :
-    LRA.VolumeI.Logic.FirstOrder.Model fieldSignature :=
-  fieldModel (complexNumbersSignature real_model)
+    LRA.VolumeI.Logic.FirstOrder.Model FieldFirstOrderSignature :=
+  BuildFieldModel (complexNumbersSignature real_model)
 
 end ComplexNumber
 end Construction

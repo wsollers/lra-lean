@@ -37,9 +37,9 @@ abbrev N := Nat
 
 /-- Active natural-number ordered-semiring operation bundle.
 
-Mathematical statement (Lean): `def orderedSemiringSignature : OrderedSemiringSignature`.
+Mathematical statement (Lean): `def ActiveOrderedSemiringSignature : OrderedSemiringSignature`.
 -/
-def orderedSemiringSignature : OrderedSemiringSignature where
+def ActiveOrderedSemiringSignature : OrderedSemiringSignature where
   carrier := N
   zero := 0
   one := 1
@@ -51,12 +51,12 @@ def orderedSemiringSignature : OrderedSemiringSignature where
 
 /-- Active natural numbers as a first-order model of `(0, 1, +, *, <)`.
 
-Mathematical statement (Lean): `def orderedSemiringModel : LRA.VolumeI.Logic.FirstOrder.Model LRA.VolumeI.Algebra.Models.orderedSemiringSignature`.
+Mathematical statement (Lean): `def ActiveOrderedSemiringModel : LRA.VolumeI.Logic.FirstOrder.Model LRA.VolumeI.Algebra.Models.OrderedSemiringFirstOrderSignature`.
 -/
-def orderedSemiringModel :
+def ActiveOrderedSemiringModel :
     LRA.VolumeI.Logic.FirstOrder.Model
-      LRA.VolumeI.Algebra.Models.orderedSemiringSignature :=
-  LRA.VolumeI.Algebra.Models.orderedSemiringModel orderedSemiringSignature
+      LRA.VolumeI.Algebra.Models.OrderedSemiringFirstOrderSignature :=
+  LRA.VolumeI.Algebra.Models.BuildOrderedSemiringModel ActiveOrderedSemiringSignature
 
 end NaturalNumbers
 
@@ -72,9 +72,9 @@ abbrev W := Nat
 
 /-- Active whole-number ordered-semiring operation bundle.
 
-Mathematical statement (Lean): `def orderedSemiringSignature : OrderedSemiringSignature`.
+Mathematical statement (Lean): `def ActiveOrderedSemiringSignature : OrderedSemiringSignature`.
 -/
-def orderedSemiringSignature : OrderedSemiringSignature where
+def ActiveOrderedSemiringSignature : OrderedSemiringSignature where
   carrier := W
   zero := 0
   one := 1
@@ -86,12 +86,12 @@ def orderedSemiringSignature : OrderedSemiringSignature where
 
 /-- Active whole numbers as a first-order model of `(0, 1, +, *, <)`.
 
-Mathematical statement (Lean): `def orderedSemiringModel : LRA.VolumeI.Logic.FirstOrder.Model LRA.VolumeI.Algebra.Models.orderedSemiringSignature`.
+Mathematical statement (Lean): `def ActiveOrderedSemiringModel : LRA.VolumeI.Logic.FirstOrder.Model LRA.VolumeI.Algebra.Models.OrderedSemiringFirstOrderSignature`.
 -/
-def orderedSemiringModel :
+def ActiveOrderedSemiringModel :
     LRA.VolumeI.Logic.FirstOrder.Model
-      LRA.VolumeI.Algebra.Models.orderedSemiringSignature :=
-  LRA.VolumeI.Algebra.Models.orderedSemiringModel orderedSemiringSignature
+      LRA.VolumeI.Algebra.Models.OrderedSemiringFirstOrderSignature :=
+  LRA.VolumeI.Algebra.Models.BuildOrderedSemiringModel ActiveOrderedSemiringSignature
 
 end WholeNumbers
 
@@ -107,9 +107,9 @@ abbrev Z := Int
 
 /-- Active integer ordered-ring operation bundle.
 
-Mathematical statement (Lean): `def orderedRingSignature : OrderedRingSignature`.
+Mathematical statement (Lean): `def ActiveOrderedRingSignature : OrderedRingSignature`.
 -/
-def orderedRingSignature : OrderedRingSignature where
+def ActiveOrderedRingSignature : OrderedRingSignature where
   carrier := Z
   zero := 0
   one := 1
@@ -122,19 +122,19 @@ def orderedRingSignature : OrderedRingSignature where
 
 /-- Active integers as a first-order model of `(0, 1, +, *, -, <)`.
 
-Mathematical statement (Lean): `def orderedRingModel : LRA.VolumeI.Logic.FirstOrder.Model LRA.VolumeI.Algebra.Models.orderedRingSignature`.
+Mathematical statement (Lean): `def ActiveOrderedRingModel : LRA.VolumeI.Logic.FirstOrder.Model LRA.VolumeI.Algebra.Models.OrderedRingFirstOrderSignature`.
 -/
-def orderedRingModel :
+def ActiveOrderedRingModel :
     LRA.VolumeI.Logic.FirstOrder.Model
-      LRA.VolumeI.Algebra.Models.orderedRingSignature :=
-  LRA.VolumeI.Algebra.Models.orderedRingModel orderedRingSignature
+      LRA.VolumeI.Algebra.Models.OrderedRingFirstOrderSignature :=
+  LRA.VolumeI.Algebra.Models.BuildOrderedRingModel ActiveOrderedRingSignature
 
 
 /-- Active integers in the additive ordered language `(0, 1, +, <)`.
 
-Mathematical statement (Lean): `def additiveOrderedSignature : AdditiveOrderedSignature`.
+Mathematical statement (Lean): `def ActiveAdditiveOrderedSignature : AdditiveOrderedSignature`.
 -/
-def additiveOrderedSignature : AdditiveOrderedSignature where
+def ActiveAdditiveOrderedSignature : AdditiveOrderedSignature where
   carrier := Z
   zero := 0
   one := 1
@@ -145,19 +145,19 @@ def additiveOrderedSignature : AdditiveOrderedSignature where
 
 /-- Active integers as a first-order model of `(0, 1, +, <)`.
 
-Mathematical statement (Lean): `def additiveOrderedModel : LRA.VolumeI.Logic.FirstOrder.Model LRA.VolumeI.Algebra.Models.additiveOrderedSignature`.
+Mathematical statement (Lean): `def ActiveAdditiveOrderedModel : LRA.VolumeI.Logic.FirstOrder.Model LRA.VolumeI.Algebra.Models.AdditiveOrderedFirstOrderSignature`.
 -/
-def additiveOrderedModel :
+def ActiveAdditiveOrderedModel :
     LRA.VolumeI.Logic.FirstOrder.Model
-      LRA.VolumeI.Algebra.Models.additiveOrderedSignature :=
-  LRA.VolumeI.Algebra.Models.additiveOrderedModel additiveOrderedSignature
+      LRA.VolumeI.Algebra.Models.AdditiveOrderedFirstOrderSignature :=
+  LRA.VolumeI.Algebra.Models.BuildAdditiveOrderedModel ActiveAdditiveOrderedSignature
 
 
 /-- Active integers in the arithmetic ring language `(0, 1, +, *)`.
 
-Mathematical statement (Lean): `def arithmeticRingSignature : ArithmeticRingSignature`.
+Mathematical statement (Lean): `def ActiveArithmeticRingSignature : ArithmeticRingSignature`.
 -/
-def arithmeticRingSignature : ArithmeticRingSignature where
+def ActiveArithmeticRingSignature : ArithmeticRingSignature where
   carrier := Z
   zero := 0
   one := 1
@@ -167,22 +167,22 @@ def arithmeticRingSignature : ArithmeticRingSignature where
 
 /-- Active integers as a first-order model of `(0, 1, +, *)`.
 
-Mathematical statement (Lean): `def arithmeticRingModel : LRA.VolumeI.Logic.FirstOrder.Model LRA.VolumeI.Algebra.Models.arithmeticRingSignature`.
+Mathematical statement (Lean): `def ActiveArithmeticRingModel : LRA.VolumeI.Logic.FirstOrder.Model LRA.VolumeI.Algebra.Models.ArithmeticRingFirstOrderSignature`.
 -/
-def arithmeticRingModel :
+def ActiveArithmeticRingModel :
     LRA.VolumeI.Logic.FirstOrder.Model
-      LRA.VolumeI.Algebra.Models.arithmeticRingSignature :=
-  LRA.VolumeI.Algebra.Models.arithmeticRingModel arithmeticRingSignature
+      LRA.VolumeI.Algebra.Models.ArithmeticRingFirstOrderSignature :=
+  LRA.VolumeI.Algebra.Models.BuildArithmeticRingModel ActiveArithmeticRingSignature
 
 
 /-- Mathlib integers satisfy the generic integer-model laws.
 
-Mathematical statement (Lean): `theorem integerLaws : LRA.VolumeI.Algebra.Models.IntegerLaws orderedRingSignature`.
+Mathematical statement (Lean): `theorem integerLaws : LRA.VolumeI.Algebra.Models.IntegerLaws ActiveOrderedRingSignature`.
 
 *Proof status:* proof pending
 -/
 theorem integerLaws :
-    LRA.VolumeI.Algebra.Models.IntegerLaws orderedRingSignature := by
+    LRA.VolumeI.Algebra.Models.IntegerLaws ActiveOrderedRingSignature := by
   sorry
 
 
@@ -191,7 +191,7 @@ theorem integerLaws :
 Mathematical statement (Lean): `def integerModel : LRA.VolumeI.Algebra.Models.IntegerModel`.
 -/
 def integerModel : LRA.VolumeI.Algebra.Models.IntegerModel where
-  signature := orderedRingSignature
+  signature := ActiveOrderedRingSignature
   laws := integerLaws
 
 end IntegerNumbers
@@ -208,9 +208,9 @@ abbrev Q := Rat
 
 /-- Active rational-number ordered-field operation bundle.
 
-Mathematical statement (Lean): `def orderedFieldSignature : OrderedFieldSignature`.
+Mathematical statement (Lean): `def ActiveOrderedFieldSignature : OrderedFieldSignature`.
 -/
-def orderedFieldSignature : OrderedFieldSignature where
+def ActiveOrderedFieldSignature : OrderedFieldSignature where
   carrier := Q
   zero := 0
   one := 1
@@ -224,22 +224,22 @@ def orderedFieldSignature : OrderedFieldSignature where
 
 /-- Active rationals as a first-order model of `(0, 1, +, *, -, inv, <)`.
 
-Mathematical statement (Lean): `def orderedFieldModel : LRA.VolumeI.Logic.FirstOrder.Model LRA.VolumeI.Algebra.Models.orderedFieldSignature`.
+Mathematical statement (Lean): `def ActiveOrderedFieldModel : LRA.VolumeI.Logic.FirstOrder.Model LRA.VolumeI.Algebra.Models.OrderedFieldFirstOrderSignature`.
 -/
-def orderedFieldModel :
+def ActiveOrderedFieldModel :
     LRA.VolumeI.Logic.FirstOrder.Model
-      LRA.VolumeI.Algebra.Models.orderedFieldSignature :=
-  LRA.VolumeI.Algebra.Models.orderedFieldModel orderedFieldSignature
+      LRA.VolumeI.Algebra.Models.OrderedFieldFirstOrderSignature :=
+  LRA.VolumeI.Algebra.Models.BuildOrderedFieldModel ActiveOrderedFieldSignature
 
 
 /-- Mathlib rationals satisfy the generic rational-model laws.
 
-Mathematical statement (Lean): `theorem rationalLaws : LRA.VolumeI.Algebra.Models.RationalLaws orderedFieldSignature`.
+Mathematical statement (Lean): `theorem rationalLaws : LRA.VolumeI.Algebra.Models.RationalLaws ActiveOrderedFieldSignature`.
 
 *Proof status:* proof pending
 -/
 theorem rationalLaws :
-    LRA.VolumeI.Algebra.Models.RationalLaws orderedFieldSignature := by
+    LRA.VolumeI.Algebra.Models.RationalLaws ActiveOrderedFieldSignature := by
   sorry
 
 
@@ -248,7 +248,7 @@ theorem rationalLaws :
 Mathematical statement (Lean): `def rationalModel : LRA.VolumeI.Algebra.Models.RationalModel`.
 -/
 def rationalModel : LRA.VolumeI.Algebra.Models.RationalModel where
-  signature := orderedFieldSignature
+  signature := ActiveOrderedFieldSignature
   laws := rationalLaws
 
 end RationalNumbers
@@ -265,9 +265,9 @@ abbrev R := Real
 
 /-- Active real-number ordered-field operation bundle.
 
-Mathematical statement (Lean): `noncomputable def orderedFieldSignature : OrderedFieldSignature`.
+Mathematical statement (Lean): `noncomputable def ActiveOrderedFieldSignature : OrderedFieldSignature`.
 -/
-noncomputable def orderedFieldSignature : OrderedFieldSignature where
+noncomputable def ActiveOrderedFieldSignature : OrderedFieldSignature where
   carrier := R
   zero := 0
   one := 1
@@ -281,22 +281,22 @@ noncomputable def orderedFieldSignature : OrderedFieldSignature where
 
 /-- Active reals as a first-order model of `(0, 1, +, *, -, inv, <)`.
 
-Mathematical statement (Lean): `noncomputable def orderedFieldModel : LRA.VolumeI.Logic.FirstOrder.Model LRA.VolumeI.Algebra.Models.orderedFieldSignature`.
+Mathematical statement (Lean): `noncomputable def ActiveOrderedFieldModel : LRA.VolumeI.Logic.FirstOrder.Model LRA.VolumeI.Algebra.Models.OrderedFieldFirstOrderSignature`.
 -/
-noncomputable def orderedFieldModel :
+noncomputable def ActiveOrderedFieldModel :
     LRA.VolumeI.Logic.FirstOrder.Model
-      LRA.VolumeI.Algebra.Models.orderedFieldSignature :=
-  LRA.VolumeI.Algebra.Models.orderedFieldModel orderedFieldSignature
+      LRA.VolumeI.Algebra.Models.OrderedFieldFirstOrderSignature :=
+  LRA.VolumeI.Algebra.Models.BuildOrderedFieldModel ActiveOrderedFieldSignature
 
 
 /-- Mathlib reals satisfy the generic real-model laws.
 
-Mathematical statement (Lean): `theorem realLaws : LRA.VolumeI.Algebra.Models.RealLaws orderedFieldSignature`.
+Mathematical statement (Lean): `theorem realLaws : LRA.VolumeI.Algebra.Models.RealLaws ActiveOrderedFieldSignature`.
 
 *Proof status:* proof pending
 -/
 theorem realLaws :
-    LRA.VolumeI.Algebra.Models.RealLaws orderedFieldSignature := by
+    LRA.VolumeI.Algebra.Models.RealLaws ActiveOrderedFieldSignature := by
   sorry
 
 
@@ -305,7 +305,7 @@ theorem realLaws :
 Mathematical statement (Lean): `noncomputable def realModel : LRA.VolumeI.Algebra.Models.RealModel`.
 -/
 noncomputable def realModel : LRA.VolumeI.Algebra.Models.RealModel where
-  signature := orderedFieldSignature
+  signature := ActiveOrderedFieldSignature
   laws := realLaws
 
 end RealNumbers
@@ -322,9 +322,9 @@ abbrev C := Complex
 
 /-- Active complex-number field operation bundle.
 
-Mathematical statement (Lean): `noncomputable def fieldSignature : FieldSignature`.
+Mathematical statement (Lean): `noncomputable def ActiveFieldSignature : FieldSignature`.
 -/
-noncomputable def fieldSignature : FieldSignature where
+noncomputable def ActiveFieldSignature : FieldSignature where
   carrier := C
   zero := 0
   one := 1
@@ -336,12 +336,12 @@ noncomputable def fieldSignature : FieldSignature where
 
 /-- Active complex numbers as a first-order model of `(0, 1, +, *, -, inv)`.
 
-Mathematical statement (Lean): `noncomputable def fieldModel : LRA.VolumeI.Logic.FirstOrder.Model LRA.VolumeI.Algebra.Models.fieldSignature`.
+Mathematical statement (Lean): `noncomputable def ActiveFieldModel : LRA.VolumeI.Logic.FirstOrder.Model LRA.VolumeI.Algebra.Models.FieldFirstOrderSignature`.
 -/
-noncomputable def fieldModel :
+noncomputable def ActiveFieldModel :
     LRA.VolumeI.Logic.FirstOrder.Model
-      LRA.VolumeI.Algebra.Models.fieldSignature :=
-  LRA.VolumeI.Algebra.Models.fieldModel fieldSignature
+      LRA.VolumeI.Algebra.Models.FieldFirstOrderSignature :=
+  LRA.VolumeI.Algebra.Models.BuildFieldModel ActiveFieldSignature
 
 end ComplexNumbers
 

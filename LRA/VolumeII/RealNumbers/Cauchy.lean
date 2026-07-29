@@ -71,7 +71,7 @@ def distance
     (first second : rational_model.signature.carrier) :
     rational_model.signature.carrier :=
   absolute_value_data.absolute_value
-    (rational_model.signature.subtraction first second)
+    (rational_model.signature.Subtraction first second)
 
 
 /-- A rational number is positive when it is strictly greater than zero.
@@ -133,7 +133,7 @@ def equivalent
     (first second : Sequence rational_model) : Prop :=
   is_null rational_model absolute_value_data
     (fun index =>
-      rational_model.signature.subtraction
+      rational_model.signature.Subtraction
         (first index)
         (second index))
 

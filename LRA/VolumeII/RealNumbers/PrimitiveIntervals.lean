@@ -94,7 +94,7 @@ Mathematical statement (Lean): `def width (interval : RationalInterval rational_
 -/
 def width
     (interval : RationalInterval rational_model) : Rational rational_model :=
-  rational_model.signature.subtraction
+  rational_model.signature.Subtraction
     interval.right_endpoint interval.left_endpoint
 
 /--
@@ -847,7 +847,7 @@ theorem persistent_overlap_iff_endpoint_null
     equivalent rational_model first second ↔
       Cauchy.is_null rational_model absolute_value_data
         (fun index =>
-          rational_model.signature.subtraction
+          rational_model.signature.Subtraction
             (first.interval index).left_endpoint
             (second.interval index).left_endpoint) := by
   sorry

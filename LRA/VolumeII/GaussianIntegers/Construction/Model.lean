@@ -100,8 +100,8 @@ def GaussianArithmeticRingSignature : ArithmeticRingSignature where
 
 /-- The Gaussian integers as a first-order model of the arithmetic ring language. -/
 def GaussianArithmeticRingModel :
-    LRA.VolumeI.Logic.FirstOrder.Model arithmeticRingSignature :=
-  arithmeticRingModel GaussianArithmeticRingSignature
+    LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+  BuildArithmeticRingModel GaussianArithmeticRingSignature
 
 /-- Gaussian addition is associative. -/
 theorem GaussianAdditionIsAssociative :

@@ -151,7 +151,7 @@ theorem rational_subtraction_is_rational
     (first_is_rational : IsRational rational_model real_extension first)
     (second_is_rational : IsRational rational_model real_extension second) :
     IsRational rational_model real_extension
-      (real_extension.real_model.signature.subtraction first second) := by
+      (real_extension.real_model.signature.Subtraction first second) := by
   sorry
 
 
@@ -258,7 +258,7 @@ theorem rational_sub_irrational_is_irrational
     (rational_is_rational : IsRational rational_model real_extension rational_value)
     (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) :
     IsIrrational rational_model real_extension
-      (real_extension.real_model.signature.subtraction rational_value irrational_value) := by
+      (real_extension.real_model.signature.Subtraction rational_value irrational_value) := by
   sorry
 
 
@@ -273,7 +273,7 @@ theorem irrational_sub_rational_is_irrational
     (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value)
     (rational_is_rational : IsRational rational_model real_extension rational_value) :
     IsIrrational rational_model real_extension
-      (real_extension.real_model.signature.subtraction irrational_value rational_value) := by
+      (real_extension.real_model.signature.Subtraction irrational_value rational_value) := by
   sorry
 
 
@@ -401,7 +401,7 @@ theorem irrationals_not_closed_under_subtraction
       IsIrrational rational_model real_extension first ∧
       IsIrrational rational_model real_extension second ∧
       IsRational rational_model real_extension
-        (real_extension.real_model.signature.subtraction first second) := by
+        (real_extension.real_model.signature.Subtraction first second) := by
   sorry
 
 

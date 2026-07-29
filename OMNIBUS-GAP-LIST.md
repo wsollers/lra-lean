@@ -116,7 +116,7 @@ be organized.
 | Omnibus item | Current state | Gap |
 | --- | --- | --- |
 | General partial inverse operation from cancellation | Partial | `PartialUnaryOperation` and `PartialBinaryOperation` exist; no generic construction from cancellativity. |
-| Subtraction as inverse to addition | Partial | `OrderedRingSignature.subtraction` exists; theorem catalogue is missing. |
+| Subtraction as inverse to addition | Partial | `OrderedRingSignature.Subtraction` exists; theorem catalogue is missing. |
 | Division as inverse to multiplication | Partial | `OrderedFieldSignature.PartialDivision` exists; theorem catalogue is missing. |
 | Fraction arithmetic and cross-ordering | Partial in rational-number construction | Specific rational quotient construction has many statements; generic field-level division laws are missing. |
 | Division by zero impossible | Missing generic theorem | Needs statement in field/integral-domain layer. |

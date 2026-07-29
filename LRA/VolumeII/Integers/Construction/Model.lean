@@ -21,7 +21,7 @@ Verification status: definitions accepted; model laws pending
 
 /-- The active integer carrier and operations as an ordered-ring operation bundle.
 
-Mathematical statement (Lean): `def integerNumbersSignature : OrderedRingSignature`.
+Mathematical statement (Lean): `def integerNumbersSignature : OrderedRingFirstOrderSignature`.
 -/
 def integerNumbersSignature : OrderedRingSignature where
   carrier := Z
@@ -36,17 +36,17 @@ def integerNumbersSignature : OrderedRingSignature where
 
 /-- The active integers as a first-order model of the ordered-ring signature.
 
-Mathematical statement (Lean): `def integerNumbersModel : LRA.VolumeI.Logic.FirstOrder.Model orderedRingSignature`.
+Mathematical statement (Lean): `def integerNumbersModel : LRA.VolumeI.Logic.FirstOrder.Model OrderedRingFirstOrderSignature`.
 -/
 def integerNumbersModel :
-    LRA.VolumeI.Logic.FirstOrder.Model orderedRingSignature :=
-  orderedRingModel integerNumbersSignature
+    LRA.VolumeI.Logic.FirstOrder.Model OrderedRingFirstOrderSignature :=
+  BuildOrderedRingModel integerNumbersSignature
 
 /--
 The active integer carrier and operations in the additive ordered language
 `(0, 1, +, <)`, the language underlying Presburger arithmetic.
 
-Mathematical statement (Lean): `def additiveOrderedIntegerSignature : AdditiveOrderedSignature`.
+Mathematical statement (Lean): `def additiveOrderedIntegerSignature : AdditiveOrderedFirstOrderSignature`.
 -/
 def additiveOrderedIntegerSignature : AdditiveOrderedSignature where
   carrier := Z
@@ -59,17 +59,17 @@ def additiveOrderedIntegerSignature : AdditiveOrderedSignature where
 
 /-- The active integers as a model of the additive ordered language.
 
-Mathematical statement (Lean): `def additiveOrderedIntegerModel : LRA.VolumeI.Logic.FirstOrder.Model additiveOrderedSignature`.
+Mathematical statement (Lean): `def additiveOrderedIntegerModel : LRA.VolumeI.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature`.
 -/
 def additiveOrderedIntegerModel :
-    LRA.VolumeI.Logic.FirstOrder.Model additiveOrderedSignature :=
-  additiveOrderedModel additiveOrderedIntegerSignature
+    LRA.VolumeI.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature :=
+  BuildAdditiveOrderedModel additiveOrderedIntegerSignature
 
 /--
 The active integer carrier and operations in the arithmetic ring language
 `(0, 1, +, *)`.
 
-Mathematical statement (Lean): `def arithmeticRingIntegerSignature : ArithmeticRingSignature`.
+Mathematical statement (Lean): `def arithmeticRingIntegerSignature : ArithmeticRingFirstOrderSignature`.
 -/
 def arithmeticRingIntegerSignature : ArithmeticRingSignature where
   carrier := Z
@@ -81,11 +81,11 @@ def arithmeticRingIntegerSignature : ArithmeticRingSignature where
 
 /-- The active integers as a model of the arithmetic ring language.
 
-Mathematical statement (Lean): `def arithmeticRingIntegerModel : LRA.VolumeI.Logic.FirstOrder.Model arithmeticRingSignature`.
+Mathematical statement (Lean): `def arithmeticRingIntegerModel : LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature`.
 -/
 def arithmeticRingIntegerModel :
-    LRA.VolumeI.Logic.FirstOrder.Model arithmeticRingSignature :=
-  arithmeticRingModel arithmeticRingIntegerSignature
+    LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+  BuildArithmeticRingModel arithmeticRingIntegerSignature
 
 
 /-- The active integers satisfy the generic integer-model laws.

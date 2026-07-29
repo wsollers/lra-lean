@@ -18,12 +18,12 @@ Verification status: definitions accepted
 
 /-- A rational operation bundle as a first-order model of ordered fields.
 
-Mathematical statement (Lean): `def rationalNumbersModel (rational_model : RationalModel) : LRA.VolumeI.Logic.FirstOrder.Model orderedFieldSignature`.
+Mathematical statement (Lean): `def rationalNumbersModel (rational_model : RationalModel) : LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature`.
 -/
 def rationalNumbersModel
     (rational_model : RationalModel) :
-    LRA.VolumeI.Logic.FirstOrder.Model orderedFieldSignature :=
-  orderedFieldModel rational_model.signature
+    LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
+  BuildOrderedFieldModel rational_model.signature
 
 end RationalNumbers
 end VolumeII
