@@ -4,11 +4,7 @@
 import LRA.VolumeI.Algebra.Models.CharacteristicCardinality
 import LRA.VolumeI.Algebra.Models.CanonicalEmbeddings
 
-namespace LRA
-namespace VolumeI
-namespace Algebra
-namespace Models
-namespace ComparisonMatrix
+namespace LRA.VolumeI.Algebra.Models.ComparisonMatrix
 
 /-!
 Volume II label: number-system-comparison-matrix
@@ -37,7 +33,7 @@ structure CanonicalMapLedger {source target : Type}
   dense_image : Prop
   universal_role : Prop
 
-theorem comparison_matrix_for_z_q_r
+theorem ComparisonMatrixForZQR
     (integer_model : IntegerModel)
     (rational_extension : RationalExtension integer_model)
     (real_extension : RealExtension rational_extension.rational_model) :
@@ -47,8 +43,4 @@ theorem comparison_matrix_for_z_q_r
         real_ledger.has_completeness_property := by
   sorry
 
-end ComparisonMatrix
-end Models
-end Algebra
-end VolumeI
-end LRA
+end LRA.VolumeI.Algebra.Models.ComparisonMatrix

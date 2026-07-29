@@ -82,12 +82,12 @@ theorem NAdditionSuccessorOnRight
 
 theorem NAdditionIsAssociative
     (model : NModel) :
-    LRA.VolumeI.Algebra.Associative (NAddition model) := by
+    LRA.VolumeI.Operations.Associative (NAddition model) := by
   sorry
 
 theorem NAdditionIsCommutative
     (model : NModel) :
-    LRA.VolumeI.Algebra.Commutative (NAddition model) := by
+    LRA.VolumeI.Operations.Commutative (NAddition model) := by
   sorry
 
 end LRA.VolumeII.NaturalNumbers

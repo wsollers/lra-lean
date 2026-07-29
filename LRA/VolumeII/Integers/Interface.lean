@@ -25,9 +25,9 @@ Mathematical statement (Lean): `structure AdditiveStructure`.
 -/
 structure AdditiveStructure where
   carrier : LRA.VolumeI.Set.LRACarrier
-  zero : LRA.VolumeI.Algebra.Operations.NullaryOperation carrier
-  add : LRA.VolumeI.Algebra.Operations.BinaryOperation carrier
-  neg : LRA.VolumeI.Algebra.Operations.UnaryOperation carrier
+  zero : LRA.VolumeI.Operations.NullaryOperation carrier
+  add : LRA.VolumeI.Operations.BinaryOperation carrier
+  neg : LRA.VolumeI.Operations.UnaryOperation carrier
 
 
 /-- Carrier with multiplicative operations.
@@ -36,9 +36,9 @@ Mathematical statement (Lean): `structure MultiplicativeStructure`.
 -/
 structure MultiplicativeStructure where
   carrier : LRA.VolumeI.Set.LRACarrier
-  zero : LRA.VolumeI.Algebra.Operations.NullaryOperation carrier
-  one : LRA.VolumeI.Algebra.Operations.NullaryOperation carrier
-  mul : LRA.VolumeI.Algebra.Operations.BinaryOperation carrier
+  zero : LRA.VolumeI.Operations.NullaryOperation carrier
+  one : LRA.VolumeI.Operations.NullaryOperation carrier
+  mul : LRA.VolumeI.Operations.BinaryOperation carrier
 
 
 /-- Carrier with strict and non-strict order relations.

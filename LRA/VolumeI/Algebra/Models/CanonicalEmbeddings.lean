@@ -3,11 +3,7 @@
 
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA
-namespace VolumeI
-namespace Algebra
-namespace Models
-namespace CanonicalEmbeddings
+namespace LRA.VolumeI.Algebra.Models.CanonicalEmbeddings
 
 /-!
 Volume II label: canonical-embeddings
@@ -62,7 +58,7 @@ structure AdjacentTowerEmbeddings
       real_extension.real_model.signature
       real_extension.rational_embedding.to_real
 
-def composite_integer_to_real
+def CompositeIntegerToReal
     {integer_model : IntegerModel}
     (rational_extension : RationalExtension integer_model)
     (real_extension : RealExtension rational_extension.rational_model) :
@@ -71,7 +67,7 @@ def composite_integer_to_real
     real_extension.rational_embedding.to_real
       (rational_extension.integer_embedding.to_rational value)
 
-theorem composite_integer_to_real_is_embedding
+theorem CompositeIntegerToRealIsEmbedding
     {integer_model : IntegerModel}
     (rational_extension : RationalExtension integer_model)
     (real_extension : RealExtension rational_extension.rational_model)
@@ -80,11 +76,7 @@ theorem composite_integer_to_real_is_embedding
     EmbeddingPreservesOrderedRing
       integer_model.signature
       real_extension.real_model.signature.toOrderedRingSignature
-      (composite_integer_to_real rational_extension real_extension) := by
+      (CompositeIntegerToReal rational_extension real_extension) := by
   sorry
 
-end CanonicalEmbeddings
-end Models
-end Algebra
-end VolumeI
-end LRA
+end LRA.VolumeI.Algebra.Models.CanonicalEmbeddings

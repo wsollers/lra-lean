@@ -4,11 +4,7 @@
 import Mathlib.Topology.MetricSpace.Basic
 import LRA.VolumeI.Algebra.Models.CanonicalEmbeddings
 
-namespace LRA
-namespace VolumeI
-namespace Algebra
-namespace Models
-namespace UniversalProperties
+namespace LRA.VolumeI.Algebra.Models.UniversalProperties
 
 universe u v w
 
@@ -86,8 +82,4 @@ structure CompleteOrderedFieldCharacterization (real_model : RealModel) : Prop w
         CanonicalEmbeddings.EmbeddingPreservesOrderedField
           real_model.signature other.signature comparison
 
-end UniversalProperties
-end Models
-end Algebra
-end VolumeI
-end LRA
+end LRA.VolumeI.Algebra.Models.UniversalProperties

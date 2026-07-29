@@ -1,4 +1,4 @@
-import LRA.VolumeI.Relations.NamedRelations
+import LRA.VolumeI.Relations.Basic.Properties
 
 /-!
 Identity, equality, and substitution foundations.

@@ -24,23 +24,23 @@ integer layer.
 Mathematical statement (Lean): `structure AdditiveGroupLaws (additive_structure : AdditiveStructure) : Prop`.
 -/
 structure AdditiveGroupLaws (additive_structure : AdditiveStructure) : Prop where
-  add_assoc : LRA.VolumeI.Algebra.Associative (AdditiveStructure.add additive_structure)
-  add_comm : LRA.VolumeI.Algebra.Commutative (AdditiveStructure.add additive_structure)
+  add_assoc : LRA.VolumeI.Operations.Associative (AdditiveStructure.add additive_structure)
+  add_comm : LRA.VolumeI.Operations.Commutative (AdditiveStructure.add additive_structure)
   zero_add :
-    LRA.VolumeI.Algebra.LeftIdentity
+    LRA.VolumeI.Operations.LeftIdentity
       (AdditiveStructure.add additive_structure)
       (AdditiveStructure.zero additive_structure)
   add_zero :
-    LRA.VolumeI.Algebra.RightIdentity
+    LRA.VolumeI.Operations.RightIdentity
       (AdditiveStructure.add additive_structure)
       (AdditiveStructure.zero additive_structure)
   neg_add_self :
-    LRA.VolumeI.Algebra.LeftInverse
+    LRA.VolumeI.Operations.LeftInverse
       (AdditiveStructure.add additive_structure)
       (AdditiveStructure.zero additive_structure)
       (AdditiveStructure.neg additive_structure)
   add_neg_self :
-    LRA.VolumeI.Algebra.RightInverse
+    LRA.VolumeI.Operations.RightInverse
       (AdditiveStructure.add additive_structure)
       (AdditiveStructure.zero additive_structure)
       (AdditiveStructure.neg additive_structure)
@@ -65,26 +65,26 @@ Mathematical statement (Lean): `structure MultiplicativeMonoidLaws (multiplicati
 structure MultiplicativeMonoidLaws
     (multiplicative_structure : MultiplicativeStructure) : Prop where
   one_mul :
-    LRA.VolumeI.Algebra.LeftIdentity
+    LRA.VolumeI.Operations.LeftIdentity
       (MultiplicativeStructure.mul multiplicative_structure)
       (MultiplicativeStructure.one multiplicative_structure)
   mul_one :
-    LRA.VolumeI.Algebra.RightIdentity
+    LRA.VolumeI.Operations.RightIdentity
       (MultiplicativeStructure.mul multiplicative_structure)
       (MultiplicativeStructure.one multiplicative_structure)
   mul_zero :
-    LRA.VolumeI.Algebra.RightAbsorbing
+    LRA.VolumeI.Operations.RightAbsorbing
       (MultiplicativeStructure.mul multiplicative_structure)
       (MultiplicativeStructure.zero multiplicative_structure)
   zero_mul :
-    LRA.VolumeI.Algebra.LeftAbsorbing
+    LRA.VolumeI.Operations.LeftAbsorbing
       (MultiplicativeStructure.mul multiplicative_structure)
       (MultiplicativeStructure.zero multiplicative_structure)
   mul_assoc :
-    LRA.VolumeI.Algebra.Associative
+    LRA.VolumeI.Operations.Associative
       (MultiplicativeStructure.mul multiplicative_structure)
   mul_comm :
-    LRA.VolumeI.Algebra.Commutative
+    LRA.VolumeI.Operations.Commutative
       (MultiplicativeStructure.mul multiplicative_structure)
 
 /--
@@ -96,11 +96,11 @@ structure RingLaws (ring_structure : RingStructure) : Prop extends
     AdditiveGroupLaws ring_structure.toAdditiveStructure,
     MultiplicativeMonoidLaws ring_structure.toMultiplicativeStructure where
   distrib_left :
-    LRA.VolumeI.Algebra.LeftDistributive
+    LRA.VolumeI.Operations.LeftDistributive
       ring_structure.mul
       ring_structure.add
   distrib_right :
-    LRA.VolumeI.Algebra.RightDistributive
+    LRA.VolumeI.Operations.RightDistributive
       ring_structure.mul
       ring_structure.add
   mul_neg :
@@ -136,11 +136,11 @@ Mathematical statement (Lean): `structure OrderedRingCompatibilityLaws (ordered_
 structure OrderedRingCompatibilityLaws
     (ordered_ring_structure : OrderedRingStructure) : Prop where
   add_lt_add_right :
-    LRA.VolumeI.Order.StrictlyPreservesRightTranslation
+    LRA.VolumeI.Relations.Order.StrictlyPreservesRightTranslation
       ordered_ring_structure.lt
       ordered_ring_structure.add
   mul_lt_mul_pos_right :
-    LRA.VolumeI.Order.PreservesPositiveRightMultiplication
+    LRA.VolumeI.Relations.Order.PreservesPositiveRightMultiplication
       ordered_ring_structure.lt
       ordered_ring_structure.mul
       ordered_ring_structure.zero

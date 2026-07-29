@@ -1,7 +1,9 @@
 import LRA.VolumeI.Operations
 import LRA.VolumeI.Relations
-import LRA.VolumeI.Structures
+import LRA.VolumeI.Algebra.Structures
+import LRA.VolumeI.Algebra.Signatures
 import LRA.VolumeI.Algebra.Models
+import LRA.VolumeI.Algebra.UniversalProperties
 
 /-!
 Compatibility aggregate for the small Volume I algebra vocabulary.

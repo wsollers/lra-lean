@@ -3,11 +3,7 @@
 
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA
-namespace VolumeI
-namespace Algebra
-namespace Models
-namespace CharacteristicCardinality
+namespace LRA.VolumeI.Algebra.Models.CharacteristicCardinality
 
 /-!
 Volume II label: characteristic-and-cardinality
@@ -16,7 +12,7 @@ Source: docs/number-systems/gpt-09a-characteristic-cardinality.md
 Verification status: statement-accepted-proof-pending
 -/
 
-def characteristic_zero (signature : OrderedRingSignature) : Prop :=
+def CharacteristicZero (signature : OrderedRingSignature) : Prop :=
   ∀ n : Nat,
     n ≠ 0 →
       Nat.rec signature.zero
@@ -29,27 +25,23 @@ def countable (α : Type u) : Prop :=
 def uncountable (α : Type u) : Prop :=
   ¬ countable α
 
-theorem integer_rational_real_have_characteristic_zero
+theorem IntegerRationalRealHaveCharacteristicZero
     (integer_model : IntegerModel)
     (rational_model : RationalModel)
     (real_model : RealModel) :
-    characteristic_zero integer_model.signature ∧
-      characteristic_zero rational_model.signature.toOrderedRingSignature ∧
-      characteristic_zero real_model.signature.toOrderedRingSignature := by
+    CharacteristicZero integer_model.signature ∧
+      CharacteristicZero rational_model.signature.toOrderedRingSignature ∧
+      CharacteristicZero real_model.signature.toOrderedRingSignature := by
   sorry
 
-theorem rationals_are_countable
+theorem RationalsAreCountable
     (rational_model : RationalModel) :
     countable rational_model.signature.carrier := by
   sorry
 
-theorem reals_are_uncountable
+theorem RealsAreUncountable
     (real_model : RealModel) :
     uncountable real_model.signature.carrier := by
   sorry
 
-end CharacteristicCardinality
-end Models
-end Algebra
-end VolumeI
-end LRA
+end LRA.VolumeI.Algebra.Models.CharacteristicCardinality

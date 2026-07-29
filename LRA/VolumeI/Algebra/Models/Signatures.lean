@@ -6,10 +6,7 @@ import LRA.VolumeI.Operations
 import LRA.VolumeI.Relations
 import LRA.VolumeI.Logic.Model.Model
 
-namespace LRA
-namespace VolumeI
-namespace Algebra
-namespace Models
+namespace LRA.VolumeI.Algebra.Models
 
 /-!
 Volume I label: algebraic-model-signatures
@@ -253,21 +250,21 @@ elements, and order relations. Laws are stored separately.
 -/
 structure OrderedRingSignature where
   carrier : LRA.VolumeI.Set.LRACarrier
-  zero : LRA.VolumeI.Algebra.Operations.NullaryOperation carrier
-  one : LRA.VolumeI.Algebra.Operations.NullaryOperation carrier
-  addition : LRA.VolumeI.Algebra.Operations.BinaryOperation carrier
-  negation : LRA.VolumeI.Algebra.Operations.UnaryOperation carrier
-  multiplication : LRA.VolumeI.Algebra.Operations.BinaryOperation carrier
+  zero : LRA.VolumeI.Operations.NullaryOperation carrier
+  one : LRA.VolumeI.Operations.NullaryOperation carrier
+  addition : LRA.VolumeI.Operations.BinaryOperation carrier
+  negation : LRA.VolumeI.Operations.UnaryOperation carrier
+  multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
   strict_order : LRA.VolumeI.Relations.Endorelation carrier
   nonstrict_order : LRA.VolumeI.Relations.Endorelation carrier
 
 /-- The operation bundle for an ordered semiring. -/
 structure OrderedSemiringSignature where
   carrier : LRA.VolumeI.Set.LRACarrier
-  zero : LRA.VolumeI.Algebra.Operations.NullaryOperation carrier
-  one : LRA.VolumeI.Algebra.Operations.NullaryOperation carrier
-  addition : LRA.VolumeI.Algebra.Operations.BinaryOperation carrier
-  multiplication : LRA.VolumeI.Algebra.Operations.BinaryOperation carrier
+  zero : LRA.VolumeI.Operations.NullaryOperation carrier
+  one : LRA.VolumeI.Operations.NullaryOperation carrier
+  addition : LRA.VolumeI.Operations.BinaryOperation carrier
+  multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
   strict_order : LRA.VolumeI.Relations.Endorelation carrier
   nonstrict_order : LRA.VolumeI.Relations.Endorelation carrier
 
@@ -275,46 +272,46 @@ structure OrderedSemiringSignature where
 **[Definition — Ordered Field Signature]**
 -/
 structure OrderedFieldSignature extends OrderedRingSignature where
-  inverse : LRA.VolumeI.Algebra.Operations.UnaryOperation carrier
+  inverse : LRA.VolumeI.Operations.UnaryOperation carrier
 
 /-- The operation bundle for a field without an order relation. -/
 structure FieldSignature where
   carrier : LRA.VolumeI.Set.LRACarrier
-  zero : LRA.VolumeI.Algebra.Operations.NullaryOperation carrier
-  one : LRA.VolumeI.Algebra.Operations.NullaryOperation carrier
-  addition : LRA.VolumeI.Algebra.Operations.BinaryOperation carrier
-  negation : LRA.VolumeI.Algebra.Operations.UnaryOperation carrier
-  multiplication : LRA.VolumeI.Algebra.Operations.BinaryOperation carrier
-  inverse : LRA.VolumeI.Algebra.Operations.UnaryOperation carrier
+  zero : LRA.VolumeI.Operations.NullaryOperation carrier
+  one : LRA.VolumeI.Operations.NullaryOperation carrier
+  addition : LRA.VolumeI.Operations.BinaryOperation carrier
+  negation : LRA.VolumeI.Operations.UnaryOperation carrier
+  multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
+  inverse : LRA.VolumeI.Operations.UnaryOperation carrier
 
 /-- The operation bundle for a Peano system. -/
 structure PeanoSignature where
   carrier : LRA.VolumeI.Set.LRACarrier
-  one : LRA.VolumeI.Algebra.Operations.NullaryOperation carrier
-  successor : LRA.VolumeI.Algebra.Operations.UnaryOperation carrier
+  one : LRA.VolumeI.Operations.NullaryOperation carrier
+  successor : LRA.VolumeI.Operations.UnaryOperation carrier
 
 /-- The operation bundle for the additive ordered language. -/
 structure AdditiveOrderedSignature where
   carrier : LRA.VolumeI.Set.LRACarrier
-  zero : LRA.VolumeI.Algebra.Operations.NullaryOperation carrier
-  one : LRA.VolumeI.Algebra.Operations.NullaryOperation carrier
-  addition : LRA.VolumeI.Algebra.Operations.BinaryOperation carrier
+  zero : LRA.VolumeI.Operations.NullaryOperation carrier
+  one : LRA.VolumeI.Operations.NullaryOperation carrier
+  addition : LRA.VolumeI.Operations.BinaryOperation carrier
   strict_order : LRA.VolumeI.Relations.Endorelation carrier
   nonstrict_order : LRA.VolumeI.Relations.Endorelation carrier
 
 /-- The operation bundle for the arithmetic ring language. -/
 structure ArithmeticRingSignature where
   carrier : LRA.VolumeI.Set.LRACarrier
-  zero : LRA.VolumeI.Algebra.Operations.NullaryOperation carrier
-  one : LRA.VolumeI.Algebra.Operations.NullaryOperation carrier
-  addition : LRA.VolumeI.Algebra.Operations.BinaryOperation carrier
-  multiplication : LRA.VolumeI.Algebra.Operations.BinaryOperation carrier
+  zero : LRA.VolumeI.Operations.NullaryOperation carrier
+  one : LRA.VolumeI.Operations.NullaryOperation carrier
+  addition : LRA.VolumeI.Operations.BinaryOperation carrier
+  multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
 
 namespace OrderedRingSignature
 
 abbrev subtraction
     (signature : OrderedRingSignature) :
-    LRA.VolumeI.Algebra.Operations.BinaryOperation signature.carrier :=
+    LRA.VolumeI.Operations.BinaryOperation signature.carrier :=
   fun first second =>
     signature.addition first (signature.negation second)
 
@@ -322,20 +319,20 @@ end OrderedRingSignature
 
 namespace OrderedFieldSignature
 
-def inverse_domain
+def InverseDomain
     (signature : OrderedFieldSignature)
     (value : signature.carrier) : Prop :=
   value ≠ signature.zero
 
-def partial_inverse
+def PartialInverse
     (signature : OrderedFieldSignature) :
-    LRA.VolumeI.Algebra.Operations.PartialUnaryOperation signature.carrier where
-  domain := inverse_domain signature
+    LRA.VolumeI.Operations.PartialUnaryOperation signature.carrier where
+  domain := InverseDomain signature
   value := fun value _ => signature.inverse value
 
-def partial_division
+def PartialDivision
     (signature : OrderedFieldSignature) :
-    LRA.VolumeI.Algebra.Operations.PartialBinaryOperation signature.carrier where
+    LRA.VolumeI.Operations.PartialBinaryOperation signature.carrier where
   domain := fun _ divisor => divisor ≠ signature.zero
   value := fun dividend divisor _ =>
     signature.multiplication dividend (signature.inverse divisor)
@@ -461,7 +458,4 @@ def orderedFieldModel
     | .zero => signature.zero
     | .one => signature.one
 
-end Models
-end Algebra
-end VolumeI
-end LRA
+end LRA.VolumeI.Algebra.Models

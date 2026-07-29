@@ -2,12 +2,9 @@
 -- Shared model and extension interfaces for Z, Q, and R.
 
 import LRA.VolumeI.Algebra.Models.Signatures
-import LRA.VolumeI.Order.Relations
+import LRA.VolumeI.Relations.Order.Relations
 
-namespace LRA
-namespace VolumeI
-namespace Algebra
-namespace Models
+namespace LRA.VolumeI.Algebra.Models
 
 /-!
 Volume II label: configurable-number-system-models
@@ -30,26 +27,26 @@ number systems with ring operations.
 structure RingLaws
     (signature : OrderedRingSignature) : Prop where
   addition_is_associative :
-    LRA.VolumeI.Algebra.Associative signature.addition
+    LRA.VolumeI.Operations.Associative signature.addition
   addition_is_commutative :
-    LRA.VolumeI.Algebra.Commutative signature.addition
+    LRA.VolumeI.Operations.Commutative signature.addition
   zero_is_additive_identity :
-    LRA.VolumeI.Algebra.Identity signature.addition signature.zero
+    LRA.VolumeI.Operations.Identity signature.addition signature.zero
   negation_is_additive_inverse :
-    LRA.VolumeI.Algebra.LeftInverse
+    LRA.VolumeI.Operations.LeftInverse
         signature.addition signature.zero signature.negation ∧
-      LRA.VolumeI.Algebra.RightInverse
+      LRA.VolumeI.Operations.RightInverse
         signature.addition signature.zero signature.negation
   multiplication_is_associative :
-    LRA.VolumeI.Algebra.Associative signature.multiplication
+    LRA.VolumeI.Operations.Associative signature.multiplication
   multiplication_is_commutative :
-    LRA.VolumeI.Algebra.Commutative signature.multiplication
+    LRA.VolumeI.Operations.Commutative signature.multiplication
   one_is_multiplicative_identity :
-    LRA.VolumeI.Algebra.Identity signature.multiplication signature.one
+    LRA.VolumeI.Operations.Identity signature.multiplication signature.one
   multiplication_left_distributes_over_addition :
-    LRA.VolumeI.Algebra.LeftDistributive signature.multiplication signature.addition
+    LRA.VolumeI.Operations.LeftDistributive signature.multiplication signature.addition
   multiplication_right_distributes_over_addition :
-    LRA.VolumeI.Algebra.RightDistributive signature.multiplication signature.addition
+    LRA.VolumeI.Operations.RightDistributive signature.multiplication signature.addition
 
 /--
 **[Definition — Order Laws]**
@@ -81,10 +78,10 @@ These are exactly the bridge laws saying the ring operations respect the order.
 structure OrderedRingCompatibilityLaws
     (signature : OrderedRingSignature) : Prop where
   addition_preserves_strict_order :
-    LRA.VolumeI.Order.StrictlyPreservesRightTranslation
+    LRA.VolumeI.Relations.Order.StrictlyPreservesRightTranslation
       signature.strict_order signature.addition
   positive_multiplication_preserves_strict_order :
-    LRA.VolumeI.Order.PreservesPositiveRightMultiplication
+    LRA.VolumeI.Relations.Order.PreservesPositiveRightMultiplication
       signature.strict_order signature.multiplication signature.zero
 
 /--
@@ -346,7 +343,7 @@ structure RealExtension
 /--
 **[Proposition — Every Integer Model Has Zero Absorption]**
 -/
-theorem integer_zero_is_absorbing
+theorem IntegerZeroIsAbsorbing
     (integer_model : IntegerModel)
     (value : integer_model.signature.carrier) :
     integer_model.signature.multiplication
@@ -362,7 +359,7 @@ theorem integer_zero_is_absorbing
 /--
 **[Corollary — Nonzero Multiplicative Cancellation in an Integer Model]**
 -/
-theorem integer_multiplicative_cancellation
+theorem IntegerMultiplicativeCancellation
     (integer_model : IntegerModel)
     (first second factor : integer_model.signature.carrier)
     (factor_is_nonzero : factor ≠ integer_model.signature.zero)
@@ -372,7 +369,4 @@ theorem integer_multiplicative_cancellation
     first = second := by
   sorry
 
-end Models
-end Algebra
-end VolumeI
-end LRA
+end LRA.VolumeI.Algebra.Models

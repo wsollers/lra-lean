@@ -3,10 +3,7 @@
 
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA
-namespace VolumeI
-namespace Algebra
-namespace Models
+namespace LRA.VolumeI.Algebra.Models
 
 /-!
 Volume II label: configurable-number-system-construction
@@ -49,7 +46,7 @@ structure NumberSystemConstruction where
 The canonical tower uses the canonical integer quotient, the canonical fraction
 quotient, and Dedekind cuts.
 -/
-def canonical_construction : NumberSystemConstruction where
+def CanonicalConstruction : NumberSystemConstruction where
   integer := .canonical
   rational := .canonical
   real := .dedekind
@@ -72,7 +69,7 @@ structure NumberSystemTower where
 The statement is intentionally proof-pending. Each branch is discharged by the
 corresponding concrete construction module.
 -/
-theorem number_system_tower_exists
+theorem NumberSystemTowerExists
     (construction : NumberSystemConstruction) :
     Nonempty NumberSystemTower := by
   sorry
@@ -87,27 +84,24 @@ bundles.
 noncomputable def build_number_system_tower
     (construction : NumberSystemConstruction) :
     NumberSystemTower :=
-  Classical.choice (number_system_tower_exists construction)
+  Classical.choice (NumberSystemTowerExists construction)
 
 /-- **[Definition — Default Number-System Tower]** -/
 noncomputable def default_tower : NumberSystemTower :=
-  build_number_system_tower canonical_construction
+  build_number_system_tower CanonicalConstruction
 
 /--
 **[Proposition — The Default Real Construction Is Dedekind]**
 -/
-theorem default_real_construction_is_dedekind :
-    canonical_construction.real = RealConstruction.dedekind := by
+theorem DefaultRealConstructionIsDedekind :
+    CanonicalConstruction.real = RealConstruction.dedekind := by
   rfl
 
 /--
 **[Corollary — The Default Tower Uses the Canonical Rational Construction]**
 -/
-theorem default_rational_construction_is_canonical :
-    canonical_construction.rational = RationalConstruction.canonical := by
+theorem DefaultRationalConstructionIsCanonical :
+    CanonicalConstruction.rational = RationalConstruction.canonical := by
   rfl
 
-end Models
-end Algebra
-end VolumeI
-end LRA
+end LRA.VolumeI.Algebra.Models

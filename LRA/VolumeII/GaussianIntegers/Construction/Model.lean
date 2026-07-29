@@ -105,42 +105,42 @@ def GaussianArithmeticRingModel :
 
 /-- Gaussian addition is associative. -/
 theorem GaussianAdditionIsAssociative :
-    LRA.VolumeI.Algebra.Associative GaussianAddition := by
+    LRA.VolumeI.Operations.Associative GaussianAddition := by
   sorry
 
 /-- Gaussian addition is commutative. -/
 theorem GaussianAdditionIsCommutative :
-    LRA.VolumeI.Algebra.Commutative GaussianAddition := by
+    LRA.VolumeI.Operations.Commutative GaussianAddition := by
   sorry
 
 /-- Gaussian zero is the additive identity. -/
 theorem GaussianZeroIsAdditiveIdentity :
-    LRA.VolumeI.Algebra.Identity GaussianAddition GaussianZero := by
+    LRA.VolumeI.Operations.Identity GaussianAddition GaussianZero := by
   sorry
 
 /-- Gaussian negation gives additive inverses. -/
 theorem GaussianNegationIsAdditiveInverse :
-    LRA.VolumeI.Algebra.Inverse GaussianAddition GaussianZero GaussianNegation := by
+    LRA.VolumeI.Operations.Inverse GaussianAddition GaussianZero GaussianNegation := by
   sorry
 
 /-- Gaussian multiplication is associative. -/
 theorem GaussianMultiplicationIsAssociative :
-    LRA.VolumeI.Algebra.Associative GaussianMultiplication := by
+    LRA.VolumeI.Operations.Associative GaussianMultiplication := by
   sorry
 
 /-- Gaussian multiplication is commutative. -/
 theorem GaussianMultiplicationIsCommutative :
-    LRA.VolumeI.Algebra.Commutative GaussianMultiplication := by
+    LRA.VolumeI.Operations.Commutative GaussianMultiplication := by
   sorry
 
 /-- Gaussian one is the multiplicative identity. -/
 theorem GaussianOneIsMultiplicativeIdentity :
-    LRA.VolumeI.Algebra.Identity GaussianMultiplication GaussianOne := by
+    LRA.VolumeI.Operations.Identity GaussianMultiplication GaussianOne := by
   sorry
 
 /-- Gaussian multiplication distributes over Gaussian addition. -/
 theorem GaussianMultiplicationDistributesOverAddition :
-    LRA.VolumeI.Algebra.Distributive GaussianMultiplication GaussianAddition := by
+    LRA.VolumeI.Operations.Distributive GaussianMultiplication GaussianAddition := by
   sorry
 
 /-- The Gaussian imaginary unit squares to negative one. -/

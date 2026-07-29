@@ -38,6 +38,11 @@ substitution principle relied on downstream.
 
 ## Physical File Tree
 
+First-pass note: existing number-system-heavy files under
+`LRA/VolumeI/Algebra/Models` may remain as deferred implementation modules for
+now. They are build-preserving carry-forward files, not the final intended
+home for number-system construction material.
+
 ```text
 LRA
   VolumeI.lean
@@ -523,6 +528,7 @@ Elementary one-operation structures:
 Magma
 Semigroup
 Monoid
+CommutativeMonoid
 Group
 AbelianGroup
 ```

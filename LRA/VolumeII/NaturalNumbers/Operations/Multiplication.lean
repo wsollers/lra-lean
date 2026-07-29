@@ -80,33 +80,33 @@ theorem NMultiplicationSuccessorOnRight
 
 theorem NMultiplicationDistributesOverAddition
     (model : NModel) :
-    LRA.VolumeI.Algebra.RightDistributive
+    LRA.VolumeI.Operations.RightDistributive
       (NMultiplication model)
       (NAddition model) := by
   sorry
 
 theorem NLeftDistributivityOfMultiplicationOverAddition
     (model : NModel) :
-    LRA.VolumeI.Algebra.LeftDistributive
+    LRA.VolumeI.Operations.LeftDistributive
       (NMultiplication model)
       (NAddition model) := by
   sorry
 
 theorem NMultiplicationDistributesOverAdditionBothSides
     (model : NModel) :
-    LRA.VolumeI.Algebra.Distributive
+    LRA.VolumeI.Operations.Distributive
       (NMultiplication model)
       (NAddition model) := by
   sorry
 
 theorem NMultiplicationIsAssociative
     (model : NModel) :
-    LRA.VolumeI.Algebra.Associative (NMultiplication model) := by
+    LRA.VolumeI.Operations.Associative (NMultiplication model) := by
   sorry
 
 theorem NMultiplicationIsCommutative
     (model : NModel) :
-    LRA.VolumeI.Algebra.Commutative (NMultiplication model) := by
+    LRA.VolumeI.Operations.Commutative (NMultiplication model) := by
   sorry
 
 end LRA.VolumeII.NaturalNumbers

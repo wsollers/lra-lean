@@ -1,5 +1,7 @@
 import LRA.VolumeI.Set.Set
 import LRA.VolumeI.Set.Products
+import LRA.VolumeI.Set.Families
+import LRA.VolumeI.Set.PowerSets
 import LRA.VolumeI.Set.ZFC
 
 /-!

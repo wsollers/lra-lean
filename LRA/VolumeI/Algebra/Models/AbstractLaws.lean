@@ -3,11 +3,7 @@
 
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA
-namespace VolumeI
-namespace Algebra
-namespace Models
-namespace AbstractLaws
+namespace LRA.VolumeI.Algebra.Models.AbstractLaws
 
 /-!
 Volume II label: abstract-algebraic-and-order-laws
@@ -25,34 +21,34 @@ structure MagmaLaws {α : Type u} (operation : α → α → α) : Prop where
 
 structure SemigroupLaws {α : Type u} (operation : α → α → α) : Prop
     extends MagmaLaws operation where
-  associative : LRA.VolumeI.Algebra.Associative operation
+  associative : LRA.VolumeI.Operations.Associative operation
 
 structure CommutativeSemigroupLaws {α : Type u} (operation : α → α → α) : Prop
     extends SemigroupLaws operation where
-  commutative : LRA.VolumeI.Algebra.Commutative operation
+  commutative : LRA.VolumeI.Operations.Commutative operation
 
 structure MonoidLaws {α : Type u} (operation : α → α → α) (identity : α) : Prop
     extends SemigroupLaws operation where
-  identity_law : LRA.VolumeI.Algebra.Identity operation identity
+  identity_law : LRA.VolumeI.Operations.Identity operation identity
 
 structure GroupLaws {α : Type u}
     (operation : α → α → α) (identity : α) (inverse : α → α) : Prop
     extends MonoidLaws operation identity where
   inverse_law :
-    LRA.VolumeI.Algebra.LeftInverse operation identity inverse ∧
-      LRA.VolumeI.Algebra.RightInverse operation identity inverse
+    LRA.VolumeI.Operations.LeftInverse operation identity inverse ∧
+      LRA.VolumeI.Operations.RightInverse operation identity inverse
 
 structure AbelianGroupLaws {α : Type u}
     (operation : α → α → α) (identity : α) (inverse : α → α) : Prop
     extends GroupLaws operation identity inverse where
-  commutative : LRA.VolumeI.Algebra.Commutative operation
+  commutative : LRA.VolumeI.Operations.Commutative operation
 
 structure RingLikeLaws {α : Type u}
     (zero one : α) (addition multiplication : α → α → α) (negation : α → α) : Prop where
   additive_laws : AbelianGroupLaws addition zero negation
   multiplicative_laws : MonoidLaws multiplication one
-  left_distributive : LRA.VolumeI.Algebra.LeftDistributive multiplication addition
-  right_distributive : LRA.VolumeI.Algebra.RightDistributive multiplication addition
+  left_distributive : LRA.VolumeI.Operations.LeftDistributive multiplication addition
+  right_distributive : LRA.VolumeI.Operations.RightDistributive multiplication addition
 
 structure IntegralDomainLaws {α : Type u}
     (zero one : α) (addition multiplication : α → α → α) (negation : α → α) : Prop
@@ -85,9 +81,9 @@ structure OrderedRingCompatibilityLaws {α : Type u}
     (zero : α) (addition multiplication : α → α → α)
     (lt : α → α → Prop) : Prop where
   addition_preserves_order :
-    LRA.VolumeI.Order.StrictlyPreservesRightTranslation lt addition
+    LRA.VolumeI.Relations.Order.StrictlyPreservesRightTranslation lt addition
   positive_multiplication_preserves_order :
-    LRA.VolumeI.Order.PreservesPositiveRightMultiplication lt multiplication zero
+    LRA.VolumeI.Relations.Order.PreservesPositiveRightMultiplication lt multiplication zero
 
 structure OrderedRingLikeLaws {α : Type u}
     (zero one : α) (addition multiplication : α → α → α)
@@ -144,8 +140,4 @@ structure QuotientOperationDescent {α β : Type u}
       quotient_operation (project left) (project right) =
         project (representative_operation left right)
 
-end AbstractLaws
-end Models
-end Algebra
-end VolumeI
-end LRA
+end LRA.VolumeI.Algebra.Models.AbstractLaws
