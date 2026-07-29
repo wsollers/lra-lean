@@ -8,9 +8,9 @@ namespace LRA.VolumeII.PeanoSystems
 If a predicate holds at the distinguished element and is preserved by
 successor, then it holds for every element of the Peano system.
 
-Mathematical statement (Lean): `theorem induction_principle (ps : PeanoSystem) (predicate : LRA.VolumeI.Set.LRASet ps.carrier) (base_case : predicate ps.one) (successor_step : forall element : ps.carrier, predicate element -> predicate (ps.successor element)) : forall element : ps.carrier...`.
+Mathematical statement (Lean): `theorem PeanoSystemInductionPrinciple (ps : PeanoSystem) (predicate : LRA.VolumeI.Set.LRASet ps.carrier) (base_case : predicate ps.one) (successor_step : forall element : ps.carrier, predicate element -> predicate (ps.successor element)) : forall element : ps.carrier...`.
 -/
-theorem induction_principle
+theorem PeanoSystemInductionPrinciple
     (ps : PeanoSystem)
     (predicate : LRA.VolumeI.Set.LRASet ps.carrier)
     (base_case : predicate ps.one)
@@ -27,12 +27,12 @@ theorem induction_principle
 
 Every inductive subset of a Peano system contains every element of the carrier.
 
-Mathematical statement (Lean): `theorem subset_based_induction_principle (ps : PeanoSystem) (subset : LRA.VolumeI.Set.LRASet ps.carrier) (subset_is_inductive : inductive_subset ps subset) : forall element : ps.carrier, subset element`.
+Mathematical statement (Lean): `theorem SubsetBasedInductionPrinciple (ps : PeanoSystem) (subset : LRA.VolumeI.Set.LRASet ps.carrier) (subset_is_inductive : InductiveSubsetOfPeanoSystem ps subset) : forall element : ps.carrier, subset element`.
 -/
-theorem subset_based_induction_principle
+theorem SubsetBasedInductionPrinciple
     (ps : PeanoSystem)
     (subset : LRA.VolumeI.Set.LRASet ps.carrier)
-    (subset_is_inductive : inductive_subset ps subset) :
+    (subset_is_inductive : InductiveSubsetOfPeanoSystem ps subset) :
     forall element : ps.carrier,
       subset element := by
   sorry
