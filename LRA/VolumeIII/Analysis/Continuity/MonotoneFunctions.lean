@@ -12,10 +12,7 @@ import Mathlib.Topology.Instances.Real.Lemmas
 import LRA.VolumeIII.Analysis.Continuity.GlobalTheorems
 import LRA.VolumeIII.Analysis.Continuity.PointContinuity
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Continuity
+namespace LRA.VolumeIII.Analysis.Continuity
 
 /-- `thm:monotone-one-sided-limits`: a monotone function on an interval
 has one-sided limits everywhere in the interior. -/
@@ -103,7 +100,4 @@ theorem LiminfLeLimsup (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     LiminfAt f A c ≤ LimsupAt f A c := by
   sorry
 
-end Continuity
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Continuity

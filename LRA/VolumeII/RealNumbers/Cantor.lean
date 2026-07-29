@@ -3,10 +3,8 @@
 
 import LRA.VolumeII.RealNumbers.Cauchy
 
-namespace LRA
-namespace VolumeII
-namespace RealNumbers
-namespace Cantor
+namespace LRA.VolumeII.RealNumbers.Cantor
+open LRA.VolumeI.Algebra.Models
 
 /-!
 Volume II label: cantor-nested-interval-reals
@@ -114,7 +112,4 @@ theorem cantor_reals_are_isomorphic_to_cauchy_reals
         comparison first = comparison second → first = second := by
   sorry
 
-end Cantor
-end RealNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.RealNumbers.Cantor

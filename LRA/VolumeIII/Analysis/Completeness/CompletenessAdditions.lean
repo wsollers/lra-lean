@@ -22,10 +22,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Data.Real.Sqrt
 import Mathlib.Order.Bounds.Basic
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Completeness
+namespace LRA.VolumeIII.Analysis.Completeness
 
 /-- ADDITIONS.md #19. Existence and uniqueness of nonnegative square roots
 via the least-upper-bound property — the single most natural payoff of the
@@ -98,7 +95,4 @@ theorem BisectionStepsTowardSqrtTwo :
     (1.41 : ℝ) < Real.sqrt 2 ∧ Real.sqrt 2 < 1.42 := by
   sorry
 
-end Completeness
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Completeness

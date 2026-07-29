@@ -26,10 +26,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Mathlib.Analysis.Convex.Basic
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace RealAnalysis
+namespace LRA.VolumeIII.Analysis.RealAnalysis
 
 /- ================================================================
    ADDITIONS.md item 25 — Big-O notation.
@@ -113,7 +110,4 @@ theorem JensensInequalityFinite
       ≤ Finset.univ.sum (fun i => lam i * φ (x i)) := by
   sorry
 
-end RealAnalysis
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.RealAnalysis

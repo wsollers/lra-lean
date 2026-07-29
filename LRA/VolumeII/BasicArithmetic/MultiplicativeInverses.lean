@@ -4,10 +4,7 @@
 import Mathlib.Tactic
 import LRA.VolumeII.Switches.NumberSystems
 
-namespace LRA
-namespace VolumeII
-namespace BasicArithmetic
-namespace MultiplicativeInverses
+namespace LRA.VolumeII.BasicArithmetic.MultiplicativeInverses
 
 /-!
 Volume II label: basic-arithmetic-multiplicative-inverses
@@ -71,7 +68,4 @@ theorem EqZeroOfNonzeroMulEqZero {a b : Q}
     b = 0 := by
   sorry
 
-end MultiplicativeInverses
-end BasicArithmetic
-end VolumeII
-end LRA
+end LRA.VolumeII.BasicArithmetic.MultiplicativeInverses

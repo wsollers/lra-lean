@@ -5,9 +5,7 @@ import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeI.Algebra.Models.Models
 import LRA.VolumeII.Integers.ConstructionModels
 
-namespace LRA
-namespace VolumeII
-namespace RationalNumbers
+namespace LRA.VolumeII.RationalNumbers
 
 open LRA.VolumeI.Algebra.Models
 
@@ -43,7 +41,9 @@ def is_order_complete (rational_model : RationalModel) : Prop :=
           rational_model.signature.NonstrictOrder member upper_bound) →
         rational_model.signature.NonstrictOrder supremum upper_bound)
 
-namespace QuotientFractionsComparison
+end LRA.VolumeII.RationalNumbers
+namespace LRA.VolumeII.RationalNumbers.QuotientFractionsComparison
+open LRA.VolumeI.Algebra.Models
 
 /--
 **[Definition — Rational Quotient-Fractions Representative]**
@@ -182,9 +182,13 @@ theorem is_not_order_complete
     ¬ RationalNumbers.is_order_complete (rational_model integer_model) := by
   sorry
 
-end QuotientFractionsComparison
+end LRA.VolumeII.RationalNumbers.QuotientFractionsComparison
+namespace LRA.VolumeII.RationalNumbers
+open LRA.VolumeI.Algebra.Models
 
-namespace Reduced
+end LRA.VolumeII.RationalNumbers
+namespace LRA.VolumeII.RationalNumbers.Reduced
+open LRA.VolumeI.Algebra.Models
 
 
 /-- **[Definition — Reduced Rational Representative]**
@@ -217,9 +221,13 @@ noncomputable def rational_model
     (integer_model : IntegerModel) : RationalModel :=
   Classical.choice (rational_model_exists integer_model)
 
-end Reduced
+end LRA.VolumeII.RationalNumbers.Reduced
+namespace LRA.VolumeII.RationalNumbers
+open LRA.VolumeI.Algebra.Models
 
-namespace FractionField
+end LRA.VolumeII.RationalNumbers
+namespace LRA.VolumeII.RationalNumbers.FractionField
+open LRA.VolumeI.Algebra.Models
 
 /--
 **[Definition — Integral-Domain Fraction-Field Data]**
@@ -254,7 +262,9 @@ noncomputable def rational_model
     RationalModel :=
   Classical.choice (rational_model_exists fraction_field_data)
 
-end FractionField
+end LRA.VolumeII.RationalNumbers.FractionField
+namespace LRA.VolumeII.RationalNumbers
+open LRA.VolumeI.Algebra.Models
 
 
 /-- **[Definition — Ordered-Field Model Isomorphism]**
@@ -387,6 +397,4 @@ theorem rational_quotient_fractions_and_fraction_field_are_isomorphic
         (FractionField.rational_model ⟨integer_model⟩)) :=
   ⟨rational_quotient_fractions_equiv_fraction_field integer_model⟩
 
-end RationalNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.RationalNumbers

@@ -10,10 +10,7 @@ book label, `sorry`-bodied.
 import Mathlib.Data.Real.Basic
 import LRA.VolumeIII.Analysis.Continuity.PointContinuity
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Continuity
+namespace LRA.VolumeIII.Analysis.Continuity
 
 /-- Continuity on all of a set `A` (pointwise at every element). -/
 def ContinuousOn' (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
@@ -95,7 +92,4 @@ theorem ImageOfClosedBoundedInterval (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ 
     ∃ m M, m ≤ M ∧ f '' Set.Icc a b = Set.Icc m M := by
   sorry
 
-end Continuity
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Continuity

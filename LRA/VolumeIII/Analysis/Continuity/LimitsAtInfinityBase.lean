@@ -11,10 +11,7 @@ rather than redefining `TendsToInfty`.
 
 import LRA.VolumeIII.Analysis.Continuity.LimitsAtInfinityAdditions
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Continuity
+namespace LRA.VolumeIII.Analysis.Continuity
 
 /-- `def:infinite-adherent-points`: `+∞` (resp. `−∞`) is an adherent
 point of `A` if `A` is unbounded above (resp. below) — the domain
@@ -23,7 +20,4 @@ def PlusInftyAdherent (A : Set ℝ) : Prop := ∀ M : ℝ, ∃ x ∈ A, x > M
 
 def MinusInftyAdherent (A : Set ℝ) : Prop := ∀ M : ℝ, ∃ x ∈ A, x < M
 
-end Continuity
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Continuity

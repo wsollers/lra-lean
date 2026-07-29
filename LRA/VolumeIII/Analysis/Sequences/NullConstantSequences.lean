@@ -53,10 +53,7 @@ import Mathlib.Topology.Instances.Real.Lemmas
 import Mathlib.Order.Filter.AtTopBot.Basic
 import LRA.VolumeIII.Analysis.Sequences.SequenceDefinitions
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Sequences
+namespace LRA.VolumeIII.Analysis.Sequences
 
 /-- `def:constant-sequence`. -/
 def IsConstant (x : RealSequence) (c : ℝ) : Prop := ∀ n, x n = c
@@ -156,7 +153,4 @@ theorem UpperLowerBoundsAbsoluteBound {x : RealSequence} {m M : ℝ}
     (h : ∀ n, m ≤ x n ∧ x n ≤ M) : ∃ K > 0, ∀ n, |x n| ≤ K := by
   sorry
 
-end Sequences
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Sequences

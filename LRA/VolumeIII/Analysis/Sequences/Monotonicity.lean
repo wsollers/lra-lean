@@ -62,10 +62,7 @@ import LRA.VolumeIII.Analysis.Sequences.NullConstantSequences
 import LRA.VolumeIII.Analysis.Sequences.Tails
 import LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.SupremaInfima
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Sequences
+namespace LRA.VolumeIII.Analysis.Sequences
 
 open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds (IsSupremum IsInfimum)
 
@@ -215,7 +212,4 @@ theorem NegationReversesDecreasing {x : RealSequence}
     (h : IsDecreasing x) : IsIncreasing (fun n => -x n) := by
   sorry
 
-end Sequences
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Sequences

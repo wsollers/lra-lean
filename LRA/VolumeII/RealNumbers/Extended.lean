@@ -3,10 +3,8 @@
 
 import LRA.VolumeII.RealNumbers.Extensions
 
-namespace LRA
-namespace VolumeII
-namespace RealNumbers
-namespace Extended
+namespace LRA.VolumeII.RealNumbers.Extended
+open LRA.VolumeI.Algebra.Models
 
 /-!
 Volume II label: extended-real-line
@@ -97,7 +95,4 @@ structure PartialOperation
         operation (.finite first) (.finite second) =
           .finite (real_model.signature.multiplication first second)
 
-end Extended
-end RealNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.RealNumbers.Extended

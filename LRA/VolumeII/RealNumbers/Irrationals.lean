@@ -3,10 +3,7 @@
 
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA
-namespace VolumeII
-namespace RealNumbers
-namespace Irrationals
+namespace LRA.VolumeII.RealNumbers.Irrationals
 
 open LRA.VolumeI.Algebra.Models
 
@@ -438,7 +435,4 @@ theorem irrationals_not_closed_under_division
           (real_extension.RealModel.signature.inverse second)) := by
   sorry
 
-end Irrationals
-end RealNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.RealNumbers.Irrationals

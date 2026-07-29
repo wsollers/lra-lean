@@ -21,10 +21,7 @@ generic pointwise-relation machinery), so this mirrors house style.
 
 import Mathlib.Data.Real.Basic
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Functions
+namespace LRA.VolumeIII.Analysis.Functions
 
 /-- `def:pointwise-equality-on-set`. -/
 def PointwiseEq (f g : ℝ → ℝ) (A : Set ℝ) : Prop := ∀ x ∈ A, f x = g x
@@ -86,7 +83,4 @@ theorem NoUnconditionalQuotientOrderLaw :
         PointwiseLe (fun x => f₁ x / f₂ x) (fun x => g₁ x / g₂ x) A := by
   sorry
 
-end Functions
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Functions

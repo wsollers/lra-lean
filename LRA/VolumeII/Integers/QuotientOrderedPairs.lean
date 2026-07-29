@@ -5,10 +5,7 @@ import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeI.Set
 import LRA.VolumeI.Algebra
 
-namespace LRA
-namespace VolumeII
-namespace Integers
-namespace QuotientOrderedPairs
+namespace LRA.VolumeII.Integers.QuotientOrderedPairs
 
 /-!
 Lean module: LRA.VolumeII.Integers.QuotientOrderedPairs
@@ -411,7 +408,4 @@ theorem quotient_multiplication_distributes_over_addition
         addition (multiplication first second) (multiplication first third) := by
   sorry
 
-end QuotientOrderedPairs
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers.QuotientOrderedPairs

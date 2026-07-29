@@ -3,10 +3,7 @@
 
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA
-namespace VolumeII
-namespace RealNumbers
-namespace Dedekind
+namespace LRA.VolumeII.RealNumbers.Dedekind
 
 open LRA.VolumeI.Algebra.Models
 
@@ -737,7 +734,4 @@ theorem reference_real_number_construction :
     ReferenceRealNumberConstruction rational_model := by
   sorry
 
-end Dedekind
-end RealNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.RealNumbers.Dedekind

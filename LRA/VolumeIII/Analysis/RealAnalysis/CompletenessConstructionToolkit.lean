@@ -21,10 +21,7 @@ import Mathlib.Order.Bounds.Basic
 import Mathlib.Topology.Instances.Real.Lemmas
 import Mathlib.Order.Filter.Basic
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace RealAnalysis
+namespace LRA.VolumeIII.Analysis.RealAnalysis
 
 /-- `prop:eps-char-sup`. For nonempty `S` bounded above with `s = sup S`,
 every `ε>0` admits a point of `S` strictly above `s - ε`. -/
@@ -56,7 +53,4 @@ theorem MonotoneApproxBounds (S : Set ℝ) (hne : S.Nonempty)
       Filter.Tendsto y Filter.atTop (nhds (sInf S))) := by
   sorry
 
-end RealAnalysis
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.RealAnalysis

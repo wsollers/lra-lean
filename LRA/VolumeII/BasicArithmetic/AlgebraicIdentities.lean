@@ -3,10 +3,7 @@
 
 import Mathlib.Tactic
 
-namespace LRA
-namespace VolumeII
-namespace BasicArithmetic
-namespace AlgebraicIdentities
+namespace LRA.VolumeII.BasicArithmetic.AlgebraicIdentities
 
 /-!
 Volume II label: basic-arithmetic-algebraic-identities
@@ -51,7 +48,4 @@ theorem SqSubExpanded {R : Type*} [CommRing R] (a b : R) :
     (a - b) ^ 2 = a ^ 2 - 2 * a * b + b ^ 2 := by
   sorry
 
-end AlgebraicIdentities
-end BasicArithmetic
-end VolumeII
-end LRA
+end LRA.VolumeII.BasicArithmetic.AlgebraicIdentities

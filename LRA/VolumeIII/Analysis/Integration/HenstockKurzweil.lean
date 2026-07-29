@@ -16,10 +16,7 @@ import LRA.VolumeIII.Analysis.Integration.Partitions
 import LRA.VolumeIII.Analysis.Integration.RiemannIntegral
 import LRA.VolumeIII.Analysis.Differentiation.DerivativeDefinition
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Integration
+namespace LRA.VolumeIII.Analysis.Integration
 
 /-- `def:gauge-on-interval`.
 Mathematical statement (Lean): `def IsGaugeOn (a b : ℝ) (δ : ℝ → ℝ) : Prop`.
@@ -109,7 +106,4 @@ theorem hk_strictly_wider_than_lebesgue_witness (F FD : ℝ → ℝ)
     IsHKIntegrable FD (-1) 1 ∧ ¬ IsRiemannIntegrable (fun x => |FD x|) (-1) 1 := by
   sorry
 
-end Integration
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Integration

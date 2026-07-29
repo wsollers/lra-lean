@@ -9,10 +9,7 @@ statement per book label, `sorry`-bodied.
 import Mathlib.Data.Real.Basic
 import LRA.VolumeIII.Analysis.Differentiation.DerivativeDefinition
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Differentiation
+namespace LRA.VolumeIII.Analysis.Differentiation
 
 /-- `def:left-hand-derivative`. -/
 def LeftDerivative (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
@@ -31,7 +28,4 @@ theorem DifferentiableIffOneSidedDerivativesAgree (f : ℝ → ℝ) (A : Set ℝ
       ∃ D, LeftDerivative D f A c ∧ RightDerivative D f A c := by
   sorry
 
-end Differentiation
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Differentiation

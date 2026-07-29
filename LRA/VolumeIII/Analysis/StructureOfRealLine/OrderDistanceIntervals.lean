@@ -9,10 +9,7 @@ One Lean statement per book label, `sorry`-bodied.
 
 import Mathlib.Data.Real.Basic
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace StructureOfRealLine
+namespace LRA.VolumeIII.Analysis.StructureOfRealLine
 
 /-- `def:distance-on-real-line`. -/
 def dist' (x y : ℝ) : ℝ := |x - y|
@@ -69,7 +66,4 @@ beyond `Set.iUnion`, `Set.iInter`, `Aᶜ`, `A \ B`, which already exist in
 Mathlib and require no restatement. -/
 theorem IntervalSetOpsAreOrdinarySetOps : True := trivial
 
-end StructureOfRealLine
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.StructureOfRealLine

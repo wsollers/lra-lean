@@ -8,10 +8,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Data.Complex.Basic
 import LRA.VolumeI.Algebra.Models
 
-namespace LRA
-namespace VolumeII
-namespace Switches
-namespace NumberSystems
+namespace LRA.VolumeII.Switches.NumberSystems
 
 open LRA.VolumeI.Algebra.Models
 
@@ -25,7 +22,9 @@ proof work. The project-owned constructions remain available in their own
 modules for examples, construction work, and comparison tests.
 -/
 
-namespace NaturalNumbers
+end LRA.VolumeII.Switches.NumberSystems
+namespace LRA.VolumeII.Switches.NumberSystems.NaturalNumbers
+open LRA.VolumeI.Algebra.Models
 
 
 /-- Active natural-number carrier.
@@ -58,9 +57,13 @@ def ActiveOrderedSemiringModel :
       LRA.VolumeI.Algebra.Models.OrderedSemiringFirstOrderSignature :=
   LRA.VolumeI.Algebra.Models.BuildOrderedSemiringModel ActiveOrderedSemiringSignature
 
-end NaturalNumbers
+end LRA.VolumeII.Switches.NumberSystems.NaturalNumbers
+namespace LRA.VolumeII.Switches.NumberSystems
+open LRA.VolumeI.Algebra.Models
 
-namespace WholeNumbers
+end LRA.VolumeII.Switches.NumberSystems
+namespace LRA.VolumeII.Switches.NumberSystems.WholeNumbers
+open LRA.VolumeI.Algebra.Models
 
 
 /-- Active whole-number carrier. Mathlib represents whole numbers as `Nat`.
@@ -93,9 +96,13 @@ def ActiveOrderedSemiringModel :
       LRA.VolumeI.Algebra.Models.OrderedSemiringFirstOrderSignature :=
   LRA.VolumeI.Algebra.Models.BuildOrderedSemiringModel ActiveOrderedSemiringSignature
 
-end WholeNumbers
+end LRA.VolumeII.Switches.NumberSystems.WholeNumbers
+namespace LRA.VolumeII.Switches.NumberSystems
+open LRA.VolumeI.Algebra.Models
 
-namespace IntegerNumbers
+end LRA.VolumeII.Switches.NumberSystems
+namespace LRA.VolumeII.Switches.NumberSystems.IntegerNumbers
+open LRA.VolumeI.Algebra.Models
 
 
 /-- Active integer carrier.
@@ -194,9 +201,13 @@ def integerModel : LRA.VolumeI.Algebra.Models.IntegerModel where
   signature := ActiveOrderedRingSignature
   laws := integerLaws
 
-end IntegerNumbers
+end LRA.VolumeII.Switches.NumberSystems.IntegerNumbers
+namespace LRA.VolumeII.Switches.NumberSystems
+open LRA.VolumeI.Algebra.Models
 
-namespace RationalNumbers
+end LRA.VolumeII.Switches.NumberSystems
+namespace LRA.VolumeII.Switches.NumberSystems.RationalNumbers
+open LRA.VolumeI.Algebra.Models
 
 
 /-- Active rational-number carrier.
@@ -251,9 +262,13 @@ def rationalModel : LRA.VolumeI.Algebra.Models.RationalModel where
   signature := ActiveOrderedFieldSignature
   laws := rationalLaws
 
-end RationalNumbers
+end LRA.VolumeII.Switches.NumberSystems.RationalNumbers
+namespace LRA.VolumeII.Switches.NumberSystems
+open LRA.VolumeI.Algebra.Models
 
-namespace RealNumbers
+end LRA.VolumeII.Switches.NumberSystems
+namespace LRA.VolumeII.Switches.NumberSystems.RealNumbers
+open LRA.VolumeI.Algebra.Models
 
 
 /-- Active real-number carrier.
@@ -308,9 +323,13 @@ noncomputable def realModel : LRA.VolumeI.Algebra.Models.RealModel where
   signature := ActiveOrderedFieldSignature
   laws := realLaws
 
-end RealNumbers
+end LRA.VolumeII.Switches.NumberSystems.RealNumbers
+namespace LRA.VolumeII.Switches.NumberSystems
+open LRA.VolumeI.Algebra.Models
 
-namespace ComplexNumbers
+end LRA.VolumeII.Switches.NumberSystems
+namespace LRA.VolumeII.Switches.NumberSystems.ComplexNumbers
+open LRA.VolumeI.Algebra.Models
 
 
 /-- Active complex-number carrier.
@@ -343,9 +362,8 @@ noncomputable def ActiveFieldModel :
       LRA.VolumeI.Algebra.Models.FieldFirstOrderSignature :=
   LRA.VolumeI.Algebra.Models.BuildFieldModel ActiveFieldSignature
 
-end ComplexNumbers
+end LRA.VolumeII.Switches.NumberSystems.ComplexNumbers
+namespace LRA.VolumeII.Switches.NumberSystems
+open LRA.VolumeI.Algebra.Models
 
-end NumberSystems
-end Switches
-end VolumeII
-end LRA
+end LRA.VolumeII.Switches.NumberSystems

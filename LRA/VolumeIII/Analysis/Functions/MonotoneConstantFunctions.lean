@@ -24,10 +24,7 @@ logged duplication bug (ISSUES.md).
 import Mathlib.Data.Real.Basic
 import LRA.VolumeIII.Analysis.Functions.AlgebraOfFunctions
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Functions
+namespace LRA.VolumeIII.Analysis.Functions
 
 /-- `def:function-increasing`. -/
 def FunctionIncreasing (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
@@ -197,7 +194,4 @@ theorem InverseOfStrictlyMonotoneBijectionIsStrictlyMonotone
     (FunctionStrictlyDecreasing f A → FunctionStrictlyDecreasing f' B) := by
   sorry
 
-end Functions
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Functions

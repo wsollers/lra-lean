@@ -3,9 +3,7 @@
 
 import LRA.VolumeII.NaturalNumbers
 
-namespace LRA
-namespace VolumeII
-namespace WholeNumbers
+namespace LRA.VolumeII.WholeNumbers
 
 /-!
 Lean module: LRA.VolumeII.WholeNumbers.Construction.Model
@@ -303,6 +301,4 @@ theorem natural_embedding_preserves_structure :
         natural_data.strictOrder first second) := by
   sorry
 
-end WholeNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.WholeNumbers

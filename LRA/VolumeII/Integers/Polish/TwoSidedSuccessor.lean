@@ -1,11 +1,7 @@
 -- LRA/VolumeII/Integers/Polish/TwoSidedSuccessor.lean
 -- Experimental Polish-style two-sided successor construction of the integers.
 
-namespace LRA
-namespace VolumeII
-namespace Integers
-namespace Polish
-namespace TwoSidedSuccessor
+namespace LRA.VolumeII.Integers.Polish.TwoSidedSuccessor
 
 /-!
 Volume II label: experimental-integers-polish-two-sided-successor
@@ -336,8 +332,4 @@ Mathematical statement (Lean): `theorem mul_neg_pred (x : Z) (n : N) : x * neg (
 -/
 theorem mul_neg_pred (x : Z) (n : N) : x * neg (N.pred n) = x * neg n + -x := rfl
 
-end TwoSidedSuccessor
-end Polish
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers.Polish.TwoSidedSuccessor

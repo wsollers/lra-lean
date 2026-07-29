@@ -10,6 +10,7 @@ Algebraic behavior of suprema and infima under set operations.
 open scoped Pointwise
 
 namespace LRA.VolumeIII.Analysis.Bounding.BoundAlgebra
+open scoped Pointwise
 
 open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
 

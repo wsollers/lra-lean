@@ -17,10 +17,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Analysis.SpecialFunctions.Sqrt
 import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace RealAnalysis
+namespace LRA.VolumeIII.Analysis.RealAnalysis
 
 /-- `thm:square-nonnegative`. -/
 theorem SquareNonnegative (a : ℝ) : a ^ 2 ≥ 0 := by sorry
@@ -83,7 +80,4 @@ theorem PositiveSquareComparison (a b : ℝ) (ha : a > 0) (hb : b > 0)
 theorem UnitIntervalSquareBounds (a : ℝ) :
     (0 < a ∧ a < 1 → a ^ 2 < a) ∧ (a > 1 → a ^ 2 > a) := by sorry
 
-end RealAnalysis
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.RealAnalysis

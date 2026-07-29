@@ -11,7 +11,8 @@ schema constructors and later correctness proofs can share them without
 recomputing fresh-variable expressions.
 -/
 
-namespace SchemaFacts
+end LRA.VolumeI.Set.ZFC
+namespace LRA.VolumeI.Set.ZFC.SchemaFacts
 
 theorem replacementOutputVariablePrime_not_mem_allVariables
     (inputVariable outputVariable : ZFCVariable) (predicate : ZFCFormula) :
@@ -80,6 +81,7 @@ theorem separationSubsetSet_ne_sourceSet
       (v := separationSourceSet elementVariable predicate)
       (by simp)
 
-end SchemaFacts
+end LRA.VolumeI.Set.ZFC.SchemaFacts
+namespace LRA.VolumeI.Set.ZFC
 
 end LRA.VolumeI.Set.ZFC

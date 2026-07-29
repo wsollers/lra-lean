@@ -36,10 +36,7 @@ import LRA.VolumeIII.Analysis.Sequences.Monotonicity
 import LRA.VolumeIII.Analysis.Sequences.LiminfLimsup
 import LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.SupremaInfima
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Sequences
+namespace LRA.VolumeIII.Analysis.Sequences
 
 open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds (IsSupremum IsInfimum)
 
@@ -66,7 +63,4 @@ theorem BoundedSequenceLimsupLiminf {x : RealSequence} (h : BoundedSeq x) :
     (∃ S : ℝ, LimsupSeq x S) ∧ (∃ I : ℝ, LiminfSeq x I) := by
   sorry
 
-end Sequences
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Sequences

@@ -12,9 +12,7 @@ import LRA.VolumeII.Integers.ArithmeticTests
 import LRA.VolumeII.Integers.ConversionTests
 import LRA.VolumeII.Integers.Construction
 
-namespace LRA
-namespace VolumeII
-namespace Integers
+namespace LRA.VolumeII.Integers
 
 /-!
 Volume II label: integers-formalization-root
@@ -32,6 +30,4 @@ The integer formalization is organized by source variant:
 arithmetic smoke tests.
 -/
 
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers

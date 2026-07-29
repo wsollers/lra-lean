@@ -3,10 +3,7 @@
 
 import LRA.VolumeII.Integers.Pfefer.Construction
 
-namespace LRA
-namespace VolumeII
-namespace Integers
-namespace Pfefer
+namespace LRA.VolumeII.Integers.Pfefer
 
 /-!
 Volume II label: integers-pfefer-constructions
@@ -14,7 +11,4 @@ Lean module: LRA.VolumeII.Integers.Pfefer
 Verification status: pending aggregation module
 -/
 
-end Pfefer
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers.Pfefer

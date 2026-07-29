@@ -6,10 +6,7 @@ import LRA.VolumeII.Integers.Polish.LandauWorkup
 import LRA.VolumeII.Integers.Polish.DiscreteIntegerStructure
 import LRA.VolumeII.Integers.Polish.Implementation
 
-namespace LRA
-namespace VolumeII
-namespace Integers
-namespace Polish
+namespace LRA.VolumeII.Integers.Polish
 
 /-!
 Volume II label: integers-polish-constructions
@@ -20,7 +17,4 @@ This namespace collects integer constructions in the Polish axiomatization
 tradition. The currently checked construction is `TwoSidedSuccessor`.
 -/
 
-end Polish
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers.Polish

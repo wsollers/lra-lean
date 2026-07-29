@@ -4,10 +4,7 @@
 import Mathlib.Tactic
 import LRA.VolumeII.Switches.NumberSystems
 
-namespace LRA
-namespace VolumeII
-namespace BasicArithmetic
-namespace Parity
+namespace LRA.VolumeII.BasicArithmetic.Parity
 
 /-!
 Volume II label: basic-arithmetic-parity
@@ -131,7 +128,4 @@ theorem OddOfSqOdd {a : N} (square_odd : IsOdd (a ^ 2)) :
     IsOdd a := by
   sorry
 
-end Parity
-end BasicArithmetic
-end VolumeII
-end LRA
+end LRA.VolumeII.BasicArithmetic.Parity

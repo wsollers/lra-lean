@@ -19,10 +19,7 @@ statement added here to avoid a pointless duplicate.
 
 import Mathlib.Data.Real.Basic
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace RealAnalysis
+namespace LRA.VolumeIII.Analysis.RealAnalysis
 
 /-- `prop:order-arithmetic`. The four basic order-arithmetic rules bundled
 as a single citable proposition: additive monotonicity, multiplicative
@@ -35,7 +32,4 @@ theorem OrderArithmetic (a b c d y : ℝ) :
     (y ≥ 0 → (|a| ≤ y ↔ -y ≤ a ∧ a ≤ y)) := by
   sorry
 
-end RealAnalysis
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.RealAnalysis

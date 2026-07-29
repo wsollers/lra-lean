@@ -57,10 +57,7 @@ import LRA.VolumeIII.Analysis.Sequences.SequenceDefinitions
 import LRA.VolumeIII.Analysis.Sequences.Convergence
 import LRA.VolumeIII.Analysis.Sequences.NullConstantSequences
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Sequences
+namespace LRA.VolumeIII.Analysis.Sequences
 
 /-- `def:m-tail`. -/
 def MTail (x : RealSequence) (M : ℕ) : RealSequence := fun n => x (M + n)
@@ -86,7 +83,4 @@ theorem RatioLimitLessThanOneImpliesNull {x : RealSequence}
     ConvergesTo x 0 := by
   sorry
 
-end Sequences
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Sequences

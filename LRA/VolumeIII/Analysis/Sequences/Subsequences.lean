@@ -69,10 +69,7 @@ import LRA.VolumeIII.Analysis.Sequences.Convergence
 import LRA.VolumeIII.Analysis.Sequences.NullConstantSequences
 import LRA.VolumeIII.Analysis.Sequences.Monotonicity
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Sequences
+namespace LRA.VolumeIII.Analysis.Sequences
 
 /-- `def:strictly-increasing-index-map`. -/
 def IsStrictlyIncreasingIndexMap (σ : ℕ → ℕ) : Prop :=
@@ -212,7 +209,4 @@ theorem BoundedSequenceConvergesIffUniqueSubsequentialLimit
       (IsSubsequentialLimit x L ∧ ∀ K, IsSubsequentialLimit x K → K = L) := by
   sorry
 
-end Sequences
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Sequences

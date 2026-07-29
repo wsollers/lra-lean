@@ -7,10 +7,7 @@ in full, one node per `\label`.
 
 import Mathlib.Data.Real.Basic
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace RealAnalysis
+namespace LRA.VolumeIII.Analysis.RealAnalysis
 
 /-- `def:absolute-error-approximation`. -/
 def AbsoluteError (x xTilde : ℝ) : ℝ := |x - xTilde|
@@ -59,7 +56,4 @@ theorem RelativeErrorQuotient (x y xTilde yTilde : ℝ)
         (1 - RelativeError y yTilde) := by
   sorry
 
-end RealAnalysis
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.RealAnalysis

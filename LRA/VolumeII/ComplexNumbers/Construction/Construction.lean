@@ -3,9 +3,7 @@
 
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA
-namespace VolumeII
-namespace ComplexNumbers
+namespace LRA.VolumeII.ComplexNumbers
 
 open LRA.VolumeI.Algebra.Models
 
@@ -20,7 +18,9 @@ using the real operations, and the obligations needed to package the result as
 an algebraically closed field are left as explicit theorem statements.
 -/
 
-namespace Construction
+end LRA.VolumeII.ComplexNumbers
+namespace LRA.VolumeII.ComplexNumbers.Construction
+open LRA.VolumeI.Algebra.Models
 
 
 /-- Definition 1.1: complex numbers over a selected real model.
@@ -31,7 +31,9 @@ structure ComplexNumber (real_model : RealModel) where
   real_part : real_model.signature.carrier
   imaginary_part : real_model.signature.carrier
 
-namespace ComplexNumber
+end LRA.VolumeII.ComplexNumbers.Construction
+namespace LRA.VolumeII.ComplexNumbers.Construction.ComplexNumber
+open LRA.VolumeI.Algebra.Models
 
 variable (real_model : RealModel)
 
@@ -439,10 +441,12 @@ theorem algebraic_closure_obligation
       polynomial.evaluate real_model root = zero real_model := by
   sorry
 
-end ComplexNumber
+end LRA.VolumeII.ComplexNumbers.Construction.ComplexNumber
+namespace LRA.VolumeII.ComplexNumbers.Construction
+open LRA.VolumeI.Algebra.Models
 
-end Construction
+end LRA.VolumeII.ComplexNumbers.Construction
+namespace LRA.VolumeII.ComplexNumbers
+open LRA.VolumeI.Algebra.Models
 
-end ComplexNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.ComplexNumbers

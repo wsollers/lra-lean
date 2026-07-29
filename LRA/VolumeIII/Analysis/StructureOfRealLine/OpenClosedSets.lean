@@ -14,10 +14,7 @@ etc.) in the Functions chapter's `subsets-real-line` section — see
 
 import Mathlib.Data.Real.Basic
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace StructureOfRealLine
+namespace LRA.VolumeIII.Analysis.StructureOfRealLine
 
 /-- `def:open-ball`. -/
 def OpenBall (x r : ℝ) : Set ℝ := {y | |x - y| < r}
@@ -74,7 +71,4 @@ theorem ClosedSetClosureOperations :
     (∀ (n : ℕ) (F : Fin n → Set ℝ), (∀ i, IsClosedSet (F i)) → IsClosedSet (⋃ i, F i)) := by
   sorry
 
-end StructureOfRealLine
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.StructureOfRealLine

@@ -3,11 +3,7 @@
 
 import LRA.VolumeII.Integers.Implementation
 
-namespace LRA
-namespace VolumeII
-namespace Integers
-namespace Active
-namespace Conversion
+namespace LRA.VolumeII.Integers.Active.Conversion
 
 /-!
 Volume II label: integers-active-conversion-tools
@@ -87,8 +83,4 @@ Mathematical statement (Lean): `def negative_two : Active.Z`.
 -/
 def negative_two : Active.Z := ofInt (-2)
 
-end Conversion
-end Active
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers.Active.Conversion

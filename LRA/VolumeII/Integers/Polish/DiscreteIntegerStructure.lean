@@ -1,10 +1,7 @@
 -- LRA/VolumeII/Integers/Polish/DiscreteIntegerStructure.lean
 -- Abstract two-sided successor/predecessor axioms for integer structures.
 
-namespace LRA
-namespace VolumeII
-namespace Integers
-namespace Polish
+namespace LRA.VolumeII.Integers.Polish
 
 /-!
 Volume II label: integers-polish-discrete-integer-structure
@@ -119,7 +116,8 @@ structure IntegerStructure where
       (∀ x, A x → A (pred x)) →
       ∀ x, A x
 
-namespace IntegerStructure
+end LRA.VolumeII.Integers.Polish
+namespace LRA.VolumeII.Integers.Polish.IntegerStructure
 
 variable (S : IntegerStructure)
 
@@ -379,8 +377,5 @@ theorem categoricity :
       ∀ n : Int, S.rep (n + 1) = S.succ (S.rep n) :=
   ⟨S.rep_bijective, S.rep_zero, S.rep_succ⟩
 
-end IntegerStructure
-end Polish
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers.Polish.IntegerStructure
+namespace LRA.VolumeII.Integers.Polish

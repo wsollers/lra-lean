@@ -16,10 +16,7 @@ import LRA.VolumeIII.Analysis.Differentiation.MeanValueTheorem
 import LRA.VolumeIII.Analysis.Differentiation.GraphReading
 import LRA.VolumeIII.Analysis.Continuity.Limits
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Differentiation
+namespace LRA.VolumeIII.Analysis.Differentiation
 
 variable {f g : ℝ → ℝ} {A : Set ℝ} {c Df Dg α : ℝ}
 
@@ -138,7 +135,4 @@ theorem LhopitalInfinityOverInfinity (f g : ℝ → ℝ) (a b : ℝ) (hab : a < 
     TendsToRight (fun x => f x / g x) (Set.Ioo a b) a L := by
   sorry
 
-end Differentiation
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Differentiation

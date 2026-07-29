@@ -4,10 +4,7 @@
 import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA
-namespace VolumeII
-namespace RationalNumbers
-namespace RationalQuotientFractions
+namespace LRA.VolumeII.RationalNumbers.RationalQuotientFractions
 
 open LRA.VolumeI.Algebra.Models
 
@@ -720,7 +717,4 @@ theorem structure_of_the_rationals (rational_data : IntegerAndPositiveNaturalDat
     StructureOfTheRationals rational_data := by
   sorry
 
-end RationalQuotientFractions
-end RationalNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.RationalNumbers.RationalQuotientFractions

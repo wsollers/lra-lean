@@ -59,10 +59,7 @@ import Mathlib.Data.Set.Defs
 import Mathlib.Data.List.TFAE
 import LRA.VolumeIII.Analysis.Sequences.SequenceDefinitions
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Sequences
+namespace LRA.VolumeIII.Analysis.Sequences
 
 /-- `def:convergent-sequence`. -/
 def ConvergesTo (x : RealSequence) (L : ℝ) : Prop :=
@@ -90,7 +87,4 @@ theorem EquivalenceOfConvergenceFormulations (x : RealSequence) (L : ℝ) :
      ConvergesToNbhd x L].TFAE := by
   sorry
 
-end Sequences
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Sequences

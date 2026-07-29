@@ -10,10 +10,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Analysis.Polynomial.Basic
 import LRA.VolumeIII.Analysis.Continuity.GlobalTheorems
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Continuity
+namespace LRA.VolumeIII.Analysis.Continuity
 
 /-- A step function on `[a,b]`: constant on each cell of some finite
 partition. -/
@@ -69,7 +66,4 @@ theorem BernsteinApproximation (f : ℝ → ℝ) (hf : ContinuousOn' f (Set.Icc 
       |f x - (BernsteinPolynomial f n).eval x| < ε := by
   sorry
 
-end Continuity
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Continuity

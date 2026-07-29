@@ -5,10 +5,7 @@ import LRA.VolumeII.Integers.QuotientOrderedPairs
 import LRA.VolumeII.NaturalNumbers
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA
-namespace VolumeII
-namespace Integers
-namespace Mendelson
+namespace LRA.VolumeII.Integers.Mendelson
 
 /-!
 Volume II label: integers-mendelson-construction
@@ -206,7 +203,4 @@ theorem mendelson_compares_with_quotient_ordered_pairs
       ∀ first second, comparison first = comparison second → first = second := by
   sorry
 
-end Mendelson
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers.Mendelson

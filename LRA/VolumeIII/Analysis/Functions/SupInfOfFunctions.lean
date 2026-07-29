@@ -29,10 +29,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Data.Fintype.Basic
 import Mathlib.Order.ConditionallyCompleteLattice.Basic
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Functions
+namespace LRA.VolumeIII.Analysis.Functions
 
 /-- `def:function-supremum-on-set`. -/
 noncomputable def FunctionSupremumOnSet (f : ℝ → ℝ) (A : Set ℝ) : ℝ :=
@@ -154,7 +151,4 @@ theorem FiniteFamilyPointwiseInfimumIsMinimum {I : Type*} [Fintype I] [Inhabited
     ∃ α : I, PointwiseInfimumFamily f x = f α x := by
   sorry
 
-end Functions
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Functions

@@ -9,10 +9,7 @@ statement per book label, `sorry`-bodied.
 import Mathlib.Data.Real.Basic
 import LRA.VolumeIII.Analysis.Continuity.PointContinuity
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Differentiation
+namespace LRA.VolumeIII.Analysis.Differentiation
 
 /-- `def:derivative-at-a-point` (`h`-form): the ε-δ definition of the
 derivative of `f` at `c`, `c` a limit point of `A`. -/
@@ -66,7 +63,4 @@ theorem DerivativeUnique (f : ℝ → ℝ) (A : Set ℝ) (c D₁ D₂ : ℝ)
     (h₁ : Derivative D₁ f A c) (h₂ : Derivative D₂ f A c) : D₁ = D₂ := by
   sorry
 
-end Differentiation
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Differentiation

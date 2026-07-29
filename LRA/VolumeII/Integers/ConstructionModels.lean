@@ -5,9 +5,7 @@ import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeI.Algebra.Models.Models
 import LRA.VolumeII.NaturalNumbers
 
-namespace LRA
-namespace VolumeII
-namespace Integers
+namespace LRA.VolumeII.Integers
 
 open LRA.VolumeI.Algebra.Models
 
@@ -23,7 +21,9 @@ statements for named integer constructions without competing for the canonical
 construction declarations.
 -/
 
-namespace QuotientOrderedPairsComparison
+end LRA.VolumeII.Integers
+namespace LRA.VolumeII.Integers.QuotientOrderedPairsComparison
+open LRA.VolumeI.Algebra.Models
 
 
 /-- **[Definition — Quotient-Ordered-Pairs Integer Representative]**
@@ -87,9 +87,13 @@ Mathematical statement (Lean): `noncomputable def integer_model : IntegerModel`.
 noncomputable def integer_model : IntegerModel :=
   Classical.choice integer_model_exists
 
-end QuotientOrderedPairsComparison
+end LRA.VolumeII.Integers.QuotientOrderedPairsComparison
+namespace LRA.VolumeII.Integers
+open LRA.VolumeI.Algebra.Models
 
-namespace TaoComparison
+end LRA.VolumeII.Integers
+namespace LRA.VolumeII.Integers.TaoComparison
+open LRA.VolumeI.Algebra.Models
 
 /--
 **[Definition — Tao Formal Difference]**
@@ -150,9 +154,13 @@ Mathematical statement (Lean): `noncomputable def integer_model : IntegerModel`.
 noncomputable def integer_model : IntegerModel :=
   Classical.choice integer_model_exists
 
-end TaoComparison
+end LRA.VolumeII.Integers.TaoComparison
+namespace LRA.VolumeII.Integers
+open LRA.VolumeI.Algebra.Models
 
-namespace MendelsonComparison
+end LRA.VolumeII.Integers
+namespace LRA.VolumeII.Integers.MendelsonComparison
+open LRA.VolumeI.Algebra.Models
 
 
 /-- **[Definition — Mendelson Positive Pair]**
@@ -251,7 +259,9 @@ theorem positive_integers_recover_natural_number_model :
     Nonempty LRA.VolumeII.NaturalNumbers.NModel :=
   ⟨recovered_natural_number_model⟩
 
-end MendelsonComparison
+end LRA.VolumeII.Integers.MendelsonComparison
+namespace LRA.VolumeII.Integers
+open LRA.VolumeI.Algebra.Models
 
 
 /-- **[Definition — Ordered-Ring Model Isomorphism]**
@@ -397,6 +407,4 @@ theorem tao_and_mendelson_are_isomorphic :
     Nonempty (ModelIsomorphism TaoComparison.integer_model MendelsonComparison.integer_model) :=
   ⟨tao_equiv_mendelson⟩
 
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers

@@ -10,10 +10,7 @@ import Mathlib.Topology.Instances.Real.Lemmas
 import Mathlib.Order.Filter.Basic
 import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace RealAnalysis
+namespace LRA.VolumeIII.Analysis.RealAnalysis
 
 /-- `thm:k-periodicity`. `(a_n) → L` iff every one of the `k` residue-class
 subsequences `(a_{kn+r})` converges to `L`. -/
@@ -44,7 +41,4 @@ theorem AlternatingSeriesTest (a : ℕ → ℝ)
       Filter.atTop (nhds L) := by
   sorry
 
-end RealAnalysis
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.RealAnalysis

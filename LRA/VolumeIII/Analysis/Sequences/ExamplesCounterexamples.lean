@@ -36,10 +36,7 @@ import LRA.VolumeIII.Analysis.Sequences.SequenceDefinitions
 import LRA.VolumeIII.Analysis.Sequences.Convergence
 import LRA.VolumeIII.Analysis.Sequences.NullConstantSequences
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Sequences
+namespace LRA.VolumeIII.Analysis.Sequences
 
 /-- `ex:sequence-example-constant`. -/
 theorem ExampleConstantSequence (c : ℝ) :
@@ -91,7 +88,4 @@ theorem ExampleVanishingDifferencesNotCauchy :
       ¬ BoundedSeq (fun n : ℕ => ∑ k ∈ Finset.range (n + 1), 1 / ((k : ℝ) + 1)) := by
   sorry
 
-end Sequences
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Sequences

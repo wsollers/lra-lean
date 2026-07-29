@@ -5,9 +5,7 @@ import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeI.Algebra.Models.Models
 import LRA.VolumeII.RationalNumbers.RationalQuotientFractions
 
-namespace LRA
-namespace VolumeII
-namespace RealNumbers
+namespace LRA.VolumeII.RealNumbers
 
 open LRA.VolumeI.Algebra.Models
 
@@ -22,7 +20,9 @@ for comparison.  The authoritative Markdown-driven constructions live in the
 dedicated construction modules.
 -/
 
-namespace DedekindCuts
+end LRA.VolumeII.RealNumbers
+namespace LRA.VolumeII.RealNumbers.DedekindCuts
+open LRA.VolumeI.Algebra.Models
 
 
 /-- **[Definition — Dedekind Cut]**
@@ -116,9 +116,13 @@ theorem reals_are_complete
             supremum upper_bound) := by
   exact (real_model rational_model).laws.LeastUpperBoundProperty
 
-end DedekindCuts
+end LRA.VolumeII.RealNumbers.DedekindCuts
+namespace LRA.VolumeII.RealNumbers
+open LRA.VolumeI.Algebra.Models
 
-namespace CauchySequences
+end LRA.VolumeII.RealNumbers
+namespace LRA.VolumeII.RealNumbers.CauchySequences
+open LRA.VolumeI.Algebra.Models
 
 /--
 **[Def — Sequence]**
@@ -202,9 +206,13 @@ noncomputable def real_extension
     RealExtension rational_model :=
   Classical.choice (real_extension_exists rational_model)
 
-end CauchySequences
+end LRA.VolumeII.RealNumbers.CauchySequences
+namespace LRA.VolumeII.RealNumbers
+open LRA.VolumeI.Algebra.Models
 
-namespace CantorNestedIntervals
+end LRA.VolumeII.RealNumbers
+namespace LRA.VolumeII.RealNumbers.CantorNestedIntervals
+open LRA.VolumeI.Algebra.Models
 
 /--
 **[Structure — IntervalSequence]**
@@ -253,9 +261,13 @@ theorem endpoint_sequences_determine_cauchy_class
       interval_sequence.left_endpoint := by
   sorry
 
-end CantorNestedIntervals
+end LRA.VolumeII.RealNumbers.CantorNestedIntervals
+namespace LRA.VolumeII.RealNumbers
+open LRA.VolumeI.Algebra.Models
 
-namespace PrimitiveIntervalQuotient
+end LRA.VolumeII.RealNumbers
+namespace LRA.VolumeII.RealNumbers.PrimitiveIntervalQuotient
+open LRA.VolumeI.Algebra.Models
 
 /--
 **[Structure — RationalInterval]**
@@ -370,9 +382,13 @@ noncomputable def real_model
     (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 
-end PrimitiveIntervalQuotient
+end LRA.VolumeII.RealNumbers.PrimitiveIntervalQuotient
+namespace LRA.VolumeII.RealNumbers
+open LRA.VolumeI.Algebra.Models
 
-namespace DyadicExpansions
+end LRA.VolumeII.RealNumbers
+namespace LRA.VolumeII.RealNumbers.DyadicExpansions
+open LRA.VolumeI.Algebra.Models
 
 /--
 **[Structure — Expansion]**
@@ -426,7 +442,9 @@ noncomputable def real_model
     (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 
-end DyadicExpansions
+end LRA.VolumeII.RealNumbers.DyadicExpansions
+namespace LRA.VolumeII.RealNumbers
+open LRA.VolumeI.Algebra.Models
 
 /--
 **[Structure — ModelIsomorphism]**
@@ -650,6 +668,4 @@ theorem dedekind_and_dyadic_are_isomorphic
         (DyadicExpansions.real_model rational_model)) :=
   ⟨dedekind_equiv_dyadic rational_model⟩
 
-end RealNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.RealNumbers

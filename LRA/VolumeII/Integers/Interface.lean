@@ -4,9 +4,7 @@
 import LRA.VolumeI.Set
 import LRA.VolumeI.Algebra
 
-namespace LRA
-namespace VolumeII
-namespace Integers
+namespace LRA.VolumeII.Integers
 
 /-!
 Volume II label: integers-interface
@@ -73,6 +71,4 @@ structure IntegerStructure extends OrderedRingStructure where
   succ : carrier → carrier
   pred : carrier → carrier
 
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers

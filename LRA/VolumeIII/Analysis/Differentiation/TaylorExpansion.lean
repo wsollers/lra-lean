@@ -17,10 +17,7 @@ import LRA.VolumeIII.Analysis.Differentiation.ChainRule
 import LRA.VolumeIII.Analysis.Differentiation.GraphReading
 import LRA.VolumeIII.Analysis.Differentiation.AlgebraOfDerivatives
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Differentiation
+namespace LRA.VolumeIII.Analysis.Differentiation
 
 -- ---------------------------------------------------------------------
 -- Taylor: construction and error.
@@ -115,7 +112,4 @@ theorem LinearityOfTheDifferential (f g : ℝ → ℝ) (c α β : ℝ)
     DifferentiableByDifferential (fun x => α * f x + β * g x) c := by
   sorry
 
-end Differentiation
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Differentiation

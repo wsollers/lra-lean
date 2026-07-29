@@ -1,10 +1,7 @@
 -- LRA/VolumeII/Integers/Pfefer/Construction.lean
 -- Pfefer source-variant integer construction placeholder.
 
-namespace LRA
-namespace VolumeII
-namespace Integers
-namespace Pfefer
+namespace LRA.VolumeII.Integers.Pfefer
 
 /-!
 Volume II label: integers-pfefer-construction
@@ -32,7 +29,4 @@ def plan : ConstructionPlan where
   source := "Pfefer canonical integer construction"
   status := "pending formalization"
 
-end Pfefer
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers.Pfefer

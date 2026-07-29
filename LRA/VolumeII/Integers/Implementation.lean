@@ -6,9 +6,7 @@ import LRA.VolumeII.Integers.Tao
 import LRA.VolumeII.Integers.Mendelson
 import LRA.VolumeII.Integers.Pfefer
 
-namespace LRA
-namespace VolumeII
-namespace Integers
+namespace LRA.VolumeII.Integers
 
 /-!
 Volume II label: integers-active-implementation
@@ -20,7 +18,8 @@ work. Change the abbreviations in `Active` to make another construction the
 default target for shared arithmetic tests and downstream examples.
 -/
 
-namespace Active
+end LRA.VolumeII.Integers
+namespace LRA.VolumeII.Integers.Active
 
 /--
 **[Abbrev — ZImpl]**
@@ -172,8 +171,7 @@ Mathematical statement (Lean): `abbrev integerLaws : IntegerLaws ZImpl`.
 -/
 abbrev integerLaws : IntegerLaws ZImpl := Polish.PolishIntegerLaws
 
-end Active
+end LRA.VolumeII.Integers.Active
+namespace LRA.VolumeII.Integers
 
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers

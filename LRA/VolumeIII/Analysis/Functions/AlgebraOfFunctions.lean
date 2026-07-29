@@ -71,10 +71,7 @@ corpus's own named predicates as citable content.
 import Mathlib.Logic.Function.Basic
 import Mathlib.Data.Set.Basic
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Functions
+namespace LRA.VolumeIII.Analysis.Functions
 
 variable {A B C : Type*}
 
@@ -122,7 +119,4 @@ theorem PreimageUnionIntersection {f : A → B} (S T : Set B) :
       f ⁻¹' Sᶜ = (f ⁻¹' S)ᶜ := by
   sorry
 
-end Functions
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Functions

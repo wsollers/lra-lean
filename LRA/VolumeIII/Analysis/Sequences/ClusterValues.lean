@@ -48,10 +48,7 @@ import LRA.VolumeIII.Analysis.Sequences.NullConstantSequences
 import LRA.VolumeIII.Analysis.Sequences.Subsequences
 import LRA.VolumeIII.Analysis.Sequences.LiminfLimsup
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Sequences
+namespace LRA.VolumeIII.Analysis.Sequences
 
 /-- `def:cluster-value-sequence`. Named `IsClusterValueOf` (not
 `IsClusterValue`) to avoid colliding with `IsSubsequentialLimit` — see
@@ -76,7 +73,4 @@ theorem LimsupLiminfExtremalClusterValues {x : RealSequence}
     (IsClusterValueOf x I ∧ ∀ L, IsClusterValueOf x L → I ≤ L) := by
   sorry
 
-end Sequences
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Sequences

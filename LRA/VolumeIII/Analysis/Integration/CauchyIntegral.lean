@@ -18,10 +18,7 @@ import Mathlib.Algebra.BigOperators.Ring.Finset
 import LRA.VolumeIII.Analysis.Continuity.GlobalTheorems
 import LRA.VolumeIII.Analysis.Integration.Partitions
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Integration
+namespace LRA.VolumeIII.Analysis.Integration
 
 /-- `def:cauchy-sum`: the left-endpoint Riemann-type sum.
 Mathematical statement (Lean): `def CauchySum {a b : ℝ} (f : ℝ → ℝ) (P : IntegrationPartition a b) : ℝ :=`.
@@ -132,7 +129,4 @@ theorem cauchy_step_function_failure_witness :
     IsCauchyIntegrable (fun x => if x < (1:ℝ)/2 then (0:ℝ) else 1) 0 1 := by
   sorry
 
-end Integration
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Integration

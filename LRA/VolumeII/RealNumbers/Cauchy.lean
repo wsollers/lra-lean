@@ -4,10 +4,7 @@
 import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA
-namespace VolumeII
-namespace RealNumbers
-namespace Cauchy
+namespace LRA.VolumeII.RealNumbers.Cauchy
 
 open LRA.VolumeI.Algebra.Models
 
@@ -321,7 +318,4 @@ theorem representative_multiplication_respects_equivalence
             rational_model absolute_value_data first second⟩) := by
   sorry
 
-end Cauchy
-end RealNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.RealNumbers.Cauchy

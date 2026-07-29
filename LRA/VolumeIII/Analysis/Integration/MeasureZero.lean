@@ -12,10 +12,7 @@ import LRA.VolumeIII.Analysis.Integration.RiemannIntegral
 import LRA.VolumeIII.Analysis.Integration.DarbouxIntegral
 import LRA.VolumeIII.Analysis.StructureOfRealLine.OpenClosedSets
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Integration
+namespace LRA.VolumeIII.Analysis.Integration
 
 /-- `def:measure-zero`: `E` is covered, for every `ε`, by countably many
 open intervals of total length at most `ε`. Intervals are given directly
@@ -43,7 +40,4 @@ theorem lebesgue_criterion_riemann_integrability (f : ℝ → ℝ) (a b : ℝ) (
       IsMeasureZero {x ∈ Set.Icc a b | PointOscillation f a b x > 0} := by
   sorry
 
-end Integration
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Integration

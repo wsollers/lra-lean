@@ -21,10 +21,7 @@ logged duplication bug (ISSUES.md).
 import Mathlib.Data.Real.Basic
 import Mathlib.Order.ConditionallyCompleteLattice.Basic
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Functions
+namespace LRA.VolumeIII.Analysis.Functions
 
 /-- `prop:common-maximum-gives-sum-maximum`. -/
 theorem CommonMaximumGivesSumMaximum (f g : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ)
@@ -74,7 +71,4 @@ theorem FunctionExtremumValuesAreUnique (f : ℝ → ℝ) (A : Set ℝ)
     (h₂ : FunctionMaximumPoint f A x₂) : f x₁ = f x₂ := by
   sorry
 
-end Functions
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Functions

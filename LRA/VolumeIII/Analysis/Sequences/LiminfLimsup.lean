@@ -67,10 +67,7 @@ import LRA.VolumeIII.Analysis.Sequences.NullConstantSequences
 import LRA.VolumeIII.Analysis.Sequences.Monotonicity
 import LRA.VolumeIII.Analysis.Sequences.Subsequences
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Sequences
+namespace LRA.VolumeIII.Analysis.Sequences
 
 /-- `def:tail-supremum-sequence`. -/
 noncomputable def TailSupSeq (x : RealSequence) : RealSequence :=
@@ -174,7 +171,4 @@ theorem LiminfNegEqNegLimsup {x : RealSequence} {L : ℝ} :
     LiminfSeq (fun n => -x n) L ↔ LimsupSeq x (-L) := by
   sorry
 
-end Sequences
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Sequences

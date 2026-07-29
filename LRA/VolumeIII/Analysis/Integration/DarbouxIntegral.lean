@@ -11,10 +11,7 @@ import LRA.VolumeIII.Analysis.Integration.Partitions
 import LRA.VolumeIII.Analysis.Integration.RiemannIntegral
 import LRA.VolumeIII.Analysis.Continuity.MonotoneFunctions
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Integration
+namespace LRA.VolumeIII.Analysis.Integration
 
 variable {f g : ℝ → ℝ} {a b : ℝ}
 
@@ -135,7 +132,4 @@ theorem dirichlet_not_darboux_integrable :
     ¬ IsDarbouxIntegrable (fun _ => (0 : ℝ)) 0 1 := by
   sorry
 
-end Integration
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Integration

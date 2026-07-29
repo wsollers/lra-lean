@@ -10,10 +10,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Analysis.Real.Sqrt
 import LRA.VolumeIII.Analysis.Continuity.GlobalTheorems
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Continuity
+namespace LRA.VolumeIII.Analysis.Continuity
 
 /-- `def:uniform-continuity`. -/
 def IsUniformlyContinuous (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
@@ -93,7 +90,4 @@ theorem SqrtUcNotLipschitz :
     ¬ ∃ K, IsLipschitzOn Real.sqrt (Set.Icc (0:ℝ) 1) K := by
   sorry
 
-end Continuity
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Continuity

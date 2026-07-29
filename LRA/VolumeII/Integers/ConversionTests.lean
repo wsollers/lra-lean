@@ -3,10 +3,8 @@
 
 import LRA.VolumeII.Integers.Conversion
 
-namespace LRA
-namespace VolumeII
-namespace Integers
-namespace ConversionTests
+namespace LRA.VolumeII.Integers.ConversionTests
+open Active.Conversion
 
 /-!
 Volume II label: integers-conversion-tests
@@ -43,7 +41,4 @@ example : negative_two = Active.negZ two := rfl
 example : Active.pred one = zero :=
   Active.successorLaws.pred_succ zero
 
-end ConversionTests
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers.ConversionTests

@@ -5,10 +5,7 @@ import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeI.Algebra.Models.Models
 import LRA.VolumeII.RealNumbers.Cauchy
 
-namespace LRA
-namespace VolumeII
-namespace RealNumbers
-namespace PrimitiveIntervals
+namespace LRA.VolumeII.RealNumbers.PrimitiveIntervals
 
 open LRA.VolumeI.Algebra.Models
 
@@ -890,7 +887,4 @@ theorem primitive_interval_construction_of_reals :
     PrimitiveIntervalConstructionOfReals rational_model := by
   sorry
 
-end PrimitiveIntervals
-end RealNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.RealNumbers.PrimitiveIntervals

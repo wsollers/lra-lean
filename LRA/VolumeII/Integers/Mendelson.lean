@@ -3,10 +3,7 @@
 
 import LRA.VolumeII.Integers.Mendelson.Construction
 
-namespace LRA
-namespace VolumeII
-namespace Integers
-namespace Mendelson
+namespace LRA.VolumeII.Integers.Mendelson
 
 /-!
 Volume II label: integers-mendelson-constructions
@@ -14,7 +11,4 @@ Lean module: LRA.VolumeII.Integers.Mendelson
 Verification status: pending aggregation module
 -/
 
-end Mendelson
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers.Mendelson

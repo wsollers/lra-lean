@@ -11,10 +11,7 @@ import LRA.VolumeIII.Analysis.Differentiation.DerivativeDefinition
 import LRA.VolumeIII.Analysis.Continuity.GlobalTheorems
 import LRA.VolumeIII.Analysis.Continuity.UniformContinuity
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Differentiation
+namespace LRA.VolumeIII.Analysis.Differentiation
 
 /-- `thm:rolles-theorem`. -/
 theorem RollesTheorem (f : ℝ → ℝ) (a b : ℝ) (hab : a < b)
@@ -61,7 +58,4 @@ theorem DerivativeBoundImpliesLipschitz (f : ℝ → ℝ) (I : Set ℝ) (hI : I.
     LRA.VolumeIII.Analysis.Continuity.IsLipschitzOn f I M := by
   sorry
 
-end Differentiation
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Differentiation

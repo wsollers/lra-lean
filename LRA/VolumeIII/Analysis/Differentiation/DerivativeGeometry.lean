@@ -16,10 +16,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Topology.Instances.Real.Lemmas
 import LRA.VolumeIII.Analysis.Differentiation.DerivativeDefinition
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Differentiation
+namespace LRA.VolumeIII.Analysis.Differentiation
 
 /-- `def:relative-minimum`. -/
 def IsRelativeMinimum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
@@ -67,7 +64,4 @@ def IsInflection (f : ℝ → ℝ) (c : ℝ) : Prop :=
   (∃ δ > 0, IsConvexOn f (Set.Icc (c - δ) c) ∧ IsConcaveOn f (Set.Icc c (c + δ))) ∨
   (∃ δ > 0, IsConcaveOn f (Set.Icc (c - δ) c) ∧ IsConvexOn f (Set.Icc c (c + δ)))
 
-end Differentiation
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Differentiation

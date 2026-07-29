@@ -10,10 +10,7 @@ purely definitional.
 
 import Mathlib.Data.Real.Basic
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Differentiation
+namespace LRA.VolumeIII.Analysis.Differentiation
 
 /-- `def:secant-line`: the line through `(x₁, f x₁)` and `(x₂, f x₂)`. -/
 noncomputable def SecantLine (f : ℝ → ℝ) (x₁ x₂ : ℝ) : ℝ → ℝ :=
@@ -29,7 +26,4 @@ defined once `f` is known to be differentiable at `c`. -/
 def TangentLine (f : ℝ → ℝ) (c fc' : ℝ) : ℝ → ℝ :=
   fun x => f c + fc' * (x - c)
 
-end Differentiation
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Differentiation

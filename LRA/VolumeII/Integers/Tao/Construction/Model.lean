@@ -4,10 +4,7 @@
 import LRA.VolumeII.Integers.QuotientOrderedPairs
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA
-namespace VolumeII
-namespace Integers
-namespace Tao
+namespace LRA.VolumeII.Integers.Tao
 
 /-!
 Volume II label: integers-tao-construction
@@ -243,7 +240,4 @@ theorem tao_compares_with_quotient_ordered_pairs
       ∀ first second, comparison first = comparison second → first = second := by
   sorry
 
-end Tao
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers.Tao

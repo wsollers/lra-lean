@@ -8,6 +8,7 @@ import Mathlib.Order.Bounds.Defs
 open scoped Pointwise
 
 namespace LRA.VolumeIII.Analysis.Bounding.Bounds
+open scoped Pointwise
 
 /-!
 Volume III label: analysis-bounding-bounds
@@ -94,7 +95,9 @@ theorem SupremumIffIsLUB [Preorder F] {s : F} {A : Set F} :
 
 
 
-namespace Algebra
+end LRA.VolumeIII.Analysis.Bounding.Bounds
+namespace LRA.VolumeIII.Analysis.Bounding.Bounds.Algebra
+open scoped Pointwise
 
 variable {F : Type*} [Field F] [LinearOrder F] [IsStrictOrderedRing F]
 
@@ -137,6 +140,8 @@ theorem SupremumMonotone {sA sB : F} {A B : Set F}
     sA <= sB := by
   sorry
 
-end Algebra
+end LRA.VolumeIII.Analysis.Bounding.Bounds.Algebra
+namespace LRA.VolumeIII.Analysis.Bounding.Bounds
+open scoped Pointwise
 
 end LRA.VolumeIII.Analysis.Bounding.Bounds

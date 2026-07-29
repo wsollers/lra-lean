@@ -3,10 +3,8 @@
 
 import LRA.VolumeII.RealNumbers.Extensions
 
-namespace LRA
-namespace VolumeII
-namespace RealNumbers
-namespace IntervalArithmetic
+namespace LRA.VolumeII.RealNumbers.IntervalArithmetic
+open LRA.VolumeI.Algebra.Models
 
 /-!
 Volume II label: interval-arithmetic-over-reals
@@ -136,7 +134,4 @@ theorem dependency_can_make_enclosures_strict
         expression_enclosure ≠ direct_enclosure := by
   sorry
 
-end IntervalArithmetic
-end RealNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.RealNumbers.IntervalArithmetic

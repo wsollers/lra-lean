@@ -3,9 +3,7 @@
 
 import LRA.VolumeII.Integers.Interface
 
-namespace LRA
-namespace VolumeII
-namespace Integers
+namespace LRA.VolumeII.Integers
 
 /-!
 Volume II label: integers-law-bundles
@@ -254,6 +252,4 @@ Mathematical statement (Lean): `abbrev IntegerOrderedRingLaws (integer_structure
 abbrev IntegerOrderedRingLaws (integer_structure : IntegerStructure) : Prop :=
   OrderedRingLaws integer_structure.toOrderedRingStructure
 
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers

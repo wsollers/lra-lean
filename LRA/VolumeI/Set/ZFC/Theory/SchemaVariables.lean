@@ -12,7 +12,8 @@ below the schema constructors in the import graph so the constructors can use
 the names directly.
 -/
 
-namespace SchemaFacts
+end LRA.VolumeI.Set.ZFC
+namespace LRA.VolumeI.Set.ZFC.SchemaFacts
 
 def separationSourceSet
     (elementVariable : ZFCVariable) (predicate : ZFCFormula) :
@@ -53,6 +54,7 @@ def replacementOutputVariablePrime
       {replacementSourceSet inputVariable outputVariable predicate} ∪
       replacementBaseUsed inputVariable outputVariable predicate)
 
-end SchemaFacts
+end LRA.VolumeI.Set.ZFC.SchemaFacts
+namespace LRA.VolumeI.Set.ZFC
 
 end LRA.VolumeI.Set.ZFC

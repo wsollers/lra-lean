@@ -4,10 +4,7 @@
 import LRA.VolumeI.Algebra.Models.Models
 import LRA.VolumeII.RealNumbers.Cauchy
 
-namespace LRA
-namespace VolumeII
-namespace RealNumbers
-namespace Dyadic
+namespace LRA.VolumeII.RealNumbers.Dyadic
 
 open LRA.VolumeI.Algebra.Models
 
@@ -523,7 +520,4 @@ theorem complete_archimedean_ordered_field :
     CompleteArchimedeanOrderedField dyadic_data := by
   sorry
 
-end Dyadic
-end RealNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.RealNumbers.Dyadic

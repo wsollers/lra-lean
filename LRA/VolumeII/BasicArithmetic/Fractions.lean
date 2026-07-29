@@ -4,10 +4,7 @@
 import Mathlib.Tactic
 import LRA.VolumeII.Switches.NumberSystems
 
-namespace LRA
-namespace VolumeII
-namespace BasicArithmetic
-namespace Fractions
+namespace LRA.VolumeII.BasicArithmetic.Fractions
 
 /-!
 Volume II label: basic-arithmetic-fractions
@@ -89,7 +86,4 @@ theorem CancelCommonIntegerDivisor {d m n r s : Z}
     toQ m / toQ n = toQ r / toQ s := by
   sorry
 
-end Fractions
-end BasicArithmetic
-end VolumeII
-end LRA
+end LRA.VolumeII.BasicArithmetic.Fractions

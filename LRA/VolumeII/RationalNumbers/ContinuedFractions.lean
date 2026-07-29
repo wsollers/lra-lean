@@ -4,10 +4,8 @@
 import LRA.VolumeII.RationalNumbers.RationalQuotientFractions
 import LRA.VolumeII.RealNumbers.Irrationals
 
-namespace LRA
-namespace VolumeII
-namespace RationalNumbers
-namespace ContinuedFractions
+namespace LRA.VolumeII.RationalNumbers.ContinuedFractions
+open LRA.VolumeI.Algebra.Models
 
 /-!
 Volume II label: continued-fractions
@@ -156,7 +154,4 @@ theorem quadratic_irrational_iff_eventually_periodic
           real_model.signature.zero := by
   sorry
 
-end ContinuedFractions
-end RationalNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.RationalNumbers.ContinuedFractions

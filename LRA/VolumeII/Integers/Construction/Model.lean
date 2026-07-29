@@ -4,13 +4,13 @@
 import LRA.VolumeI.Algebra.Models
 import LRA.VolumeII.Integers.Implementation
 
-namespace LRA
-namespace VolumeII
-namespace Integers
+namespace LRA.VolumeII.Integers
 
 open LRA.VolumeI.Algebra.Models
 
-namespace Active
+end LRA.VolumeII.Integers
+namespace LRA.VolumeII.Integers.Active
+open LRA.VolumeI.Algebra.Models
 
 /-!
 Volume II label: active-integer-model
@@ -107,8 +107,8 @@ def integerNumberSystemModel : LRA.VolumeI.Algebra.Models.IntegerModel where
   signature := integerNumbersSignature
   laws := integerNumbersLaws
 
-end Active
+end LRA.VolumeII.Integers.Active
+namespace LRA.VolumeII.Integers
+open LRA.VolumeI.Algebra.Models
 
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers

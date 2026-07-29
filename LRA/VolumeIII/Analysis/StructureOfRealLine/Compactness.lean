@@ -18,10 +18,7 @@ import Mathlib.Data.Real.Basic
 import LRA.VolumeIII.Analysis.StructureOfRealLine.OpenClosedSets
 import LRA.VolumeIII.Analysis.StructureOfRealLine.CompactnessAdditions
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace StructureOfRealLine
+namespace LRA.VolumeIII.Analysis.StructureOfRealLine
 
 /-- `def:real-open-cover`. -/
 def IsOpenCover (𝒰 : Set (Set ℝ)) (K : Set ℝ) : Prop :=
@@ -67,7 +64,4 @@ theorem HeineBorel (K : Set ℝ) :
     IsCompactSet K ↔ IsClosedSet K ∧ ∃ M > 0, ∀ x ∈ K, |x| ≤ M := by
   sorry
 
-end StructureOfRealLine
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.StructureOfRealLine

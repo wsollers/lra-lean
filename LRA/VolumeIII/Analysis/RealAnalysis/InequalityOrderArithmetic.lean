@@ -11,10 +11,7 @@ remark, not the theorem itself).
 
 import Mathlib.Data.Real.Basic
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace RealAnalysis
+namespace LRA.VolumeIII.Analysis.RealAnalysis
 
 /-- `thm:real-order-trichotomy`. -/
 theorem RealOrderTrichotomy (a b : ℝ) :
@@ -123,7 +120,4 @@ theorem IneqReciprocalPositive (a b : ℝ) :
 theorem IneqReciprocalFlip (a b : ℝ) (ha : a > 0) (hb : b > 0) :
     a < b ↔ 1 / b < 1 / a := by sorry
 
-end RealAnalysis
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.RealAnalysis

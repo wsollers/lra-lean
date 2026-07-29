@@ -51,10 +51,7 @@ import LRA.VolumeIII.Analysis.Sequences.SequenceDefinitions
 import LRA.VolumeIII.Analysis.Sequences.Convergence
 import LRA.VolumeIII.Analysis.Sequences.NullConstantSequences
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Sequences
+namespace LRA.VolumeIII.Analysis.Sequences
 
 /-- `thm:uniqueness-of-limits`. -/
 theorem UniquenessOfLimits {x : RealSequence} {L K : ℝ}
@@ -136,7 +133,4 @@ theorem ConvergentSequenceIsBounded {x : RealSequence} {L : ℝ}
     (h : ConvergesTo x L) : BoundedSeq x := by
   sorry
 
-end Sequences
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Sequences

@@ -19,10 +19,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Data.Real.Sqrt
 import Mathlib.Data.Rat.Cast.Defs
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Bounding
+namespace LRA.VolumeIII.Analysis.Bounding
 
 variable {T : Type*} [Preorder T]
 
@@ -103,7 +100,4 @@ theorem RelativeSupremumOfRationalsInRExample :
       (Set.univ : Set ℝ) := by
   sorry
 
-end Bounding
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Bounding

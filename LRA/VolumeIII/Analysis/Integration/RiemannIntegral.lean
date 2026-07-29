@@ -17,10 +17,7 @@ import LRA.VolumeIII.Analysis.Integration.Partitions
 import LRA.VolumeIII.Analysis.Completeness.Density
 import LRA.VolumeIII.Analysis.Integration.CauchyIntegral
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Integration
+namespace LRA.VolumeIII.Analysis.Integration
 
 /-- `def:riemann-sum`.
 Mathematical statement (Lean): `def RiemannSum {a b : ℝ} (f : ℝ → ℝ) (P : TaggedPartitionIntegration a b) : ℝ :=`.
@@ -122,7 +119,4 @@ theorem riemann_cauchy_criterion (hab : a ≤ b)
         |RiemannSum f P - RiemannSum f Q| < ε := by
   sorry
 
-end Integration
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Integration

@@ -13,10 +13,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Algebra.BigOperators.Ring.Finset
 import LRA.VolumeIII.Analysis.Differentiation.DerivativeDefinition
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Differentiation
+namespace LRA.VolumeIII.Analysis.Differentiation
 
 /-- `thm:caratheodory-characterization-of-differentiability`: `f` is
 differentiable at `c` with derivative `D` iff there is a function `φ`,
@@ -68,7 +65,4 @@ theorem FaaDiBrunoSecondOrder (f g : ℝ → ℝ) (fD gD hD : ℕ → ℝ → �
     hD 2 c = gD 2 (f c) * (fD 1 c) ^ 2 + gD 1 (f c) * fD 2 c := by
   sorry
 
-end Differentiation
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Differentiation

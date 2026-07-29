@@ -73,10 +73,7 @@ import Mathlib.Order.Filter.AtTopBot.Basic
 import Mathlib.Topology.Instances.Real.Lemmas
 import Mathlib.Order.Interval.Set.OrdConnected
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Functions
+namespace LRA.VolumeIII.Analysis.Functions
 
 /-- `def:epsilon-neighbourhood`. -/
 def CenteredOpenInterval (x ε : ℝ) : Set ℝ := {y : ℝ | |y - x| < ε}
@@ -251,7 +248,4 @@ theorem FiniteSetIsClosed (X : Set ℝ) (hX : X.Finite) :
     (∀ x : ℝ, ¬ IsClusterPointR x X) ∧ IsClosedR X := by
   sorry
 
-end Functions
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Functions

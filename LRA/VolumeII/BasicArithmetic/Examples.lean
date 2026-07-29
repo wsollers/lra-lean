@@ -7,10 +7,7 @@ import LRA.VolumeII.BasicArithmetic.Parity
 import LRA.VolumeII.BasicArithmetic.Fractions
 import LRA.VolumeII.BasicArithmetic.MultiplicativeInverses
 
-namespace LRA
-namespace VolumeII
-namespace BasicArithmetic
-namespace Examples
+namespace LRA.VolumeII.BasicArithmetic.Examples
 
 open AlgebraicIdentities
 open Parity
@@ -41,7 +38,4 @@ example : Fractions.toQ ((-2 : Fractions.Z) * (-4)) /
 example : ((2 : MultiplicativeInverses.Q)⁻¹ * 2 = 1) :=
   (NonzeroHasMultiplicativeInverse (a := 2) (by norm_num)).1
 
-end Examples
-end BasicArithmetic
-end VolumeII
-end LRA
+end LRA.VolumeII.BasicArithmetic.Examples

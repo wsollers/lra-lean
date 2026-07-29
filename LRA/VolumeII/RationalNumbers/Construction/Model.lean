@@ -3,9 +3,7 @@
 
 import LRA.VolumeI.Algebra.Models
 
-namespace LRA
-namespace VolumeII
-namespace RationalNumbers
+namespace LRA.VolumeII.RationalNumbers
 
 open LRA.VolumeI.Algebra.Models
 
@@ -25,6 +23,4 @@ def rationalNumbersModel
     LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
   BuildOrderedFieldModel rational_model.signature
 
-end RationalNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.RationalNumbers

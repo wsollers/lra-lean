@@ -4,14 +4,13 @@
 import LRA.VolumeI.Algebra.Models
 import LRA.VolumeII.ComplexNumbers.Construction.Construction
 
-namespace LRA
-namespace VolumeII
-namespace ComplexNumbers
+namespace LRA.VolumeII.ComplexNumbers
 
 open LRA.VolumeI.Algebra.Models
 
-namespace Construction
-namespace ComplexNumber
+end LRA.VolumeII.ComplexNumbers
+namespace LRA.VolumeII.ComplexNumbers.Construction.ComplexNumber
+open LRA.VolumeI.Algebra.Models
 
 /-!
 Volume II label: complex-number-model
@@ -60,9 +59,8 @@ noncomputable def complexNumbersModel
     LRA.VolumeI.Logic.FirstOrder.Model FieldFirstOrderSignature :=
   BuildFieldModel (complexNumbersSignature real_model)
 
-end ComplexNumber
-end Construction
+end LRA.VolumeII.ComplexNumbers.Construction.ComplexNumber
+namespace LRA.VolumeII.ComplexNumbers
+open LRA.VolumeI.Algebra.Models
 
-end ComplexNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.ComplexNumbers

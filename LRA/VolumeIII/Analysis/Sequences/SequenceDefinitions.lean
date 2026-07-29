@@ -54,10 +54,7 @@ import Mathlib.Order.Basic
 import Mathlib.Topology.Instances.Real.Lemmas
 import Mathlib.Order.Filter.AtTopBot.Basic
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Sequences
+namespace LRA.VolumeIII.Analysis.Sequences
 
 /-- `def:sequence`. A sequence in a nonempty `X` is a function `N -> X`.
 No extra content beyond the Lean function type itself — kept as a type
@@ -91,7 +88,4 @@ theorem NaturalNumberSequenceDiverges :
     Filter.Tendsto (fun n : ℕ => (n : ℝ)) Filter.atTop Filter.atTop := by
   sorry
 
-end Sequences
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Sequences

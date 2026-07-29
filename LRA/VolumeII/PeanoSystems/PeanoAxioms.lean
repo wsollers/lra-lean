@@ -8,8 +8,7 @@ Volume II TeX Peano-system section.  The source formal environment kind is
 `axiom`, so these Lean declarations are axioms as well.
 -/
 
-namespace LRA.VolumeII.PeanoSystems
-namespace PeanoAxioms
+namespace LRA.VolumeII.PeanoSystems.PeanoAxioms
 
 universe u
 
@@ -51,5 +50,4 @@ axiom PeanoInduction (ps : PeanoSystem)
    Status: pending -/
 axiom PeanoSystemExistence : Nonempty PeanoSystem
 
-end PeanoAxioms
-end LRA.VolumeII.PeanoSystems
+end LRA.VolumeII.PeanoSystems.PeanoAxioms

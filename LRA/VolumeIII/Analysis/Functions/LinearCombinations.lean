@@ -19,10 +19,7 @@ states in prose.
 
 import Mathlib.Data.Real.Basic
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Functions
+namespace LRA.VolumeIII.Analysis.Functions
 
 /-- `def:linear-combination-of-real-valued-functions`. -/
 def LinearCombo (a b : ℝ) (f g : ℝ → ℝ) : ℝ → ℝ := fun x => a * f x + b * g x
@@ -64,7 +61,4 @@ theorem RealLinearRuleBasicValues (C : Set (ℝ → ℝ))
     T (fun _ => 0) = 0 ∧ ∀ f, f ∈ C → T (fun x => -f x) = -T f := by
   sorry
 
-end Functions
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Functions

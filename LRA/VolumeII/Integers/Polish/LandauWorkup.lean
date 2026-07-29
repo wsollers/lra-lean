@@ -3,11 +3,7 @@
 
 import LRA.VolumeII.Integers.Polish.TwoSidedSuccessor
 
-namespace LRA
-namespace VolumeII
-namespace Integers
-namespace Polish
-namespace TwoSidedSuccessor
+namespace LRA.VolumeII.Integers.Polish.TwoSidedSuccessor
 
 /-!
 Volume II label: integers-polish-landau-workup
@@ -806,8 +802,4 @@ theorem mul_lt_mul_pos_right {x y z : Z} (firstLessSecond : x < y) (multiplierPo
   rw [lt_def, ← productDifferenceEquality]
   exact productDifferencePositive
 
-end TwoSidedSuccessor
-end Polish
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers.Polish.TwoSidedSuccessor

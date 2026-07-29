@@ -3,10 +3,8 @@
 
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA
-namespace VolumeII
-namespace RealNumbers
-namespace Computable
+namespace LRA.VolumeII.RealNumbers.Computable
+open LRA.VolumeI.Algebra.Models
 
 /-!
 Volume II label: computable-reals
@@ -86,7 +84,4 @@ theorem computable_reals_are_countable
         ∃ index : Nat, enumerate index = value := by
   sorry
 
-end Computable
-end RealNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.RealNumbers.Computable

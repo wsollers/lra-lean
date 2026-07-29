@@ -3,10 +3,8 @@
 
 import LRA.VolumeI.Algebra.Models.UniversalProperties
 
-namespace LRA
-namespace VolumeII
-namespace RealNumbers
-namespace Extensions
+namespace LRA.VolumeII.RealNumbers.Extensions
+open LRA.VolumeI.Algebra.Models
 
 /-!
 Volume II label: real-derived-operations
@@ -97,7 +95,4 @@ theorem complete_archimedean_ordered_field_unique
         first.signature second.signature comparison := by
   sorry
 
-end Extensions
-end RealNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.RealNumbers.Extensions

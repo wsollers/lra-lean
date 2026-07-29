@@ -42,10 +42,7 @@ import LRA.VolumeIII.Analysis.Sequences.Convergence
 import LRA.VolumeIII.Analysis.Sequences.NullConstantSequences
 import LRA.VolumeIII.Analysis.Sequences.Subsequences
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Sequences
+namespace LRA.VolumeIII.Analysis.Sequences
 
 /-- `def:cauchy-sequence`. -/
 def IsCauchy (x : RealSequence) : Prop :=
@@ -132,7 +129,4 @@ theorem AbsoluteValueCauchySequence {x : RealSequence} (h : IsCauchy x) :
     IsCauchy (fun n => |x n|) := by
   sorry
 
-end Sequences
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Sequences

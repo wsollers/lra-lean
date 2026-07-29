@@ -3,6 +3,7 @@ import LRA.VolumeI.Set.ZFC.Model.Model
 universe u
 
 namespace LRA.VolumeI.Set
+open LRA.VolumeI.Set
 
 /-!
 The primitive set layer.
@@ -38,6 +39,7 @@ def Member {model : SetModel} (element set : ModelSet model) : Prop :=
 end LRA.VolumeI.Set.ModelSet
 
 namespace LRA.VolumeI.Set
+open LRA.VolumeI.Set
 
 /-- The project-level name for an arbitrary Lean carrier type. -/
 abbrev LRACarrier := Type u

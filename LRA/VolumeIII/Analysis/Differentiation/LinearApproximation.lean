@@ -13,10 +13,7 @@ reproduce that inconsistency).
 import Mathlib.Data.Real.Basic
 import LRA.VolumeIII.Analysis.Differentiation.DerivativeDefinition
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Differentiation
+namespace LRA.VolumeIII.Analysis.Differentiation
 
 /-- `def:first-order-approximation-at-a-point`: `f` has an affine
 approximation at `a` with linear part `L`, error `o(x-a)`. -/
@@ -38,7 +35,4 @@ theorem LinearApproximationSlopeEqDerivative (f : ℝ → ℝ) (A : Set ℝ) (c 
     L = D := by
   sorry
 
-end Differentiation
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Differentiation

@@ -4,10 +4,7 @@
 import LRA.VolumeII.Integers.Laws
 import LRA.VolumeII.Integers.Polish.LandauWorkup
 
-namespace LRA
-namespace VolumeII
-namespace Integers
-namespace Polish
+namespace LRA.VolumeII.Integers.Polish
 
 /-!
 Volume II label: integers-polish-interface-implementation
@@ -160,7 +157,4 @@ def PolishIntegerLaws : IntegerLaws PolishZ where
   toIntegerSuccessorLaws := PolishSuccessorLaws
   toIntegerMultiplicationSuccessorLaws := PolishMultiplicationSuccessorLaws
 
-end Polish
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers.Polish

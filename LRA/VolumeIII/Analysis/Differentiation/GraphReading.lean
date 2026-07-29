@@ -16,10 +16,7 @@ import LRA.VolumeIII.Analysis.Continuity.GlobalTheorems
 import LRA.VolumeIII.Analysis.Continuity.PointContinuity
 import LRA.VolumeIII.Analysis.Continuity.UniformContinuity
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Differentiation
+namespace LRA.VolumeIII.Analysis.Differentiation
 
 -- ---------------------------------------------------------------------
 -- First-Order Shape (`notes-understanding-derivatives.tex`).
@@ -188,7 +185,4 @@ theorem BoundedSecondDerivativeImpliesC11 (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ
     IsClassC11 f fD1 I ∧ LRA.VolumeIII.Analysis.Continuity.IsLipschitzOn fD1 I M := by
   sorry
 
-end Differentiation
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Differentiation

@@ -43,10 +43,7 @@ import Mathlib.Topology.Algebra.Order.Floor
 import LRA.VolumeIII.Analysis.Sequences.SequenceDefinitions
 import LRA.VolumeIII.Analysis.Sequences.Convergence
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Sequences
+namespace LRA.VolumeIII.Analysis.Sequences
 
 /-- `def:newton-sequence-sqrt-two`. Lean index `0` = project's `x_1`. -/
 noncomputable def NewtonSeqSqrtTwo : ℕ → ℝ
@@ -88,7 +85,4 @@ theorem DecimalTruncationsConverge (α : ℝ) :
     ConvergesTo (DecimalTruncationSeq α) α := by
   sorry
 
-end Sequences
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Sequences

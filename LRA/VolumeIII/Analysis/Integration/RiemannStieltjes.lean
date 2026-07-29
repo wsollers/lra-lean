@@ -20,10 +20,7 @@ import LRA.VolumeIII.Analysis.Continuity.PointContinuity
 import LRA.VolumeIII.Analysis.Continuity.MonotoneFunctions
 import LRA.VolumeIII.Analysis.Differentiation.GraphReading
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Integration
+namespace LRA.VolumeIII.Analysis.Integration
 
 /-- `def:total-variation`'s underlying set of partition-sums; `TotalVariation`
 below is its supremum, defined once boundedness (`HasBoundedVariation`)
@@ -140,7 +137,4 @@ theorem rs_shared_jump_failure_witness (c : ℝ) (hc : c ∈ Set.Ioo (0:ℝ) 1) 
       (fun x => if x ≥ c then (1:ℝ) else 0) 0 1 := by
   sorry
 
-end Integration
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Integration

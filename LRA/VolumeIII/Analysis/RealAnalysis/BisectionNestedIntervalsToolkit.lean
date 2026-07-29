@@ -19,10 +19,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Topology.Order.Basic
 import Mathlib.Topology.Instances.Real.Lemmas
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace RealAnalysis
+namespace LRA.VolumeIII.Analysis.RealAnalysis
 
 /-- `thm:nested-interval-property`, this chapter's restatement: nested
 closed bounded intervals `[a_n,b_n]` have nonempty intersection. -/
@@ -48,7 +45,4 @@ sequence `x : ℕ → ℝ` can be surjective. -/
 theorem RUncountable : ¬ ∃ x : ℕ → ℝ, Function.Surjective x := by
   sorry
 
-end RealAnalysis
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.RealAnalysis

@@ -8,8 +8,7 @@ Helper declarations in this file are local Lean plumbing and are not intended
 as TeX-linked formal objects.
 -/
 
-namespace LRA.VolumeII.PeanoSystems
-namespace InductionPrinciple
+namespace LRA.VolumeII.PeanoSystems.InductionPrinciple
 
 /- Volume II label: thm:induction-principle-for-peano-system
    Lean declaration:
@@ -29,5 +28,4 @@ theorem InductionPrincipleForPeanoSystem
     base_case
     successor_step
 
-end InductionPrinciple
-end LRA.VolumeII.PeanoSystems
+end LRA.VolumeII.PeanoSystems.InductionPrinciple

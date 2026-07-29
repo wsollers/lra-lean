@@ -3,10 +3,7 @@
 
 import LRA.VolumeII.Integers.Implementation
 
-namespace LRA
-namespace VolumeII
-namespace Integers
-namespace ArithmeticTests
+namespace LRA.VolumeII.Integers.ArithmeticTests
 
 /-!
 Volume II label: integers-arithmetic-tests
@@ -118,7 +115,4 @@ example : Active.zero < activeOne → Active.zero * activeTwo < activeOne * acti
         (Polish.TwoSidedSuccessor.lt_succ_self activeOne))
     zeroLessActiveOne
 
-end ArithmeticTests
-end Integers
-end VolumeII
-end LRA
+end LRA.VolumeII.Integers.ArithmeticTests

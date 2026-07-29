@@ -3,9 +3,7 @@
 
 import LRA.VolumeI.Algebra.Models
 
-namespace LRA
-namespace VolumeII
-namespace RealNumbers
+namespace LRA.VolumeII.RealNumbers
 
 open LRA.VolumeI.Algebra.Models
 
@@ -25,6 +23,4 @@ def realNumbersModel
     LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
   BuildOrderedFieldModel real_model.signature
 
-end RealNumbers
-end VolumeII
-end LRA
+end LRA.VolumeII.RealNumbers

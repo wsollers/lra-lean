@@ -25,10 +25,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Topology.Instances.Real.Lemmas
 import Mathlib.Order.Filter.Basic
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace StructureOfRealLine
+namespace LRA.VolumeIII.Analysis.StructureOfRealLine
 
 /-- `def:open-set`, restated: `U` is open iff every point of `U` is the
 center of an open ball contained in `U`. -/
@@ -91,7 +88,4 @@ theorem SequentialCompactnessIffOpenCoverCompactness (K : Set ℝ) :
     IsSeqCompactR K ↔ IsCompactR K := by
   sorry
 
-end StructureOfRealLine
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.StructureOfRealLine

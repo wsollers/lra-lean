@@ -19,10 +19,7 @@ import LRA.VolumeIII.Analysis.Integration.RiemannIntegral
 import LRA.VolumeIII.Analysis.Integration.HenstockKurzweil
 import LRA.VolumeIII.Analysis.Integration.MeasureZero
 
-namespace LRA
-namespace VolumeIII
-namespace Analysis
-namespace Integration
+namespace LRA.VolumeIII.Analysis.Integration
 
 /-- `def:mcshane-fine-tagged-partition`'s underlying tagged structure:
 same non-overlapping-covering-subintervals as `IntegrationPartition`, but
@@ -97,7 +94,4 @@ theorem hk_strictly_wider_than_mcshane (F FD : ℝ → ℝ)
     ¬ IsMcShaneIntegrable FD (-1) 1 := by
   sorry
 
-end Integration
-end Analysis
-end VolumeIII
-end LRA
+end LRA.VolumeIII.Analysis.Integration
