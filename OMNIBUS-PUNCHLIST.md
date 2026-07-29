@@ -13,6 +13,27 @@ issue unless it is explicitly marked as a small follow-up under the same issue.
 Proof policy: add formal statements first and use `sorry` unless a later issue
 explicitly asks for proof completion.
 
+Architectural policy: treat the omnibus as the cross-volume Landau spine, not
+as a Volume I side project. Sets, relations, functions, operations, and laws
+should become the reusable substrate for Volume II number-system constructions
+and for later analysis/algebra volumes. Do not duplicate the same law separately
+inside `N`, `Z`, `Q`, `R`, and `C` when it can be stated once abstractly and
+then instantiated.
+
+Representation policy: ordinary mathematical relations should remain
+proof-friendly predicates in Lean, but every relation layer must keep the
+set-of-tuples reading explicit. Concretely, use predicate relations such as
+`alpha -> beta -> Prop` as the primary API, and provide bridge definitions and
+theorems to `LRASet (alpha × beta)` / pair-set views where the text says
+"relation is a set of ordered pairs." Functions should likewise have a
+graph-based reading even when ordinary Lean functions are used for computation.
+
+Dependency policy: before broad proof completion in Volume II or later volumes,
+harden the Landau spine in this order: predicate-sets and products, relational
+algebra, graph/function algebra, n-ary operations, operation laws, algebraic
+structures, ordered algebra. Volume II instantiation files should consume this
+spine rather than rebuilding it.
+
 ## Phase 0: Backlog And Governance Setup
 
 - [ ] Create GitHub issues from this punchlist.
@@ -57,7 +78,44 @@ explicitly asks for proof completion.
   - Acceptance: reusable definitions exist for later n-ary relation and
     operation layers.
 
+- [ ] Add set-of-tuples bridge conventions.
+  - Home: `LRA/VolumeI/Set/Products.lean` and
+    `LRA/VolumeI/Relations/RelationalAlgebra.lean`.
+  - Scope: canonical pair-set view for binary relations, tuple-set view for
+    n-ary relations, and extensional membership lemmas connecting predicates
+    to tuple membership.
+  - Acceptance: later relation/function files can say precisely how a
+    predicate relation is "a set of ordered pairs" without changing the primary
+    relation representation.
+
+- [ ] Add set algebra and field-of-sets layer.
+  - Home: `LRA/VolumeI/Set/Algebras.lean` and, where later-volume topology or
+    measure material already owns the terminology,
+    `LRA/VolumeIV/AlgebrasOfSets/Foundations/AlgebraOfSets.lean`.
+  - Scope: set algebra over a universe, field of sets, closure under finite
+    union/intersection/complement/difference, generated algebra placeholder,
+    subalgebra, homomorphism of set algebras if needed.
+  - Acceptance: finite Boolean set-operation structures have canonical Lean
+    declarations before topology/measure chapters consume them.
+
+- [ ] Add sigma-algebra compatibility bridge.
+  - Home: `LRA/VolumeI/Set/Algebras.lean` or
+    `LRA/VolumeIV/MeasureSpaces/Foundations/`.
+  - Scope: distinguish finite set algebras from sigma-algebras, record that a
+    sigma-algebra is a set algebra with countable-union closure, and align with
+    Mathlib `MeasurableSpace` where later volumes use Mathlib.
+  - Acceptance: measure-theory tags can point either to the finite algebra
+    layer or to the sigma-algebra/measurable-space layer without ambiguity.
+
 ## Phase 2: Volume I Relations
+
+- [ ] Add relational algebra API.
+  - Home: `LRA/VolumeI/Relations/RelationalAlgebra.lean`.
+  - Scope: empty relation, universal relation, union, intersection, difference,
+    complement relative to a product, converse, composition, identity relation,
+    domain, range, image, preimage, restriction.
+  - Acceptance: each operation is defined on predicate relations and has a
+    bridge statement to the corresponding set operation on pair-sets.
 
 - [ ] Add missing named relation predicates.
   - Home: `LRA/VolumeI/Relations/NamedRelations.lean`.
@@ -86,12 +144,20 @@ explicitly asks for proof completion.
   - Acceptance: Chapter 0.4 equivalence material has formal definitions and
     theorem statements.
 
+- [ ] Add relation-as-set documentation tests.
+  - Home: `LRA/VolumeI/Relations/Examples.lean` or lightweight theorem files.
+  - Scope: examples showing relation union/intersection/composition as both
+    predicate operations and operations on subsets of products.
+  - Acceptance: future tags for "relation is a set" and "relational algebra"
+    have stable Lean targets and examples.
+
 ## Phase 3: Volume I Function Layer
 
 - [ ] Create graph-based function definitions.
   - Home: `LRA/VolumeI/Functions/Functions.lean`.
   - Scope: graph, domain, codomain, single-valuedness, totality, function from
-    one carrier to another.
+    one carrier to another, and the bridge between graph relations and ordinary
+    Lean functions.
   - Acceptance: functions are explicitly modeled as set-like graphs without
     hiding that they are constructed from relations.
 
@@ -110,7 +176,7 @@ explicitly asks for proof completion.
 - [ ] Add composition, identity, restriction, and extension.
   - Home: `LRA/VolumeI/Functions/Composition.lean`.
   - Scope: identity function, composition, associativity, left/right identity,
-    restriction, extension.
+    restriction, extension, graph-of-composite, graph-of-restriction.
   - Acceptance: reusable function algebra exists before algebraic structures
     consume it.
 
@@ -125,7 +191,9 @@ explicitly asks for proof completion.
 - [ ] Add general n-ary relation and operation layer.
   - Home: `LRA/VolumeI/Relations/Relations.lean` and
     `LRA/VolumeI/Operations/Operations.lean`.
-  - Scope: arity-indexed relations and operations over finite powers.
+  - Scope: arity-indexed relations and operations over finite powers, with
+    nullary operations as distinguished elements and binary operations as
+    ordinary functions on products.
   - Acceptance: unary/binary definitions remain simple special cases or
     documented aliases.
 
@@ -155,9 +223,36 @@ explicitly asks for proof completion.
   - Home: `LRA/VolumeI/Structures/Structures.lean` and
     `LRA/VolumeI/Algebra/Models/AbstractLaws.lean`.
   - Scope: decide which files define structures, which files define law
-    bundles, and which files define first-order model signatures.
+    bundles, which files define first-order model signatures, and which files
+    are only number-system instantiation ledgers.
   - Acceptance: README or module comments explain the distinction and no
     duplicate hierarchy names compete.
+
+- [ ] Make abstract structures the canonical source of reusable laws.
+  - Home: `LRA/VolumeI/Structures/` and `LRA/VolumeI/Algebra/`.
+  - Scope: semigroup, monoid, group, abelian group, ring, integral domain,
+    field, ordered group, ordered ring, ordered field are stated once over an
+    arbitrary carrier and operation data.
+  - Acceptance: Volume II files reference or instantiate these structures
+    rather than restating the same laws ad hoc.
+
+- [ ] Add Boolean algebra hierarchy.
+  - Home: `LRA/VolumeI/Structures/BooleanAlgebra.lean` or
+    `LRA/VolumeI/Algebra/BooleanAlgebra.lean`.
+  - Scope: bounded distributive lattice, complement operation, Boolean algebra
+    laws, Boolean ring bridge if useful, homomorphisms and subalgebras if
+    needed by later chapters.
+  - Acceptance: propositional logic, set algebras, and algebra-of-sets chapters
+    have one canonical Boolean-algebra target.
+
+- [ ] Prove or state set algebras instantiate Boolean algebras.
+  - Home: `LRA/VolumeI/Set/Algebras.lean` and
+    `LRA/VolumeI/Structures/BooleanAlgebra.lean`.
+  - Scope: union as join, intersection as meet, complement as Boolean
+    complement, empty set as bottom, universe as top, difference as derived
+    meet-with-complement.
+  - Acceptance: the powerset of a carrier and every set algebra/field of sets
+    has a documented Boolean-algebra instance or theorem statement.
 
 - [ ] Fill basic algebra hierarchy variants.
   - Home: `LRA/VolumeI/Structures/Structures.lean`.
@@ -237,6 +332,14 @@ explicitly asks for proof completion.
 
 ## Phase 9: Volume II Basic Arithmetic
 
+- [ ] Reframe Volume II as instantiation of the Landau spine.
+  - Home: `LRA/VolumeII/` module comments and instantiation files.
+  - Scope: `N`, `W`, `Z`, `Q`, `R`, and `C` should be presented as concrete
+    or switched instances of the abstract relation/function/operation/algebra
+    hierarchy.
+  - Acceptance: each number-system construction has a documented route from
+    construction data to the relevant abstract structure.
+
 - [ ] Keep the initial basic arithmetic section statement-only.
   - Home: `LRA/VolumeII/BasicArithmetic/`.
   - Scope: algebraic identities, parity, fractions, multiplicative inverses,
@@ -275,7 +378,8 @@ explicitly asks for proof completion.
 
 - [ ] Add `N` hierarchy instantiation statements.
   - Home: `LRA/VolumeII/NaturalNumbers/Instantiation.lean`.
-  - Scope: semigroup, monoid, ordered semiring-style properties, not group.
+  - Scope: semigroup, monoid, ordered semiring-style properties, recursion and
+    induction interfaces, not group.
   - Acceptance: active switch and custom construction status are both recorded.
 
 - [ ] Add `W` hierarchy instantiation statements.
@@ -285,7 +389,7 @@ explicitly asks for proof completion.
   - Acceptance: dependency on `N` is explicit and documented.
 
 - [ ] Add `Z` hierarchy instantiation statements.
-  - Home: `LRA/VolumeII/IntegerNumbers/Instantiation.lean`.
+  - Home: `LRA/VolumeII/Integers/Instantiation.lean`.
   - Scope: commutative ring with unity, integral domain, ordered ring, not
     field.
   - Acceptance: active `Int` switch statements compile with `sorry`s.
@@ -309,11 +413,13 @@ explicitly asks for proof completion.
 
 ## Phase 12: Validation And Cleanup
 
-- [ ] Remove or relocate obsolete Volume II model cruft.
+- [ ] Audit and relocate obsolete model/construction cruft.
   - Home: `LRA/VolumeII/` and `LRA/VolumeI/Algebra/Models/`.
-  - Scope: delete duplicate model files only after replacement Volume I model
-    builders and Volume II instantiation ledgers exist.
-  - Acceptance: no duplicate or stale model layer remains.
+  - Scope: distinguish first-order model theory, algebraic structure models,
+    number-system construction models, and instantiation ledgers; delete or
+    relocate duplicate files only after replacements exist.
+  - Acceptance: no duplicate or stale model layer remains, and remaining model
+    files have clear ownership comments.
 
 - [ ] Add omnibus extraction inventory.
   - Home: `scripts/` and generated report ignored or checked in by policy.
