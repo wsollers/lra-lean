@@ -17,15 +17,15 @@ relations; concrete construction modules supply witnesses later.
 -/
 
 structure MagmaLaws {α : Type u} (operation : α → α → α) : Prop where
-  closed : ∀ first second : α, ∃ result : α, result = operation first second
+  Closed : ∀ first second : α, ∃ result : α, result = operation first second
 
 structure SemigroupLaws {α : Type u} (operation : α → α → α) : Prop
     extends MagmaLaws operation where
-  associative : LRA.VolumeI.Operations.Associative operation
+  Associative : LRA.VolumeI.Operations.Associative operation
 
 structure CommutativeSemigroupLaws {α : Type u} (operation : α → α → α) : Prop
     extends SemigroupLaws operation where
-  commutative : LRA.VolumeI.Operations.Commutative operation
+  Commutative : LRA.VolumeI.Operations.Commutative operation
 
 structure MonoidLaws {α : Type u} (operation : α → α → α) (identity : α) : Prop
     extends SemigroupLaws operation where
@@ -41,7 +41,7 @@ structure GroupLaws {α : Type u}
 structure AbelianGroupLaws {α : Type u}
     (operation : α → α → α) (identity : α) (inverse : α → α) : Prop
     extends GroupLaws operation identity inverse where
-  commutative : LRA.VolumeI.Operations.Commutative operation
+  Commutative : LRA.VolumeI.Operations.Commutative operation
 
 structure RingLikeLaws {α : Type u}
     (zero one : α) (addition multiplication : α → α → α) (negation : α → α) : Prop where
@@ -69,9 +69,9 @@ structure FieldLaws {α : Type u}
           multiplication value (inverse value) = one
 
 structure StrictOrderLaws {α : Type u} (lt : α → α → Prop) : Prop where
-  irreflexive : LRA.VolumeI.Relations.Irreflexive lt
-  transitive : LRA.VolumeI.Relations.Transitive lt
-  trichotomous : ∀ first second : α, lt first second ∨ first = second ∨ lt second first
+  Irreflexive : LRA.VolumeI.Relations.Irreflexive lt
+  Transitive : LRA.VolumeI.Relations.Transitive lt
+  Trichotomous : ∀ first second : α, lt first second ∨ first = second ∨ lt second first
 
 structure OrderLaws {α : Type u} (lt le : α → α → Prop) : Prop where
   StrictOrderLaws : StrictOrderLaws lt
@@ -119,7 +119,7 @@ structure HomomorphismPreserves {α β : Type u}
       map (SourceMul first second) = TargetMul (map first) (map second)
 
 structure Embedding {α β : Type u} (map : α → β) : Prop where
-  injective : ∀ first second : α, map first = map second → first = second
+  Injective : ∀ first second : α, map first = map second → first = second
 
 structure OrderEmbedding {α β : Type u}
     (SourceLe : α → α → Prop) (TargetLe : β → β → Prop) (map : α → β) : Prop
@@ -135,7 +135,7 @@ structure QuotientOperationDescent {α β : Type u}
       rel left₁ left₂ → rel right₁ right₂ →
         rel (RepresentativeOperation left₁ right₁)
           (RepresentativeOperation left₂ right₂)
-  descends :
+  Descends :
     ∀ left right : α,
       QuotientOperation (project left) (project right) =
         project (RepresentativeOperation left right)

@@ -162,6 +162,7 @@ Working branch: `codex/volume-i-restructure`.
 | `FormalVocabulary.RelationSymbols.arity` | `FormalVocabulary.RelationSymbols.ArityOf` | PascalCase public field |
 | `NotationAssignment.symbol` / `.token` / `.role` | `NotationAssignment.SymbolValue` / `.Token` / `.Role` | PascalCase public fields |
 | Universal-property record fields | PascalCase fields | `ExistsArrow`, `UniqueArrow`, `LeftProjection`, `RightProjection`, `ExistsMediator`, `UniqueMediator`, `ExistsFactor`, `UniqueFactor`, `ExistsExtension`, `UniqueExtension`. |
+| `Algebra.Models.AbstractLaws` lowerCamel law fields | PascalCase law fields | Generic law records only; number-system model records remain deferred. |
 
 ## Deferred
 
