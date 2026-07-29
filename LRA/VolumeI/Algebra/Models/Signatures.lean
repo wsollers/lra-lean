@@ -346,7 +346,7 @@ def BuildPeanoModel
   domainNonempty := ⟨signature.one⟩
   interpretFunction
     | .successor, args => signature.successor (args ⟨0, by decide⟩)
-  interpretRelation := fun relation_symbol => nomatch relation_symbol
+  interpretRelation := fun RelationSymbol => nomatch RelationSymbol
   interpretConstant
     | .one => signature.one
 
@@ -377,7 +377,7 @@ def BuildArithmeticRingModel
         signature.addition (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
     | .mul, args =>
         signature.multiplication (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
-  interpretRelation := fun relation_symbol => nomatch relation_symbol
+  interpretRelation := fun RelationSymbol => nomatch RelationSymbol
   interpretConstant
     | .zero => signature.zero
     | .one => signature.one
@@ -432,7 +432,7 @@ def BuildFieldModel
         signature.multiplication (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
     | .neg, args => signature.negation (args ⟨0, by decide⟩)
     | .inv, args => signature.inverse (args ⟨0, by decide⟩)
-  interpretRelation := fun relation_symbol => nomatch relation_symbol
+  interpretRelation := fun RelationSymbol => nomatch RelationSymbol
   interpretConstant
     | .zero => signature.zero
     | .one => signature.one

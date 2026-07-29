@@ -186,19 +186,19 @@ structure RealLaws
   LeastUpperBoundProperty :
     ∀ subset : signature.carrier → Prop,
       (∃ member, subset member) →
-      (∃ upper_bound,
+      (∃ UpperBound,
         ∀ member,
           subset member →
-          signature.NonstrictOrder member upper_bound) →
+          signature.NonstrictOrder member UpperBound) →
       ∃ supremum,
         (∀ member,
           subset member →
           signature.NonstrictOrder member supremum) ∧
-        (∀ upper_bound,
+        (∀ UpperBound,
           (∀ member,
             subset member →
-            signature.NonstrictOrder member upper_bound) →
-          signature.NonstrictOrder supremum upper_bound)
+            signature.NonstrictOrder member UpperBound) →
+          signature.NonstrictOrder supremum UpperBound)
 
 /-- **[Definition — Real Model]** -/
 structure RealModel where
@@ -209,47 +209,47 @@ structure RealModel where
 **[Definition — Integer Embedding into a Rational Model]**
 -/
 structure IntegerEmbeddingIntoRational
-    (integer_model : IntegerModel)
-    (rational_model : RationalModel) where
+    (SelectedIntegerModel : IntegerModel)
+    (SelectedRationalModel : RationalModel) where
   ToRational :
-    integer_model.signature.carrier →
-      rational_model.signature.carrier
+    SelectedIntegerModel.signature.carrier →
+      SelectedRationalModel.signature.carrier
   injective :
     ∀ first second,
       ToRational first = ToRational second →
       first = second
   PreservesZero :
-    ToRational integer_model.signature.zero =
-      rational_model.signature.zero
+    ToRational SelectedIntegerModel.signature.zero =
+      SelectedRationalModel.signature.zero
   PreservesOne :
-    ToRational integer_model.signature.one =
-      rational_model.signature.one
+    ToRational SelectedIntegerModel.signature.one =
+      SelectedRationalModel.signature.one
   PreservesAddition :
     ∀ first second,
       ToRational
-          (integer_model.signature.addition first second) =
-        rational_model.signature.addition
+          (SelectedIntegerModel.signature.addition first second) =
+        SelectedRationalModel.signature.addition
           (ToRational first)
           (ToRational second)
   PreservesNegation :
     ∀ value,
       ToRational
-          (integer_model.signature.negation value) =
-        rational_model.signature.negation
+          (SelectedIntegerModel.signature.negation value) =
+        SelectedRationalModel.signature.negation
           (ToRational value)
   PreservesMultiplication :
     ∀ first second,
       ToRational
-          (integer_model.signature.multiplication first second) =
-        rational_model.signature.multiplication
+          (SelectedIntegerModel.signature.multiplication first second) =
+        SelectedRationalModel.signature.multiplication
           (ToRational first)
           (ToRational second)
   PreservesAndReflectsOrder :
     ∀ first second,
-      rational_model.signature.NonstrictOrder
+      SelectedRationalModel.signature.NonstrictOrder
           (ToRational first)
           (ToRational second) ↔
-        integer_model.signature.NonstrictOrder first second
+        SelectedIntegerModel.signature.NonstrictOrder first second
 
 /--
 **[Definition — Rational Extension of an Integer Model]**
@@ -258,68 +258,68 @@ The Archimedean clause says that the embedded integers are cofinal in the
 rational order.
 -/
 structure RationalExtension
-    (integer_model : IntegerModel) where
+    (SelectedIntegerModel : IntegerModel) where
   RationalModel : RationalModel
   IntegerEmbedding :
-    IntegerEmbeddingIntoRational integer_model RationalModel
+    IntegerEmbeddingIntoRational SelectedIntegerModel RationalModel
   ArchimedeanProperty :
-    ∀ rational_value : RationalModel.signature.carrier,
-      ∃ integer_value : integer_model.signature.carrier,
+    ∀ RationalValue : RationalModel.signature.carrier,
+      ∃ IntegerValue : SelectedIntegerModel.signature.carrier,
         RationalModel.signature.StrictOrder
-          rational_value
-          (IntegerEmbedding.ToRational integer_value)
+          RationalValue
+          (IntegerEmbedding.ToRational IntegerValue)
 
 /--
 **[Definition — Rational Embedding into a Real Model]**
 -/
 structure RationalEmbeddingIntoReal
-    (rational_model : RationalModel)
-    (real_model : RealModel) where
+    (SelectedRationalModel : RationalModel)
+    (SelectedRealModel : RealModel) where
   ToReal :
-    rational_model.signature.carrier →
-      real_model.signature.carrier
+    SelectedRationalModel.signature.carrier →
+      SelectedRealModel.signature.carrier
   injective :
     ∀ first second,
       ToReal first = ToReal second →
       first = second
   PreservesZero :
-    ToReal rational_model.signature.zero =
-      real_model.signature.zero
+    ToReal SelectedRationalModel.signature.zero =
+      SelectedRealModel.signature.zero
   PreservesOne :
-    ToReal rational_model.signature.one =
-      real_model.signature.one
+    ToReal SelectedRationalModel.signature.one =
+      SelectedRealModel.signature.one
   PreservesAddition :
     ∀ first second,
       ToReal
-          (rational_model.signature.addition first second) =
-        real_model.signature.addition
+          (SelectedRationalModel.signature.addition first second) =
+        SelectedRealModel.signature.addition
           (ToReal first)
           (ToReal second)
   PreservesNegation :
     ∀ value,
       ToReal
-          (rational_model.signature.negation value) =
-        real_model.signature.negation
+          (SelectedRationalModel.signature.negation value) =
+        SelectedRealModel.signature.negation
           (ToReal value)
   PreservesMultiplication :
     ∀ first second,
       ToReal
-          (rational_model.signature.multiplication first second) =
-        real_model.signature.multiplication
+          (SelectedRationalModel.signature.multiplication first second) =
+        SelectedRealModel.signature.multiplication
           (ToReal first)
           (ToReal second)
   PreservesInverse :
     ∀ value,
-      value ≠ rational_model.signature.zero →
+      value ≠ SelectedRationalModel.signature.zero →
       ToReal
-          (rational_model.signature.inverse value) =
-        real_model.signature.inverse (ToReal value)
+          (SelectedRationalModel.signature.inverse value) =
+        SelectedRealModel.signature.inverse (ToReal value)
   PreservesAndReflectsOrder :
     ∀ first second,
-      real_model.signature.NonstrictOrder
+      SelectedRealModel.signature.NonstrictOrder
           (ToReal first)
           (ToReal second) ↔
-        rational_model.signature.NonstrictOrder first second
+        SelectedRationalModel.signature.NonstrictOrder first second
 
 /--
 **[Definition — Real Extension of a Rational Model]**
@@ -329,43 +329,43 @@ Together with the rational extension, this exposes the Archimedean tower
 explicitly.
 -/
 structure RealExtension
-    (rational_model : RationalModel) where
+    (SelectedRationalModel : RationalModel) where
   RealModel : RealModel
   RationalEmbedding :
-    RationalEmbeddingIntoReal rational_model RealModel
+    RationalEmbeddingIntoReal SelectedRationalModel RealModel
   RationalEmbeddingIsCofinal :
-    ∀ real_value : RealModel.signature.carrier,
-      ∃ rational_value : rational_model.signature.carrier,
+    ∀ RealValue : RealModel.signature.carrier,
+      ∃ RationalValue : SelectedRationalModel.signature.carrier,
         RealModel.signature.StrictOrder
-          real_value
-          (RationalEmbedding.ToReal rational_value)
+          RealValue
+          (RationalEmbedding.ToReal RationalValue)
 
 /--
 **[Proposition — Every Integer Model Has Zero Absorption]**
 -/
 theorem IntegerZeroIsAbsorbing
-    (integer_model : IntegerModel)
-    (value : integer_model.signature.carrier) :
-    integer_model.signature.multiplication
+    (SelectedIntegerModel : IntegerModel)
+    (value : SelectedIntegerModel.signature.carrier) :
+    SelectedIntegerModel.signature.multiplication
         value
-        integer_model.signature.zero =
-      integer_model.signature.zero ∧
-    integer_model.signature.multiplication
-        integer_model.signature.zero
+        SelectedIntegerModel.signature.zero =
+      SelectedIntegerModel.signature.zero ∧
+    SelectedIntegerModel.signature.multiplication
+        SelectedIntegerModel.signature.zero
         value =
-      integer_model.signature.zero := by
+      SelectedIntegerModel.signature.zero := by
   sorry
 
 /--
 **[Corollary — Nonzero Multiplicative Cancellation in an Integer Model]**
 -/
 theorem IntegerMultiplicativeCancellation
-    (integer_model : IntegerModel)
-    (first second factor : integer_model.signature.carrier)
-    (factor_is_nonzero : factor ≠ integer_model.signature.zero)
-    (products_are_equal :
-      integer_model.signature.multiplication first factor =
-        integer_model.signature.multiplication second factor) :
+    (SelectedIntegerModel : IntegerModel)
+    (first second factor : SelectedIntegerModel.signature.carrier)
+    (FactorIsNonzero : factor ≠ SelectedIntegerModel.signature.zero)
+    (ProductsAreEqual :
+      SelectedIntegerModel.signature.multiplication first factor =
+        SelectedIntegerModel.signature.multiplication second factor) :
     first = second := by
   sorry
 

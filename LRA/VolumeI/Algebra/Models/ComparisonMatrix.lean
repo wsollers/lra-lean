@@ -34,13 +34,13 @@ structure CanonicalMapLedger {source target : Type}
   UniversalRole : Prop
 
 theorem ComparisonMatrixForZQR
-    (integer_model : IntegerModel)
-    (rational_extension : RationalExtension integer_model)
-    (real_extension : RealExtension rational_extension.RationalModel) :
-    ∃ integer_ledger rational_ledger real_ledger : SystemLedger,
-      integer_ledger.HasRingOrFieldStructure ∧
-        rational_ledger.HasRingOrFieldStructure ∧
-        real_ledger.HasCompletenessProperty := by
+    (SelectedIntegerModel : IntegerModel)
+    (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
+    (SelectedRealExtension : RealExtension SelectedRationalExtension.RationalModel) :
+    ∃ IntegerLedger RationalLedger RealLedger : SystemLedger,
+      IntegerLedger.HasRingOrFieldStructure ∧
+        RationalLedger.HasRingOrFieldStructure ∧
+        RealLedger.HasCompletenessProperty := by
   sorry
 
 end LRA.VolumeI.Algebra.Models.ComparisonMatrix

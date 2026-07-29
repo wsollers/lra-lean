@@ -96,48 +96,48 @@ structure LeastUpperBoundProperty {α : Type u} (le : α → α → Prop) : Prop
   EveryNonemptyBoundedSubsetHasSupremum :
     ∀ subset : α → Prop,
       (∃ member, subset member) →
-      (∃ upper_bound, ∀ member, subset member → le member upper_bound) →
+      (∃ UpperBound, ∀ member, subset member → le member UpperBound) →
       ∃ supremum,
         (∀ member, subset member → le member supremum) ∧
-          ∀ upper_bound,
-            (∀ member, subset member → le member upper_bound) →
-              le supremum upper_bound
+          ∀ UpperBound,
+            (∀ member, subset member → le member UpperBound) →
+              le supremum UpperBound
 
 structure HomomorphismPreserves {α β : Type u}
-    (source_zero source_one : α)
-    (target_zero target_one : β)
-    (source_add source_mul : α → α → α)
-    (target_add target_mul : β → β → β)
+    (SourceZero SourceOne : α)
+    (TargetZero TargetOne : β)
+    (SourceAdd SourceMul : α → α → α)
+    (TargetAdd TargetMul : β → β → β)
     (map : α → β) : Prop where
-  PreservesZero : map source_zero = target_zero
-  PreservesOne : map source_one = target_one
+  PreservesZero : map SourceZero = TargetZero
+  PreservesOne : map SourceOne = TargetOne
   PreservesAddition :
     ∀ first second : α,
-      map (source_add first second) = target_add (map first) (map second)
+      map (SourceAdd first second) = TargetAdd (map first) (map second)
   PreservesMultiplication :
     ∀ first second : α,
-      map (source_mul first second) = target_mul (map first) (map second)
+      map (SourceMul first second) = TargetMul (map first) (map second)
 
 structure Embedding {α β : Type u} (map : α → β) : Prop where
   injective : ∀ first second : α, map first = map second → first = second
 
 structure OrderEmbedding {α β : Type u}
-    (source_le : α → α → Prop) (target_le : β → β → Prop) (map : α → β) : Prop
+    (SourceLe : α → α → Prop) (TargetLe : β → β → Prop) (map : α → β) : Prop
     extends Embedding map where
   PreservesAndReflectsOrder :
-    ∀ first second : α, target_le (map first) (map second) ↔ source_le first second
+    ∀ first second : α, TargetLe (map first) (map second) ↔ SourceLe first second
 
 structure QuotientOperationDescent {α β : Type u}
     (rel : α → α → Prop) (project : α → β)
-    (representative_operation : α → α → α) (quotient_operation : β → β → β) : Prop where
+    (RepresentativeOperation : α → α → α) (QuotientOperation : β → β → β) : Prop where
   RespectsEquivalence :
     ∀ left₁ left₂ right₁ right₂ : α,
       rel left₁ left₂ → rel right₁ right₂ →
-        rel (representative_operation left₁ right₁)
-          (representative_operation left₂ right₂)
+        rel (RepresentativeOperation left₁ right₁)
+          (RepresentativeOperation left₂ right₂)
   descends :
     ∀ left right : α,
-      quotient_operation (project left) (project right) =
-        project (representative_operation left right)
+      QuotientOperation (project left) (project right) =
+        project (RepresentativeOperation left right)
 
 end LRA.VolumeI.Algebra.Models.AbstractLaws

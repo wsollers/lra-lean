@@ -35,8 +35,8 @@ def AbsorbingElement {Carrier : Type u}
 theorem LeftRightIdentitiesCoincide {Carrier : Type u}
     {operation : Carrier -> Carrier -> Carrier}
     {leftIdentity rightIdentity : Carrier}
-    (left_identity_law : LeftIdentity operation leftIdentity)
-    (right_identity_law : RightIdentity operation rightIdentity) :
+    (LeftIdentityLaw : LeftIdentity operation leftIdentity)
+    (RightIdentityLaw : RightIdentity operation rightIdentity) :
     leftIdentity = rightIdentity := by
   sorry
 
@@ -44,8 +44,8 @@ theorem LeftRightIdentitiesCoincide {Carrier : Type u}
 theorem UniquenessOfIdentity {Carrier : Type u}
     {operation : Carrier -> Carrier -> Carrier}
     {firstIdentity secondIdentity : Carrier}
-    (first_identity_law : TwoSidedIdentity operation firstIdentity)
-    (second_identity_law : TwoSidedIdentity operation secondIdentity) :
+    (FirstIdentityLaw : TwoSidedIdentity operation firstIdentity)
+    (SecondIdentityLaw : TwoSidedIdentity operation secondIdentity) :
     firstIdentity = secondIdentity :=
   by
     sorry

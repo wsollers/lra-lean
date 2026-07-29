@@ -15,26 +15,26 @@ Source: docs/number-systems/gpt-00c-universal-properties.md
 Verification status: statement-accepted-proof-pending
 -/
 
-structure IntegerUniversalProperty (integer_model : IntegerModel) : Prop where
+structure IntegerUniversalProperty (SelectedIntegerModel : IntegerModel) : Prop where
   InitialForDiscreteOrderedRings :
     ∀ target : IntegerModel,
-      ∃ map : integer_model.signature.carrier → target.signature.carrier,
+      ∃ map : SelectedIntegerModel.signature.carrier → target.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedRing
-          integer_model.signature target.signature map
+          SelectedIntegerModel.signature target.signature map
 
 structure RationalUniversalProperty
-    (integer_model : IntegerModel)
-    (rational_extension : RationalExtension integer_model) : Prop where
+    (SelectedIntegerModel : IntegerModel)
+    (SelectedRationalExtension : RationalExtension SelectedIntegerModel) : Prop where
   FractionFieldProperty :
     ∀ target : RationalModel,
-      ∀ integer_map :
-        integer_model.signature.carrier → target.signature.carrier,
+      ∀ IntegerMap :
+        SelectedIntegerModel.signature.carrier → target.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedRing
-          integer_model.signature target.signature.toOrderedRingSignature integer_map →
-        ∃ rational_map :
-          rational_extension.RationalModel.signature.carrier → target.signature.carrier,
+          SelectedIntegerModel.signature target.signature.toOrderedRingSignature IntegerMap →
+        ∃ RationalMap :
+          SelectedRationalExtension.RationalModel.signature.carrier → target.signature.carrier,
           CanonicalEmbeddings.EmbeddingPreservesOrderedField
-            rational_extension.RationalModel.signature target.signature rational_map
+            SelectedRationalExtension.RationalModel.signature target.signature RationalMap
 
 structure MetricSpaceModel where
   carrier : Type u
@@ -50,36 +50,36 @@ structure DenseIsometricEmbedding
       letI := target.metric
       dist (ToTarget first) (ToTarget second) = dist first second
   DenseImage :
-    ∀ target_value : target.carrier,
+    ∀ TargetValue : target.carrier,
       ∀ ε : ℝ,
         0 < ε →
         letI := target.metric
-        ∃ approximating_source : source.carrier,
-          dist (ToTarget approximating_source) target_value < ε
+        ∃ ApproximatingSource : source.carrier,
+          dist (ToTarget ApproximatingSource) TargetValue < ε
 
 structure MetricCompletionUniversalProperty
     (source : MetricSpaceModel.{u})
     (completion : MetricSpaceModel.{v}) where
   embedding : DenseIsometricEmbedding source completion
   complete :
-    ∀ cauchy_sequence : Nat → completion.carrier,
+    ∀ CauchySequence : Nat → completion.carrier,
       ∃ limit : completion.carrier,
         ∀ neighborhood : completion.carrier → Prop,
-          neighborhood limit → ∃ index : Nat, neighborhood (cauchy_sequence index)
+          neighborhood limit → ∃ index : Nat, neighborhood (CauchySequence index)
   UniversalExtension :
     ∀ target : MetricSpaceModel.{w},
-      ∀ dense_map : DenseIsometricEmbedding source target,
+      ∀ DenseMap : DenseIsometricEmbedding source target,
         ∃ comparison : completion.carrier → target.carrier,
-          ∀ source_value,
-            comparison (embedding.ToTarget source_value) =
-              dense_map.ToTarget source_value
+          ∀ SourceValue,
+            comparison (embedding.ToTarget SourceValue) =
+              DenseMap.ToTarget SourceValue
 
-structure CompleteOrderedFieldCharacterization (real_model : RealModel) : Prop where
-  RealLaws : RealLaws real_model.signature
+structure CompleteOrderedFieldCharacterization (SelectedRealModel : RealModel) : Prop where
+  RealLaws : RealLaws SelectedRealModel.signature
   UniqueUpToOrderedFieldIsomorphism :
     ∀ other : RealModel,
-      ∃ comparison : real_model.signature.carrier → other.signature.carrier,
+      ∃ comparison : SelectedRealModel.signature.carrier → other.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedField
-          real_model.signature other.signature comparison
+          SelectedRealModel.signature other.signature comparison
 
 end LRA.VolumeI.Algebra.Models.UniversalProperties

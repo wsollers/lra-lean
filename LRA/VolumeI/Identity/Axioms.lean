@@ -146,8 +146,8 @@ theorem SubstitutionPreservesOperations {Carrier : Type u}
 /-- TeX label: `prop:congruence-with-respect-to-equality-is-automatic`. -/
 theorem CongruenceWithRespectToEqualityIsAutomatic {Carrier : Type u}
     {left left' right right' : Carrier}
-    (lefts_are_equal : left = left')
-    (rights_are_equal : right = right') :
+    (LeftsAreEqual : left = left')
+    (RightsAreEqual : right = right') :
     (∀ predicate : Carrier -> Prop, predicate left ↔ predicate left') ∧
       (∀ relation : Carrier -> Carrier -> Prop,
         relation left right ↔ relation left' right') ∧

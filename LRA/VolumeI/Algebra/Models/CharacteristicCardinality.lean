@@ -26,22 +26,22 @@ def Uncountable (α : Type u) : Prop :=
   ¬ Countable α
 
 theorem IntegerRationalRealHaveCharacteristicZero
-    (integer_model : IntegerModel)
-    (rational_model : RationalModel)
-    (real_model : RealModel) :
-    CharacteristicZero integer_model.signature ∧
-      CharacteristicZero rational_model.signature.toOrderedRingSignature ∧
-      CharacteristicZero real_model.signature.toOrderedRingSignature := by
+    (SelectedIntegerModel : IntegerModel)
+    (SelectedRationalModel : RationalModel)
+    (SelectedRealModel : RealModel) :
+    CharacteristicZero SelectedIntegerModel.signature ∧
+      CharacteristicZero SelectedRationalModel.signature.toOrderedRingSignature ∧
+      CharacteristicZero SelectedRealModel.signature.toOrderedRingSignature := by
   sorry
 
 theorem RationalsAreCountable
-    (rational_model : RationalModel) :
-    Countable rational_model.signature.carrier := by
+    (SelectedRationalModel : RationalModel) :
+    Countable SelectedRationalModel.signature.carrier := by
   sorry
 
 theorem RealsAreUncountable
-    (real_model : RealModel) :
-    Uncountable real_model.signature.carrier := by
+    (SelectedRealModel : RealModel) :
+    Uncountable SelectedRealModel.signature.carrier := by
   sorry
 
 end LRA.VolumeI.Algebra.Models.CharacteristicCardinality

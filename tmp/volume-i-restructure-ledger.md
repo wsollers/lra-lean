@@ -125,6 +125,14 @@ Working branch: `codex/volume-i-restructure`.
 | `Algebra.Models.CanonicalEmbeddings.*.preserves_*` | `Algebra.Models.CanonicalEmbeddings.*.Preserves*` | PascalCase public fields |
 | `Algebra.Models.ComparisonMatrix.*_structure` | `Algebra.Models.ComparisonMatrix.*Structure` | PascalCase public fields |
 | `Algebra.Models.UniversalProperties.*_property` | `Algebra.Models.UniversalProperties.*Property` | PascalCase public fields |
+| `lefts_are_equal` / `rights_are_equal` | `LeftsAreEqual` / `RightsAreEqual` | PascalCase local hypotheses |
+| `left_identity_law` / `right_identity_law` | `LeftIdentityLaw` / `RightIdentityLaw` | PascalCase local hypotheses |
+| `first_identity_law` / `second_identity_law` | `FirstIdentityLaw` / `SecondIdentityLaw` | PascalCase local hypotheses |
+| `integer_model` / `rational_model` / `real_model` | `SelectedIntegerModel` / `SelectedRationalModel` / `SelectedRealModel` | PascalCase local binders |
+| `rational_extension` / `real_extension` | `SelectedRationalExtension` / `SelectedRealExtension` | PascalCase local binders |
+| `upper_bound` | `UpperBound` | PascalCase local mathematical object |
+| `source_*` / `target_*` | `Source*` / `Target*` | PascalCase local structure parameters |
+| `*_map`, `*_value`, `*_ledger` | `*Map`, `*Value`, `*Ledger` | PascalCase local mathematical objects |
 
 ## Deferred
 

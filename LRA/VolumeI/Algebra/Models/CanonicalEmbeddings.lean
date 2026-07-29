@@ -44,39 +44,39 @@ structure EmbeddingPreservesOrderedField
         map (source.inverse value) = target.inverse (map value)
 
 structure AdjacentTowerEmbeddings
-    (integer_model : IntegerModel)
-    (rational_extension : RationalExtension integer_model)
-    (real_extension : RealExtension rational_extension.RationalModel) : Prop where
+    (SelectedIntegerModel : IntegerModel)
+    (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
+    (SelectedRealExtension : RealExtension SelectedRationalExtension.RationalModel) : Prop where
   IntegerToRationalPreserves :
     EmbeddingPreservesOrderedRing
-      integer_model.signature
-      rational_extension.RationalModel.signature.toOrderedRingSignature
-      rational_extension.IntegerEmbedding.ToRational
+      SelectedIntegerModel.signature
+      SelectedRationalExtension.RationalModel.signature.toOrderedRingSignature
+      SelectedRationalExtension.IntegerEmbedding.ToRational
   RationalToRealPreserves :
     EmbeddingPreservesOrderedField
-      rational_extension.RationalModel.signature
-      real_extension.RealModel.signature
-      real_extension.RationalEmbedding.ToReal
+      SelectedRationalExtension.RationalModel.signature
+      SelectedRealExtension.RealModel.signature
+      SelectedRealExtension.RationalEmbedding.ToReal
 
 def CompositeIntegerToReal
-    {integer_model : IntegerModel}
-    (rational_extension : RationalExtension integer_model)
-    (real_extension : RealExtension rational_extension.RationalModel) :
-    integer_model.signature.carrier → real_extension.RealModel.signature.carrier :=
+    {SelectedIntegerModel : IntegerModel}
+    (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
+    (SelectedRealExtension : RealExtension SelectedRationalExtension.RationalModel) :
+    SelectedIntegerModel.signature.carrier → SelectedRealExtension.RealModel.signature.carrier :=
   fun value =>
-    real_extension.RationalEmbedding.ToReal
-      (rational_extension.IntegerEmbedding.ToRational value)
+    SelectedRealExtension.RationalEmbedding.ToReal
+      (SelectedRationalExtension.IntegerEmbedding.ToRational value)
 
 theorem CompositeIntegerToRealIsEmbedding
-    {integer_model : IntegerModel}
-    (rational_extension : RationalExtension integer_model)
-    (real_extension : RealExtension rational_extension.RationalModel)
-    (adjacent_embeddings :
-      AdjacentTowerEmbeddings integer_model rational_extension real_extension) :
+    {SelectedIntegerModel : IntegerModel}
+    (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
+    (SelectedRealExtension : RealExtension SelectedRationalExtension.RationalModel)
+    (AdjacentEmbeddings :
+      AdjacentTowerEmbeddings SelectedIntegerModel SelectedRationalExtension SelectedRealExtension) :
     EmbeddingPreservesOrderedRing
-      integer_model.signature
-      real_extension.RealModel.signature.toOrderedRingSignature
-      (CompositeIntegerToReal rational_extension real_extension) := by
+      SelectedIntegerModel.signature
+      SelectedRealExtension.RealModel.signature.toOrderedRingSignature
+      (CompositeIntegerToReal SelectedRationalExtension SelectedRealExtension) := by
   sorry
 
 end LRA.VolumeI.Algebra.Models.CanonicalEmbeddings
