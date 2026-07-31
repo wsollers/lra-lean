@@ -34,5 +34,16 @@ abbrev HeterogeneousRelation
 abbrev Endorelation (alpha : LRA.VolumeI.Set.LRACarrier) :=
   HomogeneousBinaryRelation alpha
 
-end LRA.VolumeI.Relations
+/-- The empty relation: no ordered pair is related. -/
+def EmptyRelation (alpha : LRA.VolumeI.Set.LRACarrier) : Endorelation alpha :=
+  fun _ _ => False
 
+/-- The universal relation: every ordered pair is related. -/
+def UniversalRelation (alpha : LRA.VolumeI.Set.LRACarrier) : Endorelation alpha :=
+  fun _ _ => True
+
+/-- The identity relation: exactly the diagonal ordered pairs are related. -/
+def IdentityRelation (alpha : LRA.VolumeI.Set.LRACarrier) : Endorelation alpha :=
+  fun left right => left = right
+
+end LRA.VolumeI.Relations

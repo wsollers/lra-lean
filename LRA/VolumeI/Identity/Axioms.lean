@@ -13,12 +13,12 @@ namespace LRA.VolumeI.Identity
 universe u v
 
 /-- TeX label: `def:identity-relation`. -/
-def IdentityRelation {Carrier : Type u} (left right : Carrier) : Prop :=
-  left = right
+abbrev IdentityRelation {Carrier : Type u} (left right : Carrier) : Prop :=
+  LRA.VolumeI.Relations.IdentityRelation Carrier left right
 
 /-- TeX label: `def:equality-relation`. -/
-def EqualityRelation (Carrier : Type u) : Carrier -> Carrier -> Prop :=
-  Eq
+abbrev EqualityRelation (Carrier : Type u) : Carrier -> Carrier -> Prop :=
+  LRA.VolumeI.Relations.IdentityRelation Carrier
 
 /-- Equality axiom: every object is equal to itself. -/
 theorem EqualityReflexivity {Carrier : Type u} (element : Carrier) :
