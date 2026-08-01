@@ -38,6 +38,14 @@ def StrictPart {alpha : LRA.VolumeI.Set.LRACarrier}
     LRA.VolumeI.Relations.Endorelation alpha :=
   fun left right => nonStrictRelation left right /\ left ≠ right
 
+/-- The cover relation induced by a strict order relation. -/
+def CoverRelation {alpha : LRA.VolumeI.Set.LRACarrier}
+    (strictRelation : LRA.VolumeI.Relations.Endorelation alpha) :
+    LRA.VolumeI.Relations.Endorelation alpha :=
+  fun lower upper =>
+    strictRelation lower upper /\
+      forall middle, Not (strictRelation lower middle /\ strictRelation middle upper)
+
 /-- Two elements are comparable with respect to a relation. -/
 def Comparable {alpha : LRA.VolumeI.Set.LRACarrier}
     (relation : LRA.VolumeI.Relations.Endorelation alpha)

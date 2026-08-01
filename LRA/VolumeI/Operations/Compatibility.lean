@@ -35,6 +35,25 @@ def Monotone {Alpha : LRA.VolumeI.Set.LRACarrier}
     (operation : UnaryOperation Alpha) : Prop :=
   UnaryOperationRespectsRelation relation operation
 
+/-- Extensiveness of a unary operation with respect to an order relation. -/
+def Extensive {Alpha : LRA.VolumeI.Set.LRACarrier}
+    (relation : LRA.VolumeI.Relations.Endorelation Alpha)
+    (operation : UnaryOperation Alpha) : Prop :=
+  forall element, relation element (operation element)
+
+/-- Idempotence of a unary operation under composition. -/
+def UnaryIdempotent {Alpha : LRA.VolumeI.Set.LRACarrier}
+    (operation : UnaryOperation Alpha) : Prop :=
+  forall element, operation (operation element) = operation element
+
+/-- A closure operator is extensive, monotone, and idempotent. -/
+def ClosureOperator {Alpha : LRA.VolumeI.Set.LRACarrier}
+    (relation : LRA.VolumeI.Relations.Endorelation Alpha)
+    (operation : UnaryOperation Alpha) : Prop :=
+  Extensive relation operation /\
+    Monotone relation operation /\
+      UnaryIdempotent operation
+
 /-- Strict monotonicity of a unary operation with respect to a strict order. -/
 def StrictMonotone {Alpha : LRA.VolumeI.Set.LRACarrier}
     (strictRelation : LRA.VolumeI.Relations.Endorelation Alpha)
