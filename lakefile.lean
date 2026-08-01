@@ -31,4 +31,7 @@ lean_lib LRAVolumeVII where
 -- import these modules.
 lean_lib LRATests where
   srcDir := "test"
-  roots := #[`LRA.VolumeIII.Analysis.Bounding.BoundsTests]
+  roots := #[
+    `LRA.VolumeIII.Analysis.Bounding.BoundsTests,
+    `LRA.VolumeII.Switches.SetsTests
+  ]
