@@ -15,4 +15,8 @@ def zfcSetMembership
     | ⟨0, _⟩ => element
     | ⟨1, _⟩ => set
 
+/-- Lean's `element ∈ set` notation for set-objects inside a chosen ZFC model. -/
+instance (M : ZFCModel) : Membership M.Domain M.Domain where
+  mem set element := zfcSetMembership M element set
+
 end LRA.VolumeI.Set.ZFC

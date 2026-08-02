@@ -19,6 +19,11 @@ structure NativeSetOperations where
   powerset : SetObject → SetObject
   foundation : WellFounded (fun left right => member left right)
 
+/-- Lean's `element ∈ set` notation for one native ZFC operation backend. -/
+instance (operations : NativeSetOperations) :
+    Membership operations.SetObject operations.SetObject where
+  mem set element := operations.member element set
+
 /-- Native membership laws expected from an Enderton/ZFC implementation. -/
 structure NativeSetOperationLaws (operations : NativeSetOperations) : Prop where
   emptyMembership :

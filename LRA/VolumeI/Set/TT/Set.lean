@@ -39,6 +39,10 @@ def Contains {Alpha : LRACarrier} (set : TTSet Alpha) (element : Alpha) : Prop :
 def Member {Alpha : LRACarrier} (element : Alpha) (set : TTSet Alpha) : Prop :=
   Contains set element
 
+/-- Lean's `element ∈ set` notation for typed predicate-sets. -/
+instance {Alpha : LRACarrier} : Membership Alpha (TTSet Alpha) where
+  mem set element := Member element set
+
 /-- The empty typed set. -/
 def Empty (Alpha : LRACarrier) : TTSet Alpha :=
   fun _ => False
