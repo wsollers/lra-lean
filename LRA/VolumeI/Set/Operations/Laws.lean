@@ -6,5 +6,5 @@ import LRA.VolumeI.Set.Operations.Laws.Duality
 import LRA.VolumeI.Set.Operations.Laws.Indexed
 
 /-!
-Aggregate import shim for predicate-set operation laws.
+Aggregate import for typed-set operation laws.
 -/

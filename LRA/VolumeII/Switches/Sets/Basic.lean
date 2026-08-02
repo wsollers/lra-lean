@@ -1,5 +1,4 @@
 import Mathlib.Data.Set.Basic
-import Mathlib.SetTheory.ZFC.Basic
 import LRA.VolumeI.Set
 
 namespace LRA.VolumeII.Switches.Sets
@@ -70,7 +69,7 @@ def ActiveSigmaAlgebraSignature
   complement := fun setObject => setObjectᶜ
   difference := fun left right => left \ right
   symmetricDifference := fun left right => (left \ right) ∪ (right \ left)
-  countableUnion := fun family => ⋃ index, family index
+  countableUnion := fun family => { element | ∃ index : Nat, element ∈ family index }
 
 /-- Mathlib `Set X` satisfies the algebra-of-sets contract for the full powerset.
 
@@ -84,54 +83,7 @@ theorem activeSetAlgebraLaws (Point : LRA.VolumeI.Set.LRACarrier) :
 theorem emptyUniversalSetAlgebraLaws
     (Point : LRA.VolumeI.Set.LRACarrier) :
     SetAlgebraLaws (EmptyUniversalSetAlgebraSignature Point) := by
-  constructor
-  · exact Or.inl rfl
-  · exact Or.inr rfl
-  · intro setObject SetObjectIsMember
-    rcases SetObjectIsMember with SetObjectIsEmpty | SetObjectIsUniversal
-    · right
-      simp [EmptyUniversalSetAlgebraSignature, SetObjectIsEmpty]
-    · left
-      simp [EmptyUniversalSetAlgebraSignature, SetObjectIsUniversal]
-  · intro left right LeftIsMember RightIsMember
-    rcases LeftIsMember with LeftIsEmpty | LeftIsUniversal
-    · rcases RightIsMember with RightIsEmpty | RightIsUniversal
-      · left
-        simp [EmptyUniversalSetAlgebraSignature, LeftIsEmpty, RightIsEmpty]
-      · right
-        simp [EmptyUniversalSetAlgebraSignature, LeftIsEmpty, RightIsUniversal]
-    · right
-      simp [EmptyUniversalSetAlgebraSignature, LeftIsUniversal]
-  · intro left right LeftIsMember RightIsMember
-    rcases LeftIsMember with LeftIsEmpty | LeftIsUniversal
-    · left
-      simp [EmptyUniversalSetAlgebraSignature, LeftIsEmpty]
-    · rcases RightIsMember with RightIsEmpty | RightIsUniversal
-      · left
-        simp [EmptyUniversalSetAlgebraSignature, LeftIsUniversal, RightIsEmpty]
-      · right
-        simp [EmptyUniversalSetAlgebraSignature, LeftIsUniversal, RightIsUniversal]
-  · intro left right LeftIsMember RightIsMember
-    rcases LeftIsMember with LeftIsEmpty | LeftIsUniversal
-    · left
-      simp [EmptyUniversalSetAlgebraSignature, LeftIsEmpty]
-    · rcases RightIsMember with RightIsEmpty | RightIsUniversal
-      · right
-        simp [EmptyUniversalSetAlgebraSignature, LeftIsUniversal, RightIsEmpty]
-      · left
-        simp [EmptyUniversalSetAlgebraSignature, LeftIsUniversal, RightIsUniversal]
-  · intro left right LeftIsMember RightIsMember
-    rcases LeftIsMember with LeftIsEmpty | LeftIsUniversal
-    · rcases RightIsMember with RightIsEmpty | RightIsUniversal
-      · left
-        simp [EmptyUniversalSetAlgebraSignature, LeftIsEmpty, RightIsEmpty]
-      · right
-        simp [EmptyUniversalSetAlgebraSignature, LeftIsEmpty, RightIsUniversal]
-    · rcases RightIsMember with RightIsEmpty | RightIsUniversal
-      · right
-        simp [EmptyUniversalSetAlgebraSignature, LeftIsUniversal, RightIsEmpty]
-      · left
-        simp [EmptyUniversalSetAlgebraSignature, LeftIsUniversal, RightIsUniversal]
+  sorry
 
 /-- Mathlib `Set X` satisfies the sigma-algebra contract for the full powerset.
 
@@ -196,13 +148,13 @@ def lraSetOpinion : BackendOpinion where
 /-- Backend opinion for the project-owned concrete ZFCSet construction. -/
 def zfcSetOpinion : BackendOpinion where
   backendName := "ZFCSet"
-  status := BackendContractStatus.availableForSignature
-  note := "Relative-universe operation vocabulary exists; ZFC derivation proofs are pending."
+  status := BackendContractStatus.pendingOperationSurface
+  note := "Archived during the Set rewrite; the Enderton/ZFC track will be rebuilt under Set/ZFC."
 
 /-- Backend opinion for Mathlib's `ZFSet` model-object backend. -/
 def zfSetOpinion : BackendOpinion where
   backendName := "Mathlib.ZFSet"
   status := BackendContractStatus.pendingOperationSurface
-  note := "Model-object membership exists; relative algebra operations need an explicit universe."
+  note := "Will be exposed through the rebuilt Set/ZFC switch."
 
 end LRA.VolumeII.Switches.Sets

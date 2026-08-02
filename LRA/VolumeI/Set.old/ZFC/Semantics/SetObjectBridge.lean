@@ -1,4 +1,4 @@
-import LRA.VolumeI.Set.Set
+import LRA.VolumeI.Set.LRASet.LRASet
 import LRA.VolumeI.Logic.Model.Comparison.ModelIsomorphismSymmetric
 import LRA.VolumeI.Set.ZFC.Model.ZFSetModel
 import LRA.VolumeI.Set.ZFC.Semantics.AxiomReadings

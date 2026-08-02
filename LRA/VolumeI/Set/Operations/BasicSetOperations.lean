@@ -1,11 +1,7 @@
-import LRA.VolumeI.Set.Set
+import LRA.VolumeI.Set.LRASet.LRASet
 
 /-!
-Basic predicate-set operations.
-
-This module is the proving home for the elementary operation-facing facts about
-`LRASet`: membership unfoldings and the first reusable laws for union,
-intersection, complement, difference, empty set, and universal set.
+Basic typed-set operation facts.
 -/
 
 namespace LRA.VolumeI.Set.Operations.BasicSetOperations
@@ -17,42 +13,25 @@ theorem UnionMembershipIff {Alpha : LRACarrier}
     (Left Right : LRASet Alpha) (Element : Alpha) :
     Member Element (Union Left Right) ↔
       Member Element Left ∨ Member Element Right := by
-    constructor
-    · intro ElementInUnion
-      exact ElementInUnion
-    · intro ElementInEitherSet
-      exact ElementInEitherSet
-      
+  rfl
+
 theorem IntersectionMembershipIff {Alpha : LRACarrier}
     (Left Right : LRASet Alpha) (Element : Alpha) :
     Member Element (Intersection Left Right) ↔
       Member Element Left ∧ Member Element Right := by
-    constructor
-    · intro ElementInIntersection
-      exact ElementInIntersection
-    · intro ElementInBothSets
-      exact ElementInBothSets
+  rfl
 
 theorem ComplementMembershipIff {Alpha : LRACarrier}
     (Comp : LRASet Alpha) (Element : Alpha) :
     Member Element (Complement Comp) ↔
       ¬ Member Element Comp := by
-    constructor
-    · intro ElementInComplement
-      exact ElementInComplement
-    · intro ElementNotInComp
-      exact ElementNotInComp
+  rfl
 
 theorem DifferenceMembershipIff {Alpha : LRACarrier}
     (Left Right : LRASet Alpha) (Element : Alpha) :
     Member Element (Difference Left Right) ↔
       Member Element Left ∧ ¬ Member Element Right := by
-    constructor
-    · intro ElementInDifference
-      exact ElementInDifference
-    · intro ElementInLeftNotInRight
-      exact ElementInLeftNotInRight
-
+  rfl
 
 theorem SubsetMembershipImplication {Alpha : LRACarrier}
     (Left Right : LRASet Alpha)

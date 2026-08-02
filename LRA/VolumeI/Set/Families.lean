@@ -1,23 +1,17 @@
-import LRA.VolumeI.Set.Set
+import LRA.VolumeI.Set.LRASet.LRASet
 
 namespace LRA.VolumeI.Set
 
-universe u
-
-/-!
-Public interface home for indexed families of sets.
--/
-
-/-- Public name for an indexed family of predicate-sets. -/
+/-- Public name for an indexed family of typed sets. -/
 abbrev IndexedFamily (Index : LRACarrier) (Alpha : LRACarrier) :=
   SetFamily Index Alpha
 
-/-- Public name for the indexed union of a family of predicate-sets. -/
+/-- Public name for the indexed union of a family of typed sets. -/
 def IndexedUnion {Index Alpha : LRACarrier}
     (Family : IndexedFamily Index Alpha) : LRASet Alpha :=
   LRASet.IndexedUnion Family
 
-/-- Public name for the indexed intersection of a family of predicate-sets. -/
+/-- Public name for the indexed intersection of a family of typed sets. -/
 def IndexedIntersection {Index Alpha : LRACarrier}
     (Family : IndexedFamily Index Alpha) : LRASet Alpha :=
   LRASet.IndexedIntersection Family

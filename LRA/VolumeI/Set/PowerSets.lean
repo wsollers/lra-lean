@@ -1,23 +1,17 @@
-import LRA.VolumeI.Set.Set
+import LRA.VolumeI.Set.LRASet.LRASet
 
 namespace LRA.VolumeI.Set
 
-universe u
-
-/-!
-Public interface home for power-set vocabulary.
--/
-
-/-- The absolute predicate power set over a carrier: all predicate-subsets of `Alpha`. -/
+/-- The absolute typed power set over a carrier: all typed subsets of `Alpha`. -/
 def PowerSet (Alpha : LRACarrier) : LRASet (LRASet Alpha) :=
   fun _ => True
 
-/-- The relative power set of an ambient predicate-set. -/
+/-- The relative power set of an ambient typed set. -/
 def RelativePowerSet {Alpha : LRACarrier} (Ambient : LRASet Alpha) :
     LRASet (LRASet Alpha) :=
   fun Subset => LRASet.Subset Subset Ambient
 
-/-- Every predicate-set over a carrier belongs to its absolute power set. -/
+/-- Every typed set over a carrier belongs to its absolute power set. -/
 theorem MemberOfPowerSet {Alpha : LRACarrier} (Subset : LRASet Alpha) :
     LRASet.Member Subset (PowerSet Alpha) := by
   trivial

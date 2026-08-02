@@ -1,14 +1,12 @@
-import LRA.VolumeI.Set.Set
+import LRA.VolumeI.Set.LRASet.LRASet
 
 namespace LRA.VolumeI.Set
 
-universe u
-
 /-- Binary Cartesian product of carriers. -/
-abbrev Product (alpha beta : LRACarrier) := alpha × beta
+abbrev Product (Alpha Beta : LRACarrier) := Alpha × Beta
 
 /-- A finite tuple over a carrier. -/
-abbrev Tuple (size : Nat) (alpha : LRACarrier) := Fin size -> alpha
+abbrev Tuple (Size : Nat) (Alpha : LRACarrier) := Fin Size → Alpha
 
 /-- First projection from a product. -/
 def FirstProjection {Alpha Beta : LRACarrier} (Pair : Product Alpha Beta) : Alpha :=
@@ -18,10 +16,10 @@ def FirstProjection {Alpha Beta : LRACarrier} (Pair : Product Alpha Beta) : Alph
 def SecondProjection {Alpha Beta : LRACarrier} (Pair : Product Alpha Beta) : Beta :=
   Pair.2
 
-/-- Cartesian product of two predicate-sets. -/
+/-- Cartesian product of two typed sets. -/
 def CartesianProduct {Alpha Beta : LRACarrier}
     (Left : LRASet Alpha) (Right : LRASet Beta) : LRASet (Product Alpha Beta) :=
-  fun Pair => LRASet.Member Pair.1 Left /\ LRASet.Member Pair.2 Right
+  fun Pair => LRASet.Member Pair.1 Left ∧ LRASet.Member Pair.2 Right
 
 /-- Membership criterion for a Cartesian product. -/
 theorem CartesianProductMembershipIff {Alpha Beta : LRACarrier}
@@ -39,7 +37,7 @@ theorem ProductExtensionality {Alpha Beta : LRACarrier}
     Left = Right := by
   exact Prod.ext FirstCoordinatesEqual SecondCoordinatesEqual
 
-/-- Finite Cartesian power, read as `Alpha ^ Size` in the set-theoretic outline. -/
+/-- Finite Cartesian power. -/
 abbrev FinitePower (Size : Nat) (Alpha : LRACarrier) := Tuple Size Alpha
 
 end LRA.VolumeI.Set

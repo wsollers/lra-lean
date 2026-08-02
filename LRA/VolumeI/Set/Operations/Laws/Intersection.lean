@@ -1,88 +1,59 @@
 import LRA.VolumeI.Set.Operations.BasicSetOperations
 
-/-!
-Intersection laws for predicate-sets.
--/
-
 namespace LRA.VolumeI.Set.Operations.Laws
 
 open LRA.VolumeI.Set
 open LRA.VolumeI.Set.LRASet
-open LRA.VolumeI.Set.Operations.BasicSetOperations
 
-/-- Binary intersection of predicate-sets is commutative. -/
 theorem IntersectionCommutative {Alpha : LRACarrier}
     (Left Right : LRASet Alpha) :
     Intersection Left Right = Intersection Right Left := by
   apply Extensionality
   intro x
-  apply Iff.intro
-  · intro xInLIR
-    cases xInLIR with
-    | intro xInL xInR =>
-      exact ⟨xInR, xInL⟩
-  · intro xInRIL
-    cases xInRIL with
-    | intro xInR xInL =>
-      exact ⟨xInL, xInR⟩
+  constructor <;> rintro ⟨hLeft, hRight⟩ <;> exact ⟨hRight, hLeft⟩
 
-/-- Binary intersection of predicate-sets is associative. -/
 theorem IntersectionAssociative {Alpha : LRACarrier}
     (Left Middle Right : LRASet Alpha) :
     Intersection (Intersection Left Middle) Right =
       Intersection Left (Intersection Middle Right) := by
   apply Extensionality
   intro x
-  apply Iff.intro
-  · intro xInLMR
-    cases xInLMR with
-    | intro xInLM xInR =>
-      cases xInLM with
-      | intro xInL xInM =>
-        exact ⟨xInL, ⟨xInM, xInR⟩⟩
-  · intro xInLMUR
-    cases xInLMUR with
-    | intro xInL xInMR =>
-      cases xInMR with
-      | intro xInM xInR =>
-        exact ⟨⟨xInL, xInM⟩, xInR⟩
+  constructor
+  · rintro ⟨⟨hLeft, hMiddle⟩, hRight⟩
+    exact ⟨hLeft, hMiddle, hRight⟩
+  · rintro ⟨hLeft, hMiddle, hRight⟩
+    exact ⟨⟨hLeft, hMiddle⟩, hRight⟩
 
-/-- Intersection with the empty set on the right is empty. -/
-theorem IntersectionEmpty {Alpha : LRACarrier}
-    (Left : LRASet Alpha) :
+theorem IntersectionEmpty {Alpha : LRACarrier} (Left : LRASet Alpha) :
     Intersection Left (Empty Alpha) = Empty Alpha := by
   apply Extensionality
   intro x
-  apply Iff.intro
-  · intro xInLIE
-    cases xInLIE with
-    | intro _xInL xInE =>
-      contradiction
-  · intro xInE
-    contradiction
+  constructor
+  · rintro ⟨_, hx⟩; exact hx
+  · intro hx; contradiction
 
-/-- Intersection with the empty set on the left is empty. -/
-theorem EmptyIntersection {Alpha : LRACarrier}
-    (Right : LRASet Alpha) :
+theorem EmptyIntersection {Alpha : LRACarrier} (Right : LRASet Alpha) :
     Intersection (Empty Alpha) Right = Empty Alpha := by
-  sorry
+  rw [IntersectionCommutative, IntersectionEmpty]
 
-/-- Intersection with the universal set on the right is itself. -/
-theorem IntersectionUniversal {Alpha : LRACarrier}
-    (Left : LRASet Alpha) :
+theorem IntersectionUniversal {Alpha : LRACarrier} (Left : LRASet Alpha) :
     Intersection Left (Universal Alpha) = Left := by
-  sorry
+  apply Extensionality
+  intro x
+  constructor
+  · exact And.left
+  · intro hx; exact ⟨hx, trivial⟩
 
-/-- Intersection with the universal set on the left is itself. -/
-theorem UniversalIntersection {Alpha : LRACarrier}
-    (Right : LRASet Alpha) :
+theorem UniversalIntersection {Alpha : LRACarrier} (Right : LRASet Alpha) :
     Intersection (Universal Alpha) Right = Right := by
-  sorry
+  rw [IntersectionCommutative, IntersectionUniversal]
 
-/-- Binary intersection of a predicate-set with itself is itself. -/
-theorem IntersectionIdempotent {Alpha : LRACarrier}
-    (Left : LRASet Alpha) :
+theorem IntersectionIdempotent {Alpha : LRACarrier} (Left : LRASet Alpha) :
     Intersection Left Left = Left := by
-  sorry
+  apply Extensionality
+  intro x
+  constructor
+  · exact And.left
+  · intro hx; exact ⟨hx, hx⟩
 
 end LRA.VolumeI.Set.Operations.Laws
