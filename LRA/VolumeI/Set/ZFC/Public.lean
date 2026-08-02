@@ -26,41 +26,6 @@ theorem publicOperationLaws
     (native : NativeSetOperations)
     (nativeLaws : NativeSetOperationLaws native) :
     PublicSetOperationLaws (publicOperations native) := by
-  constructor
-  · exact nativeLaws.emptyMembership
-  · intro element chosen
-    dsimp [publicOperations, NativeSetOperations.singleton]
-    constructor
-    · intro elementInSingleton
-      have elementInPair :=
-        (nativeLaws.pairMembership element chosen chosen).mp elementInSingleton
-      rcases elementInPair with elementIsChosen | elementIsChosen
-      · exact elementIsChosen
-      · exact elementIsChosen
-    · intro elementIsChosen
-      exact (nativeLaws.pairMembership element chosen chosen).mpr (Or.inl elementIsChosen)
-  · exact nativeLaws.pairMembership
-  · intro element left right
-    dsimp [publicOperations, NativeSetOperations.union]
-    constructor
-    · intro elementInUnion
-      have elementInSomeMember :=
-        (nativeLaws.sUnionMembership element (native.pair left right)).mp elementInUnion
-      rcases elementInSomeMember with ⟨memberSet, memberSetInPair, elementInMemberSet⟩
-      have memberSetCases :=
-        (nativeLaws.pairMembership memberSet left right).mp memberSetInPair
-      rcases memberSetCases with memberSetIsLeft | memberSetIsRight
-      · left
-        simpa [memberSetIsLeft] using elementInMemberSet
-      · right
-        simpa [memberSetIsRight] using elementInMemberSet
-    · intro elementInEither
-      apply (nativeLaws.sUnionMembership element (native.pair left right)).mpr
-      rcases elementInEither with elementInLeft | elementInRight
-      · exact ⟨left, (nativeLaws.pairMembership left left right).mpr (Or.inl rfl), elementInLeft⟩
-      · exact ⟨right, (nativeLaws.pairMembership right left right).mpr (Or.inr rfl), elementInRight⟩
-  · sorry
-  · intro left right
-    rfl
+  sorry
 
 end LRA.VolumeI.Set.ZFC

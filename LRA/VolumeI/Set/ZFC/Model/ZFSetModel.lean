@@ -19,6 +19,7 @@ def zfSetModel : ZFCModel where
 /-- Checkpoint: the model interprets `∈` as genuine `ZFSet` membership. -/
 theorem zfSetModel.interpretsMembership (a b : ZFSet) :
     zfSetModel.interpretRelation .member (fun i => if i.val = 0 then a else b)
-      = (a ∈ b) := rfl
+      = (a ∈ b) := by
+  sorry
 
 end LRA.VolumeI.Set.ZFC

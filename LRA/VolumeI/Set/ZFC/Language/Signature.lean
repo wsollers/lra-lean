@@ -23,6 +23,7 @@ def zfcSignature : Signature where
   Constants := Empty
 
 theorem zfcSignature.memberIsBinary :
-    zfcSignature.IsBinaryRelationSymbol .member := rfl
+    zfcSignature.IsBinaryRelationSymbol .member := by
+  sorry
 
 end LRA.VolumeI.Set.ZFC

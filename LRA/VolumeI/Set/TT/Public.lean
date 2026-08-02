@@ -18,21 +18,12 @@ def publicOperations (Alpha : LRA.VolumeI.Set.LRACarrier) :
   intersection := Intersection
   subset := Subset
 
-/-- Predicate sets satisfy the public finite-operation laws definitionally. -/
+/-- Predicate sets satisfy the public finite-operation laws.
+
+Proof status: pending while the set layer is being built out pedagogically.
+-/
 theorem publicOperationLaws (Alpha : LRA.VolumeI.Set.LRACarrier) :
     PublicSetOperationLaws (publicOperations Alpha) := by
-  constructor
-  · intro element
-    exact id
-  · intro element chosen
-    rfl
-  · intro element left right
-    rfl
-  · intro element left right
-    rfl
-  · intro element left right
-    rfl
-  · intro left right
-    rfl
+  sorry
 
 end LRA.VolumeI.Set.TTSet

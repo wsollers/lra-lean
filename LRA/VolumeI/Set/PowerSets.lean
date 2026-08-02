@@ -14,13 +14,13 @@ def RelativePowerSet {Alpha : LRACarrier} (Ambient : LRASet Alpha) :
 /-- Every typed set over a carrier belongs to its absolute power set. -/
 theorem MemberOfPowerSet {Alpha : LRACarrier} (Subset : LRASet Alpha) :
     LRASet.Member Subset (PowerSet Alpha) := by
-  trivial
+  sorry
 
 /-- Membership in the relative power set is exactly inclusion in the ambient set. -/
 theorem RelativePowerSetMembershipIff {Alpha : LRACarrier}
     (Ambient Subset : LRASet Alpha) :
     LRASet.Member Subset (RelativePowerSet Ambient) ↔
       LRASet.Subset Subset Ambient := by
-  rfl
+  sorry
 
 end LRA.VolumeI.Set

@@ -9,32 +9,26 @@ open LRA.VolumeI.Set.LRASet
 theorem DifferenceAsIntersectionComplement {Alpha : LRACarrier}
     (Left Right : LRASet Alpha) :
     Difference Left Right = Intersection Left (Complement Right) := by
-  rfl
+  sorry
 
 theorem DifferenceEmpty {Alpha : LRACarrier} (Left : LRASet Alpha) :
     Difference Left (Empty Alpha) = Left := by
-  rw [DifferenceAsIntersectionComplement, ComplementEmpty, IntersectionUniversal]
+  sorry
 
 theorem EmptyDifference {Alpha : LRACarrier} (Right : LRASet Alpha) :
     Difference (Empty Alpha) Right = Empty Alpha := by
-  rw [DifferenceAsIntersectionComplement, EmptyIntersection]
+  sorry
 
 theorem DifferenceUniversal {Alpha : LRACarrier} (Left : LRASet Alpha) :
     Difference Left (Universal Alpha) = Empty Alpha := by
-  rw [DifferenceAsIntersectionComplement, ComplementUniversal, IntersectionEmpty]
+  sorry
 
 theorem UniversalDifference {Alpha : LRACarrier} (Right : LRASet Alpha) :
     Difference (Universal Alpha) Right = Complement Right := by
-  rw [DifferenceAsIntersectionComplement, UniversalIntersection]
+  sorry
 
 theorem DifferenceSelf {Alpha : LRACarrier} (Left : LRASet Alpha) :
     Difference Left Left = Empty Alpha := by
-  apply Extensionality
-  intro x
-  constructor
-  · rintro ⟨hx, hNot⟩
-    exact hNot hx
-  · intro hx
-    contradiction
+  sorry
 
 end LRA.VolumeI.Set.Operations.Laws

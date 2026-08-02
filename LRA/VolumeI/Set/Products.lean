@@ -27,7 +27,7 @@ theorem CartesianProductMembershipIff {Alpha Beta : LRACarrier}
     LRASet.Member Pair (CartesianProduct Left Right) ↔
       LRASet.Member (FirstProjection Pair) Left ∧
         LRASet.Member (SecondProjection Pair) Right := by
-  rfl
+  sorry
 
 /-- A product element is determined by its two projections. -/
 theorem ProductExtensionality {Alpha Beta : LRACarrier}
@@ -35,7 +35,7 @@ theorem ProductExtensionality {Alpha Beta : LRACarrier}
     (FirstCoordinatesEqual : FirstProjection Left = FirstProjection Right)
     (SecondCoordinatesEqual : SecondProjection Left = SecondProjection Right) :
     Left = Right := by
-  exact Prod.ext FirstCoordinatesEqual SecondCoordinatesEqual
+  sorry
 
 /-- Finite Cartesian power. -/
 abbrev FinitePower (Size : Nat) (Alpha : LRACarrier) := Tuple Size Alpha

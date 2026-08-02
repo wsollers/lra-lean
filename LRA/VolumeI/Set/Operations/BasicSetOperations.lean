@@ -13,31 +13,30 @@ theorem UnionMembershipIff {Alpha : LRACarrier}
     (Left Right : LRASet Alpha) (Element : Alpha) :
     Member Element (Union Left Right) ↔
       Member Element Left ∨ Member Element Right := by
-  rfl
+  sorry
 
 theorem IntersectionMembershipIff {Alpha : LRACarrier}
     (Left Right : LRASet Alpha) (Element : Alpha) :
     Member Element (Intersection Left Right) ↔
       Member Element Left ∧ Member Element Right := by
-  rfl
+  sorry
 
 theorem ComplementMembershipIff {Alpha : LRACarrier}
     (Comp : LRASet Alpha) (Element : Alpha) :
     Member Element (Complement Comp) ↔
       ¬ Member Element Comp := by
-  rfl
+  sorry
 
 theorem DifferenceMembershipIff {Alpha : LRACarrier}
     (Left Right : LRASet Alpha) (Element : Alpha) :
     Member Element (Difference Left Right) ↔
       Member Element Left ∧ ¬ Member Element Right := by
-  rfl
+  sorry
 
 theorem SubsetMembershipImplication {Alpha : LRACarrier}
     (Left Right : LRASet Alpha)
     (LeftSubsetRight : Subset Left Right) :
     ∀ Element : Alpha, Member Element Left → Member Element Right := by
-  intro Element ElementInLeft
-  exact LeftSubsetRight Element ElementInLeft
+  sorry
 
 end LRA.VolumeI.Set.Operations.BasicSetOperations

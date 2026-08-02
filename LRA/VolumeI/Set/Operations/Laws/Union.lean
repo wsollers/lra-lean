@@ -7,59 +7,31 @@ open LRA.VolumeI.Set.LRASet
 
 theorem UnionCommutative {Alpha : LRACarrier} (Left Right : LRASet Alpha) :
     Union Left Right = Union Right Left := by
-  apply Extensionality
-  intro x
-  constructor <;> intro h
-  · exact Or.elim h Or.inr Or.inl
-  · exact Or.elim h Or.inr Or.inl
+  sorry
 
 theorem UnionAssociative {Alpha : LRACarrier}
     (Left Middle Right : LRASet Alpha) :
     Union (Union Left Middle) Right = Union Left (Union Middle Right) := by
-  apply Extensionality
-  intro x
-  constructor
-  · rintro ((hx | hx) | hx)
-    · exact Or.inl hx
-    · exact Or.inr (Or.inl hx)
-    · exact Or.inr (Or.inr hx)
-  · rintro (hx | hx | hx)
-    · exact Or.inl (Or.inl hx)
-    · exact Or.inl (Or.inr hx)
-    · exact Or.inr hx
+  sorry
 
 theorem UnionEmpty {Alpha : LRACarrier} (Left : LRASet Alpha) :
     Union Left (Empty Alpha) = Left := by
-  apply Extensionality
-  intro x
-  constructor
-  · rintro (hx | hx)
-    · exact hx
-    · contradiction
-  · exact Or.inl
+  sorry
 
 theorem EmptyUnion {Alpha : LRACarrier} (Right : LRASet Alpha) :
     Union (Empty Alpha) Right = Right := by
-  rw [UnionCommutative, UnionEmpty]
+  sorry
 
 theorem UnionUniversal {Alpha : LRACarrier} (Left : LRASet Alpha) :
     Union Left (Universal Alpha) = Universal Alpha := by
-  apply Extensionality
-  intro x
-  constructor
-  · intro _; trivial
-  · intro _; exact Or.inr trivial
+  sorry
 
 theorem UniversalUnion {Alpha : LRACarrier} (Right : LRASet Alpha) :
     Union (Universal Alpha) Right = Universal Alpha := by
-  rw [UnionCommutative, UnionUniversal]
+  sorry
 
 theorem UnionIdempotent {Alpha : LRACarrier} (Left : LRASet Alpha) :
     Union Left Left = Left := by
-  apply Extensionality
-  intro x
-  constructor
-  · rintro (hx | hx) <;> exact hx
-  · exact Or.inl
+  sorry
 
 end LRA.VolumeI.Set.Operations.Laws

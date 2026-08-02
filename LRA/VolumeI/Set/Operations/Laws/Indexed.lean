@@ -10,27 +10,27 @@ theorem IndexedUnionMembership {Index Alpha : LRACarrier}
     (Family : IndexedFamily Index Alpha) (Element : Alpha) :
     Member Element (IndexedUnion Family) ↔
       ∃ IndexValue, Member Element (Family IndexValue) := by
-  exact LRA.VolumeI.Set.IndexedUnionMembershipIff Family Element
+  sorry
 
 theorem IndexedIntersectionMembership {Index Alpha : LRACarrier}
     (Family : IndexedFamily Index Alpha) (Element : Alpha) :
     Member Element (IndexedIntersection Family) ↔
       ∀ IndexValue, Member Element (Family IndexValue) := by
-  exact LRA.VolumeI.Set.IndexedIntersectionMembershipIff Family Element
+  sorry
 
 theorem IndexedUnionMonotone {Index Alpha : LRACarrier}
     {LeftFamily RightFamily : IndexedFamily Index Alpha}
     (PointwiseInclusion :
       ∀ IndexValue, Subset (LeftFamily IndexValue) (RightFamily IndexValue)) :
     Subset (IndexedUnion LeftFamily) (IndexedUnion RightFamily) := by
-  exact LRA.VolumeI.Set.IndexedUnionMonotone PointwiseInclusion
+  sorry
 
 theorem IndexedIntersectionMonotone {Index Alpha : LRACarrier}
     {LeftFamily RightFamily : IndexedFamily Index Alpha}
     (PointwiseInclusion :
       ∀ IndexValue, Subset (LeftFamily IndexValue) (RightFamily IndexValue)) :
     Subset (IndexedIntersection LeftFamily) (IndexedIntersection RightFamily) := by
-  exact LRA.VolumeI.Set.IndexedIntersectionMonotone PointwiseInclusion
+  sorry
 
 theorem ComplementIndexedUnion {Index Alpha : LRACarrier}
     (Family : IndexedFamily Index Alpha) :

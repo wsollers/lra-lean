@@ -89,8 +89,7 @@ def IndexedIntersection {Index Alpha : LRACarrier} (family : SetFamily Index Alp
 theorem Extensionality {Alpha : LRACarrier} {left right : TTSet Alpha}
     (sameMembers : ∀ element, Member element left ↔ Member element right) :
     left = right := by
-  funext element
-  exact propext (sameMembers element)
+  sorry
 
 end TTSet
 
@@ -140,7 +139,7 @@ def IndexedIntersection {Index Alpha : LRACarrier} (family : SetFamily Index Alp
 theorem Extensionality {Alpha : LRACarrier} {left right : LRASet Alpha}
     (sameMembers : ∀ element, Member element left ↔ Member element right) :
     left = right := by
-  exact TTSet.Extensionality sameMembers
+  sorry
 
 end LRASet
 
