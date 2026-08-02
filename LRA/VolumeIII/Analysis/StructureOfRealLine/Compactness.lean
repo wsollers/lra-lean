@@ -32,12 +32,14 @@ def IsFiniteSubcover (𝒱 : Set (Set ℝ)) (𝒰 : Set (Set ℝ)) (K : Set ℝ)
 def IsCompactSet (K : Set ℝ) : Prop :=
   ∀ 𝒰 : Set (Set ℝ), IsOpenCover 𝒰 K → ∃ 𝒱, IsFiniteSubcover 𝒱 𝒰 K
 
-/-- `thm:compact-implies-closed-bounded`. -/
+-- `thm:compact-implies-closed-bounded`
+/-- The theorem states that compact implies closed bounded. -/
 theorem CompactImpliesClosedBounded (K : Set ℝ) (hK : IsCompactSet K) :
     IsClosedSet K ∧ ∃ M > 0, ∀ x ∈ K, |x| ≤ M := by
   sorry
 
-/-- `thm:closed-bounded-interval-compact`. -/
+-- `thm:closed-bounded-interval-compact`
+/-- The theorem states the closed bounded interval compact assertion. -/
 theorem ClosedBoundedIntervalCompact (a b : ℝ) (hab : a ≤ b) :
     IsCompactSet (Set.Icc a b) := by
   sorry
@@ -56,10 +58,12 @@ cover_compactness` transfer to this file's names for free once proved. -/
 theorem IsCompactSetIffIsCompactR (K : Set ℝ) : IsCompactSet K ↔ IsCompactR K := by
   sorry
 
+/-- The theorem states the is closed set iff is closed r assertion. -/
 theorem IsClosedSetIffIsClosedR (F : Set ℝ) : IsClosedSet F ↔ IsClosedR F := by
   sorry
 
-/-- `thm:heine-borel`. -/
+-- `thm:heine-borel`
+/-- The theorem states the heine borel assertion. -/
 theorem HeineBorel (K : Set ℝ) :
     IsCompactSet K ↔ IsClosedSet K ∧ ∃ M > 0, ∀ x ∈ K, |x| ≤ M := by
   sorry

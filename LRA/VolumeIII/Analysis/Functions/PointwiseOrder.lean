@@ -32,7 +32,8 @@ def PointwiseLe (f g : ℝ → ℝ) (A : Set ℝ) : Prop := ∀ x ∈ A, f x ≤
 /-- Convenience specialization, not a separate `.tex` label — see header. -/
 def PointwiseLt (f g : ℝ → ℝ) (A : Set ℝ) : Prop := ∀ x ∈ A, f x < g x
 
-/-- `thm:pointwise-order-laws`. -/
+-- `thm:pointwise-order-laws`
+/-- The theorem states the pointwise order laws assertion. -/
 theorem PointwiseOrderLaws (A : Set ℝ) :
     (∀ f : ℝ → ℝ, PointwiseLe f f A) ∧
       (∀ f g : ℝ → ℝ, PointwiseLe f g A → PointwiseLe g f A → PointwiseEq f g A) ∧
@@ -44,7 +45,8 @@ theorem StrictPointwiseOrderImpliesWeak (f g : ℝ → ℝ) (A : Set ℝ)
     (h : PointwiseLt f g A) : PointwiseLe f g A := by
   sorry
 
-/-- `thm:pointwise-order-arithmetic`. -/
+-- `thm:pointwise-order-arithmetic`
+/-- The theorem states the pointwise order arithmetic assertion. -/
 theorem PointwiseOrderArithmetic (f g h f₂ g₂ : ℝ → ℝ) (A : Set ℝ)
     (hfg : PointwiseLe f g A) (hf₂g₂ : PointwiseLe f₂ g₂ A) :
     PointwiseLe (fun x => f x + h x) (fun x => g x + h x) A ∧

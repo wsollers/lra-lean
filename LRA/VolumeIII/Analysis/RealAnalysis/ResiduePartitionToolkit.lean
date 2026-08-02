@@ -12,7 +12,8 @@ import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
 namespace LRA.VolumeIII.Analysis.RealAnalysis
 
-/-- `thm:k-periodicity`. `(a_n) → L` iff every one of the `k` residue-class
+-- `thm:k-periodicity`
+/-- `(a_n) → L` iff every one of the `k` residue-class
 subsequences `(a_{kn+r})` converges to `L`. -/
 theorem KPeriodicity (a : ℕ → ℝ) (k : ℕ) (hk : 2 ≤ k) (L : ℝ) :
     Filter.Tendsto a Filter.atTop (nhds L) ↔
@@ -28,7 +29,8 @@ theorem ResidueDivergence (a : ℕ → ℝ) (k r s : ℕ) (hr : r < k) (hs : s <
     ¬ ∃ N, Filter.Tendsto a Filter.atTop (nhds N) := by
   sorry
 
-/-- `thm:alternating-series-test`. A positive, decreasing, null sequence
+-- `thm:alternating-series-test`
+/-- A positive, decreasing, null sequence
 `(a_n)` gives a convergent alternating series — proved via the even/odd
 (`k=2`) instance of `KPeriodicity`: even partial sums are decreasing and
 bounded below (MCT), odd partial sums are linked to them by

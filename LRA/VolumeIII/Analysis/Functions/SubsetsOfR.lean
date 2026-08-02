@@ -86,7 +86,8 @@ def PuncturedCenteredOpenInterval (x ε : ℝ) : Set ℝ :=
 def IsClusterPointR (x : ℝ) (X : Set ℝ) : Prop :=
   ∀ ε > 0, ∃ y ∈ X \ {x}, |y - x| < ε
 
-/-- `thm:cluster-point-sequential`. -/
+-- `thm:cluster-point-sequential`
+/-- The theorem states the cluster point sequential assertion. -/
 theorem ClusterPointSequential (c : ℝ) (A : Set ℝ) :
     IsClusterPointR c A ↔
       ∃ a : ℕ → ℝ, (∀ n, a n ∈ A \ {c}) ∧
@@ -153,7 +154,8 @@ theorem BoundaryAsClosureMinusInterior (X : Set ℝ) :
     BoundaryR X = ClosureR X \ InteriorR X := by
   sorry
 
-/-- `lem:closure-elementary`. All FOUR parts of the theorem box,
+-- `lem:closure-elementary`
+/-- All FOUR parts of the theorem box,
 including (i) and (iv), which the "Standard quantified statement"
 remark omits — see Finding 3 above / ISSUES.md #35. -/
 theorem ClosureElementary (X Y : Set ℝ) :
@@ -185,7 +187,8 @@ theorem IntervalAllLimitPoints (I : Set ℝ) (hI : I.OrdConnected) :
 /-- `def:bounded-set-r`. -/
 def IsBoundedSetR (X : Set ℝ) : Prop := ∃ M > 0, ∀ x ∈ X, |x| ≤ M
 
-/-- `thm:heine-borel-subsets-real-line`. -/
+-- `thm:heine-borel-subsets-real-line`
+/-- The theorem states the heine borel subsets real line assertion. -/
 theorem HeineBorelSubsetsRealLine (X : Set ℝ) :
     (IsClosedR X ∧ IsBoundedSetR X) ↔
       ∀ a : ℕ → ℝ, (∀ n, a n ∈ X) →

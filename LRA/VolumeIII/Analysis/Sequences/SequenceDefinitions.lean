@@ -41,6 +41,7 @@ the Archimedean property (this reuses `archimedean_reciprocal_form` /
 almost verbatim); and `x_n = n` diverges because it's unbounded (correctly
 hedged in the .tex's own prose: "divergence also follows from that theorem
 [every convergent sequence is bounded] once it is established" — a
+/-- The theorem states the not assertion. -/
 theorem not yet reached). Formalized here using Mathlib's own
 `Filter.Tendsto _ Filter.atTop (nhds _)` for convergence and
 `Filter.Tendsto _ Filter.atTop Filter.atTop` for the "grows without bound"

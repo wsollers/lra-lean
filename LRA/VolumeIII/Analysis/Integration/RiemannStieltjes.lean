@@ -67,19 +67,17 @@ Mathematical statement (Lean): `def IsRiemannStieltjesIntegrable (f α : ℝ →
 def IsRiemannStieltjesIntegrable (f α : ℝ → ℝ) (a b : ℝ) : Prop :=
   ∃ L, HasRiemannStieltjesIntegral f α a b L
 
-/-- `thm:rs-continuous-bv-existence`.
-Mathematical statement (Lean): `theorem rs_continuous_bv_existence (hab : a ≤ b) (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) (hbv : HasBoundedVariation α a b) : IsRiemannStieltjesIntegrable f α a b`.
-*Proof status:* proof pending.
--/
+-- `thm:rs-continuous-bv-existence`
+/-- Mathematical statement (Lean): `theorem rs_continuous_bv_existence (hab : a ≤ b) (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) (hbv : HasBoundedVariation α a b) : IsRiemannStieltjesIntegrable f α a b`.
+*Proof status:* proof pending. -/
 theorem rs_continuous_bv_existence (hab : a ≤ b)
     (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
     (hbv : HasBoundedVariation α a b) : IsRiemannStieltjesIntegrable f α a b := by
   sorry
 
-/-- `thm:rs-bilinearity`.
-Mathematical statement (Lean): `theorem rs_bilinearity (Lfα Lgα : ℝ) (hf : HasRiemannStieltjesIntegral f α a b Lfα) (hg : HasRiemannStieltjesIntegral g α a b Lgα) (lam μ : ℝ) : HasRiemannStieltjesIntegral (fun x => lam * f x + μ * g x) α a b (lam * Lfα + μ * Lgα) ∧ (∀ Lfβ : ℝ, HasRiemannStieltjesIntegral f β a b Lfβ → HasRiemannStieltjesIntegral f (fun x => lam * α x + μ * β x) a b (lam * Lfα + μ * Lfβ))`.
-*Proof status:* proof pending.
--/
+-- `thm:rs-bilinearity`
+/-- Mathematical statement (Lean): `theorem rs_bilinearity (Lfα Lgα : ℝ) (hf : HasRiemannStieltjesIntegral f α a b Lfα) (hg : HasRiemannStieltjesIntegral g α a b Lgα) (lam μ : ℝ) : HasRiemannStieltjesIntegral (fun x => lam * f x + μ * g x) α a b (lam * Lfα + μ * Lgα) ∧ (∀ Lfβ : ℝ, HasRiemannStieltjesIntegral f β a b Lfβ → HasRiemannStieltjesIntegral f (fun x => lam * α x + μ * β x) a b (lam * Lfα + μ * Lfβ))`.
+*Proof status:* proof pending. -/
 theorem rs_bilinearity (Lfα Lgα : ℝ) (hf : HasRiemannStieltjesIntegral f α a b Lfα)
     (hg : HasRiemannStieltjesIntegral g α a b Lgα) (lam μ : ℝ) :
     HasRiemannStieltjesIntegral (fun x => lam * f x + μ * g x) α a b (lam * Lfα + μ * Lgα) ∧
@@ -87,28 +85,25 @@ theorem rs_bilinearity (Lfα Lgα : ℝ) (hf : HasRiemannStieltjesIntegral f α 
       HasRiemannStieltjesIntegral f (fun x => lam * α x + μ * β x) a b (lam * Lfα + μ * Lfβ)) := by
   sorry
 
-/-- `thm:rs-interval-additivity`.
-Mathematical statement (Lean): `theorem rs_interval_additivity (c Lab Lac Lcb : ℝ) (hac : a ≤ c) (hcb : c ≤ b) (hab' : HasRiemannStieltjesIntegral f α a b Lab) (hac' : HasRiemannStieltjesIntegral f α a c Lac) (hcb' : HasRiemannStieltjesIntegral f α c b Lcb) : Lab = Lac + Lcb`.
-*Proof status:* proof pending.
--/
+-- `thm:rs-interval-additivity`
+/-- Mathematical statement (Lean): `theorem rs_interval_additivity (c Lab Lac Lcb : ℝ) (hac : a ≤ c) (hcb : c ≤ b) (hab' : HasRiemannStieltjesIntegral f α a b Lab) (hac' : HasRiemannStieltjesIntegral f α a c Lac) (hcb' : HasRiemannStieltjesIntegral f α c b Lcb) : Lab = Lac + Lcb`.
+*Proof status:* proof pending. -/
 theorem rs_interval_additivity (c Lab Lac Lcb : ℝ) (hac : a ≤ c) (hcb : c ≤ b)
     (hab' : HasRiemannStieltjesIntegral f α a b Lab)
     (hac' : HasRiemannStieltjesIntegral f α a c Lac)
     (hcb' : HasRiemannStieltjesIntegral f α c b Lcb) : Lab = Lac + Lcb := by
   sorry
 
-/-- `thm:rs-integration-by-parts`.
-Mathematical statement (Lean): `theorem rs_integration_by_parts (L : ℝ) (hL : HasRiemannStieltjesIntegral f α a b L) : ∃ L', HasRiemannStieltjesIntegral α f a b L' ∧ L + L' = f b * α b - f a * α a`.
-*Proof status:* proof pending.
--/
+-- `thm:rs-integration-by-parts`
+/-- Mathematical statement (Lean): `theorem rs_integration_by_parts (L : ℝ) (hL : HasRiemannStieltjesIntegral f α a b L) : ∃ L', HasRiemannStieltjesIntegral α f a b L' ∧ L + L' = f b * α b - f a * α a`.
+*Proof status:* proof pending. -/
 theorem rs_integration_by_parts (L : ℝ) (hL : HasRiemannStieltjesIntegral f α a b L) :
     ∃ L', HasRiemannStieltjesIntegral α f a b L' ∧ L + L' = f b * α b - f a * α a := by
   sorry
 
-/-- `thm:rs-c1-reduction`.
-Mathematical statement (Lean): `theorem rs_c1_reduction (hab : a ≤ b) (αD : ℝ → ℝ) (hα : LRA.VolumeIII.Analysis.Differentiation.IsClassC1 α αD (Set.Icc a b)) (hf : IsRiemannIntegrable (fun x => f x * αD x) a b) (Lint : ℝ) (hLint : HasRiemannIntegral (fun x => f x * αD x) a b Lint) : HasRiemannStieltjesIntegral f α a b Lint`.
-*Proof status:* proof pending.
--/
+-- `thm:rs-c1-reduction`
+/-- Mathematical statement (Lean): `theorem rs_c1_reduction (hab : a ≤ b) (αD : ℝ → ℝ) (hα : LRA.VolumeIII.Analysis.Differentiation.IsClassC1 α αD (Set.Icc a b)) (hf : IsRiemannIntegrable (fun x => f x * αD x) a b) (Lint : ℝ) (hLint : HasRiemannIntegral (fun x => f x * αD x) a b Lint) : HasRiemannStieltjesIntegral f α a b Lint`.
+*Proof status:* proof pending. -/
 theorem rs_c1_reduction (hab : a ≤ b)
     (αD : ℝ → ℝ) (hα : LRA.VolumeIII.Analysis.Differentiation.IsClassC1 α αD (Set.Icc a b))
     (hf : IsRiemannIntegrable (fun x => f x * αD x) a b) (Lint : ℝ)
@@ -116,10 +111,9 @@ theorem rs_c1_reduction (hab : a ≤ b)
     HasRiemannStieltjesIntegral f α a b Lint := by
   sorry
 
-/-- `thm:rs-step-integrator-finite-sum`.
-Mathematical statement (Lean): `theorem rs_step_integrator_finite_sum (n : ℕ) (c : Fin n → ℝ) (hc : ∀ i, c i ∈ Set.Icc a b) (jump : Fin n → ℝ) (hstep : ∀ x ∈ Set.Icc a b, (∀ i, x ≠ c i) → ∃ k, ∀ y ∈ Set.Icc a b, (∀ i, y ≠ c i) → α y = k) (hcont : ∀ i, LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) (c i)) : HasRiemannStieltjesIntegral f α a b (∑ i, f (c i) * jump i)`.
-*Proof status:* proof pending.
--/
+-- `thm:rs-step-integrator-finite-sum`
+/-- Mathematical statement (Lean): `theorem rs_step_integrator_finite_sum (n : ℕ) (c : Fin n → ℝ) (hc : ∀ i, c i ∈ Set.Icc a b) (jump : Fin n → ℝ) (hstep : ∀ x ∈ Set.Icc a b, (∀ i, x ≠ c i) → ∃ k, ∀ y ∈ Set.Icc a b, (∀ i, y ≠ c i) → α y = k) (hcont : ∀ i, LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) (c i)) : HasRiemannStieltjesIntegral f α a b (∑ i, f (c i) * jump i)`.
+*Proof status:* proof pending. -/
 theorem rs_step_integrator_finite_sum (n : ℕ) (c : Fin n → ℝ) (hc : ∀ i, c i ∈ Set.Icc a b)
     (jump : Fin n → ℝ)
     (hstep : ∀ x ∈ Set.Icc a b, (∀ i, x ≠ c i) → ∃ k, ∀ y ∈ Set.Icc a b, (∀ i, y ≠ c i) → α y = k)

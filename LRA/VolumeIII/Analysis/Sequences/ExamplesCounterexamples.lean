@@ -82,6 +82,7 @@ theorem ExampleBoundedNotConvergent :
 /-- `ex:sequence-counterexample-successive-differences-not-cauchy`. The
 harmonic partial sums: adjacent differences vanish, but the sequence is
 unbounded (hence not Cauchy — Cauchy sequences are bounded, though that
+/-- The theorem states the hasn't assertion. -/
 theorem hasn't been formally read yet in this pass). -/
 theorem ExampleVanishingDifferencesNotCauchy :
     ConvergesTo (fun n : ℕ => 1 / ((n : ℝ) + 2)) 0 ∧

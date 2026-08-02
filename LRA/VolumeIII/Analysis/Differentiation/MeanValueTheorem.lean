@@ -13,7 +13,8 @@ import LRA.VolumeIII.Analysis.Continuity.UniformContinuity
 
 namespace LRA.VolumeIII.Analysis.Differentiation
 
-/-- `thm:rolles-theorem`. -/
+-- `thm:rolles-theorem`
+/-- The theorem states the rolles theorem assertion. -/
 theorem RollesTheorem (f : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
     (hdiff : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x)
@@ -21,14 +22,16 @@ theorem RollesTheorem (f : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     ∃ c ∈ Set.Ioo a b, Derivative 0 f (Set.Ioo a b) c := by
   sorry
 
-/-- `thm:mean-value-theorem` (Lagrange form). -/
+-- `thm:mean-value-theorem`
+/-- (Lagrange form). -/
 theorem MeanValueTheorem (f : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
     (hdiff : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x) :
     ∃ c ∈ Set.Ioo a b, Derivative ((f b - f a) / (b - a)) f (Set.Ioo a b) c := by
   sorry
 
-/-- `thm:cauchy-mean-value-theorem`, cited as a dependency of both forms
+-- `thm:cauchy-mean-value-theorem`
+/-- cited as a dependency of both forms
 of L'Hôpital's Rule in `algebra-of-derivatives`. -/
 theorem CauchyMeanValueTheorem (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     (hfcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
@@ -41,7 +44,8 @@ theorem CauchyMeanValueTheorem (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b)
       Df * (g b - g a) = Dg * (f b - f a) := by
   sorry
 
-/-- `thm:nondecreasing-iff-nonneg-derivative`, cited as a dependency of
+-- `thm:nondecreasing-iff-nonneg-derivative`
+/-- cited as a dependency of
 the Inverse Function Theorem in `algebra-of-derivatives`. -/
 theorem NondecreasingIffNonnegDerivative (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected)
     (hdiff : ∀ x ∈ I, IsDifferentiable f I x) :

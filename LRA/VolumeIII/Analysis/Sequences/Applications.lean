@@ -50,7 +50,8 @@ noncomputable def NewtonSeqSqrtTwo : ℕ → ℝ
   | 0 => 3 / 2
   | n + 1 => (NewtonSeqSqrtTwo n + 2 / NewtonSeqSqrtTwo n) / 2
 
-/-- `thm:newton-approximation-sqrt-two`. -/
+-- `thm:newton-approximation-sqrt-two`
+/-- The theorem states the newton approximation sqrt two assertion. -/
 theorem NewtonApproximationSqrtTwo :
     ConvergesTo NewtonSeqSqrtTwo (Real.sqrt 2) := by
   sorry
@@ -59,7 +60,8 @@ theorem NewtonApproximationSqrtTwo :
 noncomputable def FactorialPartialSums : RealSequence :=
   fun n => ∑ k ∈ Finset.range (n + 1), (1 : ℝ) / (Nat.factorial k)
 
-/-- `thm:factorial-partial-sums-approximate-e`. Uses Mathlib's `Real.exp 1`
+-- `thm:factorial-partial-sums-approximate-e`
+/-- The theorem states the factorial partial sums approximate e assertion; Uses Mathlib's `Real.exp 1`
 for the project's `def:number-e`. -/
 theorem FactorialPartialSumsApproximateE :
     ConvergesTo FactorialPartialSums (Real.exp 1) := by
@@ -71,7 +73,8 @@ by the Lean-`0` index. -/
 noncomputable def CompoundInterestSeq : RealSequence :=
   fun n => (1 + 1 / ((n : ℝ) + 1)) ^ (n + 1)
 
-/-- `thm:compound-interest-approximation-e`. -/
+-- `thm:compound-interest-approximation-e`
+/-- The theorem states the compound interest approximation e assertion. -/
 theorem CompoundInterestApproximationE :
     ConvergesTo CompoundInterestSeq (Real.exp 1) := by
   sorry
@@ -80,7 +83,8 @@ theorem CompoundInterestApproximationE :
 noncomputable def DecimalTruncationSeq (α : ℝ) : RealSequence :=
   fun n => (⌊10 ^ n * α⌋ : ℝ) / 10 ^ n
 
-/-- `thm:decimal-truncations-converge`. -/
+-- `thm:decimal-truncations-converge`
+/-- The theorem states the decimal truncations converge assertion. -/
 theorem DecimalTruncationsConverge (α : ℝ) :
     ConvergesTo (DecimalTruncationSeq α) α := by
   sorry

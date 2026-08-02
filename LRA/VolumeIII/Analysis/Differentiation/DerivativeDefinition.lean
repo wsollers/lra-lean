@@ -37,7 +37,8 @@ def DerivativeSeq (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
     (∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |xs n - c| < ε) →
     ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |(f (xs n) - f c) / (xs n - c) - D| < ε
 
-/-- `thm:derivative-equivalence`: the ε-δ, topological, and sequential
+-- `thm:derivative-equivalence`
+/-- the ε-δ, topological, and sequential
 definitions of the derivative all agree. -/
 theorem DerivativeEquivalence (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     Derivative D f A c ↔ DerivativeTop D f A c ∧ DerivativeSeq D f A c := by
@@ -52,13 +53,15 @@ theorem DerivativeHFormEquivalence (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c 
         |(f x - f c) / (x - c) - D| < ε) := by
   sorry
 
-/-- `thm:differentiable-implies-continuous`. -/
+-- `thm:differentiable-implies-continuous`
+/-- The theorem states that differentiable implies continuous. -/
 theorem DifferentiableImpliesContinuous (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (h : IsDifferentiable f A c) :
     LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f A c := by
   sorry
 
-/-- `thm:uniqueness-of-the-derivative`. -/
+-- `thm:uniqueness-of-the-derivative`
+/-- The theorem states the uniqueness of the derivative assertion. -/
 theorem DerivativeUnique (f : ℝ → ℝ) (A : Set ℝ) (c D₁ D₂ : ℝ)
     (h₁ : Derivative D₁ f A c) (h₂ : Derivative D₂ f A c) : D₁ = D₂ := by
   sorry

@@ -14,7 +14,8 @@ import LRA.VolumeIII.Analysis.Continuity.PointContinuity
 
 namespace LRA.VolumeIII.Analysis.Continuity
 
-/-- `thm:monotone-one-sided-limits`: a monotone function on an interval
+-- `thm:monotone-one-sided-limits`
+/-- a monotone function on an interval
 has one-sided limits everywhere in the interior. -/
 theorem MonotoneHasOneSidedLimits (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c : ℝ) (hc : c ∈ I) :
@@ -53,7 +54,8 @@ theorem JumpIntervalsDisjoint (f : ℝ → ℝ) (I : Set ℝ)
     (hne : c₁ ≠ c₂) : True := by
   sorry
 
-/-- `thm:monotone-discontinuities-countable`: the discontinuity set of a
+-- `thm:monotone-discontinuities-countable`
+/-- the discontinuity set of a
 monotone function on an interval is countable. -/
 theorem MonotoneDiscontinuitiesCountable (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hmono : MonotoneOn f I) :
@@ -68,7 +70,8 @@ theorem ContinuousInjectiveIffStrictMono (f : ℝ → ℝ) (I : Set ℝ)
     Set.InjOn f I ↔ StrictMonoOn f I ∨ StrictAntiOn f I := by
   sorry
 
-/-- `thm:continuous-inverse-theorem`: a continuous strictly monotone
+-- `thm:continuous-inverse-theorem`
+/-- a continuous strictly monotone
 function on an interval has a continuous inverse on its image. -/
 theorem ContinuousInverseTheorem (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hf : ContinuousOn' f I) (hmono : StrictMonoOn f I)

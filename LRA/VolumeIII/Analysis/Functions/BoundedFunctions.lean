@@ -66,7 +66,8 @@ def FunctionBoundedAwayFromZeroNear (f : ℝ → ℝ) (c : ℝ) (A : Set ℝ) : 
 def UniformlyBoundedFamily {I : Type*} (f : I → ℝ → ℝ) (A : Set ℝ) : Prop :=
   ∃ B > 0, ∀ α : I, ∀ x ∈ A, |f α x| ≤ B
 
-/-- `thm:bounded-iff-absolute-value-bounded-above`. -/
+-- `thm:bounded-iff-absolute-value-bounded-above`
+/-- The theorem states that bounded iff absolute value bounded above. -/
 theorem BoundedIffAbsoluteValueBoundedAbove (f : ℝ → ℝ) (A : Set ℝ) :
     FunctionBounded f A ↔ FunctionBoundedAbove (fun x => |f x|) A := by
   sorry
@@ -94,19 +95,22 @@ theorem BoundedAwayFromZeroNearImpliesNonzeroNear (f : ℝ → ℝ)
     ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| ∧ |x - c| < δ → f x ≠ 0 := by
   sorry
 
-/-- `thm:bounded-away-from-zero-gives-bounded-reciprocal`. -/
+-- `thm:bounded-away-from-zero-gives-bounded-reciprocal`
+/-- The theorem states that bounded away from zero gives bounded reciprocal. -/
 theorem BoundedAwayFromZeroGivesBoundedReciprocal (f : ℝ → ℝ) (A : Set ℝ)
     (h : FunctionBoundedAwayFromZero f A) :
     FunctionBounded (fun x => 1 / f x) A := by
   sorry
 
-/-- `thm:local-bounded-away-from-zero-gives-local-bounded-reciprocal`. -/
+-- `thm:local-bounded-away-from-zero-gives-local-bounded-reciprocal`
+/-- The theorem states that local bounded away from zero gives local bounded reciprocal. -/
 theorem LocalBoundedAwayFromZeroGivesLocalBoundedReciprocal
     (f : ℝ → ℝ) (c : ℝ) (A : Set ℝ) (h : FunctionBoundedAwayFromZeroNear f c A) :
     FunctionBoundedNear (fun x => 1 / f x) c A := by
   sorry
 
-/-- `thm:uniform-boundedness-transfer-under-pointwise-limit`. -/
+-- `thm:uniform-boundedness-transfer-under-pointwise-limit`
+/-- The theorem states the uniform boundedness transfer under pointwise limit assertion. -/
 theorem UniformBoundednessTransferUnderPointwiseLimit
     (f : ℕ → ℝ → ℝ) (F : ℝ → ℝ) (A : Set ℝ)
     (hunif : UniformlyBoundedFamily f A)
@@ -114,7 +118,8 @@ theorem UniformBoundednessTransferUnderPointwiseLimit
     FunctionBounded F A := by
   sorry
 
-/-- `thm:bounded-function-algebra-closure`. -/
+-- `thm:bounded-function-algebra-closure`
+/-- The theorem states the bounded function algebra closure assertion. -/
 theorem BoundedFunctionAlgebraClosure (f g : ℝ → ℝ) (A : Set ℝ) (lam : ℝ)
     (hf : FunctionBounded f A) (hg : FunctionBounded g A) :
     FunctionBounded (fun x => f x + g x) A ∧
@@ -161,7 +166,8 @@ theorem BoundedMaxMin (f g : ℝ → ℝ) (A : Set ℝ)
       FunctionBounded (fun x => min (f x) (g x)) A := by
   sorry
 
-/-- `thm:bounded-functions-form-commutative-ring`. -/
+-- `thm:bounded-functions-form-commutative-ring`
+/-- The theorem states the bounded functions form commutative ring assertion. -/
 theorem BoundedFunctionsFormCommutativeRing (A : Set ℝ) :
     ∀ f g : ℝ → ℝ, FunctionBounded f A → FunctionBounded g A →
       FunctionBounded (fun x => f x + g x) A ∧
@@ -171,7 +177,8 @@ theorem BoundedFunctionsFormCommutativeRing (A : Set ℝ) :
         FunctionBounded (fun _ => (1 : ℝ)) A := by
   sorry
 
-/-- `thm:bounded-functions-form-real-vector-space`. -/
+-- `thm:bounded-functions-form-real-vector-space`
+/-- The theorem states the bounded functions form real vector space assertion. -/
 theorem BoundedFunctionsFormRealVectorSpace (A : Set ℝ) :
     ∀ f g : ℝ → ℝ, ∀ lam : ℝ, FunctionBounded f A → FunctionBounded g A →
       FunctionBounded (fun x => f x + g x) A ∧
@@ -180,7 +187,8 @@ theorem BoundedFunctionsFormRealVectorSpace (A : Set ℝ) :
         FunctionBounded (fun _ => (0 : ℝ)) A := by
   sorry
 
-/-- `thm:bounded-away-quotient`. -/
+-- `thm:bounded-away-quotient`
+/-- The theorem states the bounded away quotient assertion. -/
 theorem BoundedAwayQuotient (f g : ℝ → ℝ) (A : Set ℝ)
     (hf : FunctionBounded f A) (hg : FunctionBoundedAwayFromZero g A) :
     FunctionBounded (fun x => f x / g x) A := by

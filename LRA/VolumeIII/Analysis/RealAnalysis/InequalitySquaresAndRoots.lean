@@ -19,7 +19,8 @@ import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
 
 namespace LRA.VolumeIII.Analysis.RealAnalysis
 
-/-- `thm:square-nonnegative`. -/
+-- `thm:square-nonnegative`
+/-- The theorem states the square nonnegative assertion. -/
 theorem SquareNonnegative (a : ℝ) : a ^ 2 ≥ 0 := by sorry
 
 /-- `def:real-square-root-function`: existence and uniqueness of the
@@ -28,55 +29,69 @@ satisfies. -/
 theorem RealSquareRootFunction (a : ℝ) (ha : a ≥ 0) :
     ∃! b : ℝ, b ≥ 0 ∧ b ^ 2 = a := by sorry
 
-/-- `thm:sqrt-nonnegative`. -/
+-- `thm:sqrt-nonnegative`
+/-- The theorem states the sqrt nonnegative assertion. -/
 theorem SqrtNonnegative (a : ℝ) (ha : a ≥ 0) : Real.sqrt a ≥ 0 := by sorry
 
-/-- `thm:sqrt-square`. -/
+-- `thm:sqrt-square`
+/-- The theorem states the sqrt square assertion. -/
 theorem SqrtSquare (a : ℝ) (ha : a ≥ 0) : Real.sqrt a ^ 2 = a := by sorry
 
-/-- `thm:sqrt-zero-one`. -/
+-- `thm:sqrt-zero-one`
+/-- The theorem states the sqrt zero one assertion. -/
 theorem SqrtZeroOne : Real.sqrt 0 = 0 ∧ Real.sqrt 1 = 1 := by sorry
 
-/-- `thm:sqrt-positive`. -/
+-- `thm:sqrt-positive`
+/-- The theorem states the sqrt positive assertion. -/
 theorem SqrtPositive (a : ℝ) (ha : a > 0) : Real.sqrt a > 0 := by sorry
 
-/-- `thm:sqrt-of-square-absolute-value`. -/
+-- `thm:sqrt-of-square-absolute-value`
+/-- The theorem states the sqrt of square absolute value assertion. -/
 theorem SqrtOfSquareAbsoluteValue (a : ℝ) : Real.sqrt (a ^ 2) = |a| := by
   sorry
 
-/-- `thm:sqrt-product`. -/
+-- `thm:sqrt-product`
+/-- The theorem states the sqrt product assertion. -/
 theorem SqrtProduct (a b : ℝ) (ha : a ≥ 0) (hb : b ≥ 0) :
     Real.sqrt (a * b) = Real.sqrt a * Real.sqrt b := by sorry
 
-/-- `thm:sqrt-quotient`. -/
+-- `thm:sqrt-quotient`
+/-- The theorem states the sqrt quotient assertion. -/
 theorem SqrtQuotient (a b : ℝ) (ha : a ≥ 0) (hb : b > 0) :
     Real.sqrt (a / b) = Real.sqrt a / Real.sqrt b := by sorry
 
-/-- `thm:ineq-square-root-strict-monotone`. -/
+-- `thm:ineq-square-root-strict-monotone`
+/-- The theorem states the ineq square root strict monotone assertion. -/
 theorem IneqSquareRootStrictMonotone (a b : ℝ) :
     0 ≤ a ∧ a < b → Real.sqrt a < Real.sqrt b := by sorry
 
-/-- `lem:positive-powers-are-positive`. -/
+-- `lem:positive-powers-are-positive`
+/-- The lemma states that positive powers are positive. -/
 theorem PositivePowersArePositive (x : ℝ) (n : ℕ) (hx : x > 0) : x ^ n > 0 := by
   sorry
 
-/-- `lem:powers-preserve-order-for-positive-numbers`. -/
+-- `lem:powers-preserve-order-for-positive-numbers`
+/-- The lemma states the powers preserve order for positive numbers assertion. -/
 theorem PowersPreserveOrderForPositiveNumbers (x y : ℝ) (n : ℕ) :
     0 < x ∧ x < y → x ^ n < y ^ n := by sorry
 
-/-- `thm:ineq-square-monotone`. -/
+-- `thm:ineq-square-monotone`
+/-- The theorem states the ineq square monotone assertion. -/
 theorem IneqSquareMonotone (a b : ℝ) : 0 ≤ a ∧ a < b → a ^ 2 < b ^ 2 := by
   sorry
 
-/-- `thm:ineq-square-root-monotone`. -/
+-- `thm:ineq-square-root-monotone`
+/-- The theorem states the ineq square root monotone assertion. -/
 theorem IneqSquareRootMonotone (a b : ℝ) :
     0 ≤ a ∧ a ≤ b → Real.sqrt a ≤ Real.sqrt b := by sorry
 
-/-- `thm:positive-square-comparison`. -/
+-- `thm:positive-square-comparison`
+/-- The theorem states the positive square comparison assertion. -/
 theorem PositiveSquareComparison (a b : ℝ) (ha : a > 0) (hb : b > 0)
     (h : a ^ 2 < b ^ 2) : a < b := by sorry
 
-/-- `thm:unit-interval-square-bounds`. -/
+-- `thm:unit-interval-square-bounds`
+/-- The theorem states that unit interval square bounds. -/
 theorem UnitIntervalSquareBounds (a : ℝ) :
     (0 < a ∧ a < 1 → a ^ 2 < a) ∧ (a > 1 → a ^ 2 > a) := by sorry
 

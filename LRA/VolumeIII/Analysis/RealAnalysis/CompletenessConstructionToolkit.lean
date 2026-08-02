@@ -30,7 +30,8 @@ theorem EpsCharSup (S : Set ℝ) (s : ℝ) (hne : S.Nonempty)
     ∀ ε > 0, ∃ x ∈ S, x > s - ε := by
   sorry
 
-/-- `thm:inductive-selection`. For nonempty `S` bounded above with
+-- `thm:inductive-selection`
+/-- For nonempty `S` bounded above with
 `s = sup S`, there is a strictly increasing sequence in `S` converging to
 `s`, built by inductively invoking `EpsCharSup` with the `max` device
 (see ISSUES.md #40 for the audit finding on this theorem's own "constant

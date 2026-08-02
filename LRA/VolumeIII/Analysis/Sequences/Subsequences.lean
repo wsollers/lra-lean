@@ -87,54 +87,63 @@ def IsSubsequentialLimit (x : RealSequence) (L : ℝ) : Prop :=
 def HasConvergentSubsequence (x : RealSequence) : Prop :=
   ∃ L : ℝ, IsSubsequentialLimit x L
 
-/-- `thm:subsequence-indices-dominate-identity`. -/
+-- `thm:subsequence-indices-dominate-identity`
+/-- The theorem states the subsequence indices dominate identity assertion. -/
 theorem SubsequenceIndicesDominateIdentity {σ : ℕ → ℕ}
     (h : IsStrictlyIncreasingIndexMap σ) : ∀ k, k ≤ σ k := by
   sorry
 
-/-- `thm:subsequences-preserve-limits`. -/
+-- `thm:subsequences-preserve-limits`
+/-- The theorem states the subsequences preserve limits assertion. -/
 theorem SubsequencesPreserveLimits {x : RealSequence} {L : ℝ} {σ : ℕ → ℕ}
     (hx : ConvergesTo x L) (hσ : IsStrictlyIncreasingIndexMap σ) :
     ConvergesTo (fun k => x (σ k)) L := by
   sorry
 
-/-- `thm:subsequential-limit-of-convergent-sequence`. -/
+-- `thm:subsequential-limit-of-convergent-sequence`
+/-- The theorem states the subsequential limit of convergent sequence assertion. -/
 theorem SubsequentialLimitOfConvergentSequence {x : RealSequence}
     {L K : ℝ} (hL : ConvergesTo x L) (hK : IsSubsequentialLimit x K) :
     K = L := by
   sorry
 
-/-- `thm:divergence-by-two-subsequential-limits`. -/
+-- `thm:divergence-by-two-subsequential-limits`
+/-- The theorem states the divergence by two subsequential limits assertion. -/
 theorem DivergenceByTwoSubsequentialLimits {x : RealSequence}
     {L K : ℝ} (hL : IsSubsequentialLimit x L) (hK : IsSubsequentialLimit x K)
     (hLK : L ≠ K) : ¬ ∃ A, ConvergesTo x A := by
   sorry
 
-/-- `thm:boundedness-passes-to-subsequences`. -/
+-- `thm:boundedness-passes-to-subsequences`
+/-- The theorem states the boundedness passes to subsequences assertion. -/
 theorem BoundednessPassesToSubsequences {x : RealSequence} {σ : ℕ → ℕ}
     (hx : BoundedSeq x) (hσ : IsStrictlyIncreasingIndexMap σ) :
     BoundedSeq (fun k => x (σ k)) := by
   sorry
 
-/-- `thm:monotonicity-passes-to-subsequences`, increasing half. -/
+-- `thm:monotonicity-passes-to-subsequences`
+/-- The theorem states the monotonicity passes to subsequences assertion; increasing half. -/
 theorem MonotonicityPassesToSubsequencesIncr {x : RealSequence}
     {σ : ℕ → ℕ} (hx : IsIncreasing x) (hσ : IsStrictlyIncreasingIndexMap σ) :
     IsIncreasing (fun k => x (σ k)) := by
   sorry
 
-/-- `thm:monotonicity-passes-to-subsequences`, decreasing half. -/
+-- `thm:monotonicity-passes-to-subsequences`
+/-- The theorem states the monotonicity passes to subsequences assertion; decreasing half. -/
 theorem MonotonicityPassesToSubsequencesDecr {x : RealSequence}
     {σ : ℕ → ℕ} (hx : IsDecreasing x) (hσ : IsStrictlyIncreasingIndexMap σ) :
     IsDecreasing (fun k => x (σ k)) := by
   sorry
 
-/-- `thm:subsequence-of-subsequence`. -/
+-- `thm:subsequence-of-subsequence`
+/-- The theorem states the subsequence of subsequence assertion. -/
 theorem SubsequenceOfSubsequence {x : RealSequence} {σ τ : ℕ → ℕ}
     (hσ : IsStrictlyIncreasingIndexMap σ) (hτ : IsStrictlyIncreasingIndexMap τ) :
     IsSubsequenceOf (fun k => x (σ (τ k))) x := by
   sorry
 
-/-- `thm:eventual-properties-pass-to-subsequences`. Stated for a fully
+-- `thm:eventual-properties-pass-to-subsequences`
+/-- Stated for a fully
 abstract index property `P` — no sequence involved, matching the actual
 `.tex` statement (see Finding B above re: the Predicate reading's stray
 `x_n`). -/
@@ -143,19 +152,22 @@ theorem EventualPropertiesPassToSubsequences {P : ℕ → Prop} {σ : ℕ → �
     ∃ K : ℕ, ∀ k ≥ K, P (σ k) := by
   sorry
 
-/-- `thm:frequent-properties-yield-subsequences`. -/
+-- `thm:frequent-properties-yield-subsequences`
+/-- The theorem states the frequent properties yield subsequences assertion. -/
 theorem FrequentPropertiesYieldSubsequences {P : ℕ → Prop}
     (h : ∀ N : ℕ, ∃ n ≥ N, P n) :
     ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ ∀ k, P (σ k) := by
   sorry
 
-/-- `thm:subsequential-limits-respect-bounds`. -/
+-- `thm:subsequential-limits-respect-bounds`
+/-- The theorem states that subsequential limits respect bounds. -/
 theorem SubsequentialLimitsRespectBounds {x : RealSequence} {L m M : ℝ}
     (hL : IsSubsequentialLimit x L) (h : ∀ n, m ≤ x n ∧ x n ≤ M) :
     m ≤ L ∧ L ≤ M := by
   sorry
 
-/-- `thm:squeeze-passes-to-subsequences`. See Finding A above re: the
+-- `thm:squeeze-passes-to-subsequences`
+/-- The theorem states the squeeze passes to subsequences assertion; See Finding A above re: the
 `.tex`'s own (likely backward) dependency citation. -/
 theorem SqueezePassesToSubsequences {a x b : RealSequence} {σ : ℕ → ℕ}
     (h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n)
@@ -163,18 +175,21 @@ theorem SqueezePassesToSubsequences {a x b : RealSequence} {σ : ℕ → ℕ}
     ∃ K : ℕ, ∀ k ≥ K, a (σ k) ≤ x (σ k) ∧ x (σ k) ≤ b (σ k) := by
   sorry
 
-/-- `thm:monotone-subsequence-theorem`. -/
+-- `thm:monotone-subsequence-theorem`
+/-- The theorem states the monotone subsequence theorem assertion. -/
 theorem MonotoneSubsequenceTheorem (x : RealSequence) :
     ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧
       (IsIncreasing (fun k => x (σ k)) ∨ IsDecreasing (fun k => x (σ k))) := by
   sorry
 
-/-- `thm:bolzano-weierstrass-sequences`. -/
+-- `thm:bolzano-weierstrass-sequences`
+/-- The theorem states the bolzano weierstrass sequences assertion. -/
 theorem BolzanoWeierstrassSequences {x : RealSequence} (h : BoundedSeq x) :
     HasConvergentSubsequence x := by
   sorry
 
-/-- `thm:sequential-compactness-closed-bounded-interval`. -/
+-- `thm:sequential-compactness-closed-bounded-interval`
+/-- The theorem states the sequential compactness closed bounded interval assertion. -/
 theorem SequentialCompactnessClosedBoundedInterval {a b : ℝ} {x : RealSequence}
     (hab : a ≤ b) (hx : ∀ n, a ≤ x n ∧ x n ≤ b) :
     ∃ σ : ℕ → ℕ, ∃ L : ℝ, IsStrictlyIncreasingIndexMap σ ∧

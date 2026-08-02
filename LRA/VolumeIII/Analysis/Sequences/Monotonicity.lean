@@ -93,35 +93,41 @@ def IsEventuallyDecreasing (x : RealSequence) : Prop :=
 def IsEventuallyMonotone (x : RealSequence) : Prop :=
   IsEventuallyIncreasing x ∨ IsEventuallyDecreasing x
 
-/-- `thm:monotone-convergence-theorem`, increasing half. -/
+-- `thm:monotone-convergence-theorem`
+/-- The theorem states the monotone convergence theorem assertion; increasing half. -/
 theorem MonotoneConvergenceTheoremIncreasing {x : RealSequence}
     (hinc : IsIncreasing x) (hbdd : BoundedAboveSeq x) :
     ∃ L, ConvergesTo x L ∧ IsSupremum L (Set.range x) := by
   sorry
 
-/-- `thm:monotone-convergence-theorem`, decreasing half. -/
+-- `thm:monotone-convergence-theorem`
+/-- The theorem states the monotone convergence theorem assertion; decreasing half. -/
 theorem MonotoneConvergenceTheoremDecreasing {x : RealSequence}
     (hdec : IsDecreasing x) (hbdd : BoundedBelowSeq x) :
     ∃ L, ConvergesTo x L ∧ IsInfimum L (Set.range x) := by
   sorry
 
-/-- `thm:strict-monotonicity-implies-monotonicity`, part (a). -/
+-- `thm:strict-monotonicity-implies-monotonicity`
+/-- The theorem states that strict monotonicity implies monotonicity; part (a). -/
 theorem StrictIncreasingImpliesIncreasing {x : RealSequence}
     (h : IsStrictlyIncreasing x) : IsIncreasing x := by
   sorry
 
-/-- `thm:strict-monotonicity-implies-monotonicity`, part (b). -/
+-- `thm:strict-monotonicity-implies-monotonicity`
+/-- The theorem states that strict monotonicity implies monotonicity; part (b). -/
 theorem StrictDecreasingImpliesDecreasing {x : RealSequence}
     (h : IsStrictlyDecreasing x) : IsDecreasing x := by
   sorry
 
-/-- `thm:bounded-monotone-sequence-equivalences`, part (a). -/
+-- `thm:bounded-monotone-sequence-equivalences`
+/-- The theorem states the bounded monotone sequence equivalences assertion; part (a). -/
 theorem BoundedMonotoneSequenceEquivalencesIncr {x : RealSequence}
     (h : IsIncreasing x) :
     (∃ L, ConvergesTo x L) ↔ BoundedAboveSeq x := by
   sorry
 
-/-- `thm:bounded-monotone-sequence-equivalences`, part (b). -/
+-- `thm:bounded-monotone-sequence-equivalences`
+/-- The theorem states the bounded monotone sequence equivalences assertion; part (b). -/
 theorem BoundedMonotoneSequenceEquivalencesDecr {x : RealSequence}
     (h : IsDecreasing x) :
     (∃ L, ConvergesTo x L) ↔ BoundedBelowSeq x := by
@@ -143,31 +149,36 @@ theorem DecreasingBoundedAboveByFirstTerm {x : RealSequence}
     (h : IsDecreasing x) : ∀ n, x n ≤ x 0 := by
   sorry
 
-/-- `thm:bounded-monotone-sequence-equivalences`, part (c). -/
+-- `thm:bounded-monotone-sequence-equivalences`
+/-- The theorem states the bounded monotone sequence equivalences assertion; part (c). -/
 theorem BoundedMonotoneSequenceEquivalences {x : RealSequence}
     (h : IsMonotoneSeq x) :
     (∃ L, ConvergesTo x L) ↔ BoundedSeq x := by
   sorry
 
-/-- `thm:eventually-monotone-convergence-theorem`, part (a). -/
+-- `thm:eventually-monotone-convergence-theorem`
+/-- The theorem states the eventually monotone convergence theorem assertion; part (a). -/
 theorem EventuallyMonotoneConvergenceTheoremIncr {x : RealSequence}
     (h : IsEventuallyIncreasing x) (hbdd : BoundedAboveSeq x) :
     ∃ L, ConvergesTo x L := by
   sorry
 
-/-- `thm:eventually-monotone-convergence-theorem`, part (b). -/
+-- `thm:eventually-monotone-convergence-theorem`
+/-- The theorem states the eventually monotone convergence theorem assertion; part (b). -/
 theorem EventuallyMonotoneConvergenceTheoremDecr {x : RealSequence}
     (h : IsEventuallyDecreasing x) (hbdd : BoundedBelowSeq x) :
     ∃ L, ConvergesTo x L := by
   sorry
 
-/-- `thm:eventually-monotone-convergence-theorem`, part (c). -/
+-- `thm:eventually-monotone-convergence-theorem`
+/-- The theorem states the eventually monotone convergence theorem assertion; part (c). -/
 theorem EventuallyMonotoneConvergenceTheorem {x : RealSequence}
     (h : IsEventuallyMonotone x) (hbdd : BoundedSeq x) :
     ∃ L, ConvergesTo x L := by
   sorry
 
-/-- `thm:unbounded-monotone-divergence`, part (a). Formalized via
+-- `thm:unbounded-monotone-divergence`
+/-- The theorem states the unbounded monotone divergence assertion; part (a). Formalized via
 Mathlib's `Filter.Tendsto _ Filter.atTop Filter.atTop` since the
 project's own `def:diverges-to-positive-infinity` is a forward reference
 to the (later) `divergence` section — see audit note above. -/
@@ -176,38 +187,45 @@ theorem UnboundedMonotoneDivergencePos {x : RealSequence}
     Filter.Tendsto x Filter.atTop Filter.atTop := by
   sorry
 
-/-- `thm:unbounded-monotone-divergence`, part (b). -/
+-- `thm:unbounded-monotone-divergence`
+/-- The theorem states the unbounded monotone divergence assertion; part (b). -/
 theorem UnboundedMonotoneDivergenceNeg {x : RealSequence}
     (hdec : IsDecreasing x) (hunbdd : ¬ BoundedBelowSeq x) :
     Filter.Tendsto x Filter.atTop Filter.atBot := by
   sorry
 
-/-- `thm:algebraic-transformations-preserve-monotonicity`, part (a). -/
+-- `thm:algebraic-transformations-preserve-monotonicity`
+/-- The theorem states the algebraic transformations preserve monotonicity assertion; part (a). -/
 theorem TranslationPreservesIncreasing {x : RealSequence} {c : ℝ}
     (h : IsIncreasing x) : IsIncreasing (fun n => x n + c) := by
   sorry
 
-/-- `thm:algebraic-transformations-preserve-monotonicity`, part (b). -/
+-- `thm:algebraic-transformations-preserve-monotonicity`
+/-- The theorem states the algebraic transformations preserve monotonicity assertion; part (b). -/
 theorem TranslationPreservesDecreasing {x : RealSequence} {c : ℝ}
     (h : IsDecreasing x) : IsDecreasing (fun n => x n + c) := by
   sorry
 
-/-- `thm:algebraic-transformations-preserve-monotonicity`, part (c). -/
+-- `thm:algebraic-transformations-preserve-monotonicity`
+/-- The theorem states the algebraic transformations preserve monotonicity assertion; part (c). -/
 theorem PositiveScalarPreservesIncreasing {x : RealSequence} {α : ℝ}
     (h : IsIncreasing x) (hα : α > 0) : IsIncreasing (fun n => α * x n) := by
   sorry
 
-/-- `thm:algebraic-transformations-preserve-monotonicity`, part (d). -/
+-- `thm:algebraic-transformations-preserve-monotonicity`
+/-- The theorem states the algebraic transformations preserve monotonicity assertion; part (d). -/
 theorem NegativeScalarReversesIncreasing {x : RealSequence} {α : ℝ}
     (h : IsIncreasing x) (hα : α < 0) : IsDecreasing (fun n => α * x n) := by
   sorry
 
-/-- `thm:algebraic-transformations-preserve-monotonicity`, part (e). -/
+-- `thm:algebraic-transformations-preserve-monotonicity`
+/-- The theorem states the algebraic transformations preserve monotonicity assertion; part (e). -/
 theorem NegationReversesIncreasing {x : RealSequence}
     (h : IsIncreasing x) : IsDecreasing (fun n => -x n) := by
   sorry
 
-/-- `thm:algebraic-transformations-preserve-monotonicity`, part (f). -/
+-- `thm:algebraic-transformations-preserve-monotonicity`
+/-- The theorem states the algebraic transformations preserve monotonicity assertion; part (f). -/
 theorem NegationReversesDecreasing {x : RealSequence}
     (h : IsDecreasing x) : IsIncreasing (fun n => -x n) := by
   sorry

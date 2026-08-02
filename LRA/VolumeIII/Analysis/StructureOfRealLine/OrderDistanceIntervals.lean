@@ -17,34 +17,41 @@ def dist' (x y : ℝ) : ℝ := |x - y|
 /-- `def:length-of-interval`. -/
 def IntervalLength (a b : ℝ) (hab : a ≤ b) : ℝ := b - a
 
-/-- `thm:distance-is-a-metric`. -/
+-- `thm:distance-is-a-metric`
+/-- The theorem states that distance is a metric. -/
 theorem DistanceIsAMetric :
     (∀ x y : ℝ, dist' x y ≥ 0) ∧ (∀ x y : ℝ, dist' x y = 0 ↔ x = y) ∧
     (∀ x y : ℝ, dist' x y = dist' y x) ∧
     (∀ x y z : ℝ, dist' x z ≤ dist' x y + dist' y z) := by
   sorry
 
-/-- `thm:real-line-structural-order-facts`: ℝ is linearly ordered, an
+-- `thm:real-line-structural-order-facts`
+/-- ℝ is linearly ordered, an
 ordered field, and satisfies the LUB property. -/
 theorem RealLineStructuralOrderFacts :
     (∀ A : Set ℝ, A.Nonempty → BddAbove A → ∃ s, IsLUB A s) := by
   sorry
 
-/-- `lem:minimum-of-positive-numbers-is-positive`. -/
+-- `lem:minimum-of-positive-numbers-is-positive`
+/-- The lemma states that minimum of positive numbers is positive. -/
 theorem MinOfPositiveIsPositive (a b : ℝ) (ha : a > 0) (hb : b > 0) :
     min a b > 0 := by sorry
 
-/-- `lem:half-epsilon-is-positive`. -/
+-- `lem:half-epsilon-is-positive`
+/-- The lemma states that half epsilon is positive. -/
 theorem HalfEpsilonIsPositive (ε : ℝ) (hε : ε > 0) : ε / 2 > 0 := by sorry
 
-/-- `lem:epsilon-splitting`. -/
+-- `lem:epsilon-splitting`
+/-- The lemma states the epsilon splitting assertion. -/
 theorem EpsilonSplitting (ε : ℝ) (hε : ε > 0) : ε / 2 + ε / 2 = ε := by sorry
 
-/-- `lem:positive-minimum-bound`. -/
+-- `lem:positive-minimum-bound`
+/-- The lemma states the positive minimum bound assertion. -/
 theorem PositiveMinimumBound (δ a b : ℝ) (h1 : 0 < δ) (h2 : δ ≤ a) (h3 : δ ≤ b) :
     δ ≤ min a b := by sorry
 
-/-- `lem:choosing-a-smaller-positive-number`. -/
+-- `lem:choosing-a-smaller-positive-number`
+/-- The lemma states the choosing a smaller positive number assertion. -/
 theorem ChoosingSmallerPositive (ε c : ℝ) (hε : ε > 0) (hc : c > 0) :
     ∃ δ, 0 < δ ∧ δ < ε ∧ δ < c := by sorry
 

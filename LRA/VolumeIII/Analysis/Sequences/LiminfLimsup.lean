@@ -84,60 +84,70 @@ def LimsupSeq (x : RealSequence) (L : ℝ) : Prop := ConvergesTo (TailSupSeq x) 
 /-- `def:liminf-sequence`. -/
 def LiminfSeq (x : RealSequence) (L : ℝ) : Prop := ConvergesTo (TailInfSeq x) L
 
-/-- `thm:tail-suprema-are-decreasing`. -/
+-- `thm:tail-suprema-are-decreasing`
+/-- The theorem states that tail suprema are decreasing. -/
 theorem TailSupremaAreDecreasing {x : RealSequence} (h : BoundedSeq x) :
     IsDecreasing (TailSupSeq x) := by
   sorry
 
-/-- `thm:tail-infima-are-increasing`. -/
+-- `thm:tail-infima-are-increasing`
+/-- The theorem states that tail infima are increasing. -/
 theorem TailInfimaAreIncreasing {x : RealSequence} (h : BoundedSeq x) :
     IsIncreasing (TailInfSeq x) := by
   sorry
 
-/-- `thm:liminf-below-limsup`. -/
+-- `thm:liminf-below-limsup`
+/-- The theorem states the liminf below limsup assertion. -/
 theorem LiminfBelowLimsup {x : RealSequence} (hbdd : BoundedSeq x)
     {I S : ℝ} (hI : LiminfSeq x I) (hS : LimsupSeq x S) : I ≤ S := by
   sorry
 
-/-- `thm:convergence-iff-liminf-equals-limsup`. -/
+-- `thm:convergence-iff-liminf-equals-limsup`
+/-- The theorem states that convergence iff liminf equals limsup. -/
 theorem ConvergenceIffLiminfEqualsLimsup {x : RealSequence}
     (hbdd : BoundedSeq x) {L : ℝ} :
     ConvergesTo x L ↔ (LiminfSeq x L ∧ LimsupSeq x L) := by
   sorry
 
-/-- `thm:limsup-largest-subsequential-limit`. -/
+-- `thm:limsup-largest-subsequential-limit`
+/-- The theorem states the limsup largest subsequential limit assertion. -/
 theorem LimsupLargestSubsequentialLimit {x : RealSequence}
     (hbdd : BoundedSeq x) {S : ℝ} (hS : LimsupSeq x S) :
     IsSubsequentialLimit x S ∧ ∀ L, IsSubsequentialLimit x L → L ≤ S := by
   sorry
 
-/-- `thm:liminf-smallest-subsequential-limit`. -/
+-- `thm:liminf-smallest-subsequential-limit`
+/-- The theorem states the liminf smallest subsequential limit assertion. -/
 theorem LiminfSmallestSubsequentialLimit {x : RealSequence}
     (hbdd : BoundedSeq x) {I : ℝ} (hI : LiminfSeq x I) :
     IsSubsequentialLimit x I ∧ ∀ L, IsSubsequentialLimit x L → I ≤ L := by
   sorry
 
-/-- `thm:oscillation-criterion-via-liminf-limsup`. -/
+-- `thm:oscillation-criterion-via-liminf-limsup`
+/-- The theorem states the oscillation criterion via liminf limsup assertion. -/
 theorem OscillationCriterionViaLiminfLimsup {x : RealSequence}
     (hbdd : BoundedSeq x) {I S : ℝ} (hI : LiminfSeq x I) (hS : LimsupSeq x S) :
     I < S ↔ ∃ L K : ℝ, L ≠ K ∧ IsSubsequentialLimit x L ∧ IsSubsequentialLimit x K := by
   sorry
 
-/-- `thm:limsup-comparison-under-eventual-order`. -/
+-- `thm:limsup-comparison-under-eventual-order`
+/-- The theorem states the limsup comparison under eventual order assertion. -/
 theorem LimsupComparisonUnderEventualOrder {x y : RealSequence}
     (hx : BoundedSeq x) (hy : BoundedSeq y)
     (h : ∃ N : ℕ, ∀ n ≥ N, x n ≤ y n) {Sx Sy : ℝ}
     (hSx : LimsupSeq x Sx) (hSy : LimsupSeq y Sy) : Sx ≤ Sy := by
   sorry
 
-/-- `thm:liminf-comparison-under-eventual-order`. -/
+-- `thm:liminf-comparison-under-eventual-order`
+/-- The theorem states the liminf comparison under eventual order assertion. -/
 theorem LiminfComparisonUnderEventualOrder {x y : RealSequence}
     (hx : BoundedSeq x) (hy : BoundedSeq y)
     (h : ∃ N : ℕ, ∀ n ≥ N, x n ≤ y n) {Ix Iy : ℝ}
     (hIx : LiminfSeq x Ix) (hIy : LiminfSeq y Iy) : Ix ≤ Iy := by
   sorry
 
-/-- `thm:limsup-squeeze-under-eventual-order`. -/
+-- `thm:limsup-squeeze-under-eventual-order`
+/-- The theorem states the limsup squeeze under eventual order assertion. -/
 theorem LimsupSqueezeUnderEventualOrder {a x b : RealSequence}
     (ha : BoundedSeq a) (hx : BoundedSeq x) (hb : BoundedSeq b)
     (h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n)
@@ -145,7 +155,8 @@ theorem LimsupSqueezeUnderEventualOrder {a x b : RealSequence}
     (hSb : LimsupSeq b Sb) : Sa ≤ Sx ∧ Sx ≤ Sb := by
   sorry
 
-/-- `thm:liminf-squeeze-under-eventual-order`. -/
+-- `thm:liminf-squeeze-under-eventual-order`
+/-- The theorem states the liminf squeeze under eventual order assertion. -/
 theorem LiminfSqueezeUnderEventualOrder {a x b : RealSequence}
     (ha : BoundedSeq a) (hx : BoundedSeq x) (hb : BoundedSeq b)
     (h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n)

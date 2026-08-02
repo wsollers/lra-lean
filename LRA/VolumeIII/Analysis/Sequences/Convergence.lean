@@ -74,7 +74,8 @@ def CenteredInterval (L ε : ℝ) : Set ℝ := Set.Ioo (L - ε) (L + ε)
 def ConvergesToNbhd (x : RealSequence) (L : ℝ) : Prop :=
   ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, x n ∈ CenteredInterval L ε
 
-/-- `thm:equivalence-of-convergence-formulations`. Four notational
+-- `thm:equivalence-of-convergence-formulations`
+/-- Four notational
 registers of the same fact: (a) `ConvergesTo` itself, (b) the same
 epsilon-N absolute-value condition restated (the .tex's own point is that
 (a) and (b) are the informal/formal pairing of the identical statement),

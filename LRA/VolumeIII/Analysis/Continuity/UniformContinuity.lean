@@ -16,20 +16,23 @@ namespace LRA.VolumeIII.Analysis.Continuity
 def IsUniformlyContinuous (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
   ∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, ∀ y ∈ A, |x - y| < δ → |f x - f y| < ε
 
-/-- `thm:algebra-of-uniform-continuity-bounded`: sum, and product when
+-- `thm:algebra-of-uniform-continuity-bounded`
+/-- sum, and product when
 both factors are additionally bounded, preserve uniform continuity. -/
 theorem UcAdd (f g : ℝ → ℝ) (A : Set ℝ)
     (hf : IsUniformlyContinuous f A) (hg : IsUniformlyContinuous g A) :
     IsUniformlyContinuous (fun x => f x + g x) A := by
   sorry
 
+/-- The theorem states the uc mul of bounded assertion. -/
 theorem UcMulOfBounded (f g : ℝ → ℝ) (A : Set ℝ)
     (hf : IsUniformlyContinuous f A) (hg : IsUniformlyContinuous g A)
     (hfB : BoundedOnSet f A) (hgB : BoundedOnSet g A) :
     IsUniformlyContinuous (fun x => f x * g x) A := by
   sorry
 
-/-- `thm:algebra-of-uniform-continuity-general`: without a boundedness
+-- `thm:algebra-of-uniform-continuity-general`
+/-- without a boundedness
 hypothesis the product need not be uniformly continuous; this records the
 correct qualified general statement — composition preserves uniform
 continuity unconditionally. -/
@@ -64,6 +67,7 @@ here — this file does not reproduce it). -/
 def IsLipschitzOn (f : ℝ → ℝ) (A : Set ℝ) (K : ℝ) : Prop :=
   K ≥ 0 ∧ ∀ x ∈ A, ∀ y ∈ A, |f x - f y| ≤ K * |x - y|
 
+/-- The theorem states the lipschitz implies uc assertion. -/
 theorem LipschitzImpliesUc (f : ℝ → ℝ) (A : Set ℝ) (K : ℝ)
     (hf : IsLipschitzOn f A K) : IsUniformlyContinuous f A := by
   sorry
@@ -73,7 +77,8 @@ def IsBiLipschitzOn (f : ℝ → ℝ) (A : Set ℝ) (α K : ℝ) : Prop :=
   0 < α ∧ α ≤ K ∧ ∀ x ∈ A, ∀ y ∈ A,
     α * |x - y| ≤ |f x - f y| ∧ |f x - f y| ≤ K * |x - y|
 
-/-- `thm:bilipschitz-inverse-is-lipschitz`. -/
+-- `thm:bilipschitz-inverse-is-lipschitz`
+/-- The theorem states that bilipschitz inverse is lipschitz. -/
 theorem BiLipschitzInverseIsLipschitz (f : ℝ → ℝ) (A : Set ℝ) (α K : ℝ)
     (hf : IsBiLipschitzOn f A α K) (finv : ℝ → ℝ)
     (hfinv : ∀ x ∈ A, finv (f x) = x) :

@@ -46,7 +46,8 @@ Mathematical statement (Lean): `def IsHKIntegrable (f : ℝ → ℝ) (a b : ℝ)
 -/
 def IsHKIntegrable (f : ℝ → ℝ) (a b : ℝ) : Prop := ∃ L, HasHKIntegral f a b L
 
-/-- `lem:cousin` (Cousin's Lemma): every gauge admits a δ-fine tagged
+-- `lem:cousin`
+/-- (Cousin's Lemma): every gauge admits a δ-fine tagged
 Mathematical statement (Lean): `theorem cousins_lemma (a b : ℝ) (hab : a ≤ b) (δ : ℝ → ℝ) (hδ : IsGaugeOn a b δ) : ∃ P : TaggedPartitionIntegration a b, IsHKDeltaFine P δ`.
 *Proof status:* proof pending.
 partition. -/
@@ -56,25 +57,25 @@ theorem cousins_lemma (a b : ℝ) (hab : a ≤ b) (δ : ℝ → ℝ) (hδ : IsGa
 
 variable {f : ℝ → ℝ} {a b : ℝ}
 
-/-- `thm:riemann-integrable-implies-hk-integrable`.
-Mathematical statement (Lean): `theorem riemann_integrable_implies_hk_integrable (hab : a ≤ b) (L : ℝ) (hR : HasRiemannIntegral f a b L) : HasHKIntegral f a b L`.
-*Proof status:* proof pending.
--/
+-- `thm:riemann-integrable-implies-hk-integrable`
+/-- Mathematical statement (Lean): `theorem riemann_integrable_implies_hk_integrable (hab : a ≤ b) (L : ℝ) (hR : HasRiemannIntegral f a b L) : HasHKIntegral f a b L`.
+*Proof status:* proof pending. -/
 theorem riemann_integrable_implies_hk_integrable (hab : a ≤ b) (L : ℝ)
     (hR : HasRiemannIntegral f a b L) : HasHKIntegral f a b L := by
   sorry
 
-/-- `lem:hk-straddle` (Straddle Lemma).
+-- `lem:hk-straddle`
+/-- (Straddle Lemma).
 Mathematical statement (Lean): `theorem hk_straddle (F : ℝ → ℝ) (ξ : ℝ) (Dξ : ℝ) (hF : LRA.VolumeIII.Analysis.Differentiation.Derivative Dξ F Set.univ ξ) : ∀ ε > 0, ∃ δξ > 0, ∀ u v : ℝ, u ≤ ξ → ξ ≤ v → u ∈ Set.Ioo (ξ - δξ) (ξ + δξ) → v ∈ Set.Ioo (ξ - δξ) (ξ + δξ) → |F v - F u - Dξ * (v - u)| ≤ ε * (v - u)`.
-*Proof status:* proof pending.
--/
+*Proof status:* proof pending. -/
 theorem hk_straddle (F : ℝ → ℝ) (ξ : ℝ) (Dξ : ℝ)
     (hF : LRA.VolumeIII.Analysis.Differentiation.Derivative Dξ F Set.univ ξ) :
     ∀ ε > 0, ∃ δξ > 0, ∀ u v : ℝ, u ≤ ξ → ξ ≤ v → u ∈ Set.Ioo (ξ - δξ) (ξ + δξ) →
       v ∈ Set.Ioo (ξ - δξ) (ξ + δξ) → |F v - F u - Dξ * (v - u)| ≤ ε * (v - u) := by
   sorry
 
-/-- `thm:hk-fundamental-theorem`: the gauge-integral form of the
+-- `thm:hk-fundamental-theorem`
+/-- the gauge-integral form of the
 Fundamental Theorem of Calculus — every derivative is HK-integrable, with
 Mathematical statement (Lean): `theorem hk_fundamental_theorem (F FD : ℝ → ℝ) (hab : a ≤ b) (hF : ∀ x ∈ Set.Icc a b, LRA.VolumeIII.Analysis.Differentiation.Derivative (FD x) F Set.univ x) : HasHKIntegral FD a b (F b - F a)`.
 *Proof status:* proof pending.
@@ -84,10 +85,9 @@ theorem hk_fundamental_theorem (F FD : ℝ → ℝ) (hab : a ≤ b)
     HasHKIntegral FD a b (F b - F a) := by
   sorry
 
-/-- `thm:continuous-hk-integrable`.
-Mathematical statement (Lean): `theorem continuous_hk_integrable (hab : a ≤ b) (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) : IsHKIntegrable f a b`.
-*Proof status:* proof pending.
--/
+-- `thm:continuous-hk-integrable`
+/-- Mathematical statement (Lean): `theorem continuous_hk_integrable (hab : a ≤ b) (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) : IsHKIntegrable f a b`.
+*Proof status:* proof pending. -/
 theorem continuous_hk_integrable (hab : a ≤ b)
     (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
     IsHKIntegrable f a b := by

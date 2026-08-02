@@ -36,13 +36,15 @@ def IsDecreasingAt (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
 def OrderReversing (f : ℝ → ℝ) (I : Set ℝ) : Prop :=
   ∀ x ∈ I, ∀ y ∈ I, x < y → f y ≤ f x
 
-/-- `thm:nonincreasing-iff-nonpos-derivative`. -/
+-- `thm:nonincreasing-iff-nonpos-derivative`
+/-- The theorem states that nonincreasing iff nonpos derivative. -/
 theorem NonincreasingIffNonposDerivative (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected)
     (hdiff : ∀ x ∈ I, IsDifferentiable f I x) :
     OrderReversing f I ↔ ∀ x ∈ I, ∀ D, Derivative D f I x → D ≤ 0 := by
   sorry
 
-/-- `thm:zero-derivative-implies-constant`. -/
+-- `thm:zero-derivative-implies-constant`
+/-- The theorem states that zero derivative implies constant. -/
 theorem ZeroDerivativeImpliesConstant (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected)
     (hdiff : ∀ x ∈ I, Derivative 0 f I x) :
     ∃ k : ℝ, ∀ x ∈ I, f x = k := by
@@ -54,7 +56,8 @@ theorem EqualDerivativesConstantDifference (f g : ℝ → ℝ) (I : Set ℝ) (hI
     ∃ k : ℝ, ∀ x ∈ I, f x - g x = k := by
   sorry
 
-/-- `thm:first-derivative-test-maximum`. -/
+-- `thm:first-derivative-test-maximum`
+/-- The theorem states the first derivative test maximum assertion. -/
 theorem FirstDerivativeTestMaximum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hc : c ∈ interior A) (hcrit : Derivative 0 f A c)
     (hpos : ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → ∀ D, Derivative D f A x → D > 0)
@@ -62,7 +65,8 @@ theorem FirstDerivativeTestMaximum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     IsRelativeMaximum f A c := by
   sorry
 
-/-- `thm:first-derivative-test-minimum`. -/
+-- `thm:first-derivative-test-minimum`
+/-- The theorem states the first derivative test minimum assertion. -/
 theorem FirstDerivativeTestMinimum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hc : c ∈ interior A) (hcrit : Derivative 0 f A c)
     (hneg : ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → ∀ D, Derivative D f A x → D < 0)
@@ -83,7 +87,8 @@ def SecondDerivative (D2 : ℝ) (f fD1 : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : 
 def HigherDerivativeAt (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (A : Set ℝ) (n : ℕ) (c : ℝ) : Prop :=
   LRA.VolumeIII.Analysis.Differentiation.NthDerivativeAt f fD A n c
 
-/-- `thm:second-derivative-convexity-test`. -/
+-- `thm:second-derivative-convexity-test`
+/-- The theorem states the second derivative convexity test assertion. -/
 theorem SecondDerivativeConvexityTest (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected)
     (hD1 : ∀ x ∈ I, Derivative (fD1 x) f I x)
     (hD2 : ∀ x ∈ I, Derivative (fD2 x) fD1 I x)
@@ -91,7 +96,8 @@ theorem SecondDerivativeConvexityTest (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (h
     IsConvexOn f I := by
   sorry
 
-/-- `thm:second-derivative-concavity-test`. -/
+-- `thm:second-derivative-concavity-test`
+/-- The theorem states the second derivative concavity test assertion. -/
 theorem SecondDerivativeConcavityTest (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected)
     (hD1 : ∀ x ∈ I, Derivative (fD1 x) f I x)
     (hD2 : ∀ x ∈ I, Derivative (fD2 x) fD1 I x)
@@ -99,7 +105,8 @@ theorem SecondDerivativeConcavityTest (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (h
     IsConcaveOn f I := by
   sorry
 
-/-- `thm:second-derivative-test`. -/
+-- `thm:second-derivative-test`
+/-- The theorem states the second derivative test assertion. -/
 theorem SecondDerivativeTest (f fD1 fD2 : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hD1c : Derivative 0 f A c)
     (hD1 : ∀ x ∈ A, Derivative (fD1 x) f A x) (hD2c : Derivative (fD2 c) fD1 A c) :
@@ -118,7 +125,8 @@ theorem InflectionPointNecessaryCondition (f fD1 fD2 : ℝ → ℝ) (A : Set ℝ
 -- Darboux's Theorem (`notes-darboux.tex`).
 -- ---------------------------------------------------------------------
 
-/-- `thm:darboux`: a derivative has the intermediate value property, even
+-- `thm:darboux`
+/-- a derivative has the intermediate value property, even
 where it is discontinuous. -/
 theorem darboux (f : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     (hdiff : ∀ x ∈ Set.Icc a b, IsDifferentiable f (Set.Icc a b) x)
@@ -154,7 +162,8 @@ def IsClassCOmega (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (I : Set ℝ) : P
     Filter.Tendsto (fun n => ∑ k ∈ Finset.range (n + 1),
       fD k a / (Nat.factorial k) * (x - a) ^ k) Filter.atTop (nhds (f x))
 
-/-- `thm:smoothness-tower`: `C^0 ⊇ C^1 ⊇ C^2 ⊇ ⋯ ⊇ C^∞ ⊇ C^ω`, each
+-- `thm:smoothness-tower`
+/-- `C^0 ⊇ C^1 ⊇ C^2 ⊇ ⋯ ⊇ C^∞ ⊇ C^ω`, each
 inclusion strict. -/
 theorem SmoothnessTower (I : Set ℝ) (hI : I.Nontrivial) :
     (∀ f fD k, IsClassCk f fD I (k + 1) → IsClassCk f fD I k) ∧
@@ -168,7 +177,8 @@ def IsClassC11 (f fD1 : ℝ → ℝ) (I : Set ℝ) : Prop :=
   IsClassC1 f fD1 I ∧ ∃ L ≥ 0,
     LRA.VolumeIII.Analysis.Continuity.IsLipschitzOn fD1 I L
 
-/-- `thm:c11-placement`: `C^{1,1}(I) ⊊ C^1(I)`, and on a compact interval
+-- `thm:c11-placement`
+/-- `C^{1,1}(I) ⊊ C^1(I)`, and on a compact interval
 `K`, `C^2(K) ⊆ C^{1,1}(K) ⊊ C^1(K)`. -/
 theorem C11Placement (I : Set ℝ) (hI : I.Nontrivial) :
     (∀ f fD1, IsClassC11 f fD1 I → IsClassC1 f fD1 I) := by

@@ -19,7 +19,8 @@ def IsStepFunction (f : ℝ → ℝ) (a b : ℝ) : Prop :=
     P 0 = a ∧ P (Fin.last n) = b ∧ (∀ i : Fin n, P i.castSucc < P i.succ) ∧
     ∀ i : Fin n, ∀ x ∈ Set.Ioo (P i.castSucc) (P i.succ), f x = v i
 
-/-- `thm:step-function-approximation`: continuous functions on `[a,b]`
+-- `thm:step-function-approximation`
+/-- continuous functions on `[a,b]`
 are uniformly approximable by step functions. -/
 theorem StepFunctionApproximation (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
     (hf : ContinuousOn' f (Set.Icc a b)) :
@@ -35,7 +36,8 @@ def IsPiecewiseLinear (f : ℝ → ℝ) (a b : ℝ) : Prop :=
     ContinuousOn' f (Set.Icc a b) ∧
     ∀ i : Fin n, ∃ m c : ℝ, ∀ x ∈ Set.Icc (P i.castSucc) (P i.succ), f x = m * x + c
 
-/-- `thm:piecewise-linear-approximation`: continuous functions on `[a,b]`
+-- `thm:piecewise-linear-approximation`
+/-- continuous functions on `[a,b]`
 are uniformly approximable by piecewise-linear functions. -/
 theorem PiecewiseLinearApproximation (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
     (hf : ContinuousOn' f (Set.Icc a b)) :
@@ -43,7 +45,8 @@ theorem PiecewiseLinearApproximation (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ 
       ∀ x ∈ Set.Icc a b, |f x - g x| < ε := by
   sorry
 
-/-- `thm:weierstrass-approximation`: continuous functions on `[a,b]` are
+-- `thm:weierstrass-approximation`
+/-- continuous functions on `[a,b]` are
 uniformly approximable by polynomials. -/
 theorem WeierstrassApproximation (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
     (hf : ContinuousOn' f (Set.Icc a b)) :
@@ -58,7 +61,8 @@ noncomputable def BernsteinPolynomial (f : ℝ → ℝ) (n : ℕ) : Polynomial �
       (Polynomial.C ((n.choose k : ℝ))) *
       Polynomial.X ^ k * (1 - Polynomial.X) ^ (n - k)
 
-/-- `thm:bernstein-approximation`: the Bernstein polynomials of a
+-- `thm:bernstein-approximation`
+/-- the Bernstein polynomials of a
 continuous `f : [0,1] → ℝ` converge uniformly to `f`, giving a
 constructive proof of Weierstrass approximation on `[0,1]`. -/
 theorem BernsteinApproximation (f : ℝ → ℝ) (hf : ContinuousOn' f (Set.Icc 0 1)) :

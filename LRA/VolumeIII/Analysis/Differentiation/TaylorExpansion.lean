@@ -35,7 +35,8 @@ noncomputable def TaylorRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (
 noncomputable def MaclaurinPoly (fD : ℕ → ℝ → ℝ) (n : ℕ) : ℝ → ℝ :=
   TaylorPoly fD n 0
 
-/-- `thm:taylor-theorem-lagrange-remainder`. -/
+-- `thm:taylor-theorem-lagrange-remainder`
+/-- The theorem states the taylor theorem lagrange remainder assertion. -/
 theorem TaylorTheoremLagrangeRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (a b : ℝ)
     (hab : a < b) (n : ℕ)
     (hcont : ∀ k ≤ n, LRA.VolumeIII.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b))
@@ -63,6 +64,7 @@ theorem FirstOrderPeanoRemainder (f : ℝ → ℝ) (A : Set ℝ) (c D : ℝ)
 `C^∞` from `C^ω`, restated in Lean via its three defining properties. -/
 noncomputable def FlatFunction : ℝ → ℝ := fun x => if x = 0 then 0 else Real.exp (-1 / x ^ 2)
 
+/-- The theorem states the flat function properties assertion. -/
 theorem FlatFunctionProperties (fD : ℕ → ℝ → ℝ) (hfD0 : fD 0 = FlatFunction) :
     IsClassCInfty FlatFunction fD Set.univ ∧
     (∀ n : ℕ, fD n 0 = 0) ∧
@@ -79,25 +81,29 @@ def DifferentiableByDifferential (f : ℝ → ℝ) (c : ℝ) : Prop :=
   ∃ L : ℝ →ₗ[ℝ] ℝ,
     Filter.Tendsto (fun h => (f (c + h) - f c - L h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)
 
-/-- `thm:differential-and-derivative-agree`. -/
+-- `thm:differential-and-derivative-agree`
+/-- The theorem states the differential and derivative agree assertion. -/
 theorem DifferentialAndDerivativeAgree (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     IsDifferentiable f A c ↔ DifferentiableByDifferential f c := by
   sorry
 
-/-- `thm:uniqueness-of-the-differential`. -/
+-- `thm:uniqueness-of-the-differential`
+/-- The theorem states the uniqueness of the differential assertion. -/
 theorem UniquenessOfTheDifferential (f : ℝ → ℝ) (c : ℝ) (L₁ L₂ : ℝ →ₗ[ℝ] ℝ)
     (h₁ : Filter.Tendsto (fun h => (f (c + h) - f c - L₁ h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0))
     (h₂ : Filter.Tendsto (fun h => (f (c + h) - f c - L₂ h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)) :
     L₁ = L₂ := by
   sorry
 
-/-- `thm:differential-continuity-criterion`. -/
+-- `thm:differential-continuity-criterion`
+/-- The theorem states the differential continuity criterion assertion. -/
 theorem DifferentialContinuityCriterion (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (h : DifferentiableByDifferential f c) :
     LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f A c := by
   sorry
 
-/-- `thm:chain-rule-for-differentials`: the tangent-map composition law,
+-- `thm:chain-rule-for-differentials`
+/-- the tangent-map composition law,
 the one-dimensional prototype for `T_cf : T_cM → T_{f(c)}N` on a
 manifold — directly relevant to the tangent-space bookkeeping needed for
 Brownian motion on a torus. -/
@@ -106,7 +112,8 @@ theorem ChainRuleForDifferentials (f g : ℝ → ℝ) (c : ℝ)
     DifferentiableByDifferential (fun x => g (f x)) c := by
   sorry
 
-/-- `thm:linearity-of-the-differential`. -/
+-- `thm:linearity-of-the-differential`
+/-- The theorem states the linearity of the differential assertion. -/
 theorem LinearityOfTheDifferential (f g : ℝ → ℝ) (c α β : ℝ)
     (hf : DifferentiableByDifferential f c) (hg : DifferentiableByDifferential g c) :
     DifferentiableByDifferential (fun x => α * f x + β * g x) c := by

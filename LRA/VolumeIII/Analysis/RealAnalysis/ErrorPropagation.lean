@@ -15,21 +15,24 @@ def AbsoluteError (x xTilde : ℝ) : ℝ := |x - xTilde|
 /-- `def:relative-error-approximation`. -/
 noncomputable def RelativeError (x xTilde : ℝ) : ℝ := AbsoluteError x xTilde / |xTilde|
 
-/-- `thm:absolute-error-sum`: absolute error is subadditive under
+-- `thm:absolute-error-sum`
+/-- absolute error is subadditive under
 addition. -/
 theorem AbsoluteErrorSum (x y xTilde yTilde : ℝ) :
     AbsoluteError (x + y) (xTilde + yTilde) ≤
       AbsoluteError x xTilde + AbsoluteError y yTilde := by
   sorry
 
-/-- `thm:absolute-error-product`. -/
+-- `thm:absolute-error-product`
+/-- The theorem states the absolute error product assertion. -/
 theorem AbsoluteErrorProduct (x y xTilde yTilde : ℝ) :
     AbsoluteError (x * y) (xTilde * yTilde) ≤
       |xTilde| * AbsoluteError y yTilde + |yTilde| * AbsoluteError x xTilde +
       AbsoluteError x xTilde * AbsoluteError y yTilde := by
   sorry
 
-/-- `thm:absolute-error-quotient`. -/
+-- `thm:absolute-error-quotient`
+/-- The theorem states the absolute error quotient assertion. -/
 theorem AbsoluteErrorQuotient (x y xTilde yTilde : ℝ)
     (hy : y ≠ 0) (hyTilde : yTilde ≠ 0)
     (hdelta : RelativeError y yTilde < 1) :

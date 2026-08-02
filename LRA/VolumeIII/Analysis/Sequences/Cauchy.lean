@@ -48,83 +48,98 @@ namespace LRA.VolumeIII.Analysis.Sequences
 def IsCauchy (x : RealSequence) : Prop :=
   ∀ ε > 0, ∃ N : ℕ, ∀ m ≥ N, ∀ n ≥ N, |x m - x n| < ε
 
-/-- `thm:convergent-sequences-are-cauchy`. -/
+-- `thm:convergent-sequences-are-cauchy`
+/-- The theorem states that convergent sequences are cauchy. -/
 theorem ConvergentSequencesAreCauchy {x : RealSequence}
     (h : ∃ L : ℝ, ConvergesTo x L) : IsCauchy x := by
   sorry
 
-/-- `thm:cauchy-sequences-are-bounded`. -/
+-- `thm:cauchy-sequences-are-bounded`
+/-- The theorem states that cauchy sequences are bounded. -/
 theorem CauchySequencesAreBounded {x : RealSequence} (h : IsCauchy x) :
     BoundedSeq x := by
   sorry
 
-/-- `thm:cauchy-convergent-subsequence-converges`. -/
+-- `thm:cauchy-convergent-subsequence-converges`
+/-- The theorem states that cauchy convergent subsequence converges. -/
 theorem CauchyConvergentSubsequenceConverges {x : RealSequence} {L : ℝ}
     (hcauchy : IsCauchy x) (hsub : IsSubsequentialLimit x L) :
     ConvergesTo x L := by
   sorry
 
-/-- `thm:cauchy-criterion-real-sequences`. -/
+-- `thm:cauchy-criterion-real-sequences`
+/-- The theorem states the cauchy criterion real sequences assertion. -/
 theorem CauchyCriterionRealSequences {x : RealSequence} :
     (∃ L : ℝ, ConvergesTo x L) ↔ IsCauchy x := by
   sorry
 
-/-- `thm:cauchy-criterion-via-tails`. -/
+-- `thm:cauchy-criterion-via-tails`
+/-- The theorem states the cauchy criterion via tails assertion. -/
 theorem CauchyCriterionViaTails {x : RealSequence} :
     IsCauchy x ↔ ∀ ε > 0, ∃ N : ℕ, ∀ p q : ℕ, |x (N + p) - x (N + q)| < ε := by
   sorry
 
-/-- `thm:cauchy-tail-diameter-criterion`. -/
+-- `thm:cauchy-tail-diameter-criterion`
+/-- The theorem states the cauchy tail diameter criterion assertion. -/
 theorem CauchyTailDiameterCriterion {x : RealSequence} :
     IsCauchy x ↔
       ∀ ε > 0, ∃ N₀ : ℕ, ∀ N ≥ N₀, ∀ m ≥ N, ∀ n ≥ N, |x m - x n| < ε := by
   sorry
 
-/-- `thm:cauchy-successive-differences-vanish`. -/
+-- `thm:cauchy-successive-differences-vanish`
+/-- The theorem states the cauchy successive differences vanish assertion. -/
 theorem CauchySuccessiveDifferencesVanish {x : RealSequence}
     (h : IsCauchy x) : IsNull (fun n => |x (n + 1) - x n|) := by
   sorry
 
-/-- `thm:scalar-multiple-cauchy-sequence`. -/
+-- `thm:scalar-multiple-cauchy-sequence`
+/-- The theorem states the scalar multiple cauchy sequence assertion. -/
 theorem ScalarMultipleCauchySequence {x : RealSequence} {α : ℝ}
     (h : IsCauchy x) : IsCauchy (fun n => α * x n) := by
   sorry
 
-/-- `thm:sum-cauchy-sequences`. -/
+-- `thm:sum-cauchy-sequences`
+/-- The theorem states the sum cauchy sequences assertion. -/
 theorem SumCauchySequences {x y : RealSequence}
     (hx : IsCauchy x) (hy : IsCauchy y) : IsCauchy (fun n => x n + y n) := by
   sorry
 
-/-- `thm:difference-cauchy-sequences`. -/
+-- `thm:difference-cauchy-sequences`
+/-- The theorem states the difference cauchy sequences assertion. -/
 theorem DifferenceCauchySequences {x y : RealSequence}
     (hx : IsCauchy x) (hy : IsCauchy y) : IsCauchy (fun n => x n - y n) := by
   sorry
 
-/-- `thm:linear-combination-cauchy-sequences`. -/
+-- `thm:linear-combination-cauchy-sequences`
+/-- The theorem states the linear combination cauchy sequences assertion. -/
 theorem LinearCombinationCauchySequences {x y : RealSequence} {α β : ℝ}
     (hx : IsCauchy x) (hy : IsCauchy y) :
     IsCauchy (fun n => α * x n + β * y n) := by
   sorry
 
-/-- `thm:product-cauchy-sequences`. -/
+-- `thm:product-cauchy-sequences`
+/-- The theorem states the product cauchy sequences assertion. -/
 theorem ProductCauchySequences {x y : RealSequence}
     (hx : IsCauchy x) (hy : IsCauchy y) : IsCauchy (fun n => x n * y n) := by
   sorry
 
-/-- `thm:reciprocal-cauchy-sequence`. -/
+-- `thm:reciprocal-cauchy-sequence`
+/-- The theorem states the reciprocal cauchy sequence assertion. -/
 theorem ReciprocalCauchySequence {x : RealSequence}
     (hx : IsCauchy x) (h : ∃ c > 0, ∃ N₀ : ℕ, ∀ n ≥ N₀, c ≤ |x n|) :
     IsCauchy (fun n => 1 / x n) := by
   sorry
 
-/-- `thm:quotient-cauchy-sequences`. -/
+-- `thm:quotient-cauchy-sequences`
+/-- The theorem states the quotient cauchy sequences assertion. -/
 theorem QuotientCauchySequences {x y : RealSequence}
     (hx : IsCauchy x) (hy : IsCauchy y)
     (h : ∃ c > 0, ∃ N₀ : ℕ, ∀ n ≥ N₀, c ≤ |y n|) :
     IsCauchy (fun n => x n / y n) := by
   sorry
 
-/-- `thm:absolute-value-cauchy-sequence`. -/
+-- `thm:absolute-value-cauchy-sequence`
+/-- The theorem states the absolute value cauchy sequence assertion. -/
 theorem AbsoluteValueCauchySequence {x : RealSequence} (h : IsCauchy x) :
     IsCauchy (fun n => |x n|) := by
   sorry

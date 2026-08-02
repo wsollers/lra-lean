@@ -25,11 +25,13 @@ def IsNeighborhood (N : Set ℝ) (x : ℝ) : Prop := ∃ r > 0, OpenBall x r ⊆
 /-- `def:open-set`. -/
 def IsOpenSet (U : Set ℝ) : Prop := ∀ x ∈ U, ∃ r > 0, OpenBall x r ⊆ U
 
-/-- `thm:open-interval-is-open`. -/
+-- `thm:open-interval-is-open`
+/-- The theorem states that open interval is open. -/
 theorem OpenIntervalIsOpen (a b : ℝ) (hab : a < b) : IsOpenSet (Set.Ioo a b) := by
   sorry
 
-/-- `thm:open-set-closure-operations`. -/
+-- `thm:open-set-closure-operations`
+/-- The theorem states the open set closure operations assertion. -/
 theorem OpenSetClosureOperations :
     IsOpenSet (∅ : Set ℝ) ∧ IsOpenSet (Set.univ : Set ℝ) ∧
     (∀ (ι : Type) (U : ι → Set ℝ), (∀ i, IsOpenSet (U i)) → IsOpenSet (⋃ i, U i)) ∧
@@ -39,7 +41,8 @@ theorem OpenSetClosureOperations :
 /-- `def:closed-set`. -/
 def IsClosedSet (F : Set ℝ) : Prop := IsOpenSet Fᶜ
 
-/-- `thm:closed-iff-contains-limit-points`. -/
+-- `thm:closed-iff-contains-limit-points`
+/-- The theorem states that closed iff contains limit points. -/
 theorem ClosedIffContainsLimitPoints (F : Set ℝ) :
     IsClosedSet F ↔ ∀ x : ℝ, (∀ r > 0, (OpenBall x r \ {x}) ∩ F ≠ ∅) → x ∈ F := by
   sorry
@@ -64,7 +67,8 @@ def IsLimitPoint (A : Set ℝ) (x : ℝ) : Prop := ∀ r > 0, ∃ a ∈ A, 0 < |
 def IsIsolatedPoint (A : Set ℝ) (x : ℝ) : Prop :=
   x ∈ A ∧ ∃ r > 0, OpenBall x r ∩ A = {x}
 
-/-- `thm:closed-set-closure-operations`. -/
+-- `thm:closed-set-closure-operations`
+/-- The theorem states the closed set closure operations assertion. -/
 theorem ClosedSetClosureOperations :
     IsClosedSet (∅ : Set ℝ) ∧ IsClosedSet (Set.univ : Set ℝ) ∧
     (∀ (ι : Type) (F : ι → Set ℝ), (∀ i, IsClosedSet (F i)) → IsClosedSet (⋂ i, F i)) ∧

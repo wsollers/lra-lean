@@ -30,10 +30,9 @@ Mathematical statement (Lean): `noncomputable def PointOscillation (f : ℝ → 
 noncomputable def PointOscillation (f : ℝ → ℝ) (a b x : ℝ) : ℝ :=
   0
 
-/-- `thm:lebesgue-criterion-riemann-integrability`.
-Mathematical statement (Lean): `theorem lebesgue_criterion_riemann_integrability (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) : IsRiemannIntegrable f a b ↔ IsMeasureZero {x ∈ Set.Icc a b | PointOscillation f a b x > 0}`.
-*Proof status:* proof pending.
--/
+-- `thm:lebesgue-criterion-riemann-integrability`
+/-- Mathematical statement (Lean): `theorem lebesgue_criterion_riemann_integrability (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) : IsRiemannIntegrable f a b ↔ IsMeasureZero {x ∈ Set.Icc a b | PointOscillation f a b x > 0}`.
+*Proof status:* proof pending. -/
 theorem lebesgue_criterion_riemann_integrability (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
     (hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
     IsRiemannIntegrable f a b ↔

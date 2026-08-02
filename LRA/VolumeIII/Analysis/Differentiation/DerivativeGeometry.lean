@@ -26,7 +26,8 @@ def IsRelativeMinimum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
 def IsRelativeMaximum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   c ∈ A ∧ ∃ δ > 0, ∀ x ∈ A, |x - c| < δ → f x ≤ f c
 
-/-- `thm:necessary-condition-extremum`: a relative extremum at an
+-- `thm:necessary-condition-extremum`
+/-- a relative extremum at an
 interior point is either a point of non-differentiability or a critical
 point. -/
 theorem NecessaryConditionExtremum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)

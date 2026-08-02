@@ -48,7 +48,8 @@ theorem CommonExtremumConverseFails :
 def FunctionMaximumPoint (f : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ) : Prop :=
   x₀ ∈ A ∧ ∀ x ∈ A, f x ≤ f x₀
 
-/-- `thm:maximum-point-characterized-by-supremum`. -/
+-- `thm:maximum-point-characterized-by-supremum`
+/-- The theorem states the maximum point characterized by supremum assertion. -/
 theorem MaximumPointCharacterizedBySupremum (f : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ)
     (hx₀ : x₀ ∈ A) (hA : A.Nonempty) (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M) :
     FunctionMaximumPoint f A x₀ ↔ IsLUB (f '' A) (f x₀) := by
@@ -58,7 +59,8 @@ theorem MaximumPointCharacterizedBySupremum (f : ℝ → ℝ) (A : Set ℝ) (x�
 def FunctionMinimumPoint (f : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ) : Prop :=
   x₀ ∈ A ∧ ∀ x ∈ A, f x₀ ≤ f x
 
-/-- `thm:minimum-point-characterized-by-infimum`. -/
+-- `thm:minimum-point-characterized-by-infimum`
+/-- The theorem states the minimum point characterized by infimum assertion. -/
 theorem MinimumPointCharacterizedByInfimum (f : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ)
     (hx₀ : x₀ ∈ A) (hA : A.Nonempty) (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x) :
     FunctionMinimumPoint f A x₀ ↔ IsGLB (f '' A) (f x₀) := by

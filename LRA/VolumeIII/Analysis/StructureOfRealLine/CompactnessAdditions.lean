@@ -49,6 +49,7 @@ def IsCompactR (K : Set ℝ) : Prop :=
    ================================================================ -/
 
 /-- ADDITIONS.md #28. A closed subset of a compact set is compact — the
+/-- The lemma states the `thm assertion. -/
 lemma `thm:heine-borel`'s own opening exposition names as doing the real
 work in reducing the general Heine–Borel statement to the closed-bounded-
 interval case (`thm:closed-bounded-interval-compact`), but which is never

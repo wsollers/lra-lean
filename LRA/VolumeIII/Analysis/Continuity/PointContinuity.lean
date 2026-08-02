@@ -27,6 +27,7 @@ of continuity at a point. -/
 def ContinuousAtPointNbhd (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   ∀ ε > 0, ∃ δ > 0, ∀ x ∈ RelativeNeighborhood A c δ, |f x - f c| < ε
 
+/-- The theorem states the continuous at point iff nbhd assertion. -/
 theorem ContinuousAtPointIffNbhd (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     ContinuousAtPoint f A c ↔ ContinuousAtPointNbhd f A c := by
   sorry
@@ -38,6 +39,7 @@ def ContinuousAtPointSeq (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
     (∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |xs n - c| < ε) →
     ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |f (xs n) - f c| < ε
 
+/-- The theorem states the continuous at point iff seq assertion. -/
 theorem ContinuousAtPointIffSeq (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hc : c ∈ A) :
     ContinuousAtPoint f A c ↔ ContinuousAtPointSeq f A c := by
   sorry
@@ -53,6 +55,7 @@ def SequentialDiscontinuity (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
     (∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |xs n - c| < ε) ∧
     ¬ (∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |f (xs n) - f c| < ε)
 
+/-- The theorem states the discontinuity iff sequential assertion. -/
 theorem DiscontinuityIffSequential (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     PointOfDiscontinuity f A c ↔ SequentialDiscontinuity f A c := by
   sorry
@@ -62,6 +65,7 @@ neighbourhood formulation, an explicit ε that survives every δ. -/
 def NeighborhoodDiscontinuity (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   c ∈ A ∧ ∃ ε > 0, ∀ δ > 0, ∃ x ∈ RelativeNeighborhood A c δ, |f x - f c| ≥ ε
 
+/-- The theorem states the discontinuity iff neighborhood assertion. -/
 theorem DiscontinuityIffNeighborhood (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     PointOfDiscontinuity f A c ↔ NeighborhoodDiscontinuity f A c := by
   sorry
@@ -116,7 +120,8 @@ oscillation on the punctured relative δ-neighbourhood of `c`. -/
 noncomputable def OscillationAtPoint (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : ℝ :=
   0
 
-/-- `thm:continuity-iff-zero-oscillation`. -/
+-- `thm:continuity-iff-zero-oscillation`
+/-- The theorem states that continuity iff zero oscillation. -/
 theorem ContinuousAtPointIffZeroOscillation (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hc : c ∈ A) :
     ContinuousAtPoint f A c ↔ OscillationAtPoint f A c = 0 := by

@@ -20,22 +20,26 @@ namespace LRA.VolumeIII.Analysis.Differentiation
 
 variable {f g : ℝ → ℝ} {A : Set ℝ} {c Df Dg α : ℝ}
 
-/-- `thm:constant-multiple-rule`. -/
+-- `thm:constant-multiple-rule`
+/-- The theorem states the constant multiple rule assertion. -/
 theorem ConstantMultipleRule (hf : Derivative Df f A c) (α : ℝ) :
     Derivative (α * Df) (fun x => α * f x) A c := by
   sorry
 
-/-- `thm:sum-rule`. -/
+-- `thm:sum-rule`
+/-- The theorem states the sum rule assertion. -/
 theorem SumRule (hf : Derivative Df f A c) (hg : Derivative Dg g A c) :
     Derivative (Df + Dg) (fun x => f x + g x) A c := by
   sorry
 
-/-- `thm:product-rule`. -/
+-- `thm:product-rule`
+/-- The theorem states the product rule assertion. -/
 theorem ProductRule (hf : Derivative Df f A c) (hg : Derivative Dg g A c) :
     Derivative (Df * g c + f c * Dg) (fun x => f x * g x) A c := by
   sorry
 
-/-- `thm:quotient-rule`. -/
+-- `thm:quotient-rule`
+/-- The theorem states the quotient rule assertion. -/
 theorem QuotientRule (hf : Derivative Df f A c) (hg : Derivative Dg g A c)
     (hgc : g c ≠ 0) :
     Derivative ((Df * g c - f c * Dg) / (g c) ^ 2) (fun x => f x / g x) A c := by
@@ -59,7 +63,8 @@ theorem PowerRuleSpecialCase (hf : Derivative Df f A c) (n : ℕ) :
     Derivative (n * (f c) ^ (n - 1) * Df) (fun x => (f x) ^ n) A c := by
   sorry
 
-/-- `thm:finite-linear-combination-rule`: the pointwise linearity
+-- `thm:finite-linear-combination-rule`
+/-- the pointwise linearity
 statement, packaging `ConstantMultipleRule` and `SumRule` in finite
 generality (identical formula to `FiniteSumRule`, per the book's own
 "not a separate theorem" remark). -/
@@ -73,7 +78,8 @@ theorem FiniteLinearCombinationRule (n : ℕ) (fs : Fin n → ℝ → ℝ) (αs 
 -- remark ("not separate theorems"), they are recorded as one combined
 -- corollary rather than eight separate restatements.
 
-/-- `thm:constant-multiple-rule-interval` through
+-- `thm:constant-multiple-rule-interval`
+/-- through
 `thm:finite-linear-combination-rule-interval` (8 book labels): the global
 form of every pointwise rule above, applied at each point of `I`. -/
 theorem IntervalFormsOfAlgebraRules (I : Set ℝ) (hI : I.OrdConnected)
@@ -88,7 +94,8 @@ theorem IntervalFormsOfAlgebraRules (I : Set ℝ) (hI : I.OrdConnected)
 -- Inverting the operation.
 -- ---------------------------------------------------------------------
 
-/-- `thm:inverse-function-theorem-one-variable`. -/
+-- `thm:inverse-function-theorem-one-variable`
+/-- The theorem states the inverse function theorem one variable assertion. -/
 theorem InverseFunctionTheoremOneVariable (f fD1 : ℝ → ℝ) (I : Set ℝ) (hI : IsOpen I)
     (hclass : IsClassC1 f fD1 I) (c : ℝ) (hc : c ∈ I) (hnz : fD1 c ≠ 0) :
     ∃ U V : Set ℝ, IsOpen U ∧ IsOpen V ∧ c ∈ U ∧ f c ∈ V ∧ U ⊆ I ∧
@@ -110,7 +117,8 @@ theorem InverseFunctionDerivative (f g fD1 : ℝ → ℝ) (U V : Set ℝ)
 -- ---------------------------------------------------------------------
 
 open LRA.VolumeIII.Analysis.Continuity in
-/-- `thm:lhopital-zero-over-zero`. -/
+-- `thm:lhopital-zero-over-zero`
+/-- The theorem states the lhopital zero over zero assertion. -/
 theorem LhopitalZeroOverZero (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     (hf : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x)
     (hg : ∀ x ∈ Set.Ioo a b, IsDifferentiable g (Set.Ioo a b) x)
@@ -123,7 +131,8 @@ theorem LhopitalZeroOverZero (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b)
   sorry
 
 open LRA.VolumeIII.Analysis.Continuity in
-/-- `thm:lhopital-infinity-over-infinity`. -/
+-- `thm:lhopital-infinity-over-infinity`
+/-- The theorem states the lhopital infinity over infinity assertion. -/
 theorem LhopitalInfinityOverInfinity (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     (hf : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x)
     (hg : ∀ x ∈ Set.Ioo a b, IsDifferentiable g (Set.Ioo a b) x)

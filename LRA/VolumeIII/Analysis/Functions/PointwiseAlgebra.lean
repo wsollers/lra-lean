@@ -60,7 +60,8 @@ noncomputable def PointwiseQuotient (f g : ℝ → ℝ) : ℝ → ℝ := fun x =
 /-- `def:pointwise-reciprocal-of-a-function`. -/
 noncomputable def PointwiseReciprocal (f : ℝ → ℝ) : ℝ → ℝ := fun x => 1 / f x
 
-/-- `thm:function-algebra-closure`. In Lean's total-function setting,
+-- `thm:function-algebra-closure`
+/-- In Lean's total-function setting,
 closure is automatic by typing — formalized as the defining evaluation
 equations, matching how `prop:pointwise-operation-evaluation` treats the
 general case one cluster earlier. -/
@@ -74,7 +75,8 @@ theorem FunctionAlgebraClosure (f g : ℝ → ℝ) (lam : ℝ) (A : Set ℝ) :
       (∀ x ∈ A, PointwiseMin f g x = min (f x) (g x)) := by
   sorry
 
-/-- `thm:function-quotient-closure`. -/
+-- `thm:function-quotient-closure`
+/-- The theorem states the function quotient closure assertion. -/
 theorem FunctionQuotientClosure (f g : ℝ → ℝ) (A : Set ℝ)
     (h : ∀ x ∈ A, g x ≠ 0) : ∀ x ∈ A, PointwiseQuotient f g x = f x / g x := by
   sorry

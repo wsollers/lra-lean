@@ -62,21 +62,24 @@ namespace LRA.VolumeIII.Analysis.Sequences
 /-- `def:m-tail`. -/
 def MTail (x : RealSequence) (M : ℕ) : RealSequence := fun n => x (M + n)
 
-/-- `thm:convergence-of-tail`. Includes the "Moreover, the limits agree"
+-- `thm:convergence-of-tail`
+/-- The theorem states the convergence of tail assertion; Includes the "Moreover, the limits agree"
 clause the .tex's own Predicate reading omits — see audit note above. -/
 theorem ConvergenceOfTail (x : RealSequence) (m : ℕ) :
     ((∃ L, ConvergesTo x L) ↔ (∃ L, ConvergesTo (MTail x m) L)) ∧
       (∀ L, ConvergesTo x L → ConvergesTo (MTail x m) L) := by
   sorry
 
-/-- `thm:convergence-by-domination`. -/
+-- `thm:convergence-by-domination`
+/-- The theorem states the convergence by domination assertion. -/
 theorem ConvergenceByDomination {x : RealSequence} {L : ℝ}
     {a : RealSequence} (ha_pos : ∀ n, 0 < a n) (ha_null : ConvergesTo a 0)
     (h : ∃ c > 0, ∃ m : ℕ, ∀ n ≥ m, |x n - L| ≤ c * a n) :
     ConvergesTo x L := by
   sorry
 
-/-- `thm:ratio-limit-less-than-one-implies-null`. -/
+-- `thm:ratio-limit-less-than-one-implies-null`
+/-- The theorem states that ratio limit less than one implies null. -/
 theorem RatioLimitLessThanOneImpliesNull {x : RealSequence}
     (hx_pos : ∀ n, 0 < x n) {L : ℝ}
     (hratio : ConvergesTo (fun n => x (n + 1) / x n) L) (hL : L < 1) :

@@ -29,7 +29,8 @@ theorem IoEvDichotomy (P : ℕ → Prop) :
     (∀ N, ∃ n ≥ N, P n) ↔ ¬ (∃ N, ∀ n ≥ N, ¬ P n) := by
   sorry
 
-/-- `thm:monotone-subsequence`. Every real sequence has a monotone
+-- `thm:monotone-subsequence`
+/-- Every real sequence has a monotone
 subsequence, via the peak-index dichotomy. -/
 theorem MonotoneSubsequence (x : ℕ → ℝ) :
     ∃ φ : ℕ → ℕ, StrictMono φ ∧ (Monotone (x ∘ φ) ∨ Antitone (x ∘ φ)) := by

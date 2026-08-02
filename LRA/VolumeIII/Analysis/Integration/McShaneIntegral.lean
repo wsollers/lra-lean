@@ -55,7 +55,8 @@ def IsMcShaneIntegrable (f : ℝ → ℝ) (a b : ℝ) : Prop := ∃ L, HasMcShan
 
 variable {f : ℝ → ℝ} {a b : ℝ}
 
-/-- `thm:riemann-mcshane-hk-inclusions`: `R ⊆ McShane ⊆ HK`, values
+-- `thm:riemann-mcshane-hk-inclusions`
+/-- `R ⊆ McShane ⊆ HK`, values
 Mathematical statement (Lean): `theorem riemann_mcshane_hk_inclusions (hab : a ≤ b) (L : ℝ) : (HasRiemannIntegral f a b L → HasMcShaneIntegral f a b L) ∧ (HasMcShaneIntegral f a b L → HasHKIntegral f a b L)`.
 *Proof status:* proof pending.
 agreeing on overlap. -/
@@ -64,7 +65,8 @@ theorem riemann_mcshane_hk_inclusions (hab : a ≤ b) (L : ℝ) :
     (HasMcShaneIntegral f a b L → HasHKIntegral f a b L) := by
   sorry
 
-/-- `thm:mcshane-equals-lebesgue`: McShane integrability coincides
+-- `thm:mcshane-equals-lebesgue`
+/-- McShane integrability coincides
 exactly with the Lebesgue criterion already formalized in
 `MeasureZero.lean` (stood in for full Lebesgue integrability, absent a
 measure-theory development in this corpus, by the same criterion used for

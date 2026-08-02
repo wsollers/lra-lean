@@ -10,6 +10,7 @@ chapter's own `thm:nested-interval-property` content (see
 this pass). Both get their own Lean statement since they are distinct
 labeled nodes in distinct chapters. `def:bisection-sequence` is a
 schema/template (branches on an unspecified property `P`), not a single
+/-- The theorem states the — assertion. -/
 theorem — not directly formalized as its own statement; its two concrete
 instantiations (`prop:ivt-bisection`, `BwBisection` in
 `PredicateWalkingToolkit.lean`) are what get formalized.
@@ -21,7 +22,8 @@ import Mathlib.Topology.Instances.Real.Lemmas
 
 namespace LRA.VolumeIII.Analysis.RealAnalysis
 
-/-- `thm:nested-interval-property`, this chapter's restatement: nested
+-- `thm:nested-interval-property`
+/-- this chapter's restatement: nested
 closed bounded intervals `[a_n,b_n]` have nonempty intersection. -/
 theorem NestedIntervalProperty (a b : ℕ → ℝ)
     (hle : ∀ n, a n ≤ b n)
