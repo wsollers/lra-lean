@@ -77,10 +77,22 @@ theorem UnionUniversal {Alpha : LRACarrier} (Left : LRASet Alpha) :
     constructor
     · intro elementInLUU
       have elementInUniversal : Member Element (Universal Alpha) := by
+        trivial
       exact elementInUniversal
     · intro elementInUniversal
       exact Or.inr elementInUniversal
 
+theorem UniversalUnion {Alpha : LRACarrier} (Right : LRASet Alpha) :
+    Union (Universal Alpha) Right = Universal Alpha := by
+    apply LRASet.Extensionality
+    intro Element
+    constructor
+    · intro elementInUUR
+      have elementInUniversal : Member Element (Universal Alpha) := by
+        trivial
+      exact elementInUniversal
+    · intro elementInUniversal
+      exact Or.inl elementInUniversal
 
 theorem UnionIdempotent {Alpha : LRACarrier} (Left : LRASet Alpha) :
     Union Left Left = Left := by
