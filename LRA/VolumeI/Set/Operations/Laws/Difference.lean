@@ -71,7 +71,19 @@ theorem DifferenceUniversal {Alpha : LRACarrier} (Left : LRASet Alpha) :
 `x ∈ U \ A` iff `x ∈ Aᶜ`. -/
 theorem UniversalDifference {Alpha : LRACarrier} (Right : LRASet Alpha) :
     Difference (Universal Alpha) Right = Complement Right := by
-  sorry
+  apply LRASet.Extensionality
+  intro Element
+  constructor
+  · intro elementInDifference
+    have elementInComplement : Member Element (Complement Right) := by
+      exact elementInDifference.right
+    exact elementInComplement
+  · intro elementInComplement
+    have elementInUniversal : Member Element (Universal Alpha) := by
+      trivial
+    have elementInDifference : Member Element (Difference (Universal Alpha) Right) := by
+      exact ⟨elementInUniversal, elementInComplement⟩
+    exact elementInDifference
 
 /-- Let `A` be a set. `A \ A = ∅`; equivalently, for every element `x`,
 `x ∈ A \ A` iff `x ∈ ∅`. -/
