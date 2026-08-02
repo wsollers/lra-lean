@@ -1,5 +1,5 @@
 import LRA.VolumeI.Identity.Axioms
-import LRA.VolumeI.Set.Set
+import LRA.VolumeI.Set.LRASet.LRASet
 
 /-!
 Contract home for extensional equality.
