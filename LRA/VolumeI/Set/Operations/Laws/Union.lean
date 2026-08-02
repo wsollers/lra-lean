@@ -5,6 +5,8 @@ namespace LRA.VolumeI.Set.Operations.Laws
 open LRA.VolumeI.Set
 open LRA.VolumeI.Set.LRASet
 
+/-- Let `A` and `B` be sets. Their union is commutative: `A ∪ B = B ∪ A`;
+equivalently, for every element `x`, `x ∈ A ∪ B` iff `x ∈ B ∪ A`. -/
 theorem UnionCommutative {Alpha : LRACarrier} (Left Right : LRASet Alpha) :
     Union Left Right = Union Right Left := by
     apply LRASet.Extensionality
@@ -23,6 +25,9 @@ theorem UnionCommutative {Alpha : LRACarrier} (Left Right : LRASet Alpha) :
         | inr elementInLeft => exact Or.inl elementInLeft
       exact elementInLUR
 
+/-- Let `A`, `B`, and `C` be sets. Their union is associative:
+`(A ∪ B) ∪ C = A ∪ (B ∪ C)`; equivalently, for every element `x`,
+`x ∈ (A ∪ B) ∪ C` iff `x ∈ A ∪ (B ∪ C)`. -/
 theorem UnionAssociative {Alpha : LRACarrier}
 
     (Left Middle Right : LRASet Alpha) :
@@ -45,7 +50,8 @@ theorem UnionAssociative {Alpha : LRACarrier}
         | inl elementInMiddle => exact Or.inl (Or.inr elementInMiddle)
         | inr elementInRight => exact Or.inr elementInRight
 
-
+/-- Let `A` be a set. Taking the union of `A` with the empty set gives `A`:
+`A ∪ ∅ = A`; equivalently, for every element `x`, `x ∈ A ∪ ∅` iff `x ∈ A`. -/
 theorem UnionEmpty {Alpha : LRACarrier} (Left : LRASet Alpha) :
     Union Left (Empty Alpha) = Left := by
     apply LRASet.Extensionality
@@ -58,6 +64,8 @@ theorem UnionEmpty {Alpha : LRACarrier} (Left : LRASet Alpha) :
     · intro elementInLeft
       exact Or.inl elementInLeft
 
+/-- Let `A` be a set. Taking the union of the empty set with `A` gives `A`:
+`∅ ∪ A = A`; equivalently, for every element `x`, `x ∈ ∅ ∪ A` iff `x ∈ A`. -/
 theorem EmptyUnion {Alpha : LRACarrier} (Right : LRASet Alpha) :
     Union (Empty Alpha) Right = Right := by
     apply LRASet.Extensionality
@@ -70,6 +78,9 @@ theorem EmptyUnion {Alpha : LRACarrier} (Right : LRASet Alpha) :
     · intro elementInRight
       exact Or.inr elementInRight
 
+/-- Let `A` be a set. Taking the union of `A` with the universal set gives
+the universal set: `A ∪ U = U`; equivalently, for every element `x`,
+`x ∈ A ∪ U` iff `x ∈ U`. -/
 theorem UnionUniversal {Alpha : LRACarrier} (Left : LRASet Alpha) :
     Union Left (Universal Alpha) = Universal Alpha := by
     apply LRASet.Extensionality
@@ -82,6 +93,9 @@ theorem UnionUniversal {Alpha : LRACarrier} (Left : LRASet Alpha) :
     · intro elementInUniversal
       exact Or.inr elementInUniversal
 
+/-- Let `A` be a set. Taking the union of the universal set with `A` gives
+the universal set: `U ∪ A = U`; equivalently, for every element `x`,
+`x ∈ U ∪ A` iff `x ∈ U`. -/
 theorem UniversalUnion {Alpha : LRACarrier} (Right : LRASet Alpha) :
     Union (Universal Alpha) Right = Universal Alpha := by
     apply LRASet.Extensionality
@@ -94,6 +108,8 @@ theorem UniversalUnion {Alpha : LRACarrier} (Right : LRASet Alpha) :
     · intro elementInUniversal
       exact Or.inl elementInUniversal
 
+/-- Let `A` be a set. Taking the union of `A` with itself gives `A`: `A ∪ A = A`;
+equivalently, for every element `x`, `x ∈ A ∪ A` iff `x ∈ A`. -/
 theorem UnionIdempotent {Alpha : LRACarrier} (Left : LRASet Alpha) :
     Union Left Left = Left := by
     apply LRASet.Extensionality

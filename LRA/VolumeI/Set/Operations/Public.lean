@@ -10,7 +10,11 @@ backends, even when one backend implements an operation natively and another
 derives it from more primitive operations.
 -/
 
-/-- Backend-independent public names for finite set operations. -/
+/-- A backend-independent public interface for finite set operations. It names
+the set objects, elements, membership relation, empty set, singleton, pair,
+union, intersection, and subset relation; equivalently, it is the operation
+surface that different concrete set backends must expose with the same
+mathematical meaning. -/
 structure PublicSetOperations where
   SetObject : Type u
   Element : Type v
@@ -22,7 +26,10 @@ structure PublicSetOperations where
   intersection : SetObject → SetObject → SetObject
   subset : SetObject → SetObject → Prop
 
-/-- Public membership laws that make the finite operation names mean the same thing. -/
+/-- Laws for the backend-independent public finite set operations. They assert
+the ordinary membership readings for empty sets, singletons, pairs, unions,
+intersections, and subsets; equivalently, two backends satisfying these laws
+give the same elementwise meaning to the public operation names. -/
 structure PublicSetOperationLaws (operations : PublicSetOperations) : Prop where
   emptyMembership :
     ∀ element, ¬ operations.member element operations.empty
