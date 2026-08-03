@@ -46,7 +46,12 @@ theorem TranslationPreservesSuprema {A : Set ℝ}
     (nonemptyHypothesis : A.Nonempty)
     {s : ℝ} (supremumHypothesis : IsSupremum s A) (c : ℝ) :
     IsSupremum (s + c) (A + {c}) := by
-  sorry
+  rcases supremumHypothesis with ⟨upperBoundHypothesis, leastUpperBoundHypothesis⟩
+  constructor
+  · intro elementInA pointwiseSumHypothesis
+    rcases pointwiseSumHypothesis with ⟨elementInA, elementInSingleton, singletonElement, singletonHypothesis, sumHypothosis⟩
+    sorry
+  · sorry
 
 /-- Let `A` be a nonempty subset of `ℝ` with infimum `i`, and let `c : ℝ`.
 Then the translated set `A + {c}` has infimum `i + c`. -/
