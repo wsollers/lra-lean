@@ -1,5 +1,6 @@
 import LRA.VolumeI.Algebra.Signatures.FormalVocabulary
 import LRA.VolumeI.Algebra.Signatures.BasicArithmeticLanguage
+import LRA.VolumeI.Algebra.Signatures.OperationBundles
 import LRA.VolumeI.Algebra.Signatures.Algebraic
 import LRA.VolumeI.Algebra.Signatures.Ordered
 
