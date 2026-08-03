@@ -20,7 +20,11 @@ theorem center_mem_ball
     {r : Real}
     (radius_positive : 0 < r) :
     x ∈ Metric.ball x r := by
-  sorry
+  rw [Metric.mem_ball]
+  have : dist x x = 0 := by
+    rw [dist_self]
+  rw [this]
+  exact radius_positive
 
 
 /-- Open balls are monotone in the radius.
@@ -34,7 +38,11 @@ theorem ball_subset_ball
     {r s : Real}
     (radius_le : r ≤ s) :
     Metric.ball x r ⊆ Metric.ball x s := by
-  sorry
+    intro p pointInBalls
+    exact lt_of_lt_of_le pointInBalls radius_le
+
+
+
 
 /-- Every open ball is contained in the closed ball with the same center and
 
@@ -46,7 +54,9 @@ theorem ball_subset_closedBall
     (x : X)
     (r : Real) :
     Metric.ball x r ⊆ Metric.closedBall x r := by
-  sorry
+    intro p pointInBalls
+    rw [Metric.mem_closedBall]
+    exact le_of_lt pointInBalls
 
 /-- If a point lies in an open ball, then a sufficiently small ball around that
 
@@ -57,8 +67,11 @@ point lies inside the original ball. -/
 theorem ball_subset_ball_of_mem
     {x y : X}
     {r : Real}
-    (point_in_ball : y ∈ Metric.ball x r) :
+    (pointInBall : y ∈ Metric.ball x r) :
     ∃ ε > 0, Metric.ball y ε ⊆ Metric.ball x r := by
   sorry
+
+
+
 
 end LRA.VolumeIV
