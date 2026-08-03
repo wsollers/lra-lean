@@ -7,6 +7,7 @@ statement per book label, `sorry`-bodied.
 -/
 
 import Mathlib.Data.Real.Basic
+import LRA.VolumeIII.Analysis.Continuity.Limits
 import LRA.VolumeIII.Analysis.Continuity.PointContinuity
 
 namespace LRA.VolumeIII.Analysis.Differentiation
@@ -16,6 +17,14 @@ derivative of `f` at `c`, `c` a limit point of `A`. -/
 def Derivative (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   ∀ ε > 0, ∃ δ > 0, ∀ h : ℝ, c + h ∈ A → 0 < |h| → |h| < δ →
     |(f (c + h) - f c) / h - D| < ε
+
+/-- Zorich-style derivative definition: near `c`, the increment of `f`
+is a linear principal part `D * (x - c)` plus a remainder
+`α x * (x - c)`, where `α x → 0` as `x → c` along `A`. -/
+def ZorichDerivative (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
+  ∃ α : ℝ → ℝ,
+    LRA.VolumeIII.Analysis.Continuity.TendsTo α A c 0 ∧
+      ∀ x ∈ A, f x = f c + D * (x - c) + α x * (x - c)
 
 /-- `IsDifferentiable`: existential wrapper used throughout the chapter's
 hypotheses (`IsDifferentiable(f,c,ℝ,ℝ)` in the book's Predicate-reading

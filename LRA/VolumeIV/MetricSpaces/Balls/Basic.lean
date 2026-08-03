@@ -69,7 +69,46 @@ theorem ball_subset_ball_of_mem
     {r : Real}
     (pointInBall : y ∈ Metric.ball x r) :
     ∃ ε > 0, Metric.ball y ε ⊆ Metric.ball x r := by
-  sorry
+  use r - dist x y
+  constructor
+  ·  -- prove epsilon > 0
+    rw [Metric.mem_ball] at pointInBall
+    rw [dist_comm y x] at pointInBall
+    exact sub_pos.mpr pointInBall
+
+  ·  -- prove ball subset
+    intro p pointInSmallBall
+
+    have pointDistance : dist x y < r := by
+      rw [Metric.mem_ball] at pointInBall
+      rw [dist_comm y x] at pointInBall
+      exact pointInBall
+
+    have smallDistance : dist y p < r - dist x y := by
+      rw [Metric.mem_ball] at pointInSmallBall
+      rw [dist_comm p y] at pointInSmallBall
+      exact pointInSmallBall
+
+    have triangleBound : dist x p ≤ dist x y + dist y p := by
+      exact dist_triangle x y p
+
+    have combinedBound : dist x p < dist x y + (r - dist x y) := by
+      exact lt_of_le_of_lt triangleBound (by
+        simpa [add_comm, add_left_comm, add_assoc] using
+          add_lt_add_left smallDistance (dist x y))
+
+    have finalDistance : dist x p < r := by
+      -- arithmetic: dist x y + (r - dist x y) = r
+      linarith
+
+    rw [Metric.mem_ball]
+    rw [dist_comm p x]
+    exact finalDistance
+
+
+
+
+
 
 
 
