@@ -23,21 +23,24 @@ import Mathlib.Order.ConditionallyCompleteLattice.Basic
 
 namespace LRA.VolumeIII.Analysis.Functions
 
-/-- `prop:common-maximum-gives-sum-maximum`. -/
+/-- Let `A : Set ℝ` and `x₀ : ℝ`. If `f g : ℝ → ℝ`, `hx₀ : x₀ ∈ A`, `hf : ∀ x ∈ A, f x ≤ f x₀`, and
+`hg : ∀ x ∈ A, g x ≤ g x₀`. Then `∀ x ∈ A, f x + g x ≤ f x₀ + g x₀`. -/
 theorem CommonMaximumGivesSumMaximum (f g : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ)
     (hx₀ : x₀ ∈ A)
     (hf : ∀ x ∈ A, f x ≤ f x₀) (hg : ∀ x ∈ A, g x ≤ g x₀) :
     ∀ x ∈ A, f x + g x ≤ f x₀ + g x₀ := by
   sorry
 
-/-- `prop:common-minimum-gives-sum-minimum`. -/
+/-- Let `A : Set ℝ` and `x₀ : ℝ`. If `f g : ℝ → ℝ`, `hx₀ : x₀ ∈ A`, `hf : ∀ x ∈ A, f x₀ ≤ f x`, and
+`hg : ∀ x ∈ A, g x₀ ≤ g x`. Then `∀ x ∈ A, f x₀ + g x₀ ≤ f x + g x`. -/
 theorem CommonMinimumGivesSumMinimum (f g : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ)
     (hx₀ : x₀ ∈ A)
     (hf : ∀ x ∈ A, f x₀ ≤ f x) (hg : ∀ x ∈ A, g x₀ ≤ g x) :
     ∀ x ∈ A, f x₀ + g x₀ ≤ f x + g x := by
   sorry
 
-/-- `prop:common-extremum-converse-fails`. -/
+/-- The theorem asserts `∃ (A : Set ℝ) (f g : ℝ → ℝ) (x₀ : ℝ), x₀ ∈ A ∧ (∀ x ∈ A, f x + g x ≤ f x₀ +
+g x₀) ∧ ¬ (∀ x ∈ A, f x ≤ f x₀)`. -/
 theorem CommonExtremumConverseFails :
     ∃ (A : Set ℝ) (f g : ℝ → ℝ) (x₀ : ℝ), x₀ ∈ A ∧
       (∀ x ∈ A, f x + g x ≤ f x₀ + g x₀) ∧
@@ -49,7 +52,8 @@ def FunctionMaximumPoint (f : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ) : Prop :=
   x₀ ∈ A ∧ ∀ x ∈ A, f x ≤ f x₀
 
 -- `thm:maximum-point-characterized-by-supremum`
-/-- The theorem states the maximum point characterized by supremum assertion. -/
+/-- Let `A : Set ℝ` and `x₀ : ℝ`. If `f : ℝ → ℝ`, `hx₀ : x₀ ∈ A`, `hA : A.Nonempty`, and `hbdd : ∃
+M, ∀ x ∈ A, f x ≤ M`. Then `FunctionMaximumPoint f A x₀ ↔ IsLUB (f '' A) (f x₀)`. -/
 theorem MaximumPointCharacterizedBySupremum (f : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ)
     (hx₀ : x₀ ∈ A) (hA : A.Nonempty) (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M) :
     FunctionMaximumPoint f A x₀ ↔ IsLUB (f '' A) (f x₀) := by
@@ -60,14 +64,15 @@ def FunctionMinimumPoint (f : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ) : Prop :=
   x₀ ∈ A ∧ ∀ x ∈ A, f x₀ ≤ f x
 
 -- `thm:minimum-point-characterized-by-infimum`
-/-- The theorem states the minimum point characterized by infimum assertion. -/
+/-- Let `A : Set ℝ` and `x₀ : ℝ`. If `f : ℝ → ℝ`, `hx₀ : x₀ ∈ A`, `hA : A.Nonempty`, and `hbdd : ∃
+m, ∀ x ∈ A, m ≤ f x`. Then `FunctionMinimumPoint f A x₀ ↔ IsGLB (f '' A) (f x₀)`. -/
 theorem MinimumPointCharacterizedByInfimum (f : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ)
     (hx₀ : x₀ ∈ A) (hA : A.Nonempty) (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x) :
     FunctionMinimumPoint f A x₀ ↔ IsGLB (f '' A) (f x₀) := by
   sorry
 
-/-- `prop:function-extremum-values-are-unique`. The VALUE attained at a
-maximum/minimum point is unique, though the point itself need not be. -/
+/-- Let `A : Set ℝ` and `x₁ x₂ : ℝ`. If `f : ℝ → ℝ`, `h₁ : FunctionMaximumPoint f A x₁`, and `h₂ :
+FunctionMaximumPoint f A x₂`. Then `f x₁ = f x₂`. -/
 theorem FunctionExtremumValuesAreUnique (f : ℝ → ℝ) (A : Set ℝ)
     (x₁ x₂ : ℝ) (h₁ : FunctionMaximumPoint f A x₁)
     (h₂ : FunctionMaximumPoint f A x₂) : f x₁ = f x₂ := by

@@ -55,19 +55,23 @@ def PointwiseRelationNearPoint {n : ℕ} (R : (Fin n → ℝ) → Prop)
     (f : Fin n → (ℝ → ℝ)) (c : ℝ) (A : Set ℝ) : Prop :=
   ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| ∧ |x - c| < δ → R (fun i => f i x)
 
-/-- `prop:pointwise-operation-evaluation`. -/
+/-- Let `n : ℕ` and `A : Set ℝ`. If `Φ : (Fin n → ℝ) → ℝ` and `f : Fin n → (ℝ → ℝ)`. Then `∀ x ∈ A,
+PointwiseOperationOnSet Φ f x = AtPointOperation Φ f x`. -/
 theorem PointwiseOperationEvaluation {n : ℕ} (Φ : (Fin n → ℝ) → ℝ)
     (f : Fin n → (ℝ → ℝ)) (A : Set ℝ) :
     ∀ x ∈ A, PointwiseOperationOnSet Φ f x = AtPointOperation Φ f x := by
   sorry
 
-/-- `prop:pointwise-relation-evaluation`. -/
+/-- Let `n : ℕ` and `A : Set ℝ`. If `R : (Fin n → ℝ) → Prop` and `f : Fin n → (ℝ → ℝ)`. Then
+`PointwiseRelationOnSet R f A ↔ ∀ x ∈ A, AtPointRelation R f x`. -/
 theorem PointwiseRelationEvaluation {n : ℕ} (R : (Fin n → ℝ) → Prop)
     (f : Fin n → (ℝ → ℝ)) (A : Set ℝ) :
     PointwiseRelationOnSet R f A ↔ ∀ x ∈ A, AtPointRelation R f x := by
   sorry
 
-/-- `prop:pointwise-relation-near-unpacking`. -/
+/-- Let `n : ℕ`, `c : ℝ`, and `A : Set ℝ`. If `R : (Fin n → ℝ) → Prop` and `f : Fin n → (ℝ → ℝ)`.
+Then `PointwiseRelationNearPoint R f c A ↔ ∃ δ > 0, ∀ x ∈ A, (0 < |x - c| ∧ |x - c| < δ) → R
+(fun i => f i x)`. -/
 theorem PointwiseRelationNearUnpacking {n : ℕ} (R : (Fin n → ℝ) → Prop)
     (f : Fin n → (ℝ → ℝ)) (c : ℝ) (A : Set ℝ) :
     PointwiseRelationNearPoint R f c A ↔

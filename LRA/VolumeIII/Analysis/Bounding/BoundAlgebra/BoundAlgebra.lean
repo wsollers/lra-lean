@@ -20,21 +20,27 @@ def Dilate (A : Set ℝ) (scale : ℝ) : Set ℝ :=
 def Reflect (A : Set ℝ) : Set ℝ :=
   (fun a => -a) '' A
 
-/-- Translation preserves upper bounds. -/
+/-- Let `A : Set ℝ` and `c u : ℝ`. If `upperBoundHypothesis :
+LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound u A`. Then
+`LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound (u + c) (Displace A c)`. -/
 theorem TranslationPreservesUpperBounds {A : Set ℝ} {c u : ℝ}
     (upperBoundHypothesis :
       LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound u A) :
     LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound (u + c) (Displace A c) := by
   sorry
 
-/-- Translation preserves lower bounds. -/
+/-- Let `A : Set ℝ` and `c l : ℝ`. If `lowerBoundHypothesis :
+LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound l A`. Then
+`LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound (l + c) (Displace A c)`. -/
 theorem TranslationPreservesLowerBounds {A : Set ℝ} {c l : ℝ}
     (lowerBoundHypothesis :
       LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound l A) :
     LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound (l + c) (Displace A c) := by
   sorry
 
-/-- Positive dilation preserves upper bounds. -/
+/-- Let `A : Set ℝ` and `scale u : ℝ`. If `positiveScale : 0 < scale` and `upperBoundHypothesis :
+LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound u A`. Then
+`LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound (scale * u) (Dilate A scale)`. -/
 theorem PositiveDilationPreservesUpperBounds {A : Set ℝ} {scale u : ℝ}
     (positiveScale : 0 < scale)
     (upperBoundHypothesis :
@@ -43,7 +49,9 @@ theorem PositiveDilationPreservesUpperBounds {A : Set ℝ} {scale u : ℝ}
       (scale * u) (Dilate A scale) := by
   sorry
 
-/-- Positive dilation preserves lower bounds. -/
+/-- Let `A : Set ℝ` and `scale l : ℝ`. If `positiveScale : 0 < scale` and `lowerBoundHypothesis :
+LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound l A`. Then
+`LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound (scale * l) (Dilate A scale)`. -/
 theorem PositiveDilationPreservesLowerBounds {A : Set ℝ} {scale l : ℝ}
     (positiveScale : 0 < scale)
     (lowerBoundHypothesis :
@@ -52,7 +60,9 @@ theorem PositiveDilationPreservesLowerBounds {A : Set ℝ} {scale l : ℝ}
       (scale * l) (Dilate A scale) := by
   sorry
 
-/-- Negative dilation sends lower bounds to upper bounds. -/
+/-- Let `A : Set ℝ` and `scale l : ℝ`. If `negativeScale : scale < 0` and `lowerBoundHypothesis :
+LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound l A`. Then
+`LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound (scale * l) (Dilate A scale)`. -/
 theorem NegativeDilationSendsLowerToUpperBounds {A : Set ℝ} {scale l : ℝ}
     (negativeScale : scale < 0)
     (lowerBoundHypothesis :
@@ -61,7 +71,9 @@ theorem NegativeDilationSendsLowerToUpperBounds {A : Set ℝ} {scale l : ℝ}
       (scale * l) (Dilate A scale) := by
   sorry
 
-/-- Negative dilation sends upper bounds to lower bounds. -/
+/-- Let `A : Set ℝ` and `scale u : ℝ`. If `negativeScale : scale < 0` and `upperBoundHypothesis :
+LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound u A`. Then
+`LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound (scale * u) (Dilate A scale)`. -/
 theorem NegativeDilationSendsUpperToLowerBounds {A : Set ℝ} {scale u : ℝ}
     (negativeScale : scale < 0)
     (upperBoundHypothesis :
@@ -70,13 +82,15 @@ theorem NegativeDilationSendsUpperToLowerBounds {A : Set ℝ} {scale u : ℝ}
       (scale * u) (Dilate A scale) := by
   sorry
 
-/-- Reflection swaps upper bounds with lower bounds. -/
+/-- Let `A : Set ℝ` and `b : ℝ`. Then `LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound b
+A ↔ LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound (-b) (Reflect A)`. -/
 theorem ReflectionSwapsUpperBoundsToLowerBounds {A : Set ℝ} {b : ℝ} :
     LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound b A ↔
       LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound (-b) (Reflect A) := by
   sorry
 
-/-- Reflection swaps lower bounds with upper bounds. -/
+/-- Let `A : Set ℝ` and `b : ℝ`. Then `LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound b
+A ↔ LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound (-b) (Reflect A)`. -/
 theorem ReflectionSwapsLowerBoundsToUpperBounds {A : Set ℝ} {b : ℝ} :
     LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound b A ↔
       LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound (-b) (Reflect A) := by

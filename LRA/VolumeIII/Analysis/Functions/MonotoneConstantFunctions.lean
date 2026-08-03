@@ -34,7 +34,8 @@ def FunctionIncreasing (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
 def FunctionStrictlyIncreasing (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
   ∀ x ∈ A, ∀ y ∈ A, x < y → f x < f y
 
-/-- `prop:strictly-increasing-implies-increasing`. -/
+/-- Let `A : Set ℝ`. If `f : ℝ → ℝ` and `h : FunctionStrictlyIncreasing f A`. Then
+`FunctionIncreasing f A`. -/
 theorem StrictlyIncreasingImpliesIncreasing (f : ℝ → ℝ) (A : Set ℝ)
     (h : FunctionStrictlyIncreasing f A) : FunctionIncreasing f A := by
   sorry
@@ -47,7 +48,8 @@ def FunctionDecreasing (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
 def FunctionStrictlyDecreasing (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
   ∀ x ∈ A, ∀ y ∈ A, x < y → f y < f x
 
-/-- `prop:strictly-decreasing-implies-decreasing`. -/
+/-- Let `A : Set ℝ`. If `f : ℝ → ℝ` and `h : FunctionStrictlyDecreasing f A`. Then
+`FunctionDecreasing f A`. -/
 theorem StrictlyDecreasingImpliesDecreasing (f : ℝ → ℝ) (A : Set ℝ)
     (h : FunctionStrictlyDecreasing f A) : FunctionDecreasing f A := by
   sorry
@@ -56,20 +58,24 @@ theorem StrictlyDecreasingImpliesDecreasing (f : ℝ → ℝ) (A : Set ℝ)
 def FunctionMonotone (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
   FunctionIncreasing f A ∨ FunctionDecreasing f A
 
-/-- `prop:negation-reverses-monotonicity`. -/
+/-- Let `A : Set ℝ`. If `f : ℝ → ℝ`. Then `(FunctionIncreasing f A ↔ FunctionDecreasing (fun x => -f
+x) A) ∧ (FunctionDecreasing f A ↔ FunctionIncreasing (fun x => -f x) A)`. -/
 theorem NegationReversesMonotonicity (f : ℝ → ℝ) (A : Set ℝ) :
     (FunctionIncreasing f A ↔ FunctionDecreasing (fun x => -f x) A) ∧
       (FunctionDecreasing f A ↔ FunctionIncreasing (fun x => -f x) A) := by
   sorry
 
-/-- `prop:positive-scalar-multiples-preserve-monotonicity`. -/
+/-- Let `A : Set ℝ` and `lam : ℝ`. If `f : ℝ → ℝ` and `hlam : 0 < lam`. Then `(FunctionIncreasing f
+A ↔ FunctionIncreasing (fun x => lam * f x) A) ∧ (FunctionDecreasing f A ↔ FunctionDecreasing
+(fun x => lam * f x) A)`. -/
 theorem PositiveScalarMultiplesPreserveMonotonicity (f : ℝ → ℝ) (A : Set ℝ)
     (lam : ℝ) (hlam : 0 < lam) :
     (FunctionIncreasing f A ↔ FunctionIncreasing (fun x => lam * f x) A) ∧
       (FunctionDecreasing f A ↔ FunctionDecreasing (fun x => lam * f x) A) := by
   sorry
 
-/-- `prop:monotone-need-not-be-strict`. -/
+/-- The theorem asserts `∃ (A : Set ℝ) (f : ℝ → ℝ), FunctionIncreasing f A ∧ ¬
+FunctionStrictlyIncreasing f A`. -/
 theorem MonotoneNeedNotBeStrict :
     ∃ (A : Set ℝ) (f : ℝ → ℝ), FunctionIncreasing f A ∧
       ¬ FunctionStrictlyIncreasing f A := by
@@ -79,17 +85,19 @@ theorem MonotoneNeedNotBeStrict :
 def FunctionConstant (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
   ∃ c : ℝ, ∀ x ∈ A, f x = c
 
-/-- `prop:constant-function-characterization`. -/
+/-- Let `A : Set ℝ`. If `f : ℝ → ℝ`. Then `FunctionConstant f A ↔ (FunctionIncreasing f A ∧
+FunctionDecreasing f A)`. -/
 theorem ConstantFunctionCharacterization (f : ℝ → ℝ) (A : Set ℝ) :
     FunctionConstant f A ↔ (FunctionIncreasing f A ∧ FunctionDecreasing f A) := by
   sorry
 
-/-- `prop:constant-functions-are-bounded`. -/
+/-- Let `A : Set ℝ`. If `f : ℝ → ℝ` and `h : FunctionConstant f A`. Then `∃ B > 0, ∀ x ∈ A, |f x| ≤
+B`. -/
 theorem ConstantFunctionsAreBounded (f : ℝ → ℝ) (A : Set ℝ)
     (h : FunctionConstant f A) : ∃ B > 0, ∀ x ∈ A, |f x| ≤ B := by
   sorry
 
-/-- `prop:constant-functions-are-monotone`. -/
+/-- Let `A : Set ℝ`. If `f : ℝ → ℝ` and `h : FunctionConstant f A`. Then `FunctionMonotone f A`. -/
 theorem ConstantFunctionsAreMonotone (f : ℝ → ℝ) (A : Set ℝ)
     (h : FunctionConstant f A) : FunctionMonotone f A := by
   sorry
@@ -100,14 +108,12 @@ theorem ConstantFunctionsAreMonotone (f : ℝ → ℝ) (A : Set ℝ)
    rationale on each; docstrings here summarize.
    ================================================================ -/
 
-/-- ADDITIONS.md #9. Monotone-function algebra, the direct analogue of
-`thm:bounded-function-algebra-closure` for monotonicity instead of
-boundedness: a sum of two increasing (resp. decreasing) functions is
-increasing (resp. decreasing), and a product of two NONNEGATIVE
-increasing (resp. decreasing) functions is increasing (resp.
-decreasing) — the nonnegativity hypothesis is necessary (without it,
-e.g. `f(x)=x`, `g(x)=x` are both increasing on all of `ℝ` but `f·g=x²`
-is not increasing on `ℝ`, only on `[0,∞)`). -/
+/-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`. Then `(FunctionIncreasing f A → FunctionIncreasing g A →
+FunctionIncreasing (fun x => f x + g x) A) ∧ (FunctionDecreasing f A → FunctionDecreasing g A →
+FunctionDecreasing (fun x => f x + g x) A) ∧ (FunctionIncreasing f A → FunctionIncreasing g A →
+(∀ x ∈ A, 0 ≤ f x) → (∀ x ∈ A, 0 ≤ g x) → FunctionIncreasing (fun x => f x * g x) A) ∧
+(FunctionDecreasing f A → FunctionDecreasing g A → (∀ x ∈ A, 0 ≤ f x) → (∀ x ∈ A, 0 ≤ g x) →
+FunctionDecreasing (fun x => f x * g x) A)`. -/
 theorem MonotoneFunctionAlgebra (f g : ℝ → ℝ) (A : Set ℝ) :
     (FunctionIncreasing f A → FunctionIncreasing g A →
       FunctionIncreasing (fun x => f x + g x) A) ∧
@@ -121,25 +127,17 @@ theorem MonotoneFunctionAlgebra (f g : ℝ → ℝ) (A : Set ℝ) :
       FunctionDecreasing (fun x => f x * g x) A) := by
   sorry
 
-/-- ADDITIONS.md #10. A strictly monotone function is injective on its
-domain — the standard first step toward "strictly monotone functions
-have inverses," and a natural bridge between this section's
-monotonicity content and `algebra-of-functions`'s injective/surjective/
-bijective machinery. Stated directly with the `∀x∈A` idiom this file
-already uses throughout, rather than reusing `IsInjectiveOn` from
-`AlgebraOfFunctions.lean` — that predicate is defined for a function
-between whole TYPES (`f : A → B`), not for a function restricted to a
-`Set ℝ`, so it doesn't typecheck against the `(f : ℝ → ℝ) (A : Set ℝ)`
-shape this section's other results use. -/
+/-- Let `A : Set ℝ`. If `f : ℝ → ℝ` and `h : FunctionStrictlyIncreasing f A ∨
+FunctionStrictlyDecreasing f A`. Then `∀ x ∈ A, ∀ y ∈ A, f x = f y → x = y`. -/
 theorem StrictlyMonotoneImpliesInjective (f : ℝ → ℝ) (A : Set ℝ)
     (h : FunctionStrictlyIncreasing f A ∨ FunctionStrictlyDecreasing f A) :
     ∀ x ∈ A, ∀ y ∈ A, f x = f y → x = y := by
   sorry
 
-/-- ADDITIONS.md #11. Monotonicity restricts to subsets, exactly
-paralleling `prop:boundedness-restriction` for boundedness: increasing/
-decreasing/strictly-increasing/strictly-decreasing on `A` implies the
-same on any `S ⊆ A`. -/
+/-- Let `S A : Set ℝ`. If `f : ℝ → ℝ` and `hS : S ⊆ A`. Then `(FunctionIncreasing f A →
+FunctionIncreasing f S) ∧ (FunctionDecreasing f A → FunctionDecreasing f S) ∧
+(FunctionStrictlyIncreasing f A → FunctionStrictlyIncreasing f S) ∧ (FunctionStrictlyDecreasing
+f A → FunctionStrictlyDecreasing f S)`. -/
 theorem MonotonicityRestriction (f : ℝ → ℝ) (S A : Set ℝ) (hS : S ⊆ A) :
     (FunctionIncreasing f A → FunctionIncreasing f S) ∧
     (FunctionDecreasing f A → FunctionDecreasing f S) ∧
@@ -151,17 +149,11 @@ theorem MonotonicityRestriction (f : ℝ → ℝ) (S A : Set ℝ) (hS : S ⊆ A)
    ADDITIONS.md items 14-15. Added with user sign-off.
    ================================================================ -/
 
-/-- ADDITIONS.md #14. Composition of monotone functions, the natural
-follow-up to item 10 (`StrictlyMonotoneImpliesInjective`) and a
-genuine bridge between `algebra-of-functions`'s composition machinery
-and this section's monotonicity content — nothing currently in either
-section addresses how monotonicity behaves under `g ∘ f`. Stated for
-`g : ℝ → ℝ` composed after `f : A → B` (`f` maps `A` into `B`, matching
-how composition is set up in `algebra-of-functions`): increasing∘
-increasing and decreasing∘decreasing are both increasing; increasing∘
-decreasing and decreasing∘increasing are both decreasing — the familiar
-"same signs compose to increasing, opposite signs compose to
-decreasing" rule. -/
+/-- Let `A B : Set ℝ`. If `f g : ℝ → ℝ` and `hmaps : ∀ x ∈ A, f x ∈ B`. Then `(FunctionIncreasing f
+A → FunctionIncreasing g B → FunctionIncreasing (g ∘ f) A) ∧ (FunctionDecreasing f A →
+FunctionDecreasing g B → FunctionIncreasing (g ∘ f) A) ∧ (FunctionIncreasing f A →
+FunctionDecreasing g B → FunctionDecreasing (g ∘ f) A) ∧ (FunctionDecreasing f A →
+FunctionIncreasing g B → FunctionDecreasing (g ∘ f) A)`. -/
 theorem CompositionOfMonotoneFunctions (f g : ℝ → ℝ) (A B : Set ℝ)
     (hmaps : ∀ x ∈ A, f x ∈ B) :
     (FunctionIncreasing f A → FunctionIncreasing g B →
@@ -174,18 +166,10 @@ theorem CompositionOfMonotoneFunctions (f g : ℝ → ℝ) (A B : Set ℝ)
       FunctionDecreasing (g ∘ f) A) := by
   sorry
 
-/-- ADDITIONS.md #15. The inverse of a strictly monotone bijection is
-itself strictly monotone, in the SAME direction — closes the loop
-between item 10 (strict monotonicity gives injectivity) and
-`algebra-of-functions`'s `InverseBijection` (bijectivity gives an
-inverse function): together the three results say a strictly monotone
-function `f : A → B` has a genuine, well-behaved inverse `f⁻¹ : B → A`,
-not merely a set-theoretic one. `f` maps `A` onto `B` (`hmaps`/`hsurj`)
-and `f'` is its two-sided inverse there (`hleft`/`hright`) — stated with
-the same `∀x∈A`-restricted idiom as `StrictlyMonotoneImpliesInjective`
-above, for the same reason `IsBijectiveOn`/`IsInverseFunctionOf` from
-`AlgebraOfFunctions.lean` don't typecheck against `(f : ℝ → ℝ) (A : Set
-ℝ)`. -/
+/-- Let `A B : Set ℝ`. If `f f' : ℝ → ℝ`, `hmaps : ∀ x ∈ A, f x ∈ B`, `hsurj : ∀ y ∈ B, ∃ x ∈ A, f x
+= y`, `hleft : ∀ x ∈ A, f' (f x) = x`, and `hright : ∀ y ∈ B, f (f' y) = y`. Then
+`(FunctionStrictlyIncreasing f A → FunctionStrictlyIncreasing f' B) ∧
+(FunctionStrictlyDecreasing f A → FunctionStrictlyDecreasing f' B)`. -/
 theorem InverseOfStrictlyMonotoneBijectionIsStrictlyMonotone
     (f f' : ℝ → ℝ) (A B : Set ℝ)
     (hmaps : ∀ x ∈ A, f x ∈ B) (hsurj : ∀ y ∈ B, ∃ x ∈ A, f x = y)

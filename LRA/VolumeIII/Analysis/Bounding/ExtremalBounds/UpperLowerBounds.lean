@@ -33,10 +33,8 @@ def IsBoundedBelow [LE F] (A : Set F) : Prop :=
 def IsBounded [LE F] (A : Set F) : Prop :=
   IsBoundedAbove A ∧ IsBoundedBelow A
 
-/--
-Two-sided boundedness over a linearly ordered additive group is equivalent to
-having a single nonnegative absolute-value bound.
--/
+/-- Let `A : Set F`. If `[AddCommGroup F]`, `[LinearOrder F]`, and `[IsOrderedAddMonoid F]`. Then
+`IsBounded A ↔ ∃ M, 0 ≤ M ∧ ∀ a ∈ A, |a| ≤ M`. -/
 theorem IsBoundedIffAbsBound [AddCommGroup F] [LinearOrder F] [IsOrderedAddMonoid F]
     (A : Set F) :
     IsBounded A ↔ ∃ M, 0 ≤ M ∧ ∀ a ∈ A, |a| ≤ M := by

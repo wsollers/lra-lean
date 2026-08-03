@@ -22,8 +22,8 @@ def RightDerivative (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :
     |(f x - f c) / (x - c) - D| < ε
 
 -- `thm:differentiability-and-one-sided-derivatives`
-/-- `f` is
-differentiable at `c` iff both one-sided derivatives exist and agree. -/
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`. Then `IsDifferentiable f A c ↔ ∃ D, LeftDerivative
+D f A c ∧ RightDerivative D f A c`. -/
 theorem DifferentiableIffOneSidedDerivativesAgree (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     IsDifferentiable f A c ↔
       ∃ D, LeftDerivative D f A c ∧ RightDerivative D f A c := by

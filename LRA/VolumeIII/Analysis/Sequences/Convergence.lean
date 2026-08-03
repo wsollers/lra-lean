@@ -75,12 +75,8 @@ def ConvergesToNbhd (x : RealSequence) (L : ℝ) : Prop :=
   ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, x n ∈ CenteredInterval L ε
 
 -- `thm:equivalence-of-convergence-formulations`
-/-- Four notational
-registers of the same fact: (a) `ConvergesTo` itself, (b) the same
-epsilon-N absolute-value condition restated (the .tex's own point is that
-(a) and (b) are the informal/formal pairing of the identical statement),
-(c) the double-inequality unfolding of the absolute value, (d) the
-interval-membership formulation (`ConvergesToNbhd`). -/
+/-- Let `x : RealSequence` and `L : ℝ`. Then `[ConvergesTo x L, ∀ ε > 0, ∃ K : ℕ, ∀ n ≥ K, |x n - L|
+< ε, ∀ ε > 0, ∃ K : ℕ, ∀ n ≥ K, L - ε < x n ∧ x n < L + ε, ConvergesToNbhd x L].TFAE`. -/
 theorem EquivalenceOfConvergenceFormulations (x : RealSequence) (L : ℝ) :
     [ConvergesTo x L,
      ∀ ε > 0, ∃ K : ℕ, ∀ n ≥ K, |x n - L| < ε,

@@ -38,15 +38,14 @@ def DerivativeSeq (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
     ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |(f (xs n) - f c) / (xs n - c) - D| < ε
 
 -- `thm:derivative-equivalence`
-/-- the ε-δ, topological, and sequential
-definitions of the derivative all agree. -/
+/-- Let `D : ℝ`, `A : Set ℝ`, and `c : ℝ`. If `f : ℝ → ℝ`. Then `Derivative D f A c ↔ DerivativeTop
+D f A c ∧ DerivativeSeq D f A c`. -/
 theorem DerivativeEquivalence (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     Derivative D f A c ↔ DerivativeTop D f A c ∧ DerivativeSeq D f A c := by
   sorry
 
-/-- `prop:derivative-h-form-equivalence`: the `h`-form
-`(f(c+h)-f(c))/h → D` as `h → 0` agrees with the `x`-form
-`(f(x)-f(c))/(x-c) → D` as `x → c`. -/
+/-- Let `D : ℝ`, `A : Set ℝ`, and `c : ℝ`. If `f : ℝ → ℝ`. Then `Derivative D f A c ↔ (∀ ε > 0, ∃ δ
+> 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → |(f x - f c) / (x - c) - D| < ε)`. -/
 theorem DerivativeHFormEquivalence (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     Derivative D f A c ↔
       (∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ →
@@ -54,14 +53,16 @@ theorem DerivativeHFormEquivalence (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c 
   sorry
 
 -- `thm:differentiable-implies-continuous`
-/-- The theorem states that differentiable implies continuous. -/
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ` and `h : IsDifferentiable f A c`. Then
+`LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f A c`. -/
 theorem DifferentiableImpliesContinuous (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (h : IsDifferentiable f A c) :
     LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f A c := by
   sorry
 
 -- `thm:uniqueness-of-the-derivative`
-/-- The theorem states the uniqueness of the derivative assertion. -/
+/-- Let `A : Set ℝ` and `c D₁ D₂ : ℝ`. If `f : ℝ → ℝ`, `h₁ : Derivative D₁ f A c`, and `h₂ :
+Derivative D₂ f A c`. Then `D₁ = D₂`. -/
 theorem DerivativeUnique (f : ℝ → ℝ) (A : Set ℝ) (c D₁ D₂ : ℝ)
     (h₁ : Derivative D₁ f A c) (h₂ : Derivative D₂ f A c) : D₁ = D₂ := by
   sorry

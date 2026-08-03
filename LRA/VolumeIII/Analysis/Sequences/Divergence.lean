@@ -20,10 +20,8 @@ unbounded-above and unbounded-below sequences have a positive- or negative-infin
 subsequence, and bounded divergence produces two subsequential limits
 (the converse-flavored partner to `BolzanoWeierstrassSequences` +
 `DivergenceByTwoSubsequentialLimits` — also essentially the key
-/-- The lemma states the behind assertion. -/
 lemma behind this pass's own `bounded_sequence_converges_iff_unique_
 subsequential_limit` addition in `Subsequences.lean`; worth noting this
-/-- The theorem states the is assertion. -/
 theorem is arguably a MORE direct route to that addition's hard direction
 than the two-theorem chain cited there, though both work).
 
@@ -67,20 +65,23 @@ def IsOscillatory (x : RealSequence) : Prop :=
   IsDivergent x ∧ ¬ DivergesToPosInf x ∧ ¬ DivergesToNegInf x
 
 -- `thm:divergence-to-infinity-implies-real-divergence`
-/-- The theorem states that divergence to infinity implies real divergence. -/
+/-- Let `x : RealSequence`. If `x` diverges to positive or negative infinity, then
+`x` is divergent as a real sequence. -/
 theorem DivergenceToInfinityImpliesRealDivergence {x : RealSequence}
     (h : DivergesToPosInf x ∨ DivergesToNegInf x) : IsDivergent x := by
   sorry
 
 -- `thm:two-subsequential-limits-force-divergence`
-/-- The theorem states the two subsequential limits force divergence assertion. -/
+/-- Let `x` be a real sequence with two distinct subsequential limits `L` and `K`.
+Then `x` is divergent. -/
 theorem TwoSubsequentialLimitsForceDivergence {x : RealSequence}
     {L K : ℝ} (hLK : L ≠ K) (hL : IsSubsequentialLimit x L)
     (hK : IsSubsequentialLimit x K) : IsDivergent x := by
   sorry
 
 -- `thm:unbounded-above-has-positive-infinity-subsequence`
-/-- The theorem states that unbounded above has positive infinity subsequence. -/
+/-- Let `x` be a real sequence that is not bounded above. Then some subsequence of
+`x` diverges to positive infinity. -/
 theorem UnboundedAboveHasPositiveInfinitySubsequence {x : RealSequence}
     (h : ¬ BoundedAboveSeq x) :
     ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧
@@ -88,7 +89,8 @@ theorem UnboundedAboveHasPositiveInfinitySubsequence {x : RealSequence}
   sorry
 
 -- `thm:unbounded-below-has-negative-infinity-subsequence`
-/-- The theorem states that unbounded below has negative infinity subsequence. -/
+/-- Let `x` be a real sequence that is not bounded below. Then some subsequence of
+`x` diverges to negative infinity. -/
 theorem UnboundedBelowHasNegativeInfinitySubsequence {x : RealSequence}
     (h : ¬ BoundedBelowSeq x) :
     ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧
@@ -96,7 +98,8 @@ theorem UnboundedBelowHasNegativeInfinitySubsequence {x : RealSequence}
   sorry
 
 -- `thm:bounded-divergence-produces-two-subsequential-limits`
-/-- The theorem states the bounded divergence produces two subsequential limits assertion. -/
+/-- Let `x` be a bounded divergent real sequence. Then `x` has two distinct
+subsequential limits. -/
 theorem BoundedDivergenceProducesTwoSubsequentialLimits {x : RealSequence}
     (hbdd : BoundedSeq x) (hdiv : IsDivergent x) :
     ∃ L K : ℝ, L ≠ K ∧ IsSubsequentialLimit x L ∧ IsSubsequentialLimit x K := by

@@ -23,8 +23,8 @@ def BoundedOnSet (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
   ∃ M > 0, ∀ x ∈ A, |f x| ≤ M
 
 -- `thm:boundedness-theorem`
-/-- continuous on `[a,b]` implies bounded on
-`[a,b]`. -/
+/-- Let `a b : ℝ`. If `f : ℝ → ℝ`, `hab : a ≤ b`, and `hf : ContinuousOn' f (Set.Icc a b)`. Then
+`BoundedOnSet f (Set.Icc a b)`. -/
 theorem BoundednessTheorem (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
     (hf : ContinuousOn' f (Set.Icc a b)) : BoundedOnSet f (Set.Icc a b) := by
   sorry
@@ -37,7 +37,8 @@ def IsAbsoluteMinimum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   c ∈ A ∧ ∀ x ∈ A, f c ≤ f x
 
 -- `thm:extreme-value-theorem`
-/-- The theorem states the extreme value theorem assertion. -/
+/-- Let `a b : ℝ`. If `f : ℝ → ℝ`, `hab : a ≤ b`, and `hf : ContinuousOn' f (Set.Icc a b)`. Then `(∃
+c, IsAbsoluteMaximum f (Set.Icc a b) c) ∧ (∃ c, IsAbsoluteMinimum f (Set.Icc a b) c)`. -/
 theorem ExtremeValueTheorem (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
     (hf : ContinuousOn' f (Set.Icc a b)) :
     (∃ c, IsAbsoluteMaximum f (Set.Icc a b) c) ∧
@@ -45,15 +46,16 @@ theorem ExtremeValueTheorem (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
   sorry
 
 -- `thm:location-of-roots`
-/-- (Bolzano's theorem): opposite-signed
-endpoints force an interior root. -/
+/-- Let `a b : ℝ`. If `f : ℝ → ℝ`, `hab : a < b`, `hf : ContinuousOn' f (Set.Icc a b)`, and `hsign :
+f a * f b < 0`. Then `∃ c ∈ Set.Ioo a b, f c = 0`. -/
 theorem LocationOfRoots (f : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     (hf : ContinuousOn' f (Set.Icc a b)) (hsign : f a * f b < 0) :
     ∃ c ∈ Set.Ioo a b, f c = 0 := by
   sorry
 
 -- `thm:bolzano-intermediate-value`
-/-- (IVT). -/
+/-- Let `a b y : ℝ`. If `f : ℝ → ℝ`, `hab : a < b`, `hf : ContinuousOn' f (Set.Icc a b)`, and `hy :
+(f a < y ∧ y < f b) ∨ (f b < y ∧ y < f a)`. Then `∃ c ∈ Set.Ioo a b, f c = y`. -/
 theorem BolzanoIntermediateValue (f : ℝ → ℝ) (a b y : ℝ) (hab : a < b)
     (hf : ContinuousOn' f (Set.Icc a b))
     (hy : (f a < y ∧ y < f b) ∨ (f b < y ∧ y < f a)) :
@@ -61,8 +63,8 @@ theorem BolzanoIntermediateValue (f : ℝ → ℝ) (a b y : ℝ) (hab : a < b)
   sorry
 
 -- `thm:preservation-of-intervals`
-/-- a continuous image of an interval is
-an interval. -/
+/-- Let `I : Set ℝ`. If `f : ℝ → ℝ`, `hI : I.OrdConnected`, and `hf : ContinuousOn' f I`. Then `(f
+'' I).OrdConnected`. -/
 theorem PreservationOfIntervals (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected)
     (hf : ContinuousOn' f I) : (f '' I).OrdConnected := by
   sorry
@@ -76,17 +78,15 @@ def DarbouxProperty (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
   ∀ a ∈ A, ∀ b ∈ A, ∀ y : ℝ, (f a < y ∧ y < f b) ∨ (f b < y ∧ y < f a) →
     ∃ c ∈ A, f c = y
 
-/-- The theorem states the continuous implies darboux property assertion. -/
+/-- Let `I : Set ℝ`. If `f : ℝ → ℝ`, `hI : I.OrdConnected`, and `hf : ContinuousOn' f I`. Then
+`DarbouxProperty f I`. -/
 theorem ContinuousImpliesDarbouxProperty (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hf : ContinuousOn' f I) : DarbouxProperty f I := by
   sorry
 
 -- `thm:heine-cantor`
-/-- continuity on a closed bounded interval is
-uniform. Stated here with the plain ε-δ uniform-continuity formula
-(matching `def:uniform-continuity` in the `uniform-continuity` section)
-rather than importing that file, to keep this file's dependency graph
-matching the book's own section order. -/
+/-- Let `a b : ℝ`. If `f : ℝ → ℝ`, `hab : a ≤ b`, and `hf : ContinuousOn' f (Set.Icc a b)`. Then `∀
+ε > 0, ∃ δ > 0, ∀ x ∈ Set.Icc a b, ∀ y ∈ Set.Icc a b, |x - y| < δ → |f x - f y| < ε`. -/
 theorem HeineCantor (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
     (hf : ContinuousOn' f (Set.Icc a b)) :
     ∀ ε > 0, ∃ δ > 0, ∀ x ∈ Set.Icc a b, ∀ y ∈ Set.Icc a b,
@@ -94,8 +94,8 @@ theorem HeineCantor (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
   sorry
 
 -- `thm:image-of-closed-bounded-interval`
-/-- the continuous image of
-`[a,b]` is itself a closed bounded interval. -/
+/-- Let `a b : ℝ`. If `f : ℝ → ℝ`, `hab : a ≤ b`, and `hf : ContinuousOn' f (Set.Icc a b)`. Then `∃
+m M, m ≤ M ∧ f '' Set.Icc a b = Set.Icc m M`. -/
 theorem ImageOfClosedBoundedInterval (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
     (hf : ContinuousOn' f (Set.Icc a b)) :
     ∃ m M, m ≤ M ∧ f '' Set.Icc a b = Set.Icc m M := by

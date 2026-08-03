@@ -41,28 +41,32 @@ namespace LRA.VolumeIII.Analysis.Sequences
 open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds (IsSupremum IsInfimum)
 
 -- `thm:increasing-sequence-limit-as-supremum`
-/-- The theorem states the increasing sequence limit as supremum assertion. -/
+/-- Let `x : RealSequence` and `S : ℝ`. If `hinc : IsIncreasing x`, `hbdd : BoundedAboveSeq x`, and
+`hS : IsSupremum S (Set.range x)`. Then `ConvergesTo x S`. -/
 theorem IncreasingSequenceLimitAsSupremum {x : RealSequence} {S : ℝ}
     (hinc : IsIncreasing x) (hbdd : BoundedAboveSeq x)
     (hS : IsSupremum S (Set.range x)) : ConvergesTo x S := by
   sorry
 
 -- `thm:decreasing-sequence-limit-as-infimum`
-/-- The theorem states the decreasing sequence limit as infimum assertion. -/
+/-- Let `x : RealSequence` and `I : ℝ`. If `hdec : IsDecreasing x`, `hbdd : BoundedBelowSeq x`, and
+`hI : IsInfimum I (Set.range x)`. Then `ConvergesTo x I`. -/
 theorem DecreasingSequenceLimitAsInfimum {x : RealSequence} {I : ℝ}
     (hdec : IsDecreasing x) (hbdd : BoundedBelowSeq x)
     (hI : IsInfimum I (Set.range x)) : ConvergesTo x I := by
   sorry
 
 -- `thm:tail-suprema-infima-converge`
-/-- The theorem states the tail suprema infima converge assertion. -/
+/-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `(∃ S : ℝ, ConvergesTo (TailSupSeq x) S) ∧
+(∃ I : ℝ, ConvergesTo (TailInfSeq x) I)`. -/
 theorem TailSupremaInfimaConverge {x : RealSequence} (h : BoundedSeq x) :
     (∃ S : ℝ, ConvergesTo (TailSupSeq x) S) ∧
       (∃ I : ℝ, ConvergesTo (TailInfSeq x) I) := by
   sorry
 
 -- `thm:bounded-sequence-limsup-liminf`
-/-- The theorem states the bounded sequence limsup liminf assertion. -/
+/-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `(∃ S : ℝ, LimsupSeq x S) ∧ (∃ I : ℝ,
+LiminfSeq x I)`. -/
 theorem BoundedSequenceLimsupLiminf {x : RealSequence} (h : BoundedSeq x) :
     (∃ S : ℝ, LimsupSeq x S) ∧ (∃ I : ℝ, LiminfSeq x I) := by
   sorry

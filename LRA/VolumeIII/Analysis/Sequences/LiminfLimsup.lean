@@ -85,53 +85,60 @@ def LimsupSeq (x : RealSequence) (L : ℝ) : Prop := ConvergesTo (TailSupSeq x) 
 def LiminfSeq (x : RealSequence) (L : ℝ) : Prop := ConvergesTo (TailInfSeq x) L
 
 -- `thm:tail-suprema-are-decreasing`
-/-- The theorem states that tail suprema are decreasing. -/
+/-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `IsDecreasing (TailSupSeq x)`. -/
 theorem TailSupremaAreDecreasing {x : RealSequence} (h : BoundedSeq x) :
     IsDecreasing (TailSupSeq x) := by
   sorry
 
 -- `thm:tail-infima-are-increasing`
-/-- The theorem states that tail infima are increasing. -/
+/-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `IsIncreasing (TailInfSeq x)`. -/
 theorem TailInfimaAreIncreasing {x : RealSequence} (h : BoundedSeq x) :
     IsIncreasing (TailInfSeq x) := by
   sorry
 
 -- `thm:liminf-below-limsup`
-/-- The theorem states the liminf below limsup assertion. -/
+/-- Let `x : RealSequence` and `I S : ℝ`. If `hbdd : BoundedSeq x`, `hI : LiminfSeq x I`, and `hS :
+LimsupSeq x S`. Then `I ≤ S`. -/
 theorem LiminfBelowLimsup {x : RealSequence} (hbdd : BoundedSeq x)
     {I S : ℝ} (hI : LiminfSeq x I) (hS : LimsupSeq x S) : I ≤ S := by
   sorry
 
 -- `thm:convergence-iff-liminf-equals-limsup`
-/-- The theorem states that convergence iff liminf equals limsup. -/
+/-- Let `x : RealSequence` and `L : ℝ`. If `hbdd : BoundedSeq x`. Then `ConvergesTo x L ↔ (LiminfSeq
+x L ∧ LimsupSeq x L)`. -/
 theorem ConvergenceIffLiminfEqualsLimsup {x : RealSequence}
     (hbdd : BoundedSeq x) {L : ℝ} :
     ConvergesTo x L ↔ (LiminfSeq x L ∧ LimsupSeq x L) := by
   sorry
 
 -- `thm:limsup-largest-subsequential-limit`
-/-- The theorem states the limsup largest subsequential limit assertion. -/
+/-- Let `x : RealSequence` and `S : ℝ`. If `hbdd : BoundedSeq x` and `hS : LimsupSeq x S`. Then
+`IsSubsequentialLimit x S ∧ ∀ L, IsSubsequentialLimit x L → L ≤ S`. -/
 theorem LimsupLargestSubsequentialLimit {x : RealSequence}
     (hbdd : BoundedSeq x) {S : ℝ} (hS : LimsupSeq x S) :
     IsSubsequentialLimit x S ∧ ∀ L, IsSubsequentialLimit x L → L ≤ S := by
   sorry
 
 -- `thm:liminf-smallest-subsequential-limit`
-/-- The theorem states the liminf smallest subsequential limit assertion. -/
+/-- Let `x : RealSequence` and `I : ℝ`. If `hbdd : BoundedSeq x` and `hI : LiminfSeq x I`. Then
+`IsSubsequentialLimit x I ∧ ∀ L, IsSubsequentialLimit x L → I ≤ L`. -/
 theorem LiminfSmallestSubsequentialLimit {x : RealSequence}
     (hbdd : BoundedSeq x) {I : ℝ} (hI : LiminfSeq x I) :
     IsSubsequentialLimit x I ∧ ∀ L, IsSubsequentialLimit x L → I ≤ L := by
   sorry
 
 -- `thm:oscillation-criterion-via-liminf-limsup`
-/-- The theorem states the oscillation criterion via liminf limsup assertion. -/
+/-- Let `x : RealSequence` and `I S : ℝ`. If `hbdd : BoundedSeq x`, `hI : LiminfSeq x I`, and `hS :
+LimsupSeq x S`. Then `I < S ↔ ∃ L K : ℝ, L ≠ K ∧ IsSubsequentialLimit x L ∧ IsSubsequentialLimit
+x K`. -/
 theorem OscillationCriterionViaLiminfLimsup {x : RealSequence}
     (hbdd : BoundedSeq x) {I S : ℝ} (hI : LiminfSeq x I) (hS : LimsupSeq x S) :
     I < S ↔ ∃ L K : ℝ, L ≠ K ∧ IsSubsequentialLimit x L ∧ IsSubsequentialLimit x K := by
   sorry
 
 -- `thm:limsup-comparison-under-eventual-order`
-/-- The theorem states the limsup comparison under eventual order assertion. -/
+/-- Let `x y : RealSequence` and `Sx Sy : ℝ`. If `hx : BoundedSeq x`, `hy : BoundedSeq y`, `h : ∃ N
+: ℕ, ∀ n ≥ N, x n ≤ y n`, `hSx : LimsupSeq x Sx`, and `hSy : LimsupSeq y Sy`. Then `Sx ≤ Sy`. -/
 theorem LimsupComparisonUnderEventualOrder {x y : RealSequence}
     (hx : BoundedSeq x) (hy : BoundedSeq y)
     (h : ∃ N : ℕ, ∀ n ≥ N, x n ≤ y n) {Sx Sy : ℝ}
@@ -139,7 +146,8 @@ theorem LimsupComparisonUnderEventualOrder {x y : RealSequence}
   sorry
 
 -- `thm:liminf-comparison-under-eventual-order`
-/-- The theorem states the liminf comparison under eventual order assertion. -/
+/-- Let `x y : RealSequence` and `Ix Iy : ℝ`. If `hx : BoundedSeq x`, `hy : BoundedSeq y`, `h : ∃ N
+: ℕ, ∀ n ≥ N, x n ≤ y n`, `hIx : LiminfSeq x Ix`, and `hIy : LiminfSeq y Iy`. Then `Ix ≤ Iy`. -/
 theorem LiminfComparisonUnderEventualOrder {x y : RealSequence}
     (hx : BoundedSeq x) (hy : BoundedSeq y)
     (h : ∃ N : ℕ, ∀ n ≥ N, x n ≤ y n) {Ix Iy : ℝ}
@@ -147,7 +155,9 @@ theorem LiminfComparisonUnderEventualOrder {x y : RealSequence}
   sorry
 
 -- `thm:limsup-squeeze-under-eventual-order`
-/-- The theorem states the limsup squeeze under eventual order assertion. -/
+/-- Let `a x b : RealSequence` and `Sa Sx Sb : ℝ`. If `ha : BoundedSeq a`, `hx : BoundedSeq x`, `hb
+: BoundedSeq b`, `h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n`, `hSa : LimsupSeq a Sa`, `hSx :
+LimsupSeq x Sx`, and `hSb : LimsupSeq b Sb`. Then `Sa ≤ Sx ∧ Sx ≤ Sb`. -/
 theorem LimsupSqueezeUnderEventualOrder {a x b : RealSequence}
     (ha : BoundedSeq a) (hx : BoundedSeq x) (hb : BoundedSeq b)
     (h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n)
@@ -156,7 +166,9 @@ theorem LimsupSqueezeUnderEventualOrder {a x b : RealSequence}
   sorry
 
 -- `thm:liminf-squeeze-under-eventual-order`
-/-- The theorem states the liminf squeeze under eventual order assertion. -/
+/-- Let `a x b : RealSequence` and `Ia Ix Ib : ℝ`. If `ha : BoundedSeq a`, `hx : BoundedSeq x`, `hb
+: BoundedSeq b`, `h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n`, `hIa : LiminfSeq a Ia`, `hIx :
+LiminfSeq x Ix`, and `hIb : LiminfSeq b Ib`. Then `Ia ≤ Ix ∧ Ix ≤ Ib`. -/
 theorem LiminfSqueezeUnderEventualOrder {a x b : RealSequence}
     (ha : BoundedSeq a) (hx : BoundedSeq x) (hb : BoundedSeq b)
     (h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n)
@@ -164,20 +176,12 @@ theorem LiminfSqueezeUnderEventualOrder {a x b : RealSequence}
     (hIb : LiminfSeq b Ib) : Ia ≤ Ix ∧ Ix ≤ Ib := by
   sorry
 
-/-- ADDITION (not a `.tex` label — see `ADDITIONS.md` item 8). The
-sign-flip identity: `limsup(-x_n) = -liminf(x_n)`. Stated as a relation
-(matching `LimsupSeq`/`LiminfSeq`'s own house style) rather than as a
-function equation. -/
+/-- Let `x : RealSequence` and `L : ℝ`. Then `LimsupSeq (fun n => -x n) L ↔ LiminfSeq x (-L)`. -/
 theorem LimsupNegEqNegLiminf {x : RealSequence} {L : ℝ} :
     LimsupSeq (fun n => -x n) L ↔ LiminfSeq x (-L) := by
   sorry
 
-/-- ADDITION (not a `.tex` label — see `ADDITIONS.md` item 8). Dual of
-`LimsupNegEqNegLiminf`: `liminf(-x_n) = -limsup(x_n)`. Follows from
-the other half applied to `-x` (using `neg_neg`), so genuinely a
-one-line corollary once the first half is proved — exactly the
-"turns every limsup fact into its liminf twin for free" payoff noted
-in this file's header. -/
+/-- Let `x : RealSequence` and `L : ℝ`. Then `LiminfSeq (fun n => -x n) L ↔ LimsupSeq x (-L)`. -/
 theorem LiminfNegEqNegLimsup {x : RealSequence} {L : ℝ} :
     LiminfSeq (fun n => -x n) L ↔ LimsupSeq x (-L) := by
   sorry

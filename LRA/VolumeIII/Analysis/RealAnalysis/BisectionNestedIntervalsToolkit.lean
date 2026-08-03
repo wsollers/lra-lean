@@ -10,8 +10,7 @@ chapter's own `thm:nested-interval-property` content (see
 this pass). Both get their own Lean statement since they are distinct
 labeled nodes in distinct chapters. `def:bisection-sequence` is a
 schema/template (branches on an unspecified property `P`), not a single
-/-- The theorem states the — assertion. -/
-theorem — not directly formalized as its own statement; its two concrete
+theorem -- not directly formalized as its own statement; its two concrete
 instantiations (`prop:ivt-bisection`, `BwBisection` in
 `PredicateWalkingToolkit.lean`) are what get formalized.
 -/
@@ -23,27 +22,23 @@ import Mathlib.Topology.Instances.Real.Lemmas
 namespace LRA.VolumeIII.Analysis.RealAnalysis
 
 -- `thm:nested-interval-property`
-/-- this chapter's restatement: nested
-closed bounded intervals `[a_n,b_n]` have nonempty intersection. -/
+/-- If `a b : ℕ → ℝ`, `hle : ∀ n, a n ≤ b n`, and `hnest : ∀ n, a n ≤ a (n + 1) ∧ b (n + 1) ≤ b n`.
+Then `∃ x : ℝ, ∀ n, a n ≤ x ∧ x ≤ b n`. -/
 theorem NestedIntervalProperty (a b : ℕ → ℝ)
     (hle : ∀ n, a n ≤ b n)
     (hnest : ∀ n, a n ≤ a (n + 1) ∧ b (n + 1) ≤ b n) :
     ∃ x : ℝ, ∀ n, a n ≤ x ∧ x ≤ b n := by
   sorry
 
-/-- `prop:ivt-bisection`. The Intermediate Value Theorem, proved via the
-bisection route (property-propagation on a sign change, closed by NIP)
-rather than the sup-based `K = {x : f(x) ≤ 0}` route mentioned as the
-alternative "AoC path" in the same remark. -/
+/-- Let `a b L : ℝ`. If `f : ℝ → ℝ`, `hab : a < b`, `hf : ContinuousOn f (Set.Icc a b)`, and `hL :
+(f a < L ∧ L < f b) ∨ (f a > L ∧ L > f b)`. Then `∃ c ∈ Set.Ioo a b, f c = L`. -/
 theorem IvtBisection (f : ℝ → ℝ) (a b L : ℝ) (hab : a < b)
     (hf : ContinuousOn f (Set.Icc a b))
     (hL : (f a < L ∧ L < f b) ∨ (f a > L ∧ L > f b)) :
     ∃ c ∈ Set.Ioo a b, f c = L := by
   sorry
 
-/-- `prop:r-uncountable`. `ℝ` is uncountable, proved via nested-interval
-diagonalisation (the geometric form of Cantor's diagonal argument): no
-sequence `x : ℕ → ℝ` can be surjective. -/
+/-- The theorem asserts `¬ ∃ x : ℕ → ℝ, Function.Surjective x`. -/
 theorem RUncountable : ¬ ∃ x : ℕ → ℝ, Function.Surjective x := by
   sorry
 

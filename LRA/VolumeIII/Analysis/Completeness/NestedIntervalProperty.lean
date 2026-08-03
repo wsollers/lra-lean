@@ -25,7 +25,9 @@ def IsNestedClosedIntervalFamily : Prop :=
   (∀ n, a n ≤ b n) ∧
     (∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n))
 
-/-- Nested closed intervals have ordered endpoints across every later index. -/
+/-- Let `m n : ℕ`. If `orderedEndpointHypothesis : ∀ n, a n ≤ b n`, `nestedHypothesis : ∀ n, Set.Icc
+(a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)`, and `indexOrderHypothesis : n ≤ m`. Then `a n ≤
+a m ∧ a m ≤ b m ∧ b m ≤ b n`. -/
 theorem NestedClosedIntervalsHaveOrderedEndpoints
     (orderedEndpointHypothesis : ∀ n, a n ≤ b n)
     (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n))
@@ -34,28 +36,35 @@ theorem NestedClosedIntervalsHaveOrderedEndpoints
     a n ≤ a m ∧ a m ≤ b m ∧ b m ≤ b n := by
   sorry
 
-/-- The left endpoints of nested closed intervals are increasing. -/
+/-- If `orderedEndpointHypothesis : ∀ n, a n ≤ b n` and `nestedHypothesis : ∀ n, Set.Icc (a (n + 1))
+(b (n + 1)) ⊆ Set.Icc (a n) (b n)`. Then `∀ n, a n ≤ a (n + 1)`. -/
 theorem LeftEndpointsOfNestedIntervalsIncrease
     (orderedEndpointHypothesis : ∀ n, a n ≤ b n)
     (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) :
     ∀ n, a n ≤ a (n + 1) := by
   sorry
 
-/-- The right endpoints of nested closed intervals are decreasing. -/
+/-- If `orderedEndpointHypothesis : ∀ n, a n ≤ b n` and `nestedHypothesis : ∀ n, Set.Icc (a (n + 1))
+(b (n + 1)) ⊆ Set.Icc (a n) (b n)`. Then `∀ n, b (n + 1) ≤ b n`. -/
 theorem RightEndpointsOfNestedIntervalsDecrease
     (orderedEndpointHypothesis : ∀ n, a n ≤ b n)
     (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) :
     ∀ n, b (n + 1) ≤ b n := by
   sorry
 
-/-- Every left endpoint lies below every right endpoint in a nested closed interval family. -/
+/-- If `orderedEndpointHypothesis : ∀ n, a n ≤ b n` and `nestedHypothesis : ∀ n, Set.Icc (a (n + 1))
+(b (n + 1)) ⊆ Set.Icc (a n) (b n)`. Then `∀ m n, a n ≤ b m`. -/
 theorem LeftEndpointsAreBoundedAboveByRightEndpoints
     (orderedEndpointHypothesis : ∀ n, a n ≤ b n)
     (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) :
     ∀ m n, a n ≤ b m := by
   sorry
 
-/-- The supremum of the left endpoints is below the infimum of the right endpoints. -/
+/-- Let `leftEndpointLimit rightEndpointLimit : ℝ`. If `orderedEndpointHypothesis : ∀ n, a n ≤ b n`,
+`nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)`,
+`leftSupremumHypothesis : IsSupremum leftEndpointLimit (Set.range a)`, and
+`rightInfimumHypothesis : IsInfimum rightEndpointLimit (Set.range b)`. Then `leftEndpointLimit ≤
+rightEndpointLimit`. -/
 theorem EndpointSupremumLeEndpointInfimum
     (orderedEndpointHypothesis : ∀ n, a n ≤ b n)
     (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n))
@@ -65,7 +74,11 @@ theorem EndpointSupremumLeEndpointInfimum
     leftEndpointLimit ≤ rightEndpointLimit := by
   sorry
 
-/-- Nested closed intervals have nonempty intersection. -/
+/-- Let `leftEndpointLimit rightEndpointLimit : ℝ`. If `orderedEndpointHypothesis : ∀ n, a n ≤ b n`,
+`nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)`,
+`leftSupremumHypothesis : IsSupremum leftEndpointLimit (Set.range a)`, and
+`rightInfimumHypothesis : IsInfimum rightEndpointLimit (Set.range b)`. Then `leftEndpointLimit ≤
+rightEndpointLimit ∧ (⋂ n, Set.Icc (a n) (b n)).Nonempty ∧ ∃ x : ℝ, ∀ n, a n ≤ x ∧ x ≤ b n`. -/
 theorem NestedIntervalTheorem
     (orderedEndpointHypothesis : ∀ n, a n ≤ b n)
     (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n))
@@ -77,7 +90,10 @@ theorem NestedIntervalTheorem
         ∃ x : ℝ, ∀ n, a n ≤ x ∧ x ≤ b n := by
   sorry
 
-/-- The endpoint supremum belongs to every interval in the nested family. -/
+/-- Let `leftEndpointLimit : ℝ`. If `orderedEndpointHypothesis : ∀ n, a n ≤ b n`, `nestedHypothesis
+: ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)`, and `leftSupremumHypothesis :
+IsSupremum leftEndpointLimit (Set.range a)`. Then `(∀ n, a n ≤ leftEndpointLimit ∧
+leftEndpointLimit ≤ b n) ∧ leftEndpointLimit ∈ ⋂ n, Set.Icc (a n) (b n)`. -/
 theorem NestedIntervalIntersectionContainsEndpointSupremum
     (orderedEndpointHypothesis : ∀ n, a n ≤ b n)
     (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n))
@@ -87,7 +103,10 @@ theorem NestedIntervalIntersectionContainsEndpointSupremum
       leftEndpointLimit ∈ ⋂ n, Set.Icc (a n) (b n) := by
   sorry
 
-/-- The endpoint infimum belongs to every interval in the nested family. -/
+/-- Let `rightEndpointLimit : ℝ`. If `orderedEndpointHypothesis : ∀ n, a n ≤ b n`, `nestedHypothesis
+: ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)`, and `rightInfimumHypothesis :
+IsInfimum rightEndpointLimit (Set.range b)`. Then `(∀ n, a n ≤ rightEndpointLimit ∧
+rightEndpointLimit ≤ b n) ∧ rightEndpointLimit ∈ ⋂ n, Set.Icc (a n) (b n)`. -/
 theorem NestedIntervalIntersectionContainsEndpointInfimum
     (orderedEndpointHypothesis : ∀ n, a n ≤ b n)
     (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n))
@@ -97,7 +116,10 @@ theorem NestedIntervalIntersectionContainsEndpointInfimum
       rightEndpointLimit ∈ ⋂ n, Set.Icc (a n) (b n) := by
   sorry
 
-/-- Nested intervals with vanishing length have a unique intersection point. -/
+/-- If `orderedEndpointHypothesis : ∀ n, a n ≤ b n`, `nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b
+(n + 1)) ⊆ Set.Icc (a n) (b n)`, and `vanishingLengthHypothesis : ∀ ε > 0, ∃ N, ∀ n ≥ N, 0 ≤ b n
+- a n ∧ b n - a n < ε`. Then `∃! x : ℝ, (∀ n, a n ≤ x ∧ x ≤ b n) ∧ IsSupremum x (Set.range a) ∧
+IsInfimum x (Set.range b)`. -/
 theorem NestedIntervalsWithVanishingLengthHaveUniquePoint
     (orderedEndpointHypothesis : ∀ n, a n ≤ b n)
     (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n))
@@ -107,7 +129,10 @@ theorem NestedIntervalsWithVanishingLengthHaveUniquePoint
       IsSupremum x (Set.range a) ∧ IsInfimum x (Set.range b) := by
   sorry
 
-/-- Nested intervals with vanishing length have equal endpoint limits. -/
+/-- If `orderedEndpointHypothesis : ∀ n, a n ≤ b n`, `nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b
+(n + 1)) ⊆ Set.Icc (a n) (b n)`, and `vanishingLengthHypothesis : ∀ ε > 0, ∃ N, ∀ n ≥ N, b n - a
+n < ε`. Then `∃ x : ℝ, Filter.Tendsto a Filter.atTop (nhds x) ∧ Filter.Tendsto b Filter.atTop
+(nhds x)`. -/
 theorem NestedIntervalsWithVanishingLengthHaveEqualEndpointLimits
     (orderedEndpointHypothesis : ∀ n, a n ≤ b n)
     (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n))
@@ -116,7 +141,10 @@ theorem NestedIntervalsWithVanishingLengthHaveEqualEndpointLimits
       Filter.Tendsto b Filter.atTop (nhds x) := by
   sorry
 
-/-- A singleton nested-interval intersection is the common endpoint limit. -/
+/-- Let `x : ℝ`. If `orderedEndpointHypothesis : ∀ n, a n ≤ b n`, `nestedHypothesis : ∀ n, Set.Icc
+(a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)`, and `singletonIntersectionHypothesis : (⋂ n,
+Set.Icc (a n) (b n)) = {x}`. Then `Filter.Tendsto a Filter.atTop (nhds x) ∧ Filter.Tendsto b
+Filter.atTop (nhds x)`. -/
 theorem UniquePointInNestedIntervalsIsEndpointLimit
     (orderedEndpointHypothesis : ∀ n, a n ≤ b n)
     (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n))
@@ -126,21 +154,24 @@ theorem UniquePointInNestedIntervalsIsEndpointLimit
       Filter.Tendsto b Filter.atTop (nhds x) := by
   sorry
 
-/-- Open nested intervals need not have nonempty intersection. -/
+/-- The theorem asserts `∃ a b : ℕ → ℝ, (∀ n, a n < b n) ∧ (∀ n, Set.Ioo (a (n + 1)) (b (n + 1)) ⊆
+Set.Ioo (a n) (b n)) ∧ (⋂ n, Set.Ioo (a n) (b n)) = ∅`. -/
 theorem OpenNestedIntervalsNeedNotHaveNonemptyIntersection :
     ∃ a b : ℕ → ℝ, (∀ n, a n < b n) ∧
       (∀ n, Set.Ioo (a (n + 1)) (b (n + 1)) ⊆ Set.Ioo (a n) (b n)) ∧
         (⋂ n, Set.Ioo (a n) (b n)) = ∅ := by
   sorry
 
-/-- Closedness is necessary in the nested interval theorem. -/
+/-- The theorem asserts `∃ a b : ℕ → ℝ, (∀ n, a n < b n) ∧ (∀ n, Set.Ioc (a (n + 1)) (b (n + 1)) ⊆
+Set.Ioc (a n) (b n)) ∧ (⋂ n, Set.Ioc (a n) (b n)) = ∅`. -/
 theorem ClosednessIsNecessaryInNestedIntervalTheorem :
     ∃ a b : ℕ → ℝ, (∀ n, a n < b n) ∧
       (∀ n, Set.Ioc (a (n + 1)) (b (n + 1)) ⊆ Set.Ioc (a n) (b n)) ∧
         (⋂ n, Set.Ioc (a n) (b n)) = ∅ := by
   sorry
 
-/-- Boundedness is necessary in the nested interval theorem. -/
+/-- The theorem asserts `∃ a : ℕ → ℝ, (∀ n, Set.Ici (a (n + 1)) ⊆ Set.Ici (a n)) ∧ (⋂ n, Set.Ici (a
+n)) = ∅`. -/
 theorem BoundednessIsNecessaryInNestedIntervalTheorem :
     ∃ a : ℕ → ℝ, (∀ n, Set.Ici (a (n + 1)) ⊆ Set.Ici (a n)) ∧
       (⋂ n, Set.Ici (a n)) = ∅ := by

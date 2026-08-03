@@ -57,19 +57,21 @@ def IsClusterValueOf (x : RealSequence) (L : ℝ) : Prop :=
   ∀ ε > 0, ∀ N : ℕ, ∃ n ≥ N, |x n - L| < ε
 
 -- `thm:cluster-values-are-subsequential-limits`
-/-- The theorem states that cluster values are subsequential limits. -/
+/-- Let `x : RealSequence` and `L : ℝ`. Then `IsClusterValueOf x L ↔ IsSubsequentialLimit x L`. -/
 theorem ClusterValuesAreSubsequentialLimits {x : RealSequence} {L : ℝ} :
     IsClusterValueOf x L ↔ IsSubsequentialLimit x L := by
   sorry
 
 -- `thm:bounded-sequences-have-cluster-values`
-/-- The theorem states that bounded sequences have cluster values. -/
+/-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `∃ L : ℝ, IsClusterValueOf x L`. -/
 theorem BoundedSequencesHaveClusterValues {x : RealSequence}
     (h : BoundedSeq x) : ∃ L : ℝ, IsClusterValueOf x L := by
   sorry
 
 -- `thm:limsup-liminf-extremal-cluster-values`
-/-- The theorem states the limsup liminf extremal cluster values assertion. -/
+/-- Let `x : RealSequence` and `S I : ℝ`. If `hbdd : BoundedSeq x`, `hS : LimsupSeq x S`, and `hI :
+LiminfSeq x I`. Then `(IsClusterValueOf x S ∧ ∀ L, IsClusterValueOf x L → L ≤ S) ∧
+(IsClusterValueOf x I ∧ ∀ L, IsClusterValueOf x L → I ≤ L)`. -/
 theorem LimsupLiminfExtremalClusterValues {x : RealSequence}
     (hbdd : BoundedSeq x) {S I : ℝ} (hS : LimsupSeq x S) (hI : LiminfSeq x I) :
     (IsClusterValueOf x S ∧ ∀ L, IsClusterValueOf x L → L ≤ S) ∧

@@ -47,8 +47,8 @@ def RefinesPartition {a b : ℝ} (P' P : IntegrationPartition a b) : Prop :=
   ∀ i : Fin (P.n + 1), ∃ j : Fin (P'.n + 1), P'.points j = P.points i
 
 -- `lem:common-refinement-partitions`
-/-- Mathematical statement (Lean): `theorem common_refinement_partitions {a b : ℝ} (P Q : IntegrationPartition a b) : ∃ R : IntegrationPartition a b, RefinesPartition R P ∧ RefinesPartition R Q`.
-*Proof status:* proof pending. -/
+/-- Let `a b : ℝ` and `P Q : IntegrationPartition a b`. Then `∃ R : IntegrationPartition a b,
+RefinesPartition R P ∧ RefinesPartition R Q`. -/
 theorem common_refinement_partitions {a b : ℝ} (P Q : IntegrationPartition a b) :
     ∃ R : IntegrationPartition a b, RefinesPartition R P ∧ RefinesPartition R Q := by
   sorry

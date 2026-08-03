@@ -13,7 +13,10 @@ namespace LRA.VolumeIII.Analysis.Bounding.BoundAlgebra
 
 open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
 
-/-- Increasing continuous images preserve suprema. -/
+/-- Let `I A : Set ℝ` and `s : ℝ`. If `setContainedInDomain : A ⊆ I`, `nonemptyHypothesis :
+A.Nonempty`, `supremumHypothesis : IsSupremum s A`, `supremumInDomain : s ∈ I`, `f : ℝ → ℝ`,
+`monotoneHypothesis : MonotoneOn f I`, and `continuityHypothesis : ContinuousWithinAt f I s`.
+Then `IsSupremum (f s) (f '' A)`. -/
 theorem IncreasingImagePreservesSuprema {I A : Set ℝ}
     (setContainedInDomain : A ⊆ I)
     (nonemptyHypothesis : A.Nonempty)
@@ -26,7 +29,10 @@ theorem IncreasingImagePreservesSuprema {I A : Set ℝ}
     IsSupremum (f s) (f '' A) := by
   sorry
 
-/-- Increasing continuous images preserve infima. -/
+/-- Let `I A : Set ℝ` and `i : ℝ`. If `setContainedInDomain : A ⊆ I`, `nonemptyHypothesis :
+A.Nonempty`, `infimumHypothesis : IsInfimum i A`, `infimumInDomain : i ∈ I`, `f : ℝ → ℝ`,
+`monotoneHypothesis : MonotoneOn f I`, and `continuityHypothesis : ContinuousWithinAt f I i`.
+Then `IsInfimum (f i) (f '' A)`. -/
 theorem IncreasingImagePreservesInfima {I A : Set ℝ}
     (setContainedInDomain : A ⊆ I)
     (nonemptyHypothesis : A.Nonempty)
@@ -39,7 +45,10 @@ theorem IncreasingImagePreservesInfima {I A : Set ℝ}
     IsInfimum (f i) (f '' A) := by
   sorry
 
-/-- Decreasing continuous images send infima to suprema. -/
+/-- Let `I A : Set ℝ` and `i : ℝ`. If `setContainedInDomain : A ⊆ I`, `nonemptyHypothesis :
+A.Nonempty`, `infimumHypothesis : IsInfimum i A`, `infimumInDomain : i ∈ I`, `f : ℝ → ℝ`,
+`antitoneHypothesis : AntitoneOn f I`, and `continuityHypothesis : ContinuousWithinAt f I i`.
+Then `IsSupremum (f i) (f '' A)`. -/
 theorem DecreasingImageSendsInfimaToSuprema {I A : Set ℝ}
     (setContainedInDomain : A ⊆ I)
     (nonemptyHypothesis : A.Nonempty)
@@ -52,7 +61,10 @@ theorem DecreasingImageSendsInfimaToSuprema {I A : Set ℝ}
     IsSupremum (f i) (f '' A) := by
   sorry
 
-/-- Decreasing continuous images send suprema to infima. -/
+/-- Let `I A : Set ℝ` and `s : ℝ`. If `setContainedInDomain : A ⊆ I`, `nonemptyHypothesis :
+A.Nonempty`, `supremumHypothesis : IsSupremum s A`, `supremumInDomain : s ∈ I`, `f : ℝ → ℝ`,
+`antitoneHypothesis : AntitoneOn f I`, and `continuityHypothesis : ContinuousWithinAt f I s`.
+Then `IsInfimum (f s) (f '' A)`. -/
 theorem DecreasingImageSendsSupremaToInfima {I A : Set ℝ}
     (setContainedInDomain : A ⊆ I)
     (nonemptyHypothesis : A.Nonempty)
@@ -65,7 +77,11 @@ theorem DecreasingImageSendsSupremaToInfima {I A : Set ℝ}
     IsInfimum (f s) (f '' A) := by
   sorry
 
-/-- Increasing continuous inverse images preserve suprema. -/
+/-- Let `I J B : Set ℝ` and `u : ℝ`. If `f g : ℝ → ℝ`, `bijectionHypothesis : Set.BijOn f I J`,
+`inverseHypothesis : Set.InvOn g f I J`, `setContainedInCodomain : B ⊆ J`, `nonemptyHypothesis :
+B.Nonempty`, `supremumHypothesis : IsSupremum u B`, `supremumInCodomain : u ∈ J`,
+`inverseMonotoneHypothesis : MonotoneOn g J`, and `inverseContinuityHypothesis :
+ContinuousWithinAt g J u`. Then `IsSupremum (g u) (g '' B)`. -/
 theorem IncreasingInversePreservesSuprema {I J B : Set ℝ}
     {f g : ℝ → ℝ}
     (bijectionHypothesis : Set.BijOn f I J)
@@ -80,7 +96,11 @@ theorem IncreasingInversePreservesSuprema {I J B : Set ℝ}
     IsSupremum (g u) (g '' B) := by
   sorry
 
-/-- Increasing continuous inverse images preserve infima. -/
+/-- Let `I J B : Set ℝ` and `v : ℝ`. If `f g : ℝ → ℝ`, `bijectionHypothesis : Set.BijOn f I J`,
+`inverseHypothesis : Set.InvOn g f I J`, `setContainedInCodomain : B ⊆ J`, `nonemptyHypothesis :
+B.Nonempty`, `infimumHypothesis : IsInfimum v B`, `infimumInCodomain : v ∈ J`,
+`inverseMonotoneHypothesis : MonotoneOn g J`, and `inverseContinuityHypothesis :
+ContinuousWithinAt g J v`. Then `IsInfimum (g v) (g '' B)`. -/
 theorem IncreasingInversePreservesInfima {I J B : Set ℝ}
     {f g : ℝ → ℝ}
     (bijectionHypothesis : Set.BijOn f I J)
@@ -95,7 +115,11 @@ theorem IncreasingInversePreservesInfima {I J B : Set ℝ}
     IsInfimum (g v) (g '' B) := by
   sorry
 
-/-- Decreasing continuous inverse images send infima to suprema. -/
+/-- Let `I J B : Set ℝ` and `v : ℝ`. If `f g : ℝ → ℝ`, `bijectionHypothesis : Set.BijOn f I J`,
+`inverseHypothesis : Set.InvOn g f I J`, `setContainedInCodomain : B ⊆ J`, `nonemptyHypothesis :
+B.Nonempty`, `infimumHypothesis : IsInfimum v B`, `infimumInCodomain : v ∈ J`,
+`inverseAntitoneHypothesis : AntitoneOn g J`, and `inverseContinuityHypothesis :
+ContinuousWithinAt g J v`. Then `IsSupremum (g v) (g '' B)`. -/
 theorem DecreasingInverseSendsInfimaToSuprema {I J B : Set ℝ}
     {f g : ℝ → ℝ}
     (bijectionHypothesis : Set.BijOn f I J)
@@ -110,7 +134,11 @@ theorem DecreasingInverseSendsInfimaToSuprema {I J B : Set ℝ}
     IsSupremum (g v) (g '' B) := by
   sorry
 
-/-- Decreasing continuous inverse images send suprema to infima. -/
+/-- Let `I J B : Set ℝ` and `u : ℝ`. If `f g : ℝ → ℝ`, `bijectionHypothesis : Set.BijOn f I J`,
+`inverseHypothesis : Set.InvOn g f I J`, `setContainedInCodomain : B ⊆ J`, `nonemptyHypothesis :
+B.Nonempty`, `supremumHypothesis : IsSupremum u B`, `supremumInCodomain : u ∈ J`,
+`inverseAntitoneHypothesis : AntitoneOn g J`, and `inverseContinuityHypothesis :
+ContinuousWithinAt g J u`. Then `IsInfimum (g u) (g '' B)`. -/
 theorem DecreasingInverseSendsSupremaToInfima {I J B : Set ℝ}
     {f g : ℝ → ℝ}
     (bijectionHypothesis : Set.BijOn f I J)

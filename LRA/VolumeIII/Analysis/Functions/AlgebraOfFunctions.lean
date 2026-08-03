@@ -88,31 +88,33 @@ def IsBijectiveOn (f : A → B) : Prop := IsInjectiveOn f ∧ IsSurjectiveOn f
 def IsInverseFunctionOf (g : B → A) (f : A → B) : Prop :=
   (∀ a : A, g (f a) = a) ∧ (∀ b : B, f (g b) = b)
 
-/-- `prop:composition-injective`. -/
+/-- If `f : A → B`, `g : B → C`, `hf : IsInjectiveOn f`, and `hg : IsInjectiveOn g`. Then
+`IsInjectiveOn (g ∘ f)`. -/
 theorem CompositionInjective {f : A → B} {g : B → C}
     (hf : IsInjectiveOn f) (hg : IsInjectiveOn g) : IsInjectiveOn (g ∘ f) := by
   sorry
 
-/-- `prop:composition-surjective`. See Finding B above — formalized here
-with the hypothesis it should have had. -/
+/-- If `f : A → B`, `g : B → C`, `hf : IsSurjectiveOn f`, and `hg : IsSurjectiveOn g`. Then
+`IsSurjectiveOn (g ∘ f)`. -/
 theorem CompositionSurjective {f : A → B} {g : B → C}
     (hf : IsSurjectiveOn f) (hg : IsSurjectiveOn g) :
     IsSurjectiveOn (g ∘ f) := by
   sorry
 
-/-- `cor:composition-bijective`. -/
+/-- If `f : A → B`, `g : B → C`, `hf : IsBijectiveOn f`, and `hg : IsBijectiveOn g`. Then
+`IsBijectiveOn (g ∘ f)`. -/
 theorem CompositionBijective {f : A → B} {g : B → C}
     (hf : IsBijectiveOn f) (hg : IsBijectiveOn g) : IsBijectiveOn (g ∘ f) := by
   sorry
 
-/-- `prop:inverse-bijection`. -/
+/-- If `f : A → B` and `hf : IsBijectiveOn f`. Then `∃ g : B → A, IsInverseFunctionOf g f ∧
+IsBijectiveOn g`. -/
 theorem InverseBijection {f : A → B} (hf : IsBijectiveOn f) :
     ∃ g : B → A, IsInverseFunctionOf g f ∧ IsBijectiveOn g := by
   sorry
 
-/-- `prop:preimage-union-intersection`. All three parts (i)/(ii)/(iii),
-including the complement law that the `.tex`'s own Standard quantified
-statement omits — see Finding C above. -/
+/-- Let `S T : Set B`. If `f : A → B`. Then `f ⁻¹' (S ∪ T) = f ⁻¹' S ∪ f ⁻¹' T ∧ f ⁻¹' (S ∩ T) = f
+⁻¹' S ∩ f ⁻¹' T ∧ f ⁻¹' Sᶜ = (f ⁻¹' S)ᶜ`. -/
 theorem PreimageUnionIntersection {f : A → B} (S T : Set B) :
     f ⁻¹' (S ∪ T) = f ⁻¹' S ∪ f ⁻¹' T ∧
       f ⁻¹' (S ∩ T) = f ⁻¹' S ∩ f ⁻¹' T ∧

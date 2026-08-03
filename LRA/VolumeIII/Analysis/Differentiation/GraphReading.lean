@@ -37,27 +37,33 @@ def OrderReversing (f : ℝ → ℝ) (I : Set ℝ) : Prop :=
   ∀ x ∈ I, ∀ y ∈ I, x < y → f y ≤ f x
 
 -- `thm:nonincreasing-iff-nonpos-derivative`
-/-- The theorem states that nonincreasing iff nonpos derivative. -/
+/-- Let `I : Set ℝ`. If `f : ℝ → ℝ`, `hI : I.OrdConnected`, and `hdiff : ∀ x ∈ I, IsDifferentiable f
+I x`. Then `OrderReversing f I ↔ ∀ x ∈ I, ∀ D, Derivative D f I x → D ≤ 0`. -/
 theorem NonincreasingIffNonposDerivative (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected)
     (hdiff : ∀ x ∈ I, IsDifferentiable f I x) :
     OrderReversing f I ↔ ∀ x ∈ I, ∀ D, Derivative D f I x → D ≤ 0 := by
   sorry
 
 -- `thm:zero-derivative-implies-constant`
-/-- The theorem states that zero derivative implies constant. -/
+/-- Let `I : Set ℝ`. If `f : ℝ → ℝ`, `hI : I.OrdConnected`, and `hdiff : ∀ x ∈ I, Derivative 0 f I
+x`. Then `∃ k : ℝ, ∀ x ∈ I, f x = k`. -/
 theorem ZeroDerivativeImpliesConstant (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected)
     (hdiff : ∀ x ∈ I, Derivative 0 f I x) :
     ∃ k : ℝ, ∀ x ∈ I, f x = k := by
   sorry
 
-/-- `cor:equal-derivatives-constant-difference`. -/
+/-- Let `I : Set ℝ`. If `f g : ℝ → ℝ`, `hI : I.OrdConnected`, and `hdiff : ∀ x ∈ I, ∀ D, Derivative
+D f I x ↔ Derivative D g I x`. Then `∃ k : ℝ, ∀ x ∈ I, f x - g x = k`. -/
 theorem EqualDerivativesConstantDifference (f g : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected)
     (hdiff : ∀ x ∈ I, ∀ D, Derivative D f I x ↔ Derivative D g I x) :
     ∃ k : ℝ, ∀ x ∈ I, f x - g x = k := by
   sorry
 
 -- `thm:first-derivative-test-maximum`
-/-- The theorem states the first derivative test maximum assertion. -/
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`, `hc : c ∈ interior A`, `hcrit : Derivative 0 f A
+c`, `hpos : ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → ∀ D, Derivative D f A x → D > 0`, and `hneg :
+∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → ∀ D, Derivative D f A x → D < 0`. Then `IsRelativeMaximum
+f A c`. -/
 theorem FirstDerivativeTestMaximum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hc : c ∈ interior A) (hcrit : Derivative 0 f A c)
     (hpos : ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → ∀ D, Derivative D f A x → D > 0)
@@ -66,7 +72,10 @@ theorem FirstDerivativeTestMaximum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
   sorry
 
 -- `thm:first-derivative-test-minimum`
-/-- The theorem states the first derivative test minimum assertion. -/
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`, `hc : c ∈ interior A`, `hcrit : Derivative 0 f A
+c`, `hneg : ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → ∀ D, Derivative D f A x → D < 0`, and `hpos :
+∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → ∀ D, Derivative D f A x → D > 0`. Then `IsRelativeMinimum
+f A c`. -/
 theorem FirstDerivativeTestMinimum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hc : c ∈ interior A) (hcrit : Derivative 0 f A c)
     (hneg : ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → ∀ D, Derivative D f A x → D < 0)
@@ -88,7 +97,9 @@ def HigherDerivativeAt (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (A : Set ℝ
   LRA.VolumeIII.Analysis.Differentiation.NthDerivativeAt f fD A n c
 
 -- `thm:second-derivative-convexity-test`
-/-- The theorem states the second derivative convexity test assertion. -/
+/-- Let `I : Set ℝ`. If `f fD1 fD2 : ℝ → ℝ`, `hI : I.OrdConnected`, `hD1 : ∀ x ∈ I, Derivative (fD1
+x) f I x`, `hD2 : ∀ x ∈ I, Derivative (fD2 x) fD1 I x`, and `hpos : ∀ x ∈ I, fD2 x ≥ 0`. Then
+`IsConvexOn f I`. -/
 theorem SecondDerivativeConvexityTest (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected)
     (hD1 : ∀ x ∈ I, Derivative (fD1 x) f I x)
     (hD2 : ∀ x ∈ I, Derivative (fD2 x) fD1 I x)
@@ -97,7 +108,9 @@ theorem SecondDerivativeConvexityTest (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (h
   sorry
 
 -- `thm:second-derivative-concavity-test`
-/-- The theorem states the second derivative concavity test assertion. -/
+/-- Let `I : Set ℝ`. If `f fD1 fD2 : ℝ → ℝ`, `hI : I.OrdConnected`, `hD1 : ∀ x ∈ I, Derivative (fD1
+x) f I x`, `hD2 : ∀ x ∈ I, Derivative (fD2 x) fD1 I x`, and `hneg : ∀ x ∈ I, fD2 x ≤ 0`. Then
+`IsConcaveOn f I`. -/
 theorem SecondDerivativeConcavityTest (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected)
     (hD1 : ∀ x ∈ I, Derivative (fD1 x) f I x)
     (hD2 : ∀ x ∈ I, Derivative (fD2 x) fD1 I x)
@@ -106,14 +119,18 @@ theorem SecondDerivativeConcavityTest (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (h
   sorry
 
 -- `thm:second-derivative-test`
-/-- The theorem states the second derivative test assertion. -/
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f fD1 fD2 : ℝ → ℝ`, `hD1c : Derivative 0 f A c`, `hD1 : ∀ x ∈
+A, Derivative (fD1 x) f A x`, and `hD2c : Derivative (fD2 c) fD1 A c`. Then `(fD2 c > 0 →
+IsRelativeMinimum f A c) ∧ (fD2 c < 0 → IsRelativeMaximum f A c)`. -/
 theorem SecondDerivativeTest (f fD1 fD2 : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hD1c : Derivative 0 f A c)
     (hD1 : ∀ x ∈ A, Derivative (fD1 x) f A x) (hD2c : Derivative (fD2 c) fD1 A c) :
     (fD2 c > 0 → IsRelativeMinimum f A c) ∧ (fD2 c < 0 → IsRelativeMaximum f A c) := by
   sorry
 
-/-- `prop:inflection-point-necessary-condition`. -/
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f fD1 fD2 : ℝ → ℝ`, `hinfl : IsInflection f c`, `hD1 : ∀ x ∈ A,
+Derivative (fD1 x) f A x`, `hD2 : ∀ x ∈ A, Derivative (fD2 x) fD1 A x`, and `hcont :
+LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint fD2 A c`. Then `fD2 c = 0`. -/
 theorem InflectionPointNecessaryCondition (f fD1 fD2 : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hinfl : IsInflection f c)
     (hD1 : ∀ x ∈ A, Derivative (fD1 x) f A x) (hD2 : ∀ x ∈ A, Derivative (fD2 x) fD1 A x)
@@ -126,8 +143,10 @@ theorem InflectionPointNecessaryCondition (f fD1 fD2 : ℝ → ℝ) (A : Set ℝ
 -- ---------------------------------------------------------------------
 
 -- `thm:darboux`
-/-- a derivative has the intermediate value property, even
-where it is discontinuous. -/
+/-- Let `a b : ℝ`, `Da Db : ℝ`, and `k : ℝ`. If `f : ℝ → ℝ`, `hab : a < b`, `hdiff : ∀ x ∈ Set.Icc a
+b, IsDifferentiable f (Set.Icc a b) x`, `hDa : Derivative Da f (Set.Icc a b) a`, `hDb :
+Derivative Db f (Set.Icc a b) b`, and `hk : (Da < k ∧ k < Db) ∨ (Db < k ∧ k < Da)`. Then `∃ c ∈
+Set.Ioo a b, Derivative k f (Set.Icc a b) c`. -/
 theorem darboux (f : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     (hdiff : ∀ x ∈ Set.Icc a b, IsDifferentiable f (Set.Icc a b) x)
     (Da Db : ℝ) (hDa : Derivative Da f (Set.Icc a b) a) (hDb : Derivative Db f (Set.Icc a b) b)
@@ -163,8 +182,8 @@ def IsClassCOmega (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (I : Set ℝ) : P
       fD k a / (Nat.factorial k) * (x - a) ^ k) Filter.atTop (nhds (f x))
 
 -- `thm:smoothness-tower`
-/-- `C^0 ⊇ C^1 ⊇ C^2 ⊇ ⋯ ⊇ C^∞ ⊇ C^ω`, each
-inclusion strict. -/
+/-- Let `I : Set ℝ`. If `hI : I.Nontrivial`. Then `(∀ f fD k, IsClassCk f fD I (k + 1) → IsClassCk f
+fD I k) ∧ (∀ f fD, IsClassCOmega f fD I → IsClassCInfty f fD I)`. -/
 theorem SmoothnessTower (I : Set ℝ) (hI : I.Nontrivial) :
     (∀ f fD k, IsClassCk f fD I (k + 1) → IsClassCk f fD I k) ∧
     (∀ f fD, IsClassCOmega f fD I → IsClassCInfty f fD I) := by
@@ -178,17 +197,15 @@ def IsClassC11 (f fD1 : ℝ → ℝ) (I : Set ℝ) : Prop :=
     LRA.VolumeIII.Analysis.Continuity.IsLipschitzOn fD1 I L
 
 -- `thm:c11-placement`
-/-- `C^{1,1}(I) ⊊ C^1(I)`, and on a compact interval
-`K`, `C^2(K) ⊆ C^{1,1}(K) ⊊ C^1(K)`. -/
+/-- Let `I : Set ℝ`. If `hI : I.Nontrivial`. Then `(∀ f fD1, IsClassC11 f fD1 I → IsClassC1 f fD1
+I)`. -/
 theorem C11Placement (I : Set ℝ) (hI : I.Nontrivial) :
     (∀ f fD1, IsClassC11 f fD1 I → IsClassC1 f fD1 I) := by
   sorry
 
-/-- `cor:bounded-second-derivative-implies-c11`, restated here alongside
-its sibling `DerivativeBoundImpliesLipschitz` in `MeanValueTheorem.lean`
-one level up — `f''` bounded by `M` on `I` forces `f ∈ C^{1,1}(I)` with
-Lipschitz constant `M`. This is the statement most directly reusable for
-gradient-Lipschitz-bound reasoning in the Vulkan/GPU rendering work. -/
+/-- Let `I : Set ℝ` and `M : ℝ`. If `f fD1 fD2 : ℝ → ℝ`, `hM : M ≥ 0`, `hclass : IsClassCk f (fun n
+=> if n = 0 then f else if n = 1 then fD1 else fD2) I 2`, and `hbound : ∀ x ∈ I, |fD2 x| ≤ M`.
+Then `IsClassC11 f fD1 I ∧ LRA.VolumeIII.Analysis.Continuity.IsLipschitzOn fD1 I M`. -/
 theorem BoundedSecondDerivativeImpliesC11 (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (M : ℝ)
     (hM : M ≥ 0) (hclass : IsClassCk f (fun n => if n = 0 then f else if n = 1 then fD1 else fD2) I 2)
     (hbound : ∀ x ∈ I, |fD2 x| ≤ M) :

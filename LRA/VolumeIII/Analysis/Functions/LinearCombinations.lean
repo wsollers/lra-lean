@@ -24,14 +24,14 @@ namespace LRA.VolumeIII.Analysis.Functions
 /-- `def:linear-combination-of-real-valued-functions`. -/
 def LinearCombo (a b : ℝ) (f g : ℝ → ℝ) : ℝ → ℝ := fun x => a * f x + b * g x
 
-/-- `prop:linear-combination-closure`. Trivial by typing in Lean's
-total-function setting — see `thm:function-algebra-closure`'s header
-note for the same phenomenon. -/
+/-- Let `a b : ℝ` and `A : Set ℝ`. If `f g : ℝ → ℝ`. Then `∀ x ∈ A, LinearCombo a b f g x = a * f x
++ b * g x`. -/
 theorem LinearCombinationClosure (f g : ℝ → ℝ) (a b : ℝ) (A : Set ℝ) :
     ∀ x ∈ A, LinearCombo a b f g x = a * f x + b * g x := by
   sorry
 
-/-- `prop:bounded-linear-combination`. -/
+/-- Let `A : Set ℝ` and `a b : ℝ`. If `f g : ℝ → ℝ`, `hf : ∃ B > 0, ∀ x ∈ A, |f x| ≤ B`, and `hg : ∃
+B > 0, ∀ x ∈ A, |g x| ≤ B`. Then `∃ B > 0, ∀ x ∈ A, |LinearCombo a b f g x| ≤ B`. -/
 theorem BoundedLinearCombination (f g : ℝ → ℝ) (A : Set ℝ) (a b : ℝ)
     (hf : ∃ B > 0, ∀ x ∈ A, |f x| ≤ B) (hg : ∃ B > 0, ∀ x ∈ A, |g x| ≤ B) :
     ∃ B > 0, ∀ x ∈ A, |LinearCombo a b f g x| ≤ B := by
@@ -46,7 +46,9 @@ def IsClosedUnderLinearCombinations (C : Set (ℝ → ℝ)) : Prop :=
 def IsRealLinearRule (C : Set (ℝ → ℝ)) (T : (ℝ → ℝ) → ℝ) : Prop :=
   ∀ f g, f ∈ C → g ∈ C → ∀ a b : ℝ, T (LinearCombo a b f g) = a * T f + b * T g
 
-/-- `prop:real-linear-rule-test`. -/
+/-- If `C : Set (ℝ → ℝ)`, `hC : IsClosedUnderLinearCombinations C`, and `T : (ℝ → ℝ) → ℝ`. Then
+`IsRealLinearRule C T ↔ ((∀ f g, f ∈ C → g ∈ C → T (fun x => f x + g x) = T f + T g) ∧ (∀ f, f ∈
+C → ∀ a : ℝ, T (fun x => a * f x) = a * T f))`. -/
 theorem RealLinearRuleTest (C : Set (ℝ → ℝ))
     (hC : IsClosedUnderLinearCombinations C) (T : (ℝ → ℝ) → ℝ) :
     IsRealLinearRule C T ↔
@@ -54,7 +56,9 @@ theorem RealLinearRuleTest (C : Set (ℝ → ℝ))
         (∀ f, f ∈ C → ∀ a : ℝ, T (fun x => a * f x) = a * T f)) := by
   sorry
 
-/-- `cor:real-linear-rule-basic-values`. -/
+/-- If `C : Set (ℝ → ℝ)`, `hC : IsClosedUnderLinearCombinations C`, `T : (ℝ → ℝ) → ℝ`, `hT :
+IsRealLinearRule C T`, and `h0 : (fun _ : ℝ => (0 : ℝ)) ∈ C`. Then `T (fun _ => 0) = 0 ∧ ∀ f, f
+∈ C → T (fun x => -f x) = -T f`. -/
 theorem RealLinearRuleBasicValues (C : Set (ℝ → ℝ))
     (hC : IsClosedUnderLinearCombinations C) (T : (ℝ → ℝ) → ℝ)
     (hT : IsRealLinearRule C T) (h0 : (fun _ : ℝ => (0 : ℝ)) ∈ C) :

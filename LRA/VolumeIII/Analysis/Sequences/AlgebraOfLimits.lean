@@ -96,95 +96,106 @@ def AbsSeq (x : RealSequence) : RealSequence := fun n => |x n|
 noncomputable def SqrtSeq (x : RealSequence) : RealSequence := fun n => Real.sqrt (x n)
 
 -- `thm:limit-of-scalar-multiple`
-/-- The theorem states the limit of scalar multiple assertion. -/
+/-- Let `x : RealSequence` and `L α : ℝ`. If `h : ConvergesTo x L`. Then `ConvergesTo
+(ScalarMultiple α x) (α * L)`. -/
 theorem LimitOfScalarMultiple {x : RealSequence} {L α : ℝ}
     (h : ConvergesTo x L) : ConvergesTo (ScalarMultiple α x) (α * L) := by
   sorry
 
 -- `thm:limit-of-a-sum`
-/-- The theorem states the limit of a sum assertion. -/
+/-- Let `x y : RealSequence` and `L M : ℝ`. If `hx : ConvergesTo x L` and `hy : ConvergesTo y M`.
+Then `ConvergesTo (PointwiseSum x y) (L + M)`. -/
 theorem LimitOfASum {x y : RealSequence} {L M : ℝ}
     (hx : ConvergesTo x L) (hy : ConvergesTo y M) :
     ConvergesTo (PointwiseSum x y) (L + M) := by
   sorry
 
 -- `thm:limit-of-a-negation`
-/-- The theorem states the limit of a negation assertion. -/
+/-- Let `x : RealSequence` and `L : ℝ`. If `h : ConvergesTo x L`. Then `ConvergesTo
+(PointwiseNegation x) (-L)`. -/
 theorem LimitOfANegation {x : RealSequence} {L : ℝ}
     (h : ConvergesTo x L) : ConvergesTo (PointwiseNegation x) (-L) := by
   sorry
 
 -- `thm:limit-of-a-difference`
-/-- The theorem states the limit of a difference assertion. -/
+/-- Let `x y : RealSequence` and `L M : ℝ`. If `hx : ConvergesTo x L` and `hy : ConvergesTo y M`.
+Then `ConvergesTo (PointwiseDifference x y) (L - M)`. -/
 theorem LimitOfADifference {x y : RealSequence} {L M : ℝ}
     (hx : ConvergesTo x L) (hy : ConvergesTo y M) :
     ConvergesTo (PointwiseDifference x y) (L - M) := by
   sorry
 
 -- `thm:limit-of-a-product`
-/-- The theorem states the limit of a product assertion. -/
+/-- Let `x y : RealSequence` and `L M : ℝ`. If `hx : ConvergesTo x L` and `hy : ConvergesTo y M`.
+Then `ConvergesTo (PointwiseProduct x y) (L * M)`. -/
 theorem LimitOfAProduct {x y : RealSequence} {L M : ℝ}
     (hx : ConvergesTo x L) (hy : ConvergesTo y M) :
     ConvergesTo (PointwiseProduct x y) (L * M) := by
   sorry
 
 -- `thm:nonzero-limit-eventually-nonzero`
-/-- The theorem states the nonzero limit eventually nonzero assertion. -/
+/-- Let `x : RealSequence` and `L : ℝ`. If `hL : L ≠ 0` and `h : ConvergesTo x L`. Then `∃ N : ℕ, ∀
+n ≥ N, x n ≠ 0`. -/
 theorem NonzeroLimitEventuallyNonzero {x : RealSequence} {L : ℝ}
     (hL : L ≠ 0) (h : ConvergesTo x L) : ∃ N : ℕ, ∀ n ≥ N, x n ≠ 0 := by
   sorry
 
 -- `thm:limit-of-a-reciprocal`
-/-- The theorem states the limit of a reciprocal assertion. -/
+/-- Let `x : RealSequence` and `L : ℝ`. If `hx : ∀ n, x n ≠ 0`, `hL : L ≠ 0`, and `h : ConvergesTo x
+L`. Then `ConvergesTo (ReciprocalSeq x) (1 / L)`. -/
 theorem LimitOfAReciprocal {x : RealSequence} (hx : ∀ n, x n ≠ 0)
     {L : ℝ} (hL : L ≠ 0) (h : ConvergesTo x L) :
     ConvergesTo (ReciprocalSeq x) (1 / L) := by
   sorry
 
 -- `thm:limit-of-a-quotient`
-/-- The theorem states the limit of a quotient assertion. -/
+/-- Let `x y : RealSequence` and `L M : ℝ`. If `hy : ∀ n, y n ≠ 0`, `hM : M ≠ 0`, `hx : ConvergesTo
+x L`, and `hy' : ConvergesTo y M`. Then `ConvergesTo (PointwiseQuotient x y) (L / M)`. -/
 theorem LimitOfAQuotient {x y : RealSequence} (hy : ∀ n, y n ≠ 0)
     {L M : ℝ} (hM : M ≠ 0) (hx : ConvergesTo x L) (hy' : ConvergesTo y M) :
     ConvergesTo (PointwiseQuotient x y) (L / M) := by
   sorry
 
 -- `thm:limit-of-a-square`
-/-- The theorem states the limit of a square assertion. -/
+/-- Let `x : RealSequence` and `L : ℝ`. If `h : ConvergesTo x L`. Then `ConvergesTo (SquareSeq x) (L
+^ 2)`. -/
 theorem LimitOfASquare {x : RealSequence} {L : ℝ}
     (h : ConvergesTo x L) : ConvergesTo (SquareSeq x) (L ^ 2) := by
   sorry
 
 -- `thm:limit-of-an-absolute-value`
-/-- The theorem states the limit of an absolute value assertion. -/
+/-- Let `x : RealSequence` and `L : ℝ`. If `h : ConvergesTo x L`. Then `ConvergesTo (AbsSeq x) |L|`. -/
 theorem LimitOfAnAbsoluteValue {x : RealSequence} {L : ℝ}
     (h : ConvergesTo x L) : ConvergesTo (AbsSeq x) |L| := by
   sorry
 
 -- `thm:positive-limit-eventually-positive`
-/-- The theorem states the positive limit eventually positive assertion; Genuinely a specialization
-of `StrictLimitSeparationGivesEventualOrder` (from `Limits.lean`)
-against the constant zero sequence — see audit note above on the .tex's
-own missing dependency citation. -/
+/-- Let `x : RealSequence` and `L : ℝ`. If `hL : L > 0` and `h : ConvergesTo x L`. Then `∃ N : ℕ, ∀
+n ≥ N, 0 < x n`. -/
 theorem PositiveLimitEventuallyPositive {x : RealSequence} {L : ℝ}
     (hL : L > 0) (h : ConvergesTo x L) : ∃ N : ℕ, ∀ n ≥ N, 0 < x n := by
   sorry
 
 -- `thm:limit-of-a-square-root`
-/-- The theorem states the limit of a square root assertion. -/
+/-- Let `x : RealSequence` and `L : ℝ`. If `hx : ∀ n, 0 ≤ x n` and `h : ConvergesTo x L`. Then `0 ≤
+L ∧ ConvergesTo (SqrtSeq x) (Real.sqrt L)`. -/
 theorem LimitOfASquareRoot {x : RealSequence} (hx : ∀ n, 0 ≤ x n)
     {L : ℝ} (h : ConvergesTo x L) :
     0 ≤ L ∧ ConvergesTo (SqrtSeq x) (Real.sqrt L) := by
   sorry
 
 -- `thm:polynomial-sequence-limit`
-/-- The theorem states the polynomial sequence limit assertion. -/
+/-- Let `x : RealSequence`, `L : ℝ`, and `p : Polynomial ℝ`. If `h : ConvergesTo x L`. Then
+`ConvergesTo (fun n => p.eval (x n)) (p.eval L)`. -/
 theorem PolynomialSequenceLimit {x : RealSequence} {L : ℝ}
     (p : Polynomial ℝ) (h : ConvergesTo x L) :
     ConvergesTo (fun n => p.eval (x n)) (p.eval L) := by
   sorry
 
 -- `thm:rational-sequence-limit`
-/-- The theorem states the rational sequence limit assertion. -/
+/-- Let `x : RealSequence`, `L : ℝ`, and `p q : Polynomial ℝ`. If `hqL : q.eval L ≠ 0`, `hqx : ∀ n,
+q.eval (x n) ≠ 0`, and `h : ConvergesTo x L`. Then `ConvergesTo (fun n => p.eval (x n) / q.eval
+(x n)) (p.eval L / q.eval L)`. -/
 theorem RationalSequenceLimit {x : RealSequence} {L : ℝ}
     (p q : Polynomial ℝ) (hqL : q.eval L ≠ 0) (hqx : ∀ n, q.eval (x n) ≠ 0)
     (h : ConvergesTo x L) :

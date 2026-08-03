@@ -56,40 +56,25 @@ def IsMcShaneIntegrable (f : ℝ → ℝ) (a b : ℝ) : Prop := ∃ L, HasMcShan
 variable {f : ℝ → ℝ} {a b : ℝ}
 
 -- `thm:riemann-mcshane-hk-inclusions`
-/-- `R ⊆ McShane ⊆ HK`, values
-Mathematical statement (Lean): `theorem riemann_mcshane_hk_inclusions (hab : a ≤ b) (L : ℝ) : (HasRiemannIntegral f a b L → HasMcShaneIntegral f a b L) ∧ (HasMcShaneIntegral f a b L → HasHKIntegral f a b L)`.
-*Proof status:* proof pending.
-agreeing on overlap. -/
+/-- Let `L : ℝ`. If `hab : a ≤ b`. Then `(HasRiemannIntegral f a b L → HasMcShaneIntegral f a b L) ∧
+(HasMcShaneIntegral f a b L → HasHKIntegral f a b L)`. -/
 theorem riemann_mcshane_hk_inclusions (hab : a ≤ b) (L : ℝ) :
     (HasRiemannIntegral f a b L → HasMcShaneIntegral f a b L) ∧
     (HasMcShaneIntegral f a b L → HasHKIntegral f a b L) := by
   sorry
 
 -- `thm:mcshane-equals-lebesgue`
-/-- McShane integrability coincides
-exactly with the Lebesgue criterion already formalized in
-`MeasureZero.lean` (stood in for full Lebesgue integrability, absent a
-measure-theory development in this corpus, by the same criterion used for
-`lebesgue_criterion_riemann_integrability`, applied to the *absolute*
-oscillation-based measure-zero condition that characterizes Lebesgue
-Mathematical statement (Lean): `theorem mcshane_equals_lebesgue (hab : a ≤ b) : IsMcShaneIntegrable f a b ↔ ∃ E : Set ℝ, IsMeasureZero E ∧ ∀ x ∈ Set.Icc a b \ E, LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) x`.
-*Proof status:* proof pending.
-integrability in general, not just Riemann's bounded case). -/
+/-- If `hab : a ≤ b`. Then `IsMcShaneIntegrable f a b ↔ ∃ E : Set ℝ, IsMeasureZero E ∧ ∀ x ∈ Set.Icc
+a b \ E, LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) x`. -/
 theorem mcshane_equals_lebesgue (hab : a ≤ b) :
     IsMcShaneIntegrable f a b ↔
       ∃ E : Set ℝ, IsMeasureZero E ∧
         ∀ x ∈ Set.Icc a b \ E, LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) x := by
   sorry
 
-/-- The book's chain-closing observation: HK's `x²sin(1/x²)`-derivative
-witness is only *conditionally* integrable — McShane's free tags can
-sample nearby oscillatory peaks in a way HK's tag-in-slab restriction
-cannot, destroying the conditional cancellation and leaving only the
-absolutely-integrable (Lebesgue) part. Recorded as the fact that the HK
-witness from `HenstockKurzweil.lean` is HK-integrable but not
-Mathematical statement (Lean): `theorem hk_strictly_wider_than_mcshane (F FD : ℝ → ℝ) (hF : ∀ x : ℝ, LRA.VolumeIII.Analysis.Differentiation.Derivative (FD x) F Set.univ x) (hHK : IsHKIntegrable FD (-1) 1) (hnotLebesgue : ¬ IsRiemannIntegrable (fun x => |FD x|) (-1) 1) : ¬ IsMcShaneIntegrable FD (-1) 1`.
-*Proof status:* proof pending.
-McShane-integrable. -/
+/-- If `F FD : ℝ → ℝ`, `hF : ∀ x : ℝ, LRA.VolumeIII.Analysis.Differentiation.Derivative (FD x) F
+Set.univ x`, `hHK : IsHKIntegrable FD (-1) 1`, and `hnotLebesgue : ¬ IsRiemannIntegrable (fun x
+=> |FD x|) (-1) 1`. Then `¬ IsMcShaneIntegrable FD (-1) 1`. -/
 theorem hk_strictly_wider_than_mcshane (F FD : ℝ → ℝ)
     (hF : ∀ x : ℝ, LRA.VolumeIII.Analysis.Differentiation.Derivative (FD x) F Set.univ x)
     (hHK : IsHKIntegrable FD (-1) 1) (hnotLebesgue : ¬ IsRiemannIntegrable (fun x => |FD x|) (-1) 1) :

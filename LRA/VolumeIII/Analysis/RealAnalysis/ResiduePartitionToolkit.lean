@@ -13,15 +13,16 @@ import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 namespace LRA.VolumeIII.Analysis.RealAnalysis
 
 -- `thm:k-periodicity`
-/-- `(a_n) → L` iff every one of the `k` residue-class
-subsequences `(a_{kn+r})` converges to `L`. -/
+/-- Let `k : ℕ` and `L : ℝ`. If `a : ℕ → ℝ` and `hk : 2 ≤ k`. Then `Filter.Tendsto a Filter.atTop
+(nhds L) ↔ ∀ r < k, Filter.Tendsto (fun n => a (k * n + r)) Filter.atTop (nhds L)`. -/
 theorem KPeriodicity (a : ℕ → ℝ) (k : ℕ) (hk : 2 ≤ k) (L : ℝ) :
     Filter.Tendsto a Filter.atTop (nhds L) ↔
       ∀ r < k, Filter.Tendsto (fun n => a (k * n + r)) Filter.atTop (nhds L) := by
   sorry
 
-/-- `prop:residue-divergence`. If two residue-class subsequences converge
-to different limits, the full sequence diverges. -/
+/-- Let `k r s : ℕ` and `L M : ℝ`. If `a : ℕ → ℝ`, `hr : r < k`, `hs : s < k`, `hLM : L ≠ M`, `hL :
+Filter.Tendsto (fun n => a (k * n + r)) Filter.atTop (nhds L)`, and `hM : Filter.Tendsto (fun n
+=> a (k * n + s)) Filter.atTop (nhds M)`. Then `¬ ∃ N, Filter.Tendsto a Filter.atTop (nhds N)`. -/
 theorem ResidueDivergence (a : ℕ → ℝ) (k r s : ℕ) (hr : r < k) (hs : s < k)
     (L M : ℝ) (hLM : L ≠ M)
     (hL : Filter.Tendsto (fun n => a (k * n + r)) Filter.atTop (nhds L))
@@ -30,11 +31,9 @@ theorem ResidueDivergence (a : ℕ → ℝ) (k r s : ℕ) (hr : r < k) (hs : s <
   sorry
 
 -- `thm:alternating-series-test`
-/-- A positive, decreasing, null sequence
-`(a_n)` gives a convergent alternating series — proved via the even/odd
-(`k=2`) instance of `KPeriodicity`: even partial sums are decreasing and
-bounded below (MCT), odd partial sums are linked to them by
-`s_{2k+1} = s_{2k} + a_{2k+1}`. -/
+/-- If `a : ℕ → ℝ`, `hpos : ∀ n, 0 < a n`, `hdec : ∀ n, a (n + 1) ≤ a n`, and `hnull :
+Filter.Tendsto a Filter.atTop (nhds 0)`. Then `∃ L : ℝ, Filter.Tendsto (fun n => ∑ i ∈
+Finset.range n, (-1 : ℝ) ^ i * a (i + 1)) Filter.atTop (nhds L)`. -/
 theorem AlternatingSeriesTest (a : ℕ → ℝ)
     (hpos : ∀ n, 0 < a n) (hdec : ∀ n, a (n + 1) ≤ a n)
     (hnull : Filter.Tendsto a Filter.atTop (nhds 0)) :

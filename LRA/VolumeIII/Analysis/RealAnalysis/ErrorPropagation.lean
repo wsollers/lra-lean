@@ -16,15 +16,17 @@ def AbsoluteError (x xTilde : ℝ) : ℝ := |x - xTilde|
 noncomputable def RelativeError (x xTilde : ℝ) : ℝ := AbsoluteError x xTilde / |xTilde|
 
 -- `thm:absolute-error-sum`
-/-- absolute error is subadditive under
-addition. -/
+/-- Let `x y xTilde yTilde : ℝ`. Then `AbsoluteError (x + y) (xTilde + yTilde) ≤ AbsoluteError x
+xTilde + AbsoluteError y yTilde`. -/
 theorem AbsoluteErrorSum (x y xTilde yTilde : ℝ) :
     AbsoluteError (x + y) (xTilde + yTilde) ≤
       AbsoluteError x xTilde + AbsoluteError y yTilde := by
   sorry
 
 -- `thm:absolute-error-product`
-/-- The theorem states the absolute error product assertion. -/
+/-- Let `x y xTilde yTilde : ℝ`. Then `AbsoluteError (x * y) (xTilde * yTilde) ≤ |xTilde| *
+AbsoluteError y yTilde + |yTilde| * AbsoluteError x xTilde + AbsoluteError x xTilde *
+AbsoluteError y yTilde`. -/
 theorem AbsoluteErrorProduct (x y xTilde yTilde : ℝ) :
     AbsoluteError (x * y) (xTilde * yTilde) ≤
       |xTilde| * AbsoluteError y yTilde + |yTilde| * AbsoluteError x xTilde +
@@ -32,7 +34,10 @@ theorem AbsoluteErrorProduct (x y xTilde yTilde : ℝ) :
   sorry
 
 -- `thm:absolute-error-quotient`
-/-- The theorem states the absolute error quotient assertion. -/
+/-- Let `x y xTilde yTilde : ℝ`. If `hy : y ≠ 0`, `hyTilde : yTilde ≠ 0`, and `hdelta :
+RelativeError y yTilde < 1`. Then `AbsoluteError (x / y) (xTilde / yTilde) ≤ (|xTilde| *
+AbsoluteError y yTilde + |yTilde| * AbsoluteError x xTilde) / yTilde ^ 2 * (1 / (1 -
+RelativeError y yTilde))`. -/
 theorem AbsoluteErrorQuotient (x y xTilde yTilde : ℝ)
     (hy : y ≠ 0) (hyTilde : yTilde ≠ 0)
     (hdelta : RelativeError y yTilde < 1) :
@@ -41,8 +46,9 @@ theorem AbsoluteErrorQuotient (x y xTilde yTilde : ℝ)
         / yTilde ^ 2 * (1 / (1 - RelativeError y yTilde)) := by
   sorry
 
-/-- `prop:relative-error-product`. `x,y` are the (implicit-in-the-book)
-exact values approximated by `xTilde,yTilde` respectively. -/
+/-- Let `x y xTilde yTilde : ℝ`. If `hxTilde : xTilde ≠ 0` and `hyTilde : yTilde ≠ 0`. Then
+`RelativeError (x * y) (xTilde * yTilde) ≤ RelativeError x xTilde + RelativeError y yTilde +
+RelativeError x xTilde * RelativeError y yTilde`. -/
 theorem RelativeErrorProduct (x y xTilde yTilde : ℝ)
     (hxTilde : xTilde ≠ 0) (hyTilde : yTilde ≠ 0) :
     RelativeError (x * y) (xTilde * yTilde) ≤
@@ -50,7 +56,9 @@ theorem RelativeErrorProduct (x y xTilde yTilde : ℝ)
       RelativeError x xTilde * RelativeError y yTilde := by
   sorry
 
-/-- `prop:relative-error-quotient`. -/
+/-- Let `x y xTilde yTilde : ℝ`. If `hxTilde : xTilde ≠ 0`, `hyTilde : yTilde ≠ 0`, and `hdelta :
+RelativeError y yTilde < 1`. Then `RelativeError (x / y) (xTilde / yTilde) ≤ (RelativeError x
+xTilde + RelativeError y yTilde) / (1 - RelativeError y yTilde)`. -/
 theorem RelativeErrorQuotient (x y xTilde yTilde : ℝ)
     (hxTilde : xTilde ≠ 0) (hyTilde : yTilde ≠ 0)
     (hdelta : RelativeError y yTilde < 1) :

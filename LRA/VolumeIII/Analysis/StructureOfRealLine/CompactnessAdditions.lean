@@ -48,16 +48,7 @@ def IsCompactR (K : Set ℝ) : Prop :=
    ADDITIONS.md item 28. Added with user sign-off. Fills ISSUES.md #44.
    ================================================================ -/
 
-/-- ADDITIONS.md #28. A closed subset of a compact set is compact — the
-/-- The lemma states the `thm assertion. -/
-lemma `thm:heine-borel`'s own opening exposition names as doing the real
-work in reducing the general Heine–Borel statement to the closed-bounded-
-interval case (`thm:closed-bounded-interval-compact`), but which is never
-itself stated or proved anywhere in the chapter. Standard proof: given an
-open cover `{U_i}` of `F`, adjoin the open set `ℝ \ F` (open since `F` is
-closed) to get an open cover of the ambient compact `K`; extract a finite
-subcover of `K` from that, then discard `ℝ \ F` from it — the rest still
-covers `F` (since `ℝ \ F` contributed nothing to `F`) and is finite. -/
+/-- Let `F` be a closed subset of a compact real set `K`. Then `F` is compact. -/
 theorem ClosedSubsetOfCompactIsCompact
     (F K : Set ℝ) (hFK : F ⊆ K) (hF : IsClosedR F) (hK : IsCompactR K) :
     IsCompactR F := by
@@ -77,14 +68,7 @@ def IsSeqCompactR (K : Set ℝ) : Prop :=
     ∃ φ : ℕ → ℕ, StrictMono φ ∧
       ∃ L ∈ K, Filter.Tendsto (x ∘ φ) Filter.atTop (nhds L)
 
-/-- ADDITIONS.md #29. On `ℝ`, the Sequences chapter's Bolzano–Weierstrass-
-flavoured sequential compactness and this chapter's open-cover compactness
-pick out exactly the same sets — but nothing in either chapter currently
-says so. This is the bridge theorem tying `IsCompactR` (this chapter) to the
-sequence-extraction machinery already formalized under
-`Sequences` (`BolzanoWeierstrassSequences`, the peak-argument
-Monotone Subsequence Theorem, etc.), so that either notion of "compact" can
-be reached for interchangeably going forward. -/
+/-- Let `K : Set ℝ`. Then `IsSeqCompactR K ↔ IsCompactR K`. -/
 theorem SequentialCompactnessIffOpenCoverCompactness (K : Set ℝ) :
     IsSeqCompactR K ↔ IsCompactR K := by
   sorry

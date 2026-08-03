@@ -18,7 +18,8 @@ def dist' (x y : ℝ) : ℝ := |x - y|
 def IntervalLength (a b : ℝ) (hab : a ≤ b) : ℝ := b - a
 
 -- `thm:distance-is-a-metric`
-/-- The theorem states that distance is a metric. -/
+/-- The theorem asserts `(∀ x y : ℝ, dist' x y ≥ 0) ∧ (∀ x y : ℝ, dist' x y = 0 ↔ x = y) ∧ (∀ x y :
+ℝ, dist' x y = dist' y x) ∧ (∀ x y z : ℝ, dist' x z ≤ dist' x y + dist' y z)`. -/
 theorem DistanceIsAMetric :
     (∀ x y : ℝ, dist' x y ≥ 0) ∧ (∀ x y : ℝ, dist' x y = 0 ↔ x = y) ∧
     (∀ x y : ℝ, dist' x y = dist' y x) ∧
@@ -26,36 +27,35 @@ theorem DistanceIsAMetric :
   sorry
 
 -- `thm:real-line-structural-order-facts`
-/-- ℝ is linearly ordered, an
-ordered field, and satisfies the LUB property. -/
+/-- The theorem asserts `(∀ A : Set ℝ, A.Nonempty → BddAbove A → ∃ s, IsLUB A s)`. -/
 theorem RealLineStructuralOrderFacts :
     (∀ A : Set ℝ, A.Nonempty → BddAbove A → ∃ s, IsLUB A s) := by
   sorry
 
 -- `lem:minimum-of-positive-numbers-is-positive`
-/-- The lemma states that minimum of positive numbers is positive. -/
+/-- Let `a b : ℝ`. If `ha : a > 0` and `hb : b > 0`. Then `min a b > 0`. -/
 theorem MinOfPositiveIsPositive (a b : ℝ) (ha : a > 0) (hb : b > 0) :
     min a b > 0 := by sorry
 
 -- `lem:half-epsilon-is-positive`
-/-- The lemma states that half epsilon is positive. -/
+/-- Let `ε : ℝ`. If `hε : ε > 0`. Then `ε / 2 > 0`. -/
 theorem HalfEpsilonIsPositive (ε : ℝ) (hε : ε > 0) : ε / 2 > 0 := by sorry
 
 -- `lem:epsilon-splitting`
-/-- The lemma states the epsilon splitting assertion. -/
+/-- Let `ε : ℝ`. If `hε : ε > 0`. Then `ε / 2 + ε / 2 = ε`. -/
 theorem EpsilonSplitting (ε : ℝ) (hε : ε > 0) : ε / 2 + ε / 2 = ε := by sorry
 
 -- `lem:positive-minimum-bound`
-/-- The lemma states the positive minimum bound assertion. -/
+/-- Let `δ a b : ℝ`. If `h1 : 0 < δ`, `h2 : δ ≤ a`, and `h3 : δ ≤ b`. Then `δ ≤ min a b`. -/
 theorem PositiveMinimumBound (δ a b : ℝ) (h1 : 0 < δ) (h2 : δ ≤ a) (h3 : δ ≤ b) :
     δ ≤ min a b := by sorry
 
 -- `lem:choosing-a-smaller-positive-number`
-/-- The lemma states the choosing a smaller positive number assertion. -/
+/-- Let `ε c : ℝ`. If `hε : ε > 0` and `hc : c > 0`. Then `∃ δ, 0 < δ ∧ δ < ε ∧ δ < c`. -/
 theorem ChoosingSmallerPositive (ε c : ℝ) (hε : ε > 0) (hc : c > 0) :
     ∃ δ, 0 < δ ∧ δ < ε ∧ δ < c := by sorry
 
-/-- `prop:abs-value-is-distance-to-zero`. -/
+/-- Let `x : ℝ`. Then `|x| = dist' x 0`. -/
 theorem AbsIsDistanceToZero (x : ℝ) : |x| = dist' x 0 := by sorry
 
 -- ---------------------------------------------------------------------
@@ -65,12 +65,7 @@ theorem AbsIsDistanceToZero (x : ℝ) : |x| = dist' x 0 := by sorry
 /-- `def:bounded-subset-of-r`. -/
 def IsBoundedSubset (A : Set ℝ) : Prop := ∃ M > 0, ∀ x ∈ A, |x| ≤ M
 
-/-- `def:union-of-intervals`, `def:intersection-of-intervals`,
-`def:complement-of-interval`, `def:difference-of-intervals`: all four are
-the ordinary `Set.iUnion`/`Set.iInter`/set-complement/set-difference
-operations specialized to families of intervals — no new Lean content
-beyond `Set.iUnion`, `Set.iInter`, `Aᶜ`, `A \ B`, which already exist in
-Mathlib and require no restatement. -/
+/-- The theorem asserts `True`. -/
 theorem IntervalSetOpsAreOrdinarySetOps : True := trivial
 
 end LRA.VolumeIII.Analysis.StructureOfRealLine

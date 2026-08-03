@@ -24,21 +24,13 @@ import Mathlib.Order.Bounds.Basic
 
 namespace LRA.VolumeIII.Analysis.Completeness
 
-/-- ADDITIONS.md #19. Existence and uniqueness of nonnegative square roots
-via the least-upper-bound property — the single most natural payoff of the
-completeness axiom, and the chapter's own recurring motivating example
-(`{x∈ℚ:x²<2}`) is literally half of this proof already (`b := sup{x≥0 :
-x²≤a}`). Deliberately scoped to square roots rather than general `n`th
-roots — the latter is a routine generalization once this exists, and adding
-both would be padding rather than depth. -/
+/-- Let `a : ℝ`. If `ha : 0 ≤ a`. Then `∃! b : ℝ, 0 ≤ b ∧ b ^ 2 = a`. -/
 theorem ExistsUniqueNonnegSqrt (a : ℝ) (ha : 0 ≤ a) :
     ∃! b : ℝ, 0 ≤ b ∧ b ^ 2 = a := by
   sorry
 
-/-- ADDITIONS.md #20. `ℚ` does not have the least-upper-bound property —
-stated as its own citable proposition rather than left embedded only in the
-chapter-opening motivating remark. Witnessed by the chapter's own recurring
-example set. -/
+/-- The theorem asserts `({x : ℚ | x ^ 2 < 2} : Set ℚ).Nonempty ∧ (∃ u : ℚ, ∀ x ∈ ({x : ℚ | x ^ 2 <
+2} : Set ℚ), x ≤ u) ∧ ¬ ∃ s : ℚ, IsLUB ({x : ℚ | x ^ 2 < 2} : Set ℚ) s`. -/
 theorem RationalsLackLubProperty :
     ({x : ℚ | x ^ 2 < 2} : Set ℚ).Nonempty ∧
       (∃ u : ℚ, ∀ x ∈ ({x : ℚ | x ^ 2 < 2} : Set ℚ), x ≤ u) ∧
@@ -52,11 +44,8 @@ def RationalCutLowerAtSqrtTwo : Set ℚ := {q : ℚ | q < 0 ∨ q ^ 2 < 2}
 /-- The upper part of the same cut. -/
 def RationalCutUpperAtSqrtTwo : Set ℚ := {q : ℚ | 0 ≤ q ∧ 2 ≤ q ^ 2}
 
-/-- ADDITIONS.md #23 (part 1). The rational Dedekind cut at `√2` has a
-genuine GAP: the lower part has no maximum and the upper part has no
-minimum — this is exactly the failure mode `thm:dedekind-cut-property` and
-`cor:no-gaps-in-r` rule out for `ℝ`. Concrete contrast case for those two
-theorems. -/
+/-- The theorem asserts `(¬ ∃ m ∈ RationalCutLowerAtSqrtTwo, ∀ x ∈ RationalCutLowerAtSqrtTwo, x ≤ m)
+∧ (¬ ∃ m ∈ RationalCutUpperAtSqrtTwo, ∀ x ∈ RationalCutUpperAtSqrtTwo, m ≤ x)`. -/
 theorem RationalDedekindCutAtSqrtTwoHasAGap :
     (¬ ∃ m ∈ RationalCutLowerAtSqrtTwo,
         ∀ x ∈ RationalCutLowerAtSqrtTwo, x ≤ m) ∧
@@ -70,25 +59,16 @@ def RealCutLowerAtSqrtTwo : Set ℝ := {x : ℝ | x < Real.sqrt 2}
 /-- The upper part of the corresponding cut of `ℝ` at `√2`. -/
 def RealCutUpperAtSqrtTwo : Set ℝ := {x : ℝ | Real.sqrt 2 ≤ x}
 
-/-- ADDITIONS.md #23 (part 2). The SAME cut, taken in `ℝ` instead of `ℚ`,
-has NO gap: the lower part still has no maximum, but the upper part now has
-a minimum, namely `√2` itself — matching `thm:dedekind-cut-property`'s
-disjunctive conclusion ("either `L` has a maximum or `U` has a minimum"),
-here resolved in favor of the second disjunct. Direct contrast with
-`RationalDedekindCutAtSqrtTwoHasAGap` above: same construction, one
-ambient field complete and the other not. -/
+/-- The theorem asserts `(¬ ∃ m ∈ RealCutLowerAtSqrtTwo, ∀ x ∈ RealCutLowerAtSqrtTwo, x ≤ m) ∧
+(Real.sqrt 2 ∈ RealCutUpperAtSqrtTwo ∧ ∀ x ∈ RealCutUpperAtSqrtTwo, Real.sqrt 2 ≤ x)`. -/
 theorem RealDedekindCutAtSqrtTwoHasNoGap :
     (¬ ∃ m ∈ RealCutLowerAtSqrtTwo, ∀ x ∈ RealCutLowerAtSqrtTwo, x ≤ m) ∧
     (Real.sqrt 2 ∈ RealCutUpperAtSqrtTwo ∧
       ∀ x ∈ RealCutUpperAtSqrtTwo, Real.sqrt 2 ≤ x) := by
   sorry
 
-/-- ADDITIONS.md #22. The first few bisection steps toward `√2`, cashing out
-`thm:monotone-convergence-implies-lub-property`'s Interpretation remark
-(which describes the bisection construction only in prose) as an actual
-numeric bracket. Each pair of bounds is a legitimate bisection step from the
-previous one: `[1,2] → [1,1.5] → [1.4,1.5] → [1.4,1.45] → [1.41,1.42]`
-(bisecting and testing the midpoint's square against `2` at each stage). -/
+/-- The theorem asserts `(1 : ℝ) < Real.sqrt 2 ∧ Real.sqrt 2 < 2 ∧ (1.4 : ℝ) < Real.sqrt 2 ∧
+Real.sqrt 2 < 1.5 ∧ (1.41 : ℝ) < Real.sqrt 2 ∧ Real.sqrt 2 < 1.42`. -/
 theorem BisectionStepsTowardSqrtTwo :
     (1 : ℝ) < Real.sqrt 2 ∧ Real.sqrt 2 < 2 ∧
     (1.4 : ℝ) < Real.sqrt 2 ∧ Real.sqrt 2 < 1.5 ∧

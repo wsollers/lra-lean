@@ -19,65 +19,62 @@ namespace LRA.VolumeIII.Analysis.RealAnalysis
 noncomputable def AbsR (a : ℝ) : ℝ := if a ≥ 0 then a else -a
 
 -- `thm:absolute-value-nonneg`
-/-- The theorem states the absolute value nonneg assertion. -/
+/-- Let `a : ℝ`. Then `AbsR a ≥ 0`. -/
 theorem AbsoluteValueNonneg (a : ℝ) : AbsR a ≥ 0 := by
   sorry
 
 -- `thm:absolute-value-zero-iff-zero`
-/-- The theorem states that absolute value zero iff zero. -/
+/-- Let `a : ℝ`. Then `AbsR a = 0 ↔ a = 0`. -/
 theorem AbsoluteValueZeroIffZero (a : ℝ) : AbsR a = 0 ↔ a = 0 := by
   sorry
 
 -- `thm:absolute-value-self-or-neg`
-/-- The theorem states the absolute value self or neg assertion. -/
+/-- Let `a : ℝ`. Then `AbsR a = a ∨ AbsR a = -a`. -/
 theorem AbsoluteValueSelfOrNeg (a : ℝ) : AbsR a = a ∨ AbsR a = -a := by
   sorry
 
 -- `thm:absolute-value-symmetric`
-/-- The theorem states the absolute value symmetric assertion. -/
+/-- Let `a : ℝ`. Then `AbsR (-a) = AbsR a`. -/
 theorem AbsoluteValueSymmetric (a : ℝ) : AbsR (-a) = AbsR a := by
   sorry
 
 -- `thm:absolute-value-product`
-/-- The theorem states the absolute value product assertion. -/
+/-- Let `a b : ℝ`. Then `AbsR (a * b) = AbsR a * AbsR b`. -/
 theorem AbsoluteValueProduct (a b : ℝ) : AbsR (a * b) = AbsR a * AbsR b := by
   sorry
 
 -- `thm:absolute-value-quotient`
-/-- The theorem states the absolute value quotient assertion. -/
+/-- Let `a b : ℝ`. If `hb : b ≠ 0`. Then `AbsR (a / b) = AbsR a / AbsR b`. -/
 theorem AbsoluteValueQuotient (a b : ℝ) (hb : b ≠ 0) :
     AbsR (a / b) = AbsR a / AbsR b := by
   sorry
 
 -- `thm:absolute-value-bounds`
-/-- The theorem states that absolute value bounds. -/
+/-- Let `a : ℝ`. Then `-AbsR a ≤ a ∧ a ≤ AbsR a`. -/
 theorem AbsoluteValueBounds (a : ℝ) : -AbsR a ≤ a ∧ a ≤ AbsR a := by
   sorry
 
 -- `thm:absolute-value-le-iff`
-/-- The theorem states that absolute value le iff. -/
+/-- Let `a r : ℝ`. If `hr : r ≥ 0`. Then `AbsR a ≤ r ↔ -r ≤ a ∧ a ≤ r`. -/
 theorem AbsoluteValueLeIff (a r : ℝ) (hr : r ≥ 0) :
     AbsR a ≤ r ↔ -r ≤ a ∧ a ≤ r := by
   sorry
 
 -- `thm:absolute-value-lt-iff`
-/-- The theorem states that absolute value lt iff. -/
+/-- Let `a r : ℝ`. If `hr : r > 0`. Then `AbsR a < r ↔ -r < a ∧ a < r`. -/
 theorem AbsoluteValueLtIff (a r : ℝ) (hr : r > 0) :
     AbsR a < r ↔ -r < a ∧ a < r := by
   sorry
 
 -- `thm:reverse-triangle-inequality`
-/-- The theorem states the reverse triangle inequality assertion. -/
+/-- Let `a b : ℝ`. Then `AbsR (AbsR a - AbsR b) ≤ AbsR (a - b)`. -/
 theorem ReverseTriangleInequality (a b : ℝ) :
     AbsR (AbsR a - AbsR b) ≤ AbsR (a - b) := by
   sorry
 
 -- `thm:absolute-value-sum-bound`
-/-- ("Generalised Triangle Inequality"): the
-finite-sum form. This is the file's canonical, `\label`ed home for the
-generalized triangle inequality — the "Theorem (Triangle Inequality)" box
-in `proof-techniques/inequalities-bounding.tex` has no `\label` of its own
-and is a restatement, not a second source. -/
+/-- Let `n : ℕ`. If `a : Fin n → ℝ`. Then `AbsR (Finset.univ.sum a) ≤ Finset.univ.sum (fun i => AbsR
+(a i))`. -/
 theorem AbsoluteValueSumBound (n : ℕ) (a : Fin n → ℝ) :
     AbsR (Finset.univ.sum a) ≤ Finset.univ.sum (fun i => AbsR (a i)) := by
   sorry

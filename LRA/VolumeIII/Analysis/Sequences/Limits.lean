@@ -54,94 +54,96 @@ import LRA.VolumeIII.Analysis.Sequences.NullConstantSequences
 namespace LRA.VolumeIII.Analysis.Sequences
 
 -- `thm:uniqueness-of-limits`
-/-- The theorem states the uniqueness of limits assertion. -/
+/-- Let `x : RealSequence` and `L K : ℝ`. If `hL : ConvergesTo x L` and `hK : ConvergesTo x K`. Then
+`L = K`. -/
 theorem UniquenessOfLimits {x : RealSequence} {L K : ℝ}
     (hL : ConvergesTo x L) (hK : ConvergesTo x K) : L = K := by
   sorry
 
 -- `thm:limit-preserves-eventual-order`
-/-- The theorem states that limit preserves eventual order. -/
+/-- Let `x y : RealSequence` and `L M : ℝ`. If `hL : ConvergesTo x L`, `hM : ConvergesTo y M`, and
+`h : ∃ N₀ : ℕ, ∀ n ≥ N₀, x n ≤ y n`. Then `L ≤ M`. -/
 theorem LimitPreservesEventualOrder {x y : RealSequence} {L M : ℝ}
     (hL : ConvergesTo x L) (hM : ConvergesTo y M)
     (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, x n ≤ y n) : L ≤ M := by
   sorry
 
 -- `thm:strict-limit-separation-gives-eventual-order`
-/-- The theorem states that strict limit separation gives eventual order. -/
+/-- Let `x y : RealSequence` and `A B : ℝ`. If `hA : ConvergesTo x A`, `hB : ConvergesTo y B`, and
+`hAB : A < B`. Then `∃ N : ℕ, ∀ n ≥ N, x n < y n`. -/
 theorem StrictLimitSeparationGivesEventualOrder {x y : RealSequence}
     {A B : ℝ} (hA : ConvergesTo x A) (hB : ConvergesTo y B) (hAB : A < B) :
     ∃ N : ℕ, ∀ n ≥ N, x n < y n := by
   sorry
 
 -- `thm:eventual-strict-comparison-preserves-weak-limit-order`
-/-- The theorem states that eventual strict comparison preserves weak limit order; part (a). -/
+/-- Let `x y : RealSequence` and `A B : ℝ`. If `hA : ConvergesTo x A`, `hB : ConvergesTo y B`, and
+`h : ∃ N : ℕ, ∀ n ≥ N, x n < y n`. Then `A ≤ B`. -/
 theorem EventualStrictComparisonPreservesWeakLimitOrderLt
     {x y : RealSequence} {A B : ℝ} (hA : ConvergesTo x A)
     (hB : ConvergesTo y B) (h : ∃ N : ℕ, ∀ n ≥ N, x n < y n) : A ≤ B := by
   sorry
 
 -- `thm:eventual-strict-comparison-preserves-weak-limit-order`
-/-- The theorem states that eventual strict comparison preserves weak limit order; part (b). -/
+/-- Let `x y : RealSequence` and `A B : ℝ`. If `hA : ConvergesTo x A`, `hB : ConvergesTo y B`, and
+`h : ∃ N : ℕ, ∀ n ≥ N, x n > y n`. Then `A ≥ B`. -/
 theorem EventualStrictComparisonPreservesWeakLimitOrderGt
     {x y : RealSequence} {A B : ℝ} (hA : ConvergesTo x A)
     (hB : ConvergesTo y B) (h : ∃ N : ℕ, ∀ n ≥ N, x n > y n) : A ≥ B := by
   sorry
 
 -- `thm:constant-comparison-sequence-limits`
-/-- The theorem states the constant comparison sequence limits assertion; part (a). -/
+/-- Let `x : RealSequence` and `A B : ℝ`. If `hA : ConvergesTo x A` and `h : ∃ N : ℕ, ∀ n ≥ N, x n ≤
+B`. Then `A ≤ B`. -/
 theorem ConstantComparisonSequenceLimitsLe {x : RealSequence} {A B : ℝ}
     (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n ≤ B) : A ≤ B := by
   sorry
 
 -- `thm:constant-comparison-sequence-limits`
-/-- The theorem states the constant comparison sequence limits assertion; part (b). -/
+/-- Let `x : RealSequence` and `A B : ℝ`. If `hA : ConvergesTo x A` and `h : ∃ N : ℕ, ∀ n ≥ N, x n <
+B`. Then `A ≤ B`. -/
 theorem ConstantComparisonSequenceLimitsLt {x : RealSequence} {A B : ℝ}
     (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n < B) : A ≤ B := by
   sorry
 
 -- `thm:constant-comparison-sequence-limits`
-/-- The theorem states the constant comparison sequence limits assertion; part (c). -/
+/-- Let `x : RealSequence` and `A B : ℝ`. If `hA : ConvergesTo x A` and `h : ∃ N : ℕ, ∀ n ≥ N, x n ≥
+B`. Then `A ≥ B`. -/
 theorem ConstantComparisonSequenceLimitsGe {x : RealSequence} {A B : ℝ}
     (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n ≥ B) : A ≥ B := by
   sorry
 
 -- `thm:constant-comparison-sequence-limits`
-/-- The theorem states the constant comparison sequence limits assertion; part (d). -/
+/-- Let `x : RealSequence` and `A B : ℝ`. If `hA : ConvergesTo x A` and `h : ∃ N : ℕ, ∀ n ≥ N, x n >
+B`. Then `A ≥ B`. -/
 theorem ConstantComparisonSequenceLimitsGt {x : RealSequence} {A B : ℝ}
     (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n > B) : A ≥ B := by
   sorry
 
 -- `thm:constant-squeeze-theorem`
-/-- The theorem states the constant squeeze theorem assertion. -/
+/-- Let `x : RealSequence` and `L : ℝ`. If `h : ∃ N₀ : ℕ, ∀ n ≥ N₀, L ≤ x n ∧ x n ≤ L`. Then
+`ConvergesTo x L`. -/
 theorem ConstantSqueezeTheorem {x : RealSequence} {L : ℝ}
     (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, L ≤ x n ∧ x n ≤ L) : ConvergesTo x L := by
   sorry
 
 -- `thm:sequence-squeeze-theorem`
-/-- The theorem states the sequence squeeze theorem assertion. -/
+/-- Let `a x b : RealSequence` and `L : ℝ`. If `ha : ConvergesTo a L`, `hb : ConvergesTo b L`, and
+`h : ∃ N₀ : ℕ, ∀ n ≥ N₀, a n ≤ x n ∧ x n ≤ b n`. Then `ConvergesTo x L`. -/
 theorem SequenceSqueezeTheorem {a x b : RealSequence} {L : ℝ}
     (ha : ConvergesTo a L) (hb : ConvergesTo b L)
     (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, a n ≤ x n ∧ x n ≤ b n) : ConvergesTo x L := by
   sorry
 
 -- `thm:absolute-value-squeeze-theorem`
-/-- The theorem states the absolute value squeeze theorem assertion. -/
+/-- Let `x u : RealSequence` and `L : ℝ`. If `hu : ConvergesTo u 0` and `h : ∃ N₀ : ℕ, ∀ n ≥ N₀, |x
+n - L| ≤ u n`. Then `ConvergesTo x L`. -/
 theorem AbsoluteValueSqueezeTheorem {x u : RealSequence} {L : ℝ}
     (hu : ConvergesTo u 0) (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, |x n - L| ≤ u n) :
     ConvergesTo x L := by
   sorry
 
-/-- ADDITION (not a `.tex` label — see `ADDITIONS.md` item 4). Every
-convergent sequence is bounded. Invoked by name twice already in the
-read-order (`ex:sequence-natural` in `SequenceDefinitions.lean`'s source,
-and `thm:limit-of-a-product`'s own Interpretation remark in
-`AlgebraOfLimits.lean`'s source) but never proved as its own citable
-/-- The theorem states the anywhere assertion. -/
-theorem anywhere in the .tex read so far. Proof idea: taking `ε = 1` in
-the convergence definition gives a tail (from some `N` on) trapped within
-`[L-1, L+1]`; the finitely many terms before `N` have their own maximum
-absolute value (a finite set of reals always has one); take the larger of
-the two bounds. -/
+/-- Let `x` be a real sequence converging to `L`. Then `x` is bounded. -/
 theorem ConvergentSequenceIsBounded {x : RealSequence} {L : ℝ}
     (h : ConvergesTo x L) : BoundedSeq x := by
   sorry

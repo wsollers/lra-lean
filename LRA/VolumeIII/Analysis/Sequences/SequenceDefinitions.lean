@@ -41,7 +41,6 @@ the Archimedean property (this reuses `archimedean_reciprocal_form` /
 almost verbatim); and `x_n = n` diverges because it's unbounded (correctly
 hedged in the .tex's own prose: "divergence also follows from that theorem
 [every convergent sequence is bounded] once it is established" — a
-/-- The theorem states the not assertion. -/
 theorem not yet reached). Formalized here using Mathlib's own
 `Filter.Tendsto _ Filter.atTop (nhds _)` for convergence and
 `Filter.Tendsto _ Filter.atTop Filter.atTop` for the "grows without bound"
@@ -65,26 +64,17 @@ abbrev Sequence (X : Type*) : Type _ := ℕ → X
 /-- `def:real-sequence`. -/
 abbrev RealSequence : Type := ℕ → ℝ
 
-/-- `ex:constant-sequence`. The constant sequence converges to `c` — the
-degenerate case where the tail is identically, not just eventually,
-equal to the limit. -/
+/-- Let `c : ℝ`. Then the constant sequence with value `c` tends to `c`. -/
 theorem ConstantSequenceConverges (c : ℝ) :
     Filter.Tendsto (fun _ : ℕ => c) Filter.atTop (nhds c) := by
   sorry
 
-/-- `ex:sequence-reciprocal`. `1/n -> 0`, via the Archimedean property. -/
+/-- The reciprocal sequence `n ↦ 1 / n` tends to `0` along `atTop`. -/
 theorem ReciprocalSequenceConvergesToZero :
     Filter.Tendsto (fun n : ℕ => 1 / (n : ℝ)) Filter.atTop (nhds 0) := by
   sorry
 
-/-- `ex:sequence-natural`. `x_n = n` diverges by growing without bound
-(the .tex's actual argument: for every proposed limit `L`, taking
-`ε = 1` and using the Archimedean property to find `n > L + 1` shows the
-tail is eventually, in fact permanently past distance `1` from `L`).
-Formalized as the positive "tends to infinity" fact, which is the
-substance of what the .tex's proof sketch establishes, rather than
-literally negating convergence to an arbitrary `L` (both are correct
-statements of the same underlying fact; this is the sharper one). -/
+/-- The natural-number sequence `n ↦ n`, read as a real sequence, tends to`npositive infinity along `atTop`. -/
 theorem NaturalNumberSequenceDiverges :
     Filter.Tendsto (fun n : ℕ => (n : ℝ)) Filter.atTop Filter.atTop := by
   sorry

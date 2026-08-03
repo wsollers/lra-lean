@@ -21,7 +21,8 @@ def TendsTo (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) : Prop :=
   ∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → |f x - L| < ε
 
 -- `thm:limit-unique`
-/-- a function limit, if it exists, is unique. -/
+/-- Let `A : Set ℝ` and `c L₁ L₂ : ℝ`. If `f : ℝ → ℝ`, `hc : ∀ δ > 0, ∃ x ∈ A, 0 < |x - c| ∧ |x - c|
+< δ`, `h₁ : TendsTo f A c L₁`, and `h₂ : TendsTo f A c L₂`. Then `L₁ = L₂`. -/
 theorem TendstoUnique (f : ℝ → ℝ) (A : Set ℝ) (c L₁ L₂ : ℝ)
     (hc : ∀ δ > 0, ∃ x ∈ A, 0 < |x - c| ∧ |x - c| < δ)
     (h₁ : TendsTo f A c L₁) (h₂ : TendsTo f A c L₂) : L₁ = L₂ := by
@@ -36,7 +37,8 @@ def TendsToLeft (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) : Prop :=
   ∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → |f x - L| < ε
 
 -- `thm:two-sided-limit-iff-matching-one-sided-limits`
-/-- The theorem states that two sided limit iff matching one sided limits. -/
+/-- Let `A : Set ℝ` and `c L : ℝ`. If `f : ℝ → ℝ`. Then `TendsTo f A c L ↔ TendsToLeft f A c L ∧
+TendsToRight f A c L`. -/
 theorem TendstoIffOneSidedAgree (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) :
     TendsTo f A c L ↔ TendsToLeft f A c L ∧ TendsToRight f A c L := by
   sorry
@@ -52,30 +54,34 @@ section AlgebraOfLimits
 variable {f g : ℝ → ℝ} {A : Set ℝ} {c Lf Lg α : ℝ}
 
 -- `thm:limit-sum`
-/-- The theorem states the limit sum assertion. -/
+/-- If `hf : TendsTo f A c Lf` and `hg : TendsTo g A c Lg`. Then `TendsTo (fun x => f x + g x) A c
+(Lf + Lg)`. -/
 theorem TendstoAdd (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg) :
     TendsTo (fun x => f x + g x) A c (Lf + Lg) := by
   sorry
 
-/-- Difference rule, companion to `thm:limit-sum`. -/
+/-- If `hf : TendsTo f A c Lf` and `hg : TendsTo g A c Lg`. Then `TendsTo (fun x => f x - g x) A c
+(Lf - Lg)`. -/
 theorem TendstoSub (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg) :
     TendsTo (fun x => f x - g x) A c (Lf - Lg) := by
   sorry
 
 -- `thm:limit-scalar-multiple`
-/-- The theorem states the limit scalar multiple assertion. -/
+/-- Let `α : ℝ`. If `hf : TendsTo f A c Lf`. Then `TendsTo (fun x => α * f x) A c (α * Lf)`. -/
 theorem TendstoScalar (hf : TendsTo f A c Lf) (α : ℝ) :
     TendsTo (fun x => α * f x) A c (α * Lf) := by
   sorry
 
 -- `thm:limit-product`
-/-- The theorem states the limit product assertion. -/
+/-- If `hf : TendsTo f A c Lf` and `hg : TendsTo g A c Lg`. Then `TendsTo (fun x => f x * g x) A c
+(Lf * Lg)`. -/
 theorem TendstoMul (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg) :
     TendsTo (fun x => f x * g x) A c (Lf * Lg) := by
   sorry
 
 -- `thm:limit-quotient`
-/-- The theorem states the limit quotient assertion. -/
+/-- If `hf : TendsTo f A c Lf`, `hg : TendsTo g A c Lg`, and `hLg : Lg ≠ 0`. Then `TendsTo (fun x =>
+f x / g x) A c (Lf / Lg)`. -/
 theorem TendstoDiv (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg)
     (hLg : Lg ≠ 0) :
     TendsTo (fun x => f x / g x) A c (Lf / Lg) := by
@@ -84,9 +90,8 @@ theorem TendstoDiv (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg)
 end AlgebraOfLimits
 
 -- `thm:squeeze-function-limits`
-/-- (Squeeze Theorem for Function Limits),
-referenced as a dependency of both forms of L'Hôpital's Rule in the
-Differentiation chapter. -/
+/-- Let `A : Set ℝ` and `c L : ℝ`. If `f g h : ℝ → ℝ`, `hfg : ∀ x ∈ A, f x ≤ g x`, `hgh : ∀ x ∈ A, g
+x ≤ h x`, `hf : TendsTo f A c L`, and `hh : TendsTo h A c L`. Then `TendsTo g A c L`. -/
 theorem SqueezeFunctionLimits (f g h : ℝ → ℝ) (A : Set ℝ) (c L : ℝ)
     (hfg : ∀ x ∈ A, f x ≤ g x) (hgh : ∀ x ∈ A, g x ≤ h x)
     (hf : TendsTo f A c L) (hh : TendsTo h A c L) :
@@ -100,7 +105,8 @@ def ApproachesButNotEqual (xs : ℕ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   (∀ n, xs n ∈ A) ∧ (∀ n, xs n ≠ c) ∧
     ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |xs n - c| < ε
 
-/-- The theorem states the sequential criterion tendsto assertion. -/
+/-- Let `A : Set ℝ` and `c L : ℝ`. If `f : ℝ → ℝ`. Then `TendsTo f A c L ↔ ∀ xs : ℕ → ℝ,
+ApproachesButNotEqual xs A c → ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |f (xs n) - L| < ε`. -/
 theorem SequentialCriterionTendsto (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) :
     TendsTo f A c L ↔
       ∀ xs : ℕ → ℝ, ApproachesButNotEqual xs A c →
@@ -108,9 +114,9 @@ theorem SequentialCriterionTendsto (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) :
   sorry
 
 -- `thm:composition-of-limits`
-/-- The theorem states the composition of limits assertion; Note (ISSUES.md #46): the hypothesis
-`g(c₂) = L₂` below is essential — the book's own Exposition correctly
-flags this, even though its formal Failure-modes block does not. -/
+/-- Let `A B : Set ℝ` and `c₁ c₂ L₂ : ℝ`. If `f g : ℝ → ℝ`, `hf : TendsTo f A c₁ c₂`, `hfA : ∀ x ∈
+A, f x ∈ B`, `hg : TendsTo g B c₂ L₂`, and `hgc : g c₂ = L₂`. Then `TendsTo (fun x => g (f x)) A
+c₁ L₂`. -/
 theorem TendstoComp (f g : ℝ → ℝ) (A B : Set ℝ) (c₁ c₂ L₂ : ℝ)
     (hf : TendsTo f A c₁ c₂) (hfA : ∀ x ∈ A, f x ∈ B)
     (hg : TendsTo g B c₂ L₂) (hgc : g c₂ = L₂) :

@@ -14,7 +14,10 @@ import LRA.VolumeIII.Analysis.Continuity.UniformContinuity
 namespace LRA.VolumeIII.Analysis.Differentiation
 
 -- `thm:rolles-theorem`
-/-- The theorem states the rolles theorem assertion. -/
+/-- Let `a b : ℝ`. If `f : ℝ → ℝ`, `hab : a < b`, `hcont :
+LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)`, `hdiff : ∀ x ∈ Set.Ioo a b,
+IsDifferentiable f (Set.Ioo a b) x`, and `hfab : f a = f b`. Then `∃ c ∈ Set.Ioo a b, Derivative
+0 f (Set.Ioo a b) c`. -/
 theorem RollesTheorem (f : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
     (hdiff : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x)
@@ -23,7 +26,10 @@ theorem RollesTheorem (f : ℝ → ℝ) (a b : ℝ) (hab : a < b)
   sorry
 
 -- `thm:mean-value-theorem`
-/-- (Lagrange form). -/
+/-- Let `a b : ℝ`. If `f : ℝ → ℝ`, `hab : a < b`, `hcont :
+LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)`, and `hdiff : ∀ x ∈ Set.Ioo a
+b, IsDifferentiable f (Set.Ioo a b) x`. Then `∃ c ∈ Set.Ioo a b, Derivative ((f b - f a) / (b -
+a)) f (Set.Ioo a b) c`. -/
 theorem MeanValueTheorem (f : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
     (hdiff : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x) :
@@ -31,8 +37,13 @@ theorem MeanValueTheorem (f : ℝ → ℝ) (a b : ℝ) (hab : a < b)
   sorry
 
 -- `thm:cauchy-mean-value-theorem`
-/-- cited as a dependency of both forms
-of L'Hôpital's Rule in `algebra-of-derivatives`. -/
+/-- Let `a b : ℝ`. If `f g : ℝ → ℝ`, `hab : a < b`, `hfcont :
+LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)`, `hgcont :
+LRA.VolumeIII.Analysis.Continuity.ContinuousOn' g (Set.Icc a b)`, `hfdiff : ∀ x ∈ Set.Ioo a b,
+IsDifferentiable f (Set.Ioo a b) x`, `hgdiff : ∀ x ∈ Set.Ioo a b, IsDifferentiable g (Set.Ioo a
+b) x`, and `hgD : ∀ x ∈ Set.Ioo a b, ¬ Derivative 0 g (Set.Ioo a b) x`. Then `∃ c ∈ Set.Ioo a b,
+∃ Df Dg, Derivative Df f (Set.Ioo a b) c ∧ Derivative Dg g (Set.Ioo a b) c ∧ Df * (g b - g a) =
+Dg * (f b - f a)`. -/
 theorem CauchyMeanValueTheorem (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     (hfcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
     (hgcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' g (Set.Icc a b))
@@ -45,17 +56,16 @@ theorem CauchyMeanValueTheorem (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b)
   sorry
 
 -- `thm:nondecreasing-iff-nonneg-derivative`
-/-- cited as a dependency of
-the Inverse Function Theorem in `algebra-of-derivatives`. -/
+/-- Let `I : Set ℝ`. If `f : ℝ → ℝ`, `hI : I.OrdConnected`, and `hdiff : ∀ x ∈ I, IsDifferentiable f
+I x`. Then `MonotoneOn f I ↔ ∀ x ∈ I, ∀ D, Derivative D f I x → D ≥ 0`. -/
 theorem NondecreasingIffNonnegDerivative (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected)
     (hdiff : ∀ x ∈ I, IsDifferentiable f I x) :
     MonotoneOn f I ↔ ∀ x ∈ I, ∀ D, Derivative D f I x → D ≥ 0 := by
   sorry
 
-/-- `cor:derivative-bound-implies-lipschitz`: a bounded derivative on an
-interval forces a Lipschitz bound with the same constant — the key
-GPU-relevant tool for Lipschitz gradient-constant reasoning, referenced
-again in the Differentiation chapter's `C^{1,1}` material. -/
+/-- Let `I : Set ℝ` and `M : ℝ`. If `f : ℝ → ℝ`, `hI : I.OrdConnected`, `hdiff : ∀ x ∈ I,
+IsDifferentiable f I x`, `hM : M ≥ 0`, and `hbound : ∀ x ∈ I, ∀ D, Derivative D f I x → |D| ≤
+M`. Then `LRA.VolumeIII.Analysis.Continuity.IsLipschitzOn f I M`. -/
 theorem DerivativeBoundImpliesLipschitz (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected)
     (hdiff : ∀ x ∈ I, IsDifferentiable f I x) (M : ℝ) (hM : M ≥ 0)
     (hbound : ∀ x ∈ I, ∀ D, Derivative D f I x → |D| ≤ M) :

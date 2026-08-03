@@ -67,50 +67,59 @@ def UniformlyBoundedFamily {I : Type*} (f : I → ℝ → ℝ) (A : Set ℝ) : P
   ∃ B > 0, ∀ α : I, ∀ x ∈ A, |f α x| ≤ B
 
 -- `thm:bounded-iff-absolute-value-bounded-above`
-/-- The theorem states that bounded iff absolute value bounded above. -/
+/-- Let `A : Set ℝ`. If `f : ℝ → ℝ`. Then `FunctionBounded f A ↔ FunctionBoundedAbove (fun x => |f
+x|) A`. -/
 theorem BoundedIffAbsoluteValueBoundedAbove (f : ℝ → ℝ) (A : Set ℝ) :
     FunctionBounded f A ↔ FunctionBoundedAbove (fun x => |f x|) A := by
   sorry
 
-/-- `prop:boundedness-restriction`. -/
+/-- Let `S A : Set ℝ`. If `f : ℝ → ℝ`, `hS : S ⊆ A`, and `h : FunctionBounded f A`. Then
+`FunctionBounded f S`. -/
 theorem BoundednessRestriction (f : ℝ → ℝ) (S A : Set ℝ) (hS : S ⊆ A)
     (h : FunctionBounded f A) : FunctionBounded f S := by
   sorry
 
-/-- `prop:boundedness-not-preserved-under-extension`. -/
+/-- The theorem asserts `∃ (A B : Set ℝ) (f g : ℝ → ℝ), A ⊆ B ∧ FunctionBounded f A ∧ (∀ x ∈ A, g x
+= f x) ∧ ¬ FunctionBounded g B`. -/
 theorem BoundednessNotPreservedUnderExtension :
     ∃ (A B : Set ℝ) (f g : ℝ → ℝ),
       A ⊆ B ∧ FunctionBounded f A ∧ (∀ x ∈ A, g x = f x) ∧
         ¬ FunctionBounded g B := by
   sorry
 
-/-- `prop:bounded-away-from-zero-implies-nonzero`. -/
+/-- Let `A : Set ℝ`. If `f : ℝ → ℝ` and `h : FunctionBoundedAwayFromZero f A`. Then `∀ x ∈ A, f x ≠
+0`. -/
 theorem BoundedAwayFromZeroImpliesNonzero (f : ℝ → ℝ) (A : Set ℝ)
     (h : FunctionBoundedAwayFromZero f A) : ∀ x ∈ A, f x ≠ 0 := by
   sorry
 
-/-- `prop:bounded-away-from-zero-near-implies-nonzero-near`. -/
+/-- Let `c : ℝ` and `A : Set ℝ`. If `f : ℝ → ℝ` and `h : FunctionBoundedAwayFromZeroNear f c A`.
+Then `∃ δ > 0, ∀ x ∈ A, 0 < |x - c| ∧ |x - c| < δ → f x ≠ 0`. -/
 theorem BoundedAwayFromZeroNearImpliesNonzeroNear (f : ℝ → ℝ)
     (c : ℝ) (A : Set ℝ) (h : FunctionBoundedAwayFromZeroNear f c A) :
     ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| ∧ |x - c| < δ → f x ≠ 0 := by
   sorry
 
 -- `thm:bounded-away-from-zero-gives-bounded-reciprocal`
-/-- The theorem states that bounded away from zero gives bounded reciprocal. -/
+/-- Let `A : Set ℝ`. If `f : ℝ → ℝ` and `h : FunctionBoundedAwayFromZero f A`. Then `FunctionBounded
+(fun x => 1 / f x) A`. -/
 theorem BoundedAwayFromZeroGivesBoundedReciprocal (f : ℝ → ℝ) (A : Set ℝ)
     (h : FunctionBoundedAwayFromZero f A) :
     FunctionBounded (fun x => 1 / f x) A := by
   sorry
 
 -- `thm:local-bounded-away-from-zero-gives-local-bounded-reciprocal`
-/-- The theorem states that local bounded away from zero gives local bounded reciprocal. -/
+/-- Let `c : ℝ` and `A : Set ℝ`. If `f : ℝ → ℝ` and `h : FunctionBoundedAwayFromZeroNear f c A`.
+Then `FunctionBoundedNear (fun x => 1 / f x) c A`. -/
 theorem LocalBoundedAwayFromZeroGivesLocalBoundedReciprocal
     (f : ℝ → ℝ) (c : ℝ) (A : Set ℝ) (h : FunctionBoundedAwayFromZeroNear f c A) :
     FunctionBoundedNear (fun x => 1 / f x) c A := by
   sorry
 
 -- `thm:uniform-boundedness-transfer-under-pointwise-limit`
-/-- The theorem states the uniform boundedness transfer under pointwise limit assertion. -/
+/-- Let `A : Set ℝ`. If `f : ℕ → ℝ → ℝ`, `F : ℝ → ℝ`, `hunif : UniformlyBoundedFamily f A`, and
+`hlim : ∀ x ∈ A, Filter.Tendsto (fun n => f n x) Filter.atTop (nhds (F x))`. Then
+`FunctionBounded F A`. -/
 theorem UniformBoundednessTransferUnderPointwiseLimit
     (f : ℕ → ℝ → ℝ) (F : ℝ → ℝ) (A : Set ℝ)
     (hunif : UniformlyBoundedFamily f A)
@@ -119,7 +128,11 @@ theorem UniformBoundednessTransferUnderPointwiseLimit
   sorry
 
 -- `thm:bounded-function-algebra-closure`
-/-- The theorem states the bounded function algebra closure assertion. -/
+/-- Let `A : Set ℝ` and `lam : ℝ`. If `f g : ℝ → ℝ`, `hf : FunctionBounded f A`, and `hg :
+FunctionBounded g A`. Then `FunctionBounded (fun x => f x + g x) A ∧ FunctionBounded (fun x => f
+x - g x) A ∧ FunctionBounded (fun x => f x * g x) A ∧ FunctionBounded (fun x => lam * f x) A ∧
+FunctionBounded (fun x => |f x|) A ∧ FunctionBounded (fun x => max (f x) (g x)) A ∧
+FunctionBounded (fun x => min (f x) (g x)) A`. -/
 theorem BoundedFunctionAlgebraClosure (f g : ℝ → ℝ) (A : Set ℝ) (lam : ℝ)
     (hf : FunctionBounded f A) (hg : FunctionBounded g A) :
     FunctionBounded (fun x => f x + g x) A ∧
@@ -131,35 +144,42 @@ theorem BoundedFunctionAlgebraClosure (f g : ℝ → ℝ) (A : Set ℝ) (lam : �
       FunctionBounded (fun x => min (f x) (g x)) A := by
   sorry
 
-/-- `cor:bounded-sum`. -/
+/-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`, `hf : FunctionBounded f A`, and `hg : FunctionBounded g A`.
+Then `FunctionBounded (fun x => f x + g x) A`. -/
 theorem BoundedSum (f g : ℝ → ℝ) (A : Set ℝ)
     (hf : FunctionBounded f A) (hg : FunctionBounded g A) :
     FunctionBounded (fun x => f x + g x) A := by
   sorry
 
-/-- `cor:bounded-difference`. -/
+/-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`, `hf : FunctionBounded f A`, and `hg : FunctionBounded g A`.
+Then `FunctionBounded (fun x => f x - g x) A`. -/
 theorem BoundedDifference (f g : ℝ → ℝ) (A : Set ℝ)
     (hf : FunctionBounded f A) (hg : FunctionBounded g A) :
     FunctionBounded (fun x => f x - g x) A := by
   sorry
 
-/-- `cor:bounded-product`. -/
+/-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`, `hf : FunctionBounded f A`, and `hg : FunctionBounded g A`.
+Then `FunctionBounded (fun x => f x * g x) A`. -/
 theorem BoundedProduct (f g : ℝ → ℝ) (A : Set ℝ)
     (hf : FunctionBounded f A) (hg : FunctionBounded g A) :
     FunctionBounded (fun x => f x * g x) A := by
   sorry
 
-/-- `cor:bounded-scalar-multiple`. -/
+/-- Let `A : Set ℝ` and `lam : ℝ`. If `f : ℝ → ℝ` and `hf : FunctionBounded f A`. Then
+`FunctionBounded (fun x => lam * f x) A`. -/
 theorem BoundedScalarMultiple (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ)
     (hf : FunctionBounded f A) : FunctionBounded (fun x => lam * f x) A := by
   sorry
 
-/-- `cor:bounded-absolute-value`. -/
+/-- Let `A : Set ℝ`. If `f : ℝ → ℝ` and `hf : FunctionBounded f A`. Then `FunctionBounded (fun x =>
+|f x|) A`. -/
 theorem BoundedAbsoluteValue (f : ℝ → ℝ) (A : Set ℝ)
     (hf : FunctionBounded f A) : FunctionBounded (fun x => |f x|) A := by
   sorry
 
-/-- `cor:bounded-max-min`. -/
+/-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`, `hf : FunctionBounded f A`, and `hg : FunctionBounded g A`.
+Then `FunctionBounded (fun x => max (f x) (g x)) A ∧ FunctionBounded (fun x => min (f x) (g x))
+A`. -/
 theorem BoundedMaxMin (f g : ℝ → ℝ) (A : Set ℝ)
     (hf : FunctionBounded f A) (hg : FunctionBounded g A) :
     FunctionBounded (fun x => max (f x) (g x)) A ∧
@@ -167,7 +187,10 @@ theorem BoundedMaxMin (f g : ℝ → ℝ) (A : Set ℝ)
   sorry
 
 -- `thm:bounded-functions-form-commutative-ring`
-/-- The theorem states the bounded functions form commutative ring assertion. -/
+/-- Let `A : Set ℝ`. Then `∀ f g : ℝ → ℝ, FunctionBounded f A → FunctionBounded g A →
+FunctionBounded (fun x => f x + g x) A ∧ FunctionBounded (fun x => -f x) A ∧ FunctionBounded
+(fun x => f x * g x) A ∧ FunctionBounded (fun _ => (0 : ℝ)) A ∧ FunctionBounded (fun _ => (1 :
+ℝ)) A`. -/
 theorem BoundedFunctionsFormCommutativeRing (A : Set ℝ) :
     ∀ f g : ℝ → ℝ, FunctionBounded f A → FunctionBounded g A →
       FunctionBounded (fun x => f x + g x) A ∧
@@ -178,7 +201,9 @@ theorem BoundedFunctionsFormCommutativeRing (A : Set ℝ) :
   sorry
 
 -- `thm:bounded-functions-form-real-vector-space`
-/-- The theorem states the bounded functions form real vector space assertion. -/
+/-- Let `A : Set ℝ`. Then `∀ f g : ℝ → ℝ, ∀ lam : ℝ, FunctionBounded f A → FunctionBounded g A →
+FunctionBounded (fun x => f x + g x) A ∧ FunctionBounded (fun x => -f x) A ∧ FunctionBounded
+(fun x => lam * f x) A ∧ FunctionBounded (fun _ => (0 : ℝ)) A`. -/
 theorem BoundedFunctionsFormRealVectorSpace (A : Set ℝ) :
     ∀ f g : ℝ → ℝ, ∀ lam : ℝ, FunctionBounded f A → FunctionBounded g A →
       FunctionBounded (fun x => f x + g x) A ∧
@@ -188,14 +213,15 @@ theorem BoundedFunctionsFormRealVectorSpace (A : Set ℝ) :
   sorry
 
 -- `thm:bounded-away-quotient`
-/-- The theorem states the bounded away quotient assertion. -/
+/-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`, `hf : FunctionBounded f A`, and `hg :
+FunctionBoundedAwayFromZero g A`. Then `FunctionBounded (fun x => f x / g x) A`. -/
 theorem BoundedAwayQuotient (f g : ℝ → ℝ) (A : Set ℝ)
     (hf : FunctionBounded f A) (hg : FunctionBoundedAwayFromZero g A) :
     FunctionBounded (fun x => f x / g x) A := by
   sorry
 
-/-- `cor:bounded-quotient-by-bounded-away-denominator`. Identical
-statement to `BoundedAwayQuotient` above — see header note. -/
+/-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`, `hf : FunctionBounded f A`, and `hg :
+FunctionBoundedAwayFromZero g A`. Then `FunctionBounded (fun x => f x / g x) A`. -/
 theorem BoundedQuotientByBoundedAwayDenominator (f g : ℝ → ℝ) (A : Set ℝ)
     (hf : FunctionBounded f A) (hg : FunctionBoundedAwayFromZero g A) :
     FunctionBounded (fun x => f x / g x) A := by

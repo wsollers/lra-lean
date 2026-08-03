@@ -43,20 +43,15 @@ def IsRelativeInfimum (i : T) (A S : Set T) : Prop :=
    ADDITIONS.md item 24. Added with user sign-off.
    ================================================================ -/
 
-/-- ADDITIONS.md #24. If the ORDINARY supremum of `A` exists and happens to
-land inside the ambient carrier `S`, it is also the relative supremum of `A`
-in `S` — the missing bridge between this file's relative-bounds framework
-and the plain `def:supremum` content elsewhere in the book. This is exactly
-the theorem that makes the file's own motivating example
-(`{q∈ℚ:q²<2}` has supremum `√2` in `ℝ` but no relative supremum in `ℚ`)
-rigorous rather than merely suggestive: `√2 ∉ ℚ` is precisely why the
-hypothesis `s ∈ S` fails when `S = ℚ`. -/
+/-- Let `A S : Set T` and `s : T`. If `hs : IsLUB A s` and `hsS : s ∈ S`. Then `IsRelativeSupremum s
+A S`. -/
 theorem OrdinarySupremumInSIsRelativeSupremum
     (A S : Set T) (s : T) (hs : IsLUB A s) (hsS : s ∈ S) :
     IsRelativeSupremum s A S := by
   sorry
 
-/-- Dual of `OrdinarySupremumInSIsRelativeSupremum` for infima. -/
+/-- Let `A S : Set T` and `i : T`. If `hi : IsGLB A i` and `hiS : i ∈ S`. Then `IsRelativeInfimum i
+A S`. -/
 theorem OrdinaryInfimumInSIsRelativeInfimum
     (A S : Set T) (i : T) (hi : IsGLB A i) (hiS : i ∈ S) :
     IsRelativeInfimum i A S := by
@@ -80,21 +75,15 @@ concrete. -/
 def RationalsWithSquareLessThanTwoInR : Set ℝ :=
   {x : ℝ | ∃ q : ℚ, x = (q : ℝ) ∧ q ^ 2 < 2}
 
-/-- ADDITIONS.md #21. `S = {x∈ℚ:x²<2}` has NO relative supremum when the
-ambient carrier is restricted to the embedded copy of `ℚ` inside `ℝ` — the
-relative-bounds-framework restatement of `RationalsLackLubProperty`. -/
+/-- The theorem asserts `¬ ∃ s : ℝ, IsRelativeSupremum s RationalsWithSquareLessThanTwoInR
+(Set.range ((↑) : ℚ → ℝ))`. -/
 theorem NoRelativeSupremumOfRationalsExample :
     ¬ ∃ s : ℝ, IsRelativeSupremum s RationalsWithSquareLessThanTwoInR
       (Set.range ((↑) : ℚ → ℝ)) := by
   sorry
 
-/-- ADDITIONS.md #21. The SAME set has relative supremum `√2` once the
-ambient carrier is widened to all of `ℝ` — direct instance of
-`OrdinarySupremumInSIsRelativeSupremum` above with `S = Set.univ`,
-since `√2 ∈ ℝ = Set.univ` trivially. This is the theorem that makes the
-file's own motivating remark rigorous: the only thing that changed between
-the two results is whether the candidate supremum `√2` lies in the ambient
-carrier `S`. -/
+/-- The theorem asserts `IsRelativeSupremum (Real.sqrt 2) RationalsWithSquareLessThanTwoInR
+(Set.univ : Set ℝ)`. -/
 theorem RelativeSupremumOfRationalsInRExample :
     IsRelativeSupremum (Real.sqrt 2) RationalsWithSquareLessThanTwoInR
       (Set.univ : Set ℝ) := by

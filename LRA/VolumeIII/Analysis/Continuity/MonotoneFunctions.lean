@@ -15,16 +15,18 @@ import LRA.VolumeIII.Analysis.Continuity.PointContinuity
 namespace LRA.VolumeIII.Analysis.Continuity
 
 -- `thm:monotone-one-sided-limits`
-/-- a monotone function on an interval
-has one-sided limits everywhere in the interior. -/
+/-- Let `I : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`, `hI : I.OrdConnected`, `hmono : MonotoneOn f I`,
+and `hc : c ∈ I`. Then `(∃ L, ∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c - δ < x → x < c → |f x - L| < ε) ∧ (∃
+L, ∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c < x → x < c + δ → |f x - L| < ε)`. -/
 theorem MonotoneHasOneSidedLimits (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c : ℝ) (hc : c ∈ I) :
     (∃ L, ∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c - δ < x → x < c → |f x - L| < ε) ∧
     (∃ L, ∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c < x → x < c + δ → |f x - L| < ε) := by
   sorry
 
-/-- `cor:monotone-continuity-criterion`: monotone on an interval is
-continuous at `c` iff both one-sided limits equal `f(c)`. -/
+/-- Let `I : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`, `hI : I.OrdConnected`, `hmono : MonotoneOn f I`,
+and `hc : c ∈ I`. Then `ContinuousAtPoint f I c ↔ (∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c - δ < x → x < c
+→ |f x - f c| < ε) ∧ (∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c < x → x < c + δ → |f x - f c| < ε)`. -/
 theorem MonotoneContinuousIffOneSidedLimitsAgree (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c : ℝ) (hc : c ∈ I) :
     ContinuousAtPoint f I c ↔
@@ -37,17 +39,17 @@ monotone function — the difference of right- and left-hand limits. -/
 noncomputable def JumpOf (f : ℝ → ℝ) (I : Set ℝ) (c : ℝ) : ℝ :=
   0
 
-/-- `prop:monotone-discontinuities-first-kind`: every discontinuity of a
-monotone function is a jump discontinuity (in the book's sense). -/
+/-- Let `I : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`, `hI : I.OrdConnected`, `hmono : MonotoneOn f I`,
+`hc : c ∈ I`, and `hdisc : PointOfDiscontinuity f I c`. Then `JumpOf f I c > 0`. -/
 theorem MonotoneDiscontinuitiesAreJumps (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c : ℝ) (hc : c ∈ I)
     (hdisc : PointOfDiscontinuity f I c) :
     JumpOf f I c > 0 := by
   sorry
 
-/-- `cor:jump-intervals-for-monotone-discontinuities`: distinct
-discontinuities of a monotone function carry disjoint open "jump
-intervals" `(Ll, Lr)`. -/
+/-- Let `I : Set ℝ` and `c₁ c₂ : ℝ`. If `f : ℝ → ℝ`, `hI : I.OrdConnected`, `hmono : MonotoneOn f
+I`, `hc₁ : PointOfDiscontinuity f I c₁`, `hc₂ : PointOfDiscontinuity f I c₂`, and `hne : c₁ ≠
+c₂`. Then `True`. -/
 theorem JumpIntervalsDisjoint (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c₁ c₂ : ℝ)
     (hc₁ : PointOfDiscontinuity f I c₁) (hc₂ : PointOfDiscontinuity f I c₂)
@@ -55,24 +57,24 @@ theorem JumpIntervalsDisjoint (f : ℝ → ℝ) (I : Set ℝ)
   sorry
 
 -- `thm:monotone-discontinuities-countable`
-/-- the discontinuity set of a
-monotone function on an interval is countable. -/
+/-- Let `I : Set ℝ`. If `f : ℝ → ℝ`, `hI : I.OrdConnected`, and `hmono : MonotoneOn f I`. Then
+`Set.Countable {c : ℝ | c ∈ I ∧ PointOfDiscontinuity f I c}`. -/
 theorem MonotoneDiscontinuitiesCountable (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hmono : MonotoneOn f I) :
     Set.Countable {c : ℝ | c ∈ I ∧ PointOfDiscontinuity f I c} := by
   sorry
 
-/-- `prop:continuous-injective-iff-strictly-monotone`: for continuous
-functions on an interval, injectivity is equivalent to strict
-monotonicity. -/
+/-- Let `I : Set ℝ`. If `f : ℝ → ℝ`, `hI : I.OrdConnected`, and `hf : ContinuousOn' f I`. Then
+`Set.InjOn f I ↔ StrictMonoOn f I ∨ StrictAntiOn f I`. -/
 theorem ContinuousInjectiveIffStrictMono (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hf : ContinuousOn' f I) :
     Set.InjOn f I ↔ StrictMonoOn f I ∨ StrictAntiOn f I := by
   sorry
 
 -- `thm:continuous-inverse-theorem`
-/-- a continuous strictly monotone
-function on an interval has a continuous inverse on its image. -/
+/-- Let `I : Set ℝ`. If `f : ℝ → ℝ`, `hI : I.OrdConnected`, `hf : ContinuousOn' f I`, `hmono :
+StrictMonoOn f I`, `finv : ℝ → ℝ`, and `hfinv : ∀ x ∈ I, finv (f x) = x`. Then `ContinuousOn'
+finv (f '' I)`. -/
 theorem ContinuousInverseTheorem (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hf : ContinuousOn' f I) (hmono : StrictMonoOn f I)
     (finv : ℝ → ℝ) (hfinv : ∀ x ∈ I, finv (f x) = x) :
@@ -90,14 +92,15 @@ noncomputable def LimsupAt (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : ℝ :=
 noncomputable def LiminfAt (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : ℝ :=
   0
 
-/-- `prop:limsup-liminf-limit-criterion`: `f` has limit `L` at `c` iff
-`limsup = liminf = L`. -/
+/-- Let `A : Set ℝ` and `c L : ℝ`. If `f : ℝ → ℝ`. Then `(∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| →
+|x - c| < δ → |f x - L| < ε) ↔ LimsupAt f A c = L ∧ LiminfAt f A c = L`. -/
 theorem TendstoIffLimsupEqLiminf (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) :
     (∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → |f x - L| < ε) ↔
       LimsupAt f A c = L ∧ LiminfAt f A c = L := by
   sorry
 
-/-- `prop:limsup-geq-liminf-function`. -/
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`, `hbdd : BddAbove (f '' A)`, and `hbdd' : BddBelow
+(f '' A)`. Then `LiminfAt f A c ≤ LimsupAt f A c`. -/
 theorem LiminfLeLimsup (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hbdd : BddAbove (f '' A)) (hbdd' : BddBelow (f '' A)) :
     LiminfAt f A c ≤ LimsupAt f A c := by

@@ -57,13 +57,15 @@ def IsSupremum [Preorder F] (s : F) (A : Set F) : Prop :=
 def IsInfimum [Preorder F] (i : F) (A : Set F) : Prop :=
   IsLowerBound i A /\ forall l, IsLowerBound l A -> l <= i
 
-/-- A maximum is a supremum. -/
+/-- Let `m : F` and `A : Set F`. If `[Preorder F]` and `maximum_hypothesis : IsMaximum m A`. Then
+`IsSupremum m A`. -/
 theorem MaximumIsSupremum [Preorder F] {m : F} {A : Set F}
     (maximum_hypothesis : IsMaximum m A) : IsSupremum m A :=
   ⟨maximum_hypothesis.2, fun _ upper_hypothesis =>
     upper_hypothesis m maximum_hypothesis.1⟩
 
-/-- Suprema are unique in a partial order. -/
+/-- Let `s t : F` and `A : Set F`. If `[PartialOrder F]`, `left_supremum : IsSupremum s A`, and
+`right_supremum : IsSupremum t A`. Then `s = t`. -/
 theorem SupremumUnique [PartialOrder F] {s t : F} {A : Set F}
     (left_supremum : IsSupremum s A)
     (right_supremum : IsSupremum t A) : s = t :=
@@ -71,7 +73,8 @@ theorem SupremumUnique [PartialOrder F] {s t : F} {A : Set F}
     (left_supremum.2 t right_supremum.1)
     (right_supremum.2 s left_supremum.1)
 
-/-- Infima are unique in a partial order. -/
+/-- Let `s t : F` and `A : Set F`. If `[PartialOrder F]`, `left_infimum : IsInfimum s A`, and
+`right_infimum : IsInfimum t A`. Then `s = t`. -/
 theorem InfimumUnique [PartialOrder F] {s t : F} {A : Set F}
     (left_infimum : IsInfimum s A)
     (right_infimum : IsInfimum t A) : s = t :=
@@ -79,12 +82,7 @@ theorem InfimumUnique [PartialOrder F] {s t : F} {A : Set F}
     (right_infimum.2 s left_infimum.1)
     (left_infimum.2 t right_infimum.1)
 
-/--
-Bridge from the LRA supremum predicate to Mathlib's `IsLUB`.
-
-This is intentionally the only direct coupling point between this interface and
-Mathlib's bound vocabulary.
--/
+/-- Let `s : F` and `A : Set F`. If `[Preorder F]`. Then `IsSupremum s A <-> IsLUB A s`. -/
 theorem SupremumIffIsLUB [Preorder F] {s : F} {A : Set F} :
     IsSupremum s A <-> IsLUB A s := by
   constructor
@@ -101,7 +99,9 @@ open scoped Pointwise
 
 variable {F : Type*} [Field F] [LinearOrder F] [IsStrictOrderedRing F]
 
-/-- Supremum of a pointwise sum. -/
+/-- Let `sA sB : F` and `A B : Set F`. If `A_nonempty : A.Nonempty`, `B_nonempty : B.Nonempty`,
+`left_supremum : IsSupremum sA A`, and `right_supremum : IsSupremum sB B`. Then `IsSupremum (sA
++ sB) (A + B)`. -/
 theorem SupremumOfSum {sA sB : F} {A B : Set F}
     (A_nonempty : A.Nonempty)
     (B_nonempty : B.Nonempty)
@@ -110,7 +110,9 @@ theorem SupremumOfSum {sA sB : F} {A B : Set F}
     IsSupremum (sA + sB) (A + B) := by
   sorry
 
-/-- Infimum of a pointwise sum. -/
+/-- Let `iA iB : F` and `A B : Set F`. If `A_nonempty : A.Nonempty`, `B_nonempty : B.Nonempty`,
+`left_infimum : IsInfimum iA A`, and `right_infimum : IsInfimum iB B`. Then `IsInfimum (iA + iB)
+(A + B)`. -/
 theorem InfimumOfSum {iA iB : F} {A B : Set F}
     (A_nonempty : A.Nonempty)
     (B_nonempty : B.Nonempty)
@@ -119,7 +121,8 @@ theorem InfimumOfSum {iA iB : F} {A B : Set F}
     IsInfimum (iA + iB) (A + B) := by
   sorry
 
-/-- Supremum under positive scaling. -/
+/-- Let `a s : F` and `A : Set F`. If `A_nonempty : A.Nonempty`, `scale_positive : 0 < a`, and
+`supremum_hypothesis : IsSupremum s A`. Then `IsSupremum (a * s) ((fun x => a * x) '' A)`. -/
 theorem SupremumOfPositiveScale {a s : F} {A : Set F}
     (A_nonempty : A.Nonempty)
     (scale_positive : 0 < a)
@@ -127,12 +130,13 @@ theorem SupremumOfPositiveScale {a s : F} {A : Set F}
     IsSupremum (a * s) ((fun x => a * x) '' A) := by
   sorry
 
-/-- Negation swaps suprema and infima. -/
+/-- Let `s : F` and `A : Set F`. Then `IsSupremum s A <-> IsInfimum (-s) (-A)`. -/
 theorem NegationSwapsSupremumInfimum {s : F} {A : Set F} :
     IsSupremum s A <-> IsInfimum (-s) (-A) := by
   sorry
 
-/-- Supremum is monotone under set inclusion. -/
+/-- Let `sA sB : F` and `A B : Set F`. If `subset_hypothesis : A ⊆ B`, `left_supremum : IsSupremum
+sA A`, and `right_supremum : IsSupremum sB B`. Then `sA <= sB`. -/
 theorem SupremumMonotone {sA sB : F} {A B : Set F}
     (subset_hypothesis : A ⊆ B)
     (left_supremum : IsSupremum sA A)

@@ -25,22 +25,24 @@ first-order (differentiability) approximation. -/
 def IsIncrementLittleO (r : ℝ → ℝ) : Prop :=
   ∀ ε > 0, ∃ δ > 0, ∀ h, 0 < |h| → |h| < δ → |r h| ≤ ε * |h|
 
-/-- `prop:little-o-quotient-characterization`. `f = o(g)` at `a` iff
-`f/g → 0` at `a`. -/
+/-- Let `a : ℝ`. If `f g : ℝ → ℝ` and `hg : Filter.Eventually (fun x => g x ≠ 0) (nhdsWithin a
+{a}ᶜ)`. Then `IsLittleOAt f g a ↔ Filter.Tendsto (fun x => f x / g x) (nhdsWithin a {a}ᶜ) (nhds
+0)`. -/
 theorem LittleOQuotientCharacterization (f g : ℝ → ℝ) (a : ℝ)
     (hg : Filter.Eventually (fun x => g x ≠ 0) (nhdsWithin a {a}ᶜ)) :
     IsLittleOAt f g a ↔
       Filter.Tendsto (fun x => f x / g x) (nhdsWithin a {a}ᶜ) (nhds 0) := by
   sorry
 
-/-- `prop:little-o-sum-rule`. Little-o is closed under addition. -/
+/-- Let `a : ℝ`. If `f1 f2 g : ℝ → ℝ`, `h1 : IsLittleOAt f1 g a`, and `h2 : IsLittleOAt f2 g a`.
+Then `IsLittleOAt (fun x => f1 x + f2 x) g a`. -/
 theorem LittleOSumRule (f1 f2 g : ℝ → ℝ) (a : ℝ)
     (h1 : IsLittleOAt f1 g a) (h2 : IsLittleOAt f2 g a) :
     IsLittleOAt (fun x => f1 x + f2 x) g a := by
   sorry
 
-/-- `prop:little-o-bounded-factor-rule`. A bounded factor cannot promote a
-little-o error to main-order. -/
+/-- Let `a : ℝ`. If `f g m : ℝ → ℝ`, `hf : IsLittleOAt f g a`, and `hm : ∃ M > 0, ∃ η > 0, ∀ x, 0 <
+|x - a| → |x - a| < η → |m x| ≤ M`. Then `IsLittleOAt (fun x => m x * f x) g a`. -/
 theorem LittleOBoundedFactorRule (f g m : ℝ → ℝ) (a : ℝ)
     (hf : IsLittleOAt f g a)
     (hm : ∃ M > 0, ∃ η > 0, ∀ x, 0 < |x - a| → |x - a| < η → |m x| ≤ M) :

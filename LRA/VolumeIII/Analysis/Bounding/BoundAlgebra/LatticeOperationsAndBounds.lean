@@ -18,7 +18,9 @@ def PairwiseMax (A B : Set ℝ) : Set ℝ :=
 def PairwiseMin (A B : Set ℝ) : Set ℝ :=
   {x | ∃ a ∈ A, ∃ b ∈ B, x = min a b}
 
-/-- The supremum of a pairwise-maximum set is the maximum of the suprema. -/
+/-- Let `A B : Set ℝ` and `sA sB : ℝ`. If `leftNonemptyHypothesis : A.Nonempty`,
+`rightNonemptyHypothesis : B.Nonempty`, `leftSupremumHypothesis : IsSupremum sA A`, and
+`rightSupremumHypothesis : IsSupremum sB B`. Then `IsSupremum (max sA sB) (PairwiseMax A B)`. -/
 theorem SupremumOfPairwiseMaximumSet {A B : Set ℝ}
     (leftNonemptyHypothesis : A.Nonempty)
     (rightNonemptyHypothesis : B.Nonempty)
@@ -28,7 +30,9 @@ theorem SupremumOfPairwiseMaximumSet {A B : Set ℝ}
     IsSupremum (max sA sB) (PairwiseMax A B) := by
   sorry
 
-/-- The infimum of a pairwise-maximum set is the maximum of the infima. -/
+/-- Let `A B : Set ℝ` and `iA iB : ℝ`. If `leftNonemptyHypothesis : A.Nonempty`,
+`rightNonemptyHypothesis : B.Nonempty`, `leftInfimumHypothesis : IsInfimum iA A`, and
+`rightInfimumHypothesis : IsInfimum iB B`. Then `IsInfimum (max iA iB) (PairwiseMax A B)`. -/
 theorem InfimumOfPairwiseMaximumSet {A B : Set ℝ}
     (leftNonemptyHypothesis : A.Nonempty)
     (rightNonemptyHypothesis : B.Nonempty)
@@ -38,7 +42,9 @@ theorem InfimumOfPairwiseMaximumSet {A B : Set ℝ}
     IsInfimum (max iA iB) (PairwiseMax A B) := by
   sorry
 
-/-- The supremum of a pairwise-minimum set is the minimum of the suprema. -/
+/-- Let `A B : Set ℝ` and `sA sB : ℝ`. If `leftNonemptyHypothesis : A.Nonempty`,
+`rightNonemptyHypothesis : B.Nonempty`, `leftSupremumHypothesis : IsSupremum sA A`, and
+`rightSupremumHypothesis : IsSupremum sB B`. Then `IsSupremum (min sA sB) (PairwiseMin A B)`. -/
 theorem SupremumOfPairwiseMinimumSet {A B : Set ℝ}
     (leftNonemptyHypothesis : A.Nonempty)
     (rightNonemptyHypothesis : B.Nonempty)
@@ -48,7 +54,9 @@ theorem SupremumOfPairwiseMinimumSet {A B : Set ℝ}
     IsSupremum (min sA sB) (PairwiseMin A B) := by
   sorry
 
-/-- The infimum of a pairwise-minimum set is the minimum of the infima. -/
+/-- Let `A B : Set ℝ` and `iA iB : ℝ`. If `leftNonemptyHypothesis : A.Nonempty`,
+`rightNonemptyHypothesis : B.Nonempty`, `leftInfimumHypothesis : IsInfimum iA A`, and
+`rightInfimumHypothesis : IsInfimum iB B`. Then `IsInfimum (min iA iB) (PairwiseMin A B)`. -/
 theorem InfimumOfPairwiseMinimumSet {A B : Set ℝ}
     (leftNonemptyHypothesis : A.Nonempty)
     (rightNonemptyHypothesis : B.Nonempty)

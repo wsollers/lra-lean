@@ -21,15 +21,14 @@ def HasLinearApproximation (f : ℝ → ℝ) (a L : ℝ) : Prop :=
   ∀ ε > 0, ∃ δ > 0, ∀ x : ℝ, 0 < |x - a| → |x - a| < δ →
     |f x - f a - L * (x - a)| ≤ ε * |x - a|
 
-/-- `def:differentiability-linear-approximation`: differentiability at a
-point restated as the existence of a linear approximation with slope
-equal to the derivative. -/
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`. Then `IsDifferentiable f A c ↔ ∃ L,
+HasLinearApproximation f c L`. -/
 theorem DifferentiableIffHasLinearApproximation (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     IsDifferentiable f A c ↔ ∃ L, HasLinearApproximation f c L := by
   sorry
 
-/-- The linear part of a linear approximation, when it exists, equals the
-derivative. -/
+/-- Let `A : Set ℝ`, `c D : ℝ`, and `L : ℝ`. If `f : ℝ → ℝ`, `hD : Derivative D f A c`, and `hL :
+HasLinearApproximation f c L`. Then `L = D`. -/
 theorem LinearApproximationSlopeEqDerivative (f : ℝ → ℝ) (A : Set ℝ) (c D : ℝ)
     (hD : Derivative D f A c) (L : ℝ) (hL : HasLinearApproximation f c L) :
     L = D := by

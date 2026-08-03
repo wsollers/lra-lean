@@ -41,8 +41,8 @@ def IsDeltaFine {a b : ℝ} (P : TaggedPartition a b) (δ : ℝ → ℝ) : Prop 
     P.points i.succ ≤ P.tag i + δ (P.tag i)
 
 -- `thm:cousins-theorem`
-/-- every gauge on `[a,b]` admits a δ-fine tagged
-partition. -/
+/-- Let `a b : ℝ`. If `hab : a ≤ b`, `δ : ℝ → ℝ`, and `hδ : IsGauge a b δ`. Then `∃ P :
+TaggedPartition a b, IsDeltaFine P δ`. -/
 theorem CousinsTheorem (a b : ℝ) (hab : a ≤ b) (δ : ℝ → ℝ)
     (hδ : IsGauge a b δ) :
     ∃ P : TaggedPartition a b, IsDeltaFine P δ := by
@@ -62,14 +62,14 @@ given partitions of the same interval. -/
 def HasCommonRefinement {a b : ℝ} (P₁ P₂ : IntervalPartition a b) : Prop :=
   ∃ Q : IntervalPartition a b, IsRefinementOf Q P₁ ∧ IsRefinementOf Q P₂
 
-/-- The theorem states the common refinement exists assertion. -/
+/-- Let `a b : ℝ` and `P₁ P₂ : IntervalPartition a b`. Then `HasCommonRefinement P₁ P₂`. -/
 theorem CommonRefinementExists {a b : ℝ} (P₁ P₂ : IntervalPartition a b) :
     HasCommonRefinement P₁ P₂ := by
   sorry
 
 -- `lem:every-point-covered-by-tag`
-/-- every point of `[a,b]` lies in the
-closed cell of some tag of any given tagged partition. -/
+/-- Let `a b : ℝ` and `P : TaggedPartition a b`. Then `∀ x ∈ Set.Icc a b, ∃ i : Fin P.n, x ∈ Set.Icc
+(P.points i.castSucc) (P.points i.succ)`. -/
 theorem EveryPointCoveredByTag {a b : ℝ} (P : TaggedPartition a b) :
     ∀ x ∈ Set.Icc a b, ∃ i : Fin P.n, x ∈ Set.Icc (P.points i.castSucc) (P.points i.succ) := by
   sorry

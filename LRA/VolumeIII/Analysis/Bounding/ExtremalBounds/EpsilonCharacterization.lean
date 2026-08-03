@@ -6,26 +6,30 @@ Epsilon characterizations of suprema and infima in the real line.
 
 namespace LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
 
-/-- A real number is a supremum exactly when it has arbitrarily close witnesses below it. -/
+/-- Let `A : Set ℝ` and `s : ℝ`. Then `IsSupremum s A ↔ IsUpperBound s A ∧ ∀ ε : ℝ, 0 < ε → ∃ a ∈ A,
+s - ε < a`. -/
 theorem SupremumEpsilonCharacterization {A : Set ℝ} {s : ℝ} :
     IsSupremum s A ↔
       IsUpperBound s A ∧ ∀ ε : ℝ, 0 < ε → ∃ a ∈ A, s - ε < a := by
   sorry
 
-/-- A real number is an infimum exactly when it has arbitrarily close witnesses above it. -/
+/-- Let `A : Set ℝ` and `i : ℝ`. Then `IsInfimum i A ↔ IsLowerBound i A ∧ ∀ ε : ℝ, 0 < ε → ∃ a ∈ A,
+a < i + ε`. -/
 theorem InfimumEpsilonCharacterization {A : Set ℝ} {i : ℝ} :
     IsInfimum i A ↔
       IsLowerBound i A ∧ ∀ ε : ℝ, 0 < ε → ∃ a ∈ A, a < i + ε := by
   sorry
 
-/-- Every strict upper approximation to a supremum is exceeded by a set element. -/
+/-- Let `A : Set ℝ` and `s u : ℝ`. If `supremumHypothesis : IsSupremum s A` and `strictApproximation
+: u < s`. Then `∃ a ∈ A, u < a`. -/
 theorem SupremumStrictUpperApproximation {A : Set ℝ} {s u : ℝ}
     (supremumHypothesis : IsSupremum s A)
     (strictApproximation : u < s) :
     ∃ a ∈ A, u < a := by
   sorry
 
-/-- Every strict lower approximation to an infimum is exceeded downward by a set element. -/
+/-- Let `A : Set ℝ` and `i l : ℝ`. If `infimumHypothesis : IsInfimum i A` and `strictApproximation :
+i < l`. Then `∃ a ∈ A, a < l`. -/
 theorem InfimumStrictLowerApproximation {A : Set ℝ} {i l : ℝ}
     (infimumHypothesis : IsInfimum i A)
     (strictApproximation : i < l) :

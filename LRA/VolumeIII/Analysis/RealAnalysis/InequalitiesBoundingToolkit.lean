@@ -21,10 +21,8 @@ import Mathlib.Data.Real.Basic
 
 namespace LRA.VolumeIII.Analysis.RealAnalysis
 
-/-- `prop:order-arithmetic`. The four basic order-arithmetic rules bundled
-as a single citable proposition: additive monotonicity, multiplicative
-monotonicity by a positive/negative constant, and the absolute-value/
-two-sided-inequality conversion. -/
+/-- Let `a b c d y : ℝ`. Then `(a ≤ b ∧ c ≤ d → a + c ≤ b + d) ∧ (a ≤ b ∧ c > 0 → a * c ≤ b * c) ∧
+(a ≤ b ∧ c < 0 → a * c ≥ b * c) ∧ (y ≥ 0 → (|a| ≤ y ↔ -y ≤ a ∧ a ≤ y))`. -/
 theorem OrderArithmetic (a b c d y : ℝ) :
     (a ≤ b ∧ c ≤ d → a + c ≤ b + d) ∧
     (a ≤ b ∧ c > 0 → a * c ≤ b * c) ∧

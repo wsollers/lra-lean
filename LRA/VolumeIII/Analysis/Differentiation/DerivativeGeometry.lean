@@ -27,18 +27,16 @@ def IsRelativeMaximum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   c ∈ A ∧ ∃ δ > 0, ∀ x ∈ A, |x - c| < δ → f x ≤ f c
 
 -- `thm:necessary-condition-extremum`
-/-- a relative extremum at an
-interior point is either a point of non-differentiability or a critical
-point. -/
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`, `hc : c ∈ A`, and `hext : IsRelativeMinimum f A c ∨
+IsRelativeMaximum f A c`. Then `¬ IsDifferentiable f A c ∨ Derivative 0 f A c`. -/
 theorem NecessaryConditionExtremum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hc : c ∈ A)
     (hext : IsRelativeMinimum f A c ∨ IsRelativeMaximum f A c) :
     ¬ IsDifferentiable f A c ∨ Derivative 0 f A c := by
   sorry
 
-/-- `cor:relative-extremum-necessary-condition`: literally the same
-proposition as `thm:necessary-condition-extremum` (ISSUES.md #59) — the
-same disjunction with the disjuncts swapped. -/
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`, `hc : c ∈ A`, and `hext : IsRelativeMinimum f A c ∨
+IsRelativeMaximum f A c`. Then `Derivative 0 f A c ∨ ¬ IsDifferentiable f A c`. -/
 theorem RelativeExtremumNecessaryCondition (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hc : c ∈ A)
     (hext : IsRelativeMinimum f A c ∨ IsRelativeMaximum f A c) :

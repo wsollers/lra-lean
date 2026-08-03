@@ -36,7 +36,11 @@ noncomputable def MaclaurinPoly (fD : ℕ → ℝ → ℝ) (n : ℕ) : ℝ → �
   TaylorPoly fD n 0
 
 -- `thm:taylor-theorem-lagrange-remainder`
-/-- The theorem states the taylor theorem lagrange remainder assertion. -/
+/-- Let `a b : ℝ` and `n : ℕ`. If `f : ℝ → ℝ`, `fD : ℕ → ℝ → ℝ`, `hab : a < b`, `hcont : ∀ k ≤ n,
+LRA.VolumeIII.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b)`, and `hDnp1 : ∀ x ∈
+Set.Ioo a b, ∃ D, Derivative D (fD n) (Set.Ioo a b) x`. Then `∀ x ∈ Set.Ioo a b, ∃ c, (a < c ∧ c
+< x) ∧ ∃ Dnp1, Derivative Dnp1 (fD n) (Set.Ioo a b) c ∧ f x = TaylorPoly fD n a x + Dnp1 /
+(Nat.factorial (n + 1)) * (x - a) ^ (n + 1)`. -/
 theorem TaylorTheoremLagrangeRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (a b : ℝ)
     (hab : a < b) (n : ℕ)
     (hcont : ∀ k ≤ n, LRA.VolumeIII.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b))
@@ -46,7 +50,10 @@ theorem TaylorTheoremLagrangeRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → �
       f x = TaylorPoly fD n a x + Dnp1 / (Nat.factorial (n + 1)) * (x - a) ^ (n + 1) := by
   sorry
 
-/-- `cor:taylor-expansion-peano-remainder`. -/
+/-- Let `I : Set ℝ`, `a : ℝ`, and `n : ℕ`. If `f : ℝ → ℝ`, `fD : ℕ → ℝ → ℝ`, `ha : a ∈ interior I`,
+`hD : HigherDerivativeAt f fD I n a`, and `hcont :
+LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint (fD n) I a`. Then `Filter.Tendsto (fun x =>
+(f x - TaylorPoly fD n a x) / (x - a) ^ n) (nhdsWithin a {a}ᶜ) (nhds 0)`. -/
 theorem TaylorExpansionPeanoRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (I : Set ℝ) (a : ℝ)
     (n : ℕ) (ha : a ∈ interior I) (hD : HigherDerivativeAt f fD I n a)
     (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint (fD n) I a) :
@@ -54,7 +61,8 @@ theorem TaylorExpansionPeanoRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → �
       (nhdsWithin a {a}ᶜ) (nhds 0) := by
   sorry
 
-/-- `cor:first-order-peano-remainder`. -/
+/-- Let `A : Set ℝ` and `c D : ℝ`. If `f : ℝ → ℝ` and `hf : Derivative D f A c`. Then
+`Filter.Tendsto (fun h => (f (c + h) - f c - D * h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)`. -/
 theorem FirstOrderPeanoRemainder (f : ℝ → ℝ) (A : Set ℝ) (c D : ℝ)
     (hf : Derivative D f A c) :
     Filter.Tendsto (fun h => (f (c + h) - f c - D * h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0) := by
@@ -64,7 +72,8 @@ theorem FirstOrderPeanoRemainder (f : ℝ → ℝ) (A : Set ℝ) (c D : ℝ)
 `C^∞` from `C^ω`, restated in Lean via its three defining properties. -/
 noncomputable def FlatFunction : ℝ → ℝ := fun x => if x = 0 then 0 else Real.exp (-1 / x ^ 2)
 
-/-- The theorem states the flat function properties assertion. -/
+/-- If `fD : ℕ → ℝ → ℝ` and `hfD0 : fD 0 = FlatFunction`. Then `IsClassCInfty FlatFunction fD
+Set.univ ∧ (∀ n : ℕ, fD n 0 = 0) ∧ ¬ IsClassCOmega FlatFunction fD Set.univ`. -/
 theorem FlatFunctionProperties (fD : ℕ → ℝ → ℝ) (hfD0 : fD 0 = FlatFunction) :
     IsClassCInfty FlatFunction fD Set.univ ∧
     (∀ n : ℕ, fD n 0 = 0) ∧
@@ -82,13 +91,16 @@ def DifferentiableByDifferential (f : ℝ → ℝ) (c : ℝ) : Prop :=
     Filter.Tendsto (fun h => (f (c + h) - f c - L h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)
 
 -- `thm:differential-and-derivative-agree`
-/-- The theorem states the differential and derivative agree assertion. -/
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`. Then `IsDifferentiable f A c ↔
+DifferentiableByDifferential f c`. -/
 theorem DifferentialAndDerivativeAgree (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     IsDifferentiable f A c ↔ DifferentiableByDifferential f c := by
   sorry
 
 -- `thm:uniqueness-of-the-differential`
-/-- The theorem states the uniqueness of the differential assertion. -/
+/-- Let `c : ℝ`. If `f : ℝ → ℝ`, `L₁ L₂ : ℝ →ₗ[ℝ] ℝ`, `h₁ : Filter.Tendsto (fun h => (f (c + h) - f
+c - L₁ h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)`, and `h₂ : Filter.Tendsto (fun h => (f (c + h) - f
+c - L₂ h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)`. Then `L₁ = L₂`. -/
 theorem UniquenessOfTheDifferential (f : ℝ → ℝ) (c : ℝ) (L₁ L₂ : ℝ →ₗ[ℝ] ℝ)
     (h₁ : Filter.Tendsto (fun h => (f (c + h) - f c - L₁ h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0))
     (h₂ : Filter.Tendsto (fun h => (f (c + h) - f c - L₂ h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)) :
@@ -96,24 +108,25 @@ theorem UniquenessOfTheDifferential (f : ℝ → ℝ) (c : ℝ) (L₁ L₂ : ℝ
   sorry
 
 -- `thm:differential-continuity-criterion`
-/-- The theorem states the differential continuity criterion assertion. -/
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ` and `h : DifferentiableByDifferential f c`. Then
+`LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f A c`. -/
 theorem DifferentialContinuityCriterion (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (h : DifferentiableByDifferential f c) :
     LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f A c := by
   sorry
 
 -- `thm:chain-rule-for-differentials`
-/-- the tangent-map composition law,
-the one-dimensional prototype for `T_cf : T_cM → T_{f(c)}N` on a
-manifold — directly relevant to the tangent-space bookkeeping needed for
-Brownian motion on a torus. -/
+/-- Let `c : ℝ`. If `f g : ℝ → ℝ`, `hf : DifferentiableByDifferential f c`, and `hg :
+DifferentiableByDifferential g (f c)`. Then `DifferentiableByDifferential (fun x => g (f x)) c`. -/
 theorem ChainRuleForDifferentials (f g : ℝ → ℝ) (c : ℝ)
     (hf : DifferentiableByDifferential f c) (hg : DifferentiableByDifferential g (f c)) :
     DifferentiableByDifferential (fun x => g (f x)) c := by
   sorry
 
 -- `thm:linearity-of-the-differential`
-/-- The theorem states the linearity of the differential assertion. -/
+/-- Let `c α β : ℝ`. If `f g : ℝ → ℝ`, `hf : DifferentiableByDifferential f c`, and `hg :
+DifferentiableByDifferential g c`. Then `DifferentiableByDifferential (fun x => α * f x + β * g
+x) c`. -/
 theorem LinearityOfTheDifferential (f g : ℝ → ℝ) (c α β : ℝ)
     (hf : DifferentiableByDifferential f c) (hg : DifferentiableByDifferential g c) :
     DifferentiableByDifferential (fun x => α * f x + β * g x) c := by

@@ -31,9 +31,8 @@ missing symmetric case flagged in ISSUES.md #51. -/
 def TendsToNegInfty (f : ℝ → ℝ) (X : Set ℝ) (L : ℝ) : Prop :=
   ∀ ε > 0, ∃ M : ℝ, ∀ x ∈ X, x < M → |f x - L| < ε
 
-/-- Item 32: the `−∞` limit of `f` on `X` is exactly the `+∞` limit of
-the reflected function `x ↦ f(-x)` on the reflected domain `-X`,
-matching the "symmetric under `x ↦ −x`" remark in ADDITIONS.md. -/
+/-- Let `X : Set ℝ` and `L : ℝ`. If `f : ℝ → ℝ`. Then `TendsToNegInfty f X L ↔ TendsToInfty (fun x
+=> f (-x)) {x : ℝ | -x ∈ X} L`. -/
 theorem LimitAtNegInfinityIffReflection (f : ℝ → ℝ) (X : Set ℝ) (L : ℝ) :
     TendsToNegInfty f X L ↔ TendsToInfty (fun x => f (-x)) {x : ℝ | -x ∈ X} L := by
   sorry
@@ -46,27 +45,31 @@ section AlgebraOfLimitsAtInfinity
 
 variable {f g : ℝ → ℝ} {X : Set ℝ} {Lf Lg c : ℝ}
 
-/-- Item 30, sum rule. -/
+/-- If `hf : TendsToInfty f X Lf` and `hg : TendsToInfty g X Lg`. Then `TendsToInfty (fun x => f x +
+g x) X (Lf + Lg)`. -/
 theorem TendstoInftyAdd (hf : TendsToInfty f X Lf) (hg : TendsToInfty g X Lg) :
     TendsToInfty (fun x => f x + g x) X (Lf + Lg) := by
   sorry
 
-/-- Item 30, difference rule. -/
+/-- If `hf : TendsToInfty f X Lf` and `hg : TendsToInfty g X Lg`. Then `TendsToInfty (fun x => f x -
+g x) X (Lf - Lg)`. -/
 theorem TendstoInftySub (hf : TendsToInfty f X Lf) (hg : TendsToInfty g X Lg) :
     TendsToInfty (fun x => f x - g x) X (Lf - Lg) := by
   sorry
 
-/-- Item 30, scalar-multiple rule. -/
+/-- Let `c : ℝ`. If `hf : TendsToInfty f X Lf`. Then `TendsToInfty (fun x => c * f x) X (c * Lf)`. -/
 theorem TendstoInftyScalar (hf : TendsToInfty f X Lf) (c : ℝ) :
     TendsToInfty (fun x => c * f x) X (c * Lf) := by
   sorry
 
-/-- Item 30, product rule. -/
+/-- If `hf : TendsToInfty f X Lf` and `hg : TendsToInfty g X Lg`. Then `TendsToInfty (fun x => f x *
+g x) X (Lf * Lg)`. -/
 theorem TendstoInftyMul (hf : TendsToInfty f X Lf) (hg : TendsToInfty g X Lg) :
     TendsToInfty (fun x => f x * g x) X (Lf * Lg) := by
   sorry
 
-/-- Item 30, quotient rule. -/
+/-- If `hf : TendsToInfty f X Lf`, `hg : TendsToInfty g X Lg`, and `hLg : Lg ≠ 0`. Then
+`TendsToInfty (fun x => f x / g x) X (Lf / Lg)`. -/
 theorem TendstoInftyDiv (hf : TendsToInfty f X Lf) (hg : TendsToInfty g X Lg)
     (hLg : Lg ≠ 0) :
     TendsToInfty (fun x => f x / g x) X (Lf / Lg) := by
@@ -84,9 +87,9 @@ own elementary (non-filter) style throughout. -/
 def EscapesToInfty (xs : ℕ → ℝ) : Prop :=
   ∀ M : ℝ, ∃ N : ℕ, ∀ n ≥ N, xs n > M
 
-/-- Item 31: sequential criterion for limits at infinity — `f → L` as
-`x → +∞` on `X` iff `f` composed with every sequence in `X` escaping to
-`+∞` converges to `L`. -/
+/-- Let `X : Set ℝ` and `L : ℝ`. If `f : ℝ → ℝ` and `hX : ∀ M : ℝ, ∃ x ∈ X, x > M`. Then
+`TendsToInfty f X L ↔ ∀ xs : ℕ → ℝ, (∀ n, xs n ∈ X) → EscapesToInfty xs → ∀ ε > 0, ∃ N : ℕ, ∀ n
+≥ N, |f (xs n) - L| < ε`. -/
 theorem SequentialCriterionTendstoInfty (f : ℝ → ℝ) (X : Set ℝ) (L : ℝ)
     (hX : ∀ M : ℝ, ∃ x ∈ X, x > M) :
     TendsToInfty f X L ↔

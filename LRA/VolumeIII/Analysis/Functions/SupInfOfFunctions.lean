@@ -48,21 +48,25 @@ noncomputable def PointwiseInfimumFamily {I : Type*} (f : I → ℝ → ℝ) (x 
   0
 
 -- `thm:function-supremum-existence`
-/-- The theorem states the function supremum existence assertion. -/
+/-- Let `A : Set ℝ`. If `f : ℝ → ℝ`, `hA : A.Nonempty`, and `hbdd : ∃ M, ∀ x ∈ A, f x ≤ M`. Then `∃
+s : ℝ, IsLUB (f '' A) s`. -/
 theorem FunctionSupremumExistence (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
     (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M) :
     ∃ s : ℝ, IsLUB (f '' A) s := by
   sorry
 
 -- `thm:function-infimum-existence`
-/-- The theorem states the function infimum existence assertion. -/
+/-- Let `A : Set ℝ`. If `f : ℝ → ℝ`, `hA : A.Nonempty`, and `hbdd : ∃ m, ∀ x ∈ A, m ≤ f x`. Then `∃
+s : ℝ, IsGLB (f '' A) s`. -/
 theorem FunctionInfimumExistence (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
     (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x) :
     ∃ s : ℝ, IsGLB (f '' A) s := by
   sorry
 
 -- `thm:supremum-monotone-under-pointwise-order`
-/-- The theorem states the supremum monotone under pointwise order assertion. -/
+/-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`, `hA : A.Nonempty`, `hbddf : ∃ M, ∀ x ∈ A, f x ≤ M`, `hbddg :
+∃ M, ∀ x ∈ A, g x ≤ M`, and `h : ∀ x ∈ A, f x ≤ g x`. Then `FunctionSupremumOnSet f A ≤
+FunctionSupremumOnSet g A`. -/
 theorem SupremumMonotoneUnderPointwiseOrder (f g : ℝ → ℝ) (A : Set ℝ)
     (hA : A.Nonempty)
     (hbddf : ∃ M, ∀ x ∈ A, f x ≤ M) (hbddg : ∃ M, ∀ x ∈ A, g x ≤ M)
@@ -71,7 +75,9 @@ theorem SupremumMonotoneUnderPointwiseOrder (f g : ℝ → ℝ) (A : Set ℝ)
   sorry
 
 -- `thm:infimum-monotone-under-pointwise-order`
-/-- The theorem states the infimum monotone under pointwise order assertion. -/
+/-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`, `hA : A.Nonempty`, `hbddf : ∃ m, ∀ x ∈ A, m ≤ f x`, `hbddg :
+∃ m, ∀ x ∈ A, m ≤ g x`, and `h : ∀ x ∈ A, f x ≤ g x`. Then `FunctionInfimumOnSet f A ≤
+FunctionInfimumOnSet g A`. -/
 theorem InfimumMonotoneUnderPointwiseOrder (f g : ℝ → ℝ) (A : Set ℝ)
     (hA : A.Nonempty)
     (hbddf : ∃ m, ∀ x ∈ A, m ≤ f x) (hbddg : ∃ m, ∀ x ∈ A, m ≤ g x)
@@ -79,7 +85,9 @@ theorem InfimumMonotoneUnderPointwiseOrder (f g : ℝ → ℝ) (A : Set ℝ)
     FunctionInfimumOnSet f A ≤ FunctionInfimumOnSet g A := by
   sorry
 
-/-- `prop:supremum-monotonicity-converse-fails`. -/
+/-- The theorem asserts `∃ (A : Set ℝ) (f g : ℝ → ℝ), A.Nonempty ∧ (∃ M, ∀ x ∈ A, f x ≤ M) ∧ (∃ M, ∀
+x ∈ A, g x ≤ M) ∧ FunctionSupremumOnSet f A ≤ FunctionSupremumOnSet g A ∧ ¬ (∀ x ∈ A, f x ≤ g
+x)`. -/
 theorem SupremumMonotonicityConverseFails :
     ∃ (A : Set ℝ) (f g : ℝ → ℝ), A.Nonempty ∧
       (∃ M, ∀ x ∈ A, f x ≤ M) ∧ (∃ M, ∀ x ∈ A, g x ≤ M) ∧
@@ -88,21 +96,25 @@ theorem SupremumMonotonicityConverseFails :
   sorry
 
 -- `thm:pointwise-supremum-evaluation`
-/-- The theorem states the pointwise supremum evaluation assertion. -/
+/-- Let `I : Type*` and `x : ℝ`. If `[Fintype I]`, `[Inhabited I]`, and `f : I → ℝ → ℝ`. Then `∃ α :
+I, PointwiseSupremumFamily f x = f α x ∧ ∀ β : I, f β x ≤ f α x`. -/
 theorem PointwiseSupremumEvaluation {I : Type*} [Fintype I] [Inhabited I]
     (f : I → ℝ → ℝ) (x : ℝ) :
     ∃ α : I, PointwiseSupremumFamily f x = f α x ∧ ∀ β : I, f β x ≤ f α x := by
   sorry
 
 -- `thm:pointwise-infimum-evaluation`
-/-- The theorem states the pointwise infimum evaluation assertion. -/
+/-- Let `I : Type*` and `x : ℝ`. If `[Fintype I]`, `[Inhabited I]`, and `f : I → ℝ → ℝ`. Then `∃ α :
+I, PointwiseInfimumFamily f x = f α x ∧ ∀ β : I, f α x ≤ f β x`. -/
 theorem PointwiseInfimumEvaluation {I : Type*} [Fintype I] [Inhabited I]
     (f : I → ℝ → ℝ) (x : ℝ) :
     ∃ α : I, PointwiseInfimumFamily f x = f α x ∧ ∀ β : I, f α x ≤ f β x := by
   sorry
 
 -- `thm:supremum-subadditivity`
-/-- The theorem states the supremum subadditivity assertion. -/
+/-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`, `hA : A.Nonempty`, `hbddf : ∃ M, ∀ x ∈ A, f x ≤ M`, and
+`hbddg : ∃ M, ∀ x ∈ A, g x ≤ M`. Then `FunctionSupremumOnSet (fun x => f x + g x) A ≤
+FunctionSupremumOnSet f A + FunctionSupremumOnSet g A`. -/
 theorem SupremumSubadditivity (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
     (hbddf : ∃ M, ∀ x ∈ A, f x ≤ M) (hbddg : ∃ M, ∀ x ∈ A, g x ≤ M) :
     FunctionSupremumOnSet (fun x => f x + g x) A ≤
@@ -110,7 +122,9 @@ theorem SupremumSubadditivity (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty
   sorry
 
 -- `thm:infimum-superadditivity`
-/-- The theorem states the infimum superadditivity assertion. -/
+/-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`, `hA : A.Nonempty`, `hbddf : ∃ m, ∀ x ∈ A, m ≤ f x`, and
+`hbddg : ∃ m, ∀ x ∈ A, m ≤ g x`. Then `FunctionInfimumOnSet f A + FunctionInfimumOnSet g A ≤
+FunctionInfimumOnSet (fun x => f x + g x) A`. -/
 theorem InfimumSuperadditivity (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
     (hbddf : ∃ m, ∀ x ∈ A, m ≤ f x) (hbddg : ∃ m, ∀ x ∈ A, m ≤ g x) :
     FunctionInfimumOnSet f A + FunctionInfimumOnSet g A ≤
@@ -118,21 +132,26 @@ theorem InfimumSuperadditivity (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempt
   sorry
 
 -- `thm:supremum-negation`
-/-- The theorem states the supremum negation assertion. -/
+/-- Let `A : Set ℝ`. If `f : ℝ → ℝ`, `hA : A.Nonempty`, and `hbdd : ∃ M, ∀ x ∈ A, f x ≤ M`. Then
+`FunctionSupremumOnSet (fun x => -f x) A = - FunctionInfimumOnSet f A`. -/
 theorem SupremumNegation (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
     (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M) :
     FunctionSupremumOnSet (fun x => -f x) A = - FunctionInfimumOnSet f A := by
   sorry
 
 -- `thm:infimum-negation`
-/-- The theorem states the infimum negation assertion. -/
+/-- Let `A : Set ℝ`. If `f : ℝ → ℝ`, `hA : A.Nonempty`, and `hbdd : ∃ m, ∀ x ∈ A, m ≤ f x`. Then
+`FunctionInfimumOnSet (fun x => -f x) A = - FunctionSupremumOnSet f A`. -/
 theorem InfimumNegation (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
     (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x) :
     FunctionInfimumOnSet (fun x => -f x) A = - FunctionSupremumOnSet f A := by
   sorry
 
 -- `thm:supremum-scalar-multiple`
-/-- The theorem states the supremum scalar multiple assertion. -/
+/-- Let `A : Set ℝ` and `lam : ℝ`. If `f : ℝ → ℝ`, `hA : A.Nonempty`, and `hbdd : ∃ M, ∀ x ∈ A, f x
+≤ M`. Then `(0 ≤ lam → FunctionSupremumOnSet (fun x => lam * f x) A = lam *
+FunctionSupremumOnSet f A) ∧ (lam ≤ 0 → FunctionSupremumOnSet (fun x => lam * f x) A = lam *
+FunctionInfimumOnSet f A)`. -/
 theorem SupremumScalarMultiple (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hA : A.Nonempty)
     (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M) :
     (0 ≤ lam → FunctionSupremumOnSet (fun x => lam * f x) A
@@ -142,7 +161,10 @@ theorem SupremumScalarMultiple (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hA :
   sorry
 
 -- `thm:infimum-scalar-multiple`
-/-- The theorem states the infimum scalar multiple assertion. -/
+/-- Let `A : Set ℝ` and `lam : ℝ`. If `f : ℝ → ℝ`, `hA : A.Nonempty`, and `hbdd : ∃ m, ∀ x ∈ A, m ≤
+f x`. Then `(0 ≤ lam → FunctionInfimumOnSet (fun x => lam * f x) A = lam * FunctionInfimumOnSet
+f A) ∧ (lam ≤ 0 → FunctionInfimumOnSet (fun x => lam * f x) A = lam * FunctionSupremumOnSet f
+A)`. -/
 theorem InfimumScalarMultiple (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hA : A.Nonempty)
     (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x) :
     (0 ≤ lam → FunctionInfimumOnSet (fun x => lam * f x) A
@@ -151,13 +173,15 @@ theorem InfimumScalarMultiple (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hA : 
       = lam * FunctionSupremumOnSet f A) := by
   sorry
 
-/-- `cor:finite-family-pointwise-supremum-is-maximum`. -/
+/-- Let `I : Type*` and `x : ℝ`. If `[Fintype I]`, `[Inhabited I]`, and `f : I → ℝ → ℝ`. Then `∃ α :
+I, PointwiseSupremumFamily f x = f α x`. -/
 theorem FiniteFamilyPointwiseSupremumIsMaximum {I : Type*} [Fintype I] [Inhabited I]
     (f : I → ℝ → ℝ) (x : ℝ) :
     ∃ α : I, PointwiseSupremumFamily f x = f α x := by
   sorry
 
-/-- `cor:finite-family-pointwise-infimum-is-minimum`. -/
+/-- Let `I : Type*` and `x : ℝ`. If `[Fintype I]`, `[Inhabited I]`, and `f : I → ℝ → ℝ`. Then `∃ α :
+I, PointwiseInfimumFamily f x = f α x`. -/
 theorem FiniteFamilyPointwiseInfimumIsMinimum {I : Type*} [Fintype I] [Inhabited I]
     (f : I → ℝ → ℝ) (x : ℝ) :
     ∃ α : I, PointwiseInfimumFamily f x = f α x := by

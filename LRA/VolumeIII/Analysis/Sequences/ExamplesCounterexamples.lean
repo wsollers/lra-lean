@@ -38,26 +38,29 @@ import LRA.VolumeIII.Analysis.Sequences.NullConstantSequences
 
 namespace LRA.VolumeIII.Analysis.Sequences
 
-/-- `ex:sequence-example-constant`. -/
+/-- Let `c : ℝ`. Then `ConvergesTo (fun _ : ℕ => c) c`. -/
 theorem ExampleConstantSequence (c : ℝ) :
     ConvergesTo (fun _ : ℕ => c) c := by
   sorry
 
-/-- `ex:sequence-example-reciprocal`. -/
+/-- The theorem asserts `(∀ n : ℕ, (1 : ℝ) / (n + 2) < 1 / (n + 1)) ∧ (∀ n : ℕ, 0 ≤ 1 / ((n : ℝ) +
+1)) ∧ ConvergesTo (fun n : ℕ => 1 / ((n : ℝ) + 1)) 0`. -/
 theorem ExampleReciprocalSequence :
     (∀ n : ℕ, (1 : ℝ) / (n + 2) < 1 / (n + 1)) ∧
       (∀ n : ℕ, 0 ≤ 1 / ((n : ℝ) + 1)) ∧
       ConvergesTo (fun n : ℕ => 1 / ((n : ℝ) + 1)) 0 := by
   sorry
 
-/-- `ex:sequence-example-alternating-null`. Non-monotone but null. -/
+/-- The theorem asserts `¬ Monotone (fun n : ℕ => (-1 : ℝ) ^ n / (n + 1)) ∧ ConvergesTo (fun n : ℕ
+=> (-1 : ℝ) ^ n / (n + 1)) 0`. -/
 theorem ExampleAlternatingNullSequence :
     ¬ Monotone (fun n : ℕ => (-1 : ℝ) ^ n / (n + 1)) ∧
       ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n / (n + 1)) 0 := by
   sorry
 
-/-- `ex:sequence-example-oscillating`. Bounded and divergent; the two
-parity subsequences converge to different limits. -/
+/-- The theorem asserts `BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧ (¬ ∃ L, ConvergesTo (fun n : ℕ =>
+(-1 : ℝ) ^ n) L) ∧ ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n)) 1 ∧ ConvergesTo (fun n : ℕ =>
+(-1 : ℝ) ^ (2 * n + 1)) (-1)`. -/
 theorem ExampleOscillatingSequence :
     BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧
       (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧
@@ -65,7 +68,9 @@ theorem ExampleOscillatingSequence :
       ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n + 1)) (-1) := by
   sorry
 
-/-- `ex:sequence-example-geometric`, the four regimes. -/
+/-- The theorem asserts `(∀ r : ℝ, |r| < 1 → ConvergesTo (fun n : ℕ => r ^ n) 0) ∧ ConvergesTo (fun
+_ : ℕ => (1 : ℝ) ^ (0 : ℕ)) 1 ∧ (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧ (∀ r : ℝ,
+|r| > 1 → ¬ BoundedSeq (fun n : ℕ => r ^ n))`. -/
 theorem ExampleGeometricSequence :
     (∀ r : ℝ, |r| < 1 → ConvergesTo (fun n : ℕ => r ^ n) 0) ∧
       ConvergesTo (fun _ : ℕ => (1 : ℝ) ^ (0 : ℕ)) 1 ∧
@@ -73,17 +78,15 @@ theorem ExampleGeometricSequence :
       (∀ r : ℝ, |r| > 1 → ¬ BoundedSeq (fun n : ℕ => r ^ n)) := by
   sorry
 
-/-- `ex:sequence-counterexample-bounded-not-convergent`. -/
+/-- The theorem asserts `BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧ ¬ ∃ L, ConvergesTo (fun n : ℕ =>
+(-1 : ℝ) ^ n) L`. -/
 theorem ExampleBoundedNotConvergent :
     BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧
       ¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L := by
   sorry
 
-/-- `ex:sequence-counterexample-successive-differences-not-cauchy`. The
-harmonic partial sums: adjacent differences vanish, but the sequence is
-unbounded (hence not Cauchy — Cauchy sequences are bounded, though that
-/-- The theorem states the hasn't assertion. -/
-theorem hasn't been formally read yet in this pass). -/
+/-- The successive differences of the harmonic partial sums converge to zero,
+but the harmonic partial sums are unbounded. -/
 theorem ExampleVanishingDifferencesNotCauchy :
     ConvergesTo (fun n : ℕ => 1 / ((n : ℝ) + 2)) 0 ∧
       ¬ BoundedSeq (fun n : ℕ => ∑ k ∈ Finset.range (n + 1), 1 / ((k : ℝ) + 1)) := by

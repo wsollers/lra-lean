@@ -23,29 +23,26 @@ import Mathlib.Order.Filter.Basic
 
 namespace LRA.VolumeIII.Analysis.RealAnalysis
 
-/-- `prop:eps-char-sup`. For nonempty `S` bounded above with `s = sup S`,
-every `ε>0` admits a point of `S` strictly above `s - ε`. -/
+/-- Let `S : Set ℝ` and `s : ℝ`. If `hne : S.Nonempty`, `hbdd : BddAbove S`, and `hs : IsLUB S s`.
+Then `∀ ε > 0, ∃ x ∈ S, x > s - ε`. -/
 theorem EpsCharSup (S : Set ℝ) (s : ℝ) (hne : S.Nonempty)
     (hbdd : BddAbove S) (hs : IsLUB S s) :
     ∀ ε > 0, ∃ x ∈ S, x > s - ε := by
   sorry
 
 -- `thm:inductive-selection`
-/-- For nonempty `S` bounded above with
-`s = sup S`, there is a strictly increasing sequence in `S` converging to
-`s`, built by inductively invoking `EpsCharSup` with the `max` device
-(see ISSUES.md #40 for the audit finding on this theorem's own "constant
-sequence" proof-strategy parenthetical). -/
+/-- Let `S : Set ℝ` and `s : ℝ`. If `hne : S.Nonempty`, `hbdd : BddAbove S`, and `hs : IsLUB S s`.
+Then `∃ x : ℕ → ℝ, (∀ n, x n ∈ S) ∧ StrictMono x ∧ Filter.Tendsto x Filter.atTop (nhds s)`. -/
 theorem InductiveSelection (S : Set ℝ) (s : ℝ) (hne : S.Nonempty)
     (hbdd : BddAbove S) (hs : IsLUB S s) :
     ∃ x : ℕ → ℝ, (∀ n, x n ∈ S) ∧ StrictMono x ∧
       Filter.Tendsto x Filter.atTop (nhds s) := by
   sorry
 
-/-- `prop:monotone-approx-bounds`. Every nonempty bounded set admits BOTH
-a monotone (increasing) sequence in the set converging to its supremum
-AND a monotone (decreasing) sequence in the set converging to its
-infimum — the two-sided companion to `InductiveSelection`. -/
+/-- Let `S : Set ℝ`. If `hne : S.Nonempty`, `hbdd_above : BddAbove S`, and `hbdd_below : BddBelow
+S`. Then `(∃ x : ℕ → ℝ, (∀ n, x n ∈ S) ∧ Monotone x ∧ Filter.Tendsto x Filter.atTop (nhds (sSup
+S))) ∧ (∃ y : ℕ → ℝ, (∀ n, y n ∈ S) ∧ Antitone y ∧ Filter.Tendsto y Filter.atTop (nhds (sInf
+S)))`. -/
 theorem MonotoneApproxBounds (S : Set ℝ) (hne : S.Nonempty)
     (hbdd_above : BddAbove S) (hbdd_below : BddBelow S) :
     (∃ x : ℕ → ℝ, (∀ n, x n ∈ S) ∧ Monotone x ∧

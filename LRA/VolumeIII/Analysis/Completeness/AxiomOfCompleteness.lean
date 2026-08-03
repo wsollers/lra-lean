@@ -22,7 +22,8 @@ properties are proved for their constructed carriers.
 -/
 axiom AxiomOfCompleteness : HasLeastUpperBoundProperty ℝ
 
-/-- The axiom of completeness supplies a supremum for every nonempty real set bounded above. -/
+/-- Let `A : Set ℝ`. If `nonemptyHypothesis : A.Nonempty` and `boundedAboveHypothesis : ∃ u,
+IsUpperBound u A`. Then `∃ s, IsSupremum s A`. -/
 theorem CompletenessGivesRealSupremum {A : Set ℝ}
     (nonemptyHypothesis : A.Nonempty)
     (boundedAboveHypothesis : ∃ u, IsUpperBound u A) :

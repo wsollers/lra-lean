@@ -88,87 +88,95 @@ def HasConvergentSubsequence (x : RealSequence) : Prop :=
   ∃ L : ℝ, IsSubsequentialLimit x L
 
 -- `thm:subsequence-indices-dominate-identity`
-/-- The theorem states the subsequence indices dominate identity assertion. -/
+/-- If `σ : ℕ → ℕ` and `h : IsStrictlyIncreasingIndexMap σ`. Then `∀ k, k ≤ σ k`. -/
 theorem SubsequenceIndicesDominateIdentity {σ : ℕ → ℕ}
     (h : IsStrictlyIncreasingIndexMap σ) : ∀ k, k ≤ σ k := by
   sorry
 
 -- `thm:subsequences-preserve-limits`
-/-- The theorem states the subsequences preserve limits assertion. -/
+/-- Let `x : RealSequence` and `L : ℝ`. If `σ : ℕ → ℕ`, `hx : ConvergesTo x L`, and `hσ :
+IsStrictlyIncreasingIndexMap σ`. Then `ConvergesTo (fun k => x (σ k)) L`. -/
 theorem SubsequencesPreserveLimits {x : RealSequence} {L : ℝ} {σ : ℕ → ℕ}
     (hx : ConvergesTo x L) (hσ : IsStrictlyIncreasingIndexMap σ) :
     ConvergesTo (fun k => x (σ k)) L := by
   sorry
 
 -- `thm:subsequential-limit-of-convergent-sequence`
-/-- The theorem states the subsequential limit of convergent sequence assertion. -/
+/-- Let `x : RealSequence` and `L K : ℝ`. If `hL : ConvergesTo x L` and `hK : IsSubsequentialLimit x
+K`. Then `K = L`. -/
 theorem SubsequentialLimitOfConvergentSequence {x : RealSequence}
     {L K : ℝ} (hL : ConvergesTo x L) (hK : IsSubsequentialLimit x K) :
     K = L := by
   sorry
 
 -- `thm:divergence-by-two-subsequential-limits`
-/-- The theorem states the divergence by two subsequential limits assertion. -/
+/-- Let `x : RealSequence` and `L K : ℝ`. If `hL : IsSubsequentialLimit x L`, `hK :
+IsSubsequentialLimit x K`, and `hLK : L ≠ K`. Then `¬ ∃ A, ConvergesTo x A`. -/
 theorem DivergenceByTwoSubsequentialLimits {x : RealSequence}
     {L K : ℝ} (hL : IsSubsequentialLimit x L) (hK : IsSubsequentialLimit x K)
     (hLK : L ≠ K) : ¬ ∃ A, ConvergesTo x A := by
   sorry
 
 -- `thm:boundedness-passes-to-subsequences`
-/-- The theorem states the boundedness passes to subsequences assertion. -/
+/-- Let `x : RealSequence`. If `σ : ℕ → ℕ`, `hx : BoundedSeq x`, and `hσ :
+IsStrictlyIncreasingIndexMap σ`. Then `BoundedSeq (fun k => x (σ k))`. -/
 theorem BoundednessPassesToSubsequences {x : RealSequence} {σ : ℕ → ℕ}
     (hx : BoundedSeq x) (hσ : IsStrictlyIncreasingIndexMap σ) :
     BoundedSeq (fun k => x (σ k)) := by
   sorry
 
 -- `thm:monotonicity-passes-to-subsequences`
-/-- The theorem states the monotonicity passes to subsequences assertion; increasing half. -/
+/-- Let `x : RealSequence`. If `σ : ℕ → ℕ`, `hx : IsIncreasing x`, and `hσ :
+IsStrictlyIncreasingIndexMap σ`. Then `IsIncreasing (fun k => x (σ k))`. -/
 theorem MonotonicityPassesToSubsequencesIncr {x : RealSequence}
     {σ : ℕ → ℕ} (hx : IsIncreasing x) (hσ : IsStrictlyIncreasingIndexMap σ) :
     IsIncreasing (fun k => x (σ k)) := by
   sorry
 
 -- `thm:monotonicity-passes-to-subsequences`
-/-- The theorem states the monotonicity passes to subsequences assertion; decreasing half. -/
+/-- Let `x : RealSequence`. If `σ : ℕ → ℕ`, `hx : IsDecreasing x`, and `hσ :
+IsStrictlyIncreasingIndexMap σ`. Then `IsDecreasing (fun k => x (σ k))`. -/
 theorem MonotonicityPassesToSubsequencesDecr {x : RealSequence}
     {σ : ℕ → ℕ} (hx : IsDecreasing x) (hσ : IsStrictlyIncreasingIndexMap σ) :
     IsDecreasing (fun k => x (σ k)) := by
   sorry
 
 -- `thm:subsequence-of-subsequence`
-/-- The theorem states the subsequence of subsequence assertion. -/
+/-- Let `x : RealSequence`. If `σ τ : ℕ → ℕ`, `hσ : IsStrictlyIncreasingIndexMap σ`, and `hτ :
+IsStrictlyIncreasingIndexMap τ`. Then `IsSubsequenceOf (fun k => x (σ (τ k))) x`. -/
 theorem SubsequenceOfSubsequence {x : RealSequence} {σ τ : ℕ → ℕ}
     (hσ : IsStrictlyIncreasingIndexMap σ) (hτ : IsStrictlyIncreasingIndexMap τ) :
     IsSubsequenceOf (fun k => x (σ (τ k))) x := by
   sorry
 
 -- `thm:eventual-properties-pass-to-subsequences`
-/-- Stated for a fully
-abstract index property `P` — no sequence involved, matching the actual
-`.tex` statement (see Finding B above re: the Predicate reading's stray
-`x_n`). -/
+/-- If `P : ℕ → Prop`, `σ : ℕ → ℕ`, `h : ∃ N : ℕ, ∀ n ≥ N, P n`, and `hσ :
+IsStrictlyIncreasingIndexMap σ`. Then `∃ K : ℕ, ∀ k ≥ K, P (σ k)`. -/
 theorem EventualPropertiesPassToSubsequences {P : ℕ → Prop} {σ : ℕ → ℕ}
     (h : ∃ N : ℕ, ∀ n ≥ N, P n) (hσ : IsStrictlyIncreasingIndexMap σ) :
     ∃ K : ℕ, ∀ k ≥ K, P (σ k) := by
   sorry
 
 -- `thm:frequent-properties-yield-subsequences`
-/-- The theorem states the frequent properties yield subsequences assertion. -/
+/-- If `P : ℕ → Prop` and `h : ∀ N : ℕ, ∃ n ≥ N, P n`. Then `∃ σ : ℕ → ℕ,
+IsStrictlyIncreasingIndexMap σ ∧ ∀ k, P (σ k)`. -/
 theorem FrequentPropertiesYieldSubsequences {P : ℕ → Prop}
     (h : ∀ N : ℕ, ∃ n ≥ N, P n) :
     ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ ∀ k, P (σ k) := by
   sorry
 
 -- `thm:subsequential-limits-respect-bounds`
-/-- The theorem states that subsequential limits respect bounds. -/
+/-- Let `x : RealSequence` and `L m M : ℝ`. If `hL : IsSubsequentialLimit x L` and `h : ∀ n, m ≤ x n
+∧ x n ≤ M`. Then `m ≤ L ∧ L ≤ M`. -/
 theorem SubsequentialLimitsRespectBounds {x : RealSequence} {L m M : ℝ}
     (hL : IsSubsequentialLimit x L) (h : ∀ n, m ≤ x n ∧ x n ≤ M) :
     m ≤ L ∧ L ≤ M := by
   sorry
 
 -- `thm:squeeze-passes-to-subsequences`
-/-- The theorem states the squeeze passes to subsequences assertion; See Finding A above re: the
-`.tex`'s own (likely backward) dependency citation. -/
+/-- Let `a x b : RealSequence`. If `σ : ℕ → ℕ`, `h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n`, and
+`hσ : IsStrictlyIncreasingIndexMap σ`. Then `∃ K : ℕ, ∀ k ≥ K, a (σ k) ≤ x (σ k) ∧ x (σ k) ≤ b
+(σ k)`. -/
 theorem SqueezePassesToSubsequences {a x b : RealSequence} {σ : ℕ → ℕ}
     (h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n)
     (hσ : IsStrictlyIncreasingIndexMap σ) :
@@ -176,33 +184,32 @@ theorem SqueezePassesToSubsequences {a x b : RealSequence} {σ : ℕ → ℕ}
   sorry
 
 -- `thm:monotone-subsequence-theorem`
-/-- The theorem states the monotone subsequence theorem assertion. -/
+/-- Let `x : RealSequence`. Then `∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ (IsIncreasing (fun k
+=> x (σ k)) ∨ IsDecreasing (fun k => x (σ k)))`. -/
 theorem MonotoneSubsequenceTheorem (x : RealSequence) :
     ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧
       (IsIncreasing (fun k => x (σ k)) ∨ IsDecreasing (fun k => x (σ k))) := by
   sorry
 
 -- `thm:bolzano-weierstrass-sequences`
-/-- The theorem states the bolzano weierstrass sequences assertion. -/
+/-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `HasConvergentSubsequence x`. -/
 theorem BolzanoWeierstrassSequences {x : RealSequence} (h : BoundedSeq x) :
     HasConvergentSubsequence x := by
   sorry
 
 -- `thm:sequential-compactness-closed-bounded-interval`
-/-- The theorem states the sequential compactness closed bounded interval assertion. -/
+/-- Let `a b : ℝ` and `x : RealSequence`. If `hab : a ≤ b` and `hx : ∀ n, a ≤ x n ∧ x n ≤ b`. Then
+`∃ σ : ℕ → ℕ, ∃ L : ℝ, IsStrictlyIncreasingIndexMap σ ∧ ConvergesTo (fun k => x (σ k)) L ∧ a ≤ L
+∧ L ≤ b`. -/
 theorem SequentialCompactnessClosedBoundedInterval {a b : ℝ} {x : RealSequence}
     (hab : a ≤ b) (hx : ∀ n, a ≤ x n ∧ x n ≤ b) :
     ∃ σ : ℕ → ℕ, ∃ L : ℝ, IsStrictlyIncreasingIndexMap σ ∧
       ConvergesTo (fun k => x (σ k)) L ∧ a ≤ L ∧ L ≤ b := by
   sorry
 
-/-- ADDITION (not a `.tex` label — see `ADDITIONS.md` item 6). The
-"subsequence principle": `(x_n) -> L` iff every subsequence of `(x_n)`
-has a further subsequence converging to `L`. Forward direction is
-`SubsequencesPreserveLimits` with `τ = id`; backward direction is by
-contradiction via `FrequentPropertiesYieldSubsequences` (thread an
-`ε`-escaping tail into a subsequence none of whose further subsequences
-can converge to `L`). Both ingredients already live in this file. -/
+/-- Let `x : RealSequence` and `L : ℝ`. Then `ConvergesTo x L ↔ ∀ σ : ℕ → ℕ,
+IsStrictlyIncreasingIndexMap σ → ∃ τ : ℕ → ℕ, IsStrictlyIncreasingIndexMap τ ∧ ConvergesTo (fun
+k => x (σ (τ k))) L`. -/
 theorem SubsequencePrinciple {x : RealSequence} {L : ℝ} :
     ConvergesTo x L ↔
       ∀ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ →
@@ -210,14 +217,8 @@ theorem SubsequencePrinciple {x : RealSequence} {L : ℝ} :
           ConvergesTo (fun k => x (σ (τ k))) L := by
   sorry
 
-/-- ADDITION (not a `.tex` label — see `ADDITIONS.md` item 7). For a
-*bounded* sequence, converging to `L` is equivalent to `L` being its
-*only* subsequential limit. Existence of some subsequential limit is
-`BolzanoWeierstrassSequences` (needs boundedness — without it,
-"unique subsequential limit" is vacuous for a sequence with none, e.g.
-`x_n = n`); uniqueness rules out a second one via
-`DivergenceByTwoSubsequentialLimits`. Both ingredients already live
-in this file. -/
+/-- Let `x : RealSequence` and `L : ℝ`. If `hbdd : BoundedSeq x`. Then `ConvergesTo x L ↔
+(IsSubsequentialLimit x L ∧ ∀ K, IsSubsequentialLimit x K → K = L)`. -/
 theorem BoundedSequenceConvergesIffUniqueSubsequentialLimit
     {x : RealSequence} {L : ℝ} (hbdd : BoundedSeq x) :
     ConvergesTo x L ↔

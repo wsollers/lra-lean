@@ -9,51 +9,53 @@ Archimedean properties of the real line and integer-part consequences.
 
 namespace LRA.VolumeIII.Analysis.Completeness
 
-/-- The Archimedean property in two-variable positive form. -/
+/-- Let `x y : ℝ`. If `positiveScaleHypothesis : x > 0` and `positiveTargetHypothesis : y > 0`. Then
+`∃ n : ℕ, (n : ℝ) * x > y`. -/
 theorem ArchimedeanProperty {x y : ℝ}
     (positiveScaleHypothesis : x > 0)
     (positiveTargetHypothesis : y > 0) :
     ∃ n : ℕ, (n : ℝ) * x > y := by
   sorry
 
-/-- The reciprocal form of the Archimedean property. -/
+/-- Let `ε : ℝ`. If `positiveToleranceHypothesis : ε > 0`. Then `∃ n : ℕ, 0 < 1 / (n : ℝ) ∧ 1 / (n :
+ℝ) < ε`. -/
 theorem ArchimedeanReciprocalForm {ε : ℝ}
     (positiveToleranceHypothesis : ε > 0) :
     ∃ n : ℕ, 0 < 1 / (n : ℝ) ∧ 1 / (n : ℝ) < ε := by
   sorry
 
-/-- The reciprocal sequence converges to zero. -/
+/-- The theorem asserts `Filter.Tendsto (fun n : ℕ => 1 / (n : ℝ)) Filter.atTop (nhds 0)`. -/
 theorem ArchimedeanReciprocal :
     Filter.Tendsto (fun n : ℕ => 1 / (n : ℝ)) Filter.atTop (nhds 0) := by
   sorry
 
-/-- Every nonnegative real has a unique natural integer part. -/
+/-- Let `x : ℝ`. If `nonnegativeHypothesis : x ≥ 0`. Then `∃! n : ℕ, (n : ℝ) ≤ x ∧ x < (n : ℝ) + 1`. -/
 theorem IntegerPartLemma {x : ℝ}
     (nonnegativeHypothesis : x ≥ 0) :
     ∃! n : ℕ, (n : ℝ) ≤ x ∧ x < (n : ℝ) + 1 := by
   sorry
 
-/-- Every real has a unique integer part. -/
+/-- Let `x : ℝ`. Then `∃! m : ℤ, (m : ℝ) ≤ x ∧ x < (m : ℝ) + 1`. -/
 theorem ArchimedeanIntegerPartLemma (x : ℝ) :
     ∃! m : ℤ, (m : ℝ) ≤ x ∧ x < (m : ℝ) + 1 := by
   sorry
 
-/-- Every real has a unique integer ceiling. -/
+/-- Let `x : ℝ`. Then `∃! m : ℤ, (m : ℝ) - 1 < x ∧ x ≤ (m : ℝ)`. -/
 theorem IntegerCeilingLemma (x : ℝ) :
     ∃! m : ℤ, (m : ℝ) - 1 < x ∧ x ≤ (m : ℝ) := by
   sorry
 
-/-- Some natural number lies above any real number. -/
+/-- Let `x : ℝ`. Then `∃ n : ℕ, x < (n : ℝ)`. -/
 theorem IntegerAboveLemma (x : ℝ) :
     ∃ n : ℕ, x < (n : ℝ) := by
   sorry
 
-/-- Every unit-length closed interval contains an integer. -/
+/-- Let `x : ℝ`. Then `∃ m : ℤ, x ≤ (m : ℝ) ∧ (m : ℝ) ≤ x + 1`. -/
 theorem UnitLengthIntervalContainsInteger (x : ℝ) :
     ∃ m : ℤ, x ≤ (m : ℝ) ∧ (m : ℝ) ≤ x + 1 := by
   sorry
 
-/-- The natural numbers are not bounded above in the real line. -/
+/-- The theorem asserts `¬ BddAbove (Set.range ((↑) : ℕ → ℝ))`. -/
 theorem NaturalsUnboundedAbove :
     ¬ BddAbove (Set.range ((↑) : ℕ → ℝ)) := by
   sorry

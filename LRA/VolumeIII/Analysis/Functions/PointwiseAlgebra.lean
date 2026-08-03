@@ -61,10 +61,10 @@ noncomputable def PointwiseQuotient (f g : ℝ → ℝ) : ℝ → ℝ := fun x =
 noncomputable def PointwiseReciprocal (f : ℝ → ℝ) : ℝ → ℝ := fun x => 1 / f x
 
 -- `thm:function-algebra-closure`
-/-- In Lean's total-function setting,
-closure is automatic by typing — formalized as the defining evaluation
-equations, matching how `prop:pointwise-operation-evaluation` treats the
-general case one cluster earlier. -/
+/-- Let `lam : ℝ` and `A : Set ℝ`. If `f g : ℝ → ℝ`. Then `(∀ x ∈ A, PointwiseSum f g x = f x + g x)
+∧ (∀ x ∈ A, PointwiseDiff f g x = f x - g x) ∧ (∀ x ∈ A, PointwiseProd f g x = f x * g x) ∧ (∀ x
+∈ A, PointwiseScalarMul lam f x = lam * f x) ∧ (∀ x ∈ A, PointwiseAbs f x = |f x|) ∧ (∀ x ∈ A,
+PointwiseMax f g x = max (f x) (g x)) ∧ (∀ x ∈ A, PointwiseMin f g x = min (f x) (g x))`. -/
 theorem FunctionAlgebraClosure (f g : ℝ → ℝ) (lam : ℝ) (A : Set ℝ) :
     (∀ x ∈ A, PointwiseSum f g x = f x + g x) ∧
       (∀ x ∈ A, PointwiseDiff f g x = f x - g x) ∧
@@ -76,26 +76,28 @@ theorem FunctionAlgebraClosure (f g : ℝ → ℝ) (lam : ℝ) (A : Set ℝ) :
   sorry
 
 -- `thm:function-quotient-closure`
-/-- The theorem states the function quotient closure assertion. -/
+/-- Let `A : Set ℝ`. If `f g : ℝ → ℝ` and `h : ∀ x ∈ A, g x ≠ 0`. Then `∀ x ∈ A, PointwiseQuotient f
+g x = f x / g x`. -/
 theorem FunctionQuotientClosure (f g : ℝ → ℝ) (A : Set ℝ)
     (h : ∀ x ∈ A, g x ≠ 0) : ∀ x ∈ A, PointwiseQuotient f g x = f x / g x := by
   sorry
 
-/-- `prop:pointwise-max-min-absolute-value-formulas`. -/
+/-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`. Then `∀ x ∈ A, PointwiseMax f g x = (f x + g x + |f x - g x|)
+/ 2 ∧ PointwiseMin f g x = (f x + g x - |f x - g x|) / 2`. -/
 theorem PointwiseMaxMinAbsoluteValueFormulas (f g : ℝ → ℝ) (A : Set ℝ) :
     ∀ x ∈ A, PointwiseMax f g x = (f x + g x + |f x - g x|) / 2 ∧
       PointwiseMin f g x = (f x + g x - |f x - g x|) / 2 := by
   sorry
 
-/-- `prop:pointwise-max-min-bounds`. -/
+/-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`. Then `∀ x ∈ A, PointwiseMin f g x ≤ f x ∧ f x ≤ PointwiseMax
+f g x ∧ PointwiseMin f g x ≤ g x ∧ g x ≤ PointwiseMax f g x`. -/
 theorem PointwiseMaxMinBounds (f g : ℝ → ℝ) (A : Set ℝ) :
     ∀ x ∈ A, PointwiseMin f g x ≤ f x ∧ f x ≤ PointwiseMax f g x ∧
       PointwiseMin f g x ≤ g x ∧ g x ≤ PointwiseMax f g x := by
   sorry
 
-/-- `prop:quotient-undefined-when-denominator-vanishes`. See header note
-above on why this is stated as precondition-failure rather than
-"is not a function." -/
+/-- Let `A : Set ℝ` and `x₀ : ℝ`. If `f g : ℝ → ℝ`, `hx₀ : x₀ ∈ A`, and `hg : g x₀ = 0`. Then `¬ (∀
+x ∈ A, g x ≠ 0)`. -/
 theorem QuotientUndefinedWhenDenominatorVanishes (f g : ℝ → ℝ)
     (A : Set ℝ) (x₀ : ℝ) (hx₀ : x₀ ∈ A) (hg : g x₀ = 0) :
     ¬ (∀ x ∈ A, g x ≠ 0) := by

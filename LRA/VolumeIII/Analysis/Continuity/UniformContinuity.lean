@@ -17,14 +17,16 @@ def IsUniformlyContinuous (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
   ∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, ∀ y ∈ A, |x - y| < δ → |f x - f y| < ε
 
 -- `thm:algebra-of-uniform-continuity-bounded`
-/-- sum, and product when
-both factors are additionally bounded, preserve uniform continuity. -/
+/-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`, `hf : IsUniformlyContinuous f A`, and `hg :
+IsUniformlyContinuous g A`. Then `IsUniformlyContinuous (fun x => f x + g x) A`. -/
 theorem UcAdd (f g : ℝ → ℝ) (A : Set ℝ)
     (hf : IsUniformlyContinuous f A) (hg : IsUniformlyContinuous g A) :
     IsUniformlyContinuous (fun x => f x + g x) A := by
   sorry
 
-/-- The theorem states the uc mul of bounded assertion. -/
+/-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`, `hf : IsUniformlyContinuous f A`, `hg : IsUniformlyContinuous
+g A`, `hfB : BoundedOnSet f A`, and `hgB : BoundedOnSet g A`. Then `IsUniformlyContinuous (fun x
+=> f x * g x) A`. -/
 theorem UcMulOfBounded (f g : ℝ → ℝ) (A : Set ℝ)
     (hf : IsUniformlyContinuous f A) (hg : IsUniformlyContinuous g A)
     (hfB : BoundedOnSet f A) (hgB : BoundedOnSet g A) :
@@ -32,19 +34,17 @@ theorem UcMulOfBounded (f g : ℝ → ℝ) (A : Set ℝ)
   sorry
 
 -- `thm:algebra-of-uniform-continuity-general`
-/-- without a boundedness
-hypothesis the product need not be uniformly continuous; this records the
-correct qualified general statement — composition preserves uniform
-continuity unconditionally. -/
+/-- Let `A B : Set ℝ`. If `f g : ℝ → ℝ`, `hf : IsUniformlyContinuous f A`, `hfA : ∀ x ∈ A, f x ∈ B`,
+and `hg : IsUniformlyContinuous g B`. Then `IsUniformlyContinuous (fun x => g (f x)) A`. -/
 theorem UcComp (f g : ℝ → ℝ) (A B : Set ℝ)
     (hf : IsUniformlyContinuous f A) (hfA : ∀ x ∈ A, f x ∈ B)
     (hg : IsUniformlyContinuous g B) :
     IsUniformlyContinuous (fun x => g (f x)) A := by
   sorry
 
-/-- `prop:sequential-uniform-continuity`: `f` is uniformly continuous on
-`A` iff it maps every pair of sequences in `A` with vanishing separation
-to a pair of sequences with vanishing separation. -/
+/-- Let `A : Set ℝ`. If `f : ℝ → ℝ`. Then `IsUniformlyContinuous f A ↔ ∀ xs ys : ℕ → ℝ, (∀ n, xs n ∈
+A) → (∀ n, ys n ∈ A) → (∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |xs n - ys n| < ε) → ∀ ε > 0, ∃ N : ℕ, ∀ n ≥
+N, |f (xs n) - f (ys n)| < ε`. -/
 theorem UcIffSequential (f : ℝ → ℝ) (A : Set ℝ) :
     IsUniformlyContinuous f A ↔
       ∀ xs ys : ℕ → ℝ, (∀ n, xs n ∈ A) → (∀ n, ys n ∈ A) →
@@ -52,8 +52,9 @@ theorem UcIffSequential (f : ℝ → ℝ) (A : Set ℝ) :
         ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |f (xs n) - f (ys n)| < ε := by
   sorry
 
-/-- `prop:uniform-continuity-cauchy`: `f` uniformly continuous on `A`
-maps Cauchy sequences in `A` to Cauchy sequences. -/
+/-- Let `A : Set ℝ`. If `f : ℝ → ℝ`, `hf : IsUniformlyContinuous f A`, `xs : ℕ → ℝ`, `hxs : ∀ n, xs
+n ∈ A`, and `hCauchy : ∀ ε > 0, ∃ N : ℕ, ∀ m ≥ N, ∀ n ≥ N, |xs m - xs n| < ε`. Then `∀ ε > 0, ∃
+N : ℕ, ∀ m ≥ N, ∀ n ≥ N, |f (xs m) - f (xs n)| < ε`. -/
 theorem UcMapsCauchyToCauchy (f : ℝ → ℝ) (A : Set ℝ)
     (hf : IsUniformlyContinuous f A) (xs : ℕ → ℝ) (hxs : ∀ n, xs n ∈ A)
     (hCauchy : ∀ ε > 0, ∃ N : ℕ, ∀ m ≥ N, ∀ n ≥ N, |xs m - xs n| < ε) :
@@ -67,7 +68,8 @@ here — this file does not reproduce it). -/
 def IsLipschitzOn (f : ℝ → ℝ) (A : Set ℝ) (K : ℝ) : Prop :=
   K ≥ 0 ∧ ∀ x ∈ A, ∀ y ∈ A, |f x - f y| ≤ K * |x - y|
 
-/-- The theorem states the lipschitz implies uc assertion. -/
+/-- Let `A : Set ℝ` and `K : ℝ`. If `f : ℝ → ℝ` and `hf : IsLipschitzOn f A K`. Then
+`IsUniformlyContinuous f A`. -/
 theorem LipschitzImpliesUc (f : ℝ → ℝ) (A : Set ℝ) (K : ℝ)
     (hf : IsLipschitzOn f A K) : IsUniformlyContinuous f A := by
   sorry
@@ -78,18 +80,16 @@ def IsBiLipschitzOn (f : ℝ → ℝ) (A : Set ℝ) (α K : ℝ) : Prop :=
     α * |x - y| ≤ |f x - f y| ∧ |f x - f y| ≤ K * |x - y|
 
 -- `thm:bilipschitz-inverse-is-lipschitz`
-/-- The theorem states that bilipschitz inverse is lipschitz. -/
+/-- Let `A : Set ℝ` and `α K : ℝ`. If `f : ℝ → ℝ`, `hf : IsBiLipschitzOn f A α K`, `finv : ℝ → ℝ`,
+and `hfinv : ∀ x ∈ A, finv (f x) = x`. Then `IsLipschitzOn finv (f '' A) (1 / α)`. -/
 theorem BiLipschitzInverseIsLipschitz (f : ℝ → ℝ) (A : Set ℝ) (α K : ℝ)
     (hf : IsBiLipschitzOn f A α K) (finv : ℝ → ℝ)
     (hfinv : ∀ x ∈ A, finv (f x) = x) :
     IsLipschitzOn finv (f '' A) (1 / α) := by
   sorry
 
-/-- `prop:lipschitz-implies-uc`'s companion strictness witness: the book
-notes $\sqrt{x}$ on $[0,1]$ is uniformly continuous but not Lipschitz,
-showing Lipschitz $\Rightarrow$ UC is a strict implication. Recorded here
-as its own citable fact per ISSUES.md #49 (the book folds this into prose
-rather than a formal Failure-modes block). -/
+/-- The theorem asserts `IsUniformlyContinuous Real.sqrt (Set.Icc (0:ℝ) 1) ∧ ¬ ∃ K, IsLipschitzOn
+Real.sqrt (Set.Icc (0:ℝ) 1) K`. -/
 theorem SqrtUcNotLipschitz :
     IsUniformlyContinuous Real.sqrt (Set.Icc (0:ℝ) 1) ∧
     ¬ ∃ K, IsLipschitzOn Real.sqrt (Set.Icc (0:ℝ) 1) K := by

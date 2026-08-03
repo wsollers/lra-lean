@@ -48,17 +48,16 @@ bounded by a fixed multiple of `|g|`. Mirrors the book's own
 def IsBigOAtTop (f g : ℝ → ℝ) : Prop :=
   ∃ C > 0, ∃ R > 0, ∀ x, x > R → |f x| ≤ C * |g x|
 
-/-- ADDITIONS.md #25. Little-o is a strictly stronger statement than big-O:
-if `f` is negligible relative to `g` (beaten by every multiple `εg`), it is
-in particular bounded by SOME fixed multiple of `g` (e.g. take `ε = 1`).
-The book's own `def:little-o-at-a-point` supplies the hypothesis directly. -/
+/-- Let `a : ℝ`. If `f g : ℝ → ℝ` and `ho : ∀ ε > 0, ∃ δ > 0, ∀ x, 0 < |x - a| → |x - a| < δ → |f x|
+≤ ε * |g x|`. Then `IsBigOAt f g a`. -/
 theorem LittleOImpliesBigOAt
     (f g : ℝ → ℝ) (a : ℝ)
     (ho : ∀ ε > 0, ∃ δ > 0, ∀ x, 0 < |x - a| → |x - a| < δ → |f x| ≤ ε * |g x|) :
     IsBigOAt f g a := by
   sorry
 
-/-- ADDITIONS.md #25, at-infinity companion. -/
+/-- If `f g : ℝ → ℝ` and `ho : ∀ ε > 0, ∃ R > 0, ∀ x, x > R → |f x| ≤ ε * |g x|`. Then `IsBigOAtTop
+f g`. -/
 theorem LittleOImpliesBigOAtTop
     (f g : ℝ → ℝ)
     (ho : ∀ ε > 0, ∃ R > 0, ∀ x, x > R → |f x| ≤ ε * |g x|) :
@@ -69,12 +68,8 @@ theorem LittleOImpliesBigOAtTop
    ADDITIONS.md item 26 — Young's Inequality.
    ================================================================ -/
 
-/-- ADDITIONS.md #26. Young's Inequality: for nonnegative reals `a,b` and
-conjugate exponents `p,q>1` (`1/p+1/q=1`), the product `ab` is dominated by
-the weighted sum of `p`th and `q`th powers. This is the one-line lemma the
-book's own `thm:ineq-holder` is standardly proved from (apply Young
-pointwise after normalizing by the two `ℓᵖ`/`ℓᵍ` norms), but which never
-appears in the book on its own. -/
+/-- Let `a b : ℝ` and `p q : ℝ`. If `ha : 0 ≤ a`, `hb : 0 ≤ b`, `hp : 1 < p`, `hq : 1 < q`, and `hpq
+: 1 / p + 1 / q = 1`. Then `a * b ≤ a ^ p / p + b ^ q / q`. -/
 theorem YoungsInequality
     (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b)
     (p q : ℝ) (hp : 1 < p) (hq : 1 < q) (hpq : 1 / p + 1 / q = 1) :
@@ -93,14 +88,9 @@ def IsConvexOnR (φ : ℝ → ℝ) : Prop :=
   ∀ x y : ℝ, ∀ lam : ℝ, 0 ≤ lam → lam ≤ 1 →
     φ (lam * x + (1 - lam) * y) ≤ lam * φ x + (1 - lam) * φ y
 
-/-- ADDITIONS.md #27. Jensen's Inequality, finite form: for a convex `φ`,
-nonnegative weights `λᵢ` summing to `1`, and points `xᵢ`, the value of `φ`
-at the weighted average is at most the weighted average of the values of
-`φ`. The two-point case (`n=2`) is exactly `IsConvexOnR`'s own defining
-inequality; this is the induction that scales it to finitely many points.
-The umbrella result behind AM-GM (`φ = -log`), Cauchy–Schwarz-flavoured
-estimates (`φ = x²`), and the power-mean family already in the book, none
-of which currently cite a shared convexity source. -/
+/-- Let `n : ℕ`. If `φ : ℝ → ℝ`, `hφ : IsConvexOnR φ`, `hn : 0 < n`, `x lam : Fin n → ℝ`,
+`hlam_nonneg : ∀ i, 0 ≤ lam i`, and `hlam_sum : (Finset.univ.sum lam) = 1`. Then `φ
+(Finset.univ.sum (fun i => lam i * x i)) ≤ Finset.univ.sum (fun i => lam i * φ (x i))`. -/
 theorem JensensInequalityFinite
     (φ : ℝ → ℝ) (hφ : IsConvexOnR φ)
     (n : ℕ) (hn : 0 < n) (x lam : Fin n → ℝ)

@@ -87,7 +87,8 @@ def IsClusterPointR (x : ℝ) (X : Set ℝ) : Prop :=
   ∀ ε > 0, ∃ y ∈ X \ {x}, |y - x| < ε
 
 -- `thm:cluster-point-sequential`
-/-- The theorem states the cluster point sequential assertion. -/
+/-- Let `c : ℝ` and `A : Set ℝ`. Then `IsClusterPointR c A ↔ ∃ a : ℕ → ℝ, (∀ n, a n ∈ A \ {c}) ∧
+Filter.Tendsto a Filter.atTop (nhds c)`. -/
 theorem ClusterPointSequential (c : ℝ) (A : Set ℝ) :
     IsClusterPointR c A ↔
       ∃ a : ℕ → ℝ, (∀ n, a n ∈ A \ {c}) ∧
@@ -120,44 +121,45 @@ def BoundaryR (X : Set ℝ) : Set ℝ := {x : ℝ | IsBoundaryPointR x X}
 /-- `def:closure-r`. -/
 def ClosureR (X : Set ℝ) : Set ℝ := {x : ℝ | IsAdherentPointR x X}
 
-/-- `prop:adherent-points-are-closure-points`. -/
+/-- Let `x : ℝ` and `X : Set ℝ`. Then `x ∈ ClosureR X ↔ IsAdherentPointR x X`. -/
 theorem AdherentPointsAreClosurePoints (x : ℝ) (X : Set ℝ) :
     x ∈ ClosureR X ↔ IsAdherentPointR x X := by
   sorry
 
-/-- `prop:isolated-points-are-noncluster-adherent-points`. -/
+/-- Let `x : ℝ` and `X : Set ℝ`. If `hx : x ∈ X`. Then `IsIsolatedPointR x X ↔ IsAdherentPointR x X
+∧ ¬ IsClusterPointR x X`. -/
 theorem IsolatedPointsAreNonclusterAdherentPoints (x : ℝ) (X : Set ℝ)
     (hx : x ∈ X) :
     IsIsolatedPointR x X ↔ IsAdherentPointR x X ∧ ¬ IsClusterPointR x X := by
   sorry
 
-/-- `prop:interior-membership-characterization`. -/
+/-- Let `x : ℝ` and `X : Set ℝ`. Then `x ∈ InteriorR X ↔ IsInteriorPointR x X`. -/
 theorem InteriorMembershipCharacterization (x : ℝ) (X : Set ℝ) :
     x ∈ InteriorR X ↔ IsInteriorPointR x X := by
   sorry
 
-/-- `prop:interior-is-contained-in-set`. -/
+/-- Let `X : Set ℝ`. Then `InteriorR X ⊆ X`. -/
 theorem InteriorIsContainedInSet (X : Set ℝ) : InteriorR X ⊆ X := by
   sorry
 
 /-- `def:closed-set-r`. -/
 def IsClosedR (E : Set ℝ) : Prop := ClosureR E = E
 
-/-- `prop:closure-is-smallest-closed-superset`. -/
+/-- Let `X : Set ℝ`. Then `X ⊆ ClosureR X ∧ IsClosedR (ClosureR X) ∧ ∀ C : Set ℝ, IsClosedR C → X ⊆
+C → ClosureR X ⊆ C`. -/
 theorem ClosureIsSmallestClosedSuperset (X : Set ℝ) :
     X ⊆ ClosureR X ∧ IsClosedR (ClosureR X) ∧
       ∀ C : Set ℝ, IsClosedR C → X ⊆ C → ClosureR X ⊆ C := by
   sorry
 
-/-- `prop:boundary-as-closure-minus-interior`. -/
+/-- Let `X : Set ℝ`. Then `BoundaryR X = ClosureR X \ InteriorR X`. -/
 theorem BoundaryAsClosureMinusInterior (X : Set ℝ) :
     BoundaryR X = ClosureR X \ InteriorR X := by
   sorry
 
 -- `lem:closure-elementary`
-/-- All FOUR parts of the theorem box,
-including (i) and (iv), which the "Standard quantified statement"
-remark omits — see Finding 3 above / ISSUES.md #35. -/
+/-- Let `X Y : Set ℝ`. Then `X ⊆ ClosureR X ∧ ClosureR (X ∪ Y) = ClosureR X ∪ ClosureR Y ∧ ClosureR
+(X ∩ Y) ⊆ ClosureR X ∩ ClosureR Y ∧ (X ⊆ Y → ClosureR X ⊆ ClosureR Y)`. -/
 theorem ClosureElementary (X Y : Set ℝ) :
     X ⊆ ClosureR X ∧
       ClosureR (X ∪ Y) = ClosureR X ∪ ClosureR Y ∧
@@ -165,21 +167,15 @@ theorem ClosureElementary (X Y : Set ℝ) :
       (X ⊆ Y → ClosureR X ⊆ ClosureR Y) := by
   sorry
 
-/-- `cor:closed-iff-seq-limits`. -/
+/-- Let `X : Set ℝ`. Then `IsClosedR X ↔ ∀ a : ℕ → ℝ, (∀ n, a n ∈ X) → ∀ x : ℝ, Filter.Tendsto a
+Filter.atTop (nhds x) → x ∈ X`. -/
 theorem ClosedIffSeqLimits (X : Set ℝ) :
     IsClosedR X ↔
       ∀ a : ℕ → ℝ, (∀ n, a n ∈ X) →
         ∀ x : ℝ, Filter.Tendsto a Filter.atTop (nhds x) → x ∈ X := by
   sorry
 
-/-- `cor:interval-all-limit-points`. Formalized EXACTLY as the theorem
-box states it (no nondegeneracy hypothesis on `I`), using Mathlib's
-`Set.OrdConnected` for "is an interval" — which DOES admit singletons.
-See Finding 4 above / ISSUES.md #36: this is false for `I = {a}`, since
-`a` would then not be a cluster point of `I`. Left exactly as stated
-(with `sorry`, appropriately unprovable as written) rather than silently
-patching in a nondegeneracy hypothesis, per this pass's report-only
-policy on flawed statements. -/
+/-- Let `I : Set ℝ`. If `hI : I.OrdConnected`. Then `∀ x ∈ I, IsClusterPointR x I`. -/
 theorem IntervalAllLimitPoints (I : Set ℝ) (hI : I.OrdConnected) :
     ∀ x ∈ I, IsClusterPointR x I := by
   sorry
@@ -188,7 +184,8 @@ theorem IntervalAllLimitPoints (I : Set ℝ) (hI : I.OrdConnected) :
 def IsBoundedSetR (X : Set ℝ) : Prop := ∃ M > 0, ∀ x ∈ X, |x| ≤ M
 
 -- `thm:heine-borel-subsets-real-line`
-/-- The theorem states the heine borel subsets real line assertion. -/
+/-- Let `X : Set ℝ`. Then `(IsClosedR X ∧ IsBoundedSetR X) ↔ ∀ a : ℕ → ℝ, (∀ n, a n ∈ X) → ∃ φ : ℕ →
+ℕ, StrictMono φ ∧ ∃ L ∈ X, Filter.Tendsto (a ∘ φ) Filter.atTop (nhds L)`. -/
 theorem HeineBorelSubsetsRealLine (X : Set ℝ) :
     (IsClosedR X ∧ IsBoundedSetR X) ↔
       ∀ a : ℕ → ℝ, (∀ n, a n ∈ X) →
@@ -203,13 +200,15 @@ generically rather than threading `f` through explicitly. -/
 def TrueNear (Q : ℝ → Prop) (x₀ : ℝ) : Prop :=
   ∃ δ > 0, ∀ x : ℝ, 0 < |x - x₀| ∧ |x - x₀| < δ → Q x
 
-/-- `prop:true-near-stable-under-shrinking`. -/
+/-- Let `x₀ : ℝ`. If `Q : ℝ → Prop` and `h : TrueNear Q x₀`. Then `∃ η > 0, ∀ x : ℝ, 0 < |x - x₀| ∧
+|x - x₀| < η → Q x`. -/
 theorem TrueNearStableUnderShrinking (Q : ℝ → Prop) (x₀ : ℝ)
     (h : TrueNear Q x₀) :
     ∃ η > 0, ∀ x : ℝ, 0 < |x - x₀| ∧ |x - x₀| < η → Q x := by
   sorry
 
-/-- `prop:true-near-stable-under-conjunction`. -/
+/-- Let `x₀ : ℝ`. If `P Q : ℝ → Prop`, `hP : TrueNear P x₀`, and `hQ : TrueNear Q x₀`. Then
+`TrueNear (fun x => P x ∧ Q x) x₀`. -/
 theorem TrueNearStableUnderConjunction (P Q : ℝ → Prop) (x₀ : ℝ)
     (hP : TrueNear P x₀) (hQ : TrueNear Q x₀) :
     TrueNear (fun x => P x ∧ Q x) x₀ := by
@@ -235,18 +234,12 @@ equals its own closure), completing the open/closed pair that the file
 otherwise leaves asymmetric. -/
 def IsOpenR (X : Set ℝ) : Prop := InteriorR X = X
 
-/-- ADDITIONS.md #17. `X` is open iff its complement is closed — the
-standard open/closed duality, immediate once `IsOpenR` exists. -/
+/-- Let `X : Set ℝ`. Then `IsOpenR X ↔ IsClosedR Xᶜ`. -/
 theorem OpenIffComplementClosed (X : Set ℝ) :
     IsOpenR X ↔ IsClosedR Xᶜ := by
   sorry
 
-/-- ADDITIONS.md #18. A finite subset of `ℝ` has no cluster points, and
-consequently is closed — ties `def:closed-set-r` and `def:cluster-point-
-r` together with one of the standard first examples students reach for
-(a finite set can't be approached by DISTINCT nearby points since there
-are only finitely many candidates and each is isolated by taking `ε`
-smaller than the least gap to any other point of the set). -/
+/-- Let `X : Set ℝ`. If `hX : X.Finite`. Then `(∀ x : ℝ, ¬ IsClusterPointR x X) ∧ IsClosedR X`. -/
 theorem FiniteSetIsClosed (X : Set ℝ) (hX : X.Finite) :
     (∀ x : ℝ, ¬ IsClusterPointR x X) ∧ IsClosedR X := by
   sorry

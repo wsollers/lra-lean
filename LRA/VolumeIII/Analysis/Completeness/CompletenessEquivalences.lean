@@ -33,21 +33,25 @@ def BolzanoWeierstrassProperty [Preorder F] [TopologicalSpace F] : Prop :=
       ∃ indexMap : ℕ → ℕ,
         StrictMono indexMap ∧ ∃ L, Filter.Tendsto (a ∘ indexMap) Filter.atTop (nhds L)
 
-/-- The least-upper-bound property implies bounded increasing processes converge. -/
+/-- If `[LinearOrder F]`, `[TopologicalSpace F]`, `[OrderTopology F]`, and `leastUpperBoundProperty
+: HasLeastUpperBoundProperty F`. Then `IncreasingBoundedProcessesConverge F`. -/
 theorem LubPropertyImpliesIncreasingProcessConvergence
     [LinearOrder F] [TopologicalSpace F] [OrderTopology F]
     (leastUpperBoundProperty : HasLeastUpperBoundProperty F) :
     IncreasingBoundedProcessesConverge F := by
   sorry
 
-/-- The least-upper-bound property implies bounded decreasing processes converge. -/
+/-- If `[LinearOrder F]`, `[TopologicalSpace F]`, `[OrderTopology F]`, and `leastUpperBoundProperty
+: HasLeastUpperBoundProperty F`. Then `DecreasingBoundedProcessesConverge F`. -/
 theorem LubPropertyImpliesDecreasingProcessConvergence
     [LinearOrder F] [TopologicalSpace F] [OrderTopology F]
     (leastUpperBoundProperty : HasLeastUpperBoundProperty F) :
     DecreasingBoundedProcessesConverge F := by
   sorry
 
-/-- Monotone process convergence implies the least-upper-bound property in an Archimedean ordered field. -/
+/-- If `[Field F]`, `[LinearOrder F]`, `[IsStrictOrderedRing F]`, `[Archimedean F]`,
+`[TopologicalSpace F]`, `[OrderTopology F]`, and `monotoneProcessConvergenceHypothesis :
+IncreasingBoundedProcessesConverge F`. Then `HasLeastUpperBoundProperty F`. -/
 theorem MonotoneProcessConvergenceImpliesLubProperty
     [Field F] [LinearOrder F] [IsStrictOrderedRing F] [Archimedean F]
     [TopologicalSpace F] [OrderTopology F]
@@ -55,7 +59,9 @@ theorem MonotoneProcessConvergenceImpliesLubProperty
     HasLeastUpperBoundProperty F := by
   sorry
 
-/-- The least-upper-bound property is equivalent to bounded monotone process convergence. -/
+/-- If `[Field F]`, `[LinearOrder F]`, `[IsStrictOrderedRing F]`, `[Archimedean F]`,
+`[TopologicalSpace F]`, and `[OrderTopology F]`. Then `[HasLeastUpperBoundProperty F,
+IncreasingBoundedProcessesConverge F, DecreasingBoundedProcessesConverge F].TFAE`. -/
 theorem LubPropertyEquivalentToMonotoneProcessConvergence
     [Field F] [LinearOrder F] [IsStrictOrderedRing F] [Archimedean F]
     [TopologicalSpace F] [OrderTopology F] :
@@ -64,14 +70,20 @@ theorem LubPropertyEquivalentToMonotoneProcessConvergence
       DecreasingBoundedProcessesConverge F].TFAE := by
   sorry
 
-/-- The least-upper-bound property is equivalent to the nested-interval property. -/
+/-- If `[Field F]`, `[LinearOrder F]`, `[IsStrictOrderedRing F]`, `[Archimedean F]`,
+`[TopologicalSpace F]`, and `[OrderTopology F]`. Then `[HasLeastUpperBoundProperty F,
+NestedIntervalProperty F].TFAE`. -/
 theorem LubPropertyEquivalentToNestedIntervalProperty
     [Field F] [LinearOrder F] [IsStrictOrderedRing F] [Archimedean F]
     [TopologicalSpace F] [OrderTopology F] :
     [HasLeastUpperBoundProperty F, NestedIntervalProperty F].TFAE := by
   sorry
 
-/-- The standard completeness conditions are equivalent in an Archimedean ordered field. -/
+/-- If `[Field F]`, `[LinearOrder F]`, `[IsStrictOrderedRing F]`, `[Archimedean F]`, `[UniformSpace
+F]`, and `[OrderTopology F]`. Then `[HasLeastUpperBoundProperty F, HasGreatestLowerBoundProperty
+F, IncreasingBoundedProcessesConverge F, DecreasingBoundedProcessesConverge F,
+NestedIntervalProperty F, ArchimedeanReciprocalProperty, CauchySequencesConverge F,
+BolzanoWeierstrassProperty F].TFAE`. -/
 theorem StandardCompletenessEquivalences
     [Field F] [LinearOrder F] [IsStrictOrderedRing F] [Archimedean F]
     [UniformSpace F] [OrderTopology F] :

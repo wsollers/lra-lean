@@ -31,7 +31,10 @@ def DecreasingBoundedProcessesConverge [Preorder F] [TopologicalSpace F] : Prop 
 def ArchimedeanReciprocalProperty : Prop :=
   Filter.Tendsto (fun n : ℕ => 1 / (n : ℝ)) Filter.atTop (nhds 0)
 
-/-- A monotone bounded process has a limiting endpoint under completeness. -/
+/-- If `[LinearOrder F]`, `[TopologicalSpace F]`, `[OrderTopology F]`, `leastUpperBoundProperty :
+HasLeastUpperBoundProperty F`, `a : ℕ → F`, `monotoneHypothesis : Monotone a`, and
+`boundedAboveHypothesis : ∃ u, IsUpperBound u (Set.range a)`. Then `∃ L, IsSupremum L (Set.range
+a) ∧ Filter.Tendsto a Filter.atTop (nhds L)`. -/
 theorem IncreasingBoundedProcessHasLimit
     [LinearOrder F] [TopologicalSpace F] [OrderTopology F]
     (leastUpperBoundProperty : HasLeastUpperBoundProperty F)
@@ -41,7 +44,10 @@ theorem IncreasingBoundedProcessHasLimit
     ∃ L, IsSupremum L (Set.range a) ∧ Filter.Tendsto a Filter.atTop (nhds L) := by
   sorry
 
-/-- A decreasing bounded process has a limiting endpoint under completeness. -/
+/-- If `[LinearOrder F]`, `[TopologicalSpace F]`, `[OrderTopology F]`, `leastUpperBoundProperty :
+HasLeastUpperBoundProperty F`, `a : ℕ → F`, `antitoneHypothesis : Antitone a`, and
+`boundedBelowHypothesis : ∃ l, IsLowerBound l (Set.range a)`. Then `∃ L, IsInfimum L (Set.range
+a) ∧ Filter.Tendsto a Filter.atTop (nhds L)`. -/
 theorem DecreasingBoundedProcessHasLimit
     [LinearOrder F] [TopologicalSpace F] [OrderTopology F]
     (leastUpperBoundProperty : HasLeastUpperBoundProperty F)
@@ -51,7 +57,10 @@ theorem DecreasingBoundedProcessHasLimit
     ∃ L, IsInfimum L (Set.range a) ∧ Filter.Tendsto a Filter.atTop (nhds L) := by
   sorry
 
-/-- A nested shrinking interval process determines a unique point. -/
+/-- If `a b : ℕ → ℝ`, `orderedEndpointHypothesis : ∀ n, a n ≤ b n`, `nestedHypothesis : ∀ n, Set.Icc
+(a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)`, and `vanishingLengthHypothesis : ∀ ε > 0, ∃ N, ∀
+n ≥ N, b n - a n < ε`. Then `∃! x : ℝ, (∀ n, a n ≤ x ∧ x ≤ b n) ∧ Filter.Tendsto a Filter.atTop
+(nhds x) ∧ Filter.Tendsto b Filter.atTop (nhds x)`. -/
 theorem ShrinkingNestedIntervalProcessHasUniqueLimit
     {a b : ℕ → ℝ}
     (orderedEndpointHypothesis : ∀ n, a n ≤ b n)
@@ -62,7 +71,7 @@ theorem ShrinkingNestedIntervalProcessHasUniqueLimit
         Filter.Tendsto b Filter.atTop (nhds x) := by
   sorry
 
-/-- The reciprocal Archimedean process tends to zero. -/
+/-- The theorem asserts `ArchimedeanReciprocalProperty`. -/
 theorem ArchimedeanReciprocalProcessTendsToZero :
     ArchimedeanReciprocalProperty := by
   sorry

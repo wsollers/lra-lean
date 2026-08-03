@@ -33,37 +33,27 @@ def IsCompactSet (K : Set ℝ) : Prop :=
   ∀ 𝒰 : Set (Set ℝ), IsOpenCover 𝒰 K → ∃ 𝒱, IsFiniteSubcover 𝒱 𝒰 K
 
 -- `thm:compact-implies-closed-bounded`
-/-- The theorem states that compact implies closed bounded. -/
+/-- Let `K : Set ℝ`. If `hK : IsCompactSet K`. Then `IsClosedSet K ∧ ∃ M > 0, ∀ x ∈ K, |x| ≤ M`. -/
 theorem CompactImpliesClosedBounded (K : Set ℝ) (hK : IsCompactSet K) :
     IsClosedSet K ∧ ∃ M > 0, ∀ x ∈ K, |x| ≤ M := by
   sorry
 
 -- `thm:closed-bounded-interval-compact`
-/-- The theorem states the closed bounded interval compact assertion. -/
+/-- Let `a b : ℝ`. If `hab : a ≤ b`. Then `IsCompactSet (Set.Icc a b)`. -/
 theorem ClosedBoundedIntervalCompact (a b : ℝ) (hab : a ≤ b) :
     IsCompactSet (Set.Icc a b) := by
   sorry
 
-/-- The book's own gap here (ISSUES.md #44 — "closed subset of a compact
-set is compact," invoked in the `heine-borel` exposition but never stated
-or proved) was already added with sign-off as ADDITIONS.md items 28-29,
-in `CompactnessAdditions.lean`, under the `IsOpenR`/`IsClosedR`/`IsCompactR`
-predicate family rather than this file's `IsOpenSet`/`IsClosedSet`/
-`IsCompactSet` family — both restate the book's def:open-set/closed-set/
-compact-set identically, just with different predicate names from two
-separate passes. Rather than re-prove the same fact under a second name,
-this bridges the two families so `CompactnessAdditions.lean`'s
-`ClosedSubsetOfCompactIsCompact` and `sequential_compactness_iff_open_
-cover_compactness` transfer to this file's names for free once proved. -/
+/-- Let `K : Set ℝ`. Then `IsCompactSet K ↔ IsCompactR K`. -/
 theorem IsCompactSetIffIsCompactR (K : Set ℝ) : IsCompactSet K ↔ IsCompactR K := by
   sorry
 
-/-- The theorem states the is closed set iff is closed r assertion. -/
+/-- Let `F : Set ℝ`. Then `IsClosedSet F ↔ IsClosedR F`. -/
 theorem IsClosedSetIffIsClosedR (F : Set ℝ) : IsClosedSet F ↔ IsClosedR F := by
   sorry
 
 -- `thm:heine-borel`
-/-- The theorem states the heine borel assertion. -/
+/-- Let `K : Set ℝ`. Then `IsCompactSet K ↔ IsClosedSet K ∧ ∃ M > 0, ∀ x ∈ K, |x| ≤ M`. -/
 theorem HeineBorel (K : Set ℝ) :
     IsCompactSet K ↔ IsClosedSet K ∧ ∃ M > 0, ∀ x ∈ K, |x| ≤ M := by
   sorry

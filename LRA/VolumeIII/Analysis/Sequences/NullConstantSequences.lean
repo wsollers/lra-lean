@@ -76,56 +76,60 @@ def BoundedBelowSeq (x : RealSequence) : Prop := ∃ m : ℝ, ∀ n, m ≤ x n
 def BoundedSeq (x : RealSequence) : Prop := ∃ M > 0, ∀ n, |x n| ≤ M
 
 -- `thm:constant-sequence-convergence`
-/-- The theorem states the constant sequence convergence assertion. -/
+/-- Let `x : RealSequence` and `c : ℝ`. If `h : IsConstant x c`. Then `Filter.Tendsto x Filter.atTop
+(nhds c)`. -/
 theorem ConstantSequenceConvergence {x : RealSequence} {c : ℝ}
     (h : IsConstant x c) : Filter.Tendsto x Filter.atTop (nhds c) := by
   sorry
 
 -- `thm:zero-sequence-is-null`
-/-- The theorem states that zero sequence is null. -/
+/-- Let `x : RealSequence`. If `h : IsConstant x 0`. Then `IsNull x`. -/
 theorem ZeroSequenceIsNull {x : RealSequence} (h : IsConstant x 0) :
     IsNull x := by
   sorry
 
 -- `thm:constant-null-sequence`
-/-- The theorem states the constant null sequence assertion. -/
+/-- Let `x : RealSequence` and `c : ℝ`. If `h : IsConstant x c`. Then `IsNull x ↔ c = 0`. -/
 theorem ConstantNullSequence {x : RealSequence} {c : ℝ}
     (h : IsConstant x c) : IsNull x ↔ c = 0 := by
   sorry
 
 -- `thm:difference-from-limit-is-null`
-/-- The theorem states that difference from limit is null. -/
+/-- Let `x : RealSequence` and `L : ℝ`. Then `Filter.Tendsto x Filter.atTop (nhds L) ↔ IsNull (fun n
+=> x n - L)`. -/
 theorem DifferenceFromLimitIsNull (x : RealSequence) (L : ℝ) :
     Filter.Tendsto x Filter.atTop (nhds L) ↔ IsNull (fun n => x n - L) := by
   sorry
 
 -- `thm:ultimately-constant-sequence-convergence`
-/-- The theorem states the ultimately constant sequence convergence assertion. -/
+/-- Let `x : RealSequence` and `c : ℝ`. If `h : IsUltimatelyConstant x c`. Then `Filter.Tendsto x
+Filter.atTop (nhds c)`. -/
 theorem UltimatelyConstantSequenceConvergence {x : RealSequence} {c : ℝ}
     (h : IsUltimatelyConstant x c) :
     Filter.Tendsto x Filter.atTop (nhds c) := by
   sorry
 
 -- `thm:constant-implies-ultimately-constant`
-/-- The theorem states that constant implies ultimately constant. -/
+/-- Let `x : RealSequence` and `c : ℝ`. If `h : IsConstant x c`. Then `IsUltimatelyConstant x c`. -/
 theorem ConstantImpliesUltimatelyConstant {x : RealSequence} {c : ℝ}
     (h : IsConstant x c) : IsUltimatelyConstant x c := by
   sorry
 
 -- `thm:ultimately-zero-sequence-is-null`
-/-- The theorem states that ultimately zero sequence is null. -/
+/-- Let `x : RealSequence`. If `h : IsUltimatelyConstant x 0`. Then `IsNull x`. -/
 theorem UltimatelyZeroSequenceIsNull {x : RealSequence}
     (h : IsUltimatelyConstant x 0) : IsNull x := by
   sorry
 
 -- `thm:ultimately-constant-null-sequence`
-/-- The theorem states the ultimately constant null sequence assertion. -/
+/-- Let `x : RealSequence` and `c : ℝ`. If `h : IsUltimatelyConstant x c`. Then `IsNull x ↔ c = 0`. -/
 theorem UltimatelyConstantNullSequence {x : RealSequence} {c : ℝ}
     (h : IsUltimatelyConstant x c) : IsNull x ↔ c = 0 := by
   sorry
 
 -- `thm:tail-equality-preserves-convergence`
-/-- The theorem states that tail equality preserves convergence. -/
+/-- Let `x y : RealSequence` and `L : ℝ`. If `h : ∃ N₀ : ℕ, ∀ n ≥ N₀, x n = y n`. Then
+`Filter.Tendsto x Filter.atTop (nhds L) ↔ Filter.Tendsto y Filter.atTop (nhds L)`. -/
 theorem TailEqualityPreservesConvergence {x y : RealSequence}
     (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, x n = y n) (L : ℝ) :
     Filter.Tendsto x Filter.atTop (nhds L) ↔
@@ -133,37 +137,39 @@ theorem TailEqualityPreservesConvergence {x y : RealSequence}
   sorry
 
 -- `thm:eventually-bounded-above-tail-formulation`
-/-- The theorem states the eventually bounded above tail formulation assertion. -/
+/-- Let `x : RealSequence`. Then `BoundedAboveSeq x ↔ ∃ N₀ : ℕ, ∃ M : ℝ, ∀ n ≥ N₀, x n ≤ M`. -/
 theorem EventuallyBoundedAboveTailFormulation (x : RealSequence) :
     BoundedAboveSeq x ↔ ∃ N₀ : ℕ, ∃ M : ℝ, ∀ n ≥ N₀, x n ≤ M := by
   sorry
 
 -- `thm:eventually-bounded-below-tail-formulation`
-/-- The theorem states the eventually bounded below tail formulation assertion. -/
+/-- Let `x : RealSequence`. Then `BoundedBelowSeq x ↔ ∃ N₀ : ℕ, ∃ m : ℝ, ∀ n ≥ N₀, m ≤ x n`. -/
 theorem EventuallyBoundedBelowTailFormulation (x : RealSequence) :
     BoundedBelowSeq x ↔ ∃ N₀ : ℕ, ∃ m : ℝ, ∀ n ≥ N₀, m ≤ x n := by
   sorry
 
 -- `thm:eventually-bounded-tail-formulation`
-/-- The theorem states the eventually bounded tail formulation assertion. -/
+/-- Let `x : RealSequence`. Then `BoundedSeq x ↔ ∃ N₀ : ℕ, ∃ M > 0, ∀ n ≥ N₀, |x n| ≤ M`. -/
 theorem EventuallyBoundedTailFormulation (x : RealSequence) :
     BoundedSeq x ↔ ∃ N₀ : ℕ, ∃ M > 0, ∀ n ≥ N₀, |x n| ≤ M := by
   sorry
 
 -- `thm:bounded-sequence-bounded-above-below`
-/-- The theorem states the bounded sequence bounded above below assertion. -/
+/-- Let `x : RealSequence`. Then `BoundedSeq x ↔ (BoundedAboveSeq x ∧ BoundedBelowSeq x)`. -/
 theorem BoundedSequenceBoundedAboveBelow (x : RealSequence) :
     BoundedSeq x ↔ (BoundedAboveSeq x ∧ BoundedBelowSeq x) := by
   sorry
 
 -- `thm:absolute-bound-upper-lower-bounds`
-/-- The theorem states that absolute bound upper lower bounds. -/
+/-- Let `x : RealSequence` and `K : ℝ`. If `hK : K > 0` and `h : ∀ n, |x n| ≤ K`. Then `∀ n, -K ≤ x
+n ∧ x n ≤ K`. -/
 theorem AbsoluteBoundUpperLowerBounds {x : RealSequence} {K : ℝ}
     (hK : K > 0) (h : ∀ n, |x n| ≤ K) : ∀ n, -K ≤ x n ∧ x n ≤ K := by
   sorry
 
 -- `thm:upper-lower-bounds-absolute-bound`
-/-- The theorem states that upper lower bounds absolute bound. -/
+/-- Let `x : RealSequence` and `m M : ℝ`. If `h : ∀ n, m ≤ x n ∧ x n ≤ M`. Then `∃ K > 0, ∀ n, |x n|
+≤ K`. -/
 theorem UpperLowerBoundsAbsoluteBound {x : RealSequence} {m M : ℝ}
     (h : ∀ n, m ≤ x n ∧ x n ≤ M) : ∃ K > 0, ∀ n, |x n| ≤ K := by
   sorry

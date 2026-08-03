@@ -27,7 +27,8 @@ of continuity at a point. -/
 def ContinuousAtPointNbhd (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   ∀ ε > 0, ∃ δ > 0, ∀ x ∈ RelativeNeighborhood A c δ, |f x - f c| < ε
 
-/-- The theorem states the continuous at point iff nbhd assertion. -/
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`. Then `ContinuousAtPoint f A c ↔
+ContinuousAtPointNbhd f A c`. -/
 theorem ContinuousAtPointIffNbhd (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     ContinuousAtPoint f A c ↔ ContinuousAtPointNbhd f A c := by
   sorry
@@ -39,7 +40,8 @@ def ContinuousAtPointSeq (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
     (∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |xs n - c| < ε) →
     ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |f (xs n) - f c| < ε
 
-/-- The theorem states the continuous at point iff seq assertion. -/
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ` and `hc : c ∈ A`. Then `ContinuousAtPoint f A c ↔
+ContinuousAtPointSeq f A c`. -/
 theorem ContinuousAtPointIffSeq (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hc : c ∈ A) :
     ContinuousAtPoint f A c ↔ ContinuousAtPointSeq f A c := by
   sorry
@@ -55,7 +57,8 @@ def SequentialDiscontinuity (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
     (∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |xs n - c| < ε) ∧
     ¬ (∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |f (xs n) - f c| < ε)
 
-/-- The theorem states the discontinuity iff sequential assertion. -/
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`. Then `PointOfDiscontinuity f A c ↔
+SequentialDiscontinuity f A c`. -/
 theorem DiscontinuityIffSequential (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     PointOfDiscontinuity f A c ↔ SequentialDiscontinuity f A c := by
   sorry
@@ -65,7 +68,8 @@ neighbourhood formulation, an explicit ε that survives every δ. -/
 def NeighborhoodDiscontinuity (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   c ∈ A ∧ ∃ ε > 0, ∀ δ > 0, ∃ x ∈ RelativeNeighborhood A c δ, |f x - f c| ≥ ε
 
-/-- The theorem states the discontinuity iff neighborhood assertion. -/
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`. Then `PointOfDiscontinuity f A c ↔
+NeighborhoodDiscontinuity f A c`. -/
 theorem DiscontinuityIffNeighborhood (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     PointOfDiscontinuity f A c ↔ NeighborhoodDiscontinuity f A c := by
   sorry
@@ -101,8 +105,8 @@ def IsJumpDiscontinuity (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
 def IsEssentialDiscontinuity (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   PointOfDiscontinuity f A c ∧ ¬ IsRemovableDiscontinuity f A c
 
-/-- Records ISSUES.md #47 as a live Lean fact: under the book's literal
-definitions, a jump discontinuity is always also classified essential. -/
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ` and `h : IsJumpDiscontinuity f A c`. Then
+`IsEssentialDiscontinuity f A c`. -/
 theorem JumpSubsetEssential (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (h : IsJumpDiscontinuity f A c) : IsEssentialDiscontinuity f A c := by
   sorry
@@ -121,15 +125,15 @@ noncomputable def OscillationAtPoint (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
   0
 
 -- `thm:continuity-iff-zero-oscillation`
-/-- The theorem states that continuity iff zero oscillation. -/
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ` and `hc : c ∈ A`. Then `ContinuousAtPoint f A c ↔
+OscillationAtPoint f A c = 0`. -/
 theorem ContinuousAtPointIffZeroOscillation (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hc : c ∈ A) :
     ContinuousAtPoint f A c ↔ OscillationAtPoint f A c = 0 := by
   sorry
 
-/-- `prop:discontinuity-set-via-oscillation`: the discontinuity set of
-`f` on `A` is the union, over `n`, of the sets where oscillation is at
-least `1/n` — in particular an `F_σ` set. -/
+/-- Let `A : Set ℝ`. If `f : ℝ → ℝ`. Then `{c ∈ A | PointOfDiscontinuity f A c} = ⋃ n : ℕ, {c ∈ A |
+OscillationAtPoint f A c ≥ 1 / (n + 1 : ℝ)}`. -/
 theorem DiscontinuitySetEqUnionOscillationBounded (f : ℝ → ℝ) (A : Set ℝ) :
     {c ∈ A | PointOfDiscontinuity f A c} =
       ⋃ n : ℕ, {c ∈ A | OscillationAtPoint f A c ≥ 1 / (n + 1 : ℝ)} := by
