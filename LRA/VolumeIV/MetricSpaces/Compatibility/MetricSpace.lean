@@ -1,4 +1,4 @@
-import LRA.VolumeIV.MetricSpaces.Foundations.Metric.Basic
+import LRA.VolumeIV.MetricSpaces.Compatibility.Metric
 
 /-!
 Reference definition for metric spaces, following Ó Searcóid `Metric Spaces`,

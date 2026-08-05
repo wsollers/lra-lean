@@ -1,2 +1,3 @@
+import LRA.VolumeIV.TopologicalSpaces.Compatibility
 import LRA.VolumeIV.TopologicalSpaces.Foundations
 import LRA.VolumeIV.TopologicalSpaces.TopologiesAndTopologicalSpaces

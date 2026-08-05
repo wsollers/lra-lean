@@ -1,5 +1,5 @@
 import Mathlib.Topology.MetricSpace.Basic
-import LRA.VolumeIV.MetricSpaces.Foundations.Metric.Basic
+import LRA.VolumeIV.MetricSpaces.Compatibility.Metric
 
 /-!
 Elementary theorem layer for the textbook metric record.
@@ -67,5 +67,19 @@ theorem RearrangementOfTriangleInequalityFromMetricDefinition
     |metric.distance a b - metric.distance b c| ≤ metric.distance a c := by
   simpa [metric.symmetric c b] using
     MetricDefinition.ReverseTriangleInequality metric a c b
+
+/-- Source: Ó Searcóid, `Metric Spaces`, Theorem 1.1.2.
+
+Rearrangement of the triangle inequality. Stated using Mathlib's metric-space
+API: in a metric space, `|dist a b - dist b c| ≤ dist a c`.
+
+Mathematical statement (Lean): `theorem rearrangement_of_triangle_inequality {X : Type u} [MetricSpace X] (a b c : X) : |dist a b - dist b c| ≤ dist a c`.
+-/
+theorem rearrangement_of_triangle_inequality
+    {X : Type u}
+    [MetricSpace X]
+    (a b c : X) :
+    |dist a b - dist b c| ≤ dist a c := by
+  simpa [dist_comm c b] using abs_dist_sub_le a c b
 
 end LRA.VolumeIV.MetricSpaces

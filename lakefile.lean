@@ -36,5 +36,8 @@ lean_lib LRATests where
   srcDir := "test"
   roots := #[
     `LRA.VolumeIII.Analysis.Bounding.BoundsTests,
-    `LRA.VolumeII.Switches.SetsTests
+    `LRA.VolumeII.Switches.SetsTests,
+    `LRA.VolumeIV.Learning.MetricTopologyAdapterTest,
+    `LRA.VolumeIV.MetricSpaces.BallSubsetCustomMetricTest,
+    `LRA.VolumeIV.TopologicalSpaces.TopologyCompatibilityTest
   ]

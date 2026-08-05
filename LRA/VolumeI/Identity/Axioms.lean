@@ -1,11 +1,13 @@
 import LRA.VolumeI.Relations.Basic.Properties
 
 /-!
-Identity, equality, and substitution foundations.
+Axiomatic equality foundations.
 
-Lean's ambient equality is the implementation of equality. These declarations
-name the source-facing equality axioms and substitution principles so later
-modules can cite them without treating equality as a Volume II structure.
+Lean's ambient equality is the implementation of the pure logical equality
+primitive. This chapter treats reflexivity and Leibniz substitution as the
+primitive equality principles; symmetry, transitivity, equivalence-relation
+status, and congruence are derived interface theorems for later predicate
+logic, set theory, and algebra.
 -/
 
 namespace LRA.VolumeI.Identity
@@ -23,46 +25,54 @@ abbrev EqualityRelation (Carrier : Type u) : Carrier -> Carrier -> Prop :=
 /-- Equality axiom: every object is equal to itself. -/
 theorem EqualityReflexivity {Carrier : Type u} (element : Carrier) :
     element = element := by
-  sorry
+  rfl
 
-/-- Equality axiom: equality is symmetric. -/
+/-- Derived theorem: equality is symmetric. -/
 theorem EqualitySymmetry {Carrier : Type u} {left right : Carrier}
     (ObjectsAreEqual : left = right) :
     right = left := by
-  sorry
+  exact Eq.symm ObjectsAreEqual
 
-/-- Equality axiom: equality is transitive. -/
+/-- Derived theorem: equality is transitive. -/
 theorem EqualityTransitivity {Carrier : Type u} {first second third : Carrier}
     (FirstEqualsSecond : first = second)
     (SecondEqualsThird : second = third) :
     first = third := by
-  sorry
+  exact Eq.trans FirstEqualsSecond SecondEqualsThird
 
 /-- Equality is reflexive as a named binary-relation predicate. -/
 theorem EqualityRelationIsReflexive (Carrier : Type u) :
     LRA.VolumeI.Relations.Reflexive (EqualityRelation Carrier) := by
-  sorry
+  intro element
+  exact EqualityReflexivity element
 
 /-- Equality is symmetric as a named binary-relation predicate. -/
 theorem EqualityRelationIsSymmetric (Carrier : Type u) :
     LRA.VolumeI.Relations.Symmetric (EqualityRelation Carrier) := by
-  sorry
+  intro left right ObjectsAreEqual
+  exact EqualitySymmetry ObjectsAreEqual
 
 /-- Equality is transitive as a named binary-relation predicate. -/
 theorem EqualityRelationIsTransitive (Carrier : Type u) :
     LRA.VolumeI.Relations.Transitive (EqualityRelation Carrier) := by
-  sorry
+  intro first second third FirstEqualsSecond SecondEqualsThird
+  exact EqualityTransitivity FirstEqualsSecond SecondEqualsThird
 
 /-- Equality is an equivalence relation. -/
 theorem EqualityRelationIsEquivalence (Carrier : Type u) :
     LRA.VolumeI.Relations.Equivalence (EqualityRelation Carrier) := by
-  sorry
+  exact ⟨
+    EqualityRelationIsReflexive Carrier,
+    EqualityRelationIsSymmetric Carrier,
+    EqualityRelationIsTransitive Carrier⟩
 
 /-- TeX label: `ax:leibniz-law`. -/
 theorem LeibnizLaw {Carrier : Type u} {left right : Carrier}
     (ObjectsAreIdentical : left = right) :
     ∀ property : Carrier -> Prop, property left ↔ property right := by
-  sorry
+  intro property
+  subst ObjectsAreIdentical
+  rfl
 
 /-- TeX label: `def:definitional-propositional-equality`. -/
 def PropositionalEquality {Carrier : Type u} (left right : Carrier) : Prop :=
@@ -74,7 +84,7 @@ theorem EqualitySubstitution {Carrier : Type u} {left right : Carrier}
     (formula : Carrier -> Prop) :
     formula left ↔ formula right :=
   by
-    sorry
+    exact LeibnizLaw ObjectsAreEqual formula
 
 /-- TeX label: `prop:substitution-preserves-predicates`. -/
 theorem SubstitutionPreservesPredicates {Carrier : Type u}
@@ -83,7 +93,7 @@ theorem SubstitutionPreservesPredicates {Carrier : Type u}
     (predicate : Carrier -> Prop) :
     predicate left ↔ predicate right :=
   by
-    sorry
+    exact EqualitySubstitution ObjectsAreEqual predicate
 
 /-- TeX label: `prop:substitution-preserves-relations-left`. -/
 theorem SubstitutionPreservesRelationsLeft {Carrier : Type u}
@@ -91,7 +101,7 @@ theorem SubstitutionPreservesRelationsLeft {Carrier : Type u}
     (ObjectsAreEqual : left = right)
     (relation : Carrier -> Carrier -> Prop) :
     relation left fixed ↔ relation right fixed := by
-  sorry
+  exact EqualitySubstitution ObjectsAreEqual (fun value => relation value fixed)
 
 /-- TeX label: `prop:substitution-preserves-relations-right`. -/
 theorem SubstitutionPreservesRelationsRight {Carrier : Type u}
@@ -99,7 +109,7 @@ theorem SubstitutionPreservesRelationsRight {Carrier : Type u}
     (ObjectsAreEqual : left = right)
     (relation : Carrier -> Carrier -> Prop) :
     relation fixed left ↔ relation fixed right := by
-  sorry
+  exact EqualitySubstitution ObjectsAreEqual (fun value => relation fixed value)
 
 /-- TeX label: `prop:substitution-preserves-relations-full`. -/
 theorem SubstitutionPreservesRelations {Carrier : Type u}
@@ -108,7 +118,9 @@ theorem SubstitutionPreservesRelations {Carrier : Type u}
     (RightsAreEqual : right = right')
     (relation : Carrier -> Carrier -> Prop) :
     relation left right ↔ relation left' right' := by
-  sorry
+  subst LeftsAreEqual
+  subst RightsAreEqual
+  rfl
 
 /-- TeX label: `prop:substitution-preserves-functions`. -/
 theorem SubstitutionPreservesFunctions {Domain : Type u} {Codomain : Type v}
@@ -116,7 +128,7 @@ theorem SubstitutionPreservesFunctions {Domain : Type u} {Codomain : Type v}
     (ObjectsAreEqual : left = right)
     (function : Domain -> Codomain) :
     function left = function right := by
-  sorry
+  exact congrArg function ObjectsAreEqual
 
 /-- TeX label: `prop:substitution-preserves-operations-left`. -/
 theorem SubstitutionPreservesOperationsLeft {Carrier : Type u}
@@ -124,7 +136,7 @@ theorem SubstitutionPreservesOperationsLeft {Carrier : Type u}
     (LeftsAreEqual : left = left')
     (operation : Carrier -> Carrier -> Carrier) :
     operation left right = operation left' right := by
-  sorry
+  exact congrArg (fun value => operation value right) LeftsAreEqual
 
 /-- TeX label: `prop:substitution-preserves-operations-right`. -/
 theorem SubstitutionPreservesOperationsRight {Carrier : Type u}
@@ -132,7 +144,7 @@ theorem SubstitutionPreservesOperationsRight {Carrier : Type u}
     (RightsAreEqual : right = right')
     (operation : Carrier -> Carrier -> Carrier) :
     operation left right = operation left right' := by
-  sorry
+  exact congrArg (operation left) RightsAreEqual
 
 /-- TeX label: `prop:substitution-preserves-operations-full`. -/
 theorem SubstitutionPreservesOperations {Carrier : Type u}
@@ -141,7 +153,9 @@ theorem SubstitutionPreservesOperations {Carrier : Type u}
     (RightsAreEqual : right = right')
     (operation : Carrier -> Carrier -> Carrier) :
     operation left right = operation left' right' := by
-  sorry
+  subst LeftsAreEqual
+  subst RightsAreEqual
+  rfl
 
 /-- TeX label: `prop:congruence-with-respect-to-equality-is-automatic`. -/
 theorem CongruenceWithRespectToEqualityIsAutomatic {Carrier : Type u}
@@ -153,6 +167,13 @@ theorem CongruenceWithRespectToEqualityIsAutomatic {Carrier : Type u}
         relation left right ↔ relation left' right') ∧
       (∀ operation : Carrier -> Carrier -> Carrier,
         operation left right = operation left' right') := by
-  sorry
+  constructor
+  · intro predicate
+    exact EqualitySubstitution LeftsAreEqual predicate
+  constructor
+  · intro relation
+    exact SubstitutionPreservesRelations LeftsAreEqual RightsAreEqual relation
+  · intro operation
+    exact SubstitutionPreservesOperations LeftsAreEqual RightsAreEqual operation
 
 end LRA.VolumeI.Identity

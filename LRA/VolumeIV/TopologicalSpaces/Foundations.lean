@@ -1,2 +1,1 @@
-import LRA.VolumeIV.TopologicalSpaces.TopologicalSpace
-
+import LRA.VolumeIV.TopologicalSpaces.Foundations.InitialTheorems

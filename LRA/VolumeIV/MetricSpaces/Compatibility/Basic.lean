@@ -1,5 +1,6 @@
 import Mathlib.Topology.MetricSpace.Basic
-import LRA.VolumeIV.MetricSpaces.Foundations.Metric.Theorems
+import LRA.VolumeIV.MetricSpaces.Compatibility.MetricSpace
+import LRA.VolumeIV.MetricSpaces.Foundations.InitialTheorems
 
 /-!
 Compatibility between the textbook metric record and Mathlib's metric-space
@@ -85,18 +86,25 @@ theorem ReverseTriangleInequalityFromMathlibCompatibility
   rw [compatibilityHypothesis x z, compatibilityHypothesis y z, compatibilityHypothesis x y]
   exact abs_dist_sub_le x y z
 
-/-- Source: Ó Searcóid, `Metric Spaces`, Theorem 1.1.2.
+namespace MetricSpaceDefinition
 
-Rearrangement of the triangle inequality. Stated using Mathlib's metric-space
-API: in a metric space, `|dist a b - dist b c| ≤ dist a c`.
+/-- The Mathlib metric-space structure induced by a packaged textbook metric
+space. -/
+@[implicit_reducible]
+def ToMathlibMetricSpace (space : MetricSpaceDefinition.{u}) :
+    MetricSpace space.Carrier :=
+  space.metric.ToMathlibMetricSpace
 
-Mathematical statement (Lean): `theorem rearrangement_of_triangle_inequality {X : Type u} [MetricSpace X] (a b c : X) : |dist a b - dist b c| ≤ dist a c`.
--/
-theorem rearrangement_of_triangle_inequality
-    {X : Type u}
-    [MetricSpace X]
-    (a b c : X) :
-    |dist a b - dist b c| ≤ dist a c := by
-  simpa [dist_comm c b] using abs_dist_sub_le a c b
+/-- A packaged textbook metric space can be used directly as a Mathlib metric
+space on its carrier.
+
+This instance is useful in learning files whose variables have type
+`space.Carrier`: Mathlib-facing names such as `dist`, `Metric.ball`,
+`dist_triangle`, and `dist_comm` resolve through the packaged textbook metric. -/
+instance instMathlibMetricSpace (space : MetricSpaceDefinition.{u}) :
+    MetricSpace space.Carrier :=
+  space.ToMathlibMetricSpace
+
+end MetricSpaceDefinition
 
 end LRA.VolumeIV.MetricSpaces

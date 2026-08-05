@@ -1,3 +1,4 @@
+import LRA.VolumeIV.MetricSpaces.Compatibility
 import LRA.VolumeIV.MetricSpaces.Foundations
 import LRA.VolumeIV.MetricSpaces.MetricsAndMetricSpaces
 import LRA.VolumeIV.MetricSpaces.MetricSubspacesAndSuperspaces
@@ -8,3 +9,4 @@ import LRA.VolumeIV.MetricSpaces.OpenAndClosedSets
 import LRA.VolumeIV.MetricSpaces.ClosuresBoundariesAndBoundedSets
 import LRA.VolumeIV.MetricSpaces.LimitPointsAndIsolatedPoints
 import LRA.VolumeIV.MetricSpaces.SequentialConvergence
+import LRA.VolumeIV.MetricSpaces.OpenSets

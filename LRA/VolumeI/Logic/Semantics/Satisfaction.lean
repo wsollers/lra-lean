@@ -1,4 +1,5 @@
 import Mathlib.Tactic.Tauto
+import LRA.VolumeI.Identity.Model
 import LRA.VolumeI.Logic.Syntax.FirstOrder.Formula
 import LRA.VolumeI.Logic.Semantics.TermEvaluation
 import LRA.VolumeI.Logic.Semantics.Assignment
@@ -24,7 +25,9 @@ Each case unfolds exactly as the model-theoretic definition demands:
   - a relation application holds when the model's interpretation of that
     relation symbol holds of the *evaluated* argument terms (this is the
     first place `Satisfies` and `evaluateTerm` actually meet);
-  - an equality holds when both terms evaluate to the same domain element;
+  - an equality holds when both terms evaluate to the same domain element,
+    using the model's distinguished diagonal interpretation of logical equality
+    rather than any non-logical relation symbol;
   - negation and implication are the usual `Prop`-level `¬`/`->`, exactly
     mirroring propositional `evaluate`'s `neg`/`impl` cases one layer up,
     now stated as genuine propositions rather than `Bool` computations,
@@ -46,7 +49,9 @@ def Satisfies
   | .relation r args =>
       M.interpretRelation r (fun i => evaluateTerm M assignment (args i))
   | .equal t₁ t₂ =>
-      evaluateTerm M assignment t₁ = evaluateTerm M assignment t₂
+      M.interpretEquality
+        (evaluateTerm M assignment t₁)
+        (evaluateTerm M assignment t₂)
   | .neg φ =>
       ¬ Satisfies M assignment φ
   | .impl φ ψ =>

@@ -1,3 +1,4 @@
+import LRA.VolumeI.Identity.Axioms
 import LRA.VolumeI.Logic.Syntax.Term
 
 namespace LRA.VolumeI.Logic.FirstOrder
@@ -38,9 +39,11 @@ doc-comment. `∧`, `∨`, `↔` are likewise expected to be derived from `¬`/`
 the same reduction already used for propositional `Formula.and`/`.or`/
 `.iff`.
 
-Equality is its own constructor, not a case of `relation`: per the alphabet
-definition, `=` is a logical symbol present in every language, unlike the
-symbols of a signature's `Relations`, which vary language to language.
+Equality is its own constructor, not a case of `relation`: the preceding
+Axiomatic Equality chapter has already fixed `=` as a logical primitive whose
+basic theory is reflexivity plus Leibniz substitution. Predicate logic with
+equality uses that primitive; it does not add equality as another non-logical
+relation symbol in the signature's `Relations` field.
 
 Binding itself -- which occurrences of a variable inside a formula are
 bound versus free, and what it means to substitute a term for a free

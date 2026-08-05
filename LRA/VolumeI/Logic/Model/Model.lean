@@ -14,12 +14,17 @@ Declared in the `LRA.VolumeI.Logic.FirstOrder` namespace, matching
 the same way `Signature` itself is shared.
 
 A model of a signature `S` interprets `S`'s vocabulary over an actual
-domain: a type of elements, together with an actual function on that type
-for every function symbol of `S`, an actual relation on that type for every
-relation symbol of `S`, and an actual distinguished element of that type for
-every constant symbol of `S`. This is the standard model-theoretic notion
-of an "L-structure" -- domain plus interpretation -- specialized to Lean's
-type theory rather than to ZFC's naive set framing.
+domain: a type of elements, together with an actual equality relation, an
+actual function on that type for every function symbol of `S`, an actual
+relation on that type for every relation symbol of `S`, and an actual
+distinguished element of that type for every constant symbol of `S`. This is
+the standard model-theoretic notion of an "L-structure" -- domain plus
+interpretation -- specialized to Lean's type theory rather than to ZFC's naive
+set framing.
+
+Equality is included as a distinguished logical interpretation, not as a
+member of `S.Relations`. The diagonal law records the usual first-order logic
+with equality convention: `=^M` is identity on the domain.
 
 The domain is represented as `Domain : Type`, not `Domain : Set Universe`
 for some ambient `Universe`. In the usual set-theoretic treatment "the
@@ -38,9 +43,9 @@ of whatever connectives or binders are eventually layered on top of it.
 -/
 
 /-- A model (L-structure) of the signature `S`: a domain, together with an
-interpretation of every function symbol as an actual function on the
-domain, every relation symbol as an actual relation on the domain, and
-every constant symbol as an actual element of the domain.
+interpretation of logical equality as identity, every function symbol as an
+actual function on the domain, every relation symbol as an actual relation on
+the domain, and every constant symbol as an actual element of the domain.
 
 The domain is required to be nonempty, matching the standard model-theoretic
 convention (a model with an empty domain would make universal instantiation
@@ -51,6 +56,11 @@ domain built from an inhabited type, it is typically immediate via
 structure Model (S : Signature) where
   Domain : Type u
   domainNonempty : Nonempty Domain
+  interpretEquality : Domain -> Domain -> Prop := fun left right => left = right
+  equalityIsDiagonal :
+    ∀ left right, interpretEquality left right ↔ left = right := by
+      intro left right
+      rfl
   interpretFunction :
     (f : S.FunctionSymbol) -> (Fin (S.functionArity f) -> Domain) -> Domain
   interpretRelation :
