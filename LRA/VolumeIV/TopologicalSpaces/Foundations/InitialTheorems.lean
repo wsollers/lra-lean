@@ -29,45 +29,73 @@ Mathematical statement (Lean): `def ClosedSetFamilyOfTopology (X : Type u) [Topo
 def ClosedSetFamilyOfTopology (X : Type u) [TopologicalSpace X] : Set (Set X) :=
   {F | ClosedSetDefinition F}
 
-/-- Source: Willard, `General Topology`, Theorem 3.4.
+open Set
 
-Closed sets in a topological space contain `X` and `∅`, are closed under
-arbitrary intersections, and are closed under finite unions. Stated using
-Mathlib's topology API.
+/-- Source: Willard, `General Topology`, Theorem 3.4 (Forward Direction).
 
-Mathematical statement (Lean): `theorem closed_sets_in_topological_space {X : Type u} [TopologicalSpace X] : IsClosed (Set.univ : Set X) ∧ IsClosed (∅ : Set X) ∧ (∀ S : Set (Set X), (∀ C, C ∈ S → IsClosed C) → IsClosed (⋂₀ S)) ∧ (∀ C D : Set X, IsClosed C → IsClosed D → IsClosed (C ∪ D))`.
-
-*Proof status:* proof pending
+If ℱ is the collection of closed sets in a topological space X, then:
+(F-a) Any intersection of members of ℱ belongs to ℱ.
+(F-b) Any finite union of members of ℱ belongs to ℱ.
+(F-c) X and ∅ both belong to ℱ.
 -/
 theorem closed_sets_in_topological_space
     {X : Type u}
     [TopologicalSpace X] :
-    IsClosed (Set.univ : Set X) ∧
-      IsClosed (∅ : Set X) ∧
-      (∀ S : Set (Set X), (∀ C, C ∈ S → IsClosed C) → IsClosed (⋂₀ S)) ∧
-      (∀ C D : Set X, IsClosed C → IsClosed D → IsClosed (C ∪ D)) := by
-  sorry
+    (∀ S : Set (Set X), (∀ C ∈ S, IsClosed C) → IsClosed (⋂₀ S)) ∧
+    (∀ C D : Set X, IsClosed C → IsClosed D → IsClosed (C ∪ D)) ∧
+    IsClosed (univ : Set X) ∧ IsClosed (∅ : Set X) := by
+  refine ⟨fun S hS => isClosed_sInter hS, fun C D hC hD => IsClosed.union hC hD, isClosed_univ, isClosed_empty⟩
 
-/-- Source: Willard, `General Topology`, Theorem 3.4.
 
-A family satisfying the closed-set axioms determines a topology whose closed
-sets are exactly that family. Stated using Mathlib's topology API.
+/-- Source: Willard, `General Topology`, Theorem 3.4 (Converse Direction).
 
-Mathematical statement (Lean): `theorem topology_from_closed_set_axioms {X : Type u} (ClosedSet : Set X → Prop) (closed_univ : ClosedSet Set.univ) (closed_empty : ClosedSet ∅) (closed_sInter : ∀ S : Set (Set X), (∀ C, C ∈ S → ClosedSet C) → ClosedSet (⋂₀ S)) (closed_union : ∀ C D : Set X,...`.
-
-*Proof status:* proof pending
+Given a set X and any family ℱ of subsets of X satisfying F-a, F-b, and F-c,
+the collection of complements of members of ℱ is a topology on X in which
+the family of closed sets is exactly ℱ.
 -/
-theorem topology_from_closed_set_axioms
+
+theorem TopologyFromClosedSetAxioms
     {X : Type u}
-    (ClosedSet : Set X → Prop)
-    (closed_univ : ClosedSet Set.univ)
-    (closed_empty : ClosedSet ∅)
-    (closed_sInter :
-      ∀ S : Set (Set X), (∀ C, C ∈ S → ClosedSet C) → ClosedSet (⋂₀ S))
-    (closed_union :
-      ∀ C D : Set X, ClosedSet C → ClosedSet D → ClosedSet (C ∪ D)) :
-    ∃ topology : TopologicalSpace X,
-      ∀ C : Set X, @IsClosed X topology C ↔ ClosedSet C := by
+    (F : Set (Set X))
+    (closedUnderArbitraryIntersections : ∀ S ⊆ F, ⋂₀ S ∈ F)
+    (closedUnderFiniteUnions : ∀ C ∈ F, ∀ D ∈ F, C ∪ D ∈ F)
+    (_wholeSpaceMem : univ ∈ F)
+    (emptyMem : ∅ ∈ F) :
+    ∃ topologicalSpace : TopologicalSpace X,
+      ∀ C : Set X, @IsClosed X topologicalSpace C ↔ C ∈ F := by
+  let topologicalSpace : TopologicalSpace X := TopologicalSpace.ofClosed F emptyMem
+    (fun S hS => closedUnderArbitraryIntersections S hS)
+    (fun A hA B hB => closedUnderFiniteUnions A hA B hB)
+  use topologicalSpace
+  intro C
+  -- Unfold `IsClosed` through the constructed topology's open-set predicate.
+  rw [← @isOpen_compl_iff X C topologicalSpace]
+  change Cᶜᶜ ∈ F ↔ C ∈ F
+  rw [compl_compl]
+
+/-- Source: Willard, `General Topology`, Definition 3.5.
+
+The closure of a subset `E` of a topological space `X` is the intersection of
+all closed subsets of `X` that contain `E`.
+
+Mathematical statement (Lean): `def TopologicalClosureDefinition {X : Type u} [TopologicalSpace X] (E : Set X) : Set X`.
+-/
+def TopologicalClosureDefinition {X : Type u} [TopologicalSpace X] (E : Set X) : Set X :=
+  ⋂₀ {K : Set X | E ⊆ K ∧ IsClosed K}
+
+/-- Source: Willard, `General Topology`, Lemma 3.6.
+
+Closure is monotone with respect to inclusion: if `A ⊆ B`, then the closure of
+`A` is contained in the closure of `B`.
+
+Mathematical statement (Lean): `theorem TopologicalClosureMonotone {X : Type u} [TopologicalSpace X] {A B : Set X} (subset : A ⊆ B) : TopologicalClosureDefinition A ⊆ TopologicalClosureDefinition B`.
+-/
+theorem TopologicalClosureMonotone
+    {X : Type u}
+    [TopologicalSpace X]
+    {A B : Set X}
+    (subset : A ⊆ B) :
+    TopologicalClosureDefinition A ⊆ TopologicalClosureDefinition B := by
   sorry
 
 end LRA.VolumeIV.TopologicalSpaces

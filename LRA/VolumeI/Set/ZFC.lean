@@ -7,4 +7,9 @@ import LRA.VolumeI.Set.ZFC.Model
 
 /-!
 Aggregate import for the fresh Enderton/ZFC set track.
+
+This low-level aggregate exposes the language (`zfcSignature`) and
+model/structure (`ZFCModel`) pieces. The theory layer lives in
+`LRA.VolumeI.Set.ZFC.Theory` and is imported from the Volume I root after
+logic syntax, identity, relations, and set imports have all been established.
 -/
