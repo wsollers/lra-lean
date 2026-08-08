@@ -48,9 +48,9 @@ The Blueprint toolchain is containerized separately from the Lean build image:
 .\build.ps1 blueprint
 ```
 
-`.\build.ps1 blueprint-existing` compiles PDF and web output from an existing
-`blueprint/src/generated-number-systems.tex` when `docs/number-systems` is not
-available in the checkout.
+When `docs/number-systems` is not available in the checkout, the container
+skips number-system input regeneration and still emits Lean-driven volume
+Blueprint chapters from `LRA/`.
 
 ## Relationship to monorepo
 

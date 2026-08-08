@@ -36,6 +36,16 @@ jobs:
           cache-from: type=gha,scope=lra-lean-documentation-build
           cache-to: type=gha,scope=lra-lean-documentation-build,mode=max
 
+      - name: Build Blueprint image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.blueprint
+          tags: lra-lean-blueprint:latest
+          load: true
+          cache-from: type=gha,scope=lra-lean-blueprint-build
+          cache-to: type=gha,scope=lra-lean-blueprint-build,mode=max
+
       - name: Build active Lean libraries
         run: |
           docker run --rm \
@@ -46,53 +56,13 @@ jobs:
         # Lean accepts declarations containing `sorry`; placeholders are shown
         # by the generated site and do not fail the ordinary project build.
 
-      - name: Generate number-system Blueprint sources
+      - name: Build repository site with Blueprint output
         run: |
           docker run --rm \
             -v "$PWD:/workspace" \
             -w /workspace \
-            lra-lean-docs \
-            python3 scripts/build-number-systems-declaration-manifest.py
-          docker run --rm \
-            -v "$PWD:/workspace" \
-            -w /workspace \
-            lra-lean-docs \
-            python3 scripts/build-number-systems-blueprint.py
-          docker run --rm \
-            -v "$PWD:/workspace" \
-            -w /workspace \
-            lra-lean-docs \
-            python3 scripts/report-number-systems-dependency-order.py --check
-
-      - name: Compile Blueprint
-        run: |
-          docker run --rm \
-            -v "$PWD:/workspace" \
-            -w /workspace \
-            lra-lean-docs \
-            leanblueprint pdf
-          docker run --rm \
-            -v "$PWD:/workspace" \
-            -w /workspace \
-            lra-lean-docs \
-            leanblueprint web
-
-      - name: Check Blueprint declaration mappings
-        run: |
-          docker run --rm \
-            -v "$PWD:/workspace" \
-            -w /workspace \
-            lra-lean-docs \
-            python3 scripts/check-blueprint-declarations.py
-
-      - name: Generate repository documentation site
-        run: python3 scripts/build-repository-site.py
-
-      - name: Attach Blueprint output to site
-        run: |
-          mkdir -p site/blueprint
-          cp -R blueprint/web/. site/blueprint/
-          cp blueprint/print/print.pdf site/number-systems-blueprint.pdf
+            lra-lean-blueprint \
+            docs
 
       - name: Configure GitHub Pages
         if: github.event_name != 'pull_request'

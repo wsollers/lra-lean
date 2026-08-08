@@ -28,11 +28,6 @@ build_inputs_when_available() {
 
 build_blueprint_existing() {
   require_repo_root
-  if [[ ! -f "blueprint/src/generated-number-systems.tex" ]]; then
-    echo "error: blueprint/src/generated-number-systems.tex is missing" >&2
-    echo "hint: run 'inputs' first when docs/number-systems is available" >&2
-    exit 2
-  fi
   leanblueprint pdf
   leanblueprint web
   if [[ -f "docs/number-systems/declarations.yaml" ]]; then
