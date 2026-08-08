@@ -7,28 +7,30 @@ namespace LRA.VolumeI.Relations.Order
 universe u
 
 /-- Order-facing synonym for subset-minimal well-foundedness. -/
-def WellFoundedRelation {Alpha : LRA.VolumeI.Set.LRACarrier}
-    (strictRelation : LRA.VolumeI.Relations.Endorelation Alpha) : Prop :=
-  LRA.VolumeI.Relations.WellFounded strictRelation
+def WellFoundedRelation
+    (interface : LRA.VolumeI.Set.SetInterface.{u, u})
+    (strictRelation : LRA.VolumeI.Relations.Endorelation interface.Element) : Prop :=
+  LRA.VolumeI.Relations.WellFounded interface strictRelation
 
 /-- Every nonempty subset of a well-founded relation has a minimal element. -/
 theorem MinimalElementPrinciple
-    {Alpha : LRA.VolumeI.Set.LRACarrier}
-    {strictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
-    (strictRelationIsWellFounded : WellFoundedRelation strictRelation)
-    (subset : LRA.VolumeI.Set.LRASet Alpha)
-    (subsetIsNonempty : LRA.VolumeI.Set.LRASet.Nonempty subset) :
-    exists minimalElement, MinimalElement strictRelation subset minimalElement := by
+    {interface : LRA.VolumeI.Set.SetInterface.{u, u}}
+    {strictRelation : LRA.VolumeI.Relations.Endorelation interface.Element}
+    (strictRelationIsWellFounded : WellFoundedRelation interface strictRelation)
+    (subset : interface.SetObject)
+    (subsetIsNonempty : exists element, interface.member element subset) :
+    exists minimalElement,
+      LRA.VolumeI.Relations.MinimalElement interface strictRelation subset minimalElement := by
   exact strictRelationIsWellFounded subset subsetIsNonempty
 
 /-- Every nonempty subset of a well-order has a least element. -/
 theorem WellOrderingPrinciple
-    {Alpha : LRA.VolumeI.Set.LRACarrier}
-    {nonStrictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
-    (nonStrictRelationIsWellOrder : WellOrder nonStrictRelation)
-    (subset : LRA.VolumeI.Set.LRASet Alpha)
-    (subsetIsNonempty : LRA.VolumeI.Set.LRASet.Nonempty subset) :
-    exists leastElement, LeastElement nonStrictRelation subset leastElement :=
+    {interface : LRA.VolumeI.Set.SetInterface.{u, u}}
+    {nonStrictRelation : LRA.VolumeI.Relations.Endorelation interface.Element}
+    (nonStrictRelationIsWellOrder : WellOrder interface nonStrictRelation)
+    (subset : interface.SetObject)
+    (subsetIsNonempty : exists element, interface.member element subset) :
+    exists leastElement, LeastElement interface nonStrictRelation subset leastElement :=
   nonStrictRelationIsWellOrder.right subset subsetIsNonempty
 
 end LRA.VolumeI.Relations.Order

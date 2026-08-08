@@ -15,31 +15,31 @@ namespace LRA.VolumeI.Relations.Order
 universe u
 
 /-- Greater-than relation derived from a strict order. -/
-def GreaterThan {alpha : LRA.VolumeI.Set.LRACarrier}
+def GreaterThan {alpha : Type u}
     (strictRelation : LRA.VolumeI.Relations.Endorelation alpha) :
     LRA.VolumeI.Relations.Endorelation alpha :=
   fun left right => strictRelation right left
 
 /-- Non-strict relation derived from a strict order. -/
-def LessThanOrEqual {alpha : LRA.VolumeI.Set.LRACarrier}
+def LessThanOrEqual {alpha : Type u}
     (strictRelation : LRA.VolumeI.Relations.Endorelation alpha) :
     LRA.VolumeI.Relations.Endorelation alpha :=
   fun left right => strictRelation left right \/ left = right
 
 /-- Greater-than-or-equal relation derived from a strict order. -/
-def GreaterThanOrEqual {alpha : LRA.VolumeI.Set.LRACarrier}
+def GreaterThanOrEqual {alpha : Type u}
     (strictRelation : LRA.VolumeI.Relations.Endorelation alpha) :
     LRA.VolumeI.Relations.Endorelation alpha :=
   fun left right => GreaterThan strictRelation left right \/ left = right
 
 /-- The strict part of a non-strict order. -/
-def StrictPart {alpha : LRA.VolumeI.Set.LRACarrier}
+def StrictPart {alpha : Type u}
     (nonStrictRelation : LRA.VolumeI.Relations.Endorelation alpha) :
     LRA.VolumeI.Relations.Endorelation alpha :=
   fun left right => nonStrictRelation left right /\ left ≠ right
 
 /-- The cover relation induced by a strict order relation. -/
-def CoverRelation {alpha : LRA.VolumeI.Set.LRACarrier}
+def CoverRelation {alpha : Type u}
     (strictRelation : LRA.VolumeI.Relations.Endorelation alpha) :
     LRA.VolumeI.Relations.Endorelation alpha :=
   fun lower upper =>
@@ -47,13 +47,13 @@ def CoverRelation {alpha : LRA.VolumeI.Set.LRACarrier}
       forall middle, Not (strictRelation lower middle /\ strictRelation middle upper)
 
 /-- Two elements are comparable with respect to a relation. -/
-def Comparable {alpha : LRA.VolumeI.Set.LRACarrier}
+def Comparable {alpha : Type u}
     (relation : LRA.VolumeI.Relations.Endorelation alpha)
     (left right : alpha) : Prop :=
   relation left right \/ relation right left
 
 /-- Strict order is preserved by right translation under a binary operation. -/
-def StrictlyPreservesRightTranslation {alpha : LRA.VolumeI.Set.LRACarrier}
+def StrictlyPreservesRightTranslation {alpha : Type u}
     (relation : LRA.VolumeI.Relations.Endorelation alpha)
     (operation : LRA.VolumeI.Operations.BinaryOperation alpha) : Prop :=
   forall first second translation,
@@ -61,7 +61,7 @@ def StrictlyPreservesRightTranslation {alpha : LRA.VolumeI.Set.LRACarrier}
     relation (operation first translation) (operation second translation)
 
 /-- Positive right multiplication preserves strict order. -/
-def PreservesPositiveRightMultiplication {alpha : LRA.VolumeI.Set.LRACarrier}
+def PreservesPositiveRightMultiplication {alpha : Type u}
     (strictOrderRelation : LRA.VolumeI.Relations.Endorelation alpha)
     (mul : LRA.VolumeI.Operations.BinaryOperation alpha)
     (zero : alpha) : Prop :=

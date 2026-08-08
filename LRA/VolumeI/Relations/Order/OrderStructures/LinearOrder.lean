@@ -5,7 +5,7 @@ namespace LRA.VolumeI.Relations.Order
 universe u
 
 /-- Linear order is the order-theory synonym for total order. -/
-def LinearOrder {Alpha : LRA.VolumeI.Set.LRACarrier}
+def LinearOrder {Alpha : Type u}
     (relation : LRA.VolumeI.Relations.Endorelation Alpha) : Prop :=
   TotalOrder relation
 

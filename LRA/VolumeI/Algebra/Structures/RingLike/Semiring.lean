@@ -4,7 +4,7 @@ namespace LRA.VolumeI.Algebra.Structures.RingLike
 
 /-- A semiring-like structure with addition, multiplication, zero, and one. -/
 structure Semiring where
-  Carrier : LRA.VolumeI.Set.LRACarrier
+  Carrier : Type u
   Zero : Carrier
   One : Carrier
   Addition : LRA.VolumeI.Operations.BinaryOperation Carrier

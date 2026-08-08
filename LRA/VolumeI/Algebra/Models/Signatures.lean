@@ -248,7 +248,7 @@ An ordered-ring signature contains only carrier data, operations, distinguished
 elements, and order relations. Laws are stored separately.
 -/
 structure OrderedRingSignature where
-  carrier : LRA.VolumeI.Set.LRACarrier
+  carrier : Type u
   zero : LRA.VolumeI.Operations.NullaryOperation carrier
   one : LRA.VolumeI.Operations.NullaryOperation carrier
   addition : LRA.VolumeI.Operations.BinaryOperation carrier
@@ -259,7 +259,7 @@ structure OrderedRingSignature where
 
 /-- The operation bundle for an ordered semiring. -/
 structure OrderedSemiringSignature where
-  carrier : LRA.VolumeI.Set.LRACarrier
+  carrier : Type u
   zero : LRA.VolumeI.Operations.NullaryOperation carrier
   one : LRA.VolumeI.Operations.NullaryOperation carrier
   addition : LRA.VolumeI.Operations.BinaryOperation carrier
@@ -275,7 +275,7 @@ structure OrderedFieldSignature extends OrderedRingSignature where
 
 /-- The operation bundle for a field without an order relation. -/
 structure FieldSignature where
-  carrier : LRA.VolumeI.Set.LRACarrier
+  carrier : Type u
   zero : LRA.VolumeI.Operations.NullaryOperation carrier
   one : LRA.VolumeI.Operations.NullaryOperation carrier
   addition : LRA.VolumeI.Operations.BinaryOperation carrier
@@ -285,13 +285,13 @@ structure FieldSignature where
 
 /-- The operation bundle for a Peano system. -/
 structure PeanoSignature where
-  carrier : LRA.VolumeI.Set.LRACarrier
+  carrier : Type u
   one : LRA.VolumeI.Operations.NullaryOperation carrier
   successor : LRA.VolumeI.Operations.UnaryOperation carrier
 
 /-- The operation bundle for the additive ordered language. -/
 structure AdditiveOrderedSignature where
-  carrier : LRA.VolumeI.Set.LRACarrier
+  carrier : Type u
   zero : LRA.VolumeI.Operations.NullaryOperation carrier
   one : LRA.VolumeI.Operations.NullaryOperation carrier
   addition : LRA.VolumeI.Operations.BinaryOperation carrier
@@ -300,7 +300,7 @@ structure AdditiveOrderedSignature where
 
 /-- The operation bundle for the arithmetic ring language. -/
 structure ArithmeticRingSignature where
-  carrier : LRA.VolumeI.Set.LRACarrier
+  carrier : Type u
   zero : LRA.VolumeI.Operations.NullaryOperation carrier
   one : LRA.VolumeI.Operations.NullaryOperation carrier
   addition : LRA.VolumeI.Operations.BinaryOperation carrier

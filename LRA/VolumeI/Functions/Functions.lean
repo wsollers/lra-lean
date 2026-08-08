@@ -1,5 +1,5 @@
 import LRA.VolumeI.Relations.Basic.Relations
-import LRA.VolumeI.Set.Products
+import LRA.VolumeI.Set.Operations.Comprehension
 
 namespace LRA.VolumeI.Functions
 
@@ -30,16 +30,24 @@ def FunctionAsRelation {Domain Codomain : Type u}
     (graph : LRA.VolumeI.Relations.HeterogeneousRelation Domain Codomain) : Prop :=
   TotalOverDomain graph /\ SingleValued graph
 
-/-- The domain predicate of a graph relation. -/
-def DomainOfGraph {Domain Codomain : Type u}
-    (graph : LRA.VolumeI.Relations.HeterogeneousRelation Domain Codomain) :
-    LRA.VolumeI.Set.LRASet Domain :=
-  fun input => exists output, graph input output
+/-- The domain set of a graph relation. -/
+def DomainOfGraph {Codomain : Type u}
+    (domainOperations : LRA.VolumeI.Set.Operations.ComprehensionSetOperations.{u, u})
+    (ambientDomain : domainOperations.SetObject)
+    (graph : LRA.VolumeI.Relations.HeterogeneousRelation
+      domainOperations.Element Codomain) :
+    domainOperations.SetObject :=
+  domainOperations.separation ambientDomain
+    (fun input => exists output, graph input output)
 
-/-- The codomain predicate hit by a graph relation. -/
-def RangeOfGraph {Domain Codomain : Type u}
-    (graph : LRA.VolumeI.Relations.HeterogeneousRelation Domain Codomain) :
-    LRA.VolumeI.Set.LRASet Codomain :=
-  fun output => exists input, graph input output
+/-- The codomain set hit by a graph relation. -/
+def RangeOfGraph {Domain : Type u}
+    (codomainOperations : LRA.VolumeI.Set.Operations.ComprehensionSetOperations.{u, u})
+    (ambientCodomain : codomainOperations.SetObject)
+    (graph : LRA.VolumeI.Relations.HeterogeneousRelation
+      Domain codomainOperations.Element) :
+    codomainOperations.SetObject :=
+  codomainOperations.separation ambientCodomain
+    (fun output => exists input, graph input output)
 
 end LRA.VolumeI.Functions

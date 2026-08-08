@@ -14,7 +14,7 @@ universal set to `one` when they instantiate an abstract algebraic reading.
 /-- A carrier signature names the underlying type of an algebraic structure;
 equivalently, every operation-bundle signature below extends this carrier. -/
 structure CarrierSignature where
-  carrier : LRA.VolumeI.Set.LRACarrier
+  carrier : Type u
 
 /-- A zero signature names a distinguished `zero` element of a carrier;
 equivalently, in set-like models this is where the empty set will be mapped. -/

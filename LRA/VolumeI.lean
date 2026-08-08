@@ -6,4 +6,4 @@ import LRA.VolumeI.Operations
 import LRA.VolumeI.Relations
 import LRA.VolumeI.Relations.Order
 import LRA.VolumeI.Algebra
-import LRA.VolumeI.Set.ZFC.Theory
+import LRA.VolumeI.Set.Implementations.ZFC.Theory

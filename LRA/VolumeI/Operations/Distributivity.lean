@@ -5,13 +5,13 @@ namespace LRA.VolumeI.Operations
 universe u
 
 /-- Alias emphasizing two-sided distributivity. -/
-def TwoSidedDistributive {Alpha : LRA.VolumeI.Set.LRACarrier}
+def TwoSidedDistributive {Alpha : Type u}
     (multiplication addition : BinaryOperation Alpha) : Prop :=
   Distributive multiplication addition
 
 /-- Commutative multiplication turns left distributivity into right distributivity. -/
 theorem LeftDistributiveImpliesRightDistributiveOfCommutative
-    {Alpha : LRA.VolumeI.Set.LRACarrier}
+    {Alpha : Type u}
     {multiplication addition : BinaryOperation Alpha}
     (multiplicationIsCommutative : Commutative multiplication)
     (leftDistributivity :
@@ -21,7 +21,7 @@ theorem LeftDistributiveImpliesRightDistributiveOfCommutative
 
 /-- Commutative multiplication turns right distributivity into left distributivity. -/
 theorem RightDistributiveImpliesLeftDistributiveOfCommutative
-    {Alpha : LRA.VolumeI.Set.LRACarrier}
+    {Alpha : Type u}
     {multiplication addition : BinaryOperation Alpha}
     (multiplicationIsCommutative : Commutative multiplication)
     (rightDistributivity :

@@ -9,9 +9,14 @@ def Injective {Domain Codomain : Type u} (map : Domain -> Codomain) : Prop :=
   forall left right, map left = map right -> left = right
 
 /-- Fiber formulation of injectivity. -/
-def InjectiveByFibers {Domain Codomain : Type u}
-    (map : Function Domain Codomain) : Prop :=
+def InjectiveByFibers
+    (domainOperations : LRA.VolumeI.Set.Operations.ComprehensionSetOperations.{u, u})
+    (ambientDomain : domainOperations.SetObject)
+    {Codomain : Type u}
+    (map : Function domainOperations.Element Codomain) : Prop :=
   forall output left right,
-    Fiber map output left -> Fiber map output right -> left = right
+    domainOperations.member left (Fiber domainOperations ambientDomain map output) ->
+      domainOperations.member right (Fiber domainOperations ambientDomain map output) ->
+        left = right
 
 end LRA.VolumeI.Functions

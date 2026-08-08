@@ -5,26 +5,26 @@ namespace LRA.VolumeI.Operations
 universe u
 
 /-- An element is a left inverse of another element. -/
-def LeftInverseElement {Alpha : LRA.VolumeI.Set.LRACarrier}
+def LeftInverseElement {Alpha : Type u}
     (operation : BinaryOperation Alpha)
     (identity leftInverseOfElement element : Alpha) : Prop :=
   operation leftInverseOfElement element = identity
 
 /-- An element is a right inverse of another element. -/
-def RightInverseElement {Alpha : LRA.VolumeI.Set.LRACarrier}
+def RightInverseElement {Alpha : Type u}
     (operation : BinaryOperation Alpha)
     (identity rightInverseOfElement element : Alpha) : Prop :=
   operation element rightInverseOfElement = identity
 
 /-- An element is a two-sided inverse of another element. -/
-def TwoSidedInverseElement {Alpha : LRA.VolumeI.Set.LRACarrier}
+def TwoSidedInverseElement {Alpha : Type u}
     (operation : BinaryOperation Alpha)
     (identity inverseOfElement element : Alpha) : Prop :=
   LeftInverseElement operation identity inverseOfElement element /\
     RightInverseElement operation identity inverseOfElement element
 
 /-- An element is invertible when it has a two-sided inverse. -/
-def InvertibleElement {Alpha : LRA.VolumeI.Set.LRACarrier}
+def InvertibleElement {Alpha : Type u}
     (operation : BinaryOperation Alpha)
     (identity element : Alpha) : Prop :=
   exists inverseOfElement,
@@ -32,7 +32,7 @@ def InvertibleElement {Alpha : LRA.VolumeI.Set.LRACarrier}
 
 /-- Two-sided inverses are unique in a monoid-like operation. -/
 theorem UniquenessOfInverseElement
-    {Alpha : LRA.VolumeI.Set.LRACarrier}
+    {Alpha : Type u}
     {operation : BinaryOperation Alpha}
     {identity element firstInverse secondInverse : Alpha}
     (operationIsAssociative : Associative operation)

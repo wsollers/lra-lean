@@ -9,20 +9,20 @@ namespace LRA.VolumeI.Relations.Order
 universe u
 
 /-- A non-strict order can be recovered from its strict part and equality. -/
-def NonStrictFromStrict {Alpha : LRA.VolumeI.Set.LRACarrier}
+def NonStrictFromStrict {Alpha : Type u}
     (strictRelation : LRA.VolumeI.Relations.Endorelation Alpha) :
     LRA.VolumeI.Relations.Endorelation Alpha :=
   LessThanOrEqual strictRelation
 
 /-- A strict order can be recovered as the strict part of a non-strict order. -/
-def StrictFromNonStrict {Alpha : LRA.VolumeI.Set.LRACarrier}
+def StrictFromNonStrict {Alpha : Type u}
     (nonStrictRelation : LRA.VolumeI.Relations.Endorelation Alpha) :
     LRA.VolumeI.Relations.Endorelation Alpha :=
   StrictPart nonStrictRelation
 
 /-- Strict partial orders induce partial orders through adjoining equality. -/
 theorem StrictPartialOrderInducesPartialOrder
-    {Alpha : LRA.VolumeI.Set.LRACarrier}
+    {Alpha : Type u}
     {strictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
     (strictRelationIsStrictPartialOrder : StrictPartialOrder strictRelation) :
     PartialOrder (NonStrictFromStrict strictRelation) := by
@@ -30,7 +30,7 @@ theorem StrictPartialOrderInducesPartialOrder
 
 /-- Partial orders induce strict partial orders by removing equality. -/
 theorem PartialOrderInducesStrictPartialOrder
-    {Alpha : LRA.VolumeI.Set.LRACarrier}
+    {Alpha : Type u}
     {nonStrictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
     (nonStrictRelationIsPartialOrder : PartialOrder nonStrictRelation) :
     StrictPartialOrder (StrictFromNonStrict nonStrictRelation) := by
@@ -38,7 +38,7 @@ theorem PartialOrderInducesStrictPartialOrder
 
 /-- Strict linear orders induce total orders through adjoining equality. -/
 theorem StrictLinearOrderInducesTotalOrder
-    {Alpha : LRA.VolumeI.Set.LRACarrier}
+    {Alpha : Type u}
     {strictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
     (strictRelationIsStrictLinearOrder : StrictLinearOrder strictRelation) :
     TotalOrder (NonStrictFromStrict strictRelation) := by
@@ -46,7 +46,7 @@ theorem StrictLinearOrderInducesTotalOrder
 
 /-- The strict/non-strict conversions are inverse at the theorem-interface level. -/
 theorem StrictNonStrictInverseCorrespondence
-    {Alpha : LRA.VolumeI.Set.LRACarrier}
+    {Alpha : Type u}
     {strictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
     (strictRelationIsStrictLinearOrder : StrictLinearOrder strictRelation) :
     StrictFromNonStrict (NonStrictFromStrict strictRelation) = strictRelation := by

@@ -1,5 +1,5 @@
 import LRA.VolumeI.Identity.Axioms
-import LRA.VolumeI.Set.LRASet.LRASet
+import LRA.VolumeI.Set.Public.Interface
 
 /-!
 Contract home for extensional equality.
@@ -9,15 +9,15 @@ namespace LRA.VolumeI.Identity
 
 universe u
 
-/-- Predicate-set extensionality, exposed from the identity layer. -/
-theorem ExtensionalEqualityForPredicateSets
-    {Alpha : LRA.VolumeI.Set.LRACarrier}
-    {Left Right : LRA.VolumeI.Set.LRASet Alpha}
+/-- Generic set extensionality, exposed from the identity layer. -/
+theorem ExtensionalEqualityForGenericSets
+    (interface : LRA.VolumeI.Set.SetInterface.{u, u})
+    (laws : LRA.VolumeI.Set.SetInterfaceLaws interface)
+    {Left Right : interface.SetObject}
     (SameMembers :
       ∀ Element,
-        LRA.VolumeI.Set.LRASet.Member Element Left ↔
-          LRA.VolumeI.Set.LRASet.Member Element Right) :
+        interface.member Element Left ↔ interface.member Element Right) :
     Left = Right :=
-  LRA.VolumeI.Set.LRASet.Extensionality SameMembers
+  laws.extensionality SameMembers
 
 end LRA.VolumeI.Identity

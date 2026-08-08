@@ -5,32 +5,31 @@ namespace LRA.VolumeI.Operations
 universe u v
 
 /-- A nullary operation on a carrier. -/
-abbrev NullaryOperation (alpha : LRA.VolumeI.Set.LRACarrier) := alpha
+abbrev NullaryOperation (alpha : Type u) := alpha
 
 /-- Compatibility synonym for a nullary operation. -/
-abbrev ConstantOperation (alpha : LRA.VolumeI.Set.LRACarrier) :=
+abbrev ConstantOperation (alpha : Type u) :=
   NullaryOperation alpha
 
 /-- A unary endo-operation on a carrier. -/
-abbrev UnaryOperation (alpha : LRA.VolumeI.Set.LRACarrier) := alpha -> alpha
+abbrev UnaryOperation (alpha : Type u) := alpha -> alpha
 
 /-- A binary operation on a carrier. -/
-abbrev BinaryOperation (alpha : LRA.VolumeI.Set.LRACarrier) := alpha -> alpha -> alpha
+abbrev BinaryOperation (alpha : Type u) := alpha -> alpha -> alpha
 
 /-- An external binary operation, such as scalar multiplication. -/
-abbrev ExternalBinaryOperation
-    (scalar carrier : LRA.VolumeI.Set.LRACarrier) :=
+abbrev ExternalBinaryOperation (scalar carrier : Type u) :=
   scalar -> carrier -> carrier
 
 /-- A partial unary operation on a carrier. -/
-structure PartialUnaryOperation (alpha : LRA.VolumeI.Set.LRACarrier) where
+structure PartialUnaryOperation (alpha : Type u) where
   /-- The operation's domain of definition. -/
-  Domain : LRA.VolumeI.Set.LRASet alpha
+  Domain : alpha -> Prop
   /-- The value of the operation at a point in its domain. -/
-  Value : forall input, LRA.VolumeI.Set.LRASet.Member input Domain -> alpha
+  Value : forall input, Domain input -> alpha
 
 /-- A partial binary operation on a carrier. -/
-structure PartialBinaryOperation (alpha : LRA.VolumeI.Set.LRACarrier) where
+structure PartialBinaryOperation (alpha : Type u) where
   /-- The operation's domain of definition. -/
   Domain : alpha -> alpha -> Prop
   /-- The value of the operation at a pair in its domain. -/

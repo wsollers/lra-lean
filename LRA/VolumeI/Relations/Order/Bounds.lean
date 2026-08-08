@@ -1,75 +1,76 @@
 import LRA.VolumeI.Relations.Order.OrderStructures.TotalOrder
+import LRA.VolumeI.Set.Public.Interface
 
 namespace LRA.VolumeI.Relations.Order
 
 universe u
 
 /-- An upper bound of a subset with respect to a non-strict order. -/
-def UpperBound {alpha : LRA.VolumeI.Set.LRACarrier}
-    (relation : LRA.VolumeI.Relations.Endorelation alpha)
-    (subset : LRA.VolumeI.Set.LRASet alpha)
-    (bound : alpha) : Prop :=
+def UpperBound (interface : LRA.VolumeI.Set.SetInterface.{u, u})
+    (relation : LRA.VolumeI.Relations.Endorelation interface.Element)
+    (subset : interface.SetObject)
+    (bound : interface.Element) : Prop :=
   forall element,
-    LRA.VolumeI.Set.LRASet.Member element subset ->
+    interface.member element subset ->
       relation element bound
 
 /-- A lower bound of a subset with respect to a non-strict order. -/
-def LowerBound {alpha : LRA.VolumeI.Set.LRACarrier}
-    (relation : LRA.VolumeI.Relations.Endorelation alpha)
-    (subset : LRA.VolumeI.Set.LRASet alpha)
-    (bound : alpha) : Prop :=
+def LowerBound (interface : LRA.VolumeI.Set.SetInterface.{u, u})
+    (relation : LRA.VolumeI.Relations.Endorelation interface.Element)
+    (subset : interface.SetObject)
+    (bound : interface.Element) : Prop :=
   forall element,
-    LRA.VolumeI.Set.LRASet.Member element subset ->
+    interface.member element subset ->
       relation bound element
 
 /-- A least element of a subset with respect to a non-strict order. -/
-def LeastElement {alpha : LRA.VolumeI.Set.LRACarrier}
-    (relation : LRA.VolumeI.Relations.Endorelation alpha)
-    (subset : LRA.VolumeI.Set.LRASet alpha)
-    (least : alpha) : Prop :=
-  LRA.VolumeI.Set.LRASet.Member least subset /\ LowerBound relation subset least
+def LeastElement (interface : LRA.VolumeI.Set.SetInterface.{u, u})
+    (relation : LRA.VolumeI.Relations.Endorelation interface.Element)
+    (subset : interface.SetObject)
+    (least : interface.Element) : Prop :=
+  interface.member least subset /\ LowerBound interface relation subset least
 
 /-- A greatest element of a subset with respect to a non-strict order. -/
-def GreatestElement {alpha : LRA.VolumeI.Set.LRACarrier}
-    (relation : LRA.VolumeI.Relations.Endorelation alpha)
-    (subset : LRA.VolumeI.Set.LRASet alpha)
-    (greatest : alpha) : Prop :=
-  LRA.VolumeI.Set.LRASet.Member greatest subset /\ UpperBound relation subset greatest
+def GreatestElement (interface : LRA.VolumeI.Set.SetInterface.{u, u})
+    (relation : LRA.VolumeI.Relations.Endorelation interface.Element)
+    (subset : interface.SetObject)
+    (greatest : interface.Element) : Prop :=
+  interface.member greatest subset /\ UpperBound interface relation subset greatest
 
 /-- A minimal element of a subset with respect to a strict order. -/
-def MinimalElement {alpha : LRA.VolumeI.Set.LRACarrier}
-    (strictRelation : LRA.VolumeI.Relations.Endorelation alpha)
-    (subset : LRA.VolumeI.Set.LRASet alpha)
-    (minimal : alpha) : Prop :=
-  LRA.VolumeI.Set.LRASet.Member minimal subset /\
+def MinimalElement (interface : LRA.VolumeI.Set.SetInterface.{u, u})
+    (strictRelation : LRA.VolumeI.Relations.Endorelation interface.Element)
+    (subset : interface.SetObject)
+    (minimal : interface.Element) : Prop :=
+  interface.member minimal subset /\
     forall element,
-      LRA.VolumeI.Set.LRASet.Member element subset ->
+      interface.member element subset ->
         Not (strictRelation element minimal)
 
 /-- A maximal element of a subset with respect to a strict order. -/
-def MaximalElement {alpha : LRA.VolumeI.Set.LRACarrier}
-    (strictRelation : LRA.VolumeI.Relations.Endorelation alpha)
-    (subset : LRA.VolumeI.Set.LRASet alpha)
-    (maximal : alpha) : Prop :=
-  LRA.VolumeI.Set.LRASet.Member maximal subset /\
+def MaximalElement (interface : LRA.VolumeI.Set.SetInterface.{u, u})
+    (strictRelation : LRA.VolumeI.Relations.Endorelation interface.Element)
+    (subset : interface.SetObject)
+    (maximal : interface.Element) : Prop :=
+  interface.member maximal subset /\
     forall element,
-      LRA.VolumeI.Set.LRASet.Member element subset ->
+      interface.member element subset ->
         Not (strictRelation maximal element)
 
 /-- A supremum, or least upper bound, of a subset. -/
-def Supremum {alpha : LRA.VolumeI.Set.LRACarrier}
-    (relation : LRA.VolumeI.Relations.Endorelation alpha)
-    (subset : LRA.VolumeI.Set.LRASet alpha)
-    (supremum : alpha) : Prop :=
-  UpperBound relation subset supremum /\
-    forall bound, UpperBound relation subset bound -> relation supremum bound
+def Supremum (interface : LRA.VolumeI.Set.SetInterface.{u, u})
+    (relation : LRA.VolumeI.Relations.Endorelation interface.Element)
+    (subset : interface.SetObject)
+    (supremum : interface.Element) : Prop :=
+  UpperBound interface relation subset supremum /\
+    forall bound, UpperBound interface relation subset bound -> relation supremum bound
 
 /-- An infimum, or greatest lower bound, of a subset. -/
-def Infimum {alpha : LRA.VolumeI.Set.LRACarrier}
-    (relation : LRA.VolumeI.Relations.Endorelation alpha)
-    (subset : LRA.VolumeI.Set.LRASet alpha)
-    (infimum : alpha) : Prop :=
-  LowerBound relation subset infimum /\
-    forall bound, LowerBound relation subset bound -> relation bound infimum
+def Infimum (interface : LRA.VolumeI.Set.SetInterface.{u, u})
+    (relation : LRA.VolumeI.Relations.Endorelation interface.Element)
+    (subset : interface.SetObject)
+    (infimum : interface.Element) : Prop :=
+  LowerBound interface relation subset infimum /\
+    forall bound, LowerBound interface relation subset bound -> relation bound infimum
 
 end LRA.VolumeI.Relations.Order

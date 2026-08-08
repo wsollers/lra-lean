@@ -1,25 +1,29 @@
 import LRA.VolumeI.Relations.Equivalence.EquivalenceRelation
+import LRA.VolumeI.Set.Operations.Comprehension
 
 namespace LRA.VolumeI.Relations
 
-universe u
+universe u v
 
 /-- The equivalence class of a representative with respect to a relation. -/
-def EquivalenceClass {Alpha : LRA.VolumeI.Set.LRACarrier}
-    (relation : Endorelation Alpha)
-    (representative : Alpha) : LRA.VolumeI.Set.LRASet Alpha :=
-  fun candidate => relation candidate representative
+def EquivalenceClass
+    (operations : LRA.VolumeI.Set.Operations.ComprehensionSetOperations.{u, v})
+    (ambient : operations.SetObject)
+    (relation : Endorelation operations.Element)
+    (representative : operations.Element) : operations.SetObject :=
+  operations.separation ambient (fun candidate => relation candidate representative)
 
 /-- Two representatives determine the same class when they are related. -/
 theorem RelatedRepresentativesHaveSameEquivalenceClass
-    {Alpha : LRA.VolumeI.Set.LRACarrier}
-    {relation : Endorelation Alpha}
+    {operations : LRA.VolumeI.Set.Operations.ComprehensionSetOperations.{u, v}}
+    {relation : Endorelation operations.Element}
     (relationIsEquivalence : EquivalenceRelation relation)
-    {firstRepresentative secondRepresentative : Alpha}
+    {firstRepresentative secondRepresentative : operations.Element}
     (representativesRelated :
       relation firstRepresentative secondRepresentative) :
-    EquivalenceClass relation firstRepresentative =
-      EquivalenceClass relation secondRepresentative := by
+    ∀ ambient,
+      EquivalenceClass operations ambient relation firstRepresentative =
+        EquivalenceClass operations ambient relation secondRepresentative := by
   sorry
 
 end LRA.VolumeI.Relations
