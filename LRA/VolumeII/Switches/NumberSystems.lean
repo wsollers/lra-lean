@@ -205,6 +205,144 @@ end LRA.VolumeII.Switches.NumberSystems.IntegerNumbers
 namespace LRA.VolumeII.Switches.NumberSystems
 open LRA.VolumeI.Algebra.Models
 
+/-!
+Active generic algebra bundles.
+
+These definitions plug the current active carriers into the Volume I generic
+semiring/ring templates. The operation bundles are usable immediately; the law
+proofs remain explicit obligations rather than hidden typeclass assumptions.
+-/
+
+/-- Active natural numbers as a commutative semiring operation bundle. -/
+def NaturalNumberSemiringSignature : SemiringSignature where
+  carrier := NaturalNumbers.N
+  zero := 0
+  one := 1
+  addition := Nat.add
+  multiplication := Nat.mul
+
+/-- Active natural-number commutative-semiring laws.
+
+*Proof status:* proof pending.
+-/
+theorem NaturalNumberCommutativeSemiringLaws :
+    CommutativeSemiringLaws NaturalNumberSemiringSignature := by
+  sorry
+
+/-- Active natural numbers as a bundled commutative semiring. -/
+def NaturalNumberCommutativeSemiring : CommutativeSemiring where
+  signature := NaturalNumberSemiringSignature
+  laws := NaturalNumberCommutativeSemiringLaws
+
+/-- Active whole numbers as a commutative semiring operation bundle. -/
+def WholeNumberSemiringSignature : SemiringSignature where
+  carrier := WholeNumbers.W
+  zero := 0
+  one := 1
+  addition := Nat.add
+  multiplication := Nat.mul
+
+/-- Active whole-number commutative-semiring laws.
+
+*Proof status:* proof pending.
+-/
+theorem WholeNumberCommutativeSemiringLaws :
+    CommutativeSemiringLaws WholeNumberSemiringSignature := by
+  sorry
+
+/-- Active whole numbers as a bundled commutative semiring. -/
+def WholeNumberCommutativeSemiring : CommutativeSemiring where
+  signature := WholeNumberSemiringSignature
+  laws := WholeNumberCommutativeSemiringLaws
+
+/-- Active integers as a commutative ring operation bundle. -/
+def IntegerNumberRingSignature : RingSignature where
+  carrier := IntegerNumbers.Z
+  zero := 0
+  one := 1
+  addition := Int.add
+  negation := Int.neg
+  multiplication := Int.mul
+
+/-- Active integer commutative-ring laws.
+
+*Proof status:* proof pending.
+-/
+theorem IntegerNumberCommutativeRingLaws :
+    CommutativeRingLaws IntegerNumberRingSignature := by
+  sorry
+
+/-- Active integers as a bundled commutative ring. -/
+def IntegerNumberCommutativeRing : CommutativeRing where
+  signature := IntegerNumberRingSignature
+  laws := IntegerNumberCommutativeRingLaws
+
+/-- Active rationals as a commutative ring operation bundle. -/
+def RationalNumberRingSignature : RingSignature where
+  carrier := Rat
+  zero := 0
+  one := 1
+  addition := Rat.add
+  negation := Rat.neg
+  multiplication := Rat.mul
+
+/-- Active rational-number commutative-ring laws.
+
+*Proof status:* proof pending.
+-/
+theorem RationalNumberCommutativeRingLaws :
+    CommutativeRingLaws RationalNumberRingSignature := by
+  sorry
+
+/-- Active rationals as a bundled commutative ring. -/
+def RationalNumberCommutativeRing : CommutativeRing where
+  signature := RationalNumberRingSignature
+  laws := RationalNumberCommutativeRingLaws
+
+/-- Active reals as a commutative ring operation bundle. -/
+noncomputable def RealNumberRingSignature : RingSignature where
+  carrier := Real
+  zero := 0
+  one := 1
+  addition := HAdd.hAdd
+  negation := Neg.neg
+  multiplication := HMul.hMul
+
+/-- Active real-number commutative-ring laws.
+
+*Proof status:* proof pending.
+-/
+theorem RealNumberCommutativeRingLaws :
+    CommutativeRingLaws RealNumberRingSignature := by
+  sorry
+
+/-- Active reals as a bundled commutative ring. -/
+noncomputable def RealNumberCommutativeRing : CommutativeRing where
+  signature := RealNumberRingSignature
+  laws := RealNumberCommutativeRingLaws
+
+/-- Active complex numbers as a commutative ring operation bundle. -/
+noncomputable def ComplexNumberRingSignature : RingSignature where
+  carrier := Complex
+  zero := 0
+  one := 1
+  addition := HAdd.hAdd
+  negation := Neg.neg
+  multiplication := HMul.hMul
+
+/-- Active complex-number commutative-ring laws.
+
+*Proof status:* proof pending.
+-/
+theorem ComplexNumberCommutativeRingLaws :
+    CommutativeRingLaws ComplexNumberRingSignature := by
+  sorry
+
+/-- Active complex numbers as a bundled commutative ring. -/
+noncomputable def ComplexNumberCommutativeRing : CommutativeRing where
+  signature := ComplexNumberRingSignature
+  laws := ComplexNumberCommutativeRingLaws
+
 end LRA.VolumeII.Switches.NumberSystems
 namespace LRA.VolumeII.Switches.NumberSystems.RationalNumbers
 open LRA.VolumeI.Algebra.Models

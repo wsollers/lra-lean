@@ -1,7 +1,9 @@
-import Mathlib.Data.Set.Finite.Basic
+import LRA.VolumeI.Set.Finiteness
 import LRA.VolumeI.Set.Implementations.LRASet.Operations.Families.Indexed
 
 namespace LRA.VolumeI.Set.Implementations.LRASet
+
+open LRA.VolumeI.Set.Finiteness
 
 /-- A collection of subsets of `Alpha`, represented as a typed set whose
 members are typed subsets of `Alpha`. -/
@@ -41,7 +43,7 @@ def Subcover {Alpha : LRACarrier}
 /-- A finite collection of subsets. -/
 def FiniteCollection {Alpha : LRACarrier}
     (Collection : SetCollection Alpha) : Prop :=
-  _root_.Set.Finite Collection
+  FinitePredicate (fun MemberSet => LRASet.Member MemberSet Collection)
 
 /-- A finite subcover is a finite subcollection that still covers the same
 target set. -/

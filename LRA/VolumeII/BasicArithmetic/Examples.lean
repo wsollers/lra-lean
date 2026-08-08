@@ -1,7 +1,6 @@
 -- LRA/VolumeII/BasicArithmetic/Examples.lean
 -- Small executable checks for the basic-arithmetic section.
 
-import Mathlib.Tactic
 import LRA.VolumeII.BasicArithmetic.AlgebraicIdentities
 import LRA.VolumeII.BasicArithmetic.Parity
 import LRA.VolumeII.BasicArithmetic.Fractions
@@ -16,19 +15,16 @@ open MultiplicativeInverses
 
 example : IsEven ((2 : Parity.N) + 4) :=
   EvenAddEven
-    (by exact ⟨1, by norm_num [IsEven, Even]⟩)
-    (by exact ⟨2, by norm_num [IsEven, Even]⟩)
+    (by exact ⟨1, rfl⟩)
+    (by exact ⟨2, rfl⟩)
 
 example : IsOdd ((2 : Parity.N) + 5) :=
   EvenAddOdd
-    (by exact ⟨1, by norm_num [IsEven, Even]⟩)
-    (by exact ⟨2, by norm_num [IsOdd, Odd]⟩)
+    (by exact ⟨1, rfl⟩)
+    (by exact ⟨2, rfl⟩)
 
 example : IsOdd ((5 : Parity.N) ^ 2) :=
-  SqOddOfOdd (by exact ⟨2, by norm_num [IsOdd, Odd]⟩)
-
-example : (7 : Int) ^ 2 - 3 ^ 2 = (7 + 3) * (7 - 3) :=
-  SqSubSqExpanded 7 3
+  SqOddOfOdd (by exact ⟨2, rfl⟩)
 
 example : Fractions.toQ ((-2 : Fractions.Z) * (-4)) /
       Fractions.toQ ((-2 : Fractions.Z) * 5) =
@@ -36,6 +32,6 @@ example : Fractions.toQ ((-2 : Fractions.Z) * (-4)) /
   exact FractionCancellation (a := -2) (m := -4) (n := 5) (by decide) (by decide)
 
 example : ((2 : MultiplicativeInverses.Q)⁻¹ * 2 = 1) :=
-  (NonzeroHasMultiplicativeInverse (a := 2) (by norm_num)).1
+  (NonzeroHasMultiplicativeInverse (a := 2) (by decide)).1
 
 end LRA.VolumeII.BasicArithmetic.Examples

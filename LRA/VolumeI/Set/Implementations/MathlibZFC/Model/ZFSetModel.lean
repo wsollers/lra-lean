@@ -1,10 +1,16 @@
 import Mathlib.SetTheory.ZFC.Basic
 import LRA.VolumeI.Set.Implementations.ZFC.Model.Model
 
-namespace LRA.VolumeI.Set.Implementations.ZFC
+namespace LRA.VolumeI.Set.Implementations.MathlibZFC
+
+open LRA.VolumeI.Set.Implementations.ZFC
 
 /-!
-Concrete first-order ZFC-language model over Mathlib's `ZFSet`.
+Mathlib adapter for the project ZFC-language model interface.
+
+This module interprets the project-owned `ZFCModel` interface using Mathlib's
+`ZFSet` as the concrete domain. It is an adapter from Mathlib into LRA, not a
+definition of Mathlib sets from LRA sets.
 -/
 
 /-- The ZFC signature interpreted over Mathlib's `ZFSet`. -/
@@ -22,4 +28,4 @@ theorem zfSetModel.interpretsMembership (a b : ZFSet) :
       = (a ∈ b) := by
   sorry
 
-end LRA.VolumeI.Set.Implementations.ZFC
+end LRA.VolumeI.Set.Implementations.MathlibZFC

@@ -1,5 +1,5 @@
-import Mathlib.Data.Set.Finite.Basic
 import LRA.VolumeI.Set.Algebra.CollectionAlgebra
+import LRA.VolumeI.Set.Finiteness
 import LRA.VolumeI.Set.Implementations.TT.Boolean
 import LRA.VolumeI.Set.Implementations.TT.PowerSet
 
@@ -11,6 +11,7 @@ namespace CollectionAlgebraAdapter
 
 open LRA.VolumeI.Set
 open LRA.VolumeI.Set.Algebra.Collection
+open LRA.VolumeI.Set.Finiteness
 
 /-!
 Adapters from typed predicate sets into the generic collection-algebra surface.
@@ -36,7 +37,7 @@ def countableOperations (Alpha : TTCarrier.{u}) :
 /-- Finite collection predicate for typed collections of subsets. -/
 def finiteCollectionPredicate (Alpha : TTCarrier.{u}) :
     FiniteCollectionPredicate (collectionSetOperations Alpha) :=
-  fun collection => _root_.Set.Finite collection
+  fun collection => FinitePredicate (fun memberSet => TTSet.Member memberSet collection)
 
 /-- Nonempty set predicate for typed predicate sets. -/
 def nonemptySetPredicate (Alpha : TTCarrier.{u}) :

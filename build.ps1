@@ -99,8 +99,23 @@ function Invoke-ProofReadiness {
     if ($LASTEXITCODE -ne 0) { throw "Proof-readiness check failed" }
 }
 
+function Invoke-NoMathlibInEarlyVolumes {
+    Write-Step "Checking Mathlib import policy in VolumeI / VolumeII"
+    $python = Get-Command python -ErrorAction SilentlyContinue
+    if (-not $python) {
+        $python = Get-Command py -ErrorAction SilentlyContinue
+    }
+    if (-not $python) {
+        throw "Python is required to run scripts/check-mathlib-imports.py"
+    }
+    & $python.Source (Join-Path $SrcDir 'scripts\check-mathlib-imports.py')
+    if ($LASTEXITCODE -ne 0) { throw "Mathlib import policy check failed" }
+    Write-Ok "No disallowed Mathlib imports in VolumeI / VolumeII"
+}
+
 function Invoke-Build {
     Write-Step "Building all production and test Lean libraries (Lean $Toolchain)"
+    Invoke-NoMathlibInEarlyVolumes
     Invoke-Run @(
         'lake', 'build',
         'LRAVolumeI', 'LRAVolumeII', 'LRAVolumeIII',
@@ -120,6 +135,7 @@ function Invoke-BlueprintDocker {
 
 function Invoke-BuildAll {
     Write-Step "Building all volumes (Lean $Toolchain)"
+    Invoke-NoMathlibInEarlyVolumes
     Invoke-Run @(
         'lake', 'build',
         'LRAVolumeI', 'LRAVolumeII', 'LRAVolumeIII',
@@ -130,11 +146,13 @@ function Invoke-BuildAll {
 
 function Invoke-Test {
     Write-Step "Building Lean test targets (Lean $Toolchain)"
+    Invoke-NoMathlibInEarlyVolumes
     Invoke-Run @('lake', 'build', 'LRATests')
     Write-Ok "Lean test targets built successfully"
 }
 
 function Invoke-Check {
+    Invoke-NoMathlibInEarlyVolumes
     Invoke-Build
     Write-Step "Checking proof-readiness"
     $vol2 = Join-Path $SrcDir 'LRA\VolumeII'

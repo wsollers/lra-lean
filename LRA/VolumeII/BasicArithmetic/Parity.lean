@@ -1,7 +1,6 @@
 -- LRA/VolumeII/BasicArithmetic/Parity.lean
 -- Elementary parity facts over the active natural-number switch.
 
-import Mathlib.Tactic
 import LRA.VolumeII.Switches.NumberSystems
 
 namespace LRA.VolumeII.BasicArithmetic.Parity

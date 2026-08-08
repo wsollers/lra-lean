@@ -1,5 +1,5 @@
-import Mathlib.Data.Set.Finite.Basic
 import LRA.VolumeI.Set.Algebra.CollectionAlgebra
+import LRA.VolumeI.Set.Finiteness
 import LRA.VolumeI.Set.Implementations.LRASet.Boolean
 import LRA.VolumeI.Set.Implementations.LRASet.PowerSet
 import LRA.VolumeI.Set.Implementations.LRASet.Operations.CountableIndexed
@@ -11,6 +11,7 @@ namespace LRA.VolumeI.Set.Implementations.LRASet
 namespace CollectionAlgebraAdapter
 
 open LRA.VolumeI.Set.Algebra.Collection
+open LRA.VolumeI.Set.Finiteness
 
 /-!
 Adapters from the compatibility `LRASet` backend into the generic
@@ -37,7 +38,7 @@ def countableOperations (Alpha : LRACarrier.{u}) :
 /-- Finite collection predicate for `LRASet` collections of subsets. -/
 def finiteCollectionPredicate (Alpha : LRACarrier.{u}) :
     FiniteCollectionPredicate (collectionSetOperations Alpha) :=
-  fun collection => _root_.Set.Finite collection
+  fun collection => FinitePredicate (fun memberSet => LRASet.Member memberSet collection)
 
 /-- Nonempty set predicate for `LRASet` base-level sets. -/
 def nonemptySetPredicate (Alpha : LRACarrier.{u}) :

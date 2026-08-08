@@ -1,4 +1,5 @@
 import LRA.VolumeI.Set.Public
+import LRA.VolumeI.Set.Finiteness
 import LRA.VolumeI.Set.Foundation
 import LRA.VolumeI.Set.Models
 import LRA.VolumeI.Set.Operations

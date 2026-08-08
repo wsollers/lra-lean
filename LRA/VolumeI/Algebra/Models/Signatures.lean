@@ -306,7 +306,68 @@ structure ArithmeticRingSignature where
   addition : LRA.VolumeI.Operations.BinaryOperation carrier
   multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
 
+/-- Generic semiring operation bundle.  Concrete number systems plug their
+carrier and operations into this template; laws are supplied separately. -/
+structure SemiringSignature where
+  carrier : Type u
+  zero : LRA.VolumeI.Operations.NullaryOperation carrier
+  one : LRA.VolumeI.Operations.NullaryOperation carrier
+  addition : LRA.VolumeI.Operations.BinaryOperation carrier
+  multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
+
+/-- Generic ring operation bundle. -/
+structure RingSignature extends SemiringSignature where
+  negation : LRA.VolumeI.Operations.UnaryOperation carrier
+
 end LRA.VolumeI.Algebra.Models
+
+namespace LRA.VolumeI.Algebra.Models.SemiringSignature
+
+scoped instance instZero (signature : SemiringSignature) :
+    Zero signature.carrier where
+  zero := signature.zero
+
+scoped instance instOne (signature : SemiringSignature) :
+    One signature.carrier where
+  one := signature.one
+
+scoped instance instAdd (signature : SemiringSignature) :
+    Add signature.carrier where
+  add := signature.addition
+
+scoped instance instMul (signature : SemiringSignature) :
+    Mul signature.carrier where
+  mul := signature.multiplication
+
+end LRA.VolumeI.Algebra.Models.SemiringSignature
+
+namespace LRA.VolumeI.Algebra.Models.RingSignature
+
+scoped instance instZero (signature : RingSignature) :
+    Zero signature.carrier where
+  zero := signature.zero
+
+scoped instance instOne (signature : RingSignature) :
+    One signature.carrier where
+  one := signature.one
+
+scoped instance instAdd (signature : RingSignature) :
+    Add signature.carrier where
+  add := signature.addition
+
+scoped instance instNeg (signature : RingSignature) :
+    Neg signature.carrier where
+  neg := signature.negation
+
+scoped instance instSub (signature : RingSignature) :
+    Sub signature.carrier where
+  sub first second := signature.addition first (signature.negation second)
+
+scoped instance instMul (signature : RingSignature) :
+    Mul signature.carrier where
+  mul := signature.multiplication
+
+end LRA.VolumeI.Algebra.Models.RingSignature
 
 namespace LRA.VolumeI.Algebra.Models.OrderedRingSignature
 

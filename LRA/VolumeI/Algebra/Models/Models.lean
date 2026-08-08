@@ -18,6 +18,72 @@ while Archimedean and cofinality obligations belong to the extension maps
 between adjacent number systems.
 -/
 
+/-- Laws for a semiring. Addition is commutative; multiplication need not be. -/
+structure SemiringLaws
+    (signature : SemiringSignature) : Prop where
+  AdditionIsAssociative :
+    LRA.VolumeI.Operations.Associative signature.addition
+  AdditionIsCommutative :
+    LRA.VolumeI.Operations.Commutative signature.addition
+  ZeroIsAdditiveIdentity :
+    LRA.VolumeI.Operations.Identity signature.addition signature.zero
+  MultiplicationIsAssociative :
+    LRA.VolumeI.Operations.Associative signature.multiplication
+  MultiplicationIsCommutative :
+    LRA.VolumeI.Operations.Commutative signature.multiplication
+  OneIsMultiplicativeIdentity :
+    LRA.VolumeI.Operations.Identity signature.multiplication signature.one
+  MultiplicationLeftDistributesOverAddition :
+    LRA.VolumeI.Operations.LeftDistributive signature.multiplication signature.addition
+  MultiplicationRightDistributesOverAddition :
+    LRA.VolumeI.Operations.RightDistributive signature.multiplication signature.addition
+
+/-- Laws for a semiring whose multiplication is also commutative. -/
+structure CommutativeSemiringLaws
+    (signature : SemiringSignature) : Prop where
+  toSemiringLaws : SemiringLaws signature
+  MultiplicationIsCommutative :
+    LRA.VolumeI.Operations.Commutative signature.multiplication
+
+/-- A bundled semiring: operations together with their laws. -/
+structure Semiring where
+  signature : SemiringSignature
+  laws : SemiringLaws signature
+
+/-- A bundled commutative semiring: operations together with their laws. -/
+structure CommutativeSemiring where
+  signature : SemiringSignature
+  laws : CommutativeSemiringLaws signature
+
+/-- Laws for a ring. -/
+structure RingLawsCore
+    (signature : RingSignature) : Prop where
+  toSemiringLaws :
+    SemiringLaws signature.toSemiringSignature
+  NegationIsAdditiveInverse :
+    LRA.VolumeI.Operations.LeftInverse
+        signature.addition signature.zero signature.negation ∧
+      LRA.VolumeI.Operations.RightInverse
+        signature.addition signature.zero signature.negation
+
+/-- Laws for a commutative ring.  Multiplication commutativity is inherited
+from the semiring law bundle. -/
+structure CommutativeRingLaws
+    (signature : RingSignature) : Prop where
+  toRingLawsCore : RingLawsCore signature
+  MultiplicationIsCommutative :
+    LRA.VolumeI.Operations.Commutative signature.multiplication
+
+/-- A bundled ring. -/
+structure Ring where
+  signature : RingSignature
+  laws : RingLawsCore signature
+
+/-- A bundled commutative ring. -/
+structure CommutativeRing where
+  signature : RingSignature
+  laws : CommutativeRingLaws signature
+
 /--
 **[Definition — Ring Laws]**
 
