@@ -1,0 +1,62 @@
+# ============================================================
+# lra-lean Blueprint build environment
+# ============================================================
+#
+# This image contains the host-independent tooling needed to build the
+# Lean Blueprint PDF/web artifacts for this repository.
+#
+# Build:
+#   docker build -f Dockerfile.blueprint -t lra-lean-blueprint .
+#
+# Run from the repository root:
+#   docker run --rm -v "$PWD:/workspace" -w /workspace lra-lean-blueprint blueprint
+#
+# Commands:
+#   inputs             regenerate available Blueprint inputs
+#   blueprint          regenerate inputs, then build PDF and web output
+#   blueprint-existing build PDF and web output from existing generated inputs
+#   docs               build Blueprint, then build the repository site
+#   shell              open a shell in the image
+# ============================================================
+
+FROM ubuntu:24.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    bash \
+    biber \
+    ca-certificates \
+    dvisvgm \
+    git \
+    ghostscript \
+    graphviz \
+    latexmk \
+    libgraphviz-dev \
+    make \
+    pkg-config \
+    python3 \
+    python3-pip \
+    python3-venv \
+    texlive-bibtex-extra \
+    texlive-fonts-recommended \
+    texlive-latex-base \
+    texlive-latex-extra \
+    texlive-science \
+    texlive-xetex \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN python3 -m venv /opt/lean-blueprint \
+    && /opt/lean-blueprint/bin/pip install --upgrade pip \
+    && /opt/lean-blueprint/bin/pip install \
+      leanblueprint==0.0.20 \
+      pyyaml
+
+ENV PATH="/opt/lean-blueprint/bin:${PATH}"
+
+COPY scripts/docker-blueprint-entrypoint.sh /usr/local/bin/lra-blueprint
+RUN chmod +x /usr/local/bin/lra-blueprint
+
+WORKDIR /workspace
+ENTRYPOINT ["lra-blueprint"]
+CMD ["blueprint"]

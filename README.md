@@ -39,6 +39,19 @@ lake build LRAVolumeI LRAVolumeII LRAVolumeIII LRAVolumeIV LRAVolumeVI LRAVolume
 Production Lean modules live under `LRA/`. Build-gated smoke and regression
 checks live under `test/` and are built through `LRATests`.
 
+## Blueprint
+
+The Blueprint toolchain is containerized separately from the Lean build image:
+
+```powershell
+.\build.ps1 docker-blueprint-build
+.\build.ps1 blueprint
+```
+
+`.\build.ps1 blueprint-existing` compiles PDF and web output from an existing
+`blueprint/src/generated-number-systems.tex` when `docs/number-systems` is not
+available in the checkout.
+
 ## Relationship to monorepo
 
 This repo is a standalone Lean workspace. The monorepo (`Learning-Real-Analysis`) references it for context but does not build it. Lean files live here and only here.

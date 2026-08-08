@@ -12,8 +12,10 @@
 #   .\build.ps1 shell              # Open shell in Docker container
 #   .\build.ps1 docker-build       # Build the Docker image
 #   .\build.ps1 docker-docs-build  # Build the Docker documentation image
-#   .\build.ps1 blueprint-inputs   # Generate number-system Blueprint inputs
+#   .\build.ps1 docker-blueprint-build # Build the Docker Blueprint image
+#   .\build.ps1 blueprint-inputs   # Generate available Blueprint inputs
 #   .\build.ps1 blueprint          # Compile Blueprint PDF and web output
+#   .\build.ps1 blueprint-existing # Compile Blueprint from existing generated inputs
 #   .\build.ps1 docs               # Build site and attach Blueprint output
 #   .\build.ps1 lint               # Check doc-comment coverage
 #   .\build.ps1 stats              # Print proof counts per file
@@ -32,8 +34,8 @@ param(
     [Parameter(Position = 0)]
     [ValidateSet(
         'build', 'build-all', 'test', 'check', 'clean', 'shell',
-        'docker-build', 'docker-docs-build', 'docker-pull',
-        'blueprint-inputs', 'blueprint', 'docs', 'lint', 'stats',
+        'docker-build', 'docker-docs-build', 'docker-blueprint-build', 'docker-pull',
+        'blueprint-inputs', 'blueprint', 'blueprint-existing', 'docs', 'lint', 'stats',
         'install-hooks', 'ci', 'help', ''
     )]
     [string]$Command = '',
@@ -51,6 +53,7 @@ function Write-Step { param($msg) Write-Host "`n-- $msg" -ForegroundColor Cyan }
 
 $IMAGE     = 'lra-lean'
 $DOC_IMAGE = 'lra-lean-docs'
+$BLUEPRINT_IMAGE = 'lra-lean-blueprint'
 $SrcDir    = $PSScriptRoot
 $Toolchain = ''
 
@@ -105,6 +108,14 @@ function Invoke-Build {
         'LRATests'
     )
     Write-Ok "All production and test Lean libraries built successfully"
+}
+
+function Invoke-BlueprintDocker {
+    param([string]$BlueprintCommand)
+    docker run --rm -v "${SrcDir}:/workspace" -w /workspace $BLUEPRINT_IMAGE $BlueprintCommand
+    if ($LASTEXITCODE -ne 0) {
+        throw "Command failed: docker run --rm -v ${SrcDir}:/workspace -w /workspace $BLUEPRINT_IMAGE $BlueprintCommand"
+    }
 }
 
 function Invoke-BuildAll {
@@ -174,39 +185,72 @@ function Invoke-DockerDocsBuild {
     Write-Ok "Docker image '$DOC_IMAGE' built"
 }
 
+function Invoke-DockerBlueprintBuild {
+    Write-Step "Building Docker Blueprint image '$BLUEPRINT_IMAGE'"
+    $dockerfile = Join-Path $SrcDir 'Dockerfile.blueprint'
+    if (-not (Test-Path $dockerfile)) { throw "Dockerfile.blueprint not found at: $dockerfile" }
+    docker build -f $dockerfile -t $BLUEPRINT_IMAGE $SrcDir
+    if ($LASTEXITCODE -ne 0) { throw "Docker Blueprint build failed" }
+    Write-Ok "Docker image '$BLUEPRINT_IMAGE' built"
+}
+
 function Invoke-BlueprintInputs {
-    Write-Step "Generating number-system Blueprint inputs"
-    Invoke-DocsRun @('python3', 'scripts/build-number-systems-declaration-manifest.py')
-    Invoke-DocsRun @('python3', 'scripts/build-number-systems-blueprint.py')
-    Invoke-DocsRun @('python3', 'scripts/report-number-systems-dependency-order.py', '--check')
-    Write-Ok "Number-system Blueprint inputs generated"
+    Write-Step "Generating available Blueprint inputs"
+    if ($Native) {
+        Invoke-DocsRun @('python3', 'scripts/build-number-systems-declaration-manifest.py')
+        Invoke-DocsRun @('python3', 'scripts/build-number-systems-blueprint.py')
+        Invoke-DocsRun @('python3', 'scripts/report-number-systems-dependency-order.py', '--check')
+    } else {
+        Invoke-BlueprintDocker 'inputs'
+    }
+    Write-Ok "Blueprint inputs generated"
 }
 
 function Invoke-Blueprint {
-    Invoke-BlueprintInputs
     Write-Step "Compiling Blueprint PDF and web output"
-    Invoke-DocsRun @('leanblueprint', 'pdf')
-    Invoke-DocsRun @('leanblueprint', 'web')
-    Invoke-DocsRun @('python3', 'scripts/check-blueprint-declarations.py')
+    if ($Native) {
+        Invoke-BlueprintInputs
+        Invoke-DocsRun @('leanblueprint', 'pdf')
+        Invoke-DocsRun @('leanblueprint', 'web')
+        Invoke-DocsRun @('python3', 'scripts/check-blueprint-declarations.py')
+    } else {
+        Invoke-BlueprintDocker 'blueprint'
+    }
     Write-Ok "Blueprint compiled"
 }
 
+function Invoke-BlueprintExisting {
+    Write-Step "Compiling Blueprint PDF and web output from existing generated inputs"
+    if ($Native) {
+        Invoke-DocsRun @('leanblueprint', 'pdf')
+        Invoke-DocsRun @('leanblueprint', 'web')
+        Invoke-DocsRun @('python3', 'scripts/check-blueprint-declarations.py')
+    } else {
+        Invoke-BlueprintDocker 'blueprint-existing'
+    }
+    Write-Ok "Blueprint compiled from existing inputs"
+}
+
 function Invoke-Docs {
-    Invoke-Blueprint
     Write-Step "Generating repository documentation site"
-    $python = Get-Command python -ErrorAction SilentlyContinue
-    if (-not $python) {
-        $python = Get-Command py -ErrorAction SilentlyContinue
+    if ($Native) {
+        Invoke-Blueprint
+        $python = Get-Command python -ErrorAction SilentlyContinue
+        if (-not $python) {
+            $python = Get-Command py -ErrorAction SilentlyContinue
+        }
+        if (-not $python) {
+            throw "Python is required to run scripts/build-repository-site.py"
+        }
+        & $python.Source (Join-Path $SrcDir 'scripts\build-repository-site.py')
+        if ($LASTEXITCODE -ne 0) { throw "Repository site generation failed" }
+        $siteBlueprint = Join-Path $SrcDir 'site\blueprint'
+        New-Item -ItemType Directory -Force -Path $siteBlueprint | Out-Null
+        Copy-Item -Recurse -Force -Path (Join-Path $SrcDir 'blueprint\web\*') -Destination $siteBlueprint
+        Copy-Item -Force -Path (Join-Path $SrcDir 'blueprint\print\print.pdf') -Destination (Join-Path $SrcDir 'site\number-systems-blueprint.pdf')
+    } else {
+        Invoke-BlueprintDocker 'docs'
     }
-    if (-not $python) {
-        throw "Python is required to run scripts/build-repository-site.py"
-    }
-    & $python.Source (Join-Path $SrcDir 'scripts\build-repository-site.py')
-    if ($LASTEXITCODE -ne 0) { throw "Repository site generation failed" }
-    $siteBlueprint = Join-Path $SrcDir 'site\blueprint'
-    New-Item -ItemType Directory -Force -Path $siteBlueprint | Out-Null
-    Copy-Item -Recurse -Force -Path (Join-Path $SrcDir 'blueprint\web\*') -Destination $siteBlueprint
-    Copy-Item -Force -Path (Join-Path $SrcDir 'blueprint\print\print.pdf') -Destination (Join-Path $SrcDir 'site\number-systems-blueprint.pdf')
     Write-Ok "Documentation site generated in site/"
 }
 
@@ -305,8 +349,10 @@ function Show-Help {
         @{ Cmd = 'shell';         Desc = 'Open interactive shell in Docker container' },
         @{ Cmd = 'docker-build';  Desc = 'Build the Docker image' },
         @{ Cmd = 'docker-docs-build'; Desc = 'Build the Docker documentation image' },
-        @{ Cmd = 'blueprint-inputs'; Desc = 'Generate number-system Blueprint inputs' },
+        @{ Cmd = 'docker-blueprint-build'; Desc = 'Build the Docker Blueprint image' },
+        @{ Cmd = 'blueprint-inputs'; Desc = 'Generate available Blueprint inputs' },
         @{ Cmd = 'blueprint';      Desc = 'Compile Blueprint PDF and web output' },
+        @{ Cmd = 'blueprint-existing'; Desc = 'Compile Blueprint from existing generated inputs' },
         @{ Cmd = 'docs';           Desc = 'Build site and attach Blueprint output' },
         @{ Cmd = 'lint';          Desc = 'Check doc-comment display name coverage' },
         @{ Cmd = 'stats';         Desc = 'Print theorem/def counts per file' },
@@ -329,8 +375,10 @@ try {
         'shell'         { Invoke-Shell }
         'docker-build'  { Invoke-DockerBuild }
         'docker-docs-build' { Invoke-DockerDocsBuild }
+        'docker-blueprint-build' { Invoke-DockerBlueprintBuild }
         'blueprint-inputs' { Invoke-BlueprintInputs }
         'blueprint'     { Invoke-Blueprint }
+        'blueprint-existing' { Invoke-BlueprintExisting }
         'docs'          { Invoke-Docs }
         'lint'          { Invoke-Lint }
         'stats'         { Invoke-Stats }

@@ -8,6 +8,7 @@
 #   make clean        — remove lake build artifacts
 #   make shell        — open interactive shell in Docker container
 #   make docker-build — build the Docker image
+#   make docker-blueprint-build — build the Blueprint Docker image
 #   make lint         — check doc-comment coverage (display names)
 #   make stats        — print proof counts per file
 #   make ci           — full CI pipeline (docker-build + check)
@@ -22,6 +23,7 @@
 
 IMAGE     := lra-lean
 DOC_IMAGE := lra-lean-docs
+BLUEPRINT_IMAGE := lra-lean-blueprint
 LEAN_VER  := $(shell cat lean-toolchain 2>/dev/null || echo "unknown")
 SRC_DIR   := $(CURDIR)
 
@@ -101,18 +103,21 @@ docker-docs-build:  ## Build the Docker documentation image
 	docker build --target documentation-build -t $(DOC_IMAGE) .
 	@echo "✓ Docker image '$(DOC_IMAGE)' built"
 
+.PHONY: docker-blueprint-build
+docker-blueprint-build:  ## Build the Docker Blueprint image
+	docker build -f Dockerfile.blueprint -t $(BLUEPRINT_IMAGE) .
+	@echo "✓ Docker image '$(BLUEPRINT_IMAGE)' built"
+
 .PHONY: number-systems-blueprint
-number-systems-blueprint:  ## Generate number-system Blueprint inputs
+number-systems-blueprint:  ## Generate available Blueprint inputs
 ifdef NATIVE
 	python3 scripts/build-number-systems-declaration-manifest.py
 	python3 scripts/build-number-systems-blueprint.py
 	python3 scripts/report-number-systems-dependency-order.py --check
 else
-	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(DOC_IMAGE) python3 scripts/build-number-systems-declaration-manifest.py
-	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(DOC_IMAGE) python3 scripts/build-number-systems-blueprint.py
-	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(DOC_IMAGE) python3 scripts/report-number-systems-dependency-order.py --check
+	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(BLUEPRINT_IMAGE) inputs
 endif
-	@echo "✓ Number-system Blueprint inputs generated"
+	@echo "✓ Blueprint inputs generated"
 
 .PHONY: blueprint
 blueprint: number-systems-blueprint  ## Compile Blueprint PDF and web output
@@ -121,18 +126,32 @@ ifdef NATIVE
 	leanblueprint web
 	python3 scripts/check-blueprint-declarations.py
 else
-	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(DOC_IMAGE) leanblueprint pdf
-	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(DOC_IMAGE) leanblueprint web
-	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(DOC_IMAGE) python3 scripts/check-blueprint-declarations.py
+	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(BLUEPRINT_IMAGE) blueprint-existing
 endif
 	@echo "✓ Blueprint compiled"
 
+.PHONY: blueprint-existing
+blueprint-existing:  ## Compile Blueprint from existing generated inputs
+ifdef NATIVE
+	leanblueprint pdf
+	leanblueprint web
+	python3 scripts/check-blueprint-declarations.py
+else
+	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(BLUEPRINT_IMAGE) blueprint-existing
+endif
+	@echo "✓ Blueprint compiled from existing inputs"
+
 .PHONY: docs
-docs: blueprint  ## Build repository site and attach Blueprint output
+docs:  ## Build repository site and attach Blueprint output
+ifdef NATIVE
+	$(MAKE) blueprint NATIVE=1
 	python3 scripts/build-repository-site.py
 	mkdir -p site/blueprint
 	cp -R blueprint/web/. site/blueprint/
 	cp blueprint/print/print.pdf site/number-systems-blueprint.pdf
+else
+	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(BLUEPRINT_IMAGE) docs
+endif
 	@echo "✓ Documentation site generated in site/"
 
 .PHONY: docker-pull

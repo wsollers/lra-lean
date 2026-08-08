@@ -20,6 +20,7 @@ lean-decl-inventory.txt
 /blueprint/lean_decls
 /blueprint/volume-iii-lean-drafts/
 /blueprint/src/generated-number-systems.tex
+/blueprint/src/generated-volume-*.tex
 /blueprint/src/web.paux
 /blueprint/src/web.bbl
 /docs/number-systems/declarations.yaml
