@@ -1,3 +1,5 @@
+import LRA.VolumeI.Identity.Theory
+
 universe u
 
 namespace LRA.VolumeI.Set
@@ -40,10 +42,8 @@ def Empty (Alpha : TTCarrier) : TTSet Alpha :=
 /-- There is a unique typed set with no members. This is the typed-set analogue
 of the empty-set existence and uniqueness theorem. -/
 theorem EmptySetExistsUnique (Alpha : TTCarrier) :
-    ∃ empty : TTSet Alpha,
-      (∀ element, ¬ Member element empty) ∧
-        ∀ other : TTSet Alpha,
-          (∀ element, ¬ Member element other) → other = empty := by
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun empty : TTSet Alpha => ∀ element, ¬ Member element empty) := by
   sorry
 
 /-- The universal typed set over a carrier. -/
@@ -62,24 +62,19 @@ def Union {Alpha : TTCarrier} (left right : TTSet Alpha) : TTSet Alpha :=
 exactly the elements belonging to the left set or the right set. -/
 theorem BinaryUnionExistsUnique {Alpha : TTCarrier}
     (left right : TTSet Alpha) :
-    ∃ unionSet : TTSet Alpha,
-      (∀ element,
-        Member element unionSet ↔ Member element left ∨ Member element right) ∧
-        ∀ other : TTSet Alpha,
-          (∀ element,
-            Member element other ↔ Member element left ∨ Member element right) →
-            other = unionSet := by
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun unionSet : TTSet Alpha =>
+        ∀ element,
+          Member element unionSet ↔ Member element left ∨ Member element right) := by
   sorry
 
 /-- For any two elements, there is a unique typed set whose members are exactly
 those two elements. This is the typed-set analogue of the pairing-output
 existence and uniqueness theorem. -/
 theorem PairSetExistsUnique {Alpha : TTCarrier} (left right : Alpha) :
-    ∃ pairSet : TTSet Alpha,
-      (∀ element, Member element pairSet ↔ element = left ∨ element = right) ∧
-        ∀ other : TTSet Alpha,
-          (∀ element, Member element other ↔ element = left ∨ element = right) →
-            other = pairSet := by
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun pairSet : TTSet Alpha =>
+        ∀ element, Member element pairSet ↔ element = left ∨ element = right) := by
   sorry
 
 /-- Binary intersection of typed sets. -/
@@ -90,15 +85,11 @@ def Intersection {Alpha : TTCarrier} (left right : TTSet Alpha) : TTSet Alpha :=
 exactly the elements belonging to both the left set and the right set. -/
 theorem IntersectionExistsUnique {Alpha : TTCarrier}
     (left right : TTSet Alpha) :
-    ∃ intersectionSet : TTSet Alpha,
-      (∀ element,
-        Member element intersectionSet ↔
-          Member element left ∧ Member element right) ∧
-        ∀ other : TTSet Alpha,
-          (∀ element,
-            Member element other ↔
-              Member element left ∧ Member element right) →
-            other = intersectionSet := by
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun intersectionSet : TTSet Alpha =>
+        ∀ element,
+          Member element intersectionSet ↔
+            Member element left ∧ Member element right) := by
   sorry
 
 /-- Complement of a typed set relative to its carrier. -/
@@ -113,15 +104,11 @@ def Difference {Alpha : TTCarrier} (left right : TTSet Alpha) : TTSet Alpha :=
 exactly the elements belonging to the left set and not to the right set. -/
 theorem DifferenceExistsUnique {Alpha : TTCarrier}
     (left right : TTSet Alpha) :
-    ∃ differenceSet : TTSet Alpha,
-      (∀ element,
-        Member element differenceSet ↔
-          Member element left ∧ ¬ Member element right) ∧
-        ∀ other : TTSet Alpha,
-          (∀ element,
-            Member element other ↔
-              Member element left ∧ ¬ Member element right) →
-            other = differenceSet := by
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun differenceSet : TTSet Alpha =>
+        ∀ element,
+          Member element differenceSet ↔
+            Member element left ∧ ¬ Member element right) := by
   sorry
 
 /-- Complement of a typed set relative to a chosen ambient typed set. -/
@@ -133,15 +120,11 @@ def RelativeComplement {Alpha : TTCarrier}
 whose members are exactly the ambient elements outside the candidate set. -/
 theorem RelativeComplementExistsUnique {Alpha : TTCarrier}
     (ambient set : TTSet Alpha) :
-    ∃ complementSet : TTSet Alpha,
-      (∀ element,
-        Member element complementSet ↔
-          Member element ambient ∧ ¬ Member element set) ∧
-        ∀ other : TTSet Alpha,
-          (∀ element,
-            Member element other ↔
-              Member element ambient ∧ ¬ Member element set) →
-            other = complementSet := by
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun complementSet : TTSet Alpha =>
+        ∀ element,
+          Member element complementSet ↔
+            Member element ambient ∧ ¬ Member element set) := by
   sorry
 
 /-- Symmetric difference of typed sets: elements belonging to exactly one of
@@ -154,17 +137,12 @@ def SymmetricDifference {Alpha : TTCarrier}
 exactly one of the two input sets. -/
 theorem SymmetricDifferenceExistsUnique {Alpha : TTCarrier}
     (left right : TTSet Alpha) :
-    ∃ symmetricDifferenceSet : TTSet Alpha,
-      (∀ element,
-        Member element symmetricDifferenceSet ↔
-          (Member element left ∧ ¬ Member element right) ∨
-            (Member element right ∧ ¬ Member element left)) ∧
-        ∀ other : TTSet Alpha,
-          (∀ element,
-            Member element other ↔
-              (Member element left ∧ ¬ Member element right) ∨
-                (Member element right ∧ ¬ Member element left)) →
-            other = symmetricDifferenceSet := by
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun symmetricDifferenceSet : TTSet Alpha =>
+        ∀ element,
+          Member element symmetricDifferenceSet ↔
+            (Member element left ∧ ¬ Member element right) ∨
+              (Member element right ∧ ¬ Member element left)) := by
   sorry
 
 /-- Bounded typed-set comprehension: the subset of an ambient set whose members
@@ -177,14 +155,11 @@ def Separation {Alpha : TTCarrier}
 are exactly the members of the ambient set satisfying that property. -/
 theorem SeparationExistsUnique {Alpha : TTCarrier}
     (ambient : TTSet Alpha) (property : Alpha → Prop) :
-    ∃ separatedSet : TTSet Alpha,
-      (∀ element,
-        Member element separatedSet ↔
-          Member element ambient ∧ property element) ∧
-        ∀ other : TTSet Alpha,
-          (∀ element,
-            Member element other ↔ Member element ambient ∧ property element) →
-            other = separatedSet := by
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun separatedSet : TTSet Alpha =>
+        ∀ element,
+          Member element separatedSet ↔
+            Member element ambient ∧ property element) := by
   sorry
 
 /-- Subset relation for typed sets. -/

@@ -1,3 +1,4 @@
+import LRA.VolumeI.Identity.Theory
 import LRA.VolumeI.Set.Implementations.LRASet.LRASet
 
 namespace LRA.VolumeI.Set.Implementations.LRASet
@@ -18,13 +19,10 @@ exactly the typed subsets of that ambient set. This is the typed-set analogue
 of the power-set output existence and uniqueness theorem. -/
 theorem RelativePowerSetExistsUnique {Alpha : LRACarrier}
     (Ambient : LRASet Alpha) :
-    ∃ powerSet : LRASet (LRASet Alpha),
-      (∀ Subset : LRASet Alpha,
-        LRASet.Member Subset powerSet ↔ LRASet.Subset Subset Ambient) ∧
-        ∀ other : LRASet (LRASet Alpha),
-          (∀ Subset : LRASet Alpha,
-            LRASet.Member Subset other ↔ LRASet.Subset Subset Ambient) →
-            other = powerSet := by
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun powerSet : LRASet (LRASet Alpha) =>
+        ∀ Subset : LRASet Alpha,
+          LRASet.Member Subset powerSet ↔ LRASet.Subset Subset Ambient) := by
   sorry
 
 /-- Let `A` be a typed set over `Alpha`. Then `A` belongs to the absolute power

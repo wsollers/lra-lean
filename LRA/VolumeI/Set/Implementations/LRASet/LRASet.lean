@@ -1,3 +1,4 @@
+import LRA.VolumeI.Identity.Theory
 import LRA.VolumeI.Set.Implementations.TT.Set
 
 /-!
@@ -34,10 +35,8 @@ def Empty (Alpha : LRACarrier) : LRASet Alpha :=
   TTSet.Empty Alpha
 
 theorem EmptySetExistsUnique (Alpha : LRACarrier) :
-    ∃ empty : LRASet Alpha,
-      (∀ element, ¬ Member element empty) ∧
-        ∀ other : LRASet Alpha,
-          (∀ element, ¬ Member element other) → other = empty := by
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun empty : LRASet Alpha => ∀ element, ¬ Member element empty) := by
   sorry
 
 def Universal (Alpha : LRACarrier) : LRASet Alpha :=
@@ -51,21 +50,16 @@ def Union {Alpha : LRACarrier} (left right : LRASet Alpha) : LRASet Alpha :=
 
 theorem BinaryUnionExistsUnique {Alpha : LRACarrier}
     (left right : LRASet Alpha) :
-    ∃ unionSet : LRASet Alpha,
-      (∀ element,
-        Member element unionSet ↔ Member element left ∨ Member element right) ∧
-        ∀ other : LRASet Alpha,
-          (∀ element,
-            Member element other ↔ Member element left ∨ Member element right) →
-            other = unionSet := by
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun unionSet : LRASet Alpha =>
+        ∀ element,
+          Member element unionSet ↔ Member element left ∨ Member element right) := by
   sorry
 
 theorem PairSetExistsUnique {Alpha : LRACarrier} (left right : Alpha) :
-    ∃ pairSet : LRASet Alpha,
-      (∀ element, Member element pairSet ↔ element = left ∨ element = right) ∧
-        ∀ other : LRASet Alpha,
-          (∀ element, Member element other ↔ element = left ∨ element = right) →
-            other = pairSet := by
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun pairSet : LRASet Alpha =>
+        ∀ element, Member element pairSet ↔ element = left ∨ element = right) := by
   sorry
 
 def Intersection {Alpha : LRACarrier} (left right : LRASet Alpha) : LRASet Alpha :=
@@ -73,15 +67,11 @@ def Intersection {Alpha : LRACarrier} (left right : LRASet Alpha) : LRASet Alpha
 
 theorem IntersectionExistsUnique {Alpha : LRACarrier}
     (left right : LRASet Alpha) :
-    ∃ intersectionSet : LRASet Alpha,
-      (∀ element,
-        Member element intersectionSet ↔
-          Member element left ∧ Member element right) ∧
-        ∀ other : LRASet Alpha,
-          (∀ element,
-            Member element other ↔
-              Member element left ∧ Member element right) →
-            other = intersectionSet := by
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun intersectionSet : LRASet Alpha =>
+        ∀ element,
+          Member element intersectionSet ↔
+            Member element left ∧ Member element right) := by
   sorry
 
 def Complement {Alpha : LRACarrier} (set : LRASet Alpha) : LRASet Alpha :=
@@ -92,15 +82,11 @@ def Difference {Alpha : LRACarrier} (left right : LRASet Alpha) : LRASet Alpha :
 
 theorem DifferenceExistsUnique {Alpha : LRACarrier}
     (left right : LRASet Alpha) :
-    ∃ differenceSet : LRASet Alpha,
-      (∀ element,
-        Member element differenceSet ↔
-          Member element left ∧ ¬ Member element right) ∧
-        ∀ other : LRASet Alpha,
-          (∀ element,
-            Member element other ↔
-              Member element left ∧ ¬ Member element right) →
-            other = differenceSet := by
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun differenceSet : LRASet Alpha =>
+        ∀ element,
+          Member element differenceSet ↔
+            Member element left ∧ ¬ Member element right) := by
   sorry
 
 def RelativeComplement {Alpha : LRACarrier}
@@ -109,15 +95,11 @@ def RelativeComplement {Alpha : LRACarrier}
 
 theorem RelativeComplementExistsUnique {Alpha : LRACarrier}
     (ambient set : LRASet Alpha) :
-    ∃ complementSet : LRASet Alpha,
-      (∀ element,
-        Member element complementSet ↔
-          Member element ambient ∧ ¬ Member element set) ∧
-        ∀ other : LRASet Alpha,
-          (∀ element,
-            Member element other ↔
-              Member element ambient ∧ ¬ Member element set) →
-            other = complementSet := by
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun complementSet : LRASet Alpha =>
+        ∀ element,
+          Member element complementSet ↔
+            Member element ambient ∧ ¬ Member element set) := by
   sorry
 
 def SymmetricDifference {Alpha : LRACarrier}
@@ -126,17 +108,12 @@ def SymmetricDifference {Alpha : LRACarrier}
 
 theorem SymmetricDifferenceExistsUnique {Alpha : LRACarrier}
     (left right : LRASet Alpha) :
-    ∃ symmetricDifferenceSet : LRASet Alpha,
-      (∀ element,
-        Member element symmetricDifferenceSet ↔
-          (Member element left ∧ ¬ Member element right) ∨
-            (Member element right ∧ ¬ Member element left)) ∧
-        ∀ other : LRASet Alpha,
-          (∀ element,
-            Member element other ↔
-              (Member element left ∧ ¬ Member element right) ∨
-                (Member element right ∧ ¬ Member element left)) →
-            other = symmetricDifferenceSet := by
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun symmetricDifferenceSet : LRASet Alpha =>
+        ∀ element,
+          Member element symmetricDifferenceSet ↔
+            (Member element left ∧ ¬ Member element right) ∨
+              (Member element right ∧ ¬ Member element left)) := by
   sorry
 
 def Separation {Alpha : LRACarrier}
@@ -145,14 +122,11 @@ def Separation {Alpha : LRACarrier}
 
 theorem SeparationExistsUnique {Alpha : LRACarrier}
     (ambient : LRASet Alpha) (property : Alpha → Prop) :
-    ∃ separatedSet : LRASet Alpha,
-      (∀ element,
-        Member element separatedSet ↔
-          Member element ambient ∧ property element) ∧
-        ∀ other : LRASet Alpha,
-          (∀ element,
-            Member element other ↔ Member element ambient ∧ property element) →
-            other = separatedSet := by
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun separatedSet : LRASet Alpha =>
+        ∀ element,
+          Member element separatedSet ↔
+            Member element ambient ∧ property element) := by
   sorry
 
 def Subset {Alpha : LRACarrier} (left right : LRASet Alpha) : Prop :=

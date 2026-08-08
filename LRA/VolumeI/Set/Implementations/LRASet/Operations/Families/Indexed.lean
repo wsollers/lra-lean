@@ -1,3 +1,4 @@
+import LRA.VolumeI.Identity.Theory
 import LRA.VolumeI.Set.Implementations.LRASet.LRASet
 
 namespace LRA.VolumeI.Set.Implementations.LRASet
@@ -19,15 +20,11 @@ the typed-family analogue of the union-output existence and uniqueness
 theorem. -/
 theorem IndexedUnionExistsUnique {Index Alpha : LRACarrier}
     (Family : IndexedFamily Index Alpha) :
-    ∃ unionSet : LRASet Alpha,
-      (∀ element,
-        LRASet.Member element unionSet ↔
-          ∃ IndexValue, LRASet.Member element (Family IndexValue)) ∧
-        ∀ other : LRASet Alpha,
-          (∀ element,
-            LRASet.Member element other ↔
-              ∃ IndexValue, LRASet.Member element (Family IndexValue)) →
-            other = unionSet := by
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun unionSet : LRASet Alpha =>
+        ∀ element,
+          LRASet.Member element unionSet ↔
+            ∃ IndexValue, LRASet.Member element (Family IndexValue)) := by
   sorry
 
 /-- The indexed intersection of a family `(Aᵢ)` is the set of elements belonging

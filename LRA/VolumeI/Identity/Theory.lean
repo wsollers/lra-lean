@@ -34,9 +34,18 @@ theorem NativeEqualitySatisfiesEqualityTheory (Carrier : Type u) :
 def Distinct {Carrier : Type u} (left right : Carrier) : Prop :=
   ¬ left = right
 
-/-- Unique existence, unlocked by equality. -/
-def ExistsUnique {Carrier : Type u} (predicate : Carrier -> Prop) : Prop :=
-  ∃ x, predicate x ∧ ∀ y, predicate y -> y = x
+/-- Existence for a predicate on a carrier. -/
+def Exists {Carrier : Type u} (predicate : Carrier -> Prop) : Prop :=
+  ∃ x, predicate x
+
+/-- Uniqueness for a predicate on a carrier: any two witnesses are equal. -/
+def Unique {Carrier : Type u} (predicate : Carrier -> Prop) : Prop :=
+  ∀ left right, predicate left -> predicate right -> left = right
+
+/-- Existence and uniqueness for a predicate, built from the separate existence
+and uniqueness predicates. -/
+def ExistsAndUnique {Carrier : Type u} (predicate : Carrier -> Prop) : Prop :=
+  Exists predicate ∧ Unique predicate
 
 /-- At least two elements can be expressed in the pure language of equality. -/
 def AtLeastTwo (Carrier : Type u) : Prop :=

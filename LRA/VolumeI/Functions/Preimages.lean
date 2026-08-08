@@ -1,5 +1,6 @@
 import LRA.VolumeI.Functions.Composition
 import LRA.VolumeI.Functions.IdentityFunction
+import LRA.VolumeI.Identity.Theory
 import LRA.VolumeI.Set.Operations.Comprehension
 
 namespace LRA.VolumeI.Functions
@@ -7,6 +8,18 @@ namespace LRA.VolumeI.Functions
 universe u
 
 open LRA.VolumeI.Set.Operations
+
+/-- A set `preimageSet` is the preimage of `target` under `map` when its
+members are exactly the domain elements whose image lies in `target`. -/
+def IsPreimageOf
+    (domainOperations codomainOperations :
+      BooleanComprehensionSetOperations.{u, u})
+    (preimageSet : domainOperations.SetObject)
+    (map : Function domainOperations.Element codomainOperations.Element)
+    (target : codomainOperations.SetObject) : Prop :=
+  ∀ input,
+    domainOperations.member input preimageSet ↔
+      codomainOperations.member (map input) target
 
 /-- Preimage of a generic set under a function. -/
 def Preimage
@@ -17,6 +30,55 @@ def Preimage
     domainOperations.SetObject :=
   domainOperations.separation domainOperations.universal
     (fun input => codomainOperations.member (map input) subset)
+
+/-- For every target set, a preimage set exists. -/
+theorem PreimageExists
+    (domainOperations codomainOperations :
+      BooleanComprehensionSetOperations.{u, u})
+    (laws : BooleanComprehensionSetInterfaceLaws domainOperations)
+    (map : Function domainOperations.Element codomainOperations.Element)
+    (target : codomainOperations.SetObject) :
+    LRA.VolumeI.Identity.Exists
+      (fun preimageSet : domainOperations.SetObject =>
+        IsPreimageOf domainOperations codomainOperations preimageSet map target) := by
+  sorry
+
+/-- A preimage set is uniquely determined by its memberwise specification. -/
+theorem PreimageUnique
+    (domainOperations codomainOperations :
+      BooleanComprehensionSetOperations.{u, u})
+    (laws : BooleanComprehensionSetInterfaceLaws domainOperations)
+    (map : Function domainOperations.Element codomainOperations.Element)
+    (target : codomainOperations.SetObject) :
+    LRA.VolumeI.Identity.Unique
+      (fun preimageSet : domainOperations.SetObject =>
+        IsPreimageOf domainOperations codomainOperations preimageSet map target) := by
+  sorry
+
+/-- For every target set, there is exactly one preimage set. -/
+theorem PreimageExistsAndUnique
+    (domainOperations codomainOperations :
+      BooleanComprehensionSetOperations.{u, u})
+    (laws : BooleanComprehensionSetInterfaceLaws domainOperations)
+    (map : Function domainOperations.Element codomainOperations.Element)
+    (target : codomainOperations.SetObject) :
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun preimageSet : domainOperations.SetObject =>
+        IsPreimageOf domainOperations codomainOperations preimageSet map target) := by
+  sorry
+
+/-- The constructed preimage satisfies its defining membership specification. -/
+theorem PreimageMembershipIff
+    (domainOperations codomainOperations :
+      BooleanComprehensionSetOperations.{u, u})
+    (laws : BooleanComprehensionSetInterfaceLaws domainOperations)
+    (map : Function domainOperations.Element codomainOperations.Element)
+    (target : codomainOperations.SetObject)
+    (input : domainOperations.Element) :
+    domainOperations.member input
+        (Preimage domainOperations codomainOperations map target) ↔
+      codomainOperations.member (map input) target := by
+  sorry
 
 /-- Alias emphasizing inverse image notation. -/
 def InverseImage
