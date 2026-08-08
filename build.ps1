@@ -197,10 +197,7 @@ function Invoke-DockerBlueprintBuild {
 function Invoke-BlueprintInputs {
     Write-Step "Generating available Blueprint inputs"
     if ($Native) {
-        Invoke-DocsRun @('python3', 'scripts/build-number-systems-declaration-manifest.py')
-        Invoke-DocsRun @('python3', 'scripts/build-number-systems-blueprint.py')
-        Invoke-DocsRun @('python3', 'scripts/report-number-systems-dependency-order.py', '--check')
-        Invoke-DocsRun @('python3', 'scripts/build-volume-blueprints.py')
+        Invoke-DocsRun @('python', 'scripts/build-volume-blueprints.py')
     } else {
         Invoke-BlueprintDocker 'inputs'
     }
@@ -213,7 +210,6 @@ function Invoke-Blueprint {
         Invoke-BlueprintInputs
         Invoke-DocsRun @('leanblueprint', 'pdf')
         Invoke-DocsRun @('leanblueprint', 'web')
-        Invoke-DocsRun @('python3', 'scripts/check-blueprint-declarations.py')
     } else {
         Invoke-BlueprintDocker 'blueprint'
     }
@@ -225,7 +221,6 @@ function Invoke-BlueprintExisting {
     if ($Native) {
         Invoke-DocsRun @('leanblueprint', 'pdf')
         Invoke-DocsRun @('leanblueprint', 'web')
-        Invoke-DocsRun @('python3', 'scripts/check-blueprint-declarations.py')
     } else {
         Invoke-BlueprintDocker 'blueprint-existing'
     }
@@ -248,7 +243,7 @@ function Invoke-Docs {
         $siteBlueprint = Join-Path $SrcDir 'site\blueprint'
         New-Item -ItemType Directory -Force -Path $siteBlueprint | Out-Null
         Copy-Item -Recurse -Force -Path (Join-Path $SrcDir 'blueprint\web\*') -Destination $siteBlueprint
-        Copy-Item -Force -Path (Join-Path $SrcDir 'blueprint\print\print.pdf') -Destination (Join-Path $SrcDir 'site\number-systems-blueprint.pdf')
+        Copy-Item -Force -Path (Join-Path $SrcDir 'blueprint\print\print.pdf') -Destination (Join-Path $SrcDir 'site\lra-blueprint.pdf')
     } else {
         Invoke-BlueprintDocker 'docs'
     }

@@ -279,9 +279,9 @@ def write_indexes(markdown: list[pathlib.Path], lean: list[pathlib.Path]) -> Non
     )
     blueprint_items = ""
     if BLUEPRINT_WEB.exists():
-        blueprint_items += '  <li><a href="blueprint/index.html">Number-system Blueprint</a></li>\n'
+        blueprint_items += '  <li><a href="blueprint/index.html">Lean Blueprint</a></li>\n'
     if BLUEPRINT_PDF.exists():
-        blueprint_items += '  <li><a href="number-systems-blueprint.pdf">Number-system Blueprint PDF</a></li>\n'
+        blueprint_items += '  <li><a href="lra-blueprint.pdf">Lean Blueprint PDF</a></li>\n'
     home_body = f"""
 <p>This site is generated directly from the tracked repository. It mirrors the actual Markdown files and the <code>LRA/</code> Lean module hierarchy; there is no separate invented mathematical outline.</p>
 <section><h2>Repository views</h2>

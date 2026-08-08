@@ -12,13 +12,6 @@ require_repo_root() {
 
 build_inputs() {
   require_repo_root
-  if [[ -d "docs/number-systems" ]]; then
-    python3 scripts/build-number-systems-declaration-manifest.py
-    python3 scripts/build-number-systems-blueprint.py
-    python3 scripts/report-number-systems-dependency-order.py --check
-  else
-    echo "warning: docs/number-systems is missing; skipped number-system input regeneration" >&2
-  fi
   python3 scripts/build-volume-blueprints.py
 }
 
@@ -30,11 +23,6 @@ build_blueprint_existing() {
   require_repo_root
   leanblueprint pdf
   leanblueprint web
-  if [[ -f "docs/number-systems/declarations.yaml" ]]; then
-    python3 scripts/check-blueprint-declarations.py
-  else
-    echo "warning: docs/number-systems/declarations.yaml is missing; skipped declaration mapping check" >&2
-  fi
 }
 
 case "$command_name" in
@@ -54,7 +42,7 @@ case "$command_name" in
     python3 scripts/build-repository-site.py
     mkdir -p site/blueprint
     cp -R blueprint/web/. site/blueprint/
-    cp blueprint/print/print.pdf site/number-systems-blueprint.pdf
+    cp blueprint/print/print.pdf site/lra-blueprint.pdf
     ;;
   shell)
     exec bash
