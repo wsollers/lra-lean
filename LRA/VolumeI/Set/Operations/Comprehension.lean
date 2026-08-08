@@ -69,6 +69,15 @@ abbrev Separation (operations : ComprehensionSetOperations.{u, v})
     (predicate : operations.Element → Prop) : operations.SetObject :=
   operations.separation ambient predicate
 
+/-- `x` belongs to `{y ∈ A | P y}` iff `x` belongs to `A` and `P x`. -/
+theorem SeparationSetMembershipIff
+    (operations : ComprehensionSetOperations.{u, v})
+    (laws : ComprehensionSetInterfaceLaws operations) :
+    ∀ ambient predicate element,
+      operations.member element (Separation operations ambient predicate) ↔
+        operations.member element ambient ∧ predicate element :=
+  laws.separationMembership
+
 /-- Form the subset of an ambient set whose elements satisfy a predicate in a Boolean interface. -/
 abbrev BooleanSeparation
     (operations : BooleanComprehensionSetOperations.{u, v})

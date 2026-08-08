@@ -35,6 +35,7 @@ lean_lib LRAVolumeVII where
 lean_lib LRATests where
   srcDir := "test"
   roots := #[
+    `LRA.VolumeI.Set.CollectionAlgebraAdaptersTest,
     `LRA.VolumeIII.Analysis.Bounding.BoundsTests,
     `LRA.VolumeII.Switches.SetsTests,
     `LRA.VolumeIV.Learning.MetricTopologyAdapterTest,

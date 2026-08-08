@@ -19,7 +19,7 @@ structure SetRingSignature where
   symmetricDifference : carrier → carrier → carrier
 
 /-- Closure laws for a ring of sets. -/
-structure SetRingLaws (signature : SetRingSignature) : Prop where
+structure SetRingLaws (signature : SetRingSignature.{u}) : Prop where
   EmptyIsMember : signature.IsMember signature.empty
   UnionIsMember :
     ∀ left right, signature.IsMember left → signature.IsMember right →
@@ -36,7 +36,7 @@ structure SetRingLaws (signature : SetRingSignature) : Prop where
 
 /-- A bundled model of a ring of sets. -/
 structure SetRingModel where
-  signature : SetRingSignature
+  signature : SetRingSignature.{u}
   laws : SetRingLaws signature
 
 namespace SetRingSignature
@@ -47,7 +47,8 @@ open LRA.VolumeI.Set.Operations
 of admissible set-objects. -/
 def fromBooleanOperations
     (operations : BooleanSetOperations.{u, v})
-    (collection : Collection operations.SetObject) : SetRingSignature where
+    (collection : Collection operations.SetObject) :
+    SetRingSignature.{v} where
   carrier := operations.SetObject
   IsMember := collection
   empty := operations.empty

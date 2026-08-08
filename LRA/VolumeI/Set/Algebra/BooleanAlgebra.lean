@@ -23,7 +23,8 @@ structure SetAlgebraSignature where
 namespace SetAlgebraSignature
 
 /-- Forget an algebra signature to its set-ring operations. -/
-def toSetRingSignature (signature : SetAlgebraSignature) : SetRingSignature where
+def toSetRingSignature
+    (signature : SetAlgebraSignature.{u}) : SetRingSignature.{u} where
   carrier := signature.carrier
   IsMember := signature.IsMember
   empty := signature.empty
@@ -35,7 +36,7 @@ def toSetRingSignature (signature : SetAlgebraSignature) : SetRingSignature wher
 end SetAlgebraSignature
 
 /-- Closure laws for an algebra of sets. -/
-structure SetAlgebraLaws (signature : SetAlgebraSignature) : Prop where
+structure SetAlgebraLaws (signature : SetAlgebraSignature.{u}) : Prop where
   EmptyIsMember : signature.IsMember signature.empty
   UniversalIsMember : signature.IsMember signature.universal
   ComplementIsMember :
@@ -55,7 +56,7 @@ structure SetAlgebraLaws (signature : SetAlgebraSignature) : Prop where
 
 /-- A bundled model of an algebra of sets. -/
 structure SetAlgebraModel where
-  signature : SetAlgebraSignature
+  signature : SetAlgebraSignature.{u}
   laws : SetAlgebraLaws signature
 
 namespace SetAlgebraSignature
@@ -66,7 +67,8 @@ open LRA.VolumeI.Set.Operations
 collection of admissible set-objects. -/
 def fromBooleanOperations
     (operations : BooleanSetOperations.{u, v})
-    (collection : Collection operations.SetObject) : SetAlgebraSignature where
+    (collection : Collection operations.SetObject) :
+    SetAlgebraSignature.{v} where
   carrier := operations.SetObject
   IsMember := collection
   empty := operations.empty

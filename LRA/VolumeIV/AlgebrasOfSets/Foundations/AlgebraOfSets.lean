@@ -49,8 +49,7 @@ structure AlgebraOfSetsSpaceDefinition where
 namespace AlgebraOfSetsSpaceDefinition
 
 /-- The underlying set-object carrier of a space equipped with an algebra. -/
-abbrev SetObject (space : AlgebraOfSetsSpaceDefinition) :
-    LRA.VolumeI.Set.LRACarrier :=
+abbrev SetObject (space : AlgebraOfSetsSpaceDefinition) :=
   space.algebra.signature.carrier
 
 end AlgebraOfSetsSpaceDefinition

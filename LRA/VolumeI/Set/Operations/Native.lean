@@ -41,25 +41,46 @@ abbrev Subset (interface : SetInterface.{u, v})
     (left right : interface.SetObject) : Prop :=
   interface.subset left right
 
-/-- Empty sets have no members. -/
+/-- `x` does not belong to the empty set. -/
+theorem EmptySetHasNoMembers
+    (interface : SetInterface.{u, v}) (laws : SetInterfaceLaws interface) :
+    ∀ element, ¬ interface.member element (Empty interface) :=
+  laws.emptyMembership
+
+/-- `x` belongs to `{a}` iff `x = a`. -/
+theorem SingletonSetMembershipIff
+    (interface : SetInterface.{u, v}) (laws : SetInterfaceLaws interface) :
+    ∀ element chosen,
+      interface.member element (Singleton interface chosen) ↔ element = chosen :=
+  laws.singletonMembership
+
+/-- `x` belongs to `{a, b}` iff `x = a` or `x = b`. -/
+theorem PairSetMembershipIff
+    (interface : SetInterface.{u, v}) (laws : SetInterfaceLaws interface) :
+    ∀ element left right,
+      interface.member element (Pair interface left right) ↔
+        element = left ∨ element = right :=
+  laws.pairMembership
+
+/-- `x` does not belong to the empty set. -/
 theorem EmptyMembership
     (interface : SetInterface.{u, v}) (laws : SetInterfaceLaws interface) :
-    ∀ element, ¬ interface.member element (Empty interface) := by
-  sorry
+    ∀ element, ¬ interface.member element (Empty interface) :=
+  EmptySetHasNoMembers interface laws
 
-/-- Membership in a singleton is equality with the chosen element. -/
+/-- `x` belongs to `{a}` iff `x = a`. -/
 theorem SingletonMembership
     (interface : SetInterface.{u, v}) (laws : SetInterfaceLaws interface) :
     ∀ element chosen,
-      interface.member element (Singleton interface chosen) ↔ element = chosen := by
-  sorry
+      interface.member element (Singleton interface chosen) ↔ element = chosen :=
+  SingletonSetMembershipIff interface laws
 
-/-- Membership in a pair is equality with either chosen element. -/
+/-- `x` belongs to `{a, b}` iff `x = a` or `x = b`. -/
 theorem PairMembership
     (interface : SetInterface.{u, v}) (laws : SetInterfaceLaws interface) :
     ∀ element left right,
       interface.member element (Pair interface left right) ↔
-        element = left ∨ element = right := by
-  sorry
+        element = left ∨ element = right :=
+  PairSetMembershipIff interface laws
 
 end LRA.VolumeI.Set

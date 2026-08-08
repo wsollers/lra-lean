@@ -1,4 +1,4 @@
-import LRA.VolumeI.Set.Public.Interface
+import LRA.VolumeI.Set.Laws.Membership
 import LRA.VolumeI.Set.Operations.Comprehension
 
 universe u v

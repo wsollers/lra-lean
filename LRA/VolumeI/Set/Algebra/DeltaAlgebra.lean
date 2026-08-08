@@ -2,6 +2,8 @@ import LRA.VolumeI.Set.Algebra.Ring
 
 namespace LRA.VolumeI.Set.Algebra
 
+universe u
+
 /-!
 Delta-algebras of sets.
 
@@ -11,11 +13,11 @@ ordinary ring and sigma-algebra files.
 -/
 
 /-- A delta-ring signature adds closure under countable intersections. -/
-structure DeltaRingSignature extends SetRingSignature where
+structure DeltaRingSignature extends SetRingSignature.{u} where
   countableIntersection : (Nat → carrier) → carrier
 
 /-- Closure laws for a delta-ring. -/
-structure DeltaRingLaws (signature : DeltaRingSignature) : Prop
+structure DeltaRingLaws (signature : DeltaRingSignature.{u}) : Prop
     extends SetRingLaws signature.toSetRingSignature where
   CountableIntersectionIsMember :
     ∀ family : Nat → signature.carrier,
@@ -24,7 +26,7 @@ structure DeltaRingLaws (signature : DeltaRingSignature) : Prop
 
 /-- A bundled model of a delta-ring. -/
 structure DeltaRingModel where
-  signature : DeltaRingSignature
+  signature : DeltaRingSignature.{u}
   laws : DeltaRingLaws signature
 
 end LRA.VolumeI.Set.Algebra

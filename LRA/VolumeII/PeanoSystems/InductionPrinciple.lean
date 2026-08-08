@@ -16,15 +16,16 @@ namespace LRA.VolumeII.PeanoSystems.InductionPrinciple
    Status: pending -/
 theorem InductionPrincipleForPeanoSystem
     (ps : PeanoSystem)
-    (predicate : LRA.VolumeI.Set.LRASet ps.carrier)
-    (base_case : predicate ps.one)
+    (subset : ps.setInterface.SetObject)
+    (base_case : ps.setInterface.Member ps.one subset)
     (successor_step :
       ∀ element : ps.carrier,
-        predicate element -> predicate (ps.successor element)) :
-    ∀ element : ps.carrier, predicate element :=
+        ps.setInterface.Member element subset ->
+          ps.setInterface.Member (ps.successor element) subset) :
+    ∀ element : ps.carrier, ps.setInterface.Member element subset :=
   PeanoAxioms.PeanoInduction
     ps
-    predicate
+    subset
     base_case
     successor_step
 

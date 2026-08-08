@@ -5,6 +5,7 @@ import LRA.VolumeI.Set.Implementations.MathlibSet.PowerSet
 import LRA.VolumeI.Set.Implementations.MathlibSet.Indexed
 import LRA.VolumeI.Set.Implementations.MathlibSet.BooleanIndexed
 import LRA.VolumeI.Set.Implementations.MathlibSet.Model
+import LRA.VolumeI.Set.Implementations.MathlibSet.CollectionAlgebra
 
 /-!
 Aggregate import for the mathlib `Set` adapter.

@@ -231,6 +231,28 @@ structure CollectionCountableOperations
     (Nat → operations.elementOperations.SetObject) →
       operations.elementOperations.SetObject
 
+/-- Membership laws relating countable Boolean operations.  This bundle is the
+bridge used when a sigma-style structure wants countable intersections as a
+derived De Morgan operation rather than as a primitive closure field. -/
+structure CollectionCountableOperationLaws
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (boolean : CollectionBooleanOperations operations)
+    (countable : CollectionCountableOperations operations) : Prop where
+  countableUnionComplementMembership :
+    ∀ element family,
+      operations.elementOperations.member element
+          (boolean.complement (countable.countableUnion family)) ↔
+        operations.elementOperations.member element
+          (countable.countableIntersection
+            (fun index => boolean.complement (family index)))
+  countableIntersectionComplementMembership :
+    ∀ element family,
+      operations.elementOperations.member element
+          (boolean.complement (countable.countableIntersection family)) ↔
+        operations.elementOperations.member element
+          (countable.countableUnion
+            (fun index => boolean.complement (family index)))
+
 /-- Closure under complements in a collection of subsets. -/
 def ClosedUnderComplements
     (operations : CollectionSetOperations.{u, v, w, x})
@@ -319,7 +341,8 @@ def SigmaAlgebra
     (countable : CollectionCountableOperations operations)
     (collection : SetCollection operations) : Prop :=
   SetAlgebra operations boolean collection ∧
-    ClosedUnderCountableUnions operations countable collection
+    ClosedUnderCountableUnions operations countable collection ∧
+      ClosedUnderCountableIntersections operations countable collection
 
 /-- A topology on the generic base set: empty and whole space, arbitrary unions,
 and finite intersections. -/
@@ -332,6 +355,153 @@ def TopologyOn
       ClosedUnderCollectionUnion operations collection ∧
         ClosedUnderFiniteIntersections operations collection
           boolean.universal boolean.intersection
+
+/-!
+Public theorem targets for generic collection algebra.
+
+The statements below mirror the legacy implementation-local LRASet algebra and
+topology inventory, but are phrased only in terms of the generic collection
+surface.  Proof work is intentionally deferred while the interface settles.
+-/
+
+/-- Every set algebra is a ring of sets. -/
+theorem SetAlgebraIsSetRing
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (boolean : CollectionBooleanOperations operations)
+    (collection : SetCollection operations)
+    (algebra : SetAlgebra operations boolean collection) :
+    SetRing operations boolean collection := by
+  sorry
+
+/-- Every set algebra contains the empty set. -/
+theorem SetAlgebraContainsEmpty
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (boolean : CollectionBooleanOperations operations)
+    (collection : SetCollection operations)
+    (algebra : SetAlgebra operations boolean collection) :
+    Contains operations collection boolean.empty := by
+  sorry
+
+/-- Every set algebra contains the universal set. -/
+theorem SetAlgebraContainsUniversal
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (boolean : CollectionBooleanOperations operations)
+    (collection : SetCollection operations)
+    (algebra : SetAlgebra operations boolean collection) :
+    Contains operations collection boolean.universal := by
+  sorry
+
+/-- Every set algebra is closed under complements. -/
+theorem SetAlgebraClosedUnderComplements
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (boolean : CollectionBooleanOperations operations)
+    (collection : SetCollection operations)
+    (algebra : SetAlgebra operations boolean collection) :
+    ClosedUnderComplements operations boolean collection := by
+  sorry
+
+/-- Every set algebra is closed under pairwise unions. -/
+theorem SetAlgebraClosedUnderPairwiseUnions
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (boolean : CollectionBooleanOperations operations)
+    (collection : SetCollection operations)
+    (algebra : SetAlgebra operations boolean collection) :
+    ClosedUnderPairwiseUnions operations boolean collection := by
+  sorry
+
+/-- Every set algebra is closed under pairwise intersections. -/
+theorem SetAlgebraClosedUnderPairwiseIntersections
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (boolean : CollectionBooleanOperations operations)
+    (collection : SetCollection operations)
+    (algebra : SetAlgebra operations boolean collection) :
+    ClosedUnderPairwiseIntersections operations boolean collection := by
+  sorry
+
+/-- Every set algebra is closed under pairwise differences. -/
+theorem SetAlgebraClosedUnderPairwiseDifferences
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (boolean : CollectionBooleanOperations operations)
+    (collection : SetCollection operations)
+    (algebra : SetAlgebra operations boolean collection) :
+    ClosedUnderPairwiseDifferences operations boolean collection := by
+  sorry
+
+/-- Every set algebra is closed under pairwise symmetric differences. -/
+theorem SetAlgebraClosedUnderPairwiseSymmetricDifferences
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (boolean : CollectionBooleanOperations operations)
+    (collection : SetCollection operations)
+    (algebra : SetAlgebra operations boolean collection) :
+    ClosedUnderPairwiseSymmetricDifferences operations boolean collection := by
+  sorry
+
+/-- Every sigma-algebra is a set algebra. -/
+theorem SigmaAlgebraIsSetAlgebra
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (boolean : CollectionBooleanOperations operations)
+    (countable : CollectionCountableOperations operations)
+    (collection : SetCollection operations)
+    (sigmaAlgebra : SigmaAlgebra operations boolean countable collection) :
+    SetAlgebra operations boolean collection := by
+  sorry
+
+/-- Every sigma-algebra is closed under countable unions. -/
+theorem SigmaAlgebraClosedUnderCountableUnions
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (boolean : CollectionBooleanOperations operations)
+    (countable : CollectionCountableOperations operations)
+    (collection : SetCollection operations)
+    (sigmaAlgebra : SigmaAlgebra operations boolean countable collection) :
+    ClosedUnderCountableUnions operations countable collection := by
+  sorry
+
+/-- Every sigma-algebra is closed under countable intersections. -/
+theorem SigmaAlgebraClosedUnderCountableIntersections
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (boolean : CollectionBooleanOperations operations)
+    (countable : CollectionCountableOperations operations)
+    (collection : SetCollection operations)
+    (sigmaAlgebra : SigmaAlgebra operations boolean countable collection) :
+    ClosedUnderCountableIntersections operations countable collection := by
+  sorry
+
+/-- A topology contains the empty set. -/
+theorem TopologyContainsEmpty
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (boolean : CollectionBooleanOperations operations)
+    (collection : SetCollection operations)
+    (topology : TopologyOn operations boolean collection) :
+    Contains operations collection boolean.empty := by
+  sorry
+
+/-- A topology contains the universal set. -/
+theorem TopologyContainsUniversal
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (boolean : CollectionBooleanOperations operations)
+    (collection : SetCollection operations)
+    (topology : TopologyOn operations boolean collection) :
+    Contains operations collection boolean.universal := by
+  sorry
+
+/-- A topology is closed under arbitrary collection unions. -/
+theorem TopologyClosedUnderCollectionUnions
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (boolean : CollectionBooleanOperations operations)
+    (collection : SetCollection operations)
+    (topology : TopologyOn operations boolean collection) :
+    ClosedUnderCollectionUnion operations collection := by
+  sorry
+
+/-- A topology is closed under finite intersections. -/
+theorem TopologyClosedUnderFiniteIntersections
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (boolean : CollectionBooleanOperations operations)
+    (collection : SetCollection operations)
+    (topology : TopologyOn operations boolean collection) :
+    ClosedUnderFiniteIntersections operations collection
+      boolean.universal boolean.intersection := by
+  sorry
 
 /-- The extra interface needed for systems of collections, one level above a
 collection of subsets.  This keeps generated collections honest: intersecting a
@@ -348,6 +518,57 @@ structure CollectionSystemOperations
         SystemObject
   systemIntersection : SystemObject → SetCollection operations
 
+/-- Laws for systems of collections.  These laws make generated collections
+proof-ready by recording how subsystem separation, subsystem inclusion, and
+system intersections are read memberwise. -/
+structure CollectionSystemOperationLaws
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (systemOperations :
+      CollectionSystemOperations.{u, v, w, x, y} operations) : Prop where
+  systemSubsetMembership :
+    ∀ left right,
+      systemOperations.systemSubset left right ↔
+        ∀ collection,
+          systemOperations.systemMember collection left →
+            systemOperations.systemMember collection right
+  systemSubsetRefl :
+    ∀ system, systemOperations.systemSubset system system
+  systemSubsetTrans :
+    ∀ {left middle right},
+      systemOperations.systemSubset left middle →
+        systemOperations.systemSubset middle right →
+          systemOperations.systemSubset left right
+  systemSeparationMembership :
+    ∀ system predicate collection,
+      systemOperations.systemMember collection
+          (systemOperations.systemSeparation system predicate) ↔
+        systemOperations.systemMember collection system ∧ predicate collection
+  systemSeparationSubset :
+    ∀ system predicate,
+      systemOperations.systemSubset
+        (systemOperations.systemSeparation system predicate)
+        system
+  systemIntersectionMembership :
+    ∀ subsystem setObject,
+      Contains operations
+          (systemOperations.systemIntersection subsystem)
+          setObject ↔
+        ∀ collection,
+          systemOperations.systemMember collection subsystem →
+            Contains operations collection setObject
+  systemIntersectionSubsetMember :
+    ∀ subsystem collection,
+      systemOperations.systemMember collection subsystem →
+        operations.collectionOperations.subset
+          (systemOperations.systemIntersection subsystem)
+          collection
+  systemExtensionality :
+    ∀ {left right : systemOperations.SystemObject},
+      (∀ collection,
+        systemOperations.systemMember collection left ↔
+          systemOperations.systemMember collection right) →
+        left = right
+
 /-- A system of collections is closed under intersections of its subsystems. -/
 def ClosureSystem
     (operations : CollectionSetOperations.{u, v, w, x})
@@ -359,6 +580,68 @@ def ClosureSystem
       systemOperations.systemMember
         (systemOperations.systemIntersection subsystem)
         system
+
+/-- Intersections of system members closed under a fixed unary operation remain
+closed under that operation. -/
+theorem UnaryClosureStableUnderSystemIntersection
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (systemOperations :
+      CollectionSystemOperations.{u, v, w, x, y} operations)
+    (systemLaws :
+      CollectionSystemOperationLaws operations systemOperations)
+    (system : systemOperations.SystemObject)
+    (operation :
+      operations.elementOperations.SetObject →
+        operations.elementOperations.SetObject)
+    (everyMemberClosed :
+      ∀ collection : SetCollection operations,
+        systemOperations.systemMember collection system →
+          ClosedUnderUnaryOperation operations collection operation) :
+    ClosedUnderUnaryOperation operations
+      (systemOperations.systemIntersection system) operation := by
+  sorry
+
+/-- Intersections of system members closed under a fixed binary operation remain
+closed under that operation. -/
+theorem BinaryClosureStableUnderSystemIntersection
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (systemOperations :
+      CollectionSystemOperations.{u, v, w, x, y} operations)
+    (systemLaws :
+      CollectionSystemOperationLaws operations systemOperations)
+    (system : systemOperations.SystemObject)
+    (operation :
+      operations.elementOperations.SetObject →
+        operations.elementOperations.SetObject →
+          operations.elementOperations.SetObject)
+    (everyMemberClosed :
+      ∀ collection : SetCollection operations,
+        systemOperations.systemMember collection system →
+          ClosedUnderBinaryOperation operations collection operation) :
+    ClosedUnderBinaryOperation operations
+      (systemOperations.systemIntersection system) operation := by
+  sorry
+
+/-- Intersections of system members closed under a fixed indexed operation
+remain closed under that operation. -/
+theorem IndexedClosureStableUnderSystemIntersection
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (systemOperations :
+      CollectionSystemOperations.{u, v, w, x, y} operations)
+    (systemLaws :
+      CollectionSystemOperationLaws operations systemOperations)
+    (system : systemOperations.SystemObject)
+    {Index : Type y}
+    (operation :
+      (Index → operations.elementOperations.SetObject) →
+        operations.elementOperations.SetObject)
+    (everyMemberClosed :
+      ∀ collection : SetCollection operations,
+        systemOperations.systemMember collection system →
+          ClosedUnderIndexedOperation operations collection operation) :
+    ClosedUnderIndexedOperation operations
+      (systemOperations.systemIntersection system) operation := by
+  sorry
 
 /-- A closed collection contains the generating family. -/
 def ContainsGeneratingFamily
@@ -386,6 +669,8 @@ theorem GeneratedCollectionExtensive
     (operations : CollectionSetOperations.{u, v, w, x})
     (systemOperations :
       CollectionSystemOperations.{u, v, w, x, y} operations)
+    (systemLaws :
+      CollectionSystemOperationLaws operations systemOperations)
     (system : systemOperations.SystemObject)
     (generator : SetCollection operations)
     (systemClosed : ClosureSystem operations systemOperations system) :
@@ -398,6 +683,8 @@ theorem GeneratedCollectionMonotone
     (operations : CollectionSetOperations.{u, v, w, x})
     (systemOperations :
       CollectionSystemOperations.{u, v, w, x, y} operations)
+    (systemLaws :
+      CollectionSystemOperationLaws operations systemOperations)
     (system : systemOperations.SystemObject)
     {leftGenerator rightGenerator : SetCollection operations}
     (generatorSubset :
@@ -413,6 +700,8 @@ theorem GeneratedCollectionClosed
     (operations : CollectionSetOperations.{u, v, w, x})
     (systemOperations :
       CollectionSystemOperations.{u, v, w, x, y} operations)
+    (systemLaws :
+      CollectionSystemOperationLaws operations systemOperations)
     (system : systemOperations.SystemObject)
     (generator : SetCollection operations)
     (systemClosed : ClosureSystem operations systemOperations system) :
@@ -426,6 +715,8 @@ theorem GeneratedCollectionIdempotent
     (operations : CollectionSetOperations.{u, v, w, x})
     (systemOperations :
       CollectionSystemOperations.{u, v, w, x, y} operations)
+    (systemLaws :
+      CollectionSystemOperationLaws operations systemOperations)
     (system : systemOperations.SystemObject)
     (generator : SetCollection operations)
     (systemClosed : ClosureSystem operations systemOperations system) :
@@ -434,11 +725,139 @@ theorem GeneratedCollectionIdempotent
       GeneratedCollection operations systemOperations system generator := by
   sorry
 
+/-- Laws for finite predicates on generic collections.  The special
+relative-complement transport fields are the finite-image/subcollection facts
+needed by compactness/FIP equivalences. -/
+structure FiniteCollectionLaws
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (IsFinite : FiniteCollectionPredicate operations) : Prop where
+  finiteSubset :
+    ∀ {left right : SetCollection operations},
+      operations.collectionOperations.subset left right →
+        IsFinite right → IsFinite left
+  finiteEquivalent :
+    ∀ {left right : SetCollection operations},
+      operations.collectionOperations.subset left right →
+        operations.collectionOperations.subset right left →
+          IsFinite left ↔ IsFinite right
+  finiteRelativeComplementImage :
+    ∀ target collection,
+      IsFinite collection →
+        IsFinite (RelativeComplementCollection operations target collection)
+  finiteRelativeComplementPreimage :
+    ∀ target collection relSubcollection,
+      operations.collectionOperations.subset relSubcollection
+        (RelativeComplementCollection operations target collection) →
+      IsFinite relSubcollection →
+        ∃ subcollection : SetCollection operations,
+          operations.collectionOperations.subset subcollection collection ∧
+            IsFinite subcollection ∧
+              operations.collectionOperations.subset relSubcollection
+                (RelativeComplementCollection operations target subcollection)
+
+/-- Laws for nonempty predicates on generic base-level sets. -/
+structure NonemptySetLaws
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (IsNonempty : NonemptySetPredicate operations) : Prop where
+  nonemptyIffExistsMember :
+    ∀ setObject,
+      IsNonempty setObject ↔
+        ∃ element,
+          operations.elementOperations.member element setObject
+
+/-- Transport laws for the relative-complement collection construction. -/
+structure RelativeComplementCollectionLaws
+    (operations : CollectionSetOperations.{u, v, w, x}) : Prop where
+  membership :
+    ∀ target collection candidate,
+      Contains operations
+          (RelativeComplementCollection operations target collection)
+          candidate ↔
+        ∃ memberSet,
+          Contains operations collection memberSet ∧
+            candidate =
+              operations.elementOperations.separation target
+                (fun element =>
+                  ¬ operations.elementOperations.member element memberSet)
+  monotone :
+    ∀ target {left right : SetCollection operations},
+      operations.collectionOperations.subset left right →
+        operations.collectionOperations.subset
+          (RelativeComplementCollection operations target left)
+          (RelativeComplementCollection operations target right)
+  coverFailureForSubcollectionIff :
+    ∀ target subcollection,
+      ¬ Covers operations subcollection target ↔
+        ∃ element,
+          operations.elementOperations.member element
+            (CollectionIntersection operations
+              (RelativeComplementCollection operations target subcollection))
+
+/-- A finite subcover is equivalent to its defining three conditions. -/
+theorem FiniteSubcoverIff
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (IsFinite : FiniteCollectionPredicate operations)
+    (subcollection collection : SetCollection operations)
+    (target : operations.elementOperations.SetObject) :
+    FiniteSubcover operations IsFinite subcollection collection target ↔
+      Subcover operations subcollection collection target ∧
+        IsFinite subcollection := by
+  sorry
+
+/-- Failure of a subcollection to cover is equivalent to nonemptiness of the
+intersection of its relative-complement collection. -/
+theorem CoverFailureIffRelativeComplementIntersectionNonempty
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (IsNonempty : NonemptySetPredicate operations)
+    (nonemptyLaws : NonemptySetLaws operations IsNonempty)
+    (relativeComplementLaws : RelativeComplementCollectionLaws operations)
+    (subcollection : SetCollection operations)
+    (target : operations.elementOperations.SetObject) :
+    ¬ Covers operations subcollection target ↔
+      IsNonempty
+        (CollectionIntersection operations
+          (RelativeComplementCollection operations target subcollection)) := by
+  sorry
+
+/-- Finite subcollections of a collection have finite relative-complement
+images. -/
+theorem FiniteRelativeComplementImage
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (IsFinite : FiniteCollectionPredicate operations)
+    (finiteLaws : FiniteCollectionLaws operations IsFinite)
+    (target : operations.elementOperations.SetObject)
+    (subcollection : SetCollection operations)
+    (finiteSubcollection : IsFinite subcollection) :
+    IsFinite (RelativeComplementCollection operations target subcollection) := by
+  sorry
+
+/-- Finite subcollections of a relative-complement collection are controlled by
+finite subcollections of the original collection. -/
+theorem FiniteRelativeComplementPreimage
+    (operations : CollectionSetOperations.{u, v, w, x})
+    (IsFinite : FiniteCollectionPredicate operations)
+    (finiteLaws : FiniteCollectionLaws operations IsFinite)
+    (target : operations.elementOperations.SetObject)
+    (collection relSubcollection : SetCollection operations)
+    (relSubset :
+      operations.collectionOperations.subset relSubcollection
+        (RelativeComplementCollection operations target collection))
+    (relFinite : IsFinite relSubcollection) :
+    ∃ subcollection : SetCollection operations,
+      operations.collectionOperations.subset subcollection collection ∧
+        IsFinite subcollection ∧
+          operations.collectionOperations.subset relSubcollection
+            (RelativeComplementCollection operations target subcollection) := by
+  sorry
+
 /-- No finite subcover iff the relative complement collection has FIP. -/
 theorem NoFiniteSubcoverIffRelativeComplementFIP
     (operations : CollectionSetOperations.{u, v, w, x})
     (IsFinite : FiniteCollectionPredicate operations)
     (IsNonempty : NonemptySetPredicate operations)
+    (finiteLaws : FiniteCollectionLaws operations IsFinite)
+    (nonemptyLaws : NonemptySetLaws operations IsNonempty)
+    (relativeComplementLaws : RelativeComplementCollectionLaws operations)
     (collection : SetCollection operations)
     (target : operations.elementOperations.SetObject) :
     HasNoFiniteSubcover operations IsFinite collection target ↔
@@ -451,6 +870,9 @@ theorem FiniteSubcoverIffRelativeComplementNotFIP
     (operations : CollectionSetOperations.{u, v, w, x})
     (IsFinite : FiniteCollectionPredicate operations)
     (IsNonempty : NonemptySetPredicate operations)
+    (finiteLaws : FiniteCollectionLaws operations IsFinite)
+    (nonemptyLaws : NonemptySetLaws operations IsNonempty)
+    (relativeComplementLaws : RelativeComplementCollectionLaws operations)
     (collection : SetCollection operations)
     (target : operations.elementOperations.SetObject) :
     HasFiniteSubcover operations IsFinite collection target ↔

@@ -6,6 +6,8 @@ import LRA.VolumeI.Algebra
 
 namespace LRA.VolumeII.Integers
 
+universe u
+
 /-!
 Volume II label: integers-interface
 Lean module: LRA.VolumeII.Integers.Interface
@@ -22,7 +24,7 @@ variants can attach law bundles as mixins at the level they have proved.
 Mathematical statement (Lean): `structure AdditiveStructure`.
 -/
 structure AdditiveStructure where
-  carrier : LRA.VolumeI.Set.LRACarrier
+  carrier : Type u
   zero : LRA.VolumeI.Operations.NullaryOperation carrier
   add : LRA.VolumeI.Operations.BinaryOperation carrier
   neg : LRA.VolumeI.Operations.UnaryOperation carrier
@@ -33,7 +35,7 @@ structure AdditiveStructure where
 Mathematical statement (Lean): `structure MultiplicativeStructure`.
 -/
 structure MultiplicativeStructure where
-  carrier : LRA.VolumeI.Set.LRACarrier
+  carrier : Type u
   zero : LRA.VolumeI.Operations.NullaryOperation carrier
   one : LRA.VolumeI.Operations.NullaryOperation carrier
   mul : LRA.VolumeI.Operations.BinaryOperation carrier
@@ -44,7 +46,7 @@ structure MultiplicativeStructure where
 Mathematical statement (Lean): `structure OrderedStructure`.
 -/
 structure OrderedStructure where
-  carrier : LRA.VolumeI.Set.LRACarrier
+  carrier : Type u
   lt : LRA.VolumeI.Relations.Endorelation carrier
   le : LRA.VolumeI.Relations.Endorelation carrier
 

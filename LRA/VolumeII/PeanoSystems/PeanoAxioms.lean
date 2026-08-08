@@ -1,4 +1,3 @@
-import Mathlib.Data.Set.Basic
 import LRA.VolumeII.PeanoSystems.PeanoSystem
 
 /-!
@@ -22,7 +21,10 @@ axiom PeanoBaseInSet (ps : PeanoSystem) : True
    Lean declaration: LRA.VolumeII.PeanoSystems.PeanoAxioms.PeanoSuccessorClosure
    Status: pending -/
 axiom PeanoSuccessorClosure (ps : PeanoSystem) :
-    ∀ element : ps.carrier, ps.successor element ∈ Set.univ
+    ∀ element : ps.carrier,
+      ps.setInterface.Member
+        (ps.successor element)
+        (ps.setInterface.Singleton (ps.successor element))
 
 /- Volume II label: ax:peano-base-not-successor
    Lean declaration: LRA.VolumeII.PeanoSystems.PeanoAxioms.PeanoBaseNotSuccessor
@@ -41,10 +43,12 @@ axiom PeanoSuccessorInjective (ps : PeanoSystem) :
    Lean declaration: LRA.VolumeII.PeanoSystems.PeanoAxioms.PeanoInduction
    Status: pending -/
 axiom PeanoInduction (ps : PeanoSystem)
-    (predicate : LRA.VolumeI.Set.LRASet ps.carrier) :
-    predicate ps.one ->
-      (∀ element : ps.carrier, predicate element -> predicate (ps.successor element)) ->
-      ∀ element : ps.carrier, predicate element
+    (subset : ps.setInterface.SetObject) :
+    ps.setInterface.Member ps.one subset ->
+      (∀ element : ps.carrier,
+        ps.setInterface.Member element subset ->
+          ps.setInterface.Member (ps.successor element) subset) ->
+      ∀ element : ps.carrier, ps.setInterface.Member element subset
 
 /- Volume II label: ax:peano-system-existence
    Lean declaration: LRA.VolumeII.PeanoSystems.PeanoAxioms.PeanoSystemExistence

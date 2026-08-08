@@ -6,6 +6,7 @@ import LRA.VolumeI.Set.Implementations.ZFC.Public
 import LRA.VolumeI.Set.Implementations.ZFC.Comprehension
 import LRA.VolumeI.Set.Implementations.ZFC.PowerSet
 import LRA.VolumeI.Set.Implementations.ZFC.Model
+import LRA.VolumeI.Set.Implementations.ZFC.CollectionAlgebra
 
 /-!
 Aggregate import for the ZFC-style set implementation track.

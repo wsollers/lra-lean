@@ -9,17 +9,18 @@ Sigma-rings and sigma-algebras of sets.
 -/
 
 /-- A sigma-ring signature adds closure under countable unions. -/
-structure SigmaRingSignature extends SetRingSignature where
+structure SigmaRingSignature extends SetRingSignature.{u} where
   countableUnion : (Nat → carrier) → carrier
 
 /-- A sigma-algebra signature combines complements and countable unions. -/
-structure SigmaAlgebraSignature extends SetAlgebraSignature where
+structure SigmaAlgebraSignature extends SetAlgebraSignature.{u} where
   countableUnion : (Nat → carrier) → carrier
 
 namespace SigmaAlgebraSignature
 
 /-- Forget a sigma-algebra signature to its sigma-ring operations. -/
-def toSigmaRingSignature (signature : SigmaAlgebraSignature) : SigmaRingSignature where
+def toSigmaRingSignature
+    (signature : SigmaAlgebraSignature.{u}) : SigmaRingSignature.{u} where
   carrier := signature.carrier
   IsMember := signature.IsMember
   empty := signature.empty
@@ -32,7 +33,7 @@ def toSigmaRingSignature (signature : SigmaAlgebraSignature) : SigmaRingSignatur
 end SigmaAlgebraSignature
 
 /-- Closure laws for a sigma-ring. -/
-structure SigmaRingLaws (signature : SigmaRingSignature) : Prop
+structure SigmaRingLaws (signature : SigmaRingSignature.{u}) : Prop
     extends SetRingLaws signature.toSetRingSignature where
   CountableUnionIsMember :
     ∀ family : Nat → signature.carrier,
@@ -40,7 +41,7 @@ structure SigmaRingLaws (signature : SigmaRingSignature) : Prop
         signature.IsMember (signature.countableUnion family)
 
 /-- Closure laws for a sigma-algebra. -/
-structure SigmaAlgebraLaws (signature : SigmaAlgebraSignature) : Prop
+structure SigmaAlgebraLaws (signature : SigmaAlgebraSignature.{u}) : Prop
     extends SetAlgebraLaws signature.toSetAlgebraSignature where
   CountableUnionIsMember :
     ∀ family : Nat → signature.carrier,
@@ -49,12 +50,12 @@ structure SigmaAlgebraLaws (signature : SigmaAlgebraSignature) : Prop
 
 /-- A bundled model of a sigma-ring. -/
 structure SigmaRingModel where
-  signature : SigmaRingSignature
+  signature : SigmaRingSignature.{u}
   laws : SigmaRingLaws signature
 
 /-- A bundled model of a sigma-algebra. -/
 structure SigmaAlgebraModel where
-  signature : SigmaAlgebraSignature
+  signature : SigmaAlgebraSignature.{u}
   laws : SigmaAlgebraLaws signature
 
 namespace SigmaRingSignature
@@ -65,7 +66,8 @@ open LRA.VolumeI.Set.Operations
 indexed structure. -/
 def fromBooleanIndexedOperations
     (operations : BooleanIndexedSetOperations.{u, v})
-    (collection : Collection operations.SetObject) : SigmaRingSignature where
+    (collection : Collection operations.SetObject) :
+    SigmaRingSignature.{v} where
   carrier := operations.SetObject
   IsMember := collection
   empty := operations.empty
@@ -85,7 +87,8 @@ open LRA.VolumeI.Set.Operations
 and indexed structure. -/
 def fromBooleanIndexedOperations
     (operations : BooleanIndexedSetOperations.{u, v})
-    (collection : Collection operations.SetObject) : SigmaAlgebraSignature where
+    (collection : Collection operations.SetObject) :
+    SigmaAlgebraSignature.{v} where
   carrier := operations.SetObject
   IsMember := collection
   empty := operations.empty

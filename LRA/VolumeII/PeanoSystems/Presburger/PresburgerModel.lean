@@ -7,30 +7,40 @@ First-order model data for the Presburger signature.
 
 namespace LRA.VolumeII.PeanoSystems
 
+open LRA.VolumeI.Set
+
 structure PresburgerModel where
-  carrier : Type
-  zero : carrier
-  successor : carrier -> carrier
+  setInterface : SetInterface
+  zero : setInterface.Element
+  successor : setInterface.Element -> setInterface.Element
   zero_not_successor :
-    forall element : carrier,
+    forall element : setInterface.Element,
       successor element ≠ zero
   successor_injective :
-    forall first_element second_element : carrier,
+    forall first_element second_element : setInterface.Element,
       successor first_element = successor second_element ->
       first_element = second_element
   induction :
-    forall predicate : LRA.VolumeI.Set.LRASet carrier,
-      predicate zero ->
-      (forall element : carrier,
-        predicate element ->
-        predicate (successor element)) ->
-      forall element : carrier,
-        predicate element
-  lessThan : carrier -> carrier -> Prop
+    forall subset : setInterface.SetObject,
+      setInterface.Member zero subset ->
+      (forall element : setInterface.Element,
+        setInterface.Member element subset ->
+        setInterface.Member (successor element) subset) ->
+      forall element : setInterface.Element,
+        setInterface.Member element subset
+  lessThan : setInterface.Element -> setInterface.Element -> Prop
+
+namespace PresburgerModel
+
+/-- The element carrier of a Presburger model, read from its generic set interface. -/
+abbrev carrier (model : PresburgerModel) :=
+  model.setInterface.Element
+
+end PresburgerModel
 
 def PresburgerModel.toPeanoSystem
     (model : PresburgerModel) : PeanoSystem where
-  carrier := model.carrier
+  setInterface := model.setInterface
   one := model.zero
   successor := model.successor
   one_not_successor := model.zero_not_successor
