@@ -200,6 +200,7 @@ function Invoke-BlueprintInputs {
         Invoke-DocsRun @('python3', 'scripts/build-number-systems-declaration-manifest.py')
         Invoke-DocsRun @('python3', 'scripts/build-number-systems-blueprint.py')
         Invoke-DocsRun @('python3', 'scripts/report-number-systems-dependency-order.py', '--check')
+        Invoke-DocsRun @('python3', 'scripts/build-volume-blueprints.py')
     } else {
         Invoke-BlueprintDocker 'inputs'
     }

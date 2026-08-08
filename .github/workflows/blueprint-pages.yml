@@ -46,16 +46,6 @@ jobs:
           cache-from: type=gha,scope=lra-lean-blueprint-build
           cache-to: type=gha,scope=lra-lean-blueprint-build,mode=max
 
-      - name: Build active Lean libraries
-        run: |
-          docker run --rm \
-            -v "$PWD:/workspace" \
-            -w /workspace \
-            lra-lean-docs \
-            lake build LRAVolumeI LRAVolumeII LRAVolumeIII LRAVolumeIV LRAVolumeVI LRAVolumeVII LRATests
-        # Lean accepts declarations containing `sorry`; placeholders are shown
-        # by the generated site and do not fail the ordinary project build.
-
       - name: Build repository site with Blueprint output
         run: |
           docker run --rm \

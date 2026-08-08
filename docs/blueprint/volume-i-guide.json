@@ -1,0 +1,56 @@
+{
+  "chapter_intro": [
+    "Volume I is the reusable foundation layer for the Lean formalization. Later volumes should import these declarations instead of recreating generic equality, set, function, relation, operation, order, or algebra laws.",
+    "The most important design rule is to prove generic mathematics once against an interface, then provide concrete adapters for each backend. For sets, ordinary set-theory proofs should target SetInterface and SetInterfaceLaws, while implementation files prove that a concrete backend satisfies those laws."
+  ],
+  "volume_map": [
+    {"area": "Logic", "module": "LRA.VolumeI.Logic", "purpose": "formal languages, syntax, semantics, proof systems, models, and model comparison"},
+    {"area": "Identity", "module": "LRA.VolumeI.Identity", "purpose": "equality, substitution, extensionality, uniqueness, and proof patterns"},
+    {"area": "Set", "module": "LRA.VolumeI.Set", "purpose": "backend-independent set interfaces, set operations, set laws, and concrete set backends"},
+    {"area": "Functions", "module": "LRA.VolumeI.Functions", "purpose": "functions, images, preimages, fibers, injective/surjective/bijective maps, inverses, and composition"},
+    {"area": "Operations", "module": "LRA.VolumeI.Operations", "purpose": "arity, operation laws, identity elements, inverses, compatibility, distributivity, and divisibility"},
+    {"area": "Relations", "module": "LRA.VolumeI.Relations", "purpose": "relation predicates, equivalence relations, partitions, quotient sets, and order relations"},
+    {"area": "Algebra", "module": "LRA.VolumeI.Algebra", "purpose": "algebraic signatures, structures, models, homomorphisms, substructures, quotient structures, and universal properties"}
+  ],
+  "generic_set": {
+    "concepts": [
+      {"name": "PublicSetOperations", "module": "LRA.VolumeI.Set.Operations.Public", "declaration": "PublicSetOperations", "role": "names the backend-independent finite set-operation surface: set objects, elements, membership, empty set, singleton, pair, union, intersection, and subset"},
+      {"name": "PublicSetOperationLaws", "module": "LRA.VolumeI.Set.Operations.Public", "declaration": "PublicSetOperationLaws", "role": "records the memberwise readings for the public operation names"},
+      {"name": "SetInterface", "module": "LRA.VolumeI.Set.Public.Interface", "declaration": "SetInterface", "role": "the ordinary backend-independent set API used by generic set proofs"},
+      {"name": "SetInterfaceLaws", "module": "LRA.VolumeI.Set.Public.Interface", "declaration": "SetInterfaceLaws", "role": "extends the operation laws with extensionality so memberwise equivalence can prove set equality"},
+      {"name": "GenericSetModel", "module": "LRA.VolumeI.Set.Public.Interface", "declaration": "GenericSetModel", "role": "bundles a concrete backend as an interface together with proofs of the interface laws"},
+      {"name": "LRASet public adapter", "module": "LRA.VolumeI.Set.Implementations.LRASet.Public", "declaration": "publicOperations", "role": "exposes the current project predicate-set backend through the public set interface"}
+    ],
+    "usage": [
+      "Import LRA.VolumeI.Set.Theory when writing ordinary set-theory theorems.",
+      "Take parameters (interface : SetInterface) and (laws : SetInterfaceLaws interface) instead of selecting a concrete backend.",
+      "State set objects using interface.SetObject and elements using interface.Element.",
+      "Use Empty, Singleton, Pair, Union, Intersection, and Subset from the public surface.",
+      "Use membership-reading theorems such as UnionMembership and IntersectionMembership to reduce set operations to elementwise logic.",
+      "Use SetExtensionality or SetExtensionalityIff when a goal is equality of generic sets.",
+      "Use SubsetMembership for subset goals and SetEqualityIffMutualSubset when equality is naturally proved by two inclusions.",
+      "Use BooleanSetOperations or IndexedSetOperations only when the theorem genuinely needs complement, difference, universal sets, or indexed unions/intersections."
+    ],
+    "imports": [
+      {"need": "generic set interface", "import": "LRA.VolumeI.Set.Public.Interface"},
+      {"need": "operation names and membership readings", "import": "LRA.VolumeI.Set.Operations"},
+      {"need": "generic set law catalogue", "import": "LRA.VolumeI.Set.Laws"},
+      {"need": "ordinary generic set-theory surface", "import": "LRA.VolumeI.Set.Theory"},
+      {"need": "all Volume I foundations", "import": "LRA.VolumeI"}
+    ],
+    "recipes": [
+      {"title": "Prove a generic set equality", "text": "Reduce equality to memberwise equivalence with SetExtensionality, then use the operation membership laws."},
+      {"title": "Prove a subset claim", "text": "Rewrite the subset statement with SubsetMembership and prove the resulting implication on an arbitrary element."},
+      {"title": "Use a concrete backend", "text": "Instantiate a concrete adapter such as publicOperations for LRASet, pass its law theorem, and then reuse the generic theorem without reproving it for that backend."}
+    ]
+  },
+  "theorem_catalogue": [
+    {"title": "Core Membership Readings", "modules": ["LRA.VolumeI.Set.Operations.Native"], "declarations": ["EmptySetHasNoMembers", "SingletonSetMembershipIff", "PairSetMembershipIff", "UnionSetMembershipIff", "IntersectionSetMembershipIff", "SubsetMembershipIff", "EmptyMembership", "SingletonMembership", "PairMembership", "UnionMembership", "IntersectionMembership", "SubsetMembership"]},
+    {"title": "Extensionality", "modules": ["LRA.VolumeI.Set.Laws.Extensionality"], "declarations": ["SetExtensionality", "SetExtensionalityIff"]},
+    {"title": "Subset Laws", "modules": ["LRA.VolumeI.Set.Laws.Subset"], "declarations": ["SubsetReflexive", "SubsetTransitive", "SetEqualityIffMutualSubset", "SubsetIffUnionEqRight", "SubsetIffIntersectionEqLeft"]},
+    {"title": "Union Laws", "modules": ["LRA.VolumeI.Set.Laws.Union"], "declarations": ["UnionCommutative", "UnionAssociative", "EmptyUnion", "UnionEmpty", "UnionIdempotent", "UnionMonotone"]},
+    {"title": "Intersection Laws", "modules": ["LRA.VolumeI.Set.Laws.Intersection"], "declarations": ["IntersectionCommutative", "IntersectionAssociative", "EmptyIntersection", "IntersectionEmpty", "IntersectionIdempotent", "IntersectionMonotone"]},
+    {"title": "Boolean Set Laws", "modules": ["LRA.VolumeI.Set.Laws.Boolean", "LRA.VolumeI.Set.Laws.Complement", "LRA.VolumeI.Set.Laws.Difference", "LRA.VolumeI.Set.Laws.SymmetricDifference"], "declarations": ["UniversalMembership", "ComplementMembership", "DifferenceMembership", "SymmetricDifferenceMembership", "DoubleComplement", "ComplementEmpty", "ComplementUniversal", "UnionComplement", "IntersectionComplement", "DeMorganUnion", "DeMorganIntersection", "DifferenceAsIntersectionComplement", "SymmetricDifferenceAsUnionDifferences"]},
+    {"title": "Indexed And Family Laws", "modules": ["LRA.VolumeI.Set.Laws.Indexed", "LRA.VolumeI.Set.Laws.Families", "LRA.VolumeI.Set.Laws.PowerSet"], "declarations": []}
+  ]
+}

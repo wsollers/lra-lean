@@ -10,6 +10,7 @@ where the prose Markdown source tree is absent.
 from __future__ import annotations
 
 import pathlib
+import json
 import re
 import sys
 import unicodedata
@@ -17,6 +18,7 @@ import unicodedata
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 LRA = ROOT / "LRA"
 OUTPUT_DIR = ROOT / "blueprint" / "src"
+GUIDE_DIR = ROOT / "docs" / "blueprint"
 
 VOLUMES = [
     ("i", "I", "Volume I", "LRA/VolumeI"),
@@ -141,6 +143,23 @@ def first_doc_title(lines: list[str], declaration_index: int) -> str | None:
     return None
 
 
+def declaration_statuses(
+    lines: list[str],
+    declarations: list[tuple[str, str, int, str | None]],
+) -> dict[str, str]:
+    statuses: dict[str, str] = {}
+    for position, (_kind, name, line, _title) in enumerate(declarations):
+        start = line - 1
+        end = (
+            declarations[position + 1][2] - 1
+            if position + 1 < len(declarations)
+            else len(lines)
+        )
+        body = "\n".join(lines[start:end])
+        statuses[name] = "proof pending" if re.search(r"\bsorry\b", body) else "checked"
+    return statuses
+
+
 def inspect(path: pathlib.Path) -> dict[str, object]:
     lines = path.read_text(encoding="utf-8").splitlines()
     imports: list[str] = []
@@ -171,10 +190,178 @@ def inspect(path: pathlib.Path) -> dict[str, object]:
         "module": lean_module or module_name(path),
         "imports": imports,
         "declarations": declarations,
+        "declaration_statuses": declaration_statuses(lines, declarations),
         "labels": labels,
         "blueprint_label": blueprint_label,
         "status": status,
     }
+
+
+def declaration_count_under(modules: list[dict[str, object]], module: str) -> int:
+    return sum(
+        len(item["declarations"])
+        for item in modules
+        if str(item["module"]) == module or str(item["module"]).startswith(module + ".")
+    )
+
+
+def declaration_index(modules: list[dict[str, object]]) -> dict[str, dict[str, object]]:
+    indexed: dict[str, dict[str, object]] = {}
+    for item in modules:
+        statuses = item["declaration_statuses"]
+        for kind, name, line, title_text in item["declarations"]:
+            full = f"{item['module']}.{name}"
+            record = {
+                "kind": kind,
+                "name": name,
+                "module": item["module"],
+                "line": line,
+                "title": title_text,
+                "status": statuses.get(name, "checked"),
+            }
+            indexed[name] = record
+            indexed[full] = record
+    return indexed
+
+
+def render_volume_i_guide(modules: list[dict[str, object]]) -> list[str]:
+    guide_path = GUIDE_DIR / "volume-i-guide.json"
+    if not guide_path.exists():
+        return []
+
+    guide = json.loads(guide_path.read_text(encoding="utf-8"))
+    decls = declaration_index(modules)
+    output: list[str] = [
+        "\\section{Maintainer Guide}",
+        "\\label{lean-volume-i:maintainer-guide}",
+        "",
+    ]
+
+    for paragraph in guide.get("chapter_intro", []):
+        output.append(tex(paragraph))
+        output.append("")
+
+    output.extend([
+        "\\subsection{Volume I Map}",
+        "\\label{lean-volume-i:volume-map}",
+        "",
+        "\\begin{itemize}",
+    ])
+    for row in guide.get("volume_map", []):
+        module = row["module"]
+        count = declaration_count_under(modules, module)
+        output.append(
+            "\\item \\textbf{"
+            + tex(row["area"])
+            + "} (\\texttt{"
+            + tex(module)
+            + "}, "
+            + str(count)
+            + " declarations): "
+            + tex(row["purpose"])
+            + "."
+        )
+    output.extend(["\\end{itemize}", ""])
+
+    generic = guide.get("generic_set", {})
+    output.extend([
+        "\\subsection{Generic Set Interface}",
+        "\\label{lean-volume-i:generic-set-interface}",
+        "",
+        "The generic set layer separates mathematical set reasoning from the backend used to represent sets.",
+        "Use the public interface for ordinary theorem statements; use implementation modules only when proving that a backend satisfies the interface.",
+        "",
+        "\\begin{itemize}",
+    ])
+    for concept in generic.get("concepts", []):
+        record = decls.get(concept.get("declaration", ""))
+        status = ", " + tex(record["status"]) if record else ""
+        output.append(
+            "\\item \\texttt{"
+            + tex(concept["name"])
+            + "} in \\texttt{"
+            + tex(concept["module"])
+            + "}: "
+            + tex(concept["role"])
+            + status
+            + "."
+        )
+    output.extend(["\\end{itemize}", ""])
+
+    output.extend([
+        "\\subsection{How To Use Generic Sets}",
+        "\\label{lean-volume-i:how-to-use-generic-sets}",
+        "",
+        "\\begin{enumerate}",
+    ])
+    for step in generic.get("usage", []):
+        output.append("\\item " + tex(step))
+    output.extend(["\\end{enumerate}", ""])
+
+    output.extend([
+        "\\subsection{Import Recipes}",
+        "\\label{lean-volume-i:import-recipes}",
+        "",
+        "\\begin{itemize}",
+    ])
+    for recipe in generic.get("imports", []):
+        output.append(
+            "\\item "
+            + tex(recipe["need"])
+            + ": \\texttt{import "
+            + tex(recipe["import"])
+            + "}."
+        )
+    output.extend(["\\end{itemize}", ""])
+
+    output.extend([
+        "\\subsection{Proof Recipes}",
+        "\\label{lean-volume-i:proof-recipes}",
+        "",
+        "\\begin{itemize}",
+    ])
+    for recipe in generic.get("recipes", []):
+        output.append("\\item \\textbf{" + tex(recipe["title"]) + ".} " + tex(recipe["text"]))
+    output.extend(["\\end{itemize}", ""])
+
+    output.extend([
+        "\\subsection{Generic Set Theorem Catalogue}",
+        "\\label{lean-volume-i:generic-set-theorem-catalogue}",
+        "",
+    ])
+    for group in guide.get("theorem_catalogue", []):
+        output.extend([
+            "\\subsubsection{" + tex(group["title"]) + "}",
+            "\\begin{itemize}",
+        ])
+        declarations = group.get("declarations", [])
+        if declarations:
+            for declaration in declarations:
+                record = decls.get(declaration)
+                if record:
+                    title_text = str(record["title"]).rstrip(".") if record.get("title") else ""
+                    title = f": {tex(title_text)}" if title_text else ""
+                    output.append(
+                        "\\item \\texttt{"
+                        + tex(record["kind"])
+                        + " "
+                        + tex(record["name"])
+                        + "} in \\texttt{"
+                        + tex(record["module"])
+                        + "} ("
+                        + tex(record["status"])
+                        + ")"
+                        + title
+                        + "."
+                    )
+                else:
+                    output.append("\\item \\texttt{" + tex(declaration) + "} (not found in current Lean tree).")
+        else:
+            modules = ", ".join("\\texttt{" + tex(module) + "}" for module in group.get("modules", []))
+            output.append("\\item Catalogue group reserved for declarations in " + modules + ".")
+        output.extend(["\\end{itemize}", ""])
+
+    return output
 
 
 def write_volume(slug: str, roman: str, title: str, prefix: str) -> pathlib.Path:
@@ -185,6 +372,18 @@ def write_volume(slug: str, roman: str, title: str, prefix: str) -> pathlib.Path
         f"\\label{{lean-volume-{slug}}}",
         "",
         f"This chapter is generated from the current Lean files under \\texttt{{{tex(prefix)}}}.",
+    ]
+    if slug == "i":
+        output.extend([
+            "It records the curated maintainer guide for the Volume I foundation layer.",
+            "",
+        ])
+        output.extend(render_volume_i_guide(modules))
+        output_path = OUTPUT_DIR / f"generated-volume-{slug}.tex"
+        output_path.write_text("\n".join(output) + "\n", encoding="utf-8")
+        return output_path
+
+    output.extend([
         "It records module coverage, source-facing labels, verification statuses,",
         "and public declarations visible to the Lean build.",
         "",
@@ -192,7 +391,7 @@ def write_volume(slug: str, roman: str, title: str, prefix: str) -> pathlib.Path
         f"\\label{{lean-volume-{slug}:module-coverage}}",
         "",
         "\\begin{itemize}",
-    ]
+    ])
     for item in modules:
         declarations = item["declarations"]
         output.append(
@@ -239,6 +438,7 @@ def write_volume(slug: str, roman: str, title: str, prefix: str) -> pathlib.Path
             "\\subsection{" + tex(item["module"]) + "}",
             "\\begin{itemize}",
         ])
+        statuses = item["declaration_statuses"]
         for kind, name, line, title_text in declarations:
             title_part = f" -- {tex(title_text)}" if title_text else ""
             output.append(
@@ -248,6 +448,9 @@ def write_volume(slug: str, roman: str, title: str, prefix: str) -> pathlib.Path
                 + tex(name)
                 + "} at line "
                 + str(line)
+                + " ("
+                + tex(statuses.get(name, "checked"))
+                + ")"
                 + title_part
             )
         output.extend(["\\end{itemize}", ""])
