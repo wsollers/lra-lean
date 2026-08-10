@@ -14,6 +14,17 @@ namespace LRA.VolumeI.Identity
 
 universe u v
 
+/-- TeX label: `ax:equality-reflexivity`.
+
+Equality axiom: every object is equal to itself. -/
+axiom EqualityReflexivity {Carrier : Type u} (element : Carrier) :
+    element = element
+
+/-- TeX label: `ax:leibniz-law`. -/
+axiom LeibnizLaw {Carrier : Type u} {left right : Carrier}
+    (ObjectsAreIdentical : left = right) :
+    ∀ property : Carrier -> Prop, property left ↔ property right
+
 /-- TeX label: `def:identity-relation`. -/
 abbrev IdentityRelation {Carrier : Type u} (left right : Carrier) : Prop :=
   LRA.VolumeI.Relations.IdentityRelation Carrier left right
@@ -21,11 +32,6 @@ abbrev IdentityRelation {Carrier : Type u} (left right : Carrier) : Prop :=
 /-- TeX label: `def:equality-relation`. -/
 abbrev EqualityRelation (Carrier : Type u) : Carrier -> Carrier -> Prop :=
   LRA.VolumeI.Relations.IdentityRelation Carrier
-
-/-- Equality axiom: every object is equal to itself. -/
-theorem EqualityReflexivity {Carrier : Type u} (element : Carrier) :
-    element = element := by
-  rfl
 
 /-- Derived theorem: equality is symmetric. -/
 theorem EqualitySymmetry {Carrier : Type u} {left right : Carrier}
@@ -65,14 +71,6 @@ theorem EqualityRelationIsEquivalence (Carrier : Type u) :
     EqualityRelationIsReflexive Carrier,
     EqualityRelationIsSymmetric Carrier,
     EqualityRelationIsTransitive Carrier⟩
-
-/-- TeX label: `ax:leibniz-law`. -/
-theorem LeibnizLaw {Carrier : Type u} {left right : Carrier}
-    (ObjectsAreIdentical : left = right) :
-    ∀ property : Carrier -> Prop, property left ↔ property right := by
-  intro property
-  subst ObjectsAreIdentical
-  rfl
 
 /-- TeX label: `def:definitional-propositional-equality`. -/
 def PropositionalEquality {Carrier : Type u} (left right : Carrier) : Prop :=
