@@ -1,22 +1,8 @@
-/-!
-The axioms of textbook set theory.
+import LRA.VolumeI.Set.Primitives
 
-This is a single-sorted foundation: every object is a set, and every member of
-a set is itself a set. Set and membership are primitive; the axioms below state
-how membership behaves and which sets exist.
--/
+/-! The axioms of textbook set theory. -/
 
 namespace LRA.VolumeI.Set
-
-/-- The single type of objects in textbook set theory. Every object is a set. -/
-axiom Set : Type
-
-/-- Primitive membership between sets. -/
-axiom MembershipRelation : Set -> Set -> Prop
-
-/-- Ordinary membership notation for textbook sets. -/
-instance : Membership Set Set where
-  mem containingSet element := MembershipRelation element containingSet
 
 /-- TeX label: `ax:extensionality`.
 
