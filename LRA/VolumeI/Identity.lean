@@ -1,5 +1,5 @@
 import LRA.VolumeI.Identity.Axioms.Axioms
-import LRA.VolumeI.Identity.Model
+import LRA.VolumeI.Identity.Model.Model
 import LRA.VolumeI.Identity.Theorems.Theorems
 
 /-!
