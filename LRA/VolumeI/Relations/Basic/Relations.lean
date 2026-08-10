@@ -46,4 +46,33 @@ def UniversalRelation (alpha : Type u) : Endorelation alpha :=
 def IdentityRelation (alpha : Type u) : Endorelation alpha :=
   fun left right => left = right
 
+/-- The diversity relation: exactly the off-diagonal ordered pairs are related. -/
+def DiversityRelation (alpha : Type u) : Endorelation alpha :=
+  fun left right => left ≠ right
+
+/-- Inclusion of relations: every ordered pair in the first relation is in the second. -/
+def RelationIncluded {alpha : Type u}
+    (leftRelation rightRelation : Endorelation alpha) : Prop :=
+  forall left right, leftRelation left right -> rightRelation left right
+
+/-- Proper inclusion of relations: inclusion without equality. -/
+def RelationProperlyIncluded {alpha : Type u}
+    (leftRelation rightRelation : Endorelation alpha) : Prop :=
+  RelationIncluded leftRelation rightRelation /\ leftRelation ≠ rightRelation
+
+/-- Union of two endorelations, interpreted as union of their ordered pairs. -/
+def RelationUnion {alpha : Type u}
+    (leftRelation rightRelation : Endorelation alpha) : Endorelation alpha :=
+  fun left right => leftRelation left right \/ rightRelation left right
+
+/-- Intersection of two endorelations, interpreted as intersection of their ordered pairs. -/
+def RelationIntersection {alpha : Type u}
+    (leftRelation rightRelation : Endorelation alpha) : Endorelation alpha :=
+  fun left right => leftRelation left right /\ rightRelation left right
+
+/-- Complement of an endorelation inside the universal relation on its carrier. -/
+def RelationComplement {alpha : Type u}
+    (relation : Endorelation alpha) : Endorelation alpha :=
+  fun left right => Not (relation left right)
+
 end LRA.VolumeI.Relations
