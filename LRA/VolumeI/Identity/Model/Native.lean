@@ -1,4 +1,5 @@
-import LRA.VolumeI.Identity.Theory
+import LRA.VolumeI.Identity.Model.Theory
+import LRA.VolumeI.Identity.Theorems.Core
 
 namespace LRA.VolumeI.Identity
 

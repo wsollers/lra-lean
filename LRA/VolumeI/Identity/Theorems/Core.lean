@@ -1,37 +1,16 @@
-import LRA.VolumeI.Relations.Basic.Properties
+import LRA.VolumeI.Identity.Axioms.Axioms
 
 /-!
-Axiomatic equality foundations.
+Derived identity theorems.
 
-Lean's ambient equality is the implementation of the pure logical equality
-primitive. This chapter treats reflexivity and Leibniz substitution as the
-primitive equality principles; symmetry, transitivity, equivalence-relation
-status, and congruence are derived interface theorems for later predicate
-logic, set theory, and algebra.
+Reflexivity and Leibniz substitution are primitive identity axioms. Symmetry,
+transitivity, equivalence-relation status, substitution results, and congruence
+are derived here for later mathematics.
 -/
 
 namespace LRA.VolumeI.Identity
 
 universe u v
-
-/-- TeX label: `ax:equality-reflexivity`.
-
-Equality axiom: every object is equal to itself. -/
-axiom EqualityReflexivity {Carrier : Type u} (element : Carrier) :
-    element = element
-
-/-- TeX label: `ax:leibniz-law`. -/
-axiom LeibnizLaw {Carrier : Type u} {left right : Carrier}
-    (ObjectsAreIdentical : left = right) :
-    ∀ property : Carrier -> Prop, property left ↔ property right
-
-/-- TeX label: `def:identity-relation`. -/
-abbrev IdentityRelation {Carrier : Type u} (left right : Carrier) : Prop :=
-  LRA.VolumeI.Relations.IdentityRelation Carrier left right
-
-/-- TeX label: `def:equality-relation`. -/
-abbrev EqualityRelation (Carrier : Type u) : Carrier -> Carrier -> Prop :=
-  LRA.VolumeI.Relations.IdentityRelation Carrier
 
 /-- Derived theorem: equality is symmetric. -/
 theorem EqualitySymmetry {Carrier : Type u} {left right : Carrier}
@@ -45,32 +24,6 @@ theorem EqualityTransitivity {Carrier : Type u} {first second third : Carrier}
     (SecondEqualsThird : second = third) :
     first = third := by
   exact Eq.trans FirstEqualsSecond SecondEqualsThird
-
-/-- Equality is reflexive as a named binary-relation predicate. -/
-theorem EqualityRelationIsReflexive (Carrier : Type u) :
-    LRA.VolumeI.Relations.Reflexive (EqualityRelation Carrier) := by
-  intro element
-  exact EqualityReflexivity element
-
-/-- Equality is symmetric as a named binary-relation predicate. -/
-theorem EqualityRelationIsSymmetric (Carrier : Type u) :
-    LRA.VolumeI.Relations.Symmetric (EqualityRelation Carrier) := by
-  intro left right ObjectsAreEqual
-  exact EqualitySymmetry ObjectsAreEqual
-
-/-- Equality is transitive as a named binary-relation predicate. -/
-theorem EqualityRelationIsTransitive (Carrier : Type u) :
-    LRA.VolumeI.Relations.Transitive (EqualityRelation Carrier) := by
-  intro first second third FirstEqualsSecond SecondEqualsThird
-  exact EqualityTransitivity FirstEqualsSecond SecondEqualsThird
-
-/-- Equality is an equivalence relation. -/
-theorem EqualityRelationIsEquivalence (Carrier : Type u) :
-    LRA.VolumeI.Relations.Equivalence (EqualityRelation Carrier) := by
-  exact ⟨
-    EqualityRelationIsReflexive Carrier,
-    EqualityRelationIsSymmetric Carrier,
-    EqualityRelationIsTransitive Carrier⟩
 
 /-- TeX label: `def:definitional-propositional-equality`. -/
 def PropositionalEquality {Carrier : Type u} (left right : Carrier) : Prop :=

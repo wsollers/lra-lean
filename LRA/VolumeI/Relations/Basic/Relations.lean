@@ -1,5 +1,3 @@
-import LRA.VolumeI.Set
-
 namespace LRA.VolumeI.Relations
 
 universe u v w

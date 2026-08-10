@@ -1,5 +1,5 @@
 import LRA.VolumeI.Relations.Equivalence.EquivalenceRelation
-import LRA.VolumeI.Identity.Theory
+import LRA.VolumeI.Identity.Model.Theory
 import LRA.VolumeI.Set.Operations.Comprehension
 
 namespace LRA.VolumeI.Relations

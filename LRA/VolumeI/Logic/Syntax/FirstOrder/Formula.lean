@@ -1,4 +1,4 @@
-import LRA.VolumeI.Identity.Axioms
+import LRA.VolumeI.Identity.Axioms.Axioms
 import LRA.VolumeI.Logic.Syntax.Term
 
 namespace LRA.VolumeI.Logic.FirstOrder

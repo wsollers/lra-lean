@@ -1,5 +1,5 @@
 import LRA.VolumeI.Functions.Preimages
-import LRA.VolumeI.Identity.Theory
+import LRA.VolumeI.Identity.Model.Theory
 
 namespace LRA.VolumeI.Functions
 

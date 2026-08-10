@@ -1,4 +1,4 @@
-import LRA.VolumeI.Identity.Native
+import LRA.VolumeI.Identity.Model.Native
 
 namespace LRA.VolumeI.Identity
 

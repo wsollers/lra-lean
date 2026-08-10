@@ -1,6 +1,6 @@
 import LRA.VolumeI.Functions.Composition
 import LRA.VolumeI.Functions.IdentityFunction
-import LRA.VolumeI.Identity.Theory
+import LRA.VolumeI.Identity.Model.Theory
 import LRA.VolumeI.Set.Operations.Comprehension
 
 namespace LRA.VolumeI.Functions

@@ -1,4 +1,4 @@
-import LRA.VolumeI.Identity.Language
+import LRA.VolumeI.Identity.Model.Language
 import LRA.VolumeI.Logic.Model.Model
 
 namespace LRA.VolumeI.Identity

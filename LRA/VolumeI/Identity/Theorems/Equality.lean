@@ -1,4 +1,4 @@
-import LRA.VolumeI.Identity.Axioms
+import LRA.VolumeI.Identity.Theorems.Relations
 
 /-!
 Contract home for equality laws.

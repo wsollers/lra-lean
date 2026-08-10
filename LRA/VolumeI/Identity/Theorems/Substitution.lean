@@ -1,4 +1,4 @@
-import LRA.VolumeI.Identity.Axioms
+import LRA.VolumeI.Identity.Axioms.Axioms
 
 /-!
 Contract home for substitution laws.

@@ -1,16 +1,9 @@
-import LRA.VolumeI.Identity.Language
+import LRA.VolumeI.Identity.Axioms.Axioms
 import LRA.VolumeI.Identity.Model
-import LRA.VolumeI.Identity.Theory
-import LRA.VolumeI.Identity.Native
-import LRA.VolumeI.Identity.ProofPatterns
-import LRA.VolumeI.Identity.Equality
-import LRA.VolumeI.Identity.Substitution
-import LRA.VolumeI.Identity.Extensionality
-import LRA.VolumeI.Identity.EqualityCongruence
-import LRA.VolumeI.Identity.Axioms
+import LRA.VolumeI.Identity.Theorems.Theorems
 
 /-!
-Aggregate import for the small Axiomatic Equality chapter.
+Aggregate import for the Identity chapter.
 
 This chapter fixes the pure language `L_=` with no non-logical symbols, models
 equality as the diagonal identity relation on a nonempty carrier, takes

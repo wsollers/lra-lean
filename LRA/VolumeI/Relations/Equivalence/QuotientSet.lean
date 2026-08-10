@@ -1,5 +1,5 @@
 import LRA.VolumeI.Relations.Equivalence.Partition
-import LRA.VolumeI.Identity.Theory
+import LRA.VolumeI.Identity.Model.Theory
 import LRA.VolumeI.Set.Operations.Families
 
 namespace LRA.VolumeI.Relations
