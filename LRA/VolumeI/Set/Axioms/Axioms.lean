@@ -6,9 +6,9 @@ namespace LRA.VolumeI.Set
 
 /-- TeX label: `ax:extensionality`.
 
-Two sets are equal if and only if they have the same members. -/
+Sets with the same members are equal. -/
 axiom Extensionality (A B : Set) :
-    A = B ↔ ∀ x : Set, x ∈ A ↔ x ∈ B
+    (∀ x : Set, x ∈ A ↔ x ∈ B) → A = B
 
 /-- TeX label: `ax:empty-set`.
 
