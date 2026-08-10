@@ -14,7 +14,7 @@ theorem EmptySetExist
     (interface : SetInterface.{u, v}) (laws : SetInterfaceLaws interface) :
     ∃ empty : interface.SetObject,
       ∀ element, ¬ interface.member element empty := by
-  sorry
+  exact ⟨interface.empty, laws.emptyMembership⟩
 
 /-- For each element, there exists a singleton containing exactly it. -/
 theorem SingletonSetExist

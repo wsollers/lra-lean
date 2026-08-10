@@ -9,18 +9,75 @@ open LRA.VolumeI.Set.Implementations.LRASet.LRASet
 /-- Let `A` and `B` be sets. The complement of their union is the intersection
 of their complements; equivalently, for every element `x`,
 `x ∈ (A ∪ B)ᶜ` iff `x ∈ Aᶜ ∩ Bᶜ`. -/
-theorem DeMorganUnion {Alpha : LRACarrier} (Left Right : LRASet Alpha) :
+theorem DeMorganUnion {Alpha : LRACarrier}
+    (Left Right : LRASet Alpha) :
     Complement (Union Left Right) =
       Intersection (Complement Left) (Complement Right) := by
-  sorry
+  apply LRASet.Extensionality
+  intro Element
+  constructor
+  case mp =>
+    intro elementInComplementUnion
+    unfold Member at elementInComplementUnion
+    have elementNotInLeft : ¬ Member Element Left := by
+      intro elementInLeft
+      exact elementInComplementUnion (Or.inl elementInLeft)
+    have elementNotInRight : ¬ Member Element Right := by
+      intro elementInRight
+      exact elementInComplementUnion (Or.inr elementInRight)
+    exact ⟨elementNotInLeft, elementNotInRight⟩
+  case mpr =>
+    intro elementInIntersectionOfComplements
+    unfold Member at elementInIntersectionOfComplements
+    have elementNotInA : ¬ Member Element Left := by
+      exact elementInIntersectionOfComplements.left
+    have elementNotInB : ¬ Member Element Right := by
+      exact elementInIntersectionOfComplements.right
+    intro elementInUnion
+    cases elementInUnion with
+    | inl elementInLeft => exact elementNotInA elementInLeft
+    | inr elementInRight => exact elementNotInB elementInRight
+
 
 /-- Let `A` and `B` be sets. The complement of their intersection is the union
 of their complements; equivalently, for every element `x`,
 `x ∈ (A ∩ B)ᶜ` iff `x ∈ Aᶜ ∪ Bᶜ`. -/
-theorem DeMorganIntersection {Alpha : LRACarrier} (Left Right : LRASet Alpha) :
+theorem DeMorganIntersection {Alpha : LRACarrier}
+    (Left Right : LRASet Alpha) :
     Complement (Intersection Left Right) =
       Union (Complement Left) (Complement Right) := by
-  sorry
+  apply LRASet.Extensionality
+  intro Element
+  constructor
+  case mp =>
+    intro elementInComplementOfIntersection
+    unfold Member at elementInComplementOfIntersection
+    have elementNotInIntersection :
+        ¬ Member Element (Intersection Left Right) := by
+      exact elementInComplementOfIntersection
+    by_cases elementInLeft : Member Element Left
+    · have elementNotInRight : ¬ Member Element Right := by
+        intro elementInRight
+        exact elementNotInIntersection ⟨elementInLeft, elementInRight⟩
+      exact Or.inr elementNotInRight
+    · exact Or.inl elementInLeft
+  case mpr =>
+    intro elementInUnionOfComplements
+    unfold Member at elementInUnionOfComplements
+    cases elementInUnionOfComplements with
+    | inl elementNotInLeft =>
+      have elementNotInIntersection : ¬ Member Element (Intersection Left Right) := by
+        intro elementInIntersection
+        exact elementNotInLeft elementInIntersection.left
+      exact elementNotInIntersection
+    | inr elementNotInRight =>
+      have elementNotInIntersection : ¬ Member Element (Intersection Left Right) := by
+        intro elementInIntersection
+        exact elementNotInRight elementInIntersection.right
+      exact elementNotInIntersection
+
+
+
 
 /-- Intersection distributes over union: `A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)`;
 equivalently, membership distributes conjunction over disjunction. -/

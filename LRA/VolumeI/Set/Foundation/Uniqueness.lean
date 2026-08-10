@@ -11,12 +11,20 @@ Foundational set-uniqueness statements over the generic set interface.
 
 /-- Any two empty set objects are equal. -/
 theorem EmptySetUnique
-    (interface : SetInterface.{u, v}) (laws : SetInterfaceLaws interface)
+    (interface : SetInterface.{u, v})
+    (laws : SetInterfaceLaws interface)
     {left right : interface.SetObject}
     (leftEmpty : ∀ element, ¬ interface.member element left)
     (rightEmpty : ∀ element, ¬ interface.member element right) :
     left = right := by
-  sorry
+  apply laws.extensionality
+  intro element
+  constructor
+  · intro elementInLeft
+    exact False.elim (leftEmpty element elementInLeft)
+  · intro elementInRight
+    exact False.elim (rightEmpty element elementInRight)
+
 
 /-- Any two singleton set objects for the same element are equal. -/
 theorem SingletonSetUnique
