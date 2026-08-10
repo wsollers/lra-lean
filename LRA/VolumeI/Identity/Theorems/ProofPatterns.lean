@@ -13,32 +13,72 @@ rewrites a proved equality through a property; congruence transports equality
 through functions and relations.
 -/
 
-/-- Start an equality proof by reflexivity. -/
+/--
+Start an equality proof by reflexivity.
+
+Logical form:
+
+```lean
+x = x
+```
+-/
 theorem EqualityReasoningByReflexivity {Carrier : Type u} (x : Carrier) :
     x = x :=
   EqualityReflexivity x
 
-/-- Reverse a proved equality. -/
+/--
+Reverse a proved equality.
+
+Logical form:
+
+```lean
+x = y → y = x
+```
+-/
 theorem EqualityReasoningBySymmetry {Carrier : Type u} {x y : Carrier}
     (EqualityProof : x = y) :
     y = x :=
   EqualitySymmetry EqualityProof
 
-/-- Chain two proved equalities. -/
+/--
+Chain two proved equalities.
+
+Logical form:
+
+```lean
+x = y → y = z → x = z
+```
+-/
 theorem EqualityReasoningByTransitivity {Carrier : Type u} {x y z : Carrier}
     (FirstEquality : x = y)
     (SecondEquality : y = z) :
     x = z :=
   EqualityTransitivity FirstEquality SecondEquality
 
-/-- Rewrite a unary property along an equality. -/
+/--
+Rewrite a unary property along an equality.
+
+Logical form:
+
+```lean
+x = y → Property x ↔ Property y
+```
+-/
 theorem RewritePropertyByEquality {Carrier : Type u} {x y : Carrier}
     (EqualityProof : x = y)
     (Property : Carrier -> Prop) :
     Property x ↔ Property y :=
   LeibnizLaw EqualityProof Property
 
-/-- Rewrite a function application along an equality. -/
+/--
+Rewrite a function application along an equality.
+
+Logical form:
+
+```lean
+x = y → function x = function y
+```
+-/
 theorem RewriteFunctionByEquality {Domain : Type u} {Codomain : Type v}
     {x y : Domain}
     (EqualityProof : x = y)
@@ -46,7 +86,15 @@ theorem RewriteFunctionByEquality {Domain : Type u} {Codomain : Type v}
     function x = function y :=
   FunctionCongruence EqualityProof function
 
-/-- Rewrite one coordinate of a binary relation along an equality. -/
+/--
+Rewrite one coordinate of a binary relation along an equality.
+
+Logical form:
+
+```lean
+x = y → relation x z ↔ relation y z
+```
+-/
 theorem RewriteRelationLeftByEquality {Carrier : Type u}
     {x y z : Carrier}
     (EqualityProof : x = y)

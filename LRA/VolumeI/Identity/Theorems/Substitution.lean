@@ -8,7 +8,16 @@ namespace LRA.VolumeI.Identity
 
 universe u
 
-/-- Leibniz substitution in the public substitution file. -/
+/--
+Leibniz substitution in the public substitution file.
+
+Logical form:
+
+```lean
+Left = Right →
+  ∀ Property : Carrier -> Prop, Property Left ↔ Property Right
+```
+-/
 theorem LeibnizSubstitution {Carrier : Type u} {Left Right : Carrier}
     (ObjectsAreIdentical : Left = Right)
     (Property : Carrier -> Prop) :

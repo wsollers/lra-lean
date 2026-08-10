@@ -17,11 +17,32 @@ only the domain plus the distinguished logical equality interpretation
 `=^M = Δ_M`.
 -/
 
-/-- The diagonal identity relation on a carrier. -/
+/--
+The diagonal identity relation on a carrier.
+
+Logical form:
+
+```lean
+EqualityDiagonal Carrier left right ↔ left = right
+```
+-/
 def EqualityDiagonal (Carrier : Type u) : Carrier -> Carrier -> Prop :=
   fun left right => left = right
 
-/-- An `L_=`-structure: a nonempty carrier with equality interpreted as the diagonal. -/
+/--
+An `L_=`-structure: a nonempty carrier with equality interpreted as the
+diagonal.
+
+Logical form:
+
+```lean
+Carrier : Type u
+carrierNonempty : Nonempty Carrier
+equalityInterpretation : Carrier -> Carrier -> Prop
+equalityIsDiagonal : ∀ left right,
+  equalityInterpretation left right ↔ EqualityDiagonal Carrier left right
+```
+-/
 structure EqualityStructure where
   Carrier : Type u
   carrierNonempty : Nonempty Carrier
@@ -30,7 +51,15 @@ structure EqualityStructure where
     ∀ left right,
       equalityInterpretation left right ↔ EqualityDiagonal Carrier left right
 
-/-- The model-theoretic first-order model induced by an equality structure. -/
+/--
+The model-theoretic first-order model induced by an equality structure.
+
+Logical form:
+
+```lean
+(equalityStructure.toFirstOrderModel).Domain = equalityStructure.Carrier
+```
+-/
 def EqualityStructure.toFirstOrderModel
     (equalityStructure : EqualityStructure.{u}) :
     FirstOrder.Model pureEqualitySignature where
@@ -42,7 +71,15 @@ def EqualityStructure.toFirstOrderModel
   interpretRelation := fun relationSymbol => Empty.elim relationSymbol
   interpretConstant := Empty.elim
 
-/-- The canonical equality structure on any nonempty carrier. -/
+/--
+The canonical equality structure on any nonempty carrier.
+
+Logical form:
+
+```lean
+equalityInterpretation = EqualityDiagonal Carrier
+```
+-/
 def canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :
     EqualityStructure where
   Carrier := Carrier
@@ -52,7 +89,15 @@ def canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :
     intro left right
     rfl
 
-/-- In every equality structure, interpreted equality is exactly identity. -/
+/--
+In every equality structure, interpreted equality is exactly identity.
+
+Logical form:
+
+```lean
+equalityStructure.equalityInterpretation left right ↔ left = right
+```
+-/
 theorem EqualityStructure.interpretsEqualityAsIdentity
     (equalityStructure : EqualityStructure.{u})
     (left right : equalityStructure.Carrier) :

@@ -12,24 +12,54 @@ namespace LRA.VolumeI.Identity
 
 universe u v
 
-/-- Derived theorem: equality is symmetric. -/
+/--
+Equality is symmetric.
+
+Logical form:
+
+```lean
+left = right → right = left
+```
+-/
 theorem EqualitySymmetry {Carrier : Type u} {left right : Carrier}
     (ObjectsAreEqual : left = right) :
     right = left := by
   exact Eq.symm ObjectsAreEqual
 
-/-- Derived theorem: equality is transitive. -/
+/--
+Equality is transitive.
+
+Logical form:
+
+```lean
+first = second → second = third → first = third
+```
+-/
 theorem EqualityTransitivity {Carrier : Type u} {first second third : Carrier}
     (FirstEqualsSecond : first = second)
     (SecondEqualsThird : second = third) :
     first = third := by
   exact Eq.trans FirstEqualsSecond SecondEqualsThird
 
-/-- TeX label: `def:definitional-propositional-equality`. -/
+/-- TeX label: `def:definitional-propositional-equality`.
+
+Logical form:
+
+```lean
+PropositionalEquality left right ↔ left = right
+```
+-/
 def PropositionalEquality {Carrier : Type u} (left right : Carrier) : Prop :=
   left = right
 
-/-- TeX label: `ax:equality-substitution`. -/
+/-- TeX label: `ax:equality-substitution`.
+
+Logical form:
+
+```lean
+left = right → formula left ↔ formula right
+```
+-/
 theorem EqualitySubstitution {Carrier : Type u} {left right : Carrier}
     (ObjectsAreEqual : left = right)
     (formula : Carrier -> Prop) :
@@ -37,7 +67,14 @@ theorem EqualitySubstitution {Carrier : Type u} {left right : Carrier}
   by
     exact LeibnizLaw ObjectsAreEqual formula
 
-/-- TeX label: `prop:substitution-preserves-predicates`. -/
+/-- TeX label: `prop:substitution-preserves-predicates`.
+
+Logical form:
+
+```lean
+left = right → predicate left ↔ predicate right
+```
+-/
 theorem SubstitutionPreservesPredicates {Carrier : Type u}
     {left right : Carrier}
     (ObjectsAreEqual : left = right)
@@ -46,7 +83,14 @@ theorem SubstitutionPreservesPredicates {Carrier : Type u}
   by
     exact EqualitySubstitution ObjectsAreEqual predicate
 
-/-- TeX label: `prop:substitution-preserves-relations-left`. -/
+/-- TeX label: `prop:substitution-preserves-relations-left`.
+
+Logical form:
+
+```lean
+left = right → relation left fixed ↔ relation right fixed
+```
+-/
 theorem SubstitutionPreservesRelationsLeft {Carrier : Type u}
     {left right fixed : Carrier}
     (ObjectsAreEqual : left = right)
@@ -54,7 +98,14 @@ theorem SubstitutionPreservesRelationsLeft {Carrier : Type u}
     relation left fixed ↔ relation right fixed := by
   exact EqualitySubstitution ObjectsAreEqual (fun value => relation value fixed)
 
-/-- TeX label: `prop:substitution-preserves-relations-right`. -/
+/-- TeX label: `prop:substitution-preserves-relations-right`.
+
+Logical form:
+
+```lean
+left = right → relation fixed left ↔ relation fixed right
+```
+-/
 theorem SubstitutionPreservesRelationsRight {Carrier : Type u}
     {left right fixed : Carrier}
     (ObjectsAreEqual : left = right)
@@ -62,7 +113,15 @@ theorem SubstitutionPreservesRelationsRight {Carrier : Type u}
     relation fixed left ↔ relation fixed right := by
   exact EqualitySubstitution ObjectsAreEqual (fun value => relation fixed value)
 
-/-- TeX label: `prop:substitution-preserves-relations-full`. -/
+/-- TeX label: `prop:substitution-preserves-relations-full`.
+
+Logical form:
+
+```lean
+left = left' → right = right' →
+  relation left right ↔ relation left' right'
+```
+-/
 theorem SubstitutionPreservesRelations {Carrier : Type u}
     {left left' right right' : Carrier}
     (LeftsAreEqual : left = left')
@@ -73,7 +132,14 @@ theorem SubstitutionPreservesRelations {Carrier : Type u}
   subst RightsAreEqual
   rfl
 
-/-- TeX label: `prop:substitution-preserves-functions`. -/
+/-- TeX label: `prop:substitution-preserves-functions`.
+
+Logical form:
+
+```lean
+left = right → function left = function right
+```
+-/
 theorem SubstitutionPreservesFunctions {Domain : Type u} {Codomain : Type v}
     {left right : Domain}
     (ObjectsAreEqual : left = right)
@@ -81,7 +147,14 @@ theorem SubstitutionPreservesFunctions {Domain : Type u} {Codomain : Type v}
     function left = function right := by
   exact congrArg function ObjectsAreEqual
 
-/-- TeX label: `prop:substitution-preserves-operations-left`. -/
+/-- TeX label: `prop:substitution-preserves-operations-left`.
+
+Logical form:
+
+```lean
+left = left' → operation left right = operation left' right
+```
+-/
 theorem SubstitutionPreservesOperationsLeft {Carrier : Type u}
     {left left' right : Carrier}
     (LeftsAreEqual : left = left')
@@ -89,7 +162,14 @@ theorem SubstitutionPreservesOperationsLeft {Carrier : Type u}
     operation left right = operation left' right := by
   exact congrArg (fun value => operation value right) LeftsAreEqual
 
-/-- TeX label: `prop:substitution-preserves-operations-right`. -/
+/-- TeX label: `prop:substitution-preserves-operations-right`.
+
+Logical form:
+
+```lean
+right = right' → operation left right = operation left right'
+```
+-/
 theorem SubstitutionPreservesOperationsRight {Carrier : Type u}
     {left right right' : Carrier}
     (RightsAreEqual : right = right')
@@ -97,7 +177,15 @@ theorem SubstitutionPreservesOperationsRight {Carrier : Type u}
     operation left right = operation left right' := by
   exact congrArg (operation left) RightsAreEqual
 
-/-- TeX label: `prop:substitution-preserves-operations-full`. -/
+/-- TeX label: `prop:substitution-preserves-operations-full`.
+
+Logical form:
+
+```lean
+left = left' → right = right' →
+  operation left right = operation left' right'
+```
+-/
 theorem SubstitutionPreservesOperations {Carrier : Type u}
     {left left' right right' : Carrier}
     (LeftsAreEqual : left = left')
@@ -108,7 +196,21 @@ theorem SubstitutionPreservesOperations {Carrier : Type u}
   subst RightsAreEqual
   rfl
 
-/-- TeX label: `prop:congruence-with-respect-to-equality-is-automatic`. -/
+/-- TeX label: `prop:congruence-with-respect-to-equality-is-automatic`.
+
+Logical form:
+
+```lean
+left = left' →
+right = right' →
+  (∀ predicate : Carrier -> Prop,
+    predicate left ↔ predicate left') ∧
+  (∀ relation : Carrier -> Carrier -> Prop,
+    relation left right ↔ relation left' right') ∧
+  (∀ operation : Carrier -> Carrier -> Carrier,
+    operation left right = operation left' right')
+```
+-/
 theorem CongruenceWithRespectToEqualityIsAutomatic {Carrier : Type u}
     {left left' right right' : Carrier}
     (LeftsAreEqual : left = left')

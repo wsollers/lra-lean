@@ -8,12 +8,28 @@ Existence, uniqueness, and the chosen native empty set.
 
 namespace LRA.VolumeI.Set
 
-/-- There exists an empty set. -/
+/--
+There exists an empty set.
+
+Logical form:
+
+```lean
+∃ A : Set, IsEmptySet A
+```
+-/
 theorem EmptySetExists :
     ∃ A : Set, IsEmptySet A := by
   sorry
 
-/-- Any empty set is equal to any other empty set. -/
+/--
+Any empty set is equal to any other empty set.
+
+Logical form:
+
+```lean
+IsEmptySet A → IsEmptySet B → B = A
+```
+-/
 theorem EmptySetIsUnique
     {A B : Set}
     (AIsEmpty : IsEmptySet A)
@@ -24,21 +40,54 @@ theorem EmptySetIsUnique
 /-- TeX label: `thm:empty-set-exists-unique`.
 
 There exists exactly one empty set. Its proof combines `EmptySetExists` with
-`EmptySetIsUnique`. -/
+`EmptySetIsUnique`.
+
+Logical form:
+
+```lean
+∃ A : Set,
+  IsEmptySet A ∧
+  ∀ B : Set, IsEmptySet B → B = A
+```
+-/
 theorem EmptySetExistsAndIsUnique :
     ExistsAndUnique IsEmptySet := by
   sorry
 
-/-- The empty set chosen after its existence has been established. -/
+/--
+The empty set chosen after its existence has been established.
+
+Logical form:
+
+```lean
+TheEmptySet = Classical.choose EmptySetExists
+```
+-/
 noncomputable def TheEmptySet : Set :=
   Classical.choose EmptySetExists
 
-/-- The chosen empty set has no members. -/
+/--
+The chosen empty set has no members.
+
+Logical form:
+
+```lean
+IsEmptySet TheEmptySet
+```
+-/
 theorem TheEmptySetIsEmpty :
     IsEmptySet TheEmptySet := by
   sorry
 
-/-- Every empty set is equal to the chosen empty set. -/
+/--
+Every empty set is equal to the chosen empty set.
+
+Logical form:
+
+```lean
+IsEmptySet A → A = TheEmptySet
+```
+-/
 theorem EveryEmptySetEqualsTheEmptySet
     {A : Set}
     (AIsEmpty : IsEmptySet A) :

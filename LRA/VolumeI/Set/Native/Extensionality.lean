@@ -10,7 +10,14 @@ namespace LRA.VolumeI.Set
 /-- Two sets are equal if and only if they have the same members.
 
 The forward direction is identity substitution. The reverse direction is the
-Axiom of Extensionality. -/
+Axiom of Extensionality.
+
+Logical form:
+
+```lean
+A = B ↔ ∀ x : Set, x ∈ A ↔ x ∈ B
+```
+-/
 theorem SetEqualityIffSameMembers (A B : Set) :
     A = B ↔ ∀ x : Set, x ∈ A ↔ x ∈ B := by
   constructor

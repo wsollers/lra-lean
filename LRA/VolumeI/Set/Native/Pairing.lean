@@ -8,12 +8,28 @@ Existence, uniqueness, and the chosen native pair set.
 
 namespace LRA.VolumeI.Set
 
-/-- For any two sets, there exists a set containing exactly those two sets. -/
+/--
+For any two sets, there exists a set containing exactly those two sets.
+
+Logical form:
+
+```lean
+∃ P : Set, IsPairSet x1 x2 P
+```
+-/
 theorem PairSetExists (x1 x2 : Set) :
     ∃ P : Set, IsPairSet x1 x2 P := by
   sorry
 
-/-- Any pair set of `x1` and `x2` is equal to any other pair set of them. -/
+/--
+Any pair set of `x1` and `x2` is equal to any other pair set of them.
+
+Logical form:
+
+```lean
+IsPairSet x1 x2 P → IsPairSet x1 x2 G → G = P
+```
+-/
 theorem PairSetIsUnique
     {x1 x2 P G : Set}
     (PIsPairSet : IsPairSet x1 x2 P)
@@ -24,23 +40,54 @@ theorem PairSetIsUnique
 /-- TeX label: `thm:pairing-output-exists-unique`.
 
 For any two sets, there exists exactly one set whose members are precisely
-those two sets. Its proof combines `PairSetExists` with `PairSetIsUnique`. -/
+those two sets. Its proof combines `PairSetExists` with `PairSetIsUnique`.
+
+Logical form:
+
+```lean
+∃ P : Set,
+  IsPairSet x1 x2 P ∧
+  ∀ G : Set, IsPairSet x1 x2 G → G = P
+```
+-/
 theorem PairingOutputExistsAndIsUnique (x1 x2 : Set) :
     ExistsAndUnique (fun P : Set => IsPairSet x1 x2 P) := by
   sorry
 
 /-- The pair set of `x1` and `x2`, chosen after its existence has been
-established. -/
+established.
+
+Logical form:
+
+```lean
+PairSet x1 x2 = Classical.choose (PairSetExists x1 x2)
+```
+-/
 noncomputable def PairSet (x1 x2 : Set) : Set :=
   Classical.choose (PairSetExists x1 x2)
 
 /-- Membership in the chosen pair set means equality to one of its two given
-sets. -/
+sets.
+
+Logical form:
+
+```lean
+w ∈ PairSet x1 x2 ↔ w = x1 ∨ w = x2
+```
+-/
 theorem PairSetMembership (x1 x2 w : Set) :
     w ∈ PairSet x1 x2 ↔ w = x1 ∨ w = x2 := by
   sorry
 
-/-- Every pair set of `x1` and `x2` is equal to the chosen pair set. -/
+/--
+Every pair set of `x1` and `x2` is equal to the chosen pair set.
+
+Logical form:
+
+```lean
+IsPairSet x1 x2 P → P = PairSet x1 x2
+```
+-/
 theorem EveryPairSetEqualsPairSet
     {x1 x2 P : Set}
     (PIsPairSet : IsPairSet x1 x2 P) :

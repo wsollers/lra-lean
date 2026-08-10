@@ -8,13 +8,37 @@ behaves and which sets exist.
 
 namespace LRA.VolumeI.Set
 
-/-- The primitive sort of sets. -/
+/--
+The primitive sort of sets.
+
+Logical form:
+
+```lean
+Set : Type
+```
+-/
 axiom Set : Type
 
-/-- The primitive membership relation between sets. -/
+/--
+The primitive membership relation between sets.
+
+Logical form:
+
+```lean
+MembershipRelation element containingSet : Prop
+```
+-/
 axiom MembershipRelation : Set -> Set -> Prop
 
-/-- Ordinary membership notation for textbook sets. -/
+/--
+Ordinary membership notation for textbook sets.
+
+Logical form:
+
+```lean
+element ∈ containingSet ↔ MembershipRelation element containingSet
+```
+-/
 instance : Membership Set Set where
   mem element containingSet := MembershipRelation element containingSet
 
