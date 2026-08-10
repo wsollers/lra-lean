@@ -41,7 +41,11 @@ theorem PairingOutputExistsUnique
     (x1 x2 : setUniverse.SetObject) :
     ExistsUnique (fun pairSet : setUniverse.SetObject =>
       IsPairSet setUniverse x1 x2 pairSet) := by
-  rcases pairing x1 x2 with ⟨pairSet, pairSetIsPairSet⟩
+  have pairSetExists :
+      ∃ pairSet : setUniverse.SetObject,
+        IsPairSet setUniverse x1 x2 pairSet :=
+    PairSetExist pairing x1 x2
+  rcases pairSetExists with ⟨pairSet, pairSetIsPairSet⟩
   refine ⟨pairSet, pairSetIsPairSet, ?_⟩
   intro otherPairSet otherPairSetIsPairSet
   exact PairSetUnique extensionality otherPairSetIsPairSet pairSetIsPairSet
