@@ -16,13 +16,31 @@ universal set (impossible, Russell).
 namespace LRA.VolumeI.Set.Enderton
 
 /-- The intersection over the collection `A`, derived as the separated
-subset of the union over `A`. -/
+subset of the union over `A`.
+
+Logical form:
+
+```lean
+noncomputable def TheIntersectionOver (A : Set) : Set :=
+  TheSeparatedSubset (TheUnionOver A)
+    (fun x => ∀ B : Set, B ∈ A → x ∈ B)
+```
+-/
 noncomputable def TheIntersectionOver (A : Set) : Set :=
   TheSeparatedSubset (TheUnionOver A)
     (fun x => ∀ B : Set, B ∈ A → x ∈ B)
 
 /-- For a nonempty collection, membership in the intersection over it is
-membership in every member. -/
+membership in every member.
+
+Logical form:
+
+```lean
+theorem TheIntersectionOverMembership (A x : Set)
+    (collectionNonempty : ∃ B : Set, B ∈ A) :
+    x ∈ TheIntersectionOver A ↔ ∀ B : Set, B ∈ A → x ∈ B
+```
+-/
 theorem TheIntersectionOverMembership (A x : Set)
     (collectionNonempty : ∃ B : Set, B ∈ A) :
     x ∈ TheIntersectionOver A ↔ ∀ B : Set, B ∈ A → x ∈ B := by

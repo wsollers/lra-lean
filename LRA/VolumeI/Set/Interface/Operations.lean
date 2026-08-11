@@ -82,7 +82,15 @@ Lean infer the element type from the set type. Both backends register it:
 Enderton via `TheSeparatedSubset` (noncomputable chosen witness of the
 Separation axiom schema), `LRASet` via `Separation` (a direct definition).
 This is the axiom-schema-shaped operation, not unrestricted comprehension:
-it always carves from an ambient set. -/
+it always carves from an ambient set.
+
+Logical form:
+
+```lean
+class HasSeparation (Element : outParam (Type u)) (SetObject : Type v) where
+  separation : SetObject → (Element → Prop) → SetObject
+```
+-/
 class HasSeparation (Element : outParam (Type u)) (SetObject : Type v) where
   separation : SetObject → (Element → Prop) → SetObject
 
@@ -93,18 +101,42 @@ an `SetObject` lives one level up, in a `Collection` type whose *elements*
 are set objects. For Enderton all three levels are `Set` (everything is a
 set); for `LRASet` the tower is `Alpha`, `LRASet Alpha`,
 `LRASet (LRASet Alpha)` -- no embedding function needed, because the
-collection's members simply are the sets themselves. -/
+collection's members simply are the sets themselves.
+
+Logical form:
+
+```lean
+class HasPowerset (SetObject : Type u) (Collection : outParam (Type v)) where
+  powerset : SetObject → Collection
+```
+-/
 class HasPowerset (SetObject : Type u) (Collection : outParam (Type v)) where
   powerset : SetObject → Collection
 
 /-- Union over an arbitrary indexed family of sets. A predicate-backend
 capability: for ZF-style backends an arbitrary Lean-type-indexed family
-is class-sized, so neither Enderton nor `ZFSet` registers this. -/
+is class-sized, so neither Enderton nor `ZFSet` registers this.
+
+Logical form:
+
+```lean
+class HasIndexedUnion (SetObject : Type v) where
+  indexedUnion : {Index : Type w} → (Index → SetObject) → SetObject
+```
+-/
 class HasIndexedUnion (SetObject : Type v) where
   indexedUnion : {Index : Type w} → (Index → SetObject) → SetObject
 
 /-- Intersection over an arbitrary indexed family of sets. Same capability
-profile as `HasIndexedUnion`. -/
+profile as `HasIndexedUnion`.
+
+Logical form:
+
+```lean
+class HasIndexedIntersection (SetObject : Type v) where
+  indexedIntersection : {Index : Type w} → (Index → SetObject) → SetObject
+```
+-/
 class HasIndexedIntersection (SetObject : Type v) where
   indexedIntersection : {Index : Type w} → (Index → SetObject) → SetObject
 
@@ -112,24 +144,56 @@ class HasIndexedIntersection (SetObject : Type v) where
 operation. Wider capability than `HasIndexedUnion`: the predicate
 backends take it as `Nat`-instantiated indexed union, and `ZFSet`
 registers it via `⋃₀ (range f)` (Replacement); Enderton cannot until
-naturals-as-sets exist. -/
+naturals-as-sets exist.
+
+Logical form:
+
+```lean
+class HasCountableUnion (SetObject : Type v) where
+  countableUnion : (Nat → SetObject) → SetObject
+```
+-/
 class HasCountableUnion (SetObject : Type v) where
   countableUnion : (Nat → SetObject) → SetObject
 
-/-- Intersection over a countable family -- the delta-ring operation. -/
+/-- Intersection over a countable family -- the delta-ring operation.
+
+Logical form:
+
+```lean
+class HasCountableIntersection (SetObject : Type v) where
+  countableIntersection : (Nat → SetObject) → SetObject
+```
+-/
 class HasCountableIntersection (SetObject : Type v) where
   countableIntersection : (Nat → SetObject) → SetObject
 
 /-- Union over a collection *of sets* (`⋃₀`): one level up the membership
 tower, like `HasPowerset`. Every backend registers this -- for Enderton
-it is the Union axiom's own operation (`TheUnionOver`). -/
+it is the Union axiom's own operation (`TheUnionOver`).
+
+Logical form:
+
+```lean
+class HasCollectionUnion (SetObject : outParam (Type v)) (Collection : Type w) where
+  collectionUnion : Collection → SetObject
+```
+-/
 class HasCollectionUnion (SetObject : outParam (Type v)) (Collection : Type w) where
   collectionUnion : Collection → SetObject
 
 /-- Intersection over a collection of sets (`⋂₀`). Every backend registers
 it, but its membership characterization is only available for *nonempty*
 collections -- `⋂₀ ∅` would otherwise be the universal set, which
-ZF-style backends cannot have. See `CollectionMembershipLaws`. -/
+ZF-style backends cannot have. See `CollectionMembershipLaws`.
+
+Logical form:
+
+```lean
+class HasCollectionIntersection (SetObject : outParam (Type v)) (Collection : Type w) where
+  collectionIntersection : Collection → SetObject
+```
+-/
 class HasCollectionIntersection (SetObject : outParam (Type v)) (Collection : Type w) where
   collectionIntersection : Collection → SetObject
 

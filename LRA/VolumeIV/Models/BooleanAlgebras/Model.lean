@@ -5,7 +5,17 @@ namespace LRA.VolumeIV.Models.BooleanAlgebras
 
 /-- Build a first-order model of the Boolean-algebra language from a Boolean
 algebra operation signature. Powerset models interpret this abstract language
-by `zero = ∅`, `one = U`, `join = ∪`, `meet = ∩`, and `complement = Aᶜ`. -/
+by `zero = ∅`, `one = U`, `join = ∪`, `meet = ∩`, and `complement = Aᶜ`.
+
+Logical form:
+
+```lean
+def BuildBooleanAlgebraModel
+    (signature : BooleanAlgebraSignature) :
+    LRA.VolumeI.Logic.FirstOrder.Model BooleanAlgebraFirstOrderLanguage where
+  Domain
+```
+-/
 def BuildBooleanAlgebraModel
     (signature : BooleanAlgebraSignature) :
     LRA.VolumeI.Logic.FirstOrder.Model BooleanAlgebraFirstOrderLanguage where

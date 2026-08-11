@@ -21,25 +21,57 @@ variable-naming scheme.
 -/
 
 /-- The assignment `assignment`, updated so that `v` now denotes `a`,
-leaving every other variable's value unchanged. -/
+leaving every other variable's value unchanged.
+
+Logical form:
+
+```lean
 def updateAssignment
-    {Variable : Type} [DecidableEq Variable] {Domain : Type}
+    {Variable : Type} [DecidableEq Variable] {Domain : Type u}
+    (assignment : Variable -> Domain) (v : Variable) (a : Domain) :
+    Variable -> Domain :=
+  fun v' => if v' = v then a else assignment v'
+```
+-/
+def updateAssignment
+    {Variable : Type} [DecidableEq Variable] {Domain : Type u}
     (assignment : Variable -> Domain) (v : Variable) (a : Domain) :
     Variable -> Domain :=
   fun v' => if v' = v then a else assignment v'
 
 /-- Reading off the updated assignment at the rebound variable itself gives
-back the new value. -/
+back the new value.
+
+Logical form:
+
+```lean
 theorem updatedVariableTakesNewValue
-    {Variable : Type} [DecidableEq Variable] {Domain : Type}
+    {Variable : Type} [DecidableEq Variable] {Domain : Type u}
+    (assignment : Variable -> Domain) (v : Variable) (a : Domain) :
+    updateAssignment assignment v a v = a
+```
+-/
+theorem updatedVariableTakesNewValue
+    {Variable : Type} [DecidableEq Variable] {Domain : Type u}
     (assignment : Variable -> Domain) (v : Variable) (a : Domain) :
     updateAssignment assignment v a v = a := by
   simp [updateAssignment]
 
 /-- Reading off the updated assignment at any variable other than the
-rebound one gives back the original assignment's value, unchanged. -/
+rebound one gives back the original assignment's value, unchanged.
+
+Logical form:
+
+```lean
 theorem differentVariableKeepsOldValue
-    {Variable : Type} [DecidableEq Variable] {Domain : Type}
+    {Variable : Type} [DecidableEq Variable] {Domain : Type u}
+    (assignment : Variable -> Domain) (v v' : Variable) (a : Domain)
+    (hv : v' ≠ v) :
+    updateAssignment assignment v a v' = assignment v'
+```
+-/
+theorem differentVariableKeepsOldValue
+    {Variable : Type} [DecidableEq Variable] {Domain : Type u}
     (assignment : Variable -> Domain) (v v' : Variable) (a : Domain)
     (hv : v' ≠ v) :
     updateAssignment assignment v a v' = assignment v' := by

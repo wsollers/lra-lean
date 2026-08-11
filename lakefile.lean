@@ -37,7 +37,6 @@ lean_lib LRATests where
   roots := #[
     `LRA.VolumeI.Set.CollectionAlgebraAdaptersTest,
     `LRA.VolumeIII.Analysis.Bounding.BoundsTests,
-    `LRA.VolumeII.Switches.SetsTests,
     `LRA.VolumeIV.Learning.MetricTopologyAdapterTest,
     `LRA.VolumeIV.MetricSpaces.BallSubsetCustomMetricTest,
     `LRA.VolumeIV.TopologicalSpaces.TopologyCompatibilityTest

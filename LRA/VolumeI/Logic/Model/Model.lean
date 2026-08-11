@@ -52,7 +52,17 @@ convention (a model with an empty domain would make universal instantiation
 unsound: `∀x. φ(x)` would hold vacuously with no witness to instantiate).
 This is a proof obligation, discharged once per concrete model -- for any
 domain built from an inhabited type, it is typically immediate via
-`inferInstance` or a one-element witness. -/
+`inferInstance` or a one-element witness.
+
+Logical form:
+
+```lean
+structure Model (S : Signature) where
+  Domain : Type u
+  domainNonempty : Nonempty Domain
+  interpretEquality : Domain -> Domain -> Prop
+```
+-/
 structure Model (S : Signature) where
   Domain : Type u
   domainNonempty : Nonempty Domain

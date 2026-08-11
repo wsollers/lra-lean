@@ -11,7 +11,19 @@ risk to guard against at this level, unlike formulas. Every occurrence of
 `x` is replaced by `t`; everything else is left alone.
 -/
 
-/-- Substitute `t` for every occurrence of `x` in a term. -/
+/-- Substitute `t` for every occurrence of `x` in a term.
+
+Logical form:
+
+```lean
+def substituteInTerm
+    {S : Signature} {Variable : Type} [DecidableEq Variable]
+    (x : Variable) (t : Term S Variable) : Term S Variable -> Term S Variable
+  | .var v => if v = x then t else Term.var v
+  | .const c => Term.const c
+  | .apply f args => Term.apply f (fun i => substituteInTerm x t (args i))
+```
+-/
 def substituteInTerm
     {S : Signature} {Variable : Type} [DecidableEq Variable]
     (x : Variable) (t : Term S Variable) : Term S Variable -> Term S Variable

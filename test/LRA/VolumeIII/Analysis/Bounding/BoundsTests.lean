@@ -2,13 +2,12 @@
 -- Smoke checks for the Volume III bounds interface.
 
 import Mathlib.Tactic
-import LRA.VolumeII.Switches.NumberSystems
 import LRA.VolumeIII.Analysis.Bounding.Bounds
 import LRA.VolumeIII.RealNumbers.LraReal
 
 namespace LRA.VolumeIII.Analysis.Bounding.BoundsTests
 
-abbrev ActiveReal := LRA.VolumeII.Switches.NumberSystems.RealNumbers.R
+abbrev ActiveReal := Real
 
 open LRA.VolumeIII.Analysis.Bounding.Bounds
 

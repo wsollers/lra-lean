@@ -1,6 +1,6 @@
 import LRA.VolumeI.Set
 import LRA.VolumeI.Set.Algebra
-import LRA.VolumeII.Switches.Sets.BackendEnvironment
+import LRA.VolumeI.Set.Algebra
 
 /-!
 Smoke tests for the set-backend architecture.
@@ -43,14 +43,14 @@ example (A : _root_.Set Nat) :
 -- Ambient-relative algebras instantiate over the backends.
 example (Point : Type) :
     LRA.VolumeI.Set.Algebra.AlgebraOfSets (Set.univ : Set Point) :=
-  LRA.VolumeII.Switches.Sets.activeSetAlgebra Point
+  LRA.VolumeI.Set.Algebra.Instantiations.activeSetAlgebra Point
 example (Point : Type) :
     LRA.VolumeI.Set.Algebra.SigmaAlgebraOfSets (Set.univ : Set Point) :=
-  LRA.VolumeII.Switches.Sets.activeSigmaAlgebra Point
+  LRA.VolumeI.Set.Algebra.Instantiations.activeSigmaAlgebra Point
 example (Point : Type) :
     LRA.VolumeI.Set.Algebra.AlgebraOfSets
       (LRA.VolumeI.Set.LRASet.Universal Point) :=
-  LRA.VolumeII.Switches.Sets.lraSetAlgebra Point
+  LRA.VolumeI.Set.Algebra.Instantiations.lraSetAlgebra Point
 
 -- Collection ops resolve at every backend; Covers is generic.
 example (C : ZFSet) (T : ZFSet) : Prop := LRA.VolumeI.Set.Covers C T

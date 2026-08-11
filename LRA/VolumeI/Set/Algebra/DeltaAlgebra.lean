@@ -19,7 +19,19 @@ variable [HasSymmDiff SetObject]
 variable [HasCountableIntersection SetObject]
 
 /-- A delta-ring of sets on `ambient`: a ring of sets closed under
-countable intersections. -/
+countable intersections.
+
+Logical form:
+
+```lean
+structure DeltaRingOfSets (ambient : SetObject) extends
+    RingOfSets ambient where
+  CountableIntersectionIsMember :
+    ∀ family : Nat → SetObject,
+      (∀ index, IsMember (family index)) →
+        IsMember (HasCountableIntersection.countableIntersection family)
+```
+-/
 structure DeltaRingOfSets (ambient : SetObject) extends
     RingOfSets ambient where
   CountableIntersectionIsMember :

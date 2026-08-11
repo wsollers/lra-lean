@@ -3,6 +3,8 @@ import LRA.VolumeI.Set.LRASet
 import LRA.VolumeI.Set.Interface
 import LRA.VolumeI.Set.MathlibPredicateSet
 import LRA.VolumeI.Set.MathlibZFSet
+import LRA.VolumeI.Set.BooleanRing
+import LRA.VolumeI.Set.ModelTheory
 
 /-!
 Aggregate import for the Set chapter.

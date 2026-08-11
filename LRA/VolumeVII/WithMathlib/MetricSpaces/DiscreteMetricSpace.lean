@@ -2,7 +2,23 @@ import LRA.VolumeVII.WithMathlib.MetricSpaces.MetricModeling
 
 namespace LRA.VolumeVII.WithMathlib
 
-/-- The discrete metric on any type of points with decidable equality. -/
+/-- The discrete metric on any type of points with decidable equality.
+
+Logical form:
+
+```lean
+def discreteScratchMetric (Point : Type u) [DecidableEq Point] : ScratchMetric Point where
+  distance x y := if x = y then 0 else 1
+  distance_nonnegative := by
+    sorry
+  distance_eq_zero_iff_equal := by
+    sorry
+  distance_symmetric := by
+    sorry
+  distance_triangle := by
+    sorry
+```
+-/
 def discreteScratchMetric (Point : Type u) [DecidableEq Point] : ScratchMetric Point where
   distance x y := if x = y then 0 else 1
   distance_nonnegative := by
@@ -14,7 +30,15 @@ def discreteScratchMetric (Point : Type u) [DecidableEq Point] : ScratchMetric P
   distance_triangle := by
     sorry
 
-/-- Any type with decidable equality equipped with the discrete metric. -/
+/-- Any type with decidable equality equipped with the discrete metric.
+
+Logical form:
+
+```lean
+def discreteScratchMetricSpace (Point : Type u) [DecidableEq Point] : ScratchMetricSpace Point where
+  metric := discreteScratchMetric Point
+```
+-/
 def discreteScratchMetricSpace (Point : Type u) [DecidableEq Point] : ScratchMetricSpace Point where
   metric := discreteScratchMetric Point
 

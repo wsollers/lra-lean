@@ -8,6 +8,18 @@ initial judgements, and a relation saying that a finite list of upper
 judgements licenses a lower judgement.
 -/
 
+/--
+`ProofSystem` packages the data and laws for proof system.
+
+Logical form:
+
+```lean
+structure ProofSystem where
+  Judgement : Type
+  IsInitial : Judgement -> Prop
+  Rule : List Judgement -> Judgement -> Prop
+```
+-/
 structure ProofSystem where
   Judgement : Type
   IsInitial : Judgement -> Prop

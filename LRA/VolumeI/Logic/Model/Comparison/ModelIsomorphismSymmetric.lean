@@ -34,7 +34,17 @@ it explicitly rather than relying on defeq to paper over the mismatch.
 
 /-- The domain equivalence underlying a model isomorphism: the forward map,
 together with the two-sided inverse `Equiv.ofBijective` extracts from its
-bijectivity. -/
+bijectivity.
+
+Logical form:
+
+```lean
+noncomputable def ModelIsomorphism.toEquiv
+    {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) :
+    M₁.Domain ≃ M₂.Domain :=
+  Equiv.ofBijective iso.toFun iso.bijective
+```
+-/
 noncomputable def ModelIsomorphism.toEquiv
     {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) :
     M₁.Domain ≃ M₂.Domain :=
@@ -42,7 +52,16 @@ noncomputable def ModelIsomorphism.toEquiv
 
 /-- `iso.toEquiv`, applied, is the same as applying `iso.toFun` directly --
 true by definition, named so proofs can rewrite one into the other
-explicitly. -/
+explicitly.
+
+Logical form:
+
+```lean
+theorem ModelIsomorphism.toEquiv_apply
+    {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) (x : M₁.Domain) :
+    iso.toEquiv x = iso.toFun x
+```
+-/
 theorem ModelIsomorphism.toEquiv_apply
     {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) (x : M₁.Domain) :
     iso.toEquiv x = iso.toFun x := rfl
@@ -51,7 +70,17 @@ theorem ModelIsomorphism.toEquiv_apply
 reverse direction, `M₂ → M₁`, via the inverse of the underlying domain
 equivalence. This is what makes isomorphism symmetric: neither direction
 is privileged, even though `ModelIsomorphism` itself is stated with one
-direction as primary. -/
+direction as primary.
+
+Logical form:
+
+```lean
+noncomputable def ModelIsomorphism.inverseEmbedding
+    {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) :
+    ModelEmbedding M₂ M₁ where
+  toFun
+```
+-/
 noncomputable def ModelIsomorphism.inverseEmbedding
     {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) :
     ModelEmbedding M₂ M₁ where

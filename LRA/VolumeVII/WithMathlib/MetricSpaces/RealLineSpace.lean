@@ -4,7 +4,15 @@ import Mathlib.Tactic.Ring
 
 namespace LRA.VolumeVII.WithMathlib
 
-/-- The usual absolute-value metric on the real line. -/
+/-- The usual absolute-value metric on the real line.
+
+Logical form:
+
+```lean
+def realScratchMetric : ScratchMetric Real where
+  distance x y
+```
+-/
 def realScratchMetric : ScratchMetric Real where
   distance x y := |x - y|
 
@@ -35,7 +43,15 @@ def realScratchMetric : ScratchMetric Real where
       _ ≤ |x - y| + |y - z| := by
         exact abs_add_le (x - y) (y - z)
 
-/-- The real line equipped with the usual absolute-value metric. -/
+/-- The real line equipped with the usual absolute-value metric.
+
+Logical form:
+
+```lean
+def realScratchMetricSpace : ScratchMetricSpace Real where
+  metric := realScratchMetric
+```
+-/
 def realScratchMetricSpace : ScratchMetricSpace Real where
   metric := realScratchMetric
 

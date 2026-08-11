@@ -41,7 +41,23 @@ whose meaning does not match what the substitution lemma promises.
 -/
 
 /-- The condition under which substituting `t` for free occurrences of `x`
-in `φ` is capture-avoiding. -/
+in `φ` is capture-avoiding.
+
+Logical form:
+
+```lean
+def IsSubstitutable
+    {S : Signature} {Variable : Type} [DecidableEq Variable] :
+    Formula S Variable -> Variable -> Term S Variable -> Prop
+  | .relation _ _, _, _ => True
+  | .equal _ _, _, _ => True
+  | .neg φ, x, t => IsSubstitutable φ x t
+  | .impl φ ψ, x, t => IsSubstitutable φ x t ∧ IsSubstitutable ψ x t
+  | .forallQ v φ, x, t =>
+      (x ∈ freeVariables (Formula.forallQ v φ) -> v ∉ freeVariablesInTerm t) ∧
+        IsSubstitutable φ x t
+```
+-/
 def IsSubstitutable
     {S : Signature} {Variable : Type} [DecidableEq Variable] :
     Formula S Variable -> Variable -> Term S Variable -> Prop

@@ -35,20 +35,48 @@ restriction is load-bearing.
 /-- No non-logical vocabulary is needed for this test: the formula only
 uses set membership and the two constants of `Bool` as terms, so an empty
 signature suffices, matching the pattern already used for the first-order
-nullary-relation checkpoint. -/
+nullary-relation checkpoint.
+
+Logical form:
+
+```lean
+def emptySignature : Signature where
+  Functions := ⟨Empty, Empty.elim⟩
+  Relations := ⟨Empty, Empty.elim⟩
+  Constants := Empty
+```
+-/
 def emptySignature : Signature where
   Functions := ⟨Empty, Empty.elim⟩
   Relations := ⟨Empty, Empty.elim⟩
   Constants := Empty
 
-/-- The one set variable used in the test formula. -/
+/-- The one set variable used in the test formula.
+
+Logical form:
+
+```lean
+def X : Nat := 0
+```
+-/
 def X : Nat := 0
 
 /-- `∃X. X(t) ∧ ¬X(t')`, instantiated with `t := true`, `t' := false` as
 literal `Bool` values threaded through a constant assignment (there is no
 function/constant symbol for `true`/`false` in `emptySignature`, so they
 are supplied via the element assignment instead, using two designated
-variables rather than terms built from the signature). -/
+variables rather than terms built from the signature).
+
+Logical form:
+
+```lean
+def henkinTestFormula : SOFormula emptySignature Nat Nat :=
+  SOFormula.existsSet X
+    (SOFormula.and
+      (SOFormula.setMember X (FirstOrder.Term.var 0))
+      (SOFormula.neg (SOFormula.setMember X (FirstOrder.Term.var 1))))
+```
+-/
 def henkinTestFormula : SOFormula emptySignature Nat Nat :=
   SOFormula.existsSet X
     (SOFormula.and
@@ -57,13 +85,35 @@ def henkinTestFormula : SOFormula emptySignature Nat Nat :=
 
 /-- The element assignment used by both models: variable `0` denotes
 `true`, variable `1` denotes `false`, matching `henkinTestFormula`'s use of
-`Term.var 0`/`Term.var 1` for `t`/`t'`. -/
+`Term.var 0`/`Term.var 1` for `t`/`t'`.
+
+Logical form:
+
+```lean
+def testElementAssignment : Nat -> Bool
+  | 0 => true
+  | _ => false
+```
+-/
 def testElementAssignment : Nat -> Bool
   | 0 => true
   | _ => false
 
 /-- The rich Henkin model: second-order domain `{∅, {true}, {true, false}}`,
-including the singleton `{true}` needed to witness the test formula. -/
+including the singleton `{true}` needed to witness the test formula.
+
+Logical form:
+
+```lean
+def richModel : HenkinModel emptySignature where
+  Domain := Bool
+  domainNonempty := ⟨true⟩
+  interpretFunction := fun f => Empty.elim f
+  interpretRelation := fun r => Empty.elim r
+  interpretConstant := Empty.elim
+  SecondOrderDomain := {∅, {true}, {true, false}}
+```
+-/
 def richModel : HenkinModel emptySignature where
   Domain := Bool
   domainNonempty := ⟨true⟩
@@ -74,7 +124,20 @@ def richModel : HenkinModel emptySignature where
 
 /-- The poor Henkin model: second-order domain `{∅, {true, false}}`,
 deliberately excluding both singletons -- in particular, excluding `{true}`,
-the only witness that could satisfy the test formula. -/
+the only witness that could satisfy the test formula.
+
+Logical form:
+
+```lean
+def poorModel : HenkinModel emptySignature where
+  Domain := Bool
+  domainNonempty := ⟨true⟩
+  interpretFunction := fun f => Empty.elim f
+  interpretRelation := fun r => Empty.elim r
+  interpretConstant := Empty.elim
+  SecondOrderDomain := {∅, {true, false}}
+```
+-/
 def poorModel : HenkinModel emptySignature where
   Domain := Bool
   domainNonempty := ⟨true⟩
@@ -84,7 +147,17 @@ def poorModel : HenkinModel emptySignature where
   SecondOrderDomain := {∅, {true, false}}
 
 /-- The checkpoint, positive case: `richModel` satisfies the test formula,
-witnessed by `{true} ∈ richModel.SecondOrderDomain`. -/
+witnessed by `{true} ∈ richModel.SecondOrderDomain`.
+
+Logical form:
+
+```lean
+theorem richModel_satisfies_henkinTestFormula :
+    SOSatisfies richModel
+      ⟨testElementAssignment, fun _ => ∅⟩
+      henkinTestFormula
+```
+-/
 theorem richModel_satisfies_henkinTestFormula :
     SOSatisfies richModel
       ⟨testElementAssignment, fun _ => ∅⟩
@@ -105,7 +178,17 @@ theorem richModel_satisfies_henkinTestFormula :
 /-- The checkpoint, negative case: `poorModel` does *not* satisfy the test
 formula -- the whole point of this file. Neither `∅` nor `{true, false}`
 (the only sets `poorModel.SecondOrderDomain` makes available) contains
-`true` without also containing `false`, so no witness exists. -/
+`true` without also containing `false`, so no witness exists.
+
+Logical form:
+
+```lean
+theorem poorModel_not_satisfies_henkinTestFormula :
+    ¬ SOSatisfies poorModel
+        ⟨testElementAssignment, fun _ => ∅⟩
+        henkinTestFormula
+```
+-/
 theorem poorModel_not_satisfies_henkinTestFormula :
     ¬ SOSatisfies poorModel
         ⟨testElementAssignment, fun _ => ∅⟩

@@ -41,7 +41,29 @@ Each case unfolds exactly as the model-theoretic definition demands:
 -/
 
 /-- The satisfaction relation: `M`, under the assignment `assignment`,
-satisfies the first-order formula `φ`. -/
+satisfies the first-order formula `φ`.
+
+Logical form:
+
+```lean
+def Satisfies
+    {S : Signature} {Variable : Type} [DecidableEq Variable]
+    (M : Model S) (assignment : Variable -> M.Domain) :
+    Formula S Variable -> Prop
+  | .relation r args =>
+      M.interpretRelation r (fun i => evaluateTerm M assignment (args i))
+  | .equal t₁ t₂ =>
+      M.interpretEquality
+        (evaluateTerm M assignment t₁)
+        (evaluateTerm M assignment t₂)
+  | .neg φ =>
+      ¬ Satisfies M assignment φ
+  | .impl φ ψ =>
+      Satisfies M assignment φ -> Satisfies M assignment ψ
+  | .forallQ v φ =>
+      ∀ a : M.Domain, Satisfies M (updateAssignment assignment v a) φ
+```
+-/
 def Satisfies
     {S : Signature} {Variable : Type} [DecidableEq Variable]
     (M : Model S) (assignment : Variable -> M.Domain) :
@@ -66,7 +88,19 @@ now stated as an `↔` of `Prop`s rather than a `Bool` equation, since
 `Satisfies` is `Prop`-valued rather than computing a `Bool`. Classical
 reasoning (`Classical.byContradiction`, via `tauto`) is used freely here,
 since `Satisfies` is not decidable in general -- unlike propositional
-`evaluate`, which always computes a concrete `Bool`. -/
+`evaluate`, which always computes a concrete `Bool`.
+
+Logical form:
+
+```lean
+theorem satisfiesAndIffSatisfiesBoth
+    {S : Signature} {Variable : Type} [DecidableEq Variable]
+    (M : Model S) (assignment : Variable -> M.Domain)
+    (φ ψ : Formula S Variable) :
+    Satisfies M assignment (Formula.and φ ψ) ↔
+      (Satisfies M assignment φ ∧ Satisfies M assignment ψ)
+```
+-/
 theorem satisfiesAndIffSatisfiesBoth
     {S : Signature} {Variable : Type} [DecidableEq Variable]
     (M : Model S) (assignment : Variable -> M.Domain)
@@ -79,7 +113,19 @@ theorem satisfiesAndIffSatisfiesBoth
 /-- `Satisfies` on an existential `∃v. φ` (the derived `Formula.existsQ`)
 holds exactly when *some* domain element witnesses `φ` under the updated
 assignment -- the expected meaning of `∃`, derived here (via classical
-reasoning, since the definition goes through `¬∀¬`) rather than assumed. -/
+reasoning, since the definition goes through `¬∀¬`) rather than assumed.
+
+Logical form:
+
+```lean
+theorem satisfiesExistsIffSomeWitness
+    {S : Signature} {Variable : Type} [DecidableEq Variable]
+    (M : Model S) (assignment : Variable -> M.Domain)
+    (v : Variable) (φ : Formula S Variable) :
+    Satisfies M assignment (Formula.existsQ v φ) ↔
+      ∃ a : M.Domain, Satisfies M (updateAssignment assignment v a) φ
+```
+-/
 theorem satisfiesExistsIffSomeWitness
     {S : Signature} {Variable : Type} [DecidableEq Variable]
     (M : Model S) (assignment : Variable -> M.Domain)

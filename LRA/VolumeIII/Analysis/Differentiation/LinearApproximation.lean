@@ -16,19 +16,45 @@ import LRA.VolumeIII.Analysis.Differentiation.DerivativeDefinition
 namespace LRA.VolumeIII.Analysis.Differentiation
 
 /-- `def:first-order-approximation-at-a-point`: `f` has an affine
-approximation at `a` with linear part `L`, error `o(x-a)`. -/
+approximation at `a` with linear part `L`, error `o(x-a)`.
+
+Logical form:
+
+```lean
+def HasLinearApproximation (f : ℝ → ℝ) (a L : ℝ) : Prop :=
+  ∀ ε > 0, ∃ δ > 0, ∀ x : ℝ, 0 < |x - a| → |x - a| < δ →
+    |f x - f a - L * (x - a)| ≤ ε * |x - a|
+```
+-/
 def HasLinearApproximation (f : ℝ → ℝ) (a L : ℝ) : Prop :=
   ∀ ε > 0, ∃ δ > 0, ∀ x : ℝ, 0 < |x - a| → |x - a| < δ →
     |f x - f a - L * (x - a)| ≤ ε * |x - a|
 
 /-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`. Then `IsDifferentiable f A c ↔ ∃ L,
-HasLinearApproximation f c L`. -/
+HasLinearApproximation f c L`.
+
+Logical form:
+
+```lean
+theorem DifferentiableIffHasLinearApproximation (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
+    IsDifferentiable f A c ↔ ∃ L, HasLinearApproximation f c L
+```
+-/
 theorem DifferentiableIffHasLinearApproximation (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     IsDifferentiable f A c ↔ ∃ L, HasLinearApproximation f c L := by
   sorry
 
 /-- Let `A : Set ℝ`, `c D : ℝ`, and `L : ℝ`. If `f : ℝ → ℝ`, `hD : Derivative D f A c`, and `hL :
-HasLinearApproximation f c L`. Then `L = D`. -/
+HasLinearApproximation f c L`. Then `L = D`.
+
+Logical form:
+
+```lean
+theorem LinearApproximationSlopeEqDerivative (f : ℝ → ℝ) (A : Set ℝ) (c D : ℝ)
+    (hD : Derivative D f A c) (L : ℝ) (hL : HasLinearApproximation f c L) :
+    L = D
+```
+-/
 theorem LinearApproximationSlopeEqDerivative (f : ℝ → ℝ) (A : Set ℝ) (c D : ℝ)
     (hD : Derivative D f A c) (L : ℝ) (hL : HasLinearApproximation f c L) :
     L = D := by

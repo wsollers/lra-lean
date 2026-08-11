@@ -28,17 +28,43 @@ import Mathlib.Order.Filter.Basic
 namespace LRA.VolumeIII.Analysis.StructureOfRealLine
 
 /-- `def:open-set`, restated: `U` is open iff every point of `U` is the
-center of an open ball contained in `U`. -/
+center of an open ball contained in `U`.
+
+Logical form:
+
+```lean
+def IsOpenR (U : Set ℝ) : Prop :=
+  ∀ x ∈ U, ∃ r > 0, ∀ y : ℝ, |x - y| < r → y ∈ U
+```
+-/
 def IsOpenR (U : Set ℝ) : Prop :=
   ∀ x ∈ U, ∃ r > 0, ∀ y : ℝ, |x - y| < r → y ∈ U
 
-/-- `def:closed-set`: `F` is closed iff its complement (in `ℝ`) is open. -/
+/-- `def:closed-set`: `F` is closed iff its complement (in `ℝ`) is open.
+
+Logical form:
+
+```lean
+def IsClosedR (F : Set ℝ) : Prop :=
+  IsOpenR (Set.univ \ F)
+```
+-/
 def IsClosedR (F : Set ℝ) : Prop :=
   IsOpenR (Set.univ \ F)
 
 /-- `def:compact-set`, restated with an arbitrary index type `ι` standing in
 for the book's arbitrary family `{U_λ}_{λ∈Λ}`: `K` is compact iff every open
-cover of `K` admits a finite subcover. -/
+cover of `K` admits a finite subcover.
+
+Logical form:
+
+```lean
+def IsCompactR (K : Set ℝ) : Prop :=
+  ∀ (ι : Type) (U : ι → Set ℝ),
+    (∀ i, IsOpenR (U i)) → K ⊆ ⋃ i, U i →
+    ∃ J : Finset ι, K ⊆ ⋃ i ∈ J, U i
+```
+-/
 def IsCompactR (K : Set ℝ) : Prop :=
   ∀ (ι : Type) (U : ι → Set ℝ),
     (∀ i, IsOpenR (U i)) → K ⊆ ⋃ i, U i →
@@ -48,7 +74,16 @@ def IsCompactR (K : Set ℝ) : Prop :=
    ADDITIONS.md item 28. Added with user sign-off. Fills ISSUES.md #44.
    ================================================================ -/
 
-/-- Let `F` be a closed subset of a compact real set `K`. Then `F` is compact. -/
+/-- Let `F` be a closed subset of a compact real set `K`. Then `F` is compact.
+
+Logical form:
+
+```lean
+theorem ClosedSubsetOfCompactIsCompact
+    (F K : Set ℝ) (hFK : F ⊆ K) (hF : IsClosedR F) (hK : IsCompactR K) :
+    IsCompactR F
+```
+-/
 theorem ClosedSubsetOfCompactIsCompact
     (F K : Set ℝ) (hFK : F ⊆ K) (hF : IsClosedR F) (hK : IsCompactR K) :
     IsCompactR F := by
@@ -62,13 +97,31 @@ theorem ClosedSubsetOfCompactIsCompact
 converging to a point of `K`. Phrased in the Sequences chapter's own
 strictly-increasing-index-map idiom for subsequences, so this definition
 reads as a direct extension of that chapter's vocabulary rather than a
-fresh import from general topology. -/
+fresh import from general topology.
+
+Logical form:
+
+```lean
+def IsSeqCompactR (K : Set ℝ) : Prop :=
+  ∀ x : ℕ → ℝ, (∀ n, x n ∈ K) →
+    ∃ φ : ℕ → ℕ, StrictMono φ ∧
+      ∃ L ∈ K, Filter.Tendsto (x ∘ φ) Filter.atTop (nhds L)
+```
+-/
 def IsSeqCompactR (K : Set ℝ) : Prop :=
   ∀ x : ℕ → ℝ, (∀ n, x n ∈ K) →
     ∃ φ : ℕ → ℕ, StrictMono φ ∧
       ∃ L ∈ K, Filter.Tendsto (x ∘ φ) Filter.atTop (nhds L)
 
-/-- Let `K : Set ℝ`. Then `IsSeqCompactR K ↔ IsCompactR K`. -/
+/-- Let `K : Set ℝ`. Then `IsSeqCompactR K ↔ IsCompactR K`.
+
+Logical form:
+
+```lean
+theorem SequentialCompactnessIffOpenCoverCompactness (K : Set ℝ) :
+    IsSeqCompactR K ↔ IsCompactR K
+```
+-/
 theorem SequentialCompactnessIffOpenCoverCompactness (K : Set ℝ) :
     IsSeqCompactR K ↔ IsCompactR K := by
   sorry

@@ -27,7 +27,21 @@ The recursion mirrors `freeVariables`/`IsSubstitutable`:
 -/
 
 /-- Substitute `t` for every free occurrence of `x` in `φ`. Unconditional:
-does not check or require `IsSubstitutable φ x t`. -/
+does not check or require `IsSubstitutable φ x t`.
+
+Logical form:
+
+```lean
+def substitute
+    {S : Signature} {Variable : Type} [DecidableEq Variable]
+    (x : Variable) (t : Term S Variable) : Formula S Variable -> Formula S Variable
+  | .relation r args => Formula.relation r (fun i => substituteInTerm x t (args i))
+  | .equal t₁ t₂ => Formula.equal (substituteInTerm x t t₁) (substituteInTerm x t t₂)
+  | .neg φ => Formula.neg (substitute x t φ)
+  | .impl φ ψ => Formula.impl (substitute x t φ) (substitute x t ψ)
+  | .forallQ v φ => if v = x then Formula.forallQ v φ else Formula.forallQ v (substitute x t φ)
+```
+-/
 def substitute
     {S : Signature} {Variable : Type} [DecidableEq Variable]
     (x : Variable) (t : Term S Variable) : Formula S Variable -> Formula S Variable

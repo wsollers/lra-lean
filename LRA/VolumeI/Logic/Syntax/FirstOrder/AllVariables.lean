@@ -35,7 +35,21 @@ which leaves `φ`'s bound variables free to collide.
 
 /-- The (finite) set of *all* variables occurring in a formula, free and
 bound. Differs from `freeVariables` only at `forallQ`, where the bound
-variable is kept rather than erased. -/
+variable is kept rather than erased.
+
+Logical form:
+
+```lean
+def allVariables
+    {S : Signature} {Variable : Type} [DecidableEq Variable] :
+    Formula S Variable -> Finset Variable
+  | .relation _ args => Finset.univ.biUnion (fun i => freeVariablesInTerm (args i))
+  | .equal t₁ t₂ => freeVariablesInTerm t₁ ∪ freeVariablesInTerm t₂
+  | .neg φ => allVariables φ
+  | .impl φ ψ => allVariables φ ∪ allVariables ψ
+  | .forallQ v φ => {v} ∪ allVariables φ
+```
+-/
 def allVariables
     {S : Signature} {Variable : Type} [DecidableEq Variable] :
     Formula S Variable -> Finset Variable

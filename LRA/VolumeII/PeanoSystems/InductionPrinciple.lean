@@ -20,6 +20,23 @@ variable [Membership Element SetObject]
    Lean declaration:
      LRA.VolumeII.PeanoSystems.InductionPrinciple.InductionPrincipleForPeanoSystem
    Status: pending -/
+/--
+`InductionPrincipleForPeanoSystem` states induction principle for peano system.
+
+Logical form:
+
+```lean
+theorem InductionPrincipleForPeanoSystem
+    (ps : PeanoSystem Element SetObject)
+    (subset : SetObject)
+    (base_case : ps.one ∈ subset)
+    (successor_step :
+      ∀ element : Element,
+        element ∈ subset ->
+          (ps.successor element) ∈ subset) :
+    ∀ element : Element, element ∈ subset
+```
+-/
 theorem InductionPrincipleForPeanoSystem
     (ps : PeanoSystem Element SetObject)
     (subset : SetObject)

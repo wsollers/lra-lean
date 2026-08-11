@@ -28,13 +28,31 @@ being symmetric is therefore a theorem here, not an assumption.
 
 /-- A model isomorphism of `M₁` and `M₂`, two models of the same signature
 `S`: a `ModelEmbedding` whose domain map is additionally surjective, hence
-bijective. -/
+bijective.
+
+Logical form:
+
+```lean
+structure ModelIsomorphism {S : Signature} (M₁ M₂ : Model S) extends
+    ModelEmbedding M₁ M₂ where
+  surjective : Function.Surjective toFun
+```
+-/
 structure ModelIsomorphism {S : Signature} (M₁ M₂ : Model S) extends
     ModelEmbedding M₁ M₂ where
   surjective : Function.Surjective toFun
 
 /-- The underlying domain map of a model isomorphism is bijective, packaging
-`injective` (inherited from `ModelEmbedding`) and `surjective` together. -/
+`injective` (inherited from `ModelEmbedding`) and `surjective` together.
+
+Logical form:
+
+```lean
+theorem ModelIsomorphism.bijective
+    {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) :
+    Function.Bijective iso.toFun
+```
+-/
 theorem ModelIsomorphism.bijective
     {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) :
     Function.Bijective iso.toFun :=

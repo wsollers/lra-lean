@@ -31,7 +31,21 @@ is known which occurrences of `x` are free to begin with -- substitution
 must never touch `x` inside a `∀x. ...` subformula that already rebinds it.
 -/
 
-/-- The (finite) set of variables occurring free in a formula. -/
+/-- The (finite) set of variables occurring free in a formula.
+
+Logical form:
+
+```lean
+def freeVariables
+    {S : Signature} {Variable : Type} [DecidableEq Variable] :
+    Formula S Variable -> Finset Variable
+  | .relation _ args => Finset.univ.biUnion (fun i => freeVariablesInTerm (args i))
+  | .equal t₁ t₂ => freeVariablesInTerm t₁ ∪ freeVariablesInTerm t₂
+  | .neg φ => freeVariables φ
+  | .impl φ ψ => freeVariables φ ∪ freeVariables ψ
+  | .forallQ v φ => (freeVariables φ).erase v
+```
+-/
 def freeVariables
     {S : Signature} {Variable : Type} [DecidableEq Variable] :
     Formula S Variable -> Finset Variable

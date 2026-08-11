@@ -31,7 +31,15 @@ models are already first-order models with nothing in them.
 -/
 
 /-- A propositional model (structure) over the language `L`: a valuation
-assigning each atom of `L` a truth value. -/
+assigning each atom of `L` a truth value.
+
+Logical form:
+
+```lean
+structure PropositionalModel (L : PropositionalLanguage) where
+  valuation : L.Atoms -> Bool
+```
+-/
 structure PropositionalModel (L : PropositionalLanguage) where
   valuation : L.Atoms -> Bool
 
@@ -45,7 +53,16 @@ variables to assign.
 -/
 
 /-- The satisfaction relation: `M` satisfies `φ` when `φ` evaluates to
-`true` under `M`'s valuation. -/
+`true` under `M`'s valuation.
+
+Logical form:
+
+```lean
+def PropositionalModel.satisfies
+    {L : PropositionalLanguage} (M : PropositionalModel L) (φ : Formula L) : Prop :=
+  evaluate M.valuation φ = true
+```
+-/
 def PropositionalModel.satisfies
     {L : PropositionalLanguage} (M : PropositionalModel L) (φ : Formula L) : Prop :=
   evaluate M.valuation φ = true

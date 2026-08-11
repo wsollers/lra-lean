@@ -59,12 +59,28 @@ import LRA.VolumeIII.Analysis.Sequences.NullConstantSequences
 
 namespace LRA.VolumeIII.Analysis.Sequences
 
-/-- `def:m-tail`. -/
+/-- `def:m-tail`.
+
+Logical form:
+
+```lean
+def MTail (x : RealSequence) (M : ℕ) : RealSequence := fun n => x (M + n)
+```
+-/
 def MTail (x : RealSequence) (M : ℕ) : RealSequence := fun n => x (M + n)
 
 -- `thm:convergence-of-tail`
 /-- Let `x : RealSequence` and `m : ℕ`. Then `((∃ L, ConvergesTo x L) ↔ (∃ L, ConvergesTo (MTail x
-m) L)) ∧ (∀ L, ConvergesTo x L → ConvergesTo (MTail x m) L)`. -/
+m) L)) ∧ (∀ L, ConvergesTo x L → ConvergesTo (MTail x m) L)`.
+
+Logical form:
+
+```lean
+theorem ConvergenceOfTail (x : RealSequence) (m : ℕ) :
+    ((∃ L, ConvergesTo x L) ↔ (∃ L, ConvergesTo (MTail x m) L)) ∧
+      (∀ L, ConvergesTo x L → ConvergesTo (MTail x m) L)
+```
+-/
 theorem ConvergenceOfTail (x : RealSequence) (m : ℕ) :
     ((∃ L, ConvergesTo x L) ↔ (∃ L, ConvergesTo (MTail x m) L)) ∧
       (∀ L, ConvergesTo x L → ConvergesTo (MTail x m) L) := by
@@ -73,7 +89,17 @@ theorem ConvergenceOfTail (x : RealSequence) (m : ℕ) :
 -- `thm:convergence-by-domination`
 /-- Let `x : RealSequence`, `L : ℝ`, and `a : RealSequence`. If `ha_pos : ∀ n, 0 < a n`, `ha_null :
 ConvergesTo a 0`, and `h : ∃ c > 0, ∃ m : ℕ, ∀ n ≥ m, |x n - L| ≤ c * a n`. Then `ConvergesTo x
-L`. -/
+L`.
+
+Logical form:
+
+```lean
+theorem ConvergenceByDomination {x : RealSequence} {L : ℝ}
+    {a : RealSequence} (ha_pos : ∀ n, 0 < a n) (ha_null : ConvergesTo a 0)
+    (h : ∃ c > 0, ∃ m : ℕ, ∀ n ≥ m, |x n - L| ≤ c * a n) :
+    ConvergesTo x L
+```
+-/
 theorem ConvergenceByDomination {x : RealSequence} {L : ℝ}
     {a : RealSequence} (ha_pos : ∀ n, 0 < a n) (ha_null : ConvergesTo a 0)
     (h : ∃ c > 0, ∃ m : ℕ, ∀ n ≥ m, |x n - L| ≤ c * a n) :
@@ -82,7 +108,17 @@ theorem ConvergenceByDomination {x : RealSequence} {L : ℝ}
 
 -- `thm:ratio-limit-less-than-one-implies-null`
 /-- Let `x : RealSequence` and `L : ℝ`. If `hx_pos : ∀ n, 0 < x n`, `hratio : ConvergesTo (fun n =>
-x (n + 1) / x n) L`, and `hL : L < 1`. Then `ConvergesTo x 0`. -/
+x (n + 1) / x n) L`, and `hL : L < 1`. Then `ConvergesTo x 0`.
+
+Logical form:
+
+```lean
+theorem RatioLimitLessThanOneImpliesNull {x : RealSequence}
+    (hx_pos : ∀ n, 0 < x n) {L : ℝ}
+    (hratio : ConvergesTo (fun n => x (n + 1) / x n) L) (hL : L < 1) :
+    ConvergesTo x 0
+```
+-/
 theorem RatioLimitLessThanOneImpliesNull {x : RealSequence}
     (hx_pos : ∀ n, 0 < x n) {L : ℝ}
     (hratio : ConvergesTo (fun n => x (n + 1) / x n) L) (hL : L < 1) :

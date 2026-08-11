@@ -31,25 +31,66 @@ import Mathlib.Order.ConditionallyCompleteLattice.Basic
 
 namespace LRA.VolumeIII.Analysis.Functions
 
-/-- `def:function-supremum-on-set`. -/
+/-- `def:function-supremum-on-set`.
+
+Logical form:
+
+```lean
+noncomputable def FunctionSupremumOnSet (f : ℝ → ℝ) (A : Set ℝ) : ℝ :=
+  0
+```
+-/
 noncomputable def FunctionSupremumOnSet (f : ℝ → ℝ) (A : Set ℝ) : ℝ :=
   0
 
-/-- `def:function-infimum-on-set`. -/
+/-- `def:function-infimum-on-set`.
+
+Logical form:
+
+```lean
+noncomputable def FunctionInfimumOnSet (f : ℝ → ℝ) (A : Set ℝ) : ℝ :=
+  0
+```
+-/
 noncomputable def FunctionInfimumOnSet (f : ℝ → ℝ) (A : Set ℝ) : ℝ :=
   0
 
-/-- `def:pointwise-supremum-family`. -/
+/-- `def:pointwise-supremum-family`.
+
+Logical form:
+
+```lean
+noncomputable def PointwiseSupremumFamily {I : Type*} (f : I → ℝ → ℝ) (x : ℝ) : ℝ :=
+  0
+```
+-/
 noncomputable def PointwiseSupremumFamily {I : Type*} (f : I → ℝ → ℝ) (x : ℝ) : ℝ :=
   0
 
-/-- `def:pointwise-infimum-family`. -/
+/-- `def:pointwise-infimum-family`.
+
+Logical form:
+
+```lean
+noncomputable def PointwiseInfimumFamily {I : Type*} (f : I → ℝ → ℝ) (x : ℝ) : ℝ :=
+  0
+```
+-/
 noncomputable def PointwiseInfimumFamily {I : Type*} (f : I → ℝ → ℝ) (x : ℝ) : ℝ :=
   0
 
 -- `thm:function-supremum-existence`
 /-- Let `A : Set ℝ`. If `f : ℝ → ℝ`, `hA : A.Nonempty`, and `hbdd : ∃ M, ∀ x ∈ A, f x ≤ M`. Then `∃
-s : ℝ, IsLUB (f '' A) s`. -/
+s : ℝ, IsLUB (f '' A) s`.
+
+Logical form:
+
+```lean
+theorem FunctionSupremumExistence (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
+    (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M) :
+    ∃ s : ℝ, IsLUB (f '' A) s
+```
+-/
 theorem FunctionSupremumExistence (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
     (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M) :
     ∃ s : ℝ, IsLUB (f '' A) s := by
@@ -57,7 +98,16 @@ theorem FunctionSupremumExistence (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonemp
 
 -- `thm:function-infimum-existence`
 /-- Let `A : Set ℝ`. If `f : ℝ → ℝ`, `hA : A.Nonempty`, and `hbdd : ∃ m, ∀ x ∈ A, m ≤ f x`. Then `∃
-s : ℝ, IsGLB (f '' A) s`. -/
+s : ℝ, IsGLB (f '' A) s`.
+
+Logical form:
+
+```lean
+theorem FunctionInfimumExistence (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
+    (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x) :
+    ∃ s : ℝ, IsGLB (f '' A) s
+```
+-/
 theorem FunctionInfimumExistence (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
     (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x) :
     ∃ s : ℝ, IsGLB (f '' A) s := by
@@ -66,7 +116,18 @@ theorem FunctionInfimumExistence (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempt
 -- `thm:supremum-monotone-under-pointwise-order`
 /-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`, `hA : A.Nonempty`, `hbddf : ∃ M, ∀ x ∈ A, f x ≤ M`, `hbddg :
 ∃ M, ∀ x ∈ A, g x ≤ M`, and `h : ∀ x ∈ A, f x ≤ g x`. Then `FunctionSupremumOnSet f A ≤
-FunctionSupremumOnSet g A`. -/
+FunctionSupremumOnSet g A`.
+
+Logical form:
+
+```lean
+theorem SupremumMonotoneUnderPointwiseOrder (f g : ℝ → ℝ) (A : Set ℝ)
+    (hA : A.Nonempty)
+    (hbddf : ∃ M, ∀ x ∈ A, f x ≤ M) (hbddg : ∃ M, ∀ x ∈ A, g x ≤ M)
+    (h : ∀ x ∈ A, f x ≤ g x) :
+    FunctionSupremumOnSet f A ≤ FunctionSupremumOnSet g A
+```
+-/
 theorem SupremumMonotoneUnderPointwiseOrder (f g : ℝ → ℝ) (A : Set ℝ)
     (hA : A.Nonempty)
     (hbddf : ∃ M, ∀ x ∈ A, f x ≤ M) (hbddg : ∃ M, ∀ x ∈ A, g x ≤ M)
@@ -77,7 +138,18 @@ theorem SupremumMonotoneUnderPointwiseOrder (f g : ℝ → ℝ) (A : Set ℝ)
 -- `thm:infimum-monotone-under-pointwise-order`
 /-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`, `hA : A.Nonempty`, `hbddf : ∃ m, ∀ x ∈ A, m ≤ f x`, `hbddg :
 ∃ m, ∀ x ∈ A, m ≤ g x`, and `h : ∀ x ∈ A, f x ≤ g x`. Then `FunctionInfimumOnSet f A ≤
-FunctionInfimumOnSet g A`. -/
+FunctionInfimumOnSet g A`.
+
+Logical form:
+
+```lean
+theorem InfimumMonotoneUnderPointwiseOrder (f g : ℝ → ℝ) (A : Set ℝ)
+    (hA : A.Nonempty)
+    (hbddf : ∃ m, ∀ x ∈ A, m ≤ f x) (hbddg : ∃ m, ∀ x ∈ A, m ≤ g x)
+    (h : ∀ x ∈ A, f x ≤ g x) :
+    FunctionInfimumOnSet f A ≤ FunctionInfimumOnSet g A
+```
+-/
 theorem InfimumMonotoneUnderPointwiseOrder (f g : ℝ → ℝ) (A : Set ℝ)
     (hA : A.Nonempty)
     (hbddf : ∃ m, ∀ x ∈ A, m ≤ f x) (hbddg : ∃ m, ∀ x ∈ A, m ≤ g x)
@@ -87,7 +159,18 @@ theorem InfimumMonotoneUnderPointwiseOrder (f g : ℝ → ℝ) (A : Set ℝ)
 
 /-- The theorem asserts `∃ (A : Set ℝ) (f g : ℝ → ℝ), A.Nonempty ∧ (∃ M, ∀ x ∈ A, f x ≤ M) ∧ (∃ M, ∀
 x ∈ A, g x ≤ M) ∧ FunctionSupremumOnSet f A ≤ FunctionSupremumOnSet g A ∧ ¬ (∀ x ∈ A, f x ≤ g
-x)`. -/
+x)`.
+
+Logical form:
+
+```lean
+theorem SupremumMonotonicityConverseFails :
+    ∃ (A : Set ℝ) (f g : ℝ → ℝ), A.Nonempty ∧
+      (∃ M, ∀ x ∈ A, f x ≤ M) ∧ (∃ M, ∀ x ∈ A, g x ≤ M) ∧
+      FunctionSupremumOnSet f A ≤ FunctionSupremumOnSet g A ∧
+      ¬ (∀ x ∈ A, f x ≤ g x)
+```
+-/
 theorem SupremumMonotonicityConverseFails :
     ∃ (A : Set ℝ) (f g : ℝ → ℝ), A.Nonempty ∧
       (∃ M, ∀ x ∈ A, f x ≤ M) ∧ (∃ M, ∀ x ∈ A, g x ≤ M) ∧
@@ -97,7 +180,16 @@ theorem SupremumMonotonicityConverseFails :
 
 -- `thm:pointwise-supremum-evaluation`
 /-- Let `I : Type*` and `x : ℝ`. If `[Fintype I]`, `[Inhabited I]`, and `f : I → ℝ → ℝ`. Then `∃ α :
-I, PointwiseSupremumFamily f x = f α x ∧ ∀ β : I, f β x ≤ f α x`. -/
+I, PointwiseSupremumFamily f x = f α x ∧ ∀ β : I, f β x ≤ f α x`.
+
+Logical form:
+
+```lean
+theorem PointwiseSupremumEvaluation {I : Type*} [Fintype I] [Inhabited I]
+    (f : I → ℝ → ℝ) (x : ℝ) :
+    ∃ α : I, PointwiseSupremumFamily f x = f α x ∧ ∀ β : I, f β x ≤ f α x
+```
+-/
 theorem PointwiseSupremumEvaluation {I : Type*} [Fintype I] [Inhabited I]
     (f : I → ℝ → ℝ) (x : ℝ) :
     ∃ α : I, PointwiseSupremumFamily f x = f α x ∧ ∀ β : I, f β x ≤ f α x := by
@@ -105,7 +197,16 @@ theorem PointwiseSupremumEvaluation {I : Type*} [Fintype I] [Inhabited I]
 
 -- `thm:pointwise-infimum-evaluation`
 /-- Let `I : Type*` and `x : ℝ`. If `[Fintype I]`, `[Inhabited I]`, and `f : I → ℝ → ℝ`. Then `∃ α :
-I, PointwiseInfimumFamily f x = f α x ∧ ∀ β : I, f α x ≤ f β x`. -/
+I, PointwiseInfimumFamily f x = f α x ∧ ∀ β : I, f α x ≤ f β x`.
+
+Logical form:
+
+```lean
+theorem PointwiseInfimumEvaluation {I : Type*} [Fintype I] [Inhabited I]
+    (f : I → ℝ → ℝ) (x : ℝ) :
+    ∃ α : I, PointwiseInfimumFamily f x = f α x ∧ ∀ β : I, f α x ≤ f β x
+```
+-/
 theorem PointwiseInfimumEvaluation {I : Type*} [Fintype I] [Inhabited I]
     (f : I → ℝ → ℝ) (x : ℝ) :
     ∃ α : I, PointwiseInfimumFamily f x = f α x ∧ ∀ β : I, f α x ≤ f β x := by
@@ -114,7 +215,17 @@ theorem PointwiseInfimumEvaluation {I : Type*} [Fintype I] [Inhabited I]
 -- `thm:supremum-subadditivity`
 /-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`, `hA : A.Nonempty`, `hbddf : ∃ M, ∀ x ∈ A, f x ≤ M`, and
 `hbddg : ∃ M, ∀ x ∈ A, g x ≤ M`. Then `FunctionSupremumOnSet (fun x => f x + g x) A ≤
-FunctionSupremumOnSet f A + FunctionSupremumOnSet g A`. -/
+FunctionSupremumOnSet f A + FunctionSupremumOnSet g A`.
+
+Logical form:
+
+```lean
+theorem SupremumSubadditivity (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
+    (hbddf : ∃ M, ∀ x ∈ A, f x ≤ M) (hbddg : ∃ M, ∀ x ∈ A, g x ≤ M) :
+    FunctionSupremumOnSet (fun x => f x + g x) A ≤
+      FunctionSupremumOnSet f A + FunctionSupremumOnSet g A
+```
+-/
 theorem SupremumSubadditivity (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
     (hbddf : ∃ M, ∀ x ∈ A, f x ≤ M) (hbddg : ∃ M, ∀ x ∈ A, g x ≤ M) :
     FunctionSupremumOnSet (fun x => f x + g x) A ≤
@@ -124,7 +235,17 @@ theorem SupremumSubadditivity (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty
 -- `thm:infimum-superadditivity`
 /-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`, `hA : A.Nonempty`, `hbddf : ∃ m, ∀ x ∈ A, m ≤ f x`, and
 `hbddg : ∃ m, ∀ x ∈ A, m ≤ g x`. Then `FunctionInfimumOnSet f A + FunctionInfimumOnSet g A ≤
-FunctionInfimumOnSet (fun x => f x + g x) A`. -/
+FunctionInfimumOnSet (fun x => f x + g x) A`.
+
+Logical form:
+
+```lean
+theorem InfimumSuperadditivity (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
+    (hbddf : ∃ m, ∀ x ∈ A, m ≤ f x) (hbddg : ∃ m, ∀ x ∈ A, m ≤ g x) :
+    FunctionInfimumOnSet f A + FunctionInfimumOnSet g A ≤
+      FunctionInfimumOnSet (fun x => f x + g x) A
+```
+-/
 theorem InfimumSuperadditivity (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
     (hbddf : ∃ m, ∀ x ∈ A, m ≤ f x) (hbddg : ∃ m, ∀ x ∈ A, m ≤ g x) :
     FunctionInfimumOnSet f A + FunctionInfimumOnSet g A ≤
@@ -133,7 +254,16 @@ theorem InfimumSuperadditivity (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempt
 
 -- `thm:supremum-negation`
 /-- Let `A : Set ℝ`. If `f : ℝ → ℝ`, `hA : A.Nonempty`, and `hbdd : ∃ M, ∀ x ∈ A, f x ≤ M`. Then
-`FunctionSupremumOnSet (fun x => -f x) A = - FunctionInfimumOnSet f A`. -/
+`FunctionSupremumOnSet (fun x => -f x) A = - FunctionInfimumOnSet f A`.
+
+Logical form:
+
+```lean
+theorem SupremumNegation (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
+    (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M) :
+    FunctionSupremumOnSet (fun x => -f x) A = - FunctionInfimumOnSet f A
+```
+-/
 theorem SupremumNegation (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
     (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M) :
     FunctionSupremumOnSet (fun x => -f x) A = - FunctionInfimumOnSet f A := by
@@ -141,7 +271,16 @@ theorem SupremumNegation (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
 
 -- `thm:infimum-negation`
 /-- Let `A : Set ℝ`. If `f : ℝ → ℝ`, `hA : A.Nonempty`, and `hbdd : ∃ m, ∀ x ∈ A, m ≤ f x`. Then
-`FunctionInfimumOnSet (fun x => -f x) A = - FunctionSupremumOnSet f A`. -/
+`FunctionInfimumOnSet (fun x => -f x) A = - FunctionSupremumOnSet f A`.
+
+Logical form:
+
+```lean
+theorem InfimumNegation (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
+    (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x) :
+    FunctionInfimumOnSet (fun x => -f x) A = - FunctionSupremumOnSet f A
+```
+-/
 theorem InfimumNegation (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
     (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x) :
     FunctionInfimumOnSet (fun x => -f x) A = - FunctionSupremumOnSet f A := by
@@ -151,7 +290,19 @@ theorem InfimumNegation (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
 /-- Let `A : Set ℝ` and `lam : ℝ`. If `f : ℝ → ℝ`, `hA : A.Nonempty`, and `hbdd : ∃ M, ∀ x ∈ A, f x
 ≤ M`. Then `(0 ≤ lam → FunctionSupremumOnSet (fun x => lam * f x) A = lam *
 FunctionSupremumOnSet f A) ∧ (lam ≤ 0 → FunctionSupremumOnSet (fun x => lam * f x) A = lam *
-FunctionInfimumOnSet f A)`. -/
+FunctionInfimumOnSet f A)`.
+
+Logical form:
+
+```lean
+theorem SupremumScalarMultiple (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hA : A.Nonempty)
+    (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M) :
+    (0 ≤ lam → FunctionSupremumOnSet (fun x => lam * f x) A
+      = lam * FunctionSupremumOnSet f A) ∧
+    (lam ≤ 0 → FunctionSupremumOnSet (fun x => lam * f x) A
+      = lam * FunctionInfimumOnSet f A)
+```
+-/
 theorem SupremumScalarMultiple (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hA : A.Nonempty)
     (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M) :
     (0 ≤ lam → FunctionSupremumOnSet (fun x => lam * f x) A
@@ -164,7 +315,19 @@ theorem SupremumScalarMultiple (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hA :
 /-- Let `A : Set ℝ` and `lam : ℝ`. If `f : ℝ → ℝ`, `hA : A.Nonempty`, and `hbdd : ∃ m, ∀ x ∈ A, m ≤
 f x`. Then `(0 ≤ lam → FunctionInfimumOnSet (fun x => lam * f x) A = lam * FunctionInfimumOnSet
 f A) ∧ (lam ≤ 0 → FunctionInfimumOnSet (fun x => lam * f x) A = lam * FunctionSupremumOnSet f
-A)`. -/
+A)`.
+
+Logical form:
+
+```lean
+theorem InfimumScalarMultiple (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hA : A.Nonempty)
+    (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x) :
+    (0 ≤ lam → FunctionInfimumOnSet (fun x => lam * f x) A
+      = lam * FunctionInfimumOnSet f A) ∧
+    (lam ≤ 0 → FunctionInfimumOnSet (fun x => lam * f x) A
+      = lam * FunctionSupremumOnSet f A)
+```
+-/
 theorem InfimumScalarMultiple (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hA : A.Nonempty)
     (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x) :
     (0 ≤ lam → FunctionInfimumOnSet (fun x => lam * f x) A
@@ -174,14 +337,32 @@ theorem InfimumScalarMultiple (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hA : 
   sorry
 
 /-- Let `I : Type*` and `x : ℝ`. If `[Fintype I]`, `[Inhabited I]`, and `f : I → ℝ → ℝ`. Then `∃ α :
-I, PointwiseSupremumFamily f x = f α x`. -/
+I, PointwiseSupremumFamily f x = f α x`.
+
+Logical form:
+
+```lean
+theorem FiniteFamilyPointwiseSupremumIsMaximum {I : Type*} [Fintype I] [Inhabited I]
+    (f : I → ℝ → ℝ) (x : ℝ) :
+    ∃ α : I, PointwiseSupremumFamily f x = f α x
+```
+-/
 theorem FiniteFamilyPointwiseSupremumIsMaximum {I : Type*} [Fintype I] [Inhabited I]
     (f : I → ℝ → ℝ) (x : ℝ) :
     ∃ α : I, PointwiseSupremumFamily f x = f α x := by
   sorry
 
 /-- Let `I : Type*` and `x : ℝ`. If `[Fintype I]`, `[Inhabited I]`, and `f : I → ℝ → ℝ`. Then `∃ α :
-I, PointwiseInfimumFamily f x = f α x`. -/
+I, PointwiseInfimumFamily f x = f α x`.
+
+Logical form:
+
+```lean
+theorem FiniteFamilyPointwiseInfimumIsMinimum {I : Type*} [Fintype I] [Inhabited I]
+    (f : I → ℝ → ℝ) (x : ℝ) :
+    ∃ α : I, PointwiseInfimumFamily f x = f α x
+```
+-/
 theorem FiniteFamilyPointwiseInfimumIsMinimum {I : Type*} [Fintype I] [Inhabited I]
     (f : I → ℝ → ℝ) (x : ℝ) :
     ∃ α : I, PointwiseInfimumFamily f x = f α x := by

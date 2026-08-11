@@ -21,12 +21,29 @@ namespace LRA.VolumeIII.Analysis.Integration
 
 /-- `def:riemann-sum`.
 Mathematical statement (Lean): `def RiemannSum {a b : ℝ} (f : ℝ → ℝ) (P : TaggedPartitionIntegration a b) : ℝ :=`.
+
+
+Logical form:
+
+```lean
+def RiemannSum {a b : ℝ} (f : ℝ → ℝ) (P : TaggedPartitionIntegration a b) : ℝ :=
+  ∑ i : Fin P.n, f (P.tag i) * SubintervalWidth P.toIntegrationPartition i
+```
 -/
 def RiemannSum {a b : ℝ} (f : ℝ → ℝ) (P : TaggedPartitionIntegration a b) : ℝ :=
   ∑ i : Fin P.n, f (P.tag i) * SubintervalWidth P.toIntegrationPartition i
 
 /-- `def:riemann-integral` (see file header re: ISSUES.md #68).
 Mathematical statement (Lean): `def HasRiemannIntegral (f : ℝ → ℝ) (a b L : ℝ) : Prop :=`.
+
+
+Logical form:
+
+```lean
+def HasRiemannIntegral (f : ℝ → ℝ) (a b L : ℝ) : Prop :=
+  ∀ ε > 0, ∃ δ > 0, ∀ P : TaggedPartitionIntegration a b,
+    PartitionMesh P.toIntegrationPartition < δ → |RiemannSum f P - L| < ε
+```
 -/
 def HasRiemannIntegral (f : ℝ → ℝ) (a b L : ℝ) : Prop :=
   ∀ ε > 0, ∃ δ > 0, ∀ P : TaggedPartitionIntegration a b,
@@ -34,6 +51,13 @@ def HasRiemannIntegral (f : ℝ → ℝ) (a b L : ℝ) : Prop :=
 
 /-- `IsRiemannIntegrable`.
 Mathematical statement (Lean): `def IsRiemannIntegrable (f : ℝ → ℝ) (a b : ℝ) : Prop`.
+
+
+Logical form:
+
+```lean
+def IsRiemannIntegrable (f : ℝ → ℝ) (a b : ℝ) : Prop := ∃ L, HasRiemannIntegral f a b L
+```
 -/
 def IsRiemannIntegrable (f : ℝ → ℝ) (a b : ℝ) : Prop := ∃ L, HasRiemannIntegral f a b L
 
@@ -41,7 +65,16 @@ variable {f g : ℝ → ℝ} {a b : ℝ}
 
 -- `thm:continuous-riemann-integrable`
 /-- If `hab : a ≤ b` and `hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)`.
-Then `IsRiemannIntegrable f a b`. -/
+Then `IsRiemannIntegrable f a b`.
+
+Logical form:
+
+```lean
+theorem continuous_riemann_integrable (hab : a ≤ b)
+    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
+    IsRiemannIntegrable f a b
+```
+-/
 theorem continuous_riemann_integrable (hab : a ≤ b)
     (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
     IsRiemannIntegrable f a b := by
@@ -49,7 +82,18 @@ theorem continuous_riemann_integrable (hab : a ≤ b)
 
 /-- If `T : ℝ → ℝ` and `hT : ∀ x ∈ Set.Icc (0:ℝ) 1,
 (LRA.VolumeIII.Analysis.Completeness.IsIrrational x → T x = 0) ∧ (∀ p q : ℕ, q > 0 → Nat.Coprime
-p q → x = (p : ℝ) / q → T x = 1 / q)`. Then `HasRiemannIntegral T 0 1 0`. -/
+p q → x = (p : ℝ) / q → T x = 1 / q)`. Then `HasRiemannIntegral T 0 1 0`.
+
+Logical form:
+
+```lean
+theorem thomae_riemann_integrable_zero (T : ℝ → ℝ)
+    (hT : ∀ x ∈ Set.Icc (0:ℝ) 1,
+      (LRA.VolumeIII.Analysis.Completeness.IsIrrational x → T x = 0) ∧
+      (∀ p q : ℕ, q > 0 → Nat.Coprime p q → x = (p : ℝ) / q → T x = 1 / q)) :
+    HasRiemannIntegral T 0 1 0
+```
+-/
 theorem thomae_riemann_integrable_zero (T : ℝ → ℝ)
     (hT : ∀ x ∈ Set.Icc (0:ℝ) 1,
       (LRA.VolumeIII.Analysis.Completeness.IsIrrational x → T x = 0) ∧
@@ -59,21 +103,48 @@ theorem thomae_riemann_integrable_zero (T : ℝ → ℝ)
 
 -- `thm:riemann-integral-linearity`
 /-- Let `α β Lf Lg : ℝ`. If `hLf : HasRiemannIntegral f a b Lf` and `hLg : HasRiemannIntegral g a b
-Lg`. Then `HasRiemannIntegral (fun x => α * f x + β * g x) a b (α * Lf + β * Lg)`. -/
+Lg`. Then `HasRiemannIntegral (fun x => α * f x + β * g x) a b (α * Lf + β * Lg)`.
+
+Logical form:
+
+```lean
+theorem riemann_integral_linearity (α β Lf Lg : ℝ) (hLf : HasRiemannIntegral f a b Lf)
+    (hLg : HasRiemannIntegral g a b Lg) :
+    HasRiemannIntegral (fun x => α * f x + β * g x) a b (α * Lf + β * Lg)
+```
+-/
 theorem riemann_integral_linearity (α β Lf Lg : ℝ) (hLf : HasRiemannIntegral f a b Lf)
     (hLg : HasRiemannIntegral g a b Lg) :
     HasRiemannIntegral (fun x => α * f x + β * g x) a b (α * Lf + β * Lg) := by sorry
 
 -- `thm:riemann-integral-monotonicity`
 /-- Let `Lf Lg : ℝ`. If `hLf : HasRiemannIntegral f a b Lf`, `hLg : HasRiemannIntegral g a b Lg`,
-and `hle : ∀ x ∈ Set.Icc a b, f x ≤ g x`. Then `Lf ≤ Lg`. -/
+and `hle : ∀ x ∈ Set.Icc a b, f x ≤ g x`. Then `Lf ≤ Lg`.
+
+Logical form:
+
+```lean
+theorem riemann_integral_monotonicity (Lf Lg : ℝ) (hLf : HasRiemannIntegral f a b Lf)
+    (hLg : HasRiemannIntegral g a b Lg) (hle : ∀ x ∈ Set.Icc a b, f x ≤ g x) : Lf ≤ Lg
+```
+-/
 theorem riemann_integral_monotonicity (Lf Lg : ℝ) (hLf : HasRiemannIntegral f a b Lf)
     (hLg : HasRiemannIntegral g a b Lg) (hle : ∀ x ∈ Set.Icc a b, f x ≤ g x) : Lf ≤ Lg := by
   sorry
 
 -- `thm:riemann-integral-triangle-inequality`
 /-- If `hf : IsRiemannIntegrable f a b`. Then `IsRiemannIntegrable (fun x => |f x|) a b ∧ ∀ L L',
-HasRiemannIntegral f a b L → HasRiemannIntegral (fun x => |f x|) a b L' → |L| ≤ L'`. -/
+HasRiemannIntegral f a b L → HasRiemannIntegral (fun x => |f x|) a b L' → |L| ≤ L'`.
+
+Logical form:
+
+```lean
+theorem riemann_integral_triangle_inequality (hf : IsRiemannIntegrable f a b) :
+    IsRiemannIntegrable (fun x => |f x|) a b ∧
+    ∀ L L', HasRiemannIntegral f a b L → HasRiemannIntegral (fun x => |f x|) a b L' →
+      |L| ≤ L'
+```
+-/
 theorem riemann_integral_triangle_inequality (hf : IsRiemannIntegrable f a b) :
     IsRiemannIntegrable (fun x => |f x|) a b ∧
     ∀ L L', HasRiemannIntegral f a b L → HasRiemannIntegral (fun x => |f x|) a b L' →
@@ -82,14 +153,31 @@ theorem riemann_integral_triangle_inequality (hf : IsRiemannIntegrable f a b) :
 
 -- `thm:riemann-integral-interval-additivity`
 /-- Let `c : ℝ`. If `hac : a ≤ c` and `hcb : c ≤ b`. Then `IsRiemannIntegrable f a b ↔
-IsRiemannIntegrable f a c ∧ IsRiemannIntegrable f c b`. -/
+IsRiemannIntegrable f a c ∧ IsRiemannIntegrable f c b`.
+
+Logical form:
+
+```lean
+theorem riemann_integral_interval_additivity (c : ℝ) (hac : a ≤ c) (hcb : c ≤ b) :
+    IsRiemannIntegrable f a b ↔ IsRiemannIntegrable f a c ∧ IsRiemannIntegrable f c b
+```
+-/
 theorem riemann_integral_interval_additivity (c : ℝ) (hac : a ≤ c) (hcb : c ≤ b) :
     IsRiemannIntegrable f a b ↔ IsRiemannIntegrable f a c ∧ IsRiemannIntegrable f c b := by
   sorry
 
 /-- Let `c Lab Lac Lcb : ℝ`. If `hac : a ≤ c`, `hcb : c ≤ b`, `hab' : HasRiemannIntegral f a b Lab`,
 `hac' : HasRiemannIntegral f a c Lac`, and `hcb' : HasRiemannIntegral f c b Lcb`. Then `Lab =
-Lac + Lcb`. -/
+Lac + Lcb`.
+
+Logical form:
+
+```lean
+theorem riemann_integral_interval_additivity_value (c Lab Lac Lcb : ℝ) (hac : a ≤ c) (hcb : c ≤ b)
+    (hab' : HasRiemannIntegral f a b Lab) (hac' : HasRiemannIntegral f a c Lac)
+    (hcb' : HasRiemannIntegral f c b Lcb) : Lab = Lac + Lcb
+```
+-/
 theorem riemann_integral_interval_additivity_value (c Lab Lac Lcb : ℝ) (hac : a ≤ c) (hcb : c ≤ b)
     (hab' : HasRiemannIntegral f a b Lab) (hac' : HasRiemannIntegral f a c Lac)
     (hcb' : HasRiemannIntegral f c b Lcb) : Lab = Lac + Lcb := by
@@ -99,7 +187,19 @@ theorem riemann_integral_interval_additivity_value (c Lab Lac Lcb : ℝ) (hac : 
 /-- If `hab : a ≤ b` and `hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)`.
 Then `IsRiemannIntegrable f a b ↔ ∀ ε > 0, ∃ δ > 0, ∀ P Q : TaggedPartitionIntegration a b,
 PartitionMesh P.toIntegrationPartition < δ → PartitionMesh Q.toIntegrationPartition < δ →
-|RiemannSum f P - RiemannSum f Q| < ε`. -/
+|RiemannSum f P - RiemannSum f Q| < ε`.
+
+Logical form:
+
+```lean
+theorem riemann_cauchy_criterion (hab : a ≤ b)
+    (hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
+    IsRiemannIntegrable f a b ↔
+      ∀ ε > 0, ∃ δ > 0, ∀ P Q : TaggedPartitionIntegration a b,
+        PartitionMesh P.toIntegrationPartition < δ → PartitionMesh Q.toIntegrationPartition < δ →
+        |RiemannSum f P - RiemannSum f Q| < ε
+```
+-/
 theorem riemann_cauchy_criterion (hab : a ≤ b)
     (hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
     IsRiemannIntegrable f a b ↔

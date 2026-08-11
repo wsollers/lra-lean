@@ -21,7 +21,14 @@ now enforced against Mathlib's own ZFC model.
 namespace LRA.VolumeI.Set.MathlibZFSet
 
 /-- Symmetric difference of ZF sets, derived as the union of the two
-relative complements -- `ZFSet` has no built-in symmetric difference. -/
+relative complements -- `ZFSet` has no built-in symmetric difference.
+
+Logical form:
+
+```lean
+def SymmetricDifference (A B : ZFSet) : ZFSet := (A \ B) ∪ (B \ A)
+```
+-/
 def SymmetricDifference (A B : ZFSet) : ZFSet := (A \ B) ∪ (B \ A)
 
 /-- Same core-`HasSubset` bridge as `MathlibPredicateSet/Instances.lean`:
@@ -40,12 +47,28 @@ instance : HasSymmDiff ZFSet where
   symmDiff := SymmetricDifference
 
 /-- Countable union, via Replacement: the union over the range of the
-`Nat`-indexed family. -/
+`Nat`-indexed family.
+
+Logical form:
+
+```lean
+noncomputable def CountableUnion (family : Nat → ZFSet) : ZFSet :=
+  ZFSet.sUnion (ZFSet.range family)
+```
+-/
 noncomputable def CountableUnion (family : Nat → ZFSet) : ZFSet :=
   ZFSet.sUnion (ZFSet.range family)
 
 /-- Countable intersection: the intersection over the (always nonempty)
-range of the family. -/
+range of the family.
+
+Logical form:
+
+```lean
+noncomputable def CountableIntersection (family : Nat → ZFSet) : ZFSet :=
+  ZFSet.sInter (ZFSet.range family)
+```
+-/
 noncomputable def CountableIntersection (family : Nat → ZFSet) : ZFSet :=
   ZFSet.sInter (ZFSet.range family)
 

@@ -9,7 +9,15 @@ namespace LRA.VolumeIII.Analysis.Completeness
 
 open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
 
-/-- A preorder has the least-upper-bound property when every nonempty bounded-above set has a supremum. -/
+/-- A preorder has the least-upper-bound property when every nonempty bounded-above set has a supremum.
+
+Logical form:
+
+```lean
+def HasLeastUpperBoundProperty (S : Type*) [Preorder S] : Prop :=
+  ∀ A : Set S, A.Nonempty → (∃ u, IsUpperBound u A) → ∃ s, IsSupremum s A
+```
+-/
 def HasLeastUpperBoundProperty (S : Type*) [Preorder S] : Prop :=
   ∀ A : Set S, A.Nonempty → (∃ u, IsUpperBound u A) → ∃ s, IsSupremum s A
 
@@ -19,11 +27,28 @@ The axiom of completeness for the real line.
 Volume III treats this as an analysis-facing axiom. Volume II contains
 construction-specific real-number models where analogous completeness
 properties are proved for their constructed carriers.
+
+
+Logical form:
+
+```lean
+axiom AxiomOfCompleteness : HasLeastUpperBoundProperty ℝ
+```
 -/
 axiom AxiomOfCompleteness : HasLeastUpperBoundProperty ℝ
 
 /-- Let `A : Set ℝ`. If `nonemptyHypothesis : A.Nonempty` and `boundedAboveHypothesis : ∃ u,
-IsUpperBound u A`. Then `∃ s, IsSupremum s A`. -/
+IsUpperBound u A`. Then `∃ s, IsSupremum s A`.
+
+Logical form:
+
+```lean
+theorem CompletenessGivesRealSupremum {A : Set ℝ}
+    (nonemptyHypothesis : A.Nonempty)
+    (boundedAboveHypothesis : ∃ u, IsUpperBound u A) :
+    ∃ s, IsSupremum s A
+```
+-/
 theorem CompletenessGivesRealSupremum {A : Set ℝ}
     (nonemptyHypothesis : A.Nonempty)
     (boundedAboveHypothesis : ∃ u, IsUpperBound u A) :

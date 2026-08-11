@@ -49,7 +49,25 @@ already recorded in `Model.Examples`:
 -/
 
 /-- `Rat` under the usual ring operations and strict order, interpreting
-`L_OrderedRing`. -/
+`L_OrderedRing`.
+
+Logical form:
+
+```lean
+def qOrderedRingModel : Model orderedRingSignature where
+  Domain := Rat
+  domainNonempty := ⟨0⟩
+  interpretFunction
+    | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
+    | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
+    | .neg, args => -(args ⟨0, by decide⟩)
+  interpretRelation
+    | .lt, args => args ⟨0, by decide⟩ < args ⟨1, by decide⟩
+  interpretConstant
+    | .zero => 0
+    | .one => 1
+```
+-/
 def qOrderedRingModel : Model orderedRingSignature where
   Domain := Rat
   domainNonempty := ⟨0⟩
@@ -63,19 +81,69 @@ def qOrderedRingModel : Model orderedRingSignature where
     | .zero => 0
     | .one => 1
 
+/--
+`qOrderedRingModel.addComputesAddition` states add computes addition.
+
+Logical form:
+
+```lean
+theorem qOrderedRingModel.addComputesAddition
+    (a b : Rat) :
+    qOrderedRingModel.interpretFunction .add
+      (fun i => if i.val = 0 then a else b) = a + b
+```
+-/
 theorem qOrderedRingModel.addComputesAddition
     (a b : Rat) :
     qOrderedRingModel.interpretFunction .add
       (fun i => if i.val = 0 then a else b) = a + b := rfl
 
+/--
+`qOrderedRingModel.zeroComputesZero` states zero computes zero.
+
+Logical form:
+
+```lean
+theorem qOrderedRingModel.zeroComputesZero :
+    qOrderedRingModel.interpretConstant .zero = (0 : Rat)
+```
+-/
 theorem qOrderedRingModel.zeroComputesZero :
     qOrderedRingModel.interpretConstant .zero = (0 : Rat) := rfl
 
+/--
+`qOrderedRingModel.oneComputesOne` states one computes one.
+
+Logical form:
+
+```lean
+theorem qOrderedRingModel.oneComputesOne :
+    qOrderedRingModel.interpretConstant .one = (1 : Rat)
+```
+-/
 theorem qOrderedRingModel.oneComputesOne :
     qOrderedRingModel.interpretConstant .one = (1 : Rat) := rfl
 
 /-- `Real` under the usual ring operations and strict order, interpreting
-`L_OrderedRing`. -/
+`L_OrderedRing`.
+
+Logical form:
+
+```lean
+def rOrderedRingModel : Model orderedRingSignature where
+  Domain := Real
+  domainNonempty := ⟨0⟩
+  interpretFunction
+    | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
+    | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
+    | .neg, args => -(args ⟨0, by decide⟩)
+  interpretRelation
+    | .lt, args => args ⟨0, by decide⟩ < args ⟨1, by decide⟩
+  interpretConstant
+    | .zero => 0
+    | .one => 1
+```
+-/
 def rOrderedRingModel : Model orderedRingSignature where
   Domain := Real
   domainNonempty := ⟨0⟩
@@ -89,14 +157,46 @@ def rOrderedRingModel : Model orderedRingSignature where
     | .zero => 0
     | .one => 1
 
+/--
+`rOrderedRingModel.addComputesAddition` states add computes addition.
+
+Logical form:
+
+```lean
+theorem rOrderedRingModel.addComputesAddition
+    (a b : Real) :
+    rOrderedRingModel.interpretFunction .add
+      (fun i => if i.val = 0 then a else b) = a + b
+```
+-/
 theorem rOrderedRingModel.addComputesAddition
     (a b : Real) :
     rOrderedRingModel.interpretFunction .add
       (fun i => if i.val = 0 then a else b) = a + b := rfl
 
+/--
+`rOrderedRingModel.zeroComputesZero` states zero computes zero.
+
+Logical form:
+
+```lean
+theorem rOrderedRingModel.zeroComputesZero :
+    rOrderedRingModel.interpretConstant .zero = (0 : Real)
+```
+-/
 theorem rOrderedRingModel.zeroComputesZero :
     rOrderedRingModel.interpretConstant .zero = (0 : Real) := rfl
 
+/--
+`rOrderedRingModel.oneComputesOne` states one computes one.
+
+Logical form:
+
+```lean
+theorem rOrderedRingModel.oneComputesOne :
+    rOrderedRingModel.interpretConstant .one = (1 : Real)
+```
+-/
 theorem rOrderedRingModel.oneComputesOne :
     rOrderedRingModel.interpretConstant .one = (1 : Real) := rfl
 
@@ -112,7 +212,25 @@ preservation, rather than reproving facts about these casts from scratch.
 
 /-- The embedding of `Z` into `Q`, as models of `L_OrderedRing`: `Int.cast`,
 which is injective and preserves `add`, `mul`, `neg`, `zero`, `one`, and
-`<`. -/
+`<`.
+
+Logical form:
+
+```lean
+def zToQEmbedding : ModelEmbedding intOrderedRingModel qOrderedRingModel where
+  toFun := (Int.cast : Int -> Rat)
+  injective := (Int.cast_injective : Function.Injective (Int.cast : Int -> Rat))
+  preservesFunction
+    | .add, args => by simp [intOrderedRingModel, qOrderedRingModel]
+    | .mul, args => by simp [intOrderedRingModel, qOrderedRingModel]
+    | .neg, args => by simp [intOrderedRingModel, qOrderedRingModel]
+  preservesConstant
+    | .zero => by simp [intOrderedRingModel, qOrderedRingModel]
+    | .one => by simp [intOrderedRingModel, qOrderedRingModel]
+  preservesRelation
+    | .lt, args => by simp [intOrderedRingModel, qOrderedRingModel, Int.cast_lt]
+```
+-/
 def zToQEmbedding : ModelEmbedding intOrderedRingModel qOrderedRingModel where
   toFun := (Int.cast : Int -> Rat)
   injective := (Int.cast_injective : Function.Injective (Int.cast : Int -> Rat))
@@ -128,7 +246,25 @@ def zToQEmbedding : ModelEmbedding intOrderedRingModel qOrderedRingModel where
 
 /-- The embedding of `Q` into `R`, as models of `L_OrderedRing`: `Rat.cast`,
 which is injective and preserves `add`, `mul`, `neg`, `zero`, `one`, and
-`<`. -/
+`<`.
+
+Logical form:
+
+```lean
+def qToREmbedding : ModelEmbedding qOrderedRingModel rOrderedRingModel where
+  toFun := (Rat.cast : Rat -> Real)
+  injective := (Rat.cast_injective : Function.Injective (Rat.cast : Rat -> Real))
+  preservesFunction
+    | .add, args => by simp [qOrderedRingModel, rOrderedRingModel]
+    | .mul, args => by simp [qOrderedRingModel, rOrderedRingModel]
+    | .neg, args => by simp [qOrderedRingModel, rOrderedRingModel]
+  preservesConstant
+    | .zero => by simp [qOrderedRingModel, rOrderedRingModel]
+    | .one => by simp [qOrderedRingModel, rOrderedRingModel]
+  preservesRelation
+    | .lt, args => by simp [qOrderedRingModel, rOrderedRingModel, Rat.cast_lt]
+```
+-/
 def qToREmbedding : ModelEmbedding qOrderedRingModel rOrderedRingModel where
   toFun := (Rat.cast : Rat -> Real)
   injective := (Rat.cast_injective : Function.Injective (Rat.cast : Rat -> Real))
@@ -156,14 +292,40 @@ model rather than leave it checked only in the abstract.
 -/
 
 /-- The identity map on `qOrderedRingModel` is a model isomorphism of `Q`
-with itself. -/
+with itself.
+
+Logical form:
+
+```lean
+def qToQIsomorphism : ModelIsomorphism qOrderedRingModel qOrderedRingModel :=
+  Automorphism.identity qOrderedRingModel
+```
+-/
 def qToQIsomorphism : ModelIsomorphism qOrderedRingModel qOrderedRingModel :=
   Automorphism.identity qOrderedRingModel
 
-/-- The identity map on `qOrderedRingModel` is an automorphism of `Q`. -/
+/-- The identity map on `qOrderedRingModel` is an automorphism of `Q`.
+
+Logical form:
+
+```lean
+def qToQAutomorphism : Automorphism qOrderedRingModel :=
+  Automorphism.identity qOrderedRingModel
+```
+-/
 def qToQAutomorphism : Automorphism qOrderedRingModel :=
   Automorphism.identity qOrderedRingModel
 
+/--
+`qToQIsomorphism.toFunIsIdentity` states to fun is identity.
+
+Logical form:
+
+```lean
+theorem qToQIsomorphism.toFunIsIdentity :
+    qToQIsomorphism.toFun = (id : Rat -> Rat)
+```
+-/
 theorem qToQIsomorphism.toFunIsIdentity :
     qToQIsomorphism.toFun = (id : Rat -> Rat) := rfl
 

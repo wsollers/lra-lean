@@ -71,31 +71,80 @@ import LRA.VolumeIII.Analysis.Sequences.Monotonicity
 
 namespace LRA.VolumeIII.Analysis.Sequences
 
-/-- `def:strictly-increasing-index-map`. -/
+/-- `def:strictly-increasing-index-map`.
+
+Logical form:
+
+```lean
+def IsStrictlyIncreasingIndexMap (σ : ℕ → ℕ) : Prop :=
+  ∀ k l : ℕ, k < l → σ k < σ l
+```
+-/
 def IsStrictlyIncreasingIndexMap (σ : ℕ → ℕ) : Prop :=
   ∀ k l : ℕ, k < l → σ k < σ l
 
-/-- `def:subsequence-of-sequence`. -/
+/-- `def:subsequence-of-sequence`.
+
+Logical form:
+
+```lean
+def IsSubsequenceOf (y x : RealSequence) : Prop :=
+  ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ ∀ k, y k = x (σ k)
+```
+-/
 def IsSubsequenceOf (y x : RealSequence) : Prop :=
   ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ ∀ k, y k = x (σ k)
 
-/-- `def:subsequential-limit`. -/
+/-- `def:subsequential-limit`.
+
+Logical form:
+
+```lean
+def IsSubsequentialLimit (x : RealSequence) (L : ℝ) : Prop :=
+  ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ ConvergesTo (fun k => x (σ k)) L
+```
+-/
 def IsSubsequentialLimit (x : RealSequence) (L : ℝ) : Prop :=
   ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ ConvergesTo (fun k => x (σ k)) L
 
-/-- `def:has-convergent-subsequence`. -/
+/-- `def:has-convergent-subsequence`.
+
+Logical form:
+
+```lean
+def HasConvergentSubsequence (x : RealSequence) : Prop :=
+  ∃ L : ℝ, IsSubsequentialLimit x L
+```
+-/
 def HasConvergentSubsequence (x : RealSequence) : Prop :=
   ∃ L : ℝ, IsSubsequentialLimit x L
 
 -- `thm:subsequence-indices-dominate-identity`
-/-- If `σ : ℕ → ℕ` and `h : IsStrictlyIncreasingIndexMap σ`. Then `∀ k, k ≤ σ k`. -/
+/-- If `σ : ℕ → ℕ` and `h : IsStrictlyIncreasingIndexMap σ`. Then `∀ k, k ≤ σ k`.
+
+Logical form:
+
+```lean
+theorem SubsequenceIndicesDominateIdentity {σ : ℕ → ℕ}
+    (h : IsStrictlyIncreasingIndexMap σ) : ∀ k, k ≤ σ k
+```
+-/
 theorem SubsequenceIndicesDominateIdentity {σ : ℕ → ℕ}
     (h : IsStrictlyIncreasingIndexMap σ) : ∀ k, k ≤ σ k := by
   sorry
 
 -- `thm:subsequences-preserve-limits`
 /-- Let `x : RealSequence` and `L : ℝ`. If `σ : ℕ → ℕ`, `hx : ConvergesTo x L`, and `hσ :
-IsStrictlyIncreasingIndexMap σ`. Then `ConvergesTo (fun k => x (σ k)) L`. -/
+IsStrictlyIncreasingIndexMap σ`. Then `ConvergesTo (fun k => x (σ k)) L`.
+
+Logical form:
+
+```lean
+theorem SubsequencesPreserveLimits {x : RealSequence} {L : ℝ} {σ : ℕ → ℕ}
+    (hx : ConvergesTo x L) (hσ : IsStrictlyIncreasingIndexMap σ) :
+    ConvergesTo (fun k => x (σ k)) L
+```
+-/
 theorem SubsequencesPreserveLimits {x : RealSequence} {L : ℝ} {σ : ℕ → ℕ}
     (hx : ConvergesTo x L) (hσ : IsStrictlyIncreasingIndexMap σ) :
     ConvergesTo (fun k => x (σ k)) L := by
@@ -103,7 +152,16 @@ theorem SubsequencesPreserveLimits {x : RealSequence} {L : ℝ} {σ : ℕ → �
 
 -- `thm:subsequential-limit-of-convergent-sequence`
 /-- Let `x : RealSequence` and `L K : ℝ`. If `hL : ConvergesTo x L` and `hK : IsSubsequentialLimit x
-K`. Then `K = L`. -/
+K`. Then `K = L`.
+
+Logical form:
+
+```lean
+theorem SubsequentialLimitOfConvergentSequence {x : RealSequence}
+    {L K : ℝ} (hL : ConvergesTo x L) (hK : IsSubsequentialLimit x K) :
+    K = L
+```
+-/
 theorem SubsequentialLimitOfConvergentSequence {x : RealSequence}
     {L K : ℝ} (hL : ConvergesTo x L) (hK : IsSubsequentialLimit x K) :
     K = L := by
@@ -111,7 +169,16 @@ theorem SubsequentialLimitOfConvergentSequence {x : RealSequence}
 
 -- `thm:divergence-by-two-subsequential-limits`
 /-- Let `x : RealSequence` and `L K : ℝ`. If `hL : IsSubsequentialLimit x L`, `hK :
-IsSubsequentialLimit x K`, and `hLK : L ≠ K`. Then `¬ ∃ A, ConvergesTo x A`. -/
+IsSubsequentialLimit x K`, and `hLK : L ≠ K`. Then `¬ ∃ A, ConvergesTo x A`.
+
+Logical form:
+
+```lean
+theorem DivergenceByTwoSubsequentialLimits {x : RealSequence}
+    {L K : ℝ} (hL : IsSubsequentialLimit x L) (hK : IsSubsequentialLimit x K)
+    (hLK : L ≠ K) : ¬ ∃ A, ConvergesTo x A
+```
+-/
 theorem DivergenceByTwoSubsequentialLimits {x : RealSequence}
     {L K : ℝ} (hL : IsSubsequentialLimit x L) (hK : IsSubsequentialLimit x K)
     (hLK : L ≠ K) : ¬ ∃ A, ConvergesTo x A := by
@@ -119,7 +186,16 @@ theorem DivergenceByTwoSubsequentialLimits {x : RealSequence}
 
 -- `thm:boundedness-passes-to-subsequences`
 /-- Let `x : RealSequence`. If `σ : ℕ → ℕ`, `hx : BoundedSeq x`, and `hσ :
-IsStrictlyIncreasingIndexMap σ`. Then `BoundedSeq (fun k => x (σ k))`. -/
+IsStrictlyIncreasingIndexMap σ`. Then `BoundedSeq (fun k => x (σ k))`.
+
+Logical form:
+
+```lean
+theorem BoundednessPassesToSubsequences {x : RealSequence} {σ : ℕ → ℕ}
+    (hx : BoundedSeq x) (hσ : IsStrictlyIncreasingIndexMap σ) :
+    BoundedSeq (fun k => x (σ k))
+```
+-/
 theorem BoundednessPassesToSubsequences {x : RealSequence} {σ : ℕ → ℕ}
     (hx : BoundedSeq x) (hσ : IsStrictlyIncreasingIndexMap σ) :
     BoundedSeq (fun k => x (σ k)) := by
@@ -127,7 +203,16 @@ theorem BoundednessPassesToSubsequences {x : RealSequence} {σ : ℕ → ℕ}
 
 -- `thm:monotonicity-passes-to-subsequences`
 /-- Let `x : RealSequence`. If `σ : ℕ → ℕ`, `hx : IsIncreasing x`, and `hσ :
-IsStrictlyIncreasingIndexMap σ`. Then `IsIncreasing (fun k => x (σ k))`. -/
+IsStrictlyIncreasingIndexMap σ`. Then `IsIncreasing (fun k => x (σ k))`.
+
+Logical form:
+
+```lean
+theorem MonotonicityPassesToSubsequencesIncr {x : RealSequence}
+    {σ : ℕ → ℕ} (hx : IsIncreasing x) (hσ : IsStrictlyIncreasingIndexMap σ) :
+    IsIncreasing (fun k => x (σ k))
+```
+-/
 theorem MonotonicityPassesToSubsequencesIncr {x : RealSequence}
     {σ : ℕ → ℕ} (hx : IsIncreasing x) (hσ : IsStrictlyIncreasingIndexMap σ) :
     IsIncreasing (fun k => x (σ k)) := by
@@ -135,7 +220,16 @@ theorem MonotonicityPassesToSubsequencesIncr {x : RealSequence}
 
 -- `thm:monotonicity-passes-to-subsequences`
 /-- Let `x : RealSequence`. If `σ : ℕ → ℕ`, `hx : IsDecreasing x`, and `hσ :
-IsStrictlyIncreasingIndexMap σ`. Then `IsDecreasing (fun k => x (σ k))`. -/
+IsStrictlyIncreasingIndexMap σ`. Then `IsDecreasing (fun k => x (σ k))`.
+
+Logical form:
+
+```lean
+theorem MonotonicityPassesToSubsequencesDecr {x : RealSequence}
+    {σ : ℕ → ℕ} (hx : IsDecreasing x) (hσ : IsStrictlyIncreasingIndexMap σ) :
+    IsDecreasing (fun k => x (σ k))
+```
+-/
 theorem MonotonicityPassesToSubsequencesDecr {x : RealSequence}
     {σ : ℕ → ℕ} (hx : IsDecreasing x) (hσ : IsStrictlyIncreasingIndexMap σ) :
     IsDecreasing (fun k => x (σ k)) := by
@@ -143,7 +237,16 @@ theorem MonotonicityPassesToSubsequencesDecr {x : RealSequence}
 
 -- `thm:subsequence-of-subsequence`
 /-- Let `x : RealSequence`. If `σ τ : ℕ → ℕ`, `hσ : IsStrictlyIncreasingIndexMap σ`, and `hτ :
-IsStrictlyIncreasingIndexMap τ`. Then `IsSubsequenceOf (fun k => x (σ (τ k))) x`. -/
+IsStrictlyIncreasingIndexMap τ`. Then `IsSubsequenceOf (fun k => x (σ (τ k))) x`.
+
+Logical form:
+
+```lean
+theorem SubsequenceOfSubsequence {x : RealSequence} {σ τ : ℕ → ℕ}
+    (hσ : IsStrictlyIncreasingIndexMap σ) (hτ : IsStrictlyIncreasingIndexMap τ) :
+    IsSubsequenceOf (fun k => x (σ (τ k))) x
+```
+-/
 theorem SubsequenceOfSubsequence {x : RealSequence} {σ τ : ℕ → ℕ}
     (hσ : IsStrictlyIncreasingIndexMap σ) (hτ : IsStrictlyIncreasingIndexMap τ) :
     IsSubsequenceOf (fun k => x (σ (τ k))) x := by
@@ -151,7 +254,16 @@ theorem SubsequenceOfSubsequence {x : RealSequence} {σ τ : ℕ → ℕ}
 
 -- `thm:eventual-properties-pass-to-subsequences`
 /-- If `P : ℕ → Prop`, `σ : ℕ → ℕ`, `h : ∃ N : ℕ, ∀ n ≥ N, P n`, and `hσ :
-IsStrictlyIncreasingIndexMap σ`. Then `∃ K : ℕ, ∀ k ≥ K, P (σ k)`. -/
+IsStrictlyIncreasingIndexMap σ`. Then `∃ K : ℕ, ∀ k ≥ K, P (σ k)`.
+
+Logical form:
+
+```lean
+theorem EventualPropertiesPassToSubsequences {P : ℕ → Prop} {σ : ℕ → ℕ}
+    (h : ∃ N : ℕ, ∀ n ≥ N, P n) (hσ : IsStrictlyIncreasingIndexMap σ) :
+    ∃ K : ℕ, ∀ k ≥ K, P (σ k)
+```
+-/
 theorem EventualPropertiesPassToSubsequences {P : ℕ → Prop} {σ : ℕ → ℕ}
     (h : ∃ N : ℕ, ∀ n ≥ N, P n) (hσ : IsStrictlyIncreasingIndexMap σ) :
     ∃ K : ℕ, ∀ k ≥ K, P (σ k) := by
@@ -159,7 +271,16 @@ theorem EventualPropertiesPassToSubsequences {P : ℕ → Prop} {σ : ℕ → �
 
 -- `thm:frequent-properties-yield-subsequences`
 /-- If `P : ℕ → Prop` and `h : ∀ N : ℕ, ∃ n ≥ N, P n`. Then `∃ σ : ℕ → ℕ,
-IsStrictlyIncreasingIndexMap σ ∧ ∀ k, P (σ k)`. -/
+IsStrictlyIncreasingIndexMap σ ∧ ∀ k, P (σ k)`.
+
+Logical form:
+
+```lean
+theorem FrequentPropertiesYieldSubsequences {P : ℕ → Prop}
+    (h : ∀ N : ℕ, ∃ n ≥ N, P n) :
+    ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ ∀ k, P (σ k)
+```
+-/
 theorem FrequentPropertiesYieldSubsequences {P : ℕ → Prop}
     (h : ∀ N : ℕ, ∃ n ≥ N, P n) :
     ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ ∀ k, P (σ k) := by
@@ -167,7 +288,16 @@ theorem FrequentPropertiesYieldSubsequences {P : ℕ → Prop}
 
 -- `thm:subsequential-limits-respect-bounds`
 /-- Let `x : RealSequence` and `L m M : ℝ`. If `hL : IsSubsequentialLimit x L` and `h : ∀ n, m ≤ x n
-∧ x n ≤ M`. Then `m ≤ L ∧ L ≤ M`. -/
+∧ x n ≤ M`. Then `m ≤ L ∧ L ≤ M`.
+
+Logical form:
+
+```lean
+theorem SubsequentialLimitsRespectBounds {x : RealSequence} {L m M : ℝ}
+    (hL : IsSubsequentialLimit x L) (h : ∀ n, m ≤ x n ∧ x n ≤ M) :
+    m ≤ L ∧ L ≤ M
+```
+-/
 theorem SubsequentialLimitsRespectBounds {x : RealSequence} {L m M : ℝ}
     (hL : IsSubsequentialLimit x L) (h : ∀ n, m ≤ x n ∧ x n ≤ M) :
     m ≤ L ∧ L ≤ M := by
@@ -176,7 +306,17 @@ theorem SubsequentialLimitsRespectBounds {x : RealSequence} {L m M : ℝ}
 -- `thm:squeeze-passes-to-subsequences`
 /-- Let `a x b : RealSequence`. If `σ : ℕ → ℕ`, `h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n`, and
 `hσ : IsStrictlyIncreasingIndexMap σ`. Then `∃ K : ℕ, ∀ k ≥ K, a (σ k) ≤ x (σ k) ∧ x (σ k) ≤ b
-(σ k)`. -/
+(σ k)`.
+
+Logical form:
+
+```lean
+theorem SqueezePassesToSubsequences {a x b : RealSequence} {σ : ℕ → ℕ}
+    (h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n)
+    (hσ : IsStrictlyIncreasingIndexMap σ) :
+    ∃ K : ℕ, ∀ k ≥ K, a (σ k) ≤ x (σ k) ∧ x (σ k) ≤ b (σ k)
+```
+-/
 theorem SqueezePassesToSubsequences {a x b : RealSequence} {σ : ℕ → ℕ}
     (h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n)
     (hσ : IsStrictlyIncreasingIndexMap σ) :
@@ -185,14 +325,31 @@ theorem SqueezePassesToSubsequences {a x b : RealSequence} {σ : ℕ → ℕ}
 
 -- `thm:monotone-subsequence-theorem`
 /-- Let `x : RealSequence`. Then `∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ (IsIncreasing (fun k
-=> x (σ k)) ∨ IsDecreasing (fun k => x (σ k)))`. -/
+=> x (σ k)) ∨ IsDecreasing (fun k => x (σ k)))`.
+
+Logical form:
+
+```lean
+theorem MonotoneSubsequenceTheorem (x : RealSequence) :
+    ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧
+      (IsIncreasing (fun k => x (σ k)) ∨ IsDecreasing (fun k => x (σ k)))
+```
+-/
 theorem MonotoneSubsequenceTheorem (x : RealSequence) :
     ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧
       (IsIncreasing (fun k => x (σ k)) ∨ IsDecreasing (fun k => x (σ k))) := by
   sorry
 
 -- `thm:bolzano-weierstrass-sequences`
-/-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `HasConvergentSubsequence x`. -/
+/-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `HasConvergentSubsequence x`.
+
+Logical form:
+
+```lean
+theorem BolzanoWeierstrassSequences {x : RealSequence} (h : BoundedSeq x) :
+    HasConvergentSubsequence x
+```
+-/
 theorem BolzanoWeierstrassSequences {x : RealSequence} (h : BoundedSeq x) :
     HasConvergentSubsequence x := by
   sorry
@@ -200,7 +357,17 @@ theorem BolzanoWeierstrassSequences {x : RealSequence} (h : BoundedSeq x) :
 -- `thm:sequential-compactness-closed-bounded-interval`
 /-- Let `a b : ℝ` and `x : RealSequence`. If `hab : a ≤ b` and `hx : ∀ n, a ≤ x n ∧ x n ≤ b`. Then
 `∃ σ : ℕ → ℕ, ∃ L : ℝ, IsStrictlyIncreasingIndexMap σ ∧ ConvergesTo (fun k => x (σ k)) L ∧ a ≤ L
-∧ L ≤ b`. -/
+∧ L ≤ b`.
+
+Logical form:
+
+```lean
+theorem SequentialCompactnessClosedBoundedInterval {a b : ℝ} {x : RealSequence}
+    (hab : a ≤ b) (hx : ∀ n, a ≤ x n ∧ x n ≤ b) :
+    ∃ σ : ℕ → ℕ, ∃ L : ℝ, IsStrictlyIncreasingIndexMap σ ∧
+      ConvergesTo (fun k => x (σ k)) L ∧ a ≤ L ∧ L ≤ b
+```
+-/
 theorem SequentialCompactnessClosedBoundedInterval {a b : ℝ} {x : RealSequence}
     (hab : a ≤ b) (hx : ∀ n, a ≤ x n ∧ x n ≤ b) :
     ∃ σ : ℕ → ℕ, ∃ L : ℝ, IsStrictlyIncreasingIndexMap σ ∧
@@ -209,7 +376,18 @@ theorem SequentialCompactnessClosedBoundedInterval {a b : ℝ} {x : RealSequence
 
 /-- Let `x : RealSequence` and `L : ℝ`. Then `ConvergesTo x L ↔ ∀ σ : ℕ → ℕ,
 IsStrictlyIncreasingIndexMap σ → ∃ τ : ℕ → ℕ, IsStrictlyIncreasingIndexMap τ ∧ ConvergesTo (fun
-k => x (σ (τ k))) L`. -/
+k => x (σ (τ k))) L`.
+
+Logical form:
+
+```lean
+theorem SubsequencePrinciple {x : RealSequence} {L : ℝ} :
+    ConvergesTo x L ↔
+      ∀ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ →
+        ∃ τ : ℕ → ℕ, IsStrictlyIncreasingIndexMap τ ∧
+          ConvergesTo (fun k => x (σ (τ k))) L
+```
+-/
 theorem SubsequencePrinciple {x : RealSequence} {L : ℝ} :
     ConvergesTo x L ↔
       ∀ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ →
@@ -218,7 +396,17 @@ theorem SubsequencePrinciple {x : RealSequence} {L : ℝ} :
   sorry
 
 /-- Let `x : RealSequence` and `L : ℝ`. If `hbdd : BoundedSeq x`. Then `ConvergesTo x L ↔
-(IsSubsequentialLimit x L ∧ ∀ K, IsSubsequentialLimit x K → K = L)`. -/
+(IsSubsequentialLimit x L ∧ ∀ K, IsSubsequentialLimit x K → K = L)`.
+
+Logical form:
+
+```lean
+theorem BoundedSequenceConvergesIffUniqueSubsequentialLimit
+    {x : RealSequence} {L : ℝ} (hbdd : BoundedSeq x) :
+    ConvergesTo x L ↔
+      (IsSubsequentialLimit x L ∧ ∀ K, IsSubsequentialLimit x K → K = L)
+```
+-/
 theorem BoundedSequenceConvergesIffUniqueSubsequentialLimit
     {x : RealSequence} {L : ℝ} (hbdd : BoundedSeq x) :
     ConvergesTo x L ↔

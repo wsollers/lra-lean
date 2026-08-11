@@ -6,12 +6,34 @@ open LRA.VolumeI.Set
 
 universe u v
 
-/-- Surjectivity of a function. -/
+/-- Surjectivity of a function.
+
+Logical form:
+
+```lean
+def Surjective {Domain Codomain : Type u} (map : Domain -> Codomain) : Prop :=
+  forall output, exists input, map input = output
+```
+-/
 def Surjective {Domain Codomain : Type u} (map : Domain -> Codomain) : Prop :=
   forall output, exists input, map input = output
 
 /-- Fiber formulation of surjectivity: every fiber over the ambient domain
-is inhabited. -/
+is inhabited.
+
+Logical form:
+
+```lean
+def SurjectiveByFibers {Element : Type u} {SetObject : Type v}
+    {Codomain : Type u}
+    [Membership Element SetObject] [HasSeparation Element SetObject]
+    (ambientDomain : SetObject)
+    (map : Function Element Codomain) : Prop :=
+  forall output : Codomain,
+    exists input : Element,
+      input ∈ Fiber ambientDomain map output
+```
+-/
 def SurjectiveByFibers {Element : Type u} {SetObject : Type v}
     {Codomain : Type u}
     [Membership Element SetObject] [HasSeparation Element SetObject]

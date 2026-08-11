@@ -18,6 +18,15 @@ theorem. This backend registers every membership certificate, including
 `UniversalMembershipLaws` -- the one Enderton can never have.
 -/
 
+/--
+`NotMemberOfEmpty` states not member of empty.
+
+Logical form:
+
+```lean
+theorem NotMemberOfEmpty : ∀ x : Alpha, x ∉ (∅ : LRASet Alpha)
+```
+-/
 theorem NotMemberOfEmpty : ∀ x : Alpha, x ∉ (∅ : LRASet Alpha) := by
   sorry
 

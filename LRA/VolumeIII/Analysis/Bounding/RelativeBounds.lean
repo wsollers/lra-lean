@@ -23,19 +23,51 @@ namespace LRA.VolumeIII.Analysis.Bounding
 
 variable {T : Type*} [Preorder T]
 
-/-- `def:relative-bounds`. -/
+/-- `def:relative-bounds`.
+
+Logical form:
+
+```lean
+def IsRelativeUpperBound (u : T) (A S : Set T) : Prop :=
+  u ∈ S ∧ ∀ a ∈ A, a ≤ u
+```
+-/
 def IsRelativeUpperBound (u : T) (A S : Set T) : Prop :=
   u ∈ S ∧ ∀ a ∈ A, a ≤ u
 
-/-- `def:relative-bounds`. -/
+/-- `def:relative-bounds`.
+
+Logical form:
+
+```lean
+def IsRelativeLowerBound (l : T) (A S : Set T) : Prop :=
+  l ∈ S ∧ ∀ a ∈ A, l ≤ a
+```
+-/
 def IsRelativeLowerBound (l : T) (A S : Set T) : Prop :=
   l ∈ S ∧ ∀ a ∈ A, l ≤ a
 
-/-- `def:relative-supremum-infimum`. -/
+/-- `def:relative-supremum-infimum`.
+
+Logical form:
+
+```lean
+def IsRelativeSupremum (s : T) (A S : Set T) : Prop :=
+  IsRelativeUpperBound s A S ∧ ∀ u ∈ S, (∀ a ∈ A, a ≤ u) → s ≤ u
+```
+-/
 def IsRelativeSupremum (s : T) (A S : Set T) : Prop :=
   IsRelativeUpperBound s A S ∧ ∀ u ∈ S, (∀ a ∈ A, a ≤ u) → s ≤ u
 
-/-- `def:relative-supremum-infimum`. -/
+/-- `def:relative-supremum-infimum`.
+
+Logical form:
+
+```lean
+def IsRelativeInfimum (i : T) (A S : Set T) : Prop :=
+  IsRelativeLowerBound i A S ∧ ∀ l ∈ S, (∀ a ∈ A, l ≤ a) → l ≤ i
+```
+-/
 def IsRelativeInfimum (i : T) (A S : Set T) : Prop :=
   IsRelativeLowerBound i A S ∧ ∀ l ∈ S, (∀ a ∈ A, l ≤ a) → l ≤ i
 
@@ -44,14 +76,32 @@ def IsRelativeInfimum (i : T) (A S : Set T) : Prop :=
    ================================================================ -/
 
 /-- Let `A S : Set T` and `s : T`. If `hs : IsLUB A s` and `hsS : s ∈ S`. Then `IsRelativeSupremum s
-A S`. -/
+A S`.
+
+Logical form:
+
+```lean
+theorem OrdinarySupremumInSIsRelativeSupremum
+    (A S : Set T) (s : T) (hs : IsLUB A s) (hsS : s ∈ S) :
+    IsRelativeSupremum s A S
+```
+-/
 theorem OrdinarySupremumInSIsRelativeSupremum
     (A S : Set T) (s : T) (hs : IsLUB A s) (hsS : s ∈ S) :
     IsRelativeSupremum s A S := by
   sorry
 
 /-- Let `A S : Set T` and `i : T`. If `hi : IsGLB A i` and `hiS : i ∈ S`. Then `IsRelativeInfimum i
-A S`. -/
+A S`.
+
+Logical form:
+
+```lean
+theorem OrdinaryInfimumInSIsRelativeInfimum
+    (A S : Set T) (i : T) (hi : IsGLB A i) (hiS : i ∈ S) :
+    IsRelativeInfimum i A S
+```
+-/
 theorem OrdinaryInfimumInSIsRelativeInfimum
     (A S : Set T) (i : T) (hi : IsGLB A i) (hiS : i ∈ S) :
     IsRelativeInfimum i A S := by
@@ -71,19 +121,45 @@ theorem OrdinaryInfimumInSIsRelativeInfimum
 
 /-- The set `{q∈ℚ:q²<2}`, viewed as a subset of the ambient `ℝ` (cast
 along `ℚ ↪ ℝ`) — the file's own recurring motivating example, made
-concrete. -/
+concrete.
+
+Logical form:
+
+```lean
+def RationalsWithSquareLessThanTwoInR : Set ℝ :=
+  {x : ℝ | ∃ q : ℚ, x = (q : ℝ) ∧ q ^ 2 < 2}
+```
+-/
 def RationalsWithSquareLessThanTwoInR : Set ℝ :=
   {x : ℝ | ∃ q : ℚ, x = (q : ℝ) ∧ q ^ 2 < 2}
 
 /-- The theorem asserts `¬ ∃ s : ℝ, IsRelativeSupremum s RationalsWithSquareLessThanTwoInR
-(Set.range ((↑) : ℚ → ℝ))`. -/
+(Set.range ((↑) : ℚ → ℝ))`.
+
+Logical form:
+
+```lean
+theorem NoRelativeSupremumOfRationalsExample :
+    ¬ ∃ s : ℝ, IsRelativeSupremum s RationalsWithSquareLessThanTwoInR
+      (Set.range ((↑) : ℚ → ℝ))
+```
+-/
 theorem NoRelativeSupremumOfRationalsExample :
     ¬ ∃ s : ℝ, IsRelativeSupremum s RationalsWithSquareLessThanTwoInR
       (Set.range ((↑) : ℚ → ℝ)) := by
   sorry
 
 /-- The theorem asserts `IsRelativeSupremum (Real.sqrt 2) RationalsWithSquareLessThanTwoInR
-(Set.univ : Set ℝ)`. -/
+(Set.univ : Set ℝ)`.
+
+Logical form:
+
+```lean
+theorem RelativeSupremumOfRationalsInRExample :
+    IsRelativeSupremum (Real.sqrt 2) RationalsWithSquareLessThanTwoInR
+      (Set.univ : Set ℝ)
+```
+-/
 theorem RelativeSupremumOfRationalsInRExample :
     IsRelativeSupremum (Real.sqrt 2) RationalsWithSquareLessThanTwoInR
       (Set.univ : Set ℝ) := by

@@ -5,6 +5,8 @@ import LRA.VolumeI.Algebra.Models.CanonicalEmbeddings
 
 namespace LRA.VolumeI.Algebra.Models.UniversalProperties
 
+universe u
+
 /-!
 Volume II label: universal-properties
 Lean module: LRA.VolumeI.Algebra.Models.UniversalProperties
@@ -17,18 +19,18 @@ Verification status: statement-accepted-proof-pending
 Logical form:
 
 ```lean
-structure IntegerUniversalProperty (SelectedIntegerModel : IntegerModel) : Prop where
+structure IntegerUniversalProperty (SelectedIntegerModel : IntegerModel.{u}) : Prop where
   InitialForDiscreteOrderedRings :
-    ∀ target : IntegerModel,
+    ∀ target : IntegerModel.{u},
       ∃ map : SelectedIntegerModel.signature.carrier → target.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedRing
           SelectedIntegerModel.signature target.signature map
 ```
 -/
 
-structure IntegerUniversalProperty (SelectedIntegerModel : IntegerModel) : Prop where
+structure IntegerUniversalProperty (SelectedIntegerModel : IntegerModel.{u}) : Prop where
   InitialForDiscreteOrderedRings :
-    ∀ target : IntegerModel,
+    ∀ target : IntegerModel.{u},
       ∃ map : SelectedIntegerModel.signature.carrier → target.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedRing
           SelectedIntegerModel.signature target.signature map
@@ -39,10 +41,10 @@ Logical form:
 
 ```lean
 structure RationalUniversalProperty
-    (SelectedIntegerModel : IntegerModel)
+    (SelectedIntegerModel : IntegerModel.{u})
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel) : Prop where
   FractionFieldProperty :
-    ∀ target : RationalModel,
+    ∀ target : RationalModel.{u},
       ∀ IntegerMap :
         SelectedIntegerModel.signature.carrier → target.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedRing
@@ -55,10 +57,10 @@ structure RationalUniversalProperty
 -/
 
 structure RationalUniversalProperty
-    (SelectedIntegerModel : IntegerModel)
+    (SelectedIntegerModel : IntegerModel.{u})
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel) : Prop where
   FractionFieldProperty :
-    ∀ target : RationalModel,
+    ∀ target : RationalModel.{u},
       ∀ IntegerMap :
         SelectedIntegerModel.signature.carrier → target.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedRing
@@ -73,20 +75,18 @@ structure RationalUniversalProperty
 Logical form:
 
 ```lean
-structure CompleteOrderedFieldCharacterization (SelectedRealModel : RealModel) : Prop where
-  RealLaws : RealLaws SelectedRealModel.signature
+structure CompleteOrderedFieldCharacterization (SelectedRealModel : RealModel.{u}) : Prop where
   UniqueUpToOrderedFieldIsomorphism :
-    ∀ other : RealModel,
+    ∀ other : RealModel.{u},
       ∃ comparison : SelectedRealModel.signature.carrier → other.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedField
           SelectedRealModel.signature other.signature comparison
 ```
 -/
 
-structure CompleteOrderedFieldCharacterization (SelectedRealModel : RealModel) : Prop where
-  RealLaws : RealLaws SelectedRealModel.signature
+structure CompleteOrderedFieldCharacterization (SelectedRealModel : RealModel.{u}) : Prop where
   UniqueUpToOrderedFieldIsomorphism :
-    ∀ other : RealModel,
+    ∀ other : RealModel.{u},
       ∃ comparison : SelectedRealModel.signature.carrier → other.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedField
           SelectedRealModel.signature other.signature comparison

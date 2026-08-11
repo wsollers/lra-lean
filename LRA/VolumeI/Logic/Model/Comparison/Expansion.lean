@@ -36,7 +36,22 @@ first equation into the second.
 given a chosen interpretation of the vocabulary genuinely new to `S'` (not
 in the image of `e`). Agrees with `M` on domain and on every embedded
 symbol's interpretation; falls back to the supplied new interpretation
-whenever `e`'s preimage functions report a symbol as not embedded. -/
+whenever `e`'s preimage functions report a symbol as not embedded.
+
+Logical form:
+
+```lean
+def Model.expand
+    {S S' : Signature} (e : SignatureEmbedding S S') (M : Model S)
+    (newFunctions :
+      (f' : S'.FunctionSymbol) -> (Fin (S'.functionArity f') -> M.Domain) -> M.Domain)
+    (newRelations :
+      (r' : S'.RelationSymbol) -> (Fin (S'.relationArity r') -> M.Domain) -> Prop)
+    (newConstants : S'.Constants -> M.Domain) :
+    Model S' where
+  Domain
+```
+-/
 def Model.expand
     {S S' : Signature} (e : SignatureEmbedding S S') (M : Model S)
     (newFunctions :

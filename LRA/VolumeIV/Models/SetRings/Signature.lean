@@ -13,7 +13,19 @@ distinguished `one`, because the ambient universe need not belong to the ring.
 /-- A set-ring signature names the carrier of set-objects, the distinguished
 zero object, and the finite set operations used by rings of sets; equivalently,
 in powerset models `zero` is `∅`, `join` is union, `meet` is intersection,
-`difference` is relative complement, and `add` is symmetric difference. -/
+`difference` is relative complement, and `add` is symmetric difference.
+
+Logical form:
+
+```lean
+structure SetRingSignature extends LRA.VolumeI.Algebra.Signatures.CarrierSignature where
+  zero : carrier
+  add : LRA.VolumeI.Operations.BinaryOperation carrier
+  join : LRA.VolumeI.Operations.BinaryOperation carrier
+  meet : LRA.VolumeI.Operations.BinaryOperation carrier
+  difference : LRA.VolumeI.Operations.BinaryOperation carrier
+```
+-/
 structure SetRingSignature extends LRA.VolumeI.Algebra.Signatures.CarrierSignature where
   zero : carrier
   add : LRA.VolumeI.Operations.BinaryOperation carrier

@@ -29,7 +29,17 @@ is needed.
 
 /-- A second-order assignment over a Henkin model `M`: an element
 assignment (as `Satisfies` already needed) paired with a set assignment,
-giving a current denotation to every set variable. -/
+giving a current denotation to every set variable.
+
+Logical form:
+
+```lean
+structure SOAssignment
+    {S : Signature} (M : HenkinModel S) (Variable SetVariable : Type) where
+  elementAssignment : Variable -> M.Domain
+  setAssignment : SetVariable -> Set M.Domain
+```
+-/
 structure SOAssignment
     {S : Signature} (M : HenkinModel S) (Variable SetVariable : Type) where
   elementAssignment : Variable -> M.Domain

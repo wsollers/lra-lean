@@ -1,5 +1,5 @@
 -- LRA/VolumeII/GaussianIntegers/Construction/Model.lean
--- Gaussian-integer construction over the active integer model.
+-- Gaussian integers over any certified commutative-ring carrier.
 
 import LRA.VolumeI.Algebra.Models
 import LRA.VolumeII.Integers.Construction
@@ -7,146 +7,394 @@ import LRA.VolumeII.Integers.Construction
 namespace LRA.VolumeII.GaussianIntegers
 
 open LRA.VolumeI.Algebra.Models
+open LRA.VolumeI.AlgebraicStructures
+
+universe u
 
 /-!
 Volume II label: gaussian-integer-construction
 Lean module: LRA.VolumeII.GaussianIntegers.Construction.Model
 Verification status: definitions accepted; algebraic proofs pending
 
-The Gaussian integers are represented as pairs of active integers, with
-addition and multiplication given by the usual coordinate formulas for
-`a + bi`.
+The Gaussian integers `a + b·i`, now over *any* commutative-ring
+carrier `R` — the active project integers `Z`, Mathlib's `Int`, or any
+other certified ring. Operations are the usual coordinate formulas in
+the instance notation of `R`; the certificates flow whenever `R`'s do.
 -/
 
-abbrev BaseIntegerModel : IntegerModel :=
-  LRA.VolumeII.Integers.Active.integerNumberSystemModel
+/-- A Gaussian integer over the carrier `R`.
 
-abbrev BaseIntegerCarrier : Type :=
-  BaseIntegerModel.signature.carrier
+Logical form:
 
-/-- A Gaussian integer over the active integer model. -/
-structure GaussianInteger where
-  realPart : BaseIntegerCarrier
-  imaginaryPart : BaseIntegerCarrier
+```lean
+structure GaussianInteger (R : Type u) where
+  realPart : R
+  imaginaryPart : R
+```
+-/
+structure GaussianInteger (R : Type u) where
+  realPart : R
+  imaginaryPart : R
 
-/-- The Gaussian integer `0 + 0i`. -/
-def GaussianZero : GaussianInteger where
-  realPart := BaseIntegerModel.signature.zero
-  imaginaryPart := BaseIntegerModel.signature.zero
+namespace GaussianInteger
 
-/-- The Gaussian integer `1 + 0i`. -/
-def GaussianOne : GaussianInteger where
-  realPart := BaseIntegerModel.signature.one
-  imaginaryPart := BaseIntegerModel.signature.zero
+variable {R : Type u}
 
-/-- The Gaussian integer `0 + 1i`. -/
-def GaussianImaginaryUnit : GaussianInteger where
-  realPart := BaseIntegerModel.signature.zero
-  imaginaryPart := BaseIntegerModel.signature.one
+/-! ## Machines -/
 
-/-- Coordinatewise Gaussian-integer addition. -/
-def GaussianAddition
-    (first second : GaussianInteger) : GaussianInteger where
-  realPart :=
-    BaseIntegerModel.signature.addition first.realPart second.realPart
-  imaginaryPart :=
-    BaseIntegerModel.signature.addition first.imaginaryPart second.imaginaryPart
+instance [OfNat R 0] : OfNat (GaussianInteger R) 0 := ⟨⟨0, 0⟩⟩
 
-/-- Coordinatewise additive inverse. -/
-def GaussianNegation
-    (value : GaussianInteger) : GaussianInteger where
-  realPart := BaseIntegerModel.signature.negation value.realPart
-  imaginaryPart := BaseIntegerModel.signature.negation value.imaginaryPart
+instance [OfNat R 0] [OfNat R 1] : OfNat (GaussianInteger R) 1 := ⟨⟨1, 0⟩⟩
 
-/-- Gaussian-integer subtraction. -/
-def GaussianSubtraction
-    (first second : GaussianInteger) : GaussianInteger :=
-  GaussianAddition first (GaussianNegation second)
+/-- The Gaussian imaginary unit `0 + 1·i`.
 
-/-- Gaussian-integer multiplication: `(a + bi)(c + di) = (ac - bd) + (ad + bc)i`. -/
-def GaussianMultiplication
-    (first second : GaussianInteger) : GaussianInteger where
-  realPart :=
-    BaseIntegerModel.signature.addition
-      (BaseIntegerModel.signature.multiplication first.realPart second.realPart)
-      (BaseIntegerModel.signature.negation
-        (BaseIntegerModel.signature.multiplication
-          first.imaginaryPart second.imaginaryPart))
-  imaginaryPart :=
-    BaseIntegerModel.signature.addition
-      (BaseIntegerModel.signature.multiplication first.realPart second.imaginaryPart)
-      (BaseIntegerModel.signature.multiplication first.imaginaryPart second.realPart)
+Logical form:
 
-/-- Gaussian conjugation: `a + bi` maps to `a - bi`. -/
-def GaussianConjugation
-    (value : GaussianInteger) : GaussianInteger where
-  realPart := value.realPart
-  imaginaryPart := BaseIntegerModel.signature.negation value.imaginaryPart
+```lean
+def imaginaryUnit [OfNat R 0] [OfNat R 1] : GaussianInteger R := ⟨0, 1⟩
+```
+-/
+def imaginaryUnit [OfNat R 0] [OfNat R 1] : GaussianInteger R := ⟨0, 1⟩
 
-/-- Squared Gaussian norm: `a^2 + b^2`. -/
-def GaussianNormSquared
-    (value : GaussianInteger) : BaseIntegerCarrier :=
-  BaseIntegerModel.signature.addition
-    (BaseIntegerModel.signature.multiplication value.realPart value.realPart)
-    (BaseIntegerModel.signature.multiplication value.imaginaryPart value.imaginaryPart)
+instance [Add R] : Add (GaussianInteger R) :=
+  ⟨fun first second =>
+    ⟨first.realPart + second.realPart,
+     first.imaginaryPart + second.imaginaryPart⟩⟩
 
-/-- The Gaussian integers as a first-order arithmetic-ring operation bundle. -/
-def GaussianArithmeticRingSignature : ArithmeticRingSignature where
-  carrier := GaussianInteger
-  zero := GaussianZero
-  one := GaussianOne
-  addition := GaussianAddition
-  multiplication := GaussianMultiplication
+instance [Neg R] : Neg (GaussianInteger R) :=
+  ⟨fun value => ⟨-value.realPart, -value.imaginaryPart⟩⟩
 
-/-- The Gaussian integers as a first-order model of the arithmetic ring language. -/
+instance [Add R] [Neg R] : Sub (GaussianInteger R) :=
+  ⟨fun first second => first + -second⟩
+
+instance [Add R] [Mul R] [Neg R] : Mul (GaussianInteger R) :=
+  ⟨fun first second =>
+    ⟨first.realPart * second.realPart +
+       -(first.imaginaryPart * second.imaginaryPart),
+     first.realPart * second.imaginaryPart +
+       first.imaginaryPart * second.realPart⟩⟩
+
+/-- Gaussian conjugation: `a + b·i ↦ a - b·i`.
+
+Logical form:
+
+```lean
+def conjugation [Neg R] (value : GaussianInteger R) : GaussianInteger R :=
+  ⟨value.realPart, -value.imaginaryPart⟩
+```
+-/
+def conjugation [Neg R] (value : GaussianInteger R) : GaussianInteger R :=
+  ⟨value.realPart, -value.imaginaryPart⟩
+
+/-- Squared Gaussian norm `a² + b²`, valued in the base carrier.
+
+Logical form:
+
+```lean
+def normSquared [Add R] [Mul R] (value : GaussianInteger R) : R :=
+  value.realPart * value.realPart +
+    value.imaginaryPart * value.imaginaryPart
+```
+-/
+def normSquared [Add R] [Mul R] (value : GaussianInteger R) : R :=
+  value.realPart * value.realPart +
+    value.imaginaryPart * value.imaginaryPart
+
+/-! ## Construction theorems (statements; proofs pending) -/
+
+section RingTheorems
+
+variable [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1]
+variable [CommutativeRingLaws R]
+
+/--
+`addition_is_associative` states addition is associative.
+
+Logical form:
+
+```lean
+theorem addition_is_associative (a b c : GaussianInteger R) :
+    (a + b) + c = a + (b + c)
+```
+-/
+theorem addition_is_associative (a b c : GaussianInteger R) :
+    (a + b) + c = a + (b + c) := by
+  sorry
+
+/--
+`addition_is_commutative` states addition is commutative.
+
+Logical form:
+
+```lean
+theorem addition_is_commutative (a b : GaussianInteger R) :
+    a + b = b + a
+```
+-/
+theorem addition_is_commutative (a b : GaussianInteger R) :
+    a + b = b + a := by
+  sorry
+
+/--
+`zero_add_gaussian` states zero add gaussian.
+
+Logical form:
+
+```lean
+theorem zero_add_gaussian (a : GaussianInteger R) : 0 + a = a
+```
+-/
+theorem zero_add_gaussian (a : GaussianInteger R) : 0 + a = a := by
+  sorry
+
+/--
+`add_zero_gaussian` states add zero gaussian.
+
+Logical form:
+
+```lean
+theorem add_zero_gaussian (a : GaussianInteger R) : a + 0 = a
+```
+-/
+theorem add_zero_gaussian (a : GaussianInteger R) : a + 0 = a := by
+  sorry
+
+/--
+`neg_add_cancel_gaussian` states neg add cancel gaussian.
+
+Logical form:
+
+```lean
+theorem neg_add_cancel_gaussian (a : GaussianInteger R) : -a + a = 0
+```
+-/
+theorem neg_add_cancel_gaussian (a : GaussianInteger R) : -a + a = 0 := by
+  sorry
+
+/--
+`add_neg_cancel_gaussian` states add neg cancel gaussian.
+
+Logical form:
+
+```lean
+theorem add_neg_cancel_gaussian (a : GaussianInteger R) : a + -a = 0
+```
+-/
+theorem add_neg_cancel_gaussian (a : GaussianInteger R) : a + -a = 0 := by
+  sorry
+
+/--
+`multiplication_is_associative` states multiplication is associative.
+
+Logical form:
+
+```lean
+theorem multiplication_is_associative (a b c : GaussianInteger R) :
+    (a * b) * c = a * (b * c)
+```
+-/
+theorem multiplication_is_associative (a b c : GaussianInteger R) :
+    (a * b) * c = a * (b * c) := by
+  sorry
+
+/--
+`multiplication_is_commutative` states multiplication is commutative.
+
+Logical form:
+
+```lean
+theorem multiplication_is_commutative (a b : GaussianInteger R) :
+    a * b = b * a
+```
+-/
+theorem multiplication_is_commutative (a b : GaussianInteger R) :
+    a * b = b * a := by
+  sorry
+
+/--
+`one_mul_gaussian` states one mul gaussian.
+
+Logical form:
+
+```lean
+theorem one_mul_gaussian (a : GaussianInteger R) : 1 * a = a
+```
+-/
+theorem one_mul_gaussian (a : GaussianInteger R) : 1 * a = a := by
+  sorry
+
+/--
+`mul_one_gaussian` states mul one gaussian.
+
+Logical form:
+
+```lean
+theorem mul_one_gaussian (a : GaussianInteger R) : a * 1 = a
+```
+-/
+theorem mul_one_gaussian (a : GaussianInteger R) : a * 1 = a := by
+  sorry
+
+/--
+`zero_mul_gaussian` states zero mul gaussian.
+
+Logical form:
+
+```lean
+theorem zero_mul_gaussian (a : GaussianInteger R) : 0 * a = 0
+```
+-/
+theorem zero_mul_gaussian (a : GaussianInteger R) : 0 * a = 0 := by
+  sorry
+
+/--
+`mul_zero_gaussian` states mul zero gaussian.
+
+Logical form:
+
+```lean
+theorem mul_zero_gaussian (a : GaussianInteger R) : a * 0 = 0
+```
+-/
+theorem mul_zero_gaussian (a : GaussianInteger R) : a * 0 = 0 := by
+  sorry
+
+/--
+`left_distributive_gaussian` states left distributive gaussian.
+
+Logical form:
+
+```lean
+theorem left_distributive_gaussian (a b c : GaussianInteger R) :
+    a * (b + c) = a * b + a * c
+```
+-/
+theorem left_distributive_gaussian (a b c : GaussianInteger R) :
+    a * (b + c) = a * b + a * c := by
+  sorry
+
+/--
+`right_distributive_gaussian` states right distributive gaussian.
+
+Logical form:
+
+```lean
+theorem right_distributive_gaussian (a b c : GaussianInteger R) :
+    (a + b) * c = a * c + b * c
+```
+-/
+theorem right_distributive_gaussian (a b c : GaussianInteger R) :
+    (a + b) * c = a * c + b * c := by
+  sorry
+
+/-- The Gaussian imaginary unit squares to negative one.
+
+Logical form:
+
+```lean
+theorem imaginary_unit_squared :
+    imaginaryUnit * imaginaryUnit = -(1 : GaussianInteger R)
+```
+-/
+theorem imaginary_unit_squared :
+    imaginaryUnit * imaginaryUnit = -(1 : GaussianInteger R) := by
+  sorry
+
+end RingTheorems
+
+/-! ## Certificates -/
+
+section Certificates
+
+variable [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1]
+variable [CommutativeRingLaws R]
+
+instance : AdditiveSemigroupLaws (GaussianInteger R) :=
+  ⟨addition_is_associative⟩
+
+instance : AdditiveCommutativeLaws (GaussianInteger R) :=
+  ⟨addition_is_commutative⟩
+
+instance : AdditiveIdentityLaws (GaussianInteger R) :=
+  ⟨zero_add_gaussian, add_zero_gaussian⟩
+
+instance : AdditiveInverseLaws (GaussianInteger R) :=
+  ⟨neg_add_cancel_gaussian, add_neg_cancel_gaussian⟩
+
+instance : MultiplicativeSemigroupLaws (GaussianInteger R) :=
+  ⟨multiplication_is_associative⟩
+
+instance : MultiplicativeCommutativeLaws (GaussianInteger R) :=
+  ⟨multiplication_is_commutative⟩
+
+instance : MultiplicativeIdentityLaws (GaussianInteger R) :=
+  ⟨one_mul_gaussian, mul_one_gaussian⟩
+
+instance : ZeroAbsorbingLaws (GaussianInteger R) :=
+  ⟨zero_mul_gaussian, mul_zero_gaussian⟩
+
+instance : DistributiveLaws (GaussianInteger R) :=
+  ⟨left_distributive_gaussian, right_distributive_gaussian⟩
+
+instance : SubtractionCompatibilityLaw (GaussianInteger R) :=
+  ⟨fun _ _ => rfl⟩
+
+end Certificates
+
+/-! ## The active Gaussian integers and their first-order model -/
+
+/-- The Gaussian integers over the active project integers.
+
+Logical form:
+
+```lean
+abbrev ActiveGaussianInteger := GaussianInteger LRA.VolumeII.Integers.Z
+```
+-/
+abbrev ActiveGaussianInteger := GaussianInteger LRA.VolumeII.Integers.Z
+
+/-- Any ring-ready carrier's Gaussian integers as a first-order model
+of the arithmetic ring language.
+
+Logical form:
+
+```lean
+def gaussianArithmeticRingModel (R : Type u)
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
+    LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+  arithmeticRingFirstOrderModel (GaussianInteger R)
+```
+-/
+def gaussianArithmeticRingModel (R : Type u)
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
+    LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+  arithmeticRingFirstOrderModel (GaussianInteger R)
+
+/-- The active Gaussian integers as a first-order model.
+
+Logical form:
+
+```lean
 def GaussianArithmeticRingModel :
     LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
-  BuildArithmeticRingModel GaussianArithmeticRingSignature
+  gaussianArithmeticRingModel LRA.VolumeII.Integers.Z
+```
+-/
+def GaussianArithmeticRingModel :
+    LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+  gaussianArithmeticRingModel LRA.VolumeII.Integers.Z
 
-/-- Gaussian addition is associative. -/
-theorem GaussianAdditionIsAssociative :
-    LRA.VolumeI.Operations.Associative GaussianAddition := by
-  sorry
+/-! ## Smoke tests: same theorem surface over `Z` and `Int` -/
 
-/-- Gaussian addition is commutative. -/
-theorem GaussianAdditionIsCommutative :
-    LRA.VolumeI.Operations.Commutative GaussianAddition := by
-  sorry
+example : CommutativeRingLaws ActiveGaussianInteger := inferInstance
+example : CommutativeRingLaws (GaussianInteger Int) := inferInstance
 
-/-- Gaussian zero is the additive identity. -/
-theorem GaussianZeroIsAdditiveIdentity :
-    LRA.VolumeI.Operations.Identity GaussianAddition GaussianZero := by
-  sorry
+example (a b : ActiveGaussianInteger) : a + b = b + a :=
+  AddCommutative a b
 
-/-- Gaussian negation gives additive inverses. -/
-theorem GaussianNegationIsAdditiveInverse :
-    LRA.VolumeI.Operations.Inverse GaussianAddition GaussianZero GaussianNegation := by
-  sorry
+example (a b : GaussianInteger Int) : a + b = b + a :=
+  AddCommutative a b
 
-/-- Gaussian multiplication is associative. -/
-theorem GaussianMultiplicationIsAssociative :
-    LRA.VolumeI.Operations.Associative GaussianMultiplication := by
-  sorry
-
-/-- Gaussian multiplication is commutative. -/
-theorem GaussianMultiplicationIsCommutative :
-    LRA.VolumeI.Operations.Commutative GaussianMultiplication := by
-  sorry
-
-/-- Gaussian one is the multiplicative identity. -/
-theorem GaussianOneIsMultiplicativeIdentity :
-    LRA.VolumeI.Operations.Identity GaussianMultiplication GaussianOne := by
-  sorry
-
-/-- Gaussian multiplication distributes over Gaussian addition. -/
-theorem GaussianMultiplicationDistributesOverAddition :
-    LRA.VolumeI.Operations.Distributive GaussianMultiplication GaussianAddition := by
-  sorry
-
-/-- The Gaussian imaginary unit squares to negative one. -/
-theorem GaussianImaginaryUnitSquared :
-    GaussianMultiplication GaussianImaginaryUnit GaussianImaginaryUnit =
-      GaussianNegation GaussianOne := by
-  sorry
+end GaussianInteger
 
 end LRA.VolumeII.GaussianIntegers

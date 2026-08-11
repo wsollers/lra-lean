@@ -17,6 +17,20 @@ universe u v
 /-- Cauchy sequence predicate induced by reference normed-linear-space data.
 
 Mathematical statement (Lean): `def IsCauchySequence {K : Type u} [NormedField K] {V : Type v} (space : LRA.VolumeIV.NormedLinearSpaces.NormedLinearSpaceDefinition K V) (sequence : ℕ → V) : Prop`.
+
+
+Logical form:
+
+```lean
+def IsCauchySequence
+    {K : Type u}
+    [NormedField K]
+    {V : Type v}
+    (space : LRA.VolumeIV.NormedLinearSpaces.NormedLinearSpaceDefinition K V)
+    (sequence : ℕ → V) : Prop :=
+  ∀ ε : Real, 0 < ε → ∃ N : ℕ, ∀ m n : ℕ, N ≤ m → N ≤ n →
+    space.norm (space.vectorSpace.add (sequence m) (space.vectorSpace.neg (sequence n))) < ε
+```
 -/
 def IsCauchySequence
     {K : Type u}
@@ -31,6 +45,21 @@ def IsCauchySequence
 /-- Convergence predicate induced by reference normed-linear-space data.
 
 Mathematical statement (Lean): `def ConvergesTo {K : Type u} [NormedField K] {V : Type v} (space : LRA.VolumeIV.NormedLinearSpaces.NormedLinearSpaceDefinition K V) (sequence : ℕ → V) (limit : V) : Prop`.
+
+
+Logical form:
+
+```lean
+def ConvergesTo
+    {K : Type u}
+    [NormedField K]
+    {V : Type v}
+    (space : LRA.VolumeIV.NormedLinearSpaces.NormedLinearSpaceDefinition K V)
+    (sequence : ℕ → V)
+    (limit : V) : Prop :=
+  ∀ ε : Real, 0 < ε → ∃ N : ℕ, ∀ n : ℕ, N ≤ n →
+    space.norm (space.vectorSpace.add (sequence n) (space.vectorSpace.neg limit)) < ε
+```
 -/
 def ConvergesTo
     {K : Type u}
@@ -46,6 +75,23 @@ def ConvergesTo
 /-- Reference data for a Banach space.
 
 Mathematical statement (Lean): `structure BanachSpaceDefinition (K : Type u) [NormedField K] (V : Type v)`.
+
+
+Logical form:
+
+```lean
+structure BanachSpaceDefinition
+    (K : Type u)
+    [NormedField K]
+    (V : Type v) where
+  /-- The underlying normed linear space. -/
+  normedLinearSpace : LRA.VolumeIV.NormedLinearSpaces.NormedLinearSpaceDefinition K V
+  /-- Every Cauchy sequence converges. -/
+  complete :
+    ∀ sequence : ℕ → V,
+      IsCauchySequence normedLinearSpace sequence →
+      ∃ limit : V, ConvergesTo normedLinearSpace sequence limit
+```
 -/
 structure BanachSpaceDefinition
     (K : Type u)

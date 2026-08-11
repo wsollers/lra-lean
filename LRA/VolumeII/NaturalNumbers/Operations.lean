@@ -1,5 +1,6 @@
 import LRA.VolumeII.NaturalNumbers.Operations.Addition
 import LRA.VolumeII.NaturalNumbers.Operations.Multiplication
+import LRA.VolumeII.NaturalNumbers.Operations.Builders
 import LRA.VolumeII.NaturalNumbers.Operations.Exponentiation
 
 /-!

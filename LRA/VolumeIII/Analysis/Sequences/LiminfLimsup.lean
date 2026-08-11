@@ -69,43 +69,106 @@ import LRA.VolumeIII.Analysis.Sequences.Subsequences
 
 namespace LRA.VolumeIII.Analysis.Sequences
 
-/-- `def:tail-supremum-sequence`. -/
+/-- `def:tail-supremum-sequence`.
+
+Logical form:
+
+```lean
+noncomputable def TailSupSeq (x : RealSequence) : RealSequence :=
+  fun n => sSup (x '' {k : ℕ | n ≤ k})
+```
+-/
 noncomputable def TailSupSeq (x : RealSequence) : RealSequence :=
   fun n => sSup (x '' {k : ℕ | n ≤ k})
 
-/-- `def:tail-infimum-sequence`. -/
+/-- `def:tail-infimum-sequence`.
+
+Logical form:
+
+```lean
+noncomputable def TailInfSeq (x : RealSequence) : RealSequence :=
+  fun n => sInf (x '' {k : ℕ | n ≤ k})
+```
+-/
 noncomputable def TailInfSeq (x : RealSequence) : RealSequence :=
   fun n => sInf (x '' {k : ℕ | n ≤ k})
 
 /-- `def:limsup-sequence`. A relation, not a partial function — matching
-the project's own house style for `ConvergesTo` itself. -/
+the project's own house style for `ConvergesTo` itself.
+
+Logical form:
+
+```lean
+def LimsupSeq (x : RealSequence) (L : ℝ) : Prop := ConvergesTo (TailSupSeq x) L
+```
+-/
 def LimsupSeq (x : RealSequence) (L : ℝ) : Prop := ConvergesTo (TailSupSeq x) L
 
-/-- `def:liminf-sequence`. -/
+/-- `def:liminf-sequence`.
+
+Logical form:
+
+```lean
+def LiminfSeq (x : RealSequence) (L : ℝ) : Prop := ConvergesTo (TailInfSeq x) L
+```
+-/
 def LiminfSeq (x : RealSequence) (L : ℝ) : Prop := ConvergesTo (TailInfSeq x) L
 
 -- `thm:tail-suprema-are-decreasing`
-/-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `IsDecreasing (TailSupSeq x)`. -/
+/-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `IsDecreasing (TailSupSeq x)`.
+
+Logical form:
+
+```lean
+theorem TailSupremaAreDecreasing {x : RealSequence} (h : BoundedSeq x) :
+    IsDecreasing (TailSupSeq x)
+```
+-/
 theorem TailSupremaAreDecreasing {x : RealSequence} (h : BoundedSeq x) :
     IsDecreasing (TailSupSeq x) := by
   sorry
 
 -- `thm:tail-infima-are-increasing`
-/-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `IsIncreasing (TailInfSeq x)`. -/
+/-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `IsIncreasing (TailInfSeq x)`.
+
+Logical form:
+
+```lean
+theorem TailInfimaAreIncreasing {x : RealSequence} (h : BoundedSeq x) :
+    IsIncreasing (TailInfSeq x)
+```
+-/
 theorem TailInfimaAreIncreasing {x : RealSequence} (h : BoundedSeq x) :
     IsIncreasing (TailInfSeq x) := by
   sorry
 
 -- `thm:liminf-below-limsup`
 /-- Let `x : RealSequence` and `I S : ℝ`. If `hbdd : BoundedSeq x`, `hI : LiminfSeq x I`, and `hS :
-LimsupSeq x S`. Then `I ≤ S`. -/
+LimsupSeq x S`. Then `I ≤ S`.
+
+Logical form:
+
+```lean
+theorem LiminfBelowLimsup {x : RealSequence} (hbdd : BoundedSeq x)
+    {I S : ℝ} (hI : LiminfSeq x I) (hS : LimsupSeq x S) : I ≤ S
+```
+-/
 theorem LiminfBelowLimsup {x : RealSequence} (hbdd : BoundedSeq x)
     {I S : ℝ} (hI : LiminfSeq x I) (hS : LimsupSeq x S) : I ≤ S := by
   sorry
 
 -- `thm:convergence-iff-liminf-equals-limsup`
 /-- Let `x : RealSequence` and `L : ℝ`. If `hbdd : BoundedSeq x`. Then `ConvergesTo x L ↔ (LiminfSeq
-x L ∧ LimsupSeq x L)`. -/
+x L ∧ LimsupSeq x L)`.
+
+Logical form:
+
+```lean
+theorem ConvergenceIffLiminfEqualsLimsup {x : RealSequence}
+    (hbdd : BoundedSeq x) {L : ℝ} :
+    ConvergesTo x L ↔ (LiminfSeq x L ∧ LimsupSeq x L)
+```
+-/
 theorem ConvergenceIffLiminfEqualsLimsup {x : RealSequence}
     (hbdd : BoundedSeq x) {L : ℝ} :
     ConvergesTo x L ↔ (LiminfSeq x L ∧ LimsupSeq x L) := by
@@ -113,7 +176,16 @@ theorem ConvergenceIffLiminfEqualsLimsup {x : RealSequence}
 
 -- `thm:limsup-largest-subsequential-limit`
 /-- Let `x : RealSequence` and `S : ℝ`. If `hbdd : BoundedSeq x` and `hS : LimsupSeq x S`. Then
-`IsSubsequentialLimit x S ∧ ∀ L, IsSubsequentialLimit x L → L ≤ S`. -/
+`IsSubsequentialLimit x S ∧ ∀ L, IsSubsequentialLimit x L → L ≤ S`.
+
+Logical form:
+
+```lean
+theorem LimsupLargestSubsequentialLimit {x : RealSequence}
+    (hbdd : BoundedSeq x) {S : ℝ} (hS : LimsupSeq x S) :
+    IsSubsequentialLimit x S ∧ ∀ L, IsSubsequentialLimit x L → L ≤ S
+```
+-/
 theorem LimsupLargestSubsequentialLimit {x : RealSequence}
     (hbdd : BoundedSeq x) {S : ℝ} (hS : LimsupSeq x S) :
     IsSubsequentialLimit x S ∧ ∀ L, IsSubsequentialLimit x L → L ≤ S := by
@@ -121,7 +193,16 @@ theorem LimsupLargestSubsequentialLimit {x : RealSequence}
 
 -- `thm:liminf-smallest-subsequential-limit`
 /-- Let `x : RealSequence` and `I : ℝ`. If `hbdd : BoundedSeq x` and `hI : LiminfSeq x I`. Then
-`IsSubsequentialLimit x I ∧ ∀ L, IsSubsequentialLimit x L → I ≤ L`. -/
+`IsSubsequentialLimit x I ∧ ∀ L, IsSubsequentialLimit x L → I ≤ L`.
+
+Logical form:
+
+```lean
+theorem LiminfSmallestSubsequentialLimit {x : RealSequence}
+    (hbdd : BoundedSeq x) {I : ℝ} (hI : LiminfSeq x I) :
+    IsSubsequentialLimit x I ∧ ∀ L, IsSubsequentialLimit x L → I ≤ L
+```
+-/
 theorem LiminfSmallestSubsequentialLimit {x : RealSequence}
     (hbdd : BoundedSeq x) {I : ℝ} (hI : LiminfSeq x I) :
     IsSubsequentialLimit x I ∧ ∀ L, IsSubsequentialLimit x L → I ≤ L := by
@@ -130,7 +211,16 @@ theorem LiminfSmallestSubsequentialLimit {x : RealSequence}
 -- `thm:oscillation-criterion-via-liminf-limsup`
 /-- Let `x : RealSequence` and `I S : ℝ`. If `hbdd : BoundedSeq x`, `hI : LiminfSeq x I`, and `hS :
 LimsupSeq x S`. Then `I < S ↔ ∃ L K : ℝ, L ≠ K ∧ IsSubsequentialLimit x L ∧ IsSubsequentialLimit
-x K`. -/
+x K`.
+
+Logical form:
+
+```lean
+theorem OscillationCriterionViaLiminfLimsup {x : RealSequence}
+    (hbdd : BoundedSeq x) {I S : ℝ} (hI : LiminfSeq x I) (hS : LimsupSeq x S) :
+    I < S ↔ ∃ L K : ℝ, L ≠ K ∧ IsSubsequentialLimit x L ∧ IsSubsequentialLimit x K
+```
+-/
 theorem OscillationCriterionViaLiminfLimsup {x : RealSequence}
     (hbdd : BoundedSeq x) {I S : ℝ} (hI : LiminfSeq x I) (hS : LimsupSeq x S) :
     I < S ↔ ∃ L K : ℝ, L ≠ K ∧ IsSubsequentialLimit x L ∧ IsSubsequentialLimit x K := by
@@ -138,7 +228,17 @@ theorem OscillationCriterionViaLiminfLimsup {x : RealSequence}
 
 -- `thm:limsup-comparison-under-eventual-order`
 /-- Let `x y : RealSequence` and `Sx Sy : ℝ`. If `hx : BoundedSeq x`, `hy : BoundedSeq y`, `h : ∃ N
-: ℕ, ∀ n ≥ N, x n ≤ y n`, `hSx : LimsupSeq x Sx`, and `hSy : LimsupSeq y Sy`. Then `Sx ≤ Sy`. -/
+: ℕ, ∀ n ≥ N, x n ≤ y n`, `hSx : LimsupSeq x Sx`, and `hSy : LimsupSeq y Sy`. Then `Sx ≤ Sy`.
+
+Logical form:
+
+```lean
+theorem LimsupComparisonUnderEventualOrder {x y : RealSequence}
+    (hx : BoundedSeq x) (hy : BoundedSeq y)
+    (h : ∃ N : ℕ, ∀ n ≥ N, x n ≤ y n) {Sx Sy : ℝ}
+    (hSx : LimsupSeq x Sx) (hSy : LimsupSeq y Sy) : Sx ≤ Sy
+```
+-/
 theorem LimsupComparisonUnderEventualOrder {x y : RealSequence}
     (hx : BoundedSeq x) (hy : BoundedSeq y)
     (h : ∃ N : ℕ, ∀ n ≥ N, x n ≤ y n) {Sx Sy : ℝ}
@@ -147,7 +247,17 @@ theorem LimsupComparisonUnderEventualOrder {x y : RealSequence}
 
 -- `thm:liminf-comparison-under-eventual-order`
 /-- Let `x y : RealSequence` and `Ix Iy : ℝ`. If `hx : BoundedSeq x`, `hy : BoundedSeq y`, `h : ∃ N
-: ℕ, ∀ n ≥ N, x n ≤ y n`, `hIx : LiminfSeq x Ix`, and `hIy : LiminfSeq y Iy`. Then `Ix ≤ Iy`. -/
+: ℕ, ∀ n ≥ N, x n ≤ y n`, `hIx : LiminfSeq x Ix`, and `hIy : LiminfSeq y Iy`. Then `Ix ≤ Iy`.
+
+Logical form:
+
+```lean
+theorem LiminfComparisonUnderEventualOrder {x y : RealSequence}
+    (hx : BoundedSeq x) (hy : BoundedSeq y)
+    (h : ∃ N : ℕ, ∀ n ≥ N, x n ≤ y n) {Ix Iy : ℝ}
+    (hIx : LiminfSeq x Ix) (hIy : LiminfSeq y Iy) : Ix ≤ Iy
+```
+-/
 theorem LiminfComparisonUnderEventualOrder {x y : RealSequence}
     (hx : BoundedSeq x) (hy : BoundedSeq y)
     (h : ∃ N : ℕ, ∀ n ≥ N, x n ≤ y n) {Ix Iy : ℝ}
@@ -157,7 +267,18 @@ theorem LiminfComparisonUnderEventualOrder {x y : RealSequence}
 -- `thm:limsup-squeeze-under-eventual-order`
 /-- Let `a x b : RealSequence` and `Sa Sx Sb : ℝ`. If `ha : BoundedSeq a`, `hx : BoundedSeq x`, `hb
 : BoundedSeq b`, `h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n`, `hSa : LimsupSeq a Sa`, `hSx :
-LimsupSeq x Sx`, and `hSb : LimsupSeq b Sb`. Then `Sa ≤ Sx ∧ Sx ≤ Sb`. -/
+LimsupSeq x Sx`, and `hSb : LimsupSeq b Sb`. Then `Sa ≤ Sx ∧ Sx ≤ Sb`.
+
+Logical form:
+
+```lean
+theorem LimsupSqueezeUnderEventualOrder {a x b : RealSequence}
+    (ha : BoundedSeq a) (hx : BoundedSeq x) (hb : BoundedSeq b)
+    (h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n)
+    {Sa Sx Sb : ℝ} (hSa : LimsupSeq a Sa) (hSx : LimsupSeq x Sx)
+    (hSb : LimsupSeq b Sb) : Sa ≤ Sx ∧ Sx ≤ Sb
+```
+-/
 theorem LimsupSqueezeUnderEventualOrder {a x b : RealSequence}
     (ha : BoundedSeq a) (hx : BoundedSeq x) (hb : BoundedSeq b)
     (h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n)
@@ -168,7 +289,18 @@ theorem LimsupSqueezeUnderEventualOrder {a x b : RealSequence}
 -- `thm:liminf-squeeze-under-eventual-order`
 /-- Let `a x b : RealSequence` and `Ia Ix Ib : ℝ`. If `ha : BoundedSeq a`, `hx : BoundedSeq x`, `hb
 : BoundedSeq b`, `h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n`, `hIa : LiminfSeq a Ia`, `hIx :
-LiminfSeq x Ix`, and `hIb : LiminfSeq b Ib`. Then `Ia ≤ Ix ∧ Ix ≤ Ib`. -/
+LiminfSeq x Ix`, and `hIb : LiminfSeq b Ib`. Then `Ia ≤ Ix ∧ Ix ≤ Ib`.
+
+Logical form:
+
+```lean
+theorem LiminfSqueezeUnderEventualOrder {a x b : RealSequence}
+    (ha : BoundedSeq a) (hx : BoundedSeq x) (hb : BoundedSeq b)
+    (h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n)
+    {Ia Ix Ib : ℝ} (hIa : LiminfSeq a Ia) (hIx : LiminfSeq x Ix)
+    (hIb : LiminfSeq b Ib) : Ia ≤ Ix ∧ Ix ≤ Ib
+```
+-/
 theorem LiminfSqueezeUnderEventualOrder {a x b : RealSequence}
     (ha : BoundedSeq a) (hx : BoundedSeq x) (hb : BoundedSeq b)
     (h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n)
@@ -176,12 +308,28 @@ theorem LiminfSqueezeUnderEventualOrder {a x b : RealSequence}
     (hIb : LiminfSeq b Ib) : Ia ≤ Ix ∧ Ix ≤ Ib := by
   sorry
 
-/-- Let `x : RealSequence` and `L : ℝ`. Then `LimsupSeq (fun n => -x n) L ↔ LiminfSeq x (-L)`. -/
+/-- Let `x : RealSequence` and `L : ℝ`. Then `LimsupSeq (fun n => -x n) L ↔ LiminfSeq x (-L)`.
+
+Logical form:
+
+```lean
+theorem LimsupNegEqNegLiminf {x : RealSequence} {L : ℝ} :
+    LimsupSeq (fun n => -x n) L ↔ LiminfSeq x (-L)
+```
+-/
 theorem LimsupNegEqNegLiminf {x : RealSequence} {L : ℝ} :
     LimsupSeq (fun n => -x n) L ↔ LiminfSeq x (-L) := by
   sorry
 
-/-- Let `x : RealSequence` and `L : ℝ`. Then `LiminfSeq (fun n => -x n) L ↔ LimsupSeq x (-L)`. -/
+/-- Let `x : RealSequence` and `L : ℝ`. Then `LiminfSeq (fun n => -x n) L ↔ LimsupSeq x (-L)`.
+
+Logical form:
+
+```lean
+theorem LiminfNegEqNegLimsup {x : RealSequence} {L : ℝ} :
+    LiminfSeq (fun n => -x n) L ↔ LimsupSeq x (-L)
+```
+-/
 theorem LiminfNegEqNegLimsup {x : RealSequence} {L : ℝ} :
     LiminfSeq (fun n => -x n) L ↔ LimsupSeq x (-L) := by
   sorry

@@ -52,18 +52,42 @@ namespace LRA.VolumeIII.Analysis.Sequences
 
 /-- `def:cluster-value-sequence`. Named `IsClusterValueOf` (not
 `IsClusterValue`) to avoid colliding with `IsSubsequentialLimit` — see
-the naming-collision finding in this file's header comment. -/
+the naming-collision finding in this file's header comment.
+
+Logical form:
+
+```lean
+def IsClusterValueOf (x : RealSequence) (L : ℝ) : Prop :=
+  ∀ ε > 0, ∀ N : ℕ, ∃ n ≥ N, |x n - L| < ε
+```
+-/
 def IsClusterValueOf (x : RealSequence) (L : ℝ) : Prop :=
   ∀ ε > 0, ∀ N : ℕ, ∃ n ≥ N, |x n - L| < ε
 
 -- `thm:cluster-values-are-subsequential-limits`
-/-- Let `x : RealSequence` and `L : ℝ`. Then `IsClusterValueOf x L ↔ IsSubsequentialLimit x L`. -/
+/-- Let `x : RealSequence` and `L : ℝ`. Then `IsClusterValueOf x L ↔ IsSubsequentialLimit x L`.
+
+Logical form:
+
+```lean
+theorem ClusterValuesAreSubsequentialLimits {x : RealSequence} {L : ℝ} :
+    IsClusterValueOf x L ↔ IsSubsequentialLimit x L
+```
+-/
 theorem ClusterValuesAreSubsequentialLimits {x : RealSequence} {L : ℝ} :
     IsClusterValueOf x L ↔ IsSubsequentialLimit x L := by
   sorry
 
 -- `thm:bounded-sequences-have-cluster-values`
-/-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `∃ L : ℝ, IsClusterValueOf x L`. -/
+/-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `∃ L : ℝ, IsClusterValueOf x L`.
+
+Logical form:
+
+```lean
+theorem BoundedSequencesHaveClusterValues {x : RealSequence}
+    (h : BoundedSeq x) : ∃ L : ℝ, IsClusterValueOf x L
+```
+-/
 theorem BoundedSequencesHaveClusterValues {x : RealSequence}
     (h : BoundedSeq x) : ∃ L : ℝ, IsClusterValueOf x L := by
   sorry
@@ -71,7 +95,17 @@ theorem BoundedSequencesHaveClusterValues {x : RealSequence}
 -- `thm:limsup-liminf-extremal-cluster-values`
 /-- Let `x : RealSequence` and `S I : ℝ`. If `hbdd : BoundedSeq x`, `hS : LimsupSeq x S`, and `hI :
 LiminfSeq x I`. Then `(IsClusterValueOf x S ∧ ∀ L, IsClusterValueOf x L → L ≤ S) ∧
-(IsClusterValueOf x I ∧ ∀ L, IsClusterValueOf x L → I ≤ L)`. -/
+(IsClusterValueOf x I ∧ ∀ L, IsClusterValueOf x L → I ≤ L)`.
+
+Logical form:
+
+```lean
+theorem LimsupLiminfExtremalClusterValues {x : RealSequence}
+    (hbdd : BoundedSeq x) {S I : ℝ} (hS : LimsupSeq x S) (hI : LiminfSeq x I) :
+    (IsClusterValueOf x S ∧ ∀ L, IsClusterValueOf x L → L ≤ S) ∧
+    (IsClusterValueOf x I ∧ ∀ L, IsClusterValueOf x L → I ≤ L)
+```
+-/
 theorem LimsupLiminfExtremalClusterValues {x : RealSequence}
     (hbdd : BoundedSeq x) {S I : ℝ} (hS : LimsupSeq x S) (hI : LiminfSeq x I) :
     (IsClusterValueOf x S ∧ ∀ L, IsClusterValueOf x L → L ≤ S) ∧

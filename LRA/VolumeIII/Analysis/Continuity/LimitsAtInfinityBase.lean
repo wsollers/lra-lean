@@ -15,9 +15,25 @@ namespace LRA.VolumeIII.Analysis.Continuity
 
 /-- `def:infinite-adherent-points`: `+∞` (resp. `−∞`) is an adherent
 point of `A` if `A` is unbounded above (resp. below) — the domain
-hypothesis under which `TendsToInfty`/`TendsToNegInfty` are meaningful. -/
+hypothesis under which `TendsToInfty`/`TendsToNegInfty` are meaningful.
+
+Logical form:
+
+```lean
+def PlusInftyAdherent (A : Set ℝ) : Prop := ∀ M : ℝ, ∃ x ∈ A, x > M
+```
+-/
 def PlusInftyAdherent (A : Set ℝ) : Prop := ∀ M : ℝ, ∃ x ∈ A, x > M
 
+/--
+`MinusInftyAdherent` defines the displayed object for minus infty adherent.
+
+Logical form:
+
+```lean
+def MinusInftyAdherent (A : Set ℝ) : Prop := ∀ M : ℝ, ∃ x ∈ A, x < M
+```
+-/
 def MinusInftyAdherent (A : Set ℝ) : Prop := ∀ M : ℝ, ∃ x ∈ A, x < M
 
 end LRA.VolumeIII.Analysis.Continuity

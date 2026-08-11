@@ -75,46 +75,118 @@ namespace LRA.VolumeIII.Analysis.Functions
 
 variable {A B C : Type*}
 
-/-- Project-parallel to Mathlib's `Function.Injective`. -/
+/-- Project-parallel to Mathlib's `Function.Injective`.
+
+Logical form:
+
+```lean
+def IsInjectiveOn (f : A → B) : Prop := ∀ a₁ a₂ : A, f a₁ = f a₂ → a₁ = a₂
+```
+-/
 def IsInjectiveOn (f : A → B) : Prop := ∀ a₁ a₂ : A, f a₁ = f a₂ → a₁ = a₂
 
-/-- Project-parallel to Mathlib's `Function.Surjective`. -/
+/-- Project-parallel to Mathlib's `Function.Surjective`.
+
+Logical form:
+
+```lean
+def IsSurjectiveOn (f : A → B) : Prop := ∀ b : B, ∃ a : A, f a = b
+```
+-/
 def IsSurjectiveOn (f : A → B) : Prop := ∀ b : B, ∃ a : A, f a = b
 
-/-- Project-parallel to Mathlib's `Function.Bijective`. -/
+/-- Project-parallel to Mathlib's `Function.Bijective`.
+
+Logical form:
+
+```lean
+def IsBijectiveOn (f : A → B) : Prop := IsInjectiveOn f ∧ IsSurjectiveOn f
+```
+-/
 def IsBijectiveOn (f : A → B) : Prop := IsInjectiveOn f ∧ IsSurjectiveOn f
 
-/-- Project-parallel notion of "`g` is the inverse function of `f`." -/
+/-- Project-parallel notion of "`g` is the inverse function of `f`."
+
+Logical form:
+
+```lean
+def IsInverseFunctionOf (g : B → A) (f : A → B) : Prop :=
+  (∀ a : A, g (f a) = a) ∧ (∀ b : B, f (g b) = b)
+```
+-/
 def IsInverseFunctionOf (g : B → A) (f : A → B) : Prop :=
   (∀ a : A, g (f a) = a) ∧ (∀ b : B, f (g b) = b)
 
 /-- If `f : A → B`, `g : B → C`, `hf : IsInjectiveOn f`, and `hg : IsInjectiveOn g`. Then
-`IsInjectiveOn (g ∘ f)`. -/
+`IsInjectiveOn (g ∘ f)`.
+
+Logical form:
+
+```lean
+theorem CompositionInjective {f : A → B} {g : B → C}
+    (hf : IsInjectiveOn f) (hg : IsInjectiveOn g) : IsInjectiveOn (g ∘ f)
+```
+-/
 theorem CompositionInjective {f : A → B} {g : B → C}
     (hf : IsInjectiveOn f) (hg : IsInjectiveOn g) : IsInjectiveOn (g ∘ f) := by
   sorry
 
 /-- If `f : A → B`, `g : B → C`, `hf : IsSurjectiveOn f`, and `hg : IsSurjectiveOn g`. Then
-`IsSurjectiveOn (g ∘ f)`. -/
+`IsSurjectiveOn (g ∘ f)`.
+
+Logical form:
+
+```lean
+theorem CompositionSurjective {f : A → B} {g : B → C}
+    (hf : IsSurjectiveOn f) (hg : IsSurjectiveOn g) :
+    IsSurjectiveOn (g ∘ f)
+```
+-/
 theorem CompositionSurjective {f : A → B} {g : B → C}
     (hf : IsSurjectiveOn f) (hg : IsSurjectiveOn g) :
     IsSurjectiveOn (g ∘ f) := by
   sorry
 
 /-- If `f : A → B`, `g : B → C`, `hf : IsBijectiveOn f`, and `hg : IsBijectiveOn g`. Then
-`IsBijectiveOn (g ∘ f)`. -/
+`IsBijectiveOn (g ∘ f)`.
+
+Logical form:
+
+```lean
+theorem CompositionBijective {f : A → B} {g : B → C}
+    (hf : IsBijectiveOn f) (hg : IsBijectiveOn g) : IsBijectiveOn (g ∘ f)
+```
+-/
 theorem CompositionBijective {f : A → B} {g : B → C}
     (hf : IsBijectiveOn f) (hg : IsBijectiveOn g) : IsBijectiveOn (g ∘ f) := by
   sorry
 
 /-- If `f : A → B` and `hf : IsBijectiveOn f`. Then `∃ g : B → A, IsInverseFunctionOf g f ∧
-IsBijectiveOn g`. -/
+IsBijectiveOn g`.
+
+Logical form:
+
+```lean
+theorem InverseBijection {f : A → B} (hf : IsBijectiveOn f) :
+    ∃ g : B → A, IsInverseFunctionOf g f ∧ IsBijectiveOn g
+```
+-/
 theorem InverseBijection {f : A → B} (hf : IsBijectiveOn f) :
     ∃ g : B → A, IsInverseFunctionOf g f ∧ IsBijectiveOn g := by
   sorry
 
 /-- Let `S T : Set B`. If `f : A → B`. Then `f ⁻¹' (S ∪ T) = f ⁻¹' S ∪ f ⁻¹' T ∧ f ⁻¹' (S ∩ T) = f
-⁻¹' S ∩ f ⁻¹' T ∧ f ⁻¹' Sᶜ = (f ⁻¹' S)ᶜ`. -/
+⁻¹' S ∩ f ⁻¹' T ∧ f ⁻¹' Sᶜ = (f ⁻¹' S)ᶜ`.
+
+Logical form:
+
+```lean
+theorem PreimageUnionIntersection {f : A → B} (S T : Set B) :
+    f ⁻¹' (S ∪ T) = f ⁻¹' S ∪ f ⁻¹' T ∧
+      f ⁻¹' (S ∩ T) = f ⁻¹' S ∩ f ⁻¹' T ∧
+      f ⁻¹' Sᶜ = (f ⁻¹' S)ᶜ
+```
+-/
 theorem PreimageUnionIntersection {f : A → B} (S T : Set B) :
     f ⁻¹' (S ∪ T) = f ⁻¹' S ∪ f ⁻¹' T ∧
       f ⁻¹' (S ∩ T) = f ⁻¹' S ∩ f ⁻¹' T ∧

@@ -1,86 +1,121 @@
 -- LRA/VolumeII/BasicArithmetic/AlgebraicIdentities.lean
--- Lang-style elementary algebraic identities over LRA algebraic carriers.
+-- Lang-style elementary algebraic identities over mixin-certified carriers.
 
-import LRA.VolumeI.Algebra.Models
+import LRA.VolumeI.AlgebraicStructures
 
 namespace LRA.VolumeII.BasicArithmetic.AlgebraicIdentities
 
-open LRA.VolumeI.Algebra.Models
+open LRA.VolumeI.AlgebraicStructures
+
+universe u
 
 /-!
 Volume II label: basic-arithmetic-algebraic-identities
 Lean module: LRA.VolumeII.BasicArithmetic.AlgebraicIdentities
 Verification status: statement-accepted-proof-pending
 
-This file records elementary algebraic manipulations as named facts. These are
-not number-system constructions; they are the kind of arithmetic moves that
-later proofs should be able to cite directly.
+Elementary algebraic manipulations as named facts, stated over any
+carrier with the mixin certificates they actually require -- no
+operation bundles, no `letI` ceremony. Each statement's brackets are
+exactly its mathematical hypotheses: the square-of-a-sum needs only
+commutative-semiring laws (so it covers `ℕ` and the whole numbers,
+which have no subtraction), while the difference identities additionally
+need negation and subtraction.
 -/
 
-/-- Square of an element in a semiring signature. -/
-def SemiringSquare (signature : SemiringSignature)
-    (value : signature.carrier) : signature.carrier :=
-  signature.multiplication value value
+/-- The square of an element.
 
-/-- Square of an element in a ring signature. -/
-def RingSquare (signature : RingSignature)
-    (value : signature.carrier) : signature.carrier :=
-  signature.multiplication value value
+Logical form:
 
-/-- Square of a sum in a commutative semiring. This covers the natural-number
-and whole-number cases as well as rings and fields through their semiring
-operation layer.
+```lean
+def Square {R : Type u} [Mul R] (value : R) : R := value * value
+```
+-/
+def Square {R : Type u} [Mul R] (value : R) : R := value * value
 
-Mathematical statement (Lean): `theorem SqAddExpanded (semiring : CommutativeSemiring) (a b : semiring.signature.carrier) : (a + b) * (a + b) = a * a + (1 + 1) * (a * b) + b * b`.
+/-- Square of a sum in any commutative semiring.
+
+Mathematical statement (Lean): `theorem SqAddExpanded`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem SqAddExpanded {R : Type u}
+    [Add R] [Mul R] [OfNat R 0] [OfNat R 1]
+    [CommutativeSemiringLaws R]
+    (a b : R) :
+    (a + b) * (a + b) = a * a + (1 + 1) * (a * b) + b * b
+```
 -/
-theorem SqAddExpanded
-    (semiring : CommutativeSemiring)
-    (a b : semiring.signature.carrier) :
-    letI := SemiringSignature.instZero semiring.signature
-    letI := SemiringSignature.instOne semiring.signature
-    letI := SemiringSignature.instAdd semiring.signature
-    letI := SemiringSignature.instMul semiring.signature
-    (a + b) * (a + b) =
-      a * a + (1 + 1) * (a * b) + b * b := by
+theorem SqAddExpanded {R : Type u}
+    [Add R] [Mul R] [OfNat R 0] [OfNat R 1]
+    [CommutativeSemiringLaws R]
+    (a b : R) :
+    (a + b) * (a + b) = a * a + (1 + 1) * (a * b) + b * b := by
   sorry
 
-/-- Difference of squares in a commutative ring.
+/-- Difference of squares in any commutative ring.
 
-Mathematical statement (Lean): `theorem SqSubSqExpanded (ring : CommutativeRing) (a b : ring.signature.carrier) : a * a - b * b = (a + b) * (a - b)`.
+Mathematical statement (Lean): `theorem SqSubSqExpanded`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem SqSubSqExpanded {R : Type u}
+    [Add R] [Mul R] [Neg R] [Sub R] [OfNat R 0] [OfNat R 1]
+    [CommutativeRingLaws R] [SubtractionCompatibilityLaw R]
+    (a b : R) :
+    a * a - b * b = (a + b) * (a - b)
+```
 -/
-theorem SqSubSqExpanded
-    (ring : CommutativeRing)
-    (a b : ring.signature.carrier) :
-    letI := RingSignature.instZero ring.signature
-    letI := RingSignature.instOne ring.signature
-    letI := RingSignature.instAdd ring.signature
-    letI := RingSignature.instNeg ring.signature
-    letI := RingSignature.instSub ring.signature
-    letI := RingSignature.instMul ring.signature
+theorem SqSubSqExpanded {R : Type u}
+    [Add R] [Mul R] [Neg R] [Sub R] [OfNat R 0] [OfNat R 1]
+    [CommutativeRingLaws R] [SubtractionCompatibilityLaw R]
+    (a b : R) :
     a * a - b * b = (a + b) * (a - b) := by
   sorry
 
-/-- Square of a difference in a commutative ring.
+/-- Square of a difference in any commutative ring.
 
-Mathematical statement (Lean): `theorem SqSubExpanded (ring : CommutativeRing) (a b : ring.signature.carrier) : (a - b) * (a - b) = a * a - (1 + 1) * (a * b) + b * b`.
+Mathematical statement (Lean): `theorem SqSubExpanded`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem SqSubExpanded {R : Type u}
+    [Add R] [Mul R] [Neg R] [Sub R] [OfNat R 0] [OfNat R 1]
+    [CommutativeRingLaws R] [SubtractionCompatibilityLaw R]
+    (a b : R) :
+    (a - b) * (a - b) = a * a - (1 + 1) * (a * b) + b * b
+```
 -/
-theorem SqSubExpanded
-    (ring : CommutativeRing)
-    (a b : ring.signature.carrier) :
-    letI := RingSignature.instZero ring.signature
-    letI := RingSignature.instOne ring.signature
-    letI := RingSignature.instAdd ring.signature
-    letI := RingSignature.instNeg ring.signature
-    letI := RingSignature.instSub ring.signature
-    letI := RingSignature.instMul ring.signature
-    (a - b) * (a - b) =
-      a * a - (1 + 1) * (a * b) + b * b := by
+theorem SqSubExpanded {R : Type u}
+    [Add R] [Mul R] [Neg R] [Sub R] [OfNat R 0] [OfNat R 1]
+    [CommutativeRingLaws R] [SubtractionCompatibilityLaw R]
+    (a b : R) :
+    (a - b) * (a - b) = a * a - (1 + 1) * (a * b) + b * b := by
   sorry
+
+/-!
+Instantiation checks: the identities are *stated* at every certified
+carrier -- Mathlib's number systems through the bridge, and (once the
+Boolean-ring view is opened) predicate sets.
+-/
+
+example (a b : Int) :
+    (a + b) * (a + b) = a * a + (1 + 1) * (a * b) + b * b :=
+  SqAddExpanded a b
+
+example (a b : Rat) : a * a - b * b = (a + b) * (a - b) :=
+  SqSubSqExpanded a b
 
 end LRA.VolumeII.BasicArithmetic.AlgebraicIdentities

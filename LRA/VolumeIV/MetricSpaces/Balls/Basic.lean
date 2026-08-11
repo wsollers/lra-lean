@@ -14,6 +14,17 @@ variable {X : Type u} [MetricSpace X]
 Mathematical statement (Lean): `theorem center_mem_ball (x : X) {r : Real} (radius_positive : 0 < r) : x ∈ Metric.ball x r`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem center_mem_ball
+    (x : X)
+    {r : Real}
+    (radius_positive : 0 < r) :
+    x ∈ Metric.ball x r
+```
 -/
 theorem center_mem_ball
     (x : X)
@@ -32,6 +43,17 @@ theorem center_mem_ball
 Mathematical statement (Lean): `theorem ball_subset_ball (x : X) {r s : Real} (radius_le : r ≤ s) : Metric.ball x r ⊆ Metric.ball x s`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem ball_subset_ball
+    (x : X)
+    {r s : Real}
+    (radius_le : r ≤ s) :
+    Metric.ball x r ⊆ Metric.ball x s
+```
 -/
 theorem ball_subset_ball
     (x : X)
@@ -49,7 +71,17 @@ theorem ball_subset_ball
 Mathematical statement (Lean): `theorem ball_subset_closedBall (x : X) (r : Real) : Metric.ball x r ⊆ Metric.closedBall x r`.
 
 *Proof status:* proof pending
-radius. -/
+radius.
+
+Logical form:
+
+```lean
+theorem ball_subset_closedBall
+    (x : X)
+    (r : Real) :
+    Metric.ball x r ⊆ Metric.closedBall x r
+```
+-/
 theorem ball_subset_closedBall
     (x : X)
     (r : Real) :
@@ -63,7 +95,18 @@ theorem ball_subset_closedBall
 Mathematical statement (Lean): `theorem ball_subset_ball_of_mem {x y : X} {r : Real} (point_in_ball : y ∈ Metric.ball x r) : ∃ ε > 0, Metric.ball y ε ⊆ Metric.ball x r`.
 
 *Proof status:* proof pending
-point lies inside the original ball. -/
+point lies inside the original ball.
+
+Logical form:
+
+```lean
+theorem ball_subset_ball_of_mem
+    {x y : X}
+    {r : Real}
+    (pointInBall : y ∈ Metric.ball x r) :
+    ∃ ε > 0, Metric.ball y ε ⊆ Metric.ball x r
+```
+-/
 theorem ball_subset_ball_of_mem
     {x y : X}
     {r : Real}

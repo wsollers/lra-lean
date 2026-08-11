@@ -44,20 +44,62 @@ with the arity left implicit.
 /-- The primitive logical connectives shared by every language built on the
 usual (¬, →)-basis. Other connectives (∧, ∨, ↔) are not primitive here; they
 are expected to be introduced later as derived notation in terms of these
-two, exactly as a Hilbert-style presentation would define them. -/
+two, exactly as a Hilbert-style presentation would define them.
+
+Logical form:
+
+```lean
+inductive LogicalConnective where
+  | neg
+  | impl
+```
+-/
 inductive LogicalConnective where
   | neg
   | impl
 
+/--
+`LogicalConnectives` defines the displayed object for logical connectives.
+
+Logical form:
+
+```lean
+def LogicalConnectives : ArityIndexedSymbols where
+  Symbol := LogicalConnective
+  arity
+    | .neg => 1
+    | .impl => 2
+```
+-/
 def LogicalConnectives : ArityIndexedSymbols where
   Symbol := LogicalConnective
   arity
     | .neg => 1
     | .impl => 2
 
+/--
+`LogicalConnectives.negIsUnary` states neg is unary.
+
+Logical form:
+
+```lean
+theorem LogicalConnectives.negIsUnary :
+    LogicalConnectives.IsUnary .neg
+```
+-/
 theorem LogicalConnectives.negIsUnary :
     LogicalConnectives.IsUnary .neg := rfl
 
+/--
+`LogicalConnectives.implIsBinary` states impl is binary.
+
+Logical form:
+
+```lean
+theorem LogicalConnectives.implIsBinary :
+    LogicalConnectives.IsBinary .impl
+```
+-/
 theorem LogicalConnectives.implIsBinary :
     LogicalConnectives.IsBinary .impl := rfl
 
@@ -76,15 +118,45 @@ language).
 /-- The equality symbol. There is exactly one; it is declared as an
 `ArityIndexedSymbols` of its own purely so `.IsBinary` is available by the
 same uniform name used elsewhere, not because more than one equality symbol
-will ever exist. -/
+will ever exist.
+
+Logical form:
+
+```lean
+inductive LogicalEquality where
+  | eq
+```
+-/
 inductive LogicalEquality where
   | eq
 
+/--
+`LogicalEqualitySymbols` defines the displayed object for logical equality symbols.
+
+Logical form:
+
+```lean
+def LogicalEqualitySymbols : ArityIndexedSymbols where
+  Symbol := LogicalEquality
+  arity
+    | .eq => 2
+```
+-/
 def LogicalEqualitySymbols : ArityIndexedSymbols where
   Symbol := LogicalEquality
   arity
     | .eq => 2
 
+/--
+`LogicalEqualitySymbols.eqIsBinary` states eq is binary.
+
+Logical form:
+
+```lean
+theorem LogicalEqualitySymbols.eqIsBinary :
+    LogicalEqualitySymbols.IsBinary .eq
+```
+-/
 theorem LogicalEqualitySymbols.eqIsBinary :
     LogicalEqualitySymbols.IsBinary .eq := rfl
 
@@ -112,7 +184,15 @@ nothing here anticipates that later definition beyond leaving room for it.
 
 /-- The primitive quantifier shared by every language with variables and
 binding. `∃` is not primitive; it is expected to be introduced later as
-derived notation, `∃v. φ := ¬∀v. ¬φ`. -/
+derived notation, `∃v. φ := ¬∀v. ¬φ`.
+
+Logical form:
+
+```lean
+inductive LogicalQuantifier where
+  | forallQ
+```
+-/
 inductive LogicalQuantifier where
   | forallQ
 

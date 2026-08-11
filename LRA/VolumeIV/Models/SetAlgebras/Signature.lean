@@ -13,7 +13,16 @@ ambient universe.
 /-- A set-algebra signature is a set-ring signature with a distinguished `one`
 and a complement operation; equivalently, in powerset models `zero` is `∅`,
 `one` is `U`, `join` is union, `meet` is intersection, and `complement` is set
-complement relative to `U`. -/
+complement relative to `U`.
+
+Logical form:
+
+```lean
+structure SetAlgebraSignature extends LRA.VolumeIV.Models.SetRings.SetRingSignature where
+  one : carrier
+  complement : LRA.VolumeI.Operations.UnaryOperation carrier
+```
+-/
 structure SetAlgebraSignature extends LRA.VolumeIV.Models.SetRings.SetRingSignature where
   one : carrier
   complement : LRA.VolumeI.Operations.UnaryOperation carrier

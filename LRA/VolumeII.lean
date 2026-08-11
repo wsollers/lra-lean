@@ -8,7 +8,6 @@ import LRA.VolumeII.RationalNumbers
 import LRA.VolumeII.RealNumbers
 import LRA.VolumeII.RationalNumbers.ContinuedFractions
 import LRA.VolumeII.ComplexNumbers
-import LRA.VolumeII.Switches
 import LRA.VolumeII.BasicArithmetic
 
 /-!

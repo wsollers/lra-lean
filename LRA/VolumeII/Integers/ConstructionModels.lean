@@ -29,6 +29,15 @@ open LRA.VolumeI.Algebra.Models
 /-- **[Definition — Quotient-Ordered-Pairs Integer Representative]**
 
 Mathematical statement (Lean): `structure Representative (WholeCarrier : Type)`.
+
+
+Logical form:
+
+```lean
+structure Representative (WholeCarrier : Type) where
+  positive_coordinate : WholeCarrier
+  negative_coordinate : WholeCarrier
+```
 -/
 structure Representative (WholeCarrier : Type) where
   positive_coordinate : WholeCarrier
@@ -38,6 +47,18 @@ structure Representative (WholeCarrier : Type) where
 /-- **[Definition — Quotient-Ordered-Pairs Equality]**
 
 Mathematical statement (Lean): `def equivalent {WholeCarrier : Type} (addition : WholeCarrier → WholeCarrier → WholeCarrier) (first second : Representative WholeCarrier) : Prop`.
+
+
+Logical form:
+
+```lean
+def equivalent
+    {WholeCarrier : Type}
+    (addition : WholeCarrier → WholeCarrier → WholeCarrier)
+    (first second : Representative WholeCarrier) : Prop :=
+  addition first.positive_coordinate second.negative_coordinate =
+    addition second.positive_coordinate first.negative_coordinate
+```
 -/
 def equivalent
     {WholeCarrier : Type}
@@ -52,6 +73,26 @@ def equivalent
 Mathematical statement (Lean): `theorem equivalent_is_equivalence_relation {WholeCarrier : Type} (addition : WholeCarrier → WholeCarrier → WholeCarrier) (addition_is_associative : ∀ first second third, addition (addition first second) third = addition first (addition second third)) (addit...`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem equivalent_is_equivalence_relation
+    {WholeCarrier : Type}
+    (addition : WholeCarrier → WholeCarrier → WholeCarrier)
+    (addition_is_associative :
+      ∀ first second third,
+        addition (addition first second) third =
+          addition first (addition second third))
+    (addition_is_commutative :
+      ∀ first second,
+        addition first second = addition second first)
+    (addition_is_cancellative :
+      ∀ first second common,
+        addition first common = addition second common → first = second) :
+    Equivalence (equivalent addition)
+```
 -/
 theorem equivalent_is_equivalence_relation
     {WholeCarrier : Type}
@@ -75,6 +116,13 @@ theorem equivalent_is_equivalence_relation
 Mathematical statement (Lean): `theorem integer_model_exists : Nonempty IntegerModel`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem integer_model_exists : Nonempty IntegerModel
+```
 -/
 theorem integer_model_exists : Nonempty IntegerModel := by
   sorry
@@ -83,6 +131,14 @@ theorem integer_model_exists : Nonempty IntegerModel := by
 /-- **[Definition — Quotient-Ordered-Pairs Integer Model]**
 
 Mathematical statement (Lean): `noncomputable def integer_model : IntegerModel`.
+
+
+Logical form:
+
+```lean
+noncomputable def integer_model : IntegerModel :=
+  Classical.choice integer_model_exists
+```
 -/
 noncomputable def integer_model : IntegerModel :=
   Classical.choice integer_model_exists
@@ -101,6 +157,15 @@ open LRA.VolumeI.Algebra.Models
 This is intentionally a distinct carrier from the canonical representative.
 
 Mathematical statement (Lean): `structure FormalDifference (WholeCarrier : Type)`.
+
+
+Logical form:
+
+```lean
+structure FormalDifference (WholeCarrier : Type) where
+  minuend : WholeCarrier
+  subtrahend : WholeCarrier
+```
 -/
 structure FormalDifference (WholeCarrier : Type) where
   minuend : WholeCarrier
@@ -110,6 +175,18 @@ structure FormalDifference (WholeCarrier : Type) where
 /-- **[Definition — Tao Equality of Formal Differences]**
 
 Mathematical statement (Lean): `def equivalent {WholeCarrier : Type} (addition : WholeCarrier → WholeCarrier → WholeCarrier) (first second : FormalDifference WholeCarrier) : Prop`.
+
+
+Logical form:
+
+```lean
+def equivalent
+    {WholeCarrier : Type}
+    (addition : WholeCarrier → WholeCarrier → WholeCarrier)
+    (first second : FormalDifference WholeCarrier) : Prop :=
+  addition first.minuend second.subtrahend =
+    addition second.minuend first.subtrahend
+```
 -/
 def equivalent
     {WholeCarrier : Type}
@@ -124,6 +201,21 @@ def equivalent
 Mathematical statement (Lean): `theorem representative_addition_respects_equivalence_left {WholeCarrier : Type} (setoid : Setoid (FormalDifference WholeCarrier)) (representative_addition : FormalDifference WholeCarrier → FormalDifference WholeCarrier → FormalDifference WholeCarrier) : Fou...`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem representative_addition_respects_equivalence_left
+    {WholeCarrier : Type}
+    (setoid : Setoid (FormalDifference WholeCarrier))
+    (representative_addition :
+      FormalDifference WholeCarrier →
+      FormalDifference WholeCarrier →
+      FormalDifference WholeCarrier) :
+    Foundations.Quotients.binary_operation_respects_left
+      setoid representative_addition
+```
 -/
 theorem representative_addition_respects_equivalence_left
     {WholeCarrier : Type}
@@ -142,6 +234,13 @@ theorem representative_addition_respects_equivalence_left
 Mathematical statement (Lean): `theorem integer_model_exists : Nonempty IntegerModel`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem integer_model_exists : Nonempty IntegerModel
+```
 -/
 theorem integer_model_exists : Nonempty IntegerModel := by
   sorry
@@ -150,6 +249,14 @@ theorem integer_model_exists : Nonempty IntegerModel := by
 /-- **[Definition — Tao Integer Model]**
 
 Mathematical statement (Lean): `noncomputable def integer_model : IntegerModel`.
+
+
+Logical form:
+
+```lean
+noncomputable def integer_model : IntegerModel :=
+  Classical.choice integer_model_exists
+```
 -/
 noncomputable def integer_model : IntegerModel :=
   Classical.choice integer_model_exists
@@ -166,6 +273,15 @@ open LRA.VolumeI.Algebra.Models
 /-- **[Definition — Mendelson Positive Pair]**
 
 Mathematical statement (Lean): `structure PositivePair (NaturalCarrier : Type)`.
+
+
+Logical form:
+
+```lean
+structure PositivePair (NaturalCarrier : Type) where
+  first_coordinate : NaturalCarrier
+  second_coordinate : NaturalCarrier
+```
 -/
 structure PositivePair (NaturalCarrier : Type) where
   first_coordinate : NaturalCarrier
@@ -175,6 +291,18 @@ structure PositivePair (NaturalCarrier : Type) where
 /-- **[Definition — Mendelson Positive-Pair Relation]**
 
 Mathematical statement (Lean): `def equivalent {NaturalCarrier : Type} (addition : NaturalCarrier → NaturalCarrier → NaturalCarrier) (first second : PositivePair NaturalCarrier) : Prop`.
+
+
+Logical form:
+
+```lean
+def equivalent
+    {NaturalCarrier : Type}
+    (addition : NaturalCarrier → NaturalCarrier → NaturalCarrier)
+    (first second : PositivePair NaturalCarrier) : Prop :=
+  addition first.first_coordinate second.second_coordinate =
+    addition second.first_coordinate first.second_coordinate
+```
 -/
 def equivalent
     {NaturalCarrier : Type}
@@ -187,6 +315,19 @@ def equivalent
 /-- **[Definition — Mendelson Positivity Predicate]**
 
 Mathematical statement (Lean): `def is_positive {NaturalCarrier : Type} (strict_order : NaturalCarrier → NaturalCarrier → Prop) (representative : PositivePair NaturalCarrier) : Prop`.
+
+
+Logical form:
+
+```lean
+def is_positive
+    {NaturalCarrier : Type}
+    (strict_order : NaturalCarrier → NaturalCarrier → Prop)
+    (representative : PositivePair NaturalCarrier) : Prop :=
+  strict_order
+    representative.second_coordinate
+    representative.first_coordinate
+```
 -/
 def is_positive
     {NaturalCarrier : Type}
@@ -202,6 +343,19 @@ def is_positive
 Mathematical statement (Lean): `theorem positivity_respects_equivalence {NaturalCarrier : Type} (setoid : Setoid (PositivePair NaturalCarrier)) (strict_order : NaturalCarrier → NaturalCarrier → Prop) : Foundations.Quotients.predicate_respects setoid (is_positive strict_order)`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem positivity_respects_equivalence
+    {NaturalCarrier : Type}
+    (setoid : Setoid (PositivePair NaturalCarrier))
+    (strict_order : NaturalCarrier → NaturalCarrier → Prop) :
+    Foundations.Quotients.predicate_respects
+      setoid
+      (is_positive strict_order)
+```
 -/
 theorem positivity_respects_equivalence
     {NaturalCarrier : Type}
@@ -218,6 +372,13 @@ theorem positivity_respects_equivalence
 Mathematical statement (Lean): `theorem integer_model_exists : Nonempty IntegerModel`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem integer_model_exists : Nonempty IntegerModel
+```
 -/
 theorem integer_model_exists : Nonempty IntegerModel := by
   sorry
@@ -226,6 +387,14 @@ theorem integer_model_exists : Nonempty IntegerModel := by
 /-- **[Definition — Mendelson Integer Model]**
 
 Mathematical statement (Lean): `noncomputable def integer_model : IntegerModel`.
+
+
+Logical form:
+
+```lean
+noncomputable def integer_model : IntegerModel :=
+  Classical.choice integer_model_exists
+```
 -/
 noncomputable def integer_model : IntegerModel :=
   Classical.choice integer_model_exists
@@ -236,6 +405,16 @@ noncomputable def integer_model : IntegerModel :=
 Mathematical statement (Lean): `theorem recovered_natural_number_model_exists : Nonempty LRA.VolumeII.NaturalNumbers.NModel`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem recovered_natural_number_model_exists :
+    ∃ (Element : Type) (SetObject : Type)
+      (_ : Membership Element SetObject),
+      Nonempty (LRA.VolumeII.NaturalNumbers.NModel Element SetObject)
+```
 -/
 theorem recovered_natural_number_model_exists :
     ∃ (Element : Type) (SetObject : Type)
@@ -258,6 +437,16 @@ model lives inside the existential above. The former
 **[Theorem — Positive Mendelson Integers Recover a Natural-Number Model]**
 
 Mathematical statement (Lean): `theorem positive_integers_recover_natural_number_model`.
+
+
+Logical form:
+
+```lean
+theorem positive_integers_recover_natural_number_model :
+    ∃ (Element : Type) (SetObject : Type)
+      (_ : Membership Element SetObject),
+      Nonempty (LRA.VolumeII.NaturalNumbers.NModel Element SetObject)
+```
 -/
 theorem positive_integers_recover_natural_number_model :
     ∃ (Element : Type) (SetObject : Type)
@@ -273,6 +462,52 @@ open LRA.VolumeI.Algebra.Models
 /-- **[Definition — Ordered-Ring Model Isomorphism]**
 
 Mathematical statement (Lean): `structure ModelIsomorphism (first_model second_model : IntegerModel)`.
+
+
+Logical form:
+
+```lean
+structure ModelIsomorphism
+    (first_model second_model : IntegerModel) where
+  to_function :
+    first_model.signature.carrier →
+      second_model.signature.carrier
+  inverse_function :
+    second_model.signature.carrier →
+      first_model.signature.carrier
+  left_inverse :
+    ∀ value,
+      inverse_function (to_function value) = value
+  right_inverse :
+    ∀ value,
+      to_function (inverse_function value) = value
+  preserves_zero :
+    to_function first_model.signature.zero =
+      second_model.signature.zero
+  preserves_one :
+    to_function first_model.signature.one =
+      second_model.signature.one
+  preserves_addition :
+    ∀ first second,
+      to_function
+          (first_model.signature.addition first second) =
+        second_model.signature.addition
+          (to_function first)
+          (to_function second)
+  preserves_multiplication :
+    ∀ first second,
+      to_function
+          (first_model.signature.multiplication first second) =
+        second_model.signature.multiplication
+          (to_function first)
+          (to_function second)
+  preserves_and_reflects_order :
+    ∀ first second,
+      second_model.signature.NonstrictOrder
+          (to_function first)
+          (to_function second) ↔
+        first_model.signature.NonstrictOrder first second
+```
 -/
 structure ModelIsomorphism
     (first_model second_model : IntegerModel) where
@@ -321,6 +556,14 @@ structure ModelIsomorphism
 Mathematical statement (Lean): `theorem quotient_ordered_pairs_equiv_tao_exists : Nonempty (ModelIsomorphism QuotientOrderedPairsComparison.integer_model TaoComparison.integer_model)`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem quotient_ordered_pairs_equiv_tao_exists :
+    Nonempty (ModelIsomorphism QuotientOrderedPairsComparison.integer_model TaoComparison.integer_model)
+```
 -/
 theorem quotient_ordered_pairs_equiv_tao_exists :
     Nonempty (ModelIsomorphism QuotientOrderedPairsComparison.integer_model TaoComparison.integer_model) := by
@@ -330,6 +573,15 @@ theorem quotient_ordered_pairs_equiv_tao_exists :
 /-- **[Definition — Quotient-Ordered-Pairs–Tao Integer Isomorphism]**
 
 Mathematical statement (Lean): `noncomputable def quotient_ordered_pairs_equiv_tao : ModelIsomorphism QuotientOrderedPairsComparison.integer_model TaoComparison.integer_model`.
+
+
+Logical form:
+
+```lean
+noncomputable def quotient_ordered_pairs_equiv_tao :
+    ModelIsomorphism QuotientOrderedPairsComparison.integer_model TaoComparison.integer_model :=
+  Classical.choice quotient_ordered_pairs_equiv_tao_exists
+```
 -/
 noncomputable def quotient_ordered_pairs_equiv_tao :
     ModelIsomorphism QuotientOrderedPairsComparison.integer_model TaoComparison.integer_model :=
@@ -339,6 +591,17 @@ noncomputable def quotient_ordered_pairs_equiv_tao :
 /-- **[Theorem — Quotient-Ordered-Pairs and Tao Integers Are Isomorphic]**
 
 Mathematical statement (Lean): `theorem quotient_ordered_pairs_and_tao_are_isomorphic : Nonempty (ModelIsomorphism QuotientOrderedPairsComparison.integer_model TaoComparison.integer_model)`.
+
+
+Logical form:
+
+```lean
+theorem quotient_ordered_pairs_and_tao_are_isomorphic :
+    Nonempty
+      (ModelIsomorphism
+        QuotientOrderedPairsComparison.integer_model
+        TaoComparison.integer_model)
+```
 -/
 theorem quotient_ordered_pairs_and_tao_are_isomorphic :
     Nonempty
@@ -353,6 +616,17 @@ theorem quotient_ordered_pairs_and_tao_are_isomorphic :
 Mathematical statement (Lean): `theorem quotient_ordered_pairs_equiv_mendelson_exists : Nonempty (ModelIsomorphism QuotientOrderedPairsComparison.integer_model MendelsonComparison.integer_model)`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem quotient_ordered_pairs_equiv_mendelson_exists :
+    Nonempty
+      (ModelIsomorphism
+        QuotientOrderedPairsComparison.integer_model
+        MendelsonComparison.integer_model)
+```
 -/
 theorem quotient_ordered_pairs_equiv_mendelson_exists :
     Nonempty
@@ -365,6 +639,17 @@ theorem quotient_ordered_pairs_equiv_mendelson_exists :
 /-- **[Definition — Quotient-Ordered-Pairs–Mendelson Integer Isomorphism]**
 
 Mathematical statement (Lean): `noncomputable def quotient_ordered_pairs_equiv_mendelson : ModelIsomorphism QuotientOrderedPairsComparison.integer_model MendelsonComparison.integer_model`.
+
+
+Logical form:
+
+```lean
+noncomputable def quotient_ordered_pairs_equiv_mendelson :
+    ModelIsomorphism
+      QuotientOrderedPairsComparison.integer_model
+      MendelsonComparison.integer_model :=
+  Classical.choice quotient_ordered_pairs_equiv_mendelson_exists
+```
 -/
 noncomputable def quotient_ordered_pairs_equiv_mendelson :
     ModelIsomorphism
@@ -376,6 +661,17 @@ noncomputable def quotient_ordered_pairs_equiv_mendelson :
 /-- **[Theorem — Quotient-Ordered-Pairs and Mendelson Integers Are Isomorphic]**
 
 Mathematical statement (Lean): `theorem quotient_ordered_pairs_and_mendelson_are_isomorphic : Nonempty (ModelIsomorphism QuotientOrderedPairsComparison.integer_model MendelsonComparison.integer_model)`.
+
+
+Logical form:
+
+```lean
+theorem quotient_ordered_pairs_and_mendelson_are_isomorphic :
+    Nonempty
+      (ModelIsomorphism
+        QuotientOrderedPairsComparison.integer_model
+        MendelsonComparison.integer_model)
+```
 -/
 theorem quotient_ordered_pairs_and_mendelson_are_isomorphic :
     Nonempty
@@ -390,6 +686,14 @@ theorem quotient_ordered_pairs_and_mendelson_are_isomorphic :
 Mathematical statement (Lean): `theorem tao_equiv_mendelson_exists : Nonempty (ModelIsomorphism TaoComparison.integer_model MendelsonComparison.integer_model)`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem tao_equiv_mendelson_exists :
+    Nonempty (ModelIsomorphism TaoComparison.integer_model MendelsonComparison.integer_model)
+```
 -/
 theorem tao_equiv_mendelson_exists :
     Nonempty (ModelIsomorphism TaoComparison.integer_model MendelsonComparison.integer_model) := by
@@ -399,6 +703,15 @@ theorem tao_equiv_mendelson_exists :
 /-- **[Definition — Tao–Mendelson Integer Isomorphism]**
 
 Mathematical statement (Lean): `noncomputable def tao_equiv_mendelson : ModelIsomorphism TaoComparison.integer_model MendelsonComparison.integer_model`.
+
+
+Logical form:
+
+```lean
+noncomputable def tao_equiv_mendelson :
+    ModelIsomorphism TaoComparison.integer_model MendelsonComparison.integer_model :=
+  Classical.choice tao_equiv_mendelson_exists
+```
 -/
 noncomputable def tao_equiv_mendelson :
     ModelIsomorphism TaoComparison.integer_model MendelsonComparison.integer_model :=
@@ -408,6 +721,14 @@ noncomputable def tao_equiv_mendelson :
 /-- **[Corollary — Tao and Mendelson Integers Are Isomorphic]**
 
 Mathematical statement (Lean): `theorem tao_and_mendelson_are_isomorphic : Nonempty (ModelIsomorphism TaoComparison.integer_model MendelsonComparison.integer_model)`.
+
+
+Logical form:
+
+```lean
+theorem tao_and_mendelson_are_isomorphic :
+    Nonempty (ModelIsomorphism TaoComparison.integer_model MendelsonComparison.integer_model)
+```
 -/
 theorem tao_and_mendelson_are_isomorphic :
     Nonempty (ModelIsomorphism TaoComparison.integer_model MendelsonComparison.integer_model) :=

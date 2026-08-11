@@ -17,7 +17,15 @@ over those same lemmas. Nothing here is `sorry`.
 
 namespace LRA.VolumeI.Set.MathlibZFSet
 
-/-- Membership characterization of the derived symmetric difference. -/
+/-- Membership characterization of the derived symmetric difference.
+
+Logical form:
+
+```lean
+theorem mem_symmetricDifference {A B z : ZFSet} :
+    z ∈ SymmetricDifference A B ↔ (z ∈ A ∧ z ∉ B) ∨ (z ∈ B ∧ z ∉ A)
+```
+-/
 theorem mem_symmetricDifference {A B z : ZFSet} :
     z ∈ SymmetricDifference A B ↔ (z ∈ A ∧ z ∉ B) ∨ (z ∈ B ∧ z ∉ A) := by
   simp [SymmetricDifference, ZFSet.mem_union, ZFSet.mem_sdiff]
@@ -153,6 +161,17 @@ instance : DifferenceLaws ZFSet where
 operation so the `ext`/`simp` bridges see through it; the certificate
 fields below pick them up definitionally through `HasSymmDiff`. -/
 
+/--
+`symmetricDifference_eq_union_sdiff_inter` states symmetric difference eq union sdiff inter.
+
+Logical form:
+
+```lean
+theorem symmetricDifference_eq_union_sdiff_inter :
+    ∀ A B : ZFSet,
+      SymmetricDifference A B = (A ∪ B) \ (A ∩ B)
+```
+-/
 theorem symmetricDifference_eq_union_sdiff_inter :
     ∀ A B : ZFSet,
       SymmetricDifference A B = (A ∪ B) \ (A ∩ B) := fun A B =>
@@ -160,32 +179,95 @@ theorem symmetricDifference_eq_union_sdiff_inter :
     simp [mem_symmetricDifference, ZFSet.mem_sdiff, ZFSet.mem_union,
       ZFSet.mem_inter] <;> tauto
 
+/--
+`symmetricDifference_comm` states symmetric difference comm.
+
+Logical form:
+
+```lean
+theorem symmetricDifference_comm :
+    ∀ A B : ZFSet,
+      SymmetricDifference A B = SymmetricDifference B A
+```
+-/
 theorem symmetricDifference_comm :
     ∀ A B : ZFSet,
       SymmetricDifference A B = SymmetricDifference B A := fun A B =>
   ZFSet.ext fun z => by simp [mem_symmetricDifference] <;> tauto
 
+/--
+`symmetricDifference_assoc` states symmetric difference assoc.
+
+Logical form:
+
+```lean
+theorem symmetricDifference_assoc :
+    ∀ A B C : ZFSet,
+      SymmetricDifference (SymmetricDifference A B) C =
+        SymmetricDifference A (SymmetricDifference B C)
+```
+-/
 theorem symmetricDifference_assoc :
     ∀ A B C : ZFSet,
       SymmetricDifference (SymmetricDifference A B) C =
         SymmetricDifference A (SymmetricDifference B C) := fun A B C =>
   ZFSet.ext fun z => by simp [mem_symmetricDifference] <;> tauto
 
+/--
+`symmetricDifference_empty` states symmetric difference empty.
+
+Logical form:
+
+```lean
+theorem symmetricDifference_empty :
+    ∀ A : ZFSet, SymmetricDifference A (∅ : ZFSet) = A
+```
+-/
 theorem symmetricDifference_empty :
     ∀ A : ZFSet, SymmetricDifference A (∅ : ZFSet) = A := fun A =>
   ZFSet.ext fun z => by
     simp [mem_symmetricDifference, ZFSet.notMem_empty]
 
+/--
+`empty_symmetricDifference` states empty symmetric difference.
+
+Logical form:
+
+```lean
+theorem empty_symmetricDifference :
+    ∀ A : ZFSet, SymmetricDifference (∅ : ZFSet) A = A
+```
+-/
 theorem empty_symmetricDifference :
     ∀ A : ZFSet, SymmetricDifference (∅ : ZFSet) A = A := fun A =>
   ZFSet.ext fun z => by
     simp [mem_symmetricDifference, ZFSet.notMem_empty]
 
+/--
+`symmetricDifference_self` states symmetric difference self.
+
+Logical form:
+
+```lean
+theorem symmetricDifference_self :
+    ∀ A : ZFSet, SymmetricDifference A A = (∅ : ZFSet)
+```
+-/
 theorem symmetricDifference_self :
     ∀ A : ZFSet, SymmetricDifference A A = (∅ : ZFSet) := fun A =>
   ZFSet.ext fun z => by
     simp [mem_symmetricDifference, ZFSet.notMem_empty]
 
+/--
+`symmetricDifference_eq_empty_iff` states symmetric difference eq empty iff.
+
+Logical form:
+
+```lean
+theorem symmetricDifference_eq_empty_iff :
+    ∀ A B : ZFSet, SymmetricDifference A B = (∅ : ZFSet) ↔ A = B
+```
+-/
 theorem symmetricDifference_eq_empty_iff :
     ∀ A B : ZFSet, SymmetricDifference A B = (∅ : ZFSet) ↔ A = B := by
   intro A B
@@ -205,6 +287,16 @@ theorem symmetricDifference_eq_empty_iff :
   · rintro rfl
     exact symmetricDifference_self A
 
+/--
+`symmetricDifference_subset_union` states symmetric difference subset union.
+
+Logical form:
+
+```lean
+theorem symmetricDifference_subset_union :
+    ∀ A B : ZFSet, SymmetricDifference A B ⊆ A ∪ B
+```
+-/
 theorem symmetricDifference_subset_union :
     ∀ A B : ZFSet, SymmetricDifference A B ⊆ A ∪ B := fun A B =>
   ZFSet.subset_def.mpr fun z hz => by
@@ -224,6 +316,16 @@ instance : SymmDiffLaws ZFSet where
   SymmetricDifferenceEqEmptyIff := symmetricDifference_eq_empty_iff
   SymmetricDifferenceSubsetUnion := symmetricDifference_subset_union
 
+/--
+`mem_countableUnion` states mem countable union.
+
+Logical form:
+
+```lean
+theorem mem_countableUnion {family : Nat → ZFSet} {x : ZFSet} :
+    x ∈ CountableUnion family ↔ ∃ index, x ∈ family index
+```
+-/
 theorem mem_countableUnion {family : Nat → ZFSet} {x : ZFSet} :
     x ∈ CountableUnion family ↔ ∃ index, x ∈ family index := by
   rw [CountableUnion, ZFSet.mem_sUnion]
@@ -234,6 +336,16 @@ theorem mem_countableUnion {family : Nat → ZFSet} {x : ZFSet} :
   · rintro ⟨i, hx⟩
     exact ⟨family i, ZFSet.mem_range_self i, hx⟩
 
+/--
+`mem_countableIntersection` states mem countable intersection.
+
+Logical form:
+
+```lean
+theorem mem_countableIntersection {family : Nat → ZFSet} {x : ZFSet} :
+    x ∈ CountableIntersection family ↔ ∀ index, x ∈ family index
+```
+-/
 theorem mem_countableIntersection {family : Nat → ZFSet} {x : ZFSet} :
     x ∈ CountableIntersection family ↔ ∀ index, x ∈ family index := by
   rw [CountableIntersection,

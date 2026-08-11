@@ -66,36 +66,104 @@ namespace LRA.VolumeIII.Analysis.Sequences
 
 open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds (IsSupremum IsInfimum)
 
-/-- `def:increasing-sequence`. -/
+/-- `def:increasing-sequence`.
+
+Logical form:
+
+```lean
+def IsIncreasing (x : RealSequence) : Prop := ∀ n, x n ≤ x (n + 1)
+```
+-/
 def IsIncreasing (x : RealSequence) : Prop := ∀ n, x n ≤ x (n + 1)
 
-/-- `def:decreasing-sequence`. -/
+/-- `def:decreasing-sequence`.
+
+Logical form:
+
+```lean
+def IsDecreasing (x : RealSequence) : Prop := ∀ n, x (n + 1) ≤ x n
+```
+-/
 def IsDecreasing (x : RealSequence) : Prop := ∀ n, x (n + 1) ≤ x n
 
-/-- `def:strictly-increasing-sequence`. -/
+/-- `def:strictly-increasing-sequence`.
+
+Logical form:
+
+```lean
+def IsStrictlyIncreasing (x : RealSequence) : Prop := ∀ n, x n < x (n + 1)
+```
+-/
 def IsStrictlyIncreasing (x : RealSequence) : Prop := ∀ n, x n < x (n + 1)
 
-/-- `def:strictly-decreasing-sequence`. -/
+/-- `def:strictly-decreasing-sequence`.
+
+Logical form:
+
+```lean
+def IsStrictlyDecreasing (x : RealSequence) : Prop := ∀ n, x (n + 1) < x n
+```
+-/
 def IsStrictlyDecreasing (x : RealSequence) : Prop := ∀ n, x (n + 1) < x n
 
-/-- `def:monotone-sequence`. -/
+/-- `def:monotone-sequence`.
+
+Logical form:
+
+```lean
+def IsMonotoneSeq (x : RealSequence) : Prop := IsIncreasing x ∨ IsDecreasing x
+```
+-/
 def IsMonotoneSeq (x : RealSequence) : Prop := IsIncreasing x ∨ IsDecreasing x
 
-/-- `def:eventually-increasing-sequence`. -/
+/-- `def:eventually-increasing-sequence`.
+
+Logical form:
+
+```lean
+def IsEventuallyIncreasing (x : RealSequence) : Prop :=
+  ∃ N : ℕ, ∀ n ≥ N, x n ≤ x (n + 1)
+```
+-/
 def IsEventuallyIncreasing (x : RealSequence) : Prop :=
   ∃ N : ℕ, ∀ n ≥ N, x n ≤ x (n + 1)
 
-/-- `def:eventually-decreasing-sequence`. -/
+/-- `def:eventually-decreasing-sequence`.
+
+Logical form:
+
+```lean
+def IsEventuallyDecreasing (x : RealSequence) : Prop :=
+  ∃ N : ℕ, ∀ n ≥ N, x (n + 1) ≤ x n
+```
+-/
 def IsEventuallyDecreasing (x : RealSequence) : Prop :=
   ∃ N : ℕ, ∀ n ≥ N, x (n + 1) ≤ x n
 
-/-- `def:eventually-monotone-sequence`. -/
+/-- `def:eventually-monotone-sequence`.
+
+Logical form:
+
+```lean
+def IsEventuallyMonotone (x : RealSequence) : Prop :=
+  IsEventuallyIncreasing x ∨ IsEventuallyDecreasing x
+```
+-/
 def IsEventuallyMonotone (x : RealSequence) : Prop :=
   IsEventuallyIncreasing x ∨ IsEventuallyDecreasing x
 
 -- `thm:monotone-convergence-theorem`
 /-- Let `x : RealSequence`. If `hinc : IsIncreasing x` and `hbdd : BoundedAboveSeq x`. Then `∃ L,
-ConvergesTo x L ∧ IsSupremum L (Set.range x)`. -/
+ConvergesTo x L ∧ IsSupremum L (Set.range x)`.
+
+Logical form:
+
+```lean
+theorem MonotoneConvergenceTheoremIncreasing {x : RealSequence}
+    (hinc : IsIncreasing x) (hbdd : BoundedAboveSeq x) :
+    ∃ L, ConvergesTo x L ∧ IsSupremum L (Set.range x)
+```
+-/
 theorem MonotoneConvergenceTheoremIncreasing {x : RealSequence}
     (hinc : IsIncreasing x) (hbdd : BoundedAboveSeq x) :
     ∃ L, ConvergesTo x L ∧ IsSupremum L (Set.range x) := by
@@ -103,27 +171,61 @@ theorem MonotoneConvergenceTheoremIncreasing {x : RealSequence}
 
 -- `thm:monotone-convergence-theorem`
 /-- Let `x : RealSequence`. If `hdec : IsDecreasing x` and `hbdd : BoundedBelowSeq x`. Then `∃ L,
-ConvergesTo x L ∧ IsInfimum L (Set.range x)`. -/
+ConvergesTo x L ∧ IsInfimum L (Set.range x)`.
+
+Logical form:
+
+```lean
+theorem MonotoneConvergenceTheoremDecreasing {x : RealSequence}
+    (hdec : IsDecreasing x) (hbdd : BoundedBelowSeq x) :
+    ∃ L, ConvergesTo x L ∧ IsInfimum L (Set.range x)
+```
+-/
 theorem MonotoneConvergenceTheoremDecreasing {x : RealSequence}
     (hdec : IsDecreasing x) (hbdd : BoundedBelowSeq x) :
     ∃ L, ConvergesTo x L ∧ IsInfimum L (Set.range x) := by
   sorry
 
 -- `thm:strict-monotonicity-implies-monotonicity`
-/-- Let `x : RealSequence`. If `h : IsStrictlyIncreasing x`. Then `IsIncreasing x`. -/
+/-- Let `x : RealSequence`. If `h : IsStrictlyIncreasing x`. Then `IsIncreasing x`.
+
+Logical form:
+
+```lean
+theorem StrictIncreasingImpliesIncreasing {x : RealSequence}
+    (h : IsStrictlyIncreasing x) : IsIncreasing x
+```
+-/
 theorem StrictIncreasingImpliesIncreasing {x : RealSequence}
     (h : IsStrictlyIncreasing x) : IsIncreasing x := by
   sorry
 
 -- `thm:strict-monotonicity-implies-monotonicity`
-/-- Let `x : RealSequence`. If `h : IsStrictlyDecreasing x`. Then `IsDecreasing x`. -/
+/-- Let `x : RealSequence`. If `h : IsStrictlyDecreasing x`. Then `IsDecreasing x`.
+
+Logical form:
+
+```lean
+theorem StrictDecreasingImpliesDecreasing {x : RealSequence}
+    (h : IsStrictlyDecreasing x) : IsDecreasing x
+```
+-/
 theorem StrictDecreasingImpliesDecreasing {x : RealSequence}
     (h : IsStrictlyDecreasing x) : IsDecreasing x := by
   sorry
 
 -- `thm:bounded-monotone-sequence-equivalences`
 /-- Let `x : RealSequence`. If `h : IsIncreasing x`. Then `(∃ L, ConvergesTo x L) ↔ BoundedAboveSeq
-x`. -/
+x`.
+
+Logical form:
+
+```lean
+theorem BoundedMonotoneSequenceEquivalencesIncr {x : RealSequence}
+    (h : IsIncreasing x) :
+    (∃ L, ConvergesTo x L) ↔ BoundedAboveSeq x
+```
+-/
 theorem BoundedMonotoneSequenceEquivalencesIncr {x : RealSequence}
     (h : IsIncreasing x) :
     (∃ L, ConvergesTo x L) ↔ BoundedAboveSeq x := by
@@ -131,24 +233,58 @@ theorem BoundedMonotoneSequenceEquivalencesIncr {x : RealSequence}
 
 -- `thm:bounded-monotone-sequence-equivalences`
 /-- Let `x : RealSequence`. If `h : IsDecreasing x`. Then `(∃ L, ConvergesTo x L) ↔ BoundedBelowSeq
-x`. -/
+x`.
+
+Logical form:
+
+```lean
+theorem BoundedMonotoneSequenceEquivalencesDecr {x : RealSequence}
+    (h : IsDecreasing x) :
+    (∃ L, ConvergesTo x L) ↔ BoundedBelowSeq x
+```
+-/
 theorem BoundedMonotoneSequenceEquivalencesDecr {x : RealSequence}
     (h : IsDecreasing x) :
     (∃ L, ConvergesTo x L) ↔ BoundedBelowSeq x := by
   sorry
 
-/-- Let `x : RealSequence`. If `h : IsIncreasing x`. Then `∀ n, x 0 ≤ x n`. -/
+/-- Let `x : RealSequence`. If `h : IsIncreasing x`. Then `∀ n, x 0 ≤ x n`.
+
+Logical form:
+
+```lean
+theorem IncreasingBoundedBelowByFirstTerm {x : RealSequence}
+    (h : IsIncreasing x) : ∀ n, x 0 ≤ x n
+```
+-/
 theorem IncreasingBoundedBelowByFirstTerm {x : RealSequence}
     (h : IsIncreasing x) : ∀ n, x 0 ≤ x n := by
   sorry
 
-/-- Let `x : RealSequence`. If `h : IsDecreasing x`. Then `∀ n, x n ≤ x 0`. -/
+/-- Let `x : RealSequence`. If `h : IsDecreasing x`. Then `∀ n, x n ≤ x 0`.
+
+Logical form:
+
+```lean
+theorem DecreasingBoundedAboveByFirstTerm {x : RealSequence}
+    (h : IsDecreasing x) : ∀ n, x n ≤ x 0
+```
+-/
 theorem DecreasingBoundedAboveByFirstTerm {x : RealSequence}
     (h : IsDecreasing x) : ∀ n, x n ≤ x 0 := by
   sorry
 
 -- `thm:bounded-monotone-sequence-equivalences`
-/-- Let `x : RealSequence`. If `h : IsMonotoneSeq x`. Then `(∃ L, ConvergesTo x L) ↔ BoundedSeq x`. -/
+/-- Let `x : RealSequence`. If `h : IsMonotoneSeq x`. Then `(∃ L, ConvergesTo x L) ↔ BoundedSeq x`.
+
+Logical form:
+
+```lean
+theorem BoundedMonotoneSequenceEquivalences {x : RealSequence}
+    (h : IsMonotoneSeq x) :
+    (∃ L, ConvergesTo x L) ↔ BoundedSeq x
+```
+-/
 theorem BoundedMonotoneSequenceEquivalences {x : RealSequence}
     (h : IsMonotoneSeq x) :
     (∃ L, ConvergesTo x L) ↔ BoundedSeq x := by
@@ -156,7 +292,16 @@ theorem BoundedMonotoneSequenceEquivalences {x : RealSequence}
 
 -- `thm:eventually-monotone-convergence-theorem`
 /-- Let `x : RealSequence`. If `h : IsEventuallyIncreasing x` and `hbdd : BoundedAboveSeq x`. Then
-`∃ L, ConvergesTo x L`. -/
+`∃ L, ConvergesTo x L`.
+
+Logical form:
+
+```lean
+theorem EventuallyMonotoneConvergenceTheoremIncr {x : RealSequence}
+    (h : IsEventuallyIncreasing x) (hbdd : BoundedAboveSeq x) :
+    ∃ L, ConvergesTo x L
+```
+-/
 theorem EventuallyMonotoneConvergenceTheoremIncr {x : RealSequence}
     (h : IsEventuallyIncreasing x) (hbdd : BoundedAboveSeq x) :
     ∃ L, ConvergesTo x L := by
@@ -164,7 +309,16 @@ theorem EventuallyMonotoneConvergenceTheoremIncr {x : RealSequence}
 
 -- `thm:eventually-monotone-convergence-theorem`
 /-- Let `x : RealSequence`. If `h : IsEventuallyDecreasing x` and `hbdd : BoundedBelowSeq x`. Then
-`∃ L, ConvergesTo x L`. -/
+`∃ L, ConvergesTo x L`.
+
+Logical form:
+
+```lean
+theorem EventuallyMonotoneConvergenceTheoremDecr {x : RealSequence}
+    (h : IsEventuallyDecreasing x) (hbdd : BoundedBelowSeq x) :
+    ∃ L, ConvergesTo x L
+```
+-/
 theorem EventuallyMonotoneConvergenceTheoremDecr {x : RealSequence}
     (h : IsEventuallyDecreasing x) (hbdd : BoundedBelowSeq x) :
     ∃ L, ConvergesTo x L := by
@@ -172,7 +326,16 @@ theorem EventuallyMonotoneConvergenceTheoremDecr {x : RealSequence}
 
 -- `thm:eventually-monotone-convergence-theorem`
 /-- Let `x : RealSequence`. If `h : IsEventuallyMonotone x` and `hbdd : BoundedSeq x`. Then `∃ L,
-ConvergesTo x L`. -/
+ConvergesTo x L`.
+
+Logical form:
+
+```lean
+theorem EventuallyMonotoneConvergenceTheorem {x : RealSequence}
+    (h : IsEventuallyMonotone x) (hbdd : BoundedSeq x) :
+    ∃ L, ConvergesTo x L
+```
+-/
 theorem EventuallyMonotoneConvergenceTheorem {x : RealSequence}
     (h : IsEventuallyMonotone x) (hbdd : BoundedSeq x) :
     ∃ L, ConvergesTo x L := by
@@ -180,7 +343,16 @@ theorem EventuallyMonotoneConvergenceTheorem {x : RealSequence}
 
 -- `thm:unbounded-monotone-divergence`
 /-- Let `x : RealSequence`. If `hinc : IsIncreasing x` and `hunbdd : ¬ BoundedAboveSeq x`. Then
-`Filter.Tendsto x Filter.atTop Filter.atTop`. -/
+`Filter.Tendsto x Filter.atTop Filter.atTop`.
+
+Logical form:
+
+```lean
+theorem UnboundedMonotoneDivergencePos {x : RealSequence}
+    (hinc : IsIncreasing x) (hunbdd : ¬ BoundedAboveSeq x) :
+    Filter.Tendsto x Filter.atTop Filter.atTop
+```
+-/
 theorem UnboundedMonotoneDivergencePos {x : RealSequence}
     (hinc : IsIncreasing x) (hunbdd : ¬ BoundedAboveSeq x) :
     Filter.Tendsto x Filter.atTop Filter.atTop := by
@@ -188,7 +360,16 @@ theorem UnboundedMonotoneDivergencePos {x : RealSequence}
 
 -- `thm:unbounded-monotone-divergence`
 /-- Let `x : RealSequence`. If `hdec : IsDecreasing x` and `hunbdd : ¬ BoundedBelowSeq x`. Then
-`Filter.Tendsto x Filter.atTop Filter.atBot`. -/
+`Filter.Tendsto x Filter.atTop Filter.atBot`.
+
+Logical form:
+
+```lean
+theorem UnboundedMonotoneDivergenceNeg {x : RealSequence}
+    (hdec : IsDecreasing x) (hunbdd : ¬ BoundedBelowSeq x) :
+    Filter.Tendsto x Filter.atTop Filter.atBot
+```
+-/
 theorem UnboundedMonotoneDivergenceNeg {x : RealSequence}
     (hdec : IsDecreasing x) (hunbdd : ¬ BoundedBelowSeq x) :
     Filter.Tendsto x Filter.atTop Filter.atBot := by
@@ -196,40 +377,88 @@ theorem UnboundedMonotoneDivergenceNeg {x : RealSequence}
 
 -- `thm:algebraic-transformations-preserve-monotonicity`
 /-- Let `x : RealSequence` and `c : ℝ`. If `h : IsIncreasing x`. Then `IsIncreasing (fun n => x n +
-c)`. -/
+c)`.
+
+Logical form:
+
+```lean
+theorem TranslationPreservesIncreasing {x : RealSequence} {c : ℝ}
+    (h : IsIncreasing x) : IsIncreasing (fun n => x n + c)
+```
+-/
 theorem TranslationPreservesIncreasing {x : RealSequence} {c : ℝ}
     (h : IsIncreasing x) : IsIncreasing (fun n => x n + c) := by
   sorry
 
 -- `thm:algebraic-transformations-preserve-monotonicity`
 /-- Let `x : RealSequence` and `c : ℝ`. If `h : IsDecreasing x`. Then `IsDecreasing (fun n => x n +
-c)`. -/
+c)`.
+
+Logical form:
+
+```lean
+theorem TranslationPreservesDecreasing {x : RealSequence} {c : ℝ}
+    (h : IsDecreasing x) : IsDecreasing (fun n => x n + c)
+```
+-/
 theorem TranslationPreservesDecreasing {x : RealSequence} {c : ℝ}
     (h : IsDecreasing x) : IsDecreasing (fun n => x n + c) := by
   sorry
 
 -- `thm:algebraic-transformations-preserve-monotonicity`
 /-- Let `x : RealSequence` and `α : ℝ`. If `h : IsIncreasing x` and `hα : α > 0`. Then `IsIncreasing
-(fun n => α * x n)`. -/
+(fun n => α * x n)`.
+
+Logical form:
+
+```lean
+theorem PositiveScalarPreservesIncreasing {x : RealSequence} {α : ℝ}
+    (h : IsIncreasing x) (hα : α > 0) : IsIncreasing (fun n => α * x n)
+```
+-/
 theorem PositiveScalarPreservesIncreasing {x : RealSequence} {α : ℝ}
     (h : IsIncreasing x) (hα : α > 0) : IsIncreasing (fun n => α * x n) := by
   sorry
 
 -- `thm:algebraic-transformations-preserve-monotonicity`
 /-- Let `x : RealSequence` and `α : ℝ`. If `h : IsIncreasing x` and `hα : α < 0`. Then `IsDecreasing
-(fun n => α * x n)`. -/
+(fun n => α * x n)`.
+
+Logical form:
+
+```lean
+theorem NegativeScalarReversesIncreasing {x : RealSequence} {α : ℝ}
+    (h : IsIncreasing x) (hα : α < 0) : IsDecreasing (fun n => α * x n)
+```
+-/
 theorem NegativeScalarReversesIncreasing {x : RealSequence} {α : ℝ}
     (h : IsIncreasing x) (hα : α < 0) : IsDecreasing (fun n => α * x n) := by
   sorry
 
 -- `thm:algebraic-transformations-preserve-monotonicity`
-/-- Let `x : RealSequence`. If `h : IsIncreasing x`. Then `IsDecreasing (fun n => -x n)`. -/
+/-- Let `x : RealSequence`. If `h : IsIncreasing x`. Then `IsDecreasing (fun n => -x n)`.
+
+Logical form:
+
+```lean
+theorem NegationReversesIncreasing {x : RealSequence}
+    (h : IsIncreasing x) : IsDecreasing (fun n => -x n)
+```
+-/
 theorem NegationReversesIncreasing {x : RealSequence}
     (h : IsIncreasing x) : IsDecreasing (fun n => -x n) := by
   sorry
 
 -- `thm:algebraic-transformations-preserve-monotonicity`
-/-- Let `x : RealSequence`. If `h : IsDecreasing x`. Then `IsIncreasing (fun n => -x n)`. -/
+/-- Let `x : RealSequence`. If `h : IsDecreasing x`. Then `IsIncreasing (fun n => -x n)`.
+
+Logical form:
+
+```lean
+theorem NegationReversesDecreasing {x : RealSequence}
+    (h : IsDecreasing x) : IsIncreasing (fun n => -x n)
+```
+-/
 theorem NegationReversesDecreasing {x : RealSequence}
     (h : IsDecreasing x) : IsIncreasing (fun n => -x n) := by
   sorry

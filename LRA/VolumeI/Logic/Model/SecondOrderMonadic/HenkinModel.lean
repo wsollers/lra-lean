@@ -41,7 +41,15 @@ them on.
 
 /-- A Henkin model of the signature `S`: a first-order model, together
 with a chosen family of subsets of the domain that second-order
-quantification (`∀X`/`∃X`) ranges over. -/
+quantification (`∀X`/`∃X`) ranges over.
+
+Logical form:
+
+```lean
+structure HenkinModel (S : Signature) extends FirstOrder.Model S where
+  SecondOrderDomain : Set (Set Domain)
+```
+-/
 structure HenkinModel (S : Signature) extends FirstOrder.Model S where
   SecondOrderDomain : Set (Set Domain)
 

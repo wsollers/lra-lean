@@ -27,7 +27,20 @@ this project.
 -/
 
 /-- The (finite) set of variables occurring in a term. Every occurrence in
-a term is free -- terms have no binder of their own. -/
+a term is free -- terms have no binder of their own.
+
+Logical form:
+
+```lean
+def freeVariablesInTerm
+    {S : Signature} {Variable : Type} [DecidableEq Variable] :
+    Term S Variable -> Finset Variable
+  | .var v => {v}
+  | .const _ => ∅
+  | @Term.apply _ _ f args =>
+      (Finset.univ : Finset (Fin (S.functionArity f))).biUnion (fun i => freeVariablesInTerm (args i))
+```
+-/
 def freeVariablesInTerm
     {S : Signature} {Variable : Type} [DecidableEq Variable] :
     Term S Variable -> Finset Variable

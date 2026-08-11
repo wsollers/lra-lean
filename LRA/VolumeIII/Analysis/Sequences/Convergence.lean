@@ -61,22 +61,56 @@ import LRA.VolumeIII.Analysis.Sequences.SequenceDefinitions
 
 namespace LRA.VolumeIII.Analysis.Sequences
 
-/-- `def:convergent-sequence`. -/
+/-- `def:convergent-sequence`.
+
+Logical form:
+
+```lean
+def ConvergesTo (x : RealSequence) (L : ℝ) : Prop :=
+  ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |x n - L| < ε
+```
+-/
 def ConvergesTo (x : RealSequence) (L : ℝ) : Prop :=
   ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |x n - L| < ε
 
 /-- Shorthand (not its own `.tex` label): the centered open interval
 `I_eps(L) = (L - eps, L + eps)` from `def:convergent-sequence-
-neighborhood`. -/
+neighborhood`.
+
+Logical form:
+
+```lean
+def CenteredInterval (L ε : ℝ) : Set ℝ := Set.Ioo (L - ε) (L + ε)
+```
+-/
 def CenteredInterval (L ε : ℝ) : Set ℝ := Set.Ioo (L - ε) (L + ε)
 
-/-- `def:convergent-sequence-neighborhood`. -/
+/-- `def:convergent-sequence-neighborhood`.
+
+Logical form:
+
+```lean
+def ConvergesToNbhd (x : RealSequence) (L : ℝ) : Prop :=
+  ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, x n ∈ CenteredInterval L ε
+```
+-/
 def ConvergesToNbhd (x : RealSequence) (L : ℝ) : Prop :=
   ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, x n ∈ CenteredInterval L ε
 
 -- `thm:equivalence-of-convergence-formulations`
 /-- Let `x : RealSequence` and `L : ℝ`. Then `[ConvergesTo x L, ∀ ε > 0, ∃ K : ℕ, ∀ n ≥ K, |x n - L|
-< ε, ∀ ε > 0, ∃ K : ℕ, ∀ n ≥ K, L - ε < x n ∧ x n < L + ε, ConvergesToNbhd x L].TFAE`. -/
+< ε, ∀ ε > 0, ∃ K : ℕ, ∀ n ≥ K, L - ε < x n ∧ x n < L + ε, ConvergesToNbhd x L].TFAE`.
+
+Logical form:
+
+```lean
+theorem EquivalenceOfConvergenceFormulations (x : RealSequence) (L : ℝ) :
+    [ConvergesTo x L,
+     ∀ ε > 0, ∃ K : ℕ, ∀ n ≥ K, |x n - L| < ε,
+     ∀ ε > 0, ∃ K : ℕ, ∀ n ≥ K, L - ε < x n ∧ x n < L + ε,
+     ConvergesToNbhd x L].TFAE
+```
+-/
 theorem EquivalenceOfConvergenceFormulations (x : RealSequence) (L : ℝ) :
     [ConvergesTo x L,
      ∀ ε > 0, ∃ K : ℕ, ∀ n ≥ K, |x n - L| < ε,

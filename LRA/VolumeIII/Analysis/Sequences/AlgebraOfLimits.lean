@@ -58,53 +58,148 @@ import LRA.VolumeIII.Analysis.Sequences.Limits
 
 namespace LRA.VolumeIII.Analysis.Sequences
 
-/-- `def:pointwise-sum-sequence`. -/
+/-- `def:pointwise-sum-sequence`.
+
+Logical form:
+
+```lean
+def PointwiseSum (x y : RealSequence) : RealSequence := fun n => x n + y n
+```
+-/
 def PointwiseSum (x y : RealSequence) : RealSequence := fun n => x n + y n
 
-/-- `def:pointwise-difference-sequence`. -/
+/-- `def:pointwise-difference-sequence`.
+
+Logical form:
+
+```lean
+def PointwiseDifference (x y : RealSequence) : RealSequence := fun n => x n - y n
+```
+-/
 def PointwiseDifference (x y : RealSequence) : RealSequence := fun n => x n - y n
 
-/-- `def:scalar-multiple-sequence`. -/
+/-- `def:scalar-multiple-sequence`.
+
+Logical form:
+
+```lean
+def ScalarMultiple (α : ℝ) (x : RealSequence) : RealSequence := fun n => α * x n
+```
+-/
 def ScalarMultiple (α : ℝ) (x : RealSequence) : RealSequence := fun n => α * x n
 
-/-- `def:linear-combination-of-real-sequences`. -/
+/-- `def:linear-combination-of-real-sequences`.
+
+Logical form:
+
+```lean
+def LinearCombination (α β : ℝ) (x y : RealSequence) : RealSequence :=
+  fun n => α * x n + β * y n
+```
+-/
 def LinearCombination (α β : ℝ) (x y : RealSequence) : RealSequence :=
   fun n => α * x n + β * y n
 
-/-- `def:pointwise-negation-sequence`. -/
+/-- `def:pointwise-negation-sequence`.
+
+Logical form:
+
+```lean
+def PointwiseNegation (x : RealSequence) : RealSequence := fun n => -x n
+```
+-/
 def PointwiseNegation (x : RealSequence) : RealSequence := fun n => -x n
 
-/-- `def:pointwise-product-sequence`. -/
+/-- `def:pointwise-product-sequence`.
+
+Logical form:
+
+```lean
+def PointwiseProduct (x y : RealSequence) : RealSequence := fun n => x n * y n
+```
+-/
 def PointwiseProduct (x y : RealSequence) : RealSequence := fun n => x n * y n
 
 /-- `def:reciprocal-sequence`. Hypothesis `x_n ≠ 0` carried as a
 side-condition on theorems that use it, matching how the .tex states it
 (the definition itself is only meaningful under that hypothesis, but
-`1 / 0 = 0` in Lean means the raw function is still total). -/
+`1 / 0 = 0` in Lean means the raw function is still total).
+
+Logical form:
+
+```lean
+noncomputable def ReciprocalSeq (x : RealSequence) : RealSequence := fun n => 1 / x n
+```
+-/
 noncomputable def ReciprocalSeq (x : RealSequence) : RealSequence := fun n => 1 / x n
 
-/-- `def:pointwise-quotient-sequence`. -/
+/-- `def:pointwise-quotient-sequence`.
+
+Logical form:
+
+```lean
+noncomputable def PointwiseQuotient (x y : RealSequence) : RealSequence := fun n => x n / y n
+```
+-/
 noncomputable def PointwiseQuotient (x y : RealSequence) : RealSequence := fun n => x n / y n
 
-/-- `def:square-sequence`. -/
+/-- `def:square-sequence`.
+
+Logical form:
+
+```lean
+def SquareSeq (x : RealSequence) : RealSequence := fun n => (x n) ^ 2
+```
+-/
 def SquareSeq (x : RealSequence) : RealSequence := fun n => (x n) ^ 2
 
-/-- `def:absolute-value-sequence`. -/
+/-- `def:absolute-value-sequence`.
+
+Logical form:
+
+```lean
+def AbsSeq (x : RealSequence) : RealSequence := fun n => |x n|
+```
+-/
 def AbsSeq (x : RealSequence) : RealSequence := fun n => |x n|
 
-/-- `def:square-root-sequence`. -/
+/-- `def:square-root-sequence`.
+
+Logical form:
+
+```lean
+noncomputable def SqrtSeq (x : RealSequence) : RealSequence := fun n => Real.sqrt (x n)
+```
+-/
 noncomputable def SqrtSeq (x : RealSequence) : RealSequence := fun n => Real.sqrt (x n)
 
 -- `thm:limit-of-scalar-multiple`
 /-- Let `x : RealSequence` and `L α : ℝ`. If `h : ConvergesTo x L`. Then `ConvergesTo
-(ScalarMultiple α x) (α * L)`. -/
+(ScalarMultiple α x) (α * L)`.
+
+Logical form:
+
+```lean
+theorem LimitOfScalarMultiple {x : RealSequence} {L α : ℝ}
+    (h : ConvergesTo x L) : ConvergesTo (ScalarMultiple α x) (α * L)
+```
+-/
 theorem LimitOfScalarMultiple {x : RealSequence} {L α : ℝ}
     (h : ConvergesTo x L) : ConvergesTo (ScalarMultiple α x) (α * L) := by
   sorry
 
 -- `thm:limit-of-a-sum`
 /-- Let `x y : RealSequence` and `L M : ℝ`. If `hx : ConvergesTo x L` and `hy : ConvergesTo y M`.
-Then `ConvergesTo (PointwiseSum x y) (L + M)`. -/
+Then `ConvergesTo (PointwiseSum x y) (L + M)`.
+
+Logical form:
+
+```lean
+theorem LimitOfASum {x y : RealSequence} {L M : ℝ}
+    (hx : ConvergesTo x L) (hy : ConvergesTo y M) :
+    ConvergesTo (PointwiseSum x y) (L + M)
+```
+-/
 theorem LimitOfASum {x y : RealSequence} {L M : ℝ}
     (hx : ConvergesTo x L) (hy : ConvergesTo y M) :
     ConvergesTo (PointwiseSum x y) (L + M) := by
@@ -112,14 +207,31 @@ theorem LimitOfASum {x y : RealSequence} {L M : ℝ}
 
 -- `thm:limit-of-a-negation`
 /-- Let `x : RealSequence` and `L : ℝ`. If `h : ConvergesTo x L`. Then `ConvergesTo
-(PointwiseNegation x) (-L)`. -/
+(PointwiseNegation x) (-L)`.
+
+Logical form:
+
+```lean
+theorem LimitOfANegation {x : RealSequence} {L : ℝ}
+    (h : ConvergesTo x L) : ConvergesTo (PointwiseNegation x) (-L)
+```
+-/
 theorem LimitOfANegation {x : RealSequence} {L : ℝ}
     (h : ConvergesTo x L) : ConvergesTo (PointwiseNegation x) (-L) := by
   sorry
 
 -- `thm:limit-of-a-difference`
 /-- Let `x y : RealSequence` and `L M : ℝ`. If `hx : ConvergesTo x L` and `hy : ConvergesTo y M`.
-Then `ConvergesTo (PointwiseDifference x y) (L - M)`. -/
+Then `ConvergesTo (PointwiseDifference x y) (L - M)`.
+
+Logical form:
+
+```lean
+theorem LimitOfADifference {x y : RealSequence} {L M : ℝ}
+    (hx : ConvergesTo x L) (hy : ConvergesTo y M) :
+    ConvergesTo (PointwiseDifference x y) (L - M)
+```
+-/
 theorem LimitOfADifference {x y : RealSequence} {L M : ℝ}
     (hx : ConvergesTo x L) (hy : ConvergesTo y M) :
     ConvergesTo (PointwiseDifference x y) (L - M) := by
@@ -127,7 +239,16 @@ theorem LimitOfADifference {x y : RealSequence} {L M : ℝ}
 
 -- `thm:limit-of-a-product`
 /-- Let `x y : RealSequence` and `L M : ℝ`. If `hx : ConvergesTo x L` and `hy : ConvergesTo y M`.
-Then `ConvergesTo (PointwiseProduct x y) (L * M)`. -/
+Then `ConvergesTo (PointwiseProduct x y) (L * M)`.
+
+Logical form:
+
+```lean
+theorem LimitOfAProduct {x y : RealSequence} {L M : ℝ}
+    (hx : ConvergesTo x L) (hy : ConvergesTo y M) :
+    ConvergesTo (PointwiseProduct x y) (L * M)
+```
+-/
 theorem LimitOfAProduct {x y : RealSequence} {L M : ℝ}
     (hx : ConvergesTo x L) (hy : ConvergesTo y M) :
     ConvergesTo (PointwiseProduct x y) (L * M) := by
@@ -135,14 +256,31 @@ theorem LimitOfAProduct {x y : RealSequence} {L M : ℝ}
 
 -- `thm:nonzero-limit-eventually-nonzero`
 /-- Let `x : RealSequence` and `L : ℝ`. If `hL : L ≠ 0` and `h : ConvergesTo x L`. Then `∃ N : ℕ, ∀
-n ≥ N, x n ≠ 0`. -/
+n ≥ N, x n ≠ 0`.
+
+Logical form:
+
+```lean
+theorem NonzeroLimitEventuallyNonzero {x : RealSequence} {L : ℝ}
+    (hL : L ≠ 0) (h : ConvergesTo x L) : ∃ N : ℕ, ∀ n ≥ N, x n ≠ 0
+```
+-/
 theorem NonzeroLimitEventuallyNonzero {x : RealSequence} {L : ℝ}
     (hL : L ≠ 0) (h : ConvergesTo x L) : ∃ N : ℕ, ∀ n ≥ N, x n ≠ 0 := by
   sorry
 
 -- `thm:limit-of-a-reciprocal`
 /-- Let `x : RealSequence` and `L : ℝ`. If `hx : ∀ n, x n ≠ 0`, `hL : L ≠ 0`, and `h : ConvergesTo x
-L`. Then `ConvergesTo (ReciprocalSeq x) (1 / L)`. -/
+L`. Then `ConvergesTo (ReciprocalSeq x) (1 / L)`.
+
+Logical form:
+
+```lean
+theorem LimitOfAReciprocal {x : RealSequence} (hx : ∀ n, x n ≠ 0)
+    {L : ℝ} (hL : L ≠ 0) (h : ConvergesTo x L) :
+    ConvergesTo (ReciprocalSeq x) (1 / L)
+```
+-/
 theorem LimitOfAReciprocal {x : RealSequence} (hx : ∀ n, x n ≠ 0)
     {L : ℝ} (hL : L ≠ 0) (h : ConvergesTo x L) :
     ConvergesTo (ReciprocalSeq x) (1 / L) := by
@@ -150,7 +288,16 @@ theorem LimitOfAReciprocal {x : RealSequence} (hx : ∀ n, x n ≠ 0)
 
 -- `thm:limit-of-a-quotient`
 /-- Let `x y : RealSequence` and `L M : ℝ`. If `hy : ∀ n, y n ≠ 0`, `hM : M ≠ 0`, `hx : ConvergesTo
-x L`, and `hy' : ConvergesTo y M`. Then `ConvergesTo (PointwiseQuotient x y) (L / M)`. -/
+x L`, and `hy' : ConvergesTo y M`. Then `ConvergesTo (PointwiseQuotient x y) (L / M)`.
+
+Logical form:
+
+```lean
+theorem LimitOfAQuotient {x y : RealSequence} (hy : ∀ n, y n ≠ 0)
+    {L M : ℝ} (hM : M ≠ 0) (hx : ConvergesTo x L) (hy' : ConvergesTo y M) :
+    ConvergesTo (PointwiseQuotient x y) (L / M)
+```
+-/
 theorem LimitOfAQuotient {x y : RealSequence} (hy : ∀ n, y n ≠ 0)
     {L M : ℝ} (hM : M ≠ 0) (hx : ConvergesTo x L) (hy' : ConvergesTo y M) :
     ConvergesTo (PointwiseQuotient x y) (L / M) := by
@@ -158,27 +305,60 @@ theorem LimitOfAQuotient {x y : RealSequence} (hy : ∀ n, y n ≠ 0)
 
 -- `thm:limit-of-a-square`
 /-- Let `x : RealSequence` and `L : ℝ`. If `h : ConvergesTo x L`. Then `ConvergesTo (SquareSeq x) (L
-^ 2)`. -/
+^ 2)`.
+
+Logical form:
+
+```lean
+theorem LimitOfASquare {x : RealSequence} {L : ℝ}
+    (h : ConvergesTo x L) : ConvergesTo (SquareSeq x) (L ^ 2)
+```
+-/
 theorem LimitOfASquare {x : RealSequence} {L : ℝ}
     (h : ConvergesTo x L) : ConvergesTo (SquareSeq x) (L ^ 2) := by
   sorry
 
 -- `thm:limit-of-an-absolute-value`
-/-- Let `x : RealSequence` and `L : ℝ`. If `h : ConvergesTo x L`. Then `ConvergesTo (AbsSeq x) |L|`. -/
+/-- Let `x : RealSequence` and `L : ℝ`. If `h : ConvergesTo x L`. Then `ConvergesTo (AbsSeq x) |L|`.
+
+Logical form:
+
+```lean
+theorem LimitOfAnAbsoluteValue {x : RealSequence} {L : ℝ}
+    (h : ConvergesTo x L) : ConvergesTo (AbsSeq x) |L|
+```
+-/
 theorem LimitOfAnAbsoluteValue {x : RealSequence} {L : ℝ}
     (h : ConvergesTo x L) : ConvergesTo (AbsSeq x) |L| := by
   sorry
 
 -- `thm:positive-limit-eventually-positive`
 /-- Let `x : RealSequence` and `L : ℝ`. If `hL : L > 0` and `h : ConvergesTo x L`. Then `∃ N : ℕ, ∀
-n ≥ N, 0 < x n`. -/
+n ≥ N, 0 < x n`.
+
+Logical form:
+
+```lean
+theorem PositiveLimitEventuallyPositive {x : RealSequence} {L : ℝ}
+    (hL : L > 0) (h : ConvergesTo x L) : ∃ N : ℕ, ∀ n ≥ N, 0 < x n
+```
+-/
 theorem PositiveLimitEventuallyPositive {x : RealSequence} {L : ℝ}
     (hL : L > 0) (h : ConvergesTo x L) : ∃ N : ℕ, ∀ n ≥ N, 0 < x n := by
   sorry
 
 -- `thm:limit-of-a-square-root`
 /-- Let `x : RealSequence` and `L : ℝ`. If `hx : ∀ n, 0 ≤ x n` and `h : ConvergesTo x L`. Then `0 ≤
-L ∧ ConvergesTo (SqrtSeq x) (Real.sqrt L)`. -/
+L ∧ ConvergesTo (SqrtSeq x) (Real.sqrt L)`.
+
+Logical form:
+
+```lean
+theorem LimitOfASquareRoot {x : RealSequence} (hx : ∀ n, 0 ≤ x n)
+    {L : ℝ} (h : ConvergesTo x L) :
+    0 ≤ L ∧ ConvergesTo (SqrtSeq x) (Real.sqrt L)
+```
+-/
 theorem LimitOfASquareRoot {x : RealSequence} (hx : ∀ n, 0 ≤ x n)
     {L : ℝ} (h : ConvergesTo x L) :
     0 ≤ L ∧ ConvergesTo (SqrtSeq x) (Real.sqrt L) := by
@@ -186,7 +366,16 @@ theorem LimitOfASquareRoot {x : RealSequence} (hx : ∀ n, 0 ≤ x n)
 
 -- `thm:polynomial-sequence-limit`
 /-- Let `x : RealSequence`, `L : ℝ`, and `p : Polynomial ℝ`. If `h : ConvergesTo x L`. Then
-`ConvergesTo (fun n => p.eval (x n)) (p.eval L)`. -/
+`ConvergesTo (fun n => p.eval (x n)) (p.eval L)`.
+
+Logical form:
+
+```lean
+theorem PolynomialSequenceLimit {x : RealSequence} {L : ℝ}
+    (p : Polynomial ℝ) (h : ConvergesTo x L) :
+    ConvergesTo (fun n => p.eval (x n)) (p.eval L)
+```
+-/
 theorem PolynomialSequenceLimit {x : RealSequence} {L : ℝ}
     (p : Polynomial ℝ) (h : ConvergesTo x L) :
     ConvergesTo (fun n => p.eval (x n)) (p.eval L) := by
@@ -195,7 +384,17 @@ theorem PolynomialSequenceLimit {x : RealSequence} {L : ℝ}
 -- `thm:rational-sequence-limit`
 /-- Let `x : RealSequence`, `L : ℝ`, and `p q : Polynomial ℝ`. If `hqL : q.eval L ≠ 0`, `hqx : ∀ n,
 q.eval (x n) ≠ 0`, and `h : ConvergesTo x L`. Then `ConvergesTo (fun n => p.eval (x n) / q.eval
-(x n)) (p.eval L / q.eval L)`. -/
+(x n)) (p.eval L / q.eval L)`.
+
+Logical form:
+
+```lean
+theorem RationalSequenceLimit {x : RealSequence} {L : ℝ}
+    (p q : Polynomial ℝ) (hqL : q.eval L ≠ 0) (hqx : ∀ n, q.eval (x n) ≠ 0)
+    (h : ConvergesTo x L) :
+    ConvergesTo (fun n => p.eval (x n) / q.eval (x n)) (p.eval L / q.eval L)
+```
+-/
 theorem RationalSequenceLimit {x : RealSequence} {L : ℝ}
     (p q : Polynomial ℝ) (hqL : q.eval L ≠ 0) (hqx : ∀ n, q.eval (x n) ≠ 0)
     (h : ConvergesTo x L) :

@@ -17,7 +17,7 @@
 #   .\build.ps1 blueprint          # Compile Blueprint PDF and web output
 #   .\build.ps1 blueprint-existing # Compile Blueprint from existing generated inputs
 #   .\build.ps1 docs               # Build site and attach Blueprint output
-#   .\build.ps1 lint               # Check doc-comment coverage
+#   .\build.ps1 lint               # Check hover doc-comment coverage
 #   .\build.ps1 stats              # Print proof counts per file
 #   .\build.ps1 install-hooks      # Install git pre-commit hook
 #   .\build.ps1 ci                 # Full CI pipeline
@@ -270,47 +270,23 @@ function Invoke-Docs {
 
 function Invoke-Lint {
     param([switch]$WarnOnly)
-    Write-Step "Checking doc-comment display name coverage"
-    $vol2 = Join-Path $SrcDir 'LRA\VolumeII'
-    $leanFiles = Get-ChildItem -Path $vol2 -Filter '*.lean' -Recurse
-    $totalMissing = 0
-    foreach ($file in $leanFiles) {
-        $lines = Get-Content $file.FullName
-        $missing = @()
-        $n = $lines.Count
-        for ($i = 0; $i -lt $n; $i++) {
-            $raw  = $lines[$i]
-            $line = $raw.Trim()
-            if ($raw -match '^\s') { continue }
-            if ($line -match '^(theorem|lemma|corollary|(?:noncomputable\s+)?def)\s+(\w+)') {
-                $kind = $Matches[1] -replace 'noncomputable\s+', ''
-                $name = $Matches[2]
-                $prevBlock = $lines[[Math]::Max(0, $i-3)..$i] -join ' '
-                if ($prevBlock -match '\bprivate\b') { continue }
-                $found = $false
-                $start = [Math]::Max(0, $i - 20)
-                for ($k = $start; $k -lt $i; $k++) {
-                    if ($lines[$k] -match '\*\*\[') { $found = $true; break }
-                }
-                if (-not $found) {
-                    $missing += [PSCustomObject]@{ Line = $i + 1; Kind = $kind; Name = $name }
-                }
-            }
-        }
-        if ($missing.Count -gt 0) {
-            $totalMissing += $missing.Count
-            foreach ($m in $missing) {
-                Write-Warn "$($file.FullName):$($m.Line) — $($m.Kind) '$($m.Name)' missing display name"
-            }
-        }
+    Write-Step "Checking repository-wide hover documentation coverage"
+    $python = Get-Command python -ErrorAction SilentlyContinue
+    if (-not $python) {
+        $python = Get-Command py -ErrorAction SilentlyContinue
     }
-    if ($totalMissing -eq 0) {
-        Write-Ok "All items have display name doc-comments"
+    if (-not $python) {
+        throw "Python is required to run scripts/check-hover-docs.py"
+    }
+    $script = Join-Path $SrcDir 'scripts\check-hover-docs.py'
+    $leanRoot = Join-Path $SrcDir 'LRA'
+    & $python.Source $script --root $leanRoot
+    if ($LASTEXITCODE -eq 0) {
+        Write-Ok "All public declarations have hover doc-comments and logical forms"
     } else {
-        $msg = "$totalMissing item(s) missing display name doc-comments"
+        $msg = "Hover documentation coverage check failed"
         if ($WarnOnly) {
             Write-Warn "$msg (warning — not blocking)"
-            Write-Warn "See DESIGN.md §17 for the doc-comment template"
         } else {
             Write-Fail $msg; throw $msg
         }
@@ -368,7 +344,7 @@ function Show-Help {
         @{ Cmd = 'blueprint';      Desc = 'Compile Blueprint PDF and web output' },
         @{ Cmd = 'blueprint-existing'; Desc = 'Compile Blueprint from existing generated inputs' },
         @{ Cmd = 'docs';           Desc = 'Build site and attach Blueprint output' },
-        @{ Cmd = 'lint';          Desc = 'Check doc-comment display name coverage' },
+        @{ Cmd = 'lint';          Desc = 'Check repository-wide hover doc-comment coverage' },
         @{ Cmd = 'stats';         Desc = 'Print theorem/def counts per file' },
         @{ Cmd = 'install-hooks'; Desc = 'Install git pre-commit hook' },
         @{ Cmd = 'ci';            Desc = 'Full CI: docker-build + check' }

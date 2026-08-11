@@ -1,571 +1,321 @@
 -- LRA/VolumeI/Algebra/Models/Models.lean
--- Shared model and extension interfaces for Z, Q, and R.
+-- Thin number-system model packages for Z, Q, and R.
 
 import LRA.VolumeI.Algebra.Models.Signatures
+import LRA.VolumeI.AlgebraicStructures
 import LRA.VolumeI.Relations.Order.Relations
 
 namespace LRA.VolumeI.Algebra.Models
 
+open LRA.VolumeI.AlgebraicStructures
+
+universe u
+
 /-!
 Volume II label: configurable-number-system-models
 Lean module: LRA.VolumeI.Algebra.Models.Models
-Blueprint label: configurable-number-system-models
-Verification status: statement-accepted-proof-pending
+Verification status: checked interface module
 
-The law hierarchy separates ring algebra, pure order structure, and
-compatibility between the two. Discreteness belongs only to integer models,
-while Archimedean and cofinality obligations belong to the extension maps
-between adjacent number systems.
+The number-system models exist FOR QUANTIFICATION: universal properties
+("every integer model embeds…", "any two complete ordered fields are
+isomorphic") legitimately range over models, so a bundled package is the
+right shape there. But the packages are now *thin* Σ-packages over the
+Volume I algebraic-structures layer: a carrier, its operation instances,
+and its certificate instances — nothing else. The old parallel law
+vocabulary (`SemiringLaws`… over operation bundles) is retired; a model's
+laws ARE the mixin certificates, so every fluent theorem
+(`AddCommutative`, `MulSucc`, `ExistsBetween`, `Completeness`) applies to
+a model's carrier directly, and any certified carrier — project or
+Mathlib — becomes a model in one line via `ofCarrier`.
+
+The instance fields are registered as instances, so for `M : RealModel`
+the notations `+ * - ⁻¹ 0 1 < ≤` all elaborate on `M.Carrier`, and the
+certificates resolve by instance search — no `letI`, no projections.
+
+The derived `.signature` projections rebuild the operation bundles for
+the first-order layer (`BuildOrderedFieldModel M.signature`) and for
+signature-level consumers; they are definitionally transparent.
 -/
 
+/-! ## The integer model: a discretely ordered integral domain -/
+
 /--
-Laws for a semiring. Addition is commutative; multiplication need not be.
+`IntegerModel` packages the data and laws for integer model.
 
 Logical form:
 
 ```lean
-structure SemiringLaws
-    (signature : SemiringSignature) : Prop where
-  AdditionIsAssociative :
-    LRA.VolumeI.Operations.Associative signature.addition
-  AdditionIsCommutative :
-    LRA.VolumeI.Operations.Commutative signature.addition
-  ZeroIsAdditiveIdentity :
-    LRA.VolumeI.Operations.Identity signature.addition signature.zero
-  MultiplicationIsAssociative :
-    LRA.VolumeI.Operations.Associative signature.multiplication
-  MultiplicationIsCommutative :
-    LRA.VolumeI.Operations.Commutative signature.multiplication
-  OneIsMultiplicativeIdentity :
-    LRA.VolumeI.Operations.Identity signature.multiplication signature.one
-  MultiplicationLeftDistributesOverAddition :
-    LRA.VolumeI.Operations.LeftDistributive signature.multiplication signature.addition
-  MultiplicationRightDistributesOverAddition :
-    LRA.VolumeI.Operations.RightDistributive signature.multiplication signature.addition
+structure IntegerModel : Type (u + 1) where
+  Carrier : Type u
+  [addInst : Add Carrier]
+  [mulInst : Mul Carrier]
+  [negInst : Neg Carrier]
+  [zeroInst : OfNat Carrier 0]
+  [oneInst : OfNat Carrier 1]
+  [ltInst : LT Carrier]
+  [leInst : LE Carrier]
+  [domainCert : IntegralDomainLaws Carrier]
+  [orderCert : LinearOrderLaws Carrier]
+  [strictCert : StrictOrderCompatibilityLaw Carrier]
+  [addOrderCert : AdditionRespectsOrderLaws Carrier]
+  [mulOrderCert : MultiplicationRespectsOrderLaws Carrier]
+  [discreteCert : OrderDiscretenessLaw Carrier]
 ```
 -/
-structure SemiringLaws
-    (signature : SemiringSignature) : Prop where
-  AdditionIsAssociative :
-    LRA.VolumeI.Operations.Associative signature.addition
-  AdditionIsCommutative :
-    LRA.VolumeI.Operations.Commutative signature.addition
-  ZeroIsAdditiveIdentity :
-    LRA.VolumeI.Operations.Identity signature.addition signature.zero
-  MultiplicationIsAssociative :
-    LRA.VolumeI.Operations.Associative signature.multiplication
-  MultiplicationIsCommutative :
-    LRA.VolumeI.Operations.Commutative signature.multiplication
-  OneIsMultiplicativeIdentity :
-    LRA.VolumeI.Operations.Identity signature.multiplication signature.one
-  MultiplicationLeftDistributesOverAddition :
-    LRA.VolumeI.Operations.LeftDistributive signature.multiplication signature.addition
-  MultiplicationRightDistributesOverAddition :
-    LRA.VolumeI.Operations.RightDistributive signature.multiplication signature.addition
+structure IntegerModel : Type (u + 1) where
+  Carrier : Type u
+  [addInst : Add Carrier]
+  [mulInst : Mul Carrier]
+  [negInst : Neg Carrier]
+  [zeroInst : OfNat Carrier 0]
+  [oneInst : OfNat Carrier 1]
+  [ltInst : LT Carrier]
+  [leInst : LE Carrier]
+  [domainCert : IntegralDomainLaws Carrier]
+  [orderCert : LinearOrderLaws Carrier]
+  [strictCert : StrictOrderCompatibilityLaw Carrier]
+  [addOrderCert : AdditionRespectsOrderLaws Carrier]
+  [mulOrderCert : MultiplicationRespectsOrderLaws Carrier]
+  [discreteCert : OrderDiscretenessLaw Carrier]
 
-/--
-Laws for a semiring whose multiplication is also commutative.
+attribute [instance] IntegerModel.addInst IntegerModel.mulInst
+  IntegerModel.negInst IntegerModel.zeroInst IntegerModel.oneInst
+  IntegerModel.ltInst IntegerModel.leInst IntegerModel.domainCert
+  IntegerModel.orderCert IntegerModel.strictCert
+  IntegerModel.addOrderCert IntegerModel.mulOrderCert
+  IntegerModel.discreteCert
+
+/-- Package any certified carrier as an integer model.
 
 Logical form:
 
 ```lean
-structure CommutativeSemiringLaws
-    (signature : SemiringSignature) : Prop where
-  toSemiringLaws : SemiringLaws signature
-  MultiplicationIsCommutative :
-    LRA.VolumeI.Operations.Commutative signature.multiplication
+def IntegerModel.ofCarrier (R : Type u)
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LT R] [LE R]
+    [IntegralDomainLaws R] [LinearOrderLaws R]
+    [StrictOrderCompatibilityLaw R]
+    [AdditionRespectsOrderLaws R] [MultiplicationRespectsOrderLaws R]
+    [OrderDiscretenessLaw R] : IntegerModel :=
+  { Carrier := R }
 ```
 -/
-structure CommutativeSemiringLaws
-    (signature : SemiringSignature) : Prop where
-  toSemiringLaws : SemiringLaws signature
-  MultiplicationIsCommutative :
-    LRA.VolumeI.Operations.Commutative signature.multiplication
+def IntegerModel.ofCarrier (R : Type u)
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LT R] [LE R]
+    [IntegralDomainLaws R] [LinearOrderLaws R]
+    [StrictOrderCompatibilityLaw R]
+    [AdditionRespectsOrderLaws R] [MultiplicationRespectsOrderLaws R]
+    [OrderDiscretenessLaw R] : IntegerModel :=
+  { Carrier := R }
 
-/--
-A bundled semiring: operations together with their laws.
+/-- The derived operation bundle, for the first-order layer and
+signature-level consumers.
 
 Logical form:
 
 ```lean
-structure Semiring where
-  signature : SemiringSignature
-  laws : SemiringLaws signature
+def IntegerModel.signature (M : IntegerModel) : OrderedRingSignature where
+  carrier := M.Carrier
+  zero := 0
+  one := 1
+  addition := (· + ·)
+  negation := (- ·)
+  multiplication := (· * ·)
+  StrictOrder := (· < ·)
+  NonstrictOrder := (· ≤ ·)
 ```
 -/
-structure Semiring where
-  signature : SemiringSignature
-  laws : SemiringLaws signature
+def IntegerModel.signature (M : IntegerModel) : OrderedRingSignature where
+  carrier := M.Carrier
+  zero := 0
+  one := 1
+  addition := (· + ·)
+  negation := (- ·)
+  multiplication := (· * ·)
+  StrictOrder := (· < ·)
+  NonstrictOrder := (· ≤ ·)
+
+/-! ## The rational model: a densely ordered field -/
 
 /--
-A bundled commutative semiring: operations together with their laws.
+`RationalModel` packages the data and laws for rational model.
 
 Logical form:
 
 ```lean
-structure CommutativeSemiring where
-  signature : SemiringSignature
-  laws : CommutativeSemiringLaws signature
+structure RationalModel : Type (u + 1) where
+  Carrier : Type u
+  [addInst : Add Carrier]
+  [mulInst : Mul Carrier]
+  [negInst : Neg Carrier]
+  [invInst : Inv Carrier]
+  [zeroInst : OfNat Carrier 0]
+  [oneInst : OfNat Carrier 1]
+  [ltInst : LT Carrier]
+  [leInst : LE Carrier]
+  [fieldCert : OrderedFieldLaws Carrier]
+  [strictCert : StrictOrderCompatibilityLaw Carrier]
+  [denseCert : DenseOrderLaw Carrier]
 ```
 -/
-structure CommutativeSemiring where
-  signature : SemiringSignature
-  laws : CommutativeSemiringLaws signature
+structure RationalModel : Type (u + 1) where
+  Carrier : Type u
+  [addInst : Add Carrier]
+  [mulInst : Mul Carrier]
+  [negInst : Neg Carrier]
+  [invInst : Inv Carrier]
+  [zeroInst : OfNat Carrier 0]
+  [oneInst : OfNat Carrier 1]
+  [ltInst : LT Carrier]
+  [leInst : LE Carrier]
+  [fieldCert : OrderedFieldLaws Carrier]
+  [strictCert : StrictOrderCompatibilityLaw Carrier]
+  [denseCert : DenseOrderLaw Carrier]
 
-/--
-Laws for a ring.
+attribute [instance] RationalModel.addInst RationalModel.mulInst
+  RationalModel.negInst RationalModel.invInst RationalModel.zeroInst
+  RationalModel.oneInst RationalModel.ltInst RationalModel.leInst
+  RationalModel.fieldCert RationalModel.strictCert
+  RationalModel.denseCert
+
+/-- Package any certified carrier as a rational model.
 
 Logical form:
 
 ```lean
-structure RingLawsCore
-    (signature : RingSignature) : Prop where
-  toSemiringLaws :
-    SemiringLaws signature.toSemiringSignature
-  NegationIsAdditiveInverse :
-    LRA.VolumeI.Operations.LeftInverse
-        signature.addition signature.zero signature.negation ∧
-      LRA.VolumeI.Operations.RightInverse
-        signature.addition signature.zero signature.negation
+def RationalModel.ofCarrier (R : Type u)
+    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R]
+    [OrderedFieldLaws R] [StrictOrderCompatibilityLaw R]
+    [DenseOrderLaw R] : RationalModel :=
+  { Carrier := R }
 ```
 -/
-structure RingLawsCore
-    (signature : RingSignature) : Prop where
-  toSemiringLaws :
-    SemiringLaws signature.toSemiringSignature
-  NegationIsAdditiveInverse :
-    LRA.VolumeI.Operations.LeftInverse
-        signature.addition signature.zero signature.negation ∧
-      LRA.VolumeI.Operations.RightInverse
-        signature.addition signature.zero signature.negation
+def RationalModel.ofCarrier (R : Type u)
+    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R]
+    [OrderedFieldLaws R] [StrictOrderCompatibilityLaw R]
+    [DenseOrderLaw R] : RationalModel :=
+  { Carrier := R }
 
-/-- Laws for a commutative ring.  Multiplication commutativity is inherited
-from the semiring law bundle.
+/-- The derived operation bundle.
 
 Logical form:
 
 ```lean
-structure CommutativeRingLaws
-    (signature : RingSignature) : Prop where
-  toRingLawsCore : RingLawsCore signature
-  MultiplicationIsCommutative :
-    LRA.VolumeI.Operations.Commutative signature.multiplication
+def RationalModel.signature (M : RationalModel) : OrderedFieldSignature where
+  carrier := M.Carrier
+  zero := 0
+  one := 1
+  addition := (· + ·)
+  negation := (- ·)
+  multiplication := (· * ·)
+  inverse := (·⁻¹)
+  StrictOrder := (· < ·)
+  NonstrictOrder := (· ≤ ·)
 ```
 -/
-structure CommutativeRingLaws
-    (signature : RingSignature) : Prop where
-  toRingLawsCore : RingLawsCore signature
-  MultiplicationIsCommutative :
-    LRA.VolumeI.Operations.Commutative signature.multiplication
+def RationalModel.signature (M : RationalModel) : OrderedFieldSignature where
+  carrier := M.Carrier
+  zero := 0
+  one := 1
+  addition := (· + ·)
+  negation := (- ·)
+  multiplication := (· * ·)
+  inverse := (·⁻¹)
+  StrictOrder := (· < ·)
+  NonstrictOrder := (· ≤ ·)
 
-/--
-A bundled ring.
+/-! ## The real model: a complete densely ordered field -/
+
+/-- A real model is a rational-style model (densely ordered field) whose
+order is complete relative to the classical subset backend
+`Set Carrier`.
 
 Logical form:
 
 ```lean
-structure Ring where
-  signature : RingSignature
-  laws : RingLawsCore signature
+structure RealModel extends RationalModel where
+  [completeCert :
+    OrderCompletenessLaws Carrier (Set Carrier)]
 ```
 -/
-structure Ring where
-  signature : RingSignature
-  laws : RingLawsCore signature
+structure RealModel extends RationalModel where
+  [completeCert :
+    OrderCompletenessLaws Carrier (Set Carrier)]
 
-/--
-A bundled commutative ring.
+attribute [instance] RealModel.completeCert
+
+/-- Package any certified carrier as a real model.
 
 Logical form:
 
 ```lean
-structure CommutativeRing where
-  signature : RingSignature
-  laws : CommutativeRingLaws signature
+def RealModel.ofCarrier (R : Type u)
+    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R]
+    [OrderedFieldLaws R] [StrictOrderCompatibilityLaw R]
+    [DenseOrderLaw R] [OrderCompletenessLaws R (Set R)] : RealModel :=
+  { Carrier := R }
 ```
 -/
-structure CommutativeRing where
-  signature : RingSignature
-  laws : CommutativeRingLaws signature
+def RealModel.ofCarrier (R : Type u)
+    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R]
+    [OrderedFieldLaws R] [StrictOrderCompatibilityLaw R]
+    [DenseOrderLaw R] [OrderCompletenessLaws R (Set R)] : RealModel :=
+  { Carrier := R }
 
-/--
-**[Definition — Ring Laws]**
-
-These are the additive, multiplicative, and distributive laws shared by the
-number systems with ring operations.
+/-- The derived operation bundle.
 
 Logical form:
 
 ```lean
-structure RingLaws
-    (signature : OrderedRingSignature) : Prop where
-  AdditionIsAssociative :
-    LRA.VolumeI.Operations.Associative signature.addition
-  AdditionIsCommutative :
-    LRA.VolumeI.Operations.Commutative signature.addition
-  ZeroIsAdditiveIdentity :
-    LRA.VolumeI.Operations.Identity signature.addition signature.zero
-  NegationIsAdditiveInverse :
-    LRA.VolumeI.Operations.LeftInverse
-        signature.addition signature.zero signature.negation ∧
-      LRA.VolumeI.Operations.RightInverse
-        signature.addition signature.zero signature.negation
-  MultiplicationIsAssociative :
-    LRA.VolumeI.Operations.Associative signature.multiplication
-  MultiplicationIsCommutative :
-    LRA.VolumeI.Operations.Commutative signature.multiplication
-  OneIsMultiplicativeIdentity :
-    LRA.VolumeI.Operations.Identity signature.multiplication signature.one
-  MultiplicationLeftDistributesOverAddition :
-    LRA.VolumeI.Operations.LeftDistributive signature.multiplication signature.addition
-  MultiplicationRightDistributesOverAddition :
-    LRA.VolumeI.Operations.RightDistributive signature.multiplication signature.addition
+def RealModel.signature (M : RealModel) : OrderedFieldSignature :=
+  M.toRationalModel.signature
 ```
 -/
-structure RingLaws
-    (signature : OrderedRingSignature) : Prop where
-  AdditionIsAssociative :
-    LRA.VolumeI.Operations.Associative signature.addition
-  AdditionIsCommutative :
-    LRA.VolumeI.Operations.Commutative signature.addition
-  ZeroIsAdditiveIdentity :
-    LRA.VolumeI.Operations.Identity signature.addition signature.zero
-  NegationIsAdditiveInverse :
-    LRA.VolumeI.Operations.LeftInverse
-        signature.addition signature.zero signature.negation ∧
-      LRA.VolumeI.Operations.RightInverse
-        signature.addition signature.zero signature.negation
-  MultiplicationIsAssociative :
-    LRA.VolumeI.Operations.Associative signature.multiplication
-  MultiplicationIsCommutative :
-    LRA.VolumeI.Operations.Commutative signature.multiplication
-  OneIsMultiplicativeIdentity :
-    LRA.VolumeI.Operations.Identity signature.multiplication signature.one
-  MultiplicationLeftDistributesOverAddition :
-    LRA.VolumeI.Operations.LeftDistributive signature.multiplication signature.addition
-  MultiplicationRightDistributesOverAddition :
-    LRA.VolumeI.Operations.RightDistributive signature.multiplication signature.addition
+def RealModel.signature (M : RealModel) : OrderedFieldSignature :=
+  M.toRationalModel.signature
+
+/-! ## Mathlib carriers as models, one line each -/
 
 /--
-**[Definition — Order Laws]**
-
-These are the pure order requirements for the strict and nonstrict order
-relations, independent of the ring operations.
+`mathlibIntegerModel` defines the displayed object for mathlib integer model.
 
 Logical form:
 
 ```lean
-structure OrderLaws
-    (signature : OrderedRingSignature) : Prop where
-  StrictOrderIsIrreflexive :
-    LRA.VolumeI.Relations.Irreflexive signature.StrictOrder
-  StrictOrderIsTransitive :
-    LRA.VolumeI.Relations.Transitive signature.StrictOrder
-  StrictOrderIsTrichotomous :
-    ∀ first second : signature.carrier,
-      signature.StrictOrder first second ∨
-      first = second ∨
-      signature.StrictOrder second first
-  NonstrictOrderAgreesWithStrictOrder :
-    ∀ first second : signature.carrier,
-      signature.NonstrictOrder first second ↔
-        signature.StrictOrder first second ∨ first = second
+def mathlibIntegerModel : IntegerModel := IntegerModel.ofCarrier Int
 ```
 -/
-structure OrderLaws
-    (signature : OrderedRingSignature) : Prop where
-  StrictOrderIsIrreflexive :
-    LRA.VolumeI.Relations.Irreflexive signature.StrictOrder
-  StrictOrderIsTransitive :
-    LRA.VolumeI.Relations.Transitive signature.StrictOrder
-  StrictOrderIsTrichotomous :
-    ∀ first second : signature.carrier,
-      signature.StrictOrder first second ∨
-      first = second ∨
-      signature.StrictOrder second first
-  NonstrictOrderAgreesWithStrictOrder :
-    ∀ first second : signature.carrier,
-      signature.NonstrictOrder first second ↔
-        signature.StrictOrder first second ∨ first = second
+def mathlibIntegerModel : IntegerModel := IntegerModel.ofCarrier Int
 
 /--
-**[Definition — Ordered Ring Compatibility Laws]**
-
-These are exactly the bridge laws saying the ring operations respect the order.
+`mathlibRationalModel` defines the displayed object for mathlib rational model.
 
 Logical form:
 
 ```lean
-structure OrderedRingCompatibilityLaws
-    (signature : OrderedRingSignature) : Prop where
-  AdditionPreservesStrictOrder :
-    LRA.VolumeI.Relations.Order.StrictlyPreservesRightTranslation
-      signature.StrictOrder signature.addition
-  PositiveMultiplicationPreservesStrictOrder :
-    LRA.VolumeI.Relations.Order.PreservesPositiveRightMultiplication
-      signature.StrictOrder signature.multiplication signature.zero
+def mathlibRationalModel : RationalModel := RationalModel.ofCarrier Rat
 ```
 -/
-structure OrderedRingCompatibilityLaws
-    (signature : OrderedRingSignature) : Prop where
-  AdditionPreservesStrictOrder :
-    LRA.VolumeI.Relations.Order.StrictlyPreservesRightTranslation
-      signature.StrictOrder signature.addition
-  PositiveMultiplicationPreservesStrictOrder :
-    LRA.VolumeI.Relations.Order.PreservesPositiveRightMultiplication
-      signature.StrictOrder signature.multiplication signature.zero
+def mathlibRationalModel : RationalModel := RationalModel.ofCarrier Rat
 
 /--
-**[Definition — Ordered Ring Laws]**
-
-An ordered ring combines ring laws, order laws, and compatibility laws. The
-component bundles remain separately available for clients that need only one
-part of the interface.
+`mathlibRealModel` defines the displayed object for mathlib real model.
 
 Logical form:
 
 ```lean
-structure OrderedRingLaws
-    (signature : OrderedRingSignature) : Prop
-    extends RingLaws signature,
-      OrderLaws signature,
-      OrderedRingCompatibilityLaws signature where
+noncomputable def mathlibRealModel : RealModel := RealModel.ofCarrier Real
 ```
 -/
-structure OrderedRingLaws
-    (signature : OrderedRingSignature) : Prop
-    extends RingLaws signature,
-      OrderLaws signature,
-      OrderedRingCompatibilityLaws signature where
+noncomputable def mathlibRealModel : RealModel := RealModel.ofCarrier Real
+
+/-! ## Embeddings and extensions between adjacent number systems
+
+The maps are stated in the instance notation of the two carriers; the
+Archimedean/cofinality clauses record how each system sits inside the
+next. -/
 
 /--
-**[Definition — Integral-Domain Laws]**
-
-Logical form:
-
-```lean
-structure IntegralDomainLaws
-    (signature : OrderedRingSignature) : Prop
-    extends RingLaws signature where
-  ZeroIsNotOne : signature.zero ≠ signature.one
-  HasNoZeroDivisors :
-    ∀ first second : signature.carrier,
-      signature.multiplication first second = signature.zero →
-      first = signature.zero ∨ second = signature.zero
-```
--/
-structure IntegralDomainLaws
-    (signature : OrderedRingSignature) : Prop
-    extends RingLaws signature where
-  ZeroIsNotOne : signature.zero ≠ signature.one
-  HasNoZeroDivisors :
-    ∀ first second : signature.carrier,
-      signature.multiplication first second = signature.zero →
-      first = signature.zero ∨ second = signature.zero
-
-/--
-**[Definition — Ordered Integral-Domain Laws]**
-
-Logical form:
-
-```lean
-structure OrderedIntegralDomainLaws
-    (signature : OrderedRingSignature) : Prop
-    extends IntegralDomainLaws signature,
-      OrderLaws signature,
-      OrderedRingCompatibilityLaws signature where
-```
--/
-structure OrderedIntegralDomainLaws
-    (signature : OrderedRingSignature) : Prop
-    extends IntegralDomainLaws signature,
-      OrderLaws signature,
-      OrderedRingCompatibilityLaws signature where
-
-/--
-**[Definition — Integer Laws]**
-
-The integer laws add discrete order to the ordered integral-domain laws.
-
-Logical form:
-
-```lean
-structure IntegerLaws
-    (signature : OrderedRingSignature) : Prop
-    extends OrderedIntegralDomainLaws signature where
-  OrderIsDiscrete :
-    ∀ value : signature.carrier,
-      ¬ ∃ middle : signature.carrier,
-        signature.StrictOrder value middle ∧
-        signature.StrictOrder
-          middle
-          (signature.addition value signature.one)
-```
--/
-structure IntegerLaws
-    (signature : OrderedRingSignature) : Prop
-    extends OrderedIntegralDomainLaws signature where
-  OrderIsDiscrete :
-    ∀ value : signature.carrier,
-      ¬ ∃ middle : signature.carrier,
-        signature.StrictOrder value middle ∧
-        signature.StrictOrder
-          middle
-          (signature.addition value signature.one)
-
-/--
-**[Definition — Integer Model]**
-
-Logical form:
-
-```lean
-structure IntegerModel where
-  signature : OrderedRingSignature
-  laws : IntegerLaws signature
-```
--/
-structure IntegerModel where
-  signature : OrderedRingSignature
-  laws : IntegerLaws signature
-
-/--
-**[Definition — Rational Laws]**
-
-A rational model is a densely ordered field. Its Archimedean relationship to the
-selected integer model is recorded in `RationalExtension`, where the embedding
-needed to state that property is available.
-
-Logical form:
-
-```lean
-structure RationalLaws
-    (signature : OrderedFieldSignature) : Prop where
-  OrderedIntegralDomainLaws :
-    OrderedIntegralDomainLaws signature.toOrderedRingSignature
-  InverseIsMultiplicativeInverse :
-    ∀ value : signature.carrier,
-      value ≠ signature.zero →
-      signature.multiplication
-          (signature.inverse value)
-          value =
-        signature.one ∧
-      signature.multiplication
-          value
-          (signature.inverse value) =
-        signature.one
-  OrderIsDense :
-    ∀ first second : signature.carrier,
-      signature.StrictOrder first second →
-      ∃ middle : signature.carrier,
-        signature.StrictOrder first middle ∧
-        signature.StrictOrder middle second
-```
--/
-structure RationalLaws
-    (signature : OrderedFieldSignature) : Prop where
-  OrderedIntegralDomainLaws :
-    OrderedIntegralDomainLaws signature.toOrderedRingSignature
-  InverseIsMultiplicativeInverse :
-    ∀ value : signature.carrier,
-      value ≠ signature.zero →
-      signature.multiplication
-          (signature.inverse value)
-          value =
-        signature.one ∧
-      signature.multiplication
-          value
-          (signature.inverse value) =
-        signature.one
-  OrderIsDense :
-    ∀ first second : signature.carrier,
-      signature.StrictOrder first second →
-      ∃ middle : signature.carrier,
-        signature.StrictOrder first middle ∧
-        signature.StrictOrder middle second
-
-/--
-**[Definition — Rational Model]**
-
-Logical form:
-
-```lean
-structure RationalModel where
-  signature : OrderedFieldSignature
-  laws : RationalLaws signature
-```
--/
-structure RationalModel where
-  signature : OrderedFieldSignature
-  laws : RationalLaws signature
-
-/--
-**[Definition — Real Laws]**
-
-The real laws add the least-upper-bound property to the densely ordered field
-laws. Archimedean cofinality of the selected rational copy is recorded by the
-adjacent extension structure.
-
-Logical form:
-
-```lean
-structure RealLaws
-    (signature : OrderedFieldSignature) : Prop where
-  RationalLikeLaws : RationalLaws signature
-  LeastUpperBoundProperty :
-    ∀ subset : signature.carrier → Prop,
-      (∃ member, subset member) →
-      (∃ UpperBound,
-        ∀ member,
-          subset member →
-          signature.NonstrictOrder member UpperBound) →
-      ∃ supremum,
-        (∀ member,
-          subset member →
-          signature.NonstrictOrder member supremum) ∧
-        (∀ UpperBound,
-          (∀ member,
-            subset member →
-            signature.NonstrictOrder member UpperBound) →
-          signature.NonstrictOrder supremum UpperBound)
-```
--/
-structure RealLaws
-    (signature : OrderedFieldSignature) : Prop where
-  RationalLikeLaws : RationalLaws signature
-  LeastUpperBoundProperty :
-    ∀ subset : signature.carrier → Prop,
-      (∃ member, subset member) →
-      (∃ UpperBound,
-        ∀ member,
-          subset member →
-          signature.NonstrictOrder member UpperBound) →
-      ∃ supremum,
-        (∀ member,
-          subset member →
-          signature.NonstrictOrder member supremum) ∧
-        (∀ UpperBound,
-          (∀ member,
-            subset member →
-            signature.NonstrictOrder member UpperBound) →
-          signature.NonstrictOrder supremum UpperBound)
-
-/--
-**[Definition — Real Model]**
-
-Logical form:
-
-```lean
-structure RealModel where
-  signature : OrderedFieldSignature
-  laws : RealLaws signature
-```
--/
-structure RealModel where
-  signature : OrderedFieldSignature
-  laws : RealLaws signature
-
-/--
-**[Definition — Integer Embedding into a Rational Model]**
+`IntegerEmbeddingIntoRational` packages the data and laws for integer embedding into rational.
 
 Logical form:
 
@@ -574,125 +324,76 @@ structure IntegerEmbeddingIntoRational
     (SelectedIntegerModel : IntegerModel)
     (SelectedRationalModel : RationalModel) where
   ToRational :
-    SelectedIntegerModel.signature.carrier →
-      SelectedRationalModel.signature.carrier
+    SelectedIntegerModel.Carrier → SelectedRationalModel.Carrier
   injective :
     ∀ first second,
-      ToRational first = ToRational second →
-      first = second
-  PreservesZero :
-    ToRational SelectedIntegerModel.signature.zero =
-      SelectedRationalModel.signature.zero
-  PreservesOne :
-    ToRational SelectedIntegerModel.signature.one =
-      SelectedRationalModel.signature.one
+      ToRational first = ToRational second → first = second
+  PreservesZero : ToRational 0 = 0
+  PreservesOne : ToRational 1 = 1
   PreservesAddition :
     ∀ first second,
-      ToRational
-          (SelectedIntegerModel.signature.addition first second) =
-        SelectedRationalModel.signature.addition
-          (ToRational first)
-          (ToRational second)
+      ToRational (first + second) = ToRational first + ToRational second
   PreservesNegation :
-    ∀ value,
-      ToRational
-          (SelectedIntegerModel.signature.negation value) =
-        SelectedRationalModel.signature.negation
-          (ToRational value)
+    ∀ value, ToRational (-value) = -(ToRational value)
   PreservesMultiplication :
     ∀ first second,
-      ToRational
-          (SelectedIntegerModel.signature.multiplication first second) =
-        SelectedRationalModel.signature.multiplication
-          (ToRational first)
-          (ToRational second)
+      ToRational (first * second) = ToRational first * ToRational second
   PreservesAndReflectsOrder :
     ∀ first second,
-      SelectedRationalModel.signature.NonstrictOrder
-          (ToRational first)
-          (ToRational second) ↔
-        SelectedIntegerModel.signature.NonstrictOrder first second
+      ToRational first ≤ ToRational second ↔ first ≤ second
 ```
 -/
 structure IntegerEmbeddingIntoRational
     (SelectedIntegerModel : IntegerModel)
     (SelectedRationalModel : RationalModel) where
   ToRational :
-    SelectedIntegerModel.signature.carrier →
-      SelectedRationalModel.signature.carrier
+    SelectedIntegerModel.Carrier → SelectedRationalModel.Carrier
   injective :
     ∀ first second,
-      ToRational first = ToRational second →
-      first = second
-  PreservesZero :
-    ToRational SelectedIntegerModel.signature.zero =
-      SelectedRationalModel.signature.zero
-  PreservesOne :
-    ToRational SelectedIntegerModel.signature.one =
-      SelectedRationalModel.signature.one
+      ToRational first = ToRational second → first = second
+  PreservesZero : ToRational 0 = 0
+  PreservesOne : ToRational 1 = 1
   PreservesAddition :
     ∀ first second,
-      ToRational
-          (SelectedIntegerModel.signature.addition first second) =
-        SelectedRationalModel.signature.addition
-          (ToRational first)
-          (ToRational second)
+      ToRational (first + second) = ToRational first + ToRational second
   PreservesNegation :
-    ∀ value,
-      ToRational
-          (SelectedIntegerModel.signature.negation value) =
-        SelectedRationalModel.signature.negation
-          (ToRational value)
+    ∀ value, ToRational (-value) = -(ToRational value)
   PreservesMultiplication :
     ∀ first second,
-      ToRational
-          (SelectedIntegerModel.signature.multiplication first second) =
-        SelectedRationalModel.signature.multiplication
-          (ToRational first)
-          (ToRational second)
+      ToRational (first * second) = ToRational first * ToRational second
   PreservesAndReflectsOrder :
     ∀ first second,
-      SelectedRationalModel.signature.NonstrictOrder
-          (ToRational first)
-          (ToRational second) ↔
-        SelectedIntegerModel.signature.NonstrictOrder first second
+      ToRational first ≤ ToRational second ↔ first ≤ second
 
-/--
-**[Definition — Rational Extension of an Integer Model]**
-
-The Archimedean clause says that the embedded integers are cofinal in the
-rational order.
+/-- A rational extension of an integer model: a rational model together
+with an embedding whose image is cofinal (the Archimedean property).
 
 Logical form:
 
 ```lean
 structure RationalExtension
-    (SelectedIntegerModel : IntegerModel) where
-  RationalModel : RationalModel
+    (SelectedIntegerModel : IntegerModel.{u}) where
+  RationalModel : RationalModel.{u}
   IntegerEmbedding :
     IntegerEmbeddingIntoRational SelectedIntegerModel RationalModel
   ArchimedeanProperty :
-    ∀ RationalValue : RationalModel.signature.carrier,
-      ∃ IntegerValue : SelectedIntegerModel.signature.carrier,
-        RationalModel.signature.StrictOrder
-          RationalValue
-          (IntegerEmbedding.ToRational IntegerValue)
+    ∀ RationalValue : RationalModel.Carrier,
+      ∃ IntegerValue : SelectedIntegerModel.Carrier,
+        RationalValue < IntegerEmbedding.ToRational IntegerValue
 ```
 -/
 structure RationalExtension
-    (SelectedIntegerModel : IntegerModel) where
-  RationalModel : RationalModel
+    (SelectedIntegerModel : IntegerModel.{u}) where
+  RationalModel : RationalModel.{u}
   IntegerEmbedding :
     IntegerEmbeddingIntoRational SelectedIntegerModel RationalModel
   ArchimedeanProperty :
-    ∀ RationalValue : RationalModel.signature.carrier,
-      ∃ IntegerValue : SelectedIntegerModel.signature.carrier,
-        RationalModel.signature.StrictOrder
-          RationalValue
-          (IntegerEmbedding.ToRational IntegerValue)
+    ∀ RationalValue : RationalModel.Carrier,
+      ∃ IntegerValue : SelectedIntegerModel.Carrier,
+        RationalValue < IntegerEmbedding.ToRational IntegerValue
 
 /--
-**[Definition — Rational Embedding into a Real Model]**
+`RationalEmbeddingIntoReal` packages the data and laws for rational embedding into real.
 
 Logical form:
 
@@ -701,192 +402,89 @@ structure RationalEmbeddingIntoReal
     (SelectedRationalModel : RationalModel)
     (SelectedRealModel : RealModel) where
   ToReal :
-    SelectedRationalModel.signature.carrier →
-      SelectedRealModel.signature.carrier
+    SelectedRationalModel.Carrier → SelectedRealModel.Carrier
   injective :
-    ∀ first second,
-      ToReal first = ToReal second →
-      first = second
-  PreservesZero :
-    ToReal SelectedRationalModel.signature.zero =
-      SelectedRealModel.signature.zero
-  PreservesOne :
-    ToReal SelectedRationalModel.signature.one =
-      SelectedRealModel.signature.one
+    ∀ first second, ToReal first = ToReal second → first = second
+  PreservesZero : ToReal 0 = 0
+  PreservesOne : ToReal 1 = 1
   PreservesAddition :
     ∀ first second,
-      ToReal
-          (SelectedRationalModel.signature.addition first second) =
-        SelectedRealModel.signature.addition
-          (ToReal first)
-          (ToReal second)
+      ToReal (first + second) = ToReal first + ToReal second
   PreservesNegation :
-    ∀ value,
-      ToReal
-          (SelectedRationalModel.signature.negation value) =
-        SelectedRealModel.signature.negation
-          (ToReal value)
+    ∀ value, ToReal (-value) = -(ToReal value)
   PreservesMultiplication :
     ∀ first second,
-      ToReal
-          (SelectedRationalModel.signature.multiplication first second) =
-        SelectedRealModel.signature.multiplication
-          (ToReal first)
-          (ToReal second)
+      ToReal (first * second) = ToReal first * ToReal second
   PreservesInverse :
-    ∀ value,
-      value ≠ SelectedRationalModel.signature.zero →
-      ToReal
-          (SelectedRationalModel.signature.inverse value) =
-        SelectedRealModel.signature.inverse (ToReal value)
+    ∀ value, value ≠ 0 → ToReal value⁻¹ = (ToReal value)⁻¹
   PreservesAndReflectsOrder :
-    ∀ first second,
-      SelectedRealModel.signature.NonstrictOrder
-          (ToReal first)
-          (ToReal second) ↔
-        SelectedRationalModel.signature.NonstrictOrder first second
+    ∀ first second, ToReal first ≤ ToReal second ↔ first ≤ second
 ```
 -/
 structure RationalEmbeddingIntoReal
     (SelectedRationalModel : RationalModel)
     (SelectedRealModel : RealModel) where
   ToReal :
-    SelectedRationalModel.signature.carrier →
-      SelectedRealModel.signature.carrier
+    SelectedRationalModel.Carrier → SelectedRealModel.Carrier
   injective :
-    ∀ first second,
-      ToReal first = ToReal second →
-      first = second
-  PreservesZero :
-    ToReal SelectedRationalModel.signature.zero =
-      SelectedRealModel.signature.zero
-  PreservesOne :
-    ToReal SelectedRationalModel.signature.one =
-      SelectedRealModel.signature.one
+    ∀ first second, ToReal first = ToReal second → first = second
+  PreservesZero : ToReal 0 = 0
+  PreservesOne : ToReal 1 = 1
   PreservesAddition :
     ∀ first second,
-      ToReal
-          (SelectedRationalModel.signature.addition first second) =
-        SelectedRealModel.signature.addition
-          (ToReal first)
-          (ToReal second)
+      ToReal (first + second) = ToReal first + ToReal second
   PreservesNegation :
-    ∀ value,
-      ToReal
-          (SelectedRationalModel.signature.negation value) =
-        SelectedRealModel.signature.negation
-          (ToReal value)
+    ∀ value, ToReal (-value) = -(ToReal value)
   PreservesMultiplication :
     ∀ first second,
-      ToReal
-          (SelectedRationalModel.signature.multiplication first second) =
-        SelectedRealModel.signature.multiplication
-          (ToReal first)
-          (ToReal second)
+      ToReal (first * second) = ToReal first * ToReal second
   PreservesInverse :
-    ∀ value,
-      value ≠ SelectedRationalModel.signature.zero →
-      ToReal
-          (SelectedRationalModel.signature.inverse value) =
-        SelectedRealModel.signature.inverse (ToReal value)
+    ∀ value, value ≠ 0 → ToReal value⁻¹ = (ToReal value)⁻¹
   PreservesAndReflectsOrder :
-    ∀ first second,
-      SelectedRealModel.signature.NonstrictOrder
-          (ToReal first)
-          (ToReal second) ↔
-        SelectedRationalModel.signature.NonstrictOrder first second
+    ∀ first second, ToReal first ≤ ToReal second ↔ first ≤ second
 
-/--
-**[Definition — Real Extension of a Rational Model]**
-
-The cofinality clause records that every real lies below an embedded rational.
-Together with the rational extension, this exposes the Archimedean tower
-explicitly.
+/-- A real extension of a rational model: a real model together with an
+embedding whose image is cofinal.
 
 Logical form:
 
 ```lean
 structure RealExtension
-    (SelectedRationalModel : RationalModel) where
-  RealModel : RealModel
+    (SelectedRationalModel : RationalModel.{u}) where
+  RealModel : RealModel.{u}
   RationalEmbedding :
     RationalEmbeddingIntoReal SelectedRationalModel RealModel
   RationalEmbeddingIsCofinal :
-    ∀ RealValue : RealModel.signature.carrier,
-      ∃ RationalValue : SelectedRationalModel.signature.carrier,
-        RealModel.signature.StrictOrder
-          RealValue
-          (RationalEmbedding.ToReal RationalValue)
+    ∀ RealValue : RealModel.Carrier,
+      ∃ RationalValue : SelectedRationalModel.Carrier,
+        RealValue < RationalEmbedding.ToReal RationalValue
 ```
 -/
 structure RealExtension
-    (SelectedRationalModel : RationalModel) where
-  RealModel : RealModel
+    (SelectedRationalModel : RationalModel.{u}) where
+  RealModel : RealModel.{u}
   RationalEmbedding :
     RationalEmbeddingIntoReal SelectedRationalModel RealModel
   RationalEmbeddingIsCofinal :
-    ∀ RealValue : RealModel.signature.carrier,
-      ∃ RationalValue : SelectedRationalModel.signature.carrier,
-        RealModel.signature.StrictOrder
-          RealValue
-          (RationalEmbedding.ToReal RationalValue)
+    ∀ RealValue : RealModel.Carrier,
+      ∃ RationalValue : SelectedRationalModel.Carrier,
+        RealValue < RationalEmbedding.ToReal RationalValue
 
-/--
-**[Proposition — Every Integer Model Has Zero Absorption]**
+/-! ## Smoke tests: fluent mixin theorems land on model carriers -/
 
-Logical form:
+example (M : IntegerModel) (a b : M.Carrier) : a + b = b + a :=
+  AddCommutative a b
 
-```lean
-theorem IntegerZeroIsAbsorbing
-    (SelectedIntegerModel : IntegerModel)
-    (value : SelectedIntegerModel.signature.carrier) :
-    SelectedIntegerModel.signature.multiplication
-        value
-        SelectedIntegerModel.signature.zero =
-      SelectedIntegerModel.signature.zero ∧
-    SelectedIntegerModel.signature.multiplication
-        SelectedIntegerModel.signature.zero
-        value =
-      SelectedIntegerModel.signature.zero
-```
--/
-theorem IntegerZeroIsAbsorbing
-    (SelectedIntegerModel : IntegerModel)
-    (value : SelectedIntegerModel.signature.carrier) :
-    SelectedIntegerModel.signature.multiplication
-        value
-        SelectedIntegerModel.signature.zero =
-      SelectedIntegerModel.signature.zero ∧
-    SelectedIntegerModel.signature.multiplication
-        SelectedIntegerModel.signature.zero
-        value =
-      SelectedIntegerModel.signature.zero := by
-  sorry
+example (M : RationalModel) (a b : M.Carrier) (h : a < b) :
+    ∃ middle, a < middle ∧ middle < b :=
+  ExistsBetween a b h
 
-/--
-**[Corollary — Nonzero Multiplicative Cancellation in an Integer Model]**
+example (M : RealModel) :
+    LRA.VolumeI.Relations.Order.LeastUpperBoundProperty
+      (Set M.Carrier) (fun a b : M.Carrier => a ≤ b) :=
+  Completeness
 
-Logical form:
-
-```lean
-theorem IntegerMultiplicativeCancellation
-    (SelectedIntegerModel : IntegerModel)
-    (first second factor : SelectedIntegerModel.signature.carrier)
-    (FactorIsNonzero : factor ≠ SelectedIntegerModel.signature.zero)
-    (ProductsAreEqual :
-      SelectedIntegerModel.signature.multiplication first factor =
-        SelectedIntegerModel.signature.multiplication second factor) :
-    first = second
-```
--/
-theorem IntegerMultiplicativeCancellation
-    (SelectedIntegerModel : IntegerModel)
-    (first second factor : SelectedIntegerModel.signature.carrier)
-    (FactorIsNonzero : factor ≠ SelectedIntegerModel.signature.zero)
-    (ProductsAreEqual :
-      SelectedIntegerModel.signature.multiplication first factor =
-        SelectedIntegerModel.signature.multiplication second factor) :
-    first = second := by
-  sorry
+example (a b : mathlibIntegerModel.Carrier) : a * b = b * a :=
+  MulCommutative a b
 
 end LRA.VolumeI.Algebra.Models

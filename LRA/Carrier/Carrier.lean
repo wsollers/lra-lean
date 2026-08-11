@@ -9,7 +9,14 @@ namespace LRA.Carrier
 
 universe u
 
-/-- A generic type of mathematical objects. -/
+/-- A generic type of mathematical objects.
+
+Logical form:
+
+```lean
+abbrev Carrier : Type (u + 1) := Type u
+```
+-/
 abbrev Carrier : Type (u + 1) := Type u
 
 end LRA.Carrier

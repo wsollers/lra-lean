@@ -30,7 +30,39 @@ avoided here per the standard caution against full second-order semantics
 -/
 
 /-- The second-order satisfaction relation: `M`, under the second-order
-assignment `assignment`, satisfies the monadic second-order formula `φ`. -/
+assignment `assignment`, satisfies the monadic second-order formula `φ`.
+
+Logical form:
+
+```lean
+def SOSatisfies
+    {S : Signature} {Variable SetVariable : Type} [DecidableEq Variable] [DecidableEq SetVariable]
+    (M : HenkinModel S) (assignment : SOAssignment M Variable SetVariable) :
+    SOFormula S Variable SetVariable -> Prop
+  | .relation r args =>
+      M.interpretRelation r
+        (fun i => FirstOrder.evaluateTerm M.toModel assignment.elementAssignment (args i))
+  | .equal t₁ t₂ =>
+      FirstOrder.evaluateTerm M.toModel assignment.elementAssignment t₁ =
+        FirstOrder.evaluateTerm M.toModel assignment.elementAssignment t₂
+  | .neg φ =>
+      ¬ SOSatisfies M assignment φ
+  | .impl φ ψ =>
+      SOSatisfies M assignment φ -> SOSatisfies M assignment ψ
+  | .forallQ v φ =>
+      ∀ a : M.Domain,
+        SOSatisfies M
+          { assignment with elementAssignment := updateAssignment assignment.elementAssignment v a }
+          φ
+  | .setMember X t =>
+      FirstOrder.evaluateTerm M.toModel assignment.elementAssignment t ∈ assignment.setAssignment X
+  | .forallSet X φ =>
+      ∀ Y ∈ M.SecondOrderDomain,
+        SOSatisfies M
+          { assignment with setAssignment := updateAssignment assignment.setAssignment X Y }
+          φ
+```
+-/
 def SOSatisfies
     {S : Signature} {Variable SetVariable : Type} [DecidableEq Variable] [DecidableEq SetVariable]
     (M : HenkinModel S) (assignment : SOAssignment M Variable SetVariable) :

@@ -20,6 +20,16 @@ No `UniversalMembershipLaws` instance, ever: no `𝒰`, no `ᶜ` (Russell's
 paradox).
 -/
 
+/--
+`SubsetIffAllMembers` states subset iff all members.
+
+Logical form:
+
+```lean
+theorem SubsetIffAllMembers :
+    ∀ A B : Set, A ⊆ B ↔ ∀ x : Set, x ∈ A → x ∈ B
+```
+-/
 theorem SubsetIffAllMembers :
     ∀ A B : Set, A ⊆ B ↔ ∀ x : Set, x ∈ A → x ∈ B := by
   sorry

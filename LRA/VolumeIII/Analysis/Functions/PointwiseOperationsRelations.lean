@@ -30,40 +30,103 @@ import Mathlib.Data.Fin.Basic
 
 namespace LRA.VolumeIII.Analysis.Functions
 
-/-- `def:at-point-operation`. -/
+/-- `def:at-point-operation`.
+
+Logical form:
+
+```lean
+def AtPointOperation {n : ℕ} (Φ : (Fin n → ℝ) → ℝ) (f : Fin n → (ℝ → ℝ))
+    (x : ℝ) : ℝ :=
+  Φ (fun i => f i x)
+```
+-/
 def AtPointOperation {n : ℕ} (Φ : (Fin n → ℝ) → ℝ) (f : Fin n → (ℝ → ℝ))
     (x : ℝ) : ℝ :=
   Φ (fun i => f i x)
 
-/-- `def:pointwise-operation-on-set`. -/
+/-- `def:pointwise-operation-on-set`.
+
+Logical form:
+
+```lean
+def PointwiseOperationOnSet {n : ℕ} (Φ : (Fin n → ℝ) → ℝ)
+    (f : Fin n → (ℝ → ℝ)) : ℝ → ℝ :=
+  fun x => Φ (fun i => f i x)
+```
+-/
 def PointwiseOperationOnSet {n : ℕ} (Φ : (Fin n → ℝ) → ℝ)
     (f : Fin n → (ℝ → ℝ)) : ℝ → ℝ :=
   fun x => Φ (fun i => f i x)
 
-/-- `def:at-point-relation`. -/
+/-- `def:at-point-relation`.
+
+Logical form:
+
+```lean
+def AtPointRelation {n : ℕ} (R : (Fin n → ℝ) → Prop) (f : Fin n → (ℝ → ℝ))
+    (x : ℝ) : Prop :=
+  R (fun i => f i x)
+```
+-/
 def AtPointRelation {n : ℕ} (R : (Fin n → ℝ) → Prop) (f : Fin n → (ℝ → ℝ))
     (x : ℝ) : Prop :=
   R (fun i => f i x)
 
-/-- `def:pointwise-relation-on-set`. -/
+/-- `def:pointwise-relation-on-set`.
+
+Logical form:
+
+```lean
+def PointwiseRelationOnSet {n : ℕ} (R : (Fin n → ℝ) → Prop)
+    (f : Fin n → (ℝ → ℝ)) (A : Set ℝ) : Prop :=
+  ∀ x ∈ A, R (fun i => f i x)
+```
+-/
 def PointwiseRelationOnSet {n : ℕ} (R : (Fin n → ℝ) → Prop)
     (f : Fin n → (ℝ → ℝ)) (A : Set ℝ) : Prop :=
   ∀ x ∈ A, R (fun i => f i x)
 
-/-- `def:pointwise-relation-near-point`. -/
+/-- `def:pointwise-relation-near-point`.
+
+Logical form:
+
+```lean
+def PointwiseRelationNearPoint {n : ℕ} (R : (Fin n → ℝ) → Prop)
+    (f : Fin n → (ℝ → ℝ)) (c : ℝ) (A : Set ℝ) : Prop :=
+  ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| ∧ |x - c| < δ → R (fun i => f i x)
+```
+-/
 def PointwiseRelationNearPoint {n : ℕ} (R : (Fin n → ℝ) → Prop)
     (f : Fin n → (ℝ → ℝ)) (c : ℝ) (A : Set ℝ) : Prop :=
   ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| ∧ |x - c| < δ → R (fun i => f i x)
 
 /-- Let `n : ℕ` and `A : Set ℝ`. If `Φ : (Fin n → ℝ) → ℝ` and `f : Fin n → (ℝ → ℝ)`. Then `∀ x ∈ A,
-PointwiseOperationOnSet Φ f x = AtPointOperation Φ f x`. -/
+PointwiseOperationOnSet Φ f x = AtPointOperation Φ f x`.
+
+Logical form:
+
+```lean
+theorem PointwiseOperationEvaluation {n : ℕ} (Φ : (Fin n → ℝ) → ℝ)
+    (f : Fin n → (ℝ → ℝ)) (A : Set ℝ) :
+    ∀ x ∈ A, PointwiseOperationOnSet Φ f x = AtPointOperation Φ f x
+```
+-/
 theorem PointwiseOperationEvaluation {n : ℕ} (Φ : (Fin n → ℝ) → ℝ)
     (f : Fin n → (ℝ → ℝ)) (A : Set ℝ) :
     ∀ x ∈ A, PointwiseOperationOnSet Φ f x = AtPointOperation Φ f x := by
   sorry
 
 /-- Let `n : ℕ` and `A : Set ℝ`. If `R : (Fin n → ℝ) → Prop` and `f : Fin n → (ℝ → ℝ)`. Then
-`PointwiseRelationOnSet R f A ↔ ∀ x ∈ A, AtPointRelation R f x`. -/
+`PointwiseRelationOnSet R f A ↔ ∀ x ∈ A, AtPointRelation R f x`.
+
+Logical form:
+
+```lean
+theorem PointwiseRelationEvaluation {n : ℕ} (R : (Fin n → ℝ) → Prop)
+    (f : Fin n → (ℝ → ℝ)) (A : Set ℝ) :
+    PointwiseRelationOnSet R f A ↔ ∀ x ∈ A, AtPointRelation R f x
+```
+-/
 theorem PointwiseRelationEvaluation {n : ℕ} (R : (Fin n → ℝ) → Prop)
     (f : Fin n → (ℝ → ℝ)) (A : Set ℝ) :
     PointwiseRelationOnSet R f A ↔ ∀ x ∈ A, AtPointRelation R f x := by
@@ -71,7 +134,17 @@ theorem PointwiseRelationEvaluation {n : ℕ} (R : (Fin n → ℝ) → Prop)
 
 /-- Let `n : ℕ`, `c : ℝ`, and `A : Set ℝ`. If `R : (Fin n → ℝ) → Prop` and `f : Fin n → (ℝ → ℝ)`.
 Then `PointwiseRelationNearPoint R f c A ↔ ∃ δ > 0, ∀ x ∈ A, (0 < |x - c| ∧ |x - c| < δ) → R
-(fun i => f i x)`. -/
+(fun i => f i x)`.
+
+Logical form:
+
+```lean
+theorem PointwiseRelationNearUnpacking {n : ℕ} (R : (Fin n → ℝ) → Prop)
+    (f : Fin n → (ℝ → ℝ)) (c : ℝ) (A : Set ℝ) :
+    PointwiseRelationNearPoint R f c A ↔
+      ∃ δ > 0, ∀ x ∈ A, (0 < |x - c| ∧ |x - c| < δ) → R (fun i => f i x)
+```
+-/
 theorem PointwiseRelationNearUnpacking {n : ℕ} (R : (Fin n → ℝ) → Prop)
     (f : Fin n → (ℝ → ℝ)) (c : ℝ) (A : Set ℝ) :
     PointwiseRelationNearPoint R f c A ↔

@@ -6,7 +6,19 @@ import Mathlib.Data.Set.Basic
 
 namespace LRA.VolumeIII.RealNumbers
 
-/-- An LRA real as a lower Dedekind cut of rationals. -/
+/-- An LRA real as a lower Dedekind cut of rationals.
+
+Logical form:
+
+```lean
+structure LraReal where
+  lower : Set Rat
+  nonempty : lower.Nonempty
+  not_all : exists q : Rat, q ∉ lower
+  downward : forall {p : Rat}, p ∈ lower -> forall {q : Rat}, q < p -> q ∈ lower
+  open_above : forall {p : Rat}, p ∈ lower -> exists r, r ∈ lower /\ p < r
+```
+-/
 structure LraReal where
   lower : Set Rat
   nonempty : lower.Nonempty

@@ -19,13 +19,30 @@ open intervals of total length at most `ε`. Intervals are given directly
 by their endpoint sequences `p k < q k` (rather than as an abstract
 `Set ℝ` satisfying "is an open interval"), so the total-length sum is
 Mathematical statement (Lean): `def IsMeasureZero (E : Set ℝ) : Prop :=`.
-just `∑ (q k - p k)` with no auxiliary length function needed. -/
+just `∑ (q k - p k)` with no auxiliary length function needed.
+
+Logical form:
+
+```lean
+def IsMeasureZero (E : Set ℝ) : Prop :=
+  ∀ ε > 0, ∃ p q : ℕ → ℝ, (∀ k, p k < q k) ∧ E ⊆ ⋃ k, Set.Ioo (p k) (q k) ∧
+    ∃ L ≤ ε, HasSum (fun k => q k - p k) L
+```
+-/
 def IsMeasureZero (E : Set ℝ) : Prop :=
   ∀ ε > 0, ∃ p q : ℕ → ℝ, (∀ k, p k < q k) ∧ E ⊆ ⋃ k, Set.Ioo (p k) (q k) ∧
     ∃ L ≤ ε, HasSum (fun k => q k - p k) L
 
 /-- `def:point-oscillation-integration`.
 Mathematical statement (Lean): `noncomputable def PointOscillation (f : ℝ → ℝ) (a b x : ℝ) : ℝ :=`.
+
+
+Logical form:
+
+```lean
+noncomputable def PointOscillation (f : ℝ → ℝ) (a b x : ℝ) : ℝ :=
+  0
+```
 -/
 noncomputable def PointOscillation (f : ℝ → ℝ) (a b x : ℝ) : ℝ :=
   0
@@ -33,7 +50,17 @@ noncomputable def PointOscillation (f : ℝ → ℝ) (a b x : ℝ) : ℝ :=
 -- `thm:lebesgue-criterion-riemann-integrability`
 /-- Let `a b : ℝ`. If `f : ℝ → ℝ`, `hab : a ≤ b`, and `hbdd :
 LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)`. Then `IsRiemannIntegrable f a b
-↔ IsMeasureZero {x ∈ Set.Icc a b | PointOscillation f a b x > 0}`. -/
+↔ IsMeasureZero {x ∈ Set.Icc a b | PointOscillation f a b x > 0}`.
+
+Logical form:
+
+```lean
+theorem lebesgue_criterion_riemann_integrability (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
+    (hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
+    IsRiemannIntegrable f a b ↔
+      IsMeasureZero {x ∈ Set.Icc a b | PointOscillation f a b x > 0}
+```
+-/
 theorem lebesgue_criterion_riemann_integrability (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
     (hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
     IsRiemannIntegrable f a b ↔

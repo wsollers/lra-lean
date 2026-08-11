@@ -14,6 +14,20 @@ A map between metric spaces is an isometry, or isometric map, when it preserves
 all pairwise distances.
 
 Mathematical statement (Lean): `def IsMetricIsometry {X : Type u} {Y : Type v} [MetricSpace X] [MetricSpace Y] (φ : X → Y) : Prop`.
+
+
+Logical form:
+
+```lean
+def IsMetricIsometry
+    {X : Type u}
+    {Y : Type v}
+    [MetricSpace X]
+    [MetricSpace Y]
+    (φ : X → Y) :
+    Prop :=
+  ∀ a b : X, dist (φ a) (φ b) = dist a b
+```
 -/
 def IsMetricIsometry
     {X : Type u}
@@ -28,6 +42,18 @@ def IsMetricIsometry
 /-- A map is injective when equal outputs force equal inputs.
 
 Mathematical statement (Lean): `def IsInjectiveMap {X : Type u} {Y : Type v} (φ : X → Y) : Prop`.
+
+
+Logical form:
+
+```lean
+def IsInjectiveMap
+    {X : Type u}
+    {Y : Type v}
+    (φ : X → Y) :
+    Prop :=
+  ∀ a b : X, φ a = φ b → a = b
+```
 -/
 def IsInjectiveMap
     {X : Type u}
@@ -43,6 +69,20 @@ indiscernibles for metrics: distance preservation forces an isometry to be
 injective.
 
 Mathematical statement (Lean): `theorem isMetricIsometry_injective {X : Type u} {Y : Type v} [MetricSpace X] [MetricSpace Y] {isometricMap : X → Y} (isometry_preserves_distance : IsMetricIsometry isometricMap) : IsInjectiveMap isometricMap`.
+
+
+Logical form:
+
+```lean
+theorem isMetricIsometry_injective
+    {X : Type u}
+    {Y : Type v}
+    [MetricSpace X]
+    [MetricSpace Y]
+    {isometricMap : X → Y}
+    (isometry_preserves_distance : IsMetricIsometry isometricMap) :
+    IsInjectiveMap isometricMap
+```
 -/
 theorem isMetricIsometry_injective
     {X : Type u}
@@ -60,7 +100,19 @@ theorem isMetricIsometry_injective
 /-- The negation map is an isometry from the positive open ray `(0, ∞)` onto
 
 Mathematical statement (Lean): `theorem positiveOpenRay_isMetricIsometry_negativeOpenRay : IsMetricIsometry (fun positivePoint : Set.Ioi (0 : Real) => (⟨-(positivePoint : Real), by exact neg_lt_zero.mpr (show 0 < (positivePoint : Real) from positivePoint.property)⟩ : Set.Iio (0 : Real)))`.
-the negative open ray `(-∞, 0)`. -/
+the negative open ray `(-∞, 0)`.
+
+Logical form:
+
+```lean
+theorem positiveOpenRay_isMetricIsometry_negativeOpenRay :
+    IsMetricIsometry
+      (fun positivePoint : Set.Ioi (0 : Real) =>
+        (⟨-(positivePoint : Real), by
+          exact neg_lt_zero.mpr (show 0 < (positivePoint : Real) from positivePoint.property)⟩ :
+          Set.Iio (0 : Real)))
+```
+-/
 theorem positiveOpenRay_isMetricIsometry_negativeOpenRay :
     IsMetricIsometry
       (fun positivePoint : Set.Ioi (0 : Real) =>
@@ -83,6 +135,20 @@ A subset of a metric space is an isometric copy of `X` when it is the range of
 an isometry from `X`.
 
 Mathematical statement (Lean): `def IsometricCopy (X : Type u) {Y : Type v} [MetricSpace X] [MetricSpace Y] (Z : Set Y) : Prop`.
+
+
+Logical form:
+
+```lean
+def IsometricCopy
+    (X : Type u)
+    {Y : Type v}
+    [MetricSpace X]
+    [MetricSpace Y]
+    (Z : Set Y) :
+    Prop :=
+  ∃ φ : X → Y, IsMetricIsometry φ ∧ Set.range φ = Z
+```
 -/
 def IsometricCopy
     (X : Type u)

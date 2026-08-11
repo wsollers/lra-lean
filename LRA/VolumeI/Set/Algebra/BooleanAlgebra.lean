@@ -25,7 +25,16 @@ variable [EmptyCollection SetObject] [HasSubset SetObject]
 variable [HasSymmDiff SetObject]
 
 /-- An algebra of sets on `ambient`: a ring of sets that contains the
-ambient set itself. -/
+ambient set itself.
+
+Logical form:
+
+```lean
+structure AlgebraOfSets (ambient : SetObject) extends
+    RingOfSets ambient where
+  AmbientIsMember : IsMember ambient
+```
+-/
 structure AlgebraOfSets (ambient : SetObject) extends
     RingOfSets ambient where
   AmbientIsMember : IsMember ambient
@@ -35,7 +44,17 @@ namespace AlgebraOfSets
 variable {ambient : SetObject}
 
 /-- Relative complements of members are members: derived from
-difference-closure and ambient-membership, not a primitive field. -/
+difference-closure and ambient-membership, not a primitive field.
+
+Logical form:
+
+```lean
+theorem RelativeComplementIsMember
+    (algebra : AlgebraOfSets ambient)
+    (A : SetObject) (AIsMember : algebra.IsMember A) :
+    algebra.IsMember (ambient \ A)
+```
+-/
 theorem RelativeComplementIsMember
     (algebra : AlgebraOfSets ambient)
     (A : SetObject) (AIsMember : algebra.IsMember A) :

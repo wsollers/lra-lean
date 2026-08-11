@@ -17,26 +17,71 @@ connective, not a primitive constructor), `evaluate` and
 `PropositionalModel.satisfies` (the model layer), all in one proof.
 -/
 
-/-- The two-atom test language: `A` and `B`, nothing else. -/
+/-- The two-atom test language: `A` and `B`, nothing else.
+
+Logical form:
+
+```lean
+inductive TestAtom where
+  | A
+  | B
+```
+-/
 inductive TestAtom where
   | A
   | B
 
+/--
+`testLanguage` defines the displayed object for test language.
+
+Logical form:
+
+```lean
+def testLanguage : PropositionalLanguage where
+  Atoms := TestAtom
+```
+-/
 def testLanguage : PropositionalLanguage where
   Atoms := TestAtom
 
 /-- The formula `A ∧ B`, built from the derived `Formula.and` connective,
-not a primitive constructor. -/
+not a primitive constructor.
+
+Logical form:
+
+```lean
+def testFormula : Formula testLanguage :=
+  Formula.and (Formula.atom .A) (Formula.atom .B)
+```
+-/
 def testFormula : Formula testLanguage :=
   Formula.and (Formula.atom .A) (Formula.atom .B)
 
-/-- The valuation making both `A` and `B` true. -/
+/-- The valuation making both `A` and `B` true.
+
+Logical form:
+
+```lean
+def testModel : PropositionalModel testLanguage where
+  valuation
+    | .A => true
+    | .B => true
+```
+-/
 def testModel : PropositionalModel testLanguage where
   valuation
     | .A => true
     | .B => true
 
-/-- The checkpoint: `testModel` satisfies `A ∧ B`. -/
+/-- The checkpoint: `testModel` satisfies `A ∧ B`.
+
+Logical form:
+
+```lean
+theorem testModel_satisfies_aAndB :
+    testModel.satisfies testFormula
+```
+-/
 theorem testModel_satisfies_aAndB :
     testModel.satisfies testFormula := by
   show evaluate testModel.valuation (Formula.and (Formula.atom .A) (Formula.atom .B)) = true

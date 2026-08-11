@@ -28,7 +28,19 @@ the exact mirror, one layer up, of what `interpretFunction`/
 -/
 
 /-- The domain element a term denotes, given a model and an assignment of
-domain elements to variables. -/
+domain elements to variables.
+
+Logical form:
+
+```lean
+def evaluateTerm
+    {S : Signature} {Variable : Type} (M : Model S) (assignment : Variable -> M.Domain) :
+    Term S Variable -> M.Domain
+  | .var v => assignment v
+  | .const c => M.interpretConstant c
+  | .apply f args => M.interpretFunction f (fun i => evaluateTerm M assignment (args i))
+```
+-/
 def evaluateTerm
     {S : Signature} {Variable : Type} (M : Model S) (assignment : Variable -> M.Domain) :
     Term S Variable -> M.Domain

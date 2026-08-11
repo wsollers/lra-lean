@@ -11,19 +11,46 @@ import LRA.VolumeIII.Analysis.Differentiation.DerivativeDefinition
 
 namespace LRA.VolumeIII.Analysis.Differentiation
 
-/-- `def:left-hand-derivative`. -/
+/-- `def:left-hand-derivative`.
+
+Logical form:
+
+```lean
+def LeftDerivative (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
+  ∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c →
+    |(f x - f c) / (x - c) - D| < ε
+```
+-/
 def LeftDerivative (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   ∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c →
     |(f x - f c) / (x - c) - D| < ε
 
-/-- `def:right-hand-derivative`. -/
+/-- `def:right-hand-derivative`.
+
+Logical form:
+
+```lean
+def RightDerivative (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
+  ∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ →
+    |(f x - f c) / (x - c) - D| < ε
+```
+-/
 def RightDerivative (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   ∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ →
     |(f x - f c) / (x - c) - D| < ε
 
 -- `thm:differentiability-and-one-sided-derivatives`
 /-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`. Then `IsDifferentiable f A c ↔ ∃ D, LeftDerivative
-D f A c ∧ RightDerivative D f A c`. -/
+D f A c ∧ RightDerivative D f A c`.
+
+Logical form:
+
+```lean
+theorem DifferentiableIffOneSidedDerivativesAgree (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
+    IsDifferentiable f A c ↔
+      ∃ D, LeftDerivative D f A c ∧ RightDerivative D f A c
+```
+-/
 theorem DifferentiableIffOneSidedDerivativesAgree (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     IsDifferentiable f A c ↔
       ∃ D, LeftDerivative D f A c ∧ RightDerivative D f A c := by

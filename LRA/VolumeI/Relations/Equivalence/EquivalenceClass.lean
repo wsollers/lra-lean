@@ -23,7 +23,20 @@ variable [Membership Element SetObject]
 
 /-- A set `classSet` is the equivalence class of `representative` in
 `ambient` when its members are exactly the ambient elements related to that
-representative. -/
+representative.
+
+Logical form:
+
+```lean
+def IsEquivalenceClassOf
+    (classSet ambient : SetObject)
+    (relation : Endorelation Element)
+    (representative : Element) : Prop :=
+  ∀ candidate : Element,
+    candidate ∈ classSet ↔
+      candidate ∈ ambient ∧ relation candidate representative
+```
+-/
 def IsEquivalenceClassOf
     (classSet ambient : SetObject)
     (relation : Endorelation Element)
@@ -36,7 +49,19 @@ section WithSeparation
 
 variable [HasSeparation Element SetObject]
 
-/-- The equivalence class of a representative with respect to a relation. -/
+/-- The equivalence class of a representative with respect to a relation.
+
+Logical form:
+
+```lean
+def EquivalenceClass
+    (ambient : SetObject)
+    (relation : Endorelation Element)
+    (representative : Element) : SetObject :=
+  HasSeparation.separation ambient
+    (fun candidate => relation candidate representative)
+```
+-/
 def EquivalenceClass
     (ambient : SetObject)
     (relation : Endorelation Element)
@@ -49,7 +74,20 @@ section Laws
 variable [SeparationLaws Element SetObject]
 variable [ExtensionalityLaw Element SetObject]
 
-/-- For each representative, its equivalence class exists. -/
+/-- For each representative, its equivalence class exists.
+
+Logical form:
+
+```lean
+theorem EquivalenceClassExists
+    (ambient : SetObject)
+    (relation : Endorelation Element)
+    (representative : Element) :
+    LRA.VolumeI.Identity.Exists
+      (fun classSet : SetObject =>
+        IsEquivalenceClassOf classSet ambient relation representative)
+```
+-/
 theorem EquivalenceClassExists
     (ambient : SetObject)
     (relation : Endorelation Element)
@@ -60,7 +98,20 @@ theorem EquivalenceClassExists
   sorry
 
 /-- An equivalence class is uniquely determined by its representative and
-membership specification. -/
+membership specification.
+
+Logical form:
+
+```lean
+theorem EquivalenceClassUnique
+    (ambient : SetObject)
+    (relation : Endorelation Element)
+    (representative : Element) :
+    LRA.VolumeI.Identity.Unique
+      (fun classSet : SetObject =>
+        IsEquivalenceClassOf classSet ambient relation representative)
+```
+-/
 theorem EquivalenceClassUnique
     (ambient : SetObject)
     (relation : Endorelation Element)
@@ -71,7 +122,20 @@ theorem EquivalenceClassUnique
   sorry
 
 /-- For each representative, there is exactly one equivalence class
-satisfying the memberwise specification. -/
+satisfying the memberwise specification.
+
+Logical form:
+
+```lean
+theorem EquivalenceClassExistsAndUnique
+    (ambient : SetObject)
+    (relation : Endorelation Element)
+    (representative : Element) :
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun classSet : SetObject =>
+        IsEquivalenceClassOf classSet ambient relation representative)
+```
+-/
 theorem EquivalenceClassExistsAndUnique
     (ambient : SetObject)
     (relation : Endorelation Element)
@@ -82,7 +146,19 @@ theorem EquivalenceClassExistsAndUnique
   sorry
 
 /-- The constructed equivalence class satisfies its defining membership
-specification. -/
+specification.
+
+Logical form:
+
+```lean
+theorem EquivalenceClassMembershipIff
+    (ambient : SetObject)
+    (relation : Endorelation Element)
+    (representative candidate : Element) :
+    candidate ∈ EquivalenceClass ambient relation representative ↔
+      candidate ∈ ambient ∧ relation candidate representative
+```
+-/
 theorem EquivalenceClassMembershipIff
     (ambient : SetObject)
     (relation : Endorelation Element)
@@ -91,7 +167,22 @@ theorem EquivalenceClassMembershipIff
       candidate ∈ ambient ∧ relation candidate representative := by
   sorry
 
-/-- Two representatives determine the same class when they are related. -/
+/-- Two representatives determine the same class when they are related.
+
+Logical form:
+
+```lean
+theorem RelatedRepresentativesHaveSameEquivalenceClass
+    {relation : Endorelation Element}
+    (relationIsEquivalence : EquivalenceRelation relation)
+    {firstRepresentative secondRepresentative : Element}
+    (representativesRelated :
+      relation firstRepresentative secondRepresentative) :
+    ∀ ambient : SetObject,
+      EquivalenceClass ambient relation firstRepresentative =
+        EquivalenceClass ambient relation secondRepresentative
+```
+-/
 theorem RelatedRepresentativesHaveSameEquivalenceClass
     {relation : Endorelation Element}
     (relationIsEquivalence : EquivalenceRelation relation)

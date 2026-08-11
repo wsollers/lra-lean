@@ -15,66 +15,155 @@ import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
 namespace LRA.VolumeIII.Analysis.RealAnalysis
 
-/-- `def:absolute-value`. -/
+/-- `def:absolute-value`.
+
+Logical form:
+
+```lean
+noncomputable def AbsR (a : ℝ) : ℝ := if a ≥ 0 then a else -a
+```
+-/
 noncomputable def AbsR (a : ℝ) : ℝ := if a ≥ 0 then a else -a
 
 -- `thm:absolute-value-nonneg`
-/-- Let `a : ℝ`. Then `AbsR a ≥ 0`. -/
+/-- Let `a : ℝ`. Then `AbsR a ≥ 0`.
+
+Logical form:
+
+```lean
+theorem AbsoluteValueNonneg (a : ℝ) : AbsR a ≥ 0
+```
+-/
 theorem AbsoluteValueNonneg (a : ℝ) : AbsR a ≥ 0 := by
   sorry
 
 -- `thm:absolute-value-zero-iff-zero`
-/-- Let `a : ℝ`. Then `AbsR a = 0 ↔ a = 0`. -/
+/-- Let `a : ℝ`. Then `AbsR a = 0 ↔ a = 0`.
+
+Logical form:
+
+```lean
+theorem AbsoluteValueZeroIffZero (a : ℝ) : AbsR a = 0 ↔ a = 0
+```
+-/
 theorem AbsoluteValueZeroIffZero (a : ℝ) : AbsR a = 0 ↔ a = 0 := by
   sorry
 
 -- `thm:absolute-value-self-or-neg`
-/-- Let `a : ℝ`. Then `AbsR a = a ∨ AbsR a = -a`. -/
+/-- Let `a : ℝ`. Then `AbsR a = a ∨ AbsR a = -a`.
+
+Logical form:
+
+```lean
+theorem AbsoluteValueSelfOrNeg (a : ℝ) : AbsR a = a ∨ AbsR a = -a
+```
+-/
 theorem AbsoluteValueSelfOrNeg (a : ℝ) : AbsR a = a ∨ AbsR a = -a := by
   sorry
 
 -- `thm:absolute-value-symmetric`
-/-- Let `a : ℝ`. Then `AbsR (-a) = AbsR a`. -/
+/-- Let `a : ℝ`. Then `AbsR (-a) = AbsR a`.
+
+Logical form:
+
+```lean
+theorem AbsoluteValueSymmetric (a : ℝ) : AbsR (-a) = AbsR a
+```
+-/
 theorem AbsoluteValueSymmetric (a : ℝ) : AbsR (-a) = AbsR a := by
   sorry
 
 -- `thm:absolute-value-product`
-/-- Let `a b : ℝ`. Then `AbsR (a * b) = AbsR a * AbsR b`. -/
+/-- Let `a b : ℝ`. Then `AbsR (a * b) = AbsR a * AbsR b`.
+
+Logical form:
+
+```lean
+theorem AbsoluteValueProduct (a b : ℝ) : AbsR (a * b) = AbsR a * AbsR b
+```
+-/
 theorem AbsoluteValueProduct (a b : ℝ) : AbsR (a * b) = AbsR a * AbsR b := by
   sorry
 
 -- `thm:absolute-value-quotient`
-/-- Let `a b : ℝ`. If `hb : b ≠ 0`. Then `AbsR (a / b) = AbsR a / AbsR b`. -/
+/-- Let `a b : ℝ`. If `hb : b ≠ 0`. Then `AbsR (a / b) = AbsR a / AbsR b`.
+
+Logical form:
+
+```lean
+theorem AbsoluteValueQuotient (a b : ℝ) (hb : b ≠ 0) :
+    AbsR (a / b) = AbsR a / AbsR b
+```
+-/
 theorem AbsoluteValueQuotient (a b : ℝ) (hb : b ≠ 0) :
     AbsR (a / b) = AbsR a / AbsR b := by
   sorry
 
 -- `thm:absolute-value-bounds`
-/-- Let `a : ℝ`. Then `-AbsR a ≤ a ∧ a ≤ AbsR a`. -/
+/-- Let `a : ℝ`. Then `-AbsR a ≤ a ∧ a ≤ AbsR a`.
+
+Logical form:
+
+```lean
+theorem AbsoluteValueBounds (a : ℝ) : -AbsR a ≤ a ∧ a ≤ AbsR a
+```
+-/
 theorem AbsoluteValueBounds (a : ℝ) : -AbsR a ≤ a ∧ a ≤ AbsR a := by
   sorry
 
 -- `thm:absolute-value-le-iff`
-/-- Let `a r : ℝ`. If `hr : r ≥ 0`. Then `AbsR a ≤ r ↔ -r ≤ a ∧ a ≤ r`. -/
+/-- Let `a r : ℝ`. If `hr : r ≥ 0`. Then `AbsR a ≤ r ↔ -r ≤ a ∧ a ≤ r`.
+
+Logical form:
+
+```lean
+theorem AbsoluteValueLeIff (a r : ℝ) (hr : r ≥ 0) :
+    AbsR a ≤ r ↔ -r ≤ a ∧ a ≤ r
+```
+-/
 theorem AbsoluteValueLeIff (a r : ℝ) (hr : r ≥ 0) :
     AbsR a ≤ r ↔ -r ≤ a ∧ a ≤ r := by
   sorry
 
 -- `thm:absolute-value-lt-iff`
-/-- Let `a r : ℝ`. If `hr : r > 0`. Then `AbsR a < r ↔ -r < a ∧ a < r`. -/
+/-- Let `a r : ℝ`. If `hr : r > 0`. Then `AbsR a < r ↔ -r < a ∧ a < r`.
+
+Logical form:
+
+```lean
+theorem AbsoluteValueLtIff (a r : ℝ) (hr : r > 0) :
+    AbsR a < r ↔ -r < a ∧ a < r
+```
+-/
 theorem AbsoluteValueLtIff (a r : ℝ) (hr : r > 0) :
     AbsR a < r ↔ -r < a ∧ a < r := by
   sorry
 
 -- `thm:reverse-triangle-inequality`
-/-- Let `a b : ℝ`. Then `AbsR (AbsR a - AbsR b) ≤ AbsR (a - b)`. -/
+/-- Let `a b : ℝ`. Then `AbsR (AbsR a - AbsR b) ≤ AbsR (a - b)`.
+
+Logical form:
+
+```lean
+theorem ReverseTriangleInequality (a b : ℝ) :
+    AbsR (AbsR a - AbsR b) ≤ AbsR (a - b)
+```
+-/
 theorem ReverseTriangleInequality (a b : ℝ) :
     AbsR (AbsR a - AbsR b) ≤ AbsR (a - b) := by
   sorry
 
 -- `thm:absolute-value-sum-bound`
 /-- Let `n : ℕ`. If `a : Fin n → ℝ`. Then `AbsR (Finset.univ.sum a) ≤ Finset.univ.sum (fun i => AbsR
-(a i))`. -/
+(a i))`.
+
+Logical form:
+
+```lean
+theorem AbsoluteValueSumBound (n : ℕ) (a : Fin n → ℝ) :
+    AbsR (Finset.univ.sum a) ≤ Finset.univ.sum (fun i => AbsR (a i))
+```
+-/
 theorem AbsoluteValueSumBound (n : ℕ) (a : Fin n → ℝ) :
     AbsR (Finset.univ.sum a) ≤ Finset.univ.sum (fun i => AbsR (a i)) := by
   sorry

@@ -17,6 +17,16 @@ Verification status: definitions accepted
 /-- A real operation bundle as a first-order model of ordered fields.
 
 Mathematical statement (Lean): `def realNumbersModel (real_model : RealModel) : LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature`.
+
+
+Logical form:
+
+```lean
+def realNumbersModel
+    (real_model : RealModel) :
+    LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
+  BuildOrderedFieldModel real_model.signature
+```
 -/
 def realNumbersModel
     (real_model : RealModel) :

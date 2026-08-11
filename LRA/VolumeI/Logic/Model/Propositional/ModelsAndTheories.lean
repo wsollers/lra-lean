@@ -46,34 +46,82 @@ overloading `⊨ₚ` with two incompatible argument shapes.
 -/
 
 /-- The class of models satisfying a single formula: `[[φ]]` in the source
-documents' notation. -/
+documents' notation.
+
+Logical form:
+
+```lean
+def modelClass {L : PropositionalLanguage} (φ : Formula L) : Set (PropositionalModel L) :=
+  {M | M.satisfies φ}
+```
+-/
 def modelClass {L : PropositionalLanguage} (φ : Formula L) : Set (PropositionalModel L) :=
   {M | M.satisfies φ}
 
 /-- The class of models satisfying every formula in a theory (`Mod(Γ)` in
-the source documents). -/
+the source documents).
+
+Logical form:
+
+```lean
+def ModelsOfTheory {L : PropositionalLanguage} (Γ : Set (Formula L)) : Set (PropositionalModel L) :=
+  {M | ∀ φ ∈ Γ, M.satisfies φ}
+```
+-/
 def ModelsOfTheory {L : PropositionalLanguage} (Γ : Set (Formula L)) : Set (PropositionalModel L) :=
   {M | ∀ φ ∈ Γ, M.satisfies φ}
 
 /-- The theory of a class of models: the set of formulas true in every
-member of `K` (`Th(K)` in the source documents). -/
+member of `K` (`Th(K)` in the source documents).
+
+Logical form:
+
+```lean
+def TheoryOfModels {L : PropositionalLanguage} (K : Set (PropositionalModel L)) : Set (Formula L) :=
+  {φ | ∀ M ∈ K, M.satisfies φ}
+```
+-/
 def TheoryOfModels {L : PropositionalLanguage} (K : Set (PropositionalModel L)) : Set (Formula L) :=
   {φ | ∀ M ∈ K, M.satisfies φ}
 
 /-- A formula is valid (a tautology) when every model satisfies it:
 `⊨ φ ⟺ ModelsOfTheory({φ}) = Val(P)`, equivalently every model satisfies
-`φ` directly. -/
+`φ` directly.
+
+Logical form:
+
+```lean
+def IsValid {L : PropositionalLanguage} (φ : Formula L) : Prop :=
+  ∀ M : PropositionalModel L, M.satisfies φ
+```
+-/
 def IsValid {L : PropositionalLanguage} (φ : Formula L) : Prop :=
   ∀ M : PropositionalModel L, M.satisfies φ
 
 /-- A theory is satisfiable when it has at least one model:
-`Γ is satisfiable ⟺ ModelsOfTheory(Γ) ≠ ∅`. -/
+`Γ is satisfiable ⟺ ModelsOfTheory(Γ) ≠ ∅`.
+
+Logical form:
+
+```lean
+def IsSatisfiable {L : PropositionalLanguage} (Γ : Set (Formula L)) : Prop :=
+  (ModelsOfTheory Γ).Nonempty
+```
+-/
 def IsSatisfiable {L : PropositionalLanguage} (Γ : Set (Formula L)) : Prop :=
   (ModelsOfTheory Γ).Nonempty
 
 /-- Semantic consequence: `φ` follows from `Γ` when every model of `Γ` is
 also a model of `φ`,
-`Γ ⊨ φ ⟺ ModelsOfTheory(Γ) ⊆ [[φ]]`. -/
+`Γ ⊨ φ ⟺ ModelsOfTheory(Γ) ⊆ [[φ]]`.
+
+Logical form:
+
+```lean
+def SemanticConsequence {L : PropositionalLanguage} (Γ : Set (Formula L)) (φ : Formula L) : Prop :=
+  ModelsOfTheory Γ ⊆ modelClass φ
+```
+-/
 def SemanticConsequence {L : PropositionalLanguage} (Γ : Set (Formula L)) (φ : Formula L) : Prop :=
   ModelsOfTheory Γ ⊆ modelClass φ
 

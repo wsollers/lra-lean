@@ -382,6 +382,16 @@ def PowerSet (A : LRASet Alpha) : LRASet (LRASet Alpha) := fun B => Subset B A
 -/
 def PowerSet (A : LRASet Alpha) : LRASet (LRASet Alpha) := fun B => Subset B A
 
+/--
+`PowerSetMembership` states power set membership.
+
+Logical form:
+
+```lean
+theorem PowerSetMembership (A B : LRASet Alpha) :
+    B ∈ PowerSet A ↔ Subset B A
+```
+-/
 theorem PowerSetMembership (A B : LRASet Alpha) :
     B ∈ PowerSet A ↔ Subset B A := by
   sorry
@@ -399,6 +409,16 @@ def CollectionUnion (C : LRASet (LRASet Alpha)) : LRASet Alpha := fun x => ∃ B
 def CollectionUnion (C : LRASet (LRASet Alpha)) : LRASet Alpha :=
   fun x => ∃ B, B ∈ C ∧ x ∈ B
 
+/--
+`CollectionUnionMembership` states collection union membership.
+
+Logical form:
+
+```lean
+theorem CollectionUnionMembership (C : LRASet (LRASet Alpha)) (x : Alpha) :
+    x ∈ CollectionUnion C ↔ ∃ B, B ∈ C ∧ x ∈ B
+```
+-/
 theorem CollectionUnionMembership (C : LRASet (LRASet Alpha)) (x : Alpha) :
     x ∈ CollectionUnion C ↔ ∃ B, B ∈ C ∧ x ∈ B := by
   sorry
@@ -418,6 +438,17 @@ def CollectionIntersection (C : LRASet (LRASet Alpha)) : LRASet Alpha := fun x =
 def CollectionIntersection (C : LRASet (LRASet Alpha)) : LRASet Alpha :=
   fun x => ∀ B, B ∈ C → x ∈ B
 
+/--
+`CollectionIntersectionMembership` states collection intersection membership.
+
+Logical form:
+
+```lean
+theorem CollectionIntersectionMembership
+    (C : LRASet (LRASet Alpha)) (x : Alpha) :
+    x ∈ CollectionIntersection C ↔ ∀ B, B ∈ C → x ∈ B
+```
+-/
 theorem CollectionIntersectionMembership
     (C : LRASet (LRASet Alpha)) (x : Alpha) :
     x ∈ CollectionIntersection C ↔ ∀ B, B ∈ C → x ∈ B := by

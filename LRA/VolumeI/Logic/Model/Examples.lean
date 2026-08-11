@@ -42,7 +42,21 @@ Two recurring pitfalls, worth naming once:
 -/
 
 /-- `Nat` under multiplication, interpreting `L_Monoid`: `mul` as `Nat`
-multiplication, `one` as `1`. -/
+multiplication, `one` as `1`.
+
+Logical form:
+
+```lean
+def natMulMonoidModel : Model monoidSignature where
+  Domain := Nat
+  domainNonempty := ⟨0⟩
+  interpretFunction
+    | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
+  interpretRelation := fun r => nomatch r
+  interpretConstant
+    | .one => 1
+```
+-/
 def natMulMonoidModel : Model monoidSignature where
   Domain := Nat
   domainNonempty := ⟨0⟩
@@ -52,11 +66,33 @@ def natMulMonoidModel : Model monoidSignature where
   interpretConstant
     | .one => 1
 
+/--
+`natMulMonoidModel.mulComputesMultiplication` states mul computes multiplication.
+
+Logical form:
+
+```lean
+theorem natMulMonoidModel.mulComputesMultiplication
+    (a b : Nat) :
+    natMulMonoidModel.interpretFunction .mul
+      (fun i => if i.val = 0 then a else b) = a * b
+```
+-/
 theorem natMulMonoidModel.mulComputesMultiplication
     (a b : Nat) :
     natMulMonoidModel.interpretFunction .mul
       (fun i => if i.val = 0 then a else b) = a * b := rfl
 
+/--
+`natMulMonoidModel.oneComputesOne` states one computes one.
+
+Logical form:
+
+```lean
+theorem natMulMonoidModel.oneComputesOne :
+    natMulMonoidModel.interpretConstant .one = (1 : Nat)
+```
+-/
 theorem natMulMonoidModel.oneComputesOne :
     natMulMonoidModel.interpretConstant .one = (1 : Nat) := rfl
 
@@ -65,7 +101,21 @@ theorem natMulMonoidModel.oneComputesOne :
 -/
 
 /-- `Nat` under addition, interpreting `L_AdditiveMonoid`: `add` as `Nat`
-addition, `zero` as `0`. -/
+addition, `zero` as `0`.
+
+Logical form:
+
+```lean
+def natAddMonoidModel : Model additiveMonoidSignature where
+  Domain := Nat
+  domainNonempty := ⟨0⟩
+  interpretFunction
+    | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
+  interpretRelation := fun r => nomatch r
+  interpretConstant
+    | .zero => 0
+```
+-/
 def natAddMonoidModel : Model additiveMonoidSignature where
   Domain := Nat
   domainNonempty := ⟨0⟩
@@ -75,11 +125,33 @@ def natAddMonoidModel : Model additiveMonoidSignature where
   interpretConstant
     | .zero => 0
 
+/--
+`natAddMonoidModel.addComputesAddition` states add computes addition.
+
+Logical form:
+
+```lean
+theorem natAddMonoidModel.addComputesAddition
+    (a b : Nat) :
+    natAddMonoidModel.interpretFunction .add
+      (fun i => if i.val = 0 then a else b) = a + b
+```
+-/
 theorem natAddMonoidModel.addComputesAddition
     (a b : Nat) :
     natAddMonoidModel.interpretFunction .add
       (fun i => if i.val = 0 then a else b) = a + b := rfl
 
+/--
+`natAddMonoidModel.zeroComputesZero` states zero computes zero.
+
+Logical form:
+
+```lean
+theorem natAddMonoidModel.zeroComputesZero :
+    natAddMonoidModel.interpretConstant .zero = (0 : Nat)
+```
+-/
 theorem natAddMonoidModel.zeroComputesZero :
     natAddMonoidModel.interpretConstant .zero = (0 : Nat) := rfl
 
@@ -93,7 +165,25 @@ with a genuinely non-uniform `interpretFunction` (binary `add`/`mul`, unary
 
 /-- `Int` under the usual ring operations and strict order, interpreting
 `L_OrderedRing`: `add`/`mul` as `Int` addition/multiplication, `neg` as
-`Int` negation, `zero`/`one` as `0`/`1`, `lt` as the usual strict order. -/
+`Int` negation, `zero`/`one` as `0`/`1`, `lt` as the usual strict order.
+
+Logical form:
+
+```lean
+def intOrderedRingModel : Model orderedRingSignature where
+  Domain := Int
+  domainNonempty := ⟨0⟩
+  interpretFunction
+    | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
+    | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
+    | .neg, args => -(args ⟨0, by decide⟩)
+  interpretRelation
+    | .lt, args => args ⟨0, by decide⟩ < args ⟨1, by decide⟩
+  interpretConstant
+    | .zero => 0
+    | .one => 1
+```
+-/
 def intOrderedRingModel : Model orderedRingSignature where
   Domain := Int
   domainNonempty := ⟨0⟩
@@ -107,28 +197,95 @@ def intOrderedRingModel : Model orderedRingSignature where
     | .zero => 0
     | .one => 1
 
+/--
+`intOrderedRingModel.addComputesAddition` states add computes addition.
+
+Logical form:
+
+```lean
+theorem intOrderedRingModel.addComputesAddition
+    (a b : Int) :
+    intOrderedRingModel.interpretFunction .add
+      (fun i => if i.val = 0 then a else b) = a + b
+```
+-/
 theorem intOrderedRingModel.addComputesAddition
     (a b : Int) :
     intOrderedRingModel.interpretFunction .add
       (fun i => if i.val = 0 then a else b) = a + b := rfl
 
+/--
+`intOrderedRingModel.mulComputesMultiplication` states mul computes multiplication.
+
+Logical form:
+
+```lean
+theorem intOrderedRingModel.mulComputesMultiplication
+    (a b : Int) :
+    intOrderedRingModel.interpretFunction .mul
+      (fun i => if i.val = 0 then a else b) = a * b
+```
+-/
 theorem intOrderedRingModel.mulComputesMultiplication
     (a b : Int) :
     intOrderedRingModel.interpretFunction .mul
       (fun i => if i.val = 0 then a else b) = a * b := rfl
 
+/--
+`intOrderedRingModel.negComputesNegation` states neg computes negation.
+
+Logical form:
+
+```lean
+theorem intOrderedRingModel.negComputesNegation
+    (a : Int) :
+    intOrderedRingModel.interpretFunction .neg (fun _ => a) = -a
+```
+-/
 theorem intOrderedRingModel.negComputesNegation
     (a : Int) :
     intOrderedRingModel.interpretFunction .neg (fun _ => a) = -a := rfl
 
+/--
+`intOrderedRingModel.ltComputesLessThan` states lt computes less than.
+
+Logical form:
+
+```lean
+theorem intOrderedRingModel.ltComputesLessThan
+    (a b : Int) :
+    intOrderedRingModel.interpretRelation .lt
+      (fun i => if i.val = 0 then a else b) = (a < b)
+```
+-/
 theorem intOrderedRingModel.ltComputesLessThan
     (a b : Int) :
     intOrderedRingModel.interpretRelation .lt
       (fun i => if i.val = 0 then a else b) = (a < b) := rfl
 
+/--
+`intOrderedRingModel.zeroComputesZero` states zero computes zero.
+
+Logical form:
+
+```lean
+theorem intOrderedRingModel.zeroComputesZero :
+    intOrderedRingModel.interpretConstant .zero = (0 : Int)
+```
+-/
 theorem intOrderedRingModel.zeroComputesZero :
     intOrderedRingModel.interpretConstant .zero = (0 : Int) := rfl
 
+/--
+`intOrderedRingModel.oneComputesOne` states one computes one.
+
+Logical form:
+
+```lean
+theorem intOrderedRingModel.oneComputesOne :
+    intOrderedRingModel.interpretConstant .one = (1 : Int)
+```
+-/
 theorem intOrderedRingModel.oneComputesOne :
     intOrderedRingModel.interpretConstant .one = (1 : Int) := rfl
 

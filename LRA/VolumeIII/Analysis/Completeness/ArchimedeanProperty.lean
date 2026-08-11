@@ -10,7 +10,17 @@ Archimedean properties of the real line and integer-part consequences.
 namespace LRA.VolumeIII.Analysis.Completeness
 
 /-- Let `x y : ℝ`. If `positiveScaleHypothesis : x > 0` and `positiveTargetHypothesis : y > 0`. Then
-`∃ n : ℕ, (n : ℝ) * x > y`. -/
+`∃ n : ℕ, (n : ℝ) * x > y`.
+
+Logical form:
+
+```lean
+theorem ArchimedeanProperty {x y : ℝ}
+    (positiveScaleHypothesis : x > 0)
+    (positiveTargetHypothesis : y > 0) :
+    ∃ n : ℕ, (n : ℝ) * x > y
+```
+-/
 theorem ArchimedeanProperty {x y : ℝ}
     (positiveScaleHypothesis : x > 0)
     (positiveTargetHypothesis : y > 0) :
@@ -18,44 +28,110 @@ theorem ArchimedeanProperty {x y : ℝ}
   sorry
 
 /-- Let `ε : ℝ`. If `positiveToleranceHypothesis : ε > 0`. Then `∃ n : ℕ, 0 < 1 / (n : ℝ) ∧ 1 / (n :
-ℝ) < ε`. -/
+ℝ) < ε`.
+
+Logical form:
+
+```lean
+theorem ArchimedeanReciprocalForm {ε : ℝ}
+    (positiveToleranceHypothesis : ε > 0) :
+    ∃ n : ℕ, 0 < 1 / (n : ℝ) ∧ 1 / (n : ℝ) < ε
+```
+-/
 theorem ArchimedeanReciprocalForm {ε : ℝ}
     (positiveToleranceHypothesis : ε > 0) :
     ∃ n : ℕ, 0 < 1 / (n : ℝ) ∧ 1 / (n : ℝ) < ε := by
   sorry
 
-/-- The theorem asserts `Filter.Tendsto (fun n : ℕ => 1 / (n : ℝ)) Filter.atTop (nhds 0)`. -/
+/-- The theorem asserts `Filter.Tendsto (fun n : ℕ => 1 / (n : ℝ)) Filter.atTop (nhds 0)`.
+
+Logical form:
+
+```lean
+theorem ArchimedeanReciprocal :
+    Filter.Tendsto (fun n : ℕ => 1 / (n : ℝ)) Filter.atTop (nhds 0)
+```
+-/
 theorem ArchimedeanReciprocal :
     Filter.Tendsto (fun n : ℕ => 1 / (n : ℝ)) Filter.atTop (nhds 0) := by
   sorry
 
-/-- Let `x : ℝ`. If `nonnegativeHypothesis : x ≥ 0`. Then `∃! n : ℕ, (n : ℝ) ≤ x ∧ x < (n : ℝ) + 1`. -/
+/-- Let `x : ℝ`. If `nonnegativeHypothesis : x ≥ 0`. Then `∃! n : ℕ, (n : ℝ) ≤ x ∧ x < (n : ℝ) + 1`.
+
+Logical form:
+
+```lean
+theorem IntegerPartLemma {x : ℝ}
+    (nonnegativeHypothesis : x ≥ 0) :
+    ∃! n : ℕ, (n : ℝ) ≤ x ∧ x < (n : ℝ) + 1
+```
+-/
 theorem IntegerPartLemma {x : ℝ}
     (nonnegativeHypothesis : x ≥ 0) :
     ∃! n : ℕ, (n : ℝ) ≤ x ∧ x < (n : ℝ) + 1 := by
   sorry
 
-/-- Let `x : ℝ`. Then `∃! m : ℤ, (m : ℝ) ≤ x ∧ x < (m : ℝ) + 1`. -/
+/-- Let `x : ℝ`. Then `∃! m : ℤ, (m : ℝ) ≤ x ∧ x < (m : ℝ) + 1`.
+
+Logical form:
+
+```lean
+theorem ArchimedeanIntegerPartLemma (x : ℝ) :
+    ∃! m : ℤ, (m : ℝ) ≤ x ∧ x < (m : ℝ) + 1
+```
+-/
 theorem ArchimedeanIntegerPartLemma (x : ℝ) :
     ∃! m : ℤ, (m : ℝ) ≤ x ∧ x < (m : ℝ) + 1 := by
   sorry
 
-/-- Let `x : ℝ`. Then `∃! m : ℤ, (m : ℝ) - 1 < x ∧ x ≤ (m : ℝ)`. -/
+/-- Let `x : ℝ`. Then `∃! m : ℤ, (m : ℝ) - 1 < x ∧ x ≤ (m : ℝ)`.
+
+Logical form:
+
+```lean
+theorem IntegerCeilingLemma (x : ℝ) :
+    ∃! m : ℤ, (m : ℝ) - 1 < x ∧ x ≤ (m : ℝ)
+```
+-/
 theorem IntegerCeilingLemma (x : ℝ) :
     ∃! m : ℤ, (m : ℝ) - 1 < x ∧ x ≤ (m : ℝ) := by
   sorry
 
-/-- Let `x : ℝ`. Then `∃ n : ℕ, x < (n : ℝ)`. -/
+/-- Let `x : ℝ`. Then `∃ n : ℕ, x < (n : ℝ)`.
+
+Logical form:
+
+```lean
+theorem IntegerAboveLemma (x : ℝ) :
+    ∃ n : ℕ, x < (n : ℝ)
+```
+-/
 theorem IntegerAboveLemma (x : ℝ) :
     ∃ n : ℕ, x < (n : ℝ) := by
   sorry
 
-/-- Let `x : ℝ`. Then `∃ m : ℤ, x ≤ (m : ℝ) ∧ (m : ℝ) ≤ x + 1`. -/
+/-- Let `x : ℝ`. Then `∃ m : ℤ, x ≤ (m : ℝ) ∧ (m : ℝ) ≤ x + 1`.
+
+Logical form:
+
+```lean
+theorem UnitLengthIntervalContainsInteger (x : ℝ) :
+    ∃ m : ℤ, x ≤ (m : ℝ) ∧ (m : ℝ) ≤ x + 1
+```
+-/
 theorem UnitLengthIntervalContainsInteger (x : ℝ) :
     ∃ m : ℤ, x ≤ (m : ℝ) ∧ (m : ℝ) ≤ x + 1 := by
   sorry
 
-/-- The theorem asserts `¬ BddAbove (Set.range ((↑) : ℕ → ℝ))`. -/
+/-- The theorem asserts `¬ BddAbove (Set.range ((↑) : ℕ → ℝ))`.
+
+Logical form:
+
+```lean
+theorem NaturalsUnboundedAbove :
+    ¬ BddAbove (Set.range ((↑) : ℕ → ℝ))
+```
+-/
 theorem NaturalsUnboundedAbove :
     ¬ BddAbove (Set.range ((↑) : ℕ → ℝ)) := by
   sorry

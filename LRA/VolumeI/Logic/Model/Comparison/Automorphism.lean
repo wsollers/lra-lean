@@ -13,7 +13,15 @@ rather than a new `structure`, keeping the identification definitional
 rather than merely provable.
 -/
 
-/-- An automorphism of `M`: a model isomorphism from `M` to itself. -/
+/-- An automorphism of `M`: a model isomorphism from `M` to itself.
+
+Logical form:
+
+```lean
+abbrev Automorphism {S : Signature} (M : Model S) : Type :=
+  ModelIsomorphism M M
+```
+-/
 abbrev Automorphism {S : Signature} (M : Model S) : Type :=
   ModelIsomorphism M M
 
@@ -21,7 +29,20 @@ abbrev Automorphism {S : Signature} (M : Model S) : Type :=
 trivially bijective and trivially preserves every function, constant, and
 relation symbol, since it changes nothing. This is the automorphism every
 model has "for free", regardless of what its domain or interpretations are
--- the analogue of every group having at least the identity automorphism. -/
+-- the analogue of every group having at least the identity automorphism.
+
+Logical form:
+
+```lean
+def Automorphism.identity {S : Signature} (M : Model S) : Automorphism M where
+  toFun := id
+  injective := Function.injective_id
+  preservesFunction _ _ := rfl
+  preservesConstant _ := rfl
+  preservesRelation _ _ := Iff.rfl
+  surjective := Function.surjective_id
+```
+-/
 def Automorphism.identity {S : Signature} (M : Model S) : Automorphism M where
   toFun := id
   injective := Function.injective_id

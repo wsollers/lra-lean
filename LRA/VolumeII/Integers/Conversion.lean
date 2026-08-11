@@ -1,86 +1,120 @@
 -- LRA/VolumeII/Integers/Conversion.lean
--- Client-facing constructors for the active integer implementation.
+-- Client-facing constructors for the active integer carrier.
 
 import LRA.VolumeII.Integers.Implementation
 
-namespace LRA.VolumeII.Integers.Active.Conversion
+namespace LRA.VolumeII.Integers.Conversion
+
+open LRA.VolumeI.AlgebraicStructures
 
 /-!
 Volume II label: integers-active-conversion-tools
 Lean module: LRA.VolumeII.Integers.Conversion
 Verification status: checked conversion utilities
 
-These constructors give examples and downstream tests a stable way to build
-values in the active integer carrier without naming the concrete construction.
-They intentionally live behind `Active`, because alternate constructions may
-have different carriers.
+These constructors give examples and downstream tests a stable way to
+build values in the active integer carrier without naming the concrete
+construction. They are written entirely in the capability vocabulary
+(`0`, `Succ`, `Neg`), so they survive repointing the active switch.
 -/
 
+/-- Construct an active integer from a natural number by iterating the
+successor step.
 
-/-- Construct an active integer from a natural number by iterating successor.
+Logical form:
 
-Mathematical statement (Lean): `def ofNat : Nat → Active.Z | 0 => Active.zero | Nat.succ previous => Active.succ (ofNat previous) / def ofInt : Int → Active.Z | Int.ofNat value => ofNat value | Int.negSucc predecessor => Active.negZ (ofNat (Nat.succ predecessor)) / def zero : Active.Z`.
+```lean
+def ofNat : Nat → Z
+  | 0 => 0
+  | Nat.succ previous => Succ (ofNat previous)
+```
 -/
-def ofNat : Nat → Active.Z
-  | 0 => Active.zero
-  | Nat.succ previous => Active.succ (ofNat previous)
-
+def ofNat : Nat → Z
+  | 0 => 0
+  | Nat.succ previous => Succ (ofNat previous)
 
 /-- Construct an active integer from a Lean integer.
 
-Mathematical statement (Lean): `def ofInt : Int → Active.Z | Int.ofNat value => ofNat value | Int.negSucc predecessor => Active.negZ (ofNat (Nat.succ predecessor)) / def zero : Active.Z`.
--/
-def ofInt : Int → Active.Z
-  | Int.ofNat value => ofNat value
-  | Int.negSucc predecessor => Active.negZ (ofNat (Nat.succ predecessor))
+Logical form:
 
+```lean
+def ofInt : Int → Z
+  | Int.ofNat value => ofNat value
+  | Int.negSucc predecessor => -(ofNat (Nat.succ predecessor))
+```
+-/
+def ofInt : Int → Z
+  | Int.ofNat value => ofNat value
+  | Int.negSucc predecessor => -(ofNat (Nat.succ predecessor))
 
 /-- The active integer zero, exposed through the conversion API.
 
-Mathematical statement (Lean): `def zero : Active.Z`.
--/
-def zero : Active.Z := ofNat 0
+Logical form:
 
+```lean
+def zero : Z := ofNat 0
+```
+-/
+def zero : Z := ofNat 0
 
 /-- The active integer one, exposed through the conversion API.
 
-Mathematical statement (Lean): `def one : Active.Z`.
--/
-def one : Active.Z := ofNat 1
+Logical form:
 
+```lean
+def one : Z := ofNat 1
+```
+-/
+def one : Z := ofNat 1
 
 /-- The active integer two, exposed through the conversion API.
 
-Mathematical statement (Lean): `def two : Active.Z`.
--/
-def two : Active.Z := ofNat 2
+Logical form:
 
+```lean
+def two : Z := ofNat 2
+```
+-/
+def two : Z := ofNat 2
 
 /-- The active integer three, exposed through the conversion API.
 
-Mathematical statement (Lean): `def three : Active.Z`.
--/
-def three : Active.Z := ofNat 3
+Logical form:
 
+```lean
+def three : Z := ofNat 3
+```
+-/
+def three : Z := ofNat 3
 
 /-- The active integer four, exposed through the conversion API.
 
-Mathematical statement (Lean): `def four : Active.Z`.
--/
-def four : Active.Z := ofNat 4
+Logical form:
 
+```lean
+def four : Z := ofNat 4
+```
+-/
+def four : Z := ofNat 4
 
 /-- The active integer negative one, exposed through the conversion API.
 
-Mathematical statement (Lean): `def negative_one : Active.Z`.
--/
-def negative_one : Active.Z := ofInt (-1)
+Logical form:
 
+```lean
+def negative_one : Z := ofInt (-1)
+```
+-/
+def negative_one : Z := ofInt (-1)
 
 /-- The active integer negative two, exposed through the conversion API.
 
-Mathematical statement (Lean): `def negative_two : Active.Z`.
--/
-def negative_two : Active.Z := ofInt (-2)
+Logical form:
 
-end LRA.VolumeII.Integers.Active.Conversion
+```lean
+def negative_two : Z := ofInt (-2)
+```
+-/
+def negative_two : Z := ofInt (-2)
+
+end LRA.VolumeII.Integers.Conversion

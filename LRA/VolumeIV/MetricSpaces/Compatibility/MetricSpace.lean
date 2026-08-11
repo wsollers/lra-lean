@@ -17,6 +17,17 @@ This packages a carrier with a metric, matching Ó Searcóid's convention that
 `(X, d)` is a metric space when the metric needs to be named.
 
 Mathematical statement (Lean): `structure MetricSpaceDefinition`.
+
+
+Logical form:
+
+```lean
+structure MetricSpaceDefinition where
+  /-- The underlying carrier of the space. -/
+  Carrier : Type u
+  /-- The metric on the carrier. -/
+  metric : MetricDefinition Carrier
+```
 -/
 structure MetricSpaceDefinition where
   /-- The underlying carrier of the space. -/

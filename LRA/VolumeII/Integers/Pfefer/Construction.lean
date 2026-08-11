@@ -15,6 +15,15 @@ This module is reserved for the Pfefer canonical construction of the integers.
 **[Structure — ConstructionPlan]**
 
 Mathematical statement (Lean): `structure ConstructionPlan`.
+
+
+Logical form:
+
+```lean
+structure ConstructionPlan where
+  source : String
+  status : String
+```
 -/
 structure ConstructionPlan where
   source : String
@@ -24,6 +33,15 @@ structure ConstructionPlan where
 **[Def — plan]**
 
 Mathematical statement (Lean): `def plan : ConstructionPlan`.
+
+
+Logical form:
+
+```lean
+def plan : ConstructionPlan where
+  source := "Pfefer canonical integer construction"
+  status := "pending formalization"
+```
 -/
 def plan : ConstructionPlan where
   source := "Pfefer canonical integer construction"

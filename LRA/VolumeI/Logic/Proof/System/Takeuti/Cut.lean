@@ -11,6 +11,24 @@ The theorem statements are intentionally not asserted here; this file only
 names the definitions that later cut-elimination work will refine.
 -/
 
+/--
+`IsCutRuleShape` defines the displayed object for is cut rule shape.
+
+Logical form:
+
+```lean
+def IsCutRuleShape {L : Alphabet}
+    (uppers : List (Judgement L)) (lower : Judgement L) : Prop :=
+  exists (A : Formula L)
+      (leftAntecedent leftSuccedent rightAntecedent rightSuccedent :
+        List (Formula L)),
+    uppers =
+        [⟨leftAntecedent, leftSuccedent ++ [A]⟩,
+          ⟨A :: rightAntecedent, rightSuccedent⟩] /\
+      lower =
+        ⟨leftAntecedent ++ rightAntecedent, leftSuccedent ++ rightSuccedent⟩
+```
+-/
 def IsCutRuleShape {L : Alphabet}
     (uppers : List (Judgement L)) (lower : Judgement L) : Prop :=
   exists (A : Formula L)

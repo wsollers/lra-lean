@@ -42,7 +42,16 @@ open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds (IsSupremum IsInfimum)
 
 -- `thm:increasing-sequence-limit-as-supremum`
 /-- Let `x : RealSequence` and `S : ℝ`. If `hinc : IsIncreasing x`, `hbdd : BoundedAboveSeq x`, and
-`hS : IsSupremum S (Set.range x)`. Then `ConvergesTo x S`. -/
+`hS : IsSupremum S (Set.range x)`. Then `ConvergesTo x S`.
+
+Logical form:
+
+```lean
+theorem IncreasingSequenceLimitAsSupremum {x : RealSequence} {S : ℝ}
+    (hinc : IsIncreasing x) (hbdd : BoundedAboveSeq x)
+    (hS : IsSupremum S (Set.range x)) : ConvergesTo x S
+```
+-/
 theorem IncreasingSequenceLimitAsSupremum {x : RealSequence} {S : ℝ}
     (hinc : IsIncreasing x) (hbdd : BoundedAboveSeq x)
     (hS : IsSupremum S (Set.range x)) : ConvergesTo x S := by
@@ -50,7 +59,16 @@ theorem IncreasingSequenceLimitAsSupremum {x : RealSequence} {S : ℝ}
 
 -- `thm:decreasing-sequence-limit-as-infimum`
 /-- Let `x : RealSequence` and `I : ℝ`. If `hdec : IsDecreasing x`, `hbdd : BoundedBelowSeq x`, and
-`hI : IsInfimum I (Set.range x)`. Then `ConvergesTo x I`. -/
+`hI : IsInfimum I (Set.range x)`. Then `ConvergesTo x I`.
+
+Logical form:
+
+```lean
+theorem DecreasingSequenceLimitAsInfimum {x : RealSequence} {I : ℝ}
+    (hdec : IsDecreasing x) (hbdd : BoundedBelowSeq x)
+    (hI : IsInfimum I (Set.range x)) : ConvergesTo x I
+```
+-/
 theorem DecreasingSequenceLimitAsInfimum {x : RealSequence} {I : ℝ}
     (hdec : IsDecreasing x) (hbdd : BoundedBelowSeq x)
     (hI : IsInfimum I (Set.range x)) : ConvergesTo x I := by
@@ -58,7 +76,16 @@ theorem DecreasingSequenceLimitAsInfimum {x : RealSequence} {I : ℝ}
 
 -- `thm:tail-suprema-infima-converge`
 /-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `(∃ S : ℝ, ConvergesTo (TailSupSeq x) S) ∧
-(∃ I : ℝ, ConvergesTo (TailInfSeq x) I)`. -/
+(∃ I : ℝ, ConvergesTo (TailInfSeq x) I)`.
+
+Logical form:
+
+```lean
+theorem TailSupremaInfimaConverge {x : RealSequence} (h : BoundedSeq x) :
+    (∃ S : ℝ, ConvergesTo (TailSupSeq x) S) ∧
+      (∃ I : ℝ, ConvergesTo (TailInfSeq x) I)
+```
+-/
 theorem TailSupremaInfimaConverge {x : RealSequence} (h : BoundedSeq x) :
     (∃ S : ℝ, ConvergesTo (TailSupSeq x) S) ∧
       (∃ I : ℝ, ConvergesTo (TailInfSeq x) I) := by
@@ -66,7 +93,15 @@ theorem TailSupremaInfimaConverge {x : RealSequence} (h : BoundedSeq x) :
 
 -- `thm:bounded-sequence-limsup-liminf`
 /-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `(∃ S : ℝ, LimsupSeq x S) ∧ (∃ I : ℝ,
-LiminfSeq x I)`. -/
+LiminfSeq x I)`.
+
+Logical form:
+
+```lean
+theorem BoundedSequenceLimsupLiminf {x : RealSequence} (h : BoundedSeq x) :
+    (∃ S : ℝ, LimsupSeq x S) ∧ (∃ I : ℝ, LiminfSeq x I)
+```
+-/
 theorem BoundedSequenceLimsupLiminf {x : RealSequence} (h : BoundedSeq x) :
     (∃ S : ℝ, LimsupSeq x S) ∧ (∃ I : ℝ, LiminfSeq x I) := by
   sorry

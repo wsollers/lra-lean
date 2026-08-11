@@ -22,7 +22,18 @@ import Mathlib.Data.Real.Basic
 namespace LRA.VolumeIII.Analysis.RealAnalysis
 
 /-- Let `a b c d y : ℝ`. Then `(a ≤ b ∧ c ≤ d → a + c ≤ b + d) ∧ (a ≤ b ∧ c > 0 → a * c ≤ b * c) ∧
-(a ≤ b ∧ c < 0 → a * c ≥ b * c) ∧ (y ≥ 0 → (|a| ≤ y ↔ -y ≤ a ∧ a ≤ y))`. -/
+(a ≤ b ∧ c < 0 → a * c ≥ b * c) ∧ (y ≥ 0 → (|a| ≤ y ↔ -y ≤ a ∧ a ≤ y))`.
+
+Logical form:
+
+```lean
+theorem OrderArithmetic (a b c d y : ℝ) :
+    (a ≤ b ∧ c ≤ d → a + c ≤ b + d) ∧
+    (a ≤ b ∧ c > 0 → a * c ≤ b * c) ∧
+    (a ≤ b ∧ c < 0 → a * c ≥ b * c) ∧
+    (y ≥ 0 → (|a| ≤ y ↔ -y ≤ a ∧ a ≤ y))
+```
+-/
 theorem OrderArithmetic (a b c d y : ℝ) :
     (a ≤ b ∧ c ≤ d → a + c ≤ b + d) ∧
     (a ≤ b ∧ c > 0 → a * c ≤ b * c) ∧

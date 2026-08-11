@@ -25,7 +25,19 @@ variable [HasSymmDiff SetObject]
 variable [HasCountableUnion SetObject]
 
 /-- A sigma-ring of sets on `ambient`: a ring of sets closed under
-countable unions. -/
+countable unions.
+
+Logical form:
+
+```lean
+structure SigmaRingOfSets (ambient : SetObject) extends
+    RingOfSets ambient where
+  CountableUnionIsMember :
+    ∀ family : Nat → SetObject,
+      (∀ index, IsMember (family index)) →
+        IsMember (HasCountableUnion.countableUnion family)
+```
+-/
 structure SigmaRingOfSets (ambient : SetObject) extends
     RingOfSets ambient where
   CountableUnionIsMember :
@@ -34,7 +46,19 @@ structure SigmaRingOfSets (ambient : SetObject) extends
         IsMember (HasCountableUnion.countableUnion family)
 
 /-- A sigma-algebra of sets on `ambient`: an algebra of sets closed under
-countable unions. This is the measurable-space structure. -/
+countable unions. This is the measurable-space structure.
+
+Logical form:
+
+```lean
+structure SigmaAlgebraOfSets (ambient : SetObject) extends
+    AlgebraOfSets ambient where
+  CountableUnionIsMember :
+    ∀ family : Nat → SetObject,
+      (∀ index, IsMember (family index)) →
+        IsMember (HasCountableUnion.countableUnion family)
+```
+-/
 structure SigmaAlgebraOfSets (ambient : SetObject) extends
     AlgebraOfSets ambient where
   CountableUnionIsMember :
@@ -42,7 +66,17 @@ structure SigmaAlgebraOfSets (ambient : SetObject) extends
       (∀ index, IsMember (family index)) →
         IsMember (HasCountableUnion.countableUnion family)
 
-/-- Every sigma-algebra of sets is a sigma-ring of sets. -/
+/-- Every sigma-algebra of sets is a sigma-ring of sets.
+
+Logical form:
+
+```lean
+def SigmaAlgebraOfSets.toSigmaRingOfSets {ambient : SetObject}
+    (sigma : SigmaAlgebraOfSets ambient) : SigmaRingOfSets ambient where
+  toRingOfSets := sigma.toRingOfSets
+  CountableUnionIsMember := sigma.CountableUnionIsMember
+```
+-/
 def SigmaAlgebraOfSets.toSigmaRingOfSets {ambient : SetObject}
     (sigma : SigmaAlgebraOfSets ambient) : SigmaRingOfSets ambient where
   toRingOfSets := sigma.toRingOfSets

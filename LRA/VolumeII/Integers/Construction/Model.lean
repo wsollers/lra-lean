@@ -8,107 +8,87 @@ namespace LRA.VolumeII.Integers
 
 open LRA.VolumeI.Algebra.Models
 
-end LRA.VolumeII.Integers
-namespace LRA.VolumeII.Integers.Active
-open LRA.VolumeI.Algebra.Models
-
 /-!
 Volume II label: active-integer-model
 Lean module: LRA.VolumeII.Integers.Construction.Model
-Verification status: definitions accepted; model laws pending
+Verification status: checked definitions (model laws are the carrier's
+certificate instances)
+
+The active carrier's instances make it a first-order model of each
+arithmetic language through the generic builders, and a bundled
+`IntegerModel` through `ofCarrier` — no hand-assembled operation
+bundles, no separate law record.
 -/
 
+/-- The active integers as a first-order model of the ordered-ring
+language.
 
-/-- The active integer carrier and operations as an ordered-ring operation bundle.
+Logical form:
 
-Mathematical statement (Lean): `def integerNumbersSignature : OrderedRingFirstOrderSignature`.
--/
-def integerNumbersSignature : OrderedRingSignature where
-  carrier := Z
-  zero := zero
-  one := one
-  addition := add
-  negation := negZ
-  multiplication := mul
-  StrictOrder := ZImpl.lt
-  NonstrictOrder := ZImpl.le
-
-
-/-- The active integers as a first-order model of the ordered-ring signature.
-
-Mathematical statement (Lean): `def integerNumbersModel : LRA.VolumeI.Logic.FirstOrder.Model OrderedRingFirstOrderSignature`.
+```lean
+def integerNumbersModel :
+    LRA.VolumeI.Logic.FirstOrder.Model OrderedRingFirstOrderSignature :=
+  orderedRingFirstOrderModel Z
+```
 -/
 def integerNumbersModel :
     LRA.VolumeI.Logic.FirstOrder.Model OrderedRingFirstOrderSignature :=
-  BuildOrderedRingModel integerNumbersSignature
+  orderedRingFirstOrderModel Z
 
-/--
-The active integer carrier and operations in the additive ordered language
+/-- The active integers as a model of the additive ordered language
 `(0, 1, +, <)`, the language underlying Presburger arithmetic.
 
-Mathematical statement (Lean): `def additiveOrderedIntegerSignature : AdditiveOrderedFirstOrderSignature`.
--/
-def additiveOrderedIntegerSignature : AdditiveOrderedSignature where
-  carrier := Z
-  zero := zero
-  one := one
-  addition := add
-  StrictOrder := ZImpl.lt
-  NonstrictOrder := ZImpl.le
+Logical form:
 
-
-/-- The active integers as a model of the additive ordered language.
-
-Mathematical statement (Lean): `def additiveOrderedIntegerModel : LRA.VolumeI.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature`.
+```lean
+def additiveOrderedIntegerModel :
+    LRA.VolumeI.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature :=
+  additiveOrderedFirstOrderModel Z
+```
 -/
 def additiveOrderedIntegerModel :
     LRA.VolumeI.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature :=
-  BuildAdditiveOrderedModel additiveOrderedIntegerSignature
+  additiveOrderedFirstOrderModel Z
 
-/--
-The active integer carrier and operations in the arithmetic ring language
+/-- The active integers as a model of the arithmetic ring language
 `(0, 1, +, *)`.
 
-Mathematical statement (Lean): `def arithmeticRingIntegerSignature : ArithmeticRingFirstOrderSignature`.
--/
-def arithmeticRingIntegerSignature : ArithmeticRingSignature where
-  carrier := Z
-  zero := zero
-  one := one
-  addition := add
-  multiplication := mul
+Logical form:
 
-
-/-- The active integers as a model of the arithmetic ring language.
-
-Mathematical statement (Lean): `def arithmeticRingIntegerModel : LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature`.
+```lean
+def arithmeticRingIntegerModel :
+    LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+  arithmeticRingFirstOrderModel Z
+```
 -/
 def arithmeticRingIntegerModel :
     LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
-  BuildArithmeticRingModel arithmeticRingIntegerSignature
+  arithmeticRingFirstOrderModel Z
 
+/-- The active integers as the bundled integer model used by the
+number-system tower. The certificates travel with the carrier.
 
-/-- The active integers satisfy the generic integer-model laws.
+Logical form:
 
-Mathematical statement (Lean): `theorem integerNumbersLaws : LRA.VolumeI.Algebra.Models.IntegerLaws integerNumbersSignature`.
-
-*Proof status:* proof pending
+```lean
+def integerNumberSystemModel : LRA.VolumeI.Algebra.Models.IntegerModel :=
+  IntegerModel.ofCarrier Z
+```
 -/
-theorem integerNumbersLaws :
-    LRA.VolumeI.Algebra.Models.IntegerLaws integerNumbersSignature := by
-  sorry
+def integerNumberSystemModel : LRA.VolumeI.Algebra.Models.IntegerModel :=
+  IntegerModel.ofCarrier Z
 
+/-- The derived operation bundle of the active integer model, for
+signature-level consumers.
 
-/-- The active integers as the bundled integer model used by the number-system tower.
+Logical form:
 
-Mathematical statement (Lean): `def integerNumberSystemModel : LRA.VolumeI.Algebra.Models.IntegerModel`.
+```lean
+def integerNumbersSignature : OrderedRingSignature :=
+  integerNumberSystemModel.signature
+```
 -/
-def integerNumberSystemModel : LRA.VolumeI.Algebra.Models.IntegerModel where
-  signature := integerNumbersSignature
-  laws := integerNumbersLaws
-
-end LRA.VolumeII.Integers.Active
-namespace LRA.VolumeII.Integers
-open LRA.VolumeI.Algebra.Models
+def integerNumbersSignature : OrderedRingSignature :=
+  integerNumberSystemModel.signature
 
 end LRA.VolumeII.Integers

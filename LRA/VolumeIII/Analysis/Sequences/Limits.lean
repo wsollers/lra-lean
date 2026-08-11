@@ -55,14 +55,31 @@ namespace LRA.VolumeIII.Analysis.Sequences
 
 -- `thm:uniqueness-of-limits`
 /-- Let `x : RealSequence` and `L K : ℝ`. If `hL : ConvergesTo x L` and `hK : ConvergesTo x K`. Then
-`L = K`. -/
+`L = K`.
+
+Logical form:
+
+```lean
+theorem UniquenessOfLimits {x : RealSequence} {L K : ℝ}
+    (hL : ConvergesTo x L) (hK : ConvergesTo x K) : L = K
+```
+-/
 theorem UniquenessOfLimits {x : RealSequence} {L K : ℝ}
     (hL : ConvergesTo x L) (hK : ConvergesTo x K) : L = K := by
   sorry
 
 -- `thm:limit-preserves-eventual-order`
 /-- Let `x y : RealSequence` and `L M : ℝ`. If `hL : ConvergesTo x L`, `hM : ConvergesTo y M`, and
-`h : ∃ N₀ : ℕ, ∀ n ≥ N₀, x n ≤ y n`. Then `L ≤ M`. -/
+`h : ∃ N₀ : ℕ, ∀ n ≥ N₀, x n ≤ y n`. Then `L ≤ M`.
+
+Logical form:
+
+```lean
+theorem LimitPreservesEventualOrder {x y : RealSequence} {L M : ℝ}
+    (hL : ConvergesTo x L) (hM : ConvergesTo y M)
+    (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, x n ≤ y n) : L ≤ M
+```
+-/
 theorem LimitPreservesEventualOrder {x y : RealSequence} {L M : ℝ}
     (hL : ConvergesTo x L) (hM : ConvergesTo y M)
     (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, x n ≤ y n) : L ≤ M := by
@@ -70,7 +87,16 @@ theorem LimitPreservesEventualOrder {x y : RealSequence} {L M : ℝ}
 
 -- `thm:strict-limit-separation-gives-eventual-order`
 /-- Let `x y : RealSequence` and `A B : ℝ`. If `hA : ConvergesTo x A`, `hB : ConvergesTo y B`, and
-`hAB : A < B`. Then `∃ N : ℕ, ∀ n ≥ N, x n < y n`. -/
+`hAB : A < B`. Then `∃ N : ℕ, ∀ n ≥ N, x n < y n`.
+
+Logical form:
+
+```lean
+theorem StrictLimitSeparationGivesEventualOrder {x y : RealSequence}
+    {A B : ℝ} (hA : ConvergesTo x A) (hB : ConvergesTo y B) (hAB : A < B) :
+    ∃ N : ℕ, ∀ n ≥ N, x n < y n
+```
+-/
 theorem StrictLimitSeparationGivesEventualOrder {x y : RealSequence}
     {A B : ℝ} (hA : ConvergesTo x A) (hB : ConvergesTo y B) (hAB : A < B) :
     ∃ N : ℕ, ∀ n ≥ N, x n < y n := by
@@ -78,7 +104,16 @@ theorem StrictLimitSeparationGivesEventualOrder {x y : RealSequence}
 
 -- `thm:eventual-strict-comparison-preserves-weak-limit-order`
 /-- Let `x y : RealSequence` and `A B : ℝ`. If `hA : ConvergesTo x A`, `hB : ConvergesTo y B`, and
-`h : ∃ N : ℕ, ∀ n ≥ N, x n < y n`. Then `A ≤ B`. -/
+`h : ∃ N : ℕ, ∀ n ≥ N, x n < y n`. Then `A ≤ B`.
+
+Logical form:
+
+```lean
+theorem EventualStrictComparisonPreservesWeakLimitOrderLt
+    {x y : RealSequence} {A B : ℝ} (hA : ConvergesTo x A)
+    (hB : ConvergesTo y B) (h : ∃ N : ℕ, ∀ n ≥ N, x n < y n) : A ≤ B
+```
+-/
 theorem EventualStrictComparisonPreservesWeakLimitOrderLt
     {x y : RealSequence} {A B : ℝ} (hA : ConvergesTo x A)
     (hB : ConvergesTo y B) (h : ∃ N : ℕ, ∀ n ≥ N, x n < y n) : A ≤ B := by
@@ -86,7 +121,16 @@ theorem EventualStrictComparisonPreservesWeakLimitOrderLt
 
 -- `thm:eventual-strict-comparison-preserves-weak-limit-order`
 /-- Let `x y : RealSequence` and `A B : ℝ`. If `hA : ConvergesTo x A`, `hB : ConvergesTo y B`, and
-`h : ∃ N : ℕ, ∀ n ≥ N, x n > y n`. Then `A ≥ B`. -/
+`h : ∃ N : ℕ, ∀ n ≥ N, x n > y n`. Then `A ≥ B`.
+
+Logical form:
+
+```lean
+theorem EventualStrictComparisonPreservesWeakLimitOrderGt
+    {x y : RealSequence} {A B : ℝ} (hA : ConvergesTo x A)
+    (hB : ConvergesTo y B) (h : ∃ N : ℕ, ∀ n ≥ N, x n > y n) : A ≥ B
+```
+-/
 theorem EventualStrictComparisonPreservesWeakLimitOrderGt
     {x y : RealSequence} {A B : ℝ} (hA : ConvergesTo x A)
     (hB : ConvergesTo y B) (h : ∃ N : ℕ, ∀ n ≥ N, x n > y n) : A ≥ B := by
@@ -94,42 +138,91 @@ theorem EventualStrictComparisonPreservesWeakLimitOrderGt
 
 -- `thm:constant-comparison-sequence-limits`
 /-- Let `x : RealSequence` and `A B : ℝ`. If `hA : ConvergesTo x A` and `h : ∃ N : ℕ, ∀ n ≥ N, x n ≤
-B`. Then `A ≤ B`. -/
+B`. Then `A ≤ B`.
+
+Logical form:
+
+```lean
+theorem ConstantComparisonSequenceLimitsLe {x : RealSequence} {A B : ℝ}
+    (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n ≤ B) : A ≤ B
+```
+-/
 theorem ConstantComparisonSequenceLimitsLe {x : RealSequence} {A B : ℝ}
     (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n ≤ B) : A ≤ B := by
   sorry
 
 -- `thm:constant-comparison-sequence-limits`
 /-- Let `x : RealSequence` and `A B : ℝ`. If `hA : ConvergesTo x A` and `h : ∃ N : ℕ, ∀ n ≥ N, x n <
-B`. Then `A ≤ B`. -/
+B`. Then `A ≤ B`.
+
+Logical form:
+
+```lean
+theorem ConstantComparisonSequenceLimitsLt {x : RealSequence} {A B : ℝ}
+    (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n < B) : A ≤ B
+```
+-/
 theorem ConstantComparisonSequenceLimitsLt {x : RealSequence} {A B : ℝ}
     (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n < B) : A ≤ B := by
   sorry
 
 -- `thm:constant-comparison-sequence-limits`
 /-- Let `x : RealSequence` and `A B : ℝ`. If `hA : ConvergesTo x A` and `h : ∃ N : ℕ, ∀ n ≥ N, x n ≥
-B`. Then `A ≥ B`. -/
+B`. Then `A ≥ B`.
+
+Logical form:
+
+```lean
+theorem ConstantComparisonSequenceLimitsGe {x : RealSequence} {A B : ℝ}
+    (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n ≥ B) : A ≥ B
+```
+-/
 theorem ConstantComparisonSequenceLimitsGe {x : RealSequence} {A B : ℝ}
     (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n ≥ B) : A ≥ B := by
   sorry
 
 -- `thm:constant-comparison-sequence-limits`
 /-- Let `x : RealSequence` and `A B : ℝ`. If `hA : ConvergesTo x A` and `h : ∃ N : ℕ, ∀ n ≥ N, x n >
-B`. Then `A ≥ B`. -/
+B`. Then `A ≥ B`.
+
+Logical form:
+
+```lean
+theorem ConstantComparisonSequenceLimitsGt {x : RealSequence} {A B : ℝ}
+    (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n > B) : A ≥ B
+```
+-/
 theorem ConstantComparisonSequenceLimitsGt {x : RealSequence} {A B : ℝ}
     (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n > B) : A ≥ B := by
   sorry
 
 -- `thm:constant-squeeze-theorem`
 /-- Let `x : RealSequence` and `L : ℝ`. If `h : ∃ N₀ : ℕ, ∀ n ≥ N₀, L ≤ x n ∧ x n ≤ L`. Then
-`ConvergesTo x L`. -/
+`ConvergesTo x L`.
+
+Logical form:
+
+```lean
+theorem ConstantSqueezeTheorem {x : RealSequence} {L : ℝ}
+    (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, L ≤ x n ∧ x n ≤ L) : ConvergesTo x L
+```
+-/
 theorem ConstantSqueezeTheorem {x : RealSequence} {L : ℝ}
     (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, L ≤ x n ∧ x n ≤ L) : ConvergesTo x L := by
   sorry
 
 -- `thm:sequence-squeeze-theorem`
 /-- Let `a x b : RealSequence` and `L : ℝ`. If `ha : ConvergesTo a L`, `hb : ConvergesTo b L`, and
-`h : ∃ N₀ : ℕ, ∀ n ≥ N₀, a n ≤ x n ∧ x n ≤ b n`. Then `ConvergesTo x L`. -/
+`h : ∃ N₀ : ℕ, ∀ n ≥ N₀, a n ≤ x n ∧ x n ≤ b n`. Then `ConvergesTo x L`.
+
+Logical form:
+
+```lean
+theorem SequenceSqueezeTheorem {a x b : RealSequence} {L : ℝ}
+    (ha : ConvergesTo a L) (hb : ConvergesTo b L)
+    (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, a n ≤ x n ∧ x n ≤ b n) : ConvergesTo x L
+```
+-/
 theorem SequenceSqueezeTheorem {a x b : RealSequence} {L : ℝ}
     (ha : ConvergesTo a L) (hb : ConvergesTo b L)
     (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, a n ≤ x n ∧ x n ≤ b n) : ConvergesTo x L := by
@@ -137,13 +230,30 @@ theorem SequenceSqueezeTheorem {a x b : RealSequence} {L : ℝ}
 
 -- `thm:absolute-value-squeeze-theorem`
 /-- Let `x u : RealSequence` and `L : ℝ`. If `hu : ConvergesTo u 0` and `h : ∃ N₀ : ℕ, ∀ n ≥ N₀, |x
-n - L| ≤ u n`. Then `ConvergesTo x L`. -/
+n - L| ≤ u n`. Then `ConvergesTo x L`.
+
+Logical form:
+
+```lean
+theorem AbsoluteValueSqueezeTheorem {x u : RealSequence} {L : ℝ}
+    (hu : ConvergesTo u 0) (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, |x n - L| ≤ u n) :
+    ConvergesTo x L
+```
+-/
 theorem AbsoluteValueSqueezeTheorem {x u : RealSequence} {L : ℝ}
     (hu : ConvergesTo u 0) (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, |x n - L| ≤ u n) :
     ConvergesTo x L := by
   sorry
 
-/-- Let `x` be a real sequence converging to `L`. Then `x` is bounded. -/
+/-- Let `x` be a real sequence converging to `L`. Then `x` is bounded.
+
+Logical form:
+
+```lean
+theorem ConvergentSequenceIsBounded {x : RealSequence} {L : ℝ}
+    (h : ConvergesTo x L) : BoundedSeq x
+```
+-/
 theorem ConvergentSequenceIsBounded {x : RealSequence} {L : ℝ}
     (h : ConvergesTo x L) : BoundedSeq x := by
   sorry

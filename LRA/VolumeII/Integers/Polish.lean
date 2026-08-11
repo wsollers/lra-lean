@@ -4,7 +4,7 @@
 import LRA.VolumeII.Integers.Polish.TwoSidedSuccessor
 import LRA.VolumeII.Integers.Polish.LandauWorkup
 import LRA.VolumeII.Integers.Polish.DiscreteIntegerStructure
-import LRA.VolumeII.Integers.Polish.Implementation
+import LRA.VolumeII.Integers.Polish.Instances
 
 namespace LRA.VolumeII.Integers.Polish
 

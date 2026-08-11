@@ -26,7 +26,15 @@ not a field on `PropositionalLanguage` to select between them.
 atoms. Everything else needed to build propositional formulas -- which
 connectives are primitive, how formulas are evaluated -- is supplied
 separately, on top of a chosen `Atoms` type, not as part of the language
-itself. -/
+itself.
+
+Logical form:
+
+```lean
+structure PropositionalLanguage where
+  Atoms : Type
+```
+-/
 structure PropositionalLanguage where
   Atoms : Type
 

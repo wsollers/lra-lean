@@ -4,6 +4,7 @@ import LRA.VolumeI.Set.Algebra.BooleanAlgebra
 import LRA.VolumeI.Set.Algebra.SigmaAlgebra
 import LRA.VolumeI.Set.Algebra.DeltaAlgebra
 import LRA.VolumeI.Set.Algebra.BorelAlgebra
+import LRA.VolumeI.Set.Algebra.Instantiations
 
 /-!
 Aggregate import for algebras of collections of sets: closure predicates,

@@ -23,19 +23,44 @@ import Mathlib.Order.Filter.Basic
 
 namespace LRA.VolumeIII.Analysis.RealAnalysis
 
-/-- If `P : ℕ → Prop`. Then `(∀ N, ∃ n ≥ N, P n) ↔ ¬ (∃ N, ∀ n ≥ N, ¬ P n)`. -/
+/-- If `P : ℕ → Prop`. Then `(∀ N, ∃ n ≥ N, P n) ↔ ¬ (∃ N, ∀ n ≥ N, ¬ P n)`.
+
+Logical form:
+
+```lean
+theorem IoEvDichotomy (P : ℕ → Prop) :
+    (∀ N, ∃ n ≥ N, P n) ↔ ¬ (∃ N, ∀ n ≥ N, ¬ P n)
+```
+-/
 theorem IoEvDichotomy (P : ℕ → Prop) :
     (∀ N, ∃ n ≥ N, P n) ↔ ¬ (∃ N, ∀ n ≥ N, ¬ P n) := by
   sorry
 
 -- `thm:monotone-subsequence`
-/-- If `x : ℕ → ℝ`. Then `∃ φ : ℕ → ℕ, StrictMono φ ∧ (Monotone (x ∘ φ) ∨ Antitone (x ∘ φ))`. -/
+/-- If `x : ℕ → ℝ`. Then `∃ φ : ℕ → ℕ, StrictMono φ ∧ (Monotone (x ∘ φ) ∨ Antitone (x ∘ φ))`.
+
+Logical form:
+
+```lean
+theorem MonotoneSubsequence (x : ℕ → ℝ) :
+    ∃ φ : ℕ → ℕ, StrictMono φ ∧ (Monotone (x ∘ φ) ∨ Antitone (x ∘ φ))
+```
+-/
 theorem MonotoneSubsequence (x : ℕ → ℝ) :
     ∃ φ : ℕ → ℕ, StrictMono φ ∧ (Monotone (x ∘ φ) ∨ Antitone (x ∘ φ)) := by
   sorry
 
 /-- If `x : ℕ → ℝ` and `hbdd : ∃ M, ∀ n, |x n| ≤ M`. Then `∃ φ : ℕ → ℕ, StrictMono φ ∧ ∃ L : ℝ,
-Filter.Tendsto (x ∘ φ) Filter.atTop (nhds L)`. -/
+Filter.Tendsto (x ∘ φ) Filter.atTop (nhds L)`.
+
+Logical form:
+
+```lean
+theorem BwBisection (x : ℕ → ℝ) (hbdd : ∃ M, ∀ n, |x n| ≤ M) :
+    ∃ φ : ℕ → ℕ, StrictMono φ ∧
+      ∃ L : ℝ, Filter.Tendsto (x ∘ φ) Filter.atTop (nhds L)
+```
+-/
 theorem BwBisection (x : ℕ → ℝ) (hbdd : ∃ M, ∀ n, |x n| ≤ M) :
     ∃ φ : ℕ → ℕ, StrictMono φ ∧
       ∃ L : ℝ, Filter.Tendsto (x ∘ φ) Filter.atTop (nhds L) := by

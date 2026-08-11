@@ -20,13 +20,32 @@ the derived connective), and `Satisfies`/`satisfiesAndIffSatisfiesBoth`
 -/
 
 /-- The two nullary relation symbols of the test signature: `A` and `B`,
-nothing else. -/
+nothing else.
+
+Logical form:
+
+```lean
+inductive TestRelationSymbol where
+  | A
+  | B
+```
+-/
 inductive TestRelationSymbol where
   | A
   | B
 
 /-- The test signature: no function symbols, no constants, and the two
-nullary relation symbols `A`/`B`. -/
+nullary relation symbols `A`/`B`.
+
+Logical form:
+
+```lean
+def testFOLSignature : Signature where
+  Functions := ⟨Empty, Empty.elim⟩
+  Relations := ⟨TestRelationSymbol, fun _ => 0⟩
+  Constants := Empty
+```
+-/
 def testFOLSignature : Signature where
   Functions := ⟨Empty, Empty.elim⟩
   Relations := ⟨TestRelationSymbol, fun _ => 0⟩
@@ -34,7 +53,19 @@ def testFOLSignature : Signature where
 
 /-- The test model: a trivial one-element domain (irrelevant here, since
 every relation symbol is nullary), interpreting both `A` and `B` as always
-true. -/
+true.
+
+Logical form:
+
+```lean
+def testFOLModel : Model testFOLSignature where
+  Domain := Unit
+  domainNonempty := ⟨()⟩
+  interpretFunction := fun f => Empty.elim f
+  interpretRelation := fun _ _ => True
+  interpretConstant := Empty.elim
+```
+-/
 def testFOLModel : Model testFOLSignature where
   Domain := Unit
   domainNonempty := ⟨()⟩
@@ -45,18 +76,44 @@ def testFOLModel : Model testFOLSignature where
 /-- The formula `A ∧ B`, built from two nullary relation applications
 (each applied to the unique `Fin 0 -> Term` argument tuple, via
 `Fin.elim0`) and the derived `Formula.and` connective. Uses `Nat` as the
-(unused) variable type, since this formula mentions no variables at all. -/
+(unused) variable type, since this formula mentions no variables at all.
+
+Logical form:
+
+```lean
+def testFOLFormula : Formula testFOLSignature Nat :=
+  Formula.and
+    (Formula.relation .A Fin.elim0)
+    (Formula.relation .B Fin.elim0)
+```
+-/
 def testFOLFormula : Formula testFOLSignature Nat :=
   Formula.and
     (Formula.relation .A Fin.elim0)
     (Formula.relation .B Fin.elim0)
 
-/-- `A ∧ B` is a sentence: it has no free variables. -/
+/-- `A ∧ B` is a sentence: it has no free variables.
+
+Logical form:
+
+```lean
+def testFOLSentence : Sentence testFOLSignature Nat :=
+  ⟨testFOLFormula, by rfl⟩
+```
+-/
 def testFOLSentence : Sentence testFOLSignature Nat :=
   ⟨testFOLFormula, by rfl⟩
 
 /-- The checkpoint: `testFOLModel`, under any assignment (none of its
-variables are used), satisfies `A ∧ B`. -/
+variables are used), satisfies `A ∧ B`.
+
+Logical form:
+
+```lean
+theorem testFOLModel_satisfies_aAndB (assignment : Nat -> testFOLModel.Domain) :
+    Satisfies testFOLModel assignment testFOLFormula
+```
+-/
 theorem testFOLModel_satisfies_aAndB (assignment : Nat -> testFOLModel.Domain) :
     Satisfies testFOLModel assignment testFOLFormula := by
   show Satisfies testFOLModel assignment
@@ -93,18 +150,48 @@ hold there, exercising negation of a universally quantified statement,
 not just the easy "produce a witness for every input" direction.
 -/
 
-/-- The one unary relation symbol of the quantifier test signature. -/
+/-- The one unary relation symbol of the quantifier test signature.
+
+Logical form:
+
+```lean
+inductive QuantifierRelationSymbol where
+  | R
+```
+-/
 inductive QuantifierRelationSymbol where
   | R
 
 /-- The quantifier test signature: no function symbols, no constants, and
-the one unary relation symbol `R`. -/
+the one unary relation symbol `R`.
+
+Logical form:
+
+```lean
+def quantifierSignature : Signature where
+  Functions := ⟨Empty, Empty.elim⟩
+  Relations := ⟨QuantifierRelationSymbol, fun _ => 1⟩
+  Constants := Empty
+```
+-/
 def quantifierSignature : Signature where
   Functions := ⟨Empty, Empty.elim⟩
   Relations := ⟨QuantifierRelationSymbol, fun _ => 1⟩
   Constants := Empty
 
-/-- `R` interpreted as always true, over the two-element domain `Bool`. -/
+/-- `R` interpreted as always true, over the two-element domain `Bool`.
+
+Logical form:
+
+```lean
+def alwaysTrueModel : Model quantifierSignature where
+  Domain := Bool
+  domainNonempty := ⟨true⟩
+  interpretFunction := fun f => Empty.elim f
+  interpretRelation := fun _ _ => True
+  interpretConstant := Empty.elim
+```
+-/
 def alwaysTrueModel : Model quantifierSignature where
   Domain := Bool
   domainNonempty := ⟨true⟩
@@ -113,7 +200,20 @@ def alwaysTrueModel : Model quantifierSignature where
   interpretConstant := Empty.elim
 
 /-- `R` interpreted as "the argument is `true`" -- true of `true`, false
-of `false`. -/
+of `false`.
+
+Logical form:
+
+```lean
+def sometimesFalseModel : Model quantifierSignature where
+  Domain := Bool
+  domainNonempty := ⟨true⟩
+  interpretFunction := fun f => Empty.elim f
+  interpretRelation
+    | .R, args => args ⟨0, by decide⟩ = true
+  interpretConstant := Empty.elim
+```
+-/
 def sometimesFalseModel : Model quantifierSignature where
   Domain := Bool
   domainNonempty := ⟨true⟩
@@ -124,18 +224,49 @@ def sometimesFalseModel : Model quantifierSignature where
 
 /-- The variable `x` used in the quantifier test formulas, as a bare
 `Nat`-indexed variable (matching the canonical `Vbl := {vn | n ∈ N0}`
-supply). -/
+supply).
+
+Logical form:
+
+```lean
+def x : Nat := 0
+```
+-/
 def x : Nat := 0
 
-/-- The formula `∀x. R(x)`. -/
+/-- The formula `∀x. R(x)`.
+
+Logical form:
+
+```lean
+def forallRFormula : Formula quantifierSignature Nat :=
+  Formula.forallQ x (Formula.relation .R (fun _ => Term.var x))
+```
+-/
 def forallRFormula : Formula quantifierSignature Nat :=
   Formula.forallQ x (Formula.relation .R (fun _ => Term.var x))
 
-/-- The formula `∃x. R(x)`. -/
+/-- The formula `∃x. R(x)`.
+
+Logical form:
+
+```lean
+def existsRFormula : Formula quantifierSignature Nat :=
+  Formula.existsQ x (Formula.relation .R (fun _ => Term.var x))
+```
+-/
 def existsRFormula : Formula quantifierSignature Nat :=
   Formula.existsQ x (Formula.relation .R (fun _ => Term.var x))
 
-/-- `∀x. R(x)` holds in `alwaysTrueModel`. -/
+/-- `∀x. R(x)` holds in `alwaysTrueModel`.
+
+Logical form:
+
+```lean
+theorem alwaysTrueModel_satisfies_forallR (assignment : Nat -> alwaysTrueModel.Domain) :
+    Satisfies alwaysTrueModel assignment forallRFormula
+```
+-/
 theorem alwaysTrueModel_satisfies_forallR (assignment : Nat -> alwaysTrueModel.Domain) :
     Satisfies alwaysTrueModel assignment forallRFormula := by
   show ∀ a : Bool, Satisfies alwaysTrueModel (updateAssignment assignment x a)
@@ -145,7 +276,15 @@ theorem alwaysTrueModel_satisfies_forallR (assignment : Nat -> alwaysTrueModel.D
     (fun i => evaluateTerm alwaysTrueModel (updateAssignment assignment x a) (Term.var x))
   trivial
 
-/-- `∃x. R(x)` holds in `alwaysTrueModel`. -/
+/-- `∃x. R(x)` holds in `alwaysTrueModel`.
+
+Logical form:
+
+```lean
+theorem alwaysTrueModel_satisfies_existsR (assignment : Nat -> alwaysTrueModel.Domain) :
+    Satisfies alwaysTrueModel assignment existsRFormula
+```
+-/
 theorem alwaysTrueModel_satisfies_existsR (assignment : Nat -> alwaysTrueModel.Domain) :
     Satisfies alwaysTrueModel assignment existsRFormula := by
   show Satisfies alwaysTrueModel assignment
@@ -156,7 +295,16 @@ theorem alwaysTrueModel_satisfies_existsR (assignment : Nat -> alwaysTrueModel.D
     (fun i => evaluateTerm alwaysTrueModel (updateAssignment assignment x true) (Term.var x))
   trivial
 
-/-- `∀x. R(x)` fails in `sometimesFalseModel`, witnessed by `x := false`. -/
+/-- `∀x. R(x)` fails in `sometimesFalseModel`, witnessed by `x := false`.
+
+Logical form:
+
+```lean
+theorem sometimesFalseModel_not_satisfies_forallR
+    (assignment : Nat -> sometimesFalseModel.Domain) :
+    ¬ Satisfies sometimesFalseModel assignment forallRFormula
+```
+-/
 theorem sometimesFalseModel_not_satisfies_forallR
     (assignment : Nat -> sometimesFalseModel.Domain) :
     ¬ Satisfies sometimesFalseModel assignment forallRFormula := by
@@ -169,7 +317,16 @@ theorem sometimesFalseModel_not_satisfies_forallR
   simp [sometimesFalseModel, evaluateTerm, updateAssignment] at hfalse
 
 /-- `∃x. R(x)` still holds in `sometimesFalseModel`, witnessed by
-`x := true`. -/
+`x := true`.
+
+Logical form:
+
+```lean
+theorem sometimesFalseModel_satisfies_existsR
+    (assignment : Nat -> sometimesFalseModel.Domain) :
+    Satisfies sometimesFalseModel assignment existsRFormula
+```
+-/
 theorem sometimesFalseModel_satisfies_existsR
     (assignment : Nat -> sometimesFalseModel.Domain) :
     Satisfies sometimesFalseModel assignment existsRFormula := by

@@ -26,7 +26,25 @@ variable [HasSymmDiff SetObject]
 
 /-- A ring of sets on the ambient set `ambient`: a collection of subsets
 of `ambient`, containing the empty set and closed under union,
-intersection, difference, and symmetric difference. -/
+intersection, difference, and symmetric difference.
+
+Logical form:
+
+```lean
+structure RingOfSets (ambient : SetObject) where
+  IsMember : SetObject → Prop
+  MembersAreSubsets : ∀ A, IsMember A → A ⊆ ambient
+  EmptyIsMember : IsMember (∅ : SetObject)
+  UnionIsMember :
+    ∀ A B, IsMember A → IsMember B → IsMember (A ∪ B)
+  IntersectionIsMember :
+    ∀ A B, IsMember A → IsMember B → IsMember (A ∩ B)
+  DifferenceIsMember :
+    ∀ A B, IsMember A → IsMember B → IsMember (A \ B)
+  SymmetricDifferenceIsMember :
+    ∀ A B, IsMember A → IsMember B → IsMember (A ∆ B)
+```
+-/
 structure RingOfSets (ambient : SetObject) where
   IsMember : SetObject → Prop
   MembersAreSubsets : ∀ A, IsMember A → A ⊆ ambient

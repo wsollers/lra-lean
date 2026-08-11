@@ -33,7 +33,23 @@ variable [HasPowerset SetObject Collection]
 
 /-- A collection object `quotient` is the quotient set of `ambient` by
 `relation` when its members are exactly the equivalence classes of ambient
-representatives. -/
+representatives.
+
+Logical form:
+
+```lean
+def IsQuotientSetOf
+    (quotient : Collection)
+    (ambient : SetObject)
+    (relation : Endorelation Element) : Prop :=
+  ∀ candidate : SetObject,
+    candidate ∈ quotient ↔
+      candidate ∈ (HasPowerset.powerset ambient : Collection) ∧
+        ∃ representative : Element,
+          representative ∈ ambient ∧
+            candidate = EquivalenceClass ambient relation representative
+```
+-/
 def IsQuotientSetOf
     (quotient : Collection)
     (ambient : SetObject)
@@ -51,7 +67,21 @@ variable [HasSeparation SetObject Collection]
 
 /-- The quotient set of equivalence classes induced by a relation: the
 subsets of `ambient` that are equivalence classes of some ambient
-representative, carved out of the power set. -/
+representative, carved out of the power set.
+
+Logical form:
+
+```lean
+def QuotientSet
+    (ambient : SetObject)
+    (relation : Endorelation Element) : Collection :=
+  HasSeparation.separation (HasPowerset.powerset ambient : Collection)
+    (fun candidate =>
+      ∃ representative : Element,
+        representative ∈ ambient ∧
+          candidate = EquivalenceClass ambient relation representative)
+```
+-/
 def QuotientSet
     (ambient : SetObject)
     (relation : Endorelation Element) : Collection :=
@@ -70,7 +100,19 @@ variable [PowersetMembershipLaws SetObject Collection]
 variable [SeparationLaws Element SetObject]
 variable [ExtensionalityLaw Element SetObject]
 
-/-- For each ambient set and relation, the quotient set exists. -/
+/-- For each ambient set and relation, the quotient set exists.
+
+Logical form:
+
+```lean
+theorem QuotientSetExists
+    (ambient : SetObject)
+    (relation : Endorelation Element) :
+    LRA.VolumeI.Identity.Exists
+      (fun quotient : Collection =>
+        IsQuotientSetOf quotient ambient relation)
+```
+-/
 theorem QuotientSetExists
     (ambient : SetObject)
     (relation : Endorelation Element) :
@@ -79,7 +121,19 @@ theorem QuotientSetExists
         IsQuotientSetOf quotient ambient relation) := by
   sorry
 
-/-- A quotient set is uniquely determined by its memberwise specification. -/
+/-- A quotient set is uniquely determined by its memberwise specification.
+
+Logical form:
+
+```lean
+theorem QuotientSetUnique
+    (ambient : SetObject)
+    (relation : Endorelation Element) :
+    LRA.VolumeI.Identity.Unique
+      (fun quotient : Collection =>
+        IsQuotientSetOf quotient ambient relation)
+```
+-/
 theorem QuotientSetUnique
     (ambient : SetObject)
     (relation : Endorelation Element) :
@@ -89,7 +143,19 @@ theorem QuotientSetUnique
   sorry
 
 /-- For each ambient set and relation, there is exactly one quotient set
-satisfying the memberwise specification. -/
+satisfying the memberwise specification.
+
+Logical form:
+
+```lean
+theorem QuotientSetExistsAndUnique
+    (ambient : SetObject)
+    (relation : Endorelation Element) :
+    LRA.VolumeI.Identity.ExistsAndUnique
+      (fun quotient : Collection =>
+        IsQuotientSetOf quotient ambient relation)
+```
+-/
 theorem QuotientSetExistsAndUnique
     (ambient : SetObject)
     (relation : Endorelation Element) :
@@ -98,7 +164,22 @@ theorem QuotientSetExistsAndUnique
         IsQuotientSetOf quotient ambient relation) := by
   sorry
 
-/-- Membership in the quotient set is membership as an equivalence class. -/
+/-- Membership in the quotient set is membership as an equivalence class.
+
+Logical form:
+
+```lean
+theorem QuotientSetMembership
+    (ambient : SetObject)
+    (relation : Endorelation Element)
+    (candidate : SetObject) :
+    candidate ∈ QuotientSet (Collection := Collection) ambient relation ↔
+      candidate ∈ (HasPowerset.powerset ambient : Collection) ∧
+        ∃ representative : Element,
+          representative ∈ ambient ∧
+            candidate = EquivalenceClass ambient relation representative
+```
+-/
 theorem QuotientSetMembership
     (ambient : SetObject)
     (relation : Endorelation Element)
@@ -116,7 +197,18 @@ end WithCollectionSeparation
 
 end WithPowerset
 
-/-- The canonical projection sending an element to its equivalence class. -/
+/-- The canonical projection sending an element to its equivalence class.
+
+Logical form:
+
+```lean
+def QuotientProjection
+    (ambient : SetObject)
+    (relation : Endorelation Element) :
+    Element -> SetObject :=
+  fun element => EquivalenceClass ambient relation element
+```
+-/
 def QuotientProjection
     (ambient : SetObject)
     (relation : Endorelation Element) :
@@ -129,7 +221,18 @@ collection.
 Under the old record architecture this differed from `QuotientProjection`
 by the `subsetElement` embedding; with a typed membership tower the
 embedding is gone, so the two maps coincide definitionally -- the name is
-kept as the collection-facing reading of the same function. -/
+kept as the collection-facing reading of the same function.
+
+Logical form:
+
+```lean
+def QuotientClassElement
+    (ambient : SetObject)
+    (relation : Endorelation Element) :
+    Element -> SetObject :=
+  QuotientProjection ambient relation
+```
+-/
 def QuotientClassElement
     (ambient : SetObject)
     (relation : Endorelation Element) :
@@ -143,7 +246,22 @@ variable [ExtensionalityLaw Element SetObject]
 
 /-- The quotient projection is well-defined with respect to equivalent
 representatives: related representatives determine the same projected
-class. -/
+class.
+
+Logical form:
+
+```lean
+theorem QuotientProjectionWellDefined
+    {ambient : SetObject}
+    {relation : Endorelation Element}
+    (relationIsEquivalence : EquivalenceRelation relation)
+    {firstRepresentative secondRepresentative : Element}
+    (representativesRelated :
+      relation firstRepresentative secondRepresentative) :
+    QuotientProjection ambient relation firstRepresentative =
+      QuotientProjection ambient relation secondRepresentative
+```
+-/
 theorem QuotientProjectionWellDefined
     {ambient : SetObject}
     {relation : Endorelation Element}
@@ -156,7 +274,22 @@ theorem QuotientProjectionWellDefined
   sorry
 
 /-- The collection-facing quotient class element is well-defined with
-respect to equivalent representatives. -/
+respect to equivalent representatives.
+
+Logical form:
+
+```lean
+theorem QuotientClassElementWellDefined
+    {ambient : SetObject}
+    {relation : Endorelation Element}
+    (relationIsEquivalence : EquivalenceRelation relation)
+    {firstRepresentative secondRepresentative : Element}
+    (representativesRelated :
+      relation firstRepresentative secondRepresentative) :
+    QuotientClassElement ambient relation firstRepresentative =
+      QuotientClassElement ambient relation secondRepresentative
+```
+-/
 theorem QuotientClassElementWellDefined
     {ambient : SetObject}
     {relation : Endorelation Element}

@@ -13,7 +13,20 @@ universe u
 /-- Reference data for a mathematical space as a carrier with specified
 
 Mathematical statement (Lean): `structure MathematicalSpaceDefinition`.
-structure. -/
+structure.
+
+Logical form:
+
+```lean
+structure MathematicalSpaceDefinition where
+  /-- The underlying carrier. -/
+  Carrier : Type u
+  /-- A predicate naming when the chosen structural data is present. -/
+  HasStructure : Prop
+  /-- The chosen structural data is present. -/
+  hasStructure : HasStructure
+```
+-/
 structure MathematicalSpaceDefinition where
   /-- The underlying carrier. -/
   Carrier : Type u

@@ -1,7 +1,8 @@
 -- LRA/VolumeII/BasicArithmetic/MultiplicativeInverses.lean
 -- Elementary multiplicative inverse facts over the active rational switch.
 
-import LRA.VolumeII.Switches.NumberSystems
+import Mathlib.Data.Rat.Defs
+import LRA.VolumeI.AlgebraicStructures
 
 namespace LRA.VolumeII.BasicArithmetic.MultiplicativeInverses
 
@@ -15,8 +16,15 @@ Verification status: checked Mathlib-backed proofs
 **[Abbrev — Q]**
 
 Mathematical statement (Lean): `abbrev Q`.
+
+
+Logical form:
+
+```lean
+abbrev Q := Rat
+```
 -/
-abbrev Q := LRA.VolumeII.Switches.NumberSystems.RationalNumbers.Q
+abbrev Q := Rat
 
 
 /-- Every nonzero active rational has a two-sided multiplicative inverse.
@@ -24,6 +32,14 @@ abbrev Q := LRA.VolumeII.Switches.NumberSystems.RationalNumbers.Q
 Mathematical statement (Lean): `theorem NonzeroHasMultiplicativeInverse {a : Q} (a_nonzero : a ≠ 0) : a⁻¹ * a = 1 ∧ a * a⁻¹ = 1`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem NonzeroHasMultiplicativeInverse {a : Q} (a_nonzero : a ≠ 0) :
+    a⁻¹ * a = 1 ∧ a * a⁻¹ = 1
+```
 -/
 theorem NonzeroHasMultiplicativeInverse {a : Q} (a_nonzero : a ≠ 0) :
     a⁻¹ * a = 1 ∧ a * a⁻¹ = 1 := by
@@ -35,6 +51,16 @@ theorem NonzeroHasMultiplicativeInverse {a : Q} (a_nonzero : a ≠ 0) :
 Mathematical statement (Lean): `theorem RightInverseIsInverse {a b : Q} (a_nonzero : a ≠ 0) (right_inverse : a * b = 1) : b = a⁻¹`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem RightInverseIsInverse {a b : Q}
+    (a_nonzero : a ≠ 0)
+    (right_inverse : a * b = 1) :
+    b = a⁻¹
+```
 -/
 theorem RightInverseIsInverse {a b : Q}
     (a_nonzero : a ≠ 0)
@@ -48,6 +74,15 @@ theorem RightInverseIsInverse {a b : Q}
 Mathematical statement (Lean): `theorem MulEqZeroImpliesZero {a b : Q} (product_zero : a * b = 0) : a = 0 ∨ b = 0`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem MulEqZeroImpliesZero {a b : Q}
+    (product_zero : a * b = 0) :
+    a = 0 ∨ b = 0
+```
 -/
 theorem MulEqZeroImpliesZero {a b : Q}
     (product_zero : a * b = 0) :
@@ -60,6 +95,16 @@ theorem MulEqZeroImpliesZero {a b : Q}
 Mathematical statement (Lean): `theorem EqZeroOfNonzeroMulEqZero {a b : Q} (a_nonzero : a ≠ 0) (product_zero : a * b = 0) : b = 0`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem EqZeroOfNonzeroMulEqZero {a b : Q}
+    (a_nonzero : a ≠ 0)
+    (product_zero : a * b = 0) :
+    b = 0
+```
 -/
 theorem EqZeroOfNonzeroMulEqZero {a b : Q}
     (a_nonzero : a ≠ 0)

@@ -6,7 +6,17 @@ namespace LRA.VolumeIV.Models.SetRings
 /-- Build a first-order model of the set-ring language from a set-ring
 operation signature. The distinguished constant `zero` is interpreted by the
 signature's `zero`, and the function symbols are interpreted by `join`, `meet`,
-and `difference`. -/
+and `difference`.
+
+Logical form:
+
+```lean
+def BuildSetRingModel
+    (signature : SetRingSignature) :
+    LRA.VolumeI.Logic.FirstOrder.Model SetRingFirstOrderLanguage where
+  Domain
+```
+-/
 def BuildSetRingModel
     (signature : SetRingSignature) :
     LRA.VolumeI.Logic.FirstOrder.Model SetRingFirstOrderLanguage where

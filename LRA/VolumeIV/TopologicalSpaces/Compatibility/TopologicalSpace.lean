@@ -17,6 +17,17 @@ This packages a carrier with a topology, matching Willard's convention that
 `(X, τ)` is a topological space.
 
 Mathematical statement (Lean): `structure TopologicalSpaceDefinition`.
+
+
+Logical form:
+
+```lean
+structure TopologicalSpaceDefinition where
+  /-- The underlying carrier of the space. -/
+  Carrier : Type u
+  /-- The topology on the carrier. -/
+  topology : TopologyDefinition Carrier
+```
 -/
 structure TopologicalSpaceDefinition where
   /-- The underlying carrier of the space. -/

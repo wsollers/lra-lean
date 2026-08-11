@@ -18,6 +18,15 @@ variable [Membership Element SetObject]
 /- Volume II label: ax:peano-base-in-set
    Lean declaration: LRA.VolumeII.PeanoSystems.PeanoAxioms.PeanoBaseInSet
    Status: pending -/
+/--
+`PeanoBaseInSet` asserts peano base in set.
+
+Logical form:
+
+```lean
+axiom PeanoBaseInSet (ps : PeanoSystem Element SetObject) : True
+```
+-/
 axiom PeanoBaseInSet (ps : PeanoSystem Element SetObject) : True
 
 /- Volume II label: ax:peano-successor-closure
@@ -28,6 +37,18 @@ axiom PeanoBaseInSet (ps : PeanoSystem Element SetObject) : True
    is an additional capability beyond membership: `LRASet` and the Mathlib
    backends register it; Enderton does not yet (pairing-based singletons are
    not yet phrased as `insert`/`singleton`). -/
+/--
+`PeanoSuccessorClosure` asserts peano successor closure.
+
+Logical form:
+
+```lean
+axiom PeanoSuccessorClosure [Singleton Element SetObject]
+    (ps : PeanoSystem Element SetObject) :
+    ∀ element : Element,
+      ps.successor element ∈ ({ps.successor element} : SetObject)
+```
+-/
 axiom PeanoSuccessorClosure [Singleton Element SetObject]
     (ps : PeanoSystem Element SetObject) :
     ∀ element : Element,
@@ -36,12 +57,33 @@ axiom PeanoSuccessorClosure [Singleton Element SetObject]
 /- Volume II label: ax:peano-base-not-successor
    Lean declaration: LRA.VolumeII.PeanoSystems.PeanoAxioms.PeanoBaseNotSuccessor
    Status: pending -/
+/--
+`PeanoBaseNotSuccessor` asserts peano base not successor.
+
+Logical form:
+
+```lean
+axiom PeanoBaseNotSuccessor (ps : PeanoSystem Element SetObject) :
+    ∀ element : Element, ps.successor element ≠ ps.one
+```
+-/
 axiom PeanoBaseNotSuccessor (ps : PeanoSystem Element SetObject) :
     ∀ element : Element, ps.successor element ≠ ps.one
 
 /- Volume II label: ax:peano-successor-injective
    Lean declaration: LRA.VolumeII.PeanoSystems.PeanoAxioms.PeanoSuccessorInjective
    Status: pending -/
+/--
+`PeanoSuccessorInjective` asserts peano successor injective.
+
+Logical form:
+
+```lean
+axiom PeanoSuccessorInjective (ps : PeanoSystem Element SetObject) :
+    ∀ first second : Element,
+      ps.successor first = ps.successor second -> first = second
+```
+-/
 axiom PeanoSuccessorInjective (ps : PeanoSystem Element SetObject) :
     ∀ first second : Element,
       ps.successor first = ps.successor second -> first = second
@@ -49,6 +91,21 @@ axiom PeanoSuccessorInjective (ps : PeanoSystem Element SetObject) :
 /- Volume II label: ax:peano-induction
    Lean declaration: LRA.VolumeII.PeanoSystems.PeanoAxioms.PeanoInduction
    Status: pending -/
+/--
+`PeanoInduction` asserts peano induction.
+
+Logical form:
+
+```lean
+axiom PeanoInduction (ps : PeanoSystem Element SetObject)
+    (subset : SetObject) :
+    ps.one ∈ subset ->
+      (∀ element : Element,
+        element ∈ subset ->
+          ps.successor element ∈ subset) ->
+      ∀ element : Element, element ∈ subset
+```
+-/
 axiom PeanoInduction (ps : PeanoSystem Element SetObject)
     (subset : SetObject) :
     ps.one ∈ subset ->
@@ -65,6 +122,18 @@ axiom PeanoInduction (ps : PeanoSystem Element SetObject)
    `Nonempty (PeanoSystem Element SetObject)` for *arbitrary* types would be
    false (an empty carrier admits no Peano system), so the axiom asserts
    that some backend carries one. -/
+/--
+`PeanoSystemExistence` asserts peano system existence.
+
+Logical form:
+
+```lean
+axiom PeanoSystemExistence :
+    ∃ (Element : Type u) (SetObject : Type v)
+      (_ : Membership Element SetObject),
+      Nonempty (PeanoSystem Element SetObject)
+```
+-/
 axiom PeanoSystemExistence :
     ∃ (Element : Type u) (SetObject : Type v)
       (_ : Membership Element SetObject),

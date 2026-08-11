@@ -49,31 +49,79 @@ import LRA.VolumeIII.Analysis.Sequences.Subsequences
 
 namespace LRA.VolumeIII.Analysis.Sequences
 
-/-- `def:divergent-sequence`. -/
+/-- `def:divergent-sequence`.
+
+Logical form:
+
+```lean
+def IsDivergent (x : RealSequence) : Prop := ¬ ∃ L : ℝ, ConvergesTo x L
+```
+-/
 def IsDivergent (x : RealSequence) : Prop := ¬ ∃ L : ℝ, ConvergesTo x L
 
-/-- `def:diverges-to-positive-infinity`. -/
+/-- `def:diverges-to-positive-infinity`.
+
+Logical form:
+
+```lean
+def DivergesToPosInf (x : RealSequence) : Prop :=
+  ∀ M : ℝ, ∃ N : ℕ, ∀ n ≥ N, M < x n
+```
+-/
 def DivergesToPosInf (x : RealSequence) : Prop :=
   ∀ M : ℝ, ∃ N : ℕ, ∀ n ≥ N, M < x n
 
-/-- `def:diverges-to-negative-infinity`. -/
+/-- `def:diverges-to-negative-infinity`.
+
+Logical form:
+
+```lean
+def DivergesToNegInf (x : RealSequence) : Prop :=
+  ∀ M : ℝ, ∃ N : ℕ, ∀ n ≥ N, x n < M
+```
+-/
 def DivergesToNegInf (x : RealSequence) : Prop :=
   ∀ M : ℝ, ∃ N : ℕ, ∀ n ≥ N, x n < M
 
-/-- `def:oscillatory-sequence`. -/
+/-- `def:oscillatory-sequence`.
+
+Logical form:
+
+```lean
+def IsOscillatory (x : RealSequence) : Prop :=
+  IsDivergent x ∧ ¬ DivergesToPosInf x ∧ ¬ DivergesToNegInf x
+```
+-/
 def IsOscillatory (x : RealSequence) : Prop :=
   IsDivergent x ∧ ¬ DivergesToPosInf x ∧ ¬ DivergesToNegInf x
 
 -- `thm:divergence-to-infinity-implies-real-divergence`
 /-- Let `x : RealSequence`. If `x` diverges to positive or negative infinity, then
-`x` is divergent as a real sequence. -/
+`x` is divergent as a real sequence.
+
+Logical form:
+
+```lean
+theorem DivergenceToInfinityImpliesRealDivergence {x : RealSequence}
+    (h : DivergesToPosInf x ∨ DivergesToNegInf x) : IsDivergent x
+```
+-/
 theorem DivergenceToInfinityImpliesRealDivergence {x : RealSequence}
     (h : DivergesToPosInf x ∨ DivergesToNegInf x) : IsDivergent x := by
   sorry
 
 -- `thm:two-subsequential-limits-force-divergence`
 /-- Let `x` be a real sequence with two distinct subsequential limits `L` and `K`.
-Then `x` is divergent. -/
+Then `x` is divergent.
+
+Logical form:
+
+```lean
+theorem TwoSubsequentialLimitsForceDivergence {x : RealSequence}
+    {L K : ℝ} (hLK : L ≠ K) (hL : IsSubsequentialLimit x L)
+    (hK : IsSubsequentialLimit x K) : IsDivergent x
+```
+-/
 theorem TwoSubsequentialLimitsForceDivergence {x : RealSequence}
     {L K : ℝ} (hLK : L ≠ K) (hL : IsSubsequentialLimit x L)
     (hK : IsSubsequentialLimit x K) : IsDivergent x := by
@@ -81,7 +129,17 @@ theorem TwoSubsequentialLimitsForceDivergence {x : RealSequence}
 
 -- `thm:unbounded-above-has-positive-infinity-subsequence`
 /-- Let `x` be a real sequence that is not bounded above. Then some subsequence of
-`x` diverges to positive infinity. -/
+`x` diverges to positive infinity.
+
+Logical form:
+
+```lean
+theorem UnboundedAboveHasPositiveInfinitySubsequence {x : RealSequence}
+    (h : ¬ BoundedAboveSeq x) :
+    ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧
+      DivergesToPosInf (fun k => x (σ k))
+```
+-/
 theorem UnboundedAboveHasPositiveInfinitySubsequence {x : RealSequence}
     (h : ¬ BoundedAboveSeq x) :
     ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧
@@ -90,7 +148,17 @@ theorem UnboundedAboveHasPositiveInfinitySubsequence {x : RealSequence}
 
 -- `thm:unbounded-below-has-negative-infinity-subsequence`
 /-- Let `x` be a real sequence that is not bounded below. Then some subsequence of
-`x` diverges to negative infinity. -/
+`x` diverges to negative infinity.
+
+Logical form:
+
+```lean
+theorem UnboundedBelowHasNegativeInfinitySubsequence {x : RealSequence}
+    (h : ¬ BoundedBelowSeq x) :
+    ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧
+      DivergesToNegInf (fun k => x (σ k))
+```
+-/
 theorem UnboundedBelowHasNegativeInfinitySubsequence {x : RealSequence}
     (h : ¬ BoundedBelowSeq x) :
     ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧
@@ -99,7 +167,16 @@ theorem UnboundedBelowHasNegativeInfinitySubsequence {x : RealSequence}
 
 -- `thm:bounded-divergence-produces-two-subsequential-limits`
 /-- Let `x` be a bounded divergent real sequence. Then `x` has two distinct
-subsequential limits. -/
+subsequential limits.
+
+Logical form:
+
+```lean
+theorem BoundedDivergenceProducesTwoSubsequentialLimits {x : RealSequence}
+    (hbdd : BoundedSeq x) (hdiv : IsDivergent x) :
+    ∃ L K : ℝ, L ≠ K ∧ IsSubsequentialLimit x L ∧ IsSubsequentialLimit x K
+```
+-/
 theorem BoundedDivergenceProducesTwoSubsequentialLimits {x : RealSequence}
     (hbdd : BoundedSeq x) (hdiv : IsDivergent x) :
     ∃ L K : ℝ, L ≠ K ∧ IsSubsequentialLimit x L ∧ IsSubsequentialLimit x K := by

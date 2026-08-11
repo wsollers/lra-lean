@@ -58,23 +58,61 @@ namespace LRA.VolumeIII.Analysis.Sequences
 
 /-- `def:sequence`. A sequence in a nonempty `X` is a function `N -> X`.
 No extra content beyond the Lean function type itself — kept as a type
-alias so later files can cite `Sequence X` by name. -/
+alias so later files can cite `Sequence X` by name.
+
+Logical form:
+
+```lean
+abbrev Sequence (X : Type*) : Type _ := ℕ → X
+```
+-/
 abbrev Sequence (X : Type*) : Type _ := ℕ → X
 
-/-- `def:real-sequence`. -/
+/-- `def:real-sequence`.
+
+Logical form:
+
+```lean
+abbrev RealSequence : Type := ℕ → ℝ
+```
+-/
 abbrev RealSequence : Type := ℕ → ℝ
 
-/-- Let `c : ℝ`. Then the constant sequence with value `c` tends to `c`. -/
+/-- Let `c : ℝ`. Then the constant sequence with value `c` tends to `c`.
+
+Logical form:
+
+```lean
+theorem ConstantSequenceConverges (c : ℝ) :
+    Filter.Tendsto (fun _ : ℕ => c) Filter.atTop (nhds c)
+```
+-/
 theorem ConstantSequenceConverges (c : ℝ) :
     Filter.Tendsto (fun _ : ℕ => c) Filter.atTop (nhds c) := by
   sorry
 
-/-- The reciprocal sequence `n ↦ 1 / n` tends to `0` along `atTop`. -/
+/-- The reciprocal sequence `n ↦ 1 / n` tends to `0` along `atTop`.
+
+Logical form:
+
+```lean
+theorem ReciprocalSequenceConvergesToZero :
+    Filter.Tendsto (fun n : ℕ => 1 / (n : ℝ)) Filter.atTop (nhds 0)
+```
+-/
 theorem ReciprocalSequenceConvergesToZero :
     Filter.Tendsto (fun n : ℕ => 1 / (n : ℝ)) Filter.atTop (nhds 0) := by
   sorry
 
-/-- The natural-number sequence `n ↦ n`, read as a real sequence, tends to`npositive infinity along `atTop`. -/
+/-- The natural-number sequence `n ↦ n`, read as a real sequence, tends to`npositive infinity along `atTop`.
+
+Logical form:
+
+```lean
+theorem NaturalNumberSequenceDiverges :
+    Filter.Tendsto (fun n : ℕ => (n : ℝ)) Filter.atTop Filter.atTop
+```
+-/
 theorem NaturalNumberSequenceDiverges :
     Filter.Tendsto (fun n : ℕ => (n : ℝ)) Filter.atTop Filter.atTop := by
   sorry

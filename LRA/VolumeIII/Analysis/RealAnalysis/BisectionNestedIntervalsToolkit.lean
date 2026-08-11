@@ -23,7 +23,17 @@ namespace LRA.VolumeIII.Analysis.RealAnalysis
 
 -- `thm:nested-interval-property`
 /-- If `a b : ℕ → ℝ`, `hle : ∀ n, a n ≤ b n`, and `hnest : ∀ n, a n ≤ a (n + 1) ∧ b (n + 1) ≤ b n`.
-Then `∃ x : ℝ, ∀ n, a n ≤ x ∧ x ≤ b n`. -/
+Then `∃ x : ℝ, ∀ n, a n ≤ x ∧ x ≤ b n`.
+
+Logical form:
+
+```lean
+theorem NestedIntervalProperty (a b : ℕ → ℝ)
+    (hle : ∀ n, a n ≤ b n)
+    (hnest : ∀ n, a n ≤ a (n + 1) ∧ b (n + 1) ≤ b n) :
+    ∃ x : ℝ, ∀ n, a n ≤ x ∧ x ≤ b n
+```
+-/
 theorem NestedIntervalProperty (a b : ℕ → ℝ)
     (hle : ∀ n, a n ≤ b n)
     (hnest : ∀ n, a n ≤ a (n + 1) ∧ b (n + 1) ≤ b n) :
@@ -31,14 +41,31 @@ theorem NestedIntervalProperty (a b : ℕ → ℝ)
   sorry
 
 /-- Let `a b L : ℝ`. If `f : ℝ → ℝ`, `hab : a < b`, `hf : ContinuousOn f (Set.Icc a b)`, and `hL :
-(f a < L ∧ L < f b) ∨ (f a > L ∧ L > f b)`. Then `∃ c ∈ Set.Ioo a b, f c = L`. -/
+(f a < L ∧ L < f b) ∨ (f a > L ∧ L > f b)`. Then `∃ c ∈ Set.Ioo a b, f c = L`.
+
+Logical form:
+
+```lean
+theorem IvtBisection (f : ℝ → ℝ) (a b L : ℝ) (hab : a < b)
+    (hf : ContinuousOn f (Set.Icc a b))
+    (hL : (f a < L ∧ L < f b) ∨ (f a > L ∧ L > f b)) :
+    ∃ c ∈ Set.Ioo a b, f c = L
+```
+-/
 theorem IvtBisection (f : ℝ → ℝ) (a b L : ℝ) (hab : a < b)
     (hf : ContinuousOn f (Set.Icc a b))
     (hL : (f a < L ∧ L < f b) ∨ (f a > L ∧ L > f b)) :
     ∃ c ∈ Set.Ioo a b, f c = L := by
   sorry
 
-/-- The theorem asserts `¬ ∃ x : ℕ → ℝ, Function.Surjective x`. -/
+/-- The theorem asserts `¬ ∃ x : ℕ → ℝ, Function.Surjective x`.
+
+Logical form:
+
+```lean
+theorem RUncountable : ¬ ∃ x : ℕ → ℝ, Function.Surjective x
+```
+-/
 theorem RUncountable : ¬ ∃ x : ℕ → ℝ, Function.Surjective x := by
   sorry
 

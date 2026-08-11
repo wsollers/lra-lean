@@ -38,13 +38,31 @@ import LRA.VolumeIII.Analysis.Sequences.NullConstantSequences
 
 namespace LRA.VolumeIII.Analysis.Sequences
 
-/-- Let `c : ℝ`. Then `ConvergesTo (fun _ : ℕ => c) c`. -/
+/-- Let `c : ℝ`. Then `ConvergesTo (fun _ : ℕ => c) c`.
+
+Logical form:
+
+```lean
+theorem ExampleConstantSequence (c : ℝ) :
+    ConvergesTo (fun _ : ℕ => c) c
+```
+-/
 theorem ExampleConstantSequence (c : ℝ) :
     ConvergesTo (fun _ : ℕ => c) c := by
   sorry
 
 /-- The theorem asserts `(∀ n : ℕ, (1 : ℝ) / (n + 2) < 1 / (n + 1)) ∧ (∀ n : ℕ, 0 ≤ 1 / ((n : ℝ) +
-1)) ∧ ConvergesTo (fun n : ℕ => 1 / ((n : ℝ) + 1)) 0`. -/
+1)) ∧ ConvergesTo (fun n : ℕ => 1 / ((n : ℝ) + 1)) 0`.
+
+Logical form:
+
+```lean
+theorem ExampleReciprocalSequence :
+    (∀ n : ℕ, (1 : ℝ) / (n + 2) < 1 / (n + 1)) ∧
+      (∀ n : ℕ, 0 ≤ 1 / ((n : ℝ) + 1)) ∧
+      ConvergesTo (fun n : ℕ => 1 / ((n : ℝ) + 1)) 0
+```
+-/
 theorem ExampleReciprocalSequence :
     (∀ n : ℕ, (1 : ℝ) / (n + 2) < 1 / (n + 1)) ∧
       (∀ n : ℕ, 0 ≤ 1 / ((n : ℝ) + 1)) ∧
@@ -52,7 +70,16 @@ theorem ExampleReciprocalSequence :
   sorry
 
 /-- The theorem asserts `¬ Monotone (fun n : ℕ => (-1 : ℝ) ^ n / (n + 1)) ∧ ConvergesTo (fun n : ℕ
-=> (-1 : ℝ) ^ n / (n + 1)) 0`. -/
+=> (-1 : ℝ) ^ n / (n + 1)) 0`.
+
+Logical form:
+
+```lean
+theorem ExampleAlternatingNullSequence :
+    ¬ Monotone (fun n : ℕ => (-1 : ℝ) ^ n / (n + 1)) ∧
+      ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n / (n + 1)) 0
+```
+-/
 theorem ExampleAlternatingNullSequence :
     ¬ Monotone (fun n : ℕ => (-1 : ℝ) ^ n / (n + 1)) ∧
       ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n / (n + 1)) 0 := by
@@ -60,7 +87,18 @@ theorem ExampleAlternatingNullSequence :
 
 /-- The theorem asserts `BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧ (¬ ∃ L, ConvergesTo (fun n : ℕ =>
 (-1 : ℝ) ^ n) L) ∧ ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n)) 1 ∧ ConvergesTo (fun n : ℕ =>
-(-1 : ℝ) ^ (2 * n + 1)) (-1)`. -/
+(-1 : ℝ) ^ (2 * n + 1)) (-1)`.
+
+Logical form:
+
+```lean
+theorem ExampleOscillatingSequence :
+    BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧
+      (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧
+      ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n)) 1 ∧
+      ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n + 1)) (-1)
+```
+-/
 theorem ExampleOscillatingSequence :
     BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧
       (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧
@@ -70,7 +108,18 @@ theorem ExampleOscillatingSequence :
 
 /-- The theorem asserts `(∀ r : ℝ, |r| < 1 → ConvergesTo (fun n : ℕ => r ^ n) 0) ∧ ConvergesTo (fun
 _ : ℕ => (1 : ℝ) ^ (0 : ℕ)) 1 ∧ (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧ (∀ r : ℝ,
-|r| > 1 → ¬ BoundedSeq (fun n : ℕ => r ^ n))`. -/
+|r| > 1 → ¬ BoundedSeq (fun n : ℕ => r ^ n))`.
+
+Logical form:
+
+```lean
+theorem ExampleGeometricSequence :
+    (∀ r : ℝ, |r| < 1 → ConvergesTo (fun n : ℕ => r ^ n) 0) ∧
+      ConvergesTo (fun _ : ℕ => (1 : ℝ) ^ (0 : ℕ)) 1 ∧
+      (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧
+      (∀ r : ℝ, |r| > 1 → ¬ BoundedSeq (fun n : ℕ => r ^ n))
+```
+-/
 theorem ExampleGeometricSequence :
     (∀ r : ℝ, |r| < 1 → ConvergesTo (fun n : ℕ => r ^ n) 0) ∧
       ConvergesTo (fun _ : ℕ => (1 : ℝ) ^ (0 : ℕ)) 1 ∧
@@ -79,14 +128,32 @@ theorem ExampleGeometricSequence :
   sorry
 
 /-- The theorem asserts `BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧ ¬ ∃ L, ConvergesTo (fun n : ℕ =>
-(-1 : ℝ) ^ n) L`. -/
+(-1 : ℝ) ^ n) L`.
+
+Logical form:
+
+```lean
+theorem ExampleBoundedNotConvergent :
+    BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧
+      ¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L
+```
+-/
 theorem ExampleBoundedNotConvergent :
     BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧
       ¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L := by
   sorry
 
 /-- The successive differences of the harmonic partial sums converge to zero,
-but the harmonic partial sums are unbounded. -/
+but the harmonic partial sums are unbounded.
+
+Logical form:
+
+```lean
+theorem ExampleVanishingDifferencesNotCauchy :
+    ConvergesTo (fun n : ℕ => 1 / ((n : ℝ) + 2)) 0 ∧
+      ¬ BoundedSeq (fun n : ℕ => ∑ k ∈ Finset.range (n + 1), 1 / ((k : ℝ) + 1))
+```
+-/
 theorem ExampleVanishingDifferencesNotCauchy :
     ConvergesTo (fun n : ℕ => 1 / ((n : ℝ) + 2)) 0 ∧
       ¬ BoundedSeq (fun n : ℕ => ∑ k ∈ Finset.range (n + 1), 1 / ((k : ℝ) + 1)) := by

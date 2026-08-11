@@ -24,7 +24,16 @@ import Mathlib.Order.Filter.Basic
 namespace LRA.VolumeIII.Analysis.RealAnalysis
 
 /-- Let `S : Set ℝ` and `s : ℝ`. If `hne : S.Nonempty`, `hbdd : BddAbove S`, and `hs : IsLUB S s`.
-Then `∀ ε > 0, ∃ x ∈ S, x > s - ε`. -/
+Then `∀ ε > 0, ∃ x ∈ S, x > s - ε`.
+
+Logical form:
+
+```lean
+theorem EpsCharSup (S : Set ℝ) (s : ℝ) (hne : S.Nonempty)
+    (hbdd : BddAbove S) (hs : IsLUB S s) :
+    ∀ ε > 0, ∃ x ∈ S, x > s - ε
+```
+-/
 theorem EpsCharSup (S : Set ℝ) (s : ℝ) (hne : S.Nonempty)
     (hbdd : BddAbove S) (hs : IsLUB S s) :
     ∀ ε > 0, ∃ x ∈ S, x > s - ε := by
@@ -32,7 +41,17 @@ theorem EpsCharSup (S : Set ℝ) (s : ℝ) (hne : S.Nonempty)
 
 -- `thm:inductive-selection`
 /-- Let `S : Set ℝ` and `s : ℝ`. If `hne : S.Nonempty`, `hbdd : BddAbove S`, and `hs : IsLUB S s`.
-Then `∃ x : ℕ → ℝ, (∀ n, x n ∈ S) ∧ StrictMono x ∧ Filter.Tendsto x Filter.atTop (nhds s)`. -/
+Then `∃ x : ℕ → ℝ, (∀ n, x n ∈ S) ∧ StrictMono x ∧ Filter.Tendsto x Filter.atTop (nhds s)`.
+
+Logical form:
+
+```lean
+theorem InductiveSelection (S : Set ℝ) (s : ℝ) (hne : S.Nonempty)
+    (hbdd : BddAbove S) (hs : IsLUB S s) :
+    ∃ x : ℕ → ℝ, (∀ n, x n ∈ S) ∧ StrictMono x ∧
+      Filter.Tendsto x Filter.atTop (nhds s)
+```
+-/
 theorem InductiveSelection (S : Set ℝ) (s : ℝ) (hne : S.Nonempty)
     (hbdd : BddAbove S) (hs : IsLUB S s) :
     ∃ x : ℕ → ℝ, (∀ n, x n ∈ S) ∧ StrictMono x ∧
@@ -42,7 +61,19 @@ theorem InductiveSelection (S : Set ℝ) (s : ℝ) (hne : S.Nonempty)
 /-- Let `S : Set ℝ`. If `hne : S.Nonempty`, `hbdd_above : BddAbove S`, and `hbdd_below : BddBelow
 S`. Then `(∃ x : ℕ → ℝ, (∀ n, x n ∈ S) ∧ Monotone x ∧ Filter.Tendsto x Filter.atTop (nhds (sSup
 S))) ∧ (∃ y : ℕ → ℝ, (∀ n, y n ∈ S) ∧ Antitone y ∧ Filter.Tendsto y Filter.atTop (nhds (sInf
-S)))`. -/
+S)))`.
+
+Logical form:
+
+```lean
+theorem MonotoneApproxBounds (S : Set ℝ) (hne : S.Nonempty)
+    (hbdd_above : BddAbove S) (hbdd_below : BddBelow S) :
+    (∃ x : ℕ → ℝ, (∀ n, x n ∈ S) ∧ Monotone x ∧
+      Filter.Tendsto x Filter.atTop (nhds (sSup S))) ∧
+    (∃ y : ℕ → ℝ, (∀ n, y n ∈ S) ∧ Antitone y ∧
+      Filter.Tendsto y Filter.atTop (nhds (sInf S)))
+```
+-/
 theorem MonotoneApproxBounds (S : Set ℝ) (hne : S.Nonempty)
     (hbdd_above : BddAbove S) (hbdd_below : BddBelow S) :
     (∃ x : ℕ → ℝ, (∀ n, x n ∈ S) ∧ Monotone x ∧

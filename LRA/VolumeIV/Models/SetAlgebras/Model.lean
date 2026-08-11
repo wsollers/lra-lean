@@ -5,7 +5,17 @@ namespace LRA.VolumeIV.Models.SetAlgebras
 
 /-- Build a first-order model of the set-algebra language from a set-algebra
 operation signature. In powerset models, `zero` is `∅`, `one` is `U`, `join`
-is union, `meet` is intersection, and `complement` is relative complement. -/
+is union, `meet` is intersection, and `complement` is relative complement.
+
+Logical form:
+
+```lean
+def BuildSetAlgebraModel
+    (signature : SetAlgebraSignature) :
+    LRA.VolumeI.Logic.FirstOrder.Model SetAlgebraFirstOrderLanguage where
+  Domain
+```
+-/
 def BuildSetAlgebraModel
     (signature : SetAlgebraSignature) :
     LRA.VolumeI.Logic.FirstOrder.Model SetAlgebraFirstOrderLanguage where

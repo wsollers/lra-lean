@@ -30,7 +30,14 @@ already have, completely unrestricted, exactly as in first-order logic.
 -/
 
 /-- `SecondOrderMonadicLanguage` is exactly `Signature` -- see the module
-doc for why this alias exists alongside `FirstOrderLanguage`. -/
+doc for why this alias exists alongside `FirstOrderLanguage`.
+
+Logical form:
+
+```lean
+abbrev SecondOrderMonadicLanguage := Signature
+```
+-/
 abbrev SecondOrderMonadicLanguage := Signature
 
 end LRA.VolumeI.Logic.SecondOrderMonadic

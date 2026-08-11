@@ -16,7 +16,25 @@ reduct is a single deterministic function, unlike expansion.
 
 /-- The reduct of `M'` along a signature embedding `e : S ↪ S'`: the model
 of `S` agreeing with `M'` on domain and on the interpretation of every
-embedded symbol. -/
+embedded symbol.
+
+Logical form:
+
+```lean
+def Model.reduct
+    {S S' : Signature} (e : SignatureEmbedding S S') (M' : Model S') : Model S where
+  Domain := M'.Domain
+  domainNonempty := M'.domainNonempty
+  interpretFunction f args :=
+    M'.interpretFunction (e.embedFunction f)
+      (fun i => args (e.functionArityPreserved f ▸ i))
+  interpretRelation r args :=
+    M'.interpretRelation (e.embedRelation r)
+      (fun i => args (e.relationArityPreserved r ▸ i))
+  interpretConstant c :=
+    M'.interpretConstant (e.embedConstant c)
+```
+-/
 def Model.reduct
     {S S' : Signature} (e : SignatureEmbedding S S') (M' : Model S') : Model S where
   Domain := M'.Domain

@@ -1,8 +1,6 @@
 -- LRA/VolumeII/Integers.lean
 -- Volume II integer construction root.
 
-import LRA.VolumeII.Integers.Interface
-import LRA.VolumeII.Integers.Laws
 import LRA.VolumeII.Integers.QuotientOrderedPairs
 import LRA.VolumeII.Integers.Tao
 import LRA.VolumeII.Integers.Mendelson

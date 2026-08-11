@@ -18,6 +18,16 @@ Verification status: definitions and final theorem statements complete; proofs p
 **[Inductive — Digit]**
 
 Mathematical statement (Lean): `inductive Digit`.
+
+
+Logical form:
+
+```lean
+inductive Digit where
+  | zero
+  | one
+  deriving DecidableEq
+```
 -/
 inductive Digit where
   | zero
@@ -28,6 +38,13 @@ inductive Digit where
 **[Abbrev — FractionalDigits]**
 
 Mathematical statement (Lean): `abbrev FractionalDigits`.
+
+
+Logical form:
+
+```lean
+abbrev FractionalDigits := Nat → Digit
+```
 -/
 abbrev FractionalDigits := Nat → Digit
 
@@ -35,6 +52,14 @@ abbrev FractionalDigits := Nat → Digit
 /-- Definition 2.1: every term is a binary digit.
 
 Mathematical statement (Lean): `def IsBinaryDigitSequence (digits : FractionalDigits) : Prop`.
+
+
+Logical form:
+
+```lean
+def IsBinaryDigitSequence (digits : FractionalDigits) : Prop :=
+  ∀ index, digits index = Digit.zero ∨ digits index = Digit.one
+```
 -/
 def IsBinaryDigitSequence (digits : FractionalDigits) : Prop :=
   ∀ index, digits index = Digit.zero ∨ digits index = Digit.one
@@ -43,6 +68,17 @@ def IsBinaryDigitSequence (digits : FractionalDigits) : Prop :=
 /-- Definition 2.2: canonical sequences are not eventually constantly one.
 
 Mathematical statement (Lean): `def IsCanonical (digits : FractionalDigits) : Prop`.
+
+
+Logical form:
+
+```lean
+def IsCanonical (digits : FractionalDigits) : Prop :=
+  IsBinaryDigitSequence digits ∧
+  ¬ ∃ threshold,
+    ∀ index,
+      threshold ≤ index → digits index = Digit.one
+```
 -/
 def IsCanonical (digits : FractionalDigits) : Prop :=
   IsBinaryDigitSequence digits ∧
@@ -54,6 +90,15 @@ def IsCanonical (digits : FractionalDigits) : Prop :=
 **[Structure — CanonicalFraction]**
 
 Mathematical statement (Lean): `structure CanonicalFraction`.
+
+
+Logical form:
+
+```lean
+structure CanonicalFraction where
+  digits : FractionalDigits
+  canonical : IsCanonical digits
+```
 -/
 structure CanonicalFraction where
   digits : FractionalDigits
@@ -63,6 +108,17 @@ structure CanonicalFraction where
 **[Structure — FiniteNumeral]**
 
 Mathematical statement (Lean): `structure FiniteNumeral`.
+
+
+Logical form:
+
+```lean
+structure FiniteNumeral where
+  highest_exponent : Nat
+  digit : Fin (highest_exponent + 1) → Digit
+  leading_digit_is_one :
+    digit ⟨highest_exponent, Nat.lt_succ_self highest_exponent⟩ = Digit.one
+```
 -/
 structure FiniteNumeral where
   highest_exponent : Nat
@@ -74,6 +130,15 @@ structure FiniteNumeral where
 **[Structure — UnsignedExpansion]**
 
 Mathematical statement (Lean): `structure UnsignedExpansion`.
+
+
+Logical form:
+
+```lean
+structure UnsignedExpansion where
+  integer_part : FiniteNumeral
+  fractional_part : CanonicalFraction
+```
 -/
 structure UnsignedExpansion where
   integer_part : FiniteNumeral
@@ -83,6 +148,16 @@ structure UnsignedExpansion where
 **[Inductive — Sign]**
 
 Mathematical statement (Lean): `inductive Sign`.
+
+
+Logical form:
+
+```lean
+inductive Sign where
+  | negative
+  | positive
+  deriving DecidableEq
+```
 -/
 inductive Sign where
   | negative
@@ -93,6 +168,15 @@ inductive Sign where
 **[Inductive — Expansion]**
 
 Mathematical statement (Lean): `inductive Expansion`.
+
+
+Logical form:
+
+```lean
+inductive Expansion where
+  | zero
+  | nonzero (sign : Sign) (magnitude : UnsignedExpansion)
+```
 -/
 inductive Expansion where
   | zero
@@ -102,6 +186,48 @@ inductive Expansion where
 **[Structure — RationalDyadicApproximationData]**
 
 Mathematical statement (Lean): `structure RationalDyadicApproximationData`.
+
+
+Logical form:
+
+```lean
+structure RationalDyadicApproximationData where
+  rational_model : RationalModel
+  absolute_value_data : Cauchy.RationalMetricData rational_model
+  integer_carrier : Type
+  whole_carrier : Type
+  integer_to_rational : integer_carrier → rational_model.signature.carrier
+  exponent_of_index : Nat → whole_carrier
+  power_of_two : whole_carrier → rational_model.signature.carrier
+  digit_to_rational : Digit → rational_model.signature.carrier
+  finite_sum :
+    (Nat → rational_model.signature.carrier) →
+      Nat → rational_model.signature.carrier
+  finite_numeral_value : FiniteNumeral → rational_model.signature.carrier
+  rational_to_cauchy :
+    rational_model.signature.carrier →
+      Cauchy.Carrier rational_model absolute_value_data
+  cauchy_zero : Cauchy.Carrier rational_model absolute_value_data
+  cauchy_one : Cauchy.Carrier rational_model absolute_value_data
+  cauchy_addition :
+    Cauchy.Carrier rational_model absolute_value_data →
+      Cauchy.Carrier rational_model absolute_value_data →
+      Cauchy.Carrier rational_model absolute_value_data
+  cauchy_negation :
+    Cauchy.Carrier rational_model absolute_value_data →
+      Cauchy.Carrier rational_model absolute_value_data
+  cauchy_multiplication :
+    Cauchy.Carrier rational_model absolute_value_data →
+      Cauchy.Carrier rational_model absolute_value_data →
+      Cauchy.Carrier rational_model absolute_value_data
+  cauchy_inverse :
+    Cauchy.Carrier rational_model absolute_value_data →
+      Cauchy.Carrier rational_model absolute_value_data
+  cauchy_strict_order :
+    Cauchy.Carrier rational_model absolute_value_data →
+      Cauchy.Carrier rational_model absolute_value_data → Prop
+  cauchy_complete_archimedean_ordered_field : Prop
+```
 -/
 structure RationalDyadicApproximationData where
   rational_model : RationalModel
@@ -146,12 +272,27 @@ variable (dyadic_data : RationalDyadicApproximationData)
 **[Abbrev — Rational]**
 
 Mathematical statement (Lean): `abbrev Rational`.
+
+
+Logical form:
+
+```lean
+abbrev Rational := dyadic_data.rational_model.signature.carrier
+```
 -/
 abbrev Rational := dyadic_data.rational_model.signature.carrier
 /--
 **[Abbrev — CauchyCarrier]**
 
 Mathematical statement (Lean): `abbrev CauchyCarrier`.
+
+
+Logical form:
+
+```lean
+abbrev CauchyCarrier :=
+  Cauchy.Carrier dyadic_data.rational_model dyadic_data.absolute_value_data
+```
 -/
 abbrev CauchyCarrier :=
   Cauchy.Carrier dyadic_data.rational_model dyadic_data.absolute_value_data
@@ -160,6 +301,19 @@ abbrev CauchyCarrier :=
 /-- Definition 1.1: predicate for dyadic rationals m / 2^n.
 
 Mathematical statement (Lean): `def IsDyadicRational (value : Rational dyadic_data) : Prop`.
+
+
+Logical form:
+
+```lean
+def IsDyadicRational (value : Rational dyadic_data) : Prop :=
+  ∃ numerator : dyadic_data.integer_carrier,
+    ∃ exponent : dyadic_data.whole_carrier,
+      value = dyadic_data.rational_model.signature.multiplication
+        (dyadic_data.integer_to_rational numerator)
+        (dyadic_data.rational_model.signature.inverse
+          (dyadic_data.power_of_two exponent))
+```
 -/
 def IsDyadicRational (value : Rational dyadic_data) : Prop :=
   ∃ numerator : dyadic_data.integer_carrier,
@@ -175,6 +329,29 @@ def IsDyadicRational (value : Rational dyadic_data) : Prop :=
 Mathematical statement (Lean): `theorem dyadic_subring : IsDyadicRational dyadic_data dyadic_data.rational_model.signature.zero ∧ IsDyadicRational dyadic_data dyadic_data.rational_model.signature.one ∧ (∀ first second : Rational dyadic_data, IsDyadicRational dyadic_data first → IsDyadicRa...`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem dyadic_subring :
+    IsDyadicRational dyadic_data dyadic_data.rational_model.signature.zero ∧
+    IsDyadicRational dyadic_data dyadic_data.rational_model.signature.one ∧
+    (∀ first second : Rational dyadic_data,
+      IsDyadicRational dyadic_data first →
+      IsDyadicRational dyadic_data second →
+      IsDyadicRational dyadic_data
+        (dyadic_data.rational_model.signature.addition first second)) ∧
+    (∀ value : Rational dyadic_data,
+      IsDyadicRational dyadic_data value →
+      IsDyadicRational dyadic_data
+        (dyadic_data.rational_model.signature.negation value)) ∧
+    (∀ first second : Rational dyadic_data,
+      IsDyadicRational dyadic_data first →
+      IsDyadicRational dyadic_data second →
+      IsDyadicRational dyadic_data
+        (dyadic_data.rational_model.signature.multiplication first second))
+```
 -/
 theorem dyadic_subring :
     IsDyadicRational dyadic_data dyadic_data.rational_model.signature.zero ∧
@@ -201,6 +378,20 @@ theorem dyadic_subring :
 Mathematical statement (Lean): `theorem dyadic_rationals_are_dense (first second : Rational dyadic_data) (first_lt_second : dyadic_data.rational_model.signature.StrictOrder first second) : ∃ dyadic : Rational dyadic_data, IsDyadicRational dyadic_data dyadic ∧ dyadic_data.rational_model.s...`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem dyadic_rationals_are_dense
+    (first second : Rational dyadic_data)
+    (first_lt_second :
+      dyadic_data.rational_model.signature.StrictOrder first second) :
+    ∃ dyadic : Rational dyadic_data,
+      IsDyadicRational dyadic_data dyadic ∧
+      dyadic_data.rational_model.signature.StrictOrder first dyadic ∧
+      dyadic_data.rational_model.signature.StrictOrder dyadic second
+```
 -/
 theorem dyadic_rationals_are_dense
     (first second : Rational dyadic_data)
@@ -216,6 +407,22 @@ theorem dyadic_rationals_are_dense
 /-- Definition 2.3: rational partial sums of a binary fractional expansion.
 
 Mathematical statement (Lean): `def fractional_partial_sum (digits : FractionalDigits) (bound : Nat) : Rational dyadic_data`.
+
+
+Logical form:
+
+```lean
+def fractional_partial_sum
+    (digits : FractionalDigits)
+    (bound : Nat) : Rational dyadic_data :=
+  dyadic_data.finite_sum
+    (fun index =>
+      dyadic_data.rational_model.signature.multiplication
+        (dyadic_data.digit_to_rational (digits index))
+        (dyadic_data.rational_model.signature.inverse
+          (dyadic_data.power_of_two (dyadic_data.exponent_of_index index))))
+    bound
+```
 -/
 def fractional_partial_sum
     (digits : FractionalDigits)
@@ -234,6 +441,18 @@ def fractional_partial_sum
 Mathematical statement (Lean): `theorem fractional_partial_sums_are_cauchy (digits : FractionalDigits) : Cauchy.is_cauchy dyadic_data.rational_model dyadic_data.absolute_value_data (fractional_partial_sum dyadic_data digits)`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem fractional_partial_sums_are_cauchy
+    (digits : FractionalDigits) :
+    Cauchy.is_cauchy
+      dyadic_data.rational_model
+      dyadic_data.absolute_value_data
+      (fractional_partial_sum dyadic_data digits)
+```
 -/
 theorem fractional_partial_sums_are_cauchy
     (digits : FractionalDigits) :
@@ -247,6 +466,17 @@ theorem fractional_partial_sums_are_cauchy
 /-- Definition 2.5: value of a canonical fractional expansion.
 
 Mathematical statement (Lean): `def fractional_value (fraction : CanonicalFraction) : CauchyCarrier dyadic_data`.
+
+
+Logical form:
+
+```lean
+def fractional_value
+    (fraction : CanonicalFraction) : CauchyCarrier dyadic_data :=
+  Quotient.mk _
+    ⟨fractional_partial_sum dyadic_data fraction.digits,
+      fractional_partial_sums_are_cauchy dyadic_data fraction.digits⟩
+```
 -/
 def fractional_value
     (fraction : CanonicalFraction) : CauchyCarrier dyadic_data :=
@@ -260,6 +490,29 @@ def fractional_value
 Mathematical statement (Lean): `theorem binary_tail_ambiguity (digits : FractionalDigits) (eventually_one : ∃ threshold, ∀ index, threshold ≤ index → digits index = Digit.one) : ∃ terminating : CanonicalFraction, fractional_value dyadic_data terminating = Quotient.mk _ ⟨fractional_partial...`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem binary_tail_ambiguity
+    (digits : FractionalDigits)
+    (eventually_one :
+      ∃ threshold,
+        ∀ index,
+          threshold ≤ index → digits index = Digit.one) :
+    ∃ terminating : CanonicalFraction,
+      fractional_value dyadic_data terminating =
+        Quotient.mk _
+          ⟨fractional_partial_sum dyadic_data digits,
+            fractional_partial_sums_are_cauchy dyadic_data digits⟩ ∧
+      ∀ other : CanonicalFraction,
+        fractional_value dyadic_data other =
+            Quotient.mk _
+              ⟨fractional_partial_sum dyadic_data digits,
+                fractional_partial_sums_are_cauchy dyadic_data digits⟩ →
+        other = terminating
+```
 -/
 theorem binary_tail_ambiguity
     (digits : FractionalDigits)
@@ -286,6 +539,16 @@ theorem binary_tail_ambiguity
 Mathematical statement (Lean): `theorem canonical_fractional_uniqueness (first second : CanonicalFraction) : fractional_value dyadic_data first = fractional_value dyadic_data second ↔ first = second`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem canonical_fractional_uniqueness
+    (first second : CanonicalFraction) :
+    fractional_value dyadic_data first = fractional_value dyadic_data second ↔
+      first = second
+```
 -/
 theorem canonical_fractional_uniqueness
     (first second : CanonicalFraction) :
@@ -297,6 +560,18 @@ theorem canonical_fractional_uniqueness
 /-- Definition 3.2: value of an unsigned expansion.
 
 Mathematical statement (Lean): `def unsigned_value (expansion : UnsignedExpansion) : CauchyCarrier dyadic_data`.
+
+
+Logical form:
+
+```lean
+def unsigned_value
+    (expansion : UnsignedExpansion) : CauchyCarrier dyadic_data :=
+  dyadic_data.cauchy_addition
+    (dyadic_data.rational_to_cauchy
+      (dyadic_data.finite_numeral_value expansion.integer_part))
+    (fractional_value dyadic_data expansion.fractional_part)
+```
 -/
 def unsigned_value
     (expansion : UnsignedExpansion) : CauchyCarrier dyadic_data :=
@@ -309,6 +584,18 @@ def unsigned_value
 /-- Definition 3.4: the signed value map V.
 
 Mathematical statement (Lean): `def value : Expansion → CauchyCarrier dyadic_data | Expansion.zero => dyadic_data.cauchy_zero | Expansion.nonzero Sign.positive magnitude => unsigned_value dyadic_data magnitude | Expansion.nonzero Sign.negative magnitude => dyadic_data.cauchy_negation (uns...`.
+
+
+Logical form:
+
+```lean
+def value : Expansion → CauchyCarrier dyadic_data
+  | Expansion.zero => dyadic_data.cauchy_zero
+  | Expansion.nonzero Sign.positive magnitude =>
+      unsigned_value dyadic_data magnitude
+  | Expansion.nonzero Sign.negative magnitude =>
+      dyadic_data.cauchy_negation (unsigned_value dyadic_data magnitude)
+```
 -/
 def value : Expansion → CauchyCarrier dyadic_data
   | Expansion.zero => dyadic_data.cauchy_zero
@@ -323,6 +610,16 @@ def value : Expansion → CauchyCarrier dyadic_data
 Mathematical statement (Lean): `theorem representation_exists (real_value : CauchyCarrier dyadic_data) : ∃ expansion : Expansion, value dyadic_data expansion = real_value`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem representation_exists
+    (real_value : CauchyCarrier dyadic_data) :
+    ∃ expansion : Expansion,
+      value dyadic_data expansion = real_value
+```
 -/
 theorem representation_exists
     (real_value : CauchyCarrier dyadic_data) :
@@ -336,6 +633,15 @@ theorem representation_exists
 Mathematical statement (Lean): `theorem value_is_injective : ∀ first second : Expansion, value dyadic_data first = value dyadic_data second → first = second`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem value_is_injective :
+    ∀ first second : Expansion,
+      value dyadic_data first = value dyadic_data second → first = second
+```
 -/
 theorem value_is_injective :
     ∀ first second : Expansion,
@@ -348,6 +654,18 @@ theorem value_is_injective :
 Mathematical statement (Lean): `theorem value_is_bijective : (∀ real_value : CauchyCarrier dyadic_data, ∃ expansion : Expansion, value dyadic_data expansion = real_value) ∧ (∀ first second : Expansion, value dyadic_data first = value dyadic_data second → first = second)`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem value_is_bijective :
+    (∀ real_value : CauchyCarrier dyadic_data,
+      ∃ expansion : Expansion,
+        value dyadic_data expansion = real_value) ∧
+    (∀ first second : Expansion,
+      value dyadic_data first = value dyadic_data second → first = second)
+```
 -/
 theorem value_is_bijective :
     (∀ real_value : CauchyCarrier dyadic_data,
@@ -361,6 +679,17 @@ theorem value_is_bijective :
 /-- A bijection between two carriers, given by mutually inverse maps.
 
 Mathematical statement (Lean): `structure Bijection (α β : Type)`.
+
+
+Logical form:
+
+```lean
+structure Bijection (α β : Type) where
+  forward : α → β
+  inverse : β → α
+  left_inverse : ∀ value : α, inverse (forward value) = value
+  right_inverse : ∀ value : β, forward (inverse value) = value
+```
 -/
 structure Bijection (α β : Type) where
   forward : α → β
@@ -374,6 +703,16 @@ structure Bijection (α β : Type) where
 Mathematical statement (Lean): `theorem binary_real_bijection_exists : ∃ bridge : Bijection Expansion (CauchyCarrier dyadic_data), ∀ expansion : Expansion, bridge.forward expansion = value dyadic_data expansion`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem binary_real_bijection_exists :
+    ∃ bridge : Bijection Expansion (CauchyCarrier dyadic_data),
+      ∀ expansion : Expansion,
+        bridge.forward expansion = value dyadic_data expansion
+```
 -/
 theorem binary_real_bijection_exists :
     ∃ bridge : Bijection Expansion (CauchyCarrier dyadic_data),
@@ -385,6 +724,15 @@ theorem binary_real_bijection_exists :
 **[Def — binaryRealBijection]**
 
 Mathematical statement (Lean): `noncomputable def binaryRealBijection : Bijection Expansion (CauchyCarrier dyadic_data)`.
+
+
+Logical form:
+
+```lean
+noncomputable def binaryRealBijection :
+    Bijection Expansion (CauchyCarrier dyadic_data) :=
+  Classical.choose (binary_real_bijection_exists dyadic_data)
+```
 -/
 noncomputable def binaryRealBijection :
     Bijection Expansion (CauchyCarrier dyadic_data) :=
@@ -394,6 +742,14 @@ noncomputable def binaryRealBijection :
 /-- Definition 4.1: transported constants and operations.
 
 Mathematical statement (Lean): `noncomputable def zero : Expansion`.
+
+
+Logical form:
+
+```lean
+noncomputable def zero : Expansion :=
+  (binaryRealBijection dyadic_data).inverse dyadic_data.cauchy_zero
+```
 -/
 noncomputable def zero : Expansion :=
   (binaryRealBijection dyadic_data).inverse dyadic_data.cauchy_zero
@@ -402,6 +758,14 @@ noncomputable def zero : Expansion :=
 **[Def — one]**
 
 Mathematical statement (Lean): `noncomputable def one : Expansion`.
+
+
+Logical form:
+
+```lean
+noncomputable def one : Expansion :=
+  (binaryRealBijection dyadic_data).inverse dyadic_data.cauchy_one
+```
 -/
 noncomputable def one : Expansion :=
   (binaryRealBijection dyadic_data).inverse dyadic_data.cauchy_one
@@ -410,6 +774,17 @@ noncomputable def one : Expansion :=
 **[Def — addition]**
 
 Mathematical statement (Lean): `noncomputable def addition (first second : Expansion) : Expansion`.
+
+
+Logical form:
+
+```lean
+noncomputable def addition (first second : Expansion) : Expansion :=
+  (binaryRealBijection dyadic_data).inverse
+    (dyadic_data.cauchy_addition
+      ((binaryRealBijection dyadic_data).forward first)
+      ((binaryRealBijection dyadic_data).forward second))
+```
 -/
 noncomputable def addition (first second : Expansion) : Expansion :=
   (binaryRealBijection dyadic_data).inverse
@@ -421,6 +796,16 @@ noncomputable def addition (first second : Expansion) : Expansion :=
 **[Def — negation]**
 
 Mathematical statement (Lean): `noncomputable def negation (expansion : Expansion) : Expansion`.
+
+
+Logical form:
+
+```lean
+noncomputable def negation (expansion : Expansion) : Expansion :=
+  (binaryRealBijection dyadic_data).inverse
+    (dyadic_data.cauchy_negation
+      ((binaryRealBijection dyadic_data).forward expansion))
+```
 -/
 noncomputable def negation (expansion : Expansion) : Expansion :=
   (binaryRealBijection dyadic_data).inverse
@@ -431,6 +816,17 @@ noncomputable def negation (expansion : Expansion) : Expansion :=
 **[Def — multiplication]**
 
 Mathematical statement (Lean): `noncomputable def multiplication (first second : Expansion) : Expansion`.
+
+
+Logical form:
+
+```lean
+noncomputable def multiplication (first second : Expansion) : Expansion :=
+  (binaryRealBijection dyadic_data).inverse
+    (dyadic_data.cauchy_multiplication
+      ((binaryRealBijection dyadic_data).forward first)
+      ((binaryRealBijection dyadic_data).forward second))
+```
 -/
 noncomputable def multiplication (first second : Expansion) : Expansion :=
   (binaryRealBijection dyadic_data).inverse
@@ -442,6 +838,16 @@ noncomputable def multiplication (first second : Expansion) : Expansion :=
 **[Def — inverse]**
 
 Mathematical statement (Lean): `noncomputable def inverse (expansion : Expansion) : Expansion`.
+
+
+Logical form:
+
+```lean
+noncomputable def inverse (expansion : Expansion) : Expansion :=
+  (binaryRealBijection dyadic_data).inverse
+    (dyadic_data.cauchy_inverse
+      ((binaryRealBijection dyadic_data).forward expansion))
+```
 -/
 noncomputable def inverse (expansion : Expansion) : Expansion :=
   (binaryRealBijection dyadic_data).inverse
@@ -452,6 +858,16 @@ noncomputable def inverse (expansion : Expansion) : Expansion :=
 /-- Definition 4.1: transported strict order.
 
 Mathematical statement (Lean): `def strict_order (first second : Expansion) : Prop`.
+
+
+Logical form:
+
+```lean
+def strict_order (first second : Expansion) : Prop :=
+  dyadic_data.cauchy_strict_order
+    ((binaryRealBijection dyadic_data).forward first)
+    ((binaryRealBijection dyadic_data).forward second)
+```
 -/
 def strict_order (first second : Expansion) : Prop :=
   dyadic_data.cauchy_strict_order
@@ -462,6 +878,38 @@ def strict_order (first second : Expansion) : Prop :=
 /-- Proposition expressing that V is an ordered-field isomorphism.
 
 Mathematical statement (Lean): `def OrderedFieldIsomorphism : Prop`.
+
+
+Logical form:
+
+```lean
+def OrderedFieldIsomorphism : Prop :=
+  (binaryRealBijection dyadic_data).forward (zero dyadic_data) = dyadic_data.cauchy_zero ∧
+  (binaryRealBijection dyadic_data).forward (one dyadic_data) = dyadic_data.cauchy_one ∧
+  (∀ first second : Expansion,
+    (binaryRealBijection dyadic_data).forward (addition dyadic_data first second) =
+      dyadic_data.cauchy_addition
+        ((binaryRealBijection dyadic_data).forward first)
+        ((binaryRealBijection dyadic_data).forward second)) ∧
+  (∀ expansion : Expansion,
+    (binaryRealBijection dyadic_data).forward (negation dyadic_data expansion) =
+      dyadic_data.cauchy_negation
+        ((binaryRealBijection dyadic_data).forward expansion)) ∧
+  (∀ first second : Expansion,
+    (binaryRealBijection dyadic_data).forward (multiplication dyadic_data first second) =
+      dyadic_data.cauchy_multiplication
+        ((binaryRealBijection dyadic_data).forward first)
+        ((binaryRealBijection dyadic_data).forward second)) ∧
+  (∀ expansion : Expansion,
+    (binaryRealBijection dyadic_data).forward (inverse dyadic_data expansion) =
+      dyadic_data.cauchy_inverse
+        ((binaryRealBijection dyadic_data).forward expansion)) ∧
+  (∀ first second : Expansion,
+    strict_order dyadic_data first second ↔
+      dyadic_data.cauchy_strict_order
+        ((binaryRealBijection dyadic_data).forward first)
+        ((binaryRealBijection dyadic_data).forward second))
+```
 -/
 def OrderedFieldIsomorphism : Prop :=
   (binaryRealBijection dyadic_data).forward (zero dyadic_data) = dyadic_data.cauchy_zero ∧
@@ -496,6 +944,13 @@ def OrderedFieldIsomorphism : Prop :=
 Mathematical statement (Lean): `theorem ordered_field_isomorphism : OrderedFieldIsomorphism dyadic_data`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem ordered_field_isomorphism : OrderedFieldIsomorphism dyadic_data
+```
 -/
 theorem ordered_field_isomorphism : OrderedFieldIsomorphism dyadic_data := by
   sorry
@@ -504,6 +959,15 @@ theorem ordered_field_isomorphism : OrderedFieldIsomorphism dyadic_data := by
 /-- Proposition expressing complete Archimedean ordered-field structure.
 
 Mathematical statement (Lean): `def CompleteArchimedeanOrderedField : Prop`.
+
+
+Logical form:
+
+```lean
+def CompleteArchimedeanOrderedField : Prop :=
+  OrderedFieldIsomorphism dyadic_data ∧
+  dyadic_data.cauchy_complete_archimedean_ordered_field
+```
 -/
 def CompleteArchimedeanOrderedField : Prop :=
   OrderedFieldIsomorphism dyadic_data ∧
@@ -515,6 +979,14 @@ def CompleteArchimedeanOrderedField : Prop :=
 Mathematical statement (Lean): `theorem complete_archimedean_ordered_field : CompleteArchimedeanOrderedField dyadic_data`.
 
 *Proof status:* proof pending
+
+
+Logical form:
+
+```lean
+theorem complete_archimedean_ordered_field :
+    CompleteArchimedeanOrderedField dyadic_data
+```
 -/
 theorem complete_archimedean_ordered_field :
     CompleteArchimedeanOrderedField dyadic_data := by
