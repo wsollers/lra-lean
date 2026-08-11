@@ -1,23 +1,16 @@
 import LRA.VolumeI.Identity.Axioms.Axioms
-import LRA.VolumeI.Set.Axioms.Axioms
+import LRA.VolumeI.Set.Enderton.Axioms.Axioms
 
 /-!
 The textbook biconditional form of set extensionality.
 -/
 
-namespace LRA.VolumeI.Set
+namespace LRA.VolumeI.Set.Enderton
 
 /-- Two sets are equal if and only if they have the same members.
 
 The forward direction is identity substitution. The reverse direction is the
-Axiom of Extensionality.
-
-Logical form:
-
-```lean
-A = B ↔ ∀ x : Set, x ∈ A ↔ x ∈ B
-```
--/
+Axiom of Extensionality. -/
 theorem SetEqualityIffSameMembers (A B : Set) :
     A = B ↔ ∀ x : Set, x ∈ A ↔ x ∈ B := by
   constructor
@@ -28,4 +21,4 @@ theorem SetEqualityIffSameMembers (A B : Set) :
   · intro SameMembers
     exact Extensionality A B SameMembers
 
-end LRA.VolumeI.Set
+end LRA.VolumeI.Set.Enderton

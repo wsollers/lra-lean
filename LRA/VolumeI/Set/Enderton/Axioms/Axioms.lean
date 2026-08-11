@@ -1,45 +1,24 @@
-import LRA.VolumeI.Set.Primitives
+import LRA.VolumeI.Set.Enderton.Primitives
 
-/-! The axioms of textbook set theory. -/
+/-! The axioms of Enderton-style textbook set theory. -/
 
-namespace LRA.VolumeI.Set
+namespace LRA.VolumeI.Set.Enderton
 
 /-- TeX label: `ax:extensionality`.
 
-Sets with the same members are equal.
-
-Logical form:
-
-```lean
-(∀ x : Set, x ∈ A ↔ x ∈ B) → A = B
-```
--/
+Sets with the same members are equal. -/
 axiom Extensionality (A B : Set) :
     (∀ x : Set, x ∈ A ↔ x ∈ B) → A = B
 
 /-- TeX label: `ax:empty-set`.
 
-There exists a set with no members.
-
-Logical form:
-
-```lean
-∃ A : Set, ∀ x : Set, x ∉ A
-```
--/
+There exists a set with no members. -/
 axiom EmptySet :
     ∃ A : Set, ∀ x : Set, x ∉ A
 
 /-- TeX label: `ax:pairing`.
 
-For any two sets, there exists a set containing exactly those two sets.
-
-Logical form:
-
-```lean
-∃ C : Set, ∀ x : Set, x ∈ C ↔ x = A ∨ x = B
-```
--/
+For any two sets, there exists a set containing exactly those two sets. -/
 axiom Pairing (A B : Set) :
     ∃ C : Set,
       ∀ x : Set, x ∈ C ↔ x = A ∨ x = B
@@ -47,15 +26,7 @@ axiom Pairing (A B : Set) :
 /-- TeX label: `ax:union`.
 
 For any set of sets, there exists a set containing exactly the members of its
-members.
-
-Logical form:
-
-```lean
-∃ U : Set,
-  ∀ x : Set, x ∈ U ↔ ∃ B : Set, B ∈ A ∧ x ∈ B
-```
--/
+members. -/
 axiom Union (A : Set) :
     ∃ U : Set,
       ∀ x : Set,
@@ -63,15 +34,7 @@ axiom Union (A : Set) :
 
 /-- TeX label: `ax:power-set`.
 
-For any set, there exists a set whose members are exactly its subsets.
-
-Logical form:
-
-```lean
-∃ P : Set,
-  ∀ x : Set, x ∈ P ↔ ∀ y : Set, y ∈ x → y ∈ A
-```
--/
+For any set, there exists a set whose members are exactly its subsets. -/
 axiom PowerSet (A : Set) :
     ∃ P : Set,
       ∀ x : Set,
@@ -81,19 +44,7 @@ axiom PowerSet (A : Set) :
 
 There exists a set containing an empty set and, with each member, a successor
 whose members are exactly that member's members together with the member
-itself.
-
-Logical form:
-
-```lean
-∃ A : Set,
-  (∃ empty : Set, empty ∈ A ∧ ∀ w : Set, w ∉ empty) ∧
-  ∀ x : Set, x ∈ A →
-    ∃ successor : Set,
-      successor ∈ A ∧
-      ∀ w : Set, w ∈ successor ↔ w ∈ x ∨ w = x
-```
--/
+itself. -/
 axiom Infinity :
     ∃ A : Set,
       (∃ empty : Set,
@@ -107,15 +58,7 @@ axiom Infinity :
 
 For each property and set, there exists a subset containing exactly the
 members that satisfy the property. The predicate parameter represents the
-axiom schema in Lean.
-
-Logical form:
-
-```lean
-∃ B : Set,
-  ∀ x : Set, x ∈ B ↔ x ∈ A ∧ property x
-```
--/
+axiom schema in Lean. -/
 axiom Separation (property : Set -> Prop) (A : Set) :
     ∃ B : Set,
       ∀ x : Set, x ∈ B ↔ x ∈ A ∧ property x
@@ -123,20 +66,7 @@ axiom Separation (property : Set -> Prop) (A : Set) :
 /-- TeX label: `ax:replacement`.
 
 If a relation assigns exactly one output to each member of a set, those outputs
-form a set. The relation parameter represents the axiom schema in Lean.
-
-Logical form:
-
-```lean
-(∀ x : Set, x ∈ A →
-  ∃ y : Set,
-    relation x y ∧
-    ∀ other : Set, relation x other → other = y) →
-  ∃ B : Set,
-    ∀ y : Set,
-      y ∈ B ↔ ∃ x : Set, x ∈ A ∧ relation x y
-```
--/
+form a set. The relation parameter represents the axiom schema in Lean. -/
 axiom Replacement (relation : Set -> Set -> Prop) (A : Set) :
     (∀ x : Set, x ∈ A →
       ∃ y : Set,
@@ -148,15 +78,7 @@ axiom Replacement (relation : Set -> Set -> Prop) (A : Set) :
 
 /-- TeX label: `ax:foundation`.
 
-Every nonempty set has a member disjoint from it.
-
-Logical form:
-
-```lean
-(∃ w : Set, w ∈ A) →
-  ∃ x : Set, x ∈ A ∧ ∀ y : Set, y ∈ x → y ∉ A
-```
--/
+Every nonempty set has a member disjoint from it. -/
 axiom Foundation (A : Set) :
     (∃ w : Set, w ∈ A) →
       ∃ x : Set,
@@ -167,23 +89,7 @@ axiom Foundation (A : Set) :
 Every pairwise-disjoint family of nonempty sets has a set containing exactly
 one member of each set in the family. This membership-only formulation is
 equivalent to the usual choice-function statement and does not presuppose a
-construction of functions as sets.
-
-Logical form:
-
-```lean
-(∀ B : Set, B ∈ A → ∃ x : Set, x ∈ B) →
-(∀ B C : Set,
-  B ∈ A → C ∈ A → B ≠ C →
-    ∀ x : Set, x ∈ B → x ∉ C) →
-  ∃ choiceSet : Set,
-    ∀ B : Set, B ∈ A →
-      ∃ x : Set,
-        (x ∈ B ∧ x ∈ choiceSet) ∧
-        ∀ other : Set,
-          (other ∈ B ∧ other ∈ choiceSet) → other = x
-```
--/
+construction of functions as sets. -/
 axiom Choice (A : Set) :
     (∀ B : Set, B ∈ A → ∃ x : Set, x ∈ B) →
     (∀ B C : Set,
@@ -196,4 +102,4 @@ axiom Choice (A : Set) :
             ∀ other : Set,
               (other ∈ B ∧ other ∈ choiceSet) → other = x
 
-end LRA.VolumeI.Set
+end LRA.VolumeI.Set.Enderton

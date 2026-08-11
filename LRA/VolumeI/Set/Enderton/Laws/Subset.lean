@@ -1,0 +1,34 @@
+import LRA.VolumeI.Set.Enderton.Instances
+import LRA.VolumeI.Set.Interface.Subset
+
+namespace LRA.VolumeI.Set.Enderton
+
+/-!
+Subset laws for Enderton sets: the backend's certificate for
+`LRA.VolumeI.Set.SubsetLaws`.
+
+Only the pure-`⊆` laws are here. `SubsetIffUnionEqRight` and
+`SubsetIffIntersectionEqLeft` moved to `Laws/Union.lean` and
+`Laws/Intersection.lean`, mirroring the interface's placement.
+-/
+
+theorem SubsetReflexive : ∀ A : Set, A ⊆ A := by
+  sorry
+
+theorem SubsetTransitive :
+    ∀ A B C : Set, A ⊆ B → B ⊆ C → A ⊆ C := by
+  sorry
+
+theorem SetEqualityIffMutualSubset :
+    ∀ A B : Set, A = B ↔ A ⊆ B ∧ B ⊆ A := by
+  sorry
+
+/-- Registration: Enderton sets satisfy the subset laws. Pure delegation to
+the theorems above. -/
+instance : SubsetLaws Set where
+  SubsetReflexive := LRA.VolumeI.Set.Enderton.SubsetReflexive
+  SubsetTransitive := LRA.VolumeI.Set.Enderton.SubsetTransitive
+  SetEqualityIffMutualSubset :=
+    LRA.VolumeI.Set.Enderton.SetEqualityIffMutualSubset
+
+end LRA.VolumeI.Set.Enderton
