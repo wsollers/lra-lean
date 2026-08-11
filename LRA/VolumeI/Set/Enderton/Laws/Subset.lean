@@ -11,13 +11,42 @@ Only the pure-`⊆` laws are here. `SubsetIffUnionEqRight` and
 `SubsetIffIntersectionEqLeft` moved to `Laws/Union.lean` and
 `Laws/Intersection.lean`, mirroring the interface's placement.
 -/
+/--
+`SubsetReflexive` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem SubsetReflexive : ∀ A : Set, A ⊆ A
+```
+-/
 
 theorem SubsetReflexive : ∀ A : Set, A ⊆ A := by
   sorry
+/--
+`SubsetTransitive` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem SubsetTransitive :
+    ∀ A B C : Set, A ⊆ B → B ⊆ C → A ⊆ C
+```
+-/
 
 theorem SubsetTransitive :
     ∀ A B C : Set, A ⊆ B → B ⊆ C → A ⊆ C := by
   sorry
+/--
+`SetEqualityIffMutualSubset` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem SetEqualityIffMutualSubset :
+    ∀ A B : Set, A = B ↔ A ⊆ B ∧ B ⊆ A
+```
+-/
 
 theorem SetEqualityIffMutualSubset :
     ∀ A B : Set, A = B ↔ A ⊆ B ∧ B ⊆ A := by

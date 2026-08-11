@@ -2,20 +2,26 @@ import LRA.VolumeII.PeanoSystems.Induction.Core
 
 namespace LRA.VolumeII.PeanoSystems
 
+universe u v w
+
+variable {Element : Type u} {SetObject : Type v}
+variable [Membership Element SetObject]
+
+
 /--
 **[Definition - Iterator Data]**
 
 Iterator data for a Peano system consists of a target type, an initial value,
 and a step rule on the target type.
 
-Mathematical statement (Lean): `structure IteratorData (ps : PeanoSystem)`.
+Mathematical statement (Lean): `structure IteratorData (ps : PeanoSystem Element SetObject)`.
 -/
-structure IteratorData (ps : PeanoSystem) where
-  Target : Type
+structure IteratorData (ps : PeanoSystem Element SetObject) where
+  Target : Type w
   InitialValue : Target
   StepRule : Target -> Target
 
-abbrev IteratorDataOnPeanoSystem (ps : PeanoSystem) := IteratorData ps
+abbrev IteratorDataOnPeanoSystem (ps : PeanoSystem Element SetObject) := IteratorData ps
 
 /--
 **[Definition - Iterator Function Clauses]**
@@ -24,16 +30,16 @@ A function satisfies the iterator clauses exactly when it sends the
 distinguished element to the initial value and sends successors according to the
 step rule.
 
-Mathematical statement (Lean): `def IteratorFunctionClauses (ps : PeanoSystem) (target : Type) (initial_value : target) (step_rule : target -> target) (iterator_function : ps.carrier -> target) : Prop`.
+Mathematical statement (Lean): `def IteratorFunctionClauses (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target -> target) (iterator_function : Element -> target) : Prop`.
 -/
 def IteratorFunctionClauses
-    (ps : PeanoSystem)
-    (target : Type)
+    (ps : PeanoSystem Element SetObject)
+    (target : Type w)
     (initial_value : target)
     (step_rule : target -> target)
-    (iterator_function : ps.carrier -> target) : Prop :=
+    (iterator_function : Element -> target) : Prop :=
   iterator_function ps.one = initial_value /\
-    forall element : ps.carrier,
+    forall element : Element,
       iterator_function (ps.successor element) =
         step_rule (iterator_function element)
 
@@ -43,14 +49,14 @@ def IteratorFunctionClauses
 An iterator relation contains the initial pair and is closed under the iterator
 step.
 
-Mathematical statement (Lean): `def IteratorRelation (ps : PeanoSystem) (data : IteratorData ps) (relation : ps.carrier -> data.target -> Prop) : Prop`.
+Mathematical statement (Lean): `def IteratorRelation (ps : PeanoSystem Element SetObject) (data : IteratorData ps) (relation : Element -> data.target -> Prop) : Prop`.
 -/
 def IteratorRelation
-    (ps : PeanoSystem)
+    (ps : PeanoSystem Element SetObject)
     (data : IteratorData ps)
-    (relation : ps.carrier -> data.Target -> Prop) : Prop :=
+    (relation : Element -> data.Target -> Prop) : Prop :=
   relation ps.one data.InitialValue /\
-    forall element : ps.carrier,
+    forall element : Element,
       forall value : data.Target,
         relation element value ->
         relation (ps.successor element) (data.StepRule value)
@@ -61,14 +67,14 @@ def IteratorRelation
 The minimal iterator relation contains exactly the pairs forced by every
 iterator relation.
 
-Mathematical statement (Lean): `def MinimalIteratorRelation (ps : PeanoSystem) (data : IteratorData ps) (element : ps.carrier) (value : data.target) : Prop`.
+Mathematical statement (Lean): `def MinimalIteratorRelation (ps : PeanoSystem Element SetObject) (data : IteratorData ps) (element : Element) (value : data.target) : Prop`.
 -/
 def MinimalIteratorRelation
-    (ps : PeanoSystem)
+    (ps : PeanoSystem Element SetObject)
     (data : IteratorData ps)
-    (element : ps.carrier)
+    (element : Element)
     (value : data.Target) : Prop :=
-  forall relation : ps.carrier -> data.Target -> Prop,
+  forall relation : Element -> data.Target -> Prop,
     IteratorRelation ps data relation ->
     relation element value
 
@@ -78,17 +84,17 @@ def MinimalIteratorRelation
 The minimal iterator relation contains the initial pair and is closed under the
 iterator step.
 
-Mathematical statement (Lean): `theorem MinimalIteratorRelationIsIteratorRelation (ps : PeanoSystem) (data : IteratorData ps) : IteratorRelation ps data (MinimalIteratorRelation ps data)`.
+Mathematical statement (Lean): `theorem MinimalIteratorRelationIsIteratorRelation (ps : PeanoSystem Element SetObject) (data : IteratorData ps) : IteratorRelation ps data (MinimalIteratorRelation ps data)`.
 -/
 theorem MinimalIteratorRelationIsIteratorRelation
-    (ps : PeanoSystem)
+    (ps : PeanoSystem Element SetObject)
     (data : IteratorData ps) :
     IteratorRelation ps data
       (MinimalIteratorRelation ps data) := by
   sorry
 
 theorem IteratorRelationConsistency
-    (ps : PeanoSystem)
+    (ps : PeanoSystem Element SetObject)
     (data : IteratorData ps) :
     IteratorRelation ps data (MinimalIteratorRelation ps data) := by
   sorry
@@ -98,12 +104,12 @@ theorem IteratorRelationConsistency
 
 Every stage has at least one value in the minimal iterator relation.
 
-Mathematical statement (Lean): `theorem MinimalIteratorRelationComplete (ps : PeanoSystem) (data : IteratorData ps) : forall element : ps.carrier, exists value : data.target, MinimalIteratorRelation ps data element value`.
+Mathematical statement (Lean): `theorem MinimalIteratorRelationComplete (ps : PeanoSystem Element SetObject) (data : IteratorData ps) : forall element : Element, exists value : data.target, MinimalIteratorRelation ps data element value`.
 -/
 theorem MinimalIteratorRelationComplete
-    (ps : PeanoSystem)
+    (ps : PeanoSystem Element SetObject)
     (data : IteratorData ps) :
-    forall element : ps.carrier,
+    forall element : Element,
       exists value : data.Target,
         MinimalIteratorRelation ps data element value := by
   sorry
@@ -114,19 +120,19 @@ theorem MinimalIteratorRelationComplete
 For each element of the Peano system, the minimal iterator relation forces at
 most one value.
 
-Mathematical statement (Lean): `theorem MinimalIteratorRelationDeterministic (ps : PeanoSystem) (data : IteratorData ps) : forall element : ps.carrier, forall first_value second_value : data.target, MinimalIteratorRelation ps data element first_value -> MinimalIteratorRelation ps data element second_value -> first_value = second_value`.
+Mathematical statement (Lean): `theorem MinimalIteratorRelationDeterministic (ps : PeanoSystem Element SetObject) (data : IteratorData ps) : forall element : Element, forall first_value second_value : data.target, MinimalIteratorRelation ps data element first_value -> MinimalIteratorRelation ps data element second_value -> first_value = second_value`.
 -/
 theorem MinimalIteratorRelationDeterministic
-    (ps : PeanoSystem)
+    (ps : PeanoSystem Element SetObject)
     (data : IteratorData ps) :
-    forall element : ps.carrier,
+    forall element : Element,
       forall first_value second_value : data.Target,
         MinimalIteratorRelation ps data element first_value ->
         MinimalIteratorRelation ps data element second_value ->
         first_value = second_value := by
   sorry
 
-theorem ForcedValuesAreUnique (ps : PeanoSystem) (data : IteratorData ps) : True := by
+theorem ForcedValuesAreUnique (ps : PeanoSystem Element SetObject) (data : IteratorData ps) : True := by
   sorry
 
 /--
@@ -135,14 +141,14 @@ theorem ForcedValuesAreUnique (ps : PeanoSystem) (data : IteratorData ps) : True
 For every target type, initial value, and step rule, there exists an iterator
 function satisfying the iterator clauses.
 
-Mathematical statement (Lean): `theorem ExistenceOfIteratorFunction (ps : PeanoSystem) (target : Type) (initial_value : target) (step_rule : target -> target) : exists iterator_function : ps.carrier -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function`.
+Mathematical statement (Lean): `theorem ExistenceOfIteratorFunction (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target -> target) : exists iterator_function : Element -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function`.
 -/
 theorem ExistenceOfIteratorFunction
-    (ps : PeanoSystem)
-    (target : Type)
+    (ps : PeanoSystem Element SetObject)
+    (target : Type w)
     (initial_value : target)
     (step_rule : target -> target) :
-    exists iterator_function : ps.carrier -> target,
+    exists iterator_function : Element -> target,
       IteratorFunctionClauses
         ps
         target
@@ -156,14 +162,14 @@ theorem ExistenceOfIteratorFunction
 
 Any two iterator functions satisfying the same iterator clauses are equal.
 
-Mathematical statement (Lean): `theorem UniquenessOfIteratorFunctions (ps : PeanoSystem) (target : Type) (initial_value : target) (step_rule : target -> target) (first_iterator second_iterator : ps.carrier -> target) : IteratorFunctionClauses ps target initial_value step_rule first_iterator -> IteratorFunctionClauses ps target initial_value step_rule second_iterator -> first_iterator = second_iterator`.
+Mathematical statement (Lean): `theorem UniquenessOfIteratorFunctions (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target -> target) (first_iterator second_iterator : Element -> target) : IteratorFunctionClauses ps target initial_value step_rule first_iterator -> IteratorFunctionClauses ps target initial_value step_rule second_iterator -> first_iterator = second_iterator`.
 -/
 theorem UniquenessOfIteratorFunctions
-    (ps : PeanoSystem)
-    (target : Type)
+    (ps : PeanoSystem Element SetObject)
+    (target : Type w)
     (initial_value : target)
     (step_rule : target -> target)
-    (first_iterator second_iterator : ps.carrier -> target) :
+    (first_iterator second_iterator : Element -> target) :
     IteratorFunctionClauses ps target initial_value step_rule first_iterator ->
       IteratorFunctionClauses ps target initial_value step_rule second_iterator ->
       first_iterator = second_iterator := by
@@ -177,18 +183,18 @@ Iterator data determines exactly one iterator function.
 Mathematical statement (Lean): `theorem IteratorFunctionWellDefined`.
 -/
 theorem IteratorFunctionWellDefined
-    (ps : PeanoSystem)
-    (target : Type)
+    (ps : PeanoSystem Element SetObject)
+    (target : Type w)
     (initial_value : target)
     (step_rule : target -> target) :
-    exists iterator_function : ps.carrier -> target,
+    exists iterator_function : Element -> target,
       IteratorFunctionClauses
         ps
         target
         initial_value
         step_rule
         iterator_function /\
-      forall other_iterator : ps.carrier -> target,
+      forall other_iterator : Element -> target,
         IteratorFunctionClauses
           ps
           target
@@ -204,14 +210,14 @@ theorem IteratorFunctionWellDefined
 The iterator-generated function determined by a target type, an initial value,
 and a step rule.
 
-Mathematical statement (Lean): `noncomputable def IteratorGeneratedFunction (ps : PeanoSystem) (target : Type) (initial_value : target) (step_rule : target -> target) : ps.carrier -> target`.
+Mathematical statement (Lean): `noncomputable def IteratorGeneratedFunction (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target -> target) : Element -> target`.
 -/
 noncomputable def IteratorGeneratedFunction
-    (ps : PeanoSystem)
-    (target : Type)
+    (ps : PeanoSystem Element SetObject)
+    (target : Type w)
     (initial_value : target)
     (step_rule : target -> target) :
-    ps.carrier -> target :=
+    Element -> target :=
   Classical.choose
     (ExistenceOfIteratorFunction
       ps
@@ -225,11 +231,11 @@ noncomputable def IteratorGeneratedFunction
 The iterator-generated function sends the distinguished element to the initial
 value.
 
-Mathematical statement (Lean): `theorem IteratorBaseValue (ps : PeanoSystem) (target : Type) (initial_value : target) (step_rule : target -> target) : IteratorGeneratedFunction ps target initial_value step_rule ps.one = initial_value`.
+Mathematical statement (Lean): `theorem IteratorBaseValue (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target -> target) : IteratorGeneratedFunction ps target initial_value step_rule ps.one = initial_value`.
 -/
 theorem IteratorBaseValue
-    (ps : PeanoSystem)
-    (target : Type)
+    (ps : PeanoSystem Element SetObject)
+    (target : Type w)
     (initial_value : target)
     (step_rule : target -> target) :
     IteratorGeneratedFunction ps target initial_value step_rule ps.one = initial_value := by
@@ -240,23 +246,23 @@ theorem IteratorBaseValue
 
 The iterator-generated function sends successors according to the step rule.
 
-Mathematical statement (Lean): `theorem IteratorSuccessorStep (ps : PeanoSystem) (target : Type) (initial_value : target) (step_rule : target -> target) (element : ps.carrier) : IteratorGeneratedFunction ps target initial_value step_rule (ps.successor element) = step_rule (IteratorGeneratedFunction ps target initial_value step_rule element)`.
+Mathematical statement (Lean): `theorem IteratorSuccessorStep (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target -> target) (element : Element) : IteratorGeneratedFunction ps target initial_value step_rule (ps.successor element) = step_rule (IteratorGeneratedFunction ps target initial_value step_rule element)`.
 -/
 theorem IteratorSuccessorStep
-    (ps : PeanoSystem)
-    (target : Type)
+    (ps : PeanoSystem Element SetObject)
+    (target : Type w)
     (initial_value : target)
     (step_rule : target -> target)
-    (element : ps.carrier) :
+    (element : Element) :
     IteratorGeneratedFunction ps target initial_value step_rule (ps.successor element) =
       step_rule (IteratorGeneratedFunction ps target initial_value step_rule element) := by
   sorry
 
 noncomputable def IterationOfASelfMap
-    (ps : PeanoSystem)
-    (initial_value : ps.carrier)
-    (step_rule : ps.carrier -> ps.carrier) : ps.carrier -> ps.carrier :=
-  IteratorGeneratedFunction ps ps.carrier initial_value step_rule
+    (ps : PeanoSystem Element SetObject)
+    (initial_value : Element)
+    (step_rule : Element -> Element) : Element -> Element :=
+  IteratorGeneratedFunction ps Element initial_value step_rule
 
 /--
 **[Theorem - Peano Iterator Theorem]**
@@ -265,21 +271,21 @@ For every target type, initial value, and step rule, there exists an iterator
 function satisfying the iterator clauses, and any other such function is equal
 to it.
 
-Mathematical statement (Lean): `theorem PeanoIteratorTheorem (ps : PeanoSystem) (target : Type) (initial_value : target) (step_rule : target -> target) : exists iterator_function : ps.carrier -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function /\ forall other_iterator : ps.carrier -> target, IteratorFunctionClauses ps target initial_value step_rule other_iterator -> other_iterator = iterator_function`.
+Mathematical statement (Lean): `theorem PeanoIteratorTheorem (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target -> target) : exists iterator_function : Element -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function /\ forall other_iterator : Element -> target, IteratorFunctionClauses ps target initial_value step_rule other_iterator -> other_iterator = iterator_function`.
 -/
 theorem PeanoIteratorTheorem
-    (ps : PeanoSystem)
-    (target : Type)
+    (ps : PeanoSystem Element SetObject)
+    (target : Type w)
     (initial_value : target)
     (step_rule : target -> target) :
-    exists iterator_function : ps.carrier -> target,
+    exists iterator_function : Element -> target,
       IteratorFunctionClauses
         ps
         target
         initial_value
         step_rule
         iterator_function /\
-      forall other_iterator : ps.carrier -> target,
+      forall other_iterator : Element -> target,
         IteratorFunctionClauses
           ps
           target
@@ -289,21 +295,24 @@ theorem PeanoIteratorTheorem
         other_iterator = iterator_function := by
   sorry
 
-def StageDependentStepRule (_ps : PeanoSystem) (_target : Type) : Prop := True
+def StageDependentStepRule (_ps : PeanoSystem Element SetObject) (_target : Type w) : Prop := True
 
-def GeneralRecursiveFunction (_ps : PeanoSystem) (_target : Type) : Prop := True
+def GeneralRecursiveFunction (_ps : PeanoSystem Element SetObject) (_target : Type w) : Prop := True
 
-theorem UniquenessOfGeneralRecursiveFunctions (ps : PeanoSystem) : True := by
+theorem UniquenessOfGeneralRecursiveFunctions (ps : PeanoSystem Element SetObject) : True := by
   sorry
 
-theorem GeneralRecursionByStateEncoding (ps : PeanoSystem) : True := by
+theorem GeneralRecursionByStateEncoding (ps : PeanoSystem Element SetObject) : True := by
   sorry
 
-theorem GeneralRecursionTheoremForPeanoSystem (ps : PeanoSystem) : True := by
+theorem GeneralRecursionTheoremForPeanoSystem (ps : PeanoSystem Element SetObject) : True := by
   sorry
 
 theorem UniquenessOfPeanoSystemsUpToIsomorphism
-    (first second : PeanoSystem) : True := by
+    {SecondElement : Type u} {SecondSetObject : Type v}
+    [Membership SecondElement SecondSetObject]
+    (first : PeanoSystem Element SetObject)
+    (second : PeanoSystem SecondElement SecondSetObject) : True := by
   sorry
 
 end LRA.VolumeII.PeanoSystems

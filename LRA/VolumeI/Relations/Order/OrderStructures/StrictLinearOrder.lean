@@ -4,7 +4,19 @@ namespace LRA.VolumeI.Relations.Order
 
 universe u
 
-/-- Strict linear order laws: irreflexivity, transitivity, and trichotomy. -/
+/--
+Strict linear order laws: irreflexivity, transitivity, and trichotomy.
+
+Logical form:
+
+```lean
+def StrictLinearOrder {Alpha : Type u}
+    (relation : LRA.VolumeI.Relations.Endorelation Alpha) : Prop :=
+  LRA.VolumeI.Relations.Irreflexive relation /\
+    LRA.VolumeI.Relations.Transitive relation /\
+      LRA.VolumeI.Relations.ExactlyTrichotomous relation
+```
+-/
 def StrictLinearOrder {Alpha : Type u}
     (relation : LRA.VolumeI.Relations.Endorelation Alpha) : Prop :=
   LRA.VolumeI.Relations.Irreflexive relation /\

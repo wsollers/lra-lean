@@ -7,8 +7,15 @@ primitive membership relation behaves and which sets exist.
 -/
 
 namespace LRA.VolumeI.Set.Enderton
+/--
+The primitive sort of sets.
 
-/-- The primitive sort of sets. -/
+Logical form:
+
+```lean
+axiom Set : Type
+```
+-/
 axiom Set : Type
 
 /-- The primitive membership relation between sets.
@@ -17,7 +24,14 @@ Argument-order convention, fixed once here: `MembershipRelation x A` asserts
 that `x` is a member of `A` -- element first, container second, mirroring the
 textbook reading of `x ∈ A`. Every statement in the Enderton chapter goes
 through the `∈` notation below rather than citing this relation raw, but the
-convention still matters: it is what `x ∈ A` unfolds to. -/
+convention still matters: it is what `x ∈ A` unfolds to.
+
+Logical form:
+
+```lean
+axiom MembershipRelation : Set -> Set -> Prop
+```
+-/
 axiom MembershipRelation : Set -> Set -> Prop
 
 /-- Ordinary membership notation for textbook sets: `x ∈ A` unfolds to

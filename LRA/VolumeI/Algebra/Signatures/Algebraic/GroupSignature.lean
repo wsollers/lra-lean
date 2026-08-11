@@ -8,6 +8,14 @@ A group signature adds a unary inverse symbol to a monoid signature.
 Unary inverse/negation as primitive is a deliberate universal-algebra/Lean
 choice, even where Fine-style prose later derives the symbol by solving an
 equation.
+
+Logical form:
+
+```lean
+structure GroupSignature extends MonoidSignature where
+  InverseSymbol : Type
+  InverseArityIsUnary : InverseSymbol -> Nat
+```
 -/
 structure GroupSignature extends MonoidSignature where
   InverseSymbol : Type

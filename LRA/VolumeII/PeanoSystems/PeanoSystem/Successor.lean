@@ -2,6 +2,12 @@ import LRA.VolumeII.PeanoSystems.PeanoSystem.PeanoSystem
 
 namespace LRA.VolumeII.PeanoSystems
 
+universe u v
+
+variable {Element : Type u} {SetObject : Type v}
+variable [Membership Element SetObject]
+
+
 /--
 **[Theorem - Successor Is Injective]**
 
@@ -10,8 +16,8 @@ The successor operation of a Peano system is injective.
 Mathematical statement (Lean): `theorem SuccessorInjective`.
 -/
 theorem SuccessorInjective
-    (ps : PeanoSystem) :
-    forall first second : ps.carrier,
+    (ps : PeanoSystem Element SetObject) :
+    forall first second : Element,
       ps.successor first = ps.successor second -> first = second :=
   ps.successor_injective
 
@@ -24,8 +30,8 @@ element.
 Mathematical statement (Lean): `theorem OneIsNotSuccessor`.
 -/
 theorem OneIsNotSuccessor
-    (ps : PeanoSystem) :
-    forall element : ps.carrier,
+    (ps : PeanoSystem Element SetObject) :
+    forall element : Element,
       ps.successor element ≠ ps.one :=
   ps.one_not_successor
 
@@ -38,8 +44,8 @@ unequal.
 Mathematical statement (Lean): `theorem SuccessorPreservesInequality`.
 -/
 theorem SuccessorPreservesInequality
-    (ps : PeanoSystem)
-    (first_element second_element : ps.carrier)
+    (ps : PeanoSystem Element SetObject)
+    (first_element second_element : Element)
     (elements_not_equal : first_element ≠ second_element) :
     ps.successor first_element ≠ ps.successor second_element := by
   intro successors_equal
@@ -53,8 +59,8 @@ If two successors are unequal, then their predecessors are unequal.
 Mathematical statement (Lean): `theorem SuccessorInequalityReflection`.
 -/
 theorem SuccessorInequalityReflection
-    (ps : PeanoSystem)
-    (first second : ps.carrier) :
+    (ps : PeanoSystem Element SetObject)
+    (first second : Element) :
     ps.successor first ≠ ps.successor second -> first ≠ second := by
   intro successors_not_equal elements_equal
   exact successors_not_equal (congrArg ps.successor elements_equal)
@@ -68,10 +74,10 @@ successor of some element of the system.
 Mathematical statement (Lean): `theorem EveryElementIsOneOrASuccessor`.
 -/
 theorem EveryElementIsOneOrASuccessor
-    (ps : PeanoSystem) :
-    forall element : ps.carrier,
+    (ps : PeanoSystem Element SetObject) :
+    forall element : Element,
       element = ps.one \/
-        exists predecessor : ps.carrier,
+        exists predecessor : Element,
           ps.successor predecessor = element := by
   sorry
 
@@ -83,8 +89,8 @@ No element of a Peano system is equal to its own successor.
 Mathematical statement (Lean): `theorem NoObjectIsItsOwnSuccessor`.
 -/
 theorem NoObjectIsItsOwnSuccessor
-    (ps : PeanoSystem) :
-    forall element : ps.carrier,
+    (ps : PeanoSystem Element SetObject) :
+    forall element : Element,
       ps.successor element ≠ element := by
   sorry
 
@@ -97,13 +103,13 @@ is the distinguished element.
 Mathematical statement (Lean): `theorem OneIsUniqueNonSuccessor`.
 -/
 theorem OneIsUniqueNonSuccessor
-    (ps : PeanoSystem)
-    (element : ps.carrier) :
-    (forall predecessor : ps.carrier,
+    (ps : PeanoSystem Element SetObject)
+    (element : Element) :
+    (forall predecessor : Element,
       ps.successor predecessor ≠ element) <->
     element = ps.one := by
   sorry
 
-abbrev OneIsTheUniqueNonSuccessor := OneIsUniqueNonSuccessor
+abbrev OneIsTheUniqueNonSuccessor := @OneIsUniqueNonSuccessor
 
 end LRA.VolumeII.PeanoSystems

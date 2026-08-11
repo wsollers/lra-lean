@@ -10,19 +10,25 @@ as TeX-linked formal objects.
 
 namespace LRA.VolumeII.PeanoSystems.InductionPrinciple
 
+universe u v
+
+variable {Element : Type u} {SetObject : Type v}
+variable [Membership Element SetObject]
+
+
 /- Volume II label: thm:induction-principle-for-peano-system
    Lean declaration:
      LRA.VolumeII.PeanoSystems.InductionPrinciple.InductionPrincipleForPeanoSystem
    Status: pending -/
 theorem InductionPrincipleForPeanoSystem
-    (ps : PeanoSystem)
-    (subset : ps.setInterface.SetObject)
-    (base_case : ps.setInterface.Member ps.one subset)
+    (ps : PeanoSystem Element SetObject)
+    (subset : SetObject)
+    (base_case : ps.one ∈ subset)
     (successor_step :
-      ∀ element : ps.carrier,
-        ps.setInterface.Member element subset ->
-          ps.setInterface.Member (ps.successor element) subset) :
-    ∀ element : ps.carrier, ps.setInterface.Member element subset :=
+      ∀ element : Element,
+        element ∈ subset ->
+          (ps.successor element) ∈ subset) :
+    ∀ element : Element, element ∈ subset :=
   PeanoAxioms.PeanoInduction
     ps
     subset

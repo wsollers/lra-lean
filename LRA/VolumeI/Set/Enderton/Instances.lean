@@ -47,4 +47,16 @@ noncomputable instance : _root_.SDiff Set where
 noncomputable instance : HasSymmDiff Set where
   symmDiff := LRA.VolumeI.Set.Enderton.TheSymmetricDifference
 
+noncomputable instance : HasSeparation Set Set where
+  separation := LRA.VolumeI.Set.Enderton.TheSeparatedSubset
+
+noncomputable instance : HasPowerset Set Set where
+  powerset := LRA.VolumeI.Set.Enderton.ThePowerSet
+
+noncomputable instance : HasCollectionUnion Set Set where
+  collectionUnion := LRA.VolumeI.Set.Enderton.TheUnionOver
+
+noncomputable instance : HasCollectionIntersection Set Set where
+  collectionIntersection := LRA.VolumeI.Set.Enderton.TheIntersectionOver
+
 end LRA.VolumeI.Set.Enderton

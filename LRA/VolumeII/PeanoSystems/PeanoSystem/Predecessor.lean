@@ -2,6 +2,12 @@ import LRA.VolumeII.PeanoSystems.PeanoSystem.Successor
 
 namespace LRA.VolumeII.PeanoSystems
 
+universe u v
+
+variable {Element : Type u} {SetObject : Type v}
+variable [Membership Element SetObject]
+
+
 /--
 **[Definition - Predecessor in a Peano System]**
 
@@ -11,8 +17,8 @@ that element.
 Mathematical statement (Lean): `def PredecessorInPeanoSystem`.
 -/
 def PredecessorInPeanoSystem
-    (ps : PeanoSystem)
-    (predecessor element : ps.carrier) : Prop :=
+    (ps : PeanoSystem Element SetObject)
+    (predecessor element : Element) : Prop :=
   ps.successor predecessor = element
 
 /--
@@ -24,11 +30,11 @@ every other predecessor is equal to it.
 Mathematical statement (Lean): `def UniquePredecessor`.
 -/
 def UniquePredecessor
-    (ps : PeanoSystem)
-    (element : ps.carrier) : Prop :=
-  exists predecessor : ps.carrier,
+    (ps : PeanoSystem Element SetObject)
+    (element : Element) : Prop :=
+  exists predecessor : Element,
     ps.successor predecessor = element /\
-      forall other_predecessor : ps.carrier,
+      forall other_predecessor : Element,
         ps.successor other_predecessor = element ->
         other_predecessor = predecessor
 
@@ -40,8 +46,8 @@ The successor of an element has that element as its unique predecessor.
 Mathematical statement (Lean): `theorem SuccessorsHaveUniquePredecessors`.
 -/
 theorem SuccessorsHaveUniquePredecessors
-    (ps : PeanoSystem)
-    (element : ps.carrier) :
+    (ps : PeanoSystem Element SetObject)
+    (element : Element) :
     UniquePredecessor ps (ps.successor element) := by
   sorry
 
@@ -53,8 +59,8 @@ Any two predecessors of the same element are equal.
 Mathematical statement (Lean): `theorem PredecessorUnique`.
 -/
 theorem PredecessorUnique
-    (ps : PeanoSystem)
-    (first_predecessor second_predecessor element : ps.carrier) :
+    (ps : PeanoSystem Element SetObject)
+    (first_predecessor second_predecessor element : Element) :
     PredecessorInPeanoSystem ps first_predecessor element ->
     PredecessorInPeanoSystem ps second_predecessor element ->
     first_predecessor = second_predecessor := by
@@ -68,10 +74,10 @@ Every element other than the distinguished element is a successor.
 Mathematical statement (Lean): `theorem NonOneElementsHaveAPredecessor`.
 -/
 theorem NonOneElementsHaveAPredecessor
-    (ps : PeanoSystem)
-    (element : ps.carrier) :
+    (ps : PeanoSystem Element SetObject)
+    (element : Element) :
     element ≠ ps.one ->
-      exists predecessor : ps.carrier,
+      exists predecessor : Element,
         ps.successor predecessor = element := by
   sorry
 
@@ -83,8 +89,8 @@ Every element different from the distinguished element has a unique predecessor.
 Mathematical statement (Lean): `theorem PredecessorExistsUniqueAwayFromOne`.
 -/
 theorem PredecessorExistsUniqueAwayFromOne
-    (ps : PeanoSystem)
-    (element : ps.carrier) :
+    (ps : PeanoSystem Element SetObject)
+    (element : Element) :
     element ≠ ps.one -> UniquePredecessor ps element := by
   sorry
 
@@ -97,8 +103,8 @@ predecessor.
 Mathematical statement (Lean): `theorem UniquePredecessorCharacterizationAwayFromOne`.
 -/
 theorem UniquePredecessorCharacterizationAwayFromOne
-    (ps : PeanoSystem)
-    (element : ps.carrier) :
+    (ps : PeanoSystem Element SetObject)
+    (element : Element) :
     element ≠ ps.one <-> UniquePredecessor ps element := by
   sorry
 

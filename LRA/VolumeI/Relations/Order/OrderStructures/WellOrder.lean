@@ -3,14 +3,18 @@ import LRA.VolumeI.Relations.Order.OrderStructures.TotalOrder
 
 namespace LRA.VolumeI.Relations.Order
 
-universe u
+universe u v
 
-/-- Well-order laws for a non-strict order. -/
-def WellOrder (interface : LRA.VolumeI.Set.SetInterface.{u, u})
-    (relation : LRA.VolumeI.Relations.Endorelation interface.Element) : Prop :=
+/-- Well-order laws for a non-strict order. `SetObject` is explicit for the
+same reason as in `Completeness.lean`: the backend whose subsets are
+quantified over is part of the assertion. -/
+def WellOrder
+    {Element : Type u} (SetObject : Type v)
+    [Membership Element SetObject]
+    (relation : LRA.VolumeI.Relations.Endorelation Element) : Prop :=
   TotalOrder relation /\
-    forall subset : interface.SetObject,
-      (exists element, interface.member element subset) ->
-        exists least, LeastElement interface relation subset least
+    forall subset : SetObject,
+      (exists element, element ∈ subset) ->
+        exists least, LeastElement relation subset least
 
 end LRA.VolumeI.Relations.Order

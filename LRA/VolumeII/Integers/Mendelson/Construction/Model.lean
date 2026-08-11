@@ -172,8 +172,10 @@ Mathematical statement (Lean): `theorem positive_classes_recover_natural_number_
 -/
 theorem positive_classes_recover_natural_number_model
     (positive_data : PositiveNaturalPairData) :
-    ∃ natural_number_model : LRA.VolumeII.NaturalNumbers.NModel,
-      Nonempty natural_number_model.carrier := by
+    ∃ (Element : Type) (SetObject : Type)
+      (_ : Membership Element SetObject)
+      (_ : LRA.VolumeII.NaturalNumbers.NModel Element SetObject),
+      Nonempty Element := by
   sorry
 
 /--

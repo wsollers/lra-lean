@@ -25,135 +25,430 @@ with concrete operations and relations. The model builders below turn those
 bundles into first-order models.
 -/
 
-/-- Function symbols of the Peano language `(1, S)`. -/
+/--
+Function symbols of the Peano language `(1, S)`.
+
+Logical form:
+
+```lean
+inductive PeanoFunctionSymbol where
+  | successor
+```
+-/
 inductive PeanoFunctionSymbol where
   | successor
 
-/-- There are no primitive relation symbols in the Peano language here. -/
+/--
+There are no primitive relation symbols in the Peano language here.
+
+Logical form:
+
+```lean
+def PeanoRelationSymbol : Type := Empty
+```
+-/
 def PeanoRelationSymbol : Type := Empty
 
-/-- Constant symbols of the Peano language. -/
+/--
+Constant symbols of the Peano language.
+
+Logical form:
+
+```lean
 inductive PeanoConstantSymbol where
   | one
+```
+-/
+inductive PeanoConstantSymbol where
+  | one
+/--
+`PeanoFirstOrderFunctions` exposes this formal declaration.
+
+Logical form:
+
+```lean
+def PeanoFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+  Symbol := PeanoFunctionSymbol
+  arity
+    | .successor => 1
+```
+-/
 
 def PeanoFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
   Symbol := PeanoFunctionSymbol
   arity
     | .successor => 1
+/--
+`PeanoFirstOrderRelations` exposes this formal declaration.
+
+Logical form:
+
+```lean
+def PeanoFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+  Symbol := PeanoRelationSymbol
+  arity := Empty.elim
+```
+-/
 
 def PeanoFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
   Symbol := PeanoRelationSymbol
   arity := Empty.elim
 
-/-- The first-order Peano signature `(1, S)`. -/
+/--
+The first-order Peano signature `(1, S)`.
+
+Logical form:
+
+```lean
+def PeanoFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+  Functions := PeanoFirstOrderFunctions
+  Relations := PeanoFirstOrderRelations
+  Constants := PeanoConstantSymbol
+```
+-/
 def PeanoFirstOrderSignature : LRA.VolumeI.Logic.Signature where
   Functions := PeanoFirstOrderFunctions
   Relations := PeanoFirstOrderRelations
   Constants := PeanoConstantSymbol
 
-/-- Function symbols of the additive ordered language `(0, 1, +, <)`. -/
+/--
+Function symbols of the additive ordered language `(0, 1, +, <)`.
+
+Logical form:
+
+```lean
+inductive AdditiveOrderedFunctionSymbol where
+  | add
+```
+-/
 inductive AdditiveOrderedFunctionSymbol where
   | add
 
-/-- Relation symbols of the additive ordered language. -/
+/--
+Relation symbols of the additive ordered language.
+
+Logical form:
+
+```lean
+inductive AdditiveOrderedRelationSymbol where
+  | lt
+```
+-/
 inductive AdditiveOrderedRelationSymbol where
   | lt
 
-/-- Constant symbols of the additive ordered language. -/
+/--
+Constant symbols of the additive ordered language.
+
+Logical form:
+
+```lean
 inductive AdditiveOrderedConstantSymbol where
   | zero
   | one
+```
+-/
+inductive AdditiveOrderedConstantSymbol where
+  | zero
+  | one
+/--
+`AdditiveOrderedFirstOrderFunctions` exposes this formal declaration.
+
+Logical form:
+
+```lean
+def AdditiveOrderedFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+  Symbol := AdditiveOrderedFunctionSymbol
+  arity
+    | .add => 2
+```
+-/
 
 def AdditiveOrderedFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
   Symbol := AdditiveOrderedFunctionSymbol
   arity
     | .add => 2
+/--
+`AdditiveOrderedFirstOrderRelations` exposes this formal declaration.
+
+Logical form:
+
+```lean
+def AdditiveOrderedFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+  Symbol := AdditiveOrderedRelationSymbol
+  arity
+    | .lt => 2
+```
+-/
 
 def AdditiveOrderedFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
   Symbol := AdditiveOrderedRelationSymbol
   arity
     | .lt => 2
 
-/-- The first-order additive ordered signature `(0, 1, +, <)`. -/
+/--
+The first-order additive ordered signature `(0, 1, +, <)`.
+
+Logical form:
+
+```lean
+def AdditiveOrderedFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+  Functions := AdditiveOrderedFirstOrderFunctions
+  Relations := AdditiveOrderedFirstOrderRelations
+  Constants := AdditiveOrderedConstantSymbol
+```
+-/
 def AdditiveOrderedFirstOrderSignature : LRA.VolumeI.Logic.Signature where
   Functions := AdditiveOrderedFirstOrderFunctions
   Relations := AdditiveOrderedFirstOrderRelations
   Constants := AdditiveOrderedConstantSymbol
 
-/-- Function symbols of the arithmetic ring language `(0, 1, +, *)`. -/
+/--
+Function symbols of the arithmetic ring language `(0, 1, +, *)`.
+
+Logical form:
+
+```lean
+inductive ArithmeticRingFunctionSymbol where
+  | add
+  | mul
+```
+-/
 inductive ArithmeticRingFunctionSymbol where
   | add
   | mul
 
-/-- There are no primitive relation symbols in the arithmetic ring language. -/
+/--
+There are no primitive relation symbols in the arithmetic ring language.
+
+Logical form:
+
+```lean
+def ArithmeticRingRelationSymbol : Type := Empty
+```
+-/
 def ArithmeticRingRelationSymbol : Type := Empty
 
-/-- Constant symbols of the arithmetic ring language. -/
+/--
+Constant symbols of the arithmetic ring language.
+
+Logical form:
+
+```lean
 inductive ArithmeticRingConstantSymbol where
   | zero
   | one
+```
+-/
+inductive ArithmeticRingConstantSymbol where
+  | zero
+  | one
+/--
+`ArithmeticRingFirstOrderFunctions` exposes this formal declaration.
+
+Logical form:
+
+```lean
+def ArithmeticRingFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+  Symbol := ArithmeticRingFunctionSymbol
+  arity
+    | .add => 2
+    | .mul => 2
+```
+-/
 
 def ArithmeticRingFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
   Symbol := ArithmeticRingFunctionSymbol
   arity
     | .add => 2
     | .mul => 2
+/--
+`ArithmeticRingFirstOrderRelations` exposes this formal declaration.
+
+Logical form:
+
+```lean
+def ArithmeticRingFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+  Symbol := ArithmeticRingRelationSymbol
+  arity := Empty.elim
+```
+-/
 
 def ArithmeticRingFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
   Symbol := ArithmeticRingRelationSymbol
   arity := Empty.elim
 
-/-- The first-order arithmetic ring signature `(0, 1, +, *)`. -/
+/--
+The first-order arithmetic ring signature `(0, 1, +, *)`.
+
+Logical form:
+
+```lean
+def ArithmeticRingFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+  Functions := ArithmeticRingFirstOrderFunctions
+  Relations := ArithmeticRingFirstOrderRelations
+  Constants := ArithmeticRingConstantSymbol
+```
+-/
 def ArithmeticRingFirstOrderSignature : LRA.VolumeI.Logic.Signature where
   Functions := ArithmeticRingFirstOrderFunctions
   Relations := ArithmeticRingFirstOrderRelations
   Constants := ArithmeticRingConstantSymbol
 
-/-- Function symbols of the ordered-semiring language `(0, 1, +, *, <)`. -/
+/--
+Function symbols of the ordered-semiring language `(0, 1, +, *, <)`.
+
+Logical form:
+
+```lean
+inductive OrderedSemiringFunctionSymbol where
+  | add
+  | mul
+```
+-/
 inductive OrderedSemiringFunctionSymbol where
   | add
   | mul
 
-/-- Relation symbols of the ordered-semiring language. -/
+/--
+Relation symbols of the ordered-semiring language.
+
+Logical form:
+
+```lean
+inductive OrderedSemiringRelationSymbol where
+  | lt
+```
+-/
 inductive OrderedSemiringRelationSymbol where
   | lt
 
-/-- Constant symbols of the ordered-semiring language. -/
+/--
+Constant symbols of the ordered-semiring language.
+
+Logical form:
+
+```lean
 inductive OrderedSemiringConstantSymbol where
   | zero
   | one
+```
+-/
+inductive OrderedSemiringConstantSymbol where
+  | zero
+  | one
+/--
+`OrderedSemiringFirstOrderFunctions` exposes this formal declaration.
+
+Logical form:
+
+```lean
+def OrderedSemiringFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+  Symbol := OrderedSemiringFunctionSymbol
+  arity
+    | .add => 2
+    | .mul => 2
+```
+-/
 
 def OrderedSemiringFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
   Symbol := OrderedSemiringFunctionSymbol
   arity
     | .add => 2
     | .mul => 2
+/--
+`OrderedSemiringFirstOrderRelations` exposes this formal declaration.
+
+Logical form:
+
+```lean
+def OrderedSemiringFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+  Symbol := OrderedSemiringRelationSymbol
+  arity
+    | .lt => 2
+```
+-/
 
 def OrderedSemiringFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
   Symbol := OrderedSemiringRelationSymbol
   arity
     | .lt => 2
 
-/-- The first-order ordered-semiring signature `(0, 1, +, *, <)`. -/
+/--
+The first-order ordered-semiring signature `(0, 1, +, *, <)`.
+
+Logical form:
+
+```lean
+def OrderedSemiringFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+  Functions := OrderedSemiringFirstOrderFunctions
+  Relations := OrderedSemiringFirstOrderRelations
+  Constants := OrderedSemiringConstantSymbol
+```
+-/
 def OrderedSemiringFirstOrderSignature : LRA.VolumeI.Logic.Signature where
   Functions := OrderedSemiringFirstOrderFunctions
   Relations := OrderedSemiringFirstOrderRelations
   Constants := OrderedSemiringConstantSymbol
 
-/-- Function symbols of the ordered-ring language `(0, 1, +, *, -, <)`. -/
+/--
+Function symbols of the ordered-ring language `(0, 1, +, *, -, <)`.
+
+Logical form:
+
+```lean
+inductive OrderedRingFunctionSymbol where
+  | add
+  | mul
+  | neg
+```
+-/
 inductive OrderedRingFunctionSymbol where
   | add
   | mul
   | neg
 
-/-- Relation symbols of the ordered-ring language. -/
+/--
+Relation symbols of the ordered-ring language.
+
+Logical form:
+
+```lean
+inductive OrderedRingRelationSymbol where
+  | lt
+```
+-/
 inductive OrderedRingRelationSymbol where
   | lt
 
-/-- Constant symbols of the ordered-ring language. -/
+/--
+Constant symbols of the ordered-ring language.
+
+Logical form:
+
+```lean
 inductive OrderedRingConstantSymbol where
   | zero
   | one
+```
+-/
+inductive OrderedRingConstantSymbol where
+  | zero
+  | one
+/--
+`OrderedRingFirstOrderFunctions` exposes this formal declaration.
+
+Logical form:
+
+```lean
+def OrderedRingFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+  Symbol := OrderedRingFunctionSymbol
+  arity
+    | .add => 2
+    | .mul => 2
+    | .neg => 1
+```
+-/
 
 def OrderedRingFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
   Symbol := OrderedRingFunctionSymbol
@@ -161,32 +456,100 @@ def OrderedRingFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
     | .add => 2
     | .mul => 2
     | .neg => 1
+/--
+`OrderedRingFirstOrderRelations` exposes this formal declaration.
+
+Logical form:
+
+```lean
+def OrderedRingFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+  Symbol := OrderedRingRelationSymbol
+  arity
+    | .lt => 2
+```
+-/
 
 def OrderedRingFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
   Symbol := OrderedRingRelationSymbol
   arity
     | .lt => 2
 
-/-- The first-order ordered-ring signature `(0, 1, +, *, -, <)`. -/
+/--
+The first-order ordered-ring signature `(0, 1, +, *, -, <)`.
+
+Logical form:
+
+```lean
+def OrderedRingFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+  Functions := OrderedRingFirstOrderFunctions
+  Relations := OrderedRingFirstOrderRelations
+  Constants := OrderedRingConstantSymbol
+```
+-/
 def OrderedRingFirstOrderSignature : LRA.VolumeI.Logic.Signature where
   Functions := OrderedRingFirstOrderFunctions
   Relations := OrderedRingFirstOrderRelations
   Constants := OrderedRingConstantSymbol
 
-/-- Function symbols of the field language `(0, 1, +, *, -, ⁻¹)`. -/
+/--
+Function symbols of the field language `(0, 1, +, *, -, ⁻¹)`.
+
+Logical form:
+
+```lean
+inductive FieldFunctionSymbol where
+  | add
+  | mul
+  | neg
+  | inv
+```
+-/
 inductive FieldFunctionSymbol where
   | add
   | mul
   | neg
   | inv
 
-/-- There are no primitive relation symbols in the field language. -/
+/--
+There are no primitive relation symbols in the field language.
+
+Logical form:
+
+```lean
+def FieldRelationSymbol : Type := Empty
+```
+-/
 def FieldRelationSymbol : Type := Empty
 
-/-- Constant symbols of the field language. -/
+/--
+Constant symbols of the field language.
+
+Logical form:
+
+```lean
 inductive FieldConstantSymbol where
   | zero
   | one
+```
+-/
+inductive FieldConstantSymbol where
+  | zero
+  | one
+/--
+`FieldFirstOrderFunctions` exposes this formal declaration.
+
+Logical form:
+
+```lean
+def FieldFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+  Symbol := FieldFunctionSymbol
+  arity
+    | .add => 2
+    | .mul => 2
+    | .neg => 1
+    | .inv => 1
+```
+-/
 
 def FieldFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
   Symbol := FieldFunctionSymbol
@@ -195,32 +558,100 @@ def FieldFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
     | .mul => 2
     | .neg => 1
     | .inv => 1
+/--
+`FieldFirstOrderRelations` exposes this formal declaration.
+
+Logical form:
+
+```lean
+def FieldFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+  Symbol := FieldRelationSymbol
+  arity := Empty.elim
+```
+-/
 
 def FieldFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
   Symbol := FieldRelationSymbol
   arity := Empty.elim
 
-/-- The first-order field signature `(0, 1, +, *, -, ⁻¹)`. -/
+/--
+The first-order field signature `(0, 1, +, *, -, ⁻¹)`.
+
+Logical form:
+
+```lean
+def FieldFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+  Functions := FieldFirstOrderFunctions
+  Relations := FieldFirstOrderRelations
+  Constants := FieldConstantSymbol
+```
+-/
 def FieldFirstOrderSignature : LRA.VolumeI.Logic.Signature where
   Functions := FieldFirstOrderFunctions
   Relations := FieldFirstOrderRelations
   Constants := FieldConstantSymbol
 
-/-- Function symbols of the ordered-field language `(0, 1, +, *, -, ⁻¹, <)`. -/
+/--
+Function symbols of the ordered-field language `(0, 1, +, *, -, ⁻¹, <)`.
+
+Logical form:
+
+```lean
+inductive OrderedFieldFunctionSymbol where
+  | add
+  | mul
+  | neg
+  | inv
+```
+-/
 inductive OrderedFieldFunctionSymbol where
   | add
   | mul
   | neg
   | inv
 
-/-- Relation symbols of the ordered-field language. -/
+/--
+Relation symbols of the ordered-field language.
+
+Logical form:
+
+```lean
+inductive OrderedFieldRelationSymbol where
+  | lt
+```
+-/
 inductive OrderedFieldRelationSymbol where
   | lt
 
-/-- Constant symbols of the ordered-field language. -/
+/--
+Constant symbols of the ordered-field language.
+
+Logical form:
+
+```lean
 inductive OrderedFieldConstantSymbol where
   | zero
   | one
+```
+-/
+inductive OrderedFieldConstantSymbol where
+  | zero
+  | one
+/--
+`OrderedFieldFirstOrderFunctions` exposes this formal declaration.
+
+Logical form:
+
+```lean
+def OrderedFieldFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+  Symbol := OrderedFieldFunctionSymbol
+  arity
+    | .add => 2
+    | .mul => 2
+    | .neg => 1
+    | .inv => 1
+```
+-/
 
 def OrderedFieldFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
   Symbol := OrderedFieldFunctionSymbol
@@ -229,13 +660,36 @@ def OrderedFieldFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols wher
     | .mul => 2
     | .neg => 1
     | .inv => 1
+/--
+`OrderedFieldFirstOrderRelations` exposes this formal declaration.
+
+Logical form:
+
+```lean
+def OrderedFieldFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+  Symbol := OrderedFieldRelationSymbol
+  arity
+    | .lt => 2
+```
+-/
 
 def OrderedFieldFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
   Symbol := OrderedFieldRelationSymbol
   arity
     | .lt => 2
 
-/-- The first-order ordered-field signature `(0, 1, +, *, -, ⁻¹, <)`. -/
+/--
+The first-order ordered-field signature `(0, 1, +, *, -, ⁻¹, <)`.
+
+Logical form:
+
+```lean
+def OrderedFieldFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+  Functions := OrderedFieldFirstOrderFunctions
+  Relations := OrderedFieldFirstOrderRelations
+  Constants := OrderedFieldConstantSymbol
+```
+-/
 def OrderedFieldFirstOrderSignature : LRA.VolumeI.Logic.Signature where
   Functions := OrderedFieldFirstOrderFunctions
   Relations := OrderedFieldFirstOrderRelations
@@ -246,6 +700,20 @@ def OrderedFieldFirstOrderSignature : LRA.VolumeI.Logic.Signature where
 
 An ordered-ring signature contains only carrier data, operations, distinguished
 elements, and order relations. Laws are stored separately.
+
+Logical form:
+
+```lean
+structure OrderedRingSignature where
+  carrier : Type u
+  zero : LRA.VolumeI.Operations.NullaryOperation carrier
+  one : LRA.VolumeI.Operations.NullaryOperation carrier
+  addition : LRA.VolumeI.Operations.BinaryOperation carrier
+  negation : LRA.VolumeI.Operations.UnaryOperation carrier
+  multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
+  StrictOrder : LRA.VolumeI.Relations.Endorelation carrier
+  NonstrictOrder : LRA.VolumeI.Relations.Endorelation carrier
+```
 -/
 structure OrderedRingSignature where
   carrier : Type u
@@ -257,7 +725,22 @@ structure OrderedRingSignature where
   StrictOrder : LRA.VolumeI.Relations.Endorelation carrier
   NonstrictOrder : LRA.VolumeI.Relations.Endorelation carrier
 
-/-- The operation bundle for an ordered semiring. -/
+/--
+The operation bundle for an ordered semiring.
+
+Logical form:
+
+```lean
+structure OrderedSemiringSignature where
+  carrier : Type u
+  zero : LRA.VolumeI.Operations.NullaryOperation carrier
+  one : LRA.VolumeI.Operations.NullaryOperation carrier
+  addition : LRA.VolumeI.Operations.BinaryOperation carrier
+  multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
+  StrictOrder : LRA.VolumeI.Relations.Endorelation carrier
+  NonstrictOrder : LRA.VolumeI.Relations.Endorelation carrier
+```
+-/
 structure OrderedSemiringSignature where
   carrier : Type u
   zero : LRA.VolumeI.Operations.NullaryOperation carrier
@@ -269,11 +752,33 @@ structure OrderedSemiringSignature where
 
 /--
 **[Definition — Ordered Field Signature]**
+
+Logical form:
+
+```lean
+structure OrderedFieldSignature extends OrderedRingSignature where
+  inverse : LRA.VolumeI.Operations.UnaryOperation carrier
+```
 -/
 structure OrderedFieldSignature extends OrderedRingSignature where
   inverse : LRA.VolumeI.Operations.UnaryOperation carrier
 
-/-- The operation bundle for a field without an order relation. -/
+/--
+The operation bundle for a field without an order relation.
+
+Logical form:
+
+```lean
+structure FieldSignature where
+  carrier : Type u
+  zero : LRA.VolumeI.Operations.NullaryOperation carrier
+  one : LRA.VolumeI.Operations.NullaryOperation carrier
+  addition : LRA.VolumeI.Operations.BinaryOperation carrier
+  negation : LRA.VolumeI.Operations.UnaryOperation carrier
+  multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
+  inverse : LRA.VolumeI.Operations.UnaryOperation carrier
+```
+-/
 structure FieldSignature where
   carrier : Type u
   zero : LRA.VolumeI.Operations.NullaryOperation carrier
@@ -283,13 +788,38 @@ structure FieldSignature where
   multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
   inverse : LRA.VolumeI.Operations.UnaryOperation carrier
 
-/-- The operation bundle for a Peano system. -/
+/--
+The operation bundle for a Peano system.
+
+Logical form:
+
+```lean
+structure PeanoSignature where
+  carrier : Type u
+  one : LRA.VolumeI.Operations.NullaryOperation carrier
+  successor : LRA.VolumeI.Operations.UnaryOperation carrier
+```
+-/
 structure PeanoSignature where
   carrier : Type u
   one : LRA.VolumeI.Operations.NullaryOperation carrier
   successor : LRA.VolumeI.Operations.UnaryOperation carrier
 
-/-- The operation bundle for the additive ordered language. -/
+/--
+The operation bundle for the additive ordered language.
+
+Logical form:
+
+```lean
+structure AdditiveOrderedSignature where
+  carrier : Type u
+  zero : LRA.VolumeI.Operations.NullaryOperation carrier
+  one : LRA.VolumeI.Operations.NullaryOperation carrier
+  addition : LRA.VolumeI.Operations.BinaryOperation carrier
+  StrictOrder : LRA.VolumeI.Relations.Endorelation carrier
+  NonstrictOrder : LRA.VolumeI.Relations.Endorelation carrier
+```
+-/
 structure AdditiveOrderedSignature where
   carrier : Type u
   zero : LRA.VolumeI.Operations.NullaryOperation carrier
@@ -298,7 +828,20 @@ structure AdditiveOrderedSignature where
   StrictOrder : LRA.VolumeI.Relations.Endorelation carrier
   NonstrictOrder : LRA.VolumeI.Relations.Endorelation carrier
 
-/-- The operation bundle for the arithmetic ring language. -/
+/--
+The operation bundle for the arithmetic ring language.
+
+Logical form:
+
+```lean
+structure ArithmeticRingSignature where
+  carrier : Type u
+  zero : LRA.VolumeI.Operations.NullaryOperation carrier
+  one : LRA.VolumeI.Operations.NullaryOperation carrier
+  addition : LRA.VolumeI.Operations.BinaryOperation carrier
+  multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
+```
+-/
 structure ArithmeticRingSignature where
   carrier : Type u
   zero : LRA.VolumeI.Operations.NullaryOperation carrier
@@ -307,7 +850,19 @@ structure ArithmeticRingSignature where
   multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
 
 /-- Generic semiring operation bundle.  Concrete number systems plug their
-carrier and operations into this template; laws are supplied separately. -/
+carrier and operations into this template; laws are supplied separately.
+
+Logical form:
+
+```lean
+structure SemiringSignature where
+  carrier : Type u
+  zero : LRA.VolumeI.Operations.NullaryOperation carrier
+  one : LRA.VolumeI.Operations.NullaryOperation carrier
+  addition : LRA.VolumeI.Operations.BinaryOperation carrier
+  multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
+```
+-/
 structure SemiringSignature where
   carrier : Type u
   zero : LRA.VolumeI.Operations.NullaryOperation carrier
@@ -315,7 +870,16 @@ structure SemiringSignature where
   addition : LRA.VolumeI.Operations.BinaryOperation carrier
   multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
 
-/-- Generic ring operation bundle. -/
+/--
+Generic ring operation bundle.
+
+Logical form:
+
+```lean
+structure RingSignature extends SemiringSignature where
+  negation : LRA.VolumeI.Operations.UnaryOperation carrier
+```
+-/
 structure RingSignature extends SemiringSignature where
   negation : LRA.VolumeI.Operations.UnaryOperation carrier
 
@@ -370,6 +934,19 @@ scoped instance instMul (signature : RingSignature) :
 end LRA.VolumeI.Algebra.Models.RingSignature
 
 namespace LRA.VolumeI.Algebra.Models.OrderedRingSignature
+/--
+`Subtraction` exposes this formal declaration.
+
+Logical form:
+
+```lean
+abbrev Subtraction
+    (signature : OrderedRingSignature) :
+    LRA.VolumeI.Operations.BinaryOperation signature.carrier :=
+  fun first second =>
+    signature.addition first (signature.negation second)
+```
+-/
 
 abbrev Subtraction
     (signature : OrderedRingSignature) :
@@ -380,17 +957,56 @@ abbrev Subtraction
 end LRA.VolumeI.Algebra.Models.OrderedRingSignature
 
 namespace LRA.VolumeI.Algebra.Models.OrderedFieldSignature
+/--
+`InverseDomain` exposes this formal declaration.
+
+Logical form:
+
+```lean
+def InverseDomain
+    (signature : OrderedFieldSignature)
+    (value : signature.carrier) : Prop :=
+  value ≠ signature.zero
+```
+-/
 
 def InverseDomain
     (signature : OrderedFieldSignature)
     (value : signature.carrier) : Prop :=
   value ≠ signature.zero
+/--
+`PartialInverse` exposes this formal declaration.
+
+Logical form:
+
+```lean
+def PartialInverse
+    (signature : OrderedFieldSignature) :
+    LRA.VolumeI.Operations.PartialUnaryOperation signature.carrier where
+  Domain := InverseDomain signature
+  Value := fun value _ => signature.inverse value
+```
+-/
 
 def PartialInverse
     (signature : OrderedFieldSignature) :
     LRA.VolumeI.Operations.PartialUnaryOperation signature.carrier where
   Domain := InverseDomain signature
   Value := fun value _ => signature.inverse value
+/--
+`PartialDivision` exposes this formal declaration.
+
+Logical form:
+
+```lean
+def PartialDivision
+    (signature : OrderedFieldSignature) :
+    LRA.VolumeI.Operations.PartialBinaryOperation signature.carrier where
+  Domain := fun _ divisor => divisor ≠ signature.zero
+  Value := fun dividend divisor _ =>
+    signature.multiplication dividend (signature.inverse divisor)
+```
+-/
 
 def PartialDivision
     (signature : OrderedFieldSignature) :
@@ -403,7 +1019,24 @@ end LRA.VolumeI.Algebra.Models.OrderedFieldSignature
 
 namespace LRA.VolumeI.Algebra.Models
 
-/-- Build a first-order model of the Peano signature from a carrier and operations. -/
+/--
+Build a first-order model of the Peano signature from a carrier and operations.
+
+Logical form:
+
+```lean
+def BuildPeanoModel
+    (signature : PeanoSignature) :
+    LRA.VolumeI.Logic.FirstOrder.Model PeanoFirstOrderSignature where
+  Domain := signature.carrier
+  domainNonempty := ⟨signature.one⟩
+  interpretFunction
+    | .successor, args => signature.successor (args ⟨0, by decide⟩)
+  interpretRelation := fun RelationSymbol => nomatch RelationSymbol
+  interpretConstant
+    | .one => signature.one
+```
+-/
 def BuildPeanoModel
     (signature : PeanoSignature) :
     LRA.VolumeI.Logic.FirstOrder.Model PeanoFirstOrderSignature where
@@ -415,7 +1048,28 @@ def BuildPeanoModel
   interpretConstant
     | .one => signature.one
 
-/-- Build a first-order model of the additive ordered signature. -/
+/--
+Build a first-order model of the additive ordered signature.
+
+Logical form:
+
+```lean
+def BuildAdditiveOrderedModel
+    (signature : AdditiveOrderedSignature) :
+    LRA.VolumeI.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature where
+  Domain := signature.carrier
+  domainNonempty := ⟨signature.zero⟩
+  interpretFunction
+    | .add, args =>
+        signature.addition (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+  interpretRelation
+    | .lt, args =>
+        signature.StrictOrder (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+  interpretConstant
+    | .zero => signature.zero
+    | .one => signature.one
+```
+-/
 def BuildAdditiveOrderedModel
     (signature : AdditiveOrderedSignature) :
     LRA.VolumeI.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature where
@@ -431,7 +1085,28 @@ def BuildAdditiveOrderedModel
     | .zero => signature.zero
     | .one => signature.one
 
-/-- Build a first-order model of the arithmetic ring signature. -/
+/--
+Build a first-order model of the arithmetic ring signature.
+
+Logical form:
+
+```lean
+def BuildArithmeticRingModel
+    (signature : ArithmeticRingSignature) :
+    LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature where
+  Domain := signature.carrier
+  domainNonempty := ⟨signature.zero⟩
+  interpretFunction
+    | .add, args =>
+        signature.addition (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+    | .mul, args =>
+        signature.multiplication (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+  interpretRelation := fun RelationSymbol => nomatch RelationSymbol
+  interpretConstant
+    | .zero => signature.zero
+    | .one => signature.one
+```
+-/
 def BuildArithmeticRingModel
     (signature : ArithmeticRingSignature) :
     LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature where
@@ -447,7 +1122,30 @@ def BuildArithmeticRingModel
     | .zero => signature.zero
     | .one => signature.one
 
-/-- Build a first-order model of the ordered-semiring signature. -/
+/--
+Build a first-order model of the ordered-semiring signature.
+
+Logical form:
+
+```lean
+def BuildOrderedSemiringModel
+    (signature : OrderedSemiringSignature) :
+    LRA.VolumeI.Logic.FirstOrder.Model OrderedSemiringFirstOrderSignature where
+  Domain := signature.carrier
+  domainNonempty := ⟨signature.zero⟩
+  interpretFunction
+    | .add, args =>
+        signature.addition (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+    | .mul, args =>
+        signature.multiplication (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+  interpretRelation
+    | .lt, args =>
+        signature.StrictOrder (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+  interpretConstant
+    | .zero => signature.zero
+    | .one => signature.one
+```
+-/
 def BuildOrderedSemiringModel
     (signature : OrderedSemiringSignature) :
     LRA.VolumeI.Logic.FirstOrder.Model OrderedSemiringFirstOrderSignature where
@@ -465,7 +1163,31 @@ def BuildOrderedSemiringModel
     | .zero => signature.zero
     | .one => signature.one
 
-/-- Build a first-order model of the ordered-ring signature. -/
+/--
+Build a first-order model of the ordered-ring signature.
+
+Logical form:
+
+```lean
+def BuildOrderedRingModel
+    (signature : OrderedRingSignature) :
+    LRA.VolumeI.Logic.FirstOrder.Model OrderedRingFirstOrderSignature where
+  Domain := signature.carrier
+  domainNonempty := ⟨signature.zero⟩
+  interpretFunction
+    | .add, args =>
+        signature.addition (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+    | .mul, args =>
+        signature.multiplication (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+    | .neg, args => signature.negation (args ⟨0, by decide⟩)
+  interpretRelation
+    | .lt, args =>
+        signature.StrictOrder (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+  interpretConstant
+    | .zero => signature.zero
+    | .one => signature.one
+```
+-/
 def BuildOrderedRingModel
     (signature : OrderedRingSignature) :
     LRA.VolumeI.Logic.FirstOrder.Model OrderedRingFirstOrderSignature where
@@ -484,7 +1206,30 @@ def BuildOrderedRingModel
     | .zero => signature.zero
     | .one => signature.one
 
-/-- Build a first-order model of the field signature. -/
+/--
+Build a first-order model of the field signature.
+
+Logical form:
+
+```lean
+def BuildFieldModel
+    (signature : FieldSignature) :
+    LRA.VolumeI.Logic.FirstOrder.Model FieldFirstOrderSignature where
+  Domain := signature.carrier
+  domainNonempty := ⟨signature.zero⟩
+  interpretFunction
+    | .add, args =>
+        signature.addition (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+    | .mul, args =>
+        signature.multiplication (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+    | .neg, args => signature.negation (args ⟨0, by decide⟩)
+    | .inv, args => signature.inverse (args ⟨0, by decide⟩)
+  interpretRelation := fun RelationSymbol => nomatch RelationSymbol
+  interpretConstant
+    | .zero => signature.zero
+    | .one => signature.one
+```
+-/
 def BuildFieldModel
     (signature : FieldSignature) :
     LRA.VolumeI.Logic.FirstOrder.Model FieldFirstOrderSignature where
@@ -502,7 +1247,32 @@ def BuildFieldModel
     | .zero => signature.zero
     | .one => signature.one
 
-/-- Build a first-order model of the ordered-field signature. -/
+/--
+Build a first-order model of the ordered-field signature.
+
+Logical form:
+
+```lean
+def BuildOrderedFieldModel
+    (signature : OrderedFieldSignature) :
+    LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature where
+  Domain := signature.carrier
+  domainNonempty := ⟨signature.zero⟩
+  interpretFunction
+    | .add, args =>
+        signature.addition (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+    | .mul, args =>
+        signature.multiplication (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+    | .neg, args => signature.negation (args ⟨0, by decide⟩)
+    | .inv, args => signature.inverse (args ⟨0, by decide⟩)
+  interpretRelation
+    | .lt, args =>
+        signature.StrictOrder (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+  interpretConstant
+    | .zero => signature.zero
+    | .one => signature.one
+```
+-/
 def BuildOrderedFieldModel
     (signature : OrderedFieldSignature) :
     LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature where

@@ -19,7 +19,8 @@ Start an equality proof by reflexivity.
 Logical form:
 
 ```lean
-x = x
+theorem EqualityReasoningByReflexivity {Carrier : Type u} (x : Carrier) :
+    x = x
 ```
 -/
 theorem EqualityReasoningByReflexivity {Carrier : Type u} (x : Carrier) :
@@ -32,7 +33,9 @@ Reverse a proved equality.
 Logical form:
 
 ```lean
-x = y → y = x
+theorem EqualityReasoningBySymmetry {Carrier : Type u} {x y : Carrier}
+    (EqualityProof : x = y) :
+    y = x
 ```
 -/
 theorem EqualityReasoningBySymmetry {Carrier : Type u} {x y : Carrier}
@@ -46,7 +49,10 @@ Chain two proved equalities.
 Logical form:
 
 ```lean
-x = y → y = z → x = z
+theorem EqualityReasoningByTransitivity {Carrier : Type u} {x y z : Carrier}
+    (FirstEquality : x = y)
+    (SecondEquality : y = z) :
+    x = z
 ```
 -/
 theorem EqualityReasoningByTransitivity {Carrier : Type u} {x y z : Carrier}
@@ -61,7 +67,10 @@ Rewrite a unary property along an equality.
 Logical form:
 
 ```lean
-x = y → Property x ↔ Property y
+theorem RewritePropertyByEquality {Carrier : Type u} {x y : Carrier}
+    (EqualityProof : x = y)
+    (Property : Carrier -> Prop) :
+    Property x ↔ Property y
 ```
 -/
 theorem RewritePropertyByEquality {Carrier : Type u} {x y : Carrier}
@@ -76,7 +85,11 @@ Rewrite a function application along an equality.
 Logical form:
 
 ```lean
-x = y → function x = function y
+theorem RewriteFunctionByEquality {Domain : Type u} {Codomain : Type v}
+    {x y : Domain}
+    (EqualityProof : x = y)
+    (function : Domain -> Codomain) :
+    function x = function y
 ```
 -/
 theorem RewriteFunctionByEquality {Domain : Type u} {Codomain : Type v}
@@ -92,7 +105,11 @@ Rewrite one coordinate of a binary relation along an equality.
 Logical form:
 
 ```lean
-x = y → relation x z ↔ relation y z
+theorem RewriteRelationLeftByEquality {Carrier : Type u}
+    {x y z : Carrier}
+    (EqualityProof : x = y)
+    (relation : Carrier -> Carrier -> Prop) :
+    relation x z ↔ relation y z
 ```
 -/
 theorem RewriteRelationLeftByEquality {Carrier : Type u}

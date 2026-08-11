@@ -23,7 +23,8 @@ The diagonal identity relation on a carrier.
 Logical form:
 
 ```lean
-EqualityDiagonal Carrier left right ↔ left = right
+def EqualityDiagonal (Carrier : Type u) : Carrier -> Carrier -> Prop :=
+  fun left right => left = right
 ```
 -/
 def EqualityDiagonal (Carrier : Type u) : Carrier -> Carrier -> Prop :=
@@ -36,11 +37,13 @@ diagonal.
 Logical form:
 
 ```lean
-Carrier : Type u
-carrierNonempty : Nonempty Carrier
-equalityInterpretation : Carrier -> Carrier -> Prop
-equalityIsDiagonal : ∀ left right,
-  equalityInterpretation left right ↔ EqualityDiagonal Carrier left right
+structure EqualityStructure where
+  Carrier : Type u
+  carrierNonempty : Nonempty Carrier
+  equalityInterpretation : Carrier -> Carrier -> Prop
+  equalityIsDiagonal :
+    ∀ left right,
+      equalityInterpretation left right ↔ EqualityDiagonal Carrier left right
 ```
 -/
 structure EqualityStructure where
@@ -57,7 +60,16 @@ The model-theoretic first-order model induced by an equality structure.
 Logical form:
 
 ```lean
-(equalityStructure.toFirstOrderModel).Domain = equalityStructure.Carrier
+def EqualityStructure.toFirstOrderModel
+    (equalityStructure : EqualityStructure.{u}) :
+    FirstOrder.Model pureEqualitySignature where
+  Domain := equalityStructure.Carrier
+  domainNonempty := equalityStructure.carrierNonempty
+  interpretEquality := equalityStructure.equalityInterpretation
+  equalityIsDiagonal := equalityStructure.equalityIsDiagonal
+  interpretFunction := fun functionSymbol => Empty.elim functionSymbol
+  interpretRelation := fun relationSymbol => Empty.elim relationSymbol
+  interpretConstant := Empty.elim
 ```
 -/
 def EqualityStructure.toFirstOrderModel
@@ -77,7 +89,12 @@ The canonical equality structure on any nonempty carrier.
 Logical form:
 
 ```lean
-equalityInterpretation = EqualityDiagonal Carrier
+def canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :
+    EqualityStructure where
+  Carrier := Carrier
+  carrierNonempty := inferInstance
+  equalityInterpretation := EqualityDiagonal Carrier
+  equalityIsDiagonal
 ```
 -/
 def canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :
@@ -95,7 +112,10 @@ In every equality structure, interpreted equality is exactly identity.
 Logical form:
 
 ```lean
-equalityStructure.equalityInterpretation left right ↔ left = right
+theorem EqualityStructure.interpretsEqualityAsIdentity
+    (equalityStructure : EqualityStructure.{u})
+    (left right : equalityStructure.Carrier) :
+    equalityStructure.equalityInterpretation left right ↔ left = right
 ```
 -/
 theorem EqualityStructure.interpretsEqualityAsIdentity

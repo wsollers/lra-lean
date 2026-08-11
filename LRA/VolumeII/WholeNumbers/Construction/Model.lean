@@ -5,6 +5,11 @@ import LRA.VolumeII.NaturalNumbers
 
 namespace LRA.VolumeII.WholeNumbers
 
+universe u v
+
+variable {Element : Type u} {SetObject : Type v}
+variable [Membership Element SetObject]
+
 /-!
 Lean module: LRA.VolumeII.WholeNumbers.Construction.Model
 Source: docs/number-systems/gpt-01b-whole-numbers.md
@@ -16,18 +21,22 @@ Verification status: definitions complete; theorem proofs pending
 
 Mathematical statement (Lean): `structure NaturalArithmeticForWholeNumbers`.
 -/
-structure NaturalArithmeticForWholeNumbers where
-  model : LRA.VolumeII.NaturalNumbers.NModel
-  strictOrder : model.carrier → model.carrier → Prop
+structure NaturalArithmeticForWholeNumbers
+    (Element : Type u) (SetObject : Type v)
+    [Membership Element SetObject] where
+  model : LRA.VolumeII.NaturalNumbers.NModel Element SetObject
+  strictOrder : Element → Element → Prop
 
-variable (natural_data : NaturalArithmeticForWholeNumbers)
+variable (natural_data : NaturalArithmeticForWholeNumbers Element SetObject)
 
 
 /-- `none` is the newly adjoined zero; `some n` is the embedded positive natural `n`.
 
 Mathematical statement (Lean): `abbrev Carrier`.
 -/
-abbrev Carrier := Option natural_data.model.carrier
+abbrev Carrier
+    (_natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :=
+  Option Element
 
 
 /-- The adjoined zero.
@@ -46,9 +55,9 @@ def one : Carrier natural_data := some natural_data.model.one
 
 /-- Inclusion of the one-based natural carrier into the whole numbers.
 
-Mathematical statement (Lean): `def naturalEmbedding (value : natural_data.model.carrier) : Carrier natural_data`.
+Mathematical statement (Lean): `def naturalEmbedding (value : Element) : Carrier natural_data`.
 -/
-def naturalEmbedding (value : natural_data.model.carrier) : Carrier natural_data := some value
+def naturalEmbedding (value : Element) : Carrier natural_data := some value
 
 
 /-- Successor on the whole numbers.

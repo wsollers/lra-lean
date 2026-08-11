@@ -4,13 +4,19 @@ import LRA.VolumeI.Set
 Current TeX-facing Peano-system carrier for Volume II.
 
 This is the root namespace for the active Volume II Peano-system buildout.
+
+A Peano system is stated generically over any set backend: `Element` is
+the carrier, `SetObject` the backend's sets over it, connected by Lean's
+`Membership` class -- so `PeanoSystem Element SetObject` works at
+`Enderton.Set`/`Enderton.Set`, `Alpha`/`LRASet Alpha`, Mathlib's
+`Alpha`/`Set Alpha`, or `ZFSet`/`ZFSet` alike, resolved from the argument
+types. Only what is genuinely Peano stays bundled: the distinguished
+element, the successor operation, and the axioms.
 -/
 
 namespace LRA.VolumeII.PeanoSystems
 
 universe u v
-
-open LRA.VolumeI.Set
 
 /--
 **[Definition - Peano System]**
@@ -20,35 +26,32 @@ a successor operation, and the Peano axioms.
 
 Mathematical statement (Lean): `structure PeanoSystem`.
 -/
-structure PeanoSystem where
-  setInterface : SetInterface.{u, v}
-  one : setInterface.Element
-  successor : setInterface.Element -> setInterface.Element
+structure PeanoSystem (Element : Type u) (SetObject : Type v)
+    [Membership Element SetObject] where
+  one : Element
+  successor : Element -> Element
   one_not_successor :
-    forall element : setInterface.Element,
+    forall element : Element,
       successor element ≠ one
   successor_injective :
-    forall first_element second_element : setInterface.Element,
+    forall first_element second_element : Element,
       successor first_element = successor second_element ->
       first_element = second_element
   induction :
-    forall subset : setInterface.SetObject,
-      setInterface.Member one subset ->
-      (forall element : setInterface.Element,
-        setInterface.Member element subset ->
-        setInterface.Member (successor element) subset) ->
-      forall element : setInterface.Element,
-        setInterface.Member element subset
+    forall subset : SetObject,
+      one ∈ subset ->
+      (forall element : Element,
+        element ∈ subset ->
+        successor element ∈ subset) ->
+      forall element : Element,
+        element ∈ subset
 
-abbrev PeanoSystemFromTex := PeanoSystem
+section
 
-namespace PeanoSystem
+variable {Element : Type u} {SetObject : Type v}
+variable [Membership Element SetObject]
 
-/-- The element carrier of a Peano system, read from its generic set interface. -/
-abbrev carrier (ps : PeanoSystem) : Type v :=
-  ps.setInterface.Element
-
-end PeanoSystem
+abbrev PeanoSystemFromTex := @PeanoSystem
 
 /--
 **[Definition - Successor-Closed Subset of a Peano System]**
@@ -56,14 +59,14 @@ end PeanoSystem
 A subset of a Peano system is successor-closed exactly when membership is
 preserved by the successor operation.
 
-Mathematical statement (Lean): `def SuccessorClosedSubset (ps : PeanoSystem) (subset : ps.setInterface.SetObject) : Prop`.
+Mathematical statement (Lean): `def SuccessorClosedSubset (ps : PeanoSystem Element SetObject) (subset : SetObject) : Prop`.
 -/
 def SuccessorClosedSubset
-    (ps : PeanoSystem)
-    (subset : ps.setInterface.SetObject) : Prop :=
-  forall element : ps.carrier,
-    ps.setInterface.Member element subset ->
-    ps.setInterface.Member (ps.successor element) subset
+    (ps : PeanoSystem Element SetObject)
+    (subset : SetObject) : Prop :=
+  forall element : Element,
+    element ∈ subset ->
+    ps.successor element ∈ subset
 
 /--
 **[Definition - Inductive Subset of a Peano System]**
@@ -71,12 +74,14 @@ def SuccessorClosedSubset
 A subset is inductive exactly when it contains the distinguished element and is
 successor-closed.
 
-Mathematical statement (Lean): `def InductiveSubsetOfPeanoSystem (ps : PeanoSystem) (subset : ps.setInterface.SetObject) : Prop`.
+Mathematical statement (Lean): `def InductiveSubsetOfPeanoSystem (ps : PeanoSystem Element SetObject) (subset : SetObject) : Prop`.
 -/
 def InductiveSubsetOfPeanoSystem
-    (ps : PeanoSystem)
-    (subset : ps.setInterface.SetObject) : Prop :=
-  ps.setInterface.Member ps.one subset /\
+    (ps : PeanoSystem Element SetObject)
+    (subset : SetObject) : Prop :=
+  ps.one ∈ subset /\
     SuccessorClosedSubset ps subset
+
+end
 
 end LRA.VolumeII.PeanoSystems

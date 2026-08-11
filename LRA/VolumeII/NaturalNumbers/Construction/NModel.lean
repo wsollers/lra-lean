@@ -8,6 +8,12 @@ language.
 
 namespace LRA.VolumeII.NaturalNumbers
 
+universe u v
+
+variable {Element : Type u} {SetObject : Type v}
+variable [Membership Element SetObject]
+
+
 inductive NFunctionSymbol where
   | successor
 
@@ -30,12 +36,14 @@ def NSignature : LRA.VolumeI.Logic.Signature where
   Relations := NRelations
   Constants := NConstantSymbol
 
-structure NModel extends LRA.VolumeII.PeanoSystems.PeanoSystem
+structure NModel (Element : Type u) (SetObject : Type v)
+    [Membership Element SetObject]
+    extends LRA.VolumeII.PeanoSystems.PeanoSystem Element SetObject
 
 def NModel.toFirstOrderModel
-    (model : NModel) :
+    (model : NModel Element SetObject) :
     LRA.VolumeI.Logic.FirstOrder.Model NSignature where
-  Domain := model.carrier
+  Domain := Element
   domainNonempty := ⟨model.one⟩
   interpretFunction
     | .successor, args => model.successor (args ⟨0, by decide⟩)

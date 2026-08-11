@@ -1,25 +1,34 @@
 import LRA.VolumeI.Set.Enderton
 import LRA.VolumeI.Set.LRASet
 import LRA.VolumeI.Set.Interface
+import LRA.VolumeI.Set.MathlibPredicateSet
+import LRA.VolumeI.Set.MathlibZFSet
 
 /-!
 Aggregate import for the Set chapter.
 
-Two backends with genuinely different ontologies: `Enderton` (fully
-axiomatic, single-sorted, every element is itself a set) and `LRASet`
-(typed predicate sets, elements are ordinary carrier values). Both are
-registered against Lean's shared notation classes, so `A ∪ B`, `A ∩ B`,
-`A ⊆ B`, `A \ B`, `∅`, and `x ∈ A` resolve at either backend's type
-exactly as they would at Mathlib's `Set`.
+Four backends, two ontologies, two provenances:
 
-`Interface` is the backend-agnostic layer: per-family operation classes
-(`ᶜ`, `𝒰`, `∆`) and `Prop`-valued law certificates (`UnionLaws`, ...,
-`ComplementLaws`), with one fluent theorem per law. Each backend proves
-its own laws in its `Laws/` directory and registers one certificate
-instance per family it supports; after that, `UnionCommutative A B`
-resolves the backend from the type of `A` by instance search --  no law
-arguments, no plumbing. Capability differences are structural: Enderton
-registers every family except complement (impossible by Russell's
-paradox -- `Aᶜ`/`𝒰` do not even elaborate at `Enderton.Set`), while
-`LRASet` registers all of them.
+|                    | hand-built (proofs are ours) | Mathlib-backed (redirection) |
+|--------------------|------------------------------|------------------------------|
+| typed predicate    | `LRASet`                     | `MathlibPredicateSet`        |
+| single-sorted ZF   | `Enderton`                   | `MathlibZFSet`               |
+
+All four are registered against the same operation classes, so `A ∪ B`,
+`A ∩ B`, `A ⊆ B`, `A \ B`, `∅`, and `x ∈ A` resolve at any backend's
+type, and the generic fluent theorems (`UnionCommutative A B`, ...)
+resolve their certificate from argument types by instance search -- no
+law arguments, no plumbing.
+
+Capability differences are structural, not conventional: the predicate
+backends have an ambient carrier and register the complement/universal
+family (`Aᶜ`, `𝒰`) and the universal-set-based `Preimage`/`Image`
+vocabulary; the ZF backends cannot (Russell's paradox), and those
+notations simply do not elaborate at their types. The same boundary is
+thus enforced twice -- against this project's Enderton axioms and against
+Mathlib's ZFC model.
+
+Note: the two Mathlib backends import Mathlib. `Enderton`, `LRASet`, and
+`Interface` remain Mathlib-free; drop the last two imports above for a
+Mathlib-free build of the chapter.
 -/

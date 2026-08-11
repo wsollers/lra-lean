@@ -238,26 +238,32 @@ Mathematical statement (Lean): `theorem recovered_natural_number_model_exists : 
 *Proof status:* proof pending
 -/
 theorem recovered_natural_number_model_exists :
-    Nonempty LRA.VolumeII.NaturalNumbers.NModel := by
+    ∃ (Element : Type) (SetObject : Type)
+      (_ : Membership Element SetObject),
+      Nonempty (LRA.VolumeII.NaturalNumbers.NModel Element SetObject) := by
   sorry
 
 
-/-- **[Definition — Natural-Number Model Recovered from Positive Mendelson Integers]**
+/-
+**[Definition — Natural-Number Model Recovered from Positive Mendelson Integers]**
 
-Mathematical statement (Lean): `noncomputable def recovered_natural_number_model : LRA.VolumeII.NaturalNumbers.NModel`.
+Under the parameterized `NModel Element SetObject` a bundled
+`Classical.choice` definition has no single type to inhabit; the recovered
+model lives inside the existential above. The former
+`recovered_natural_number_model` definition is subsumed by
+`recovered_natural_number_model_exists`.
 -/
-noncomputable def recovered_natural_number_model :
-    LRA.VolumeII.NaturalNumbers.NModel :=
-  Classical.choice recovered_natural_number_model_exists
 
 /--
 **[Theorem — Positive Mendelson Integers Recover a Natural-Number Model]**
 
-Mathematical statement (Lean): `theorem positive_integers_recover_natural_number_model : Nonempty LRA.VolumeII.NaturalNumbers.NModel`.
+Mathematical statement (Lean): `theorem positive_integers_recover_natural_number_model`.
 -/
 theorem positive_integers_recover_natural_number_model :
-    Nonempty LRA.VolumeII.NaturalNumbers.NModel :=
-  ⟨recovered_natural_number_model⟩
+    ∃ (Element : Type) (SetObject : Type)
+      (_ : Membership Element SetObject),
+      Nonempty (LRA.VolumeII.NaturalNumbers.NModel Element SetObject) :=
+  recovered_natural_number_model_exists
 
 end LRA.VolumeII.Integers.MendelsonComparison
 namespace LRA.VolumeII.Integers

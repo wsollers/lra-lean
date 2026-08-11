@@ -1,7 +1,9 @@
 import LRA.VolumeI.Relations.Basic.Relations
-import LRA.VolumeI.Set.Operations.Comprehension
+import LRA.VolumeI.Set.Interface.Operations
 
 namespace LRA.VolumeI.Functions
+
+open LRA.VolumeI.Set
 
 universe u v
 
@@ -30,24 +32,28 @@ def FunctionAsRelation {Domain Codomain : Type u}
     (graph : LRA.VolumeI.Relations.HeterogeneousRelation Domain Codomain) : Prop :=
   TotalOverDomain graph /\ SingleValued graph
 
-/-- The domain set of a graph relation. -/
-def DomainOfGraph {Codomain : Type u}
-    (domainOperations : LRA.VolumeI.Set.Operations.ComprehensionSetOperations.{u, u})
-    (ambientDomain : domainOperations.SetObject)
-    (graph : LRA.VolumeI.Relations.HeterogeneousRelation
-      domainOperations.Element Codomain) :
-    domainOperations.SetObject :=
-  domainOperations.separation ambientDomain
+/-- The domain set of a graph relation: the members of the ambient domain
+that the graph relates to at least one output.
+
+Generic over any set backend with separation -- the backend is inferred
+from `ambientDomain`'s type, so this works for Enderton sets and predicate
+sets alike, with no interface record threaded through. -/
+def DomainOfGraph {Element : Type u} {SetObject : Type v} {Codomain : Type u}
+    [HasSeparation Element SetObject]
+    (ambientDomain : SetObject)
+    (graph : LRA.VolumeI.Relations.HeterogeneousRelation Element Codomain) :
+    SetObject :=
+  HasSeparation.separation ambientDomain
     (fun input => exists output, graph input output)
 
-/-- The codomain set hit by a graph relation. -/
-def RangeOfGraph {Domain : Type u}
-    (codomainOperations : LRA.VolumeI.Set.Operations.ComprehensionSetOperations.{u, u})
-    (ambientCodomain : codomainOperations.SetObject)
-    (graph : LRA.VolumeI.Relations.HeterogeneousRelation
-      Domain codomainOperations.Element) :
-    codomainOperations.SetObject :=
-  codomainOperations.separation ambientCodomain
+/-- The codomain set hit by a graph relation: the members of the ambient
+codomain that the graph reaches from at least one input. -/
+def RangeOfGraph {Element : Type u} {SetObject : Type v} {Domain : Type u}
+    [HasSeparation Element SetObject]
+    (ambientCodomain : SetObject)
+    (graph : LRA.VolumeI.Relations.HeterogeneousRelation Domain Element) :
+    SetObject :=
+  HasSeparation.separation ambientCodomain
     (fun output => exists input, graph input output)
 
 end LRA.VolumeI.Functions

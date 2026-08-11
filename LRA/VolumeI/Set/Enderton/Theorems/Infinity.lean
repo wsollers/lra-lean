@@ -16,7 +16,15 @@ larger, separate theorem left for a later file, not attempted here.
 namespace LRA.VolumeI.Set.Enderton
 
 /-- There exists an inductive set. This is the Axiom of Infinity restated
-using the named `IsInductiveSet` predicate. -/
+using the named `IsInductiveSet` predicate.
+
+Logical form:
+
+```lean
+theorem InductiveSetExists :
+    ∃ A : Set, IsInductiveSet A
+```
+-/
 theorem InductiveSetExists :
     ∃ A : Set, IsInductiveSet A := by
   sorry

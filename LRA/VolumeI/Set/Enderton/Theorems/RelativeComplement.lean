@@ -16,11 +16,27 @@ not a new primitive.
 namespace LRA.VolumeI.Set.Enderton
 
 /-- The relative complement of `B` in `A`, derived as the subset of `A`
-separated by non-membership in `B`. -/
+separated by non-membership in `B`.
+
+Logical form:
+
+```lean
 noncomputable def TheRelativeComplement (A B : Set) : Set :=
   TheSeparatedSubset A (fun x => x ∉ B)
+```
+-/
+noncomputable def TheRelativeComplement (A B : Set) : Set :=
+  TheSeparatedSubset A (fun x => x ∉ B)
+/--
+The chosen relative complement has the expected members.
 
-/-- The chosen relative complement has the expected members. -/
+Logical form:
+
+```lean
+theorem TheRelativeComplementIsRelativeComplementOf (A B : Set) :
+    IsRelativeComplementOf A B (TheRelativeComplement A B)
+```
+-/
 theorem TheRelativeComplementIsRelativeComplementOf (A B : Set) :
     IsRelativeComplementOf A B (TheRelativeComplement A B) := by
   sorry
@@ -29,7 +45,15 @@ theorem TheRelativeComplementIsRelativeComplementOf (A B : Set) :
 `B`.
 
 Derived from `TheSeparatedSubsetIsSeparatedSubset`, not from a separate
-axiom. -/
+axiom.
+
+Logical form:
+
+```lean
+theorem TheRelativeComplementMembership (A B x : Set) :
+    x ∈ TheRelativeComplement A B ↔ x ∈ A ∧ x ∉ B
+```
+-/
 theorem TheRelativeComplementMembership (A B x : Set) :
     x ∈ TheRelativeComplement A B ↔ x ∈ A ∧ x ∉ B := by
   sorry
@@ -38,7 +62,17 @@ theorem TheRelativeComplementMembership (A B x : Set) :
 
 Follows directly from `EverySeparatedSubsetEqualsTheSeparatedSubset`, since
 `IsRelativeComplementOf A B D` and `IsSeparatedSubset A (fun x => x ∉ B) D`
-are the same proposition. -/
+are the same proposition.
+
+Logical form:
+
+```lean
+theorem EveryRelativeComplementEqualsTheRelativeComplement
+    {A B D : Set}
+    (DIsRelativeComplementOf : IsRelativeComplementOf A B D) :
+    D = TheRelativeComplement A B
+```
+-/
 theorem EveryRelativeComplementEqualsTheRelativeComplement
     {A B D : Set}
     (DIsRelativeComplementOf : IsRelativeComplementOf A B D) :

@@ -14,7 +14,8 @@ Equality is the canonical equivalence relation on every carrier.
 Logical form:
 
 ```lean
-LRA.VolumeI.Relations.Equivalence (EqualityRelation Carrier)
+theorem EqualityIsEquivalenceRelation (Carrier : Type u) :
+    LRA.VolumeI.Relations.Equivalence (EqualityRelation Carrier)
 ```
 -/
 theorem EqualityIsEquivalenceRelation (Carrier : Type u) :

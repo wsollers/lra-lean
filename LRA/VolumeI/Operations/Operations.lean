@@ -4,31 +4,89 @@ namespace LRA.VolumeI.Operations
 
 universe u v
 
-/-- A nullary operation on a carrier. -/
+/--
+A nullary operation on a carrier.
+
+Logical form:
+
+```lean
+abbrev NullaryOperation (alpha : Type u) := alpha
+```
+-/
 abbrev NullaryOperation (alpha : Type u) := alpha
 
-/-- Compatibility synonym for a nullary operation. -/
+/--
+Compatibility synonym for a nullary operation.
+
+Logical form:
+
+```lean
+abbrev ConstantOperation (alpha : Type u) :=
+  NullaryOperation alpha
+```
+-/
 abbrev ConstantOperation (alpha : Type u) :=
   NullaryOperation alpha
 
-/-- A unary endo-operation on a carrier. -/
+/--
+A unary endo-operation on a carrier.
+
+Logical form:
+
+```lean
+abbrev UnaryOperation (alpha : Type u) := alpha -> alpha
+```
+-/
 abbrev UnaryOperation (alpha : Type u) := alpha -> alpha
 
-/-- A binary operation on a carrier. -/
+/--
+A binary operation on a carrier.
+
+Logical form:
+
+```lean
+abbrev BinaryOperation (alpha : Type u) := alpha -> alpha -> alpha
+```
+-/
 abbrev BinaryOperation (alpha : Type u) := alpha -> alpha -> alpha
 
-/-- An external binary operation, such as scalar multiplication. -/
+/--
+An external binary operation, such as scalar multiplication.
+
+Logical form:
+
+```lean
+abbrev ExternalBinaryOperation (scalar carrier : Type u) :=
+  scalar -> carrier -> carrier
+```
+-/
 abbrev ExternalBinaryOperation (scalar carrier : Type u) :=
   scalar -> carrier -> carrier
 
-/-- A partial unary operation on a carrier. -/
+/--
+A partial unary operation on a carrier.
+
+Logical form:
+
+```lean
+structure PartialUnaryOperation (alpha : Type u) where
+```
+-/
 structure PartialUnaryOperation (alpha : Type u) where
   /-- The operation's domain of definition. -/
   Domain : alpha -> Prop
   /-- The value of the operation at a point in its domain. -/
   Value : forall input, Domain input -> alpha
 
-/-- A partial binary operation on a carrier. -/
+/--
+A partial binary operation on a carrier.
+
+Logical form:
+
+```lean
+structure PartialBinaryOperation (alpha : Type u) where
+```
+-/
 structure PartialBinaryOperation (alpha : Type u) where
   /-- The operation's domain of definition. -/
   Domain : alpha -> alpha -> Prop

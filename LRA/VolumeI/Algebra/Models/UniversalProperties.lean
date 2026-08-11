@@ -11,6 +11,20 @@ Lean module: LRA.VolumeI.Algebra.Models.UniversalProperties
 Source: docs/number-systems/gpt-00c-universal-properties.md
 Verification status: statement-accepted-proof-pending
 -/
+/--
+`IntegerUniversalProperty` exposes this formal declaration.
+
+Logical form:
+
+```lean
+structure IntegerUniversalProperty (SelectedIntegerModel : IntegerModel) : Prop where
+  InitialForDiscreteOrderedRings :
+    ∀ target : IntegerModel,
+      ∃ map : SelectedIntegerModel.signature.carrier → target.signature.carrier,
+        CanonicalEmbeddings.EmbeddingPreservesOrderedRing
+          SelectedIntegerModel.signature target.signature map
+```
+-/
 
 structure IntegerUniversalProperty (SelectedIntegerModel : IntegerModel) : Prop where
   InitialForDiscreteOrderedRings :
@@ -18,6 +32,27 @@ structure IntegerUniversalProperty (SelectedIntegerModel : IntegerModel) : Prop 
       ∃ map : SelectedIntegerModel.signature.carrier → target.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedRing
           SelectedIntegerModel.signature target.signature map
+/--
+`RationalUniversalProperty` exposes this formal declaration.
+
+Logical form:
+
+```lean
+structure RationalUniversalProperty
+    (SelectedIntegerModel : IntegerModel)
+    (SelectedRationalExtension : RationalExtension SelectedIntegerModel) : Prop where
+  FractionFieldProperty :
+    ∀ target : RationalModel,
+      ∀ IntegerMap :
+        SelectedIntegerModel.signature.carrier → target.signature.carrier,
+        CanonicalEmbeddings.EmbeddingPreservesOrderedRing
+          SelectedIntegerModel.signature target.signature.toOrderedRingSignature IntegerMap →
+        ∃ RationalMap :
+          SelectedRationalExtension.RationalModel.signature.carrier → target.signature.carrier,
+          CanonicalEmbeddings.EmbeddingPreservesOrderedField
+            SelectedRationalExtension.RationalModel.signature target.signature RationalMap
+```
+-/
 
 structure RationalUniversalProperty
     (SelectedIntegerModel : IntegerModel)
@@ -32,6 +67,21 @@ structure RationalUniversalProperty
           SelectedRationalExtension.RationalModel.signature.carrier → target.signature.carrier,
           CanonicalEmbeddings.EmbeddingPreservesOrderedField
             SelectedRationalExtension.RationalModel.signature target.signature RationalMap
+/--
+`CompleteOrderedFieldCharacterization` exposes this formal declaration.
+
+Logical form:
+
+```lean
+structure CompleteOrderedFieldCharacterization (SelectedRealModel : RealModel) : Prop where
+  RealLaws : RealLaws SelectedRealModel.signature
+  UniqueUpToOrderedFieldIsomorphism :
+    ∀ other : RealModel,
+      ∃ comparison : SelectedRealModel.signature.carrier → other.signature.carrier,
+        CanonicalEmbeddings.EmbeddingPreservesOrderedField
+          SelectedRealModel.signature other.signature comparison
+```
+-/
 
 structure CompleteOrderedFieldCharacterization (SelectedRealModel : RealModel) : Prop where
   RealLaws : RealLaws SelectedRealModel.signature

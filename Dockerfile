@@ -36,8 +36,9 @@ ENV PATH="/root/.elan/bin:${PATH}"
 WORKDIR /workspace
 COPY lean-toolchain ./lean-toolchain
 
-RUN elan toolchain install "$(cat lean-toolchain)" \
-    && elan default "$(cat lean-toolchain)"
+RUN TOOLCHAIN="$(tr -d '\r\n' < lean-toolchain)" \
+    && elan toolchain install "$TOOLCHAIN" \
+    && elan default "$TOOLCHAIN"
 
 COPY lake-manifest.json ./lake-manifest.json
 COPY lakefile.lean ./lakefile.lean

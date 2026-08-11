@@ -2,7 +2,20 @@ import LRA.VolumeI.Algebra.Signatures.Algebraic.GroupSignature
 
 namespace LRA.VolumeI.Algebra.Signatures.Algebraic
 
-/-- A ring signature carries additive group and multiplicative monoid symbols. -/
+/--
+A ring signature carries additive group and multiplicative monoid symbols.
+
+Logical form:
+
+```lean
+structure RingSignature where
+  ZeroSymbol : Type
+  OneSymbol : Type
+  AdditionSymbol : Type
+  NegationSymbol : Type
+  MultiplicationSymbol : Type
+```
+-/
 structure RingSignature where
   ZeroSymbol : Type
   OneSymbol : Type

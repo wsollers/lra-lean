@@ -63,4 +63,30 @@ instance : HasUniversal (LRASet Alpha) where
 instance : HasSymmDiff (LRASet Alpha) where
   symmDiff := LRA.VolumeI.Set.LRASet.SymmetricDifference
 
+instance : HasSeparation Alpha (LRASet Alpha) where
+  separation := LRA.VolumeI.Set.LRASet.Separation
+
+instance : HasPowerset (LRASet Alpha) (LRASet (LRASet Alpha)) where
+  powerset := LRA.VolumeI.Set.LRASet.PowerSet
+
+instance : HasIndexedUnion (LRASet Alpha) where
+  indexedUnion := fun family => LRA.VolumeI.Set.LRASet.IndexedUnion family
+
+instance : HasIndexedIntersection (LRASet Alpha) where
+  indexedIntersection := fun family =>
+    LRA.VolumeI.Set.LRASet.IndexedIntersection family
+
+instance : HasCountableUnion (LRASet Alpha) where
+  countableUnion := fun family => LRA.VolumeI.Set.LRASet.IndexedUnion family
+
+instance : HasCountableIntersection (LRASet Alpha) where
+  countableIntersection := fun family =>
+    LRA.VolumeI.Set.LRASet.IndexedIntersection family
+
+instance : HasCollectionUnion (LRASet Alpha) (LRASet (LRASet Alpha)) where
+  collectionUnion := LRA.VolumeI.Set.LRASet.CollectionUnion
+
+instance : HasCollectionIntersection (LRASet Alpha) (LRASet (LRASet Alpha)) where
+  collectionIntersection := LRA.VolumeI.Set.LRASet.CollectionIntersection
+
 end LRA.VolumeI.Set.LRASet

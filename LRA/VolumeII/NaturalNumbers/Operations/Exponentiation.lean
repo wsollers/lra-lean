@@ -2,6 +2,12 @@ import LRA.VolumeII.NaturalNumbers.Operations.Multiplication
 
 namespace LRA.VolumeII.NaturalNumbers
 
+universe u v
+
+variable {Element : Type u} {SetObject : Type v}
+variable [Membership Element SetObject]
+
+
 open LRA.VolumeII.PeanoSystems
 
 /--
@@ -12,68 +18,68 @@ distinguished element of the second coordinate is the base, and whose successor
 step multiplies by the base.
 -/
 noncomputable def NExponentiation
-    (model : NModel) :
-    model.carrier -> model.carrier -> model.carrier :=
+    (model : NModel Element SetObject) :
+    Element -> Element -> Element :=
   Classical.choose
     (ExistenceOfBinaryIteratorOperation
       model.toPeanoSystem
-      model.carrier
-      model.carrier
+      Element
+      Element
       (fun base => base)
       (fun base value => NMultiplication model value base))
 
 theorem NExponentiationClauses
-    (model : NModel) :
+    (model : NModel Element SetObject) :
     BinaryIteratorOperationClauses
       model.toPeanoSystem
-      model.carrier
-      model.carrier
+      Element
+      Element
       (fun base => base)
       (fun base value => NMultiplication model value base)
       (NExponentiation model) :=
   Classical.choose_spec
     (ExistenceOfBinaryIteratorOperation
       model.toPeanoSystem
-      model.carrier
-      model.carrier
+      Element
+      Element
       (fun base => base)
       (fun base value => NMultiplication model value base))
 
 theorem NExponentiationWellDefined
-    (model : NModel) :
-    exists exponentiation : model.carrier -> model.carrier -> model.carrier,
+    (model : NModel Element SetObject) :
+    exists exponentiation : Element -> Element -> Element,
       BinaryIteratorOperationClauses
         model.toPeanoSystem
-        model.carrier
-        model.carrier
+        Element
+        Element
         (fun base => base)
         (fun base value => NMultiplication model value base)
         exponentiation /\
-      forall otherExponentiation : model.carrier -> model.carrier -> model.carrier,
+      forall otherExponentiation : Element -> Element -> Element,
         BinaryIteratorOperationClauses
           model.toPeanoSystem
-          model.carrier
-          model.carrier
+          Element
+          Element
           (fun base => base)
           (fun base value => NMultiplication model value base)
           otherExponentiation ->
         otherExponentiation = exponentiation :=
   BinaryIteratorOperationWellDefined
     model.toPeanoSystem
-    model.carrier
-    model.carrier
+    Element
+    Element
     (fun base => base)
     (fun base value => NMultiplication model value base)
 
 theorem NExponentiationWithOne
-    (model : NModel)
-    (base : model.carrier) :
+    (model : NModel Element SetObject)
+    (base : Element) :
     NExponentiation model base model.one = base :=
   (NExponentiationClauses model base).1
 
 theorem NExponentiationSuccessorOnRight
-    (model : NModel)
-    (base exponent : model.carrier) :
+    (model : NModel Element SetObject)
+    (base exponent : Element) :
     NExponentiation model base (model.successor exponent) =
       NMultiplication model (NExponentiation model base exponent) base :=
   (NExponentiationClauses model base).2 exponent

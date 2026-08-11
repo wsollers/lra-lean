@@ -16,7 +16,16 @@ namespace LRA.VolumeI.Set.Enderton
 
 /-- Every nonempty set has a Foundation witness: a member disjoint from it.
 This is the Axiom of Foundation restated using the named `IsFoundationWitness`
-predicate. -/
+predicate.
+
+Logical form:
+
+```lean
+theorem FoundationWitnessExists
+    (A : Set) (nonempty : ∃ w : Set, w ∈ A) :
+    ∃ x : Set, IsFoundationWitness A x
+```
+-/
 theorem FoundationWitnessExists
     (A : Set) (nonempty : ∃ w : Set, w ∈ A) :
     ∃ x : Set, IsFoundationWitness A x := by
@@ -26,7 +35,15 @@ theorem FoundationWitnessExists
 
 Classic corollary: apply Foundation to the singleton `{A}` (via `PairSet A A`,
 per `TheSingleton`); its only possible Foundation witness is `A` itself, which
-forces `A ∉ A`. -/
+forces `A ∉ A`.
+
+Logical form:
+
+```lean
+theorem NoSetIsMemberOfItself (A : Set) :
+    A ∉ A
+```
+-/
 theorem NoSetIsMemberOfItself (A : Set) :
     A ∉ A := by
   sorry

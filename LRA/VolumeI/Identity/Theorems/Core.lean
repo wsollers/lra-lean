@@ -18,7 +18,9 @@ Equality is symmetric.
 Logical form:
 
 ```lean
-left = right → right = left
+theorem EqualitySymmetry {Carrier : Type u} {left right : Carrier}
+    (ObjectsAreEqual : left = right) :
+    right = left
 ```
 -/
 theorem EqualitySymmetry {Carrier : Type u} {left right : Carrier}
@@ -32,7 +34,10 @@ Equality is transitive.
 Logical form:
 
 ```lean
-first = second → second = third → first = third
+theorem EqualityTransitivity {Carrier : Type u} {first second third : Carrier}
+    (FirstEqualsSecond : first = second)
+    (SecondEqualsThird : second = third) :
+    first = third
 ```
 -/
 theorem EqualityTransitivity {Carrier : Type u} {first second third : Carrier}
@@ -46,7 +51,8 @@ theorem EqualityTransitivity {Carrier : Type u} {first second third : Carrier}
 Logical form:
 
 ```lean
-PropositionalEquality left right ↔ left = right
+def PropositionalEquality {Carrier : Type u} (left right : Carrier) : Prop :=
+  left = right
 ```
 -/
 def PropositionalEquality {Carrier : Type u} (left right : Carrier) : Prop :=
@@ -57,7 +63,10 @@ def PropositionalEquality {Carrier : Type u} (left right : Carrier) : Prop :=
 Logical form:
 
 ```lean
-left = right → formula left ↔ formula right
+theorem EqualitySubstitution {Carrier : Type u} {left right : Carrier}
+    (ObjectsAreEqual : left = right)
+    (formula : Carrier -> Prop) :
+    formula left ↔ formula right
 ```
 -/
 theorem EqualitySubstitution {Carrier : Type u} {left right : Carrier}
@@ -72,7 +81,11 @@ theorem EqualitySubstitution {Carrier : Type u} {left right : Carrier}
 Logical form:
 
 ```lean
-left = right → predicate left ↔ predicate right
+theorem SubstitutionPreservesPredicates {Carrier : Type u}
+    {left right : Carrier}
+    (ObjectsAreEqual : left = right)
+    (predicate : Carrier -> Prop) :
+    predicate left ↔ predicate right
 ```
 -/
 theorem SubstitutionPreservesPredicates {Carrier : Type u}
@@ -88,7 +101,11 @@ theorem SubstitutionPreservesPredicates {Carrier : Type u}
 Logical form:
 
 ```lean
-left = right → relation left fixed ↔ relation right fixed
+theorem SubstitutionPreservesRelationsLeft {Carrier : Type u}
+    {left right fixed : Carrier}
+    (ObjectsAreEqual : left = right)
+    (relation : Carrier -> Carrier -> Prop) :
+    relation left fixed ↔ relation right fixed
 ```
 -/
 theorem SubstitutionPreservesRelationsLeft {Carrier : Type u}
@@ -103,7 +120,11 @@ theorem SubstitutionPreservesRelationsLeft {Carrier : Type u}
 Logical form:
 
 ```lean
-left = right → relation fixed left ↔ relation fixed right
+theorem SubstitutionPreservesRelationsRight {Carrier : Type u}
+    {left right fixed : Carrier}
+    (ObjectsAreEqual : left = right)
+    (relation : Carrier -> Carrier -> Prop) :
+    relation fixed left ↔ relation fixed right
 ```
 -/
 theorem SubstitutionPreservesRelationsRight {Carrier : Type u}
@@ -118,8 +139,12 @@ theorem SubstitutionPreservesRelationsRight {Carrier : Type u}
 Logical form:
 
 ```lean
-left = left' → right = right' →
-  relation left right ↔ relation left' right'
+theorem SubstitutionPreservesRelations {Carrier : Type u}
+    {left left' right right' : Carrier}
+    (LeftsAreEqual : left = left')
+    (RightsAreEqual : right = right')
+    (relation : Carrier -> Carrier -> Prop) :
+    relation left right ↔ relation left' right'
 ```
 -/
 theorem SubstitutionPreservesRelations {Carrier : Type u}
@@ -137,7 +162,11 @@ theorem SubstitutionPreservesRelations {Carrier : Type u}
 Logical form:
 
 ```lean
-left = right → function left = function right
+theorem SubstitutionPreservesFunctions {Domain : Type u} {Codomain : Type v}
+    {left right : Domain}
+    (ObjectsAreEqual : left = right)
+    (function : Domain -> Codomain) :
+    function left = function right
 ```
 -/
 theorem SubstitutionPreservesFunctions {Domain : Type u} {Codomain : Type v}
@@ -152,7 +181,11 @@ theorem SubstitutionPreservesFunctions {Domain : Type u} {Codomain : Type v}
 Logical form:
 
 ```lean
-left = left' → operation left right = operation left' right
+theorem SubstitutionPreservesOperationsLeft {Carrier : Type u}
+    {left left' right : Carrier}
+    (LeftsAreEqual : left = left')
+    (operation : Carrier -> Carrier -> Carrier) :
+    operation left right = operation left' right
 ```
 -/
 theorem SubstitutionPreservesOperationsLeft {Carrier : Type u}
@@ -167,7 +200,11 @@ theorem SubstitutionPreservesOperationsLeft {Carrier : Type u}
 Logical form:
 
 ```lean
-right = right' → operation left right = operation left right'
+theorem SubstitutionPreservesOperationsRight {Carrier : Type u}
+    {left right right' : Carrier}
+    (RightsAreEqual : right = right')
+    (operation : Carrier -> Carrier -> Carrier) :
+    operation left right = operation left right'
 ```
 -/
 theorem SubstitutionPreservesOperationsRight {Carrier : Type u}
@@ -182,8 +219,12 @@ theorem SubstitutionPreservesOperationsRight {Carrier : Type u}
 Logical form:
 
 ```lean
-left = left' → right = right' →
-  operation left right = operation left' right'
+theorem SubstitutionPreservesOperations {Carrier : Type u}
+    {left left' right right' : Carrier}
+    (LeftsAreEqual : left = left')
+    (RightsAreEqual : right = right')
+    (operation : Carrier -> Carrier -> Carrier) :
+    operation left right = operation left' right'
 ```
 -/
 theorem SubstitutionPreservesOperations {Carrier : Type u}
@@ -201,14 +242,15 @@ theorem SubstitutionPreservesOperations {Carrier : Type u}
 Logical form:
 
 ```lean
-left = left' →
-right = right' →
-  (∀ predicate : Carrier -> Prop,
-    predicate left ↔ predicate left') ∧
-  (∀ relation : Carrier -> Carrier -> Prop,
-    relation left right ↔ relation left' right') ∧
-  (∀ operation : Carrier -> Carrier -> Carrier,
-    operation left right = operation left' right')
+theorem CongruenceWithRespectToEqualityIsAutomatic {Carrier : Type u}
+    {left left' right right' : Carrier}
+    (LeftsAreEqual : left = left')
+    (RightsAreEqual : right = right') :
+    (∀ predicate : Carrier -> Prop, predicate left ↔ predicate left') ∧
+      (∀ relation : Carrier -> Carrier -> Prop,
+        relation left right ↔ relation left' right') ∧
+      (∀ operation : Carrier -> Carrier -> Carrier,
+        operation left right = operation left' right')
 ```
 -/
 theorem CongruenceWithRespectToEqualityIsAutomatic {Carrier : Type u}

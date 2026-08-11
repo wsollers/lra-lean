@@ -4,6 +4,12 @@ import LRA.VolumeII.PeanoSystems.Recursion.BinaryIterator
 
 namespace LRA.VolumeII.NaturalNumbers
 
+universe u v
+
+variable {Element : Type u} {SetObject : Type v}
+variable [Membership Element SetObject]
+
+
 open LRA.VolumeII.PeanoSystems
 
 /--
@@ -14,79 +20,79 @@ element of the second coordinate is the successor of the first coordinate, and
 whose successor step applies successor.
 -/
 noncomputable def NAddition
-    (model : NModel) :
-    model.carrier -> model.carrier -> model.carrier :=
+    (model : NModel Element SetObject) :
+    Element -> Element -> Element :=
   Classical.choose
     (ExistenceOfBinaryIteratorOperation
       model.toPeanoSystem
-      model.carrier
-      model.carrier
+      Element
+      Element
       (fun left => model.successor left)
       (fun _ value => model.successor value))
 
 theorem NAdditionClauses
-    (model : NModel) :
+    (model : NModel Element SetObject) :
     BinaryIteratorOperationClauses
       model.toPeanoSystem
-      model.carrier
-      model.carrier
+      Element
+      Element
       (fun left => model.successor left)
       (fun _ value => model.successor value)
       (NAddition model) :=
   Classical.choose_spec
     (ExistenceOfBinaryIteratorOperation
       model.toPeanoSystem
-      model.carrier
-      model.carrier
+      Element
+      Element
       (fun left => model.successor left)
       (fun _ value => model.successor value))
 
 theorem NAdditionWellDefined
-    (model : NModel) :
-    exists addition : model.carrier -> model.carrier -> model.carrier,
+    (model : NModel Element SetObject) :
+    exists addition : Element -> Element -> Element,
       BinaryIteratorOperationClauses
         model.toPeanoSystem
-        model.carrier
-        model.carrier
+        Element
+        Element
         (fun left => model.successor left)
         (fun _ value => model.successor value)
         addition /\
-      forall otherAddition : model.carrier -> model.carrier -> model.carrier,
+      forall otherAddition : Element -> Element -> Element,
         BinaryIteratorOperationClauses
           model.toPeanoSystem
-          model.carrier
-          model.carrier
+          Element
+          Element
           (fun left => model.successor left)
           (fun _ value => model.successor value)
           otherAddition ->
         otherAddition = addition :=
   BinaryIteratorOperationWellDefined
     model.toPeanoSystem
-    model.carrier
-    model.carrier
+    Element
+    Element
     (fun left => model.successor left)
     (fun _ value => model.successor value)
 
 theorem NAdditionWithOne
-    (model : NModel)
-    (left : model.carrier) :
+    (model : NModel Element SetObject)
+    (left : Element) :
     NAddition model left model.one = model.successor left :=
   (NAdditionClauses model left).1
 
 theorem NAdditionSuccessorOnRight
-    (model : NModel)
-    (left right : model.carrier) :
+    (model : NModel Element SetObject)
+    (left right : Element) :
     NAddition model left (model.successor right) =
       model.successor (NAddition model left right) :=
   (NAdditionClauses model left).2 right
 
 theorem NAdditionIsAssociative
-    (model : NModel) :
+    (model : NModel Element SetObject) :
     LRA.VolumeI.Operations.Associative (NAddition model) := by
   sorry
 
 theorem NAdditionIsCommutative
-    (model : NModel) :
+    (model : NModel Element SetObject) :
     LRA.VolumeI.Operations.Commutative (NAddition model) := by
   sorry
 

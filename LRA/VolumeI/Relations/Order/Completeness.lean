@@ -2,33 +2,42 @@ import LRA.VolumeI.Relations.Order.Lattices
 
 namespace LRA.VolumeI.Relations.Order
 
-universe u
+universe u v
+
+/-!
+Completeness properties. `SetObject` is explicit in each definition: these
+assert something about *every subset in a chosen backend*, so which
+backend's subsets are quantified over is part of the statement.
+-/
 
 /-- Least-upper-bound property for a non-strict order. -/
 def LeastUpperBoundProperty
-    (interface : LRA.VolumeI.Set.SetInterface.{u, u})
-    (relation : LRA.VolumeI.Relations.Endorelation interface.Element) : Prop :=
-  forall subset : interface.SetObject,
-    (exists element, interface.member element subset) ->
-      (exists upperBound, UpperBound interface relation subset upperBound) ->
-        exists supremum, Supremum interface relation subset supremum
+    {Element : Type u} (SetObject : Type v)
+    [Membership Element SetObject]
+    (relation : LRA.VolumeI.Relations.Endorelation Element) : Prop :=
+  forall subset : SetObject,
+    (exists element, element ∈ subset) ->
+      (exists upperBound, UpperBound relation subset upperBound) ->
+        exists supremum, Supremum relation subset supremum
 
 /-- Greatest-lower-bound property for a non-strict order. -/
 def GreatestLowerBoundProperty
-    (interface : LRA.VolumeI.Set.SetInterface.{u, u})
-    (relation : LRA.VolumeI.Relations.Endorelation interface.Element) : Prop :=
-  forall subset : interface.SetObject,
-    (exists element, interface.member element subset) ->
-      (exists lowerBound, LowerBound interface relation subset lowerBound) ->
-        exists infimum, Infimum interface relation subset infimum
+    {Element : Type u} (SetObject : Type v)
+    [Membership Element SetObject]
+    (relation : LRA.VolumeI.Relations.Endorelation Element) : Prop :=
+  forall subset : SetObject,
+    (exists element, element ∈ subset) ->
+      (exists lowerBound, LowerBound relation subset lowerBound) ->
+        exists infimum, Infimum relation subset infimum
 
 /-- Complete lattice laws: every subset has both a supremum and an infimum. -/
 def CompleteLattice
-    (interface : LRA.VolumeI.Set.SetInterface.{u, u})
-    (relation : LRA.VolumeI.Relations.Endorelation interface.Element) : Prop :=
+    {Element : Type u} (SetObject : Type v)
+    [Membership Element SetObject]
+    (relation : LRA.VolumeI.Relations.Endorelation Element) : Prop :=
   PartialOrder relation /\
-    forall subset : interface.SetObject,
-      (exists supremum, Supremum interface relation subset supremum) /\
-        (exists infimum, Infimum interface relation subset infimum)
+    forall subset : SetObject,
+      (exists supremum, Supremum relation subset supremum) /\
+        (exists infimum, Infimum relation subset infimum)
 
 end LRA.VolumeI.Relations.Order

@@ -13,13 +13,32 @@ is derived as `⋃ {A, B}`, matching the textbook development.
 -/
 
 namespace LRA.VolumeI.Set.Enderton
+/--
+There exists a union over `A`.
 
-/-- There exists a union over `A`. -/
+Logical form:
+
+```lean
+theorem UnionOverExists (A : Set) :
+    ∃ U : Set, IsUnionOf A U
+```
+-/
 theorem UnionOverExists (A : Set) :
     ∃ U : Set, IsUnionOf A U := by
   sorry
+/--
+Any union over `A` is equal to any other union over `A`.
 
-/-- Any union over `A` is equal to any other union over `A`. -/
+Logical form:
+
+```lean
+theorem UnionOverIsUnique
+    {A U V : Set}
+    (UIsUnionOf : IsUnionOf A U)
+    (VIsUnionOf : IsUnionOf A V) :
+    V = U
+```
+-/
 theorem UnionOverIsUnique
     {A U V : Set}
     (UIsUnionOf : IsUnionOf A U)
@@ -28,22 +47,56 @@ theorem UnionOverIsUnique
   sorry
 
 /-- TeX label: `thm:union-output-exists-unique`.
+For any set of sets, there exists exactly one union over it.
 
-For any set of sets, there exists exactly one union over it. -/
+Logical form:
+
+```lean
+theorem UnionOverExistsAndIsUnique (A : Set) :
+    ExistsAndUnique (fun U : Set => IsUnionOf A U)
+```
+-/
 theorem UnionOverExistsAndIsUnique (A : Set) :
     ExistsAndUnique (fun U : Set => IsUnionOf A U) := by
   sorry
 
-/-- The union over `A`, chosen after its existence has been established. -/
+/--
+The union over `A`, chosen after its existence has been established.
+
+Logical form:
+
+```lean
 noncomputable def TheUnionOver (A : Set) : Set :=
   Classical.choose (UnionOverExists A)
+```
+-/
+noncomputable def TheUnionOver (A : Set) : Set :=
+  Classical.choose (UnionOverExists A)
+/--
+The chosen union over `A` has the expected members.
 
-/-- The chosen union over `A` has the expected members. -/
+Logical form:
+
+```lean
+theorem TheUnionOverIsUnionOf (A : Set) :
+    IsUnionOf A (TheUnionOver A)
+```
+-/
 theorem TheUnionOverIsUnionOf (A : Set) :
     IsUnionOf A (TheUnionOver A) := by
   sorry
+/--
+Every union over `A` is equal to the chosen union over `A`.
 
-/-- Every union over `A` is equal to the chosen union over `A`. -/
+Logical form:
+
+```lean
+theorem EveryUnionOverEqualsTheUnionOver
+    {A U : Set}
+    (UIsUnionOf : IsUnionOf A U) :
+    U = TheUnionOver A
+```
+-/
 theorem EveryUnionOverEqualsTheUnionOver
     {A U : Set}
     (UIsUnionOf : IsUnionOf A U) :
@@ -54,14 +107,31 @@ theorem EveryUnionOverEqualsTheUnionOver
 
 `A ∪ B` is not a new primitive: it is the union over the pair set `{A, B}`. -/
 
-/-- Binary union of `A` and `B`, derived as the union over their pair set. -/
+/--
+Binary union of `A` and `B`, derived as the union over their pair set.
+
+Logical form:
+
+```lean
+noncomputable def TheUnion (A B : Set) : Set :=
+  TheUnionOver (PairSet A B)
+```
+-/
 noncomputable def TheUnion (A B : Set) : Set :=
   TheUnionOver (PairSet A B)
 
 /-- `x` belongs to `A ∪ B` iff `x` belongs to `A` or `x` belongs to `B`.
 
 Derived from `TheUnionOverIsUnionOf` and `PairSetMembership`, not from a
-separate axiom. -/
+separate axiom.
+
+Logical form:
+
+```lean
+theorem TheUnionMembership (A B x : Set) :
+    x ∈ TheUnion A B ↔ x ∈ A ∨ x ∈ B
+```
+-/
 theorem TheUnionMembership (A B x : Set) :
     x ∈ TheUnion A B ↔ x ∈ A ∨ x ∈ B := by
   sorry

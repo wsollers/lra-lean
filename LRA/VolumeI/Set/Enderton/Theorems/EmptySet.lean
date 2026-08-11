@@ -7,13 +7,32 @@ Existence, uniqueness, and the chosen Enderton empty set.
 -/
 
 namespace LRA.VolumeI.Set.Enderton
+/--
+There exists an empty set.
 
-/-- There exists an empty set. -/
+Logical form:
+
+```lean
+theorem EmptySetExists :
+    ∃ A : Set, IsEmptySet A
+```
+-/
 theorem EmptySetExists :
     ∃ A : Set, IsEmptySet A := by
   sorry
+/--
+Any empty set is equal to any other empty set.
 
-/-- Any empty set is equal to any other empty set. -/
+Logical form:
+
+```lean
+theorem EmptySetIsUnique
+    {A B : Set}
+    (AIsEmpty : IsEmptySet A)
+    (BIsEmpty : IsEmptySet B) :
+    B = A
+```
+-/
 theorem EmptySetIsUnique
     {A B : Set}
     (AIsEmpty : IsEmptySet A)
@@ -24,21 +43,56 @@ theorem EmptySetIsUnique
 /-- TeX label: `thm:empty-set-exists-unique`.
 
 There exists exactly one empty set. Its proof combines `EmptySetExists` with
-`EmptySetIsUnique`. -/
+`EmptySetIsUnique`.
+
+Logical form:
+
+```lean
+theorem EmptySetExistsAndIsUnique :
+    ExistsAndUnique IsEmptySet
+```
+-/
 theorem EmptySetExistsAndIsUnique :
     ExistsAndUnique IsEmptySet := by
   sorry
 
-/-- The empty set chosen after its existence has been established. -/
+/--
+The empty set chosen after its existence has been established.
+
+Logical form:
+
+```lean
 noncomputable def TheEmptySet : Set :=
   Classical.choose EmptySetExists
+```
+-/
+noncomputable def TheEmptySet : Set :=
+  Classical.choose EmptySetExists
+/--
+The chosen empty set has no members.
 
-/-- The chosen empty set has no members. -/
+Logical form:
+
+```lean
+theorem TheEmptySetIsEmpty :
+    IsEmptySet TheEmptySet
+```
+-/
 theorem TheEmptySetIsEmpty :
     IsEmptySet TheEmptySet := by
   sorry
+/--
+Every empty set is equal to the chosen empty set.
 
-/-- Every empty set is equal to the chosen empty set. -/
+Logical form:
+
+```lean
+theorem EveryEmptySetEqualsTheEmptySet
+    {A : Set}
+    (AIsEmpty : IsEmptySet A) :
+    A = TheEmptySet
+```
+-/
 theorem EveryEmptySetEqualsTheEmptySet
     {A : Set}
     (AIsEmpty : IsEmptySet A) :

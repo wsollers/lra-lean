@@ -3,54 +3,66 @@ import LRA.VolumeI.Set.Algebra
 /-!
 Contract-backed definitions for algebras of sets.
 
-This module states Volume IV's algebra-of-sets interface against the abstract
-set-operation contract from Volume I. Concrete backends map their native set
-APIs into that contract in switch modules.
+This module states Volume IV's algebra-of-sets interface against the
+ambient-relative algebra layer from Volume I. Concrete backends supply
+their operations through the capability classes, so these definitions
+work at every registered backend.
 -/
 
 namespace LRA.VolumeIV.AlgebrasOfSets
 
-/-- An algebra of sets is a set-operation signature satisfying the algebra laws.
+open LRA.VolumeI.Set
 
-Mathematical statement (Lean): `structure AlgebraOfSetsDefinition`.
+universe u v
+
+/-- An algebra of sets on an ambient set.
+
+Mathematical statement (Lean): `abbrev AlgebraOfSetsDefinition`.
 -/
-abbrev AlgebraOfSetsDefinition :=
-  LRA.VolumeI.Set.Algebra.SetAlgebraModel
+abbrev AlgebraOfSetsDefinition := @LRA.VolumeI.Set.Algebra.AlgebraOfSets
 
-/-- A ring of sets is a set-ring signature satisfying the set-ring laws.
+/-- A ring of sets on an ambient set.
 
 Mathematical statement (Lean): `abbrev RingOfSetsDefinition`.
 -/
-abbrev RingOfSetsDefinition :=
-  LRA.VolumeI.Set.Algebra.SetRingModel
+abbrev RingOfSetsDefinition := @LRA.VolumeI.Set.Algebra.RingOfSets
 
-/-- A sigma-ring is a sigma-ring signature satisfying the sigma-ring laws.
+/-- A sigma-ring on an ambient set.
 
 Mathematical statement (Lean): `abbrev SigmaRingDefinition`.
 -/
-abbrev SigmaRingDefinition :=
-  LRA.VolumeI.Set.Algebra.SigmaRingModel
+abbrev SigmaRingDefinition := @LRA.VolumeI.Set.Algebra.SigmaRingOfSets
 
-/-- A sigma-algebra is a sigma-algebra signature satisfying the sigma-algebra laws.
+/-- A sigma-algebra on an ambient set.
 
 Mathematical statement (Lean): `abbrev SigmaAlgebraDefinition`.
 -/
-abbrev SigmaAlgebraDefinition :=
-  LRA.VolumeI.Set.Algebra.SigmaAlgebraModel
+abbrev SigmaAlgebraDefinition := @LRA.VolumeI.Set.Algebra.SigmaAlgebraOfSets
 
-/-- Reference data for a space equipped with an algebra of sets.
+/-- Reference data for a space equipped with an algebra of sets: an
+ambient set together with an algebra on it.
 
 Mathematical statement (Lean): `structure AlgebraOfSetsSpaceDefinition`.
 -/
-structure AlgebraOfSetsSpaceDefinition where
-  /-- The algebra of set-objects on the carrier. -/
-  algebra : AlgebraOfSetsDefinition
+structure AlgebraOfSetsSpaceDefinition
+    (Element : Type u) (SetObj : Type v)
+    [Membership Element SetObj]
+    [Union SetObj] [Inter SetObj] [SDiff SetObj]
+    [EmptyCollection SetObj] [HasSubset SetObj] [HasSymmDiff SetObj] where
+  ambient : SetObj
+  algebra : LRA.VolumeI.Set.Algebra.AlgebraOfSets ambient
 
 namespace AlgebraOfSetsSpaceDefinition
 
-/-- The underlying set-object carrier of a space equipped with an algebra. -/
-abbrev SetObject (space : AlgebraOfSetsSpaceDefinition) :=
-  space.algebra.signature.carrier
+variable {Element : Type u} {SetObj : Type v}
+variable [Membership Element SetObj]
+variable [Union SetObj] [Inter SetObj] [SDiff SetObj]
+variable [EmptyCollection SetObj] [HasSubset SetObj] [HasSymmDiff SetObj]
+
+/-- The underlying set-object type of a space equipped with an algebra. -/
+abbrev SetObject
+    (_space : AlgebraOfSetsSpaceDefinition Element SetObj) : Type v :=
+  SetObj
 
 end AlgebraOfSetsSpaceDefinition
 

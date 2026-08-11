@@ -7,6 +7,7 @@ import LRA.VolumeI.Set.Enderton.Theorems.Separation
 import LRA.VolumeI.Set.Enderton.Theorems.RelativeComplement
 import LRA.VolumeI.Set.Enderton.Theorems.Intersection
 import LRA.VolumeI.Set.Enderton.Theorems.SymmetricDifference
+import LRA.VolumeI.Set.Enderton.Theorems.IntersectionOver
 import LRA.VolumeI.Set.Enderton.Theorems.Replacement
 import LRA.VolumeI.Set.Enderton.Theorems.Infinity
 import LRA.VolumeI.Set.Enderton.Theorems.Foundation

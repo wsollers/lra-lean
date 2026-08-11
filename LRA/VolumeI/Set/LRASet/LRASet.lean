@@ -12,8 +12,15 @@ not a second attempt at Enderton's.
 namespace LRA.VolumeI.Set.LRASet
 
 universe u
+/--
+A predicate set over `Alpha`.
 
-/-- A predicate set over `Alpha`. -/
+Logical form:
+
+```lean
+def LRASet (Alpha : Type u) := Alpha -> Prop
+```
+-/
 def LRASet (Alpha : Type u) := Alpha -> Prop
 
 variable {Alpha : Type u}
@@ -31,7 +38,16 @@ extensionality (`propext`), both already part of Lean's trusted core -- the
 same reason `Identity.EqualityReflexivity`/`LeibnizLaw` should be `theorem`s,
 not `axiom`s, when a native proof already exists. A predicate set's
 extensionality is exactly that case: free once you have `funext`/`propext`,
-so it is stated here as a `theorem`. -/
+so it is stated here as a `theorem`.
+
+Logical form:
+
+```lean
+theorem LRASetExtensionality {A B : LRASet Alpha}
+    (sameMembers : ∀ x : Alpha, x ∈ A ↔ x ∈ B) :
+    A = B
+```
+-/
 theorem LRASetExtensionality {A B : LRASet Alpha}
     (sameMembers : ∀ x : Alpha, x ∈ A ↔ x ∈ B) :
     A = B := by

@@ -20,7 +20,8 @@ Native equality on a carrier, exposed as a binary relation.
 Logical form:
 
 ```lean
-NativeEquality Carrier left right ↔ left = right
+def NativeEquality (Carrier : Type u) : Carrier -> Carrier -> Prop :=
+  EqualityDiagonal Carrier
 ```
 -/
 def NativeEquality (Carrier : Type u) : Carrier -> Carrier -> Prop :=
@@ -32,8 +33,8 @@ Native equality is the canonical diagonal relation.
 Logical form:
 
 ```lean
-∀ left right : Carrier,
-  NativeEquality Carrier left right ↔ left = right
+theorem NativeEqualityIsDiagonal (Carrier : Type u) :
+    ∀ left right, NativeEquality Carrier left right ↔ left = right
 ```
 -/
 theorem NativeEqualityIsDiagonal (Carrier : Type u) :
@@ -47,7 +48,11 @@ Unary function congruence for native equality.
 Logical form:
 
 ```lean
-left = right → function left = function right
+theorem FunctionCongruence {Domain : Type u} {Codomain : Type v}
+    {left right : Domain}
+    (ObjectsAreEqual : left = right)
+    (function : Domain -> Codomain) :
+    function left = function right
 ```
 -/
 theorem FunctionCongruence {Domain : Type u} {Codomain : Type v}
@@ -63,8 +68,12 @@ Binary function congruence, the common algebraic operation case.
 Logical form:
 
 ```lean
-left = left' → right = right' →
-  operation left right = operation left' right'
+theorem BinaryFunctionCongruence {Carrier : Type u}
+    {left left' right right' : Carrier}
+    (LeftsAreEqual : left = left')
+    (RightsAreEqual : right = right')
+    (operation : Carrier -> Carrier -> Carrier) :
+    operation left right = operation left' right'
 ```
 -/
 theorem BinaryFunctionCongruence {Carrier : Type u}
@@ -81,7 +90,11 @@ Unary relation congruence for native equality.
 Logical form:
 
 ```lean
-left = right → relation left ↔ relation right
+theorem RelationCongruence {Carrier : Type u}
+    {left right : Carrier}
+    (ObjectsAreEqual : left = right)
+    (relation : Carrier -> Prop) :
+    relation left ↔ relation right
 ```
 -/
 theorem RelationCongruence {Carrier : Type u}
@@ -97,8 +110,12 @@ Binary relation congruence in both coordinates.
 Logical form:
 
 ```lean
-left = left' → right = right' →
-  relation left right ↔ relation left' right'
+theorem BinaryRelationCongruence {Carrier : Type u}
+    {left left' right right' : Carrier}
+    (LeftsAreEqual : left = left')
+    (RightsAreEqual : right = right')
+    (relation : Carrier -> Carrier -> Prop) :
+    relation left right ↔ relation left' right'
 ```
 -/
 theorem BinaryRelationCongruence {Carrier : Type u}

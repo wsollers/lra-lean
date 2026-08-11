@@ -1,140 +1,175 @@
 import LRA.VolumeI.Relations.Equivalence.Partition
 import LRA.VolumeI.Identity.Model.Theory
-import LRA.VolumeI.Set.Operations.Families
 
 namespace LRA.VolumeI.Relations
 
-universe u v w x
+open LRA.VolumeI.Set
+
+universe u v w
+
+/-!
+Quotient sets, one level up the set-theoretic tower.
+
+Three types are in play: `Element` (carrier points), `SetObject` (sets of
+carrier points), and `Collection` (sets *of sets* -- where the quotient
+lives). The old record architecture bridged the levels with an explicit
+`subsetElement` embedding; here no embedding exists because the
+collection's members simply *are* the set objects, via a second
+`Membership SetObject Collection` instance. For Enderton all three levels
+are `Set`; for `LRASet` they are `Alpha`, `LRASet Alpha`, and
+`LRASet (LRASet Alpha)`.
+-/
+
+section QuotientSets
+
+variable {Element : Type u} {SetObject : Type v} {Collection : Type w}
+variable [Membership Element SetObject]
+variable [Membership SetObject Collection]
+variable [HasSeparation Element SetObject]
+
+section WithPowerset
+
+variable [HasPowerset SetObject Collection]
 
 /-- A collection object `quotient` is the quotient set of `ambient` by
-`relation` when its members are exactly the subset-elements represented by
-equivalence classes of ambient representatives. -/
+`relation` when its members are exactly the equivalence classes of ambient
+representatives. -/
 def IsQuotientSetOf
-    (operations : LRA.VolumeI.Set.Operations.CollectionSetOperations.{u, v, w, x})
-    (quotient : operations.collectionOperations.SetObject)
-    (ambient : operations.elementOperations.SetObject)
-    (relation : Endorelation operations.elementOperations.Element) : Prop :=
-  ∀ candidate,
-    operations.collectionOperations.member candidate quotient ↔
-      operations.collectionOperations.member candidate (operations.powerset ambient) ∧
-        ∃ representative,
-          operations.elementOperations.member representative ambient ∧
-            candidate =
-              operations.subsetElement
-                (EquivalenceClass operations.elementOperations ambient relation representative)
+    (quotient : Collection)
+    (ambient : SetObject)
+    (relation : Endorelation Element) : Prop :=
+  ∀ candidate : SetObject,
+    candidate ∈ quotient ↔
+      candidate ∈ (HasPowerset.powerset ambient : Collection) ∧
+        ∃ representative : Element,
+          representative ∈ ambient ∧
+            candidate = EquivalenceClass ambient relation representative
 
-/-- The quotient set of equivalence classes induced by a relation, represented
-as a collection-level set whose members are subset-elements for equivalence
-classes. -/
+section WithCollectionSeparation
+
+variable [HasSeparation SetObject Collection]
+
+/-- The quotient set of equivalence classes induced by a relation: the
+subsets of `ambient` that are equivalence classes of some ambient
+representative, carved out of the power set. -/
 def QuotientSet
-    (operations : LRA.VolumeI.Set.Operations.CollectionSetOperations.{u, v, w, x})
-    (ambient : operations.elementOperations.SetObject)
-    (relation : Endorelation operations.elementOperations.Element) :
-    operations.collectionOperations.SetObject :=
-  operations.collectionOperations.separation
-    (operations.powerset ambient)
+    (ambient : SetObject)
+    (relation : Endorelation Element) : Collection :=
+  HasSeparation.separation (HasPowerset.powerset ambient : Collection)
     (fun candidate =>
-      ∃ representative,
-        operations.elementOperations.member representative ambient ∧
-          candidate =
-            operations.subsetElement
-              (EquivalenceClass operations.elementOperations ambient relation representative))
+      ∃ representative : Element,
+        representative ∈ ambient ∧
+          candidate = EquivalenceClass ambient relation representative)
+
+section Laws
+
+variable [SeparationLaws SetObject Collection]
+variable [ExtensionalityLaw SetObject Collection]
+variable [HasSubset SetObject]
+variable [PowersetMembershipLaws SetObject Collection]
+variable [SeparationLaws Element SetObject]
+variable [ExtensionalityLaw Element SetObject]
 
 /-- For each ambient set and relation, the quotient set exists. -/
 theorem QuotientSetExists
-    (operations : LRA.VolumeI.Set.Operations.CollectionSetOperations.{u, v, w, x})
-    (laws : LRA.VolumeI.Set.Operations.CollectionSetInterfaceLaws operations)
-    (ambient : operations.elementOperations.SetObject)
-    (relation : Endorelation operations.elementOperations.Element) :
+    (ambient : SetObject)
+    (relation : Endorelation Element) :
     LRA.VolumeI.Identity.Exists
-      (fun quotient : operations.collectionOperations.SetObject =>
-        IsQuotientSetOf operations quotient ambient relation) := by
+      (fun quotient : Collection =>
+        IsQuotientSetOf quotient ambient relation) := by
   sorry
 
 /-- A quotient set is uniquely determined by its memberwise specification. -/
 theorem QuotientSetUnique
-    (operations : LRA.VolumeI.Set.Operations.CollectionSetOperations.{u, v, w, x})
-    (laws : LRA.VolumeI.Set.Operations.CollectionSetInterfaceLaws operations)
-    (ambient : operations.elementOperations.SetObject)
-    (relation : Endorelation operations.elementOperations.Element) :
+    (ambient : SetObject)
+    (relation : Endorelation Element) :
     LRA.VolumeI.Identity.Unique
-      (fun quotient : operations.collectionOperations.SetObject =>
-        IsQuotientSetOf operations quotient ambient relation) := by
+      (fun quotient : Collection =>
+        IsQuotientSetOf quotient ambient relation) := by
   sorry
 
 /-- For each ambient set and relation, there is exactly one quotient set
 satisfying the memberwise specification. -/
 theorem QuotientSetExistsAndUnique
-    (operations : LRA.VolumeI.Set.Operations.CollectionSetOperations.{u, v, w, x})
-    (laws : LRA.VolumeI.Set.Operations.CollectionSetInterfaceLaws operations)
-    (ambient : operations.elementOperations.SetObject)
-    (relation : Endorelation operations.elementOperations.Element) :
+    (ambient : SetObject)
+    (relation : Endorelation Element) :
     LRA.VolumeI.Identity.ExistsAndUnique
-      (fun quotient : operations.collectionOperations.SetObject =>
-        IsQuotientSetOf operations quotient ambient relation) := by
-  sorry
-
-/-- The canonical projection sending an element to its equivalence class. -/
-def QuotientProjection
-    (operations : LRA.VolumeI.Set.Operations.ComprehensionSetOperations.{u, u})
-    (ambient : operations.SetObject)
-    (relation : Endorelation operations.Element) :
-    operations.Element -> operations.SetObject :=
-  fun element => EquivalenceClass operations ambient relation element
-
-/-- The canonical projection viewed as an element of the quotient collection. -/
-def QuotientClassElement
-    (operations : LRA.VolumeI.Set.Operations.CollectionSetOperations.{u, v, w, x})
-    (ambient : operations.elementOperations.SetObject)
-    (relation : Endorelation operations.elementOperations.Element) :
-    operations.elementOperations.Element -> operations.collectionOperations.Element :=
-  fun element =>
-    operations.subsetElement
-      (EquivalenceClass operations.elementOperations ambient relation element)
-
-/-- The quotient projection is well-defined with respect to equivalent
-representatives: related representatives determine the same projected class. -/
-theorem QuotientProjectionWellDefined
-    {operations : LRA.VolumeI.Set.Operations.ComprehensionSetOperations.{u, u}}
-    {ambient : operations.SetObject}
-    {relation : Endorelation operations.Element}
-    (relationIsEquivalence : EquivalenceRelation relation)
-    {firstRepresentative secondRepresentative : operations.Element}
-    (representativesRelated :
-      relation firstRepresentative secondRepresentative) :
-    QuotientProjection operations ambient relation firstRepresentative =
-      QuotientProjection operations ambient relation secondRepresentative := by
-  sorry
-
-/-- The collection-level quotient class element is well-defined with respect to
-equivalent representatives. -/
-theorem QuotientClassElementWellDefined
-    {operations : LRA.VolumeI.Set.Operations.CollectionSetOperations.{u, v, w, x}}
-    {ambient : operations.elementOperations.SetObject}
-    {relation : Endorelation operations.elementOperations.Element}
-    (relationIsEquivalence : EquivalenceRelation relation)
-    {firstRepresentative secondRepresentative : operations.elementOperations.Element}
-    (representativesRelated :
-      relation firstRepresentative secondRepresentative) :
-    QuotientClassElement operations ambient relation firstRepresentative =
-      QuotientClassElement operations ambient relation secondRepresentative := by
+      (fun quotient : Collection =>
+        IsQuotientSetOf quotient ambient relation) := by
   sorry
 
 /-- Membership in the quotient set is membership as an equivalence class. -/
 theorem QuotientSetMembership
-    (operations : LRA.VolumeI.Set.Operations.CollectionSetOperations.{u, v, w, x})
-    (laws : LRA.VolumeI.Set.Operations.CollectionSetInterfaceLaws operations)
-    (ambient : operations.elementOperations.SetObject)
-    (relation : Endorelation operations.elementOperations.Element)
-    (candidate : operations.collectionOperations.Element) :
-    operations.collectionOperations.member candidate
-        (QuotientSet operations ambient relation) ↔
-      operations.collectionOperations.member candidate (operations.powerset ambient) ∧
-        ∃ representative,
-          operations.elementOperations.member representative ambient ∧
-            candidate =
-              operations.subsetElement
-                (EquivalenceClass operations.elementOperations ambient relation representative) := by
+    (ambient : SetObject)
+    (relation : Endorelation Element)
+    (candidate : SetObject) :
+    candidate ∈ QuotientSet (Collection := Collection) ambient relation ↔
+      candidate ∈ (HasPowerset.powerset ambient : Collection) ∧
+        ∃ representative : Element,
+          representative ∈ ambient ∧
+            candidate = EquivalenceClass ambient relation representative := by
   sorry
+
+end Laws
+
+end WithCollectionSeparation
+
+end WithPowerset
+
+/-- The canonical projection sending an element to its equivalence class. -/
+def QuotientProjection
+    (ambient : SetObject)
+    (relation : Endorelation Element) :
+    Element -> SetObject :=
+  fun element => EquivalenceClass ambient relation element
+
+/-- The canonical projection viewed as producing members of the quotient
+collection.
+
+Under the old record architecture this differed from `QuotientProjection`
+by the `subsetElement` embedding; with a typed membership tower the
+embedding is gone, so the two maps coincide definitionally -- the name is
+kept as the collection-facing reading of the same function. -/
+def QuotientClassElement
+    (ambient : SetObject)
+    (relation : Endorelation Element) :
+    Element -> SetObject :=
+  QuotientProjection ambient relation
+
+section WellDefined
+
+variable [SeparationLaws Element SetObject]
+variable [ExtensionalityLaw Element SetObject]
+
+/-- The quotient projection is well-defined with respect to equivalent
+representatives: related representatives determine the same projected
+class. -/
+theorem QuotientProjectionWellDefined
+    {ambient : SetObject}
+    {relation : Endorelation Element}
+    (relationIsEquivalence : EquivalenceRelation relation)
+    {firstRepresentative secondRepresentative : Element}
+    (representativesRelated :
+      relation firstRepresentative secondRepresentative) :
+    QuotientProjection ambient relation firstRepresentative =
+      QuotientProjection ambient relation secondRepresentative := by
+  sorry
+
+/-- The collection-facing quotient class element is well-defined with
+respect to equivalent representatives. -/
+theorem QuotientClassElementWellDefined
+    {ambient : SetObject}
+    {relation : Endorelation Element}
+    (relationIsEquivalence : EquivalenceRelation relation)
+    {firstRepresentative secondRepresentative : Element}
+    (representativesRelated :
+      relation firstRepresentative secondRepresentative) :
+    QuotientClassElement ambient relation firstRepresentative =
+      QuotientClassElement ambient relation secondRepresentative := by
+  sorry
+
+end WellDefined
+
+end QuotientSets
 
 end LRA.VolumeI.Relations

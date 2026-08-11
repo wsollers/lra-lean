@@ -1,3 +1,4 @@
+import LRA.VolumeI.Set.LRASet.Laws.Membership
 import LRA.VolumeI.Set.LRASet.Laws.Union
 import LRA.VolumeI.Set.LRASet.Laws.Intersection
 import LRA.VolumeI.Set.LRASet.Laws.Distributivity

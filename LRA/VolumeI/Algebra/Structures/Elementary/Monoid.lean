@@ -2,12 +2,31 @@ import LRA.VolumeI.Algebra.Structures.Elementary.Semigroup
 
 namespace LRA.VolumeI.Algebra.Structures.Elementary
 
-/-- A monoid is a semigroup with a two-sided identity element. -/
+/--
+A monoid is a semigroup with a two-sided identity element.
+
+Logical form:
+
+```lean
+structure Monoid extends Semigroup where
+  IdentityElement : Carrier
+  IdentityLaw : LRA.VolumeI.Operations.Identity Operation IdentityElement
+```
+-/
 structure Monoid extends Semigroup where
   IdentityElement : Carrier
   IdentityLaw : LRA.VolumeI.Operations.Identity Operation IdentityElement
 
-/-- A commutative monoid is a monoid whose operation is commutative. -/
+/--
+A commutative monoid is a monoid whose operation is commutative.
+
+Logical form:
+
+```lean
+structure CommutativeMonoid extends Monoid where
+  OperationCommutative : LRA.VolumeI.Operations.Commutative Operation
+```
+-/
 structure CommutativeMonoid extends Monoid where
   OperationCommutative : LRA.VolumeI.Operations.Commutative Operation
 

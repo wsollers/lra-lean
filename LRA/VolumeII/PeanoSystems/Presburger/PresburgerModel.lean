@@ -3,44 +3,43 @@ import LRA.VolumeII.PeanoSystems.PeanoSystem
 
 /-!
 First-order model data for the Presburger signature.
+
+Like `PeanoSystem`, a Presburger model is generic over any set backend via
+`Membership Element SetObject`; only the Presburger-specific data (zero,
+successor, order, axioms) stays bundled.
 -/
 
 namespace LRA.VolumeII.PeanoSystems
 
-open LRA.VolumeI.Set
+universe u v
 
-structure PresburgerModel where
-  setInterface : SetInterface
-  zero : setInterface.Element
-  successor : setInterface.Element -> setInterface.Element
+variable {Element : Type u} {SetObject : Type v}
+variable [Membership Element SetObject]
+
+structure PresburgerModel (Element : Type u) (SetObject : Type v)
+    [Membership Element SetObject] where
+  zero : Element
+  successor : Element -> Element
   zero_not_successor :
-    forall element : setInterface.Element,
+    forall element : Element,
       successor element ≠ zero
   successor_injective :
-    forall first_element second_element : setInterface.Element,
+    forall first_element second_element : Element,
       successor first_element = successor second_element ->
       first_element = second_element
   induction :
-    forall subset : setInterface.SetObject,
-      setInterface.Member zero subset ->
-      (forall element : setInterface.Element,
-        setInterface.Member element subset ->
-        setInterface.Member (successor element) subset) ->
-      forall element : setInterface.Element,
-        setInterface.Member element subset
-  lessThan : setInterface.Element -> setInterface.Element -> Prop
-
-namespace PresburgerModel
-
-/-- The element carrier of a Presburger model, read from its generic set interface. -/
-abbrev carrier (model : PresburgerModel) :=
-  model.setInterface.Element
-
-end PresburgerModel
+    forall subset : SetObject,
+      zero ∈ subset ->
+      (forall element : Element,
+        element ∈ subset ->
+        successor element ∈ subset) ->
+      forall element : Element,
+        element ∈ subset
+  lessThan : Element -> Element -> Prop
 
 def PresburgerModel.toPeanoSystem
-    (model : PresburgerModel) : PeanoSystem where
-  setInterface := model.setInterface
+    (model : PresburgerModel Element SetObject) :
+    PeanoSystem Element SetObject where
   one := model.zero
   successor := model.successor
   one_not_successor := model.zero_not_successor
@@ -50,6 +49,7 @@ def PresburgerModel.toPeanoSystem
 /- Volume II label: def:presburger-arithmetic
    Lean declaration: LRA.VolumeII.PeanoSystems.PresburgerArithmetic
    Status: pending -/
-def PresburgerArithmetic (_model : PresburgerModel) : Prop := True
+def PresburgerArithmetic
+    (_model : PresburgerModel Element SetObject) : Prop := True
 
 end LRA.VolumeII.PeanoSystems

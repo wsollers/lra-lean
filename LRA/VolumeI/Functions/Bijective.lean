@@ -5,7 +5,16 @@ namespace LRA.VolumeI.Functions
 
 universe u
 
-/-- Bijectivity of a function. -/
+/--
+Bijectivity of a function.
+
+Logical form:
+
+```lean
+def Bijective {Domain Codomain : Type u} (map : Domain -> Codomain) : Prop :=
+  Injective map /\ Surjective map
+```
+-/
 def Bijective {Domain Codomain : Type u} (map : Domain -> Codomain) : Prop :=
   Injective map /\ Surjective map
 

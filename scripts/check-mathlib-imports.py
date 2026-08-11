@@ -24,8 +24,8 @@ ALLOWED_PREFIXES = [
     pathlib.PurePosixPath("LRA/VolumeI/Logic"),
     pathlib.PurePosixPath("LRA/VolumeII/Switches/NumberSystems.lean"),
     pathlib.PurePosixPath("LRA/VolumeII/Switches/Sets/BackendEnvironment.lean"),
-    pathlib.PurePosixPath("LRA/VolumeI/Set/Implementations/MathlibZFC"),
-    pathlib.PurePosixPath("LRA/VolumeI/Set/Implementations/MathlibSet"),
+    pathlib.PurePosixPath("LRA/VolumeI/Set/MathlibPredicateSet"),
+    pathlib.PurePosixPath("LRA/VolumeI/Set/MathlibZFSet"),
 ]
 
 

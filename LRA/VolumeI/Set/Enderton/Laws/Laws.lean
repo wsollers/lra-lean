@@ -1,3 +1,4 @@
+import LRA.VolumeI.Set.Enderton.Laws.Membership
 import LRA.VolumeI.Set.Enderton.Laws.Union
 import LRA.VolumeI.Set.Enderton.Laws.Intersection
 import LRA.VolumeI.Set.Enderton.Laws.Distributivity

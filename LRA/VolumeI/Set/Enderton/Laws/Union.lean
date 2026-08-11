@@ -17,26 +17,92 @@ further wiring -- the instance *is* the wiring.
 the interface's placement: a law lives with the operation it
 characterizes.
 -/
+/--
+`UnionCommutative` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem UnionCommutative : ∀ A B : Set, A ∪ B = B ∪ A
+```
+-/
 
 theorem UnionCommutative : ∀ A B : Set, A ∪ B = B ∪ A := by
   sorry
+/--
+`UnionAssociative` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem UnionAssociative :
+    ∀ A B C : Set, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+```
+-/
 
 theorem UnionAssociative :
     ∀ A B C : Set, (A ∪ B) ∪ C = A ∪ (B ∪ C) := by
   sorry
+/--
+`EmptyUnion` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem EmptyUnion : ∀ A : Set, (∅ : Set) ∪ A = A
+```
+-/
 
 theorem EmptyUnion : ∀ A : Set, (∅ : Set) ∪ A = A := by
   sorry
+/--
+`UnionEmpty` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem UnionEmpty : ∀ A : Set, A ∪ (∅ : Set) = A
+```
+-/
 
 theorem UnionEmpty : ∀ A : Set, A ∪ (∅ : Set) = A := by
   sorry
+/--
+`UnionIdempotent` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem UnionIdempotent : ∀ A : Set, A ∪ A = A
+```
+-/
 
 theorem UnionIdempotent : ∀ A : Set, A ∪ A = A := by
   sorry
+/--
+`UnionMonotone` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem UnionMonotone :
+    ∀ A₁ A₂ B₁ B₂ : Set, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
+```
+-/
 
 theorem UnionMonotone :
     ∀ A₁ A₂ B₁ B₂ : Set, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂ := by
   sorry
+/--
+`SubsetIffUnionEqRight` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem SubsetIffUnionEqRight :
+    ∀ A B : Set, A ⊆ B ↔ A ∪ B = B
+```
+-/
 
 theorem SubsetIffUnionEqRight :
     ∀ A B : Set, A ⊆ B ↔ A ∪ B = B := by

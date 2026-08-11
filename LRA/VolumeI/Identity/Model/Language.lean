@@ -20,9 +20,10 @@ The pure first-order signature underlying the language of equality.
 Logical form:
 
 ```lean
-Functions = ⟨Empty, Empty.elim⟩
-Relations = ⟨Empty, Empty.elim⟩
-Constants = Empty
+def pureEqualitySignature : Signature where
+  Functions := ⟨Empty, Empty.elim⟩
+  Relations := ⟨Empty, Empty.elim⟩
+  Constants := Empty
 ```
 -/
 def pureEqualitySignature : Signature where
@@ -37,7 +38,7 @@ equality.
 Logical form:
 
 ```lean
-PureEqualityLanguage = FirstOrderLanguage
+abbrev PureEqualityLanguage := FirstOrderLanguage
 ```
 -/
 abbrev PureEqualityLanguage := FirstOrderLanguage
@@ -48,7 +49,8 @@ The language of equality is the empty non-logical signature.
 Logical form:
 
 ```lean
-pureEqualityLanguage = pureEqualitySignature
+def pureEqualityLanguage : PureEqualityLanguage :=
+  pureEqualitySignature
 ```
 -/
 def pureEqualityLanguage : PureEqualityLanguage :=
@@ -60,8 +62,7 @@ The equality symbol in `L_=` is the ordinary logical equality symbol.
 Logical form:
 
 ```lean
-EqualityLogicalSymbol =
-  LRA.VolumeI.Logic.Language.Notation.LogicalEquality
+abbrev EqualityLogicalSymbol := LRA.VolumeI.Logic.Language.Notation.LogicalEquality
 ```
 -/
 abbrev EqualityLogicalSymbol := LRA.VolumeI.Logic.Language.Notation.LogicalEquality
@@ -72,7 +73,8 @@ The logical equality symbol is binary.
 Logical form:
 
 ```lean
-LogicalEqualitySymbols.IsBinary .eq
+theorem EqualityLogicalSymbolIsBinary :
+    LRA.VolumeI.Logic.Language.Notation.LogicalEqualitySymbols.IsBinary .eq
 ```
 -/
 theorem EqualityLogicalSymbolIsBinary :

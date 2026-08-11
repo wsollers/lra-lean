@@ -13,7 +13,8 @@ Every object is equal to itself.
 Logical form:
 
 ```lean
-element = element
+axiom EqualityReflexivity {Carrier : Type u} (element : Carrier) :
+    element = element
 ```
 -/
 axiom EqualityReflexivity {Carrier : Type u} (element : Carrier) :
@@ -26,8 +27,9 @@ Identical objects satisfy exactly the same properties.
 Logical form:
 
 ```lean
-left = right →
-  ∀ property : Carrier -> Prop, property left ↔ property right
+axiom LeibnizLaw {Carrier : Type u} {left right : Carrier}
+    (ObjectsAreIdentical : left = right) :
+    ∀ property : Carrier -> Prop, property left ↔ property right
 ```
 -/
 axiom LeibnizLaw {Carrier : Type u} {left right : Carrier}

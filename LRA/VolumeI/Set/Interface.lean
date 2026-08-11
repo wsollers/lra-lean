@@ -1,4 +1,7 @@
 import LRA.VolumeI.Set.Interface.Operations
+import LRA.VolumeI.Set.Interface.Membership
+import LRA.VolumeI.Set.Interface.Indexed
+import LRA.VolumeI.Set.Interface.Families
 import LRA.VolumeI.Set.Interface.Union
 import LRA.VolumeI.Set.Interface.Intersection
 import LRA.VolumeI.Set.Interface.Distributivity
@@ -20,7 +23,9 @@ Two kinds of file live here, mirroring the machine/certificate split:
 
 - One file per law family (`Union.lean`, `Intersection.lean`,
   `Distributivity.lean`, `Subset.lean`, `Difference.lean`,
-  `SymmetricDifference.lean`, `Complement.lean`) -- each declares a
+  `SymmetricDifference.lean`, `Complement.lean`, plus the two-sorted
+  membership certificates in `Membership.lean` used by the `Functions`
+  and `Relations` chapters) -- each declares a
   `Prop`-valued *certificate* class (`UnionLaws`, ..., `ComplementLaws`)
   whose fields are the laws, plus one fluent PascalCase theorem per law
   that reads its proof off the certificate by instance search. Ordinary

@@ -22,41 +22,140 @@ need classical reasoning (`x ∉ A → False` to `x ∈ A` is double-negation
 elimination on the underlying `Prop`); the rest unfold to intuitionistic
 propositional logic plus `funext`/`propext`.
 -/
+/--
+`DoubleComplement` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem DoubleComplement : ∀ A : LRASet Alpha, Aᶜᶜ = A
+```
+-/
 
 theorem DoubleComplement : ∀ A : LRASet Alpha, Aᶜᶜ = A := by
   sorry
+/--
+`ComplementEmpty` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem ComplementEmpty :
+    (∅ : LRASet Alpha)ᶜ = (𝒰 : LRASet Alpha)
+```
+-/
 
 theorem ComplementEmpty :
     (∅ : LRASet Alpha)ᶜ = (𝒰 : LRASet Alpha) := by
   sorry
+/--
+`ComplementUniversal` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem ComplementUniversal :
+    (𝒰 : LRASet Alpha)ᶜ = (∅ : LRASet Alpha)
+```
+-/
 
 theorem ComplementUniversal :
     (𝒰 : LRASet Alpha)ᶜ = (∅ : LRASet Alpha) := by
   sorry
+/--
+`UnionComplement` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem UnionComplement :
+    ∀ A : LRASet Alpha, A ∪ Aᶜ = (𝒰 : LRASet Alpha)
+```
+-/
 
 theorem UnionComplement :
     ∀ A : LRASet Alpha, A ∪ Aᶜ = (𝒰 : LRASet Alpha) := by
   sorry
+/--
+`IntersectionComplement` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem IntersectionComplement :
+    ∀ A : LRASet Alpha, A ∩ Aᶜ = (∅ : LRASet Alpha)
+```
+-/
 
 theorem IntersectionComplement :
     ∀ A : LRASet Alpha, A ∩ Aᶜ = (∅ : LRASet Alpha) := by
   sorry
+/--
+`DeMorganUnion` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem DeMorganUnion :
+    ∀ A B : LRASet Alpha, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
+```
+-/
 
 theorem DeMorganUnion :
     ∀ A B : LRASet Alpha, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ := by
   sorry
+/--
+`DeMorganIntersection` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem DeMorganIntersection :
+    ∀ A B : LRASet Alpha, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
+```
+-/
 
 theorem DeMorganIntersection :
     ∀ A B : LRASet Alpha, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ := by
   sorry
+/--
+`DifferenceAsIntersectionComplement` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem DifferenceAsIntersectionComplement :
+    ∀ A B : LRASet Alpha, A \ B = A ∩ Bᶜ
+```
+-/
 
 theorem DifferenceAsIntersectionComplement :
     ∀ A B : LRASet Alpha, A \ B = A ∩ Bᶜ := by
   sorry
+/--
+`DifferenceUniversal` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem DifferenceUniversal :
+    ∀ A : LRASet Alpha, A \ (𝒰 : LRASet Alpha) = (∅ : LRASet Alpha)
+```
+-/
 
 theorem DifferenceUniversal :
     ∀ A : LRASet Alpha, A \ (𝒰 : LRASet Alpha) = (∅ : LRASet Alpha) := by
   sorry
+/--
+`UniversalDifference` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem UniversalDifference :
+    ∀ A : LRASet Alpha, (𝒰 : LRASet Alpha) \ A = Aᶜ
+```
+-/
 
 theorem UniversalDifference :
     ∀ A : LRASet Alpha, (𝒰 : LRASet Alpha) \ A = Aᶜ := by

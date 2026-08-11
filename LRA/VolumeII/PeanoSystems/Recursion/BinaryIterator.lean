@@ -2,12 +2,18 @@ import LRA.VolumeII.PeanoSystems.Recursion.Iterator
 
 namespace LRA.VolumeII.PeanoSystems
 
+universe u v w
+
+variable {Element : Type u} {SetObject : Type v}
+variable [Membership Element SetObject]
+
+
 def BinaryIteratorOperationClauses
-    (ps : PeanoSystem)
-    (parameterType target : Type)
+    (ps : PeanoSystem Element SetObject)
+    (parameterType target : Type w)
     (initialValueForParameter : parameterType -> target)
     (stepRuleForParameter : parameterType -> target -> target)
-    (operation : parameterType -> ps.carrier -> target) : Prop :=
+    (operation : parameterType -> Element -> target) : Prop :=
   forall parameterValue : parameterType,
     IteratorFunctionClauses
       ps
@@ -25,11 +31,11 @@ operation.
 Mathematical statement (Lean): `theorem ExistenceOfBinaryIteratorOperation`.
 -/
 theorem ExistenceOfBinaryIteratorOperation
-    (ps : PeanoSystem)
-    (parameterType target : Type)
+    (ps : PeanoSystem Element SetObject)
+    (parameterType target : Type w)
     (initialValueForParameter : parameterType -> target)
     (stepRuleForParameter : parameterType -> target -> target) :
-    exists operation : parameterType -> ps.carrier -> target,
+    exists operation : parameterType -> Element -> target,
       BinaryIteratorOperationClauses
         ps
         parameterType
@@ -48,12 +54,12 @@ iterator specification is unique.
 Mathematical statement (Lean): `theorem UniquenessOfBinaryIteratorOperations`.
 -/
 theorem UniquenessOfBinaryIteratorOperations
-    (ps : PeanoSystem)
-    (parameterType target : Type)
+    (ps : PeanoSystem Element SetObject)
+    (parameterType target : Type w)
     (initialValueForParameter : parameterType -> target)
     (stepRuleForParameter : parameterType -> target -> target)
     (firstOperation secondOperation :
-      parameterType -> ps.carrier -> target) :
+      parameterType -> Element -> target) :
     BinaryIteratorOperationClauses
       ps
       parameterType
@@ -79,11 +85,11 @@ A parameterized iterator specification determines exactly one binary operation.
 Mathematical statement (Lean): `theorem BinaryIteratorOperationWellDefined`.
 -/
 theorem BinaryIteratorOperationWellDefined
-    (ps : PeanoSystem)
-    (parameterType target : Type)
+    (ps : PeanoSystem Element SetObject)
+    (parameterType target : Type w)
     (initialValueForParameter : parameterType -> target)
     (stepRuleForParameter : parameterType -> target -> target) :
-    exists operation : parameterType -> ps.carrier -> target,
+    exists operation : parameterType -> Element -> target,
       BinaryIteratorOperationClauses
         ps
         parameterType
@@ -91,7 +97,7 @@ theorem BinaryIteratorOperationWellDefined
         initialValueForParameter
         stepRuleForParameter
         operation /\
-      forall otherOperation : parameterType -> ps.carrier -> target,
+      forall otherOperation : parameterType -> Element -> target,
         BinaryIteratorOperationClauses
           ps
           parameterType

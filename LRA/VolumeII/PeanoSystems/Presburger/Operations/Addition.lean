@@ -4,6 +4,11 @@ import LRA.VolumeI.Logic.Model.Model
 
 namespace LRA.VolumeII.PeanoSystems
 
+universe u v
+
+variable {Element : Type u} {SetObject : Type v}
+variable [Membership Element SetObject]
+
 /--
 **[Definition - Addition in a Presburger Model]**
 
@@ -12,48 +17,48 @@ the second coordinate is the first coordinate, and whose successor step applies
 successor.
 -/
 noncomputable def PresburgerAddition
-    (model : PresburgerModel) :
-    model.carrier -> model.carrier -> model.carrier :=
+    (model : PresburgerModel Element SetObject) :
+    Element -> Element -> Element :=
   Classical.choose
     (ExistenceOfBinaryIteratorOperation
       model.toPeanoSystem
-      model.carrier
-      model.carrier
+      Element
+      Element
       (fun left => left)
       (fun _ value => model.successor value))
 
 theorem PresburgerAdditionClauses
-    (model : PresburgerModel) :
+    (model : PresburgerModel Element SetObject) :
     BinaryIteratorOperationClauses
       model.toPeanoSystem
-      model.carrier
-      model.carrier
+      Element
+      Element
       (fun left => left)
       (fun _ value => model.successor value)
       (PresburgerAddition model) :=
   Classical.choose_spec
     (ExistenceOfBinaryIteratorOperation
       model.toPeanoSystem
-      model.carrier
-      model.carrier
+      Element
+      Element
       (fun left => left)
       (fun _ value => model.successor value))
 
 theorem PresburgerAdditionWellDefined
-    (model : PresburgerModel) :
-    exists addition : model.carrier -> model.carrier -> model.carrier,
+    (model : PresburgerModel Element SetObject) :
+    exists addition : Element -> Element -> Element,
       BinaryIteratorOperationClauses
         model.toPeanoSystem
-        model.carrier
-        model.carrier
+        Element
+        Element
         (fun left => left)
         (fun _ value => model.successor value)
         addition /\
-      forall otherAddition : model.carrier -> model.carrier -> model.carrier,
+      forall otherAddition : Element -> Element -> Element,
         BinaryIteratorOperationClauses
           model.toPeanoSystem
-          model.carrier
-          model.carrier
+          Element
+          Element
           (fun left => left)
           (fun _ value => model.successor value)
           otherAddition ->
@@ -61,9 +66,9 @@ theorem PresburgerAdditionWellDefined
   sorry
 
 noncomputable def PresburgerModel.toFirstOrderModel
-    (model : PresburgerModel) :
+    (model : PresburgerModel Element SetObject) :
     LRA.VolumeI.Logic.FirstOrder.Model PresburgerSignature where
-  Domain := model.carrier
+  Domain := Element
   domainNonempty := ⟨model.zero⟩
   interpretFunction
     | .successor, args => model.successor (args ⟨0, by decide⟩)

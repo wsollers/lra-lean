@@ -2,21 +2,24 @@ import LRA.VolumeI.Functions.Fibers
 
 namespace LRA.VolumeI.Functions
 
-universe u
+open LRA.VolumeI.Set
+
+universe u v
 
 /-- Injectivity of a function. -/
 def Injective {Domain Codomain : Type u} (map : Domain -> Codomain) : Prop :=
   forall left right, map left = map right -> left = right
 
-/-- Fiber formulation of injectivity. -/
-def InjectiveByFibers
-    (domainOperations : LRA.VolumeI.Set.Operations.ComprehensionSetOperations.{u, u})
-    (ambientDomain : domainOperations.SetObject)
+/-- Fiber formulation of injectivity: every fiber over the ambient domain
+has at most one member. -/
+def InjectiveByFibers {Element : Type u} {SetObject : Type v}
     {Codomain : Type u}
-    (map : Function domainOperations.Element Codomain) : Prop :=
-  forall output left right,
-    domainOperations.member left (Fiber domainOperations ambientDomain map output) ->
-      domainOperations.member right (Fiber domainOperations ambientDomain map output) ->
+    [Membership Element SetObject] [HasSeparation Element SetObject]
+    (ambientDomain : SetObject)
+    (map : Function Element Codomain) : Prop :=
+  forall (output : Codomain) (left right : Element),
+    left ∈ Fiber ambientDomain map output ->
+      right ∈ Fiber ambientDomain map output ->
         left = right
 
 end LRA.VolumeI.Functions

@@ -18,30 +18,100 @@ these unfold to propositional logic on the underlying predicates --
 law-class architecture every backend pays for its own instance; proofs
 are never shared across ontologies.
 -/
+/--
+`UnionCommutative` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem UnionCommutative :
+    ∀ A B : LRASet Alpha, A ∪ B = B ∪ A
+```
+-/
 
 theorem UnionCommutative :
     ∀ A B : LRASet Alpha, A ∪ B = B ∪ A := by
   sorry
+/--
+`UnionAssociative` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem UnionAssociative :
+    ∀ A B C : LRASet Alpha, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+```
+-/
 
 theorem UnionAssociative :
     ∀ A B C : LRASet Alpha, (A ∪ B) ∪ C = A ∪ (B ∪ C) := by
   sorry
+/--
+`EmptyUnion` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem EmptyUnion :
+    ∀ A : LRASet Alpha, (∅ : LRASet Alpha) ∪ A = A
+```
+-/
 
 theorem EmptyUnion :
     ∀ A : LRASet Alpha, (∅ : LRASet Alpha) ∪ A = A := by
   sorry
+/--
+`UnionEmpty` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem UnionEmpty :
+    ∀ A : LRASet Alpha, A ∪ (∅ : LRASet Alpha) = A
+```
+-/
 
 theorem UnionEmpty :
     ∀ A : LRASet Alpha, A ∪ (∅ : LRASet Alpha) = A := by
   sorry
+/--
+`UnionIdempotent` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem UnionIdempotent : ∀ A : LRASet Alpha, A ∪ A = A
+```
+-/
 
 theorem UnionIdempotent : ∀ A : LRASet Alpha, A ∪ A = A := by
   sorry
+/--
+`UnionMonotone` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem UnionMonotone :
+    ∀ A₁ A₂ B₁ B₂ : LRASet Alpha,
+      A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
+```
+-/
 
 theorem UnionMonotone :
     ∀ A₁ A₂ B₁ B₂ : LRASet Alpha,
       A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂ := by
   sorry
+/--
+`SubsetIffUnionEqRight` exposes this formal declaration.
+
+Logical form:
+
+```lean
+theorem SubsetIffUnionEqRight :
+    ∀ A B : LRASet Alpha, A ⊆ B ↔ A ∪ B = B
+```
+-/
 
 theorem SubsetIffUnionEqRight :
     ∀ A B : LRASet Alpha, A ⊆ B ↔ A ∪ B = B := by
