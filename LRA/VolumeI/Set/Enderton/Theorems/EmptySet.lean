@@ -53,10 +53,19 @@ theorem EmptySetIsUnique
   · intro xInA
     exfalso
     exact bInA xInA
+/--
+Any two empty sets are equal.
 
+Logical form:
 
-
-
+```lean
+theorem EmptySetsAreEqual
+    {A B : Set}
+    (AIsEmpty : IsEmptySet A)
+    (BIsEmpty : IsEmptySet B) :
+    A = B
+```
+-/
 theorem EmptySetsAreEqual
     {A B : Set}
     (AIsEmpty : IsEmptySet A)
