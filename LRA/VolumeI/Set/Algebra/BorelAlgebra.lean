@@ -53,18 +53,9 @@ standard intersection argument, pending proof.
 Logical form:
 
 ```lean
-def GeneratedSigmaAlgebra
-    (ambient : SetObject) (generator : SetObject → Prop) :
-    SigmaAlgebraOfSets ambient where
-  IsMember := GeneratedSigmaAlgebraCollection ambient generator
-  MembersAreSubsets := by sorry
-  EmptyIsMember := by sorry
-  UnionIsMember := by sorry
-  IntersectionIsMember := by sorry
-  DifferenceIsMember := by sorry
-  SymmetricDifferenceIsMember := by sorry
-  AmbientIsMember := by sorry
-  CountableUnionIsMember := by sorry
+∀ A : SetObject,
+  (GeneratedSigmaAlgebra ambient generator).IsMember A ↔
+    GeneratedSigmaAlgebraCollection ambient generator A
 ```
 -/
 def GeneratedSigmaAlgebra

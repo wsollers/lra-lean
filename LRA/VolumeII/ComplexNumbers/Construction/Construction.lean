@@ -583,8 +583,7 @@ Logical form:
 ```lean
 def Polynomial.evaluate [Add R] [Mul R]
     (polynomial : Polynomial R)
-    (input : ComplexNumber R) : ComplexNumber R :=
-  sorry
+    (input : ComplexNumber R) : ComplexNumber R
 ```
 -/
 def Polynomial.evaluate [Add R] [Mul R]

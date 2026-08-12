@@ -1,4 +1,7 @@
 import LRA.VolumeI.Set.Interface.Operations
+import LRA.VolumeI.Set.Interface.Pairing
+import LRA.VolumeI.Set.Interface.RelationSets
+import LRA.VolumeI.Set.Interface.RelationLaws
 import LRA.VolumeI.Set.Interface.Membership
 import LRA.VolumeI.Set.Interface.Indexed
 import LRA.VolumeI.Set.Interface.Families

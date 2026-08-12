@@ -9,6 +9,7 @@ import LRA.VolumeI.Functions.Surjective
 import LRA.VolumeI.Functions.Bijective
 import LRA.VolumeI.Functions.Inverses
 import LRA.VolumeI.Functions.SectionsRetractions
+import LRA.VolumeI.Functions.GraphBridge
 
 /-!
 Aggregate import for function vocabulary.

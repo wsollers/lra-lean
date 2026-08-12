@@ -42,12 +42,8 @@ the supplied distance function.
 Logical form:
 
 ```lean
-def ToMathlibMetricSpace {X : Type u} (metric : MetricDefinition X) :
-    MetricSpace X where
-  toPseudoMetricSpace := metric.ToPseudoMetricSpace
-  eq_of_dist_eq_zero := by
-    intro x y distanceEqZero
-    exact (metric.positive x y).2.1 distanceEqZero
+letI : MetricSpace X := metric.ToMathlibMetricSpace
+∀ x y : X, dist x y = metric.distance x y
 ```
 -/
 @[implicit_reducible]
@@ -81,7 +77,8 @@ Logical form:
 
 ```lean
 theorem ToMathlibDistance {X : Type u} (metric : MetricDefinition X) (x y : X) :
-    letI : MetricSpace X
+    letI : MetricSpace X := metric.ToMathlibMetricSpace
+    dist x y = metric.distance x y
 ```
 -/
 theorem ToMathlibDistance {X : Type u} (metric : MetricDefinition X) (x y : X) :

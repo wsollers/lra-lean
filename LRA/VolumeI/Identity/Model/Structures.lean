@@ -89,12 +89,9 @@ The canonical equality structure on any nonempty carrier.
 Logical form:
 
 ```lean
-def canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :
-    EqualityStructure where
-  Carrier := Carrier
-  carrierNonempty := inferInstance
-  equalityInterpretation := EqualityDiagonal Carrier
-  equalityIsDiagonal
+∀ (left right : Carrier),
+  (canonicalEqualityStructure Carrier).equalityInterpretation left right ↔
+    left = right
 ```
 -/
 def canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :

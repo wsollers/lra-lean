@@ -1,5 +1,7 @@
 import LRA.VolumeI.Set.MathlibZFSet.Instances
 import LRA.VolumeI.Set.MathlibZFSet.Laws
+import LRA.VolumeI.Set.MathlibZFSet.Pairing
+import LRA.VolumeI.Set.MathlibZFSet.FunctionSets
 
 /-!
 Aggregate import for the MathlibZFSet backend: Mathlib's `ZFSet` -- the

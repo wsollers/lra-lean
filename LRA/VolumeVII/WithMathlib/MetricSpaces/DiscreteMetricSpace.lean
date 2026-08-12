@@ -7,16 +7,8 @@ namespace LRA.VolumeVII.WithMathlib
 Logical form:
 
 ```lean
-def discreteScratchMetric (Point : Type u) [DecidableEq Point] : ScratchMetric Point where
-  distance x y := if x = y then 0 else 1
-  distance_nonnegative := by
-    sorry
-  distance_eq_zero_iff_equal := by
-    sorry
-  distance_symmetric := by
-    sorry
-  distance_triangle := by
-    sorry
+∀ x y : Point,
+  (discreteScratchMetric Point).distance x y = if x = y then 0 else 1
 ```
 -/
 def discreteScratchMetric (Point : Type u) [DecidableEq Point] : ScratchMetric Point where

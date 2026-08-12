@@ -70,6 +70,8 @@ Logical form:
 
 ```lean
 structure PartialUnaryOperation (alpha : Type u) where
+  Domain : alpha -> Prop
+  Value : forall input, Domain input -> alpha
 ```
 -/
 structure PartialUnaryOperation (alpha : Type u) where
@@ -85,6 +87,8 @@ Logical form:
 
 ```lean
 structure PartialBinaryOperation (alpha : Type u) where
+  Domain : alpha -> alpha -> Prop
+  Value : forall left right, Domain left right -> alpha
 ```
 -/
 structure PartialBinaryOperation (alpha : Type u) where

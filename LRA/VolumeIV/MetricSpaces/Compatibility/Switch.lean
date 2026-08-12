@@ -118,7 +118,9 @@ theorem SelectMathlibMetricSpaceDistanceInduced {X : Type u}
     (metric : MetricDefinition X)
     [MetricSpace X]
     (x y : X) :
-    letI : MetricSpace X
+    letI : MetricSpace X :=
+      SelectMathlibMetricSpace .inducedFromMetricDefinition metric
+    dist x y = metric.distance x y
 ```
 -/
 theorem SelectMathlibMetricSpaceDistanceInduced {X : Type u}

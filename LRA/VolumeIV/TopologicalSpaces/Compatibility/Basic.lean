@@ -38,7 +38,8 @@ Logical form:
 
 ```lean
 theorem ToMathlibIsOpen {X : Type u} (topology : TopologyDefinition X) (U : Set X) :
-    letI : _root_.TopologicalSpace X
+    letI : _root_.TopologicalSpace X := topology.ToMathlibTopologicalSpace
+    _root_.IsOpen U ↔ topology.IsOpen U
 ```
 -/
 theorem ToMathlibIsOpen {X : Type u} (topology : TopologyDefinition X) (U : Set X) :
@@ -52,17 +53,8 @@ space.
 Logical form:
 
 ```lean
-def FromMathlibTopologicalSpace (X : Type u) [_root_.TopologicalSpace X] :
-    TopologyDefinition X where
-  IsOpen := _root_.IsOpen
-  isOpen_univ := _root_.isOpen_univ
-  isOpen_empty := _root_.isOpen_empty
-  isOpen_sUnion := by
-    intro S open_sets
-    exact _root_.isOpen_sUnion open_sets
-  isOpen_inter := by
-    intro U V open_U open_V
-    exact open_U.inter open_V
+∀ U : Set X,
+  (FromMathlibTopologicalSpace X).IsOpen U ↔ _root_.IsOpen U
 ```
 -/
 def FromMathlibTopologicalSpace (X : Type u) [_root_.TopologicalSpace X] :

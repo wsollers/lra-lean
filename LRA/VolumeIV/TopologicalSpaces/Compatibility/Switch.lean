@@ -121,7 +121,9 @@ theorem SelectMathlibTopologicalSpaceIsOpenInduced {X : Type u}
     (topology : TopologyDefinition X)
     [_root_.TopologicalSpace X]
     (U : Set X) :
-    letI : _root_.TopologicalSpace X
+    letI : _root_.TopologicalSpace X :=
+      SelectMathlibTopologicalSpace .inducedFromTopologyDefinition topology
+    _root_.IsOpen U ↔ topology.IsOpen U
 ```
 -/
 theorem SelectMathlibTopologicalSpaceIsOpenInduced {X : Type u}

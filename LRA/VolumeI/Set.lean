@@ -5,6 +5,7 @@ import LRA.VolumeI.Set.MathlibPredicateSet
 import LRA.VolumeI.Set.MathlibZFSet
 import LRA.VolumeI.Set.BooleanRing
 import LRA.VolumeI.Set.ModelTheory
+import LRA.VolumeI.Set.RelationExamples
 
 /-!
 Aggregate import for the Set chapter.

@@ -1,6 +1,7 @@
 import LRA.VolumeI.Set.Enderton.Theorems.Extensionality
 import LRA.VolumeI.Set.Enderton.Theorems.EmptySet
 import LRA.VolumeI.Set.Enderton.Theorems.Pairing
+import LRA.VolumeI.Set.Enderton.Theorems.OrderedPairs
 import LRA.VolumeI.Set.Enderton.Theorems.Union
 import LRA.VolumeI.Set.Enderton.Theorems.PowerSet
 import LRA.VolumeI.Set.Enderton.Theorems.Separation

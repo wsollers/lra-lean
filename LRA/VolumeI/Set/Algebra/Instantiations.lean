@@ -35,16 +35,7 @@ abbrev ActiveSet (Point : Type) := Set Point
 Logical form:
 
 ```lean
-def activeSetAlgebra (Point : Type) :
-    AlgebraOfSets (Set.univ : ActiveSet Point) where
-  IsMember := fun _ => True
-  MembersAreSubsets := by sorry
-  EmptyIsMember := by sorry
-  UnionIsMember := by sorry
-  IntersectionIsMember := by sorry
-  DifferenceIsMember := by sorry
-  SymmetricDifferenceIsMember := by sorry
-  AmbientIsMember := by sorry
+∀ A : ActiveSet Point, (activeSetAlgebra Point).IsMember A ↔ True
 ```
 -/
 def activeSetAlgebra (Point : Type) :
@@ -66,16 +57,8 @@ Mathlib sets.
 Logical form:
 
 ```lean
-def emptyUniversalSetAlgebra (Point : Type) :
-    AlgebraOfSets (Set.univ : ActiveSet Point) where
-  IsMember := fun setObject => setObject = ∅ ∨ setObject = Set.univ
-  MembersAreSubsets := by sorry
-  EmptyIsMember := by sorry
-  UnionIsMember := by sorry
-  IntersectionIsMember := by sorry
-  DifferenceIsMember := by sorry
-  SymmetricDifferenceIsMember := by sorry
-  AmbientIsMember := by sorry
+∀ A : ActiveSet Point,
+  (emptyUniversalSetAlgebra Point).IsMember A ↔ A = ∅ ∨ A = Set.univ
 ```
 -/
 def emptyUniversalSetAlgebra (Point : Type) :
@@ -96,10 +79,7 @@ def emptyUniversalSetAlgebra (Point : Type) :
 Logical form:
 
 ```lean
-def activeSigmaAlgebra (Point : Type) :
-    SigmaAlgebraOfSets (Set.univ : ActiveSet Point) where
-  toAlgebraOfSets := activeSetAlgebra Point
-  CountableUnionIsMember := by sorry
+∀ A : ActiveSet Point, (activeSigmaAlgebra Point).IsMember A ↔ True
 ```
 -/
 def activeSigmaAlgebra (Point : Type) :
@@ -115,16 +95,8 @@ predicate set.
 Logical form:
 
 ```lean
-def lraSetAlgebra (Point : Type) :
-    AlgebraOfSets (LRA.VolumeI.Set.LRASet.Universal Point) where
-  IsMember := fun _ => True
-  MembersAreSubsets := by sorry
-  EmptyIsMember := by sorry
-  UnionIsMember := by sorry
-  IntersectionIsMember := by sorry
-  DifferenceIsMember := by sorry
-  SymmetricDifferenceIsMember := by sorry
-  AmbientIsMember := by sorry
+∀ A : LRA.VolumeI.Set.LRASet.LRASet Point,
+  (lraSetAlgebra Point).IsMember A ↔ True
 ```
 -/
 def lraSetAlgebra (Point : Type) :

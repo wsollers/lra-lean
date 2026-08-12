@@ -212,12 +212,18 @@ def strip_leading_attributes(source: str) -> str:
     return re.sub(r"^(?:@\[[^\n]*?\]\s*)+", "", source).lstrip()
 
 
-def find_assignment(source: str) -> int | None:
-    """Find a declaration's outer `:=`, ignoring strings and comments."""
+def find_assignment(source: str, *, last: bool = False) -> int | None:
+    """Find an outer `:=`, ignoring strings and comments.
+
+    The final outer assignment is the proof delimiter for theorem-like
+    declarations whose proposition contains a local `let` or `letI` binding.
+    Definition-like declarations still use the first outer assignment.
+    """
     depth = 0
     comment_depth = 0
     in_string = False
     index = 0
+    assignments: list[int] = []
     while index + 1 < len(source):
         if comment_depth:
             if source.startswith("/-", index):
@@ -253,16 +259,19 @@ def find_assignment(source: str) -> int | None:
             depth = max(0, depth - 1)
             index += 1
         elif depth == 0 and source.startswith(":=", index):
-            return index
+            assignments.append(index)
+            index += 2
         else:
             index += 1
-    return None
+    if not assignments:
+        return None
+    return assignments[-1] if last else assignments[0]
 
 
 def logical_form(declaration: Declaration) -> str:
     source = strip_leading_attributes(declaration.source).rstrip()
-    assignment = find_assignment(source)
     theorem_like = declaration.kind in {"theorem", "lemma", "corollary", "axiom"}
+    assignment = find_assignment(source, last=theorem_like)
     is_prop_definition = bool(re.search(r":\s*Prop\s*:=", source, flags=re.DOTALL))
 
     if assignment is not None and theorem_like:
