@@ -19,7 +19,11 @@ theorem EmptySetExists :
 -/
 theorem EmptySetExists :
     ∃ A : Set, IsEmptySet A := by
-  sorry
+  have emptySet := EmptySet
+  cases emptySet with
+  | intro A AIsEmpty =>
+    exact ⟨A, AIsEmpty⟩
+
 /--
 Any empty set is equal to any other empty set.
 
@@ -38,7 +42,30 @@ theorem EmptySetIsUnique
     (AIsEmpty : IsEmptySet A)
     (BIsEmpty : IsEmptySet B) :
     B = A := by
-  sorry
+  apply Extensionality
+  intro b
+  have bInB := BIsEmpty b
+  have bInA := AIsEmpty b
+  constructor
+  · intro xInB
+    exfalso
+    exact bInB xInB
+  · intro xInA
+    exfalso
+    exact bInA xInA
+
+
+
+
+theorem EmptySetsAreEqual
+    {A B : Set}
+    (AIsEmpty : IsEmptySet A)
+    (BIsEmpty : IsEmptySet B) :
+    A = B := by
+  exact EmptySetIsUnique BIsEmpty AIsEmpty
+
+
+
 
 /-- TeX label: `thm:empty-set-exists-unique`.
 
@@ -54,7 +81,10 @@ theorem EmptySetExistsAndIsUnique :
 -/
 theorem EmptySetExistsAndIsUnique :
     ExistsAndUnique IsEmptySet := by
-  sorry
+  constructor
+  · exact EmptySetExists
+  · intro A B AIsEmpty BIsEmpty
+    exact EmptySetIsUnique BIsEmpty AIsEmpty
 
 /--
 The empty set chosen after its existence has been established.
@@ -80,7 +110,9 @@ theorem TheEmptySetIsEmpty :
 -/
 theorem TheEmptySetIsEmpty :
     IsEmptySet TheEmptySet := by
-  sorry
+  have TheEmptySetExists := EmptySetExists
+  have TheEmptySetIsEmpty := Classical.choose_spec TheEmptySetExists
+  exact TheEmptySetIsEmpty
 /--
 Every empty set is equal to the chosen empty set.
 
@@ -97,6 +129,7 @@ theorem EveryEmptySetEqualsTheEmptySet
     {A : Set}
     (AIsEmpty : IsEmptySet A) :
     A = TheEmptySet := by
-  sorry
+  exact EmptySetsAreEqual AIsEmpty TheEmptySetIsEmpty
+
 
 end LRA.VolumeI.Set.Enderton

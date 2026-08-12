@@ -19,7 +19,9 @@ theorem PairSetExists (x1 x2 : Set) :
 -/
 theorem PairSetExists (x1 x2 : Set) :
     ∃ P : Set, IsPairSet x1 x2 P := by
-  sorry
+  have pairing := Pairing x1 x2
+  exact pairing
+
 /--
 Any pair set of `x1` and `x2` is equal to any other pair set of them.
 
@@ -38,7 +40,42 @@ theorem PairSetIsUnique
     (PIsPairSet : IsPairSet x1 x2 P)
     (GIsPairSet : IsPairSet x1 x2 G) :
     G = P := by
-  sorry
+  apply Extensionality
+  intro x
+  constructor
+  · -- mp
+    intro xInG
+    have xInX1OrX2 := GIsPairSet x
+    have xInP := PIsPairSet x
+    have xInPOrX1OrX2 := xInX1OrX2.mp xInG
+    cases xInPOrX1OrX2 with
+    | inl xEqX1 =>
+      apply xInP.mpr
+      left
+      exact xEqX1
+      -- done
+    | inr xEqX2 =>
+      apply xInP.mpr
+      right
+      exact xEqX2
+  . -- mpr
+    intro xInP
+    have xInX1OrX2 := PIsPairSet x
+    have xInG := GIsPairSet x
+    have xInGOrX1OrX2 := xInX1OrX2.mp xInP
+    cases xInGOrX1OrX2 with
+    | inl xEqX1 =>
+      apply xInG.mpr
+      left
+      exact xEqX1
+      -- done
+    | inr xEqX2 =>
+      apply xInG.mpr
+      right
+      exact xEqX2
+
+
+
 
 /-- TeX label: `thm:pairing-output-exists-unique`.
 
@@ -54,7 +91,14 @@ theorem PairingOutputExistsAndIsUnique (x1 x2 : Set) :
 -/
 theorem PairingOutputExistsAndIsUnique (x1 x2 : Set) :
     ExistsAndUnique (fun P : Set => IsPairSet x1 x2 P) := by
-  sorry
+  constructor
+  · -- exists
+    have pairing := PairSetExists x1 x2
+    exact pairing
+  · -- unique
+    intro P G PIsPairSet GIsPairSet
+    exact PairSetIsUnique GIsPairSet PIsPairSet
+
 
 /-- The pair set of `x1` and `x2`, chosen after its existence has been
 established.
@@ -81,7 +125,9 @@ theorem PairSetMembership (x1 x2 w : Set) :
 -/
 theorem PairSetMembership (x1 x2 w : Set) :
     w ∈ PairSet x1 x2 ↔ w = x1 ∨ w = x2 := by
-  sorry
+  have pairing := PairSetExists x1 x2
+  have pairingSpec := Classical.choose_spec pairing
+  exact pairingSpec w
 /--
 Every pair set of `x1` and `x2` is equal to the chosen pair set.
 
@@ -98,8 +144,9 @@ theorem EveryPairSetEqualsPairSet
     {x1 x2 P : Set}
     (PIsPairSet : IsPairSet x1 x2 P) :
     P = PairSet x1 x2 := by
-  sorry
-
+  have pairing := PairSetExists x1 x2
+  have pairingSpec := Classical.choose_spec pairing
+  exact PairSetIsUnique pairingSpec PIsPairSet
 /--
 The singleton of `x` is the pair set of `x` with itself.
 
@@ -124,6 +171,30 @@ theorem TheSingletonIsSingletonSet (x : Set) :
 -/
 theorem TheSingletonIsSingletonSet (x : Set) :
     IsSingletonSet x (TheSingleton x) := by
-  sorry
+  unfold IsSingletonSet
+  unfold TheSingleton
+  have pairing := PairSet x x
+  intro w
+  constructor
+  · -- mp
+    intro wInPairSet
+    have wInXOrX := PairSetMembership x x w
+    have wEqXOrWEqX := wInXOrX.mp wInPairSet
+    cases wEqXOrWEqX with
+    | inl wEqX =>
+      exact wEqX
+    | inr wEqX =>
+      exact wEqX
+  . -- mpr
+    intro wEqX
+    have wInXOrX := PairSetMembership x x w
+    have wInPairSet := wInXOrX.mpr (Or.inl wEqX)
+    exact wInPairSet
+
+
+
+
+
+
 
 end LRA.VolumeI.Set.Enderton

@@ -25,7 +25,9 @@ theorem UnionOverExists (A : Set) :
 -/
 theorem UnionOverExists (A : Set) :
     ∃ U : Set, IsUnionOf A U := by
-  sorry
+  have unionOver := Union A
+  rcases unionOver with ⟨U, UIsUnionOver⟩
+  exact ⟨U, UIsUnionOver⟩
 /--
 Any union over `A` is equal to any other union over `A`.
 
@@ -44,7 +46,23 @@ theorem UnionOverIsUnique
     (UIsUnionOf : IsUnionOf A U)
     (VIsUnionOf : IsUnionOf A V) :
     V = U := by
-  sorry
+  apply Extensionality
+  intro x
+  constructor
+  · -- mp
+    intro xInV
+    have xInAOrV := VIsUnionOf x
+    have xInAOrU := UIsUnionOf x
+    have xInAOrUFromV := xInAOrV.mp xInV
+    apply xInAOrU.mpr
+    exact xInAOrUFromV
+  . -- mpr
+    intro xInU
+    have xInAOrU := UIsUnionOf x
+    have xInAOrV := VIsUnionOf x
+    have xInAOrVFromU := xInAOrU.mp xInU
+    apply xInAOrV.mpr
+    exact xInAOrVFromU
 
 /-- TeX label: `thm:union-output-exists-unique`.
 For any set of sets, there exists exactly one union over it.
