@@ -286,7 +286,7 @@ function Invoke-Lint {
     } else {
         $msg = "Hover documentation coverage check failed"
         if ($WarnOnly) {
-            Write-Warn "$msg (warning — not blocking)"
+            Write-Warn "$msg (warning - not blocking)"
         } else {
             Write-Fail $msg; throw $msg
         }
