@@ -1,5 +1,7 @@
 import Mathlib.Topology.MetricSpace.Basic
+import Mathlib.Analysis.Complex.Basic
 import LRA.VolumeIV.MetricSpaces.Compatibility.Metric
+import LRA.VolumeIV.MetricSpaces.Foundations.Metrics
 
 /-!
 Elementary theorem layer for the textbook metric record.
@@ -8,6 +10,92 @@ Elementary theorem layer for the textbook metric record.
 namespace LRA.VolumeIV.MetricSpaces
 
 universe u
+
+/-- The Euclidean distance `d(a, b) = |a - b|` on the real line is a metric.
+Equivalently, there is a `MetricDefinition ℝ` whose distance between every
+pair of real numbers `a` and `b` is `|a - b|`.
+
+Logical form:
+
+```lean
+∃ metric : MetricDefinition ℝ,
+  ∀ a b : ℝ, metric.distance a b = |a - b|
+```
+-/
+theorem EuclideanDistanceIsAMetric :
+    ∃ metric : MetricDefinition ℝ,
+      ∀ a b : ℝ, metric.distance a b = |a - b| := by
+  refine ⟨Metrics.EuclideanRMetric, ?_⟩
+  intro a b
+  rfl
+
+/-- The empty subset of any type is a metric space: its subtype carries a
+metric satisfying the metric criteria.
+
+Logical form:
+
+```lean
+Nonempty (MetricDefinition (∅ : Set X))
+```
+-/
+theorem EmptySetIsAMetricSpace {X : Type u} :
+    Nonempty (MetricDefinition (∅ : Set X)) := by
+  have metric : MetricDefinition (∅ : Set X) := by
+    exact Metrics.VacuousMetric (∅ : Set X)
+  exact ⟨metric⟩
+
+/-- Every singleton subset is a metric space: its subtype carries a metric
+satisfying the metric criteria.
+
+Logical form:
+
+```lean
+Nonempty (MetricDefinition ({point} : Set X))
+```
+-/
+theorem SingletonSetIsAMetricSpace {X : Type u} (point : X) :
+    Nonempty (MetricDefinition ({point} : Set X)) := by
+  exact ⟨Metrics.SingletonMetric point⟩
+
+
+/-- The modulus of the difference of two complex numbers defines a metric on
+the complex numbers. Equivalently, there is a `MetricDefinition ℂ` whose
+distance between `a` and `b` is `‖a - b‖`.
+
+Logical form:
+
+```lean
+∃ metric : MetricDefinition ℂ,
+  ∀ a b : ℂ, metric.distance a b = ‖a - b‖
+```
+-/
+theorem ModulusIsAMetricOnTheComplexNumbers :
+    ∃ metric : MetricDefinition ℂ,
+      ∀ a b : ℂ, metric.distance a b = ‖a - b‖ := by
+  refine ⟨Metrics.ComplexModulusMetric, ?_⟩
+  intro a b
+  rfl
+
+/-- Every positive-radius circle in the complex plane admits chord length as
+a metric. Memberwise, the distance between two points on the circle is the
+modulus of their difference in `ℂ`.
+
+Logical form:
+
+```lean
+∀ (center : ℂ) (radius : ℝ), 0 < radius →
+  ∃ metric : MetricDefinition {z : ℂ // ‖z - center‖ = radius},
+    ∀ a b, metric.distance a b = ‖a.1 - b.1‖
+```
+-/
+theorem CircleAdmitsChordAsMetric :
+    ∀ (center : ℂ) (radius : ℝ), 0 < radius →
+      ∃ metric : MetricDefinition {z : ℂ // ‖z - center‖ = radius},
+        ∀ a b, metric.distance a b = ‖a.1 - b.1‖ := by
+  intro center radius radiusPositive
+  refine ⟨Metrics.ComplexCircleChordMetric center radius radiusPositive, ?_⟩
+  intro a b
+  rfl
 
 namespace MetricDefinition
 
