@@ -76,7 +76,18 @@ theorem UnionOverExistsAndIsUnique (A : Set) :
 -/
 theorem UnionOverExistsAndIsUnique (A : Set) :
     ExistsAndUnique (fun U : Set => IsUnionOf A U) := by
-  sorry
+  have unionOverExists := UnionOverExists A
+  constructor
+  · -- lhs exists
+    exact unionOverExists
+  . -- rhs unique
+    intro U V UIsUnionOf VIsUnionOf
+    exact (UnionOverIsUnique
+      (A := A)
+      (U := U)
+      (V := V)
+      UIsUnionOf
+      VIsUnionOf).symm
 
 /--
 The union over `A`, chosen after its existence has been established.
@@ -102,7 +113,9 @@ theorem TheUnionOverIsUnionOf (A : Set) :
 -/
 theorem TheUnionOverIsUnionOf (A : Set) :
     IsUnionOf A (TheUnionOver A) := by
-  sorry
+  have unionOverExists := UnionOverExists A
+  exact Classical.choose_spec unionOverExists
+
 /--
 Every union over `A` is equal to the chosen union over `A`.
 
@@ -119,7 +132,12 @@ theorem EveryUnionOverEqualsTheUnionOver
     {A U : Set}
     (UIsUnionOf : IsUnionOf A U) :
     U = TheUnionOver A := by
-  sorry
+  exact (UnionOverIsUnique
+    (A := A)
+    (U := U)
+    (V := TheUnionOver A)
+    UIsUnionOf
+    (TheUnionOverIsUnionOf A)).symm
 
 /-! ### Binary union, derived from `TheUnionOver` and `PairSet`
 
@@ -152,6 +170,41 @@ theorem TheUnionMembership (A B x : Set) :
 -/
 theorem TheUnionMembership (A B x : Set) :
     x ∈ TheUnion A B ↔ x ∈ A ∨ x ∈ B := by
-  sorry
+  have unionOver := TheUnionOverIsUnionOf (PairSet A B)
+  have pairSetMembership := PairSetMembership A B x
+  constructor
+  · -- mp
+    intro xInUnion
+    unfold IsUnionOf at unionOver
+    have xInUnionIff := unionOver x
+    have xInSomeMember := xInUnionIff.mp xInUnion
+    rcases xInSomeMember with ⟨C, CInPairSet, xInC⟩
+    have CEqualsAOrB := (PairSetMembership A B C).mp CInPairSet
+    rcases CEqualsAOrB with CEqualsA | CEqualsB
+    · -- C = A
+      rw [CEqualsA] at xInC
+      apply Or.inl
+      exact xInC
+    . -- C = B
+      rw [CEqualsB] at xInC
+      apply Or.inr
+      exact xInC
+
+  . -- mpr
+    intro xInAOrB
+    unfold IsUnionOf at unionOver
+    rcases xInAOrB with xInA | xInB
+
+    · -- x ∈ A
+      apply (unionOver x).mpr
+      refine ⟨A, ?_, xInA⟩
+      apply (PairSetMembership A B A).mpr
+      exact Or.inl rfl
+
+    · -- x ∈ B
+      apply (unionOver x).mpr
+      refine ⟨B, ?_, xInB⟩
+      apply (PairSetMembership A B B).mpr
+      exact Or.inr rfl
 
 end LRA.VolumeI.Set.Enderton
