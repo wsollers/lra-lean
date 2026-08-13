@@ -26,3 +26,8 @@ lean-decl-inventory.txt
 /docs/number-systems/declarations.yaml
 
 .codex-remote-attachments/
+
+# Local scratch and generated cache directories
+/hold/
+/_to_delete/
+/scripts/__pycache__/
