@@ -81,6 +81,52 @@ class MultiplicationRespectsOrderLaws (R : Type u)
     [Mul R] [LE R] [OfNat R 0] : Prop where
   MulNonneg : ∀ a b : R, 0 ≤ a → 0 ≤ b → 0 ≤ a * b
 
+/--
+Strict order is preserved by right translation under a binary operation.
+
+Logical form:
+
+```lean
+def StrictlyPreservesRightTranslation {R : Type u}
+    (relation : R → R → Prop)
+    (operation : R → R → R) : Prop :=
+  ∀ first second translation,
+    relation first second →
+    relation (operation first translation) (operation second translation)
+```
+-/
+def StrictlyPreservesRightTranslation {R : Type u}
+    (relation : R → R → Prop)
+    (operation : R → R → R) : Prop :=
+  ∀ first second translation,
+    relation first second →
+    relation (operation first translation) (operation second translation)
+
+/--
+Positive right multiplication preserves strict order.
+
+Logical form:
+
+```lean
+def PreservesPositiveRightMultiplication {R : Type u}
+    (strictOrderRelation : R → R → Prop)
+    (mul : R → R → R)
+    (zero : R) : Prop :=
+  ∀ first second positive,
+    strictOrderRelation zero positive →
+    strictOrderRelation first second →
+    strictOrderRelation (mul first positive) (mul second positive)
+```
+-/
+def PreservesPositiveRightMultiplication {R : Type u}
+    (strictOrderRelation : R → R → Prop)
+    (mul : R → R → R)
+    (zero : R) : Prop :=
+  ∀ first second positive,
+    strictOrderRelation zero positive →
+    strictOrderRelation first second →
+    strictOrderRelation (mul first positive) (mul second positive)
+
 /-- The strict order is dense: between any two elements lies a third.
 `ℚ` and `ℝ` register this; discrete carriers (`ℤ`) register
 `OrderDiscretenessLaw` instead -- the two are mutually exclusive on
