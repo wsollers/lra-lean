@@ -1,5 +1,5 @@
 import LRA.Pilot.Metadata
-import LRA.VolumeI.Order.OrderStructures.Poset
+import LRA.VolumeI.Order.OrderedSets.Poset.Definition
 
 /-!
 # The Rigorous Definition

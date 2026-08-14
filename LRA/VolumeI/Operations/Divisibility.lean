@@ -1,5 +1,5 @@
 import LRA.VolumeI.Operations.Laws
-import LRA.VolumeI.Order.OrderStructures.Preorder
+import LRA.VolumeI.Order.OrderedSets.Preorder.Definition
 
 namespace LRA.VolumeI.Operations
 

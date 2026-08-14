@@ -1,13 +1,13 @@
 import LRA.VolumeI.Order.Bounds
-import LRA.VolumeI.Order.OrderStructures.TotalOrder
+import LRA.VolumeI.Order.TotalOrder
 
 namespace LRA.VolumeI.Order
 
 universe u v
 
-/-- Well-order laws for a non-strict order. `SetObject` is explicit for the
-same reason as in `Completeness.lean`: the backend whose subsets are
-quantified over is part of the assertion.
+/--
+Well-order laws for a non-strict order. `SetObject` is explicit because the
+backend whose subsets are quantified over is part of the assertion.
 
 Logical form:
 

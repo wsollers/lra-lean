@@ -16,7 +16,8 @@ Not (LRA.VolumeI.Order.PartialOrder relation)
 -/
 def FailsNonStrictPartialOrder
     {Carrier : Type u}
-    (relation : Relation Carrier) : Prop :=
+    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier) :
+    Prop :=
   Not (LRA.VolumeI.Order.PartialOrder relation)
 
 /--
@@ -30,7 +31,8 @@ Not (LRA.VolumeI.Relations.Transitive relation)
 -/
 def FailsTransitivity
     {Carrier : Type u}
-    (relation : Relation Carrier) : Prop :=
+    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier) :
+    Prop :=
   Not (LRA.VolumeI.Relations.Transitive relation)
 
 /--
@@ -44,7 +46,8 @@ Not (LRA.VolumeI.Relations.Total relation)
 -/
 def FailsTotality
     {Carrier : Type u}
-    (relation : Relation Carrier) : Prop :=
+    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier) :
+    Prop :=
   Not (LRA.VolumeI.Relations.Total relation)
 
 /--
@@ -56,7 +59,8 @@ Logical form:
 fun left right : Nat => left = right \/ right = left + 1
 ```
 -/
-def ImmediateSuccessorOrEqualRelation : Relation Nat :=
+def ImmediateSuccessorOrEqualRelation :
+    LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Nat :=
   fun left right => left = right \/ right = left + 1
 
 /--

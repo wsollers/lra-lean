@@ -1,6 +1,11 @@
 import LRA.VolumeI.Order.OrderedSets
 import LRA.VolumeI.Order.Relations
-import LRA.VolumeI.Order.OrderStructures
+import LRA.VolumeI.Order.TotalOrder
+import LRA.VolumeI.Order.LinearOrder
+import LRA.VolumeI.Order.StrictLinearOrder
+import LRA.VolumeI.Order.StrictTotalOrder
+import LRA.VolumeI.Order.StrictPoset
+import LRA.VolumeI.Order.WellOrder
 import LRA.VolumeI.Order.Correspondence
 import LRA.VolumeI.Order.Bounds
 import LRA.VolumeI.Order.Lattices

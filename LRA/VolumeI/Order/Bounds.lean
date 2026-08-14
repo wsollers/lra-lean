@@ -1,4 +1,4 @@
-import LRA.VolumeI.Order.OrderStructures.TotalOrder
+import LRA.VolumeI.Order.TotalOrder
 
 namespace LRA.VolumeI.Order
 

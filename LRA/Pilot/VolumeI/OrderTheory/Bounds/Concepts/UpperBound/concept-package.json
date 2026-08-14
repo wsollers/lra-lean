@@ -89,7 +89,7 @@
         {
           "file_name": "Definition.lean",
           "imports": [
-            "LRA.VolumeI.Order.OrderStructures.Poset"
+            "LRA.VolumeI.Order.OrderedSets.Poset.Definition"
           ],
           "preamble": "universe u v",
           "declarations": [

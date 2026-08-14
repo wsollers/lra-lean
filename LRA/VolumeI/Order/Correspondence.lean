@@ -1,9 +1,9 @@
-import LRA.VolumeI.Order.OrderStructures.PartialOrder
-import LRA.VolumeI.Order.OrderStructures.StrictPartialOrder
-import LRA.VolumeI.Order.OrderStructures.Poset
-import LRA.VolumeI.Order.OrderStructures.StrictPoset
-import LRA.VolumeI.Order.OrderStructures.TotalOrder
-import LRA.VolumeI.Order.OrderStructures.StrictLinearOrder
+import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
+import LRA.VolumeI.Order.OrderedSets.Poset.Definition
+import LRA.VolumeI.Order.OrderedSets.StrictOrder.Definition
+import LRA.VolumeI.Order.StrictLinearOrder
+import LRA.VolumeI.Order.StrictPoset
+import LRA.VolumeI.Order.TotalOrder
 import LRA.VolumeI.Order.Relations
 
 namespace LRA.VolumeI.Order
@@ -45,43 +45,43 @@ def StrictFromNonStrict {Alpha : Type u}
   StrictPart nonStrictRelation
 
 /--
-Strict partial orders induce partial orders through adjoining equality.
+Strict orders induce partial orders through adjoining equality.
 
 Logical form:
 
 ```lean
-theorem StrictPartialOrderInducesPartialOrder
+theorem StrictOrderInducesPartialOrder
     {Alpha : Type u}
     {strictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
-    (strictRelationIsStrictPartialOrder : StrictPartialOrder strictRelation) :
+    (strictRelationIsStrictOrder : StrictOrder strictRelation) :
     PartialOrder (NonStrictFromStrict strictRelation)
 ```
 -/
-theorem StrictPartialOrderInducesPartialOrder
+theorem StrictOrderInducesPartialOrder
     {Alpha : Type u}
     {strictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
-    (strictRelationIsStrictPartialOrder : StrictPartialOrder strictRelation) :
+    (strictRelationIsStrictOrder : StrictOrder strictRelation) :
     PartialOrder (NonStrictFromStrict strictRelation) := by
   sorry
 
 /--
-Partial orders induce strict partial orders by removing equality.
+Partial orders induce strict orders by removing equality.
 
 Logical form:
 
 ```lean
-theorem PartialOrderInducesStrictPartialOrder
+theorem PartialOrderInducesStrictOrder
     {Alpha : Type u}
     {nonStrictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
     (nonStrictRelationIsPartialOrder : PartialOrder nonStrictRelation) :
-    StrictPartialOrder (StrictFromNonStrict nonStrictRelation)
+    StrictOrder (StrictFromNonStrict nonStrictRelation)
 ```
 -/
-theorem PartialOrderInducesStrictPartialOrder
+theorem PartialOrderInducesStrictOrder
     {Alpha : Type u}
     {nonStrictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
     (nonStrictRelationIsPartialOrder : PartialOrder nonStrictRelation) :
-    StrictPartialOrder (StrictFromNonStrict nonStrictRelation) := by
+    StrictOrder (StrictFromNonStrict nonStrictRelation) := by
   sorry
 
 /--
@@ -136,15 +136,15 @@ Logical form:
 StrictPoset where
   Carrier := poset.Carrier
   StrictOrder := StrictFromNonStrict poset.NonStrictOrder
-  StrictOrderIsStrictPartialOrder :=
-    PartialOrderInducesStrictPartialOrder poset.NonStrictOrderIsPartialOrder
+  StrictOrderIsStrictOrder :=
+    PartialOrderInducesStrictOrder poset.NonStrictOrderIsPartialOrder
 ```
 -/
 def StrictPosetOfPoset (poset : Poset) : StrictPoset where
   Carrier := poset.Carrier
   StrictOrder := StrictFromNonStrict poset.NonStrictOrder
-  StrictOrderIsStrictPartialOrder :=
-    PartialOrderInducesStrictPartialOrder poset.NonStrictOrderIsPartialOrder
+  StrictOrderIsStrictOrder :=
+    PartialOrderInducesStrictOrder poset.NonStrictOrderIsPartialOrder
 
 /--
 `PosetOfStrictPoset strictPoset` derives the poset whose order adjoins
@@ -157,16 +157,16 @@ Poset where
   Carrier := strictPoset.Carrier
   NonStrictOrder := NonStrictFromStrict strictPoset.StrictOrder
   NonStrictOrderIsPartialOrder :=
-    StrictPartialOrderInducesPartialOrder
-      strictPoset.StrictOrderIsStrictPartialOrder
+    StrictOrderInducesPartialOrder
+      strictPoset.StrictOrderIsStrictOrder
 ```
 -/
 def PosetOfStrictPoset (strictPoset : StrictPoset) : Poset where
   Carrier := strictPoset.Carrier
   NonStrictOrder := NonStrictFromStrict strictPoset.StrictOrder
   NonStrictOrderIsPartialOrder :=
-    StrictPartialOrderInducesPartialOrder
-      strictPoset.StrictOrderIsStrictPartialOrder
+    StrictOrderInducesPartialOrder
+      strictPoset.StrictOrderIsStrictOrder
 
 /--
 Descending to the strict poset and ascending again recovers the original

@@ -1,6 +1,6 @@
 import LRA.VolumeI.Relations.Basic.Properties
 import LRA.VolumeI.Order.Bounds
-import LRA.VolumeI.Order.OrderStructures.WellOrder
+import LRA.VolumeI.Order.WellOrder
 
 namespace LRA.VolumeI.Order
 

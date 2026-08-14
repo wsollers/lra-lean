@@ -1,9 +1,9 @@
-import LRA.VolumeI.Order.OrderStructures.StrictPartialOrder
+import LRA.VolumeI.Order.OrderedSets.StrictOrder.Definition
 
 namespace LRA.VolumeI.Order
 
 /--
-A strict poset is a carrier equipped with a strict partial order.
+A strict poset is a carrier equipped with a strict order.
 
 Logical form:
 
@@ -11,12 +11,12 @@ Logical form:
 structure StrictPoset where
   Carrier : Type u
   StrictOrder : LRA.VolumeI.Relations.Endorelation Carrier
-  StrictOrderIsStrictPartialOrder : StrictPartialOrder StrictOrder
+  StrictOrderIsStrictOrder : LRA.VolumeI.Order.StrictOrder StrictOrder
 ```
 -/
 structure StrictPoset where
   Carrier : Type u
   StrictOrder : LRA.VolumeI.Relations.Endorelation Carrier
-  StrictOrderIsStrictPartialOrder : StrictPartialOrder StrictOrder
+  StrictOrderIsStrictOrder : LRA.VolumeI.Order.StrictOrder StrictOrder
 
 end LRA.VolumeI.Order

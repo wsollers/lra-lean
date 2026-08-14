@@ -1,21 +1,30 @@
-import LRA.VolumeI.Order.OrderStructures.Preorder
+import LRA.VolumeI.Order.OrderedSets.OrderRelation.Definition
 
-namespace LRA.VolumeI.Order.OrderedSets.Preorder
+namespace LRA.VolumeI.Order
 
 universe u
 
 /--
-A preorder relation starts as an endorelation: a binary relation comparing two
-elements of the same carrier.
+Preorder laws for an endorelation.
 
 Logical form:
 
 ```lean
-LRA.VolumeI.Relations.Endorelation Carrier
+def Preorder {Alpha : Type u}
+    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Alpha) :
+    Prop :=
+  LRA.VolumeI.Relations.Reflexive relation /\
+    LRA.VolumeI.Relations.Transitive relation
 ```
 -/
-abbrev Relation (Carrier : Type u) :=
-  LRA.VolumeI.Relations.Endorelation Carrier
+def Preorder {Alpha : Type u}
+    (relation : LRA.VolumeI.Relations.Endorelation Alpha) : Prop :=
+  LRA.VolumeI.Relations.Reflexive relation /\
+    LRA.VolumeI.Relations.Transitive relation
+
+end LRA.VolumeI.Order
+
+namespace LRA.VolumeI.Order.OrderedSets.Preorder
 
 /--
 A preorder is an endorelation satisfying reflexivity and transitivity.
@@ -27,7 +36,7 @@ LRA.VolumeI.Order.Preorder relation
 ```
 -/
 structure PreorderRelation (Carrier : Type u) where
-  relation : Relation Carrier
+  relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier
   isPreorder : LRA.VolumeI.Order.Preorder relation
 
 end LRA.VolumeI.Order.OrderedSets.Preorder

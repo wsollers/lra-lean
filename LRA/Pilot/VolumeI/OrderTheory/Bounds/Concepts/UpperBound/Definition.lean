@@ -1,6 +1,6 @@
 -- GENERATED PILOT ARTIFACT from order.upper-bound.pilot-002; edit the reviewed package, not this file.
 
-import LRA.VolumeI.Order.OrderStructures.Poset
+import LRA.VolumeI.Order.OrderedSets.Poset.Definition
 
 namespace LRA.Pilot.VolumeI.OrderTheory.Bounds
 

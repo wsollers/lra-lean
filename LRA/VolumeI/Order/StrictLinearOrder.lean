@@ -1,4 +1,4 @@
-import LRA.VolumeI.Order.OrderStructures.StrictPartialOrder
+import LRA.VolumeI.Order.OrderedSets.StrictOrder.Definition
 
 namespace LRA.VolumeI.Order
 

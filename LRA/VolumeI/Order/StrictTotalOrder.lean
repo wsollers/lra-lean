@@ -1,4 +1,4 @@
-import LRA.VolumeI.Order.OrderStructures.StrictLinearOrder
+import LRA.VolumeI.Order.StrictLinearOrder
 
 namespace LRA.VolumeI.Order
 
