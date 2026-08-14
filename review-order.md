@@ -6,6 +6,33 @@ Reviewed revision: `b2ee7de` (`main`)
 
 Requested scope: mathematical statements and curriculum design; `sorry` proofs were intentionally ignored.
 
+## Implementation update — 2026-08-14
+
+The subsequent order refactor addresses the review's two P0 defects and the
+main structural/theorem-surface findings. In particular:
+
+- density is now imposed on strict orders, with the rejected reflexive
+  formulation recorded as a proved failure mode;
+- strict/non-strict correspondence uses the weakest relevant hypotheses and
+  exposes both relation-level round trips;
+- converse, strict-part, and reflexive-closure constructions have single
+  canonical owners;
+- bounds now include named boundedness predicates, uniqueness theorems,
+  duality, extrema implications, and counterexamples showing why
+  antisymmetry and totality matter;
+- lattices now include join/meet uniqueness, semilattices, connecting and
+  absorption lemmas, complete-lattice consequences, duality, and the integer
+  completeness counterexample;
+- total orders, strict posets, completeness, morphisms, and product/
+  lexicographic constructions have concept-facing owners;
+- a production Mathlib bridge connects LRA bounds to `upperBounds`,
+  `lowerBounds`, `IsLeast`, `IsGreatest`, `IsLUB`, `IsGLB`, `BddAbove`, and
+  `BddBelow`, and provides local-instance adapters between LRA posets and
+  Mathlib partial orders.
+
+The findings below remain as the historical review of revision `b2ee7de` and
+as rationale for the changes rather than a description of the current tree.
+
 ## Overall assessment
 
 **Revision required before this is treated as the canonical Volume I order theory.**

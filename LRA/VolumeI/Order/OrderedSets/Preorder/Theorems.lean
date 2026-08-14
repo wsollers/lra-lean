@@ -15,7 +15,7 @@ theorem PreorderRelatesSelf
     {Carrier : Type u}
     (preorder : PreorderRelation Carrier)
     (element : Carrier) :
-    preorder.relation element element := by
-  sorry
+    preorder.relation element element :=
+  PreorderRelationIsReflexive preorder element
 
 end LRA.VolumeI.Order.OrderedSets.Preorder

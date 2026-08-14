@@ -16,8 +16,8 @@ theorem StrictOrderIsIrreflexive
     {Carrier : Type u}
     (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier)
     (relationIsStrictOrder : LRA.VolumeI.Order.StrictOrder relation) :
-    LRA.VolumeI.Relations.Irreflexive relation := by
-  sorry
+    LRA.VolumeI.Relations.Irreflexive relation :=
+  relationIsStrictOrder.1
 
 /--
 The relation in a strict order is transitive.
@@ -33,8 +33,8 @@ theorem StrictOrderIsTransitive
     {Carrier : Type u}
     (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier)
     (relationIsStrictOrder : LRA.VolumeI.Order.StrictOrder relation) :
-    LRA.VolumeI.Relations.Transitive relation := by
-  sorry
+    LRA.VolumeI.Relations.Transitive relation :=
+  relationIsStrictOrder.2
 
 /--
 Every strict order is asymmetric.
@@ -83,7 +83,7 @@ LRA.VolumeI.Relations.Irreflexive order.relation
 theorem StrictOrderRelationIsIrreflexive
     {Carrier : Type u}
     (order : StrictOrderRelation Carrier) :
-    LRA.VolumeI.Relations.Irreflexive order.relation := by
-  sorry
+    LRA.VolumeI.Relations.Irreflexive order.relation :=
+  StrictOrderIsIrreflexive order.relation order.relationIsStrictOrder
 
 end LRA.VolumeI.Order.OrderedSets.StrictOrder

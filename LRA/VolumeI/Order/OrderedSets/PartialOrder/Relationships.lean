@@ -1,6 +1,7 @@
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Characterizations
 import LRA.VolumeI.Order.OrderedSets.Preorder.Relationships
 import LRA.VolumeI.Order.OrderedSets.StrictOrder.Definition
+import LRA.VolumeI.Order.Relations.StrictPart.Definition
 
 namespace LRA.VolumeI.Order.OrderedSets.PartialOrder
 
@@ -19,7 +20,7 @@ def StrictPart
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
     LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier :=
-  fun left right => order.relation left right /\ left ≠ right
+  LRA.VolumeI.Order.StrictPart order.relation
 
 /--
 The strict part unfolds to non-strict comparison plus inequality.
@@ -103,7 +104,7 @@ def Dual
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
     NonStrictPartialOrder Carrier where
-  relation := fun left right => order.relation right left
+  relation := LRA.VolumeI.Relations.Converse order.relation
   relationIsPartialOrder := by
     sorry
 
@@ -120,7 +121,7 @@ theorem DualIsPartialOrder
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
     LRA.VolumeI.Order.PartialOrder
-      (fun left right => order.relation right left) := by
+      (LRA.VolumeI.Relations.Converse order.relation) := by
   sorry
 
 end LRA.VolumeI.Order.OrderedSets.PartialOrder

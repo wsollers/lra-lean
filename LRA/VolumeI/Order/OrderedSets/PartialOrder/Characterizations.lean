@@ -16,8 +16,8 @@ theorem PartialOrderIsReflexive
     {Carrier : Type u}
     (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier)
     (relationIsPartialOrder : LRA.VolumeI.Order.PartialOrder relation) :
-    LRA.VolumeI.Relations.Reflexive relation := by
-  sorry
+    LRA.VolumeI.Relations.Reflexive relation :=
+  relationIsPartialOrder.1
 
 /--
 The relation in a partial order is antisymmetric.
@@ -33,8 +33,8 @@ theorem PartialOrderIsAntisymmetric
     {Carrier : Type u}
     (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier)
     (relationIsPartialOrder : LRA.VolumeI.Order.PartialOrder relation) :
-    LRA.VolumeI.Relations.Antisymmetric relation := by
-  sorry
+    LRA.VolumeI.Relations.Antisymmetric relation :=
+  relationIsPartialOrder.2.1
 
 /--
 The relation in a partial order is transitive.
@@ -50,8 +50,8 @@ theorem PartialOrderIsTransitive
     {Carrier : Type u}
     (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier)
     (relationIsPartialOrder : LRA.VolumeI.Order.PartialOrder relation) :
-    LRA.VolumeI.Relations.Transitive relation := by
-  sorry
+    LRA.VolumeI.Relations.Transitive relation :=
+  relationIsPartialOrder.2.2
 
 /--
 The relation packaged by a partial-order relation is reflexive.
@@ -65,8 +65,8 @@ LRA.VolumeI.Relations.Reflexive order.relation
 theorem PartialOrderRelationIsReflexive
     {Carrier : Type u}
     (order : PartialOrderRelation Carrier) :
-    LRA.VolumeI.Relations.Reflexive order.relation := by
-  sorry
+    LRA.VolumeI.Relations.Reflexive order.relation :=
+  PartialOrderIsReflexive order.relation order.relationIsPartialOrder
 
 /--
 The relation packaged by a partial-order relation is antisymmetric.
@@ -80,8 +80,8 @@ LRA.VolumeI.Relations.Antisymmetric order.relation
 theorem PartialOrderRelationIsAntisymmetric
     {Carrier : Type u}
     (order : PartialOrderRelation Carrier) :
-    LRA.VolumeI.Relations.Antisymmetric order.relation := by
-  sorry
+    LRA.VolumeI.Relations.Antisymmetric order.relation :=
+  PartialOrderIsAntisymmetric order.relation order.relationIsPartialOrder
 
 /--
 The relation packaged by a partial-order relation is transitive.
@@ -95,8 +95,8 @@ LRA.VolumeI.Relations.Transitive order.relation
 theorem PartialOrderRelationIsTransitive
     {Carrier : Type u}
     (order : PartialOrderRelation Carrier) :
-    LRA.VolumeI.Relations.Transitive order.relation := by
-  sorry
+    LRA.VolumeI.Relations.Transitive order.relation :=
+  PartialOrderIsTransitive order.relation order.relationIsPartialOrder
 
 /--
 Compatibility theorem: a non-strict partial order relation is reflexive.
@@ -110,7 +110,7 @@ LRA.VolumeI.Relations.Reflexive order.relation
 theorem NonStrictRelationIsReflexive
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
-    LRA.VolumeI.Relations.Reflexive order.relation := by
-  sorry
+    LRA.VolumeI.Relations.Reflexive order.relation :=
+  PartialOrderRelationIsReflexive order
 
 end LRA.VolumeI.Order.OrderedSets.PartialOrder

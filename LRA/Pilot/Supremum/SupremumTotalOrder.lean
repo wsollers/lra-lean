@@ -1,5 +1,5 @@
 import LRA.Pilot.Supremum.SupremumNegation
-import LRA.VolumeI.Order.TotalOrder
+import LRA.VolumeI.Order.OrderedSets.TotalOrder.Definition
 
 /-!
 # Supremum failure under totality: the strict rewrite

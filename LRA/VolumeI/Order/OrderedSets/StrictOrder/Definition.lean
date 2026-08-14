@@ -30,11 +30,6 @@ namespace LRA.VolumeI.Order.OrderedSets.StrictOrder
 universe u
 
 /--
-A strict-order relation starts as an endorelation: a binary relation comparing
-two elements of the same carrier.
-
-Logical form:
-
 A strict-order relation is an endorelation equipped with the theorem that it
 satisfies the strict-order laws.
 

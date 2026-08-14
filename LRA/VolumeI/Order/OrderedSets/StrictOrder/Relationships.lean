@@ -1,5 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Relationships
 import LRA.VolumeI.Order.OrderedSets.StrictOrder.Characterizations
+import LRA.VolumeI.Order.Relations.LessThanOrEqual.Definition
 
 namespace LRA.VolumeI.Order.OrderedSets.StrictOrder
 
@@ -18,7 +19,7 @@ def ReflexiveClosure
     {Carrier : Type u}
     (order : StrictOrderRelation Carrier) :
     LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier :=
-  fun left right => order.relation left right \/ left = right
+  LRA.VolumeI.Order.LessThanOrEqual order.relation
 
 /--
 The reflexive closure unfolds to strict comparison or equality.

@@ -1,4 +1,4 @@
-import LRA.VolumeI.Order.TotalOrder
+import LRA.VolumeI.Relations.Basic.Properties
 
 namespace LRA.VolumeI.Order
 
@@ -16,8 +16,7 @@ def MinimalElement
     (strictRelation : LRA.VolumeI.Relations.Endorelation Element)
     (subset : SetObject)
     (minimal : Element) : Prop :=
-  minimal ∈ subset /\
-    forall element, element ∈ subset -> Not (strictRelation element minimal)
+  LRA.VolumeI.Relations.MinimalElement strictRelation subset minimal
 ```
 -/
 def MinimalElement

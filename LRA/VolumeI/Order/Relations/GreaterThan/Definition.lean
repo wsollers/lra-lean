@@ -13,7 +13,7 @@ Logical form:
 def GreaterThan {alpha : Type u}
     (strictRelation : LRA.VolumeI.Relations.Endorelation alpha) :
     LRA.VolumeI.Relations.Endorelation alpha :=
-  fun left right => strictRelation right left
+  LRA.VolumeI.Relations.Converse strictRelation
 ```
 -/
 def GreaterThan {alpha : Type u}

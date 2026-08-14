@@ -15,8 +15,8 @@ theorem StrictOrderDoesNotRelateSelf
     {Carrier : Type u}
     (order : StrictOrderRelation Carrier)
     (element : Carrier) :
-    Not (order.relation element element) := by
-  sorry
+    Not (order.relation element element) :=
+  StrictOrderRelationIsIrreflexive order element
 
 /--
 A strict order has no two-element cycle.
@@ -32,7 +32,8 @@ theorem StrictOrderHasNoTwoElementCycles
     (order : StrictOrderRelation Carrier)
     (left right : Carrier)
     (leftRelatedToRight : order.relation left right) :
-    Not (order.relation right left) := by
-  sorry
+    Not (order.relation right left) :=
+  StrictOrderIsAsymmetric order.relation order.relationIsStrictOrder
+    left right leftRelatedToRight
 
 end LRA.VolumeI.Order.OrderedSets.StrictOrder

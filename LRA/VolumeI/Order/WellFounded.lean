@@ -6,19 +6,19 @@ namespace LRA.VolumeI.Order
 
 universe u v
 
-/-- Order-facing synonym for subset-minimal well-foundedness.
+/-- Subset-minimal well-foundedness relative to a chosen set backend.
 
 Logical form:
 
 ```lean
-def WellFoundedRelation
+def SubsetWellFounded
     {Element : Type u} (SetObject : Type v)
     [Membership Element SetObject]
     (strictRelation : LRA.VolumeI.Relations.Endorelation Element) : Prop :=
   LRA.VolumeI.Relations.WellFounded SetObject strictRelation
 ```
 -/
-def WellFoundedRelation
+def SubsetWellFounded
     {Element : Type u} (SetObject : Type v)
     [Membership Element SetObject]
     (strictRelation : LRA.VolumeI.Relations.Endorelation Element) : Prop :=
@@ -33,7 +33,7 @@ theorem MinimalElementPrinciple
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
     {strictRelation : LRA.VolumeI.Relations.Endorelation Element}
-    (strictRelationIsWellFounded : WellFoundedRelation SetObject strictRelation)
+    (strictRelationIsWellFounded : SubsetWellFounded SetObject strictRelation)
     (subset : SetObject)
     (subsetIsNonempty : exists element : Element, element ∈ subset) :
     exists minimalElement,
@@ -44,7 +44,7 @@ theorem MinimalElementPrinciple
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
     {strictRelation : LRA.VolumeI.Relations.Endorelation Element}
-    (strictRelationIsWellFounded : WellFoundedRelation SetObject strictRelation)
+    (strictRelationIsWellFounded : SubsetWellFounded SetObject strictRelation)
     (subset : SetObject)
     (subsetIsNonempty : exists element : Element, element ∈ subset) :
     exists minimalElement,
@@ -75,5 +75,26 @@ theorem WellOrderingPrinciple
     (subsetIsNonempty : exists element : Element, element ∈ subset) :
     exists leastElement, LeastElement nonStrictRelation subset leastElement :=
   nonStrictRelationIsWellOrder.right subset subsetIsNonempty
+
+/--
+For a total order, the least-element and strict-minimal-element formulations
+of well-ordering agree. Totality is exactly what promotes the local statement
+"nothing is strictly below" to the global statement "below everything."
+-/
+theorem WellOrderIffTotalAndStrictPartSubsetWellFounded
+    {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject]
+    {nonStrictRelation : LRA.VolumeI.Relations.Endorelation Element} :
+    WellOrder SetObject nonStrictRelation ↔
+      TotalOrder nonStrictRelation /\
+        SubsetWellFounded SetObject (StrictPart nonStrictRelation) := by
+  sorry
+
+/-!
+No backend-generic theorem `SubsetWellFounded -> Irreflexive` is stated here:
+the usual singleton argument requires the chosen `SetObject` backend to
+represent singleton subsets. A future backend-adequacy interface should make
+that requirement explicit.
+-/
 
 end LRA.VolumeI.Order

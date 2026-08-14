@@ -2,8 +2,8 @@ import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
 import LRA.VolumeI.Order.OrderedSets.Poset.Definition
 import LRA.VolumeI.Order.OrderedSets.StrictOrder.Definition
 import LRA.VolumeI.Order.StrictLinearOrder
-import LRA.VolumeI.Order.StrictPoset
-import LRA.VolumeI.Order.TotalOrder
+import LRA.VolumeI.Order.OrderedSets.StrictPoset.Definition
+import LRA.VolumeI.Order.OrderedSets.TotalOrder.Definition
 import LRA.VolumeI.Order.Relations
 
 namespace LRA.VolumeI.Order
@@ -93,7 +93,8 @@ Logical form:
 theorem StrictLinearOrderInducesTotalOrder
     {Alpha : Type u}
     {strictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
-    (strictRelationIsStrictLinearOrder : StrictLinearOrder strictRelation) :
+    (strictRelationIsIrreflexive :
+      LRA.VolumeI.Relations.Irreflexive strictRelation) :
     TotalOrder (NonStrictFromStrict strictRelation)
 ```
 -/
@@ -120,8 +121,22 @@ theorem StrictNonStrictInverseCorrespondence
 theorem StrictNonStrictInverseCorrespondence
     {Alpha : Type u}
     {strictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
-    (strictRelationIsStrictLinearOrder : StrictLinearOrder strictRelation) :
+    (strictRelationIsIrreflexive :
+      LRA.VolumeI.Relations.Irreflexive strictRelation) :
     StrictFromNonStrict (NonStrictFromStrict strictRelation) = strictRelation := by
+  sorry
+
+/--
+Adjoining equality to the strict part of a reflexive relation recovers the
+original relation. Reflexivity is the only required law.
+-/
+theorem NonStrictStrictInverseCorrespondence
+    {Alpha : Type u}
+    {nonStrictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
+    (nonStrictRelationIsReflexive :
+      LRA.VolumeI.Relations.Reflexive nonStrictRelation) :
+    NonStrictFromStrict (StrictFromNonStrict nonStrictRelation) =
+      nonStrictRelation := by
   sorry
 
 
@@ -135,15 +150,15 @@ Logical form:
 ```lean
 StrictPoset where
   Carrier := poset.Carrier
-  StrictOrder := StrictFromNonStrict poset.NonStrictOrder
-  StrictOrderIsStrictOrder :=
+  StrictRelation := StrictFromNonStrict poset.NonStrictOrder
+  StrictRelationIsStrictOrder :=
     PartialOrderInducesStrictOrder poset.NonStrictOrderIsPartialOrder
 ```
 -/
 def StrictPosetOfPoset (poset : Poset) : StrictPoset where
   Carrier := poset.Carrier
-  StrictOrder := StrictFromNonStrict poset.NonStrictOrder
-  StrictOrderIsStrictOrder :=
+  StrictRelation := StrictFromNonStrict poset.NonStrictOrder
+  StrictRelationIsStrictOrder :=
     PartialOrderInducesStrictOrder poset.NonStrictOrderIsPartialOrder
 
 /--
@@ -155,18 +170,18 @@ Logical form:
 ```lean
 Poset where
   Carrier := strictPoset.Carrier
-  NonStrictOrder := NonStrictFromStrict strictPoset.StrictOrder
+  NonStrictOrder := NonStrictFromStrict strictPoset.StrictRelation
   NonStrictOrderIsPartialOrder :=
     StrictOrderInducesPartialOrder
-      strictPoset.StrictOrderIsStrictOrder
+      strictPoset.StrictRelationIsStrictOrder
 ```
 -/
 def PosetOfStrictPoset (strictPoset : StrictPoset) : Poset where
   Carrier := strictPoset.Carrier
-  NonStrictOrder := NonStrictFromStrict strictPoset.StrictOrder
+  NonStrictOrder := NonStrictFromStrict strictPoset.StrictRelation
   NonStrictOrderIsPartialOrder :=
     StrictOrderInducesPartialOrder
-      strictPoset.StrictOrderIsStrictOrder
+      strictPoset.StrictRelationIsStrictOrder
 
 /--
 Descending to the strict poset and ascending again recovers the original
@@ -199,5 +214,13 @@ theorem StrictPosetOfPosetOfStrictPoset (strictPoset : StrictPoset) :
 theorem StrictPosetOfPosetOfStrictPoset (strictPoset : StrictPoset) :
     StrictPosetOfPoset (PosetOfStrictPoset strictPoset) = strictPoset := by
   sorry
+
+/-!
+The relation equalities above use function extensionality and propositional
+extensionality; the structure equalities additionally use proof irrelevance
+for law fields. These are expected logical dependencies of the equality-valued
+convenience interface. Pointwise equivalences remain available in the concept
+relationship modules when equality of relations is unnecessary.
+-/
 
 end LRA.VolumeI.Order

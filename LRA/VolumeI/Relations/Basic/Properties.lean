@@ -19,6 +19,15 @@ def MinimalElement {Element : Type u} {SetObject : Type v}
     (minimum : Element) : Prop :=
   minimum ∈ subset /\
     forall element, element ∈ subset -> Not (relation element minimum)
+
+/-- A maximal element of a subset with respect to an endorelation. -/
+def MaximalElement {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject]
+    (relation : Endorelation Element)
+    (subset : SetObject)
+    (maximum : Element) : Prop :=
+  maximum ∈ subset /\
+    forall element, element ∈ subset -> Not (relation maximum element)
 ```
 -/
 def MinimalElement {Element : Type u} {SetObject : Type v}

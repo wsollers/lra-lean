@@ -31,7 +31,21 @@ FailsStrictOrder (fun left right : Nat => left <= right)
 ```
 -/
 theorem NatNonStrictOrderFailsStrictOrder :
-    FailsStrictOrder (fun left right : Nat => left <= right) := by
+    LRA.VolumeI.Relations.Transitive (fun left right : Nat => left <= right) /\
+      Not (LRA.VolumeI.Relations.Irreflexive
+        (fun left right : Nat => left <= right)) /\
+      FailsStrictOrder (fun left right : Nat => left <= right) := by
+  sorry
+
+/-- The immediate-successor relation is irreflexive but not transitive. -/
+def ImmediateSuccessorRelation : LRA.VolumeI.Relations.Endorelation Nat :=
+  fun left right => right = left + 1
+
+/-- Irreflexivity alone does not make a strict order. -/
+theorem ImmediateSuccessorFailsStrictOrder :
+    LRA.VolumeI.Relations.Irreflexive ImmediateSuccessorRelation /\
+      Not (LRA.VolumeI.Relations.Transitive ImmediateSuccessorRelation) /\
+      FailsStrictOrder ImmediateSuccessorRelation := by
   sorry
 
 end LRA.VolumeI.Order.OrderedSets.StrictOrder

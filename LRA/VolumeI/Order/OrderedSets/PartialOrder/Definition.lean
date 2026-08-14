@@ -28,12 +28,9 @@ end LRA.VolumeI.Order
 
 namespace LRA.VolumeI.Order.OrderedSets.PartialOrder
 
+universe u
+
 /--
-A partial-order relation starts as an endorelation: a binary relation comparing
-two elements of the same carrier.
-
-Logical form:
-
 A partial-order relation is an endorelation equipped with the theorem that it
 satisfies the partial-order laws.
 

@@ -224,4 +224,19 @@ def RelationComplement {alpha : Type u}
     (relation : Endorelation alpha) : Endorelation alpha :=
   fun left right => Not (relation left right)
 
+/--
+The converse of a relation reverses the order of its arguments.
+
+Logical form:
+
+```lean
+def Converse {alpha : Type u}
+    (relation : Endorelation alpha) : Endorelation alpha :=
+  fun left right => relation right left
+```
+-/
+def Converse {alpha : Type u}
+    (relation : Endorelation alpha) : Endorelation alpha :=
+  fun left right => relation right left
+
 end LRA.VolumeI.Relations

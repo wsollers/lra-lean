@@ -1,4 +1,5 @@
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Examples
+import LRA.VolumeI.Order.OrderedSets.Preorder.FailureModes
 
 namespace LRA.VolumeI.Order.OrderedSets.PartialOrder
 
@@ -36,35 +37,8 @@ def FailsTransitivity
   Not (LRA.VolumeI.Relations.Transitive relation)
 
 /--
-`FailsTotality relation` says that an endorelation is not total.
-
-Logical form:
-
-```lean
-Not (LRA.VolumeI.Relations.Total relation)
-```
--/
-def FailsTotality
-    {Carrier : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier) :
-    Prop :=
-  Not (LRA.VolumeI.Relations.Total relation)
-
-/--
-The immediate-successor-or-equality relation on natural numbers.
-
-Logical form:
-
-```lean
-fun left right : Nat => left = right \/ right = left + 1
-```
--/
-def ImmediateSuccessorOrEqualRelation :
-    LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Nat :=
-  fun left right => left = right \/ right = left + 1
-
-/--
-The immediate-successor-or-equality relation is not transitive.
+The immediate-successor-or-equality relation is reflexive and antisymmetric
+but fails transitivity.
 
 Logical form:
 
@@ -73,7 +47,14 @@ FailsTransitivity ImmediateSuccessorOrEqualRelation
 ```
 -/
 theorem ImmediateSuccessorOrEqualFailsTransitivity :
-    FailsTransitivity ImmediateSuccessorOrEqualRelation := by
+    LRA.VolumeI.Relations.Reflexive
+        LRA.VolumeI.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation /\
+      LRA.VolumeI.Relations.Antisymmetric
+        LRA.VolumeI.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation /\
+      FailsTransitivity
+        LRA.VolumeI.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation /\
+      FailsNonStrictPartialOrder
+        LRA.VolumeI.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation := by
   sorry
 
 /--
@@ -87,7 +68,13 @@ FailsNonStrictPartialOrder (fun left right : Nat => left < right)
 ```
 -/
 theorem NatStrictOrderFailsNonStrictPartialOrder :
-    FailsNonStrictPartialOrder (fun left right : Nat => left < right) := by
+    Not (LRA.VolumeI.Relations.Reflexive
+        (fun left right : Nat => left < right)) /\
+      LRA.VolumeI.Relations.Antisymmetric
+        (fun left right : Nat => left < right) /\
+      LRA.VolumeI.Relations.Transitive
+        (fun left right : Nat => left < right) /\
+      FailsNonStrictPartialOrder (fun left right : Nat => left < right) := by
   sorry
 
 /--
@@ -101,20 +88,11 @@ FailsNonStrictPartialOrder (fun _ _ : Bool => True)
 ```
 -/
 theorem BooleanUniversalRelationFailsNonStrictPartialOrder :
-    FailsNonStrictPartialOrder (fun _ _ : Bool => True) := by
-  sorry
-
-/--
-Equality on booleans is a partial order but not a total order.
-
-Logical form:
-
-```lean
-FailsTotality BooleanEqualityNonStrictPartialOrder.relation
-```
--/
-theorem BooleanEqualityPartialOrderFailsTotality :
-    FailsTotality BooleanEqualityNonStrictPartialOrder.relation := by
+    LRA.VolumeI.Relations.Reflexive (fun _ _ : Bool => True) /\
+      Not (LRA.VolumeI.Relations.Antisymmetric
+        (fun _ _ : Bool => True)) /\
+      LRA.VolumeI.Relations.Transitive (fun _ _ : Bool => True) /\
+      FailsNonStrictPartialOrder (fun _ _ : Bool => True) := by
   sorry
 
 end LRA.VolumeI.Order.OrderedSets.PartialOrder

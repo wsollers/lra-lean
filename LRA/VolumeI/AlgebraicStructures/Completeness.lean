@@ -1,5 +1,5 @@
 import LRA.VolumeI.AlgebraicStructures.Bundles
-import LRA.VolumeI.Order.Completeness
+import LRA.VolumeI.Order.Bounds.LeastUpperBoundProperty.All
 
 namespace LRA.VolumeI.AlgebraicStructures
 
