@@ -41,19 +41,22 @@ theorem NonStrictMutualRelationImpliesEqual
   sorry
 
 /--
-Projection accessor: a strict partial order never relates an element to itself.
+There are no nontrivial two-element cycles in a partial order: if two elements
+are mutually related, the cycle collapses to equality.
 
 Logical form:
 
 ```lean
-Not (order.relation element element)
+order.relation left right -> order.relation right left -> left = right
 ```
 -/
-theorem StrictDoesNotRelateSelf
+theorem PartialOrderHasNoNontrivialTwoElementCycles
     {Carrier : Type u}
-    (order : StrictPartialOrder Carrier)
-    (element : Carrier) :
-    Not (order.relation element element) := by
+    (order : NonStrictPartialOrder Carrier)
+    (left right : Carrier)
+    (leftRelatedToRight : order.relation left right)
+    (rightRelatedToLeft : order.relation right left) :
+    left = right := by
   sorry
 
 end LRA.VolumeI.Order.OrderedSets.PartialOrder

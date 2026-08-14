@@ -1,26 +1,6 @@
-import LRA.VolumeI.Order.OrderStructures.Preorder
+import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
 
-namespace LRA.VolumeI.Order
-
-universe u
-
-/--
-Partial-order laws for an endorelation.
-
-Logical form:
-
-```lean
-def PartialOrder {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha) : Prop :=
-  LRA.VolumeI.Relations.Reflexive relation /\
-    LRA.VolumeI.Relations.Antisymmetric relation /\
-      LRA.VolumeI.Relations.Transitive relation
-```
+/-!
+Compatibility import for the canonical partial-order relation predicate, now
+owned by the OrderedSets/PartialOrder concept.
 -/
-def PartialOrder {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha) : Prop :=
-  LRA.VolumeI.Relations.Reflexive relation /\
-    LRA.VolumeI.Relations.Antisymmetric relation /\
-      LRA.VolumeI.Relations.Transitive relation
-
-end LRA.VolumeI.Order

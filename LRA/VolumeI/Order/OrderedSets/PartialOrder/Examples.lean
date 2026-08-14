@@ -1,5 +1,4 @@
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.NonStrict
-import LRA.VolumeI.Order.OrderedSets.PartialOrder.Strict
 
 namespace LRA.VolumeI.Order.OrderedSets.PartialOrder
 
@@ -15,23 +14,23 @@ NonStrictPartialOrder Nat
 def NaturalNumberNonStrictPartialOrder :
     NonStrictPartialOrder Nat where
   relation := fun left right => left <= right
-  isPartialOrder := by
+  relationIsPartialOrder := by
     sorry
 
 /--
-The usual `<` relation on natural numbers is a strict partial order.
+The relation packaged by `NaturalNumberNonStrictPartialOrder` satisfies the
+partial-order laws.
 
 Logical form:
 
 ```lean
-StrictPartialOrder Nat
+LRA.VolumeI.Order.PartialOrder NaturalNumberNonStrictPartialOrder.relation
 ```
 -/
-def NaturalNumberStrictPartialOrder :
-    StrictPartialOrder Nat where
-  relation := fun left right => left < right
-  isStrictPartialOrder := by
-    sorry
+theorem NaturalNumberNonStrictOrderIsPartialOrder :
+    LRA.VolumeI.Order.PartialOrder
+      NaturalNumberNonStrictPartialOrder.relation := by
+  sorry
 
 /--
 Equality on booleans is a non-strict partial order.
@@ -45,7 +44,22 @@ NonStrictPartialOrder Bool
 def BooleanEqualityNonStrictPartialOrder :
     NonStrictPartialOrder Bool where
   relation := fun left right => left = right
-  isPartialOrder := by
+  relationIsPartialOrder := by
     sorry
+
+/--
+The relation packaged by `BooleanEqualityNonStrictPartialOrder` satisfies the
+partial-order laws.
+
+Logical form:
+
+```lean
+LRA.VolumeI.Order.PartialOrder BooleanEqualityNonStrictPartialOrder.relation
+```
+-/
+theorem BooleanEqualityRelationIsPartialOrder :
+    LRA.VolumeI.Order.PartialOrder
+      BooleanEqualityNonStrictPartialOrder.relation := by
+  sorry
 
 end LRA.VolumeI.Order.OrderedSets.PartialOrder

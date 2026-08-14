@@ -4,7 +4,6 @@ import LRA.VolumeI.Order.OrderedSets.PartialOrder.Examples
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.FailureModes
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.NonStrict
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Relationships
-import LRA.VolumeI.Order.OrderedSets.PartialOrder.Strict
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Theorems
 
 /-!

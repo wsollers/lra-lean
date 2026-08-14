@@ -20,21 +20,6 @@ def FailsNonStrictPartialOrder
   Not (LRA.VolumeI.Order.PartialOrder relation)
 
 /--
-`FailsStrictPartialOrder relation` says that an endorelation does not satisfy
-the strict partial-order laws.
-
-Logical form:
-
-```lean
-Not (LRA.VolumeI.Order.StrictPartialOrder relation)
-```
--/
-def FailsStrictPartialOrder
-    {Carrier : Type u}
-    (relation : Relation Carrier) : Prop :=
-  Not (LRA.VolumeI.Order.StrictPartialOrder relation)
-
-/--
 `FailsTransitivity relation` says that an endorelation is not transitive.
 
 Logical form:
@@ -99,20 +84,6 @@ FailsNonStrictPartialOrder (fun left right : Nat => left < right)
 -/
 theorem NatStrictOrderFailsNonStrictPartialOrder :
     FailsNonStrictPartialOrder (fun left right : Nat => left < right) := by
-  sorry
-
-/--
-The usual non-strict order on natural numbers is not a strict partial order,
-because it is not irreflexive.
-
-Logical form:
-
-```lean
-FailsStrictPartialOrder (fun left right : Nat => left <= right)
-```
--/
-theorem NatNonStrictOrderFailsStrictPartialOrder :
-    FailsStrictPartialOrder (fun left right : Nat => left <= right) := by
   sorry
 
 /--

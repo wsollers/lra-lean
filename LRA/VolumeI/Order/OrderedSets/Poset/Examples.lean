@@ -19,4 +19,17 @@ def NaturalNumberPoset : LRA.VolumeI.Order.Poset where
   NonStrictOrderIsPartialOrder := by
     sorry
 
+/--
+The relation packaged by `NaturalNumberPoset` satisfies the partial-order laws.
+
+Logical form:
+
+```lean
+LRA.VolumeI.Order.PartialOrder NaturalNumberPoset.NonStrictOrder
+```
+-/
+theorem NaturalNumberPosetOrderIsPartialOrder :
+    LRA.VolumeI.Order.PartialOrder NaturalNumberPoset.NonStrictOrder := by
+  sorry
+
 end LRA.VolumeI.Order.OrderedSets.Poset

@@ -1,24 +1,22 @@
-import LRA.VolumeI.Order.Relations
+import LRA.VolumeI.Order.OrderedSets.StrictOrder.Definition
 
 namespace LRA.VolumeI.Order
 
 universe u
 
 /--
-Strict partial-order laws for an endorelation.
+Compatibility name for strict-order laws on an endorelation.
 
 Logical form:
 
 ```lean
 def StrictPartialOrder {Alpha : Type u}
     (relation : LRA.VolumeI.Relations.Endorelation Alpha) : Prop :=
-  LRA.VolumeI.Relations.Irreflexive relation /\
-    LRA.VolumeI.Relations.Transitive relation
+  StrictOrder relation
 ```
 -/
-def StrictPartialOrder {Alpha : Type u}
+abbrev StrictPartialOrder {Alpha : Type u}
     (relation : LRA.VolumeI.Relations.Endorelation Alpha) : Prop :=
-  LRA.VolumeI.Relations.Irreflexive relation /\
-    LRA.VolumeI.Relations.Transitive relation
+  StrictOrder relation
 
 end LRA.VolumeI.Order

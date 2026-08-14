@@ -1,5 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Characterizations
 import LRA.VolumeI.Order.OrderedSets.Preorder.Relationships
+import LRA.VolumeI.Order.OrderedSets.StrictOrder.Definition
 
 namespace LRA.VolumeI.Order.OrderedSets.PartialOrder
 
@@ -58,108 +59,35 @@ theorem StrictPartIffNotConverse
   sorry
 
 /--
-The strict part of a non-strict partial order is a strict partial order.
+The strict part of a non-strict partial order, bundled as a strict order.
 
 Logical form:
 
 ```lean
-StrictPartialOrder Carrier
+StrictOrder.StrictOrderRelation Carrier
 ```
 -/
-def StrictPartAsStrictPartialOrder
+def StrictPartAsStrictOrder
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
-    StrictPartialOrder Carrier where
+    LRA.VolumeI.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier where
   relation := StrictPart order
-  isStrictPartialOrder := by
+  relationIsStrictOrder := by
     sorry
 
 /--
-The reflexive closure of a strict partial order.
+The strict part of a non-strict partial order is a strict order.
 
 Logical form:
 
 ```lean
-fun left right => order.relation left right \/ left = right
+LRA.VolumeI.Order.StrictOrder (StrictPart order)
 ```
 -/
-def ReflexiveClosure
+theorem StrictPartIsStrictOrder
     {Carrier : Type u}
-    (order : StrictPartialOrder Carrier) :
-    Relation Carrier :=
-  fun left right => order.relation left right \/ left = right
-
-/--
-The reflexive closure unfolds to strict comparison or equality.
-
-Logical form:
-
-```lean
-ReflexiveClosure order left right <->
-  order.relation left right \/ left = right
-```
--/
-theorem ReflexiveClosureIff
-    {Carrier : Type u}
-    (order : StrictPartialOrder Carrier)
-    (left right : Carrier) :
-    ReflexiveClosure order left right <->
-      order.relation left right \/ left = right := by
-  sorry
-
-/--
-The reflexive closure of a strict partial order is a non-strict partial order.
-
-Logical form:
-
-```lean
-NonStrictPartialOrder Carrier
-```
--/
-def ReflexiveClosureAsNonStrictPartialOrder
-    {Carrier : Type u}
-    (order : StrictPartialOrder Carrier) :
-    NonStrictPartialOrder Carrier where
-  relation := ReflexiveClosure order
-  isPartialOrder := by
-    sorry
-
-/--
-Taking reflexive closure and then strict part returns the original strict
-partial order relation.
-
-Logical form:
-
-```lean
-StrictPart (ReflexiveClosureAsNonStrictPartialOrder order) left right <->
-  order.relation left right
-```
--/
-theorem StrictPartOfReflexiveClosureIff
-    {Carrier : Type u}
-    (order : StrictPartialOrder Carrier)
-    (left right : Carrier) :
-    StrictPart (ReflexiveClosureAsNonStrictPartialOrder order) left right <->
-      order.relation left right := by
-  sorry
-
-/--
-Taking strict part and then reflexive closure returns the original non-strict
-partial order relation.
-
-Logical form:
-
-```lean
-ReflexiveClosure (StrictPartAsStrictPartialOrder order) left right <->
-  order.relation left right
-```
--/
-theorem ReflexiveClosureOfStrictPartIff
-    {Carrier : Type u}
-    (order : NonStrictPartialOrder Carrier)
-    (left right : Carrier) :
-    ReflexiveClosure (StrictPartAsStrictPartialOrder order) left right <->
-      order.relation left right := by
+    (order : NonStrictPartialOrder Carrier) :
+    LRA.VolumeI.Order.StrictOrder (StrictPart order) := by
   sorry
 
 /--
@@ -176,7 +104,23 @@ def Dual
     (order : NonStrictPartialOrder Carrier) :
     NonStrictPartialOrder Carrier where
   relation := fun left right => order.relation right left
-  isPartialOrder := by
+  relationIsPartialOrder := by
     sorry
+
+/--
+The dual relation of a partial order is again a partial order.
+
+Logical form:
+
+```lean
+LRA.VolumeI.Order.PartialOrder (fun left right => order.relation right left)
+```
+-/
+theorem DualIsPartialOrder
+    {Carrier : Type u}
+    (order : NonStrictPartialOrder Carrier) :
+    LRA.VolumeI.Order.PartialOrder
+      (fun left right => order.relation right left) := by
+  sorry
 
 end LRA.VolumeI.Order.OrderedSets.PartialOrder

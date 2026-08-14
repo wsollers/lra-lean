@@ -5,17 +5,16 @@ namespace LRA.VolumeI.Order.OrderedSets.PartialOrder
 universe u
 
 /--
-A non-strict partial order is an endorelation satisfying reflexivity,
-antisymmetry, and transitivity. This is the relation usually written `<=`.
+Compatibility name: a non-strict partial order is a partial-order relation,
+usually written `<=`.
 
 Logical form:
 
 ```lean
-LRA.VolumeI.Order.PartialOrder relation
+PartialOrderRelation Carrier
 ```
 -/
-structure NonStrictPartialOrder (Carrier : Type u) where
-  relation : Relation Carrier
-  isPartialOrder : LRA.VolumeI.Order.PartialOrder relation
+abbrev NonStrictPartialOrder (Carrier : Type u) :=
+  PartialOrderRelation Carrier
 
 end LRA.VolumeI.Order.OrderedSets.PartialOrder
