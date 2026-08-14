@@ -39,10 +39,10 @@
 \Columns{
 \LeanHead
 \begin{leanbox}{Run envelope}
-Schema: \texttt{lra.lean-extraction-contract/v4}\\
-Manifest: \texttt{lra.pilot.supremum-harvest/1.1}\\
+Schema: \texttt{lra.lean-extraction-contract/v5}\\
+Manifest: \texttt{lra.pilot.supremum-harvest/2.0}\\
 Primary: \texttt{LeastUpperBound}\\
-Seeds: \textbf{36}; dependency-closed declarations: \textbf{46}; typed edges: \textbf{268}.
+Seeds: \textbf{36}; dependency-closed declarations: \textbf{47}; direct typed edges: \textbf{271}; transitive reachability edges: \textbf{251}.
 \end{leanbox}
 \small
 \begin{tabular}{@{}p{.79\linewidth}r@{}}
@@ -99,12 +99,11 @@ they describe the same concept.
 \end{leanbox}
 \scriptsize
 The first box is harvested after policy-bounded unfolding; the second is the
-actual raw logical AST. The third is an \textbf{experimental local renderer},
+normalized proposition tree backed by retained raw Lean expressions. The third is an \textbf{experimental local renderer},
 not approved T10 governance output. Definitional equality to the compiled body:
-\textbf{True}. The anonymous
-\texttt{FORALL} proof binders in the raw tree are a real T4 normalization
-gap: they should be classified as implication/membership guards before a
-production renderer consumes the AST.
+\textbf{True}. Metatype-checked
+normalization classifies proposition proof binders as implication guards and
+retains data binders as quantifiers.
 }{
 \VolHead
 \input{snippets/vol3-definition.tex}
@@ -186,8 +185,8 @@ principles recorded}. The transform records uses of
 $\neg\forall\Rightarrow\exists\neg$ and
 $\neg(A\Rightarrow B)\Rightarrow A\land\neg B$. Strict inequalities require
 the separately checked total-order theorem; they are not generic FOL cleanup.
-The anonymous \texttt{EXISTS} proof binder is the same current T4 guard-
-classification gap exposed on the prior raw-AST page.
+Membership guards are normalized structurally; publication still requires the
+checked family witness and reviewed rendering correspondence.
 }{
 \VolHead
 \input{snippets/vol3-negations.tex}
@@ -215,7 +214,7 @@ the empty set can have a least upper bound.
 \VerbatimInput{snippets/lean-primary-unfolded.txt}
 \end{leanbox}
 \scriptsize
-Policy: \texttt{lra.pilot.logical-unfolding/1.1}. Unfolded:
+Policy: \texttt{lra.pilot.logical-unfolding/2.0}. Unfolded:
 \texttt{UpperBound}. Definitional equality check: \textbf{True}.
 The remaining structure and membership constants are explicit stop boundaries,
 not silently unfolded residue.
@@ -335,7 +334,7 @@ has a checked uniqueness proof and formal dependency evidence.
 \item \texttt{DiscreteFailedComparisonWithoutStrictWitness}: strict rewrite failure
 \item \texttt{DiscretePairPoset}: non total boundary
 \item \texttt{DiscretePairPosetNotTotal}: non total boundary
-\item \texttt{EmptySetHasNoLeastUpperBoundInReal}: nonemptiness is required for real existence
+\item \texttt{EmptySetHasNoLeastUpperBoundInReal}: real empty set has no supremum
 \item \texttt{StrictRewriteFailsWithoutTotality}: totality is required
 \end{itemize}
 \end{leanbox}
@@ -375,7 +374,7 @@ attachment.
 \textbf{Canonical mathematical display} & renderable candidate; no governed renderer & present & Approved join \\
 \textbf{Raw Lean signature} & available & not applicable & Lean \\
 \textbf{Folded predicate body} & available & Predicate reading present & Lean + governed rendering \\
-\textbf{Raw extraction logic AST} & available; proposition proof binders still appear as FORALL & not applicable & Lean transform fix \\
+\textbf{Normalized proposition tree} & available; membership proof binders are implication guards & not applicable & Lean transform \\
 \textbf{Fully unfolded predicate logic} & available; definitional equality verified & definition equations present & Lean transform + approved rendering \\
 \textbf{Standard quantified statement} & candidate available; unapproved & present, but adds nonempty and R & Transform then semantic approval \\
 \textbf{Predicate reading} & folded evidence available; T10 registry join pending & present & Governed join + approval \\
@@ -402,9 +401,9 @@ mathematics or typography.
 \textbf{Contrapositive} & not applicable to a definition & missing / not applicable & Theorem-only reviewed block \\
 \textbf{Aliases / equivalent forms} & Supremum and LUB definitional aliases extracted & least-upper-bound wording present & Checked witness + authored selection \\
 \textbf{Failure modes} & checked failure predicates and equivalences & present with authored labels & Lean clauses + authored taxonomy \\
-\textbf{Examples} & 8 checked manifest examples & figures/exposition, no formal attachment & Authored selection + checked witnesses \\
+\textbf{Examples} & 9 checked manifest examples & figures/exposition, no formal attachment & Authored selection + checked witnesses \\
 \textbf{Counterexamples} & 5 checked records & empty-set explanation present & Authored selection + checked witnesses \\
-\textbf{Formal dependencies} & typed graphs available (268 selected-scope edges) & not shown & Lean \\
+\textbf{Formal dependencies} & typed graphs available (271 direct; 251 transitive) & not shown & Lean \\
 \textbf{Learner prerequisites} & not inferable & 3 dependencies present & Authored \\
 \textbf{Proof term / trust} & N/A for definition; available on attached theorems & not shown & Lean \\
 \textbf{Detailed professional proof} & not recoverable from compiled term & uniqueness proof TODO & Authored \\

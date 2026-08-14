@@ -1,0 +1,28 @@
+\subsection*{Definition}
+Let \(P=(|P|,\leq_P)\) be a poset and let \(A\subseteq |P|\). An element \(u\in |P|\) is an upper bound of \(A\) if
+\[
+  \forall x\in A,\qquad x\leq_P u.
+\]
+
+\subsection*{Negations}
+The literal negation is
+\[
+  \neg\bigl(\forall x\in A,\;x\leq_P u\bigr).
+\]
+Classically, this is equivalent to the witnessed form
+\[
+  \exists x\in A,\qquad x\nleq_P u.
+\]
+
+\subsection*{Contrapositive form}
+Classically, the definition is equivalently expressed as
+\[
+  \forall x\in |P|,\qquad x\nleq_P u\;\Longrightarrow\;x\notin A.
+\]
+The converse \(x\leq_P u\Rightarrow x\in A\) and inverse \(x\notin A\Rightarrow x\nleq_P u\) are false in general.
+
+\subsection*{Examples}
+Every element of a poset is an upper bound of the empty subset. In the usual natural-number poset, \(1\) is an upper bound of \(\{0\}\).
+
+\subsection*{Counterexamples}
+The upper bound \(1\) of \(\{0\}\subseteq\mathbb{N}\) does not belong to that subset. The same example refutes both the converse and inverse forms above. The full set \(\mathbb{N}\) has no upper bound in the usual natural-number poset.

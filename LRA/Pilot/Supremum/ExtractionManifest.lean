@@ -1,6 +1,7 @@
 import LRA.Pilot.Supremum.SupremumCounterexamples
 import LRA.Pilot.Supremum.SupremumCompleteness
 import LRA.Pilot.Supremum.SupremumExamples
+import LRA.Pilot.Metadata
 import Lean
 
 /-!
@@ -18,100 +19,229 @@ environment.  Dependency closure is computed after these seeds are selected.
 
 namespace LRA.Pilot.Supremum.ExtractionManifest
 
-/-- One required declaration in the Supremum calibration scope. -/
-structure Entry where
-  declaration : Lean.Name
-  role : String
-  relationshipToPrimary : String
+open LRA.Pilot.Metadata
 
 /-- Machine-readable manifest identifier retained in every extraction run. -/
-def version : String := "lra.pilot.supremum-harvest/1.1"
+def id : String := "lra.pilot.supremum-harvest"
+
+/-- Version of the typed Supremum extraction-unit contract. -/
+def version : String := "lra.pilot.supremum-harvest/2.0"
 
 /-- The single concept declaration whose one-to-many projection is calibrated. -/
 def primaryDeclaration : Lean.Name :=
   ``LRA.Pilot.OrderBounds.LeastUpperBound
 
-/-- Required, relationship-bearing seeds for the Supremum evidence package. -/
-def entries : Array Entry := #[
+/-- Required, typed relationship-bearing seeds for the Supremum evidence
+package.  A named checked declaration verifies its own compiled statement; it
+does not by itself approve learner-facing publication correspondence. -/
+def entries : Array FamilyEntry := #[
   ⟨``LRA.Pilot.OrderBounds.LeastUpperBound,
-    "primary_definition", "primary"⟩,
+    .primaryDefinition, .primary, .primaryDeclaration⟩,
   ⟨``LRA.Pilot.OrderBounds.Supremum,
-    "surface_alias", "definitionally_equal_alias"⟩,
+    .surfaceAlias, .definitionallyEqualAlias, .definitionalEquality⟩,
   ⟨``LRA.Pilot.OrderBounds.LUB,
-    "abbreviated_alias", "definitionally_equal_alias"⟩,
+    .abbreviatedAlias, .definitionallyEqualAlias, .definitionalEquality⟩,
   ⟨``LRA.Pilot.OrderBounds.FromPartialOrder.LeastUpperBound,
-    "adapter", "specialized_interface"⟩,
+    .adapter, .specializedInterface, .authorSelected⟩,
 
   ⟨``LRA.Pilot.OrderBounds.UpperBoundFailure,
-    "failure_predicate", "negation_clause"⟩,
+    .failurePredicate, .negationClause, .authorSelected⟩,
   ⟨``LRA.Pilot.OrderBounds.SharpnessFailure,
-    "failure_predicate", "negation_clause"⟩,
+    .failurePredicate, .negationClause, .authorSelected⟩,
   ⟨``LRA.Pilot.OrderBounds.NotUpperBoundIffUpperBoundFailure,
-    "checked_logical_form", "validates_failure_clause"⟩,
+    .logicalForm, .validatesFailureClause,
+    .namedCheckedDeclaration
+      ``LRA.Pilot.OrderBounds.NotUpperBoundIffUpperBoundFailure⟩,
   ⟨``LRA.Pilot.OrderBounds.NotLeastUpperBoundIffFailure,
-    "checked_logical_form", "validates_general_negation"⟩,
+    .logicalForm, .validatesGeneralNegation,
+    .namedCheckedDeclaration
+      ``LRA.Pilot.OrderBounds.NotLeastUpperBoundIffFailure⟩,
   ⟨``LRA.Pilot.OrderBounds.NotUpperBoundIffStrictWitnessOfTotal,
-    "checked_specialization", "total_order_strict_rewrite"⟩,
+    .specialization, .totalOrderStrictRewrite,
+    .namedCheckedDeclaration
+      ``LRA.Pilot.OrderBounds.NotUpperBoundIffStrictWitnessOfTotal⟩,
   ⟨``LRA.Pilot.OrderBounds.NotLeastUpperBoundIffStrictFailureOfTotal,
-    "checked_specialization", "total_order_strict_negation"⟩,
+    .specialization, .totalOrderStrictNegation,
+    .namedCheckedDeclaration
+      ``LRA.Pilot.OrderBounds.NotLeastUpperBoundIffStrictFailureOfTotal⟩,
 
   ⟨``LRA.Pilot.OrderBounds.LeastUpperBoundIsUpperBound,
-    "consequence_theorem", "projection"⟩,
+    .consequence, .projection,
+    .namedCheckedDeclaration ``LRA.Pilot.OrderBounds.LeastUpperBoundIsUpperBound⟩,
   ⟨``LRA.Pilot.OrderBounds.LeastUpperBoundIsBelowUpperBounds,
-    "consequence_theorem", "projection"⟩,
+    .consequence, .projection,
+    .namedCheckedDeclaration
+      ``LRA.Pilot.OrderBounds.LeastUpperBoundIsBelowUpperBounds⟩,
   ⟨``LRA.Pilot.OrderBounds.LeastUpperBoundUnique,
-    "consequence_theorem", "uniqueness"⟩,
+    .consequence, .uniqueness,
+    .namedCheckedDeclaration ``LRA.Pilot.OrderBounds.LeastUpperBoundUnique⟩,
   ⟨``LRA.Pilot.OrderBounds.GreatestElementIsLeastUpperBound,
-    "relationship_theorem", "maximum_implies_supremum"⟩,
+    .relationship, .maximumImpliesSupremum,
+    .namedCheckedDeclaration
+      ``LRA.Pilot.OrderBounds.GreatestElementIsLeastUpperBound⟩,
   ⟨``LRA.Pilot.OrderBounds.LeastUpperBoundMemberIsGreatestElement,
-    "relationship_theorem", "attained_supremum_implies_maximum"⟩,
+    .relationship, .attainedSupremumImpliesMaximum,
+    .namedCheckedDeclaration
+      ``LRA.Pilot.OrderBounds.LeastUpperBoundMemberIsGreatestElement⟩,
   ⟨``LRA.Pilot.OrderBounds.SubsetLeastUpperBoundsOrdered,
-    "consequence_theorem", "monotonicity"⟩,
+    .consequence, .monotonicity,
+    .namedCheckedDeclaration ``LRA.Pilot.OrderBounds.SubsetLeastUpperBoundsOrdered⟩,
   ⟨``LRA.Pilot.OrderBounds.EmptySetUpperBound,
-    "boundary_theorem", "empty_set_vacuity"⟩,
+    .boundary, .emptySetVacuity,
+    .namedCheckedDeclaration ``LRA.Pilot.OrderBounds.EmptySetUpperBound⟩,
   ⟨``LRA.Pilot.OrderBounds.EmptySetLeastUpperBoundIffBottom,
-    "boundary_theorem", "empty_set_characterization"⟩,
+    .boundary, .emptySetCharacterization,
+    .namedCheckedDeclaration ``LRA.Pilot.OrderBounds.EmptySetLeastUpperBoundIffBottom⟩,
   ⟨``LRA.Pilot.OrderBounds.ExistsLeastUpperBoundOfOrderComplete,
-    "existence_theorem", "order_complete_existence"⟩,
+    .existence, .orderCompleteExistence,
+    .namedCheckedDeclaration ``LRA.Pilot.OrderBounds.ExistsLeastUpperBoundOfOrderComplete⟩,
   ⟨``LRA.Pilot.OrderBounds.ExistsLeastUpperBoundOfCompleteOrderedField,
-    "checked_specialization", "complete_ordered_field_existence"⟩,
+    .specialization, .completeOrderedFieldExistence,
+    .namedCheckedDeclaration
+      ``LRA.Pilot.OrderBounds.ExistsLeastUpperBoundOfCompleteOrderedField⟩,
   ⟨``LRA.Pilot.OrderBounds.NonemptyBoundedAboveRealSetHasLeastUpperBound,
-    "checked_specialization", "real_existence"⟩,
+    .specialization, .realExistence,
+    .namedCheckedDeclaration
+      ``LRA.Pilot.OrderBounds.NonemptyBoundedAboveRealSetHasLeastUpperBound⟩,
   ⟨``LRA.Pilot.OrderBounds.OrderedFieldCarrierIsNonempty,
-    "boundary_theorem", "carrier_nonempty_is_structural"⟩,
+    .boundary, .carrierNonemptyIsStructural,
+    .namedCheckedDeclaration ``LRA.Pilot.OrderBounds.OrderedFieldCarrierIsNonempty⟩,
 
   ⟨``LRA.Pilot.OrderBounds.Examples.EmptySetHasLeastUpperBoundInNat,
-    "example", "empty_set_supremum_in_poset_with_bottom"⟩,
+    .example, .emptySetSupremumWithBottom,
+    .namedCheckedDeclaration
+      ``LRA.Pilot.OrderBounds.Examples.EmptySetHasLeastUpperBoundInNat⟩,
   ⟨``LRA.Pilot.OrderBounds.Examples.IicLeastUpperBound,
-    "example", "attained_supremum"⟩,
+    .example, .attainedSupremum,
+    .namedCheckedDeclaration ``LRA.Pilot.OrderBounds.Examples.IicLeastUpperBound⟩,
   ⟨``LRA.Pilot.OrderBounds.Examples.IicGreatestElement,
-    "example", "attained_maximum"⟩,
+    .example, .attainedMaximum,
+    .namedCheckedDeclaration ``LRA.Pilot.OrderBounds.Examples.IicGreatestElement⟩,
   ⟨``LRA.Pilot.OrderBounds.Examples.IioLeastUpperBound,
-    "example", "nonattained_supremum"⟩,
+    .example, .nonattainedSupremum,
+    .namedCheckedDeclaration ``LRA.Pilot.OrderBounds.Examples.IioLeastUpperBound⟩,
   ⟨``LRA.Pilot.OrderBounds.Examples.IioLeastUpperBoundNotMember,
-    "example", "nonattainment_witness"⟩,
+    .example, .nonattainmentWitness,
+    .namedCheckedDeclaration
+      ``LRA.Pilot.OrderBounds.Examples.IioLeastUpperBoundNotMember⟩,
   ⟨``LRA.Pilot.OrderBounds.Examples.IioHasNoGreatestElement,
-    "example", "supremum_without_maximum"⟩,
+    .example, .supremumWithoutMaximum,
+    .namedCheckedDeclaration ``LRA.Pilot.OrderBounds.Examples.IioHasNoGreatestElement⟩,
   ⟨``LRA.Pilot.OrderBounds.Examples.ZeroWitnessesUpperBoundFailureForIicOne,
-    "example", "upper_bound_failure_witness"⟩,
+    .example, .upperBoundFailureWitness,
+    .namedCheckedDeclaration
+      ``LRA.Pilot.OrderBounds.Examples.ZeroWitnessesUpperBoundFailureForIicOne⟩,
   ⟨``LRA.Pilot.OrderBounds.Examples.TwoWitnessesSharpnessFailureForIicOne,
-    "example", "sharpness_failure_witness"⟩,
+    .example, .sharpnessFailureWitness,
+    .namedCheckedDeclaration
+      ``LRA.Pilot.OrderBounds.Examples.TwoWitnessesSharpnessFailureForIicOne⟩,
   ⟨``LRA.Pilot.OrderBounds.Examples.TwoIsNotLeastUpperBoundOfIicOne,
-    "example", "checked_failed_candidate"⟩,
+    .example, .checkedFailedCandidate,
+    .namedCheckedDeclaration
+      ``LRA.Pilot.OrderBounds.Examples.TwoIsNotLeastUpperBoundOfIicOne⟩,
 
   ⟨``LRA.Pilot.OrderBounds.Counterexamples.DiscretePairPoset,
-    "counterexample_structure", "non_total_boundary"⟩,
+    .counterexampleStructure, .nonTotalBoundary, .authorSelected⟩,
   ⟨``LRA.Pilot.OrderBounds.Counterexamples.DiscretePairPosetNotTotal,
-    "counterexample", "non_total_boundary"⟩,
+    .counterexample, .nonTotalBoundary,
+    .namedCheckedDeclaration
+      ``LRA.Pilot.OrderBounds.Counterexamples.DiscretePairPosetNotTotal⟩,
   ⟨``LRA.Pilot.OrderBounds.Counterexamples.DiscreteFailedComparisonWithoutStrictWitness,
-    "counterexample", "strict_rewrite_failure"⟩,
+    .counterexample, .strictRewriteFailure,
+    .namedCheckedDeclaration
+      ``LRA.Pilot.OrderBounds.Counterexamples.DiscreteFailedComparisonWithoutStrictWitness⟩,
   ⟨``LRA.Pilot.OrderBounds.Counterexamples.StrictRewriteFailsWithoutTotality,
-    "counterexample", "totality_is_required"⟩,
+    .counterexample, .totalityRequired,
+    .namedCheckedDeclaration
+      ``LRA.Pilot.OrderBounds.Counterexamples.StrictRewriteFailsWithoutTotality⟩,
   ⟨``LRA.Pilot.OrderBounds.Counterexamples.EmptySetHasNoLeastUpperBoundInReal,
-    "counterexample", "nonemptiness_is_required_for_real_existence"⟩
+    .counterexample, .realEmptySetHasNoSupremum,
+    .namedCheckedDeclaration
+      ``LRA.Pilot.OrderBounds.Counterexamples.EmptySetHasNoLeastUpperBoundInReal⟩
 ]
 
-def entryFor? (name : Lean.Name) : Option Entry :=
+def entryFor? (name : Lean.Name) : Option FamilyEntry :=
   entries.find? fun entry => entry.declaration == name
+
+/-- Exact compiled-name rules for the narrow binder semantics that are not
+recoverable merely from explicit/implicit/proposition binder form. -/
+def binderRoleRules : Array SemanticRoleRule := #[
+  ⟨.ambientCarrierNonempty, .classDeclaration, #[``Nonempty]⟩,
+  ⟨.ambientOrderCompleteness, .classDeclaration,
+    #[``LRA.VolumeI.AlgebraicStructures.OrderCompletenessLaws]⟩,
+  ⟨.ambientOrderedField, .classDeclaration,
+    #[``LRA.VolumeI.AlgebraicStructures.OrderedFieldLaws]⟩,
+  ⟨.ambientOrderStructure, .classDeclaration, #[``PartialOrder]⟩,
+  ⟨.setMembershipInterface, .classDeclaration, #[``Membership]⟩,
+  ⟨.subsetNonempty, .containsAnyDeclaration, #[``Set.Nonempty]⟩,
+  ⟨.subsetNonempty, .containsAllDeclarations, #[``Exists, ``Membership.mem]⟩,
+  ⟨.subsetBoundedAbove, .containsAnyDeclaration,
+    #[``LRA.Pilot.OrderBounds.BoundedAbove,
+      ``LRA.Pilot.OrderBounds.FromPartialOrder.BoundedAbove,
+      ``BddAbove]⟩
+]
+
+/-- Structure-sensitive family members and the exact declarations required by
+their checked statements. -/
+def applicabilityRequirements : Array ApplicabilityRequirement := #[
+  ⟨``LRA.Pilot.OrderBounds.NotUpperBoundIffStrictWitnessOfTotal,
+    #[``LRA.VolumeI.Relations.Total]⟩,
+  ⟨``LRA.Pilot.OrderBounds.NotLeastUpperBoundIffStrictFailureOfTotal,
+    #[``LRA.VolumeI.Relations.Total]⟩,
+  ⟨``LRA.Pilot.OrderBounds.ExistsLeastUpperBoundOfCompleteOrderedField,
+    #[``LRA.VolumeI.AlgebraicStructures.OrderedFieldLaws,
+      ``LRA.VolumeI.AlgebraicStructures.OrderCompletenessLaws]⟩,
+  ⟨``LRA.Pilot.OrderBounds.OrderedFieldCarrierIsNonempty,
+    #[``LRA.VolumeI.AlgebraicStructures.OrderedFieldLaws]⟩
+]
+
+/-- Exact result-type rules for formally relevant concept-family outcomes. -/
+def resultRoleRules : Array SemanticRoleRule := #[
+  ⟨.ambientCarrierNonempty, .containsAnyDeclaration, #[``Nonempty]⟩,
+  ⟨.supremumExistence, .containsAllDeclarations,
+    #[``Exists, ``LRA.Pilot.OrderBounds.LeastUpperBound]⟩,
+  ⟨.supremumExistence, .containsAllDeclarations,
+    #[``Exists, ``LRA.Pilot.OrderBounds.FromPartialOrder.LeastUpperBound]⟩
+]
+
+/-- Versioned and bounded unfolding policy used by the calibration. -/
+def unfoldingPolicy : UnfoldingPolicy := {
+  version := "lra.pilot.logical-unfolding/2.0"
+  declarations := #[
+    ``LRA.Pilot.OrderBounds.Supremum,
+    ``LRA.Pilot.OrderBounds.LUB,
+    ``LRA.Pilot.OrderBounds.LeastUpperBound,
+    ``LRA.Pilot.OrderBounds.UpperBound,
+    ``LRA.Pilot.OrderBounds.BoundedAbove,
+    ``LRA.Pilot.OrderBounds.UpperBoundFailure,
+    ``LRA.Pilot.OrderBounds.SharpnessFailure,
+    ``LRA.Pilot.OrderBounds.FromPartialOrder.LeastUpperBound,
+    ``LRA.Pilot.OrderBounds.FromPartialOrder.UpperBound,
+    ``LRA.Pilot.OrderBounds.FromPartialOrder.BoundedAbove,
+    ``Set.Nonempty
+  ]
+  primitiveBoundaries := #[
+    ``Not, ``And, ``Or, ``Iff, ``Eq, ``Exists, ``Membership.mem
+  ]
+  maxPasses := 8
+  maxSteps := 128
+  maxExpressionNodes := 20000
+}
+
+/-- The complete typed extraction-unit manifest consumed by the generic
+extractor foundation. -/
+def manifest : ExtractionManifest := {
+  id
+  version
+  title := "LRA Supremum Lean Evidence"
+  primaryDeclaration
+  entries
+  dependencyNamespaceRoots := #[`LRA.Pilot.OrderBounds,
+    `LRA.VolumeI.Relations.Order.Poset]
+  binderRoleRules
+  resultRoleRules
+  applicabilityRequirements
+  unfoldingPolicy
+}
 
 end LRA.Pilot.Supremum.ExtractionManifest

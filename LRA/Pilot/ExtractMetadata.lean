@@ -50,7 +50,7 @@ structure ExtractedBinder where
 /-- Reproducibility and toolchain evidence for one extraction run. -/
 structure ExtractionEnvironment where
   extractor : String := "LRA.Pilot.ExtractMetadata"
-  extractorVersion : String := "4.0"
+  extractorVersion : String := "5.0"
   generatedAt : String
   leanVersion : String
   leanGitHash : String
@@ -68,6 +68,97 @@ structure ExtractedDependencyPartition where
   internalLra : Array String
   externalLibrary : Array String
   kernelPlatform : Array String
+  deriving ToJson
+
+/-- Orthogonal provenance, verification, and publication state for one field
+or evidence block. -/
+structure ExtractedEvidenceState where
+  availability : String
+  origin : String
+  verification : String
+  publication : String
+  reason : Option String := none
+  deriving ToJson
+
+/-- A named declaration-record block and its explicit evidence state. -/
+structure NamedEvidenceState where
+  field : String
+  state : ExtractedEvidenceState
+  deriving ToJson
+
+/-- One successful delta-reduction step in a bounded unfolding trace. -/
+structure ExtractedTransformStep where
+  pass : Nat
+  declaration : String
+  inputDigest : String
+  outputDigest : String
+  outputNodeCount : Nat
+  definitionallyEqual : Bool
+  deriving ToJson
+
+/-- First-class provenance for one mechanical or witnessed transform. -/
+structure ExtractedTransform where
+  name : String
+  version : String
+  inputField : String
+  outputField : String
+  state : ExtractedEvidenceState
+  applicabilityRequirements : Array String
+  principles : Array String
+  witnessDeclaration : Option String
+  steps : Array ExtractedTransformStep
+  unfoldedDeclarations : Array String
+  terminalDeclarations : Array String
+  definitionallyEqual : Option Bool
+  deriving ToJson
+
+/-- Formal proof evidence attached to a theorem declaration.  It is not an
+independently authored learner proof. -/
+structure ExtractedProofEvidence where
+  state : ExtractedEvidenceState
+  expression : Option Json
+  digest : Option String
+  digestAlgorithm : String
+  directDependencies : Array String
+  dependencyPartition : ExtractedDependencyPartition
+  kernelAxioms : Array String
+  usesSorry : Bool
+  deriving ToJson
+
+/-- One typed relation from a family member to the primary declaration. -/
+structure ExtractedFamilyMember where
+  declaration : String
+  memberRole : String
+  relation : String
+  relationEvidence : String
+  witnessDeclaration : Option String
+  applicabilityRequirements : Array String
+  evidenceState : ExtractedEvidenceState
+  correspondenceState : ExtractedEvidenceState
+  definitionalEqualityVerified : Option Bool
+  witnessAvailable : Bool
+  witnessUsesSorry : Bool
+  deriving ToJson
+
+/-- Complete one-to-many declaration family for one primary mathematical
+concept. -/
+structure ExtractedFamily where
+  id : String
+  manifestVersion : String
+  primaryDeclaration : String
+  canonicalConceptId : Option String
+  defaultPublicationStatus : String
+  members : Array ExtractedFamilyMember
+  deriving ToJson
+
+/-- Machine-readable diagnostic; severity and status are never inferred from
+human prose. -/
+structure ExtractionDiagnostic where
+  code : String
+  severity : String
+  declaration : Option String
+  field : Option String
+  message : String
   deriving ToJson
 
 /-- One declaration harvested from Lean's compiled environment. -/
@@ -144,6 +235,12 @@ structure ExtractedNode where
   proofTermStatus : String
   kernelAxioms : Array String
   usesSorry : Bool
+  artifactUnit : String
+  rawExpressionEncodingVersion : String
+  normalizedLogicAstVersion : String
+  evidenceStates : Array NamedEvidenceState
+  transforms : Array ExtractedTransform
+  proofEvidence : ExtractedProofEvidence
   deriving ToJson
 
 /-- One dependency edge between two harvested declarations. -/
@@ -153,12 +250,23 @@ structure ExtractedEdge where
   kind : String
   deriving ToJson
 
+/-- Reachability edge over the union of direct formal dependency graphs. -/
+structure ExtractedTransitiveEdge where
+  source : String
+  target : String
+  minimumPathLength : Nat
+  alsoDirect : Bool
+  deriving ToJson
+
 /-- Complete graph payload consumed by the local explorer. -/
 structure ExtractedGraph where
-  schemaVersion : Nat := 4
+  schemaVersion : Nat := 5
   schemaId : String := "lra.lean-extraction-contract"
+  rawExpressionEncodingVersion : String := "lean.expr-tree/1"
+  normalizedLogicAstVersion : String := "lra.normalized-proposition-tree/1"
   title : String
   scope : String
+  manifestId : Option String
   manifestVersion : Option String
   primaryDeclaration : Option String
   harvestManifest : Array Json
@@ -169,7 +277,127 @@ structure ExtractedGraph where
   evidenceNotes : Array String
   nodes : Array ExtractedNode
   edges : Array ExtractedEdge
+  transitiveEdges : Array ExtractedTransitiveEdge
+  families : Array ExtractedFamily
+  diagnostics : Array ExtractionDiagnostic
   deriving ToJson
+
+private def evidenceOriginName : EvidenceOrigin → String
+  | .directLean => "direct_lean"
+  | .mechanicalTransform => "mechanical_transform"
+  | .namedCheckedDeclaration => "named_checked_declaration"
+  | .leanValidatedAuthorSelection => "lean_validated_author_selection"
+  | .independentlyAuthored => "independently_authored"
+
+private def verificationStatusName : VerificationStatus → String
+  | .compiled => "compiled"
+  | .definitionallyEqual => "definitionally_equal"
+  | .checkedProof => "checked_proof"
+  | .leanValidatedSelection => "lean_validated_selection"
+  | .reviewedCorrespondence => "reviewed_correspondence"
+  | .unresolved => "unresolved"
+  | .notApplicable => "not_applicable"
+
+private def publicationStatusName : PublicationStatus → String
+  | .notApplicable => "not_applicable"
+  | .candidate => "candidate"
+  | .unreviewed => "unreviewed"
+  | .approved => "approved"
+  | .rejected => "rejected"
+
+private def semanticRoleName : SemanticRole → String
+  | .ambientCarrierNonempty => "ambient_carrier_nonempty"
+  | .subsetNonempty => "subset_nonempty"
+  | .subsetBoundedAbove => "subset_bounded_above"
+  | .ambientOrderCompleteness => "ambient_order_completeness"
+  | .ambientOrderedField => "ambient_ordered_field"
+  | .ambientOrderStructure => "ambient_order_structure"
+  | .setMembershipInterface => "set_membership_interface"
+  | .supremumExistence => "supremum_existence"
+
+private def familyMemberRoleName : FamilyMemberRole → String
+  | .primaryDefinition => "primary_definition"
+  | .surfaceAlias => "surface_alias"
+  | .abbreviatedAlias => "abbreviated_alias"
+  | .adapter => "adapter"
+  | .failurePredicate => "failure_predicate"
+  | .logicalForm => "logical_form"
+  | .specialization => "specialization"
+  | .consequence => "consequence"
+  | .relationship => "relationship"
+  | .boundary => "boundary"
+  | .existence => "existence"
+  | .example => "example"
+  | .counterexample => "counterexample"
+  | .counterexampleStructure => "counterexample_structure"
+
+/-- Compatibility labels retained for the v4 comparison renderer. -/
+private def legacyManifestRoleName : FamilyMemberRole → String
+  | .primaryDefinition => "primary_definition"
+  | .surfaceAlias => "surface_alias"
+  | .abbreviatedAlias => "abbreviated_alias"
+  | .adapter => "adapter"
+  | .failurePredicate => "failure_predicate"
+  | .logicalForm => "checked_logical_form"
+  | .specialization => "checked_specialization"
+  | .consequence => "consequence_theorem"
+  | .relationship => "relationship_theorem"
+  | .boundary => "boundary_theorem"
+  | .existence => "existence_theorem"
+  | .example => "example"
+  | .counterexample => "counterexample"
+  | .counterexampleStructure => "counterexample_structure"
+
+private def familyRelationName : FamilyRelation → String
+  | .primary => "primary"
+  | .definitionallyEqualAlias => "definitionally_equal_alias"
+  | .specializedInterface => "specialized_interface"
+  | .negationClause => "negation_clause"
+  | .validatesFailureClause => "validates_failure_clause"
+  | .validatesGeneralNegation => "validates_general_negation"
+  | .totalOrderStrictRewrite => "total_order_strict_rewrite"
+  | .totalOrderStrictNegation => "total_order_strict_negation"
+  | .projection => "projection"
+  | .uniqueness => "uniqueness"
+  | .maximumImpliesSupremum => "maximum_implies_supremum"
+  | .attainedSupremumImpliesMaximum => "attained_supremum_implies_maximum"
+  | .monotonicity => "monotonicity"
+  | .emptySetVacuity => "empty_set_vacuity"
+  | .emptySetCharacterization => "empty_set_characterization"
+  | .orderCompleteExistence => "order_complete_existence"
+  | .completeOrderedFieldExistence => "complete_ordered_field_existence"
+  | .realExistence => "real_existence"
+  | .carrierNonemptyIsStructural => "carrier_nonempty_is_structural"
+  | .emptySetSupremumWithBottom => "empty_set_supremum_in_poset_with_bottom"
+  | .attainedSupremum => "attained_supremum"
+  | .attainedMaximum => "attained_maximum"
+  | .nonattainedSupremum => "nonattained_supremum"
+  | .nonattainmentWitness => "nonattainment_witness"
+  | .supremumWithoutMaximum => "supremum_without_maximum"
+  | .upperBoundFailureWitness => "upper_bound_failure_witness"
+  | .sharpnessFailureWitness => "sharpness_failure_witness"
+  | .checkedFailedCandidate => "checked_failed_candidate"
+  | .nonTotalBoundary => "non_total_boundary"
+  | .strictRewriteFailure => "strict_rewrite_failure"
+  | .totalityRequired => "totality_is_required"
+  | .realEmptySetHasNoSupremum => "real_empty_set_has_no_supremum"
+
+private def relationEvidenceName : RelationEvidence → String
+  | .primaryDeclaration => "primary_declaration"
+  | .definitionalEquality => "definitional_equality"
+  | .namedCheckedDeclaration _ => "named_checked_declaration"
+  | .authorSelected => "author_selected"
+
+private def evidenceState
+    (availability : String) (origin : EvidenceOrigin)
+    (verification : VerificationStatus) (publication : PublicationStatus)
+    (reason : Option String := none) : ExtractedEvidenceState := {
+  availability
+  origin := evidenceOriginName origin
+  verification := verificationStatusName verification
+  publication := publicationStatusName publication
+  reason
+}
 
 private def declarationKind : ConstantInfo → String
   | .axiomInfo _ => "axiom"
@@ -275,6 +503,7 @@ private partial def logicExpressionJson (expression : Expr) : Json :=
       if domain.isProp && !body.hasLooseBVar 0 then
         Json.mkObj [
           ("kind", Json.str "implies"),
+          ("guardSource", Json.str "proposition_binder"),
           ("antecedent", logicExpressionJson domain),
           ("consequent", logicExpressionJson body)]
       else
@@ -282,6 +511,8 @@ private partial def logicExpressionJson (expression : Expr) : Json :=
           ("kind", Json.str "forall"),
           ("name", Json.str name.toString),
           ("binderInfo", Json.str (binderInfoName binderInfo)),
+          ("binderRole", Json.str <| if domain.isProp then
+            "dependent_proposition_proof" else "data_parameter"),
           ("domain", expressionJson domain),
           ("body", logicExpressionJson body)]
   | _ =>
@@ -316,11 +547,32 @@ private partial def logicExpressionJson (expression : Expr) : Json :=
               ("kind", Json.str "exists"),
               ("name", Json.str name.toString),
               ("binderInfo", Json.str (binderInfoName binderInfo)),
+              ("binderRole", Json.str "data_parameter"),
               ("domain", expressionJson domain),
               ("body", logicExpressionJson body)]
         | _ => Json.mkObj [
             ("kind", Json.str "exists"),
             ("predicate", expressionJson args[0]!)]
+      else if let some args := applicationOf? expression ``Membership.mem then
+        Json.mkObj [
+          ("kind", Json.str "membership"),
+          ("element", expressionJson args[args.size - 2]!),
+          ("container", expressionJson args[args.size - 1]!),
+          ("raw", expressionJson expression)]
+      else if let some args := applicationOf? expression ``LE.le then
+        Json.mkObj [
+          ("kind", Json.str "relation"),
+          ("relation", Json.str "LE.le"),
+          ("left", expressionJson args[args.size - 2]!),
+          ("right", expressionJson args[args.size - 1]!),
+          ("raw", expressionJson expression)]
+      else if let some args := applicationOf? expression ``LT.lt then
+        Json.mkObj [
+          ("kind", Json.str "relation"),
+          ("relation", Json.str "LT.lt"),
+          ("left", expressionJson args[args.size - 2]!),
+          ("right", expressionJson args[args.size - 1]!),
+          ("raw", expressionJson expression)]
       else
         Json.mkObj [
           ("kind", Json.str "atomic"),
@@ -378,50 +630,257 @@ private partial def logicExpressionJsonWithPolarity
             ("kind", Json.str "not"),
             ("body", logicExpressionJson expression)]
 
-private def unfoldingPolicyVersion : String :=
-  "lra.pilot.logical-unfolding/1.1"
+private def pushUnique (items : Array String) (item : String) : Array String :=
+  if items.contains item then items else items.push item
 
-private def unfoldingPolicy : Array Name := #[
-  ``LRA.Pilot.OrderBounds.Supremum,
-  ``LRA.Pilot.OrderBounds.LUB,
-  ``LRA.Pilot.OrderBounds.LeastUpperBound,
-  ``LRA.Pilot.OrderBounds.UpperBound,
-  ``LRA.Pilot.OrderBounds.BoundedAbove,
-  ``LRA.Pilot.OrderBounds.UpperBoundFailure,
-  ``LRA.Pilot.OrderBounds.SharpnessFailure,
-  ``LRA.Pilot.OrderBounds.FromPartialOrder.LeastUpperBound,
-  ``LRA.Pilot.OrderBounds.FromPartialOrder.UpperBound,
-  ``LRA.Pilot.OrderBounds.FromPartialOrder.BoundedAbove,
-  ``Set.Nonempty
-]
+/-- Record only the logical principles actually traversed by pushed negation. -/
+private partial def negationPrinciples
+    (expression : Expr) (principles : Array String := #[]) : MetaM (Array String) := do
+  let expression := expression.consumeMData
+  match expression with
+  | .lam name domain body binderInfo =>
+      Lean.Meta.withLocalDecl name binderInfo domain fun freeVariable =>
+        negationPrinciples (body.instantiate1 freeVariable) principles
+  | .forallE name domain body binderInfo =>
+      let domainIsProposition ← Lean.Meta.isProp domain
+      Lean.Meta.withLocalDecl name binderInfo domain fun freeVariable =>
+        if domainIsProposition && !body.hasLooseBVar 0 then
+          negationPrinciples (body.instantiate1 freeVariable) <|
+            pushUnique principles "classical:not_implies_to_and_not"
+        else
+          negationPrinciples (body.instantiate1 freeVariable) <|
+            pushUnique principles "classical:not_forall_to_exists_not"
+  | _ =>
+      if let some args := applicationOf? expression ``Not then
+        negationPrinciples args[0]! <| pushUnique principles "double_negation"
+      else if let some args := applicationOf? expression ``And then
+        let principles := pushUnique principles "de_morgan_not_and"
+        let principles ← negationPrinciples args[0]! principles
+        negationPrinciples args[1]! principles
+      else if let some args := applicationOf? expression ``Or then
+        let principles := pushUnique principles "de_morgan_not_or"
+        let principles ← negationPrinciples args[0]! principles
+        negationPrinciples args[1]! principles
+      else if let some args := applicationOf? expression ``Exists then
+        match args[0]!.consumeMData with
+        | .lam name domain body binderInfo =>
+            Lean.Meta.withLocalDecl name binderInfo domain fun freeVariable =>
+              negationPrinciples (body.instantiate1 freeVariable) <|
+                pushUnique principles "not_exists_to_forall_not"
+        | _ => pure principles
+      else pure principles
+
+/-- Metatype-checked proposition normalization.  Unlike the raw structural
+projection above, this asks Lean whether each binder domain has type `Prop`, so
+membership proof binders become implication guards without relying on binder
+names. -/
+private partial def normalizedLogicExpressionJson (expression : Expr) : MetaM Json := do
+  let expression := expression.consumeMData
+  match expression with
+  | .forallE name domain body binderInfo =>
+      let domainIsProposition ← Lean.Meta.isProp domain
+      Lean.Meta.withLocalDecl name binderInfo domain fun freeVariable => do
+        let instantiatedBody := body.instantiate1 freeVariable
+        if domainIsProposition && !body.hasLooseBVar 0 then
+          pure <| Json.mkObj [
+            ("kind", Json.str "implies"),
+            ("guardSource", Json.str "proposition_binder"),
+            ("antecedent", ← normalizedLogicExpressionJson domain),
+            ("consequent", ← normalizedLogicExpressionJson instantiatedBody)]
+        else
+          pure <| Json.mkObj [
+            ("kind", Json.str "forall"),
+            ("name", Json.str name.toString),
+            ("binderId", Json.str (reprStr freeVariable.fvarId!)),
+            ("binderInfo", Json.str (binderInfoName binderInfo)),
+            ("binderRole", Json.str <| if domainIsProposition then
+              "dependent_proposition_proof" else "data_parameter"),
+            ("domain", expressionJson domain),
+            ("body", ← normalizedLogicExpressionJson instantiatedBody)]
+  | _ =>
+      if let some args := applicationOf? expression ``Not then
+        pure <| Json.mkObj [
+          ("kind", Json.str "not"),
+          ("body", ← normalizedLogicExpressionJson args[0]!)]
+      else if let some args := applicationOf? expression ``And then
+        pure <| Json.mkObj [
+          ("kind", Json.str "and"),
+          ("left", ← normalizedLogicExpressionJson args[0]!),
+          ("right", ← normalizedLogicExpressionJson args[1]!)]
+      else if let some args := applicationOf? expression ``Or then
+        pure <| Json.mkObj [
+          ("kind", Json.str "or"),
+          ("left", ← normalizedLogicExpressionJson args[0]!),
+          ("right", ← normalizedLogicExpressionJson args[1]!)]
+      else if let some args := applicationOf? expression ``Iff then
+        pure <| Json.mkObj [
+          ("kind", Json.str "iff"),
+          ("left", ← normalizedLogicExpressionJson args[0]!),
+          ("right", ← normalizedLogicExpressionJson args[1]!)]
+      else if let some args := applicationOf? expression ``Eq then
+        pure <| Json.mkObj [
+          ("kind", Json.str "equals"),
+          ("left", expressionJson args[1]!),
+          ("right", expressionJson args[2]!)]
+      else if let some args := applicationOf? expression ``Exists then
+        match args[0]!.consumeMData with
+        | .lam name domain body binderInfo =>
+            Lean.Meta.withLocalDecl name binderInfo domain fun freeVariable => do
+              pure <| Json.mkObj [
+                ("kind", Json.str "exists"),
+                ("name", Json.str name.toString),
+                ("binderId", Json.str (reprStr freeVariable.fvarId!)),
+                ("binderInfo", Json.str (binderInfoName binderInfo)),
+                ("binderRole", Json.str "data_parameter"),
+                ("domain", expressionJson domain),
+                ("body", ← normalizedLogicExpressionJson (body.instantiate1 freeVariable))]
+        | _ => pure <| Json.mkObj [
+            ("kind", Json.str "exists"),
+            ("predicate", expressionJson args[0]!)]
+      else
+        pure <| logicExpressionJson expression
+
+private partial def normalizedLogicExpressionJsonWithPolarity
+    (expression : Expr) (positive : Bool) : MetaM Json := do
+  let expression := expression.consumeMData
+  if positive then normalizedLogicExpressionJson expression
+  else
+    match expression with
+    | .forallE name domain body binderInfo =>
+        let domainIsProposition ← Lean.Meta.isProp domain
+        Lean.Meta.withLocalDecl name binderInfo domain fun freeVariable => do
+          let instantiatedBody := body.instantiate1 freeVariable
+          if domainIsProposition && !body.hasLooseBVar 0 then
+            pure <| Json.mkObj [
+              ("kind", Json.str "and"),
+              ("left", ← normalizedLogicExpressionJson domain),
+              ("right", ← normalizedLogicExpressionJsonWithPolarity instantiatedBody false)]
+          else
+            pure <| Json.mkObj [
+              ("kind", Json.str "exists"),
+              ("name", Json.str name.toString),
+              ("binderId", Json.str (reprStr freeVariable.fvarId!)),
+              ("binderInfo", Json.str (binderInfoName binderInfo)),
+              ("binderRole", Json.str <| if domainIsProposition then
+                "dependent_proposition_proof" else "data_parameter"),
+              ("domain", expressionJson domain),
+              ("body", ← normalizedLogicExpressionJsonWithPolarity instantiatedBody false)]
+    | _ =>
+        if let some args := applicationOf? expression ``Not then
+          normalizedLogicExpressionJsonWithPolarity args[0]! true
+        else if let some args := applicationOf? expression ``And then
+          pure <| Json.mkObj [
+            ("kind", Json.str "or"),
+            ("left", ← normalizedLogicExpressionJsonWithPolarity args[0]! false),
+            ("right", ← normalizedLogicExpressionJsonWithPolarity args[1]! false)]
+        else if let some args := applicationOf? expression ``Or then
+          pure <| Json.mkObj [
+            ("kind", Json.str "and"),
+            ("left", ← normalizedLogicExpressionJsonWithPolarity args[0]! false),
+            ("right", ← normalizedLogicExpressionJsonWithPolarity args[1]! false)]
+        else if let some args := applicationOf? expression ``Exists then
+          match args[0]!.consumeMData with
+          | .lam name domain body binderInfo =>
+              Lean.Meta.withLocalDecl name binderInfo domain fun freeVariable => do
+                pure <| Json.mkObj [
+                  ("kind", Json.str "forall"),
+                  ("name", Json.str name.toString),
+                  ("binderId", Json.str (reprStr freeVariable.fvarId!)),
+                  ("binderInfo", Json.str (binderInfoName binderInfo)),
+                  ("binderRole", Json.str "data_parameter"),
+                  ("domain", expressionJson domain),
+                  ("body", ← normalizedLogicExpressionJsonWithPolarity
+                    (body.instantiate1 freeVariable) false)]
+          | _ => pure <| Json.mkObj [
+              ("kind", Json.str "not"),
+              ("body", ← normalizedLogicExpressionJson expression)]
+        else
+          pure <| Json.mkObj [
+            ("kind", Json.str "not"),
+            ("body", ← normalizedLogicExpressionJson expression)]
+
+private def activeManifest : ExtractionManifest :=
+  LRA.Pilot.Supremum.ExtractionManifest.manifest
+
+private def unfoldingPolicyVersion : String :=
+  activeManifest.unfoldingPolicy.version
+
+private def unfoldingPolicy : Array Name :=
+  activeManifest.unfoldingPolicy.declarations
 
 private structure ControlledUnfolding where
   expression : Expr
   unfoldedDeclarations : Array Name
-  stoppedAtDeclarations : Array Name
+  terminalDeclarations : Array Name
+  steps : Array ExtractedTransformStep
+  converged : Bool
+  limitStatus : Option String
   definitionallyEqual : Bool
 
 private def isLogicalOrPrimitiveConstant (name : Name) : Bool :=
-  name == ``Not || name == ``And || name == ``Or || name == ``Iff ||
-    name == ``Eq || name == ``Exists || name == ``Membership.mem ||
-    name.toString.endsWith ".NonStrictOrder" ||
-    name.toString.endsWith ".Carrier"
+  activeManifest.unfoldingPolicy.primitiveBoundaries.contains name
+
+private partial def expressionNodeCount : Expr → Nat
+  | .app function argument =>
+      1 + expressionNodeCount function + expressionNodeCount argument
+  | .lam _ domain body _ | .forallE _ domain body _ =>
+      1 + expressionNodeCount domain + expressionNodeCount body
+  | .letE _ type value body _ =>
+      1 + expressionNodeCount type + expressionNodeCount value +
+        expressionNodeCount body
+  | .mdata _ body => 1 + expressionNodeCount body
+  | .proj _ _ structureValue => 1 + expressionNodeCount structureValue
+  | _ => 1
 
 private def controlledUnfold (input : Expr) : MetaM ControlledUnfolding := do
+  let policy := activeManifest.unfoldingPolicy
   let mut expression := input
   let mut unfolded : Array Name := #[]
-  for declaration in unfoldingPolicy do
-    let result ← Lean.Meta.unfold expression declaration
-    if result.expr != expression then
-      expression := result.expr
-      unfolded := unfolded.push declaration
+  let mut steps : Array ExtractedTransformStep := #[]
+  let mut converged := false
+  let mut limitStatus : Option String := none
+  if expressionNodeCount expression > policy.maxExpressionNodes then
+    limitStatus := some "input_expression_node_limit"
+  for pass in [0:policy.maxPasses] do
+    if limitStatus.isNone && !converged then
+      let mut changed := false
+      for declaration in policy.declarations do
+        if limitStatus.isNone then
+          if steps.size >= policy.maxSteps then
+            limitStatus := some "unfolding_step_limit"
+          else
+            let before := expression
+            let result ← Lean.Meta.unfold expression declaration
+            if result.expr != expression then
+              expression := result.expr
+              changed := true
+              if !unfolded.contains declaration then
+                unfolded := unfolded.push declaration
+              let nodeCount := expressionNodeCount expression
+              let stepDefinitionallyEqual ← Lean.Meta.isDefEq before expression
+              steps := steps.push {
+                pass
+                declaration := declaration.toString
+                inputDigest := toString before.hash
+                outputDigest := toString expression.hash
+                outputNodeCount := nodeCount
+                definitionallyEqual := stepDefinitionallyEqual
+              }
+              if nodeCount > policy.maxExpressionNodes then
+                limitStatus := some "unfolded_expression_node_limit"
+      if !changed then converged := true
+  if limitStatus.isNone && !converged then
+    limitStatus := some "unfolding_pass_limit"
   let definitionallyEqual ← Lean.Meta.isDefEq input expression
   let remaining := expression.getUsedConstants.filter fun name =>
     !unfoldingPolicy.contains name && !isLogicalOrPrimitiveConstant name
   pure {
     expression
     unfoldedDeclarations := unfolded
-    stoppedAtDeclarations := remaining
+    terminalDeclarations := remaining
+    steps
+    converged
+    limitStatus
     definitionallyEqual
   }
 
@@ -455,30 +914,29 @@ private def logicalShape (expression : Expr) : String :=
   | .sort _ => "sort"
   | _ => "atomic_or_application"
 
-private def isStructuralPosetDeclaration (name : Name) : Bool :=
-  let text := name.toString
-  text == "LRA.VolumeI.Relations.Order.Poset" ||
-    text == "LRA.VolumeI.Relations.Order.Poset.Carrier" ||
-    text == "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder" ||
-    text == "LRA.VolumeI.Relations.Order.Poset.NonStrictOrderIsPartialOrder"
+private def nameInNamespaceRoot (name root : Name) : Bool :=
+  name == root || name.toString.startsWith (root.toString ++ ".")
 
-private def isPilotDeclaration (name : Name) : Bool :=
+/-- Scope discovery is governed by typed namespace roots in the manifest.
+String fragments are used only to exclude compiler-generated helper names,
+never to infer mathematical meaning. -/
+private def isHarvestCandidate (name : Name) : Bool :=
   let text := name.toString
-  (text.startsWith "LRA.Pilot.OrderBounds" &&
-      !text.contains "._example" &&
-      !text.contains ".match_" &&
-      !text.contains ".proof_") ||
-    isStructuralPosetDeclaration name
+  activeManifest.dependencyNamespaceRoots.any (nameInNamespaceRoot name) &&
+    !text.contains "._example" && !text.contains ".match_" &&
+    !text.contains "._proof_"
 
 private def declarationCategory
-    (name : Name) (kind : String) (canonicalId : Option String) : String :=
-  let text := name.toString
+    (kind : String) (canonicalId : Option String)
+    (manifestEntry : Option FamilyEntry) : String :=
   if canonicalId.isSome then "canonical"
-  else if text.contains ".Counterexamples." then "counterexample"
-  else if text.contains ".Examples." then "example"
-  else if text.contains ".FromPartialOrder." then "adapter"
-  else if isStructuralPosetDeclaration name then "structure"
-  else kind
+  else match manifestEntry.map (·.memberRole) with
+    | some FamilyMemberRole.example => "example"
+    | some FamilyMemberRole.counterexample |
+      some FamilyMemberRole.counterexampleStructure => "counterexample"
+    | some FamilyMemberRole.adapter => "adapter"
+    | some role => familyMemberRoleName role
+    | none => kind
 
 private def sortedNames (names : Array Name) : Array String :=
   names.map Name.toString |>.qsort (fun left right => left < right)
@@ -514,44 +972,39 @@ private def prettyLambdaBody (expression : Expr) : CoreM String :=
   Lean.Meta.MetaM.run' <| Lean.Meta.lambdaTelescope expression fun _ body =>
     prettyExpressionMeta body
 
+private def semanticRuleMatches
+    (expression : Expr) (className : Option Name)
+    (rule : SemanticRoleRule) : Bool :=
+  let constants := expression.getUsedConstants
+  match rule.matchMode with
+  | .classDeclaration =>
+      className.isSome && rule.declarations.contains className.get!
+  | .containsAnyDeclaration =>
+      rule.declarations.any constants.contains
+  | .containsAllDeclarations =>
+      rule.declarations.all constants.contains
+
+private def semanticRoleFromRules
+    (expression : Expr) (className : Option Name)
+    (rules : Array SemanticRoleRule) : Option SemanticRole :=
+  (rules.find? fun rule => semanticRuleMatches expression className rule).map (·.role)
+
+private def binderRoleOverride?
+    (declaration : Name) (binderIndex : Nat) : Option SemanticRole :=
+  (activeManifest.binderRoleOverrides.find? fun override =>
+    override.declaration == declaration && override.binderIndex == binderIndex).map (·.role)
+
 private def semanticBinderRoleEvidence
+    (declaration : Name) (binderIndex : Nat)
     (binderType : Expr) (className : Option Name) : String :=
-  let constants := binderType.getUsedConstants.map Name.toString
-  let classText := className.map Name.toString
-  if classText == some "Nonempty" || constants.contains "Nonempty" then
-    "ambient_carrier_nonempty"
-  else if classText == some
-      "LRA.VolumeI.AlgebraicStructures.OrderCompletenessLaws" then
-    "ambient_order_completeness"
-  else if classText == some
-      "LRA.VolumeI.AlgebraicStructures.OrderedFieldLaws" then
-    "ambient_ordered_field"
-  else if classText == some "PartialOrder" then
-    "ambient_order_structure"
-  else if classText == some "Membership" then
-    "set_membership_interface"
-  else if constants.contains "Set.Nonempty" ||
-      (constants.contains "Exists" && constants.contains "Membership.mem") then
-    "subset_nonempty"
-  else if constants.contains "LRA.Pilot.OrderBounds.BoundedAbove" ||
-      constants.contains "LRA.Pilot.OrderBounds.FromPartialOrder.BoundedAbove" ||
-      constants.contains "LRA.VolumeI.Relations.Order.BoundedAbove" ||
-      constants.contains "BddAbove" then
-    "subset_bounded_above"
-  else
-    "unclassified"
+  let role := match binderRoleOverride? declaration binderIndex with
+    | some role => some role
+    | none => semanticRoleFromRules binderType className activeManifest.binderRoleRules
+  role.map semanticRoleName |>.getD "unclassified"
 
 private def semanticResultRoleEvidence (result : Expr) : String :=
-  let constants := result.getUsedConstants.map Name.toString
-  if constants.contains "Nonempty" then
-    "ambient_carrier_nonempty"
-  else if constants.contains "Exists" &&
-      (constants.contains "LRA.Pilot.OrderBounds.LeastUpperBound" ||
-       constants.contains
-         "LRA.Pilot.OrderBounds.FromPartialOrder.LeastUpperBound") then
-    "supremum_existence"
-  else
-    "unclassified"
+  semanticRoleFromRules result none activeManifest.resultRoleRules |>.map semanticRoleName
+    |>.getD "unclassified"
 
 private structure ExtractedSignature where
   binders : Array ExtractedBinder
@@ -561,7 +1014,7 @@ private structure ExtractedSignature where
   resultIsProposition : Bool
   resultLogicalShape : String
 
-private def extractSignature (type : Expr) : CoreM ExtractedSignature :=
+private def extractSignature (declarationName : Name) (type : Expr) : CoreM ExtractedSignature :=
   Lean.Meta.MetaM.run' <| Lean.Meta.forallTelescope type fun freeVariables result => do
     let mut binders : Array ExtractedBinder := #[]
     for index in [0:freeVariables.size] do
@@ -583,7 +1036,7 @@ private def extractSignature (type : Expr) : CoreM ExtractedSignature :=
         className := className.map Name.toString
         roleEvidence
         semanticRoleEvidence :=
-          semanticBinderRoleEvidence declaration.type className
+          semanticBinderRoleEvidence declarationName index declaration.type className
       }
     let resultIsProposition := (← Lean.Meta.isProp result) || isPropositionSort result
     pure {
@@ -681,6 +1134,43 @@ private def addDependencyEdges
             (edges.push { source := source.id, target := targetId, kind },
               edgeKeys.insert key)
 
+private def computeTransitiveEdges
+    (nodes : Array ExtractedNode)
+    (edges : Array ExtractedEdge) : Array ExtractedTransitiveEdge := Id.run do
+  let mut result : Array ExtractedTransitiveEdge := #[]
+  for sourceNode in nodes do
+    let mut distances : Std.HashMap String Nat := {}
+    distances := distances.insert sourceNode.id 0
+    let mut changed := true
+    while changed do
+      changed := false
+      for edge in edges do
+        if let some sourceDistance := distances.get? edge.source then
+          let candidateDistance := sourceDistance + 1
+          match distances.get? edge.target with
+          | some existingDistance =>
+              if candidateDistance < existingDistance then
+                distances := distances.insert edge.target candidateDistance
+                changed := true
+          | none =>
+              distances := distances.insert edge.target candidateDistance
+              changed := true
+    for targetNode in nodes do
+      if targetNode.id != sourceNode.id then
+        if let some distance := distances.get? targetNode.id then
+          let alsoDirect := edges.any fun edge =>
+            edge.source == sourceNode.id && edge.target == targetNode.id
+          result := result.push {
+            source := sourceNode.id
+            target := targetNode.id
+            minimumPathLength := distance
+            alsoDirect
+          }
+  return result.qsort fun left right =>
+    let leftKey := left.source ++ "|" ++ left.target
+    let rightKey := right.source ++ "|" ++ right.target
+    leftKey < rightKey
+
 private def extractPendingNode
     (name : Name) (info : ConstantInfo) (documentation : String)
     (canonicalId : Option String) : CoreM PendingNode := do
@@ -697,7 +1187,7 @@ private def extractPendingNode
   let sourcePath := module.map (fun moduleName =>
     moduleName.toString.replace "." "/" ++ ".lean") |>.getD ""
   let sourceRange := (← findDeclarationRanges? name).map extractedSourceRange
-  let signature ← extractSignature info.type
+  let signature ← extractSignature name info.type
   let definitionBody := if kind == "definition" then body else none
   let definitionBodyText ← definitionBody.mapM prettyExpression
   let definitionBodyExpression := definitionBody.map expressionJson
@@ -714,7 +1204,7 @@ private def extractPendingNode
     prettyLambdaBody result.expression
   let controlledUnfoldingLogicExpression ← controlledUnfolding.mapM fun result =>
     Lean.Meta.MetaM.run' <| Lean.Meta.lambdaTelescope result.expression fun _ body =>
-      pure <| logicExpressionJson body
+      normalizedLogicExpressionJson body
   let standardQuantifiedCandidate := controlledUnfoldingText
   let mechanicalDefinitionNegation :=
     if kind == "definition" && signature.resultIsProposition then
@@ -729,17 +1219,26 @@ private def extractPendingNode
     if kind == "definition" && signature.resultIsProposition then
       controlledUnfolding.mapM fun result =>
         Lean.Meta.MetaM.run' <| Lean.Meta.lambdaTelescope result.expression fun _ body =>
-          pure <| logicExpressionJsonWithPolarity body false
+          normalizedLogicExpressionJsonWithPolarity body false
     else if statementIsProposition then
-      pure <| controlledUnfolding.map fun result =>
-        logicExpressionJsonWithPolarity result.expression false
+      controlledUnfolding.mapM fun result =>
+        Lean.Meta.MetaM.run' <|
+          normalizedLogicExpressionJsonWithPolarity result.expression false
     else pure none
+  let pushedNegationPrinciples ← if pushedNegationExpression.isSome then
+    match controlledUnfolding with
+    | some result => Lean.Meta.MetaM.run' <|
+        negationPrinciples result.expression
+    | none => pure #[]
+    else pure #[]
   let contrapositive ←
     if kind == "theorem" || kind == "opaque" then
       Lean.Meta.MetaM.run' <| extractContrapositive info.type
     else pure { expression := none, status := "not_applicable" }
   let proofTerm :=
     if kind == "theorem" || kind == "opaque" then body else none
+  let statementLogicExpression ← Lean.Meta.MetaM.run' <|
+    normalizedLogicExpressionJson info.type
   let semanticBinderRoles := signature.binders.foldl
     (init := #[]) fun roles binder =>
       if binder.semanticRoleEvidence == "unclassified" ||
@@ -747,6 +1246,143 @@ private def extractPendingNode
         roles
       else
         roles.push binder.semanticRoleEvidence
+  let directState := evidenceState "available" .directLean .compiled .notApplicable
+  let definitionState :=
+    if kind == "definition" then
+      if definitionBody.isSome then directState
+      else evidenceState "unavailable" .directLean .unresolved .notApplicable
+        (some "compiled definition body is unavailable")
+    else evidenceState "not_applicable" .directLean .notApplicable .notApplicable
+  let proofState :=
+    if kind == "theorem" || kind == "opaque" then
+      if proofTerm.isSome then directState
+      else evidenceState "unavailable" .directLean .unresolved .notApplicable
+        (some "compiled proof value is unavailable")
+    else evidenceState "not_applicable" .directLean .notApplicable .notApplicable
+  let unfoldingState := match controlledUnfolding with
+    | some result =>
+        if result.definitionallyEqual && result.limitStatus.isNone then
+          evidenceState "available" .mechanicalTransform .definitionallyEqual .candidate
+        else
+          evidenceState "unresolved" .mechanicalTransform .unresolved .candidate
+            result.limitStatus
+    | none =>
+        evidenceState "unavailable" .mechanicalTransform .unresolved .candidate
+  let candidateState :=
+    evidenceState "available" .mechanicalTransform .leanValidatedSelection .candidate
+  let mut transforms : Array ExtractedTransform := #[]
+  if let some result := controlledUnfolding then
+    transforms := transforms.push {
+      name := "controlled_unfolding"
+      version := unfoldingPolicyVersion
+      inputField := "extractionInputExpression"
+      outputField := "controlledUnfoldingExpression"
+      state := unfoldingState
+      applicabilityRequirements := #[]
+      principles := #["beta", "iota", "zeta", "projection",
+        "authorized_delta_reduction"]
+      witnessDeclaration := none
+      steps := result.steps
+      unfoldedDeclarations := sortedNames result.unfoldedDeclarations
+      terminalDeclarations := sortedNames result.terminalDeclarations
+      definitionallyEqual := some result.definitionallyEqual
+    }
+  if standardQuantifiedCandidate.isSome then
+    transforms := transforms.push {
+      name := "standard_quantified_candidate"
+      version := "lra.standard-quantified/1"
+      inputField := "controlledUnfoldingLogicExpression"
+      outputField := "standardQuantifiedCandidate"
+      state := candidateState
+      applicabilityRequirements := #[]
+      principles := #["telescope_opening", "proposition_hypotheses_as_antecedents"]
+      witnessDeclaration := none
+      steps := #[]
+      unfoldedDeclarations := #[]
+      terminalDeclarations := #[]
+      definitionallyEqual := none
+    }
+  if mechanicalDefinitionNegation.isSome then
+    transforms := transforms.push {
+      name := "literal_definition_negation"
+      version := "lra.literal-negation/1"
+      inputField := "controlledUnfoldingExpression"
+      outputField := "mechanicalDefinitionNegationExpression"
+      state := candidateState
+      applicabilityRequirements := #[]
+      principles := #["literal_not"]
+      witnessDeclaration := none
+      steps := #[]
+      unfoldedDeclarations := #[]
+      terminalDeclarations := #[]
+      definitionallyEqual := none
+    }
+  if literalNegation.isSome then
+    transforms := transforms.push {
+      name := "literal_declaration_negation"
+      version := "lra.literal-negation/1"
+      inputField := "statementExpression"
+      outputField := "literalDeclarationNegationExpression"
+      state := candidateState
+      applicabilityRequirements := #[]
+      principles := #["literal_not"]
+      witnessDeclaration := none
+      steps := #[]
+      unfoldedDeclarations := #[]
+      terminalDeclarations := #[]
+      definitionallyEqual := none
+    }
+  if pushedNegationExpression.isSome then
+    transforms := transforms.push {
+      name := "pushed_negation_candidate"
+      version := "lra.proposition-negation/1"
+      inputField := "controlledUnfoldingLogicExpression"
+      outputField := "pushedNegationExpression"
+      state := evidenceState "available" .mechanicalTransform .unresolved .candidate
+        (some "publication requires a named checked equivalence witness")
+      applicabilityRequirements := #[]
+      principles := pushedNegationPrinciples
+      witnessDeclaration := none
+      steps := #[]
+      unfoldedDeclarations := #[]
+      terminalDeclarations := #[]
+      definitionallyEqual := none
+    }
+  if contrapositive.expression.isSome then
+    transforms := transforms.push {
+      name := "contrapositive_candidate"
+      version := "lra.contrapositive/1"
+      inputField := "statementLogicExpression"
+      outputField := "contrapositiveCandidateExpression"
+      state := evidenceState "available" .mechanicalTransform .unresolved .candidate
+        (some "publication requires a checked generic construction or named witness")
+      applicabilityRequirements := #[]
+      principles := #["intuitionistic_contrapositive"]
+      witnessDeclaration := none
+      steps := #[]
+      unfoldedDeclarations := #[]
+      terminalDeclarations := #[]
+      definitionallyEqual := none
+    }
+  let evidenceStates : Array NamedEvidenceState := #[
+    ⟨"statement", directState⟩,
+    ⟨"definitionBody", definitionState⟩,
+    ⟨"controlledUnfolding", unfoldingState⟩,
+    ⟨"proof", proofState⟩,
+    ⟨"publicationCorrespondence",
+      evidenceState "unavailable" .independentlyAuthored .unresolved .unreviewed
+        (some "reviewed Lean-to-publication correspondence is external to Lean")⟩
+  ]
+  let proofEvidence : ExtractedProofEvidence := {
+    state := proofState
+    expression := proofTerm.map expressionJson
+    digest := proofTerm.map fun expression => toString expression.hash
+    digestAlgorithm := "lean-expr-hash/1"
+    directDependencies := sortedNames proofNames
+    dependencyPartition := partitionDependencies proofNames
+    kernelAxioms := sortedNames kernelAxioms
+    usesSorry := kernelAxioms.contains ``sorryAx
+  }
   let node : ExtractedNode := {
     id := name.toString
     title := shortName name
@@ -756,10 +1392,10 @@ private def extractPendingNode
     sourceRange
     sourceRangeStatus := if sourceRange.isSome then "available" else "unavailable"
     scopeRole := "included"
-    manifestRole := manifestEntry.map (·.role)
-    relationshipToPrimary := manifestEntry.map (·.relationshipToPrimary)
+    manifestRole := manifestEntry.map fun entry => legacyManifestRoleName entry.memberRole
+    relationshipToPrimary := manifestEntry.map fun entry => familyRelationName entry.relation
     kind
-    category := declarationCategory name kind canonicalId
+    category := declarationCategory kind canonicalId manifestEntry
     canonicalConceptId := canonicalId
     universeParameters := info.levelParams.toArray.map Name.toString
     safety := safetyName info
@@ -767,7 +1403,7 @@ private def extractPendingNode
     mutualDeclarations := mutualDeclarations info
     statement := ← prettyExpression info.type
     statementExpression := expressionJson info.type
-    statementLogicExpression := logicExpressionJson info.type
+    statementLogicExpression
     binders := signature.binders
     semanticBinderRoles
     resultType := signature.resultType
@@ -794,19 +1430,21 @@ private def extractPendingNode
     controlledUnfoldingExpression :=
       controlledUnfolding.map fun result => expressionJson result.expression
     controlledUnfoldingLogicExpression
-    controlledUnfoldingStatus :=
-      if controlledUnfolding.isSome then "available_bounded_by_policy"
-      else "unavailable"
+    controlledUnfoldingStatus := match controlledUnfolding with
+      | some result => if result.limitStatus.isNone then
+          "available_bounded_by_policy" else "unresolved_policy_limit"
+      | none => "unavailable"
     unfoldedPredicateLogic
     unfoldedPredicateLogicStatus :=
-      if unfoldedPredicateLogic.isSome then
-        "available_raw_logic_before_governed_rendering"
-      else "unavailable"
+      match controlledUnfolding with
+      | some result => if result.limitStatus.isNone then
+          "available_raw_logic_before_governed_rendering" else "unresolved_policy_limit"
+      | none => "unavailable"
     unfoldingPolicyVersion
     unfoldedDeclarations := controlledUnfolding.map
       (fun result => sortedNames result.unfoldedDeclarations) |>.getD #[]
     stoppedAtDeclarations := controlledUnfolding.map
-      (fun result => sortedNames result.stoppedAtDeclarations) |>.getD #[]
+      (fun result => sortedNames result.terminalDeclarations) |>.getD #[]
     unfoldingDefinitionalEqualityVerified := controlledUnfolding.map
       (·.definitionallyEqual) |>.getD false
     standardQuantifiedCandidate
@@ -830,10 +1468,7 @@ private def extractPendingNode
       if pushedNegationExpression.isSome then
         "mechanically_derived_candidate_unapproved_requires_classical_quantifier_and_implication_negation"
       else "not_applicable"
-    pushedNegationPrinciples :=
-      if pushedNegationExpression.isSome then
-        #["classical: not_forall_to_exists_not", "classical: not_implies_to_and_not"]
-      else #[]
+    pushedNegationPrinciples
     contrapositiveCandidateExpression := contrapositive.expression
     contrapositiveCandidateStatus := contrapositive.status
     documentation
@@ -855,6 +1490,15 @@ private def extractPendingNode
       else "not_applicable"
     kernelAxioms := sortedNames kernelAxioms
     usesSorry := kernelAxioms.contains ``sorryAx
+    artifactUnit := if kind == "axiom" then "axiom_or_structure_law"
+      else if kind == "definition" then "definition"
+      else if kind == "theorem" || kind == "opaque" then "theorem_with_proof_evidence"
+      else "declaration"
+    rawExpressionEncodingVersion := "lean.expr-tree/1"
+    normalizedLogicAstVersion := "lra.normalized-proposition-tree/1"
+    evidenceStates
+    transforms
+    proofEvidence
   }
   pure { node, statementNames, definitionNames, proofNames }
 
@@ -886,17 +1530,154 @@ private def scopePendingNodes
       some { item with node := { item.node with scopeRole } }
     else none
 
+private def applicabilityFor (declaration : Name) : Array Name :=
+  (activeManifest.applicabilityRequirements.find? fun requirement =>
+    requirement.declaration == declaration).map (·.requiredDeclarations) |>.getD #[]
+
+private def declarationDefinitionalEquality
+    (primary member : ConstantInfo) : CoreM Bool :=
+  Lean.Meta.MetaM.run' do
+    let typesEqual ← Lean.Meta.isDefEq primary.type member.type
+    if !typesEqual then return false
+    match primary.value? (allowOpaque := true), member.value? (allowOpaque := true) with
+    | some primaryValue, some memberValue => Lean.Meta.isDefEq primaryValue memberValue
+    | none, none => pure true
+    | _, _ => pure false
+
+private def extractFamilyMember
+    (environment : Environment) (entry : FamilyEntry) : CoreM ExtractedFamilyMember := do
+  let memberInfo := environment.find? entry.declaration
+  let requirements := applicabilityFor entry.declaration
+  let requirementsPresent := match memberInfo with
+    | some info => requirements.all info.type.getUsedConstants.contains
+    | none => false
+  let publication := activeManifest.defaultPublicationStatus
+  let correspondenceState :=
+    evidenceState "unavailable" .independentlyAuthored .unresolved publication
+      (some "Lean checks the named declaration; publication correspondence requires review")
+  let mut witnessDeclaration : Option Name := none
+  let mut witnessAvailable := false
+  let mut witnessUsesSorry := false
+  let mut defeqVerified : Option Bool := none
+  let relationState ← match entry.relationEvidence with
+    | .primaryDeclaration =>
+        witnessAvailable := memberInfo.isSome
+        pure <| if memberInfo.isSome then
+          evidenceState "available" .directLean .compiled publication
+        else evidenceState "unresolved" .directLean .unresolved publication
+          (some "primary declaration is missing")
+    | .definitionalEquality =>
+        let primaryInfo := environment.find? activeManifest.primaryDeclaration
+        let verified ← match primaryInfo, memberInfo with
+          | some primary, some member => declarationDefinitionalEquality primary member
+          | _, _ => pure false
+        defeqVerified := some verified
+        witnessAvailable := primaryInfo.isSome && memberInfo.isSome
+        pure <| if verified then
+          evidenceState "available" .mechanicalTransform .definitionallyEqual publication
+        else evidenceState "unresolved" .mechanicalTransform .unresolved publication
+          (some "declared alias did not pass definitional-equality verification")
+    | .namedCheckedDeclaration witness =>
+        witnessDeclaration := some witness
+        let witnessInfo := environment.find? witness
+        witnessAvailable := witnessInfo.isSome
+        if witnessAvailable then
+          let axioms ← collectAxioms witness
+          witnessUsesSorry := axioms.contains ``sorryAx
+        pure <| if witnessAvailable && !witnessUsesSorry && requirementsPresent then
+          evidenceState "available" .namedCheckedDeclaration .checkedProof publication
+        else
+          let reason := if !witnessAvailable then "named witness declaration is missing"
+            else if witnessUsesSorry then "named witness depends on sorryAx"
+            else "an applicability requirement is absent from the checked statement"
+          evidenceState "unresolved" .namedCheckedDeclaration .unresolved publication
+            (some reason)
+    | .authorSelected =>
+        witnessAvailable := memberInfo.isSome
+        pure <| if memberInfo.isSome then
+          evidenceState "available" .leanValidatedAuthorSelection
+            .leanValidatedSelection publication
+            (some "declaration exists; family relation remains an authored selection")
+        else evidenceState "unresolved" .leanValidatedAuthorSelection .unresolved publication
+          (some "author-selected declaration is missing")
+  pure {
+    declaration := entry.declaration.toString
+    memberRole := familyMemberRoleName entry.memberRole
+    relation := familyRelationName entry.relation
+    relationEvidence := relationEvidenceName entry.relationEvidence
+    witnessDeclaration := witnessDeclaration.map Name.toString
+    applicabilityRequirements := sortedNames requirements
+    evidenceState := relationState
+    correspondenceState
+    definitionalEqualityVerified := defeqVerified
+    witnessAvailable
+    witnessUsesSorry
+  }
+
+private def extractFamily
+    (environment : Environment) (nodes : Array ExtractedNode) : CoreM ExtractedFamily := do
+  let mut members : Array ExtractedFamilyMember := #[]
+  for entry in activeManifest.entries do
+    members := members.push (← extractFamilyMember environment entry)
+  let primaryConceptId := (nodes.find? fun node =>
+    node.declaration == activeManifest.primaryDeclaration.toString).bind (·.canonicalConceptId)
+  pure {
+    id := activeManifest.id
+    manifestVersion := activeManifest.version
+    primaryDeclaration := activeManifest.primaryDeclaration.toString
+    canonicalConceptId := primaryConceptId
+    defaultPublicationStatus := publicationStatusName activeManifest.defaultPublicationStatus
+    members
+  }
+
+private def collectDiagnostics
+    (nodes : Array ExtractedNode) (families : Array ExtractedFamily) : Array ExtractionDiagnostic :=
+  let nodeDiagnostics := nodes.foldl (init := #[]) fun diagnostics node =>
+    let diagnostics := if node.sourceRange.isNone then diagnostics.push {
+      code := "source_range_unavailable"
+      severity := "warning"
+      declaration := some node.declaration
+      field := some "sourceRange"
+      message := "compiled declaration range is unavailable"
+    } else diagnostics
+    let diagnostics := node.transforms.foldl (init := diagnostics) fun diagnostics transform =>
+      if transform.state.verification == "unresolved" &&
+          transform.name == "controlled_unfolding" then
+        diagnostics.push {
+          code := "controlled_unfolding_unresolved"
+          severity := "error"
+          declaration := some node.declaration
+          field := some "controlledUnfolding"
+          message := transform.state.reason.getD "controlled unfolding is unresolved"
+        }
+      else diagnostics
+    if node.usesSorry then diagnostics.push {
+      code := "sorry_axiom_in_closure"
+      severity := "error"
+      declaration := some node.declaration
+      field := some "kernelAxioms"
+      message := "kernel axiom closure contains sorryAx"
+    } else diagnostics
+  families.foldl (init := nodeDiagnostics) fun diagnostics family =>
+    family.members.foldl (init := diagnostics) fun diagnostics member =>
+      if member.evidenceState.verification == "unresolved" then diagnostics.push {
+        code := "family_relation_unresolved"
+        severity := "error"
+        declaration := some member.declaration
+        field := some "families.members"
+        message := member.evidenceState.reason.getD "family relation evidence is unresolved"
+      } else diagnostics
+
 private def extractGraph
     (scope : String) (extractionEnvironment : ExtractionEnvironment) : CoreM ExtractedGraph := do
   let environment ← getEnv
   let mut pending : Array PendingNode := #[]
   for (name, info) in environment.constants.toList do
-    if isPilotDeclaration name then
+    if isHarvestCandidate name then
       let canonicalId := CanonicalConceptId? environment name
       let documentation :=
         (← Lean.Core.liftIOCore <| findDocString? environment name).getD ""
-      if canonicalId.isSome || !documentation.isEmpty || isStructuralPosetDeclaration name then
-        pending := pending.push (← extractPendingNode name info documentation canonicalId)
+      pending := pending.push (← extractPendingNode name info documentation canonicalId)
   pending := pending.qsort fun left right =>
     left.node.declaration < right.node.declaration
   if scope == "supremum" then
@@ -923,14 +1704,22 @@ private def extractGraph
     let leftKey := left.source ++ "|" ++ left.target ++ "|" ++ left.kind
     let rightKey := right.source ++ "|" ++ right.target ++ "|" ++ right.kind
     leftKey < rightKey
+  let nodes := pending.map (·.node)
+  let transitiveEdges := computeTransitiveEdges nodes edges
+  let families ← if scope == "supremum" then
+    pure #[← extractFamily environment nodes]
+  else pure #[]
+  let diagnostics := collectDiagnostics nodes families
   let title :=
-    if scope == "supremum" then "LRA Supremum Lean Evidence"
+    if scope == "supremum" then activeManifest.title
     else "LRA Ordering and Bounds Pilot"
   let evidenceNotes := #[
     "Node id is the fully qualified Lean declaration; canonicalConceptId is a separate authored foreign key.",
     "Expression fields are structural Lean expression trees, not reviewed governance semantic ASTs.",
     "Binder roleEvidence is mechanical evidence from binder form, proposition type, and typeclass recognition.",
-    "Binder semanticRoleEvidence keeps ambient carrier nonemptiness, subset nonemptiness, subset boundedness, order completeness, and ordered-field structure distinct.",
+    "Binder semanticRoleEvidence is resolved from compiled type structure and exact Lean.Name registry rules, with an explicit typed override table for irreducible ambiguities.",
+    "The normalized proposition tree uses Lean metatype checks so proposition proof binders become implication guards while data binders remain quantifiers.",
+    "Family relation verification and publication correspondence are independent states; a checked theorem never silently approves a publication relationship.",
     "mechanicalDefinitionNegation negates the compiled proposition-valued definition body under its lambda binders.",
     "literalDeclarationNegation is the literal negation of the universally closed declaration type; it is not an approved semantic normal form.",
     "Proof dependencies are direct constants in the compiled theorem or opaque value, recovered with allowOpaque enabled.",
@@ -941,11 +1730,13 @@ private def extractGraph
       LRA.Pilot.Supremum.ExtractionManifest.entries.map fun entry =>
       Json.mkObj [
         ("declaration", Json.str entry.declaration.toString),
-        ("role", Json.str entry.role),
-        ("relationshipToPrimary", Json.str entry.relationshipToPrimary)]
+        ("role", Json.str (legacyManifestRoleName entry.memberRole)),
+        ("relationshipToPrimary", Json.str (familyRelationName entry.relation))]
     else #[]
   pure {
     title, scope,
+    manifestId := if scope == "supremum" then
+      some LRA.Pilot.Supremum.ExtractionManifest.id else none
     manifestVersion := if scope == "supremum" then
       some LRA.Pilot.Supremum.ExtractionManifest.version else none
     primaryDeclaration := if scope == "supremum" then
@@ -955,7 +1746,7 @@ private def extractGraph
     unfoldingPolicyVersion
     unfoldingPolicyDeclarations := sortedNames unfoldingPolicy
     extractionEnvironment, evidenceNotes,
-    nodes := pending.map (·.node), edges
+    nodes, edges, transitiveEdges, families, diagnostics
   }
 
 private def ensureParentDirectory (path : System.FilePath) : IO Unit := do
@@ -987,7 +1778,11 @@ private def extractionEnvironment : IO ExtractionEnvironment := do
   let mathlibStatus ← processOutput "git" #["-C", ".lake/packages/mathlib", "status", "--porcelain=v1"]
   let governanceCommit ← processOutput "git" #["-C", "../lra-governance", "rev-parse", "HEAD"]
   let governanceStatus ← processOutput "git" #["-C", "../lra-governance", "status", "--porcelain=v1"]
-  let generatedAt ← processOutput "powershell" #["-NoProfile", "-Command", "[DateTime]::UtcNow.ToString('o')"]
+  let generatedAtOverride ← IO.getEnv "LRA_EXTRACTION_GENERATED_AT"
+  let generatedAt ← match generatedAtOverride with
+    | some value => pure value
+    | none => processOutput "powershell" #["-NoProfile", "-Command",
+        "[DateTime]::UtcNow.ToString('o')"]
   pure {
     generatedAt
     leanVersion := Lean.versionString
@@ -1020,9 +1815,9 @@ private def writeOutputs
 /-- Extract the pilot graph and generate JSON plus a self-contained HTML page.
 
 Arguments, all optional, are JSON output, HTML output, HTML template path, and
-scope. The supported scopes are `all` and `supremum`; `supremum` includes every
-declaration defined in a `LRA.Pilot.Supremum.*` module plus its transitive
-dependencies within the harvested pilot.
+scope. The supported scopes are `all` and `supremum`; the latter is selected by
+the compiled, typed Supremum manifest and closed over declarations admitted by
+that manifest's dependency namespace roots.
 -/
 unsafe def main (argumentList : List String) : IO Unit := do
   let arguments := argumentList.toArray

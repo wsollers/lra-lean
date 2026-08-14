@@ -1,13 +1,17 @@
 OR
   EXISTS element
     domain constants: LRA.VolumeI.Relations.Order.Poset.Carrier
-    EXISTS a._@._internal._hyg.0
-      domain constants: Membership.mem, LRA.VolumeI.Relations.Order.Poset.Carrier
+    AND
+      MEMBERSHIP constants: Membership.mem, LRA.VolumeI.Relations.Order.Poset.Carrier
       NOT
         ATOMIC constants: LRA.VolumeI.Relations.Order.Poset.NonStrictOrder
   EXISTS otherCandidate
     domain constants: LRA.VolumeI.Relations.Order.Poset.Carrier
-    EXISTS a._@._internal._hyg.0
-      domain constants: LRA.VolumeI.Relations.Order.Poset.Carrier, Membership.mem, LRA.VolumeI.Relations.Order.Poset.NonStrictOrder
+    AND
+      FORALL element
+        domain constants: LRA.VolumeI.Relations.Order.Poset.Carrier
+        IMPLIES
+          None
+          None
       NOT
         ATOMIC constants: LRA.VolumeI.Relations.Order.Poset.NonStrictOrder

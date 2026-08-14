@@ -1,0 +1,248 @@
+{
+  "schema_version": "lra.lean-concept-package/0.1",
+  "package_id": "order.upper-bound.pilot-002",
+  "request_id": "volume-i.order-theory.bounds.upper-bound.002",
+  "concept": {
+    "canonical_id": "order.upper-bound",
+    "display_name": "Upper Bound",
+    "family_status": "reviewed"
+  },
+  "decisions": [
+    {
+      "candidate": "primary-poset-definition",
+      "status": "selected",
+      "reason": "The request explicitly requires the Volume I Poset to own the carrier and ordering relation.",
+      "provenance": "source-request"
+    },
+    {
+      "candidate": "literal-negation",
+      "status": "selected",
+      "reason": "The request explicitly asks for negations.",
+      "provenance": "source-request"
+    },
+    {
+      "candidate": "witnessed-negation",
+      "status": "selected",
+      "reason": "A failed upper-bound claim is usefully witnessed by a subset element not below the candidate; the equivalence requires classical logic in the reverse extraction direction.",
+      "provenance": "author-selected"
+    },
+    {
+      "candidate": "contrapositive-form",
+      "status": "selected",
+      "reason": "The contrapositive is a useful equivalent membership exclusion criterion; the reverse implication uses classical logic for an arbitrary proposition-valued order.",
+      "provenance": "source-request"
+    },
+    {
+      "candidate": "membership-implication-converse",
+      "status": "rejected",
+      "reason": "The converse relation-to-membership claim is false and is represented by a counterexample rather than asserted as a variant.",
+      "provenance": "author-selected"
+    },
+    {
+      "candidate": "membership-implication-inverse",
+      "status": "rejected",
+      "reason": "The inverse nonmembership-to-nonrelation claim is false and is represented by a counterexample rather than asserted as a variant.",
+      "provenance": "author-selected"
+    },
+    {
+      "candidate": "strict-order-negation",
+      "status": "deferred",
+      "reason": "A generic poset does not justify rewriting not-less-or-equal as a reversed strict inequality; a later total-order declaration must carry that assumption.",
+      "provenance": "governance-default"
+    },
+    {
+      "candidate": "order-dual-converse",
+      "status": "deferred",
+      "reason": "Upper bounds for the converse order are lower bounds; that checked relation belongs to the future Lower Bound sibling concept.",
+      "provenance": "author-selected"
+    },
+    {
+      "candidate": "examples",
+      "status": "selected",
+      "reason": "The request asks for examples; the package selects the empty-set boundary and a finite natural-number example.",
+      "provenance": "source-request"
+    },
+    {
+      "candidate": "counterexamples",
+      "status": "selected",
+      "reason": "The request asks for counterexamples; the package targets nonmembership, nonexistence, false converse, and false inverse claims.",
+      "provenance": "source-request"
+    },
+    {
+      "candidate": "real-carrier-specialization",
+      "status": "not-applicable",
+      "reason": "The revised request is explicitly scoped to Volume I and does not request a real-number specialization.",
+      "provenance": "governance-default"
+    }
+  ],
+  "instances": [
+    {
+      "instance_id": "volume-i.poset-upper-bound-family",
+      "volume": "VolumeI",
+      "subject": "OrderTheory",
+      "topic": "Bounds",
+      "concept_folder": "UpperBound",
+      "namespace": "LRA.Pilot.VolumeI.OrderTheory.Bounds",
+      "family_role": "primary-generic",
+      "relation_to_primary": "primary",
+      "module_files": [
+        {
+          "file_name": "Definition.lean",
+          "imports": [
+            "LRA.VolumeI.Relations.Order.OrderStructures.Poset"
+          ],
+          "preamble": "universe u v",
+          "declarations": [
+            {
+              "name": "UpperBound",
+              "kind": "definition",
+              "family_role": "primary-definition",
+              "proof_status": "not-applicable",
+              "publication_status": "proposed",
+              "source": "/--\n`UpperBound poset subset bound` means every member of `subset` is below\n`bound` in the non-strict order supplied by `poset`.\n\nLogical form:\n\n```lean\nforall element : poset.Carrier,\n  element ∈ subset -> poset.NonStrictOrder element bound\n```\n-/\ndef UpperBound\n    (poset : LRA.VolumeI.Relations.Order.Poset)\n    {SetObject : Type v}\n    [Membership poset.Carrier SetObject]\n    (subset : SetObject)\n    (bound : poset.Carrier) : Prop :=\n  forall element : poset.Carrier,\n    element ∈ subset -> poset.NonStrictOrder element bound"
+            }
+          ]
+        },
+        {
+          "file_name": "Negation.lean",
+          "imports": [
+            "LRA.Pilot.VolumeI.OrderTheory.Bounds.Concepts.UpperBound.Definition"
+          ],
+          "preamble": "universe v",
+          "declarations": [
+            {
+              "name": "UpperBoundFailureAt",
+              "kind": "definition",
+              "family_role": "failure-predicate",
+              "proof_status": "not-applicable",
+              "publication_status": "proposed",
+              "source": "/--\n`UpperBoundFailureAt poset subset bound element` says that `element` belongs\nto `subset` but is not below `bound`.\n\nLogical form:\n\n```lean\nelement ∈ subset /\\ Not (poset.NonStrictOrder element bound)\n```\n-/\ndef UpperBoundFailureAt\n    (poset : LRA.VolumeI.Relations.Order.Poset)\n    {SetObject : Type v}\n    [Membership poset.Carrier SetObject]\n    (subset : SetObject)\n    (bound element : poset.Carrier) : Prop :=\n  element ∈ subset /\\ Not (poset.NonStrictOrder element bound)"
+            },
+            {
+              "name": "NotUpperBound",
+              "kind": "definition",
+              "family_role": "literal-negation",
+              "proof_status": "not-applicable",
+              "publication_status": "proposed",
+              "source": "/--\n`NotUpperBound poset subset bound` is the literal negation of the primary\nupper-bound predicate.\n\nLogical form:\n\n```lean\nNot (UpperBound poset subset bound)\n```\n-/\ndef NotUpperBound\n    (poset : LRA.VolumeI.Relations.Order.Poset)\n    {SetObject : Type v}\n    [Membership poset.Carrier SetObject]\n    (subset : SetObject)\n    (bound : poset.Carrier) : Prop :=\n  Not (UpperBound poset subset bound)"
+            },
+            {
+              "name": "NotUpperBoundIffExistsFailure",
+              "kind": "theorem",
+              "family_role": "pushed-negation",
+              "proof_status": "stub-sorry",
+              "publication_status": "unreviewed",
+              "source": "/--\nA candidate fails to be an upper bound exactly when some subset member is not\nbelow it. The witness-extraction direction uses classical logic.\n\nLogical form:\n\n```lean\nNotUpperBound poset subset bound <->\n  exists element, UpperBoundFailureAt poset subset bound element\n```\n-/\ntheorem NotUpperBoundIffExistsFailure\n    (poset : LRA.VolumeI.Relations.Order.Poset)\n    {SetObject : Type v}\n    [Membership poset.Carrier SetObject]\n    (subset : SetObject)\n    (bound : poset.Carrier) :\n    NotUpperBound poset subset bound <->\n      exists element, UpperBoundFailureAt poset subset bound element := by\n  sorry"
+            }
+          ]
+        },
+        {
+          "file_name": "Variants.lean",
+          "imports": [
+            "LRA.Pilot.VolumeI.OrderTheory.Bounds.Concepts.UpperBound.Negation"
+          ],
+          "preamble": "universe v",
+          "declarations": [
+            {
+              "name": "UpperBoundIffContrapositive",
+              "kind": "theorem",
+              "family_role": "contrapositive-variant",
+              "proof_status": "stub-sorry",
+              "publication_status": "unreviewed",
+              "source": "/--\nA candidate is an upper bound exactly when every carrier element not below the\ncandidate is excluded from the subset. The reverse direction uses classical\nlogic for the arbitrary proposition-valued order relation.\n\nLogical form:\n\n```lean\nUpperBound poset subset bound <->\n  forall element,\n    Not (poset.NonStrictOrder element bound) -> element ∉ subset\n```\n-/\ntheorem UpperBoundIffContrapositive\n    (poset : LRA.VolumeI.Relations.Order.Poset)\n    {SetObject : Type v}\n    [Membership poset.Carrier SetObject]\n    (subset : SetObject)\n    (bound : poset.Carrier) :\n    UpperBound poset subset bound <->\n      forall element,\n        Not (poset.NonStrictOrder element bound) -> element ∉ subset := by\n  sorry"
+            }
+          ]
+        },
+        {
+          "file_name": "Examples.lean",
+          "imports": [
+            "LRA.Pilot.VolumeI.OrderTheory.Bounds.Concepts.UpperBound.Definition",
+            "Mathlib.Data.Set.Basic"
+          ],
+          "preamble": "",
+          "declarations": [
+            {
+              "name": "NaturalNumberPoset",
+              "kind": "definition",
+              "family_role": "example-structure",
+              "proof_status": "not-applicable",
+              "publication_status": "not-for-publication",
+              "source": "/--\n`NaturalNumberPoset` packages the usual non-strict order on natural numbers as\na Volume I poset for the Upper Bound examples.\n\nLogical form:\n\n```lean\nLRA.VolumeI.Relations.Order.Poset where\n  Carrier := Nat\n  NonStrictOrder := fun left right => left <= right\n```\n-/\ndef NaturalNumberPoset : LRA.VolumeI.Relations.Order.Poset where\n  Carrier := Nat\n  NonStrictOrder := fun left right => left <= right\n  NonStrictOrderIsPartialOrder := by\n    refine ⟨?_, ?_, ?_⟩\n    · intro element\n      exact Nat.le_refl element\n    · intro left right leftLeRight rightLeLeft\n      exact Nat.le_antisymm leftLeRight rightLeLeft\n    · intro first second third firstLeSecond secondLeThird\n      exact Nat.le_trans firstLeSecond secondLeThird"
+            },
+            {
+              "name": "ZeroSingleton",
+              "kind": "definition",
+              "family_role": "example-object",
+              "proof_status": "not-applicable",
+              "publication_status": "not-for-publication",
+              "source": "/--\n`ZeroSingleton` is the singleton natural-number set used by the positive and\nnegative boundary examples.\n\nLogical form:\n\n```lean\n{0 : Nat}\n```\n-/\ndef ZeroSingleton : Set Nat := {0}"
+            },
+            {
+              "name": "OneIsUpperBoundOfZeroSingleton",
+              "kind": "example",
+              "family_role": "positive-example",
+              "proof_status": "stub-sorry",
+              "publication_status": "proposed",
+              "source": "/--\nOne is an upper bound of the singleton natural-number set containing zero.\n\nLogical form:\n\n```lean\nUpperBound NaturalNumberPoset ZeroSingleton (1 : Nat)\n```\n-/\ntheorem OneIsUpperBoundOfZeroSingleton :\n    UpperBound NaturalNumberPoset ZeroSingleton (1 : Nat) := by\n  sorry"
+            },
+            {
+              "name": "EveryElementBoundsEmptySet",
+              "kind": "example",
+              "family_role": "empty-set-boundary",
+              "proof_status": "stub-sorry",
+              "publication_status": "proposed",
+              "source": "/--\nEvery element of a Volume I poset is an upper bound of its empty subset.\n\nLogical form:\n\n```lean\nUpperBound poset (empty : Set poset.Carrier) bound\n```\n-/\ntheorem EveryElementBoundsEmptySet\n    (poset : LRA.VolumeI.Relations.Order.Poset)\n    (bound : poset.Carrier) :\n    UpperBound poset (∅ : Set poset.Carrier) bound := by\n  sorry"
+            }
+          ]
+        },
+        {
+          "file_name": "Counterexamples.lean",
+          "imports": [
+            "LRA.Pilot.VolumeI.OrderTheory.Bounds.Concepts.UpperBound.Examples",
+            "LRA.Pilot.VolumeI.OrderTheory.Bounds.Concepts.UpperBound.Variants"
+          ],
+          "preamble": "",
+          "declarations": [
+            {
+              "name": "UpperBoundNeedNotBelongToSubset",
+              "kind": "counterexample",
+              "family_role": "nonmembership-counterexample",
+              "proof_status": "stub-sorry",
+              "publication_status": "proposed",
+              "source": "/--\nAn upper bound need not belong to the subset it bounds: one bounds the singleton\ncontaining zero but is not its member.\n\nLogical form:\n\n```lean\nUpperBound NaturalNumberPoset ZeroSingleton (1 : Nat) /\\ (1 : Nat) ∉ ZeroSingleton\n```\n-/\ntheorem UpperBoundNeedNotBelongToSubset :\n    UpperBound NaturalNumberPoset ZeroSingleton (1 : Nat) /\\\n      (1 : Nat) ∉ ZeroSingleton := by\n  sorry"
+            },
+            {
+              "name": "NaturalNumbersHaveNoUpperBound",
+              "kind": "counterexample",
+              "family_role": "nonexistence-counterexample",
+              "proof_status": "stub-sorry",
+              "publication_status": "proposed",
+              "source": "/--\nThe full natural-number carrier has no upper bound in the natural-number poset.\n\nLogical form:\n\n```lean\nNot (exists bound : Nat,\n  UpperBound NaturalNumberPoset (Set.univ : Set Nat) bound)\n```\n-/\ntheorem NaturalNumbersHaveNoUpperBound :\n    Not (exists bound : Nat,\n      UpperBound NaturalNumberPoset (Set.univ : Set Nat) bound) := by\n  sorry"
+            },
+            {
+              "name": "UpperBoundConverseCanFail",
+              "kind": "counterexample",
+              "family_role": "false-converse-counterexample",
+              "proof_status": "stub-sorry",
+              "publication_status": "proposed",
+              "source": "/--\nThe converse of the definition's membership implication is false: being below\nan upper bound does not force membership in the bounded subset.\n\nLogical form:\n\n```lean\nUpperBound NaturalNumberPoset ZeroSingleton (1 : Nat) /\\\n  Not (forall element : Nat,\n    NaturalNumberPoset.NonStrictOrder element (1 : Nat) -> element ∈ ZeroSingleton)\n```\n-/\ntheorem UpperBoundConverseCanFail :\n    UpperBound NaturalNumberPoset ZeroSingleton (1 : Nat) /\\\n      Not (forall element : Nat,\n        NaturalNumberPoset.NonStrictOrder element (1 : Nat) ->\n          element ∈ ZeroSingleton) := by\n  sorry"
+            },
+            {
+              "name": "UpperBoundInverseCanFail",
+              "kind": "counterexample",
+              "family_role": "false-inverse-counterexample",
+              "proof_status": "stub-sorry",
+              "publication_status": "proposed",
+              "source": "/--\nThe inverse of the definition's membership implication is false: an element\noutside the subset may still be below an upper bound.\n\nLogical form:\n\n```lean\nUpperBound NaturalNumberPoset ZeroSingleton (1 : Nat) /\\\n  Not (forall element : Nat,\n    element ∉ ZeroSingleton ->\n      Not (NaturalNumberPoset.NonStrictOrder element (1 : Nat)))\n```\n-/\ntheorem UpperBoundInverseCanFail :\n    UpperBound NaturalNumberPoset ZeroSingleton (1 : Nat) /\\\n      Not (forall element : Nat,\n        element ∉ ZeroSingleton ->\n          Not (NaturalNumberPoset.NonStrictOrder element (1 : Nat))) := by\n  sorry"
+            }
+          ]
+        }
+      ],
+      "latex": {
+        "file_name": "definition.tex",
+        "source": "\\subsection*{Definition}\nLet \\(P=(|P|,\\leq_P)\\) be a poset and let \\(A\\subseteq |P|\\). An element \\(u\\in |P|\\) is an upper bound of \\(A\\) if\n\\[\n  \\forall x\\in A,\\qquad x\\leq_P u.\n\\]\n\n\\subsection*{Negations}\nThe literal negation is\n\\[\n  \\neg\\bigl(\\forall x\\in A,\\;x\\leq_P u\\bigr).\n\\]\nClassically, this is equivalent to the witnessed form\n\\[\n  \\exists x\\in A,\\qquad x\\nleq_P u.\n\\]\n\n\\subsection*{Contrapositive form}\nClassically, the definition is equivalently expressed as\n\\[\n  \\forall x\\in |P|,\\qquad x\\nleq_P u\\;\\Longrightarrow\\;x\\notin A.\n\\]\nThe converse \\(x\\leq_P u\\Rightarrow x\\in A\\) and inverse \\(x\\notin A\\Rightarrow x\\nleq_P u\\) are false in general.\n\n\\subsection*{Examples}\nEvery element of a poset is an upper bound of the empty subset. In the usual natural-number poset, \\(1\\) is an upper bound of \\(\\{0\\}\\).\n\n\\subsection*{Counterexamples}\nThe upper bound \\(1\\) of \\(\\{0\\}\\subseteq\\mathbb{N}\\) does not belong to that subset. The same example refutes both the converse and inverse forms above. The full set \\(\\mathbb{N}\\) has no upper bound in the usual natural-number poset.\n",
+        "publication_status": "proposed"
+      }
+    }
+  ]
+}

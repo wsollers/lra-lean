@@ -29,6 +29,21 @@ This document distinguishes five sources of information:
 
 No displayed value may lose this provenance classification.
 
+Schema v5 serializes provenance more precisely than this compact editorial
+shorthand. Every evidence block carries three independent axes:
+
+| Axis | Values |
+|---|---|
+| origin | `direct_lean`, `mechanical_transform`, `named_checked_declaration`, `lean_validated_author_selection`, `independently_authored` |
+| verification | `compiled`, `definitionally_equal`, `checked_proof`, `lean_validated_selection`, `reviewed_correspondence`, `unresolved`, `not_applicable` |
+| publication | `not_applicable`, `candidate`, `unreviewed`, `approved`, `rejected` |
+
+The `H/T/W/A/J` codes remain useful prose abbreviations; they are not the
+machine representation. In particular, a named theorem can be checked while
+its correspondence to a learner-facing artifact remains unreviewed, and an
+author-selected declaration can be Lean-validated without becoming extracted
+publication content.
+
 ## Governing principles
 
 ### Maximal but bounded extraction
@@ -107,7 +122,15 @@ This makes all rendered logical forms reproducible and auditable.
 ## Extraction package
 
 An extraction run produces one package containing a run envelope, declaration
-records, formal dependency edges, diagnostics, and deterministic projections.
+records, proof-evidence subrecords, direct and transitive formal dependency
+edges, complete concept-family packages, diagnostics, and deterministic
+projections.
+
+The canonical extraction unit is a compiled Lean declaration. A structure law
+or axiom, definition, and theorem each receive one declaration record. A proof
+is the always-present typed evidence subrecord of its theorem declaration; it
+becomes a separate declaration unit only when Lean itself gives it a separate
+declaration identity.
 
 ### Run envelope: always populated
 
@@ -116,7 +139,7 @@ records, formal dependency edges, diagnostics, and deterministic projections.
 | extraction schema/version | `H` | Version of this contract's machine representation. |
 | extractor name/version | `H` | Exact exporter implementation. |
 | extraction scope | `H` | Named scope plus seed and dependency-closure rules. |
-| generated time | `T` | UTC generation time. |
+| generated time | `T` | UTC generation time; `LRA_EXTRACTION_GENERATED_AT` may pin it for byte-for-byte reproducibility checks. |
 | `lra-lean` commit and dirty state | `H` | Never infer cleanliness from a commit alone. |
 | Lean version and Git hash | `H` | Exact compiler. |
 | Mathlib commit and dirty state | `H` | Exact imported library state. |
@@ -430,6 +453,12 @@ Stop at:
 Emit both `unfoldedDeclarations` and `stoppedAtDeclarations`. Hitting an
 unexpected opaque declaration or limit produces `unresolved`, never a silently
 partial “fully unfolded” claim.
+
+Schema v5 additionally emits the configured pass, step, and expression-node
+limits and a step trace containing the unfolded declaration, input and output
+expression digests, output node count, and per-step definitional-equality
+result. Declarations outside the whitelist are explicit terminal policy
+boundaries. Limit exhaustion and failed definitional equality are diagnostics.
 
 ### T4. Normalize to the extraction logic AST
 
@@ -751,7 +780,7 @@ Every extraction run must verify:
 
 ## Supremum calibration status
 
-The current Supremum v4 extraction demonstrates:
+The current Supremum v5 extraction demonstrates:
 
 - separate declaration, concept, and manifest identities;
 - source paths and compiled declaration ranges;
@@ -769,16 +798,28 @@ The current Supremum v4 extraction demonstrates:
 - separate typed statement, definition, proof, and transitive edges;
 - kernel axiom closure and `sorryAx` detection;
 - an explicit versioned harvest manifest and dependency-closed scope;
+- typed family-member roles, family relations, relation evidence, and
+  structure-sensitive applicability requirements;
+- independently represented evidence origin, verification state, and
+  publication state;
+- a complete declaration-family package whose aliases are checked by
+  definitional equality and whose named witnesses are checked for availability,
+  applicability requirements, and `sorryAx`;
+- metatype-checked proposition normalization that represents membership proof
+  binders as implication guards rather than unexplained quantifiers;
+- versioned raw-expression and normalized-proposition-tree encodings;
+- bounded multi-pass unfolding with a per-step audit trace;
+- separate direct typed dependency edges and transitive reachability edges;
 - separate carrier-nonempty, subset-nonempty, subset-boundedness,
   order-completeness, ordered-field, and supremum-existence evidence;
 - reproducibility metadata and a slot-complete comparison projection.
 
 The visible remaining extractor and integration gaps are:
 
-- complete T4 normalization of proposition-valued dependent binders: the raw
-  AST currently retains some membership guards as anonymous `forall`/`exists`
-  proof binders instead of classifying their surface implication/conjunction
-  role;
+- named-witness attachment from checked family logical forms directly to the
+  corresponding mechanical transform candidates;
+- a checked generic construction for contrapositive candidates before they can
+  receive `checked_proof` status;
 - governed T10 rendering through the shared predicate, structure, relation,
   and notation registries;
 - governed witness, artifact-label, and formalization reconciliation;

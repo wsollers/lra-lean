@@ -57,10 +57,10 @@
       "owner": "Lean + governed rendering"
     },
     {
-      "slot": "Raw extraction logic AST",
-      "lean": "available; proposition proof binders still appear as FORALL",
+      "slot": "Normalized proposition tree",
+      "lean": "available; membership proof binders are implication guards",
       "volume": "not applicable",
-      "owner": "Lean transform fix"
+      "owner": "Lean transform"
     },
     {
       "slot": "Fully unfolded predicate logic",
@@ -124,7 +124,7 @@
     },
     {
       "slot": "Examples",
-      "lean": "8 checked manifest examples",
+      "lean": "9 checked manifest examples",
       "volume": "figures/exposition, no formal attachment",
       "owner": "Authored selection + checked witnesses"
     },
@@ -136,7 +136,7 @@
     },
     {
       "slot": "Formal dependencies",
-      "lean": "typed graphs available (268 selected-scope edges)",
+      "lean": "typed graphs available (271 direct; 251 transitive)",
       "volume": "not shown",
       "owner": "Lean"
     },

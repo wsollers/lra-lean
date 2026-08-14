@@ -193,7 +193,7 @@ def coverage_inventory(primary: dict, graph: dict) -> list[dict[str, str]]:
         {"slot": "Canonical mathematical display", "lean": "renderable candidate; no governed renderer", "volume": "present", "owner": "Approved join"},
         {"slot": "Raw Lean signature", "lean": "available", "volume": "not applicable", "owner": "Lean"},
         {"slot": "Folded predicate body", "lean": "available" if has("foldedPredicateLogic") else "missing", "volume": "Predicate reading present", "owner": "Lean + governed rendering"},
-        {"slot": "Raw extraction logic AST", "lean": "available; proposition proof binders still appear as FORALL", "volume": "not applicable", "owner": "Lean transform fix"},
+        {"slot": "Normalized proposition tree", "lean": "available; membership proof binders are implication guards", "volume": "not applicable", "owner": "Lean transform"},
         {"slot": "Fully unfolded predicate logic", "lean": "available; definitional equality verified", "volume": "definition equations present", "owner": "Lean transform + approved rendering"},
         {"slot": "Standard quantified statement", "lean": "candidate available; unapproved", "volume": "present, but adds nonempty and R", "owner": "Transform then semantic approval"},
         {"slot": "Predicate reading", "lean": "folded evidence available; T10 registry join pending", "volume": "present", "owner": "Governed join + approval"},
@@ -204,9 +204,9 @@ def coverage_inventory(primary: dict, graph: dict) -> list[dict[str, str]]:
         {"slot": "Contrapositive", "lean": "not applicable to a definition", "volume": "missing / not applicable", "owner": "Theorem-only reviewed block"},
         {"slot": "Aliases / equivalent forms", "lean": "Supremum and LUB definitional aliases extracted", "volume": "least-upper-bound wording present", "owner": "Checked witness + authored selection"},
         {"slot": "Failure modes", "lean": "checked failure predicates and equivalences", "volume": "present with authored labels", "owner": "Lean clauses + authored taxonomy"},
-        {"slot": "Examples", "lean": "8 checked manifest examples", "volume": "figures/exposition, no formal attachment", "owner": "Authored selection + checked witnesses"},
+        {"slot": "Examples", "lean": "9 checked manifest examples", "volume": "figures/exposition, no formal attachment", "owner": "Authored selection + checked witnesses"},
         {"slot": "Counterexamples", "lean": "5 checked records", "volume": "empty-set explanation present", "owner": "Authored selection + checked witnesses"},
-        {"slot": "Formal dependencies", "lean": f"typed graphs available ({len(graph['edges'])} selected-scope edges)", "volume": "not shown", "owner": "Lean"},
+        {"slot": "Formal dependencies", "lean": f"typed graphs available ({len(graph['edges'])} direct; {len(graph.get('transitiveEdges', []))} transitive)", "volume": "not shown", "owner": "Lean"},
         {"slot": "Learner prerequisites", "lean": "not inferable", "volume": "3 dependencies present", "owner": "Authored"},
         {"slot": "Proof term / trust", "lean": "N/A for definition; available on attached theorems", "volume": "not shown", "owner": "Lean"},
         {"slot": "Detailed professional proof", "lean": "not recoverable from compiled term", "volume": "uniqueness proof TODO", "owner": "Authored"},
@@ -373,7 +373,7 @@ def build_report(graph: dict, vol_source: str, proof_source: str, output_dir: Pa
 Schema: \texttt{{{tex_escape(graph['schemaId'])}/v{graph['schemaVersion']}}}\\
 Manifest: \texttt{{{tex_escape(graph['manifestVersion'])}}}\\
 Primary: \texttt{{LeastUpperBound}}\\
-Seeds: \textbf{{{len(graph['harvestManifest'])}}}; dependency-closed declarations: \textbf{{{len(graph['nodes'])}}}; typed edges: \textbf{{{len(graph['edges'])}}}.
+Seeds: \textbf{{{len(graph['harvestManifest'])}}}; dependency-closed declarations: \textbf{{{len(graph['nodes'])}}}; direct typed edges: \textbf{{{len(graph['edges'])}}}; transitive reachability edges: \textbf{{{len(graph.get('transitiveEdges', []))}}}.
 \end{{leanbox}}
 \small
 \begin{{tabular}}{{@{{}}p{{.79\linewidth}}r@{{}}}}
@@ -417,12 +417,11 @@ they describe the same concept.
 \end{{leanbox}}
 \scriptsize
 The first box is harvested after policy-bounded unfolding; the second is the
-actual raw logical AST. The third is an \textbf{{experimental local renderer}},
+normalized proposition tree backed by retained raw Lean expressions. The third is an \textbf{{experimental local renderer}},
 not approved T10 governance output. Definitional equality to the compiled body:
-\textbf{{{primary['unfoldingDefinitionalEqualityVerified']}}}. The anonymous
-\texttt{{FORALL}} proof binders in the raw tree are a real T4 normalization
-gap: they should be classified as implication/membership guards before a
-production renderer consumes the AST.
+\textbf{{{primary['unfoldingDefinitionalEqualityVerified']}}}. Metatype-checked
+normalization classifies proposition proof binders as implication guards and
+retains data binders as quantifiers.
 }}{{
 \VolHead
 \input{{snippets/vol3-definition.tex}}
@@ -504,8 +503,8 @@ principles recorded}}. The transform records uses of
 $\neg\forall\Rightarrow\exists\neg$ and
 $\neg(A\Rightarrow B)\Rightarrow A\land\neg B$. Strict inequalities require
 the separately checked total-order theorem; they are not generic FOL cleanup.
-The anonymous \texttt{{EXISTS}} proof binder is the same current T4 guard-
-classification gap exposed on the prior raw-AST page.
+Membership guards are normalized structurally; publication still requires the
+checked family witness and reviewed rendering correspondence.
 }}{{
 \VolHead
 \input{{snippets/vol3-negations.tex}}

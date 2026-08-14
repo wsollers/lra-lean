@@ -10,6 +10,10 @@ import LRA.Pilot.OrderBoundsTheorems
 import LRA.Pilot.OrderBoundsExamples
 import LRA.Pilot.OrderBoundsCounterexamples
 
+-- BEGIN LRA LEAN AUTHORING PILOT: order.upper-bound.pilot-002
+import LRA.Pilot.VolumeI
+-- END LRA LEAN AUTHORING PILOT: order.upper-bound.pilot-002
+
 /-!
 Aggregate import for isolated, quick-compiling LRA design pilots.
 -/
