@@ -1,4 +1,4 @@
-import LRA.VolumeI.Order.OrderedSets.TotalOrder.Definition
+import LRA.VolumeI.Order.OrderedSets.LinearOrder.Definition
 
 namespace LRA.VolumeI.Order
 

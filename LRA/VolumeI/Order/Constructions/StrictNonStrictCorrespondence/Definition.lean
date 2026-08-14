@@ -1,0 +1,37 @@
+import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
+import LRA.VolumeI.Order.OrderedSets.Poset.Definition
+import LRA.VolumeI.Order.OrderedSets.StrictOrder.Definition
+import LRA.VolumeI.Order.OrderedSets.StrictPoset.Definition
+import LRA.VolumeI.Order.Relations
+
+namespace LRA.VolumeI.Order
+
+universe u
+
+/-- Adjoin equality to a strict relation. -/
+def NonStrictFromStrict {Alpha : Type u}
+    (strictRelation : LRA.VolumeI.Relations.Endorelation Alpha) :
+    LRA.VolumeI.Relations.Endorelation Alpha :=
+  LessThanOrEqual strictRelation
+
+/-- Remove equality from a non-strict relation. -/
+def StrictFromNonStrict {Alpha : Type u}
+    (nonStrictRelation : LRA.VolumeI.Relations.Endorelation Alpha) :
+    LRA.VolumeI.Relations.Endorelation Alpha :=
+  StrictPart nonStrictRelation
+
+/-- Derive the strict poset carried by the strict part of a poset order. -/
+def StrictPosetOfPoset (poset : Poset) : StrictPoset where
+  Carrier := poset.Carrier
+  StrictRelation := StrictFromNonStrict poset.NonStrictOrder
+  StrictRelationIsStrictOrder := by
+    sorry
+
+/-- Derive the poset obtained by adjoining equality to a strict-poset order. -/
+def PosetOfStrictPoset (strictPoset : StrictPoset) : Poset where
+  Carrier := strictPoset.Carrier
+  NonStrictOrder := NonStrictFromStrict strictPoset.StrictRelation
+  NonStrictOrderIsPartialOrder := by
+    sorry
+
+end LRA.VolumeI.Order

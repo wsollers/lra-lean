@@ -2,7 +2,7 @@ import LRA.VolumeI.Order.Bounds.GreatestElement.Definition
 import LRA.VolumeI.Order.Bounds.MaximalElement.Definition
 import LRA.VolumeI.Order.Bounds.Supremum.Definition
 import LRA.VolumeI.Order.Relations.StrictPart.Definition
-import LRA.VolumeI.Order.OrderedSets.TotalOrder.Definition
+import LRA.VolumeI.Order.OrderedSets.LinearOrder.Definition
 
 namespace LRA.VolumeI.Order
 
@@ -19,12 +19,12 @@ theorem GreatestElementIsMaximal
     MaximalElement (StrictPart relation) subset greatest := by
   sorry
 
-/-- In a total order, every maximal element is greatest. -/
-theorem MaximalElementIsGreatestInTotalOrder
+/-- In a linear order, every maximal element is greatest. -/
+theorem MaximalElementIsGreatestInLinearOrder
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
     {relation : LRA.VolumeI.Relations.Endorelation Element}
-    (relationIsTotalOrder : TotalOrder relation)
+    (relationIsLinearOrder : LinearOrder relation)
     {subset : SetObject} {maximal : Element}
     (maximalIsMaximal : MaximalElement (StrictPart relation) subset maximal) :
     GreatestElement relation subset maximal := by

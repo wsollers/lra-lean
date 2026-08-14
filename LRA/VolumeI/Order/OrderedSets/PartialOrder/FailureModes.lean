@@ -95,4 +95,12 @@ theorem BooleanUniversalRelationFailsNonStrictPartialOrder :
       FailsNonStrictPartialOrder (fun _ _ : Bool => True) := by
   sorry
 
+/-- Integer divisibility is a preorder but not a partial order: `3` and `-3`
+divide one another without being equal. -/
+theorem IntegerDivisibilityIsPreorderButNotPartialOrder :
+    LRA.VolumeI.Order.Preorder (fun left right : Int => left ∣ right) /\
+      Not (LRA.VolumeI.Order.PartialOrder
+        (fun left right : Int => left ∣ right)) := by
+  sorry
+
 end LRA.VolumeI.Order.OrderedSets.PartialOrder

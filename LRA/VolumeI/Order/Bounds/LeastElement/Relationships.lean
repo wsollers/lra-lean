@@ -3,7 +3,7 @@ import LRA.VolumeI.Order.Bounds.LeastElement.Definition
 import LRA.VolumeI.Order.Bounds.MinimalElement.Definition
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
 import LRA.VolumeI.Order.Relations.StrictPart.Definition
-import LRA.VolumeI.Order.OrderedSets.TotalOrder.Definition
+import LRA.VolumeI.Order.OrderedSets.LinearOrder.Definition
 
 namespace LRA.VolumeI.Order
 
@@ -20,12 +20,12 @@ theorem LeastElementIsMinimal
     MinimalElement (StrictPart relation) subset least := by
   sorry
 
-/-- In a total order, every minimal element is least. -/
-theorem MinimalElementIsLeastInTotalOrder
+/-- In a linear order, every minimal element is least. -/
+theorem MinimalElementIsLeastInLinearOrder
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
     {relation : LRA.VolumeI.Relations.Endorelation Element}
-    (relationIsTotalOrder : TotalOrder relation)
+    (relationIsLinearOrder : LinearOrder relation)
     {subset : SetObject} {minimal : Element}
     (minimalIsMinimal : MinimalElement (StrictPart relation) subset minimal) :
     LeastElement relation subset minimal := by

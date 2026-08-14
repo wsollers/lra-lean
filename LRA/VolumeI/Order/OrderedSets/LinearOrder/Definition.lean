@@ -5,13 +5,14 @@ namespace LRA.VolumeI.Order
 universe u
 
 /--
-Total-order laws for a non-strict endorelation.
+Linear-order laws for a non-strict endorelation. A linear order is also
+called a total order.
 
 Totality already implies reflexivity by comparing an element with itself. The
 `PartialOrder` conjunct retains reflexivity explicitly to keep the standard
 partial-order-plus-totality presentation.
 -/
-def TotalOrder {Alpha : Type u}
+def LinearOrder {Alpha : Type u}
     (relation : LRA.VolumeI.Relations.Endorelation Alpha) : Prop :=
   PartialOrder relation /\ LRA.VolumeI.Relations.Total relation
 

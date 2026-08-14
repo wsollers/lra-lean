@@ -1,5 +1,5 @@
 import LRA.VolumeI.Order.Constructions.LexicographicOrder.Definition
-import LRA.VolumeI.Order.StrictLinearOrder
+import LRA.VolumeI.Order.OrderedSets.StrictLinearOrder.Definition
 
 namespace LRA.VolumeI.Order
 

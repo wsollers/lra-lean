@@ -1,8 +1,8 @@
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
 import LRA.VolumeI.Order.OrderedSets.StrictOrder.Definition
-import LRA.VolumeI.Order.OrderedSets.TotalOrder.Definition
+import LRA.VolumeI.Order.OrderedSets.LinearOrder.Definition
 import LRA.VolumeI.Order.Relations.GreaterThan.Definition
-import LRA.VolumeI.Order.StrictLinearOrder
+import LRA.VolumeI.Order.OrderedSets.StrictLinearOrder.Definition
 
 namespace LRA.VolumeI.Order
 
@@ -22,11 +22,11 @@ theorem GreaterThanIsStrictOrderIff
     StrictOrder (GreaterThan relation) ↔ StrictOrder relation := by
   sorry
 
-/-- Total-order laws are invariant under reversing the relation. -/
-theorem GreaterThanIsTotalOrderIff
+/-- Linear-order laws are invariant under reversing the relation. -/
+theorem GreaterThanIsLinearOrderIff
     {Alpha : Type u}
     (relation : LRA.VolumeI.Relations.Endorelation Alpha) :
-    TotalOrder (GreaterThan relation) ↔ TotalOrder relation := by
+    LinearOrder (GreaterThan relation) ↔ LinearOrder relation := by
   sorry
 
 /-- Strict-linear-order laws are invariant under reversing the relation. -/

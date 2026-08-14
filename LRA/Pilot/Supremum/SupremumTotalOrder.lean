@@ -1,5 +1,6 @@
 import LRA.Pilot.Supremum.SupremumNegation
-import LRA.VolumeI.Order.OrderedSets.TotalOrder.Definition
+import LRA.VolumeI.Order.OrderedSets.LinearOrder.Definition
+import LRA.VolumeI.Order.Relations.StrictPart.Definition
 
 /-!
 # Supremum failure under totality: the strict rewrite
@@ -37,10 +38,10 @@ Logical form:
 theorem NotRelatedIffReverseStrictOfTotalOrder
     {Alpha : Type u}
     {relation : LRA.VolumeI.Relations.Endorelation Alpha}
-    (relationIsTotalOrder : TotalOrder relation)
+    (relationIsLinearOrder : LinearOrder relation)
     (left right : Alpha) :
     ¬ relation left right ↔ StrictPart relation right left := by
-  obtain ⟨⟨reflexive, antisymmetric, _⟩, total⟩ := relationIsTotalOrder
+  obtain ⟨⟨reflexive, antisymmetric, _⟩, total⟩ := relationIsLinearOrder
   constructor
   · intro notLeftBelowRight
     have rightBelowLeft : relation right left :=
@@ -78,19 +79,19 @@ theorem NotUpperBoundIffStrictWitnessOfTotal
       ∃ witness : poset.Carrier,
         witness ∈ subset ∧
           StrictPart poset.NonStrictOrder candidate witness := by
-  have relationIsTotalOrder : TotalOrder poset.NonStrictOrder :=
+  have relationIsLinearOrder : LinearOrder poset.NonStrictOrder :=
     ⟨poset.NonStrictOrderIsPartialOrder, totality⟩
   rw [NotUpperBoundIffUpperBoundFailure]
   constructor
   · intro failure
     obtain ⟨witness, witnessInSubset, witnessNotBelow⟩ := failure
     exact ⟨witness, witnessInSubset,
-      (NotRelatedIffReverseStrictOfTotalOrder relationIsTotalOrder
+      (NotRelatedIffReverseStrictOfTotalOrder relationIsLinearOrder
         witness candidate).mp witnessNotBelow⟩
   · intro strictWitness
     obtain ⟨witness, witnessInSubset, candidateStrictlyBelow⟩ := strictWitness
     exact ⟨witness, witnessInSubset,
-      (NotRelatedIffReverseStrictOfTotalOrder relationIsTotalOrder
+      (NotRelatedIffReverseStrictOfTotalOrder relationIsLinearOrder
         witness candidate).mpr candidateStrictlyBelow⟩
 
 /-- Under a total order on the poset carrier, the supremum failure modes take
@@ -124,7 +125,7 @@ theorem NotLeastUpperBoundIffStrictFailureOfTotal
       (∃ competitor : poset.Carrier,
         UpperBound poset subset competitor ∧
           StrictPart poset.NonStrictOrder competitor candidate) := by
-  have relationIsTotalOrder : TotalOrder poset.NonStrictOrder :=
+  have relationIsLinearOrder : LinearOrder poset.NonStrictOrder :=
     ⟨poset.NonStrictOrderIsPartialOrder, totality⟩
   rw [NotLeastUpperBoundIffFailure]
   constructor
@@ -133,13 +134,13 @@ theorem NotLeastUpperBoundIffStrictFailureOfTotal
     | inl boundFailure =>
         obtain ⟨witness, witnessInSubset, witnessNotBelow⟩ := boundFailure
         exact Or.inl ⟨witness, witnessInSubset,
-          (NotRelatedIffReverseStrictOfTotalOrder relationIsTotalOrder
+          (NotRelatedIffReverseStrictOfTotalOrder relationIsLinearOrder
             witness candidate).mp witnessNotBelow⟩
     | inr sharpnessFailure =>
         obtain ⟨competitor, competitorIsUpperBound, candidateNotBelow⟩ :=
           sharpnessFailure
         exact Or.inr ⟨competitor, competitorIsUpperBound,
-          (NotRelatedIffReverseStrictOfTotalOrder relationIsTotalOrder
+          (NotRelatedIffReverseStrictOfTotalOrder relationIsLinearOrder
             candidate competitor).mp candidateNotBelow⟩
   · intro strictFailure
     cases strictFailure with
@@ -147,13 +148,13 @@ theorem NotLeastUpperBoundIffStrictFailureOfTotal
         obtain ⟨witness, witnessInSubset, candidateStrictlyBelow⟩ :=
           strictWitness
         exact Or.inl ⟨witness, witnessInSubset,
-          (NotRelatedIffReverseStrictOfTotalOrder relationIsTotalOrder
+          (NotRelatedIffReverseStrictOfTotalOrder relationIsLinearOrder
             witness candidate).mpr candidateStrictlyBelow⟩
     | inr strictCompetitor =>
         obtain ⟨competitor, competitorIsUpperBound, competitorStrictlyBelow⟩ :=
           strictCompetitor
         exact Or.inr ⟨competitor, competitorIsUpperBound,
-          (NotRelatedIffReverseStrictOfTotalOrder relationIsTotalOrder
+          (NotRelatedIffReverseStrictOfTotalOrder relationIsLinearOrder
             candidate competitor).mpr competitorStrictlyBelow⟩
 
 end LRA.Pilot.OrderBounds
