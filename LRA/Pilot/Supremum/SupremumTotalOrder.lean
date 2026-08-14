@@ -1,5 +1,5 @@
 import LRA.Pilot.Supremum.SupremumNegation
-import LRA.VolumeI.Relations.Order.OrderStructures.TotalOrder
+import LRA.VolumeI.Order.OrderStructures.TotalOrder
 
 /-!
 # Supremum failure under totality: the strict rewrite
@@ -19,7 +19,7 @@ that the conversion genuinely needs totality lives in
 
 namespace LRA.Pilot.OrderBounds
 
-open LRA.VolumeI.Relations.Order
+open LRA.VolumeI.Order
 
 universe u v
 

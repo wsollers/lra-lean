@@ -17,7 +17,7 @@ whole carrier.
 
 namespace LRA.Pilot.OrderBounds
 
-open LRA.VolumeI.Relations.Order
+open LRA.VolumeI.Order
 
 universe u v
 

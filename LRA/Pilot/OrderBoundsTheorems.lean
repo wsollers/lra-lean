@@ -11,7 +11,7 @@ module layout.
 
 namespace LRA.Pilot.OrderBounds
 
-open LRA.VolumeI.Relations.Order
+open LRA.VolumeI.Order
 
 universe v
 

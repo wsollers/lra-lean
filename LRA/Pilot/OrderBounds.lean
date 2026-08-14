@@ -1,5 +1,5 @@
 import LRA.Pilot.Metadata
-import LRA.VolumeI.Relations.Order.OrderStructures.Poset
+import LRA.VolumeI.Order.OrderStructures.Poset
 
 /-!
 # The Rigorous Definition
@@ -57,7 +57,7 @@ $$\forall u \in P, \quad
 
 namespace LRA.Pilot.OrderBounds
 
-open LRA.VolumeI.Relations.Order
+open LRA.VolumeI.Order
 
 universe u v
 

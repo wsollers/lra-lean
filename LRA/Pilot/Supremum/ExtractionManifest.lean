@@ -237,7 +237,7 @@ def manifest : ExtractionManifest := {
   primaryDeclaration
   entries
   dependencyNamespaceRoots := #[`LRA.Pilot.OrderBounds,
-    `LRA.VolumeI.Relations.Order.Poset]
+    `LRA.VolumeI.Order.Poset]
   binderRoleRules
   resultRoleRules
   applicabilityRequirements

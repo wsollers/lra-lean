@@ -27,7 +27,7 @@ order.
 namespace LRA.Pilot.OrderBounds.Counterexamples
 
 open LRA.Pilot.OrderBounds
-open LRA.VolumeI.Relations.Order
+open LRA.VolumeI.Order
 
 /-- The two-point discrete poset: the carrier is `Bool` and the order is
 equality, so distinct elements are incomparable.  Reflexivity, antisymmetry,

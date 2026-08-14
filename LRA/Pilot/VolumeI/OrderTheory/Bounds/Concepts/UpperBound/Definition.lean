@@ -1,6 +1,6 @@
 -- GENERATED PILOT ARTIFACT from order.upper-bound.pilot-002; edit the reviewed package, not this file.
 
-import LRA.VolumeI.Relations.Order.OrderStructures.Poset
+import LRA.VolumeI.Order.OrderStructures.Poset
 
 namespace LRA.Pilot.VolumeI.OrderTheory.Bounds
 
@@ -18,7 +18,7 @@ forall element : poset.Carrier,
 ```
 -/
 def UpperBound
-    (poset : LRA.VolumeI.Relations.Order.Poset)
+    (poset : LRA.VolumeI.Order.Poset)
     {SetObject : Type v}
     [Membership poset.Carrier SetObject]
     (subset : SetObject)

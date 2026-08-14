@@ -1,5 +1,5 @@
 import LRA.VolumeI.AlgebraicStructures.Bundles
-import LRA.VolumeI.Relations.Order.Completeness
+import LRA.VolumeI.Order.Completeness
 
 namespace LRA.VolumeI.AlgebraicStructures
 
@@ -28,14 +28,14 @@ Logical form:
 class OrderCompletenessLaws (R : Type u) (SetObject : Type v)
     [LE R] [Membership R SetObject] : Prop where
   Completeness :
-    LRA.VolumeI.Relations.Order.LeastUpperBoundProperty
+    LRA.VolumeI.Order.LeastUpperBoundProperty
       SetObject (fun a b : R => a ≤ b)
 ```
 -/
 class OrderCompletenessLaws (R : Type u) (SetObject : Type v)
     [LE R] [Membership R SetObject] : Prop where
   Completeness :
-    LRA.VolumeI.Relations.Order.LeastUpperBoundProperty
+    LRA.VolumeI.Order.LeastUpperBoundProperty
       SetObject (fun a b : R => a ≤ b)
 
 /-- A complete ordered field: the ordered-field bundle together with
@@ -78,13 +78,13 @@ Logical form:
 ```lean
 theorem Completeness [LE R] [Membership R SetObject]
     [OrderCompletenessLaws R SetObject] :
-    LRA.VolumeI.Relations.Order.LeastUpperBoundProperty
+    LRA.VolumeI.Order.LeastUpperBoundProperty
       SetObject (fun a b : R => a ≤ b)
 ```
 -/
 theorem Completeness [LE R] [Membership R SetObject]
     [OrderCompletenessLaws R SetObject] :
-    LRA.VolumeI.Relations.Order.LeastUpperBoundProperty
+    LRA.VolumeI.Order.LeastUpperBoundProperty
       SetObject (fun a b : R => a ≤ b) :=
   OrderCompletenessLaws.Completeness
 

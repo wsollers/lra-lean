@@ -12,12 +12,12 @@ a Volume I poset for the Upper Bound examples.
 Logical form:
 
 ```lean
-LRA.VolumeI.Relations.Order.Poset where
+LRA.VolumeI.Order.Poset where
   Carrier := Nat
   NonStrictOrder := fun left right => left <= right
 ```
 -/
-def NaturalNumberPoset : LRA.VolumeI.Relations.Order.Poset where
+def NaturalNumberPoset : LRA.VolumeI.Order.Poset where
   Carrier := Nat
   NonStrictOrder := fun left right => left <= right
   NonStrictOrderIsPartialOrder := by
@@ -64,7 +64,7 @@ UpperBound poset (empty : Set poset.Carrier) bound
 ```
 -/
 theorem EveryElementBoundsEmptySet
-    (poset : LRA.VolumeI.Relations.Order.Poset)
+    (poset : LRA.VolumeI.Order.Poset)
     (bound : poset.Carrier) :
     UpperBound poset (∅ : Set poset.Carrier) bound := by
   sorry

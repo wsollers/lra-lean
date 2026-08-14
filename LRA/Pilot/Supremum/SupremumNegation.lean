@@ -21,7 +21,7 @@ strict rewrite is only available under totality
 
 namespace LRA.Pilot.OrderBounds
 
-open LRA.VolumeI.Relations.Order
+open LRA.VolumeI.Order
 
 universe u v
 

@@ -1,5 +1,5 @@
 import LRA.VolumeI.Operations.Laws
-import LRA.VolumeI.Relations.Order.OrderStructures.Preorder
+import LRA.VolumeI.Order.OrderStructures.Preorder
 
 namespace LRA.VolumeI.Operations
 
@@ -55,7 +55,7 @@ theorem DivisibilityPreorder
     {identity : Alpha}
     (multiplicationIsAssociative : Associative multiplication)
     (identityIsTwoSided : Identity multiplication identity) :
-    LRA.VolumeI.Relations.Order.Preorder (Divides multiplication)
+    LRA.VolumeI.Order.Preorder (Divides multiplication)
 ```
 -/
 theorem DivisibilityPreorder
@@ -64,7 +64,7 @@ theorem DivisibilityPreorder
     {identity : Alpha}
     (multiplicationIsAssociative : Associative multiplication)
     (identityIsTwoSided : Identity multiplication identity) :
-    LRA.VolumeI.Relations.Order.Preorder (Divides multiplication) := by
+    LRA.VolumeI.Order.Preorder (Divides multiplication) := by
   sorry
 
 end LRA.VolumeI.Operations

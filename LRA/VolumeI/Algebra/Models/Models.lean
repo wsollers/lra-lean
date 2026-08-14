@@ -3,7 +3,7 @@
 
 import LRA.VolumeI.Algebra.Models.Signatures
 import LRA.VolumeI.AlgebraicStructures
-import LRA.VolumeI.Relations.Order.Relations
+import LRA.VolumeI.Order.Relations
 
 namespace LRA.VolumeI.Algebra.Models
 
@@ -480,7 +480,7 @@ example (M : RationalModel) (a b : M.Carrier) (h : a < b) :
   ExistsBetween a b h
 
 example (M : RealModel) :
-    LRA.VolumeI.Relations.Order.LeastUpperBoundProperty
+    LRA.VolumeI.Order.LeastUpperBoundProperty
       (Set M.Carrier) (fun a b : M.Carrier => a ≤ b) :=
   Completeness
 

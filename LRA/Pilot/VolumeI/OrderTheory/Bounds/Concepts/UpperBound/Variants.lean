@@ -20,7 +20,7 @@ UpperBound poset subset bound <->
 ```
 -/
 theorem UpperBoundIffContrapositive
-    (poset : LRA.VolumeI.Relations.Order.Poset)
+    (poset : LRA.VolumeI.Order.Poset)
     {SetObject : Type v}
     [Membership poset.Carrier SetObject]
     (subset : SetObject)

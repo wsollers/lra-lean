@@ -4,6 +4,6 @@ import LRA.VolumeI.Set
 import LRA.VolumeI.Functions
 import LRA.VolumeI.Operations
 import LRA.VolumeI.Relations
-import LRA.VolumeI.Relations.Order
+import LRA.VolumeI.Order
 import LRA.VolumeI.Algebra
 import LRA.VolumeI.AlgebraicStructures

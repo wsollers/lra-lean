@@ -45,7 +45,7 @@ relations:
       Field access `poset.NonStrictOrder element candidate` renders as
       `element \leq candidate`; the ambient poset moves into the quantifier
       bounds or the surrounding context line.
-  - lean: LRA.VolumeI.Relations.Order.StrictPart
+  - lean: LRA.VolumeI.Order.StrictPart
     surface: "<"
     latex: '<'
     note: >

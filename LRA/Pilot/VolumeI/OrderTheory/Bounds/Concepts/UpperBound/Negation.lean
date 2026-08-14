@@ -17,7 +17,7 @@ element ∈ subset /\ Not (poset.NonStrictOrder element bound)
 ```
 -/
 def UpperBoundFailureAt
-    (poset : LRA.VolumeI.Relations.Order.Poset)
+    (poset : LRA.VolumeI.Order.Poset)
     {SetObject : Type v}
     [Membership poset.Carrier SetObject]
     (subset : SetObject)
@@ -35,7 +35,7 @@ Not (UpperBound poset subset bound)
 ```
 -/
 def NotUpperBound
-    (poset : LRA.VolumeI.Relations.Order.Poset)
+    (poset : LRA.VolumeI.Order.Poset)
     {SetObject : Type v}
     [Membership poset.Carrier SetObject]
     (subset : SetObject)
@@ -54,7 +54,7 @@ NotUpperBound poset subset bound <->
 ```
 -/
 theorem NotUpperBoundIffExistsFailure
-    (poset : LRA.VolumeI.Relations.Order.Poset)
+    (poset : LRA.VolumeI.Order.Poset)
     {SetObject : Type v}
     [Membership poset.Carrier SetObject]
     (subset : SetObject)

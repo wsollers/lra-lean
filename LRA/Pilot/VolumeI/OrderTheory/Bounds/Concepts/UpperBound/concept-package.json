@@ -89,7 +89,7 @@
         {
           "file_name": "Definition.lean",
           "imports": [
-            "LRA.VolumeI.Relations.Order.OrderStructures.Poset"
+            "LRA.VolumeI.Order.OrderStructures.Poset"
           ],
           "preamble": "universe u v",
           "declarations": [
@@ -99,7 +99,7 @@
               "family_role": "primary-definition",
               "proof_status": "not-applicable",
               "publication_status": "proposed",
-              "source": "/--\n`UpperBound poset subset bound` means every member of `subset` is below\n`bound` in the non-strict order supplied by `poset`.\n\nLogical form:\n\n```lean\nforall element : poset.Carrier,\n  element ∈ subset -> poset.NonStrictOrder element bound\n```\n-/\ndef UpperBound\n    (poset : LRA.VolumeI.Relations.Order.Poset)\n    {SetObject : Type v}\n    [Membership poset.Carrier SetObject]\n    (subset : SetObject)\n    (bound : poset.Carrier) : Prop :=\n  forall element : poset.Carrier,\n    element ∈ subset -> poset.NonStrictOrder element bound"
+              "source": "/--\n`UpperBound poset subset bound` means every member of `subset` is below\n`bound` in the non-strict order supplied by `poset`.\n\nLogical form:\n\n```lean\nforall element : poset.Carrier,\n  element ∈ subset -> poset.NonStrictOrder element bound\n```\n-/\ndef UpperBound\n    (poset : LRA.VolumeI.Order.Poset)\n    {SetObject : Type v}\n    [Membership poset.Carrier SetObject]\n    (subset : SetObject)\n    (bound : poset.Carrier) : Prop :=\n  forall element : poset.Carrier,\n    element ∈ subset -> poset.NonStrictOrder element bound"
             }
           ]
         },
@@ -116,7 +116,7 @@
               "family_role": "failure-predicate",
               "proof_status": "not-applicable",
               "publication_status": "proposed",
-              "source": "/--\n`UpperBoundFailureAt poset subset bound element` says that `element` belongs\nto `subset` but is not below `bound`.\n\nLogical form:\n\n```lean\nelement ∈ subset /\\ Not (poset.NonStrictOrder element bound)\n```\n-/\ndef UpperBoundFailureAt\n    (poset : LRA.VolumeI.Relations.Order.Poset)\n    {SetObject : Type v}\n    [Membership poset.Carrier SetObject]\n    (subset : SetObject)\n    (bound element : poset.Carrier) : Prop :=\n  element ∈ subset /\\ Not (poset.NonStrictOrder element bound)"
+              "source": "/--\n`UpperBoundFailureAt poset subset bound element` says that `element` belongs\nto `subset` but is not below `bound`.\n\nLogical form:\n\n```lean\nelement ∈ subset /\\ Not (poset.NonStrictOrder element bound)\n```\n-/\ndef UpperBoundFailureAt\n    (poset : LRA.VolumeI.Order.Poset)\n    {SetObject : Type v}\n    [Membership poset.Carrier SetObject]\n    (subset : SetObject)\n    (bound element : poset.Carrier) : Prop :=\n  element ∈ subset /\\ Not (poset.NonStrictOrder element bound)"
             },
             {
               "name": "NotUpperBound",
@@ -124,7 +124,7 @@
               "family_role": "literal-negation",
               "proof_status": "not-applicable",
               "publication_status": "proposed",
-              "source": "/--\n`NotUpperBound poset subset bound` is the literal negation of the primary\nupper-bound predicate.\n\nLogical form:\n\n```lean\nNot (UpperBound poset subset bound)\n```\n-/\ndef NotUpperBound\n    (poset : LRA.VolumeI.Relations.Order.Poset)\n    {SetObject : Type v}\n    [Membership poset.Carrier SetObject]\n    (subset : SetObject)\n    (bound : poset.Carrier) : Prop :=\n  Not (UpperBound poset subset bound)"
+              "source": "/--\n`NotUpperBound poset subset bound` is the literal negation of the primary\nupper-bound predicate.\n\nLogical form:\n\n```lean\nNot (UpperBound poset subset bound)\n```\n-/\ndef NotUpperBound\n    (poset : LRA.VolumeI.Order.Poset)\n    {SetObject : Type v}\n    [Membership poset.Carrier SetObject]\n    (subset : SetObject)\n    (bound : poset.Carrier) : Prop :=\n  Not (UpperBound poset subset bound)"
             },
             {
               "name": "NotUpperBoundIffExistsFailure",
@@ -132,7 +132,7 @@
               "family_role": "pushed-negation",
               "proof_status": "stub-sorry",
               "publication_status": "unreviewed",
-              "source": "/--\nA candidate fails to be an upper bound exactly when some subset member is not\nbelow it. The witness-extraction direction uses classical logic.\n\nLogical form:\n\n```lean\nNotUpperBound poset subset bound <->\n  exists element, UpperBoundFailureAt poset subset bound element\n```\n-/\ntheorem NotUpperBoundIffExistsFailure\n    (poset : LRA.VolumeI.Relations.Order.Poset)\n    {SetObject : Type v}\n    [Membership poset.Carrier SetObject]\n    (subset : SetObject)\n    (bound : poset.Carrier) :\n    NotUpperBound poset subset bound <->\n      exists element, UpperBoundFailureAt poset subset bound element := by\n  sorry"
+              "source": "/--\nA candidate fails to be an upper bound exactly when some subset member is not\nbelow it. The witness-extraction direction uses classical logic.\n\nLogical form:\n\n```lean\nNotUpperBound poset subset bound <->\n  exists element, UpperBoundFailureAt poset subset bound element\n```\n-/\ntheorem NotUpperBoundIffExistsFailure\n    (poset : LRA.VolumeI.Order.Poset)\n    {SetObject : Type v}\n    [Membership poset.Carrier SetObject]\n    (subset : SetObject)\n    (bound : poset.Carrier) :\n    NotUpperBound poset subset bound <->\n      exists element, UpperBoundFailureAt poset subset bound element := by\n  sorry"
             }
           ]
         },
@@ -149,7 +149,7 @@
               "family_role": "contrapositive-variant",
               "proof_status": "stub-sorry",
               "publication_status": "unreviewed",
-              "source": "/--\nA candidate is an upper bound exactly when every carrier element not below the\ncandidate is excluded from the subset. The reverse direction uses classical\nlogic for the arbitrary proposition-valued order relation.\n\nLogical form:\n\n```lean\nUpperBound poset subset bound <->\n  forall element,\n    Not (poset.NonStrictOrder element bound) -> element ∉ subset\n```\n-/\ntheorem UpperBoundIffContrapositive\n    (poset : LRA.VolumeI.Relations.Order.Poset)\n    {SetObject : Type v}\n    [Membership poset.Carrier SetObject]\n    (subset : SetObject)\n    (bound : poset.Carrier) :\n    UpperBound poset subset bound <->\n      forall element,\n        Not (poset.NonStrictOrder element bound) -> element ∉ subset := by\n  sorry"
+              "source": "/--\nA candidate is an upper bound exactly when every carrier element not below the\ncandidate is excluded from the subset. The reverse direction uses classical\nlogic for the arbitrary proposition-valued order relation.\n\nLogical form:\n\n```lean\nUpperBound poset subset bound <->\n  forall element,\n    Not (poset.NonStrictOrder element bound) -> element ∉ subset\n```\n-/\ntheorem UpperBoundIffContrapositive\n    (poset : LRA.VolumeI.Order.Poset)\n    {SetObject : Type v}\n    [Membership poset.Carrier SetObject]\n    (subset : SetObject)\n    (bound : poset.Carrier) :\n    UpperBound poset subset bound <->\n      forall element,\n        Not (poset.NonStrictOrder element bound) -> element ∉ subset := by\n  sorry"
             }
           ]
         },
@@ -167,7 +167,7 @@
               "family_role": "example-structure",
               "proof_status": "not-applicable",
               "publication_status": "not-for-publication",
-              "source": "/--\n`NaturalNumberPoset` packages the usual non-strict order on natural numbers as\na Volume I poset for the Upper Bound examples.\n\nLogical form:\n\n```lean\nLRA.VolumeI.Relations.Order.Poset where\n  Carrier := Nat\n  NonStrictOrder := fun left right => left <= right\n```\n-/\ndef NaturalNumberPoset : LRA.VolumeI.Relations.Order.Poset where\n  Carrier := Nat\n  NonStrictOrder := fun left right => left <= right\n  NonStrictOrderIsPartialOrder := by\n    refine ⟨?_, ?_, ?_⟩\n    · intro element\n      exact Nat.le_refl element\n    · intro left right leftLeRight rightLeLeft\n      exact Nat.le_antisymm leftLeRight rightLeLeft\n    · intro first second third firstLeSecond secondLeThird\n      exact Nat.le_trans firstLeSecond secondLeThird"
+              "source": "/--\n`NaturalNumberPoset` packages the usual non-strict order on natural numbers as\na Volume I poset for the Upper Bound examples.\n\nLogical form:\n\n```lean\nLRA.VolumeI.Order.Poset where\n  Carrier := Nat\n  NonStrictOrder := fun left right => left <= right\n```\n-/\ndef NaturalNumberPoset : LRA.VolumeI.Order.Poset where\n  Carrier := Nat\n  NonStrictOrder := fun left right => left <= right\n  NonStrictOrderIsPartialOrder := by\n    refine ⟨?_, ?_, ?_⟩\n    · intro element\n      exact Nat.le_refl element\n    · intro left right leftLeRight rightLeLeft\n      exact Nat.le_antisymm leftLeRight rightLeLeft\n    · intro first second third firstLeSecond secondLeThird\n      exact Nat.le_trans firstLeSecond secondLeThird"
             },
             {
               "name": "ZeroSingleton",
@@ -191,7 +191,7 @@
               "family_role": "empty-set-boundary",
               "proof_status": "stub-sorry",
               "publication_status": "proposed",
-              "source": "/--\nEvery element of a Volume I poset is an upper bound of its empty subset.\n\nLogical form:\n\n```lean\nUpperBound poset (empty : Set poset.Carrier) bound\n```\n-/\ntheorem EveryElementBoundsEmptySet\n    (poset : LRA.VolumeI.Relations.Order.Poset)\n    (bound : poset.Carrier) :\n    UpperBound poset (∅ : Set poset.Carrier) bound := by\n  sorry"
+              "source": "/--\nEvery element of a Volume I poset is an upper bound of its empty subset.\n\nLogical form:\n\n```lean\nUpperBound poset (empty : Set poset.Carrier) bound\n```\n-/\ntheorem EveryElementBoundsEmptySet\n    (poset : LRA.VolumeI.Order.Poset)\n    (bound : poset.Carrier) :\n    UpperBound poset (∅ : Set poset.Carrier) bound := by\n  sorry"
             }
           ]
         },
