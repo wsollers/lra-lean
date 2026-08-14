@@ -1,0 +1,376 @@
+# Prompt: Review the Volume I Order Refactor
+
+You are reviewing the in-progress order-theory refactor in the `lra-lean`
+repository. Perform an independent, evidence-based review of
+`LRA/VolumeI/Order` and its public aggregate `LRA/VolumeI/Order.lean`.
+
+The review is about mathematical and curricular design before proof work.
+Declarations containing `sorry` are expected. Do not downgrade a declaration
+merely because its proof is `sorry`; review the mathematical statement,
+hypotheses, definitions, dependency placement, and intended API.
+
+Write the final review to the repository root as `review-order.md`. Replace an
+older review only when explicitly authorized. Do not edit Lean source as part
+of this task.
+
+## Governing objective
+
+Decide whether the Order refactor:
+
+1. states standard order theory correctly;
+2. gives each concept its canonical mathematical meaning;
+3. uses hypotheses that are sufficient but no stronger than necessary;
+4. neither silently weakens a concept nor excludes legitimate examples;
+5. provides useful theorems for study after set theory and before metric
+   spaces, topology, measure theory, and advanced analysis;
+6. treats failure modes as genuine, proved examples of exact failed
+   conditions;
+7. follows the repository's `Order/<Topic>/<Concept>/...` organization; and
+8. can consume Mathlib `Set` objects and can expose LRA orders safely to
+   Mathlib's typeclass-driven API.
+
+Treat “canonical” as a mathematical requirement, not a naming preference. A
+definition that becomes vacuous, contradictory, or materially different under
+a valid advertised input is not canonical.
+
+## Required preparation
+
+1. Read the repository-root `AGENTS.md` and resolve the canonical governance
+   route for this exact review task.
+2. Read the returned eager governance packet in order.
+3. Read the repository architecture section governing concept packages and
+   semantic file roles.
+4. Record the reviewed Git revision and worktree status. Preserve unrelated
+   changes and generated artifacts.
+5. Inventory every file below `LRA/VolumeI/Order`, plus
+   `LRA/VolumeI/Order.lean`.
+6. Inspect directly used relation predicates in
+   `LRA/VolumeI/Relations`, especially reflexivity, irreflexivity,
+   antisymmetry, asymmetry, transitivity, totality/trichotomy, density,
+   minimality, and well-foundedness.
+7. Inspect relevant production and pilot interoperability code, including
+   Mathlib adapters and order/bounds pilots. Pilot code is evidence of a path,
+   not production API.
+8. Inspect the pinned Mathlib source for the exact local meanings of the
+   corresponding order classes and set predicates. Prefer the checked-out
+   Mathlib source over recollection.
+
+Do not assume a previous `review-order.md` remains correct. It may be read as
+prior context, but every retained finding must be independently verified
+against the current tree.
+
+## Review method
+
+### 1. Build a declaration and dependency inventory
+
+For every public definition, structure, abbreviation, theorem, and example,
+record:
+
+- its canonical owner and namespace;
+- strict versus non-strict relation polarity;
+- bundled versus unbundled representation;
+- required mathematical laws;
+- set backend, if any;
+- imports and downstream aggregate exposure;
+- duplicate or competing declarations; and
+- the semantic role of its file.
+
+Check for dependency inversions, unnecessary imports, parallel APIs with no
+bridge, declarations owned by flat compatibility files, and public concepts
+that are not exported through the expected aggregate.
+
+### 2. Normalize every mathematical statement
+
+Translate each definition and theorem into ordinary mathematical language.
+Compare it with the standard statement used in order theory. Explicitly test:
+
+- preorder;
+- partial order and poset;
+- strict partial order;
+- total/linear and strict total/linear orders;
+- strict/non-strict correspondence and duality;
+- comparability, chains, covers, and directed subsets;
+- upper/lower bounds and boundedness;
+- least/greatest versus minimal/maximal elements;
+- suprema/infima, joins/meets, lattices, and completeness;
+- dense and discrete orders;
+- well-orders and well-founded relations; and
+- order-preserving/reversing maps and embeddings, whether present or missing.
+
+For each statement ask:
+
+- Does the displayed formula actually imply the prose?
+- Does reflexivity make a supposedly strict condition vacuous?
+- Does irreflexivity make a supposedly non-strict condition impossible?
+- Are equality cases handled correctly?
+- Is an assumption stronger than the proof or conclusion needs?
+- Is a convention-dependent choice named and documented?
+- Does an arbitrary relation need to be restricted to a preorder, partial
+  order, strict order, or linear order?
+- Does quantification over a set backend truly mean all subsets, or merely a
+  selected family of represented subsets?
+- Is a theorem a real consequence, an equivalence, or only a projection of a
+  stored field?
+
+Use concrete adversarial models. At minimum test equality, the empty and
+universal relations, natural `<` and `≤`, integer order, divisibility, subset
+inclusion, a finite non-total poset, rationals, and a degenerate membership
+backend. A definition that accepts both strict and non-strict relations must be
+tested under both readings.
+
+### 3. Check theorem usefulness and curricular completeness
+
+The target audience has studied sets, relations, and functions, but has not
+yet studied topology, metric spaces, measure theory, or advanced analysis.
+The Order material should therefore form a coherent bridge rather than an
+encyclopedic import of later mathematics.
+
+Require a useful theorem spine, not only constructor projections. Look for or
+recommend, as appropriate:
+
+- equivalent axiom systems and genuine `↔` characterizations;
+- uniqueness of least/greatest elements and suprema/infima;
+- least/greatest versus minimal/maximal distinctions;
+- maximum/minimum implications for supremum/infimum;
+- monotonicity of bounds under subset inclusion and maps;
+- duality of bounds, extrema, joins/meets, and completeness;
+- strict/non-strict conversions for partial and total orders;
+- chains, directedness, antichains, covers, and finite-poset examples;
+- semilattices before lattices and complete lattices;
+- well-founded induction and its relation to subset-minimal principles; and
+- monotone maps, order embeddings, and order isomorphisms needed by later
+  subjects.
+
+Do not demand metric, topological, measure-theoretic, or analytic results in
+Volume I. Examples using `Nat`, `Int`, `Rat`, finite sets, powersets, and
+divisibility are appropriate when they illuminate the hierarchy.
+
+Distinguish:
+
+- a missing foundational theorem needed for later study;
+- a useful optional enrichment; and
+- advanced material that should remain out of scope.
+
+### 4. Audit failure modes
+
+For every concept, identify each independent defining condition. A proper
+failure-mode case must:
+
+1. name the relation, structure, subset, or witness precisely;
+2. state the exact property that fails;
+3. prove the properties that still hold when the purpose is axiom
+   independence;
+4. immediately pair a named failure predicate or witness construction with a
+   theorem proving the advertised profile; and
+5. live with the concept whose condition fails, not merely with a weaker
+   concept that still holds.
+
+Prefer statements such as
+
+```lean
+Reflexive r ∧ Antisymmetric r ∧ ¬ Transitive r
+```
+
+or an explicit existential counterexample over a bare
+`¬ PartialOrder r` when the pedagogical point is independence of
+transitivity. A theorem saying that a valid preorder is not antisymmetric is a
+boundary between preorder and partial order, not a failure of preorder.
+
+Check that examples are mathematically nondegenerate and actually inhabit the
+claimed carrier. Check all equality and empty-set edge cases.
+
+### 5. Audit organization
+
+Apply the repository architecture literally:
+
+```text
+LRA/VolumeI/Order/
+  <Topic>/
+    <Concept>/
+      Definition.lean
+      Characterizations.lean
+      Theorems.lean
+      FailureModes.lean
+      Examples.lean
+      Relationships.lean
+      All.lean
+```
+
+Only create or require the semantic files a concept needs, but enforce their
+roles:
+
+- `Definition`: public definition and immediate unfolding/evaluation facts;
+- `Characterizations`: equivalent formulations, normally `↔` results;
+- `Theorems`: selected canonical consequences;
+- `FailureModes`: reviewed negations, witnesses, and counterexamples;
+- `Examples`: positive examples;
+- `Relationships`: duals, conversions, restrictions, extensions, and bridges;
+- `All`: deterministic concept aggregate and no authored mathematics.
+
+Check that topic aggregates import concept `All` modules and that the volume
+aggregate imports topic aggregates. Flag flat legacy files, duplicate owners,
+ad hoc filenames, and generic examples detached from their concepts. Recommend
+a migration map, but do not move files during the review.
+
+### 6. Audit Mathlib interoperability
+
+Review both directions separately.
+
+#### LRA consuming Mathlib sets and orders
+
+Verify with declarations or existing compiled examples that the LRA
+predicates can be instantiated with `Set α` and a Mathlib order. Compare them
+with the pinned Mathlib definitions, including as applicable:
+
+- `upperBounds` and `lowerBounds`;
+- `BddAbove` and `BddBelow`;
+- `IsLeast` and `IsGreatest`;
+- `IsLUB` and `IsGLB`;
+- `DenselyOrdered`;
+- `WellFounded`, `IsWellFounded`, and `IsWellOrder`; and
+- `Preorder`, `PartialOrder`, `LinearOrder`, and complete-order classes.
+
+Require named equivalence or adapter theorems where the definitions are meant
+to coincide. Mere compatibility of `Membership` is a path for `Set α`, but it
+is not a complete interoperability API.
+
+#### Mathlib consuming LRA orders
+
+Verify that an LRA poset/order certificate can be converted into the
+appropriate root Mathlib/Lean structure and installed locally with `letI`.
+Verify the converse adapter from an existing Mathlib order to the LRA
+representation. These must be production declarations if downstream code is
+expected to rely on them; pilot-only declarations count as prototypes.
+
+Prefer ordinary adapter definitions and local instances. Flag global reverse
+instances that could cause instance loops, diamonds, or silently select among
+multiple relations on one carrier.
+
+Check whether other Volume I certificate hierarchies define competing order
+concepts. Require an ownership decision or explicit equivalence theorems.
+
+### 7. Verify without conflating proof completeness with design correctness
+
+Run the governance-required build gate. If bare `lake build` has no configured
+default target, report that fact and run the explicit Volume I target as an
+additional meaningful check. Record:
+
+- exact command;
+- exit status;
+- whether compilation actually occurred;
+- relevant warnings; and
+- any skipped check.
+
+Build success does not establish mathematical correctness when statements use
+`sorry`. Conversely, expected `sorry` warnings are not review findings for
+this task.
+
+## Severity rubric
+
+Use these labels consistently:
+
+- **P0 — Mathematical blocker:** the statement formalizes the wrong concept,
+  is vacuous or impossible on advertised inputs, reverses a relation, mishandles
+  equality, or would teach false mathematics. Must be fixed before proof work.
+- **P1 — Canonical/API blocker:** the mathematics can be repaired or
+  specialized, but current naming, hypotheses, backend quantification,
+  ownership, failure coverage, or missing interoperability makes it unsafe as
+  canonical public API.
+- **P2 — Curricular or usefulness defect:** correct material is misleadingly
+  emphasized, unnecessarily restrictive, redundant, poorly exemplified, or
+  missing a foundational derived theorem.
+- **P3 — Polish and traceability:** documentation, source mapping, naming
+  consistency, import hygiene, or low-risk discoverability issue.
+
+Every P0 or P1 finding must contain:
+
+1. a file and declaration reference;
+2. the current logical form;
+3. a concrete derivation, model, or counterexample establishing the problem;
+4. the canonical mathematical expectation;
+5. a bounded recommended correction; and
+6. a regression theorem/example that would prevent recurrence.
+
+Do not label stylistic preferences P0 or P1.
+
+## Scoring rubric
+
+Score independently in each category. Award points only for evidence present
+in the current production tree.
+
+| Category | Points | Full-credit standard |
+|---|---:|---|
+| Mathematical correctness | 30 | Every definition and theorem statement has the standard meaning; polarity, equality, emptiness, and degenerate-model tests pass. |
+| Canonical scope and hypothesis strength | 15 | Assumptions are weakest sufficient ones; convention variants and backend-relative forms are explicit; no legitimate mathematics is silently excluded. |
+| Theorem utility and curriculum | 15 | A coherent post-set-theory theorem spine exists, with genuine derived results and no dependence on later analysis. |
+| Failure modes and examples | 15 | Every independent condition has an exact proved witness profile; boundary cases live with the right concept; positive examples teach the hierarchy. |
+| Topic/concept organization | 10 | Public concepts have one owner under `Order/<Topic>/<Concept>` and semantic files/aggregates obey their roles. |
+| Mathlib and `Set` interoperability | 10 | Production bridges work in both directions, `Set α` equivalences are exposed, and local-instance usage avoids loops or diamonds. |
+| Evidence, sources, and verification | 5 | Findings cite exact declarations, conventions have section-level sources, and meaningful build results are recorded accurately. |
+| **Total** | **100** | |
+
+Apply these caps:
+
+- Any unresolved P0 caps the total at **59**.
+- Any unresolved P1 caps the total at **79**.
+- No demonstrated production path from LRA orders to Mathlib caps the
+  interoperability category at **4/10**.
+- Failure predicates without theorem witnesses cap failure modes at **7/15**.
+- A mostly flat module layout caps organization at **5/10**.
+- A theorem surface consisting mainly of projections caps theorem utility at
+  **7/15**.
+
+Readiness bands:
+
+- **90–100, Ready:** no P0/P1 findings; suitable to begin systematic proof
+  work and downstream use.
+- **80–89, Nearly ready:** no P0; only bounded P2/P3 work remains.
+- **60–79, Revision required:** canonical/API blockers remain.
+- **0–59, Redesign required:** at least one mathematical blocker remains.
+
+The numerical score summarizes the evidence; it must never override a hard
+mathematical blocker.
+
+## Required `review-order.md` structure
+
+Write a self-contained report with these sections:
+
+1. **Review metadata** — date, revision, scope, ignored `sorry` policy, and
+   files inspected.
+2. **Verdict** — one readiness band and a concise explanation.
+3. **Scorecard** — category scores, total, applied caps, and short rationale.
+4. **Priority findings** — ordered P0 through P3; findings first, not a diary
+   of commands.
+5. **Confirmed-correct components** — distinguish sound declarations from
+   unreviewed or qualified ones.
+6. **Failure-mode coverage matrix** — concept, defining conditions, positive
+   example, exact negative witness, theorem status, and owner.
+7. **Curriculum coverage matrix** — foundational concept/theorem, current
+   status, priority, and why later subjects need it.
+8. **Organization assessment** — current violations and proposed
+   `Order/<Topic>/<Concept>` migration map.
+9. **Mathlib interoperability assessment** — `Set α`, Mathlib-to-LRA,
+   LRA-to-Mathlib, production versus pilot status, and instance-safety notes.
+10. **Recommended implementation order** — dependency-aware, with P0 fixes
+    before proof expansion.
+11. **Acceptance criteria for re-review** — objective checks rather than broad
+    aspirations.
+12. **Verification** — exact commands, outcomes, warnings, and limitations.
+
+Use repository-relative links to local files. Quote only the smallest logical
+form needed to establish a finding. Separate confirmed defects from
+recommendations and explicitly mark any inference or unresolved ambiguity.
+
+## Reviewer conduct
+
+- Be mathematically exact and direct.
+- Do not approve a familiar name without checking its formula.
+- Do not infer correctness from compilation or from a docstring.
+- Do not demand proofs during this design review.
+- Do not silently choose between strict and non-strict conventions.
+- Do not treat pilot code as shipped production API.
+- Do not broaden the curriculum into advanced analysis.
+- Do not edit the refactor while reviewing it.
+- Preserve unrelated worktree changes.
+- If governance, canonical sources, or ownership cannot be resolved, stop and
+  report the blocker rather than inventing a convention.
