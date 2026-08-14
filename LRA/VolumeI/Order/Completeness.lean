@@ -1,4 +1,4 @@
-import LRA.VolumeI.Order.Lattices
+import LRA.VolumeI.Order.Bounds
 
 namespace LRA.VolumeI.Order
 
