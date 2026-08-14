@@ -16,4 +16,9 @@ def LinearOrder {Alpha : Type u}
     (relation : LRA.VolumeI.Relations.Endorelation Alpha) : Prop :=
   PartialOrder relation /\ LRA.VolumeI.Relations.Total relation
 
+/-- `TotalOrder` is the standard synonym for `LinearOrder`. -/
+abbrev TotalOrder {Alpha : Type u}
+    (relation : LRA.VolumeI.Relations.Endorelation Alpha) : Prop :=
+  LinearOrder relation
+
 end LRA.VolumeI.Order
