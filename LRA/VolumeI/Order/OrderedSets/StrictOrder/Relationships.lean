@@ -18,7 +18,7 @@ fun left right => order.relation left right \/ left = right
 def ReflexiveClosure
     {Carrier : Type u}
     (order : StrictOrderRelation Carrier) :
-    LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier :=
+    LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier :=
   LRA.VolumeI.Order.LessThanOrEqual order.relation
 
 /--

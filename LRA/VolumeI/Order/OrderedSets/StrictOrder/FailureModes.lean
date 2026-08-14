@@ -16,7 +16,7 @@ Not (LRA.VolumeI.Order.StrictOrder relation)
 -/
 def FailsStrictOrder
     {Carrier : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier) :
+    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier) :
     Prop :=
   Not (LRA.VolumeI.Order.StrictOrder relation)
 

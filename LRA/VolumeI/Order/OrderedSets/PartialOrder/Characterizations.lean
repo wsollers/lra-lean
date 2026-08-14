@@ -14,7 +14,7 @@ LRA.VolumeI.Order.PartialOrder relation ->
 -/
 theorem PartialOrderIsReflexive
     {Carrier : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier)
+    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier)
     (relationIsPartialOrder : LRA.VolumeI.Order.PartialOrder relation) :
     LRA.VolumeI.Relations.Reflexive relation :=
   relationIsPartialOrder.1
@@ -31,7 +31,7 @@ LRA.VolumeI.Order.PartialOrder relation ->
 -/
 theorem PartialOrderIsAntisymmetric
     {Carrier : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier)
+    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier)
     (relationIsPartialOrder : LRA.VolumeI.Order.PartialOrder relation) :
     LRA.VolumeI.Relations.Antisymmetric relation :=
   relationIsPartialOrder.2.1
@@ -48,7 +48,7 @@ LRA.VolumeI.Order.PartialOrder relation ->
 -/
 theorem PartialOrderIsTransitive
     {Carrier : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier)
+    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier)
     (relationIsPartialOrder : LRA.VolumeI.Order.PartialOrder relation) :
     LRA.VolumeI.Relations.Transitive relation :=
   relationIsPartialOrder.2.2

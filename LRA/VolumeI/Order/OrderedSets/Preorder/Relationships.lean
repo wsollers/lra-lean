@@ -17,7 +17,7 @@ fun left right => preorder.relation left right /\ Not (preorder.relation right l
 def StrictPartByNotConverse
     {Carrier : Type u}
     (preorder : PreorderRelation Carrier) :
-    LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier :=
+    LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier :=
   fun left right =>
     preorder.relation left right /\ Not (preorder.relation right left)
 

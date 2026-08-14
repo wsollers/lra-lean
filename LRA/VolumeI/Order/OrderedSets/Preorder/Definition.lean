@@ -1,4 +1,4 @@
-import LRA.VolumeI.Order.OrderedSets.OrderRelation.Definition
+import LRA.VolumeI.Order.Relations.OrderRelation.Definition
 
 namespace LRA.VolumeI.Order
 
@@ -11,7 +11,7 @@ Logical form:
 
 ```lean
 def Preorder {Alpha : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Alpha) :
+    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Alpha) :
     Prop :=
   LRA.VolumeI.Relations.Reflexive relation /\
     LRA.VolumeI.Relations.Transitive relation
@@ -36,7 +36,7 @@ LRA.VolumeI.Order.Preorder relation
 ```
 -/
 structure PreorderRelation (Carrier : Type u) where
-  relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier
+  relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier
   isPreorder : LRA.VolumeI.Order.Preorder relation
 
 end LRA.VolumeI.Order.OrderedSets.Preorder

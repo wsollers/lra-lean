@@ -17,7 +17,7 @@ Not (LRA.VolumeI.Order.PartialOrder relation)
 -/
 def FailsNonStrictPartialOrder
     {Carrier : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier) :
+    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier) :
     Prop :=
   Not (LRA.VolumeI.Order.PartialOrder relation)
 
@@ -32,7 +32,7 @@ Not (LRA.VolumeI.Relations.Transitive relation)
 -/
 def FailsTransitivity
     {Carrier : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier) :
+    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier) :
     Prop :=
   Not (LRA.VolumeI.Relations.Transitive relation)
 

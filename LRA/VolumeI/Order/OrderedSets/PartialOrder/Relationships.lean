@@ -19,7 +19,7 @@ fun left right => order.relation left right /\ left /= right
 def StrictPart
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
-    LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier :=
+    LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier :=
   LRA.VolumeI.Order.StrictPart order.relation
 
 /--

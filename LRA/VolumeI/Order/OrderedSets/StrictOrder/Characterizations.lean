@@ -14,7 +14,7 @@ LRA.VolumeI.Order.StrictOrder relation ->
 -/
 theorem StrictOrderIsIrreflexive
     {Carrier : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier)
+    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier)
     (relationIsStrictOrder : LRA.VolumeI.Order.StrictOrder relation) :
     LRA.VolumeI.Relations.Irreflexive relation :=
   relationIsStrictOrder.1
@@ -31,7 +31,7 @@ LRA.VolumeI.Order.StrictOrder relation ->
 -/
 theorem StrictOrderIsTransitive
     {Carrier : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier)
+    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier)
     (relationIsStrictOrder : LRA.VolumeI.Order.StrictOrder relation) :
     LRA.VolumeI.Relations.Transitive relation :=
   relationIsStrictOrder.2
@@ -48,7 +48,7 @@ LRA.VolumeI.Order.StrictOrder relation ->
 -/
 theorem StrictOrderIsAsymmetric
     {Carrier : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier)
+    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier)
     (relationIsStrictOrder : LRA.VolumeI.Order.StrictOrder relation) :
     LRA.VolumeI.Relations.Asymmetric relation := by
   sorry
@@ -66,7 +66,7 @@ LRA.VolumeI.Order.StrictOrder relation ->
 -/
 theorem StrictOrderIsAntisymmetric
     {Carrier : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier)
+    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier)
     (relationIsStrictOrder : LRA.VolumeI.Order.StrictOrder relation) :
     LRA.VolumeI.Relations.Antisymmetric relation := by
   sorry

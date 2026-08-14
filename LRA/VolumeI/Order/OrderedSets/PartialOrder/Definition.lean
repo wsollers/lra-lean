@@ -11,7 +11,7 @@ Logical form:
 
 ```lean
 def PartialOrder {Alpha : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Alpha) :
+    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Alpha) :
     Prop :=
   LRA.VolumeI.Relations.Reflexive relation /\
     LRA.VolumeI.Relations.Antisymmetric relation /\
@@ -38,12 +38,12 @@ Logical form:
 
 ```lean
 structure PartialOrderRelation (Carrier : Type u) where
-  relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier
+  relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier
   relationIsPartialOrder : LRA.VolumeI.Order.PartialOrder relation
 ```
 -/
 structure PartialOrderRelation (Carrier : Type u) where
-  relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier
+  relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier
   relationIsPartialOrder : LRA.VolumeI.Order.PartialOrder relation
 
 end LRA.VolumeI.Order.OrderedSets.PartialOrder

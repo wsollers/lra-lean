@@ -1,6 +1,6 @@
 import LRA.VolumeI.Relations.Basic.Properties
 
-namespace LRA.VolumeI.Order.OrderedSets.OrderRelation
+namespace LRA.VolumeI.Order.OrderedSets
 
 universe u
 
@@ -14,7 +14,7 @@ Logical form:
 LRA.VolumeI.Relations.Endorelation Carrier
 ```
 -/
-abbrev Relation (Carrier : Type u) :=
+abbrev OrderRelation (Carrier : Type u) :=
   LRA.VolumeI.Relations.Endorelation Carrier
 
-end LRA.VolumeI.Order.OrderedSets.OrderRelation
+end LRA.VolumeI.Order.OrderedSets

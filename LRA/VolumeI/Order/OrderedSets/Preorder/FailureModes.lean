@@ -18,7 +18,7 @@ Not (LRA.VolumeI.Order.Preorder relation)
 -/
 def FailsPreorder
     {Carrier : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation.Relation Carrier) :
+    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier) :
     Prop :=
   Not (LRA.VolumeI.Order.Preorder relation)
 
