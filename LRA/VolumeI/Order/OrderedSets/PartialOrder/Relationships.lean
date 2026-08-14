@@ -35,8 +35,8 @@ theorem StrictPartIff
     (order : NonStrictPartialOrder Carrier)
     (left right : Carrier) :
     StrictPart order left right <->
-      order.relation left right /\ left ≠ right :=
-  Iff.rfl
+      order.relation left right /\ left ≠ right := by
+  sorry
 
 /--
 The strict part of a non-strict partial order agrees with the
@@ -55,19 +55,7 @@ theorem StrictPartIffNotConverse
     (left right : Carrier) :
     StrictPart order left right <->
       order.relation left right /\ Not (order.relation right left) := by
-  constructor
-  · intro strictPart
-    refine And.intro strictPart.1 ?notConverse
-    intro rightBelowLeft
-    exact strictPart.2
-      (NonStrictRelationIsAntisymmetric order left right
-        strictPart.1 rightBelowLeft)
-  · intro strictPartByNotConverse
-    refine And.intro strictPartByNotConverse.1 ?leftNeRight
-    intro leftEqualsRight
-    apply strictPartByNotConverse.2
-    rw [leftEqualsRight]
-    exact NonStrictRelationIsReflexive order right
+  sorry
 
 /--
 The strict part of a non-strict partial order is a strict partial order.
@@ -84,22 +72,7 @@ def StrictPartAsStrictPartialOrder
     StrictPartialOrder Carrier where
   relation := StrictPart order
   isStrictPartialOrder := by
-    refine And.intro ?irreflexive ?transitive
-    · intro element elementStrictlyBelowItself
-      exact elementStrictlyBelowItself.2 rfl
-    · intro first second third firstBelowSecond secondBelowThird
-      refine And.intro ?firstBelowThird ?firstNeThird
-      · exact NonStrictRelationIsTransitive order first second third
-          firstBelowSecond.1 secondBelowThird.1
-      · intro firstEqualsThird
-        have secondEqualsThird :
-            second = third :=
-          NonStrictRelationIsAntisymmetric order second third
-            secondBelowThird.1
-            (by
-              rw [← firstEqualsThird]
-              exact firstBelowSecond.1)
-        exact secondBelowThird.2 secondEqualsThird
+    sorry
 
 /--
 The reflexive closure of a strict partial order.
@@ -131,8 +104,8 @@ theorem ReflexiveClosureIff
     (order : StrictPartialOrder Carrier)
     (left right : Carrier) :
     ReflexiveClosure order left right <->
-      order.relation left right \/ left = right :=
-  Iff.rfl
+      order.relation left right \/ left = right := by
+  sorry
 
 /--
 The reflexive closure of a strict partial order is a non-strict partial order.
@@ -149,35 +122,7 @@ def ReflexiveClosureAsNonStrictPartialOrder
     NonStrictPartialOrder Carrier where
   relation := ReflexiveClosure order
   isPartialOrder := by
-    refine And.intro ?reflexive (And.intro ?antisymmetric ?transitive)
-    · intro element
-      exact Or.inr rfl
-    · intro left right leftBelowRight rightBelowLeft
-      cases leftBelowRight with
-      | inl leftLessRight =>
-          cases rightBelowLeft with
-          | inl rightLessLeft =>
-              exact False.elim
-                (StrictRelationIsAsymmetric order left right
-                  leftLessRight rightLessLeft)
-          | inr rightEqualsLeft =>
-              exact Eq.symm rightEqualsLeft
-      | inr leftEqualsRight =>
-          exact leftEqualsRight
-    · intro first second third firstBelowSecond secondBelowThird
-      cases firstBelowSecond with
-      | inl firstLessSecond =>
-          cases secondBelowThird with
-          | inl secondLessThird =>
-              exact Or.inl
-                (StrictRelationIsTransitive order first second third
-                  firstLessSecond secondLessThird)
-          | inr secondEqualsThird =>
-              rw [← secondEqualsThird]
-              exact Or.inl firstLessSecond
-      | inr firstEqualsSecond =>
-          rw [firstEqualsSecond]
-          exact secondBelowThird
+    sorry
 
 /--
 Taking reflexive closure and then strict part returns the original strict
@@ -196,19 +141,7 @@ theorem StrictPartOfReflexiveClosureIff
     (left right : Carrier) :
     StrictPart (ReflexiveClosureAsNonStrictPartialOrder order) left right <->
       order.relation left right := by
-  constructor
-  · intro strictPartOfClosure
-    cases strictPartOfClosure.1 with
-    | inl leftLessRight =>
-        exact leftLessRight
-    | inr leftEqualsRight =>
-        exact False.elim (strictPartOfClosure.2 leftEqualsRight)
-  · intro leftLessRight
-    refine And.intro ?leftBelowRight ?leftNeRight
-    · exact Or.inl leftLessRight
-    · intro leftEqualsRight
-      rw [leftEqualsRight] at leftLessRight
-      exact StrictRelationIsIrreflexive order right leftLessRight
+  sorry
 
 /--
 Taking strict part and then reflexive closure returns the original non-strict
@@ -227,19 +160,7 @@ theorem ReflexiveClosureOfStrictPartIff
     (left right : Carrier) :
     ReflexiveClosure (StrictPartAsStrictPartialOrder order) left right <->
       order.relation left right := by
-  constructor
-  · intro closureOfStrictPart
-    cases closureOfStrictPart with
-    | inl strictPart =>
-        exact strictPart.1
-    | inr leftEqualsRight =>
-        rw [leftEqualsRight]
-        exact NonStrictRelationIsReflexive order right
-  · intro leftBelowRight
-    classical
-    by_cases leftEqualsRight : left = right
-    · exact Or.inr leftEqualsRight
-    · exact Or.inl (And.intro leftBelowRight leftEqualsRight)
+  sorry
 
 /--
 The dual of a non-strict partial order reverses the comparison relation.
@@ -256,14 +177,6 @@ def Dual
     NonStrictPartialOrder Carrier where
   relation := fun left right => order.relation right left
   isPartialOrder := by
-    refine And.intro ?reflexive (And.intro ?antisymmetric ?transitive)
-    · intro element
-      exact NonStrictRelationIsReflexive order element
-    · intro left right rightBelowLeft leftBelowRight
-      exact NonStrictRelationIsAntisymmetric order left right
-        leftBelowRight rightBelowLeft
-    · intro first second third secondBelowFirst thirdBelowSecond
-      exact NonStrictRelationIsTransitive order third second first
-        thirdBelowSecond secondBelowFirst
+    sorry
 
 end LRA.VolumeI.Order.OrderedSets.PartialOrder

@@ -16,8 +16,8 @@ theorem NonStrictRelatesSelf
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier)
     (element : Carrier) :
-    order.relation element element :=
-  NonStrictRelationIsReflexive order element
+    order.relation element element := by
+  sorry
 
 /--
 Projection accessor: two elements mutually related by a non-strict partial
@@ -37,9 +37,8 @@ theorem NonStrictMutualRelationImpliesEqual
     (left right : Carrier)
     (leftRelatedToRight : order.relation left right)
     (rightRelatedToLeft : order.relation right left) :
-    left = right :=
-  NonStrictRelationIsAntisymmetric order left right
-    leftRelatedToRight rightRelatedToLeft
+    left = right := by
+  sorry
 
 /--
 Projection accessor: a strict partial order never relates an element to itself.
@@ -54,7 +53,7 @@ theorem StrictDoesNotRelateSelf
     {Carrier : Type u}
     (order : StrictPartialOrder Carrier)
     (element : Carrier) :
-    Not (order.relation element element) :=
-  StrictRelationIsIrreflexive order element
+    Not (order.relation element element) := by
+  sorry
 
 end LRA.VolumeI.Order.OrderedSets.PartialOrder

@@ -14,7 +14,6 @@ FailsPosetLaws (fun left right : Nat => left < right)
 -/
 theorem NatStrictOrderFailsPosetLaws :
     FailsPosetLaws (fun left right : Nat => left < right) := by
-  intro strictOrderIsPartialOrder
-  exact Nat.lt_irrefl 0 (strictOrderIsPartialOrder.1 0)
+  sorry
 
 end LRA.VolumeI.Order.OrderedSets.Poset

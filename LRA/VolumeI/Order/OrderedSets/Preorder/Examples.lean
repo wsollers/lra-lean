@@ -14,10 +14,6 @@ PreorderRelation Bool
 def BooleanUniversalPreorder : PreorderRelation Bool where
   relation := fun _ _ => True
   isPreorder := by
-    refine And.intro ?reflexive ?transitive
-    · intro element
-      trivial
-    · intro first second third firstBelowSecond secondBelowThird
-      trivial
+    sorry
 
 end LRA.VolumeI.Order.OrderedSets.Preorder

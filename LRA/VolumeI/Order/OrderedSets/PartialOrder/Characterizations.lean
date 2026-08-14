@@ -16,8 +16,8 @@ LRA.VolumeI.Relations.Reflexive order.relation
 theorem NonStrictRelationIsReflexive
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
-    LRA.VolumeI.Relations.Reflexive order.relation :=
-  order.isPartialOrder.1
+    LRA.VolumeI.Relations.Reflexive order.relation := by
+  sorry
 
 /--
 Projection accessor: the relation packaged by a non-strict partial order is
@@ -32,8 +32,8 @@ LRA.VolumeI.Relations.Antisymmetric order.relation
 theorem NonStrictRelationIsAntisymmetric
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
-    LRA.VolumeI.Relations.Antisymmetric order.relation :=
-  order.isPartialOrder.2.1
+    LRA.VolumeI.Relations.Antisymmetric order.relation := by
+  sorry
 
 /--
 Projection accessor: the relation packaged by a non-strict partial order is
@@ -48,8 +48,8 @@ LRA.VolumeI.Relations.Transitive order.relation
 theorem NonStrictRelationIsTransitive
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
-    LRA.VolumeI.Relations.Transitive order.relation :=
-  order.isPartialOrder.2.2
+    LRA.VolumeI.Relations.Transitive order.relation := by
+  sorry
 
 /--
 Projection accessor: the relation packaged by a strict partial order is
@@ -64,8 +64,8 @@ LRA.VolumeI.Relations.Irreflexive order.relation
 theorem StrictRelationIsIrreflexive
     {Carrier : Type u}
     (order : StrictPartialOrder Carrier) :
-    LRA.VolumeI.Relations.Irreflexive order.relation :=
-  order.isStrictPartialOrder.1
+    LRA.VolumeI.Relations.Irreflexive order.relation := by
+  sorry
 
 /--
 Projection accessor: the relation packaged by a strict partial order is
@@ -80,8 +80,8 @@ LRA.VolumeI.Relations.Transitive order.relation
 theorem StrictRelationIsTransitive
     {Carrier : Type u}
     (order : StrictPartialOrder Carrier) :
-    LRA.VolumeI.Relations.Transitive order.relation :=
-  order.isStrictPartialOrder.2
+    LRA.VolumeI.Relations.Transitive order.relation := by
+  sorry
 
 /--
 Every strict partial order is asymmetric.
@@ -96,9 +96,7 @@ theorem StrictRelationIsAsymmetric
     {Carrier : Type u}
     (order : StrictPartialOrder Carrier) :
     LRA.VolumeI.Relations.Asymmetric order.relation := by
-  intro left right leftLessRight rightLessLeft
-  exact StrictRelationIsIrreflexive order left
-    (StrictRelationIsTransitive order left right left leftLessRight rightLessLeft)
+  sorry
 
 /--
 Every strict partial order is antisymmetric, vacuously: mutual strict
@@ -114,8 +112,6 @@ theorem StrictRelationIsAntisymmetric
     {Carrier : Type u}
     (order : StrictPartialOrder Carrier) :
     LRA.VolumeI.Relations.Antisymmetric order.relation := by
-  intro left right leftLessRight rightLessLeft
-  exact False.elim
-    (StrictRelationIsAsymmetric order left right leftLessRight rightLessLeft)
+  sorry
 
 end LRA.VolumeI.Order.OrderedSets.PartialOrder

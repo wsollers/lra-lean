@@ -13,8 +13,8 @@ LRA.VolumeI.Order.PartialOrder poset.NonStrictOrder
 -/
 theorem PosetOrderIsPartialOrder
     (poset : LRA.VolumeI.Order.Poset) :
-    LRA.VolumeI.Order.PartialOrder poset.NonStrictOrder :=
-  poset.NonStrictOrderIsPartialOrder
+    LRA.VolumeI.Order.PartialOrder poset.NonStrictOrder := by
+  sorry
 
 /--
 The order relation packaged by a poset is reflexive.
@@ -27,8 +27,8 @@ LRA.VolumeI.Relations.Reflexive poset.NonStrictOrder
 -/
 theorem PosetOrderIsReflexive
     (poset : LRA.VolumeI.Order.Poset) :
-    LRA.VolumeI.Relations.Reflexive poset.NonStrictOrder :=
-  poset.NonStrictOrderIsPartialOrder.1
+    LRA.VolumeI.Relations.Reflexive poset.NonStrictOrder := by
+  sorry
 
 /--
 The order relation packaged by a poset is antisymmetric.
@@ -41,8 +41,8 @@ LRA.VolumeI.Relations.Antisymmetric poset.NonStrictOrder
 -/
 theorem PosetOrderIsAntisymmetric
     (poset : LRA.VolumeI.Order.Poset) :
-    LRA.VolumeI.Relations.Antisymmetric poset.NonStrictOrder :=
-  poset.NonStrictOrderIsPartialOrder.2.1
+    LRA.VolumeI.Relations.Antisymmetric poset.NonStrictOrder := by
+  sorry
 
 /--
 The order relation packaged by a poset is transitive.
@@ -55,7 +55,7 @@ LRA.VolumeI.Relations.Transitive poset.NonStrictOrder
 -/
 theorem PosetOrderIsTransitive
     (poset : LRA.VolumeI.Order.Poset) :
-    LRA.VolumeI.Relations.Transitive poset.NonStrictOrder :=
-  poset.NonStrictOrderIsPartialOrder.2.2
+    LRA.VolumeI.Relations.Transitive poset.NonStrictOrder := by
+  sorry
 
 end LRA.VolumeI.Order.OrderedSets.Poset

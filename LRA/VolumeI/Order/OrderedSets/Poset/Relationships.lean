@@ -13,9 +13,7 @@ LRA.VolumeI.Order.Preorder poset.NonStrictOrder
 -/
 theorem PosetOrderIsPreorder
     (poset : LRA.VolumeI.Order.Poset) :
-    LRA.VolumeI.Order.Preorder poset.NonStrictOrder :=
-  And.intro
-    (PosetOrderIsReflexive poset)
-    (PosetOrderIsTransitive poset)
+    LRA.VolumeI.Order.Preorder poset.NonStrictOrder := by
+  sorry
 
 end LRA.VolumeI.Order.OrderedSets.Poset
