@@ -1,0 +1,186 @@
+{
+  "primaryDeclaration": "LRA.Pilot.OrderBounds.LeastUpperBound",
+  "purpose": "slot-complete Lean versus Volume III actuality audit",
+  "slots": [
+    {
+      "slot": "Artifact identity / label",
+      "lean": "concept ID + declaration ID available; artifact label not joined",
+      "volume": "def:supremum present",
+      "owner": "Joined + authored"
+    },
+    {
+      "slot": "Kind and title",
+      "lean": "definition kind; Lean name is fallback only",
+      "volume": "Definition / Supremum present",
+      "owner": "Authored, Lean-validated"
+    },
+    {
+      "slot": "Canonical prose definition",
+      "lean": "docstring evidence, not canonical prose",
+      "volume": "present",
+      "owner": "Authored"
+    },
+    {
+      "slot": "Ambient structure",
+      "lean": "Poset binder extracted",
+      "volume": "arbitrary poset in box; R in later readings",
+      "owner": "Reviewed binder roles"
+    },
+    {
+      "slot": "Parameters",
+      "lean": "set object, subset, candidate extracted",
+      "volume": "S, A, s present",
+      "owner": "Reviewed rendering"
+    },
+    {
+      "slot": "Mathematical assumptions",
+      "lean": "no nonempty / total / complete hypothesis",
+      "volume": "nonempty standing convention; R specialization",
+      "owner": "Authored, Lean-checked"
+    },
+    {
+      "slot": "Canonical mathematical display",
+      "lean": "renderable candidate; no governed renderer",
+      "volume": "present",
+      "owner": "Approved join"
+    },
+    {
+      "slot": "Raw Lean signature",
+      "lean": "available",
+      "volume": "not applicable",
+      "owner": "Lean"
+    },
+    {
+      "slot": "Folded predicate body",
+      "lean": "available",
+      "volume": "Predicate reading present",
+      "owner": "Lean + governed rendering"
+    },
+    {
+      "slot": "Raw extraction logic AST",
+      "lean": "available; proposition proof binders still appear as FORALL",
+      "volume": "not applicable",
+      "owner": "Lean transform fix"
+    },
+    {
+      "slot": "Fully unfolded predicate logic",
+      "lean": "available; definitional equality verified",
+      "volume": "definition equations present",
+      "owner": "Lean transform + approved rendering"
+    },
+    {
+      "slot": "Standard quantified statement",
+      "lean": "candidate available; unapproved",
+      "volume": "present, but adds nonempty and R",
+      "owner": "Transform then semantic approval"
+    },
+    {
+      "slot": "Predicate reading",
+      "lean": "folded evidence available; T10 registry join pending",
+      "volume": "present",
+      "owner": "Governed join + approval"
+    },
+    {
+      "slot": "Literal negation",
+      "lean": "available",
+      "volume": "not shown as literal structural negation",
+      "owner": "Lean transform"
+    },
+    {
+      "slot": "Pushed negation",
+      "lean": "AST candidate available; classical principles recorded",
+      "volume": "strict real form present, plus empty-domain clause",
+      "owner": "Transform / checked witness / approval"
+    },
+    {
+      "slot": "Negated quantified statement",
+      "lean": "renderable candidate; no governed surface form",
+      "volume": "present",
+      "owner": "Transform then approval"
+    },
+    {
+      "slot": "Negation predicate reading",
+      "lean": "checked general and total-order theorems available",
+      "volume": "present",
+      "owner": "Checked witness + governed join"
+    },
+    {
+      "slot": "Contrapositive",
+      "lean": "not applicable to a definition",
+      "volume": "missing / not applicable",
+      "owner": "Theorem-only reviewed block"
+    },
+    {
+      "slot": "Aliases / equivalent forms",
+      "lean": "Supremum and LUB definitional aliases extracted",
+      "volume": "least-upper-bound wording present",
+      "owner": "Checked witness + authored selection"
+    },
+    {
+      "slot": "Failure modes",
+      "lean": "checked failure predicates and equivalences",
+      "volume": "present with authored labels",
+      "owner": "Lean clauses + authored taxonomy"
+    },
+    {
+      "slot": "Examples",
+      "lean": "8 checked manifest examples",
+      "volume": "figures/exposition, no formal attachment",
+      "owner": "Authored selection + checked witnesses"
+    },
+    {
+      "slot": "Counterexamples",
+      "lean": "5 checked records",
+      "volume": "empty-set explanation present",
+      "owner": "Authored selection + checked witnesses"
+    },
+    {
+      "slot": "Formal dependencies",
+      "lean": "typed graphs available (268 selected-scope edges)",
+      "volume": "not shown",
+      "owner": "Lean"
+    },
+    {
+      "slot": "Learner prerequisites",
+      "lean": "not inferable",
+      "volume": "3 dependencies present",
+      "owner": "Authored"
+    },
+    {
+      "slot": "Proof term / trust",
+      "lean": "N/A for definition; available on attached theorems",
+      "volume": "not shown",
+      "owner": "Lean"
+    },
+    {
+      "slot": "Detailed professional proof",
+      "lean": "not recoverable from compiled term",
+      "volume": "uniqueness proof TODO",
+      "owner": "Authored"
+    },
+    {
+      "slot": "Detailed learner proof",
+      "lean": "not recoverable from compiled term",
+      "volume": "uniqueness proof TODO",
+      "owner": "Authored"
+    },
+    {
+      "slot": "Interpretation",
+      "lean": "docstring may suggest; cannot approve",
+      "volume": "present",
+      "owner": "Authored"
+    },
+    {
+      "slot": "Exposition / motivation",
+      "lean": "not inferable",
+      "volume": "present",
+      "owner": "Authored"
+    },
+    {
+      "slot": "Lean formalization marker",
+      "lean": "declaration evidence available",
+      "volume": "missing on def:supremum",
+      "owner": "Reviewed correspondence join"
+    }
+  ]
+}

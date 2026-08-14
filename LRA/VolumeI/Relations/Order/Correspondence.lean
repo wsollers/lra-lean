@@ -1,5 +1,7 @@
 import LRA.VolumeI.Relations.Order.OrderStructures.PartialOrder
 import LRA.VolumeI.Relations.Order.OrderStructures.StrictPartialOrder
+import LRA.VolumeI.Relations.Order.OrderStructures.Poset
+import LRA.VolumeI.Relations.Order.OrderStructures.StrictPoset
 import LRA.VolumeI.Relations.Order.OrderStructures.TotalOrder
 import LRA.VolumeI.Relations.Order.OrderStructures.StrictLinearOrder
 import LRA.VolumeI.Relations.Order.Relations
@@ -120,6 +122,82 @@ theorem StrictNonStrictInverseCorrespondence
     {strictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
     (strictRelationIsStrictLinearOrder : StrictLinearOrder strictRelation) :
     StrictFromNonStrict (NonStrictFromStrict strictRelation) = strictRelation := by
+  sorry
+
+
+/--
+`StrictPosetOfPoset poset` derives the strict poset whose order is the strict
+part of the partial order carried by `poset`: keep every related pair whose
+components differ.
+
+Logical form:
+
+```lean
+StrictPoset where
+  Carrier := poset.Carrier
+  StrictOrder := StrictFromNonStrict poset.NonStrictOrder
+  StrictOrderIsStrictPartialOrder :=
+    PartialOrderInducesStrictPartialOrder poset.NonStrictOrderIsPartialOrder
+```
+-/
+def StrictPosetOfPoset (poset : Poset) : StrictPoset where
+  Carrier := poset.Carrier
+  StrictOrder := StrictFromNonStrict poset.NonStrictOrder
+  StrictOrderIsStrictPartialOrder :=
+    PartialOrderInducesStrictPartialOrder poset.NonStrictOrderIsPartialOrder
+
+/--
+`PosetOfStrictPoset strictPoset` derives the poset whose order adjoins
+equality to the strict order carried by `strictPoset`.
+
+Logical form:
+
+```lean
+Poset where
+  Carrier := strictPoset.Carrier
+  NonStrictOrder := NonStrictFromStrict strictPoset.StrictOrder
+  NonStrictOrderIsPartialOrder :=
+    StrictPartialOrderInducesPartialOrder
+      strictPoset.StrictOrderIsStrictPartialOrder
+```
+-/
+def PosetOfStrictPoset (strictPoset : StrictPoset) : Poset where
+  Carrier := strictPoset.Carrier
+  NonStrictOrder := NonStrictFromStrict strictPoset.StrictOrder
+  NonStrictOrderIsPartialOrder :=
+    StrictPartialOrderInducesPartialOrder
+      strictPoset.StrictOrderIsStrictPartialOrder
+
+/--
+Descending to the strict poset and ascending again recovers the original
+poset: adjoining equality back to the strict part of a reflexive order
+changes nothing.
+
+Logical form:
+
+```lean
+theorem PosetOfStrictPosetOfPoset (poset : Poset) :
+    PosetOfStrictPoset (StrictPosetOfPoset poset) = poset
+```
+-/
+theorem PosetOfStrictPosetOfPoset (poset : Poset) :
+    PosetOfStrictPoset (StrictPosetOfPoset poset) = poset := by
+  sorry
+
+/--
+Ascending to the poset and descending again recovers the original strict
+poset: the strict part of the reflexive closure of an irreflexive order is
+the order itself.
+
+Logical form:
+
+```lean
+theorem StrictPosetOfPosetOfStrictPoset (strictPoset : StrictPoset) :
+    StrictPosetOfPoset (PosetOfStrictPoset strictPoset) = strictPoset
+```
+-/
+theorem StrictPosetOfPosetOfStrictPoset (strictPoset : StrictPoset) :
+    StrictPosetOfPoset (PosetOfStrictPoset strictPoset) = strictPoset := by
   sorry
 
 end LRA.VolumeI.Relations.Order

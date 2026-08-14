@@ -1,0 +1,9 @@
+declaration: LRA.Pilot.OrderBounds.LeastUpperBoundUnique
+proof term: available_allowOpaque_true
+proof digest: 749758330
+direct proof constants: 13
+internal LRA: 9
+external library: 1
+kernel/platform: 3
+kernel axiom closure: [none]
+uses sorryAx: False

@@ -10,13 +10,13 @@ Logical form:
 ```lean
 structure Poset where
   Carrier : Type u
-  Relation : LRA.VolumeI.Relations.Endorelation Carrier
-  RelationIsPartialOrder : PartialOrder Relation
+  NonStrictOrder : LRA.VolumeI.Relations.Endorelation Carrier
+  NonStrictOrderIsPartialOrder : PartialOrder NonStrictOrder
 ```
 -/
 structure Poset where
   Carrier : Type u
-  Relation : LRA.VolumeI.Relations.Endorelation Carrier
-  RelationIsPartialOrder : PartialOrder Relation
+  NonStrictOrder : LRA.VolumeI.Relations.Endorelation Carrier
+  NonStrictOrderIsPartialOrder : PartialOrder NonStrictOrder
 
 end LRA.VolumeI.Relations.Order

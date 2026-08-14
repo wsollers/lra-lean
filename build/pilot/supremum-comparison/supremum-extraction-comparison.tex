@@ -1,0 +1,429 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper,landscape,margin=0.34in,headheight=15pt,footskip=16pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,adjustbox,array,booktabs,enumitem,fancyhdr,fvextra,hyperref,microtype,tabularx,tcolorbox,xcolor}
+\tcbuselibrary{breakable,skins}
+\definecolor{leanblue}{HTML}{173F5F}
+\definecolor{volorange}{HTML}{9C4A1A}
+\definecolor{softblue}{HTML}{EAF2F8}
+\definecolor{softorange}{HTML}{FBF0E8}
+\definecolor{ink}{HTML}{20262E}
+\hypersetup{colorlinks=true,linkcolor=leanblue}
+\renewcommand{\hyperref}[2][]{#2}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\setlist{nosep,leftmargin=1.2em}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\sffamily\bfseries Supremum extraction calibration}
+\rhead{\sffamily Lean evidence $\leftrightarrow$ Volume III authoring}
+\cfoot{\sffamily\thepage}
+\newtheorem{definition}{Definition}
+\newtheorem*{definition*}{Definition}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem*{remark*}{}
+\newenvironment{dependencies}{\par\medskip\textbf{Dependencies}\par}{}
+\newcommand{\LRAProofFor}[1]{}
+\newcommand{\LRAProofBodyStart}{}
+\newtcolorbox{definitionbox}[1]{colback=softorange,colframe=volorange,title=\textbf{#1},boxrule=.6pt,arc=1mm,left=1.5mm,right=1.5mm,top=1mm,bottom=1mm}
+\newtcolorbox{leanbox}[1]{colback=softblue,colframe=leanblue,title=\textbf{#1},boxrule=.6pt,arc=1mm,left=1.5mm,right=1.5mm,top=1mm,bottom=1mm}
+\newcommand{\PageTitle}[2]{\begin{center}\sffamily\Large\bfseries #1\\[-1pt]\small\mdseries #2\end{center}\vspace{-4pt}}
+\newcommand{\Columns}[2]{\begin{minipage}[t]{.488\textwidth}#1\end{minipage}\hfill\vrule\hfill\begin{minipage}[t]{.488\textwidth}#2\end{minipage}}
+\newcommand{\LeanHead}{\color{leanblue}\sffamily\bfseries LEAN: HARVESTED OR MECHANICALLY TRANSFORMED\par\color{ink}}
+\newcommand{\VolHead}{\color{volorange}\sffamily\bfseries VOLUME III: CURRENT AUTHORED LATEX\par\color{ink}}
+\newcommand{\AuditHead}{\textbf{Contract slot} & \textbf{Lean actuality} & \textbf{Volume III actuality} & \textbf{Authority / next join}\\}
+\fvset{fontsize=\scriptsize,breaklines=true,breakanywhere=true,frame=single,framesep=2mm}
+\begin{document}
+
+\PageTitle{One concept becomes an evidence family}{The extraction unit is not one printed definition}
+\Columns{
+\LeanHead
+\begin{leanbox}{Run envelope}
+Schema: \texttt{lra.lean-extraction-contract/v4}\\
+Manifest: \texttt{lra.pilot.supremum-harvest/1.1}\\
+Primary: \texttt{LeastUpperBound}\\
+Seeds: \textbf{36}; dependency-closed declarations: \textbf{46}; typed edges: \textbf{268}.
+\end{leanbox}
+\small
+\begin{tabular}{@{}p{.79\linewidth}r@{}}
+\toprule Manifest role & Count\\\midrule
+abbreviated alias & 1 \\
+adapter & 1 \\
+boundary theorem & 3 \\
+checked logical form & 2 \\
+checked specialization & 4 \\
+consequence theorem & 4 \\
+counterexample & 4 \\
+counterexample structure & 1 \\
+example & 9 \\
+existence theorem & 1 \\
+failure predicate & 2 \\
+primary definition & 1 \\
+relationship theorem & 2 \\
+surface alias & 1 \\
+\bottomrule
+\end{tabular}
+\par\medskip
+One definition requires aliases, unfolded predicates, checked logical forms,
+consequences, witnesses, examples, counterexamples, proof evidence, and formal
+dependency graphs. Eight additional declarations enter only through formal
+dependency closure.
+}{
+\VolHead
+\input{snippets/vol3-definition.tex}
+\smallskip
+\textit{Visible authored unit:} one definition box. Its surrounding logical,
+failure, dependency, and pedagogical blocks are separate content even though
+they describe the same concept.
+}
+\newpage
+
+\PageTitle{Raw first-order predicate logic}{Exact extracted text and AST on the left; the current authored definition on the right}
+\Columns{
+\LeanHead
+\begin{leanbox}{Raw fully unfolded predicate (exact Lean pretty-print)}
+\VerbatimInput{snippets/lean-unfolded-predicate.txt}
+\end{leanbox}
+\begin{leanbox}{Raw extraction-logic tree (no notation cleanup)}
+\VerbatimInput{snippets/lean-raw-logic-outline.txt}
+\end{leanbox}
+\begin{leanbox}{Pilot-readable FOL projection of that extracted structure}
+\[
+  (\forall a\in A)\,(a\leq_P s)
+  \;\land\;
+  (\forall u\in P)\Bigl[
+    (\forall a\in A)\,(a\leq_P u)
+    \Longrightarrow s\leq_P u
+  \Bigr].
+\]
+\end{leanbox}
+\scriptsize
+The first box is harvested after policy-bounded unfolding; the second is the
+actual raw logical AST. The third is an \textbf{experimental local renderer},
+not approved T10 governance output. Definitional equality to the compiled body:
+\textbf{True}. The anonymous
+\texttt{FORALL} proof binders in the raw tree are a real T4 normalization
+gap: they should be classified as implication/membership guards before a
+production renderer consumes the AST.
+}{
+\VolHead
+\input{snippets/vol3-definition.tex}
+\begin{tcolorbox}[colback=softorange,colframe=volorange,title=\textbf{Actual comparison},boxrule=.6pt]
+\small
+The definition box and Lean agree on the two defining clauses in an arbitrary
+poset. The later Volume ``standard quantified'' block is \emph{not} the same
+formula: it adds $A\ne\varnothing$ and changes the competitor domain to
+$\mathbb R$. Those are authored scope choices, not facts recovered from this
+Lean definition.
+\end{tcolorbox}
+}
+\newpage
+
+\PageTitle{Folded predicate and predicate readings}{One extracted definition supports both the unfolded FOL and named-predicate views}
+\Columns{
+\LeanHead
+\begin{leanbox}{Folded predicate body (exact Lean pretty-print)}
+\VerbatimInput{snippets/lean-folded-predicate.txt}
+\end{leanbox}
+\begin{leanbox}{Pilot-readable predicate reading}
+\[
+ \operatorname{UpperBound}_P(A,x)
+ :\Longleftrightarrow (\forall a\in A)(a\leq_P x),
+\]
+\begin{center}\begin{adjustbox}{max width=.96\linewidth}$\displaystyle
+\begin{aligned}
+ \operatorname{LeastUpperBound}_P(A,s)
+ &:\Longleftrightarrow \operatorname{UpperBound}_P(A,s)\\
+ &\qquad\land (\forall u\in P)
+ \bigl(\operatorname{UpperBound}_P(A,u)\Rightarrow s\leq_P u\bigr).
+\end{aligned}$
+\end{adjustbox}\end{center}
+\end{leanbox}
+\begin{leanbox}{Aliases available from checked definitions}
+\texttt{Supremum} and \texttt{LUB} are definitionally checked aliases of
+\texttt{LeastUpperBound}. Their publication as preferred surface names is
+still an authored/governed choice.
+\end{leanbox}
+\scriptsize
+Lean supplies the folded predicate structure. Argument ordering, typography,
+the symbol $P$, and the published name require the governed predicate and
+notation join; this page intentionally labels the local rendering as provisional.
+}{
+\VolHead
+\input{snippets/vol3-standard-predicate.tex}
+\begin{tcolorbox}[colback=softorange,colframe=volorange,title=\textbf{Actual comparison},boxrule=.6pt]
+\small
+The Volume predicate reading is already authored, but it orders arguments as
+$(s,A,P)$ and specializes $P$ to the real order. Lean's compiled declaration
+orders them as $(P,A,s)$ and is generic over the carrier and set interface.
+The mathematical core aligns; the rendering and scope do not yet share a
+reviewed correspondence record.
+\end{tcolorbox}
+}
+\newpage
+
+\PageTitle{Negation layers, shown separately}{Literal, pushed, checked-general, and strict-total-order readings are not one field}
+\Columns{
+\LeanHead
+\begin{leanbox}{Literal negation of the unfolded body}
+\VerbatimInput{snippets/lean-primary-negation.txt}
+\end{leanbox}
+\begin{leanbox}{Raw pushed-negation AST}
+\VerbatimInput{snippets/lean-pushed-negation-outline.txt}
+\end{leanbox}
+\begin{leanbox}{Pilot-readable pushed FOL (general poset)}
+\[
+ (\exists a\in A)\,\neg(a\leq_P s)
+ \;\lor\;
+ (\exists u\in P)\Bigl[
+   (\forall a\in A)(a\leq_P u)\land\neg(s\leq_P u)
+ \Bigr].
+\]
+\end{leanbox}
+\scriptsize
+Candidate status: \textbf{mechanically derived; unapproved; classical
+principles recorded}. The transform records uses of
+$\neg\forall\Rightarrow\exists\neg$ and
+$\neg(A\Rightarrow B)\Rightarrow A\land\neg B$. Strict inequalities require
+the separately checked total-order theorem; they are not generic FOL cleanup.
+The anonymous \texttt{EXISTS} proof binder is the same current T4 guard-
+classification gap exposed on the prior raw-AST page.
+}{
+\VolHead
+\input{snippets/vol3-negations.tex}
+\begin{tcolorbox}[colback=softorange,colframe=volorange,title=\textbf{Actual comparison},boxrule=.6pt]
+\small
+The two witness clauses correspond after assuming total order and choosing the
+strict rendering. The Volume also adds $A=\varnothing$ because its section has
+made nonemptiness part of applicability. That clause is \textbf{not} the
+negation of Lean's least-upper-bound predicate: in a poset with a least element,
+the empty set can have a least upper bound.
+\end{tcolorbox}
+}
+\newpage
+
+\PageTitle{Definition surface and fully unfolded predicate logic}{Lean separates the declaration type, body, and policy-bounded expansion}
+\Columns{
+\LeanHead
+\begin{leanbox}{Declaration type}
+\VerbatimInput{snippets/lean-primary-type.txt}
+\end{leanbox}
+\begin{leanbox}{Compiled definition body}
+\VerbatimInput{snippets/lean-primary-body.txt}
+\end{leanbox}
+\begin{leanbox}{Controlled full logical unfolding}
+\VerbatimInput{snippets/lean-primary-unfolded.txt}
+\end{leanbox}
+\scriptsize
+Policy: \texttt{lra.pilot.logical-unfolding/1.1}. Unfolded:
+\texttt{UpperBound}. Definitional equality check: \textbf{True}.
+The remaining structure and membership constants are explicit stop boundaries,
+not silently unfolded residue.
+}{
+\VolHead
+\input{snippets/vol3-standard-predicate.tex}
+\scriptsize
+The Volume block adds $A\ne\varnothing$ and specializes a quantified clause to
+$\mathbb R$, while the definition box states an arbitrary poset. Neither
+addition is present in the canonical Lean predicate. This is an authored
+applicability/specialization decision requiring reconciliation.
+}
+\newpage
+
+\PageTitle{Negation is multiple artifacts}{Literal negation, pushed logic, checked failure equivalence, and strict-order specialization have different provenance}
+\Columns{
+\LeanHead
+\begin{leanbox}{Mechanical negation of the unfolded definition}
+\VerbatimInput{snippets/lean-primary-negation.txt}
+\end{leanbox}
+\begin{leanbox}{Checked general-poset failure equivalence}
+\VerbatimInput{snippets/lean-general-negation.txt}
+\end{leanbox}
+\begin{leanbox}{Checked total-order strict specialization}
+\VerbatimInput{snippets/lean-strict-negation.txt}
+\end{leanbox}
+\scriptsize
+The generic transform does not turn $\neg(x\le y)$ into $y<x$. The strict
+reading comes from a named theorem carrying totality. All candidates retain
+``unapproved'' status until joined to authored semantics.
+}{
+\VolHead
+\input{snippets/vol3-negations.tex}
+\scriptsize
+The right side combines three choices: nonemptiness as a domain clause,
+real-number totality for strict inequalities, and a named predicate reading.
+Lean can validate the last two only through the checked declaration family;
+it must not invent the first.
+}
+\newpage
+
+\PageTitle{Failure modes need witnesses and editorial ownership}{Formal clauses are harvested; learner-facing classification remains authored}
+\Columns{
+\LeanHead
+\begin{leanbox}{Checked failure predicate family}
+\begin{itemize}
+\item \texttt{UpperBoundFailure}: an in-set witness is not below the candidate.
+\item \texttt{SharpnessFailure}: an upper-bound competitor is not above the candidate.
+\item \texttt{NotUpperBoundIffUpperBoundFailure} validates the first clause.
+\item \texttt{NotLeastUpperBoundIffFailure} validates their disjunction.
+\item Total-order theorems validate the optional strict rewrites.
+\end{itemize}
+\end{leanbox}
+\begin{leanbox}{What Lean does not decide}
+``Domain failure'', ``bound failure'', and ``sharpness failure'' are authored
+names. Selection, ordering, explanation, and whether empty-set nonexistence is
+shown inside this definition entry remain volume/semantic-artifact decisions.
+\end{leanbox}
+}{
+\VolHead
+\input{snippets/vol3-failures.tex}
+}
+\newpage
+
+\PageTitle{Consequences and proof evidence}{A definition pulls theorem records; compiled proof evidence does not become a detailed learning proof}
+\Columns{
+\LeanHead
+\begin{leanbox}{Named consequence family}
+\scriptsize\begin{itemize}
+\item \texttt{EmptySetLeastUpperBoundIffBottom} -- empty set characterization
+\item \texttt{EmptySetUpperBound} -- empty set vacuity
+\item \texttt{GreatestElementIsLeastUpperBound} -- maximum implies supremum
+\item \texttt{LeastUpperBoundIsBelowUpperBounds} -- projection
+\item \texttt{LeastUpperBoundIsUpperBound} -- projection
+\item \texttt{LeastUpperBoundMemberIsGreatestElement} -- attained supremum implies maximum
+\item \texttt{LeastUpperBoundUnique} -- uniqueness
+\item \texttt{OrderedFieldCarrierIsNonempty} -- carrier nonempty is structural
+\item \texttt{SubsetLeastUpperBoundsOrdered} -- monotonicity
+\end{itemize}
+\end{leanbox}
+\begin{leanbox}{Compiled proof evidence: uniqueness}
+\VerbatimInput{snippets/lean-uniqueness-proof.txt}
+\end{leanbox}
+\scriptsize
+The proof value is recovered with \texttt{allowOpaque := true}. Lean supplies
+the checked term, digest, direct constants, partitions, kernel closure, and
+\texttt{sorryAx} result. It does not recover tactic intent or pedagogical
+steps from the compiled term.
+}{
+\VolHead
+\input{snippets/vol3-uniqueness-proof.tex}
+\scriptsize
+This is precisely the independent authoring boundary: the current Volume III
+professional and detailed proofs are explicit TODOs even though Lean already
+has a checked uniqueness proof and formal dependency evidence.
+}
+\newpage
+
+\PageTitle{Examples, counterexamples, and dependency ownership}{The formal family verifies claims; the volume chooses what teaches the concept}
+\Columns{
+\LeanHead
+\begin{leanbox}{Eight checked examples}
+\scriptsize\begin{itemize}
+\item \texttt{EmptySetHasLeastUpperBoundInNat}: empty set supremum in poset with bottom
+\item \texttt{IicGreatestElement}: attained maximum
+\item \texttt{IicLeastUpperBound}: attained supremum
+\item \texttt{IioHasNoGreatestElement}: supremum without maximum
+\item \texttt{IioLeastUpperBound}: nonattained supremum
+\item \texttt{IioLeastUpperBoundNotMember}: nonattainment witness
+\item \texttt{TwoIsNotLeastUpperBoundOfIicOne}: checked failed candidate
+\item \texttt{TwoWitnessesSharpnessFailureForIicOne}: sharpness failure witness
+\item \texttt{ZeroWitnessesUpperBoundFailureForIicOne}: upper bound failure witness
+\end{itemize}
+\end{leanbox}
+\begin{leanbox}{Five counterexample records}
+\scriptsize\begin{itemize}
+\item \texttt{DiscreteFailedComparisonWithoutStrictWitness}: strict rewrite failure
+\item \texttt{DiscretePairPoset}: non total boundary
+\item \texttt{DiscretePairPosetNotTotal}: non total boundary
+\item \texttt{EmptySetHasNoLeastUpperBoundInReal}: nonemptiness is required for real existence
+\item \texttt{StrictRewriteFailsWithoutTotality}: totality is required
+\end{itemize}
+\end{leanbox}
+\begin{leanbox}{Dependency contract}
+Formal statement, definition, proof, transitive, and kernel-trust graphs are
+generated separately. Learner prerequisites and prose-proof dependencies
+remain authored and must not be inferred from proof-term reachability.
+\end{leanbox}
+}{
+\VolHead
+\input{snippets/vol3-exposition-dependencies.tex}
+\begin{tcolorbox}[colback=softorange,colframe=volorange,title=\textbf{Comparison verdict},boxrule=.6pt]
+\small
+Volume III chooses nonemptiness, the real-number presentation, the featured
+empty-set explanation, and three learner dependencies. Lean can check related
+formal claims, but cannot generate those pedagogical choices. Conversely, the
+Volume entry does not expose aliases, proof trust, formal dependency classes,
+totality boundaries, or the full checked witness inventory without the Lean
+attachment.
+\end{tcolorbox}
+}
+\newpage
+
+\PageTitle{Actuality audit: definition and logical slots}{Every contracted slot appears, including unavailable and not-applicable fields}
+\scriptsize
+\renewcommand{\arraystretch}{1.22}
+\begin{tabularx}{\textwidth}{@{}p{.19\textwidth}X X p{.18\textwidth}@{}}
+\toprule
+\AuditHead
+\midrule
+\textbf{Artifact identity / label} & concept ID + declaration ID available; artifact label not joined & def:supremum present & Joined + authored \\
+\textbf{Kind and title} & definition kind; Lean name is fallback only & Definition / Supremum present & Authored, Lean-validated \\
+\textbf{Canonical prose definition} & docstring evidence, not canonical prose & present & Authored \\
+\textbf{Ambient structure} & Poset binder extracted & arbitrary poset in box; R in later readings & Reviewed binder roles \\
+\textbf{Parameters} & set object, subset, candidate extracted & S, A, s present & Reviewed rendering \\
+\textbf{Mathematical assumptions} & no nonempty / total / complete hypothesis & nonempty standing convention; R specialization & Authored, Lean-checked \\
+\textbf{Canonical mathematical display} & renderable candidate; no governed renderer & present & Approved join \\
+\textbf{Raw Lean signature} & available & not applicable & Lean \\
+\textbf{Folded predicate body} & available & Predicate reading present & Lean + governed rendering \\
+\textbf{Raw extraction logic AST} & available; proposition proof binders still appear as FORALL & not applicable & Lean transform fix \\
+\textbf{Fully unfolded predicate logic} & available; definitional equality verified & definition equations present & Lean transform + approved rendering \\
+\textbf{Standard quantified statement} & candidate available; unapproved & present, but adds nonempty and R & Transform then semantic approval \\
+\textbf{Predicate reading} & folded evidence available; T10 registry join pending & present & Governed join + approval \\
+\textbf{Literal negation} & available & not shown as literal structural negation & Lean transform \\
+\textbf{Pushed negation} & AST candidate available; classical principles recorded & strict real form present, plus empty-domain clause & Transform / checked witness / approval \\
+\bottomrule
+\end{tabularx}
+\par\medskip
+\footnotesize
+``Available'' on the Lean side means evidence or an unapproved mechanical
+candidate exists. It does not mean that candidate already owns the published
+mathematics or typography.
+\newpage
+
+\PageTitle{Actuality audit: attached boxes, proofs, and pedagogy}{What can be populated, what can only be validated, and what remains authored}
+\scriptsize
+\renewcommand{\arraystretch}{1.22}
+\begin{tabularx}{\textwidth}{@{}p{.19\textwidth}X X p{.18\textwidth}@{}}
+\toprule
+\AuditHead
+\midrule
+\textbf{Negated quantified statement} & renderable candidate; no governed surface form & present & Transform then approval \\
+\textbf{Negation predicate reading} & checked general and total-order theorems available & present & Checked witness + governed join \\
+\textbf{Contrapositive} & not applicable to a definition & missing / not applicable & Theorem-only reviewed block \\
+\textbf{Aliases / equivalent forms} & Supremum and LUB definitional aliases extracted & least-upper-bound wording present & Checked witness + authored selection \\
+\textbf{Failure modes} & checked failure predicates and equivalences & present with authored labels & Lean clauses + authored taxonomy \\
+\textbf{Examples} & 8 checked manifest examples & figures/exposition, no formal attachment & Authored selection + checked witnesses \\
+\textbf{Counterexamples} & 5 checked records & empty-set explanation present & Authored selection + checked witnesses \\
+\textbf{Formal dependencies} & typed graphs available (268 selected-scope edges) & not shown & Lean \\
+\textbf{Learner prerequisites} & not inferable & 3 dependencies present & Authored \\
+\textbf{Proof term / trust} & N/A for definition; available on attached theorems & not shown & Lean \\
+\textbf{Detailed professional proof} & not recoverable from compiled term & uniqueness proof TODO & Authored \\
+\textbf{Detailed learner proof} & not recoverable from compiled term & uniqueness proof TODO & Authored \\
+\textbf{Interpretation} & docstring may suggest; cannot approve & present & Authored \\
+\textbf{Exposition / motivation} & not inferable & present & Authored \\
+\textbf{Lean formalization marker} & declaration evidence available & missing on def:supremum & Reviewed correspondence join \\
+\bottomrule
+\end{tabularx}
+\par\medskip
+\begin{tcolorbox}[colback=black!3,colframe=black!55,title=\textbf{Bottom line},boxrule=.6pt]
+\small
+Lean now supplies most formal structure needed for the definition, raw FOL,
+folded predicate, literal negation, pushed-negation candidate, checked failure
+readings, aliases, examples, counterexamples, dependencies, and theorem trust.
+The largest remaining engineering gap is the governed T10/T11 join and renderer.
+The irreducible authoring layer is title/prose, applicability conventions,
+pedagogical selection, learner dependencies, interpretation/exposition,
+detailed proof narrative, and reviewed Lean-to-artifact correspondence.
+\end{tcolorbox}
+
+\end{document}

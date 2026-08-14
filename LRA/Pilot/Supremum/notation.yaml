@@ -1,0 +1,112 @@
+# Temporary, folder-scoped rendering dictionary for the supremum extraction
+# experiment.  This file is NOT canonical governance vocabulary: it exists so
+# the pilot extractor can render harvested Lean expressions as LaTeX without
+# touching lra-governance/notation.yaml.  Once the rendered output is reviewed,
+# the surviving entries migrate to the governance registries and this file is
+# deleted.
+#
+# Rendering model: a harvested expression is printed by walking its syntax
+# tree; `logic` and `relations` map the regimented fragment, `concepts` map
+# folded canonical predicates to their surface operators, and
+# `binder_display` maps the verbose Lean binder names to the display letters
+# used by the volumes.
+
+schema_version: lra.pilot-supremum-notation/0.1
+scope: LRA.Pilot.OrderBounds supremum slice
+
+logic:
+  - lean: "∀"
+    latex: '\forall'
+  - lean: "∃"
+    latex: '\exists'
+  - lean: "∧"
+    latex: '\land'
+  - lean: "∨"
+    latex: '\lor'
+  - lean: "¬"
+    latex: '\neg'
+  - lean: "→"
+    latex: '\Rightarrow'
+  - lean: "↔"
+    latex: '\Longleftrightarrow'
+  - lean: "="
+    latex: '='
+  - lean: "≠"
+    latex: '\neq'
+
+relations:
+  - lean: Membership.mem
+    surface: "∈"
+    latex: '\in'
+  - lean: Poset.NonStrictOrder
+    surface: "≤"
+    latex: '\leq'
+    note: >
+      Field access `poset.NonStrictOrder element candidate` renders as
+      `element \leq candidate`; the ambient poset moves into the quantifier
+      bounds or the surrounding context line.
+  - lean: LRA.VolumeI.Relations.Order.StrictPart
+    surface: "<"
+    latex: '<'
+    note: >
+      `StrictPart poset.NonStrictOrder left right` renders as `left < right`.
+      Only certified for display under a totality hypothesis; see
+      SupremumTotalOrder and the discrete-pair counterexample.
+
+concepts:
+  - canonical_id: order.upper-bound
+    lean: LRA.Pilot.OrderBounds.UpperBound
+    operator: '\operatorname{UpperBound}'
+    surface_form: upper bound
+  - canonical_id: order.least-upper-bound
+    lean: LRA.Pilot.OrderBounds.LeastUpperBound
+    operator: '\operatorname{LeastUpperBound}'
+    surface_form: least upper bound
+    aliases:
+      - lean: LRA.Pilot.OrderBounds.Supremum
+        operator: '\operatorname{Supremum}'
+        surface_form: supremum
+      - lean: LRA.Pilot.OrderBounds.LUB
+        operator: '\operatorname{LUB}'
+        surface_form: LUB
+  - canonical_id: order.upper-bound-failure
+    lean: LRA.Pilot.OrderBounds.UpperBoundFailure
+    operator: '\operatorname{UpperBoundFailure}'
+    surface_form: upper-bound failure
+  - canonical_id: order.sharpness-failure
+    lean: LRA.Pilot.OrderBounds.SharpnessFailure
+    operator: '\operatorname{SharpnessFailure}'
+    surface_form: sharpness failure
+  - canonical_id: order.greatest-element
+    lean: LRA.Pilot.OrderBounds.GreatestElement
+    operator: '\operatorname{GreatestElement}'
+    surface_form: greatest element (maximum)
+
+binder_display:
+  poset: P
+  subset: A
+  smaller: A
+  larger: B
+  element: a
+  witness: a
+  candidate: s
+  smallerSupremum: s
+  largerSupremum: t
+  first: s
+  second: t
+  maximum: m
+  otherCandidate: u
+  competitor: u
+  other: u
+  bound: c
+  left: x
+  right: y
+
+ambient_display:
+  poset_context: 'P = \mathsf{OrderedSet}(S, \leq)'
+  carrier: S
+  note: >
+    Definition-level boxes display at the poset ambient.  Specializing the
+    displayed ambient to (\mathbb{R}, \leq) is an editorial choice recorded
+    outside Lean; the strict failure forms additionally require the totality
+    hypothesis certified in SupremumTotalOrder.

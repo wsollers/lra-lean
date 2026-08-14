@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LRA Ordering and Bounds Explorer</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #0f172a;
+      --panel: #111827;
+      --panel-raised: #172033;
+      --line: #283548;
+      --ink: #e5e7eb;
+      --muted: #94a3b8;
+      --faint: #64748b;
+      --teal: #2dd4bf;
+      --blue: #60a5fa;
+      --gold: #fbbf24;
+      --orange: #fb923c;
+      --violet: #a78bfa;
+      --rose: #fb7185;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { height: 100%; margin: 0; }
+
+    body {
+      overflow: hidden;
+      background: var(--background);
+      color: var(--ink);
+      font: 14px/1.45 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, input { font: inherit; }
+
+    .app {
+      display: grid;
+      grid-template-columns: minmax(238px, 286px) minmax(420px, 1fr) minmax(290px, 360px);
+      height: 100%;
+    }
+
+    .sidebar, .detail {
+      min-width: 0;
+      overflow: auto;
+      background: var(--panel);
+      scrollbar-color: #334155 transparent;
+    }
+
+    .sidebar { border-right: 1px solid var(--line); }
+    .detail { border-left: 1px solid var(--line); }
+
+    .brand {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      padding: 20px 20px 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(17, 24, 39, .96);
+      backdrop-filter: blur(8px);
+    }
+
+    .eyebrow {
+      margin: 0 0 5px;
+      color: var(--teal);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    h1 { margin: 0; font-size: 18px; line-height: 1.2; }
+
+    .brand p, .empty p { margin: 7px 0 0; color: var(--muted); font-size: 12px; }
+
+    .controls { padding: 16px 18px; border-bottom: 1px solid var(--line); }
+
+    .control-title {
+      margin: 0 0 9px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .search {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 9px 11px;
+      border: 1px solid #334155;
+      border-radius: 7px;
+      outline: none;
+      background: #0b1220;
+      color: var(--ink);
+    }
+
+    .search:focus { border-color: var(--teal); box-shadow: 0 0 0 2px rgba(45, 212, 191, .12); }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 27px;
+      color: #cbd5e1;
+      cursor: pointer;
+    }
+
+    .check-row input { accent-color: var(--teal); }
+    .check-row .count { margin-left: auto; color: var(--faint); font-variant-numeric: tabular-nums; }
+
+    .edge-swatch { width: 20px; height: 0; border-top: 2px solid var(--muted); }
+    .edge-swatch.definition { border-color: var(--teal); border-top-style: dashed; }
+    .edge-swatch.proof { border-color: var(--blue); border-top-style: dotted; }
+
+    .result-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px 7px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .results { padding: 0 10px 18px; }
+
+    .result {
+      display: block;
+      width: 100%;
+      margin: 3px 0;
+      padding: 9px 10px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      background: transparent;
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .result:hover { background: #172033; }
+    .result.active { border-color: rgba(251, 191, 36, .55); background: rgba(251, 191, 36, .08); }
+    .result strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+    .result small { color: var(--faint); }
+
+    .workspace { position: relative; min-width: 0; overflow: hidden; background: #0b1220; }
+    canvas { display: block; width: 100%; height: 100%; cursor: grab; touch-action: none; }
+    canvas.dragging { cursor: grabbing; }
+
+    .toolbar {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: rgba(17, 24, 39, .9);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .24);
+      backdrop-filter: blur(8px);
+    }
+
+    .toolbar button {
+      min-width: 31px;
+      height: 30px;
+      padding: 0 9px;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      background: #172033;
+      color: #cbd5e1;
+      cursor: pointer;
+    }
+
+    .toolbar button:hover { border-color: var(--teal); color: white; }
+    #zoom-readout { min-width: 46px; color: var(--muted); font-size: 11px; text-align: center; }
+
+    .canvas-note {
+      position: absolute;
+      right: 14px;
+      bottom: 13px;
+      color: var(--faint);
+      font-size: 11px;
+      pointer-events: none;
+    }
+
+    .detail-inner { padding: 22px; }
+    .detail h2 { margin: 4px 0 9px; font-size: 21px; line-height: 1.2; overflow-wrap: anywhere; }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+
+    .badge {
+      padding: 3px 7px;
+      border: 1px solid #334155;
+      border-radius: 999px;
+      color: #cbd5e1;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .badge.canonical { border-color: rgba(45, 212, 191, .5); color: var(--teal); }
+    .badge.warning { border-color: rgba(251, 113, 133, .55); color: var(--rose); }
+
+    .section { margin: 0 0 21px; }
+    .section h3 { margin: 0 0 7px; color: var(--muted); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+    .section p { margin: 0; color: #cbd5e1; white-space: pre-wrap; }
+
+    code, pre { font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace; }
+    code { color: #cbd5e1; overflow-wrap: anywhere; }
+
+    pre {
+      max-height: 310px;
+      margin: 0;
+      padding: 12px;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #0b1220;
+      color: #dbeafe;
+      font-size: 11px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .dependency-list { display: grid; gap: 6px; }
+    .dependency-link {
+      padding: 7px 8px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #172033;
+      color: #cbd5e1;
+      text-align: left;
+      cursor: pointer;
+      overflow-wrap: anywhere;
+    }
+
+    .dependency-link:hover { border-color: var(--blue); }
+    .empty { display: grid; min-height: 65vh; place-content: center; padding: 28px; text-align: center; }
+
+    @media (max-width: 980px) {
+      .app { grid-template-columns: 220px minmax(380px, 1fr) 290px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <aside class="sidebar" aria-label="Explorer controls">
+      <header class="brand">
+        <p class="eyebrow">Lean-driven metadata</p>
+        <h1>Ordering &amp; Bounds</h1>
+        <p id="graph-summary">Loading extracted declarations…</p>
+      </header>
+      <section class="controls">
+        <label class="control-title" for="search">Find a declaration</label>
+        <input class="search" id="search" type="search" placeholder="UpperBound, supremum…" autocomplete="off">
+        <p class="control-title">Categories</p>
+        <div id="category-controls"></div>
+        <p class="control-title" style="margin-top:16px">Dependency edges</p>
+        <div id="edge-controls"></div>
+      </section>
+      <div class="result-head"><span>Declarations</span><span id="visible-count"></span></div>
+      <nav class="results" id="results" aria-label="Visible declarations"></nav>
+    </aside>
+
+    <section class="workspace" aria-label="Dependency graph">
+      <canvas id="graph" tabindex="0" aria-label="Interactive graph of Lean declarations. Drag to pan, use the mouse wheel to zoom, and click nodes for details.">
+        This browser does not support canvas. Use the declaration list to inspect the extracted metadata.
+      </canvas>
+      <div class="toolbar" aria-label="Graph view controls">
+        <button id="zoom-out" title="Zoom out" aria-label="Zoom out">−</button>
+        <span id="zoom-readout">100%</span>
+        <button id="zoom-in" title="Zoom in" aria-label="Zoom in">+</button>
+        <button id="fit" title="Fit graph" aria-label="Fit graph">Fit</button>
+      </div>
+      <div class="canvas-note">drag to pan · wheel to zoom · click to inspect</div>
+    </section>
+
+    <aside class="detail" aria-label="Declaration details">
+      <div id="detail" class="empty">
+        <div><p class="eyebrow">Declaration detail</p><h2>Select a node</h2><p>Choose a declaration from the graph or the index.</p></div>
+      </div>
+    </aside>
+  </main>
+
+  <script id="graph-data" type="application/json">__LRA_GRAPH_DATA__</script>
+  <script>
+    (() => {
+      "use strict";
+
+      const payload = JSON.parse(document.getElementById("graph-data").textContent);
+      const nodes = payload.nodes || [];
+      const edges = payload.edges || [];
+      const nodeById = new Map(nodes.map(node => [node.id, node]));
+      const categoryOrder = ["structure", "canonical", "theorem", "adapter", "example", "counterexample", "definition", "opaque", "axiom"];
+      const categoryLabels = {
+        structure: "Order structure", canonical: "Canonical concept", theorem: "Theorem",
+        adapter: "Adapter", example: "Example", counterexample: "Counterexample",
+        definition: "Definition", opaque: "Opaque", axiom: "Axiom"
+      };
+      const colors = {
+        structure: "#94a3b8", canonical: "#2dd4bf", theorem: "#60a5fa",
+        adapter: "#cbd5e1", example: "#a78bfa", counterexample: "#fb923c",
+        definition: "#2dd4bf", opaque: "#60a5fa", axiom: "#fb7185"
+      };
+      const edgeColors = { statement: "#64748b", definition: "#2dd4bf", proof: "#60a5fa" };
+
+      const state = {
+        categories: new Set(nodes.map(node => node.category)),
+        edgeKinds: new Set(["statement", "definition", "proof"]),
+        query: "",
+        selectedId: nodes.find(node => node.canonicalConceptId === "order.upper-bound")?.id || nodes[0]?.id,
+        scale: 1,
+        offsetX: 0,
+        offsetY: 0,
+        positions: new Map(),
+        visibleNodes: [],
+        visibleEdges: [],
+        dragging: false,
+        dragMoved: false,
+        lastPointer: null
+      };
+
+      const canvas = document.getElementById("graph");
+      const context = canvas.getContext("2d");
+      const results = document.getElementById("results");
+      const detail = document.getElementById("detail");
+      const visibleCount = document.getElementById("visible-count");
+      const zoomReadout = document.getElementById("zoom-readout");
+      const nodeWidth = 238;
+      const nodeHeight = 66;
+      let deviceScale = window.devicePixelRatio || 1;
+
+      function orderedCategories() {
+        const present = [...new Set(nodes.map(node => node.category))];
+        return present.sort((left, right) => {
+          const li = categoryOrder.indexOf(left);
+          const ri = categoryOrder.indexOf(right);
+          return (li < 0 ? 99 : li) - (ri < 0 ? 99 : ri) || left.localeCompare(right);
+        });
+      }
+
+      function buildControls() {
+        const categoryControls = document.getElementById("category-controls");
+        for (const category of orderedCategories()) {
+          const count = nodes.filter(node => node.category === category).length;
+          const label = document.createElement("label");
+          label.className = "check-row";
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.checked = true;
+          checkbox.addEventListener("change", () => {
+            checkbox.checked ? state.categories.add(category) : state.categories.delete(category);
+            updateView(true);
+          });
+          const name = document.createElement("span");
+          name.textContent = categoryLabels[category] || category;
+          const countElement = document.createElement("span");
+          countElement.className = "count";
+          countElement.textContent = count;
+          label.append(checkbox, name, countElement);
+          categoryControls.append(label);
+        }
+
+        const edgeControls = document.getElementById("edge-controls");
+        for (const kind of ["statement", "definition", "proof"]) {
+          const label = document.createElement("label");
+          label.className = "check-row";
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.checked = true;
+          checkbox.addEventListener("change", () => {
+            checkbox.checked ? state.edgeKinds.add(kind) : state.edgeKinds.delete(kind);
+            updateView(false);
+          });
+          const swatch = document.createElement("span");
+          swatch.className = `edge-swatch ${kind}`;
+          const name = document.createElement("span");
+          name.textContent = `${kind[0].toUpperCase()}${kind.slice(1)} dependency`;
+          label.append(checkbox, swatch, name);
+          edgeControls.append(label);
+        }
+      }
+
+      function matches(node) {
+        if (!state.categories.has(node.category)) return false;
+        if (!state.query) return true;
+        const haystack = [node.title, node.declaration, node.canonicalConceptId || "", node.statement, node.documentation].join(" ").toLowerCase();
+        return haystack.includes(state.query);
+      }
+
+      function layoutVisibleNodes() {
+        const columns = new Map();
+        for (const node of state.visibleNodes) {
+          if (!columns.has(node.category)) columns.set(node.category, []);
+          columns.get(node.category).push(node);
+        }
+        const categories = orderedCategories().filter(category => columns.has(category));
+        state.positions.clear();
+        categories.forEach((category, columnIndex) => {
+          const columnNodes = columns.get(category).sort((left, right) => left.title.localeCompare(right.title));
+          columnNodes.forEach((node, rowIndex) => {
+            const stagger = columnIndex % 2 === 0 ? 0 : 42;
+            state.positions.set(node.id, { x: 80 + columnIndex * 330, y: 90 + stagger + rowIndex * 104 });
+          });
+        });
+      }
+
+      function updateView(fitAfter) {
+        state.visibleNodes = nodes.filter(matches);
+        const visibleIds = new Set(state.visibleNodes.map(node => node.id));
+        state.visibleEdges = edges.filter(edge => visibleIds.has(edge.source) && visibleIds.has(edge.target) && state.edgeKinds.has(edge.kind));
+        if (state.selectedId && !visibleIds.has(state.selectedId)) state.selectedId = state.visibleNodes[0]?.id;
+        layoutVisibleNodes();
+        renderResultList();
+        renderDetail();
+        if (fitAfter) fitGraph(); else draw();
+      }
+
+      function renderResultList() {
+        results.replaceChildren();
+        visibleCount.textContent = `${state.visibleNodes.length}/${nodes.length}`;
+        for (const node of state.visibleNodes) {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = `result${node.id === state.selectedId ? " active" : ""}`;
+          button.addEventListener("click", () => selectNode(node.id, true));
+          const title = document.createElement("strong");
+          title.textContent = node.title;
+          const category = document.createElement("small");
+          category.textContent = categoryLabels[node.category] || node.category;
+          button.append(title, category);
+          results.append(button);
+        }
+      }
+
+      function addTextSection(parent, heading, value, asCode = false) {
+        if (!value) return;
+        const section = document.createElement("section");
+        section.className = "section";
+        const title = document.createElement("h3");
+        title.textContent = heading;
+        const content = document.createElement(asCode ? "pre" : "p");
+        content.textContent = value;
+        section.append(title, content);
+        parent.append(section);
+      }
+
+      function renderDetail() {
+        const node = nodeById.get(state.selectedId);
+        if (!node) {
+          detail.className = "empty";
+          detail.innerHTML = "<div><p class='eyebrow'>No visible declaration</p><h2>Adjust the filters</h2><p>No declarations match the current search and categories.</p></div>";
+          return;
+        }
+        detail.className = "detail-inner";
+        detail.replaceChildren();
+        const eyebrow = document.createElement("p");
+        eyebrow.className = "eyebrow";
+        eyebrow.textContent = categoryLabels[node.category] || node.category;
+        const heading = document.createElement("h2");
+        heading.textContent = node.title;
+        const badges = document.createElement("div");
+        badges.className = "badge-row";
+        for (const [text, className] of [[node.kind, ""], [node.category, node.category === "canonical" ? "canonical" : ""]]) {
+          const badge = document.createElement("span");
+          badge.className = `badge ${className}`;
+          badge.textContent = text;
+          badges.append(badge);
+        }
+        if (node.usesSorry) {
+          const warning = document.createElement("span");
+          warning.className = "badge warning";
+          warning.textContent = "uses sorry";
+          badges.append(warning);
+        }
+        detail.append(eyebrow, heading, badges);
+        addTextSection(detail, "Canonical concept ID", node.canonicalConceptId, true);
+        addTextSection(detail, "Lean declaration", node.declaration, true);
+        addTextSection(detail, "Elaborated type", node.statement, true);
+        addTextSection(detail, "Documentation", node.documentation);
+        addTextSection(detail, "Compiled module", node.moduleName, true);
+        addTextSection(detail, "Kernel axioms", (node.kernelAxioms || []).join("\n") || "None detected", true);
+
+        const related = state.visibleEdges.filter(edge => edge.source === node.id || edge.target === node.id);
+        if (related.length) {
+          const section = document.createElement("section");
+          section.className = "section";
+          const title = document.createElement("h3");
+          title.textContent = "Visible dependencies";
+          const list = document.createElement("div");
+          list.className = "dependency-list";
+          for (const edge of related) {
+            const otherId = edge.source === node.id ? edge.target : edge.source;
+            const other = nodeById.get(otherId);
+            if (!other) continue;
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "dependency-link";
+            button.textContent = `${edge.source === node.id ? "depends on" : "used by"} · ${edge.kind} · ${other.title}`;
+            button.addEventListener("click", () => selectNode(other.id, true));
+            list.append(button);
+          }
+          section.append(title, list);
+          detail.append(section);
+        }
+      }
+
+      function roundedRect(x, y, width, height, radius) {
+        context.beginPath();
+        context.roundRect(x, y, width, height, radius);
+      }
+
+      function truncate(text, max) { return text.length <= max ? text : `${text.slice(0, max - 1)}…`; }
+
+      function drawGrid(width, height) {
+        const spacing = 42 * state.scale;
+        if (spacing < 14) return;
+        context.save();
+        context.strokeStyle = "rgba(51, 65, 85, .26)";
+        context.lineWidth = 1;
+        const startX = ((state.offsetX % spacing) + spacing) % spacing;
+        const startY = ((state.offsetY % spacing) + spacing) % spacing;
+        context.beginPath();
+        for (let x = startX; x < width; x += spacing) { context.moveTo(x, 0); context.lineTo(x, height); }
+        for (let y = startY; y < height; y += spacing) { context.moveTo(0, y); context.lineTo(width, y); }
+        context.stroke();
+        context.restore();
+      }
+
+      function edgeEndpoints(source, target) {
+        const sourceCenter = { x: source.x + nodeWidth / 2, y: source.y + nodeHeight / 2 };
+        const targetCenter = { x: target.x + nodeWidth / 2, y: target.y + nodeHeight / 2 };
+        const leftToRight = sourceCenter.x <= targetCenter.x;
+        return {
+          start: { x: leftToRight ? source.x + nodeWidth : source.x, y: sourceCenter.y },
+          end: { x: leftToRight ? target.x : target.x + nodeWidth, y: targetCenter.y },
+          direction: leftToRight ? 1 : -1
+        };
+      }
+
+      function drawEdge(edge) {
+        const source = state.positions.get(edge.source);
+        const target = state.positions.get(edge.target);
+        if (!source || !target) return;
+        const { start, end, direction } = edgeEndpoints(source, target);
+        const selected = edge.source === state.selectedId || edge.target === state.selectedId;
+        context.save();
+        context.strokeStyle = edgeColors[edge.kind] || "#64748b";
+        context.fillStyle = context.strokeStyle;
+        context.globalAlpha = selected ? .95 : .4;
+        context.lineWidth = selected ? 2.2 : 1.25;
+        context.setLineDash(edge.kind === "definition" ? [7, 5] : edge.kind === "proof" ? [2, 5] : []);
+        const bend = Math.max(46, Math.abs(end.x - start.x) * .42) * direction;
+        context.beginPath();
+        context.moveTo(start.x, start.y);
+        context.bezierCurveTo(start.x + bend, start.y, end.x - bend, end.y, end.x, end.y);
+        context.stroke();
+        context.setLineDash([]);
+        context.beginPath();
+        context.moveTo(end.x, end.y);
+        context.lineTo(end.x - 9 * direction, end.y - 5);
+        context.lineTo(end.x - 9 * direction, end.y + 5);
+        context.closePath();
+        context.fill();
+        context.restore();
+      }
+
+      function drawNode(node) {
+        const position = state.positions.get(node.id);
+        if (!position) return;
+        const selected = node.id === state.selectedId;
+        const color = colors[node.category] || "#94a3b8";
+        context.save();
+        context.shadowColor = selected ? "rgba(251, 191, 36, .28)" : "rgba(0, 0, 0, .24)";
+        context.shadowBlur = selected ? 18 : 8;
+        context.shadowOffsetY = 3;
+        roundedRect(position.x, position.y, nodeWidth, nodeHeight, 9);
+        context.fillStyle = selected ? "#222436" : "#172033";
+        context.fill();
+        context.shadowColor = "transparent";
+        context.lineWidth = selected ? 2.5 : 1.35;
+        context.strokeStyle = selected ? "#fbbf24" : color;
+        context.stroke();
+        context.fillStyle = color;
+        context.fillRect(position.x, position.y + 11, 4, nodeHeight - 22);
+        context.fillStyle = "#f8fafc";
+        context.font = "600 13px Inter, ui-sans-serif, system-ui, sans-serif";
+        context.fillText(truncate(node.title, 30), position.x + 16, position.y + 27);
+        context.fillStyle = "#94a3b8";
+        context.font = "11px Inter, ui-sans-serif, system-ui, sans-serif";
+        const subtitle = node.canonicalConceptId || categoryLabels[node.category] || node.category;
+        context.fillText(truncate(subtitle, 36), position.x + 16, position.y + 48);
+        context.restore();
+      }
+
+      function draw() {
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+        context.setTransform(deviceScale, 0, 0, deviceScale, 0, 0);
+        context.clearRect(0, 0, width, height);
+        context.fillStyle = "#0b1220";
+        context.fillRect(0, 0, width, height);
+        drawGrid(width, height);
+        context.save();
+        context.translate(state.offsetX, state.offsetY);
+        context.scale(state.scale, state.scale);
+        state.visibleEdges.forEach(drawEdge);
+        state.visibleNodes.forEach(drawNode);
+        context.restore();
+        zoomReadout.textContent = `${Math.round(state.scale * 100)}%`;
+      }
+
+      function resizeCanvas() {
+        deviceScale = window.devicePixelRatio || 1;
+        const rectangle = canvas.getBoundingClientRect();
+        canvas.width = Math.max(1, Math.round(rectangle.width * deviceScale));
+        canvas.height = Math.max(1, Math.round(rectangle.height * deviceScale));
+        draw();
+      }
+
+      function fitGraph() {
+        if (!state.visibleNodes.length) {
+          state.scale = 1; state.offsetX = 0; state.offsetY = 0; draw(); return;
+        }
+        const positions = [...state.positions.values()];
+        const minX = Math.min(...positions.map(position => position.x));
+        const minY = Math.min(...positions.map(position => position.y));
+        const maxX = Math.max(...positions.map(position => position.x + nodeWidth));
+        const maxY = Math.max(...positions.map(position => position.y + nodeHeight));
+        const padding = 70;
+        const width = Math.max(1, canvas.clientWidth - padding * 2);
+        const height = Math.max(1, canvas.clientHeight - padding * 2);
+        state.scale = Math.min(1.25, Math.max(.28, Math.min(width / (maxX - minX), height / (maxY - minY))));
+        state.offsetX = (canvas.clientWidth - (maxX - minX) * state.scale) / 2 - minX * state.scale;
+        state.offsetY = (canvas.clientHeight - (maxY - minY) * state.scale) / 2 - minY * state.scale;
+        draw();
+      }
+
+      function zoomAt(factor, screenX = canvas.clientWidth / 2, screenY = canvas.clientHeight / 2) {
+        const oldScale = state.scale;
+        const newScale = Math.min(2.5, Math.max(.2, oldScale * factor));
+        const worldX = (screenX - state.offsetX) / oldScale;
+        const worldY = (screenY - state.offsetY) / oldScale;
+        state.scale = newScale;
+        state.offsetX = screenX - worldX * newScale;
+        state.offsetY = screenY - worldY * newScale;
+        draw();
+      }
+
+      function nodeAt(screenX, screenY) {
+        const x = (screenX - state.offsetX) / state.scale;
+        const y = (screenY - state.offsetY) / state.scale;
+        return [...state.visibleNodes].reverse().find(node => {
+          const position = state.positions.get(node.id);
+          return position && x >= position.x && x <= position.x + nodeWidth && y >= position.y && y <= position.y + nodeHeight;
+        });
+      }
+
+      function centerNode(nodeId) {
+        const position = state.positions.get(nodeId);
+        if (!position) return;
+        state.offsetX = canvas.clientWidth / 2 - (position.x + nodeWidth / 2) * state.scale;
+        state.offsetY = canvas.clientHeight / 2 - (position.y + nodeHeight / 2) * state.scale;
+      }
+
+      function selectNode(nodeId, center = false) {
+        state.selectedId = nodeId;
+        if (center) centerNode(nodeId);
+        renderResultList();
+        renderDetail();
+        draw();
+      }
+
+      canvas.addEventListener("pointerdown", event => {
+        canvas.setPointerCapture(event.pointerId);
+        state.dragging = true;
+        state.dragMoved = false;
+        state.lastPointer = { x: event.clientX, y: event.clientY };
+        canvas.classList.add("dragging");
+      });
+
+      canvas.addEventListener("pointermove", event => {
+        if (!state.dragging) return;
+        const dx = event.clientX - state.lastPointer.x;
+        const dy = event.clientY - state.lastPointer.y;
+        if (Math.abs(dx) + Math.abs(dy) > 2) state.dragMoved = true;
+        state.offsetX += dx;
+        state.offsetY += dy;
+        state.lastPointer = { x: event.clientX, y: event.clientY };
+        draw();
+      });
+
+      canvas.addEventListener("pointerup", event => {
+        if (!state.dragMoved) {
+          const rectangle = canvas.getBoundingClientRect();
+          const node = nodeAt(event.clientX - rectangle.left, event.clientY - rectangle.top);
+          if (node) selectNode(node.id, false);
+        }
+        state.dragging = false;
+        state.lastPointer = null;
+        canvas.classList.remove("dragging");
+      });
+
+      canvas.addEventListener("wheel", event => {
+        event.preventDefault();
+        const rectangle = canvas.getBoundingClientRect();
+        zoomAt(event.deltaY < 0 ? 1.12 : .89, event.clientX - rectangle.left, event.clientY - rectangle.top);
+      }, { passive: false });
+
+      canvas.addEventListener("keydown", event => {
+        if (event.key === "+" || event.key === "=") zoomAt(1.15);
+        if (event.key === "-") zoomAt(.87);
+        if (event.key === "0") fitGraph();
+      });
+
+      document.getElementById("search").addEventListener("input", event => {
+        state.query = event.target.value.trim().toLowerCase();
+        updateView(true);
+      });
+      document.getElementById("zoom-in").addEventListener("click", () => zoomAt(1.18));
+      document.getElementById("zoom-out").addEventListener("click", () => zoomAt(.84));
+      document.getElementById("fit").addEventListener("click", fitGraph);
+      window.addEventListener("resize", resizeCanvas);
+
+      document.getElementById("graph-summary").textContent = `${nodes.length} Lean declarations · ${edges.length} extracted dependencies`;
+      buildControls();
+      resizeCanvas();
+      updateView(true);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,2243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LRA Ordering and Bounds Explorer</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #0f172a;
+      --panel: #111827;
+      --panel-raised: #172033;
+      --line: #283548;
+      --ink: #e5e7eb;
+      --muted: #94a3b8;
+      --faint: #64748b;
+      --teal: #2dd4bf;
+      --blue: #60a5fa;
+      --gold: #fbbf24;
+      --orange: #fb923c;
+      --violet: #a78bfa;
+      --rose: #fb7185;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { height: 100%; margin: 0; }
+
+    body {
+      overflow: hidden;
+      background: var(--background);
+      color: var(--ink);
+      font: 14px/1.45 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button, input { font: inherit; }
+
+    .app {
+      display: grid;
+      grid-template-columns: minmax(238px, 286px) minmax(420px, 1fr) minmax(290px, 360px);
+      height: 100%;
+    }
+
+    .sidebar, .detail {
+      min-width: 0;
+      overflow: auto;
+      background: var(--panel);
+      scrollbar-color: #334155 transparent;
+    }
+
+    .sidebar { border-right: 1px solid var(--line); }
+    .detail { border-left: 1px solid var(--line); }
+
+    .brand {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      padding: 20px 20px 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(17, 24, 39, .96);
+      backdrop-filter: blur(8px);
+    }
+
+    .eyebrow {
+      margin: 0 0 5px;
+      color: var(--teal);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    h1 { margin: 0; font-size: 18px; line-height: 1.2; }
+
+    .brand p, .empty p { margin: 7px 0 0; color: var(--muted); font-size: 12px; }
+
+    .controls { padding: 16px 18px; border-bottom: 1px solid var(--line); }
+
+    .control-title {
+      margin: 0 0 9px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .search {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 9px 11px;
+      border: 1px solid #334155;
+      border-radius: 7px;
+      outline: none;
+      background: #0b1220;
+      color: var(--ink);
+    }
+
+    .search:focus { border-color: var(--teal); box-shadow: 0 0 0 2px rgba(45, 212, 191, .12); }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 27px;
+      color: #cbd5e1;
+      cursor: pointer;
+    }
+
+    .check-row input { accent-color: var(--teal); }
+    .check-row .count { margin-left: auto; color: var(--faint); font-variant-numeric: tabular-nums; }
+
+    .edge-swatch { width: 20px; height: 0; border-top: 2px solid var(--muted); }
+    .edge-swatch.definition { border-color: var(--teal); border-top-style: dashed; }
+    .edge-swatch.proof { border-color: var(--blue); border-top-style: dotted; }
+
+    .result-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px 7px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .results { padding: 0 10px 18px; }
+
+    .result {
+      display: block;
+      width: 100%;
+      margin: 3px 0;
+      padding: 9px 10px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      background: transparent;
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .result:hover { background: #172033; }
+    .result.active { border-color: rgba(251, 191, 36, .55); background: rgba(251, 191, 36, .08); }
+    .result strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
+    .result small { color: var(--faint); }
+
+    .workspace { position: relative; min-width: 0; overflow: hidden; background: #0b1220; }
+    canvas { display: block; width: 100%; height: 100%; cursor: grab; touch-action: none; }
+    canvas.dragging { cursor: grabbing; }
+
+    .toolbar {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: rgba(17, 24, 39, .9);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .24);
+      backdrop-filter: blur(8px);
+    }
+
+    .toolbar button {
+      min-width: 31px;
+      height: 30px;
+      padding: 0 9px;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      background: #172033;
+      color: #cbd5e1;
+      cursor: pointer;
+    }
+
+    .toolbar button:hover { border-color: var(--teal); color: white; }
+    #zoom-readout { min-width: 46px; color: var(--muted); font-size: 11px; text-align: center; }
+
+    .canvas-note {
+      position: absolute;
+      right: 14px;
+      bottom: 13px;
+      color: var(--faint);
+      font-size: 11px;
+      pointer-events: none;
+    }
+
+    .detail-inner { padding: 22px; }
+    .detail h2 { margin: 4px 0 9px; font-size: 21px; line-height: 1.2; overflow-wrap: anywhere; }
+
+    .badge-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+
+    .badge {
+      padding: 3px 7px;
+      border: 1px solid #334155;
+      border-radius: 999px;
+      color: #cbd5e1;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .badge.canonical { border-color: rgba(45, 212, 191, .5); color: var(--teal); }
+    .badge.warning { border-color: rgba(251, 113, 133, .55); color: var(--rose); }
+
+    .section { margin: 0 0 21px; }
+    .section h3 { margin: 0 0 7px; color: var(--muted); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+    .section p { margin: 0; color: #cbd5e1; white-space: pre-wrap; }
+
+    code, pre { font-family: "Cascadia Code", "SFMono-Regular", Consolas, monospace; }
+    code { color: #cbd5e1; overflow-wrap: anywhere; }
+
+    pre {
+      max-height: 310px;
+      margin: 0;
+      padding: 12px;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #0b1220;
+      color: #dbeafe;
+      font-size: 11px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .dependency-list { display: grid; gap: 6px; }
+    .dependency-link {
+      padding: 7px 8px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #172033;
+      color: #cbd5e1;
+      text-align: left;
+      cursor: pointer;
+      overflow-wrap: anywhere;
+    }
+
+    .dependency-link:hover { border-color: var(--blue); }
+    .empty { display: grid; min-height: 65vh; place-content: center; padding: 28px; text-align: center; }
+
+    @media (max-width: 980px) {
+      .app { grid-template-columns: 220px minmax(380px, 1fr) 290px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <aside class="sidebar" aria-label="Explorer controls">
+      <header class="brand">
+        <p class="eyebrow">Lean-driven metadata</p>
+        <h1>Ordering &amp; Bounds</h1>
+        <p id="graph-summary">Loading extracted declarations…</p>
+      </header>
+      <section class="controls">
+        <label class="control-title" for="search">Find a declaration</label>
+        <input class="search" id="search" type="search" placeholder="UpperBound, supremum…" autocomplete="off">
+        <p class="control-title">Categories</p>
+        <div id="category-controls"></div>
+        <p class="control-title" style="margin-top:16px">Dependency edges</p>
+        <div id="edge-controls"></div>
+      </section>
+      <div class="result-head"><span>Declarations</span><span id="visible-count"></span></div>
+      <nav class="results" id="results" aria-label="Visible declarations"></nav>
+    </aside>
+
+    <section class="workspace" aria-label="Dependency graph">
+      <canvas id="graph" tabindex="0" aria-label="Interactive graph of Lean declarations. Drag to pan, use the mouse wheel to zoom, and click nodes for details.">
+        This browser does not support canvas. Use the declaration list to inspect the extracted metadata.
+      </canvas>
+      <div class="toolbar" aria-label="Graph view controls">
+        <button id="zoom-out" title="Zoom out" aria-label="Zoom out">−</button>
+        <span id="zoom-readout">100%</span>
+        <button id="zoom-in" title="Zoom in" aria-label="Zoom in">+</button>
+        <button id="fit" title="Fit graph" aria-label="Fit graph">Fit</button>
+      </div>
+      <div class="canvas-note">drag to pan · wheel to zoom · click to inspect</div>
+    </section>
+
+    <aside class="detail" aria-label="Declaration details">
+      <div id="detail" class="empty">
+        <div><p class="eyebrow">Declaration detail</p><h2>Select a node</h2><p>Choose a declaration from the graph or the index.</p></div>
+      </div>
+    </aside>
+  </main>
+
+  <script id="graph-data" type="application/json">{"title": "LRA Ordering and Bounds Pilot",
+ "schemaVersion": 1,
+ "nodes":
+ [{"usesSorry": false,
+   "title": "Bounded",
+   "statementDependencies":
+   ["LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership"],
+   "statement":
+   "(poset : LRA.VolumeI.Relations.Order.Poset) →\n  {SetObject : Type v} → [Membership poset.Carrier SetObject] → SetObject → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "order.bounded",
+   "documentation":
+   "`Bounded poset subset` means that `subset` is bounded both above and below\nin `poset`.\n\nLogical form:\n\n```lean\nBoundedAbove poset subset ∧ BoundedBelow poset subset\n```\n",
+   "definitionDependencies":
+   ["And",
+    "LRA.Pilot.OrderBounds.BoundedAbove",
+    "LRA.Pilot.OrderBounds.BoundedBelow",
+    "LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership"],
+   "declaration": "LRA.Pilot.OrderBounds.Bounded",
+   "category": "canonical",
+   "canonicalConceptId": "order.bounded",
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "BoundedAbove",
+   "statementDependencies":
+   ["LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership"],
+   "statement":
+   "(poset : LRA.VolumeI.Relations.Order.Poset) →\n  {SetObject : Type v} → [Membership poset.Carrier SetObject] → SetObject → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "order.bounded-above",
+   "documentation":
+   "`BoundedAbove poset subset` means that some candidate in the carrier of\n`poset` is an upper bound of `subset`.\n\nLogical form:\n\n```lean\n∃ candidate : poset.Carrier,\n  UpperBound poset subset candidate\n```\n",
+   "definitionDependencies":
+   ["Exists",
+    "LRA.Pilot.OrderBounds.UpperBound",
+    "LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership"],
+   "declaration": "LRA.Pilot.OrderBounds.BoundedAbove",
+   "category": "canonical",
+   "canonicalConceptId": "order.bounded-above",
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "BoundedAboveHasUpperBound",
+   "statementDependencies":
+   ["Exists",
+    "LRA.Pilot.OrderBounds.BoundedAbove",
+    "LRA.Pilot.OrderBounds.UpperBound",
+    "LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership"],
+   "statement":
+   "∀ (poset : LRA.VolumeI.Relations.Order.Poset) {SetObject : Type v}\n  [inst : Membership poset.Carrier SetObject] (subset : SetObject),\n  LRA.Pilot.OrderBounds.BoundedAbove poset subset →\n    ∃ candidate, LRA.Pilot.OrderBounds.UpperBound poset subset candidate",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBoundsTheorems",
+   "kind": "theorem",
+   "id": "LRA.Pilot.OrderBounds.BoundedAboveHasUpperBound",
+   "documentation":
+   "A set bounded above has an upper bound.\n\nLogical form:\n\n```lean\nBoundedAbove poset subset →\n  ∃ candidate : poset.Carrier, UpperBound poset subset candidate\n```\n",
+   "definitionDependencies": [],
+   "declaration": "LRA.Pilot.OrderBounds.BoundedAboveHasUpperBound",
+   "category": "theorem",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "BoundedAboveIffHasUpperBound",
+   "statementDependencies":
+   ["Exists",
+    "Iff",
+    "LRA.Pilot.OrderBounds.BoundedAbove",
+    "LRA.Pilot.OrderBounds.UpperBound",
+    "LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership"],
+   "statement":
+   "∀ (poset : LRA.VolumeI.Relations.Order.Poset) {SetObject : Type v}\n  [inst : Membership poset.Carrier SetObject] (subset : SetObject),\n  LRA.Pilot.OrderBounds.BoundedAbove poset subset ↔\n    ∃ candidate, LRA.Pilot.OrderBounds.UpperBound poset subset candidate",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBoundsTheorems",
+   "kind": "theorem",
+   "id": "LRA.Pilot.OrderBounds.BoundedAboveIffHasUpperBound",
+   "documentation":
+   "Bounded above means exactly that an upper bound exists.\n\nLogical form:\n\n```lean\nBoundedAbove poset subset ↔\n  ∃ candidate : poset.Carrier, UpperBound poset subset candidate\n```\n",
+   "definitionDependencies": [],
+   "declaration": "LRA.Pilot.OrderBounds.BoundedAboveIffHasUpperBound",
+   "category": "theorem",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "BoundedBelow",
+   "statementDependencies":
+   ["LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership"],
+   "statement":
+   "(poset : LRA.VolumeI.Relations.Order.Poset) →\n  {SetObject : Type v} → [Membership poset.Carrier SetObject] → SetObject → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "order.bounded-below",
+   "documentation":
+   "`BoundedBelow poset subset` means that some candidate in the carrier of\n`poset` is a lower bound of `subset`.\n\nLogical form:\n\n```lean\n∃ candidate : poset.Carrier,\n  LowerBound poset subset candidate\n```\n",
+   "definitionDependencies":
+   ["Exists",
+    "LRA.Pilot.OrderBounds.LowerBound",
+    "LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership"],
+   "declaration": "LRA.Pilot.OrderBounds.BoundedBelow",
+   "category": "canonical",
+   "canonicalConceptId": "order.bounded-below",
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "BoundedAboveDoesNotImplyGreatestElement",
+   "statementDependencies":
+   ["And",
+    "Exists",
+    "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo",
+    "LRA.Pilot.OrderBounds.FromPartialOrder.BoundedAbove",
+    "LRA.Pilot.OrderBounds.FromPartialOrder.GreatestElement",
+    "Not",
+    "Rat",
+    "Rat.instPartialOrder",
+    "Set",
+    "Set.instMembership"],
+   "statement":
+   "LRA.Pilot.OrderBounds.FromPartialOrder.BoundedAbove\n    LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo ∧\n  ¬∃ maximum,\n      LRA.Pilot.OrderBounds.FromPartialOrder.GreatestElement\n        LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo maximum",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBoundsCounterexamples",
+   "kind": "theorem",
+   "id":
+   "LRA.Pilot.OrderBounds.Counterexamples.BoundedAboveDoesNotImplyGreatestElement",
+   "documentation":
+   "Being bounded above does not imply having a greatest element, witnessed\ninside the rational numbers by the cut at `√2`.\n\nLogical form:\n\n```lean\nFromPartialOrder.BoundedAbove RationalSquareBelowTwo ∧\n  ¬ ∃ maximum : Rat,\n    FromPartialOrder.GreatestElement RationalSquareBelowTwo maximum\n```\n",
+   "definitionDependencies": [],
+   "declaration":
+   "LRA.Pilot.OrderBounds.Counterexamples.BoundedAboveDoesNotImplyGreatestElement",
+   "category": "counterexample",
+   "canonicalConceptId": null,
+   "axioms": ["Classical.choice", "Quot.sound", "propext"]},
+  {"usesSorry": false,
+   "title": "BoundedAboveDoesNotImplyLeastUpperBound",
+   "statementDependencies":
+   ["And",
+    "Exists",
+    "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo",
+    "LRA.Pilot.OrderBounds.FromPartialOrder.BoundedAbove",
+    "LRA.Pilot.OrderBounds.FromPartialOrder.LeastUpperBound",
+    "Not",
+    "Rat",
+    "Rat.instPartialOrder",
+    "Set",
+    "Set.instMembership"],
+   "statement":
+   "LRA.Pilot.OrderBounds.FromPartialOrder.BoundedAbove\n    LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo ∧\n  ¬∃ supremum,\n      LRA.Pilot.OrderBounds.FromPartialOrder.LeastUpperBound\n        LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo supremum",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBoundsCounterexamples",
+   "kind": "theorem",
+   "id":
+   "LRA.Pilot.OrderBounds.Counterexamples.BoundedAboveDoesNotImplyLeastUpperBound",
+   "documentation":
+   "Being bounded above does not imply possessing a least upper bound inside\nan arbitrary poset, witnessed by the rational cut at `√2`.\n\nLogical form:\n\n```lean\nFromPartialOrder.BoundedAbove RationalSquareBelowTwo ∧\n  ¬ ∃ supremum : Rat,\n    FromPartialOrder.LeastUpperBound RationalSquareBelowTwo supremum\n```\n",
+   "definitionDependencies": [],
+   "declaration":
+   "LRA.Pilot.OrderBounds.Counterexamples.BoundedAboveDoesNotImplyLeastUpperBound",
+   "category": "counterexample",
+   "canonicalConceptId": null,
+   "axioms": ["Classical.choice", "Quot.sound", "propext"]},
+  {"usesSorry": false,
+   "title": "RationalAboveSqrtTwoIsUpperBound",
+   "statementDependencies":
+   ["LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo",
+    "LRA.Pilot.OrderBounds.FromPartialOrder.UpperBound",
+    "LT.lt",
+    "Nat",
+    "Nat.instAtLeastTwoHAddOfNat",
+    "Nat.instNeZeroSucc",
+    "OfNat.ofNat",
+    "Rat",
+    "Rat.cast",
+    "Rat.instPartialOrder",
+    "Real",
+    "Real.instLT",
+    "Real.instNatCast",
+    "Real.instRatCast",
+    "Real.sqrt",
+    "Set",
+    "Set.instMembership",
+    "instOfNatAtLeastTwo",
+    "instOfNatNat"],
+   "statement":
+   "∀ (candidate : ℚ),\n  √2 < ↑candidate →\n    LRA.Pilot.OrderBounds.FromPartialOrder.UpperBound\n      LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo candidate",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBoundsCounterexamples",
+   "kind": "theorem",
+   "id":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalAboveSqrtTwoIsUpperBound",
+   "documentation":
+   "Every rational strictly above `√2` is an upper bound of the rationals\nwhose squares are below two.\n\nLogical form:\n\n```lean\nReal.sqrt 2 < (candidate : Real) →\n  FromPartialOrder.UpperBound RationalSquareBelowTwo candidate\n```\n",
+   "definitionDependencies": [],
+   "declaration":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalAboveSqrtTwoIsUpperBound",
+   "category": "counterexample",
+   "canonicalConceptId": null,
+   "axioms": ["Classical.choice", "Quot.sound", "propext"]},
+  {"usesSorry": false,
+   "title": "RationalSquareBelowTwo",
+   "statementDependencies": ["Rat", "Set"],
+   "statement": "Set ℚ",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBoundsCounterexamples",
+   "kind": "definition",
+   "id": "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo",
+   "documentation":
+   "The rational numbers whose squares are strictly less than two.\n\nLogical form:\n\n```lean\n{rational : Rat | rational ^ 2 < 2}\n```\n",
+   "definitionDependencies":
+   ["HPow.hPow",
+    "LT.lt",
+    "Monoid.toNPow",
+    "NPow.toPow",
+    "Nat",
+    "OfNat.ofNat",
+    "Rat",
+    "Rat.instLT",
+    "Rat.instOfNat",
+    "Rat.monoid",
+    "instHPow",
+    "instOfNatNat",
+    "setOf"],
+   "declaration":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo",
+   "category": "counterexample",
+   "canonicalConceptId": null,
+   "axioms": ["Classical.choice", "Quot.sound", "propext"]},
+  {"usesSorry": false,
+   "title": "RationalSquareBelowTwoCanAlwaysIncrease",
+   "statementDependencies":
+   ["And",
+    "Exists",
+    "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo",
+    "LT.lt",
+    "Membership.mem",
+    "Rat",
+    "Rat.instLT",
+    "Set",
+    "Set.instMembership"],
+   "statement":
+   "∀ rational ∈ LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo,\n  ∃ larger ∈ LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo, rational < larger",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBoundsCounterexamples",
+   "kind": "theorem",
+   "id":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwoCanAlwaysIncrease",
+   "documentation":
+   "Every rational whose square is below two has a strictly larger rational\nwhose square is still below two.\n\nLogical form:\n\n```lean\n∀ rational ∈ RationalSquareBelowTwo,\n  ∃ larger ∈ RationalSquareBelowTwo, rational < larger\n```\n",
+   "definitionDependencies": [],
+   "declaration":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwoCanAlwaysIncrease",
+   "category": "counterexample",
+   "canonicalConceptId": null,
+   "axioms": ["Classical.choice", "Quot.sound", "propext"]},
+  {"usesSorry": false,
+   "title": "RationalSquareBelowTwoHasNoGreatestElement",
+   "statementDependencies":
+   ["Exists",
+    "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo",
+    "LRA.Pilot.OrderBounds.FromPartialOrder.GreatestElement",
+    "Not",
+    "Rat",
+    "Rat.instPartialOrder",
+    "Set",
+    "Set.instMembership"],
+   "statement":
+   "¬∃ maximum,\n    LRA.Pilot.OrderBounds.FromPartialOrder.GreatestElement\n      LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo maximum",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBoundsCounterexamples",
+   "kind": "theorem",
+   "id":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwoHasNoGreatestElement",
+   "documentation":
+   "The rationals whose squares are below two have no greatest element.\n\nLogical form:\n\n```lean\n¬ ∃ maximum : Rat,\n  FromPartialOrder.GreatestElement RationalSquareBelowTwo maximum\n```\n",
+   "definitionDependencies": [],
+   "declaration":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwoHasNoGreatestElement",
+   "category": "counterexample",
+   "canonicalConceptId": null,
+   "axioms": ["Classical.choice", "Quot.sound", "propext"]},
+  {"usesSorry": false,
+   "title": "RationalSquareBelowTwoHasNoLeastUpperBound",
+   "statementDependencies":
+   ["Exists",
+    "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo",
+    "LRA.Pilot.OrderBounds.FromPartialOrder.LeastUpperBound",
+    "Not",
+    "Rat",
+    "Rat.instPartialOrder",
+    "Set",
+    "Set.instMembership"],
+   "statement":
+   "¬∃ supremum,\n    LRA.Pilot.OrderBounds.FromPartialOrder.LeastUpperBound\n      LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo supremum",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBoundsCounterexamples",
+   "kind": "theorem",
+   "id":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwoHasNoLeastUpperBound",
+   "documentation":
+   "The rationals whose squares are below two have no rational least upper\nbound: any proposed rational supremum would have to equal the irrational\nnumber `√2`.\n\nLogical form:\n\n```lean\n¬ ∃ supremum : Rat,\n  FromPartialOrder.LeastUpperBound RationalSquareBelowTwo supremum\n```\n",
+   "definitionDependencies": [],
+   "declaration":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwoHasNoLeastUpperBound",
+   "category": "counterexample",
+   "canonicalConceptId": null,
+   "axioms": ["Classical.choice", "Quot.sound", "propext"]},
+  {"usesSorry": false,
+   "title": "RationalSquareBelowTwoHasUpperBoundTwo",
+   "statementDependencies":
+   ["LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo",
+    "LRA.Pilot.OrderBounds.FromPartialOrder.UpperBound",
+    "OfNat.ofNat",
+    "Rat",
+    "Rat.instOfNat",
+    "Rat.instPartialOrder",
+    "Set",
+    "Set.instMembership"],
+   "statement":
+   "LRA.Pilot.OrderBounds.FromPartialOrder.UpperBound\n  LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo 2",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBoundsCounterexamples",
+   "kind": "theorem",
+   "id":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwoHasUpperBoundTwo",
+   "documentation":
+   "Two is an upper bound of the rationals whose squares are below two.\n\nLogical form:\n\n```lean\nFromPartialOrder.UpperBound RationalSquareBelowTwo (2 : Rat)\n```\n",
+   "definitionDependencies": [],
+   "declaration":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwoHasUpperBoundTwo",
+   "category": "counterexample",
+   "canonicalConceptId": null,
+   "axioms": ["Classical.choice", "Quot.sound", "propext"]},
+  {"usesSorry": false,
+   "title": "LraRealOfReal",
+   "statementDependencies": ["LRA.VolumeIII.RealNumbers.LraReal", "Real"],
+   "statement": "ℝ → LRA.VolumeIII.RealNumbers.LraReal",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBoundsExamples",
+   "kind": "definition",
+   "id": "LRA.Pilot.OrderBounds.Examples.LraRealOfReal",
+   "documentation":
+   "Wrap a Mathlib real as the LRA lower Dedekind cut of rationals below it.\n\nLogical form:\n\n```lean\n{q : Rat | (q : Real) < value}\n```\n",
+   "definitionDependencies":
+   ["LRA.Pilot.OrderBounds.Examples.LraRealOfReal._proof_1",
+    "LRA.Pilot.OrderBounds.Examples.LraRealOfReal._proof_2",
+    "LRA.Pilot.OrderBounds.Examples.LraRealOfReal._proof_3",
+    "LRA.Pilot.OrderBounds.Examples.LraRealOfReal._proof_4",
+    "LRA.VolumeIII.RealNumbers.LraReal.mk",
+    "LT.lt",
+    "Rat",
+    "Rat.cast",
+    "Real",
+    "Real.instLT",
+    "Real.instRatCast",
+    "setOf"],
+   "declaration": "LRA.Pilot.OrderBounds.Examples.LraRealOfReal",
+   "category": "example",
+   "canonicalConceptId": null,
+   "axioms": ["Classical.choice", "Quot.sound", "propext"]},
+  {"usesSorry": false,
+   "title": "LraRealOfRealMonotone",
+   "statementDependencies":
+   ["LE.le",
+    "LRA.Pilot.OrderBounds.Examples.LraRealOfReal",
+    "LRA.VolumeIII.RealNumbers.LraReal",
+    "LRA.VolumeIII.RealNumbers.LraReal.instPreorder",
+    "Preorder.toLE",
+    "Real",
+    "Real.instLE"],
+   "statement":
+   "∀ {left right : ℝ},\n  left ≤ right →\n    LRA.Pilot.OrderBounds.Examples.LraRealOfReal left ≤\n      LRA.Pilot.OrderBounds.Examples.LraRealOfReal right",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBoundsExamples",
+   "kind": "theorem",
+   "id": "LRA.Pilot.OrderBounds.Examples.LraRealOfRealMonotone",
+   "documentation":
+   "Wrapping Mathlib reals as LRA lower cuts preserves their order.\n\nLogical form:\n\n```lean\nleft ≤ right → LraRealOfReal left ≤ LraRealOfReal right\n```\n",
+   "definitionDependencies": [],
+   "declaration": "LRA.Pilot.OrderBounds.Examples.LraRealOfRealMonotone",
+   "category": "example",
+   "canonicalConceptId": null,
+   "axioms": ["Classical.choice", "Quot.sound", "propext"]},
+  {"usesSorry": false,
+   "title": "SquareBelowTwo",
+   "statementDependencies": ["Real", "Set"],
+   "statement": "Set ℝ",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBoundsExamples",
+   "kind": "definition",
+   "id": "LRA.Pilot.OrderBounds.Examples.SquareBelowTwo",
+   "documentation":
+   "The real numbers whose squares are strictly less than two.\n\nLogical form:\n\n```lean\n{x : Real | x ^ 2 - 2 < 0}\n```\n",
+   "definitionDependencies":
+   ["HPow.hPow",
+    "HSub.hSub",
+    "LRA.Pilot.OrderBounds.Examples.SquareBelowTwo._proof_1",
+    "LT.lt",
+    "Monoid.toNPow",
+    "NPow.toPow",
+    "Nat",
+    "OfNat.ofNat",
+    "Real",
+    "Real.instLT",
+    "Real.instMonoid",
+    "Real.instNatCast",
+    "Real.instSub",
+    "Real.instZero",
+    "Zero.toOfNat0",
+    "instHPow",
+    "instHSub",
+    "instOfNatAtLeastTwo",
+    "instOfNatNat",
+    "setOf"],
+   "declaration": "LRA.Pilot.OrderBounds.Examples.SquareBelowTwo",
+   "category": "example",
+   "canonicalConceptId": null,
+   "axioms": ["Classical.choice", "Quot.sound", "propext"]},
+  {"usesSorry": false,
+   "title": "WrappedSquareBelowTwo",
+   "statementDependencies": ["LRA.VolumeIII.RealNumbers.LraReal", "Set"],
+   "statement": "Set LRA.VolumeIII.RealNumbers.LraReal",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBoundsExamples",
+   "kind": "definition",
+   "id": "LRA.Pilot.OrderBounds.Examples.WrappedSquareBelowTwo",
+   "documentation":
+   "The image in `LraReal` of the real numbers whose squares are strictly less\nthan two.\n\nLogical form:\n\n```lean\nLraRealOfReal '' {x : Real | x ^ 2 - 2 < 0}\n```\n",
+   "definitionDependencies":
+   ["LRA.Pilot.OrderBounds.Examples.LraRealOfReal",
+    "LRA.Pilot.OrderBounds.Examples.SquareBelowTwo",
+    "LRA.VolumeIII.RealNumbers.LraReal",
+    "Real",
+    "Set.image"],
+   "declaration": "LRA.Pilot.OrderBounds.Examples.WrappedSquareBelowTwo",
+   "category": "example",
+   "canonicalConceptId": null,
+   "axioms": ["Classical.choice", "Quot.sound", "propext"]},
+  {"usesSorry": false,
+   "title": "Bounded",
+   "statementDependencies": ["Membership", "PartialOrder"],
+   "statement":
+   "{carrier : Type u} →\n  [partialOrder : PartialOrder carrier] →\n    {SetObject : Type v} → [Membership carrier SetObject] → SetObject → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "LRA.Pilot.OrderBounds.FromPartialOrder.Bounded",
+   "documentation":
+   "Bounded above and below using the partial order inferred for the carrier.\n\nLogical form:\n\n```lean\nOrderBounds.Bounded (PosetFromPartialOrder carrier) subset\n```\n",
+   "definitionDependencies":
+   ["LRA.Pilot.OrderBounds.Bounded",
+    "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+    "Membership",
+    "PartialOrder"],
+   "declaration": "LRA.Pilot.OrderBounds.FromPartialOrder.Bounded",
+   "category": "adapter",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "BoundedAbove",
+   "statementDependencies": ["Membership", "PartialOrder"],
+   "statement":
+   "{carrier : Type u} →\n  [partialOrder : PartialOrder carrier] →\n    {SetObject : Type v} → [Membership carrier SetObject] → SetObject → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "LRA.Pilot.OrderBounds.FromPartialOrder.BoundedAbove",
+   "documentation":
+   "Bounded above using the partial order inferred for the carrier.\n\nLogical form:\n\n```lean\nOrderBounds.BoundedAbove (PosetFromPartialOrder carrier) subset\n```\n",
+   "definitionDependencies":
+   ["LRA.Pilot.OrderBounds.BoundedAbove",
+    "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+    "Membership",
+    "PartialOrder"],
+   "declaration": "LRA.Pilot.OrderBounds.FromPartialOrder.BoundedAbove",
+   "category": "adapter",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "BoundedBelow",
+   "statementDependencies": ["Membership", "PartialOrder"],
+   "statement":
+   "{carrier : Type u} →\n  [partialOrder : PartialOrder carrier] →\n    {SetObject : Type v} → [Membership carrier SetObject] → SetObject → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "LRA.Pilot.OrderBounds.FromPartialOrder.BoundedBelow",
+   "documentation":
+   "Bounded below using the partial order inferred for the carrier.\n\nLogical form:\n\n```lean\nOrderBounds.BoundedBelow (PosetFromPartialOrder carrier) subset\n```\n",
+   "definitionDependencies":
+   ["LRA.Pilot.OrderBounds.BoundedBelow",
+    "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+    "Membership",
+    "PartialOrder"],
+   "declaration": "LRA.Pilot.OrderBounds.FromPartialOrder.BoundedBelow",
+   "category": "adapter",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "GreatestElement",
+   "statementDependencies": ["Membership", "PartialOrder"],
+   "statement":
+   "{carrier : Type u} →\n  [partialOrder : PartialOrder carrier] →\n    {SetObject : Type v} → [Membership carrier SetObject] → SetObject → carrier → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "LRA.Pilot.OrderBounds.FromPartialOrder.GreatestElement",
+   "documentation":
+   "A greatest element using the partial order inferred for the carrier.\n\nLogical form:\n\n```lean\nOrderBounds.GreatestElement (PosetFromPartialOrder carrier) subset candidate\n```\n",
+   "definitionDependencies":
+   ["LRA.Pilot.OrderBounds.GreatestElement",
+    "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+    "Membership",
+    "PartialOrder"],
+   "declaration": "LRA.Pilot.OrderBounds.FromPartialOrder.GreatestElement",
+   "category": "adapter",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "GreatestLowerBound",
+   "statementDependencies": ["Membership", "PartialOrder"],
+   "statement":
+   "{carrier : Type u} →\n  [partialOrder : PartialOrder carrier] →\n    {SetObject : Type v} → [Membership carrier SetObject] → SetObject → carrier → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "LRA.Pilot.OrderBounds.FromPartialOrder.GreatestLowerBound",
+   "documentation":
+   "A greatest lower bound using the partial order inferred for the carrier.\n\nLogical form:\n\n```lean\nOrderBounds.GreatestLowerBound (PosetFromPartialOrder carrier) subset candidate\n```\n",
+   "definitionDependencies":
+   ["LRA.Pilot.OrderBounds.GreatestLowerBound",
+    "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+    "Membership",
+    "PartialOrder"],
+   "declaration": "LRA.Pilot.OrderBounds.FromPartialOrder.GreatestLowerBound",
+   "category": "adapter",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "LeastElement",
+   "statementDependencies": ["Membership", "PartialOrder"],
+   "statement":
+   "{carrier : Type u} →\n  [partialOrder : PartialOrder carrier] →\n    {SetObject : Type v} → [Membership carrier SetObject] → SetObject → carrier → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "LRA.Pilot.OrderBounds.FromPartialOrder.LeastElement",
+   "documentation":
+   "A least element using the partial order inferred for the carrier.\n\nLogical form:\n\n```lean\nOrderBounds.LeastElement (PosetFromPartialOrder carrier) subset candidate\n```\n",
+   "definitionDependencies":
+   ["LRA.Pilot.OrderBounds.LeastElement",
+    "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+    "Membership",
+    "PartialOrder"],
+   "declaration": "LRA.Pilot.OrderBounds.FromPartialOrder.LeastElement",
+   "category": "adapter",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "LeastUpperBound",
+   "statementDependencies": ["Membership", "PartialOrder"],
+   "statement":
+   "{carrier : Type u} →\n  [partialOrder : PartialOrder carrier] →\n    {SetObject : Type v} → [Membership carrier SetObject] → SetObject → carrier → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "LRA.Pilot.OrderBounds.FromPartialOrder.LeastUpperBound",
+   "documentation":
+   "A least upper bound using the partial order inferred for the carrier.\n\nLogical form:\n\n```lean\nOrderBounds.LeastUpperBound (PosetFromPartialOrder carrier) subset candidate\n```\n",
+   "definitionDependencies":
+   ["LRA.Pilot.OrderBounds.LeastUpperBound",
+    "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+    "Membership",
+    "PartialOrder"],
+   "declaration": "LRA.Pilot.OrderBounds.FromPartialOrder.LeastUpperBound",
+   "category": "adapter",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "LowerBound",
+   "statementDependencies": ["Membership", "PartialOrder"],
+   "statement":
+   "{carrier : Type u} →\n  [partialOrder : PartialOrder carrier] →\n    {SetObject : Type v} → [Membership carrier SetObject] → SetObject → carrier → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "LRA.Pilot.OrderBounds.FromPartialOrder.LowerBound",
+   "documentation":
+   "A lower bound using the partial order inferred for the carrier.\n\nLogical form:\n\n```lean\nOrderBounds.LowerBound (PosetFromPartialOrder carrier) subset candidate\n```\n",
+   "definitionDependencies":
+   ["LRA.Pilot.OrderBounds.LowerBound",
+    "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+    "Membership",
+    "PartialOrder"],
+   "declaration": "LRA.Pilot.OrderBounds.FromPartialOrder.LowerBound",
+   "category": "adapter",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "MaximalElement",
+   "statementDependencies": ["Membership", "PartialOrder"],
+   "statement":
+   "{carrier : Type u} →\n  [partialOrder : PartialOrder carrier] →\n    {SetObject : Type v} → [Membership carrier SetObject] → SetObject → carrier → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "LRA.Pilot.OrderBounds.FromPartialOrder.MaximalElement",
+   "documentation":
+   "A maximal element using the partial order inferred for the carrier.\n\nLogical form:\n\n```lean\nOrderBounds.MaximalElement (PosetFromPartialOrder carrier) subset candidate\n```\n",
+   "definitionDependencies":
+   ["LRA.Pilot.OrderBounds.MaximalElement",
+    "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+    "Membership",
+    "PartialOrder"],
+   "declaration": "LRA.Pilot.OrderBounds.FromPartialOrder.MaximalElement",
+   "category": "adapter",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "MinimalElement",
+   "statementDependencies": ["Membership", "PartialOrder"],
+   "statement":
+   "{carrier : Type u} →\n  [partialOrder : PartialOrder carrier] →\n    {SetObject : Type v} → [Membership carrier SetObject] → SetObject → carrier → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "LRA.Pilot.OrderBounds.FromPartialOrder.MinimalElement",
+   "documentation":
+   "A minimal element using the partial order inferred for the carrier.\n\nLogical form:\n\n```lean\nOrderBounds.MinimalElement (PosetFromPartialOrder carrier) subset candidate\n```\n",
+   "definitionDependencies":
+   ["LRA.Pilot.OrderBounds.MinimalElement",
+    "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+    "Membership",
+    "PartialOrder"],
+   "declaration": "LRA.Pilot.OrderBounds.FromPartialOrder.MinimalElement",
+   "category": "adapter",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "UpperBound",
+   "statementDependencies": ["Membership", "PartialOrder"],
+   "statement":
+   "{carrier : Type u} →\n  [partialOrder : PartialOrder carrier] →\n    {SetObject : Type v} → [Membership carrier SetObject] → SetObject → carrier → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "LRA.Pilot.OrderBounds.FromPartialOrder.UpperBound",
+   "documentation":
+   "An upper bound using the partial order inferred for the carrier.\n\nLogical form:\n\n```lean\nOrderBounds.UpperBound (PosetFromPartialOrder carrier) subset candidate\n```\n",
+   "definitionDependencies":
+   ["LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+    "LRA.Pilot.OrderBounds.UpperBound",
+    "Membership",
+    "PartialOrder"],
+   "declaration": "LRA.Pilot.OrderBounds.FromPartialOrder.UpperBound",
+   "category": "adapter",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "GreatestElement",
+   "statementDependencies":
+   ["LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership"],
+   "statement":
+   "(poset : LRA.VolumeI.Relations.Order.Poset) →\n  {SetObject : Type v} → [Membership poset.Carrier SetObject] → SetObject → poset.Carrier → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "order.greatest-element",
+   "documentation":
+   "`GreatestElement poset subset candidate` means that `candidate` belongs\nto `subset` and is an upper bound of `subset`.\n\nLogical form:\n\n```lean\ncandidate ∈ subset ∧ UpperBound poset subset candidate\n```\n",
+   "definitionDependencies":
+   ["And",
+    "LRA.Pilot.OrderBounds.UpperBound",
+    "LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership",
+    "Membership.mem"],
+   "declaration": "LRA.Pilot.OrderBounds.GreatestElement",
+   "category": "canonical",
+   "canonicalConceptId": "order.greatest-element",
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "GreatestElementIsBelowLeastUpperBound",
+   "statementDependencies":
+   ["LRA.Pilot.OrderBounds.GreatestElement",
+    "LRA.Pilot.OrderBounds.LeastUpperBound",
+    "LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+    "Membership"],
+   "statement":
+   "∀ (poset : LRA.VolumeI.Relations.Order.Poset) {SetObject : Type v}\n  [inst : Membership poset.Carrier SetObject] (subset : SetObject)\n  (maximum supremum : poset.Carrier),\n  LRA.Pilot.OrderBounds.GreatestElement poset subset maximum →\n    LRA.Pilot.OrderBounds.LeastUpperBound poset subset supremum →\n      poset.NonStrictOrder maximum supremum",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBoundsTheorems",
+   "kind": "theorem",
+   "id": "LRA.Pilot.OrderBounds.GreatestElementIsBelowLeastUpperBound",
+   "documentation":
+   "Every least upper bound is above every greatest element of the same set.\n\nLogical form:\n\n```lean\nGreatestElement poset subset maximum →\n  LeastUpperBound poset subset supremum →\n  poset.NonStrictOrder maximum supremum\n```\n",
+   "definitionDependencies": [],
+   "declaration": "LRA.Pilot.OrderBounds.GreatestElementIsBelowLeastUpperBound",
+   "category": "theorem",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "GreatestElementIsMember",
+   "statementDependencies":
+   ["LRA.Pilot.OrderBounds.GreatestElement",
+    "LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership",
+    "Membership.mem"],
+   "statement":
+   "∀ (poset : LRA.VolumeI.Relations.Order.Poset) {SetObject : Type v}\n  [inst : Membership poset.Carrier SetObject] (subset : SetObject) (maximum : poset.Carrier),\n  LRA.Pilot.OrderBounds.GreatestElement poset subset maximum → maximum ∈ subset",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBoundsTheorems",
+   "kind": "theorem",
+   "id": "LRA.Pilot.OrderBounds.GreatestElementIsMember",
+   "documentation":
+   "A greatest element (maximum) belongs to the set.\n\nLogical form:\n\n```lean\nGreatestElement poset subset maximum → maximum ∈ subset\n```\n",
+   "definitionDependencies": [],
+   "declaration": "LRA.Pilot.OrderBounds.GreatestElementIsMember",
+   "category": "theorem",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "GreatestElementIsUpperBound",
+   "statementDependencies":
+   ["LRA.Pilot.OrderBounds.GreatestElement",
+    "LRA.Pilot.OrderBounds.UpperBound",
+    "LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership"],
+   "statement":
+   "∀ (poset : LRA.VolumeI.Relations.Order.Poset) {SetObject : Type v}\n  [inst : Membership poset.Carrier SetObject] (subset : SetObject) (maximum : poset.Carrier),\n  LRA.Pilot.OrderBounds.GreatestElement poset subset maximum →\n    LRA.Pilot.OrderBounds.UpperBound poset subset maximum",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBoundsTheorems",
+   "kind": "theorem",
+   "id": "LRA.Pilot.OrderBounds.GreatestElementIsUpperBound",
+   "documentation":
+   "A greatest element (maximum) is an upper bound.\n\nLogical form:\n\n```lean\nGreatestElement poset subset maximum →\n  UpperBound poset subset maximum\n```\n",
+   "definitionDependencies": [],
+   "declaration": "LRA.Pilot.OrderBounds.GreatestElementIsUpperBound",
+   "category": "theorem",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "GreatestLowerBound",
+   "statementDependencies":
+   ["LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership"],
+   "statement":
+   "(poset : LRA.VolumeI.Relations.Order.Poset) →\n  {SetObject : Type v} → [Membership poset.Carrier SetObject] → SetObject → poset.Carrier → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "order.greatest-lower-bound",
+   "documentation":
+   "`GreatestLowerBound poset subset candidate` means that `candidate` is a\nlower bound of `subset` above every other lower bound.\n\nLogical form:\n\n```lean\nLowerBound poset subset candidate ∧\n  ∀ otherCandidate : poset.Carrier,\n    LowerBound poset subset otherCandidate →\n    poset.NonStrictOrder otherCandidate candidate\n```\n",
+   "definitionDependencies":
+   ["And",
+    "LRA.Pilot.OrderBounds.LowerBound",
+    "LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+    "Membership"],
+   "declaration": "LRA.Pilot.OrderBounds.GreatestLowerBound",
+   "category": "canonical",
+   "canonicalConceptId": "order.greatest-lower-bound",
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "HasUpperBoundImpliesBoundedAbove",
+   "statementDependencies":
+   ["Exists",
+    "LRA.Pilot.OrderBounds.BoundedAbove",
+    "LRA.Pilot.OrderBounds.UpperBound",
+    "LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership"],
+   "statement":
+   "∀ (poset : LRA.VolumeI.Relations.Order.Poset) {SetObject : Type v}\n  [inst : Membership poset.Carrier SetObject] (subset : SetObject),\n  (∃ candidate, LRA.Pilot.OrderBounds.UpperBound poset subset candidate) →\n    LRA.Pilot.OrderBounds.BoundedAbove poset subset",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBoundsTheorems",
+   "kind": "theorem",
+   "id": "LRA.Pilot.OrderBounds.HasUpperBoundImpliesBoundedAbove",
+   "documentation":
+   "The existence of an upper bound makes a set bounded above.\n\nLogical form:\n\n```lean\n(∃ candidate : poset.Carrier, UpperBound poset subset candidate) →\n  BoundedAbove poset subset\n```\n",
+   "definitionDependencies": [],
+   "declaration": "LRA.Pilot.OrderBounds.HasUpperBoundImpliesBoundedAbove",
+   "category": "theorem",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "LeastElement",
+   "statementDependencies":
+   ["LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership"],
+   "statement":
+   "(poset : LRA.VolumeI.Relations.Order.Poset) →\n  {SetObject : Type v} → [Membership poset.Carrier SetObject] → SetObject → poset.Carrier → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "order.least-element",
+   "documentation":
+   "`LeastElement poset subset candidate` means that `candidate` belongs to\n`subset` and is a lower bound of `subset`.\n\nLogical form:\n\n```lean\ncandidate ∈ subset ∧ LowerBound poset subset candidate\n```\n",
+   "definitionDependencies":
+   ["And",
+    "LRA.Pilot.OrderBounds.LowerBound",
+    "LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership",
+    "Membership.mem"],
+   "declaration": "LRA.Pilot.OrderBounds.LeastElement",
+   "category": "canonical",
+   "canonicalConceptId": "order.least-element",
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "LeastUpperBound",
+   "statementDependencies":
+   ["LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership"],
+   "statement":
+   "(poset : LRA.VolumeI.Relations.Order.Poset) →\n  {SetObject : Type v} → [Membership poset.Carrier SetObject] → SetObject → poset.Carrier → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "order.least-upper-bound",
+   "documentation":
+   "`LeastUpperBound poset subset candidate` means that `candidate` is an\nupper bound of `subset` below every other upper bound.\n\nLogical form:\n\n```lean\nUpperBound poset subset candidate ∧\n  ∀ otherCandidate : poset.Carrier,\n    UpperBound poset subset otherCandidate →\n    poset.NonStrictOrder candidate otherCandidate\n```\n",
+   "definitionDependencies":
+   ["And",
+    "LRA.Pilot.OrderBounds.UpperBound",
+    "LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+    "Membership"],
+   "declaration": "LRA.Pilot.OrderBounds.LeastUpperBound",
+   "category": "canonical",
+   "canonicalConceptId": "order.least-upper-bound",
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "LowerBound",
+   "statementDependencies":
+   ["LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership"],
+   "statement":
+   "(poset : LRA.VolumeI.Relations.Order.Poset) →\n  {SetObject : Type v} → [Membership poset.Carrier SetObject] → SetObject → poset.Carrier → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "order.lower-bound",
+   "documentation":
+   "`LowerBound poset subset candidate` means that `candidate` is related to\nevery member of `subset` by the partial order carried by `poset`.\n\nLogical form:\n\n```lean\n∀ element : poset.Carrier,\n  element ∈ subset → poset.NonStrictOrder candidate element\n```\n",
+   "definitionDependencies":
+   ["LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+    "Membership",
+    "Membership.mem"],
+   "declaration": "LRA.Pilot.OrderBounds.LowerBound",
+   "category": "canonical",
+   "canonicalConceptId": "order.lower-bound",
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "MaximalElement",
+   "statementDependencies":
+   ["LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership"],
+   "statement":
+   "(poset : LRA.VolumeI.Relations.Order.Poset) →\n  {SetObject : Type v} → [Membership poset.Carrier SetObject] → SetObject → poset.Carrier → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "order.maximal-element",
+   "documentation":
+   "`MaximalElement poset subset candidate` means that `candidate` belongs to\n`subset` and every member of `subset` above it is equal to it.\n\nLogical form:\n\n```lean\ncandidate ∈ subset ∧\n  ∀ element : poset.Carrier,\n    element ∈ subset →\n    poset.NonStrictOrder candidate element →\n    element = candidate\n```\n",
+   "definitionDependencies":
+   ["And",
+    "Eq",
+    "LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+    "Membership",
+    "Membership.mem"],
+   "declaration": "LRA.Pilot.OrderBounds.MaximalElement",
+   "category": "canonical",
+   "canonicalConceptId": "order.maximal-element",
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "MinimalElement",
+   "statementDependencies":
+   ["LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership"],
+   "statement":
+   "(poset : LRA.VolumeI.Relations.Order.Poset) →\n  {SetObject : Type v} → [Membership poset.Carrier SetObject] → SetObject → poset.Carrier → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "order.minimal-element",
+   "documentation":
+   "`MinimalElement poset subset candidate` means that `candidate` belongs to\n`subset` and every member of `subset` below it is equal to it.\n\nLogical form:\n\n```lean\ncandidate ∈ subset ∧\n  ∀ element : poset.Carrier,\n    element ∈ subset →\n    poset.NonStrictOrder element candidate →\n    element = candidate\n```\n",
+   "definitionDependencies":
+   ["And",
+    "Eq",
+    "LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+    "Membership",
+    "Membership.mem"],
+   "declaration": "LRA.Pilot.OrderBounds.MinimalElement",
+   "category": "canonical",
+   "canonicalConceptId": "order.minimal-element",
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "PartialOrderFromPoset",
+   "statementDependencies":
+   ["LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "PartialOrder"],
+   "statement":
+   "(poset : LRA.VolumeI.Relations.Order.Poset) → PartialOrder poset.Carrier",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "LRA.Pilot.OrderBounds.PartialOrderFromPoset",
+   "documentation":
+   "`PartialOrderFromPoset poset` exposes an explicit LRA poset as a Lean partial\norder on its carrier. Install it locally with `letI` when typeclass-driven\nMathlib declarations should use `poset.NonStrictOrder` as `≤`.\n\nLogical form:\n\n```lean\n_root_.PartialOrder poset.Carrier where\n  le := poset.NonStrictOrder\n  le_refl := poset.NonStrictOrderIsPartialOrder.1\n  le_antisymm := poset.NonStrictOrderIsPartialOrder.2.1\n  le_trans := poset.NonStrictOrderIsPartialOrder.2.2\n```\n",
+   "definitionDependencies":
+   ["And",
+    "LE.mk",
+    "LRA.Pilot.OrderBounds.PartialOrderFromPoset._proof_1",
+    "LRA.Pilot.OrderBounds.PartialOrderFromPoset._proof_2",
+    "LRA.Pilot.OrderBounds.PartialOrderFromPoset._proof_3",
+    "LRA.Pilot.OrderBounds.PartialOrderFromPoset._proof_4",
+    "LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+    "LT.mk",
+    "Not",
+    "PartialOrder.mk",
+    "Preorder.mk"],
+   "declaration": "LRA.Pilot.OrderBounds.PartialOrderFromPoset",
+   "category": "definition",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "PosetFromPartialOrder",
+   "statementDependencies":
+   ["LRA.VolumeI.Relations.Order.Poset", "PartialOrder"],
+   "statement":
+   "(carrier : Type u) → [partialOrder : PartialOrder carrier] → LRA.VolumeI.Relations.Order.Poset",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+   "documentation":
+   "`PosetFromPartialOrder carrier` packages Lean's inferred partial order on\n`carrier` as an explicit LRA poset.\n\nLogical form:\n\n```lean\nPoset where\n  Carrier := carrier\n  NonStrictOrder := (· ≤ ·)\n  NonStrictOrderIsPartialOrder := ⟨le_refl, le_antisymm, le_trans⟩\n```\n",
+   "definitionDependencies":
+   ["LE.le",
+    "LRA.Pilot.OrderBounds.PosetFromPartialOrder._proof_1",
+    "LRA.VolumeI.Relations.Order.Poset.mk",
+    "PartialOrder",
+    "PartialOrder.toPreorder",
+    "Preorder.toLE"],
+   "declaration": "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+   "category": "definition",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "UpperBound",
+   "statementDependencies":
+   ["LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "Membership"],
+   "statement":
+   "(poset : LRA.VolumeI.Relations.Order.Poset) →\n  {SetObject : Type v} → [Membership poset.Carrier SetObject] → SetObject → poset.Carrier → Prop",
+   "proofDependencies": [],
+   "moduleName": "LRA.Pilot.OrderBounds",
+   "kind": "definition",
+   "id": "order.upper-bound",
+   "documentation":
+   "`UpperBound poset subset candidate` means that every member of `subset`\nis related to `candidate` by the partial order carried by `poset`.\n\nLogical form:\n\n```lean\n∀ element : poset.Carrier,\n  element ∈ subset → poset.NonStrictOrder element candidate\n```\n",
+   "definitionDependencies":
+   ["LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+    "Membership",
+    "Membership.mem"],
+   "declaration": "LRA.Pilot.OrderBounds.UpperBound",
+   "category": "canonical",
+   "canonicalConceptId": "order.upper-bound",
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "Poset",
+   "statementDependencies": [],
+   "statement": "Type (u + 1)",
+   "proofDependencies": [],
+   "moduleName": "LRA.VolumeI.Relations.Order.OrderStructures.Poset",
+   "kind": "inductive",
+   "id": "LRA.VolumeI.Relations.Order.Poset",
+   "documentation":
+   "A poset is a carrier equipped with a partial order.\n\nLogical form:\n\n```lean\nstructure Poset where\n  Carrier : Type u\n  NonStrictOrder : LRA.VolumeI.Relations.Endorelation Carrier\n  NonStrictOrderIsPartialOrder : PartialOrder NonStrictOrder\n```\n",
+   "definitionDependencies": [],
+   "declaration": "LRA.VolumeI.Relations.Order.Poset",
+   "category": "structure",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "Carrier",
+   "statementDependencies": ["LRA.VolumeI.Relations.Order.Poset"],
+   "statement": "LRA.VolumeI.Relations.Order.Poset → Type u",
+   "proofDependencies": [],
+   "moduleName": "LRA.VolumeI.Relations.Order.OrderStructures.Poset",
+   "kind": "definition",
+   "id": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "documentation": "",
+   "definitionDependencies": ["LRA.VolumeI.Relations.Order.Poset"],
+   "declaration": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "category": "structure",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "NonStrictOrder",
+   "statementDependencies":
+   ["LRA.VolumeI.Relations.Endorelation",
+    "LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier"],
+   "statement":
+   "(self : LRA.VolumeI.Relations.Order.Poset) → LRA.VolumeI.Relations.Endorelation self.Carrier",
+   "proofDependencies": [],
+   "moduleName": "LRA.VolumeI.Relations.Order.OrderStructures.Poset",
+   "kind": "definition",
+   "id": "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+   "documentation": "",
+   "definitionDependencies": ["LRA.VolumeI.Relations.Order.Poset"],
+   "declaration": "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+   "category": "structure",
+   "canonicalConceptId": null,
+   "axioms": []},
+  {"usesSorry": false,
+   "title": "NonStrictOrderIsPartialOrder",
+   "statementDependencies":
+   ["LRA.VolumeI.Relations.Order.PartialOrder",
+    "LRA.VolumeI.Relations.Order.Poset",
+    "LRA.VolumeI.Relations.Order.Poset.Carrier",
+    "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder"],
+   "statement":
+   "∀ (self : LRA.VolumeI.Relations.Order.Poset),\n  LRA.VolumeI.Relations.Order.PartialOrder self.NonStrictOrder",
+   "proofDependencies": [],
+   "moduleName": "LRA.VolumeI.Relations.Order.OrderStructures.Poset",
+   "kind": "theorem",
+   "id": "LRA.VolumeI.Relations.Order.Poset.NonStrictOrderIsPartialOrder",
+   "documentation": "",
+   "definitionDependencies": [],
+   "declaration":
+   "LRA.VolumeI.Relations.Order.Poset.NonStrictOrderIsPartialOrder",
+   "category": "structure",
+   "canonicalConceptId": null,
+   "axioms": []}],
+ "edges":
+ [{"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "LRA.Pilot.OrderBounds.BoundedAboveHasUpperBound",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "LRA.Pilot.OrderBounds.BoundedAboveHasUpperBound",
+   "kind": "statement"},
+  {"target": "order.bounded-above",
+   "source": "LRA.Pilot.OrderBounds.BoundedAboveHasUpperBound",
+   "kind": "statement"},
+  {"target": "order.upper-bound",
+   "source": "LRA.Pilot.OrderBounds.BoundedAboveHasUpperBound",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "LRA.Pilot.OrderBounds.BoundedAboveIffHasUpperBound",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "LRA.Pilot.OrderBounds.BoundedAboveIffHasUpperBound",
+   "kind": "statement"},
+  {"target": "order.bounded-above",
+   "source": "LRA.Pilot.OrderBounds.BoundedAboveIffHasUpperBound",
+   "kind": "statement"},
+  {"target": "order.upper-bound",
+   "source": "LRA.Pilot.OrderBounds.BoundedAboveIffHasUpperBound",
+   "kind": "statement"},
+  {"target": "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo",
+   "source":
+   "LRA.Pilot.OrderBounds.Counterexamples.BoundedAboveDoesNotImplyGreatestElement",
+   "kind": "statement"},
+  {"target": "LRA.Pilot.OrderBounds.FromPartialOrder.BoundedAbove",
+   "source":
+   "LRA.Pilot.OrderBounds.Counterexamples.BoundedAboveDoesNotImplyGreatestElement",
+   "kind": "statement"},
+  {"target": "LRA.Pilot.OrderBounds.FromPartialOrder.GreatestElement",
+   "source":
+   "LRA.Pilot.OrderBounds.Counterexamples.BoundedAboveDoesNotImplyGreatestElement",
+   "kind": "statement"},
+  {"target": "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo",
+   "source":
+   "LRA.Pilot.OrderBounds.Counterexamples.BoundedAboveDoesNotImplyLeastUpperBound",
+   "kind": "statement"},
+  {"target": "LRA.Pilot.OrderBounds.FromPartialOrder.BoundedAbove",
+   "source":
+   "LRA.Pilot.OrderBounds.Counterexamples.BoundedAboveDoesNotImplyLeastUpperBound",
+   "kind": "statement"},
+  {"target": "LRA.Pilot.OrderBounds.FromPartialOrder.LeastUpperBound",
+   "source":
+   "LRA.Pilot.OrderBounds.Counterexamples.BoundedAboveDoesNotImplyLeastUpperBound",
+   "kind": "statement"},
+  {"target": "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo",
+   "source":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalAboveSqrtTwoIsUpperBound",
+   "kind": "statement"},
+  {"target": "LRA.Pilot.OrderBounds.FromPartialOrder.UpperBound",
+   "source":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalAboveSqrtTwoIsUpperBound",
+   "kind": "statement"},
+  {"target": "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo",
+   "source":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwoCanAlwaysIncrease",
+   "kind": "statement"},
+  {"target": "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo",
+   "source":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwoHasNoGreatestElement",
+   "kind": "statement"},
+  {"target": "LRA.Pilot.OrderBounds.FromPartialOrder.GreatestElement",
+   "source":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwoHasNoGreatestElement",
+   "kind": "statement"},
+  {"target": "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo",
+   "source":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwoHasNoLeastUpperBound",
+   "kind": "statement"},
+  {"target": "LRA.Pilot.OrderBounds.FromPartialOrder.LeastUpperBound",
+   "source":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwoHasNoLeastUpperBound",
+   "kind": "statement"},
+  {"target": "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwo",
+   "source":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwoHasUpperBoundTwo",
+   "kind": "statement"},
+  {"target": "LRA.Pilot.OrderBounds.FromPartialOrder.UpperBound",
+   "source":
+   "LRA.Pilot.OrderBounds.Counterexamples.RationalSquareBelowTwoHasUpperBoundTwo",
+   "kind": "statement"},
+  {"target": "LRA.Pilot.OrderBounds.Examples.LraRealOfReal",
+   "source": "LRA.Pilot.OrderBounds.Examples.LraRealOfRealMonotone",
+   "kind": "statement"},
+  {"target": "LRA.Pilot.OrderBounds.Examples.LraRealOfReal",
+   "source": "LRA.Pilot.OrderBounds.Examples.WrappedSquareBelowTwo",
+   "kind": "definition"},
+  {"target": "LRA.Pilot.OrderBounds.Examples.SquareBelowTwo",
+   "source": "LRA.Pilot.OrderBounds.Examples.WrappedSquareBelowTwo",
+   "kind": "definition"},
+  {"target": "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.BoundedAbove",
+   "kind": "definition"},
+  {"target": "order.bounded-above",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.BoundedAbove",
+   "kind": "definition"},
+  {"target": "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.BoundedBelow",
+   "kind": "definition"},
+  {"target": "order.bounded-below",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.BoundedBelow",
+   "kind": "definition"},
+  {"target": "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.Bounded",
+   "kind": "definition"},
+  {"target": "order.bounded",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.Bounded",
+   "kind": "definition"},
+  {"target": "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.GreatestElement",
+   "kind": "definition"},
+  {"target": "order.greatest-element",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.GreatestElement",
+   "kind": "definition"},
+  {"target": "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.GreatestLowerBound",
+   "kind": "definition"},
+  {"target": "order.greatest-lower-bound",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.GreatestLowerBound",
+   "kind": "definition"},
+  {"target": "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.LeastElement",
+   "kind": "definition"},
+  {"target": "order.least-element",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.LeastElement",
+   "kind": "definition"},
+  {"target": "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.LeastUpperBound",
+   "kind": "definition"},
+  {"target": "order.least-upper-bound",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.LeastUpperBound",
+   "kind": "definition"},
+  {"target": "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.LowerBound",
+   "kind": "definition"},
+  {"target": "order.lower-bound",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.LowerBound",
+   "kind": "definition"},
+  {"target": "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.MaximalElement",
+   "kind": "definition"},
+  {"target": "order.maximal-element",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.MaximalElement",
+   "kind": "definition"},
+  {"target": "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.MinimalElement",
+   "kind": "definition"},
+  {"target": "order.minimal-element",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.MinimalElement",
+   "kind": "definition"},
+  {"target": "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.UpperBound",
+   "kind": "definition"},
+  {"target": "order.upper-bound",
+   "source": "LRA.Pilot.OrderBounds.FromPartialOrder.UpperBound",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "LRA.Pilot.OrderBounds.GreatestElementIsBelowLeastUpperBound",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+   "source": "LRA.Pilot.OrderBounds.GreatestElementIsBelowLeastUpperBound",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "LRA.Pilot.OrderBounds.GreatestElementIsBelowLeastUpperBound",
+   "kind": "statement"},
+  {"target": "order.greatest-element",
+   "source": "LRA.Pilot.OrderBounds.GreatestElementIsBelowLeastUpperBound",
+   "kind": "statement"},
+  {"target": "order.least-upper-bound",
+   "source": "LRA.Pilot.OrderBounds.GreatestElementIsBelowLeastUpperBound",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "LRA.Pilot.OrderBounds.GreatestElementIsMember",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "LRA.Pilot.OrderBounds.GreatestElementIsMember",
+   "kind": "statement"},
+  {"target": "order.greatest-element",
+   "source": "LRA.Pilot.OrderBounds.GreatestElementIsMember",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "LRA.Pilot.OrderBounds.GreatestElementIsUpperBound",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "LRA.Pilot.OrderBounds.GreatestElementIsUpperBound",
+   "kind": "statement"},
+  {"target": "order.greatest-element",
+   "source": "LRA.Pilot.OrderBounds.GreatestElementIsUpperBound",
+   "kind": "statement"},
+  {"target": "order.upper-bound",
+   "source": "LRA.Pilot.OrderBounds.GreatestElementIsUpperBound",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "LRA.Pilot.OrderBounds.HasUpperBoundImpliesBoundedAbove",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "LRA.Pilot.OrderBounds.HasUpperBoundImpliesBoundedAbove",
+   "kind": "statement"},
+  {"target": "order.bounded-above",
+   "source": "LRA.Pilot.OrderBounds.HasUpperBoundImpliesBoundedAbove",
+   "kind": "statement"},
+  {"target": "order.upper-bound",
+   "source": "LRA.Pilot.OrderBounds.HasUpperBoundImpliesBoundedAbove",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "LRA.Pilot.OrderBounds.PartialOrderFromPoset",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "LRA.Pilot.OrderBounds.PartialOrderFromPoset",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+   "source": "LRA.Pilot.OrderBounds.PartialOrderFromPoset",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "LRA.Pilot.OrderBounds.PartialOrderFromPoset",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "LRA.Pilot.OrderBounds.PartialOrderFromPoset",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "LRA.Pilot.OrderBounds.PosetFromPartialOrder",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "LRA.VolumeI.Relations.Order.Poset.NonStrictOrderIsPartialOrder",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+   "source": "LRA.VolumeI.Relations.Order.Poset.NonStrictOrderIsPartialOrder",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "LRA.VolumeI.Relations.Order.Poset.NonStrictOrderIsPartialOrder",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.bounded-above",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.bounded-above",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.bounded-above",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.bounded-above",
+   "kind": "statement"},
+  {"target": "order.upper-bound",
+   "source": "order.bounded-above",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.bounded-below",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.bounded-below",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.bounded-below",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.bounded-below",
+   "kind": "statement"},
+  {"target": "order.lower-bound",
+   "source": "order.bounded-below",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.bounded",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.bounded",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.bounded",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.bounded",
+   "kind": "statement"},
+  {"target": "order.bounded-above",
+   "source": "order.bounded",
+   "kind": "definition"},
+  {"target": "order.bounded-below",
+   "source": "order.bounded",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.greatest-element",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.greatest-element",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.greatest-element",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.greatest-element",
+   "kind": "statement"},
+  {"target": "order.upper-bound",
+   "source": "order.greatest-element",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.greatest-lower-bound",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.greatest-lower-bound",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+   "source": "order.greatest-lower-bound",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.greatest-lower-bound",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.greatest-lower-bound",
+   "kind": "statement"},
+  {"target": "order.lower-bound",
+   "source": "order.greatest-lower-bound",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.least-element",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.least-element",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.least-element",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.least-element",
+   "kind": "statement"},
+  {"target": "order.lower-bound",
+   "source": "order.least-element",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.least-upper-bound",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.least-upper-bound",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+   "source": "order.least-upper-bound",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.least-upper-bound",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.least-upper-bound",
+   "kind": "statement"},
+  {"target": "order.upper-bound",
+   "source": "order.least-upper-bound",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.lower-bound",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.lower-bound",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+   "source": "order.lower-bound",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.lower-bound",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.lower-bound",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.maximal-element",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.maximal-element",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+   "source": "order.maximal-element",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.maximal-element",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.maximal-element",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.minimal-element",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.minimal-element",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+   "source": "order.minimal-element",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.minimal-element",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.minimal-element",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.upper-bound",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.Carrier",
+   "source": "order.upper-bound",
+   "kind": "statement"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset.NonStrictOrder",
+   "source": "order.upper-bound",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.upper-bound",
+   "kind": "definition"},
+  {"target": "LRA.VolumeI.Relations.Order.Poset",
+   "source": "order.upper-bound",
+   "kind": "statement"}]}</script>
+  <script>
+    (() => {
+      "use strict";
+
+      const payload = JSON.parse(document.getElementById("graph-data").textContent);
+      const nodes = payload.nodes || [];
+      const edges = payload.edges || [];
+      const nodeById = new Map(nodes.map(node => [node.id, node]));
+      const categoryOrder = ["structure", "canonical", "theorem", "adapter", "example", "counterexample", "definition", "opaque", "axiom"];
+      const categoryLabels = {
+        structure: "Order structure", canonical: "Canonical concept", theorem: "Theorem",
+        adapter: "Adapter", example: "Example", counterexample: "Counterexample",
+        definition: "Definition", opaque: "Opaque", axiom: "Axiom"
+      };
+      const colors = {
+        structure: "#94a3b8", canonical: "#2dd4bf", theorem: "#60a5fa",
+        adapter: "#cbd5e1", example: "#a78bfa", counterexample: "#fb923c",
+        definition: "#2dd4bf", opaque: "#60a5fa", axiom: "#fb7185"
+      };
+      const edgeColors = { statement: "#64748b", definition: "#2dd4bf", proof: "#60a5fa" };
+
+      const state = {
+        categories: new Set(nodes.map(node => node.category)),
+        edgeKinds: new Set(["statement", "definition", "proof"]),
+        query: "",
+        selectedId: nodes.find(node => node.canonicalConceptId === "order.upper-bound")?.id || nodes[0]?.id,
+        scale: 1,
+        offsetX: 0,
+        offsetY: 0,
+        positions: new Map(),
+        visibleNodes: [],
+        visibleEdges: [],
+        dragging: false,
+        dragMoved: false,
+        lastPointer: null
+      };
+
+      const canvas = document.getElementById("graph");
+      const context = canvas.getContext("2d");
+      const results = document.getElementById("results");
+      const detail = document.getElementById("detail");
+      const visibleCount = document.getElementById("visible-count");
+      const zoomReadout = document.getElementById("zoom-readout");
+      const nodeWidth = 238;
+      const nodeHeight = 66;
+      let deviceScale = window.devicePixelRatio || 1;
+
+      function orderedCategories() {
+        const present = [...new Set(nodes.map(node => node.category))];
+        return present.sort((left, right) => {
+          const li = categoryOrder.indexOf(left);
+          const ri = categoryOrder.indexOf(right);
+          return (li < 0 ? 99 : li) - (ri < 0 ? 99 : ri) || left.localeCompare(right);
+        });
+      }
+
+      function buildControls() {
+        const categoryControls = document.getElementById("category-controls");
+        for (const category of orderedCategories()) {
+          const count = nodes.filter(node => node.category === category).length;
+          const label = document.createElement("label");
+          label.className = "check-row";
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.checked = true;
+          checkbox.addEventListener("change", () => {
+            checkbox.checked ? state.categories.add(category) : state.categories.delete(category);
+            updateView(true);
+          });
+          const name = document.createElement("span");
+          name.textContent = categoryLabels[category] || category;
+          const countElement = document.createElement("span");
+          countElement.className = "count";
+          countElement.textContent = count;
+          label.append(checkbox, name, countElement);
+          categoryControls.append(label);
+        }
+
+        const edgeControls = document.getElementById("edge-controls");
+        for (const kind of ["statement", "definition", "proof"]) {
+          const label = document.createElement("label");
+          label.className = "check-row";
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.checked = true;
+          checkbox.addEventListener("change", () => {
+            checkbox.checked ? state.edgeKinds.add(kind) : state.edgeKinds.delete(kind);
+            updateView(false);
+          });
+          const swatch = document.createElement("span");
+          swatch.className = `edge-swatch ${kind}`;
+          const name = document.createElement("span");
+          name.textContent = `${kind[0].toUpperCase()}${kind.slice(1)} dependency`;
+          label.append(checkbox, swatch, name);
+          edgeControls.append(label);
+        }
+      }
+
+      function matches(node) {
+        if (!state.categories.has(node.category)) return false;
+        if (!state.query) return true;
+        const haystack = [node.title, node.declaration, node.canonicalConceptId || "", node.statement, node.documentation].join(" ").toLowerCase();
+        return haystack.includes(state.query);
+      }
+
+      function layoutVisibleNodes() {
+        const columns = new Map();
+        for (const node of state.visibleNodes) {
+          if (!columns.has(node.category)) columns.set(node.category, []);
+          columns.get(node.category).push(node);
+        }
+        const categories = orderedCategories().filter(category => columns.has(category));
+        state.positions.clear();
+        categories.forEach((category, columnIndex) => {
+          const columnNodes = columns.get(category).sort((left, right) => left.title.localeCompare(right.title));
+          columnNodes.forEach((node, rowIndex) => {
+            const stagger = columnIndex % 2 === 0 ? 0 : 42;
+            state.positions.set(node.id, { x: 80 + columnIndex * 330, y: 90 + stagger + rowIndex * 104 });
+          });
+        });
+      }
+
+      function updateView(fitAfter) {
+        state.visibleNodes = nodes.filter(matches);
+        const visibleIds = new Set(state.visibleNodes.map(node => node.id));
+        state.visibleEdges = edges.filter(edge => visibleIds.has(edge.source) && visibleIds.has(edge.target) && state.edgeKinds.has(edge.kind));
+        if (state.selectedId && !visibleIds.has(state.selectedId)) state.selectedId = state.visibleNodes[0]?.id;
+        layoutVisibleNodes();
+        renderResultList();
+        renderDetail();
+        if (fitAfter) fitGraph(); else draw();
+      }
+
+      function renderResultList() {
+        results.replaceChildren();
+        visibleCount.textContent = `${state.visibleNodes.length}/${nodes.length}`;
+        for (const node of state.visibleNodes) {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = `result${node.id === state.selectedId ? " active" : ""}`;
+          button.addEventListener("click", () => selectNode(node.id, true));
+          const title = document.createElement("strong");
+          title.textContent = node.title;
+          const category = document.createElement("small");
+          category.textContent = categoryLabels[node.category] || node.category;
+          button.append(title, category);
+          results.append(button);
+        }
+      }
+
+      function addTextSection(parent, heading, value, asCode = false) {
+        if (!value) return;
+        const section = document.createElement("section");
+        section.className = "section";
+        const title = document.createElement("h3");
+        title.textContent = heading;
+        const content = document.createElement(asCode ? "pre" : "p");
+        content.textContent = value;
+        section.append(title, content);
+        parent.append(section);
+      }
+
+      function renderDetail() {
+        const node = nodeById.get(state.selectedId);
+        if (!node) {
+          detail.className = "empty";
+          detail.innerHTML = "<div><p class='eyebrow'>No visible declaration</p><h2>Adjust the filters</h2><p>No declarations match the current search and categories.</p></div>";
+          return;
+        }
+        detail.className = "detail-inner";
+        detail.replaceChildren();
+        const eyebrow = document.createElement("p");
+        eyebrow.className = "eyebrow";
+        eyebrow.textContent = categoryLabels[node.category] || node.category;
+        const heading = document.createElement("h2");
+        heading.textContent = node.title;
+        const badges = document.createElement("div");
+        badges.className = "badge-row";
+        for (const [text, className] of [[node.kind, ""], [node.category, node.category === "canonical" ? "canonical" : ""]]) {
+          const badge = document.createElement("span");
+          badge.className = `badge ${className}`;
+          badge.textContent = text;
+          badges.append(badge);
+        }
+        if (node.usesSorry) {
+          const warning = document.createElement("span");
+          warning.className = "badge warning";
+          warning.textContent = "uses sorry";
+          badges.append(warning);
+        }
+        detail.append(eyebrow, heading, badges);
+        addTextSection(detail, "Canonical concept ID", node.canonicalConceptId, true);
+        addTextSection(detail, "Lean declaration", node.declaration, true);
+        addTextSection(detail, "Elaborated type", node.statement, true);
+        addTextSection(detail, "Documentation", node.documentation);
+        addTextSection(detail, "Compiled module", node.moduleName, true);
+        addTextSection(detail, "Axioms", (node.axioms || []).join("\n") || "None detected", true);
+
+        const related = state.visibleEdges.filter(edge => edge.source === node.id || edge.target === node.id);
+        if (related.length) {
+          const section = document.createElement("section");
+          section.className = "section";
+          const title = document.createElement("h3");
+          title.textContent = "Visible dependencies";
+          const list = document.createElement("div");
+          list.className = "dependency-list";
+          for (const edge of related) {
+            const otherId = edge.source === node.id ? edge.target : edge.source;
+            const other = nodeById.get(otherId);
+            if (!other) continue;
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "dependency-link";
+            button.textContent = `${edge.source === node.id ? "depends on" : "used by"} · ${edge.kind} · ${other.title}`;
+            button.addEventListener("click", () => selectNode(other.id, true));
+            list.append(button);
+          }
+          section.append(title, list);
+          detail.append(section);
+        }
+      }
+
+      function roundedRect(x, y, width, height, radius) {
+        context.beginPath();
+        context.roundRect(x, y, width, height, radius);
+      }
+
+      function truncate(text, max) { return text.length <= max ? text : `${text.slice(0, max - 1)}…`; }
+
+      function drawGrid(width, height) {
+        const spacing = 42 * state.scale;
+        if (spacing < 14) return;
+        context.save();
+        context.strokeStyle = "rgba(51, 65, 85, .26)";
+        context.lineWidth = 1;
+        const startX = ((state.offsetX % spacing) + spacing) % spacing;
+        const startY = ((state.offsetY % spacing) + spacing) % spacing;
+        context.beginPath();
+        for (let x = startX; x < width; x += spacing) { context.moveTo(x, 0); context.lineTo(x, height); }
+        for (let y = startY; y < height; y += spacing) { context.moveTo(0, y); context.lineTo(width, y); }
+        context.stroke();
+        context.restore();
+      }
+
+      function edgeEndpoints(source, target) {
+        const sourceCenter = { x: source.x + nodeWidth / 2, y: source.y + nodeHeight / 2 };
+        const targetCenter = { x: target.x + nodeWidth / 2, y: target.y + nodeHeight / 2 };
+        const leftToRight = sourceCenter.x <= targetCenter.x;
+        return {
+          start: { x: leftToRight ? source.x + nodeWidth : source.x, y: sourceCenter.y },
+          end: { x: leftToRight ? target.x : target.x + nodeWidth, y: targetCenter.y },
+          direction: leftToRight ? 1 : -1
+        };
+      }
+
+      function drawEdge(edge) {
+        const source = state.positions.get(edge.source);
+        const target = state.positions.get(edge.target);
+        if (!source || !target) return;
+        const { start, end, direction } = edgeEndpoints(source, target);
+        const selected = edge.source === state.selectedId || edge.target === state.selectedId;
+        context.save();
+        context.strokeStyle = edgeColors[edge.kind] || "#64748b";
+        context.fillStyle = context.strokeStyle;
+        context.globalAlpha = selected ? .95 : .4;
+        context.lineWidth = selected ? 2.2 : 1.25;
+        context.setLineDash(edge.kind === "definition" ? [7, 5] : edge.kind === "proof" ? [2, 5] : []);
+        const bend = Math.max(46, Math.abs(end.x - start.x) * .42) * direction;
+        context.beginPath();
+        context.moveTo(start.x, start.y);
+        context.bezierCurveTo(start.x + bend, start.y, end.x - bend, end.y, end.x, end.y);
+        context.stroke();
+        context.setLineDash([]);
+        context.beginPath();
+        context.moveTo(end.x, end.y);
+        context.lineTo(end.x - 9 * direction, end.y - 5);
+        context.lineTo(end.x - 9 * direction, end.y + 5);
+        context.closePath();
+        context.fill();
+        context.restore();
+      }
+
+      function drawNode(node) {
+        const position = state.positions.get(node.id);
+        if (!position) return;
+        const selected = node.id === state.selectedId;
+        const color = colors[node.category] || "#94a3b8";
+        context.save();
+        context.shadowColor = selected ? "rgba(251, 191, 36, .28)" : "rgba(0, 0, 0, .24)";
+        context.shadowBlur = selected ? 18 : 8;
+        context.shadowOffsetY = 3;
+        roundedRect(position.x, position.y, nodeWidth, nodeHeight, 9);
+        context.fillStyle = selected ? "#222436" : "#172033";
+        context.fill();
+        context.shadowColor = "transparent";
+        context.lineWidth = selected ? 2.5 : 1.35;
+        context.strokeStyle = selected ? "#fbbf24" : color;
+        context.stroke();
+        context.fillStyle = color;
+        context.fillRect(position.x, position.y + 11, 4, nodeHeight - 22);
+        context.fillStyle = "#f8fafc";
+        context.font = "600 13px Inter, ui-sans-serif, system-ui, sans-serif";
+        context.fillText(truncate(node.title, 30), position.x + 16, position.y + 27);
+        context.fillStyle = "#94a3b8";
+        context.font = "11px Inter, ui-sans-serif, system-ui, sans-serif";
+        const subtitle = node.canonicalConceptId || categoryLabels[node.category] || node.category;
+        context.fillText(truncate(subtitle, 36), position.x + 16, position.y + 48);
+        context.restore();
+      }
+
+      function draw() {
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+        context.setTransform(deviceScale, 0, 0, deviceScale, 0, 0);
+        context.clearRect(0, 0, width, height);
+        context.fillStyle = "#0b1220";
+        context.fillRect(0, 0, width, height);
+        drawGrid(width, height);
+        context.save();
+        context.translate(state.offsetX, state.offsetY);
+        context.scale(state.scale, state.scale);
+        state.visibleEdges.forEach(drawEdge);
+        state.visibleNodes.forEach(drawNode);
+        context.restore();
+        zoomReadout.textContent = `${Math.round(state.scale * 100)}%`;
+      }
+
+      function resizeCanvas() {
+        deviceScale = window.devicePixelRatio || 1;
+        const rectangle = canvas.getBoundingClientRect();
+        canvas.width = Math.max(1, Math.round(rectangle.width * deviceScale));
+        canvas.height = Math.max(1, Math.round(rectangle.height * deviceScale));
+        draw();
+      }
+
+      function fitGraph() {
+        if (!state.visibleNodes.length) {
+          state.scale = 1; state.offsetX = 0; state.offsetY = 0; draw(); return;
+        }
+        const positions = [...state.positions.values()];
+        const minX = Math.min(...positions.map(position => position.x));
+        const minY = Math.min(...positions.map(position => position.y));
+        const maxX = Math.max(...positions.map(position => position.x + nodeWidth));
+        const maxY = Math.max(...positions.map(position => position.y + nodeHeight));
+        const padding = 70;
+        const width = Math.max(1, canvas.clientWidth - padding * 2);
+        const height = Math.max(1, canvas.clientHeight - padding * 2);
+        state.scale = Math.min(1.25, Math.max(.28, Math.min(width / (maxX - minX), height / (maxY - minY))));
+        state.offsetX = (canvas.clientWidth - (maxX - minX) * state.scale) / 2 - minX * state.scale;
+        state.offsetY = (canvas.clientHeight - (maxY - minY) * state.scale) / 2 - minY * state.scale;
+        draw();
+      }
+
+      function zoomAt(factor, screenX = canvas.clientWidth / 2, screenY = canvas.clientHeight / 2) {
+        const oldScale = state.scale;
+        const newScale = Math.min(2.5, Math.max(.2, oldScale * factor));
+        const worldX = (screenX - state.offsetX) / oldScale;
+        const worldY = (screenY - state.offsetY) / oldScale;
+        state.scale = newScale;
+        state.offsetX = screenX - worldX * newScale;
+        state.offsetY = screenY - worldY * newScale;
+        draw();
+      }
+
+      function nodeAt(screenX, screenY) {
+        const x = (screenX - state.offsetX) / state.scale;
+        const y = (screenY - state.offsetY) / state.scale;
+        return [...state.visibleNodes].reverse().find(node => {
+          const position = state.positions.get(node.id);
+          return position && x >= position.x && x <= position.x + nodeWidth && y >= position.y && y <= position.y + nodeHeight;
+        });
+      }
+
+      function centerNode(nodeId) {
+        const position = state.positions.get(nodeId);
+        if (!position) return;
+        state.offsetX = canvas.clientWidth / 2 - (position.x + nodeWidth / 2) * state.scale;
+        state.offsetY = canvas.clientHeight / 2 - (position.y + nodeHeight / 2) * state.scale;
+      }
+
+      function selectNode(nodeId, center = false) {
+        state.selectedId = nodeId;
+        if (center) centerNode(nodeId);
+        renderResultList();
+        renderDetail();
+        draw();
+      }
+
+      canvas.addEventListener("pointerdown", event => {
+        canvas.setPointerCapture(event.pointerId);
+        state.dragging = true;
+        state.dragMoved = false;
+        state.lastPointer = { x: event.clientX, y: event.clientY };
+        canvas.classList.add("dragging");
+      });
+
+      canvas.addEventListener("pointermove", event => {
+        if (!state.dragging) return;
+        const dx = event.clientX - state.lastPointer.x;
+        const dy = event.clientY - state.lastPointer.y;
+        if (Math.abs(dx) + Math.abs(dy) > 2) state.dragMoved = true;
+        state.offsetX += dx;
+        state.offsetY += dy;
+        state.lastPointer = { x: event.clientX, y: event.clientY };
+        draw();
+      });
+
+      canvas.addEventListener("pointerup", event => {
+        if (!state.dragMoved) {
+          const rectangle = canvas.getBoundingClientRect();
+          const node = nodeAt(event.clientX - rectangle.left, event.clientY - rectangle.top);
+          if (node) selectNode(node.id, false);
+        }
+        state.dragging = false;
+        state.lastPointer = null;
+        canvas.classList.remove("dragging");
+      });
+
+      canvas.addEventListener("wheel", event => {
+        event.preventDefault();
+        const rectangle = canvas.getBoundingClientRect();
+        zoomAt(event.deltaY < 0 ? 1.12 : .89, event.clientX - rectangle.left, event.clientY - rectangle.top);
+      }, { passive: false });
+
+      canvas.addEventListener("keydown", event => {
+        if (event.key === "+" || event.key === "=") zoomAt(1.15);
+        if (event.key === "-") zoomAt(.87);
+        if (event.key === "0") fitGraph();
+      });
+
+      document.getElementById("search").addEventListener("input", event => {
+        state.query = event.target.value.trim().toLowerCase();
+        updateView(true);
+      });
+      document.getElementById("zoom-in").addEventListener("click", () => zoomAt(1.18));
+      document.getElementById("zoom-out").addEventListener("click", () => zoomAt(.84));
+      document.getElementById("fit").addEventListener("click", fitGraph);
+      window.addEventListener("resize", resizeCanvas);
+
+      document.getElementById("graph-summary").textContent = `${nodes.length} Lean declarations · ${edges.length} extracted dependencies`;
+      buildControls();
+      resizeCanvas();
+      updateView(true);
+    })();
+  </script>
+</body>
+</html>

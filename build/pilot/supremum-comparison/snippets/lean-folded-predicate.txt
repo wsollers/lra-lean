@@ -1,0 +1,4 @@
+LRA.Pilot.OrderBounds.UpperBound poset subset candidate  and
+  forall  (otherCandidate : poset.Carrier),
+    LRA.Pilot.OrderBounds.UpperBound poset subset otherCandidate  ->
+      poset.NonStrictOrder candidate otherCandidate

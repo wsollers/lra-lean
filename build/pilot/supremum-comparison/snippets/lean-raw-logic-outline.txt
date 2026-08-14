@@ -1,0 +1,11 @@
+AND
+  FORALL element
+    domain constants: LRA.VolumeI.Relations.Order.Poset.Carrier
+    FORALL a._@._internal._hyg.0
+      domain constants: Membership.mem, LRA.VolumeI.Relations.Order.Poset.Carrier
+      ATOMIC constants: LRA.VolumeI.Relations.Order.Poset.NonStrictOrder
+  FORALL otherCandidate
+    domain constants: LRA.VolumeI.Relations.Order.Poset.Carrier
+    FORALL a._@._internal._hyg.0
+      domain constants: LRA.VolumeI.Relations.Order.Poset.Carrier, Membership.mem, LRA.VolumeI.Relations.Order.Poset.NonStrictOrder
+      ATOMIC constants: LRA.VolumeI.Relations.Order.Poset.NonStrictOrder

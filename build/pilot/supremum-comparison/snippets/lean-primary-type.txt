@@ -1,0 +1,2 @@
+(poset : LRA.VolumeI.Relations.Order.Poset)  ->
+  {SetObject : Type v}  ->  [Membership poset.Carrier SetObject]  ->  SetObject  ->  poset.Carrier  ->  Prop

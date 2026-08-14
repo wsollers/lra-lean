@@ -1,0 +1,5 @@
+forall  (poset : LRA.VolumeI.Relations.Order.Poset) {SetObject : Type v}
+  [inst : Membership poset.Carrier SetObject] (subset : SetObject) (candidate : poset.Carrier),
+  not LRA.Pilot.OrderBounds.LeastUpperBound poset subset candidate   < ->
+    LRA.Pilot.OrderBounds.UpperBoundFailure poset subset candidate  or
+      LRA.Pilot.OrderBounds.SharpnessFailure poset subset candidate

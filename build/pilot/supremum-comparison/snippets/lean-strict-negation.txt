@@ -1,0 +1,10 @@
+forall  (poset : LRA.VolumeI.Relations.Order.Poset),
+  LRA.VolumeI.Relations.Total poset.NonStrictOrder  ->
+    forall  {SetObject : Type v} [inst : Membership poset.Carrier SetObject] (subset : SetObject)
+      (candidate : poset.Carrier),
+      not LRA.Pilot.OrderBounds.LeastUpperBound poset subset candidate   < ->
+        (exists  witness  in  subset,
+            LRA.VolumeI.Relations.Order.StrictPart poset.NonStrictOrder candidate witness)  or
+          exists  competitor,
+            LRA.Pilot.OrderBounds.UpperBound poset subset competitor  and
+              LRA.VolumeI.Relations.Order.StrictPart poset.NonStrictOrder competitor candidate

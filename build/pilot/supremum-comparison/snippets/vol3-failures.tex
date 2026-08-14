@@ -1,0 +1,17 @@
+\begin{remark*}[Failure modes]
+\begin{description}
+  \item[Exposition.]
+  The set may be empty; $s$ may fail to be an upper bound; or $s$ may be an
+  upper bound that is not least among upper bounds.
+
+  \item[\(\operatorname{LeastUpperBound} / \operatorname{UpperBound}.\)]
+  The first clause is a domain failure.  The second is a bound failure.  The
+  third is a sharpness failure witnessed by a strictly smaller upper bound.
+  \begin{center}\begin{adjustbox}{max width=.98\linewidth}$\displaystyle A=\varnothing \quad\text{or}\quad (\exists a\in A)(s<a) \quad\text{or}\quad (\exists u\in\mathbb{R})\bigl[(\forall a\in A)(a\leq u)\ \text{and}\ u<s\bigr].$\end{adjustbox}\end{center}
+  \begin{center}\begin{adjustbox}{max width=.98\linewidth}$\displaystyle \begin{aligned}&\neg\operatorname{LeastUpperBound}(s,A,P) \\ &\Longleftrightarrow A=\varnothing \lor \neg\operatorname{UpperBound}(s,A,P) \lor (\exists u\in\mathbb{R}) \bigl(\operatorname{UpperBound}(u,A,P)\land u<s\bigr).\end{aligned}$\end{adjustbox}\end{center}
+\end{description}
+\end{remark*}
+
+\begin{remark*}[Interpretation]
+A supremum is the least upper bound: it combines upper-bound control with leastness among all upper bounds.
+\end{remark*}

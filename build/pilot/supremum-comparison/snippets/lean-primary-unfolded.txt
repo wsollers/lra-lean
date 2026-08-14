@@ -1,0 +1,5 @@
+fun poset {SetObject} [Membership poset.Carrier SetObject] subset candidate =>
+  (forall  element  in  subset, poset.NonStrictOrder element candidate)  and
+    forall  (otherCandidate : poset.Carrier),
+      (forall  element  in  subset, poset.NonStrictOrder element otherCandidate)  ->
+        poset.NonStrictOrder candidate otherCandidate
