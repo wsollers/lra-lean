@@ -1,5 +1,4 @@
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Characterizations
-import LRA.VolumeI.Order.OrderedSets.PartialOrder.Counterexamples
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Examples
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.FailureModes

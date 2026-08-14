@@ -1,5 +1,4 @@
 import LRA.VolumeI.Order.OrderedSets.Preorder.Characterizations
-import LRA.VolumeI.Order.OrderedSets.Preorder.Counterexamples
 import LRA.VolumeI.Order.OrderedSets.Preorder.Definition
 import LRA.VolumeI.Order.OrderedSets.Preorder.Examples
 import LRA.VolumeI.Order.OrderedSets.Preorder.FailureModes

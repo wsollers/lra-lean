@@ -18,4 +18,18 @@ def FailsPosetLaws {alpha : Type u}
     (relation : LRA.VolumeI.Relations.Endorelation alpha) : Prop :=
   Not (LRA.VolumeI.Order.PartialOrder relation)
 
+/--
+The usual strict order on natural numbers is not a poset order, because it is
+not reflexive.
+
+Logical form:
+
+```lean
+FailsPosetLaws (fun left right : Nat => left < right)
+```
+-/
+theorem NatStrictOrderFailsPosetLaws :
+    FailsPosetLaws (fun left right : Nat => left < right) := by
+  sorry
+
 end LRA.VolumeI.Order.OrderedSets.Poset
