@@ -25,7 +25,13 @@ theorem UpperBoundOfEmpty
     (relation : LRA.Relation.Endorelation Element)
     (bound : Element) :
     UpperBound relation (∅ : SetObject) bound := by
-  sorry
+  unfold UpperBound
+  intro e elementExists
+  exfalso
+  exact LRA.Set.MembershipLaws.EmptyMembership e elementExists
+
+
+
 
 /-- An upper bound of a larger represented subset bounds every subcollection. -/
 theorem UpperBoundOfSubcollection
