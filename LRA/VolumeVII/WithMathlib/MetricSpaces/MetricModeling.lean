@@ -1,6 +1,6 @@
 import Mathlib.Topology.MetricSpace.Basic
 
-namespace LRA.Interop.Mathlib
+namespace LRA.Internal
 
 /-!
 Scratch metric-space modeling.
@@ -57,7 +57,8 @@ structure ScratchMetricSpace (Point : Type u) where
   /-- The scratch metric carried by this pedagogical metric space. -/
   metric : ScratchMetric Point
 
-end LRA.Interop.Mathlib
+end LRA.Internal
+
 namespace LRA.Internal.ScratchMetricSpace
 
 variable {Point : Type u} (M : ScratchMetricSpace Point)
@@ -152,6 +153,3 @@ noncomputable def toMathlibMetricSpace
     (fun _ _ h => M.equal_of_distance_eq_zero h)
 
 end LRA.Internal.ScratchMetricSpace
-namespace LRA.Interop.Mathlib
-
-end LRA.Interop.Mathlib
