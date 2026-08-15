@@ -62,6 +62,34 @@ theorem JoinWithMeetAbsorbs
     join = left := by
   sorry
 
+/-- One distributive inequality holds in every lattice. -/
+theorem JoinOfMeetsRelatedToMeetWithJoin
+    {Alpha : Type u}
+    {relation : LRA.Relation.Endorelation Alpha}
+    (relationIsPartialOrder : PartialOrder relation)
+    {a b c bJoinC aMeetBJoinC aMeetB aMeetC joinOfMeets : Alpha}
+    (bJoinCIsJoin : Join relation b c bJoinC)
+    (aMeetBJoinCIsMeet : Meet relation a bJoinC aMeetBJoinC)
+    (aMeetBIsMeet : Meet relation a b aMeetB)
+    (aMeetCIsMeet : Meet relation a c aMeetC)
+    (joinOfMeetsIsJoin : Join relation aMeetB aMeetC joinOfMeets) :
+    relation joinOfMeets aMeetBJoinC := by
+  sorry
+
+/-- The dual distributive inequality holds in every lattice. -/
+theorem JoinWithMeetRelatedToMeetOfJoins
+    {Alpha : Type u}
+    {relation : LRA.Relation.Endorelation Alpha}
+    (relationIsPartialOrder : PartialOrder relation)
+    {a b c bMeetC aJoinBMeetC aJoinB aJoinC meetOfJoins : Alpha}
+    (bMeetCIsMeet : Meet relation b c bMeetC)
+    (aJoinBMeetCIsJoin : Join relation a bMeetC aJoinBMeetC)
+    (aJoinBIsJoin : Join relation a b aJoinB)
+    (aJoinCIsJoin : Join relation a c aJoinC)
+    (meetOfJoinsIsMeet : Meet relation aJoinB aJoinC meetOfJoins) :
+    relation aJoinBMeetC meetOfJoins := by
+  sorry
+
 /-!
 This package is the order-theoretic lattice interface. The equational
 `join`/`meet` operation-signature presentation belongs in algebraic structures;

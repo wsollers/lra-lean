@@ -1,5 +1,6 @@
 import LRA.VolumeI.Set.Interface.Membership
 import LRA.VolumeI.Order.Lattices.CompleteLattice.Definition
+import LRA.VolumeI.Order.Lattices.Lattice.Definition
 
 namespace LRA.Order
 
@@ -40,6 +41,37 @@ theorem AllSupremaImplyCompleteLattice
       forall subset : SetObject,
         exists supremum, Supremum relation subset supremum) :
     CompleteLattice SetObject relation := by
+  sorry
+
+/-- Dually, infima for all represented subsets determine a complete lattice. -/
+theorem AllInfimaImplyCompleteLattice
+    {Element : Type u}
+    {SetObject : Type v}
+    [Membership Element SetObject]
+    [HasSeparation Element SetObject] [HasUniversal SetObject]
+    [HasComplement SetObject]
+    [SeparationLaws Element SetObject]
+    [UniversalMembershipLaws Element SetObject]
+    {relation : LRA.Relation.Endorelation Element}
+    (relationIsPartialOrder : PartialOrder relation)
+    (everySubsetHasInfimum :
+      forall subset : SetObject,
+        exists infimum, Infimum relation subset infimum) :
+    CompleteLattice SetObject relation := by
+  sorry
+
+/-- A complete lattice over a backend that represents pairs is a lattice. -/
+theorem CompleteLatticeIsLattice
+    {Element : Type u}
+    {SetObject : Type v}
+    [Membership Element SetObject]
+    [HasSeparation Element SetObject] [HasUniversal SetObject]
+    [HasComplement SetObject]
+    [SeparationLaws Element SetObject]
+    [UniversalMembershipLaws Element SetObject]
+    {relation : LRA.Relation.Endorelation Element}
+    (relationIsCompleteLattice : CompleteLattice SetObject relation) :
+    Lattice relation := by
   sorry
 
 end LRA.Order

@@ -23,4 +23,29 @@ theorem MeetCommutes
     Meet relation left right meet ↔ Meet relation right left meet := by
   sorry
 
+/-- Reflexivity makes an element the meet of itself with itself. -/
+theorem MeetIdempotent
+    {Alpha : Type u}
+    {relation : LRA.Relation.Endorelation Alpha}
+    (relationIsReflexive : LRA.Relation.Reflexive relation)
+    (element : Alpha) :
+    Meet relation element element element := by
+  sorry
+
+/-- Whenever the displayed meets exist in a partial order, the two associations agree. -/
+theorem MeetAssociative
+    {Alpha : Type u}
+    {relation : LRA.Relation.Endorelation Alpha}
+    (relationIsPartialOrder : PartialOrder relation)
+    {left middle right leftMiddle firstAssociation
+      middleRight secondAssociation : Alpha}
+    (leftMiddleIsMeet : Meet relation left middle leftMiddle)
+    (firstAssociationIsMeet :
+      Meet relation leftMiddle right firstAssociation)
+    (middleRightIsMeet : Meet relation middle right middleRight)
+    (secondAssociationIsMeet :
+      Meet relation left middleRight secondAssociation) :
+    firstAssociation = secondAssociation := by
+  sorry
+
 end LRA.Order

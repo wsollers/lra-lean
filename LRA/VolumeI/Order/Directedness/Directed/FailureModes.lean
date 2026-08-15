@@ -11,4 +11,14 @@ theorem DirectedDoesNotImplyChain :
       Not (Chain (fun left right : Nat => left ∣ right) subset) := by
   sorry
 
+/-- A represented subset of a directed set need not itself be directed. -/
+theorem SubsetOfDirectedSetNeedNotBeDirected :
+    let relation := fun left right : Nat => left ∣ right
+    let ambient : Set Nat := Set.univ
+    let subset : Set Nat := {element | element = 2 \/ element = 3}
+    Directed relation ambient /\
+      (forall element, element ∈ subset -> element ∈ ambient) /\
+      Not (Directed relation subset) := by
+  sorry
+
 end LRA.Order

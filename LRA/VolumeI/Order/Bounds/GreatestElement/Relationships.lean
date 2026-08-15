@@ -19,6 +19,18 @@ theorem GreatestElementIsMaximal
     MaximalElement (StrictPart relation) subset greatest := by
   sorry
 
+/-- A greatest element is the unique maximal element of its represented subset. -/
+theorem GreatestElementIsUniqueMaximalElement
+    {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject]
+    {relation : LRA.Relation.Endorelation Element}
+    (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation)
+    {subset : SetObject} {greatest maximal : Element}
+    (greatestIsGreatest : GreatestElement relation subset greatest)
+    (maximalIsMaximal : MaximalElement (StrictPart relation) subset maximal) :
+    maximal = greatest := by
+  sorry
+
 /-- In a linear order, every maximal element is greatest. -/
 theorem MaximalElementIsGreatestInLinearOrder
     {Element : Type u} {SetObject : Type v}
@@ -38,6 +50,17 @@ theorem GreatestElementIsSupremum
     {subset : SetObject} {greatest : Element}
     (greatestIsGreatest : GreatestElement relation subset greatest) :
     Supremum relation subset greatest := by
+  sorry
+
+/-- Being greatest is equivalent to being a supremum that belongs to the subset. -/
+theorem GreatestElementIffSupremumAndMembership
+    {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject]
+    {relation : LRA.Relation.Endorelation Element}
+    (relationIsReflexive : LRA.Relation.Reflexive relation)
+    {subset : SetObject} {candidate : Element} :
+    GreatestElement relation subset candidate ↔
+      Supremum relation subset candidate /\ candidate ∈ subset := by
   sorry
 
 end LRA.Order

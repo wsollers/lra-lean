@@ -4,6 +4,13 @@ namespace LRA.Order
 
 universe u v w
 
+/-- The identity map is monotone. -/
+theorem MonotoneIdentity
+    {Alpha : Type u}
+    (relation : LRA.Relation.Endorelation Alpha) :
+    Monotone relation relation (fun element => element) := by
+  sorry
+
 /-- Monotone maps compose. -/
 theorem MonotoneComp
     {Alpha : Type u} {Beta : Type v} {Gamma : Type w}

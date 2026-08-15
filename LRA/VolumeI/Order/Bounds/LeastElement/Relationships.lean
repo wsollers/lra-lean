@@ -20,6 +20,18 @@ theorem LeastElementIsMinimal
     MinimalElement (StrictPart relation) subset least := by
   sorry
 
+/-- A least element is the unique minimal element of its represented subset. -/
+theorem LeastElementIsUniqueMinimalElement
+    {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject]
+    {relation : LRA.Relation.Endorelation Element}
+    (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation)
+    {subset : SetObject} {least minimal : Element}
+    (leastIsLeast : LeastElement relation subset least)
+    (minimalIsMinimal : MinimalElement (StrictPart relation) subset minimal) :
+    minimal = least := by
+  sorry
+
 /-- In a linear order, every minimal element is least. -/
 theorem MinimalElementIsLeastInLinearOrder
     {Element : Type u} {SetObject : Type v}
@@ -39,6 +51,17 @@ theorem LeastElementIsInfimum
     {subset : SetObject} {least : Element}
     (leastIsLeast : LeastElement relation subset least) :
     Infimum relation subset least := by
+  sorry
+
+/-- Being least is equivalent to being an infimum that belongs to the subset. -/
+theorem LeastElementIffInfimumAndMembership
+    {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject]
+    {relation : LRA.Relation.Endorelation Element}
+    (relationIsReflexive : LRA.Relation.Reflexive relation)
+    {subset : SetObject} {candidate : Element} :
+    LeastElement relation subset candidate ↔
+      Infimum relation subset candidate /\ candidate ∈ subset := by
   sorry
 
 end LRA.Order
