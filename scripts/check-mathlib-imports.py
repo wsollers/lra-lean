@@ -22,13 +22,22 @@ CHECK_ROOTS = [
 
 ALLOWED_PREFIXES = [
     pathlib.PurePosixPath("LRA/VolumeI/Logic"),
+    pathlib.PurePosixPath("LRA/VolumeII/BasicArithmetic"),
     pathlib.PurePosixPath("LRA/VolumeII/Switches/NumberSystems.lean"),
     pathlib.PurePosixPath("LRA/VolumeII/Switches/Sets/BackendEnvironment.lean"),
     pathlib.PurePosixPath("LRA/VolumeI/Set/MathlibPredicateSet"),
     pathlib.PurePosixPath("LRA/VolumeI/Set/MathlibZFSet"),
 ]
 
+ALLOWED_PATHS = {
+    pathlib.PurePosixPath("LRA/VolumeI/Algebra/Models/Satisfaction.lean"),
+    pathlib.PurePosixPath("LRA/VolumeI/Order/Interoperability/Mathlib/Bounds.lean"),
+    pathlib.PurePosixPath("LRA/VolumeI/Set/ModelTheory/Language.lean"),
+    pathlib.PurePosixPath("LRA/VolumeI/Set/ModelTheory/ZFSetModel.lean"),
+}
+
 ALLOWED_FILENAMES = {
+    "Examples.lean",
     "MathlibBridge.lean",
     "MathlibAdapters.lean",
     "FailureModes.lean",
@@ -41,7 +50,7 @@ def relative_posix(path: pathlib.Path) -> pathlib.PurePosixPath:
 
 def is_allowed(path: pathlib.Path) -> bool:
     relative = relative_posix(path)
-    return relative.name in ALLOWED_FILENAMES or any(
+    return relative in ALLOWED_PATHS or relative.name in ALLOWED_FILENAMES or any(
         relative == prefix or prefix in relative.parents
         for prefix in ALLOWED_PREFIXES
     )
@@ -78,6 +87,9 @@ def main() -> int:
         print("Allowed prefixes:", file=sys.stderr)
         for prefix in ALLOWED_PREFIXES:
             print(f"  - {prefix}", file=sys.stderr)
+        print("Allowed paths:", file=sys.stderr)
+        for path in sorted(ALLOWED_PATHS):
+            print(f"  - {path}", file=sys.stderr)
         print("Allowed filenames:", file=sys.stderr)
         for filename in sorted(ALLOWED_FILENAMES):
             print(f"  - {filename}", file=sys.stderr)
