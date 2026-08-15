@@ -7,7 +7,7 @@ namespace LRA.Function
 
 open LRA.Set
 
-universe u v
+universe u v u₁ u₂ v₁ v₂
 
 /-!
 Preimages of generic sets under functions.
@@ -31,8 +31,8 @@ carry the hypotheses they need.
 
 section Preimages
 
-variable {DomainElement CodomainElement : Type u}
-variable {DomainSet CodomainSet : Type v}
+variable {DomainElement : Type u₁} {CodomainElement : Type u₂}
+variable {DomainSet : Type v₁} {CodomainSet : Type v₂}
 variable [Membership DomainElement DomainSet]
 variable [Membership CodomainElement CodomainSet]
 

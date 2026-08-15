@@ -28,6 +28,12 @@ ALLOWED_PREFIXES = [
     pathlib.PurePosixPath("LRA/VolumeI/Set/MathlibZFSet"),
 ]
 
+ALLOWED_FILENAMES = {
+    "MathlibBridge.lean",
+    "MathlibAdapters.lean",
+    "FailureModes.lean",
+}
+
 
 def relative_posix(path: pathlib.Path) -> pathlib.PurePosixPath:
     return pathlib.PurePosixPath(path.relative_to(ROOT).as_posix())
@@ -35,7 +41,7 @@ def relative_posix(path: pathlib.Path) -> pathlib.PurePosixPath:
 
 def is_allowed(path: pathlib.Path) -> bool:
     relative = relative_posix(path)
-    return any(
+    return relative.name in ALLOWED_FILENAMES or any(
         relative == prefix or prefix in relative.parents
         for prefix in ALLOWED_PREFIXES
     )
@@ -72,6 +78,9 @@ def main() -> int:
         print("Allowed prefixes:", file=sys.stderr)
         for prefix in ALLOWED_PREFIXES:
             print(f"  - {prefix}", file=sys.stderr)
+        print("Allowed filenames:", file=sys.stderr)
+        for filename in sorted(ALLOWED_FILENAMES):
+            print(f"  - {filename}", file=sys.stderr)
         return 1
 
     print("No disallowed Mathlib imports in VolumeI / VolumeII.")

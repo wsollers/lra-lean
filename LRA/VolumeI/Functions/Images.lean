@@ -5,7 +5,7 @@ namespace LRA.Function
 
 open LRA.Set
 
-universe u v
+universe u₁ u₂ v₁ v₂
 
 /-!
 Direct images of generic sets under functions. Same capability profile as
@@ -16,8 +16,8 @@ but structurally not for Enderton sets.
 
 section Images
 
-variable {DomainElement CodomainElement : Type u}
-variable {DomainSet CodomainSet : Type v}
+variable {DomainElement : Type u₁} {CodomainElement : Type u₂}
+variable {DomainSet : Type v₁} {CodomainSet : Type v₂}
 variable [Membership DomainElement DomainSet]
 variable [Membership CodomainElement CodomainSet]
 
