@@ -1,6 +1,7 @@
 import LRA.VolumeI.Logic
 import LRA.VolumeI.Identity
 import LRA.VolumeI.Set
+import LRA.VolumeI.Map
 import LRA.VolumeI.Functions
 import LRA.VolumeI.Operations
 import LRA.VolumeI.Relations
