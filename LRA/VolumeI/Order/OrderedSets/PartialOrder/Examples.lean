@@ -4,7 +4,9 @@ import LRA.VolumeI.Order.OrderedSets.PartialOrder.NonStrict
 namespace LRA.Order.OrderedSets.PartialOrder
 
 /--
-The usual `<=` relation on natural numbers is a non-strict partial order.
+`NaturalNumberNonStrictPartialOrder`
+
+Statement: The usual `<=` relation on natural numbers is a non-strict partial order.
 
 Logical form:
 
@@ -19,7 +21,7 @@ def NaturalNumberNonStrictPartialOrder :
     sorry
 
 /--
-The relation packaged by `NaturalNumberNonStrictPartialOrder` satisfies the
+Statement: The relation packaged by `NaturalNumberNonStrictPartialOrder` satisfies the
 partial-order laws.
 
 Logical form:
@@ -28,13 +30,15 @@ Logical form:
 LRA.Order.PartialOrder NaturalNumberNonStrictPartialOrder.relation
 ```
 -/
-theorem NaturalNumberNonStrictOrderIsPartialOrder :
+example :
     LRA.Order.PartialOrder
       NaturalNumberNonStrictPartialOrder.relation := by
   sorry
 
 /--
-Equality on booleans is a non-strict partial order.
+`BooleanEqualityNonStrictPartialOrder`
+
+Statement: Equality on booleans is a non-strict partial order.
 
 Logical form:
 
@@ -49,7 +53,7 @@ def BooleanEqualityNonStrictPartialOrder :
     sorry
 
 /--
-The relation packaged by `BooleanEqualityNonStrictPartialOrder` satisfies the
+Statement: The relation packaged by `BooleanEqualityNonStrictPartialOrder` satisfies the
 partial-order laws.
 
 Logical form:
@@ -58,20 +62,28 @@ Logical form:
 LRA.Order.PartialOrder BooleanEqualityNonStrictPartialOrder.relation
 ```
 -/
-theorem BooleanEqualityRelationIsPartialOrder :
+example :
     LRA.Order.PartialOrder
       BooleanEqualityNonStrictPartialOrder.relation := by
   sorry
 
-/-- Divisibility on natural numbers is a partial order. The zero case is
-included: if `0 ∣ b`, then `b = 0`, so antisymmetry still holds. -/
-theorem NaturalDivisibilityIsPartialOrder :
+/--
+Statement: Divisibility on natural numbers is a partial order. The zero case is
+included: if `0 ∣ b`, then `b = 0`, so antisymmetry still holds.
+
+Logical form: `LRA.Order.PartialOrder (fun left right : Nat => left ∣ right)`.
+-/
+example :
     LRA.Order.PartialOrder
       (fun left right : Nat => left ∣ right) := by
   sorry
 
-/-- Inclusion is a partial order on predicate subsets. -/
-theorem SetInclusionIsPartialOrder (Alpha : Type u) :
+/--
+Statement: Inclusion is a partial order on predicate subsets.
+
+Logical form: `LRA.Order.PartialOrder (fun left right : Set Alpha => left ⊆ right)`.
+-/
+example (Alpha : Type u) :
     LRA.Order.PartialOrder
       (fun left right : Set Alpha => left ⊆ right) := by
   sorry

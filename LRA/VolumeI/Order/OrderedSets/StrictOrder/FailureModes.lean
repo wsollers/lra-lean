@@ -5,8 +5,9 @@ namespace LRA.Order.OrderedSets.StrictOrder
 universe u
 
 /--
-`FailsStrictOrder relation` says that an endorelation does not satisfy the
-strict-order laws.
+`FailsStrictOrder`
+
+Statement: An endorelation does not satisfy the strict-order laws.
 
 Logical form:
 
@@ -21,7 +22,9 @@ def FailsStrictOrder
   Not (LRA.Order.StrictOrder relation)
 
 /--
-The usual non-strict order on natural numbers is not a strict order, because
+`NatNonStrictOrderFailsStrictOrder`
+
+Statement: The usual non-strict order on natural numbers is not a strict order, because
 it is not irreflexive.
 
 Logical form:
@@ -37,11 +40,26 @@ theorem NatNonStrictOrderFailsStrictOrder :
       FailsStrictOrder (fun left right : Nat => left <= right) := by
   sorry
 
-/-- The immediate-successor relation is irreflexive but not transitive. -/
+/--
+`ImmediateSuccessorRelation`
+
+Statement: The immediate-successor relation holds exactly when the right
+natural number is one more than the left.
+
+Logical form: `right = left + 1`.
+-/
 def ImmediateSuccessorRelation : LRA.Relation.Endorelation Nat :=
   fun left right => right = left + 1
 
-/-- Irreflexivity alone does not make a strict order. -/
+/--
+`ImmediateSuccessorFailsStrictOrder`
+
+Statement: The immediate-successor relation is irreflexive but not transitive,
+so irreflexivity alone does not make a strict order.
+
+Logical form: irreflexivity holds, transitivity fails, and
+`FailsStrictOrder ImmediateSuccessorRelation` holds.
+-/
 theorem ImmediateSuccessorFailsStrictOrder :
     LRA.Relation.Irreflexive ImmediateSuccessorRelation /\
       Not (LRA.Relation.Transitive ImmediateSuccessorRelation) /\

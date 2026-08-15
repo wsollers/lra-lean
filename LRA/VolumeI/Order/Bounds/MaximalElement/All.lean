@@ -1,6 +1,7 @@
 import LRA.VolumeI.Order.Bounds.MaximalElement.Definition
 import LRA.VolumeI.Order.Bounds.MaximalElement.MathlibAdapters
 import LRA.VolumeI.Order.Bounds.MaximalElement.FailureModes
+import LRA.VolumeI.Order.Bounds.MaximalElement.Examples
 import LRA.VolumeI.Order.Bounds.MaximalElement.Relationships
 
 /-!

@@ -7,8 +7,13 @@ open LRA.Set
 
 universe u v
 
-/-- Complement reverses inclusion in every generic set backend that supports it. -/
-theorem ComplementIsAntitone
+/--
+Statement: Complement reverses inclusion in every generic set backend that
+supports it.
+
+Logical form: `Antitone (fun left right : SetObject => left ⊆ right) (fun left right : SetObject => left ⊆ right) HasComplement.complement`.
+-/
+example
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
     [Union SetObject] [Inter SetObject] [SDiff SetObject]

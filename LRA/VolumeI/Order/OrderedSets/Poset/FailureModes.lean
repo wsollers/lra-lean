@@ -5,8 +5,10 @@ namespace LRA.Order.OrderedSets.Poset
 universe u
 
 /--
-`FailsPosetLaws relation` records that a relation fails at least one of the
-three partial-order laws required for a poset.
+`FailsPosetLaws`
+
+Statement: A relation fails at least one of the three partial-order laws
+required for a poset.
 
 Logical form:
 
@@ -19,7 +21,9 @@ def FailsPosetLaws {alpha : Type u}
   Not (LRA.Order.PartialOrder relation)
 
 /--
-The usual strict order on natural numbers is not a poset order, because it is
+`NatStrictOrderFailsPosetLaws`
+
+Statement: The usual strict order on natural numbers is not a poset order, because it is
 not reflexive.
 
 Logical form:

@@ -6,8 +6,12 @@ namespace LRA.Order
 
 universe u
 
-/-- Predicate subsets ordered by inclusion form a complete lattice. -/
-theorem PredicatePowerSetIsCompleteLattice
+/--
+Statement: Predicate subsets ordered by inclusion form a complete lattice.
+
+Logical form: `CompleteLattice (Set (Set Alpha)) (fun left right : Set Alpha => left ⊆ right)`.
+-/
+example
     {Alpha : Type u} :
     CompleteLattice (Set (Set Alpha))
       (fun left right : Set Alpha => left ⊆ right) := by

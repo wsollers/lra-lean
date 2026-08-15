@@ -5,8 +5,12 @@ namespace LRA.Order.Lattices.Meet
 
 universe u
 
-/-- Intersection is the meet operation in the inclusion order on sets. -/
-theorem SetIntersectionIsMeet
+/--
+Statement: Intersection is the meet operation in the inclusion order on sets.
+
+Logical form: `LRA.Order.Meet (fun first second : Set Alpha => first ⊆ second) left right (left ∩ right)`.
+-/
+example
     {Alpha : Type u} (left right : Set Alpha) :
     LRA.Order.Meet
       (fun first second : Set Alpha => first ⊆ second)

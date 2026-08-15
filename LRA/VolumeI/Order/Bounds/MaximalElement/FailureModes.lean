@@ -5,22 +5,43 @@ import LRA.VolumeI.Order.Relations.StrictPart.Definition
 
 namespace LRA.Order
 
+universe u v
+
 /--
-In the two-element antichain, maximal elements are neither unique nor
-greatest. This shows why totality is required to promote maximal to greatest.
+`MaximalityFailsToImplyGreatest`
+
+Statement: A candidate is maximal for the strict relation but is not greatest
+for the corresponding non-strict relation.
+
+Logical form: `MaximalElement strictRelation subset candidate ∧ Not (GreatestElement nonStrictRelation subset candidate)`.
+-/
+def MaximalityFailsToImplyGreatest
+    {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject]
+    (strictRelation nonStrictRelation : LRA.Relation.Endorelation Element)
+    (subset : SetObject) (candidate : Element) : Prop :=
+  MaximalElement strictRelation subset candidate /\
+    Not (GreatestElement nonStrictRelation subset candidate)
+
+/--
+`BooleanAntichainHasDistinctMaximalElementsButNoGreatest`
+
+Statement: In the two-element antichain, both distinct elements are maximal
+but neither is greatest.
+
+Logical form: both Boolean values satisfy `MaximalityFailsToImplyGreatest`,
+and `false ≠ true`.
 -/
 theorem BooleanAntichainHasDistinctMaximalElementsButNoGreatest :
-    MaximalElement
+    MaximalityFailsToImplyGreatest
         (StrictPart (fun left right : Bool => left = right))
+        (fun left right : Bool => left = right)
         (Set.univ : Set Bool) false /\
-      MaximalElement
+      MaximalityFailsToImplyGreatest
         (StrictPart (fun left right : Bool => left = right))
+        (fun left right : Bool => left = right)
         (Set.univ : Set Bool) true /\
-      false ≠ true /\
-      Not (GreatestElement (fun left right : Bool => left = right)
-        (Set.univ : Set Bool) false) /\
-      Not (GreatestElement (fun left right : Bool => left = right)
-        (Set.univ : Set Bool) true) := by
+      false ≠ true := by
   sorry
 
 end LRA.Order

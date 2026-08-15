@@ -3,8 +3,12 @@ import LRA.VolumeI.Order.OrderedSets.WellOrder.Definition
 
 namespace LRA.Order
 
-/-- The natural numbers with their usual order are well-ordered. -/
-theorem NaturalNumbersAreWellOrdered :
+/--
+Statement: The natural numbers with their usual order are well-ordered.
+
+Logical form: `WellOrder (Set Nat) (fun left right : Nat => left ≤ right)`.
+-/
+example :
     WellOrder (Set Nat) (fun left right : Nat => left ≤ right) := by
   sorry
 

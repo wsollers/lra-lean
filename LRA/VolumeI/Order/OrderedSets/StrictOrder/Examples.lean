@@ -3,7 +3,9 @@ import LRA.VolumeI.Order.OrderedSets.StrictOrder.Definition
 namespace LRA.Order.OrderedSets.StrictOrder
 
 /--
-The usual `<` relation on natural numbers is a strict order.
+`NaturalNumberStrictOrder`
+
+Statement: The usual `<` relation on natural numbers is a strict order.
 
 Logical form:
 
@@ -18,7 +20,7 @@ def NaturalNumberStrictOrder :
     sorry
 
 /--
-The relation packaged by `NaturalNumberStrictOrder` satisfies the strict-order
+Statement: The relation packaged by `NaturalNumberStrictOrder` satisfies the strict-order
 laws.
 
 Logical form:
@@ -27,7 +29,7 @@ Logical form:
 LRA.Order.StrictOrder NaturalNumberStrictOrder.relation
 ```
 -/
-theorem NaturalNumberRelationIsStrictOrder :
+example :
     LRA.Order.StrictOrder NaturalNumberStrictOrder.relation := by
   sorry
 

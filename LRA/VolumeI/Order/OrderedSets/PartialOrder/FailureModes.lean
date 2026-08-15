@@ -6,8 +6,9 @@ namespace LRA.Order.OrderedSets.PartialOrder
 universe u
 
 /--
-`FailsNonStrictPartialOrder relation` says that an endorelation does not
-satisfy the non-strict partial-order laws.
+`FailsNonStrictPartialOrder`
+
+Statement: An endorelation does not satisfy the non-strict partial-order laws.
 
 Logical form:
 
@@ -22,7 +23,9 @@ def FailsNonStrictPartialOrder
   Not (LRA.Order.PartialOrder relation)
 
 /--
-`FailsTransitivity relation` says that an endorelation is not transitive.
+`FailsTransitivity`
+
+Statement: An endorelation is not transitive.
 
 Logical form:
 
@@ -37,7 +40,9 @@ def FailsTransitivity
   Not (LRA.Relation.Transitive relation)
 
 /--
-The immediate-successor-or-equality relation is reflexive and antisymmetric
+`ImmediateSuccessorOrEqualFailsTransitivity`
+
+Statement: The immediate-successor-or-equality relation is reflexive and antisymmetric
 but fails transitivity.
 
 Logical form:
@@ -58,7 +63,9 @@ theorem ImmediateSuccessorOrEqualFailsTransitivity :
   sorry
 
 /--
-The usual strict order on natural numbers is not a non-strict partial order,
+`NatStrictOrderFailsNonStrictPartialOrder`
+
+Statement: The usual strict order on natural numbers is not a non-strict partial order,
 because it is not reflexive.
 
 Logical form:
@@ -78,7 +85,9 @@ theorem NatStrictOrderFailsNonStrictPartialOrder :
   sorry
 
 /--
-The universal relation on booleans is not a non-strict partial order, because
+`BooleanUniversalRelationFailsNonStrictPartialOrder`
+
+Statement: The universal relation on booleans is not a non-strict partial order, because
 it is not antisymmetric.
 
 Logical form:
@@ -95,12 +104,18 @@ theorem BooleanUniversalRelationFailsNonStrictPartialOrder :
       FailsNonStrictPartialOrder (fun _ _ : Bool => True) := by
   sorry
 
-/-- Integer divisibility is a preorder but not a partial order: `3` and `-3`
-divide one another without being equal. -/
+/--
+`IntegerDivisibilityIsPreorderButNotPartialOrder`
+
+Statement: Integer divisibility is a preorder but not a partial order: `3` and
+`-3` divide one another without being equal.
+
+Logical form: `LRA.Order.Preorder (fun left right : Int => left ∣ right) ∧ FailsNonStrictPartialOrder (fun left right : Int => left ∣ right)`.
+-/
 theorem IntegerDivisibilityIsPreorderButNotPartialOrder :
     LRA.Order.Preorder (fun left right : Int => left ∣ right) /\
-      Not (LRA.Order.PartialOrder
-        (fun left right : Int => left ∣ right)) := by
+      FailsNonStrictPartialOrder
+        (fun left right : Int => left ∣ right) := by
   sorry
 
 end LRA.Order.OrderedSets.PartialOrder

@@ -5,8 +5,12 @@ namespace LRA.Order
 
 universe u
 
-/-- Predicate subsets ordered by inclusion form a distributive lattice. -/
-theorem PredicatePowerSetIsDistributiveLattice
+/--
+Statement: Predicate subsets ordered by inclusion form a distributive lattice.
+
+Logical form: `DistributiveLattice (fun left right : Set Alpha => left ⊆ right)`.
+-/
+example
     {Alpha : Type u} :
     DistributiveLattice (fun left right : Set Alpha => left ⊆ right) := by
   sorry

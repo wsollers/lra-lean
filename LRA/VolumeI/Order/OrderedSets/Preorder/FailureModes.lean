@@ -7,8 +7,9 @@ namespace LRA.Order.OrderedSets.Preorder
 universe u
 
 /--
-`FailsPreorder relation` says that an endorelation does not satisfy the
-preorder laws.
+`FailsPreorder`
+
+Statement: An endorelation fails to satisfy the preorder laws.
 
 Logical form:
 
@@ -22,12 +23,40 @@ def FailsPreorder
     Prop :=
   Not (LRA.Order.Preorder relation)
 
-/-- The immediate-successor-or-equality relation on natural numbers. -/
+/--
+`StrictPartConstructionsFailToAgree`
+
+Statement: The two standard strict-part constructions fail to agree on a preorder.
+
+Logical form: `LRA.Order.StrictPart preorder.relation ≠ StrictPartByNotConverse preorder`.
+-/
+def StrictPartConstructionsFailToAgree
+    {Carrier : Type u}
+    (preorder : PreorderRelation Carrier) : Prop :=
+  LRA.Order.StrictPart preorder.relation ≠
+    StrictPartByNotConverse preorder
+
+/--
+`ImmediateSuccessorOrEqualRelation`
+
+Statement: Natural numbers are related when they are equal or the right value
+is the immediate successor of the left.
+
+Logical form: `left = right ∨ right = left + 1`.
+-/
 def ImmediateSuccessorOrEqualRelation :
     LRA.Relation.Endorelation Nat :=
   fun left right => left = right \/ right = left + 1
 
-/-- A reflexive but non-transitive relation witnesses failure of preorder. -/
+/--
+`ImmediateSuccessorOrEqualFailsPreorder`
+
+Statement: The immediate-successor-or-equality relation is reflexive but not
+transitive, so it fails to be a preorder.
+
+Logical form: reflexivity holds, transitivity fails, and
+`FailsPreorder ImmediateSuccessorOrEqualRelation` holds.
+-/
 theorem ImmediateSuccessorOrEqualFailsPreorder :
     LRA.Relation.Reflexive ImmediateSuccessorOrEqualRelation /\
       Not (LRA.Relation.Transitive
@@ -35,7 +64,15 @@ theorem ImmediateSuccessorOrEqualFailsPreorder :
       FailsPreorder ImmediateSuccessorOrEqualRelation := by
   sorry
 
-/-- The natural strict order is transitive but non-reflexive. -/
+/--
+`NatStrictOrderFailsPreorder`
+
+Statement: The natural strict order is transitive but non-reflexive, so it
+fails to be a preorder.
+
+Logical form: transitivity holds, reflexivity fails, and
+`FailsPreorder (fun left right : Nat => left < right)` holds.
+-/
 theorem NatStrictOrderFailsPreorder :
     LRA.Relation.Transitive (fun left right : Nat => left < right) /\
       Not (LRA.Relation.Reflexive
@@ -44,12 +81,16 @@ theorem NatStrictOrderFailsPreorder :
   sorry
 
 /--
-The inequality-based strict part and the non-converse strict part differ for
-preorders without antisymmetry, witnessed by the universal Boolean preorder.
+`StrictPartConstructionsDifferOnUniversalPreorder`
+
+Statement: The inequality-based strict part and the non-converse strict part
+differ for preorders without antisymmetry, witnessed by the universal Boolean
+preorder.
+
+Logical form: `StrictPartConstructionsFailToAgree BooleanUniversalPreorder`.
 -/
 theorem StrictPartConstructionsDifferOnUniversalPreorder :
-    LRA.Order.StrictPart BooleanUniversalPreorder.relation ≠
-      StrictPartByNotConverse BooleanUniversalPreorder := by
+    StrictPartConstructionsFailToAgree BooleanUniversalPreorder := by
   sorry
 
 end LRA.Order.OrderedSets.Preorder
