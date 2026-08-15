@@ -1,9 +1,31 @@
 import LRA.VolumeI.Order.Bounds.LowerBound.Definition
+import LRA.VolumeI.Set.Interface.Indexed
 import LRA.VolumeI.Set.Interface.Membership
 
 namespace LRA.Order
 
-universe u v
+open scoped LRA.Set
+
+universe u v w
+
+/--
+`LowerBoundOfEmpty`
+
+Statement: Every element is vacuously a lower bound of the empty represented
+subset.
+
+Logical form: `LowerBound relation ∅ bound`.
+-/
+theorem LowerBoundOfEmpty
+    {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject]
+    [Union SetObject] [Inter SetObject] [SDiff SetObject]
+    [EmptyCollection SetObject] [HasSubset SetObject]
+    [LRA.Set.MembershipLaws Element SetObject]
+    (relation : LRA.Relation.Endorelation Element)
+    (bound : Element) :
+    LowerBound relation (∅ : SetObject) bound := by
+  sorry
 
 /-- A lower bound of a larger represented subset bounds every subcollection. -/
 theorem LowerBoundOfSubcollection
@@ -70,6 +92,69 @@ theorem LowerBoundOfDifference
     {subset removed : SetObject} {bound : Element}
     (boundIsLowerForSubset : LowerBound relation subset bound) :
     LowerBound relation (subset \ removed) bound := by
+  sorry
+
+/--
+`LowerBoundOfSymmetricDifference`
+
+Statement: A common lower bound of two sets bounds their symmetric difference.
+
+Logical form: `LowerBound r A b → LowerBound r B b → LowerBound r (A ∆ B) b`.
+-/
+theorem LowerBoundOfSymmetricDifference
+    {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject]
+    [LRA.Set.HasSymmDiff SetObject]
+    [Union SetObject] [Inter SetObject] [SDiff SetObject]
+    [EmptyCollection SetObject] [HasSubset SetObject]
+    [LRA.Set.MembershipLaws Element SetObject]
+    [LRA.Set.SymmDiffMembershipLaws Element SetObject]
+    {relation : LRA.Relation.Endorelation Element}
+    {leftSubset rightSubset : SetObject} {bound : Element}
+    (boundIsLowerForLeft : LowerBound relation leftSubset bound)
+    (boundIsLowerForRight : LowerBound relation rightSubset bound) :
+    LowerBound relation (leftSubset ∆ rightSubset) bound := by
+  sorry
+
+/--
+`LowerBoundOfIndexedUnionIff`
+
+Statement: An element bounds an indexed union below exactly when it bounds
+every member of the family below.
+
+Logical form: `LowerBound relation (indexedUnion family) bound ↔ ∀ i, LowerBound relation (family i) bound`.
+-/
+theorem LowerBoundOfIndexedUnionIff
+    {Element : Type u} {SetObject : Type v} {Index : Type w}
+    [Membership Element SetObject]
+    [LRA.Set.HasIndexedUnion SetObject]
+    [LRA.Set.HasIndexedIntersection SetObject]
+    [LRA.Set.IndexedMembershipLaws Element SetObject]
+    {relation : LRA.Relation.Endorelation Element}
+    {family : Index -> SetObject} {bound : Element} :
+    LowerBound relation (LRA.Set.HasIndexedUnion.indexedUnion family) bound ↔
+      forall index, LowerBound relation (family index) bound := by
+  sorry
+
+/--
+`LowerBoundOfIndexedIntersection`
+
+Statement: A lower bound of any selected family member bounds the indexed
+intersection below.
+
+Logical form: `LowerBound relation (family i) bound → LowerBound relation (indexedIntersection family) bound`.
+-/
+theorem LowerBoundOfIndexedIntersection
+    {Element : Type u} {SetObject : Type v} {Index : Type w}
+    [Membership Element SetObject]
+    [LRA.Set.HasIndexedUnion SetObject]
+    [LRA.Set.HasIndexedIntersection SetObject]
+    [LRA.Set.IndexedMembershipLaws Element SetObject]
+    {relation : LRA.Relation.Endorelation Element}
+    {family : Index -> SetObject} (index : Index) {bound : Element}
+    (boundIsLowerForMember : LowerBound relation (family index) bound) :
+    LowerBound relation
+      (LRA.Set.HasIndexedIntersection.indexedIntersection family) bound := by
   sorry
 
 end LRA.Order

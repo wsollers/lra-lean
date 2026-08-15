@@ -5,6 +5,8 @@ import LRA.VolumeI.Relations.Basic.CoreProperties
 
 namespace LRA.Order
 
+open scoped LRA.Set
+
 universe u v
 
 /-- Every represented subcollection of a bounded-below set is bounded below. -/
@@ -60,6 +62,28 @@ theorem DifferenceBoundedBelow
     (subset removed : SetObject)
     (subsetIsBoundedBelow : BoundedBelow relation subset) :
     BoundedBelow relation (subset \ removed) := by
+  sorry
+
+/--
+`SymmetricDifferenceBoundedBelow`
+
+Statement: A symmetric difference is bounded below when both operands are.
+
+Logical form: `BoundedBelow r A → BoundedBelow r B → BoundedBelow r (A ∆ B)`.
+-/
+theorem SymmetricDifferenceBoundedBelow
+    {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject]
+    [LRA.Set.HasSymmDiff SetObject]
+    [Union SetObject] [Inter SetObject] [SDiff SetObject]
+    [EmptyCollection SetObject] [HasSubset SetObject]
+    [LRA.Set.MembershipLaws Element SetObject]
+    [LRA.Set.SymmDiffMembershipLaws Element SetObject]
+    {relation : LRA.Relation.Endorelation Element}
+    (leftSubset rightSubset : SetObject)
+    (leftIsBoundedBelow : BoundedBelow relation leftSubset)
+    (rightIsBoundedBelow : BoundedBelow relation rightSubset) :
+    BoundedBelow relation (leftSubset ∆ rightSubset) := by
   sorry
 
 end LRA.Order

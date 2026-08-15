@@ -1,5 +1,6 @@
 import LRA.VolumeI.Order.Bounds.Infimum.Definition
 import LRA.VolumeI.Order.Bounds.Supremum.Definition
+import LRA.VolumeI.Order.Bounds.BoundSets.Definition
 import LRA.VolumeI.Set.Interface.Membership
 
 namespace LRA.Order
@@ -40,11 +41,7 @@ theorem InfimumIffSupremumOfLowerBounds
     (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject) (candidate : Element) :
     Infimum relation subset candidate ↔
-      Supremum relation
-        (LRA.Set.HasSeparation.separation
-          (LRA.Set.HasUniversal.universal : SetObject)
-          (LowerBound relation subset))
-        candidate := by
+      Supremum relation (LowerBounds relation subset) candidate := by
   sorry
 
 end LRA.Order

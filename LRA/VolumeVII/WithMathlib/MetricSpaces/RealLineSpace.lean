@@ -2,7 +2,7 @@ import LRA.VolumeVII.WithMathlib.MetricSpaces.MetricModeling
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Ring
 
-namespace LRA.Interop.Mathlib
+namespace LRA.Internal
 
 /-- The usual absolute-value metric on the real line.
 
@@ -55,4 +55,4 @@ def realScratchMetricSpace : ScratchMetricSpace Real where
 def realScratchMetricSpace : ScratchMetricSpace Real where
   metric := realScratchMetric
 
-end LRA.Interop.Mathlib
+end LRA.Internal

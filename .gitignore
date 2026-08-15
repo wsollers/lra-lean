@@ -31,3 +31,14 @@ lean-decl-inventory.txt
 /hold/
 /_to_delete/
 /scripts/__pycache__/
+**/__pycache__/
+
+# Generated analysis, rendering, and search-index artifacts
+/build/internal-index/
+/build/namespace-environment.tsv
+/build/pilot/supremum-comparison/render/
+/build/pilot/supremum-comparison/*.aux
+/build/pilot/supremum-comparison/*.log
+/build/pilot/supremum-comparison/*.out
+/build/pilot/supremum-extraction-v5.html
+/build/pilot/supremum-extraction-v5.json

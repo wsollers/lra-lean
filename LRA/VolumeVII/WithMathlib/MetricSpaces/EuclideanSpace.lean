@@ -87,6 +87,12 @@ lemma distance_eq_euclidean (p q : ℝ × ℝ) :
   rw [EuclideanSpace.dist_eq, Fin.sum_univ_two]
   simp [toE, EuclideanSpace.equiv, Real.dist_eq, sq_abs]
 
+end LRA.Interop.Mathlib
+
+namespace LRA.Internal
+
+open LRA.Interop.Mathlib
+
 /-- The usual Euclidean metric on the real plane.
 
 Logical form:
@@ -144,4 +150,4 @@ noncomputable def realPlaneScratchMetricSpace : ScratchMetricSpace (Real × Real
 noncomputable def realPlaneScratchMetricSpace : ScratchMetricSpace (Real × Real) where
   metric := realPlaneScratchEuclideanMetric
 
-end LRA.Interop.Mathlib
+end LRA.Internal

@@ -1,5 +1,6 @@
 import LRA.VolumeI.Order.Bounds.Infimum.Definition
 import LRA.VolumeI.Order.Bounds.Supremum.Definition
+import LRA.VolumeI.Order.Bounds.BoundSets.Definition
 import LRA.VolumeI.Set.Interface.Membership
 import LRA.VolumeI.Relations.Basic.CoreProperties
 
@@ -41,11 +42,7 @@ theorem SupremumIffInfimumOfUpperBounds
     (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject) (candidate : Element) :
     Supremum relation subset candidate ↔
-      Infimum relation
-        (LRA.Set.HasSeparation.separation
-          (LRA.Set.HasUniversal.universal : SetObject)
-          (UpperBound relation subset))
-        candidate := by
+      Infimum relation (UpperBounds relation subset) candidate := by
   sorry
 
 /-- For a nonempty represented subset, every infimum lies below every supremum. -/

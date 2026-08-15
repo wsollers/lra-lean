@@ -217,6 +217,73 @@ theorem ImageCongrSet
     (Image map left : CodomainSet) = Image map right := by
   sorry
 
+section SetOperations
+
+variable [Union DomainSet] [Inter DomainSet] [SDiff DomainSet]
+variable [EmptyCollection DomainSet] [HasSubset DomainSet]
+variable [MembershipLaws DomainElement DomainSet]
+variable [Union CodomainSet] [Inter CodomainSet] [SDiff CodomainSet]
+variable [EmptyCollection CodomainSet] [HasSubset CodomainSet]
+variable [MembershipLaws CodomainElement CodomainSet]
+
+/--
+`ImageMonotone`
+
+Statement: Direct image is monotone with respect to inclusion of source sets.
+
+Logical form: `A ⊆ B → Image f A ⊆ Image f B`.
+-/
+theorem ImageMonotone
+    (map : Function DomainElement CodomainElement)
+    {smaller larger : DomainSet}
+    (smallerSubsetLarger : smaller ⊆ larger) :
+    (Image map smaller : CodomainSet) ⊆ Image map larger := by
+  sorry
+
+/--
+`ImageUnion`
+
+Statement: Direct image distributes exactly over binary union.
+
+Logical form: `Image f (A ∪ B) = Image f A ∪ Image f B`.
+-/
+theorem ImageUnion
+    (map : Function DomainElement CodomainElement)
+    (left right : DomainSet) :
+    (Image map (left ∪ right) : CodomainSet) =
+      Image map left ∪ Image map right := by
+  sorry
+
+/--
+`ImageIntersectionSubsetIntersectionImages`
+
+Statement: The image of an intersection is contained in the intersection of the images.
+
+Logical form: `Image f (A ∩ B) ⊆ Image f A ∩ Image f B`.
+-/
+theorem ImageIntersectionSubsetIntersectionImages
+    (map : Function DomainElement CodomainElement)
+    (left right : DomainSet) :
+    (Image map (left ∩ right) : CodomainSet) ⊆
+      Image map left ∩ Image map right := by
+  sorry
+
+/--
+`DifferenceImagesSubsetImageDifference`
+
+Statement: The difference of two images is contained in the image of the difference.
+
+Logical form: `Image f A \ Image f B ⊆ Image f (A \ B)`.
+-/
+theorem DifferenceImagesSubsetImageDifference
+    (map : Function DomainElement CodomainElement)
+    (left right : DomainSet) :
+    (Image map left \ Image map right : CodomainSet) ⊆
+      Image map (left \ right) := by
+  sorry
+
+end SetOperations
+
 section WithDomainSeparation
 
 variable [HasSeparation DomainElement DomainSet] [HasUniversal DomainSet]

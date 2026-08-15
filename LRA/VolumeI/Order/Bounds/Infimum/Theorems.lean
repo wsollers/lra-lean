@@ -2,11 +2,14 @@ import LRA.VolumeI.Order.Bounds.Infimum.Definition
 import LRA.VolumeI.Order.Bounds.LeastElement.Definition
 import LRA.VolumeI.Order.Lattices.Meet.Definition
 import LRA.VolumeI.Set.Interface.Membership
+import LRA.VolumeI.Set.Interface.Indexed
 import LRA.VolumeI.Relations.Basic.CoreProperties
 
 namespace LRA.Order
 
-universe u v
+open scoped LRA.Set
+
+universe u v w
 
 /-- Antisymmetry makes an infimum unique. -/
 theorem InfimumUnique
@@ -18,6 +21,26 @@ theorem InfimumUnique
     (firstIsInfimum : Infimum relation subset first)
     (secondIsInfimum : Infimum relation subset second) :
     first = second := by
+  sorry
+
+/--
+`InfimumOfSingleton`
+
+Statement: In a reflexive relation, an element is an infimum of its represented
+singleton.
+
+Logical form: `Infimum relation {element} element`.
+-/
+theorem InfimumOfSingleton
+    {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject] [Singleton Element SetObject]
+    {relation : LRA.Relation.Endorelation Element}
+    (relationIsReflexive : LRA.Relation.Reflexive relation)
+    (element : Element)
+    (singletonMembership :
+      forall candidate,
+        candidate ∈ ({element} : SetObject) ↔ candidate = element) :
+    Infimum relation ({element} : SetObject) element := by
   sorry
 
 /-- An infimum is a lower bound of the represented subset. -/
@@ -107,6 +130,99 @@ theorem InfimumOfUnion
     (unionInfimumIsMeet :
       Meet relation leftInfimum rightInfimum unionInfimum) :
     Infimum relation (leftSubset ∪ rightSubset) unionInfimum := by
+  sorry
+
+/--
+`ContainingInfimumRelatedToInfimumOfIntersection`
+
+Statement: The infimum of either containing operand is below the infimum of their intersection.
+
+Logical form: `Infimum r (A ∩ B) i → Infimum r A j → r j i`.
+-/
+theorem ContainingInfimumRelatedToInfimumOfIntersection
+    {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject]
+    [Union SetObject] [Inter SetObject] [SDiff SetObject]
+    [EmptyCollection SetObject] [HasSubset SetObject]
+    [LRA.Set.MembershipLaws Element SetObject]
+    {relation : LRA.Relation.Endorelation Element}
+    {containingSubset otherSubset : SetObject}
+    {intersectionInfimum containingInfimum : Element}
+    (intersectionIsInfimum :
+      Infimum relation (containingSubset ∩ otherSubset) intersectionInfimum)
+    (containingIsInfimum : Infimum relation containingSubset containingInfimum) :
+    relation containingInfimum intersectionInfimum := by
+  sorry
+
+/--
+`ContainingInfimumRelatedToInfimumOfDifference`
+
+Statement: The infimum of a set is below the infimum of each relative difference.
+
+Logical form: `Infimum r (A \ B) i → Infimum r A j → r j i`.
+-/
+theorem ContainingInfimumRelatedToInfimumOfDifference
+    {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject]
+    [Union SetObject] [Inter SetObject] [SDiff SetObject]
+    [EmptyCollection SetObject] [HasSubset SetObject]
+    [LRA.Set.MembershipLaws Element SetObject]
+    {relation : LRA.Relation.Endorelation Element}
+    {subset removed : SetObject} {differenceInfimum subsetInfimum : Element}
+    (differenceIsInfimum : Infimum relation (subset \ removed) differenceInfimum)
+    (subsetIsInfimum : Infimum relation subset subsetInfimum) :
+    relation subsetInfimum differenceInfimum := by
+  sorry
+
+/--
+`UnionInfimumRelatedToInfimumOfSymmetricDifference`
+
+Statement: The infimum of a union is below the infimum of its symmetric difference.
+
+Logical form: `Infimum r (A ∆ B) i → Infimum r (A ∪ B) j → r j i`.
+-/
+theorem UnionInfimumRelatedToInfimumOfSymmetricDifference
+    {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject]
+    [Union SetObject] [Inter SetObject] [SDiff SetObject]
+    [EmptyCollection SetObject] [HasSubset SetObject]
+    [LRA.Set.MembershipLaws Element SetObject]
+    [LRA.Set.SymmDiffMembershipLaws Element SetObject]
+    {relation : LRA.Relation.Endorelation Element}
+    {leftSubset rightSubset : SetObject}
+    {differenceInfimum unionInfimum : Element}
+    (differenceIsInfimum :
+      Infimum relation (leftSubset ∆ rightSubset) differenceInfimum)
+    (unionIsInfimum : Infimum relation (leftSubset ∪ rightSubset) unionInfimum) :
+    relation unionInfimum differenceInfimum := by
+  sorry
+
+/--
+`InfimumOfIndexedUnion`
+
+Statement: Infima of all family members, together with their greatest common lower bound, assemble into the infimum of the indexed union.
+
+Logical form: `(∀ i, Infimum r (F i) (s i)) → Infimum r (⋃ᵢ F i) I` under the displayed greatest-lower-bound hypotheses on `I`.
+-/
+theorem InfimumOfIndexedUnion
+    {Element : Type u} {SetObject : Type v} {Index : Type w}
+    [Membership Element SetObject]
+    [LRA.Set.HasIndexedUnion SetObject]
+    [LRA.Set.HasIndexedIntersection SetObject]
+    [LRA.Set.IndexedMembershipLaws Element SetObject]
+    {relation : LRA.Relation.Endorelation Element}
+    (relationIsTransitive : LRA.Relation.Transitive relation)
+    (family : Index -> SetObject) (memberInfimum : Index -> Element)
+    (familyInfimum : Element)
+    (eachIsInfimum : forall index,
+      Infimum relation (family index) (memberInfimum index))
+    (familyInfimumBoundsMembers : forall index,
+      relation familyInfimum (memberInfimum index))
+    (familyInfimumIsGreatest : forall bound,
+      (forall index, relation bound (memberInfimum index)) ->
+        relation bound familyInfimum) :
+    Infimum relation
+      (LRA.Set.HasIndexedUnion.indexedUnion family) familyInfimum := by
   sorry
 
 end LRA.Order
