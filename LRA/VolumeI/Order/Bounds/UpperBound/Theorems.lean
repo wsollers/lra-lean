@@ -42,7 +42,12 @@ theorem UpperBoundOfSubcollection
     (smallerIsContained : forall element, element ∈ smaller -> element ∈ larger)
     (boundIsUpperForLarger : UpperBound relation larger bound) :
     UpperBound relation smaller bound := by
-  sorry
+  intro smallerElement elementInSubset
+  have elementInLarger := smallerIsContained smallerElement elementInSubset
+  unfold UpperBound at boundIsUpperForLarger
+  exact boundIsUpperForLarger smallerElement elementInLarger
+
+
 
 /-- A common upper bound of two represented subsets bounds their union. -/
 theorem UpperBoundOfUnion
