@@ -16,7 +16,7 @@ import LRA.VolumeIII.Analysis.Differentiation.MeanValueTheorem
 import LRA.VolumeIII.Analysis.Differentiation.GraphReading
 import LRA.VolumeIII.Analysis.Continuity.Limits
 
-namespace LRA.VolumeIII.Analysis.Differentiation
+namespace LRA.Analysis.Differentiation
 
 variable {f g : ℝ → ℝ} {A : Set ℝ} {c Df Dg α : ℝ}
 
@@ -233,7 +233,7 @@ theorem InverseFunctionDerivative (f g fD1 : ℝ → ℝ) (U V : Set ℝ)
 -- Indeterminate forms: L'Hôpital's Rule.
 -- ---------------------------------------------------------------------
 
-open LRA.VolumeIII.Analysis.Continuity in
+open LRA.Analysis.Continuity in
 -- `thm:lhopital-zero-over-zero`
 /-- Let `a b : ℝ` and `L : ℝ`. If `f g : ℝ → ℝ`, `hab : a < b`, `hf : ∀ x ∈ Set.Ioo a b,
 IsDifferentiable f (Set.Ioo a b) x`, `hg : ∀ x ∈ Set.Ioo a b, IsDifferentiable g (Set.Ioo a b)
@@ -268,7 +268,7 @@ theorem LhopitalZeroOverZero (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     TendsToRight (fun x => f x / g x) (Set.Ioo a b) a L := by
   sorry
 
-open LRA.VolumeIII.Analysis.Continuity in
+open LRA.Analysis.Continuity in
 -- `thm:lhopital-infinity-over-infinity`
 /-- Let `a b : ℝ` and `L : ℝ`. If `f g : ℝ → ℝ`, `hab : a < b`, `hf : ∀ x ∈ Set.Ioo a b,
 IsDifferentiable f (Set.Ioo a b) x`, `hg : ∀ x ∈ Set.Ioo a b, IsDifferentiable g (Set.Ioo a b)
@@ -303,4 +303,4 @@ theorem LhopitalInfinityOverInfinity (f g : ℝ → ℝ) (a b : ℝ) (hab : a < 
     TendsToRight (fun x => f x / g x) (Set.Ioo a b) a L := by
   sorry
 
-end LRA.VolumeIII.Analysis.Differentiation
+end LRA.Analysis.Differentiation

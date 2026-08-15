@@ -19,7 +19,7 @@ states in prose.
 
 import Mathlib.Data.Real.Basic
 
-namespace LRA.VolumeIII.Analysis.Functions
+namespace LRA.Analysis.Functions
 
 /-- `def:linear-combination-of-real-valued-functions`.
 
@@ -126,4 +126,4 @@ theorem RealLinearRuleBasicValues (C : Set (ℝ → ℝ))
     T (fun _ => 0) = 0 ∧ ∀ f, f ∈ C → T (fun x => -f x) = -T f := by
   sorry
 
-end LRA.VolumeIII.Analysis.Functions
+end LRA.Analysis.Functions

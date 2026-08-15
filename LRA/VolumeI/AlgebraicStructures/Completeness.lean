@@ -1,7 +1,7 @@
 import LRA.VolumeI.AlgebraicStructures.Bundles
 import LRA.VolumeI.Order.Bounds.LeastUpperBoundProperty.All
 
-namespace LRA.VolumeI.AlgebraicStructures
+namespace LRA.Algebra.Structure
 
 universe u v
 
@@ -28,14 +28,14 @@ Logical form:
 class OrderCompletenessLaws (R : Type u) (SetObject : Type v)
     [LE R] [Membership R SetObject] : Prop where
   Completeness :
-    LRA.VolumeI.Order.LeastUpperBoundProperty
+    LRA.Order.LeastUpperBoundProperty
       SetObject (fun a b : R => a ≤ b)
 ```
 -/
 class OrderCompletenessLaws (R : Type u) (SetObject : Type v)
     [LE R] [Membership R SetObject] : Prop where
   Completeness :
-    LRA.VolumeI.Order.LeastUpperBoundProperty
+    LRA.Order.LeastUpperBoundProperty
       SetObject (fun a b : R => a ≤ b)
 
 /-- A complete ordered field: the ordered-field bundle together with
@@ -78,16 +78,16 @@ Logical form:
 ```lean
 theorem Completeness [LE R] [Membership R SetObject]
     [OrderCompletenessLaws R SetObject] :
-    LRA.VolumeI.Order.LeastUpperBoundProperty
+    LRA.Order.LeastUpperBoundProperty
       SetObject (fun a b : R => a ≤ b)
 ```
 -/
 theorem Completeness [LE R] [Membership R SetObject]
     [OrderCompletenessLaws R SetObject] :
-    LRA.VolumeI.Order.LeastUpperBoundProperty
+    LRA.Order.LeastUpperBoundProperty
       SetObject (fun a b : R => a ≤ b) :=
   OrderCompletenessLaws.Completeness
 
 end Wrappers
 
-end LRA.VolumeI.AlgebraicStructures
+end LRA.Algebra.Structure

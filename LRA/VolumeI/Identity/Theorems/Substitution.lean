@@ -4,7 +4,7 @@ import LRA.VolumeI.Identity.Axioms.Axioms
 Contract home for substitution laws.
 -/
 
-namespace LRA.VolumeI.Identity
+namespace LRA.Identity
 
 universe u
 
@@ -26,4 +26,4 @@ theorem LeibnizSubstitution {Carrier : Type u} {Left Right : Carrier}
     Property Left ↔ Property Right :=
   LeibnizLaw ObjectsAreIdentical Property
 
-end LRA.VolumeI.Identity
+end LRA.Identity

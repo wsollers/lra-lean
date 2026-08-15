@@ -11,7 +11,7 @@ One Lean statement per book label, `sorry`-bodied.
 
 import Mathlib.Data.Real.Basic
 
-namespace LRA.VolumeIII.Analysis.Continuity
+namespace LRA.Analysis.Continuity
 
 /-- `def:interval-partition`: a finite partition of `[a,b]` given by its
 break points.
@@ -162,4 +162,4 @@ theorem EveryPointCoveredByTag {a b : ℝ} (P : TaggedPartition a b) :
     ∀ x ∈ Set.Icc a b, ∃ i : Fin P.n, x ∈ Set.Icc (P.points i.castSucc) (P.points i.succ) := by
   sorry
 
-end LRA.VolumeIII.Analysis.Continuity
+end LRA.Analysis.Continuity

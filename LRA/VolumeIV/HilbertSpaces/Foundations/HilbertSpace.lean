@@ -9,14 +9,14 @@ intended as the proof foundation for later files; formal proofs should use
 Mathlib's complete inner-product-space APIs directly.
 -/
 
-namespace LRA.VolumeIV.HilbertSpaces
+namespace LRA.Analysis.FunctionalAnalysis.HilbertSpaces
 
 universe u
 
 
 /-- Norm induced by reference real inner-product-space data.
 
-Mathematical statement (Lean): `noncomputable def ReferenceNorm {V : Type u} (space : LRA.VolumeIV.InnerProductSpaces.RealInnerProductSpaceDefinition V) (x : V) : Real`.
+Mathematical statement (Lean): `noncomputable def ReferenceNorm {V : Type u} (space : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V) (x : V) : Real`.
 
 
 Logical form:
@@ -24,21 +24,21 @@ Logical form:
 ```lean
 noncomputable def ReferenceNorm
     {V : Type u}
-    (space : LRA.VolumeIV.InnerProductSpaces.RealInnerProductSpaceDefinition V)
+    (space : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V)
     (x : V) : Real :=
   Real.sqrt (space.inner x x)
 ```
 -/
 noncomputable def ReferenceNorm
     {V : Type u}
-    (space : LRA.VolumeIV.InnerProductSpaces.RealInnerProductSpaceDefinition V)
+    (space : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V)
     (x : V) : Real :=
   Real.sqrt (space.inner x x)
 
 
 /-- Cauchy sequence predicate induced by the reference inner-product norm.
 
-Mathematical statement (Lean): `def IsCauchySequence {V : Type u} (space : LRA.VolumeIV.InnerProductSpaces.RealInnerProductSpaceDefinition V) (sequence : ℕ → V) : Prop`.
+Mathematical statement (Lean): `def IsCauchySequence {V : Type u} (space : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V) (sequence : ℕ → V) : Prop`.
 
 
 Logical form:
@@ -46,7 +46,7 @@ Logical form:
 ```lean
 def IsCauchySequence
     {V : Type u}
-    (space : LRA.VolumeIV.InnerProductSpaces.RealInnerProductSpaceDefinition V)
+    (space : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V)
     (sequence : ℕ → V) : Prop :=
   ∀ ε : Real, 0 < ε → ∃ N : ℕ, ∀ m n : ℕ, N ≤ m → N ≤ n →
     ReferenceNorm space (space.vectorSpace.add (sequence m) (space.vectorSpace.neg (sequence n))) < ε
@@ -54,7 +54,7 @@ def IsCauchySequence
 -/
 def IsCauchySequence
     {V : Type u}
-    (space : LRA.VolumeIV.InnerProductSpaces.RealInnerProductSpaceDefinition V)
+    (space : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V)
     (sequence : ℕ → V) : Prop :=
   ∀ ε : Real, 0 < ε → ∃ N : ℕ, ∀ m n : ℕ, N ≤ m → N ≤ n →
     ReferenceNorm space (space.vectorSpace.add (sequence m) (space.vectorSpace.neg (sequence n))) < ε
@@ -62,7 +62,7 @@ def IsCauchySequence
 
 /-- Convergence predicate induced by the reference inner-product norm.
 
-Mathematical statement (Lean): `def ConvergesTo {V : Type u} (space : LRA.VolumeIV.InnerProductSpaces.RealInnerProductSpaceDefinition V) (sequence : ℕ → V) (limit : V) : Prop`.
+Mathematical statement (Lean): `def ConvergesTo {V : Type u} (space : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V) (sequence : ℕ → V) (limit : V) : Prop`.
 
 
 Logical form:
@@ -70,7 +70,7 @@ Logical form:
 ```lean
 def ConvergesTo
     {V : Type u}
-    (space : LRA.VolumeIV.InnerProductSpaces.RealInnerProductSpaceDefinition V)
+    (space : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V)
     (sequence : ℕ → V)
     (limit : V) : Prop :=
   ∀ ε : Real, 0 < ε → ∃ N : ℕ, ∀ n : ℕ, N ≤ n →
@@ -79,7 +79,7 @@ def ConvergesTo
 -/
 def ConvergesTo
     {V : Type u}
-    (space : LRA.VolumeIV.InnerProductSpaces.RealInnerProductSpaceDefinition V)
+    (space : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V)
     (sequence : ℕ → V)
     (limit : V) : Prop :=
   ∀ ε : Real, 0 < ε → ∃ N : ℕ, ∀ n : ℕ, N ≤ n →
@@ -96,7 +96,7 @@ Logical form:
 ```lean
 structure RealHilbertSpaceDefinition (V : Type u) where
   /-- The underlying real inner product space. -/
-  innerProductSpace : LRA.VolumeIV.InnerProductSpaces.RealInnerProductSpaceDefinition V
+  innerProductSpace : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V
   /-- Every Cauchy sequence converges in the inner-product norm. -/
   complete :
     ∀ sequence : ℕ → V,
@@ -106,11 +106,11 @@ structure RealHilbertSpaceDefinition (V : Type u) where
 -/
 structure RealHilbertSpaceDefinition (V : Type u) where
   /-- The underlying real inner product space. -/
-  innerProductSpace : LRA.VolumeIV.InnerProductSpaces.RealInnerProductSpaceDefinition V
+  innerProductSpace : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V
   /-- Every Cauchy sequence converges in the inner-product norm. -/
   complete :
     ∀ sequence : ℕ → V,
       IsCauchySequence innerProductSpace sequence →
       ∃ limit : V, ConvergesTo innerProductSpace sequence limit
 
-end LRA.VolumeIV.HilbertSpaces
+end LRA.Analysis.FunctionalAnalysis.HilbertSpaces

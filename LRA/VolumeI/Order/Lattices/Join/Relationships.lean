@@ -1,17 +1,17 @@
 import LRA.VolumeI.Order.Lattices.Join.Definition
 import LRA.VolumeI.Order.Lattices.Meet.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
 /-- Joins for the converse relation are meets for the original relation. -/
 theorem JoinOfConverseIffMeet
     {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha)
+    (relation : LRA.Relation.Endorelation Alpha)
     (left right candidate : Alpha) :
-    Join (LRA.VolumeI.Relations.Converse relation) left right candidate ↔
+    Join (LRA.Relation.Converse relation) left right candidate ↔
       Meet relation left right candidate := by
   sorry
 
-end LRA.VolumeI.Order
+end LRA.Order

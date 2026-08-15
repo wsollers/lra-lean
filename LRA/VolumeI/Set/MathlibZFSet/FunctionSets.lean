@@ -6,13 +6,13 @@ import Mathlib.SetTheory.ZFC.Basic
 import LRA.VolumeI.Set.MathlibZFSet.Pairing
 import LRA.VolumeI.Set.Interface.RelationSets
 
-namespace LRA.VolumeI.Set.MathlibZFSet
+namespace LRA.Set.MathlibZFSet
 
-open LRA.VolumeI.Set
+open LRA.Set
 
 /-!
 Volume I label: mathlib-zfset-function-sets
-Lean module: LRA.VolumeI.Set.MathlibZFSet.FunctionSets
+Lean module: LRA.Set.MathlibZFSet.FunctionSets
 Verification status: fully proved (Mathlib backend, zero sorry)
 
 The certification the relation-set layer earns its keep by: the
@@ -219,4 +219,4 @@ theorem MapIsFunctionalSet (f : ZFSet → ZFSet) [ZFSet.Definable₁ f]
     have second := (RelatesMapIff f over input secondOutput).mp secondRelates
     rw [← first.2, ← second.2]
 
-end LRA.VolumeI.Set.MathlibZFSet
+end LRA.Set.MathlibZFSet

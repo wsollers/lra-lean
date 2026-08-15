@@ -7,7 +7,7 @@ import Mathlib.Topology.Basic
 Density of the rationals and irrationals in the real line.
 -/
 
-namespace LRA.VolumeIII.Analysis.Completeness
+namespace LRA.Analysis.Completeness
 
 /-- A subset is order dense when it contains an element strictly between every ordered pair.
 
@@ -336,4 +336,4 @@ theorem InfinitelyManyRationalsAndIrrationalsInOpenInterval {a b : ℝ}
       {s : ℝ | ¬ IsRat s ∧ a < s ∧ s < b}.Infinite := by
   sorry
 
-end LRA.VolumeIII.Analysis.Completeness
+end LRA.Analysis.Completeness

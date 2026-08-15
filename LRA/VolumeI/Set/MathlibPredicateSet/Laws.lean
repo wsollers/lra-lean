@@ -12,7 +12,7 @@ states the fact in a different shape). Nothing here is `sorry` -- this
 backend's whole point is that Mathlib has already done the proving.
 -/
 
-namespace LRA.VolumeI.Set.MathlibPredicateSet
+namespace LRA.Set.MathlibPredicateSet
 
 universe u
 
@@ -125,4 +125,4 @@ instance : CollectionMembershipLaws Alpha (_root_.Set Alpha)
   CollectionUnionMembership := fun _ _ => _root_.Set.mem_sUnion
   CollectionIntersectionMembership := fun _ _ _ => _root_.Set.mem_sInter
 
-end LRA.VolumeI.Set.MathlibPredicateSet
+end LRA.Set.MathlibPredicateSet

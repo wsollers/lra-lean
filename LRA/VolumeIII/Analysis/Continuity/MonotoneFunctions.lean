@@ -12,7 +12,7 @@ import Mathlib.Topology.Instances.Real.Lemmas
 import LRA.VolumeIII.Analysis.Continuity.GlobalTheorems
 import LRA.VolumeIII.Analysis.Continuity.PointContinuity
 
-namespace LRA.VolumeIII.Analysis.Continuity
+namespace LRA.Analysis.Continuity
 
 -- `thm:monotone-one-sided-limits`
 /-- Let `I : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`, `hI : I.OrdConnected`, `hmono : MonotoneOn f I`,
@@ -219,4 +219,4 @@ theorem LiminfLeLimsup (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     LiminfAt f A c ≤ LimsupAt f A c := by
   sorry
 
-end LRA.VolumeIII.Analysis.Continuity
+end LRA.Analysis.Continuity

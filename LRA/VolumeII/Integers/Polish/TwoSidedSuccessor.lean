@@ -1,11 +1,11 @@
 -- LRA/VolumeII/Integers/Polish/TwoSidedSuccessor.lean
 -- Experimental Polish-style two-sided successor construction of the integers.
 
-namespace LRA.VolumeII.Integers.Polish.TwoSidedSuccessor
+namespace LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor
 
 /-!
 Volume II label: experimental-integers-polish-two-sided-successor
-Lean module: LRA.VolumeII.Integers.Polish.TwoSidedSuccessor
+Lean module: LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor
 Verification status: experimental checked core, pending source integration
 
 This module tests a direct construction of the integers as the disjoint union of
@@ -572,4 +572,4 @@ theorem mul_neg_pred (x : Z) (n : N) : x * neg (N.pred n) = x * neg n + -x
 -/
 theorem mul_neg_pred (x : Z) (n : N) : x * neg (N.pred n) = x * neg n + -x := rfl
 
-end LRA.VolumeII.Integers.Polish.TwoSidedSuccessor
+end LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor

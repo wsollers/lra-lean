@@ -3,11 +3,11 @@
 
 import LRA.VolumeII.Integers.Polish.TwoSidedSuccessor
 
-namespace LRA.VolumeII.Integers.Polish.TwoSidedSuccessor
+namespace LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor
 
 /-!
 Volume II label: integers-polish-landau-workup
-Lean module: LRA.VolumeII.Integers.Polish.LandauWorkup
+Lean module: LRA.NumberSystems.Integers.Polish.LandauWorkup
 Verification status: checked algebraic core
 
 This module extends the two-sided successor construction with the induction,
@@ -1246,4 +1246,4 @@ theorem mul_lt_mul_pos_right {x y z : Z} (firstLessSecond : x < y) (multiplierPo
   rw [lt_def, ← productDifferenceEquality]
   exact productDifferencePositive
 
-end LRA.VolumeII.Integers.Polish.TwoSidedSuccessor
+end LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor

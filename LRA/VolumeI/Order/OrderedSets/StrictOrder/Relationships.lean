@@ -2,7 +2,7 @@ import LRA.VolumeI.Order.OrderedSets.PartialOrder.Relationships
 import LRA.VolumeI.Order.OrderedSets.StrictOrder.Characterizations
 import LRA.VolumeI.Order.Relations.LessThanOrEqual.Definition
 
-namespace LRA.VolumeI.Order.OrderedSets.StrictOrder
+namespace LRA.Order.OrderedSets.StrictOrder
 
 universe u
 
@@ -18,8 +18,8 @@ fun left right => order.relation left right \/ left = right
 def ReflexiveClosure
     {Carrier : Type u}
     (order : StrictOrderRelation Carrier) :
-    LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier :=
-  LRA.VolumeI.Order.LessThanOrEqual order.relation
+    LRA.Order.OrderedSets.OrderRelation Carrier :=
+  LRA.Order.LessThanOrEqual order.relation
 
 /--
 The reflexive closure unfolds to strict comparison or equality.
@@ -51,7 +51,7 @@ PartialOrder.NonStrictPartialOrder Carrier
 def ReflexiveClosureAsPartialOrder
     {Carrier : Type u}
     (order : StrictOrderRelation Carrier) :
-    LRA.VolumeI.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier where
+    LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier where
   relation := ReflexiveClosure order
   relationIsPartialOrder := by
     sorry
@@ -62,13 +62,13 @@ The reflexive closure of a strict order satisfies the partial-order laws.
 Logical form:
 
 ```lean
-LRA.VolumeI.Order.PartialOrder (ReflexiveClosure order)
+LRA.Order.PartialOrder (ReflexiveClosure order)
 ```
 -/
 theorem ReflexiveClosureIsPartialOrder
     {Carrier : Type u}
     (order : StrictOrderRelation Carrier) :
-    LRA.VolumeI.Order.PartialOrder (ReflexiveClosure order) := by
+    LRA.Order.PartialOrder (ReflexiveClosure order) := by
   sorry
 
 /--
@@ -86,7 +86,7 @@ theorem StrictPartOfReflexiveClosureIff
     {Carrier : Type u}
     (order : StrictOrderRelation Carrier)
     (left right : Carrier) :
-    LRA.VolumeI.Order.OrderedSets.PartialOrder.StrictPart
+    LRA.Order.OrderedSets.PartialOrder.StrictPart
       (ReflexiveClosureAsPartialOrder order) left right <->
       order.relation left right := by
   sorry
@@ -104,13 +104,13 @@ ReflexiveClosure (PartialOrder.StrictPartAsStrictOrder order) left right <->
 -/
 theorem ReflexiveClosureOfStrictPartIff
     {Carrier : Type u}
-    (order : LRA.VolumeI.Order.OrderedSets.PartialOrder.NonStrictPartialOrder
+    (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder
       Carrier)
     (left right : Carrier) :
     ReflexiveClosure
-        (LRA.VolumeI.Order.OrderedSets.PartialOrder.StrictPartAsStrictOrder
+        (LRA.Order.OrderedSets.PartialOrder.StrictPartAsStrictOrder
           order) left right <->
       order.relation left right := by
   sorry
 
-end LRA.VolumeI.Order.OrderedSets.StrictOrder
+end LRA.Order.OrderedSets.StrictOrder

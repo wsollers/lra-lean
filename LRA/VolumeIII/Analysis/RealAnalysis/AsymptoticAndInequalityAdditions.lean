@@ -1,6 +1,6 @@
 /-
 Draft module; not yet imported by the active Volume III root.
-New namespace/area: `LRA.VolumeIII.Analysis.RealAnalysis.*`, the Lean home for
+New namespace/area: `LRA.Analysis.RealAnalysis.*`, the Lean home for
 Chapter 1 ("Real Analysis") — the personal proof-technique/toolkit chapter,
 audited as reference content rather than a strictly linear theorem sequence
 per the author's explicit framing.
@@ -26,7 +26,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Mathlib.Analysis.Convex.Basic
 
-namespace LRA.VolumeIII.Analysis.RealAnalysis
+namespace LRA.Analysis.RealAnalysis
 
 /- ================================================================
    ADDITIONS.md item 25 — Big-O notation.
@@ -168,4 +168,4 @@ theorem JensensInequalityFinite
       ≤ Finset.univ.sum (fun i => lam i * φ (x i)) := by
   sorry
 
-end LRA.VolumeIII.Analysis.RealAnalysis
+end LRA.Analysis.RealAnalysis

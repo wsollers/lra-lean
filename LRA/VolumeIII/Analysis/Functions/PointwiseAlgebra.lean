@@ -29,7 +29,7 @@ where the quotient function itself is always total.
 
 import Mathlib.Data.Real.Basic
 
-namespace LRA.VolumeIII.Analysis.Functions
+namespace LRA.Analysis.Functions
 
 /-- `def:pointwise-sum-of-functions`.
 
@@ -215,4 +215,4 @@ theorem QuotientUndefinedWhenDenominatorVanishes (f g : ℝ → ℝ)
     ¬ (∀ x ∈ A, g x ≠ 0) := by
   sorry
 
-end LRA.VolumeIII.Analysis.Functions
+end LRA.Analysis.Functions

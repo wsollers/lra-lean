@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.StrictOrder.Definition
 
-namespace LRA.VolumeI.Order.OrderedSets.StrictOrder
+namespace LRA.Order.OrderedSets.StrictOrder
 
 /--
 The usual `<` relation on natural numbers is a strict order.
@@ -24,11 +24,11 @@ laws.
 Logical form:
 
 ```lean
-LRA.VolumeI.Order.StrictOrder NaturalNumberStrictOrder.relation
+LRA.Order.StrictOrder NaturalNumberStrictOrder.relation
 ```
 -/
 theorem NaturalNumberRelationIsStrictOrder :
-    LRA.VolumeI.Order.StrictOrder NaturalNumberStrictOrder.relation := by
+    LRA.Order.StrictOrder NaturalNumberStrictOrder.relation := by
   sorry
 
-end LRA.VolumeI.Order.OrderedSets.StrictOrder
+end LRA.Order.OrderedSets.StrictOrder

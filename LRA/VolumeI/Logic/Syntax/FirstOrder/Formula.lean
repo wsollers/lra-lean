@@ -1,14 +1,14 @@
 import LRA.VolumeI.Identity.Axioms.Axioms
 import LRA.VolumeI.Logic.Syntax.Term
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 First-order formulas.
 
-Declared in the `LRA.VolumeI.Logic.FirstOrder` namespace, not bare
-`LRA.VolumeI.Logic`, because propositional logic's `Formula` (in
-`LRA.VolumeI.Logic.Syntax.Propositional.Formula`) already occupies that
+Declared in the `LRA.Logic.FirstOrder` namespace, not bare
+`LRA.Logic`, because propositional logic's `Formula` (in
+`LRA.Logic.Syntax.Propositional.Formula`) already occupies that
 name in the shared namespace -- both are called `Formula`, and both have
 an `impl` constructor, so leaving either one unnamespaced makes the two
 collide the moment both are in scope (`Formula.impl` becomes ambiguous).
@@ -125,4 +125,4 @@ def Formula.existsQ {S : Signature} {Variable : Type}
     (v : Variable) (φ : Formula S Variable) : Formula S Variable :=
   Formula.neg (Formula.forallQ v (Formula.neg φ))
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

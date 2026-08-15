@@ -3,20 +3,20 @@
 
 import LRA.VolumeI.Algebra.Models
 
-namespace LRA.VolumeII.RealNumbers
+namespace LRA.NumberSystems.RealNumbers
 
-open LRA.VolumeI.Algebra.Models
+open LRA.Algebra.Models
 
 /-!
 Volume II label: real-number-model
-Lean module: LRA.VolumeII.RealNumbers.Construction.Model
+Lean module: LRA.NumberSystems.RealNumbers.Construction.Model
 Verification status: definitions accepted
 -/
 
 
 /-- A real operation bundle as a first-order model of ordered fields.
 
-Mathematical statement (Lean): `def realNumbersModel (real_model : RealModel) : LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature`.
+Mathematical statement (Lean): `def realNumbersModel (real_model : RealModel) : LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature`.
 
 
 Logical form:
@@ -24,13 +24,13 @@ Logical form:
 ```lean
 def realNumbersModel
     (real_model : RealModel) :
-    LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
   BuildOrderedFieldModel real_model.signature
 ```
 -/
 def realNumbersModel
     (real_model : RealModel) :
-    LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
   BuildOrderedFieldModel real_model.signature
 
-end LRA.VolumeII.RealNumbers
+end LRA.NumberSystems.RealNumbers

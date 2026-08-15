@@ -1,6 +1,6 @@
 import LRA.VolumeI.Operations.Operations
 
-namespace LRA.VolumeI.Operations
+namespace LRA.Algebra.Operation
 
 universe u
 
@@ -62,4 +62,4 @@ def BinaryAsNary {Alpha : Type u}
     (operation : BinaryOperation Alpha) : NaryOperation 2 Alpha :=
   fun input => operation (input ⟨0, by decide⟩) (input ⟨1, by decide⟩)
 
-end LRA.VolumeI.Operations
+end LRA.Algebra.Operation

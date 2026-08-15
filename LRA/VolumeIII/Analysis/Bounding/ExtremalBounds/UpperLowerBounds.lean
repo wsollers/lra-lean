@@ -1,11 +1,12 @@
 import Mathlib.Algebra.Order.Group.Abs
 import Mathlib.Data.Set.Basic
+import LRA.VolumeIII.Analysis.Bounding.Bounds
 
 /-!
 Upper and lower bounds for ordered carriers.
 -/
 
-namespace LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
+namespace LRA.Analysis.Bounds.Extremal
 
 variable {F : Type*}
 
@@ -21,65 +22,8 @@ def IsBound [LE F] (b : F) (A : Set F) : Prop :=
 def IsBound [LE F] (b : F) (A : Set F) : Prop :=
   (∀ a ∈ A, a ≤ b) ∨ (∀ a ∈ A, b ≤ a)
 
-/-- `IsUpperBound u A` says every element of `A` is at most `u`.
-
-Logical form:
-
-```lean
-def IsUpperBound [LE F] (u : F) (A : Set F) : Prop :=
-  ∀ a ∈ A, a ≤ u
-```
--/
-def IsUpperBound [LE F] (u : F) (A : Set F) : Prop :=
-  ∀ a ∈ A, a ≤ u
-
-/-- `IsLowerBound l A` says `l` is at most every element of `A`.
-
-Logical form:
-
-```lean
-def IsLowerBound [LE F] (l : F) (A : Set F) : Prop :=
-  ∀ a ∈ A, l ≤ a
-```
--/
-def IsLowerBound [LE F] (l : F) (A : Set F) : Prop :=
-  ∀ a ∈ A, l ≤ a
-
-/-- `A` is bounded above when it has an upper bound.
-
-Logical form:
-
-```lean
-def IsBoundedAbove [LE F] (A : Set F) : Prop :=
-  ∃ u, IsUpperBound u A
-```
--/
-def IsBoundedAbove [LE F] (A : Set F) : Prop :=
-  ∃ u, IsUpperBound u A
-
-/-- `A` is bounded below when it has a lower bound.
-
-Logical form:
-
-```lean
-def IsBoundedBelow [LE F] (A : Set F) : Prop :=
-  ∃ l, IsLowerBound l A
-```
--/
-def IsBoundedBelow [LE F] (A : Set F) : Prop :=
-  ∃ l, IsLowerBound l A
-
-/-- `A` is bounded when it is bounded above and below.
-
-Logical form:
-
-```lean
-def IsBounded [LE F] (A : Set F) : Prop :=
-  IsBoundedAbove A ∧ IsBoundedBelow A
-```
--/
-def IsBounded [LE F] (A : Set F) : Prop :=
-  IsBoundedAbove A ∧ IsBoundedBelow A
+/-! Upper/lower/bounded predicates are canonically owned by the parent
+`LRA.Analysis.Bounds` namespace. -/
 
 /-- Let `A : Set F`. If `[AddCommGroup F]`, `[LinearOrder F]`, and `[IsOrderedAddMonoid F]`. Then
 `IsBounded A ↔ ∃ M, 0 ≤ M ∧ ∀ a ∈ A, |a| ≤ M`.
@@ -97,4 +41,4 @@ theorem IsBoundedIffAbsBound [AddCommGroup F] [LinearOrder F] [IsOrderedAddMonoi
     IsBounded A ↔ ∃ M, 0 ≤ M ∧ ∀ a ∈ A, |a| ≤ M := by
   sorry
 
-end LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
+end LRA.Analysis.Bounds.Extremal

@@ -10,7 +10,7 @@ intended as the proof foundation for later files; formal proofs should use
 Mathlib's `Measure` and `MeasureSpace` APIs directly.
 -/
 
-namespace LRA.VolumeIV.MeasureSpaces
+namespace LRA.Analysis.MeasureTheory.MeasureSpaces
 
 universe u
 
@@ -19,7 +19,7 @@ universe u
 The countable-additivity axiom is stated for pairwise disjoint sequences whose
 union is measurable.
 
-Mathematical statement (Lean): `structure MeasureDefinition (X : Type u) (measurableSets : LRA.VolumeIV.MeasurableSpaces.MeasurableSpaceDefinitionOn X)`.
+Mathematical statement (Lean): `structure MeasureDefinition (X : Type u) (measurableSets : LRA.Analysis.MeasureTheory.MeasurableSpaces.MeasurableSpaceDefinitionOn X)`.
 
 
 Logical form:
@@ -27,7 +27,7 @@ Logical form:
 ```lean
 structure MeasureDefinition
     (X : Type u)
-    (measurableSets : LRA.VolumeIV.MeasurableSpaces.MeasurableSpaceDefinitionOn X) where
+    (measurableSets : LRA.Analysis.MeasureTheory.MeasurableSpaces.MeasurableSpaceDefinitionOn X) where
   /-- The value of the measure on an arbitrary subset. -/
   measure : Set X → ENNReal
   /-- The empty set has measure zero. -/
@@ -43,7 +43,7 @@ structure MeasureDefinition
 -/
 structure MeasureDefinition
     (X : Type u)
-    (measurableSets : LRA.VolumeIV.MeasurableSpaces.MeasurableSpaceDefinitionOn X) where
+    (measurableSets : LRA.Analysis.MeasureTheory.MeasurableSpaces.MeasurableSpaceDefinitionOn X) where
   /-- The value of the measure on an arbitrary subset. -/
   measure : Set X → ENNReal
   /-- The empty set has measure zero. -/
@@ -69,7 +69,7 @@ structure MeasureSpaceDefinition where
   /-- The underlying carrier. -/
   Carrier : Type u
   /-- The measurable sets on the carrier. -/
-  measurableSets : LRA.VolumeIV.MeasurableSpaces.MeasurableSpaceDefinitionOn Carrier
+  measurableSets : LRA.Analysis.MeasureTheory.MeasurableSpaces.MeasurableSpaceDefinitionOn Carrier
   /-- The measure on the measurable space. -/
   measure : MeasureDefinition Carrier measurableSets
 ```
@@ -78,8 +78,8 @@ structure MeasureSpaceDefinition where
   /-- The underlying carrier. -/
   Carrier : Type u
   /-- The measurable sets on the carrier. -/
-  measurableSets : LRA.VolumeIV.MeasurableSpaces.MeasurableSpaceDefinitionOn Carrier
+  measurableSets : LRA.Analysis.MeasureTheory.MeasurableSpaces.MeasurableSpaceDefinitionOn Carrier
   /-- The measure on the measurable space. -/
   measure : MeasureDefinition Carrier measurableSets
 
-end LRA.VolumeIV.MeasureSpaces
+end LRA.Analysis.MeasureTheory.MeasureSpaces

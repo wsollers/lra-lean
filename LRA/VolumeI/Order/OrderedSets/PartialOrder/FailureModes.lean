@@ -1,7 +1,7 @@
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Examples
 import LRA.VolumeI.Order.OrderedSets.Preorder.FailureModes
 
-namespace LRA.VolumeI.Order.OrderedSets.PartialOrder
+namespace LRA.Order.OrderedSets.PartialOrder
 
 universe u
 
@@ -12,14 +12,14 @@ satisfy the non-strict partial-order laws.
 Logical form:
 
 ```lean
-Not (LRA.VolumeI.Order.PartialOrder relation)
+Not (LRA.Order.PartialOrder relation)
 ```
 -/
 def FailsNonStrictPartialOrder
     {Carrier : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier) :
+    (relation : LRA.Order.OrderedSets.OrderRelation Carrier) :
     Prop :=
-  Not (LRA.VolumeI.Order.PartialOrder relation)
+  Not (LRA.Order.PartialOrder relation)
 
 /--
 `FailsTransitivity relation` says that an endorelation is not transitive.
@@ -27,14 +27,14 @@ def FailsNonStrictPartialOrder
 Logical form:
 
 ```lean
-Not (LRA.VolumeI.Relations.Transitive relation)
+Not (LRA.Relation.Transitive relation)
 ```
 -/
 def FailsTransitivity
     {Carrier : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier) :
+    (relation : LRA.Order.OrderedSets.OrderRelation Carrier) :
     Prop :=
-  Not (LRA.VolumeI.Relations.Transitive relation)
+  Not (LRA.Relation.Transitive relation)
 
 /--
 The immediate-successor-or-equality relation is reflexive and antisymmetric
@@ -47,14 +47,14 @@ FailsTransitivity ImmediateSuccessorOrEqualRelation
 ```
 -/
 theorem ImmediateSuccessorOrEqualFailsTransitivity :
-    LRA.VolumeI.Relations.Reflexive
-        LRA.VolumeI.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation /\
-      LRA.VolumeI.Relations.Antisymmetric
-        LRA.VolumeI.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation /\
+    LRA.Relation.Reflexive
+        LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation /\
+      LRA.Relation.Antisymmetric
+        LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation /\
       FailsTransitivity
-        LRA.VolumeI.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation /\
+        LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation /\
       FailsNonStrictPartialOrder
-        LRA.VolumeI.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation := by
+        LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation := by
   sorry
 
 /--
@@ -68,11 +68,11 @@ FailsNonStrictPartialOrder (fun left right : Nat => left < right)
 ```
 -/
 theorem NatStrictOrderFailsNonStrictPartialOrder :
-    Not (LRA.VolumeI.Relations.Reflexive
+    Not (LRA.Relation.Reflexive
         (fun left right : Nat => left < right)) /\
-      LRA.VolumeI.Relations.Antisymmetric
+      LRA.Relation.Antisymmetric
         (fun left right : Nat => left < right) /\
-      LRA.VolumeI.Relations.Transitive
+      LRA.Relation.Transitive
         (fun left right : Nat => left < right) /\
       FailsNonStrictPartialOrder (fun left right : Nat => left < right) := by
   sorry
@@ -88,19 +88,19 @@ FailsNonStrictPartialOrder (fun _ _ : Bool => True)
 ```
 -/
 theorem BooleanUniversalRelationFailsNonStrictPartialOrder :
-    LRA.VolumeI.Relations.Reflexive (fun _ _ : Bool => True) /\
-      Not (LRA.VolumeI.Relations.Antisymmetric
+    LRA.Relation.Reflexive (fun _ _ : Bool => True) /\
+      Not (LRA.Relation.Antisymmetric
         (fun _ _ : Bool => True)) /\
-      LRA.VolumeI.Relations.Transitive (fun _ _ : Bool => True) /\
+      LRA.Relation.Transitive (fun _ _ : Bool => True) /\
       FailsNonStrictPartialOrder (fun _ _ : Bool => True) := by
   sorry
 
 /-- Integer divisibility is a preorder but not a partial order: `3` and `-3`
 divide one another without being equal. -/
 theorem IntegerDivisibilityIsPreorderButNotPartialOrder :
-    LRA.VolumeI.Order.Preorder (fun left right : Int => left ∣ right) /\
-      Not (LRA.VolumeI.Order.PartialOrder
+    LRA.Order.Preorder (fun left right : Int => left ∣ right) /\
+      Not (LRA.Order.PartialOrder
         (fun left right : Int => left ∣ right)) := by
   sorry
 
-end LRA.VolumeI.Order.OrderedSets.PartialOrder
+end LRA.Order.OrderedSets.PartialOrder

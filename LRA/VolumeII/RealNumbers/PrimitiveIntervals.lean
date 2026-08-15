@@ -5,12 +5,12 @@ import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeI.Algebra.Models.Models
 import LRA.VolumeII.RealNumbers.Cauchy
 
-namespace LRA.VolumeII.RealNumbers.PrimitiveIntervals
+namespace LRA.NumberSystems.RealNumbers.PrimitiveIntervals
 
-open LRA.VolumeI.Algebra.Models
+open LRA.Algebra.Models
 
 /-!
-Lean module: LRA.VolumeII.RealNumbers.PrimitiveIntervals
+Lean module: LRA.NumberSystems.RealNumbers.PrimitiveIntervals
 Source: docs/number-systems/gpt-07-reals-interval-arithmetic.md
 Verification status: definitions and final theorem statements complete; proofs pending
 
@@ -1673,4 +1673,4 @@ theorem primitive_interval_construction_of_reals :
     PrimitiveIntervalConstructionOfReals rational_model := by
   sorry
 
-end LRA.VolumeII.RealNumbers.PrimitiveIntervals
+end LRA.NumberSystems.RealNumbers.PrimitiveIntervals

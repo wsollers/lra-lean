@@ -4,11 +4,11 @@
 import Mathlib.Data.Rat.Defs
 import LRA.VolumeI.AlgebraicStructures
 
-namespace LRA.VolumeII.BasicArithmetic.Fractions
+namespace LRA.NumberSystems.Arithmetic.Fractions
 
 /-!
 Volume II label: basic-arithmetic-fractions
-Lean module: LRA.VolumeII.BasicArithmetic.Fractions
+Lean module: LRA.NumberSystems.Arithmetic.Fractions
 Verification status: checked Mathlib-backed proofs
 
 The statements use active integers for numerators/denominators and evaluate the
@@ -146,4 +146,4 @@ theorem CancelCommonIntegerDivisor {d m n r s : Z}
     toQ m / toQ n = toQ r / toQ s := by
   sorry
 
-end LRA.VolumeII.BasicArithmetic.Fractions
+end LRA.NumberSystems.Arithmetic.Fractions

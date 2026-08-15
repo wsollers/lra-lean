@@ -1,4 +1,4 @@
-namespace LRA.VolumeI.Logic.Proof.System
+namespace LRA.Logic.Proof.System
 
 /-!
 Generic proof-system data.
@@ -25,4 +25,4 @@ structure ProofSystem where
   IsInitial : Judgement -> Prop
   Rule : List Judgement -> Judgement -> Prop
 
-end LRA.VolumeI.Logic.Proof.System
+end LRA.Logic.Proof.System

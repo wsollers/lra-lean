@@ -1,9 +1,9 @@
 import LRA.VolumeI.Logic.Language.FirstOrder.Signature
 import LRA.VolumeI.Logic.Language.Notation.LogicalSymbols
 
-namespace LRA.VolumeI.Identity
+namespace LRA.Identity
 
-open LRA.VolumeI.Logic
+open LRA.Logic
 
 /-!
 The pure language of equality.
@@ -62,10 +62,10 @@ The equality symbol in `L_=` is the ordinary logical equality symbol.
 Logical form:
 
 ```lean
-abbrev EqualityLogicalSymbol := LRA.VolumeI.Logic.Language.Notation.LogicalEquality
+abbrev EqualityLogicalSymbol := LRA.Logic.Language.Notation.LogicalEquality
 ```
 -/
-abbrev EqualityLogicalSymbol := LRA.VolumeI.Logic.Language.Notation.LogicalEquality
+abbrev EqualityLogicalSymbol := LRA.Logic.Language.Notation.LogicalEquality
 
 /--
 The logical equality symbol is binary.
@@ -74,11 +74,11 @@ Logical form:
 
 ```lean
 theorem EqualityLogicalSymbolIsBinary :
-    LRA.VolumeI.Logic.Language.Notation.LogicalEqualitySymbols.IsBinary .eq
+    LRA.Logic.Language.Notation.LogicalEqualitySymbols.IsBinary .eq
 ```
 -/
 theorem EqualityLogicalSymbolIsBinary :
-    LRA.VolumeI.Logic.Language.Notation.LogicalEqualitySymbols.IsBinary .eq :=
-  LRA.VolumeI.Logic.Language.Notation.LogicalEqualitySymbols.eqIsBinary
+    LRA.Logic.Language.Notation.LogicalEqualitySymbols.IsBinary .eq :=
+  LRA.Logic.Language.Notation.LogicalEqualitySymbols.eqIsBinary
 
-end LRA.VolumeI.Identity
+end LRA.Identity

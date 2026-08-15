@@ -12,7 +12,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Analysis.SpecialFunctions.Sqrt
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
-namespace LRA.VolumeIII.Analysis.RealAnalysis
+namespace LRA.Analysis.RealAnalysis
 
 -- `thm:ineq-am-gm-two`
 /-- Let `a b : ℝ`. If `ha : a ≥ 0` and `hb : b ≥ 0`. Then `Real.sqrt (a * b) ≤ (a + b) / 2`.
@@ -205,4 +205,4 @@ theorem IneqBernoulli (x : ℝ) (n : ℕ) (hx : x ≥ -1) :
 theorem IneqBernoulli (x : ℝ) (n : ℕ) (hx : x ≥ -1) :
     (1 + x) ^ n ≥ 1 + n * x := by sorry
 
-end LRA.VolumeIII.Analysis.RealAnalysis
+end LRA.Analysis.RealAnalysis

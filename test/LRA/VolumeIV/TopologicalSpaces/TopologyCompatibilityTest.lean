@@ -1,7 +1,7 @@
 import LRA.VolumeIV.TopologicalSpaces.Compatibility
 import LRA.VolumeIV.TopologicalSpaces.Foundations
 
-namespace LRA.VolumeIV.TopologicalSpaces
+namespace LRA.Topology
 
 universe u
 
@@ -67,4 +67,4 @@ example
     SelectMathlibTopologicalSpace .inducedFromTopologyDefinition topology
   exact (SelectMathlibTopologicalSpaceIsOpenInduced topology U).mpr openU
 
-end LRA.VolumeIV.TopologicalSpaces
+end LRA.Topology

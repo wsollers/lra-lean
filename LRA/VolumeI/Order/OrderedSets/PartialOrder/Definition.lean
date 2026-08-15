@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.Preorder.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
@@ -11,22 +11,22 @@ Logical form:
 
 ```lean
 def PartialOrder {Alpha : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Alpha) :
+    (relation : LRA.Order.OrderedSets.OrderRelation Alpha) :
     Prop :=
-  LRA.VolumeI.Relations.Reflexive relation /\
-    LRA.VolumeI.Relations.Antisymmetric relation /\
-      LRA.VolumeI.Relations.Transitive relation
+  LRA.Relation.Reflexive relation /\
+    LRA.Relation.Antisymmetric relation /\
+      LRA.Relation.Transitive relation
 ```
 -/
 def PartialOrder {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha) : Prop :=
-  LRA.VolumeI.Relations.Reflexive relation /\
-    LRA.VolumeI.Relations.Antisymmetric relation /\
-      LRA.VolumeI.Relations.Transitive relation
+    (relation : LRA.Relation.Endorelation Alpha) : Prop :=
+  LRA.Relation.Reflexive relation /\
+    LRA.Relation.Antisymmetric relation /\
+      LRA.Relation.Transitive relation
 
-end LRA.VolumeI.Order
+end LRA.Order
 
-namespace LRA.VolumeI.Order.OrderedSets.PartialOrder
+namespace LRA.Order.OrderedSets.PartialOrder
 
 universe u
 
@@ -38,12 +38,12 @@ Logical form:
 
 ```lean
 structure PartialOrderRelation (Carrier : Type u) where
-  relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier
-  relationIsPartialOrder : LRA.VolumeI.Order.PartialOrder relation
+  relation : LRA.Order.OrderedSets.OrderRelation Carrier
+  relationIsPartialOrder : LRA.Order.PartialOrder relation
 ```
 -/
 structure PartialOrderRelation (Carrier : Type u) where
-  relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier
-  relationIsPartialOrder : LRA.VolumeI.Order.PartialOrder relation
+  relation : LRA.Order.OrderedSets.OrderRelation Carrier
+  relationIsPartialOrder : LRA.Order.PartialOrder relation
 
-end LRA.VolumeI.Order.OrderedSets.PartialOrder
+end LRA.Order.OrderedSets.PartialOrder

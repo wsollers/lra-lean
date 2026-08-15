@@ -9,7 +9,7 @@ intended as the proof foundation for later files; formal proofs should use
 Mathlib's normed-space APIs directly.
 -/
 
-namespace LRA.VolumeIV.NormedLinearSpaces
+namespace LRA.Analysis.FunctionalAnalysis.NormedLinearSpaces
 
 universe u v
 
@@ -27,7 +27,7 @@ structure NormedLinearSpaceDefinition
     [NormedField K]
     (V : Type v) where
   /-- The underlying vector-space data. -/
-  vectorSpace : LRA.VolumeIV.VectorSpaces.VectorSpaceDefinition K V
+  vectorSpace : LRA.LinearAlgebra.VectorSpaceDefinition K V
   /-- The norm. -/
   norm : V → Real
   /-- Norms are nonnegative. -/
@@ -45,7 +45,7 @@ structure NormedLinearSpaceDefinition
     [NormedField K]
     (V : Type v) where
   /-- The underlying vector-space data. -/
-  vectorSpace : LRA.VolumeIV.VectorSpaces.VectorSpaceDefinition K V
+  vectorSpace : LRA.LinearAlgebra.VectorSpaceDefinition K V
   /-- The norm. -/
   norm : V → Real
   /-- Norms are nonnegative. -/
@@ -57,5 +57,5 @@ structure NormedLinearSpaceDefinition
   /-- Compatibility of the norm with scalar multiplication. -/
   norm_smul : ∀ a : K, ∀ x : V, norm (vectorSpace.smul a x) = ‖a‖ * norm x
 
-end LRA.VolumeIV.NormedLinearSpaces
+end LRA.Analysis.FunctionalAnalysis.NormedLinearSpaces
 

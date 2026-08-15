@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.StrictOrder.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
@@ -13,12 +13,12 @@ Logical form:
 
 ```lean
 def DenseOrder {alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation alpha) : Prop :=
-  StrictOrder relation /\ LRA.VolumeI.Relations.Dense relation
+    (relation : LRA.Relation.Endorelation alpha) : Prop :=
+  StrictOrder relation /\ LRA.Relation.Dense relation
 ```
 -/
 def DenseOrder {alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation alpha) : Prop :=
-  StrictOrder relation /\ LRA.VolumeI.Relations.Dense relation
+    (relation : LRA.Relation.Endorelation alpha) : Prop :=
+  StrictOrder relation /\ LRA.Relation.Dense relation
 
-end LRA.VolumeI.Order
+end LRA.Order

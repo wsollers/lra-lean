@@ -3,9 +3,9 @@ import LRA.VolumeI.Functions.IdentityFunction
 import LRA.VolumeI.Identity.Model.Theory
 import LRA.VolumeI.Set.Interface.Membership
 
-namespace LRA.VolumeI.Functions
+namespace LRA.Function
 
-open LRA.VolumeI.Set
+open LRA.Set
 
 universe u v
 
@@ -120,7 +120,7 @@ Logical form:
 theorem PreimageExists
     (map : Function DomainElement CodomainElement)
     (target : CodomainSet) :
-    LRA.VolumeI.Identity.Exists
+    LRA.Identity.Exists
       (fun preimageSet : DomainSet =>
         IsPreimageOf preimageSet map target)
 ```
@@ -128,7 +128,7 @@ theorem PreimageExists
 theorem PreimageExists
     (map : Function DomainElement CodomainElement)
     (target : CodomainSet) :
-    LRA.VolumeI.Identity.Exists
+    LRA.Identity.Exists
       (fun preimageSet : DomainSet =>
         IsPreimageOf preimageSet map target) := by
   sorry
@@ -141,7 +141,7 @@ Logical form:
 theorem PreimageUnique
     (map : Function DomainElement CodomainElement)
     (target : CodomainSet) :
-    LRA.VolumeI.Identity.Unique
+    LRA.Identity.Unique
       (fun preimageSet : DomainSet =>
         IsPreimageOf preimageSet map target)
 ```
@@ -149,7 +149,7 @@ theorem PreimageUnique
 theorem PreimageUnique
     (map : Function DomainElement CodomainElement)
     (target : CodomainSet) :
-    LRA.VolumeI.Identity.Unique
+    LRA.Identity.Unique
       (fun preimageSet : DomainSet =>
         IsPreimageOf preimageSet map target) := by
   sorry
@@ -162,7 +162,7 @@ Logical form:
 theorem PreimageExistsAndUnique
     (map : Function DomainElement CodomainElement)
     (target : CodomainSet) :
-    LRA.VolumeI.Identity.ExistsAndUnique
+    LRA.Identity.ExistsAndUnique
       (fun preimageSet : DomainSet =>
         IsPreimageOf preimageSet map target)
 ```
@@ -170,7 +170,7 @@ theorem PreimageExistsAndUnique
 theorem PreimageExistsAndUnique
     (map : Function DomainElement CodomainElement)
     (target : CodomainSet) :
-    LRA.VolumeI.Identity.ExistsAndUnique
+    LRA.Identity.ExistsAndUnique
       (fun preimageSet : DomainSet =>
         IsPreimageOf preimageSet map target) := by
   sorry
@@ -539,4 +539,4 @@ theorem PreimageCompositionMonotone
 
 end Composition
 
-end LRA.VolumeI.Functions
+end LRA.Function

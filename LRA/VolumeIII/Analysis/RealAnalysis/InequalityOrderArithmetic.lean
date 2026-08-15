@@ -11,7 +11,7 @@ remark, not the theorem itself).
 
 import Mathlib.Data.Real.Basic
 
-namespace LRA.VolumeIII.Analysis.RealAnalysis
+namespace LRA.Analysis.RealAnalysis
 
 -- `thm:real-order-trichotomy`
 /-- Let `a b : ℝ`. Then `(a < b ∧ a ≠ b ∧ ¬ a > b) ∨ (a = b ∧ ¬ a < b ∧ ¬ a > b) ∨ (a > b ∧ a ≠ b ∧
@@ -353,4 +353,4 @@ theorem IneqReciprocalFlip (a b : ℝ) (ha : a > 0) (hb : b > 0) :
 theorem IneqReciprocalFlip (a b : ℝ) (ha : a > 0) (hb : b > 0) :
     a < b ↔ 1 / b < 1 / a := by sorry
 
-end LRA.VolumeIII.Analysis.RealAnalysis
+end LRA.Analysis.RealAnalysis

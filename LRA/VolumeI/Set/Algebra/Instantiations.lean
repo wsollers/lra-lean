@@ -3,9 +3,9 @@ import LRA.VolumeI.Set
 import LRA.VolumeI.Set.Algebra.BooleanAlgebra
 import LRA.VolumeI.Set.Algebra.SigmaAlgebra
 
-namespace LRA.VolumeI.Set.Algebra.Instantiations
+namespace LRA.Set.Algebra.Instantiations
 
-open LRA.VolumeI.Set.Algebra LRA.VolumeI.Set
+open LRA.Set.Algebra LRA.Set
 
 /-!
 Reference instantiations of the ambient-relative algebra structures at
@@ -95,12 +95,12 @@ predicate set.
 Logical form:
 
 ```lean
-∀ A : LRA.VolumeI.Set.LRASet.LRASet Point,
+∀ A : LRA.Set.LRASet.LRASet Point,
   (lraSetAlgebra Point).IsMember A ↔ True
 ```
 -/
 def lraSetAlgebra (Point : Type) :
-    AlgebraOfSets (LRA.VolumeI.Set.LRASet.Universal Point) where
+    AlgebraOfSets (LRA.Set.LRASet.Universal Point) where
   IsMember := fun _ => True
   MembersAreSubsets := by sorry
   EmptyIsMember := by sorry
@@ -111,4 +111,4 @@ def lraSetAlgebra (Point : Type) :
   AmbientIsMember := by sorry
 
 
-end LRA.VolumeI.Set.Algebra.Instantiations
+end LRA.Set.Algebra.Instantiations

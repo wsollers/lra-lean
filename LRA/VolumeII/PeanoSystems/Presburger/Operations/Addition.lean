@@ -2,7 +2,7 @@ import LRA.VolumeII.PeanoSystems.Presburger.PresburgerModel
 import LRA.VolumeII.PeanoSystems.Recursion.BinaryIterator
 import LRA.VolumeI.Logic.Model.Model
 
-namespace LRA.VolumeII.PeanoSystems
+namespace LRA.NumberSystems.PeanoSystems
 
 universe u v
 
@@ -133,13 +133,13 @@ Logical form:
 ```lean
 noncomputable def PresburgerModel.toFirstOrderModel
     (model : PresburgerModel Element SetObject) :
-    LRA.VolumeI.Logic.FirstOrder.Model PresburgerSignature where
+    LRA.Logic.FirstOrder.Model PresburgerSignature where
   Domain
 ```
 -/
 noncomputable def PresburgerModel.toFirstOrderModel
     (model : PresburgerModel Element SetObject) :
-    LRA.VolumeI.Logic.FirstOrder.Model PresburgerSignature where
+    LRA.Logic.FirstOrder.Model PresburgerSignature where
   Domain := Element
   domainNonempty := ⟨model.zero⟩
   interpretFunction
@@ -152,4 +152,4 @@ noncomputable def PresburgerModel.toFirstOrderModel
   interpretConstant
     | .zero => model.zero
 
-end LRA.VolumeII.PeanoSystems
+end LRA.NumberSystems.PeanoSystems

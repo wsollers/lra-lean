@@ -2,9 +2,9 @@ import Mathlib.Order.Bounds.Basic
 import LRA.VolumeI.Order.Bounds
 import LRA.VolumeI.Order.OrderedSets.Poset.Definition
 
-namespace LRA.VolumeI.Order.Interoperability.Mathlib
+namespace LRA.Order.Interoperability.Mathlib
 
-open LRA.VolumeI.Order
+open LRA.Order
 
 universe u
 
@@ -89,4 +89,4 @@ theorem boundedBelow_iff_bddBelow
       BddBelow subset := by
   sorry
 
-end LRA.VolumeI.Order.Interoperability.Mathlib
+end LRA.Order.Interoperability.Mathlib

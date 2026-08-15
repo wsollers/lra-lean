@@ -1,7 +1,7 @@
 import LRA.VolumeI.Set.LRASet.Instances
 import LRA.VolumeI.Set.Interface.Union
 
-namespace LRA.VolumeI.Set.LRASet
+namespace LRA.Set.LRASet
 
 universe u
 
@@ -9,7 +9,7 @@ variable {Alpha : Type u}
 
 /-!
 Union laws for predicate sets: the backend's certificate for
-`LRA.VolumeI.Set.UnionLaws`, mirroring `Enderton/Laws/Union.lean` at
+`LRA.Set.UnionLaws`, mirroring `Enderton/Laws/Union.lean` at
 `LRASet Alpha`.
 
 Where Enderton's proofs go through chosen witnesses of existence axioms,
@@ -120,12 +120,12 @@ theorem SubsetIffUnionEqRight :
 /-- Registration: predicate sets satisfy the union laws. Pure delegation
 to the theorems above. -/
 instance : UnionLaws (LRASet Alpha) where
-  UnionCommutative := LRA.VolumeI.Set.LRASet.UnionCommutative
-  UnionAssociative := LRA.VolumeI.Set.LRASet.UnionAssociative
-  EmptyUnion := LRA.VolumeI.Set.LRASet.EmptyUnion
-  UnionEmpty := LRA.VolumeI.Set.LRASet.UnionEmpty
-  UnionIdempotent := LRA.VolumeI.Set.LRASet.UnionIdempotent
-  UnionMonotone := LRA.VolumeI.Set.LRASet.UnionMonotone
-  SubsetIffUnionEqRight := LRA.VolumeI.Set.LRASet.SubsetIffUnionEqRight
+  UnionCommutative := LRA.Set.LRASet.UnionCommutative
+  UnionAssociative := LRA.Set.LRASet.UnionAssociative
+  EmptyUnion := LRA.Set.LRASet.EmptyUnion
+  UnionEmpty := LRA.Set.LRASet.UnionEmpty
+  UnionIdempotent := LRA.Set.LRASet.UnionIdempotent
+  UnionMonotone := LRA.Set.LRASet.UnionMonotone
+  SubsetIffUnionEqRight := LRA.Set.LRASet.SubsetIffUnionEqRight
 
-end LRA.VolumeI.Set.LRASet
+end LRA.Set.LRASet

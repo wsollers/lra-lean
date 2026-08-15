@@ -13,7 +13,7 @@ hypothesis, since its unconditional form at `A = ∅` would describe the
 universal set (impossible, Russell).
 -/
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 /-- The intersection over the collection `A`, derived as the separated
 subset of the union over `A`.
@@ -46,4 +46,4 @@ theorem TheIntersectionOverMembership (A x : Set)
     x ∈ TheIntersectionOver A ↔ ∀ B : Set, B ∈ A → x ∈ B := by
   sorry
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

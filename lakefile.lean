@@ -9,15 +9,6 @@ require mathlib from git
 lean_lib LRA where
   roots := #[`LRA]
 
--- Isolated design experiments that can be compiled without importing them
--- into the production volume aggregate.
-lean_lib LRAPilot where
-  roots := #[`LRA.Pilot, `LRA.Pilot.Supremum.ExtractionManifest]
-
-/-- Extract the Ordering and Bounds pilot metadata and render its local explorer. -/
-script lraBoundsExplorer (arguments) do
-  Lake.env "lean" (#["--run", "LRA/Pilot/ExtractMetadata.lean"] ++ arguments)
-
 lean_lib LRAVolumeI where
   roots := #[`LRA.VolumeI]
 
@@ -45,6 +36,7 @@ lean_lib LRATests where
   srcDir := "test"
   roots := #[
     `LRA.VolumeI.Set.CollectionAlgebraAdaptersTest,
+    `LRA.SemanticImportsSmoke,
     `LRA.VolumeIII.Analysis.Bounding.BoundsTests,
     `LRA.VolumeIV.Learning.MetricTopologyAdapterTest,
     `LRA.VolumeIV.MetricSpaces.BallSubsetCustomMetricTest,

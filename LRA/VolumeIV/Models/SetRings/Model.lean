@@ -1,7 +1,7 @@
 import LRA.VolumeIV.Models.SetRings.Language
 import LRA.VolumeIV.Models.SetRings.Signature
 
-namespace LRA.VolumeIV.Models.SetRings
+namespace LRA.Logic.ModelTheory.SetRings
 
 /-- Build a first-order model of the set-ring language from a set-ring
 operation signature. The distinguished constant `zero` is interpreted by the
@@ -13,13 +13,13 @@ Logical form:
 ```lean
 def BuildSetRingModel
     (signature : SetRingSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model SetRingFirstOrderLanguage where
+    LRA.Logic.FirstOrder.Model SetRingFirstOrderLanguage where
   Domain
 ```
 -/
 def BuildSetRingModel
     (signature : SetRingSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model SetRingFirstOrderLanguage where
+    LRA.Logic.FirstOrder.Model SetRingFirstOrderLanguage where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -33,4 +33,4 @@ def BuildSetRingModel
   interpretConstant
     | .zero => signature.zero
 
-end LRA.VolumeIV.Models.SetRings
+end LRA.Logic.ModelTheory.SetRings

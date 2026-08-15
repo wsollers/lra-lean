@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Language.Symbols
 
-namespace LRA.VolumeI.Algebra.Signatures.FormalVocabulary
+namespace LRA.Algebra.Signatures.FormalVocabulary
 
 /--
 Constant symbols are nullary operation symbols.
@@ -15,4 +15,4 @@ structure ConstantSymbols where
 structure ConstantSymbols where
   Symbol : Type
 
-end LRA.VolumeI.Algebra.Signatures.FormalVocabulary
+end LRA.Algebra.Signatures.FormalVocabulary

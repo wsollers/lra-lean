@@ -5,9 +5,9 @@ import LRA.VolumeI.AlgebraicStructures
 import LRA.VolumeII.NaturalNumbers.Operations.Addition
 import LRA.VolumeII.NaturalNumbers.Operations.Multiplication
 
-namespace LRA.VolumeII.NaturalNumbers
+namespace LRA.NumberSystems.NaturalNumbers
 
-open LRA.VolumeI.AlgebraicStructures
+open LRA.Algebra.Structure
 
 universe u v
 
@@ -16,7 +16,7 @@ variable [Membership Element SetObject]
 
 /-!
 Volume II label: natural-numbers-instance-builders
-Lean module: LRA.VolumeII.NaturalNumbers.Operations.Builders
+Lean module: LRA.NumberSystems.NaturalNumbers.Operations.Builders
 Verification status: checked builders (certificates delegate to the
 operation theorems, whose proofs remain pending)
 
@@ -203,4 +203,4 @@ example (model : NModel Element SetObject) (a b c : Element) : True := by
   have commuted : a + b = b + a := AddCommutative a b
   trivial
 
-end LRA.VolumeII.NaturalNumbers
+end LRA.NumberSystems.NaturalNumbers

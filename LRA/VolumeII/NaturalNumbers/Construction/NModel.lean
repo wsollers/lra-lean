@@ -6,7 +6,7 @@ First-order signature and model data for the Peano-system natural-number
 language.
 -/
 
-namespace LRA.VolumeII.NaturalNumbers
+namespace LRA.NumberSystems.NaturalNumbers
 
 universe u v
 
@@ -57,13 +57,13 @@ inductive NConstantSymbol where
 Logical form:
 
 ```lean
-def NFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def NFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := NFunctionSymbol
   arity
     | .successor => 1
 ```
 -/
-def NFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def NFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := NFunctionSymbol
   arity
     | .successor => 1
@@ -74,12 +74,12 @@ def NFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
 Logical form:
 
 ```lean
-def NRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def NRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := NRelationSymbol
   arity := Empty.elim
 ```
 -/
-def NRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def NRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := NRelationSymbol
   arity := Empty.elim
 
@@ -89,13 +89,13 @@ def NRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
 Logical form:
 
 ```lean
-def NSignature : LRA.VolumeI.Logic.Signature where
+def NSignature : LRA.Logic.Signature where
   Functions := NFunctions
   Relations := NRelations
   Constants := NConstantSymbol
 ```
 -/
-def NSignature : LRA.VolumeI.Logic.Signature where
+def NSignature : LRA.Logic.Signature where
   Functions := NFunctions
   Relations := NRelations
   Constants := NConstantSymbol
@@ -108,12 +108,12 @@ Logical form:
 ```lean
 structure NModel (Element : Type u) (SetObject : Type v)
     [Membership Element SetObject]
-    extends LRA.VolumeII.PeanoSystems.PeanoSystem Element SetObject
+    extends LRA.NumberSystems.PeanoSystems.PeanoSystem Element SetObject
 ```
 -/
 structure NModel (Element : Type u) (SetObject : Type v)
     [Membership Element SetObject]
-    extends LRA.VolumeII.PeanoSystems.PeanoSystem Element SetObject
+    extends LRA.NumberSystems.PeanoSystems.PeanoSystem Element SetObject
 
 /--
 `NModel.toFirstOrderModel` defines the displayed object for to first order model.
@@ -123,7 +123,7 @@ Logical form:
 ```lean
 def NModel.toFirstOrderModel
     (model : NModel Element SetObject) :
-    LRA.VolumeI.Logic.FirstOrder.Model NSignature where
+    LRA.Logic.FirstOrder.Model NSignature where
   Domain := Element
   domainNonempty := ⟨model.one⟩
   interpretFunction
@@ -135,7 +135,7 @@ def NModel.toFirstOrderModel
 -/
 def NModel.toFirstOrderModel
     (model : NModel Element SetObject) :
-    LRA.VolumeI.Logic.FirstOrder.Model NSignature where
+    LRA.Logic.FirstOrder.Model NSignature where
   Domain := Element
   domainNonempty := ⟨model.one⟩
   interpretFunction
@@ -144,4 +144,4 @@ def NModel.toFirstOrderModel
   interpretConstant
     | .one => model.one
 
-end LRA.VolumeII.NaturalNumbers
+end LRA.NumberSystems.NaturalNumbers

@@ -10,7 +10,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Analysis.Real.Sqrt
 import LRA.VolumeIII.Analysis.Continuity.GlobalTheorems
 
-namespace LRA.VolumeIII.Analysis.Continuity
+namespace LRA.Analysis.Continuity
 
 /-- `def:uniform-continuity`.
 
@@ -197,4 +197,4 @@ theorem SqrtUcNotLipschitz :
     ¬ ∃ K, IsLipschitzOn Real.sqrt (Set.Icc (0:ℝ) 1) K := by
   sorry
 
-end LRA.VolumeIII.Analysis.Continuity
+end LRA.Analysis.Continuity

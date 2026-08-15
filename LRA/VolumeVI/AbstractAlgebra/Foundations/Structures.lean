@@ -6,7 +6,7 @@ is not intended as the proof foundation for later files; formal proofs should
 use Mathlib's algebraic hierarchy directly.
 -/
 
-namespace LRA.VolumeVI.AbstractAlgebra
+namespace LRA.Algebra
 
 universe u
 
@@ -174,4 +174,4 @@ structure AlgebraicStructureDefinition where
   /-- The selected algebraic structure on the carrier. -/
   structureData : Carrier → Prop
 
-end LRA.VolumeVI.AbstractAlgebra
+end LRA.Algebra

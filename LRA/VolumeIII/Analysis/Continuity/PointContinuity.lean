@@ -9,7 +9,7 @@ per book label, `sorry`-bodied.
 
 import Mathlib.Data.Real.Basic
 
-namespace LRA.VolumeIII.Analysis.Continuity
+namespace LRA.Analysis.Continuity
 
 /-- `def:relative-neighborhood`: a relative (to `A`) ε-neighbourhood of
 `c` in `A`.
@@ -303,4 +303,4 @@ theorem DiscontinuitySetEqUnionOscillationBounded (f : ℝ → ℝ) (A : Set ℝ
       ⋃ n : ℕ, {c ∈ A | OscillationAtPoint f A c ≥ 1 / (n + 1 : ℝ)} := by
   sorry
 
-end LRA.VolumeIII.Analysis.Continuity
+end LRA.Analysis.Continuity

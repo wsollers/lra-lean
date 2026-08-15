@@ -1,7 +1,7 @@
 import LRA.VolumeI.Identity.Axioms.Axioms
 import LRA.VolumeI.Identity.Model.Structures
 
-namespace LRA.VolumeI.Identity
+namespace LRA.Identity
 
 universe u
 
@@ -131,4 +131,4 @@ def AtMostTwo (Carrier : Type u) : Prop :=
 def AtMostTwo (Carrier : Type u) : Prop :=
   ∀ x y z : Carrier, x = y ∨ y = z ∨ x = z
 
-end LRA.VolumeI.Identity
+end LRA.Identity

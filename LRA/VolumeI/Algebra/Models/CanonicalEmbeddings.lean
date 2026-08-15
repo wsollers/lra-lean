@@ -3,11 +3,11 @@
 
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA.VolumeI.Algebra.Models.CanonicalEmbeddings
+namespace LRA.Algebra.Models.CanonicalEmbeddings
 
 /-!
 Volume II label: canonical-embeddings
-Lean module: LRA.VolumeI.Algebra.Models.CanonicalEmbeddings
+Lean module: LRA.Algebra.Models.CanonicalEmbeddings
 Source: docs/number-systems/gpt-00b-canonical-embeddings.md
 Verification status: statement-accepted-proof-pending
 -/
@@ -180,4 +180,4 @@ theorem CompositeIntegerToRealIsEmbedding
       (CompositeIntegerToReal SelectedRationalExtension SelectedRealExtension) := by
   sorry
 
-end LRA.VolumeI.Algebra.Models.CanonicalEmbeddings
+end LRA.Algebra.Models.CanonicalEmbeddings

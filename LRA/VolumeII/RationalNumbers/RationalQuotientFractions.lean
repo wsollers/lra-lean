@@ -4,12 +4,12 @@
 import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA.VolumeII.RationalNumbers.RationalQuotientFractions
+namespace LRA.NumberSystems.RationalNumbers.RationalQuotientFractions
 
-open LRA.VolumeI.Algebra.Models
+open LRA.Algebra.Models
 
 /-!
-Lean module: LRA.VolumeII.RationalNumbers.RationalQuotientFractions
+Lean module: LRA.NumberSystems.RationalNumbers.RationalQuotientFractions
 Source: docs/number-systems/gpt-03-RationalNumbers.md
 Verification status: definitions and final theorem statements complete; proofs pending
 -/
@@ -1348,4 +1348,4 @@ theorem structure_of_the_rationals (rational_data : IntegerAndPositiveNaturalDat
     StructureOfTheRationals rational_data := by
   sorry
 
-end LRA.VolumeII.RationalNumbers.RationalQuotientFractions
+end LRA.NumberSystems.RationalNumbers.RationalQuotientFractions

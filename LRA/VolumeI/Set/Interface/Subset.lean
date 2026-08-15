@@ -1,4 +1,4 @@
-namespace LRA.VolumeI.Set
+namespace LRA.Set
 
 universe u
 
@@ -65,4 +65,4 @@ theorem SetEqualityIffMutualSubset : ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A
 theorem SetEqualityIffMutualSubset : ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A :=
   SubsetLaws.SetEqualityIffMutualSubset
 
-end LRA.VolumeI.Set
+end LRA.Set

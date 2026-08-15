@@ -1,4 +1,4 @@
-namespace LRA.VolumeI.Set
+namespace LRA.Set
 
 universe u
 
@@ -83,4 +83,4 @@ theorem AbsorptionIntersectionUnion : ∀ A B : α, A ∩ (A ∪ B) = A
 theorem AbsorptionIntersectionUnion : ∀ A B : α, A ∩ (A ∪ B) = A :=
   DistributivityLaws.AbsorptionIntersectionUnion
 
-end LRA.VolumeI.Set
+end LRA.Set

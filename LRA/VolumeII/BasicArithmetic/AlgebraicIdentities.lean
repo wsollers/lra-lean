@@ -3,15 +3,15 @@
 
 import LRA.VolumeI.AlgebraicStructures
 
-namespace LRA.VolumeII.BasicArithmetic.AlgebraicIdentities
+namespace LRA.NumberSystems.Arithmetic.AlgebraicIdentities
 
-open LRA.VolumeI.AlgebraicStructures
+open LRA.Algebra.Structure
 
 universe u
 
 /-!
 Volume II label: basic-arithmetic-algebraic-identities
-Lean module: LRA.VolumeII.BasicArithmetic.AlgebraicIdentities
+Lean module: LRA.NumberSystems.Arithmetic.AlgebraicIdentities
 Verification status: statement-accepted-proof-pending
 
 Elementary algebraic manipulations as named facts, stated over any
@@ -118,4 +118,4 @@ example (a b : Int) :
 example (a b : Rat) : a * a - b * b = (a + b) * (a - b) :=
   SqSubSqExpanded a b
 
-end LRA.VolumeII.BasicArithmetic.AlgebraicIdentities
+end LRA.NumberSystems.Arithmetic.AlgebraicIdentities

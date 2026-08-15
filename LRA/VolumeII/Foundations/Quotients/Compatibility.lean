@@ -1,11 +1,11 @@
 -- LRA/VolumeII/Foundations/Quotients/Compatibility.lean
 -- Reusable representative-independence statements for quotient constructions.
 
-namespace LRA.VolumeII.Foundations.Quotients
+namespace LRA.NumberSystems.Foundations.Quotients
 
 /-!
 Volume II label: quotient-representative-independence
-Lean module: LRA.VolumeII.Foundations.Quotients.Compatibility
+Lean module: LRA.NumberSystems.Foundations.Quotients.Compatibility
 Blueprint label: quotient-representative-independence
 Verification status: statement-accepted-proof-pending
 
@@ -396,4 +396,4 @@ theorem induced_relation_exists
             second_representative := by
   sorry
 
-end LRA.VolumeII.Foundations.Quotients
+end LRA.NumberSystems.Foundations.Quotients

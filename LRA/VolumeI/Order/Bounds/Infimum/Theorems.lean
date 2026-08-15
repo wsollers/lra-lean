@@ -1,7 +1,7 @@
 import LRA.VolumeI.Order.Bounds.Infimum.Definition
 import LRA.VolumeI.Relations.Basic.CoreProperties
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -9,12 +9,12 @@ universe u v
 theorem InfimumUnique
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
-    {relation : LRA.VolumeI.Relations.Endorelation Element}
-    (relationIsAntisymmetric : LRA.VolumeI.Relations.Antisymmetric relation)
+    {relation : LRA.Relation.Endorelation Element}
+    (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation)
     {subset : SetObject} {first second : Element}
     (firstIsInfimum : Infimum relation subset first)
     (secondIsInfimum : Infimum relation subset second) :
     first = second := by
   sorry
 
-end LRA.VolumeI.Order
+end LRA.Order

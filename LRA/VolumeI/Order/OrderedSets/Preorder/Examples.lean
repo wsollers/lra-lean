@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.Preorder.Definition
 
-namespace LRA.VolumeI.Order.OrderedSets.Preorder
+namespace LRA.Order.OrderedSets.Preorder
 
 /--
 The universal relation on booleans is a preorder.
@@ -16,4 +16,4 @@ def BooleanUniversalPreorder : PreorderRelation Bool where
   isPreorder := by
     sorry
 
-end LRA.VolumeI.Order.OrderedSets.Preorder
+end LRA.Order.OrderedSets.Preorder

@@ -13,7 +13,7 @@ formulas.
 
 import Mathlib.Data.Real.Basic
 
-namespace LRA.VolumeIII.Analysis.Continuity
+namespace LRA.Analysis.Continuity
 
 /-- `def:limit-function`: the ε-δ definition of the limit of `f` at `c`,
 on domain `A`, `c` a limit point of `A`.
@@ -244,4 +244,4 @@ theorem TendstoComp (f g : ℝ → ℝ) (A B : Set ℝ) (c₁ c₂ L₂ : ℝ)
     TendsTo (fun x => g (f x)) A c₁ L₂ := by
   sorry
 
-end LRA.VolumeIII.Analysis.Continuity
+end LRA.Analysis.Continuity

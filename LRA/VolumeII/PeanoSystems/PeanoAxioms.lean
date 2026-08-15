@@ -8,7 +8,7 @@ Volume II TeX Peano-system section.  The source formal environment kind is
 `axiom`, so these Lean declarations are axioms as well.
 -/
 
-namespace LRA.VolumeII.PeanoSystems.PeanoAxioms
+namespace LRA.NumberSystems.PeanoSystems.PeanoAxioms
 
 universe u v
 
@@ -16,7 +16,7 @@ variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 
 /- Volume II label: ax:peano-base-in-set
-   Lean declaration: LRA.VolumeII.PeanoSystems.PeanoAxioms.PeanoBaseInSet
+   Lean declaration: LRA.NumberSystems.PeanoSystems.PeanoAxioms.PeanoBaseInSet
    Status: pending -/
 /--
 `PeanoBaseInSet` asserts peano base in set.
@@ -30,7 +30,7 @@ axiom PeanoBaseInSet (ps : PeanoSystem Element SetObject) : True
 axiom PeanoBaseInSet (ps : PeanoSystem Element SetObject) : True
 
 /- Volume II label: ax:peano-successor-closure
-   Lean declaration: LRA.VolumeII.PeanoSystems.PeanoAxioms.PeanoSuccessorClosure
+   Lean declaration: LRA.NumberSystems.PeanoSystems.PeanoAxioms.PeanoSuccessorClosure
    Status: pending
 
    Needs a singleton-forming backend (`Singleton Element SetObject`), which
@@ -55,7 +55,7 @@ axiom PeanoSuccessorClosure [Singleton Element SetObject]
       ps.successor element ∈ ({ps.successor element} : SetObject)
 
 /- Volume II label: ax:peano-base-not-successor
-   Lean declaration: LRA.VolumeII.PeanoSystems.PeanoAxioms.PeanoBaseNotSuccessor
+   Lean declaration: LRA.NumberSystems.PeanoSystems.PeanoAxioms.PeanoBaseNotSuccessor
    Status: pending -/
 /--
 `PeanoBaseNotSuccessor` asserts peano base not successor.
@@ -71,7 +71,7 @@ axiom PeanoBaseNotSuccessor (ps : PeanoSystem Element SetObject) :
     ∀ element : Element, ps.successor element ≠ ps.one
 
 /- Volume II label: ax:peano-successor-injective
-   Lean declaration: LRA.VolumeII.PeanoSystems.PeanoAxioms.PeanoSuccessorInjective
+   Lean declaration: LRA.NumberSystems.PeanoSystems.PeanoAxioms.PeanoSuccessorInjective
    Status: pending -/
 /--
 `PeanoSuccessorInjective` asserts peano successor injective.
@@ -89,7 +89,7 @@ axiom PeanoSuccessorInjective (ps : PeanoSystem Element SetObject) :
       ps.successor first = ps.successor second -> first = second
 
 /- Volume II label: ax:peano-induction
-   Lean declaration: LRA.VolumeII.PeanoSystems.PeanoAxioms.PeanoInduction
+   Lean declaration: LRA.NumberSystems.PeanoSystems.PeanoAxioms.PeanoInduction
    Status: pending -/
 /--
 `PeanoInduction` asserts peano induction.
@@ -115,7 +115,7 @@ axiom PeanoInduction (ps : PeanoSystem Element SetObject)
       ∀ element : Element, element ∈ subset
 
 /- Volume II label: ax:peano-system-existence
-   Lean declaration: LRA.VolumeII.PeanoSystems.PeanoAxioms.PeanoSystemExistence
+   Lean declaration: LRA.NumberSystems.PeanoSystems.PeanoAxioms.PeanoSystemExistence
    Status: pending
 
    Existence must choose its carrier: the unparameterized
@@ -139,4 +139,4 @@ axiom PeanoSystemExistence :
       (_ : Membership Element SetObject),
       Nonempty (PeanoSystem Element SetObject)
 
-end LRA.VolumeII.PeanoSystems.PeanoAxioms
+end LRA.NumberSystems.PeanoSystems.PeanoAxioms

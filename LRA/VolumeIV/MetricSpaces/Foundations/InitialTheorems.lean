@@ -7,7 +7,7 @@ import LRA.VolumeIV.MetricSpaces.Foundations.Metrics
 Elementary theorem layer for the textbook metric record.
 -/
 
-namespace LRA.VolumeIV.MetricSpaces
+namespace LRA.Analysis.MetricSpaces
 
 universe u
 
@@ -240,4 +240,4 @@ theorem rearrangement_of_triangle_inequality
     |dist a b - dist b c| ≤ dist a c := by
   simpa [dist_comm c b] using abs_dist_sub_le a c b
 
-end LRA.VolumeIV.MetricSpaces
+end LRA.Analysis.MetricSpaces

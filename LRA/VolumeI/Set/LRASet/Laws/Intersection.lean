@@ -1,7 +1,7 @@
 import LRA.VolumeI.Set.LRASet.Instances
 import LRA.VolumeI.Set.Interface.Intersection
 
-namespace LRA.VolumeI.Set.LRASet
+namespace LRA.Set.LRASet
 
 universe u
 
@@ -9,7 +9,7 @@ variable {Alpha : Type u}
 
 /-!
 Intersection laws for predicate sets: the backend's certificate for
-`LRA.VolumeI.Set.IntersectionLaws`. Same discipline as `Laws/Union.lean`.
+`LRA.Set.IntersectionLaws`. Same discipline as `Laws/Union.lean`.
 -/
 /--
 `IntersectionCommutative` exposes this formal declaration.
@@ -113,13 +113,13 @@ theorem SubsetIffIntersectionEqLeft :
 /-- Registration: predicate sets satisfy the intersection laws. Pure
 delegation to the theorems above. -/
 instance : IntersectionLaws (LRASet Alpha) where
-  IntersectionCommutative := LRA.VolumeI.Set.LRASet.IntersectionCommutative
-  IntersectionAssociative := LRA.VolumeI.Set.LRASet.IntersectionAssociative
-  EmptyIntersection := LRA.VolumeI.Set.LRASet.EmptyIntersection
-  IntersectionEmpty := LRA.VolumeI.Set.LRASet.IntersectionEmpty
-  IntersectionIdempotent := LRA.VolumeI.Set.LRASet.IntersectionIdempotent
-  IntersectionMonotone := LRA.VolumeI.Set.LRASet.IntersectionMonotone
+  IntersectionCommutative := LRA.Set.LRASet.IntersectionCommutative
+  IntersectionAssociative := LRA.Set.LRASet.IntersectionAssociative
+  EmptyIntersection := LRA.Set.LRASet.EmptyIntersection
+  IntersectionEmpty := LRA.Set.LRASet.IntersectionEmpty
+  IntersectionIdempotent := LRA.Set.LRASet.IntersectionIdempotent
+  IntersectionMonotone := LRA.Set.LRASet.IntersectionMonotone
   SubsetIffIntersectionEqLeft :=
-    LRA.VolumeI.Set.LRASet.SubsetIffIntersectionEqLeft
+    LRA.Set.LRASet.SubsetIffIntersectionEqLeft
 
-end LRA.VolumeI.Set.LRASet
+end LRA.Set.LRASet

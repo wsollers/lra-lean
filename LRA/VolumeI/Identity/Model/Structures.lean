@@ -1,9 +1,9 @@
 import LRA.VolumeI.Identity.Model.Language
 import LRA.VolumeI.Logic.Model.Model
 
-namespace LRA.VolumeI.Identity
+namespace LRA.Identity
 
-open LRA.VolumeI.Logic
+open LRA.Logic
 
 universe u
 
@@ -121,4 +121,4 @@ theorem EqualityStructure.interpretsEqualityAsIdentity
     equalityStructure.equalityInterpretation left right ↔ left = right :=
   equalityStructure.equalityIsDiagonal left right
 
-end LRA.VolumeI.Identity
+end LRA.Identity

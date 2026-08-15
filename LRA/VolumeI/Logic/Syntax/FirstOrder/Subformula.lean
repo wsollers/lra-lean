@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Syntax.FirstOrder.Formula
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 Subformula.
@@ -61,4 +61,4 @@ inductive IsSubformula {S : Signature} {Variable : Type} :
   | trans {φ ψ χ : Formula S Variable} :
       IsSubformula φ ψ -> IsSubformula ψ χ -> IsSubformula φ χ
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

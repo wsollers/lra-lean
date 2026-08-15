@@ -21,7 +21,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Topology.Instances.Real.Lemmas
 import Mathlib.Order.Filter.Basic
 
-namespace LRA.VolumeIII.Analysis.RealAnalysis
+namespace LRA.Analysis.RealAnalysis
 
 /-- If `P : ℕ → Prop`. Then `(∀ N, ∃ n ≥ N, P n) ↔ ¬ (∃ N, ∀ n ≥ N, ¬ P n)`.
 
@@ -66,4 +66,4 @@ theorem BwBisection (x : ℕ → ℝ) (hbdd : ∃ M, ∀ n, |x n| ≤ M) :
       ∃ L : ℝ, Filter.Tendsto (x ∘ φ) Filter.atTop (nhds L) := by
   sorry
 
-end LRA.VolumeIII.Analysis.RealAnalysis
+end LRA.Analysis.RealAnalysis

@@ -16,7 +16,7 @@ import LRA.VolumeIII.Analysis.Integration.Partitions
 import LRA.VolumeIII.Analysis.Integration.RiemannIntegral.Basic
 import LRA.VolumeIII.Analysis.Differentiation.DerivativeDefinition
 
-namespace LRA.VolumeIII.Analysis.Integration
+namespace LRA.Analysis.Integration
 
 /-- `def:gauge-on-interval`.
 Mathematical statement (Lean): `def IsGaugeOn (a b : ℝ) (δ : ℝ → ℝ) : Prop`.
@@ -114,7 +114,7 @@ theorem riemann_integrable_implies_hk_integrable (hab : a ≤ b) (L : ℝ)
 
 -- `lem:hk-straddle`
 /-- Let `ξ : ℝ` and `Dξ : ℝ`. If `F : ℝ → ℝ` and `hF :
-LRA.VolumeIII.Analysis.Differentiation.Derivative Dξ F Set.univ ξ`. Then `∀ ε > 0, ∃ δξ > 0, ∀ u
+LRA.Analysis.Differentiation.Derivative Dξ F Set.univ ξ`. Then `∀ ε > 0, ∃ δξ > 0, ∀ u
 v : ℝ, u ≤ ξ → ξ ≤ v → u ∈ Set.Ioo (ξ - δξ) (ξ + δξ) → v ∈ Set.Ioo (ξ - δξ) (ξ + δξ) → |F v - F
 u - Dξ * (v - u)| ≤ ε * (v - u)`.
 
@@ -122,66 +122,66 @@ Logical form:
 
 ```lean
 theorem hk_straddle (F : ℝ → ℝ) (ξ : ℝ) (Dξ : ℝ)
-    (hF : LRA.VolumeIII.Analysis.Differentiation.Derivative Dξ F Set.univ ξ) :
+    (hF : LRA.Analysis.Differentiation.Derivative Dξ F Set.univ ξ) :
     ∀ ε > 0, ∃ δξ > 0, ∀ u v : ℝ, u ≤ ξ → ξ ≤ v → u ∈ Set.Ioo (ξ - δξ) (ξ + δξ) →
       v ∈ Set.Ioo (ξ - δξ) (ξ + δξ) → |F v - F u - Dξ * (v - u)| ≤ ε * (v - u)
 ```
 -/
 theorem hk_straddle (F : ℝ → ℝ) (ξ : ℝ) (Dξ : ℝ)
-    (hF : LRA.VolumeIII.Analysis.Differentiation.Derivative Dξ F Set.univ ξ) :
+    (hF : LRA.Analysis.Differentiation.Derivative Dξ F Set.univ ξ) :
     ∀ ε > 0, ∃ δξ > 0, ∀ u v : ℝ, u ≤ ξ → ξ ≤ v → u ∈ Set.Ioo (ξ - δξ) (ξ + δξ) →
       v ∈ Set.Ioo (ξ - δξ) (ξ + δξ) → |F v - F u - Dξ * (v - u)| ≤ ε * (v - u) := by
   sorry
 
 -- `thm:hk-fundamental-theorem`
 /-- If `F FD : ℝ → ℝ`, `hab : a ≤ b`, and `hF : ∀ x ∈ Set.Icc a b,
-LRA.VolumeIII.Analysis.Differentiation.Derivative (FD x) F Set.univ x`. Then `HasHKIntegral FD a
+LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x`. Then `HasHKIntegral FD a
 b (F b - F a)`.
 
 Logical form:
 
 ```lean
 theorem hk_fundamental_theorem (F FD : ℝ → ℝ) (hab : a ≤ b)
-    (hF : ∀ x ∈ Set.Icc a b, LRA.VolumeIII.Analysis.Differentiation.Derivative (FD x) F Set.univ x) :
+    (hF : ∀ x ∈ Set.Icc a b, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x) :
     HasHKIntegral FD a b (F b - F a)
 ```
 -/
 theorem hk_fundamental_theorem (F FD : ℝ → ℝ) (hab : a ≤ b)
-    (hF : ∀ x ∈ Set.Icc a b, LRA.VolumeIII.Analysis.Differentiation.Derivative (FD x) F Set.univ x) :
+    (hF : ∀ x ∈ Set.Icc a b, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x) :
     HasHKIntegral FD a b (F b - F a) := by
   sorry
 
 -- `thm:continuous-hk-integrable`
-/-- If `hab : a ≤ b` and `hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)`.
+/-- If `hab : a ≤ b` and `hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)`.
 Then `IsHKIntegrable f a b`.
 
 Logical form:
 
 ```lean
 theorem continuous_hk_integrable (hab : a ≤ b)
-    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
+    (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
     IsHKIntegrable f a b
 ```
 -/
 theorem continuous_hk_integrable (hab : a ≤ b)
-    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
+    (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
     IsHKIntegrable f a b := by
   sorry
 
-/-- If `F FD : ℝ → ℝ` and `hF : ∀ x : ℝ, LRA.VolumeIII.Analysis.Differentiation.Derivative (FD x) F
+/-- If `F FD : ℝ → ℝ` and `hF : ∀ x : ℝ, LRA.Analysis.Differentiation.Derivative (FD x) F
 Set.univ x`. Then `IsHKIntegrable FD (-1) 1 ∧ ¬ IsRiemannIntegrable (fun x => |FD x|) (-1) 1`.
 
 Logical form:
 
 ```lean
 theorem hk_strictly_wider_than_lebesgue_witness (F FD : ℝ → ℝ)
-    (hF : ∀ x : ℝ, LRA.VolumeIII.Analysis.Differentiation.Derivative (FD x) F Set.univ x) :
+    (hF : ∀ x : ℝ, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x) :
     IsHKIntegrable FD (-1) 1 ∧ ¬ IsRiemannIntegrable (fun x => |FD x|) (-1) 1
 ```
 -/
 theorem hk_strictly_wider_than_lebesgue_witness (F FD : ℝ → ℝ)
-    (hF : ∀ x : ℝ, LRA.VolumeIII.Analysis.Differentiation.Derivative (FD x) F Set.univ x) :
+    (hF : ∀ x : ℝ, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x) :
     IsHKIntegrable FD (-1) 1 ∧ ¬ IsRiemannIntegrable (fun x => |FD x|) (-1) 1 := by
   sorry
 
-end LRA.VolumeIII.Analysis.Integration
+end LRA.Analysis.Integration

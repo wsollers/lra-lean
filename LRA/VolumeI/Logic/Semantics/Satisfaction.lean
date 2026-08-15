@@ -4,12 +4,12 @@ import LRA.VolumeI.Logic.Syntax.FirstOrder.Formula
 import LRA.VolumeI.Logic.Semantics.TermEvaluation
 import LRA.VolumeI.Logic.Semantics.Assignment
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 Satisfaction.
 
-Declared in the `LRA.VolumeI.Logic.FirstOrder` namespace, matching every
+Declared in the `LRA.Logic.FirstOrder` namespace, matching every
 other first-order-specific declaration -- second-order logic will need its
 own, different satisfaction relation (`SOSatisfies`), so `Satisfies` here
 is specifically first-order content, not shared across every object logic.
@@ -135,4 +135,4 @@ theorem satisfiesExistsIffSomeWitness
   simp only [Formula.existsQ, Satisfies]
   exact not_forall_not
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

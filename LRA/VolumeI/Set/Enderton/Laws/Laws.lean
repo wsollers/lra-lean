@@ -10,7 +10,7 @@ import LRA.VolumeI.Set.Enderton.Laws.Subset
 Aggregate import for the Enderton law certificates: one file per interface
 family, each proving the family's laws for `Enderton.Set` and registering
 the `Prop`-valued certificate instance (`UnionLaws Set`, ...) that makes
-the generic fluent theorems (`LRA.VolumeI.Set.UnionCommutative`, ...)
+the generic fluent theorems (`LRA.Set.UnionCommutative`, ...)
 available at `Set` by instance search.
 
 No `Complement.lean` here, and there never will be: the complement family

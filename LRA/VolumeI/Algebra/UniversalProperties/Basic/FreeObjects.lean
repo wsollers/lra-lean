@@ -1,4 +1,4 @@
-namespace LRA.VolumeI.Algebra.UniversalProperties.Basic
+namespace LRA.Algebra.UniversalProperties.Basic
 
 universe u v w
 
@@ -40,4 +40,4 @@ structure FreeObject
       (firstArrow secondArrow : Arrow freeObject targetObject),
         firstArrow = secondArrow
 
-end LRA.VolumeI.Algebra.UniversalProperties.Basic
+end LRA.Algebra.UniversalProperties.Basic

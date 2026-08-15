@@ -3,13 +3,13 @@
 
 import LRA.VolumeI.Algebra.Models.CanonicalEmbeddings
 
-namespace LRA.VolumeI.Algebra.Models.UniversalProperties
+namespace LRA.Algebra.Models.UniversalProperties
 
 universe u
 
 /-!
 Volume II label: universal-properties
-Lean module: LRA.VolumeI.Algebra.Models.UniversalProperties
+Lean module: LRA.Algebra.Models.UniversalProperties
 Source: docs/number-systems/gpt-00c-universal-properties.md
 Verification status: statement-accepted-proof-pending
 -/
@@ -91,4 +91,4 @@ structure CompleteOrderedFieldCharacterization (SelectedRealModel : RealModel.{u
         CanonicalEmbeddings.EmbeddingPreservesOrderedField
           SelectedRealModel.signature other.signature comparison
 
-end LRA.VolumeI.Algebra.Models.UniversalProperties
+end LRA.Algebra.Models.UniversalProperties

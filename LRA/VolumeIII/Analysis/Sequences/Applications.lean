@@ -1,7 +1,7 @@
 /-
 Draft module; not yet imported by the active Volume III root.
 Imports only this pass's own promoted draft modules and Mathlib — nothing from the
-real `LRA.VolumeIII.Analysis.Sequences.*`, so this can be freely
+real `LRA.Analysis.Sequences.*`, so this can be freely
 refactored or discarded without touching the working project.
 Source: volume-iii/book-analysis-i/sequences/notes/applications/notes-applications.tex
 Only file in `applications` — the LAST section of `notes/sequences/
@@ -43,7 +43,7 @@ import Mathlib.Topology.Algebra.Order.Floor
 import LRA.VolumeIII.Analysis.Sequences.SequenceDefinitions
 import LRA.VolumeIII.Analysis.Sequences.Convergence
 
-namespace LRA.VolumeIII.Analysis.Sequences
+namespace LRA.Analysis.Sequences
 
 /-- `def:newton-sequence-sqrt-two`. Lean index `0` = project's `x_1`.
 
@@ -153,4 +153,4 @@ theorem DecimalTruncationsConverge (α : ℝ) :
     ConvergesTo (DecimalTruncationSeq α) α := by
   sorry
 
-end LRA.VolumeIII.Analysis.Sequences
+end LRA.Analysis.Sequences

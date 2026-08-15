@@ -8,7 +8,7 @@ transitivity, equivalence-relation status, substitution results, and congruence
 are derived here for later mathematics.
 -/
 
-namespace LRA.VolumeI.Identity
+namespace LRA.Identity
 
 universe u v
 
@@ -271,4 +271,4 @@ theorem CongruenceWithRespectToEqualityIsAutomatic {Carrier : Type u}
   · intro operation
     exact SubstitutionPreservesOperations LeftsAreEqual RightsAreEqual operation
 
-end LRA.VolumeI.Identity
+end LRA.Identity

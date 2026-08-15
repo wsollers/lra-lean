@@ -12,7 +12,7 @@ import LRA.VolumeIII.Analysis.Integration.RiemannIntegral
 import LRA.VolumeIII.Analysis.Integration.DarbouxIntegral
 import LRA.VolumeIII.Analysis.StructureOfRealLine.OpenClosedSets
 
-namespace LRA.VolumeIII.Analysis.Integration
+namespace LRA.Analysis.Integration
 
 /-- `def:measure-zero`: `E` is covered, for every `ε`, by countably many
 open intervals of total length at most `ε`. Intervals are given directly
@@ -49,22 +49,22 @@ noncomputable def PointOscillation (f : ℝ → ℝ) (a b x : ℝ) : ℝ :=
 
 -- `thm:lebesgue-criterion-riemann-integrability`
 /-- Let `a b : ℝ`. If `f : ℝ → ℝ`, `hab : a ≤ b`, and `hbdd :
-LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)`. Then `IsRiemannIntegrable f a b
+LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)`. Then `IsRiemannIntegrable f a b
 ↔ IsMeasureZero {x ∈ Set.Icc a b | PointOscillation f a b x > 0}`.
 
 Logical form:
 
 ```lean
 theorem lebesgue_criterion_riemann_integrability (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
-    (hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
+    (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
     IsRiemannIntegrable f a b ↔
       IsMeasureZero {x ∈ Set.Icc a b | PointOscillation f a b x > 0}
 ```
 -/
 theorem lebesgue_criterion_riemann_integrability (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
-    (hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
+    (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
     IsRiemannIntegrable f a b ↔
       IsMeasureZero {x ∈ Set.Icc a b | PointOscillation f a b x > 0} := by
   sorry
 
-end LRA.VolumeIII.Analysis.Integration
+end LRA.Analysis.Integration

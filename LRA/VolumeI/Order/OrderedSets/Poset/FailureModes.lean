@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.Poset.Definition
 
-namespace LRA.VolumeI.Order.OrderedSets.Poset
+namespace LRA.Order.OrderedSets.Poset
 
 universe u
 
@@ -11,12 +11,12 @@ three partial-order laws required for a poset.
 Logical form:
 
 ```lean
-Not (LRA.VolumeI.Order.PartialOrder relation)
+Not (LRA.Order.PartialOrder relation)
 ```
 -/
 def FailsPosetLaws {alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation alpha) : Prop :=
-  Not (LRA.VolumeI.Order.PartialOrder relation)
+    (relation : LRA.Relation.Endorelation alpha) : Prop :=
+  Not (LRA.Order.PartialOrder relation)
 
 /--
 The usual strict order on natural numbers is not a poset order, because it is
@@ -32,4 +32,4 @@ theorem NatStrictOrderFailsPosetLaws :
     FailsPosetLaws (fun left right : Nat => left < right) := by
   sorry
 
-end LRA.VolumeI.Order.OrderedSets.Poset
+end LRA.Order.OrderedSets.Poset

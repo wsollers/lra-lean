@@ -1,26 +1,26 @@
 import LRA.VolumeI.Order.OrderedSets.StrictOrder.Characterizations
 import LRA.VolumeI.Order.OrderedSets.StrictPoset.Definition
 
-namespace LRA.VolumeI.Order.OrderedSets.StrictPoset
+namespace LRA.Order.OrderedSets.StrictPoset
 
 /-- The relation carried by a strict poset satisfies the strict-order laws. -/
 theorem StrictPosetRelationIsStrictOrder
-    (poset : LRA.VolumeI.Order.StrictPoset) :
-    LRA.VolumeI.Order.StrictOrder poset.StrictRelation :=
+    (poset : LRA.Order.StrictPoset) :
+    LRA.Order.StrictOrder poset.StrictRelation :=
   poset.StrictRelationIsStrictOrder
 
 /-- The relation carried by a strict poset is irreflexive. -/
 theorem StrictPosetRelationIsIrreflexive
-    (poset : LRA.VolumeI.Order.StrictPoset) :
-    LRA.VolumeI.Relations.Irreflexive poset.StrictRelation :=
-  LRA.VolumeI.Order.OrderedSets.StrictOrder.StrictOrderIsIrreflexive
+    (poset : LRA.Order.StrictPoset) :
+    LRA.Relation.Irreflexive poset.StrictRelation :=
+  LRA.Order.OrderedSets.StrictOrder.StrictOrderIsIrreflexive
     poset.StrictRelation poset.StrictRelationIsStrictOrder
 
 /-- The relation carried by a strict poset is transitive. -/
 theorem StrictPosetRelationIsTransitive
-    (poset : LRA.VolumeI.Order.StrictPoset) :
-    LRA.VolumeI.Relations.Transitive poset.StrictRelation :=
-  LRA.VolumeI.Order.OrderedSets.StrictOrder.StrictOrderIsTransitive
+    (poset : LRA.Order.StrictPoset) :
+    LRA.Relation.Transitive poset.StrictRelation :=
+  LRA.Order.OrderedSets.StrictOrder.StrictOrderIsTransitive
     poset.StrictRelation poset.StrictRelationIsStrictOrder
 
-end LRA.VolumeI.Order.OrderedSets.StrictPoset
+end LRA.Order.OrderedSets.StrictPoset

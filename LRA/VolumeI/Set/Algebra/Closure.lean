@@ -11,7 +11,7 @@ the removed sections.
 
 universe u v w
 
-namespace LRA.VolumeI.Set.Algebra
+namespace LRA.Set.Algebra
 
 /-!
 Generic closure predicates for collections of set-objects.
@@ -154,4 +154,4 @@ def ClosedUnderFinite {Carrier : Type u} (collection : Collection Carrier)
     (∀ object, object ∈ objects → collection object) →
       collection (operation objects)
 
-end LRA.VolumeI.Set.Algebra
+end LRA.Set.Algebra

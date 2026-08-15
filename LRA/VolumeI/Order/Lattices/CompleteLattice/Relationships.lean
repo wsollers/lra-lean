@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.Lattices.CompleteLattice.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -8,9 +8,9 @@ universe u v
 theorem ConverseIsCompleteLatticeIff
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
-    (relation : LRA.VolumeI.Relations.Endorelation Element) :
-    CompleteLattice SetObject (LRA.VolumeI.Relations.Converse relation) ↔
+    (relation : LRA.Relation.Endorelation Element) :
+    CompleteLattice SetObject (LRA.Relation.Converse relation) ↔
       CompleteLattice SetObject relation := by
   sorry
 
-end LRA.VolumeI.Order
+end LRA.Order

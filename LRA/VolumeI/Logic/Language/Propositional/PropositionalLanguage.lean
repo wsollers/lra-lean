@@ -1,4 +1,4 @@
-namespace LRA.VolumeI.Logic.Propositional
+namespace LRA.Logic.Propositional
 
 /-!
 Propositional languages.
@@ -38,4 +38,4 @@ structure PropositionalLanguage where
 structure PropositionalLanguage where
   Atoms : Type
 
-end LRA.VolumeI.Logic.Propositional
+end LRA.Logic.Propositional

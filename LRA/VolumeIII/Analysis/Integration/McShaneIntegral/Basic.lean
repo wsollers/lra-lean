@@ -19,7 +19,7 @@ import LRA.VolumeIII.Analysis.Integration.RiemannIntegral.Basic
 import LRA.VolumeIII.Analysis.Integration.HenstockKurzweil.Basic
 import LRA.VolumeIII.Analysis.Integration.MeasureZero
 
-namespace LRA.VolumeIII.Analysis.Integration
+namespace LRA.Analysis.Integration
 
 /-- `def:mcshane-fine-tagged-partition`'s underlying tagged structure:
 same non-overlapping-covering-subintervals as `IntegrationPartition`, but
@@ -110,7 +110,7 @@ theorem riemann_mcshane_hk_inclusions (hab : a ≤ b) (L : ℝ) :
 
 -- `thm:mcshane-equals-lebesgue`
 /-- If `hab : a ≤ b`. Then `IsMcShaneIntegrable f a b ↔ ∃ E : Set ℝ, IsMeasureZero E ∧ ∀ x ∈ Set.Icc
-a b \ E, LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) x`.
+a b \ E, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) x`.
 
 Logical form:
 
@@ -118,16 +118,16 @@ Logical form:
 theorem mcshane_equals_lebesgue (hab : a ≤ b) :
     IsMcShaneIntegrable f a b ↔
       ∃ E : Set ℝ, IsMeasureZero E ∧
-        ∀ x ∈ Set.Icc a b \ E, LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) x
+        ∀ x ∈ Set.Icc a b \ E, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) x
 ```
 -/
 theorem mcshane_equals_lebesgue (hab : a ≤ b) :
     IsMcShaneIntegrable f a b ↔
       ∃ E : Set ℝ, IsMeasureZero E ∧
-        ∀ x ∈ Set.Icc a b \ E, LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) x := by
+        ∀ x ∈ Set.Icc a b \ E, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) x := by
   sorry
 
-/-- If `F FD : ℝ → ℝ`, `hF : ∀ x : ℝ, LRA.VolumeIII.Analysis.Differentiation.Derivative (FD x) F
+/-- If `F FD : ℝ → ℝ`, `hF : ∀ x : ℝ, LRA.Analysis.Differentiation.Derivative (FD x) F
 Set.univ x`, `hHK : IsHKIntegrable FD (-1) 1`, and `hnotLebesgue : ¬ IsRiemannIntegrable (fun x
 => |FD x|) (-1) 1`. Then `¬ IsMcShaneIntegrable FD (-1) 1`.
 
@@ -135,15 +135,15 @@ Logical form:
 
 ```lean
 theorem hk_strictly_wider_than_mcshane (F FD : ℝ → ℝ)
-    (hF : ∀ x : ℝ, LRA.VolumeIII.Analysis.Differentiation.Derivative (FD x) F Set.univ x)
+    (hF : ∀ x : ℝ, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x)
     (hHK : IsHKIntegrable FD (-1) 1) (hnotLebesgue : ¬ IsRiemannIntegrable (fun x => |FD x|) (-1) 1) :
     ¬ IsMcShaneIntegrable FD (-1) 1
 ```
 -/
 theorem hk_strictly_wider_than_mcshane (F FD : ℝ → ℝ)
-    (hF : ∀ x : ℝ, LRA.VolumeIII.Analysis.Differentiation.Derivative (FD x) F Set.univ x)
+    (hF : ∀ x : ℝ, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x)
     (hHK : IsHKIntegrable FD (-1) 1) (hnotLebesgue : ¬ IsRiemannIntegrable (fun x => |FD x|) (-1) 1) :
     ¬ IsMcShaneIntegrable FD (-1) 1 := by
   sorry
 
-end LRA.VolumeIII.Analysis.Integration
+end LRA.Analysis.Integration

@@ -10,7 +10,7 @@ import Mathlib.Data.Real.Basic
 import LRA.VolumeIII.Analysis.Continuity.Limits
 import LRA.VolumeIII.Analysis.Continuity.PointContinuity
 
-namespace LRA.VolumeIII.Analysis.Differentiation
+namespace LRA.Analysis.Differentiation
 
 /-- `def:derivative-at-a-point` (`h`-form): the ε-δ definition of the
 derivative of `f` at `c`, `c` a limit point of `A`.
@@ -36,13 +36,13 @@ Logical form:
 ```lean
 def ZorichDerivative (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   ∃ α : ℝ → ℝ,
-    LRA.VolumeIII.Analysis.Continuity.TendsTo α A c 0 ∧
+    LRA.Analysis.Continuity.TendsTo α A c 0 ∧
       ∀ x ∈ A, f x = f c + D * (x - c) + α x * (x - c)
 ```
 -/
 def ZorichDerivative (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   ∃ α : ℝ → ℝ,
-    LRA.VolumeIII.Analysis.Continuity.TendsTo α A c 0 ∧
+    LRA.Analysis.Continuity.TendsTo α A c 0 ∧
       ∀ x ∈ A, f x = f c + D * (x - c) + α x * (x - c)
 
 /-- `IsDifferentiable`: existential wrapper used throughout the chapter's
@@ -66,12 +66,12 @@ Logical form:
 
 ```lean
 def DerivativeTop (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
-  ∀ ε > 0, ∃ U : Set ℝ, (∃ δ > 0, U = LRA.VolumeIII.Analysis.Continuity.RelativeNeighborhood A c δ) ∧
+  ∀ ε > 0, ∃ U : Set ℝ, (∃ δ > 0, U = LRA.Analysis.Continuity.RelativeNeighborhood A c δ) ∧
     ∀ x ∈ U, x ≠ c → |(f x - f c) / (x - c) - D| < ε
 ```
 -/
 def DerivativeTop (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
-  ∀ ε > 0, ∃ U : Set ℝ, (∃ δ > 0, U = LRA.VolumeIII.Analysis.Continuity.RelativeNeighborhood A c δ) ∧
+  ∀ ε > 0, ∃ U : Set ℝ, (∃ δ > 0, U = LRA.Analysis.Continuity.RelativeNeighborhood A c δ) ∧
     ∀ x ∈ U, x ≠ c → |(f x - f c) / (x - c) - D| < ε
 
 /-- `def:sequential-definition-of-derivative-at-a-point`: the sequential
@@ -127,19 +127,19 @@ theorem DerivativeHFormEquivalence (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c 
 
 -- `thm:differentiable-implies-continuous`
 /-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ` and `h : IsDifferentiable f A c`. Then
-`LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f A c`.
+`LRA.Analysis.Continuity.ContinuousAtPoint f A c`.
 
 Logical form:
 
 ```lean
 theorem DifferentiableImpliesContinuous (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (h : IsDifferentiable f A c) :
-    LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f A c
+    LRA.Analysis.Continuity.ContinuousAtPoint f A c
 ```
 -/
 theorem DifferentiableImpliesContinuous (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (h : IsDifferentiable f A c) :
-    LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f A c := by
+    LRA.Analysis.Continuity.ContinuousAtPoint f A c := by
   sorry
 
 -- `thm:uniqueness-of-the-derivative`
@@ -157,4 +157,4 @@ theorem DerivativeUnique (f : ℝ → ℝ) (A : Set ℝ) (c D₁ D₂ : ℝ)
     (h₁ : Derivative D₁ f A c) (h₂ : Derivative D₂ f A c) : D₁ = D₂ := by
   sorry
 
-end LRA.VolumeIII.Analysis.Differentiation
+end LRA.Analysis.Differentiation

@@ -5,7 +5,7 @@ import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
 import LRA.VolumeI.Order.Relations.StrictPart.Definition
 import LRA.VolumeI.Order.OrderedSets.LinearOrder.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -13,8 +13,8 @@ universe u v
 theorem LeastElementIsMinimal
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
-    {relation : LRA.VolumeI.Relations.Endorelation Element}
-    (relationIsAntisymmetric : LRA.VolumeI.Relations.Antisymmetric relation)
+    {relation : LRA.Relation.Endorelation Element}
+    (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation)
     {subset : SetObject} {least : Element}
     (leastIsLeast : LeastElement relation subset least) :
     MinimalElement (StrictPart relation) subset least := by
@@ -24,7 +24,7 @@ theorem LeastElementIsMinimal
 theorem MinimalElementIsLeastInLinearOrder
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
-    {relation : LRA.VolumeI.Relations.Endorelation Element}
+    {relation : LRA.Relation.Endorelation Element}
     (relationIsLinearOrder : LinearOrder relation)
     {subset : SetObject} {minimal : Element}
     (minimalIsMinimal : MinimalElement (StrictPart relation) subset minimal) :
@@ -35,10 +35,10 @@ theorem MinimalElementIsLeastInLinearOrder
 theorem LeastElementIsInfimum
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
-    {relation : LRA.VolumeI.Relations.Endorelation Element}
+    {relation : LRA.Relation.Endorelation Element}
     {subset : SetObject} {least : Element}
     (leastIsLeast : LeastElement relation subset least) :
     Infimum relation subset least := by
   sorry
 
-end LRA.VolumeI.Order
+end LRA.Order

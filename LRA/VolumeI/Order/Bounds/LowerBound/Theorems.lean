@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.Bounds.LowerBound.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -8,11 +8,11 @@ universe u v
 theorem LowerBoundOfSubcollection
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
-    {relation : LRA.VolumeI.Relations.Endorelation Element}
+    {relation : LRA.Relation.Endorelation Element}
     {smaller larger : SetObject} {bound : Element}
     (smallerIsContained : forall element, element ∈ smaller -> element ∈ larger)
     (boundIsLowerForLarger : LowerBound relation larger bound) :
     LowerBound relation smaller bound := by
   sorry
 
-end LRA.VolumeI.Order
+end LRA.Order

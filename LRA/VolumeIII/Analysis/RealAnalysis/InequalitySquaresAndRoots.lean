@@ -17,7 +17,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Analysis.SpecialFunctions.Sqrt
 import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
 
-namespace LRA.VolumeIII.Analysis.RealAnalysis
+namespace LRA.Analysis.RealAnalysis
 
 -- `thm:square-nonnegative`
 /-- Let `a : ℝ`. Then `a ^ 2 ≥ 0`.
@@ -215,4 +215,4 @@ theorem UnitIntervalSquareBounds (a : ℝ) :
 theorem UnitIntervalSquareBounds (a : ℝ) :
     (0 < a ∧ a < 1 → a ^ 2 < a) ∧ (a > 1 → a ^ 2 > a) := by sorry
 
-end LRA.VolumeIII.Analysis.RealAnalysis
+end LRA.Analysis.RealAnalysis

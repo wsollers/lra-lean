@@ -3,7 +3,7 @@ import Mathlib.Data.Finset.SDiff
 import LRA.VolumeI.Logic.Syntax.FirstOrder.Formula
 import LRA.VolumeI.Logic.Syntax.FirstOrder.FreeVariablesInTerm
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 Free variables of a formula.
@@ -55,4 +55,4 @@ def freeVariables
   | .impl φ ψ => freeVariables φ ∪ freeVariables ψ
   | .forallQ v φ => (freeVariables φ).erase v
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

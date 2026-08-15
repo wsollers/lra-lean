@@ -1,7 +1,7 @@
 import LRA.VolumeI.Order.Bounds.Infimum.Definition
 import LRA.VolumeI.Order.Bounds.Supremum.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -9,10 +9,10 @@ universe u v
 theorem InfimumOfConverseIffSupremum
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
-    (relation : LRA.VolumeI.Relations.Endorelation Element)
+    (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject) (candidate : Element) :
-    Infimum (LRA.VolumeI.Relations.Converse relation) subset candidate ↔
+    Infimum (LRA.Relation.Converse relation) subset candidate ↔
       Supremum relation subset candidate := by
   sorry
 
-end LRA.VolumeI.Order
+end LRA.Order

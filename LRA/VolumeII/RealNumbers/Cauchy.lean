@@ -4,12 +4,12 @@
 import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA.VolumeII.RealNumbers.Cauchy
+namespace LRA.NumberSystems.RealNumbers.Cauchy
 
-open LRA.VolumeI.Algebra.Models
+open LRA.Algebra.Models
 
 /-!
-Lean module: LRA.VolumeII.RealNumbers.Cauchy
+Lean module: LRA.NumberSystems.RealNumbers.Cauchy
 Verification status: definitions complete; proofs pending
 
 This module follows `docs/number-systems/gpt-05-reals-cauchy.md`.
@@ -601,4 +601,4 @@ theorem representative_multiplication_respects_equivalence
             rational_model absolute_value_data first second⟩) := by
   sorry
 
-end LRA.VolumeII.RealNumbers.Cauchy
+end LRA.NumberSystems.RealNumbers.Cauchy

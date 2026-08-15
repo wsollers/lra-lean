@@ -1,9 +1,9 @@
 import LRA.VolumeI.Functions.Preimages
 import LRA.VolumeI.Identity.Model.Theory
 
-namespace LRA.VolumeI.Functions
+namespace LRA.Function
 
-open LRA.VolumeI.Set
+open LRA.Set
 
 universe u v
 
@@ -101,7 +101,7 @@ Logical form:
 theorem ImageExists
     (map : Function DomainElement CodomainElement)
     (source : DomainSet) :
-    LRA.VolumeI.Identity.Exists
+    LRA.Identity.Exists
       (fun imageSet : CodomainSet =>
         IsImageOf imageSet map source)
 ```
@@ -109,7 +109,7 @@ theorem ImageExists
 theorem ImageExists
     (map : Function DomainElement CodomainElement)
     (source : DomainSet) :
-    LRA.VolumeI.Identity.Exists
+    LRA.Identity.Exists
       (fun imageSet : CodomainSet =>
         IsImageOf imageSet map source) := by
   sorry
@@ -123,7 +123,7 @@ Logical form:
 theorem ImageUnique
     (map : Function DomainElement CodomainElement)
     (source : DomainSet) :
-    LRA.VolumeI.Identity.Unique
+    LRA.Identity.Unique
       (fun imageSet : CodomainSet =>
         IsImageOf imageSet map source)
 ```
@@ -131,7 +131,7 @@ theorem ImageUnique
 theorem ImageUnique
     (map : Function DomainElement CodomainElement)
     (source : DomainSet) :
-    LRA.VolumeI.Identity.Unique
+    LRA.Identity.Unique
       (fun imageSet : CodomainSet =>
         IsImageOf imageSet map source) := by
   sorry
@@ -144,7 +144,7 @@ Logical form:
 theorem ImageExistsAndUnique
     (map : Function DomainElement CodomainElement)
     (source : DomainSet) :
-    LRA.VolumeI.Identity.ExistsAndUnique
+    LRA.Identity.ExistsAndUnique
       (fun imageSet : CodomainSet =>
         IsImageOf imageSet map source)
 ```
@@ -152,7 +152,7 @@ theorem ImageExistsAndUnique
 theorem ImageExistsAndUnique
     (map : Function DomainElement CodomainElement)
     (source : DomainSet) :
-    LRA.VolumeI.Identity.ExistsAndUnique
+    LRA.Identity.ExistsAndUnique
       (fun imageSet : CodomainSet =>
         IsImageOf imageSet map source) := by
   sorry
@@ -273,4 +273,4 @@ end WithSeparation
 
 end Images
 
-end LRA.VolumeI.Functions
+end LRA.Function

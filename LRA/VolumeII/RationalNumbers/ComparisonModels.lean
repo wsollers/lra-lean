@@ -5,13 +5,13 @@ import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeI.Algebra.Models.Models
 import LRA.VolumeII.Integers.ConstructionModels
 
-namespace LRA.VolumeII.RationalNumbers
+namespace LRA.NumberSystems.RationalNumbers
 
-open LRA.VolumeI.Algebra.Models
+open LRA.Algebra.Models
 
 /-!
 Volume II label: alternate-rational-constructions
- Lean module: LRA.VolumeII.RationalNumbers.ComparisonModels
+ Lean module: LRA.NumberSystems.RationalNumbers.ComparisonModels
 Blueprint label: alternate-rational-constructions
 Verification status: statement-accepted-proof-pending
 -/
@@ -63,9 +63,9 @@ def is_order_complete (rational_model : RationalModel) : Prop :=
           rational_model.signature.NonstrictOrder member upper_bound) →
         rational_model.signature.NonstrictOrder supremum upper_bound)
 
-end LRA.VolumeII.RationalNumbers
-namespace LRA.VolumeII.RationalNumbers.QuotientFractionsComparison
-open LRA.VolumeI.Algebra.Models
+end LRA.NumberSystems.RationalNumbers
+namespace LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison
+open LRA.Algebra.Models
 
 /--
 **[Definition — Rational Quotient-Fractions Representative]**
@@ -320,13 +320,13 @@ theorem is_not_order_complete
     ¬ RationalNumbers.is_order_complete (rational_model integer_model) := by
   sorry
 
-end LRA.VolumeII.RationalNumbers.QuotientFractionsComparison
-namespace LRA.VolumeII.RationalNumbers
-open LRA.VolumeI.Algebra.Models
+end LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison
+namespace LRA.NumberSystems.RationalNumbers
+open LRA.Algebra.Models
 
-end LRA.VolumeII.RationalNumbers
-namespace LRA.VolumeII.RationalNumbers.Reduced
-open LRA.VolumeI.Algebra.Models
+end LRA.NumberSystems.RationalNumbers
+namespace LRA.NumberSystems.RationalNumbers.Reduced
+open LRA.Algebra.Models
 
 
 /-- **[Definition — Reduced Rational Representative]**
@@ -387,13 +387,13 @@ noncomputable def rational_model
     (integer_model : IntegerModel) : RationalModel :=
   Classical.choice (rational_model_exists integer_model)
 
-end LRA.VolumeII.RationalNumbers.Reduced
-namespace LRA.VolumeII.RationalNumbers
-open LRA.VolumeI.Algebra.Models
+end LRA.NumberSystems.RationalNumbers.Reduced
+namespace LRA.NumberSystems.RationalNumbers
+open LRA.Algebra.Models
 
-end LRA.VolumeII.RationalNumbers
-namespace LRA.VolumeII.RationalNumbers.FractionField
-open LRA.VolumeI.Algebra.Models
+end LRA.NumberSystems.RationalNumbers
+namespace LRA.NumberSystems.RationalNumbers.FractionField
+open LRA.Algebra.Models
 
 /--
 **[Definition — Integral-Domain Fraction-Field Data]**
@@ -455,9 +455,9 @@ noncomputable def rational_model
     RationalModel :=
   Classical.choice (rational_model_exists fraction_field_data)
 
-end LRA.VolumeII.RationalNumbers.FractionField
-namespace LRA.VolumeII.RationalNumbers
-open LRA.VolumeI.Algebra.Models
+end LRA.NumberSystems.RationalNumbers.FractionField
+namespace LRA.NumberSystems.RationalNumbers
+open LRA.Algebra.Models
 
 
 /-- **[Definition — Ordered-Field Model Isomorphism]**
@@ -713,4 +713,4 @@ theorem rational_quotient_fractions_and_fraction_field_are_isomorphic
         (FractionField.rational_model ⟨integer_model⟩)) :=
   ⟨rational_quotient_fractions_equiv_fraction_field integer_model⟩
 
-end LRA.VolumeII.RationalNumbers
+end LRA.NumberSystems.RationalNumbers

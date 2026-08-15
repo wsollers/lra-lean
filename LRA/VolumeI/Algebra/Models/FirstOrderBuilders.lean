@@ -4,15 +4,15 @@
 import LRA.VolumeI.Algebra.Models.Signatures
 import LRA.VolumeI.AlgebraicStructures.Discrete
 
-namespace LRA.VolumeI.Algebra.Models
+namespace LRA.Algebra.Models
 
-open LRA.VolumeI.AlgebraicStructures
+open LRA.Algebra.Structure
 
 universe u
 
 /-!
 Volume I label: generic-first-order-builders
-Lean module: LRA.VolumeI.Algebra.Models.FirstOrderBuilders
+Lean module: LRA.Algebra.Models.FirstOrderBuilders
 Verification status: checked definitions
 
 One generic builder per first-order language: any carrier whose
@@ -35,12 +35,12 @@ Logical form:
 
 ```lean
 def peanoFirstOrderModel (R : Type u) [OfNat R 1] [HasSuccessor R] :
-    LRA.VolumeI.Logic.FirstOrder.Model PeanoFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model PeanoFirstOrderSignature :=
   BuildPeanoModel { carrier := R, one := 1, successor := Succ }
 ```
 -/
 def peanoFirstOrderModel (R : Type u) [OfNat R 1] [HasSuccessor R] :
-    LRA.VolumeI.Logic.FirstOrder.Model PeanoFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model PeanoFirstOrderSignature :=
   BuildPeanoModel { carrier := R, one := 1, successor := Succ }
 
 /-- Any additively ordered carrier interprets the Presburger language
@@ -51,7 +51,7 @@ Logical form:
 ```lean
 def additiveOrderedFirstOrderModel (R : Type u)
     [Add R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.VolumeI.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature :=
   BuildAdditiveOrderedModel
     { carrier := R, zero := 0, one := 1, addition := (· + ·),
       StrictOrder := (· < ·), NonstrictOrder := (· ≤ ·) }
@@ -59,7 +59,7 @@ def additiveOrderedFirstOrderModel (R : Type u)
 -/
 def additiveOrderedFirstOrderModel (R : Type u)
     [Add R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.VolumeI.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature :=
   BuildAdditiveOrderedModel
     { carrier := R, zero := 0, one := 1, addition := (· + ·),
       StrictOrder := (· < ·), NonstrictOrder := (· ≤ ·) }
@@ -72,7 +72,7 @@ Logical form:
 ```lean
 def arithmeticRingFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
-    LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
   BuildArithmeticRingModel
     { carrier := R, zero := 0, one := 1, addition := (· + ·),
       multiplication := (· * ·) }
@@ -80,7 +80,7 @@ def arithmeticRingFirstOrderModel (R : Type u)
 -/
 def arithmeticRingFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
-    LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
   BuildArithmeticRingModel
     { carrier := R, zero := 0, one := 1, addition := (· + ·),
       multiplication := (· * ·) }
@@ -93,7 +93,7 @@ Logical form:
 ```lean
 def orderedSemiringFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.VolumeI.Logic.FirstOrder.Model OrderedSemiringFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model OrderedSemiringFirstOrderSignature :=
   BuildOrderedSemiringModel
     { carrier := R, zero := 0, one := 1, addition := (· + ·),
       multiplication := (· * ·),
@@ -102,7 +102,7 @@ def orderedSemiringFirstOrderModel (R : Type u)
 -/
 def orderedSemiringFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.VolumeI.Logic.FirstOrder.Model OrderedSemiringFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model OrderedSemiringFirstOrderSignature :=
   BuildOrderedSemiringModel
     { carrier := R, zero := 0, one := 1, addition := (· + ·),
       multiplication := (· * ·),
@@ -116,7 +116,7 @@ Logical form:
 ```lean
 def orderedRingFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.VolumeI.Logic.FirstOrder.Model OrderedRingFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model OrderedRingFirstOrderSignature :=
   BuildOrderedRingModel
     { carrier := R, zero := 0, one := 1, addition := (· + ·),
       negation := (- ·), multiplication := (· * ·),
@@ -125,7 +125,7 @@ def orderedRingFirstOrderModel (R : Type u)
 -/
 def orderedRingFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.VolumeI.Logic.FirstOrder.Model OrderedRingFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model OrderedRingFirstOrderSignature :=
   BuildOrderedRingModel
     { carrier := R, zero := 0, one := 1, addition := (· + ·),
       negation := (- ·), multiplication := (· * ·),
@@ -139,7 +139,7 @@ Logical form:
 ```lean
 def fieldFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
-    LRA.VolumeI.Logic.FirstOrder.Model FieldFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model FieldFirstOrderSignature :=
   BuildFieldModel
     { carrier := R, zero := 0, one := 1, addition := (· + ·),
       negation := (- ·), multiplication := (· * ·), inverse := (·⁻¹) }
@@ -147,7 +147,7 @@ def fieldFirstOrderModel (R : Type u)
 -/
 def fieldFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
-    LRA.VolumeI.Logic.FirstOrder.Model FieldFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model FieldFirstOrderSignature :=
   BuildFieldModel
     { carrier := R, zero := 0, one := 1, addition := (· + ·),
       negation := (- ·), multiplication := (· * ·), inverse := (·⁻¹) }
@@ -160,7 +160,7 @@ Logical form:
 ```lean
 def orderedFieldFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
   BuildOrderedFieldModel
     { carrier := R, zero := 0, one := 1, addition := (· + ·),
       negation := (- ·), multiplication := (· * ·), inverse := (·⁻¹),
@@ -169,7 +169,7 @@ def orderedFieldFirstOrderModel (R : Type u)
 -/
 def orderedFieldFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
   BuildOrderedFieldModel
     { carrier := R, zero := 0, one := 1, addition := (· + ·),
       negation := (- ·), multiplication := (· * ·), inverse := (·⁻¹),
@@ -177,13 +177,13 @@ def orderedFieldFirstOrderModel (R : Type u)
 
 /-! ## Smoke tests: Mathlib carriers through the generic builders -/
 
-example : LRA.VolumeI.Logic.FirstOrder.Model OrderedRingFirstOrderSignature :=
+example : LRA.Logic.FirstOrder.Model OrderedRingFirstOrderSignature :=
   orderedRingFirstOrderModel Int
 
-example : LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
+example : LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
   orderedFieldFirstOrderModel Rat
 
-example : LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+example : LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
   arithmeticRingFirstOrderModel Nat
 
-end LRA.VolumeI.Algebra.Models
+end LRA.Algebra.Models

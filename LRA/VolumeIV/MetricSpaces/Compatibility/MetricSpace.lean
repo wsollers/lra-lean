@@ -5,7 +5,7 @@ Reference definition for metric spaces, following Ó Searcóid `Metric Spaces`,
 Definition 1.1.1.
 -/
 
-namespace LRA.VolumeIV.MetricSpaces
+namespace LRA.Analysis.MetricSpaces
 
 universe u
 
@@ -35,4 +35,4 @@ structure MetricSpaceDefinition where
   /-- The metric on the carrier. -/
   metric : MetricDefinition Carrier
 
-end LRA.VolumeIV.MetricSpaces
+end LRA.Analysis.MetricSpaces

@@ -1,10 +1,10 @@
 /-
 Draft module; not yet imported by the active Volume III root.
 Imports only this pass's own promoted draft modules and Mathlib — nothing from the
-real `LRA.VolumeIII.Analysis.Sequences.Sequences` (or wherever the real
+real `LRA.Analysis.Sequences.Sequences` (or wherever the real
 project eventually lands this), so this can be freely refactored or
 discarded without touching the working project. May freely import
-`LRA.VolumeIII.Analysis.Bounding.*` files from the earlier Bounds
+`LRA.Analysis.Bounds.*` files from the earlier Bounds
 pass, since Sequences builds on suprema/infima/bounds concepts.
 Source: volume-iii/book-analysis-i/sequences/notes/definition/notes-sequences-definitions.tex
 First file of `definition` (installment 1 of 2), first file of the
@@ -54,7 +54,7 @@ import Mathlib.Order.Basic
 import Mathlib.Topology.Instances.Real.Lemmas
 import Mathlib.Order.Filter.AtTopBot.Basic
 
-namespace LRA.VolumeIII.Analysis.Sequences
+namespace LRA.Analysis.Sequences
 
 /-- `def:sequence`. A sequence in a nonempty `X` is a function `N -> X`.
 No extra content beyond the Lean function type itself — kept as a type
@@ -117,4 +117,4 @@ theorem NaturalNumberSequenceDiverges :
     Filter.Tendsto (fun n : ℕ => (n : ℝ)) Filter.atTop Filter.atTop := by
   sorry
 
-end LRA.VolumeIII.Analysis.Sequences
+end LRA.Analysis.Sequences

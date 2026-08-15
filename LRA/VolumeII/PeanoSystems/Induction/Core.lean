@@ -1,6 +1,6 @@
 import LRA.VolumeII.PeanoSystems.PeanoSystem
 
-namespace LRA.VolumeII.PeanoSystems
+namespace LRA.NumberSystems.PeanoSystems
 
 universe u v
 
@@ -155,4 +155,4 @@ theorem SuccessorClosedSubsetMinimality
     ∀ element : Element, element ∈ subset := by
   sorry
 
-end LRA.VolumeII.PeanoSystems
+end LRA.NumberSystems.PeanoSystems

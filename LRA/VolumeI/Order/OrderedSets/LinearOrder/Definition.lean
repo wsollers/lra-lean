@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
@@ -13,12 +13,12 @@ Totality already implies reflexivity by comparing an element with itself. The
 partial-order-plus-totality presentation.
 -/
 def LinearOrder {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha) : Prop :=
-  PartialOrder relation /\ LRA.VolumeI.Relations.Total relation
+    (relation : LRA.Relation.Endorelation Alpha) : Prop :=
+  PartialOrder relation /\ LRA.Relation.Total relation
 
 /-- `TotalOrder` is the standard synonym for `LinearOrder`. -/
 abbrev TotalOrder {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha) : Prop :=
+    (relation : LRA.Relation.Endorelation Alpha) : Prop :=
   LinearOrder relation
 
-end LRA.VolumeI.Order
+end LRA.Order

@@ -9,14 +9,14 @@ intended as the proof foundation for later files; formal proofs should use
 Mathlib's `CompleteSpace` and normed-space APIs directly.
 -/
 
-namespace LRA.VolumeIV.BanachSpaces
+namespace LRA.Analysis.FunctionalAnalysis.BanachSpaces
 
 universe u v
 
 
 /-- Cauchy sequence predicate induced by reference normed-linear-space data.
 
-Mathematical statement (Lean): `def IsCauchySequence {K : Type u} [NormedField K] {V : Type v} (space : LRA.VolumeIV.NormedLinearSpaces.NormedLinearSpaceDefinition K V) (sequence : ℕ → V) : Prop`.
+Mathematical statement (Lean): `def IsCauchySequence {K : Type u} [NormedField K] {V : Type v} (space : LRA.Analysis.FunctionalAnalysis.NormedLinearSpaces.NormedLinearSpaceDefinition K V) (sequence : ℕ → V) : Prop`.
 
 
 Logical form:
@@ -26,7 +26,7 @@ def IsCauchySequence
     {K : Type u}
     [NormedField K]
     {V : Type v}
-    (space : LRA.VolumeIV.NormedLinearSpaces.NormedLinearSpaceDefinition K V)
+    (space : LRA.Analysis.FunctionalAnalysis.NormedLinearSpaces.NormedLinearSpaceDefinition K V)
     (sequence : ℕ → V) : Prop :=
   ∀ ε : Real, 0 < ε → ∃ N : ℕ, ∀ m n : ℕ, N ≤ m → N ≤ n →
     space.norm (space.vectorSpace.add (sequence m) (space.vectorSpace.neg (sequence n))) < ε
@@ -36,7 +36,7 @@ def IsCauchySequence
     {K : Type u}
     [NormedField K]
     {V : Type v}
-    (space : LRA.VolumeIV.NormedLinearSpaces.NormedLinearSpaceDefinition K V)
+    (space : LRA.Analysis.FunctionalAnalysis.NormedLinearSpaces.NormedLinearSpaceDefinition K V)
     (sequence : ℕ → V) : Prop :=
   ∀ ε : Real, 0 < ε → ∃ N : ℕ, ∀ m n : ℕ, N ≤ m → N ≤ n →
     space.norm (space.vectorSpace.add (sequence m) (space.vectorSpace.neg (sequence n))) < ε
@@ -44,7 +44,7 @@ def IsCauchySequence
 
 /-- Convergence predicate induced by reference normed-linear-space data.
 
-Mathematical statement (Lean): `def ConvergesTo {K : Type u} [NormedField K] {V : Type v} (space : LRA.VolumeIV.NormedLinearSpaces.NormedLinearSpaceDefinition K V) (sequence : ℕ → V) (limit : V) : Prop`.
+Mathematical statement (Lean): `def ConvergesTo {K : Type u} [NormedField K] {V : Type v} (space : LRA.Analysis.FunctionalAnalysis.NormedLinearSpaces.NormedLinearSpaceDefinition K V) (sequence : ℕ → V) (limit : V) : Prop`.
 
 
 Logical form:
@@ -54,7 +54,7 @@ def ConvergesTo
     {K : Type u}
     [NormedField K]
     {V : Type v}
-    (space : LRA.VolumeIV.NormedLinearSpaces.NormedLinearSpaceDefinition K V)
+    (space : LRA.Analysis.FunctionalAnalysis.NormedLinearSpaces.NormedLinearSpaceDefinition K V)
     (sequence : ℕ → V)
     (limit : V) : Prop :=
   ∀ ε : Real, 0 < ε → ∃ N : ℕ, ∀ n : ℕ, N ≤ n →
@@ -65,7 +65,7 @@ def ConvergesTo
     {K : Type u}
     [NormedField K]
     {V : Type v}
-    (space : LRA.VolumeIV.NormedLinearSpaces.NormedLinearSpaceDefinition K V)
+    (space : LRA.Analysis.FunctionalAnalysis.NormedLinearSpaces.NormedLinearSpaceDefinition K V)
     (sequence : ℕ → V)
     (limit : V) : Prop :=
   ∀ ε : Real, 0 < ε → ∃ N : ℕ, ∀ n : ℕ, N ≤ n →
@@ -85,7 +85,7 @@ structure BanachSpaceDefinition
     [NormedField K]
     (V : Type v) where
   /-- The underlying normed linear space. -/
-  normedLinearSpace : LRA.VolumeIV.NormedLinearSpaces.NormedLinearSpaceDefinition K V
+  normedLinearSpace : LRA.Analysis.FunctionalAnalysis.NormedLinearSpaces.NormedLinearSpaceDefinition K V
   /-- Every Cauchy sequence converges. -/
   complete :
     ∀ sequence : ℕ → V,
@@ -98,12 +98,12 @@ structure BanachSpaceDefinition
     [NormedField K]
     (V : Type v) where
   /-- The underlying normed linear space. -/
-  normedLinearSpace : LRA.VolumeIV.NormedLinearSpaces.NormedLinearSpaceDefinition K V
+  normedLinearSpace : LRA.Analysis.FunctionalAnalysis.NormedLinearSpaces.NormedLinearSpaceDefinition K V
   /-- Every Cauchy sequence converges. -/
   complete :
     ∀ sequence : ℕ → V,
       IsCauchySequence normedLinearSpace sequence →
       ∃ limit : V, ConvergesTo normedLinearSpace sequence limit
 
-end LRA.VolumeIV.BanachSpaces
+end LRA.Analysis.FunctionalAnalysis.BanachSpaces
 

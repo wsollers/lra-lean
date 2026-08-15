@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.Bounds.UpperBound.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -13,7 +13,7 @@ Logical form:
 
 ```lean
 def Supremum
-    (relation : LRA.VolumeI.Relations.Endorelation Element)
+    (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject)
     (supremum : Element) : Prop :=
   UpperBound relation subset supremum /\
@@ -21,10 +21,10 @@ def Supremum
 ```
 -/
 def Supremum
-    (relation : LRA.VolumeI.Relations.Endorelation Element)
+    (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject)
     (supremum : Element) : Prop :=
   UpperBound relation subset supremum /\
     forall bound, UpperBound relation subset bound -> relation supremum bound
 
-end LRA.VolumeI.Order
+end LRA.Order

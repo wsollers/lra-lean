@@ -2,14 +2,14 @@ import LRA.VolumeI.Order.Constructions.StrictNonStrictCorrespondence.Definition
 import LRA.VolumeI.Order.OrderedSets.LinearOrder.Definition
 import LRA.VolumeI.Order.OrderedSets.StrictLinearOrder.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
 /-- Strict orders induce partial orders by adjoining equality. -/
 theorem StrictOrderInducesPartialOrder
     {Alpha : Type u}
-    {strictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
+    {strictRelation : LRA.Relation.Endorelation Alpha}
     (strictRelationIsStrictOrder : StrictOrder strictRelation) :
     PartialOrder (NonStrictFromStrict strictRelation) := by
   sorry
@@ -17,7 +17,7 @@ theorem StrictOrderInducesPartialOrder
 /-- Partial orders induce strict orders by removing equality. -/
 theorem PartialOrderInducesStrictOrder
     {Alpha : Type u}
-    {nonStrictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
+    {nonStrictRelation : LRA.Relation.Endorelation Alpha}
     (nonStrictRelationIsPartialOrder : PartialOrder nonStrictRelation) :
     StrictOrder (StrictFromNonStrict nonStrictRelation) := by
   sorry
@@ -25,7 +25,7 @@ theorem PartialOrderInducesStrictOrder
 /-- Strict linear orders induce linear orders by adjoining equality. -/
 theorem StrictLinearOrderInducesLinearOrder
     {Alpha : Type u}
-    {strictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
+    {strictRelation : LRA.Relation.Endorelation Alpha}
     (strictRelationIsStrictLinearOrder : StrictLinearOrder strictRelation) :
     LinearOrder (NonStrictFromStrict strictRelation) := by
   sorry
@@ -33,18 +33,18 @@ theorem StrictLinearOrderInducesLinearOrder
 /-- Removing equality after adjoining it recovers an irreflexive relation. -/
 theorem StrictNonStrictInverseCorrespondence
     {Alpha : Type u}
-    {strictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
+    {strictRelation : LRA.Relation.Endorelation Alpha}
     (strictRelationIsIrreflexive :
-      LRA.VolumeI.Relations.Irreflexive strictRelation) :
+      LRA.Relation.Irreflexive strictRelation) :
     StrictFromNonStrict (NonStrictFromStrict strictRelation) = strictRelation := by
   sorry
 
 /-- Adjoining equality to the strict part recovers a reflexive relation. -/
 theorem NonStrictStrictInverseCorrespondence
     {Alpha : Type u}
-    {nonStrictRelation : LRA.VolumeI.Relations.Endorelation Alpha}
+    {nonStrictRelation : LRA.Relation.Endorelation Alpha}
     (nonStrictRelationIsReflexive :
-      LRA.VolumeI.Relations.Reflexive nonStrictRelation) :
+      LRA.Relation.Reflexive nonStrictRelation) :
     NonStrictFromStrict (StrictFromNonStrict nonStrictRelation) =
       nonStrictRelation := by
   sorry
@@ -64,4 +64,4 @@ The relation equalities use function and propositional extensionality. The
 structure equalities additionally use proof irrelevance for law fields.
 -/
 
-end LRA.VolumeI.Order
+end LRA.Order

@@ -4,13 +4,13 @@
 import LRA.VolumeI.Algebra.Models
 import LRA.VolumeII.Integers.Implementation
 
-namespace LRA.VolumeII.Integers
+namespace LRA.NumberSystems.Integers
 
-open LRA.VolumeI.Algebra.Models
+open LRA.Algebra.Models
 
 /-!
 Volume II label: active-integer-model
-Lean module: LRA.VolumeII.Integers.Construction.Model
+Lean module: LRA.NumberSystems.Integers.Construction.Model
 Verification status: checked definitions (model laws are the carrier's
 certificate instances)
 
@@ -27,12 +27,12 @@ Logical form:
 
 ```lean
 def integerNumbersModel :
-    LRA.VolumeI.Logic.FirstOrder.Model OrderedRingFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model OrderedRingFirstOrderSignature :=
   orderedRingFirstOrderModel Z
 ```
 -/
 def integerNumbersModel :
-    LRA.VolumeI.Logic.FirstOrder.Model OrderedRingFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model OrderedRingFirstOrderSignature :=
   orderedRingFirstOrderModel Z
 
 /-- The active integers as a model of the additive ordered language
@@ -42,12 +42,12 @@ Logical form:
 
 ```lean
 def additiveOrderedIntegerModel :
-    LRA.VolumeI.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature :=
   additiveOrderedFirstOrderModel Z
 ```
 -/
 def additiveOrderedIntegerModel :
-    LRA.VolumeI.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature :=
   additiveOrderedFirstOrderModel Z
 
 /-- The active integers as a model of the arithmetic ring language
@@ -57,12 +57,12 @@ Logical form:
 
 ```lean
 def arithmeticRingIntegerModel :
-    LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
   arithmeticRingFirstOrderModel Z
 ```
 -/
 def arithmeticRingIntegerModel :
-    LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
   arithmeticRingFirstOrderModel Z
 
 /-- The active integers as the bundled integer model used by the
@@ -71,11 +71,11 @@ number-system tower. The certificates travel with the carrier.
 Logical form:
 
 ```lean
-def integerNumberSystemModel : LRA.VolumeI.Algebra.Models.IntegerModel :=
+def integerNumberSystemModel : LRA.Algebra.Models.IntegerModel :=
   IntegerModel.ofCarrier Z
 ```
 -/
-def integerNumberSystemModel : LRA.VolumeI.Algebra.Models.IntegerModel :=
+def integerNumberSystemModel : LRA.Algebra.Models.IntegerModel :=
   IntegerModel.ofCarrier Z
 
 /-- The derived operation bundle of the active integer model, for
@@ -91,4 +91,4 @@ def integerNumbersSignature : OrderedRingSignature :=
 def integerNumbersSignature : OrderedRingSignature :=
   integerNumberSystemModel.signature
 
-end LRA.VolumeII.Integers
+end LRA.NumberSystems.Integers

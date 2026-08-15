@@ -5,14 +5,14 @@ import Mathlib.Data.Fin.VecNotation
 import LRA.VolumeI.Logic.Language.FirstOrder.Signature
 import LRA.VolumeI.Logic.Syntax.FirstOrder.Sentence
 
-namespace LRA.VolumeI.Set.ModelTheory
+namespace LRA.Set.ModelTheory
 
-open LRA.VolumeI.Logic
-open LRA.VolumeI.Logic.FirstOrder
+open LRA.Logic
+open LRA.Logic.FirstOrder
 
 /-!
 Volume I label: set-model-theory-language
-Lean module: LRA.VolumeI.Set.ModelTheory.Language
+Lean module: LRA.Set.ModelTheory.Language
 Verification status: checked language module
 
 The language of set theory, `L_∈ = {∈, ∅}`: one binary relation symbol
@@ -207,4 +207,4 @@ def iffF (φ ψ : Formula MembershipSignature Nat) :
     Formula MembershipSignature Nat :=
   Formula.and (.impl φ ψ) (.impl ψ φ)
 
-end LRA.VolumeI.Set.ModelTheory
+end LRA.Set.ModelTheory

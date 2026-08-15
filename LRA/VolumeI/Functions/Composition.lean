@@ -1,46 +1,22 @@
 import LRA.VolumeI.Functions.Functions
 
-namespace LRA.VolumeI.Functions
+namespace LRA.Function
 
-universe u
+universe u v w x
 
-/--
-Composition of functions.
-
-Logical form:
-
-```lean
-def Composition {First Second Third : Type u}
-    (secondMap : Second -> Third)
-    (firstMap : First -> Second) : First -> Third :=
-  fun input => secondMap (firstMap input)
-```
--/
-def Composition {First Second Third : Type u}
-    (secondMap : Second -> Third)
-    (firstMap : First -> Second) : First -> Third :=
+/-- Composition of typed functions with independent universes. -/
+def Composition {First : Type u} {Second : Type v} {Third : Type w}
+    (secondMap : LRA.Function Second Third)
+    (firstMap : LRA.Function First Second) : LRA.Function First Third :=
   fun input => secondMap (firstMap input)
 
-/--
-Function composition is associative.
-
-Logical form:
-
-```lean
-theorem CompositionAssociative {First Second Third Fourth : Type u}
-    (thirdMap : Third -> Fourth)
-    (secondMap : Second -> Third)
-    (firstMap : First -> Second) :
+/-- Function composition is associative. -/
+theorem CompositionAssociative
+    {First : Type u} {Second : Type v} {Third : Type w} {Fourth : Type x}
+    (thirdMap : LRA.Function Third Fourth)
+    (secondMap : LRA.Function Second Third)
+    (firstMap : LRA.Function First Second) :
     Composition thirdMap (Composition secondMap firstMap) =
-      Composition (Composition thirdMap secondMap) firstMap
-```
--/
-theorem CompositionAssociative {First Second Third Fourth : Type u}
-    (thirdMap : Third -> Fourth)
-    (secondMap : Second -> Third)
-    (firstMap : First -> Second) :
-    Composition thirdMap (Composition secondMap firstMap) =
-      Composition (Composition thirdMap secondMap) firstMap := by
-  rfl
+      Composition (Composition thirdMap secondMap) firstMap := rfl
 
-end LRA.VolumeI.Functions
+end LRA.Function

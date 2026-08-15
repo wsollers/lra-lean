@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Model.SecondOrderMonadic.HenkinModel
 
-namespace LRA.VolumeI.Logic.SecondOrderMonadic
+namespace LRA.Logic.SecondOrderMonadic
 
 /-!
 Second-order assignments.
@@ -45,4 +45,4 @@ structure SOAssignment
   elementAssignment : Variable -> M.Domain
   setAssignment : SetVariable -> Set M.Domain
 
-end LRA.VolumeI.Logic.SecondOrderMonadic
+end LRA.Logic.SecondOrderMonadic

@@ -2,7 +2,7 @@ import Mathlib.Data.Set.Basic
 import LRA.VolumeI.Order.Bounds.Supremum.Definition
 import LRA.VolumeI.Order.OrderedSets.Preorder.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 /--
 Antisymmetry is necessary for uniqueness: in the universal preorder on
@@ -16,4 +16,4 @@ theorem SupremaNeedNotBeUniqueInPreorder :
             Supremum (fun _ _ : Bool => True) (Set.univ : Set Bool) second := by
   sorry
 
-end LRA.VolumeI.Order
+end LRA.Order

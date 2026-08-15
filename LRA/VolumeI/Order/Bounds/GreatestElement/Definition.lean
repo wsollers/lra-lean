@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.Bounds.UpperBound.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -13,16 +13,16 @@ Logical form:
 
 ```lean
 def GreatestElement
-    (relation : LRA.VolumeI.Relations.Endorelation Element)
+    (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject)
     (greatest : Element) : Prop :=
   greatest ∈ subset /\ UpperBound relation subset greatest
 ```
 -/
 def GreatestElement
-    (relation : LRA.VolumeI.Relations.Endorelation Element)
+    (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject)
     (greatest : Element) : Prop :=
   greatest ∈ subset /\ UpperBound relation subset greatest
 
-end LRA.VolumeI.Order
+end LRA.Order

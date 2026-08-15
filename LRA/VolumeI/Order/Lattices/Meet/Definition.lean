@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
@@ -11,7 +11,7 @@ Logical form:
 
 ```lean
 def Meet {alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation alpha)
+    (relation : LRA.Relation.Endorelation alpha)
     (left right meet : alpha) : Prop :=
   relation meet left /\ relation meet right /\
     forall lower,
@@ -19,10 +19,10 @@ def Meet {alpha : Type u}
 ```
 -/
 def Meet {alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation alpha)
+    (relation : LRA.Relation.Endorelation alpha)
     (left right meet : alpha) : Prop :=
   relation meet left /\ relation meet right /\
     forall lower,
       relation lower left -> relation lower right -> relation lower meet
 
-end LRA.VolumeI.Order
+end LRA.Order

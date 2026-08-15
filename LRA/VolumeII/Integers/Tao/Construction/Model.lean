@@ -4,11 +4,11 @@
 import LRA.VolumeII.Integers.QuotientOrderedPairs
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA.VolumeII.Integers.Tao
+namespace LRA.NumberSystems.Integers.Tao
 
 /-!
 Volume II label: integers-tao-construction
-Lean module: LRA.VolumeII.Integers.Tao.Construction.Model
+Lean module: LRA.NumberSystems.Integers.Tao.Construction.Model
 Source: docs/number-systems/gpt-02a-integers-tao.md
 Verification status: definitions complete; proofs pending
 
@@ -402,7 +402,7 @@ def representative_strict_order
 /--
 **[Theorem — tao_integers_form_ordered_ring]**
 
-Mathematical statement (Lean): `theorem tao_integers_form_ordered_ring (whole_data : WholeNumberArithmeticForTaoFormalDifferences) : ∃ integer_model : LRA.VolumeI.Algebra.Models.IntegerModel, integer_model.signature.carrier = Carrier whole_data`.
+Mathematical statement (Lean): `theorem tao_integers_form_ordered_ring (whole_data : WholeNumberArithmeticForTaoFormalDifferences) : ∃ integer_model : LRA.Algebra.Models.IntegerModel, integer_model.signature.carrier = Carrier whole_data`.
 
 *Proof status:* proof pending
 
@@ -412,13 +412,13 @@ Logical form:
 ```lean
 theorem tao_integers_form_ordered_ring
     (whole_data : WholeNumberArithmeticForTaoFormalDifferences) :
-    ∃ integer_model : LRA.VolumeI.Algebra.Models.IntegerModel,
+    ∃ integer_model : LRA.Algebra.Models.IntegerModel,
       integer_model.signature.carrier = Carrier whole_data
 ```
 -/
 theorem tao_integers_form_ordered_ring
     (whole_data : WholeNumberArithmeticForTaoFormalDifferences) :
-    ∃ integer_model : LRA.VolumeI.Algebra.Models.IntegerModel,
+    ∃ integer_model : LRA.Algebra.Models.IntegerModel,
       integer_model.signature.carrier = Carrier whole_data := by
   sorry
 
@@ -447,4 +447,4 @@ theorem tao_compares_with_quotient_ordered_pairs
       ∀ first second, comparison first = comparison second → first = second := by
   sorry
 
-end LRA.VolumeII.Integers.Tao
+end LRA.NumberSystems.Integers.Tao

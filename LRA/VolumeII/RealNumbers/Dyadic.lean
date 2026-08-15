@@ -4,12 +4,12 @@
 import LRA.VolumeI.Algebra.Models.Models
 import LRA.VolumeII.RealNumbers.Cauchy
 
-namespace LRA.VolumeII.RealNumbers.Dyadic
+namespace LRA.NumberSystems.RealNumbers.Dyadic
 
-open LRA.VolumeI.Algebra.Models
+open LRA.Algebra.Models
 
 /-!
-Lean module: LRA.VolumeII.RealNumbers.Dyadic
+Lean module: LRA.NumberSystems.RealNumbers.Dyadic
 Source: docs/number-systems/gpt-08-reals-dyadic.md
 Verification status: definitions and final theorem statements complete; proofs pending
 -/
@@ -992,4 +992,4 @@ theorem complete_archimedean_ordered_field :
     CompleteArchimedeanOrderedField dyadic_data := by
   sorry
 
-end LRA.VolumeII.RealNumbers.Dyadic
+end LRA.NumberSystems.RealNumbers.Dyadic

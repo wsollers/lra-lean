@@ -1,8 +1,8 @@
 import LRA.VolumeI.Set.Algebra.Ring
 
-namespace LRA.VolumeI.Set.Algebra
+namespace LRA.Set.Algebra
 
-open LRA.VolumeI.Set
+open LRA.Set
 
 universe u v
 
@@ -63,4 +63,4 @@ theorem RelativeComplementIsMember
 
 end AlgebraOfSets
 
-end LRA.VolumeI.Set.Algebra
+end LRA.Set.Algebra

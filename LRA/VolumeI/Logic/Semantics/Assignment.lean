@@ -1,4 +1,4 @@
-namespace LRA.VolumeI.Logic
+namespace LRA.Logic
 
 /-!
 Updating an assignment.
@@ -77,4 +77,4 @@ theorem differentVariableKeepsOldValue
     updateAssignment assignment v a v' = assignment v' := by
   simp [updateAssignment, hv]
 
-end LRA.VolumeI.Logic
+end LRA.Logic

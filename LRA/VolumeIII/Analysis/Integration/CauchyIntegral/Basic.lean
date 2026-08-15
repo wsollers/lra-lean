@@ -18,7 +18,7 @@ import Mathlib.Algebra.BigOperators.Ring.Finset
 import LRA.VolumeIII.Analysis.Continuity.GlobalTheorems
 import LRA.VolumeIII.Analysis.Integration.Partitions
 
-namespace LRA.VolumeIII.Analysis.Integration
+namespace LRA.Analysis.Integration
 
 /-- `def:cauchy-sum`: the left-endpoint Riemann-type sum.
 Mathematical statement (Lean): `def CauchySum {a b : ℝ} (f : ℝ → ℝ) (P : IntegrationPartition a b) : ℝ :=`.
@@ -108,7 +108,7 @@ theorem cauchy_integral_monotonicity (Lf Lg : ℝ) (hLf : HasCauchyIntegral f a 
     (hLg : HasCauchyIntegral g a b Lg) (hle : ∀ x ∈ Set.Icc a b, f x ≤ g x) : Lf ≤ Lg := by
   sorry
 
-/-- Let `L m M : ℝ`. If `hab : a ≤ b`, `hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f
+/-- Let `L m M : ℝ`. If `hab : a ≤ b`, `hcont : LRA.Analysis.Continuity.ContinuousOn' f
 (Set.Icc a b)`, `hL : HasCauchyIntegral f a b L`, `hm : ∀ x ∈ Set.Icc a b, m ≤ f x`, and `hM : ∀
 x ∈ Set.Icc a b, f x ≤ M`. Then `m * (b - a) ≤ L ∧ L ≤ M * (b - a)`.
 
@@ -116,14 +116,14 @@ Logical form:
 
 ```lean
 theorem cauchy_integral_bounds (hab : a ≤ b)
-    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
+    (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
     (L m M : ℝ) (hL : HasCauchyIntegral f a b L)
     (hm : ∀ x ∈ Set.Icc a b, m ≤ f x) (hM : ∀ x ∈ Set.Icc a b, f x ≤ M) :
     m * (b - a) ≤ L ∧ L ≤ M * (b - a)
 ```
 -/
 theorem cauchy_integral_bounds (hab : a ≤ b)
-    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
+    (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
     (L m M : ℝ) (hL : HasCauchyIntegral f a b L)
     (hm : ∀ x ∈ Set.Icc a b, m ≤ f x) (hM : ∀ x ∈ Set.Icc a b, f x ≤ M) :
     m * (b - a) ≤ L ∧ L ≤ M * (b - a) := by
@@ -177,24 +177,24 @@ noncomputable def IntervalOscillation (f : ℝ → ℝ) (I : Set ℝ) : ℝ :=
   0
 
 -- `thm:continuous-cauchy-integrable`
-/-- If `hab : a ≤ b` and `hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)`.
+/-- If `hab : a ≤ b` and `hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)`.
 Then `IsCauchyIntegrable f a b`.
 
 Logical form:
 
 ```lean
 theorem continuous_cauchy_integrable (hab : a ≤ b)
-    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
+    (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
     IsCauchyIntegrable f a b
 ```
 -/
 theorem continuous_cauchy_integrable (hab : a ≤ b)
-    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
+    (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
     IsCauchyIntegrable f a b := by
   sorry
 
 -- `thm:cauchy-tag-independence`
-/-- Let `L : ℝ`. If `hab : a ≤ b`, `hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f
+/-- Let `L : ℝ`. If `hab : a ≤ b`, `hcont : LRA.Analysis.Continuity.ContinuousOn' f
 (Set.Icc a b)`, and `hL : HasCauchyIntegral f a b L`. Then `∀ ε > 0, ∃ δ > 0, ∀ P :
 TaggedPartitionIntegration a b, PartitionMesh P.toIntegrationPartition < δ → |(∑ i : Fin P.n, f
 (P.tag i) * SubintervalWidth P.toIntegrationPartition i) - L| < ε`.
@@ -203,14 +203,14 @@ Logical form:
 
 ```lean
 theorem cauchy_tag_independence (hab : a ≤ b)
-    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
+    (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
     (L : ℝ) (hL : HasCauchyIntegral f a b L) :
     ∀ ε > 0, ∃ δ > 0, ∀ P : TaggedPartitionIntegration a b, PartitionMesh P.toIntegrationPartition < δ →
       |(∑ i : Fin P.n, f (P.tag i) * SubintervalWidth P.toIntegrationPartition i) - L| < ε
 ```
 -/
 theorem cauchy_tag_independence (hab : a ≤ b)
-    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
+    (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
     (L : ℝ) (hL : HasCauchyIntegral f a b L) :
     ∀ ε > 0, ∃ δ > 0, ∀ P : TaggedPartitionIntegration a b, PartitionMesh P.toIntegrationPartition < δ →
       |(∑ i : Fin P.n, f (P.tag i) * SubintervalWidth P.toIntegrationPartition i) - L| < ε := by
@@ -229,4 +229,4 @@ theorem cauchy_step_function_failure_witness :
     IsCauchyIntegrable (fun x => if x < (1:ℝ)/2 then (0:ℝ) else 1) 0 1 := by
   sorry
 
-end LRA.VolumeIII.Analysis.Integration
+end LRA.Analysis.Integration

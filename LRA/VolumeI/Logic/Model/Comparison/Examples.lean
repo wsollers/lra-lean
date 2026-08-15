@@ -8,7 +8,7 @@ import LRA.VolumeI.Logic.Model.Comparison.ModelEmbedding
 import LRA.VolumeI.Logic.Model.Comparison.ModelIsomorphism
 import LRA.VolumeI.Logic.Model.Comparison.Automorphism
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 Worked examples of `Model.Comparison`.
@@ -329,4 +329,4 @@ theorem qToQIsomorphism.toFunIsIdentity :
 theorem qToQIsomorphism.toFunIsIdentity :
     qToQIsomorphism.toFun = (id : Rat -> Rat) := rfl
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

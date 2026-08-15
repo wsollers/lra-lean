@@ -1,7 +1,7 @@
 import LRA.VolumeI.Set.LRASet.Instances
 import LRA.VolumeI.Set.Interface.Distributivity
 
-namespace LRA.VolumeI.Set.LRASet
+namespace LRA.Set.LRASet
 
 universe u
 
@@ -9,7 +9,7 @@ variable {Alpha : Type u}
 
 /-!
 Distributivity and absorption laws for predicate sets: the backend's
-certificate for `LRA.VolumeI.Set.DistributivityLaws`.
+certificate for `LRA.Set.DistributivityLaws`.
 -/
 /--
 `IntersectionDistributesOverUnion` exposes this formal declaration.
@@ -72,12 +72,12 @@ theorem AbsorptionIntersectionUnion :
 laws. Pure delegation to the theorems above. -/
 instance : DistributivityLaws (LRASet Alpha) where
   IntersectionDistributesOverUnion :=
-    LRA.VolumeI.Set.LRASet.IntersectionDistributesOverUnion
+    LRA.Set.LRASet.IntersectionDistributesOverUnion
   UnionDistributesOverIntersection :=
-    LRA.VolumeI.Set.LRASet.UnionDistributesOverIntersection
+    LRA.Set.LRASet.UnionDistributesOverIntersection
   AbsorptionUnionIntersection :=
-    LRA.VolumeI.Set.LRASet.AbsorptionUnionIntersection
+    LRA.Set.LRASet.AbsorptionUnionIntersection
   AbsorptionIntersectionUnion :=
-    LRA.VolumeI.Set.LRASet.AbsorptionIntersectionUnion
+    LRA.Set.LRASet.AbsorptionIntersectionUnion
 
-end LRA.VolumeI.Set.LRASet
+end LRA.Set.LRASet

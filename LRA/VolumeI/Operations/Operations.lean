@@ -1,6 +1,6 @@
 import LRA.VolumeI.Set
 
-namespace LRA.VolumeI.Operations
+namespace LRA.Algebra.Operation
 
 universe u v
 
@@ -97,4 +97,4 @@ structure PartialBinaryOperation (alpha : Type u) where
   /-- The value of the operation at a pair in its domain. -/
   Value : forall left right, Domain left right -> alpha
 
-end LRA.VolumeI.Operations
+end LRA.Algebra.Operation

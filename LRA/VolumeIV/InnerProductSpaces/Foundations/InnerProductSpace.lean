@@ -9,7 +9,7 @@ intended as the proof foundation for later files; formal proofs should use
 Mathlib's `InnerProductSpace` API directly.
 -/
 
-namespace LRA.VolumeIV.InnerProductSpaces
+namespace LRA.Analysis.FunctionalAnalysis.InnerProductSpaces
 
 universe u
 
@@ -24,7 +24,7 @@ Logical form:
 ```lean
 structure RealInnerProductSpaceDefinition (V : Type u) where
   /-- The underlying real vector-space data. -/
-  vectorSpace : LRA.VolumeIV.VectorSpaces.VectorSpaceDefinition Real V
+  vectorSpace : LRA.LinearAlgebra.VectorSpaceDefinition Real V
   /-- The inner product. -/
   inner : V → V → Real
   /-- Symmetry of the inner product. -/
@@ -43,7 +43,7 @@ structure RealInnerProductSpaceDefinition (V : Type u) where
 -/
 structure RealInnerProductSpaceDefinition (V : Type u) where
   /-- The underlying real vector-space data. -/
-  vectorSpace : LRA.VolumeIV.VectorSpaces.VectorSpaceDefinition Real V
+  vectorSpace : LRA.LinearAlgebra.VectorSpaceDefinition Real V
   /-- The inner product. -/
   inner : V → V → Real
   /-- Symmetry of the inner product. -/
@@ -59,5 +59,5 @@ structure RealInnerProductSpaceDefinition (V : Type u) where
   /-- Definiteness of the quadratic form. -/
   inner_eq_zero : ∀ x : V, inner x x = 0 ↔ x = vectorSpace.zero
 
-end LRA.VolumeIV.InnerProductSpaces
+end LRA.Analysis.FunctionalAnalysis.InnerProductSpaces
 

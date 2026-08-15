@@ -3,11 +3,11 @@
 
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA.VolumeI.Algebra.Models.CharacteristicCardinality
+namespace LRA.Algebra.Models.CharacteristicCardinality
 
 /-!
 Volume II label: characteristic-and-cardinality
-Lean module: LRA.VolumeI.Algebra.Models.CharacteristicCardinality
+Lean module: LRA.Algebra.Models.CharacteristicCardinality
 Source: docs/number-systems/gpt-09a-characteristic-cardinality.md
 Verification status: statement-accepted-proof-pending
 -/
@@ -115,4 +115,4 @@ theorem RealsAreUncountable
     Uncountable SelectedRealModel.signature.carrier := by
   sorry
 
-end LRA.VolumeI.Algebra.Models.CharacteristicCardinality
+end LRA.Algebra.Models.CharacteristicCardinality

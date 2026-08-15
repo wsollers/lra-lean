@@ -1,7 +1,7 @@
 import LRA.VolumeI.Logic.Semantics.Substitution
 import LRA.VolumeI.Logic.Syntax.FirstOrder.Sentence
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 Semantics of closed first-order formulas.
@@ -63,4 +63,4 @@ theorem satisfies_sentence_iff
       Satisfies M rightAssignment sentence.val :=
   satisfies_iff_of_isClosedFormula M sentence.val sentence.property
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

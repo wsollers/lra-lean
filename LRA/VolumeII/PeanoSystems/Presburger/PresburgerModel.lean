@@ -9,7 +9,7 @@ Like `PeanoSystem`, a Presburger model is generic over any set backend via
 successor, order, axioms) stays bundled.
 -/
 
-namespace LRA.VolumeII.PeanoSystems
+namespace LRA.NumberSystems.PeanoSystems
 
 universe u v
 
@@ -91,7 +91,7 @@ def PresburgerModel.toPeanoSystem
   induction := model.induction
 
 /- Volume II label: def:presburger-arithmetic
-   Lean declaration: LRA.VolumeII.PeanoSystems.PresburgerArithmetic
+   Lean declaration: LRA.NumberSystems.PeanoSystems.PresburgerArithmetic
    Status: pending -/
 /--
 `PresburgerArithmetic` defines the displayed object for presburger arithmetic.
@@ -106,4 +106,4 @@ def PresburgerArithmetic
 def PresburgerArithmetic
     (_model : PresburgerModel Element SetObject) : Prop := True
 
-end LRA.VolumeII.PeanoSystems
+end LRA.NumberSystems.PeanoSystems

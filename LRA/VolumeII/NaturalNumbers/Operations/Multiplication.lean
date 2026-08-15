@@ -1,6 +1,6 @@
 import LRA.VolumeII.NaturalNumbers.Operations.Addition
 
-namespace LRA.VolumeII.NaturalNumbers
+namespace LRA.NumberSystems.NaturalNumbers
 
 universe u v
 
@@ -8,7 +8,7 @@ variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 
 
-open LRA.VolumeII.PeanoSystems
+open LRA.NumberSystems.PeanoSystems
 
 /--
 **[Definition - Multiplication on N]**
@@ -177,14 +177,14 @@ Logical form:
 ```lean
 theorem NMultiplicationDistributesOverAddition
     (model : NModel Element SetObject) :
-    LRA.VolumeI.Operations.RightDistributive
+    LRA.Algebra.Operation.RightDistributive
       (NMultiplication model)
       (NAddition model)
 ```
 -/
 theorem NMultiplicationDistributesOverAddition
     (model : NModel Element SetObject) :
-    LRA.VolumeI.Operations.RightDistributive
+    LRA.Algebra.Operation.RightDistributive
       (NMultiplication model)
       (NAddition model) := by
   sorry
@@ -197,14 +197,14 @@ Logical form:
 ```lean
 theorem NLeftDistributivityOfMultiplicationOverAddition
     (model : NModel Element SetObject) :
-    LRA.VolumeI.Operations.LeftDistributive
+    LRA.Algebra.Operation.LeftDistributive
       (NMultiplication model)
       (NAddition model)
 ```
 -/
 theorem NLeftDistributivityOfMultiplicationOverAddition
     (model : NModel Element SetObject) :
-    LRA.VolumeI.Operations.LeftDistributive
+    LRA.Algebra.Operation.LeftDistributive
       (NMultiplication model)
       (NAddition model) := by
   sorry
@@ -217,14 +217,14 @@ Logical form:
 ```lean
 theorem NMultiplicationDistributesOverAdditionBothSides
     (model : NModel Element SetObject) :
-    LRA.VolumeI.Operations.Distributive
+    LRA.Algebra.Operation.Distributive
       (NMultiplication model)
       (NAddition model)
 ```
 -/
 theorem NMultiplicationDistributesOverAdditionBothSides
     (model : NModel Element SetObject) :
-    LRA.VolumeI.Operations.Distributive
+    LRA.Algebra.Operation.Distributive
       (NMultiplication model)
       (NAddition model) := by
   sorry
@@ -237,12 +237,12 @@ Logical form:
 ```lean
 theorem NMultiplicationIsAssociative
     (model : NModel Element SetObject) :
-    LRA.VolumeI.Operations.Associative (NMultiplication model)
+    LRA.Algebra.Operation.Associative (NMultiplication model)
 ```
 -/
 theorem NMultiplicationIsAssociative
     (model : NModel Element SetObject) :
-    LRA.VolumeI.Operations.Associative (NMultiplication model) := by
+    LRA.Algebra.Operation.Associative (NMultiplication model) := by
   sorry
 
 /--
@@ -253,12 +253,12 @@ Logical form:
 ```lean
 theorem NMultiplicationIsCommutative
     (model : NModel Element SetObject) :
-    LRA.VolumeI.Operations.Commutative (NMultiplication model)
+    LRA.Algebra.Operation.Commutative (NMultiplication model)
 ```
 -/
 theorem NMultiplicationIsCommutative
     (model : NModel Element SetObject) :
-    LRA.VolumeI.Operations.Commutative (NMultiplication model) := by
+    LRA.Algebra.Operation.Commutative (NMultiplication model) := by
   sorry
 
-end LRA.VolumeII.NaturalNumbers
+end LRA.NumberSystems.NaturalNumbers

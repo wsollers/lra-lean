@@ -4,17 +4,17 @@
 import LRA.VolumeII.RationalNumbers.RationalQuotientFractions
 import LRA.VolumeII.RealNumbers.Irrationals
 
-namespace LRA.VolumeII.RationalNumbers.ContinuedFractions
-open LRA.VolumeI.Algebra.Models
+namespace LRA.NumberSystems.RationalNumbers.ContinuedFractions
+open LRA.Algebra.Models
 
 /-!
 Volume II label: continued-fractions
-Lean module: LRA.VolumeII.RationalNumbers.ContinuedFractions
+Lean module: LRA.NumberSystems.RationalNumbers.ContinuedFractions
 Source: docs/number-systems/gpt-03b-continued-fractions.md
 Verification status: statement-accepted-proof-pending
 -/
 
-open LRA.VolumeI.Algebra.Models
+open LRA.Algebra.Models
 
 /--
 **[Structure — FiniteSimpleContinuedFraction]**
@@ -283,4 +283,4 @@ theorem quadratic_irrational_iff_eventually_periodic
           real_model.signature.zero := by
   sorry
 
-end LRA.VolumeII.RationalNumbers.ContinuedFractions
+end LRA.NumberSystems.RationalNumbers.ContinuedFractions

@@ -9,7 +9,7 @@ elements are not themselves sets, so this is a genuinely different ontology,
 not a second attempt at Enderton's.
 -/
 
-namespace LRA.VolumeI.Set.LRASet
+namespace LRA.Set.LRASet
 
 universe u
 /--
@@ -53,4 +53,4 @@ theorem LRASetExtensionality {A B : LRASet Alpha}
     A = B := by
   sorry
 
-end LRA.VolumeI.Set.LRASet
+end LRA.Set.LRASet

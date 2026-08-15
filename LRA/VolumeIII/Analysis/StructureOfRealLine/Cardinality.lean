@@ -1,6 +1,6 @@
 import Mathlib.Data.Real.Basic
 
-namespace LRA.VolumeIII.Analysis.StructureOfRealLine
+namespace LRA.Analysis.StructureOfRealLine
 
 /-!
 Cardinality statements for the real line and its standard intervals.
@@ -22,4 +22,4 @@ theorem ClosedUnitIntervalUncountable :
       ∀ x : ℝ, x ∈ Set.Icc (0 : ℝ) 1 → ∃ index : ℕ, enumerate index = x := by
   sorry
 
-end LRA.VolumeIII.Analysis.StructureOfRealLine
+end LRA.Analysis.StructureOfRealLine

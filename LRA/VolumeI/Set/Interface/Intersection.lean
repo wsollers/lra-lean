@@ -1,4 +1,4 @@
-namespace LRA.VolumeI.Set
+namespace LRA.Set
 
 universe u
 
@@ -125,4 +125,4 @@ theorem SubsetIffIntersectionEqLeft : ∀ A B : α, A ⊆ B ↔ A ∩ B = A
 theorem SubsetIffIntersectionEqLeft : ∀ A B : α, A ⊆ B ↔ A ∩ B = A :=
   IntersectionLaws.SubsetIffIntersectionEqLeft
 
-end LRA.VolumeI.Set
+end LRA.Set

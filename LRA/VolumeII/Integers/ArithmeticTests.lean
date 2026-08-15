@@ -3,15 +3,15 @@
 
 import LRA.VolumeII.Integers.Implementation
 
-namespace LRA.VolumeII.Integers.ArithmeticTests
+namespace LRA.NumberSystems.Integers.ArithmeticTests
 
-open LRA.VolumeI.AlgebraicStructures
+open LRA.Algebra.Structure
 
 universe u
 
 /-!
 Volume II label: integers-arithmetic-tests
-Lean module: LRA.VolumeII.Integers.ArithmeticTests
+Lean module: LRA.NumberSystems.Integers.ArithmeticTests
 Verification status: checked smoke tests
 
 The suite is a single polymorphic statement over the mixin vocabulary,
@@ -188,4 +188,4 @@ example (a b : Z) : (a + b) * (a + b) = a * a + (1 + 1) * (a * b) + b * b := by
 
 end MathlibAutomation
 
-end LRA.VolumeII.Integers.ArithmeticTests
+end LRA.NumberSystems.Integers.ArithmeticTests

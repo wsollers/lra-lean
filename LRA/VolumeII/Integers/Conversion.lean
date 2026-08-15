@@ -3,13 +3,13 @@
 
 import LRA.VolumeII.Integers.Implementation
 
-namespace LRA.VolumeII.Integers.Conversion
+namespace LRA.NumberSystems.Integers.Conversion
 
-open LRA.VolumeI.AlgebraicStructures
+open LRA.Algebra.Structure
 
 /-!
 Volume II label: integers-active-conversion-tools
-Lean module: LRA.VolumeII.Integers.Conversion
+Lean module: LRA.NumberSystems.Integers.Conversion
 Verification status: checked conversion utilities
 
 These constructors give examples and downstream tests a stable way to
@@ -117,4 +117,4 @@ def negative_two : Z := ofInt (-2)
 -/
 def negative_two : Z := ofInt (-2)
 
-end LRA.VolumeII.Integers.Conversion
+end LRA.NumberSystems.Integers.Conversion

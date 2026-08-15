@@ -4,7 +4,7 @@ import Mathlib.Topology.MetricSpace.Basic
 Metric isometries.
 -/
 
-namespace LRA.VolumeIV.MetricSpaces.MetricIsometry
+namespace LRA.Analysis.MetricSpaces.MetricIsometry
 
 universe u v
 
@@ -159,4 +159,4 @@ def IsometricCopy
     Prop :=
   ∃ φ : X → Y, IsMetricIsometry φ ∧ Set.range φ = Z
 
-end LRA.VolumeIV.MetricSpaces.MetricIsometry
+end LRA.Analysis.MetricSpaces.MetricIsometry

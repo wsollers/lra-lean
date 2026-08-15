@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Characterizations
 
-namespace LRA.VolumeI.Order.OrderedSets.PartialOrder
+namespace LRA.Order.OrderedSets.PartialOrder
 
 /--
 Projection accessor: every element is related to itself by a non-strict partial
@@ -61,4 +61,4 @@ theorem PartialOrderHasNoNontrivialTwoElementCycles
   NonStrictMutualRelationImpliesEqual order left right
     leftRelatedToRight rightRelatedToLeft
 
-end LRA.VolumeI.Order.OrderedSets.PartialOrder
+end LRA.Order.OrderedSets.PartialOrder

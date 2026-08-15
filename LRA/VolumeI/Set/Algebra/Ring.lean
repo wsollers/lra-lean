@@ -1,9 +1,9 @@
 import LRA.VolumeI.Set.Interface.Operations
 import LRA.VolumeI.Set.Algebra.Closure
 
-namespace LRA.VolumeI.Set.Algebra
+namespace LRA.Set.Algebra
 
-open LRA.VolumeI.Set
+open LRA.Set
 
 universe u v
 
@@ -58,4 +58,4 @@ structure RingOfSets (ambient : SetObject) where
   SymmetricDifferenceIsMember :
     ∀ A B, IsMember A → IsMember B → IsMember (A ∆ B)
 
-end LRA.VolumeI.Set.Algebra
+end LRA.Set.Algebra

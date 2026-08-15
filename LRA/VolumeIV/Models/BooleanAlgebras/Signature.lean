@@ -1,6 +1,6 @@
 import LRA.VolumeI.Algebra.Signatures.OperationBundles
 
-namespace LRA.VolumeIV.Models.BooleanAlgebras
+namespace LRA.Logic.ModelTheory.BooleanAlgebras
 
 /-!
 Source-facing signature for Boolean algebras.
@@ -14,10 +14,10 @@ Logical form:
 
 ```lean
 abbrev BooleanAlgebraSignature :=
-  LRA.VolumeI.Algebra.Signatures.BooleanAlgebraOperationSignature
+  LRA.Algebra.Signatures.BooleanAlgebraOperationSignature
 ```
 -/
 abbrev BooleanAlgebraSignature :=
-  LRA.VolumeI.Algebra.Signatures.BooleanAlgebraOperationSignature
+  LRA.Algebra.Signatures.BooleanAlgebraOperationSignature
 
-end LRA.VolumeIV.Models.BooleanAlgebras
+end LRA.Logic.ModelTheory.BooleanAlgebras

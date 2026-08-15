@@ -4,15 +4,15 @@
 import LRA.VolumeI.Algebra.Models
 import LRA.VolumeII.ComplexNumbers.Construction.Construction
 
-namespace LRA.VolumeII.ComplexNumbers.Construction.ComplexNumber
+namespace LRA.NumberSystems.ComplexNumbers.Construction.ComplexNumber
 
-open LRA.VolumeI.Algebra.Models
+open LRA.Algebra.Models
 
 universe u
 
 /-!
 Volume II label: complex-number-model
-Lean module: LRA.VolumeII.ComplexNumbers.Construction.Model
+Lean module: LRA.NumberSystems.ComplexNumbers.Construction.Model
 Verification status: checked definitions
 
 `ComplexNumber R` carries `Add`, `Mul`, `Neg`, `Inv`, and numerals as
@@ -29,13 +29,13 @@ Logical form:
 ```lean
 def complexNumbersModel (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
-    LRA.VolumeI.Logic.FirstOrder.Model FieldFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model FieldFirstOrderSignature :=
   fieldFirstOrderModel (ComplexNumber R)
 ```
 -/
 def complexNumbersModel (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
-    LRA.VolumeI.Logic.FirstOrder.Model FieldFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model FieldFirstOrderSignature :=
   fieldFirstOrderModel (ComplexNumber R)
 
 /-- The complex numbers over Mathlib's reals, as the default complex
@@ -45,12 +45,12 @@ Logical form:
 
 ```lean
 noncomputable def complexNumbersOverMathlibReals :
-    LRA.VolumeI.Logic.FirstOrder.Model FieldFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model FieldFirstOrderSignature :=
   complexNumbersModel Real
 ```
 -/
 noncomputable def complexNumbersOverMathlibReals :
-    LRA.VolumeI.Logic.FirstOrder.Model FieldFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model FieldFirstOrderSignature :=
   complexNumbersModel Real
 
-end LRA.VolumeII.ComplexNumbers.Construction.ComplexNumber
+end LRA.NumberSystems.ComplexNumbers.Construction.ComplexNumber

@@ -1,48 +1,29 @@
 import LRA.VolumeI.Functions.Fibers
 
-namespace LRA.VolumeI.Functions
+namespace LRA.Function
 
-open LRA.VolumeI.Set
+open LRA.Set
 
-universe u v
+universe u v w
 
-/-- Injectivity of a function.
+/-- Injectivity of a typed function. -/
+def Injective {Domain : Type u} {Codomain : Type v}
+    (map : LRA.Function Domain Codomain) : Prop :=
+  ∀ left right, map left = map right → left = right
 
-Logical form:
+/-- The LRA definition agrees with Lean's standard predicate. -/
+theorem injective_iff_standard {Domain : Type u} {Codomain : Type v}
+    (map : LRA.Function Domain Codomain) :
+    Injective map ↔ _root_.Function.Injective map := Iff.rfl
 
-```lean
-def Injective {Domain Codomain : Type u} (map : Domain -> Codomain) : Prop :=
-  forall left right, map left = map right -> left = right
-```
--/
-def Injective {Domain Codomain : Type u} (map : Domain -> Codomain) : Prop :=
-  forall left right, map left = map right -> left = right
-
-/-- Fiber formulation of injectivity: every fiber over the ambient domain
-has at most one member.
-
-Logical form:
-
-```lean
-def InjectiveByFibers {Element : Type u} {SetObject : Type v}
-    {Codomain : Type u}
+/-- Fiber formulation of injectivity. -/
+def InjectiveByFibers {Element : Type u} {Codomain : Type v}
+    {SetObject : Type w}
     [Membership Element SetObject] [HasSeparation Element SetObject]
     (ambientDomain : SetObject)
-    (map : Function Element Codomain) : Prop :=
-  forall (output : Codomain) (left right : Element),
-    left ∈ Fiber ambientDomain map output ->
-      right ∈ Fiber ambientDomain map output ->
-        left = right
-```
--/
-def InjectiveByFibers {Element : Type u} {SetObject : Type v}
-    {Codomain : Type u}
-    [Membership Element SetObject] [HasSeparation Element SetObject]
-    (ambientDomain : SetObject)
-    (map : Function Element Codomain) : Prop :=
-  forall (output : Codomain) (left right : Element),
-    left ∈ Fiber ambientDomain map output ->
-      right ∈ Fiber ambientDomain map output ->
-        left = right
+    (map : LRA.Function Element Codomain) : Prop :=
+  ∀ (output : Codomain) (left right : Element),
+    left ∈ Fiber ambientDomain map output →
+    right ∈ Fiber ambientDomain map output → left = right
 
-end LRA.VolumeI.Functions
+end LRA.Function

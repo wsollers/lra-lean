@@ -5,13 +5,13 @@
 import LRA.VolumeI.Set.Interface.RelationSets
 import LRA.VolumeI.Set.Interface.Membership
 
-namespace LRA.VolumeI.Set
+namespace LRA.Set
 
 universe u v
 
 /-!
 Volume I label: set-interface-relation-laws
-Lean module: LRA.VolumeI.Set.Interface.RelationLaws
+Lean module: LRA.Set.Interface.RelationLaws
 Verification status: statements accepted; proofs pending (each is a
 short argument from `SeparationMembership` + `PairInjective` + the
 membership laws)
@@ -437,4 +437,4 @@ theorem AppliedToUnique
 
 end RelationLaws
 
-end LRA.VolumeI.Set
+end LRA.Set

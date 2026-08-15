@@ -1,4 +1,4 @@
-namespace LRA.VolumeI.Set
+namespace LRA.Set
 
 universe u v w
 
@@ -19,7 +19,7 @@ Mathlib's names (`HasCompl`, `Top`, `symmDiff`) so a future
 Mathlib-backed adapter can bridge the two without declaration collisions.
 The notation tokens themselves (`ᶜ`, `∆`) do coincide with Mathlib's and
 are declared `scoped` here for that reason: they are active inside the
-`LRA.VolumeI.Set` namespace tree and invisible outside it.
+`LRA.Set` namespace tree and invisible outside it.
 -/
 
 /-- Absolute complement, written `Aᶜ`.
@@ -197,4 +197,4 @@ class HasCollectionIntersection (SetObject : outParam (Type v)) (Collection : Ty
 class HasCollectionIntersection (SetObject : outParam (Type v)) (Collection : Type w) where
   collectionIntersection : Collection → SetObject
 
-end LRA.VolumeI.Set
+end LRA.Set

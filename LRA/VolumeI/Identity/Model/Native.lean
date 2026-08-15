@@ -1,7 +1,7 @@
 import LRA.VolumeI.Identity.Model.Theory
 import LRA.VolumeI.Identity.Theorems.Core
 
-namespace LRA.VolumeI.Identity
+namespace LRA.Identity
 
 universe u v
 
@@ -126,4 +126,4 @@ theorem BinaryRelationCongruence {Carrier : Type u}
     relation left right ↔ relation left' right' :=
   SubstitutionPreservesRelations LeftsAreEqual RightsAreEqual relation
 
-end LRA.VolumeI.Identity
+end LRA.Identity

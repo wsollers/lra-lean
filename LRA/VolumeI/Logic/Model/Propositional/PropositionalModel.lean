@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Syntax.Propositional.Formula
 
-namespace LRA.VolumeI.Logic.Propositional
+namespace LRA.Logic.Propositional
 
 /-!
 Propositional models.
@@ -70,4 +70,4 @@ def PropositionalModel.satisfies
 /-- Notation for satisfaction, matching `v ⊨ φ`. -/
 scoped notation:50 M " ⊨ₚ " φ => PropositionalModel.satisfies M φ
 
-end LRA.VolumeI.Logic.Propositional
+end LRA.Logic.Propositional

@@ -1,6 +1,6 @@
 import LRA.VolumeI.Functions.Composition
 
-namespace LRA.VolumeI.Functions
+namespace LRA.Function
 
 universe u
 
@@ -17,4 +17,4 @@ def IdentityFunction (Carrier : Type u) : Carrier -> Carrier :=
 def IdentityFunction (Carrier : Type u) : Carrier -> Carrier :=
   fun element => element
 
-end LRA.VolumeI.Functions
+end LRA.Function

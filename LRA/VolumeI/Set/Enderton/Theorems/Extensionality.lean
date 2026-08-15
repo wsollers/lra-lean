@@ -5,7 +5,7 @@ import LRA.VolumeI.Set.Enderton.Axioms.Axioms
 The textbook biconditional form of set extensionality.
 -/
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 /-- Two sets are equal if and only if they have the same members.
 
@@ -24,9 +24,9 @@ theorem SetEqualityIffSameMembers (A B : Set) :
   constructor
   · intro SetsAreEqual
     intro x
-    exact LRA.VolumeI.Identity.LeibnizLaw SetsAreEqual
+    exact LRA.Identity.LeibnizLaw SetsAreEqual
       (fun Candidate : Set => x ∈ Candidate)
   · intro SameMembers
     exact Extensionality A B SameMembers
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

@@ -1,7 +1,7 @@
 import LRA.VolumeI.Logic.Proof.System.Basic
 import LRA.VolumeI.Logic.Proof.System.Takeuti.Rule
 
-namespace LRA.VolumeI.Logic.Proof.System.Takeuti
+namespace LRA.Logic.Proof.System.Takeuti
 
 /-!
 Gentzen-Takeuti intuitionistic sequent calculus LJ.
@@ -35,16 +35,16 @@ Logical form:
 
 ```lean
 def LJ (L : Alphabet) [DecidableEq L.FreeVar] :
-    LRA.VolumeI.Logic.Proof.System.ProofSystem where
+    LRA.Logic.Proof.System.ProofSystem where
   Judgement := Judgement L
   IsInitial := fun J => IsInitial J /\ J.IsIntuitionistic
   Rule := LJRule
 ```
 -/
 def LJ (L : Alphabet) [DecidableEq L.FreeVar] :
-    LRA.VolumeI.Logic.Proof.System.ProofSystem where
+    LRA.Logic.Proof.System.ProofSystem where
   Judgement := Judgement L
   IsInitial := fun J => IsInitial J /\ J.IsIntuitionistic
   Rule := LJRule
 
-end LRA.VolumeI.Logic.Proof.System.Takeuti
+end LRA.Logic.Proof.System.Takeuti

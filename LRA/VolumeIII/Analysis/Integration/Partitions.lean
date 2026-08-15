@@ -9,7 +9,7 @@ chapter builds on. One Lean statement per book label, `sorry`-bodied.
 
 import Mathlib.Data.Real.Basic
 
-namespace LRA.VolumeIII.Analysis.Integration
+namespace LRA.Analysis.Integration
 
 /-- `def:integration-partition`: a finite increasing list of break points
 Mathematical statement (Lean): `structure IntegrationPartition (a b : ℝ)`.
@@ -106,4 +106,4 @@ theorem common_refinement_partitions {a b : ℝ} (P Q : IntegrationPartition a b
     ∃ R : IntegrationPartition a b, RefinesPartition R P ∧ RefinesPartition R Q := by
   sorry
 
-end LRA.VolumeIII.Analysis.Integration
+end LRA.Analysis.Integration

@@ -1,11 +1,11 @@
 import LRA.VolumeI.Logic.Syntax.Term
 
-namespace LRA.VolumeI.Logic.SecondOrderMonadic
+namespace LRA.Logic.SecondOrderMonadic
 
 /-!
 Monadic second-order formulas.
 
-Declared in the `LRA.VolumeI.Logic.SecondOrderMonadic` namespace, matching
+Declared in the `LRA.Logic.SecondOrderMonadic` namespace, matching
 `FirstOrder.Formula`/`Propositional.Formula` -- a third, independent
 formula type, not a reuse or extension of either (Lean's `inductive` has
 no mechanism for "the same constructors as `FirstOrder.Formula`, plus two
@@ -129,4 +129,4 @@ def SOFormula.existsSet {S : Signature} {Variable SetVariable : Type}
     (X : SetVariable) (φ : SOFormula S Variable SetVariable) : SOFormula S Variable SetVariable :=
   SOFormula.neg (SOFormula.forallSet X (SOFormula.neg φ))
 
-end LRA.VolumeI.Logic.SecondOrderMonadic
+end LRA.Logic.SecondOrderMonadic

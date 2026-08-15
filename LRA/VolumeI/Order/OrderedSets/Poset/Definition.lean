@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
@@ -12,13 +12,13 @@ Logical form:
 ```lean
 structure Poset where
   Carrier : Type u
-  NonStrictOrder : LRA.VolumeI.Relations.Endorelation Carrier
-  NonStrictOrderIsPartialOrder : LRA.VolumeI.Order.PartialOrder NonStrictOrder
+  NonStrictOrder : LRA.Relation.Endorelation Carrier
+  NonStrictOrderIsPartialOrder : LRA.Order.PartialOrder NonStrictOrder
 ```
 -/
 structure Poset where
   Carrier : Type u
-  NonStrictOrder : LRA.VolumeI.Relations.Endorelation Carrier
-  NonStrictOrderIsPartialOrder : LRA.VolumeI.Order.PartialOrder NonStrictOrder
+  NonStrictOrder : LRA.Relation.Endorelation Carrier
+  NonStrictOrderIsPartialOrder : LRA.Order.PartialOrder NonStrictOrder
 
-end LRA.VolumeI.Order
+end LRA.Order

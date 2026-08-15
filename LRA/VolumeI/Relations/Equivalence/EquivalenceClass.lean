@@ -2,9 +2,9 @@ import LRA.VolumeI.Relations.Equivalence.EquivalenceRelation
 import LRA.VolumeI.Identity.Model.Theory
 import LRA.VolumeI.Set.Interface.Membership
 
-namespace LRA.VolumeI.Relations
+namespace LRA.Relation
 
-open LRA.VolumeI.Set
+open LRA.Set
 
 universe u v
 
@@ -83,7 +83,7 @@ theorem EquivalenceClassExists
     (ambient : SetObject)
     (relation : Endorelation Element)
     (representative : Element) :
-    LRA.VolumeI.Identity.Exists
+    LRA.Identity.Exists
       (fun classSet : SetObject =>
         IsEquivalenceClassOf classSet ambient relation representative)
 ```
@@ -92,7 +92,7 @@ theorem EquivalenceClassExists
     (ambient : SetObject)
     (relation : Endorelation Element)
     (representative : Element) :
-    LRA.VolumeI.Identity.Exists
+    LRA.Identity.Exists
       (fun classSet : SetObject =>
         IsEquivalenceClassOf classSet ambient relation representative) := by
   sorry
@@ -107,7 +107,7 @@ theorem EquivalenceClassUnique
     (ambient : SetObject)
     (relation : Endorelation Element)
     (representative : Element) :
-    LRA.VolumeI.Identity.Unique
+    LRA.Identity.Unique
       (fun classSet : SetObject =>
         IsEquivalenceClassOf classSet ambient relation representative)
 ```
@@ -116,7 +116,7 @@ theorem EquivalenceClassUnique
     (ambient : SetObject)
     (relation : Endorelation Element)
     (representative : Element) :
-    LRA.VolumeI.Identity.Unique
+    LRA.Identity.Unique
       (fun classSet : SetObject =>
         IsEquivalenceClassOf classSet ambient relation representative) := by
   sorry
@@ -131,7 +131,7 @@ theorem EquivalenceClassExistsAndUnique
     (ambient : SetObject)
     (relation : Endorelation Element)
     (representative : Element) :
-    LRA.VolumeI.Identity.ExistsAndUnique
+    LRA.Identity.ExistsAndUnique
       (fun classSet : SetObject =>
         IsEquivalenceClassOf classSet ambient relation representative)
 ```
@@ -140,7 +140,7 @@ theorem EquivalenceClassExistsAndUnique
     (ambient : SetObject)
     (relation : Endorelation Element)
     (representative : Element) :
-    LRA.VolumeI.Identity.ExistsAndUnique
+    LRA.Identity.ExistsAndUnique
       (fun classSet : SetObject =>
         IsEquivalenceClassOf classSet ambient relation representative) := by
   sorry
@@ -200,4 +200,4 @@ end WithSeparation
 
 end EquivalenceClasses
 
-end LRA.VolumeI.Relations
+end LRA.Relation

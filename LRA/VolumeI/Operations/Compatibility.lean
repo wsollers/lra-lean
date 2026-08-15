@@ -1,7 +1,7 @@
 import LRA.VolumeI.Operations.Laws
 import LRA.VolumeI.Relations.Basic.Properties
 
-namespace LRA.VolumeI.Operations
+namespace LRA.Algebra.Operation
 
 universe u
 
@@ -12,14 +12,14 @@ Logical form:
 
 ```lean
 def UnaryOperationRespectsRelation {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha)
+    (relation : LRA.Relation.Endorelation Alpha)
     (operation : UnaryOperation Alpha) : Prop :=
   forall left right,
     relation left right -> relation (operation left) (operation right)
 ```
 -/
 def UnaryOperationRespectsRelation {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha)
+    (relation : LRA.Relation.Endorelation Alpha)
     (operation : UnaryOperation Alpha) : Prop :=
   forall left right,
     relation left right -> relation (operation left) (operation right)
@@ -31,7 +31,7 @@ Logical form:
 
 ```lean
 def BinaryOperationRespectsRelation {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha)
+    (relation : LRA.Relation.Endorelation Alpha)
     (operation : BinaryOperation Alpha) : Prop :=
   forall firstLeft firstRight secondLeft secondRight,
     relation firstLeft firstRight ->
@@ -41,7 +41,7 @@ def BinaryOperationRespectsRelation {Alpha : Type u}
 ```
 -/
 def BinaryOperationRespectsRelation {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha)
+    (relation : LRA.Relation.Endorelation Alpha)
     (operation : BinaryOperation Alpha) : Prop :=
   forall firstLeft firstRight secondLeft secondRight,
     relation firstLeft firstRight ->
@@ -56,16 +56,16 @@ Logical form:
 
 ```lean
 def RespectsEquivalence {Alpha : Type u}
-    (equivalenceRelation : LRA.VolumeI.Relations.Endorelation Alpha)
+    (equivalenceRelation : LRA.Relation.Endorelation Alpha)
     (operation : BinaryOperation Alpha) : Prop :=
-  LRA.VolumeI.Relations.Equivalence equivalenceRelation /\
+  LRA.Relation.Equivalence equivalenceRelation /\
     BinaryOperationRespectsRelation equivalenceRelation operation
 ```
 -/
 def RespectsEquivalence {Alpha : Type u}
-    (equivalenceRelation : LRA.VolumeI.Relations.Endorelation Alpha)
+    (equivalenceRelation : LRA.Relation.Endorelation Alpha)
     (operation : BinaryOperation Alpha) : Prop :=
-  LRA.VolumeI.Relations.Equivalence equivalenceRelation /\
+  LRA.Relation.Equivalence equivalenceRelation /\
     BinaryOperationRespectsRelation equivalenceRelation operation
 
 /--
@@ -75,13 +75,13 @@ Logical form:
 
 ```lean
 def Monotone {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha)
+    (relation : LRA.Relation.Endorelation Alpha)
     (operation : UnaryOperation Alpha) : Prop :=
   UnaryOperationRespectsRelation relation operation
 ```
 -/
 def Monotone {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha)
+    (relation : LRA.Relation.Endorelation Alpha)
     (operation : UnaryOperation Alpha) : Prop :=
   UnaryOperationRespectsRelation relation operation
 
@@ -92,13 +92,13 @@ Logical form:
 
 ```lean
 def Extensive {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha)
+    (relation : LRA.Relation.Endorelation Alpha)
     (operation : UnaryOperation Alpha) : Prop :=
   forall element, relation element (operation element)
 ```
 -/
 def Extensive {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha)
+    (relation : LRA.Relation.Endorelation Alpha)
     (operation : UnaryOperation Alpha) : Prop :=
   forall element, relation element (operation element)
 
@@ -124,7 +124,7 @@ Logical form:
 
 ```lean
 def ClosureOperator {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha)
+    (relation : LRA.Relation.Endorelation Alpha)
     (operation : UnaryOperation Alpha) : Prop :=
   Extensive relation operation /\
     Monotone relation operation /\
@@ -132,7 +132,7 @@ def ClosureOperator {Alpha : Type u}
 ```
 -/
 def ClosureOperator {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha)
+    (relation : LRA.Relation.Endorelation Alpha)
     (operation : UnaryOperation Alpha) : Prop :=
   Extensive relation operation /\
     Monotone relation operation /\
@@ -145,7 +145,7 @@ Logical form:
 
 ```lean
 def StrictMonotone {Alpha : Type u}
-    (strictRelation : LRA.VolumeI.Relations.Endorelation Alpha)
+    (strictRelation : LRA.Relation.Endorelation Alpha)
     (operation : UnaryOperation Alpha) : Prop :=
   forall left right,
     strictRelation left right ->
@@ -153,10 +153,10 @@ def StrictMonotone {Alpha : Type u}
 ```
 -/
 def StrictMonotone {Alpha : Type u}
-    (strictRelation : LRA.VolumeI.Relations.Endorelation Alpha)
+    (strictRelation : LRA.Relation.Endorelation Alpha)
     (operation : UnaryOperation Alpha) : Prop :=
   forall left right,
     strictRelation left right ->
       strictRelation (operation left) (operation right)
 
-end LRA.VolumeI.Operations
+end LRA.Algebra.Operation

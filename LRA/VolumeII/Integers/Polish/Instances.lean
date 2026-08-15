@@ -4,13 +4,13 @@
 import LRA.VolumeI.AlgebraicStructures
 import LRA.VolumeII.Integers.Polish.LandauWorkup
 
-namespace LRA.VolumeII.Integers.Polish.TwoSidedSuccessor
+namespace LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor
 
-open LRA.VolumeI.AlgebraicStructures
+open LRA.Algebra.Structure
 
 /-!
 Volume II label: integers-polish-instances
-Lean module: LRA.VolumeII.Integers.Polish.Instances
+Lean module: LRA.NumberSystems.Integers.Polish.Instances
 Verification status: ring/successor certificates checked by delegation;
 order certificates carry stated `sorry` gaps (see below)
 
@@ -124,4 +124,4 @@ example (a b : Z) : a * Succ b = a * b + a := MulSucc a b
 example (a b c : Z) : a * (b + c) = a * b + a * c := LeftDistributive a b c
 example (a : Z) : a - a = a + -a := SubEqAddNeg a a
 
-end LRA.VolumeII.Integers.Polish.TwoSidedSuccessor
+end LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor

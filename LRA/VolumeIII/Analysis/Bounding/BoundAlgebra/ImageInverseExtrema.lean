@@ -9,9 +9,10 @@ import LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.SupremaInfima
 Extrema of monotone continuous images and inverse images.
 -/
 
-namespace LRA.VolumeIII.Analysis.Bounding.BoundAlgebra
+namespace LRA.Analysis.Bounds.Algebra
 
-open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
+open LRA.Analysis.Bounds.Extremal
+open LRA.Analysis.Bounds
 
 /-- Let `I A : Set ℝ` and `s : ℝ`. If `setContainedInDomain : A ⊆ I`, `nonemptyHypothesis :
 A.Nonempty`, `supremumHypothesis : IsSupremum s A`, `supremumInDomain : s ∈ I`, `f : ℝ → ℝ`,
@@ -289,4 +290,4 @@ theorem DecreasingInverseSendsSupremaToInfima {I J B : Set ℝ}
     IsInfimum (g u) (g '' B) := by
   sorry
 
-end LRA.VolumeIII.Analysis.Bounding.BoundAlgebra
+end LRA.Analysis.Bounds.Algebra

@@ -1,4 +1,4 @@
-namespace LRA.VolumeI.Set
+namespace LRA.Set
 
 universe u
 
@@ -133,4 +133,4 @@ theorem SubsetIffUnionEqRight : ∀ A B : α, A ⊆ B ↔ A ∪ B = B
 theorem SubsetIffUnionEqRight : ∀ A B : α, A ⊆ B ↔ A ∪ B = B :=
   UnionLaws.SubsetIffUnionEqRight
 
-end LRA.VolumeI.Set
+end LRA.Set

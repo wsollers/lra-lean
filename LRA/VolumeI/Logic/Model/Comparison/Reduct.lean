@@ -1,7 +1,7 @@
 import LRA.VolumeI.Logic.Model.Model
 import LRA.VolumeI.Logic.Model.Comparison.SignatureEmbedding
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 Reducts.
@@ -48,4 +48,4 @@ def Model.reduct
   interpretConstant c :=
     M'.interpretConstant (e.embedConstant c)
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

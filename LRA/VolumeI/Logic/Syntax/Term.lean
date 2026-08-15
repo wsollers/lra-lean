@@ -1,14 +1,14 @@
 import LRA.VolumeI.Logic.Language.FirstOrder.Signature
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 Terms.
 
-Declared in the `LRA.VolumeI.Logic.FirstOrder` namespace, matching
+Declared in the `LRA.Logic.FirstOrder` namespace, matching
 `FirstOrder.Formula`/`FirstOrder.Model` -- `Term` is first-order-specific
 syntax (built on `Signature`, which is shared, cross-logic vocabulary and
-stays in the bare `LRA.VolumeI.Logic` namespace).
+stays in the bare `LRA.Logic` namespace).
 
 A term over a signature `S`, with variables drawn from some type
 `Variable`, is one of:
@@ -64,4 +64,4 @@ inductive Term (S : Signature) (Variable : Type) where
       (Fin (S.functionArity f) -> Term S Variable) ->
       Term S Variable
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

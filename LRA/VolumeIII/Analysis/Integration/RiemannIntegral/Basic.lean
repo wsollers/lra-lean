@@ -17,7 +17,7 @@ import LRA.VolumeIII.Analysis.Integration.Partitions
 import LRA.VolumeIII.Analysis.Completeness.Density
 import LRA.VolumeIII.Analysis.Integration.CauchyIntegral.Basic
 
-namespace LRA.VolumeIII.Analysis.Integration
+namespace LRA.Analysis.Integration
 
 /-- `def:riemann-sum`.
 Mathematical statement (Lean): `def RiemannSum {a b : ℝ} (f : ℝ → ℝ) (P : TaggedPartitionIntegration a b) : ℝ :=`.
@@ -64,24 +64,24 @@ def IsRiemannIntegrable (f : ℝ → ℝ) (a b : ℝ) : Prop := ∃ L, HasRieman
 variable {f g : ℝ → ℝ} {a b : ℝ}
 
 -- `thm:continuous-riemann-integrable`
-/-- If `hab : a ≤ b` and `hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)`.
+/-- If `hab : a ≤ b` and `hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)`.
 Then `IsRiemannIntegrable f a b`.
 
 Logical form:
 
 ```lean
 theorem continuous_riemann_integrable (hab : a ≤ b)
-    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
+    (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
     IsRiemannIntegrable f a b
 ```
 -/
 theorem continuous_riemann_integrable (hab : a ≤ b)
-    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
+    (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
     IsRiemannIntegrable f a b := by
   sorry
 
 /-- If `T : ℝ → ℝ` and `hT : ∀ x ∈ Set.Icc (0:ℝ) 1,
-(LRA.VolumeIII.Analysis.Completeness.IsIrrational x → T x = 0) ∧ (∀ p q : ℕ, q > 0 → Nat.Coprime
+(LRA.Analysis.Completeness.IsIrrational x → T x = 0) ∧ (∀ p q : ℕ, q > 0 → Nat.Coprime
 p q → x = (p : ℝ) / q → T x = 1 / q)`. Then `HasRiemannIntegral T 0 1 0`.
 
 Logical form:
@@ -89,14 +89,14 @@ Logical form:
 ```lean
 theorem thomae_riemann_integrable_zero (T : ℝ → ℝ)
     (hT : ∀ x ∈ Set.Icc (0:ℝ) 1,
-      (LRA.VolumeIII.Analysis.Completeness.IsIrrational x → T x = 0) ∧
+      (LRA.Analysis.Completeness.IsIrrational x → T x = 0) ∧
       (∀ p q : ℕ, q > 0 → Nat.Coprime p q → x = (p : ℝ) / q → T x = 1 / q)) :
     HasRiemannIntegral T 0 1 0
 ```
 -/
 theorem thomae_riemann_integrable_zero (T : ℝ → ℝ)
     (hT : ∀ x ∈ Set.Icc (0:ℝ) 1,
-      (LRA.VolumeIII.Analysis.Completeness.IsIrrational x → T x = 0) ∧
+      (LRA.Analysis.Completeness.IsIrrational x → T x = 0) ∧
       (∀ p q : ℕ, q > 0 → Nat.Coprime p q → x = (p : ℝ) / q → T x = 1 / q)) :
     HasRiemannIntegral T 0 1 0 := by
   sorry
@@ -184,7 +184,7 @@ theorem riemann_integral_interval_additivity_value (c Lab Lac Lcb : ℝ) (hac : 
   sorry
 
 -- `thm:riemann-cauchy-criterion`
-/-- If `hab : a ≤ b` and `hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)`.
+/-- If `hab : a ≤ b` and `hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)`.
 Then `IsRiemannIntegrable f a b ↔ ∀ ε > 0, ∃ δ > 0, ∀ P Q : TaggedPartitionIntegration a b,
 PartitionMesh P.toIntegrationPartition < δ → PartitionMesh Q.toIntegrationPartition < δ →
 |RiemannSum f P - RiemannSum f Q| < ε`.
@@ -193,7 +193,7 @@ Logical form:
 
 ```lean
 theorem riemann_cauchy_criterion (hab : a ≤ b)
-    (hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
+    (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
     IsRiemannIntegrable f a b ↔
       ∀ ε > 0, ∃ δ > 0, ∀ P Q : TaggedPartitionIntegration a b,
         PartitionMesh P.toIntegrationPartition < δ → PartitionMesh Q.toIntegrationPartition < δ →
@@ -201,11 +201,11 @@ theorem riemann_cauchy_criterion (hab : a ≤ b)
 ```
 -/
 theorem riemann_cauchy_criterion (hab : a ≤ b)
-    (hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
+    (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
     IsRiemannIntegrable f a b ↔
       ∀ ε > 0, ∃ δ > 0, ∀ P Q : TaggedPartitionIntegration a b,
         PartitionMesh P.toIntegrationPartition < δ → PartitionMesh Q.toIntegrationPartition < δ →
         |RiemannSum f P - RiemannSum f Q| < ε := by
   sorry
 
-end LRA.VolumeIII.Analysis.Integration
+end LRA.Analysis.Integration

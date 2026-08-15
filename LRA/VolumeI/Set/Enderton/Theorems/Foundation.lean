@@ -12,7 +12,7 @@ Union do; it asserts a property every nonempty set has. So this file has no
 witnesses are not claimed to be unique, only to exist.
 -/
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 /-- Every nonempty set has a Foundation witness: a member disjoint from it.
 This is the Axiom of Foundation restated using the named `IsFoundationWitness`
@@ -48,4 +48,4 @@ theorem NoSetIsMemberOfItself (A : Set) :
     A ∉ A := by
   sorry
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

@@ -2,7 +2,7 @@ import LRA.VolumeI.Logic.Syntax.FirstOrder.Sentence
 import LRA.VolumeI.Logic.Semantics.Sentence
 import LRA.VolumeI.Logic.Semantics.SecondOrderMonadic.SOSatisfaction
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 universe u
 
@@ -114,9 +114,9 @@ def SemanticConsequence
   ∀ M : Model.{u} S, ∀ assignment,
     M ∈ ModelsOfFormulaTheory Γ -> Satisfies M assignment φ
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder
 
-namespace LRA.VolumeI.Logic.SecondOrderMonadic
+namespace LRA.Logic.SecondOrderMonadic
 
 universe u
 
@@ -184,4 +184,4 @@ def SemanticConsequence
   ∀ M : HenkinModel.{u} S, ∀ assignment,
     M ∈ ModelsOfFormulaTheory Γ -> SOSatisfies M assignment φ
 
-end LRA.VolumeI.Logic.SecondOrderMonadic
+end LRA.Logic.SecondOrderMonadic

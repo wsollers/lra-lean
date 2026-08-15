@@ -3,7 +3,7 @@
 
 import LRA.VolumeII.NaturalNumbers
 
-namespace LRA.VolumeII.WholeNumbers
+namespace LRA.NumberSystems.WholeNumbers
 
 universe u v
 
@@ -11,7 +11,7 @@ variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 
 /-!
-Lean module: LRA.VolumeII.WholeNumbers.Construction.Model
+Lean module: LRA.NumberSystems.WholeNumbers.Construction.Model
 Source: docs/number-systems/gpt-01b-whole-numbers.md
 Verification status: definitions complete; theorem proofs pending
 -/
@@ -28,14 +28,14 @@ Logical form:
 structure NaturalArithmeticForWholeNumbers
     (Element : Type u) (SetObject : Type v)
     [Membership Element SetObject] where
-  model : LRA.VolumeII.NaturalNumbers.NModel Element SetObject
+  model : LRA.NumberSystems.NaturalNumbers.NModel Element SetObject
   strictOrder : Element → Element → Prop
 ```
 -/
 structure NaturalArithmeticForWholeNumbers
     (Element : Type u) (SetObject : Type v)
     [Membership Element SetObject] where
-  model : LRA.VolumeII.NaturalNumbers.NModel Element SetObject
+  model : LRA.NumberSystems.NaturalNumbers.NModel Element SetObject
   strictOrder : Element → Element → Prop
 
 variable (natural_data : NaturalArithmeticForWholeNumbers Element SetObject)
@@ -131,14 +131,14 @@ noncomputable def addition : Carrier natural_data → Carrier natural_data → C
   | none, right => right
   | left, none => left
   | some left, some right =>
-      some (LRA.VolumeII.NaturalNumbers.NAddition natural_data.model left right)
+      some (LRA.NumberSystems.NaturalNumbers.NAddition natural_data.model left right)
 ```
 -/
 noncomputable def addition : Carrier natural_data → Carrier natural_data → Carrier natural_data
   | none, right => right
   | left, none => left
   | some left, some right =>
-      some (LRA.VolumeII.NaturalNumbers.NAddition natural_data.model left right)
+      some (LRA.NumberSystems.NaturalNumbers.NAddition natural_data.model left right)
 
 
 /-- Multiplication extends natural multiplication and makes zero absorbing.
@@ -153,14 +153,14 @@ noncomputable def multiplication : Carrier natural_data → Carrier natural_data
   | none, _ => none
   | _, none => none
   | some left, some right =>
-      some (LRA.VolumeII.NaturalNumbers.NMultiplication natural_data.model left right)
+      some (LRA.NumberSystems.NaturalNumbers.NMultiplication natural_data.model left right)
 ```
 -/
 noncomputable def multiplication : Carrier natural_data → Carrier natural_data → Carrier natural_data
   | none, _ => none
   | _, none => none
   | some left, some right =>
-      some (LRA.VolumeII.NaturalNumbers.NMultiplication natural_data.model left right)
+      some (LRA.NumberSystems.NaturalNumbers.NMultiplication natural_data.model left right)
 
 
 /-- Strict order puts zero below every positive natural and otherwise uses natural order.
@@ -520,7 +520,7 @@ theorem natural_embedding_preserves_structure :
         successor natural_data (naturalEmbedding natural_data value)) ∧
     (∀ first second,
       naturalEmbedding natural_data
-          (LRA.VolumeII.NaturalNumbers.NAddition
+          (LRA.NumberSystems.NaturalNumbers.NAddition
             natural_data.model
             first
             second) =
@@ -529,7 +529,7 @@ theorem natural_embedding_preserves_structure :
           (naturalEmbedding natural_data second)) ∧
     (∀ first second,
       naturalEmbedding natural_data
-          (LRA.VolumeII.NaturalNumbers.NMultiplication
+          (LRA.NumberSystems.NaturalNumbers.NMultiplication
             natural_data.model
             first
             second) =
@@ -549,7 +549,7 @@ theorem natural_embedding_preserves_structure :
         successor natural_data (naturalEmbedding natural_data value)) ∧
     (∀ first second,
       naturalEmbedding natural_data
-          (LRA.VolumeII.NaturalNumbers.NAddition
+          (LRA.NumberSystems.NaturalNumbers.NAddition
             natural_data.model
             first
             second) =
@@ -558,7 +558,7 @@ theorem natural_embedding_preserves_structure :
           (naturalEmbedding natural_data second)) ∧
     (∀ first second,
       naturalEmbedding natural_data
-          (LRA.VolumeII.NaturalNumbers.NMultiplication
+          (LRA.NumberSystems.NaturalNumbers.NMultiplication
             natural_data.model
             first
             second) =
@@ -572,4 +572,4 @@ theorem natural_embedding_preserves_structure :
         natural_data.strictOrder first second) := by
   sorry
 
-end LRA.VolumeII.WholeNumbers
+end LRA.NumberSystems.WholeNumbers

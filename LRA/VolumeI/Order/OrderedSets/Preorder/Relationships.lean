@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.Preorder.Characterizations
 
-namespace LRA.VolumeI.Order.OrderedSets.Preorder
+namespace LRA.Order.OrderedSets.Preorder
 
 universe u
 
@@ -17,8 +17,8 @@ fun left right => preorder.relation left right /\ Not (preorder.relation right l
 def StrictPartByNotConverse
     {Carrier : Type u}
     (preorder : PreorderRelation Carrier) :
-    LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier :=
+    LRA.Order.OrderedSets.OrderRelation Carrier :=
   fun left right =>
     preorder.relation left right /\ Not (preorder.relation right left)
 
-end LRA.VolumeI.Order.OrderedSets.Preorder
+end LRA.Order.OrderedSets.Preorder

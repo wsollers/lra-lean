@@ -15,7 +15,7 @@ membership lemmas, are discharged by short `ext`/`simp`/`tauto` bridges
 over those same lemmas. Nothing here is `sorry`.
 -/
 
-namespace LRA.VolumeI.Set.MathlibZFSet
+namespace LRA.Set.MathlibZFSet
 
 /-- Membership characterization of the derived symmetric difference.
 
@@ -371,4 +371,4 @@ instance : CountableMembershipLaws ZFSet ZFSet where
   CountableUnionMembership := fun _ _ => mem_countableUnion
   CountableIntersectionMembership := fun _ _ => mem_countableIntersection
 
-end LRA.VolumeI.Set.MathlibZFSet
+end LRA.Set.MathlibZFSet

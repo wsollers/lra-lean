@@ -1,6 +1,6 @@
 import LRA.VolumeI.Relations.Basic.Properties
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -13,17 +13,17 @@ Logical form:
 
 ```lean
 def MinimalElement
-    (strictRelation : LRA.VolumeI.Relations.Endorelation Element)
+    (strictRelation : LRA.Relation.Endorelation Element)
     (subset : SetObject)
     (minimal : Element) : Prop :=
-  LRA.VolumeI.Relations.MinimalElement strictRelation subset minimal
+  LRA.Relation.MinimalElement strictRelation subset minimal
 ```
 -/
 def MinimalElement
-    (strictRelation : LRA.VolumeI.Relations.Endorelation Element)
+    (strictRelation : LRA.Relation.Endorelation Element)
     (subset : SetObject)
     (minimal : Element) : Prop :=
   minimal ∈ subset /\
     forall element, element ∈ subset -> Not (strictRelation element minimal)
 
-end LRA.VolumeI.Order
+end LRA.Order

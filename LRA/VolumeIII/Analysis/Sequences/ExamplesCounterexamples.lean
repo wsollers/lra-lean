@@ -1,7 +1,7 @@
 /-
 Draft module; not yet imported by the active Volume III root.
 Imports only this pass's own promoted draft modules and Mathlib — nothing from the
-real `LRA.VolumeIII.Analysis.Sequences.*`, so this can be freely
+real `LRA.Analysis.Sequences.*`, so this can be freely
 refactored or discarded without touching the working project.
 Source: volume-iii/book-analysis-i/sequences/notes/examples-counterexamples/notes-examples-counterexamples.tex
 Only file in `examples-counterexamples`. 7 worked examples, all correct,
@@ -36,7 +36,7 @@ import LRA.VolumeIII.Analysis.Sequences.SequenceDefinitions
 import LRA.VolumeIII.Analysis.Sequences.Convergence
 import LRA.VolumeIII.Analysis.Sequences.NullConstantSequences
 
-namespace LRA.VolumeIII.Analysis.Sequences
+namespace LRA.Analysis.Sequences
 
 /-- Let `c : ℝ`. Then `ConvergesTo (fun _ : ℕ => c) c`.
 
@@ -159,4 +159,4 @@ theorem ExampleVanishingDifferencesNotCauchy :
       ¬ BoundedSeq (fun n : ℕ => ∑ k ∈ Finset.range (n + 1), 1 / ((k : ℝ) + 1)) := by
   sorry
 
-end LRA.VolumeIII.Analysis.Sequences
+end LRA.Analysis.Sequences

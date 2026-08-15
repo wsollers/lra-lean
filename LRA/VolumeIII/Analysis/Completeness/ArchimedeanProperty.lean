@@ -7,7 +7,7 @@ import Mathlib.Topology.Instances.Real.Lemmas
 Archimedean properties of the real line and integer-part consequences.
 -/
 
-namespace LRA.VolumeIII.Analysis.Completeness
+namespace LRA.Analysis.Completeness
 
 /-- Let `x y : ℝ`. If `positiveScaleHypothesis : x > 0` and `positiveTargetHypothesis : y > 0`. Then
 `∃ n : ℕ, (n : ℝ) * x > y`.
@@ -136,4 +136,4 @@ theorem NaturalsUnboundedAbove :
     ¬ BddAbove (Set.range ((↑) : ℕ → ℝ)) := by
   sorry
 
-end LRA.VolumeIII.Analysis.Completeness
+end LRA.Analysis.Completeness

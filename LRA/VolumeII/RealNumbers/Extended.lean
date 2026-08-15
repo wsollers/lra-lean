@@ -3,17 +3,17 @@
 
 import LRA.VolumeII.RealNumbers.Extensions
 
-namespace LRA.VolumeII.RealNumbers.Extended
-open LRA.VolumeI.Algebra.Models
+namespace LRA.NumberSystems.RealNumbers.Extended
+open LRA.Algebra.Models
 
 /-!
 Volume II label: extended-real-line
-Lean module: LRA.VolumeII.RealNumbers.Extended
+Lean module: LRA.NumberSystems.RealNumbers.Extended
 Source: docs/number-systems/gpt-08c-extended-RealNumbers.md
 Verification status: statement-accepted-proof-pending
 -/
 
-open LRA.VolumeI.Algebra.Models
+open LRA.Algebra.Models
 
 /--
 **[Inductive — ExtendedReal]**
@@ -172,4 +172,4 @@ structure PartialOperation
         operation (.finite first) (.finite second) =
           .finite (real_model.signature.multiplication first second)
 
-end LRA.VolumeII.RealNumbers.Extended
+end LRA.NumberSystems.RealNumbers.Extended

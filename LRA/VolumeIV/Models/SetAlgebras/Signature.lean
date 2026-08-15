@@ -1,6 +1,6 @@
 import LRA.VolumeIV.Models.SetRings.Signature
 
-namespace LRA.VolumeIV.Models.SetAlgebras
+namespace LRA.Logic.ModelTheory.SetAlgebras
 
 /-!
 Source-facing signature for algebras of sets.
@@ -18,13 +18,13 @@ complement relative to `U`.
 Logical form:
 
 ```lean
-structure SetAlgebraSignature extends LRA.VolumeIV.Models.SetRings.SetRingSignature where
+structure SetAlgebraSignature extends LRA.Logic.ModelTheory.SetRings.SetRingSignature where
   one : carrier
-  complement : LRA.VolumeI.Operations.UnaryOperation carrier
+  complement : LRA.Algebra.Operation.UnaryOperation carrier
 ```
 -/
-structure SetAlgebraSignature extends LRA.VolumeIV.Models.SetRings.SetRingSignature where
+structure SetAlgebraSignature extends LRA.Logic.ModelTheory.SetRings.SetRingSignature where
   one : carrier
-  complement : LRA.VolumeI.Operations.UnaryOperation carrier
+  complement : LRA.Algebra.Operation.UnaryOperation carrier
 
-end LRA.VolumeIV.Models.SetAlgebras
+end LRA.Logic.ModelTheory.SetAlgebras

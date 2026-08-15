@@ -4,7 +4,7 @@ import LRA.VolumeIV.TopologicalSpaces.Compatibility.TopologicalSpace
 Basic source-facing topology theorems stated against Mathlib's topology API.
 -/
 
-namespace LRA.VolumeIV.TopologicalSpaces
+namespace LRA.Topology
 
 universe u
 
@@ -161,4 +161,4 @@ theorem TopologicalClosureMonotone
     TopologicalClosureDefinition A ⊆ TopologicalClosureDefinition B := by
   sorry
 
-end LRA.VolumeIV.TopologicalSpaces
+end LRA.Topology

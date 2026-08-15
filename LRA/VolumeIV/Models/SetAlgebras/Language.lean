@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic
 
-namespace LRA.VolumeIV.Models.SetAlgebras
+namespace LRA.Logic.ModelTheory.SetAlgebras
 
 /-!
 First-order language for algebras of sets.
@@ -51,7 +51,7 @@ inductive SetAlgebraConstantSymbol where
 Logical form:
 
 ```lean
-def SetAlgebraFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def SetAlgebraFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := SetAlgebraFunctionSymbol
   arity
     | .join => 2
@@ -59,7 +59,7 @@ def SetAlgebraFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
     | .complement => 1
 ```
 -/
-def SetAlgebraFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def SetAlgebraFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := SetAlgebraFunctionSymbol
   arity
     | .join => 2
@@ -71,12 +71,12 @@ def SetAlgebraFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
 Logical form:
 
 ```lean
-def SetAlgebraFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def SetAlgebraFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := SetAlgebraRelationSymbol
   arity := Empty.elim
 ```
 -/
-def SetAlgebraFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def SetAlgebraFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := SetAlgebraRelationSymbol
   arity := Empty.elim
 
@@ -85,15 +85,15 @@ def SetAlgebraFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
 Logical form:
 
 ```lean
-def SetAlgebraFirstOrderLanguage : LRA.VolumeI.Logic.Signature where
+def SetAlgebraFirstOrderLanguage : LRA.Logic.Signature where
   Functions := SetAlgebraFirstOrderFunctions
   Relations := SetAlgebraFirstOrderRelations
   Constants := SetAlgebraConstantSymbol
 ```
 -/
-def SetAlgebraFirstOrderLanguage : LRA.VolumeI.Logic.Signature where
+def SetAlgebraFirstOrderLanguage : LRA.Logic.Signature where
   Functions := SetAlgebraFirstOrderFunctions
   Relations := SetAlgebraFirstOrderRelations
   Constants := SetAlgebraConstantSymbol
 
-end LRA.VolumeIV.Models.SetAlgebras
+end LRA.Logic.ModelTheory.SetAlgebras

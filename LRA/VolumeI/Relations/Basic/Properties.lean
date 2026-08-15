@@ -1,6 +1,6 @@
 import LRA.VolumeI.Relations.Basic.CoreProperties
 
-namespace LRA.VolumeI.Relations
+namespace LRA.Relation
 
 universe u v
 
@@ -38,4 +38,4 @@ def MinimalElement {Element : Type u} {SetObject : Type v}
   minimum ∈ subset /\
     forall element, element ∈ subset -> Not (relation element minimum)
 
-end LRA.VolumeI.Relations
+end LRA.Relation

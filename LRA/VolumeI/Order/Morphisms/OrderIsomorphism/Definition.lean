@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.Morphisms.OrderEmbedding.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -10,11 +10,11 @@ reflects order.
 -/
 def OrderIsomorphism
     {Alpha : Type u} {Beta : Type v}
-    (sourceRelation : LRA.VolumeI.Relations.Endorelation Alpha)
-    (targetRelation : LRA.VolumeI.Relations.Endorelation Beta)
+    (sourceRelation : LRA.Relation.Endorelation Alpha)
+    (targetRelation : LRA.Relation.Endorelation Beta)
     (forward : Alpha -> Beta) (inverse : Beta -> Alpha) : Prop :=
   (forall source, inverse (forward source) = source) /\
     (forall target, forward (inverse target) = target) /\
       OrderEmbedding sourceRelation targetRelation forward
 
-end LRA.VolumeI.Order
+end LRA.Order

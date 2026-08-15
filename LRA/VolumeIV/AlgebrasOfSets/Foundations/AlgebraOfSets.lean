@@ -9,9 +9,9 @@ their operations through the capability classes, so these definitions
 work at every registered backend.
 -/
 
-namespace LRA.VolumeIV.AlgebrasOfSets
+namespace LRA.Set.Algebra
 
-open LRA.VolumeI.Set
+open LRA.Set
 
 universe u v
 
@@ -23,10 +23,10 @@ Mathematical statement (Lean): `abbrev AlgebraOfSetsDefinition`.
 Logical form:
 
 ```lean
-abbrev AlgebraOfSetsDefinition := @LRA.VolumeI.Set.Algebra.AlgebraOfSets
+abbrev AlgebraOfSetsDefinition := @LRA.Set.Algebra.AlgebraOfSets
 ```
 -/
-abbrev AlgebraOfSetsDefinition := @LRA.VolumeI.Set.Algebra.AlgebraOfSets
+abbrev AlgebraOfSetsDefinition := @LRA.Set.Algebra.AlgebraOfSets
 
 /-- A ring of sets on an ambient set.
 
@@ -36,10 +36,10 @@ Mathematical statement (Lean): `abbrev RingOfSetsDefinition`.
 Logical form:
 
 ```lean
-abbrev RingOfSetsDefinition := @LRA.VolumeI.Set.Algebra.RingOfSets
+abbrev RingOfSetsDefinition := @LRA.Set.Algebra.RingOfSets
 ```
 -/
-abbrev RingOfSetsDefinition := @LRA.VolumeI.Set.Algebra.RingOfSets
+abbrev RingOfSetsDefinition := @LRA.Set.Algebra.RingOfSets
 
 /-- A sigma-ring on an ambient set.
 
@@ -49,10 +49,10 @@ Mathematical statement (Lean): `abbrev SigmaRingDefinition`.
 Logical form:
 
 ```lean
-abbrev SigmaRingDefinition := @LRA.VolumeI.Set.Algebra.SigmaRingOfSets
+abbrev SigmaRingDefinition := @LRA.Set.Algebra.SigmaRingOfSets
 ```
 -/
-abbrev SigmaRingDefinition := @LRA.VolumeI.Set.Algebra.SigmaRingOfSets
+abbrev SigmaRingDefinition := @LRA.Set.Algebra.SigmaRingOfSets
 
 /-- A sigma-algebra on an ambient set.
 
@@ -62,10 +62,10 @@ Mathematical statement (Lean): `abbrev SigmaAlgebraDefinition`.
 Logical form:
 
 ```lean
-abbrev SigmaAlgebraDefinition := @LRA.VolumeI.Set.Algebra.SigmaAlgebraOfSets
+abbrev SigmaAlgebraDefinition := @LRA.Set.Algebra.SigmaAlgebraOfSets
 ```
 -/
-abbrev SigmaAlgebraDefinition := @LRA.VolumeI.Set.Algebra.SigmaAlgebraOfSets
+abbrev SigmaAlgebraDefinition := @LRA.Set.Algebra.SigmaAlgebraOfSets
 
 /-- Reference data for a space equipped with an algebra of sets: an
 ambient set together with an algebra on it.
@@ -82,7 +82,7 @@ structure AlgebraOfSetsSpaceDefinition
     [Union SetObj] [Inter SetObj] [SDiff SetObj]
     [EmptyCollection SetObj] [HasSubset SetObj] [HasSymmDiff SetObj] where
   ambient : SetObj
-  algebra : LRA.VolumeI.Set.Algebra.AlgebraOfSets ambient
+  algebra : LRA.Set.Algebra.AlgebraOfSets ambient
 ```
 -/
 structure AlgebraOfSetsSpaceDefinition
@@ -91,7 +91,7 @@ structure AlgebraOfSetsSpaceDefinition
     [Union SetObj] [Inter SetObj] [SDiff SetObj]
     [EmptyCollection SetObj] [HasSubset SetObj] [HasSymmDiff SetObj] where
   ambient : SetObj
-  algebra : LRA.VolumeI.Set.Algebra.AlgebraOfSets ambient
+  algebra : LRA.Set.Algebra.AlgebraOfSets ambient
 
 namespace AlgebraOfSetsSpaceDefinition
 
@@ -116,4 +116,4 @@ abbrev SetObject
 
 end AlgebraOfSetsSpaceDefinition
 
-end LRA.VolumeIV.AlgebrasOfSets
+end LRA.Set.Algebra

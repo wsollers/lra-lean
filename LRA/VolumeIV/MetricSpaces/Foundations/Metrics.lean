@@ -5,7 +5,7 @@ import LRA.VolumeIV.MetricSpaces.Compatibility.Metric
 Reusable metric definitions for the textbook `MetricDefinition` record.
 -/
 
-namespace LRA.VolumeIV.MetricSpaces
+namespace LRA.Analysis.MetricSpaces
 namespace Metrics
 
 universe u
@@ -175,4 +175,4 @@ noncomputable def ComplexCircleChordMetric
     sorry
 
 end Metrics
-end LRA.VolumeIV.MetricSpaces
+end LRA.Analysis.MetricSpaces

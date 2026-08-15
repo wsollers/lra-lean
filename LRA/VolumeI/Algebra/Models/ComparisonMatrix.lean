@@ -4,11 +4,11 @@
 import LRA.VolumeI.Algebra.Models.CharacteristicCardinality
 import LRA.VolumeI.Algebra.Models.CanonicalEmbeddings
 
-namespace LRA.VolumeI.Algebra.Models.ComparisonMatrix
+namespace LRA.Algebra.Models.ComparisonMatrix
 
 /-!
 Volume II label: number-system-comparison-matrix
-Lean module: LRA.VolumeI.Algebra.Models.ComparisonMatrix
+Lean module: LRA.Algebra.Models.ComparisonMatrix
 Source: docs/number-systems/gpt-10-comparison-matrix.md
 Verification status: statement-accepted-proof-pending
 -/
@@ -93,4 +93,4 @@ theorem ComparisonMatrixForZQR
         RealLedger.HasCompletenessProperty := by
   sorry
 
-end LRA.VolumeI.Algebra.Models.ComparisonMatrix
+end LRA.Algebra.Models.ComparisonMatrix

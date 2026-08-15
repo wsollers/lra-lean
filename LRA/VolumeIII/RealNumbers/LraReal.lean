@@ -4,7 +4,7 @@
 import Mathlib.Data.Rat.Defs
 import Mathlib.Data.Set.Basic
 
-namespace LRA.VolumeIII.RealNumbers
+namespace LRA.NumberSystems.RealNumbers
 
 /-- An LRA real as a lower Dedekind cut of rationals.
 
@@ -26,8 +26,8 @@ structure LraReal where
   downward : forall {p : Rat}, p ∈ lower -> forall {q : Rat}, q < p -> q ∈ lower
   open_above : forall {p : Rat}, p ∈ lower -> exists r, r ∈ lower /\ p < r
 
-end LRA.VolumeIII.RealNumbers
-namespace LRA.VolumeIII.RealNumbers.LraReal
+end LRA.NumberSystems.RealNumbers
+namespace LRA.NumberSystems.RealNumbers.LraReal
 
 /-- The available order on `LraReal` is cut inclusion. -/
 instance : Preorder LraReal where
@@ -35,5 +35,5 @@ instance : Preorder LraReal where
   le_refl x := Set.Subset.refl x.lower
   le_trans _ _ _ hxy hyz := Set.Subset.trans hxy hyz
 
-end LRA.VolumeIII.RealNumbers.LraReal
-namespace LRA.VolumeIII.RealNumbers
+end LRA.NumberSystems.RealNumbers.LraReal
+namespace LRA.NumberSystems.RealNumbers

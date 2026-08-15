@@ -1,6 +1,6 @@
 import LRA.VolumeII.PeanoSystems.Induction.Core
 
-namespace LRA.VolumeII.PeanoSystems
+namespace LRA.NumberSystems.PeanoSystems
 
 universe u v w
 
@@ -637,4 +637,4 @@ theorem UniquenessOfPeanoSystemsUpToIsomorphism
     (second : PeanoSystem SecondElement SecondSetObject) : True := by
   sorry
 
-end LRA.VolumeII.PeanoSystems
+end LRA.NumberSystems.PeanoSystems

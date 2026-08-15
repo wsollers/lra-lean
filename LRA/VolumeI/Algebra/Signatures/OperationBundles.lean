@@ -1,6 +1,6 @@
 import LRA.VolumeI.Operations
 
-namespace LRA.VolumeI.Algebra.Signatures
+namespace LRA.Algebra.Signatures
 
 /-!
 Reusable type-theoretic algebra operation bundles.
@@ -74,11 +74,11 @@ Logical form:
 
 ```lean
 structure AdditiveSignature extends CarrierSignature where
-  add : LRA.VolumeI.Operations.BinaryOperation carrier
+  add : LRA.Algebra.Operation.BinaryOperation carrier
 ```
 -/
 structure AdditiveSignature extends CarrierSignature where
-  add : LRA.VolumeI.Operations.BinaryOperation carrier
+  add : LRA.Algebra.Operation.BinaryOperation carrier
 
 /-- A multiplicative signature names one binary operation `multiply`;
 equivalently, it supplies the operation later interpreted as multiplication or
@@ -88,11 +88,11 @@ Logical form:
 
 ```lean
 structure MultiplicativeSignature extends CarrierSignature where
-  multiply : LRA.VolumeI.Operations.BinaryOperation carrier
+  multiply : LRA.Algebra.Operation.BinaryOperation carrier
 ```
 -/
 structure MultiplicativeSignature extends CarrierSignature where
-  multiply : LRA.VolumeI.Operations.BinaryOperation carrier
+  multiply : LRA.Algebra.Operation.BinaryOperation carrier
 
 /-- A lattice-operation signature names binary `join` and `meet`;
 equivalently, it supplies the operations later interpreted as union and
@@ -102,13 +102,13 @@ Logical form:
 
 ```lean
 structure LatticeOperationSignature extends CarrierSignature where
-  join : LRA.VolumeI.Operations.BinaryOperation carrier
-  meet : LRA.VolumeI.Operations.BinaryOperation carrier
+  join : LRA.Algebra.Operation.BinaryOperation carrier
+  meet : LRA.Algebra.Operation.BinaryOperation carrier
 ```
 -/
 structure LatticeOperationSignature extends CarrierSignature where
-  join : LRA.VolumeI.Operations.BinaryOperation carrier
-  meet : LRA.VolumeI.Operations.BinaryOperation carrier
+  join : LRA.Algebra.Operation.BinaryOperation carrier
+  meet : LRA.Algebra.Operation.BinaryOperation carrier
 
 /-- A complemented-operation signature names one unary `complement` operation;
 equivalently, it supplies the operation later interpreted as Boolean or set
@@ -118,11 +118,11 @@ Logical form:
 
 ```lean
 structure ComplementOperationSignature extends CarrierSignature where
-  complement : LRA.VolumeI.Operations.UnaryOperation carrier
+  complement : LRA.Algebra.Operation.UnaryOperation carrier
 ```
 -/
 structure ComplementOperationSignature extends CarrierSignature where
-  complement : LRA.VolumeI.Operations.UnaryOperation carrier
+  complement : LRA.Algebra.Operation.UnaryOperation carrier
 
 /-- A Boolean-ring operation signature names `zero`, `one`, `add`, and
 `multiply`; equivalently, powerset models read these as `∅`, `U`, symmetric
@@ -132,13 +132,13 @@ Logical form:
 
 ```lean
 structure BooleanRingOperationSignature extends ZeroOneSignature where
-  add : LRA.VolumeI.Operations.BinaryOperation carrier
-  multiply : LRA.VolumeI.Operations.BinaryOperation carrier
+  add : LRA.Algebra.Operation.BinaryOperation carrier
+  multiply : LRA.Algebra.Operation.BinaryOperation carrier
 ```
 -/
 structure BooleanRingOperationSignature extends ZeroOneSignature where
-  add : LRA.VolumeI.Operations.BinaryOperation carrier
-  multiply : LRA.VolumeI.Operations.BinaryOperation carrier
+  add : LRA.Algebra.Operation.BinaryOperation carrier
+  multiply : LRA.Algebra.Operation.BinaryOperation carrier
 
 /-- A Boolean-algebra operation signature names `zero`, `one`, `join`, `meet`,
 and `complement`; equivalently, powerset models read these as `∅`, `U`, union,
@@ -148,14 +148,14 @@ Logical form:
 
 ```lean
 structure BooleanAlgebraOperationSignature extends ZeroOneSignature where
-  join : LRA.VolumeI.Operations.BinaryOperation carrier
-  meet : LRA.VolumeI.Operations.BinaryOperation carrier
-  complement : LRA.VolumeI.Operations.UnaryOperation carrier
+  join : LRA.Algebra.Operation.BinaryOperation carrier
+  meet : LRA.Algebra.Operation.BinaryOperation carrier
+  complement : LRA.Algebra.Operation.UnaryOperation carrier
 ```
 -/
 structure BooleanAlgebraOperationSignature extends ZeroOneSignature where
-  join : LRA.VolumeI.Operations.BinaryOperation carrier
-  meet : LRA.VolumeI.Operations.BinaryOperation carrier
-  complement : LRA.VolumeI.Operations.UnaryOperation carrier
+  join : LRA.Algebra.Operation.BinaryOperation carrier
+  meet : LRA.Algebra.Operation.BinaryOperation carrier
+  complement : LRA.Algebra.Operation.UnaryOperation carrier
 
-end LRA.VolumeI.Algebra.Signatures
+end LRA.Algebra.Signatures

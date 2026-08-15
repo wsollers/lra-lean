@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.Poset.Characterizations
 
-namespace LRA.VolumeI.Order.OrderedSets.Poset
+namespace LRA.Order.OrderedSets.Poset
 
 /--
 Every element of a poset is below itself in the packaged non-strict order.
@@ -12,7 +12,7 @@ poset.NonStrictOrder element element
 ```
 -/
 theorem PosetElementRelatesToItself
-    (poset : LRA.VolumeI.Order.Poset)
+    (poset : LRA.Order.Poset)
     (element : poset.Carrier) :
     poset.NonStrictOrder element element :=
   PosetOrderIsReflexive poset element
@@ -29,7 +29,7 @@ left = right
 ```
 -/
 theorem PosetMutualOrderImpliesEqual
-    (poset : LRA.VolumeI.Order.Poset)
+    (poset : LRA.Order.Poset)
     (left right : poset.Carrier)
     (leftBelowRight : poset.NonStrictOrder left right)
     (rightBelowLeft : poset.NonStrictOrder right left) :
@@ -48,7 +48,7 @@ poset.NonStrictOrder first third
 ```
 -/
 theorem PosetOrderTrans
-    (poset : LRA.VolumeI.Order.Poset)
+    (poset : LRA.Order.Poset)
     (first second third : poset.Carrier)
     (firstBelowSecond : poset.NonStrictOrder first second)
     (secondBelowThird : poset.NonStrictOrder second third) :
@@ -56,4 +56,4 @@ theorem PosetOrderTrans
   PosetOrderIsTransitive poset first second third
     firstBelowSecond secondBelowThird
 
-end LRA.VolumeI.Order.OrderedSets.Poset
+end LRA.Order.OrderedSets.Poset

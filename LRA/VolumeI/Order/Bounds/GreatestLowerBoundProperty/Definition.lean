@@ -1,7 +1,7 @@
 import LRA.VolumeI.Order.Bounds.BoundedBelow.Definition
 import LRA.VolumeI.Order.Bounds.Infimum.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -9,10 +9,10 @@ universe u v
 def GreatestLowerBoundProperty
     {Element : Type u} (SetObject : Type v)
     [Membership Element SetObject]
-    (relation : LRA.VolumeI.Relations.Endorelation Element) : Prop :=
+    (relation : LRA.Relation.Endorelation Element) : Prop :=
   forall subset : SetObject,
     (exists element, element ∈ subset) ->
       BoundedBelow relation subset ->
         exists infimum, Infimum relation subset infimum
 
-end LRA.VolumeI.Order
+end LRA.Order

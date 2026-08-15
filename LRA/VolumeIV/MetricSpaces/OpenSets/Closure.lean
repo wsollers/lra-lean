@@ -5,6 +5,6 @@ This module is reserved for closure characterized by metric balls and by
 distance-to-set zero, plus bridge lemmas to topology-level closure.
 -/
 
-namespace LRA.VolumeIV.MetricSpaces
+namespace LRA.Analysis.MetricSpaces
 
-end LRA.VolumeIV.MetricSpaces
+end LRA.Analysis.MetricSpaces

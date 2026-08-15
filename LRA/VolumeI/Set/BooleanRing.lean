@@ -1,11 +1,11 @@
 import LRA.VolumeI.Set.LRASet.Laws.Laws
 import LRA.VolumeI.AlgebraicStructures.Bundles
 
-namespace LRA.VolumeI.Set.BooleanRing
+namespace LRA.Set.BooleanRing
 
-open LRA.VolumeI.Set
-open LRA.VolumeI.Set.LRASet
-open LRA.VolumeI.AlgebraicStructures
+open LRA.Set
+open LRA.Set.LRASet
+open LRA.Algebra.Structure
 
 universe u
 
@@ -21,7 +21,7 @@ rings applies verbatim to sets: the two halves of Volume I meet in one
 theorem surface. The instances are **`scoped`**: `A + B` meaning
 symmetric difference is a deliberate reading, not the canonical meaning
 of `+`, so the view activates only under
-`open LRA.VolumeI.Set.BooleanRing` (or `open scoped`).
+`open LRA.Set.BooleanRing` (or `open scoped`).
 
 The certificate instances below are pure delegations to the LRASet law
 theorems where those already exist (`SymmetricDifferenceAssociative` and
@@ -165,4 +165,4 @@ example (A : LRASet Alpha) : A + A = 0 :=
 
 example : CommutativeRingLaws (LRASet Alpha) := inferInstance
 
-end LRA.VolumeI.Set.BooleanRing
+end LRA.Set.BooleanRing

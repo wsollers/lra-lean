@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.StrictOrder.Characterizations
 
-namespace LRA.VolumeI.Order.OrderedSets.StrictOrder
+namespace LRA.Order.OrderedSets.StrictOrder
 
 /--
 A strict order never relates an element to itself.
@@ -36,4 +36,4 @@ theorem StrictOrderHasNoTwoElementCycles
   StrictOrderIsAsymmetric order.relation order.relationIsStrictOrder
     left right leftRelatedToRight
 
-end LRA.VolumeI.Order.OrderedSets.StrictOrder
+end LRA.Order.OrderedSets.StrictOrder

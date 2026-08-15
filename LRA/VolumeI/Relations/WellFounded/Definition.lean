@@ -1,6 +1,6 @@
 import LRA.VolumeI.Relations.Basic.Properties
 
-namespace LRA.VolumeI.Relations
+namespace LRA.Relation
 
 universe u v
 
@@ -14,4 +14,4 @@ def WellFounded {Element : Type u} (SetObject : Type v)
     (exists element, element ∈ subset) ->
       exists minimum, MinimalElement relation subset minimum
 
-end LRA.VolumeI.Relations
+end LRA.Relation

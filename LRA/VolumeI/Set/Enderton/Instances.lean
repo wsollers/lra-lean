@@ -19,7 +19,7 @@ unavailable at `Set` -- its notation does not elaborate here, so nothing
 needs to be faked or stubbed.
 
 Every core-class instance below fully qualifies both the class (`_root_.X`)
-and the backing operation (`LRA.VolumeI.Set.Enderton.X`), for the same
+and the backing operation (`LRA.Set.Enderton.X`), for the same
 reason `LRASet.Instances` does: the class and the operation share a short
 name and are different declarations. All operation-backed instances are
 `noncomputable` because the operations are chosen witnesses
@@ -27,36 +27,36 @@ name and are different declarations. All operation-backed instances are
 because `Subset` is a plain `Prop`-valued relation.
 -/
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 noncomputable instance : _root_.Union Set where
-  union := LRA.VolumeI.Set.Enderton.TheUnion
+  union := LRA.Set.Enderton.TheUnion
 
 noncomputable instance : _root_.Inter Set where
-  inter := LRA.VolumeI.Set.Enderton.TheIntersection
+  inter := LRA.Set.Enderton.TheIntersection
 
 instance : _root_.HasSubset Set where
-  Subset := LRA.VolumeI.Set.Enderton.Subset
+  Subset := LRA.Set.Enderton.Subset
 
 noncomputable instance : _root_.EmptyCollection Set where
-  emptyCollection := LRA.VolumeI.Set.Enderton.TheEmptySet
+  emptyCollection := LRA.Set.Enderton.TheEmptySet
 
 noncomputable instance : _root_.SDiff Set where
-  sdiff := LRA.VolumeI.Set.Enderton.TheRelativeComplement
+  sdiff := LRA.Set.Enderton.TheRelativeComplement
 
 noncomputable instance : HasSymmDiff Set where
-  symmDiff := LRA.VolumeI.Set.Enderton.TheSymmetricDifference
+  symmDiff := LRA.Set.Enderton.TheSymmetricDifference
 
 noncomputable instance : HasSeparation Set Set where
-  separation := LRA.VolumeI.Set.Enderton.TheSeparatedSubset
+  separation := LRA.Set.Enderton.TheSeparatedSubset
 
 noncomputable instance : HasPowerset Set Set where
-  powerset := LRA.VolumeI.Set.Enderton.ThePowerSet
+  powerset := LRA.Set.Enderton.ThePowerSet
 
 noncomputable instance : HasCollectionUnion Set Set where
-  collectionUnion := LRA.VolumeI.Set.Enderton.TheUnionOver
+  collectionUnion := LRA.Set.Enderton.TheUnionOver
 
 noncomputable instance : HasCollectionIntersection Set Set where
-  collectionIntersection := LRA.VolumeI.Set.Enderton.TheIntersectionOver
+  collectionIntersection := LRA.Set.Enderton.TheIntersectionOver
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

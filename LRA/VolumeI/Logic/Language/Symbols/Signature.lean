@@ -1,4 +1,4 @@
-namespace LRA.VolumeI.Logic
+namespace LRA.Logic
 
 /-!
 Arity-indexed symbol sets.
@@ -71,4 +71,4 @@ def ArityIndexedSymbols.IsBinary (A : ArityIndexedSymbols) (symbol : A.Symbol) :
 def ArityIndexedSymbols.IsBinary (A : ArityIndexedSymbols) (symbol : A.Symbol) : Prop :=
   A.arity symbol = 2
 
-end LRA.VolumeI.Logic
+end LRA.Logic

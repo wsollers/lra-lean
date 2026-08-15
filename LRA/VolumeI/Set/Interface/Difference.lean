@@ -1,4 +1,4 @@
-namespace LRA.VolumeI.Set
+namespace LRA.Set
 
 universe u
 
@@ -198,4 +198,4 @@ theorem DifferenceDisjointRight :
     ∀ A B : α, (A \ B) ∩ B = (∅ : α) :=
   DifferenceLaws.DifferenceDisjointRight
 
-end LRA.VolumeI.Set
+end LRA.Set

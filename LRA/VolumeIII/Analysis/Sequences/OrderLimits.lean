@@ -1,7 +1,7 @@
 /-
 Draft module; not yet imported by the active Volume III root.
 Imports only this pass's own promoted draft modules and Mathlib — nothing from the
-real `LRA.VolumeIII.Analysis.Sequences.*`, so this can be freely
+real `LRA.Analysis.Sequences.*`, so this can be freely
 refactored or discarded without touching the working project.
 Source: volume-iii/book-analysis-i/sequences/notes/order-limits/notes-order-limits.tex
 Only file in `order-limits`. Structural check: 12/12 balanced remark
@@ -36,9 +36,9 @@ import LRA.VolumeIII.Analysis.Sequences.Monotonicity
 import LRA.VolumeIII.Analysis.Sequences.LiminfLimsup
 import LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.SupremaInfima
 
-namespace LRA.VolumeIII.Analysis.Sequences
+namespace LRA.Analysis.Sequences
 
-open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds (IsSupremum IsInfimum)
+open LRA.Analysis.Bounds (IsSupremum IsInfimum)
 
 -- `thm:increasing-sequence-limit-as-supremum`
 /-- Let `x : RealSequence` and `S : ℝ`. If `hinc : IsIncreasing x`, `hbdd : BoundedAboveSeq x`, and
@@ -106,4 +106,4 @@ theorem BoundedSequenceLimsupLiminf {x : RealSequence} (h : BoundedSeq x) :
     (∃ S : ℝ, LimsupSeq x S) ∧ (∃ I : ℝ, LiminfSeq x I) := by
   sorry
 
-end LRA.VolumeIII.Analysis.Sequences
+end LRA.Analysis.Sequences

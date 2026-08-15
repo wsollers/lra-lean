@@ -5,25 +5,25 @@ import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeI.Algebra.Models.Models
 import LRA.VolumeII.NaturalNumbers
 
-namespace LRA.VolumeII.Integers
+namespace LRA.NumberSystems.Integers
 
-open LRA.VolumeI.Algebra.Models
+open LRA.Algebra.Models
 
 /-!
 Volume II label: alternate-integer-constructions
-Lean module: LRA.VolumeII.Integers.ConstructionModels
+Lean module: LRA.NumberSystems.Integers.ConstructionModels
 Blueprint label: alternate-integer-constructions
 Verification status: statement-accepted-proof-pending
 
 The Markdown-driven default construction is owned by
-`LRA.VolumeII.Integers.QuotientOrderedPairs`. This file records comparison-level model
+`LRA.NumberSystems.Integers.QuotientOrderedPairs`. This file records comparison-level model
 statements for named integer constructions without competing for the canonical
 construction declarations.
 -/
 
-end LRA.VolumeII.Integers
-namespace LRA.VolumeII.Integers.QuotientOrderedPairsComparison
-open LRA.VolumeI.Algebra.Models
+end LRA.NumberSystems.Integers
+namespace LRA.NumberSystems.Integers.QuotientOrderedPairsComparison
+open LRA.Algebra.Models
 
 
 /-- **[Definition — Quotient-Ordered-Pairs Integer Representative]**
@@ -143,13 +143,13 @@ noncomputable def integer_model : IntegerModel :=
 noncomputable def integer_model : IntegerModel :=
   Classical.choice integer_model_exists
 
-end LRA.VolumeII.Integers.QuotientOrderedPairsComparison
-namespace LRA.VolumeII.Integers
-open LRA.VolumeI.Algebra.Models
+end LRA.NumberSystems.Integers.QuotientOrderedPairsComparison
+namespace LRA.NumberSystems.Integers
+open LRA.Algebra.Models
 
-end LRA.VolumeII.Integers
-namespace LRA.VolumeII.Integers.TaoComparison
-open LRA.VolumeI.Algebra.Models
+end LRA.NumberSystems.Integers
+namespace LRA.NumberSystems.Integers.TaoComparison
+open LRA.Algebra.Models
 
 /--
 **[Definition — Tao Formal Difference]**
@@ -261,13 +261,13 @@ noncomputable def integer_model : IntegerModel :=
 noncomputable def integer_model : IntegerModel :=
   Classical.choice integer_model_exists
 
-end LRA.VolumeII.Integers.TaoComparison
-namespace LRA.VolumeII.Integers
-open LRA.VolumeI.Algebra.Models
+end LRA.NumberSystems.Integers.TaoComparison
+namespace LRA.NumberSystems.Integers
+open LRA.Algebra.Models
 
-end LRA.VolumeII.Integers
-namespace LRA.VolumeII.Integers.MendelsonComparison
-open LRA.VolumeI.Algebra.Models
+end LRA.NumberSystems.Integers
+namespace LRA.NumberSystems.Integers.MendelsonComparison
+open LRA.Algebra.Models
 
 
 /-- **[Definition — Mendelson Positive Pair]**
@@ -402,7 +402,7 @@ noncomputable def integer_model : IntegerModel :=
 
 /-- **[Theorem — Natural-Number Model Recovered from Positive Mendelson Integers Exists]**
 
-Mathematical statement (Lean): `theorem recovered_natural_number_model_exists : Nonempty LRA.VolumeII.NaturalNumbers.NModel`.
+Mathematical statement (Lean): `theorem recovered_natural_number_model_exists : Nonempty LRA.NumberSystems.NaturalNumbers.NModel`.
 
 *Proof status:* proof pending
 
@@ -413,13 +413,13 @@ Logical form:
 theorem recovered_natural_number_model_exists :
     ∃ (Element : Type) (SetObject : Type)
       (_ : Membership Element SetObject),
-      Nonempty (LRA.VolumeII.NaturalNumbers.NModel Element SetObject)
+      Nonempty (LRA.NumberSystems.NaturalNumbers.NModel Element SetObject)
 ```
 -/
 theorem recovered_natural_number_model_exists :
     ∃ (Element : Type) (SetObject : Type)
       (_ : Membership Element SetObject),
-      Nonempty (LRA.VolumeII.NaturalNumbers.NModel Element SetObject) := by
+      Nonempty (LRA.NumberSystems.NaturalNumbers.NModel Element SetObject) := by
   sorry
 
 
@@ -445,18 +445,18 @@ Logical form:
 theorem positive_integers_recover_natural_number_model :
     ∃ (Element : Type) (SetObject : Type)
       (_ : Membership Element SetObject),
-      Nonempty (LRA.VolumeII.NaturalNumbers.NModel Element SetObject)
+      Nonempty (LRA.NumberSystems.NaturalNumbers.NModel Element SetObject)
 ```
 -/
 theorem positive_integers_recover_natural_number_model :
     ∃ (Element : Type) (SetObject : Type)
       (_ : Membership Element SetObject),
-      Nonempty (LRA.VolumeII.NaturalNumbers.NModel Element SetObject) :=
+      Nonempty (LRA.NumberSystems.NaturalNumbers.NModel Element SetObject) :=
   recovered_natural_number_model_exists
 
-end LRA.VolumeII.Integers.MendelsonComparison
-namespace LRA.VolumeII.Integers
-open LRA.VolumeI.Algebra.Models
+end LRA.NumberSystems.Integers.MendelsonComparison
+namespace LRA.NumberSystems.Integers
+open LRA.Algebra.Models
 
 
 /-- **[Definition — Ordered-Ring Model Isomorphism]**
@@ -734,4 +734,4 @@ theorem tao_and_mendelson_are_isomorphic :
     Nonempty (ModelIsomorphism TaoComparison.integer_model MendelsonComparison.integer_model) :=
   ⟨tao_equiv_mendelson⟩
 
-end LRA.VolumeII.Integers
+end LRA.NumberSystems.Integers

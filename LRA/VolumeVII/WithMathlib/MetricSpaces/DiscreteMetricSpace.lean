@@ -1,6 +1,6 @@
 import LRA.VolumeVII.WithMathlib.MetricSpaces.MetricModeling
 
-namespace LRA.VolumeVII.WithMathlib
+namespace LRA.Interop.Mathlib
 
 /-- The discrete metric on any type of points with decidable equality.
 
@@ -34,4 +34,4 @@ def discreteScratchMetricSpace (Point : Type u) [DecidableEq Point] : ScratchMet
 def discreteScratchMetricSpace (Point : Type u) [DecidableEq Point] : ScratchMetricSpace Point where
   metric := discreteScratchMetric Point
 
-end LRA.VolumeVII.WithMathlib
+end LRA.Interop.Mathlib

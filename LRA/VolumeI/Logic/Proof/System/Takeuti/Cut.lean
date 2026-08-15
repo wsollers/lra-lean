@@ -2,7 +2,7 @@ import LRA.VolumeI.Logic.Proof.System.Derivation
 import LRA.VolumeI.Logic.Proof.System.Takeuti.LK
 import LRA.VolumeI.Logic.Proof.System.Takeuti.LJ
 
-namespace LRA.VolumeI.Logic.Proof.System.Takeuti
+namespace LRA.Logic.Proof.System.Takeuti
 
 /-!
 Named placeholders for the cut-elimination interface.
@@ -40,4 +40,4 @@ def IsCutRuleShape {L : Alphabet}
       lower =
         ⟨leftAntecedent ++ rightAntecedent, leftSuccedent ++ rightSuccedent⟩
 
-end LRA.VolumeI.Logic.Proof.System.Takeuti
+end LRA.Logic.Proof.System.Takeuti

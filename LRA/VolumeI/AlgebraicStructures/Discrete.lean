@@ -1,4 +1,4 @@
-namespace LRA.VolumeI.AlgebraicStructures
+namespace LRA.Algebra.Structure
 
 universe u
 
@@ -18,7 +18,7 @@ Capability honesty as always: a dense carrier like `ℚ` or `ℝ` simply
 never registers `HasSuccessor`, and `Succ x` fails to elaborate. The
 categoricity content -- any carrier with these laws is a copy of `ℤ` --
 is proved concretely in
-`LRA.VolumeII.Integers.Polish.DiscreteIntegerStructure`.
+`LRA.NumberSystems.Integers.Polish.DiscreteIntegerStructure`.
 -/
 
 /--
@@ -346,4 +346,4 @@ theorem NoStrictBetweenAddOne [LT R] [Add R] [OfNat R 1]
 
 end Wrappers
 
-end LRA.VolumeI.AlgebraicStructures
+end LRA.Algebra.Structure

@@ -1,15 +1,15 @@
 import LRA.VolumeI.Order.OrderedSets.LinearOrder.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
 /-- A total relation is reflexive. -/
 theorem TotalImpliesReflexive
     {Alpha : Type u}
-    {relation : LRA.VolumeI.Relations.Endorelation Alpha}
-    (relationIsTotal : LRA.VolumeI.Relations.Total relation) :
-    LRA.VolumeI.Relations.Reflexive relation := by
+    {relation : LRA.Relation.Endorelation Alpha}
+    (relationIsTotal : LRA.Relation.Total relation) :
+    LRA.Relation.Reflexive relation := by
   sorry
 
-end LRA.VolumeI.Order
+end LRA.Order

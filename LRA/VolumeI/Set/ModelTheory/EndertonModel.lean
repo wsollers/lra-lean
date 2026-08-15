@@ -6,14 +6,14 @@ import LRA.VolumeI.Set.Enderton.Instances
 import LRA.VolumeI.Set.Enderton.Axioms.Axioms
 import LRA.VolumeI.Logic.Semantics.Satisfaction
 
-namespace LRA.VolumeI.Set.ModelTheory
+namespace LRA.Set.ModelTheory
 
-open LRA.VolumeI.Logic
-open LRA.VolumeI.Logic.FirstOrder
+open LRA.Logic
+open LRA.Logic.FirstOrder
 
 /-!
 Volume I label: set-model-theory-enderton-model
-Lean module: LRA.VolumeI.Set.ModelTheory.EndertonModel
+Lean module: LRA.Set.ModelTheory.EndertonModel
 Verification status: model checked; satisfaction proofs pending
 (each is unfold-satisfaction-then-apply-the-matching-Enderton-axiom)
 
@@ -350,4 +350,4 @@ theorem endertonModelsZFC :
   | replacement relation hygienic =>
       exact endertonSatisfiesReplacement relation hygienic assignment
 
-end LRA.VolumeI.Set.ModelTheory
+end LRA.Set.ModelTheory

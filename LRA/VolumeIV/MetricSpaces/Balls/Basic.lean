@@ -2,7 +2,7 @@ import Mathlib.Topology.MetricSpace.Basic
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Ring
 
-namespace LRA.VolumeIV
+namespace LRA.Analysis.MetricSpaces
 
 /-! Mathlib-first metric ball operations. -/
 
@@ -156,4 +156,4 @@ theorem ball_subset_ball_of_mem
 
 
 
-end LRA.VolumeIV
+end LRA.Analysis.MetricSpaces

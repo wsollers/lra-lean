@@ -6,7 +6,7 @@ import Mathlib.Order.Defs.LinearOrder
 import LRA.VolumeI.AlgebraicStructures.Bundles
 import LRA.VolumeI.AlgebraicStructures.MathlibBridge
 
-namespace LRA.VolumeI.AlgebraicStructures
+namespace LRA.Algebra.Structure
 
 universe u
 
@@ -148,4 +148,4 @@ example : CommRing Int := toMathlibCommRing Int
 noncomputable example : Field Rat := toMathlibField Rat
 noncomputable example : LinearOrder Int := toMathlibLinearOrder Int
 
-end LRA.VolumeI.AlgebraicStructures
+end LRA.Algebra.Structure

@@ -3,12 +3,12 @@
 
 import LRA.VolumeII.Integers.Pfefer.Construction
 
-namespace LRA.VolumeII.Integers.Pfefer
+namespace LRA.NumberSystems.Integers.Pfefer
 
 /-!
 Volume II label: integers-pfefer-constructions
-Lean module: LRA.VolumeII.Integers.Pfefer
+Lean module: LRA.NumberSystems.Integers.Pfefer
 Verification status: pending aggregation module
 -/
 
-end LRA.VolumeII.Integers.Pfefer
+end LRA.NumberSystems.Integers.Pfefer

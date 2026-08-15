@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Model.Comparison.ModelIsomorphism
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 Automorphisms.
@@ -51,4 +51,4 @@ def Automorphism.identity {S : Signature} (M : Model S) : Automorphism M where
   preservesRelation _ _ := Iff.rfl
   surjective := Function.surjective_id
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

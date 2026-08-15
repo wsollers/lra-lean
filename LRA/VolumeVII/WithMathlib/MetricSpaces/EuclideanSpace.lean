@@ -5,7 +5,7 @@ import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Positivity
 import Mathlib.Tactic.Ring
 
-namespace LRA.VolumeVII.WithMathlib
+namespace LRA.Interop.Mathlib
 
 /-- The two-dimensional Euclidean coordinate space, using Mathlib's Euclidean
 space construction with index type `Fin 2`.
@@ -144,4 +144,4 @@ noncomputable def realPlaneScratchMetricSpace : ScratchMetricSpace (Real × Real
 noncomputable def realPlaneScratchMetricSpace : ScratchMetricSpace (Real × Real) where
   metric := realPlaneScratchEuclideanMetric
 
-end LRA.VolumeVII.WithMathlib
+end LRA.Interop.Mathlib

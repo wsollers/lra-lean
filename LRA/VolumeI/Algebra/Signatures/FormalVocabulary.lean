@@ -5,10 +5,10 @@ import LRA.VolumeI.Algebra.Signatures.FormalVocabulary.ConstantSymbols
 import LRA.VolumeI.Algebra.Signatures.FormalVocabulary.Arity
 import LRA.VolumeI.Algebra.Signatures.FormalVocabulary.Notation
 
-namespace LRA.VolumeI.Algebra.Signatures
+namespace LRA.Algebra.Signatures
 
 /-!
 Home for operation, relation, constant, arity, and notation vocabulary.
 -/
 
-end LRA.VolumeI.Algebra.Signatures
+end LRA.Algebra.Signatures

@@ -6,7 +6,7 @@ import Mathlib.Tactic
 Point functions and pointlike functions in metric spaces.
 -/
 
-namespace LRA.VolumeIV.MetricSpaces
+namespace LRA.Analysis.MetricSpaces
 
 universe u
 
@@ -379,4 +379,4 @@ theorem pointlike_zero_unique
     simpa [pointFunction] using pointFunction_w₁_zero_at_w₂_real
   exact dist_eq_zero.mp dist_w₁_w₂_eq_zero
 
-end LRA.VolumeIV.MetricSpaces
+end LRA.Analysis.MetricSpaces

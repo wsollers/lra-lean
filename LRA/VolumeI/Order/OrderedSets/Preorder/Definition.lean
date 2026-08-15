@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.Relations.OrderRelation.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
@@ -11,20 +11,20 @@ Logical form:
 
 ```lean
 def Preorder {Alpha : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Alpha) :
+    (relation : LRA.Order.OrderedSets.OrderRelation Alpha) :
     Prop :=
-  LRA.VolumeI.Relations.Reflexive relation /\
-    LRA.VolumeI.Relations.Transitive relation
+  LRA.Relation.Reflexive relation /\
+    LRA.Relation.Transitive relation
 ```
 -/
 def Preorder {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha) : Prop :=
-  LRA.VolumeI.Relations.Reflexive relation /\
-    LRA.VolumeI.Relations.Transitive relation
+    (relation : LRA.Relation.Endorelation Alpha) : Prop :=
+  LRA.Relation.Reflexive relation /\
+    LRA.Relation.Transitive relation
 
-end LRA.VolumeI.Order
+end LRA.Order
 
-namespace LRA.VolumeI.Order.OrderedSets.Preorder
+namespace LRA.Order.OrderedSets.Preorder
 
 /--
 A preorder is an endorelation satisfying reflexivity and transitivity.
@@ -32,11 +32,11 @@ A preorder is an endorelation satisfying reflexivity and transitivity.
 Logical form:
 
 ```lean
-LRA.VolumeI.Order.Preorder relation
+LRA.Order.Preorder relation
 ```
 -/
 structure PreorderRelation (Carrier : Type u) where
-  relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier
-  isPreorder : LRA.VolumeI.Order.Preorder relation
+  relation : LRA.Order.OrderedSets.OrderRelation Carrier
+  isPreorder : LRA.Order.Preorder relation
 
-end LRA.VolumeI.Order.OrderedSets.Preorder
+end LRA.Order.OrderedSets.Preorder

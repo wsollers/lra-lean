@@ -6,7 +6,7 @@ import LRA.VolumeI.Set.Enderton.Theorems.Extensionality
 Existence, uniqueness, and the chosen Enderton empty set.
 -/
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 /--
 There exists an empty set.
 
@@ -141,4 +141,4 @@ theorem EveryEmptySetEqualsTheEmptySet
   exact EmptySetsAreEqual AIsEmpty TheEmptySetIsEmpty
 
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

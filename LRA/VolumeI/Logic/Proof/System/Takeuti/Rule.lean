@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Proof.System.Takeuti.Judgement
 
-namespace LRA.VolumeI.Logic.Proof.System.Takeuti
+namespace LRA.Logic.Proof.System.Takeuti
 
 /-!
 Takeuti LK rule schemata.
@@ -177,4 +177,4 @@ def IsInitial {L : Alphabet} (J : Judgement L) : Prop :=
 def IsInitial {L : Alphabet} (J : Judgement L) : Prop :=
   exists A : Formula L, J = ⟨[A], [A]⟩
 
-end LRA.VolumeI.Logic.Proof.System.Takeuti
+end LRA.Logic.Proof.System.Takeuti

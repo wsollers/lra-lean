@@ -3,7 +3,7 @@ import LRA.VolumeI.Set.Interface.Membership
 import LRA.VolumeI.Set.Interface.Indexed
 import LRA.VolumeI.Set.Interface.Families
 
-namespace LRA.VolumeI.Set.LRASet
+namespace LRA.Set.LRASet
 
 universe u
 
@@ -82,4 +82,4 @@ instance : CollectionMembershipLaws Alpha (LRASet Alpha) (LRASet (LRASet Alpha))
   CollectionIntersectionMembership := fun C x _ =>
     CollectionIntersectionMembership C x
 
-end LRA.VolumeI.Set.LRASet
+end LRA.Set.LRASet

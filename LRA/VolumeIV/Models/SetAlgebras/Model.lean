@@ -1,7 +1,7 @@
 import LRA.VolumeIV.Models.SetAlgebras.Language
 import LRA.VolumeIV.Models.SetAlgebras.Signature
 
-namespace LRA.VolumeIV.Models.SetAlgebras
+namespace LRA.Logic.ModelTheory.SetAlgebras
 
 /-- Build a first-order model of the set-algebra language from a set-algebra
 operation signature. In powerset models, `zero` is `∅`, `one` is `U`, `join`
@@ -12,13 +12,13 @@ Logical form:
 ```lean
 def BuildSetAlgebraModel
     (signature : SetAlgebraSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model SetAlgebraFirstOrderLanguage where
+    LRA.Logic.FirstOrder.Model SetAlgebraFirstOrderLanguage where
   Domain
 ```
 -/
 def BuildSetAlgebraModel
     (signature : SetAlgebraSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model SetAlgebraFirstOrderLanguage where
+    LRA.Logic.FirstOrder.Model SetAlgebraFirstOrderLanguage where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -33,4 +33,4 @@ def BuildSetAlgebraModel
     | .zero => signature.zero
     | .one => signature.one
 
-end LRA.VolumeIV.Models.SetAlgebras
+end LRA.Logic.ModelTheory.SetAlgebras

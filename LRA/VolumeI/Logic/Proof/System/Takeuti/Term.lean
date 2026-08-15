@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Proof.System.Takeuti.Alphabet
 
-namespace LRA.VolumeI.Logic.Proof.System.Takeuti
+namespace LRA.Logic.Proof.System.Takeuti
 
 /-!
 Terms in Takeuti's presentation.
@@ -160,4 +160,4 @@ def FormulaArg.BoundVarOccurs {L : Alphabet} (x : L.BoundVar) :
   | FormulaArg.bound y => y = x
   | FormulaArg.func _ args => exists i, FormulaArg.BoundVarOccurs x (args i)
 
-end LRA.VolumeI.Logic.Proof.System.Takeuti
+end LRA.Logic.Proof.System.Takeuti

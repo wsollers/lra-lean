@@ -6,7 +6,7 @@ import LRA.VolumeI.Set.Enderton.Theorems.Extensionality
 Existence, uniqueness, and the chosen power set.
 -/
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 /--
 There exists a power set of `A`.
 
@@ -97,4 +97,4 @@ theorem EveryPowerSetOfEqualsThePowerSet
     P = ThePowerSet A := by
   sorry
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

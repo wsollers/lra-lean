@@ -1,6 +1,6 @@
 import LRA.VolumeII.NaturalNumbers.Operations.Multiplication
 
-namespace LRA.VolumeII.NaturalNumbers
+namespace LRA.NumberSystems.NaturalNumbers
 
 universe u v
 
@@ -8,7 +8,7 @@ variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 
 
-open LRA.VolumeII.PeanoSystems
+open LRA.NumberSystems.PeanoSystems
 
 /--
 **[Definition - Exponentiation on N]**
@@ -169,4 +169,4 @@ theorem NExponentiationSuccessorOnRight
       NMultiplication model (NExponentiation model base exponent) base :=
   (NExponentiationClauses model base).2 exponent
 
-end LRA.VolumeII.NaturalNumbers
+end LRA.NumberSystems.NaturalNumbers

@@ -1,6 +1,6 @@
 import LRA.VolumeI.Relations.Basic.Properties
 
-namespace LRA.VolumeI.Relations
+namespace LRA.Relation
 
 /-!
 Home for elementary theorems connecting basic relation properties.
@@ -57,4 +57,4 @@ theorem DenseConverseIff
     Dense (Converse relation) ↔ Dense relation := by
   sorry
 
-end LRA.VolumeI.Relations
+end LRA.Relation

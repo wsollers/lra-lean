@@ -1,10 +1,10 @@
 import Mathlib.Logic.Function.Defs
 import LRA.VolumeI.Order.Morphisms.OrderEmbedding.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 /-- The canonical two-element non-strict chain. -/
-def BooleanChainRelation : LRA.VolumeI.Relations.Endorelation Bool :=
+def BooleanChainRelation : LRA.Relation.Endorelation Bool :=
   fun left right => left = false \/ right = true
 
 /--
@@ -20,4 +20,4 @@ theorem MonotoneBijectionNeedNotHaveMonotoneInverse :
         (fun left right : Bool => left = right) (fun value => value)) := by
   sorry
 
-end LRA.VolumeI.Order
+end LRA.Order

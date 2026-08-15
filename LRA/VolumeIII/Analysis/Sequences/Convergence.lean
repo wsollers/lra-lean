@@ -1,7 +1,7 @@
 /-
 Draft module; not yet imported by the active Volume III root.
 Imports only this pass's own promoted draft modules and Mathlib — nothing from the
-real `LRA.VolumeIII.Analysis.Sequences.*`, so this can be freely
+real `LRA.Analysis.Sequences.*`, so this can be freely
 refactored or discarded without touching the working project.
 Source: volume-iii/book-analysis-i/sequences/notes/convergence/notes-convergence.tex
 First file of `convergence` (installment 1 of 3). This is where the
@@ -59,7 +59,7 @@ import Mathlib.Data.Set.Defs
 import Mathlib.Data.List.TFAE
 import LRA.VolumeIII.Analysis.Sequences.SequenceDefinitions
 
-namespace LRA.VolumeIII.Analysis.Sequences
+namespace LRA.Analysis.Sequences
 
 /-- `def:convergent-sequence`.
 
@@ -118,4 +118,4 @@ theorem EquivalenceOfConvergenceFormulations (x : RealSequence) (L : ℝ) :
      ConvergesToNbhd x L].TFAE := by
   sorry
 
-end LRA.VolumeIII.Analysis.Sequences
+end LRA.Analysis.Sequences

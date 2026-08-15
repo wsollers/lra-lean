@@ -1,6 +1,6 @@
 import LRA.VolumeI.Relations.Basic.Relations
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
@@ -11,14 +11,14 @@ Logical form:
 
 ```lean
 def LessThanOrEqual {alpha : Type u}
-    (strictRelation : LRA.VolumeI.Relations.Endorelation alpha) :
-    LRA.VolumeI.Relations.Endorelation alpha :=
+    (strictRelation : LRA.Relation.Endorelation alpha) :
+    LRA.Relation.Endorelation alpha :=
   fun left right => strictRelation left right \/ left = right
 ```
 -/
 def LessThanOrEqual {alpha : Type u}
-    (strictRelation : LRA.VolumeI.Relations.Endorelation alpha) :
-    LRA.VolumeI.Relations.Endorelation alpha :=
+    (strictRelation : LRA.Relation.Endorelation alpha) :
+    LRA.Relation.Endorelation alpha :=
   fun left right => strictRelation left right \/ left = right
 
-end LRA.VolumeI.Order
+end LRA.Order

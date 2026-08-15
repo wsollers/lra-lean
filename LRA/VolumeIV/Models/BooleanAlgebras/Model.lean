@@ -1,7 +1,7 @@
 import LRA.VolumeIV.Models.BooleanAlgebras.Language
 import LRA.VolumeIV.Models.BooleanAlgebras.Signature
 
-namespace LRA.VolumeIV.Models.BooleanAlgebras
+namespace LRA.Logic.ModelTheory.BooleanAlgebras
 
 /-- Build a first-order model of the Boolean-algebra language from a Boolean
 algebra operation signature. Powerset models interpret this abstract language
@@ -12,13 +12,13 @@ Logical form:
 ```lean
 def BuildBooleanAlgebraModel
     (signature : BooleanAlgebraSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model BooleanAlgebraFirstOrderLanguage where
+    LRA.Logic.FirstOrder.Model BooleanAlgebraFirstOrderLanguage where
   Domain
 ```
 -/
 def BuildBooleanAlgebraModel
     (signature : BooleanAlgebraSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model BooleanAlgebraFirstOrderLanguage where
+    LRA.Logic.FirstOrder.Model BooleanAlgebraFirstOrderLanguage where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -33,4 +33,4 @@ def BuildBooleanAlgebraModel
     | .zero => signature.zero
     | .one => signature.one
 
-end LRA.VolumeIV.Models.BooleanAlgebras
+end LRA.Logic.ModelTheory.BooleanAlgebras

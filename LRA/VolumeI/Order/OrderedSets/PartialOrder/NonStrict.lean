@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
 
-namespace LRA.VolumeI.Order.OrderedSets.PartialOrder
+namespace LRA.Order.OrderedSets.PartialOrder
 
 universe u
 
@@ -17,4 +17,4 @@ PartialOrderRelation Carrier
 abbrev NonStrictPartialOrder (Carrier : Type u) :=
   PartialOrderRelation Carrier
 
-end LRA.VolumeI.Order.OrderedSets.PartialOrder
+end LRA.Order.OrderedSets.PartialOrder

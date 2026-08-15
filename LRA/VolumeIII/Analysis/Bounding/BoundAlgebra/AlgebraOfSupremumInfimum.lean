@@ -9,10 +9,11 @@ Algebraic behavior of suprema and infima under set operations.
 
 open scoped Pointwise
 
-namespace LRA.VolumeIII.Analysis.Bounding.BoundAlgebra
+namespace LRA.Analysis.Bounds.Algebra
 open scoped Pointwise
 
-open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
+open LRA.Analysis.Bounds.Extremal
+open LRA.Analysis.Bounds
 
 /-- The reciprocal image of a real set.
 
@@ -722,4 +723,4 @@ theorem RationalSquareRootGapHasNoRationalSupremum :
         ¬(∃ s : ℚ, IsSupremum s {q : ℚ | q ^ 2 < 2}) := by
   sorry
 
-end LRA.VolumeIII.Analysis.Bounding.BoundAlgebra
+end LRA.Analysis.Bounds.Algebra

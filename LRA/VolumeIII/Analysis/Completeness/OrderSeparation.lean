@@ -7,9 +7,10 @@ import LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.SupremaInfima
 Order separation consequences of completeness.
 -/
 
-namespace LRA.VolumeIII.Analysis.Completeness
+namespace LRA.Analysis.Completeness
 
-open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
+open LRA.Analysis.Bounds.Extremal
+open LRA.Analysis.Bounds
 
 /-- Let `A B : Set ℝ`. If `leftNonemptyHypothesis : A.Nonempty`, `rightNonemptyHypothesis :
 B.Nonempty`, and `separationHypothesis : ∀ a ∈ A, ∀ b ∈ B, a ≤ b`. Then `(∃ u, IsUpperBound u A)
@@ -115,4 +116,4 @@ theorem NoGapsInReals {L U : Set ℝ}
       (L = {x : ℝ | x ≤ c} ∧ U = {x : ℝ | c < x}) := by
   sorry
 
-end LRA.VolumeIII.Analysis.Completeness
+end LRA.Analysis.Completeness

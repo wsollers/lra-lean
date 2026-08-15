@@ -4,13 +4,13 @@
 import Mathlib.SetTheory.ZFC.Basic
 import LRA.VolumeI.Set.Interface.Pairing
 
-namespace LRA.VolumeI.Set.MathlibZFSet
+namespace LRA.Set.MathlibZFSet
 
-open LRA.VolumeI.Set
+open LRA.Set
 
 /-!
 Volume I label: mathlib-zfset-pairing
-Lean module: LRA.VolumeI.Set.MathlibZFSet.Pairing
+Lean module: LRA.Set.MathlibZFSet.Pairing
 Verification status: fully proved (Mathlib backend, zero sorry)
 
 Mathlib's `ZFSet.pair` IS the Kuratowski pair (`{{x}, {x, y}}`), and
@@ -45,4 +45,4 @@ instance : PairingLaws ZFSet ZFSet ZFSet :=
 instance : PairingLaws ZFSet ZFSet ZFSet :=
   ⟨fun _ _ _ _ => ZFSet.pair_inj⟩
 
-end LRA.VolumeI.Set.MathlibZFSet
+end LRA.Set.MathlibZFSet

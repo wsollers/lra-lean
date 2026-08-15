@@ -1,6 +1,6 @@
 import LRA.VolumeI.Algebra.Signatures.OperationBundles
 
-namespace LRA.VolumeIV.Models.SetRings
+namespace LRA.Logic.ModelTheory.SetRings
 
 /-!
 Source-facing signature for rings of sets.
@@ -18,19 +18,19 @@ in powerset models `zero` is `∅`, `join` is union, `meet` is intersection,
 Logical form:
 
 ```lean
-structure SetRingSignature extends LRA.VolumeI.Algebra.Signatures.CarrierSignature where
+structure SetRingSignature extends LRA.Algebra.Signatures.CarrierSignature where
   zero : carrier
-  add : LRA.VolumeI.Operations.BinaryOperation carrier
-  join : LRA.VolumeI.Operations.BinaryOperation carrier
-  meet : LRA.VolumeI.Operations.BinaryOperation carrier
-  difference : LRA.VolumeI.Operations.BinaryOperation carrier
+  add : LRA.Algebra.Operation.BinaryOperation carrier
+  join : LRA.Algebra.Operation.BinaryOperation carrier
+  meet : LRA.Algebra.Operation.BinaryOperation carrier
+  difference : LRA.Algebra.Operation.BinaryOperation carrier
 ```
 -/
-structure SetRingSignature extends LRA.VolumeI.Algebra.Signatures.CarrierSignature where
+structure SetRingSignature extends LRA.Algebra.Signatures.CarrierSignature where
   zero : carrier
-  add : LRA.VolumeI.Operations.BinaryOperation carrier
-  join : LRA.VolumeI.Operations.BinaryOperation carrier
-  meet : LRA.VolumeI.Operations.BinaryOperation carrier
-  difference : LRA.VolumeI.Operations.BinaryOperation carrier
+  add : LRA.Algebra.Operation.BinaryOperation carrier
+  join : LRA.Algebra.Operation.BinaryOperation carrier
+  meet : LRA.Algebra.Operation.BinaryOperation carrier
+  difference : LRA.Algebra.Operation.BinaryOperation carrier
 
-end LRA.VolumeIV.Models.SetRings
+end LRA.Logic.ModelTheory.SetRings

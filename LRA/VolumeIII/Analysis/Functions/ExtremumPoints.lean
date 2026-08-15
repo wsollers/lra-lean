@@ -21,7 +21,7 @@ logged duplication bug (ISSUES.md).
 import Mathlib.Data.Real.Basic
 import Mathlib.Order.ConditionallyCompleteLattice.Basic
 
-namespace LRA.VolumeIII.Analysis.Functions
+namespace LRA.Analysis.Functions
 
 /-- Let `A : Set ℝ` and `x₀ : ℝ`. If `f g : ℝ → ℝ`, `hx₀ : x₀ ∈ A`, `hf : ∀ x ∈ A, f x ≤ f x₀`, and
 `hg : ∀ x ∈ A, g x ≤ g x₀`. Then `∀ x ∈ A, f x + g x ≤ f x₀ + g x₀`.
@@ -151,4 +151,4 @@ theorem FunctionExtremumValuesAreUnique (f : ℝ → ℝ) (A : Set ℝ)
     (h₂ : FunctionMaximumPoint f A x₂) : f x₁ = f x₂ := by
   sorry
 
-end LRA.VolumeIII.Analysis.Functions
+end LRA.Analysis.Functions

@@ -9,6 +9,6 @@ import LRA.VolumeI.Order.Relations.Comparable.All
 /-!
 Aggregate import for order-specific relation constructions.
 
-Generic relation properties remain in `LRA.VolumeI.Relations`. This topic owns
+Generic relation properties remain in `LRA.Relation`. This topic owns
 relations derived from a chosen order comparison.
 -/

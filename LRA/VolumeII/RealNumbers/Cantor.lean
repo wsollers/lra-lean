@@ -3,17 +3,17 @@
 
 import LRA.VolumeII.RealNumbers.Cauchy
 
-namespace LRA.VolumeII.RealNumbers.Cantor
-open LRA.VolumeI.Algebra.Models
+namespace LRA.NumberSystems.RealNumbers.Cantor
+open LRA.Algebra.Models
 
 /-!
 Volume II label: cantor-nested-interval-reals
-Lean module: LRA.VolumeII.RealNumbers.Cantor
+Lean module: LRA.NumberSystems.RealNumbers.Cantor
 Source: docs/number-systems/gpt-06-reals-cantor.md
 Verification status: statement-accepted-proof-pending
 -/
 
-open LRA.VolumeI.Algebra.Models
+open LRA.Algebra.Models
 
 /--
 **[Structure — EndpointInterval]**
@@ -203,4 +203,4 @@ theorem cantor_reals_are_isomorphic_to_cauchy_reals
         comparison first = comparison second → first = second := by
   sorry
 
-end LRA.VolumeII.RealNumbers.Cantor
+end LRA.NumberSystems.RealNumbers.Cantor

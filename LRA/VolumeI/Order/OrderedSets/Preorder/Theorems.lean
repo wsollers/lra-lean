@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.Preorder.Characterizations
 
-namespace LRA.VolumeI.Order.OrderedSets.Preorder
+namespace LRA.Order.OrderedSets.Preorder
 
 /--
 Projection accessor: every element is related to itself by a preorder.
@@ -18,4 +18,4 @@ theorem PreorderRelatesSelf
     preorder.relation element element :=
   PreorderRelationIsReflexive preorder element
 
-end LRA.VolumeI.Order.OrderedSets.Preorder
+end LRA.Order.OrderedSets.Preorder

@@ -8,7 +8,7 @@ intended as the proof foundation for later files; formal proofs should use
 Mathlib's `MeasurableSpace` API directly.
 -/
 
-namespace LRA.VolumeIV.MeasurableSpaces
+namespace LRA.Analysis.MeasureTheory.MeasurableSpaces
 
 universe u
 
@@ -66,5 +66,5 @@ structure MeasurableSpaceDefinition where
   /-- The measurable structure on the carrier. -/
   measurableSets : MeasurableSpaceDefinitionOn Carrier
 
-end LRA.VolumeIV.MeasurableSpaces
+end LRA.Analysis.MeasureTheory.MeasurableSpaces
 

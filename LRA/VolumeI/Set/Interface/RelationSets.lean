@@ -4,13 +4,13 @@
 import LRA.VolumeI.Set.Interface.Pairing
 import LRA.VolumeI.Set.Interface.Operations
 
-namespace LRA.VolumeI.Set
+namespace LRA.Set
 
 universe u v
 
 /-!
 Volume I label: set-interface-relation-sets
-Lean module: LRA.VolumeI.Set.Interface.RelationSets
+Lean module: LRA.Set.Interface.RelationSets
 Verification status: checked definitions
 
 Relations and functions as **first-class sets**. A relation is nothing
@@ -472,4 +472,4 @@ theorem AppliedToRelates {Left Right Pair : Type u}
 
 end Vocabulary
 
-end LRA.VolumeI.Set
+end LRA.Set

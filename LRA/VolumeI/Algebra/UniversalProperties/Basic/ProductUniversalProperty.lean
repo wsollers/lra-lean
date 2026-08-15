@@ -1,4 +1,4 @@
-namespace LRA.VolumeI.Algebra.UniversalProperties.Basic
+namespace LRA.Algebra.UniversalProperties.Basic
 
 universe u v
 
@@ -45,4 +45,4 @@ structure ProductUniversalProperty
       (firstMediator secondMediator : Arrow sourceObject productObject),
         firstMediator = secondMediator
 
-end LRA.VolumeI.Algebra.UniversalProperties.Basic
+end LRA.Algebra.UniversalProperties.Basic

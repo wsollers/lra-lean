@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Language.Symbols.Signature
 
-namespace LRA.VolumeI.Logic.Language.Notation
+namespace LRA.Logic.Language.Notation
 
 /-!
 The logical symbols of a language.
@@ -196,4 +196,4 @@ inductive LogicalQuantifier where
 inductive LogicalQuantifier where
   | forallQ
 
-end LRA.VolumeI.Logic.Language.Notation
+end LRA.Logic.Language.Notation

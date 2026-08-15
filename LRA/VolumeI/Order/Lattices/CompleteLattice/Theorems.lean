@@ -1,14 +1,14 @@
 import Mathlib.Data.Set.Basic
 import LRA.VolumeI.Order.Lattices.CompleteLattice.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
 /-- A complete lattice over all predicate subsets has bottom and top elements. -/
 theorem CompleteLatticeHasBottomAndTop
     {Element : Type u}
-    {relation : LRA.VolumeI.Relations.Endorelation Element}
+    {relation : LRA.Relation.Endorelation Element}
     (relationIsCompleteLattice : CompleteLattice (Set Element) relation) :
     (exists bottom, forall element, relation bottom element) /\
       (exists top, forall element, relation element top) := by
@@ -20,7 +20,7 @@ complete lattice; infima arise as suprema of sets of lower bounds.
 -/
 theorem AllSupremaImplyCompleteLattice
     {Element : Type u}
-    {relation : LRA.VolumeI.Relations.Endorelation Element}
+    {relation : LRA.Relation.Endorelation Element}
     (relationIsPartialOrder : PartialOrder relation)
     (everySubsetHasSupremum :
       forall subset : Set Element,
@@ -28,4 +28,4 @@ theorem AllSupremaImplyCompleteLattice
     CompleteLattice (Set Element) relation := by
   sorry
 
-end LRA.VolumeI.Order
+end LRA.Order

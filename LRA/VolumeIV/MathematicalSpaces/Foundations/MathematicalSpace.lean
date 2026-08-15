@@ -6,7 +6,7 @@ additional structure. It is intentionally only orienting; later formal proofs
 should use the appropriate Mathlib structure for the concrete kind of space.
 -/
 
-namespace LRA.VolumeIV.MathematicalSpaces
+namespace LRA.Internal.MathematicalSpaces
 
 universe u
 
@@ -35,5 +35,5 @@ structure MathematicalSpaceDefinition where
   /-- The chosen structural data is present. -/
   hasStructure : HasStructure
 
-end LRA.VolumeIV.MathematicalSpaces
+end LRA.Internal.MathematicalSpaces
 

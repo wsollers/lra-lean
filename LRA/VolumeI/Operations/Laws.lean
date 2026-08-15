@@ -1,6 +1,6 @@
 import LRA.VolumeI.Operations.Operations
 
-namespace LRA.VolumeI.Operations
+namespace LRA.Algebra.Operation
 
 universe u
 
@@ -245,4 +245,4 @@ def Absorbing {alpha : Type u}
     (operation : BinaryOperation alpha) (absorber : alpha) : Prop :=
   LeftAbsorbing operation absorber /\ RightAbsorbing operation absorber
 
-end LRA.VolumeI.Operations
+end LRA.Algebra.Operation

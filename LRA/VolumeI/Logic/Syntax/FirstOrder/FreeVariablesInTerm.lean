@@ -2,7 +2,7 @@ import Mathlib.Data.Fintype.Basic
 import Mathlib.Data.Finset.Union
 import LRA.VolumeI.Logic.Syntax.Term
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 Free variables of a term.
@@ -49,4 +49,4 @@ def freeVariablesInTerm
   | @Term.apply _ _ f args =>
       (Finset.univ : Finset (Fin (S.functionArity f))).biUnion (fun i => freeVariablesInTerm (args i))
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

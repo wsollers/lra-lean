@@ -1,7 +1,7 @@
 import LRA.VolumeI.Set.LRASet.Instances
 import LRA.VolumeI.Set.Interface.Complement
 
-namespace LRA.VolumeI.Set.LRASet
+namespace LRA.Set.LRASet
 
 universe u
 
@@ -9,7 +9,7 @@ variable {Alpha : Type u}
 
 /-!
 Absolute-complement and universal-set laws for predicate sets: the
-backend's certificate for `LRA.VolumeI.Set.ComplementLaws`.
+backend's certificate for `LRA.Set.ComplementLaws`.
 
 This family exists *only* here (and, later, for a Mathlib-backed
 backend): it needs the `HasComplement`/`HasUniversal` capabilities from
@@ -165,16 +165,16 @@ theorem UniversalDifference :
 certificate only this backend can supply. Pure delegation to the theorems
 above. -/
 instance : ComplementLaws (LRASet Alpha) where
-  DoubleComplement := LRA.VolumeI.Set.LRASet.DoubleComplement
-  ComplementEmpty := LRA.VolumeI.Set.LRASet.ComplementEmpty
-  ComplementUniversal := LRA.VolumeI.Set.LRASet.ComplementUniversal
-  UnionComplement := LRA.VolumeI.Set.LRASet.UnionComplement
-  IntersectionComplement := LRA.VolumeI.Set.LRASet.IntersectionComplement
-  DeMorganUnion := LRA.VolumeI.Set.LRASet.DeMorganUnion
-  DeMorganIntersection := LRA.VolumeI.Set.LRASet.DeMorganIntersection
+  DoubleComplement := LRA.Set.LRASet.DoubleComplement
+  ComplementEmpty := LRA.Set.LRASet.ComplementEmpty
+  ComplementUniversal := LRA.Set.LRASet.ComplementUniversal
+  UnionComplement := LRA.Set.LRASet.UnionComplement
+  IntersectionComplement := LRA.Set.LRASet.IntersectionComplement
+  DeMorganUnion := LRA.Set.LRASet.DeMorganUnion
+  DeMorganIntersection := LRA.Set.LRASet.DeMorganIntersection
   DifferenceAsIntersectionComplement :=
-    LRA.VolumeI.Set.LRASet.DifferenceAsIntersectionComplement
-  DifferenceUniversal := LRA.VolumeI.Set.LRASet.DifferenceUniversal
-  UniversalDifference := LRA.VolumeI.Set.LRASet.UniversalDifference
+    LRA.Set.LRASet.DifferenceAsIntersectionComplement
+  DifferenceUniversal := LRA.Set.LRASet.DifferenceUniversal
+  UniversalDifference := LRA.Set.LRASet.UniversalDifference
 
-end LRA.VolumeI.Set.LRASet
+end LRA.Set.LRASet

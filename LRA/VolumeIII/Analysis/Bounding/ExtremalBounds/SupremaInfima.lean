@@ -5,61 +5,12 @@ import LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.UpperLowerBounds
 Suprema and infima for ordered carriers.
 -/
 
-namespace LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
+namespace LRA.Analysis.Bounds.Extremal
 
 variable {S : Type*}
 
-/-- `IsSupremum s A` says `s` is the least upper bound of `A`.
-
-Logical form:
-
-```lean
-def IsSupremum [Preorder S] (s : S) (A : Set S) : Prop :=
-  IsUpperBound s A ∧ ∀ u, IsUpperBound u A → s ≤ u
-```
--/
-def IsSupremum [Preorder S] (s : S) (A : Set S) : Prop :=
-  IsUpperBound s A ∧ ∀ u, IsUpperBound u A → s ≤ u
-
-/-- `IsInfimum i A` says `i` is the greatest lower bound of `A`.
-
-Logical form:
-
-```lean
-def IsInfimum [Preorder S] (i : S) (A : Set S) : Prop :=
-  IsLowerBound i A ∧ ∀ l, IsLowerBound l A → l ≤ i
-```
--/
-def IsInfimum [Preorder S] (i : S) (A : Set S) : Prop :=
-  IsLowerBound i A ∧ ∀ l, IsLowerBound l A → l ≤ i
-
-/-- Let `A : Set S` and `s t : S`. If `[PartialOrder S]`, `leftSupremum : IsSupremum s A`, and
-`rightSupremum : IsSupremum t A`. Then `s = t`.
-
-Logical form:
-
-```lean
-theorem SupremumUnique [PartialOrder S] {A : Set S} {s t : S}
-    (leftSupremum : IsSupremum s A) (rightSupremum : IsSupremum t A) : s = t
-```
--/
-theorem SupremumUnique [PartialOrder S] {A : Set S} {s t : S}
-    (leftSupremum : IsSupremum s A) (rightSupremum : IsSupremum t A) : s = t := by
-  sorry
-
-/-- Let `A : Set S` and `i j : S`. If `[PartialOrder S]`, `leftInfimum : IsInfimum i A`, and
-`rightInfimum : IsInfimum j A`. Then `i = j`.
-
-Logical form:
-
-```lean
-theorem InfimumUnique [PartialOrder S] {A : Set S} {i j : S}
-    (leftInfimum : IsInfimum i A) (rightInfimum : IsInfimum j A) : i = j
-```
--/
-theorem InfimumUnique [PartialOrder S] {A : Set S} {i j : S}
-    (leftInfimum : IsInfimum i A) (rightInfimum : IsInfimum j A) : i = j := by
-  sorry
+/-! The nine foundational predicates are owned by `LRA.Analysis.Bounds`.
+This derived namespace retains only additional theorems. -/
 
 /-- Let `A : Set S` and `s : S`. If `[Preorder S]` and `supremumHypothesis : IsSupremum s A`. Then
 `IsUpperBound s A`.
@@ -340,4 +291,4 @@ theorem BoundedSetHasSupremumAndInfimum {A : Set ℝ}
     (∃! s : ℝ, IsSupremum s A) ∧ (∃! i : ℝ, IsInfimum i A) := by
   sorry
 
-end LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
+end LRA.Analysis.Bounds.Extremal

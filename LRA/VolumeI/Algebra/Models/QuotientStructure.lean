@@ -1,15 +1,15 @@
 import LRA.VolumeI.Algebra.Models.Homomorphism
 
-namespace LRA.VolumeI.Algebra.Models
+namespace LRA.Algebra.Models
 
-open LRA.VolumeI.Logic
-open LRA.VolumeI.Logic.FirstOrder
+open LRA.Logic
+open LRA.Logic.FirstOrder
 
 universe u
 
 /-!
 Volume I label: universal-algebra-quotient
-Lean module: LRA.VolumeI.Algebra.Models.QuotientStructure
+Lean module: LRA.Algebra.Models.QuotientStructure
 Verification status: definitions checked; projection-homomorphism
 proof pending
 
@@ -107,4 +107,4 @@ theorem quotientProjectionIsHomomorphism {S : Signature}
       ∀ element, projection.map element = Quot.mk _ element := by
   sorry
 
-end LRA.VolumeI.Algebra.Models
+end LRA.Algebra.Models

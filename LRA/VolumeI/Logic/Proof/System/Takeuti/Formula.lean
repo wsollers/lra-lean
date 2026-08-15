@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Proof.System.Takeuti.Term
 
-namespace LRA.VolumeI.Logic.Proof.System.Takeuti
+namespace LRA.Logic.Proof.System.Takeuti
 
 /-!
 Formulas for Takeuti-style first-order logic.
@@ -167,4 +167,4 @@ def Formula.BoundVarFresh {L : Alphabet} (x : L.BoundVar) (A : Formula L) : Prop
 def Formula.BoundVarFresh {L : Alphabet} (x : L.BoundVar) (A : Formula L) : Prop :=
   Not (Formula.BoundVarOccurs x A)
 
-end LRA.VolumeI.Logic.Proof.System.Takeuti
+end LRA.Logic.Proof.System.Takeuti

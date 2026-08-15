@@ -3,7 +3,7 @@ import LRA.VolumeI.Order.Bounds.GreatestElement.Definition
 import LRA.VolumeI.Order.Bounds.MaximalElement.Definition
 import LRA.VolumeI.Order.Relations.StrictPart.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 /--
 In the two-element antichain, maximal elements are neither unique nor
@@ -23,4 +23,4 @@ theorem BooleanAntichainHasDistinctMaximalElementsButNoGreatest :
         (Set.univ : Set Bool) true) := by
   sorry
 
-end LRA.VolumeI.Order
+end LRA.Order

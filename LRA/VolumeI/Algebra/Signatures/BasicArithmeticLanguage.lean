@@ -4,11 +4,11 @@ import LRA.VolumeI.Algebra.Signatures.BasicArithmeticLanguage.PrimitiveRelationS
 import LRA.VolumeI.Algebra.Signatures.BasicArithmeticLanguage.DerivedOperationNotation
 import LRA.VolumeI.Algebra.Signatures.BasicArithmeticLanguage.DerivedRelationNotation
 
-namespace LRA.VolumeI.Algebra.Signatures
+namespace LRA.Algebra.Signatures
 
 /-!
 Home for the familiar arithmetic token pool, separated into primitive symbols
 and derived notation previews.
 -/
 
-end LRA.VolumeI.Algebra.Signatures
+end LRA.Algebra.Signatures

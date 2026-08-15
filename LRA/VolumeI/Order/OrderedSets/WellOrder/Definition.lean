@@ -1,7 +1,7 @@
 import LRA.VolumeI.Order.Bounds.LeastElement.Definition
 import LRA.VolumeI.Order.OrderedSets.LinearOrder.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -13,10 +13,10 @@ subsets would assume the backend represents every pair subset. -/
 def WellOrder
     {Element : Type u} (SetObject : Type v)
     [Membership Element SetObject]
-    (relation : LRA.VolumeI.Relations.Endorelation Element) : Prop :=
+    (relation : LRA.Relation.Endorelation Element) : Prop :=
   LinearOrder relation /\
     forall subset : SetObject,
       (exists element, element ∈ subset) ->
         exists least, LeastElement relation subset least
 
-end LRA.VolumeI.Order
+end LRA.Order

@@ -1,4 +1,4 @@
-namespace LRA.VolumeI.Relations
+namespace LRA.Relation
 
 universe u v w
 
@@ -25,9 +25,9 @@ abbrev HeterogeneousBinaryRelation
     (alpha beta : Type u) :=
   alpha -> beta -> Prop
 ```
--/
+ -/
 abbrev HeterogeneousBinaryRelation
-    (alpha beta : Type u) :=
+    (alpha : Type u) (beta : Type v) :=
   alpha -> beta -> Prop
 
 /--
@@ -79,9 +79,9 @@ abbrev HeterogeneousRelation
     (alpha beta : Type u) :=
   HeterogeneousBinaryRelation alpha beta
 ```
--/
+ -/
 abbrev HeterogeneousRelation
-    (alpha beta : Type u) :=
+    (alpha : Type u) (beta : Type v) :=
   HeterogeneousBinaryRelation alpha beta
 
 /--
@@ -239,4 +239,4 @@ def Converse {alpha : Type u}
     (relation : Endorelation alpha) : Endorelation alpha :=
   fun left right => relation right left
 
-end LRA.VolumeI.Relations
+end LRA.Relation

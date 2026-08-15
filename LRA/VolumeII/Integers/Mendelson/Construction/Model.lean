@@ -5,11 +5,11 @@ import LRA.VolumeII.Integers.QuotientOrderedPairs
 import LRA.VolumeII.NaturalNumbers
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA.VolumeII.Integers.Mendelson
+namespace LRA.NumberSystems.Integers.Mendelson
 
 /-!
 Volume II label: integers-mendelson-construction
-Lean module: LRA.VolumeII.Integers.Mendelson.Construction.Model
+Lean module: LRA.NumberSystems.Integers.Mendelson.Construction.Model
 Source: docs/number-systems/gpt-02b-integers-mendelson.md
 Verification status: definitions complete; proofs pending
 -/
@@ -309,7 +309,7 @@ def representative_strict_order
 /--
 **[Theorem — positive_classes_recover_peano_system]**
 
-Mathematical statement (Lean): `theorem positive_classes_recover_natural_number_model (positive_data : PositiveNaturalPairData) : ∃ natural_number_model : LRA.VolumeII.NaturalNumbers.NModel, Nonempty natural_number_model.carrier`.
+Mathematical statement (Lean): `theorem positive_classes_recover_natural_number_model (positive_data : PositiveNaturalPairData) : ∃ natural_number_model : LRA.NumberSystems.NaturalNumbers.NModel, Nonempty natural_number_model.carrier`.
 
 *Proof status:* proof pending
 
@@ -321,7 +321,7 @@ theorem positive_classes_recover_natural_number_model
     (positive_data : PositiveNaturalPairData) :
     ∃ (Element : Type) (SetObject : Type)
       (_ : Membership Element SetObject)
-      (_ : LRA.VolumeII.NaturalNumbers.NModel Element SetObject),
+      (_ : LRA.NumberSystems.NaturalNumbers.NModel Element SetObject),
       Nonempty Element
 ```
 -/
@@ -329,14 +329,14 @@ theorem positive_classes_recover_natural_number_model
     (positive_data : PositiveNaturalPairData) :
     ∃ (Element : Type) (SetObject : Type)
       (_ : Membership Element SetObject)
-      (_ : LRA.VolumeII.NaturalNumbers.NModel Element SetObject),
+      (_ : LRA.NumberSystems.NaturalNumbers.NModel Element SetObject),
       Nonempty Element := by
   sorry
 
 /--
 **[Theorem — mendelson_integers_form_ordered_ring]**
 
-Mathematical statement (Lean): `theorem mendelson_integers_form_ordered_ring (positive_data : PositiveNaturalPairData) : ∃ integer_model : LRA.VolumeI.Algebra.Models.IntegerModel, integer_model.signature.carrier = Carrier positive_data`.
+Mathematical statement (Lean): `theorem mendelson_integers_form_ordered_ring (positive_data : PositiveNaturalPairData) : ∃ integer_model : LRA.Algebra.Models.IntegerModel, integer_model.signature.carrier = Carrier positive_data`.
 
 *Proof status:* proof pending
 
@@ -346,13 +346,13 @@ Logical form:
 ```lean
 theorem mendelson_integers_form_ordered_ring
     (positive_data : PositiveNaturalPairData) :
-    ∃ integer_model : LRA.VolumeI.Algebra.Models.IntegerModel,
+    ∃ integer_model : LRA.Algebra.Models.IntegerModel,
       integer_model.signature.carrier = Carrier positive_data
 ```
 -/
 theorem mendelson_integers_form_ordered_ring
     (positive_data : PositiveNaturalPairData) :
-    ∃ integer_model : LRA.VolumeI.Algebra.Models.IntegerModel,
+    ∃ integer_model : LRA.Algebra.Models.IntegerModel,
       integer_model.signature.carrier = Carrier positive_data := by
   sorry
 
@@ -381,4 +381,4 @@ theorem mendelson_compares_with_quotient_ordered_pairs
       ∀ first second, comparison first = comparison second → first = second := by
   sorry
 
-end LRA.VolumeII.Integers.Mendelson
+end LRA.NumberSystems.Integers.Mendelson

@@ -6,7 +6,7 @@ import LRA.VolumeI.Set.Enderton.Theorems.Extensionality
 Existence, uniqueness, and the chosen Enderton pair set.
 -/
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 /--
 For any two sets, there exists a set containing exactly those two sets.
 
@@ -197,4 +197,4 @@ theorem TheSingletonIsSingletonSet (x : Set) :
 
 
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

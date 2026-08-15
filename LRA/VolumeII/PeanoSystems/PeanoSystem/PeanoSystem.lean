@@ -14,7 +14,7 @@ types. Only what is genuinely Peano stays bundled: the distinguished
 element, the successor operation, and the axioms.
 -/
 
-namespace LRA.VolumeII.PeanoSystems
+namespace LRA.NumberSystems.PeanoSystems
 
 universe u v
 
@@ -141,4 +141,4 @@ def InductiveSubsetOfPeanoSystem
 
 end
 
-end LRA.VolumeII.PeanoSystems
+end LRA.NumberSystems.PeanoSystems

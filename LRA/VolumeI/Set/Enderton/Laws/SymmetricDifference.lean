@@ -1,11 +1,11 @@
 import LRA.VolumeI.Set.Enderton.Instances
 import LRA.VolumeI.Set.Interface.SymmetricDifference
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 /-!
 Symmetric-difference laws for Enderton sets: the backend's certificate for
-`LRA.VolumeI.Set.SymmDiffLaws`.
+`LRA.Set.SymmDiffLaws`.
 
 `A ∆ B` resolves through the `HasSymmDiff Set` instance in
 `Instances.lean`, backed by `TheSymmetricDifference` -- the union of the
@@ -142,22 +142,22 @@ theorem SymmetricDifferenceSubsetUnion :
 delegation to the theorems above. -/
 instance : SymmDiffLaws Set where
   SymmetricDifferenceAsUnionDifferences :=
-    LRA.VolumeI.Set.Enderton.SymmetricDifferenceAsUnionDifferences
+    LRA.Set.Enderton.SymmetricDifferenceAsUnionDifferences
   SymmetricDifferenceAsUnionDifferenceIntersection :=
-    LRA.VolumeI.Set.Enderton.SymmetricDifferenceAsUnionDifferenceIntersection
+    LRA.Set.Enderton.SymmetricDifferenceAsUnionDifferenceIntersection
   SymmetricDifferenceCommutative :=
-    LRA.VolumeI.Set.Enderton.SymmetricDifferenceCommutative
+    LRA.Set.Enderton.SymmetricDifferenceCommutative
   SymmetricDifferenceAssociative :=
-    LRA.VolumeI.Set.Enderton.SymmetricDifferenceAssociative
+    LRA.Set.Enderton.SymmetricDifferenceAssociative
   SymmetricDifferenceEmpty :=
-    LRA.VolumeI.Set.Enderton.SymmetricDifferenceEmpty
+    LRA.Set.Enderton.SymmetricDifferenceEmpty
   EmptySymmetricDifference :=
-    LRA.VolumeI.Set.Enderton.EmptySymmetricDifference
+    LRA.Set.Enderton.EmptySymmetricDifference
   SymmetricDifferenceSelf :=
-    LRA.VolumeI.Set.Enderton.SymmetricDifferenceSelf
+    LRA.Set.Enderton.SymmetricDifferenceSelf
   SymmetricDifferenceEqEmptyIff :=
-    LRA.VolumeI.Set.Enderton.SymmetricDifferenceEqEmptyIff
+    LRA.Set.Enderton.SymmetricDifferenceEqEmptyIff
   SymmetricDifferenceSubsetUnion :=
-    LRA.VolumeI.Set.Enderton.SymmetricDifferenceSubsetUnion
+    LRA.Set.Enderton.SymmetricDifferenceSubsetUnion
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

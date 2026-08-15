@@ -13,7 +13,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Data.Fintype.Basic
 import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
-namespace LRA.VolumeIII.Analysis.RealAnalysis
+namespace LRA.Analysis.RealAnalysis
 
 /-- `def:absolute-value`.
 
@@ -168,4 +168,4 @@ theorem AbsoluteValueSumBound (n : ℕ) (a : Fin n → ℝ) :
     AbsR (Finset.univ.sum a) ≤ Finset.univ.sum (fun i => AbsR (a i)) := by
   sorry
 
-end LRA.VolumeIII.Analysis.RealAnalysis
+end LRA.Analysis.RealAnalysis

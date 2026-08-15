@@ -7,7 +7,7 @@ Compatibility between the textbook metric record and Mathlib's metric-space
 API.
 -/
 
-namespace LRA.VolumeIV.MetricSpaces
+namespace LRA.Analysis.MetricSpaces
 
 universe u
 
@@ -190,4 +190,4 @@ instance instMathlibMetricSpace (space : MetricSpaceDefinition.{u}) :
 
 end MetricSpaceDefinition
 
-end LRA.VolumeIV.MetricSpaces
+end LRA.Analysis.MetricSpaces

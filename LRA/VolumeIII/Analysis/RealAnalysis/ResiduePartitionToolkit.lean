@@ -10,7 +10,7 @@ import Mathlib.Topology.Instances.Real.Lemmas
 import Mathlib.Order.Filter.Basic
 import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
-namespace LRA.VolumeIII.Analysis.RealAnalysis
+namespace LRA.Analysis.RealAnalysis
 
 -- `thm:k-periodicity`
 /-- Let `k : ℕ` and `L : ℝ`. If `a : ℕ → ℝ` and `hk : 2 ≤ k`. Then `Filter.Tendsto a Filter.atTop
@@ -74,4 +74,4 @@ theorem AlternatingSeriesTest (a : ℕ → ℝ)
       Filter.atTop (nhds L) := by
   sorry
 
-end LRA.VolumeIII.Analysis.RealAnalysis
+end LRA.Analysis.RealAnalysis

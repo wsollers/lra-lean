@@ -3,12 +3,12 @@
 
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA.VolumeII.RealNumbers.Dedekind
+namespace LRA.NumberSystems.RealNumbers.Dedekind
 
-open LRA.VolumeI.Algebra.Models
+open LRA.Algebra.Models
 
 /-!
-Lean module: LRA.VolumeII.RealNumbers.Dedekind
+Lean module: LRA.NumberSystems.RealNumbers.Dedekind
 Source: docs/number-systems/gpt-04-reals-dedekind.md
 Verification status: definitions and final theorem statements complete; proofs pending
 -/
@@ -1385,4 +1385,4 @@ theorem reference_real_number_construction :
     ReferenceRealNumberConstruction rational_model := by
   sorry
 
-end LRA.VolumeII.RealNumbers.Dedekind
+end LRA.NumberSystems.RealNumbers.Dedekind

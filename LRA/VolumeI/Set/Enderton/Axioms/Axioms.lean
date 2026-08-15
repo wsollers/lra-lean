@@ -2,7 +2,7 @@ import LRA.VolumeI.Set.Enderton.Primitives
 
 /-! The axioms of Enderton-style textbook set theory. -/
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 /-- TeX label: `ax:extensionality`.
 Sets with the same members are equal.
@@ -206,4 +206,4 @@ axiom Choice (A : Set) :
             ∀ other : Set,
               (other ∈ B ∧ other ∈ choiceSet) → other = x
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

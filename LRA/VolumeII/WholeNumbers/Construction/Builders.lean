@@ -4,9 +4,9 @@
 import LRA.VolumeI.AlgebraicStructures
 import LRA.VolumeII.WholeNumbers.Construction.Model
 
-namespace LRA.VolumeII.WholeNumbers
+namespace LRA.NumberSystems.WholeNumbers
 
-open LRA.VolumeI.AlgebraicStructures
+open LRA.Algebra.Structure
 
 universe u v
 
@@ -16,7 +16,7 @@ variable (natural_data : NaturalArithmeticForWholeNumbers Element SetObject)
 
 /-!
 Volume II label: whole-numbers-instance-builders
-Lean module: LRA.VolumeII.WholeNumbers.Construction.Builders
+Lean module: LRA.NumberSystems.WholeNumbers.Construction.Builders
 Verification status: checked builders (certificates delegate to the
 structure theorems, whose proofs remain pending)
 
@@ -327,4 +327,4 @@ example (a b : Carrier natural_data) : True := by
   have commuted : a + b = b + a := AddCommutative a b
   trivial
 
-end LRA.VolumeII.WholeNumbers
+end LRA.NumberSystems.WholeNumbers

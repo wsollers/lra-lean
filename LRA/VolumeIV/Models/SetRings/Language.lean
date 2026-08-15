@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic
 
-namespace LRA.VolumeIV.Models.SetRings
+namespace LRA.Logic.ModelTheory.SetRings
 
 /-!
 First-order language for rings of sets.
@@ -49,7 +49,7 @@ inductive SetRingConstantSymbol where
 Logical form:
 
 ```lean
-def SetRingFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def SetRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := SetRingFunctionSymbol
   arity
     | .join => 2
@@ -57,7 +57,7 @@ def SetRingFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
     | .difference => 2
 ```
 -/
-def SetRingFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def SetRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := SetRingFunctionSymbol
   arity
     | .join => 2
@@ -69,12 +69,12 @@ def SetRingFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
 Logical form:
 
 ```lean
-def SetRingFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def SetRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := SetRingRelationSymbol
   arity := Empty.elim
 ```
 -/
-def SetRingFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def SetRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := SetRingRelationSymbol
   arity := Empty.elim
 
@@ -83,15 +83,15 @@ def SetRingFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
 Logical form:
 
 ```lean
-def SetRingFirstOrderLanguage : LRA.VolumeI.Logic.Signature where
+def SetRingFirstOrderLanguage : LRA.Logic.Signature where
   Functions := SetRingFirstOrderFunctions
   Relations := SetRingFirstOrderRelations
   Constants := SetRingConstantSymbol
 ```
 -/
-def SetRingFirstOrderLanguage : LRA.VolumeI.Logic.Signature where
+def SetRingFirstOrderLanguage : LRA.Logic.Signature where
   Functions := SetRingFirstOrderFunctions
   Relations := SetRingFirstOrderRelations
   Constants := SetRingConstantSymbol
 
-end LRA.VolumeIV.Models.SetRings
+end LRA.Logic.ModelTheory.SetRings

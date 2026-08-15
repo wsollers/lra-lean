@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Syntax.Term
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 Substitution into terms.
@@ -31,4 +31,4 @@ def substituteInTerm
   | .const c => Term.const c
   | .apply f args => Term.apply f (fun i => substituteInTerm x t (args i))
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Model.Comparison.ModelEmbedding
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 Model isomorphisms.
@@ -58,4 +58,4 @@ theorem ModelIsomorphism.bijective
     Function.Bijective iso.toFun :=
   ⟨iso.injective, iso.surjective⟩
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

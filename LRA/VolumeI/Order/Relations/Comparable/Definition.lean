@@ -1,6 +1,6 @@
 import LRA.VolumeI.Relations.Basic.Relations
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
@@ -15,14 +15,14 @@ Logical form:
 
 ```lean
 def Comparable {alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation alpha)
+    (relation : LRA.Relation.Endorelation alpha)
     (left right : alpha) : Prop :=
   relation left right \/ relation right left
 ```
 -/
 def Comparable {alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation alpha)
+    (relation : LRA.Relation.Endorelation alpha)
     (left right : alpha) : Prop :=
   relation left right \/ relation right left
 
-end LRA.VolumeI.Order
+end LRA.Order

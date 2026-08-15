@@ -1,6 +1,6 @@
 /-
 Draft module; not yet imported by the active Volume III root.
-New namespace/area for this pass: `LRA.VolumeIII.Analysis.Functions.*`.
+New namespace/area for this pass: `LRA.Analysis.Functions.*`.
 Standalone — imports only Mathlib's core `Function`/`Set` API (pure
 function-theory content, no dependency on the Sequences/Bounding draft
 trees), so it can be freely refactored or discarded without touching the
@@ -71,7 +71,7 @@ corpus's own named predicates as citable content.
 import Mathlib.Logic.Function.Basic
 import Mathlib.Data.Set.Basic
 
-namespace LRA.VolumeIII.Analysis.Functions
+namespace LRA.Analysis.Functions
 
 variable {A B C : Type*}
 
@@ -193,4 +193,4 @@ theorem PreimageUnionIntersection {f : A → B} (S T : Set B) :
       f ⁻¹' Sᶜ = (f ⁻¹' S)ᶜ := by
   sorry
 
-end LRA.VolumeIII.Analysis.Functions
+end LRA.Analysis.Functions

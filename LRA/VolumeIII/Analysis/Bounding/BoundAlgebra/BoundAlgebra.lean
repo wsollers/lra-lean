@@ -6,7 +6,7 @@ import LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.UpperLowerBounds
 Translation, dilation, and reflection of bounded subsets of the real line.
 -/
 
-namespace LRA.VolumeIII.Analysis.Bounding.BoundAlgebra
+namespace LRA.Analysis.Bounds.Algebra
 
 /-- `Displace A c` is the translate of `A` by `c`.
 
@@ -45,46 +45,46 @@ def Reflect (A : Set ℝ) : Set ℝ :=
   (fun a => -a) '' A
 
 /-- Let `A : Set ℝ` and `c u : ℝ`. If `upperBoundHypothesis :
-LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound u A`. Then
-`LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound (u + c) (Displace A c)`.
+LRA.Analysis.Bounds.IsUpperBound u A`. Then
+`LRA.Analysis.Bounds.IsUpperBound (u + c) (Displace A c)`.
 
 Logical form:
 
 ```lean
 theorem TranslationPreservesUpperBounds {A : Set ℝ} {c u : ℝ}
     (upperBoundHypothesis :
-      LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound u A) :
-    LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound (u + c) (Displace A c)
+      LRA.Analysis.Bounds.IsUpperBound u A) :
+    LRA.Analysis.Bounds.IsUpperBound (u + c) (Displace A c)
 ```
 -/
 theorem TranslationPreservesUpperBounds {A : Set ℝ} {c u : ℝ}
     (upperBoundHypothesis :
-      LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound u A) :
-    LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound (u + c) (Displace A c) := by
+      LRA.Analysis.Bounds.IsUpperBound u A) :
+    LRA.Analysis.Bounds.IsUpperBound (u + c) (Displace A c) := by
   sorry
 
 /-- Let `A : Set ℝ` and `c l : ℝ`. If `lowerBoundHypothesis :
-LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound l A`. Then
-`LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound (l + c) (Displace A c)`.
+LRA.Analysis.Bounds.IsLowerBound l A`. Then
+`LRA.Analysis.Bounds.IsLowerBound (l + c) (Displace A c)`.
 
 Logical form:
 
 ```lean
 theorem TranslationPreservesLowerBounds {A : Set ℝ} {c l : ℝ}
     (lowerBoundHypothesis :
-      LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound l A) :
-    LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound (l + c) (Displace A c)
+      LRA.Analysis.Bounds.IsLowerBound l A) :
+    LRA.Analysis.Bounds.IsLowerBound (l + c) (Displace A c)
 ```
 -/
 theorem TranslationPreservesLowerBounds {A : Set ℝ} {c l : ℝ}
     (lowerBoundHypothesis :
-      LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound l A) :
-    LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound (l + c) (Displace A c) := by
+      LRA.Analysis.Bounds.IsLowerBound l A) :
+    LRA.Analysis.Bounds.IsLowerBound (l + c) (Displace A c) := by
   sorry
 
 /-- Let `A : Set ℝ` and `scale u : ℝ`. If `positiveScale : 0 < scale` and `upperBoundHypothesis :
-LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound u A`. Then
-`LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound (scale * u) (Dilate A scale)`.
+LRA.Analysis.Bounds.IsUpperBound u A`. Then
+`LRA.Analysis.Bounds.IsUpperBound (scale * u) (Dilate A scale)`.
 
 Logical form:
 
@@ -92,22 +92,22 @@ Logical form:
 theorem PositiveDilationPreservesUpperBounds {A : Set ℝ} {scale u : ℝ}
     (positiveScale : 0 < scale)
     (upperBoundHypothesis :
-      LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound u A) :
-    LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound
+      LRA.Analysis.Bounds.IsUpperBound u A) :
+    LRA.Analysis.Bounds.IsUpperBound
       (scale * u) (Dilate A scale)
 ```
 -/
 theorem PositiveDilationPreservesUpperBounds {A : Set ℝ} {scale u : ℝ}
     (positiveScale : 0 < scale)
     (upperBoundHypothesis :
-      LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound u A) :
-    LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound
+      LRA.Analysis.Bounds.IsUpperBound u A) :
+    LRA.Analysis.Bounds.IsUpperBound
       (scale * u) (Dilate A scale) := by
   sorry
 
 /-- Let `A : Set ℝ` and `scale l : ℝ`. If `positiveScale : 0 < scale` and `lowerBoundHypothesis :
-LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound l A`. Then
-`LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound (scale * l) (Dilate A scale)`.
+LRA.Analysis.Bounds.IsLowerBound l A`. Then
+`LRA.Analysis.Bounds.IsLowerBound (scale * l) (Dilate A scale)`.
 
 Logical form:
 
@@ -115,22 +115,22 @@ Logical form:
 theorem PositiveDilationPreservesLowerBounds {A : Set ℝ} {scale l : ℝ}
     (positiveScale : 0 < scale)
     (lowerBoundHypothesis :
-      LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound l A) :
-    LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound
+      LRA.Analysis.Bounds.IsLowerBound l A) :
+    LRA.Analysis.Bounds.IsLowerBound
       (scale * l) (Dilate A scale)
 ```
 -/
 theorem PositiveDilationPreservesLowerBounds {A : Set ℝ} {scale l : ℝ}
     (positiveScale : 0 < scale)
     (lowerBoundHypothesis :
-      LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound l A) :
-    LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound
+      LRA.Analysis.Bounds.IsLowerBound l A) :
+    LRA.Analysis.Bounds.IsLowerBound
       (scale * l) (Dilate A scale) := by
   sorry
 
 /-- Let `A : Set ℝ` and `scale l : ℝ`. If `negativeScale : scale < 0` and `lowerBoundHypothesis :
-LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound l A`. Then
-`LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound (scale * l) (Dilate A scale)`.
+LRA.Analysis.Bounds.IsLowerBound l A`. Then
+`LRA.Analysis.Bounds.IsUpperBound (scale * l) (Dilate A scale)`.
 
 Logical form:
 
@@ -138,22 +138,22 @@ Logical form:
 theorem NegativeDilationSendsLowerToUpperBounds {A : Set ℝ} {scale l : ℝ}
     (negativeScale : scale < 0)
     (lowerBoundHypothesis :
-      LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound l A) :
-    LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound
+      LRA.Analysis.Bounds.IsLowerBound l A) :
+    LRA.Analysis.Bounds.IsUpperBound
       (scale * l) (Dilate A scale)
 ```
 -/
 theorem NegativeDilationSendsLowerToUpperBounds {A : Set ℝ} {scale l : ℝ}
     (negativeScale : scale < 0)
     (lowerBoundHypothesis :
-      LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound l A) :
-    LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound
+      LRA.Analysis.Bounds.IsLowerBound l A) :
+    LRA.Analysis.Bounds.IsUpperBound
       (scale * l) (Dilate A scale) := by
   sorry
 
 /-- Let `A : Set ℝ` and `scale u : ℝ`. If `negativeScale : scale < 0` and `upperBoundHypothesis :
-LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound u A`. Then
-`LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound (scale * u) (Dilate A scale)`.
+LRA.Analysis.Bounds.IsUpperBound u A`. Then
+`LRA.Analysis.Bounds.IsLowerBound (scale * u) (Dilate A scale)`.
 
 Logical form:
 
@@ -161,49 +161,49 @@ Logical form:
 theorem NegativeDilationSendsUpperToLowerBounds {A : Set ℝ} {scale u : ℝ}
     (negativeScale : scale < 0)
     (upperBoundHypothesis :
-      LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound u A) :
-    LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound
+      LRA.Analysis.Bounds.IsUpperBound u A) :
+    LRA.Analysis.Bounds.IsLowerBound
       (scale * u) (Dilate A scale)
 ```
 -/
 theorem NegativeDilationSendsUpperToLowerBounds {A : Set ℝ} {scale u : ℝ}
     (negativeScale : scale < 0)
     (upperBoundHypothesis :
-      LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound u A) :
-    LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound
+      LRA.Analysis.Bounds.IsUpperBound u A) :
+    LRA.Analysis.Bounds.IsLowerBound
       (scale * u) (Dilate A scale) := by
   sorry
 
-/-- Let `A : Set ℝ` and `b : ℝ`. Then `LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound b
-A ↔ LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound (-b) (Reflect A)`.
+/-- Let `A : Set ℝ` and `b : ℝ`. Then `LRA.Analysis.Bounds.IsUpperBound b
+A ↔ LRA.Analysis.Bounds.IsLowerBound (-b) (Reflect A)`.
 
 Logical form:
 
 ```lean
 theorem ReflectionSwapsUpperBoundsToLowerBounds {A : Set ℝ} {b : ℝ} :
-    LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound b A ↔
-      LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound (-b) (Reflect A)
+    LRA.Analysis.Bounds.IsUpperBound b A ↔
+      LRA.Analysis.Bounds.IsLowerBound (-b) (Reflect A)
 ```
 -/
 theorem ReflectionSwapsUpperBoundsToLowerBounds {A : Set ℝ} {b : ℝ} :
-    LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound b A ↔
-      LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound (-b) (Reflect A) := by
+    LRA.Analysis.Bounds.IsUpperBound b A ↔
+      LRA.Analysis.Bounds.IsLowerBound (-b) (Reflect A) := by
   sorry
 
-/-- Let `A : Set ℝ` and `b : ℝ`. Then `LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound b
-A ↔ LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound (-b) (Reflect A)`.
+/-- Let `A : Set ℝ` and `b : ℝ`. Then `LRA.Analysis.Bounds.IsLowerBound b
+A ↔ LRA.Analysis.Bounds.IsUpperBound (-b) (Reflect A)`.
 
 Logical form:
 
 ```lean
 theorem ReflectionSwapsLowerBoundsToUpperBounds {A : Set ℝ} {b : ℝ} :
-    LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound b A ↔
-      LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound (-b) (Reflect A)
+    LRA.Analysis.Bounds.IsLowerBound b A ↔
+      LRA.Analysis.Bounds.IsUpperBound (-b) (Reflect A)
 ```
 -/
 theorem ReflectionSwapsLowerBoundsToUpperBounds {A : Set ℝ} {b : ℝ} :
-    LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsLowerBound b A ↔
-      LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.IsUpperBound (-b) (Reflect A) := by
+    LRA.Analysis.Bounds.IsLowerBound b A ↔
+      LRA.Analysis.Bounds.IsUpperBound (-b) (Reflect A) := by
   sorry
 
-end LRA.VolumeIII.Analysis.Bounding.BoundAlgebra
+end LRA.Analysis.Bounds.Algebra

@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Semantics.Sentence
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 The second end-to-end checkpoint: A ∧ B, with A and B both true -- now for
@@ -338,4 +338,4 @@ theorem sometimesFalseModel_satisfies_existsR
     (fun i => evaluateTerm sometimesFalseModel (updateAssignment assignment x true) (Term.var x))
   simp [sometimesFalseModel, evaluateTerm, updateAssignment]
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

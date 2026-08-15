@@ -4,16 +4,16 @@
 import LRA.VolumeI.Algebra.Models
 import LRA.VolumeII.Integers.Construction
 
-namespace LRA.VolumeII.GaussianIntegers
+namespace LRA.NumberSystems.GaussianIntegers
 
-open LRA.VolumeI.Algebra.Models
-open LRA.VolumeI.AlgebraicStructures
+open LRA.Algebra.Models
+open LRA.Algebra.Structure
 
 universe u
 
 /-!
 Volume II label: gaussian-integer-construction
-Lean module: LRA.VolumeII.GaussianIntegers.Construction.Model
+Lean module: LRA.NumberSystems.GaussianIntegers.Construction.Model
 Verification status: definitions accepted; algebraic proofs pending
 
 The Gaussian integers `a + b·i`, now over *any* commutative-ring
@@ -348,10 +348,10 @@ end Certificates
 Logical form:
 
 ```lean
-abbrev ActiveGaussianInteger := GaussianInteger LRA.VolumeII.Integers.Z
+abbrev ActiveGaussianInteger := GaussianInteger LRA.NumberSystems.Integers.Z
 ```
 -/
-abbrev ActiveGaussianInteger := GaussianInteger LRA.VolumeII.Integers.Z
+abbrev ActiveGaussianInteger := GaussianInteger LRA.NumberSystems.Integers.Z
 
 /-- Any ring-ready carrier's Gaussian integers as a first-order model
 of the arithmetic ring language.
@@ -361,13 +361,13 @@ Logical form:
 ```lean
 def gaussianArithmeticRingModel (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
-    LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
   arithmeticRingFirstOrderModel (GaussianInteger R)
 ```
 -/
 def gaussianArithmeticRingModel (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
-    LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
   arithmeticRingFirstOrderModel (GaussianInteger R)
 
 /-- The active Gaussian integers as a first-order model.
@@ -376,13 +376,13 @@ Logical form:
 
 ```lean
 def GaussianArithmeticRingModel :
-    LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
-  gaussianArithmeticRingModel LRA.VolumeII.Integers.Z
+    LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+  gaussianArithmeticRingModel LRA.NumberSystems.Integers.Z
 ```
 -/
 def GaussianArithmeticRingModel :
-    LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
-  gaussianArithmeticRingModel LRA.VolumeII.Integers.Z
+    LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+  gaussianArithmeticRingModel LRA.NumberSystems.Integers.Z
 
 /-! ## Smoke tests: same theorem surface over `Z` and `Int` -/
 
@@ -397,4 +397,4 @@ example (a b : GaussianInteger Int) : a + b = b + a :=
 
 end GaussianInteger
 
-end LRA.VolumeII.GaussianIntegers
+end LRA.NumberSystems.GaussianIntegers

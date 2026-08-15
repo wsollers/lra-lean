@@ -13,7 +13,7 @@ together with Separation and Power Set applied to a fixed witness — is a
 larger, separate theorem left for a later file, not attempted here.
 -/
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 /-- There exists an inductive set. This is the Axiom of Infinity restated
 using the named `IsInductiveSet` predicate.
@@ -29,4 +29,4 @@ theorem InductiveSetExists :
     ∃ A : Set, IsInductiveSet A := by
   sorry
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

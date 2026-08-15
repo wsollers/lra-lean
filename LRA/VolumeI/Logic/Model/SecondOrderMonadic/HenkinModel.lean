@@ -1,7 +1,7 @@
 import Mathlib.Data.Set.Defs
 import LRA.VolumeI.Logic.Model.Model
 
-namespace LRA.VolumeI.Logic.SecondOrderMonadic
+namespace LRA.Logic.SecondOrderMonadic
 
 /-!
 Henkin models.
@@ -53,4 +53,4 @@ structure HenkinModel (S : Signature) extends FirstOrder.Model S where
 structure HenkinModel (S : Signature) extends FirstOrder.Model S where
   SecondOrderDomain : Set (Set Domain)
 
-end LRA.VolumeI.Logic.SecondOrderMonadic
+end LRA.Logic.SecondOrderMonadic

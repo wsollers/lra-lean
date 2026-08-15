@@ -1,7 +1,7 @@
 /-
 Draft module; not yet imported by the active Volume III root.
 Imports only this pass's own promoted draft modules and Mathlib — nothing from the
-real `LRA.VolumeIII.Analysis.Sequences.*`, so this can be freely
+real `LRA.Analysis.Sequences.*`, so this can be freely
 refactored or discarded without touching the working project.
 Source: volume-iii/book-analysis-i/sequences/notes/definition/notes-null-constant-sequences.tex
 Second file of `definition` (installment 2 of 2). Structural check: 81/81
@@ -53,7 +53,7 @@ import Mathlib.Topology.Instances.Real.Lemmas
 import Mathlib.Order.Filter.AtTopBot.Basic
 import LRA.VolumeIII.Analysis.Sequences.SequenceDefinitions
 
-namespace LRA.VolumeIII.Analysis.Sequences
+namespace LRA.Analysis.Sequences
 
 /-- `def:constant-sequence`.
 
@@ -341,4 +341,4 @@ theorem UpperLowerBoundsAbsoluteBound {x : RealSequence} {m M : ℝ}
     (h : ∀ n, m ≤ x n ∧ x n ≤ M) : ∃ K > 0, ∀ n, |x n| ≤ K := by
   sorry
 
-end LRA.VolumeIII.Analysis.Sequences
+end LRA.Analysis.Sequences

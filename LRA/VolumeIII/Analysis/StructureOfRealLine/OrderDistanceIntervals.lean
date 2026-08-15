@@ -9,7 +9,7 @@ One Lean statement per book label, `sorry`-bodied.
 
 import Mathlib.Data.Real.Basic
 
-namespace LRA.VolumeIII.Analysis.StructureOfRealLine
+namespace LRA.Analysis.StructureOfRealLine
 
 /-- `def:distance-on-real-line`.
 
@@ -159,4 +159,4 @@ theorem IntervalSetOpsAreOrdinarySetOps : True
 -/
 theorem IntervalSetOpsAreOrdinarySetOps : True := trivial
 
-end LRA.VolumeIII.Analysis.StructureOfRealLine
+end LRA.Analysis.StructureOfRealLine

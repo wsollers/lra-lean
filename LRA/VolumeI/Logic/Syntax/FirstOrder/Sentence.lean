@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Syntax.FirstOrder.FreeVariables
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 Closed formulas and sentences.
@@ -8,7 +8,7 @@ Closed formulas and sentences.
 A first-order formula is closed when it has no free variables. A sentence is
 a formula bundled with that closedness proof. This is syntax-level
 infrastructure: semantic assignment-independence for closed formulas lives in
-`LRA.VolumeI.Logic.Semantics.Sentence`.
+`LRA.Logic.Semantics.Sentence`.
 -/
 
 /-- A formula is closed when it has no free variables.
@@ -56,4 +56,4 @@ theorem sentence_hasNoFreeVariables
     freeVariables sentence.val = ∅ :=
   sentence.property
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

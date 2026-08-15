@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Syntax.FirstOrder.FreeVariables
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 Substitutability.
@@ -69,4 +69,4 @@ def IsSubstitutable
       (x ∈ freeVariables (Formula.forallQ v φ) -> v ∉ freeVariablesInTerm t) ∧
         IsSubstitutable φ x t
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

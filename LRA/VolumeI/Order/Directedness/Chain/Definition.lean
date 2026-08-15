@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.Relations.Comparable.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -9,11 +9,11 @@ subset is a chain under this convention. -/
 def Chain
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
-    (relation : LRA.VolumeI.Relations.Endorelation Element)
+    (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject) : Prop :=
   forall first second,
     first ∈ subset ->
       second ∈ subset ->
         Comparable relation first second
 
-end LRA.VolumeI.Order
+end LRA.Order

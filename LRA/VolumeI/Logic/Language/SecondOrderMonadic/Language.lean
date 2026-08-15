@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Language.FirstOrder.Signature
 
-namespace LRA.VolumeI.Logic.SecondOrderMonadic
+namespace LRA.Logic.SecondOrderMonadic
 
 /-!
 Monadic second-order languages.
@@ -40,4 +40,4 @@ abbrev SecondOrderMonadicLanguage := Signature
 -/
 abbrev SecondOrderMonadicLanguage := Signature
 
-end LRA.VolumeI.Logic.SecondOrderMonadic
+end LRA.Logic.SecondOrderMonadic

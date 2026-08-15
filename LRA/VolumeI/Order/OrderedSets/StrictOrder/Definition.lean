@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.Relations.OrderRelation.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
@@ -11,21 +11,21 @@ Logical form:
 
 ```lean
 def StrictOrder {Alpha : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Alpha) :
+    (relation : LRA.Order.OrderedSets.OrderRelation Alpha) :
     Prop :=
-  LRA.VolumeI.Relations.Irreflexive relation /\
-    LRA.VolumeI.Relations.Transitive relation
+  LRA.Relation.Irreflexive relation /\
+    LRA.Relation.Transitive relation
 ```
 -/
 def StrictOrder {Alpha : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Alpha) :
+    (relation : LRA.Order.OrderedSets.OrderRelation Alpha) :
     Prop :=
-  LRA.VolumeI.Relations.Irreflexive relation /\
-    LRA.VolumeI.Relations.Transitive relation
+  LRA.Relation.Irreflexive relation /\
+    LRA.Relation.Transitive relation
 
-end LRA.VolumeI.Order
+end LRA.Order
 
-namespace LRA.VolumeI.Order.OrderedSets.StrictOrder
+namespace LRA.Order.OrderedSets.StrictOrder
 
 universe u
 
@@ -37,12 +37,12 @@ Logical form:
 
 ```lean
 structure StrictOrderRelation (Carrier : Type u) where
-  relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier
-  relationIsStrictOrder : LRA.VolumeI.Order.StrictOrder relation
+  relation : LRA.Order.OrderedSets.OrderRelation Carrier
+  relationIsStrictOrder : LRA.Order.StrictOrder relation
 ```
 -/
 structure StrictOrderRelation (Carrier : Type u) where
-  relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier
-  relationIsStrictOrder : LRA.VolumeI.Order.StrictOrder relation
+  relation : LRA.Order.OrderedSets.OrderRelation Carrier
+  relationIsStrictOrder : LRA.Order.StrictOrder relation
 
-end LRA.VolumeI.Order.OrderedSets.StrictOrder
+end LRA.Order.OrderedSets.StrictOrder

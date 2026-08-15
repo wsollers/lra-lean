@@ -7,16 +7,16 @@ import Mathlib.Order.Bounds.Defs
 
 open scoped Pointwise
 
-namespace LRA.VolumeIII.Analysis.Bounding.Bounds
+namespace LRA.Analysis.Bounds
 open scoped Pointwise
 
 /-!
 Volume III label: analysis-bounding-bounds
-Lean module: LRA.VolumeIII.Analysis.Bounding.Bounds
+Lean module: LRA.Analysis.Bounds
 Verification status: definitions accepted; algebraic proofs pending
 
 The definitions are carrier-generic. Concrete carrier checks live in
-`LRA.VolumeIII.Analysis.Bounding.BoundsTests`.
+`LRA.Analysis.BoundsTests`.
 -/
 
 variable {F : Type*}
@@ -199,8 +199,8 @@ theorem SupremumIffIsLUB [Preorder F] {s : F} {A : Set F} :
 
 
 
-end LRA.VolumeIII.Analysis.Bounding.Bounds
-namespace LRA.VolumeIII.Analysis.Bounding.Bounds.Algebra
+end LRA.Analysis.Bounds
+namespace LRA.Analysis.Bounds.Algebra
 open scoped Pointwise
 
 variable {F : Type*} [Field F] [LinearOrder F] [IsStrictOrderedRing F]
@@ -304,8 +304,8 @@ theorem SupremumMonotone {sA sB : F} {A B : Set F}
     sA <= sB := by
   sorry
 
-end LRA.VolumeIII.Analysis.Bounding.Bounds.Algebra
-namespace LRA.VolumeIII.Analysis.Bounding.Bounds
+end LRA.Analysis.Bounds.Algebra
+namespace LRA.Analysis.Bounds
 open scoped Pointwise
 
-end LRA.VolumeIII.Analysis.Bounding.Bounds
+end LRA.Analysis.Bounds

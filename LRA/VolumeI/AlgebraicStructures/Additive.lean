@@ -1,4 +1,4 @@
-namespace LRA.VolumeI.AlgebraicStructures
+namespace LRA.Algebra.Structure
 
 universe u
 
@@ -194,4 +194,4 @@ theorem SubEqAddNeg [Sub R] [Add R] [Neg R]
 
 end Wrappers
 
-end LRA.VolumeI.AlgebraicStructures
+end LRA.Algebra.Structure

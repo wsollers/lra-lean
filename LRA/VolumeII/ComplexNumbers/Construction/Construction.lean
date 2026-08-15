@@ -3,15 +3,15 @@
 
 import LRA.VolumeI.AlgebraicStructures
 
-namespace LRA.VolumeII.ComplexNumbers.Construction
+namespace LRA.NumberSystems.ComplexNumbers.Construction
 
-open LRA.VolumeI.AlgebraicStructures
+open LRA.Algebra.Structure
 
 universe u
 
 /-!
 Volume II label: complex-number-construction
-Lean module: LRA.VolumeII.ComplexNumbers.Construction.Construction
+Lean module: LRA.NumberSystems.ComplexNumbers.Construction.Construction
 Verification status: definitions accepted; algebraic proofs pending
 
 The standard construction of complex numbers, now over *any* carrier
@@ -632,4 +632,4 @@ theorem algebraic_closure_obligation
 
 end ComplexNumber
 
-end LRA.VolumeII.ComplexNumbers.Construction
+end LRA.NumberSystems.ComplexNumbers.Construction

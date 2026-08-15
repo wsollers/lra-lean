@@ -5,6 +5,6 @@ This module is reserved for convergence stated through metric estimates and
 for later bridges to sequence, net, and filter formulations.
 -/
 
-namespace LRA.VolumeIV.MetricSpaces
+namespace LRA.Analysis.MetricSpaces
 
-end LRA.VolumeIV.MetricSpaces
+end LRA.Analysis.MetricSpaces

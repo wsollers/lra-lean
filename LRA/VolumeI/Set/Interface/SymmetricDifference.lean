@@ -1,6 +1,6 @@
 import LRA.VolumeI.Set.Interface.Operations
 
-namespace LRA.VolumeI.Set
+namespace LRA.Set
 
 universe u
 
@@ -168,4 +168,4 @@ theorem SymmetricDifferenceSubsetUnion : ∀ A B : α, A ∆ B ⊆ A ∪ B
 theorem SymmetricDifferenceSubsetUnion : ∀ A B : α, A ∆ B ⊆ A ∪ B :=
   SymmDiffLaws.SymmetricDifferenceSubsetUnion
 
-end LRA.VolumeI.Set
+end LRA.Set

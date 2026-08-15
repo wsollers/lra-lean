@@ -1,7 +1,7 @@
 import LRA.VolumeI.Set.LRASet.Instances
 import LRA.VolumeI.Set.Interface.SymmetricDifference
 
-namespace LRA.VolumeI.Set.LRASet
+namespace LRA.Set.LRASet
 
 universe u
 
@@ -9,7 +9,7 @@ variable {Alpha : Type u}
 
 /-!
 Symmetric-difference laws for predicate sets: the backend's certificate
-for `LRA.VolumeI.Set.SymmDiffLaws`. `A ∆ B` resolves through the
+for `LRA.Set.SymmDiffLaws`. `A ∆ B` resolves through the
 `HasSymmDiff (LRASet Alpha)` instance in `Instances.lean`, backed by
 `Operations.SymmetricDifference`.
 -/
@@ -144,22 +144,22 @@ theorem SymmetricDifferenceSubsetUnion :
 Pure delegation to the theorems above. -/
 instance : SymmDiffLaws (LRASet Alpha) where
   SymmetricDifferenceAsUnionDifferences :=
-    LRA.VolumeI.Set.LRASet.SymmetricDifferenceAsUnionDifferences
+    LRA.Set.LRASet.SymmetricDifferenceAsUnionDifferences
   SymmetricDifferenceAsUnionDifferenceIntersection :=
-    LRA.VolumeI.Set.LRASet.SymmetricDifferenceAsUnionDifferenceIntersection
+    LRA.Set.LRASet.SymmetricDifferenceAsUnionDifferenceIntersection
   SymmetricDifferenceCommutative :=
-    LRA.VolumeI.Set.LRASet.SymmetricDifferenceCommutative
+    LRA.Set.LRASet.SymmetricDifferenceCommutative
   SymmetricDifferenceAssociative :=
-    LRA.VolumeI.Set.LRASet.SymmetricDifferenceAssociative
+    LRA.Set.LRASet.SymmetricDifferenceAssociative
   SymmetricDifferenceEmpty :=
-    LRA.VolumeI.Set.LRASet.SymmetricDifferenceEmpty
+    LRA.Set.LRASet.SymmetricDifferenceEmpty
   EmptySymmetricDifference :=
-    LRA.VolumeI.Set.LRASet.EmptySymmetricDifference
+    LRA.Set.LRASet.EmptySymmetricDifference
   SymmetricDifferenceSelf :=
-    LRA.VolumeI.Set.LRASet.SymmetricDifferenceSelf
+    LRA.Set.LRASet.SymmetricDifferenceSelf
   SymmetricDifferenceEqEmptyIff :=
-    LRA.VolumeI.Set.LRASet.SymmetricDifferenceEqEmptyIff
+    LRA.Set.LRASet.SymmetricDifferenceEqEmptyIff
   SymmetricDifferenceSubsetUnion :=
-    LRA.VolumeI.Set.LRASet.SymmetricDifferenceSubsetUnion
+    LRA.Set.LRASet.SymmetricDifferenceSubsetUnion
 
-end LRA.VolumeI.Set.LRASet
+end LRA.Set.LRASet

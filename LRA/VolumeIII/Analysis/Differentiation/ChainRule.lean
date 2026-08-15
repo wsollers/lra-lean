@@ -13,11 +13,11 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Algebra.BigOperators.Ring.Finset
 import LRA.VolumeIII.Analysis.Differentiation.DerivativeDefinition
 
-namespace LRA.VolumeIII.Analysis.Differentiation
+namespace LRA.Analysis.Differentiation
 
 -- `thm:caratheodory-characterization-of-differentiability`
 /-- Let `A : Set ℝ` and `c D : ℝ`. If `f : ℝ → ℝ`. Then `Derivative D f A c ↔ ∃ φ : ℝ → ℝ, φ c = D ∧
-LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint φ A c ∧ ∀ x ∈ A, f x - f c = (x - c) * φ x`.
+LRA.Analysis.Continuity.ContinuousAtPoint φ A c ∧ ∀ x ∈ A, f x - f c = (x - c) * φ x`.
 
 Logical form:
 
@@ -25,14 +25,14 @@ Logical form:
 theorem CaratheodoryCharacterization (f : ℝ → ℝ) (A : Set ℝ) (c D : ℝ) :
     Derivative D f A c ↔
       ∃ φ : ℝ → ℝ, φ c = D ∧
-        LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint φ A c ∧
+        LRA.Analysis.Continuity.ContinuousAtPoint φ A c ∧
         ∀ x ∈ A, f x - f c = (x - c) * φ x
 ```
 -/
 theorem CaratheodoryCharacterization (f : ℝ → ℝ) (A : Set ℝ) (c D : ℝ) :
     Derivative D f A c ↔
       ∃ φ : ℝ → ℝ, φ c = D ∧
-        LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint φ A c ∧
+        LRA.Analysis.Continuity.ContinuousAtPoint φ A c ∧
         ∀ x ∈ A, f x - f c = (x - c) * φ x := by
   sorry
 
@@ -116,4 +116,4 @@ theorem FaaDiBrunoSecondOrder (f g : ℝ → ℝ) (fD gD hD : ℕ → ℝ → �
     hD 2 c = gD 2 (f c) * (fD 1 c) ^ 2 + gD 1 (f c) * fD 2 c := by
   sorry
 
-end LRA.VolumeIII.Analysis.Differentiation
+end LRA.Analysis.Differentiation

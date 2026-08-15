@@ -1,7 +1,7 @@
 /-
 Draft module; not yet imported by the active Volume III root.
 Imports only this pass's own promoted draft modules and Mathlib — nothing from the
-real `LRA.VolumeIII.Analysis.Sequences.*`, so this can be freely
+real `LRA.Analysis.Sequences.*`, so this can be freely
 refactored or discarded without touching the working project.
 Source: volume-iii/book-analysis-i/sequences/notes/convergence/notes-algebra.tex
 Third and last file of `convergence` (installment 3 of 3). Structural
@@ -56,7 +56,7 @@ import LRA.VolumeIII.Analysis.Sequences.Convergence
 import LRA.VolumeIII.Analysis.Sequences.NullConstantSequences
 import LRA.VolumeIII.Analysis.Sequences.Limits
 
-namespace LRA.VolumeIII.Analysis.Sequences
+namespace LRA.Analysis.Sequences
 
 /-- `def:pointwise-sum-sequence`.
 
@@ -401,4 +401,4 @@ theorem RationalSequenceLimit {x : RealSequence} {L : ℝ}
     ConvergesTo (fun n => p.eval (x n) / q.eval (x n)) (p.eval L / q.eval L) := by
   sorry
 
-end LRA.VolumeIII.Analysis.Sequences
+end LRA.Analysis.Sequences

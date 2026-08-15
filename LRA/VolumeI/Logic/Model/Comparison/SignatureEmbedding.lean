@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Language.FirstOrder.Signature
 
-namespace LRA.VolumeI.Logic
+namespace LRA.Logic
 
 /-!
 Signature embeddings.
@@ -137,4 +137,4 @@ structure SignatureEmbedding (S S' : Signature) where
   relationEmbedRelation_of_preimage :
     ∀ r' r, relationPreimage r' = some r -> embedRelation r = r'
 
-end LRA.VolumeI.Logic
+end LRA.Logic

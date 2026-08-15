@@ -1,11 +1,11 @@
 import LRA.VolumeI.Set.Enderton.Instances
 import LRA.VolumeI.Set.Interface.Intersection
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 /-!
 Intersection laws for Enderton sets: the backend's certificate for
-`LRA.VolumeI.Set.IntersectionLaws`. Same shape/naming discipline as
+`LRA.Set.IntersectionLaws`. Same shape/naming discipline as
 `Laws/Union.lean`.
 -/
 /--
@@ -102,13 +102,13 @@ theorem SubsetIffIntersectionEqLeft :
 /-- Registration: Enderton sets satisfy the intersection laws. Pure
 delegation to the theorems above. -/
 instance : IntersectionLaws Set where
-  IntersectionCommutative := LRA.VolumeI.Set.Enderton.IntersectionCommutative
-  IntersectionAssociative := LRA.VolumeI.Set.Enderton.IntersectionAssociative
-  EmptyIntersection := LRA.VolumeI.Set.Enderton.EmptyIntersection
-  IntersectionEmpty := LRA.VolumeI.Set.Enderton.IntersectionEmpty
-  IntersectionIdempotent := LRA.VolumeI.Set.Enderton.IntersectionIdempotent
-  IntersectionMonotone := LRA.VolumeI.Set.Enderton.IntersectionMonotone
+  IntersectionCommutative := LRA.Set.Enderton.IntersectionCommutative
+  IntersectionAssociative := LRA.Set.Enderton.IntersectionAssociative
+  EmptyIntersection := LRA.Set.Enderton.EmptyIntersection
+  IntersectionEmpty := LRA.Set.Enderton.IntersectionEmpty
+  IntersectionIdempotent := LRA.Set.Enderton.IntersectionIdempotent
+  IntersectionMonotone := LRA.Set.Enderton.IntersectionMonotone
   SubsetIffIntersectionEqLeft :=
-    LRA.VolumeI.Set.Enderton.SubsetIffIntersectionEqLeft
+    LRA.Set.Enderton.SubsetIffIntersectionEqLeft
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

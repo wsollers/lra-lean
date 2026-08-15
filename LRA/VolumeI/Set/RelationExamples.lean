@@ -8,15 +8,15 @@ import LRA.VolumeI.Set.MathlibPredicateSet
 import LRA.VolumeI.Set.MathlibZFSet
 import LRA.VolumeI.Set.MathlibZFSet.Pairing
 
-namespace LRA.VolumeI.Set.RelationExamples
+namespace LRA.Set.RelationExamples
 
-open LRA.VolumeI.Set
+open LRA.Set
 
 universe u
 
 /-!
 Volume I label: set-relation-examples
-Lean module: LRA.VolumeI.Set.RelationExamples
+Lean module: LRA.Set.RelationExamples
 Verification status: checked elaboration smoke tests
 
 One statement, four backends: the same fluent relation vocabulary
@@ -99,4 +99,4 @@ example (f : Enderton.Set) : Prop :=
 example {Alpha Beta : Type u} (f : _root_.Set (Alpha × Beta)) : Prop :=
   IsFunctionalSet Alpha Beta f
 
-end LRA.VolumeI.Set.RelationExamples
+end LRA.Set.RelationExamples

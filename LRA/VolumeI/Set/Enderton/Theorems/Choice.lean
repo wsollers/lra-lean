@@ -13,7 +13,7 @@ because later chapters will want to fix *a* transversal to work with, even
 though it is not *the* transversal.
 -/
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 /-- If every member of `A` is nonempty and the members of `A` are pairwise
 disjoint, there exists a choice set for `A`.
@@ -83,4 +83,4 @@ theorem TheChoiceSetIsChoiceSetFor
       (TheChoiceSet A membersNonempty membersPairwiseDisjoint) := by
   sorry
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

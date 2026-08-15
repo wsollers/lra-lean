@@ -21,7 +21,7 @@ import Mathlib.Order.Bounds.Basic
 import Mathlib.Topology.Instances.Real.Lemmas
 import Mathlib.Order.Filter.Basic
 
-namespace LRA.VolumeIII.Analysis.RealAnalysis
+namespace LRA.Analysis.RealAnalysis
 
 /-- Let `S : Set ℝ` and `s : ℝ`. If `hne : S.Nonempty`, `hbdd : BddAbove S`, and `hs : IsLUB S s`.
 Then `∀ ε > 0, ∃ x ∈ S, x > s - ε`.
@@ -82,4 +82,4 @@ theorem MonotoneApproxBounds (S : Set ℝ) (hne : S.Nonempty)
       Filter.Tendsto y Filter.atTop (nhds (sInf S))) := by
   sorry
 
-end LRA.VolumeIII.Analysis.RealAnalysis
+end LRA.Analysis.RealAnalysis

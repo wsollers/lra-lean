@@ -6,9 +6,10 @@ import LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.SupremaInfima
 Pairwise lattice operations on bounded real sets.
 -/
 
-namespace LRA.VolumeIII.Analysis.Bounding.BoundAlgebra
+namespace LRA.Analysis.Bounds.Algebra
 
-open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
+open LRA.Analysis.Bounds.Extremal
+open LRA.Analysis.Bounds
 
 /-- The set of pairwise maxima of elements from `A` and `B`.
 
@@ -134,4 +135,4 @@ theorem InfimumOfPairwiseMinimumSet {A B : Set ℝ}
     IsInfimum (min iA iB) (PairwiseMin A B) := by
   sorry
 
-end LRA.VolumeIII.Analysis.Bounding.BoundAlgebra
+end LRA.Analysis.Bounds.Algebra

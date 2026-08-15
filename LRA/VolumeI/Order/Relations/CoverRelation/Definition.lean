@@ -1,6 +1,6 @@
 import LRA.VolumeI.Relations.Basic.Relations
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
@@ -11,8 +11,8 @@ Logical form:
 
 ```lean
 def CoverRelation {alpha : Type u}
-    (strictRelation : LRA.VolumeI.Relations.Endorelation alpha) :
-    LRA.VolumeI.Relations.Endorelation alpha :=
+    (strictRelation : LRA.Relation.Endorelation alpha) :
+    LRA.Relation.Endorelation alpha :=
   fun lower upper =>
     strictRelation lower upper /\
       forall middle,
@@ -20,11 +20,11 @@ def CoverRelation {alpha : Type u}
 ```
 -/
 def CoverRelation {alpha : Type u}
-    (strictRelation : LRA.VolumeI.Relations.Endorelation alpha) :
-    LRA.VolumeI.Relations.Endorelation alpha :=
+    (strictRelation : LRA.Relation.Endorelation alpha) :
+    LRA.Relation.Endorelation alpha :=
   fun lower upper =>
     strictRelation lower upper /\
       forall middle,
         Not (strictRelation lower middle /\ strictRelation middle upper)
 
-end LRA.VolumeI.Order
+end LRA.Order

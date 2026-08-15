@@ -2,7 +2,7 @@ import LRA.VolumeI.Order.Bounds.Infimum.Definition
 import LRA.VolumeI.Order.Bounds.Supremum.Definition
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -18,10 +18,10 @@ comprehension-defined subsets are stated for `Set Element`.
 def CompleteLattice
     {Element : Type u} (SetObject : Type v)
     [Membership Element SetObject]
-    (relation : LRA.VolumeI.Relations.Endorelation Element) : Prop :=
+    (relation : LRA.Relation.Endorelation Element) : Prop :=
   PartialOrder relation /\
     forall subset : SetObject,
       (exists supremum, Supremum relation subset supremum) /\
         (exists infimum, Infimum relation subset infimum)
 
-end LRA.VolumeI.Order
+end LRA.Order

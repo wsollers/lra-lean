@@ -6,6 +6,6 @@ sequence-free metric compactness facts before sequential compactness is
 introduced.
 -/
 
-namespace LRA.VolumeIV.MetricSpaces
+namespace LRA.Analysis.MetricSpaces
 
-end LRA.VolumeIV.MetricSpaces
+end LRA.Analysis.MetricSpaces

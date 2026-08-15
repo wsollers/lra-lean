@@ -6,11 +6,11 @@ import LRA.VolumeI.Operations
 import LRA.VolumeI.Relations
 import LRA.VolumeI.Logic.Model.Model
 
-namespace LRA.VolumeI.Algebra.Models
+namespace LRA.Algebra.Models
 
 /-!
 Volume I label: algebraic-model-signatures
-Lean module: LRA.VolumeI.Algebra.Models.Signatures
+Lean module: LRA.Algebra.Models.Signatures
 Verification status: checked-data-definitions
 -/
 
@@ -67,14 +67,14 @@ inductive PeanoConstantSymbol where
 Logical form:
 
 ```lean
-def PeanoFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def PeanoFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := PeanoFunctionSymbol
   arity
     | .successor => 1
 ```
 -/
 
-def PeanoFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def PeanoFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := PeanoFunctionSymbol
   arity
     | .successor => 1
@@ -84,13 +84,13 @@ def PeanoFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
 Logical form:
 
 ```lean
-def PeanoFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def PeanoFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := PeanoRelationSymbol
   arity := Empty.elim
 ```
 -/
 
-def PeanoFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def PeanoFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := PeanoRelationSymbol
   arity := Empty.elim
 
@@ -100,13 +100,13 @@ The first-order Peano signature `(1, S)`.
 Logical form:
 
 ```lean
-def PeanoFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+def PeanoFirstOrderSignature : LRA.Logic.Signature where
   Functions := PeanoFirstOrderFunctions
   Relations := PeanoFirstOrderRelations
   Constants := PeanoConstantSymbol
 ```
 -/
-def PeanoFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+def PeanoFirstOrderSignature : LRA.Logic.Signature where
   Functions := PeanoFirstOrderFunctions
   Relations := PeanoFirstOrderRelations
   Constants := PeanoConstantSymbol
@@ -157,14 +157,14 @@ inductive AdditiveOrderedConstantSymbol where
 Logical form:
 
 ```lean
-def AdditiveOrderedFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def AdditiveOrderedFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := AdditiveOrderedFunctionSymbol
   arity
     | .add => 2
 ```
 -/
 
-def AdditiveOrderedFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def AdditiveOrderedFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := AdditiveOrderedFunctionSymbol
   arity
     | .add => 2
@@ -174,14 +174,14 @@ def AdditiveOrderedFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols w
 Logical form:
 
 ```lean
-def AdditiveOrderedFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def AdditiveOrderedFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := AdditiveOrderedRelationSymbol
   arity
     | .lt => 2
 ```
 -/
 
-def AdditiveOrderedFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def AdditiveOrderedFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := AdditiveOrderedRelationSymbol
   arity
     | .lt => 2
@@ -192,13 +192,13 @@ The first-order additive ordered signature `(0, 1, +, <)`.
 Logical form:
 
 ```lean
-def AdditiveOrderedFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+def AdditiveOrderedFirstOrderSignature : LRA.Logic.Signature where
   Functions := AdditiveOrderedFirstOrderFunctions
   Relations := AdditiveOrderedFirstOrderRelations
   Constants := AdditiveOrderedConstantSymbol
 ```
 -/
-def AdditiveOrderedFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+def AdditiveOrderedFirstOrderSignature : LRA.Logic.Signature where
   Functions := AdditiveOrderedFirstOrderFunctions
   Relations := AdditiveOrderedFirstOrderRelations
   Constants := AdditiveOrderedConstantSymbol
@@ -249,7 +249,7 @@ inductive ArithmeticRingConstantSymbol where
 Logical form:
 
 ```lean
-def ArithmeticRingFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def ArithmeticRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := ArithmeticRingFunctionSymbol
   arity
     | .add => 2
@@ -257,7 +257,7 @@ def ArithmeticRingFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols wh
 ```
 -/
 
-def ArithmeticRingFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def ArithmeticRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := ArithmeticRingFunctionSymbol
   arity
     | .add => 2
@@ -268,13 +268,13 @@ def ArithmeticRingFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols wh
 Logical form:
 
 ```lean
-def ArithmeticRingFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def ArithmeticRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := ArithmeticRingRelationSymbol
   arity := Empty.elim
 ```
 -/
 
-def ArithmeticRingFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def ArithmeticRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := ArithmeticRingRelationSymbol
   arity := Empty.elim
 
@@ -284,13 +284,13 @@ The first-order arithmetic ring signature `(0, 1, +, *)`.
 Logical form:
 
 ```lean
-def ArithmeticRingFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+def ArithmeticRingFirstOrderSignature : LRA.Logic.Signature where
   Functions := ArithmeticRingFirstOrderFunctions
   Relations := ArithmeticRingFirstOrderRelations
   Constants := ArithmeticRingConstantSymbol
 ```
 -/
-def ArithmeticRingFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+def ArithmeticRingFirstOrderSignature : LRA.Logic.Signature where
   Functions := ArithmeticRingFirstOrderFunctions
   Relations := ArithmeticRingFirstOrderRelations
   Constants := ArithmeticRingConstantSymbol
@@ -343,7 +343,7 @@ inductive OrderedSemiringConstantSymbol where
 Logical form:
 
 ```lean
-def OrderedSemiringFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def OrderedSemiringFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := OrderedSemiringFunctionSymbol
   arity
     | .add => 2
@@ -351,7 +351,7 @@ def OrderedSemiringFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols w
 ```
 -/
 
-def OrderedSemiringFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def OrderedSemiringFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := OrderedSemiringFunctionSymbol
   arity
     | .add => 2
@@ -362,14 +362,14 @@ def OrderedSemiringFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols w
 Logical form:
 
 ```lean
-def OrderedSemiringFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def OrderedSemiringFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := OrderedSemiringRelationSymbol
   arity
     | .lt => 2
 ```
 -/
 
-def OrderedSemiringFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def OrderedSemiringFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := OrderedSemiringRelationSymbol
   arity
     | .lt => 2
@@ -380,13 +380,13 @@ The first-order ordered-semiring signature `(0, 1, +, *, <)`.
 Logical form:
 
 ```lean
-def OrderedSemiringFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+def OrderedSemiringFirstOrderSignature : LRA.Logic.Signature where
   Functions := OrderedSemiringFirstOrderFunctions
   Relations := OrderedSemiringFirstOrderRelations
   Constants := OrderedSemiringConstantSymbol
 ```
 -/
-def OrderedSemiringFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+def OrderedSemiringFirstOrderSignature : LRA.Logic.Signature where
   Functions := OrderedSemiringFirstOrderFunctions
   Relations := OrderedSemiringFirstOrderRelations
   Constants := OrderedSemiringConstantSymbol
@@ -441,7 +441,7 @@ inductive OrderedRingConstantSymbol where
 Logical form:
 
 ```lean
-def OrderedRingFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def OrderedRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := OrderedRingFunctionSymbol
   arity
     | .add => 2
@@ -450,7 +450,7 @@ def OrderedRingFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
 ```
 -/
 
-def OrderedRingFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def OrderedRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := OrderedRingFunctionSymbol
   arity
     | .add => 2
@@ -462,14 +462,14 @@ def OrderedRingFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
 Logical form:
 
 ```lean
-def OrderedRingFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def OrderedRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := OrderedRingRelationSymbol
   arity
     | .lt => 2
 ```
 -/
 
-def OrderedRingFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def OrderedRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := OrderedRingRelationSymbol
   arity
     | .lt => 2
@@ -480,13 +480,13 @@ The first-order ordered-ring signature `(0, 1, +, *, -, <)`.
 Logical form:
 
 ```lean
-def OrderedRingFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+def OrderedRingFirstOrderSignature : LRA.Logic.Signature where
   Functions := OrderedRingFirstOrderFunctions
   Relations := OrderedRingFirstOrderRelations
   Constants := OrderedRingConstantSymbol
 ```
 -/
-def OrderedRingFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+def OrderedRingFirstOrderSignature : LRA.Logic.Signature where
   Functions := OrderedRingFirstOrderFunctions
   Relations := OrderedRingFirstOrderRelations
   Constants := OrderedRingConstantSymbol
@@ -541,7 +541,7 @@ inductive FieldConstantSymbol where
 Logical form:
 
 ```lean
-def FieldFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def FieldFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := FieldFunctionSymbol
   arity
     | .add => 2
@@ -551,7 +551,7 @@ def FieldFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
 ```
 -/
 
-def FieldFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def FieldFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := FieldFunctionSymbol
   arity
     | .add => 2
@@ -564,13 +564,13 @@ def FieldFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
 Logical form:
 
 ```lean
-def FieldFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def FieldFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := FieldRelationSymbol
   arity := Empty.elim
 ```
 -/
 
-def FieldFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def FieldFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := FieldRelationSymbol
   arity := Empty.elim
 
@@ -580,13 +580,13 @@ The first-order field signature `(0, 1, +, *, -, ⁻¹)`.
 Logical form:
 
 ```lean
-def FieldFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+def FieldFirstOrderSignature : LRA.Logic.Signature where
   Functions := FieldFirstOrderFunctions
   Relations := FieldFirstOrderRelations
   Constants := FieldConstantSymbol
 ```
 -/
-def FieldFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+def FieldFirstOrderSignature : LRA.Logic.Signature where
   Functions := FieldFirstOrderFunctions
   Relations := FieldFirstOrderRelations
   Constants := FieldConstantSymbol
@@ -643,7 +643,7 @@ inductive OrderedFieldConstantSymbol where
 Logical form:
 
 ```lean
-def OrderedFieldFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def OrderedFieldFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := OrderedFieldFunctionSymbol
   arity
     | .add => 2
@@ -653,7 +653,7 @@ def OrderedFieldFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols wher
 ```
 -/
 
-def OrderedFieldFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def OrderedFieldFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := OrderedFieldFunctionSymbol
   arity
     | .add => 2
@@ -666,14 +666,14 @@ def OrderedFieldFirstOrderFunctions : LRA.VolumeI.Logic.ArityIndexedSymbols wher
 Logical form:
 
 ```lean
-def OrderedFieldFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def OrderedFieldFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := OrderedFieldRelationSymbol
   arity
     | .lt => 2
 ```
 -/
 
-def OrderedFieldFirstOrderRelations : LRA.VolumeI.Logic.ArityIndexedSymbols where
+def OrderedFieldFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := OrderedFieldRelationSymbol
   arity
     | .lt => 2
@@ -684,13 +684,13 @@ The first-order ordered-field signature `(0, 1, +, *, -, ⁻¹, <)`.
 Logical form:
 
 ```lean
-def OrderedFieldFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+def OrderedFieldFirstOrderSignature : LRA.Logic.Signature where
   Functions := OrderedFieldFirstOrderFunctions
   Relations := OrderedFieldFirstOrderRelations
   Constants := OrderedFieldConstantSymbol
 ```
 -/
-def OrderedFieldFirstOrderSignature : LRA.VolumeI.Logic.Signature where
+def OrderedFieldFirstOrderSignature : LRA.Logic.Signature where
   Functions := OrderedFieldFirstOrderFunctions
   Relations := OrderedFieldFirstOrderRelations
   Constants := OrderedFieldConstantSymbol
@@ -706,24 +706,24 @@ Logical form:
 ```lean
 structure OrderedRingSignature where
   carrier : Type u
-  zero : LRA.VolumeI.Operations.NullaryOperation carrier
-  one : LRA.VolumeI.Operations.NullaryOperation carrier
-  addition : LRA.VolumeI.Operations.BinaryOperation carrier
-  negation : LRA.VolumeI.Operations.UnaryOperation carrier
-  multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
-  StrictOrder : LRA.VolumeI.Relations.Endorelation carrier
-  NonstrictOrder : LRA.VolumeI.Relations.Endorelation carrier
+  zero : LRA.Algebra.Operation.NullaryOperation carrier
+  one : LRA.Algebra.Operation.NullaryOperation carrier
+  addition : LRA.Algebra.Operation.BinaryOperation carrier
+  negation : LRA.Algebra.Operation.UnaryOperation carrier
+  multiplication : LRA.Algebra.Operation.BinaryOperation carrier
+  StrictOrder : LRA.Relation.Endorelation carrier
+  NonstrictOrder : LRA.Relation.Endorelation carrier
 ```
 -/
 structure OrderedRingSignature where
   carrier : Type u
-  zero : LRA.VolumeI.Operations.NullaryOperation carrier
-  one : LRA.VolumeI.Operations.NullaryOperation carrier
-  addition : LRA.VolumeI.Operations.BinaryOperation carrier
-  negation : LRA.VolumeI.Operations.UnaryOperation carrier
-  multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
-  StrictOrder : LRA.VolumeI.Relations.Endorelation carrier
-  NonstrictOrder : LRA.VolumeI.Relations.Endorelation carrier
+  zero : LRA.Algebra.Operation.NullaryOperation carrier
+  one : LRA.Algebra.Operation.NullaryOperation carrier
+  addition : LRA.Algebra.Operation.BinaryOperation carrier
+  negation : LRA.Algebra.Operation.UnaryOperation carrier
+  multiplication : LRA.Algebra.Operation.BinaryOperation carrier
+  StrictOrder : LRA.Relation.Endorelation carrier
+  NonstrictOrder : LRA.Relation.Endorelation carrier
 
 /--
 The operation bundle for an ordered semiring.
@@ -733,22 +733,22 @@ Logical form:
 ```lean
 structure OrderedSemiringSignature where
   carrier : Type u
-  zero : LRA.VolumeI.Operations.NullaryOperation carrier
-  one : LRA.VolumeI.Operations.NullaryOperation carrier
-  addition : LRA.VolumeI.Operations.BinaryOperation carrier
-  multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
-  StrictOrder : LRA.VolumeI.Relations.Endorelation carrier
-  NonstrictOrder : LRA.VolumeI.Relations.Endorelation carrier
+  zero : LRA.Algebra.Operation.NullaryOperation carrier
+  one : LRA.Algebra.Operation.NullaryOperation carrier
+  addition : LRA.Algebra.Operation.BinaryOperation carrier
+  multiplication : LRA.Algebra.Operation.BinaryOperation carrier
+  StrictOrder : LRA.Relation.Endorelation carrier
+  NonstrictOrder : LRA.Relation.Endorelation carrier
 ```
 -/
 structure OrderedSemiringSignature where
   carrier : Type u
-  zero : LRA.VolumeI.Operations.NullaryOperation carrier
-  one : LRA.VolumeI.Operations.NullaryOperation carrier
-  addition : LRA.VolumeI.Operations.BinaryOperation carrier
-  multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
-  StrictOrder : LRA.VolumeI.Relations.Endorelation carrier
-  NonstrictOrder : LRA.VolumeI.Relations.Endorelation carrier
+  zero : LRA.Algebra.Operation.NullaryOperation carrier
+  one : LRA.Algebra.Operation.NullaryOperation carrier
+  addition : LRA.Algebra.Operation.BinaryOperation carrier
+  multiplication : LRA.Algebra.Operation.BinaryOperation carrier
+  StrictOrder : LRA.Relation.Endorelation carrier
+  NonstrictOrder : LRA.Relation.Endorelation carrier
 
 /--
 **[Definition — Ordered Field Signature]**
@@ -757,11 +757,11 @@ Logical form:
 
 ```lean
 structure OrderedFieldSignature extends OrderedRingSignature where
-  inverse : LRA.VolumeI.Operations.UnaryOperation carrier
+  inverse : LRA.Algebra.Operation.UnaryOperation carrier
 ```
 -/
 structure OrderedFieldSignature extends OrderedRingSignature where
-  inverse : LRA.VolumeI.Operations.UnaryOperation carrier
+  inverse : LRA.Algebra.Operation.UnaryOperation carrier
 
 /--
 The operation bundle for a field without an order relation.
@@ -771,22 +771,22 @@ Logical form:
 ```lean
 structure FieldSignature where
   carrier : Type u
-  zero : LRA.VolumeI.Operations.NullaryOperation carrier
-  one : LRA.VolumeI.Operations.NullaryOperation carrier
-  addition : LRA.VolumeI.Operations.BinaryOperation carrier
-  negation : LRA.VolumeI.Operations.UnaryOperation carrier
-  multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
-  inverse : LRA.VolumeI.Operations.UnaryOperation carrier
+  zero : LRA.Algebra.Operation.NullaryOperation carrier
+  one : LRA.Algebra.Operation.NullaryOperation carrier
+  addition : LRA.Algebra.Operation.BinaryOperation carrier
+  negation : LRA.Algebra.Operation.UnaryOperation carrier
+  multiplication : LRA.Algebra.Operation.BinaryOperation carrier
+  inverse : LRA.Algebra.Operation.UnaryOperation carrier
 ```
 -/
 structure FieldSignature where
   carrier : Type u
-  zero : LRA.VolumeI.Operations.NullaryOperation carrier
-  one : LRA.VolumeI.Operations.NullaryOperation carrier
-  addition : LRA.VolumeI.Operations.BinaryOperation carrier
-  negation : LRA.VolumeI.Operations.UnaryOperation carrier
-  multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
-  inverse : LRA.VolumeI.Operations.UnaryOperation carrier
+  zero : LRA.Algebra.Operation.NullaryOperation carrier
+  one : LRA.Algebra.Operation.NullaryOperation carrier
+  addition : LRA.Algebra.Operation.BinaryOperation carrier
+  negation : LRA.Algebra.Operation.UnaryOperation carrier
+  multiplication : LRA.Algebra.Operation.BinaryOperation carrier
+  inverse : LRA.Algebra.Operation.UnaryOperation carrier
 
 /--
 The operation bundle for a Peano system.
@@ -796,14 +796,14 @@ Logical form:
 ```lean
 structure PeanoSignature where
   carrier : Type u
-  one : LRA.VolumeI.Operations.NullaryOperation carrier
-  successor : LRA.VolumeI.Operations.UnaryOperation carrier
+  one : LRA.Algebra.Operation.NullaryOperation carrier
+  successor : LRA.Algebra.Operation.UnaryOperation carrier
 ```
 -/
 structure PeanoSignature where
   carrier : Type u
-  one : LRA.VolumeI.Operations.NullaryOperation carrier
-  successor : LRA.VolumeI.Operations.UnaryOperation carrier
+  one : LRA.Algebra.Operation.NullaryOperation carrier
+  successor : LRA.Algebra.Operation.UnaryOperation carrier
 
 /--
 The operation bundle for the additive ordered language.
@@ -813,20 +813,20 @@ Logical form:
 ```lean
 structure AdditiveOrderedSignature where
   carrier : Type u
-  zero : LRA.VolumeI.Operations.NullaryOperation carrier
-  one : LRA.VolumeI.Operations.NullaryOperation carrier
-  addition : LRA.VolumeI.Operations.BinaryOperation carrier
-  StrictOrder : LRA.VolumeI.Relations.Endorelation carrier
-  NonstrictOrder : LRA.VolumeI.Relations.Endorelation carrier
+  zero : LRA.Algebra.Operation.NullaryOperation carrier
+  one : LRA.Algebra.Operation.NullaryOperation carrier
+  addition : LRA.Algebra.Operation.BinaryOperation carrier
+  StrictOrder : LRA.Relation.Endorelation carrier
+  NonstrictOrder : LRA.Relation.Endorelation carrier
 ```
 -/
 structure AdditiveOrderedSignature where
   carrier : Type u
-  zero : LRA.VolumeI.Operations.NullaryOperation carrier
-  one : LRA.VolumeI.Operations.NullaryOperation carrier
-  addition : LRA.VolumeI.Operations.BinaryOperation carrier
-  StrictOrder : LRA.VolumeI.Relations.Endorelation carrier
-  NonstrictOrder : LRA.VolumeI.Relations.Endorelation carrier
+  zero : LRA.Algebra.Operation.NullaryOperation carrier
+  one : LRA.Algebra.Operation.NullaryOperation carrier
+  addition : LRA.Algebra.Operation.BinaryOperation carrier
+  StrictOrder : LRA.Relation.Endorelation carrier
+  NonstrictOrder : LRA.Relation.Endorelation carrier
 
 /--
 The operation bundle for the arithmetic ring language.
@@ -836,24 +836,24 @@ Logical form:
 ```lean
 structure ArithmeticRingSignature where
   carrier : Type u
-  zero : LRA.VolumeI.Operations.NullaryOperation carrier
-  one : LRA.VolumeI.Operations.NullaryOperation carrier
-  addition : LRA.VolumeI.Operations.BinaryOperation carrier
-  multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
+  zero : LRA.Algebra.Operation.NullaryOperation carrier
+  one : LRA.Algebra.Operation.NullaryOperation carrier
+  addition : LRA.Algebra.Operation.BinaryOperation carrier
+  multiplication : LRA.Algebra.Operation.BinaryOperation carrier
 ```
 -/
 structure ArithmeticRingSignature where
   carrier : Type u
-  zero : LRA.VolumeI.Operations.NullaryOperation carrier
-  one : LRA.VolumeI.Operations.NullaryOperation carrier
-  addition : LRA.VolumeI.Operations.BinaryOperation carrier
-  multiplication : LRA.VolumeI.Operations.BinaryOperation carrier
+  zero : LRA.Algebra.Operation.NullaryOperation carrier
+  one : LRA.Algebra.Operation.NullaryOperation carrier
+  addition : LRA.Algebra.Operation.BinaryOperation carrier
+  multiplication : LRA.Algebra.Operation.BinaryOperation carrier
 
 
-end LRA.VolumeI.Algebra.Models
+end LRA.Algebra.Models
 
 
-namespace LRA.VolumeI.Algebra.Models.OrderedRingSignature
+namespace LRA.Algebra.Models.OrderedRingSignature
 /--
 `Subtraction` exposes this formal declaration.
 
@@ -862,7 +862,7 @@ Logical form:
 ```lean
 abbrev Subtraction
     (signature : OrderedRingSignature) :
-    LRA.VolumeI.Operations.BinaryOperation signature.carrier :=
+    LRA.Algebra.Operation.BinaryOperation signature.carrier :=
   fun first second =>
     signature.addition first (signature.negation second)
 ```
@@ -870,13 +870,13 @@ abbrev Subtraction
 
 abbrev Subtraction
     (signature : OrderedRingSignature) :
-    LRA.VolumeI.Operations.BinaryOperation signature.carrier :=
+    LRA.Algebra.Operation.BinaryOperation signature.carrier :=
   fun first second =>
     signature.addition first (signature.negation second)
 
-end LRA.VolumeI.Algebra.Models.OrderedRingSignature
+end LRA.Algebra.Models.OrderedRingSignature
 
-namespace LRA.VolumeI.Algebra.Models.OrderedFieldSignature
+namespace LRA.Algebra.Models.OrderedFieldSignature
 /--
 `InverseDomain` exposes this formal declaration.
 
@@ -902,7 +902,7 @@ Logical form:
 ```lean
 def PartialInverse
     (signature : OrderedFieldSignature) :
-    LRA.VolumeI.Operations.PartialUnaryOperation signature.carrier where
+    LRA.Algebra.Operation.PartialUnaryOperation signature.carrier where
   Domain := InverseDomain signature
   Value := fun value _ => signature.inverse value
 ```
@@ -910,7 +910,7 @@ def PartialInverse
 
 def PartialInverse
     (signature : OrderedFieldSignature) :
-    LRA.VolumeI.Operations.PartialUnaryOperation signature.carrier where
+    LRA.Algebra.Operation.PartialUnaryOperation signature.carrier where
   Domain := InverseDomain signature
   Value := fun value _ => signature.inverse value
 /--
@@ -921,7 +921,7 @@ Logical form:
 ```lean
 def PartialDivision
     (signature : OrderedFieldSignature) :
-    LRA.VolumeI.Operations.PartialBinaryOperation signature.carrier where
+    LRA.Algebra.Operation.PartialBinaryOperation signature.carrier where
   Domain := fun _ divisor => divisor ≠ signature.zero
   Value := fun dividend divisor _ =>
     signature.multiplication dividend (signature.inverse divisor)
@@ -930,14 +930,14 @@ def PartialDivision
 
 def PartialDivision
     (signature : OrderedFieldSignature) :
-    LRA.VolumeI.Operations.PartialBinaryOperation signature.carrier where
+    LRA.Algebra.Operation.PartialBinaryOperation signature.carrier where
   Domain := fun _ divisor => divisor ≠ signature.zero
   Value := fun dividend divisor _ =>
     signature.multiplication dividend (signature.inverse divisor)
 
-end LRA.VolumeI.Algebra.Models.OrderedFieldSignature
+end LRA.Algebra.Models.OrderedFieldSignature
 
-namespace LRA.VolumeI.Algebra.Models
+namespace LRA.Algebra.Models
 
 /--
 Build a first-order model of the Peano signature from a carrier and operations.
@@ -947,7 +947,7 @@ Logical form:
 ```lean
 def BuildPeanoModel
     (signature : PeanoSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model PeanoFirstOrderSignature where
+    LRA.Logic.FirstOrder.Model PeanoFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.one⟩
   interpretFunction
@@ -959,7 +959,7 @@ def BuildPeanoModel
 -/
 def BuildPeanoModel
     (signature : PeanoSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model PeanoFirstOrderSignature where
+    LRA.Logic.FirstOrder.Model PeanoFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.one⟩
   interpretFunction
@@ -976,7 +976,7 @@ Logical form:
 ```lean
 def BuildAdditiveOrderedModel
     (signature : AdditiveOrderedSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature where
+    LRA.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -992,7 +992,7 @@ def BuildAdditiveOrderedModel
 -/
 def BuildAdditiveOrderedModel
     (signature : AdditiveOrderedSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature where
+    LRA.Logic.FirstOrder.Model AdditiveOrderedFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -1013,7 +1013,7 @@ Logical form:
 ```lean
 def BuildArithmeticRingModel
     (signature : ArithmeticRingSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature where
+    LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -1029,7 +1029,7 @@ def BuildArithmeticRingModel
 -/
 def BuildArithmeticRingModel
     (signature : ArithmeticRingSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature where
+    LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -1050,7 +1050,7 @@ Logical form:
 ```lean
 def BuildOrderedSemiringModel
     (signature : OrderedSemiringSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model OrderedSemiringFirstOrderSignature where
+    LRA.Logic.FirstOrder.Model OrderedSemiringFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -1068,7 +1068,7 @@ def BuildOrderedSemiringModel
 -/
 def BuildOrderedSemiringModel
     (signature : OrderedSemiringSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model OrderedSemiringFirstOrderSignature where
+    LRA.Logic.FirstOrder.Model OrderedSemiringFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -1091,7 +1091,7 @@ Logical form:
 ```lean
 def BuildOrderedRingModel
     (signature : OrderedRingSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model OrderedRingFirstOrderSignature where
+    LRA.Logic.FirstOrder.Model OrderedRingFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -1110,7 +1110,7 @@ def BuildOrderedRingModel
 -/
 def BuildOrderedRingModel
     (signature : OrderedRingSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model OrderedRingFirstOrderSignature where
+    LRA.Logic.FirstOrder.Model OrderedRingFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -1134,7 +1134,7 @@ Logical form:
 ```lean
 def BuildFieldModel
     (signature : FieldSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model FieldFirstOrderSignature where
+    LRA.Logic.FirstOrder.Model FieldFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -1152,7 +1152,7 @@ def BuildFieldModel
 -/
 def BuildFieldModel
     (signature : FieldSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model FieldFirstOrderSignature where
+    LRA.Logic.FirstOrder.Model FieldFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -1175,7 +1175,7 @@ Logical form:
 ```lean
 def BuildOrderedFieldModel
     (signature : OrderedFieldSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature where
+    LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -1195,7 +1195,7 @@ def BuildOrderedFieldModel
 -/
 def BuildOrderedFieldModel
     (signature : OrderedFieldSignature) :
-    LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature where
+    LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -1212,4 +1212,4 @@ def BuildOrderedFieldModel
     | .zero => signature.zero
     | .one => signature.one
 
-end LRA.VolumeI.Algebra.Models
+end LRA.Algebra.Models

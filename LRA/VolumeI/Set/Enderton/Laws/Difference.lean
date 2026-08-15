@@ -1,11 +1,11 @@
 import LRA.VolumeI.Set.Enderton.Instances
 import LRA.VolumeI.Set.Interface.Difference
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 /-!
 Difference (`\`) laws for Enderton sets: the backend's certificate for
-`LRA.VolumeI.Set.DifferenceLaws`.
+`LRA.Set.DifferenceLaws`.
 
 `DifferenceUniversal`/`UniversalDifference` are not here -- and no longer
 need a prose apology: they now live in the interface's complement family
@@ -163,18 +163,18 @@ theorem DifferenceDisjointRight :
 /-- Registration: Enderton sets satisfy the difference laws. Pure
 delegation to the theorems above. -/
 instance : DifferenceLaws Set where
-  DifferenceMonotoneLeft := LRA.VolumeI.Set.Enderton.DifferenceMonotoneLeft
-  DifferenceAntitoneRight := LRA.VolumeI.Set.Enderton.DifferenceAntitoneRight
-  DifferenceEmpty := LRA.VolumeI.Set.Enderton.DifferenceEmpty
-  EmptyDifference := LRA.VolumeI.Set.Enderton.EmptyDifference
-  DifferenceSelf := LRA.VolumeI.Set.Enderton.DifferenceSelf
-  DifferenceUnion := LRA.VolumeI.Set.Enderton.DifferenceUnion
-  DifferenceIntersection := LRA.VolumeI.Set.Enderton.DifferenceIntersection
+  DifferenceMonotoneLeft := LRA.Set.Enderton.DifferenceMonotoneLeft
+  DifferenceAntitoneRight := LRA.Set.Enderton.DifferenceAntitoneRight
+  DifferenceEmpty := LRA.Set.Enderton.DifferenceEmpty
+  EmptyDifference := LRA.Set.Enderton.EmptyDifference
+  DifferenceSelf := LRA.Set.Enderton.DifferenceSelf
+  DifferenceUnion := LRA.Set.Enderton.DifferenceUnion
+  DifferenceIntersection := LRA.Set.Enderton.DifferenceIntersection
   UnionDifferenceDistributes :=
-    LRA.VolumeI.Set.Enderton.UnionDifferenceDistributes
+    LRA.Set.Enderton.UnionDifferenceDistributes
   IntersectionDifferenceDistributes :=
-    LRA.VolumeI.Set.Enderton.IntersectionDifferenceDistributes
-  DifferenceSubsetLeft := LRA.VolumeI.Set.Enderton.DifferenceSubsetLeft
-  DifferenceDisjointRight := LRA.VolumeI.Set.Enderton.DifferenceDisjointRight
+    LRA.Set.Enderton.IntersectionDifferenceDistributes
+  DifferenceSubsetLeft := LRA.Set.Enderton.DifferenceSubsetLeft
+  DifferenceDisjointRight := LRA.Set.Enderton.DifferenceDisjointRight
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

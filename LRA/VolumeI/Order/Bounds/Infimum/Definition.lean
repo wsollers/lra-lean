@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.Bounds.LowerBound.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -13,7 +13,7 @@ Logical form:
 
 ```lean
 def Infimum
-    (relation : LRA.VolumeI.Relations.Endorelation Element)
+    (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject)
     (infimum : Element) : Prop :=
   LowerBound relation subset infimum /\
@@ -21,10 +21,10 @@ def Infimum
 ```
 -/
 def Infimum
-    (relation : LRA.VolumeI.Relations.Endorelation Element)
+    (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject)
     (infimum : Element) : Prop :=
   LowerBound relation subset infimum /\
     forall bound, LowerBound relation subset bound -> relation bound infimum
 
-end LRA.VolumeI.Order
+end LRA.Order

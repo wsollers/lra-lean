@@ -6,14 +6,14 @@ import LRA.VolumeI.Logic.Syntax.FirstOrder.Substitute
 import LRA.VolumeI.Logic.Syntax.FirstOrder.AllVariables
 import LRA.VolumeI.Logic.Theory
 
-namespace LRA.VolumeI.Set.ModelTheory
+namespace LRA.Set.ModelTheory
 
-open LRA.VolumeI.Logic
-open LRA.VolumeI.Logic.FirstOrder
+open LRA.Logic
+open LRA.Logic.FirstOrder
 
 /-!
 Volume I label: set-model-theory-axioms
-Lean module: LRA.VolumeI.Set.ModelTheory.Axioms
+Lean module: LRA.Set.ModelTheory.Axioms
 Verification status: checked syntax module (sentences and schemas)
 
 The ZFC axioms transcribed as `L_∈` sentences, following the project
@@ -579,4 +579,4 @@ theorem satisfiesOrF {M : Model MembershipSignature}
   simp only [orF, Satisfies]
   tauto
 
-end LRA.VolumeI.Set.ModelTheory
+end LRA.Set.ModelTheory

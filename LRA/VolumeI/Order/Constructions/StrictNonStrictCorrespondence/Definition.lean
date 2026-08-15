@@ -4,20 +4,20 @@ import LRA.VolumeI.Order.OrderedSets.StrictOrder.Definition
 import LRA.VolumeI.Order.OrderedSets.StrictPoset.Definition
 import LRA.VolumeI.Order.Relations
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
 /-- Adjoin equality to a strict relation. -/
 def NonStrictFromStrict {Alpha : Type u}
-    (strictRelation : LRA.VolumeI.Relations.Endorelation Alpha) :
-    LRA.VolumeI.Relations.Endorelation Alpha :=
+    (strictRelation : LRA.Relation.Endorelation Alpha) :
+    LRA.Relation.Endorelation Alpha :=
   LessThanOrEqual strictRelation
 
 /-- Remove equality from a non-strict relation. -/
 def StrictFromNonStrict {Alpha : Type u}
-    (nonStrictRelation : LRA.VolumeI.Relations.Endorelation Alpha) :
-    LRA.VolumeI.Relations.Endorelation Alpha :=
+    (nonStrictRelation : LRA.Relation.Endorelation Alpha) :
+    LRA.Relation.Endorelation Alpha :=
   StrictPart nonStrictRelation
 
 /-- Derive the strict poset carried by the strict part of a poset order. -/
@@ -34,4 +34,4 @@ def PosetOfStrictPoset (strictPoset : StrictPoset) : Poset where
   NonStrictOrderIsPartialOrder := by
     sorry
 
-end LRA.VolumeI.Order
+end LRA.Order

@@ -17,7 +17,7 @@ import LRA.VolumeIII.Analysis.Differentiation.ChainRule
 import LRA.VolumeIII.Analysis.Differentiation.GraphReading
 import LRA.VolumeIII.Analysis.Differentiation.AlgebraOfDerivatives
 
-namespace LRA.VolumeIII.Analysis.Differentiation
+namespace LRA.Analysis.Differentiation
 
 -- ---------------------------------------------------------------------
 -- Taylor: construction and error.
@@ -61,7 +61,7 @@ noncomputable def MaclaurinPoly (fD : ℕ → ℝ → ℝ) (n : ℕ) : ℝ → �
 
 -- `thm:taylor-theorem-lagrange-remainder`
 /-- Let `a b : ℝ` and `n : ℕ`. If `f : ℝ → ℝ`, `fD : ℕ → ℝ → ℝ`, `hab : a < b`, `hcont : ∀ k ≤ n,
-LRA.VolumeIII.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b)`, and `hDnp1 : ∀ x ∈
+LRA.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b)`, and `hDnp1 : ∀ x ∈
 Set.Ioo a b, ∃ D, Derivative D (fD n) (Set.Ioo a b) x`. Then `∀ x ∈ Set.Ioo a b, ∃ c, (a < c ∧ c
 < x) ∧ ∃ Dnp1, Derivative Dnp1 (fD n) (Set.Ioo a b) c ∧ f x = TaylorPoly fD n a x + Dnp1 /
 (Nat.factorial (n + 1)) * (x - a) ^ (n + 1)`.
@@ -71,7 +71,7 @@ Logical form:
 ```lean
 theorem TaylorTheoremLagrangeRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (a b : ℝ)
     (hab : a < b) (n : ℕ)
-    (hcont : ∀ k ≤ n, LRA.VolumeIII.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b))
+    (hcont : ∀ k ≤ n, LRA.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b))
     (hDnp1 : ∀ x ∈ Set.Ioo a b, ∃ D, Derivative D (fD n) (Set.Ioo a b) x) :
     ∀ x ∈ Set.Ioo a b, ∃ c, (a < c ∧ c < x) ∧ ∃ Dnp1,
       Derivative Dnp1 (fD n) (Set.Ioo a b) c ∧
@@ -80,7 +80,7 @@ theorem TaylorTheoremLagrangeRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → �
 -/
 theorem TaylorTheoremLagrangeRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (a b : ℝ)
     (hab : a < b) (n : ℕ)
-    (hcont : ∀ k ≤ n, LRA.VolumeIII.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b))
+    (hcont : ∀ k ≤ n, LRA.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b))
     (hDnp1 : ∀ x ∈ Set.Ioo a b, ∃ D, Derivative D (fD n) (Set.Ioo a b) x) :
     ∀ x ∈ Set.Ioo a b, ∃ c, (a < c ∧ c < x) ∧ ∃ Dnp1,
       Derivative Dnp1 (fD n) (Set.Ioo a b) c ∧
@@ -89,7 +89,7 @@ theorem TaylorTheoremLagrangeRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → �
 
 /-- Let `I : Set ℝ`, `a : ℝ`, and `n : ℕ`. If `f : ℝ → ℝ`, `fD : ℕ → ℝ → ℝ`, `ha : a ∈ interior I`,
 `hD : HigherDerivativeAt f fD I n a`, and `hcont :
-LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint (fD n) I a`. Then `Filter.Tendsto (fun x =>
+LRA.Analysis.Continuity.ContinuousAtPoint (fD n) I a`. Then `Filter.Tendsto (fun x =>
 (f x - TaylorPoly fD n a x) / (x - a) ^ n) (nhdsWithin a {a}ᶜ) (nhds 0)`.
 
 Logical form:
@@ -97,14 +97,14 @@ Logical form:
 ```lean
 theorem TaylorExpansionPeanoRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (I : Set ℝ) (a : ℝ)
     (n : ℕ) (ha : a ∈ interior I) (hD : HigherDerivativeAt f fD I n a)
-    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint (fD n) I a) :
+    (hcont : LRA.Analysis.Continuity.ContinuousAtPoint (fD n) I a) :
     Filter.Tendsto (fun x => (f x - TaylorPoly fD n a x) / (x - a) ^ n)
       (nhdsWithin a {a}ᶜ) (nhds 0)
 ```
 -/
 theorem TaylorExpansionPeanoRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (I : Set ℝ) (a : ℝ)
     (n : ℕ) (ha : a ∈ interior I) (hD : HigherDerivativeAt f fD I n a)
-    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint (fD n) I a) :
+    (hcont : LRA.Analysis.Continuity.ContinuousAtPoint (fD n) I a) :
     Filter.Tendsto (fun x => (f x - TaylorPoly fD n a x) / (x - a) ^ n)
       (nhdsWithin a {a}ᶜ) (nhds 0) := by
   sorry
@@ -210,19 +210,19 @@ theorem UniquenessOfTheDifferential (f : ℝ → ℝ) (c : ℝ) (L₁ L₂ : ℝ
 
 -- `thm:differential-continuity-criterion`
 /-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ` and `h : DifferentiableByDifferential f c`. Then
-`LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f A c`.
+`LRA.Analysis.Continuity.ContinuousAtPoint f A c`.
 
 Logical form:
 
 ```lean
 theorem DifferentialContinuityCriterion (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (h : DifferentiableByDifferential f c) :
-    LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f A c
+    LRA.Analysis.Continuity.ContinuousAtPoint f A c
 ```
 -/
 theorem DifferentialContinuityCriterion (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (h : DifferentiableByDifferential f c) :
-    LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f A c := by
+    LRA.Analysis.Continuity.ContinuousAtPoint f A c := by
   sorry
 
 -- `thm:chain-rule-for-differentials`
@@ -260,4 +260,4 @@ theorem LinearityOfTheDifferential (f g : ℝ → ℝ) (c α β : ℝ)
     DifferentiableByDifferential (fun x => α * f x + β * g x) c := by
   sorry
 
-end LRA.VolumeIII.Analysis.Differentiation
+end LRA.Analysis.Differentiation

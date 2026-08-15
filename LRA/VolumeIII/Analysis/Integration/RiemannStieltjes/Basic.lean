@@ -20,7 +20,7 @@ import LRA.VolumeIII.Analysis.Continuity.PointContinuity
 import LRA.VolumeIII.Analysis.Continuity.MonotoneFunctions
 import LRA.VolumeIII.Analysis.Differentiation.GraphReading
 
-namespace LRA.VolumeIII.Analysis.Integration
+namespace LRA.Analysis.Integration
 
 /-- `def:total-variation`'s underlying set of partition-sums; `TotalVariation`
 below is its supremum, defined once boundedness (`HasBoundedVariation`)
@@ -116,19 +116,19 @@ def IsRiemannStieltjesIntegrable (f α : ℝ → ℝ) (a b : ℝ) : Prop :=
   ∃ L, HasRiemannStieltjesIntegral f α a b L
 
 -- `thm:rs-continuous-bv-existence`
-/-- If `hab : a ≤ b`, `hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)`, and
+/-- If `hab : a ≤ b`, `hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)`, and
 `hbv : HasBoundedVariation α a b`. Then `IsRiemannStieltjesIntegrable f α a b`.
 
 Logical form:
 
 ```lean
 theorem rs_continuous_bv_existence (hab : a ≤ b)
-    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
+    (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
     (hbv : HasBoundedVariation α a b) : IsRiemannStieltjesIntegrable f α a b
 ```
 -/
 theorem rs_continuous_bv_existence (hab : a ≤ b)
-    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
+    (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
     (hbv : HasBoundedVariation α a b) : IsRiemannStieltjesIntegrable f α a b := by
   sorry
 
@@ -192,7 +192,7 @@ theorem rs_integration_by_parts (L : ℝ) (hL : HasRiemannStieltjesIntegral f α
 
 -- `thm:rs-c1-reduction`
 /-- Let `Lint : ℝ`. If `hab : a ≤ b`, `αD : ℝ → ℝ`, `hα :
-LRA.VolumeIII.Analysis.Differentiation.IsClassC1 α αD (Set.Icc a b)`, `hf : IsRiemannIntegrable
+LRA.Analysis.Differentiation.IsClassC1 α αD (Set.Icc a b)`, `hf : IsRiemannIntegrable
 (fun x => f x * αD x) a b`, and `hLint : HasRiemannIntegral (fun x => f x * αD x) a b Lint`.
 Then `HasRiemannStieltjesIntegral f α a b Lint`.
 
@@ -200,14 +200,14 @@ Logical form:
 
 ```lean
 theorem rs_c1_reduction (hab : a ≤ b)
-    (αD : ℝ → ℝ) (hα : LRA.VolumeIII.Analysis.Differentiation.IsClassC1 α αD (Set.Icc a b))
+    (αD : ℝ → ℝ) (hα : LRA.Analysis.Differentiation.IsClassC1 α αD (Set.Icc a b))
     (hf : IsRiemannIntegrable (fun x => f x * αD x) a b) (Lint : ℝ)
     (hLint : HasRiemannIntegral (fun x => f x * αD x) a b Lint) :
     HasRiemannStieltjesIntegral f α a b Lint
 ```
 -/
 theorem rs_c1_reduction (hab : a ≤ b)
-    (αD : ℝ → ℝ) (hα : LRA.VolumeIII.Analysis.Differentiation.IsClassC1 α αD (Set.Icc a b))
+    (αD : ℝ → ℝ) (hα : LRA.Analysis.Differentiation.IsClassC1 α αD (Set.Icc a b))
     (hf : IsRiemannIntegrable (fun x => f x * αD x) a b) (Lint : ℝ)
     (hLint : HasRiemannIntegral (fun x => f x * αD x) a b Lint) :
     HasRiemannStieltjesIntegral f α a b Lint := by
@@ -216,7 +216,7 @@ theorem rs_c1_reduction (hab : a ≤ b)
 -- `thm:rs-step-integrator-finite-sum`
 /-- Let `n : ℕ`. If `c : Fin n → ℝ`, `hc : ∀ i, c i ∈ Set.Icc a b`, `jump : Fin n → ℝ`, `hstep : ∀ x
 ∈ Set.Icc a b, (∀ i, x ≠ c i) → ∃ k, ∀ y ∈ Set.Icc a b, (∀ i, y ≠ c i) → α y = k`, and `hcont :
-∀ i, LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) (c i)`. Then
+∀ i, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) (c i)`. Then
 `HasRiemannStieltjesIntegral f α a b (∑ i, f (c i) * jump i)`.
 
 Logical form:
@@ -225,14 +225,14 @@ Logical form:
 theorem rs_step_integrator_finite_sum (n : ℕ) (c : Fin n → ℝ) (hc : ∀ i, c i ∈ Set.Icc a b)
     (jump : Fin n → ℝ)
     (hstep : ∀ x ∈ Set.Icc a b, (∀ i, x ≠ c i) → ∃ k, ∀ y ∈ Set.Icc a b, (∀ i, y ≠ c i) → α y = k)
-    (hcont : ∀ i, LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) (c i)) :
+    (hcont : ∀ i, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) (c i)) :
     HasRiemannStieltjesIntegral f α a b (∑ i, f (c i) * jump i)
 ```
 -/
 theorem rs_step_integrator_finite_sum (n : ℕ) (c : Fin n → ℝ) (hc : ∀ i, c i ∈ Set.Icc a b)
     (jump : Fin n → ℝ)
     (hstep : ∀ x ∈ Set.Icc a b, (∀ i, x ≠ c i) → ∃ k, ∀ y ∈ Set.Icc a b, (∀ i, y ≠ c i) → α y = k)
-    (hcont : ∀ i, LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) (c i)) :
+    (hcont : ∀ i, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) (c i)) :
     HasRiemannStieltjesIntegral f α a b (∑ i, f (c i) * jump i) := by
   sorry
 
@@ -252,4 +252,4 @@ theorem rs_shared_jump_failure_witness (c : ℝ) (hc : c ∈ Set.Ioo (0:ℝ) 1) 
       (fun x => if x ≥ c then (1:ℝ) else 0) 0 1 := by
   sorry
 
-end LRA.VolumeIII.Analysis.Integration
+end LRA.Analysis.Integration

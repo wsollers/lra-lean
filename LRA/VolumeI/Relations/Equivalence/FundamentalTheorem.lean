@@ -1,8 +1,8 @@
 import LRA.VolumeI.Relations.Equivalence.QuotientSet
 
-namespace LRA.VolumeI.Relations
+namespace LRA.Relation
 
-open LRA.VolumeI.Set
+open LRA.Set
 
 universe u v
 
@@ -62,4 +62,4 @@ theorem FundamentalTheoremOfEquivalenceRelations
         (PartitionFromEquivalence ambient relation relationIsEquivalence)) := by
   sorry
 
-end LRA.VolumeI.Relations
+end LRA.Relation

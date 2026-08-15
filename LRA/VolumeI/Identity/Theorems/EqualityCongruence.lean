@@ -4,7 +4,7 @@ import LRA.VolumeI.Identity.Theorems.Core
 Contract home for equality congruence.
 -/
 
-namespace LRA.VolumeI.Identity
+namespace LRA.Identity
 
 universe u
 
@@ -38,4 +38,4 @@ theorem EqualityCongruence {Carrier : Type u}
     LeftCoordinatesEqual
     RightCoordinatesEqual
 
-end LRA.VolumeI.Identity
+end LRA.Identity

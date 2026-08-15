@@ -6,7 +6,7 @@ Mathlib topology already on a type or the Mathlib topology induced by a
 textbook `TopologyDefinition`.
 -/
 
-namespace LRA.VolumeIV.TopologicalSpaces
+namespace LRA.Topology
 
 universe u
 
@@ -135,4 +135,4 @@ theorem SelectMathlibTopologicalSpaceIsOpenInduced {X : Type u}
     _root_.IsOpen U ↔ topology.IsOpen U := by
   rfl
 
-end LRA.VolumeIV.TopologicalSpaces
+end LRA.Topology

@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Proof.System.Basic
 
-namespace LRA.VolumeI.Logic.Proof.System
+namespace LRA.Logic.Proof.System
 
 /-!
 Finite derivability for a generic proof system.
@@ -34,4 +34,4 @@ inductive Derivable (P : ProofSystem) : P.Judgement -> Prop
       (forall J, J ∈ uppers -> Derivable P J) ->
       Derivable P lower
 
-end LRA.VolumeI.Logic.Proof.System
+end LRA.Logic.Proof.System

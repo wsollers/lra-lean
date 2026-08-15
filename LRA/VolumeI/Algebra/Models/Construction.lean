@@ -3,11 +3,11 @@
 
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA.VolumeI.Algebra.Models
+namespace LRA.Algebra.Models
 
 /-!
 Volume II label: configurable-number-system-construction
-Lean module: LRA.VolumeI.Algebra.Models.Construction
+Lean module: LRA.Algebra.Models.Construction
 Blueprint label: configurable-number-system-construction
 Verification status: statement-accepted-proof-pending
 -/
@@ -207,4 +207,4 @@ theorem DefaultRationalConstructionIsCanonical :
     CanonicalConstruction.rational = RationalConstruction.canonical := by
   rfl
 
-end LRA.VolumeI.Algebra.Models
+end LRA.Algebra.Models

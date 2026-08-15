@@ -5,7 +5,7 @@ Reference definition for topological spaces, following Willard `General
 Topology`, Definition 3.1.
 -/
 
-namespace LRA.VolumeIV.TopologicalSpaces
+namespace LRA.Topology
 
 universe u
 
@@ -35,4 +35,4 @@ structure TopologicalSpaceDefinition where
   /-- The topology on the carrier. -/
   topology : TopologyDefinition Carrier
 
-end LRA.VolumeIV.TopologicalSpaces
+end LRA.Topology

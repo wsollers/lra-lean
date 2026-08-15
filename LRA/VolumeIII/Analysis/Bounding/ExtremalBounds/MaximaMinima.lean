@@ -4,33 +4,12 @@ import LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.SupremaInfima
 Maxima and minima as attained extremal bounds.
 -/
 
-namespace LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
+namespace LRA.Analysis.Bounds.Extremal
 
 variable {S : Type*}
 
-/-- `IsMaximum m A` says `m` is an upper bound of `A` that belongs to `A`.
-
-Logical form:
-
-```lean
-def IsMaximum [LE S] (m : S) (A : Set S) : Prop :=
-  m ∈ A ∧ IsUpperBound m A
-```
--/
-def IsMaximum [LE S] (m : S) (A : Set S) : Prop :=
-  m ∈ A ∧ IsUpperBound m A
-
-/-- `IsMinimum m A` says `m` is a lower bound of `A` that belongs to `A`.
-
-Logical form:
-
-```lean
-def IsMinimum [LE S] (m : S) (A : Set S) : Prop :=
-  m ∈ A ∧ IsLowerBound m A
-```
--/
-def IsMinimum [LE S] (m : S) (A : Set S) : Prop :=
-  m ∈ A ∧ IsLowerBound m A
+/-! Maximum and minimum predicates are canonically owned by the parent
+`LRA.Analysis.Bounds` namespace. -/
 
 /-- Let `A : Set S` and `m₁ m₂ : S`. If `[PartialOrder S]`, `leftMaximum : IsMaximum m₁ A`, and
 `rightMaximum : IsMaximum m₂ A`. Then `m₁ = m₂`.
@@ -134,4 +113,4 @@ theorem MaximumIffSupremumAndMembership [PartialOrder S] {A : Set S} {s : S} :
     IsMaximum s A ↔ IsSupremum s A ∧ s ∈ A := by
   sorry
 
-end LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
+end LRA.Analysis.Bounds.Extremal

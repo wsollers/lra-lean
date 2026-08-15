@@ -10,7 +10,7 @@ Replacement is an axiom schema conditioned on a functional side hypothesis:
 (`IsFunctionalOn A relation`) before the image is guaranteed to exist.
 -/
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 /-- If `relation` is functional on `A`, there exists a replacement image of
 `A` under `relation`.
@@ -127,4 +127,4 @@ theorem EveryReplacementImageEqualsTheReplacementImage
     B = TheReplacementImage A relation functional := by
   sorry
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

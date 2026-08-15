@@ -4,11 +4,11 @@
 import LRA.VolumeI.Set.Enderton.Theorems.Pairing
 import LRA.VolumeI.Set.Interface.Pairing
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 /-!
 Volume I label: enderton-ordered-pairs
-Lean module: LRA.VolumeI.Set.Enderton.Theorems.OrderedPairs
+Lean module: LRA.Set.Enderton.Theorems.OrderedPairs
 Verification status: definitions checked; Theorem 3A and its
 consequences pending (proving queue)
 
@@ -142,4 +142,4 @@ instance : PairingLaws Set Set Set :=
   ⟨fun firstLeft secondLeft firstRight secondRight =>
     KuratowskiPairInjective firstLeft secondLeft firstRight secondRight⟩
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

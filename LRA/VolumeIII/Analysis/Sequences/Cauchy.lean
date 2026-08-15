@@ -1,7 +1,7 @@
 /-
 Draft module; not yet imported by the active Volume III root.
 Imports only this pass's own promoted draft modules and Mathlib — nothing from the
-real `LRA.VolumeIII.Analysis.Sequences.*`, so this can be freely
+real `LRA.Analysis.Sequences.*`, so this can be freely
 refactored or discarded without touching the working project.
 Source: volume-iii/book-analysis-i/sequences/notes/cauchy/notes-cauchy.tex
 Only file in `cauchy`. Structural check: 51/51 balanced remark blocks,
@@ -42,7 +42,7 @@ import LRA.VolumeIII.Analysis.Sequences.Convergence
 import LRA.VolumeIII.Analysis.Sequences.NullConstantSequences
 import LRA.VolumeIII.Analysis.Sequences.Subsequences
 
-namespace LRA.VolumeIII.Analysis.Sequences
+namespace LRA.Analysis.Sequences
 
 /-- `def:cauchy-sequence`.
 
@@ -287,4 +287,4 @@ theorem AbsoluteValueCauchySequence {x : RealSequence} (h : IsCauchy x) :
     IsCauchy (fun n => |x n|) := by
   sorry
 
-end LRA.VolumeIII.Analysis.Sequences
+end LRA.Analysis.Sequences

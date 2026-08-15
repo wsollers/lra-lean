@@ -3,20 +3,20 @@
 
 import LRA.VolumeI.Algebra.Models
 
-namespace LRA.VolumeII.RationalNumbers
+namespace LRA.NumberSystems.RationalNumbers
 
-open LRA.VolumeI.Algebra.Models
+open LRA.Algebra.Models
 
 /-!
 Volume II label: rational-number-model
-Lean module: LRA.VolumeII.RationalNumbers.Construction.Model
+Lean module: LRA.NumberSystems.RationalNumbers.Construction.Model
 Verification status: definitions accepted
 -/
 
 
 /-- A rational operation bundle as a first-order model of ordered fields.
 
-Mathematical statement (Lean): `def rationalNumbersModel (rational_model : RationalModel) : LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature`.
+Mathematical statement (Lean): `def rationalNumbersModel (rational_model : RationalModel) : LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature`.
 
 
 Logical form:
@@ -24,13 +24,13 @@ Logical form:
 ```lean
 def rationalNumbersModel
     (rational_model : RationalModel) :
-    LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
   BuildOrderedFieldModel rational_model.signature
 ```
 -/
 def rationalNumbersModel
     (rational_model : RationalModel) :
-    LRA.VolumeI.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
+    LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
   BuildOrderedFieldModel rational_model.signature
 
-end LRA.VolumeII.RationalNumbers
+end LRA.NumberSystems.RationalNumbers

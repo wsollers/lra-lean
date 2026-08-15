@@ -5,13 +5,13 @@ import LRA.VolumeI.Identity.Model.Theory
 Predicates used by the Enderton textbook set theory layer.
 -/
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 /--
 `ExistsAndUnique property` means that some set satisfies `property`, and every
 other set satisfying `property` is equal to that witness.
 
-This reuses `LRA.VolumeI.Identity.ExistsAndUnique`, specialized to `Set`,
+This reuses `LRA.Identity.ExistsAndUnique`, specialized to `Set`,
 rather than restating the same idea with a fresh definition: the project has
 one canonical "exists and is unique" combinator, and every chapter that needs
 it (here, `Functions`, `Relations`) should cite the same one.
@@ -24,7 +24,7 @@ Logical form:
 ```
 -/
 abbrev ExistsAndUnique (property : Set -> Prop) : Prop :=
-  LRA.VolumeI.Identity.ExistsAndUnique property
+  LRA.Identity.ExistsAndUnique property
 /--
 A set is empty exactly when it has no members.
 
@@ -113,7 +113,7 @@ Unlike an absolute complement, this is unproblematic for Enderton sets: it is
 exactly `IsSeparatedSubset A (fun x => x ∉ B) D`, restricted to the members of
 a fixed set `A`, not "everything that is not in `B`" (which would need a
 universal set, and ZFC has none). See
-`LRA.VolumeI.Set.LRASet.Operations.Complement`'s docstring for the contrast --
+`LRA.Set.LRASet.Operations.Complement`'s docstring for the contrast --
 that operation exists only because a typed predicate set has an ambient
 carrier type to complement against; this one exists without needing one.
 
@@ -273,4 +273,4 @@ def IsChoiceSetFor (A choiceSet : Set) : Prop :=
       (x ∈ B ∧ x ∈ choiceSet) ∧
       ∀ other : Set, (other ∈ B ∧ other ∈ choiceSet) → other = x
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

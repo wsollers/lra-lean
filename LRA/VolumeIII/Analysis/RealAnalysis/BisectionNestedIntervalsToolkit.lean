@@ -19,7 +19,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Topology.Order.Basic
 import Mathlib.Topology.Instances.Real.Lemmas
 
-namespace LRA.VolumeIII.Analysis.RealAnalysis
+namespace LRA.Analysis.RealAnalysis
 
 -- `thm:nested-interval-property`
 /-- If `a b : ℕ → ℝ`, `hle : ∀ n, a n ≤ b n`, and `hnest : ∀ n, a n ≤ a (n + 1) ∧ b (n + 1) ≤ b n`.
@@ -69,4 +69,4 @@ theorem RUncountable : ¬ ∃ x : ℕ → ℝ, Function.Surjective x
 theorem RUncountable : ¬ ∃ x : ℕ → ℝ, Function.Surjective x := by
   sorry
 
-end LRA.VolumeIII.Analysis.RealAnalysis
+end LRA.Analysis.RealAnalysis

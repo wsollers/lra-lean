@@ -3,12 +3,12 @@
 
 import LRA.VolumeII.Integers.Mendelson.Construction
 
-namespace LRA.VolumeII.Integers.Mendelson
+namespace LRA.NumberSystems.Integers.Mendelson
 
 /-!
 Volume II label: integers-mendelson-constructions
-Lean module: LRA.VolumeII.Integers.Mendelson
+Lean module: LRA.NumberSystems.Integers.Mendelson
 Verification status: pending aggregation module
 -/
 
-end LRA.VolumeII.Integers.Mendelson
+end LRA.NumberSystems.Integers.Mendelson

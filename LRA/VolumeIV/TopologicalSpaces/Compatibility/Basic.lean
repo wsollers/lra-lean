@@ -4,7 +4,7 @@ import LRA.VolumeIV.TopologicalSpaces.Compatibility.TopologicalSpace
 Compatibility between the textbook topology record and Mathlib's topology API.
 -/
 
-namespace LRA.VolumeIV.TopologicalSpaces
+namespace LRA.Topology
 
 universe u
 
@@ -135,4 +135,4 @@ theorem FromMathlibTopologicalSpaceIsCompatibleWithMathlibTopologicalSpace
   intro U
   rfl
 
-end LRA.VolumeIV.TopologicalSpaces
+end LRA.Topology

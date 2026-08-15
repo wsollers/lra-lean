@@ -5,6 +5,6 @@ This module is reserved for metric closed sets, closed balls, spheres, and
 metric characterizations of closedness.
 -/
 
-namespace LRA.VolumeIV.MetricSpaces
+namespace LRA.Analysis.MetricSpaces
 
-end LRA.VolumeIV.MetricSpaces
+end LRA.Analysis.MetricSpaces

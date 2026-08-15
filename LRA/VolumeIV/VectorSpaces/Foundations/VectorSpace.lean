@@ -8,7 +8,7 @@ intended as the proof foundation for later files; formal proofs should use
 Mathlib's `Module` API directly.
 -/
 
-namespace LRA.VolumeIV.VectorSpaces
+namespace LRA.LinearAlgebra
 
 universe u v
 
@@ -103,4 +103,4 @@ structure VectorSpacePackagedDefinition where
   /-- The vector-space operations and axioms. -/
   vectorSpace : @VectorSpaceDefinition Scalar field Carrier
 
-end LRA.VolumeIV.VectorSpaces
+end LRA.LinearAlgebra

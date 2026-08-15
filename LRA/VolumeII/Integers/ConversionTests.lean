@@ -3,14 +3,14 @@
 
 import LRA.VolumeII.Integers.Conversion
 
-namespace LRA.VolumeII.Integers.ConversionTests
+namespace LRA.NumberSystems.Integers.ConversionTests
 
-open LRA.VolumeI.AlgebraicStructures
+open LRA.Algebra.Structure
 open Conversion
 
 /-!
 Volume II label: integers-conversion-tests
-Lean module: LRA.VolumeII.Integers.ConversionTests
+Lean module: LRA.NumberSystems.Integers.ConversionTests
 Verification status: checked smoke tests for conversion utilities
 
 These tests are intentionally definitional where possible. They protect
@@ -40,4 +40,4 @@ example : negative_two = -two := rfl
 
 example : Pred one = zero := PredSucc zero
 
-end LRA.VolumeII.Integers.ConversionTests
+end LRA.NumberSystems.Integers.ConversionTests

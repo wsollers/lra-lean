@@ -1,16 +1,16 @@
 import LRA.VolumeI.Logic.Language.FirstOrder.Signature
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 universe u
 
 /-!
 Models (L-structures) for Volume I.
 
-Declared in the `LRA.VolumeI.Logic.FirstOrder` namespace, matching
+Declared in the `LRA.Logic.FirstOrder` namespace, matching
 `FirstOrder.Formula` -- `Model` is first-order-specific content (built on
 `Signature`, which is shared, cross-logic vocabulary and stays in the bare
-`LRA.VolumeI.Logic` namespace), not something every object logic shares
+`LRA.Logic` namespace), not something every object logic shares
 the same way `Signature` itself is shared.
 
 A model of a signature `S` interprets `S`'s vocabulary over an actual
@@ -85,4 +85,4 @@ nonemptiness by hand each time. -/
 instance {S : Signature} (M : Model S) : Nonempty M.Domain :=
   M.domainNonempty
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

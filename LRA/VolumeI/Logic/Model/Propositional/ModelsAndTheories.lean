@@ -1,7 +1,7 @@
 import Mathlib.Data.Set.Defs
 import LRA.VolumeI.Logic.Model.Propositional.PropositionalModel
 
-namespace LRA.VolumeI.Logic.Propositional
+namespace LRA.Logic.Propositional
 
 /-!
 Model classes, theories, and the core model-theoretic notions.
@@ -130,4 +130,4 @@ matching `Γ ⊨ φ`. Named `⊨ₜ` (distinct from `⊨ₚ`, model-to-formula
 satisfaction) since the two relate different-shaped things. -/
 scoped notation:50 Γ " ⊨ₜ " φ => SemanticConsequence Γ φ
 
-end LRA.VolumeI.Logic.Propositional
+end LRA.Logic.Propositional

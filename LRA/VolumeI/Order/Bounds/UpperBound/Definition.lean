@@ -1,6 +1,6 @@
 import LRA.VolumeI.Relations.Basic.Relations
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -13,16 +13,16 @@ Logical form:
 
 ```lean
 def UpperBound
-    (relation : LRA.VolumeI.Relations.Endorelation Element)
+    (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject)
     (bound : Element) : Prop :=
   forall element, element ∈ subset -> relation element bound
 ```
 -/
 def UpperBound
-    (relation : LRA.VolumeI.Relations.Endorelation Element)
+    (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject)
     (bound : Element) : Prop :=
   forall element, element ∈ subset -> relation element bound
 
-end LRA.VolumeI.Order
+end LRA.Order

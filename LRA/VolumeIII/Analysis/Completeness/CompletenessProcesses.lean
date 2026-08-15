@@ -11,9 +11,10 @@ import LRA.VolumeIII.Analysis.Completeness.NestedIntervalProperty
 Process-level consequences of completeness used before the sequence chapter.
 -/
 
-namespace LRA.VolumeIII.Analysis.Completeness
+namespace LRA.Analysis.Completeness
 
-open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
+open LRA.Analysis.Bounds.Extremal
+open LRA.Analysis.Bounds
 
 variable (F : Type*)
 
@@ -150,4 +151,4 @@ theorem ArchimedeanReciprocalProcessTendsToZero :
     ArchimedeanReciprocalProperty := by
   sorry
 
-end LRA.VolumeIII.Analysis.Completeness
+end LRA.Analysis.Completeness

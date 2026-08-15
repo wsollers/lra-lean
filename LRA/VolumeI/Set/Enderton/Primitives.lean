@@ -6,7 +6,7 @@ set is itself a set. The axioms (in `Axioms/Axioms.lean`) determine how the
 primitive membership relation behaves and which sets exist.
 -/
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 /--
 The primitive sort of sets.
 
@@ -46,4 +46,4 @@ requires. -/
 instance : Membership Set Set where
   mem containingSet element := MembershipRelation element containingSet
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

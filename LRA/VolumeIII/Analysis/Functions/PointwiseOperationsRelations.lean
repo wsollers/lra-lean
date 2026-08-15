@@ -28,7 +28,7 @@ picking a fixed arity, matching the `.tex`'s own generic `Φ:ℝ^n→ℝ` /
 import Mathlib.Data.Real.Basic
 import Mathlib.Data.Fin.Basic
 
-namespace LRA.VolumeIII.Analysis.Functions
+namespace LRA.Analysis.Functions
 
 /-- `def:at-point-operation`.
 
@@ -151,4 +151,4 @@ theorem PointwiseRelationNearUnpacking {n : ℕ} (R : (Fin n → ℝ) → Prop)
       ∃ δ > 0, ∀ x ∈ A, (0 < |x - c| ∧ |x - c| < δ) → R (fun i => f i x) := by
   sorry
 
-end LRA.VolumeIII.Analysis.Functions
+end LRA.Analysis.Functions

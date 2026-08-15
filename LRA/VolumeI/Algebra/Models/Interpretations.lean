@@ -3,16 +3,16 @@ import LRA.VolumeI.Logic.Model.Model
 import LRA.VolumeI.Logic.Syntax.Term
 import LRA.VolumeI.Logic.Semantics.TermEvaluation
 
-namespace LRA.VolumeI.Algebra.Models
+namespace LRA.Algebra.Models
 
-open LRA.VolumeI.Logic
-open LRA.VolumeI.Logic.FirstOrder
+open LRA.Logic
+open LRA.Logic.FirstOrder
 
 universe u
 
 /-!
 Volume I label: universal-algebra-interpretations
-Lean module: LRA.VolumeI.Algebra.Models.Interpretations
+Lean module: LRA.Algebra.Models.Interpretations
 Verification status: checked definitions
 
 Universal algebra begins here as a *reading* of the Logic chapter: an
@@ -49,11 +49,11 @@ def algebraicSignature
 Logical form:
 
 ```lean
-def _root_.LRA.VolumeI.Logic.Signature.IsAlgebraic (S : Signature) : Prop :=
+def _root_.LRA.Logic.Signature.IsAlgebraic (S : Signature) : Prop :=
   IsEmpty S.RelationSymbol
 ```
 -/
-def _root_.LRA.VolumeI.Logic.Signature.IsAlgebraic (S : Signature) : Prop :=
+def _root_.LRA.Logic.Signature.IsAlgebraic (S : Signature) : Prop :=
   IsEmpty S.RelationSymbol
 
 /--
@@ -127,4 +127,4 @@ theorem termAlgebraEvaluatesToItself
       funext i
       exact ih i
 
-end LRA.VolumeI.Algebra.Models
+end LRA.Algebra.Models

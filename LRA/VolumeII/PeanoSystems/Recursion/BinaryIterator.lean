@@ -1,6 +1,6 @@
 import LRA.VolumeII.PeanoSystems.Recursion.Iterator
 
-namespace LRA.VolumeII.PeanoSystems
+namespace LRA.NumberSystems.PeanoSystems
 
 universe u v w
 
@@ -204,4 +204,4 @@ theorem BinaryIteratorOperationWellDefined
         otherOperation = operation := by
   sorry
 
-end LRA.VolumeII.PeanoSystems
+end LRA.NumberSystems.PeanoSystems

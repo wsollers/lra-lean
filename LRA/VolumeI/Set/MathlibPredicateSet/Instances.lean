@@ -21,7 +21,7 @@ rather than by token, because Mathlib's `ᶜ`/`∆` notations coexist with
 this project's scoped ones inside this namespace.
 -/
 
-namespace LRA.VolumeI.Set.MathlibPredicateSet
+namespace LRA.Set.MathlibPredicateSet
 
 universe u
 
@@ -69,4 +69,4 @@ instance : HasCollectionUnion (_root_.Set Alpha) (_root_.Set (_root_.Set Alpha))
 instance : HasCollectionIntersection (_root_.Set Alpha) (_root_.Set (_root_.Set Alpha)) where
   collectionIntersection := _root_.Set.sInter
 
-end LRA.VolumeI.Set.MathlibPredicateSet
+end LRA.Set.MathlibPredicateSet

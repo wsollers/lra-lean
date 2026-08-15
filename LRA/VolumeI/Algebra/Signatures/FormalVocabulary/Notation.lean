@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Language.Notation
 
-namespace LRA.VolumeI.Algebra.Signatures.FormalVocabulary
+namespace LRA.Algebra.Signatures.FormalVocabulary
 
 /--
 Common display roles for formal notation.
@@ -38,4 +38,4 @@ structure NotationAssignment (Symbol : Type) where
   Token : String
   Role : NotationRole
 
-end LRA.VolumeI.Algebra.Signatures.FormalVocabulary
+end LRA.Algebra.Signatures.FormalVocabulary

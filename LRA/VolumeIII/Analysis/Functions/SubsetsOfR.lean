@@ -73,7 +73,7 @@ import Mathlib.Order.Filter.AtTopBot.Basic
 import Mathlib.Topology.Instances.Real.Lemmas
 import Mathlib.Order.Interval.Set.OrdConnected
 
-namespace LRA.VolumeIII.Analysis.Functions
+namespace LRA.Analysis.Functions
 
 /-- `def:epsilon-neighbourhood`.
 
@@ -483,4 +483,4 @@ theorem FiniteSetIsClosed (X : Set ℝ) (hX : X.Finite) :
     (∀ x : ℝ, ¬ IsClusterPointR x X) ∧ IsClosedR X := by
   sorry
 
-end LRA.VolumeIII.Analysis.Functions
+end LRA.Analysis.Functions

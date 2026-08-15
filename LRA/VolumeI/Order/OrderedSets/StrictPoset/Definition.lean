@@ -1,13 +1,13 @@
 import LRA.VolumeI.Order.OrderedSets.StrictOrder.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
 /-- A strict poset is a carrier equipped with a strict order. -/
 structure StrictPoset where
   Carrier : Type u
-  StrictRelation : LRA.VolumeI.Relations.Endorelation Carrier
-  StrictRelationIsStrictOrder : LRA.VolumeI.Order.StrictOrder StrictRelation
+  StrictRelation : LRA.Relation.Endorelation Carrier
+  StrictRelationIsStrictOrder : LRA.Order.StrictOrder StrictRelation
 
-end LRA.VolumeI.Order
+end LRA.Order

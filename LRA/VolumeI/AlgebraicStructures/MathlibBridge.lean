@@ -7,7 +7,7 @@ import Mathlib.Data.Rat.Defs
 import LRA.VolumeI.AlgebraicStructures.Completeness
 import LRA.VolumeI.AlgebraicStructures.Discrete
 
-namespace LRA.VolumeI.AlgebraicStructures
+namespace LRA.Algebra.Structure
 
 universe u
 
@@ -164,4 +164,4 @@ example : OrderDiscretenessLaw Int := inferInstance
 example : DenseOrderLaw Rat := inferInstance
 example : DenseOrderLaw Real := inferInstance
 
-end LRA.VolumeI.AlgebraicStructures
+end LRA.Algebra.Structure

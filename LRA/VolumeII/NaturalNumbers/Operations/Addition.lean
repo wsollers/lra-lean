@@ -2,7 +2,7 @@ import LRA.VolumeI.Operations
 import LRA.VolumeII.NaturalNumbers.Construction.NModel
 import LRA.VolumeII.PeanoSystems.Recursion.BinaryIterator
 
-namespace LRA.VolumeII.NaturalNumbers
+namespace LRA.NumberSystems.NaturalNumbers
 
 universe u v
 
@@ -10,7 +10,7 @@ variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 
 
-open LRA.VolumeII.PeanoSystems
+open LRA.NumberSystems.PeanoSystems
 
 /--
 **[Definition - Addition on N]**
@@ -179,12 +179,12 @@ Logical form:
 ```lean
 theorem NAdditionIsAssociative
     (model : NModel Element SetObject) :
-    LRA.VolumeI.Operations.Associative (NAddition model)
+    LRA.Algebra.Operation.Associative (NAddition model)
 ```
 -/
 theorem NAdditionIsAssociative
     (model : NModel Element SetObject) :
-    LRA.VolumeI.Operations.Associative (NAddition model) := by
+    LRA.Algebra.Operation.Associative (NAddition model) := by
   sorry
 
 /--
@@ -195,12 +195,12 @@ Logical form:
 ```lean
 theorem NAdditionIsCommutative
     (model : NModel Element SetObject) :
-    LRA.VolumeI.Operations.Commutative (NAddition model)
+    LRA.Algebra.Operation.Commutative (NAddition model)
 ```
 -/
 theorem NAdditionIsCommutative
     (model : NModel Element SetObject) :
-    LRA.VolumeI.Operations.Commutative (NAddition model) := by
+    LRA.Algebra.Operation.Commutative (NAddition model) := by
   sorry
 
-end LRA.VolumeII.NaturalNumbers
+end LRA.NumberSystems.NaturalNumbers

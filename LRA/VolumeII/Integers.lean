@@ -10,11 +10,11 @@ import LRA.VolumeII.Integers.ArithmeticTests
 import LRA.VolumeII.Integers.ConversionTests
 import LRA.VolumeII.Integers.Construction
 
-namespace LRA.VolumeII.Integers
+namespace LRA.NumberSystems.Integers
 
 /-!
 Volume II label: integers-formalization-root
-Lean module: LRA.VolumeII.Integers
+Lean module: LRA.NumberSystems.Integers
 Verification status: checked aggregation module
 
 The integer formalization is organized by source variant:
@@ -28,4 +28,4 @@ The integer formalization is organized by source variant:
 arithmetic smoke tests.
 -/
 
-end LRA.VolumeII.Integers
+end LRA.NumberSystems.Integers

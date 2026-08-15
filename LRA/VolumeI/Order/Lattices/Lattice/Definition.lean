@@ -1,7 +1,7 @@
 import LRA.VolumeI.Order.Lattices.Join.Definition
 import LRA.VolumeI.Order.Lattices.Meet.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
@@ -12,7 +12,7 @@ Logical form:
 
 ```lean
 def Lattice {alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation alpha) : Prop :=
+    (relation : LRA.Relation.Endorelation alpha) : Prop :=
   PartialOrder relation /\
     forall left right : alpha,
       (exists join, Join relation left right join) /\
@@ -20,10 +20,10 @@ def Lattice {alpha : Type u}
 ```
 -/
 def Lattice {alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation alpha) : Prop :=
+    (relation : LRA.Relation.Endorelation alpha) : Prop :=
   PartialOrder relation /\
     forall left right : alpha,
       (exists join, Join relation left right join) /\
         (exists meet, Meet relation left right meet)
 
-end LRA.VolumeI.Order
+end LRA.Order

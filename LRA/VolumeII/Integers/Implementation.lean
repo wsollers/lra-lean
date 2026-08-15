@@ -3,11 +3,11 @@
 
 import LRA.VolumeII.Integers.Polish
 
-namespace LRA.VolumeII.Integers
+namespace LRA.NumberSystems.Integers
 
 /-!
 Volume II label: integers-active-implementation
-Lean module: LRA.VolumeII.Integers.Implementation
+Lean module: LRA.NumberSystems.Integers.Implementation
 Verification status: checked switch module
 
 The active integer implementation is now a single carrier abbreviation.
@@ -32,4 +32,4 @@ abbrev Z := Polish.TwoSidedSuccessor.Z
 -/
 abbrev Z := Polish.TwoSidedSuccessor.Z
 
-end LRA.VolumeII.Integers
+end LRA.NumberSystems.Integers

@@ -3,12 +3,12 @@
 
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA.VolumeII.RealNumbers.Irrationals
+namespace LRA.NumberSystems.RealNumbers.Irrationals
 
-open LRA.VolumeI.Algebra.Models
+open LRA.Algebra.Models
 
 /-!
-Lean module: LRA.VolumeII.RealNumbers.Irrationals
+Lean module: LRA.NumberSystems.RealNumbers.Irrationals
 Source: docs/number-systems/gpt-08e-irrational-numbers.md
 Verification status: definitions complete; theorem proofs pending
 
@@ -780,4 +780,4 @@ theorem irrationals_not_closed_under_division
           (real_extension.RealModel.signature.inverse second)) := by
   sorry
 
-end LRA.VolumeII.RealNumbers.Irrationals
+end LRA.NumberSystems.RealNumbers.Irrationals

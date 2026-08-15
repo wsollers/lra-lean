@@ -1,8 +1,8 @@
 import LRA.VolumeI.Set.Algebra.BooleanAlgebra
 
-namespace LRA.VolumeI.Set.Algebra
+namespace LRA.Set.Algebra
 
-open LRA.VolumeI.Set
+open LRA.Set
 
 universe u v
 
@@ -82,4 +82,4 @@ def SigmaAlgebraOfSets.toSigmaRingOfSets {ambient : SetObject}
   toRingOfSets := sigma.toRingOfSets
   CountableUnionIsMember := sigma.CountableUnionIsMember
 
-end LRA.VolumeI.Set.Algebra
+end LRA.Set.Algebra

@@ -3,7 +3,7 @@ import LRA.VolumeI.Order.OrderedSets.Preorder.Relationships
 import LRA.VolumeI.Order.OrderedSets.StrictOrder.Definition
 import LRA.VolumeI.Order.Relations.StrictPart.Definition
 
-namespace LRA.VolumeI.Order.OrderedSets.PartialOrder
+namespace LRA.Order.OrderedSets.PartialOrder
 
 universe u
 
@@ -19,8 +19,8 @@ fun left right => order.relation left right /\ left /= right
 def StrictPart
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
-    LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier :=
-  LRA.VolumeI.Order.StrictPart order.relation
+    LRA.Order.OrderedSets.OrderRelation Carrier :=
+  LRA.Order.StrictPart order.relation
 
 /--
 The strict part unfolds to non-strict comparison plus inequality.
@@ -71,7 +71,7 @@ StrictOrder.StrictOrderRelation Carrier
 def StrictPartAsStrictOrder
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
-    LRA.VolumeI.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier where
+    LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier where
   relation := StrictPart order
   relationIsStrictOrder := by
     sorry
@@ -82,13 +82,13 @@ The strict part of a non-strict partial order is a strict order.
 Logical form:
 
 ```lean
-LRA.VolumeI.Order.StrictOrder (StrictPart order)
+LRA.Order.StrictOrder (StrictPart order)
 ```
 -/
 theorem StrictPartIsStrictOrder
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
-    LRA.VolumeI.Order.StrictOrder (StrictPart order) := by
+    LRA.Order.StrictOrder (StrictPart order) := by
   sorry
 
 /--
@@ -104,7 +104,7 @@ def Dual
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
     NonStrictPartialOrder Carrier where
-  relation := LRA.VolumeI.Relations.Converse order.relation
+  relation := LRA.Relation.Converse order.relation
   relationIsPartialOrder := by
     sorry
 
@@ -114,14 +114,14 @@ The dual relation of a partial order is again a partial order.
 Logical form:
 
 ```lean
-LRA.VolumeI.Order.PartialOrder (fun left right => order.relation right left)
+LRA.Order.PartialOrder (fun left right => order.relation right left)
 ```
 -/
 theorem DualIsPartialOrder
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
-    LRA.VolumeI.Order.PartialOrder
-      (LRA.VolumeI.Relations.Converse order.relation) := by
+    LRA.Order.PartialOrder
+      (LRA.Relation.Converse order.relation) := by
   sorry
 
-end LRA.VolumeI.Order.OrderedSets.PartialOrder
+end LRA.Order.OrderedSets.PartialOrder

@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.WellOrder.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -8,11 +8,11 @@ universe u v
 theorem WellOrderingPrinciple
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
-    {nonStrictRelation : LRA.VolumeI.Relations.Endorelation Element}
+    {nonStrictRelation : LRA.Relation.Endorelation Element}
     (nonStrictRelationIsWellOrder : WellOrder SetObject nonStrictRelation)
     (subset : SetObject)
     (subsetIsNonempty : exists element : Element, element ∈ subset) :
     exists leastElement, LeastElement nonStrictRelation subset leastElement :=
   nonStrictRelationIsWellOrder.right subset subsetIsNonempty
 
-end LRA.VolumeI.Order
+end LRA.Order

@@ -1,6 +1,6 @@
 /-
 Draft module; not yet imported by the active Volume III root.
-New namespace/area: `LRA.VolumeIII.Analysis.StructureOfRealLine.*`, the Lean
+New namespace/area: `LRA.Analysis.StructureOfRealLine.*`, the Lean
 home for Chapter 2 ("Structure of the Real Line") — the open-ball/open-cover
 metric-topology development that deliberately parallels (without duplicating)
 the earlier `Functions.SubsetsOfR` epsilon-language treatment. See
@@ -25,7 +25,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Topology.Instances.Real.Lemmas
 import Mathlib.Order.Filter.Basic
 
-namespace LRA.VolumeIII.Analysis.StructureOfRealLine
+namespace LRA.Analysis.StructureOfRealLine
 
 /-- `def:open-set`, restated: `U` is open iff every point of `U` is the
 center of an open ball contained in `U`.
@@ -126,4 +126,4 @@ theorem SequentialCompactnessIffOpenCoverCompactness (K : Set ℝ) :
     IsSeqCompactR K ↔ IsCompactR K := by
   sorry
 
-end LRA.VolumeIII.Analysis.StructureOfRealLine
+end LRA.Analysis.StructureOfRealLine

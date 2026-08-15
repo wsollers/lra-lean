@@ -1,7 +1,7 @@
 /-
 Draft module; not yet imported by the active Volume III root.
 Imports only this pass's own promoted draft modules and Mathlib — nothing from the
-real `LRA.VolumeIII.Analysis.Sequences.*`, so this can be freely
+real `LRA.Analysis.Sequences.*`, so this can be freely
 refactored or discarded without touching the working project.
 Source: volume-iii/book-analysis-i/sequences/notes/divergence/notes-divergence.tex
 Only file in `divergence`. Structural check: 36/36 balanced remark
@@ -47,7 +47,7 @@ import LRA.VolumeIII.Analysis.Sequences.Convergence
 import LRA.VolumeIII.Analysis.Sequences.NullConstantSequences
 import LRA.VolumeIII.Analysis.Sequences.Subsequences
 
-namespace LRA.VolumeIII.Analysis.Sequences
+namespace LRA.Analysis.Sequences
 
 /-- `def:divergent-sequence`.
 
@@ -182,4 +182,4 @@ theorem BoundedDivergenceProducesTwoSubsequentialLimits {x : RealSequence}
     ∃ L K : ℝ, L ≠ K ∧ IsSubsequentialLimit x L ∧ IsSubsequentialLimit x K := by
   sorry
 
-end LRA.VolumeIII.Analysis.Sequences
+end LRA.Analysis.Sequences

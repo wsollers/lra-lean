@@ -7,9 +7,10 @@ import LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.SupremaInfima
 Nested closed interval properties over the real line.
 -/
 
-namespace LRA.VolumeIII.Analysis.Completeness
+namespace LRA.Analysis.Completeness
 
-open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
+open LRA.Analysis.Bounds.Extremal
+open LRA.Analysis.Bounds
 
 variable (F : Type*)
 
@@ -358,4 +359,4 @@ theorem BoundednessIsNecessaryInNestedIntervalTheorem :
       (⋂ n, Set.Ici (a n)) = ∅ := by
   sorry
 
-end LRA.VolumeIII.Analysis.Completeness
+end LRA.Analysis.Completeness

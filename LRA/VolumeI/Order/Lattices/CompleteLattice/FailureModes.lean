@@ -2,7 +2,7 @@ import Mathlib.Data.Set.Basic
 import LRA.VolumeI.Order.Bounds.LeastUpperBoundProperty.Definition
 import LRA.VolumeI.Order.Lattices.CompleteLattice.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 /--
 The integers have the least-upper-bound property for nonempty bounded-above
@@ -13,4 +13,4 @@ theorem IntegerLeastUpperBoundPropertyDoesNotImplyCompleteLattice :
       Not (CompleteLattice (Set Int) (fun left right : Int => left ≤ right)) := by
   sorry
 
-end LRA.VolumeI.Order
+end LRA.Order

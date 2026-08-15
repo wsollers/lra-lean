@@ -5,10 +5,10 @@ import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeI.Set
 import LRA.VolumeI.Algebra
 
-namespace LRA.VolumeII.Integers.QuotientOrderedPairs
+namespace LRA.NumberSystems.Integers.QuotientOrderedPairs
 
 /-!
-Lean module: LRA.VolumeII.Integers.QuotientOrderedPairs
+Lean module: LRA.NumberSystems.Integers.QuotientOrderedPairs
 Verification status: definitions complete; proofs pending
 
 This module formalizes the default quotient-ordered-pairs construction of the
@@ -758,4 +758,4 @@ theorem quotient_multiplication_distributes_over_addition
         addition (multiplication first second) (multiplication first third) := by
   sorry
 
-end LRA.VolumeII.Integers.QuotientOrderedPairs
+end LRA.NumberSystems.Integers.QuotientOrderedPairs

@@ -6,7 +6,7 @@ Mathlib metric already on a type or the Mathlib metric induced by a textbook
 `MetricDefinition`.
 -/
 
-namespace LRA.VolumeIV.MetricSpaces
+namespace LRA.Analysis.MetricSpaces
 
 universe u
 
@@ -132,4 +132,4 @@ theorem SelectMathlibMetricSpaceDistanceInduced {X : Type u}
     dist x y = metric.distance x y := by
   rfl
 
-end LRA.VolumeIV.MetricSpaces
+end LRA.Analysis.MetricSpaces

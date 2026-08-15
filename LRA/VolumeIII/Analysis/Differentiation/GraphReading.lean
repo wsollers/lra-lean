@@ -16,7 +16,7 @@ import LRA.VolumeIII.Analysis.Continuity.GlobalTheorems
 import LRA.VolumeIII.Analysis.Continuity.PointContinuity
 import LRA.VolumeIII.Analysis.Continuity.UniformContinuity
 
-namespace LRA.VolumeIII.Analysis.Differentiation
+namespace LRA.Analysis.Differentiation
 
 -- ---------------------------------------------------------------------
 -- First-Order Shape (`notes-understanding-derivatives.tex`).
@@ -181,11 +181,11 @@ Logical form:
 
 ```lean
 def HigherDerivativeAt (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (A : Set ℝ) (n : ℕ) (c : ℝ) : Prop :=
-  LRA.VolumeIII.Analysis.Differentiation.NthDerivativeAt f fD A n c
+  LRA.Analysis.Differentiation.NthDerivativeAt f fD A n c
 ```
 -/
 def HigherDerivativeAt (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (A : Set ℝ) (n : ℕ) (c : ℝ) : Prop :=
-  LRA.VolumeIII.Analysis.Differentiation.NthDerivativeAt f fD A n c
+  LRA.Analysis.Differentiation.NthDerivativeAt f fD A n c
 
 -- `thm:second-derivative-convexity-test`
 /-- Let `I : Set ℝ`. If `f fD1 fD2 : ℝ → ℝ`, `hI : I.OrdConnected`, `hD1 : ∀ x ∈ I, Derivative (fD1
@@ -253,7 +253,7 @@ theorem SecondDerivativeTest (f fD1 fD2 : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
 
 /-- Let `A : Set ℝ` and `c : ℝ`. If `f fD1 fD2 : ℝ → ℝ`, `hinfl : IsInflection f c`, `hD1 : ∀ x ∈ A,
 Derivative (fD1 x) f A x`, `hD2 : ∀ x ∈ A, Derivative (fD2 x) fD1 A x`, and `hcont :
-LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint fD2 A c`. Then `fD2 c = 0`.
+LRA.Analysis.Continuity.ContinuousAtPoint fD2 A c`. Then `fD2 c = 0`.
 
 Logical form:
 
@@ -261,14 +261,14 @@ Logical form:
 theorem InflectionPointNecessaryCondition (f fD1 fD2 : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hinfl : IsInflection f c)
     (hD1 : ∀ x ∈ A, Derivative (fD1 x) f A x) (hD2 : ∀ x ∈ A, Derivative (fD2 x) fD1 A x)
-    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint fD2 A c) :
+    (hcont : LRA.Analysis.Continuity.ContinuousAtPoint fD2 A c) :
     fD2 c = 0
 ```
 -/
 theorem InflectionPointNecessaryCondition (f fD1 fD2 : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hinfl : IsInflection f c)
     (hD1 : ∀ x ∈ A, Derivative (fD1 x) f A x) (hD2 : ∀ x ∈ A, Derivative (fD2 x) fD1 A x)
-    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousAtPoint fD2 A c) :
+    (hcont : LRA.Analysis.Continuity.ContinuousAtPoint fD2 A c) :
     fD2 c = 0 := by
   sorry
 
@@ -310,12 +310,12 @@ Logical form:
 ```lean
 def IsClassC1 (f : ℝ → ℝ) (fD1 : ℝ → ℝ) (I : Set ℝ) : Prop :=
   (∀ x ∈ I, Derivative (fD1 x) f I x) ∧
-    LRA.VolumeIII.Analysis.Continuity.ContinuousOn' fD1 I
+    LRA.Analysis.Continuity.ContinuousOn' fD1 I
 ```
 -/
 def IsClassC1 (f : ℝ → ℝ) (fD1 : ℝ → ℝ) (I : Set ℝ) : Prop :=
   (∀ x ∈ I, Derivative (fD1 x) f I x) ∧
-    LRA.VolumeIII.Analysis.Continuity.ContinuousOn' fD1 I
+    LRA.Analysis.Continuity.ContinuousOn' fD1 I
 
 /-- `def:class-ck`, `k ≥ 0`, via a witnessing derivative-sequence
 `fD : ℕ → ℝ → ℝ` (`fD 0 = f`), matching `ChainRule.lean`'s
@@ -326,12 +326,12 @@ Logical form:
 ```lean
 def IsClassCk (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (I : Set ℝ) (k : ℕ) : Prop :=
   (∀ x ∈ I, HigherDerivativeAt f fD I k x) ∧
-    LRA.VolumeIII.Analysis.Continuity.ContinuousOn' (fD k) I
+    LRA.Analysis.Continuity.ContinuousOn' (fD k) I
 ```
 -/
 def IsClassCk (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (I : Set ℝ) (k : ℕ) : Prop :=
   (∀ x ∈ I, HigherDerivativeAt f fD I k x) ∧
-    LRA.VolumeIII.Analysis.Continuity.ContinuousOn' (fD k) I
+    LRA.Analysis.Continuity.ContinuousOn' (fD k) I
 
 /-- `def:class-cinfty`.
 
@@ -388,12 +388,12 @@ Logical form:
 ```lean
 def IsClassC11 (f fD1 : ℝ → ℝ) (I : Set ℝ) : Prop :=
   IsClassC1 f fD1 I ∧ ∃ L ≥ 0,
-    LRA.VolumeIII.Analysis.Continuity.IsLipschitzOn fD1 I L
+    LRA.Analysis.Continuity.IsLipschitzOn fD1 I L
 ```
 -/
 def IsClassC11 (f fD1 : ℝ → ℝ) (I : Set ℝ) : Prop :=
   IsClassC1 f fD1 I ∧ ∃ L ≥ 0,
-    LRA.VolumeIII.Analysis.Continuity.IsLipschitzOn fD1 I L
+    LRA.Analysis.Continuity.IsLipschitzOn fD1 I L
 
 -- `thm:c11-placement`
 /-- Let `I : Set ℝ`. If `hI : I.Nontrivial`. Then `(∀ f fD1, IsClassC11 f fD1 I → IsClassC1 f fD1
@@ -412,7 +412,7 @@ theorem C11Placement (I : Set ℝ) (hI : I.Nontrivial) :
 
 /-- Let `I : Set ℝ` and `M : ℝ`. If `f fD1 fD2 : ℝ → ℝ`, `hM : M ≥ 0`, `hclass : IsClassCk f (fun n
 => if n = 0 then f else if n = 1 then fD1 else fD2) I 2`, and `hbound : ∀ x ∈ I, |fD2 x| ≤ M`.
-Then `IsClassC11 f fD1 I ∧ LRA.VolumeIII.Analysis.Continuity.IsLipschitzOn fD1 I M`.
+Then `IsClassC11 f fD1 I ∧ LRA.Analysis.Continuity.IsLipschitzOn fD1 I M`.
 
 Logical form:
 
@@ -420,13 +420,13 @@ Logical form:
 theorem BoundedSecondDerivativeImpliesC11 (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (M : ℝ)
     (hM : M ≥ 0) (hclass : IsClassCk f (fun n => if n = 0 then f else if n = 1 then fD1 else fD2) I 2)
     (hbound : ∀ x ∈ I, |fD2 x| ≤ M) :
-    IsClassC11 f fD1 I ∧ LRA.VolumeIII.Analysis.Continuity.IsLipschitzOn fD1 I M
+    IsClassC11 f fD1 I ∧ LRA.Analysis.Continuity.IsLipschitzOn fD1 I M
 ```
 -/
 theorem BoundedSecondDerivativeImpliesC11 (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (M : ℝ)
     (hM : M ≥ 0) (hclass : IsClassCk f (fun n => if n = 0 then f else if n = 1 then fD1 else fD2) I 2)
     (hbound : ∀ x ∈ I, |fD2 x| ≤ M) :
-    IsClassC11 f fD1 I ∧ LRA.VolumeIII.Analysis.Continuity.IsLipschitzOn fD1 I M := by
+    IsClassC11 f fD1 I ∧ LRA.Analysis.Continuity.IsLipschitzOn fD1 I M := by
   sorry
 
-end LRA.VolumeIII.Analysis.Differentiation
+end LRA.Analysis.Differentiation

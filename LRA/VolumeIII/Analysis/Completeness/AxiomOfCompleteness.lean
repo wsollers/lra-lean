@@ -5,9 +5,10 @@ import LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.SupremaInfima
 The least-upper-bound property and completeness of the real line.
 -/
 
-namespace LRA.VolumeIII.Analysis.Completeness
+namespace LRA.Analysis.Completeness
 
-open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
+open LRA.Analysis.Bounds.Extremal
+open LRA.Analysis.Bounds
 
 /-- A preorder has the least-upper-bound property when every nonempty bounded-above set has a supremum.
 
@@ -55,4 +56,4 @@ theorem CompletenessGivesRealSupremum {A : Set ℝ}
     ∃ s, IsSupremum s A :=
   AxiomOfCompleteness A nonemptyHypothesis boundedAboveHypothesis
 
-end LRA.VolumeIII.Analysis.Completeness
+end LRA.Analysis.Completeness

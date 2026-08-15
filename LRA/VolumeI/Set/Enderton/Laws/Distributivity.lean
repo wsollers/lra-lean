@@ -1,11 +1,11 @@
 import LRA.VolumeI.Set.Enderton.Instances
 import LRA.VolumeI.Set.Interface.Distributivity
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 /-!
 Distributivity and absorption laws for Enderton sets: the backend's
-certificate for `LRA.VolumeI.Set.DistributivityLaws`.
+certificate for `LRA.Set.DistributivityLaws`.
 -/
 /--
 `IntersectionDistributesOverUnion` exposes this formal declaration.
@@ -68,12 +68,12 @@ theorem AbsorptionIntersectionUnion :
 laws. Pure delegation to the theorems above. -/
 instance : DistributivityLaws Set where
   IntersectionDistributesOverUnion :=
-    LRA.VolumeI.Set.Enderton.IntersectionDistributesOverUnion
+    LRA.Set.Enderton.IntersectionDistributesOverUnion
   UnionDistributesOverIntersection :=
-    LRA.VolumeI.Set.Enderton.UnionDistributesOverIntersection
+    LRA.Set.Enderton.UnionDistributesOverIntersection
   AbsorptionUnionIntersection :=
-    LRA.VolumeI.Set.Enderton.AbsorptionUnionIntersection
+    LRA.Set.Enderton.AbsorptionUnionIntersection
   AbsorptionIntersectionUnion :=
-    LRA.VolumeI.Set.Enderton.AbsorptionIntersectionUnion
+    LRA.Set.Enderton.AbsorptionIntersectionUnion
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

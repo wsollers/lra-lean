@@ -18,7 +18,7 @@ family does not elaborate at `ZFSet` -- the same capability boundary,
 now enforced against Mathlib's own ZFC model.
 -/
 
-namespace LRA.VolumeI.Set.MathlibZFSet
+namespace LRA.Set.MathlibZFSet
 
 /-- Symmetric difference of ZF sets, derived as the union of the two
 relative complements -- `ZFSet` has no built-in symmetric difference.
@@ -84,4 +84,4 @@ noncomputable instance : HasCountableUnion ZFSet where
 noncomputable instance : HasCountableIntersection ZFSet where
   countableIntersection := CountableIntersection
 
-end LRA.VolumeI.Set.MathlibZFSet
+end LRA.Set.MathlibZFSet

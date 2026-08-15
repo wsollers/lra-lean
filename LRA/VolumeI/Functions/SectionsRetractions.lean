@@ -1,41 +1,19 @@
 import LRA.VolumeI.Functions.Inverses
 
-namespace LRA.VolumeI.Functions
+namespace LRA.Function
 
-universe u
+universe u v
 
-/--
-A section is a right inverse.
-
-Logical form:
-
-```lean
-def Section {Domain Codomain : Type u}
-    (sectionMap : Codomain -> Domain)
-    (map : Domain -> Codomain) : Prop :=
-  RightInverse sectionMap map
-```
--/
-def Section {Domain Codomain : Type u}
-    (sectionMap : Codomain -> Domain)
-    (map : Domain -> Codomain) : Prop :=
+/-- A section is a right inverse. -/
+def Section {Domain : Type u} {Codomain : Type v}
+    (sectionMap : LRA.Function Codomain Domain)
+    (map : LRA.Function Domain Codomain) : Prop :=
   RightInverse sectionMap map
 
-/--
-A retraction is a left inverse.
-
-Logical form:
-
-```lean
-def Retraction {Domain Codomain : Type u}
-    (retractionMap : Codomain -> Domain)
-    (map : Domain -> Codomain) : Prop :=
-  LeftInverse retractionMap map
-```
--/
-def Retraction {Domain Codomain : Type u}
-    (retractionMap : Codomain -> Domain)
-    (map : Domain -> Codomain) : Prop :=
+/-- A retraction is a left inverse. -/
+def Retraction {Domain : Type u} {Codomain : Type v}
+    (retractionMap : LRA.Function Codomain Domain)
+    (map : LRA.Function Domain Codomain) : Prop :=
   LeftInverse retractionMap map
 
-end LRA.VolumeI.Functions
+end LRA.Function

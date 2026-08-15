@@ -1,7 +1,7 @@
 import LRA.VolumeI.Logic.Language.Symbols.Signature
 import LRA.VolumeI.Logic.Language.FirstOrder.Signature
 
-namespace LRA.VolumeI.Logic
+namespace LRA.Logic
 
 /-!
 Worked examples of `Signature`.
@@ -384,4 +384,4 @@ theorem orderedRingSignature.ltIsBinary :
 theorem orderedRingSignature.ltIsBinary :
     orderedRingSignature.IsBinaryRelationSymbol .lt := rfl
 
-end LRA.VolumeI.Logic
+end LRA.Logic

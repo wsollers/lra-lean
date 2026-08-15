@@ -1,7 +1,7 @@
 /-
 Draft module; not yet imported by the active Volume III root.
 Imports only this pass's own promoted draft modules and Mathlib — nothing from the
-real `LRA.VolumeIII.Analysis.Sequences.*`, so this can be freely
+real `LRA.Analysis.Sequences.*`, so this can be freely
 refactored or discarded without touching the working project.
 Source: volume-iii/book-analysis-i/sequences/notes/monotonicity/notes-monotonicity.tex
 Only file in `monotonicity`. Structural check: 69/69 balanced remark
@@ -62,9 +62,9 @@ import LRA.VolumeIII.Analysis.Sequences.NullConstantSequences
 import LRA.VolumeIII.Analysis.Sequences.Tails
 import LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.SupremaInfima
 
-namespace LRA.VolumeIII.Analysis.Sequences
+namespace LRA.Analysis.Sequences
 
-open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds (IsSupremum IsInfimum)
+open LRA.Analysis.Bounds (IsSupremum IsInfimum)
 
 /-- `def:increasing-sequence`.
 
@@ -463,4 +463,4 @@ theorem NegationReversesDecreasing {x : RealSequence}
     (h : IsDecreasing x) : IsIncreasing (fun n => -x n) := by
   sorry
 
-end LRA.VolumeIII.Analysis.Sequences
+end LRA.Analysis.Sequences

@@ -1,6 +1,6 @@
 import LRA.VolumeI.Identity.Model.Native
 
-namespace LRA.VolumeI.Identity
+namespace LRA.Identity
 
 universe u v
 
@@ -119,4 +119,4 @@ theorem RewriteRelationLeftByEquality {Carrier : Type u}
     relation x z ↔ relation y z :=
   SubstitutionPreservesRelationsLeft EqualityProof relation
 
-end LRA.VolumeI.Identity
+end LRA.Identity

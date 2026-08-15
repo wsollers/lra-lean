@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Proof.System.Takeuti.Formula
 
-namespace LRA.VolumeI.Logic.Proof.System.Takeuti
+namespace LRA.Logic.Proof.System.Takeuti
 
 /-!
 Sequents, the judgement form of Takeuti's LK and LJ.
@@ -62,4 +62,4 @@ def Judgement.IsIntuitionistic {L : Alphabet} (J : Judgement L) : Prop :=
 def Judgement.IsIntuitionistic {L : Alphabet} (J : Judgement L) : Prop :=
   J.succedent.length <= 1
 
-end LRA.VolumeI.Logic.Proof.System.Takeuti
+end LRA.Logic.Proof.System.Takeuti

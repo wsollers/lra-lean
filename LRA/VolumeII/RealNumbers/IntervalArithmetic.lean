@@ -3,17 +3,17 @@
 
 import LRA.VolumeII.RealNumbers.Extensions
 
-namespace LRA.VolumeII.RealNumbers.IntervalArithmetic
-open LRA.VolumeI.Algebra.Models
+namespace LRA.NumberSystems.RealNumbers.IntervalArithmetic
+open LRA.Algebra.Models
 
 /-!
 Volume II label: interval-arithmetic-over-reals
-Lean module: LRA.VolumeII.RealNumbers.IntervalArithmetic
+Lean module: LRA.NumberSystems.RealNumbers.IntervalArithmetic
 Source: docs/number-systems/gpt-08d-interval-arithmetic-over-RealNumbers.md
 Verification status: statement-accepted-proof-pending
 -/
 
-open LRA.VolumeI.Algebra.Models
+open LRA.Algebra.Models
 
 /--
 **[Structure — Interval]**
@@ -244,4 +244,4 @@ theorem dependency_can_make_enclosures_strict
         expression_enclosure ≠ direct_enclosure := by
   sorry
 
-end LRA.VolumeII.RealNumbers.IntervalArithmetic
+end LRA.NumberSystems.RealNumbers.IntervalArithmetic

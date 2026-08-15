@@ -1,6 +1,6 @@
 import LRA.VolumeI.Relations.WellFounded.Definition
 
-namespace LRA.VolumeI.Relations
+namespace LRA.Relation
 
 universe u v
 
@@ -17,4 +17,4 @@ theorem MinimalElementPrinciple
       MinimalElement strictRelation subset minimalElement :=
   strictRelationIsWellFounded subset subsetIsNonempty
 
-end LRA.VolumeI.Relations
+end LRA.Relation

@@ -4,7 +4,7 @@ import LRA.VolumeI.Order.Bounds.Supremum.Definition
 import LRA.VolumeI.Order.Relations.StrictPart.Definition
 import LRA.VolumeI.Order.OrderedSets.LinearOrder.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -12,8 +12,8 @@ universe u v
 theorem GreatestElementIsMaximal
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
-    {relation : LRA.VolumeI.Relations.Endorelation Element}
-    (relationIsAntisymmetric : LRA.VolumeI.Relations.Antisymmetric relation)
+    {relation : LRA.Relation.Endorelation Element}
+    (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation)
     {subset : SetObject} {greatest : Element}
     (greatestIsGreatest : GreatestElement relation subset greatest) :
     MaximalElement (StrictPart relation) subset greatest := by
@@ -23,7 +23,7 @@ theorem GreatestElementIsMaximal
 theorem MaximalElementIsGreatestInLinearOrder
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
-    {relation : LRA.VolumeI.Relations.Endorelation Element}
+    {relation : LRA.Relation.Endorelation Element}
     (relationIsLinearOrder : LinearOrder relation)
     {subset : SetObject} {maximal : Element}
     (maximalIsMaximal : MaximalElement (StrictPart relation) subset maximal) :
@@ -34,10 +34,10 @@ theorem MaximalElementIsGreatestInLinearOrder
 theorem GreatestElementIsSupremum
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
-    {relation : LRA.VolumeI.Relations.Endorelation Element}
+    {relation : LRA.Relation.Endorelation Element}
     {subset : SetObject} {greatest : Element}
     (greatestIsGreatest : GreatestElement relation subset greatest) :
     Supremum relation subset greatest := by
   sorry
 
-end LRA.VolumeI.Order
+end LRA.Order

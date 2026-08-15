@@ -4,14 +4,14 @@
 import LRA.VolumeI.Set.ModelTheory.Axioms
 import Mathlib.SetTheory.ZFC.Basic
 
-namespace LRA.VolumeI.Set.ModelTheory
+namespace LRA.Set.ModelTheory
 
-open LRA.VolumeI.Logic
-open LRA.VolumeI.Logic.FirstOrder
+open LRA.Logic
+open LRA.Logic.FirstOrder
 
 /-!
 Volume I label: set-model-theory-zfset-model
-Lean module: LRA.VolumeI.Set.ModelTheory.ZFSetModel
+Lean module: LRA.Set.ModelTheory.ZFSetModel
 Verification status: model checked; eight of ten satisfaction theorems
 fully proved against Mathlib (Replacement and Choice pending)
 
@@ -327,4 +327,4 @@ theorem zfSetModelsZFC :
   | replacement relation hygienic =>
       exact zfSetSatisfiesReplacement relation hygienic assignment
 
-end LRA.VolumeI.Set.ModelTheory
+end LRA.Set.ModelTheory

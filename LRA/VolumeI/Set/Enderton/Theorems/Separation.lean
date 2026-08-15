@@ -9,7 +9,7 @@ Separation is an axiom schema: `property` ranges over Lean predicates on
 `Set`, standing in for the schema's instances.
 -/
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 /--
 There exists a subset of `A` separated by `property`.
 
@@ -102,4 +102,4 @@ theorem EverySeparatedSubsetEqualsTheSeparatedSubset
     B = TheSeparatedSubset A property := by
   sorry
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

@@ -1,13 +1,13 @@
 -- LRA/VolumeI/Set/Interface/Pairing.lean
 -- The ordered-pair capability: the one new primitive behind relations-as-sets.
 
-namespace LRA.VolumeI.Set
+namespace LRA.Set
 
 universe u v
 
 /-!
 Volume I label: set-interface-pairing
-Lean module: LRA.VolumeI.Set.Interface.Pairing
+Lean module: LRA.Set.Interface.Pairing
 Verification status: checked interface module (default instance proved)
 
 The ordered pair is the single new primitive that turns sets into a
@@ -151,4 +151,4 @@ instance instProdPairingLaws {Left Right : Type u} :
   PairInjective := fun firstLeft secondLeft firstRight secondRight => by
     simp [OrderedPair, HasPairing.pair]
 
-end LRA.VolumeI.Set
+end LRA.Set

@@ -1,6 +1,6 @@
 /-
 Draft module; not yet imported by the active Volume III root.
-New namespace/area: `LRA.VolumeIII.Analysis.Completeness.*`, mirroring the
+New namespace/area: `LRA.Analysis.Completeness.*`, mirroring the
 book's own promotion of `completeness` from a section of the Bounds chapter
 to its own top-level chapter (see ISSUES.md's "Completeness chapter" table
 header for that history). Historical note: the Archimedean-property and
@@ -14,7 +14,7 @@ Source: ADDITIONS.md items 19, 20, 22, 23 — three theorems/examples added
 with user sign-off after being asked directly "are there other completeness
 theorems I should include, or perhaps examples." Item 21 (the relative-sup
 crossover example) lives in `RelativeBounds.lean`
-(`LRA.VolumeIII.Analysis.Bounding`) instead, since it needs the
+(`LRA.Analysis.Bounds`) instead, since it needs the
 `IsRelativeSupremum` machinery defined there.
 -/
 
@@ -22,7 +22,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Data.Real.Sqrt
 import Mathlib.Order.Bounds.Basic
 
-namespace LRA.VolumeIII.Analysis.Completeness
+namespace LRA.Analysis.Completeness
 
 /-- Let `a : ℝ`. If `ha : 0 ≤ a`. Then `∃! b : ℝ, 0 ≤ b ∧ b ^ 2 = a`.
 
@@ -152,4 +152,4 @@ theorem BisectionStepsTowardSqrtTwo :
     (1.41 : ℝ) < Real.sqrt 2 ∧ Real.sqrt 2 < 1.42 := by
   sorry
 
-end LRA.VolumeIII.Analysis.Completeness
+end LRA.Analysis.Completeness

@@ -1,9 +1,9 @@
 import LRA.VolumeI.Relations.Equivalence.Partition
 import LRA.VolumeI.Identity.Model.Theory
 
-namespace LRA.VolumeI.Relations
+namespace LRA.Relation
 
-open LRA.VolumeI.Set
+open LRA.Set
 
 universe u v w
 
@@ -108,7 +108,7 @@ Logical form:
 theorem QuotientSetExists
     (ambient : SetObject)
     (relation : Endorelation Element) :
-    LRA.VolumeI.Identity.Exists
+    LRA.Identity.Exists
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation)
 ```
@@ -116,7 +116,7 @@ theorem QuotientSetExists
 theorem QuotientSetExists
     (ambient : SetObject)
     (relation : Endorelation Element) :
-    LRA.VolumeI.Identity.Exists
+    LRA.Identity.Exists
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation) := by
   sorry
@@ -129,7 +129,7 @@ Logical form:
 theorem QuotientSetUnique
     (ambient : SetObject)
     (relation : Endorelation Element) :
-    LRA.VolumeI.Identity.Unique
+    LRA.Identity.Unique
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation)
 ```
@@ -137,7 +137,7 @@ theorem QuotientSetUnique
 theorem QuotientSetUnique
     (ambient : SetObject)
     (relation : Endorelation Element) :
-    LRA.VolumeI.Identity.Unique
+    LRA.Identity.Unique
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation) := by
   sorry
@@ -151,7 +151,7 @@ Logical form:
 theorem QuotientSetExistsAndUnique
     (ambient : SetObject)
     (relation : Endorelation Element) :
-    LRA.VolumeI.Identity.ExistsAndUnique
+    LRA.Identity.ExistsAndUnique
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation)
 ```
@@ -159,7 +159,7 @@ theorem QuotientSetExistsAndUnique
 theorem QuotientSetExistsAndUnique
     (ambient : SetObject)
     (relation : Endorelation Element) :
-    LRA.VolumeI.Identity.ExistsAndUnique
+    LRA.Identity.ExistsAndUnique
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation) := by
   sorry
@@ -305,4 +305,4 @@ end WellDefined
 
 end QuotientSets
 
-end LRA.VolumeI.Relations
+end LRA.Relation

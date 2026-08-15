@@ -1,13 +1,13 @@
 import LRA.VolumeI.Order.Constructions.ProductOrder.Definition
 import LRA.VolumeI.Relations.Basic.CoreProperties
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 /-- Product orders need not be linear, even when both factors are linear. -/
 theorem ProductOfLinearOrdersNeedNotBeLinear :
-    Not (LRA.VolumeI.Relations.Total
+    Not (LRA.Relation.Total
       (ProductRelation (fun left right : Nat => left ≤ right)
         (fun left right : Nat => left ≤ right))) := by
   sorry
 
-end LRA.VolumeI.Order
+end LRA.Order

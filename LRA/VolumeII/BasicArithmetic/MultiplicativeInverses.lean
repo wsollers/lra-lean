@@ -4,11 +4,11 @@
 import Mathlib.Data.Rat.Defs
 import LRA.VolumeI.AlgebraicStructures
 
-namespace LRA.VolumeII.BasicArithmetic.MultiplicativeInverses
+namespace LRA.NumberSystems.Arithmetic.MultiplicativeInverses
 
 /-!
 Volume II label: basic-arithmetic-multiplicative-inverses
-Lean module: LRA.VolumeII.BasicArithmetic.MultiplicativeInverses
+Lean module: LRA.NumberSystems.Arithmetic.MultiplicativeInverses
 Verification status: checked Mathlib-backed proofs
 -/
 
@@ -112,4 +112,4 @@ theorem EqZeroOfNonzeroMulEqZero {a b : Q}
     b = 0 := by
   sorry
 
-end LRA.VolumeII.BasicArithmetic.MultiplicativeInverses
+end LRA.NumberSystems.Arithmetic.MultiplicativeInverses

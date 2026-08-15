@@ -6,7 +6,7 @@ The predicate-set operation vocabulary: named, textbook-citable operations on
 Enderton axioms) with a membership theorem recording its intended reading.
 -/
 
-namespace LRA.VolumeI.Set.LRASet
+namespace LRA.Set.LRASet
 
 universe u v
 
@@ -563,4 +563,4 @@ theorem IndexedIntersectionMembership
     x ∈ IndexedIntersection family ↔ ∀ i : Index, x ∈ family i := by
   sorry
 
-end LRA.VolumeI.Set.LRASet
+end LRA.Set.LRASet

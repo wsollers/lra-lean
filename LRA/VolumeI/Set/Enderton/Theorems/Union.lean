@@ -12,7 +12,7 @@ binary operation. Binary union `A ∪ B` is not axiomatized separately here; it
 is derived as `⋃ {A, B}`, matching the textbook development.
 -/
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 /--
 There exists a union over `A`.
 
@@ -207,4 +207,4 @@ theorem TheUnionMembership (A B x : Set) :
       apply (PairSetMembership A B B).mpr
       exact Or.inr rfl
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

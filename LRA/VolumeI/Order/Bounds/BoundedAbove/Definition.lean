@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.Bounds.UpperBound.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -9,8 +9,8 @@ variable [Membership Element SetObject]
 
 /-- A subset is bounded above when it has an upper bound. -/
 def BoundedAbove
-    (relation : LRA.VolumeI.Relations.Endorelation Element)
+    (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject) : Prop :=
   exists bound, UpperBound relation subset bound
 
-end LRA.VolumeI.Order
+end LRA.Order

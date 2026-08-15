@@ -1,46 +1,28 @@
 import LRA.VolumeI.Functions.Fibers
 
-namespace LRA.VolumeI.Functions
+namespace LRA.Function
 
-open LRA.VolumeI.Set
+open LRA.Set
 
-universe u v
+universe u v w
 
-/-- Surjectivity of a function.
+/-- Surjectivity of a typed function. -/
+def Surjective {Domain : Type u} {Codomain : Type v}
+    (map : LRA.Function Domain Codomain) : Prop :=
+  ∀ output, ∃ input, map input = output
 
-Logical form:
+/-- The LRA definition agrees with Lean's standard predicate. -/
+theorem surjective_iff_standard {Domain : Type u} {Codomain : Type v}
+    (map : LRA.Function Domain Codomain) :
+    Surjective map ↔ _root_.Function.Surjective map := Iff.rfl
 
-```lean
-def Surjective {Domain Codomain : Type u} (map : Domain -> Codomain) : Prop :=
-  forall output, exists input, map input = output
-```
--/
-def Surjective {Domain Codomain : Type u} (map : Domain -> Codomain) : Prop :=
-  forall output, exists input, map input = output
-
-/-- Fiber formulation of surjectivity: every fiber over the ambient domain
-is inhabited.
-
-Logical form:
-
-```lean
-def SurjectiveByFibers {Element : Type u} {SetObject : Type v}
-    {Codomain : Type u}
+/-- Fiber formulation of surjectivity. -/
+def SurjectiveByFibers {Element : Type u} {Codomain : Type v}
+    {SetObject : Type w}
     [Membership Element SetObject] [HasSeparation Element SetObject]
     (ambientDomain : SetObject)
-    (map : Function Element Codomain) : Prop :=
-  forall output : Codomain,
-    exists input : Element,
-      input ∈ Fiber ambientDomain map output
-```
--/
-def SurjectiveByFibers {Element : Type u} {SetObject : Type v}
-    {Codomain : Type u}
-    [Membership Element SetObject] [HasSeparation Element SetObject]
-    (ambientDomain : SetObject)
-    (map : Function Element Codomain) : Prop :=
-  forall output : Codomain,
-    exists input : Element,
-      input ∈ Fiber ambientDomain map output
+    (map : LRA.Function Element Codomain) : Prop :=
+  ∀ output : Codomain, ∃ input : Element,
+    input ∈ Fiber ambientDomain map output
 
-end LRA.VolumeI.Functions
+end LRA.Function

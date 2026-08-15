@@ -1,7 +1,7 @@
 import LRA.VolumeI.Logic.Syntax.FirstOrder.FreeVariables
 import LRA.VolumeI.Logic.Syntax.FirstOrder.Substitute
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 Free-variable bounds for substitution.
@@ -163,4 +163,4 @@ theorem freeVariables_substitute_subset
         · exact Or.inl ⟨candidateVariableIsNotBoundVariable, candidateVariableInOriginalBody⟩
         · exact Or.inr candidateVariableInReplacementTerm
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

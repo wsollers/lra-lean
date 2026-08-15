@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Language.Symbols.Signature
 
-namespace LRA.VolumeI.Logic
+namespace LRA.Logic
 
 /-!
 Model-theoretic signatures for Volume I.
@@ -185,4 +185,4 @@ def Signature.IsBinaryRelationSymbol (S : Signature) (symbol : S.RelationSymbol)
 def Signature.IsBinaryRelationSymbol (S : Signature) (symbol : S.RelationSymbol) : Prop :=
   S.Relations.IsBinary symbol
 
-end LRA.VolumeI.Logic
+end LRA.Logic

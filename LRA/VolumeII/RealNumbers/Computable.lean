@@ -3,17 +3,17 @@
 
 import LRA.VolumeI.Algebra.Models.Models
 
-namespace LRA.VolumeII.RealNumbers.Computable
-open LRA.VolumeI.Algebra.Models
+namespace LRA.NumberSystems.RealNumbers.Computable
+open LRA.Algebra.Models
 
 /-!
 Volume II label: computable-reals
-Lean module: LRA.VolumeII.RealNumbers.Computable
+Lean module: LRA.NumberSystems.RealNumbers.Computable
 Source: docs/number-systems/gpt-08a-computable-RealNumbers.md
 Verification status: statement-accepted-proof-pending
 -/
 
-open LRA.VolumeI.Algebra.Models
+open LRA.Algebra.Models
 
 /--
 **[Structure — EffectiveApproximation]**
@@ -147,4 +147,4 @@ theorem computable_reals_are_countable
         ∃ index : Nat, enumerate index = value := by
   sorry
 
-end LRA.VolumeII.RealNumbers.Computable
+end LRA.NumberSystems.RealNumbers.Computable

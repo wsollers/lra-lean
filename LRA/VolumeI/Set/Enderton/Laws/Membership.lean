@@ -3,7 +3,7 @@ import LRA.VolumeI.Set.Interface.Membership
 import LRA.VolumeI.Set.Interface.Indexed
 import LRA.VolumeI.Set.Interface.Families
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 /-!
 Membership-law certificates for Enderton sets.
@@ -45,7 +45,7 @@ instance : MembershipLaws Set Set where
   UnionMembership := TheUnionMembership
   IntersectionMembership := TheIntersectionMembership
   DifferenceMembership := TheRelativeComplementMembership
-  SubsetIffAllMembers := LRA.VolumeI.Set.Enderton.SubsetIffAllMembers
+  SubsetIffAllMembers := LRA.Set.Enderton.SubsetIffAllMembers
 
 /-- Registration: membership reading for separation. -/
 instance : SeparationLaws Set Set where
@@ -70,4 +70,4 @@ instance : CollectionMembershipLaws Set Set Set where
   CollectionIntersectionMembership := fun C x h =>
     TheIntersectionOverMembership C x h
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

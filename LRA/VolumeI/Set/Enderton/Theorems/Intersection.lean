@@ -10,7 +10,7 @@ existence/uniqueness proof. `A ∩ B` is exactly
 already covered by `Separation.lean`.
 -/
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 /-- The intersection of `A` and `B`, derived as the subset of `A` separated
 by membership in `B`.
@@ -75,4 +75,4 @@ theorem EveryIntersectionEqualsTheIntersection
     D = TheIntersection A B := by
   sorry
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

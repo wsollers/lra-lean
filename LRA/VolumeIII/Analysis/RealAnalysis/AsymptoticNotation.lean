@@ -10,7 +10,7 @@ the little-o content the section DOES contain.
 import Mathlib.Data.Real.Basic
 import Mathlib.Topology.Instances.Real.Lemmas
 
-namespace LRA.VolumeIII.Analysis.RealAnalysis
+namespace LRA.Analysis.RealAnalysis
 
 /-- `def:little-o-at-a-point`. `f(x) = o(g(x))` as `x → a`.
 
@@ -102,4 +102,4 @@ theorem LittleOBoundedFactorRule (f g m : ℝ → ℝ) (a : ℝ)
     IsLittleOAt (fun x => m x * f x) g a := by
   sorry
 
-end LRA.VolumeIII.Analysis.RealAnalysis
+end LRA.Analysis.RealAnalysis

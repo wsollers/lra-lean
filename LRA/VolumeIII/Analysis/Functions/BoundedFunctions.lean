@@ -36,7 +36,7 @@ statement restated. Formalized below as two separate theorems anyway
 import Mathlib.Data.Real.Basic
 import Mathlib.Topology.Instances.Real.Lemmas
 
-namespace LRA.VolumeIII.Analysis.Functions
+namespace LRA.Analysis.Functions
 
 /-- `def:function-bounded-above`.
 
@@ -466,4 +466,4 @@ theorem BoundedQuotientByBoundedAwayDenominator (f g : ℝ → ℝ) (A : Set ℝ
     FunctionBounded (fun x => f x / g x) A := by
   sorry
 
-end LRA.VolumeIII.Analysis.Functions
+end LRA.Analysis.Functions

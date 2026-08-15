@@ -1,16 +1,16 @@
 import LRA.VolumeI.Algebra.Models.Homomorphism
 import LRA.VolumeI.Relations.Equivalence
 
-namespace LRA.VolumeI.Algebra.Models
+namespace LRA.Algebra.Models
 
-open LRA.VolumeI.Logic
-open LRA.VolumeI.Logic.FirstOrder
+open LRA.Logic
+open LRA.Logic.FirstOrder
 
 universe u v
 
 /-!
 Volume I label: universal-algebra-kernel-relation
-Lean module: LRA.VolumeI.Algebra.Models.KernelRelation
+Lean module: LRA.Algebra.Models.KernelRelation
 Verification status: checked (no sorry)
 
 The kernel of a homomorphism: two elements are related when the
@@ -55,4 +55,4 @@ theorem kernelRelationIsEquivalence {S : Signature}
     Equivalence (kernelRelation homomorphism) :=
   ⟨fun _ => rfl, Eq.symm, Eq.trans⟩
 
-end LRA.VolumeI.Algebra.Models
+end LRA.Algebra.Models

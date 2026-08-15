@@ -16,7 +16,7 @@ No universal set is involved anywhere: unlike an absolute complement
 difference only ever removes members relative to the two given sets.
 -/
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 /-- The symmetric difference of `A` and `B`, derived as the union of the two
 relative complements.
@@ -80,4 +80,4 @@ theorem EverySymmetricDifferenceEqualsTheSymmetricDifference
     D = TheSymmetricDifference A B := by
   sorry
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

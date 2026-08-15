@@ -4,9 +4,10 @@ import LRA.VolumeIII.Analysis.Bounding.ExtremalBounds.UpperLowerBounds
 Set operations and inherited bounds.
 -/
 
-namespace LRA.VolumeIII.Analysis.Bounding.BoundAlgebra
+namespace LRA.Analysis.Bounds.Algebra
 
-open LRA.VolumeIII.Analysis.Bounding.ExtremalBounds
+open LRA.Analysis.Bounds.Extremal
+open LRA.Analysis.Bounds
 
 variable {S : Type*}
 
@@ -219,4 +220,4 @@ theorem ComplementsInheritLowerBounds [LE S] {A T : Set S} {l : S}
     IsLowerBound l (T \ A) := by
   sorry
 
-end LRA.VolumeIII.Analysis.Bounding.BoundAlgebra
+end LRA.Analysis.Bounds.Algebra

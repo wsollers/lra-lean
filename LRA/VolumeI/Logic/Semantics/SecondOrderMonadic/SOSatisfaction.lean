@@ -3,7 +3,7 @@ import LRA.VolumeI.Logic.Semantics.SecondOrderMonadic.SOAssignment
 import LRA.VolumeI.Logic.Semantics.TermEvaluation
 import LRA.VolumeI.Logic.Semantics.Assignment
 
-namespace LRA.VolumeI.Logic.SecondOrderMonadic
+namespace LRA.Logic.SecondOrderMonadic
 
 /-!
 Second-order satisfaction.
@@ -90,4 +90,4 @@ def SOSatisfies
           { assignment with setAssignment := updateAssignment assignment.setAssignment X Y }
           φ
 
-end LRA.VolumeI.Logic.SecondOrderMonadic
+end LRA.Logic.SecondOrderMonadic

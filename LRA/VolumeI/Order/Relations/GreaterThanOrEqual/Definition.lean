@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.Relations.GreaterThan.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
@@ -11,14 +11,14 @@ Logical form:
 
 ```lean
 def GreaterThanOrEqual {alpha : Type u}
-    (strictRelation : LRA.VolumeI.Relations.Endorelation alpha) :
-    LRA.VolumeI.Relations.Endorelation alpha :=
+    (strictRelation : LRA.Relation.Endorelation alpha) :
+    LRA.Relation.Endorelation alpha :=
   fun left right => GreaterThan strictRelation left right \/ left = right
 ```
 -/
 def GreaterThanOrEqual {alpha : Type u}
-    (strictRelation : LRA.VolumeI.Relations.Endorelation alpha) :
-    LRA.VolumeI.Relations.Endorelation alpha :=
+    (strictRelation : LRA.Relation.Endorelation alpha) :
+    LRA.Relation.Endorelation alpha :=
   fun left right => GreaterThan strictRelation left right \/ left = right
 
-end LRA.VolumeI.Order
+end LRA.Order

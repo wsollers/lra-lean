@@ -7,8 +7,8 @@ namespace LRA.Tests.VolumeIV.Learning
 
 universe u
 
-open LRA.VolumeIV.MetricSpaces
-open LRA.VolumeIV.TopologicalSpaces
+open LRA.Analysis.MetricSpaces
+open LRA.Topology
 
 /-- Canonical Mathlib-facing topology proof. -/
 theorem mathlib_open_inter
@@ -28,7 +28,7 @@ theorem mathlib_small_ball_inside_ball
     {r : Real}
     (pointInBall : y ∈ Metric.ball x r) :
     ∃ ε > 0, Metric.ball y ε ⊆ Metric.ball x r := by
-  exact LRA.VolumeIV.ball_subset_ball_of_mem pointInBall
+  exact LRA.Analysis.MetricSpaces.ball_subset_ball_of_mem pointInBall
 
 section TextbookTopology
 

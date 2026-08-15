@@ -1,7 +1,7 @@
 import LRA.VolumeI.Logic.Syntax.FirstOrder.IsSubstitutable
 import LRA.VolumeI.Logic.Syntax.FirstOrder.SubstituteInTerm
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 Substitution into formulas.
@@ -51,4 +51,4 @@ def substitute
   | .impl φ ψ => Formula.impl (substitute x t φ) (substitute x t ψ)
   | .forallQ v φ => if v = x then Formula.forallQ v φ else Formula.forallQ v (substitute x t φ)
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

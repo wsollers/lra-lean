@@ -1,6 +1,6 @@
 import LRA.VolumeI.Set.Interface.Operations
 
-namespace LRA.VolumeI.Set
+namespace LRA.Set
 
 universe u v
 
@@ -371,4 +371,4 @@ theorem PowersetMembership {SetObject : Type u} {Collection : Type v}
 
 end Wrappers
 
-end LRA.VolumeI.Set
+end LRA.Set

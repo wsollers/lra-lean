@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Semantics.SecondOrderMonadic.SOSatisfaction
 
-namespace LRA.VolumeI.Logic.SecondOrderMonadic
+namespace LRA.Logic.SecondOrderMonadic
 
 /-!
 The fourth end-to-end checkpoint: Henkin restriction actually restricts.
@@ -209,4 +209,4 @@ theorem poorModel_not_satisfies_henkinTestFormula :
     simp only [if_true]
     exact Or.inr rfl
 
-end LRA.VolumeI.Logic.SecondOrderMonadic
+end LRA.Logic.SecondOrderMonadic

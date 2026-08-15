@@ -1,7 +1,7 @@
 import LRA.VolumeI.Identity.Theorems.Core
 import LRA.VolumeI.Relations.Basic.CoreProperties
 
-namespace LRA.VolumeI.Identity
+namespace LRA.Identity
 
 universe u
 
@@ -11,11 +11,11 @@ Logical form:
 
 ```lean
 abbrev IdentityRelation {Carrier : Type u} (left right : Carrier) : Prop :=
-  LRA.VolumeI.Relations.IdentityRelation Carrier left right
+  LRA.Relation.IdentityRelation Carrier left right
 ```
 -/
 abbrev IdentityRelation {Carrier : Type u} (left right : Carrier) : Prop :=
-  LRA.VolumeI.Relations.IdentityRelation Carrier left right
+  LRA.Relation.IdentityRelation Carrier left right
 
 /-- TeX label: `def:equality-relation`.
 
@@ -23,11 +23,11 @@ Logical form:
 
 ```lean
 abbrev EqualityRelation (Carrier : Type u) : Carrier -> Carrier -> Prop :=
-  LRA.VolumeI.Relations.IdentityRelation Carrier
+  LRA.Relation.IdentityRelation Carrier
 ```
 -/
 abbrev EqualityRelation (Carrier : Type u) : Carrier -> Carrier -> Prop :=
-  LRA.VolumeI.Relations.IdentityRelation Carrier
+  LRA.Relation.IdentityRelation Carrier
 
 /--
 Equality is reflexive as a named binary-relation predicate.
@@ -36,11 +36,11 @@ Logical form:
 
 ```lean
 theorem EqualityRelationIsReflexive (Carrier : Type u) :
-    LRA.VolumeI.Relations.Reflexive (EqualityRelation Carrier)
+    LRA.Relation.Reflexive (EqualityRelation Carrier)
 ```
 -/
 theorem EqualityRelationIsReflexive (Carrier : Type u) :
-    LRA.VolumeI.Relations.Reflexive (EqualityRelation Carrier) := by
+    LRA.Relation.Reflexive (EqualityRelation Carrier) := by
   intro element
   exact EqualityReflexivity element
 
@@ -51,11 +51,11 @@ Logical form:
 
 ```lean
 theorem EqualityRelationIsSymmetric (Carrier : Type u) :
-    LRA.VolumeI.Relations.Symmetric (EqualityRelation Carrier)
+    LRA.Relation.Symmetric (EqualityRelation Carrier)
 ```
 -/
 theorem EqualityRelationIsSymmetric (Carrier : Type u) :
-    LRA.VolumeI.Relations.Symmetric (EqualityRelation Carrier) := by
+    LRA.Relation.Symmetric (EqualityRelation Carrier) := by
   intro left right ObjectsAreEqual
   exact EqualitySymmetry ObjectsAreEqual
 
@@ -66,11 +66,11 @@ Logical form:
 
 ```lean
 theorem EqualityRelationIsTransitive (Carrier : Type u) :
-    LRA.VolumeI.Relations.Transitive (EqualityRelation Carrier)
+    LRA.Relation.Transitive (EqualityRelation Carrier)
 ```
 -/
 theorem EqualityRelationIsTransitive (Carrier : Type u) :
-    LRA.VolumeI.Relations.Transitive (EqualityRelation Carrier) := by
+    LRA.Relation.Transitive (EqualityRelation Carrier) := by
   intro first second third FirstEqualsSecond SecondEqualsThird
   exact EqualityTransitivity FirstEqualsSecond SecondEqualsThird
 
@@ -81,14 +81,14 @@ Logical form:
 
 ```lean
 theorem EqualityRelationIsEquivalence (Carrier : Type u) :
-    LRA.VolumeI.Relations.Equivalence (EqualityRelation Carrier)
+    LRA.Relation.Equivalence (EqualityRelation Carrier)
 ```
 -/
 theorem EqualityRelationIsEquivalence (Carrier : Type u) :
-    LRA.VolumeI.Relations.Equivalence (EqualityRelation Carrier) := by
+    LRA.Relation.Equivalence (EqualityRelation Carrier) := by
   exact ⟨
     EqualityRelationIsReflexive Carrier,
     EqualityRelationIsSymmetric Carrier,
     EqualityRelationIsTransitive Carrier⟩
 
-end LRA.VolumeI.Identity
+end LRA.Identity

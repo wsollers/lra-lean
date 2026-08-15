@@ -1,6 +1,6 @@
 import LRA.VolumeI.Relations.Basic.Relations
 
-namespace LRA.VolumeI.Relations
+namespace LRA.Relation
 
 universe u
 
@@ -243,4 +243,4 @@ def Equivalence {alpha : Type u}
     (relation : Endorelation alpha) : Prop :=
   Reflexive relation /\ Symmetric relation /\ Transitive relation
 
-end LRA.VolumeI.Relations
+end LRA.Relation

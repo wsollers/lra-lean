@@ -5,15 +5,15 @@ import LRA.VolumeI.Algebra.Models.Signatures
 import LRA.VolumeI.AlgebraicStructures
 import LRA.VolumeI.Order.Relations
 
-namespace LRA.VolumeI.Algebra.Models
+namespace LRA.Algebra.Models
 
-open LRA.VolumeI.AlgebraicStructures
+open LRA.Algebra.Structure
 
 universe u
 
 /-!
 Volume II label: configurable-number-system-models
-Lean module: LRA.VolumeI.Algebra.Models.Models
+Lean module: LRA.Algebra.Models.Models
 Verification status: checked interface module
 
 The number-system models exist FOR QUANTIFICATION: universal properties
@@ -480,11 +480,11 @@ example (M : RationalModel) (a b : M.Carrier) (h : a < b) :
   ExistsBetween a b h
 
 example (M : RealModel) :
-    LRA.VolumeI.Order.LeastUpperBoundProperty
+    LRA.Order.LeastUpperBoundProperty
       (Set M.Carrier) (fun a b : M.Carrier => a ≤ b) :=
   Completeness
 
 example (a b : mathlibIntegerModel.Carrier) : a * b = b * a :=
   MulCommutative a b
 
-end LRA.VolumeI.Algebra.Models
+end LRA.Algebra.Models

@@ -5,6 +5,6 @@ This module is reserved for boundary/frontier facts stated through metric
 balls, metric closure, and metric interior.
 -/
 
-namespace LRA.VolumeIV.MetricSpaces
+namespace LRA.Analysis.MetricSpaces
 
-end LRA.VolumeIV.MetricSpaces
+end LRA.Analysis.MetricSpaces

@@ -14,7 +14,7 @@ and that the resurrected algebra-of-sets signatures instantiate.
 
 namespace LRA.Tests.VolumeI.Set.CollectionAlgebraAdapters
 
-open LRA.VolumeI.Set
+open LRA.Set
 
 -- Generic theorems resolve at all four backends from argument types.
 example (A B : Enderton.Set) : A ∪ B = B ∪ A :=
@@ -42,24 +42,24 @@ example (A : _root_.Set Nat) :
 
 -- Ambient-relative algebras instantiate over the backends.
 example (Point : Type) :
-    LRA.VolumeI.Set.Algebra.AlgebraOfSets (Set.univ : Set Point) :=
-  LRA.VolumeI.Set.Algebra.Instantiations.activeSetAlgebra Point
+    LRA.Set.Algebra.AlgebraOfSets (Set.univ : Set Point) :=
+  LRA.Set.Algebra.Instantiations.activeSetAlgebra Point
 example (Point : Type) :
-    LRA.VolumeI.Set.Algebra.SigmaAlgebraOfSets (Set.univ : Set Point) :=
-  LRA.VolumeI.Set.Algebra.Instantiations.activeSigmaAlgebra Point
+    LRA.Set.Algebra.SigmaAlgebraOfSets (Set.univ : Set Point) :=
+  LRA.Set.Algebra.Instantiations.activeSigmaAlgebra Point
 example (Point : Type) :
-    LRA.VolumeI.Set.Algebra.AlgebraOfSets
-      (LRA.VolumeI.Set.LRASet.Universal Point) :=
-  LRA.VolumeI.Set.Algebra.Instantiations.lraSetAlgebra Point
+    LRA.Set.Algebra.AlgebraOfSets
+      (LRA.Set.LRASet.Universal Point) :=
+  LRA.Set.Algebra.Instantiations.lraSetAlgebra Point
 
 -- Collection ops resolve at every backend; Covers is generic.
-example (C : ZFSet) (T : ZFSet) : Prop := LRA.VolumeI.Set.Covers C T
-example (C : LRA.VolumeI.Set.LRASet.LRASet (LRA.VolumeI.Set.LRASet.LRASet Nat))
-    (T : LRA.VolumeI.Set.LRASet.LRASet Nat) : Prop :=
-  LRA.VolumeI.Set.Covers C T
+example (C : ZFSet) (T : ZFSet) : Prop := LRA.Set.Covers C T
+example (C : LRA.Set.LRASet.LRASet (LRA.Set.LRASet.LRASet Nat))
+    (T : LRA.Set.LRASet.LRASet Nat) : Prop :=
+  LRA.Set.Covers C T
 example (A B : ZFSet) (x : ZFSet) (h : ∃ C : ZFSet, C ∈ A) :
-    x ∈ LRA.VolumeI.Set.HasCollectionIntersection.collectionIntersection A ↔
+    x ∈ LRA.Set.HasCollectionIntersection.collectionIntersection A ↔
       ∀ C : ZFSet, C ∈ A → x ∈ C :=
-  LRA.VolumeI.Set.CollectionIntersectionMembership A x h
+  LRA.Set.CollectionIntersectionMembership A x h
 
 end LRA.Tests.VolumeI.Set.CollectionAlgebraAdapters

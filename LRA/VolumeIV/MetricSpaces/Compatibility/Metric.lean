@@ -5,7 +5,7 @@ Reference definition for metrics, following Ó Searcóid `Metric Spaces`,
 Definition 1.1.1.
 -/
 
-namespace LRA.VolumeIV.MetricSpaces
+namespace LRA.Analysis.MetricSpaces
 
 universe u
 
@@ -42,4 +42,4 @@ structure MetricDefinition (X : Type u) where
   /-- The triangle inequality. -/
   triangle : ∀ x y z : X, distance x z ≤ distance x y + distance y z
 
-end LRA.VolumeIV.MetricSpaces
+end LRA.Analysis.MetricSpaces

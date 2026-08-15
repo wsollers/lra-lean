@@ -29,7 +29,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Data.Fintype.Basic
 import Mathlib.Order.ConditionallyCompleteLattice.Basic
 
-namespace LRA.VolumeIII.Analysis.Functions
+namespace LRA.Analysis.Functions
 
 /-- `def:function-supremum-on-set`.
 
@@ -368,4 +368,4 @@ theorem FiniteFamilyPointwiseInfimumIsMinimum {I : Type*} [Fintype I] [Inhabited
     ∃ α : I, PointwiseInfimumFamily f x = f α x := by
   sorry
 
-end LRA.VolumeIII.Analysis.Functions
+end LRA.Analysis.Functions

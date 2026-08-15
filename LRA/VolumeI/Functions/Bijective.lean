@@ -1,21 +1,13 @@
 import LRA.VolumeI.Functions.Injective
 import LRA.VolumeI.Functions.Surjective
 
-namespace LRA.VolumeI.Functions
+namespace LRA.Function
 
-universe u
+universe u v
 
-/--
-Bijectivity of a function.
+/-- Bijectivity of a typed function. -/
+def Bijective {Domain : Type u} {Codomain : Type v}
+    (map : LRA.Function Domain Codomain) : Prop :=
+  Injective map ∧ Surjective map
 
-Logical form:
-
-```lean
-def Bijective {Domain Codomain : Type u} (map : Domain -> Codomain) : Prop :=
-  Injective map /\ Surjective map
-```
--/
-def Bijective {Domain Codomain : Type u} (map : Domain -> Codomain) : Prop :=
-  Injective map /\ Surjective map
-
-end LRA.VolumeI.Functions
+end LRA.Function

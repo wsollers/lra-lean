@@ -1,11 +1,11 @@
 -- LRA/VolumeII/Integers/Polish/DiscreteIntegerStructure.lean
 -- Abstract two-sided successor/predecessor axioms for integer structures.
 
-namespace LRA.VolumeII.Integers.Polish
+namespace LRA.NumberSystems.Integers.Polish
 
 /-!
 Volume II label: integers-polish-discrete-integer-structure
-Lean module: LRA.VolumeII.Integers.Polish.DiscreteIntegerStructure
+Lean module: LRA.NumberSystems.Integers.Polish.DiscreteIntegerStructure
 Verification status: experimental statement/proof work
 
 This module formalizes the abstract `(Z1)`--`(Z3)` integer-structure axioms:
@@ -122,8 +122,6 @@ Mathematical statement (Lean): `def Injective {α β : Type _} (f : α → β) :
 Logical form:
 
 ```lean
-def Injective {α β : Type _} (f : α → β) : Prop :=
-  ∀ ⦃a b⦄, f a = f b → a = b
 ```
 -/
 def Injective {α β : Type _} (f : α → β) : Prop :=
@@ -138,8 +136,6 @@ Mathematical statement (Lean): `def Surjective {α β : Type _} (f : α → β) 
 Logical form:
 
 ```lean
-def Surjective {α β : Type _} (f : α → β) : Prop :=
-  ∀ b, ∃ a, f a = b
 ```
 -/
 def Surjective {α β : Type _} (f : α → β) : Prop :=
@@ -154,8 +150,6 @@ Mathematical statement (Lean): `def Bijective {α β : Type _} (f : α → β) :
 Logical form:
 
 ```lean
-def Bijective {α β : Type _} (f : α → β) : Prop :=
-  Injective f ∧ Surjective f
 ```
 -/
 def Bijective {α β : Type _} (f : α → β) : Prop :=
@@ -201,8 +195,8 @@ structure IntegerStructure where
       (∀ x, A x → A (pred x)) →
       ∀ x, A x
 
-end LRA.VolumeII.Integers.Polish
-namespace LRA.VolumeII.Integers.Polish.IntegerStructure
+end LRA.NumberSystems.Integers.Polish
+namespace LRA.NumberSystems.Integers.Polish.IntegerStructure
 
 variable (S : IntegerStructure)
 
@@ -318,7 +312,8 @@ Logical form:
 theorem iterate_succ_injective (n : Nat) : Injective (iterate S.succ n)
 ```
 -/
-theorem iterate_succ_injective (n : Nat) : Injective (iterate S.succ n) := by
+theorem iterate_succ_injective (n : Nat) :
+    _root_.Function.Injective (iterate S.succ n) := by
   intro x y hxy
   have h := congrArg (iterate S.pred n) hxy
   rw [S.pred_iterate_succ_iterate, S.pred_iterate_succ_iterate] at h
@@ -336,7 +331,8 @@ Logical form:
 theorem iterate_pred_injective (n : Nat) : Injective (iterate S.pred n)
 ```
 -/
-theorem iterate_pred_injective (n : Nat) : Injective (iterate S.pred n) := by
+theorem iterate_pred_injective (n : Nat) :
+    _root_.Function.Injective (iterate S.pred n) := by
   intro x y hxy
   have h := congrArg (iterate S.succ n) hxy
   rw [S.succ_iterate_pred_iterate, S.succ_iterate_pred_iterate] at h
@@ -464,7 +460,7 @@ Logical form:
 theorem rep_injective : Injective S.rep
 ```
 -/
-theorem rep_injective : Injective S.rep := by
+theorem rep_injective : _root_.Function.Injective S.rep := by
   intro a b hab
   match a, b with
   | Int.ofNat m, Int.ofNat n =>
@@ -548,7 +544,7 @@ Logical form:
 theorem rep_surjective : Surjective S.rep
 ```
 -/
-theorem rep_surjective : Surjective S.rep := by
+theorem rep_surjective : _root_.Function.Surjective S.rep := by
   intro x
   apply S.induction (fun x => ∃ n : Int, S.rep n = x)
   · exact ⟨0, S.rep_zero⟩
@@ -569,7 +565,8 @@ Logical form:
 theorem rep_bijective : Bijective S.rep
 ```
 -/
-theorem rep_bijective : Bijective S.rep :=
+theorem rep_bijective :
+    _root_.Function.Injective S.rep ∧ _root_.Function.Surjective S.rep :=
   ⟨S.rep_injective, S.rep_surjective⟩
 
 /--
@@ -582,16 +579,16 @@ Logical form:
 
 ```lean
 theorem categoricity :
-    Bijective S.rep ∧
+    _root_.Function.Bijective S.rep ∧
       S.rep 0 = S.zero ∧
       ∀ n : Int, S.rep (n + 1) = S.succ (S.rep n)
 ```
 -/
 theorem categoricity :
-    Bijective S.rep ∧
+    (_root_.Function.Injective S.rep ∧ _root_.Function.Surjective S.rep) ∧
       S.rep 0 = S.zero ∧
       ∀ n : Int, S.rep (n + 1) = S.succ (S.rep n) :=
   ⟨S.rep_bijective, S.rep_zero, S.rep_succ⟩
 
-end LRA.VolumeII.Integers.Polish.IntegerStructure
-namespace LRA.VolumeII.Integers.Polish
+end LRA.NumberSystems.Integers.Polish.IntegerStructure
+namespace LRA.NumberSystems.Integers.Polish

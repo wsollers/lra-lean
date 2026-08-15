@@ -13,7 +13,7 @@ textbook operation is a direct instance of an already-proven construction,
 not a new primitive.
 -/
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 /-- The relative complement of `B` in `A`, derived as the subset of `A`
 separated by non-membership in `B`.
@@ -79,4 +79,4 @@ theorem EveryRelativeComplementEqualsTheRelativeComplement
     D = TheRelativeComplement A B := by
   sorry
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

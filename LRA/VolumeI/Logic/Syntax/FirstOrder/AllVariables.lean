@@ -3,7 +3,7 @@ import Mathlib.Data.Finset.Union
 import LRA.VolumeI.Logic.Syntax.FirstOrder.Formula
 import LRA.VolumeI.Logic.Syntax.FirstOrder.FreeVariablesInTerm
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 All variables of a formula.
@@ -59,4 +59,4 @@ def allVariables
   | .impl φ ψ => allVariables φ ∪ allVariables ψ
   | .forallQ v φ => {v} ∪ allVariables φ
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

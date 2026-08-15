@@ -1,6 +1,6 @@
 import LRA.VolumeI.Operations.Laws
 
-namespace LRA.VolumeI.Operations
+namespace LRA.Algebra.Operation
 
 universe u
 
@@ -67,4 +67,4 @@ theorem RightDistributiveImpliesLeftDistributiveOfCommutative
     LeftDistributive multiplication addition := by
   sorry
 
-end LRA.VolumeI.Operations
+end LRA.Algebra.Operation

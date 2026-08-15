@@ -1,6 +1,6 @@
 import LRA.VolumeI.Relations.Basic.Properties
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -10,7 +10,7 @@ Davey--Priestley. -/
 def Directed
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
-    (relation : LRA.VolumeI.Relations.Endorelation Element)
+    (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject) : Prop :=
   (exists element : Element, element ∈ subset) /\
     forall first second,
@@ -20,4 +20,4 @@ def Directed
             upper ∈ subset /\
               relation first upper /\ relation second upper
 
-end LRA.VolumeI.Order
+end LRA.Order

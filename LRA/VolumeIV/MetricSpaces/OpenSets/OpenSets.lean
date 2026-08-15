@@ -6,6 +6,6 @@ sets, and bridge lemmas between epsilon-ball openness and topology-level
 openness.
 -/
 
-namespace LRA.VolumeIV.MetricSpaces
+namespace LRA.Analysis.MetricSpaces
 
-end LRA.VolumeIV.MetricSpaces
+end LRA.Analysis.MetricSpaces

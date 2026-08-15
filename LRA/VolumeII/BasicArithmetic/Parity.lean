@@ -4,11 +4,11 @@
 import Mathlib.Algebra.Group.Even
 import LRA.VolumeI.AlgebraicStructures
 
-namespace LRA.VolumeII.BasicArithmetic.Parity
+namespace LRA.NumberSystems.Arithmetic.Parity
 
 /-!
 Volume II label: basic-arithmetic-parity
-Lean module: LRA.VolumeII.BasicArithmetic.Parity
+Lean module: LRA.NumberSystems.Arithmetic.Parity
 Verification status: checked Mathlib-backed proofs
 
 These facts follow the style of Lang's first parity examples. The carrier is
@@ -217,4 +217,4 @@ theorem OddOfSqOdd {a : N} (square_odd : IsOdd (a ^ 2)) :
     IsOdd a := by
   sorry
 
-end LRA.VolumeII.BasicArithmetic.Parity
+end LRA.NumberSystems.Arithmetic.Parity

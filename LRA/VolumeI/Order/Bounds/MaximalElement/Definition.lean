@@ -1,6 +1,6 @@
 import LRA.VolumeI.Relations.Basic.Properties
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -13,17 +13,17 @@ Logical form:
 
 ```lean
 def MaximalElement
-    (strictRelation : LRA.VolumeI.Relations.Endorelation Element)
+    (strictRelation : LRA.Relation.Endorelation Element)
     (subset : SetObject)
     (maximal : Element) : Prop :=
-  LRA.VolumeI.Relations.MaximalElement strictRelation subset maximal
+  LRA.Relation.MaximalElement strictRelation subset maximal
 ```
 -/
 def MaximalElement
-    (strictRelation : LRA.VolumeI.Relations.Endorelation Element)
+    (strictRelation : LRA.Relation.Endorelation Element)
     (subset : SetObject)
     (maximal : Element) : Prop :=
   maximal ∈ subset /\
     forall element, element ∈ subset -> Not (strictRelation maximal element)
 
-end LRA.VolumeI.Order
+end LRA.Order

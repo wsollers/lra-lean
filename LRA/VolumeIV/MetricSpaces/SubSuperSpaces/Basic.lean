@@ -4,7 +4,7 @@ import Mathlib.Topology.MetricSpace.Basic
 Metric subspaces and metric superspaces.
 -/
 
-namespace LRA.VolumeIV.MetricSpaces.SubSuperSpaces
+namespace LRA.Analysis.MetricSpaces.SubSuperSpaces
 
 universe u
 
@@ -191,4 +191,4 @@ theorem real_isMetricSuperspace_closedUnitInterval :
     IsMetricSuperspace Real (Set.Icc (0 : Real) 1) := by
   exact closedUnitInterval_isMetricSubspace
 
-end LRA.VolumeIV.MetricSpaces.SubSuperSpaces
+end LRA.Analysis.MetricSpaces.SubSuperSpaces

@@ -11,7 +11,7 @@ import LRA.VolumeIII.Analysis.Integration.Partitions
 import LRA.VolumeIII.Analysis.Integration.RiemannIntegral.Basic
 import LRA.VolumeIII.Analysis.Continuity.MonotoneFunctions
 
-namespace LRA.VolumeIII.Analysis.Integration
+namespace LRA.Analysis.Integration
 
 variable {f g : ℝ → ℝ} {a b : ℝ}
 
@@ -78,54 +78,54 @@ def IsDarbouxIntegrable (f : ℝ → ℝ) (a b : ℝ) : Prop :=
   ∀ ε > 0, ∃ P : IntegrationPartition a b, UpperDarbouxSum f P - LowerDarbouxSum f P < ε
 
 -- `thm:darboux-criterion`
-/-- If `hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)`. Then
+/-- If `hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)`. Then
 `IsDarbouxIntegrable f a b ↔ ∀ ε > 0, ∃ P : IntegrationPartition a b, UpperDarbouxSum f P -
 LowerDarbouxSum f P < ε`.
 
 Logical form:
 
 ```lean
-theorem darboux_criterion (hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
+theorem darboux_criterion (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
     IsDarbouxIntegrable f a b ↔
       ∀ ε > 0, ∃ P : IntegrationPartition a b, UpperDarbouxSum f P - LowerDarbouxSum f P < ε
 ```
 -/
-theorem darboux_criterion (hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
+theorem darboux_criterion (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
     IsDarbouxIntegrable f a b ↔
       ∀ ε > 0, ∃ P : IntegrationPartition a b, UpperDarbouxSum f P - LowerDarbouxSum f P < ε := by
   sorry
 
 -- `thm:riemann-darboux-equivalence`
-/-- If `hab : a ≤ b` and `hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)`.
+/-- If `hab : a ≤ b` and `hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)`.
 Then `IsRiemannIntegrable f a b ↔ IsDarbouxIntegrable f a b`.
 
 Logical form:
 
 ```lean
 theorem riemann_darboux_equivalence (hab : a ≤ b)
-    (hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
+    (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
     IsRiemannIntegrable f a b ↔ IsDarbouxIntegrable f a b
 ```
 -/
 theorem riemann_darboux_equivalence (hab : a ≤ b)
-    (hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
+    (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
     IsRiemannIntegrable f a b ↔ IsDarbouxIntegrable f a b := by
   sorry
 
 -- `thm:continuous-darboux-integrable`
-/-- If `hab : a ≤ b` and `hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)`.
+/-- If `hab : a ≤ b` and `hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)`.
 Then `IsDarbouxIntegrable f a b`.
 
 Logical form:
 
 ```lean
 theorem continuous_darboux_integrable (hab : a ≤ b)
-    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
+    (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
     IsDarbouxIntegrable f a b
 ```
 -/
 theorem continuous_darboux_integrable (hab : a ≤ b)
-    (hcont : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
+    (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
     IsDarbouxIntegrable f a b := by
   sorry
 
@@ -144,22 +144,22 @@ theorem monotone_darboux_integrable (hab : a ≤ b) (hmono : MonotoneOn f (Set.I
   sorry
 
 -- `thm:finite-discontinuities-darboux-integrable`
-/-- If `hab : a ≤ b`, `hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)`, and
-`hfin : {x ∈ Set.Icc a b | LRA.VolumeIII.Analysis.Continuity.PointOfDiscontinuity f (Set.Icc a
+/-- If `hab : a ≤ b`, `hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)`, and
+`hfin : {x ∈ Set.Icc a b | LRA.Analysis.Continuity.PointOfDiscontinuity f (Set.Icc a
 b) x}.Finite`. Then `IsDarbouxIntegrable f a b`.
 
 Logical form:
 
 ```lean
 theorem finite_discontinuities_darboux_integrable (hab : a ≤ b)
-    (hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b))
-    (hfin : {x ∈ Set.Icc a b | LRA.VolumeIII.Analysis.Continuity.PointOfDiscontinuity f (Set.Icc a b) x}.Finite) :
+    (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b))
+    (hfin : {x ∈ Set.Icc a b | LRA.Analysis.Continuity.PointOfDiscontinuity f (Set.Icc a b) x}.Finite) :
     IsDarbouxIntegrable f a b
 ```
 -/
 theorem finite_discontinuities_darboux_integrable (hab : a ≤ b)
-    (hbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b))
-    (hfin : {x ∈ Set.Icc a b | LRA.VolumeIII.Analysis.Continuity.PointOfDiscontinuity f (Set.Icc a b) x}.Finite) :
+    (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b))
+    (hfin : {x ∈ Set.Icc a b | LRA.Analysis.Continuity.PointOfDiscontinuity f (Set.Icc a b) x}.Finite) :
     IsDarbouxIntegrable f a b := by
   sorry
 
@@ -211,24 +211,24 @@ theorem darboux_integrable_absolute_value (hf : IsDarbouxIntegrable f a b) :
 
 -- `thm:darboux-integrable-continuous-composition`
 /-- Let `J : Set ℝ`. If `hf : IsDarbouxIntegrable f a b`, `hfbdd :
-LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)`, `hJ : f '' Set.Icc a b ⊆ J`, `φ
-: ℝ → ℝ`, and `hφ : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' φ J`. Then
+LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)`, `hJ : f '' Set.Icc a b ⊆ J`, `φ
+: ℝ → ℝ`, and `hφ : LRA.Analysis.Continuity.ContinuousOn' φ J`. Then
 `IsDarbouxIntegrable (fun x => φ (f x)) a b`.
 
 Logical form:
 
 ```lean
 theorem darboux_integrable_continuous_composition (hf : IsDarbouxIntegrable f a b)
-    (hfbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b))
+    (hfbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b))
     (J : Set ℝ) (hJ : f '' Set.Icc a b ⊆ J) (φ : ℝ → ℝ)
-    (hφ : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' φ J) :
+    (hφ : LRA.Analysis.Continuity.ContinuousOn' φ J) :
     IsDarbouxIntegrable (fun x => φ (f x)) a b
 ```
 -/
 theorem darboux_integrable_continuous_composition (hf : IsDarbouxIntegrable f a b)
-    (hfbdd : LRA.VolumeIII.Analysis.Continuity.BoundedOnSet f (Set.Icc a b))
+    (hfbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b))
     (J : Set ℝ) (hJ : f '' Set.Icc a b ⊆ J) (φ : ℝ → ℝ)
-    (hφ : LRA.VolumeIII.Analysis.Continuity.ContinuousOn' φ J) :
+    (hφ : LRA.Analysis.Continuity.ContinuousOn' φ J) :
     IsDarbouxIntegrable (fun x => φ (f x)) a b := by
   sorry
 
@@ -245,4 +245,4 @@ theorem dirichlet_not_darboux_integrable :
     ¬ IsDarbouxIntegrable (fun _ => (0 : ℝ)) 0 1 := by
   sorry
 
-end LRA.VolumeIII.Analysis.Integration
+end LRA.Analysis.Integration

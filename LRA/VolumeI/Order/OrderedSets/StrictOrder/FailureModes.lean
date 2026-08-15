@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.StrictOrder.Examples
 
-namespace LRA.VolumeI.Order.OrderedSets.StrictOrder
+namespace LRA.Order.OrderedSets.StrictOrder
 
 universe u
 
@@ -11,14 +11,14 @@ strict-order laws.
 Logical form:
 
 ```lean
-Not (LRA.VolumeI.Order.StrictOrder relation)
+Not (LRA.Order.StrictOrder relation)
 ```
 -/
 def FailsStrictOrder
     {Carrier : Type u}
-    (relation : LRA.VolumeI.Order.OrderedSets.OrderRelation Carrier) :
+    (relation : LRA.Order.OrderedSets.OrderRelation Carrier) :
     Prop :=
-  Not (LRA.VolumeI.Order.StrictOrder relation)
+  Not (LRA.Order.StrictOrder relation)
 
 /--
 The usual non-strict order on natural numbers is not a strict order, because
@@ -31,21 +31,21 @@ FailsStrictOrder (fun left right : Nat => left <= right)
 ```
 -/
 theorem NatNonStrictOrderFailsStrictOrder :
-    LRA.VolumeI.Relations.Transitive (fun left right : Nat => left <= right) /\
-      Not (LRA.VolumeI.Relations.Irreflexive
+    LRA.Relation.Transitive (fun left right : Nat => left <= right) /\
+      Not (LRA.Relation.Irreflexive
         (fun left right : Nat => left <= right)) /\
       FailsStrictOrder (fun left right : Nat => left <= right) := by
   sorry
 
 /-- The immediate-successor relation is irreflexive but not transitive. -/
-def ImmediateSuccessorRelation : LRA.VolumeI.Relations.Endorelation Nat :=
+def ImmediateSuccessorRelation : LRA.Relation.Endorelation Nat :=
   fun left right => right = left + 1
 
 /-- Irreflexivity alone does not make a strict order. -/
 theorem ImmediateSuccessorFailsStrictOrder :
-    LRA.VolumeI.Relations.Irreflexive ImmediateSuccessorRelation /\
-      Not (LRA.VolumeI.Relations.Transitive ImmediateSuccessorRelation) /\
+    LRA.Relation.Irreflexive ImmediateSuccessorRelation /\
+      Not (LRA.Relation.Transitive ImmediateSuccessorRelation) /\
       FailsStrictOrder ImmediateSuccessorRelation := by
   sorry
 
-end LRA.VolumeI.Order.OrderedSets.StrictOrder
+end LRA.Order.OrderedSets.StrictOrder

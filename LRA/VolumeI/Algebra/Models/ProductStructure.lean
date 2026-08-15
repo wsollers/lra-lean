@@ -1,15 +1,15 @@
 import LRA.VolumeI.Algebra.Models.Homomorphism
 
-namespace LRA.VolumeI.Algebra.Models
+namespace LRA.Algebra.Models
 
-open LRA.VolumeI.Logic
-open LRA.VolumeI.Logic.FirstOrder
+open LRA.Logic
+open LRA.Logic.FirstOrder
 
 universe u v w
 
 /-!
 Volume I label: universal-algebra-product
-Lean module: LRA.VolumeI.Algebra.Models.ProductStructure
+Lean module: LRA.Algebra.Models.ProductStructure
 Verification status: checked definitions (no sorry)
 
 Products of algebras, binary and indexed, with everything computed
@@ -129,4 +129,4 @@ def productSecondProjection {S : Signature}
   preservesConstant := fun _ => rfl
   preservesRelation := fun _ _ holds => holds.2
 
-end LRA.VolumeI.Algebra.Models
+end LRA.Algebra.Models

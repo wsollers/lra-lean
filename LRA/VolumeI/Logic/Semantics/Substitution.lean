@@ -2,7 +2,7 @@ import LRA.VolumeI.Logic.Semantics.Satisfaction
 import LRA.VolumeI.Logic.Syntax.FirstOrder.AllVariables
 import LRA.VolumeI.Logic.Syntax.FirstOrder.Substitute
 
-namespace LRA.VolumeI.Logic.FirstOrder
+namespace LRA.Logic.FirstOrder
 
 /-!
 Semantic substitution facts.
@@ -443,4 +443,4 @@ theorem satisfies_substitute_iff_update
                 (evaluateTerm M assignment replacementTerm)
                 candidateVariableEqualsReplacedVariable]
 
-end LRA.VolumeI.Logic.FirstOrder
+end LRA.Logic.FirstOrder

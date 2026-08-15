@@ -1,7 +1,7 @@
 import LRA.VolumeI.Order.Bounds.LowerBound.Definition
 import LRA.VolumeI.Order.Bounds.UpperBound.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u v
 
@@ -9,10 +9,10 @@ universe u v
 theorem LowerBoundOfConverseIffUpperBound
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
-    (relation : LRA.VolumeI.Relations.Endorelation Element)
+    (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject) (bound : Element) :
-    LowerBound (LRA.VolumeI.Relations.Converse relation) subset bound ↔
+    LowerBound (LRA.Relation.Converse relation) subset bound ↔
       UpperBound relation subset bound := by
   sorry
 
-end LRA.VolumeI.Order
+end LRA.Order

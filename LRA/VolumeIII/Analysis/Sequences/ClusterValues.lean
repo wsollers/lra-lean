@@ -1,7 +1,7 @@
 /-
 Draft module; not yet imported by the active Volume III root.
 Imports only this pass's own promoted draft modules and Mathlib — nothing from the
-real `LRA.VolumeIII.Analysis.Sequences.*`, so this can be freely
+real `LRA.Analysis.Sequences.*`, so this can be freely
 refactored or discarded without touching the working project.
 Source: volume-iii/book-analysis-i/sequences/notes/cluster-values/notes-cluster-values.tex
 Only file in `cluster-values`. Structural check: 15/15 balanced remark
@@ -48,7 +48,7 @@ import LRA.VolumeIII.Analysis.Sequences.NullConstantSequences
 import LRA.VolumeIII.Analysis.Sequences.Subsequences
 import LRA.VolumeIII.Analysis.Sequences.LiminfLimsup
 
-namespace LRA.VolumeIII.Analysis.Sequences
+namespace LRA.Analysis.Sequences
 
 /-- `def:cluster-value-sequence`. Named `IsClusterValueOf` (not
 `IsClusterValue`) to avoid colliding with `IsSubsequentialLimit` — see
@@ -112,4 +112,4 @@ theorem LimsupLiminfExtremalClusterValues {x : RealSequence}
     (IsClusterValueOf x I ∧ ∀ L, IsClusterValueOf x L → I ≤ L) := by
   sorry
 
-end LRA.VolumeIII.Analysis.Sequences
+end LRA.Analysis.Sequences

@@ -1,16 +1,16 @@
 import LRA.VolumeI.Set.Enderton.Instances
 import LRA.VolumeI.Set.Interface.Union
 
-namespace LRA.VolumeI.Set.Enderton
+namespace LRA.Set.Enderton
 
 /-!
 Union laws for Enderton sets: the backend's certificate for
-`LRA.VolumeI.Set.UnionLaws`.
+`LRA.Set.UnionLaws`.
 
 Each theorem matches its `UnionLaws` field in name and `∀`-quantified
 shape exactly, so the instance at the bottom is a pure delegation. Once
 the `sorry`s are discharged, every generic call
-(`LRA.VolumeI.Set.UnionCommutative A B` with `A B : Set`) works with no
+(`LRA.Set.UnionCommutative A B` with `A B : Set`) works with no
 further wiring -- the instance *is* the wiring.
 
 `SubsetIffUnionEqRight` is here, not in `Laws/Subset.lean`, mirroring
@@ -111,12 +111,12 @@ theorem SubsetIffUnionEqRight :
 /-- Registration: Enderton sets satisfy the union laws. Pure delegation to
 the theorems above. -/
 instance : UnionLaws Set where
-  UnionCommutative := LRA.VolumeI.Set.Enderton.UnionCommutative
-  UnionAssociative := LRA.VolumeI.Set.Enderton.UnionAssociative
-  EmptyUnion := LRA.VolumeI.Set.Enderton.EmptyUnion
-  UnionEmpty := LRA.VolumeI.Set.Enderton.UnionEmpty
-  UnionIdempotent := LRA.VolumeI.Set.Enderton.UnionIdempotent
-  UnionMonotone := LRA.VolumeI.Set.Enderton.UnionMonotone
-  SubsetIffUnionEqRight := LRA.VolumeI.Set.Enderton.SubsetIffUnionEqRight
+  UnionCommutative := LRA.Set.Enderton.UnionCommutative
+  UnionAssociative := LRA.Set.Enderton.UnionAssociative
+  EmptyUnion := LRA.Set.Enderton.EmptyUnion
+  UnionEmpty := LRA.Set.Enderton.UnionEmpty
+  UnionIdempotent := LRA.Set.Enderton.UnionIdempotent
+  UnionMonotone := LRA.Set.Enderton.UnionMonotone
+  SubsetIffUnionEqRight := LRA.Set.Enderton.SubsetIffUnionEqRight
 
-end LRA.VolumeI.Set.Enderton
+end LRA.Set.Enderton

@@ -5,7 +5,7 @@ Reference definition for topologies, following Willard `General Topology`,
 Definition 3.1.
 -/
 
-namespace LRA.VolumeIV.TopologicalSpaces
+namespace LRA.Topology
 
 universe u
 
@@ -52,4 +52,4 @@ structure TopologyDefinition (X : Type u) where
   isOpen_inter :
     ∀ U V : Set X, IsOpen U → IsOpen V → IsOpen (U ∩ V)
 
-end LRA.VolumeIV.TopologicalSpaces
+end LRA.Topology

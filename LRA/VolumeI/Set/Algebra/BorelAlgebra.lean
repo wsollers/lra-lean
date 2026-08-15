@@ -1,8 +1,8 @@
 import LRA.VolumeI.Set.Algebra.SigmaAlgebra
 
-namespace LRA.VolumeI.Set.Algebra
+namespace LRA.Set.Algebra
 
-open LRA.VolumeI.Set
+open LRA.Set
 
 universe u v
 
@@ -129,4 +129,4 @@ def BorelSigmaAlgebra
     SigmaAlgebraOfSets ambient :=
   GeneratedSigmaAlgebra ambient opens
 
-end LRA.VolumeI.Set.Algebra
+end LRA.Set.Algebra

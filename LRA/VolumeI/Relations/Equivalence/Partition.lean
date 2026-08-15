@@ -1,8 +1,8 @@
 import LRA.VolumeI.Relations.Equivalence.EquivalenceClass
 
-namespace LRA.VolumeI.Relations
+namespace LRA.Relation
 
-open LRA.VolumeI.Set
+open LRA.Set
 
 universe u v
 
@@ -66,4 +66,4 @@ def PartitionFromEquivalence
     Partition Element SetObject := by
   sorry
 
-end LRA.VolumeI.Relations
+end LRA.Relation

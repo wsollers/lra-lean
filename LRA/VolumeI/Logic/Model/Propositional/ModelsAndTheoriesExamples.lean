@@ -2,7 +2,7 @@ import LRA.VolumeI.Logic.Model.Propositional.PropositionalModel
 import LRA.VolumeI.Logic.Model.Propositional.ModelsAndTheories
 import LRA.VolumeI.Logic.Model.Propositional.Examples
 
-namespace LRA.VolumeI.Logic.Propositional
+namespace LRA.Logic.Propositional
 
 /-!
 Worked examples of `ModelsAndTheories`.
@@ -203,4 +203,4 @@ theorem AAndB_semanticConsequence_A :
   rcases Bool.and_eq_true_iff.mp hABeq with ⟨hAtrue, _⟩
   exact hAtrue
 
-end LRA.VolumeI.Logic.Propositional
+end LRA.Logic.Propositional

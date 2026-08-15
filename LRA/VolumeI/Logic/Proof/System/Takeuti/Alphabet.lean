@@ -1,4 +1,4 @@
-namespace LRA.VolumeI.Logic.Proof.System.Takeuti
+namespace LRA.Logic.Proof.System.Takeuti
 
 /-!
 Takeuti-style alphabet data for first-order logic.
@@ -27,4 +27,4 @@ structure Alphabet where
   FunctionSymbol : Nat -> Type
   PredicateSymbol : Nat -> Type
 
-end LRA.VolumeI.Logic.Proof.System.Takeuti
+end LRA.Logic.Proof.System.Takeuti

@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.StrictOrder.Definition
 
-namespace LRA.VolumeI.Order
+namespace LRA.Order
 
 universe u
 
@@ -15,14 +15,14 @@ Logical form:
 
 ```lean
 def StrictLinearOrder {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha) : Prop :=
+    (relation : LRA.Relation.Endorelation Alpha) : Prop :=
   StrictOrder relation /\
-    LRA.VolumeI.Relations.ExactlyTrichotomous relation
+    LRA.Relation.ExactlyTrichotomous relation
 ```
 -/
 def StrictLinearOrder {Alpha : Type u}
-    (relation : LRA.VolumeI.Relations.Endorelation Alpha) : Prop :=
+    (relation : LRA.Relation.Endorelation Alpha) : Prop :=
   StrictOrder relation /\
-    LRA.VolumeI.Relations.ExactlyTrichotomous relation
+    LRA.Relation.ExactlyTrichotomous relation
 
-end LRA.VolumeI.Order
+end LRA.Order

@@ -1,42 +1,20 @@
 import LRA.VolumeI.Functions.Composition
 import LRA.VolumeI.Functions.IdentityFunction
 
-namespace LRA.VolumeI.Functions
+namespace LRA.Function
 
-universe u
+universe u v
 
-/--
-A left inverse for a function.
-
-Logical form:
-
-```lean
-def LeftInverse {Domain Codomain : Type u}
-    (inverseMap : Codomain -> Domain)
-    (map : Domain -> Codomain) : Prop :=
-  Composition inverseMap map = IdentityFunction Domain
-```
--/
-def LeftInverse {Domain Codomain : Type u}
-    (inverseMap : Codomain -> Domain)
-    (map : Domain -> Codomain) : Prop :=
+/-- A left inverse for a typed function. -/
+def LeftInverse {Domain : Type u} {Codomain : Type v}
+    (inverseMap : LRA.Function Codomain Domain)
+    (map : LRA.Function Domain Codomain) : Prop :=
   Composition inverseMap map = IdentityFunction Domain
 
-/--
-A right inverse for a function.
-
-Logical form:
-
-```lean
-def RightInverse {Domain Codomain : Type u}
-    (inverseMap : Codomain -> Domain)
-    (map : Domain -> Codomain) : Prop :=
-  Composition map inverseMap = IdentityFunction Codomain
-```
--/
-def RightInverse {Domain Codomain : Type u}
-    (inverseMap : Codomain -> Domain)
-    (map : Domain -> Codomain) : Prop :=
+/-- A right inverse for a typed function. -/
+def RightInverse {Domain : Type u} {Codomain : Type v}
+    (inverseMap : LRA.Function Codomain Domain)
+    (map : LRA.Function Domain Codomain) : Prop :=
   Composition map inverseMap = IdentityFunction Codomain
 
-end LRA.VolumeI.Functions
+end LRA.Function
