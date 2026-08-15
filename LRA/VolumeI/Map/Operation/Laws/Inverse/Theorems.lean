@@ -7,6 +7,30 @@ open LRA.Map.Operation
 universe u
 
 /--
+Apply a left-inverse law to an element.
+-/
+theorem LeftInverse.apply {Carrier : Type u}
+    {operation : BinaryEndoOperation Carrier}
+    {identity : Carrier}
+    {inverse : UnaryEndoOperation Carrier}
+    (law : LeftInverse operation identity inverse)
+    (element : Carrier) :
+    operation (inverse element) element = identity :=
+  law element
+
+/--
+Apply a right-inverse law to an element.
+-/
+theorem RightInverse.apply {Carrier : Type u}
+    {operation : BinaryEndoOperation Carrier}
+    {identity : Carrier}
+    {inverse : UnaryEndoOperation Carrier}
+    (law : RightInverse operation identity inverse)
+    (element : Carrier) :
+    operation element (inverse element) = identity :=
+  law element
+
+/--
 A two-sided inverse law supplies a left inverse law.
 -/
 theorem TwoSidedInverse.left {Carrier : Type u}

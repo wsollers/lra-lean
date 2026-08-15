@@ -7,6 +7,28 @@ open LRA.Map.Operation
 universe u
 
 /--
+Apply a left-absorbing law to an element.
+-/
+theorem LeftAbsorbing.apply {Carrier : Type u}
+    {operation : BinaryEndoOperation Carrier}
+    {absorber : Carrier}
+    (law : LeftAbsorbing operation absorber)
+    (element : Carrier) :
+    operation absorber element = absorber :=
+  law element
+
+/--
+Apply a right-absorbing law to an element.
+-/
+theorem RightAbsorbing.apply {Carrier : Type u}
+    {operation : BinaryEndoOperation Carrier}
+    {absorber : Carrier}
+    (law : RightAbsorbing operation absorber)
+    (element : Carrier) :
+    operation element absorber = absorber :=
+  law element
+
+/--
 A two-sided absorbing law supplies a left absorbing law.
 -/
 theorem TwoSidedAbsorbing.left {Carrier : Type u}
