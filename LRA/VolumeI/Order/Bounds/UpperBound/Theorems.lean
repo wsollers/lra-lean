@@ -88,7 +88,27 @@ theorem UpperBoundOfUnionIff
     UpperBound relation (leftSubset ∪ rightSubset) bound ↔
       UpperBound relation leftSubset bound /\
         UpperBound relation rightSubset bound := by
-  sorry
+  unfold UpperBound
+  constructor
+  · -- mp
+    intro boundIsUpperForUnion
+    constructor
+
+    · -- prove bound is upper for leftSubset
+      intro element
+      intro elementInLeft
+      sorry
+
+    · -- prove bound is upper for rightSubset
+      intro element
+      intro elementInRight
+      sorry
+
+  · -- mpr
+    intro boundsEachSubset
+    intro element
+    intro elementInUnion
+    sorry
 
 /-- An upper bound of either set is an upper bound of their intersection. -/
 theorem UpperBoundOfIntersection
