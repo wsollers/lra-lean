@@ -19,12 +19,6 @@ theorem TopElementIffEveryRelationTo
     {top : Element} :
     TopElement (SetObject := SetObject) relation top <->
       forall element : Element, relation element top := by
-  constructor
-  · intro topElement element
-    exact topElement.2 element (LRA.Set.UniversalMembership element)
-  · intro aboveEveryElement
-    exact
-      ⟨LRA.Set.UniversalMembership top,
-        fun element _ => aboveEveryElement element⟩
+  sorry
 
 end LRA.Order

@@ -14,8 +14,7 @@ theorem Asymmetric.implies_irreflexive
     {relation : Endorelation Alpha}
     (asymmetric : Asymmetric relation) :
     Irreflexive relation := by
-  intro element relatedSelf
-  exact asymmetric element element relatedSelf relatedSelf
+  sorry
 
 /-- An irreflexive transitive relation is asymmetric. -/
 theorem Irreflexive.transitive_implies_asymmetric
@@ -24,9 +23,7 @@ theorem Irreflexive.transitive_implies_asymmetric
     (irreflexive : Irreflexive relation)
     (transitive : Transitive relation) :
     Asymmetric relation := by
-  intro left right leftRelatedRight rightRelatedLeft
-  exact irreflexive left
-    (transitive left right left leftRelatedRight rightRelatedLeft)
+  sorry
 
 /-- Asymmetry implies antisymmetry. -/
 theorem Asymmetric.implies_antisymmetric
@@ -34,8 +31,7 @@ theorem Asymmetric.implies_antisymmetric
     {relation : Endorelation Alpha}
     (asymmetric : Asymmetric relation) :
     Antisymmetric relation := by
-  intro left right leftRelatedRight rightRelatedLeft
-  exact False.elim (asymmetric left right leftRelatedRight rightRelatedLeft)
+  sorry
 
 /--
 A relation that is both symmetric and antisymmetric can only relate equal
@@ -49,7 +45,7 @@ theorem Symmetric.antisymmetric_related_implies_equal
     {left right : Alpha}
     (related : relation left right) :
     left = right := by
-  exact antisymmetric left right related (symmetric left right related)
+  sorry
 
 /-- A reflexive relation cannot be asymmetric at a displayed element. -/
 theorem Reflexive.asymmetric_contradiction_at
@@ -59,6 +55,6 @@ theorem Reflexive.asymmetric_contradiction_at
     (asymmetric : Asymmetric relation)
     (element : Alpha) :
     False := by
-  exact asymmetric element element (reflexive element) (reflexive element)
+  sorry
 
 end LRA.Relation

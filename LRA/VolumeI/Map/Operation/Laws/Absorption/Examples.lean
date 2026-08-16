@@ -19,11 +19,7 @@ Boolean disjunction and conjunction satisfy mutual absorption.
 -/
 theorem BooleanOrAndMutualAbsorption :
     MutualAbsorptionLaw BooleanOrOperation BooleanAndOperation := by
-  constructor
-  · intro left right
-    cases left <;> cases right <;> rfl
-  · intro left right
-    cases left <;> cases right <;> rfl
+  sorry
 
 /-- Natural-number maximum as a lattice-style join operation. -/
 def NaturalMaxOperation : BinaryEndoOperation Nat :=
@@ -40,10 +36,6 @@ Natural-number maximum and minimum satisfy mutual absorption.
 -/
 theorem NaturalMaxMinMutualAbsorption :
     MutualAbsorptionLaw NaturalMaxOperation NaturalMinOperation := by
-  constructor
-  · intro left right
-    exact Nat.max_eq_left (Nat.min_le_left left right)
-  · intro left right
-    exact Nat.min_eq_left (Nat.le_max_left left right)
+  sorry
 
 end LRA.Map.Operation.Laws.Absorption

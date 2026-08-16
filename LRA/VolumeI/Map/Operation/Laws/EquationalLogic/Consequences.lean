@@ -17,18 +17,16 @@ theorem UnaryOperation.identity_relation_is_equivalence
     {Carrier : Type u}
     (operation : UnaryEndoOperation Carrier) :
     LRA.Relation.EquivalenceRelation
-      (LRA.Relation.IdentityRelation Carrier) :=
-  UnaryOperationEqualityRequirements.identity_relation_is_equivalence
-    (UnaryOperation.equality_requirements operation)
+      (LRA.Relation.IdentityRelation Carrier) := by
+  sorry
 
 /-- The equality relation for any binary endo-operation is an equivalence relation. -/
 theorem BinaryOperation.identity_relation_is_equivalence
     {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier) :
     LRA.Relation.EquivalenceRelation
-      (LRA.Relation.IdentityRelation Carrier) :=
-  BinaryOperationEqualityRequirements.identity_relation_is_equivalence
-    (BinaryOperation.equality_requirements operation)
+      (LRA.Relation.IdentityRelation Carrier) := by
+  sorry
 
 /-- Any unary endo-operation respects the identity relation. -/
 theorem UnaryOperation.respects_identity_relation
@@ -36,9 +34,8 @@ theorem UnaryOperation.respects_identity_relation
     (operation : UnaryEndoOperation Carrier) :
     UnaryOperationCongruence
       (LRA.Relation.IdentityRelation Carrier)
-      operation :=
-  UnaryOperationEqualityRequirements.operation_congruence
-    (UnaryOperation.equality_requirements operation)
+      operation := by
+  sorry
 
 /-- Any binary endo-operation respects the identity relation. -/
 theorem BinaryOperation.respects_identity_relation
@@ -46,9 +43,8 @@ theorem BinaryOperation.respects_identity_relation
     (operation : BinaryEndoOperation Carrier) :
     BinaryOperationCongruence
       (LRA.Relation.IdentityRelation Carrier)
-      operation :=
-  BinaryOperationEqualityRequirements.operation_congruence
-    (BinaryOperation.equality_requirements operation)
+      operation := by
+  sorry
 
 /--
 Unary operation congruence is exactly the well-definedness condition needed
@@ -68,11 +64,8 @@ theorem UnaryOperationRelationRequirements.quotient_projection_respects_operatio
     {left right : Carrier}
     (related : relation left right) :
     LRA.Relation.QuotientProjection ambient relation (operation left) =
-      LRA.Relation.QuotientProjection ambient relation (operation right) :=
-  LRA.Relation.QuotientProjectionWellDefined
-    (UnaryOperationRelationRequirements.relation_is_equivalence requirements)
-    (UnaryOperationRelationRequirements.operation_congruence
-      requirements related)
+      LRA.Relation.QuotientProjection ambient relation (operation right) := by
+  sorry
 
 /--
 Binary operation congruence is exactly the well-definedness condition needed
@@ -95,10 +88,7 @@ theorem BinaryOperationRelationRequirements.quotient_projection_respects_operati
     LRA.Relation.QuotientProjection
         ambient relation (operation left₁ right₁) =
       LRA.Relation.QuotientProjection
-        ambient relation (operation left₂ right₂) :=
-  LRA.Relation.QuotientProjectionWellDefined
-    (BinaryOperationRelationRequirements.relation_is_equivalence requirements)
-    (BinaryOperationRelationRequirements.operation_congruence
-      requirements leftRelated rightRelated)
+        ambient relation (operation left₂ right₂) := by
+  sorry
 
 end LRA.Map.Operation.Laws.EquationalLogic

@@ -13,23 +13,23 @@ theorem EquivalenceRelation.reflexive
     {Alpha : Type u}
     {relation : Endorelation Alpha}
     (equivalence : EquivalenceRelation relation) :
-    Reflexive relation :=
-  equivalence.1
+    Reflexive relation := by
+  sorry
 
 /-- An equivalence relation is symmetric. -/
 theorem EquivalenceRelation.symmetric
     {Alpha : Type u}
     {relation : Endorelation Alpha}
     (equivalence : EquivalenceRelation relation) :
-    Symmetric relation :=
-  equivalence.2.1
+    Symmetric relation := by
+  sorry
 
 /-- An equivalence relation is transitive. -/
 theorem EquivalenceRelation.transitive
     {Alpha : Type u}
     {relation : Endorelation Alpha}
     (equivalence : EquivalenceRelation relation) :
-    Transitive relation :=
-  equivalence.2.2
+    Transitive relation := by
+  sorry
 
 end LRA.Relation

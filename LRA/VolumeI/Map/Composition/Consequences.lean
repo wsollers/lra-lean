@@ -16,10 +16,7 @@ theorem CompositeInjectiveImpliesFirstInjective
     (compositeInjective :
       LRA.Map.Injective.Injective (Compose second first)) :
     LRA.Map.Injective.Injective first := by
-  intro left right firstValuesEqual
-  apply compositeInjective
-  unfold Compose Composition
-  rw [firstValuesEqual]
+  sorry
 
 /-- If a composite is surjective, then its second factor is surjective. -/
 theorem CompositeSurjectiveImpliesSecondSurjective
@@ -29,8 +26,6 @@ theorem CompositeSurjectiveImpliesSecondSurjective
     (compositeSurjective :
       LRA.Map.Surjective.Surjective (Compose second first)) :
     LRA.Map.Surjective.Surjective second := by
-  intro output
-  rcases compositeSurjective output with ⟨input, mapsToOutput⟩
-  exact ⟨first input, mapsToOutput⟩
+  sorry
 
 end LRA.Map.Composition

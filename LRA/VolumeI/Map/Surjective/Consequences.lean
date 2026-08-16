@@ -31,31 +31,6 @@ theorem SurjectiveIffRangeCoversCodomain
       forall output : CodomainElement,
         output ∈
           (LRA.Map.Image.Range map ambientDomain : CodomainSet) := by
-  constructor
-  · intro surjective output
-    unfold LRA.Map.Image.Range LRA.Map.Image.Image
-    exact
-      (LRA.Set.SeparationMembership
-        (𝒰 : CodomainSet)
-        (fun candidate : CodomainElement =>
-          exists input : DomainElement,
-            input ∈ ambientDomain /\ map input = candidate)
-        output).mpr
-        ⟨LRA.Set.UniversalMembership output,
-          by
-            rcases surjective output with ⟨input, mapsToOutput⟩
-            exact ⟨input, ambientCoversDomain input, mapsToOutput⟩⟩
-  · intro rangeCovers output
-    unfold LRA.Map.Image.Range LRA.Map.Image.Image at rangeCovers
-    have outputInRange := rangeCovers output
-    have separatedMembership :=
-      (LRA.Set.SeparationMembership
-        (𝒰 : CodomainSet)
-        (fun candidate : CodomainElement =>
-          exists input : DomainElement,
-            input ∈ ambientDomain /\ map input = candidate)
-        output).mp outputInRange
-    rcases separatedMembership with ⟨_, input, _, mapsToOutput⟩
-    exact ⟨input, mapsToOutput⟩
+  sorry
 
 end LRA.Map.Surjective

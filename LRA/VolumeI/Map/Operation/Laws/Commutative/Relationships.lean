@@ -76,8 +76,7 @@ consequence of commutativity.
 theorem Commutative.operation_equality_requirements {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier) :
     LRA.Map.Operation.Laws.EquationalLogic.BinaryOperationEqualityRequirements
-      operation :=
-  LRA.Map.Operation.Laws.EquationalLogic.BinaryOperation.equality_requirements
-    operation
+      operation := by
+  sorry
 
 end LRA.Map.Operation.Laws.Commutative

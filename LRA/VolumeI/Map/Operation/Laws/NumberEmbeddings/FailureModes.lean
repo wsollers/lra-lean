@@ -72,10 +72,7 @@ private theorem ThreePointBoolEmbeddingCollision
     embedding ThreePoint.first = embedding ThreePoint.second \/
       embedding ThreePoint.first = embedding ThreePoint.third \/
         embedding ThreePoint.second = embedding ThreePoint.third := by
-  cases hfirst : embedding ThreePoint.first <;>
-    cases hsecond : embedding ThreePoint.second <;>
-    cases hthird : embedding ThreePoint.third <;>
-    simp
+  sorry
 
 /--
 **[Failure Mode — ThreePointEqualityTestDoesNotFactorThroughBool]**
@@ -85,45 +82,6 @@ embeddings into the two-point boolean result carrier.
 -/
 theorem ThreePointEqualityTestDoesNotFactorThroughBool :
     Not (MixedOperationResultCarrier ThreePointEqualityTest) := by
-  intro factorization
-  rcases factorization with
-    ⟨leftEmbedding, rightEmbedding, resultOperation, hfactor⟩
-  have contradictionOfCollision
-      {firstPoint secondPoint : ThreePoint}
-      (different : firstPoint ≠ secondPoint)
-      (collision : leftEmbedding firstPoint = leftEmbedding secondPoint) :
-      False := by
-    have diagonal :
-        true =
-          resultOperation (leftEmbedding firstPoint) (rightEmbedding firstPoint) := by
-      have applied := congrArg
-        (fun operation => operation firstPoint firstPoint) hfactor
-      simpa [ThreePointEqualityTest, MixedBinaryOperationByEmbedding] using applied
-    have offDiagonal :
-        false =
-          resultOperation (leftEmbedding secondPoint) (rightEmbedding firstPoint) := by
-      have applied := congrArg
-        (fun operation => operation secondPoint firstPoint) hfactor
-      simpa [ThreePointEqualityTest, MixedBinaryOperationByEmbedding,
-        Ne.symm different] using applied
-    rw [← collision] at offDiagonal
-    rw [← diagonal] at offDiagonal
-    cases offDiagonal
-  rcases ThreePointBoolEmbeddingCollision leftEmbedding with firstSecond | firstThird | secondThird
-  · exact contradictionOfCollision
-      (firstPoint := ThreePoint.first)
-      (secondPoint := ThreePoint.second)
-      (by intro equality; cases equality)
-      firstSecond
-  · exact contradictionOfCollision
-      (firstPoint := ThreePoint.first)
-      (secondPoint := ThreePoint.third)
-      (by intro equality; cases equality)
-      firstThird
-  · exact contradictionOfCollision
-      (firstPoint := ThreePoint.second)
-      (secondPoint := ThreePoint.third)
-      (by intro equality; cases equality)
-      secondThird
+  sorry
 
 end LRA.Map.Operation.Laws.NumberEmbeddings

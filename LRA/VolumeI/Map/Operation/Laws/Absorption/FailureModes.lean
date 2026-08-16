@@ -34,13 +34,7 @@ lattice-style pair.
 theorem NaturalAdditionMultiplicationFailAbsorption :
     FailsAbsorptionLaw NaturalAdditionOperation NaturalMultiplicationOperation /\
       FailsAbsorptionLaw NaturalMultiplicationOperation NaturalAdditionOperation := by
-  constructor
-  · intro law
-    have contradiction := law 1 1
-    simp [NaturalAdditionOperation, NaturalMultiplicationOperation] at contradiction
-  · intro law
-    have contradiction := law 2 0
-    simp [NaturalAdditionOperation, NaturalMultiplicationOperation] at contradiction
+  sorry
 
 /--
 **[Failure Mode — NaturalMultiplicationHasAbsorberButFailsAbsorption]**
@@ -53,9 +47,7 @@ theorem NaturalMultiplicationHasAbsorberButFailsAbsorption :
       NaturalMultiplicationOperation 0 /\
       FailsAbsorptionLaw NaturalMultiplicationOperation
         NaturalAdditionOperation := by
-  constructor
-  · constructor <;> intro element <;> simp [NaturalMultiplicationOperation]
-  · exact NaturalAdditionMultiplicationFailAbsorption.2
+  sorry
 
 /--
 **[Failure Mode — NaturalMaxHasNoAbsorbingElement]**
@@ -69,11 +61,6 @@ theorem NaturalMaxHasNoAbsorbingElement :
         (exists absorber : Nat,
           LRA.Map.Operation.Laws.Absorbing.TwoSidedAbsorbing
             NaturalMaxOperation absorber) := by
-  constructor
-  · exact NaturalMaxMinMutualAbsorption
-  · intro witness
-    rcases witness with ⟨absorber, _leftAbsorbing, rightAbsorbing⟩
-    have contradiction := rightAbsorbing (absorber + 1)
-    simp [NaturalMaxOperation] at contradiction
+  sorry
 
 end LRA.Map.Operation.Laws.Absorption

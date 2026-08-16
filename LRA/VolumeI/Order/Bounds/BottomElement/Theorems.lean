@@ -19,12 +19,6 @@ theorem BottomElementIffRelationToEvery
     {bottom : Element} :
     BottomElement (SetObject := SetObject) relation bottom <->
       forall element : Element, relation bottom element := by
-  constructor
-  · intro bottomElement element
-    exact bottomElement.2 element (LRA.Set.UniversalMembership element)
-  · intro belowEveryElement
-    exact
-      ⟨LRA.Set.UniversalMembership bottom,
-        fun element _ => belowEveryElement element⟩
+  sorry
 
 end LRA.Order

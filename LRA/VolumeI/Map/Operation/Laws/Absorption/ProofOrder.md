@@ -1,10 +1,10 @@
 # Absorption Proof Order
 
-- [x] `MutualAbsorptionLaw.first_idempotent`
-- [x] `MutualAbsorptionLaw.second_idempotent`
-- [x] `MutualAbsorptionLaw.idempotent_pair`
-- [x] `BooleanOrAndMutualAbsorption`
-- [x] `NaturalMaxMinMutualAbsorption`
-- [x] `NaturalAdditionMultiplicationFailAbsorption`
-- [x] `NaturalMultiplicationHasAbsorberButFailsAbsorption`
-- [x] `NaturalMaxHasNoAbsorbingElement`
+- [ ] `MutualAbsorptionLaw.first_idempotent`
+- [ ] `MutualAbsorptionLaw.second_idempotent`
+- [ ] `MutualAbsorptionLaw.idempotent_pair`
+- [ ] `BooleanOrAndMutualAbsorption`
+- [ ] `NaturalMaxMinMutualAbsorption`
+- [ ] `NaturalAdditionMultiplicationFailAbsorption`
+- [ ] `NaturalMultiplicationHasAbsorberButFailsAbsorption`
+- [ ] `NaturalMaxHasNoAbsorbingElement`

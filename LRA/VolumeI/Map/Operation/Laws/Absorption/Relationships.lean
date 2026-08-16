@@ -16,8 +16,7 @@ theorem MutualAbsorptionLaw.idempotent_pair {Carrier : Type u}
     {first second : BinaryEndoOperation Carrier}
     (law : MutualAbsorptionLaw first second) :
     LRA.Map.Operation.Laws.Idempotent.Idempotent first /\
-      LRA.Map.Operation.Laws.Idempotent.Idempotent second :=
-  ⟨MutualAbsorptionLaw.first_idempotent law,
-    MutualAbsorptionLaw.second_idempotent law⟩
+      LRA.Map.Operation.Laws.Idempotent.Idempotent second := by
+  sorry
 
 end LRA.Map.Operation.Laws.Absorption

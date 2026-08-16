@@ -18,23 +18,6 @@ theorem InjectiveIffKernelIsIdentityRelation
     Injective map <->
       LRA.Map.Fiber.KernelRelation map =
         LRA.Relation.IdentityRelation Domain := by
-  constructor
-  · intro injective
-    funext left right
-    apply propext
-    constructor
-    · intro related
-      exact injective left right related
-    · intro equalInputs
-      unfold LRA.Map.Fiber.KernelRelation
-      rw [equalInputs]
-  · intro kernelIsIdentity
-    intro left right equalOutputs
-    have related : LRA.Map.Fiber.KernelRelation map left right := equalOutputs
-    have identityRelated :
-        LRA.Relation.IdentityRelation Domain left right := by
-      rw [← kernelIsIdentity]
-      exact related
-    exact identityRelated
+  sorry
 
 end LRA.Map.Injective

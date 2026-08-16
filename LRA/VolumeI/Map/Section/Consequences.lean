@@ -15,7 +15,7 @@ theorem SectionOfIffRightInverse
     (map : TypedMap Domain Codomain) :
     SectionOf sectionMap map <->
       LRA.Map.Inverse.RightInverse map sectionMap := by
-  rfl
+  sorry
 
 /-- Every section is injective. -/
 theorem SectionIsInjective
@@ -24,10 +24,6 @@ theorem SectionIsInjective
     {map : TypedMap Domain Codomain}
     (sectionOf : SectionOf sectionMap map) :
     LRA.Map.Injective.Injective sectionMap := by
-  intro left right sectionsEqual
-  have mappedEqual : map (sectionMap left) = map (sectionMap right) := by
-    rw [sectionsEqual]
-  rw [sectionOf left, sectionOf right] at mappedEqual
-  exact mappedEqual
+  sorry
 
 end LRA.Map.Section

@@ -15,8 +15,8 @@ theorem PreservesRelation.is_monotone
     {sourceRelation : LRA.Relation.Endorelation Source}
     {targetRelation : LRA.Relation.Endorelation Target}
     (preserves : PreservesRelation embedding sourceRelation targetRelation) :
-    LRA.Order.Monotone sourceRelation targetRelation embedding :=
-  preserves
+    LRA.Order.Monotone sourceRelation targetRelation embedding := by
+  sorry
 
 /-- The strong relation-embedding predicate includes injectivity. -/
 theorem InjectiveRelationEmbedding.injective
@@ -26,8 +26,8 @@ theorem InjectiveRelationEmbedding.injective
     {targetRelation : LRA.Relation.Endorelation Target}
     (embeddingIsRelationEmbedding :
       InjectiveRelationEmbedding embedding sourceRelation targetRelation) :
-    InjectiveMap embedding :=
-  embeddingIsRelationEmbedding.1
+    InjectiveMap embedding := by
+  sorry
 
 /-- The strong relation-embedding predicate preserves the displayed relation. -/
 theorem InjectiveRelationEmbedding.preserves
@@ -37,8 +37,8 @@ theorem InjectiveRelationEmbedding.preserves
     {targetRelation : LRA.Relation.Endorelation Target}
     (embeddingIsRelationEmbedding :
       InjectiveRelationEmbedding embedding sourceRelation targetRelation) :
-    PreservesRelation embedding sourceRelation targetRelation :=
-  embeddingIsRelationEmbedding.2.1
+    PreservesRelation embedding sourceRelation targetRelation := by
+  sorry
 
 /-- The strong relation-embedding predicate reflects the displayed relation. -/
 theorem InjectiveRelationEmbedding.reflects
@@ -48,7 +48,7 @@ theorem InjectiveRelationEmbedding.reflects
     {targetRelation : LRA.Relation.Endorelation Target}
     (embeddingIsRelationEmbedding :
       InjectiveRelationEmbedding embedding sourceRelation targetRelation) :
-    ReflectsRelation embedding sourceRelation targetRelation :=
-  embeddingIsRelationEmbedding.2.2
+    ReflectsRelation embedding sourceRelation targetRelation := by
+  sorry
 
 end LRA.Map.Operation.Laws.NumberEmbeddings

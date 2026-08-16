@@ -17,8 +17,6 @@ theorem Antitone.comp_antitone_is_monotone
     (secondAntitone : Antitone middleRelation targetRelation second) :
     Monotone sourceRelation targetRelation
       (fun input => second (first input)) := by
-  intro left right related
-  exact secondAntitone (first right) (first left)
-    (firstAntitone left right related)
+  sorry
 
 end LRA.Order

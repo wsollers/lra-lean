@@ -17,7 +17,7 @@ theorem LeftTranslationPreservesRelationIffMonotoneTranslations
       forall fixed,
         LRA.Order.Monotone relation relation
           (fun value => operation fixed value) := by
-  rfl
+  sorry
 
 /-- Right-translation preservation is monotonicity of every right translation. -/
 theorem RightTranslationPreservesRelationIffMonotoneTranslations
@@ -28,11 +28,7 @@ theorem RightTranslationPreservesRelationIffMonotoneTranslations
       forall fixed,
         LRA.Order.Monotone relation relation
           (fun value => operation value fixed) := by
-  constructor
-  · intro preserves fixed left right related
-    exact preserves left right fixed related
-  · intro monotoneTranslations left right fixed related
-    exact monotoneTranslations fixed left right related
+  sorry
 
 /-- Coordinatewise preservation gives left translations when the relation is reflexive. -/
 theorem CoordinatewisePreservesRelation.left_translation
@@ -43,10 +39,7 @@ theorem CoordinatewisePreservesRelation.left_translation
     (coordinatewise :
       CoordinatewisePreservesRelation relation operation) :
     LeftTranslationPreservesRelation relation operation := by
-  intro fixed left right related
-  exact coordinatewise fixed fixed left right
-    (relationIsReflexive fixed)
-    related
+  sorry
 
 /-- Coordinatewise preservation gives right translations when the relation is reflexive. -/
 theorem CoordinatewisePreservesRelation.right_translation
@@ -57,9 +50,6 @@ theorem CoordinatewisePreservesRelation.right_translation
     (coordinatewise :
       CoordinatewisePreservesRelation relation operation) :
     RightTranslationPreservesRelation relation operation := by
-  intro left right fixed related
-  exact coordinatewise left right fixed fixed
-    related
-    (relationIsReflexive fixed)
+  sorry
 
 end LRA.Map.Operation.Laws.OrderCompatibility

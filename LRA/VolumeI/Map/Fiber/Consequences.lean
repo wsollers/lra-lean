@@ -17,10 +17,7 @@ theorem KernelRelationEquivalenceRelation
     {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
     LRA.Relation.EquivalenceRelation (KernelRelation map) := by
-  exact
-    ⟨KernelRelationReflexive map,
-      KernelRelationSymmetric map,
-      KernelRelationTransitive map⟩
+  sorry
 
 /--
 The fiber over `map representative` is exactly the equivalence class of
@@ -36,7 +33,7 @@ theorem AmbientFiberEqualsKernelEquivalenceClass
     AmbientFiber ambientDomain map (map representative) =
       LRA.Relation.EquivalenceClass
         ambientDomain (KernelRelation map) representative := by
-  rfl
+  sorry
 
 /--
 Predicate fiber membership over `map representative` is the same as kernel
@@ -48,7 +45,7 @@ theorem FiberOverValueIffKernelRelated
     (representative input : Domain) :
     Fiber map (map representative) input <->
       KernelRelation map input representative := by
-  rfl
+  sorry
 
 /--
 Kernel-related inputs have the same quotient projection under the kernel
@@ -67,10 +64,8 @@ theorem KernelQuotientProjectionWellDefined
     LRA.Relation.QuotientProjection
         ambientDomain (KernelRelation map) left =
       LRA.Relation.QuotientProjection
-        ambientDomain (KernelRelation map) right :=
-  LRA.Relation.QuotientProjectionWellDefined
-    (KernelRelationEquivalenceRelation map)
-    related
+        ambientDomain (KernelRelation map) right := by
+  sorry
 
 /--
 The relation-valued induced map from kernel classes to codomain values.
@@ -110,8 +105,8 @@ theorem KernelClassMapsTo.representative_value
       map
       (LRA.Relation.QuotientProjection
         ambientDomain (KernelRelation map) representative)
-      (map representative) :=
-  ⟨representative, representativeInAmbient, rfl, rfl⟩
+      (map representative) := by
+  sorry
 
 /--
 The induced map from kernel classes to codomain values is single-valued.
@@ -131,44 +126,7 @@ theorem KernelClassMapsTo.output_unique
     (secondMaps :
       KernelClassMapsTo ambientDomain map classSet secondOutput) :
     firstOutput = secondOutput := by
-  rcases firstMaps with
-    ⟨firstRepresentative, firstInAmbient, firstClass, firstValue⟩
-  rcases secondMaps with
-    ⟨secondRepresentative, _secondInAmbient, secondClass, secondValue⟩
-  have firstInOwnClass :
-      firstRepresentative ∈
-        LRA.Relation.QuotientProjection
-          ambientDomain (KernelRelation map) firstRepresentative := by
-    change firstRepresentative ∈
-      LRA.Relation.EquivalenceClass
-        ambientDomain (KernelRelation map) firstRepresentative
-    exact
-      (LRA.Relation.EquivalenceClassMembershipIff
-        ambientDomain
-        (KernelRelation map)
-        firstRepresentative
-        firstRepresentative).mpr
-        ⟨firstInAmbient, rfl⟩
-  have firstInSecondClass :
-      firstRepresentative ∈
-        LRA.Relation.QuotientProjection
-          ambientDomain (KernelRelation map) secondRepresentative := by
-    rw [← firstClass] at firstInOwnClass
-    rw [secondClass] at firstInOwnClass
-    exact firstInOwnClass
-  have related :
-      KernelRelation map firstRepresentative secondRepresentative := by
-    have membership :=
-      (LRA.Relation.EquivalenceClassMembershipIff
-        ambientDomain
-        (KernelRelation map)
-        secondRepresentative
-        firstRepresentative).mp firstInSecondClass
-    exact membership.2
-  calc
-    firstOutput = map firstRepresentative := firstValue.symm
-    _ = map secondRepresentative := related
-    _ = secondOutput := secondValue
+  sorry
 
 /--
 The induced kernel-class map lands onto the represented range: every value in
@@ -191,22 +149,6 @@ theorem KernelClassMapsTo.exists_of_range_member
         (LRA.Map.Image.Range map ambientDomain : CodomainSet)) :
     exists classSet : DomainSet,
       KernelClassMapsTo ambientDomain map classSet output := by
-  unfold LRA.Map.Image.Range LRA.Map.Image.Image at outputInRange
-  have rangeMembership :=
-    (LRA.Set.SeparationMembership
-      (𝒰 : CodomainSet)
-      (fun candidate : Codomain =>
-        exists input : Domain,
-          input ∈ ambientDomain /\ map input = candidate)
-      output).mp outputInRange
-  rcases rangeMembership with
-    ⟨_, representative, representativeInAmbient, mapsToOutput⟩
-  exact
-    ⟨LRA.Relation.QuotientProjection
-        ambientDomain (KernelRelation map) representative,
-      representative,
-      representativeInAmbient,
-      rfl,
-      mapsToOutput⟩
+  sorry
 
 end LRA.Map.Fiber

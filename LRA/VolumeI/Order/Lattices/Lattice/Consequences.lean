@@ -40,12 +40,7 @@ theorem JoinOperationCommutative
     {joinOperation : BinaryEndoOperation Carrier}
     (isJoinOperation : IsJoinOperation relation joinOperation) :
     LRA.Map.Operation.Laws.Commutative.Commutative joinOperation := by
-  intro left right
-  exact
-    JoinUnique relationIsPartialOrder.2.1
-      (isJoinOperation left right)
-      ((JoinCommutes relation right left (joinOperation right left)).mp
-        (isJoinOperation right left))
+  sorry
 
 /-- A chosen meet operation in a partial order is commutative. -/
 theorem MeetOperationCommutative
@@ -55,12 +50,7 @@ theorem MeetOperationCommutative
     {meetOperation : BinaryEndoOperation Carrier}
     (isMeetOperation : IsMeetOperation relation meetOperation) :
     LRA.Map.Operation.Laws.Commutative.Commutative meetOperation := by
-  intro left right
-  exact
-    MeetUnique relationIsPartialOrder.2.1
-      (isMeetOperation left right)
-      ((MeetCommutes relation right left (meetOperation right left)).mp
-        (isMeetOperation right left))
+  sorry
 
 /-- A chosen join operation in a partial order is idempotent. -/
 theorem JoinOperationIdempotent
@@ -70,11 +60,7 @@ theorem JoinOperationIdempotent
     {joinOperation : BinaryEndoOperation Carrier}
     (isJoinOperation : IsJoinOperation relation joinOperation) :
     LRA.Map.Operation.Laws.Idempotent.Idempotent joinOperation := by
-  intro element
-  exact
-    JoinUnique relationIsPartialOrder.2.1
-      (isJoinOperation element element)
-      (JoinIdempotent relationIsPartialOrder.1 element)
+  sorry
 
 /-- A chosen meet operation in a partial order is idempotent. -/
 theorem MeetOperationIdempotent
@@ -84,11 +70,7 @@ theorem MeetOperationIdempotent
     {meetOperation : BinaryEndoOperation Carrier}
     (isMeetOperation : IsMeetOperation relation meetOperation) :
     LRA.Map.Operation.Laws.Idempotent.Idempotent meetOperation := by
-  intro element
-  exact
-    MeetUnique relationIsPartialOrder.2.1
-      (isMeetOperation element element)
-      (MeetIdempotent relationIsPartialOrder.1 element)
+  sorry
 
 /-- A chosen join operation in a partial order is associative. -/
 theorem JoinOperationAssociative
@@ -98,13 +80,7 @@ theorem JoinOperationAssociative
     {joinOperation : BinaryEndoOperation Carrier}
     (isJoinOperation : IsJoinOperation relation joinOperation) :
     LRA.Map.Operation.Laws.Associative.Associative joinOperation := by
-  intro left middle right
-  exact
-    JoinAssociative relationIsPartialOrder
-      (isJoinOperation left middle)
-      (isJoinOperation (joinOperation left middle) right)
-      (isJoinOperation middle right)
-      (isJoinOperation left (joinOperation middle right))
+  sorry
 
 /-- A chosen meet operation in a partial order is associative. -/
 theorem MeetOperationAssociative
@@ -114,13 +90,7 @@ theorem MeetOperationAssociative
     {meetOperation : BinaryEndoOperation Carrier}
     (isMeetOperation : IsMeetOperation relation meetOperation) :
     LRA.Map.Operation.Laws.Associative.Associative meetOperation := by
-  intro left middle right
-  exact
-    MeetAssociative relationIsPartialOrder
-      (isMeetOperation left middle)
-      (isMeetOperation (meetOperation left middle) right)
-      (isMeetOperation middle right)
-      (isMeetOperation left (meetOperation middle right))
+  sorry
 
 /-- Chosen lattice join and meet satisfy the join-over-meet absorption law. -/
 theorem JoinMeetOperationAbsorption
@@ -132,11 +102,7 @@ theorem JoinMeetOperationAbsorption
     (isMeetOperation : IsMeetOperation relation meetOperation) :
     LRA.Map.Operation.Laws.Absorption.AbsorptionLaw
       joinOperation meetOperation := by
-  intro left right
-  exact
-    JoinWithMeetAbsorbs relationIsPartialOrder
-      (isMeetOperation left right)
-      (isJoinOperation left (meetOperation left right))
+  sorry
 
 /-- Chosen lattice meet and join satisfy the meet-over-join absorption law. -/
 theorem MeetJoinOperationAbsorption
@@ -148,11 +114,7 @@ theorem MeetJoinOperationAbsorption
     (isMeetOperation : IsMeetOperation relation meetOperation) :
     LRA.Map.Operation.Laws.Absorption.AbsorptionLaw
       meetOperation joinOperation := by
-  intro left right
-  exact
-    MeetWithJoinAbsorbs relationIsPartialOrder
-      (isJoinOperation left right)
-      (isMeetOperation left (joinOperation left right))
+  sorry
 
 /-- Chosen lattice join and meet satisfy mutual absorption. -/
 theorem JoinMeetOperationMutualAbsorption
@@ -163,10 +125,7 @@ theorem JoinMeetOperationMutualAbsorption
     (isJoinOperation : IsJoinOperation relation joinOperation)
     (isMeetOperation : IsMeetOperation relation meetOperation) :
     LRA.Map.Operation.Laws.Absorption.MutualAbsorptionLaw
-      joinOperation meetOperation :=
-  ⟨JoinMeetOperationAbsorption
-      relationIsPartialOrder isJoinOperation isMeetOperation,
-    MeetJoinOperationAbsorption
-      relationIsPartialOrder isJoinOperation isMeetOperation⟩
+      joinOperation meetOperation := by
+  sorry
 
 end LRA.Order

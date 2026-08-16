@@ -15,7 +15,7 @@ theorem RetractionOfIffLeftInverse
     (inclusion : TypedMap Small Large) :
     RetractionOf retraction inclusion <->
       LRA.Map.Inverse.LeftInverse inclusion retraction := by
-  rfl
+  sorry
 
 /-- Every retraction map is surjective onto the smaller type. -/
 theorem RetractionIsSurjective
@@ -24,7 +24,6 @@ theorem RetractionIsSurjective
     {inclusion : TypedMap Small Large}
     (retractionOf : RetractionOf retraction inclusion) :
     LRA.Map.Surjective.Surjective retraction := by
-  intro output
-  exact ⟨inclusion output, retractionOf output⟩
+  sorry
 
 end LRA.Map.Retraction
