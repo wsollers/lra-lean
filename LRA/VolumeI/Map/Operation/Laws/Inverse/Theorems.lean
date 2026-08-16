@@ -56,6 +56,77 @@ theorem RightInverse.apply {Carrier : Type u}
     (element : Carrier) :
     operation element (inverse element) = identity := by
   sorry
+
+/-- Apply a left-inverse-of law. -/
+theorem LeftInverseOf.apply {Carrier : Type u}
+    {operation : BinaryEndoOperation Carrier}
+    {identity element inverse : Carrier}
+    (law : LeftInverseOf operation identity element inverse) :
+    operation inverse element = identity := by
+  sorry
+
+/-- Apply a right-inverse-of law. -/
+theorem RightInverseOf.apply {Carrier : Type u}
+    {operation : BinaryEndoOperation Carrier}
+    {identity element inverse : Carrier}
+    (law : RightInverseOf operation identity element inverse) :
+    operation element inverse = identity := by
+  sorry
+
+/-- A two-sided inverse-of law supplies a left inverse-of law. -/
+theorem TwoSidedInverseOf.left {Carrier : Type u}
+    {operation : BinaryEndoOperation Carrier}
+    {identity element inverse : Carrier}
+    (law : TwoSidedInverseOf operation identity element inverse) :
+    LeftInverseOf operation identity element inverse := by
+  sorry
+
+/-- A two-sided inverse-of law supplies a right inverse-of law. -/
+theorem TwoSidedInverseOf.right {Carrier : Type u}
+    {operation : BinaryEndoOperation Carrier}
+    {identity element inverse : Carrier}
+    (law : TwoSidedInverseOf operation identity element inverse) :
+    RightInverseOf operation identity element inverse := by
+  sorry
+
+/-- Left and right inverse-of laws assemble into a two-sided inverse-of law. -/
+theorem TwoSidedInverseOf.of_left_right {Carrier : Type u}
+    {operation : BinaryEndoOperation Carrier}
+    {identity element inverse : Carrier}
+    (leftLaw : LeftInverseOf operation identity element inverse)
+    (rightLaw : RightInverseOf operation identity element inverse) :
+    TwoSidedInverseOf operation identity element inverse := by
+  sorry
+
+/-- Apply a restricted left-invertibility law. -/
+theorem LeftInvertibleOn.apply {Carrier : Type u}
+    {eligible : Carrier -> Prop}
+    {operation : BinaryEndoOperation Carrier}
+    {identity element : Carrier}
+    (law : LeftInvertibleOn eligible operation identity)
+    (eligible_element : eligible element) :
+    exists inverse, LeftInverseOf operation identity element inverse := by
+  sorry
+
+/-- Apply a restricted right-invertibility law. -/
+theorem RightInvertibleOn.apply {Carrier : Type u}
+    {eligible : Carrier -> Prop}
+    {operation : BinaryEndoOperation Carrier}
+    {identity element : Carrier}
+    (law : RightInvertibleOn eligible operation identity)
+    (eligible_element : eligible element) :
+    exists inverse, RightInverseOf operation identity element inverse := by
+  sorry
+
+/-- Apply a restricted two-sided invertibility law. -/
+theorem TwoSidedInvertibleOn.apply {Carrier : Type u}
+    {eligible : Carrier -> Prop}
+    {operation : BinaryEndoOperation Carrier}
+    {identity element : Carrier}
+    (law : TwoSidedInvertibleOn eligible operation identity)
+    (eligible_element : eligible element) :
+    exists inverse, TwoSidedInverseOf operation identity element inverse := by
+  sorry
 /--
 **[Theorem — TwoSidedInverse]**
 
