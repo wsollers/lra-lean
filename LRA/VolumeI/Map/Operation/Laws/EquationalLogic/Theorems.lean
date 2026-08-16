@@ -113,17 +113,13 @@ theorem EqualityIsBinaryOperationCongruence {Carrier : Type u}
 theorem UnaryOperation.equality_requirements {Carrier : Type u}
     (operation : UnaryEndoOperation Carrier) :
     UnaryOperationEqualityRequirements operation := by
-  exact
-    ⟨LRA.Relation.IdentityRelationIsEquivalenceRelation,
-      EqualityIsUnaryOperationCongruence operation⟩
+  sorry
 
 /-- Every binary endo-operation has the standard equality-relation requirements. -/
 theorem BinaryOperation.equality_requirements {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier) :
     BinaryOperationEqualityRequirements operation := by
-  exact
-    ⟨LRA.Relation.IdentityRelationIsEquivalenceRelation,
-      EqualityIsBinaryOperationCongruence operation⟩
+  sorry
 
 /-- Project the equivalence-relation component from unary operation requirements. -/
 theorem UnaryOperationRelationRequirements.relation_is_equivalence {Carrier : Type u}
@@ -131,7 +127,7 @@ theorem UnaryOperationRelationRequirements.relation_is_equivalence {Carrier : Ty
     {operation : UnaryEndoOperation Carrier}
     (requirements : UnaryOperationRelationRequirements relation operation) :
     LRA.Relation.EquivalenceRelation relation := by
-  exact requirements.1
+  sorry
 
 /-- Project the congruence component from unary operation requirements. -/
 theorem UnaryOperationRelationRequirements.operation_congruence {Carrier : Type u}
@@ -139,7 +135,7 @@ theorem UnaryOperationRelationRequirements.operation_congruence {Carrier : Type 
     {operation : UnaryEndoOperation Carrier}
     (requirements : UnaryOperationRelationRequirements relation operation) :
     UnaryOperationCongruence relation operation := by
-  exact requirements.2
+  sorry
 
 /-- Project the equivalence-relation component from binary operation requirements. -/
 theorem BinaryOperationRelationRequirements.relation_is_equivalence {Carrier : Type u}
@@ -147,7 +143,7 @@ theorem BinaryOperationRelationRequirements.relation_is_equivalence {Carrier : T
     {operation : BinaryEndoOperation Carrier}
     (requirements : BinaryOperationRelationRequirements relation operation) :
     LRA.Relation.EquivalenceRelation relation := by
-  exact requirements.1
+  sorry
 
 /-- Project the congruence component from binary operation requirements. -/
 theorem BinaryOperationRelationRequirements.operation_congruence {Carrier : Type u}
@@ -155,7 +151,7 @@ theorem BinaryOperationRelationRequirements.operation_congruence {Carrier : Type
     {operation : BinaryEndoOperation Carrier}
     (requirements : BinaryOperationRelationRequirements relation operation) :
     BinaryOperationCongruence relation operation := by
-  exact requirements.2
+  sorry
 
 /-- Equality requirements identify the identity relation as an equivalence relation. -/
 theorem BinaryOperationEqualityRequirements.identity_relation_is_equivalence
@@ -164,7 +160,7 @@ theorem BinaryOperationEqualityRequirements.identity_relation_is_equivalence
     (requirements : BinaryOperationEqualityRequirements operation) :
     LRA.Relation.EquivalenceRelation
       (LRA.Relation.IdentityRelation Carrier) := by
-  exact BinaryOperationRelationRequirements.relation_is_equivalence requirements
+  sorry
 
 /-- Equality requirements provide binary congruence for the identity relation. -/
 theorem BinaryOperationEqualityRequirements.operation_congruence
@@ -174,7 +170,7 @@ theorem BinaryOperationEqualityRequirements.operation_congruence
     BinaryOperationCongruence
       (LRA.Relation.IdentityRelation Carrier)
       operation := by
-  exact BinaryOperationRelationRequirements.operation_congruence requirements
+  sorry
 
 /-- Equality requirements identify the identity relation as an equivalence relation. -/
 theorem UnaryOperationEqualityRequirements.identity_relation_is_equivalence
@@ -183,7 +179,7 @@ theorem UnaryOperationEqualityRequirements.identity_relation_is_equivalence
     (requirements : UnaryOperationEqualityRequirements operation) :
     LRA.Relation.EquivalenceRelation
       (LRA.Relation.IdentityRelation Carrier) := by
-  exact UnaryOperationRelationRequirements.relation_is_equivalence requirements
+  sorry
 
 /-- Equality requirements provide unary congruence for the identity relation. -/
 theorem UnaryOperationEqualityRequirements.operation_congruence
@@ -193,7 +189,7 @@ theorem UnaryOperationEqualityRequirements.operation_congruence
     UnaryOperationCongruence
       (LRA.Relation.IdentityRelation Carrier)
       operation := by
-  exact UnaryOperationRelationRequirements.operation_congruence requirements
+  sorry
 
 /-- Every binary operation's identity relation is reflexive. -/
 theorem BinaryOperationEqualityRequirements.identity_relation_is_reflexive
@@ -201,9 +197,7 @@ theorem BinaryOperationEqualityRequirements.identity_relation_is_reflexive
     {operation : BinaryEndoOperation Carrier}
     (_requirements : BinaryOperationEqualityRequirements operation) :
     LRA.Relation.Reflexive (LRA.Relation.IdentityRelation Carrier) := by
-  exact
-    (BinaryOperationEqualityRequirements.identity_relation_is_equivalence
-      _requirements).1
+  sorry
 
 /-- Every binary operation's identity relation is symmetric. -/
 theorem BinaryOperationEqualityRequirements.identity_relation_is_symmetric
@@ -211,9 +205,7 @@ theorem BinaryOperationEqualityRequirements.identity_relation_is_symmetric
     {operation : BinaryEndoOperation Carrier}
     (_requirements : BinaryOperationEqualityRequirements operation) :
     LRA.Relation.Symmetric (LRA.Relation.IdentityRelation Carrier) := by
-  exact
-    (BinaryOperationEqualityRequirements.identity_relation_is_equivalence
-      _requirements).2.1
+  sorry
 
 /-- Every binary operation's identity relation is transitive. -/
 theorem BinaryOperationEqualityRequirements.identity_relation_is_transitive
@@ -221,9 +213,7 @@ theorem BinaryOperationEqualityRequirements.identity_relation_is_transitive
     {operation : BinaryEndoOperation Carrier}
     (_requirements : BinaryOperationEqualityRequirements operation) :
     LRA.Relation.Transitive (LRA.Relation.IdentityRelation Carrier) := by
-  exact
-    (BinaryOperationEqualityRequirements.identity_relation_is_equivalence
-      _requirements).2.2
+  sorry
 
 /-- Every unary operation's identity relation is reflexive. -/
 theorem UnaryOperationEqualityRequirements.identity_relation_is_reflexive
@@ -231,9 +221,7 @@ theorem UnaryOperationEqualityRequirements.identity_relation_is_reflexive
     {operation : UnaryEndoOperation Carrier}
     (_requirements : UnaryOperationEqualityRequirements operation) :
     LRA.Relation.Reflexive (LRA.Relation.IdentityRelation Carrier) := by
-  exact
-    (UnaryOperationEqualityRequirements.identity_relation_is_equivalence
-      _requirements).1
+  sorry
 
 /-- Every unary operation's identity relation is symmetric. -/
 theorem UnaryOperationEqualityRequirements.identity_relation_is_symmetric
@@ -241,9 +229,7 @@ theorem UnaryOperationEqualityRequirements.identity_relation_is_symmetric
     {operation : UnaryEndoOperation Carrier}
     (_requirements : UnaryOperationEqualityRequirements operation) :
     LRA.Relation.Symmetric (LRA.Relation.IdentityRelation Carrier) := by
-  exact
-    (UnaryOperationEqualityRequirements.identity_relation_is_equivalence
-      _requirements).2.1
+  sorry
 
 /-- Every unary operation's identity relation is transitive. -/
 theorem UnaryOperationEqualityRequirements.identity_relation_is_transitive
@@ -251,8 +237,6 @@ theorem UnaryOperationEqualityRequirements.identity_relation_is_transitive
     {operation : UnaryEndoOperation Carrier}
     (_requirements : UnaryOperationEqualityRequirements operation) :
     LRA.Relation.Transitive (LRA.Relation.IdentityRelation Carrier) := by
-  exact
-    (UnaryOperationEqualityRequirements.identity_relation_is_equivalence
-      _requirements).2.2
+  sorry
 
 end LRA.Map.Operation.Laws.EquationalLogic

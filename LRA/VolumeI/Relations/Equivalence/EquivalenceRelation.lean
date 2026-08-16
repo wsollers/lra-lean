@@ -32,13 +32,6 @@ theorem IdentityRelationIsEquivalenceRelation :
 theorem IdentityRelationIsEquivalenceRelation
     {Alpha : Type u} :
     EquivalenceRelation (IdentityRelation Alpha) := by
-  constructor
-  · intro element
-    rfl
-  · constructor
-    · intro left right related
-      exact related.symm
-    · intro first second third firstRelatedSecond secondRelatedThird
-      exact firstRelatedSecond.trans secondRelatedThird
+  sorry
 
 end LRA.Relation
