@@ -7,7 +7,16 @@ open LRA.Map.Operation
 universe u
 
 /--
+**[Definition — Commutative]**
+
 Commutativity of a binary endo-operation.
+
+Logical form:
+
+```lean
+def Commutative {Carrier : Type u}
+    (operation : BinaryEndoOperation Carrier) : Prop
+```
 -/
 def Commutative {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier) : Prop :=

@@ -16,7 +16,19 @@ section TypedInverse
 variable {Domain : Type u} {Codomain : Type v}
 
 /--
+**[Theorem — InverseFunctionLeftCancellation]**
+
 An inverse function cancels the original map on the left.
+
+Logical form:
+
+```lean
+theorem InverseFunctionLeftCancellation
+    (map : TypedMap Domain Codomain)
+    (inverse : InverseFunction map)
+    (input : Domain) :
+    inverse.inverse (map input) = input
+```
 -/
 theorem InverseFunctionLeftCancellation
     (map : TypedMap Domain Codomain)
@@ -26,7 +38,19 @@ theorem InverseFunctionLeftCancellation
   sorry
 
 /--
+**[Theorem — InverseFunctionRightCancellation]**
+
 An inverse function cancels the original map on the right.
+
+Logical form:
+
+```lean
+theorem InverseFunctionRightCancellation
+    (map : TypedMap Domain Codomain)
+    (inverse : InverseFunction map)
+    (output : Codomain) :
+    map (inverse.inverse output) = output
+```
 -/
 theorem InverseFunctionRightCancellation
     (map : TypedMap Domain Codomain)
@@ -36,7 +60,19 @@ theorem InverseFunctionRightCancellation
   sorry
 
 /--
+**[Theorem — TwoSidedInverseBijective]**
+
 Any two-sided inverse is bijective as a map in the reverse direction.
+
+Logical form:
+
+```lean
+theorem TwoSidedInverseBijective
+    (map : TypedMap Domain Codomain)
+    (inverse : TypedMap Codomain Domain)
+    (inverseLaw : TwoSidedInverse map inverse) :
+    LRA.Map.Bijective.Bijective inverse
+```
 -/
 theorem TwoSidedInverseBijective
     (map : TypedMap Domain Codomain)
@@ -46,7 +82,18 @@ theorem TwoSidedInverseBijective
   sorry
 
 /--
+**[Theorem — InverseFunctionBijective]**
+
 An inverse function is bijective.
+
+Logical form:
+
+```lean
+theorem InverseFunctionBijective
+    (map : TypedMap Domain Codomain)
+    (inverse : InverseFunction map) :
+    LRA.Map.Bijective.Bijective inverse.inverse
+```
 -/
 theorem InverseFunctionBijective
     (map : TypedMap Domain Codomain)
@@ -55,7 +102,21 @@ theorem InverseFunctionBijective
   sorry
 
 /--
+**[Theorem — LeftInverseImpliesLeftInverseOn]**
+
 A global left inverse restricts to any source set.
+
+Logical form:
+
+```lean
+theorem LeftInverseImpliesLeftInverseOn
+    {DomainSet : Type w₁} [Membership Domain DomainSet]
+    (map : TypedMap Domain Codomain)
+    (inverse : TypedMap Codomain Domain)
+    (source : DomainSet)
+    (leftInverse : LeftInverse map inverse) :
+    LeftInverseOn map inverse source
+```
 -/
 theorem LeftInverseImpliesLeftInverseOn
     {DomainSet : Type w₁} [Membership Domain DomainSet]
@@ -64,11 +125,23 @@ theorem LeftInverseImpliesLeftInverseOn
     (source : DomainSet)
     (leftInverse : LeftInverse map inverse) :
     LeftInverseOn map inverse source := by
-  intro input _
-  exact leftInverse input
-
+  sorry
 /--
+**[Theorem — RightInverseImpliesRightInverseOn]**
+
 A global right inverse restricts to any target set.
+
+Logical form:
+
+```lean
+theorem RightInverseImpliesRightInverseOn
+    {CodomainSet : Type w₂} [Membership Codomain CodomainSet]
+    (map : TypedMap Domain Codomain)
+    (inverse : TypedMap Codomain Domain)
+    (target : CodomainSet)
+    (rightInverse : RightInverse map inverse) :
+    RightInverseOn map inverse target
+```
 -/
 theorem RightInverseImpliesRightInverseOn
     {CodomainSet : Type w₂} [Membership Codomain CodomainSet]
@@ -77,11 +150,25 @@ theorem RightInverseImpliesRightInverseOn
     (target : CodomainSet)
     (rightInverse : RightInverse map inverse) :
     RightInverseOn map inverse target := by
-  intro output _
-  exact rightInverse output
-
+  sorry
 /--
+**[Theorem — TwoSidedInverseImpliesTwoSidedInverseOn]**
+
 A two-sided inverse restricts to any chosen source and target.
+
+Logical form:
+
+```lean
+theorem TwoSidedInverseImpliesTwoSidedInverseOn
+    {DomainSet : Type w₁} {CodomainSet : Type w₂}
+    [Membership Domain DomainSet] [Membership Codomain CodomainSet]
+    (map : TypedMap Domain Codomain)
+    (inverse : TypedMap Codomain Domain)
+    (source : DomainSet)
+    (target : CodomainSet)
+    (inverseLaw : TwoSidedInverse map inverse) :
+    TwoSidedInverseOn map inverse source target
+```
 -/
 theorem TwoSidedInverseImpliesTwoSidedInverseOn
     {DomainSet : Type w₁} {CodomainSet : Type w₂}
@@ -92,10 +179,7 @@ theorem TwoSidedInverseImpliesTwoSidedInverseOn
     (target : CodomainSet)
     (inverseLaw : TwoSidedInverse map inverse) :
     TwoSidedInverseOn map inverse source target := by
-  exact
-    ⟨LeftInverseImpliesLeftInverseOn map inverse source inverseLaw.1,
-      RightInverseImpliesRightInverseOn map inverse target inverseLaw.2⟩
-
+  sorry
 end TypedInverse
 
 section InverseOnImage
@@ -111,8 +195,22 @@ variable [SeparationLaws CodomainElement CodomainSet]
 variable [UniversalMembershipLaws CodomainElement CodomainSet]
 
 /--
+**[Theorem — RightInverseOnImageOfLeftInverseOn]**
+
 If an inverse recovers every point of a source after applying the map, then it
 is a right inverse on the image of that source.
+
+Logical form:
+
+```lean
+theorem RightInverseOnImageOfLeftInverseOn
+    (map : TypedMap DomainElement CodomainElement)
+    (inverse : TypedMap CodomainElement DomainElement)
+    (source : DomainSet)
+    (leftInverse : LeftInverseOn map inverse source) :
+    RightInverseOn map inverse
+      (LRA.Map.Image.Image map source : CodomainSet)
+```
 -/
 theorem RightInverseOnImageOfLeftInverseOn
     (map : TypedMap DomainElement CodomainElement)
@@ -124,8 +222,22 @@ theorem RightInverseOnImageOfLeftInverseOn
   sorry
 
 /--
+**[Theorem — TwoSidedInverseOnImageOfLeftInverseOn]**
+
 An inverse on a source is automatically a two-sided inverse between the source
 and its image.
+
+Logical form:
+
+```lean
+theorem TwoSidedInverseOnImageOfLeftInverseOn
+    (map : TypedMap DomainElement CodomainElement)
+    (inverse : TypedMap CodomainElement DomainElement)
+    (source : DomainSet)
+    (leftInverse : LeftInverseOn map inverse source) :
+    TwoSidedInverseOn map inverse source
+      (LRA.Map.Image.Image map source : CodomainSet)
+```
 -/
 theorem TwoSidedInverseOnImageOfLeftInverseOn
     (map : TypedMap DomainElement CodomainElement)
@@ -134,10 +246,7 @@ theorem TwoSidedInverseOnImageOfLeftInverseOn
     (leftInverse : LeftInverseOn map inverse source) :
     TwoSidedInverseOn map inverse source
       (LRA.Map.Image.Image map source : CodomainSet) := by
-  exact
-    ⟨leftInverse,
-      RightInverseOnImageOfLeftInverseOn map inverse source leftInverse⟩
-
+  sorry
 end InverseOnImage
 
 section SetPreimageCompatibility
@@ -156,8 +265,21 @@ variable [SeparationLaws DomainElement DomainSet]
 variable [UniversalMembershipLaws DomainElement DomainSet]
 
 /--
+**[Theorem — PreimageEqualsImageOfInverseFunction]**
+
 For a bijective map with inverse function, set-valued preimage agrees with
 direct image under the inverse function.
+
+Logical form:
+
+```lean
+theorem PreimageEqualsImageOfInverseFunction
+    (map : TypedMap DomainElement CodomainElement)
+    (inverse : InverseFunction map)
+    (target : CodomainSet) :
+    (LRA.Map.Preimage.Preimage map target : DomainSet) =
+      LRA.Map.Image.Image inverse.inverse target
+```
 -/
 theorem PreimageEqualsImageOfInverseFunction
     (map : TypedMap DomainElement CodomainElement)

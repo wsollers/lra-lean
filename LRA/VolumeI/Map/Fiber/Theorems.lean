@@ -7,8 +7,21 @@ open LRA.Map.Typed
 universe u v w
 
 /--
+**[Theorem — FibreMembership]**
+
 The British-spelled `Fibre` alias has the same membership condition as
 `Fiber`.
+
+Logical form:
+
+```lean
+theorem FibreMembership
+    {Domain : Type u} {Codomain : Type v}
+    (map : TypedMap Domain Codomain)
+    (output : Codomain)
+    (input : Domain) :
+    Fibre map output input <-> map input = output
+```
 -/
 theorem FibreMembership
     {Domain : Type u} {Codomain : Type v}
@@ -16,10 +29,22 @@ theorem FibreMembership
     (output : Codomain)
     (input : Domain) :
     Fibre map output input <-> map input = output := by
-  rfl
-
+  sorry
 /--
+**[Theorem — LevelSetMembership]**
+
 A level set is the fiber over the selected value.
+
+Logical form:
+
+```lean
+theorem LevelSetMembership
+    {Domain : Type u} {Codomain : Type v}
+    (map : TypedMap Domain Codomain)
+    (output : Codomain)
+    (input : Domain) :
+    LevelSet map output input <-> map input = output
+```
 -/
 theorem LevelSetMembership
     {Domain : Type u} {Codomain : Type v}
@@ -27,20 +52,41 @@ theorem LevelSetMembership
     (output : Codomain)
     (input : Domain) :
     LevelSet map output input <-> map input = output := by
-  rfl
-
+  sorry
 /--
+**[Theorem — KernelRelationReflexive]**
+
 The kernel relation is reflexive.
+
+Logical form:
+
+```lean
+theorem KernelRelationReflexive
+    {Domain : Type u} {Codomain : Type v}
+    (map : TypedMap Domain Codomain) :
+    forall input : Domain, KernelRelation map input input
+```
 -/
 theorem KernelRelationReflexive
     {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
     forall input : Domain, KernelRelation map input input := by
-  intro input
-  rfl
-
+  sorry
 /--
+**[Theorem — KernelRelationSymmetric]**
+
 The kernel relation is symmetric.
+
+Logical form:
+
+```lean
+theorem KernelRelationSymmetric
+    {Domain : Type u} {Codomain : Type v}
+    (map : TypedMap Domain Codomain) :
+    forall left right : Domain,
+      KernelRelation map left right ->
+      KernelRelation map right left
+```
 -/
 theorem KernelRelationSymmetric
     {Domain : Type u} {Codomain : Type v}
@@ -48,11 +94,23 @@ theorem KernelRelationSymmetric
     forall left right : Domain,
       KernelRelation map left right ->
       KernelRelation map right left := by
-  intro left right sameValue
-  exact sameValue.symm
-
+  sorry
 /--
+**[Theorem — KernelRelationTransitive]**
+
 The kernel relation is transitive.
+
+Logical form:
+
+```lean
+theorem KernelRelationTransitive
+    {Domain : Type u} {Codomain : Type v}
+    (map : TypedMap Domain Codomain) :
+    forall first second third : Domain,
+      KernelRelation map first second ->
+      KernelRelation map second third ->
+      KernelRelation map first third
+```
 -/
 theorem KernelRelationTransitive
     {Domain : Type u} {Codomain : Type v}
@@ -61,11 +119,25 @@ theorem KernelRelationTransitive
       KernelRelation map first second ->
       KernelRelation map second third ->
       KernelRelation map first third := by
-  intro first second third firstSecond secondThird
-  exact firstSecond.trans secondThird
-
+  sorry
 /--
+**[Theorem — FiberSaturatedByMap]**
+
 Every fiber is saturated by the kernel relation of its map.
+
+Logical form:
+
+```lean
+theorem FiberSaturatedByMap
+    {Domain : Type u} {Codomain : Type v}
+    {DomainSet : Type w}
+    [Membership Domain DomainSet]
+    {fiberSet : DomainSet}
+    {map : TypedMap Domain Codomain}
+    {output : Codomain}
+    (isFiber : IsFiberOf fiberSet map output) :
+    SaturatedBy fiberSet map
+```
 -/
 theorem FiberSaturatedByMap
     {Domain : Type u} {Codomain : Type v}
@@ -76,7 +148,5 @@ theorem FiberSaturatedByMap
     {output : Codomain}
     (isFiber : IsFiberOf fiberSet map output) :
     SaturatedBy fiberSet map := by
-  intro input fiberMate inputInFiber sameValue
-  exact (isFiber fiberMate).mpr (sameValue.symm.trans ((isFiber input).mp inputInFiber))
-
+  sorry
 end LRA.Map.Fiber

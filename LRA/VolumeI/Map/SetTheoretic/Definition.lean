@@ -8,7 +8,17 @@ open LRA.Set
 universe u v w x
 
 /--
+**[Structure — SetTheoreticMapTriple]**
+
 Raw domain/codomain/graph data for a set-theoretic map convention.
+
+Logical form:
+
+```lean
+structure SetTheoreticMapTriple
+    (DomainObject : Type v) (CodomainObject : Type w)
+    (GraphObject : Type x)
+```
 -/
 structure SetTheoreticMapTriple
     (DomainObject : Type v) (CodomainObject : Type w)
@@ -18,8 +28,18 @@ structure SetTheoreticMapTriple
   graph : GraphObject
 
 /--
+**[Structure — SetTheoreticRelationTriple]**
+
 Raw left-domain/right-domain/graph data for a set-theoretic relation
 convention.
+
+Logical form:
+
+```lean
+structure SetTheoreticRelationTriple
+    (LeftDomainObject : Type v) (RightDomainObject : Type w)
+    (GraphObject : Type x)
+```
 -/
 structure SetTheoreticRelationTriple
     (LeftDomainObject : Type v) (RightDomainObject : Type w)
@@ -29,7 +49,24 @@ structure SetTheoreticRelationTriple
   graph : GraphObject
 
 /--
+**[Definition — IsSetTheoreticMap]**
+
 The function condition for a raw set-theoretic map triple.
+
+Logical form:
+
+```lean
+def IsSetTheoreticMap
+    {DomainElement CodomainElement Pair : Type u}
+    {DomainObject : Type v} {CodomainObject : Type w}
+    {GraphObject : Type x}
+    [HasPairing DomainElement CodomainElement Pair]
+    [Membership DomainElement DomainObject]
+    [Membership CodomainElement CodomainObject]
+    [Membership Pair GraphObject]
+    (triple : SetTheoreticMapTriple
+      DomainObject CodomainObject GraphObject) : Prop
+```
 -/
 def IsSetTheoreticMap
     {DomainElement CodomainElement Pair : Type u}
@@ -54,7 +91,22 @@ def IsSetTheoreticMap
     firstOutput = secondOutput)
 
 /--
+**[Structure — SetTheoreticMap]**
+
 A raw set-theoretic map triple bundled with its function condition.
+
+Logical form:
+
+```lean
+structure SetTheoreticMap
+    (DomainElement CodomainElement Pair : Type u)
+    (DomainObject : Type v) (CodomainObject : Type w)
+    (GraphObject : Type x)
+    [HasPairing DomainElement CodomainElement Pair]
+    [Membership DomainElement DomainObject]
+    [Membership CodomainElement CodomainObject]
+    [Membership Pair GraphObject]
+```
 -/
 structure SetTheoreticMap
     (DomainElement CodomainElement Pair : Type u)

@@ -10,7 +10,20 @@ open LRA.Map.Typed
 universe u v
 
 /--
+**[Theorem — InjectiveOfLeftInverse]**
+
 Having a left inverse forces the original map to be injective.
+
+Logical form:
+
+```lean
+theorem InjectiveOfLeftInverse
+    {Domain : Type u} {Codomain : Type v}
+    {map : TypedMap Domain Codomain}
+    {inverse : TypedMap Codomain Domain}
+    (leftInverse : LeftInverse map inverse) :
+    LRA.Map.Injective.Injective map
+```
 -/
 theorem InjectiveOfLeftInverse
     {Domain : Type u} {Codomain : Type v}
@@ -18,14 +31,22 @@ theorem InjectiveOfLeftInverse
     {inverse : TypedMap Codomain Domain}
     (leftInverse : LeftInverse map inverse) :
     LRA.Map.Injective.Injective map := by
-  intro first second equalValues
-  calc
-    first = inverse (map first) := (leftInverse first).symm
-    _ = inverse (map second) := by rw [equalValues]
-    _ = second := leftInverse second
-
+  sorry
 /--
+**[Theorem — SurjectiveOfRightInverse]**
+
 Having a right inverse forces the original map to be surjective.
+
+Logical form:
+
+```lean
+theorem SurjectiveOfRightInverse
+    {Domain : Type u} {Codomain : Type v}
+    {map : TypedMap Domain Codomain}
+    {inverse : TypedMap Codomain Domain}
+    (rightInverse : RightInverse map inverse) :
+    LRA.Map.Surjective.Surjective map
+```
 -/
 theorem SurjectiveOfRightInverse
     {Domain : Type u} {Codomain : Type v}
@@ -33,19 +54,28 @@ theorem SurjectiveOfRightInverse
     {inverse : TypedMap Codomain Domain}
     (rightInverse : RightInverse map inverse) :
     LRA.Map.Surjective.Surjective map := by
-  intro output
-  exact ⟨inverse output, rightInverse output⟩
-
+  sorry
 /--
+**[Theorem — InjectiveAndSurjectiveOfTwoSidedInverse]**
+
 A two-sided inverse gives injectivity and surjectivity.
+
+Logical form:
+
+```lean
+theorem InjectiveAndSurjectiveOfTwoSidedInverse
+    {Domain : Type u} {Codomain : Type v}
+    {map : TypedMap Domain Codomain}
+    {inverse : TypedMap Codomain Domain}
+    (twoSided : TwoSidedInverse map inverse) :
+    LRA.Map.Injective.Injective map /\ LRA.Map.Surjective.Surjective map
+```
 -/
 theorem InjectiveAndSurjectiveOfTwoSidedInverse
     {Domain : Type u} {Codomain : Type v}
     {map : TypedMap Domain Codomain}
     {inverse : TypedMap Codomain Domain}
     (twoSided : TwoSidedInverse map inverse) :
-    LRA.Map.Injective.Injective map /\ LRA.Map.Surjective.Surjective map :=
-  ⟨InjectiveOfLeftInverse twoSided.left,
-    SurjectiveOfRightInverse twoSided.right⟩
-
+    LRA.Map.Injective.Injective map /\ LRA.Map.Surjective.Surjective map := by
+  sorry
 end LRA.Map.Inverse

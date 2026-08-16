@@ -7,7 +7,16 @@ open LRA.Map.Operation
 universe u
 
 /--
+**[Definition — LeftDistributive]**
+
 Left-distributivity of one binary endo-operation over another.
+
+Logical form:
+
+```lean
+def LeftDistributive {Carrier : Type u}
+    (outer inner : BinaryEndoOperation Carrier) : Prop
+```
 -/
 def LeftDistributive {Carrier : Type u}
     (outer inner : BinaryEndoOperation Carrier) : Prop :=
@@ -16,7 +25,16 @@ def LeftDistributive {Carrier : Type u}
       inner (outer left right) (outer left third)
 
 /--
+**[Definition — RightDistributive]**
+
 Right-distributivity of one binary endo-operation over another.
+
+Logical form:
+
+```lean
+def RightDistributive {Carrier : Type u}
+    (outer inner : BinaryEndoOperation Carrier) : Prop
+```
 -/
 def RightDistributive {Carrier : Type u}
     (outer inner : BinaryEndoOperation Carrier) : Prop :=
@@ -25,7 +43,16 @@ def RightDistributive {Carrier : Type u}
       inner (outer left third) (outer right third)
 
 /--
+**[Definition — TwoSidedDistributive]**
+
 Two-sided distributivity of one binary endo-operation over another.
+
+Logical form:
+
+```lean
+def TwoSidedDistributive {Carrier : Type u}
+    (outer inner : BinaryEndoOperation Carrier) : Prop
+```
 -/
 def TwoSidedDistributive {Carrier : Type u}
     (outer inner : BinaryEndoOperation Carrier) : Prop :=

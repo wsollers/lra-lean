@@ -7,7 +7,17 @@ open LRA.Map.Operation
 universe u
 
 /--
+**[Definition — LeftAbsorbing]**
+
 Left-absorbing law for a binary endo-operation.
+
+Logical form:
+
+```lean
+def LeftAbsorbing {Carrier : Type u}
+    (operation : BinaryEndoOperation Carrier)
+    (absorber : Carrier) : Prop
+```
 -/
 def LeftAbsorbing {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier)
@@ -15,7 +25,17 @@ def LeftAbsorbing {Carrier : Type u}
   forall element, operation absorber element = absorber
 
 /--
+**[Definition — RightAbsorbing]**
+
 Right-absorbing law for a binary endo-operation.
+
+Logical form:
+
+```lean
+def RightAbsorbing {Carrier : Type u}
+    (operation : BinaryEndoOperation Carrier)
+    (absorber : Carrier) : Prop
+```
 -/
 def RightAbsorbing {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier)
@@ -23,7 +43,17 @@ def RightAbsorbing {Carrier : Type u}
   forall element, operation element absorber = absorber
 
 /--
+**[Definition — TwoSidedAbsorbing]**
+
 Two-sided absorbing law for a binary endo-operation.
+
+Logical form:
+
+```lean
+def TwoSidedAbsorbing {Carrier : Type u}
+    (operation : BinaryEndoOperation Carrier)
+    (absorber : Carrier) : Prop
+```
 -/
 def TwoSidedAbsorbing {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier)

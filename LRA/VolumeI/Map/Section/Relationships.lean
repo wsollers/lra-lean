@@ -9,7 +9,20 @@ open LRA.Map.Typed
 universe u v
 
 /--
+**[Theorem — SurjectiveOfSection]**
+
 If a map has a section, then it is surjective.
+
+Logical form:
+
+```lean
+theorem SurjectiveOfSection
+    {Domain : Type u} {Codomain : Type v}
+    {sectionMap : TypedMap Codomain Domain}
+    {map : TypedMap Domain Codomain}
+    (isSection : SectionOf sectionMap map) :
+    LRA.Map.Surjective.Surjective map
+```
 -/
 theorem SurjectiveOfSection
     {Domain : Type u} {Codomain : Type v}
@@ -17,7 +30,5 @@ theorem SurjectiveOfSection
     {map : TypedMap Domain Codomain}
     (isSection : SectionOf sectionMap map) :
     LRA.Map.Surjective.Surjective map := by
-  intro output
-  exact ⟨sectionMap output, isSection output⟩
-
+  sorry
 end LRA.Map.Section

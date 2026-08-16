@@ -10,7 +10,17 @@ open LRA.Map.Typed
 universe u v w
 
 /--
+**[Definition — Fiber]**
+
 The predicate fiber of a typed map over a codomain element.
+
+Logical form:
+
+```lean
+def Fiber {Domain : Type u} {Codomain : Type v}
+    (map : TypedMap Domain Codomain)
+    (output : Codomain) : Domain -> Prop
+```
 -/
 def Fiber {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain)
@@ -18,8 +28,21 @@ def Fiber {Domain : Type u} {Codomain : Type v}
   fun input => map input = output
 
 /--
+**[Definition — IsFiberOf]**
+
 A backend set is the fiber of a typed map over an output when its members are
 exactly the inputs mapped to that output.
+
+Logical form:
+
+```lean
+def IsFiberOf {Domain : Type u} {Codomain : Type v}
+    {DomainSet : Type w}
+    [Membership Domain DomainSet]
+    (fiberSet : DomainSet)
+    (map : TypedMap Domain Codomain)
+    (output : Codomain) : Prop
+```
 -/
 def IsFiberOf {Domain : Type u} {Codomain : Type v}
     {DomainSet : Type w}
@@ -30,7 +53,20 @@ def IsFiberOf {Domain : Type u} {Codomain : Type v}
   forall input : Domain, input ∈ fiberSet <-> map input = output
 
 /--
+**[Definition — AmbientFiber]**
+
 The fiber over one codomain value, separated from an explicit ambient domain.
+
+Logical form:
+
+```lean
+def AmbientFiber {Domain : Type u} {Codomain : Type v}
+    {DomainSet : Type w}
+    [HasSeparation Domain DomainSet]
+    (ambientDomain : DomainSet)
+    (map : TypedMap Domain Codomain)
+    (output : Codomain) : DomainSet
+```
 -/
 def AmbientFiber {Domain : Type u} {Codomain : Type v}
     {DomainSet : Type w}
@@ -49,7 +85,17 @@ variable [HasSeparation Domain DomainSet]
 variable [HasUniversal DomainSet]
 
 /--
+**[Definition — FiberSet]**
+
 The backend set fiber of a typed map over an output.
+
+Logical form:
+
+```lean
+def FiberSet
+    (map : TypedMap Domain Codomain)
+    (output : Codomain) : DomainSet
+```
 -/
 def FiberSet
     (map : TypedMap Domain Codomain)
@@ -60,16 +106,37 @@ def FiberSet
 end WithSeparation
 
 /--
+**[Definition — KernelRelation]**
+
 The kernel relation of a typed map: two inputs are related when the map sends
 them to the same output.
+
+Logical form:
+
+```lean
+def KernelRelation {Domain : Type u} {Codomain : Type v}
+    (map : TypedMap Domain Codomain) : Domain -> Domain -> Prop
+```
 -/
 def KernelRelation {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) : Domain -> Domain -> Prop :=
   fun left right => map left = map right
 
 /--
+**[Definition — SaturatedBy]**
+
 A backend set is saturated by a map when it contains every fiber-mate of each
 of its members.
+
+Logical form:
+
+```lean
+def SaturatedBy {Domain : Type u} {Codomain : Type v}
+    {DomainSet : Type w}
+    [Membership Domain DomainSet]
+    (subset : DomainSet)
+    (map : TypedMap Domain Codomain) : Prop
+```
 -/
 def SaturatedBy {Domain : Type u} {Codomain : Type v}
     {DomainSet : Type w}

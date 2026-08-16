@@ -9,8 +9,21 @@ open LRA.Map.Typed
 universe u v
 
 /--
+**[Theorem — InjectiveOfRetraction]**
+
 If `retraction` retracts an inclusion-like map, then the inclusion-like map is
 injective.
+
+Logical form:
+
+```lean
+theorem InjectiveOfRetraction
+    {Small : Type u} {Large : Type v}
+    {retraction : TypedMap Large Small}
+    {inclusion : TypedMap Small Large}
+    (isRetraction : RetractionOf retraction inclusion) :
+    LRA.Map.Injective.Injective inclusion
+```
 -/
 theorem InjectiveOfRetraction
     {Small : Type u} {Large : Type v}
@@ -18,10 +31,5 @@ theorem InjectiveOfRetraction
     {inclusion : TypedMap Small Large}
     (isRetraction : RetractionOf retraction inclusion) :
     LRA.Map.Injective.Injective inclusion := by
-  intro first second equalValues
-  calc
-    first = retraction (inclusion first) := (isRetraction first).symm
-    _ = retraction (inclusion second) := by rw [equalValues]
-    _ = second := isRetraction second
-
+  sorry
 end LRA.Map.Retraction

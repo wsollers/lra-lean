@@ -9,13 +9,24 @@ open LRA.Map.Typed
 universe u
 
 /--
+**[Theorem — IdentityMapTwoSidedInverse]**
+
 The identity map is its own two-sided inverse.
+
+Logical form:
+
+```lean
+theorem IdentityMapTwoSidedInverse
+    (Domain : Type u) :
+    LRA.Map.Inverse.TwoSidedInverse
+      (IdentityMap Domain)
+      (IdentityMap Domain)
+```
 -/
 theorem IdentityMapTwoSidedInverse
     (Domain : Type u) :
     LRA.Map.Inverse.TwoSidedInverse
       (IdentityMap Domain)
-      (IdentityMap Domain) :=
-  ⟨fun _ => rfl, fun _ => rfl⟩
-
+      (IdentityMap Domain) := by
+  sorry
 end LRA.Map.Identity

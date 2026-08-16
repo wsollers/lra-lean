@@ -7,7 +7,16 @@ open LRA.Map.Operation
 universe u
 
 /--
+**[Definition — Associative]**
+
 Associativity of a binary endo-operation.
+
+Logical form:
+
+```lean
+def Associative {Carrier : Type u}
+    (operation : BinaryEndoOperation Carrier) : Prop
+```
 -/
 def Associative {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier) : Prop :=

@@ -9,16 +9,39 @@ open LRA.Set
 universe u v w
 
 /--
+**[Theorem — injective_iff_standard]**
+
 The LRA map definition agrees with Lean's standard injectivity predicate.
+
+Logical form:
+
+```lean
+theorem injective_iff_standard
+    {Domain : Type u} {Codomain : Type v}
+    (map : TypedMap Domain Codomain) :
+    Injective map <-> _root_.Function.Injective map
+```
 -/
 theorem injective_iff_standard
     {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
-    Injective map <-> _root_.Function.Injective map :=
-  Iff.rfl
-
+    Injective map <-> _root_.Function.Injective map := by
+  sorry
 /--
+**[Definition — InjectiveByFibers]**
+
 Fiber formulation of injectivity over an explicit ambient domain.
+
+Logical form:
+
+```lean
+def InjectiveByFibers
+    {Element : Type u} {Codomain : Type v} {SetObject : Type w}
+    [Membership Element SetObject]
+    [HasSeparation Element SetObject]
+    (ambientDomain : SetObject)
+    (map : TypedMap Element Codomain) : Prop
+```
 -/
 def InjectiveByFibers
     {Element : Type u} {Codomain : Type v} {SetObject : Type w}

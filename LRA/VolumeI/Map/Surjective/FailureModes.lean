@@ -9,48 +9,68 @@ open LRA.Map.Examples.Canonical
 universe u v
 
 /--
+**[Definition — MissesValue]**
+
 A map misses a value when some codomain value is hit by no input.
+
+Logical form:
+
+```lean
+def MissesValue {Domain : Type u} {Codomain : Type v}
+    (map : TypedMap Domain Codomain) : Prop
+```
 -/
 def MissesValue {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) : Prop :=
   exists output : Codomain, forall input : Domain, map input ≠ output
 
 /--
+**[Theorem — MissesValueIffNotSurjective]**
+
 Missing a value is exactly a failure of surjectivity.
+
+Logical form:
+
+```lean
+theorem MissesValueIffNotSurjective
+    {Domain : Type u} {Codomain : Type v}
+    (map : TypedMap Domain Codomain) :
+    MissesValue map <-> ¬ Surjective map
+```
 -/
 theorem MissesValueIffNotSurjective
     {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
     MissesValue map <-> ¬ Surjective map := by
-  classical
-  constructor
-  · intro missed surjective
-    obtain ⟨output, misses⟩ := missed
-    obtain ⟨input, hits⟩ := surjective output
-    exact misses input hits
-  · intro notSurjective
-    by_cases missed : MissesValue map
-    · exact missed
-    · exfalso
-      apply notSurjective
-      intro output
-      by_cases hasPreimage : exists input : Domain, map input = output
-      · exact hasPreimage
-      · exfalso
-        exact missed ⟨output, fun input hits => hasPreimage ⟨input, hits⟩⟩
-
+  sorry
 /--
+**[Theorem — ShiftMissesZero]**
+
 The successor shift misses zero.
+
+Logical form:
+
+```lean
+theorem ShiftMissesZero :
+    MissesValue shift
+```
 -/
 theorem ShiftMissesZero :
     MissesValue shift := by
-  exact ⟨0, fun input hits => Nat.succ_ne_zero input hits⟩
-
+  sorry
 /--
+**[Theorem — ShiftNotSurjective]**
+
 The successor shift is not surjective.
+
+Logical form:
+
+```lean
+theorem ShiftNotSurjective :
+    ¬ Surjective shift
+```
 -/
 theorem ShiftNotSurjective :
-    ¬ Surjective shift :=
-  (MissesValueIffNotSurjective shift).mp ShiftMissesZero
-
+    ¬ Surjective shift := by
+  sorry
 end LRA.Map.Surjective

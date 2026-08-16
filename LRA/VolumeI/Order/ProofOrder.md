@@ -553,10 +553,10 @@ Each entry is a human mathematical statement rather than a repetition of the Lea
 
 ### 89. `OrderedSets/PartialOrder/Relationships.lean`
 
-- [ ] **StrictPartIff** — Let \(P\) be a set, let \(a\), \(b\) belong to \(P\). Then the strict part unfolds to non-strict comparison plus inequality. ([source](./OrderedSets/PartialOrder/Relationships.lean#L35))
-- [ ] **StrictPartIffNotConverse** — Let \(P\) be a set, let \(a\), \(b\) belong to \(P\). Then the strict part of a non-strict partial order agrees with the preorder-compatible strict part because antisymmetry is available. ([source](./OrderedSets/PartialOrder/Relationships.lean#L54))
-- [ ] **StrictPartIsStrictOrder** — Let \(P\) be a set. Then the strict part of a non-strict partial order is a strict order. ([source](./OrderedSets/PartialOrder/Relationships.lean#L88))
-- [ ] **DualIsPartialOrder** — Let \(P\) be a set. Then the dual relation of a partial order is again a partial order. ([source](./OrderedSets/PartialOrder/Relationships.lean#L120))
+- [ ] **StrictPartIff** — Let \(P\) be a set, let \(a\), \(b\) belong to \(P\). Then the strict part unfolds to non-strict comparison plus inequality. ([source](./OrderedSets/PartialOrder/Relationships.lean#L39))
+- [ ] **StrictPartIffNotConverse** — Let \(P\) be a set, let \(a\), \(b\) belong to \(P\). Then the strict part of a non-strict partial order agrees with the preorder-compatible strict part because antisymmetry is available. ([source](./OrderedSets/PartialOrder/Relationships.lean#L59))
+- [ ] **StrictPartIsStrictOrder** — Let \(P\) be a set. Then the strict part of a non-strict partial order is a strict order. ([source](./OrderedSets/PartialOrder/Relationships.lean#L97))
+- [ ] **DualIsPartialOrder** — Let \(P\) be a set. Then the dual relation of a partial order is again a partial order. ([source](./OrderedSets/PartialOrder/Relationships.lean#L133))
 
 ### 90. `OrderedSets/PartialOrder/Theorems.lean`
 

@@ -17,8 +17,19 @@ variable [Membership DomainElement DomainSet]
 variable [Membership CodomainElement CodomainSet]
 
 /--
+**[Definition — IsPreimageOf]**
+
 A set is the preimage of a target set under a typed map when its members are
 exactly the domain elements whose values lie in the target.
+
+Logical form:
+
+```lean
+def IsPreimageOf
+    (preimageSet : DomainSet)
+    (map : TypedMap DomainElement CodomainElement)
+    (target : CodomainSet) : Prop
+```
 -/
 def IsPreimageOf
     (preimageSet : DomainSet)
@@ -32,8 +43,18 @@ variable [HasSeparation DomainElement DomainSet]
 variable [HasUniversal DomainSet]
 
 /--
+**[Definition — Preimage]**
+
 The preimage of a target set under a typed map, formed by separating from the
 domain universe.
+
+Logical form:
+
+```lean
+def Preimage
+    (map : TypedMap DomainElement CodomainElement)
+    (target : CodomainSet) : DomainSet
+```
 -/
 def Preimage
     (map : TypedMap DomainElement CodomainElement)
@@ -42,7 +63,17 @@ def Preimage
     (fun input : DomainElement => map input ∈ target)
 
 /--
+**[Definition — InverseImage]**
+
 Alias emphasizing inverse image notation.
+
+Logical form:
+
+```lean
+def InverseImage
+    (map : TypedMap DomainElement CodomainElement)
+    (target : CodomainSet) : DomainSet
+```
 -/
 def InverseImage
     (map : TypedMap DomainElement CodomainElement)

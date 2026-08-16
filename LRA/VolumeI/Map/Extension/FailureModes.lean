@@ -7,8 +7,19 @@ open LRA.Map.Typed
 universe u v w
 
 /--
+**[Definition — MultipleExtensions]**
+
 An original map has multiple extensions along an inclusion-like map when two
 distinct extensions both agree with it on the included domain.
+
+Logical form:
+
+```lean
+def MultipleExtensions
+    {SmallDomain : Type u} {LargeDomain : Type v} {Codomain : Type w}
+    (original : TypedMap SmallDomain Codomain)
+    (inclusion : TypedMap SmallDomain LargeDomain) : Prop
+```
 -/
 def MultipleExtensions
     {SmallDomain : Type u} {LargeDomain : Type v} {Codomain : Type w}

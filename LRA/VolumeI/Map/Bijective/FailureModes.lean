@@ -9,7 +9,17 @@ open LRA.Map.Typed
 universe u v
 
 /--
+**[Definition — FailsBijective]**
+
 A map fails to be bijective when it has either a collision or a missed value.
+
+Logical form:
+
+```lean
+def FailsBijective
+    {Domain : Type u} {Codomain : Type v}
+    (map : TypedMap Domain Codomain) : Prop
+```
 -/
 def FailsBijective
     {Domain : Type u} {Codomain : Type v}

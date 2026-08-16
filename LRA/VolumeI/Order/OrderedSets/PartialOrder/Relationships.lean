@@ -8,6 +8,8 @@ namespace LRA.Order.OrderedSets.PartialOrder
 universe u
 
 /--
+**[Definition — StrictPart]**
+
 The strict part of a non-strict partial order.
 
 Logical form:
@@ -23,6 +25,8 @@ def StrictPart
   LRA.Order.StrictPart order.relation
 
 /--
+**[Theorem — StrictPartIff]**
+
 The strict part unfolds to non-strict comparison plus inequality.
 
 Logical form:
@@ -39,8 +43,9 @@ theorem StrictPartIff
     StrictPart order left right <->
       order.relation left right /\ left ≠ right := by
   sorry
-
 /--
+**[Theorem — StrictPartIffNotConverse]**
+
 The strict part of a non-strict partial order agrees with the
 preorder-compatible strict part because antisymmetry is available.
 
@@ -60,6 +65,8 @@ theorem StrictPartIffNotConverse
   sorry
 
 /--
+**[Definition — StrictPartAsStrictOrder]**
+
 The strict part of a non-strict partial order, bundled as a strict order.
 
 Logical form:
@@ -77,6 +84,8 @@ def StrictPartAsStrictOrder
     sorry
 
 /--
+**[Theorem — StrictPartIsStrictOrder]**
+
 The strict part of a non-strict partial order is a strict order.
 
 Logical form:
@@ -92,6 +101,8 @@ theorem StrictPartIsStrictOrder
   sorry
 
 /--
+**[Definition — Dual]**
+
 The dual of a non-strict partial order reverses the comparison relation.
 
 Logical form:
@@ -109,6 +120,8 @@ def Dual
     sorry
 
 /--
+**[Theorem — DualIsPartialOrder]**
+
 The dual relation of a partial order is again a partial order.
 
 Logical form:

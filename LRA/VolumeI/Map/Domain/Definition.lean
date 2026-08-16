@@ -7,7 +7,16 @@ open LRA.Map.Typed
 universe u v w
 
 /--
+**[Abbreviation — DomainOf]**
+
 The source type of a typed map.
+
+Logical form:
+
+```lean
+abbrev DomainOf {Domain : Type u} {Codomain : Type v}
+    (_map : TypedMap Domain Codomain) : Type u
+```
 -/
 abbrev DomainOf {Domain : Type u} {Codomain : Type v}
     (_map : TypedMap Domain Codomain) : Type u :=
@@ -20,7 +29,17 @@ class HasDomain (MapObject : Type u) (DomainObject : outParam (Type v)) where
   domain : MapObject -> DomainObject
 
 /--
+**[Definition — Domain]**
+
 Retrieve the declared domain object of a map-like object.
+
+Logical form:
+
+```lean
+def Domain {MapObject : Type u} {DomainObject : Type v}
+    [HasDomain MapObject DomainObject]
+    (mapObject : MapObject) : DomainObject
+```
 -/
 def Domain {MapObject : Type u} {DomainObject : Type v}
     [HasDomain MapObject DomainObject]

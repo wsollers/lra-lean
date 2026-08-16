@@ -10,7 +10,18 @@ open LRA.Map.Typed
 universe u v w
 
 /--
+**[Definition — CompositeInjectiveSecondNotInjective]**
+
 The composite can be injective while its second leg is not.
+
+Logical form:
+
+```lean
+def CompositeInjectiveSecondNotInjective
+    {Domain : Type u} {Middle : Type v} {Codomain : Type w}
+    (first : TypedMap Domain Middle)
+    (second : TypedMap Middle Codomain) : Prop
+```
 -/
 def CompositeInjectiveSecondNotInjective
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
@@ -20,7 +31,18 @@ def CompositeInjectiveSecondNotInjective
     ¬ LRA.Map.Injective.Injective second
 
 /--
+**[Definition — CompositeSurjectiveFirstNotSurjective]**
+
 The composite can be surjective while its first leg is not.
+
+Logical form:
+
+```lean
+def CompositeSurjectiveFirstNotSurjective
+    {Domain : Type u} {Middle : Type v} {Codomain : Type w}
+    (first : TypedMap Domain Middle)
+    (second : TypedMap Middle Codomain) : Prop
+```
 -/
 def CompositeSurjectiveFirstNotSurjective
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
@@ -30,8 +52,19 @@ def CompositeSurjectiveFirstNotSurjective
     ¬ LRA.Map.Surjective.Surjective first
 
 /--
+**[Definition — CompositeBijectiveWithSlackMiddle]**
+
 The composite can be bijective while neither stage is forced to be bijective
 in the missing direction.
+
+Logical form:
+
+```lean
+def CompositeBijectiveWithSlackMiddle
+    {Domain : Type u} {Middle : Type v} {Codomain : Type w}
+    (first : TypedMap Domain Middle)
+    (second : TypedMap Middle Codomain) : Prop
+```
 -/
 def CompositeBijectiveWithSlackMiddle
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}

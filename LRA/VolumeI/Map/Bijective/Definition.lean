@@ -10,7 +10,16 @@ open LRA.Map.Surjective
 universe u v
 
 /--
+**[Definition — Bijective]**
+
 A typed map is bijective when it is injective and surjective.
+
+Logical form:
+
+```lean
+def Bijective {Domain : Type u} {Codomain : Type v}
+    (map : TypedMap Domain Codomain) : Prop
+```
 -/
 def Bijective {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) : Prop :=

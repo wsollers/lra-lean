@@ -9,47 +9,68 @@ open LRA.Map.Examples.Canonical
 universe u v
 
 /--
+**[Definition — HasCollision]**
+
 A map has a collision when two distinct domain elements have the same image.
+
+Logical form:
+
+```lean
+def HasCollision {Domain : Type u} {Codomain : Type v}
+    (map : TypedMap Domain Codomain) : Prop
+```
 -/
 def HasCollision {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) : Prop :=
   exists first second : Domain, first ≠ second /\ map first = map second
 
 /--
+**[Theorem — HasCollisionIffNotInjective]**
+
 A collision is exactly a failure of injectivity.
+
+Logical form:
+
+```lean
+theorem HasCollisionIffNotInjective
+    {Domain : Type u} {Codomain : Type v}
+    (map : TypedMap Domain Codomain) :
+    HasCollision map <-> ¬ Injective map
+```
 -/
 theorem HasCollisionIffNotInjective
     {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
     HasCollision map <-> ¬ Injective map := by
-  classical
-  constructor
-  · intro collision injective
-    obtain ⟨first, second, distinct, equalValues⟩ := collision
-    exact distinct (injective first second equalValues)
-  · intro notInjective
-    by_cases collision : HasCollision map
-    · exact collision
-    · exfalso
-      apply notInjective
-      intro first second equalValues
-      by_cases equalInputs : first = second
-      · exact equalInputs
-      · exfalso
-        exact collision ⟨first, second, equalInputs, equalValues⟩
-
+  sorry
 /--
+**[Theorem — CollapseHasCollision]**
+
 The Boolean collapse map has a collision.
+
+Logical form:
+
+```lean
+theorem CollapseHasCollision :
+    HasCollision collapse
+```
 -/
 theorem CollapseHasCollision :
     HasCollision collapse := by
-  exact ⟨true, false, by decide, rfl⟩
-
+  sorry
 /--
+**[Theorem — CollapseNotInjective]**
+
 The Boolean collapse map is not injective.
+
+Logical form:
+
+```lean
+theorem CollapseNotInjective :
+    ¬ Injective collapse
+```
 -/
 theorem CollapseNotInjective :
-    ¬ Injective collapse :=
-  (HasCollisionIffNotInjective collapse).mp CollapseHasCollision
-
+    ¬ Injective collapse := by
+  sorry
 end LRA.Map.Injective
