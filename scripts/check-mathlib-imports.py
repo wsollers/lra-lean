@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Check the Volume I/II Mathlib import policy.
 
-Volume I and Volume II are intended to stay bare Lean except for explicitly
-allowed compatibility adapters.  Keep the allow list here so local builds and
+Volume I and Volume II keep core definitions and theorem aggregates bare Lean.
+Mathlib is quarantined to examples, failure modes, adapters, and explicitly
+named interoperability leaves.  Keep the allow list here so local builds and
 GitHub Actions enforce the same rule.
 """
 
@@ -43,6 +44,28 @@ ALLOWED_FILENAMES = {
     "FailureModes.lean",
 }
 
+ALLOWED_DIR_PARTS = {
+    "Examples",
+    "FailureModes",
+    "MathlibAdapters",
+    "MathlibBridge",
+    "Interoperability",
+}
+
+CORE_AGGREGATE_ROOTS = [
+    ROOT / "LRA" / "VolumeI" / "Map",
+    ROOT / "LRA" / "VolumeI" / "Relations",
+    ROOT / "LRA" / "VolumeI" / "Order",
+]
+
+QUARANTINED_IMPORT_MARKERS = (
+    ".Examples",
+    ".FailureModes",
+    ".MathlibAdapters",
+    ".MathlibBridge",
+    ".Interoperability.Mathlib",
+)
+
 
 def relative_posix(path: pathlib.Path) -> pathlib.PurePosixPath:
     return pathlib.PurePosixPath(path.relative_to(ROOT).as_posix())
@@ -50,9 +73,14 @@ def relative_posix(path: pathlib.Path) -> pathlib.PurePosixPath:
 
 def is_allowed(path: pathlib.Path) -> bool:
     relative = relative_posix(path)
-    return relative in ALLOWED_PATHS or relative.name in ALLOWED_FILENAMES or any(
-        relative == prefix or prefix in relative.parents
-        for prefix in ALLOWED_PREFIXES
+    return (
+        relative in ALLOWED_PATHS
+        or relative.name in ALLOWED_FILENAMES
+        or bool(set(relative.parts) & ALLOWED_DIR_PARTS)
+        or any(
+            relative == prefix or prefix in relative.parents
+            for prefix in ALLOWED_PREFIXES
+        )
     )
 
 
@@ -66,6 +94,28 @@ def lean_files() -> list[pathlib.Path]:
     return files
 
 
+def core_aggregate_files() -> list[pathlib.Path]:
+    files: list[pathlib.Path] = []
+    for root in CORE_AGGREGATE_ROOTS:
+        if not root.exists():
+            continue
+        files.extend(
+            sorted(
+                path
+                for path in root.rglob("All.lean")
+                if not (set(relative_posix(path).parts) & ALLOWED_DIR_PARTS)
+            )
+        )
+    return files
+
+
+def imported_module(line: str) -> str | None:
+    stripped = line.strip()
+    if not stripped.startswith("import "):
+        return None
+    return stripped.split(None, 1)[1]
+
+
 def main() -> int:
     failures: list[str] = []
     for path in lean_files():
@@ -77,11 +127,24 @@ def main() -> int:
                     f"{relative_posix(path)}:{line_number}:{line.strip()}"
                 )
 
+    aggregate_failures: list[str] = []
+    for path in core_aggregate_files():
+        for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+            module = imported_module(line)
+            if module is None:
+                continue
+            if module.startswith("Mathlib") or any(
+                marker in module for marker in QUARANTINED_IMPORT_MARKERS
+            ):
+                aggregate_failures.append(
+                    f"{relative_posix(path)}:{line_number}:{line.strip()}"
+                )
+
     if failures:
         for failure in failures:
             print(failure, file=sys.stderr)
         print(
-            "ERROR: Mathlib import found in VolumeI/VolumeII outside the allow list.",
+            "ERROR: Mathlib import found in VolumeI/VolumeII outside the quarantine allow list.",
             file=sys.stderr,
         )
         print("Allowed prefixes:", file=sys.stderr)
@@ -95,7 +158,21 @@ def main() -> int:
             print(f"  - {filename}", file=sys.stderr)
         return 1
 
+    if aggregate_failures:
+        for failure in aggregate_failures:
+            print(failure, file=sys.stderr)
+        print(
+            "ERROR: core All.lean aggregate imports a quarantined example/failure/adapter/Mathlib leaf.",
+            file=sys.stderr,
+        )
+        print(
+            "Use AllWithExamples.lean for those imports so core aggregates remain Mathlib-free.",
+            file=sys.stderr,
+        )
+        return 1
+
     print("No disallowed Mathlib imports in VolumeI / VolumeII.")
+    print("No reviewed core All.lean aggregate imports quarantined leaves.")
     return 0
 
 

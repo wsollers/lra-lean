@@ -130,18 +130,14 @@ jobs:
             lra-lean:update-candidate \
             lake update
 
-      - name: Check no Mathlib import in VolumeI / VolumeII
+      - name: Check Mathlib import policy in VolumeI / VolumeII
         if: steps.versions.outputs.update_needed == 'true'
         run: |
           docker run --rm \
             -v "${{ github.workspace }}:/workspace" \
             -w /workspace \
             lra-lean:update-candidate \
-            bash -lc 'if grep -rn "^import Mathlib" LRA/VolumeI/ LRA/VolumeII/ LRA/VolumeI.lean LRA/VolumeII.lean --include="*.lean"; then
-              echo "ERROR: Mathlib import found in VolumeI/VolumeII (must be bare Lean 4)."
-              exit 1
-            fi
-            echo "No Mathlib imports in VolumeI / VolumeII"'
+            python3 scripts/check-mathlib-imports.py
 
       - name: Enforce Volume II namespace policy
         if: steps.versions.outputs.update_needed == 'true'

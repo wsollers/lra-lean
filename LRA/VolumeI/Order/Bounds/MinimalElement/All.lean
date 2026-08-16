@@ -1,7 +1,4 @@
 import LRA.VolumeI.Order.Bounds.MinimalElement.Definition
-import LRA.VolumeI.Order.Bounds.MinimalElement.MathlibAdapters
-import LRA.VolumeI.Order.Bounds.MinimalElement.FailureModes
-import LRA.VolumeI.Order.Bounds.MinimalElement.Examples
 import LRA.VolumeI.Order.Bounds.MinimalElement.Relationships
 
 /-!

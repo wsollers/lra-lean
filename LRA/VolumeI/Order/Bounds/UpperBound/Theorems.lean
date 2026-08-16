@@ -125,26 +125,6 @@ theorem UpperBoundOfIntersection
 /-- Every upper bound of a set bounds each represented relative difference. -/
 theorem UpperBoundOfDifference
     {Element : Type u} {SetObject : Type v}
-    [Memb
-
-/-- An upper bound of either set is an upper bound of their intersection. -/
-theorem UpperBoundOfIntersection
-    {Element : Type u} {SetObject : Type v}
-    [Membership Element SetObject]
-    [Union SetObject] [Inter SetObject] [SDiff SetObject]
-    [EmptyCollection SetObject] [HasSubset SetObject]
-    [LRA.Set.MembershipLaws Element SetObject]
-    {relation : LRA.Relation.Endorelation Element}
-    {leftSubset rightSubset : SetObject} {bound : Element}
-    (boundIsUpperForEither :
-      UpperBound relation leftSubset bound \/
-        UpperBound relation rightSubset bound) :
-    UpperBound relation (leftSubset ∩ rightSubset) bound := by
-  sorry
-
-/-- Every upper bound of a set bounds each represented relative difference. -/
-theorem UpperBoundOfDifference
-    {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
     [Union SetObject] [Inter SetObject] [SDiff SetObject]
     [EmptyCollection SetObject] [HasSubset SetObject]

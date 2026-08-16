@@ -1,4 +1,3 @@
-import LRA.VolumeI.Map.Examples.All
 import LRA.VolumeI.Map.Typed.All
 import LRA.VolumeI.Map.SetTheoretic.All
 import LRA.VolumeI.Map.Graph.All
