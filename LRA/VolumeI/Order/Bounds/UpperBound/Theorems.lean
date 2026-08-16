@@ -88,27 +88,44 @@ theorem UpperBoundOfUnionIff
     UpperBound relation (leftSubset ∪ rightSubset) bound ↔
       UpperBound relation leftSubset bound /\
         UpperBound relation rightSubset bound := by
-  unfold UpperBound
-  constructor
-  · -- mp
-    intro boundIsUpperForUnion
     constructor
-
-    · -- prove bound is upper for leftSubset
-      intro element
-      intro elementInLeft
+    . -- -->
+      intro hypothesis
+      constructor
+      . -- lhs
+        unfold UpperBound -- replace UpperBound in goal
+                          -- with its definition to expose UI
+        intro chosen
+        intro chosenInLeft
+        have chosenInUnion : chosen ∈ leftSubset ∪ rightSubset := by
+          exact (LRA.Set.UnionMembership leftSubset rightSubset chosen).mpr
+            (Or.inl chosenInLeft)
+        exact hypothesis chosen chosenInUnion
+      . -- rhs
+        sorry
+    . -- <--
       sorry
 
-    · -- prove bound is upper for rightSubset
-      intro element
-      intro elementInRight
-      sorry
 
-  · -- mpr
-    intro boundsEachSubset
-    intro element
-    intro elementInUnion
-    sorry
+/-- An upper bound of either set is an upper bound of their intersection. -/
+theorem UpperBoundOfIntersection
+    {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject]
+    [Union SetObject] [Inter SetObject] [SDiff SetObject]
+    [EmptyCollection SetObject] [HasSubset SetObject]
+    [LRA.Set.MembershipLaws Element SetObject]
+    {relation : LRA.Relation.Endorelation Element}
+    {leftSubset rightSubset : SetObject} {bound : Element}
+    (boundIsUpperForEither :
+      UpperBound relation leftSubset bound \/
+        UpperBound relation rightSubset bound) :
+    UpperBound relation (leftSubset ∩ rightSubset) bound := by
+  sorry
+
+/-- Every upper bound of a set bounds each represented relative difference. -/
+theorem UpperBoundOfDifference
+    {Element : Type u} {SetObject : Type v}
+    [Memb
 
 /-- An upper bound of either set is an upper bound of their intersection. -/
 theorem UpperBoundOfIntersection
