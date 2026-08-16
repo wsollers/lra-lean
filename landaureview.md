@@ -1,300 +1,1172 @@
-# Landau-Style Operation Laws Review
+# Landau-Style Foundations Review — Operations, Relations, Maps, and Order
+
+Yes. This is a materially better second pass. The wider surface now looks much more like a **foundational structural vocabulary** rather than merely an operation-law collection.
+
+I reviewed the uploaded tree across `Map`, `Relations`, and `Order`—531 files in the supplied scaffold. The additions solve a number of the issues from the previous review, but I would **still not begin the large `sorry`-elimination pass yet**. There is one more architectural cleanup worth doing first.
 
 ## Overall verdict
 
-Keep the architecture. Do not start proving all the `sorry`s yet.
-
-The scaffold is mathematically much stronger than a typical "algebra properties" library because it correctly separates:
-
-- closure;
-- associativity;
-- commutativity;
-- identities;
-- inverses;
-- cancellation;
-- absorbing elements;
-- distributivity;
-- idempotence;
-- nilpotence;
-- equality/congruence;
-- order compatibility;
-- embeddings;
-- restricted versions such as cancellation on nonzero elements.
-
-That separation is exactly what this project wants pedagogically. In particular, it is better not to introduce `Group`, `Ring`, `Field`, and related structures as the first objects. First understand what the individual laws say, what they imply, what they do **not** imply, and then assemble them into named structures.
-
-Before proof implementation, however, I would make one significant architectural pass. There are four categories of changes:
-
-1. Add a proper relation-law hierarchy.
-2. Add named compound law/structure predicates.
-3. Separate primitive hypotheses from derived consequences.
-4. Repair several predicates whose present mathematical meaning is too weak or nonstandard.
-
-There are only a few places I would call genuinely problematic; most of the current statements are mathematically sound.
-
----
-
-# 1. The largest missing piece: generic relation laws
-
-This is the most important omission given the stated goal.
-
-Operations and relations should be two parallel foundational tracks:
+The intended architecture is now becoming very clear:
 
 \[
-\text{operations}
-\qquad\qquad
-\text{relations}
+\text{Relations}
+\longrightarrow
+\text{Maps}
+\longrightarrow
+\text{Operations}
+\longrightarrow
+\text{Orders}
+\longrightarrow
+\text{algebraic/order structures}
+\longrightarrow
+\text{number systems}.
 \]
 
-and later they meet through order compatibility, congruence, monotonicity, etc.
+That is the right direction.
 
-A relation-law directory should look roughly like:
+In particular, you have now added most of the relation infrastructure I said was missing:
 
-```text
-Relation/
-  Reflexive/
-  Irreflexive/
-  Symmetric/
-  Antisymmetric/
-  Asymmetric/
-  Transitive/
-  Total/
-  Trichotomous/
-  Equivalence/
-  Preorder/
-  PartialOrder/
-  LinearOrder/
-  StrictPartialOrder/
-  StrictLinearOrder/
-```
+- reflexive / irreflexive;
+- symmetric / antisymmetric / asymmetric;
+- transitive;
+- connex / total;
+- weak and exact trichotomy;
+- Euclidean properties;
+- density;
+- equivalence relations;
+- preorders;
+- partial orders;
+- linear orders;
+- strict orders;
+- strict linear orders;
+- well-orders;
+- monotone and antitone maps;
+- order embeddings and isomorphisms;
+- bounds, extrema, suprema and infima;
+- directed sets and chains;
+- joins, meets, semilattices and lattices;
+- strict/non-strict order correspondence.
 
-The basic predicates should be approximately:
+That addresses the largest conceptual omission from the first scaffold.
+
+There are also several particularly strong pieces now:
+
+1. **Preorder quotienting by mutual reachability** is exactly the right theorem to include.
+2. **Strict/non-strict conversion** is explicitly developed rather than taken for granted.
+3. **Minimal versus least** and **maximal versus greatest** are separated.
+4. Completeness properties are parameterized by the chosen represented-set backend, which is mathematically honest.
+5. Density is attached to strict orders rather than blindly to reflexive order relations.
+6. Map theory now separates injections, surjections, bijections, sections, retractions, inverses, images, preimages, fibers, graphs, and partial maps.
+
+Those are substantial improvements.
+
+## 1. The relation property layer is basically correct
+
+Your core definitions are mathematically standard.
+
+For example,
 
 \[
 \operatorname{Reflexive}(R)
 \iff
-\forall x,\;R(x,x),
-\]
-
-\[
-\operatorname{Irreflexive}(R)
-\iff
-\forall x,\;\neg R(x,x),
+\forall x\,Rxx,
 \]
 
 \[
 \operatorname{Symmetric}(R)
 \iff
-\forall x,y,\;R(x,y)\Rightarrow R(y,x),
+Rxy\Rightarrow Ryx,
 \]
 
 \[
 \operatorname{Antisymmetric}(R)
 \iff
-\forall x,y,\;(R(x,y)\land R(y,x))\Rightarrow x=y,
+(Rxy\land Ryx)\Rightarrow x=y,
 \]
 
 \[
 \operatorname{Asymmetric}(R)
 \iff
-\forall x,y,\;R(x,y)\Rightarrow\neg R(y,x),
+Rxy\Rightarrow\neg Ryx,
 \]
+
+and
 
 \[
 \operatorname{Transitive}(R)
 \iff
-\forall x,y,z,\;(R(x,y)\land R(y,z))\Rightarrow R(x,z).
+(Rxy\land Ryz)\Rightarrow Rxz
 \]
 
-Then define compound notions:
+are all correct.
+
+Your equivalence relation contract
 
 \[
-\operatorname{EquivalenceRelation}(R)
-\iff
-\text{Reflexive}(R)\land
-\text{Symmetric}(R)\land
-\text{Transitive}(R),
-\]
-
-\[
-\operatorname{Preorder}(R)
-\iff
-\text{Reflexive}(R)\land
-\text{Transitive}(R),
-\]
-
-\[
-\operatorname{PartialOrder}(R)
-\iff
-\text{Reflexive}(R)\land
-\text{Antisymmetric}(R)\land
-\text{Transitive}(R),
-\]
-
-and similarly strict and linear orders.
-
-This is not decorative terminology. These predicates tell later modules exactly what must be certified before something may properly be called an equivalence relation, partial order, linear order, and so on.
-
-## Essential relationship theorems
-
-Add, among others:
-
-\[
-\text{Asymmetric}(R)\Rightarrow\text{Irreflexive}(R),
-\]
-
-\[
-\text{Irreflexive}(R)\land\text{Transitive}(R)
-\Rightarrow
-\text{Asymmetric}(R),
-\]
-
-\[
-\text{Symmetric}(R)\land\text{Antisymmetric}(R)
-\Rightarrow
-R(x,y)\Rightarrow x=y,
-\]
-
-and the connections between strict and non-strict orders.
-
-For example, given \(\le\), define
-
-\[
-x<y \iff x\le y\land x\ne y,
-\]
-
-and prove under partial-order hypotheses that \(<\) is irreflexive and transitive.
-
-Conversely, from a strict order \(<\), define
-
-\[
-x\le y \iff x<y\lor x=y
-\]
-
-and derive the non-strict order properties.
-
-This relation hierarchy should precede `OrderCompatibility`.
-
----
-
-# 2. Add a layer of named compound structures
-
-The atomic laws are good. Now the library needs the named combinations that say precisely:
-
-> To satisfy Law/System X, these are the requirements.
-
-For one binary endo-operation \(\star\):
-
-## Magma
-
-Merely:
-
-\[
-\star:S\times S\to S.
-\]
-
-Because the Lean type already says this, `BinaryEndoOperation S` essentially represents the algebraic closure component.
-
-## Semigroup
-
-\[
-\operatorname{SemigroupLaw}(\star)
-\iff
-\operatorname{Associative}(\star).
-\]
-
-## Monoid
-
-\[
-\operatorname{MonoidLaws}(\star,e)
-\iff
-\operatorname{Associative}(\star)
+\operatorname{Reflexive}
 \land
-\operatorname{TwoSidedIdentity}(\star,e).
-\]
-
-## Commutative monoid
-
-\[
-\operatorname{CommutativeMonoidLaws}(\star,e)
-\iff
-\operatorname{MonoidLaws}(\star,e)
+\operatorname{Symmetric}
 \land
-\operatorname{Commutative}(\star).
+\operatorname{Transitive}
 \]
 
-## Group
+is also exactly right.
+
+### One cleanup
+
+You currently have both:
+
+```lean
+Relation.Equivalence
+```
+
+and
+
+```lean
+Relation.EquivalenceRelation
+```
+
+with the same semantics.
+
+I would choose one canonical semantic predicate and make the other an `abbrev` or alias.
+
+For this project I prefer:
+
+```lean
+EquivalenceRelation relation
+```
+
+because it reads better alongside:
+
+```lean
+PartialOrder relation
+StrictOrder relation
+LinearOrder relation
+```
+
+## 2. Add the most important implication lattice between relation properties
+
+The definitions are present now, but the real educational payoff comes from the implication structure.
+
+You should explicitly prove:
 
 \[
-\operatorname{GroupLaws}(\star,e,\iota)
+\operatorname{Asymmetric}(R)
+\Rightarrow
+\operatorname{Irreflexive}(R),
 \]
 
-should require:
+and
 
 \[
-\operatorname{Associative}(\star),
+\operatorname{Irreflexive}(R)
+\land
+\operatorname{Transitive}(R)
+\Rightarrow
+\operatorname{Asymmetric}(R).
+\]
+
+Therefore every strict order is asymmetric.
+
+You appear already to have this latter result through `StrictOrderIsAsymmetric`. Good.
+
+Also:
+
+\[
+\operatorname{Asymmetric}(R)
+\Rightarrow
+\operatorname{Antisymmetric}(R).
+\]
+
+This is easy but illuminating: asymmetry is strictly stronger.
+
+Other valuable relationships:
+
+\[
+\operatorname{Symmetric}(R)
+\land
+\operatorname{Antisymmetric}(R)
+\Rightarrow
+(Rxy\Rightarrow x=y).
+\]
+
+And for a reflexive relation:
+
+\[
+\operatorname{Asymmetric}(R)
+\]
+
+is impossible on a nonempty carrier.
+
+These should appear as named results rather than remain implicit.
+
+## 3. `Total`/`Connex` is correct, but the terminology deserves care
+
+You define:
+
+\[
+Rxy\lor Ryx
+\]
+
+for every \(x,y\).
+
+For a non-strict order this is a standard form of **connexity/totality** and implies reflexivity by setting \(x=y\).
+
+Your comment in `LinearOrder` correctly notices this.
+
+I would nevertheless make:
+
+```lean
+Connex
+```
+
+the primary relation-theoretic name and use:
+
+```lean
+TotalRelation
+```
+
+or an alias rather than bare `Total`.
+
+Why?
+
+Because your map theory also talks about totality of functional relations. Eventually "total" will mean two rather different things:
+
+- total/connex binary order relation;
+- total function/relation over a domain.
+
+`Connex` avoids that semantic collision.
+
+## 4. Exact trichotomy is an excellent addition
+
+This was a very good choice.
+
+For strict linear order, you use:
+
+\[
+\text{exactly one of }
+x<y,\quad x=y,\quad y<x.
+\]
+
+That is much better pedagogically than merely saying
+
+\[
+x<y\lor x=y\lor y<x
+\]
+
+because exactness incorporates the mutual exclusions that students ordinarily think of as part of trichotomy.
+
+Your
+
+```lean
+StrictLinearOrder :=
+  StrictOrder ∧ ExactlyTrichotomous
+```
+
+is therefore a very good learning definition.
+
+You should prominently prove that exact trichotomy implies:
+
+- irreflexivity;
+- asymmetry;
+- ordinary weak trichotomy;
+- connexity of the reflexive closure.
+
+## 5. The strict/non-strict correspondence is one of the strongest parts
+
+You now explicitly define:
+
+\[
+x\le y
+\iff
+x<y\lor x=y
+\]
+
+and
+
+\[
+x<y
+\iff
+x\le y\land x\ne y.
+\]
+
+And you prove both conversion directions.
+
+This is exactly the right foundational treatment.
+
+Even better, you distinguish the preorder issue: in a preorder the naive
+
+\[
+x\le y\land x\ne y
+\]
+
+and
+
+\[
+x\le y\land\neg(y\le x)
+\]
+
+need not coincide.
+
+That is **excellent**.
+
+The universal preorder is a very good failure mode:
+
+\[
+x\preceq y
+\quad\text{and}\quad
+y\preceq x
+\]
+
+for distinct \(x,y\).
+
+It shows why antisymmetry matters.
+
+Keep this.
+
+## 6. The preorder quotient is especially worth emphasizing
+
+This theorem is foundationally important:
+
+\[
+x\sim y
+\iff
+x\preceq y\land y\preceq x.
+\]
+
+Then quotienting by \(\sim\) produces a partial order.
+
+That teaches precisely what antisymmetry does:
+
+> A preorder may contain distinct objects that are indistinguishable from the standpoint of order. Quotienting by that indistinguishability forces genuine antisymmetry.
+
+This deserves more prominence than an ordinary `Relationships.lean` theorem.
+
+I'd almost treat it as a named construction:
+
+### Antisymmetrization of a Preorder
+
+with:
+
+- equivalence relation;
+- quotient;
+- induced relation;
+- well-definedness;
+- partial-order theorem;
+- canonical projection is monotone;
+- universal property later, if desired.
+
+That is an illuminating abstract construction.
+
+## 7. There is a small concrete defect in `Relations.Basic.Properties`
+
+The documentation says both `MinimalElement` and `MaximalElement` are defined, but the file actually ends after `MinimalElement`.
+
+So at the generic relation layer:
+
+```lean
+LRA.Relation.MinimalElement
+```
+
+exists, but the documented generic
+
+```lean
+LRA.Relation.MaximalElement
+```
+
+does not.
+
+You later independently define `Order.MaximalElement`, so nothing conceptual is missing from order theory, but this is documentation/code drift.
+
+Fix one of:
+
+- add generic `Relation.MaximalElement`; or
+- remove it from that doc block.
+
+I would add it for duality.
+
+## 8. Relation composition is still conspicuously absent
+
+This is probably the largest missing item in the **Relations** layer.
+
+You have:
+
+- identity relation;
+- empty relation;
+- universal relation;
+- converse;
+- union;
+- intersection;
+- complement.
+
+But I did not find general relational composition.
+
+You want:
+
+\[
+(R\circ S)(x,z)
+\iff
+\exists y,\;S(x,y)\land R(y,z).
+\]
+
+Or whatever argument orientation you standardize.
+
+Then prove:
+
+### Associativity
+
+\[
+R\circ(S\circ T)
+=
+(R\circ S)\circ T.
+\]
+
+### Identity laws
+
+\[
+I\circ R=R,
+\qquad
+R\circ I=R.
+\]
+
+### Converse of composition
+
+\[
+(R\circ S)^{-1}
+=
+S^{-1}\circ R^{-1}.
+\]
+
+### Transitivity characterization
+
+For an endorelation:
+
+\[
+R\circ R\subseteq R
+\iff
+R\text{ is transitive}.
+\]
+
+That last theorem is particularly illuminating.
+
+This would make relation theory parallel operation theory in a very satisfying way.
+
+## 9. Add closure constructions for relations eventually
+
+Once relation composition exists, the following become natural:
+
+- reflexive closure;
+- symmetric closure;
+- transitive closure;
+- reflexive-transitive closure;
+- equivalence closure.
+
+You already have a specialized "reflexive closure" of a strict order:
+
+\[
+<\;\cup\;=
+\]
+
+but this is not general relation-theoretic reflexive closure infrastructure.
+
+For arbitrary \(R\):
+
+\[
+R^{\mathrm{refl}}
+=
+R\cup I.
+\]
+
+Then prove it is:
+
+1. reflexive;
+2. contains \(R\);
+3. least among reflexive relations containing \(R\).
+
+That third clause is important.
+
+Likewise for transitive closure.
+
+This later connects directly to:
+
+- reachability;
+- generated equivalence relations;
+- transitive hulls;
+- graph paths.
+
+I would add this, but it does not need to block the current first proof pass if you want to bound scope.
+
+## 10. Well-foundedness is correctly qualified, but keep its convention very explicit
+
+You define well-foundedness by:
+
+> every nonempty represented subset has a minimal element.
+
+That is mathematically legitimate, and you correctly document that this is **backend-relative**.
+
+This distinction matters.
+
+If your `SetObject` does not represent every subset, then:
+
+\[
+\operatorname{WellFounded}(\text{SetObject},R)
+\]
+
+only states the minimal-element property for represented subsets.
+
+So you should retain terminology such as:
+
+> `BackendWellFounded`
+
+or at minimum keep the existing warning prominent.
+
+There is another useful theorem to make explicit:
+
+For a strict relation, under the appropriate classical/full-subset context:
+
+\[
+\text{well-founded}
+\Longleftrightarrow
+\text{every nonempty subset has a minimal element}.
+\]
+
+Lean's native `WellFounded` uses accessibility, so eventually an adapter theorem between your subset formulation and Lean's accessibility formulation would be valuable.
+
+Not necessary yet, but important later.
+
+## 11. Your well-order definition is good
+
+You use:
+
+\[
+\operatorname{LinearOrder}(\le)
+\]
+
+plus:
+
+\[
+\forall A\ne\varnothing,\;
+A\text{ has a least element}.
+\]
+
+Correct.
+
+And I especially like this comment:
+
+> linearity remains explicit because deriving it from least elements of two-point subsets assumes the backend can represent every pair subset.
+
+That is exactly the kind of formalization subtlety this project should expose.
+
+Your immediate-successor theorem is also stated correctly:
+
+> every element **that has some strict successor** has a least strict successor.
+
+You correctly avoid claiming the maximum of a well-order has a successor.
+
+## 12. Bounds/supremum/infimum layer is mathematically sound
+
+These definitions are correct for a non-strict relation:
+
+\[
+u\text{ upper bound of }A
+\iff
+\forall a\in A,\;a\le u,
 \]
 
 \[
-\operatorname{TwoSidedIdentity}(\star,e),
+s=\sup A
+\iff
+s\text{ is an upper bound}
+\land
+\forall u\,
+(u\text{ upper bound}\Rightarrow s\le u).
+\]
+
+Similarly for infimum.
+
+Your separation among:
+
+- upper bound;
+- bounded above;
+- greatest element;
+- maximal element;
+- supremum
+
+is exactly right.
+
+Do not collapse these.
+
+## 13. Your failure mode "suprema need not be unique in a preorder" is excellent
+
+This is precisely the kind of theorem your architecture needs.
+
+In a preorder, least upper bounds are only unique **up to preorder equivalence**, not necessarily equality.
+
+So:
+
+\[
+s,t\text{ both suprema}
+\]
+
+gives:
+
+\[
+s\preceq t
+\quad\text{and}\quad
+t\preceq s.
+\]
+
+Only antisymmetry turns this into:
+
+\[
+s=t.
+\]
+
+That should be turned into a positive theorem too:
+
+### Suprema are preorder-equivalent
+
+Under a preorder:
+
+\[
+\operatorname{Supremum}(A,s)
+\land
+\operatorname{Supremum}(A,t)
+\Rightarrow
+s\preceq t\land t\preceq s.
+\]
+
+Then:
+
+### Suprema are unique in a partial order
+
+via antisymmetry.
+
+Same for:
+
+- infima;
+- least elements;
+- greatest elements;
+- joins;
+- meets.
+
+## 14. Consider separating "least" and "minimum" terminology carefully
+
+You use:
+
+- `LeastElement` for non-strict order;
+- `MinimalElement` for strict order.
+
+That is fine.
+
+But in standard English many introductory sources use **minimum** synonymously with least element.
+
+I suggest a deliberate alias:
+
+```lean
+Minimum := LeastElement
+Maximum := GreatestElement
+```
+
+while maintaining:
+
+```lean
+MinimalElement
+MaximalElement
+```
+
+as genuinely different notions.
+
+Then you can explicitly prove:
+
+\[
+\text{minimum}\Rightarrow\text{minimal}.
+\]
+
+And in a linear order:
+
+\[
+\text{minimal}\iff\text{minimum}.
+\]
+
+You already seem to have `MinimalElementIsLeastInLinearOrder`. Good.
+
+Make the vocabulary distinction visually prominent.
+
+## 15. The lattice definitions are strong and appropriately order-theoretic
+
+This is a particularly good design choice:
+
+You define `Join` and `Meet` as **relations/properties of candidate elements**, not as globally chosen operations.
+
+Thus:
+
+\[
+\operatorname{Join}(\le,a,b,j)
+\]
+
+means \(j\) is the least upper bound of \(a,b\).
+
+Then `JoinSemilattice` says a join exists for every pair.
+
+This is foundationally cleaner than immediately installing a `sup` function.
+
+It preserves the same pattern you use elsewhere:
+
+1. candidate property;
+2. existence;
+3. uniqueness;
+4. chosen operation only later.
+
+Very good.
+
+## 16. After uniqueness, add chosen join/meet operations as a second layer
+
+Once partial-order uniqueness has been proved, define or package:
+
+\[
+a\vee b,
+\qquad
+a\wedge b.
+\]
+
+Then prove the algebraic laws:
+
+### Join
+
+\[
+a\vee b=b\vee a,
 \]
 
 \[
-\operatorname{TwoSidedInverse}(\star,e,\iota).
+(a\vee b)\vee c=a\vee(b\vee c),
 \]
 
-Then prove, rather than assume:
+\[
+a\vee a=a.
+\]
 
-- inverse uniqueness;
-- cancellation;
-- \(\iota(e)=e\);
-- \(\iota(\iota(a))=a\);
-- inverse of a product;
-- solution uniqueness for \(a\star x=b\);
-- solution uniqueness for \(x\star a=b\).
+### Meet
 
-## Abelian group
+similarly.
 
-Add commutativity.
+Then absorption:
 
-This is especially important because later the project can say:
+\[
+a\vee(a\wedge b)=a,
+\]
 
-> `IntegerAdditionLaws` proves that \((\mathbb Z,+,0,-)\) is an abelian group.
+\[
+a\wedge(a\vee b)=a.
+\]
 
-rather than making each later theorem manually carry several disconnected hypotheses everywhere.
+You already prove these relationally through witnesses. Excellent.
 
----
+But the eventual connection to your **operation-law library** is the next big opportunity:
 
-# 3. Then do two-operation structures
+> Join is a commutative, associative, idempotent binary operation.
 
-The scaffold already has the component laws needed for most of this.
+and similarly for meet.
 
-## Semiring-like laws
+That creates a beautiful cross-link:
 
-For \(+\), \(\cdot\), \(0\), \(1\):
+\[
+\boxed{\text{order theory}}
+\leftrightarrow
+\boxed{\text{operation-law theory}}.
+\]
 
-- \(+\) associative;
-- \(+\) commutative;
-- \(0\) additive identity;
-- \(\cdot\) associative;
-- \(1\) multiplicative identity;
-- multiplication distributes over addition;
-- \(0\) absorbs multiplication.
+I would definitely add this.
 
-Then distinguish whether absorption is **assumed** or **derived under stronger additive hypotheses**.
+## 17. Semilattices are the perfect bridge between order and algebra
 
-## Ring laws
+This deserves a theorem family.
 
-A ring should combine:
+Given a join-semilattice, choose the unique join operation \(\vee\). Then prove:
 
-- additive abelian group;
-- multiplicative associativity;
-- multiplication distributive over addition.
+```text
+Associative (∨)
+Commutative (∨)
+Idempotent (∨)
+```
+
+Conversely, given a commutative associative idempotent operation \(\vee\), define:
+
+\[
+a\le b
+\iff
+a\vee b=b.
+\]
+
+Then prove this is a partial order.
+
+That is extremely illuminating.
+
+Likewise for meet:
+
+\[
+a\le b
+\iff
+a\wedge b=a.
+\]
+
+This is exactly the type of "pin operations to named relationships" theorem you originally asked for.
+
+I consider this a high-value addition.
+
+## 18. Complete lattice: your backend-relative formulation is mathematically honest
+
+You require every represented subset—including empty ones—to have both a supremum and infimum.
+
+Correct.
+
+And you explicitly note that:
+
+- \(\sup\varnothing\) gives bottom;
+- \(\inf\varnothing\) gives top.
+
+Good.
+
+But I would now introduce explicit predicates:
+
+\[
+\operatorname{BottomElement}(\le,\bot),
+\]
+
+\[
+\operatorname{TopElement}(\le,\top).
+\]
+
+They are currently only consequences mentioned in theorems.
+
+These are important enough to name.
 
 Then prove:
 
 \[
-0a=0,\qquad a0=0,
+\sup\varnothing=\bot,
+\qquad
+\inf\varnothing=\top
+\]
+
+where uniqueness is available.
+
+Also:
+
+\[
+\sup X=\top
+\]
+
+for the whole carrier in the appropriate complete lattice context, and dually.
+
+## 19. Distributive lattice definition is correct, but eventually simplify its public face
+
+Your witness-based definition is rigorous but mechanically large.
+
+That is appropriate internally because you haven't chosen \(\vee,\wedge\).
+
+Pedagogically, once join/meet operations are selected, users should see the much simpler laws:
+
+\[
+a\vee(b\wedge c)
+=
+(a\vee b)\wedge(a\vee c),
+\]
+
+\[
+a\wedge(b\vee c)
+=
+(a\wedge b)\vee(a\wedge c).
+\]
+
+The witness-heavy predicate can remain foundational, but I would provide an operation-facing equivalent theorem.
+
+## 20. Add bounded lattices before going much further
+
+Given you now have top and bottom, I would add:
+
+### Bounded lattice
+
+A lattice with:
+
+\[
+\bot\le x\le\top
+\]
+
+for every \(x\).
+
+This is not essential for number systems, but it is a natural missing named structure between:
+
+- lattice;
+- complete lattice.
+
+And it makes Boolean algebras much easier to introduce later if desired.
+
+## 21. Directed sets and chains are correct
+
+Your convention:
+
+\[
+D\ne\varnothing
+\]
+
+and every pair in \(D\) has an upper bound **inside \(D\)**
+
+is a standard directed-set convention.
+
+Good.
+
+Your chain definition as pairwise comparability is also correct.
+
+And:
+
+> a nonempty chain is directed
+
+is correct for a non-strict relation when comparability means one is related to the other.
+
+Keep the explicit nonemptiness requirement because the empty chain is otherwise a chain but isn't directed under your convention.
+
+Excellent failure-mode opportunity.
+
+## 22. Consider adding filtered / downward directed
+
+For duality, define:
+
+\[
+\operatorname{Filtered}(D)
+\]
+
+or `DownwardDirected`:
+
+every pair has a lower bound inside \(D\).
+
+Then establish converse-duality:
+
+\[
+D\text{ directed under }R
+\iff
+D\text{ filtered under }R^{-1}.
+\]
+
+This is a small addition but rounds the order-theory symmetry nicely.
+
+## 23. `Monotone` and `Antitone` are exactly the abstractions you needed
+
+This corrects one of my previous concerns.
+
+You now have the generic map concepts:
+
+\[
+x\le y
+\Rightarrow
+f(x)\le f(y)
+\]
+
+and
+
+\[
+x\le y
+\Rightarrow
+f(y)\le f(x).
+\]
+
+Good.
+
+Then operation translations become special cases:
+
+\[
+x\mapsto a\star x,
+\qquad
+x\mapsto x\star a.
+\]
+
+I would explicitly connect `OrderCompatibility` to `Monotone`:
+
+> left translation preserves order iff every left-translation map is monotone.
+
+and similarly right translation.
+
+This would remove duplication between the operation-law and order-map layers.
+
+## 24. `OrderEmbedding` remains semantically weaker than its name unless order hypotheses accompany it
+
+You define:
+
+\[
+xRy
+\iff
+f(x)Sf(y).
+\]
+
+This is preservation + reflection.
+
+For actual partial orders, this does imply injectivity, and you correctly prove an `OrderEmbeddingInjective` theorem with sufficient assumptions.
+
+So the mathematics is fine.
+
+However, because the definition accepts **arbitrary relations**, the predicate called `OrderEmbedding` itself does not guarantee injectivity.
+
+For example, pathological reflexive/indiscriminate relations can defeat the normal intuition behind "embedding."
+
+Two clean possibilities:
+
+### Option A
+
+Keep generic:
+
+```lean
+RelationEmbedding
+```
+
+for preservation/reflection.
+
+Then define:
+
+```lean
+OrderEmbedding
+```
+
+only when source and target are known partial orders, optionally bundling injectivity.
+
+### Option B
+
+Keep your current predicate but rename it:
+
+```lean
+PreservesAndReflectsOrderRelation
+```
+
+and derive the true `OrderEmbedding` after order hypotheses.
+
+I prefer A.
+
+## 25. The exact same issue still exists in `NumberEmbeddings.RelationEmbedding`
+
+The first-review issue remains there.
+
+It currently means:
+
+\[
+\text{preserves relation}
+\land
+\text{reflects relation},
+\]
+
+but does **not** include injectivity.
+
+That may be okay if renamed to:
+
+```lean
+RelationBimorphism
+```
+
+or simply:
+
+```lean
+PreservesAndReflectsRelation
+```
+
+But "embedding" conventionally suggests injectivity.
+
+Since you already introduced:
+
+```lean
+InjectiveMap
+```
+
+I would use:
+
+```lean
+RelationEmbedding :=
+  InjectiveMap embedding ∧
+  PreservesRelation ... ∧
+  ReflectsRelation ...
+```
+
+unless you're intentionally following a nonstandard terminology.
+
+## 26. `MixedOperationResultCarrier` is still vacuous
+
+This remains a blocking cleanup from the first review.
+
+You define:
+
+```lean
+operation : Left → Right → Result
+```
+
+and then require:
+
+\[
+\forall l,r,\exists x:\mathrm{Result},
+\quad
+\operatorname{operation}(l,r)=x.
+\]
+
+But simply choose:
+
+\[
+x=\operatorname{operation}(l,r).
+\]
+
+So every typed operation satisfies it.
+
+The type
+
+```lean
+Left → Right → Result
+```
+
+already establishes the result carrier.
+
+Delete this predicate unless you intend a genuinely set-theoretic closure statement over subsets.
+
+This is still the clearest example in the scaffold of a "law" that certifies nothing.
+
+## 27. `SignNegationLaws` is still too axiom-heavy
+
+You improved it by adding:
+
+```lean
+AdditiveInverseAnchor
+```
+
+which was good.
+
+But `SignNegationLaws` still requires, rather than derives:
+
+- involution;
+- multiplication by \(-1\);
+- negated-left multiplication;
+- negated-right multiplication;
+- double negative multiplication;
+- distribution over subtraction.
+
+For your Landau-style goal, that is backwards.
+
+The whole lesson should be:
+
+> These familiar sign rules aren't separate axioms. They follow from a much smaller set of algebraic laws.
+
+I still recommend replacing the aggregate primitive bundle with a derivation chain.
+
+Primitive structure:
+
+- additive associative law;
+- additive identity;
+- additive inverses;
+- multiplication;
+- distributivity;
+- appropriate multiplication identity.
+
+Then derive:
+
+\[
+-(-a)=a,
+\]
+
+\[
+(-1)a=-a,
 \]
 
 \[
@@ -309,762 +1181,59 @@ a(-b)=-(ab),
 (-a)(-b)=ab.
 \]
 
-For a unital ring, add multiplicative identity.
-
-For a commutative ring, add multiplicative commutativity.
-
-## Division-ring / field layer
-
-Do **not** require a global multiplicative inverse operation satisfying
+And once subtraction is defined by
 
 \[
-a^{-1}a=1
+a-b:=a+(-b),
 \]
 
-for every \(a\), because \(0\) is not invertible.
+derive distribution over subtraction.
 
-The addition of `TwoSidedInvertibleOn` was therefore exactly the right instinct.
+This is exactly the sort of result the project is designed to teach.
 
-For a field-like system, use something equivalent to:
+## 28. Subtraction still needs to be pinned to addition and inverse
 
-\[
-\forall a,\;a\ne0\Rightarrow
-\exists b,\;ab=ba=1.
-\]
+This remains important.
 
-Or use a designated inverse operation satisfying those conditions **on nonzero elements**.
+At present `subtraction` is another arbitrary:
 
-That distinction will matter enormously for \(\mathbb Q\) and \(\mathbb R\).
-
----
-
-# 4. The `Inverse` architecture is mostly very good
-
-This is one of the strongest sections.
-
-It correctly distinguishes:
-
-- `LeftInverse`;
-- `RightInverse`;
-- `LeftInverseOf`;
-- `RightInverseOf`;
-- `TwoSidedInverseOf`;
-- total inverse operations;
-- restricted invertibility.
-
-And this theorem is exactly the right foundational result:
-
-> A left inverse and a right inverse of the same element coincide under associativity and a two-sided identity.
-
-Add the pointwise uniqueness theorem explicitly:
-
-\[
-ba=e,\quad
-ac=e
-\quad\Longrightarrow\quad
-b=c.
-\]
-
-Then add:
-
-## Identity is self-inverse
-
-\[
-e^{-1}=e.
-\]
-
-## Inverse involution
-
-\[
-(a^{-1})^{-1}=a.
-\]
-
-Do **not** assume this as primitive once group hypotheses are available.
-
-## Shoes-and-socks theorem
-
-\[
-(ab)^{-1}=b^{-1}a^{-1}.
-\]
-
-This is one of the most illuminating early abstract-algebra theorems because it shows that inverses reverse composition/order.
-
-In an abelian group it reduces to
-
-\[
-(ab)^{-1}=a^{-1}b^{-1}.
-\]
-
-## Equation-solving theorems
-
-In a group:
-
-\[
-ax=b
-\iff
-x=a^{-1}b,
-\]
-
-and
-
-\[
-xa=b
-\iff
-x=ba^{-1}.
-\]
-
-These are very Landau-like: the familiar operation of "moving something across an equation" becomes a theorem instead of an informal manipulation.
-
----
-
-# 5. `SignNegationLaws` should be redesigned
-
-This is probably the second-largest architectural change I recommend.
-
-Currently `SignNegationLaws` assumes all of:
-
-- additive inverse behavior;
-- involution;
-- multiplication by \(-1\);
-- negating either factor;
-- product of two negatives;
-- distributivity over subtraction.
-
-Mathematically those statements are fine.
-
-Pedagogically, however, several of them should be **theorems**, not defining requirements.
-
-For example, in a ring-like setting:
-
-\[
--a
-\]
-
-is the additive inverse of \(a\).
-
-Then uniqueness of additive inverses gives
-
-\[
--(-a)=a.
-\]
-
-Using distributivity:
-
-\[
-(-a)b+ab
-=
-((-a)+a)b
-=
-0b
-=
-0.
-\]
-
-Therefore
-
-\[
-(-a)b=-(ab).
-\]
-
-Likewise,
-
-\[
-a(-b)=-(ab).
-\]
-
-Then:
-
-\[
-(-a)(-b)
-=
--((-a)b)
-=
--(-(ab))
-=
-ab.
-\]
-
-And
-
-\[
-(-1)a=-a.
-\]
-
-Those are exactly the derivations the foundations layer should expose.
-
-So instead of one giant primitive `SignNegationLaws`, use something like:
-
-```text
-Negation/
-  Definition
-  DerivedTheorems
+```lean
+Carrier → Carrier → Carrier
 ```
 
-with minimal inputs:
+inside `SignNegationLaws`.
 
-- additive group laws;
-- multiplication;
-- distributivity.
-
-Then derive the standard sign rules.
-
----
-
-# 6. Subtraction needs its own definitional bridge
-
-Add:
+Add the fundamental contract:
 
 \[
-\operatorname{SubtractionDefinedByAdditionAndNegation}
-(-,+,\operatorname{neg})
+\operatorname{SubtractionDefinedBy}
+(+,-)
 \]
 
-meaning
+with:
 
 \[
 a-b=a+(-b).
 \]
 
-This is extremely important.
+Then all subtraction rules become consequences.
 
-Otherwise `subtraction` can remain an unrelated binary function that merely happens to satisfy some laws.
+This is one of the most important "named operation → structural definition" bridges in the eventual number-system chapter.
 
-The named operation "subtraction" should be pinned to its structural origin:
+## 29. Powers should still leave `Nilpotent`
 
-\[
-a-b := a+(-b).
-\]
+Your own remediation note already recognizes this.
 
-Then prove:
+`OperationPower` is general enough to be its own concept.
 
-\[
-a-0=a,
-\]
-
-\[
-0-a=-a,
-\]
-
-\[
-a-a=0,
-\]
-
-\[
-a-(-b)=a+b,
-\]
-
-\[
--(a-b)=b-a,
-\]
-
-\[
-(a-b)-c=a-(b+c),
-\]
-
-and so on.
-
-Similarly later:
-
-\[
-a/b := a\cdot b^{-1}
-\]
-
-where defined.
-
-This is exactly the sort of "named operation pinned to the underlying relation/operation" theorem the project is aiming for.
-
----
-
-# 7. `OrderCompatibility` needs order hypotheses surrounding it
-
-The generic predicates themselves are useful:
-
-```lean
-LeftTranslationPreservesRelation relation operation
-```
-
-is a good general notion.
-
-But `PositiveRightTranslationPreservesRelation` presently accepts an arbitrary predicate:
-
-```lean
-positive : Carrier -> Prop
-```
-
-There is no requirement that `positive` mean anything about `relation`.
-
-So something could be called positive even if it meant an unrelated property.
-
-Add named sign predicates derived from an order and zero:
-
-\[
-\operatorname{Positive}(x)
-\iff
-0<x,
-\]
-
-\[
-\operatorname{Negative}(x)
-\iff
-x<0,
-\]
-
-\[
-\operatorname{Nonnegative}(x)
-\iff
-0\le x,
-\]
-
-\[
-\operatorname{Nonpositive}(x)
-\iff
-x\le0.
-\]
-
-Then prove order/multiplication interaction in terms of those.
-
-For ordered additive structures:
-
-\[
-a\le b
-\Rightarrow
-a+c\le b+c.
-\]
-
-For ordered rings:
-
-\[
-a\le b,\;0\le c
-\Rightarrow
-ac\le bc,
-\]
-
-and
-
-\[
-a\le b,\;c\le0
-\Rightarrow
-bc\le ac.
-\]
-
-Then derive familiar sign rules.
-
-This needs the relation-law hierarchy first.
-
----
-
-# 8. Add monotone and antitone as named relational concepts
-
-The translation-preservation laws are instances of a more general idea.
-
-For unary maps \(f\):
-
-\[
-\operatorname{Monotone}(R_S,R_T,f)
-\iff
-xR_Sy\Rightarrow f(x)R_Tf(y).
-\]
-
-And
-
-\[
-\operatorname{Antitone}(R_S,R_T,f)
-\iff
-xR_Sy\Rightarrow f(y)R_Tf(x).
-\]
-
-Then:
-
-- left translation by \(a\) is a unary map \(x\mapsto a\star x\);
-- right translation by \(a\) is \(x\mapsto x\star a\).
-
-The current laws then become specializations.
-
-That produces a much cleaner conceptual hierarchy.
-
----
-
-# 9. `EquationalLogic` contains useful teaching material, but distinguish automatic facts from algebraic laws
-
-For an actual Lean function \(f\),
-
-\[
-x=y\Longrightarrow f(x)=f(y)
-\]
-
-is automatic.
-
-Likewise every Lean binary function respects equality in each argument.
-
-So:
-
-```lean
-UnaryEqualityCompatible operation
-BinaryEqualityCompatible operation
-```
-
-are not really algebraic conditions that a number system needs to independently certify. They are consequences of equality itself and functionhood.
-
-The existing theorems such as:
-
-```lean
-UnaryOperation.equality_compatible
-BinaryOperation.equality_compatible
-```
-
-already recognize this.
-
-Classify these as:
-
-> **Logical infrastructure / automatic laws**
-
-rather than alongside associativity and commutativity.
-
-By contrast:
-
-```lean
-BinaryOperationCongruence relation operation
-```
-
-for an arbitrary equivalence relation is genuinely substantive.
-
-That should be tied explicitly to quotient construction:
-
-If \(\sim\) is an equivalence relation and
-
-\[
-a\sim a',\quad b\sim b'
-\Longrightarrow
-a\star b\sim a'\star b',
-\]
-
-then the operation descends to equivalence classes.
-
-Add a named theorem/concept such as:
-
-\[
-\operatorname{WellDefinedOnQuotient}.
-\]
-
-This is not merely "equational logic"; it is a foundational bridge into number construction.
-
-It will be important for:
-
-- integers as equivalence classes;
-- rationals as equivalence classes;
-- possibly real-number constructions.
-
----
-
-# 10. There is one misleading failure example in EquationalLogic
-
-Using same parity and successor to show
-
-> same parity does not permit replacing one number by another **as equality**
-
-is correct.
-
-But note the useful contrast:
-
-\[
-a\equiv b\pmod2
-\Rightarrow
-a+1\equiv b+1\pmod2.
-\]
-
-So successor **does preserve same parity as a congruence relation**, even though it does not preserve literal equality of outputs.
-
-This is actually an excellent teaching example.
-
-Make the contrast explicit:
-
-## Failure
-
-\[
-a\sim b\nRightarrow f(a)=f(b).
-\]
-
-## Success
-
-\[
-a\sim b\Rightarrow f(a)\sim f(b).
-\]
-
-That sharply separates:
-
-- equality substitution;
-- compatibility with an equivalence relation.
-
-Keep this example, but make both halves explicit.
-
----
-
-# 11. `NumberEmbeddings`: one definition is effectively vacuous
-
-This needs repair before proof work.
-
-Currently:
-
-```lean
-def MixedOperationResultCarrier
-    (operation : BinaryOperation Left Right Result) : Prop :=
-  forall left right, exists result : Result, operation left right = result
-```
-
-For every total Lean function
-
-```lean
-operation : Left → Right → Result
-```
-
-this is automatically true: choose
-
-```lean
-result := operation left right
-```
-
-So it does not certify anything.
-
-It should probably disappear as a law.
-
-The **type itself**
-
-```lean
-BinaryOperation Left Right Result
-```
-
-already certifies the result carrier.
-
-This is a good example of something Lean's type system should encode rather than something proved propositionally.
-
----
-
-# 12. `RelationEmbedding` should probably require injectivity
-
-The current definition is effectively:
-
-\[
-\text{preserves relation}
-\land
-\text{reflects relation}.
-\]
-
-That does **not**, for an arbitrary relation, force the map to be injective.
-
-For example, if both relations are universal relations, even a constant map preserves and reflects them.
-
-Standard embedding language normally includes injectivity.
-
-I recommend:
+Move it to something like:
 
 ```text
-RelationHomomorphism
-    := preserves
-
-RelationBimorphism   -- or relation-preserving-and-reflecting
-    := preserves ∧ reflects
-
-RelationEmbedding
-    := injective ∧ preserves ∧ reflects
+Map/Operation/Iteration/
+Map/Operation/Power/
 ```
 
-This gives the useful hierarchy:
-
-\[
-\text{isomorphism}
-\Rightarrow
-\text{embedding}
-\Rightarrow
-\text{homomorphism}.
-\]
-
----
-
-# 13. Expand the map/homomorphism hierarchy substantially
-
-This will become indispensable once the number systems start talking to each other.
-
-The generic layer should include:
-
-- identity map;
-- composition of maps;
-- injective map;
-- surjective map;
-- bijective map;
-- homomorphism;
-- embedding;
-- isomorphism.
-
-And preservation theorems.
-
-For example, if
-
-\[
-f:A\to B
-\]
-
-is injective and operation-preserving:
-
-\[
-f(a\star_A b)
-=
-f(a)\star_B f(b),
-\]
-
-then laws in the target can often be **reflected** to the source.
-
-For example, target associativity gives:
-
-\[
-\begin{aligned}
-f((a\star b)\star c)
-&=
-(f(a)\star f(b))\star f(c)\\
-&=
-f(a)\star(f(b)\star f(c))\\
-&=
-f(a\star(b\star c)).
-\end{aligned}
-\]
-
-Injectivity therefore yields:
-
-\[
-(a\star b)\star c=a\star(b\star c).
-\]
-
-Add generic transport theorems for:
-
-- associativity;
-- commutativity;
-- identity, when distinguished elements are preserved;
-- absorbing elements;
-- idempotence;
-- distributivity;
-- relation properties;
-- order preservation.
-
-These will let canonical embeddings preserve arithmetic rather than forcing familiar algebraic equalities to be reproved from scratch every time.
-
----
-
-# 14. Canonical embeddings need a much richer certification contract
-
-For the eventual chain
-
-\[
-\mathbb N\hookrightarrow\mathbb Z
-\hookrightarrow\mathbb Q
-\hookrightarrow\mathbb R
-\hookrightarrow\mathbb C,
-\]
-
-each embedding should eventually certify:
-
-\[
-\iota(0)=0,
-\]
-
-\[
-\iota(1)=1,
-\]
-
-\[
-\iota(a+b)=\iota(a)+\iota(b),
-\]
-
-\[
-\iota(ab)=\iota(a)\iota(b),
-\]
-
-and where meaningful:
-
-\[
-a\le b
-\iff
-\iota(a)\le\iota(b).
-\]
-
-Plus injectivity.
-
-This gives the theorem:
-
-> The smaller system occurs inside the larger system with its arithmetic structure preserved.
-
-That is mathematically much stronger than merely providing a coercion.
-
-I would make this one of the flagship themes of this library.
-
----
-
-# 15. Nilpotence needs one conceptual adjustment
-
-The exponent-zero problem was repaired well by introducing `PositivePower`.
-
-But presently `NilpotentElement` is defined for an **arbitrary binary endo-operation**.
-
-For a nonassociative operation,
-
-\[
-aaa
-\]
-
-has no unique algebraic meaning:
-
-\[
-(aa)a
-\]
-
-need not equal
-
-\[
-a(aa).
-\]
-
-The recursion chooses one association.
-
-That is formally legitimate, but it is not quite the ordinary mathematical meaning of "nilpotent element."
-
-Two options:
-
-## Option A — require associativity
-
-Make standard `NilpotentElement` live in an associative context.
-
-## Option B — rename the weak notion
-
-Call it something like:
-
-```text
-LeftIteratedNilpotent
-```
-
-or
-
-```text
-RightIteratedNilpotent
-```
-
-and derive ordinary nilpotence under associativity.
-
-Option B is preferable for this project because it exposes exactly **why associativity matters**.
-
----
-
-# 16. Powers deserve their own major topic
-
-Move `OperationPower` out of Nilpotent.
-
-Have a generic:
-
-```text
-Iteration/
-Power/
-```
-
-topic.
-
-Under associativity + identity prove:
+Then prove under identity + associativity:
 
 \[
 a^0=e,
@@ -1075,715 +1244,710 @@ a^1=a,
 \]
 
 \[
-a^{n+1}=a^n\star a,
+a^{m+n}=a^m\star a^n,
 \]
-
-\[
-a^{m+n}=a^m\star a^n.
-\]
-
-Then:
 
 \[
 (a^m)^n=a^{mn}.
 \]
 
-For commutative operations:
+Only afterward define nilpotence.
+
+This is both structurally cleaner and much more useful for the later arithmetic developments.
+
+## 30. Nilpotence still has the associativity caveat
+
+Your `PositivePower` recursion is formally fine:
 
 \[
-(a\star b)^n=a^n\star b^n.
+a,\;
+(a\star a),\;
+((a\star a)\star a),\ldots
 \]
 
-This will later give arithmetic exponent laws by specialization rather than rediscovery.
+But for a nonassociative operation this is one particular parenthesization.
 
-This deserves far more prominence than merely supporting nilpotence.
-
----
-
-# 17. Add interaction theorems that expose surprising consequences
-
-This is where the library can become genuinely illuminating.
-
-Some particularly good ones:
-
-## Identity and absorber coincide only in a trivial carrier
-
-If \(e\) is an identity and \(z\) an absorber and
-
-\[
-e=z,
-\]
-
-then for every \(x\),
-
-\[
-x=e.
-\]
-
-That is a beautiful theorem showing why \(0\neq1\) is necessary for nontrivial rings.
-
-Later:
-
-\[
-0=1
-\Longrightarrow
-\text{the ring has exactly one element}.
-\]
-
-## Idempotent + cancellation + identity collapses the carrier
-
-If
-
-\[
-a\star a=a
-\]
-
-for all \(a\), and there is appropriate cancellation and an identity, then every element equals the identity.
-
-Again: useful structural incompatibility.
-
-## Inverses imply cancellation
-
-This is already present. Make it central.
-
-## Commutativity collapses left/right distinctions
-
-Several such theorems are already present. Extend the pattern systematically:
-
-- left identity \(\Rightarrow\) right identity under commutativity;
-- left absorber \(\Rightarrow\) right absorber;
-- left cancellation \(\Rightarrow\) right cancellation;
-- left inverse \(\Rightarrow\) right inverse;
-- left distributivity \(\Rightarrow\) right distributivity where the relevant operation is commutative.
-
-This makes "commutativity as a left/right symmetry principle" a coherent lesson.
-
----
-
-# 18. Add independence/counterexample matrices
-
-The failure-mode idea is excellent. It should be expanded.
-
-A key learning goal should be:
-
-> None of these familiar algebraic laws should be unconsciously conflated.
-
-Construct a matrix such as:
-
-| Operation | Associative | Commutative | Identity | Cancellative | Idempotent | Absorber |
-|---|---:|---:|---:|---:|---:|---:|
-| \(+\) on \(\mathbb N\) | ✓ | ✓ | ✓ | ✓ | ✗ | ✗ |
-| \(\times\) on \(\mathbb N\) | ✓ | ✓ | ✓ | ✗ | ✗ | ✓ |
-| subtraction on \(\mathbb Z\) | ✗ | ✗ | one-sided phenomena | ✗ | ✗ | ✗ |
-| Boolean AND | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ |
-| Boolean OR | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ |
-| first projection \(a\star b=a\) | ✓ | ✗ | one-sided | ✗ | ✓ | one-sided |
-| second projection \(a\star b=b\) | ✓ | ✗ | opposite side | ✗ | ✓ | opposite side |
-
-Then explicitly demonstrate:
-
-- associative does not imply commutative;
-- commutative does not imply associative;
-- identity need not exist;
-- left identity need not be right identity;
-- cancellation need not follow from associativity;
-- idempotence does not imply absorption;
-- absorption does not imply identity.
-
-These examples are pedagogically almost as important as the positive theorems.
-
----
-
-# 19. Add tiny finite countermodels
-
-Do not rely only on arithmetic operations for failures.
-
-Two- and three-element carriers are often superior because they prove independence cleanly.
-
-For example, define an operation by a Cayley table and show:
-
-- commutative but nonassociative;
-- associative but noncommutative;
-- left identity but no right identity;
-- right inverse behavior without left inverse behavior when associativity/identity hypotheses are absent.
-
-These are perfect Lean examples because all cases are finite.
-
-They also teach an important foundational lesson:
-
-> A theorem's hypotheses really are necessary.
-
----
-
-# 20. Closure is conceptually good, but explicitly distinguish three meanings
-
-The closure section is good. Make this distinction prominent:
-
-## Untyped/set-theoretic closure
-
-Given \(A\subseteq X\) and
-
-\[
-\star:X\times X\to X,
-\]
-
-closure means
-
-\[
-a,b\in A\Rightarrow a\star b\in A.
-\]
-
-## Typed endo-operation
-
-If Lean already has
+So calling:
 
 ```lean
-operation : A → A → A
+NilpotentElement
 ```
 
-then closure on the full carrier is encoded by the type.
+the ordinary nilpotence concept without an associativity hypothesis is potentially misleading.
 
-## Subcarrier closure
+Either:
 
-If
+- document it explicitly as **left-associated nilpotence**; or
+- reserve standard `NilpotentElement` for associative operations.
 
-```lean
-A : X → Prop
-```
+I prefer the latter.
 
-represents a subset, closure becomes a genuine proposition again.
+## 31. The Map layer is now strong
 
-The current definitions already support this. Make the conceptual distinction an explicit lesson because it teaches something important about formalization.
+The new map surface is generally well designed.
 
----
+You distinguish:
 
-# 21. Add existence separately from possession of a named identity
+- typed map;
+- set-theoretic map;
+- map graph;
+- domain/range;
+- image/preimage;
+- injective/surjective/bijective;
+- left/right/two-sided inverse;
+- section;
+- retraction;
+- restriction;
+- extension;
+- fiber;
+- kernel relation;
+- partial map;
+- product map;
+- identity/composition.
 
-At the moment:
+This is exactly the vocabulary that should sit below topology, analysis, algebra, and number embeddings.
 
-```lean
-TwoSidedIdentity operation identity
-```
+## 32. `FunctionalRelation` is conceptually important—promote it
 
-means a particular `identity` works.
-
-Also add:
-
-\[
-\operatorname{HasLeftIdentity}(\star)
-\iff
-\exists e,\operatorname{LeftIdentity}(\star,e),
-\]
-
-\[
-\operatorname{HasRightIdentity}(\star),
-\]
-
-\[
-\operatorname{HasIdentity}(\star).
-\]
-
-Then prove:
+You define a functional relation as:
 
 \[
-\operatorname{HasLeftIdentity}
+\text{total over domain}
 \land
-\operatorname{HasRightIdentity}
-\Rightarrow
-\operatorname{HasIdentity}.
+\text{single-valued}.
 \]
 
-Because any left identity and right identity coincide.
+Good.
 
-This cleanly separates:
+I'd give this a more visible theorem:
 
-> "Here is the identity."
+> Every typed function determines a total single-valued relation.
 
-from
+and conversely, classically / with suitable choice or explicit unique choice:
 
-> "An identity exists."
+> Every total single-valued relation determines a typed function.
 
-Do the analogous thing for absorbers.
-
----
-
-# 22. Likewise distinguish existence, uniqueness, and chosen data throughout
-
-This is a very useful foundational pattern.
-
-For inverse, make it systematic:
-
-1. **Property of a candidate**
-   \[
-   \operatorname{InverseOf}(a,b).
-   \]
-
-2. **Existence**
-   \[
-   \operatorname{Invertible}(a)
-   :=
-   \exists b\,\operatorname{InverseOf}(a,b).
-   \]
-
-3. **Uniqueness theorem**
-   \[
-   \operatorname{InverseOf}(a,b)\land
-   \operatorname{InverseOf}(a,c)
-   \Rightarrow b=c.
-   \]
-
-4. **Chosen operation**
-   \[
-   \operatorname{inv}:A\to A.
-   \]
-
-This fits beautifully with the general foundational pattern: existence, uniqueness, then canonical chosen object.
-
----
-
-# 23. Add zero-divisor language
-
-This is a major omission if these laws are supposed to prepare the number systems.
-
-For multiplication with zero:
+This is one of the foundational bridges:
 
 \[
-\operatorname{LeftZeroDivisor}(a)
-\iff
-a\ne0\land
-\exists b\ne0,\;ab=0.
+\boxed{\text{relation}}
+\longleftrightarrow
+\boxed{\text{function}}.
 \]
 
-Likewise right zero divisor.
+It would make the map chapter feel much more conceptually unified.
 
-Then add:
+## 33. Sections and retractions deserve relationship theorems with injections/surjections
+
+These are important and illuminating.
+
+If \(s:Y\to X\) is a section of \(f:X\to Y\):
 
 \[
-\text{NoZeroDivisors}
+f\circ s=\operatorname{id}_Y,
+\]
+
+then:
+
+\[
+f\text{ is surjective},
 \]
 
 and:
 
 \[
-ab=0
-\Rightarrow
-a=0\lor b=0.
+s\text{ is injective}.
 \]
 
-This connects directly to cancellation.
+If \(r:Y\to X\) is a retraction of \(i:X\to Y\):
 
-For multiplication in an appropriate structure, nonzero cancellability is closely connected to absence of zero divisors.
+\[
+r\circ i=\operatorname{id}_X,
+\]
 
-This is one of the most important bridges from elementary arithmetic to abstract algebra.
+then:
 
----
+\[
+i\text{ is injective},
+\]
 
-# 24. Add units
+and:
+
+\[
+r\text{ is surjective}.
+\]
+
+Then:
+
+\[
+f\text{ has a two-sided inverse}
+\iff
+f\text{ is bijective}
+\]
+
+with the usual existence caveat/choice mechanism for constructing an inverse from bijectivity.
+
+These should be central map-theory theorems.
+
+## 34. Fiber theory gives a beautiful characterization of injectivity and surjectivity
+
+You already define fibers.
+
+Add:
+
+\[
+f\text{ injective}
+\iff
+\text{every fiber has at most one element},
+\]
+
+and:
+
+\[
+f\text{ surjective}
+\iff
+\text{every fiber is nonempty}.
+\]
+
+Then:
+
+\[
+f\text{ bijective}
+\iff
+\text{every fiber has exactly one element}.
+\]
+
+That is an excellent conceptual characterization.
+
+## 35. Kernel relation should be explicitly tied to equivalence relations
+
+You define:
+
+\[
+x\sim_f y
+\iff
+f(x)=f(y).
+\]
+
+This is always an equivalence relation.
+
+That theorem should be prominent:
+
+\[
+\operatorname{EquivalenceRelation}(\ker f).
+\]
+
+Then:
+
+\[
+f\text{ injective}
+\iff
+\ker f=I.
+\]
+
+where \(I\) is the identity relation.
+
+This is a very clean bridge between Maps and Relations.
+
+Later, for algebraic homomorphisms, this evolves naturally into ordinary kernels.
+
+## 36. Image/preimage algebra should remain asymmetric
+
+You seem already to have many of these theorems.
+
+Make sure the pedagogical contrast is explicit.
+
+For every function:
+
+\[
+f^{-1}(A\cup B)
+=
+f^{-1}(A)\cup f^{-1}(B),
+\]
+
+\[
+f^{-1}(A\cap B)
+=
+f^{-1}(A)\cap f^{-1}(B),
+\]
+
+\[
+f^{-1}(B^c)
+=
+(f^{-1}(B))^c.
+\]
+
+But direct image satisfies:
+
+\[
+f(A\cup B)
+=
+f(A)\cup f(B),
+\]
+
+while generally only:
+
+\[
+f(A\cap B)
+\subseteq
+f(A)\cap f(B).
+\]
+
+Equality holds under injectivity.
+
+That failure mode is extremely important before topology.
+
+Likewise complement behavior fails for images without stronger conditions.
+
+## 37. Add the image/preimage Galois connection explicitly
+
+This is one of the most useful abstract relationships in your whole future analysis stack:
+
+\[
+f(A)\subseteq B
+\iff
+A\subseteq f^{-1}(B).
+\]
+
+You already appear to have material hinting at adjunction-like relationships.
+
+This deserves a named theorem.
+
+It explains many image/preimage facts at once and prepares later work in topology and lattice theory.
+
+Even without category theory, it is very instructive.
+
+## 38. Order embeddings/isomorphisms should connect to map bijectivity explicitly
+
+For genuine partial orders:
+
+An order isomorphism should imply:
+
+- forward map injective;
+- forward map surjective;
+- inverse is its function inverse;
+- forward and inverse monotone;
+- both preserve and reflect order.
 
 Likewise:
 
 \[
-\operatorname{Unit}(a)
-\iff
-\exists b,\;ab=ba=1.
+f\text{ order embedding}
 \]
 
-Then prove:
+should be equivalent, under partial-order assumptions, to:
 
-- identity is a unit;
-- inverse of a unit is a unit;
-- product of units is a unit;
-- units cancel;
-- units form a group under multiplication.
+- injective;
+- monotone;
+- order-reflecting.
 
-Then:
+Expose that characterization.
 
-- in \(\mathbb Z\), the units are \(\pm1\);
-- in a field, every nonzero element is a unit.
+## 39. Add intervals soon
 
-That will make the field abstraction much more understandable.
-
----
-
-# 25. Add characteristic later in this layer or immediately above it
-
-Eventually define repeated addition:
+Given the order surface now includes bounds and density, the largest elementary order concept missing for your Real Analysis path is probably the generic interval family:
 
 \[
-n\cdot 1.
-\]
-
-Then define characteristic and prove the usual foundational facts.
-
-This belongs naturally after powers/iteration and before the number-system comparison work.
-
----
-
-# 26. Add homomorphism preservation as a major theorem family
-
-Once structure bundles exist, define mappings between them.
-
-For monoids:
-
-\[
-f(a\star_A b)
+[a,b]
 =
-f(a)\star_B f(b),
+\{x:a\le x\le b\},
 \]
 
 \[
-f(e_A)=e_B.
+(a,b),
+\quad
+[a,b),
+\quad
+(a,b],
 \]
 
-Then prove:
+and rays.
+
+This is the point where the order library begins feeding directly into real analysis.
+
+Generic interval theorems should include:
+
+- \(x\in[a,b]\iff a\le x\land x\le b\);
+- emptiness conditions;
+- singleton condition \([a,a]=\{a\}\) in partial orders;
+- interval containment;
+- monotonicity in endpoints.
+
+This is more immediately relevant to your project than ideals/filters.
+
+## 40. Add order-convex subsets after intervals
+
+Define:
 
 \[
-f(a^n)=f(a)^n.
+A\text{ is order-convex}
 \]
 
-For groups:
+iff:
 
 \[
-f(a^{-1})=f(a)^{-1}.
+x,z\in A,\quad x\le y\le z
+\Rightarrow
+y\in A.
 \]
 
-For rings:
+Then prove intervals are convex.
 
-\[
-f(-a)=-f(a),
-\]
+This becomes useful later for:
 
-\[
-f(a-b)=f(a)-f(b).
-\]
+- intervals;
+- connectedness on \(\mathbb R\);
+- convexity;
+- intermediate-value arguments.
 
-These results will make canonical number embeddings far cleaner.
+But this can be a second-wave addition.
 
----
+## 41. The examples are generally well chosen; add several structural ones
 
-# 27. Order should eventually produce named ordered structures
+The number examples are useful, but for this broader library I would ensure these canonical models occur repeatedly.
 
-Once relations and algebraic structures exist, define:
+### Relations
 
-## Ordered additive commutative monoid
+- equality: equivalence relation and partial order;
+- universal relation: preorder/equivalence but not antisymmetric on multi-element carriers;
+- divisibility on \(\mathbb N_{>0}\): partial order;
+- divisibility on \(\mathbb Z\): preorder but not partial order;
+- subset inclusion: partial order;
+- strict subset: strict order.
 
-Order + addition compatibility.
+### Orders
 
-## Ordered abelian group
+- \((\mathbb N,\le)\): well-order;
+- \((\mathbb Z,\le)\): linear but not well-ordered;
+- \((\mathbb Q,<)\): dense strict linear order;
+- \((\mathbb R,<)\): dense strict linear order;
+- product order: partial but generally not linear;
+- lexicographic order: linear when components are suitably linear.
 
-Abelian group + order + translation invariance.
+### Lattices
 
-## Ordered ring
+- \((\mathcal P(X),\subseteq)\), with
+  \[
+  A\vee B=A\cup B,
+  \quad
+  A\wedge B=A\cap B;
+  \]
+- divisibility lattice where appropriate;
+- Boolean lattice;
+- \(M_3\) and \(N_5\) as nondistributive examples—you already have these, which is excellent.
 
-Ring + compatible order.
+## 42. Add a relation-property independence matrix
 
-## Linearly ordered field
-
-Field + linear order + compatibility.
-
-Then the eventual real-number certification can say:
-
-\[
-(\mathbb R,+,\cdot,0,1,\le)
-\]
-
-is a **complete linearly ordered field**.
-
-That gives the whole project a very clean endpoint.
-
----
-
-# 28. Axiom/law versus theorem should be visible in the file organization
-
-This is important for a Landau-inspired development.
-
-For every topic, organize around:
-
-```text
-Definition
-Requirements
-ImmediateConsequences
-InteractionTheorems
-Examples
-Counterexamples
-```
+The operation-law version I recommended previously should have a relation analogue.
 
 For example:
 
-## Associativity
+| Relation | Refl. | Irrefl. | Symm. | Antisymm. | Trans. | Total |
+|---|---:|---:|---:|---:|---:|---:|
+| equality | ✓ | ✗ | ✓ | ✓ | ✓ | ✓ |
+| inequality \(\ne\) | ✗ | ✓ | ✓ | ✗ | generally ✗ | ✓ |
+| \(<\) on \(\mathbb R\) | ✗ | ✓ | ✗ | ✓ | ✓ | ✗ under your connex definition |
+| \(\le\) on \(\mathbb R\) | ✓ | ✗ | ✗ | ✓ | ✓ | ✓ |
+| universal relation | ✓ | ✗ | ✓ | ✗ | ✓ | ✓ |
+| empty relation | ✗ on nonempty carrier | ✓ | ✓ | ✓ | ✓ | ✗ |
 
-**Definition**
+This table would be extremely illuminating.
 
-\[
-(a\star b)\star c=a\star(b\star c).
-\]
+And it prevents students from thinking these law names are nearly synonymous.
 
-**Requirements**
+## 43. Be especially clear about empty-carrier edge cases
 
-Exactly that equation for every \(a,b,c\).
+Because your carriers are Lean `Type`s and aren't globally assumed nonempty, some relation facts behave differently on empty types.
 
-**Consequences**
+Examples:
 
-Arbitrary reassociation.
+- empty relation on an empty carrier is reflexive vacuously;
+- universal relation on an empty carrier is irreflexive vacuously;
+- some "there exists" examples need `[Nonempty α]`.
 
-**Does not imply**
+This is not a defect.
 
-- identity;
-- commutativity;
-- cancellation;
-- inverse.
+But because the project is foundational, it would be good to explicitly have a short note:
 
-**Examples**
+> Relation laws are stated on arbitrary carriers; statements involving existence may require nonemptiness separately.
 
-Addition, multiplication, function composition.
+This avoids hidden classical-school assumptions.
 
-**Counterexamples**
+## 44. Your file architecture is approaching a mature pattern
 
-Subtraction, division.
-
-This makes the mathematical epistemology extremely clear.
-
----
-
-# 29. There are some pedagogical aliases that can be removed later
-
-For example, in Associative:
-
-- `Associative.apply`
-- `Associative.reassociate_left`
-- `Associative.preserves_left_nested_shape`
-
-are mathematically the same statement.
-
-During learning this is not harmful.
-
-Eventually keep something like:
-
-```lean
-Associative.apply
-Associative.symm_apply
-```
-
-and reserve `Relationships.lean` for actual interactions rather than restating the definition.
-
----
-
-# 30. A few especially important examples are missing
-
-Add these to the core canonical example bank.
-
-## Function composition
-
-Composition is:
-
-- associative;
-- generally not commutative;
-- has identity maps;
-- invertible exactly for bijections in the appropriate setting.
-
-This is probably the single best non-number example of why associativity and commutativity differ.
-
-## Set union
-
-- associative;
-- commutative;
-- idempotent;
-- identity \(\varnothing\).
-
-## Set intersection
-
-- associative;
-- commutative;
-- idempotent;
-- identity \(U\) relative to a universe;
-- absorber \(\varnothing\).
-
-## Matrix multiplication
-
-- associative;
-- generally not commutative;
-- identity exists;
-- not every matrix invertible.
-
-This is an excellent example because it destroys several arithmetic intuitions simultaneously.
-
-## Function composition + invertible functions
-
-Gives a naturally noncommutative group.
-
-## Boolean XOR
-
-This is already used for inverses. Good choice.
-
-## Modular arithmetic
-
-For \(\mathbb Z/n\mathbb Z\):
-
-- addition gives an abelian group;
-- multiplication has zero divisors for composite \(n\);
-- nonzero multiplicative cancellation holds exactly under appropriate unit/no-zero-divisor conditions.
-
-This will be invaluable later.
-
----
-
-# 31. Important failure modes to explicitly include
-
-Make sure the catalogue contains all of these:
-
-- closure failure;
-- left identity without right identity;
-- right identity without left identity;
-- no identity;
-- multiple left identities possible;
-- multiple right identities possible;
-- two-sided identity unique;
-- left inverse without right inverse if associativity/identity assumptions are absent;
-- nonunique one-sided inverses in weak structures;
-- failure of associativity;
-- failure of commutativity;
-- failure of cancellation due to absorber;
-- failure of multiplication cancellation at zero;
-- failure from zero divisors;
-- distributivity only one direction in noncommutative situations;
-- idempotence without identity;
-- identity without idempotence;
-- order preservation under positive multiplication;
-- order reversal under negative multiplication;
-- failure of monotonicity without sign restriction;
-- homomorphism that is not injective;
-- injective map that is not a homomorphism;
-- relation-preserving map that is not relation-reflecting;
-- operation preservation without identity preservation.
-
-That last group will make the embeddings chapter significantly more illuminating.
-
----
-
-# 32. Suggested revised dependency graph
-
-Change the learning spine to approximately:
+I like the recurring:
 
 ```text
-Functions / Operations
-        │
-        ├── Closure
-        │
-        └── Iteration
-                │
-                └── Powers
-
-Relations
-  ├── Reflexive
-  ├── Symmetric
-  ├── Transitive
-  ├── Antisymmetric
-  ├── ...
-  ├── Equivalence
-  └── Orders
-        │
-        └── Monotone / Antitone
-
-Equality / Congruence
-        │
-        └── Quotient Well-Definedness
-
-Binary Operation Laws
-  ├── Identity
-  ├── Associative
-  ├── Commutative
-  ├── Absorbing
-  ├── Idempotent
-  └── Cancellation
-        │
-        └── Inverse
-              │
-              ├── Semigroup
-              ├── Monoid
-              └── Group
-
-Two-Operation Laws
-        └── Distributivity
-              │
-              ├── Semiring-like structures
-              └── Ring-like structures
-                    │
-                    ├── Negation
-                    ├── Subtraction
-                    ├── Zero divisors
-                    └── Units
-
-Order + Operations
-        │
-        ├── Ordered groups
-        ├── Ordered rings
-        └── Ordered fields
-
-Maps Between Structures
-  ├── Homomorphism
-  ├── Embedding
-  └── Isomorphism
-        │
-        └── Canonical Number Embeddings
+Definition
+Theorems
+Relationships
+Examples
+FailureModes
 ```
 
-That is the mature version of what the current scaffold is already trying to become.
+It fits this project well.
 
----
+But now that the surface is larger, I would distinguish four theorem kinds more explicitly:
 
-# What I would change before writing any proofs
+```text
+Definition
+Characterizations
+Consequences
+Relationships
+Examples
+FailureModes
+```
 
-Treat these as the blocking changes:
+You already use `Characterizations.lean` in some order modules.
 
-1. **Add generic relation laws.**
-2. **Change `RelationEmbedding` to include injectivity, or rename the current weaker notion.**
-3. **Delete or redesign `MixedOperationResultCarrier`; it is vacuous.**
-4. **Move powers/iteration out of Nilpotent.**
-5. **Either require associativity for ordinary nilpotence or rename the weak iterated notion.**
-6. **Split `SignNegationLaws` into minimal prerequisites and derived theorems.**
-7. **Add the definition connecting subtraction with addition and additive inverse.**
-8. **Add `HasIdentity`, `HasAbsorber`, `Invertible`, etc., separating existence from chosen witnesses.**
-9. **Add named aggregate predicates: Semigroup, Monoid, Group, AbelianGroup, Ring-like contracts, etc.**
-10. **Tie Positive/Negative explicitly to an order and zero before using those names as mathematical sign concepts.**
+I would make that convention uniform.
 
-After those changes, the scaffold is genuinely ready for systematic proof work.
+For example:
 
-## Bottom line
+### PartialOrder
 
-The central idea is sound: **Volume I should establish a calculus of laws; Volume II should certify structures against it.** That is a very good foundation for the number-system development.
+**Definition**
+- reflexive + antisymmetric + transitive.
 
-The current scaffold already captures most of the important atomic operation laws correctly.
+**Characterizations**
+- extracting each constituent law.
 
-What it lacks is the middle layer:
+**Consequences**
+- mutual comparison gives equality;
+- no nontrivial cycles.
+
+**Relationships**
+- strict part;
+- dual relation;
+- preorder implications.
+
+This makes the library easier to learn from.
+
+## 45. The biggest remaining architectural absence is the named algebraic structure layer
+
+This remains from my first review.
+
+Your operation laws are broader now, but I still don't see the middle-level contracts:
+
+- Semigroup;
+- Monoid;
+- CommutativeMonoid;
+- Group;
+- AbelianGroup;
+- Semiring;
+- Ring;
+- CommutativeRing;
+- DivisionRing;
+- Field;
+- OrderedGroup;
+- OrderedRing;
+- OrderedField.
+
+That is still the natural next layer.
+
+You now have enough infrastructure that these can be defined cleanly.
+
+And **this is where Operations + Relations + Order finally converge**.
+
+For example:
 
 \[
-\boxed{\text{atomic laws}}
-\longrightarrow
-\boxed{\text{named structures + interaction theorems}}
-\longrightarrow
-\boxed{\text{concrete number systems}}.
+\operatorname{OrderedAbelianGroup}
 \]
 
-Right now the project has the first box and is preparing for the third. Build that middle box before proving the scaffold.
+should combine:
 
-Once it exists, statements such as
+- abelian group laws;
+- partial or linear order;
+- translation invariance.
+
+Then:
 
 \[
-\mathbb N\text{ is a commutative semiring},
+\operatorname{OrderedField}
+\]
+
+should combine:
+
+- field laws;
+- linear order;
+- addition monotonicity;
+- multiplication positivity.
+
+Eventually:
+
+\[
+\boxed{\mathbb R\text{ is a complete linearly ordered field}.}
+\]
+
+That becomes the destination of this entire structural scaffold.
+
+## 46. Recommended revised spine
+
+With this wider tree, I would organize the conceptual dependency graph approximately as:
+
+```text
+Relations
+│
+├── Binary relations
+├── Converse / union / intersection / composition
+├── Reflexive / symmetric / transitive / ...
+├── Equivalence relations
+│   ├── equivalence classes
+│   ├── partitions
+│   └── quotients
+└── Well-founded relations
+
+Maps
+│
+├── Typed maps
+├── Graphs / functional relations
+├── Identity / composition
+├── Injective / surjective / bijective
+├── Image / preimage / fiber
+├── Section / retraction
+├── Partial maps
+└── Map–relation bridges
+
+Operations
+│
+├── Nullary / unary / binary operations
+├── Closure
+├── Identity
+├── Associativity
+├── Commutativity
+├── Cancellation
+├── Absorption
+├── Distributivity
+├── Inverses
+└── Iteration / powers
+
+Order
+│
+├── Preorders
+│   └── antisymmetrization quotient
+├── Partial orders
+├── Strict orders
+├── Linear orders
+├── Well-orders
+├── Bounds / extrema
+├── Supremum / infimum
+├── Density
+├── Directedness
+├── Monotone / antitone maps
+└── Lattices
+
+Structural Algebra
+│
+├── Semigroup
+├── Monoid
+├── Group
+├── Ring
+├── Field
+├── Ordered group
+├── Ordered ring
+└── Ordered field
+
+Concrete Number Systems
+│
+├── ℕ
+├── ℤ
+├── ℚ
+├── ℝ
+└── ℂ
+```
+
+That is now a very coherent Landau-inspired development.
+
+## What I would fix **before proof implementation**
+
+My blocking list is shorter than last time.
+
+I would do these first:
+
+1. **Remove `MixedOperationResultCarrier`** or make it non-vacuous.
+2. **Resolve the `RelationEmbedding` naming/injectivity issue** in both map/order areas.
+3. **Add generic relation composition.**
+4. **Fix the missing `Relation.MaximalElement`/documentation drift.**
+5. **Canonicalize `Equivalence` versus `EquivalenceRelation`.**
+6. **Re-home `OperationPower`.**
+7. **Decide whether nilpotence presupposes associativity.**
+8. **Break `SignNegationLaws` into prerequisites and derived theorems.**
+9. **Pin subtraction to addition + additive inverse.**
+10. **Add explicit `TopElement` and `BottomElement`.**
+11. **Add the relation-property implication theorem family.**
+12. **Add Map ↔ Relation bridge theorems around functional relations and kernels.**
+
+Then I think **Relations, Map, and Order are ready for systematic proof replacement**.
+
+The algebraic structure aggregation layer can be built in parallel or immediately afterward; it doesn't have to block proving the foundational relation/map/order results.
+
+## Final assessment
+
+This iteration is significantly stronger than the first.
+
+The first scaffold felt like:
+
+\[
+\text{a useful inventory of operation laws}.
+\]
+
+This one begins to feel like:
+
+\[
+\boxed{\text{a small foundational mathematics library}}.
+\]
+
+The most important improvement is that you are no longer treating order as a mysterious primitive attached to number systems. You now have the right hierarchy:
+
+\[
+\text{binary relation}
+\to
+\text{relation laws}
+\to
+\text{preorder}
+\to
+\text{partial order}
+\to
+\text{linear order}
+\to
+\text{well-order/density/completeness}.
+\]
+
+Likewise maps are no longer just coercions—they have their own structural theory.
+
+The remaining work is mostly **connecting the layers**. The most illuminating future theorems will not be new definitions, but bridges such as:
+
+\[
+\text{kernel of a map is an equivalence relation},
 \]
 
 \[
-\mathbb Z\text{ is an ordered commutative ring},
+\text{preorder quotient is a partial order},
 \]
 
 \[
-\mathbb Q\text{ is an ordered field},
+\text{join induces a commutative associative idempotent operation},
 \]
-
-and eventually
 
 \[
-\mathbb R\text{ is a complete ordered field}
+\text{semilattice operation induces an order},
 \]
 
-become **certification theorems whose assumptions and consequences have already been independently understood and proved**. That is exactly the Landau-inspired architecture this project is aiming for.
+\[
+\text{order translation is monotonicity},
+\]
+
+\[
+\text{canonical embeddings preserve arithmetic and order},
+\]
+
+and ultimately
+
+\[
+\mathbb N,\mathbb Z,\mathbb Q,\mathbb R
+\]
+
+satisfy increasingly rich collections of these generic laws.
+
+That is exactly the architecture I would want for the goal you described.
