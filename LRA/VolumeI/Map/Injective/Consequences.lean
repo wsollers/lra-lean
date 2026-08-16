@@ -1,0 +1,40 @@
+import LRA.VolumeI.Map.Injective.Definition
+import LRA.VolumeI.Map.Fiber.Consequences
+import LRA.VolumeI.Relations.Basic.Relations
+
+namespace LRA.Map.Injective
+
+open LRA.Map.Typed
+
+universe u v
+
+/--
+A map is injective exactly when its kernel relation is the identity relation
+on its domain.
+-/
+theorem InjectiveIffKernelIsIdentityRelation
+    {Domain : Type u} {Codomain : Type v}
+    (map : TypedMap Domain Codomain) :
+    Injective map <->
+      LRA.Map.Fiber.KernelRelation map =
+        LRA.Relation.IdentityRelation Domain := by
+  constructor
+  · intro injective
+    funext left right
+    apply propext
+    constructor
+    · intro related
+      exact injective left right related
+    · intro equalInputs
+      unfold LRA.Map.Fiber.KernelRelation
+      rw [equalInputs]
+  · intro kernelIsIdentity
+    intro left right equalOutputs
+    have related : LRA.Map.Fiber.KernelRelation map left right := equalOutputs
+    have identityRelated :
+        LRA.Relation.IdentityRelation Domain left right := by
+      rw [← kernelIsIdentity]
+      exact related
+    exact identityRelated
+
+end LRA.Map.Injective
