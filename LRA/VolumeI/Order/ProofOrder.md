@@ -4,7 +4,7 @@ This checklist contains every Lean `theorem` declaration recursively under `LRA/
 
 Each entry is a human mathematical statement rather than a repetition of the Lean declaration. The prose introduces the ambient sets and structures with “Let …” and states the mathematical claim in ordinary terminology. The source link remains available for the exact formal signature and implementation-level capabilities.
 
-**Inventory:** 315 theorems in 107 modules.
+**Inventory:** 327 theorems in 112 modules.
 
 ## Ordering rules
 
@@ -18,14 +18,14 @@ Each entry is a human mathematical statement rather than a repetition of the Lea
 ### 1. `Bounds/UpperBound/Theorems.lean`
 
 - [ ] **UpperBoundOfEmpty** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then every element is vacuously an upper bound of the empty represented subset. ([source](./Bounds/UpperBound/Theorems.lean#L19))
-- [ ] **UpperBoundOfSubcollection** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(A\), \(B\) belong to \(\mathcal S\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then an upper bound of a larger represented subset bounds every subcollection. ([source](./Bounds/UpperBound/Theorems.lean#L31))
-- [ ] **UpperBoundOfUnion** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(A\), \(B\) belong to \(\mathcal S\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then a common upper bound of two represented subsets bounds their union. ([source](./Bounds/UpperBound/Theorems.lean#L42))
-- [ ] **UpperBoundOfUnionIff** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(A\), \(B\) belong to \(\mathcal S\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then an element is an upper bound of the union of two subsets if and only if it is an upper bound of each subset separately. ([source](./Bounds/UpperBound/Theorems.lean#L56))
-- [ ] **UpperBoundOfIntersection** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(A\), \(B\) belong to \(\mathcal S\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then an upper bound of either set is an upper bound of their intersection. ([source](./Bounds/UpperBound/Theorems.lean#L70))
-- [ ] **UpperBoundOfDifference** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(A\), \(B\) belong to \(\mathcal S\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then every upper bound of a set bounds each represented relative difference. ([source](./Bounds/UpperBound/Theorems.lean#L85))
-- [ ] **UpperBoundOfSymmetricDifference** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(A\), \(B\) belong to \(\mathcal S\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then a common upper bound of two sets bounds their symmetric difference. ([source](./Bounds/UpperBound/Theorems.lean#L104))
-- [ ] **UpperBoundOfIndexedUnionIff** — Let \(P\) be a set, let \(I\) be an index set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then an element bounds an indexed union above exactly when it bounds every member of the family above. ([source](./Bounds/UpperBound/Theorems.lean#L127))
-- [ ] **UpperBoundOfIndexedIntersection** — Let \(P\) be a set, let \(I\) be an index set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then an upper bound of any selected family member bounds the indexed intersection above. ([source](./Bounds/UpperBound/Theorems.lean#L147))
+- [ ] **UpperBoundOfSubcollection** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(A\), \(B\) belong to \(\mathcal S\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then an upper bound of a larger represented subset bounds every subcollection. ([source](./Bounds/UpperBound/Theorems.lean#L37))
+- [ ] **UpperBoundOfUnion** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(A\), \(B\) belong to \(\mathcal S\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then a common upper bound of two represented subsets bounds their union. ([source](./Bounds/UpperBound/Theorems.lean#L53))
+- [ ] **UpperBoundOfUnionIff** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(A\), \(B\) belong to \(\mathcal S\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then an element is an upper bound of the union of two subsets if and only if it is an upper bound of each subset separately. ([source](./Bounds/UpperBound/Theorems.lean#L80))
+- [ ] **UpperBoundOfIntersection** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(A\), \(B\) belong to \(\mathcal S\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then an upper bound of either set is an upper bound of their intersection. ([source](./Bounds/UpperBound/Theorems.lean#L114))
+- [ ] **UpperBoundOfDifference** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(A\), \(B\) belong to \(\mathcal S\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then every upper bound of a set bounds each represented relative difference. ([source](./Bounds/UpperBound/Theorems.lean#L129))
+- [ ] **UpperBoundOfSymmetricDifference** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(A\), \(B\) belong to \(\mathcal S\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then a common upper bound of two sets bounds their symmetric difference. ([source](./Bounds/UpperBound/Theorems.lean#L148))
+- [ ] **UpperBoundOfIndexedUnionIff** — Let \(P\) be a set, let \(I\) be an index set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then an element bounds an indexed union above exactly when it bounds every member of the family above. ([source](./Bounds/UpperBound/Theorems.lean#L171))
+- [ ] **UpperBoundOfIndexedIntersection** — Let \(P\) be a set, let \(I\) be an index set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then an upper bound of any selected family member bounds the indexed intersection above. ([source](./Bounds/UpperBound/Theorems.lean#L191))
 
 ### 2. `Bounds/BoundedAbove/Theorems.lean`
 
@@ -296,48 +296,38 @@ Each entry is a human mathematical statement rather than a repetition of the Lea
 
 - [ ] **GreaterThanOrEqualIsConverseOfLessThanOrEqual** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then reversing an adjoined-equality relation gives greater-than-or-equal. ([source](./Relations/GreaterThanOrEqual/Relationships.lean#L9))
 
-### 46. `Constructions/StrictNonStrictCorrespondence/Theorems.lean`
-
-- [ ] **StrictOrderInducesPartialOrder** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then strict orders induce partial orders by adjoining equality. ([source](./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L10))
-- [ ] **PartialOrderInducesStrictOrder** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then partial orders induce strict orders by removing equality. ([source](./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L18))
-- [ ] **StrictLinearOrderInducesLinearOrder** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then strict linear orders induce linear orders by adjoining equality. ([source](./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L26))
-- [ ] **StrictNonStrictInverseCorrespondence** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then removing equality after adjoining it recovers an irreflexive relation. ([source](./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L34))
-- [ ] **NonStrictStrictInverseCorrespondence** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then adjoining equality to the strict part recovers a reflexive relation. ([source](./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L43))
-- [ ] **PosetOfStrictPosetOfPoset** — Let the displayed ordered structure be given. Then converting a poset to strict form and back recovers it. ([source](./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L53))
-- [ ] **StrictPosetOfPosetOfStrictPoset** — Let the displayed ordered structure be given. Then converting a strict poset to non-strict form and back recovers it. ([source](./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L58))
-
-### 47. `Density/DenseLinearOrder/FailureModes.lean`
+### 46. `Density/DenseLinearOrder/FailureModes.lean`
 
 - [ ] **IntegerStrictOrderIsNotDenseLinearOrder** — Let \(\mathbb Z\) carry the operations and order used here. Then the integer strict order is linear but not dense. ([source](./Density/DenseLinearOrder/FailureModes.lean#L26))
 
-### 48. `Density/DenseOrder/FailureModes.lean`
+### 47. `Density/DenseOrder/FailureModes.lean`
 
 - [ ] **ReflexiveRelationIsRawDense** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then every reflexive relation satisfies the raw density predicate by choosing the left endpoint as the middle witness. ([source](./Density/DenseOrder/FailureModes.lean#L28))
 
-### 49. `Density/DenseOrder/Theorems.lean`
+### 48. `Density/DenseOrder/Theorems.lean`
 
 - [ ] **DenseOrderOfStrictPartIffDense** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then for a partial order, density of its strict part is exactly dense order. ([source](./Density/DenseOrder/Theorems.lean#L11))
 - [ ] **DenseOrderHasNoCovers** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then a dense strict order has no cover pairs and hence no Hasse edges. ([source](./Density/DenseOrder/Theorems.lean#L20))
 
-### 50. `Directedness/Chain/FailureModes.lean`
+### 49. `Directedness/Chain/FailureModes.lean`
 
 - [ ] **TwoAndThreeFailDivisibilityChain** — Let \(\mathbb N\) carry the operations and order used here, let the subsets occurring below be subsets of the relevant carrier. Then two and three are incomparable by divisibility, so their represented subset is not a chain. ([source](./Directedness/Chain/FailureModes.lean#L33))
 
-### 51. `Directedness/Chain/Relationships.lean`
+### 50. `Directedness/Chain/Relationships.lean`
 
 - [ ] **NonemptyChainIsDirected** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(S\) belong to \(\mathcal S\), let \(\preceq\) be a binary relation on \(P\). Then every nonempty chain for a reflexive relation is directed. ([source](./Directedness/Chain/Relationships.lean#L9))
 
-### 52. `Directedness/Directed/FailureModes.lean`
+### 51. `Directedness/Directed/FailureModes.lean`
 
 - [ ] **DirectedDoesNotImplyChain** — Let \(\mathbb N\) carry the operations and order used here, let the subsets occurring below be subsets of the relevant carrier. Then the divisibility-directed subset {2, 3, 6} is not a chain. ([source](./Directedness/Directed/FailureModes.lean#L46))
 - [ ] **SubsetOfDirectedSetNeedNotBeDirected** — Let \(\mathbb N\) carry the operations and order used here, let the subsets occurring below be subsets of the relevant carrier, equip that structure with the binary relation used in the theorem. Then a represented subset of a directed set need not itself be directed. ([source](./Directedness/Directed/FailureModes.lean#L59))
 
-### 53. `Directedness/Directed/Theorems.lean`
+### 52. `Directedness/Directed/Theorems.lean`
 
 - [ ] **MaximalElementOfDirectedSubsetIsGreatest** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(S\) belong to \(\mathcal S\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then a maximal element of a directed subset of a partial order is greatest. ([source](./Directedness/Directed/Theorems.lean#L13))
 - [ ] **ProductOfDirectedSubsetsIsDirected** — Let \(P\), \(Q\), \(R\) be sets, let \(\mathcal S_P\) and \(\mathcal S_Q\) be represented families of subsets of the corresponding carriers, let \(A\), \(B\) be represented subsets of the appropriate carriers, let \(a\) be an element of the appropriate carrier, let \(\preceq_P\) and \(\preceq_Q\) be binary relations on \(P\) and \(Q\), respectively. Then the coordinatewise product of two directed represented subsets is directed. ([source](./Directedness/Directed/Theorems.lean#L26))
 
-### 54. `Interoperability/Mathlib/Bounds.lean`
+### 53. `Interoperability/Mathlib/Bounds.lean`
 
 - [ ] **upperBound_iff_mem_upperBounds** — Let \(P\) be a set, let \(S\) be a subset of the relevant carrier, let \(a\) belong to \(P\). Then LRA upper bounds specialize to Mathlib's upperBounds. ([source](./Interoperability/Mathlib/Bounds.lean#L37))
 - [ ] **lowerBound_iff_mem_lowerBounds** — Let \(P\) be a set, let \(S\) be a subset of the relevant carrier, let \(a\) belong to \(P\). Then LRA lower bounds specialize to Mathlib's lowerBounds. ([source](./Interoperability/Mathlib/Bounds.lean#L44))
@@ -348,69 +338,69 @@ Each entry is a human mathematical statement rather than a repetition of the Lea
 - [ ] **boundedAbove_iff_bddAbove** — Let \(P\) be a set, let \(S\) be a subset of the relevant carrier. Then LRA bounded-above subsets specialize to Mathlib's BddAbove. ([source](./Interoperability/Mathlib/Bounds.lean#L79))
 - [ ] **boundedBelow_iff_bddBelow** — Let \(P\) be a set, let \(S\) be a subset of the relevant carrier. Then LRA bounded-below subsets specialize to Mathlib's BddBelow. ([source](./Interoperability/Mathlib/Bounds.lean#L86))
 
-### 55. `Lattices/CompleteLattice/FailureModes.lean`
+### 54. `Lattices/CompleteLattice/FailureModes.lean`
 
 - [ ] **IntegerLeastUpperBoundPropertyDoesNotImplyCompleteLattice** — Let \(\mathbb Z\) carry the operations and order used here, let the subsets occurring below be subsets of the relevant carrier. Then the integers have the least-upper-bound property for nonempty bounded-above subsets but are not a complete lattice. ([source](./Lattices/CompleteLattice/FailureModes.lean#L31))
 
-### 56. `Lattices/CompleteLattice/MathlibAdapters.lean`
+### 55. `Lattices/CompleteLattice/MathlibAdapters.lean`
 
 - [ ] **FiniteLatticeIsComplete** — Let \(P\) be a set, let \(S\) be a subset of the relevant carrier, let \(\preceq\) be a binary relation on \(P\). Then every nonempty finite lattice is complete for predicate subsets. ([source](./Lattices/CompleteLattice/MathlibAdapters.lean#L11))
 
-### 57. `Lattices/CompleteLattice/Relationships.lean`
+### 56. `Lattices/CompleteLattice/Relationships.lean`
 
 - [ ] **ConverseIsCompleteLatticeIff** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(\preceq\) be a binary relation on \(P\). Then complete-lattice structure is invariant under order duality. ([source](./Lattices/CompleteLattice/Relationships.lean#L8))
 
-### 58. `Lattices/CompleteLattice/Theorems.lean`
+### 57. `Lattices/CompleteLattice/Theorems.lean`
 
 - [ ] **CompleteLatticeHasBottomAndTop** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(\preceq\) be a binary relation on \(P\). Then a complete lattice over a generic set backend with an empty set has bottom and top elements. ([source](./Lattices/CompleteLattice/Theorems.lean#L12))
 - [ ] **AllSupremaImplyCompleteLattice** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(\preceq\) be a binary relation on \(P\). Then for a generic set backend with universal-set and separation capabilities, a partial order with suprema for all represented subsets is a complete lattice; infima arise as suprema of represented sets of lower bounds. ([source](./Lattices/CompleteLattice/Theorems.lean#L30))
 - [ ] **AllInfimaImplyCompleteLattice** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(\preceq\) be a binary relation on \(P\). Then dually, infima for all represented subsets determine a complete lattice. ([source](./Lattices/CompleteLattice/Theorems.lean#L47))
 - [ ] **CompleteLatticeIsLattice** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(\preceq\) be a binary relation on \(P\). Then a complete lattice over a backend that represents pairs is a lattice. ([source](./Lattices/CompleteLattice/Theorems.lean#L64))
 
-### 59. `Lattices/DistributiveLattice/FailureModes.lean`
+### 58. `Lattices/DistributiveLattice/FailureModes.lean`
 
 - [ ] **M3IsNondistributiveLattice** — Let the displayed ordered structure be given. Then the diamond M₃ is a lattice but is not distributive. ([source](./Lattices/DistributiveLattice/FailureModes.lean#L50))
 - [ ] **N5IsNondistributiveLattice** — Let the displayed ordered structure be given. Then the pentagon N₅ is a lattice but is not distributive. ([source](./Lattices/DistributiveLattice/FailureModes.lean#L61))
 
-### 60. `Lattices/DistributiveLattice/Theorems.lean`
+### 59. `Lattices/DistributiveLattice/Theorems.lean`
 
 - [ ] **DistributiveLatticeIsLattice** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then every distributive lattice is a lattice. ([source](./Lattices/DistributiveLattice/Theorems.lean#L8))
 - [ ] **JoinDistributesOverMeet** — Let \(P\) be a set, let \(a\), \(b\), \(c\), \(u\),\ldots belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then join distributes over meet in a distributive lattice. ([source](./Lattices/DistributiveLattice/Theorems.lean#L16))
 - [ ] **MeetDistributesOverJoin** — Let \(P\) be a set, let \(a\), \(b\), \(c\), \(u\),\ldots belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then meet distributes over join in a distributive lattice. ([source](./Lattices/DistributiveLattice/Theorems.lean#L30))
 
-### 61. `Lattices/Join/FailureModes.lean`
+### 60. `Lattices/Join/FailureModes.lean`
 
 - [ ] **TwoFailsJoinOfTwoAndThree** — Let \(\mathbb N\) carry the operations and order used here. Then two fails as the join of two and three under the usual order. ([source](./Lattices/Join/FailureModes.lean#L29))
 
-### 62. `Lattices/Join/Relationships.lean`
+### 61. `Lattices/Join/Relationships.lean`
 
 - [ ] **JoinOfConverseIffMeet** — Let \(P\) be a set, let \(a\), \(b\), \(c\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then joins for the converse relation are meets for the original relation. ([source](./Lattices/Join/Relationships.lean#L9))
 
-### 63. `Lattices/Join/Theorems.lean`
+### 62. `Lattices/Join/Theorems.lean`
 
 - [ ] **JoinUnique** — Let \(P\) be a set, let \(a\), \(b\), \(c\), \(u\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then antisymmetry makes a binary join unique. ([source](./Lattices/Join/Theorems.lean#L8))
 - [ ] **JoinCommutes** — Let \(P\) be a set, let \(a\), \(b\), \(c\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then the order of the two inputs does not affect the join predicate. ([source](./Lattices/Join/Theorems.lean#L19))
 - [ ] **JoinIdempotent** — Let \(P\) be a set, let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then reflexivity makes an element the join of itself with itself. ([source](./Lattices/Join/Theorems.lean#L27))
 - [ ] **JoinAssociative** — Let \(P\) be a set, let \(a\), \(b\), \(c\), \(u\),\ldots belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then whenever the displayed joins exist in a partial order, the two associations agree. ([source](./Lattices/Join/Theorems.lean#L36))
 
-### 64. `Lattices/JoinSemilattice/FailureModes.lean`
+### 63. `Lattices/JoinSemilattice/FailureModes.lean`
 
 - [ ] **BooleanEqualityFailsJoinSemilattice** — Let the two-element Boolean set carry the operations and order used here. Then equality on two distinct booleans has no join for false and true. ([source](./Lattices/JoinSemilattice/FailureModes.lean#L28))
 
-### 65. `Lattices/JoinSemilattice/Theorems.lean`
+### 64. `Lattices/JoinSemilattice/Theorems.lean`
 
 - [ ] **JoinSemilatticeHasJoin** — Let \(P\) be a set, let \(a\), \(b\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then every pair in a join-semilattice has a join. ([source](./Lattices/JoinSemilattice/Theorems.lean#L8))
 
-### 66. `Lattices/Lattice/FailureModes.lean`
+### 65. `Lattices/Lattice/FailureModes.lean`
 
 - [ ] **BooleanEqualityFailsLattice** — Let the two-element Boolean set carry the operations and order used here. Then equality on two distinct booleans is a partial order but not a lattice. ([source](./Lattices/Lattice/FailureModes.lean#L28))
 
-### 67. `Lattices/Lattice/Relationships.lean`
+### 66. `Lattices/Lattice/Relationships.lean`
 
 - [ ] **LatticeIffJoinAndMeetSemilattice** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then a lattice is exactly both a join-semilattice and a meet-semilattice. ([source](./Lattices/Lattice/Relationships.lean#L10))
 - [ ] **ConverseIsLatticeIff** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then lattice structure is invariant under order duality. ([source](./Lattices/Lattice/Relationships.lean#L17))
 
-### 68. `Lattices/Lattice/Theorems.lean`
+### 67. `Lattices/Lattice/Theorems.lean`
 
 - [ ] **LatticeHasJoin** — Let \(P\) be a set, let \(a\), \(b\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then every pair in a lattice has a join. ([source](./Lattices/Lattice/Theorems.lean#L8))
 - [ ] **LatticeHasMeet** — Let \(P\) be a set, let \(a\), \(b\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then every pair in a lattice has a meet. ([source](./Lattices/Lattice/Theorems.lean#L17))
@@ -421,34 +411,34 @@ Each entry is a human mathematical statement rather than a repetition of the Lea
 - [ ] **JoinOfMeetsRelatedToMeetWithJoin** — Let \(P\) be a set, let \(a\), \(b\), \(c\), \(u\),\ldots belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then one distributive inequality holds in every lattice. ([source](./Lattices/Lattice/Theorems.lean#L66))
 - [ ] **JoinWithMeetRelatedToMeetOfJoins** — Let \(P\) be a set, let \(a\), \(b\), \(c\), \(u\),\ldots belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then the dual distributive inequality holds in every lattice. ([source](./Lattices/Lattice/Theorems.lean#L80))
 
-### 69. `Lattices/Meet/FailureModes.lean`
+### 68. `Lattices/Meet/FailureModes.lean`
 
 - [ ] **ThreeFailsMeetOfTwoAndThree** — Let \(\mathbb N\) carry the operations and order used here. Then three fails as the meet of two and three under the usual order. ([source](./Lattices/Meet/FailureModes.lean#L29))
 
-### 70. `Lattices/Meet/Relationships.lean`
+### 69. `Lattices/Meet/Relationships.lean`
 
 - [ ] **MeetOfConverseIffJoin** — Let \(P\) be a set, let \(a\), \(b\), \(c\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then meets for the converse relation are joins for the original relation. ([source](./Lattices/Meet/Relationships.lean#L9))
 
-### 71. `Lattices/Meet/Theorems.lean`
+### 70. `Lattices/Meet/Theorems.lean`
 
 - [ ] **MeetUnique** — Let \(P\) be a set, let \(a\), \(b\), \(c\), \(u\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then antisymmetry makes a binary meet unique. ([source](./Lattices/Meet/Theorems.lean#L8))
 - [ ] **MeetCommutes** — Let \(P\) be a set, let \(a\), \(b\), \(c\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then the order of the two inputs does not affect the meet predicate. ([source](./Lattices/Meet/Theorems.lean#L19))
 - [ ] **MeetIdempotent** — Let \(P\) be a set, let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then reflexivity makes an element the meet of itself with itself. ([source](./Lattices/Meet/Theorems.lean#L27))
 - [ ] **MeetAssociative** — Let \(P\) be a set, let \(a\), \(b\), \(c\), \(u\),\ldots belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then whenever the displayed meets exist in a partial order, the two associations agree. ([source](./Lattices/Meet/Theorems.lean#L36))
 
-### 72. `Lattices/MeetSemilattice/FailureModes.lean`
+### 71. `Lattices/MeetSemilattice/FailureModes.lean`
 
 - [ ] **BooleanEqualityFailsMeetSemilattice** — Let the two-element Boolean set carry the operations and order used here. Then equality on two distinct booleans has no meet for false and true. ([source](./Lattices/MeetSemilattice/FailureModes.lean#L28))
 
-### 73. `Lattices/MeetSemilattice/Theorems.lean`
+### 72. `Lattices/MeetSemilattice/Theorems.lean`
 
 - [ ] **MeetSemilatticeHasMeet** — Let \(P\) be a set, let \(a\), \(b\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then every pair in a meet-semilattice has a meet. ([source](./Lattices/MeetSemilattice/Theorems.lean#L8))
 
-### 74. `Morphisms/Antitone/FailureModes.lean`
+### 73. `Morphisms/Antitone/FailureModes.lean`
 
 - [ ] **NaturalIdentityFailsAntitone** — Let \(\mathbb N\) carry the operations and order used here. Then the identity map on natural numbers is not antitone. ([source](./Morphisms/Antitone/FailureModes.lean#L30))
 
-### 75. `Morphisms/Antitone/Theorems.lean`
+### 74. `Morphisms/Antitone/Theorems.lean`
 
 - [ ] **AntitoneCompAntitoneIsMonotone** — Let \(P\), \(Q\), \(R\) be sets, equip the relevant carriers with the binary relations specified below, and let the named functions have the stated domains and codomains. Then composing two antitone maps produces a monotone map. ([source](./Morphisms/Antitone/Theorems.lean#L14))
 - [ ] **AntitoneThenMonotoneIsAntitone** — Let \(P\), \(Q\), \(R\) be sets, equip the relevant carriers with the binary relations specified below, and let the named functions have the stated domains and codomains. Then an antitone map followed by a monotone map is antitone. ([source](./Morphisms/Antitone/Theorems.lean#L27))
@@ -460,7 +450,7 @@ Each entry is a human mathematical statement rather than a repetition of the Lea
 - [ ] **AntitoneImageLowerBoundsIntoUpperBounds** — Let \(P\), \(Q\) be sets, let \(\mathcal S_P\) and \(\mathcal S_Q\) be represented families of subsets of the corresponding carriers, let \(S\) be a represented subset of the appropriate carrier, let \(a\) be an element of the appropriate carrier, let \(\preceq_P\) and \(\preceq_Q\) be binary relations on \(P\) and \(Q\), respectively, and let the named functions have the stated domains and codomains. Then the image of source lower bounds lies in the upper bounds of the image. ([source](./Morphisms/Antitone/Theorems.lean#L141))
 - [ ] **AntitoneLowerBoundsPreimageUpperBoundsContainment** — Let \(P\), \(Q\) be sets, let \(\mathcal S_P\) and \(\mathcal S_Q\) be represented families of subsets of the corresponding carriers, let \(S\) be a represented subset of the appropriate carrier, let \(a\) be an element of the appropriate carrier, let \(\preceq_P\) and \(\preceq_Q\) be binary relations on \(P\) and \(Q\), respectively, and let the named functions have the stated domains and codomains. Then source lower bounds lie in the preimage of the image's upper bounds. ([source](./Morphisms/Antitone/Theorems.lean#L164))
 
-### 76. `Morphisms/Monotone/Theorems.lean`
+### 75. `Morphisms/Monotone/Theorems.lean`
 
 - [ ] **MonotoneIdentity** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then the identity map is monotone. ([source](./Morphisms/Monotone/Theorems.lean#L13))
 - [ ] **MonotoneComp** — Let \(P\), \(Q\), \(R\) be sets, equip the relevant carriers with the binary relations specified below, and let the named functions have the stated domains and codomains. Then monotone maps compose. ([source](./Morphisms/Monotone/Theorems.lean#L20))
@@ -471,15 +461,15 @@ Each entry is a human mathematical statement rather than a repetition of the Lea
 - [ ] **MonotoneImageLowerBoundsContainment** — Let \(P\), \(Q\) be sets, let \(\mathcal S_P\) and \(\mathcal S_Q\) be represented families of subsets of the corresponding carriers, let \(S\) be a represented subset of the appropriate carrier, let \(a\) be an element of the appropriate carrier, let \(\preceq_P\) and \(\preceq_Q\) be binary relations on \(P\) and \(Q\), respectively, and let the named functions have the stated domains and codomains. Then the image of the source lower-bound family lies in the image-set lower-bound family. ([source](./Morphisms/Monotone/Theorems.lean#L121))
 - [ ] **MonotoneLowerBoundsPreimageContainment** — Let \(P\), \(Q\) be sets, let \(\mathcal S_P\) and \(\mathcal S_Q\) be represented families of subsets of the corresponding carriers, let \(S\) be a represented subset of the appropriate carrier, let \(a\) be an element of the appropriate carrier, let \(\preceq_P\) and \(\preceq_Q\) be binary relations on \(P\) and \(Q\), respectively, and let the named functions have the stated domains and codomains. Then source lower bounds lie in the preimage of the image-set lower-bound family. ([source](./Morphisms/Monotone/Theorems.lean#L144))
 
-### 77. `Morphisms/Monotone/FailureModes.lean`
+### 76. `Morphisms/Monotone/FailureModes.lean`
 
 - [ ] **IntegerNegationFailsMonotone** — Let \(\mathbb Z\) carry the operations and order used here. Then negation reverses, rather than preserves, the usual integer order. ([source](./Morphisms/Monotone/FailureModes.lean#L30))
 
-### 78. `Morphisms/OrderEmbedding/FailureModes.lean`
+### 77. `Morphisms/OrderEmbedding/FailureModes.lean`
 
 - [ ] **MonotoneBijectionNeedNotHaveMonotoneInverse** — Let the two-element Boolean set carry the operations and order used here, equip that structure with the binary relation used in the theorem. Then the identity from the two-element antichain to the two-element chain is a monotone bijection, but its inverse is not monotone and the map is not an order embedding. ([source](./Morphisms/OrderEmbedding/FailureModes.lean#L43))
 
-### 79. `Morphisms/OrderEmbedding/Theorems.lean`
+### 78. `Morphisms/OrderEmbedding/Theorems.lean`
 
 - [ ] **OrderEmbeddingInjective** — Let \(P\), \(Q\) be sets, let \(\preceq_P\) and \(\preceq_Q\) be binary relations on \(P\) and \(Q\), respectively, and let the named functions have the stated domains and codomains. Then an embedding between partial orders is injective. ([source](./Morphisms/OrderEmbedding/Theorems.lean#L16))
 - [ ] **OrderEmbeddingComp** — Let \(P\), \(Q\), \(R\) be sets, equip the relevant carriers with the binary relations specified below, and let the named functions have the stated domains and codomains. Then order embeddings compose. ([source](./Morphisms/OrderEmbedding/Theorems.lean#L29))
@@ -490,11 +480,11 @@ Each entry is a human mathematical statement rather than a repetition of the Lea
 - [ ] **OrderEmbeddingPreservesGreatestElement** — Let \(P\), \(Q\) be sets, let \(\mathcal S_P\) and \(\mathcal S_Q\) be represented families of subsets of the corresponding carriers, let \(S\) be a represented subset of the appropriate carrier, let \(a\) be an element of the appropriate carrier, let \(\preceq_P\) and \(\preceq_Q\) be binary relations on \(P\) and \(Q\), respectively, and let the named functions have the stated domains and codomains. Then an order embedding transports greatest elements to greatest elements of images. ([source](./Morphisms/OrderEmbedding/Theorems.lean#L132))
 - [ ] **OrderEmbeddingPreservesLeastElement** — Let \(P\), \(Q\) be sets, let \(\mathcal S_P\) and \(\mathcal S_Q\) be represented families of subsets of the corresponding carriers, let \(S\) be a represented subset of the appropriate carrier, let \(a\) be an element of the appropriate carrier, let \(\preceq_P\) and \(\preceq_Q\) be binary relations on \(P\) and \(Q\), respectively, and let the named functions have the stated domains and codomains. Then an order embedding transports least elements to least elements of images. ([source](./Morphisms/OrderEmbedding/Theorems.lean#L152))
 
-### 80. `Morphisms/OrderIsomorphism/FailureModes.lean`
+### 79. `Morphisms/OrderIsomorphism/FailureModes.lean`
 
 - [ ] **BooleanConstantMapsFailOrderIsomorphism** — Let the two-element Boolean set carry the operations and order used here. Then constant maps cannot form an order isomorphism on the two-element chain. ([source](./Morphisms/OrderIsomorphism/FailureModes.lean#L30))
 
-### 81. `Morphisms/OrderIsomorphism/Theorems.lean`
+### 80. `Morphisms/OrderIsomorphism/Theorems.lean`
 
 - [ ] **OrderIsomorphismPreservesSupremum** — Let \(P\), \(Q\) be sets, let \(\mathcal S_P\) and \(\mathcal S_Q\) be represented families of subsets of the corresponding carriers, let \(S\) be a represented subset of the appropriate carrier, let \(a\) be an element of the appropriate carrier, let \(\preceq_P\) and \(\preceq_Q\) be binary relations on \(P\) and \(Q\), respectively, and let the named functions have the stated domains and codomains. Then order isomorphisms carry suprema to suprema of generic direct images. ([source](./Morphisms/OrderIsomorphism/Theorems.lean#L17))
 - [ ] **OrderIsomorphismPreservesUpperBound** — Let \(P\), \(Q\) be sets, let \(\mathcal S_P\) and \(\mathcal S_Q\) be represented families of subsets of the corresponding carriers, let \(S\) be a represented subset of the appropriate carrier, let \(a\) be an element of the appropriate carrier, let \(\preceq_P\) and \(\preceq_Q\) be binary relations on \(P\) and \(Q\), respectively, and let the named functions have the stated domains and codomains. Then order isomorphisms carry upper bounds to upper bounds of direct images. ([source](./Morphisms/OrderIsomorphism/Theorems.lean#L38))
@@ -507,18 +497,13 @@ Each entry is a human mathematical statement rather than a repetition of the Lea
 - [ ] **OrderIsomorphismInverse** — Let \(P\), \(Q\) be sets, let \(\preceq_P\) and \(\preceq_Q\) be binary relations on \(P\) and \(Q\), respectively, and let the named functions have the stated domains and codomains. Then swapping the maps of an order isomorphism gives its inverse isomorphism. ([source](./Morphisms/OrderIsomorphism/Theorems.lean#L171))
 - [ ] **OrderIsomorphismComp** — Let \(P\), \(Q\), \(R\) be sets, equip the relevant carriers with the binary relations specified below, and let the named functions have the stated domains and codomains. Then order isomorphisms compose. ([source](./Morphisms/OrderIsomorphism/Theorems.lean#L182))
 
-### 82. `OrderedSets/LinearOrder/FailureModes.lean`
-
-- [ ] **BooleanEqualityPartialOrderFailsTotality** — Let the displayed ordered structure be given. Then equality on booleans is a partial order but not a linear order. ([source](./OrderedSets/LinearOrder/FailureModes.lean#L27))
-- [ ] **NaturalDivisibilityIsNotLinearOrder** — Let \(\mathbb N\) carry the operations and order used here. Then natural-number divisibility is not linear because, for example, 2 and 3 are incomparable. ([source](./OrderedSets/LinearOrder/FailureModes.lean#L40))
-
-### 83. `OrderedSets/LinearOrder/Theorems.lean`
+### 81. `OrderedSets/LinearOrder/Theorems.lean`
 
 - [ ] **TotalImpliesReflexive** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then a total relation is reflexive. ([source](./OrderedSets/LinearOrder/Theorems.lean#L8))
 - [ ] **LinearOrderIsPartialOrder** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then every linear order is a partial order. ([source](./OrderedSets/LinearOrder/Theorems.lean#L16))
 - [ ] **LinearOrderIsTotal** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then every linear order is total. ([source](./OrderedSets/LinearOrder/Theorems.lean#L24))
 
-### 84. `OrderedSets/PartialOrder/Characterizations.lean`
+### 82. `OrderedSets/PartialOrder/Characterizations.lean`
 
 - [ ] **PartialOrderIsReflexive** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then the relation in a partial order is reflexive. ([source](./OrderedSets/PartialOrder/Characterizations.lean#L15))
 - [ ] **PartialOrderIsAntisymmetric** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then the relation in a partial order is antisymmetric. ([source](./OrderedSets/PartialOrder/Characterizations.lean#L32))
@@ -528,78 +513,67 @@ Each entry is a human mathematical statement rather than a repetition of the Lea
 - [ ] **PartialOrderRelationIsTransitive** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then the relation packaged by a partial-order relation is transitive. ([source](./OrderedSets/PartialOrder/Characterizations.lean#L95))
 - [ ] **NonStrictRelationIsReflexive** — Let \(P\) be a set. Then compatibility theorem: a non-strict partial order relation is reflexive. ([source](./OrderedSets/PartialOrder/Characterizations.lean#L110))
 
-### 85. `OrderedSets/Preorder/Characterizations.lean`
+### 83. `OrderedSets/Preorder/Characterizations.lean`
 
 - [ ] **PreorderRelationIsReflexive** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then the relation packaged by a preorder is reflexive. ([source](./OrderedSets/Preorder/Characterizations.lean#L14))
 - [ ] **PreorderRelationIsTransitive** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then the relation packaged by a preorder is transitive. ([source](./OrderedSets/Preorder/Characterizations.lean#L29))
 
-### 86. `OrderedSets/Preorder/Relationships.lean`
+### 84. `OrderedSets/Preorder/Relationships.lean`
 
 - [ ] **PreorderEquivalenceIsEquivalence** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then mutual reachability in a preorder is an equivalence relation. ([source](./OrderedSets/Preorder/Relationships.lean#L34))
 - [ ] **PreorderQuotientRelationIsPartialOrder** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then quotienting a preorder by mutual reachability produces a partial order. ([source](./OrderedSets/Preorder/Relationships.lean#L67))
 
-### 87. `OrderedSets/Preorder/FailureModes.lean`
-
-- [ ] **ImmediateSuccessorOrEqualFailsPreorder** — Let the displayed ordered structure be given, equip that structure with the binary relation used in the theorem. Then the immediate-successor-or-equality relation is reflexive but not transitive, so it fails to be a preorder. ([source](./OrderedSets/Preorder/FailureModes.lean#L60))
-- [ ] **NatStrictOrderFailsPreorder** — Let \(\mathbb N\) carry the operations and order used here. Then the natural strict order is transitive but non-reflexive, so it fails to be a preorder. ([source](./OrderedSets/Preorder/FailureModes.lean#L76))
-- [ ] **StrictPartConstructionsDifferOnUniversalPreorder** — Let the displayed ordered structure be given. Then the inequality-based strict part and the non-converse strict part differ for preorders without antisymmetry, witnessed by the universal Boolean preorder. ([source](./OrderedSets/Preorder/FailureModes.lean#L92))
-
-### 88. `OrderedSets/PartialOrder/FailureModes.lean`
-
-- [ ] **ImmediateSuccessorOrEqualFailsTransitivity** — Let the displayed ordered structure be given, equip that structure with the binary relation used in the theorem. Then the immediate-successor-or-equality relation is reflexive and antisymmetric but fails transitivity. ([source](./OrderedSets/PartialOrder/FailureModes.lean#L54))
-- [ ] **NatStrictOrderFailsNonStrictPartialOrder** — Let \(\mathbb N\) carry the operations and order used here. Then the usual strict order on natural numbers is not a non-strict partial order, because it is not reflexive. ([source](./OrderedSets/PartialOrder/FailureModes.lean#L77))
-- [ ] **BooleanUniversalRelationFailsNonStrictPartialOrder** — Let the two-element Boolean set carry the operations and order used here. Then the universal relation on booleans is not a non-strict partial order, because it is not antisymmetric. ([source](./OrderedSets/PartialOrder/FailureModes.lean#L99))
-- [ ] **IntegerDivisibilityIsPreorderButNotPartialOrder** — Let \(\mathbb Z\) carry the operations and order used here. Then integer divisibility is a preorder but not a partial order: 3 and -3 divide one another without being equal. ([source](./OrderedSets/PartialOrder/FailureModes.lean#L115))
-
-### 89. `OrderedSets/PartialOrder/Relationships.lean`
+### 85. `OrderedSets/PartialOrder/Relationships.lean`
 
 - [ ] **StrictPartIff** — Let \(P\) be a set, let \(a\), \(b\) belong to \(P\). Then the strict part unfolds to non-strict comparison plus inequality. ([source](./OrderedSets/PartialOrder/Relationships.lean#L39))
 - [ ] **StrictPartIffNotConverse** — Let \(P\) be a set, let \(a\), \(b\) belong to \(P\). Then the strict part of a non-strict partial order agrees with the preorder-compatible strict part because antisymmetry is available. ([source](./OrderedSets/PartialOrder/Relationships.lean#L59))
-- [ ] **StrictPartIsStrictOrder** — Let \(P\) be a set. Then the strict part of a non-strict partial order is a strict order. ([source](./OrderedSets/PartialOrder/Relationships.lean#L97))
-- [ ] **DualIsPartialOrder** — Let \(P\) be a set. Then the dual relation of a partial order is again a partial order. ([source](./OrderedSets/PartialOrder/Relationships.lean#L133))
+- [ ] **StrictPartRelationIsStrictOrder** — Let let \(P\) be a set. Then **[Theorem — StrictPartRelationIsStrictOrder]** The strict part relation of a non-strict partial order satisfies the strict order laws. ([source](./OrderedSets/PartialOrder/Relationships.lean#L81))
+- [ ] **StrictPartIsStrictOrder** — Let \(P\) be a set. Then the strict part of a non-strict partial order is a strict order. ([source](./OrderedSets/PartialOrder/Relationships.lean#L116))
+- [ ] **DualRelationIsPartialOrder** — Let let \(P\) be a set, equip the carriers with the displayed binary relations. Then **[Theorem — DualRelationIsPartialOrder]** The converse relation of a non-strict partial order satisfies the partial-order laws. ([source](./OrderedSets/PartialOrder/Relationships.lean#L136))
+- [ ] **DualIsPartialOrder** — Let \(P\) be a set. Then the dual relation of a partial order is again a partial order. ([source](./OrderedSets/PartialOrder/Relationships.lean#L172))
 
-### 90. `OrderedSets/PartialOrder/Theorems.lean`
+### 86. `OrderedSets/PartialOrder/Theorems.lean`
 
 - [ ] **NonStrictRelatesSelf** — Let \(P\) be a set, let \(a\) belong to \(P\). Then every element is related to itself by a non-strict partial order. ([source](./OrderedSets/PartialOrder/Theorems.lean#L15))
 - [ ] **NonStrictMutualRelationImpliesEqual** — Let \(P\) be a set, let \(a\), \(b\) belong to \(P\). Then two elements mutually related by a non-strict partial order are equal. ([source](./OrderedSets/PartialOrder/Theorems.lean#L34))
 - [ ] **PartialOrderHasNoNontrivialTwoElementCycles** — Let \(P\) be a set, let \(a\), \(b\) belong to \(P\). Then there are no nontrivial two-element cycles in a partial order: if two elements are mutually related, the cycle collapses to equality. ([source](./OrderedSets/PartialOrder/Theorems.lean#L54))
 
-### 91. `OrderedSets/Poset/Characterizations.lean`
+### 87. `OrderedSets/Poset/Characterizations.lean`
 
 - [ ] **PosetOrderIsPartialOrder** — Let the displayed ordered structure be given. Then the order relation packaged by a poset is a partial order. ([source](./OrderedSets/Poset/Characterizations.lean#L15))
 - [ ] **PosetOrderIsReflexive** — Let the displayed ordered structure be given. Then the order relation packaged by a poset is reflexive. ([source](./OrderedSets/Poset/Characterizations.lean#L29))
 - [ ] **PosetOrderIsAntisymmetric** — Let the displayed ordered structure be given. Then the order relation packaged by a poset is antisymmetric. ([source](./OrderedSets/Poset/Characterizations.lean#L44))
 - [ ] **PosetOrderIsTransitive** — Let the displayed ordered structure be given. Then the order relation packaged by a poset is transitive. ([source](./OrderedSets/Poset/Characterizations.lean#L59))
 
-### 92. `OrderedSets/Poset/FailureModes.lean`
+### 88. `OrderedSets/Poset/FailureModes.lean`
 
 - [ ] **NatStrictOrderFailsPosetLaws** — Let \(\mathbb N\) carry the operations and order used here. Then the usual strict order on natural numbers is not a poset order, because it is not reflexive. ([source](./OrderedSets/Poset/FailureModes.lean#L35))
 
-### 93. `OrderedSets/Poset/Relationships.lean`
+### 89. `OrderedSets/Poset/Relationships.lean`
 
 - [ ] **PosetOrderIsPreorder** — Let the displayed ordered structure be given. Then every poset order is a preorder. ([source](./OrderedSets/Poset/Relationships.lean#L14))
 
-### 94. `OrderedSets/Poset/Theorems.lean`
+### 90. `OrderedSets/Poset/Theorems.lean`
 
 - [ ] **PosetElementRelatesToItself** — Let the displayed ordered structure be given. Then every element of a poset is below itself in the packaged non-strict order. ([source](./OrderedSets/Poset/Theorems.lean#L14))
 - [ ] **PosetMutualOrderImpliesEqual** — Let the displayed ordered structure be given. Then two mutually related elements of a poset are equal. ([source](./OrderedSets/Poset/Theorems.lean#L31))
 - [ ] **PosetOrderTrans** — Let the displayed ordered structure be given. Then the non-strict order in a poset composes transitively. ([source](./OrderedSets/Poset/Theorems.lean#L50))
 
-### 95. `OrderedSets/Preorder/Theorems.lean`
+### 91. `OrderedSets/Preorder/Theorems.lean`
 
 - [ ] **PreorderRelatesSelf** — Let \(P\) be a set, let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then every element is related to itself by a preorder. ([source](./OrderedSets/Preorder/Theorems.lean#L14))
 
-### 96. `OrderedSets/StrictLinearOrder/FailureModes.lean`
+### 92. `OrderedSets/StrictLinearOrder/FailureModes.lean`
 
 - [ ] **BooleanEqualityFailsStrictLinearOrder** — Let the two-element Boolean set carry the operations and order used here. Then equality is reflexive, so it cannot be a strict linear order. ([source](./OrderedSets/StrictLinearOrder/FailureModes.lean#L28))
 
-### 97. `OrderedSets/StrictLinearOrder/Theorems.lean`
+### 93. `OrderedSets/StrictLinearOrder/Theorems.lean`
 
 - [ ] **ExactlyTrichotomousImpliesIrreflexive** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then exact trichotomy by itself forces irreflexivity. ([source](./OrderedSets/StrictLinearOrder/Theorems.lean#L8))
 - [ ] **StrictLinearOrderIsStrictOrder** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then every strict linear order is a strict order. ([source](./OrderedSets/StrictLinearOrder/Theorems.lean#L17))
 - [ ] **StrictLinearOrderIsExactlyTrichotomous** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then every strict linear order satisfies exact trichotomy. ([source](./OrderedSets/StrictLinearOrder/Theorems.lean#L25))
 
-### 98. `OrderedSets/StrictOrder/Characterizations.lean`
+### 94. `OrderedSets/StrictOrder/Characterizations.lean`
 
 - [ ] **StrictOrderIsIrreflexive** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then the relation in a strict order is irreflexive. ([source](./OrderedSets/StrictOrder/Characterizations.lean#L15))
 - [ ] **StrictOrderIsTransitive** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then the relation in a strict order is transitive. ([source](./OrderedSets/StrictOrder/Characterizations.lean#L32))
@@ -607,46 +581,99 @@ Each entry is a human mathematical statement rather than a repetition of the Lea
 - [ ] **StrictOrderIsAntisymmetric** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then every strict order is antisymmetric, vacuously: mutual strict comparison cannot occur. ([source](./OrderedSets/StrictOrder/Characterizations.lean#L67))
 - [ ] **StrictOrderRelationIsIrreflexive** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then the relation packaged by a strict-order relation is irreflexive. ([source](./OrderedSets/StrictOrder/Characterizations.lean#L83))
 
-### 99. `OrderedSets/StrictOrder/FailureModes.lean`
-
-- [ ] **NatNonStrictOrderFailsStrictOrder** — Let \(\mathbb N\) carry the operations and order used here. Then the usual non-strict order on natural numbers is not a strict order, because it is not irreflexive. ([source](./OrderedSets/StrictOrder/FailureModes.lean#L36))
-- [ ] **ImmediateSuccessorFailsStrictOrder** — Let the displayed ordered structure be given, equip that structure with the binary relation used in the theorem. Then the immediate-successor relation is irreflexive but not transitive, so irreflexivity alone does not make a strict order. ([source](./OrderedSets/StrictOrder/FailureModes.lean#L63))
-
-### 100. `OrderedSets/StrictOrder/Relationships.lean`
+### 95. `OrderedSets/StrictOrder/Relationships.lean`
 
 - [ ] **ReflexiveClosureIff** — Let \(P\) be a set, let \(a\), \(b\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then the reflexive closure unfolds to strict comparison or equality. ([source](./OrderedSets/StrictOrder/Relationships.lean#L34))
-- [ ] **ReflexiveClosureIsPartialOrder** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then the reflexive closure of a strict order satisfies the partial-order laws. ([source](./OrderedSets/StrictOrder/Relationships.lean#L68))
-- [ ] **StrictPartOfReflexiveClosureIff** — Let \(P\) be a set, let \(a\), \(b\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then taking reflexive closure and then strict part returns the original strict order relation. ([source](./OrderedSets/StrictOrder/Relationships.lean#L85))
-- [ ] **ReflexiveClosureOfStrictPartIff** — Let \(P\) be a set, let \(a\), \(b\) belong to \(P\). Then taking strict part and then reflexive closure returns the original non-strict partial order relation. ([source](./OrderedSets/StrictOrder/Relationships.lean#L105))
+- [ ] **ReflexiveClosureRelationIsPartialOrder** — Let let \(P\) be a set. Then the reflexive closure relation of a strict order satisfies the partial-order laws. ([source](./OrderedSets/StrictOrder/Relationships.lean#L54))
+- [ ] **ReflexiveClosureIsPartialOrder** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then the reflexive closure of a strict order satisfies the partial-order laws. ([source](./OrderedSets/StrictOrder/Relationships.lean#L85))
+- [ ] **StrictPartOfReflexiveClosureIff** — Let \(P\) be a set, let \(a\), \(b\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then taking reflexive closure and then strict part returns the original strict order relation. ([source](./OrderedSets/StrictOrder/Relationships.lean#L102))
+- [ ] **ReflexiveClosureOfStrictPartIff** — Let \(P\) be a set, let \(a\), \(b\) belong to \(P\). Then taking strict part and then reflexive closure returns the original non-strict partial order relation. ([source](./OrderedSets/StrictOrder/Relationships.lean#L122))
 
-### 101. `OrderedSets/StrictOrder/Theorems.lean`
+### 96. `OrderedSets/StrictOrder/Theorems.lean`
 
 - [ ] **StrictOrderDoesNotRelateSelf** — Let \(P\) be a set, let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then a strict order never relates an element to itself. ([source](./OrderedSets/StrictOrder/Theorems.lean#L14))
 - [ ] **StrictOrderHasNoTwoElementCycles** — Let \(P\) be a set, let \(a\), \(b\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then a strict order has no two-element cycle. ([source](./OrderedSets/StrictOrder/Theorems.lean#L30))
 
-### 102. `OrderedSets/StrictPoset/Characterizations.lean`
+### 97. `OrderedSets/StrictPoset/Characterizations.lean`
 
 - [ ] **StrictPosetRelationIsStrictOrder** — Let the displayed ordered structure be given. Then the relation carried by a strict poset satisfies the strict-order laws. ([source](./OrderedSets/StrictPoset/Characterizations.lean#L7))
 - [ ] **StrictPosetRelationIsIrreflexive** — Let the displayed ordered structure be given. Then the relation carried by a strict poset is irreflexive. ([source](./OrderedSets/StrictPoset/Characterizations.lean#L13))
 - [ ] **StrictPosetRelationIsTransitive** — Let the displayed ordered structure be given. Then the relation carried by a strict poset is transitive. ([source](./OrderedSets/StrictPoset/Characterizations.lean#L20))
 
-### 103. `OrderedSets/StrictPoset/Theorems.lean`
+### 98. `OrderedSets/StrictPoset/Theorems.lean`
 
 - [ ] **StrictPosetDoesNotRelateSelf** — Let the displayed ordered structure be given, equip that structure with the binary relation used in the theorem. Then a strict poset never relates an element to itself. ([source](./OrderedSets/StrictPoset/Theorems.lean#L6))
 
-### 104. `OrderedSets/WellOrder/FailureModes.lean`
+### 99. `OrderedSets/WellOrder/FailureModes.lean`
 
 - [ ] **IntegersAreNotWellOrdered** — Let \(\mathbb Z\) carry the operations and order used here, let the subsets occurring below be subsets of the relevant carrier. Then the integers with their usual order are not well-ordered. ([source](./OrderedSets/WellOrder/FailureModes.lean#L28))
 
-### 105. `OrderedSets/WellOrder/MathlibAdapters.lean`
+### 100. `OrderedSets/WellOrder/MathlibAdapters.lean`
 
 - [ ] **FiniteLinearOrderIsWellOrder** — Let \(P\) be a set, let \(S\) be a subset of the relevant carrier, let \(\preceq\) be a binary relation on \(P\). Then every finite linear order is a well-order on predicate subsets. ([source](./OrderedSets/WellOrder/MathlibAdapters.lean#L10))
 
-### 106. `OrderedSets/WellOrder/Relationships.lean`
+### 101. `OrderedSets/WellOrder/Relationships.lean`
 
 - [ ] **WellOrderIffLinearAndStrictPartWellFounded** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(\preceq\) be a binary relation on \(P\). Then for a linear order, least-element and strict-minimal-element formulations of well-ordering agree. Linearity promotes local minimality to global leastness. ([source](./OrderedSets/WellOrder/Relationships.lean#L12))
 
-### 107. `OrderedSets/WellOrder/Theorems.lean`
+### 102. `OrderedSets/WellOrder/Theorems.lean`
 
 - [ ] **WellOrderingPrinciple** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(S\) belong to \(\mathcal S\), let \(\preceq\) be a binary relation on \(P\). Then every nonempty represented subset of a well-order has a least element. ([source](./OrderedSets/WellOrder/Theorems.lean#L10))
 - [ ] **WellOrderHasImmediateSuccessor** — Let \(P\) be a set, let \(\mathcal S\) be a represented family of subsets of \(P\), let \(a\) belong to \(P\), let \(\preceq\) be a binary relation on \(P\). Then every element that has a strict successor in a well-order has a least such successor. ([source](./OrderedSets/WellOrder/Theorems.lean#L21))
+
+### 103. `Constructions/StrictNonStrictCorrespondence/Definition.lean`
+
+- [ ] **StrictRelationOfPosetIsStrictOrder** — Let let the displayed ordered structure be given. Then the strict part of a poset order satisfies the strict-order laws. ([source](./Constructions/StrictNonStrictCorrespondence/Definition.lean#L24))
+- [ ] **NonStrictRelationOfStrictPosetIsPartialOrder** — Let let the displayed ordered structure be given. Then the reflexive closure of a strict poset order satisfies the partial-order laws. ([source](./Constructions/StrictNonStrictCorrespondence/Definition.lean#L36))
+
+### 104. `Constructions/StrictNonStrictCorrespondence/Theorems.lean`
+
+- [ ] **StrictOrderInducesPartialOrder** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then strict orders induce partial orders by adjoining equality. ([source](./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L10))
+- [ ] **PartialOrderInducesStrictOrder** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then partial orders induce strict orders by removing equality. ([source](./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L18))
+- [ ] **StrictLinearOrderInducesLinearOrder** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then strict linear orders induce linear orders by adjoining equality. ([source](./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L26))
+- [ ] **StrictNonStrictInverseCorrespondence** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then removing equality after adjoining it recovers an irreflexive relation. ([source](./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L34))
+- [ ] **NonStrictStrictInverseCorrespondence** — Let \(P\) be a set, let \(\preceq\) be a binary relation on \(P\). Then adjoining equality to the strict part recovers a reflexive relation. ([source](./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L43))
+- [ ] **PosetOfStrictPosetOfPoset** — Let the displayed ordered structure be given. Then converting a poset to strict form and back recovers it. ([source](./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L53))
+- [ ] **StrictPosetOfPosetOfStrictPoset** — Let the displayed ordered structure be given. Then converting a strict poset to non-strict form and back recovers it. ([source](./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L58))
+
+### 105. `OrderedSets/PartialOrder/Examples.lean`
+
+- [ ] **NaturalNumberLessEqualIsPartialOrder** — Let let the displayed ordered structure be given. Then **[Theorem — Natural Number Less Equal Is Partial Order]** The usual ≤ relation on natural numbers satisfies the partial-order laws. ([source](./OrderedSets/PartialOrder/Examples.lean#L16))
+- [ ] **BooleanEqualityIsPartialOrder** — Let let the displayed ordered structure be given. Then **[Theorem — Boolean Equality Is Partial Order]** Equality on booleans satisfies the partial-order laws. ([source](./OrderedSets/PartialOrder/Examples.lean#L68))
+- [ ] **DivisibilityIsPartialOrder** — Let let the displayed ordered structure be given. Then divisibility on natural numbers is a partial order. The zero case is included: if 0 ∣ b, then b = 0, so antisymmetry still holds. ([source](./OrderedSets/PartialOrder/Examples.lean#L116))
+- [ ] **PredicateSetInclusionIsPartialOrder** — Let let \(P\) be a set. Then inclusion is a partial order on predicate subsets. ([source](./OrderedSets/PartialOrder/Examples.lean#L126))
+
+### 106. `OrderedSets/LinearOrder/FailureModes.lean`
+
+- [ ] **BooleanEqualityPartialOrderFailsTotality** — Let the displayed ordered structure be given. Then equality on booleans is a partial order but not a linear order. ([source](./OrderedSets/LinearOrder/FailureModes.lean#L27))
+- [ ] **NaturalDivisibilityIsNotLinearOrder** — Let \(\mathbb N\) carry the operations and order used here. Then natural-number divisibility is not linear because, for example, 2 and 3 are incomparable. ([source](./OrderedSets/LinearOrder/FailureModes.lean#L40))
+
+### 107. `OrderedSets/Poset/Examples.lean`
+
+- [ ] **NaturalNumberOrderIsPartialOrder** — Let let the displayed ordered structure be given. Then the usual non-strict order on natural numbers satisfies the partial-order laws. ([source](./OrderedSets/Poset/Examples.lean#L15))
+
+### 108. `OrderedSets/Preorder/Examples.lean`
+
+- [ ] **BooleanUniversalRelationIsPreorder** — Let let the displayed ordered structure be given. Then the universal relation on booleans satisfies the preorder laws. ([source](./OrderedSets/Preorder/Examples.lean#L14))
+
+### 109. `OrderedSets/Preorder/FailureModes.lean`
+
+- [ ] **ImmediateSuccessorOrEqualFailsPreorder** — Let the displayed ordered structure be given, equip that structure with the binary relation used in the theorem. Then the immediate-successor-or-equality relation is reflexive but not transitive, so it fails to be a preorder. ([source](./OrderedSets/Preorder/FailureModes.lean#L60))
+- [ ] **NatStrictOrderFailsPreorder** — Let \(\mathbb N\) carry the operations and order used here. Then the natural strict order is transitive but non-reflexive, so it fails to be a preorder. ([source](./OrderedSets/Preorder/FailureModes.lean#L76))
+- [ ] **StrictPartConstructionsDifferOnUniversalPreorder** — Let the displayed ordered structure be given. Then the inequality-based strict part and the non-converse strict part differ for preorders without antisymmetry, witnessed by the universal Boolean preorder. ([source](./OrderedSets/Preorder/FailureModes.lean#L92))
+
+### 110. `OrderedSets/PartialOrder/FailureModes.lean`
+
+- [ ] **ImmediateSuccessorOrEqualFailsTransitivity** — Let the displayed ordered structure be given, equip that structure with the binary relation used in the theorem. Then the immediate-successor-or-equality relation is reflexive and antisymmetric but fails transitivity. ([source](./OrderedSets/PartialOrder/FailureModes.lean#L54))
+- [ ] **NatStrictOrderFailsNonStrictPartialOrder** — Let \(\mathbb N\) carry the operations and order used here. Then the usual strict order on natural numbers is not a non-strict partial order, because it is not reflexive. ([source](./OrderedSets/PartialOrder/FailureModes.lean#L77))
+- [ ] **BooleanUniversalRelationFailsNonStrictPartialOrder** — Let the two-element Boolean set carry the operations and order used here. Then the universal relation on booleans is not a non-strict partial order, because it is not antisymmetric. ([source](./OrderedSets/PartialOrder/FailureModes.lean#L99))
+- [ ] **IntegerDivisibilityIsPreorderButNotPartialOrder** — Let \(\mathbb Z\) carry the operations and order used here. Then integer divisibility is a preorder but not a partial order: 3 and -3 divide one another without being equal. ([source](./OrderedSets/PartialOrder/FailureModes.lean#L115))
+
+### 111. `OrderedSets/StrictOrder/Examples.lean`
+
+- [ ] **NaturalNumberLessThanIsStrictOrder** — Let let the displayed ordered structure be given. Then the usual strict order on natural numbers satisfies the strict-order laws. ([source](./OrderedSets/StrictOrder/Examples.lean#L15))
+
+### 112. `OrderedSets/StrictOrder/FailureModes.lean`
+
+- [ ] **NatNonStrictOrderFailsStrictOrder** — Let \(\mathbb N\) carry the operations and order used here. Then the usual non-strict order on natural numbers is not a strict order, because it is not irreflexive. ([source](./OrderedSets/StrictOrder/FailureModes.lean#L36))
+- [ ] **ImmediateSuccessorFailsStrictOrder** — Let the displayed ordered structure be given, equip that structure with the binary relation used in the theorem. Then the immediate-successor relation is irreflexive but not transitive, so irreflexivity alone does not make a strict order. ([source](./OrderedSets/StrictOrder/FailureModes.lean#L63))

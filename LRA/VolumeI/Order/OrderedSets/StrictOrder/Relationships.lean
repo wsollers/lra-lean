@@ -40,6 +40,24 @@ theorem ReflexiveClosureIff
   sorry
 
 /--
+The reflexive closure relation of a strict order satisfies the partial-order
+laws.
+
+Logical form:
+
+```lean
+theorem ReflexiveClosureRelationIsPartialOrder
+    (order : StrictOrderRelation Carrier) :
+    LRA.Order.PartialOrder (ReflexiveClosure order)
+```
+-/
+theorem ReflexiveClosureRelationIsPartialOrder
+    {Carrier : Type u}
+    (order : StrictOrderRelation Carrier) :
+    LRA.Order.PartialOrder (ReflexiveClosure order) := by
+  sorry
+
+/--
 The reflexive closure of a strict order is a non-strict partial order.
 
 Logical form:
@@ -53,8 +71,7 @@ def ReflexiveClosureAsPartialOrder
     (order : StrictOrderRelation Carrier) :
     LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier where
   relation := ReflexiveClosure order
-  relationIsPartialOrder := by
-    sorry
+  relationIsPartialOrder := ReflexiveClosureRelationIsPartialOrder order
 
 /--
 The reflexive closure of a strict order satisfies the partial-order laws.
@@ -69,7 +86,7 @@ theorem ReflexiveClosureIsPartialOrder
     {Carrier : Type u}
     (order : StrictOrderRelation Carrier) :
     LRA.Order.PartialOrder (ReflexiveClosure order) := by
-  sorry
+  exact ReflexiveClosureRelationIsPartialOrder order
 
 /--
 Taking reflexive closure and then strict part returns the original strict

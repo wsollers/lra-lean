@@ -154,9 +154,12 @@ def IsBoundedSubset (A : Set ℝ) : Prop := ∃ M > 0, ∀ x ∈ A, |x| ≤ M
 Logical form:
 
 ```lean
-theorem IntervalSetOpsAreOrdinarySetOps : True
+theorem IntervalSetOpsAreOrdinarySetOps :
+    forall A B : Set ℝ, A ∪ B = B ∪ A
 ```
 -/
-theorem IntervalSetOpsAreOrdinarySetOps : True := trivial
+theorem IntervalSetOpsAreOrdinarySetOps :
+    forall A B : Set ℝ, A ∪ B = B ∪ A := by
+  sorry
 
 end LRA.Analysis.StructureOfRealLine

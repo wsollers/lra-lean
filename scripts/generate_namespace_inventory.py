@@ -206,7 +206,7 @@ def main() -> None:
 
 Durable public declarations use semantic owners below `LRA`: `Algebra`,
 `Analysis` (`Bounds`, `MetricSpaces`, `MeasureTheory`, `FunctionalAnalysis`),
-`Function`, `Identity`, `Interop.Mathlib`, `LinearAlgebra`, `Logic`,
+`Map`, `Identity`, `Interop.Mathlib`, `LinearAlgebra`, `Logic`,
 `NumberSystems`, `Order`, `Relation`, `Set`, and `Topology`. Curricular module
 paths remain under `LRA/Volume*`; they no longer determine declaration names.
 `LRA.Internal` contains explicitly non-API orienting and scratch material.
@@ -235,7 +235,7 @@ than fabricated inventory rows. Current unmatched candidates: `{len(source_only)
 - `LRA.Order.Bounds` is the separate backend- and relation-generic theory.
 - The Volume IV vector-space definition is the pedagogical owner; the duplicate
   Volume VI definition was removed while its extra linear-map declaration was kept.
-- Generic function predicates are canonical; the Polish integer development no
+- Generic map predicates are canonical; the Polish integer development no
   longer declares local duplicates.
 - Sequence/convergence and construction-specific model-isomorphism declarations
   that merely share short names remain distinct because their types and domains
@@ -245,19 +245,20 @@ than fabricated inventory rows. Current unmatched candidates: `{len(source_only)
 - `LRA.Internal.MathematicalSpaces` retains orienting-only mathematical-space
   material; scratch metric structures/examples are under `LRA.Internal`.
 
-## Function foundations
+## Map and relation foundations
 
-`LRA.Function (Domain : Type u) (Codomain : Type v)` is the typed representation.
-The foundational representation is a separate domain/codomain/graph triple plus
-`IsSetTheoreticFunction`, whose fields enforce graph closure, total evaluation,
-and unique values. Evaluation existence/uniqueness and triple extensionality are
-provided.
+`LRA.Map.Typed.TypedMap (Domain : Type u) (Codomain : Type v)` is the typed
+representation. The foundational set-theoretic representation is a separate
+domain/codomain/graph triple plus `IsSetTheoreticMap`, whose clauses enforce
+graph closure, total evaluation, and unique values. A parallel bundled
+set-theoretic relation triple records graph typing without the function laws.
+Evaluation existence/uniqueness and map extensionality are provided.
 
 There is exactly one typed-to-set representation theorem family,
-`LRA.Function.typedFunctionGraphRepresentation`. It requires explicit backend
+`LRA.Map.SetTheoretic.TypedMapGraphRepresentation`. It requires explicit backend
 element and object types, ordered-pair and separation operations and laws,
 domain/codomain encodings, encoding injectivity/coverage, an ambient pair set,
-and graph-pair existence. It constructs a set-theoretic function and proves its
+and graph-pair existence. It constructs a set-theoretic map and proves its
 evaluation agrees with the typed map. There are no bridge coercions or automatic
 instances.
 

@@ -100,7 +100,10 @@ variable [PowersetMembershipLaws SetObject Collection]
 variable [SeparationLaws Element SetObject]
 variable [ExtensionalityLaw Element SetObject]
 
-/-- For each ambient set and relation, the quotient set exists.
+/--
+**[Theorem — QuotientSetExists]**
+
+For each ambient set and relation, the quotient set exists.
 
 Logical form:
 
@@ -121,7 +124,10 @@ theorem QuotientSetExists
         IsQuotientSetOf quotient ambient relation) := by
   sorry
 
-/-- A quotient set is uniquely determined by its memberwise specification.
+/--
+**[Theorem — QuotientSetUnique]**
+
+A quotient set is uniquely determined by its memberwise specification.
 
 Logical form:
 
@@ -142,7 +148,10 @@ theorem QuotientSetUnique
         IsQuotientSetOf quotient ambient relation) := by
   sorry
 
-/-- For each ambient set and relation, there is exactly one quotient set
+/--
+**[Theorem — QuotientSetExistsAndUnique]**
+
+For each ambient set and relation, there is exactly one quotient set
 satisfying the memberwise specification.
 
 Logical form:
@@ -164,7 +173,10 @@ theorem QuotientSetExistsAndUnique
         IsQuotientSetOf quotient ambient relation) := by
   sorry
 
-/-- Membership in the quotient set is membership as an equivalence class.
+/--
+**[Theorem — QuotientSetMembership]**
+
+Membership in the quotient set is membership as an equivalence class.
 
 Logical form:
 
@@ -244,7 +256,10 @@ section WellDefined
 variable [SeparationLaws Element SetObject]
 variable [ExtensionalityLaw Element SetObject]
 
-/-- The quotient projection is well-defined with respect to equivalent
+/--
+**[Theorem — QuotientProjectionWellDefined]**
+
+The quotient projection is well-defined with respect to equivalent
 representatives: related representatives determine the same projected
 class.
 
@@ -273,7 +288,10 @@ theorem QuotientProjectionWellDefined
       QuotientProjection ambient relation secondRepresentative := by
   sorry
 
-/-- The collection-facing quotient class element is well-defined with
+/--
+**[Theorem — QuotientClassElementWellDefined]**
+
+The collection-facing quotient class element is well-defined with
 respect to equivalent representatives.
 
 Logical form:

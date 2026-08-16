@@ -1,7 +1,7 @@
 import LRA.VolumeI.Order.Morphisms.OrderEmbedding.Definition
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
-import LRA.VolumeI.Functions.Images
-import LRA.VolumeI.Functions.Preimages
+import LRA.VolumeI.Map.Image.All
+import LRA.VolumeI.Map.Preimage.All
 import LRA.VolumeI.Order.Bounds.BoundSets.Theorems
 import LRA.VolumeI.Order.Bounds.GreatestElement.Definition
 import LRA.VolumeI.Order.Bounds.LeastElement.Definition
@@ -56,7 +56,7 @@ theorem OrderEmbeddingSendsUpperBoundToImageUpperBound
     (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map)
     {subset : SourceSet} {bound : Alpha}
     (boundIsUpper : UpperBound sourceRelation subset bound) :
-    UpperBound targetRelation (LRA.Function.Image map subset : TargetSet) (map bound) := by
+    UpperBound targetRelation (LRA.Map.Image.Image map subset : TargetSet) (map bound) := by
   sorry
 
 /-- `OrderEmbeddingSendsLowerBoundToImageLowerBound`
@@ -75,7 +75,7 @@ theorem OrderEmbeddingSendsLowerBoundToImageLowerBound
     (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map)
     {subset : SourceSet} {bound : Alpha}
     (boundIsLower : LowerBound sourceRelation subset bound) :
-    LowerBound targetRelation (LRA.Function.Image map subset : TargetSet) (map bound) := by
+    LowerBound targetRelation (LRA.Map.Image.Image map subset : TargetSet) (map bound) := by
   sorry
 
 /-- `OrderEmbeddingUpperBoundsPreimageIff`
@@ -96,9 +96,9 @@ theorem OrderEmbeddingUpperBoundsPreimageIff
     (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map)
     (subset : SourceSet) (bound : Alpha) :
     bound ∈ UpperBounds sourceRelation subset ↔
-      bound ∈ (LRA.Function.Preimage map
+      bound ∈ (LRA.Map.Preimage.Preimage map
         (UpperBounds targetRelation
-          (LRA.Function.Image map subset : TargetSet) : TargetSet) : SourceSet) := by
+          (LRA.Map.Image.Image map subset : TargetSet) : TargetSet) : SourceSet) := by
   sorry
 
 /-- `OrderEmbeddingLowerBoundsPreimageIff`
@@ -119,9 +119,9 @@ theorem OrderEmbeddingLowerBoundsPreimageIff
     (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map)
     (subset : SourceSet) (bound : Alpha) :
     bound ∈ LowerBounds sourceRelation subset ↔
-      bound ∈ (LRA.Function.Preimage map
+      bound ∈ (LRA.Map.Preimage.Preimage map
         (LowerBounds targetRelation
-          (LRA.Function.Image map subset : TargetSet) : TargetSet) : SourceSet) := by
+          (LRA.Map.Image.Image map subset : TargetSet) : TargetSet) : SourceSet) := by
   sorry
 
 /-- `OrderEmbeddingPreservesGreatestElement`
@@ -141,7 +141,7 @@ theorem OrderEmbeddingPreservesGreatestElement
     {subset : SourceSet} {greatest : Alpha}
     (greatestIsGreatest : GreatestElement sourceRelation subset greatest) :
     GreatestElement targetRelation
-      (LRA.Function.Image map subset : TargetSet) (map greatest) := by
+      (LRA.Map.Image.Image map subset : TargetSet) (map greatest) := by
   sorry
 
 /-- `OrderEmbeddingPreservesLeastElement`
@@ -161,7 +161,7 @@ theorem OrderEmbeddingPreservesLeastElement
     {subset : SourceSet} {least : Alpha}
     (leastIsLeast : LeastElement sourceRelation subset least) :
     LeastElement targetRelation
-      (LRA.Function.Image map subset : TargetSet) (map least) := by
+      (LRA.Map.Image.Image map subset : TargetSet) (map least) := by
   sorry
 
 end LRA.Order

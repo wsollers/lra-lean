@@ -65,6 +65,26 @@ theorem StrictPartIffNotConverse
   sorry
 
 /--
+**[Theorem — StrictPartRelationIsStrictOrder]**
+
+The strict part relation of a non-strict partial order satisfies the strict
+order laws.
+
+Logical form:
+
+```lean
+theorem StrictPartRelationIsStrictOrder
+    (order : NonStrictPartialOrder Carrier) :
+    LRA.Order.StrictOrder (StrictPart order)
+```
+-/
+theorem StrictPartRelationIsStrictOrder
+    {Carrier : Type u}
+    (order : NonStrictPartialOrder Carrier) :
+    LRA.Order.StrictOrder (StrictPart order) := by
+  sorry
+
+/--
 **[Definition — StrictPartAsStrictOrder]**
 
 The strict part of a non-strict partial order, bundled as a strict order.
@@ -80,8 +100,7 @@ def StrictPartAsStrictOrder
     (order : NonStrictPartialOrder Carrier) :
     LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier where
   relation := StrictPart order
-  relationIsStrictOrder := by
-    sorry
+  relationIsStrictOrder := StrictPartRelationIsStrictOrder order
 
 /--
 **[Theorem — StrictPartIsStrictOrder]**
@@ -98,6 +117,27 @@ theorem StrictPartIsStrictOrder
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
     LRA.Order.StrictOrder (StrictPart order) := by
+  exact StrictPartRelationIsStrictOrder order
+
+/--
+**[Theorem — DualRelationIsPartialOrder]**
+
+The converse relation of a non-strict partial order satisfies the partial-order
+laws.
+
+Logical form:
+
+```lean
+theorem DualRelationIsPartialOrder
+    (order : NonStrictPartialOrder Carrier) :
+    LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
+```
+-/
+theorem DualRelationIsPartialOrder
+    {Carrier : Type u}
+    (order : NonStrictPartialOrder Carrier) :
+    LRA.Order.PartialOrder
+      (LRA.Relation.Converse order.relation) := by
   sorry
 
 /--
@@ -116,8 +156,7 @@ def Dual
     (order : NonStrictPartialOrder Carrier) :
     NonStrictPartialOrder Carrier where
   relation := LRA.Relation.Converse order.relation
-  relationIsPartialOrder := by
-    sorry
+  relationIsPartialOrder := DualRelationIsPartialOrder order
 
 /--
 **[Theorem — DualIsPartialOrder]**
@@ -135,6 +174,6 @@ theorem DualIsPartialOrder
     (order : NonStrictPartialOrder Carrier) :
     LRA.Order.PartialOrder
       (LRA.Relation.Converse order.relation) := by
-  sorry
+  exact DualRelationIsPartialOrder order
 
 end LRA.Order.OrderedSets.PartialOrder

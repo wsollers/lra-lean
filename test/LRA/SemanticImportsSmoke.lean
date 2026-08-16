@@ -1,4 +1,4 @@
-import LRA.Function
+import LRA.VolumeI.Map
 import LRA.Identity
 import LRA.Order
 import LRA.Analysis.Bounds
@@ -10,9 +10,9 @@ universe u v
 
 namespace LRA.SemanticImportsSmoke
 
-example : LRA.Function Nat Bool := fun value => value = 0
+example : LRA.Map.Typed.TypedMap Nat Bool := fun value => value = 0
 
 example (Domain : Type u) (Codomain : Type v) :
-    LRA.Function Domain Codomain = (Domain → Codomain) := rfl
+    LRA.Map.Typed.TypedMap Domain Codomain = (Domain → Codomain) := rfl
 
 end LRA.SemanticImportsSmoke

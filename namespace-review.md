@@ -4,10 +4,10 @@
 
 | Item | Value |
 |---|---|
-| Revision | `39e1f7fbad7225cd059deb4cf44bd59d90b88a57` |
+| Revision | `fb59b14f5c2134e1e2860f4f96d824af74dc8c21` |
 | Branch | `main` |
-| Inventory | `9,106` compiled-environment rows |
-| SHA-256 | `54016f4e8b285435104d5866a0c866ef772d566bdfbceb8cfa96c4323858ed51` |
+| Inventory | `9,718` compiled-environment rows |
+| SHA-256 | `156c4a50db3abf924d6ebffc237734d6eff97808bc972651145e1b7ddaee46e6` |
 | Generator | `scripts/DumpNamespaceEnvironment.lean` then `scripts/generate_namespace_inventory.py` |
 | Source-only findings | `0` (parser candidates; see reconciliation note) |
 | Exact duplicate names | `25` |
@@ -17,24 +17,24 @@
 
 Durable public declarations use semantic owners below `LRA`: `Algebra`,
 `Analysis` (`Bounds`, `MetricSpaces`, `MeasureTheory`, `FunctionalAnalysis`),
-`Function`, `Identity`, `Interop.Mathlib`, `LinearAlgebra`, `Logic`,
+`Map`, `Identity`, `Interop.Mathlib`, `LinearAlgebra`, `Logic`,
 `NumberSystems`, `Order`, `Relation`, `Set`, and `Topology`. Curricular module
 paths remain under `LRA/Volume*`; they no longer determine declaration names.
 `LRA.Internal` contains explicitly non-API orienting and scratch material.
 
-Immediate-root environment counts: `Algebra` 2254, `Analysis` 1379, `Function` 96, `Identity` 81, `Internal` 74, `Interop` 25, `LinearAlgebra` 64, `Logic` 1423, `NumberSystems` 2091, `Order` 286, `Relation` 83, `Set` 1085, `Topology` 81.
+Immediate-root environment counts: `Algebra` 2254, `Analysis` 1388, `Identity` 81, `Internal` 78, `Interop` 25, `LinearAlgebra` 64, `Logic` 1423, `Map` 421, `NumberSystems` 2092, `Order` 527, `Relation` 89, `Set` 1111, `Topology` 81.
 
 ## Evidence classification
 
-- `authored`: 3,371
-- `generated_companion`: 937
-- `generated_constructor`: 431
-- `generated_or_elaborated`: 3,153
-- `generated_projection`: 824
-- `generated_recursor`: 306
+- `authored`: 3,894
+- `generated_companion`: 956
+- `generated_constructor`: 437
+- `generated_or_elaborated`: 3,198
+- `generated_projection`: 837
+- `generated_recursor`: 312
 - `private_implementation`: 84
 
-API status: `internal` 74, `private` 84, `public` 8,948.
+API status: `internal` 78, `private` 84, `public` 9,556.
 
 The generator loads the freshly built `LRA` aggregate with `Lean.importModules`,
 iterates constants by defining module, and reconciles candidate authored names
@@ -52,7 +52,7 @@ than fabricated inventory rows. Current unmatched candidates: `0`.
 - `LRA.Order.Bounds` is the separate backend- and relation-generic theory.
 - The Volume IV vector-space definition is the pedagogical owner; the duplicate
   Volume VI definition was removed while its extra linear-map declaration was kept.
-- Generic function predicates are canonical; the Polish integer development no
+- Generic map predicates are canonical; the Polish integer development no
   longer declares local duplicates.
 - Sequence/convergence and construction-specific model-isomorphism declarations
   that merely share short names remain distinct because their types and domains
@@ -62,19 +62,20 @@ than fabricated inventory rows. Current unmatched candidates: `0`.
 - `LRA.Internal.MathematicalSpaces` retains orienting-only mathematical-space
   material; scratch metric structures/examples are under `LRA.Internal`.
 
-## Function foundations
+## Map and relation foundations
 
-`LRA.Function (Domain : Type u) (Codomain : Type v)` is the typed representation.
-The foundational representation is a separate domain/codomain/graph triple plus
-`IsSetTheoreticFunction`, whose fields enforce graph closure, total evaluation,
-and unique values. Evaluation existence/uniqueness and triple extensionality are
-provided.
+`LRA.Map.Typed.TypedMap (Domain : Type u) (Codomain : Type v)` is the typed
+representation. The foundational set-theoretic representation is a separate
+domain/codomain/graph triple plus `IsSetTheoreticMap`, whose clauses enforce
+graph closure, total evaluation, and unique values. A parallel bundled
+set-theoretic relation triple records graph typing without the function laws.
+Evaluation existence/uniqueness and map extensionality are provided.
 
 There is exactly one typed-to-set representation theorem family,
-`LRA.Function.typedFunctionGraphRepresentation`. It requires explicit backend
+`LRA.Map.SetTheoretic.TypedMapGraphRepresentation`. It requires explicit backend
 element and object types, ordered-pair and separation operations and laws,
 domain/codomain encodings, encoding injectivity/coverage, an ambient pair set,
-and graph-pair existence. It constructs a set-theoretic function and proves its
+and graph-pair existence. It constructs a set-theoretic map and proves its
 evaluation agrees with the typed map. There are no bridge coercions or automatic
 instances.
 

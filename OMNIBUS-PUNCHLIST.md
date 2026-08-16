@@ -179,44 +179,42 @@ spine rather than rebuilding it.
   - Acceptance: future tags for "relation is a set" and "relational algebra"
     have stable Lean targets and examples.
 
-## Phase 3: Volume I Function Layer
+## Phase 3: Volume I Map Layer
 
-- [ ] Create graph-based function definitions.
-  - Home: `LRA/VolumeI/Functions/Functions.lean`.
+- [x] Create graph-based map definitions.
+  - Home: `LRA/VolumeI/Map/Typed/`, `LRA/VolumeI/Map/Graph/`, and
+    `LRA/VolumeI/Map/Relation/`.
   - Scope: graph, domain, codomain, single-valuedness, totality, function from
     one carrier to another, and the bridge between graph relations and ordinary
     Lean functions.
   - Acceptance: functions are explicitly modeled as set-like graphs without
     hiding that they are constructed from relations.
 
-- [ ] Add image, preimage, and fiber definitions.
-  - Home: `LRA/VolumeI/Functions/Images.lean`,
-    `LRA/VolumeI/Functions/Preimages.lean`, and
-    `LRA/VolumeI/Functions/Fibers.lean`.
+- [x] Add image, preimage, and fiber definitions.
+  - Home: `LRA/VolumeI/Map/Image/`, `LRA/VolumeI/Map/Preimage/`, and
+    `LRA/VolumeI/Map/Fiber/`.
   - Scope: image of a set, preimage of a set, fibers of values.
   - Acceptance: later injective/surjective/bijective definitions can use these.
 
-- [ ] Add injective, surjective, bijective, and inverse definitions.
-  - Home: `LRA/VolumeI/Functions/Injective.lean`,
-    `LRA/VolumeI/Functions/Surjective.lean`,
-    `LRA/VolumeI/Functions/Bijective.lean`, and
-    `LRA/VolumeI/Functions/Inverses.lean`.
+- [x] Add injective, surjective, bijective, and inverse definitions.
+  - Home: `LRA/VolumeI/Map/Injective/`, `Surjective/`, `Bijective/`, and
+    `Inverse/`.
   - Scope: fiber-based injectivity, surjectivity, bijectivity, inverse relation,
     inverse function when bijective.
   - Acceptance: theorem statements include inverse uniqueness and basic
     round-trip laws.
 
-- [ ] Add composition, identity, restriction, and extension.
-  - Home: `LRA/VolumeI/Functions/Composition.lean`,
-    `LRA/VolumeI/Functions/IdentityFunction.lean`, and
-    `LRA/VolumeI/Functions/SectionsRetractions.lean`.
+- [x] Add composition, identity, restriction, and extension.
+  - Home: `LRA/VolumeI/Map/Composition/`, `Identity/`, `Restriction/`,
+    `Extension/`, `Section/`, and `Retraction/`.
   - Scope: identity function, composition, associativity, left/right identity,
     restriction, extension, graph-of-composite, graph-of-restriction.
   - Acceptance: reusable function algebra exists before algebraic structures
     consume it.
 
-- [ ] Add image/preimage set-operation laws.
-  - Home: `LRA/VolumeI/Functions/Laws.lean`.
+- [x] Add image/preimage set-operation laws.
+  - Home: `LRA/VolumeI/Map/Image/Theorems.lean` and
+    `LRA/VolumeI/Map/Preimage/Theorems.lean`.
   - Scope: image/preimage union, intersection, difference, complement,
     monotonicity, round-trip laws.
   - Acceptance: omnibus Chapter 0A and law catalogue L29-L34 are represented.

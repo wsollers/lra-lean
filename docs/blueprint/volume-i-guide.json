@@ -7,7 +7,7 @@
     {"area": "Logic", "module": "LRA.VolumeI.Logic", "purpose": "formal languages, syntax, semantics, proof systems, models, and model comparison"},
     {"area": "Identity", "module": "LRA.VolumeI.Identity", "purpose": "equality, substitution, extensionality, uniqueness, and proof patterns"},
     {"area": "Set", "module": "LRA.VolumeI.Set", "purpose": "backend-independent set interfaces, set operations, set laws, and concrete set backends"},
-    {"area": "Functions", "module": "LRA.VolumeI.Functions", "purpose": "functions, images, preimages, fibers, injective/surjective/bijective maps, inverses, and composition"},
+    {"area": "Map", "module": "LRA.VolumeI.Map", "purpose": "typed and set-theoretic maps, relations and graphs, image/preimage/fibers, injective/surjective/bijective maps, inverses, restrictions, products, operations, and laws"},
     {"area": "Operations", "module": "LRA.VolumeI.Operations", "purpose": "arity, operation laws, identity elements, inverses, compatibility, distributivity, and divisibility"},
     {"area": "Relations", "module": "LRA.VolumeI.Relations", "purpose": "relation predicates, equivalence relations, partitions, quotient sets, and order relations"},
     {"area": "Algebra", "module": "LRA.VolumeI.Algebra", "purpose": "algebraic signatures, structures, models, homomorphisms, substructures, quotient structures, and universal properties"}

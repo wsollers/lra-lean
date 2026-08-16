@@ -74,7 +74,10 @@ section Laws
 variable [SeparationLaws Element SetObject]
 variable [ExtensionalityLaw Element SetObject]
 
-/-- For each representative, its equivalence class exists.
+/--
+**[Theorem — EquivalenceClassExists]**
+
+For each representative, its equivalence class exists.
 
 Logical form:
 
@@ -97,7 +100,10 @@ theorem EquivalenceClassExists
         IsEquivalenceClassOf classSet ambient relation representative) := by
   sorry
 
-/-- An equivalence class is uniquely determined by its representative and
+/--
+**[Theorem — EquivalenceClassUnique]**
+
+An equivalence class is uniquely determined by its representative and
 membership specification.
 
 Logical form:
@@ -121,7 +127,10 @@ theorem EquivalenceClassUnique
         IsEquivalenceClassOf classSet ambient relation representative) := by
   sorry
 
-/-- For each representative, there is exactly one equivalence class
+/--
+**[Theorem — EquivalenceClassExistsAndUnique]**
+
+For each representative, there is exactly one equivalence class
 satisfying the memberwise specification.
 
 Logical form:
@@ -145,7 +154,10 @@ theorem EquivalenceClassExistsAndUnique
         IsEquivalenceClassOf classSet ambient relation representative) := by
   sorry
 
-/-- The constructed equivalence class satisfies its defining membership
+/--
+**[Theorem — EquivalenceClassMembershipIff]**
+
+The constructed equivalence class satisfies its defining membership
 specification.
 
 Logical form:
@@ -167,7 +179,10 @@ theorem EquivalenceClassMembershipIff
       candidate ∈ ambient ∧ relation candidate representative := by
   sorry
 
-/-- Two representatives determine the same class when they are related.
+/--
+**[Theorem — RelatedRepresentativesHaveSameEquivalenceClass]**
+
+Two representatives determine the same class when they are related.
 
 Logical form:
 

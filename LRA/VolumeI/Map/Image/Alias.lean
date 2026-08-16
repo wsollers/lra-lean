@@ -113,23 +113,4 @@ abbrev CarriesInto
     (target : CodomainSet) : Prop :=
   MapsInto map source target
 
-/--
-**[Abbreviation — FiniteRangeOn]**
-
-Sources: Tao's measure-theory discussion of simple functions is phrased in
-terms of finite image/range.
-
-Logical form:
-
-```lean
-abbrev FiniteRangeOn
-    (map : TypedMap DomainElement CodomainElement)
-    (ambientDomain : DomainSet) : Prop
-```
--/
-abbrev FiniteRangeOn
-    (map : TypedMap DomainElement CodomainElement)
-    (ambientDomain : DomainSet) : Prop :=
-  FiniteRange map ambientDomain
-
 end LRA.Map.Image

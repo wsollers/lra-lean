@@ -606,6 +606,54 @@ theorem PreimageComposition
       Preimage firstMap ((Preimage secondMap target : MiddleSet)) := by
   sorry
 
+/--
+**[Theorem — PreimageCompositionMonotone]**
+
+Preimage under a composite is monotone with respect to the target set.
+
+Logical form:
+
+```lean
+theorem PreimageCompositionMonotone
+    [HasSubset FirstSet] [HasSubset ThirdSet]
+    [Union FirstSet] [Inter FirstSet] [SDiff FirstSet]
+    [EmptyCollection FirstSet]
+    [Union ThirdSet] [Inter ThirdSet] [SDiff ThirdSet]
+    [EmptyCollection ThirdSet]
+    [MembershipLaws FirstElement FirstSet]
+    [MembershipLaws ThirdElement ThirdSet]
+    [SeparationLaws FirstElement FirstSet]
+    [HasComplement FirstSet]
+    [UniversalMembershipLaws FirstElement FirstSet]
+    (secondMap : TypedMap MiddleElement ThirdElement)
+    (firstMap : TypedMap FirstElement MiddleElement)
+    (left right : ThirdSet)
+    (leftSubsetRight : left ⊆ right) :
+    (Preimage (LRA.Map.Composition.Compose secondMap firstMap) left :
+      FirstSet) ⊆
+      Preimage (LRA.Map.Composition.Compose secondMap firstMap) right
+```
+-/
+theorem PreimageCompositionMonotone
+    [HasSubset FirstSet] [HasSubset ThirdSet]
+    [Union FirstSet] [Inter FirstSet] [SDiff FirstSet]
+    [EmptyCollection FirstSet]
+    [Union ThirdSet] [Inter ThirdSet] [SDiff ThirdSet]
+    [EmptyCollection ThirdSet]
+    [MembershipLaws FirstElement FirstSet]
+    [MembershipLaws ThirdElement ThirdSet]
+    [SeparationLaws FirstElement FirstSet]
+    [HasComplement FirstSet]
+    [UniversalMembershipLaws FirstElement FirstSet]
+    (secondMap : TypedMap MiddleElement ThirdElement)
+    (firstMap : TypedMap FirstElement MiddleElement)
+    (left right : ThirdSet)
+    (leftSubsetRight : left ⊆ right) :
+    (Preimage (LRA.Map.Composition.Compose secondMap firstMap) left :
+      FirstSet) ⊆
+      Preimage (LRA.Map.Composition.Compose secondMap firstMap) right := by
+  sorry
+
 end Composition
 
 end LRA.Map.Preimage

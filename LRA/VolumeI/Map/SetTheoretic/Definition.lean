@@ -49,6 +49,73 @@ structure SetTheoreticRelationTriple
   graph : GraphObject
 
 /--
+**[Definition — IsSetTheoreticRelation]**
+
+The relation condition for a raw set-theoretic relation triple: every graph
+member is an ordered pair whose coordinates belong to the displayed left and
+right domains.
+
+Logical form:
+
+```lean
+def IsSetTheoreticRelation
+    {LeftElement RightElement Pair : Type u}
+    {LeftDomainObject : Type v} {RightDomainObject : Type w}
+    {GraphObject : Type x}
+    [HasPairing LeftElement RightElement Pair]
+    [Membership LeftElement LeftDomainObject]
+    [Membership RightElement RightDomainObject]
+    [Membership Pair GraphObject]
+    (triple : SetTheoreticRelationTriple
+      LeftDomainObject RightDomainObject GraphObject) : Prop
+```
+-/
+def IsSetTheoreticRelation
+    {LeftElement RightElement Pair : Type u}
+    {LeftDomainObject : Type v} {RightDomainObject : Type w}
+    {GraphObject : Type x}
+    [HasPairing LeftElement RightElement Pair]
+    [Membership LeftElement LeftDomainObject]
+    [Membership RightElement RightDomainObject]
+    [Membership Pair GraphObject]
+    (triple : SetTheoreticRelationTriple
+      LeftDomainObject RightDomainObject GraphObject) : Prop :=
+  forall member : Pair, member ∈ triple.graph ->
+    exists (left : LeftElement) (right : RightElement),
+      member = OrderedPair left right /\
+      left ∈ triple.leftDomain /\ right ∈ triple.rightDomain
+
+/--
+**[Structure — SetTheoreticRelation]**
+
+A raw set-theoretic relation triple bundled with its graph-typing condition.
+
+Logical form:
+
+```lean
+structure SetTheoreticRelation
+    (LeftElement RightElement Pair : Type u)
+    (LeftDomainObject : Type v) (RightDomainObject : Type w)
+    (GraphObject : Type x)
+    [HasPairing LeftElement RightElement Pair]
+    [Membership LeftElement LeftDomainObject]
+    [Membership RightElement RightDomainObject]
+    [Membership Pair GraphObject]
+```
+-/
+structure SetTheoreticRelation
+    (LeftElement RightElement Pair : Type u)
+    (LeftDomainObject : Type v) (RightDomainObject : Type w)
+    (GraphObject : Type x)
+    [HasPairing LeftElement RightElement Pair]
+    [Membership LeftElement LeftDomainObject]
+    [Membership RightElement RightDomainObject]
+    [Membership Pair GraphObject] where
+  triple : SetTheoreticRelationTriple
+    LeftDomainObject RightDomainObject GraphObject
+  isRelation : IsSetTheoreticRelation triple
+
+/--
 **[Definition — IsSetTheoreticMap]**
 
 The function condition for a raw set-theoretic map triple.

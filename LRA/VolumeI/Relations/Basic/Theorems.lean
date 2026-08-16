@@ -8,49 +8,133 @@ Home for elementary theorems connecting basic relation properties.
 
 universe u
 
-/-- Taking the converse twice recovers the original relation. -/
+/--
+**[Theorem — ConverseInvolutive]**
+
+Taking the converse twice recovers the original relation.
+
+Logical form:
+
+```lean
+theorem ConverseInvolutive
+    (relation : Endorelation Alpha) :
+    Converse (Converse relation) = relation
+```
+-/
 theorem ConverseInvolutive
     {Alpha : Type u}
     (relation : Endorelation Alpha) :
     Converse (Converse relation) = relation := by
   sorry
 
-/-- Reflexivity is invariant under converse. -/
+/--
+**[Theorem — ReflexiveConverseIff]**
+
+Reflexivity is invariant under converse.
+
+Logical form:
+
+```lean
+theorem ReflexiveConverseIff
+    (relation : Endorelation Alpha) :
+    Reflexive (Converse relation) <-> Reflexive relation
+```
+-/
 theorem ReflexiveConverseIff
     {Alpha : Type u}
     (relation : Endorelation Alpha) :
     Reflexive (Converse relation) ↔ Reflexive relation := by
   sorry
 
-/-- Irreflexivity is invariant under converse. -/
+/--
+**[Theorem — IrreflexiveConverseIff]**
+
+Irreflexivity is invariant under converse.
+
+Logical form:
+
+```lean
+theorem IrreflexiveConverseIff
+    (relation : Endorelation Alpha) :
+    Irreflexive (Converse relation) <-> Irreflexive relation
+```
+-/
 theorem IrreflexiveConverseIff
     {Alpha : Type u}
     (relation : Endorelation Alpha) :
     Irreflexive (Converse relation) ↔ Irreflexive relation := by
   sorry
 
-/-- Transitivity is invariant under converse. -/
+/--
+**[Theorem — TransitiveConverseIff]**
+
+Transitivity is invariant under converse.
+
+Logical form:
+
+```lean
+theorem TransitiveConverseIff
+    (relation : Endorelation Alpha) :
+    Transitive (Converse relation) <-> Transitive relation
+```
+-/
 theorem TransitiveConverseIff
     {Alpha : Type u}
     (relation : Endorelation Alpha) :
     Transitive (Converse relation) ↔ Transitive relation := by
   sorry
 
-/-- Antisymmetry is invariant under converse. -/
+/--
+**[Theorem — AntisymmetricConverseIff]**
+
+Antisymmetry is invariant under converse.
+
+Logical form:
+
+```lean
+theorem AntisymmetricConverseIff
+    (relation : Endorelation Alpha) :
+    Antisymmetric (Converse relation) <-> Antisymmetric relation
+```
+-/
 theorem AntisymmetricConverseIff
     {Alpha : Type u}
     (relation : Endorelation Alpha) :
     Antisymmetric (Converse relation) ↔ Antisymmetric relation := by
   sorry
 
-/-- Totality is invariant under converse. -/
+/--
+**[Theorem — TotalConverseIff]**
+
+Totality is invariant under converse.
+
+Logical form:
+
+```lean
+theorem TotalConverseIff
+    (relation : Endorelation Alpha) :
+    Total (Converse relation) <-> Total relation
+```
+-/
 theorem TotalConverseIff
     {Alpha : Type u}
     (relation : Endorelation Alpha) :
     Total (Converse relation) ↔ Total relation := by
   sorry
 
-/-- Density is invariant under converse. -/
+/--
+**[Theorem — DenseConverseIff]**
+
+Density is invariant under converse.
+
+Logical form:
+
+```lean
+theorem DenseConverseIff
+    (relation : Endorelation Alpha) :
+    Dense (Converse relation) <-> Dense relation
+```
+-/
 theorem DenseConverseIff
     {Alpha : Type u}
     (relation : Endorelation Alpha) :

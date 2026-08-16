@@ -29,7 +29,10 @@ def EquivalenceFromPartition
       first ∈ partition.Block index /\ second ∈ partition.Block index
 
 /--
-Equivalence relations and partitions determine one another.
+**[Theorem — FundamentalTheoremOfEquivalenceRelations]**
+
+The partition into equivalence classes recovers the original relation on the
+represented carrier.
 
 This is the textbook fundamental theorem of equivalence relations, stated
 as the interface contract for the detailed proof pass.
@@ -45,9 +48,12 @@ theorem FundamentalTheoremOfEquivalenceRelations
     (ambient : SetObject)
     (relation : Endorelation Element)
     (relationIsEquivalence : EquivalenceRelation relation) :
-    EquivalenceRelation
-      (EquivalenceFromPartition
-        (PartitionFromEquivalence ambient relation relationIsEquivalence))
+    ∀ first second,
+      first ∈ ambient -> second ∈ ambient ->
+        EquivalenceFromPartition
+            (PartitionFromEquivalence ambient relation relationIsEquivalence)
+            first second ↔
+          relation first second
 ```
 -/
 theorem FundamentalTheoremOfEquivalenceRelations
@@ -57,9 +63,12 @@ theorem FundamentalTheoremOfEquivalenceRelations
     (ambient : SetObject)
     (relation : Endorelation Element)
     (relationIsEquivalence : EquivalenceRelation relation) :
-    EquivalenceRelation
-      (EquivalenceFromPartition
-        (PartitionFromEquivalence ambient relation relationIsEquivalence)) := by
+    ∀ first second,
+      first ∈ ambient -> second ∈ ambient ->
+        EquivalenceFromPartition
+            (PartitionFromEquivalence ambient relation relationIsEquivalence)
+            first second ↔
+          relation first second := by
   sorry
 
 end LRA.Relation

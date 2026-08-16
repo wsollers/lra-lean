@@ -52,6 +52,18 @@ def EmptyMetric (X : Type u) : MetricDefinition (∅ : Set X) where
     intro x
     exact x.property.elim
 
+theorem EuclideanRMetricPositive :
+    ∀ a b : ℝ, 0 ≤ |a - b| ∧ (|a - b| = 0 ↔ a = b) := by
+  sorry
+
+theorem EuclideanRMetricSymmetric :
+    ∀ a b : ℝ, |a - b| = |b - a| := by
+  sorry
+
+theorem EuclideanRMetricTriangle :
+    ∀ a b c : ℝ, |a - c| ≤ |a - b| + |b - c| := by
+  sorry
+
 /-- The Euclidean metric on the real line. Memberwise, the distance from `a`
 to `b` is `|a - b|`.
 
@@ -63,12 +75,9 @@ Logical form:
 -/
 def EuclideanRMetric : MetricDefinition ℝ where
   distance := fun a b => |a - b|
-  positive := by
-    sorry
-  symmetric := by
-    sorry
-  triangle := by
-    sorry
+  positive := EuclideanRMetricPositive
+  symmetric := EuclideanRMetricSymmetric
+  triangle := EuclideanRMetricTriangle
 
 /-- The zero metric on a singleton subtype. Memberwise, the only available
 points are equal to the distinguished point, so zero distance is positive
@@ -98,6 +107,18 @@ def SingletonMetric {X : Type u} (point : X) : MetricDefinition ({point} : Set X
     intro x y z
     norm_num
 
+theorem ComplexModulusMetricPositive :
+    ∀ a b : ℂ, 0 ≤ ‖a - b‖ ∧ (‖a - b‖ = 0 ↔ a = b) := by
+  sorry
+
+theorem ComplexModulusMetricSymmetric :
+    ∀ a b : ℂ, ‖a - b‖ = ‖b - a‖ := by
+  sorry
+
+theorem ComplexModulusMetricTriangle :
+    ∀ a b c : ℂ, ‖a - c‖ ≤ ‖a - b‖ + ‖b - c‖ := by
+  sorry
+
 /-- The modulus metric on the complex numbers. Memberwise, the distance from
 `a` to `b` is `‖a - b‖`.
 
@@ -109,12 +130,9 @@ Logical form:
 -/
 noncomputable def ComplexModulusMetric : MetricDefinition ℂ where
   distance := fun a b => ‖a - b‖
-  positive := by
-    sorry
-  symmetric := by
-    sorry
-  triangle := by
-    sorry
+  positive := ComplexModulusMetricPositive
+  symmetric := ComplexModulusMetricSymmetric
+  triangle := ComplexModulusMetricTriangle
 
 /-- The chord metric on a positive-radius circle in the real line.
 Memberwise, the distance is inherited from the Euclidean real metric.
@@ -153,6 +171,24 @@ def RealCircleChordMetric (center : ℝ) (radius : ℝ) (radiusPositive : 0 < ra
     intro a b c
     exact abs_sub_le a.1 b.1 c.1
 
+theorem ComplexCircleChordMetricPositive
+    (center : ℂ) (radius : ℝ) (radiusPositive : 0 < radius) :
+    ∀ a b : {z : ℂ // ‖z - center‖ = radius},
+      0 ≤ ‖a.1 - b.1‖ ∧ (‖a.1 - b.1‖ = 0 ↔ a = b) := by
+  sorry
+
+theorem ComplexCircleChordMetricSymmetric
+    (center : ℂ) (radius : ℝ) (radiusPositive : 0 < radius) :
+    ∀ a b : {z : ℂ // ‖z - center‖ = radius},
+      ‖a.1 - b.1‖ = ‖b.1 - a.1‖ := by
+  sorry
+
+theorem ComplexCircleChordMetricTriangle
+    (center : ℂ) (radius : ℝ) (radiusPositive : 0 < radius) :
+    ∀ a b c : {z : ℂ // ‖z - center‖ = radius},
+      ‖a.1 - c.1‖ ≤ ‖a.1 - b.1‖ + ‖b.1 - c.1‖ := by
+  sorry
+
 /-- The chord metric on a positive-radius circle in the complex plane.
 Memberwise, the distance is inherited from complex modulus.
 
@@ -167,12 +203,9 @@ noncomputable def ComplexCircleChordMetric
     (center : ℂ) (radius : ℝ) (radiusPositive : 0 < radius) :
     MetricDefinition {z : ℂ // ‖z - center‖ = radius} where
   distance := fun a b => ‖a.1 - b.1‖
-  positive := by
-    sorry
-  symmetric := by
-    sorry
-  triangle := by
-    sorry
+  positive := ComplexCircleChordMetricPositive center radius radiusPositive
+  symmetric := ComplexCircleChordMetricSymmetric center radius radiusPositive
+  triangle := ComplexCircleChordMetricTriangle center radius radiusPositive
 
 end Metrics
 end LRA.Analysis.MetricSpaces

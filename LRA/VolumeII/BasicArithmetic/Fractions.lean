@@ -1,7 +1,7 @@
 -- LRA/VolumeII/BasicArithmetic/Fractions.lean
 -- Elementary rational fraction manipulations over the active switches.
 
-import Mathlib.Data.Rat.Defs
+import LRA.VolumeII.Switches.NumberSystems
 import LRA.VolumeI.AlgebraicStructures
 
 namespace LRA.NumberSystems.Arithmetic.Fractions

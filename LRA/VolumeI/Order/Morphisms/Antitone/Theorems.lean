@@ -1,7 +1,7 @@
 import LRA.VolumeI.Order.Morphisms.Antitone.Definition
 import LRA.VolumeI.Order.Morphisms.Monotone.Definition
-import LRA.VolumeI.Functions.Images
-import LRA.VolumeI.Functions.Preimages
+import LRA.VolumeI.Map.Image.All
+import LRA.VolumeI.Map.Preimage.All
 import LRA.VolumeI.Order.Bounds.BoundSets.Theorems
 
 namespace LRA.Order
@@ -65,7 +65,7 @@ theorem AntitoneSendsUpperBoundToImageLowerBound
     (mapIsAntitone : Antitone sourceRelation targetRelation map)
     {subset : SourceSet} {bound : Alpha}
     (boundIsUpper : UpperBound sourceRelation subset bound) :
-    LowerBound targetRelation (LRA.Function.Image map subset : TargetSet) (map bound) := by
+    LowerBound targetRelation (LRA.Map.Image.Image map subset : TargetSet) (map bound) := by
   sorry
 
 /-- `AntitoneSendsLowerBoundToImageUpperBound`
@@ -84,7 +84,7 @@ theorem AntitoneSendsLowerBoundToImageUpperBound
     (mapIsAntitone : Antitone sourceRelation targetRelation map)
     {subset : SourceSet} {bound : Alpha}
     (boundIsLower : LowerBound sourceRelation subset bound) :
-    UpperBound targetRelation (LRA.Function.Image map subset : TargetSet) (map bound) := by
+    UpperBound targetRelation (LRA.Map.Image.Image map subset : TargetSet) (map bound) := by
   sorry
 
 /-- `AntitoneImageUpperBoundsIntoLowerBounds`
@@ -104,10 +104,10 @@ theorem AntitoneImageUpperBoundsIntoLowerBounds
     {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha -> Beta}
     (mapIsAntitone : Antitone sourceRelation targetRelation map)
     (subset : SourceSet) (output : Beta)
-    (outputIsImageOfUpperBound : output ∈ (LRA.Function.Image map
+    (outputIsImageOfUpperBound : output ∈ (LRA.Map.Image.Image map
       (UpperBounds sourceRelation subset : SourceSet) : TargetSet)) :
     output ∈ LowerBounds targetRelation
-      (LRA.Function.Image map subset : TargetSet) := by
+      (LRA.Map.Image.Image map subset : TargetSet) := by
   sorry
 
 /-- `AntitoneUpperBoundsPreimageLowerBoundsContainment`
@@ -128,9 +128,9 @@ theorem AntitoneUpperBoundsPreimageLowerBoundsContainment
     (mapIsAntitone : Antitone sourceRelation targetRelation map)
     (subset : SourceSet) (bound : Alpha)
     (boundIsSourceUpperBound : bound ∈ UpperBounds sourceRelation subset) :
-    bound ∈ (LRA.Function.Preimage map
+    bound ∈ (LRA.Map.Preimage.Preimage map
       (LowerBounds targetRelation
-        (LRA.Function.Image map subset : TargetSet) : TargetSet) : SourceSet) := by
+        (LRA.Map.Image.Image map subset : TargetSet) : TargetSet) : SourceSet) := by
   sorry
 
 /-- `AntitoneImageLowerBoundsIntoUpperBounds`
@@ -150,10 +150,10 @@ theorem AntitoneImageLowerBoundsIntoUpperBounds
     {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha -> Beta}
     (mapIsAntitone : Antitone sourceRelation targetRelation map)
     (subset : SourceSet) (output : Beta)
-    (outputIsImageOfLowerBound : output ∈ (LRA.Function.Image map
+    (outputIsImageOfLowerBound : output ∈ (LRA.Map.Image.Image map
       (LowerBounds sourceRelation subset : SourceSet) : TargetSet)) :
     output ∈ UpperBounds targetRelation
-      (LRA.Function.Image map subset : TargetSet) := by
+      (LRA.Map.Image.Image map subset : TargetSet) := by
   sorry
 
 /-- `AntitoneLowerBoundsPreimageUpperBoundsContainment`
@@ -174,9 +174,9 @@ theorem AntitoneLowerBoundsPreimageUpperBoundsContainment
     (mapIsAntitone : Antitone sourceRelation targetRelation map)
     (subset : SourceSet) (bound : Alpha)
     (boundIsSourceLowerBound : bound ∈ LowerBounds sourceRelation subset) :
-    bound ∈ (LRA.Function.Preimage map
+    bound ∈ (LRA.Map.Preimage.Preimage map
       (UpperBounds targetRelation
-        (LRA.Function.Image map subset : TargetSet) : TargetSet) : SourceSet) := by
+        (LRA.Map.Image.Image map subset : TargetSet) : TargetSet) : SourceSet) := by
   sorry
 
 end LRA.Order

@@ -107,10 +107,32 @@ theorem SubsetBasedInductionPrinciple
 Logical form:
 
 ```lean
-theorem StrongInductionOnPeanoSystem (ps : PeanoSystem Element SetObject) : True
+theorem StrongInductionOnPeanoSystem
+    (ps : PeanoSystem Element SetObject)
+    (subset : SetObject)
+    (strong_step :
+      forall element : Element,
+        (forall predecessor : Element,
+          predecessor ∈ subset ->
+          ps.successor predecessor = element ->
+          predecessor ∈ subset) ->
+        element ∈ subset) :
+    forall element : Element,
+      element ∈ subset
 ```
 -/
-theorem StrongInductionOnPeanoSystem (ps : PeanoSystem Element SetObject) : True := by
+theorem StrongInductionOnPeanoSystem
+    (ps : PeanoSystem Element SetObject)
+    (subset : SetObject)
+    (strong_step :
+      forall element : Element,
+        (forall predecessor : Element,
+          predecessor ∈ subset ->
+          ps.successor predecessor = element ->
+          predecessor ∈ subset) ->
+        element ∈ subset) :
+    forall element : Element,
+      element ∈ subset := by
   sorry
 
 /--

@@ -28,7 +28,6 @@ REPLACEMENTS = [
     ("LRA.VolumeI.AlgebraicStructures", "LRA.Algebra.Structure"),
     ("LRA.VolumeI.Operations", "LRA.Algebra.Operation"),
     ("LRA.VolumeI.Relations", "LRA.Relation"),
-    ("LRA.VolumeI.Functions", "LRA.Function"),
     ("LRA.VolumeI.Identity", "LRA.Identity"),
     ("LRA.VolumeI.Logic", "LRA.Logic"),
     ("LRA.VolumeI.Order", "LRA.Order"),

@@ -12,10 +12,12 @@ Aggregate import shim for the logical-symbols layer (`Language/Notation/`).
 Logical form:
 
 ```lean
-theorem notationWiringTest : True
+theorem notationWiringTest : forall proposition : Prop, proposition -> proposition
 ```
 -/
-theorem notationWiringTest : True := by
-  trivial
+theorem notationWiringTest :
+    forall proposition : Prop, proposition -> proposition := by
+  intro proposition proof
+  exact proof
 
 end LRA.Logic.Language

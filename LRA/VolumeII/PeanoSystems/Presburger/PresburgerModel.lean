@@ -100,10 +100,22 @@ Logical form:
 
 ```lean
 def PresburgerArithmetic
-    (_model : PresburgerModel Element SetObject) : Prop := True
+    (model : PresburgerModel Element SetObject) : Prop
 ```
 -/
 def PresburgerArithmetic
-    (_model : PresburgerModel Element SetObject) : Prop := True
+    (model : PresburgerModel Element SetObject) : Prop :=
+  (forall element : Element,
+    model.successor element ≠ model.zero) /\
+  (forall first_element second_element : Element,
+    model.successor first_element = model.successor second_element ->
+      first_element = second_element) /\
+  (forall subset : SetObject,
+    model.zero ∈ subset ->
+    (forall element : Element,
+      element ∈ subset ->
+      model.successor element ∈ subset) ->
+    forall element : Element,
+      element ∈ subset)
 
 end LRA.NumberSystems.PeanoSystems

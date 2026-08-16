@@ -51,32 +51,6 @@ theorem ImageMembershipIff
       exists input : DomainElement, input ∈ source /\ map input = output := by
   sorry
 
-/--
-**[Theorem — FiniteImageIff]**
-
-The finite image predicate is exactly finiteness of the set of codomain values
-hit by source elements.
-
-Logical form:
-
-```lean
-theorem FiniteImageIff
-    (map : TypedMap DomainElement CodomainElement)
-    (source : DomainSet) :
-    FiniteImage map source <->
-      Set.Finite
-        {output : CodomainElement |
-          exists input : DomainElement, input ∈ source /\ map input = output}
-```
--/
-theorem FiniteImageIff
-    (map : TypedMap DomainElement CodomainElement)
-    (source : DomainSet) :
-    FiniteImage map source <->
-      Set.Finite
-        {output : CodomainElement |
-          exists input : DomainElement, input ∈ source /\ map input = output} := by
-  sorry
 section Existence
 
 variable [ExtensionalityLaw CodomainElement CodomainSet]
@@ -784,32 +758,6 @@ end Adjunction
 
 end SetOperations
 
-section FiniteRange
-
-variable [HasSeparation CodomainElement CodomainSet]
-variable [HasUniversal CodomainSet]
-
-/--
-**[Theorem — FiniteRangeIffFiniteImage]**
-
-Finite range is finite image of the chosen ambient domain.
-
-Logical form:
-
-```lean
-theorem FiniteRangeIffFiniteImage
-    (map : TypedMap DomainElement CodomainElement)
-    (ambientDomain : DomainSet) :
-    FiniteRange map ambientDomain <-> FiniteImage map ambientDomain
-```
--/
-theorem FiniteRangeIffFiniteImage
-    (map : TypedMap DomainElement CodomainElement)
-    (ambientDomain : DomainSet) :
-    FiniteRange map ambientDomain <-> FiniteImage map ambientDomain := by
-  sorry
-end FiniteRange
-
 section SameBackend
 
 variable {Element : Type u₁} {SetObject : Type v₁}
@@ -842,6 +790,63 @@ theorem ImageIdentity
   sorry
 
 end SameBackend
+
+section FiniteImage
+
+variable {DomainElement : Type u₁} {CodomainElement : Type u₂}
+variable {DomainSet : Type v₁}
+variable [Membership DomainElement DomainSet]
+
+/--
+**[Theorem — FiniteImageIff]**
+
+The finite-image predicate is exactly the existence of a finite list
+enumerating the codomain values hit by source elements.
+
+Logical form:
+
+```lean
+theorem FiniteImageIff
+    (map : TypedMap DomainElement CodomainElement)
+    (source : DomainSet) :
+    FiniteImage map source <->
+      HasFiniteEnumeration
+        (fun output : CodomainElement =>
+          exists input : DomainElement,
+            input ∈ source /\ map input = output)
+```
+-/
+theorem FiniteImageIff
+    (map : TypedMap DomainElement CodomainElement)
+    (source : DomainSet) :
+    FiniteImage map source <->
+      HasFiniteEnumeration
+        (fun output : CodomainElement =>
+          exists input : DomainElement,
+            input ∈ source /\ map input = output) := by
+  rfl
+
+/--
+**[Theorem — FiniteRangeIffFiniteImage]**
+
+Finite range is finite image of the chosen ambient domain.
+
+Logical form:
+
+```lean
+theorem FiniteRangeIffFiniteImage
+    (map : TypedMap DomainElement CodomainElement)
+    (ambientDomain : DomainSet) :
+    FiniteRange map ambientDomain <-> FiniteImage map ambientDomain
+```
+-/
+theorem FiniteRangeIffFiniteImage
+    (map : TypedMap DomainElement CodomainElement)
+    (ambientDomain : DomainSet) :
+    FiniteRange map ambientDomain <-> FiniteImage map ambientDomain := by
+  rfl
+
+end FiniteImage
 
 section Composition
 

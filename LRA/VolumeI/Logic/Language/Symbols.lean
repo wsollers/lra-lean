@@ -12,10 +12,12 @@ Aggregate import shim for the vocabulary layer (`Language/Symbols/`).
 Logical form:
 
 ```lean
-theorem symbolsWiringTest : True
+theorem symbolsWiringTest : forall Symbol : Type, Nonempty Symbol -> Nonempty Symbol
 ```
 -/
-theorem symbolsWiringTest : True := by
-  trivial
+theorem symbolsWiringTest :
+    forall Symbol : Type, Nonempty Symbol -> Nonempty Symbol := by
+  intro Symbol symbolIsNonempty
+  exact symbolIsNonempty
 
 end LRA.Logic.Language

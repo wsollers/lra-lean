@@ -96,13 +96,19 @@ Logical form:
 theorem JumpIntervalsDisjoint (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c₁ c₂ : ℝ)
     (hc₁ : PointOfDiscontinuity f I c₁) (hc₂ : PointOfDiscontinuity f I c₂)
-    (hne : c₁ ≠ c₂) : True
+    (hne : c₁ ≠ c₂) :
+    Disjoint
+      (Set.Ioc c₁ (c₁ + JumpOf f I c₁))
+      (Set.Ioc c₂ (c₂ + JumpOf f I c₂))
 ```
 -/
 theorem JumpIntervalsDisjoint (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c₁ c₂ : ℝ)
     (hc₁ : PointOfDiscontinuity f I c₁) (hc₂ : PointOfDiscontinuity f I c₂)
-    (hne : c₁ ≠ c₂) : True := by
+    (hne : c₁ ≠ c₂) :
+    Disjoint
+      (Set.Ioc c₁ (c₁ + JumpOf f I c₁))
+      (Set.Ioc c₂ (c₂ + JumpOf f I c₂)) := by
   sorry
 
 -- `thm:monotone-discontinuities-countable`

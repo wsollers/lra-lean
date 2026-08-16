@@ -1,7 +1,7 @@
 -- LRA/VolumeII/BasicArithmetic/Parity.lean
 -- Elementary parity facts over the active natural-number carrier (Mathlib `Nat`).
 
-import Mathlib.Algebra.Group.Even
+import LRA.VolumeII.Switches.NumberSystems
 import LRA.VolumeI.AlgebraicStructures
 
 namespace LRA.NumberSystems.Arithmetic.Parity

@@ -1,7 +1,6 @@
 import LRA.VolumeI.Map.Typed.Definition
 import LRA.VolumeI.Set.Interface.Membership
 import LRA.VolumeI.Set.Interface.Operations
-import Mathlib.Data.Set.Finite.Basic
 
 namespace LRA.Map.Image
 
@@ -37,27 +36,6 @@ def MapsInto
     (source : DomainSet)
     (target : CodomainSet) : Prop :=
   forall input : DomainElement, input ∈ source -> map input ∈ target
-
-/--
-**[Definition — FiniteImage]**
-
-The image of a source set is finite, stated independently of any particular
-set-object backend.
-
-Logical form:
-
-```lean
-def FiniteImage
-    (map : TypedMap DomainElement CodomainElement)
-    (source : DomainSet) : Prop
-```
--/
-def FiniteImage
-    (map : TypedMap DomainElement CodomainElement)
-    (source : DomainSet) : Prop :=
-  Set.Finite
-    {output : CodomainElement |
-      exists input : DomainElement, input ∈ source /\ map input = output}
 
 /--
 **[Definition — IsImageOf]**
@@ -144,10 +122,80 @@ def Range
     (ambientDomain : DomainSet) : CodomainSet :=
   Image map ambientDomain
 
+end WithSeparation
+
+end Image
+
+section FiniteImage
+
+variable {DomainElement : Type u₁} {CodomainElement : Type u₂}
+variable {DomainSet : Type v₁}
+variable [Membership DomainElement DomainSet]
+
+/--
+**[Definition — FinitelyEnumerates]**
+
+A finite list exactly enumerates the elements satisfying a predicate. This is
+the project-local finiteness witness used for finite image/range statements,
+without importing Mathlib's finite-set API.
+
+Logical form:
+
+```lean
+def FinitelyEnumerates
+    (values : List Element)
+    (predicate : Element -> Prop) : Prop
+```
+-/
+def FinitelyEnumerates
+    {Element : Type u₁}
+    (values : List Element)
+    (predicate : Element -> Prop) : Prop :=
+  forall value : Element, value ∈ values <-> predicate value
+
+/--
+**[Definition — HasFiniteEnumeration]**
+
+A predicate describes a finite collection when some finite list exactly
+enumerates its satisfying elements.
+
+Logical form:
+
+```lean
+def HasFiniteEnumeration
+    (predicate : Element -> Prop) : Prop
+```
+-/
+def HasFiniteEnumeration
+    {Element : Type u₁}
+    (predicate : Element -> Prop) : Prop :=
+  exists values : List Element, FinitelyEnumerates values predicate
+
+/--
+**[Definition — FiniteImage]**
+
+The image of a source set is finite when the codomain values hit by source
+members have a finite list enumeration.
+
+Logical form:
+
+```lean
+def FiniteImage
+    (map : TypedMap DomainElement CodomainElement)
+    (source : DomainSet) : Prop
+```
+-/
+def FiniteImage
+    (map : TypedMap DomainElement CodomainElement)
+    (source : DomainSet) : Prop :=
+  HasFiniteEnumeration
+    (fun output : CodomainElement =>
+      exists input : DomainElement, input ∈ source /\ map input = output)
+
 /--
 **[Definition — FiniteRange]**
 
-The range of a map is finite, relative to the chosen ambient domain.
+The range of a map is finite relative to a chosen ambient domain.
 
 Logical form:
 
@@ -162,8 +210,25 @@ def FiniteRange
     (ambientDomain : DomainSet) : Prop :=
   FiniteImage map ambientDomain
 
-end WithSeparation
+/--
+**[Abbreviation — FiniteRangeOn]**
 
-end Image
+Sources: Tao's measure-theory discussion of simple functions is phrased in
+terms of finite image/range.
+
+Logical form:
+
+```lean
+abbrev FiniteRangeOn
+    (map : TypedMap DomainElement CodomainElement)
+    (ambientDomain : DomainSet) : Prop
+```
+-/
+abbrev FiniteRangeOn
+    (map : TypedMap DomainElement CodomainElement)
+    (ambientDomain : DomainSet) : Prop :=
+  FiniteRange map ambientDomain
+
+end FiniteImage
 
 end LRA.Map.Image

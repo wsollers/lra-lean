@@ -27,8 +27,8 @@ be organized.
 | One-line orientation note per chapter, then formal content | Partial | Some modules have orientation comments, but not in an omnibus-aligned chapter system. |
 | Abstract laws first, number systems as instances later | Partial | `VolumeI/Operations`, `Relations`, `Structures`, and `Algebra/Models` start this. The gap is a clean route from generic law bundles to `N`, `Z`, `Q`, `R`, `C` instantiation theorems. |
 | Avoid repeating laws separately for each number system | Partial | Generic law bundles exist, but number-system files still carry their own construction-specific law statements. Need canonical generic theorem files and system-specific instance files. |
-| Distinguish relation, operation, and function as primitive themes | Partial | Relations and operations now have homes. Functions do not yet have a first-class Volume I home. |
-| Treat operations as functions `S^n -> S` | Partial | Nullary/unary/binary operation abbreviations exist, but the connection to an eventual function layer and general `n`-ary functions is not formalized. |
+| Distinguish relation, operation, and map as primitive themes | Present | `VolumeI/Map` is the central home for typed and set-theoretic maps, graph relations, images, fibers, inverses, products, operations, and laws; `VolumeI/Relations` owns named relation vocabulary and equivalence constructions. |
+| Treat operations as functions `S^n -> S` | Present | Nullary, unary, binary, endo-, external, and pointwise operations are typed maps under `VolumeI/Map/Operation`. |
 | Keep proof status honest | Present as practice | Many files use `sorry` and metadata comments. A uniform status convention for the omnibus-specific files would help. |
 | Reference table as a catalogue, not new mathematics | Partial | Chapter 9 is summarized in this gap list, but there is not yet a Lean module collecting `L0`-`L34` as named catalogue declarations. |
 | Instantiation chapter as final ledger | Partial | Model/switch files exist. Missing a readable `Instantiation` layer that says exactly where `N`, `Z`, `Q`, `R`, and `C` sit in the hierarchy. |
@@ -53,14 +53,14 @@ be organized.
 
 | Omnibus item | Current state | Gap |
 | --- | --- | --- |
-| Function as graph, domain, codomain | Present in `LRA/VolumeI/Functions/Functions.lean` | Need theorem catalogue connecting graph relations and Lean functions. |
-| Image, preimage, fibers | Present in `LRA/VolumeI/Functions/Images.lean`, `Preimages.lean`, and `Fibers.lean` | Need image/preimage/fiber laws. |
-| Injective, surjective, bijective via fibers | Partial in `LRA/VolumeI/Functions/` | Definitions and fiber formulations exist; theorem catalogue is missing. |
-| Restriction, extension, inverse function | Missing | Need definitions and theorem statements. |
-| Composition, identity, inverse laws | Missing as general functions | Model embeddings/isomorphisms use maps, but no general composition algebra for functions. |
-| Monoid of self-maps and group of bijections | Missing | Depends on the general function layer and the algebra structure layer. |
-| Pointwise operations on function spaces | Missing | Operations exist, but no function-space transfer theorem. |
-| Image/preimage set-operation laws | Missing | These are a major gap: image union/intersection/difference, preimage union/intersection/difference/complement, monotonicity, round-trip laws. |
+| Function as graph, domain, codomain | Present in `LRA/VolumeI/Map/Typed/`, `Graph/`, `Domain/`, `Codomain/`, and `Relation/` | Learner-facing proofs remain in the Map proof order. |
+| Image, preimage, fibers | Present in `LRA/VolumeI/Map/Image/`, `Preimage/`, and `Fiber/` | Learner-facing proofs remain in the Map proof order. |
+| Injective, surjective, bijective via fibers | Present in `LRA/VolumeI/Map/Injective/`, `Surjective/`, `Bijective/`, and `Fiber/` | Learner-facing proofs remain in the Map proof order. |
+| Restriction, extension, inverse function | Present in `LRA/VolumeI/Map/Restriction/`, `Extension/`, and `Inverse/` | Learner-facing proofs remain in the Map proof order. |
+| Composition, identity, inverse laws | Present in `LRA/VolumeI/Map/Composition/`, `Identity/`, and `Inverse/` | Learner-facing proofs remain in the Map proof order. |
+| Monoid of self-maps and group of bijections | Partial in `LRA/VolumeI/Map/Operation/` | Endomap composition, identity, and inverse laws are present; packaging as algebraic structures remains. |
+| Pointwise operations on function spaces | Present in `LRA/VolumeI/Map/Operation/` | Associativity, identity, and inverse transfer theorems are learner-facing obligations. |
+| Image/preimage set-operation laws | Present in `LRA/VolumeI/Map/Image/Theorems.lean` and `Preimage/Theorems.lean` | Learner-facing proofs remain in the Map proof order. |
 
 ## Chapter 1: Laws of a Single Binary Operation
 
@@ -175,9 +175,9 @@ Major missing catalogue groups:
 
 1. Finish the foundational theorem catalogue for `LRASet`: subset laws,
    Boolean set laws, De Morgan, and product extensionality.
-2. Add `VolumeI/Functions` as a separate layer over sets/relations:
-   graph-based functions, image, preimage, fiber, injective/surjective/bijective,
-   restriction, extension, inverse, composition, identity.
+2. Complete the learner-facing `VolumeI/Map/ProofOrder.md` obligations for
+   graphs, image, preimage, fibers, injective/surjective/bijective maps,
+   restriction, extension, inverse, composition, identity, and operations.
 3. Complete relation vocabulary: asymmetric, Euclidean, dense, well-founded,
    exact trichotomy, strict total order, strict/non-strict correspondence,
    equivalence classes and partitions.

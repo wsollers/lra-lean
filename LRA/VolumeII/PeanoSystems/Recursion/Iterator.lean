@@ -251,11 +251,25 @@ theorem MinimalIteratorRelationDeterministic
 Logical form:
 
 ```lean
-theorem ForcedValuesAreUnique (ps : PeanoSystem Element SetObject) (data : IteratorData ps) : True
+theorem ForcedValuesAreUnique
+    (ps : PeanoSystem Element SetObject)
+    (data : IteratorData ps) :
+    forall element : Element,
+      forall first_value second_value : data.Target,
+        MinimalIteratorRelation ps data element first_value ->
+        MinimalIteratorRelation ps data element second_value ->
+        first_value = second_value
 ```
 -/
-theorem ForcedValuesAreUnique (ps : PeanoSystem Element SetObject) (data : IteratorData ps) : True := by
-  sorry
+theorem ForcedValuesAreUnique
+    (ps : PeanoSystem Element SetObject)
+    (data : IteratorData ps) :
+    forall element : Element,
+      forall first_value second_value : data.Target,
+        MinimalIteratorRelation ps data element first_value ->
+        MinimalIteratorRelation ps data element second_value ->
+        first_value = second_value := by
+  exact MinimalIteratorRelationDeterministic ps data
 
 /--
 **[Theorem - Existence of an Iterator Function]**
@@ -565,10 +579,42 @@ theorem PeanoIteratorTheorem
 Logical form:
 
 ```lean
-def StageDependentStepRule (_ps : PeanoSystem Element SetObject) (_target : Type w) : Prop := True
+def StageDependentStepRule
+    (_ps : PeanoSystem Element SetObject)
+    (target : Type w) : Type (max u w) :=
+  Element -> target -> target
 ```
 -/
-def StageDependentStepRule (_ps : PeanoSystem Element SetObject) (_target : Type w) : Prop := True
+def StageDependentStepRule
+    (_ps : PeanoSystem Element SetObject)
+    (target : Type w) : Type (max u w) :=
+  Element -> target -> target
+
+/--
+`GeneralRecursiveFunctionClauses` states the base and stage-dependent
+successor clauses for a general recursive function on a Peano system.
+
+Logical form:
+
+```lean
+def GeneralRecursiveFunctionClauses
+    (ps : PeanoSystem Element SetObject)
+    (target : Type w)
+    (initial_value : target)
+    (step_rule : StageDependentStepRule ps target)
+    (recursive_function : Element -> target) : Prop
+```
+-/
+def GeneralRecursiveFunctionClauses
+    (ps : PeanoSystem Element SetObject)
+    (target : Type w)
+    (initial_value : target)
+    (step_rule : StageDependentStepRule ps target)
+    (recursive_function : Element -> target) : Prop :=
+  recursive_function ps.one = initial_value /\
+    forall element : Element,
+      recursive_function (ps.successor element) =
+        step_rule element (recursive_function element)
 
 /--
 `GeneralRecursiveFunction` defines the displayed object for general recursive function.
@@ -576,10 +622,19 @@ def StageDependentStepRule (_ps : PeanoSystem Element SetObject) (_target : Type
 Logical form:
 
 ```lean
-def GeneralRecursiveFunction (_ps : PeanoSystem Element SetObject) (_target : Type w) : Prop := True
+def GeneralRecursiveFunction
+    (ps : PeanoSystem Element SetObject)
+    (target : Type w) : Prop
 ```
 -/
-def GeneralRecursiveFunction (_ps : PeanoSystem Element SetObject) (_target : Type w) : Prop := True
+def GeneralRecursiveFunction
+    (ps : PeanoSystem Element SetObject)
+    (target : Type w) : Prop :=
+  forall initial_value : target,
+    forall step_rule : StageDependentStepRule ps target,
+      exists recursive_function : Element -> target,
+        GeneralRecursiveFunctionClauses
+          ps target initial_value step_rule recursive_function
 
 /--
 `UniquenessOfGeneralRecursiveFunctions` states uniqueness of general recursive functions.
@@ -587,10 +642,30 @@ def GeneralRecursiveFunction (_ps : PeanoSystem Element SetObject) (_target : Ty
 Logical form:
 
 ```lean
-theorem UniquenessOfGeneralRecursiveFunctions (ps : PeanoSystem Element SetObject) : True
+theorem UniquenessOfGeneralRecursiveFunctions
+    (ps : PeanoSystem Element SetObject)
+    (target : Type w)
+    (initial_value : target)
+    (step_rule : StageDependentStepRule ps target)
+    (first_recursive_function second_recursive_function : Element -> target) :
+    GeneralRecursiveFunctionClauses
+      ps target initial_value step_rule first_recursive_function ->
+    GeneralRecursiveFunctionClauses
+      ps target initial_value step_rule second_recursive_function ->
+    first_recursive_function = second_recursive_function
 ```
 -/
-theorem UniquenessOfGeneralRecursiveFunctions (ps : PeanoSystem Element SetObject) : True := by
+theorem UniquenessOfGeneralRecursiveFunctions
+    (ps : PeanoSystem Element SetObject)
+    (target : Type w)
+    (initial_value : target)
+    (step_rule : StageDependentStepRule ps target)
+    (first_recursive_function second_recursive_function : Element -> target) :
+    GeneralRecursiveFunctionClauses
+      ps target initial_value step_rule first_recursive_function ->
+    GeneralRecursiveFunctionClauses
+      ps target initial_value step_rule second_recursive_function ->
+    first_recursive_function = second_recursive_function := by
   sorry
 
 /--
@@ -599,10 +674,24 @@ theorem UniquenessOfGeneralRecursiveFunctions (ps : PeanoSystem Element SetObjec
 Logical form:
 
 ```lean
-theorem GeneralRecursionByStateEncoding (ps : PeanoSystem Element SetObject) : True
+theorem GeneralRecursionByStateEncoding
+    (ps : PeanoSystem Element SetObject)
+    (target : Type w)
+    (initial_value : target)
+    (step_rule : StageDependentStepRule ps target) :
+    exists recursive_function : Element -> target,
+      GeneralRecursiveFunctionClauses
+        ps target initial_value step_rule recursive_function
 ```
 -/
-theorem GeneralRecursionByStateEncoding (ps : PeanoSystem Element SetObject) : True := by
+theorem GeneralRecursionByStateEncoding
+    (ps : PeanoSystem Element SetObject)
+    (target : Type w)
+    (initial_value : target)
+    (step_rule : StageDependentStepRule ps target) :
+    exists recursive_function : Element -> target,
+      GeneralRecursiveFunctionClauses
+        ps target initial_value step_rule recursive_function := by
   sorry
 
 /--
@@ -611,10 +700,32 @@ theorem GeneralRecursionByStateEncoding (ps : PeanoSystem Element SetObject) : T
 Logical form:
 
 ```lean
-theorem GeneralRecursionTheoremForPeanoSystem (ps : PeanoSystem Element SetObject) : True
+theorem GeneralRecursionTheoremForPeanoSystem
+    (ps : PeanoSystem Element SetObject)
+    (target : Type w)
+    (initial_value : target)
+    (step_rule : StageDependentStepRule ps target) :
+    exists recursive_function : Element -> target,
+      GeneralRecursiveFunctionClauses
+        ps target initial_value step_rule recursive_function /\
+      forall other_recursive_function : Element -> target,
+        GeneralRecursiveFunctionClauses
+          ps target initial_value step_rule other_recursive_function ->
+        other_recursive_function = recursive_function
 ```
 -/
-theorem GeneralRecursionTheoremForPeanoSystem (ps : PeanoSystem Element SetObject) : True := by
+theorem GeneralRecursionTheoremForPeanoSystem
+    (ps : PeanoSystem Element SetObject)
+    (target : Type w)
+    (initial_value : target)
+    (step_rule : StageDependentStepRule ps target) :
+    exists recursive_function : Element -> target,
+      GeneralRecursiveFunctionClauses
+        ps target initial_value step_rule recursive_function /\
+      forall other_recursive_function : Element -> target,
+        GeneralRecursiveFunctionClauses
+          ps target initial_value step_rule other_recursive_function ->
+        other_recursive_function = recursive_function := by
   sorry
 
 /--
@@ -627,14 +738,38 @@ theorem UniquenessOfPeanoSystemsUpToIsomorphism
     {SecondElement : Type u} {SecondSetObject : Type v}
     [Membership SecondElement SecondSetObject]
     (first : PeanoSystem Element SetObject)
-    (second : PeanoSystem SecondElement SecondSetObject) : True
+    (second : PeanoSystem SecondElement SecondSetObject) :
+    exists forward : Element -> SecondElement,
+      exists backward : SecondElement -> Element,
+        forward first.one = second.one /\
+        backward second.one = first.one /\
+        (forall element : Element,
+          forward (first.successor element) =
+            second.successor (forward element)) /\
+        (forall element : SecondElement,
+          backward (second.successor element) =
+            first.successor (backward element)) /\
+        (forall element : Element, backward (forward element) = element) /\
+        (forall element : SecondElement, forward (backward element) = element)
 ```
 -/
 theorem UniquenessOfPeanoSystemsUpToIsomorphism
     {SecondElement : Type u} {SecondSetObject : Type v}
     [Membership SecondElement SecondSetObject]
     (first : PeanoSystem Element SetObject)
-    (second : PeanoSystem SecondElement SecondSetObject) : True := by
+    (second : PeanoSystem SecondElement SecondSetObject) :
+    exists forward : Element -> SecondElement,
+      exists backward : SecondElement -> Element,
+        forward first.one = second.one /\
+        backward second.one = first.one /\
+        (forall element : Element,
+          forward (first.successor element) =
+            second.successor (forward element)) /\
+        (forall element : SecondElement,
+          backward (second.successor element) =
+            first.successor (backward element)) /\
+        (forall element : Element, backward (forward element) = element) /\
+        (forall element : SecondElement, forward (backward element) = element) := by
   sorry
 
 end LRA.NumberSystems.PeanoSystems
