@@ -6,6 +6,8 @@ import LRA.VolumeI.Order.Bounds.BoundedBelow.All
 import LRA.VolumeI.Order.Bounds.Bounded.All
 import LRA.VolumeI.Order.Bounds.LeastElement.All
 import LRA.VolumeI.Order.Bounds.GreatestElement.All
+import LRA.VolumeI.Order.Bounds.BottomElement.All
+import LRA.VolumeI.Order.Bounds.TopElement.All
 import LRA.VolumeI.Order.Bounds.MinimalElement.All
 import LRA.VolumeI.Order.Bounds.MaximalElement.All
 import LRA.VolumeI.Order.Bounds.Supremum.All
