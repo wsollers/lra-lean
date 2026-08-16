@@ -5,6 +5,7 @@ import LRA.VolumeI.Map.Operation.Laws.Identity.AllWithExamples
 import LRA.VolumeI.Map.Operation.Laws.Associative.AllWithExamples
 import LRA.VolumeI.Map.Operation.Laws.Commutative.AllWithExamples
 import LRA.VolumeI.Map.Operation.Laws.Absorbing.AllWithExamples
+import LRA.VolumeI.Map.Operation.Laws.Absorption.AllWithExamples
 import LRA.VolumeI.Map.Operation.Laws.Cancellation.AllWithExamples
 import LRA.VolumeI.Map.Operation.Laws.Distributive.AllWithExamples
 import LRA.VolumeI.Map.Operation.Laws.Idempotent.AllWithExamples

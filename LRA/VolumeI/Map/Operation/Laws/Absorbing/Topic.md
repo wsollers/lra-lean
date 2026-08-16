@@ -32,6 +32,10 @@ a + 0 = a
 
 Keeping those two roles separate prevents a lot of confusion.
 
+This is also separate from `AbsorptionLaw`, which is a two-operation law such
+as `join a (meet a b) = a`. An absorbing element is a special element for one
+operation; an absorption law is an interaction between two operations.
+
 ## Lean Owners
 
 - `Definition.lean`
@@ -40,4 +44,3 @@ Keeping those two roles separate prevents a lot of confusion.
 - `All.lean`
 
 Future audit files may include `Examples.lean` and `FailureModes.lean`.
-
