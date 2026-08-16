@@ -1,4 +1,5 @@
 import LRA.VolumeI.Map.Operation.Definition
+import LRA.VolumeI.Map.Injective.Definition
 import LRA.VolumeI.Order.Morphisms.Monotone.Definition
 
 namespace LRA.Map.Operation.Laws.NumberEmbeddings
@@ -7,11 +8,10 @@ open LRA.Map.Operation
 
 universe u v w
 
-/-- A map is injective when equal outputs force equal inputs. -/
-def InjectiveMap {Source : Type u} {Target : Type v}
+/-- A map is injective, using the core map predicate. -/
+abbrev InjectiveMap {Source : Type u} {Target : Type v}
     (embedding : Source -> Target) : Prop :=
-  forall {left right : Source},
-    embedding left = embedding right -> left = right
+  LRA.Map.Injective.Injective embedding
 
 /-- A map preserves a nullary operation, i.e. a distinguished element. -/
 def PreservesNullaryOperation {Source : Type u} {Target : Type v}

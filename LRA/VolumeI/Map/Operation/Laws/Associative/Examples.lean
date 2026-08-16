@@ -26,6 +26,6 @@ relation requirements for the operation.
 theorem NaturalAdditionAssociativeEqualityRequirements :
     LRA.Map.Operation.Laws.EquationalLogic.BinaryOperationEqualityRequirements
       NaturalAddition :=
-  Associative.equality_requirements NaturalAdditionAssociative
+  Associative.operation_equality_requirements NaturalAddition
 
 end LRA.Map.Operation.Laws.Associative

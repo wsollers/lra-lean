@@ -21,14 +21,15 @@ theorem Associative.preserves_left_nested_shape {Carrier : Type u}
   sorry
 
 /--
-**[Theorem — Associative.equality_requirements]**
+**[Theorem — Associative.operation_equality_requirements]**
 
-An associative operation consumes the standard equality relation: the identity
-relation is an equivalence relation and the operation respects it.
+Every binary operation consumes the standard equality relation: the identity
+relation is an equivalence relation and the operation respects it. This
+namespaced theorem is a citation hook for the associative law family, not a
+consequence of associativity.
 -/
-theorem Associative.equality_requirements {Carrier : Type u}
-    {operation : BinaryEndoOperation Carrier}
-    (_law : Associative operation) :
+theorem Associative.operation_equality_requirements {Carrier : Type u}
+    (operation : BinaryEndoOperation Carrier) :
     LRA.Map.Operation.Laws.EquationalLogic.BinaryOperationEqualityRequirements
       operation :=
   LRA.Map.Operation.Laws.EquationalLogic.BinaryOperation.equality_requirements

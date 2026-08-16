@@ -66,14 +66,15 @@ theorem Commutative.right_absorbing_to_left_absorbing {Carrier : Type u}
   sorry
 
 /--
-**[Theorem — Commutative.equality_requirements]**
+**[Theorem — Commutative.operation_equality_requirements]**
 
-A commutative operation consumes the standard equality relation: the identity
-relation is an equivalence relation and the operation respects it.
+Every binary operation consumes the standard equality relation: the identity
+relation is an equivalence relation and the operation respects it. This
+namespaced theorem is a citation hook for the commutative law family, not a
+consequence of commutativity.
 -/
-theorem Commutative.equality_requirements {Carrier : Type u}
-    {operation : BinaryEndoOperation Carrier}
-    (_law : Commutative operation) :
+theorem Commutative.operation_equality_requirements {Carrier : Type u}
+    (operation : BinaryEndoOperation Carrier) :
     LRA.Map.Operation.Laws.EquationalLogic.BinaryOperationEqualityRequirements
       operation :=
   LRA.Map.Operation.Laws.EquationalLogic.BinaryOperation.equality_requirements
