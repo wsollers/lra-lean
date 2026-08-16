@@ -264,18 +264,18 @@ def mathematical_context(signature: str) -> str:
             rf"\({symbols[i] if i < len(symbols) else name}\)"
             for i, name in enumerate(element_types)
         )
-        clauses.append(f"let {displayed} be {'sets' if len(element_types) > 1 else 'a set'}")
+        clauses.append(f"{displayed} be {'sets' if len(element_types) > 1 else 'a set'}")
     elif has_word(signature, "Int"):
-        clauses.append(r"let \(\mathbb Z\) carry its usual order")
+        clauses.append(r"\(\mathbb Z\) carry its usual order")
     elif has_word(signature, "Real"):
-        clauses.append(r"let \(\mathbb R\) carry its usual order")
+        clauses.append(r"\(\mathbb R\) carry its usual order")
     else:
-        clauses.append("let the displayed ordered structure be given")
+        clauses.append("the displayed ordered structure be given")
 
     if has_word(signature, "Index", "IndexType"):
-        clauses.append(r"let \(I\) be an index set")
+        clauses.append(r"\(I\) be an index set")
     if has_word(signature, "SetObject", "SourceSet", "TargetSet"):
-        clauses.append("let the represented subsets belong to their displayed set families")
+        clauses.append("the represented subsets belong to their displayed set families")
 
     relation_names = re.findall(
         r"\b(?:relation|sourceRelation|targetRelation|firstRelation|secondRelation)\b",
@@ -285,7 +285,7 @@ def mathematical_context(signature: str) -> str:
         clauses.append("equip the carriers with the displayed binary relations")
 
     if re.search(r"\b(?:map|function|embedding|isomorphism)\b", signature):
-        clauses.append("let the displayed map act between those carriers")
+        clauses.append("the displayed map act between those carriers")
 
     return "Let " + ", ".join(clauses) + "."
 
@@ -298,6 +298,14 @@ def translated_statement(theorem: Theorem) -> str:
     if summary.startswith("Then "):
         return f"{context} {summary}"
     return f"{context} Then {summary[0].lower() + summary[1:]}"
+
+
+def normalize_statement(statement: str) -> str:
+    """Clean mechanical artifacts from preserved generated prose."""
+
+    statement = statement.replace("Let let ", "Let ")
+    statement = statement.replace(", let ", ", ")
+    return statement
 
 
 def generate(output: Path, refresh_prose: bool) -> str:
@@ -340,8 +348,10 @@ def generate(output: Path, refresh_prose: bool) -> str:
                 if refresh_prose or theorem.name not in existing_prose
                 else existing_prose[theorem.name]
             )
+            statement = normalize_statement(statement)
             if not statement.startswith("Let "):
                 statement = translated_statement(theorem)
+                statement = normalize_statement(statement)
             source = f"./{module.relative_path}#L{theorem.line}"
             lines.append(
                 f"- [ ] **{theorem.name}** — {statement} ([source]({source}))"

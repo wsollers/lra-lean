@@ -66,7 +66,6 @@ theorem UpperBoundOfUnion
   intro chosenInUnion
   have chosenInLeftOrRight :=
     (LRA.Set.MembershipLaws.UnionMembership leftSubset rightSubset chosen).mp chosenInUnion
-  -- have choseRbound := (relation chosen bound)
   rcases chosenInLeftOrRight with (chosenInLeft | chosenInRight) -- this creates a disjunction
   · -- chosen ∈ leftSubset
     exact boundIsUpperForLeft chosen chosenInLeft
@@ -76,7 +75,7 @@ theorem UpperBoundOfUnion
 
 
 
-/-- An upper bound of a union bounds each constituent subset. -/
+/-- An element is an upper bound of a union iff it bounds each constituent subset. -/
 theorem UpperBoundOfUnionIff
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
