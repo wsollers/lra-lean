@@ -2,7 +2,7 @@
 -- Tao formal-difference construction of the integers.
 
 import LRA.VolumeII.Integers.QuotientOrderedPairs
-import LRA.VolumeI.Algebra.Models.Models
+import LRA.VolumeI.UniversalAlgebra.Models.Models
 
 namespace LRA.NumberSystems.Integers.Tao
 
@@ -402,7 +402,7 @@ def representative_strict_order
 /--
 **[Theorem — tao_integers_form_ordered_ring]**
 
-Mathematical statement (Lean): `theorem tao_integers_form_ordered_ring (whole_data : WholeNumberArithmeticForTaoFormalDifferences) : ∃ integer_model : LRA.Algebra.Models.IntegerModel, integer_model.signature.carrier = Carrier whole_data`.
+Mathematical statement (Lean): `theorem tao_integers_form_ordered_ring (whole_data : WholeNumberArithmeticForTaoFormalDifferences) : ∃ integer_model : LRA.UniversalAlgebra.Models.IntegerModel, integer_model.signature.carrier = Carrier whole_data`.
 
 *Proof status:* proof pending
 
@@ -412,13 +412,13 @@ Logical form:
 ```lean
 theorem tao_integers_form_ordered_ring
     (whole_data : WholeNumberArithmeticForTaoFormalDifferences) :
-    ∃ integer_model : LRA.Algebra.Models.IntegerModel,
+    ∃ integer_model : LRA.UniversalAlgebra.Models.IntegerModel,
       integer_model.signature.carrier = Carrier whole_data
 ```
 -/
 theorem tao_integers_form_ordered_ring
     (whole_data : WholeNumberArithmeticForTaoFormalDifferences) :
-    ∃ integer_model : LRA.Algebra.Models.IntegerModel,
+    ∃ integer_model : LRA.UniversalAlgebra.Models.IntegerModel,
       integer_model.signature.carrier = Carrier whole_data := by
   sorry
 

@@ -35,6 +35,6 @@ machine/certificate architecture applied to algebra.
 Capability honesty throughout: `ℕ` never registers `Neg`, so `-n` does
 not elaborate; a field's `0⁻¹ = 0` convention is a stated law, not a
 hidden fact. This layer supersedes the bundled hierarchies in
-`Algebra/Structures`, `Algebra/Models/AbstractLaws`, and the symbol-level
+`AlgebraicStructures`, `UniversalAlgebra/Models/AbstractLaws`, and the symbol-level
 `Algebra/Signatures/Algebraic`; those migrate here over time.
 -/

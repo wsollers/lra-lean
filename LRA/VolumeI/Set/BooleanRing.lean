@@ -5,7 +5,7 @@ namespace LRA.Set.BooleanRing
 
 open LRA.Set
 open LRA.Set.LRASet
-open LRA.Algebra.Structure
+open LRA.AlgebraicStructures
 
 universe u
 

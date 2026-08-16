@@ -1,11 +1,11 @@
 -- LRA/VolumeII/RealNumbers/Construction/Model.lean
 -- Real-number models as Volume I first-order algebraic models.
 
-import LRA.VolumeI.Algebra.Models
+import LRA.VolumeI.UniversalAlgebra.Models
 
 namespace LRA.NumberSystems.RealNumbers
 
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 /-!
 Volume II label: real-number-model

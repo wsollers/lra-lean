@@ -1,7 +1,7 @@
 import Mathlib.Data.Set.Basic
 import LRA.VolumeI.Order.Bounds.GreatestElement.Definition
 import LRA.VolumeI.Order.Bounds.MaximalElement.Definition
-import LRA.VolumeI.Order.Relations.StrictPart.Definition
+import LRA.VolumeI.Order.Relation.StrictPart.Definition
 
 namespace LRA.Order
 

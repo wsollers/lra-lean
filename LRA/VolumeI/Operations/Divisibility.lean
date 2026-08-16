@@ -1,7 +1,7 @@
 import LRA.VolumeI.Operations.Laws
 import LRA.VolumeI.Order.OrderedSets.Preorder.Definition
 
-namespace LRA.Algebra.Operation
+namespace LRA.Operation
 
 universe u
 
@@ -67,4 +67,4 @@ theorem DivisibilityPreorder
     LRA.Order.Preorder (Divides multiplication) := by
   sorry
 
-end LRA.Algebra.Operation
+end LRA.Operation

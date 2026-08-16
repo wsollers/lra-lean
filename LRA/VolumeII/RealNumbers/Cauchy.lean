@@ -2,11 +2,11 @@
 -- Proof-ready construction of the reals from rational Cauchy sequences.
 
 import LRA.VolumeII.Foundations.Quotients.Compatibility
-import LRA.VolumeI.Algebra.Models.Models
+import LRA.VolumeI.UniversalAlgebra.Models.Models
 
 namespace LRA.NumberSystems.RealNumbers.Cauchy
 
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 /-!
 Lean module: LRA.NumberSystems.RealNumbers.Cauchy

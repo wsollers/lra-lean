@@ -110,7 +110,7 @@ strict/non-strict correspondence. A regression example should prove that
     Comparable relation first second
 ```
 
-where [`Comparable`](LRA/VolumeI/Order/Relations.lean) is
+where [`Comparable`](LRA/VolumeI/Order/Relation.lean) is
 `relation first second ∨ relation second first`. This is canonical for a
 non-strict order. For a strict order, taking `first = second` demands
 `x < x ∨ x < x`; hence a strict-order chain must be empty.

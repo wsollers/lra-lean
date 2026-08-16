@@ -1,4 +1,4 @@
-namespace LRA.Algebra.Structure
+namespace LRA.AlgebraicStructures
 
 universe u
 
@@ -267,4 +267,4 @@ theorem ExistsBetween [LT R] [DenseOrderLaw R] :
 
 end Wrappers
 
-end LRA.Algebra.Structure
+end LRA.AlgebraicStructures

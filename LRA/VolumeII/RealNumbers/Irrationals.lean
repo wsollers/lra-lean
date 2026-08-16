@@ -1,11 +1,11 @@
 -- LRA/VolumeII/Reals/Irrationals.lean
 -- Irrational numbers relative to a selected rational embedding.
 
-import LRA.VolumeI.Algebra.Models.Models
+import LRA.VolumeI.UniversalAlgebra.Models.Models
 
 namespace LRA.NumberSystems.RealNumbers.Irrationals
 
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 /-!
 Lean module: LRA.NumberSystems.RealNumbers.Irrationals

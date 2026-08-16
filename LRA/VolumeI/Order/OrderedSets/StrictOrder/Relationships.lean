@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Relationships
 import LRA.VolumeI.Order.OrderedSets.StrictOrder.Characterizations
-import LRA.VolumeI.Order.Relations.LessThanOrEqual.Definition
+import LRA.VolumeI.Order.Relation.LessThanOrEqual.Definition
 
 namespace LRA.Order.OrderedSets.StrictOrder
 

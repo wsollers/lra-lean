@@ -25,10 +25,10 @@ be organized.
 | Landau-style discipline: definitions are stipulations, theorems are proved from prior material only | Partial | Governance says not to complete proofs unless requested and to use explicit placeholders. We do not yet have a dependency discipline that enforces "from what precedes it and nothing else" inside Lean modules. |
 | Continuous numbering within chapters | Missing | Lean modules do not currently encode omnibus numbering such as `Definition 0.1` or `Satz 1.6`. If wanted, add stable comments near declarations, not declaration-name numbering. |
 | One-line orientation note per chapter, then formal content | Partial | Some modules have orientation comments, but not in an omnibus-aligned chapter system. |
-| Abstract laws first, number systems as instances later | Partial | `VolumeI/Operations`, `Relations`, `Structures`, and `Algebra/Models` start this. The gap is a clean route from generic law bundles to `N`, `Z`, `Q`, `R`, `C` instantiation theorems. |
+| Abstract laws first, number systems as instances later | Partial | `VolumeI/Operations`, `Relations`, `Structures`, and `UniversalAlgebra/Models` start this. The gap is a clean route from generic law bundles to `N`, `Z`, `Q`, `R`, `C` instantiation theorems. |
 | Avoid repeating laws separately for each number system | Partial | Generic law bundles exist, but number-system files still carry their own construction-specific law statements. Need canonical generic theorem files and system-specific instance files. |
 | Distinguish relation, operation, and map as primitive themes | Present | `VolumeI/Map` is the central home for typed and set-theoretic maps, graph relations, images, fibers, inverses, products, operations, and laws; `VolumeI/Relations` owns named relation vocabulary and equivalence constructions. |
-| Treat operations as functions `S^n -> S` | Present | Nullary, unary, binary, endo-, external, and pointwise operations are typed maps under `VolumeI/Map/Operation`. |
+| Treat operations as functions `S^n -> S` | Present | Nullary, unary, binary, endo-, external, and pointwise operations are typed maps under `VolumeI/Operations`. |
 | Keep proof status honest | Present as practice | Many files use `sorry` and metadata comments. A uniform status convention for the omnibus-specific files would help. |
 | Reference table as a catalogue, not new mathematics | Partial | Chapter 9 is summarized in this gap list, but there is not yet a Lean module collecting `L0`-`L34` as named catalogue declarations. |
 | Instantiation chapter as final ledger | Partial | Model/switch files exist. Missing a readable `Instantiation` layer that says exactly where `N`, `Z`, `Q`, `R`, and `C` sit in the hierarchy. |
@@ -58,8 +58,8 @@ be organized.
 | Injective, surjective, bijective via fibers | Present in `LRA/VolumeI/Map/Injective/`, `Surjective/`, `Bijective/`, and `Fiber/` | Learner-facing proofs remain in the Map proof order. |
 | Restriction, extension, inverse function | Present in `LRA/VolumeI/Map/Restriction/`, `Extension/`, and `Inverse/` | Learner-facing proofs remain in the Map proof order. |
 | Composition, identity, inverse laws | Present in `LRA/VolumeI/Map/Composition/`, `Identity/`, and `Inverse/` | Learner-facing proofs remain in the Map proof order. |
-| Monoid of self-maps and group of bijections | Partial in `LRA/VolumeI/Map/Operation/` | Endomap composition, identity, and inverse laws are present; packaging as algebraic structures remains. |
-| Pointwise operations on function spaces | Present in `LRA/VolumeI/Map/Operation/` | Associativity, identity, and inverse transfer theorems are learner-facing obligations. |
+| Monoid of self-maps and group of bijections | Partial in `LRA/VolumeI/Operations/` | Endomap composition, identity, and inverse laws are present; packaging as algebraic structures remains. |
+| Pointwise operations on function spaces | Present in `LRA/VolumeI/Operations/` | Associativity, identity, and inverse transfer theorems are learner-facing obligations. |
 | Image/preimage set-operation laws | Present in `LRA/VolumeI/Map/Image/Theorems.lean` and `Preimage/Theorems.lean` | Learner-facing proofs remain in the Map proof order. |
 
 ## Chapter 1: Laws of a Single Binary Operation
@@ -88,9 +88,9 @@ be organized.
 
 | Omnibus item | Current state | Gap |
 | --- | --- | --- |
-| Magma, semigroup, monoid, group, abelian variants | Partial in `LRA/VolumeI/Algebra/Structures/Elementary/` and `Algebra/Models/AbstractLaws.lean` | Magma, semigroup, commutative semigroup, monoid, commutative monoid, group, and abelian group exist. Need clearer alignment between `Structures` and `AbstractLaws`. |
-| Semiring, ring | Present but thin in `LRA/VolumeI/Algebra/Structures/RingLike/` | Semiring, ring, ring with unity, commutative ring, nontrivial ring, integral domain, and field exist as structures. Proof catalogue and model-law alignment are still thin. |
-| Integral domain and field laws | Present in `LRA/VolumeI/Algebra/Models/Models.lean` and `AbstractLaws.lean` | Proof catalogue is missing: every field is an integral domain; cross-multiplication in a field. |
+| Magma, semigroup, monoid, group, abelian variants | Partial in `LRA/VolumeI/AlgebraicStructures/Elementary/` and `LRA/VolumeI/UniversalAlgebra/Models/AbstractLaws.lean` | Magma, semigroup, commutative semigroup, monoid, commutative monoid, group, and abelian group exist. Need clearer alignment between `Structures` and `AbstractLaws`. |
+| Semiring, ring | Present but thin in `LRA/VolumeI/AlgebraicStructures/RingLike/` | Semiring, ring, ring with unity, commutative ring, nontrivial ring, integral domain, and field exist as structures. Proof catalogue and model-law alignment are still thin. |
+| Integral domain and field laws | Present in `LRA/VolumeI/UniversalAlgebra/Models/Models.lean` and `AbstractLaws.lean` | Proof catalogue is missing: every field is an integral domain; cross-multiplication in a field. |
 
 ## Chapter 4: Order
 
@@ -184,7 +184,7 @@ Major missing catalogue groups:
 4. Fill the generic operation law catalogue: cancellation, elementwise
    idempotence, elementwise inverse, uniqueness of identities/inverses,
    absorbing uniqueness, induced divisibility preorder.
-5. Normalize `Structures` versus `Algebra/Models/AbstractLaws`: decide whether
+5. Normalize `Structures` versus `UniversalAlgebra/Models/AbstractLaws`: decide whether
    the main hierarchy lives as structures, law bundles, or both with clearly
    different roles.
 6. Add ordered algebra theorem files: ordered group, ordered ring, sign laws,

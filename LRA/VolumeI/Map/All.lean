@@ -18,8 +18,6 @@ import LRA.VolumeI.Map.Section.All
 import LRA.VolumeI.Map.Retraction.All
 import LRA.VolumeI.Map.Product.All
 import LRA.VolumeI.Map.Partial.All
-import LRA.VolumeI.Map.Relation.All
-import LRA.VolumeI.Map.Operation.All
 
 /-!
 Aggregate import for all Map topic concepts.

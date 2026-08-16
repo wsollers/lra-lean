@@ -1,7 +1,7 @@
 import LRA.VolumeI.AlgebraicStructures.Bundles
 import LRA.VolumeI.Order.Bounds.LeastUpperBoundProperty.All
 
-namespace LRA.Algebra.Structure
+namespace LRA.AlgebraicStructures
 
 universe u v
 
@@ -90,4 +90,4 @@ theorem Completeness [LE R] [Membership R SetObject]
 
 end Wrappers
 
-end LRA.Algebra.Structure
+end LRA.AlgebraicStructures

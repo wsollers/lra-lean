@@ -1,13 +1,13 @@
 -- LRA/VolumeII/GaussianIntegers/Construction/Model.lean
 -- Gaussian integers over any certified commutative-ring carrier.
 
-import LRA.VolumeI.Algebra.Models
+import LRA.VolumeI.UniversalAlgebra.Models
 import LRA.VolumeII.Integers.Construction
 
 namespace LRA.NumberSystems.GaussianIntegers
 
-open LRA.Algebra.Models
-open LRA.Algebra.Structure
+open LRA.UniversalAlgebra.Models
+open LRA.AlgebraicStructures
 
 universe u
 

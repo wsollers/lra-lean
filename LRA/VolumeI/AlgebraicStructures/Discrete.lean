@@ -1,4 +1,4 @@
-namespace LRA.Algebra.Structure
+namespace LRA.AlgebraicStructures
 
 universe u
 
@@ -346,4 +346,4 @@ theorem NoStrictBetweenAddOne [LT R] [Add R] [OfNat R 1]
 
 end Wrappers
 
-end LRA.Algebra.Structure
+end LRA.AlgebraicStructures

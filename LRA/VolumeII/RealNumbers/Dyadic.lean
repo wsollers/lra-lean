@@ -1,12 +1,12 @@
 -- LRA/VolumeII/Reals/Dyadic.lean
 -- Canonical signed binary expansions and transported real structure.
 
-import LRA.VolumeI.Algebra.Models.Models
+import LRA.VolumeI.UniversalAlgebra.Models.Models
 import LRA.VolumeII.RealNumbers.Cauchy
 
 namespace LRA.NumberSystems.RealNumbers.Dyadic
 
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 /-!
 Lean module: LRA.NumberSystems.RealNumbers.Dyadic

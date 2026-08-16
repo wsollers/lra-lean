@@ -1,4 +1,5 @@
 import LRA.VolumeI.Map.Codomain.Definition
+import LRA.VolumeI.Map.Codomain.Consequences
 import LRA.VolumeI.Map.Codomain.Theorems
 import LRA.VolumeI.Map.Codomain.Relationships
 

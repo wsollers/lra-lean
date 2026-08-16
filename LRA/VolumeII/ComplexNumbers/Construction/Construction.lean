@@ -5,7 +5,7 @@ import LRA.VolumeI.AlgebraicStructures
 
 namespace LRA.NumberSystems.ComplexNumbers.Construction
 
-open LRA.Algebra.Structure
+open LRA.AlgebraicStructures
 
 universe u
 

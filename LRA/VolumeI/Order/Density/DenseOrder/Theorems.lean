@@ -1,7 +1,7 @@
 import LRA.VolumeI.Order.Density.DenseOrder.Definition
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
-import LRA.VolumeI.Order.Relations.CoverRelation.Definition
-import LRA.VolumeI.Order.Relations.StrictPart.Definition
+import LRA.VolumeI.Order.Relation.CoverRelation.Definition
+import LRA.VolumeI.Order.Relation.StrictPart.Definition
 
 namespace LRA.Order
 

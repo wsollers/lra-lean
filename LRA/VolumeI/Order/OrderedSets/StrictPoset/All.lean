@@ -1,4 +1,5 @@
 import LRA.VolumeI.Order.OrderedSets.StrictPoset.Definition
+import LRA.VolumeI.Order.OrderedSets.StrictPoset.Consequences
 import LRA.VolumeI.Order.OrderedSets.StrictPoset.Characterizations
 import LRA.VolumeI.Order.OrderedSets.StrictPoset.Theorems
 

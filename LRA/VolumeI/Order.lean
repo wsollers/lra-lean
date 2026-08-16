@@ -1,5 +1,5 @@
 import LRA.VolumeI.Order.OrderedSets
-import LRA.VolumeI.Order.Relations
+import LRA.VolumeI.Order.Relation
 import LRA.VolumeI.Order.Morphisms
 import LRA.VolumeI.Order.Constructions
 import LRA.VolumeI.Order.Bounds

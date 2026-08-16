@@ -7,10 +7,12 @@
     {"area": "Logic", "module": "LRA.VolumeI.Logic", "purpose": "formal languages, syntax, semantics, proof systems, models, and model comparison"},
     {"area": "Identity", "module": "LRA.VolumeI.Identity", "purpose": "equality, substitution, extensionality, uniqueness, and proof patterns"},
     {"area": "Set", "module": "LRA.VolumeI.Set", "purpose": "backend-independent set interfaces, set operations, set laws, and concrete set backends"},
-    {"area": "Map", "module": "LRA.VolumeI.Map", "purpose": "typed and set-theoretic maps, relations and graphs, image/preimage/fibers, injective/surjective/bijective maps, inverses, restrictions, products, operations, and laws"},
-    {"area": "Operations", "module": "LRA.VolumeI.Operations", "purpose": "arity, operation laws, identity elements, inverses, compatibility, distributivity, and divisibility"},
-    {"area": "Relations", "module": "LRA.VolumeI.Relations", "purpose": "relation predicates, equivalence relations, partitions, quotient sets, and order relations"},
-    {"area": "Algebra", "module": "LRA.VolumeI.Algebra", "purpose": "algebraic signatures, structures, models, homomorphisms, substructures, quotient structures, and universal properties"}
+    {"area": "Relations", "module": "LRA.VolumeI.Relations", "purpose": "arbitrary relations, relation laws, equivalence relations, partitions, quotient sets, relation domain/range, and direct/inverse relation images"},
+    {"area": "Map", "module": "LRA.VolumeI.Map", "purpose": "typed and set-theoretic maps, graphs and functional-relation bridges, image/preimage/fibers, injective/surjective/bijective maps, inverses, restrictions, extensions, and products"},
+    {"area": "Operations", "module": "LRA.VolumeI.Operations", "purpose": "operation arity, intrinsic operation laws, identity elements, inverses, compatibility, distributivity, and divisibility"},
+    {"area": "Order", "module": "LRA.VolumeI.Order", "purpose": "order relations, ordered sets, bounds, lattices, density, directedness, order morphisms, and order-operation compatibility"},
+    {"area": "UniversalAlgebra", "module": "LRA.VolumeI.UniversalAlgebra", "purpose": "generic algebraic signatures, terms, equations, models, homomorphisms, substructures, quotient structures, and universal properties"},
+    {"area": "AlgebraicStructures", "module": "LRA.VolumeI.AlgebraicStructures", "purpose": "named algebraic structures and their law certificates, examples, mathlib adapters, and structure-specific composition"}
   ],
   "generic_set": {
     "concepts": [

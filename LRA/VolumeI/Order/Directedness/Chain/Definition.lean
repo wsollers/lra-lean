@@ -1,4 +1,4 @@
-import LRA.VolumeI.Order.Relations.Comparable.Definition
+import LRA.VolumeI.Order.Relation.Comparable.Definition
 
 namespace LRA.Order
 

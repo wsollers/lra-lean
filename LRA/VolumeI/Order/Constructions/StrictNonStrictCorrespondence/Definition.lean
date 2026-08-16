@@ -2,7 +2,7 @@ import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
 import LRA.VolumeI.Order.OrderedSets.Poset.Definition
 import LRA.VolumeI.Order.OrderedSets.StrictOrder.Definition
 import LRA.VolumeI.Order.OrderedSets.StrictPoset.Definition
-import LRA.VolumeI.Order.Relations
+import LRA.VolumeI.Order.Relation
 
 namespace LRA.Order
 

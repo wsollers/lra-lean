@@ -1,7 +1,7 @@
 import LRA.VolumeI.Operations.Laws
 import LRA.VolumeI.Relations.Basic.Properties
 
-namespace LRA.Algebra.Operation
+namespace LRA.Operation
 
 universe u
 
@@ -159,4 +159,4 @@ def StrictMonotone {Alpha : Type u}
     strictRelation left right ->
       strictRelation (operation left) (operation right)
 
-end LRA.Algebra.Operation
+end LRA.Operation

@@ -5,7 +5,7 @@ import LRA.VolumeII.Integers.Implementation
 
 namespace LRA.NumberSystems.Integers.Conversion
 
-open LRA.Algebra.Structure
+open LRA.AlgebraicStructures
 
 /-!
 Volume II label: integers-active-conversion-tools

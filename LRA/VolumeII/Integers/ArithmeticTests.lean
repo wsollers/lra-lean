@@ -5,7 +5,7 @@ import LRA.VolumeII.Integers.Implementation
 
 namespace LRA.NumberSystems.Integers.ArithmeticTests
 
-open LRA.Algebra.Structure
+open LRA.AlgebraicStructures
 
 universe u
 

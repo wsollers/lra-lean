@@ -3,7 +3,7 @@ import LRA.VolumeI.AlgebraicStructures.Multiplicative
 import LRA.VolumeI.AlgebraicStructures.Distributive
 import LRA.VolumeI.AlgebraicStructures.Order
 
-namespace LRA.Algebra.Structure
+namespace LRA.AlgebraicStructures
 
 universe u
 
@@ -303,4 +303,4 @@ class abbrev OrderedFieldLaws (R : Type u)
   PartialOrderLaws R, TotalOrderLaw R,
   AdditionRespectsOrderLaws R, MultiplicationRespectsOrderLaws R
 
-end LRA.Algebra.Structure
+end LRA.AlgebraicStructures

@@ -6,7 +6,7 @@ import LRA.VolumeII.WholeNumbers.Construction.Model
 
 namespace LRA.NumberSystems.WholeNumbers
 
-open LRA.Algebra.Structure
+open LRA.AlgebraicStructures
 
 universe u v
 

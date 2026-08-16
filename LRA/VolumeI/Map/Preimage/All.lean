@@ -1,4 +1,5 @@
 import LRA.VolumeI.Map.Preimage.Definition
+import LRA.VolumeI.Map.Preimage.Consequences
 import LRA.VolumeI.Map.Preimage.Alias
 import LRA.VolumeI.Map.Preimage.Theorems
 import LRA.VolumeI.Map.Preimage.Relationships

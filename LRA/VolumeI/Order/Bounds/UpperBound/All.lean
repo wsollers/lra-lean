@@ -1,4 +1,5 @@
 import LRA.VolumeI.Order.Bounds.UpperBound.Definition
+import LRA.VolumeI.Order.Bounds.UpperBound.Consequences
 import LRA.VolumeI.Order.Bounds.UpperBound.Theorems
 import LRA.VolumeI.Order.Bounds.UpperBound.Relationships
 

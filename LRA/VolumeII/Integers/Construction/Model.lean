@@ -1,12 +1,12 @@
 -- LRA/VolumeII/Integers/Construction/Model.lean
 -- Active integer construction as a Volume I first-order algebraic model.
 
-import LRA.VolumeI.Algebra.Models
+import LRA.VolumeI.UniversalAlgebra.Models
 import LRA.VolumeII.Integers.Implementation
 
 namespace LRA.NumberSystems.Integers
 
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 /-!
 Volume II label: active-integer-model
@@ -71,11 +71,11 @@ number-system tower. The certificates travel with the carrier.
 Logical form:
 
 ```lean
-def integerNumberSystemModel : LRA.Algebra.Models.IntegerModel :=
+def integerNumberSystemModel : LRA.UniversalAlgebra.Models.IntegerModel :=
   IntegerModel.ofCarrier Z
 ```
 -/
-def integerNumberSystemModel : LRA.Algebra.Models.IntegerModel :=
+def integerNumberSystemModel : LRA.UniversalAlgebra.Models.IntegerModel :=
   IntegerModel.ofCarrier Z
 
 /-- The derived operation bundle of the active integer model, for

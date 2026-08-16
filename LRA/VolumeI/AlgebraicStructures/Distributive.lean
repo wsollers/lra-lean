@@ -1,4 +1,4 @@
-namespace LRA.Algebra.Structure
+namespace LRA.AlgebraicStructures
 
 universe u
 
@@ -50,4 +50,4 @@ theorem RightDistributive : ∀ a b c : R, (a + b) * c = a * c + b * c :=
 
 end Wrappers
 
-end LRA.Algebra.Structure
+end LRA.AlgebraicStructures

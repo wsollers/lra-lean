@@ -1229,8 +1229,8 @@ Your own remediation note already recognizes this.
 Move it to something like:
 
 ```text
-Map/Operation/Iteration/
-Map/Operation/Power/
+Operations/Iteration/
+Operations/Power/
 ```
 
 Then prove under identity + associativity:

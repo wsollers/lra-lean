@@ -7,7 +7,7 @@ import LRA.VolumeII.NaturalNumbers.Operations.Multiplication
 
 namespace LRA.NumberSystems.NaturalNumbers
 
-open LRA.Algebra.Structure
+open LRA.AlgebraicStructures
 
 universe u v
 

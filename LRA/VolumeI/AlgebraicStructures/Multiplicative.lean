@@ -1,4 +1,4 @@
-namespace LRA.Algebra.Structure
+namespace LRA.AlgebraicStructures
 
 universe u
 
@@ -281,4 +281,4 @@ theorem DivEqMulInv [Div R] [Mul R] [Inv R]
 
 end Wrappers
 
-end LRA.Algebra.Structure
+end LRA.AlgebraicStructures

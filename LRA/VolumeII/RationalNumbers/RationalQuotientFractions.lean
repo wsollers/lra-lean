@@ -2,11 +2,11 @@
 -- Rational quotient-fraction construction from integers and positive naturals.
 
 import LRA.VolumeII.Foundations.Quotients.Compatibility
-import LRA.VolumeI.Algebra.Models.Models
+import LRA.VolumeI.UniversalAlgebra.Models.Models
 
 namespace LRA.NumberSystems.RationalNumbers.RationalQuotientFractions
 
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 /-!
 Lean module: LRA.NumberSystems.RationalNumbers.RationalQuotientFractions

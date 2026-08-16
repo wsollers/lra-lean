@@ -5,7 +5,7 @@ import LRA.VolumeI.AlgebraicStructures
 
 namespace LRA.NumberSystems.Arithmetic.AlgebraicIdentities
 
-open LRA.Algebra.Structure
+open LRA.AlgebraicStructures
 
 universe u
 

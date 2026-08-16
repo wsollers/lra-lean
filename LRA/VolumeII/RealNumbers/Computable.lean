@@ -1,10 +1,10 @@
 -- LRA/VolumeII/Reals/Computable.lean
 -- Computable real numbers as effective rational approximations.
 
-import LRA.VolumeI.Algebra.Models.Models
+import LRA.VolumeI.UniversalAlgebra.Models.Models
 
 namespace LRA.NumberSystems.RealNumbers.Computable
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 /-!
 Volume II label: computable-reals
@@ -13,7 +13,7 @@ Source: docs/number-systems/gpt-08a-computable-RealNumbers.md
 Verification status: statement-accepted-proof-pending
 -/
 
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 /--
 **[Structure — EffectiveApproximation]**

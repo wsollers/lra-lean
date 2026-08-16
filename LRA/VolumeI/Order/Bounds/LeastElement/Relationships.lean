@@ -2,7 +2,7 @@ import LRA.VolumeI.Order.Bounds.Infimum.Definition
 import LRA.VolumeI.Order.Bounds.LeastElement.Definition
 import LRA.VolumeI.Order.Bounds.MinimalElement.Definition
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
-import LRA.VolumeI.Order.Relations.StrictPart.Definition
+import LRA.VolumeI.Order.Relation.StrictPart.Definition
 import LRA.VolumeI.Order.OrderedSets.LinearOrder.Definition
 
 namespace LRA.Order

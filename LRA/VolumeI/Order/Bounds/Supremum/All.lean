@@ -1,4 +1,5 @@
 import LRA.VolumeI.Order.Bounds.Supremum.Definition
+import LRA.VolumeI.Order.Bounds.Supremum.Consequences
 import LRA.VolumeI.Order.Bounds.Supremum.Theorems
 import LRA.VolumeI.Order.Bounds.Supremum.Relationships
 

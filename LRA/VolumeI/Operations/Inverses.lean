@@ -1,6 +1,6 @@
 import LRA.VolumeI.Operations.Laws
 
-namespace LRA.Algebra.Operation
+namespace LRA.Operation
 
 universe u
 
@@ -108,4 +108,4 @@ theorem UniquenessOfInverseElement
     firstInverse = secondInverse := by
   sorry
 
-end LRA.Algebra.Operation
+end LRA.Operation

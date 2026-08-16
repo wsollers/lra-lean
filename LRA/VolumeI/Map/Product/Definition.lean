@@ -1,5 +1,5 @@
 import LRA.VolumeI.Map.Typed.Definition
-import LRA.VolumeI.Map.Operation.Definition
+import LRA.VolumeI.Operations.Definition
 
 namespace LRA.Map.Product
 
@@ -37,7 +37,7 @@ abbrev BinaryMap
 -/
 abbrev BinaryMap
     (Left : Type u) (Right : Type v) (Codomain : Type w) :=
-  LRA.Map.Operation.BinaryOperation Left Right Codomain
+  LRA.Operation.HeterogeneousBinaryOperation Left Right Codomain
 
 /--
 **[Definition — Curry]**

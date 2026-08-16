@@ -1,0 +1,37 @@
+import LRA.VolumeI.Operations.Laws.Associative.Theorems
+import LRA.VolumeI.Operations.Laws.EquationalLogic.Consequences
+
+namespace LRA.Operation.Laws.Associative
+
+open LRA.Operation
+
+universe u
+
+/--
+**[Theorem — Associative.preserves_left_nested_shape]**
+
+Associativity explains parenthesis movement, not operand exchange.
+-/
+theorem Associative.preserves_left_nested_shape {Carrier : Type u}
+    {operation : BinaryEndoOperation Carrier}
+    (law : Associative operation)
+    (first second third : Carrier) :
+    operation (operation first second) third =
+      operation first (operation second third) := by
+  sorry
+
+/--
+**[Theorem — Associative.operation_equality_requirements]**
+
+Every binary operation consumes the standard equality relation: the identity
+relation is an equivalence relation and the operation respects it. This
+namespaced theorem is a citation hook for the associative law family, not a
+consequence of associativity.
+-/
+theorem Associative.operation_equality_requirements {Carrier : Type u}
+    (operation : BinaryEndoOperation Carrier) :
+    LRA.Operation.Laws.EquationalLogic.BinaryOperationEqualityRequirements
+      operation := by
+  sorry
+
+end LRA.Operation.Laws.Associative

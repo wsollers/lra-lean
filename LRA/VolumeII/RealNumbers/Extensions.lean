@@ -1,10 +1,10 @@
 -- LRA/VolumeII/Reals/Extensions.lean
 -- Derived operations and uniqueness theorems for real models.
 
-import LRA.VolumeI.Algebra.Models.UniversalProperties
+import LRA.VolumeI.UniversalAlgebra.Models.UniversalProperties
 
 namespace LRA.NumberSystems.RealNumbers.Extensions
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 /-!
 Volume II label: real-derived-operations
@@ -13,7 +13,7 @@ Source: docs/number-systems/gpt-08b-reals-extensions.md
 Verification status: statement-accepted-proof-pending
 -/
 
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 /--
 **[Def — integer_power]**
@@ -144,7 +144,7 @@ theorem nth_root_exists_for_nonnegative_reals
 /--
 **[Theorem — complete_archimedean_ordered_field_unique]**
 
-Mathematical statement (Lean): `theorem complete_archimedean_ordered_field_unique (first second : RealModel) : ∃ comparison : first.signature.carrier → second.signature.carrier, LRA.Algebra.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField first.signature second.signature...`.
+Mathematical statement (Lean): `theorem complete_archimedean_ordered_field_unique (first second : RealModel) : ∃ comparison : first.signature.carrier → second.signature.carrier, LRA.UniversalAlgebra.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField first.signature second.signature...`.
 
 *Proof status:* proof pending
 
@@ -155,14 +155,14 @@ Logical form:
 theorem complete_archimedean_ordered_field_unique
     (first second : RealModel) :
     ∃ comparison : first.signature.carrier → second.signature.carrier,
-      LRA.Algebra.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField
+      LRA.UniversalAlgebra.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField
         first.signature second.signature comparison
 ```
 -/
 theorem complete_archimedean_ordered_field_unique
     (first second : RealModel) :
     ∃ comparison : first.signature.carrier → second.signature.carrier,
-      LRA.Algebra.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField
+      LRA.UniversalAlgebra.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField
         first.signature second.signature comparison := by
   sorry
 

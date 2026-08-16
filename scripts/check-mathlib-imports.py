@@ -31,7 +31,7 @@ ALLOWED_PREFIXES = [
 ]
 
 ALLOWED_PATHS = {
-    pathlib.PurePosixPath("LRA/VolumeI/Algebra/Models/Satisfaction.lean"),
+    pathlib.PurePosixPath("LRA/VolumeI/UniversalAlgebra/Models/Satisfaction.lean"),
     pathlib.PurePosixPath("LRA/VolumeI/Order/Interoperability/Mathlib/Bounds.lean"),
     pathlib.PurePosixPath("LRA/VolumeI/Set/ModelTheory/Language.lean"),
     pathlib.PurePosixPath("LRA/VolumeI/Set/ModelTheory/ZFSetModel.lean"),

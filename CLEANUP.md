@@ -53,11 +53,11 @@ LaTeX (`lra-volume-i/volume-i/book-{geometry,logic,sets}`):
 | functions-and-order | 25 | `Set/...` | ↑ | |
 | orderings | 61 | `Set/...` | ↑ | |
 | **Set/Relations subtotal** | **238** | `VolumeI/Set` (24 files) + `VolumeI/Relations` (3 files) | **174 + 23 = 197** | |
-| *(no direct tex equivalent found)* | — | `VolumeI/Algebra` (8 files) | 127 | Bundles (`CommutativeMonoid/Group/Ring`), operation laws. Likely sourced from the Landau-style omnibus doc rather than `book-logic`/`book-sets`/`book-geometry` — **Lean is ahead of the Volume I tex tree here**, worth checking against `omnibus-arithmetic-algebra-landau-style.md` in the project. |
+| *(no direct tex equivalent found)* | — | `VolumeI/UniversalAlgebra` (8 files) | 127 | Bundles (`CommutativeMonoid/Group/Ring`), operation laws. Likely sourced from the Landau-style omnibus doc rather than `book-logic`/`book-sets`/`book-geometry` — **Lean is ahead of the Volume I tex tree here**, worth checking against `omnibus-arithmetic-algebra-landau-style.md` in the project. |
 | *(same)* | — | `VolumeI/Operations` (2 files) | 22 | |
 | *(same)* | — | `VolumeI/Structures` (1 file) | 7 | |
 
-`sorry` count: 8, all in `VolumeI/Algebra/Models/*` (`CanonicalEmbeddings`, `CharacteristicCardinality` ×3, `ComparisonMatrix`, `Construction`, `Models` ×2). Everything outside `Algebra/Models` in Volume I appears fully proved.
+`sorry` count: 8, all in `VolumeI/UniversalAlgebra/Models/*` (`CanonicalEmbeddings`, `CharacteristicCardinality` ×3, `ComparisonMatrix`, `Construction`, `Models` ×2). Everything outside `UniversalAlgebra/Models` in Volume I appears fully proved.
 
 **Bottom line for Volume I:** Logic and Set theory are well underway structurally and nearly sorry-free. **Geometry (137 tex statements: analytic geometry, Euclidean constructions, trigonometry) has zero Lean presence** — this is the single largest, cleanest chunk of remaining work in Volume I.
 
@@ -91,7 +91,7 @@ LaTeX (`lra-volume-ii/volume-ii/book-{continuum,discrete-algebraic}`):
 1. **Geometry (Volume I) is a clean, self-contained gap** — no existing Lean scaffolding to conflict with. If you want a well-scoped next project, `book-geometry` (Euclidean constructions, analytic geometry, trigonometry — 137 tex statements) is it.
 2. **Triage RealNumbers' 120 sorries first in Volume II** — it's the largest single liability and likely blocks downstream Complex/RationalNumbers work that depends on completed real-number lemmas.
 3. **Add `\label{}` ↔ Lean-declaration-name annotations going forward** (e.g., a doc-comment `-- lra:def:point-slope-form` above each Lean `def`/`theorem`). Without this, any future audit is stuck at the same folder-level granularity this one used — a real per-theorem checklist isn't possible until labels are threaded through.
-4. **Reconcile `VolumeI/Algebra`** (127 decls, 8 sorries) against `omnibus-arithmetic-algebra-landau-style.md` and `fine-number-system-formalized.md` in the Learning-Real-Analysis project — it doesn't map to any `book-geometry`/`book-logic`/`book-sets` tex topic, so its source of truth needs to be confirmed explicitly.
+4. **Reconcile `VolumeI/UniversalAlgebra`** (127 decls, 8 sorries) against `omnibus-arithmetic-algebra-landau-style.md` and `fine-number-system-formalized.md` in the Learning-Real-Analysis project — it doesn't map to any `book-geometry`/`book-logic`/`book-sets` tex topic, so its source of truth needs to be confirmed explicitly.
 5. **Archive or delete `LRA-NEW/` and `LRA-OLD/`** if they're confirmed superseded — they add ~ another two full copies of Volume I/II worth of files to grep through on every future audit, with no build target referencing them.
 
 ## Raw counts (for reference)

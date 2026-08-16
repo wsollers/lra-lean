@@ -2,12 +2,12 @@
 -- Comparison models for alternate integer constructions.
 
 import LRA.VolumeII.Foundations.Quotients.Compatibility
-import LRA.VolumeI.Algebra.Models.Models
+import LRA.VolumeI.UniversalAlgebra.Models.Models
 import LRA.VolumeII.NaturalNumbers
 
 namespace LRA.NumberSystems.Integers
 
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 /-!
 Volume II label: alternate-integer-constructions
@@ -23,7 +23,7 @@ construction declarations.
 
 end LRA.NumberSystems.Integers
 namespace LRA.NumberSystems.Integers.QuotientOrderedPairsComparison
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 
 /-- **[Definition — Quotient-Ordered-Pairs Integer Representative]**
@@ -145,11 +145,11 @@ noncomputable def integer_model : IntegerModel :=
 
 end LRA.NumberSystems.Integers.QuotientOrderedPairsComparison
 namespace LRA.NumberSystems.Integers
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 end LRA.NumberSystems.Integers
 namespace LRA.NumberSystems.Integers.TaoComparison
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 /--
 **[Definition — Tao Formal Difference]**
@@ -263,11 +263,11 @@ noncomputable def integer_model : IntegerModel :=
 
 end LRA.NumberSystems.Integers.TaoComparison
 namespace LRA.NumberSystems.Integers
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 end LRA.NumberSystems.Integers
 namespace LRA.NumberSystems.Integers.MendelsonComparison
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 
 /-- **[Definition — Mendelson Positive Pair]**
@@ -456,7 +456,7 @@ theorem positive_integers_recover_natural_number_model :
 
 end LRA.NumberSystems.Integers.MendelsonComparison
 namespace LRA.NumberSystems.Integers
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 
 /-- **[Definition — Ordered-Ring Model Isomorphism]**

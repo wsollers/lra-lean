@@ -179,12 +179,12 @@ Logical form:
 ```lean
 theorem NAdditionIsAssociative
     (model : NModel Element SetObject) :
-    LRA.Algebra.Operation.Associative (NAddition model)
+    LRA.Operation.Associative (NAddition model)
 ```
 -/
 theorem NAdditionIsAssociative
     (model : NModel Element SetObject) :
-    LRA.Algebra.Operation.Associative (NAddition model) := by
+    LRA.Operation.Associative (NAddition model) := by
   sorry
 
 /--
@@ -195,12 +195,12 @@ Logical form:
 ```lean
 theorem NAdditionIsCommutative
     (model : NModel Element SetObject) :
-    LRA.Algebra.Operation.Commutative (NAddition model)
+    LRA.Operation.Commutative (NAddition model)
 ```
 -/
 theorem NAdditionIsCommutative
     (model : NModel Element SetObject) :
-    LRA.Algebra.Operation.Commutative (NAddition model) := by
+    LRA.Operation.Commutative (NAddition model) := by
   sorry
 
 end LRA.NumberSystems.NaturalNumbers

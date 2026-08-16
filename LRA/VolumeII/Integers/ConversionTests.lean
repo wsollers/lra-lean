@@ -5,7 +5,7 @@ import LRA.VolumeII.Integers.Conversion
 
 namespace LRA.NumberSystems.Integers.ConversionTests
 
-open LRA.Algebra.Structure
+open LRA.AlgebraicStructures
 open Conversion
 
 /-!

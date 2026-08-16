@@ -1,4 +1,5 @@
 import LRA.VolumeI.Order.Bounds.MaximalElement.Definition
+import LRA.VolumeI.Order.Bounds.MaximalElement.Consequences
 import LRA.VolumeI.Order.Bounds.MaximalElement.Relationships
 
 /-!

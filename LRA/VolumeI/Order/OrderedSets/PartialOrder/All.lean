@@ -1,5 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Characterizations
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
+import LRA.VolumeI.Order.OrderedSets.PartialOrder.Consequences
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.NonStrict
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Relationships
 import LRA.VolumeI.Order.OrderedSets.PartialOrder.Theorems

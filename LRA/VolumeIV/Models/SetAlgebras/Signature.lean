@@ -20,11 +20,11 @@ Logical form:
 ```lean
 structure SetAlgebraSignature extends LRA.Logic.ModelTheory.SetRings.SetRingSignature where
   one : carrier
-  complement : LRA.Algebra.Operation.UnaryOperation carrier
+  complement : LRA.Operation.UnaryOperation carrier
 ```
 -/
 structure SetAlgebraSignature extends LRA.Logic.ModelTheory.SetRings.SetRingSignature where
   one : carrier
-  complement : LRA.Algebra.Operation.UnaryOperation carrier
+  complement : LRA.Operation.UnaryOperation carrier
 
 end LRA.Logic.ModelTheory.SetAlgebras

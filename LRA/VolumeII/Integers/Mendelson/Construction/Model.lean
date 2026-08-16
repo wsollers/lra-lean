@@ -3,7 +3,7 @@
 
 import LRA.VolumeII.Integers.QuotientOrderedPairs
 import LRA.VolumeII.NaturalNumbers
-import LRA.VolumeI.Algebra.Models.Models
+import LRA.VolumeI.UniversalAlgebra.Models.Models
 
 namespace LRA.NumberSystems.Integers.Mendelson
 
@@ -336,7 +336,7 @@ theorem positive_classes_recover_natural_number_model
 /--
 **[Theorem — mendelson_integers_form_ordered_ring]**
 
-Mathematical statement (Lean): `theorem mendelson_integers_form_ordered_ring (positive_data : PositiveNaturalPairData) : ∃ integer_model : LRA.Algebra.Models.IntegerModel, integer_model.signature.carrier = Carrier positive_data`.
+Mathematical statement (Lean): `theorem mendelson_integers_form_ordered_ring (positive_data : PositiveNaturalPairData) : ∃ integer_model : LRA.UniversalAlgebra.Models.IntegerModel, integer_model.signature.carrier = Carrier positive_data`.
 
 *Proof status:* proof pending
 
@@ -346,13 +346,13 @@ Logical form:
 ```lean
 theorem mendelson_integers_form_ordered_ring
     (positive_data : PositiveNaturalPairData) :
-    ∃ integer_model : LRA.Algebra.Models.IntegerModel,
+    ∃ integer_model : LRA.UniversalAlgebra.Models.IntegerModel,
       integer_model.signature.carrier = Carrier positive_data
 ```
 -/
 theorem mendelson_integers_form_ordered_ring
     (positive_data : PositiveNaturalPairData) :
-    ∃ integer_model : LRA.Algebra.Models.IntegerModel,
+    ∃ integer_model : LRA.UniversalAlgebra.Models.IntegerModel,
       integer_model.signature.carrier = Carrier positive_data := by
   sorry
 

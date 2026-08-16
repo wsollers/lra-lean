@@ -2,12 +2,12 @@
 -- Comparison models for alternate rational constructions.
 
 import LRA.VolumeII.Foundations.Quotients.Compatibility
-import LRA.VolumeI.Algebra.Models.Models
+import LRA.VolumeI.UniversalAlgebra.Models.Models
 import LRA.VolumeII.Integers.ConstructionModels
 
 namespace LRA.NumberSystems.RationalNumbers
 
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 /-!
 Volume II label: alternate-rational-constructions
@@ -65,7 +65,7 @@ def is_order_complete (rational_model : RationalModel) : Prop :=
 
 end LRA.NumberSystems.RationalNumbers
 namespace LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 /--
 **[Definition — Rational Quotient-Fractions Representative]**
@@ -322,11 +322,11 @@ theorem is_not_order_complete
 
 end LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison
 namespace LRA.NumberSystems.RationalNumbers
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 end LRA.NumberSystems.RationalNumbers
 namespace LRA.NumberSystems.RationalNumbers.Reduced
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 
 /-- **[Definition — Reduced Rational Representative]**
@@ -389,11 +389,11 @@ noncomputable def rational_model
 
 end LRA.NumberSystems.RationalNumbers.Reduced
 namespace LRA.NumberSystems.RationalNumbers
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 end LRA.NumberSystems.RationalNumbers
 namespace LRA.NumberSystems.RationalNumbers.FractionField
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 /--
 **[Definition — Integral-Domain Fraction-Field Data]**
@@ -457,7 +457,7 @@ noncomputable def rational_model
 
 end LRA.NumberSystems.RationalNumbers.FractionField
 namespace LRA.NumberSystems.RationalNumbers
-open LRA.Algebra.Models
+open LRA.UniversalAlgebra.Models
 
 
 /-- **[Definition — Ordered-Field Model Isomorphism]**

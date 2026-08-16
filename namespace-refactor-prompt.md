@@ -38,7 +38,7 @@ in which the material happens to be taught.
 Use these semantic owners where applicable:
 
 ```text
-LRA.Algebra
+LRA.UniversalAlgebra
 LRA.Analysis
 LRA.Function
 LRA.Identity

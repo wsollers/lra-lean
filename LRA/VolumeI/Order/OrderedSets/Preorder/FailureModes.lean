@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.OrderedSets.Preorder.Examples
 import LRA.VolumeI.Order.OrderedSets.Preorder.Relationships
-import LRA.VolumeI.Order.Relations.StrictPart.Definition
+import LRA.VolumeI.Order.Relation.StrictPart.Definition
 
 namespace LRA.Order.OrderedSets.Preorder
 

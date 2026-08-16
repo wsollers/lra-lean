@@ -3,8 +3,7 @@
 
 import LRA.VolumeII.Foundations.Quotients.Compatibility
 import LRA.VolumeI.Set
-import LRA.VolumeI.Algebra
-
+import LRA.VolumeI.UniversalAlgebra
 namespace LRA.NumberSystems.Integers.QuotientOrderedPairs
 
 /-!

@@ -1,5 +1,5 @@
 import LRA.VolumeI.Order.OrderedSets.WellOrder.Definition
-import LRA.VolumeI.Order.Relations.StrictPart.Definition
+import LRA.VolumeI.Order.Relation.StrictPart.Definition
 import LRA.VolumeI.Set.Interface.Membership
 
 namespace LRA.Order

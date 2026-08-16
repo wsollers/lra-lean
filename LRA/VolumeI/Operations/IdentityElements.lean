@@ -2,7 +2,7 @@
 Identity-element laws for generic binary operations.
 -/
 
-namespace LRA.Algebra.Operation.IdentityElements
+namespace LRA.Operation.IdentityElements
 
 universe u
 
@@ -121,4 +121,4 @@ theorem UniquenessOfIdentity {Carrier : Type u}
   by
     sorry
 
-end LRA.Algebra.Operation.IdentityElements
+end LRA.Operation.IdentityElements

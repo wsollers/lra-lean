@@ -183,7 +183,7 @@ spine rather than rebuilding it.
 
 - [x] Create graph-based map definitions.
   - Home: `LRA/VolumeI/Map/Typed/`, `LRA/VolumeI/Map/Graph/`, and
-    `LRA/VolumeI/Map/Relation/`.
+    `LRA/VolumeI/Relations/`.
   - Scope: graph, domain, codomain, single-valuedness, totality, function from
     one carrier to another, and the bridge between graph relations and ordinary
     Lean functions.
@@ -252,9 +252,9 @@ spine rather than rebuilding it.
 
 ## Phase 5: Algebraic Structures
 
-- [ ] Normalize `Structures` versus `Algebra/Models/AbstractLaws`.
-  - Home: `LRA/VolumeI/Algebra/Structures/` and
-    `LRA/VolumeI/Algebra/Models/AbstractLaws.lean`.
+- [ ] Normalize `Structures` versus `UniversalAlgebra/Models/AbstractLaws`.
+  - Home: `LRA/VolumeI/AlgebraicStructures/` and
+    `LRA/VolumeI/UniversalAlgebra/Models/AbstractLaws.lean`.
   - Scope: decide which files define structures, which files define law
     bundles, which files define first-order model signatures, and which files
     are only number-system instantiation ledgers.
@@ -262,7 +262,7 @@ spine rather than rebuilding it.
     duplicate hierarchy names compete.
 
 - [ ] Make abstract structures the canonical source of reusable laws.
-  - Home: `LRA/VolumeI/Algebra/Structures/` and `LRA/VolumeI/Algebra/`.
+  - Home: `LRA/VolumeI/AlgebraicStructures/` and `LRA/VolumeI/UniversalAlgebra/`.
   - Scope: semigroup, monoid, group, abelian group, ring, integral domain,
     field, ordered group, ordered ring, ordered field are stated once over an
     arbitrary carrier and operation data.
@@ -270,7 +270,7 @@ spine rather than rebuilding it.
     rather than restating the same laws ad hoc.
 
 - [ ] Add Boolean algebra hierarchy.
-  - Home: `LRA/VolumeI/Algebra/Structures/BooleanAlgebra.lean`.
+  - Home: `LRA/VolumeI/AlgebraicStructures/BooleanAlgebra.lean`.
   - Scope: bounded distributive lattice, complement operation, Boolean algebra
     laws, Boolean ring bridge if useful, homomorphisms and subalgebras if
     needed by later chapters.
@@ -279,7 +279,7 @@ spine rather than rebuilding it.
 
 - [ ] Prove or state set algebras instantiate Boolean algebras.
   - Home: `LRA/VolumeI/Set/Algebras.lean` and
-    `LRA/VolumeI/Algebra/Structures/BooleanAlgebra.lean`.
+    `LRA/VolumeI/AlgebraicStructures/BooleanAlgebra.lean`.
   - Scope: union as join, intersection as meet, complement as Boolean
     complement, empty set as bottom, universe as top, difference as derived
     meet-with-complement.
@@ -287,8 +287,8 @@ spine rather than rebuilding it.
     has a documented Boolean-algebra instance or theorem statement.
 
 - [ ] Fill basic algebra hierarchy variants.
-  - Home: `LRA/VolumeI/Algebra/Structures/Elementary/` and
-    `LRA/VolumeI/Algebra/Structures/RingLike/`.
+  - Home: `LRA/VolumeI/AlgebraicStructures/Elementary/` and
+    `LRA/VolumeI/AlgebraicStructures/RingLike/`.
   - Scope: commutative semigroup, abelian group, ring with unity, commutative
     ring, nontrivial ring, integral domain, field.
   - Acceptance: Chapter 3 hierarchy can be stated without importing Volume II.
@@ -308,14 +308,14 @@ spine rather than rebuilding it.
   - Acceptance: later ordered structures do not redefine these ad hoc.
 
 - [ ] Add ordered group theorem catalogue.
-  - Home: `LRA/VolumeI/Algebra/Structures/Ordered/OrderedGroup.lean`.
+  - Home: `LRA/VolumeI/AlgebraicStructures/Ordered/OrderedGroup.lean`.
   - Scope: translation invariance, adding inequalities, sign of negatives,
     compatibility with subtraction.
   - Acceptance: Chapter 4 ordered group material has generic statements.
 
 - [ ] Add ordered ring and field theorem catalogue.
-  - Home: `LRA/VolumeI/Algebra/Structures/Ordered/OrderedRing.lean` and
-    `LRA/VolumeI/Algebra/Structures/Ordered/OrderedField.lean`.
+  - Home: `LRA/VolumeI/AlgebraicStructures/Ordered/OrderedRing.lean` and
+    `LRA/VolumeI/AlgebraicStructures/Ordered/OrderedField.lean`.
   - Scope: sign rules, products of positives/negatives, multiplying
     inequalities by positive or negative elements, no compatible ordered field
     structure on complex numbers as a later instantiation statement.
@@ -324,7 +324,7 @@ spine rather than rebuilding it.
 ## Phase 7: Absolute Value, Subtraction, Division, Powers
 
 - [ ] Add abstract absolute-value layer.
-  - Home: `LRA/VolumeI/Algebra/Structures/Ordered/AbsoluteValue.lean`.
+  - Home: `LRA/VolumeI/AlgebraicStructures/Ordered/AbsoluteValue.lean`.
   - Scope: absolute value operation on ordered algebraic structures,
     nonnegativity, zero iff zero, negation invariance, multiplicativity,
     triangle inequality, reverse triangle inequality.
@@ -352,13 +352,13 @@ spine rather than rebuilding it.
 ## Phase 8: Floor And Ceiling
 
 - [ ] Add Archimedean ordered-field abstraction for floor work.
-  - Home: `LRA/VolumeI/Algebra/Structures/Ordered/Archimedean.lean`.
+  - Home: `LRA/VolumeI/AlgebraicStructures/Ordered/Archimedean.lean`.
   - Scope: embedded integers, Archimedean property, integer cofinality.
   - Acceptance: floor/ceiling files can state existence without importing
     Volume II constructions.
 
 - [ ] Add floor and ceiling definitions and laws.
-  - Home: `LRA/VolumeI/Algebra/Structures/Ordered/FloorCeiling.lean`.
+  - Home: `LRA/VolumeI/AlgebraicStructures/Ordered/FloorCeiling.lean`.
   - Scope: existence, uniqueness, floor, ceiling, ceiling duality,
     idempotence, monotonicity, integer shifts, floor sum bounds, fractional
     part.
@@ -398,7 +398,7 @@ spine rather than rebuilding it.
 ## Phase 10: Law Catalogue
 
 - [ ] Create omnibus law catalogue module.
-  - Home: `LRA/VolumeI/Algebra/LawCatalogue.lean`.
+  - Home: `LRA/VolumeI/AlgebraicStructures/LawCatalogue.lean`.
   - Scope: declarations or re-exported aliases for L0-L34.
   - Acceptance: every L-number has a stable Lean declaration or documented
     pointer to its canonical declaration.
@@ -448,7 +448,7 @@ spine rather than rebuilding it.
 ## Phase 12: Validation And Cleanup
 
 - [ ] Audit and relocate obsolete model/construction cruft.
-  - Home: `LRA/VolumeII/` and `LRA/VolumeI/Algebra/Models/`.
+  - Home: `LRA/VolumeII/` and `LRA/VolumeI/UniversalAlgebra/Models/`.
   - Scope: distinguish first-order model theory, algebraic structure models,
     number-system construction models, and instantiation ledgers; delete or
     relocate duplicate files only after replacements exist.

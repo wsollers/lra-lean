@@ -19,8 +19,6 @@ import LRA.VolumeI.Map.Section.AllWithExamples
 import LRA.VolumeI.Map.Retraction.AllWithExamples
 import LRA.VolumeI.Map.Product.AllWithExamples
 import LRA.VolumeI.Map.Partial.AllWithExamples
-import LRA.VolumeI.Map.Relation.AllWithExamples
-import LRA.VolumeI.Map.Operation.AllWithExamples
 import LRA.VolumeI.Map.Examples.All
 
 /-!

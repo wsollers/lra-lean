@@ -5,5 +5,5 @@ import LRA.VolumeI.Map
 import LRA.VolumeI.Operations
 import LRA.VolumeI.Relations
 import LRA.VolumeI.Order
-import LRA.VolumeI.Algebra
+import LRA.VolumeI.UniversalAlgebra
 import LRA.VolumeI.AlgebraicStructures
