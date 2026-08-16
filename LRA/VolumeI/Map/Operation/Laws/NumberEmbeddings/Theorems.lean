@@ -43,8 +43,8 @@ theorem PreservesBinaryOperation.apply {Source : Type u} {Target : Type v}
 
 theorem PreservesRelation.apply {Source : Type u} {Target : Type v}
     {embedding : Source -> Target}
-    {sourceRelation : Source -> Source -> Prop}
-    {targetRelation : Target -> Target -> Prop}
+    {sourceRelation : LRA.Relation.Endorelation Source}
+    {targetRelation : LRA.Relation.Endorelation Target}
     (law : PreservesRelation embedding sourceRelation targetRelation)
     {left right : Source}
     (related : sourceRelation left right) :
@@ -53,8 +53,8 @@ theorem PreservesRelation.apply {Source : Type u} {Target : Type v}
 
 theorem ReflectsRelation.apply {Source : Type u} {Target : Type v}
     {embedding : Source -> Target}
-    {sourceRelation : Source -> Source -> Prop}
-    {targetRelation : Target -> Target -> Prop}
+    {sourceRelation : LRA.Relation.Endorelation Source}
+    {targetRelation : LRA.Relation.Endorelation Target}
     (law : ReflectsRelation embedding sourceRelation targetRelation)
     {left right : Source}
     (related_targets : targetRelation (embedding left) (embedding right)) :
@@ -63,16 +63,16 @@ theorem ReflectsRelation.apply {Source : Type u} {Target : Type v}
 
 theorem RelationEmbedding.preserves {Source : Type u} {Target : Type v}
     {embedding : Source -> Target}
-    {sourceRelation : Source -> Source -> Prop}
-    {targetRelation : Target -> Target -> Prop}
+    {sourceRelation : LRA.Relation.Endorelation Source}
+    {targetRelation : LRA.Relation.Endorelation Target}
     (law : RelationEmbedding embedding sourceRelation targetRelation) :
     PreservesRelation embedding sourceRelation targetRelation := by
   sorry
 
 theorem RelationEmbedding.reflects {Source : Type u} {Target : Type v}
     {embedding : Source -> Target}
-    {sourceRelation : Source -> Source -> Prop}
-    {targetRelation : Target -> Target -> Prop}
+    {sourceRelation : LRA.Relation.Endorelation Source}
+    {targetRelation : LRA.Relation.Endorelation Target}
     (law : RelationEmbedding embedding sourceRelation targetRelation) :
     ReflectsRelation embedding sourceRelation targetRelation := by
   sorry

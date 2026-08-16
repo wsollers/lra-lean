@@ -1,7 +1,7 @@
 import LRA.VolumeI.Map.Operation.Laws.Commutative.Theorems
 import LRA.VolumeI.Map.Operation.Laws.Identity.Definition
 import LRA.VolumeI.Map.Operation.Laws.Absorbing.Definition
-import LRA.VolumeI.Map.Operation.Laws.EquationalLogic.Theorems
+import LRA.VolumeI.Map.Operation.Laws.EquationalLogic.Consequences
 
 namespace LRA.Map.Operation.Laws.Commutative
 

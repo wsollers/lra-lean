@@ -10,9 +10,9 @@ Equivalence-relation laws for an endorelation.
 Logical form:
 
 ```lean
-def EquivalenceRelation {Alpha : Type u}
+abbrev EquivalenceRelation {Alpha : Type u}
     (relation : Endorelation Alpha) : Prop :=
-  Reflexive relation /\ Symmetric relation /\ Transitive relation
+  Equivalence relation
 ```
 -/
 def EquivalenceRelation {Alpha : Type u}

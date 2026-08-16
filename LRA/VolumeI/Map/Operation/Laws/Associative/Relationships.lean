@@ -1,5 +1,5 @@
 import LRA.VolumeI.Map.Operation.Laws.Associative.Theorems
-import LRA.VolumeI.Map.Operation.Laws.EquationalLogic.Theorems
+import LRA.VolumeI.Map.Operation.Laws.EquationalLogic.Consequences
 
 namespace LRA.Map.Operation.Laws.Associative
 

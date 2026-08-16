@@ -19,11 +19,10 @@ def MinimalElement
   LRA.Relation.MinimalElement strictRelation subset minimal
 ```
 -/
-def MinimalElement
+abbrev MinimalElement
     (strictRelation : LRA.Relation.Endorelation Element)
     (subset : SetObject)
     (minimal : Element) : Prop :=
-  minimal ∈ subset /\
-    forall element, element ∈ subset -> Not (strictRelation element minimal)
+  LRA.Relation.MinimalElement strictRelation subset minimal
 
 end LRA.Order

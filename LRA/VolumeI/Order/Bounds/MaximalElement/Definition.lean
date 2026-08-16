@@ -19,11 +19,10 @@ def MaximalElement
   LRA.Relation.MaximalElement strictRelation subset maximal
 ```
 -/
-def MaximalElement
+abbrev MaximalElement
     (strictRelation : LRA.Relation.Endorelation Element)
     (subset : SetObject)
     (maximal : Element) : Prop :=
-  maximal ∈ subset /\
-    forall element, element ∈ subset -> Not (strictRelation maximal element)
+  LRA.Relation.MaximalElement strictRelation subset maximal
 
 end LRA.Order
