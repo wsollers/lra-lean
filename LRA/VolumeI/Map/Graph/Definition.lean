@@ -1,11 +1,13 @@
 import LRA.VolumeI.Map.Typed.Definition
 import LRA.VolumeI.Relations.Basic.Relations
+import LRA.VolumeI.Set.Interface.Operations
 
 namespace LRA.Map.Graph
 
 open LRA.Map.Typed
+open LRA.Set
 
-universe u v
+universe u v w
 
 /--
 The graph relation determined by a typed map.
@@ -40,5 +42,29 @@ A relation presents a typed map when it is total and single-valued.
 def FunctionalRelation {Domain : Type u} {Codomain : Type v}
     (relation : LRA.Relation.HeterogeneousRelation Domain Codomain) : Prop :=
   TotalOverDomain relation /\ SingleValued relation
+
+/--
+The domain of a graph relation, separated from an ambient backend set.
+-/
+def DomainOfGraph {Element : Type u} {Codomain : Type v}
+    {SetObject : Type w}
+    [HasSeparation Element SetObject]
+    (ambientDomain : SetObject)
+    (graph : LRA.Relation.HeterogeneousRelation Element Codomain) :
+    SetObject :=
+  HasSeparation.separation ambientDomain
+    (fun input => exists output, graph input output)
+
+/--
+The range of a graph relation, separated from an ambient backend set.
+-/
+def RangeOfGraph {Domain : Type u} {Element : Type v}
+    {SetObject : Type w}
+    [HasSeparation Element SetObject]
+    (ambientCodomain : SetObject)
+    (graph : LRA.Relation.HeterogeneousRelation Domain Element) :
+    SetObject :=
+  HasSeparation.separation ambientCodomain
+    (fun output => exists input, graph input output)
 
 end LRA.Map.Graph

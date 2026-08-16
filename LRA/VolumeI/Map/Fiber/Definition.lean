@@ -29,6 +29,18 @@ def IsFiberOf {Domain : Type u} {Codomain : Type v}
     (output : Codomain) : Prop :=
   forall input : Domain, input ∈ fiberSet <-> map input = output
 
+/--
+The fiber over one codomain value, separated from an explicit ambient domain.
+-/
+def AmbientFiber {Domain : Type u} {Codomain : Type v}
+    {DomainSet : Type w}
+    [HasSeparation Domain DomainSet]
+    (ambientDomain : DomainSet)
+    (map : TypedMap Domain Codomain)
+    (output : Codomain) : DomainSet :=
+  HasSeparation.separation ambientDomain
+    (fun input : Domain => map input = output)
+
 section WithSeparation
 
 variable {Domain : Type u} {Codomain : Type v} {DomainSet : Type w}
@@ -46,5 +58,27 @@ def FiberSet
     (fun input : Domain => map input = output)
 
 end WithSeparation
+
+/--
+The kernel relation of a typed map: two inputs are related when the map sends
+them to the same output.
+-/
+def KernelRelation {Domain : Type u} {Codomain : Type v}
+    (map : TypedMap Domain Codomain) : Domain -> Domain -> Prop :=
+  fun left right => map left = map right
+
+/--
+A backend set is saturated by a map when it contains every fiber-mate of each
+of its members.
+-/
+def SaturatedBy {Domain : Type u} {Codomain : Type v}
+    {DomainSet : Type w}
+    [Membership Domain DomainSet]
+    (subset : DomainSet)
+    (map : TypedMap Domain Codomain) : Prop :=
+  forall input fiberMate : Domain,
+    input ∈ subset ->
+    map input = map fiberMate ->
+    fiberMate ∈ subset
 
 end LRA.Map.Fiber

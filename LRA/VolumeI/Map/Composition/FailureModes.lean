@@ -1,0 +1,44 @@
+import LRA.VolumeI.Map.Composition.Definition
+import LRA.VolumeI.Map.Injective.Definition
+import LRA.VolumeI.Map.Surjective.Definition
+import LRA.VolumeI.Map.Bijective.Definition
+
+namespace LRA.Map.Composition
+
+open LRA.Map.Typed
+
+universe u v w
+
+/--
+The composite can be injective while its second leg is not.
+-/
+def CompositeInjectiveSecondNotInjective
+    {Domain : Type u} {Middle : Type v} {Codomain : Type w}
+    (first : TypedMap Domain Middle)
+    (second : TypedMap Middle Codomain) : Prop :=
+  LRA.Map.Injective.Injective (Compose second first) /\
+    ¬ LRA.Map.Injective.Injective second
+
+/--
+The composite can be surjective while its first leg is not.
+-/
+def CompositeSurjectiveFirstNotSurjective
+    {Domain : Type u} {Middle : Type v} {Codomain : Type w}
+    (first : TypedMap Domain Middle)
+    (second : TypedMap Middle Codomain) : Prop :=
+  LRA.Map.Surjective.Surjective (Compose second first) /\
+    ¬ LRA.Map.Surjective.Surjective first
+
+/--
+The composite can be bijective while neither stage is forced to be bijective
+in the missing direction.
+-/
+def CompositeBijectiveWithSlackMiddle
+    {Domain : Type u} {Middle : Type v} {Codomain : Type w}
+    (first : TypedMap Domain Middle)
+    (second : TypedMap Middle Codomain) : Prop :=
+  LRA.Map.Bijective.Bijective (Compose second first) /\
+    (¬ LRA.Map.Surjective.Surjective first \/
+      ¬ LRA.Map.Injective.Injective second)
+
+end LRA.Map.Composition

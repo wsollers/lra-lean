@@ -46,4 +46,33 @@ An external binary operation, such as scalar multiplication.
 abbrev ExternalBinaryOperation (Scalar : Type u) (Carrier : Type v) :=
   BinaryOperation Scalar Carrier Carrier
 
+/--
+Composition as the binary operation on endomaps.
+-/
+def EndomapComposition (Carrier : Type u) :
+    BinaryEndoOperation (Carrier -> Carrier) :=
+  fun second first input => second (first input)
+
+/--
+The identity element for endomap composition.
+-/
+def EndomapIdentity (Carrier : Type u) : Carrier -> Carrier :=
+  fun input => input
+
+/--
+Pointwise transfer of a binary operation to a function space.
+-/
+def PointwiseBinaryOperation {Domain : Type u} {Codomain : Type v}
+    (operation : BinaryEndoOperation Codomain) :
+    BinaryEndoOperation (Domain -> Codomain) :=
+  fun first second input => operation (first input) (second input)
+
+/--
+Pointwise transfer of a unary operation to a function space.
+-/
+def PointwiseUnaryOperation {Domain : Type u} {Codomain : Type v}
+    (operation : UnaryEndoOperation Codomain) :
+    UnaryEndoOperation (Domain -> Codomain) :=
+  fun map input => operation (map input)
+
 end LRA.Map.Operation
