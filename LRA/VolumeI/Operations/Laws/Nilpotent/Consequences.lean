@@ -1,9 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Nilpotent.Definition
+import LRA.Operation.Laws.Nilpotent.Consequences
 
-/-!
-Derived consequences of this concept belong here.
--/
-
-namespace LRA.Operation.Laws.Nilpotent
-
-end LRA.Operation.Laws.Nilpotent
+/-! Compatibility shim for the historical Nilpotent consequence path. -/
