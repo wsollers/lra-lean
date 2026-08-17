@@ -1,10 +1,9 @@
-import LRA.VolumeI.Set.Enderton
+import LRA.Set.ZFC.Axioms
 
 /-!
-Opt-in in-house single-sorted ZFC development.
+Canonical ZFC theory layer.
 
-The current realization is the Enderton-style axiomatic universe in
-`LRA.Set.Enderton`: primitive sets and membership, ZFC axioms, derived
-constructions and theorems, and certificates showing which canonical Set
-interface capabilities this universe satisfies.
+This module owns the primitive ZFC assumptions. Derived constructions and
+theorems are added here as they are migrated from the legacy Enderton chapter.
+The concrete single-sorted carrier and membership relation live in `LRA.Set.ZFCSet`.
 -/
