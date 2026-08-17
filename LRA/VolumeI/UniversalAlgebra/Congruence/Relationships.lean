@@ -15,8 +15,7 @@ theorem BinaryOperationCongruence.left {Carrier : Type u}
     forall {left₁ left₂ : Carrier} (right : Carrier),
       relation left₁ left₂ ->
         relation (operation left₁ right) (operation left₂ right) := by
-  intro left₁ left₂ right leftRelated
-  exact law leftRelated (reflexive right)
+  sorry
 
 /-- Binary congruence supplies right-side congruence when the relation is reflexive. -/
 theorem BinaryOperationCongruence.right {Carrier : Type u}
@@ -27,7 +26,6 @@ theorem BinaryOperationCongruence.right {Carrier : Type u}
     forall (left : Carrier) {right₁ right₂ : Carrier},
       relation right₁ right₂ ->
         relation (operation left right₁) (operation left right₂) := by
-  intro left right₁ right₂ rightRelated
-  exact law (reflexive left) rightRelated
+  sorry
 
 end LRA.UniversalAlgebra.Congruence

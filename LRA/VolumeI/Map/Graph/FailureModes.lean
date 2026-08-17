@@ -59,6 +59,5 @@ theorem EmptyRelationSingleValued
     {Domain : Type u} {Codomain : Type v} :
     SingleValued
       (fun _input : Domain => fun _output : Codomain => False) := by
-  intro input firstOutput secondOutput hFirst _hSecond
-  cases hFirst
+  sorry
 end LRA.Map.Graph

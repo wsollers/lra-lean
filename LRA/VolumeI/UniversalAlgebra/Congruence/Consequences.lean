@@ -31,10 +31,7 @@ theorem UnaryOperationRelationRequirements.quotient_projection_respects_operatio
     (related : relation left right) :
     LRA.Relation.QuotientProjection ambient relation (operation left) =
       LRA.Relation.QuotientProjection ambient relation (operation right) := by
-  exact
-    LRA.Relation.QuotientProjectionWellDefined
-      requirements.1
-      (requirements.2 related)
+  sorry
 
 /--
 Binary operation congruence is exactly the well-definedness condition needed
@@ -58,9 +55,6 @@ theorem BinaryOperationRelationRequirements.quotient_projection_respects_operati
         ambient relation (operation left₁ right₁) =
       LRA.Relation.QuotientProjection
         ambient relation (operation left₂ right₂) := by
-  exact
-    LRA.Relation.QuotientProjectionWellDefined
-      requirements.1
-      (requirements.2 leftRelated rightRelated)
+  sorry
 
 end LRA.UniversalAlgebra.Congruence

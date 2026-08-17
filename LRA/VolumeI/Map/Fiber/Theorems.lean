@@ -24,8 +24,7 @@ theorem KernelRelationReflexive
     {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
     forall input : Domain, KernelRelation map input input := by
-  intro input
-  rfl
+  sorry
 /--
 **[Theorem — KernelRelationSymmetric]**
 
@@ -48,8 +47,7 @@ theorem KernelRelationSymmetric
     forall left right : Domain,
       KernelRelation map left right ->
       KernelRelation map right left := by
-  intro left right related
-  exact related.symm
+  sorry
 /--
 **[Theorem — KernelRelationTransitive]**
 
@@ -74,8 +72,7 @@ theorem KernelRelationTransitive
       KernelRelation map first second ->
       KernelRelation map second third ->
       KernelRelation map first third := by
-  intro first second third firstRelatedSecond secondRelatedThird
-  exact firstRelatedSecond.trans secondRelatedThird
+  sorry
 /--
 **[Theorem — FiberSaturatedByMap]**
 
@@ -104,6 +101,5 @@ theorem FiberSaturatedByMap
     {output : Codomain}
     (isFiber : IsFiberOf fiberSet map output) :
     SaturatedBy fiberSet map := by
-  intro input fiberMate inputInFiber inputRelatedFiberMate
-  exact (isFiber fiberMate).2 (inputRelatedFiberMate ▸ (isFiber input).1 inputInFiber)
+  sorry
 end LRA.Map.Fiber

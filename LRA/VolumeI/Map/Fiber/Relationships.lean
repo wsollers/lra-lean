@@ -31,7 +31,7 @@ theorem FiberMembership
     (output : Codomain)
     (input : Domain) :
     Fiber map output input <-> map input = output := by
-  rfl
+  sorry
 /--
 **[Theorem — InjectiveIffFibersSubsingleton]**
 
@@ -58,11 +58,7 @@ theorem InjectiveIffFibersSubsingleton
         Fiber map output input₁ ->
         Fiber map output input₂ ->
         input₁ = input₂ := by
-  constructor
-  · intro mapIsInjective output input₁ input₂ input₁InFiber input₂InFiber
-    exact mapIsInjective input₁ input₂ (input₁InFiber.trans input₂InFiber.symm)
-  · intro fibersSubsingleton input₁ input₂ sameOutput
-    exact fibersSubsingleton (map input₂) input₁ input₂ sameOutput rfl
+  sorry
 /--
 **[Theorem — SurjectiveIffEveryFiberNonempty]**
 
@@ -83,5 +79,5 @@ theorem SurjectiveIffEveryFiberNonempty
     (map : TypedMap Domain Codomain) :
     LRA.Map.Surjective.Surjective map <->
       forall output, exists input, Fiber map output input := by
-  rfl
+  sorry
 end LRA.Map.Fiber

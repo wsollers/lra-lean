@@ -25,8 +25,7 @@ theorem GraphSingleValued
     {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
     SingleValued (Graph map) := by
-  intro input firstOutput secondOutput hFirst hSecond
-  exact hFirst.symm.trans hSecond
+  sorry
 /--
 **[Theorem — GraphTotalOverDomain]**
 
@@ -45,8 +44,7 @@ theorem GraphTotalOverDomain
     {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
     TotalOverDomain (Graph map) := by
-  intro input
-  exact ⟨map input, rfl⟩
+  sorry
 /--
 **[Theorem — GraphFunctionalRelation]**
 
@@ -65,5 +63,5 @@ theorem GraphFunctionalRelation
     {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
     FunctionalRelation (Graph map) := by
-  exact ⟨GraphTotalOverDomain map, GraphSingleValued map⟩
+  sorry
 end LRA.Map.Graph

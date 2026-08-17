@@ -29,7 +29,7 @@ theorem BijectiveIffInjectiveAndSurjective
     {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
     Bijective map <-> Injective map /\ Surjective map := by
-  rfl
+  sorry
 /--
 **[Theorem — BijectiveOfTwoSidedInverse]**
 
@@ -54,7 +54,5 @@ theorem BijectiveOfTwoSidedInverse
     (twoSidedInverse :
       LRA.Map.Inverse.TwoSidedInverse map inverse) :
     Bijective map := by
-  exact
-    LRA.Map.Inverse.InjectiveAndSurjectiveOfTwoSidedInverse
-      twoSidedInverse
+  sorry
 end LRA.Map.Bijective

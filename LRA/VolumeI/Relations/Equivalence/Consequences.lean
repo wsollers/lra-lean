@@ -14,7 +14,7 @@ theorem EquivalenceRelation.reflexive
     {relation : Endorelation Alpha}
     (equivalence : EquivalenceRelation relation) :
     Reflexive relation := by
-  exact equivalence.1
+  sorry
 
 /-- An equivalence relation is symmetric. -/
 theorem EquivalenceRelation.symmetric
@@ -22,7 +22,7 @@ theorem EquivalenceRelation.symmetric
     {relation : Endorelation Alpha}
     (equivalence : EquivalenceRelation relation) :
     Symmetric relation := by
-  exact equivalence.2.1
+  sorry
 
 /-- An equivalence relation is transitive. -/
 theorem EquivalenceRelation.transitive
@@ -30,6 +30,6 @@ theorem EquivalenceRelation.transitive
     {relation : Endorelation Alpha}
     (equivalence : EquivalenceRelation relation) :
     Transitive relation := by
-  exact equivalence.2.2
+  sorry
 
 end LRA.Relation

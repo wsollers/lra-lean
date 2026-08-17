@@ -31,7 +31,7 @@ theorem GraphRelationDomain
     (map : TypedMap Domain Codomain)
     (input : Domain) :
     RelationDomain (LRA.Map.Graph.Graph map) input := by
-  exact ⟨map input, rfl⟩
+  sorry
 
 /--
 **[Theorem — GraphRelationRangeIff]**
@@ -55,7 +55,7 @@ theorem GraphRelationRangeIff
     (output : Codomain) :
     RelationRange (LRA.Map.Graph.Graph map) output <->
       exists input : Domain, map input = output := by
-  rfl
+  sorry
 
 /--
 **[Theorem — GraphRelationImageEqualsMapImage]**
@@ -86,10 +86,7 @@ theorem GraphRelationImageEqualsMapImage
     (source : DomainSet) :
     RelationImage (LRA.Map.Graph.Graph map) source =
       (LRA.Map.Image.Image map source : CodomainSet) := by
-  apply SetExtensionality
-  intro output
-  unfold RelationImage LRA.Map.Image.Image LRA.Map.Graph.Graph
-  exact Iff.rfl
+  sorry
 
 /--
 **[Theorem — GraphRelationPreimageEqualsMapPreimage]**
@@ -126,17 +123,6 @@ theorem GraphRelationPreimageEqualsMapPreimage
     (target : CodomainSet) :
     RelationPreimage (LRA.Map.Graph.Graph map) target =
       (LRA.Map.Preimage.Preimage map target : DomainSet) := by
-  apply SetExtensionality
-  intro input
-  unfold RelationPreimage LRA.Map.Preimage.Preimage LRA.Map.Graph.Graph
-  rw [SeparationMembership, SeparationMembership]
-  constructor
-  · intro membership
-    rcases membership.2 with ⟨output, output_mem_target, map_eq_output⟩
-    exact ⟨membership.1, by
-      rw [map_eq_output]
-      exact output_mem_target⟩
-  · intro membership
-    exact ⟨membership.1, ⟨map input, membership.2, rfl⟩⟩
+  sorry
 
 end LRA.Relation

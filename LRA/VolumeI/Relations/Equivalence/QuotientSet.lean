@@ -119,16 +119,7 @@ theorem QuotientSetExists
     LRA.Identity.Exists
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation) := by
-  exact
-    ⟨QuotientSet (Collection := Collection) ambient relation,
-      fun candidate =>
-        LRA.Set.SeparationMembership
-          (HasPowerset.powerset ambient : Collection)
-          (fun candidate : SetObject =>
-            ∃ representative : Element,
-              representative ∈ ambient ∧
-                candidate = EquivalenceClass ambient relation representative)
-          candidate⟩
+  sorry
 
 /--
 **[Theorem — QuotientSetUnique]**
@@ -152,10 +143,7 @@ theorem QuotientSetUnique
     LRA.Identity.Unique
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation) := by
-  intro firstQuotient secondQuotient firstIsQuotient secondIsQuotient
-  apply LRA.Set.SetExtensionality
-  intro candidate
-  exact (firstIsQuotient candidate).trans (secondIsQuotient candidate).symm
+  sorry
 
 /--
 **[Theorem — QuotientSetExistsAndUnique]**
@@ -180,9 +168,7 @@ theorem QuotientSetExistsAndUnique
     LRA.Identity.ExistsAndUnique
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation) := by
-  exact
-    ⟨QuotientSetExists ambient relation,
-      QuotientSetUnique ambient relation⟩
+  sorry
 
 /--
 **[Theorem — QuotientSetMembership]**
@@ -212,14 +198,7 @@ theorem QuotientSetMembership
         ∃ representative : Element,
           representative ∈ ambient ∧
             candidate = EquivalenceClass ambient relation representative := by
-  exact
-    LRA.Set.SeparationMembership
-      (HasPowerset.powerset ambient : Collection)
-      (fun candidate : SetObject =>
-        ∃ representative : Element,
-          representative ∈ ambient ∧
-            candidate = EquivalenceClass ambient relation representative)
-      candidate
+  sorry
 
 end Laws
 
@@ -301,9 +280,7 @@ theorem QuotientProjectionWellDefined
       relation firstRepresentative secondRepresentative) :
     QuotientProjection ambient relation firstRepresentative =
       QuotientProjection ambient relation secondRepresentative := by
-  exact
-    RelatedRepresentativesHaveSameEquivalenceClass
-      relationIsEquivalence representativesRelated ambient
+  sorry
 
 /--
 **[Theorem — QuotientClassElementWellDefined]**
@@ -334,9 +311,7 @@ theorem QuotientClassElementWellDefined
       relation firstRepresentative secondRepresentative) :
     QuotientClassElement ambient relation firstRepresentative =
       QuotientClassElement ambient relation secondRepresentative := by
-  exact
-    QuotientProjectionWellDefined
-      relationIsEquivalence representativesRelated
+  sorry
 
 end WellDefined
 

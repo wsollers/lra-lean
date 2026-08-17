@@ -21,9 +21,7 @@ theorem SupremumUnique
     (firstIsSupremum : Supremum relation subset first)
     (secondIsSupremum : Supremum relation subset second) :
     first = second := by
-  exact relationIsAntisymmetric first second
-    (firstIsSupremum.2 second secondIsSupremum.1)
-    (secondIsSupremum.2 first firstIsSupremum.1)
+  sorry
 
 /--
 `SupremumOfSingleton`
