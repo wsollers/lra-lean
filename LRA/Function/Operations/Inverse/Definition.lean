@@ -6,7 +6,35 @@ namespace LRA.Function
 
 universe u v
 
-/-- The inverse of a bijective function, presented by the converse graph relation. -/
+/-- A typed function is a left inverse when it recovers every source value. -/
+def LeftInverseTyped
+    {Domain : Type u} {Codomain : Type v}
+    (function : TypedFunction Domain Codomain)
+    (inverse : TypedFunction Codomain Domain) : Prop :=
+  ∀ input, inverse (function input) = input
+
+/-- A typed function is a right inverse when every target value is recovered. -/
+def RightInverseTyped
+    {Domain : Type u} {Codomain : Type v}
+    (function : TypedFunction Domain Codomain)
+    (inverse : TypedFunction Codomain Domain) : Prop :=
+  ∀ output, function (inverse output) = output
+
+/-- A two-sided inverse satisfies both cancellation laws. -/
+def TwoSidedInverseTyped
+    {Domain : Type u} {Codomain : Type v}
+    (function : TypedFunction Domain Codomain)
+    (inverse : TypedFunction Codomain Domain) : Prop :=
+  LeftInverseTyped function inverse ∧ RightInverseTyped function inverse
+
+/-- Predicate form of the inverse-function relationship. -/
+def IsInverseTypedFunction
+    {Domain : Type u} {Codomain : Type v}
+    (inverse : TypedFunction Codomain Domain)
+    (function : TypedFunction Domain Codomain) : Prop :=
+  TwoSidedInverseTyped function inverse
+
+/-- The inverse of a bijective relational function, presented by the converse graph relation. -/
 def Inverse
     {Domain : Type u} {Codomain : Type v}
     (function : RelationalFunction Domain Codomain)
