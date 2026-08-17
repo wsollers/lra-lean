@@ -50,10 +50,10 @@ theorem FundamentalTheoremOfEquivalenceRelations
     (relationIsEquivalence : EquivalenceRelation relation) :
     ∀ first second,
       first ∈ ambient -> second ∈ ambient ->
-        EquivalenceFromPartition
+        (EquivalenceFromPartition
             (PartitionFromEquivalence ambient relation relationIsEquivalence)
             first second ↔
-          relation first second
+          relation first second)
 ```
 -/
 theorem FundamentalTheoremOfEquivalenceRelations
@@ -65,10 +65,36 @@ theorem FundamentalTheoremOfEquivalenceRelations
     (relationIsEquivalence : EquivalenceRelation relation) :
     ∀ first second,
       first ∈ ambient -> second ∈ ambient ->
-        EquivalenceFromPartition
+        (EquivalenceFromPartition
             (PartitionFromEquivalence ambient relation relationIsEquivalence)
             first second ↔
-          relation first second := by
-  sorry
+          relation first second) := by
+  intro first second firstInAmbient secondInAmbient
+  constructor
+  · intro sameBlock
+    rcases sameBlock with ⟨representative, firstInBlock, secondInBlock⟩
+    have firstRelatedRepresentative :
+        relation first representative.1 :=
+      ((EquivalenceClassMembershipIff
+        ambient relation representative.1 first).1 firstInBlock).2
+    have secondRelatedRepresentative :
+        relation second representative.1 :=
+      ((EquivalenceClassMembershipIff
+        ambient relation representative.1 second).1 secondInBlock).2
+    exact
+      relationIsEquivalence.2.2
+        first representative.1 second
+        firstRelatedRepresentative
+        (relationIsEquivalence.2.1
+          second representative.1 secondRelatedRepresentative)
+  · intro firstRelatedSecond
+    refine ⟨⟨first, firstInAmbient⟩, ?_, ?_⟩
+    · exact
+        (EquivalenceClassMembershipIff ambient relation first first).2
+          ⟨firstInAmbient, relationIsEquivalence.1 first⟩
+    · exact
+        (EquivalenceClassMembershipIff ambient relation first second).2
+          ⟨secondInAmbient,
+            relationIsEquivalence.2.1 first second firstRelatedSecond⟩
 
 end LRA.Relation

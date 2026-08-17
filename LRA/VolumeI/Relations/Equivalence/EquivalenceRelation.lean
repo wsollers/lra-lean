@@ -32,6 +32,10 @@ theorem IdentityRelationIsEquivalenceRelation :
 theorem IdentityRelationIsEquivalenceRelation
     {Alpha : Type u} :
     EquivalenceRelation (IdentityRelation Alpha) := by
-  sorry
+  exact
+    ⟨fun element => rfl,
+      (fun _ _ related => related.symm),
+      fun _ _ _ firstRelatedSecond secondRelatedThird =>
+        firstRelatedSecond.trans secondRelatedThird⟩
 
 end LRA.Relation

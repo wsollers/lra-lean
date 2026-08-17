@@ -98,7 +98,13 @@ theorem EquivalenceClassExists
     LRA.Identity.Exists
       (fun classSet : SetObject =>
         IsEquivalenceClassOf classSet ambient relation representative) := by
-  sorry
+  exact
+    ⟨EquivalenceClass ambient relation representative,
+      fun candidate =>
+        LRA.Set.SeparationMembership
+          ambient
+          (fun candidate : Element => relation candidate representative)
+          candidate⟩
 
 /--
 **[Theorem — EquivalenceClassUnique]**
@@ -125,7 +131,10 @@ theorem EquivalenceClassUnique
     LRA.Identity.Unique
       (fun classSet : SetObject =>
         IsEquivalenceClassOf classSet ambient relation representative) := by
-  sorry
+  intro firstClass secondClass firstIsClass secondIsClass
+  apply LRA.Set.SetExtensionality
+  intro candidate
+  exact (firstIsClass candidate).trans (secondIsClass candidate).symm
 
 /--
 **[Theorem — EquivalenceClassExistsAndUnique]**
@@ -152,7 +161,9 @@ theorem EquivalenceClassExistsAndUnique
     LRA.Identity.ExistsAndUnique
       (fun classSet : SetObject =>
         IsEquivalenceClassOf classSet ambient relation representative) := by
-  sorry
+  exact
+    ⟨EquivalenceClassExists ambient relation representative,
+      EquivalenceClassUnique ambient relation representative⟩
 
 /--
 **[Theorem — EquivalenceClassMembershipIff]**
@@ -177,7 +188,11 @@ theorem EquivalenceClassMembershipIff
     (representative candidate : Element) :
     candidate ∈ EquivalenceClass ambient relation representative ↔
       candidate ∈ ambient ∧ relation candidate representative := by
-  sorry
+  exact
+    LRA.Set.SeparationMembership
+      ambient
+      (fun candidate : Element => relation candidate representative)
+      candidate
 
 /--
 **[Theorem — RelatedRepresentativesHaveSameEquivalenceClass]**
@@ -207,7 +222,38 @@ theorem RelatedRepresentativesHaveSameEquivalenceClass
     ∀ ambient : SetObject,
       EquivalenceClass ambient relation firstRepresentative =
         EquivalenceClass ambient relation secondRepresentative := by
-  sorry
+  intro ambient
+  apply LRA.Set.SetExtensionality
+  intro candidate
+  constructor
+  · intro candidateInFirstClass
+    rcases
+      (EquivalenceClassMembershipIff
+        ambient relation firstRepresentative candidate).1
+        candidateInFirstClass with
+      ⟨candidateInAmbient, candidateRelatedFirst⟩
+    exact
+      (EquivalenceClassMembershipIff
+        ambient relation secondRepresentative candidate).2
+        ⟨candidateInAmbient,
+          relationIsEquivalence.2.2
+            candidate firstRepresentative secondRepresentative
+            candidateRelatedFirst representativesRelated⟩
+  · intro candidateInSecondClass
+    rcases
+      (EquivalenceClassMembershipIff
+        ambient relation secondRepresentative candidate).1
+        candidateInSecondClass with
+      ⟨candidateInAmbient, candidateRelatedSecond⟩
+    exact
+      (EquivalenceClassMembershipIff
+        ambient relation firstRepresentative candidate).2
+        ⟨candidateInAmbient,
+          relationIsEquivalence.2.2
+            candidate secondRepresentative firstRepresentative
+            candidateRelatedSecond
+            (relationIsEquivalence.2.1
+              firstRepresentative secondRepresentative representativesRelated)⟩
 
 end Laws
 

@@ -12,12 +12,9 @@ Quotient sets, one level up the set-theoretic tower.
 
 Three types are in play: `Element` (carrier points), `SetObject` (sets of
 carrier points), and `Collection` (sets *of sets* -- where the quotient
-lives). The old record architecture bridged the levels with an explicit
-`subsetElement` embedding; here no embedding exists because the
-collection's members simply *are* the set objects, via a second
-`Membership SetObject Collection` instance. For Enderton all three levels
-are `Set`; for `LRASet` they are `Alpha`, `LRASet Alpha`, and
-`LRASet (LRASet Alpha)`.
+lives). The collection's members are set objects, via a second
+`Membership SetObject Collection` instance. For Enderton all three levels are
+`Set`; for `LRASet` they are `Alpha`, `LRASet Alpha`, and `LRASet (LRASet Alpha)`.
 -/
 
 section QuotientSets
@@ -122,7 +119,16 @@ theorem QuotientSetExists
     LRA.Identity.Exists
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation) := by
-  sorry
+  exact
+    ⟨QuotientSet (Collection := Collection) ambient relation,
+      fun candidate =>
+        LRA.Set.SeparationMembership
+          (HasPowerset.powerset ambient : Collection)
+          (fun candidate : SetObject =>
+            ∃ representative : Element,
+              representative ∈ ambient ∧
+                candidate = EquivalenceClass ambient relation representative)
+          candidate⟩
 
 /--
 **[Theorem — QuotientSetUnique]**
@@ -146,7 +152,10 @@ theorem QuotientSetUnique
     LRA.Identity.Unique
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation) := by
-  sorry
+  intro firstQuotient secondQuotient firstIsQuotient secondIsQuotient
+  apply LRA.Set.SetExtensionality
+  intro candidate
+  exact (firstIsQuotient candidate).trans (secondIsQuotient candidate).symm
 
 /--
 **[Theorem — QuotientSetExistsAndUnique]**
@@ -171,7 +180,9 @@ theorem QuotientSetExistsAndUnique
     LRA.Identity.ExistsAndUnique
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation) := by
-  sorry
+  exact
+    ⟨QuotientSetExists ambient relation,
+      QuotientSetUnique ambient relation⟩
 
 /--
 **[Theorem — QuotientSetMembership]**
@@ -201,7 +212,14 @@ theorem QuotientSetMembership
         ∃ representative : Element,
           representative ∈ ambient ∧
             candidate = EquivalenceClass ambient relation representative := by
-  sorry
+  exact
+    LRA.Set.SeparationMembership
+      (HasPowerset.powerset ambient : Collection)
+      (fun candidate : SetObject =>
+        ∃ representative : Element,
+          representative ∈ ambient ∧
+            candidate = EquivalenceClass ambient relation representative)
+      candidate
 
 end Laws
 
@@ -228,12 +246,9 @@ def QuotientProjection
   fun element => EquivalenceClass ambient relation element
 
 /-- The canonical projection viewed as producing members of the quotient
-collection.
-
-Under the old record architecture this differed from `QuotientProjection`
-by the `subsetElement` embedding; with a typed membership tower the
-embedding is gone, so the two maps coincide definitionally -- the name is
-kept as the collection-facing reading of the same function.
+collection. With a typed membership tower, this is definitionally the same
+function as `QuotientProjection`; the name records the collection-facing
+reading.
 
 Logical form:
 
@@ -286,7 +301,9 @@ theorem QuotientProjectionWellDefined
       relation firstRepresentative secondRepresentative) :
     QuotientProjection ambient relation firstRepresentative =
       QuotientProjection ambient relation secondRepresentative := by
-  sorry
+  exact
+    RelatedRepresentativesHaveSameEquivalenceClass
+      relationIsEquivalence representativesRelated ambient
 
 /--
 **[Theorem — QuotientClassElementWellDefined]**
@@ -317,7 +334,9 @@ theorem QuotientClassElementWellDefined
       relation firstRepresentative secondRepresentative) :
     QuotientClassElement ambient relation firstRepresentative =
       QuotientClassElement ambient relation secondRepresentative := by
-  sorry
+  exact
+    QuotientProjectionWellDefined
+      relationIsEquivalence representativesRelated
 
 end WellDefined
 
