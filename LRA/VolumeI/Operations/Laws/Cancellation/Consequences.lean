@@ -1,9 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Cancellation.Definition
+import LRA.Operation.Laws.Cancellation.Consequences
 
-/-!
-Derived consequences of this concept belong here.
--/
-
-namespace LRA.Operation.Laws.Cancellation
-
-end LRA.Operation.Laws.Cancellation
+/-! Compatibility shim for the historical Cancellation consequences path. -/
