@@ -27,7 +27,8 @@ lean_lib LRAStandardizedFoundations where
     `LRA.Set.Model,
     `LRA.SetSystems,
     `LRA.Relation,
-    `LRA.Function
+    `LRA.Function,
+    `LRA.Function.SetTheoretic
   ]
 
 lean_lib LRAVolumeI where
