@@ -1,46 +1,21 @@
+import LRA.Function.Calculus.Definition
 import LRA.VolumeI.Map.Typed.Definition
 
 namespace LRA.Map.Domain
 
 open LRA.Map.Typed
+universe u v
 
-universe u v w
-
-/--
-**[Abbreviation — DomainOf]**
-
-The source type of a typed map.
-
-Logical form:
-
-```lean
+/-- Historical typed-map spelling of the declared function domain type. -/
 abbrev DomainOf {Domain : Type u} {Codomain : Type v}
-    (_map : TypedMap Domain Codomain) : Type u
-```
--/
-abbrev DomainOf {Domain : Type u} {Codomain : Type v}
-    (_map : TypedMap Domain Codomain) : Type u :=
-  Domain
+    (map : TypedMap Domain Codomain) : Type u :=
+  LRA.Function.DomainType (LRA.Function.OfTypedFunction map)
 
-/--
-An object carries an explicit domain object.
--/
+/-- Legacy adapter: an object carries an explicit domain object. -/
 class HasDomain (MapObject : Type u) (DomainObject : outParam (Type v)) where
-  domain : MapObject -> DomainObject
+  domain : MapObject → DomainObject
 
-/--
-**[Definition — Domain]**
-
-Retrieve the declared domain object of a map-like object.
-
-Logical form:
-
-```lean
-def Domain {MapObject : Type u} {DomainObject : Type v}
-    [HasDomain MapObject DomainObject]
-    (mapObject : MapObject) : DomainObject
-```
--/
+/-- Legacy adapter for retrieving the declared domain object of a map-like object. -/
 def Domain {MapObject : Type u} {DomainObject : Type v}
     [HasDomain MapObject DomainObject]
     (mapObject : MapObject) : DomainObject :=
