@@ -19,6 +19,16 @@ lean_lib LRAIdentity where
 lean_lib LRASetCore where
   roots := #[`LRA.Set]
 
+lean_lib LRAStandardizedFoundations where
+  roots := #[
+    `LRA.Set.PredicateSet,
+    `LRA.Set.ZFCSet,
+    `LRA.Set.ZFC,
+    `LRA.Set.Model,
+    `LRA.SetSystems,
+    `LRA.Relation
+  ]
+
 lean_lib LRAVolumeI where
   roots := #[`LRA.VolumeI]
 
