@@ -1,186 +1,87 @@
-import LRA.VolumeI.Set.LRASet.Instances
-import LRA.VolumeI.Set.Interface.Difference
+import LRA.Set.PredicateSet.Instances
+import LRA.Set.Interface.Difference
 
-namespace LRA.Set.LRASet
+namespace LRA.Set.PredicateSet
 
 universe u
 
 variable {Alpha : Type u}
 
-/-!
-Difference (`\`) laws for predicate sets: the backend's certificate for
-`LRA.Set.DifferenceLaws`. The universal-set difference laws are
-not missing -- they live in `Laws/Complement.lean`, with the rest of the
-family only this backend can register.
--/
-/--
-`DifferenceMonotoneLeft` exposes this formal declaration.
-
-Logical form:
-
-```lean
 theorem DifferenceMonotoneLeft :
-    ∀ A₁ A₂ B : LRASet Alpha, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
-```
--/
-
-theorem DifferenceMonotoneLeft :
-    ∀ A₁ A₂ B : LRASet Alpha, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B := by
+    ∀ A₁ A₂ B : LRA.Set.PredicateSet Alpha,
+      A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B := by
   sorry
-/--
-`DifferenceAntitoneRight` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem DifferenceAntitoneRight :
-    ∀ A B₁ B₂ : LRASet Alpha, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
-```
--/
 
 theorem DifferenceAntitoneRight :
-    ∀ A B₁ B₂ : LRASet Alpha, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁ := by
+    ∀ A B₁ B₂ : LRA.Set.PredicateSet Alpha,
+      B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁ := by
   sorry
-/--
-`DifferenceEmpty` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem DifferenceEmpty :
-    ∀ A : LRASet Alpha, A \ (∅ : LRASet Alpha) = A
-```
--/
 
 theorem DifferenceEmpty :
-    ∀ A : LRASet Alpha, A \ (∅ : LRASet Alpha) = A := by
+    ∀ A : LRA.Set.PredicateSet Alpha,
+      A \ (∅ : LRA.Set.PredicateSet Alpha) = A := by
   sorry
-/--
-`EmptyDifference` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem EmptyDifference :
-    ∀ A : LRASet Alpha, (∅ : LRASet Alpha) \ A = (∅ : LRASet Alpha)
-```
--/
 
 theorem EmptyDifference :
-    ∀ A : LRASet Alpha, (∅ : LRASet Alpha) \ A = (∅ : LRASet Alpha) := by
+    ∀ A : LRA.Set.PredicateSet Alpha,
+      (∅ : LRA.Set.PredicateSet Alpha) \ A = (∅ : LRA.Set.PredicateSet Alpha) := by
   sorry
-/--
-`DifferenceSelf` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem DifferenceSelf :
-    ∀ A : LRASet Alpha, A \ A = (∅ : LRASet Alpha)
-```
--/
 
 theorem DifferenceSelf :
-    ∀ A : LRASet Alpha, A \ A = (∅ : LRASet Alpha) := by
+    ∀ A : LRA.Set.PredicateSet Alpha,
+      A \ A = (∅ : LRA.Set.PredicateSet Alpha) := by
   sorry
-/--
-`DifferenceUnion` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem DifferenceUnion :
-    ∀ A B C : LRASet Alpha, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
-```
--/
 
 theorem DifferenceUnion :
-    ∀ A B C : LRASet Alpha, A \ (B ∪ C) = (A \ B) ∩ (A \ C) := by
+    ∀ A B C : LRA.Set.PredicateSet Alpha,
+      A \ (B ∪ C) = (A \ B) ∩ (A \ C) := by
   sorry
-/--
-`DifferenceIntersection` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem DifferenceIntersection :
-    ∀ A B C : LRASet Alpha, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
-```
--/
 
 theorem DifferenceIntersection :
-    ∀ A B C : LRASet Alpha, A \ (B ∩ C) = (A \ B) ∪ (A \ C) := by
+    ∀ A B C : LRA.Set.PredicateSet Alpha,
+      A \ (B ∩ C) = (A \ B) ∪ (A \ C) := by
   sorry
-/--
-`UnionDifferenceDistributes` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem UnionDifferenceDistributes :
-    ∀ A B C : LRASet Alpha, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
-```
--/
 
 theorem UnionDifferenceDistributes :
-    ∀ A B C : LRASet Alpha, (A ∪ B) \ C = (A \ C) ∪ (B \ C) := by
+    ∀ A B C : LRA.Set.PredicateSet Alpha,
+      (A ∪ B) \ C = (A \ C) ∪ (B \ C) := by
   sorry
-/--
-`IntersectionDifferenceDistributes` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem IntersectionDifferenceDistributes :
-    ∀ A B C : LRASet Alpha, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
-```
--/
 
 theorem IntersectionDifferenceDistributes :
-    ∀ A B C : LRASet Alpha, (A ∩ B) \ C = (A \ C) ∩ (B \ C) := by
+    ∀ A B C : LRA.Set.PredicateSet Alpha,
+      (A ∩ B) \ C = (A \ C) ∩ (B \ C) := by
   sorry
-/--
-`DifferenceSubsetLeft` exposes this formal declaration.
 
-Logical form:
-
-```lean
-theorem DifferenceSubsetLeft : ∀ A B : LRASet Alpha, A \ B ⊆ A
-```
--/
-
-theorem DifferenceSubsetLeft : ∀ A B : LRASet Alpha, A \ B ⊆ A := by
+theorem DifferenceSubsetLeft :
+    ∀ A B : LRA.Set.PredicateSet Alpha, A \ B ⊆ A := by
   sorry
-/--
-`DifferenceDisjointRight` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem DifferenceDisjointRight :
-    ∀ A B : LRASet Alpha, (A \ B) ∩ B = (∅ : LRASet Alpha)
-```
--/
 
 theorem DifferenceDisjointRight :
-    ∀ A B : LRASet Alpha, (A \ B) ∩ B = (∅ : LRASet Alpha) := by
+    ∀ A B : LRA.Set.PredicateSet Alpha,
+      (A \ B) ∩ B = (∅ : LRA.Set.PredicateSet Alpha) := by
   sorry
 
-/-- Registration: predicate sets satisfy the difference laws. Pure
-delegation to the theorems above. -/
-instance : DifferenceLaws (LRASet Alpha) where
-  DifferenceMonotoneLeft := LRA.Set.LRASet.DifferenceMonotoneLeft
-  DifferenceAntitoneRight := LRA.Set.LRASet.DifferenceAntitoneRight
-  DifferenceEmpty := LRA.Set.LRASet.DifferenceEmpty
-  EmptyDifference := LRA.Set.LRASet.EmptyDifference
-  DifferenceSelf := LRA.Set.LRASet.DifferenceSelf
-  DifferenceUnion := LRA.Set.LRASet.DifferenceUnion
-  DifferenceIntersection := LRA.Set.LRASet.DifferenceIntersection
+instance : DifferenceLaws (LRA.Set.PredicateSet Alpha) where
+  DifferenceMonotoneLeft := LRA.Set.PredicateSet.DifferenceMonotoneLeft
+  DifferenceAntitoneRight := LRA.Set.PredicateSet.DifferenceAntitoneRight
+  DifferenceEmpty := LRA.Set.PredicateSet.DifferenceEmpty
+  EmptyDifference := LRA.Set.PredicateSet.EmptyDifference
+  DifferenceSelf := LRA.Set.PredicateSet.DifferenceSelf
+  DifferenceUnion := LRA.Set.PredicateSet.DifferenceUnion
+  DifferenceIntersection := LRA.Set.PredicateSet.DifferenceIntersection
   UnionDifferenceDistributes :=
-    LRA.Set.LRASet.UnionDifferenceDistributes
+    LRA.Set.PredicateSet.UnionDifferenceDistributes
   IntersectionDifferenceDistributes :=
-    LRA.Set.LRASet.IntersectionDifferenceDistributes
-  DifferenceSubsetLeft := LRA.Set.LRASet.DifferenceSubsetLeft
-  DifferenceDisjointRight := LRA.Set.LRASet.DifferenceDisjointRight
+    LRA.Set.PredicateSet.IntersectionDifferenceDistributes
+  DifferenceSubsetLeft := LRA.Set.PredicateSet.DifferenceSubsetLeft
+  DifferenceDisjointRight := LRA.Set.PredicateSet.DifferenceDisjointRight
 
+end LRA.Set.PredicateSet
+
+namespace LRA.Set.LRASet
+export LRA.Set.PredicateSet
+  (DifferenceMonotoneLeft DifferenceAntitoneRight DifferenceEmpty
+   EmptyDifference DifferenceSelf DifferenceUnion DifferenceIntersection
+   UnionDifferenceDistributes IntersectionDifferenceDistributes
+   DifferenceSubsetLeft DifferenceDisjointRight)
 end LRA.Set.LRASet
