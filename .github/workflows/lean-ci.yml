@@ -31,7 +31,7 @@ permissions:
 
 jobs:
   build:
-    name: Logic, Identity, and standardized Set
+    name: Logic, Identity, Set, and Relation
     runs-on: ubuntu-latest
 
     steps:
@@ -101,9 +101,9 @@ jobs:
             }
             tail -n 40 /workspace/lean-build.log'
 
-      - name: Check standardized Set realizations and SetSystems
+      - name: Check standardized Set and Relation subjects
         run: |
-          rm -f lean-set-standardization.log
+          rm -f lean-standardization.log
           docker run --rm \
             -v "${{ github.workspace }}:/workspace" \
             -w /workspace \
@@ -113,18 +113,19 @@ jobs:
               LRA/Set/ZFCSet.lean \
               LRA/Set/ZFC.lean \
               LRA/Set/Model.lean \
-              LRA/SetSystems.lean; do
-                echo "=== checking $root ===" | tee -a /workspace/lean-set-standardization.log
-                lake env lean "$root" >> /workspace/lean-set-standardization.log 2>&1 || {
+              LRA/SetSystems.lean \
+              LRA/Relation.lean; do
+                echo "=== checking $root ===" | tee -a /workspace/lean-standardization.log
+                lake env lean "$root" >> /workspace/lean-standardization.log 2>&1 || {
                   status=$?
                   echo "Lean check failed for $root. Final diagnostics:"
-                  tail -n 220 /workspace/lean-set-standardization.log
+                  tail -n 220 /workspace/lean-standardization.log
                   exit $status
                 }
               done
-              tail -n 80 /workspace/lean-set-standardization.log'
+              tail -n 80 /workspace/lean-standardization.log'
 
-      - name: Report proof placeholders in standardized Set modules
+      - name: Report proof placeholders in standardized subjects
         continue-on-error: true
         run: |
           docker run --rm \
@@ -142,10 +143,12 @@ jobs:
               LRA/Set/ZFCSet/ \
               LRA/Set/Model/ \
               LRA/SetSystems/ \
+              LRA/Relation.lean \
+              LRA/Relation/ \
               --include="*.lean"; then
-              echo "::warning::sorry found in the standardized Logic/Identity/Set slice."
+              echo "::warning::sorry found in the standardized foundational slice."
             else
-              echo "No sorry in the standardized Logic/Identity/Set slice"
+              echo "No sorry in the standardized foundational slice"
             fi'
 
       - name: Upload Lean build diagnostics
@@ -155,5 +158,5 @@ jobs:
           name: lean-build-diagnostics
           path: |
             lean-build.log
-            lean-set-standardization.log
+            lean-standardization.log
           if-no-files-found: error
