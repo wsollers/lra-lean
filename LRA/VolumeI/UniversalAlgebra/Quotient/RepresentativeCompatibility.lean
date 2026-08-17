@@ -1,17 +1,16 @@
--- LRA/VolumeII/Foundations/Quotients/Compatibility.lean
--- Reusable representative-independence statements for quotient constructions.
+-- Generic representative-compatibility predicates for quotient constructions.
 
-namespace LRA.NumberSystems.Foundations.Quotients
+namespace LRA.UniversalAlgebra.Quotient
 
 /-!
-Volume II label: quotient-representative-independence
-Lean module: LRA.NumberSystems.Foundations.Quotients.Compatibility
-Blueprint label: quotient-representative-independence
-Verification status: statement-accepted-proof-pending
+Generic representative-compatibility and descent predicates for quotient
+objects.
 
-This module separates compatibility in each argument of a binary operation and
-packages the statements used to descend operations, predicates, and relations
-to quotient types.
+These definitions characterize when operations, predicates, and relations on
+representatives are independent of representative choice and therefore are
+well-defined on quotient objects. The infrastructure is generic: concrete
+quotient constructions such as integers, rationals, and reals use these
+predicates when certifying their representative-level operations and relations.
 -/
 
 /--
@@ -396,4 +395,4 @@ theorem induced_relation_exists
             second_representative := by
   sorry
 
-end LRA.NumberSystems.Foundations.Quotients
+end LRA.UniversalAlgebra.Quotient

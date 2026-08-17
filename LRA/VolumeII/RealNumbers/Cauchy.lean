@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Reals/Cauchy.lean
 -- Proof-ready construction of the reals from rational Cauchy sequences.
 
-import LRA.VolumeII.Foundations.Quotients.Compatibility
+import LRA.VolumeI.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.VolumeII.NumberSystems.Models
 
 namespace LRA.NumberSystems.RealNumbers.Cauchy
@@ -538,7 +538,7 @@ theorem representative_multiplication_is_cauchy
 
 /-- Pointwise addition is independent of the chosen representatives.
 
-Mathematical statement (Lean): `theorem representative_addition_respects_equivalence (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) : Foundations.Quotients.binary_operation_respects (representative_setoid rational_model absolute_value_data) (fun...`.
+Mathematical statement (Lean): `theorem representative_addition_respects_equivalence (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) : LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid rational_model absolute_value_data) (fun...`.
 
 *Proof status:* proof pending
 
@@ -549,7 +549,7 @@ Logical form:
 theorem representative_addition_respects_equivalence
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model) :
-    Foundations.Quotients.binary_operation_respects
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects
       (representative_setoid rational_model absolute_value_data)
       (fun first second =>
         ⟨representative_addition rational_model absolute_value_data first second,
@@ -560,7 +560,7 @@ theorem representative_addition_respects_equivalence
 theorem representative_addition_respects_equivalence
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model) :
-    Foundations.Quotients.binary_operation_respects
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects
       (representative_setoid rational_model absolute_value_data)
       (fun first second =>
         ⟨representative_addition rational_model absolute_value_data first second,
@@ -571,7 +571,7 @@ theorem representative_addition_respects_equivalence
 
 /-- Pointwise multiplication is independent of the chosen representatives.
 
-Mathematical statement (Lean): `theorem representative_multiplication_respects_equivalence (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) : Foundations.Quotients.binary_operation_respects (representative_setoid rational_model absolute_value_data...`.
+Mathematical statement (Lean): `theorem representative_multiplication_respects_equivalence (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) : LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid rational_model absolute_value_data...`.
 
 *Proof status:* proof pending
 
@@ -582,7 +582,7 @@ Logical form:
 theorem representative_multiplication_respects_equivalence
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model) :
-    Foundations.Quotients.binary_operation_respects
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects
       (representative_setoid rational_model absolute_value_data)
       (fun first second =>
         ⟨representative_multiplication rational_model absolute_value_data first second,
@@ -593,7 +593,7 @@ theorem representative_multiplication_respects_equivalence
 theorem representative_multiplication_respects_equivalence
     (rational_model : RationalModel)
     (absolute_value_data : RationalMetricData rational_model) :
-    Foundations.Quotients.binary_operation_respects
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects
       (representative_setoid rational_model absolute_value_data)
       (fun first second =>
         ⟨representative_multiplication rational_model absolute_value_data first second,

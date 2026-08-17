@@ -1,4 +1,3 @@
-import LRA.VolumeII.Foundations
 import LRA.VolumeII.NumberSystems
 import LRA.VolumeII.PeanoSystems
 import LRA.VolumeII.NaturalNumbers

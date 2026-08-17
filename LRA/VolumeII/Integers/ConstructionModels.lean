@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Integers/ConstructionModels.lean
 -- Comparison models for alternate integer constructions.
 
-import LRA.VolumeII.Foundations.Quotients.Compatibility
+import LRA.VolumeI.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeII.NaturalNumbers
 
@@ -213,7 +213,7 @@ theorem representative_addition_respects_equivalence_left
       FormalDifference WholeCarrier →
       FormalDifference WholeCarrier →
       FormalDifference WholeCarrier) :
-    Foundations.Quotients.binary_operation_respects_left
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects_left
       setoid representative_addition
 ```
 -/
@@ -224,7 +224,7 @@ theorem representative_addition_respects_equivalence_left
       FormalDifference WholeCarrier →
       FormalDifference WholeCarrier →
       FormalDifference WholeCarrier) :
-    Foundations.Quotients.binary_operation_respects_left
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects_left
       setoid representative_addition := by
   sorry
 
@@ -340,7 +340,7 @@ def is_positive
 
 /-- **[Proposition — Mendelson Positivity Is Representative-Independent]**
 
-Mathematical statement (Lean): `theorem positivity_respects_equivalence {NaturalCarrier : Type} (setoid : Setoid (PositivePair NaturalCarrier)) (strict_order : NaturalCarrier → NaturalCarrier → Prop) : Foundations.Quotients.predicate_respects setoid (is_positive strict_order)`.
+Mathematical statement (Lean): `theorem positivity_respects_equivalence {NaturalCarrier : Type} (setoid : Setoid (PositivePair NaturalCarrier)) (strict_order : NaturalCarrier → NaturalCarrier → Prop) : LRA.UniversalAlgebra.Quotient.predicate_respects setoid (is_positive strict_order)`.
 
 *Proof status:* proof pending
 
@@ -352,7 +352,7 @@ theorem positivity_respects_equivalence
     {NaturalCarrier : Type}
     (setoid : Setoid (PositivePair NaturalCarrier))
     (strict_order : NaturalCarrier → NaturalCarrier → Prop) :
-    Foundations.Quotients.predicate_respects
+    LRA.UniversalAlgebra.Quotient.predicate_respects
       setoid
       (is_positive strict_order)
 ```
@@ -361,7 +361,7 @@ theorem positivity_respects_equivalence
     {NaturalCarrier : Type}
     (setoid : Setoid (PositivePair NaturalCarrier))
     (strict_order : NaturalCarrier → NaturalCarrier → Prop) :
-    Foundations.Quotients.predicate_respects
+    LRA.UniversalAlgebra.Quotient.predicate_respects
       setoid
       (is_positive strict_order) := by
   sorry

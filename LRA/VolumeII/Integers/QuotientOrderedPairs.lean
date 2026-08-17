@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Integers/QuotientOrderedPairs.lean
 -- Proof-ready construction of integers from quotient ordered pairs.
 
-import LRA.VolumeII.Foundations.Quotients.Compatibility
+import LRA.VolumeI.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.VolumeI.Set
 import LRA.VolumeI.UniversalAlgebra
 namespace LRA.NumberSystems.Integers.QuotientOrderedPairs
@@ -337,7 +337,7 @@ def representative_nonstrict_order
 
 /-- Addition respects formal-difference equality.
 
-Mathematical statement (Lean): `theorem representative_addition_respects_equivalence (whole_data : WholeNumberArithmeticForQuotientPairs) : Foundations.Quotients.binary_operation_respects (representative_setoid whole_data) (representative_addition whole_data)`.
+Mathematical statement (Lean): `theorem representative_addition_respects_equivalence (whole_data : WholeNumberArithmeticForQuotientPairs) : LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid whole_data) (representative_addition whole_data)`.
 
 *Proof status:* proof pending
 
@@ -347,14 +347,14 @@ Logical form:
 ```lean
 theorem representative_addition_respects_equivalence
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
-    Foundations.Quotients.binary_operation_respects
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects
       (representative_setoid whole_data)
       (representative_addition whole_data)
 ```
 -/
 theorem representative_addition_respects_equivalence
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
-    Foundations.Quotients.binary_operation_respects
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects
       (representative_setoid whole_data)
       (representative_addition whole_data) := by
   sorry
@@ -362,7 +362,7 @@ theorem representative_addition_respects_equivalence
 
 /-- Negation respects formal-difference equality.
 
-Mathematical statement (Lean): `theorem representative_negation_respects_equivalence (whole_data : WholeNumberArithmeticForQuotientPairs) : Foundations.Quotients.unary_operation_respects (representative_setoid whole_data) (representative_negation whole_data)`.
+Mathematical statement (Lean): `theorem representative_negation_respects_equivalence (whole_data : WholeNumberArithmeticForQuotientPairs) : LRA.UniversalAlgebra.Quotient.unary_operation_respects (representative_setoid whole_data) (representative_negation whole_data)`.
 
 *Proof status:* proof pending
 
@@ -372,14 +372,14 @@ Logical form:
 ```lean
 theorem representative_negation_respects_equivalence
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
-    Foundations.Quotients.unary_operation_respects
+    LRA.UniversalAlgebra.Quotient.unary_operation_respects
       (representative_setoid whole_data)
       (representative_negation whole_data)
 ```
 -/
 theorem representative_negation_respects_equivalence
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
-    Foundations.Quotients.unary_operation_respects
+    LRA.UniversalAlgebra.Quotient.unary_operation_respects
       (representative_setoid whole_data)
       (representative_negation whole_data) := by
   sorry
@@ -387,7 +387,7 @@ theorem representative_negation_respects_equivalence
 
 /-- Multiplication respects formal-difference equality.
 
-Mathematical statement (Lean): `theorem representative_multiplication_respects_equivalence (whole_data : WholeNumberArithmeticForQuotientPairs) : Foundations.Quotients.binary_operation_respects (representative_setoid whole_data) (representative_multiplication whole_data)`.
+Mathematical statement (Lean): `theorem representative_multiplication_respects_equivalence (whole_data : WholeNumberArithmeticForQuotientPairs) : LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid whole_data) (representative_multiplication whole_data)`.
 
 *Proof status:* proof pending
 
@@ -397,14 +397,14 @@ Logical form:
 ```lean
 theorem representative_multiplication_respects_equivalence
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
-    Foundations.Quotients.binary_operation_respects
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects
       (representative_setoid whole_data)
       (representative_multiplication whole_data)
 ```
 -/
 theorem representative_multiplication_respects_equivalence
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
-    Foundations.Quotients.binary_operation_respects
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects
       (representative_setoid whole_data)
       (representative_multiplication whole_data) := by
   sorry
@@ -412,7 +412,7 @@ theorem representative_multiplication_respects_equivalence
 
 /-- Order is representative-independent.
 
-Mathematical statement (Lean): `theorem representative_order_respects_equivalence (whole_data : WholeNumberArithmeticForQuotientPairs) : Foundations.Quotients.relation_respects (representative_setoid whole_data) (representative_nonstrict_order whole_data)`.
+Mathematical statement (Lean): `theorem representative_order_respects_equivalence (whole_data : WholeNumberArithmeticForQuotientPairs) : LRA.UniversalAlgebra.Quotient.relation_respects (representative_setoid whole_data) (representative_nonstrict_order whole_data)`.
 
 *Proof status:* proof pending
 
@@ -422,14 +422,14 @@ Logical form:
 ```lean
 theorem representative_order_respects_equivalence
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
-    Foundations.Quotients.relation_respects
+    LRA.UniversalAlgebra.Quotient.relation_respects
       (representative_setoid whole_data)
       (representative_nonstrict_order whole_data)
 ```
 -/
 theorem representative_order_respects_equivalence
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
-    Foundations.Quotients.relation_respects
+    LRA.UniversalAlgebra.Quotient.relation_respects
       (representative_setoid whole_data)
       (representative_nonstrict_order whole_data) := by
   sorry
@@ -540,7 +540,7 @@ theorem quotient_addition_exists
       ∀ first second,
         addition (Quotient.mk _ first) (Quotient.mk _ second) =
           Quotient.mk _ (representative_addition whole_data first second) := by
-  exact Foundations.Quotients.induced_binary_operation_exists
+  exact LRA.UniversalAlgebra.Quotient.induced_binary_operation_exists
     (representative_setoid whole_data)
     (representative_addition whole_data)
     (representative_addition_respects_equivalence whole_data)
@@ -568,7 +568,7 @@ theorem quotient_multiplication_exists
       ∀ first second,
         multiplication (Quotient.mk _ first) (Quotient.mk _ second) =
           Quotient.mk _ (representative_multiplication whole_data first second) := by
-  exact Foundations.Quotients.induced_binary_operation_exists
+  exact LRA.UniversalAlgebra.Quotient.induced_binary_operation_exists
     (representative_setoid whole_data)
     (representative_multiplication whole_data)
     (representative_multiplication_respects_equivalence whole_data)
@@ -596,7 +596,7 @@ theorem quotient_order_exists
       ∀ first second,
         nonstrict_order (Quotient.mk _ first) (Quotient.mk _ second) ↔
           representative_nonstrict_order whole_data first second := by
-  exact Foundations.Quotients.induced_relation_exists
+  exact LRA.UniversalAlgebra.Quotient.induced_relation_exists
     (representative_setoid whole_data)
     (representative_nonstrict_order whole_data)
     (representative_order_respects_equivalence whole_data)

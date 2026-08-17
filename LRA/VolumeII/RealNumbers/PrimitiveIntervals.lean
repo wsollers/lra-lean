@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Reals/PrimitiveIntervals.lean
 -- Primitive construction of the reals from nested rational intervals.
 
-import LRA.VolumeII.Foundations.Quotients.Compatibility
+import LRA.VolumeI.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeII.RealNumbers.Cauchy
 
@@ -860,7 +860,7 @@ noncomputable def representative_multiplication
 
 /-- Theorem 3.5: representative operations respect persistent overlap.
 
-Mathematical statement (Lean): `theorem representative_operations_respect_equivalence : Foundations.Quotients.binary_operation_respects (representative_setoid rational_model) (representative_addition rational_model) ∧ Foundations.Quotients.unary_operation_respects (representative_setoid r...`.
+Mathematical statement (Lean): `theorem representative_operations_respect_equivalence : LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid rational_model) (representative_addition rational_model) ∧ LRA.UniversalAlgebra.Quotient.unary_operation_respects (representative_setoid r...`.
 
 *Proof status:* proof pending
 
@@ -869,25 +869,25 @@ Logical form:
 
 ```lean
 theorem representative_operations_respect_equivalence :
-    Foundations.Quotients.binary_operation_respects
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects
         (representative_setoid rational_model)
         (representative_addition rational_model) ∧
-    Foundations.Quotients.unary_operation_respects
+    LRA.UniversalAlgebra.Quotient.unary_operation_respects
         (representative_setoid rational_model)
         (representative_negation rational_model) ∧
-    Foundations.Quotients.binary_operation_respects
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects
         (representative_setoid rational_model)
         (representative_multiplication rational_model)
 ```
 -/
 theorem representative_operations_respect_equivalence :
-    Foundations.Quotients.binary_operation_respects
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects
         (representative_setoid rational_model)
         (representative_addition rational_model) ∧
-    Foundations.Quotients.unary_operation_respects
+    LRA.UniversalAlgebra.Quotient.unary_operation_respects
         (representative_setoid rational_model)
         (representative_negation rational_model) ∧
-    Foundations.Quotients.binary_operation_respects
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects
         (representative_setoid rational_model)
         (representative_multiplication rational_model) := by
   sorry
@@ -904,7 +904,7 @@ Logical form:
 noncomputable def addition :
     Carrier rational_model → Carrier rational_model → Carrier rational_model :=
   Classical.choose
-    (Foundations.Quotients.induced_binary_operation_exists
+    (LRA.UniversalAlgebra.Quotient.induced_binary_operation_exists
       (representative_setoid rational_model)
       (representative_addition rational_model)
       (representative_operations_respect_equivalence rational_model).1)
@@ -913,7 +913,7 @@ noncomputable def addition :
 noncomputable def addition :
     Carrier rational_model → Carrier rational_model → Carrier rational_model :=
   Classical.choose
-    (Foundations.Quotients.induced_binary_operation_exists
+    (LRA.UniversalAlgebra.Quotient.induced_binary_operation_exists
       (representative_setoid rational_model)
       (representative_addition rational_model)
       (representative_operations_respect_equivalence rational_model).1)
@@ -975,7 +975,7 @@ Logical form:
 noncomputable def multiplication :
     Carrier rational_model → Carrier rational_model → Carrier rational_model :=
   Classical.choose
-    (Foundations.Quotients.induced_binary_operation_exists
+    (LRA.UniversalAlgebra.Quotient.induced_binary_operation_exists
       (representative_setoid rational_model)
       (representative_multiplication rational_model)
       (representative_operations_respect_equivalence rational_model).2.2)
@@ -984,7 +984,7 @@ noncomputable def multiplication :
 noncomputable def multiplication :
     Carrier rational_model → Carrier rational_model → Carrier rational_model :=
   Classical.choose
-    (Foundations.Quotients.induced_binary_operation_exists
+    (LRA.UniversalAlgebra.Quotient.induced_binary_operation_exists
       (representative_setoid rational_model)
       (representative_multiplication rational_model)
       (representative_operations_respect_equivalence rational_model).2.2)
@@ -1048,7 +1048,7 @@ def representative_strict_order
 
 /-- Theorem 4.2: eventual separation is representative-independent.
 
-Mathematical statement (Lean): `theorem representative_strict_order_respects_equivalence : Foundations.Quotients.relation_respects (representative_setoid rational_model) (representative_strict_order rational_model)`.
+Mathematical statement (Lean): `theorem representative_strict_order_respects_equivalence : LRA.UniversalAlgebra.Quotient.relation_respects (representative_setoid rational_model) (representative_strict_order rational_model)`.
 
 *Proof status:* proof pending
 
@@ -1057,13 +1057,13 @@ Logical form:
 
 ```lean
 theorem representative_strict_order_respects_equivalence :
-    Foundations.Quotients.relation_respects
+    LRA.UniversalAlgebra.Quotient.relation_respects
       (representative_setoid rational_model)
       (representative_strict_order rational_model)
 ```
 -/
 theorem representative_strict_order_respects_equivalence :
-    Foundations.Quotients.relation_respects
+    LRA.UniversalAlgebra.Quotient.relation_respects
       (representative_setoid rational_model)
       (representative_strict_order rational_model) := by
   sorry
@@ -1080,7 +1080,7 @@ Logical form:
 noncomputable def strict_order :
     Carrier rational_model → Carrier rational_model → Prop :=
   Classical.choose
-    (Foundations.Quotients.induced_relation_exists
+    (LRA.UniversalAlgebra.Quotient.induced_relation_exists
       (representative_setoid rational_model)
       (representative_strict_order rational_model)
       (representative_strict_order_respects_equivalence rational_model))
@@ -1089,7 +1089,7 @@ noncomputable def strict_order :
 noncomputable def strict_order :
     Carrier rational_model → Carrier rational_model → Prop :=
   Classical.choose
-    (Foundations.Quotients.induced_relation_exists
+    (LRA.UniversalAlgebra.Quotient.induced_relation_exists
       (representative_setoid rational_model)
       (representative_strict_order rational_model)
       (representative_strict_order_respects_equivalence rational_model))

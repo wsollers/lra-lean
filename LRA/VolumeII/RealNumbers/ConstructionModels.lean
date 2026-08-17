@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Reals/ConstructionModels.lean
 -- Comparison models for alternate real constructions.
 
-import LRA.VolumeII.Foundations.Quotients.Compatibility
+import LRA.VolumeI.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeII.RationalNumbers.RationalQuotientFractions
 
@@ -553,7 +553,7 @@ theorem representative_multiplication_respects_equivalence
       IntervalSequenceCarrier →
       IntervalSequenceCarrier →
       IntervalSequenceCarrier) :
-    Foundations.Quotients.binary_operation_respects
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects
       setoid representative_multiplication
 ```
 -/
@@ -564,7 +564,7 @@ theorem representative_multiplication_respects_equivalence
       IntervalSequenceCarrier →
       IntervalSequenceCarrier →
       IntervalSequenceCarrier) :
-    Foundations.Quotients.binary_operation_respects
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects
       setoid representative_multiplication := by
   sorry
 

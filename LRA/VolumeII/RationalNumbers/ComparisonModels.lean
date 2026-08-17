@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Rationals/ComparisonModels.lean
 -- Comparison models for alternate rational constructions.
 
-import LRA.VolumeII.Foundations.Quotients.Compatibility
+import LRA.VolumeI.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeII.Integers.ConstructionModels
 
@@ -158,7 +158,7 @@ theorem equivalent_is_equivalence_relation
 
 /-- **[Lemma — Rational Quotient-Fractions Addition Respects Equivalence]**
 
-Mathematical statement (Lean): `theorem representative_addition_respects_equivalence {RepresentativeCarrier : Type} (setoid : Setoid RepresentativeCarrier) (representative_addition : RepresentativeCarrier → RepresentativeCarrier → RepresentativeCarrier) : Foundations.Quotients.binary_oper...`.
+Mathematical statement (Lean): `theorem representative_addition_respects_equivalence {RepresentativeCarrier : Type} (setoid : Setoid RepresentativeCarrier) (representative_addition : RepresentativeCarrier → RepresentativeCarrier → RepresentativeCarrier) : LRA.UniversalAlgebra.Quotient.binary_oper...`.
 
 *Proof status:* proof pending
 
@@ -173,7 +173,7 @@ theorem representative_addition_respects_equivalence
       RepresentativeCarrier →
       RepresentativeCarrier →
       RepresentativeCarrier) :
-    Foundations.Quotients.binary_operation_respects
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects
       setoid representative_addition
 ```
 -/
@@ -184,14 +184,14 @@ theorem representative_addition_respects_equivalence
       RepresentativeCarrier →
       RepresentativeCarrier →
       RepresentativeCarrier) :
-    Foundations.Quotients.binary_operation_respects
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects
       setoid representative_addition := by
   sorry
 
 
 /-- **[Lemma — Rational Quotient-Fractions Multiplication Respects Equivalence]**
 
-Mathematical statement (Lean): `theorem representative_multiplication_respects_equivalence {RepresentativeCarrier : Type} (setoid : Setoid RepresentativeCarrier) (representative_multiplication : RepresentativeCarrier → RepresentativeCarrier → RepresentativeCarrier) : Foundations.Quotients...`.
+Mathematical statement (Lean): `theorem representative_multiplication_respects_equivalence {RepresentativeCarrier : Type} (setoid : Setoid RepresentativeCarrier) (representative_multiplication : RepresentativeCarrier → RepresentativeCarrier → RepresentativeCarrier) : LRA.UniversalAlgebra.Quotient...`.
 
 *Proof status:* proof pending
 
@@ -206,7 +206,7 @@ theorem representative_multiplication_respects_equivalence
       RepresentativeCarrier →
       RepresentativeCarrier →
       RepresentativeCarrier) :
-    Foundations.Quotients.binary_operation_respects
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects
       setoid representative_multiplication
 ```
 -/
@@ -217,7 +217,7 @@ theorem representative_multiplication_respects_equivalence
       RepresentativeCarrier →
       RepresentativeCarrier →
       RepresentativeCarrier) :
-    Foundations.Quotients.binary_operation_respects
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects
       setoid representative_multiplication := by
   sorry
 
