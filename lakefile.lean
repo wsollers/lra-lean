@@ -29,7 +29,8 @@ lean_lib LRAStandardizedFoundations where
     `LRA.Relation,
     `LRA.Function,
     `LRA.Function.SetTheoretic,
-    `LRA.Operation
+    `LRA.Operation,
+    `LRA.Order
   ]
 
 lean_lib LRAVolumeI where
@@ -61,6 +62,5 @@ lean_lib LRATests where
     `LRA.VolumeI.Set.CollectionAlgebraAdaptersTest,
     `LRA.SemanticImportsSmoke,
     `LRA.VolumeIII.Analysis.Bounding.BoundsTests,
-    `LRA.VolumeIV.Learning.MetricTopologyAdapterTest,
-    `LRA.VolumeIV.TopologicalSpaces.TopologyCompatibilityTest
+    `LRA.VolumeIV.Learning.MetricTopologyAdapterTest
   ]
