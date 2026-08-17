@@ -1,6 +1,6 @@
-import LRA.VolumeI.UniversalAlgebra.Models.Homomorphism
+import LRA.VolumeI.UniversalAlgebra.Homomorphism.Definition
 
-namespace LRA.UniversalAlgebra.Models
+namespace LRA.UniversalAlgebra
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
@@ -9,7 +9,7 @@ universe u
 
 /-!
 Volume I label: universal-algebra-quotient
-Lean module: LRA.UniversalAlgebra.Models.QuotientStructure
+Lean module: LRA.UniversalAlgebra.QuotientStructure
 Verification status: definitions checked; projection-homomorphism
 proof pending
 
@@ -107,4 +107,4 @@ theorem quotientProjectionIsHomomorphism {S : Signature}
       ∀ element, projection.map element = Quot.mk _ element := by
   sorry
 
-end LRA.UniversalAlgebra.Models
+end LRA.UniversalAlgebra

@@ -1,6 +1,6 @@
-import LRA.VolumeI.UniversalAlgebra.Models.Embedding
+import LRA.VolumeI.UniversalAlgebra.Embedding.Definition
 
-namespace LRA.UniversalAlgebra.Models
+namespace LRA.UniversalAlgebra
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
@@ -9,7 +9,7 @@ universe u v
 
 /-!
 Volume I label: universal-algebra-isomorphism
-Lean module: LRA.UniversalAlgebra.Models.Isomorphism
+Lean module: LRA.UniversalAlgebra.Isomorphism
 Verification status: definitions checked; inverse-homomorphism proof
 pending
 
@@ -78,4 +78,4 @@ theorem isomorphic_symm {S : Signature}
     Isomorphic M N → Isomorphic N M := by
   sorry
 
-end LRA.UniversalAlgebra.Models
+end LRA.UniversalAlgebra

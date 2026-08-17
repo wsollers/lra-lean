@@ -1,8 +1,8 @@
-import LRA.VolumeI.UniversalAlgebra.Models.KernelRelation
-import LRA.VolumeI.UniversalAlgebra.Models.QuotientStructure
-import LRA.VolumeI.UniversalAlgebra.Models.Isomorphism
+import LRA.VolumeI.UniversalAlgebra.KernelCongruence.KernelRelation.Definition
+import LRA.VolumeI.UniversalAlgebra.Quotient.Definition
+import LRA.VolumeI.UniversalAlgebra.Isomorphism.Definition
 
-namespace LRA.UniversalAlgebra.Models
+namespace LRA.UniversalAlgebra
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
@@ -11,7 +11,7 @@ universe u v
 
 /-!
 Volume I label: universal-algebra-kernel-congruence
-Lean module: LRA.UniversalAlgebra.Models.KernelCongruence
+Lean module: LRA.UniversalAlgebra.KernelCongruence
 Verification status: kernel congruence constructed (no sorry); first
 isomorphism theorem pending
 
@@ -76,4 +76,4 @@ theorem firstIsomorphismTheorem {S : Signature}
     Isomorphic (quotientModel (kernelCongruence homomorphism)) N := by
   sorry
 
-end LRA.UniversalAlgebra.Models
+end LRA.UniversalAlgebra

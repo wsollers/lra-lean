@@ -1,6 +1,6 @@
-import LRA.VolumeI.UniversalAlgebra.Models.Embedding
+import LRA.VolumeI.UniversalAlgebra.Embedding.Definition
 
-namespace LRA.UniversalAlgebra.Models
+namespace LRA.UniversalAlgebra
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
@@ -9,7 +9,7 @@ universe u
 
 /-!
 Volume I label: universal-algebra-substructure
-Lean module: LRA.UniversalAlgebra.Models.Substructure
+Lean module: LRA.UniversalAlgebra.Substructure
 Verification status: checked definitions (induced model is fully
 constructed, no sorry)
 
@@ -126,4 +126,4 @@ def Subuniverse.inclusion {S : Signature} {M : Model.{u} S}
   injective := fun _ _ equality => Subtype.ext equality
   reflectsRelation := fun _ _ holds => holds
 
-end LRA.UniversalAlgebra.Models
+end LRA.UniversalAlgebra

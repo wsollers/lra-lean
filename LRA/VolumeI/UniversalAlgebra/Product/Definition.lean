@@ -1,6 +1,6 @@
-import LRA.VolumeI.UniversalAlgebra.Models.Homomorphism
+import LRA.VolumeI.UniversalAlgebra.Homomorphism.Definition
 
-namespace LRA.UniversalAlgebra.Models
+namespace LRA.UniversalAlgebra
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
@@ -9,7 +9,7 @@ universe u v w
 
 /-!
 Volume I label: universal-algebra-product
-Lean module: LRA.UniversalAlgebra.Models.ProductStructure
+Lean module: LRA.UniversalAlgebra.ProductStructure
 Verification status: checked definitions (no sorry)
 
 Products of algebras, binary and indexed, with everything computed
@@ -129,4 +129,4 @@ def productSecondProjection {S : Signature}
   preservesConstant := fun _ => rfl
   preservesRelation := fun _ _ holds => holds.2
 
-end LRA.UniversalAlgebra.Models
+end LRA.UniversalAlgebra

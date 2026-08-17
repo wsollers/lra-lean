@@ -1,7 +1,7 @@
-import LRA.VolumeI.UniversalAlgebra.Models.Homomorphism
+import LRA.VolumeI.UniversalAlgebra.Homomorphism.Definition
 import LRA.VolumeI.Relations.Equivalence
 
-namespace LRA.UniversalAlgebra.Models
+namespace LRA.UniversalAlgebra
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
@@ -10,7 +10,7 @@ universe u v
 
 /-!
 Volume I label: universal-algebra-kernel-relation
-Lean module: LRA.UniversalAlgebra.Models.KernelRelation
+Lean module: LRA.UniversalAlgebra.KernelRelation
 Verification status: checked (no sorry)
 
 The kernel of a homomorphism: two elements are related when the
@@ -55,4 +55,4 @@ theorem kernelRelationIsEquivalence {S : Signature}
     Equivalence (kernelRelation homomorphism) :=
   ⟨fun _ => rfl, Eq.symm, Eq.trans⟩
 
-end LRA.UniversalAlgebra.Models
+end LRA.UniversalAlgebra

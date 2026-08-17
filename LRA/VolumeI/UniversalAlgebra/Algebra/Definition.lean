@@ -3,7 +3,7 @@ import LRA.VolumeI.Logic.Model.Model
 import LRA.VolumeI.Logic.Syntax.Term
 import LRA.VolumeI.Logic.Semantics.TermEvaluation
 
-namespace LRA.UniversalAlgebra.Models
+namespace LRA.UniversalAlgebra
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
@@ -12,7 +12,7 @@ universe u
 
 /-!
 Volume I label: universal-algebra-interpretations
-Lean module: LRA.UniversalAlgebra.Models.Interpretations
+Lean module: LRA.UniversalAlgebra.Interpretations
 Verification status: checked definitions
 
 Universal algebra begins here as a *reading* of the Logic chapter: an
@@ -127,4 +127,4 @@ theorem termAlgebraEvaluatesToItself
       funext i
       exact ih i
 
-end LRA.UniversalAlgebra.Models
+end LRA.UniversalAlgebra

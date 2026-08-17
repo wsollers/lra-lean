@@ -1,7 +1,7 @@
-import LRA.VolumeI.UniversalAlgebra.Models.Interpretations
+import LRA.VolumeI.UniversalAlgebra.Algebra.Definition
 import Mathlib.Order.SetNotation
 
-namespace LRA.UniversalAlgebra.Models
+namespace LRA.UniversalAlgebra
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
@@ -10,7 +10,7 @@ universe u
 
 /-!
 Volume I label: universal-algebra-satisfaction
-Lean module: LRA.UniversalAlgebra.Models.Satisfaction
+Lean module: LRA.UniversalAlgebra.Satisfaction
 Verification status: checked definitions
 
 Equational logic as the fragment of first-order logic the algebra
@@ -129,4 +129,4 @@ theorem modelsOfEquationalTheoryIsVariety {S : Signature}
     IsVariety (ModelsOfEquationalTheory.{u} theory) :=
   ⟨theory, rfl⟩
 
-end LRA.UniversalAlgebra.Models
+end LRA.UniversalAlgebra

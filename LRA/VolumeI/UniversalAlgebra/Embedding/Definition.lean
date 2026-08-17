@@ -1,6 +1,6 @@
-import LRA.VolumeI.UniversalAlgebra.Models.Homomorphism
+import LRA.VolumeI.UniversalAlgebra.Homomorphism.Definition
 
-namespace LRA.UniversalAlgebra.Models
+namespace LRA.UniversalAlgebra
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
@@ -9,7 +9,7 @@ universe u v
 
 /-!
 Volume I label: universal-algebra-embedding
-Lean module: LRA.UniversalAlgebra.Models.Embedding
+Lean module: LRA.UniversalAlgebra.Embedding
 Verification status: checked definitions
 
 An embedding of algebras: an injective homomorphism that also
@@ -62,4 +62,4 @@ def Embedding.id {S : Signature} (M : Model.{u} S) : Embedding M M where
   injective := fun _ _ equality => equality
   reflectsRelation := fun _ _ holds => holds
 
-end LRA.UniversalAlgebra.Models
+end LRA.UniversalAlgebra

@@ -1,6 +1,6 @@
-import LRA.VolumeI.UniversalAlgebra.Models.Satisfaction
+import LRA.VolumeI.UniversalAlgebra.Satisfaction.Definition
 
-namespace LRA.UniversalAlgebra.Models
+namespace LRA.UniversalAlgebra
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
@@ -9,7 +9,7 @@ universe u v
 
 /-!
 Volume I label: universal-algebra-homomorphism
-Lean module: LRA.UniversalAlgebra.Models.Homomorphism
+Lean module: LRA.UniversalAlgebra.Homomorphism
 Verification status: definitions checked; universal-property
 uniqueness and equation-transport proofs pending
 
@@ -224,4 +224,4 @@ theorem equationTransportsAlongSurjection {S : Signature}
     SatisfiesEquation N equation := by
   sorry
 
-end LRA.UniversalAlgebra.Models
+end LRA.UniversalAlgebra
