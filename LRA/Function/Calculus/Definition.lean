@@ -45,6 +45,20 @@ abbrev FiberClass {Domain : Type u} {Codomain : Type v}
     (function : RelationalFunction Domain Codomain) (output : Codomain) : SetClass Domain :=
   LRA.Relation.FiberClass function.graph output
 
+/-- The kernel relation identifies inputs having a common function output. -/
+def KernelRelation {Domain : Type u} {Codomain : Type v}
+    (function : RelationalFunction Domain Codomain) :
+    LRA.Relation.Endorelation Domain :=
+  fun left right =>
+    ∃ output, function.graph left output ∧ function.graph right output
+
+/-- A source class is saturated when it contains every kernel-equivalent input. -/
+def SaturatedBy {Domain : Type u} {Codomain : Type v}
+    (subset : SetClass Domain)
+    (function : RelationalFunction Domain Codomain) : Prop :=
+  ∀ input fiberMate,
+    subset input → KernelRelation function input fiberMate → subset fiberMate
+
 /-- A function maps a source class into a target class. -/
 def MapsIntoClass {Domain : Type u} {Codomain : Type v}
     (function : RelationalFunction Domain Codomain)
