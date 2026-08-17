@@ -94,4 +94,17 @@ abbrev SetTheoreticMapTriple := SetTheoreticFunctionTriple
 abbrev IsSetTheoreticMap := IsSetTheoreticFunction
 abbrev SetTheoreticMap := SetTheoreticFunction
 
+/-- Historical accessor for the defining function condition. -/
+abbrev SetTheoreticMap.isMap
+    {DomainElement CodomainElement Pair : Type u}
+    {DomainObject : Type v} {CodomainObject : Type w}
+    {GraphObject : Type x}
+    [HasPairing DomainElement CodomainElement Pair]
+    [Membership DomainElement DomainObject]
+    [Membership CodomainElement CodomainObject]
+    [Membership Pair GraphObject]
+    (setMap : SetTheoreticMap DomainElement CodomainElement Pair
+      DomainObject CodomainObject GraphObject) :=
+  setMap.isFunction
+
 end LRA.Function.SetTheoretic
