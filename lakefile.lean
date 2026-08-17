@@ -6,6 +6,7 @@ package LRA where
 require mathlib from git
   "https://github.com/leanprover-community/mathlib4" @ "v4.32.1"
 
+@[default_target]
 lean_lib LRA where
   roots := #[`LRA]
 
