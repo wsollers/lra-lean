@@ -1,9 +1,9 @@
--- LRA/VolumeI/Set/Interface/RelationLaws.lean
+-- LRA/Set/Interface/RelationLaws.lean
 -- The theorem surface for relations-as-sets. Statements here; proofs are
 -- the learner's.
 
-import LRA.VolumeI.Set.Interface.RelationSets
-import LRA.VolumeI.Set.Interface.Membership
+import LRA.Set.Interface.RelationSets
+import LRA.Set.Interface.Membership
 
 namespace LRA.Set
 
