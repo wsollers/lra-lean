@@ -1,122 +1,53 @@
 import LRA.Set.ZFCSet.Instances
 import LRA.Set.Interface.Union
 
-namespace LRA.Set.Enderton
+namespace LRA.Set.ZFCSet
 
-/-!
-Union laws for Enderton sets: the backend's certificate for
-`LRA.Set.UnionLaws`.
-
-Each theorem matches its `UnionLaws` field in name and `∀`-quantified
-shape exactly, so the instance at the bottom is a pure delegation. Once
-the `sorry`s are discharged, every generic call
-(`LRA.Set.UnionCommutative A B` with `A B : Set`) works with no
-further wiring -- the instance *is* the wiring.
-
-`SubsetIffUnionEqRight` is here, not in `Laws/Subset.lean`, mirroring
-the interface's placement: a law lives with the operation it
-characterizes.
--/
-/--
-`UnionCommutative` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem UnionCommutative : ∀ A B : Set, A ∪ B = B ∪ A
-```
--/
+/-! Union-law certificate for the concrete ZFCSet backend. -/
 
 theorem UnionCommutative : ∀ A B : Set, A ∪ B = B ∪ A := by
   sorry
-/--
-`UnionAssociative` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem UnionAssociative :
-    ∀ A B C : Set, (A ∪ B) ∪ C = A ∪ (B ∪ C)
-```
--/
 
 theorem UnionAssociative :
     ∀ A B C : Set, (A ∪ B) ∪ C = A ∪ (B ∪ C) := by
   sorry
-/--
-`EmptyUnion` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem EmptyUnion : ∀ A : Set, (∅ : Set) ∪ A = A
-```
--/
 
 theorem EmptyUnion : ∀ A : Set, (∅ : Set) ∪ A = A := by
   sorry
-/--
-`UnionEmpty` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem UnionEmpty : ∀ A : Set, A ∪ (∅ : Set) = A
-```
--/
 
 theorem UnionEmpty : ∀ A : Set, A ∪ (∅ : Set) = A := by
   sorry
-/--
-`UnionIdempotent` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem UnionIdempotent : ∀ A : Set, A ∪ A = A
-```
--/
 
 theorem UnionIdempotent : ∀ A : Set, A ∪ A = A := by
   sorry
-/--
-`UnionMonotone` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem UnionMonotone :
-    ∀ A₁ A₂ B₁ B₂ : Set, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
-```
--/
 
 theorem UnionMonotone :
     ∀ A₁ A₂ B₁ B₂ : Set, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂ := by
   sorry
-/--
-`SubsetIffUnionEqRight` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem SubsetIffUnionEqRight :
-    ∀ A B : Set, A ⊆ B ↔ A ∪ B = B
-```
--/
 
 theorem SubsetIffUnionEqRight :
     ∀ A B : Set, A ⊆ B ↔ A ∪ B = B := by
   sorry
 
-/-- Registration: Enderton sets satisfy the union laws. Pure delegation to
-the theorems above. -/
 instance : UnionLaws Set where
-  UnionCommutative := LRA.Set.Enderton.UnionCommutative
-  UnionAssociative := LRA.Set.Enderton.UnionAssociative
-  EmptyUnion := LRA.Set.Enderton.EmptyUnion
-  UnionEmpty := LRA.Set.Enderton.UnionEmpty
-  UnionIdempotent := LRA.Set.Enderton.UnionIdempotent
-  UnionMonotone := LRA.Set.Enderton.UnionMonotone
-  SubsetIffUnionEqRight := LRA.Set.Enderton.SubsetIffUnionEqRight
+  UnionCommutative := UnionCommutative
+  UnionAssociative := UnionAssociative
+  EmptyUnion := EmptyUnion
+  UnionEmpty := UnionEmpty
+  UnionIdempotent := UnionIdempotent
+  UnionMonotone := UnionMonotone
+  SubsetIffUnionEqRight := SubsetIffUnionEqRight
+
+end LRA.Set.ZFCSet
+
+namespace LRA.Set.Enderton
+
+abbrev UnionCommutative := LRA.Set.ZFCSet.UnionCommutative
+abbrev UnionAssociative := LRA.Set.ZFCSet.UnionAssociative
+abbrev EmptyUnion := LRA.Set.ZFCSet.EmptyUnion
+abbrev UnionEmpty := LRA.Set.ZFCSet.UnionEmpty
+abbrev UnionIdempotent := LRA.Set.ZFCSet.UnionIdempotent
+abbrev UnionMonotone := LRA.Set.ZFCSet.UnionMonotone
+abbrev SubsetIffUnionEqRight := LRA.Set.ZFCSet.SubsetIffUnionEqRight
 
 end LRA.Set.Enderton
