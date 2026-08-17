@@ -3,6 +3,10 @@ import LRA.Order.Bounds.LowerBound.Definition
 import LRA.Order.Bounds.BoundedAbove.Definition
 import LRA.Order.Bounds.BoundedBelow.Definition
 import LRA.Order.Bounds.Bounded.Definition
+import LRA.Order.Bounds.Supremum.Definition
+import LRA.Order.Bounds.Infimum.Definition
+import LRA.Order.Bounds.LeastUpperBoundProperty.Definition
+import LRA.Order.Bounds.GreatestLowerBoundProperty.Definition
 
 /-!
 Canonical foundational bounds vocabulary.
