@@ -1,9 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Idempotent.Definition
+import LRA.Operation.Laws.Idempotent.Consequences
 
-/-!
-Derived consequences of this concept belong here.
--/
-
-namespace LRA.Operation.Laws.Idempotent
-
-end LRA.Operation.Laws.Idempotent
+/-! Compatibility shim for the historical Idempotent consequence path. -/
