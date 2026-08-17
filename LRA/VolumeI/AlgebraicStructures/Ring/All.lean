@@ -6,3 +6,4 @@ import LRA.VolumeI.AlgebraicStructures.Ring.Consequences
 import LRA.VolumeI.AlgebraicStructures.Ring.Relationships
 import LRA.VolumeI.AlgebraicStructures.Ring.Theorems
 import LRA.VolumeI.AlgebraicStructures.Ring.FailureModes
+import LRA.VolumeI.AlgebraicStructures.Ring.ModelTheory.All

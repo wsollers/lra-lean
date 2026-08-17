@@ -6,3 +6,4 @@ import LRA.VolumeI.AlgebraicStructures.CompleteOrderedField.Consequences
 import LRA.VolumeI.AlgebraicStructures.CompleteOrderedField.Relationships
 import LRA.VolumeI.AlgebraicStructures.CompleteOrderedField.Theorems
 import LRA.VolumeI.AlgebraicStructures.CompleteOrderedField.FailureModes
+import LRA.VolumeI.AlgebraicStructures.CompleteOrderedField.ModelTheory.All

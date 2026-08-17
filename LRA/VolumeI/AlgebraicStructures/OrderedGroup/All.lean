@@ -6,5 +6,6 @@ import LRA.VolumeI.AlgebraicStructures.OrderedGroup.Consequences
 import LRA.VolumeI.AlgebraicStructures.OrderedGroup.Relationships
 import LRA.VolumeI.AlgebraicStructures.OrderedGroup.Theorems
 import LRA.VolumeI.AlgebraicStructures.OrderedGroup.FailureModes
+import LRA.VolumeI.AlgebraicStructures.OrderedGroup.ModelTheory.All
 
 /-! Aggregate import for ordered groups. -/

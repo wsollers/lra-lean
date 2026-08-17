@@ -6,3 +6,4 @@ import LRA.VolumeI.AlgebraicStructures.Semigroup.Consequences
 import LRA.VolumeI.AlgebraicStructures.Semigroup.Relationships
 import LRA.VolumeI.AlgebraicStructures.Semigroup.Theorems
 import LRA.VolumeI.AlgebraicStructures.Semigroup.FailureModes
+import LRA.VolumeI.AlgebraicStructures.Semigroup.ModelTheory.All

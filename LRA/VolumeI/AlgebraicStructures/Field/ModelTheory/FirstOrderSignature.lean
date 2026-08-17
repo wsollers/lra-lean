@@ -1,42 +1,30 @@
-import LRA.VolumeI.Logic.Model.Model
+import LRA.VolumeI.AlgebraicStructures.DivisionRing.ModelTheory.FirstOrderSignature
 
 namespace LRA.AlgebraicStructures.Field.ModelTheory
 
 /-!
 First-order signature for fields.
 
-This file owns the non-logical vocabulary of the ordinary first-order field
-language: constants `0`, `1`, binary addition and multiplication, unary
-negation, and totalized unary inverse.
+Fields use the division-ring first-order vocabulary; fieldhood adds
+commutativity as a law, not a new symbol.
 -/
 
-inductive FieldFunctionSymbol where
-  | add
-  | mul
-  | neg
-  | inv
+abbrev FieldFunctionSymbol :=
+  LRA.AlgebraicStructures.DivisionRing.ModelTheory.DivisionRingFunctionSymbol
 
-def FieldRelationSymbol : Type := Empty
+abbrev FieldRelationSymbol :=
+  LRA.AlgebraicStructures.DivisionRing.ModelTheory.DivisionRingRelationSymbol
 
-inductive FieldConstantSymbol where
-  | zero
-  | one
+abbrev FieldConstantSymbol :=
+  LRA.AlgebraicStructures.DivisionRing.ModelTheory.DivisionRingConstantSymbol
 
-def FieldFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := FieldFunctionSymbol
-  arity
-    | .add => 2
-    | .mul => 2
-    | .neg => 1
-    | .inv => 1
+def FieldFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
+  LRA.AlgebraicStructures.DivisionRing.ModelTheory.DivisionRingFirstOrderFunctions
 
-def FieldFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := FieldRelationSymbol
-  arity := Empty.elim
+def FieldFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
+  LRA.AlgebraicStructures.DivisionRing.ModelTheory.DivisionRingFirstOrderRelations
 
-def FieldFirstOrderSignature : LRA.Logic.Signature where
-  Functions := FieldFirstOrderFunctions
-  Relations := FieldFirstOrderRelations
-  Constants := FieldConstantSymbol
+def FieldFirstOrderSignature : LRA.Logic.Signature :=
+  LRA.AlgebraicStructures.DivisionRing.ModelTheory.DivisionRingFirstOrderSignature
 
 end LRA.AlgebraicStructures.Field.ModelTheory

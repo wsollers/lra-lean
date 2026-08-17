@@ -6,3 +6,4 @@ import LRA.VolumeI.AlgebraicStructures.IntegralDomain.Consequences
 import LRA.VolumeI.AlgebraicStructures.IntegralDomain.Relationships
 import LRA.VolumeI.AlgebraicStructures.IntegralDomain.Theorems
 import LRA.VolumeI.AlgebraicStructures.IntegralDomain.FailureModes
+import LRA.VolumeI.AlgebraicStructures.IntegralDomain.ModelTheory.All

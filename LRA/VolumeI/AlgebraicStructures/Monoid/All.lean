@@ -6,3 +6,4 @@ import LRA.VolumeI.AlgebraicStructures.Monoid.Consequences
 import LRA.VolumeI.AlgebraicStructures.Monoid.Relationships
 import LRA.VolumeI.AlgebraicStructures.Monoid.Theorems
 import LRA.VolumeI.AlgebraicStructures.Monoid.FailureModes
+import LRA.VolumeI.AlgebraicStructures.Monoid.ModelTheory.All

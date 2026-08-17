@@ -6,5 +6,6 @@ import LRA.VolumeI.AlgebraicStructures.DivisionRing.Consequences
 import LRA.VolumeI.AlgebraicStructures.DivisionRing.Relationships
 import LRA.VolumeI.AlgebraicStructures.DivisionRing.Theorems
 import LRA.VolumeI.AlgebraicStructures.DivisionRing.FailureModes
+import LRA.VolumeI.AlgebraicStructures.DivisionRing.ModelTheory.All
 
 /-! Aggregate import for division rings. -/
