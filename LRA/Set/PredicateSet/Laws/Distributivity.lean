@@ -1,83 +1,44 @@
-import LRA.VolumeI.Set.LRASet.Instances
-import LRA.VolumeI.Set.Interface.Distributivity
+import LRA.Set.PredicateSet.Instances
+import LRA.Set.Interface.Distributivity
 
-namespace LRA.Set.LRASet
+namespace LRA.Set.PredicateSet
 
 universe u
 
 variable {Alpha : Type u}
 
-/-!
-Distributivity and absorption laws for predicate sets: the backend's
-certificate for `LRA.Set.DistributivityLaws`.
--/
-/--
-`IntersectionDistributesOverUnion` exposes this formal declaration.
-
-Logical form:
-
-```lean
 theorem IntersectionDistributesOverUnion :
-    ∀ A B C : LRASet Alpha, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
-```
--/
-
-theorem IntersectionDistributesOverUnion :
-    ∀ A B C : LRASet Alpha, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) := by
+    ∀ A B C : LRA.Set.PredicateSet Alpha,
+      A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) := by
   sorry
-/--
-`UnionDistributesOverIntersection` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem UnionDistributesOverIntersection :
-    ∀ A B C : LRASet Alpha, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
-```
--/
 
 theorem UnionDistributesOverIntersection :
-    ∀ A B C : LRASet Alpha, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C) := by
+    ∀ A B C : LRA.Set.PredicateSet Alpha,
+      A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C) := by
   sorry
-/--
-`AbsorptionUnionIntersection` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem AbsorptionUnionIntersection :
-    ∀ A B : LRASet Alpha, A ∪ (A ∩ B) = A
-```
--/
 
 theorem AbsorptionUnionIntersection :
-    ∀ A B : LRASet Alpha, A ∪ (A ∩ B) = A := by
-  sorry
-/--
-`AbsorptionIntersectionUnion` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem AbsorptionIntersectionUnion :
-    ∀ A B : LRASet Alpha, A ∩ (A ∪ B) = A
-```
--/
-
-theorem AbsorptionIntersectionUnion :
-    ∀ A B : LRASet Alpha, A ∩ (A ∪ B) = A := by
+    ∀ A B : LRA.Set.PredicateSet Alpha, A ∪ (A ∩ B) = A := by
   sorry
 
-/-- Registration: predicate sets satisfy the distributivity and absorption
-laws. Pure delegation to the theorems above. -/
-instance : DistributivityLaws (LRASet Alpha) where
+theorem AbsorptionIntersectionUnion :
+    ∀ A B : LRA.Set.PredicateSet Alpha, A ∩ (A ∪ B) = A := by
+  sorry
+
+instance : DistributivityLaws (LRA.Set.PredicateSet Alpha) where
   IntersectionDistributesOverUnion :=
-    LRA.Set.LRASet.IntersectionDistributesOverUnion
+    LRA.Set.PredicateSet.IntersectionDistributesOverUnion
   UnionDistributesOverIntersection :=
-    LRA.Set.LRASet.UnionDistributesOverIntersection
+    LRA.Set.PredicateSet.UnionDistributesOverIntersection
   AbsorptionUnionIntersection :=
-    LRA.Set.LRASet.AbsorptionUnionIntersection
+    LRA.Set.PredicateSet.AbsorptionUnionIntersection
   AbsorptionIntersectionUnion :=
-    LRA.Set.LRASet.AbsorptionIntersectionUnion
+    LRA.Set.PredicateSet.AbsorptionIntersectionUnion
 
+end LRA.Set.PredicateSet
+
+namespace LRA.Set.LRASet
+export LRA.Set.PredicateSet
+  (IntersectionDistributesOverUnion UnionDistributesOverIntersection
+   AbsorptionUnionIntersection AbsorptionIntersectionUnion)
 end LRA.Set.LRASet
