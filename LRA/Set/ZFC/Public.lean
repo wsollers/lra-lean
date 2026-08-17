@@ -23,7 +23,6 @@ theorem SetExtensionality
 theorem TheEmptySetIsEmptySet : IsEmptySet TheEmptySet :=
   TheEmptySetIsEmpty
 
-noncomputable abbrev TheIntersection := LRA.Set.Enderton.TheIntersection
 noncomputable abbrev TheSymmetricDifference := LRA.Set.Enderton.TheSymmetricDifference
 noncomputable abbrev TheIntersectionOver := LRA.Set.Enderton.TheIntersectionOver
 
