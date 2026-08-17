@@ -1,5 +1,5 @@
-import LRA.VolumeI.Set.Enderton.Instances
-import LRA.VolumeI.Set.Interface.Subset
+import LRA.Set.ZFCSet.Instances
+import LRA.Set.Interface.Subset
 
 namespace LRA.Set.Enderton
 
