@@ -1,7 +1,6 @@
 -- LRA/VolumeI/Set/ModelTheory/Language.lean
 -- The first-order language of membership, L_∈.
 
-import Mathlib.Data.Fin.VecNotation
 import LRA.VolumeI.Logic.Language.FirstOrder.Signature
 import LRA.VolumeI.Logic.Syntax.FirstOrder.Sentence
 
@@ -29,180 +28,69 @@ a list of demands written in the alphabet. They are three different
 objects, joined only by `⊨`. This module is the alphabet.
 -/
 
-/-- The single relation symbol of `L_∈`.
-
-Logical form:
-
-```lean
-inductive MembershipRelationSymbol : Type where
-  | mem
-  deriving DecidableEq
-```
--/
+/-- The single relation symbol of `L_∈`. -/
 inductive MembershipRelationSymbol : Type where
   | mem
   deriving DecidableEq
 
-/-- The single constant symbol of `L_∈`.
-
-Logical form:
-
-```lean
-inductive MembershipConstantSymbol : Type where
-  | emptySet
-  deriving DecidableEq
-```
--/
+/-- The single constant symbol of `L_∈`. -/
 inductive MembershipConstantSymbol : Type where
   | emptySet
   deriving DecidableEq
 
-/-- `L_∈` has no function symbols.
-
-Logical form:
-
-```lean
-def MembershipFunctions : ArityIndexedSymbols where
-  Symbol := Empty
-  arity := Empty.elim
-```
--/
+/-- `L_∈` has no function symbols. -/
 def MembershipFunctions : ArityIndexedSymbols where
   Symbol := Empty
   arity := Empty.elim
 
-/-- `∈` is binary.
-
-Logical form:
-
-```lean
-def MembershipRelations : ArityIndexedSymbols where
-  Symbol := MembershipRelationSymbol
-  arity := fun _ => 2
-```
--/
+/-- `∈` is binary. -/
 def MembershipRelations : ArityIndexedSymbols where
   Symbol := MembershipRelationSymbol
   arity := fun _ => 2
 
-/-- The signature of `L_∈`: one binary relation, one constant, no
-function symbols.
-
-Logical form:
-
-```lean
-def MembershipSignature : Signature where
-  Functions := MembershipFunctions
-  Relations := MembershipRelations
-  Constants := MembershipConstantSymbol
-```
--/
+/-- The signature of `L_∈`: one binary relation, one constant, no function symbols. -/
 def MembershipSignature : Signature where
   Functions := MembershipFunctions
   Relations := MembershipRelations
   Constants := MembershipConstantSymbol
 
-/--
-`MembershipSymbolIsBinary` states membership symbol is binary.
-
-Logical form:
-
-```lean
-theorem MembershipSymbolIsBinary :
-    MembershipSignature.IsBinaryRelationSymbol .mem
-```
--/
+/-- The membership symbol is binary. -/
 theorem MembershipSymbolIsBinary :
     MembershipSignature.IsBinaryRelationSymbol .mem := rfl
 
-/-! ## Formula-building helpers
+/-! ## Formula-building helpers -/
 
-Variables are `Nat`-indexed. The helpers keep the axiom transcriptions
-below readable while staying definitionally transparent for the
-satisfaction proofs. -/
-
-/-- The variable `n` as a term.
-
-Logical form:
-
-```lean
-abbrev varT (n : Nat) : Term MembershipSignature Nat := .var n
-```
--/
+/-- The variable `n` as a term. -/
 abbrev varT (n : Nat) : Term MembershipSignature Nat := .var n
 
-/-- The constant `∅` as a term.
-
-Logical form:
-
-```lean
-abbrev emptyT : Term MembershipSignature Nat := .const .emptySet
-```
--/
+/-- The constant `∅` as a term. -/
 abbrev emptyT : Term MembershipSignature Nat := .const .emptySet
 
-/-- `left ∈ right` between terms.
+/-- Two terms as the `Fin 2`-indexed argument family expected by a binary relation. -/
+def binaryTerms
+    (left right : Term MembershipSignature Nat) :
+    Fin 2 -> Term MembershipSignature Nat :=
+  Fin.cases left (Fin.cases right Fin.elim0)
 
-Logical form:
-
-```lean
+/-- `left ∈ right` between terms. -/
 def memT (left right : Term MembershipSignature Nat) :
     Formula MembershipSignature Nat :=
-  .relation .mem ![left, right]
-```
--/
-def memT (left right : Term MembershipSignature Nat) :
-    Formula MembershipSignature Nat :=
-  .relation .mem ![left, right]
+  .relation .mem (binaryTerms left right)
 
-/-- `x ∈ y` between variables.
-
-Logical form:
-
-```lean
-abbrev memF (x y : Nat) : Formula MembershipSignature Nat :=
-  memT (varT x) (varT y)
-```
--/
+/-- `x ∈ y` between variables. -/
 abbrev memF (x y : Nat) : Formula MembershipSignature Nat :=
   memT (varT x) (varT y)
 
-/-- `x = y` between variables.
-
-Logical form:
-
-```lean
-abbrev eqF (x y : Nat) : Formula MembershipSignature Nat :=
-  .equal (varT x) (varT y)
-```
--/
+/-- `x = y` between variables. -/
 abbrev eqF (x y : Nat) : Formula MembershipSignature Nat :=
   .equal (varT x) (varT y)
 
-/-- `φ ∨ ψ := ¬φ → ψ`.
-
-Logical form:
-
-```lean
-def orF (φ ψ : Formula MembershipSignature Nat) :
-    Formula MembershipSignature Nat :=
-  .impl (.neg φ) ψ
-```
--/
+/-- `φ ∨ ψ := ¬φ → ψ`. -/
 def orF (φ ψ : Formula MembershipSignature Nat) :
     Formula MembershipSignature Nat :=
   .impl (.neg φ) ψ
 
-/-- `φ ↔ ψ := (φ → ψ) ∧ (ψ → φ)`.
-
-Logical form:
-
-```lean
-def iffF (φ ψ : Formula MembershipSignature Nat) :
-    Formula MembershipSignature Nat :=
-  Formula.and (.impl φ ψ) (.impl ψ φ)
-```
--/
+/-- `φ ↔ ψ := (φ → ψ) ∧ (ψ → φ)`. -/
 def iffF (φ ψ : Formula MembershipSignature Nat) :
     Formula MembershipSignature Nat :=
   Formula.and (.impl φ ψ) (.impl ψ φ)
