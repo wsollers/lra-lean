@@ -77,6 +77,6 @@ Expected Lean files:
 ## Boundary
 
 Identity, associativity, commutativity, cancellation, absorption,
-distributivity, idempotence, order compatibility, and inverse laws should be
-stated over closed operations once closure has been handled explicitly.
-
+distributivity, idempotence, and inverse laws should be stated over closed
+operations once closure has been handled explicitly. Order-operation
+compatibility belongs under `Order`.

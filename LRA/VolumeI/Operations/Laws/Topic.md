@@ -19,11 +19,13 @@ The project scope is Volume I generic operation laws:
 - distributivity laws for two operations;
 - idempotence;
 - nilpotence;
-- order compatibility;
-- equational logic for applying equality through operations;
-- sign and negation rules as derived interaction laws;
-- number embeddings and mixed-carrier operations;
 - inverse laws only after identity and associativity are understood.
+
+Order-operation compatibility is owned by `Order`; map preservation,
+reflection, and embedding predicates are owned by `Map`; operation congruence
+over equivalence relations is owned by `UniversalAlgebra`; sign/negation and
+subtraction facts are consequences of the named algebraic structures that
+provide the relevant operations and laws.
 
 No concrete carrier such as natural numbers, fractions, rationals, integers, or
 reals owns these concepts. Concrete number-system modules in Volume II certify
@@ -71,14 +73,7 @@ They do not replace the Lean files.
 17. Introduce idempotence as a sibling law, mainly for set and lattice style
     operations.
 18. Introduce nilpotence after iteration and absorbing elements are clear.
-19. Introduce equational logic for replacing equals inside operation
-    expressions.
-20. Introduce sign and negation rules as theorems from additive inverses,
-    multiplication, and distributivity.
-21. Introduce order compatibility once order concepts are stable.
-22. Introduce number embeddings and mixed-carrier operations before Volume II
-    begins certifying concrete number-system interactions.
-23. Only then introduce inverse laws as the first major orchestration topic.
+19. Only then introduce inverse laws as the first major orchestration topic.
 
 ## Boundary With Volume II
 

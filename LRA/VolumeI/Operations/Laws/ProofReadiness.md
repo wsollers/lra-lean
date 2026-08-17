@@ -37,8 +37,8 @@ Each topic has the standard concept-family shape:
 - `ProofOrder.md`
 - `source.md`
 
-Obsolete compatibility/migration topics are not part of this operation-law
-shape.
+Relation preservation, order-operation compatibility, and operation
+congruence are not part of this operation-law shape.
 
 ## Naming Audit
 
