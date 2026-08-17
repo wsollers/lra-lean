@@ -1,9 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Identity.Definition
+import LRA.Operation.Laws.Identity.Consequences
 
-/-!
-Derived consequences of this concept belong here.
--/
-
-namespace LRA.Operation.Laws.Identity
-
-end LRA.Operation.Laws.Identity
+/-! Compatibility shim for the historical Identity law consequence path. -/
