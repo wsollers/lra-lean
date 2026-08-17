@@ -1,46 +1,23 @@
-import LRA.VolumeI.Set.Enderton.Axioms.Axioms
-import LRA.VolumeI.Set.Enderton.Definitions
-import LRA.VolumeI.Set.Enderton.Theorems.Extensionality
-import LRA.VolumeI.Set.Enderton.Theorems.Pairing
+import LRA.Set.ZFC.Axioms.Union
+import LRA.Set.ZFC.Definitions
+import LRA.Set.ZFC.Extensionality.Theorems
+import LRA.Set.ZFC.Pairing.Theorems
 
 /-!
 Existence, uniqueness, and the chosen union over a set of sets (`⋃ A`), plus
 binary union derived from it and from Pairing.
-
-Enderton's primitive Union axiom gives the union *over a set of sets*, not a
-binary operation. Binary union `A ∪ B` is not axiomatized separately here; it
-is derived as `⋃ {A, B}`, matching the textbook development.
 -/
 
-namespace LRA.Set.Enderton
-/--
-There exists a union over `A`.
+namespace LRA.Set.ZFC
 
-Logical form:
-
-```lean
-theorem UnionOverExists (A : Set) :
-    ∃ U : Set, IsUnionOf A U
-```
--/
+/-- There exists a union over `A`. -/
 theorem UnionOverExists (A : Set) :
     ∃ U : Set, IsUnionOf A U := by
   have unionOver := Union A
   rcases unionOver with ⟨U, UIsUnionOver⟩
   exact ⟨U, UIsUnionOver⟩
-/--
-Any union over `A` is equal to any other union over `A`.
 
-Logical form:
-
-```lean
-theorem UnionOverIsUnique
-    {A U V : Set}
-    (UIsUnionOf : IsUnionOf A U)
-    (VIsUnionOf : IsUnionOf A V) :
-    V = U
-```
--/
+/-- Any union over `A` is equal to any other union over `A`. -/
 theorem UnionOverIsUnique
     {A U V : Set}
     (UIsUnionOf : IsUnionOf A U)
@@ -49,15 +26,13 @@ theorem UnionOverIsUnique
   apply Extensionality
   intro x
   constructor
-  · -- mp
-    intro xInV
+  · intro xInV
     have xInAOrV := VIsUnionOf x
     have xInAOrU := UIsUnionOf x
     have xInAOrUFromV := xInAOrV.mp xInV
     apply xInAOrU.mpr
     exact xInAOrUFromV
-  . -- mpr
-    intro xInU
+  · intro xInU
     have xInAOrU := UIsUnionOf x
     have xInAOrV := VIsUnionOf x
     have xInAOrVFromU := xInAOrU.mp xInU
@@ -65,23 +40,13 @@ theorem UnionOverIsUnique
     exact xInAOrVFromU
 
 /-- TeX label: `thm:union-output-exists-unique`.
-For any set of sets, there exists exactly one union over it.
-
-Logical form:
-
-```lean
-theorem UnionOverExistsAndIsUnique (A : Set) :
-    ExistsAndUnique (fun U : Set => IsUnionOf A U)
-```
--/
+For any set of sets, there exists exactly one union over it. -/
 theorem UnionOverExistsAndIsUnique (A : Set) :
     ExistsAndUnique (fun U : Set => IsUnionOf A U) := by
   have unionOverExists := UnionOverExists A
   constructor
-  · -- lhs exists
-    exact unionOverExists
-  . -- rhs unique
-    intro U V UIsUnionOf VIsUnionOf
+  · exact unionOverExists
+  · intro U V UIsUnionOf VIsUnionOf
     exact (UnionOverIsUnique
       (A := A)
       (U := U)
@@ -89,45 +54,17 @@ theorem UnionOverExistsAndIsUnique (A : Set) :
       UIsUnionOf
       VIsUnionOf).symm
 
-/--
-The union over `A`, chosen after its existence has been established.
-
-Logical form:
-
-```lean
+/-- The chosen union over `A`. -/
 noncomputable def TheUnionOver (A : Set) : Set :=
   Classical.choose (UnionOverExists A)
-```
--/
-noncomputable def TheUnionOver (A : Set) : Set :=
-  Classical.choose (UnionOverExists A)
-/--
-The chosen union over `A` has the expected members.
 
-Logical form:
-
-```lean
-theorem TheUnionOverIsUnionOf (A : Set) :
-    IsUnionOf A (TheUnionOver A)
-```
--/
+/-- The chosen union over `A` has the expected members. -/
 theorem TheUnionOverIsUnionOf (A : Set) :
     IsUnionOf A (TheUnionOver A) := by
   have unionOverExists := UnionOverExists A
   exact Classical.choose_spec unionOverExists
 
-/--
-Every union over `A` is equal to the chosen union over `A`.
-
-Logical form:
-
-```lean
-theorem EveryUnionOverEqualsTheUnionOver
-    {A U : Set}
-    (UIsUnionOf : IsUnionOf A U) :
-    U = TheUnionOver A
-```
--/
+/-- Every union over `A` equals the chosen union over `A`. -/
 theorem EveryUnionOverEqualsTheUnionOver
     {A U : Set}
     (UIsUnionOf : IsUnionOf A U) :
@@ -139,72 +76,70 @@ theorem EveryUnionOverEqualsTheUnionOver
     UIsUnionOf
     (TheUnionOverIsUnionOf A)).symm
 
-/-! ### Binary union, derived from `TheUnionOver` and `PairSet`
-
-`A ∪ B` is not a new primitive: it is the union over the pair set `{A, B}`. -/
-
-/--
-Binary union of `A` and `B`, derived as the union over their pair set.
-
-Logical form:
-
-```lean
-noncomputable def TheUnion (A B : Set) : Set :=
-  TheUnionOver (PairSet A B)
-```
--/
+/-- Binary union of `A` and `B`, derived as the union over their pair set. -/
 noncomputable def TheUnion (A B : Set) : Set :=
   TheUnionOver (PairSet A B)
 
-/-- `x` belongs to `A ∪ B` iff `x` belongs to `A` or `x` belongs to `B`.
-
-Derived from `TheUnionOverIsUnionOf` and `PairSetMembership`, not from a
-separate axiom.
-
-Logical form:
-
-```lean
-theorem TheUnionMembership (A B x : Set) :
-    x ∈ TheUnion A B ↔ x ∈ A ∨ x ∈ B
-```
--/
+/-- Membership in the chosen binary union. -/
 theorem TheUnionMembership (A B x : Set) :
     x ∈ TheUnion A B ↔ x ∈ A ∨ x ∈ B := by
   have unionOver := TheUnionOverIsUnionOf (PairSet A B)
   have pairSetMembership := PairSetMembership A B x
   constructor
-  · -- mp
-    intro xInUnion
+  · intro xInUnion
     unfold IsUnionOf at unionOver
     have xInUnionIff := unionOver x
     have xInSomeMember := xInUnionIff.mp xInUnion
     rcases xInSomeMember with ⟨C, CInPairSet, xInC⟩
     have CEqualsAOrB := (PairSetMembership A B C).mp CInPairSet
     rcases CEqualsAOrB with CEqualsA | CEqualsB
-    · -- C = A
-      rw [CEqualsA] at xInC
+    · rw [CEqualsA] at xInC
       apply Or.inl
       exact xInC
-    . -- C = B
-      rw [CEqualsB] at xInC
+    · rw [CEqualsB] at xInC
       apply Or.inr
       exact xInC
-
-  . -- mpr
-    intro xInAOrB
+  · intro xInAOrB
     unfold IsUnionOf at unionOver
     rcases xInAOrB with xInA | xInB
-
-    · -- x ∈ A
-      apply (unionOver x).mpr
+    · apply (unionOver x).mpr
       refine ⟨A, ?_, xInA⟩
       apply (PairSetMembership A B A).mpr
       exact Or.inl rfl
-
-    · -- x ∈ B
-      apply (unionOver x).mpr
+    · apply (unionOver x).mpr
       refine ⟨B, ?_, xInB⟩
       apply (PairSetMembership A B B).mpr
       exact Or.inr rfl
+
+end LRA.Set.ZFC
+
+/-! Compatibility aliases for the historical Enderton union names. -/
+namespace LRA.Set.Enderton
+
+abbrev UnionOverExists (A : Set) := LRA.Set.ZFC.UnionOverExists A
+
+abbrev UnionOverIsUnique
+    {A U V : Set}
+    (UIsUnionOf : IsUnionOf A U)
+    (VIsUnionOf : IsUnionOf A V) : V = U :=
+  LRA.Set.ZFC.UnionOverIsUnique UIsUnionOf VIsUnionOf
+
+abbrev UnionOverExistsAndIsUnique (A : Set) :=
+  LRA.Set.ZFC.UnionOverExistsAndIsUnique A
+
+noncomputable abbrev TheUnionOver (A : Set) : Set := LRA.Set.ZFC.TheUnionOver A
+
+abbrev TheUnionOverIsUnionOf (A : Set) :=
+  LRA.Set.ZFC.TheUnionOverIsUnionOf A
+
+abbrev EveryUnionOverEqualsTheUnionOver
+    {A U : Set}
+    (UIsUnionOf : IsUnionOf A U) : U = TheUnionOver A :=
+  LRA.Set.ZFC.EveryUnionOverEqualsTheUnionOver UIsUnionOf
+
+noncomputable abbrev TheUnion (A B : Set) : Set := LRA.Set.ZFC.TheUnion A B
+
+abbrev TheUnionMembership (A B x : Set) :=
+  LRA.Set.ZFC.TheUnionMembership A B x
 
 end LRA.Set.Enderton
