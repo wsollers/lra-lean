@@ -24,7 +24,6 @@ theorem TheEmptySetIsEmptySet : IsEmptySet TheEmptySet :=
   TheEmptySetIsEmpty
 
 noncomputable abbrev TheIntersection := LRA.Set.Enderton.TheIntersection
-noncomputable abbrev TheRelativeComplement := LRA.Set.Enderton.TheRelativeComplement
 noncomputable abbrev TheSymmetricDifference := LRA.Set.Enderton.TheSymmetricDifference
 noncomputable abbrev TheIntersectionOver := LRA.Set.Enderton.TheIntersectionOver
 
