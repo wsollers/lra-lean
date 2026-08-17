@@ -1,8 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Idempotent.Definition
-import LRA.VolumeI.Operations.Laws.Idempotent.Consequences
-import LRA.VolumeI.Operations.Laws.Idempotent.Theorems
-import LRA.VolumeI.Operations.Laws.Idempotent.Relationships
+import LRA.Operation.Laws.Idempotent
 
-/-!
-Aggregate import for the Idempotent operation law concept family.
--/
+/-! Compatibility aggregate for the historical Idempotent law path. -/
