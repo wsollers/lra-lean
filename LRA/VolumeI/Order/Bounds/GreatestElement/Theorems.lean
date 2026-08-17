@@ -1,5 +1,4 @@
-import LRA.VolumeI.Order.Bounds.GreatestElement.Definition
-import LRA.VolumeI.Relations.Basic.CoreProperties
+import LRA.Order.Bounds.GreatestElement.Theorems
 import LRA.VolumeI.Set.Interface.Membership
 
 namespace LRA.Order
@@ -8,25 +7,7 @@ open scoped LRA.Set
 
 universe u v
 
-/-- Antisymmetry makes a greatest element unique. -/
-theorem GreatestElementUnique
-    {Element : Type u} {SetObject : Type v}
-    [Membership Element SetObject]
-    {relation : LRA.Relation.Endorelation Element}
-    (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation)
-    {subset : SetObject} {first second : Element}
-    (firstIsGreatest : GreatestElement relation subset first)
-    (secondIsGreatest : GreatestElement relation subset second) :
-    first = second := by
-  sorry
-
-/--
-`GreatestElementRetainedByIntersection`
-
-Statement: A greatest element remains greatest in an intersection that retains it.
-
-Logical form: `GreatestElement r A g → g ∈ B → GreatestElement r (A ∩ B) g`.
--/
+/-- A greatest element remains greatest in an intersection that retains it. -/
 theorem GreatestElementRetainedByIntersection
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -40,13 +21,7 @@ theorem GreatestElementRetainedByIntersection
     GreatestElement relation (subset ∩ retainedBy) greatest := by
   sorry
 
-/--
-`GreatestElementRetainedByDifference`
-
-Statement: A greatest element remains greatest after a deletion that does not remove it.
-
-Logical form: `GreatestElement r A g → g ∉ B → GreatestElement r (A \ B) g`.
--/
+/-- A greatest element remains greatest after a deletion that does not remove it. -/
 theorem GreatestElementRetainedByDifference
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -60,13 +35,7 @@ theorem GreatestElementRetainedByDifference
     GreatestElement relation (subset \ removed) greatest := by
   sorry
 
-/--
-`GreatestElementRetainedBySymmetricDifference`
-
-Statement: A greatest element of the union remains greatest in a symmetric difference that retains it.
-
-Logical form: `GreatestElement r (A ∪ B) g → g ∈ A ∆ B → GreatestElement r (A ∆ B) g`.
--/
+/-- A greatest element of the union remains greatest in a symmetric difference that retains it. -/
 theorem GreatestElementRetainedBySymmetricDifference
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject]
@@ -76,19 +45,12 @@ theorem GreatestElementRetainedBySymmetricDifference
     [LRA.Set.SymmDiffMembershipLaws Element SetObject]
     {relation : LRA.Relation.Endorelation Element}
     {leftSubset rightSubset : SetObject} {greatest : Element}
-    (greatestIsGreatestOfUnion :
-      GreatestElement relation (leftSubset ∪ rightSubset) greatest)
+    (greatestIsGreatestOfUnion : GreatestElement relation (leftSubset ∪ rightSubset) greatest)
     (greatestIsRetained : greatest ∈ (leftSubset ∆ rightSubset)) :
     GreatestElement relation (leftSubset ∆ rightSubset) greatest := by
   sorry
 
-/--
-`GreatestElementOfUnion`
-
-Statement: A greatest element of one operand that bounds the other is greatest in the union.
-
-Logical form: `GreatestElement r A g → UpperBound r B g → GreatestElement r (A ∪ B) g`.
--/
+/-- A greatest element of one operand that bounds the other is greatest in the union. -/
 theorem GreatestElementOfUnion
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
