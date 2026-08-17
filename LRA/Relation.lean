@@ -1,12 +1,17 @@
-import LRA.VolumeI.Relations
-import LRA.VolumeI.Map.Graph.All
-import LRA.VolumeI.Map.SetTheoretic.All
+import LRA.Relation.Definition
+import LRA.Relation.Canonical
+import LRA.Relation.Properties
+import LRA.Relation.Structures
+import LRA.Relation.Operations
+import LRA.Relation.Calculus
+import LRA.VolumeI.Relations.Equivalence
+import LRA.VolumeI.Relations.WellFounded.All
 
 /-!
-Canonical import route for relations.
+Canonical Relation subject.
 
-`LRA.Relation` owns named predicate relations, their laws, equivalence classes,
-partitions, quotients, domain/range, images, and well-foundedness. Typed-map
-graphs remain map concepts, with their functional-relation bridge imported as
-part of `LRA.VolumeI.Map.Graph.All`.
+The subject is organized as canonical relations, primitive properties,
+relation-producing operations, relation/set calculus, and named relation
+structures. Function and Map should specialize this layer rather than redefine
+its generic image, preimage, domain, range, and fiber concepts.
 -/
