@@ -1,5 +1,3 @@
-import LRA.VolumeI.Operations.Theorems
+import LRA.Operation.Relationships
 
-namespace LRA.Operation
-
-end LRA.Operation
+/-! Compatibility shim for the historical Operation relationship path. -/
