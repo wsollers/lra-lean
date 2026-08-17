@@ -1,8 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Nilpotent.Definition
-import LRA.VolumeI.Operations.Laws.Nilpotent.Consequences
-import LRA.VolumeI.Operations.Laws.Nilpotent.Theorems
-import LRA.VolumeI.Operations.Laws.Nilpotent.Relationships
+import LRA.Operation.Laws.Nilpotent
 
-/-!
-Aggregate import for the Nilpotent operation law concept family.
--/
+/-! Compatibility aggregate for the historical Nilpotent law path. -/
