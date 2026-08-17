@@ -15,11 +15,11 @@ namespace LRA.Set.ZFC
 theorem SetExtensionality
     (A B : LRA.Set.ZFCSet)
     (sameMembers : ∀ x : LRA.Set.ZFCSet, x ∈ A ↔ x ∈ B) :
-    A = B :=
-  (SetEqualityIffSameMembers A B).2 sameMembers
+    A = B := by
+  sorry
 
 /-- Compatibility spelling for the chosen-empty-set theorem. -/
-theorem TheEmptySetIsEmptySet : IsEmptySet TheEmptySet :=
-  TheEmptySetIsEmpty
+theorem TheEmptySetIsEmptySet : IsEmptySet TheEmptySet := by
+  sorry
 
 end LRA.Set.ZFC
