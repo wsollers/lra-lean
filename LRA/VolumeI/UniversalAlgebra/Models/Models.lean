@@ -3,11 +3,12 @@
 
 import LRA.VolumeI.UniversalAlgebra.Models.Signatures
 import LRA.VolumeI.AlgebraicStructures
-import LRA.VolumeI.Order.Relation
+import LRA.VolumeI.Order
 
 namespace LRA.UniversalAlgebra.Models
 
 open LRA.AlgebraicStructures
+open LRA.Order
 
 universe u
 

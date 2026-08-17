@@ -7,6 +7,8 @@ import LRA.VolumeI.Order.Lattices
 import LRA.VolumeI.Order.Density
 import LRA.VolumeI.Order.Directedness
 import LRA.VolumeI.Order.Interoperability
+import LRA.VolumeI.Order.Laws
+import LRA.VolumeI.Order.Completeness
 
 /-!
 Aggregate import for Volume I order theory.

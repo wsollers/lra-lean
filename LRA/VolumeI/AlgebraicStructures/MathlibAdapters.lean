@@ -2,8 +2,8 @@
 -- Reverse adapters: assemble Mathlib's bundled classes from certificates.
 
 import Mathlib.Algebra.Field.Defs
-import Mathlib.Order.Defs.LinearOrder
-import LRA.VolumeI.AlgebraicStructures.Bundles
+import LRA.VolumeI.AlgebraicStructures.CommutativeRing.Laws.Definition
+import LRA.VolumeI.AlgebraicStructures.Field.Laws.Definition
 import LRA.VolumeI.AlgebraicStructures.MathlibBridge
 
 namespace LRA.AlgebraicStructures
@@ -108,37 +108,6 @@ noncomputable def toMathlibField (R : Type u)
     nnqsmul := _
     qsmul := _ }
 
-/-- Assemble Mathlib's `LinearOrder` from the project certificates
-(classical decidability).
-
-Logical form:
-
-```lean
-noncomputable def toMathlibLinearOrder (R : Type u) [LT R] [LE R]
-    [LinearOrderLaws R] [StrictOrderCompatibilityLaw R] :
-    LinearOrder R where
-  le := (· ≤ ·)
-  lt := (· < ·)
-  le_refl := LeRefl
-  le_trans := LeTrans
-  lt_iff_le_not_ge := LtIffLeNotLe
-  le_antisymm := LeAntisymm
-  le_total := LeTotal
-  toDecidableLE := Classical.decRel _
-```
--/
-@[reducible] noncomputable def toMathlibLinearOrder (R : Type u) [LT R] [LE R]
-    [LinearOrderLaws R] [StrictOrderCompatibilityLaw R] :
-    LinearOrder R where
-  le := (· ≤ ·)
-  lt := (· < ·)
-  le_refl := LeRefl
-  le_trans := LeTrans
-  lt_iff_le_not_ge := LtIffLeNotLe
-  le_antisymm := LeAntisymm
-  le_total := LeTotal
-  toDecidableLE := Classical.decRel _
-
 /-! ## Smoke test: Mathlib automation on a certificate-carrying carrier
 
 The adapters must at minimum assemble for a Mathlib carrier's own
@@ -146,6 +115,5 @@ certificates (round trip through the forward bridge). -/
 
 example : CommRing Int := toMathlibCommRing Int
 noncomputable example : Field Rat := toMathlibField Rat
-noncomputable example : LinearOrder Int := toMathlibLinearOrder Int
 
 end LRA.AlgebraicStructures

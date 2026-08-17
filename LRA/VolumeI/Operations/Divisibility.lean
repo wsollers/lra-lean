@@ -1,4 +1,5 @@
-import LRA.VolumeI.Operations.Laws
+import LRA.VolumeI.Operations.Laws.Associative.Definition
+import LRA.VolumeI.Operations.Laws.Identity.Definition
 import LRA.VolumeI.Order.OrderedSets.Preorder.Definition
 
 namespace LRA.Operation
@@ -53,8 +54,10 @@ theorem DivisibilityPreorder
     {Alpha : Type u}
     {multiplication : BinaryOperation Alpha}
     {identity : Alpha}
-    (multiplicationIsAssociative : Associative multiplication)
-    (identityIsTwoSided : Identity multiplication identity) :
+    (multiplicationIsAssociative :
+      LRA.Operation.Laws.Associative.Associative multiplication)
+    (identityIsTwoSided :
+      LRA.Operation.Laws.Identity.TwoSidedIdentity multiplication identity) :
     LRA.Order.Preorder (Divides multiplication)
 ```
 -/
@@ -62,8 +65,10 @@ theorem DivisibilityPreorder
     {Alpha : Type u}
     {multiplication : BinaryOperation Alpha}
     {identity : Alpha}
-    (multiplicationIsAssociative : Associative multiplication)
-    (identityIsTwoSided : Identity multiplication identity) :
+    (multiplicationIsAssociative :
+      LRA.Operation.Laws.Associative.Associative multiplication)
+    (identityIsTwoSided :
+      LRA.Operation.Laws.Identity.TwoSidedIdentity multiplication identity) :
     LRA.Order.Preorder (Divides multiplication) := by
   sorry
 

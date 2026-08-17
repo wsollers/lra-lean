@@ -6,6 +6,7 @@ import LRA.VolumeI.AlgebraicStructures
 namespace LRA.NumberSystems.ComplexNumbers.Construction
 
 open LRA.AlgebraicStructures
+open LRA.Order
 
 universe u
 

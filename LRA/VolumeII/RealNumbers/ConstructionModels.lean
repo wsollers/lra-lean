@@ -199,7 +199,7 @@ theorem reals_are_complete
               member upper_bound) →
           (real_model rational_model).signature.NonstrictOrder
             supremum upper_bound) := by
-  exact LRA.AlgebraicStructures.Completeness
+  exact LRA.Order.Completeness
     (R := (real_model rational_model).Carrier)
     (SetObject := Set (real_model rational_model).Carrier)
 

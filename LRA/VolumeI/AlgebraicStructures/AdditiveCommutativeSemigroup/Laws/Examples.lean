@@ -1,0 +1,11 @@
+import LRA.VolumeI.AlgebraicStructures.AdditiveCommutativeSemigroup.Laws.All
+
+namespace LRA.AlgebraicStructures
+
+/-!
+Positive examples of the AdditiveCommutativeSemigroup law certificates belong here.
+
+This file intentionally contains no placeholder examples.
+-/
+
+end LRA.AlgebraicStructures

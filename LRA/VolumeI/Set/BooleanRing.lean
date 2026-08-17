@@ -1,5 +1,5 @@
 import LRA.VolumeI.Set.LRASet.Laws.Laws
-import LRA.VolumeI.AlgebraicStructures.Bundles
+import LRA.VolumeI.AlgebraicStructures.CommutativeRing.Laws.Definition
 
 namespace LRA.Set.BooleanRing
 

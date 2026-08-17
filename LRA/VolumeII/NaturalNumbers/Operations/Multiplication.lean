@@ -177,14 +177,14 @@ Logical form:
 ```lean
 theorem NMultiplicationDistributesOverAddition
     (model : NModel Element SetObject) :
-    LRA.Operation.RightDistributive
+    LRA.Operation.Laws.Distributive.RightDistributive
       (NMultiplication model)
       (NAddition model)
 ```
 -/
 theorem NMultiplicationDistributesOverAddition
     (model : NModel Element SetObject) :
-    LRA.Operation.RightDistributive
+    LRA.Operation.Laws.Distributive.RightDistributive
       (NMultiplication model)
       (NAddition model) := by
   sorry
@@ -197,14 +197,14 @@ Logical form:
 ```lean
 theorem NLeftDistributivityOfMultiplicationOverAddition
     (model : NModel Element SetObject) :
-    LRA.Operation.LeftDistributive
+    LRA.Operation.Laws.Distributive.LeftDistributive
       (NMultiplication model)
       (NAddition model)
 ```
 -/
 theorem NLeftDistributivityOfMultiplicationOverAddition
     (model : NModel Element SetObject) :
-    LRA.Operation.LeftDistributive
+    LRA.Operation.Laws.Distributive.LeftDistributive
       (NMultiplication model)
       (NAddition model) := by
   sorry
@@ -217,14 +217,14 @@ Logical form:
 ```lean
 theorem NMultiplicationDistributesOverAdditionBothSides
     (model : NModel Element SetObject) :
-    LRA.Operation.Distributive
+    LRA.Operation.Laws.Distributive.TwoSidedDistributive
       (NMultiplication model)
       (NAddition model)
 ```
 -/
 theorem NMultiplicationDistributesOverAdditionBothSides
     (model : NModel Element SetObject) :
-    LRA.Operation.Distributive
+    LRA.Operation.Laws.Distributive.TwoSidedDistributive
       (NMultiplication model)
       (NAddition model) := by
   sorry
@@ -237,12 +237,12 @@ Logical form:
 ```lean
 theorem NMultiplicationIsAssociative
     (model : NModel Element SetObject) :
-    LRA.Operation.Associative (NMultiplication model)
+    LRA.Operation.Laws.Associative.Associative (NMultiplication model)
 ```
 -/
 theorem NMultiplicationIsAssociative
     (model : NModel Element SetObject) :
-    LRA.Operation.Associative (NMultiplication model) := by
+    LRA.Operation.Laws.Associative.Associative (NMultiplication model) := by
   sorry
 
 /--
@@ -253,12 +253,12 @@ Logical form:
 ```lean
 theorem NMultiplicationIsCommutative
     (model : NModel Element SetObject) :
-    LRA.Operation.Commutative (NMultiplication model)
+    LRA.Operation.Laws.Commutative.Commutative (NMultiplication model)
 ```
 -/
 theorem NMultiplicationIsCommutative
     (model : NModel Element SetObject) :
-    LRA.Operation.Commutative (NMultiplication model) := by
+    LRA.Operation.Laws.Commutative.Commutative (NMultiplication model) := by
   sorry
 
 end LRA.NumberSystems.NaturalNumbers

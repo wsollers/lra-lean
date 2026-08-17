@@ -1,13 +1,16 @@
 import Mathlib.Algebra.Order.Field.Defs
-import Mathlib.Order.ConditionallyCompleteLattice.Basic
 import Mathlib.Data.Real.Basic
 import Mathlib.Data.Real.Archimedean
 import Mathlib.Data.Complex.Basic
 import Mathlib.Data.Rat.Defs
-import LRA.VolumeI.AlgebraicStructures.Completeness
-import LRA.VolumeI.AlgebraicStructures.Discrete
+import LRA.VolumeI.AlgebraicStructures.CommutativeSemiring.Laws.Definition
+import LRA.VolumeI.AlgebraicStructures.CompleteOrderedField.Laws.Definition
+import LRA.VolumeI.AlgebraicStructures.DiscreteInteger.Laws.Definition
+import LRA.VolumeI.Order.Interoperability.Mathlib.Certificates
 
 namespace LRA.AlgebraicStructures
+
+open LRA.Order
 
 universe u
 
@@ -79,49 +82,6 @@ instance {R : Type u} [Distrib R] : DistributiveLaws R where
   LeftDistributive := fun a b c => left_distrib a b c
   RightDistributive := fun a b c => right_distrib a b c
 
-instance {R : Type u} [Preorder R] : StrictOrderCompatibilityLaw R where
-  LtIffLeNotLe := fun a b => lt_iff_le_not_ge
-
-instance {R : Type u} [PartialOrder R] : PartialOrderLaws R where
-  LeRefl := le_refl
-  LeAntisymm := fun _ _ h h' => le_antisymm h h'
-  LeTrans := fun _ _ _ h h' => le_trans h h'
-
-instance {R : Type u} [LinearOrder R] : TotalOrderLaw R where
-  LeTotal := le_total
-
-instance {R : Type u} [AddCommMonoid R] [PartialOrder R]
-    [IsOrderedAddMonoid R] : AdditionRespectsOrderLaws R where
-  AddLeAddLeft := fun _ _ h c => add_le_add_right h c
-  AddLeAddRight := fun _ _ h c => add_le_add_left h c
-
-instance {R : Type u} [Semiring R] [PartialOrder R] [IsOrderedRing R] :
-    MultiplicationRespectsOrderLaws R where
-  MulNonneg := fun _ _ ha hb => mul_nonneg ha hb
-
-/-- Mathlib's dense orders certify density. -/
-instance {R : Type u} [LT R] [DenselyOrdered R] : DenseOrderLaw R where
-  ExistsBetween := fun _ _ h => exists_between h
-
-/-- The Mathlib integers are order-discrete. -/
-instance : OrderDiscretenessLaw Int where
-  NoStrictBetweenAddOne := by
-    intro a h
-    obtain ⟨middle, lower, upper⟩ := h
-    omega
-
-/-- Conditionally complete linear orders satisfy backend-relative
-completeness at the classical backend `Set R`. -/
-instance {R : Type u} [ConditionallyCompleteLinearOrder R] :
-    OrderCompletenessLaws R (Set R) where
-  Completeness := by
-    intro subset ⟨w, hw⟩ ⟨b, hb⟩
-    refine ⟨sSup subset, ?_, ?_⟩
-    · intro x hx
-      exact le_csSup ⟨b, fun y hy => hb y hy⟩ hx
-    · intro c hc
-      exact csSup_le ⟨w, hw⟩ fun y hy => hc y hy
-
 /-!
 Shortcut instances at the bundle level. The mixin bridges above already
 make every bundle *derivable*, but instance search through the
@@ -140,8 +100,6 @@ instance {R : Type u} [CommRing R] : CommutativeRingLaws R := ⟨⟩
 instance {R : Type u} [CommRing R] [IsDomain R] : IntegralDomainLaws R := ⟨⟩
 
 instance {R : Type u} [Field R] : FieldLaws R := ⟨⟩
-
-instance {R : Type u} [LinearOrder R] : LinearOrderLaws R := ⟨⟩
 
 instance {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] :
     OrderedFieldLaws R := ⟨⟩

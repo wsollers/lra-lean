@@ -2,7 +2,7 @@
 -- Generic first-order model builders over instance-carrying carriers.
 
 import LRA.VolumeI.UniversalAlgebra.Models.Signatures
-import LRA.VolumeI.AlgebraicStructures.Discrete
+import LRA.VolumeI.AlgebraicStructures.DiscreteInteger.Laws.Definition
 
 namespace LRA.UniversalAlgebra.Models
 

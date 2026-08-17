@@ -7,6 +7,7 @@ import LRA.VolumeII.Integers.Polish.LandauWorkup
 namespace LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor
 
 open LRA.AlgebraicStructures
+open LRA.Order
 
 /-!
 Volume II label: integers-polish-instances

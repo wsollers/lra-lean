@@ -1,4 +1,4 @@
-import LRA.VolumeI.Operations.Laws
+import LRA.VolumeI.Operations.Definition
 import LRA.VolumeI.Relations.Basic.Properties
 
 namespace LRA.Operation
