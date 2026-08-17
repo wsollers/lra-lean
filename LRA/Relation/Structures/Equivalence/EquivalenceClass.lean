@@ -43,9 +43,8 @@ theorem EquivalenceClassExists
     (ambient : SetObject)
     (relation : Endorelation Element)
     (representative : Element) :
-    LRA.Identity.Exists
-      (fun classSet : SetObject =>
-        IsEquivalenceClassOf classSet ambient relation representative) := by
+    ∃ classSet : SetObject,
+      IsEquivalenceClassOf classSet ambient relation representative := by
   sorry
 
 theorem EquivalenceClassUnique
