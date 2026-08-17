@@ -1,4 +1,4 @@
-import LRA.VolumeI.UniversalAlgebra.Signatures
+import LRA.VolumeI.UniversalAlgebra.Signature
 import LRA.VolumeI.Logic.Model.Model
 import LRA.VolumeI.Logic.Syntax.Term
 import LRA.VolumeI.Logic.Semantics.TermEvaluation

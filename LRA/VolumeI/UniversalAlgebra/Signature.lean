@@ -1,5 +1,5 @@
-import LRA.VolumeI.UniversalAlgebra.Signatures.FormalVocabulary
-import LRA.VolumeI.UniversalAlgebra.Signatures.BasicArithmeticLanguage
+import LRA.VolumeI.UniversalAlgebra.Signature.FormalVocabulary
+import LRA.VolumeI.UniversalAlgebra.Signature.BasicArithmeticLanguage
 
 /-!
 Aggregate import for formal universal-algebra signatures.

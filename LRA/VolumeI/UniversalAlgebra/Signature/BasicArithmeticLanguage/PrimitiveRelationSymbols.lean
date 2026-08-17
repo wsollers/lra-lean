@@ -1,6 +1,6 @@
-import LRA.VolumeI.UniversalAlgebra.Signatures.FormalVocabulary.RelationSymbols
+import LRA.VolumeI.UniversalAlgebra.Signature.FormalVocabulary.RelationSymbols
 
-namespace LRA.UniversalAlgebra.Signatures.BasicArithmeticLanguage
+namespace LRA.UniversalAlgebra.Signature.BasicArithmeticLanguage
 
 /--
 Primitive relation symbols for arithmetic languages.
@@ -32,4 +32,4 @@ def PrimitiveRelationArity : PrimitiveRelationSymbol -> Nat
   | .lessThan => 2
   | .lessThanOrEqual => 2
 
-end LRA.UniversalAlgebra.Signatures.BasicArithmeticLanguage
+end LRA.UniversalAlgebra.Signature.BasicArithmeticLanguage

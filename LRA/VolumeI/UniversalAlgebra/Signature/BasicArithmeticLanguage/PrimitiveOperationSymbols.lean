@@ -1,6 +1,6 @@
-import LRA.VolumeI.UniversalAlgebra.Signatures.FormalVocabulary.OperationSymbols
+import LRA.VolumeI.UniversalAlgebra.Signature.FormalVocabulary.OperationSymbols
 
-namespace LRA.UniversalAlgebra.Signatures.BasicArithmeticLanguage
+namespace LRA.UniversalAlgebra.Signature.BasicArithmeticLanguage
 
 /--
 Primitive operation symbols for the basic arithmetic language.
@@ -44,4 +44,4 @@ def PrimitiveOperationArity : PrimitiveOperationSymbol -> Nat
   | .negation => 1
   | .multiplication => 2
 
-end LRA.UniversalAlgebra.Signatures.BasicArithmeticLanguage
+end LRA.UniversalAlgebra.Signature.BasicArithmeticLanguage

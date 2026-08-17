@@ -1,6 +1,6 @@
-import LRA.VolumeI.UniversalAlgebra.Signatures.FormalVocabulary.Notation
+import LRA.VolumeI.UniversalAlgebra.Signature.FormalVocabulary.Notation
 
-namespace LRA.UniversalAlgebra.Signatures.BasicArithmeticLanguage
+namespace LRA.UniversalAlgebra.Signature.BasicArithmeticLanguage
 
 /--
 Derived relation notation, usually defined from primitive operations.
@@ -15,4 +15,4 @@ inductive DerivedRelationNotation where
 inductive DerivedRelationNotation where
   | divisibility
 
-end LRA.UniversalAlgebra.Signatures.BasicArithmeticLanguage
+end LRA.UniversalAlgebra.Signature.BasicArithmeticLanguage

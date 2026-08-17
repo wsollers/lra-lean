@@ -9,7 +9,7 @@ These bundles are deliberately law-free. They name a carrier and the
 distinguished elements or operations used by native Lean presentations of
 algebraic structures. They are not universal-algebraic signatures in the
 formal symbol-and-arity sense; that formal vocabulary lives under
-`LRA.UniversalAlgebra.Signatures.FormalVocabulary`.
+`LRA.UniversalAlgebra.Signature.FormalVocabulary`.
 
 Set-like models should map their concrete empty set to `zero` and their
 concrete universal set to `one` when they instantiate an abstract algebraic

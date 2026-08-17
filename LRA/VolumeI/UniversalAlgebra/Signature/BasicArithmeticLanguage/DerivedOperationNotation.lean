@@ -1,6 +1,6 @@
-import LRA.VolumeI.UniversalAlgebra.Signatures.FormalVocabulary.Notation
+import LRA.VolumeI.UniversalAlgebra.Signature.FormalVocabulary.Notation
 
-namespace LRA.UniversalAlgebra.Signatures.BasicArithmeticLanguage
+namespace LRA.UniversalAlgebra.Signature.BasicArithmeticLanguage
 
 /--
 Derived operation notation, not generally primitive signature data.
@@ -21,4 +21,4 @@ inductive DerivedOperationNotation where
   | power
   | modulus
 
-end LRA.UniversalAlgebra.Signatures.BasicArithmeticLanguage
+end LRA.UniversalAlgebra.Signature.BasicArithmeticLanguage

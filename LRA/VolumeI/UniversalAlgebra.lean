@@ -1,6 +1,6 @@
 import LRA.VolumeI.Operations
 import LRA.VolumeI.Relations
-import LRA.VolumeI.UniversalAlgebra.Signatures
+import LRA.VolumeI.UniversalAlgebra.Signature
 import LRA.VolumeI.UniversalAlgebra.InterpretedOperationBundles
 import LRA.VolumeI.UniversalAlgebra.Algebra.All
 import LRA.VolumeI.UniversalAlgebra.Satisfaction.All

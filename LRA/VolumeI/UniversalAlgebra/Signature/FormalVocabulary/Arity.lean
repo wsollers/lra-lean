@@ -1,6 +1,6 @@
 import LRA.VolumeI.Logic.Language.Symbols
 
-namespace LRA.UniversalAlgebra.Signatures.FormalVocabulary
+namespace LRA.UniversalAlgebra.Signature.FormalVocabulary
 
 /--
 The arity of a formal symbol.
@@ -46,4 +46,4 @@ def Binary (arity : Arity) : Prop := arity = 2
 -/
 def Binary (arity : Arity) : Prop := arity = 2
 
-end LRA.UniversalAlgebra.Signatures.FormalVocabulary
+end LRA.UniversalAlgebra.Signature.FormalVocabulary

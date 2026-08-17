@@ -1,6 +1,6 @@
-import LRA.VolumeI.UniversalAlgebra.Signatures.FormalVocabulary.Arity
+import LRA.VolumeI.UniversalAlgebra.Signature.FormalVocabulary.Arity
 
-namespace LRA.UniversalAlgebra.Signatures.FormalVocabulary
+namespace LRA.UniversalAlgebra.Signature.FormalVocabulary
 
 /--
 Relation symbols with assigned arities.
@@ -17,4 +17,4 @@ structure RelationSymbols where
   Symbol : Type
   ArityOf : Symbol -> Arity
 
-end LRA.UniversalAlgebra.Signatures.FormalVocabulary
+end LRA.UniversalAlgebra.Signature.FormalVocabulary
