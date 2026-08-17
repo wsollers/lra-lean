@@ -1,10 +1,6 @@
-import LRA.Set.ZFCSet.Primitives
+import LRA.Set.ZFC.Compatibility
 
-namespace LRA.Set.Enderton
-
-abbrev Set := LRA.Set.ZFCSet
-abbrev MembershipRelation : Set → Set → Prop := LRA.Set.ZFCMembership
-
-end LRA.Set.Enderton
-
-/-! Legacy forwarding surface for the canonical ZFCSet primitives. -/
+/-!
+Legacy forwarding surface for the pre-standardization Enderton primitive names.
+The aliases themselves are declared exactly once in `LRA.Set.ZFC.Compatibility`.
+-/
