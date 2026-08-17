@@ -1,9 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Closure.Definition
+import LRA.Operation.Laws.Closure.Consequences
 
-/-!
-Derived consequences of this concept belong here.
--/
-
-namespace LRA.Operation.Laws.Closure
-
-end LRA.Operation.Laws.Closure
+/-! Compatibility shim for the historical Closure consequence path. -/
