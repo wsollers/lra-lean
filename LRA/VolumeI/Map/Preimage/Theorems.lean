@@ -586,7 +586,7 @@ theorem PreimageComposition
     (secondMap : TypedMap MiddleElement ThirdElement)
     (firstMap : TypedMap FirstElement MiddleElement)
     (target : ThirdSet) :
-    (Preimage (LRA.Map.Composition.Compose secondMap firstMap) target :
+    (Preimage (LRA.Map.Composition.Composition secondMap firstMap) target :
       FirstSet) =
       Preimage firstMap ((Preimage secondMap target : MiddleSet))
 ```
@@ -601,7 +601,7 @@ theorem PreimageComposition
     (secondMap : TypedMap MiddleElement ThirdElement)
     (firstMap : TypedMap FirstElement MiddleElement)
     (target : ThirdSet) :
-    (Preimage (LRA.Map.Composition.Compose secondMap firstMap) target :
+    (Preimage (LRA.Map.Composition.Composition secondMap firstMap) target :
       FirstSet) =
       Preimage firstMap ((Preimage secondMap target : MiddleSet)) := by
   sorry
@@ -629,9 +629,9 @@ theorem PreimageCompositionMonotone
     (firstMap : TypedMap FirstElement MiddleElement)
     (left right : ThirdSet)
     (leftSubsetRight : left ⊆ right) :
-    (Preimage (LRA.Map.Composition.Compose secondMap firstMap) left :
+    (Preimage (LRA.Map.Composition.Composition secondMap firstMap) left :
       FirstSet) ⊆
-      Preimage (LRA.Map.Composition.Compose secondMap firstMap) right
+      Preimage (LRA.Map.Composition.Composition secondMap firstMap) right
 ```
 -/
 theorem PreimageCompositionMonotone
@@ -649,9 +649,9 @@ theorem PreimageCompositionMonotone
     (firstMap : TypedMap FirstElement MiddleElement)
     (left right : ThirdSet)
     (leftSubsetRight : left ⊆ right) :
-    (Preimage (LRA.Map.Composition.Compose secondMap firstMap) left :
+    (Preimage (LRA.Map.Composition.Composition secondMap firstMap) left :
       FirstSet) ⊆
-      Preimage (LRA.Map.Composition.Compose secondMap firstMap) right := by
+      Preimage (LRA.Map.Composition.Composition secondMap firstMap) right := by
   sorry
 
 end Composition

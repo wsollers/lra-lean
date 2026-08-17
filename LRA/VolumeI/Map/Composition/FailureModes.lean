@@ -27,7 +27,7 @@ def CompositeInjectiveSecondNotInjective
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
     (first : TypedMap Domain Middle)
     (second : TypedMap Middle Codomain) : Prop :=
-  LRA.Map.Injective.Injective (Compose second first) /\
+  LRA.Map.Injective.Injective (Composition second first) /\
     ¬ LRA.Map.Injective.Injective second
 
 /--
@@ -48,7 +48,7 @@ def CompositeSurjectiveFirstNotSurjective
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
     (first : TypedMap Domain Middle)
     (second : TypedMap Middle Codomain) : Prop :=
-  LRA.Map.Surjective.Surjective (Compose second first) /\
+  LRA.Map.Surjective.Surjective (Composition second first) /\
     ¬ LRA.Map.Surjective.Surjective first
 
 /--
@@ -70,7 +70,7 @@ def CompositeBijectiveWithSlackMiddle
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
     (first : TypedMap Domain Middle)
     (second : TypedMap Middle Codomain) : Prop :=
-  LRA.Map.Bijective.Bijective (Compose second first) /\
+  LRA.Map.Bijective.Bijective (Composition second first) /\
     (¬ LRA.Map.Surjective.Surjective first \/
       ¬ LRA.Map.Injective.Injective second)
 

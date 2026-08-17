@@ -11,89 +11,89 @@ open LRA.Map.Typed
 universe u v w
 
 /--
-**[Theorem — InjectiveCompose]**
+**[Theorem — InjectiveComposition]**
 
 The composition of injective maps is injective.
 
 Logical form:
 
 ```lean
-theorem InjectiveCompose
+theorem InjectiveComposition
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
     {second : TypedMap Middle Codomain}
     {first : TypedMap Domain Middle}
     (secondInjective : LRA.Map.Injective.Injective second)
     (firstInjective : LRA.Map.Injective.Injective first) :
-    LRA.Map.Injective.Injective (Compose second first)
+    LRA.Map.Injective.Injective (Composition second first)
 ```
 -/
-theorem InjectiveCompose
+theorem InjectiveComposition
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
     {second : TypedMap Middle Codomain}
     {first : TypedMap Domain Middle}
     (secondInjective : LRA.Map.Injective.Injective second)
     (firstInjective : LRA.Map.Injective.Injective first) :
-    LRA.Map.Injective.Injective (Compose second first) := by
+    LRA.Map.Injective.Injective (Composition second first) := by
   sorry
 /--
-**[Theorem — SurjectiveCompose]**
+**[Theorem — SurjectiveComposition]**
 
 The composition of surjective maps is surjective.
 
 Logical form:
 
 ```lean
-theorem SurjectiveCompose
+theorem SurjectiveComposition
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
     {second : TypedMap Middle Codomain}
     {first : TypedMap Domain Middle}
     (secondSurjective : LRA.Map.Surjective.Surjective second)
     (firstSurjective : LRA.Map.Surjective.Surjective first) :
-    LRA.Map.Surjective.Surjective (Compose second first)
+    LRA.Map.Surjective.Surjective (Composition second first)
 ```
 -/
-theorem SurjectiveCompose
+theorem SurjectiveComposition
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
     {second : TypedMap Middle Codomain}
     {first : TypedMap Domain Middle}
     (secondSurjective : LRA.Map.Surjective.Surjective second)
     (firstSurjective : LRA.Map.Surjective.Surjective first) :
-    LRA.Map.Surjective.Surjective (Compose second first) := by
+    LRA.Map.Surjective.Surjective (Composition second first) := by
   sorry
 /--
-**[Theorem — BijectiveCompose]**
+**[Theorem — BijectiveComposition]**
 
 The composition of bijective maps is bijective.
 
 Logical form:
 
 ```lean
-theorem BijectiveCompose
+theorem BijectiveComposition
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
     {second : TypedMap Middle Codomain}
     {first : TypedMap Domain Middle}
     (secondBijective : LRA.Map.Bijective.Bijective second)
     (firstBijective : LRA.Map.Bijective.Bijective first) :
-    LRA.Map.Bijective.Bijective (Compose second first)
+    LRA.Map.Bijective.Bijective (Composition second first)
 ```
 -/
-theorem BijectiveCompose
+theorem BijectiveComposition
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
     {second : TypedMap Middle Codomain}
     {first : TypedMap Domain Middle}
     (secondBijective : LRA.Map.Bijective.Bijective second)
     (firstBijective : LRA.Map.Bijective.Bijective first) :
-    LRA.Map.Bijective.Bijective (Compose second first) := by
+    LRA.Map.Bijective.Bijective (Composition second first) := by
   sorry
 /--
-**[Theorem — LeftInverseCompose]**
+**[Theorem — LeftInverseComposition]**
 
 Left inverses compose in reverse order.
 
 Logical form:
 
 ```lean
-theorem LeftInverseCompose
+theorem LeftInverseComposition
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
     {second : TypedMap Middle Codomain}
     {first : TypedMap Domain Middle}
@@ -104,11 +104,11 @@ theorem LeftInverseCompose
     (firstLeftInverse :
       LRA.Map.Inverse.LeftInverse first firstInverse) :
     LRA.Map.Inverse.LeftInverse
-      (Compose second first)
-      (Compose firstInverse secondInverse)
+      (Composition second first)
+      (Composition firstInverse secondInverse)
 ```
 -/
-theorem LeftInverseCompose
+theorem LeftInverseComposition
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
     {second : TypedMap Middle Codomain}
     {first : TypedMap Domain Middle}
@@ -119,18 +119,18 @@ theorem LeftInverseCompose
     (firstLeftInverse :
       LRA.Map.Inverse.LeftInverse first firstInverse) :
     LRA.Map.Inverse.LeftInverse
-      (Compose second first)
-      (Compose firstInverse secondInverse) := by
+      (Composition second first)
+      (Composition firstInverse secondInverse) := by
   sorry
 /--
-**[Theorem — RightInverseCompose]**
+**[Theorem — RightInverseComposition]**
 
 Right inverses compose in reverse order.
 
 Logical form:
 
 ```lean
-theorem RightInverseCompose
+theorem RightInverseComposition
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
     {second : TypedMap Middle Codomain}
     {first : TypedMap Domain Middle}
@@ -141,11 +141,11 @@ theorem RightInverseCompose
     (firstRightInverse :
       LRA.Map.Inverse.RightInverse first firstInverse) :
     LRA.Map.Inverse.RightInverse
-      (Compose second first)
-      (Compose firstInverse secondInverse)
+      (Composition second first)
+      (Composition firstInverse secondInverse)
 ```
 -/
-theorem RightInverseCompose
+theorem RightInverseComposition
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
     {second : TypedMap Middle Codomain}
     {first : TypedMap Domain Middle}
@@ -156,18 +156,18 @@ theorem RightInverseCompose
     (firstRightInverse :
       LRA.Map.Inverse.RightInverse first firstInverse) :
     LRA.Map.Inverse.RightInverse
-      (Compose second first)
-      (Compose firstInverse secondInverse) := by
+      (Composition second first)
+      (Composition firstInverse secondInverse) := by
   sorry
 /--
-**[Theorem — TwoSidedInverseCompose]**
+**[Theorem — TwoSidedInverseComposition]**
 
 Two-sided inverses compose in reverse order.
 
 Logical form:
 
 ```lean
-theorem TwoSidedInverseCompose
+theorem TwoSidedInverseComposition
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
     {second : TypedMap Middle Codomain}
     {first : TypedMap Domain Middle}
@@ -178,11 +178,11 @@ theorem TwoSidedInverseCompose
     (firstTwoSided :
       LRA.Map.Inverse.TwoSidedInverse first firstInverse) :
     LRA.Map.Inverse.TwoSidedInverse
-      (Compose second first)
-      (Compose firstInverse secondInverse)
+      (Composition second first)
+      (Composition firstInverse secondInverse)
 ```
 -/
-theorem TwoSidedInverseCompose
+theorem TwoSidedInverseComposition
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
     {second : TypedMap Middle Codomain}
     {first : TypedMap Domain Middle}
@@ -193,7 +193,7 @@ theorem TwoSidedInverseCompose
     (firstTwoSided :
       LRA.Map.Inverse.TwoSidedInverse first firstInverse) :
     LRA.Map.Inverse.TwoSidedInverse
-      (Compose second first)
-      (Compose firstInverse secondInverse) := by
+      (Composition second first)
+      (Composition firstInverse secondInverse) := by
   sorry
 end LRA.Map.Composition

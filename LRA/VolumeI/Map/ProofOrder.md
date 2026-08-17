@@ -78,10 +78,10 @@ Each entry is a human mathematical statement rather than a repetition of the Lea
 
 ### 11. `Composition/Theorems.lean`
 
-- [ ] **ComposeApply** — Let the displayed domain, the displayed codomain, the displayed intermediate set, the named maps be given. Then evaluation of composition. ([source](./Composition/Theorems.lean#L27))
-- [ ] **ComposeLeftIdentity** — Let the displayed domain, the displayed codomain, the named maps be given. Then left identity law for composition. ([source](./Composition/Theorems.lean#L48))
-- [ ] **ComposeRightIdentity** — Let the displayed domain, the displayed codomain, the named maps be given. Then right identity law for composition. ([source](./Composition/Theorems.lean#L67))
-- [ ] **ComposeAssociative** — Let the named maps be given. Then associativity of composition. ([source](./Composition/Theorems.lean#L89))
+- [ ] **CompositionApply** — Let the displayed domain, the displayed codomain, the displayed intermediate set, the named maps be given. Then evaluation of composition. ([source](./Composition/Theorems.lean#L27))
+- [ ] **CompositionLeftIdentity** — Let the displayed domain, the displayed codomain, the named maps be given. Then left identity law for composition. ([source](./Composition/Theorems.lean#L48))
+- [ ] **CompositionRightIdentity** — Let the displayed domain, the displayed codomain, the named maps be given. Then right identity law for composition. ([source](./Composition/Theorems.lean#L67))
+- [ ] **CompositionAssociative** — Let the named maps be given. Then associativity of composition. ([source](./Composition/Theorems.lean#L89))
 
 ### 12. `Injective/FailureModes.lean`
 
@@ -200,12 +200,12 @@ Each entry is a human mathematical statement rather than a repetition of the Lea
 
 ### 24. `Composition/Relationships.lean`
 
-- [ ] **InjectiveCompose** — Let the displayed domain, the displayed codomain, the displayed intermediate set, the named maps be given. Then the composition of injective maps is injective. ([source](./Composition/Relationships.lean#L30))
-- [ ] **SurjectiveCompose** — Let the displayed domain, the displayed codomain, the displayed intermediate set, the named maps be given. Then the composition of surjective maps is surjective. ([source](./Composition/Relationships.lean#L55))
-- [ ] **BijectiveCompose** — Let the displayed domain, the displayed codomain, the displayed intermediate set, the named maps be given. Then the composition of bijective maps is bijective. ([source](./Composition/Relationships.lean#L80))
-- [ ] **LeftInverseCompose** — Let the displayed domain, the displayed codomain, the displayed intermediate set, the named maps be given. Then left inverses compose in reverse order. ([source](./Composition/Relationships.lean#L111))
-- [ ] **RightInverseCompose** — Let the displayed domain, the displayed codomain, the displayed intermediate set, the named maps be given. Then right inverses compose in reverse order. ([source](./Composition/Relationships.lean#L148))
-- [ ] **TwoSidedInverseCompose** — Let the displayed domain, the displayed codomain, the displayed intermediate set, the named maps be given. Then two-sided inverses compose in reverse order. ([source](./Composition/Relationships.lean#L185))
+- [ ] **InjectiveComposition** — Let the displayed domain, the displayed codomain, the displayed intermediate set, the named maps be given. Then the composition of injective maps is injective. ([source](./Composition/Relationships.lean#L30))
+- [ ] **SurjectiveComposition** — Let the displayed domain, the displayed codomain, the displayed intermediate set, the named maps be given. Then the composition of surjective maps is surjective. ([source](./Composition/Relationships.lean#L55))
+- [ ] **BijectiveComposition** — Let the displayed domain, the displayed codomain, the displayed intermediate set, the named maps be given. Then the composition of bijective maps is bijective. ([source](./Composition/Relationships.lean#L80))
+- [ ] **LeftInverseComposition** — Let the displayed domain, the displayed codomain, the displayed intermediate set, the named maps be given. Then left inverses compose in reverse order. ([source](./Composition/Relationships.lean#L111))
+- [ ] **RightInverseComposition** — Let the displayed domain, the displayed codomain, the displayed intermediate set, the named maps be given. Then right inverses compose in reverse order. ([source](./Composition/Relationships.lean#L148))
+- [ ] **TwoSidedInverseComposition** — Let the displayed domain, the displayed codomain, the displayed intermediate set, the named maps be given. Then two-sided inverses compose in reverse order. ([source](./Composition/Relationships.lean#L185))
 
 ### 25. `Identity/Theorems.lean`
 

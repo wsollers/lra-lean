@@ -14,7 +14,7 @@ theorem CompositeInjectiveImpliesFirstInjective
     {first : TypedMap Domain Middle}
     {second : TypedMap Middle Codomain}
     (compositeInjective :
-      LRA.Map.Injective.Injective (Compose second first)) :
+      LRA.Map.Injective.Injective (Composition second first)) :
     LRA.Map.Injective.Injective first := by
   sorry
 
@@ -24,7 +24,7 @@ theorem CompositeSurjectiveImpliesSecondSurjective
     {first : TypedMap Domain Middle}
     {second : TypedMap Middle Codomain}
     (compositeSurjective :
-      LRA.Map.Surjective.Surjective (Compose second first)) :
+      LRA.Map.Surjective.Surjective (Composition second first)) :
     LRA.Map.Surjective.Surjective second := by
   sorry
 

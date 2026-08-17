@@ -882,7 +882,7 @@ theorem ImageComposition
     (secondMap : TypedMap MiddleElement ThirdElement)
     (firstMap : TypedMap FirstElement MiddleElement)
     (source : FirstSet) :
-    (Image (LRA.Map.Composition.Compose secondMap firstMap) source :
+    (Image (LRA.Map.Composition.Composition secondMap firstMap) source :
       ThirdSet) =
       Image secondMap ((Image firstMap source : MiddleSet))
 ```
@@ -891,7 +891,7 @@ theorem ImageComposition
     (secondMap : TypedMap MiddleElement ThirdElement)
     (firstMap : TypedMap FirstElement MiddleElement)
     (source : FirstSet) :
-    (Image (LRA.Map.Composition.Compose secondMap firstMap) source :
+    (Image (LRA.Map.Composition.Composition secondMap firstMap) source :
       ThirdSet) =
       Image secondMap ((Image firstMap source : MiddleSet)) := by
   sorry

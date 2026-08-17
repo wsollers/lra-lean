@@ -9,89 +9,89 @@ open LRA.Map.Identity
 universe u v w x
 
 /--
-**[Theorem — ComposeApply]**
+**[Theorem — CompositionApply]**
 
 Evaluation of composition.
 
 Logical form:
 
 ```lean
-theorem ComposeApply
+theorem CompositionApply
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
     (second : TypedMap Middle Codomain)
     (first : TypedMap Domain Middle)
     (input : Domain) :
-    Compose second first input = second (first input)
+    Composition second first input = second (first input)
 ```
 -/
-theorem ComposeApply
+theorem CompositionApply
     {Domain : Type u} {Middle : Type v} {Codomain : Type w}
     (second : TypedMap Middle Codomain)
     (first : TypedMap Domain Middle)
     (input : Domain) :
-    Compose second first input = second (first input) := by
+    Composition second first input = second (first input) := by
   sorry
 /--
-**[Theorem — ComposeLeftIdentity]**
+**[Theorem — CompositionLeftIdentity]**
 
 Left identity law for composition.
 
 Logical form:
 
 ```lean
-theorem ComposeLeftIdentity
+theorem CompositionLeftIdentity
     {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
-    Compose (IdentityMap Codomain) map = map
+    Composition (IdentityMap Codomain) map = map
 ```
 -/
-theorem ComposeLeftIdentity
+theorem CompositionLeftIdentity
     {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
-    Compose (IdentityMap Codomain) map = map := by
+    Composition (IdentityMap Codomain) map = map := by
   sorry
 /--
-**[Theorem — ComposeRightIdentity]**
+**[Theorem — CompositionRightIdentity]**
 
 Right identity law for composition.
 
 Logical form:
 
 ```lean
-theorem ComposeRightIdentity
+theorem CompositionRightIdentity
     {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
-    Compose map (IdentityMap Domain) = map
+    Composition map (IdentityMap Domain) = map
 ```
 -/
-theorem ComposeRightIdentity
+theorem CompositionRightIdentity
     {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
-    Compose map (IdentityMap Domain) = map := by
+    Composition map (IdentityMap Domain) = map := by
   sorry
 /--
-**[Theorem — ComposeAssociative]**
+**[Theorem — CompositionAssociative]**
 
 Associativity of composition.
 
 Logical form:
 
 ```lean
-theorem ComposeAssociative
+theorem CompositionAssociative
     {A : Type u} {B : Type v} {C : Type w} {D : Type x}
     (third : TypedMap C D)
     (second : TypedMap B C)
     (first : TypedMap A B) :
-    Compose third (Compose second first) =
-      Compose (Compose third second) first
+    Composition third (Composition second first) =
+      Composition (Composition third second) first
 ```
 -/
-theorem ComposeAssociative
+theorem CompositionAssociative
     {A : Type u} {B : Type v} {C : Type w} {D : Type x}
     (third : TypedMap C D)
     (second : TypedMap B C)
     (first : TypedMap A B) :
-    Compose third (Compose second first) =
-      Compose (Compose third second) first := by
+    Composition third (Composition second first) =
+      Composition (Composition third second) first := by
   sorry
 end LRA.Map.Composition

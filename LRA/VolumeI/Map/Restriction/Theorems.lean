@@ -45,14 +45,14 @@ theorem RestrictionEqualsComposition
     (original : TypedMap Domain Codomain)
     (inclusion : TypedMap Subdomain Domain) :
     Restriction original inclusion =
-      LRA.Map.Composition.Compose original inclusion
+      LRA.Map.Composition.Composition original inclusion
 ```
 -/
 theorem RestrictionEqualsComposition
     (original : TypedMap Domain Codomain)
     (inclusion : TypedMap Subdomain Domain) :
     Restriction original inclusion =
-      LRA.Map.Composition.Compose original inclusion := by
+      LRA.Map.Composition.Composition original inclusion := by
   sorry
 
 /--
