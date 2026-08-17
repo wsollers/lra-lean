@@ -1,5 +1,3 @@
-import LRA.VolumeI.Operations.Definition
+import LRA.Operation.FailureModes
 
-namespace LRA.Operation
-
-end LRA.Operation
+/-! Compatibility shim for the historical Operation failure-mode path. -/
