@@ -4,10 +4,10 @@ import LRA.Set.ZFC.Theorems
 /-!
 Canonical public names for the derived ZFC development.
 
-Primitive predicates are owned directly by `LRA.Set.ZFC.Definitions`. The
-underlying derived proofs are still being migrated from the historical
-`LRA.Set.Enderton` namespace; this module exposes the canonical public theorem
-and constructed-object surface during that transition.
+Primitive predicates and migrated derived theory are owned directly by
+`LRA.Set.ZFC`. The remaining constructed-object aliases below are temporary
+bridges while their theorem modules are moved out of the historical
+`LRA.Set.Enderton` namespace.
 -/
 
 namespace LRA.Set.ZFC
@@ -18,23 +18,6 @@ theorem SetExtensionality
     (sameMembers : ∀ x : LRA.Set.ZFCSet, x ∈ A ↔ x ∈ B) :
     A = B :=
   (SetEqualityIffSameMembers A B).2 sameMembers
-
-abbrev EmptySetExists := LRA.Set.Enderton.EmptySetExists
-
-/-- Any two empty sets in the ZFC universe are equal. -/
-theorem EmptySetIsUnique
-    {A B : LRA.Set.ZFCSet}
-    (AIsEmpty : IsEmptySet A)
-    (BIsEmpty : IsEmptySet B) :
-    B = A :=
-  LRA.Set.Enderton.EmptySetIsUnique AIsEmpty BIsEmpty
-
-abbrev EmptySetExistsAndIsUnique := LRA.Set.Enderton.EmptySetExistsAndIsUnique
-noncomputable abbrev TheEmptySet := LRA.Set.Enderton.TheEmptySet
-
-/-- The chosen empty set satisfies the empty-set specification. -/
-theorem TheEmptySetIsEmpty : IsEmptySet TheEmptySet :=
-  LRA.Set.Enderton.TheEmptySetIsEmpty
 
 /-- Compatibility spelling for the chosen-empty-set theorem. -/
 theorem TheEmptySetIsEmptySet : IsEmptySet TheEmptySet :=
