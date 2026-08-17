@@ -2,6 +2,7 @@ import LRA.Order.OrderedSets.PartialOrder.Characterizations
 import LRA.Order.OrderedSets.Preorder.Relationships
 import LRA.Order.OrderedSets.StrictOrder.Definition
 import LRA.Order.Relation.StrictPart.Definition
+import LRA.Relation.Operations.Converse.Definition
 
 namespace LRA.Order.OrderedSets.PartialOrder
 
