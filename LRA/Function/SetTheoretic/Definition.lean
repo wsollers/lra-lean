@@ -90,9 +90,37 @@ structure SetTheoreticFunction
   isFunction : IsSetTheoreticFunction triple
 
 /-! Historical terminology within the canonical realization. -/
-abbrev SetTheoreticMapTriple := SetTheoreticFunctionTriple
-abbrev IsSetTheoreticMap := IsSetTheoreticFunction
-abbrev SetTheoreticMap := SetTheoreticFunction
+abbrev SetTheoreticMapTriple
+    (DomainObject : Type v) (CodomainObject : Type w)
+    (GraphObject : Type x) :=
+  SetTheoreticFunctionTriple DomainObject CodomainObject GraphObject
+
+abbrev IsSetTheoreticMap
+    {DomainElement CodomainElement Pair : Type u}
+    {DomainObject : Type v} {CodomainObject : Type w}
+    {GraphObject : Type x}
+    [HasPairing DomainElement CodomainElement Pair]
+    [Membership DomainElement DomainObject]
+    [Membership CodomainElement CodomainObject]
+    [Membership Pair GraphObject]
+    (triple : SetTheoreticMapTriple DomainObject CodomainObject GraphObject) : Prop :=
+  IsSetTheoreticFunction
+    (DomainElement := DomainElement)
+    (CodomainElement := CodomainElement)
+    (Pair := Pair)
+    triple
+
+abbrev SetTheoreticMap
+    (DomainElement CodomainElement Pair : Type u)
+    (DomainObject : Type v) (CodomainObject : Type w)
+    (GraphObject : Type x)
+    [HasPairing DomainElement CodomainElement Pair]
+    [Membership DomainElement DomainObject]
+    [Membership CodomainElement CodomainObject]
+    [Membership Pair GraphObject] :=
+  SetTheoreticFunction
+    DomainElement CodomainElement Pair
+    DomainObject CodomainObject GraphObject
 
 /-- Historical accessor for the defining function condition. -/
 abbrev SetTheoreticMap.isMap
@@ -105,7 +133,7 @@ abbrev SetTheoreticMap.isMap
     [Membership Pair GraphObject]
     (setMap : SetTheoreticMap DomainElement CodomainElement Pair
       DomainObject CodomainObject GraphObject) :
-    IsSetTheoreticFunction
+    IsSetTheoreticMap
       (DomainElement := DomainElement)
       (CodomainElement := CodomainElement)
       (Pair := Pair)
