@@ -56,9 +56,8 @@ variable [ExtensionalityLaw Element SetObject]
 theorem QuotientSetExists
     (ambient : SetObject)
     (relation : Endorelation Element) :
-    LRA.Identity.Exists
-      (fun quotient : Collection =>
-        IsQuotientSetOf quotient ambient relation) := by
+    ∃ quotient : Collection,
+      IsQuotientSetOf quotient ambient relation := by
   sorry
 
 theorem QuotientSetUnique
