@@ -1,22 +1,14 @@
-import LRA.VolumeI.Set.Enderton.Axioms.Axioms
-import LRA.VolumeI.Set.Enderton.Definitions
-import LRA.VolumeI.Set.Enderton.Theorems.Extensionality
+import LRA.Set.ZFC.Axioms.EmptySet
+import LRA.Set.ZFC.Definitions
+import LRA.Set.ZFC.Extensionality.Theorems
 
 /-!
-Existence, uniqueness, and the chosen Enderton empty set.
+Existence, uniqueness, and the chosen ZFC empty set.
 -/
 
-namespace LRA.Set.Enderton
-/--
-There exists an empty set.
+namespace LRA.Set.ZFC
 
-Logical form:
-
-```lean
-theorem EmptySetExists :
-    ∃ A : Set, IsEmptySet A
-```
--/
+/-- There exists an empty set. -/
 theorem EmptySetExists :
     ∃ A : Set, IsEmptySet A := by
   have emptySet := EmptySet
@@ -24,19 +16,7 @@ theorem EmptySetExists :
   | intro A AIsEmpty =>
     exact ⟨A, AIsEmpty⟩
 
-/--
-Any empty set is equal to any other empty set.
-
-Logical form:
-
-```lean
-theorem EmptySetIsUnique
-    {A B : Set}
-    (AIsEmpty : IsEmptySet A)
-    (BIsEmpty : IsEmptySet B) :
-    B = A
-```
--/
+/-- Any empty set is equal to any other empty set. -/
 theorem EmptySetIsUnique
     {A B : Set}
     (AIsEmpty : IsEmptySet A)
@@ -53,19 +33,8 @@ theorem EmptySetIsUnique
   · intro xInA
     exfalso
     exact bInA xInA
-/--
-Any two empty sets are equal.
 
-Logical form:
-
-```lean
-theorem EmptySetsAreEqual
-    {A B : Set}
-    (AIsEmpty : IsEmptySet A)
-    (BIsEmpty : IsEmptySet B) :
-    A = B
-```
--/
+/-- Any two empty sets are equal. -/
 theorem EmptySetsAreEqual
     {A B : Set}
     (AIsEmpty : IsEmptySet A)
@@ -73,21 +42,8 @@ theorem EmptySetsAreEqual
     A = B := by
   exact EmptySetIsUnique BIsEmpty AIsEmpty
 
-
-
-
 /-- TeX label: `thm:empty-set-exists-unique`.
-
-There exists exactly one empty set. Its proof combines `EmptySetExists` with
-`EmptySetIsUnique`.
-
-Logical form:
-
-```lean
-theorem EmptySetExistsAndIsUnique :
-    ExistsAndUnique IsEmptySet
-```
--/
+There exists exactly one empty set. -/
 theorem EmptySetExistsAndIsUnique :
     ExistsAndUnique IsEmptySet := by
   constructor
@@ -95,50 +51,50 @@ theorem EmptySetExistsAndIsUnique :
   · intro A B AIsEmpty BIsEmpty
     exact EmptySetIsUnique BIsEmpty AIsEmpty
 
-/--
-The empty set chosen after its existence has been established.
-
-Logical form:
-
-```lean
+/-- The empty set chosen after its existence has been established. -/
 noncomputable def TheEmptySet : Set :=
   Classical.choose EmptySetExists
-```
--/
-noncomputable def TheEmptySet : Set :=
-  Classical.choose EmptySetExists
-/--
-The chosen empty set has no members.
 
-Logical form:
-
-```lean
-theorem TheEmptySetIsEmpty :
-    IsEmptySet TheEmptySet
-```
--/
+/-- The chosen empty set has no members. -/
 theorem TheEmptySetIsEmpty :
     IsEmptySet TheEmptySet := by
   have TheEmptySetExists := EmptySetExists
   have TheEmptySetIsEmpty := Classical.choose_spec TheEmptySetExists
   exact TheEmptySetIsEmpty
-/--
-Every empty set is equal to the chosen empty set.
 
-Logical form:
-
-```lean
-theorem EveryEmptySetEqualsTheEmptySet
-    {A : Set}
-    (AIsEmpty : IsEmptySet A) :
-    A = TheEmptySet
-```
--/
+/-- Every empty set is equal to the chosen empty set. -/
 theorem EveryEmptySetEqualsTheEmptySet
     {A : Set}
     (AIsEmpty : IsEmptySet A) :
     A = TheEmptySet := by
   exact EmptySetsAreEqual AIsEmpty TheEmptySetIsEmpty
 
+end LRA.Set.ZFC
+
+/-! Compatibility aliases for the historical Enderton theorem names. -/
+namespace LRA.Set.Enderton
+
+abbrev EmptySetExists := LRA.Set.ZFC.EmptySetExists
+
+abbrev EmptySetIsUnique
+    {A B : Set}
+    (AIsEmpty : IsEmptySet A)
+    (BIsEmpty : IsEmptySet B) : B = A :=
+  LRA.Set.ZFC.EmptySetIsUnique AIsEmpty BIsEmpty
+
+abbrev EmptySetsAreEqual
+    {A B : Set}
+    (AIsEmpty : IsEmptySet A)
+    (BIsEmpty : IsEmptySet B) : A = B :=
+  LRA.Set.ZFC.EmptySetsAreEqual AIsEmpty BIsEmpty
+
+abbrev EmptySetExistsAndIsUnique := LRA.Set.ZFC.EmptySetExistsAndIsUnique
+noncomputable abbrev TheEmptySet : Set := LRA.Set.ZFC.TheEmptySet
+abbrev TheEmptySetIsEmpty : IsEmptySet TheEmptySet := LRA.Set.ZFC.TheEmptySetIsEmpty
+
+abbrev EveryEmptySetEqualsTheEmptySet
+    {A : Set}
+    (AIsEmpty : IsEmptySet A) : A = TheEmptySet :=
+  LRA.Set.ZFC.EveryEmptySetEqualsTheEmptySet AIsEmpty
 
 end LRA.Set.Enderton
