@@ -1,101 +1,38 @@
-import LRA.VolumeI.Map.Typed.Definition
-import LRA.VolumeI.Relations.Basic.Relations
-import LRA.VolumeI.Set.Interface.Operations
+import LRA.Function.Definition
+import LRA.Set.Interface.Operations
 
 namespace LRA.Map.Graph
 
-open LRA.Map.Typed
 open LRA.Set
-
 universe u v w
 
-/--
-**[Definition — Graph]**
-
-The graph relation determined by a typed map.
-
-Logical form:
-
-```lean
-def Graph {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
-    LRA.Relation.HeterogeneousBinaryRelation Domain Codomain
-```
--/
-def Graph {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
+/-- Historical spelling for the graph relation of a typed function. -/
+abbrev Graph {Domain : Type u} {Codomain : Type v}
+    (map : LRA.Function.TypedFunction Domain Codomain) :
     LRA.Relation.HeterogeneousBinaryRelation Domain Codomain :=
-  fun input output => map input = output
+  LRA.Function.Graph map
 
-/--
-**[Definition — SingleValued]**
-
-A heterogeneous relation is single-valued when each input has at most one
-related output.
-
-Logical form:
-
-```lean
-def SingleValued {Domain : Type u} {Codomain : Type v}
-    (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain) : Prop
-```
--/
-def SingleValued {Domain : Type u} {Codomain : Type v}
+/-- Historical spelling for single-valuedness. -/
+abbrev SingleValued {Domain : Type u} {Codomain : Type v}
     (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain) : Prop :=
-  forall input firstOutput secondOutput,
-    relation input firstOutput ->
-    relation input secondOutput ->
-    firstOutput = secondOutput
+  LRA.Function.SingleValued relation
 
-/--
-**[Definition — TotalOverDomain]**
-
-A heterogeneous relation is total over its domain when every input has a
-related output.
-
-Logical form:
-
-```lean
-def TotalOverDomain {Domain : Type u} {Codomain : Type v}
-    (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain) : Prop
-```
--/
-def TotalOverDomain {Domain : Type u} {Codomain : Type v}
+/-- Historical spelling for totality over the source type. -/
+abbrev TotalOverDomain {Domain : Type u} {Codomain : Type v}
     (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain) : Prop :=
-  forall input, exists output, relation input output
+  LRA.Function.Total relation
 
-/--
-**[Definition — FunctionalRelation]**
-
-A relation presents a typed map when it is total and single-valued.
-
-Logical form:
-
-```lean
-def FunctionalRelation {Domain : Type u} {Codomain : Type v}
-    (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain) : Prop
-```
--/
-def FunctionalRelation {Domain : Type u} {Codomain : Type v}
+/-- Historical spelling for the defining function-relation condition. -/
+abbrev FunctionalRelation {Domain : Type u} {Codomain : Type v}
     (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain) : Prop :=
-  TotalOverDomain relation /\ SingleValued relation
+  LRA.Function.IsFunctionRelation relation
 
-/--
-**[Definition — DomainOfGraph]**
-
-The domain of a graph relation, separated from an ambient backend set.
-
-Logical form:
-
-```lean
-def DomainOfGraph {Element : Type u} {Codomain : Type v}
-    {SetObject : Type w}
-    [HasSeparation Element SetObject]
-    (ambientDomain : SetObject)
-    (graph : LRA.Relation.HeterogeneousBinaryRelation Element Codomain) :
-    SetObject
-```
+/-!
+The following two definitions are legacy backend adapters. Canonical Function
+calculus uses backend-neutral `SetClass` domain/range classes inherited from
+Relation calculus.
 -/
+
 def DomainOfGraph {Element : Type u} {Codomain : Type v}
     {SetObject : Type w}
     [HasSeparation Element SetObject]
@@ -103,24 +40,8 @@ def DomainOfGraph {Element : Type u} {Codomain : Type v}
     (graph : LRA.Relation.HeterogeneousBinaryRelation Element Codomain) :
     SetObject :=
   HasSeparation.separation ambientDomain
-    (fun input => exists output, graph input output)
+    (fun input => ∃ output, graph input output)
 
-/--
-**[Definition — RangeOfGraph]**
-
-The range of a graph relation, separated from an ambient backend set.
-
-Logical form:
-
-```lean
-def RangeOfGraph {Domain : Type u} {Element : Type v}
-    {SetObject : Type w}
-    [HasSeparation Element SetObject]
-    (ambientCodomain : SetObject)
-    (graph : LRA.Relation.HeterogeneousBinaryRelation Domain Element) :
-    SetObject
-```
--/
 def RangeOfGraph {Domain : Type u} {Element : Type v}
     {SetObject : Type w}
     [HasSeparation Element SetObject]
@@ -128,6 +49,6 @@ def RangeOfGraph {Domain : Type u} {Element : Type v}
     (graph : LRA.Relation.HeterogeneousBinaryRelation Domain Element) :
     SetObject :=
   HasSeparation.separation ambientCodomain
-    (fun output => exists input, graph input output)
+    (fun output => ∃ input, graph input output)
 
 end LRA.Map.Graph
