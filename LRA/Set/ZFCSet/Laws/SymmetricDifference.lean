@@ -1,5 +1,5 @@
-import LRA.VolumeI.Set.Enderton.Instances
-import LRA.VolumeI.Set.Interface.SymmetricDifference
+import LRA.Set.ZFCSet.Instances
+import LRA.Set.Interface.SymmetricDifference
 
 namespace LRA.Set.Enderton
 
