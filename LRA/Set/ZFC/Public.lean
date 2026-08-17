@@ -30,12 +30,38 @@ abbrev IsInductiveSet := LRA.Set.Enderton.IsInductiveSet
 abbrev IsFoundationWitness := LRA.Set.Enderton.IsFoundationWitness
 abbrev IsChoiceSetFor := LRA.Set.Enderton.IsChoiceSetFor
 
-abbrev SetExtensionality := LRA.Set.Enderton.SetExtensionality
+/-- Canonical extensionality theorem for the ZFC set universe. -/
+theorem SetExtensionality
+    (A B : LRA.Set.ZFCSet)
+    (sameMembers : ∀ x : LRA.Set.ZFCSet, x ∈ A ↔ x ∈ B) :
+    A = B :=
+  (LRA.Set.Enderton.SetEqualityIffSameMembers A B).2 sameMembers
+
+/-- Textbook biconditional form of extensionality. -/
+theorem SetEqualityIffSameMembers (A B : LRA.Set.ZFCSet) :
+    A = B ↔ ∀ x : LRA.Set.ZFCSet, x ∈ A ↔ x ∈ B :=
+  LRA.Set.Enderton.SetEqualityIffSameMembers A B
+
 abbrev EmptySetExists := LRA.Set.Enderton.EmptySetExists
-abbrev EmptySetIsUnique := LRA.Set.Enderton.EmptySetIsUnique
+
+/-- Any two empty sets in the ZFC universe are equal. -/
+theorem EmptySetIsUnique
+    {A B : LRA.Set.ZFCSet}
+    (AIsEmpty : IsEmptySet A)
+    (BIsEmpty : IsEmptySet B) :
+    B = A :=
+  LRA.Set.Enderton.EmptySetIsUnique AIsEmpty BIsEmpty
+
 abbrev EmptySetExistsAndIsUnique := LRA.Set.Enderton.EmptySetExistsAndIsUnique
 noncomputable abbrev TheEmptySet := LRA.Set.Enderton.TheEmptySet
-abbrev TheEmptySetIsEmptySet := LRA.Set.Enderton.TheEmptySetIsEmptySet
+
+/-- The chosen empty set satisfies the empty-set specification. -/
+theorem TheEmptySetIsEmpty : IsEmptySet TheEmptySet :=
+  LRA.Set.Enderton.TheEmptySetIsEmpty
+
+/-- Compatibility spelling for the chosen-empty-set theorem. -/
+theorem TheEmptySetIsEmptySet : IsEmptySet TheEmptySet :=
+  TheEmptySetIsEmpty
 
 noncomputable abbrev TheUnion := LRA.Set.Enderton.TheUnion
 noncomputable abbrev TheIntersection := LRA.Set.Enderton.TheIntersection
