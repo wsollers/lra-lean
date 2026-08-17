@@ -1,8 +1,7 @@
-import LRA.VolumeI.Map.SetTheoretic.Definition
+import LRA.Function.SetTheoretic
 import LRA.VolumeI.Map.SetTheoretic.Consequences
-import LRA.VolumeI.Map.SetTheoretic.Theorems
-import LRA.VolumeI.Map.SetTheoretic.Relationships
 
 /-!
-Aggregate import for the SetTheoretic map concept family.
+Compatibility aggregate for the historical SetTheoretic Map concept family.
+Canonical ownership is `LRA.Function.SetTheoretic`.
 -/
