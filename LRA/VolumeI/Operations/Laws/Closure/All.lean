@@ -1,8 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Closure.Definition
-import LRA.VolumeI.Operations.Laws.Closure.Consequences
-import LRA.VolumeI.Operations.Laws.Closure.Theorems
-import LRA.VolumeI.Operations.Laws.Closure.Relationships
+import LRA.Operation.Laws.Closure
 
-/-!
-Aggregate import for the Closure operation law concept family.
--/
+/-! Compatibility aggregate for the historical Closure law path. -/
