@@ -27,7 +27,7 @@ permissions:
 
 jobs:
   build:
-    name: Logic, Identity, Set, Relation, and Function
+    name: Logic, Identity, Set, Relation, Function, and Operation
     runs-on: ubuntu-latest
 
     steps:
@@ -109,6 +109,8 @@ jobs:
             LRA/Relation/ \
             LRA/Function.lean \
             LRA/Function/ \
+            LRA/Operation.lean \
+            LRA/Operation/ \
             --include="*.lean"; then
             echo "::warning::sorry found in the standardized foundational slice."
           else
