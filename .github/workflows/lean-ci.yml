@@ -27,7 +27,7 @@ permissions:
 
 jobs:
   build:
-    name: Logic, Identity, Set, and Relation
+    name: Logic, Identity, Set, Relation, and Function
     runs-on: ubuntu-latest
 
     steps:
@@ -55,8 +55,6 @@ jobs:
             exit 1
           }
 
-      # Project .olean files are separate from the immutable toolchain/dependency
-      # image.  Restoring this directory makes ordinary source builds incremental.
       - name: Restore project Lean build cache
         uses: actions/cache@v4
         with:
@@ -71,9 +69,6 @@ jobs:
           mkdir -p .ci-lake-build .ci-logs
           rm -f .ci-logs/lean-standardization.log
 
-          # Mount only changing project inputs.  Do NOT mount the repository over
-          # /workspace: that would hide the image's preloaded .lake/packages and
-          # Mathlib compiled cache.
           docker run --rm \
             -v "${{ github.workspace }}/LRA:/workspace/LRA:ro" \
             -v "${{ github.workspace }}/lakefile.lean:/workspace/lakefile.lean:ro" \
@@ -112,6 +107,8 @@ jobs:
             LRA/SetSystems/ \
             LRA/Relation.lean \
             LRA/Relation/ \
+            LRA/Function.lean \
+            LRA/Function/ \
             --include="*.lean"; then
             echo "::warning::sorry found in the standardized foundational slice."
           else
