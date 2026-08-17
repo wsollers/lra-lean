@@ -1,6 +1,7 @@
+import LRA.Function.Calculus.Definition
 import LRA.VolumeI.Map.Typed.Definition
-import LRA.VolumeI.Set.Interface.Membership
-import LRA.VolumeI.Set.Interface.Operations
+import LRA.Set.Interface.Membership
+import LRA.Set.Interface.Operations
 
 namespace LRA.Map.Image
 
@@ -16,89 +17,40 @@ variable {DomainSet : Type v₁} {CodomainSet : Type v₂}
 variable [Membership DomainElement DomainSet]
 variable [Membership CodomainElement CodomainSet]
 
-/--
-**[Definition — MapsInto]**
-
-`map` sends the source set into the target set. This is the set-containment
-form used by neighborhood definitions of continuity and limit statements.
-
-Logical form:
-
-```lean
-def MapsInto
-    (map : TypedMap DomainElement CodomainElement)
-    (source : DomainSet)
-    (target : CodomainSet) : Prop
-```
--/
+/-- Historical set-backed spelling of canonical `MapsIntoClass`. -/
 def MapsInto
     (map : TypedMap DomainElement CodomainElement)
     (source : DomainSet)
     (target : CodomainSet) : Prop :=
-  forall input : DomainElement, input ∈ source -> map input ∈ target
+  LRA.Function.MapsIntoClass
+    (LRA.Function.OfTypedFunction map)
+    (fun input => input ∈ source)
+    (fun output => output ∈ target)
 
-/--
-**[Definition — IsImageOf]**
-
-A set is the direct image of a source set under a typed map when its members
-are exactly the codomain elements hit by members of the source.
-
-Logical form:
-
-```lean
-def IsImageOf
-    (imageSet : CodomainSet)
-    (map : TypedMap DomainElement CodomainElement)
-    (source : DomainSet) : Prop
-```
--/
+/-- Historical set-backed spelling of canonical image characterization. -/
 def IsImageOf
     (imageSet : CodomainSet)
     (map : TypedMap DomainElement CodomainElement)
     (source : DomainSet) : Prop :=
-  forall output : CodomainElement,
-    output ∈ imageSet <->
-      exists input : DomainElement, input ∈ source /\ map input = output
+  LRA.Function.IsImageClassOf
+    (fun output => output ∈ imageSet)
+    (LRA.Function.OfTypedFunction map)
+    (fun input => input ∈ source)
 
 section WithSeparation
 
 variable [HasSeparation CodomainElement CodomainSet]
 variable [HasUniversal CodomainSet]
 
-/--
-**[Definition — Image]**
-
-The direct image of a source set under a typed map, formed by separating from
-the codomain universe.
-
-Logical form:
-
-```lean
-def Image
-    (map : TypedMap DomainElement CodomainElement)
-    (source : DomainSet) : CodomainSet
-```
--/
+/-- Legacy backend realization of an image by Separation. -/
 def Image
     (map : TypedMap DomainElement CodomainElement)
     (source : DomainSet) : CodomainSet :=
   HasSeparation.separation (𝒰 : CodomainSet)
     (fun output : CodomainElement =>
-      exists input : DomainElement, input ∈ source /\ map input = output)
+      ∃ input : DomainElement, input ∈ source ∧ map input = output)
 
-/--
-**[Definition — Range]**
-
-The range of a typed map, represented as the image of an ambient domain set.
-
-Logical form:
-
-```lean
-def Range
-    (map : TypedMap DomainElement CodomainElement)
-    (ambientDomain : DomainSet) : CodomainSet
-```
--/
+/-- Legacy backend realization of the range as the image of an ambient domain. -/
 def Range
     (map : TypedMap DomainElement CodomainElement)
     (ambientDomain : DomainSet) : CodomainSet :=
@@ -114,79 +66,28 @@ variable {DomainElement : Type u₁} {CodomainElement : Type u₂}
 variable {DomainSet : Type v₁}
 variable [Membership DomainElement DomainSet]
 
-/--
-**[Definition — FinitelyEnumerates]**
-
-A finite list exactly enumerates the elements satisfying a predicate. This is
-the project-local finiteness witness used for finite image/range statements,
-without importing Mathlib's finite-set API.
-
-Logical form:
-
-```lean
-def FinitelyEnumerates
-    (values : List Element)
-    (predicate : Element -> Prop) : Prop
-```
--/
+/-- Project-local finite enumeration predicate retained as legacy adapter machinery. -/
 def FinitelyEnumerates
     {Element : Type u₁}
     (values : List Element)
-    (predicate : Element -> Prop) : Prop :=
-  forall value : Element, value ∈ values <-> predicate value
+    (predicate : Element → Prop) : Prop :=
+  ∀ value : Element, value ∈ values ↔ predicate value
 
-/--
-**[Definition — HasFiniteEnumeration]**
-
-A predicate describes a finite collection when some finite list exactly
-enumerates its satisfying elements.
-
-Logical form:
-
-```lean
-def HasFiniteEnumeration
-    (predicate : Element -> Prop) : Prop
-```
--/
+/-- A predicate has a finite list enumeration. -/
 def HasFiniteEnumeration
     {Element : Type u₁}
-    (predicate : Element -> Prop) : Prop :=
-  exists values : List Element, FinitelyEnumerates values predicate
+    (predicate : Element → Prop) : Prop :=
+  ∃ values : List Element, FinitelyEnumerates values predicate
 
-/--
-**[Definition — FiniteImage]**
-
-The image of a source set is finite when the codomain values hit by source
-members have a finite list enumeration.
-
-Logical form:
-
-```lean
-def FiniteImage
-    (map : TypedMap DomainElement CodomainElement)
-    (source : DomainSet) : Prop
-```
--/
+/-- Legacy finiteness predicate for an image. -/
 def FiniteImage
     (map : TypedMap DomainElement CodomainElement)
     (source : DomainSet) : Prop :=
   HasFiniteEnumeration
     (fun output : CodomainElement =>
-      exists input : DomainElement, input ∈ source /\ map input = output)
+      ∃ input : DomainElement, input ∈ source ∧ map input = output)
 
-/--
-**[Definition — FiniteRange]**
-
-The range of a map is finite relative to a chosen ambient domain.
-
-Logical form:
-
-```lean
-def FiniteRange
-    (map : TypedMap DomainElement CodomainElement)
-    (ambientDomain : DomainSet) : Prop
-```
--/
+/-- Legacy finiteness predicate for a range relative to an ambient domain. -/
 def FiniteRange
     (map : TypedMap DomainElement CodomainElement)
     (ambientDomain : DomainSet) : Prop :=
