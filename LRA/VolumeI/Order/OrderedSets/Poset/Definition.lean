@@ -1,24 +1,3 @@
-import LRA.VolumeI.Order.OrderedSets.PartialOrder.Definition
+import LRA.Order.OrderedSets.Poset.Definition
 
-namespace LRA.Order
-
-universe u
-
-/--
-A poset is a carrier equipped with a non-strict partial order.
-
-Logical form:
-
-```lean
-structure Poset where
-  Carrier : Type u
-  NonStrictOrder : LRA.Relation.Endorelation Carrier
-  NonStrictOrderIsPartialOrder : LRA.Order.PartialOrder NonStrictOrder
-```
--/
-structure Poset where
-  Carrier : Type u
-  NonStrictOrder : LRA.Relation.Endorelation Carrier
-  NonStrictOrderIsPartialOrder : LRA.Order.PartialOrder NonStrictOrder
-
-end LRA.Order
+/-! Compatibility shim for the historical Poset path. -/
