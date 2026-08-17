@@ -1,30 +1,3 @@
-import LRA.VolumeI.Relations.Basic.Relations
+import LRA.Order.Relation.CoverRelation.Definition
 
-namespace LRA.Order
-
-universe u
-
-/--
-The cover relation induced by a strict order relation.
-
-Logical form:
-
-```lean
-def CoverRelation {alpha : Type u}
-    (strictRelation : LRA.Relation.Endorelation alpha) :
-    LRA.Relation.Endorelation alpha :=
-  fun lower upper =>
-    strictRelation lower upper /\
-      forall middle,
-        Not (strictRelation lower middle /\ strictRelation middle upper)
-```
--/
-def CoverRelation {alpha : Type u}
-    (strictRelation : LRA.Relation.Endorelation alpha) :
-    LRA.Relation.Endorelation alpha :=
-  fun lower upper =>
-    strictRelation lower upper /\
-      forall middle,
-        Not (strictRelation lower middle /\ strictRelation middle upper)
-
-end LRA.Order
+/-! Legacy forwarding import. -/
