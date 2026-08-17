@@ -1,8 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Associative.Definition
-import LRA.VolumeI.Operations.Laws.Associative.Consequences
-import LRA.VolumeI.Operations.Laws.Associative.Theorems
-import LRA.VolumeI.Operations.Laws.Associative.Relationships
+import LRA.Operation.Laws.Associative
 
-/-!
-Aggregate import for the Associative operation law concept family.
--/
+/-! Compatibility aggregate for the historical Associative law path. -/
