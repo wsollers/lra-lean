@@ -1,8 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Identity.Definition
-import LRA.VolumeI.Operations.Laws.Identity.Consequences
-import LRA.VolumeI.Operations.Laws.Identity.Theorems
-import LRA.VolumeI.Operations.Laws.Identity.Relationships
+import LRA.Operation.Laws.Identity
 
-/-!
-Aggregate import for the Identity operation law concept family.
--/
+/-! Compatibility aggregate for the historical Identity law path. -/
