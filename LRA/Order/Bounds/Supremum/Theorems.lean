@@ -1,4 +1,5 @@
 import LRA.Order.Bounds.Supremum.Definition
+import LRA.Order.Bounds.GreatestElement.Definition
 import LRA.Relation.Properties.Definition
 
 namespace LRA.Order
@@ -92,6 +93,17 @@ theorem SupremaCompareUnderPointwiseDomination
     (rightSupremumIsSupremum :
       Supremum relation rightSubset rightSupremum) :
     relation leftSupremum rightSupremum := by
+  sorry
+
+/-- A supremum that belongs to its subset is its greatest element. -/
+theorem SupremumInSubsetIsGreatestElement
+    {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject]
+    {relation : LRA.Relation.Endorelation Element}
+    {subset : SetObject} {supremum : Element}
+    (supremumIsSupremum : Supremum relation subset supremum)
+    (supremumBelongs : supremum ∈ subset) :
+    GreatestElement relation subset supremum := by
   sorry
 
 end LRA.Order
