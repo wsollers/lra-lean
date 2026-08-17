@@ -1,4 +1,4 @@
-import LRA.VolumeI.Set.Interface.Operations
+import LRA.Set.Interface.Operations
 
 namespace LRA.Set
 
