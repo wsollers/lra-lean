@@ -3,6 +3,7 @@ import LRA.VolumeI.Relations
 import LRA.VolumeI.UniversalAlgebra.Signatures
 import LRA.VolumeI.UniversalAlgebra.Algebra.All
 import LRA.VolumeI.UniversalAlgebra.Satisfaction.All
+import LRA.VolumeI.UniversalAlgebra.Congruence.All
 import LRA.VolumeI.UniversalAlgebra.Homomorphism.All
 import LRA.VolumeI.UniversalAlgebra.Embedding.All
 import LRA.VolumeI.UniversalAlgebra.Isomorphism.All

@@ -1,5 +1,4 @@
 import LRA.VolumeI.Operations.Laws.Closure.All
-import LRA.VolumeI.Operations.Laws.EquationalLogic.All
 import LRA.VolumeI.Operations.Laws.Identity.All
 import LRA.VolumeI.Operations.Laws.Associative.All
 import LRA.VolumeI.Operations.Laws.Commutative.All

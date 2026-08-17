@@ -8,19 +8,20 @@ operation laws.
 `All.lean` follows the learning order:
 
 1. Closure
-2. EquationalLogic
-3. Identity
-4. Associative
-5. Commutative
-6. Absorbing
-7. Cancellation
-8. Distributive
-9. Idempotent
-10. Nilpotent
-11. Inverse
+2. Identity
+3. Associative
+4. Commutative
+5. Absorbing
+6. Cancellation
+7. Distributive
+8. Idempotent
+9. Nilpotent
+10. Inverse
 
 Order-operation compatibility is owned by `LRA.VolumeI.Order`, and map
 preservation/reflection/embedding predicates are owned by `LRA.VolumeI.Map`.
+Operation congruence over equivalence relations is owned by
+`LRA.VolumeI.UniversalAlgebra.Congruence`.
 
 ## Concept Shape
 
@@ -67,14 +68,10 @@ Start proof implementation in this order:
 2. `Closure/Relationships.lean`
 3. `Closure/Examples.lean`
 4. `Closure/FailureModes.lean`
-5. `EquationalLogic/Theorems.lean`
-6. `EquationalLogic/Relationships.lean`
-7. `EquationalLogic/Examples.lean`
-8. `EquationalLogic/FailureModes.lean`
-9. `Identity/Theorems.lean`
-10. `Identity/Relationships.lean`
-11. `Identity/Examples.lean`
-12. `Identity/FailureModes.lean`
+5. `Identity/Theorems.lean`
+6. `Identity/Relationships.lean`
+7. `Identity/Examples.lean`
+8. `Identity/FailureModes.lean`
 
 After those are complete, continue through the same learning order used by
 `All.lean`.

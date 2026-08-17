@@ -1,6 +1,6 @@
-import LRA.VolumeI.Operations.Laws.EquationalLogic.Theorems
+import LRA.VolumeI.UniversalAlgebra.Congruence.Theorems
 
-namespace LRA.Operation.Laws.EquationalLogic
+namespace LRA.UniversalAlgebra.Congruence
 
 open LRA.Operation
 
@@ -30,4 +30,4 @@ theorem BinaryOperationCongruence.right {Carrier : Type u}
   intro left right₁ right₂ rightRelated
   exact law (reflexive left) rightRelated
 
-end LRA.Operation.Laws.EquationalLogic
+end LRA.UniversalAlgebra.Congruence

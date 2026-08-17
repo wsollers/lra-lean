@@ -1,7 +1,7 @@
 import LRA.VolumeI.Operations.Definition
 import LRA.VolumeI.Relations.Equivalence.EquivalenceRelation
 
-namespace LRA.Operation.Laws.EquationalLogic
+namespace LRA.UniversalAlgebra.Congruence
 
 open LRA.Operation
 
@@ -54,4 +54,4 @@ def BinaryOperationRelationRequirements {Carrier : Type u}
   LRA.Relation.EquivalenceRelation relation /\
     BinaryOperationCongruence relation operation
 
-end LRA.Operation.Laws.EquationalLogic
+end LRA.UniversalAlgebra.Congruence

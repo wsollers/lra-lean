@@ -1,6 +1,6 @@
-import LRA.VolumeI.Operations.Laws.EquationalLogic.Definition
+import LRA.VolumeI.UniversalAlgebra.Congruence.Definition
 
-namespace LRA.Operation.Laws.EquationalLogic
+namespace LRA.UniversalAlgebra.Congruence
 
 open LRA.Operation
 
@@ -37,4 +37,4 @@ theorem SameParityFailsUnarySubstitutionForSuccessor :
     FailsUnaryRelationSubstitution SameParity NaturalSuccessor := by
   sorry
 
-end LRA.Operation.Laws.EquationalLogic
+end LRA.UniversalAlgebra.Congruence

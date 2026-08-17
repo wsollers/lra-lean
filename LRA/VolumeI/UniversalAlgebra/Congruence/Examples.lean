@@ -1,6 +1,6 @@
-import LRA.VolumeI.Operations.Laws.EquationalLogic.Theorems
+import LRA.VolumeI.UniversalAlgebra.Congruence.Theorems
 
-namespace LRA.Operation.Laws.EquationalLogic
+namespace LRA.UniversalAlgebra.Congruence
 
 open LRA.Operation
 
@@ -21,4 +21,4 @@ theorem SameParityAdditionCongruence :
     BinaryOperationCongruence SameParityForCongruenceExample NaturalAddition := by
   sorry
 
-end LRA.Operation.Laws.EquationalLogic
+end LRA.UniversalAlgebra.Congruence

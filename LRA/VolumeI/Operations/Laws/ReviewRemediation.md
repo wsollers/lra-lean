@@ -19,7 +19,8 @@ before replacing `sorry` proofs topic by topic.
 - Added element-level and predicate-restricted inverse language:
   `LeftInverseOf`, `RightInverseOf`, `TwoSidedInverseOf`, and inverse-on
   predicates for subcarriers of units or nonzero elements.
-- Added operation congruence/well-definedness language to `EquationalLogic`.
+- Moved operation congruence/well-definedness language to
+  `UniversalAlgebra/Congruence`.
 - Moved generic embedding and relation-reflection language out of
   `NumberEmbeddings` and into `Map/Morphisms`.
 - Replaced nilpotence's dependency on an unconstrained zero-exponent identity

@@ -1,7 +1,7 @@
-import LRA.VolumeI.Operations.Laws.EquationalLogic.Theorems
+import LRA.VolumeI.UniversalAlgebra.Congruence.Theorems
 import LRA.VolumeI.Relations.Equivalence.QuotientSet
 
-namespace LRA.Operation.Laws.EquationalLogic
+namespace LRA.UniversalAlgebra.Congruence
 
 open LRA.Operation
 open scoped LRA.Set
@@ -63,4 +63,4 @@ theorem BinaryOperationRelationRequirements.quotient_projection_respects_operati
       requirements.1
       (requirements.2 leftRelated rightRelated)
 
-end LRA.Operation.Laws.EquationalLogic
+end LRA.UniversalAlgebra.Congruence

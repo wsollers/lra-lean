@@ -1,6 +1,6 @@
-import LRA.VolumeI.Operations.Laws.EquationalLogic.Definition
+import LRA.VolumeI.UniversalAlgebra.Congruence.Definition
 
-namespace LRA.Operation.Laws.EquationalLogic
+namespace LRA.UniversalAlgebra.Congruence
 
 open LRA.Operation
 
@@ -59,4 +59,4 @@ theorem BinaryOperationRelationRequirements.operation_congruence {Carrier : Type
     BinaryOperationCongruence relation operation :=
   requirements.right
 
-end LRA.Operation.Laws.EquationalLogic
+end LRA.UniversalAlgebra.Congruence
