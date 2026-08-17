@@ -5,6 +5,8 @@ import LRA.VolumeI.UniversalAlgebra.Models.Models
 
 namespace LRA.UniversalAlgebra.Models.CharacteristicCardinality
 
+open LRA.AlgebraicStructures.OrderedRing.ModelTheory
+
 /-!
 Volume II label: characteristic-and-cardinality
 Lean module: LRA.UniversalAlgebra.Models.CharacteristicCardinality

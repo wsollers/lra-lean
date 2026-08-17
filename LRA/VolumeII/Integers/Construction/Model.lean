@@ -2,11 +2,17 @@
 -- Active integer construction as a Volume I first-order algebraic model.
 
 import LRA.VolumeI.UniversalAlgebra.Models
+import LRA.VolumeI.AlgebraicStructures.OrderedRing.ModelTheory.All
+import LRA.VolumeII.BasicArithmetic.ModelTheory.All
+import LRA.VolumeII.PeanoSystems.Presburger.ModelTheory.All
 import LRA.VolumeII.Integers.Implementation
 
 namespace LRA.NumberSystems.Integers
 
 open LRA.UniversalAlgebra.Models
+open LRA.AlgebraicStructures.OrderedRing.ModelTheory
+open LRA.NumberSystems.BasicArithmetic.ModelTheory
+open LRA.NumberSystems.PeanoSystems.Presburger.ModelTheory
 
 /-!
 Volume II label: active-integer-model

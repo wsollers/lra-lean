@@ -1,5 +1,6 @@
 import LRA.VolumeI.AlgebraicStructures.OrderedField.AlgebraicSignature.All
 import LRA.VolumeI.AlgebraicStructures.OrderedField.Laws.All
+import LRA.VolumeI.AlgebraicStructures.OrderedField.ModelTheory.All
 import LRA.VolumeI.AlgebraicStructures.OrderedField.Definition
 import LRA.VolumeI.AlgebraicStructures.OrderedField.Characterizations
 import LRA.VolumeI.AlgebraicStructures.OrderedField.Consequences

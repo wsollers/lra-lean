@@ -1,13 +1,16 @@
 -- LRA/VolumeI/UniversalAlgebra/Models/Models.lean
 -- Thin number-system model packages for Z, Q, and R.
 
-import LRA.VolumeI.UniversalAlgebra.Models.Signatures
+import LRA.VolumeI.AlgebraicStructures.OrderedRing.ModelTheory.ModelBuilder
+import LRA.VolumeI.AlgebraicStructures.OrderedField.ModelTheory.ModelBuilder
 import LRA.VolumeI.AlgebraicStructures
 import LRA.VolumeI.Order
 
 namespace LRA.UniversalAlgebra.Models
 
 open LRA.AlgebraicStructures
+open LRA.AlgebraicStructures.OrderedRing.ModelTheory
+open LRA.AlgebraicStructures.OrderedField.ModelTheory
 open LRA.Order
 
 universe u

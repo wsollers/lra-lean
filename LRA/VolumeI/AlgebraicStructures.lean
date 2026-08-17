@@ -14,6 +14,7 @@ import LRA.VolumeI.AlgebraicStructures.IntegralDomain.All
 import LRA.VolumeI.AlgebraicStructures.Monoid.All
 import LRA.VolumeI.AlgebraicStructures.OrderedField.All
 import LRA.VolumeI.AlgebraicStructures.OrderedRing.All
+import LRA.VolumeI.AlgebraicStructures.OrderedSemiring.All
 import LRA.VolumeI.AlgebraicStructures.Ring.All
 import LRA.VolumeI.AlgebraicStructures.Semigroup.All
 import LRA.VolumeI.AlgebraicStructures.Semiring.All

@@ -1,5 +1,3 @@
-import LRA.VolumeI.UniversalAlgebra.Models.Signatures
-import LRA.VolumeI.UniversalAlgebra.Models.FirstOrderBuilders
 import LRA.VolumeI.UniversalAlgebra.Models.Interpretations
 import LRA.VolumeI.UniversalAlgebra.Models.Satisfaction
 import LRA.VolumeI.UniversalAlgebra.Models.Homomorphism
@@ -18,6 +16,10 @@ import LRA.VolumeI.UniversalAlgebra.Models.Construction
 import LRA.VolumeI.UniversalAlgebra.Models.UniversalProperties
 
 /-!
-Aggregate import for algebraic model signatures, builders, and number-system
-model interfaces.
+Aggregate import for generic universal-algebra models, morphisms,
+substructures, products, quotients, congruence kernels, and model interfaces.
+
+Named first-order signatures and model builders live with their
+`AlgebraicStructures/<Concept>/ModelTheory` owners. Concrete number-system
+vocabulary lives in Volume II.
 -/

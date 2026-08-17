@@ -5,6 +5,9 @@ import LRA.VolumeI.UniversalAlgebra.Models.Models
 
 namespace LRA.UniversalAlgebra.Models.CanonicalEmbeddings
 
+open LRA.AlgebraicStructures.OrderedRing.ModelTheory
+open LRA.AlgebraicStructures.OrderedField.ModelTheory
+
 /-!
 Volume II label: canonical-embeddings
 Lean module: LRA.UniversalAlgebra.Models.CanonicalEmbeddings

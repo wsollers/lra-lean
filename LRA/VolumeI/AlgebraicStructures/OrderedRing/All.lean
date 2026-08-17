@@ -1,5 +1,6 @@
 import LRA.VolumeI.AlgebraicStructures.OrderedRing.AlgebraicSignature.All
 import LRA.VolumeI.AlgebraicStructures.OrderedRing.Laws.All
+import LRA.VolumeI.AlgebraicStructures.OrderedRing.ModelTheory.All
 import LRA.VolumeI.AlgebraicStructures.OrderedRing.Definition
 import LRA.VolumeI.AlgebraicStructures.OrderedRing.Characterizations
 import LRA.VolumeI.AlgebraicStructures.OrderedRing.Consequences

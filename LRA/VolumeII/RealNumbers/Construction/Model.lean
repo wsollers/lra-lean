@@ -2,10 +2,12 @@
 -- Real-number models as Volume I first-order algebraic models.
 
 import LRA.VolumeI.UniversalAlgebra.Models
+import LRA.VolumeI.AlgebraicStructures.OrderedField.ModelTheory.All
 
 namespace LRA.NumberSystems.RealNumbers
 
 open LRA.UniversalAlgebra.Models
+open LRA.AlgebraicStructures.OrderedField.ModelTheory
 
 /-!
 Volume II label: real-number-model

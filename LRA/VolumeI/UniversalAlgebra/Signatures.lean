@@ -5,9 +5,10 @@ import LRA.VolumeI.UniversalAlgebra.Signatures.OperationBundles
 /-!
 Aggregate import for algebraic signatures.
 
-The existing number-system-heavy signature implementation remains in
-`LRA.UniversalAlgebra.Models.Signatures` for this first pass and is deferred to
-the Volume II-oriented number-system pass.
+Generic arity-indexed vocabulary and law-free operation bundles live here.
+Named first-order signatures are owned by the corresponding
+`AlgebraicStructures/<Concept>/ModelTheory` folder; concrete number-system
+languages are owned by Volume II.
 -/
 
 /-!
