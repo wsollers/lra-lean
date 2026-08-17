@@ -1,5 +1,5 @@
-import LRA.VolumeI.Map.Topic
+import LRA.VolumeI.Map.All
 
 /-!
-Aggregate import for the Map topic.
+Aggregate import for Volume I map theory.
 -/
