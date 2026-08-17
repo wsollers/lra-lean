@@ -1,7 +1,7 @@
-import LRA.VolumeI.Set.Enderton.Instances
-import LRA.VolumeI.Set.Interface.Membership
-import LRA.VolumeI.Set.Interface.Indexed
-import LRA.VolumeI.Set.Interface.Families
+import LRA.Set.ZFCSet.Instances
+import LRA.Set.Interface.Membership
+import LRA.Set.Interface.Indexed
+import LRA.Set.Interface.Families
 
 namespace LRA.Set.Enderton
 
