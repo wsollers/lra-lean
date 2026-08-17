@@ -1,20 +1,3 @@
-import LRA.VolumeI.Relations.Basic.Properties
+import LRA.Order.Relation.OrderRelation.Definition
 
-namespace LRA.Order.OrderedSets
-
-universe u
-
-/--
-An order relation is an endorelation: a binary relation comparing two elements
-of the same carrier.
-
-Logical form:
-
-```lean
-LRA.Relation.Endorelation Carrier
-```
--/
-abbrev OrderRelation (Carrier : Type u) :=
-  LRA.Relation.Endorelation Carrier
-
-end LRA.Order.OrderedSets
+/-! Compatibility shim for the historical OrderRelation path. -/
