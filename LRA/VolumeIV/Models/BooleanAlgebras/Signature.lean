@@ -1,4 +1,4 @@
-import LRA.VolumeI.UniversalAlgebra.Signatures.OperationBundles
+import LRA.VolumeI.UniversalAlgebra.InterpretedOperationBundles
 
 namespace LRA.Logic.ModelTheory.BooleanAlgebras
 
@@ -14,10 +14,10 @@ Logical form:
 
 ```lean
 abbrev BooleanAlgebraSignature :=
-  LRA.UniversalAlgebra.Signatures.BooleanAlgebraOperationSignature
+  LRA.UniversalAlgebra.InterpretedOperationBundles.BooleanAlgebraOperationBundle
 ```
 -/
 abbrev BooleanAlgebraSignature :=
-  LRA.UniversalAlgebra.Signatures.BooleanAlgebraOperationSignature
+  LRA.UniversalAlgebra.InterpretedOperationBundles.BooleanAlgebraOperationBundle
 
 end LRA.Logic.ModelTheory.BooleanAlgebras

@@ -1,9 +1,9 @@
-import LRA.VolumeI.UniversalAlgebra.Signatures.OperationBundles
+import LRA.VolumeI.UniversalAlgebra.InterpretedOperationBundles
 
 namespace LRA.AlgebraicStructures
 
 /-- The algebraic signature of an additive semigroup: one binary addition. -/
 abbrev AdditiveSemigroupConceptSignature :=
-  LRA.UniversalAlgebra.Signatures.AdditiveSignature
+  LRA.UniversalAlgebra.InterpretedOperationBundles.AdditiveOperationBundle
 
 end LRA.AlgebraicStructures

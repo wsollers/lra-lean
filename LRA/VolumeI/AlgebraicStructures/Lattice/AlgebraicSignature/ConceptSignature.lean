@@ -1,9 +1,9 @@
-import LRA.VolumeI.UniversalAlgebra.Signatures.OperationBundles
+import LRA.VolumeI.UniversalAlgebra.InterpretedOperationBundles
 
 namespace LRA.AlgebraicStructures
 
 /-- The algebraic signature of a lattice: binary join and meet. -/
 abbrev LatticeConceptSignature :=
-  LRA.UniversalAlgebra.Signatures.LatticeOperationSignature
+  LRA.UniversalAlgebra.InterpretedOperationBundles.LatticeOperationBundle
 
 end LRA.AlgebraicStructures

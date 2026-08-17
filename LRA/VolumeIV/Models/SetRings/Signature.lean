@@ -1,4 +1,4 @@
-import LRA.VolumeI.UniversalAlgebra.Signatures.OperationBundles
+import LRA.VolumeI.UniversalAlgebra.InterpretedOperationBundles
 
 namespace LRA.Logic.ModelTheory.SetRings
 
@@ -18,7 +18,7 @@ in powerset models `zero` is `∅`, `join` is union, `meet` is intersection,
 Logical form:
 
 ```lean
-structure SetRingSignature extends LRA.UniversalAlgebra.Signatures.CarrierSignature where
+structure SetRingSignature extends LRA.UniversalAlgebra.InterpretedOperationBundles.CarrierBundle where
   zero : carrier
   add : LRA.Operation.BinaryOperation carrier
   join : LRA.Operation.BinaryOperation carrier
@@ -26,7 +26,7 @@ structure SetRingSignature extends LRA.UniversalAlgebra.Signatures.CarrierSignat
   difference : LRA.Operation.BinaryOperation carrier
 ```
 -/
-structure SetRingSignature extends LRA.UniversalAlgebra.Signatures.CarrierSignature where
+structure SetRingSignature extends LRA.UniversalAlgebra.InterpretedOperationBundles.CarrierBundle where
   zero : carrier
   add : LRA.Operation.BinaryOperation carrier
   join : LRA.Operation.BinaryOperation carrier

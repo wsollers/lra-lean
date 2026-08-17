@@ -1,6 +1,7 @@
 import LRA.VolumeI.Operations
 import LRA.VolumeI.Relations
 import LRA.VolumeI.UniversalAlgebra.Signatures
+import LRA.VolumeI.UniversalAlgebra.InterpretedOperationBundles
 import LRA.VolumeI.UniversalAlgebra.Algebra.All
 import LRA.VolumeI.UniversalAlgebra.Satisfaction.All
 import LRA.VolumeI.UniversalAlgebra.Congruence.All
@@ -14,7 +15,8 @@ import LRA.VolumeI.UniversalAlgebra.KernelCongruence.All
 import LRA.VolumeI.UniversalAlgebra.UniversalProperties
 
 /-!
-Aggregate import for universal-algebra machinery: signatures, logic-backed
-algebras, homomorphisms, embeddings, isomorphisms, subalgebras, products,
-quotients, congruence kernels, and universal properties.
+Aggregate import for universal-algebra machinery: formal signatures,
+interpreted operation bundles, logic-backed algebras, homomorphisms,
+embeddings, isomorphisms, subalgebras, products, quotients, congruence
+kernels, and universal properties.
 -/
