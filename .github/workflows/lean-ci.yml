@@ -21,6 +21,10 @@ on:
       - '.github/workflows/lean-ci.yml'
   workflow_dispatch:
 
+concurrency:
+  group: lean-standardization-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
   packages: write
