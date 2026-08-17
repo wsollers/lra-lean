@@ -1,5 +1,6 @@
 import LRA.Order.OrderedSets.Preorder.Characterizations
 import LRA.Order.OrderedSets.PartialOrder.Definition
+import LRA.Relation.Structures.Definition
 
 namespace LRA.Order.OrderedSets.Preorder
 
