@@ -1,23 +1,13 @@
+import LRA.Function.Canonical.Identity.Definition
 import LRA.VolumeI.Map.Typed.Definition
 
 namespace LRA.Map.Identity
 
 open LRA.Map.Typed
-
 universe u
 
-/--
-**[Definition — IdentityMap]**
-
-The identity map on a type.
-
-Logical form:
-
-```lean
-def IdentityMap (Domain : Type u) : Endomap Domain
-```
--/
-def IdentityMap (Domain : Type u) : Endomap Domain :=
-  fun input => input
+/-- Historical typed-map spelling of the canonical identity function. -/
+abbrev IdentityMap (Domain : Type u) : Endomap Domain :=
+  LRA.Function.IdentityTypedFunction Domain
 
 end LRA.Map.Identity
