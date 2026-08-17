@@ -34,6 +34,20 @@ def IsInverseTypedFunction
     (function : TypedFunction Domain Codomain) : Prop :=
   TwoSidedInverseTyped function inverse
 
+/-- A section is exactly a right inverse. -/
+abbrev SectionOfTyped
+    {Domain : Type u} {Codomain : Type v}
+    (sectionFunction : TypedFunction Codomain Domain)
+    (function : TypedFunction Domain Codomain) : Prop :=
+  RightInverseTyped function sectionFunction
+
+/-- A retraction is exactly a left inverse of the inclusion-like map. -/
+abbrev RetractionOfTyped
+    {Small : Type u} {Large : Type v}
+    (retraction : TypedFunction Large Small)
+    (inclusion : TypedFunction Small Large) : Prop :=
+  LeftInverseTyped inclusion retraction
+
 /-- The inverse of a bijective relational function, presented by the converse graph relation. -/
 def Inverse
     {Domain : Type u} {Codomain : Type v}
