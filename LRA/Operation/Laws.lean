@@ -6,5 +6,6 @@ import LRA.Operation.Laws.Cancellation
 import LRA.Operation.Laws.Distributive
 import LRA.Operation.Laws.Idempotent
 import LRA.Operation.Laws.Absorption
+import LRA.Operation.Laws.Nilpotent
 
 /-! Canonical operation-law families. -/
