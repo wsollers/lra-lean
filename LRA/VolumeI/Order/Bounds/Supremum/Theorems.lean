@@ -1,5 +1,4 @@
 import LRA.Order.Bounds.Supremum.Theorems
-import LRA.VolumeI.Order.Bounds.GreatestElement.Definition
 import LRA.VolumeI.Order.Lattices.Join.Definition
 import LRA.VolumeI.Set.Interface.Membership
 import LRA.VolumeI.Set.Interface.Indexed
@@ -9,17 +8,6 @@ namespace LRA.Order
 open scoped LRA.Set
 
 universe u v w
-
-/-- A supremum that belongs to its subset is the greatest element. -/
-theorem SupremumInSubsetIsGreatestElement
-    {Element : Type u} {SetObject : Type v}
-    [Membership Element SetObject]
-    {relation : LRA.Relation.Endorelation Element}
-    {subset : SetObject} {supremum : Element}
-    (supremumIsSupremum : Supremum relation subset supremum)
-    (supremumBelongs : supremum ∈ subset) :
-    GreatestElement relation subset supremum := by
-  sorry
 
 /-- The join of two existing suprema is the supremum of their union. -/
 theorem SupremumOfUnion
