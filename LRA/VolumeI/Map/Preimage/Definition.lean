@@ -1,6 +1,7 @@
+import LRA.Function.Calculus.Definition
 import LRA.VolumeI.Map.Typed.Definition
-import LRA.VolumeI.Set.Interface.Membership
-import LRA.VolumeI.Set.Interface.Operations
+import LRA.Set.Interface.Membership
+import LRA.Set.Interface.Operations
 
 namespace LRA.Map.Preimage
 
@@ -16,46 +17,22 @@ variable {DomainSet : Type v₁} {CodomainSet : Type v₂}
 variable [Membership DomainElement DomainSet]
 variable [Membership CodomainElement CodomainSet]
 
-/--
-**[Definition — IsPreimageOf]**
-
-A set is the preimage of a target set under a typed map when its members are
-exactly the domain elements whose values lie in the target.
-
-Logical form:
-
-```lean
-def IsPreimageOf
-    (preimageSet : DomainSet)
-    (map : TypedMap DomainElement CodomainElement)
-    (target : CodomainSet) : Prop
-```
--/
+/-- Historical set-backed spelling of canonical preimage characterization. -/
 def IsPreimageOf
     (preimageSet : DomainSet)
     (map : TypedMap DomainElement CodomainElement)
     (target : CodomainSet) : Prop :=
-  forall input : DomainElement, input ∈ preimageSet <-> map input ∈ target
+  LRA.Function.IsPreimageClassOf
+    (fun input => input ∈ preimageSet)
+    (LRA.Function.OfTypedFunction map)
+    (fun output => output ∈ target)
 
 section WithSeparation
 
 variable [HasSeparation DomainElement DomainSet]
 variable [HasUniversal DomainSet]
 
-/--
-**[Definition — Preimage]**
-
-The preimage of a target set under a typed map, formed by separating from the
-domain universe.
-
-Logical form:
-
-```lean
-def Preimage
-    (map : TypedMap DomainElement CodomainElement)
-    (target : CodomainSet) : DomainSet
-```
--/
+/-- Legacy backend realization of a preimage by Separation. -/
 def Preimage
     (map : TypedMap DomainElement CodomainElement)
     (target : CodomainSet) : DomainSet :=
