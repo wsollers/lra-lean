@@ -9,15 +9,13 @@ universe u
 theorem RelationIncludedInReflexiveClosure
     {Alpha : Type u} (relation : Endorelation Alpha) :
     RelationIncluded relation (ReflexiveClosure relation) := by
-  intro left right related
-  exact Or.inl related
+  sorry
 
 /-- The reflexive closure is reflexive. -/
 theorem ReflexiveClosureIsReflexive
     {Alpha : Type u} (relation : Endorelation Alpha) :
     Reflexive (ReflexiveClosure relation) := by
-  intro element
-  exact Or.inr rfl
+  sorry
 
 /-- The reflexive closure is the least reflexive relation containing the original relation. -/
 theorem ReflexiveClosureIsLeast
@@ -25,10 +23,6 @@ theorem ReflexiveClosureIsLeast
     (relationIncluded : RelationIncluded relation target)
     (targetReflexive : Reflexive target) :
     RelationIncluded (ReflexiveClosure relation) target := by
-  intro left right related
-  rcases related with related | equal
-  · exact relationIncluded left right related
-  · rw [equal]
-    exact targetReflexive right
+  sorry
 
 end LRA.Relation
