@@ -1,9 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Distributive.Definition
+import LRA.Operation.Laws.Distributive.Consequences
 
-/-!
-Derived consequences of this concept belong here.
--/
-
-namespace LRA.Operation.Laws.Distributive
-
-end LRA.Operation.Laws.Distributive
+/-! Compatibility shim for the historical Distributive consequence path. -/
