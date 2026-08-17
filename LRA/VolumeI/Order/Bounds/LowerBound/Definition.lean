@@ -1,28 +1,3 @@
-import LRA.VolumeI.Relations.Basic.Relations
+import LRA.Order.Bounds.LowerBound.Definition
 
-namespace LRA.Order
-
-universe u v
-
-variable {Element : Type u} {SetObject : Type v}
-variable [Membership Element SetObject]
-
-/-- A lower bound of a subset with respect to a non-strict order.
-
-Logical form:
-
-```lean
-def LowerBound
-    (relation : LRA.Relation.Endorelation Element)
-    (subset : SetObject)
-    (bound : Element) : Prop :=
-  forall element, element ∈ subset -> relation bound element
-```
--/
-def LowerBound
-    (relation : LRA.Relation.Endorelation Element)
-    (subset : SetObject)
-    (bound : Element) : Prop :=
-  forall element, element ∈ subset -> relation bound element
-
-end LRA.Order
+/-! Compatibility import for canonical `LRA.Order.LowerBound`. -/
