@@ -104,7 +104,12 @@ abbrev SetTheoreticMap.isMap
     [Membership CodomainElement CodomainObject]
     [Membership Pair GraphObject]
     (setMap : SetTheoreticMap DomainElement CodomainElement Pair
-      DomainObject CodomainObject GraphObject) :=
+      DomainObject CodomainObject GraphObject) :
+    IsSetTheoreticFunction
+      (DomainElement := DomainElement)
+      (CodomainElement := CodomainElement)
+      (Pair := Pair)
+      setMap.triple :=
   setMap.isFunction
 
 end LRA.Function.SetTheoretic
