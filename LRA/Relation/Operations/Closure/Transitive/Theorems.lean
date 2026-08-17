@@ -9,15 +9,13 @@ universe u
 theorem RelationIncludedInTransitiveClosure
     {Alpha : Type u} (relation : Endorelation Alpha) :
     RelationIncluded relation (TransitiveClosure relation) := by
-  intro left right related
-  exact TransitiveClosure.base related
+  sorry
 
 /-- The transitive closure is transitive. -/
 theorem TransitiveClosureIsTransitive
     {Alpha : Type u} (relation : Endorelation Alpha) :
     Transitive (TransitiveClosure relation) := by
-  intro left middle right leftToMiddle middleToRight
-  exact TransitiveClosure.trans leftToMiddle middleToRight
+  sorry
 
 /-- The transitive closure is the least transitive relation containing the original relation. -/
 theorem TransitiveClosureIsLeast
@@ -25,11 +23,6 @@ theorem TransitiveClosureIsLeast
     (relationIncluded : RelationIncluded relation target)
     (targetTransitive : Transitive target) :
     RelationIncluded (TransitiveClosure relation) target := by
-  intro left right path
-  induction path with
-  | base related =>
-      exact relationIncluded _ _ related
-  | trans leftToMiddle middleToRight leftToMiddleInTarget middleToRightInTarget =>
-      exact targetTransitive _ _ _ leftToMiddleInTarget middleToRightInTarget
+  sorry
 
 end LRA.Relation
