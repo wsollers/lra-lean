@@ -1,0 +1,56 @@
+name: Publish Lean Environment Image
+
+on:
+  push:
+    branches: [main, develop, standardization]
+    paths:
+      - 'Dockerfile'
+      - 'lean-toolchain'
+      - 'lake-manifest.json'
+      - 'docker/lakefile.env.lean'
+      - '.github/workflows/publish-lean-environment.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: lean-environment-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    name: Build and publish Lean environment
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compute immutable environment tag
+        run: |
+          image="ghcr.io/${GITHUB_REPOSITORY,,}-lean-build:${{ hashFiles('Dockerfile', 'lean-toolchain', 'lake-manifest.json', 'docker/lakefile.env.lean') }}"
+          echo "LEAN_IMAGE=$image" >> "$GITHUB_ENV"
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and publish environment image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          target: lean-build
+          push: true
+          tags: |
+            ${{ env.LEAN_IMAGE }}
+            ghcr.io/${{ github.repository }}-lean-build:environment-latest
+          cache-from: type=gha,scope=lra-lean-environment
+          cache-to: type=gha,scope=lra-lean-environment,mode=max
