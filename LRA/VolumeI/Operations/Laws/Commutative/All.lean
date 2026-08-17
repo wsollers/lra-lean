@@ -1,8 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Commutative.Definition
-import LRA.VolumeI.Operations.Laws.Commutative.Consequences
-import LRA.VolumeI.Operations.Laws.Commutative.Theorems
-import LRA.VolumeI.Operations.Laws.Commutative.Relationships
+import LRA.Operation.Laws.Commutative
 
-/-!
-Aggregate import for the Commutative operation law concept family.
--/
+/-! Compatibility aggregate for the historical Commutative law path. -/
