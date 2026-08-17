@@ -1,9 +1,7 @@
-import LRA.Function.Definition
+import LRA.Function.Canonical.Identity
 
 /-!
-Canonical function constructions live here.
+Canonical distinguished functions.
 
-The identity function and other distinguished functions will be migrated here
-from the legacy Map development. No proof-bearing construction is introduced
-in this initial architecture pass.
+Identity is the canonical endofunction induced by the identity relation.
 -/
