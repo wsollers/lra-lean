@@ -5,20 +5,16 @@ on:
     branches: [main, develop, standardization]
     paths:
       - 'LRA/**'
-      - 'Dockerfile'
       - 'lakefile.lean'
-      - 'lean-toolchain'
-      - 'lake-manifest.json'
-      - '.github/workflows/lean-ci.yml'
   pull_request:
     branches: [main]
     paths:
       - 'LRA/**'
-      - 'Dockerfile'
       - 'lakefile.lean'
+      - 'Dockerfile'
       - 'lean-toolchain'
       - 'lake-manifest.json'
-      - '.github/workflows/lean-ci.yml'
+      - 'docker/lakefile.env.lean'
   workflow_dispatch:
 
 concurrency:
@@ -27,7 +23,7 @@ concurrency:
 
 permissions:
   contents: read
-  packages: write
+  packages: read
 
 jobs:
   build:
@@ -38,9 +34,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Compute Lean image tag
+      - name: Compute immutable Lean environment image
         run: |
-          image="ghcr.io/${GITHUB_REPOSITORY,,}-lean-build:${{ hashFiles('Dockerfile', 'lean-toolchain', 'lakefile.lean', 'lake-manifest.json') }}"
+          env_hash="${{ hashFiles('Dockerfile', 'lean-toolchain', 'lake-manifest.json', 'docker/lakefile.env.lean') }}"
+          image="ghcr.io/${GITHUB_REPOSITORY,,}-lean-build:${env_hash}"
+          echo "LEAN_ENV_HASH=$env_hash" >> "$GITHUB_ENV"
           echo "LEAN_IMAGE=$image" >> "$GITHUB_ENV"
 
       - name: Log in to GitHub Container Registry
@@ -50,94 +48,80 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Restore Lean Docker image from GHCR
-        id: lean-image
+      - name: Pull prebuilt Lean environment
         run: |
-          if docker pull "$LEAN_IMAGE"; then
-            docker tag "$LEAN_IMAGE" lra-lean:latest
-            echo "cache_hit=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "cache_hit=false" >> "$GITHUB_OUTPUT"
-          fi
+          docker pull "$LEAN_IMAGE" || {
+            echo "::error::Prebuilt Lean environment $LEAN_IMAGE is missing. Publish it with the Publish Lean Environment Image workflow."
+            exit 1
+          }
 
-      - name: Set up Docker Buildx
-        if: steps.lean-image.outputs.cache_hit != 'true'
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build Lean Docker image
-        if: steps.lean-image.outputs.cache_hit != 'true'
-        uses: docker/build-push-action@v6
+      # Project .olean files are separate from the immutable toolchain/dependency
+      # image.  Restoring this directory makes ordinary source builds incremental.
+      - name: Restore project Lean build cache
+        uses: actions/cache@v4
         with:
-          context: .
-          target: lean-build
-          tags: |
-            lra-lean:latest
-            ${{ env.LEAN_IMAGE }}
-          load: true
-          cache-from: type=gha,scope=lra-lean-lean-build
-          cache-to: type=gha,scope=lra-lean-lean-build,mode=max
-
-      - name: Store Lean Docker image in GHCR
-        if: steps.lean-image.outputs.cache_hit != 'true' && github.event_name != 'pull_request'
-        run: docker push "$LEAN_IMAGE"
-
-      # The Mathlib import-policy check is intentionally disabled while the
-      # file/folder standardization migration is in progress. This gate checks
-      # every Mathlib-free standardized module in the current dependency slice.
-      # Mathlib interoperability remains opt-in and is intentionally excluded.
+          path: .ci-lake-build
+          key: lra-project-${{ runner.os }}-${{ env.LEAN_ENV_HASH }}-${{ github.ref_name }}-${{ github.sha }}
+          restore-keys: |
+            lra-project-${{ runner.os }}-${{ env.LEAN_ENV_HASH }}-${{ github.ref_name }}-
+            lra-project-${{ runner.os }}-${{ env.LEAN_ENV_HASH }}-
 
       - name: Build standardized foundational slice
         run: |
-          rm -f lean-build.log lean-standardization.log
+          mkdir -p .ci-lake-build .ci-logs
+          rm -f .ci-logs/lean-standardization.log
+
+          # Mount only changing project inputs.  Do NOT mount the repository over
+          # /workspace: that would hide the image's preloaded .lake/packages and
+          # Mathlib compiled cache.
           docker run --rm \
-            -v "${{ github.workspace }}:/workspace" \
+            -v "${{ github.workspace }}/LRA:/workspace/LRA:ro" \
+            -v "${{ github.workspace }}/lakefile.lean:/workspace/lakefile.lean:ro" \
+            -v "${{ github.workspace }}/lake-manifest.json:/workspace/lake-manifest.json:ro" \
+            -v "${{ github.workspace }}/.ci-lake-build:/workspace/.lake/build" \
+            -v "${{ github.workspace }}/.ci-logs:/logs" \
             -w /workspace \
-            lra-lean:latest \
-            bash -lc 'lake build \
-              LRALogic \
-              LRAIdentity \
-              LRASetCore \
-              LRAStandardizedFoundations \
-              > /workspace/lean-standardization.log 2>&1 || {
-                status=$?
-                echo "Lean standardized foundations build failed. Final diagnostics:"
-                tail -n 260 /workspace/lean-standardization.log
-                exit $status
-              }
-              tail -n 100 /workspace/lean-standardization.log'
+            "$LEAN_IMAGE" \
+            bash -lc 'rm -f .lake/lakefile.olean .lake/lakefile.olean.trace
+              lake build \
+                LRALogic \
+                LRAIdentity \
+                LRASetCore \
+                LRAStandardizedFoundations \
+                > /logs/lean-standardization.log 2>&1 || {
+                  status=$?
+                  echo "Lean standardized foundations build failed. Final diagnostics:"
+                  tail -n 260 /logs/lean-standardization.log
+                  exit $status
+                }
+                tail -n 100 /logs/lean-standardization.log'
 
       - name: Report proof placeholders in standardized subjects
         continue-on-error: true
         run: |
-          docker run --rm \
-            -v "${{ github.workspace }}:/workspace" \
-            -w /workspace \
-            lra-lean:latest \
-            bash -lc 'if grep -rn "\\bsorry\\b" \
-              LRA/Logic.lean \
-              LRA/Identity.lean \
-              LRA/Set.lean \
-              LRA/Set/Interface/ \
-              LRA/Set/SetClass/ \
-              LRA/Set/PredicateSet/ \
-              LRA/Set/ZFC/ \
-              LRA/Set/ZFCSet/ \
-              LRA/Set/Model/ \
-              LRA/SetSystems/ \
-              LRA/Relation.lean \
-              LRA/Relation/ \
-              --include="*.lean"; then
-              echo "::warning::sorry found in the standardized foundational slice."
-            else
-              echo "No sorry in the standardized foundational slice"
-            fi'
+          if grep -rn "\bsorry\b" \
+            LRA/Logic.lean \
+            LRA/Identity.lean \
+            LRA/Set.lean \
+            LRA/Set/Interface/ \
+            LRA/Set/SetClass/ \
+            LRA/Set/PredicateSet/ \
+            LRA/Set/ZFC/ \
+            LRA/Set/ZFCSet/ \
+            LRA/Set/Model/ \
+            LRA/SetSystems/ \
+            LRA/Relation.lean \
+            LRA/Relation/ \
+            --include="*.lean"; then
+            echo "::warning::sorry found in the standardized foundational slice."
+          else
+            echo "No sorry in the standardized foundational slice"
+          fi
 
       - name: Upload Lean build diagnostics
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: lean-build-diagnostics
-          path: |
-            lean-build.log
-            lean-standardization.log
-          if-no-files-found: error
+          path: .ci-logs/lean-standardization.log
+          if-no-files-found: warn
