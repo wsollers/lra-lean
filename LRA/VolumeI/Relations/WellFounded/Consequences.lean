@@ -1,9 +1,3 @@
-import LRA.VolumeI.Relations.WellFounded.Definition
+import LRA.Relation.Properties.WellFounded.Consequences
 
-/-!
-Derived consequences of this concept belong here.
--/
-
-namespace LRA.Relation
-
-end LRA.Relation
+/-! Compatibility shim for the pre-standardization well-founded consequences path. -/
