@@ -1,6 +1,5 @@
 import LRA.VolumeI.Map.Image.Definition
 import LRA.VolumeI.Map.Image.Consequences
-import LRA.VolumeI.Map.Image.Alias
 import LRA.VolumeI.Map.Image.Theorems
 import LRA.VolumeI.Map.Image.Relationships
 

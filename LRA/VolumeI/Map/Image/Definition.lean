@@ -87,24 +87,6 @@ def Image
       exists input : DomainElement, input ∈ source /\ map input = output)
 
 /--
-**[Definition — DirectImage]**
-
-Alias emphasizing the forward direction of image.
-
-Logical form:
-
-```lean
-def DirectImage
-    (map : TypedMap DomainElement CodomainElement)
-    (source : DomainSet) : CodomainSet
-```
--/
-def DirectImage
-    (map : TypedMap DomainElement CodomainElement)
-    (source : DomainSet) : CodomainSet :=
-  Image map source
-
-/--
 **[Definition — Range]**
 
 The range of a typed map, represented as the image of an ambient domain set.
@@ -209,25 +191,6 @@ def FiniteRange
     (map : TypedMap DomainElement CodomainElement)
     (ambientDomain : DomainSet) : Prop :=
   FiniteImage map ambientDomain
-
-/--
-**[Abbreviation — FiniteRangeOn]**
-
-Sources: Tao's measure-theory discussion of simple functions is phrased in
-terms of finite image/range.
-
-Logical form:
-
-```lean
-abbrev FiniteRangeOn
-    (map : TypedMap DomainElement CodomainElement)
-    (ambientDomain : DomainSet) : Prop
-```
--/
-abbrev FiniteRangeOn
-    (map : TypedMap DomainElement CodomainElement)
-    (ambientDomain : DomainSet) : Prop :=
-  FiniteRange map ambientDomain
 
 end FiniteImage
 

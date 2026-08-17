@@ -62,24 +62,6 @@ def Preimage
   HasSeparation.separation (𝒰 : DomainSet)
     (fun input : DomainElement => map input ∈ target)
 
-/--
-**[Definition — InverseImage]**
-
-Alias emphasizing inverse image notation.
-
-Logical form:
-
-```lean
-def InverseImage
-    (map : TypedMap DomainElement CodomainElement)
-    (target : CodomainSet) : DomainSet
-```
--/
-def InverseImage
-    (map : TypedMap DomainElement CodomainElement)
-    (target : CodomainSet) : DomainSet :=
-  Preimage map target
-
 end WithSeparation
 
 end Preimage
