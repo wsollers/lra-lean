@@ -1,5 +1,4 @@
 import LRA.Order.Bounds.Infimum.Theorems
-import LRA.VolumeI.Order.Bounds.LeastElement.Definition
 import LRA.VolumeI.Order.Lattices.Meet.Definition
 import LRA.VolumeI.Set.Interface.Membership
 import LRA.VolumeI.Set.Interface.Indexed
@@ -9,17 +8,6 @@ namespace LRA.Order
 open scoped LRA.Set
 
 universe u v w
-
-/-- An infimum that belongs to its subset is the least element. -/
-theorem InfimumInSubsetIsLeastElement
-    {Element : Type u} {SetObject : Type v}
-    [Membership Element SetObject]
-    {relation : LRA.Relation.Endorelation Element}
-    {subset : SetObject} {infimum : Element}
-    (infimumIsInfimum : Infimum relation subset infimum)
-    (infimumBelongs : infimum ∈ subset) :
-    LeastElement relation subset infimum := by
-  sorry
 
 /-- The meet of two existing infima is the infimum of their union. -/
 theorem InfimumOfUnion
