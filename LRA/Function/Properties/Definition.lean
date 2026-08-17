@@ -4,18 +4,15 @@ namespace LRA.Function
 
 universe u v
 
-/-- A function is injective when no output is related to two distinct inputs. -/
-def Injective {Domain : Type u} {Codomain : Type v}
+/-- Injectivity is left-uniqueness of the function graph. -/
+abbrev Injective {Domain : Type u} {Codomain : Type v}
     (function : RelationalFunction Domain Codomain) : Prop :=
-  ∀ firstInput secondInput output,
-    function.graph firstInput output →
-    function.graph secondInput output →
-    firstInput = secondInput
+  LRA.Relation.LeftUnique function.graph
 
-/-- A function is surjective when every codomain value occurs as an output. -/
-def Surjective {Domain : Type u} {Codomain : Type v}
+/-- Surjectivity is right-totality of the function graph. -/
+abbrev Surjective {Domain : Type u} {Codomain : Type v}
     (function : RelationalFunction Domain Codomain) : Prop :=
-  ∀ output, ∃ input, function.graph input output
+  LRA.Relation.RightTotal function.graph
 
 /-- A function is bijective exactly when it is injective and surjective. -/
 def Bijective {Domain : Type u} {Codomain : Type v}
