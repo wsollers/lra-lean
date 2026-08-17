@@ -1,4 +1,4 @@
--- LRA/VolumeII/BasicArithmetic/AlgebraicIdentities.lean
+-- LRA/VolumeII/Arithmetic/AlgebraicIdentities.lean
 -- Lang-style elementary algebraic identities over mixin-certified carriers.
 
 import LRA.VolumeI.AlgebraicStructures

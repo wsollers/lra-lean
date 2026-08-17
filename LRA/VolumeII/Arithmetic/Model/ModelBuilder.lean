@@ -1,39 +1,14 @@
-import LRA.VolumeI.Logic.Model.Model
+import LRA.VolumeII.Arithmetic.Model.FirstOrderSignature
 import LRA.VolumeI.Operations
 
-namespace LRA.NumberSystems.BasicArithmetic.ModelTheory
+namespace LRA.NumberSystems.Arithmetic.Model
 
 universe u
 
 /-!
-First-order arithmetic-ring vocabulary used by concrete Volume II
-constructions that expose only `0`, `1`, addition, and multiplication.
+Model builders for the first-order arithmetic-ring language used by concrete
+Volume II number-system constructions.
 -/
-
-inductive ArithmeticRingFunctionSymbol where
-  | add
-  | mul
-
-def ArithmeticRingRelationSymbol : Type := Empty
-
-inductive ArithmeticRingConstantSymbol where
-  | zero
-  | one
-
-def ArithmeticRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := ArithmeticRingFunctionSymbol
-  arity
-    | .add => 2
-    | .mul => 2
-
-def ArithmeticRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := ArithmeticRingRelationSymbol
-  arity := Empty.elim
-
-def ArithmeticRingFirstOrderSignature : LRA.Logic.Signature where
-  Functions := ArithmeticRingFirstOrderFunctions
-  Relations := ArithmeticRingFirstOrderRelations
-  Constants := ArithmeticRingConstantSymbol
 
 structure ArithmeticRingSignature where
   carrier : Type u
@@ -64,4 +39,4 @@ def arithmeticRingFirstOrderModel (R : Type u)
     { carrier := R, zero := 0, one := 1, addition := (· + ·),
       multiplication := (· * ·) }
 
-end LRA.NumberSystems.BasicArithmetic.ModelTheory
+end LRA.NumberSystems.Arithmetic.Model

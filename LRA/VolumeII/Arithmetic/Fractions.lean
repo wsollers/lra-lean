@@ -1,7 +1,7 @@
--- LRA/VolumeII/BasicArithmetic/Fractions.lean
--- Elementary rational fraction manipulations over the active switches.
+-- LRA/VolumeII/Arithmetic/Fractions.lean
+-- Elementary rational fraction manipulations.
 
-import LRA.VolumeII.Switches.NumberSystems
+import Mathlib.Data.Rat.Defs
 import LRA.VolumeI.AlgebraicStructures
 
 namespace LRA.NumberSystems.Arithmetic.Fractions
@@ -11,8 +11,8 @@ Volume II label: basic-arithmetic-fractions
 Lean module: LRA.NumberSystems.Arithmetic.Fractions
 Verification status: checked Mathlib-backed proofs
 
-The statements use active integers for numerators/denominators and evaluate the
-quotients in the active rational-number switch, currently Mathlib `Rat`.
+The statements use Mathlib integers for numerators/denominators and evaluate
+the quotients in Mathlib `Rat`.
 -/
 
 /--

@@ -1,10 +1,10 @@
--- LRA/VolumeII/BasicArithmetic/Examples.lean
--- Small executable checks for the basic-arithmetic section.
+-- LRA/VolumeII/Arithmetic/Examples.lean
+-- Small executable checks for the arithmetic section.
 
-import LRA.VolumeII.BasicArithmetic.AlgebraicIdentities
-import LRA.VolumeII.BasicArithmetic.Parity
-import LRA.VolumeII.BasicArithmetic.Fractions
-import LRA.VolumeII.BasicArithmetic.MultiplicativeInverses
+import LRA.VolumeII.Arithmetic.AlgebraicIdentities
+import LRA.VolumeII.Arithmetic.Parity
+import LRA.VolumeII.Arithmetic.Fractions
+import LRA.VolumeII.Arithmetic.MultiplicativeInverses
 
 namespace LRA.NumberSystems.Arithmetic.Examples
 

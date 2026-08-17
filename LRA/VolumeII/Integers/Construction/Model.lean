@@ -3,7 +3,7 @@
 
 import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeI.AlgebraicStructures.OrderedRing.ModelTheory.All
-import LRA.VolumeII.BasicArithmetic.ModelTheory.All
+import LRA.VolumeII.Arithmetic.Model.All
 import LRA.VolumeII.PeanoSystems.Presburger.ModelTheory.All
 import LRA.VolumeII.Integers.Implementation
 
@@ -11,7 +11,7 @@ namespace LRA.NumberSystems.Integers
 
 open LRA.NumberSystems.Models
 open LRA.AlgebraicStructures.OrderedRing.ModelTheory
-open LRA.NumberSystems.BasicArithmetic.ModelTheory
+open LRA.NumberSystems.Arithmetic.Model
 open LRA.NumberSystems.PeanoSystems.Presburger.ModelTheory
 
 /-!

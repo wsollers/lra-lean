@@ -1,7 +1,7 @@
--- LRA/VolumeII/BasicArithmetic/MultiplicativeInverses.lean
--- Elementary multiplicative inverse facts over the active rational switch.
+-- LRA/VolumeII/Arithmetic/MultiplicativeInverses.lean
+-- Elementary multiplicative inverse facts over rationals.
 
-import LRA.VolumeII.Switches.NumberSystems
+import Mathlib.Data.Rat.Defs
 import LRA.VolumeI.AlgebraicStructures
 
 namespace LRA.NumberSystems.Arithmetic.MultiplicativeInverses
