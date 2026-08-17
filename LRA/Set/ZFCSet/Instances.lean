@@ -1,3 +1,4 @@
+import LRA.Set.ZFCSet.Definition
 import LRA.Set.ZFC.Public
 import LRA.Set.Interface.Operations
 
