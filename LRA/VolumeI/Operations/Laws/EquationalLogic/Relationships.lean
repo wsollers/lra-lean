@@ -4,47 +4,7 @@ namespace LRA.Operation.Laws.EquationalLogic
 
 open LRA.Operation
 
-universe u v w
-
-/--
-**[Theorem — BinaryEqualityCompatible]**
-
-Two-argument equality compatibility implies left-argument equality
-compatibility.
--/
-theorem BinaryEqualityCompatible.left {Left : Type u} {Right : Type v}
-    {Codomain : Type w}
-    {operation : HeterogeneousBinaryOperation Left Right Codomain}
-    (law : BinaryEqualityCompatible operation) :
-    LeftArgumentEqualityCompatible operation := by
-  sorry
-
-/--
-**[Theorem — BinaryEqualityCompatible]**
-
-Two-argument equality compatibility implies right-argument equality
-compatibility.
--/
-theorem BinaryEqualityCompatible.right {Left : Type u} {Right : Type v}
-    {Codomain : Type w}
-    {operation : HeterogeneousBinaryOperation Left Right Codomain}
-    (law : BinaryEqualityCompatible operation) :
-    RightArgumentEqualityCompatible operation := by
-  sorry
-
-/--
-**[Theorem — BinaryEqualityCompatible]**
-
-Left- and right-argument equality compatibility assemble into two-argument
-equality compatibility.
--/
-theorem BinaryEqualityCompatible.of_left_right {Left : Type u} {Right : Type v}
-    {Codomain : Type w}
-    {operation : HeterogeneousBinaryOperation Left Right Codomain}
-    (leftLaw : LeftArgumentEqualityCompatible operation)
-    (rightLaw : RightArgumentEqualityCompatible operation) :
-    BinaryEqualityCompatible operation := by
-  sorry
+universe u
 
 /-- Binary congruence supplies left-side congruence when the relation is reflexive. -/
 theorem BinaryOperationCongruence.left {Carrier : Type u}

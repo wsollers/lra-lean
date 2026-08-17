@@ -10,8 +10,9 @@ before replacing `sorry` proofs topic by topic.
 - Repaired the subtraction order-compatibility failure mode from right
   translation to left translation.
 - Added the positive monus right-translation preservation example.
-- Anchored `SignNegationLaws` to additive inverse behavior by adding
-  `AdditiveInverseAnchor addition negation zero` to the bundle.
+- Removed the obsolete operation-law bundle for sign/subtraction/product
+  negation; those facts now belong to additive-group, ring, derived operation,
+  or ordered-structure owners.
 - Added element-level and predicate-restricted cancellation:
   `LeftRegular`, `RightRegular`, `LeftCancellativeOn`, and
   `RightCancellativeOn`.
@@ -19,8 +20,8 @@ before replacing `sorry` proofs topic by topic.
   `LeftInverseOf`, `RightInverseOf`, `TwoSidedInverseOf`, and inverse-on
   predicates for subcarriers of units or nonzero elements.
 - Added operation congruence/well-definedness language to `EquationalLogic`.
-- Added injective embedding and relation-reflection language to
-  `NumberEmbeddings`.
+- Moved generic embedding and relation-reflection language out of
+  `NumberEmbeddings` and into `Map/Morphisms`.
 - Replaced nilpotence's dependency on an unconstrained zero-exponent identity
   by adding `PositivePower` and defining nilpotence through positive powers.
 
@@ -29,8 +30,9 @@ before replacing `sorry` proofs topic by topic.
 - Re-home the general `OperationPower` iterator into an iteration/power topic.
 - Add the power-addition theorem with associativity as an explicit hypothesis.
 - Add pointwise inverse uniqueness and shoes-and-socks inverse-order theorem.
-- Add the derivation chain for sign-negation laws from additive inverse,
-  distributivity, cancellation, and zero absorption.
+- Add the derivation chain for product-negation and subtraction facts under
+  additive-group/ring consequences, using distributivity, cancellation, and
+  zero absorption as explicit hypotheses.
 
 ## Later Audit Batch
 

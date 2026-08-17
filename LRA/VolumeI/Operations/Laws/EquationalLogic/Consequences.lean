@@ -7,44 +7,10 @@ open LRA.Operation
 open scoped LRA.Set
 
 /-!
-Consequences of equality-relation requirements for operations.
+Consequences of operation congruence with respect to arbitrary relations.
 -/
 
 universe u v
-
-/-- The equality relation for any unary endo-operation is an equivalence relation. -/
-theorem UnaryOperation.identity_relation_is_equivalence
-    {Carrier : Type u}
-    (operation : UnaryEndoOperation Carrier) :
-    LRA.Relation.EquivalenceRelation
-      (LRA.Relation.IdentityRelation Carrier) := by
-  sorry
-
-/-- The equality relation for any binary endo-operation is an equivalence relation. -/
-theorem BinaryOperation.identity_relation_is_equivalence
-    {Carrier : Type u}
-    (operation : BinaryEndoOperation Carrier) :
-    LRA.Relation.EquivalenceRelation
-      (LRA.Relation.IdentityRelation Carrier) := by
-  sorry
-
-/-- Any unary endo-operation respects the identity relation. -/
-theorem UnaryOperation.respects_identity_relation
-    {Carrier : Type u}
-    (operation : UnaryEndoOperation Carrier) :
-    UnaryOperationCongruence
-      (LRA.Relation.IdentityRelation Carrier)
-      operation := by
-  sorry
-
-/-- Any binary endo-operation respects the identity relation. -/
-theorem BinaryOperation.respects_identity_relation
-    {Carrier : Type u}
-    (operation : BinaryEndoOperation Carrier) :
-    BinaryOperationCongruence
-      (LRA.Relation.IdentityRelation Carrier)
-      operation := by
-  sorry
 
 /--
 Unary operation congruence is exactly the well-definedness condition needed

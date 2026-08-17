@@ -10,9 +10,6 @@ import LRA.VolumeI.Operations.Laws.Distributive.All
 import LRA.VolumeI.Operations.Laws.Idempotent.All
 import LRA.VolumeI.Operations.Laws.Nilpotent.All
 import LRA.VolumeI.Operations.Laws.Inverse.All
-import LRA.VolumeI.Operations.Laws.SignNegation.All
-import LRA.VolumeI.Operations.Laws.OrderCompatibility.All
-import LRA.VolumeI.Operations.Laws.NumberEmbeddings.All
 
 /-!
 Aggregate import for operation law concept families.

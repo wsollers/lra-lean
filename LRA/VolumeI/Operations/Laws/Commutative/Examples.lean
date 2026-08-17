@@ -17,15 +17,4 @@ theorem NaturalAdditionCommutative :
     Commutative NaturalAddition := by
   sorry
 
-/--
-**[Example — NaturalAdditionCommutativeEqualityRequirements]**
-
-The natural-addition commutativity certificate exposes the standard equality
-relation requirements for the operation.
--/
-theorem NaturalAdditionCommutativeEqualityRequirements :
-    LRA.Operation.Laws.EquationalLogic.BinaryOperationEqualityRequirements
-      NaturalAddition := by
-  sorry
-
 end LRA.Operation.Laws.Commutative

@@ -17,15 +17,4 @@ theorem NaturalAdditionAssociative :
     Associative NaturalAddition := by
   sorry
 
-/--
-**[Example — NaturalAdditionAssociativeEqualityRequirements]**
-
-The natural-addition associativity certificate exposes the standard equality
-relation requirements for the operation.
--/
-theorem NaturalAdditionAssociativeEqualityRequirements :
-    LRA.Operation.Laws.EquationalLogic.BinaryOperationEqualityRequirements
-      NaturalAddition := by
-  sorry
-
 end LRA.Operation.Laws.Associative

@@ -11,9 +11,6 @@ import LRA.VolumeI.Operations.Laws.Distributive.AllWithExamples
 import LRA.VolumeI.Operations.Laws.Idempotent.AllWithExamples
 import LRA.VolumeI.Operations.Laws.Nilpotent.AllWithExamples
 import LRA.VolumeI.Operations.Laws.Inverse.AllWithExamples
-import LRA.VolumeI.Operations.Laws.SignNegation.AllWithExamples
-import LRA.VolumeI.Operations.Laws.OrderCompatibility.AllWithExamples
-import LRA.VolumeI.Operations.Laws.NumberEmbeddings.AllWithExamples
 
 /-!
 Aggregate import including examples, failure modes, and Mathlib adapters.

@@ -1,16 +1,11 @@
 import LRA.VolumeI.AlgebraicStructures.CommutativeRing.Laws.Definition
+import LRA.VolumeI.AlgebraicStructures.NontrivialRing.Laws.Definition
 
 namespace LRA.AlgebraicStructures
 
 universe u
 
-/-!
-Integral domain law certificates.
--/
-
-/-- The carrier is nontrivial: `1 ≠ 0`. -/
-class NontrivialityLaw (R : Type u) [OfNat R 0] [OfNat R 1] : Prop where
-  OneNeZero : (1 : R) ≠ 0
+/-! Integral domain law certificates. -/
 
 /-- No zero divisors. -/
 class NoZeroDivisorsLaw (R : Type u) [Mul R] [OfNat R 0] : Prop where
@@ -29,11 +24,6 @@ class abbrev IntegralDomainLaws (R : Type u)
 section Wrappers
 
 variable {R : Type u}
-
-/-- One and zero are distinct. -/
-theorem OneNeZero [OfNat R 0] [OfNat R 1] [NontrivialityLaw R] :
-    (1 : R) ≠ 0 :=
-  NontrivialityLaw.OneNeZero
 
 /-- A vanishing product has a vanishing factor. -/
 theorem EqZeroOfMulEqZero [Mul R] [OfNat R 0] [NoZeroDivisorsLaw R] :

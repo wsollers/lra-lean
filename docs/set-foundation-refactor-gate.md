@@ -221,7 +221,7 @@ It is acceptable to delete, replace, or stop importing the older
 compile.
 
 It is acceptable to update the few existing theorem references rather than keep
-aliases. Do not add compatibility aliases if they make the new textbook surface
+old names. Do not add transition names if they make the new textbook surface
 harder to understand.
 
 ## Operations Gate

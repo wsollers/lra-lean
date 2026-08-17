@@ -18,9 +18,9 @@ operation laws.
 9. Idempotent
 10. Nilpotent
 11. Inverse
-12. SignNegation
-13. OrderCompatibility
-14. NumberEmbeddings
+
+Order-operation compatibility is owned by `LRA.VolumeI.Order`, and map
+preservation/reflection/embedding predicates are owned by `LRA.VolumeI.Map`.
 
 ## Concept Shape
 
@@ -35,6 +35,9 @@ Each topic has the standard concept-family shape:
 - `Topic.md`
 - `ProofOrder.md`
 - `source.md`
+
+Obsolete compatibility/migration topics are not part of this operation-law
+shape.
 
 ## Naming Audit
 
@@ -79,4 +82,3 @@ After those are complete, continue through the same learning order used by
 ## Audit Result
 
 The scaffold is ready to begin proof work at `Closure`.
-

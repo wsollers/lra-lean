@@ -18,6 +18,7 @@ import LRA.VolumeI.Map.Section.All
 import LRA.VolumeI.Map.Retraction.All
 import LRA.VolumeI.Map.Product.All
 import LRA.VolumeI.Map.Partial.All
+import LRA.VolumeI.Map.Morphisms.All
 
 /-!
 Aggregate import for all Map topic concepts.

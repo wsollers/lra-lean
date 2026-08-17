@@ -5,50 +5,7 @@ namespace LRA.Operation.Laws.EquationalLogic
 
 open LRA.Operation
 
-universe u v w
-
-/--
-**[Definition — UnaryEqualityCompatible]**
-
-A unary operation respects equality of inputs.
--/
-def UnaryEqualityCompatible {Domain : Type u} {Codomain : Type v}
-    (operation : HeterogeneousUnaryOperation Domain Codomain) : Prop :=
-  forall {left right : Domain}, left = right -> operation left = operation right
-
-/--
-**[Definition — LeftArgumentEqualityCompatible]**
-
-A binary operation respects equality in its left argument.
--/
-def LeftArgumentEqualityCompatible {Left : Type u} {Right : Type v}
-    {Codomain : Type w}
-    (operation : HeterogeneousBinaryOperation Left Right Codomain) : Prop :=
-  forall {left₁ left₂ : Left} (right : Right),
-    left₁ = left₂ -> operation left₁ right = operation left₂ right
-
-/--
-**[Definition — RightArgumentEqualityCompatible]**
-
-A binary operation respects equality in its right argument.
--/
-def RightArgumentEqualityCompatible {Left : Type u} {Right : Type v}
-    {Codomain : Type w}
-    (operation : HeterogeneousBinaryOperation Left Right Codomain) : Prop :=
-  forall (left : Left) {right₁ right₂ : Right},
-    right₁ = right₂ -> operation left right₁ = operation left right₂
-
-/--
-**[Definition — BinaryEqualityCompatible]**
-
-A binary operation respects equality in both arguments at once.
--/
-def BinaryEqualityCompatible {Left : Type u} {Right : Type v}
-    {Codomain : Type w}
-    (operation : HeterogeneousBinaryOperation Left Right Codomain) : Prop :=
-  forall {left₁ left₂ : Left} {right₁ right₂ : Right},
-    left₁ = left₂ -> right₁ = right₂ ->
-      operation left₁ right₁ = operation left₂ right₂
+universe u
 
 /--
 **[Definition — UnaryOperationCongruence]**
@@ -96,27 +53,5 @@ def BinaryOperationRelationRequirements {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier) : Prop :=
   LRA.Relation.EquivalenceRelation relation /\
     BinaryOperationCongruence relation operation
-
-/--
-**[Definition — UnaryOperationEqualityRequirements]**
-
-The equality-relation requirements for a unary endo-operation.
--/
-def UnaryOperationEqualityRequirements {Carrier : Type u}
-    (operation : UnaryEndoOperation Carrier) : Prop :=
-  UnaryOperationRelationRequirements
-    (LRA.Relation.IdentityRelation Carrier)
-    operation
-
-/--
-**[Definition — BinaryOperationEqualityRequirements]**
-
-The equality-relation requirements for a binary endo-operation.
--/
-def BinaryOperationEqualityRequirements {Carrier : Type u}
-    (operation : BinaryEndoOperation Carrier) : Prop :=
-  BinaryOperationRelationRequirements
-    (LRA.Relation.IdentityRelation Carrier)
-    operation
 
 end LRA.Operation.Laws.EquationalLogic

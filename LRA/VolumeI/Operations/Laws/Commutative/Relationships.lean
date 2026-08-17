@@ -1,7 +1,6 @@
 import LRA.VolumeI.Operations.Laws.Commutative.Theorems
 import LRA.VolumeI.Operations.Laws.Identity.Definition
 import LRA.VolumeI.Operations.Laws.Absorbing.Definition
-import LRA.VolumeI.Operations.Laws.EquationalLogic.Consequences
 
 namespace LRA.Operation.Laws.Commutative
 
@@ -63,20 +62,6 @@ theorem Commutative.right_absorbing_to_left_absorbing {Carrier : Type u}
     (rightAbsorbing :
       LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber) :
     LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber := by
-  sorry
-
-/--
-**[Theorem — Commutative.operation_equality_requirements]**
-
-Every binary operation consumes the standard equality relation: the identity
-relation is an equivalence relation and the operation respects it. This
-namespaced theorem is a citation hook for the commutative law family, not a
-consequence of commutativity.
--/
-theorem Commutative.operation_equality_requirements {Carrier : Type u}
-    (operation : BinaryEndoOperation Carrier) :
-    LRA.Operation.Laws.EquationalLogic.BinaryOperationEqualityRequirements
-      operation := by
   sorry
 
 end LRA.Operation.Laws.Commutative
