@@ -5,9 +5,8 @@ import LRA.Set.ZFC.Theorems
 Canonical public names for the derived ZFC development.
 
 Primitive predicates and migrated derived theory are owned directly by
-`LRA.Set.ZFC`. The remaining constructed-object alias below is a temporary
-bridge while intersection-over theory is moved out of the historical
-`LRA.Set.Enderton` namespace.
+`LRA.Set.ZFC`. Historical `LRA.Set.Enderton` names are compatibility aliases
+inside the individual theorem modules rather than owners of canonical objects.
 -/
 
 namespace LRA.Set.ZFC
@@ -22,7 +21,5 @@ theorem SetExtensionality
 /-- Compatibility spelling for the chosen-empty-set theorem. -/
 theorem TheEmptySetIsEmptySet : IsEmptySet TheEmptySet :=
   TheEmptySetIsEmpty
-
-noncomputable abbrev TheIntersectionOver := LRA.Set.Enderton.TheIntersectionOver
 
 end LRA.Set.ZFC
