@@ -1,8 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Absorption.Definition
-import LRA.VolumeI.Operations.Laws.Absorption.Consequences
-import LRA.VolumeI.Operations.Laws.Absorption.Theorems
-import LRA.VolumeI.Operations.Laws.Absorption.Relationships
+import LRA.Operation.Laws.Absorption
 
-/-!
-Aggregate import for two-operation absorption laws.
--/
+/-! Compatibility aggregate for the historical Absorption law path. -/
