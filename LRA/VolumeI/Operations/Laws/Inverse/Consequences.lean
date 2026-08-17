@@ -1,9 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Inverse.Definition
+import LRA.Operation.Laws.Inverse.Consequences
 
-/-!
-Derived consequences of this concept belong here.
--/
-
-namespace LRA.Operation.Laws.Inverse
-
-end LRA.Operation.Laws.Inverse
+/-! Compatibility shim for the historical Inverse consequence path. -/
