@@ -14,12 +14,7 @@ class NoZeroDivisorsLaw (R : Type u) [Mul R] [OfNat R 0] : Prop where
 /-- Integral domain laws. -/
 class abbrev IntegralDomainLaws (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] : Prop :=
-  AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
-  AdditiveInverseLaws R, AdditiveCommutativeLaws R,
-  MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
-  MultiplicativeCommutativeLaws R,
-  ZeroAbsorbingLaws R, DistributiveLaws R,
-  NontrivialityLaw R, NoZeroDivisorsLaw R
+  CommutativeRingLaws R, NontrivialityLaw R, NoZeroDivisorsLaw R
 
 section Wrappers
 

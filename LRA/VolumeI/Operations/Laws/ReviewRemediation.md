@@ -1,7 +1,7 @@
 # Generic Operation Laws Review Remediation
 
 This file tracks findings from the scaffold review that should be handled
-before replacing `sorry` proofs topic by topic.
+before any later proof-focused pass.
 
 ## Repaired Immediately
 
@@ -21,8 +21,8 @@ before replacing `sorry` proofs topic by topic.
   predicates for subcarriers of units or nonzero elements.
 - Moved operation congruence/well-definedness language to
   `UniversalAlgebra/Congruence`.
-- Moved generic embedding and relation-reflection language out of
-  `NumberEmbeddings` and into `Map/Morphisms`.
+- Moved generic embedding and relation-reflection language into
+  `Map/Morphisms`.
 - Replaced nilpotence's dependency on an unconstrained zero-exponent identity
   by adding `PositivePower` and defining nilpotence through positive powers.
 

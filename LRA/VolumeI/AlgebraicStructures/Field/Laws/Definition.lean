@@ -1,5 +1,5 @@
 import LRA.VolumeI.AlgebraicStructures.DivisionRing.Laws.Definition
-import LRA.VolumeI.AlgebraicStructures.IntegralDomain.Laws.Definition
+import LRA.VolumeI.AlgebraicStructures.CommutativeRing.Laws.Definition
 
 namespace LRA.AlgebraicStructures
 
