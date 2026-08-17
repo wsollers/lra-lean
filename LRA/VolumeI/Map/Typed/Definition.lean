@@ -1,33 +1,15 @@
+import LRA.Function.Definition
+
 namespace LRA.Map.Typed
 
 universe u v
 
-/--
-**[Abbreviation — TypedMap]**
-
-A typed map from a domain type to a codomain type.
-
-Logical form:
-
-```lean
-abbrev TypedMap (Domain : Type u) (Codomain : Type v)
-```
--/
+/-- Historical spelling for an ordinary typed function. -/
 abbrev TypedMap (Domain : Type u) (Codomain : Type v) :=
-  Domain -> Codomain
+  LRA.Function.TypedFunction Domain Codomain
 
-/--
-**[Abbreviation — Endomap]**
-
-A typed map from a carrier to itself.
-
-Logical form:
-
-```lean
-abbrev Endomap (Carrier : Type u)
-```
--/
+/-- Historical spelling for an ordinary typed endofunction. -/
 abbrev Endomap (Carrier : Type u) :=
-  TypedMap Carrier Carrier
+  LRA.Function.TypedFunction Carrier Carrier
 
 end LRA.Map.Typed
