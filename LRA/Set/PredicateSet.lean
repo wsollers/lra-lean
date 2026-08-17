@@ -1,9 +1,6 @@
-import LRA.VolumeI.Set.LRASet
+import LRA.Set.PredicateSet.Definition
+import LRA.Set.PredicateSet.Operations
+import LRA.Set.PredicateSet.Instances
+import LRA.Set.PredicateSet.Laws
 
-/-!
-Opt-in in-house typed predicate-set realization.
-
-`LRA.Set.LRASet.LRASet α` is the project-owned predicate-set backend over an
-ambient carrier. It realizes the canonical Set interface without importing
-Mathlib.
--/
+/-! Opt-in in-house typed predicate-set realization of the canonical Set interface. -/
