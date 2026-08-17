@@ -8,5 +8,6 @@ import LRA.Operation.Laws.Idempotent
 import LRA.Operation.Laws.Absorption
 import LRA.Operation.Laws.Nilpotent
 import LRA.Operation.Laws.Inverse
+import LRA.Operation.Laws.Closure
 
 /-! Canonical operation-law families. -/
