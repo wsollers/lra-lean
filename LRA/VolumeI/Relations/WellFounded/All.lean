@@ -1,5 +1,3 @@
-import LRA.VolumeI.Relations.WellFounded.Definition
-import LRA.VolumeI.Relations.WellFounded.Consequences
-import LRA.VolumeI.Relations.WellFounded.Theorems
+import LRA.Relation.Properties.WellFounded
 
-/-! Aggregate import for well-founded relations. -/
+/-! Compatibility aggregate for the pre-standardization well-founded relation path. -/
