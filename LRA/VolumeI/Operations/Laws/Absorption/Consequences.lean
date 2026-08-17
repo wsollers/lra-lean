@@ -1,9 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Absorption.Definition
+import LRA.Operation.Laws.Absorption.Consequences
 
-/-!
-Derived consequences of this concept belong here.
--/
-
-namespace LRA.Operation.Laws.Absorption
-
-end LRA.Operation.Laws.Absorption
+/-! Compatibility shim for the historical Absorption consequence path. -/
