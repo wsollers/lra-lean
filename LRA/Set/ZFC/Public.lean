@@ -17,12 +17,7 @@ theorem SetExtensionality
     (A B : LRA.Set.ZFCSet)
     (sameMembers : ∀ x : LRA.Set.ZFCSet, x ∈ A ↔ x ∈ B) :
     A = B :=
-  (LRA.Set.Enderton.SetEqualityIffSameMembers A B).2 sameMembers
-
-/-- Textbook biconditional form of extensionality. -/
-theorem SetEqualityIffSameMembers (A B : LRA.Set.ZFCSet) :
-    A = B ↔ ∀ x : LRA.Set.ZFCSet, x ∈ A ↔ x ∈ B :=
-  LRA.Set.Enderton.SetEqualityIffSameMembers A B
+  (SetEqualityIffSameMembers A B).2 sameMembers
 
 abbrev EmptySetExists := LRA.Set.Enderton.EmptySetExists
 
