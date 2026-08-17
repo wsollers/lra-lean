@@ -1,9 +1,22 @@
-import LRA.VolumeI.Set.Interface
+import LRA.Set.Interface.Operations
+import LRA.Set.Interface.Pairing
+import LRA.Set.Interface.RelationSets
+import LRA.Set.Interface.RelationLaws
+import LRA.Set.Interface.Membership
+import LRA.Set.Interface.Indexed
+import LRA.Set.Interface.Families
+import LRA.Set.Interface.Union
+import LRA.Set.Interface.Intersection
+import LRA.Set.Interface.Distributivity
+import LRA.Set.Interface.Subset
+import LRA.Set.Interface.Difference
+import LRA.Set.Interface.SymmetricDifference
+import LRA.Set.Interface.Complement
 
 /-!
-Canonical downstream-facing Set interface.
+Canonical backend-agnostic Set interface.
 
-This layer is backend-agnostic: it owns the shared operation capabilities,
-law certificates, and generic theorems consumed by later LRA subjects.
-Concrete set realizations register instances against this interface.
+This layer owns shared set-operation capabilities, law certificates, and generic
+theorems. Concrete set realizations register operation instances and the law
+certificates they satisfy. No concrete set ontology is selected here.
 -/
