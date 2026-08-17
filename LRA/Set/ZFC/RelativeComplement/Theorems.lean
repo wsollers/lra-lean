@@ -1,82 +1,52 @@
-import LRA.VolumeI.Set.Enderton.Definitions
-import LRA.VolumeI.Set.Enderton.Theorems.Separation
+import LRA.Set.ZFC.Definitions
+import LRA.Set.ZFC.Separation.Theorems
 
 /-!
 The relative complement of `B` in `A` (`A \ B`), derived from Separation.
-
-No fresh axiom, no fresh existence/uniqueness proof is needed here: `A \ B`
-is exactly `TheSeparatedSubset A (fun x => x ∉ B)`, so its existence and
-uniqueness are already covered by `Separation.lean`. This mirrors how binary
-union in `Union.lean` needed no existence/uniqueness proof of its own once
-`TheUnionOver` and `PairSet` were in hand -- both are cases where a new
-textbook operation is a direct instance of an already-proven construction,
-not a new primitive.
 -/
 
-namespace LRA.Set.Enderton
+namespace LRA.Set.ZFC
 
 /-- The relative complement of `B` in `A`, derived as the subset of `A`
-separated by non-membership in `B`.
-
-Logical form:
-
-```lean
+separated by non-membership in `B`. -/
 noncomputable def TheRelativeComplement (A B : Set) : Set :=
   TheSeparatedSubset A (fun x => x ∉ B)
-```
--/
-noncomputable def TheRelativeComplement (A B : Set) : Set :=
-  TheSeparatedSubset A (fun x => x ∉ B)
-/--
-The chosen relative complement has the expected members.
 
-Logical form:
-
-```lean
-theorem TheRelativeComplementIsRelativeComplementOf (A B : Set) :
-    IsRelativeComplementOf A B (TheRelativeComplement A B)
-```
--/
+/-- The chosen relative complement has the expected members. -/
 theorem TheRelativeComplementIsRelativeComplementOf (A B : Set) :
     IsRelativeComplementOf A B (TheRelativeComplement A B) := by
   sorry
 
-/-- `x` belongs to `A \ B` iff `x` belongs to `A` and `x` does not belong to
-`B`.
-
-Derived from `TheSeparatedSubsetIsSeparatedSubset`, not from a separate
-axiom.
-
-Logical form:
-
-```lean
-theorem TheRelativeComplementMembership (A B x : Set) :
-    x ∈ TheRelativeComplement A B ↔ x ∈ A ∧ x ∉ B
-```
--/
+/-- Membership in the chosen relative complement. -/
 theorem TheRelativeComplementMembership (A B x : Set) :
     x ∈ TheRelativeComplement A B ↔ x ∈ A ∧ x ∉ B := by
   sorry
 
-/-- Every relative complement of `B` in `A` equals the chosen one.
-
-Follows directly from `EverySeparatedSubsetEqualsTheSeparatedSubset`, since
-`IsRelativeComplementOf A B D` and `IsSeparatedSubset A (fun x => x ∉ B) D`
-are the same proposition.
-
-Logical form:
-
-```lean
-theorem EveryRelativeComplementEqualsTheRelativeComplement
-    {A B D : Set}
-    (DIsRelativeComplementOf : IsRelativeComplementOf A B D) :
-    D = TheRelativeComplement A B
-```
--/
+/-- Every relative complement equals the chosen one. -/
 theorem EveryRelativeComplementEqualsTheRelativeComplement
     {A B D : Set}
     (DIsRelativeComplementOf : IsRelativeComplementOf A B D) :
     D = TheRelativeComplement A B := by
   sorry
+
+end LRA.Set.ZFC
+
+/-! Compatibility aliases for the historical Enderton relative-complement names. -/
+namespace LRA.Set.Enderton
+
+noncomputable abbrev TheRelativeComplement (A B : Set) : Set :=
+  LRA.Set.ZFC.TheRelativeComplement A B
+
+abbrev TheRelativeComplementIsRelativeComplementOf (A B : Set) :=
+  LRA.Set.ZFC.TheRelativeComplementIsRelativeComplementOf A B
+
+abbrev TheRelativeComplementMembership (A B x : Set) :=
+  LRA.Set.ZFC.TheRelativeComplementMembership A B x
+
+abbrev EveryRelativeComplementEqualsTheRelativeComplement
+    {A B D : Set}
+    (DIsRelativeComplementOf : IsRelativeComplementOf A B D) :
+    D = TheRelativeComplement A B :=
+  LRA.Set.ZFC.EveryRelativeComplementEqualsTheRelativeComplement DIsRelativeComplementOf
 
 end LRA.Set.Enderton
