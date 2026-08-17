@@ -3,7 +3,7 @@ import LRA.VolumeI.Logic.Language.Symbols.Signature
 namespace LRA.Logic.Language
 
 /-!
-Aggregate import shim for the vocabulary layer (`Language/Symbols/`).
+Aggregate import for the vocabulary layer (`Language/Symbols/`).
 -/
 
 /--

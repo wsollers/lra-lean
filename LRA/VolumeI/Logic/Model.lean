@@ -5,7 +5,7 @@ import LRA.VolumeI.Logic.Model.Propositional
 import LRA.VolumeI.Logic.Model.SecondOrderMonadic
 
 /-!
-Aggregate import shim for the `Model` layer (`Model/`): the `Model`
+Aggregate import for the `Model` layer (`Model/`): the `Model`
 structure itself, worked examples interpreting the signatures from
 `Language.Examples`, signature comparison (embeddings, reducts, expansions)
 in `Model/Comparison`, propositional models (valuations and satisfaction)

@@ -8,7 +8,7 @@ import LRA.VolumeI.Logic.Model.Comparison.Automorphism
 import LRA.VolumeI.Logic.Model.Comparison.Examples
 
 /-!
-Aggregate import shim for `Model/Comparison/`: signature embeddings,
+Aggregate import for `Model/Comparison/`: signature embeddings,
 reducts, and expansions (cross-signature vocabulary comparison); model
 embeddings and isomorphisms, including automorphisms (isomorphisms from a
 model to itself) and the proof that isomorphism is symmetric

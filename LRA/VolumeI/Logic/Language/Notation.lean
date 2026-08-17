@@ -3,7 +3,7 @@ import LRA.VolumeI.Logic.Language.Notation.LogicalSymbols
 namespace LRA.Logic.Language
 
 /-!
-Aggregate import shim for the logical-symbols layer (`Language/Notation/`).
+Aggregate import for the logical-symbols layer (`Language/Notation/`).
 -/
 
 /--

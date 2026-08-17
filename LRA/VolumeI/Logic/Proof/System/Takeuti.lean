@@ -8,5 +8,5 @@ import LRA.VolumeI.Logic.Proof.System.Takeuti.LJ
 import LRA.VolumeI.Logic.Proof.System.Takeuti.Cut
 
 /-!
-Aggregate import shim for Takeuti-style first-order sequent calculi.
+Aggregate import for Takeuti-style first-order sequent calculi.
 -/

@@ -10,7 +10,7 @@ import LRA.VolumeI.Logic.Syntax.FirstOrder.Subformula
 import LRA.VolumeI.Logic.Syntax.FirstOrder.Sentence
 
 /-!
-Aggregate import shim for `Syntax/FirstOrder/`: first-order formulas, free
+Aggregate import for `Syntax/FirstOrder/`: first-order formulas, free
 variables of terms and formulas, the capture-avoidance side condition
 `IsSubstitutable`, substitution itself (`substituteInTerm`/`substitute`),
 free-variable bounds for substitution, the collection of all (free and

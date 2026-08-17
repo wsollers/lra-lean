@@ -4,7 +4,7 @@ import LRA.VolumeI.Logic.Model.Propositional.Examples
 import LRA.VolumeI.Logic.Model.Propositional.ModelsAndTheoriesExamples
 
 /-!
-Aggregate import shim for `Model/Propositional/`: propositional models
+Aggregate import for `Model/Propositional/`: propositional models
 (valuations) and the satisfaction relation, model classes/theories/
 validity/satisfiability/semantic consequence (`ModelsOfTheory`/
 `TheoryOfModels`/`IsValid`/`IsSatisfiable`/`SemanticConsequence`), the

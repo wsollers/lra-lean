@@ -7,7 +7,7 @@ import LRA.VolumeI.Logic.Semantics.Examples
 import LRA.VolumeI.Logic.Semantics.SecondOrderMonadic
 
 /-!
-Aggregate import shim for the `Semantics` layer (`Semantics/`): term
+Aggregate import for the `Semantics` layer (`Semantics/`): term
 evaluation, assignment updating, first-order formula satisfaction,
 substitution-satisfaction facts, assignment-independence for closed formulas,
 the second end-to-end checkpoint (`A ∧ B`, both true, via nullary relation
