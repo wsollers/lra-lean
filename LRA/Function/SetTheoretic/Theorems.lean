@@ -82,4 +82,7 @@ codomains, and graphs are equal. -/
     left = right := by
   sorry
 
+/-- Historical extensionality theorem name. -/
+abbrev SetTheoreticMapExt := SetTheoreticFunctionExt
+
 end LRA.Function.SetTheoretic
