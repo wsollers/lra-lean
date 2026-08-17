@@ -13,6 +13,8 @@ import LRA.Order.Bounds.MaximalElement.Definition
 import LRA.Order.Bounds.MaximalElement.Relationships
 import LRA.Order.Bounds.MinimalElement.Definition
 import LRA.Order.Bounds.MinimalElement.Relationships
+import LRA.Order.Bounds.TopElement.Definition
+import LRA.Order.Bounds.BottomElement.Definition
 import LRA.Order.Bounds.Supremum.Definition
 import LRA.Order.Bounds.Supremum.Theorems
 import LRA.Order.Bounds.Infimum.Definition
@@ -24,6 +26,8 @@ import LRA.Order.Bounds.GreatestLowerBoundProperty.Definition
 Canonical foundational bounds vocabulary.
 
 Backend-neutral extrema, supremum, and infimum theorems are exposed here.
-Set-algebra interaction theorems and top/bottom definitions remain outside this
-aggregate until their set-interface dependencies have canonical paths.
+Top and bottom elements are available for represented-set backends with a
+canonical `LRA.Set.HasUniversal` instance. Set-algebra interaction theorems
+remain outside this aggregate until their remaining adapter dependencies have
+canonical paths.
 -/
