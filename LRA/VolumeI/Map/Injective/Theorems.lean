@@ -26,7 +26,7 @@ theorem injective_iff_standard
     {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
     Injective map <-> _root_.Function.Injective map := by
-  sorry
+  rfl
 /--
 **[Definition — InjectiveByFibers]**
 

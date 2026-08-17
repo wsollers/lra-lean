@@ -14,7 +14,7 @@ Domain and range predicates for arbitrary heterogeneous relations.
 The domain predicate of a heterogeneous relation.
 -/
 def RelationDomain {Domain : Type u} {Codomain : Type v}
-    (relation : HeterogeneousRelation Domain Codomain) :
+    (relation : HeterogeneousBinaryRelation Domain Codomain) :
     Domain -> Prop :=
   fun input => exists output, relation input output
 
@@ -24,7 +24,7 @@ def RelationDomain {Domain : Type u} {Codomain : Type v}
 The range predicate of a heterogeneous relation.
 -/
 def RelationRange {Domain : Type u} {Codomain : Type v}
-    (relation : HeterogeneousRelation Domain Codomain) :
+    (relation : HeterogeneousBinaryRelation Domain Codomain) :
     Codomain -> Prop :=
   fun output => exists input, relation input output
 

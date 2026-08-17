@@ -26,7 +26,7 @@ theorem surjective_iff_standard
     {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
     Surjective map <-> _root_.Function.Surjective map := by
-  sorry
+  rfl
 /--
 **[Definition — SurjectiveByFibers]**
 

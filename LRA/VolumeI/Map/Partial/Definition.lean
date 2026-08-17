@@ -47,12 +47,12 @@ Logical form:
 ```lean
 def Graph {Domain : Type u} {Codomain : Type v}
     (map : PartialMap Domain Codomain) :
-    LRA.Relation.HeterogeneousRelation Domain Codomain
+    LRA.Relation.HeterogeneousBinaryRelation Domain Codomain
 ```
 -/
 def Graph {Domain : Type u} {Codomain : Type v}
     (map : PartialMap Domain Codomain) :
-    LRA.Relation.HeterogeneousRelation Domain Codomain :=
+    LRA.Relation.HeterogeneousBinaryRelation Domain Codomain :=
   fun input output => exists defined : map.DefinedAt input,
     map.value input defined = output
 

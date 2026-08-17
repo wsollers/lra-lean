@@ -173,10 +173,8 @@ Each entry is a human mathematical statement rather than a repetition of the Lea
 
 ### 19. `Fiber/Theorems.lean`
 
-- [ ] **FibreMembership** — Let the displayed domain, the displayed codomain, the named maps be given. Then the British-spelled Fibre alias has the same membership condition as Fiber. ([source](./Fiber/Theorems.lean#L26))
-- [ ] **LevelSetMembership** — Let the displayed domain, the displayed codomain, the named maps be given. Then a level set is the fiber over the selected value. ([source](./Fiber/Theorems.lean#L49))
-- [ ] **KernelRelationReflexive** — Let the displayed domain, the displayed codomain, the named maps be given. Then the kernel relation is reflexive. ([source](./Fiber/Theorems.lean#L70))
-- [ ] **KernelRelationSymmetric** — Let the displayed domain, the displayed codomain, the named maps be given. Then the kernel relation is symmetric. ([source](./Fiber/Theorems.lean#L91))
+- [ ] **KernelRelationReflexive** — Let the displayed domain, the displayed codomain, the named maps be given. Then the kernel relation is reflexive. ([source](./Fiber/Theorems.lean#L20))
+- [ ] **KernelRelationSymmetric** — Let the displayed domain, the displayed codomain, the named maps be given. Then the kernel relation is symmetric. ([source](./Fiber/Theorems.lean#L41))
 - [ ] **KernelRelationTransitive** — Let the displayed domain, the displayed codomain, the named maps be given. Then the kernel relation is transitive. ([source](./Fiber/Theorems.lean#L115))
 - [ ] **FiberSaturatedByMap** — Let the displayed domain, the displayed codomain, the represented source and target sets, the named maps be given. Then every fiber is saturated by the kernel relation of its map. ([source](./Fiber/Theorems.lean#L142))
 

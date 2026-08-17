@@ -19,12 +19,12 @@ Logical form:
 ```lean
 def Graph {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
-    LRA.Relation.HeterogeneousRelation Domain Codomain
+    LRA.Relation.HeterogeneousBinaryRelation Domain Codomain
 ```
 -/
 def Graph {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
-    LRA.Relation.HeterogeneousRelation Domain Codomain :=
+    LRA.Relation.HeterogeneousBinaryRelation Domain Codomain :=
   fun input output => map input = output
 
 /--
@@ -37,11 +37,11 @@ Logical form:
 
 ```lean
 def SingleValued {Domain : Type u} {Codomain : Type v}
-    (relation : LRA.Relation.HeterogeneousRelation Domain Codomain) : Prop
+    (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain) : Prop
 ```
 -/
 def SingleValued {Domain : Type u} {Codomain : Type v}
-    (relation : LRA.Relation.HeterogeneousRelation Domain Codomain) : Prop :=
+    (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain) : Prop :=
   forall input firstOutput secondOutput,
     relation input firstOutput ->
     relation input secondOutput ->
@@ -57,11 +57,11 @@ Logical form:
 
 ```lean
 def TotalOverDomain {Domain : Type u} {Codomain : Type v}
-    (relation : LRA.Relation.HeterogeneousRelation Domain Codomain) : Prop
+    (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain) : Prop
 ```
 -/
 def TotalOverDomain {Domain : Type u} {Codomain : Type v}
-    (relation : LRA.Relation.HeterogeneousRelation Domain Codomain) : Prop :=
+    (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain) : Prop :=
   forall input, exists output, relation input output
 
 /--
@@ -73,11 +73,11 @@ Logical form:
 
 ```lean
 def FunctionalRelation {Domain : Type u} {Codomain : Type v}
-    (relation : LRA.Relation.HeterogeneousRelation Domain Codomain) : Prop
+    (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain) : Prop
 ```
 -/
 def FunctionalRelation {Domain : Type u} {Codomain : Type v}
-    (relation : LRA.Relation.HeterogeneousRelation Domain Codomain) : Prop :=
+    (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain) : Prop :=
   TotalOverDomain relation /\ SingleValued relation
 
 /--
@@ -92,7 +92,7 @@ def DomainOfGraph {Element : Type u} {Codomain : Type v}
     {SetObject : Type w}
     [HasSeparation Element SetObject]
     (ambientDomain : SetObject)
-    (graph : LRA.Relation.HeterogeneousRelation Element Codomain) :
+    (graph : LRA.Relation.HeterogeneousBinaryRelation Element Codomain) :
     SetObject
 ```
 -/
@@ -100,7 +100,7 @@ def DomainOfGraph {Element : Type u} {Codomain : Type v}
     {SetObject : Type w}
     [HasSeparation Element SetObject]
     (ambientDomain : SetObject)
-    (graph : LRA.Relation.HeterogeneousRelation Element Codomain) :
+    (graph : LRA.Relation.HeterogeneousBinaryRelation Element Codomain) :
     SetObject :=
   HasSeparation.separation ambientDomain
     (fun input => exists output, graph input output)
@@ -117,7 +117,7 @@ def RangeOfGraph {Domain : Type u} {Element : Type v}
     {SetObject : Type w}
     [HasSeparation Element SetObject]
     (ambientCodomain : SetObject)
-    (graph : LRA.Relation.HeterogeneousRelation Domain Element) :
+    (graph : LRA.Relation.HeterogeneousBinaryRelation Domain Element) :
     SetObject
 ```
 -/
@@ -125,7 +125,7 @@ def RangeOfGraph {Domain : Type u} {Element : Type v}
     {SetObject : Type w}
     [HasSeparation Element SetObject]
     (ambientCodomain : SetObject)
-    (graph : LRA.Relation.HeterogeneousRelation Domain Element) :
+    (graph : LRA.Relation.HeterogeneousBinaryRelation Domain Element) :
     SetObject :=
   HasSeparation.separation ambientCodomain
     (fun output => exists input, graph input output)

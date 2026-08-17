@@ -1,4 +1,4 @@
-import LRA.VolumeI.Map.Fiber.Alias
+import LRA.VolumeI.Map.Fiber.Definition
 
 namespace LRA.Map.Fiber
 
@@ -6,53 +6,6 @@ open LRA.Map.Typed
 
 universe u v w
 
-/--
-**[Theorem — FibreMembership]**
-
-The British-spelled `Fibre` alias has the same membership condition as
-`Fiber`.
-
-Logical form:
-
-```lean
-theorem FibreMembership
-    {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain)
-    (output : Codomain)
-    (input : Domain) :
-    Fibre map output input <-> map input = output
-```
--/
-theorem FibreMembership
-    {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain)
-    (output : Codomain)
-    (input : Domain) :
-    Fibre map output input <-> map input = output := by
-  sorry
-/--
-**[Theorem — LevelSetMembership]**
-
-A level set is the fiber over the selected value.
-
-Logical form:
-
-```lean
-theorem LevelSetMembership
-    {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain)
-    (output : Codomain)
-    (input : Domain) :
-    LevelSet map output input <-> map input = output
-```
--/
-theorem LevelSetMembership
-    {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain)
-    (output : Codomain)
-    (input : Domain) :
-    LevelSet map output input <-> map input = output := by
-  sorry
 /--
 **[Theorem — KernelRelationReflexive]**
 
@@ -71,7 +24,8 @@ theorem KernelRelationReflexive
     {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
     forall input : Domain, KernelRelation map input input := by
-  sorry
+  intro input
+  rfl
 /--
 **[Theorem — KernelRelationSymmetric]**
 
@@ -94,7 +48,8 @@ theorem KernelRelationSymmetric
     forall left right : Domain,
       KernelRelation map left right ->
       KernelRelation map right left := by
-  sorry
+  intro left right related
+  exact related.symm
 /--
 **[Theorem — KernelRelationTransitive]**
 
@@ -119,7 +74,8 @@ theorem KernelRelationTransitive
       KernelRelation map first second ->
       KernelRelation map second third ->
       KernelRelation map first third := by
-  sorry
+  intro first second third firstRelatedSecond secondRelatedThird
+  exact firstRelatedSecond.trans secondRelatedThird
 /--
 **[Theorem — FiberSaturatedByMap]**
 
@@ -148,5 +104,6 @@ theorem FiberSaturatedByMap
     {output : Codomain}
     (isFiber : IsFiberOf fiberSet map output) :
     SaturatedBy fiberSet map := by
-  sorry
+  intro input fiberMate inputInFiber inputRelatedFiberMate
+  exact (isFiber fiberMate).2 (inputRelatedFiberMate ▸ (isFiber input).1 inputInFiber)
 end LRA.Map.Fiber

@@ -57,35 +57,7 @@ abbrev BinaryRelation (alpha : Type u) :=
   HomogeneousBinaryRelation alpha
 
 /--
-Compatibility synonym for a homogeneous binary relation.
-
-Logical form:
-
-```lean
-abbrev HomogeneousRelation (alpha : Type u) :=
-  HomogeneousBinaryRelation alpha
-```
--/
-abbrev HomogeneousRelation (alpha : Type u) :=
-  HomogeneousBinaryRelation alpha
-
-/--
-Compatibility synonym for a heterogeneous binary relation.
-
-Logical form:
-
-```lean
-abbrev HeterogeneousRelation
-    (alpha beta : Type u) :=
-  HeterogeneousBinaryRelation alpha beta
-```
- -/
-abbrev HeterogeneousRelation
-    (alpha : Type u) (beta : Type v) :=
-  HeterogeneousBinaryRelation alpha beta
-
-/--
-Compatibility synonym for a binary relation on one carrier.
+The canonical short name for a binary relation on one carrier.
 
 Logical form:
 

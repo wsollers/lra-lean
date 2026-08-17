@@ -21,7 +21,9 @@ theorem InfimumUnique
     (firstIsInfimum : Infimum relation subset first)
     (secondIsInfimum : Infimum relation subset second) :
     first = second := by
-  sorry
+  exact relationIsAntisymmetric first second
+    (secondIsInfimum.2 first firstIsInfimum.1)
+    (firstIsInfimum.2 second secondIsInfimum.1)
 
 /--
 `InfimumOfSingleton`

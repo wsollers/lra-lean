@@ -17,7 +17,10 @@ theorem KernelRelationEquivalenceRelation
     {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) :
     LRA.Relation.EquivalenceRelation (KernelRelation map) := by
-  sorry
+  exact
+    ⟨KernelRelationReflexive map,
+      KernelRelationSymmetric map,
+      KernelRelationTransitive map⟩
 
 /--
 The fiber over `map representative` is exactly the equivalence class of
@@ -27,13 +30,43 @@ theorem AmbientFiberEqualsKernelEquivalenceClass
     {Domain : Type u} {Codomain : Type v} {DomainSet : Type w}
     [Membership Domain DomainSet]
     [LRA.Set.HasSeparation Domain DomainSet]
+    [LRA.Set.SeparationLaws Domain DomainSet]
+    [LRA.Set.ExtensionalityLaw Domain DomainSet]
     (ambientDomain : DomainSet)
     (map : TypedMap Domain Codomain)
     (representative : Domain) :
     AmbientFiber ambientDomain map (map representative) =
       LRA.Relation.EquivalenceClass
         ambientDomain (KernelRelation map) representative := by
-  sorry
+  apply LRA.Set.SetExtensionality
+  intro input
+  constructor
+  · intro inputInFiber
+    rcases
+      (LRA.Set.SeparationMembership
+        ambientDomain
+        (fun input : Domain => map input = map representative)
+        input).1 inputInFiber with
+      ⟨inputInAmbient, inputMapsToRepresentativeValue⟩
+    exact
+      (LRA.Set.SeparationMembership
+        ambientDomain
+        (fun input : Domain => KernelRelation map input representative)
+        input).2
+        ⟨inputInAmbient, inputMapsToRepresentativeValue⟩
+  · intro inputInClass
+    rcases
+      (LRA.Set.SeparationMembership
+        ambientDomain
+        (fun input : Domain => KernelRelation map input representative)
+        input).1 inputInClass with
+      ⟨inputInAmbient, inputKernelRelated⟩
+    exact
+      (LRA.Set.SeparationMembership
+        ambientDomain
+        (fun input : Domain => map input = map representative)
+        input).2
+        ⟨inputInAmbient, inputKernelRelated⟩
 
 /--
 Predicate fiber membership over `map representative` is the same as kernel
@@ -45,7 +78,7 @@ theorem FiberOverValueIffKernelRelated
     (representative input : Domain) :
     Fiber map (map representative) input <->
       KernelRelation map input representative := by
-  sorry
+  rfl
 
 /--
 Kernel-related inputs have the same quotient projection under the kernel
@@ -65,7 +98,9 @@ theorem KernelQuotientProjectionWellDefined
         ambientDomain (KernelRelation map) left =
       LRA.Relation.QuotientProjection
         ambientDomain (KernelRelation map) right := by
-  sorry
+  exact
+    LRA.Relation.QuotientProjectionWellDefined
+      (KernelRelationEquivalenceRelation map) related
 
 /--
 The relation-valued induced map from kernel classes to codomain values.
@@ -106,7 +141,7 @@ theorem KernelClassMapsTo.representative_value
       (LRA.Relation.QuotientProjection
         ambientDomain (KernelRelation map) representative)
       (map representative) := by
-  sorry
+  exact ⟨representative, representativeInAmbient, rfl, rfl⟩
 
 /--
 The induced map from kernel classes to codomain values is single-valued.
@@ -126,7 +161,50 @@ theorem KernelClassMapsTo.output_unique
     (secondMaps :
       KernelClassMapsTo ambientDomain map classSet secondOutput) :
     firstOutput = secondOutput := by
-  sorry
+  rcases firstMaps with
+    ⟨firstRepresentative,
+      firstRepresentativeInAmbient,
+      firstClassEq,
+      firstValueEq⟩
+  rcases secondMaps with
+    ⟨secondRepresentative,
+      _secondRepresentativeInAmbient,
+      secondClassEq,
+      secondValueEq⟩
+  have projectedClassesEq :
+      LRA.Relation.QuotientProjection
+          ambientDomain (KernelRelation map) firstRepresentative =
+        LRA.Relation.QuotientProjection
+          ambientDomain (KernelRelation map) secondRepresentative :=
+    firstClassEq.symm.trans secondClassEq
+  have firstRepresentativeInOwnClass :
+      firstRepresentative ∈
+        LRA.Relation.QuotientProjection
+          ambientDomain (KernelRelation map) firstRepresentative := by
+    exact
+      (LRA.Set.SeparationMembership
+        ambientDomain
+        (fun candidate : Domain =>
+          KernelRelation map candidate firstRepresentative)
+        firstRepresentative).2
+        ⟨firstRepresentativeInAmbient, rfl⟩
+  have firstRepresentativeInSecondClass :
+      firstRepresentative ∈
+        LRA.Relation.QuotientProjection
+          ambientDomain (KernelRelation map) secondRepresentative := by
+    simpa [projectedClassesEq] using firstRepresentativeInOwnClass
+  have representativesRelated :
+      KernelRelation map firstRepresentative secondRepresentative := by
+    exact
+      ((LRA.Set.SeparationMembership
+        ambientDomain
+        (fun candidate : Domain =>
+          KernelRelation map candidate secondRepresentative)
+        firstRepresentative).1 firstRepresentativeInSecondClass).2
+  calc
+    firstOutput = map firstRepresentative := firstValueEq.symm
+    _ = map secondRepresentative := representativesRelated
+    _ = secondOutput := secondValueEq
 
 /--
 The induced kernel-class map lands onto the represented range: every value in
@@ -149,6 +227,19 @@ theorem KernelClassMapsTo.exists_of_range_member
         (LRA.Map.Image.Range map ambientDomain : CodomainSet)) :
     exists classSet : DomainSet,
       KernelClassMapsTo ambientDomain map classSet output := by
-  sorry
+  rcases
+    (LRA.Set.SeparationMembership
+      (𝒰 : CodomainSet)
+      (fun output : Codomain =>
+        exists input : Domain, input ∈ ambientDomain /\ map input = output)
+      output).1 outputInRange with
+    ⟨_, input, inputInAmbient, inputMapsToOutput⟩
+  exact
+    ⟨LRA.Relation.QuotientProjection
+        ambientDomain (KernelRelation map) input,
+      input,
+      inputInAmbient,
+      rfl,
+      inputMapsToOutput⟩
 
 end LRA.Map.Fiber

@@ -15,12 +15,12 @@ Logical form:
 ```lean
 def ProperlyPartial
     {Domain : Type u} {Codomain : Type v}
-    (relation : LRA.Relation.HeterogeneousRelation Domain Codomain) : Prop
+    (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain) : Prop
 ```
 -/
 def ProperlyPartial
     {Domain : Type u} {Codomain : Type v}
-    (relation : LRA.Relation.HeterogeneousRelation Domain Codomain) : Prop :=
+    (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain) : Prop :=
   SingleValued relation /\ ¬ TotalOverDomain relation
 
 /--
@@ -33,12 +33,12 @@ Logical form:
 ```lean
 def ProperlyMultivalued
     {Domain : Type u} {Codomain : Type v}
-    (relation : LRA.Relation.HeterogeneousRelation Domain Codomain) : Prop
+    (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain) : Prop
 ```
 -/
 def ProperlyMultivalued
     {Domain : Type u} {Codomain : Type v}
-    (relation : LRA.Relation.HeterogeneousRelation Domain Codomain) : Prop :=
+    (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain) : Prop :=
   TotalOverDomain relation /\ ¬ SingleValued relation
 
 /--

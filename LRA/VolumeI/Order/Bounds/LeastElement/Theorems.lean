@@ -18,7 +18,9 @@ theorem LeastElementUnique
     (firstIsLeast : LeastElement relation subset first)
     (secondIsLeast : LeastElement relation subset second) :
     first = second := by
-  sorry
+  exact relationIsAntisymmetric first second
+    (firstIsLeast.2 second secondIsLeast.1)
+    (secondIsLeast.2 first firstIsLeast.1)
 
 /--
 `LeastElementRetainedByIntersection`

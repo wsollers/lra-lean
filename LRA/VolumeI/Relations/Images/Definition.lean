@@ -23,7 +23,7 @@ def RelationImage {Domain : Type u} {Codomain : Type v}
     [Membership Codomain CodomainSet]
     [HasSeparation Codomain CodomainSet]
     [HasUniversal CodomainSet]
-    (relation : HeterogeneousRelation Domain Codomain)
+    (relation : HeterogeneousBinaryRelation Domain Codomain)
     (source : DomainSet) : CodomainSet :=
   HasSeparation.separation (𝒰 : CodomainSet)
     (fun output : Codomain =>
@@ -40,7 +40,7 @@ def RelationPreimage {Domain : Type u} {Codomain : Type v}
     [Membership Codomain CodomainSet]
     [HasSeparation Domain DomainSet]
     [HasUniversal DomainSet]
-    (relation : HeterogeneousRelation Domain Codomain)
+    (relation : HeterogeneousBinaryRelation Domain Codomain)
     (target : CodomainSet) : DomainSet :=
   HasSeparation.separation (𝒰 : DomainSet)
     (fun input : Domain =>

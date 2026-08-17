@@ -18,7 +18,9 @@ theorem GreatestElementUnique
     (firstIsGreatest : GreatestElement relation subset first)
     (secondIsGreatest : GreatestElement relation subset second) :
     first = second := by
-  sorry
+  exact relationIsAntisymmetric first second
+    (secondIsGreatest.2 first firstIsGreatest.1)
+    (firstIsGreatest.2 second secondIsGreatest.1)
 
 /--
 `GreatestElementRetainedByIntersection`
