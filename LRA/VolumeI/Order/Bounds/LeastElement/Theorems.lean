@@ -1,5 +1,4 @@
-import LRA.VolumeI.Order.Bounds.LeastElement.Definition
-import LRA.VolumeI.Relations.Basic.CoreProperties
+import LRA.Order.Bounds.LeastElement.Theorems
 import LRA.VolumeI.Set.Interface.Membership
 
 namespace LRA.Order
@@ -8,25 +7,7 @@ open scoped LRA.Set
 
 universe u v
 
-/-- Antisymmetry makes a least element unique. -/
-theorem LeastElementUnique
-    {Element : Type u} {SetObject : Type v}
-    [Membership Element SetObject]
-    {relation : LRA.Relation.Endorelation Element}
-    (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation)
-    {subset : SetObject} {first second : Element}
-    (firstIsLeast : LeastElement relation subset first)
-    (secondIsLeast : LeastElement relation subset second) :
-    first = second := by
-  sorry
-
-/--
-`LeastElementRetainedByIntersection`
-
-Statement: A least element remains least in an intersection that retains it.
-
-Logical form: `LeastElement r A l → l ∈ B → LeastElement r (A ∩ B) l`.
--/
+/-- A least element remains least in an intersection that retains it. -/
 theorem LeastElementRetainedByIntersection
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -40,13 +21,7 @@ theorem LeastElementRetainedByIntersection
     LeastElement relation (subset ∩ retainedBy) least := by
   sorry
 
-/--
-`LeastElementRetainedByDifference`
-
-Statement: A least element remains least after a deletion that does not remove it.
-
-Logical form: `LeastElement r A l → l ∉ B → LeastElement r (A \ B) l`.
--/
+/-- A least element remains least after a deletion that does not remove it. -/
 theorem LeastElementRetainedByDifference
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -60,13 +35,7 @@ theorem LeastElementRetainedByDifference
     LeastElement relation (subset \ removed) least := by
   sorry
 
-/--
-`LeastElementRetainedBySymmetricDifference`
-
-Statement: A least element of the union remains least in a symmetric difference that retains it.
-
-Logical form: `LeastElement r (A ∪ B) l → l ∈ A ∆ B → LeastElement r (A ∆ B) l`.
--/
+/-- A least element of the union remains least in a symmetric difference that retains it. -/
 theorem LeastElementRetainedBySymmetricDifference
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject]
@@ -81,13 +50,7 @@ theorem LeastElementRetainedBySymmetricDifference
     LeastElement relation (leftSubset ∆ rightSubset) least := by
   sorry
 
-/--
-`LeastElementOfUnion`
-
-Statement: A least element of one operand that bounds the other is least in the union.
-
-Logical form: `LeastElement r A l → LowerBound r B l → LeastElement r (A ∪ B) l`.
--/
+/-- A least element of one operand that bounds the other is least in the union. -/
 theorem LeastElementOfUnion
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
