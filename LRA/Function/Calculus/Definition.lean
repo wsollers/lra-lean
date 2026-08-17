@@ -5,7 +5,7 @@ import LRA.Relation.Calculus.Restriction.Definition
 namespace LRA.Function
 
 open LRA.Set
-universe u v
+universe u v w
 
 /-- The declared source type of a relational function. -/
 abbrev DomainType {Domain : Type u} {Codomain : Type v}
@@ -86,6 +86,30 @@ def IsFiberClassOf {Domain : Type u} {Codomain : Type v}
     (function : RelationalFunction Domain Codomain)
     (output : Codomain) : Prop :=
   ∀ input, fiber input ↔ FiberClass function output input
+
+/-- A typed function is a restriction of another along an inclusion-like map. -/
+def RestrictsToTyped
+    {Subdomain : Type u} {Domain : Type v} {Codomain : Type w}
+    (restricted : TypedFunction Subdomain Codomain)
+    (original : TypedFunction Domain Codomain)
+    (inclusion : TypedFunction Subdomain Domain) : Prop :=
+  ∀ input, restricted input = original (inclusion input)
+
+/-- Restrict a typed function along an inclusion-like map. -/
+def RestrictionTyped
+    {Subdomain : Type u} {Domain : Type v} {Codomain : Type w}
+    (original : TypedFunction Domain Codomain)
+    (inclusion : TypedFunction Subdomain Domain) :
+    TypedFunction Subdomain Codomain :=
+  fun input => original (inclusion input)
+
+/-- A typed function extends another along an inclusion-like map. -/
+def ExtendsTyped
+    {SmallDomain : Type u} {LargeDomain : Type v} {Codomain : Type w}
+    (extension : TypedFunction LargeDomain Codomain)
+    (original : TypedFunction SmallDomain Codomain)
+    (inclusion : TypedFunction SmallDomain LargeDomain) : Prop :=
+  ∀ input, extension (inclusion input) = original input
 
 /-- Restrict the graph of a function to a source class. -/
 abbrev RestrictDomainGraph {Domain : Type u} {Codomain : Type v}
