@@ -1,9 +1,3 @@
-import LRA.VolumeI.Relations.DomainRange.Definition
+import LRA.Relation.Calculus.DomainRange.Consequences
 
-namespace LRA.Relation
-
-/-!
-Derived facts about relation domains and ranges belong here.
--/
-
-end LRA.Relation
+/-! Compatibility shim for the pre-standardization relation domain/range path. -/
