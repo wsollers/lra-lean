@@ -88,7 +88,80 @@ theorem TypedFunctionGraphRepresentation
   sorry
 
 /-! Historical theorem names. -/
-abbrev SingleValuedOfIsSetTheoreticMap := SingleValuedOfIsSetTheoreticFunction
-abbrev TypedMapGraphRepresentation := TypedFunctionGraphRepresentation
+abbrev SingleValuedOfIsSetTheoreticMap
+    {DomainElement CodomainElement Pair : Type u}
+    {DomainObject : Type v} {CodomainObject : Type w}
+    {GraphObject : Type x}
+    [HasPairing DomainElement CodomainElement Pair]
+    [Membership DomainElement DomainObject]
+    [Membership CodomainElement CodomainObject]
+    [Membership Pair GraphObject]
+    {triple : SetTheoreticMapTriple DomainObject CodomainObject GraphObject}
+    (isMap : IsSetTheoreticMap
+      (DomainElement := DomainElement)
+      (CodomainElement := CodomainElement)
+      (Pair := Pair)
+      triple) :
+    IsSingleValued DomainElement CodomainElement triple.graph :=
+  SingleValuedOfIsSetTheoreticFunction
+    (DomainElement := DomainElement)
+    (CodomainElement := CodomainElement)
+    (Pair := Pair)
+    (DomainObject := DomainObject)
+    (CodomainObject := CodomainObject)
+    (GraphObject := GraphObject)
+    isMap
+
+abbrev TypedMapGraphRepresentation
+    {Domain : Type y} {Codomain : Type z}
+    {DomainElement CodomainElement Pair : Type u}
+    {DomainObject : Type v} {CodomainObject : Type w}
+    {GraphObject : Type x}
+    [HasPairing DomainElement CodomainElement Pair]
+    [PairingLaws DomainElement CodomainElement Pair]
+    [Membership DomainElement DomainObject]
+    [Membership CodomainElement CodomainObject]
+    [Membership Pair GraphObject]
+    [HasSeparation Pair GraphObject]
+    [SeparationLaws Pair GraphObject]
+    (map : LRA.Function.TypedFunction Domain Codomain)
+    (encodeDomain : Domain → DomainElement)
+    (encodeCodomain : Codomain → CodomainElement)
+    (domainEncoding : DomainObject)
+    (codomainEncoding : CodomainObject)
+    (ambientPairs : GraphObject)
+    (encodeDomainInjective : _root_.Function.Injective encodeDomain)
+    (domainEncodingExact : ∀ encoded : DomainElement,
+      encoded ∈ domainEncoding ↔
+        ∃ input : Domain, encodeDomain input = encoded)
+    (codomainEncodingCovers : ∀ output : Codomain,
+      encodeCodomain output ∈ codomainEncoding)
+    (graphPairsExist : ∀ input : Domain,
+      (OrderedPair (encodeDomain input) (encodeCodomain (map input)) : Pair) ∈
+        ambientPairs) :
+    ∃ represented : SetTheoreticMap
+        DomainElement CodomainElement Pair
+        DomainObject CodomainObject GraphObject,
+      represented.triple.domain = domainEncoding ∧
+      represented.triple.codomain = codomainEncoding ∧
+      represented.triple.graph =
+        HasSeparation.separation ambientPairs
+          (fun member : Pair => ∃ input : Domain,
+            member = OrderedPair (encodeDomain input)
+              (encodeCodomain (map input))) ∧
+      ∀ input : Domain,
+        Relates represented.triple.graph
+          (encodeDomain input) (encodeCodomain (map input)) :=
+  TypedFunctionGraphRepresentation
+    (Domain := Domain)
+    (Codomain := Codomain)
+    (DomainElement := DomainElement)
+    (CodomainElement := CodomainElement)
+    (Pair := Pair)
+    (DomainObject := DomainObject)
+    (CodomainObject := CodomainObject)
+    (GraphObject := GraphObject)
+    map encodeDomain encodeCodomain domainEncoding codomainEncoding ambientPairs
+    encodeDomainInjective domainEncodingExact codomainEncodingCovers graphPairsExist
 
 end LRA.Function.SetTheoretic
