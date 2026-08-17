@@ -4,31 +4,13 @@ import LRA.Set.ZFC.Theorems
 /-!
 Canonical public names for the derived ZFC development.
 
-The underlying proofs were originally developed in the `LRA.Set.Enderton`
-namespace. During standardization those declarations remain available for
-compatibility, while this module exposes the mathematically owned `LRA.Set.ZFC`
-surface used by new canonical code.
+Primitive predicates are owned directly by `LRA.Set.ZFC.Definitions`. The
+underlying derived proofs are still being migrated from the historical
+`LRA.Set.Enderton` namespace; this module exposes the canonical public theorem
+and constructed-object surface during that transition.
 -/
 
 namespace LRA.Set.ZFC
-
-abbrev ExistsAndUnique := LRA.Set.Enderton.ExistsAndUnique
-abbrev IsEmptySet := LRA.Set.Enderton.IsEmptySet
-abbrev IsPairSet := LRA.Set.Enderton.IsPairSet
-abbrev IsSingletonSet := LRA.Set.Enderton.IsSingletonSet
-abbrev IsUnionOf := LRA.Set.Enderton.IsUnionOf
-abbrev IsPowerSetOf := LRA.Set.Enderton.IsPowerSetOf
-abbrev IsSeparatedSubset := LRA.Set.Enderton.IsSeparatedSubset
-abbrev IsRelativeComplementOf := LRA.Set.Enderton.IsRelativeComplementOf
-abbrev IsIntersectionOf := LRA.Set.Enderton.IsIntersectionOf
-abbrev IsSymmetricDifferenceOf := LRA.Set.Enderton.IsSymmetricDifferenceOf
-abbrev Subset := LRA.Set.Enderton.Subset
-abbrev IsFunctionalOn := LRA.Set.Enderton.IsFunctionalOn
-abbrev IsReplacementImageOf := LRA.Set.Enderton.IsReplacementImageOf
-abbrev IsSuccessorOf := LRA.Set.Enderton.IsSuccessorOf
-abbrev IsInductiveSet := LRA.Set.Enderton.IsInductiveSet
-abbrev IsFoundationWitness := LRA.Set.Enderton.IsFoundationWitness
-abbrev IsChoiceSetFor := LRA.Set.Enderton.IsChoiceSetFor
 
 /-- Canonical extensionality theorem for the ZFC set universe. -/
 theorem SetExtensionality
