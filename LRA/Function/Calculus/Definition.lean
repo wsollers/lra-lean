@@ -45,6 +45,20 @@ abbrev FiberClass {Domain : Type u} {Codomain : Type v}
     (function : RelationalFunction Domain Codomain) (output : Codomain) : SetClass Domain :=
   LRA.Relation.FiberClass function.graph output
 
+/-- A function maps a source class into a target class. -/
+def MapsIntoClass {Domain : Type u} {Codomain : Type v}
+    (function : RelationalFunction Domain Codomain)
+    (source : SetClass Domain) (target : SetClass Codomain) : Prop :=
+  ∀ input output,
+    source input → function.graph input output → target output
+
+/-- A target class is exactly the image of a source class under a function. -/
+def IsImageClassOf {Domain : Type u} {Codomain : Type v}
+    (image : SetClass Codomain)
+    (function : RelationalFunction Domain Codomain)
+    (source : SetClass Domain) : Prop :=
+  ∀ output, image output ↔ ImageClass function source output
+
 /-- Restrict the graph of a function to a source class. -/
 abbrev RestrictDomainGraph {Domain : Type u} {Codomain : Type v}
     (function : RelationalFunction Domain Codomain) (source : SetClass Domain) :
