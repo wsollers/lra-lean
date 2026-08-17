@@ -31,7 +31,7 @@ permissions:
 
 jobs:
   build:
-    name: Logic and Identity
+    name: Logic, Identity, and Set core
     runs-on: ubuntu-latest
 
     steps:
@@ -83,16 +83,18 @@ jobs:
 
       # The Mathlib import-policy check is intentionally disabled while the
       # file/folder standardization migration is in progress. The focused
-      # build below is the gate for the Logic -> Identity dependency slice.
+      # build below gates only the canonical Logic -> Identity -> Set core
+      # dependency slice. Concrete Set backends and Mathlib interop remain
+      # opt-in and are migrated separately.
 
-      - name: Build Logic and Identity
+      - name: Build Logic, Identity, and Set core
         run: |
           rm -f lean-build.log
           docker run --rm \
             -v "${{ github.workspace }}:/workspace" \
             -w /workspace \
             lra-lean:latest \
-            bash -lc 'lake build LRALogic LRAIdentity > /workspace/lean-build.log 2>&1 || {
+            bash -lc 'lake build LRALogic LRAIdentity LRASetCore > /workspace/lean-build.log 2>&1 || {
               status=$?
               echo "Lean build failed. Final diagnostics:"
               tail -n 180 /workspace/lean-build.log
@@ -100,7 +102,7 @@ jobs:
             }
             tail -n 40 /workspace/lean-build.log'
 
-      - name: Report proof placeholders in Logic and Identity
+      - name: Report proof placeholders in standardization core
         continue-on-error: true
         run: |
           docker run --rm \
@@ -110,12 +112,14 @@ jobs:
             bash -lc 'if grep -rn "\\bsorry\\b" \
               LRA/Logic.lean \
               LRA/Identity.lean \
+              LRA/Set.lean \
               LRA/VolumeI/Logic/ \
               LRA/VolumeI/Identity/ \
+              LRA/VolumeI/Set/Interface/ \
               --include="*.lean"; then
-              echo "::warning::sorry found in the Logic/Identity migration slice."
+              echo "::warning::sorry found in the standardization core slice."
             else
-              echo "No sorry in the Logic/Identity migration slice"
+              echo "No sorry in the standardization core slice"
             fi'
 
       - name: Upload Lean build diagnostics
