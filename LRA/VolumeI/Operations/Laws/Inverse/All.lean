@@ -1,8 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Inverse.Definition
-import LRA.VolumeI.Operations.Laws.Inverse.Consequences
-import LRA.VolumeI.Operations.Laws.Inverse.Theorems
-import LRA.VolumeI.Operations.Laws.Inverse.Relationships
+import LRA.Operation.Laws.Inverse
 
-/-!
-Aggregate import for the Inverse operation law concept family.
--/
+/-! Compatibility aggregate for the historical Inverse law path. -/
