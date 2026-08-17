@@ -17,7 +17,7 @@ def Asymmetric {α : Type u} (R : Endorelation α) : Prop := ∀ x y, R x y → 
 def Transitive {α : Type u} (R : Endorelation α) : Prop := ∀ x y z, R x y → R y z → R x z
 /-- Connexity: every pair is comparable by the relation. -/
 def Connex {α : Type u} (R : Endorelation α) : Prop := ∀ x y, R x y ∨ R y x
-/-- Totality, here used synonymously with connexity. -/
+/-- Totality, here used synonymously with connexity for endorelations. -/
 def Total {α : Type u} (R : Endorelation α) : Prop := Connex R
 /-- Weak trichotomy: one of `xRy`, `x=y`, or `yRx` holds. -/
 def Trichotomous {α : Type u} (R : Endorelation α) : Prop := ∀ x y, R x y ∨ x = y ∨ R y x
@@ -36,6 +36,28 @@ def RightEuclidean {α : Type u} (R : Endorelation α) : Prop :=
 /-- Density of a relation. -/
 def Dense {α : Type u} (R : Endorelation α) : Prop :=
   ∀ x y, R x y → ∃ z, R x z ∧ R z y
+
+/-! ## Mapping-shape properties for heterogeneous relations -/
+
+/-- Every left/source element is related to at least one right/target element. -/
+def LeftTotal {α : Type u} {β : Type v}
+    (R : HeterogeneousBinaryRelation α β) : Prop :=
+  ∀ x, ∃ y, R x y
+
+/-- Every right/target element is related from at least one left/source element. -/
+def RightTotal {α : Type u} {β : Type v}
+    (R : HeterogeneousBinaryRelation α β) : Prop :=
+  ∀ y, ∃ x, R x y
+
+/-- Each left/source element is related to at most one right/target element. -/
+def RightUnique {α : Type u} {β : Type v}
+    (R : HeterogeneousBinaryRelation α β) : Prop :=
+  ∀ x y₁ y₂, R x y₁ → R x y₂ → y₁ = y₂
+
+/-- Each right/target element is related from at most one left/source element. -/
+def LeftUnique {α : Type u} {β : Type v}
+    (R : HeterogeneousBinaryRelation α β) : Prop :=
+  ∀ y x₁ x₂, R x₁ y → R x₂ y → x₁ = x₂
 
 /-- A minimal element of a represented subset with respect to an endorelation. -/
 def MinimalElement {Element : Type u} {SetObject : Type v}
