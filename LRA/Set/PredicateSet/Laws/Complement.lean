@@ -1,180 +1,74 @@
-import LRA.VolumeI.Set.LRASet.Instances
-import LRA.VolumeI.Set.Interface.Complement
+import LRA.Set.PredicateSet.Instances
+import LRA.Set.Interface.Complement
 
-namespace LRA.Set.LRASet
+namespace LRA.Set.PredicateSet
 
 universe u
 
 variable {Alpha : Type u}
 
-/-!
-Absolute-complement and universal-set laws for predicate sets: the
-backend's certificate for `LRA.Set.ComplementLaws`.
-
-This family exists *only* here (and, later, for a Mathlib-backed
-backend): it needs the `HasComplement`/`HasUniversal` capabilities from
-`Instances.lean`, which Enderton structurally cannot register (Russell's
-paradox). This is the one place where `LRASet`, not Enderton, is the
-default proof site -- there is no alternative.
-
-Note for the prover: `DoubleComplement` and `SymmetricDifferenceEqEmptyIff`
-need classical reasoning (`x ∉ A → False` to `x ∈ A` is double-negation
-elimination on the underlying `Prop`); the rest unfold to intuitionistic
-propositional logic plus `funext`/`propext`.
--/
-/--
-`DoubleComplement` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem DoubleComplement : ∀ A : LRASet Alpha, Aᶜᶜ = A
-```
--/
-
-theorem DoubleComplement : ∀ A : LRASet Alpha, Aᶜᶜ = A := by
+theorem DoubleComplement :
+    ∀ A : LRA.Set.PredicateSet Alpha, Aᶜᶜ = A := by
   sorry
-/--
-`ComplementEmpty` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem ComplementEmpty :
-    (∅ : LRASet Alpha)ᶜ = (𝒰 : LRASet Alpha)
-```
--/
 
 theorem ComplementEmpty :
-    (∅ : LRASet Alpha)ᶜ = (𝒰 : LRASet Alpha) := by
+    (∅ : LRA.Set.PredicateSet Alpha)ᶜ = (𝒰 : LRA.Set.PredicateSet Alpha) := by
   sorry
-/--
-`ComplementUniversal` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem ComplementUniversal :
-    (𝒰 : LRASet Alpha)ᶜ = (∅ : LRASet Alpha)
-```
--/
 
 theorem ComplementUniversal :
-    (𝒰 : LRASet Alpha)ᶜ = (∅ : LRASet Alpha) := by
+    (𝒰 : LRA.Set.PredicateSet Alpha)ᶜ = (∅ : LRA.Set.PredicateSet Alpha) := by
   sorry
-/--
-`UnionComplement` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem UnionComplement :
-    ∀ A : LRASet Alpha, A ∪ Aᶜ = (𝒰 : LRASet Alpha)
-```
--/
 
 theorem UnionComplement :
-    ∀ A : LRASet Alpha, A ∪ Aᶜ = (𝒰 : LRASet Alpha) := by
+    ∀ A : LRA.Set.PredicateSet Alpha,
+      A ∪ Aᶜ = (𝒰 : LRA.Set.PredicateSet Alpha) := by
   sorry
-/--
-`IntersectionComplement` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem IntersectionComplement :
-    ∀ A : LRASet Alpha, A ∩ Aᶜ = (∅ : LRASet Alpha)
-```
--/
 
 theorem IntersectionComplement :
-    ∀ A : LRASet Alpha, A ∩ Aᶜ = (∅ : LRASet Alpha) := by
+    ∀ A : LRA.Set.PredicateSet Alpha,
+      A ∩ Aᶜ = (∅ : LRA.Set.PredicateSet Alpha) := by
   sorry
-/--
-`DeMorganUnion` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem DeMorganUnion :
-    ∀ A B : LRASet Alpha, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
-```
--/
 
 theorem DeMorganUnion :
-    ∀ A B : LRASet Alpha, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ := by
+    ∀ A B : LRA.Set.PredicateSet Alpha, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ := by
   sorry
-/--
-`DeMorganIntersection` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem DeMorganIntersection :
-    ∀ A B : LRASet Alpha, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
-```
--/
 
 theorem DeMorganIntersection :
-    ∀ A B : LRASet Alpha, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ := by
+    ∀ A B : LRA.Set.PredicateSet Alpha, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ := by
   sorry
-/--
-`DifferenceAsIntersectionComplement` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem DifferenceAsIntersectionComplement :
-    ∀ A B : LRASet Alpha, A \ B = A ∩ Bᶜ
-```
--/
 
 theorem DifferenceAsIntersectionComplement :
-    ∀ A B : LRASet Alpha, A \ B = A ∩ Bᶜ := by
+    ∀ A B : LRA.Set.PredicateSet Alpha, A \ B = A ∩ Bᶜ := by
   sorry
-/--
-`DifferenceUniversal` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem DifferenceUniversal :
-    ∀ A : LRASet Alpha, A \ (𝒰 : LRASet Alpha) = (∅ : LRASet Alpha)
-```
--/
 
 theorem DifferenceUniversal :
-    ∀ A : LRASet Alpha, A \ (𝒰 : LRASet Alpha) = (∅ : LRASet Alpha) := by
-  sorry
-/--
-`UniversalDifference` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem UniversalDifference :
-    ∀ A : LRASet Alpha, (𝒰 : LRASet Alpha) \ A = Aᶜ
-```
--/
-
-theorem UniversalDifference :
-    ∀ A : LRASet Alpha, (𝒰 : LRASet Alpha) \ A = Aᶜ := by
+    ∀ A : LRA.Set.PredicateSet Alpha,
+      A \ (𝒰 : LRA.Set.PredicateSet Alpha) = (∅ : LRA.Set.PredicateSet Alpha) := by
   sorry
 
-/-- Registration: predicate sets satisfy the complement laws -- the one
-certificate only this backend can supply. Pure delegation to the theorems
-above. -/
-instance : ComplementLaws (LRASet Alpha) where
-  DoubleComplement := LRA.Set.LRASet.DoubleComplement
-  ComplementEmpty := LRA.Set.LRASet.ComplementEmpty
-  ComplementUniversal := LRA.Set.LRASet.ComplementUniversal
-  UnionComplement := LRA.Set.LRASet.UnionComplement
-  IntersectionComplement := LRA.Set.LRASet.IntersectionComplement
-  DeMorganUnion := LRA.Set.LRASet.DeMorganUnion
-  DeMorganIntersection := LRA.Set.LRASet.DeMorganIntersection
+theorem UniversalDifference :
+    ∀ A : LRA.Set.PredicateSet Alpha,
+      (𝒰 : LRA.Set.PredicateSet Alpha) \ A = Aᶜ := by
+  sorry
+
+instance : ComplementLaws (LRA.Set.PredicateSet Alpha) where
+  DoubleComplement := LRA.Set.PredicateSet.DoubleComplement
+  ComplementEmpty := LRA.Set.PredicateSet.ComplementEmpty
+  ComplementUniversal := LRA.Set.PredicateSet.ComplementUniversal
+  UnionComplement := LRA.Set.PredicateSet.UnionComplement
+  IntersectionComplement := LRA.Set.PredicateSet.IntersectionComplement
+  DeMorganUnion := LRA.Set.PredicateSet.DeMorganUnion
+  DeMorganIntersection := LRA.Set.PredicateSet.DeMorganIntersection
   DifferenceAsIntersectionComplement :=
-    LRA.Set.LRASet.DifferenceAsIntersectionComplement
-  DifferenceUniversal := LRA.Set.LRASet.DifferenceUniversal
-  UniversalDifference := LRA.Set.LRASet.UniversalDifference
+    LRA.Set.PredicateSet.DifferenceAsIntersectionComplement
+  DifferenceUniversal := LRA.Set.PredicateSet.DifferenceUniversal
+  UniversalDifference := LRA.Set.PredicateSet.UniversalDifference
 
+end LRA.Set.PredicateSet
+
+namespace LRA.Set.LRASet
+export LRA.Set.PredicateSet
+  (DoubleComplement ComplementEmpty ComplementUniversal UnionComplement
+   IntersectionComplement DeMorganUnion DeMorganIntersection
+   DifferenceAsIntersectionComplement DifferenceUniversal UniversalDifference)
 end LRA.Set.LRASet
