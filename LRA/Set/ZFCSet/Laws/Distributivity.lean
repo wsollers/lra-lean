@@ -1,79 +1,39 @@
 import LRA.Set.ZFCSet.Instances
 import LRA.Set.Interface.Distributivity
 
-namespace LRA.Set.Enderton
+namespace LRA.Set.ZFCSet
 
-/-!
-Distributivity and absorption laws for Enderton sets: the backend's
-certificate for `LRA.Set.DistributivityLaws`.
--/
-/--
-`IntersectionDistributesOverUnion` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem IntersectionDistributesOverUnion :
-    ∀ A B C : Set, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
-```
--/
+/-! Distributivity and absorption certificate for the concrete ZFCSet backend. -/
 
 theorem IntersectionDistributesOverUnion :
     ∀ A B C : Set, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) := by
   sorry
-/--
-`UnionDistributesOverIntersection` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem UnionDistributesOverIntersection :
-    ∀ A B C : Set, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
-```
--/
 
 theorem UnionDistributesOverIntersection :
     ∀ A B C : Set, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C) := by
   sorry
-/--
-`AbsorptionUnionIntersection` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem AbsorptionUnionIntersection :
-    ∀ A B : Set, A ∪ (A ∩ B) = A
-```
--/
 
 theorem AbsorptionUnionIntersection :
     ∀ A B : Set, A ∪ (A ∩ B) = A := by
   sorry
-/--
-`AbsorptionIntersectionUnion` exposes this formal declaration.
-
-Logical form:
-
-```lean
-theorem AbsorptionIntersectionUnion :
-    ∀ A B : Set, A ∩ (A ∪ B) = A
-```
--/
 
 theorem AbsorptionIntersectionUnion :
     ∀ A B : Set, A ∩ (A ∪ B) = A := by
   sorry
 
-/-- Registration: Enderton sets satisfy the distributivity and absorption
-laws. Pure delegation to the theorems above. -/
 instance : DistributivityLaws Set where
-  IntersectionDistributesOverUnion :=
-    LRA.Set.Enderton.IntersectionDistributesOverUnion
-  UnionDistributesOverIntersection :=
-    LRA.Set.Enderton.UnionDistributesOverIntersection
-  AbsorptionUnionIntersection :=
-    LRA.Set.Enderton.AbsorptionUnionIntersection
-  AbsorptionIntersectionUnion :=
-    LRA.Set.Enderton.AbsorptionIntersectionUnion
+  IntersectionDistributesOverUnion := IntersectionDistributesOverUnion
+  UnionDistributesOverIntersection := UnionDistributesOverIntersection
+  AbsorptionUnionIntersection := AbsorptionUnionIntersection
+  AbsorptionIntersectionUnion := AbsorptionIntersectionUnion
+
+end LRA.Set.ZFCSet
+
+namespace LRA.Set.Enderton
+
+abbrev IntersectionDistributesOverUnion := LRA.Set.ZFCSet.IntersectionDistributesOverUnion
+abbrev UnionDistributesOverIntersection := LRA.Set.ZFCSet.UnionDistributesOverIntersection
+abbrev AbsorptionUnionIntersection := LRA.Set.ZFCSet.AbsorptionUnionIntersection
+abbrev AbsorptionIntersectionUnion := LRA.Set.ZFCSet.AbsorptionIntersectionUnion
 
 end LRA.Set.Enderton
