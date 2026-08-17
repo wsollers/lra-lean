@@ -10,13 +10,14 @@ require mathlib from git
 lean_lib LRA where
   roots := #[`LRA]
 
-/-- Focused build target for the canonical Logic import surface. -/
 lean_lib LRALogic where
   roots := #[`LRA.Logic]
 
-/-- Focused build target for the canonical Identity import surface. -/
 lean_lib LRAIdentity where
   roots := #[`LRA.Identity]
+
+lean_lib LRASetCore where
+  roots := #[`LRA.Set]
 
 lean_lib LRAVolumeI where
   roots := #[`LRA.VolumeI]
@@ -48,5 +49,6 @@ lean_lib LRATests where
     `LRA.SemanticImportsSmoke,
     `LRA.VolumeIII.Analysis.Bounding.BoundsTests,
     `LRA.VolumeIV.Learning.MetricTopologyAdapterTest,
+    `LRA.VolumeIV.MetricSpaces.BallSubsetCustomMetricTest,
     `LRA.VolumeIV.TopologicalSpaces.TopologyCompatibilityTest
   ]
