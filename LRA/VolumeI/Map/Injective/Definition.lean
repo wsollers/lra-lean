@@ -1,25 +1,14 @@
+import LRA.Function.Properties.Definition
 import LRA.VolumeI.Map.Typed.Definition
 
 namespace LRA.Map.Injective
 
 open LRA.Map.Typed
-
 universe u v
 
-/--
-**[Definition — Injective]**
-
-A typed map is injective when equal outputs imply equal inputs.
-
-Logical form:
-
-```lean
-def Injective {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) : Prop
-```
--/
-def Injective {Domain : Type u} {Codomain : Type v}
+/-- Historical typed-map spelling of canonical function injectivity. -/
+abbrev Injective {Domain : Type u} {Codomain : Type v}
     (map : TypedMap Domain Codomain) : Prop :=
-  forall first second, map first = map second -> first = second
+  LRA.Function.Injective (LRA.Function.OfTypedFunction map)
 
 end LRA.Map.Injective
