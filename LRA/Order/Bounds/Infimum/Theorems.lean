@@ -1,4 +1,5 @@
 import LRA.Order.Bounds.Infimum.Definition
+import LRA.Order.Bounds.LeastElement.Definition
 import LRA.Relation.Properties.Definition
 
 namespace LRA.Order
@@ -88,6 +89,17 @@ theorem InfimaCompareUnderPointwiseDomination
     (leftInfimumIsInfimum : Infimum relation leftSubset leftInfimum)
     (rightInfimumIsInfimum : Infimum relation rightSubset rightInfimum) :
     relation rightInfimum leftInfimum := by
+  sorry
+
+/-- An infimum that belongs to its subset is its least element. -/
+theorem InfimumInSubsetIsLeastElement
+    {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject]
+    {relation : LRA.Relation.Endorelation Element}
+    {subset : SetObject} {infimum : Element}
+    (infimumIsInfimum : Infimum relation subset infimum)
+    (infimumBelongs : infimum ∈ subset) :
+    LeastElement relation subset infimum := by
   sorry
 
 end LRA.Order
