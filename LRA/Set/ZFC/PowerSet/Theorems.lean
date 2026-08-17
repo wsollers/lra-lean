@@ -1,38 +1,19 @@
-import LRA.VolumeI.Set.Enderton.Axioms.Axioms
-import LRA.VolumeI.Set.Enderton.Definitions
-import LRA.VolumeI.Set.Enderton.Theorems.Extensionality
+import LRA.Set.ZFC.Axioms.PowerSet
+import LRA.Set.ZFC.Definitions
+import LRA.Set.ZFC.Extensionality.Theorems
 
 /-!
 Existence, uniqueness, and the chosen power set.
 -/
 
-namespace LRA.Set.Enderton
-/--
-There exists a power set of `A`.
+namespace LRA.Set.ZFC
 
-Logical form:
-
-```lean
-theorem PowerSetOfExists (A : Set) :
-    ∃ P : Set, IsPowerSetOf A P
-```
--/
+/-- There exists a power set of `A`. -/
 theorem PowerSetOfExists (A : Set) :
     ∃ P : Set, IsPowerSetOf A P := by
   sorry
-/--
-Any power set of `A` is equal to any other power set of `A`.
 
-Logical form:
-
-```lean
-theorem PowerSetOfIsUnique
-    {A P Q : Set}
-    (PIsPowerSetOf : IsPowerSetOf A P)
-    (QIsPowerSetOf : IsPowerSetOf A Q) :
-    Q = P
-```
--/
+/-- Any power set of `A` is equal to any other power set of `A`. -/
 theorem PowerSetOfIsUnique
     {A P Q : Set}
     (PIsPowerSetOf : IsPowerSetOf A P)
@@ -41,60 +22,51 @@ theorem PowerSetOfIsUnique
   sorry
 
 /-- TeX label: `thm:power-set-output-exists-unique`.
-For any set, there exists exactly one power set of it.
-
-Logical form:
-
-```lean
-theorem PowerSetOfExistsAndIsUnique (A : Set) :
-    ExistsAndUnique (fun P : Set => IsPowerSetOf A P)
-```
--/
+For any set, there exists exactly one power set of it. -/
 theorem PowerSetOfExistsAndIsUnique (A : Set) :
     ExistsAndUnique (fun P : Set => IsPowerSetOf A P) := by
   sorry
 
-/--
-The power set of `A`, chosen after its existence has been established.
-
-Logical form:
-
-```lean
+/-- The chosen power set of `A`. -/
 noncomputable def ThePowerSet (A : Set) : Set :=
   Classical.choose (PowerSetOfExists A)
-```
--/
-noncomputable def ThePowerSet (A : Set) : Set :=
-  Classical.choose (PowerSetOfExists A)
-/--
-The chosen power set of `A` has the expected members.
 
-Logical form:
-
-```lean
-theorem ThePowerSetIsPowerSetOf (A : Set) :
-    IsPowerSetOf A (ThePowerSet A)
-```
--/
+/-- The chosen power set of `A` has the expected members. -/
 theorem ThePowerSetIsPowerSetOf (A : Set) :
     IsPowerSetOf A (ThePowerSet A) := by
   sorry
-/--
-Every power set of `A` is equal to the chosen power set of `A`.
 
-Logical form:
-
-```lean
-theorem EveryPowerSetOfEqualsThePowerSet
-    {A P : Set}
-    (PIsPowerSetOf : IsPowerSetOf A P) :
-    P = ThePowerSet A
-```
--/
+/-- Every power set of `A` is equal to the chosen power set of `A`. -/
 theorem EveryPowerSetOfEqualsThePowerSet
     {A P : Set}
     (PIsPowerSetOf : IsPowerSetOf A P) :
     P = ThePowerSet A := by
   sorry
+
+end LRA.Set.ZFC
+
+/-! Compatibility aliases for the historical Enderton power-set names. -/
+namespace LRA.Set.Enderton
+
+abbrev PowerSetOfExists (A : Set) := LRA.Set.ZFC.PowerSetOfExists A
+
+abbrev PowerSetOfIsUnique
+    {A P Q : Set}
+    (PIsPowerSetOf : IsPowerSetOf A P)
+    (QIsPowerSetOf : IsPowerSetOf A Q) : Q = P :=
+  LRA.Set.ZFC.PowerSetOfIsUnique PIsPowerSetOf QIsPowerSetOf
+
+abbrev PowerSetOfExistsAndIsUnique (A : Set) :=
+  LRA.Set.ZFC.PowerSetOfExistsAndIsUnique A
+
+noncomputable abbrev ThePowerSet (A : Set) : Set := LRA.Set.ZFC.ThePowerSet A
+
+abbrev ThePowerSetIsPowerSetOf (A : Set) :=
+  LRA.Set.ZFC.ThePowerSetIsPowerSetOf A
+
+abbrev EveryPowerSetOfEqualsThePowerSet
+    {A P : Set}
+    (PIsPowerSetOf : IsPowerSetOf A P) : P = ThePowerSet A :=
+  LRA.Set.ZFC.EveryPowerSetOfEqualsThePowerSet PIsPowerSetOf
 
 end LRA.Set.Enderton
