@@ -1,9 +1,3 @@
-import LRA.VolumeI.Operations.Definition
+import LRA.Operation.Consequences
 
-/-!
-Derived consequences of this concept belong here.
--/
-
-namespace LRA.Operation
-
-end LRA.Operation
+/-! Compatibility shim for the historical Operation consequence path. -/
