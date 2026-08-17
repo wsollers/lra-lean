@@ -73,6 +73,20 @@ def IsImageClassOf {Domain : Type u} {Codomain : Type v}
     (source : SetClass Domain) : Prop :=
   ∀ output, image output ↔ ImageClass function source output
 
+/-- A source class is exactly the preimage of a target class under a function. -/
+def IsPreimageClassOf {Domain : Type u} {Codomain : Type v}
+    (preimage : SetClass Domain)
+    (function : RelationalFunction Domain Codomain)
+    (target : SetClass Codomain) : Prop :=
+  ∀ input, preimage input ↔ PreimageClass function target input
+
+/-- A source class is exactly the fiber over one output value. -/
+def IsFiberClassOf {Domain : Type u} {Codomain : Type v}
+    (fiber : SetClass Domain)
+    (function : RelationalFunction Domain Codomain)
+    (output : Codomain) : Prop :=
+  ∀ input, fiber input ↔ FiberClass function output input
+
 /-- Restrict the graph of a function to a source class. -/
 abbrev RestrictDomainGraph {Domain : Type u} {Codomain : Type v}
     (function : RelationalFunction Domain Codomain) (source : SetClass Domain) :
