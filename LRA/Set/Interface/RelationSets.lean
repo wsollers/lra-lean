@@ -1,8 +1,8 @@
--- LRA/VolumeI/Set/Interface/RelationSets.lean
+-- LRA/Set/Interface/RelationSets.lean
 -- Relations and functions as sets: the fluent, backend-generic vocabulary.
 
-import LRA.VolumeI.Set.Interface.Pairing
-import LRA.VolumeI.Set.Interface.Operations
+import LRA.Set.Interface.Pairing
+import LRA.Set.Interface.Operations
 
 namespace LRA.Set
 
