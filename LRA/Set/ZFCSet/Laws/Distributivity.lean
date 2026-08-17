@@ -1,5 +1,5 @@
-import LRA.VolumeI.Set.Enderton.Instances
-import LRA.VolumeI.Set.Interface.Distributivity
+import LRA.Set.ZFCSet.Instances
+import LRA.Set.Interface.Distributivity
 
 namespace LRA.Set.Enderton
 
