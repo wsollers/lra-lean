@@ -1,8 +1,3 @@
-import LRA.VolumeI.Identity.Model.Language
-import LRA.VolumeI.Identity.Model.Structures
-import LRA.VolumeI.Identity.Model.Theory
-import LRA.VolumeI.Identity.Model.Native
+import LRA.Identity.Model
 
-/-!
-Aggregate import for the Identity model-theory layer.
--/
+/-! Legacy forwarding import. Canonical ownership: `LRA.Identity.Model`. -/

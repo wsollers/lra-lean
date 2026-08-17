@@ -1,29 +1,3 @@
-import LRA.VolumeI.Identity.Axioms.Axioms
+import LRA.Identity.Substitution
 
-/-!
-Contract home for substitution laws.
--/
-
-namespace LRA.Identity
-
-universe u
-
-/--
-Leibniz substitution in the public substitution file.
-
-Logical form:
-
-```lean
-theorem LeibnizSubstitution {Carrier : Type u} {Left Right : Carrier}
-    (ObjectsAreIdentical : Left = Right)
-    (Property : Carrier -> Prop) :
-    Property Left ↔ Property Right
-```
--/
-theorem LeibnizSubstitution {Carrier : Type u} {Left Right : Carrier}
-    (ObjectsAreIdentical : Left = Right)
-    (Property : Carrier -> Prop) :
-    Property Left ↔ Property Right :=
-  LeibnizLaw ObjectsAreIdentical Property
-
-end LRA.Identity
+/-! Legacy forwarding import. Canonical ownership: `LRA.Identity.Substitution`. -/
