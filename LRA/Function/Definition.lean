@@ -1,4 +1,5 @@
 import LRA.Relation.Definition
+import LRA.Relation.Properties.Definition
 
 namespace LRA.Function
 
@@ -8,18 +9,15 @@ universe u v
 abbrev FunctionRelation (Domain : Type u) (Codomain : Type v) :=
   LRA.Relation.HeterogeneousBinaryRelation Domain Codomain
 
-/-- A relation is single-valued when each input is related to at most one output. -/
-def SingleValued {Domain : Type u} {Codomain : Type v}
+/-- Function-level spelling of right-uniqueness: one output at most per input. -/
+abbrev SingleValued {Domain : Type u} {Codomain : Type v}
     (relation : FunctionRelation Domain Codomain) : Prop :=
-  ∀ input firstOutput secondOutput,
-    relation input firstOutput →
-    relation input secondOutput →
-    firstOutput = secondOutput
+  LRA.Relation.RightUnique relation
 
-/-- A relation is total when every input is related to some output. -/
-def Total {Domain : Type u} {Codomain : Type v}
+/-- Function-level spelling of left-totality: every input has an output. -/
+abbrev Total {Domain : Type u} {Codomain : Type v}
     (relation : FunctionRelation Domain Codomain) : Prop :=
-  ∀ input, ∃ output, relation input output
+  LRA.Relation.LeftTotal relation
 
 /-- A function relation is exactly a total, single-valued relation. -/
 def IsFunctionRelation {Domain : Type u} {Codomain : Type v}
