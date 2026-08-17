@@ -1,91 +1,31 @@
--- LRA/VolumeI/Set/Enderton/Theorems/OrderedPairs.lean
--- Kuratowski ordered pairs: the Enderton backend's pairing capability.
-
-import LRA.VolumeI.Set.Enderton.Theorems.Pairing
-import LRA.VolumeI.Set.Interface.Pairing
-
-namespace LRA.Set.Enderton
+import LRA.Set.ZFC.Pairing.Theorems
+import LRA.Set.Interface.Pairing
 
 /-!
-Volume I label: enderton-ordered-pairs
-Lean module: LRA.Set.Enderton.Theorems.OrderedPairs
-Verification status: definitions checked; Theorem 3A and its
-consequences pending (proving queue)
+Kuratowski ordered pairs for the in-house ZFC universe.
 
-The Kuratowski ordered pair: `⟨a, b⟩ = {{a}, {a, b}}`, built from the
-Pairing axiom twice. This is the single-sorted answer to "where does
-the plane live?" — the pair is itself a set, so relations and
-functions are sets of sets, citizens of the same universe as their
-arguments.
-
-The interface registration at the bottom is what makes
-`OrderedPair a b`, `Relates`, `DomainOf`, … resolve to THIS
-construction whenever the coordinates are Enderton sets — at high
-priority, so the Kuratowski pair beats the default type-level product
-on this carrier. The generic vocabulary never looks inside the pair;
-the theorems here about its *members* (`SingletonSet a ∈ ⟨a, b⟩`) are
-backend-private facts the interface cannot even state.
+The construction is derived from Pairing. The registered `HasPairing` and
+`PairingLaws` instances make this realization available through the generic Set
+interface without changing the underlying relation/function vocabulary.
 -/
 
-/-- **[Definition — SingletonSet]**
+namespace LRA.Set.ZFC
 
-The singleton `{a} = {a, a}`, by Pairing with itself.
-
-Logical form:
-
-```lean
-noncomputable def SingletonSet (element : Set) : Set :=
-  PairSet element element
-```
--/
+/-- The singleton `{a} = {a, a}`. -/
 noncomputable def SingletonSet (element : Set) : Set :=
   PairSet element element
 
-/-- **[Definition — KuratowskiPair]**
-
-The Kuratowski ordered pair `⟨a, b⟩ = {{a}, {a, b}}`.
-
-Logical form:
-
-```lean
-noncomputable def KuratowskiPair (first second : Set) : Set :=
-  PairSet (SingletonSet first) (PairSet first second)
-```
--/
+/-- The Kuratowski ordered pair `⟨a, b⟩ = {{a}, {a, b}}`. -/
 noncomputable def KuratowskiPair (first second : Set) : Set :=
   PairSet (SingletonSet first) (PairSet first second)
 
-/-- **[Theorem — MemberOfSingletonSet]**
-
-The singleton's only member is its element.
-
-Logical form:
-
-```lean
-theorem MemberOfSingletonSet (element candidate : Set) :
-    candidate ∈ SingletonSet element ↔ candidate = element
-```
--/
+/-- The singleton's only member is its element. -/
 theorem MemberOfSingletonSet (element candidate : Set) :
     candidate ∈ SingletonSet element ↔ candidate = element := by
   sorry
 
-/-- **[Theorem — KuratowskiPairInjective]**
-
-Enderton's Theorem 3A: Kuratowski pairs are equal exactly when their
-coordinates are. The whole point of the `{{a}, {a, b}}` trick — the
-asymmetry between the two members encodes the order.
-
-Logical form:
-
-```lean
-theorem KuratowskiPairInjective
-    (firstLeft secondLeft firstRight secondRight : Set) :
-    KuratowskiPair firstLeft firstRight =
-        KuratowskiPair secondLeft secondRight ↔
-      firstLeft = secondLeft ∧ firstRight = secondRight
-```
--/
+/-- Enderton's Theorem 3A: equality of Kuratowski pairs determines equality of
+coordinates. -/
 theorem KuratowskiPairInjective
     (firstLeft secondLeft firstRight secondRight : Set) :
     KuratowskiPair firstLeft firstRight =
@@ -93,53 +33,41 @@ theorem KuratowskiPairInjective
       firstLeft = secondLeft ∧ firstRight = secondRight := by
   sorry
 
-/-- **[Theorem — SingletonMemberOfKuratowskiPair]**
-
-Backend-private: the first coordinate's singleton is a member of the
-pair — a fact about the pair's *insides* that the generic interface
-cannot even state.
-
-Logical form:
-
-```lean
-theorem SingletonMemberOfKuratowskiPair (first second : Set) :
-    SingletonSet first ∈ KuratowskiPair first second
-```
--/
+/-- The first coordinate's singleton is a member of the Kuratowski pair. -/
 theorem SingletonMemberOfKuratowskiPair (first second : Set) :
     SingletonSet first ∈ KuratowskiPair first second := by
   sorry
 
-/-! ## Interface registration
-
-High priority, so on Enderton sets the internal Kuratowski pair beats
-the default type-level product. -/
-
-/-- **[Instance — Enderton pairing]**
-
-Logical form:
-
-```lean
-noncomputable instance (priority := high) :
-    HasPairing Set Set Set :=
-  ⟨KuratowskiPair⟩
-```
--/
+/-- On ZFC sets, the generic pairing interface is realized by Kuratowski pairs. -/
 noncomputable instance (priority := high) :
     HasPairing Set Set Set :=
   ⟨KuratowskiPair⟩
 
-/-- **[Instance — Enderton pairing laws]** (delegates to Theorem 3A).
-
-Logical form:
-
-```lean
-instance : PairingLaws Set Set Set :=
-  ⟨KuratowskiPairInjective⟩
-```
--/
+/-- Kuratowski pairing satisfies the generic pairing injectivity law. -/
 instance : PairingLaws Set Set Set :=
   ⟨fun firstLeft secondLeft firstRight secondRight =>
     KuratowskiPairInjective firstLeft secondLeft firstRight secondRight⟩
+
+end LRA.Set.ZFC
+
+/-! Compatibility aliases for the historical Enderton ordered-pair names. -/
+namespace LRA.Set.Enderton
+
+noncomputable abbrev SingletonSet (element : Set) : Set :=
+  LRA.Set.ZFC.SingletonSet element
+
+noncomputable abbrev KuratowskiPair (first second : Set) : Set :=
+  LRA.Set.ZFC.KuratowskiPair first second
+
+abbrev MemberOfSingletonSet (element candidate : Set) :=
+  LRA.Set.ZFC.MemberOfSingletonSet element candidate
+
+abbrev KuratowskiPairInjective
+    (firstLeft secondLeft firstRight secondRight : Set) :=
+  LRA.Set.ZFC.KuratowskiPairInjective
+    firstLeft secondLeft firstRight secondRight
+
+abbrev SingletonMemberOfKuratowskiPair (first second : Set) :=
+  LRA.Set.ZFC.SingletonMemberOfKuratowskiPair first second
 
 end LRA.Set.Enderton
