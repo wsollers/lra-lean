@@ -1,4 +1,5 @@
 import LRA.Function.Calculus.Definition
+import LRA.Function.Properties.Definition
 import LRA.Relation.Structures.Definition
 import LRA.Relation.Canonical.IdentityRelation.Definition
 
