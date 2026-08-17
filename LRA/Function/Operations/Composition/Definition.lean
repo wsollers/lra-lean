@@ -5,6 +5,14 @@ namespace LRA.Function
 
 universe u v w
 
+/-- Composition in ordinary typed-function presentation. -/
+def ComposeTyped
+    {Alpha : Type u} {Beta : Type v} {Gamma : Type w}
+    (rightFunction : TypedFunction Beta Gamma)
+    (leftFunction : TypedFunction Alpha Beta) :
+    TypedFunction Alpha Gamma :=
+  fun input => rightFunction (leftFunction input)
+
 /-- Composition of relational functions, inherited from relation composition. -/
 def Compose
     {Alpha : Type u} {Beta : Type v} {Gamma : Type w}
