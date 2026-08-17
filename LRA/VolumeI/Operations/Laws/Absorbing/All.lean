@@ -1,8 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Absorbing.Definition
-import LRA.VolumeI.Operations.Laws.Absorbing.Consequences
-import LRA.VolumeI.Operations.Laws.Absorbing.Theorems
-import LRA.VolumeI.Operations.Laws.Absorbing.Relationships
+import LRA.Operation.Laws.Absorbing
 
-/-!
-Aggregate import for the Absorbing operation law concept family.
--/
+/-! Compatibility aggregate for the historical Absorbing law path. -/
