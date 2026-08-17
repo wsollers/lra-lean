@@ -1,9 +1,5 @@
-import LRA.VolumeI.Set.ModelTheory
+import LRA.Set.Model.LStructure
+import LRA.Set.Model.Theory
+import LRA.Set.Model.Model
 
-/-!
-Opt-in model-theoretic treatment of set theory.
-
-This is a migration forwarding route. Its contents will be normalized to the
-standard `Model/LStructure.lean`, `Model/Theory.lean`, and `Model/Model.lean`
-shape in the next Set migration pass.
--/
+/-! Canonical, Mathlib-free model-theory aggregate for Set. -/
