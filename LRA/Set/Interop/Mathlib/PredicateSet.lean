@@ -1,6 +1,4 @@
-import LRA.VolumeI.Set.MathlibPredicateSet
+import LRA.Set.Interop.Mathlib.PredicateSet.Instances
+import LRA.Set.Interop.Mathlib.PredicateSet.Laws
 
-/-!
-Mathlib `Set α` registered as a realization of the canonical LRA Set interface.
-This module is intentionally confined to `Interop/Mathlib`.
--/
+/-! Mathlib `Set α` realization of the canonical LRA Set interface. -/

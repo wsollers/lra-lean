@@ -1,6 +1,6 @@
-import LRA.VolumeI.Set.MathlibZFSet
+import LRA.Set.Interop.Mathlib.ZFSet.Instances
+import LRA.Set.Interop.Mathlib.ZFSet.Laws
+import LRA.Set.Interop.Mathlib.ZFSet.Pairing
+import LRA.Set.Interop.Mathlib.ZFSet.FunctionSets
 
-/-!
-Mathlib `ZFSet` registered as a realization of the canonical LRA Set interface.
-This module is intentionally confined to `Interop/Mathlib`.
--/
+/-! Mathlib `ZFSet` realization of the canonical LRA Set interface. -/
