@@ -3,17 +3,19 @@
 # ============================================================
 #
 # Targets:
-#   lean-build            Lean/Lake only
+#   lean-build            Lean/Lake only, with dependencies preloaded
 #   documentation-build   Lean + Lean Blueprint + Graphviz + TeX
 #
-# Usage:
-#   docker build --target lean-build -t lra-lean .
-#   docker build --target documentation-build -t lra-lean-docs .
+# The lean-build image is deliberately source-independent.  It contains:
+#   * OS tooling
+#   * elan + the pinned Lean toolchain
+#   * Lake dependency sources
+#   * Mathlib's downloaded compiled cache
 #
-# Layer ordering rule:
-#   keep OS packages, elan, Lean toolchain, and Lake dependency manifests before
-#   anything that changes frequently. CI mounts the repository source into the
-#   container at runtime, so ordinary Lean/doc edits do not invalidate the image.
+# Ordinary CI MUST NOT bind-mount the repository over /workspace.  Doing so
+# would hide /workspace/.lake and throw away the expensive preloaded dependency
+# environment.  Instead CI mounts only the live LRA/ source tree and the live
+# project lakefile.lean.
 # ============================================================
 
 FROM ubuntu:24.04 AS lean-build
@@ -34,18 +36,24 @@ RUN curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init
 ENV PATH="/root/.elan/bin:${PATH}"
 
 WORKDIR /workspace
-COPY lean-toolchain ./lean-toolchain
 
+COPY lean-toolchain ./lean-toolchain
 RUN TOOLCHAIN="$(tr -d '\r\n' < lean-toolchain)" \
     && elan toolchain install "$TOOLCHAIN" \
     && elan default "$TOOLCHAIN"
 
+# Use a dependency-only Lake file so ordinary edits to the repository's real
+# lakefile.lean (for example adding build roots during standardization) do not
+# invalidate this expensive image.
+COPY docker/lakefile.env.lean ./lakefile.lean
 COPY lake-manifest.json ./lake-manifest.json
-COPY lakefile.lean ./lakefile.lean
 
-RUN lake update 2>/dev/null || true
+# Materialize dependency sources and Mathlib's precompiled .olean cache inside
+# the image.  These remain visible at runtime because CI mounts source
+# selectively instead of mounting over /workspace.
+RUN lake update
+RUN lake exe cache get
 
-WORKDIR /workspace
 CMD ["bash"]
 
 FROM lean-build AS documentation-build
