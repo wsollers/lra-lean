@@ -1,8 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Distributive.Definition
-import LRA.VolumeI.Operations.Laws.Distributive.Consequences
-import LRA.VolumeI.Operations.Laws.Distributive.Theorems
-import LRA.VolumeI.Operations.Laws.Distributive.Relationships
+import LRA.Operation.Laws.Distributive
 
-/-!
-Aggregate import for the Distributive operation law concept family.
--/
+/-! Compatibility aggregate for the historical Distributive law path. -/
