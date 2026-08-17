@@ -1,3 +1,3 @@
-import LRA.VolumeI.Set.Algebra
+import LRA.SetSystems
 
-/-! Opt-in mathematics of rings, algebras, sigma-algebras, and related collections of sets. -/
+/-! Legacy compatibility route. Structured collections of sets are owned by `LRA.SetSystems`. -/
