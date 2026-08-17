@@ -1,5 +1,5 @@
 import LRA.VolumeI.AlgebraicStructures.OrderedField.Laws.Definition
-import LRA.VolumeI.Order.Completeness
+import LRA.VolumeI.Order.Bounds.LeastUpperBoundProperty.CompletenessLaws
 
 namespace LRA.AlgebraicStructures
 

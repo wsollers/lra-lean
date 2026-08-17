@@ -5,7 +5,7 @@ import LRA.VolumeII.RationalNumbers.RationalQuotientFractions
 import LRA.VolumeII.RealNumbers.Irrationals
 
 namespace LRA.NumberSystems.RationalNumbers.ContinuedFractions
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 /-!
 Volume II label: continued-fractions
@@ -14,7 +14,7 @@ Source: docs/number-systems/gpt-03b-continued-fractions.md
 Verification status: statement-accepted-proof-pending
 -/
 
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 /--
 **[Structure — FiniteSimpleContinuedFraction]**

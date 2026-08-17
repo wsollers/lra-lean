@@ -1,16 +1,16 @@
--- LRA/VolumeI/UniversalAlgebra/Models/CanonicalEmbeddings.lean
+-- LRA/VolumeII/NumberSystems/CanonicalEmbeddings.lean
 -- Canonical embeddings across the constructed number-system tower.
 
-import LRA.VolumeI.UniversalAlgebra.Models.Models
+import LRA.VolumeII.NumberSystems.Models
 
-namespace LRA.UniversalAlgebra.Models.CanonicalEmbeddings
+namespace LRA.NumberSystems.Models.CanonicalEmbeddings
 
 open LRA.AlgebraicStructures.OrderedRing.ModelTheory
 open LRA.AlgebraicStructures.OrderedField.ModelTheory
 
 /-!
 Volume II label: canonical-embeddings
-Lean module: LRA.UniversalAlgebra.Models.CanonicalEmbeddings
+Lean module: LRA.NumberSystems.Models.CanonicalEmbeddings
 Source: docs/number-systems/gpt-00b-canonical-embeddings.md
 Verification status: statement-accepted-proof-pending
 -/
@@ -183,4 +183,4 @@ theorem CompositeIntegerToRealIsEmbedding
       (CompositeIntegerToReal SelectedRationalExtension SelectedRealExtension) := by
   sorry
 
-end LRA.UniversalAlgebra.Models.CanonicalEmbeddings
+end LRA.NumberSystems.Models.CanonicalEmbeddings

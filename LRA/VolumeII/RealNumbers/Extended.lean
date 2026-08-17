@@ -4,7 +4,7 @@
 import LRA.VolumeII.RealNumbers.Extensions
 
 namespace LRA.NumberSystems.RealNumbers.Extended
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 /-!
 Volume II label: extended-real-line
@@ -13,7 +13,7 @@ Source: docs/number-systems/gpt-08c-extended-RealNumbers.md
 Verification status: statement-accepted-proof-pending
 -/
 
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 /--
 **[Inductive — ExtendedReal]**

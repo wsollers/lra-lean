@@ -2,12 +2,12 @@
 -- Primitive construction of the reals from nested rational intervals.
 
 import LRA.VolumeII.Foundations.Quotients.Compatibility
-import LRA.VolumeI.UniversalAlgebra.Models.Models
+import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeII.RealNumbers.Cauchy
 
 namespace LRA.NumberSystems.RealNumbers.PrimitiveIntervals
 
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 /-!
 Lean module: LRA.NumberSystems.RealNumbers.PrimitiveIntervals

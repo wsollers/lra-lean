@@ -1,15 +1,15 @@
--- LRA/VolumeI/UniversalAlgebra/Models/CharacteristicCardinality.lean
+-- LRA/VolumeII/NumberSystems/CharacteristicCardinality.lean
 -- Characteristic and cardinality obligations for the number-system tower.
 
-import LRA.VolumeI.UniversalAlgebra.Models.Models
+import LRA.VolumeII.NumberSystems.Models
 
-namespace LRA.UniversalAlgebra.Models.CharacteristicCardinality
+namespace LRA.NumberSystems.Models.CharacteristicCardinality
 
 open LRA.AlgebraicStructures.OrderedRing.ModelTheory
 
 /-!
 Volume II label: characteristic-and-cardinality
-Lean module: LRA.UniversalAlgebra.Models.CharacteristicCardinality
+Lean module: LRA.NumberSystems.Models.CharacteristicCardinality
 Source: docs/number-systems/gpt-09a-characteristic-cardinality.md
 Verification status: statement-accepted-proof-pending
 -/
@@ -117,4 +117,4 @@ theorem RealsAreUncountable
     Uncountable SelectedRealModel.signature.carrier := by
   sorry
 
-end LRA.UniversalAlgebra.Models.CharacteristicCardinality
+end LRA.NumberSystems.Models.CharacteristicCardinality

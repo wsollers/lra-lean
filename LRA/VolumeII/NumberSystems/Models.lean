@@ -1,4 +1,4 @@
--- LRA/VolumeI/UniversalAlgebra/Models/Models.lean
+-- LRA/VolumeII/NumberSystems/Models.lean
 -- Thin number-system model packages for Z, Q, and R.
 
 import LRA.VolumeI.AlgebraicStructures.OrderedRing.ModelTheory.ModelBuilder
@@ -6,7 +6,7 @@ import LRA.VolumeI.AlgebraicStructures.OrderedField.ModelTheory.ModelBuilder
 import LRA.VolumeI.AlgebraicStructures
 import LRA.VolumeI.Order
 
-namespace LRA.UniversalAlgebra.Models
+namespace LRA.NumberSystems.Models
 
 open LRA.AlgebraicStructures
 open LRA.AlgebraicStructures.OrderedRing.ModelTheory
@@ -17,7 +17,7 @@ universe u
 
 /-!
 Volume II label: configurable-number-system-models
-Lean module: LRA.UniversalAlgebra.Models.Models
+Lean module: LRA.NumberSystems.Models.Models
 Verification status: checked interface module
 
 The number-system models exist FOR QUANTIFICATION: universal properties
@@ -491,4 +491,4 @@ example (M : RealModel) :
 example (a b : mathlibIntegerModel.Carrier) : a * b = b * a :=
   MulCommutative a b
 
-end LRA.UniversalAlgebra.Models
+end LRA.NumberSystems.Models

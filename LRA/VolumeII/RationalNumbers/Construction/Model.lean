@@ -1,12 +1,12 @@
 -- LRA/VolumeII/RationalNumbers/Construction/Model.lean
 -- Rational-number models as Volume I first-order algebraic models.
 
-import LRA.VolumeI.UniversalAlgebra.Models
+import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeI.AlgebraicStructures.OrderedField.ModelTheory.All
 
 namespace LRA.NumberSystems.RationalNumbers
 
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 open LRA.AlgebraicStructures.OrderedField.ModelTheory
 
 /-!

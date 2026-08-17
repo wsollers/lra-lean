@@ -4,7 +4,7 @@
 import LRA.VolumeII.RealNumbers.Extensions
 
 namespace LRA.NumberSystems.RealNumbers.IntervalArithmetic
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 /-!
 Volume II label: interval-arithmetic-over-reals
@@ -13,7 +13,7 @@ Source: docs/number-systems/gpt-08d-interval-arithmetic-over-RealNumbers.md
 Verification status: statement-accepted-proof-pending
 -/
 
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 /--
 **[Structure — Interval]**

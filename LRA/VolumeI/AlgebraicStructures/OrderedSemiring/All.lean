@@ -1,9 +1,13 @@
+import LRA.VolumeI.AlgebraicStructures.OrderedSemiring.AlgebraicSignature.All
+import LRA.VolumeI.AlgebraicStructures.OrderedSemiring.Laws.All
 import LRA.VolumeI.AlgebraicStructures.OrderedSemiring.ModelTheory.All
+import LRA.VolumeI.AlgebraicStructures.OrderedSemiring.Definition
+import LRA.VolumeI.AlgebraicStructures.OrderedSemiring.Characterizations
+import LRA.VolumeI.AlgebraicStructures.OrderedSemiring.Consequences
+import LRA.VolumeI.AlgebraicStructures.OrderedSemiring.Relationships
+import LRA.VolumeI.AlgebraicStructures.OrderedSemiring.Theorems
+import LRA.VolumeI.AlgebraicStructures.OrderedSemiring.FailureModes
 
 /-!
 Aggregate import for ordered-semiring material.
-
-The current ordered-semiring API is model-theoretic vocabulary and builders.
-Native law certificates should be added here when the named structure is
-expanded beyond its first-order language.
 -/

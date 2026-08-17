@@ -1,13 +1,13 @@
--- LRA/VolumeI/UniversalAlgebra/Models/Construction.lean
+-- LRA/VolumeII/NumberSystems/Construction.lean
 -- Construction selectors and coherent number-system tower.
 
-import LRA.VolumeI.UniversalAlgebra.Models.Models
+import LRA.VolumeII.NumberSystems.Models
 
-namespace LRA.UniversalAlgebra.Models
+namespace LRA.NumberSystems.Models
 
 /-!
 Volume II label: configurable-number-system-construction
-Lean module: LRA.UniversalAlgebra.Models.Construction
+Lean module: LRA.NumberSystems.Models.Construction
 Blueprint label: configurable-number-system-construction
 Verification status: statement-accepted-proof-pending
 -/
@@ -207,4 +207,4 @@ theorem DefaultRationalConstructionIsCanonical :
     CanonicalConstruction.rational = RationalConstruction.canonical := by
   rfl
 
-end LRA.UniversalAlgebra.Models
+end LRA.NumberSystems.Models

@@ -1,5 +1,6 @@
 import LRA.VolumeI.AlgebraicStructures.Field.Laws.Definition
-import LRA.VolumeI.Order.Laws
+import LRA.VolumeI.Order.Laws.LinearOrder.Definition
+import LRA.VolumeI.Order.Laws.OperationCompatibility.Definition
 
 namespace LRA.AlgebraicStructures
 

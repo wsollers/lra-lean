@@ -4,7 +4,7 @@
 import LRA.VolumeII.RealNumbers.Cauchy
 
 namespace LRA.NumberSystems.RealNumbers.Cantor
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 /-!
 Volume II label: cantor-nested-interval-reals
@@ -13,7 +13,7 @@ Source: docs/number-systems/gpt-06-reals-cantor.md
 Verification status: statement-accepted-proof-pending
 -/
 
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 /--
 **[Structure — EndpointInterval]**

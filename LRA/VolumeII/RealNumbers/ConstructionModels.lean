@@ -2,12 +2,12 @@
 -- Comparison models for alternate real constructions.
 
 import LRA.VolumeII.Foundations.Quotients.Compatibility
-import LRA.VolumeI.UniversalAlgebra.Models.Models
+import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeII.RationalNumbers.RationalQuotientFractions
 
 namespace LRA.NumberSystems.RealNumbers
 
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 /-!
 Volume II label: alternate-real-constructions
@@ -22,7 +22,7 @@ dedicated construction modules.
 
 end LRA.NumberSystems.RealNumbers
 namespace LRA.NumberSystems.RealNumbers.DedekindCuts
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 
 /-- **[Definition — Dedekind Cut]**
@@ -205,11 +205,11 @@ theorem reals_are_complete
 
 end LRA.NumberSystems.RealNumbers.DedekindCuts
 namespace LRA.NumberSystems.RealNumbers
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 end LRA.NumberSystems.RealNumbers
 namespace LRA.NumberSystems.RealNumbers.CauchySequences
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 /--
 **[Def — Sequence]**
@@ -368,11 +368,11 @@ noncomputable def real_extension
 
 end LRA.NumberSystems.RealNumbers.CauchySequences
 namespace LRA.NumberSystems.RealNumbers
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 end LRA.NumberSystems.RealNumbers
 namespace LRA.NumberSystems.RealNumbers.CantorNestedIntervals
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 /--
 **[Structure — IntervalSequence]**
@@ -464,11 +464,11 @@ theorem endpoint_sequences_determine_cauchy_class
 
 end LRA.NumberSystems.RealNumbers.CantorNestedIntervals
 namespace LRA.NumberSystems.RealNumbers
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 end LRA.NumberSystems.RealNumbers
 namespace LRA.NumberSystems.RealNumbers.PrimitiveIntervalQuotient
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 /--
 **[Structure — RationalInterval]**
@@ -683,11 +683,11 @@ noncomputable def real_model
 
 end LRA.NumberSystems.RealNumbers.PrimitiveIntervalQuotient
 namespace LRA.NumberSystems.RealNumbers
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 end LRA.NumberSystems.RealNumbers
 namespace LRA.NumberSystems.RealNumbers.DyadicExpansions
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 /--
 **[Structure — Expansion]**
@@ -789,7 +789,7 @@ noncomputable def real_model
 
 end LRA.NumberSystems.RealNumbers.DyadicExpansions
 namespace LRA.NumberSystems.RealNumbers
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 /--
 **[Structure — ModelIsomorphism]**

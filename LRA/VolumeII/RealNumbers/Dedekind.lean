@@ -1,11 +1,11 @@
 -- LRA/VolumeII/Reals/Dedekind.lean
 -- Reference construction of the real numbers by Dedekind cuts.
 
-import LRA.VolumeI.UniversalAlgebra.Models.Models
+import LRA.VolumeII.NumberSystems.Models
 
 namespace LRA.NumberSystems.RealNumbers.Dedekind
 
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 
 /-!
 Lean module: LRA.NumberSystems.RealNumbers.Dedekind

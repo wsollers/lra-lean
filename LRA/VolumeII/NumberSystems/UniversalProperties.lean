@@ -1,15 +1,15 @@
--- LRA/VolumeI/UniversalAlgebra/Models/UniversalProperties.lean
+-- LRA/VolumeII/NumberSystems/UniversalProperties.lean
 -- Universal properties for Z, Q, and R.
 
-import LRA.VolumeI.UniversalAlgebra.Models.CanonicalEmbeddings
+import LRA.VolumeII.NumberSystems.CanonicalEmbeddings
 
-namespace LRA.UniversalAlgebra.Models.UniversalProperties
+namespace LRA.NumberSystems.Models.UniversalProperties
 
 universe u
 
 /-!
 Volume II label: universal-properties
-Lean module: LRA.UniversalAlgebra.Models.UniversalProperties
+Lean module: LRA.NumberSystems.Models.UniversalProperties
 Source: docs/number-systems/gpt-00c-universal-properties.md
 Verification status: statement-accepted-proof-pending
 -/
@@ -91,4 +91,4 @@ structure CompleteOrderedFieldCharacterization (SelectedRealModel : RealModel.{u
         CanonicalEmbeddings.EmbeddingPreservesOrderedField
           SelectedRealModel.signature other.signature comparison
 
-end LRA.UniversalAlgebra.Models.UniversalProperties
+end LRA.NumberSystems.Models.UniversalProperties

@@ -3,8 +3,13 @@ import Mathlib.Order.ConditionallyCompleteLattice.Basic
 import Mathlib.Data.Int.Basic
 import Mathlib.Data.Rat.Defs
 import Mathlib.Data.Real.Basic
-import LRA.VolumeI.Order.Laws
-import LRA.VolumeI.Order.Completeness
+import LRA.VolumeI.Order.Laws.PartialOrder.Definition
+import LRA.VolumeI.Order.Laws.LinearOrder.Definition
+import LRA.VolumeI.Order.Laws.StrictOrderCompatibility.Definition
+import LRA.VolumeI.Order.Laws.OperationCompatibility.Definition
+import LRA.VolumeI.Order.Density.DenseOrder.Definition
+import LRA.VolumeI.Order.DiscreteOrder.Definition
+import LRA.VolumeI.Order.Bounds.LeastUpperBoundProperty.CompletenessLaws
 
 namespace LRA.Order
 

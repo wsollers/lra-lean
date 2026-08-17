@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Integers/Construction/Model.lean
 -- Active integer construction as a Volume I first-order algebraic model.
 
-import LRA.VolumeI.UniversalAlgebra.Models
+import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeI.AlgebraicStructures.OrderedRing.ModelTheory.All
 import LRA.VolumeII.BasicArithmetic.ModelTheory.All
 import LRA.VolumeII.PeanoSystems.Presburger.ModelTheory.All
@@ -9,7 +9,7 @@ import LRA.VolumeII.Integers.Implementation
 
 namespace LRA.NumberSystems.Integers
 
-open LRA.UniversalAlgebra.Models
+open LRA.NumberSystems.Models
 open LRA.AlgebraicStructures.OrderedRing.ModelTheory
 open LRA.NumberSystems.BasicArithmetic.ModelTheory
 open LRA.NumberSystems.PeanoSystems.Presburger.ModelTheory
@@ -77,11 +77,11 @@ number-system tower. The certificates travel with the carrier.
 Logical form:
 
 ```lean
-def integerNumberSystemModel : LRA.UniversalAlgebra.Models.IntegerModel :=
+def integerNumberSystemModel : LRA.NumberSystems.Models.IntegerModel :=
   IntegerModel.ofCarrier Z
 ```
 -/
-def integerNumberSystemModel : LRA.UniversalAlgebra.Models.IntegerModel :=
+def integerNumberSystemModel : LRA.NumberSystems.Models.IntegerModel :=
   IntegerModel.ofCarrier Z
 
 /-- The derived operation bundle of the active integer model, for

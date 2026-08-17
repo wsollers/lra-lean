@@ -1,14 +1,14 @@
--- LRA/VolumeI/UniversalAlgebra/Models/ComparisonMatrix.lean
+-- LRA/VolumeII/NumberSystems/ComparisonMatrix.lean
 -- Formal ledger for comparing number systems and canonical maps.
 
-import LRA.VolumeI.UniversalAlgebra.Models.CharacteristicCardinality
-import LRA.VolumeI.UniversalAlgebra.Models.CanonicalEmbeddings
+import LRA.VolumeII.NumberSystems.CharacteristicCardinality
+import LRA.VolumeII.NumberSystems.CanonicalEmbeddings
 
-namespace LRA.UniversalAlgebra.Models.ComparisonMatrix
+namespace LRA.NumberSystems.Models.ComparisonMatrix
 
 /-!
 Volume II label: number-system-comparison-matrix
-Lean module: LRA.UniversalAlgebra.Models.ComparisonMatrix
+Lean module: LRA.NumberSystems.Models.ComparisonMatrix
 Source: docs/number-systems/gpt-10-comparison-matrix.md
 Verification status: statement-accepted-proof-pending
 -/
@@ -93,4 +93,4 @@ theorem ComparisonMatrixForZQR
         RealLedger.HasCompletenessProperty := by
   sorry
 
-end LRA.UniversalAlgebra.Models.ComparisonMatrix
+end LRA.NumberSystems.Models.ComparisonMatrix
