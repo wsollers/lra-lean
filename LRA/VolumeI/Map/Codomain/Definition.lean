@@ -1,47 +1,22 @@
+import LRA.Function.Calculus.Definition
 import LRA.VolumeI.Map.Typed.Definition
 
 namespace LRA.Map.Codomain
 
 open LRA.Map.Typed
+universe u v
 
-universe u v w
-
-/--
-**[Abbreviation — CodomainOf]**
-
-The target type of a typed map.
-
-Logical form:
-
-```lean
+/-- Historical typed-map spelling of the declared function codomain type. -/
 abbrev CodomainOf {Domain : Type u} {Codomain : Type v}
-    (_map : TypedMap Domain Codomain) : Type v
-```
--/
-abbrev CodomainOf {Domain : Type u} {Codomain : Type v}
-    (_map : TypedMap Domain Codomain) : Type v :=
-  Codomain
+    (map : TypedMap Domain Codomain) : Type v :=
+  LRA.Function.CodomainType (LRA.Function.OfTypedFunction map)
 
-/--
-An object carries an explicit codomain object.
--/
+/-- Legacy adapter: an object carries an explicit codomain object. -/
 class HasCodomain
     (MapObject : Type u) (CodomainObject : outParam (Type v)) where
-  codomain : MapObject -> CodomainObject
+  codomain : MapObject → CodomainObject
 
-/--
-**[Definition — Codomain]**
-
-Retrieve the declared codomain object of a map-like object.
-
-Logical form:
-
-```lean
-def Codomain {MapObject : Type u} {CodomainObject : Type v}
-    [HasCodomain MapObject CodomainObject]
-    (mapObject : MapObject) : CodomainObject
-```
--/
+/-- Legacy adapter for retrieving the declared codomain object of a map-like object. -/
 def Codomain {MapObject : Type u} {CodomainObject : Type v}
     [HasCodomain MapObject CodomainObject]
     (mapObject : MapObject) : CodomainObject :=
