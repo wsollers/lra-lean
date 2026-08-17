@@ -1,9 +1,3 @@
-import LRA.VolumeI.Operations.Laws.Commutative.Definition
+import LRA.Operation.Laws.Commutative.Consequences
 
-/-!
-Derived consequences of this concept belong here.
--/
-
-namespace LRA.Operation.Laws.Commutative
-
-end LRA.Operation.Laws.Commutative
+/-! Compatibility import for the historical Commutative consequences path. -/
