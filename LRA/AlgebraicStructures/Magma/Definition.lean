@@ -1,7 +1,10 @@
 import LRA.AlgebraicStructures.Magma.Laws.Definition
+import LRA.UniversalAlgebra.InterpretedOperationBundles
 
 namespace LRA.AlgebraicStructures
 
-/-! Magma definition module. -/
+/-- The algebraic signature of a magma: one binary multiplication. -/
+abbrev MagmaConceptSignature :=
+  LRA.UniversalAlgebra.InterpretedOperationBundles.MultiplicativeOperationBundle
 
 end LRA.AlgebraicStructures

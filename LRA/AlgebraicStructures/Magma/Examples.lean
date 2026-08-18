@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Magma.All
+import LRA.AlgebraicStructures.Magma
 
 namespace LRA.AlgebraicStructures
 
