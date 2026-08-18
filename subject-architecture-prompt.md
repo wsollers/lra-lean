@@ -748,11 +748,20 @@ So before deleting anything as redundant:
   content and are the files most likely to be swept along by a judgment made
   about `Definition.lean`.
 
-A file with **zero declarations is out of scope for this audit entirely**. The
-rule above asks whether each declaration has a surviving owner; a file with no
-declarations answers that vacuously, which would make every empty role file
-deletable on a technicality. It is not. Empty role files are canonical scaffold
-under §2.3 and are never removed by a deletion audit.
+A **role file inside a canonical concept directory** is out of scope for this
+audit when it holds zero declarations. The rule above asks whether each
+declaration has a surviving owner; a file with no declarations answers that
+vacuously, which would make every empty role file deletable on a technicality.
+It is not. Empty role files are canonical scaffold under §2.3.
+
+That exemption is about scaffold, not about emptiness. It does **not** reach a
+module that holds zero declarations because its contents were moved out, or
+because it never held any and exists only to preserve an import path. In
+particular, a zero-declaration module under `LRA/VolumeN/` is a shim: §7.0.1
+requires it to be deleted and its importers repointed, and being empty is the
+reason it goes, not a reason it stays. The test is location and intent —
+scaffold sits in a canonical concept directory awaiting content, a shim sits on
+a retiring path awaiting nobody.
 
 A concept directory whose definition is an alias is exactly the case where the
 theorems are *not* aliases: they were stated once, against the alias, and never
@@ -779,6 +788,32 @@ consumer, delete the vacated module, and remove the old directory once empty.
 
 `LRA/VolumeI/Map/` must not exist when this is done. Delete
 `LRA/VolumeI/Map.lean` rather than keeping it as a compatibility aggregate.
+
+**Sequence the rows bottom-up in the dependency order of what is being moved.**
+Before starting a row, compute which of the remaining rows it imports. Promote a
+row only once everything it depends on is already promoted. Otherwise the
+promoted subject lands importing an `LRA.VolumeN.*` path, which is a fresh
+Volume dependency created *by* the migration and has to be unwound later.
+
+For the three Volume I rows that remain, the arrows form a total order:
+
+```
+UniversalAlgebra     ->  Logic                (5 files)
+AlgebraicStructures  ->  Logic                (6 files)
+AlgebraicStructures  ->  UniversalAlgebra    (10 files)
+```
+
+so the order is **Logic, then UniversalAlgebra, then AlgebraicStructures**.
+Do not sequence by how many import lines a row will repoint; repointing is the
+same work in any order, while a wrong order manufactures dependencies.
+
+**A subject router with no subject behind it is a shim.** §7.0.1 permits a
+router because it aggregates a group; a file such as `LRA/Logic.lean`, whose
+entire content is `import LRA.VolumeI.Logic`, aggregates nothing canonical and
+is a forwarder wearing a router's name. Census a row by asking whether the
+canonical *declarations* exist, not whether the canonical path resolves — an
+absent `LRA/Logic/` directory beside a present `LRA/Logic.lean` is one row, not
+two findings.
 
 ### 7.1.1 The set-backed function calculus is an audit, not a move
 
@@ -881,6 +916,34 @@ Roughly 320 `Examples`, `AllWithExamples`, and `FailureModes` modules are
 compiled by no Lake target. Either wire each into a test-library module or delete
 it. Unverified Lean source is not an asset.
 
+### 7.4.1 Never remove a declaration with a regular expression
+
+Three declarations have been silently dropped in this migration by a
+regex-driven bulk edit, most recently `BooleanOrAndMutualAbsorption`, whose
+removal pattern carried an optional leading doc-comment whose non-greedy match
+reached back to an earlier comment and took three neighbouring declarations with
+it. In every case the diff looked plausible and the build stayed green, because
+deleting a theorem nothing imports breaks nothing.
+
+So:
+
+- **Do not delete or relocate a declaration by pattern substitution over file
+  text.** Select it by its declaration boundary — from its own doc-comment or
+  keyword through to the start of the next top-level declaration or end of file
+  — and act on that range.
+- A removal that cannot be expressed as a whole number of declaration ranges is
+  a signal the edit is wrong, not a reason to widen the pattern.
+- **Compare the declaration-name set before and after every commit**, not once
+  per row. Collect fully qualified names from both trees and diff the sets; any
+  name present before and absent after must appear in the ledger with a reason.
+  The per-row ledger is the audit; this is the tripwire, and it is what turns a
+  silent drop into a stopped commit.
+- Compare **fully qualified** names. Short names collide across namespaces and
+  will mask a loss as a survivor.
+
+A count is not a substitute. Two of the three drops were found only because
+the check was per name; a total would have shown one short and read as rounding.
+
 ### 7.5 Refile declarations that sit in the wrong role
 
 A declaration in the wrong role file is a content error, not a layout error. The
@@ -968,8 +1031,12 @@ The effort succeeds only when **all** of these hold.
 - Every subject has a working router; every group has a working router; routers
   hold no declarations.
 - Only the file roles in §2.3 appear as leaf filenames.
-- No role file was deleted for holding zero declarations. Empty role files are
-  scaffold under §2.3 and survive every audit.
+- No role file inside a canonical concept directory was deleted for holding zero
+  declarations. Scaffold survives every audit; a zero-declaration module on a
+  retiring `LRA/VolumeN/` path is a shim and still goes.
+- No subject or group router forwards into an `LRA.VolumeN.*` namespace.
+- No canonical subject imports an `LRA.VolumeN.*` path, except an `Interop/`
+  leaf whose target row is not yet promoted.
 - No concept directory carries an empty `Theorems.lean` beside a
   `Consequences.lean` or `Relationships.lean` holding results the concept's own
   theorems do not imply. Where §7.5 found that shape, the refile landed and is
