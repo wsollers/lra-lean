@@ -1,6 +1,6 @@
 import LRA.Logic.Model.Model
 
-namespace LRA.AlgebraicStructures.AbelianGroup.ModelTheory
+namespace LRA.AlgebraicStructures.AbelianGroup.Interface.Signature
 
 /-!
 First-order signature for abelian groups in additive notation.
@@ -33,4 +33,4 @@ def AbelianGroupFirstOrderSignature : LRA.Logic.Signature where
   Relations := AbelianGroupFirstOrderRelations
   Constants := AbelianGroupConstantSymbol
 
-end LRA.AlgebraicStructures.AbelianGroup.ModelTheory
+end LRA.AlgebraicStructures.AbelianGroup.Interface.Signature

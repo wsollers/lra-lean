@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.AbelianGroup.All
+import LRA.AlgebraicStructures.AbelianGroup
 import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup
 import LRA.AlgebraicStructures.AdditiveGroup
 import LRA.AlgebraicStructures.AdditiveMonoid

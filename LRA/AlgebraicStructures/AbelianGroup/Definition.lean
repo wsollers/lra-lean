@@ -1,12 +1,10 @@
 import LRA.AlgebraicStructures.AbelianGroup.Laws.Definition
+import LRA.AlgebraicStructures.AdditiveGroup.Definition
 
 namespace LRA.AlgebraicStructures
 
-/-!
-AbelianGroup Definition module.
-
-This file is reserved for definition whose natural owner is the named
-algebraic structure AbelianGroup. It intentionally contains no placeholder theorems.
--/
+/-- An abelian group has the additive group signature. -/
+abbrev AbelianGroupConceptSignature :=
+  AdditiveGroupConceptSignature
 
 end LRA.AlgebraicStructures
