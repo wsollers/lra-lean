@@ -1398,18 +1398,18 @@ def IsReciprocalInterval
     (interval reciprocal : RationalInterval rational_model) : Prop :=
   ¬ contains rational_model interval rational_model.signature.zero ∧
   reciprocal.left_endpoint =
-      rational_model.signature.inverse interval.right_endpoint ∧
+      rational_model.signature.inv interval.right_endpoint ∧
   reciprocal.right_endpoint =
-      rational_model.signature.inverse interval.left_endpoint
+      rational_model.signature.inv interval.left_endpoint
 ```
 -/
 def IsReciprocalInterval
     (interval reciprocal : RationalInterval rational_model) : Prop :=
   ¬ contains rational_model interval rational_model.signature.zero ∧
   reciprocal.left_endpoint =
-      rational_model.signature.inverse interval.right_endpoint ∧
+      rational_model.signature.inv interval.right_endpoint ∧
   reciprocal.right_endpoint =
-      rational_model.signature.inverse interval.left_endpoint
+      rational_model.signature.inv interval.left_endpoint
 
 
 /-- Theorem 6.3: reciprocal is representative-independent on nonzero classes.

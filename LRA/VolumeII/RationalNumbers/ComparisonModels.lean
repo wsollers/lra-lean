@@ -505,8 +505,8 @@ structure ModelIsomorphism
   preserves_inverse :
     ∀ value,
       to_function
-          (first_model.signature.inverse value) =
-        second_model.signature.inverse (to_function value)
+          (first_model.signature.inv value) =
+        second_model.signature.inv (to_function value)
   preserves_and_reflects_order :
     ∀ first second,
       second_model.signature.le
@@ -552,8 +552,8 @@ structure ModelIsomorphism
   preserves_inverse :
     ∀ value,
       to_function
-          (first_model.signature.inverse value) =
-        second_model.signature.inverse (to_function value)
+          (first_model.signature.inv value) =
+        second_model.signature.inv (to_function value)
   preserves_and_reflects_order :
     ∀ first second,
       second_model.signature.le

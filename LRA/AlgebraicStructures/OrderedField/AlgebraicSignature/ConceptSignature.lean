@@ -1,9 +1,0 @@
-import LRA.AlgebraicStructures.Field.Definition
-
-namespace LRA.AlgebraicStructures
-
-/-- The enriched signature of an ordered field: field operations and an order relation. -/
-structure OrderedFieldConceptSignature extends FieldConceptSignature where
-  le : carrier → carrier → Prop
-
-end LRA.AlgebraicStructures

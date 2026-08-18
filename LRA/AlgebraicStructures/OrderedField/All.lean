@@ -1,8 +1,0 @@
-import LRA.AlgebraicStructures.OrderedField.AlgebraicSignature.All
-import LRA.AlgebraicStructures.OrderedField.Laws.All
-import LRA.AlgebraicStructures.OrderedField.ModelTheory.All
-import LRA.AlgebraicStructures.OrderedField.Definition
-import LRA.AlgebraicStructures.OrderedField.Characterizations
-import LRA.AlgebraicStructures.OrderedField.Consequences
-import LRA.AlgebraicStructures.OrderedField.Relationships
-import LRA.AlgebraicStructures.OrderedField.Theorems

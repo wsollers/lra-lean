@@ -1,6 +1,6 @@
 import LRA.AlgebraicStructures.Field.Interface.Signature.Definition
 
-namespace LRA.AlgebraicStructures.OrderedField.ModelTheory
+namespace LRA.AlgebraicStructures.OrderedField.Interface.Signature
 
 /-!
 First-order signature for ordered fields.
@@ -31,4 +31,4 @@ def OrderedFieldFirstOrderSignature : LRA.Logic.Signature where
   Relations := OrderedFieldFirstOrderRelations
   Constants := OrderedFieldConstantSymbol
 
-end LRA.AlgebraicStructures.OrderedField.ModelTheory
+end LRA.AlgebraicStructures.OrderedField.Interface.Signature

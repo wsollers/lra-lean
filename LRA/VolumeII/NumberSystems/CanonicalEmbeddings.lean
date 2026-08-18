@@ -6,7 +6,7 @@ import LRA.VolumeII.NumberSystems.Models
 namespace LRA.NumberSystems.Models.CanonicalEmbeddings
 
 open LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory
-open LRA.AlgebraicStructures.OrderedField.ModelTheory
+open LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory
 
 /-!
 Volume II label: canonical-embeddings
@@ -34,12 +34,6 @@ structure EmbeddingPreservesOrderedRing
     ∀ first second,
       target.le (map first) (map second) ↔
         source.le first second
-/--
-`EmbeddingPreservesOrderedField` exposes this formal declaration.
-
-Logical form:
-
-```lean
 structure EmbeddingPreservesOrderedField
     (source target : OrderedFieldSignature)
     (map : source.carrier → target.carrier) : Prop
@@ -48,19 +42,7 @@ structure EmbeddingPreservesOrderedField
   PreservesInverse :
     ∀ value,
       value ≠ source.zero →
-        map (source.inverse value) = target.inverse (map value)
-```
--/
-
-structure EmbeddingPreservesOrderedField
-    (source target : OrderedFieldSignature)
-    (map : source.carrier → target.carrier) : Prop
-    extends EmbeddingPreservesOrderedRing
-      source.toOrderedRingSignature target.toOrderedRingSignature map where
-  PreservesInverse :
-    ∀ value,
-      value ≠ source.zero →
-        map (source.inverse value) = target.inverse (map value)
+        map (source.inv value) = target.inv (map value)
 /--
 `AdjacentTowerEmbeddings` exposes this formal declaration.
 

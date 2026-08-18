@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.OrderedField.AlgebraicSignature.ConceptSignature
+import LRA.AlgebraicStructures.OrderedField.Definition
 
 namespace LRA.AlgebraicStructures
 

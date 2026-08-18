@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.OrderedField.ModelTheory.Theory
+import LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.Axioms
 import LRA.AlgebraicStructures.CompleteOrderedField.ModelTheory.FirstOrderSignature
 
 namespace LRA.AlgebraicStructures.CompleteOrderedField.ModelTheory

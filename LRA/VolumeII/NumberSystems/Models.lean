@@ -2,14 +2,14 @@
 -- Thin number-system model packages for Z, Q, and R.
 
 import LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory.Model
-import LRA.AlgebraicStructures.OrderedField.ModelTheory.ModelBuilder
+import LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.Model
 import LRA.AlgebraicStructures
 import LRA.Order
 namespace LRA.NumberSystems.Models
 
 open LRA.AlgebraicStructures
 open LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory
-open LRA.AlgebraicStructures.OrderedField.ModelTheory
+open LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory
 open LRA.Order
 
 universe u
@@ -191,7 +191,7 @@ def RationalModel.signature (M : RationalModel) : OrderedFieldSignature where
   add := (· + ·)
   neg := (- ·)
   multiply := (· * ·)
-  inverse := (·⁻¹)
+  inv := (·⁻¹)
   le := (· ≤ ·)
   StrictOrder := (· < ·)
 

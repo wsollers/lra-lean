@@ -1,12 +1,10 @@
 import LRA.AlgebraicStructures.OrderedField.Laws.Definition
+import LRA.AlgebraicStructures.Field.Definition
 
 namespace LRA.AlgebraicStructures
 
-/-!
-OrderedField Definition module.
-
-This file is reserved for definition whose natural owner is the named
-algebraic structure OrderedField. It intentionally contains no placeholder theorems.
--/
+/-- The enriched signature of an ordered field: field operations and an order relation. -/
+structure OrderedFieldConceptSignature extends FieldConceptSignature where
+  le : carrier → carrier → Prop
 
 end LRA.AlgebraicStructures

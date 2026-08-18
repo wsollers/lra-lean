@@ -24,7 +24,7 @@ import LRA.AlgebraicStructures.Magma
 import LRA.AlgebraicStructures.MeetSemilattice
 import LRA.AlgebraicStructures.Monoid
 import LRA.AlgebraicStructures.NontrivialRing
-import LRA.AlgebraicStructures.OrderedField.All
+import LRA.AlgebraicStructures.OrderedField
 import LRA.AlgebraicStructures.OrderedGroup
 import LRA.AlgebraicStructures.OrderedRing
 import LRA.AlgebraicStructures.OrderedSemiring

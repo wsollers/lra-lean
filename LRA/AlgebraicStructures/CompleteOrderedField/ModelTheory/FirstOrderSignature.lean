@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.OrderedField.ModelTheory.FirstOrderSignature
+import LRA.AlgebraicStructures.OrderedField.Interface.Signature.Definition
 
 namespace LRA.AlgebraicStructures.CompleteOrderedField.ModelTheory
 
@@ -10,6 +10,6 @@ ordered-field language. Completeness does not add a first-order symbol.
 -/
 
 abbrev CompleteOrderedFieldFirstOrderSignature :=
-  LRA.AlgebraicStructures.OrderedField.ModelTheory.OrderedFieldFirstOrderSignature
+  LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderSignature
 
 end LRA.AlgebraicStructures.CompleteOrderedField.ModelTheory

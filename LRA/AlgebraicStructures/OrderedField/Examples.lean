@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.OrderedField.All
+import LRA.AlgebraicStructures.OrderedField
 
 namespace LRA.AlgebraicStructures
 

@@ -311,7 +311,7 @@ def IsDyadicRational (value : Rational dyadic_data) : Prop :=
     ∃ exponent : dyadic_data.whole_carrier,
       value = dyadic_data.rational_model.signature.multiply
         (dyadic_data.integer_to_rational numerator)
-        (dyadic_data.rational_model.signature.inverse
+        (dyadic_data.rational_model.signature.inv
           (dyadic_data.power_of_two exponent))
 ```
 -/
@@ -320,7 +320,7 @@ def IsDyadicRational (value : Rational dyadic_data) : Prop :=
     ∃ exponent : dyadic_data.whole_carrier,
       value = dyadic_data.rational_model.signature.multiply
         (dyadic_data.integer_to_rational numerator)
-        (dyadic_data.rational_model.signature.inverse
+        (dyadic_data.rational_model.signature.inv
           (dyadic_data.power_of_two exponent))
 
 
@@ -419,7 +419,7 @@ def fractional_partial_sum
     (fun index =>
       dyadic_data.rational_model.signature.multiply
         (dyadic_data.digit_to_rational (digits index))
-        (dyadic_data.rational_model.signature.inverse
+        (dyadic_data.rational_model.signature.inv
           (dyadic_data.power_of_two (dyadic_data.exponent_of_index index))))
     bound
 ```
@@ -431,7 +431,7 @@ def fractional_partial_sum
     (fun index =>
       dyadic_data.rational_model.signature.multiply
         (dyadic_data.digit_to_rational (digits index))
-        (dyadic_data.rational_model.signature.inverse
+        (dyadic_data.rational_model.signature.inv
           (dyadic_data.power_of_two (dyadic_data.exponent_of_index index))))
     bound
 

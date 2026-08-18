@@ -1,7 +1,8 @@
-import LRA.AlgebraicStructures.OrderedField.ModelTheory.FirstOrderSignature
+import LRA.AlgebraicStructures.OrderedField.Interface.Signature.Definition
 import LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory.Model
+import LRA.Operation
 
-namespace LRA.AlgebraicStructures.OrderedField.ModelTheory
+namespace LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory
 
 universe u
 
@@ -9,9 +10,19 @@ universe u
 Model builders for the first-order ordered-field language.
 -/
 
+open LRA.AlgebraicStructures.OrderedField.Interface.Signature
+
+/-- An ordered-field model extends the ordered-ring signature with
+totalized inverse. Kept on the `OrderedRingSignature` lineage (rather than
+`OrderedFieldConceptSignature`, whose parent is `Field`, not `Ring`) so
+that the existing `.toOrderedRingSignature` projection downstream
+consumers rely on (comparing across the integer/rational/real tower)
+keeps working; the field is renamed `inv` to match
+`OrderedFieldConceptSignature.inv`'s spelling, but the two structures are
+not literally the same type. -/
 structure OrderedFieldSignature extends
     LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory.OrderedRingSignature where
-  inverse : LRA.Operation.UnaryOperation carrier
+  inv : LRA.Operation.UnaryOperation carrier
 
 namespace OrderedFieldSignature
 
@@ -24,14 +35,14 @@ def PartialInverse
     (signature : OrderedFieldSignature) :
     LRA.Operation.PartialUnaryOperation signature.carrier where
   Domain := InverseDomain signature
-  Value := fun value _ => signature.inverse value
+  Value := fun value _ => signature.inv value
 
 def PartialDivision
     (signature : OrderedFieldSignature) :
     LRA.Operation.PartialBinaryOperation signature.carrier where
   Domain := fun _ divisor => divisor ≠ signature.zero
   Value := fun dividend divisor _ =>
-    signature.multiply dividend (signature.inverse divisor)
+    signature.multiply dividend (signature.inv divisor)
 
 end OrderedFieldSignature
 
@@ -46,7 +57,7 @@ def BuildOrderedFieldModel
     | .mul, args =>
         signature.multiply (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
     | .neg, args => signature.neg (args ⟨0, by decide⟩)
-    | .inv, args => signature.inverse (args ⟨0, by decide⟩)
+    | .inv, args => signature.inv (args ⟨0, by decide⟩)
   interpretRelation
     | .lt, args =>
         signature.StrictOrder (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
@@ -59,7 +70,7 @@ def orderedFieldFirstOrderModel (R : Type u)
     LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
   BuildOrderedFieldModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
-      neg := (- ·), multiply := (· * ·), inverse := (·⁻¹), le := (· ≤ ·),
+      neg := (- ·), multiply := (· * ·), inv := (·⁻¹), le := (· ≤ ·),
       StrictOrder := (· < ·) }
 
-end LRA.AlgebraicStructures.OrderedField.ModelTheory
+end LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory
