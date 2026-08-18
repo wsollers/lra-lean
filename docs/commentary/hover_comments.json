@@ -53513,8 +53513,8 @@
       "status": "draft"
     },
     {
-      "id": "LRA/VolumeII/GaussianIntegers/Construction/Model.lean:383:GaussianArithmeticRingModel",
-      "name": "GaussianArithmeticRingModel",
+      "id": "LRA/VolumeII/GaussianIntegers/Construction/Model.lean:383:ActiveGaussianArithmeticRingModel",
+      "name": "ActiveGaussianArithmeticRingModel",
       "kind": "def",
       "file": "LRA/VolumeII/GaussianIntegers/Construction/Model.lean",
       "line": 383,
