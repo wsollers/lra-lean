@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.NontrivialRing.All
+import LRA.AlgebraicStructures.NontrivialRing
 
 namespace LRA.AlgebraicStructures
 
