@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.DistributiveLattice.Laws.All
+import LRA.AlgebraicStructures.DistributiveLattice.Laws
 
 namespace LRA.AlgebraicStructures
 

@@ -11,7 +11,7 @@ import LRA.AlgebraicStructures.CommutativeSemigroup
 import LRA.AlgebraicStructures.CommutativeSemiring.All
 import LRA.AlgebraicStructures.CompleteOrderedField.All
 import LRA.AlgebraicStructures.DiscreteInteger.All
-import LRA.AlgebraicStructures.DistributiveLattice.All
+import LRA.AlgebraicStructures.DistributiveLattice
 import LRA.AlgebraicStructures.DivisionRing.All
 import LRA.AlgebraicStructures.Field.All
 import LRA.AlgebraicStructures.Group
