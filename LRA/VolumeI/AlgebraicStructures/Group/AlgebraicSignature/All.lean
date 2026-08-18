@@ -1,3 +1,0 @@
-import LRA.VolumeI.AlgebraicStructures.Group.AlgebraicSignature.ConceptSignature
-
-/-! Aggregate import for the group algebraic signature. -/

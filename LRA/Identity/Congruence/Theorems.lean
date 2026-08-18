@@ -1,0 +1,40 @@
+import LRA.Identity.Substitution
+
+namespace LRA.Identity
+
+universe u
+
+/-- Predicates, relations, and binary operations automatically respect equality. -/
+theorem CongruenceWithRespectToEqualityIsAutomatic {Carrier : Type u}
+    {left left' right right' : Carrier}
+    (LeftsAreEqual : left = left')
+    (RightsAreEqual : right = right') :
+    (∀ predicate : Carrier -> Prop, predicate left ↔ predicate left') ∧
+      (∀ relation : Carrier -> Carrier -> Prop,
+        relation left right ↔ relation left' right') ∧
+      (∀ operation : Carrier -> Carrier -> Carrier,
+        operation left right = operation left' right') := by
+  constructor
+  · intro predicate
+    exact EqualitySubstitution LeftsAreEqual predicate
+  constructor
+  · intro relation
+    exact SubstitutionPreservesRelations LeftsAreEqual RightsAreEqual relation
+  · intro operation
+    exact SubstitutionPreservesOperations LeftsAreEqual RightsAreEqual operation
+
+/-- Public congruence theorem for equality. -/
+theorem EqualityCongruence {Carrier : Type u}
+    {Left LeftPrime Right RightPrime : Carrier}
+    (LeftCoordinatesEqual : Left = LeftPrime)
+    (RightCoordinatesEqual : Right = RightPrime) :
+    (∀ Predicate : Carrier -> Prop, Predicate Left ↔ Predicate LeftPrime) ∧
+      (∀ Relation : Carrier -> Carrier -> Prop,
+        Relation Left Right ↔ Relation LeftPrime RightPrime) ∧
+      (∀ Operation : Carrier -> Carrier -> Carrier,
+        Operation Left Right = Operation LeftPrime RightPrime) :=
+  CongruenceWithRespectToEqualityIsAutomatic
+    LeftCoordinatesEqual
+    RightCoordinatesEqual
+
+end LRA.Identity

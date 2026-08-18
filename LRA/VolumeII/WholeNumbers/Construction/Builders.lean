@@ -1,7 +1,7 @@
 -- LRA/VolumeII/WholeNumbers/Construction/Builders.lean
 -- Def-level machine and certificate builders for the whole-number carrier.
 
-import LRA.VolumeI.AlgebraicStructures
+import LRA.AlgebraicStructures
 import LRA.VolumeII.WholeNumbers.Construction.Model
 
 namespace LRA.NumberSystems.WholeNumbers

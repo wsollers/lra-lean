@@ -1,9 +1,0 @@
-import LRA.VolumeI.AlgebraicStructures.OrderedRing.AlgebraicSignature.All
-import LRA.VolumeI.AlgebraicStructures.OrderedRing.Laws.All
-import LRA.VolumeI.AlgebraicStructures.OrderedRing.ModelTheory.All
-import LRA.VolumeI.AlgebraicStructures.OrderedRing.Definition
-import LRA.VolumeI.AlgebraicStructures.OrderedRing.Characterizations
-import LRA.VolumeI.AlgebraicStructures.OrderedRing.Consequences
-import LRA.VolumeI.AlgebraicStructures.OrderedRing.Relationships
-import LRA.VolumeI.AlgebraicStructures.OrderedRing.Theorems
-import LRA.VolumeI.AlgebraicStructures.OrderedRing.FailureModes

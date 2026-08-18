@@ -10,11 +10,10 @@ namespace LRA.Internal.MathematicalSpaces
 
 universe u
 
-/-- **[Structure — MathematicalSpaceDefinition]**
+/-- Reference data for a mathematical space as a carrier with specified
 
-Reference data for a mathematical space: a carrier together with a named
-predicate for the structural data it carries, and evidence that the predicate
-holds.
+Mathematical statement (Lean): `structure MathematicalSpaceDefinition`.
+structure.
 
 Logical form:
 
@@ -25,7 +24,7 @@ structure MathematicalSpaceDefinition where
   /-- A predicate naming when the chosen structural data is present. -/
   HasStructure : Prop
   /-- The chosen structural data is present. -/
-  structureHolds : HasStructure
+  hasStructure : HasStructure
 ```
 -/
 structure MathematicalSpaceDefinition where
@@ -34,7 +33,7 @@ structure MathematicalSpaceDefinition where
   /-- A predicate naming when the chosen structural data is present. -/
   HasStructure : Prop
   /-- The chosen structural data is present. -/
-  structureHolds : HasStructure
+  hasStructure : HasStructure
 
 end LRA.Internal.MathematicalSpaces
 

@@ -1,4 +1,9 @@
-import LRA.VolumeI.Set
+import LRA.Set
+import LRA.Set.PredicateSet
+import LRA.Set.ZFC
+import LRA.Set.ZFCSet
+import LRA.Set.Model
+import LRA.SetSystems
 
 /-!
 Current TeX-facing Peano-system carrier for Volume II.
@@ -8,7 +13,7 @@ This is the root namespace for the active Volume II Peano-system buildout.
 A Peano system is stated generically over any set backend: `Element` is
 the carrier, `SetObject` the backend's sets over it, connected by Lean's
 `Membership` class -- so `PeanoSystem Element SetObject` works at
-`Enderton.Set`/`Enderton.Set`, `Alpha`/`LRASet Alpha`, Mathlib's
+`LRA.Set.ZFCSet`/`LRA.Set.ZFCSet`, `Alpha`/`LRASet Alpha`, Mathlib's
 `Alpha`/`Set Alpha`, or `ZFSet`/`ZFSet` alike, resolved from the argument
 types. Only what is genuinely Peano stays bundled: the distinguished
 element, the successor operation, and the axioms.

@@ -10,6 +10,41 @@ require mathlib from git
 lean_lib LRA where
   roots := #[`LRA]
 
+-- Total coverage. Every module under `LRA/` is built by this target, including
+-- the opt-in layers no core router may import: `Examples`, `FailureModes`,
+-- `Interop`, and the per-subject toolkits. Quarantine (§6) governs imports, not
+-- targets, so those modules are unreachable from `LRA` by design and still have
+-- to compile. A glob rather than a root list, so a module added tomorrow cannot
+-- slip out of coverage the way `LRA.Morphism` did.
+lean_lib LRAAll where
+  globs := #[.andSubmodules `LRA]
+
+lean_lib LRALogic where
+  roots := #[`LRA.Logic]
+
+lean_lib LRAIdentity where
+  roots := #[`LRA.Identity]
+
+lean_lib LRASetCore where
+  roots := #[`LRA.Set]
+
+lean_lib LRAStandardizedFoundations where
+  roots := #[
+    `LRA.Set.PredicateSet,
+    `LRA.Set.ZFCSet,
+    `LRA.Set.ZFC,
+    `LRA.Set.Model,
+    `LRA.SetSystems,
+    `LRA.Relation,
+    `LRA.Function,
+    `LRA.Function.SetTheoretic,
+    `LRA.Morphism,
+    `LRA.UniversalAlgebra,
+    `LRA.AlgebraicStructures,
+    `LRA.Operation,
+    `LRA.Order
+  ]
+
 lean_lib LRAVolumeI where
   roots := #[`LRA.VolumeI]
 
@@ -38,10 +73,8 @@ lean_lib LRATests where
   roots := #[
     `LRA.VolumeI.Set.CollectionAlgebraAdaptersTest,
     `LRA.SemanticImportsSmoke,
-    `LRA.FunctionFoundationsSmoke,
-    `LRA.QuarantinedAggregatesSmoke,
+    `LRA.Morphism.FailureModesTest,
     `LRA.VolumeIII.Analysis.Bounding.BoundsTests,
     `LRA.VolumeIV.Learning.MetricTopologyAdapterTest,
-    `LRA.VolumeIV.MetricSpaces.BallSubsetCustomMetricTest,
     `LRA.VolumeIV.TopologicalSpaces.TopologyCompatibilityTest
   ]

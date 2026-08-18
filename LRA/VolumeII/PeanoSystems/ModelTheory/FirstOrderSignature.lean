@@ -1,6 +1,6 @@
-import LRA.VolumeI.Logic.Model.Model
-import LRA.VolumeI.Operations
-import LRA.VolumeI.AlgebraicStructures.DiscreteInteger.Laws.Definition
+import LRA.Logic.Model.Model
+import LRA.Operation
+import LRA.AlgebraicStructures.DiscreteInteger.Laws.Definition
 
 namespace LRA.NumberSystems.PeanoSystems.ModelTheory
 

@@ -1,0 +1,12 @@
+import LRA.Function.Definition
+import LRA.Relation.Canonical.IdentityRelation.Definition
+
+namespace LRA.Function
+
+universe u
+
+/-- The identity function on a carrier. -/
+def IdentityFunction (Carrier : Type u) : Endofunction Carrier :=
+  fun input => input
+
+end LRA.Function

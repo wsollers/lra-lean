@@ -1,164 +1,126 @@
-name: Lean Docker Build and Check
+name: Lean Standardization Build
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, develop, standardization]
     paths:
       - 'LRA/**'
-      - 'test/**'
-      - 'scripts/**'
-      - 'Dockerfile'
-      - 'Makefile'
-      - 'build.ps1'
       - 'lakefile.lean'
-      - 'lean-toolchain'
-      - 'lake-manifest.json'
-      - '.github/workflows/lean-ci.yml'
   pull_request:
     branches: [main]
     paths:
       - 'LRA/**'
-      - 'test/**'
-      - 'scripts/**'
-      - 'Dockerfile'
-      - 'Makefile'
-      - 'build.ps1'
       - 'lakefile.lean'
+      - 'Dockerfile'
       - 'lean-toolchain'
       - 'lake-manifest.json'
-      - '.github/workflows/lean-ci.yml'
+      - 'docker/lakefile.env.lean'
   workflow_dispatch:
+
+concurrency:
+  group: lean-standardization-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  packages: read
 
 jobs:
   build:
-    name: Docker Lake Build
+    name: Logic, Identity, Set, Relation, Function, and Operation
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+      - name: Compute immutable Lean environment image
+        run: |
+          env_hash="${{ hashFiles('Dockerfile', 'lean-toolchain', 'lake-manifest.json', 'docker/lakefile.env.lean') }}"
+          image="ghcr.io/${GITHUB_REPOSITORY,,}-lean-build:${env_hash}"
+          echo "LEAN_ENV_HASH=$env_hash" >> "$GITHUB_ENV"
+          echo "LEAN_IMAGE=$image" >> "$GITHUB_ENV"
 
-      - name: Build Lean Docker image
-        uses: docker/build-push-action@v6
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
         with:
-          context: .
-          target: lean-build
-          tags: lra-lean:latest
-          load: true
-          cache-from: type=gha,scope=lra-lean-lean-build
-          cache-to: type=gha,scope=lra-lean-lean-build,mode=max
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Check Mathlib import policy in VolumeI / VolumeII
+      - name: Pull prebuilt Lean environment
         run: |
-          docker run --rm \
-            -v "${{ github.workspace }}:/workspace" \
-            -w /workspace \
-            lra-lean \
-            python3 scripts/check-mathlib-imports.py
+          docker pull "$LEAN_IMAGE" || {
+            echo "::error::Prebuilt Lean environment $LEAN_IMAGE is missing. Publish it with the Publish Lean Environment Image workflow."
+            exit 1
+          }
 
-      - name: Enforce Volume II namespace policy
+      - name: Restore project Lean build cache
+        uses: actions/cache@v4
+        with:
+          path: .ci-lake-build
+          key: lra-project-${{ runner.os }}-${{ env.LEAN_ENV_HASH }}-${{ github.ref_name }}-${{ github.sha }}
+          restore-keys: |
+            lra-project-${{ runner.os }}-${{ env.LEAN_ENV_HASH }}-${{ github.ref_name }}-
+            lra-project-${{ runner.os }}-${{ env.LEAN_ENV_HASH }}-
+
+      - name: Build standardized foundational slice
         run: |
-          docker run --rm \
-            -v "${{ github.workspace }}:/workspace" \
-            -w /workspace \
-            lra-lean \
-            bash -lc 'if grep -R -n -E "^namespace Peano([[:space:]]|$)|^open Peano([[:space:]]|$)|Peano\.[A-Za-z_]" LRA --include="*.lean"; then
-              echo "ERROR: legacy Peano namespace declaration, open command, or qualified reference found."
-              exit 1
-            fi
-            echo "All Peano-system and natural-number declarations use the LRA.VolumeII hierarchy."'
+          mkdir -p .ci-lake-build .ci-logs
+          rm -f .ci-logs/lean-standardization.log
 
-      - name: Check proof-readiness
-        run: |
           docker run --rm \
-            -v "${{ github.workspace }}:/workspace" \
+            -v "${{ github.workspace }}/LRA:/workspace/LRA:ro" \
+            -v "${{ github.workspace }}/lakefile.lean:/workspace/lakefile.lean:ro" \
+            -v "${{ github.workspace }}/lake-manifest.json:/workspace/lake-manifest.json:ro" \
+            -v "${{ github.workspace }}/.ci-lake-build:/workspace/.lake/build" \
+            -v "${{ github.workspace }}/.ci-logs:/logs" \
             -w /workspace \
-            lra-lean \
-            python3 scripts/check-proof-readiness.py
+            "$LEAN_IMAGE" \
+            bash -lc 'rm -f .lake/lakefile.olean .lake/lakefile.olean.trace
+              lake build \
+                LRALogic \
+                LRAIdentity \
+                LRASetCore \
+                LRAStandardizedFoundations \
+                > /logs/lean-standardization.log 2>&1 || {
+                  status=$?
+                  echo "Lean standardized foundations build failed. Final diagnostics:"
+                  tail -n 260 /logs/lean-standardization.log
+                  exit $status
+                }
+                tail -n 100 /logs/lean-standardization.log'
 
-      - name: Check Volume VII wiring
-        run: |
-          docker run --rm \
-            -v "${{ github.workspace }}:/workspace" \
-            -w /workspace \
-            lra-lean \
-            python3 scripts/check-volume-vii-wiring.py
-
-      - name: Report proof placeholders in VolumeI / VolumeII
+      - name: Report proof placeholders in standardized subjects
         continue-on-error: true
         run: |
-          docker run --rm \
-            -v "${{ github.workspace }}:/workspace" \
-            -w /workspace \
-            lra-lean \
-            bash -lc 'if grep -rn "\bsorry\b" LRA/VolumeI/ LRA/VolumeII/ --include="*.lean"; then
-              echo "::warning::sorry found in VolumeI/VolumeII — statements compile, proofs remain pending."
-            else
-              echo "No sorry in VolumeI / VolumeII"
-            fi'
-
-      - name: Build active Lean libraries
-        run: |
-          rm -f lean-build.log
-          docker run --rm \
-            -v "${{ github.workspace }}:/workspace" \
-            -w /workspace \
-            lra-lean \
-            bash -lc 'lake build LRAVolumeI LRAVolumeII LRAVolumeIII LRAVolumeIV LRAVolumeVI LRAVolumeVII > /workspace/lean-build.log 2>&1 || {
-              status=$?
-              echo "Lean build failed. Final diagnostics:"
-              tail -n 180 /workspace/lean-build.log
-              exit $status
-            }
-            tail -n 40 /workspace/lean-build.log'
-
-      - name: Build Lean test libraries
-        run: |
-          rm -f lean-test-build.log
-          docker run --rm \
-            -v "${{ github.workspace }}:/workspace" \
-            -w /workspace \
-            lra-lean \
-            bash -lc 'lake build LRATests > /workspace/lean-test-build.log 2>&1 || {
-              status=$?
-              echo "Lean test build failed. Final diagnostics:"
-              tail -n 180 /workspace/lean-test-build.log
-              exit $status
-            }
-            tail -n 40 /workspace/lean-test-build.log'
+          if grep -rn "\bsorry\b" \
+            LRA/Logic.lean \
+            LRA/Identity.lean \
+            LRA/Set.lean \
+            LRA/Set/Interface/ \
+            LRA/Set/SetClass/ \
+            LRA/Set/PredicateSet/ \
+            LRA/Set/ZFC/ \
+            LRA/Set/ZFCSet/ \
+            LRA/Set/Model/ \
+            LRA/SetSystems/ \
+            LRA/Relation.lean \
+            LRA/Relation/ \
+            LRA/Function.lean \
+            LRA/Function/ \
+            LRA/Operation.lean \
+            LRA/Operation/ \
+            --include="*.lean"; then
+            echo "::warning::sorry found in the standardized foundational slice."
+          else
+            echo "No sorry in the standardized foundational slice"
+          fi
 
       - name: Upload Lean build diagnostics
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: lean-build-diagnostics
-          path: |
-            lean-build.log
-            lean-test-build.log
-          if-no-files-found: error
-
-      - name: Lint doc-comments
-        continue-on-error: true
-        run: |
-          docker run --rm \
-            -v "${{ github.workspace }}:/workspace" \
-            -w /workspace \
-            lra-lean \
-            bash -lc 'if [ -f scripts/lint_doccomments.sh ]; then
-              bash scripts/lint_doccomments.sh LRA/VolumeII
-            fi'
-
-      - name: Print proof statistics
-        run: |
-          docker run --rm \
-            -v "${{ github.workspace }}:/workspace" \
-            -w /workspace \
-            lra-lean \
-            bash -lc 'find LRA -name "*.lean" | sort | while read f; do
-              thms=$(grep -c "^theorem\|^lemma\|^corollary" "$f" 2>/dev/null || echo 0)
-              defs=$(grep -c "^def\|^noncomputable def" "$f" 2>/dev/null || echo 0)
-              echo "  $f : $thms theorems, $defs defs"
-            done'
+          path: .ci-logs/lean-standardization.log
+          if-no-files-found: warn

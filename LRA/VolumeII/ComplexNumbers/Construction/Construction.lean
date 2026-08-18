@@ -1,7 +1,7 @@
 -- LRA/VolumeII/ComplexNumbers/Construction/Construction.lean
 -- Complex numbers over any certified carrier.
 
-import LRA.VolumeI.AlgebraicStructures
+import LRA.AlgebraicStructures
 
 namespace LRA.NumberSystems.ComplexNumbers.Construction
 

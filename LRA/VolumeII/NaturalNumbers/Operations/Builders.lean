@@ -1,7 +1,7 @@
 -- LRA/VolumeII/NaturalNumbers/Operations/Builders.lean
 -- Def-level machine and certificate builders for N-models.
 
-import LRA.VolumeI.AlgebraicStructures
+import LRA.AlgebraicStructures
 import LRA.VolumeII.NaturalNumbers.Operations.Addition
 import LRA.VolumeII.NaturalNumbers.Operations.Multiplication
 

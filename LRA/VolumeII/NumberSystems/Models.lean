@@ -1,11 +1,10 @@
 -- LRA/VolumeII/NumberSystems/Models.lean
 -- Thin number-system model packages for Z, Q, and R.
 
-import LRA.VolumeI.AlgebraicStructures.OrderedRing.ModelTheory.ModelBuilder
-import LRA.VolumeI.AlgebraicStructures.OrderedField.ModelTheory.ModelBuilder
-import LRA.VolumeI.AlgebraicStructures
-import LRA.VolumeI.Order
-
+import LRA.AlgebraicStructures.OrderedRing.ModelTheory.ModelBuilder
+import LRA.AlgebraicStructures.OrderedField.ModelTheory.ModelBuilder
+import LRA.AlgebraicStructures
+import LRA.Order
 namespace LRA.NumberSystems.Models
 
 open LRA.AlgebraicStructures

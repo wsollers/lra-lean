@@ -1,6 +1,6 @@
-import LRA.VolumeI.Logic.Model.Model
-import LRA.VolumeI.Operations
-import LRA.VolumeI.Relations
+import LRA.Logic.Model.Model
+import LRA.Operation
+import LRA.Relation
 
 namespace LRA.NumberSystems.PeanoSystems.Presburger.ModelTheory
 

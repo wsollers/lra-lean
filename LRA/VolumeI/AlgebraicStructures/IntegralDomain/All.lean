@@ -1,9 +1,0 @@
-import LRA.VolumeI.AlgebraicStructures.IntegralDomain.AlgebraicSignature.All
-import LRA.VolumeI.AlgebraicStructures.IntegralDomain.Laws.All
-import LRA.VolumeI.AlgebraicStructures.IntegralDomain.Definition
-import LRA.VolumeI.AlgebraicStructures.IntegralDomain.Characterizations
-import LRA.VolumeI.AlgebraicStructures.IntegralDomain.Consequences
-import LRA.VolumeI.AlgebraicStructures.IntegralDomain.Relationships
-import LRA.VolumeI.AlgebraicStructures.IntegralDomain.Theorems
-import LRA.VolumeI.AlgebraicStructures.IntegralDomain.FailureModes
-import LRA.VolumeI.AlgebraicStructures.IntegralDomain.ModelTheory.All

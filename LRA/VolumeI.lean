@@ -1,9 +1,18 @@
-import LRA.VolumeI.Logic
-import LRA.VolumeI.Identity
-import LRA.VolumeI.Set
-import LRA.VolumeI.Function
-import LRA.VolumeI.Operations
-import LRA.VolumeI.Relations
-import LRA.VolumeI.Order
-import LRA.VolumeI.UniversalAlgebra
-import LRA.VolumeI.AlgebraicStructures
+import LRA.Logic
+import LRA.Set
+import LRA.Set.PredicateSet
+import LRA.Set.ZFC
+import LRA.Set.ZFCSet
+import LRA.Set.Model
+import LRA.SetSystems
+import LRA.Operation
+import LRA.Order
+import LRA.UniversalAlgebra
+import LRA.AlgebraicStructures
+
+/-!
+Volume I in curricular order.
+
+This is an aggregator, not a subject: it owns nothing and exists to reproduce
+the reading order of the volume over subjects that own their own declarations.
+-/

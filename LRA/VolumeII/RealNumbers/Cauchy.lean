@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Reals/Cauchy.lean
 -- Proof-ready construction of the reals from rational Cauchy sequences.
 
-import LRA.VolumeI.UniversalAlgebra.Quotient.RepresentativeCompatibility
+import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.VolumeII.NumberSystems.Models
 
 namespace LRA.NumberSystems.RealNumbers.Cauchy

@@ -1,6 +1,0 @@
-import LRA.VolumeI.AlgebraicStructures.OrderedField.Laws.Definition
-import LRA.VolumeI.AlgebraicStructures.OrderedField.Laws.Characterizations
-import LRA.VolumeI.AlgebraicStructures.OrderedField.Laws.Consequences
-import LRA.VolumeI.AlgebraicStructures.OrderedField.Laws.Relationships
-import LRA.VolumeI.AlgebraicStructures.OrderedField.Laws.Theorems
-import LRA.VolumeI.AlgebraicStructures.OrderedField.Laws.FailureModes

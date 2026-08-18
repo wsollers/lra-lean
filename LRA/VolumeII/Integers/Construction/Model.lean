@@ -2,7 +2,7 @@
 -- Active integer construction as a Volume I first-order algebraic model.
 
 import LRA.VolumeII.NumberSystems.Models
-import LRA.VolumeI.AlgebraicStructures.OrderedRing.ModelTheory.All
+import LRA.AlgebraicStructures.OrderedRing.ModelTheory.All
 import LRA.VolumeII.Arithmetic.Model.All
 import LRA.VolumeII.PeanoSystems.Presburger.ModelTheory.All
 import LRA.VolumeII.Integers.Implementation

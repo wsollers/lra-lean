@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Integers/Polish/Instances.lean
 -- Machine and certificate instances for the two-sided successor integers.
 
-import LRA.VolumeI.AlgebraicStructures
+import LRA.AlgebraicStructures
 import LRA.VolumeII.Integers.Polish.LandauWorkup
 
 namespace LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor

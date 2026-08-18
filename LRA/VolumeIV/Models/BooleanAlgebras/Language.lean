@@ -1,4 +1,4 @@
-import LRA.VolumeI.Logic
+import LRA.Logic
 
 namespace LRA.Logic.ModelTheory.BooleanAlgebras
 

@@ -1,4 +1,4 @@
-import LRA.VolumeI.Operations
+import LRA.Operation
 import LRA.VolumeII.NaturalNumbers.Construction.NModel
 import LRA.VolumeII.PeanoSystems.Recursion.BinaryIterator
 

@@ -1,5 +1,5 @@
 import LRA.VolumeII.PeanoSystems.PeanoSystem
-import LRA.VolumeI.Logic.Model.Model
+import LRA.Logic.Model.Model
 
 /-!
 First-order signature and model data for the Peano-system natural-number
