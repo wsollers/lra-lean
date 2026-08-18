@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Field.ModelTheory.FirstOrderSignature
+import LRA.AlgebraicStructures.Field.Interface.Signature.Definition
 
 namespace LRA.AlgebraicStructures.OrderedField.ModelTheory
 
@@ -10,16 +10,16 @@ ordered-field language enriches it by one binary strict-order relation.
 -/
 
 abbrev OrderedFieldFunctionSymbol :=
-  LRA.AlgebraicStructures.Field.ModelTheory.FieldFunctionSymbol
+  LRA.AlgebraicStructures.Field.Interface.Signature.FieldFunctionSymbol
 
 inductive OrderedFieldRelationSymbol where
   | lt
 
 abbrev OrderedFieldConstantSymbol :=
-  LRA.AlgebraicStructures.Field.ModelTheory.FieldConstantSymbol
+  LRA.AlgebraicStructures.Field.Interface.Signature.FieldConstantSymbol
 
 def OrderedFieldFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Field.ModelTheory.FieldFirstOrderFunctions
+  LRA.AlgebraicStructures.Field.Interface.Signature.FieldFirstOrderFunctions
 
 def OrderedFieldFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := OrderedFieldRelationSymbol

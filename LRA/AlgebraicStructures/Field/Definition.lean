@@ -1,12 +1,10 @@
 import LRA.AlgebraicStructures.Field.Laws.Definition
+import LRA.AlgebraicStructures.CommutativeRing.Definition
 
 namespace LRA.AlgebraicStructures
 
-/-!
-Field Definition module.
-
-This file is reserved for definition whose natural owner is the named
-algebraic structure Field. It intentionally contains no placeholder theorems.
--/
+/-- The algebraic signature of a field with totalized inversion. -/
+structure FieldConceptSignature extends CommutativeRingConceptSignature where
+  inv : LRA.Operation.UnaryOperation carrier
 
 end LRA.AlgebraicStructures

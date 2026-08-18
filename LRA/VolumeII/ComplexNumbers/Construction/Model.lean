@@ -1,12 +1,14 @@
 -- LRA/VolumeII/ComplexNumbers/Construction/Model.lean
 -- Complex numbers as a Volume I first-order algebraic model.
 
-import LRA.AlgebraicStructures.Field.ModelTheory.All
+import LRA.AlgebraicStructures.Field.Interface.Signature.Definition
+import LRA.AlgebraicStructures.Field.Interface.ModelTheory.Model
 import LRA.VolumeII.ComplexNumbers.Construction.Construction
 
 namespace LRA.NumberSystems.ComplexNumbers.Construction.ComplexNumber
 
-open LRA.AlgebraicStructures.Field.ModelTheory
+open LRA.AlgebraicStructures.Field.Interface.Signature
+open LRA.AlgebraicStructures.Field.Interface.ModelTheory
 
 universe u
 

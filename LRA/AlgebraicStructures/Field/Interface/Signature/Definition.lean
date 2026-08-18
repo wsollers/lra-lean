@@ -1,6 +1,6 @@
 import LRA.AlgebraicStructures.DivisionRing.Interface.Signature.Definition
 
-namespace LRA.AlgebraicStructures.Field.ModelTheory
+namespace LRA.AlgebraicStructures.Field.Interface.Signature
 
 /-!
 First-order signature for fields.
@@ -27,4 +27,4 @@ def FieldFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
 def FieldFirstOrderSignature : LRA.Logic.Signature :=
   LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFirstOrderSignature
 
-end LRA.AlgebraicStructures.Field.ModelTheory
+end LRA.AlgebraicStructures.Field.Interface.Signature
