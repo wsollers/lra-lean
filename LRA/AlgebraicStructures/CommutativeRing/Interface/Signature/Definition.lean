@@ -1,6 +1,6 @@
 import LRA.AlgebraicStructures.Ring.Interface.Signature.Definition
 
-namespace LRA.AlgebraicStructures.CommutativeRing.ModelTheory
+namespace LRA.AlgebraicStructures.CommutativeRing.Interface.Signature
 
 /-! Commutative rings use the ordinary ring first-order vocabulary. -/
 
@@ -22,4 +22,4 @@ def CommutativeRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
 def CommutativeRingFirstOrderSignature : LRA.Logic.Signature :=
   LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderSignature
 
-end LRA.AlgebraicStructures.CommutativeRing.ModelTheory
+end LRA.AlgebraicStructures.CommutativeRing.Interface.Signature

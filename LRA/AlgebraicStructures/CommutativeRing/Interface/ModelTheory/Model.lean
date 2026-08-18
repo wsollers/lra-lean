@@ -1,11 +1,13 @@
 import LRA.AlgebraicStructures.Ring.Interface.ModelTheory.Model
-import LRA.AlgebraicStructures.CommutativeRing.ModelTheory.FirstOrderSignature
+import LRA.AlgebraicStructures.CommutativeRing.Interface.Signature.Definition
 
-namespace LRA.AlgebraicStructures.CommutativeRing.ModelTheory
+namespace LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory
 
 universe u
 
 /-! Law-free model builders for the first-order commutative-ring language. -/
+
+open LRA.AlgebraicStructures.CommutativeRing.Interface.Signature
 
 abbrev CommutativeRingSignature :=
   LRA.AlgebraicStructures.RingConceptSignature
@@ -20,4 +22,4 @@ def commutativeRingFirstOrderModel (R : Type u)
     LRA.Logic.FirstOrder.Model CommutativeRingFirstOrderSignature :=
   LRA.AlgebraicStructures.Ring.Interface.ModelTheory.ringFirstOrderModel R
 
-end LRA.AlgebraicStructures.CommutativeRing.ModelTheory
+end LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory

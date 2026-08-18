@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.CommutativeRing.All
+import LRA.AlgebraicStructures.CommutativeRing
 
 namespace LRA.AlgebraicStructures
 

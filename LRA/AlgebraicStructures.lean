@@ -6,7 +6,7 @@ import LRA.AlgebraicStructures.AdditiveSemigroup
 import LRA.AlgebraicStructures.BooleanAlgebra
 import LRA.AlgebraicStructures.BoundedLattice
 import LRA.AlgebraicStructures.CommutativeMonoid
-import LRA.AlgebraicStructures.CommutativeRing.All
+import LRA.AlgebraicStructures.CommutativeRing
 import LRA.AlgebraicStructures.CommutativeSemigroup
 import LRA.AlgebraicStructures.CommutativeSemiring
 import LRA.AlgebraicStructures.CompleteOrderedField.All
