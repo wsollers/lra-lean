@@ -1,29 +1,3 @@
-import LRA.VolumeI.Order.Lattices.Join.Definition
-import LRA.VolumeI.Order.Lattices.Meet.Definition
+import LRA.Order.Lattices.Lattice.Definition
 
-namespace LRA.Order
-
-universe u
-
-/--
-Lattice laws: every pair has a join and a meet.
-
-Logical form:
-
-```lean
-def Lattice {alpha : Type u}
-    (relation : LRA.Relation.Endorelation alpha) : Prop :=
-  PartialOrder relation /\
-    forall left right : alpha,
-      (exists join, Join relation left right join) /\
-        (exists meet, Meet relation left right meet)
-```
--/
-def Lattice {alpha : Type u}
-    (relation : LRA.Relation.Endorelation alpha) : Prop :=
-  PartialOrder relation /\
-    forall left right : alpha,
-      (exists join, Join relation left right join) /\
-        (exists meet, Meet relation left right meet)
-
-end LRA.Order
+/-! Legacy forwarding import. -/
