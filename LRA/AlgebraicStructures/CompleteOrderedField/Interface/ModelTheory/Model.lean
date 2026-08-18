@@ -1,11 +1,13 @@
 import LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.Model
-import LRA.AlgebraicStructures.CompleteOrderedField.ModelTheory.FirstOrderSignature
+import LRA.AlgebraicStructures.CompleteOrderedField.Interface.Signature.Definition
 
-namespace LRA.AlgebraicStructures.CompleteOrderedField.ModelTheory
+namespace LRA.AlgebraicStructures.CompleteOrderedField.Interface.ModelTheory
 
 universe u
 
 /-! First-order ordered-field reducts of native complete ordered-field data. -/
+
+open LRA.AlgebraicStructures.CompleteOrderedField.Interface.Signature
 
 abbrev CompleteOrderedFieldSignature :=
   LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.OrderedFieldSignature
@@ -20,4 +22,4 @@ def completeOrderedFieldFirstOrderReduct (R : Type u)
     LRA.Logic.FirstOrder.Model CompleteOrderedFieldFirstOrderSignature :=
   LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.orderedFieldFirstOrderModel R
 
-end LRA.AlgebraicStructures.CompleteOrderedField.ModelTheory
+end LRA.AlgebraicStructures.CompleteOrderedField.Interface.ModelTheory

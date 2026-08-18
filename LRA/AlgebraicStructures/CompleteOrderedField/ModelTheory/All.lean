@@ -1,7 +1,0 @@
-import LRA.AlgebraicStructures.CompleteOrderedField.ModelTheory.FirstOrderSignature
-import LRA.AlgebraicStructures.CompleteOrderedField.ModelTheory.OrderedFieldTheory
-import LRA.AlgebraicStructures.CompleteOrderedField.ModelTheory.FirstOrderReduct
-import LRA.AlgebraicStructures.CompleteOrderedField.ModelTheory.FirstOrderLimitations
-import LRA.AlgebraicStructures.CompleteOrderedField.ModelTheory.Consequences
-
-/-! Aggregate import for complete ordered-field model theory. -/
