@@ -31,6 +31,7 @@ lean_lib LRAStandardizedFoundations where
     `LRA.Function.SetTheoretic,
     `LRA.Morphism,
     `LRA.UniversalAlgebra,
+    `LRA.AlgebraicStructures,
     `LRA.Operation,
     `LRA.Order
   ]

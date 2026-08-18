@@ -1,7 +1,7 @@
 import Mathlib.Data.Set.Basic
 import Mathlib.Order.SetNotation
 import Mathlib.Order.SymmDiff
-import LRA.VolumeI.Set.Interface.Operations
+import LRA.Set.Interface.Operations
 
 /-!
 Mathlib's `Set Alpha` registered as an LRA set backend.

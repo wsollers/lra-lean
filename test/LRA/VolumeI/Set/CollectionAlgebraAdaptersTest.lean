@@ -1,5 +1,9 @@
-import LRA.VolumeI.Set
-import LRA.VolumeI.Set.Algebra
+import LRA.Set
+import LRA.Set.PredicateSet
+import LRA.Set.ZFC
+import LRA.Set.ZFCSet
+import LRA.Set.Model
+import LRA.SetSystems
 import LRA.SetSystems.Examples
 import LRA.Set.Interop.Mathlib.PredicateSet
 import LRA.Set.Interop.Mathlib.ZFSet

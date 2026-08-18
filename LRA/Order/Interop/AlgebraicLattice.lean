@@ -1,4 +1,4 @@
-import LRA.VolumeI.AlgebraicStructures.Lattice.Laws.Definition
+import LRA.AlgebraicStructures.Lattice.Laws.Definition
 import LRA.Order.Lattices.Lattice.Definition
 
 namespace LRA.Order.Interop.AlgebraicLattice
@@ -13,10 +13,9 @@ Bridge home between order-theoretic lattices and algebraic lattices.
 and meet operations satisfying equational laws. This module records the
 interoperability surface without duplicating either theory.
 
-It still imports `LRA.VolumeI.AlgebraicStructures` because that subject is not
-yet promoted. Being an `Interop` leaf, it is opt-in and sits outside the
-`LRA.Order` router's closure, so the core order theory does not acquire that
-dependency. The import repoints for free when the AlgebraicStructures row lands.
+Being an `Interop` leaf, it is opt-in and sits outside the `LRA.Order` router's
+closure, so the core order theory does not acquire a dependency on
+`LRA.AlgebraicStructures`.
 -/
 
 /-- The order induced by an algebraic join operation. -/

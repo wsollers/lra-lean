@@ -1,8 +1,13 @@
 import Mathlib.Data.Set.Basic
 import LRA.Set.Interop.Mathlib.PredicateSet.Instances
-import LRA.VolumeI.Set
-import LRA.VolumeI.Set.Algebra.BooleanAlgebra
-import LRA.VolumeI.Set.Algebra.SigmaAlgebra
+import LRA.Set
+import LRA.Set.PredicateSet
+import LRA.Set.ZFC
+import LRA.Set.ZFCSet
+import LRA.Set.Model
+import LRA.SetSystems
+import LRA.SetSystems.AlgebraOfSets
+import LRA.SetSystems.SigmaAlgebra
 
 namespace LRA.Set.Algebra.Instantiations
 

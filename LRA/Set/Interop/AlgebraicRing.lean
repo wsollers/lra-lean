@@ -1,5 +1,5 @@
-import LRA.Set.LRASet.Laws.Laws
-import LRA.VolumeI.AlgebraicStructures.CommutativeRing.Laws.Definition
+import LRA.Set.PredicateSet.Laws
+import LRA.AlgebraicStructures.CommutativeRing.Laws.Definition
 
 namespace LRA.Set.Interop.AlgebraicRing
 
@@ -16,9 +16,8 @@ The Boolean-ring view of predicate sets.
 
 This is an interoperability surface between `LRA.Set` and
 `LRA.AlgebraicStructures`, so it lives in the subject's `Interop` group per
-§2.4. It still imports `LRA.VolumeI.AlgebraicStructures` because that subject is
-not promoted yet; `Interop` is opt-in and outside the `LRA.Set` router's
-closure, so the core set theory does not acquire that dependency.
+§2.4. `Interop` is opt-in and outside the `LRA.Set` router's closure, so the
+core set theory does not acquire a dependency on `LRA.AlgebraicStructures`.
 
 The Boolean-ring view of predicate sets: `+ := ∆`, `* := ∩`, `0 := ∅`,
 `1 := 𝒰`, `-A := A`.

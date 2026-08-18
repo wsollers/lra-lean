@@ -2,7 +2,7 @@
 -- Elementary multiplicative inverse facts over rationals.
 
 import Mathlib.Data.Rat.Defs
-import LRA.VolumeI.AlgebraicStructures
+import LRA.AlgebraicStructures
 
 namespace LRA.NumberSystems.Arithmetic.MultiplicativeInverses
 

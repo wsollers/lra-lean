@@ -1,0 +1,2 @@
+import LRA.AlgebraicStructures.CommutativeSemigroup.Laws.All
+import LRA.AlgebraicStructures.CommutativeSemigroup.Laws.Examples

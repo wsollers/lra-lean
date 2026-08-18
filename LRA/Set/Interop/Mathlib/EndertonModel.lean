@@ -1,9 +1,9 @@
--- LRA/VolumeI/Set/ModelTheory/EndertonModel.lean
+-- LRA/Set/Interop/Mathlib/EndertonModel.lean
 -- The Enderton universe as an L_∈ structure.
 
-import LRA.VolumeI.Set.ModelTheory.Axioms
-import LRA.VolumeI.Set.LRA.Set.ZFC.Instances
-import LRA.VolumeI.Set.LRA.Set.ZFC.Axioms.Axioms
+import LRA.Set.Model.Theory
+import LRA.Set.ZFCSet.Instances
+import LRA.Set.ZFC.Axioms
 import LRA.Logic.Semantics.Satisfaction
 
 namespace LRA.Set.ModelTheory

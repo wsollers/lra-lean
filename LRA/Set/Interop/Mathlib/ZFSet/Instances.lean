@@ -1,5 +1,5 @@
 import Mathlib.SetTheory.ZFC.Basic
-import LRA.VolumeI.Set.Interface.Operations
+import LRA.Set.Interface.Operations
 
 /-!
 Mathlib's `ZFSet` -- the ZFC universe -- registered as an LRA set backend.

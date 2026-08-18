@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Arithmetic/AlgebraicIdentities.lean
 -- Lang-style elementary algebraic identities over mixin-certified carriers.
 
-import LRA.VolumeI.AlgebraicStructures
+import LRA.AlgebraicStructures
 
 namespace LRA.NumberSystems.Arithmetic.AlgebraicIdentities
 

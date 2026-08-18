@@ -1,8 +1,8 @@
 import Mathlib.Order.BooleanAlgebra.Set
 import Mathlib.Data.Set.SymmDiff
 import Mathlib.Tactic.Tauto
-import LRA.VolumeI.Set.MathlibPredicateSet.Instances
-import LRA.VolumeI.Set.Interface
+import LRA.Set.Interop.Mathlib.PredicateSet.Instances
+import LRA.Set.Interface
 
 /-!
 Certificate registrations for the `MathlibPredicateSet` backend: every law

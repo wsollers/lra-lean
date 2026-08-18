@@ -1,7 +1,7 @@
 -- LRA/VolumeI/Set/ModelTheory/ZFSetModel.lean
 -- Mathlib's ZFC universe as an L_∈ structure, with real satisfaction proofs.
 
-import LRA.VolumeI.Set.ModelTheory.Axioms
+import LRA.Set.Model.Theory
 import Mathlib.SetTheory.ZFC.Basic
 
 namespace LRA.Set.ModelTheory

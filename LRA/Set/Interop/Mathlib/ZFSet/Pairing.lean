@@ -2,7 +2,7 @@
 -- Mathlib's Kuratowski pair as the ZFSet backend's pairing capability.
 
 import Mathlib.SetTheory.ZFC.Basic
-import LRA.VolumeI.Set.Interface.Pairing
+import LRA.Set.Interface.Pairing
 
 namespace LRA.Set.MathlibZFSet
 

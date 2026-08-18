@@ -1,4 +1,9 @@
-import LRA.VolumeI.Set
+import LRA.Set
+import LRA.Set.PredicateSet
+import LRA.Set.ZFC
+import LRA.Set.ZFCSet
+import LRA.Set.Model
+import LRA.SetSystems
 
 /-!
 Current TeX-facing Peano-system carrier for Volume II.

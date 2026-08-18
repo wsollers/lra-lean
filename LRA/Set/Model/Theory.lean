@@ -1,7 +1,7 @@
 -- LRA/VolumeI/Set/ModelTheory/Axioms.lean
 -- The ZFC axioms as L_∈ sentences.
 
-import LRA.VolumeI.Set.ModelTheory.Language
+import LRA.Set.Model.LStructure
 import LRA.Logic.Syntax.FirstOrder.Substitute
 import LRA.Logic.Syntax.FirstOrder.AllVariables
 import LRA.Logic.Theory

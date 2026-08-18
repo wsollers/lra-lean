@@ -15,9 +15,19 @@ import LRA.Function.Examples.FailureModes
 import LRA.Order.Examples
 import LRA.Order.FailureModes
 import LRA.Operation.Examples
+import LRA.Set.Interop
+import LRA.Order.Interop.Mathlib
+import LRA.Order.Interop.AlgebraicLattice
 
 /-!
-Build gate for the quarantined leaves of `LRA.Morphism`, `LRA.Function`, and `LRA.Order`.
+Build gate for the quarantined leaves of `LRA.Morphism`, `LRA.Function`,
+`LRA.Operation`, and `LRA.Order`, and for the opt-in `Interop` groups.
+
+The `Interop` groups are Mathlib-facing, so no core router may import them
+(§6). That left them reachable from no Lake target at all, which is how a
+malformed import in `LRA.Set.Interop.Mathlib.EndertonModel` survived several
+phases without ever failing a build. §2.7 requires every module to be
+reachable from some target; this is that target.
 
 `Examples.lean` and `FailureModes.lean` are quarantined leaves: no core `Definition`, `Theorems`, or
 router may import them, so the group routers do not. Importing them from here

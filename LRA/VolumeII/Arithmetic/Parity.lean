@@ -2,7 +2,7 @@
 -- Elementary parity facts over the active natural-number carrier (Mathlib `Nat`).
 
 import Mathlib.Algebra.Group.Even
-import LRA.VolumeI.AlgebraicStructures
+import LRA.AlgebraicStructures
 
 namespace LRA.NumberSystems.Arithmetic.Parity
 

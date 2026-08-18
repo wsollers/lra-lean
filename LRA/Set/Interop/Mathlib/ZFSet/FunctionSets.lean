@@ -3,8 +3,8 @@
 -- internal ZFC functions: IsFunc, funs, map.
 
 import Mathlib.SetTheory.ZFC.Basic
-import LRA.VolumeI.Set.MathlibZFSet.Pairing
-import LRA.VolumeI.Set.Interface.RelationSets
+import LRA.Set.Interop.Mathlib.ZFSet.Pairing
+import LRA.Set.Interface.RelationSets
 
 namespace LRA.Set.MathlibZFSet
 

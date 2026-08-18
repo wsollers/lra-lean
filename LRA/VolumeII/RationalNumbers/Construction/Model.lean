@@ -2,7 +2,7 @@
 -- Rational-number models as Volume I first-order algebraic models.
 
 import LRA.VolumeII.NumberSystems.Models
-import LRA.VolumeI.AlgebraicStructures.OrderedField.ModelTheory.All
+import LRA.AlgebraicStructures.OrderedField.ModelTheory.All
 
 namespace LRA.NumberSystems.RationalNumbers
 

@@ -1,4 +1,4 @@
-import LRA.VolumeI.Set.Algebra
+import LRA.SetSystems
 
 /-!
 Contract-backed definitions for algebras of sets.

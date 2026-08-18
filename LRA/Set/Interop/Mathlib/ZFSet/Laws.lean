@@ -1,6 +1,6 @@
 import Mathlib.Tactic.Tauto
-import LRA.VolumeI.Set.MathlibZFSet.Instances
-import LRA.VolumeI.Set.Interface
+import LRA.Set.Interop.Mathlib.ZFSet.Instances
+import LRA.Set.Interface
 
 /-!
 Certificate registrations for the `MathlibZFSet` backend.

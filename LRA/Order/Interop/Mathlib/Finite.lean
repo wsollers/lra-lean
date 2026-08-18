@@ -1,9 +1,7 @@
 import LRA.Order.Bounds.GreatestElement.Relationships
 import LRA.Order.Bounds.LeastElement.Relationships
 import LRA.Order.Bounds.MaximalElement.Definition
-import LRA.Order.Bounds.MaximalElement.MathlibAdapters
 import LRA.Order.Bounds.MinimalElement.Definition
-import LRA.Order.Bounds.MinimalElement.MathlibAdapters
 import LRA.Order.Lattices.CompleteLattice.Definition
 import LRA.Order.Lattices.Lattice.Definition
 import LRA.Order.OrderedSets.PartialOrder.Definition
@@ -24,6 +22,17 @@ imports them.
 namespace LRA.Order
 
 universe u v
+
+/-- Every nonempty finite predicate subset of a partial order has a maximal element. -/
+theorem NonemptyFiniteSubsetHasMaximalElement
+    {Element : Type u}
+    {relation : LRA.Relation.Endorelation Element}
+    (relationIsPartialOrder : PartialOrder relation)
+    (subset : Set Element)
+    (subsetIsFinite : subset.Finite)
+    (subsetIsNonempty : exists element, element ∈ subset) :
+    exists maximal, MaximalElement (StrictPart relation) subset maximal := by
+  sorry
 
 /--
 `NonemptyFiniteSubsetHasGreatestElement`
@@ -49,6 +58,17 @@ theorem NonemptyFiniteSubsetHasGreatestElement
       MaximalElementIsGreatestInLinearOrder
         relationIsLinearOrder greatestIsMaximal⟩
 
+/-- Every nonempty finite predicate subset of a partial order has a minimal element. -/
+theorem NonemptyFiniteSubsetHasMinimalElement
+    {Element : Type u}
+    {relation : LRA.Relation.Endorelation Element}
+    (relationIsPartialOrder : PartialOrder relation)
+    (subset : Set Element)
+    (subsetIsFinite : subset.Finite)
+    (subsetIsNonempty : exists element, element ∈ subset) :
+    exists minimal, MinimalElement (StrictPart relation) subset minimal := by
+  sorry
+
 /--
 `NonemptyFiniteSubsetHasLeastElement`
 
@@ -71,28 +91,6 @@ theorem NonemptyFiniteSubsetHasLeastElement
   exact
     ⟨least,
       MinimalElementIsLeastInLinearOrder relationIsLinearOrder leastIsMinimal⟩
-
-/-- Every nonempty finite predicate subset of a partial order has a maximal element. -/
-theorem NonemptyFiniteSubsetHasMaximalElement
-    {Element : Type u}
-    {relation : LRA.Relation.Endorelation Element}
-    (relationIsPartialOrder : PartialOrder relation)
-    (subset : Set Element)
-    (subsetIsFinite : subset.Finite)
-    (subsetIsNonempty : exists element, element ∈ subset) :
-    exists maximal, MaximalElement (StrictPart relation) subset maximal := by
-  sorry
-
-/-- Every nonempty finite predicate subset of a partial order has a minimal element. -/
-theorem NonemptyFiniteSubsetHasMinimalElement
-    {Element : Type u}
-    {relation : LRA.Relation.Endorelation Element}
-    (relationIsPartialOrder : PartialOrder relation)
-    (subset : Set Element)
-    (subsetIsFinite : subset.Finite)
-    (subsetIsNonempty : exists element, element ∈ subset) :
-    exists minimal, MinimalElement (StrictPart relation) subset minimal := by
-  sorry
 
 /-- Every nonempty finite lattice is complete for predicate subsets. -/
 theorem FiniteLatticeIsComplete
