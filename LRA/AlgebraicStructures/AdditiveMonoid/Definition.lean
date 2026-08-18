@@ -1,12 +1,11 @@
 import LRA.AlgebraicStructures.AdditiveMonoid.Laws.Definition
+import LRA.UniversalAlgebra.InterpretedOperationBundles
 
 namespace LRA.AlgebraicStructures
 
-/-!
-AdditiveMonoid Definition module.
-
-This file is reserved for definition whose natural owner is the named
-algebraic structure AdditiveMonoid. It intentionally contains no placeholder theorems.
--/
+/-- The algebraic signature of an additive monoid: addition and zero. -/
+structure AdditiveMonoidConceptSignature extends
+    LRA.UniversalAlgebra.InterpretedOperationBundles.AdditiveOperationBundle where
+  zero : carrier
 
 end LRA.AlgebraicStructures

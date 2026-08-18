@@ -1,7 +1,7 @@
 import LRA.AlgebraicStructures.AbelianGroup.All
 import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup
 import LRA.AlgebraicStructures.AdditiveGroup.All
-import LRA.AlgebraicStructures.AdditiveMonoid.All
+import LRA.AlgebraicStructures.AdditiveMonoid
 import LRA.AlgebraicStructures.AdditiveSemigroup
 import LRA.AlgebraicStructures.BooleanAlgebra.All
 import LRA.AlgebraicStructures.BoundedLattice.All

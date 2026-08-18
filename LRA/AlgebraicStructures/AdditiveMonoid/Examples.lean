@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.AdditiveMonoid.All
+import LRA.AlgebraicStructures.AdditiveMonoid
 
 namespace LRA.AlgebraicStructures
 
