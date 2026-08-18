@@ -1,6 +1,6 @@
 import LRA.AlgebraicStructures.Monoid.ModelTheory.FirstOrderSignature
 
-namespace LRA.AlgebraicStructures.Group.ModelTheory
+namespace LRA.AlgebraicStructures.Group.Interface.Signature
 
 /-!
 First-order signature for multiplicative groups.
@@ -32,4 +32,4 @@ def GroupFirstOrderSignature : LRA.Logic.Signature where
   Relations := GroupFirstOrderRelations
   Constants := GroupConstantSymbol
 
-end LRA.AlgebraicStructures.Group.ModelTheory
+end LRA.AlgebraicStructures.Group.Interface.Signature

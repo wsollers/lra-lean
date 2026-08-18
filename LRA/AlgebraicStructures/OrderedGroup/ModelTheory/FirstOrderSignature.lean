@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Group.ModelTheory.FirstOrderSignature
+import LRA.AlgebraicStructures.Group.Interface.Signature.Definition
 
 namespace LRA.AlgebraicStructures.OrderedGroup.ModelTheory
 
@@ -10,16 +10,16 @@ one binary strict-order relation.
 -/
 
 abbrev OrderedGroupFunctionSymbol :=
-  LRA.AlgebraicStructures.Group.ModelTheory.GroupFunctionSymbol
+  LRA.AlgebraicStructures.Group.Interface.Signature.GroupFunctionSymbol
 
 inductive OrderedGroupRelationSymbol where
   | lt
 
 abbrev OrderedGroupConstantSymbol :=
-  LRA.AlgebraicStructures.Group.ModelTheory.GroupConstantSymbol
+  LRA.AlgebraicStructures.Group.Interface.Signature.GroupConstantSymbol
 
 def OrderedGroupFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Group.ModelTheory.GroupFirstOrderFunctions
+  LRA.AlgebraicStructures.Group.Interface.Signature.GroupFirstOrderFunctions
 
 def OrderedGroupFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := OrderedGroupRelationSymbol
