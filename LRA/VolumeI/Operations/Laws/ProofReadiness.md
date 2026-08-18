@@ -19,7 +19,7 @@ operation laws.
 10. Inverse
 
 Order-operation compatibility is owned by `LRA.VolumeI.Order`, and map
-preservation/reflection/embedding predicates are owned by `LRA.VolumeI.Map`.
+preservation/reflection/embedding predicates are owned by `LRA.VolumeI.Function`.
 Operation congruence over equivalence relations is owned by
 `LRA.VolumeI.UniversalAlgebra.Congruence`.
 

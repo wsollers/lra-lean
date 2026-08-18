@@ -157,7 +157,31 @@ def main() -> None:
             }
         )
 
-    rows.sort(key=lambda row: row["fq_name"])
+    rows.sort(key=lambda row: (row["fq_name"], row["module"]))
+
+    # Lean materializes equation and congruence lemmas lazily, so the same
+    # generated constant is recorded by every module that forces it. The
+    # inventory is a declaration inventory, not a module-emission log: keep one
+    # row per fully qualified name, attribute it to the first defining module,
+    # and record the other materializing modules in `notes`.
+    deduplicated: list[dict[str, str]] = []
+    extra_modules: dict[str, list[str]] = {}
+    for row in rows:
+        if deduplicated and deduplicated[-1]["fq_name"] == row["fq_name"]:
+            extra_modules.setdefault(row["fq_name"], []).append(row["module"])
+            continue
+        deduplicated.append(row)
+    for row in deduplicated:
+        others = extra_modules.get(row["fq_name"])
+        if others:
+            row["notes"] = (
+                row["notes"]
+                + "; lazily materialized again in "
+                + ", ".join(others)
+            )
+    collapsed_rows = len(rows) - len(deduplicated)
+    rows = deduplicated
+
     names = [row["fq_name"] for row in rows]
     exact_duplicates = len(names) - len(set(names))
     folded = Counter(name.casefold() for name in names)
@@ -200,16 +224,22 @@ def main() -> None:
 | Generator | `scripts/DumpNamespaceEnvironment.lean` then `scripts/generate_namespace_inventory.py` |
 | Source-only findings | `{len(source_only)}` (parser candidates; see reconciliation note) |
 | Exact duplicate names | `{exact_duplicates}` |
+| Lazily re-materialized constants collapsed | `{collapsed_rows}` |
 | Case-insensitive collisions | `{len(case_collisions)}` |
 
 ## Final architecture
 
-Durable public declarations use semantic owners below `LRA`: `Algebra`,
-`Analysis` (`Bounds`, `MetricSpaces`, `MeasureTheory`, `FunctionalAnalysis`),
-`Map`, `Identity`, `Interop.Mathlib`, `LinearAlgebra`, `Logic`,
-`NumberSystems`, `Order`, `Relation`, `Set`, and `Topology`. Curricular module
-paths remain under `LRA/Volume*`; they no longer determine declaration names.
-`LRA.Internal` contains explicitly non-API orienting and scratch material.
+Durable public declarations use semantic owners directly below `LRA`:
+`AlgebraicStructures`, `Analysis` (`Bounds`, `MetricSpaces`, `MeasureTheory`,
+`FunctionalAnalysis`), `Function`, `Identity`, `Interop.Mathlib`,
+`LinearAlgebra`, `Logic`, `NumberSystems`, `Operation`, `Order`, `Relation`,
+`Set`, `Topology`, and `UniversalAlgebra`. Curricular module paths remain under
+`LRA/Volume*`; they no longer determine declaration names. `LRA.Internal`
+contains explicitly non-API orienting and scratch material.
+
+`LRA.Identity` sits directly under `LRA` rather than under `LRA.Logic`, because
+identity and equality are foundational rather than a branch of logic. There is
+no `LRA.Number`, no `LRA.Space`, and no `LRA.Carrier`.
 
 Immediate-root environment counts: {', '.join(f'`{key}` {value}' for key, value in sorted(roots.items()))}.
 
@@ -232,52 +262,117 @@ than fabricated inventory rows. Current unmatched candidates: `{len(source_only)
 - The nine real-analysis bound predicates have one owner each under
   `LRA.Analysis.Bounds`; derived extremal theorems remain below
   `LRA.Analysis.Bounds.Extremal`.
-- `LRA.Order.Bounds` is the separate backend- and relation-generic theory.
+- `LRA.Order.Bounds` is the separate backend- and relation-generic theory. Its
+  definitions and theorems are relation-parametric; only its `Examples` and
+  `FailureModes` modules instantiate the generic predicates at concrete
+  Mathlib carriers, and only its `MathlibAdapters` and
+  `Order/Interoperability/Mathlib` modules face Mathlib's order classes.
 - The Volume IV vector-space definition is the pedagogical owner; the duplicate
-  Volume VI definition was removed while its extra linear-map declaration was kept.
-- Generic map predicates are canonical; the Polish integer development no
-  longer declares local duplicates.
+  Volume VI definition was removed while its extra linear-map declaration was
+  kept.
+- Generic function predicates under `LRA.Function` are canonical. The Polish
+  integer development declares no local `Injective`/`Surjective`/`Bijective`;
+  its theorems state their conclusions with Lean's `Function.Injective`,
+  `Function.Surjective`, and `Function.Bijective`.
 - Sequence/convergence and construction-specific model-isomorphism declarations
   that merely share short names remain distinct because their types and domains
-  differ.
+  differ. `LRA.Analysis.Sequences.Sequence` is `Nat -> X`, while the two real
+  number construction sequences are indexed by a rational model's carrier;
+  `LRA.Logic.FirstOrder.ModelIsomorphism` is signature-parametric, while the
+  number-system isomorphisms carry explicit operation-preservation fields.
 - `LRA.Order.TotalOrder` is the sole retained intentional compatibility synonym,
-  abbreviating `LRA.Order.LinearOrder`. No `Chain` abbreviation was introduced.
+  abbreviating `LRA.Order.LinearOrder`. No `Chain` abbreviation was introduced;
+  `LRA.Order.Chain` is a genuine definition of pairwise comparability.
 - `LRA.Internal.MathematicalSpaces` retains orienting-only mathematical-space
-  material; scratch metric structures/examples are under `LRA.Internal`.
+  material, so no public `LRA.Space` root exists for it. Scratch metric
+  structures and their example spaces are under `LRA.Internal`, not under the
+  stable `LRA.Interop.Mathlib` names.
+- `LRA.Internal.AbstractAlgebra` holds the Volume VI reference structures. Their
+  own module documentation calls them orienting rather than a proof foundation,
+  and `LRA.AlgebraicStructures` is the durable owner of named algebraic
+  structures, so they are classified internal rather than kept as a second
+  public algebra root.
 
-## Map and relation foundations
+## Function and relation foundations
 
-`LRA.Map.Typed.TypedMap (Domain : Type u) (Codomain : Type v)` is the typed
-representation. The foundational set-theoretic representation is a separate
-domain/codomain/graph triple plus `IsSetTheoreticMap`, whose clauses enforce
-graph closure, total evaluation, and unique values. A parallel bundled
-set-theoretic relation triple records graph typing without the function laws.
-Evaluation existence/uniqueness and map extensionality are provided.
+`LRA.Function (Domain : Type u) (Codomain : Type v)` is the typed
+representation, an abbreviation of `Domain -> Codomain` with independent domain
+and codomain universes. The same name is the durable namespace for function
+concepts, so `LRA.Function.Injective`, `LRA.Function.Graph`,
+`LRA.Function.SetTheoretic`, and the rest live under the abbreviation.
+`LRA.Function.Endofunction` is the single-type specialization.
+
+The foundational set-theoretic representation is a separate
+domain/codomain/graph triple, `SetTheoreticFunctionTriple`, plus the predicate
+`IsSetTheoreticFunction`, whose three clauses enforce graph typing, total
+evaluation, and unique values. `SetTheoreticFunction` bundles the triple with
+that evidence in its `isFunction` field. A parallel bundled set-theoretic
+relation triple records graph typing without the function laws. Evaluation
+existence, evaluation uniqueness, and triple extensionality are provided.
 
 There is exactly one typed-to-set representation theorem family,
-`LRA.Map.SetTheoretic.TypedMapGraphRepresentation`. It requires explicit backend
-element and object types, ordered-pair and separation operations and laws,
-domain/codomain encodings, encoding injectivity/coverage, an ambient pair set,
-and graph-pair existence. It constructs a set-theoretic map and proves its
-evaluation agrees with the typed map. There are no bridge coercions or automatic
-instances.
+`LRA.Function.SetTheoretic.TypedFunctionGraphRepresentation`. It requires
+explicit backend element and object types, ordered-pair and separation
+operations and laws, domain and codomain encodings, encoding injectivity and
+coverage, an ambient pair set, and graph-pair existence. It constructs a
+set-theoretic function and proves its evaluation agrees with the typed
+function. Every set-existence, ordered-pair, and encoding assumption is an
+explicit hypothesis: no Lean type is claimed to be a backend set. There are no
+bridge coercions and no automatic instances.
 
 ## Pilot and imports
 
-Obsolete Lean source under `LRA/Pilot` was deleted after review; its useful bounds
-ideas were already covered by the durable generic and analysis theories. Semantic
-routers are available for all durable roots, including the seven-router combined
-smoke test in `test/LRA/SemanticImportsSmoke.lean`.
+Obsolete Lean source under `LRA/Pilot` was deleted after review; its useful
+bounds ideas were already covered by the durable generic and analysis theories.
+The stale `LRA.VolumeIV.Topology` router was removed because its referenced
+modules do not exist; general topology is routed through `LRA.Topology`.
+
+Canonical semantic routers exist for every durable public root: `LRA.Function`,
+`LRA.Identity`, `LRA.Logic`, `LRA.Set`, `LRA.Relation`, `LRA.Order`,
+`LRA.Operation`, `LRA.UniversalAlgebra`, `LRA.AlgebraicStructures`,
+`LRA.NumberSystems`, `LRA.LinearAlgebra`, `LRA.Topology`, `LRA.Interop.Mathlib`,
+`LRA.Analysis`, and the four analysis subdomains. Routers import leaf modules
+inside curricular volume directories, never a volume aggregate, so no import
+cycle is introduced. `test/LRA/SemanticImportsSmoke.lean` imports the seven
+required routers together, and `test/LRA/FunctionFoundationsSmoke.lean` is the
+focused check for the function foundations.
 
 ## Reproducibility and collision notes
 
 The TSV is sorted by full name and emitted with LF line endings. Run the two
 generator commands twice; byte-identical SHA-256 values are required. Exact
-duplicates are impossible in a Lean environment and are checked again here.
+duplicates are impossible in a Lean environment and are checked again here; the
+`{collapsed_rows}` constants that Lean re-materialized in a second module are
+collapsed to a single row whose `notes` field names the other module.
+
 Case-insensitive collisions: {', '.join(f'`{name}`' for name in case_collisions) if case_collisions else 'none'}.
+
+The single remaining collision is intentional and semantically distinct:
+`LRA.Identity.PureEqualityLanguage` is a type abbreviation and
+`LRA.Identity.pureEqualityLanguage` is the language value of that type, which is
+Lean's standard type/term convention. Every other case-insensitive collision has
+been removed: the earlier equation- and congruence-lemma collisions disappeared
+with the re-materialization collapse above, the Gaussian arithmetic ring model
+was renamed to `ActiveGaussianArithmeticRingModel` to separate it from the
+carrier-generic `gaussianArithmeticRingModel`, and the internal mathematical
+space's evidence field was renamed from `hasStructure` to `structureHolds` to
+separate it from its `HasStructure` predicate field.
+
+## Internal namespaces
+
+`LRA.Internal` is the explicitly non-API root. It holds
+`LRA.Internal.MathematicalSpaces` (orienting-only mathematical space reference
+data), `LRA.Internal.AbstractAlgebra` (Volume VI orienting reference structures),
+and `LRA.Internal.ScratchMetricSpace` with its scratch metric examples. Nothing
+under `LRA.Internal` is part of the stable public API, and no public root exists
+solely to host it.
 """
     REVIEW.write_text(review, encoding="utf-8", newline="\n")
-    print(f"wrote {len(rows)} rows; sha256={digest}; source-only candidates={len(source_only)}")
+    print(
+        f"wrote {len(rows)} rows; sha256={digest}; "
+        f"source-only candidates={len(source_only)}; "
+        f"collapsed re-materialized rows={collapsed_rows}"
+    )
     for module, name in source_only:
         print(f"SOURCE_ONLY\t{module}\t{name}")
 

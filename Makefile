@@ -72,11 +72,11 @@ endif
 	@echo "── Checking Volume VII wiring ──────────────────────"
 	@$(MAKE) check-volume-vii-wiring
 	@echo "── Checking Mathlib imports in VolumeI / VolumeII ──"
-	@$(RUN) bash -lc 'if grep -rn "^import Mathlib" LRA/VolumeI/ LRA/VolumeII/ LRA/VolumeI.lean LRA/VolumeII.lean --include="*.lean"; then \
-	    echo "✗ ERROR: Mathlib import found in VolumeI / VolumeII"; exit 1; \
-	  else \
-	    echo "✓ No Mathlib imports in VolumeI / VolumeII"; \
-	  fi'
+ifdef NATIVE
+	@python3 scripts/check-mathlib-imports.py
+else
+	@$(RUN) python3 scripts/check-mathlib-imports.py
+endif
 	@echo "── Checking for axiom leaks ────────────────────────"
 	@$(RUN) lake env lean --run scripts/check_axioms.lean 2>/dev/null \
 	    || echo "  (axiom check script not yet present — skipping)"

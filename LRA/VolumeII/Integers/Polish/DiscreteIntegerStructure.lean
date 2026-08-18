@@ -113,47 +113,13 @@ theorem iterate_add {α : Type u} (f : α → α) (m n : Nat) (x : α) :
       rw [ih]
       exact iterate_comm f m (iterate f k x)
 
-/--
-**[Def — Injective]**
-
-Mathematical statement (Lean): `def Injective {α β : Type _} (f : α → β) : Prop`.
-
-
-Logical form:
-
-```lean
-```
+/-!
+Generic injectivity, surjectivity, and bijectivity are **not** redefined here.
+The theorems below state their conclusions with Lean's `Function.Injective`,
+`Function.Surjective`, and `Function.Bijective`; the LRA-native predicates are
+owned by `LRA.Function.Injective`, `LRA.Function.Surjective`, and
+`LRA.Function.Bijective`.
 -/
-def Injective {α β : Type _} (f : α → β) : Prop :=
-  ∀ ⦃a b⦄, f a = f b → a = b
-
-/--
-**[Def — Surjective]**
-
-Mathematical statement (Lean): `def Surjective {α β : Type _} (f : α → β) : Prop`.
-
-
-Logical form:
-
-```lean
-```
--/
-def Surjective {α β : Type _} (f : α → β) : Prop :=
-  ∀ b, ∃ a, f a = b
-
-/--
-**[Def — Bijective]**
-
-Mathematical statement (Lean): `def Bijective {α β : Type _} (f : α → β) : Prop`.
-
-
-Logical form:
-
-```lean
-```
--/
-def Bijective {α β : Type _} (f : α → β) : Prop :=
-  Injective f ∧ Surjective f
 
 /--
 **[Structure — IntegerStructure]**
@@ -303,13 +269,13 @@ theorem aperiodic_pred (n : Nat) (h : 0 < n) :
 /--
 **[Theorem — iterate_succ_injective]**
 
-Mathematical statement (Lean): `theorem iterate_succ_injective (n : Nat) : Injective (iterate S.succ n)`.
+Mathematical statement (Lean): `theorem iterate_succ_injective (n : Nat) : Function.Injective (iterate S.succ n)`.
 
 
 Logical form:
 
 ```lean
-theorem iterate_succ_injective (n : Nat) : Injective (iterate S.succ n)
+theorem iterate_succ_injective (n : Nat) : Function.Injective (iterate S.succ n)
 ```
 -/
 theorem iterate_succ_injective (n : Nat) :
@@ -322,13 +288,13 @@ theorem iterate_succ_injective (n : Nat) :
 /--
 **[Theorem — iterate_pred_injective]**
 
-Mathematical statement (Lean): `theorem iterate_pred_injective (n : Nat) : Injective (iterate S.pred n)`.
+Mathematical statement (Lean): `theorem iterate_pred_injective (n : Nat) : Function.Injective (iterate S.pred n)`.
 
 
 Logical form:
 
 ```lean
-theorem iterate_pred_injective (n : Nat) : Injective (iterate S.pred n)
+theorem iterate_pred_injective (n : Nat) : Function.Injective (iterate S.pred n)
 ```
 -/
 theorem iterate_pred_injective (n : Nat) :
@@ -451,13 +417,13 @@ theorem no_mixed_collision
 /--
 **[Theorem — rep_injective]**
 
-Mathematical statement (Lean): `theorem rep_injective : Injective S.rep`.
+Mathematical statement (Lean): `theorem rep_injective : Function.Injective S.rep`.
 
 
 Logical form:
 
 ```lean
-theorem rep_injective : Injective S.rep
+theorem rep_injective : Function.Injective S.rep
 ```
 -/
 theorem rep_injective : _root_.Function.Injective S.rep := by
@@ -535,13 +501,13 @@ theorem rep_pred (n : Int) : S.rep (n - 1) = S.pred (S.rep n) := by
 /--
 **[Theorem — rep_surjective]**
 
-Mathematical statement (Lean): `theorem rep_surjective : Surjective S.rep`.
+Mathematical statement (Lean): `theorem rep_surjective : Function.Surjective S.rep`.
 
 
 Logical form:
 
 ```lean
-theorem rep_surjective : Surjective S.rep
+theorem rep_surjective : Function.Surjective S.rep
 ```
 -/
 theorem rep_surjective : _root_.Function.Surjective S.rep := by
@@ -556,13 +522,13 @@ theorem rep_surjective : _root_.Function.Surjective S.rep := by
 /--
 **[Theorem — rep_bijective]**
 
-Mathematical statement (Lean): `theorem rep_bijective : Bijective S.rep`.
+Mathematical statement (Lean): `theorem rep_bijective : Function.Bijective S.rep`.
 
 
 Logical form:
 
 ```lean
-theorem rep_bijective : Bijective S.rep
+theorem rep_bijective : Function.Bijective S.rep
 ```
 -/
 theorem rep_bijective :
@@ -572,7 +538,7 @@ theorem rep_bijective :
 /--
 **[Theorem — categoricity]**
 
-Mathematical statement (Lean): `theorem categoricity : Bijective S.rep ∧ S.rep 0 = S.zero ∧ ∀ n : Int, S.rep (n + 1) = S.succ (S.rep n)`.
+Mathematical statement (Lean): `theorem categoricity : Function.Bijective S.rep ∧ S.rep 0 = S.zero ∧ ∀ n : Int, S.rep (n + 1) = S.succ (S.rep n)`.
 
 
 Logical form:

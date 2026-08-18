@@ -24,6 +24,11 @@ EXPECTED = {
     ],
     ROOT / "LRA" / "VolumeIV" / "MetricSpaces.lean": [
         "import LRA.VolumeIV.MetricSpaces.Balls",
+        "import LRA.VolumeIV.MetricSpaces.DistancesAndDiameter",
+    ],
+    # `SetGeometry` is reached through the curricular `DistancesAndDiameter`
+    # aggregate rather than directly from the volume router.
+    ROOT / "LRA" / "VolumeIV" / "MetricSpaces" / "DistancesAndDiameter.lean": [
         "import LRA.VolumeIV.MetricSpaces.SetGeometry",
     ],
     ROOT / "LRA" / "VolumeVII" / "WithMathlib" / "MetricSpaces.lean": [
@@ -37,7 +42,11 @@ EXPECTED = {
         "import Mathlib.Topology.MetricSpace.Basic",
         "structure ScratchMetric",
         "structure ScratchMetricSpace",
-        "namespace ScratchMetricSpace",
+        # Scratch metric material is deliberately non-API: it lives under the
+        # explicitly internal `LRA.Internal` root, never under the stable
+        # `LRA.Interop.Mathlib` names.
+        "namespace LRA.Internal",
+        "namespace LRA.Internal.ScratchMetricSpace",
     ],
     ROOT / "LRA" / "VolumeVII" / "WithMathlib" / "MetricSpaces" / "RealLineSpace.lean": [
         "import LRA.VolumeVII.WithMathlib.MetricSpaces.MetricModeling",
