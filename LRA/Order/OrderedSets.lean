@@ -15,5 +15,6 @@ import LRA.Order.OrderedSets.StrictOrder.Relationships
 import LRA.Order.OrderedSets.StrictLinearOrder.Definition
 import LRA.Order.OrderedSets.StrictLinearOrder.Theorems
 import LRA.Order.OrderedSets.Poset.Definition
+import LRA.Order.OrderedSets.StrictPoset.Definition
 
 /-! Canonical foundational ordered-set hierarchy. -/
