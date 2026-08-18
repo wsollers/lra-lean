@@ -895,6 +895,36 @@ The effort succeeds only when **all** of these hold.
 - Grepping the tree for `Historical`, `Compatibility alias`, `deprecated`, and
   `awaiting migration` returns zero hits in `*.lean`.
 
+### C.1 Reconcile per name, never by total
+
+Every phase that moves declarations must reconcile **name by name**, not by
+count. Totals hide compensating errors: a phase that drops four `def`s and one
+theorem while gaining an unrelated theorem elsewhere produces a total that
+matches exactly, and nothing in the count reveals it.
+
+For each declaration in scope, record which of these happened, and check the
+list against the source rather than against a tally:
+
+```text
+deleted   — with the surviving owner named
+relocated — with old and new fully qualified names
+restated  — with the form it now takes
+kept      — unchanged
+```
+
+Two counting traps seen in practice, both of which produced correct-looking
+totals over wrong sets:
+
+- **A count of `theorem` declarations misses `def`s.** A bucket of 72 was
+  reported as 64 because eight of its members were definitions, not theorems.
+- **A `sorry`-line diff is not a declaration ledger.** It counts lines removed
+  and re-added inside modified files, so a wholesale directory deletion followed
+  by relocation nets a number that matches nothing. Use a per-file ledger of
+  where each `sorry` went.
+
+A phase whose reconciliation is a subtraction rather than a list has not been
+verified.
+
 ### D. Verification
 
 - `lake build` succeeds.
