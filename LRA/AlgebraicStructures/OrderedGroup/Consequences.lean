@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.OrderedGroup.Laws.All
+import LRA.AlgebraicStructures.OrderedGroup.Laws
 
 namespace LRA.AlgebraicStructures
 

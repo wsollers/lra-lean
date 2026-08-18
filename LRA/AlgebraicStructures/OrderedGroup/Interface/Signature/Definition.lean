@@ -1,6 +1,6 @@
 import LRA.AlgebraicStructures.Group.Interface.Signature.Definition
 
-namespace LRA.AlgebraicStructures.OrderedGroup.ModelTheory
+namespace LRA.AlgebraicStructures.OrderedGroup.Interface.Signature
 
 /-!
 First-order signature for ordered groups.
@@ -31,4 +31,4 @@ def OrderedGroupFirstOrderSignature : LRA.Logic.Signature where
   Relations := OrderedGroupFirstOrderRelations
   Constants := OrderedGroupConstantSymbol
 
-end LRA.AlgebraicStructures.OrderedGroup.ModelTheory
+end LRA.AlgebraicStructures.OrderedGroup.Interface.Signature
