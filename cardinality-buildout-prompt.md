@@ -178,24 +178,24 @@ LRA/Cardinality/Comparison/Dominance/Theorems.lean
 LRA/Cardinality/Comparison/SchroederBernstein/Theorems.lean
 LRA/Cardinality/Comparison/Comparability/ChoiceTheorems.lean
 
-LRA/Cardinality/Finite.lean
-LRA/Cardinality/Finite/Finite/Definition.lean
-LRA/Cardinality/Finite/Finite/Theorems.lean
-LRA/Cardinality/Finite/Finite/FailureModes.lean
-LRA/Cardinality/Finite/Dedekind/Definition.lean
-LRA/Cardinality/Finite/Dedekind/Theorems.lean
-LRA/Cardinality/Finite/Dedekind/ChoiceTheorems.lean
-LRA/Cardinality/Finite/Pigeonhole/Theorems.lean
-LRA/Cardinality/Finite/Enumeration/Definition.lean      the four notions moved from Map/Image
-LRA/Cardinality/Finite/Enumeration/Theorems.lean
+LRA/Cardinality/Finiteness.lean
+LRA/Cardinality/Finiteness/Finite/Definition.lean
+LRA/Cardinality/Finiteness/Finite/Theorems.lean
+LRA/Cardinality/Finiteness/Finite/FailureModes.lean
+LRA/Cardinality/Finiteness/Dedekind/Definition.lean
+LRA/Cardinality/Finiteness/Dedekind/Theorems.lean
+LRA/Cardinality/Finiteness/Dedekind/ChoiceTheorems.lean
+LRA/Cardinality/Finiteness/Pigeonhole/Theorems.lean
+LRA/Cardinality/Finiteness/Enumeration/Definition.lean      the four notions moved from Map/Image
+LRA/Cardinality/Finiteness/Enumeration/Theorems.lean
 
-LRA/Cardinality/Countable.lean
-LRA/Cardinality/Countable/Countable/Definition.lean
-LRA/Cardinality/Countable/Countable/Theorems.lean
-LRA/Cardinality/Countable/Countable/ChoiceTheorems.lean
-LRA/Cardinality/Countable/Denumerable/Definition.lean
-LRA/Cardinality/Countable/Denumerable/Theorems.lean
-LRA/Cardinality/Countable/NumberSystems/Theorems.lean   ℕ×ℕ ≈ ℕ, ℤ ≈ ℕ, ℚ ≈ ℕ
+LRA/Cardinality/Countability.lean
+LRA/Cardinality/Countability/Countable/Definition.lean
+LRA/Cardinality/Countability/Countable/Theorems.lean
+LRA/Cardinality/Countability/Countable/ChoiceTheorems.lean
+LRA/Cardinality/Countability/Denumerable/Definition.lean
+LRA/Cardinality/Countability/Denumerable/Theorems.lean
+LRA/Cardinality/Countability/NumberSystems/Theorems.lean   ℕ×ℕ ≈ ℕ, ℤ ≈ ℕ, ℚ ≈ ℕ
 
 LRA/Cardinality/Cantor.lean
 LRA/Cardinality/Cantor/Diagonal/Theorems.lean
@@ -235,7 +235,7 @@ reflexive and transitive; equinumerous implies dominated in both directions;
 
 `ChoiceTheorems`: comparability, recorded as *equivalent* to AC.
 
-### 5.2 Finite
+### 5.2 Finiteness
 
 ```text
 Finite                equinumerous to an initial segment of ℕ
@@ -257,7 +257,7 @@ the converse of pigeonhole fails for infinite sets.
 `ChoiceTheorems`: infinite → Dedekind-infinite (ACω); every infinite set has a
 countably infinite subset (ACω).
 
-### 5.3 Countable
+### 5.3 Countability
 
 ```text
 Countable       Dominated by ℕ — the finite-or-countably-infinite notion

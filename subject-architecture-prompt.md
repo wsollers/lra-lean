@@ -36,6 +36,7 @@ LRA.SetSystems        rings, algebras, and σ-algebras of sets
 LRA.Relation          relations
 LRA.Function          functions
 LRA.Morphism          structure-preserving functions
+LRA.Cardinality       equinumerosity, finiteness, countability, Cantor
 LRA.Operation         operations and their laws
 LRA.UniversalAlgebra  signatures, algebras, congruences, quotients
 LRA.AlgebraicStructures   the named structures: group, ring, field, lattice, …
