@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.MeetSemilattice.Laws.All
+import LRA.AlgebraicStructures.MeetSemilattice.Laws
 
 namespace LRA.AlgebraicStructures
 
