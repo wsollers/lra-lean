@@ -1,12 +1,10 @@
 import LRA.AlgebraicStructures.CommutativeSemigroup.Laws.Definition
+import LRA.AlgebraicStructures.Semigroup.Definition
 
 namespace LRA.AlgebraicStructures
 
-/-!
-CommutativeSemigroup Definition module.
-
-This file is reserved for definition whose natural owner is the named
-algebraic structure CommutativeSemigroup. It intentionally contains no placeholder theorems.
--/
+/-- A commutative semigroup has the semigroup signature. -/
+abbrev CommutativeSemigroupConceptSignature :=
+  SemigroupConceptSignature
 
 end LRA.AlgebraicStructures

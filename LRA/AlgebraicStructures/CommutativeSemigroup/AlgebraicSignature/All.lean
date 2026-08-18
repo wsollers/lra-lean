@@ -1,1 +1,0 @@
-import LRA.AlgebraicStructures.CommutativeSemigroup.AlgebraicSignature.ConceptSignature
