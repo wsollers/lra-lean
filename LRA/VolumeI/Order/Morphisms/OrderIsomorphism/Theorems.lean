@@ -1,4 +1,4 @@
-import LRA.VolumeI.Map.Image.All
+import LRA.VolumeI.Function.Image.All
 import LRA.VolumeI.Order.Bounds.Infimum.Definition
 import LRA.VolumeI.Order.Bounds.LowerBound.Definition
 import LRA.VolumeI.Order.Bounds.Supremum.Definition
@@ -30,7 +30,7 @@ theorem OrderIsomorphismPreservesSupremum
     {subset : SourceSet} {supremum : Alpha}
     (supremumIsSupremum : Supremum sourceRelation subset supremum) :
     Supremum targetRelation
-      (LRA.Map.Image.Image forward subset : TargetSet)
+      (LRA.Function.Image.Image forward subset : TargetSet)
       (forward supremum) := by
   sorry
 
@@ -51,7 +51,7 @@ theorem OrderIsomorphismPreservesUpperBound
     {subset : SourceSet} {bound : Alpha}
     (boundIsUpperBound : UpperBound sourceRelation subset bound) :
     UpperBound targetRelation
-      (LRA.Map.Image.Image forward subset : TargetSet)
+      (LRA.Function.Image.Image forward subset : TargetSet)
       (forward bound) := by
   sorry
 
@@ -72,7 +72,7 @@ theorem OrderIsomorphismPreservesLowerBound
     {subset : SourceSet} {bound : Alpha}
     (boundIsLowerBound : LowerBound sourceRelation subset bound) :
     LowerBound targetRelation
-      (LRA.Map.Image.Image forward subset : TargetSet)
+      (LRA.Function.Image.Image forward subset : TargetSet)
       (forward bound) := by
   sorry
 
@@ -93,7 +93,7 @@ theorem OrderIsomorphismPreservesInfimum
     {subset : SourceSet} {infimum : Alpha}
     (infimumIsInfimum : Infimum sourceRelation subset infimum) :
     Infimum targetRelation
-      (LRA.Map.Image.Image forward subset : TargetSet)
+      (LRA.Function.Image.Image forward subset : TargetSet)
       (forward infimum) := by
   sorry
 
@@ -115,7 +115,7 @@ theorem OrderIsomorphismToConverseSendsSupremumToInfimum
     {subset : SourceSet} {supremum : Alpha}
     (supremumIsSupremum : Supremum sourceRelation subset supremum) :
     Infimum targetRelation
-      (LRA.Map.Image.Image forward subset : TargetSet)
+      (LRA.Function.Image.Image forward subset : TargetSet)
       (forward supremum) := by
   sorry
 
@@ -137,7 +137,7 @@ theorem OrderIsomorphismToConverseSendsInfimumToSupremum
     {subset : SourceSet} {infimum : Alpha}
     (infimumIsInfimum : Infimum sourceRelation subset infimum) :
     Supremum targetRelation
-      (LRA.Map.Image.Image forward subset : TargetSet)
+      (LRA.Function.Image.Image forward subset : TargetSet)
       (forward infimum) := by
   sorry
 

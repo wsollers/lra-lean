@@ -128,33 +128,33 @@ abbrev ExternalBinaryOperation (Scalar : Type u) (Carrier : Type v) :=
   HeterogeneousBinaryOperation Scalar Carrier Carrier
 
 /--
-**[Definition — EndomapComposition]**
+**[Definition — EndofunctionComposition]**
 
-Composition as the binary operation on endomaps.
+Composition as the binary operation on endofunctions.
 
 Logical form:
 
 ```lean
-def EndomapComposition (Carrier : Type u) :
+def EndofunctionComposition (Carrier : Type u) :
     BinaryEndoOperation (Carrier -> Carrier)
 ```
 -/
-def EndomapComposition (Carrier : Type u) :
+def EndofunctionComposition (Carrier : Type u) :
     BinaryEndoOperation (Carrier -> Carrier) :=
   fun second first input => second (first input)
 
 /--
-**[Definition — EndomapIdentity]**
+**[Definition — EndofunctionIdentity]**
 
-The identity element for endomap composition.
+The identity element for endofunction composition.
 
 Logical form:
 
 ```lean
-def EndomapIdentity (Carrier : Type u) : Carrier -> Carrier
+def EndofunctionIdentity (Carrier : Type u) : Carrier -> Carrier
 ```
 -/
-def EndomapIdentity (Carrier : Type u) : Carrier -> Carrier :=
+def EndofunctionIdentity (Carrier : Type u) : Carrier -> Carrier :=
   fun input => input
 
 /--

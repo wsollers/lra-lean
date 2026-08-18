@@ -32,7 +32,7 @@ Logical form: `UpperBound (· ≤ ·) (Image Nat.succ {0,1}) 2`.
 -/
 example :
     UpperBound (fun left right : Nat => left ≤ right)
-      (LRA.Map.Image.Image Nat.succ ({0, 1} : Set Nat) : Set Nat) 2 := by
+      (LRA.Function.Image.Image Nat.succ ({0, 1} : Set Nat) : Set Nat) 2 := by
   apply MonotoneSendsUpperBoundToImageUpperBound
     (sourceRelation := fun left right : Nat => left ≤ right)
     (targetRelation := fun left right : Nat => left ≤ right)

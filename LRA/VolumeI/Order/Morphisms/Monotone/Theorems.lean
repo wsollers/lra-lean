@@ -1,6 +1,6 @@
 import LRA.VolumeI.Order.Morphisms.Monotone.Definition
-import LRA.VolumeI.Map.Image.All
-import LRA.VolumeI.Map.Preimage.All
+import LRA.VolumeI.Function.Image.All
+import LRA.VolumeI.Function.Preimage.All
 import LRA.VolumeI.Order.Bounds.BoundSets.Theorems
 
 namespace LRA.Order
@@ -44,7 +44,7 @@ theorem MonotoneSendsUpperBoundToImageUpperBound
     (mapIsMonotone : Monotone sourceRelation targetRelation map)
     {subset : SourceSet} {bound : Alpha}
     (boundIsUpper : UpperBound sourceRelation subset bound) :
-    UpperBound targetRelation (LRA.Map.Image.Image map subset : TargetSet) (map bound) := by
+    UpperBound targetRelation (LRA.Function.Image.Image map subset : TargetSet) (map bound) := by
   sorry
 
 /-- `MonotoneSendsLowerBoundToImageLowerBound`
@@ -63,7 +63,7 @@ theorem MonotoneSendsLowerBoundToImageLowerBound
     (mapIsMonotone : Monotone sourceRelation targetRelation map)
     {subset : SourceSet} {bound : Alpha}
     (boundIsLower : LowerBound sourceRelation subset bound) :
-    LowerBound targetRelation (LRA.Map.Image.Image map subset : TargetSet) (map bound) := by
+    LowerBound targetRelation (LRA.Function.Image.Image map subset : TargetSet) (map bound) := by
   sorry
 
 /-- `MonotoneImageUpperBoundsContainment`
@@ -84,10 +84,10 @@ theorem MonotoneImageUpperBoundsContainment
     (mapIsMonotone : Monotone sourceRelation targetRelation map)
     (subset : SourceSet) (output : Beta)
     (outputIsImageOfUpperBound :
-      output ∈ (LRA.Map.Image.Image map
+      output ∈ (LRA.Function.Image.Image map
         (UpperBounds sourceRelation subset : SourceSet) : TargetSet)) :
     output ∈ UpperBounds targetRelation
-      (LRA.Map.Image.Image map subset : TargetSet) := by
+      (LRA.Function.Image.Image map subset : TargetSet) := by
   sorry
 
 /-- `MonotoneUpperBoundsPreimageContainment`
@@ -108,9 +108,9 @@ theorem MonotoneUpperBoundsPreimageContainment
     (mapIsMonotone : Monotone sourceRelation targetRelation map)
     (subset : SourceSet) (bound : Alpha)
     (boundIsSourceUpperBound : bound ∈ UpperBounds sourceRelation subset) :
-    bound ∈ (LRA.Map.Preimage.Preimage map
+    bound ∈ (LRA.Function.Preimage.Preimage map
       (UpperBounds targetRelation
-        (LRA.Map.Image.Image map subset : TargetSet) : TargetSet) : SourceSet) := by
+        (LRA.Function.Image.Image map subset : TargetSet) : TargetSet) : SourceSet) := by
   sorry
 
 /-- `MonotoneImageLowerBoundsContainment`
@@ -130,10 +130,10 @@ theorem MonotoneImageLowerBoundsContainment
     {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha -> Beta}
     (mapIsMonotone : Monotone sourceRelation targetRelation map)
     (subset : SourceSet) (output : Beta)
-    (outputIsImageOfLowerBound : output ∈ (LRA.Map.Image.Image map
+    (outputIsImageOfLowerBound : output ∈ (LRA.Function.Image.Image map
       (LowerBounds sourceRelation subset : SourceSet) : TargetSet)) :
     output ∈ LowerBounds targetRelation
-      (LRA.Map.Image.Image map subset : TargetSet) := by
+      (LRA.Function.Image.Image map subset : TargetSet) := by
   sorry
 
 /-- `MonotoneLowerBoundsPreimageContainment`
@@ -154,9 +154,9 @@ theorem MonotoneLowerBoundsPreimageContainment
     (mapIsMonotone : Monotone sourceRelation targetRelation map)
     (subset : SourceSet) (bound : Alpha)
     (boundIsSourceLowerBound : bound ∈ LowerBounds sourceRelation subset) :
-    bound ∈ (LRA.Map.Preimage.Preimage map
+    bound ∈ (LRA.Function.Preimage.Preimage map
       (LowerBounds targetRelation
-        (LRA.Map.Image.Image map subset : TargetSet) : TargetSet) : SourceSet) := by
+        (LRA.Function.Image.Image map subset : TargetSet) : TargetSet) : SourceSet) := by
   sorry
 
 end LRA.Order

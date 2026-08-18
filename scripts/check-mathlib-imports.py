@@ -23,7 +23,9 @@ CHECK_ROOTS = [
 
 ALLOWED_PREFIXES = [
     pathlib.PurePosixPath("LRA/VolumeI/Logic"),
-    pathlib.PurePosixPath("LRA/VolumeII/BasicArithmetic"),
+    # Volume II's `BasicArithmetic` directory is now `Arithmetic`; the
+    # declarations it carries are owned by `LRA.NumberSystems.Arithmetic`.
+    pathlib.PurePosixPath("LRA/VolumeII/Arithmetic"),
     pathlib.PurePosixPath("LRA/VolumeII/Switches/NumberSystems.lean"),
     pathlib.PurePosixPath("LRA/VolumeII/Switches/Sets/BackendEnvironment.lean"),
     pathlib.PurePosixPath("LRA/VolumeI/Set/MathlibPredicateSet"),
@@ -31,7 +33,9 @@ ALLOWED_PREFIXES = [
 ]
 
 ALLOWED_PATHS = {
-    pathlib.PurePosixPath("LRA/VolumeI/UniversalAlgebra/Models/Satisfaction.lean"),
+    # `UniversalAlgebra/Models/Satisfaction.lean` was reorganized into the
+    # per-concept `Satisfaction/` directory.
+    pathlib.PurePosixPath("LRA/VolumeI/UniversalAlgebra/Satisfaction/Definition.lean"),
     pathlib.PurePosixPath("LRA/VolumeI/Order/Interoperability/Mathlib/Bounds.lean"),
     pathlib.PurePosixPath("LRA/VolumeI/Set/ModelTheory/Language.lean"),
     pathlib.PurePosixPath("LRA/VolumeI/Set/ModelTheory/ZFSetModel.lean"),

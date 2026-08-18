@@ -1,0 +1,55 @@
+import LRA.VolumeI.Function.Surjective.Definition
+import LRA.VolumeI.Function.Fiber.Definition
+
+namespace LRA.Function.Surjective
+
+open LRA.Function
+open LRA.Set
+
+universe u v w
+
+/--
+**[Theorem — surjective_iff_standard]**
+
+The LRA map definition agrees with Lean's standard surjectivity predicate.
+
+Logical form:
+
+```lean
+theorem surjective_iff_standard
+    {Domain : Type u} {Codomain : Type v}
+    (map : Function Domain Codomain) :
+    Surjective map <-> _root_.Function.Surjective map
+```
+-/
+theorem surjective_iff_standard
+    {Domain : Type u} {Codomain : Type v}
+    (map : Function Domain Codomain) :
+    Surjective map <-> _root_.Function.Surjective map := by
+  sorry
+/--
+**[Definition — SurjectiveByFibers]**
+
+Fiber formulation of surjectivity over an explicit ambient domain.
+
+Logical form:
+
+```lean
+def SurjectiveByFibers
+    {Element : Type u} {Codomain : Type v} {SetObject : Type w}
+    [Membership Element SetObject]
+    [HasSeparation Element SetObject]
+    (ambientDomain : SetObject)
+    (map : Function Element Codomain) : Prop
+```
+-/
+def SurjectiveByFibers
+    {Element : Type u} {Codomain : Type v} {SetObject : Type w}
+    [Membership Element SetObject]
+    [HasSeparation Element SetObject]
+    (ambientDomain : SetObject)
+    (map : Function Element Codomain) : Prop :=
+  forall output : Codomain, exists input : Element,
+    input ∈ LRA.Function.Fiber.AmbientFiber ambientDomain map output
+
+end LRA.Function.Surjective

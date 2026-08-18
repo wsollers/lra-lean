@@ -42,3 +42,6 @@ lean-decl-inventory.txt
 /build/pilot/supremum-comparison/*.out
 /build/pilot/supremum-extraction-v5.html
 /build/pilot/supremum-extraction-v5.json
+
+# Session-local verification harness
+/scratch/
