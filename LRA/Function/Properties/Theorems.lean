@@ -60,4 +60,22 @@ theorem GraphIsFunctionRelation
     IsFunctionRelation (Graph function) := by
   sorry
 
+/-- LRA injectivity agrees with the standard formulation. -/
+theorem InjectiveIffStandard {Domain : Type u} {Codomain : Type v}
+    (function : LRA.Function Domain Codomain) :
+    Injective function ↔ ∀ left right, function left = function right → left = right := by
+  sorry
+
+/-- LRA surjectivity agrees with the standard formulation. -/
+theorem SurjectiveIffStandard {Domain : Type u} {Codomain : Type v}
+    (function : LRA.Function Domain Codomain) :
+    Surjective function ↔ ∀ output, ∃ input, function input = output := by
+  sorry
+
+/-- A function is surjective exactly when its range class covers the codomain. -/
+theorem SurjectiveIffRangeCoversCodomain {Domain : Type u} {Codomain : Type v}
+    (function : LRA.Function Domain Codomain) :
+    Surjective function ↔ ∀ output : Codomain, RangeClass function output := by
+  sorry
+
 end LRA.Function

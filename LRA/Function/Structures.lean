@@ -1,6 +1,10 @@
 import LRA.Function.Properties
+import LRA.Function.Structures.PartialFunction.Definition
 
 /-!
-Named packages of function properties belong here when they arise naturally.
-Injective, surjective, and bijective remain properties rather than structures.
+Named bundles of function data.
+
+`PartialFunction` lives here because it carries data — a domain of definition
+and a value on it — rather than being a property of an arrow. Injective,
+surjective, and bijective add no data and remain properties.
 -/

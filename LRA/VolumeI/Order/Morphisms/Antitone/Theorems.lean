@@ -1,7 +1,26 @@
 import LRA.Order.Morphisms.Antitone.Theorems
-import LRA.VolumeI.Map.Image.All
-import LRA.VolumeI.Map.Preimage.All
-import LRA.VolumeI.Order.Bounds.BoundSets.Theorems
+import LRA.Order.Bounds.BoundSets.Theorems
+import LRA.Order.Bounds.GreatestElement.Definition
+import LRA.Order.Bounds.LeastElement.Definition
+import LRA.Order.Bounds.Supremum.Definition
+import LRA.Order.Bounds.Infimum.Definition
+import LRA.Order.Bounds.UpperBound.Definition
+import LRA.Order.Bounds.LowerBound.Definition
+import LRA.Function.Calculus.Classes.Definition
+import LRA.Set.SetClass.Representation
+import LRA.Relation.Operations.Converse.Definition
+
+/-!
+Order transport across a morphism, for set-backed bounds.
+
+The image is supplied as a *representing set object* rather than built by
+separation from a universal set. The previous form separated from `𝒰`, which
+required `HasUniversal` — a capability only the predicate-set backends register
+— so those statements silently did not apply to the ZFC or `ZFSet` backends.
+Taking a representative instead states the same mathematics against every
+backend, and routes the image through `LRA.Function.ImageClass`, which is the
+`LRA.Relation` calculus applied to the function's graph.
+-/
 
 namespace LRA.Order
 
@@ -9,134 +28,82 @@ open LRA.Set
 
 universe u v w x
 
-/-- `AntitoneSendsUpperBoundToImageLowerBound`
+variable {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
+variable [Membership Alpha SourceSet] [Membership Beta TargetSet]
+variable {sourceRelation : LRA.Relation.Endorelation Alpha}
+variable {targetRelation : LRA.Relation.Endorelation Beta}
+variable {map : Alpha → Beta}
 
-Statement: An antitone map sends an upper bound to a lower bound of the direct image.
-
-Logical form: `Antitone r s f → UpperBound r A b → LowerBound s (Image f A) (f b)`. -/
+/-- An antitone map sends an upper bound to a lower bound of the image. -/
 theorem AntitoneSendsUpperBoundToImageLowerBound
-    {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
-    [Membership Alpha SourceSet] [Membership Beta TargetSet]
-    [HasSeparation Beta TargetSet] [HasUniversal TargetSet]
-    [HasComplement TargetSet] [SeparationLaws Beta TargetSet]
-    [UniversalMembershipLaws Beta TargetSet]
-    {sourceRelation : LRA.Relation.Endorelation Alpha}
-    {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha -> Beta}
+    (subset : SourceSet) (imageSet : TargetSet)
+    (representsImage :
+      Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset)))
     (mapIsAntitone : Antitone sourceRelation targetRelation map)
-    {subset : SourceSet} {bound : Alpha}
-    (boundIsUpper : UpperBound sourceRelation subset bound) :
-    LowerBound targetRelation (LRA.Map.Image.Image map subset : TargetSet) (map bound) := by
+    {bound : Alpha}
+    (boundIsUpper : UpperBound sourceRelation subset bound)
+    : LowerBound targetRelation imageSet (map bound) := by
   sorry
 
-/-- `AntitoneSendsLowerBoundToImageUpperBound`
-
-Statement: An antitone map sends a lower bound to an upper bound of the direct image.
-
-Logical form: `Antitone r s f → LowerBound r A b → UpperBound s (Image f A) (f b)`. -/
+/-- An antitone map sends a lower bound to an upper bound of the image. -/
 theorem AntitoneSendsLowerBoundToImageUpperBound
-    {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
-    [Membership Alpha SourceSet] [Membership Beta TargetSet]
-    [HasSeparation Beta TargetSet] [HasUniversal TargetSet]
-    [HasComplement TargetSet] [SeparationLaws Beta TargetSet]
-    [UniversalMembershipLaws Beta TargetSet]
-    {sourceRelation : LRA.Relation.Endorelation Alpha}
-    {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha -> Beta}
+    (subset : SourceSet) (imageSet : TargetSet)
+    (representsImage :
+      Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset)))
     (mapIsAntitone : Antitone sourceRelation targetRelation map)
-    {subset : SourceSet} {bound : Alpha}
-    (boundIsLower : LowerBound sourceRelation subset bound) :
-    UpperBound targetRelation (LRA.Map.Image.Image map subset : TargetSet) (map bound) := by
+    {bound : Alpha}
+    (boundIsLower : LowerBound sourceRelation subset bound)
+    : UpperBound targetRelation imageSet (map bound) := by
   sorry
 
-/-- `AntitoneImageUpperBoundsIntoLowerBounds`
-
-Statement: The image of source upper bounds lies in the lower bounds of the image.
-
-Logical form: `Image f (UpperBounds r A) ⊆ LowerBounds s (Image f A)`. -/
+/-- The image of the source upper bounds lies in the lower bounds of the image. -/
 theorem AntitoneImageUpperBoundsIntoLowerBounds
-    {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
-    [Membership Alpha SourceSet] [Membership Beta TargetSet]
-    [HasSeparation Alpha SourceSet] [HasUniversal SourceSet]
-    [HasSeparation Beta TargetSet] [HasUniversal TargetSet]
-    [HasComplement SourceSet] [HasComplement TargetSet]
-    [SeparationLaws Alpha SourceSet] [UniversalMembershipLaws Alpha SourceSet]
-    [SeparationLaws Beta TargetSet] [UniversalMembershipLaws Beta TargetSet]
-    {sourceRelation : LRA.Relation.Endorelation Alpha}
-    {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha -> Beta}
+    (subset : SourceSet) (imageSet : TargetSet)
+    (representsImage :
+      Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset)))
     (mapIsAntitone : Antitone sourceRelation targetRelation map)
-    (subset : SourceSet) (output : Beta)
-    (outputIsImageOfUpperBound : output ∈ (LRA.Map.Image.Image map
-      (UpperBounds sourceRelation subset : SourceSet) : TargetSet)) :
-    output ∈ LowerBounds targetRelation
-      (LRA.Map.Image.Image map subset : TargetSet) := by
+    (output : Beta)
+    (outputIsImageOfUpperBound :
+      LRA.Function.ImageClass map
+        (fun input => UpperBound sourceRelation subset input) output)
+    : LowerBound targetRelation imageSet output := by
   sorry
 
-/-- `AntitoneUpperBoundsPreimageLowerBoundsContainment`
-
-Statement: Source upper bounds lie in the preimage of the image's lower bounds.
-
-Logical form: `UpperBounds r A ⊆ Preimage f (LowerBounds s (Image f A))`. -/
+/-- Source upper bounds lie in the preimage of the image lower bounds. -/
 theorem AntitoneUpperBoundsPreimageLowerBoundsContainment
-    {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
-    [Membership Alpha SourceSet] [Membership Beta TargetSet]
-    [HasSeparation Alpha SourceSet] [HasUniversal SourceSet]
-    [HasSeparation Beta TargetSet] [HasUniversal TargetSet]
-    [HasComplement SourceSet] [HasComplement TargetSet]
-    [SeparationLaws Alpha SourceSet] [UniversalMembershipLaws Alpha SourceSet]
-    [SeparationLaws Beta TargetSet] [UniversalMembershipLaws Beta TargetSet]
-    {sourceRelation : LRA.Relation.Endorelation Alpha}
-    {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha -> Beta}
+    (subset : SourceSet) (imageSet : TargetSet)
+    (representsImage :
+      Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset)))
     (mapIsAntitone : Antitone sourceRelation targetRelation map)
-    (subset : SourceSet) (bound : Alpha)
-    (boundIsSourceUpperBound : bound ∈ UpperBounds sourceRelation subset) :
-    bound ∈ (LRA.Map.Preimage.Preimage map
-      (LowerBounds targetRelation
-        (LRA.Map.Image.Image map subset : TargetSet) : TargetSet) : SourceSet) := by
+    (bound : Alpha)
+    (boundIsSourceUpperBound : UpperBound sourceRelation subset bound)
+    : LRA.Function.PreimageClass map
+      (fun output => LowerBound targetRelation imageSet output) bound := by
   sorry
 
-/-- `AntitoneImageLowerBoundsIntoUpperBounds`
-
-Statement: The image of source lower bounds lies in the upper bounds of the image.
-
-Logical form: `Image f (LowerBounds r A) ⊆ UpperBounds s (Image f A)`. -/
+/-- The image of the source lower bounds lies in the upper bounds of the image. -/
 theorem AntitoneImageLowerBoundsIntoUpperBounds
-    {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
-    [Membership Alpha SourceSet] [Membership Beta TargetSet]
-    [HasSeparation Alpha SourceSet] [HasUniversal SourceSet]
-    [HasSeparation Beta TargetSet] [HasUniversal TargetSet]
-    [HasComplement SourceSet] [HasComplement TargetSet]
-    [SeparationLaws Alpha SourceSet] [UniversalMembershipLaws Alpha SourceSet]
-    [SeparationLaws Beta TargetSet] [UniversalMembershipLaws Beta TargetSet]
-    {sourceRelation : LRA.Relation.Endorelation Alpha}
-    {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha -> Beta}
+    (subset : SourceSet) (imageSet : TargetSet)
+    (representsImage :
+      Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset)))
     (mapIsAntitone : Antitone sourceRelation targetRelation map)
-    (subset : SourceSet) (output : Beta)
-    (outputIsImageOfLowerBound : output ∈ (LRA.Map.Image.Image map
-      (LowerBounds sourceRelation subset : SourceSet) : TargetSet)) :
-    output ∈ UpperBounds targetRelation
-      (LRA.Map.Image.Image map subset : TargetSet) := by
+    (output : Beta)
+    (outputIsImageOfLowerBound :
+      LRA.Function.ImageClass map
+        (fun input => LowerBound sourceRelation subset input) output)
+    : UpperBound targetRelation imageSet output := by
   sorry
 
-/-- `AntitoneLowerBoundsPreimageUpperBoundsContainment`
-
-Statement: Source lower bounds lie in the preimage of the image's upper bounds.
-
-Logical form: `LowerBounds r A ⊆ Preimage f (UpperBounds s (Image f A))`. -/
+/-- Source lower bounds lie in the preimage of the image upper bounds. -/
 theorem AntitoneLowerBoundsPreimageUpperBoundsContainment
-    {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
-    [Membership Alpha SourceSet] [Membership Beta TargetSet]
-    [HasSeparation Alpha SourceSet] [HasUniversal SourceSet]
-    [HasSeparation Beta TargetSet] [HasUniversal TargetSet]
-    [HasComplement SourceSet] [HasComplement TargetSet]
-    [SeparationLaws Alpha SourceSet] [UniversalMembershipLaws Alpha SourceSet]
-    [SeparationLaws Beta TargetSet] [UniversalMembershipLaws Beta TargetSet]
-    {sourceRelation : LRA.Relation.Endorelation Alpha}
-    {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha -> Beta}
+    (subset : SourceSet) (imageSet : TargetSet)
+    (representsImage :
+      Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset)))
     (mapIsAntitone : Antitone sourceRelation targetRelation map)
-    (subset : SourceSet) (bound : Alpha)
-    (boundIsSourceLowerBound : bound ∈ LowerBounds sourceRelation subset) :
-    bound ∈ (LRA.Map.Preimage.Preimage map
-      (UpperBounds targetRelation
-        (LRA.Map.Image.Image map subset : TargetSet) : TargetSet) : SourceSet) := by
+    (bound : Alpha)
+    (boundIsSourceLowerBound : LowerBound sourceRelation subset bound)
+    : LRA.Function.PreimageClass map
+      (fun output => UpperBound targetRelation imageSet output) bound := by
   sorry
 
 end LRA.Order

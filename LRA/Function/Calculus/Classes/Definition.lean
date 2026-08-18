@@ -86,4 +86,33 @@ def IsFiberClassOf {Domain : Type u} {Codomain : Type v}
     (output : Codomain) : Prop :=
   ∀ input, fiber input ↔ FiberClass function output input
 
+/-!
+Carrying an explicit domain or codomain *object*.
+
+`DomainType` and `CodomainType` recover the declared types of an arrow. These two
+classes are for the different situation where a map-like object carries a set
+object as its domain or codomain, which an arrow does not do by itself.
+-/
+
+/-- A map-like object carries an explicit domain object. -/
+class HasDomain (FunctionObject : Type u) (DomainObject : outParam (Type v)) where
+  domain : FunctionObject → DomainObject
+
+/-- A map-like object carries an explicit codomain object. -/
+class HasCodomain (FunctionObject : Type u) (CodomainObject : outParam (Type v)) where
+  codomain : FunctionObject → CodomainObject
+
+/-- The declared domain object of a map-like object. -/
+def DomainObjectOf {FunctionObject : Type u} {DomainObject : Type v}
+    [HasDomain FunctionObject DomainObject]
+    (functionObject : FunctionObject) : DomainObject :=
+  HasDomain.domain functionObject
+
+/-- The declared codomain object of a map-like object. -/
+def CodomainObjectOf {FunctionObject : Type u} {CodomainObject : Type v}
+    [HasCodomain FunctionObject CodomainObject]
+    (functionObject : FunctionObject) : CodomainObject :=
+  HasCodomain.codomain functionObject
+
+
 end LRA.Function

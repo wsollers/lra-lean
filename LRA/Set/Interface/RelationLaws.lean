@@ -435,6 +435,333 @@ theorem AppliedToUnique
     AppliedTo relation input hits = output := by
   sorry
 
+/-!
+## Image and preimage algebra
+
+These laws are **relation-general**: functionality appears nowhere in their
+statements, and each is true of an arbitrary relation. They were previously
+stated only at the function level, over `Graph f`, in `LRA/VolumeI/Map/`; that
+made them recognizable restatements of results belonging here, so §7.1.2
+relocates them to the level at which they actually hold.
+
+The laws that are *not* here are exactly the ones that fail for a general
+relation: preimage of an intersection, difference, complement, or symmetric
+difference all need single-valuedness, and preimage of the ambient needs
+totality, because `PreimageOf` is existential. Those stay at the function
+level, stated through `Graph`.
+-/
+
+section ImageAlgebra
+
+variable {Left Right Pair : Type u}
+variable {RelationObject DomainObject RangeObject : Type v}
+variable [HasPairing Left Right Pair] [Membership Pair RelationObject]
+variable [Membership Left DomainObject] [Membership Right RangeObject]
+variable [HasSeparation Right RangeObject] [SeparationLaws Right RangeObject]
+variable [ExtensionalityLaw Right RangeObject]
+
+/-- The image of a union is the union of the images. -/
+theorem ImageOfUnion
+    [Union DomainObject] [Inter DomainObject] [SDiff DomainObject]
+    [EmptyCollection DomainObject] [HasSubset DomainObject]
+    [Union RangeObject] [Inter RangeObject] [SDiff RangeObject]
+    [EmptyCollection RangeObject] [HasSubset RangeObject]
+    [MembershipLaws Left DomainObject] [MembershipLaws Right RangeObject]
+    (relation : RelationObject) (left right : DomainObject)
+    (ambientRange : RangeObject) :
+    ImageOf relation (left ∪ right) ambientRange =
+      ImageOf relation left ambientRange ∪ ImageOf relation right ambientRange := by
+  sorry
+
+/-- The image of the empty set of inputs is empty. -/
+theorem ImageOfEmpty
+    [Union DomainObject] [Inter DomainObject] [SDiff DomainObject]
+    [EmptyCollection DomainObject] [HasSubset DomainObject]
+    [Union RangeObject] [Inter RangeObject] [SDiff RangeObject]
+    [EmptyCollection RangeObject] [HasSubset RangeObject]
+    [MembershipLaws Left DomainObject] [MembershipLaws Right RangeObject]
+    (relation : RelationObject) (ambientRange : RangeObject) :
+    ImageOf relation (∅ : DomainObject) ambientRange = (∅ : RangeObject) := by
+  sorry
+
+/-- Image is monotone in the set of inputs. -/
+theorem ImageOfMonotone [HasSubset DomainObject] [HasSubset RangeObject]
+    (relation : RelationObject) (smaller larger : DomainObject)
+    (ambientRange : RangeObject) (inclusion : smaller ⊆ larger) :
+    ImageOf relation smaller ambientRange ⊆ ImageOf relation larger ambientRange := by
+  sorry
+
+/-- The image of an intersection is contained in the intersection of the images.
+Equality needs left-uniqueness of the relation, so only this direction is general. -/
+theorem ImageOfIntersectionSubset
+    [Inter DomainObject] [Inter RangeObject] [HasSubset RangeObject]
+    (relation : RelationObject) (left right : DomainObject)
+    (ambientRange : RangeObject) :
+    ImageOf relation (left ∩ right) ambientRange ⊆
+      ImageOf relation left ambientRange ∩ ImageOf relation right ambientRange := by
+  sorry
+
+/-- The difference of images is contained in the image of the difference. -/
+theorem DifferenceOfImagesSubsetImageOfDifference
+    [SDiff DomainObject] [SDiff RangeObject] [HasSubset RangeObject]
+    (relation : RelationObject) (left right : DomainObject)
+    (ambientRange : RangeObject) :
+    ImageOf relation left ambientRange \ ImageOf relation right ambientRange ⊆
+      ImageOf relation (left \ right) ambientRange := by
+  sorry
+
+/-- The image of an indexed union is the indexed union of the images. -/
+theorem ImageOfIndexedUnion {Index : Type u}
+    [HasIndexedUnion DomainObject] [HasIndexedUnion RangeObject]
+    (relation : RelationObject) (family : Index → DomainObject)
+    (ambientRange : RangeObject) :
+    ImageOf relation (HasIndexedUnion.indexedUnion family) ambientRange =
+      HasIndexedUnion.indexedUnion
+        (fun index => ImageOf relation (family index) ambientRange) := by
+  sorry
+
+/-- The image of an indexed intersection is contained in the indexed
+intersection of the images. -/
+theorem ImageOfIndexedIntersectionSubset {Index : Type u}
+    [HasIndexedIntersection DomainObject] [HasIndexedIntersection RangeObject]
+    [HasSubset RangeObject]
+    (relation : RelationObject) (family : Index → DomainObject)
+    (ambientRange : RangeObject) :
+    ImageOf relation (HasIndexedIntersection.indexedIntersection family) ambientRange ⊆
+      HasIndexedIntersection.indexedIntersection
+        (fun index => ImageOf relation (family index) ambientRange) := by
+  sorry
+
+/-- The image of a countable union is the countable union of the images. -/
+theorem ImageOfCountableUnion
+    [HasCountableUnion DomainObject] [HasCountableUnion RangeObject]
+    (relation : RelationObject) (family : Nat → DomainObject)
+    (ambientRange : RangeObject) :
+    ImageOf relation (HasCountableUnion.countableUnion family) ambientRange =
+      HasCountableUnion.countableUnion
+        (fun index => ImageOf relation (family index) ambientRange) := by
+  sorry
+
+/-- The image of a countable intersection is contained in the countable
+intersection of the images. -/
+theorem ImageOfCountableIntersectionSubset
+    [HasCountableIntersection DomainObject] [HasCountableIntersection RangeObject]
+    [HasSubset RangeObject]
+    (relation : RelationObject) (family : Nat → DomainObject)
+    (ambientRange : RangeObject) :
+    ImageOf relation (HasCountableIntersection.countableIntersection family) ambientRange ⊆
+      HasCountableIntersection.countableIntersection
+        (fun index => ImageOf relation (family index) ambientRange) := by
+  sorry
+
+/-- Relations relating the same pairs have the same images. -/
+theorem ImageOfCongrRelation
+    (first second : RelationObject) (inputs : DomainObject)
+    (ambientRange : RangeObject)
+    (sameRelation : ∀ (input : Left) (output : Right),
+      Relates first input output ↔ Relates second input output) :
+    ImageOf first inputs ambientRange = ImageOf second inputs ambientRange := by
+  sorry
+
+/-- Equal sets of inputs have equal images. -/
+theorem ImageOfCongrInputs
+    (relation : RelationObject) (left right : DomainObject)
+    (ambientRange : RangeObject)
+    (sameInputs : ∀ input : Left, input ∈ left ↔ input ∈ right) :
+    ImageOf relation left ambientRange = ImageOf relation right ambientRange := by
+  sorry
+
+end ImageAlgebra
+
+section PreimageAlgebra
+
+variable {Left Right Pair : Type u}
+variable {RelationObject DomainObject RangeObject : Type v}
+variable [HasPairing Left Right Pair] [Membership Pair RelationObject]
+variable [Membership Left DomainObject] [Membership Right RangeObject]
+variable [HasSeparation Left DomainObject] [SeparationLaws Left DomainObject]
+variable [ExtensionalityLaw Left DomainObject]
+
+/-- The preimage of a union is the union of the preimages. -/
+theorem PreimageOfUnion
+    [Union DomainObject] [Inter DomainObject] [SDiff DomainObject]
+    [EmptyCollection DomainObject] [HasSubset DomainObject]
+    [Union RangeObject] [Inter RangeObject] [SDiff RangeObject]
+    [EmptyCollection RangeObject] [HasSubset RangeObject]
+    [MembershipLaws Left DomainObject] [MembershipLaws Right RangeObject]
+    (relation : RelationObject) (left right : RangeObject)
+    (ambientDomain : DomainObject) :
+    PreimageOf relation (left ∪ right) ambientDomain =
+      PreimageOf relation left ambientDomain ∪
+        PreimageOf relation right ambientDomain := by
+  sorry
+
+/-- The preimage of the empty set of outputs is empty. -/
+theorem PreimageOfEmpty
+    [Union DomainObject] [Inter DomainObject] [SDiff DomainObject]
+    [EmptyCollection DomainObject] [HasSubset DomainObject]
+    [Union RangeObject] [Inter RangeObject] [SDiff RangeObject]
+    [EmptyCollection RangeObject] [HasSubset RangeObject]
+    [MembershipLaws Left DomainObject] [MembershipLaws Right RangeObject]
+    (relation : RelationObject) (ambientDomain : DomainObject) :
+    PreimageOf relation (∅ : RangeObject) ambientDomain = (∅ : DomainObject) := by
+  sorry
+
+/-- Preimage is monotone in the set of outputs. -/
+theorem PreimageOfMonotone [HasSubset DomainObject] [HasSubset RangeObject]
+    (relation : RelationObject) (smaller larger : RangeObject)
+    (ambientDomain : DomainObject) (inclusion : smaller ⊆ larger) :
+    PreimageOf relation smaller ambientDomain ⊆
+      PreimageOf relation larger ambientDomain := by
+  sorry
+
+/-- A preimage is contained in the ambient domain it was separated from. -/
+theorem PreimageOfSubsetAmbient [HasSubset DomainObject]
+    (relation : RelationObject) (outputs : RangeObject)
+    (ambientDomain : DomainObject) :
+    PreimageOf relation outputs ambientDomain ⊆ ambientDomain := by
+  sorry
+
+/-- The preimage of an indexed union is the indexed union of the preimages. -/
+theorem PreimageOfIndexedUnion {Index : Type u}
+    [HasIndexedUnion DomainObject] [HasIndexedUnion RangeObject]
+    (relation : RelationObject) (family : Index → RangeObject)
+    (ambientDomain : DomainObject) :
+    PreimageOf relation (HasIndexedUnion.indexedUnion family) ambientDomain =
+      HasIndexedUnion.indexedUnion
+        (fun index => PreimageOf relation (family index) ambientDomain) := by
+  sorry
+
+/-- The preimage of a countable union is the countable union of the preimages. -/
+theorem PreimageOfCountableUnion
+    [HasCountableUnion DomainObject] [HasCountableUnion RangeObject]
+    (relation : RelationObject) (family : Nat → RangeObject)
+    (ambientDomain : DomainObject) :
+    PreimageOf relation (HasCountableUnion.countableUnion family) ambientDomain =
+      HasCountableUnion.countableUnion
+        (fun index => PreimageOf relation (family index) ambientDomain) := by
+  sorry
+
+/-- Relations relating the same pairs have the same preimages. -/
+theorem PreimageOfCongrRelation
+    (first second : RelationObject) (outputs : RangeObject)
+    (ambientDomain : DomainObject)
+    (sameRelation : ∀ (input : Left) (output : Right),
+      Relates first input output ↔ Relates second input output) :
+    PreimageOf first outputs ambientDomain =
+      PreimageOf second outputs ambientDomain := by
+  sorry
+
+/-- Equal sets of outputs have equal preimages. -/
+theorem PreimageOfCongrOutputs
+    (relation : RelationObject) (left right : RangeObject)
+    (ambientDomain : DomainObject)
+    (sameOutputs : ∀ output : Right, output ∈ left ↔ output ∈ right) :
+    PreimageOf relation left ambientDomain =
+      PreimageOf relation right ambientDomain := by
+  sorry
+
+end PreimageAlgebra
+
+section CompositionAndIdentity
+
+/-- The image under a composite relation is the image of the image. -/
+theorem ImageOfCompositionOf
+    {Left Mid Right : Type u} {FirstPair SecondPair CompositePair : Type u}
+    {FirstObject SecondObject CompositeObject : Type v}
+    {DomainObject MidObject RangeObject : Type v}
+    [HasPairing Left Mid FirstPair] [HasPairing Mid Right SecondPair]
+    [HasPairing Left Right CompositePair]
+    [Membership FirstPair FirstObject] [Membership SecondPair SecondObject]
+    [Membership CompositePair CompositeObject]
+    [Membership Left DomainObject] [Membership Mid MidObject]
+    [Membership Right RangeObject]
+    [HasSeparation Mid MidObject] [HasSeparation Right RangeObject]
+    [ExtensionalityLaw Right RangeObject]
+    (first : FirstObject) (second : SecondObject) (composite : CompositeObject)
+    (inputs : DomainObject) (ambientMid : MidObject) (ambientRange : RangeObject)
+    (isComposite : ∀ (input : Left) (output : Right),
+      Relates composite input output ↔
+        ∃ middle : Mid, Relates first input middle ∧ Relates second middle output) :
+    ImageOf composite inputs ambientRange =
+      ImageOf second (ImageOf first inputs ambientMid) ambientRange := by
+  sorry
+
+/-- The preimage under a composite relation is the preimage of the preimage. -/
+theorem PreimageOfCompositionOf
+    {Left Mid Right : Type u} {FirstPair SecondPair CompositePair : Type u}
+    {FirstObject SecondObject CompositeObject : Type v}
+    {DomainObject MidObject RangeObject : Type v}
+    [HasPairing Left Mid FirstPair] [HasPairing Mid Right SecondPair]
+    [HasPairing Left Right CompositePair]
+    [Membership FirstPair FirstObject] [Membership SecondPair SecondObject]
+    [Membership CompositePair CompositeObject]
+    [Membership Left DomainObject] [Membership Mid MidObject]
+    [Membership Right RangeObject]
+    [HasSeparation Left DomainObject] [HasSeparation Mid MidObject]
+    [ExtensionalityLaw Left DomainObject]
+    (first : FirstObject) (second : SecondObject) (composite : CompositeObject)
+    (outputs : RangeObject) (ambientDomain : DomainObject) (ambientMid : MidObject)
+    (isComposite : ∀ (input : Left) (output : Right),
+      Relates composite input output ↔
+        ∃ middle : Mid, Relates first input middle ∧ Relates second middle output) :
+    PreimageOf composite outputs ambientDomain =
+      PreimageOf first (PreimageOf second outputs ambientMid) ambientDomain := by
+  sorry
+
+/-- The preimage under a composite relation is monotone in the set of outputs. -/
+theorem PreimageOfCompositionMonotone
+    {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}
+    [HasPairing Left Right Pair] [Membership Pair RelationObject]
+    [Membership Left DomainObject] [Membership Right RangeObject]
+    [HasSeparation Left DomainObject] [HasSubset DomainObject] [HasSubset RangeObject]
+    (composite : RelationObject) (smaller larger : RangeObject)
+    (ambientDomain : DomainObject) (inclusion : smaller ⊆ larger) :
+    PreimageOf composite smaller ambientDomain ⊆
+      PreimageOf composite larger ambientDomain := by
+  sorry
+
+/-- The image under an identity relation is the set of inputs itself. -/
+theorem ImageOfIdentityOn
+    {Left Pair : Type u} {RelationObject DomainObject : Type v}
+    [HasPairing Left Left Pair] [Membership Pair RelationObject]
+    [Membership Left DomainObject]
+    [HasSeparation Left DomainObject] [ExtensionalityLaw Left DomainObject]
+    (identity : RelationObject) (inputs ambientDomain : DomainObject)
+    (isIdentity : ∀ leftElement rightElement : Left,
+      Relates identity leftElement rightElement ↔ leftElement = rightElement)
+    (inputsInAmbient : ∀ input : Left, input ∈ inputs → input ∈ ambientDomain) :
+    ImageOf identity inputs ambientDomain = inputs := by
+  sorry
+
+/-- The preimage under an identity relation is the set of outputs itself. -/
+theorem PreimageOfIdentityOn
+    {Left Pair : Type u} {RelationObject DomainObject : Type v}
+    [HasPairing Left Left Pair] [Membership Pair RelationObject]
+    [Membership Left DomainObject]
+    [HasSeparation Left DomainObject] [ExtensionalityLaw Left DomainObject]
+    (identity : RelationObject) (outputs ambientDomain : DomainObject)
+    (isIdentity : ∀ leftElement rightElement : Left,
+      Relates identity leftElement rightElement ↔ leftElement = rightElement)
+    (outputsInAmbient : ∀ output : Left, output ∈ outputs → output ∈ ambientDomain) :
+    PreimageOf identity outputs ambientDomain = outputs := by
+  sorry
+
+/-- The preimage of a singleton-like set of outputs is the fiber over it. -/
+theorem PreimageOfSingletonIsFiberOf
+    {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}
+    [HasPairing Left Right Pair] [Membership Pair RelationObject]
+    [Membership Left DomainObject] [Membership Right RangeObject]
+    [HasSeparation Left DomainObject] [ExtensionalityLaw Left DomainObject]
+    (relation : RelationObject) (outputs : RangeObject) (output : Right)
+    (ambientDomain : DomainObject)
+    (isSingleton : ∀ candidate : Right, candidate ∈ outputs ↔ candidate = output) :
+    PreimageOf relation outputs ambientDomain =
+      FiberOf relation output ambientDomain := by
+  sorry
+
+end CompositionAndIdentity
+
 end RelationLaws
 
 end LRA.Set

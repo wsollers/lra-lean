@@ -1,9 +1,26 @@
 import LRA.Order.Morphisms.OrderEmbedding.Theorems
-import LRA.VolumeI.Map.Image.All
-import LRA.VolumeI.Map.Preimage.All
-import LRA.VolumeI.Order.Bounds.BoundSets.Theorems
+import LRA.Order.Bounds.BoundSets.Theorems
 import LRA.Order.Bounds.GreatestElement.Definition
 import LRA.Order.Bounds.LeastElement.Definition
+import LRA.Order.Bounds.Supremum.Definition
+import LRA.Order.Bounds.Infimum.Definition
+import LRA.Order.Bounds.UpperBound.Definition
+import LRA.Order.Bounds.LowerBound.Definition
+import LRA.Function.Calculus.Classes.Definition
+import LRA.Set.SetClass.Representation
+import LRA.Relation.Operations.Converse.Definition
+
+/-!
+Order transport across a morphism, for set-backed bounds.
+
+The image is supplied as a *representing set object* rather than built by
+separation from a universal set. The previous form separated from `𝒰`, which
+required `HasUniversal` — a capability only the predicate-set backends register
+— so those statements silently did not apply to the ZFC or `ZFSet` backends.
+Taking a representative instead states the same mathematics against every
+backend, and routes the image through `LRA.Function.ImageClass`, which is the
+`LRA.Relation` calculus applied to the function's graph.
+-/
 
 namespace LRA.Order
 
@@ -11,128 +28,78 @@ open LRA.Set
 
 universe u v w x
 
-/-- `OrderEmbeddingSendsUpperBoundToImageUpperBound`
+variable {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
+variable [Membership Alpha SourceSet] [Membership Beta TargetSet]
+variable {sourceRelation : LRA.Relation.Endorelation Alpha}
+variable {targetRelation : LRA.Relation.Endorelation Beta}
+variable {map : Alpha → Beta}
 
-Statement: An order embedding transports upper bounds to upper bounds of direct images.
-
-Logical form: `OrderEmbedding r s f → UpperBound r A b → UpperBound s (Image f A) (f b)`. -/
+/-- An order embedding sends an upper bound to an upper bound of the image. -/
 theorem OrderEmbeddingSendsUpperBoundToImageUpperBound
-    {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
-    [Membership Alpha SourceSet] [Membership Beta TargetSet]
-    [HasSeparation Beta TargetSet] [HasUniversal TargetSet]
-    [HasComplement TargetSet] [SeparationLaws Beta TargetSet]
-    [UniversalMembershipLaws Beta TargetSet]
-    {sourceRelation : LRA.Relation.Endorelation Alpha}
-    {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha -> Beta}
+    (subset : SourceSet) (imageSet : TargetSet)
+    (representsImage :
+      Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset)))
     (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map)
-    {subset : SourceSet} {bound : Alpha}
-    (boundIsUpper : UpperBound sourceRelation subset bound) :
-    UpperBound targetRelation (LRA.Map.Image.Image map subset : TargetSet) (map bound) := by
+    {bound : Alpha}
+    (boundIsUpper : UpperBound sourceRelation subset bound)
+    : UpperBound targetRelation imageSet (map bound) := by
   sorry
 
-/-- `OrderEmbeddingSendsLowerBoundToImageLowerBound`
-
-Statement: An order embedding transports lower bounds to lower bounds of direct images.
-
-Logical form: `OrderEmbedding r s f → LowerBound r A b → LowerBound s (Image f A) (f b)`. -/
+/-- An order embedding sends a lower bound to a lower bound of the image. -/
 theorem OrderEmbeddingSendsLowerBoundToImageLowerBound
-    {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
-    [Membership Alpha SourceSet] [Membership Beta TargetSet]
-    [HasSeparation Beta TargetSet] [HasUniversal TargetSet]
-    [HasComplement TargetSet] [SeparationLaws Beta TargetSet]
-    [UniversalMembershipLaws Beta TargetSet]
-    {sourceRelation : LRA.Relation.Endorelation Alpha}
-    {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha -> Beta}
+    (subset : SourceSet) (imageSet : TargetSet)
+    (representsImage :
+      Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset)))
     (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map)
-    {subset : SourceSet} {bound : Alpha}
-    (boundIsLower : LowerBound sourceRelation subset bound) :
-    LowerBound targetRelation (LRA.Map.Image.Image map subset : TargetSet) (map bound) := by
+    {bound : Alpha}
+    (boundIsLower : LowerBound sourceRelation subset bound)
+    : LowerBound targetRelation imageSet (map bound) := by
   sorry
 
-/-- `OrderEmbeddingUpperBoundsPreimageIff`
-
-Statement: An embedding characterizes source upper bounds by a preimage of target upper bounds.
-
-Logical form: `b ∈ UpperBounds r A ↔ b ∈ Preimage f (UpperBounds s (Image f A))`. -/
+/-- For an order embedding, being a source upper bound is exactly lying in the preimage of the image upper bounds. -/
 theorem OrderEmbeddingUpperBoundsPreimageIff
-    {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
-    [Membership Alpha SourceSet] [Membership Beta TargetSet]
-    [HasSeparation Alpha SourceSet] [HasUniversal SourceSet]
-    [HasSeparation Beta TargetSet] [HasUniversal TargetSet]
-    [HasComplement SourceSet] [HasComplement TargetSet]
-    [SeparationLaws Alpha SourceSet] [UniversalMembershipLaws Alpha SourceSet]
-    [SeparationLaws Beta TargetSet] [UniversalMembershipLaws Beta TargetSet]
-    {sourceRelation : LRA.Relation.Endorelation Alpha}
-    {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha -> Beta}
+    (subset : SourceSet) (imageSet : TargetSet)
+    (representsImage :
+      Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset)))
     (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map)
-    (subset : SourceSet) (bound : Alpha) :
-    bound ∈ UpperBounds sourceRelation subset ↔
-      bound ∈ (LRA.Map.Preimage.Preimage map
-        (UpperBounds targetRelation
-          (LRA.Map.Image.Image map subset : TargetSet) : TargetSet) : SourceSet) := by
+    (bound : Alpha)
+    : UpperBound sourceRelation subset bound ↔
+      LRA.Function.PreimageClass map
+        (fun output => UpperBound targetRelation imageSet output) bound := by
   sorry
 
-/-- `OrderEmbeddingLowerBoundsPreimageIff`
-
-Statement: An embedding characterizes source lower bounds by a preimage of target lower bounds.
-
-Logical form: `b ∈ LowerBounds r A ↔ b ∈ Preimage f (LowerBounds s (Image f A))`. -/
+/-- For an order embedding, being a source lower bound is exactly lying in the preimage of the image lower bounds. -/
 theorem OrderEmbeddingLowerBoundsPreimageIff
-    {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
-    [Membership Alpha SourceSet] [Membership Beta TargetSet]
-    [HasSeparation Alpha SourceSet] [HasUniversal SourceSet]
-    [HasSeparation Beta TargetSet] [HasUniversal TargetSet]
-    [HasComplement SourceSet] [HasComplement TargetSet]
-    [SeparationLaws Alpha SourceSet] [UniversalMembershipLaws Alpha SourceSet]
-    [SeparationLaws Beta TargetSet] [UniversalMembershipLaws Beta TargetSet]
-    {sourceRelation : LRA.Relation.Endorelation Alpha}
-    {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha -> Beta}
+    (subset : SourceSet) (imageSet : TargetSet)
+    (representsImage :
+      Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset)))
     (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map)
-    (subset : SourceSet) (bound : Alpha) :
-    bound ∈ LowerBounds sourceRelation subset ↔
-      bound ∈ (LRA.Map.Preimage.Preimage map
-        (LowerBounds targetRelation
-          (LRA.Map.Image.Image map subset : TargetSet) : TargetSet) : SourceSet) := by
+    (bound : Alpha)
+    : LowerBound sourceRelation subset bound ↔
+      LRA.Function.PreimageClass map
+        (fun output => LowerBound targetRelation imageSet output) bound := by
   sorry
 
-/-- `OrderEmbeddingPreservesGreatestElement`
-
-Statement: An order embedding transports greatest elements to greatest elements of images.
-
-Logical form: `OrderEmbedding r s f → GreatestElement r A g → GreatestElement s (Image f A) (f g)`. -/
+/-- An order embedding carries a greatest element to a greatest element of the image. -/
 theorem OrderEmbeddingPreservesGreatestElement
-    {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
-    [Membership Alpha SourceSet] [Membership Beta TargetSet]
-    [HasSeparation Beta TargetSet] [HasUniversal TargetSet]
-    [HasComplement TargetSet] [SeparationLaws Beta TargetSet]
-    [UniversalMembershipLaws Beta TargetSet]
-    {sourceRelation : LRA.Relation.Endorelation Alpha}
-    {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha -> Beta}
+    (subset : SourceSet) (imageSet : TargetSet)
+    (representsImage :
+      Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset)))
     (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map)
-    {subset : SourceSet} {greatest : Alpha}
-    (greatestIsGreatest : GreatestElement sourceRelation subset greatest) :
-    GreatestElement targetRelation
-      (LRA.Map.Image.Image map subset : TargetSet) (map greatest) := by
+    {greatest : Alpha}
+    (greatestIsGreatest : GreatestElement sourceRelation subset greatest)
+    : GreatestElement targetRelation imageSet (map greatest) := by
   sorry
 
-/-- `OrderEmbeddingPreservesLeastElement`
-
-Statement: An order embedding transports least elements to least elements of images.
-
-Logical form: `OrderEmbedding r s f → LeastElement r A l → LeastElement s (Image f A) (f l)`. -/
+/-- An order embedding carries a least element to a least element of the image. -/
 theorem OrderEmbeddingPreservesLeastElement
-    {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
-    [Membership Alpha SourceSet] [Membership Beta TargetSet]
-    [HasSeparation Beta TargetSet] [HasUniversal TargetSet]
-    [HasComplement TargetSet] [SeparationLaws Beta TargetSet]
-    [UniversalMembershipLaws Beta TargetSet]
-    {sourceRelation : LRA.Relation.Endorelation Alpha}
-    {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha -> Beta}
+    (subset : SourceSet) (imageSet : TargetSet)
+    (representsImage :
+      Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset)))
     (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map)
-    {subset : SourceSet} {least : Alpha}
-    (leastIsLeast : LeastElement sourceRelation subset least) :
-    LeastElement targetRelation
-      (LRA.Map.Image.Image map subset : TargetSet) (map least) := by
+    {least : Alpha}
+    (leastIsLeast : LeastElement sourceRelation subset least)
+    : LeastElement targetRelation imageSet (map least) := by
   sorry
 
 end LRA.Order
