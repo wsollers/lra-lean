@@ -753,9 +753,38 @@ counts. Do not assume the proportions; the name overlap is suggestive, not proof
 
 | Bucket | Action |
 |---|---|
-| a restatement of a `RelationSets` fact at the function level | delete; the relation-level fact already covers it |
-| a genuine function-level specialization | state it in `LRA/Function/Calculus/` **through `Graph`**, one line, deriving from the relation-level result |
+| a restatement of an existing `RelationSets` or `RelationLaws` fact | delete; the relation-level fact already covers it |
+| relation-general — the statement never mentions functionality | **relocate to `LRA/Set/Interface/RelationLaws.lean`, restated over a general relation**, not over `Graph f`. See §7.1.2 |
+| genuinely functional — the statement needs single-valuedness or totality | state in `LRA/Function/Calculus/` **through `Graph`** |
 | genuinely new mathematics with no relation-level analogue | keep, in `LRA/Function/Calculus/`, with a note saying why it has no analogue |
+
+#### 7.1.2 Sort bucket 2 by generality before placing it
+
+Most of the function-level algebra is relation-level mathematics wearing a
+function costume. Image-of-union, preimage-of-complement, monotonicity, and the
+image–preimage adjunction hold for **arbitrary relations**; functionality appears
+nowhere in their statements. Only the injectivity-conditioned laws and the
+kernel-quotient material genuinely need it.
+
+So for each theorem ask the deciding question:
+
+> Does the statement mention single-valuedness or totality, explicitly or through
+> a hypothesis that implies it?
+
+If not, it belongs at the relation level, stated over a general relation.
+Restating it over `Graph f` produces a theorem that becomes a recognizable
+restatement the moment the relation-level law is added — the duplication this
+migration removes, deferred by one phase.
+
+**This is relocation, not new surface.** `LRA/Set/Interface/RelationLaws.lean`
+already owns `MemberOfImageOf`, `MemberOfPreimageOf`, and `MemberOfFiberOf` —
+membership characterizations of precisely these constructions. A relation-general
+image law is that file's next theorem, not an expansion of another subject's
+API. Adding it there does not trigger the §7.1.1 stop condition and is not §7.2
+work.
+
+Leave every relocated statement `sorry`. Report the split: how many of bucket 2
+were relation-general and how many genuinely functional.
 
 If the audit shows `LRA.Set.Interface.RelationSets` and `LRA.Relation.Calculus`
 themselves overlap, record it and stop — that is a separate duplicate-ownership
