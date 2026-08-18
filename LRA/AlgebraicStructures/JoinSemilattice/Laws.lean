@@ -1,4 +1,4 @@
 import LRA.AlgebraicStructures.JoinSemilattice.Laws.Definition
 import LRA.AlgebraicStructures.JoinSemilattice.Laws.Consequences
 
-/-! Aggregate import for algebraic join-semilattice laws. -/
+/-! Canonical import route for join-semilattice law certificates. -/

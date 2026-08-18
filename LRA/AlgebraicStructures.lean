@@ -16,7 +16,7 @@ import LRA.AlgebraicStructures.DivisionRing.All
 import LRA.AlgebraicStructures.Field.All
 import LRA.AlgebraicStructures.Group
 import LRA.AlgebraicStructures.IntegralDomain.All
-import LRA.AlgebraicStructures.JoinSemilattice.All
+import LRA.AlgebraicStructures.JoinSemilattice
 import LRA.AlgebraicStructures.Lattice.All
 import LRA.AlgebraicStructures.LinearlyOrderedGroup
 import LRA.AlgebraicStructures.LinearlyOrderedRing.All

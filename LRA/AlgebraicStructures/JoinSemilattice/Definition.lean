@@ -1,7 +1,11 @@
 import LRA.AlgebraicStructures.JoinSemilattice.Laws.Definition
+import LRA.UniversalAlgebra.InterpretedOperationBundles
 
 namespace LRA.AlgebraicStructures
 
-/-! JoinSemilattice definition module. -/
+/-- The algebraic signature of a join semilattice: one binary join operation. -/
+structure JoinSemilatticeConceptSignature extends
+    LRA.UniversalAlgebra.InterpretedOperationBundles.CarrierBundle where
+  join : LRA.Operation.BinaryOperation carrier
 
 end LRA.AlgebraicStructures
