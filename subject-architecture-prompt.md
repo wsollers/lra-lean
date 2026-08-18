@@ -9,8 +9,11 @@ description in any generated `namespace-review.md`. Where a doc-comment inside
 the repository contradicts this document, the doc-comment is stale and must be
 corrected as part of the work.
 
-Do not preserve obsolete names with compatibility aliases. Do not commit or push
-unless the user separately authorizes that action. **Do not complete proofs.
+**Do not preserve obsolete names with compatibility aliases, re-exports, or
+forwarding abbreviations.** The previous migration was given this instruction and
+left roughly 100 aliases anyway; §7.0 audits and removes them, and §7.0.1 states
+the standing rule. Do not commit or push unless the user separately authorizes
+that action. **Do not complete proofs.
 Leave every proof as `sorry`. Proofs belong to the author.**
 
 ---
@@ -471,6 +474,87 @@ instances where a local `letI` or an explicit conversion theorem is the policy.
 
 ## 7. The migration work
 
+### 7.0 First: audit the previous migration and delete its shims
+
+**Do this before touching anything else, and report the result before
+continuing.** An earlier migration was instructed not to leave compatibility
+aliases and left a large layer of them anyway. Until it is removed, every
+subsequent measurement of "one canonical owner" is wrong, because each aliased
+name has two.
+
+Verify each of the following on the current branch and record counts before and
+after:
+
+**A. The `LRA.Set.Enderton` alias surface.** `LRA/Set/ZFC/Compatibility.lean`
+declares `namespace LRA.Set.Enderton` as a "temporary compatibility surface for
+the pre-standardization Enderton namespace", and 24 files carry that namespace
+with roughly 84 `abbrev` aliases pointing at `LRA.Set.ZFC.*`. Delete the whole
+surface, including the per-theorem "Compatibility aliases for the historical
+Enderton … names" sections in `LRA/Set/ZFC/**/Theorems.lean`. Repoint every
+consumer at the canonical `LRA.Set.ZFC` name.
+
+**B. The old `LRA/VolumeI/Map/` alias tree.** Of its 28 `Definition.lean` files,
+18 are pure aliases of the form
+
+```lean
+/-- Historical typed-map spelling of canonical function injectivity. -/
+abbrev Injective (map : TypedMap Domain Codomain) : Prop :=
+  LRA.Function.Injective (LRA.Function.OfTypedFunction map)
+```
+
+Delete them. Delete `LRA/VolumeI/Map.lean`, which describes itself as a
+"compatibility/curricular aggregate for historical `Map` paths". The only
+content of that tree that survives is the morphism material, which moves to
+`LRA.Morphism` per §7.1.
+
+**C. `Historical` markers inside the canonical subjects.** `LRA/Function/SetTheoretic/`
+carries "Historical terminology", "Historical accessor", "Historical theorem
+names", and "Historical extensionality theorem name"; `LRA/Set/ZFC/Public.lean`
+carries one more. These are aliases living *inside* the new canonical subject,
+which is worse than a shim in a legacy directory because nothing marks them as
+temporary from the outside. Delete each and repoint its consumers.
+
+**D. "Compatibility aggregate" routers.** `LRA/Function/Calculus/Definition.lean`
+and `LRA/Function/Calculus/Theorems.lean` exist only to re-export. A group
+router aggregates; a file named `Definition.lean` that defines nothing is a
+shim. Fold them into the group router or delete them.
+
+**E. Confirm the migration's substantive claims.** For each subject already
+promoted, check that the promotion actually happened rather than being mirrored:
+no declaration exists at both the old and the new path; the old path is deleted
+rather than re-exporting; and the subject's router reaches every one of its
+concept files.
+
+Report, before doing any further work: the count of aliases found, the count
+deleted, and any alias you propose to keep with the mathematical reason. An
+alias kept for convenience is not a reason.
+
+### 7.0.1 Standing rule: never generate a compatibility layer
+
+This applies to this migration and to every future one.
+
+- **Do not create an alias, re-export, or forwarding `abbrev` for a name you
+  moved or renamed.** Move the declaration and update every consumer in the same
+  change. This repository is small enough that a rename is a mechanical
+  find-and-replace, and it is one commit either way.
+- **Do not keep a directory alive to preserve its import path.** Delete it and
+  fix the imports.
+- **Do not add a file whose only content is re-exporting another file**, unless
+  it is a router as defined in §2.1, which aggregates a group and is named for
+  the group rather than for a file role.
+- **Do not mark anything "historical", "legacy", "deprecated", "temporary", or
+  "awaiting migration" in place of finishing the move.** Those words are a
+  request for someone else to finish your work, and the evidence above is what
+  happens when nobody does.
+- If a move genuinely cannot be completed in one change, **stop and report the
+  blocker** rather than landing a shim. A blocked move that is reported is
+  recoverable; a shim that is landed becomes permanent.
+
+The only permitted synonym is a **mathematically intentional** one — a second
+name that mathematics itself uses for the same object, such as
+`LRA.Order.TotalOrder` for `LRA.Order.LinearOrder`. Each must be justified in
+the review by the mathematics, not by migration history.
+
 ### 7.1 Gather into subjects
 
 For each item below, move the declarations to the named owner, update every
@@ -546,8 +630,16 @@ The effort succeeds only when **all** of these hold.
   specialization is definitional or by `extends`.
 - No top-level `LRA.Interop`; every adapter sits in its subject's `Interop` group.
 - Every public declaration has exactly one canonical owner.
-- No `_root_` declarations; no compatibility aliases except
-  `LRA.Order.TotalOrder`.
+- No `_root_` declarations.
+- **Zero compatibility aliases, re-exports, or forwarding abbreviations.**
+  Specifically: `LRA.Set.Enderton` does not exist; no declaration is reachable at
+  both an old and a new path; no file exists whose only content is re-exporting
+  another; and no declaration or module comment contains "historical", "legacy",
+  "deprecated", "temporary", or "awaiting migration".
+- The only synonyms are mathematically intentional ones, each justified in the
+  review by the mathematics rather than by migration history.
+  `LRA.Order.TotalOrder` for `LRA.Order.LinearOrder` is the one currently
+  approved.
 
 ### B. Structure and naming
 
@@ -562,7 +654,16 @@ The effort succeeds only when **all** of these hold.
 - No case-insensitive collisions except intentional type/value pairs, each
   documented in the review.
 
-### C. Verification
+### C. Previous-migration cleanup
+
+- The §7.0 audit was run and its before/after counts reported.
+- Every alias found was deleted or explicitly justified mathematically.
+- `LRA/VolumeI/Map/` and `LRA/VolumeI/Map.lean` no longer exist.
+- `LRA/Set/ZFC/Compatibility.lean` no longer exists.
+- Grepping the tree for `Historical`, `Compatibility alias`, `deprecated`, and
+  `awaiting migration` returns zero hits in `*.lean`.
+
+### D. Verification
 
 - `lake build` succeeds.
 - `lake build` of every volume library and the test library succeeds.
@@ -587,17 +688,20 @@ The effort succeeds only when **all** of these hold.
 
 Report:
 
-1. the final subject architecture and the group layout of each subject;
-2. every declaration moved, merged, internalized, deleted, or deliberately kept,
+1. the §7.0 audit: aliases found, aliases deleted, and any kept with its
+   mathematical justification;
+2. the final subject architecture and the group layout of each subject;
+3. every declaration moved, merged, internalized, deleted, or deliberately kept,
    with the reason;
-3. the `Relation → Function → Morphism` specialization points, naming each
+4. the `Relation → Function → Morphism` specialization points, naming each
    concept that `Function` and `Morphism` inherit rather than restate;
-4. naming and notation conversions applied, with counts;
-5. the doc-comment decision and the linter change that enforces it;
-6. subjects, groups, and routers added or removed;
-7. modules brought under a build gate, and any deleted instead;
-8. inventory counts and checksum;
-9. every verification command and its result;
-10. any remaining blocker or deliberately deferred decision.
+5. naming and notation conversions applied, with counts;
+6. router module comments added, and confirmation that no declaration
+   doc-comment was deleted while relocating a declaration;
+7. subjects, groups, and routers added or removed;
+8. modules brought under a build gate, and any deleted instead;
+9. inventory counts and checksum;
+10. every verification command and its result;
+11. any remaining blocker or deliberately deferred decision.
 
 Do not describe the effort as complete unless every acceptance gate passes.
