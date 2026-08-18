@@ -1,12 +1,10 @@
 import LRA.AlgebraicStructures.CommutativeMonoid.Laws.Definition
+import LRA.AlgebraicStructures.Monoid.Definition
 
 namespace LRA.AlgebraicStructures
 
-/-!
-CommutativeMonoid Definition module.
-
-This file is reserved for definition whose natural owner is the named
-algebraic structure CommutativeMonoid. It intentionally contains no placeholder theorems.
--/
+/-- A commutative monoid has the monoid signature. -/
+abbrev CommutativeMonoidConceptSignature :=
+  MonoidConceptSignature
 
 end LRA.AlgebraicStructures
