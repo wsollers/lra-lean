@@ -1,8 +1,8 @@
 -- LRA/VolumeI/Set/ModelTheory/Language.lean
 -- The first-order language of membership, L_∈.
 
-import LRA.VolumeI.Logic.Language.FirstOrder.Signature
-import LRA.VolumeI.Logic.Syntax.FirstOrder.Sentence
+import LRA.Logic.Language.FirstOrder.Signature
+import LRA.Logic.Syntax.FirstOrder.Sentence
 
 namespace LRA.Set.ModelTheory
 

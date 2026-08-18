@@ -4,7 +4,7 @@
 import LRA.VolumeI.Set.ModelTheory.Axioms
 import LRA.VolumeI.Set.LRA.Set.ZFC.Instances
 import LRA.VolumeI.Set.LRA.Set.ZFC.Axioms.Axioms
-import LRA.VolumeI.Logic.Semantics.Satisfaction
+import LRA.Logic.Semantics.Satisfaction
 
 namespace LRA.Set.ModelTheory
 

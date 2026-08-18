@@ -1,7 +1,7 @@
 import LRA.VolumeI.UniversalAlgebra.Signature
-import LRA.VolumeI.Logic.Model.Model
-import LRA.VolumeI.Logic.Syntax.Term
-import LRA.VolumeI.Logic.Semantics.TermEvaluation
+import LRA.Logic.Model.Model
+import LRA.Logic.Syntax.Term
+import LRA.Logic.Semantics.TermEvaluation
 
 namespace LRA.UniversalAlgebra
 

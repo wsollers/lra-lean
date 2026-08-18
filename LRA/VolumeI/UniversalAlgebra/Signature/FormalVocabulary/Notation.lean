@@ -1,4 +1,4 @@
-import LRA.VolumeI.Logic.Language.Notation
+import LRA.Logic.Language.Notation
 
 namespace LRA.UniversalAlgebra.Signature.FormalVocabulary
 

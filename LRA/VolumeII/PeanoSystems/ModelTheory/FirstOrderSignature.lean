@@ -1,4 +1,4 @@
-import LRA.VolumeI.Logic.Model.Model
+import LRA.Logic.Model.Model
 import LRA.Operation
 import LRA.VolumeI.AlgebraicStructures.DiscreteInteger.Laws.Definition
 

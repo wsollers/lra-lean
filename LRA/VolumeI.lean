@@ -1,4 +1,4 @@
-import LRA.VolumeI.Logic
+import LRA.Logic
 import LRA.VolumeI.Set
 import LRA.Operation
 import LRA.Order

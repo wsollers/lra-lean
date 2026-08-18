@@ -1,6 +1,6 @@
 import LRA.Identity.Model.LStructure
 import LRA.Identity.Model.Theory
-import LRA.VolumeI.Logic.Model.Model
+import LRA.Logic.Model.Model
 
 namespace LRA.Identity
 

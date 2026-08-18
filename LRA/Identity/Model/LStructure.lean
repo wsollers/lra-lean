@@ -1,5 +1,5 @@
-import LRA.VolumeI.Logic.Language.FirstOrder.Signature
-import LRA.VolumeI.Logic.Language.Notation.LogicalSymbols
+import LRA.Logic.Language.FirstOrder.Signature
+import LRA.Logic.Language.Notation.LogicalSymbols
 
 namespace LRA.Identity
 

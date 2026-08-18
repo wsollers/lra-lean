@@ -1,4 +1,4 @@
-import LRA.VolumeI.Logic.Language.FirstOrder.Signature
+import LRA.Logic.Language.FirstOrder.Signature
 
 /-!
 First-order signature data for Presburger arithmetic.
