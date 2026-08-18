@@ -1,5 +1,5 @@
 import LRA.VolumeI.Operations.Definition
-import LRA.VolumeI.Map.Bijective.Definition
+import LRA.VolumeI.Function.Bijective.Definition
 import LRA.VolumeI.Operations.Laws.Associative.Definition
 import LRA.VolumeI.Operations.Laws.Identity.Definition
 import LRA.VolumeI.Operations.Laws.Inverse.Definition
@@ -8,74 +8,74 @@ namespace LRA.Operation
 
 universe u v
 
-section EndomapComposition
+section EndofunctionComposition
 
 /--
-**[Theorem — EndomapCompositionAssociative]**
+**[Theorem — EndofunctionCompositionAssociative]**
 
-Endomap composition is associative.
+Endofunction composition is associative.
 
 Logical form:
 
 ```lean
-theorem EndomapCompositionAssociative (Carrier : Type u) :
+theorem EndofunctionCompositionAssociative (Carrier : Type u) :
     LRA.Operation.Laws.Associative.Associative
-      (EndomapComposition Carrier)
+      (EndofunctionComposition Carrier)
 ```
 -/
-theorem EndomapCompositionAssociative (Carrier : Type u) :
+theorem EndofunctionCompositionAssociative (Carrier : Type u) :
     LRA.Operation.Laws.Associative.Associative
-      (EndomapComposition Carrier) := by
+      (EndofunctionComposition Carrier) := by
   sorry
 
 /--
-**[Theorem — EndomapCompositionIdentity]**
+**[Theorem — EndofunctionCompositionIdentity]**
 
-The identity map is a two-sided identity for endomap composition.
+The identity map is a two-sided identity for endofunction composition.
 
 Logical form:
 
 ```lean
-theorem EndomapCompositionIdentity (Carrier : Type u) :
+theorem EndofunctionCompositionIdentity (Carrier : Type u) :
     LRA.Operation.Laws.Identity.TwoSidedIdentity
-      (EndomapComposition Carrier)
-      (EndomapIdentity Carrier)
+      (EndofunctionComposition Carrier)
+      (EndofunctionIdentity Carrier)
 ```
 -/
-theorem EndomapCompositionIdentity (Carrier : Type u) :
+theorem EndofunctionCompositionIdentity (Carrier : Type u) :
     LRA.Operation.Laws.Identity.TwoSidedIdentity
-      (EndomapComposition Carrier)
-      (EndomapIdentity Carrier) := by
+      (EndofunctionComposition Carrier)
+      (EndofunctionIdentity Carrier) := by
   sorry
 
 /--
-**[Theorem — BijectiveEndomapHasCompositionInverse]**
+**[Theorem — BijectiveEndofunctionHasCompositionInverse]**
 
-A bijective endomap has a two-sided inverse element under endomap
+A bijective endofunction has a two-sided inverse element under endofunction
 composition.
 
 Logical form:
 
 ```lean
-theorem BijectiveEndomapHasCompositionInverse
+theorem BijectiveEndofunctionHasCompositionInverse
     {Carrier : Type u}
     (map : Carrier -> Carrier)
-    (bijective : LRA.Map.Bijective.Bijective map) :
+    (bijective : LRA.Function.Bijective.Bijective map) :
     exists inverse : Carrier -> Carrier,
-      EndomapComposition Carrier inverse map = EndomapIdentity Carrier /\
-        EndomapComposition Carrier map inverse = EndomapIdentity Carrier
+      EndofunctionComposition Carrier inverse map = EndofunctionIdentity Carrier /\
+        EndofunctionComposition Carrier map inverse = EndofunctionIdentity Carrier
 ```
 -/
-theorem BijectiveEndomapHasCompositionInverse
+theorem BijectiveEndofunctionHasCompositionInverse
     {Carrier : Type u}
     (map : Carrier -> Carrier)
-    (bijective : LRA.Map.Bijective.Bijective map) :
+    (bijective : LRA.Function.Bijective.Bijective map) :
     exists inverse : Carrier -> Carrier,
-      EndomapComposition Carrier inverse map = EndomapIdentity Carrier /\
-        EndomapComposition Carrier map inverse = EndomapIdentity Carrier := by
+      EndofunctionComposition Carrier inverse map = EndofunctionIdentity Carrier /\
+        EndofunctionComposition Carrier map inverse = EndofunctionIdentity Carrier := by
   sorry
 
-end EndomapComposition
+end EndofunctionComposition
 
 section PointwiseOperations
 

@@ -247,15 +247,15 @@ than fabricated inventory rows. Current unmatched candidates: `{len(source_only)
 
 ## Map and relation foundations
 
-`LRA.Map.Typed.TypedMap (Domain : Type u) (Codomain : Type v)` is the typed
+`LRA.Function (Domain : Type u) (Codomain : Type v)` is the typed
 representation. The foundational set-theoretic representation is a separate
-domain/codomain/graph triple plus `IsSetTheoreticMap`, whose clauses enforce
+domain/codomain/graph triple plus `IsSetTheoreticFunction`, whose clauses enforce
 graph closure, total evaluation, and unique values. A parallel bundled
 set-theoretic relation triple records graph typing without the function laws.
 Evaluation existence/uniqueness and map extensionality are provided.
 
 There is exactly one typed-to-set representation theorem family,
-`LRA.Map.SetTheoretic.TypedMapGraphRepresentation`. It requires explicit backend
+`LRA.Function.SetTheoretic.TypedFunctionGraphRepresentation`. It requires explicit backend
 element and object types, ordered-pair and separation operations and laws,
 domain/codomain encodings, encoding injectivity/coverage, an ambient pair set,
 and graph-pair existence. It constructs a set-theoretic map and proves its
