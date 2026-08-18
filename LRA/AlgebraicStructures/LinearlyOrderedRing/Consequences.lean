@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.LinearlyOrderedRing.Laws.All
+import LRA.AlgebraicStructures.LinearlyOrderedRing.Laws
 
 namespace LRA.AlgebraicStructures
 

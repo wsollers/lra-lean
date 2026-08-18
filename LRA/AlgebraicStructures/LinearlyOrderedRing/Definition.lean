@@ -1,7 +1,10 @@
 import LRA.AlgebraicStructures.LinearlyOrderedRing.Laws.Definition
+import LRA.AlgebraicStructures.OrderedRing.Definition
 
 namespace LRA.AlgebraicStructures
 
-/-! LinearlyOrderedRing definition module. -/
+/-- A linearly ordered ring has the ordered-ring algebraic signature. -/
+abbrev LinearlyOrderedRingConceptSignature :=
+  OrderedRingConceptSignature
 
 end LRA.AlgebraicStructures
