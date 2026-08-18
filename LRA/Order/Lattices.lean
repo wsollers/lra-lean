@@ -11,9 +11,6 @@ import LRA.Order.Lattices.Lattice.Theorems
 import LRA.Order.Lattices.DistributiveLattice.Definition
 import LRA.Order.Lattices.DistributiveLattice.Theorems
 import LRA.Order.Lattices.CompleteLattice.Definition
+import LRA.Order.Lattices.CompleteLattice.Theorems
 
-/-!
-Canonical lattice vocabulary, structural hierarchy, and backend-neutral theorem
-surface. Complete-lattice theorems that require represented-set capabilities
-remain separate until their Set-law imports are canonicalized explicitly.
--/
+/-! Canonical lattice vocabulary, structural hierarchy, and theorem surface. -/
