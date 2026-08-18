@@ -1,7 +1,6 @@
 import LRA.VolumeI.AlgebraicStructures.Semiring.Laws.Definition
-import LRA.VolumeI.Order.Laws.LinearOrder.Definition
-import LRA.VolumeI.Order.Laws.OperationCompatibility.Definition
-
+import LRA.Order.Laws.LinearOrder.Definition
+import LRA.Order.Laws.OperationCompatibility.Definition
 namespace LRA.AlgebraicStructures
 
 open LRA.Order

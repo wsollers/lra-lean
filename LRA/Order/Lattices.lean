@@ -12,5 +12,10 @@ import LRA.Order.Lattices.DistributiveLattice.Definition
 import LRA.Order.Lattices.DistributiveLattice.Theorems
 import LRA.Order.Lattices.CompleteLattice.Definition
 import LRA.Order.Lattices.CompleteLattice.Theorems
+import LRA.Order.Lattices.CompleteLattice.Relationships
+import LRA.Order.Lattices.Join.Relationships
+import LRA.Order.Lattices.Lattice.Consequences
+import LRA.Order.Lattices.Lattice.Relationships
+import LRA.Order.Lattices.Meet.Relationships
 
 /-! Canonical lattice vocabulary, structural hierarchy, and theorem surface. -/

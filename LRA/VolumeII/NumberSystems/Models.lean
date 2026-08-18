@@ -4,8 +4,7 @@
 import LRA.VolumeI.AlgebraicStructures.OrderedRing.ModelTheory.ModelBuilder
 import LRA.VolumeI.AlgebraicStructures.OrderedField.ModelTheory.ModelBuilder
 import LRA.VolumeI.AlgebraicStructures
-import LRA.VolumeI.Order
-
+import LRA.Order
 namespace LRA.NumberSystems.Models
 
 open LRA.AlgebraicStructures

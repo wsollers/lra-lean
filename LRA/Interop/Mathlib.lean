@@ -1,4 +1,5 @@
-import LRA.VolumeI.Order.Interoperability
+import LRA.Order.Interop.Mathlib
+import LRA.Order.Interop.AlgebraicLattice
 import LRA.VolumeVII.WithMathlib
 
 /-! Canonical import route for durable Mathlib interoperability. -/

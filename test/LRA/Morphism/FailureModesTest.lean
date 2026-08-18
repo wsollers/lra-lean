@@ -12,9 +12,11 @@ import LRA.Function.Operations.Composition.FailureModes
 import LRA.Function.Calculus.Restriction.FailureModes
 import LRA.Function.Examples.Canonical
 import LRA.Function.Examples.FailureModes
+import LRA.Order.Examples
+import LRA.Order.FailureModes
 
 /-!
-Build gate for the `LRA.Morphism` and `LRA.Function` failure-mode leaves.
+Build gate for the quarantined leaves of `LRA.Morphism`, `LRA.Function`, and `LRA.Order`.
 
 `Examples.lean` and `FailureModes.lean` are quarantined leaves: no core `Definition`, `Theorems`, or
 router may import them, so the group routers do not. Importing them from here

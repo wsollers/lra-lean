@@ -34,6 +34,11 @@ import LRA.Order.Bounds.LeastUpperBoundProperty.Theorems
 import LRA.Order.Bounds.LeastUpperBoundProperty.CompletenessLaws
 import LRA.Order.Bounds.GreatestLowerBoundProperty.Definition
 import LRA.Order.Bounds.GreatestLowerBoundProperty.Theorems
+import LRA.Order.Bounds.BoundSets.Relationships
+import LRA.Order.Bounds.Infimum.Relationships
+import LRA.Order.Bounds.LowerBound.Relationships
+import LRA.Order.Bounds.Supremum.Relationships
+import LRA.Order.Bounds.UpperBound.Relationships
 
 /-!
 Canonical foundational bounds vocabulary, theorem surface, and backend-relative

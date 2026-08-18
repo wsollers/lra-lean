@@ -1,7 +1,6 @@
 import LRA.VolumeI.AlgebraicStructures.Group.Laws.Definition
-import LRA.VolumeI.Order.Laws.PartialOrder.Definition
-import LRA.VolumeI.Order.Laws.OperationCompatibility.Definition
-
+import LRA.Order.Laws.PartialOrder.Definition
+import LRA.Order.Laws.OperationCompatibility.Definition
 namespace LRA.AlgebraicStructures
 
 universe u

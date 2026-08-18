@@ -3,6 +3,6 @@ import LRA.VolumeI.Identity
 import LRA.VolumeI.Set
 import LRA.VolumeI.Relations
 import LRA.VolumeI.Operations
-import LRA.VolumeI.Order
+import LRA.Order
 import LRA.VolumeI.UniversalAlgebra
 import LRA.VolumeI.AlgebraicStructures

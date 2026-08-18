@@ -1,6 +1,5 @@
 import LRA.VolumeI.AlgebraicStructures.OrderedRing.Laws.Definition
-import LRA.VolumeI.Order.Laws.LinearOrder.Definition
-
+import LRA.Order.Laws.LinearOrder.Definition
 namespace LRA.AlgebraicStructures
 
 universe u
