@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.DiscreteInteger.Laws.All
+import LRA.AlgebraicStructures.DiscreteInteger.Laws
 
 namespace LRA.AlgebraicStructures
 
