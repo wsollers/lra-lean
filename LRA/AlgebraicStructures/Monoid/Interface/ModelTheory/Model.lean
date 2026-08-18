@@ -1,25 +1,23 @@
-import LRA.AlgebraicStructures.Monoid.ModelTheory.FirstOrderSignature
+import LRA.AlgebraicStructures.Monoid.Definition
+import LRA.AlgebraicStructures.Monoid.Interface.Signature.Definition
 import LRA.Operation
 
-namespace LRA.AlgebraicStructures.Monoid.ModelTheory
+namespace LRA.AlgebraicStructures.Monoid.Interface.ModelTheory
 
 universe u
 
 /-! Law-free model builders for the first-order monoid language. -/
 
-structure MonoidSignature where
-  carrier : Type u
-  one : LRA.Operation.NullaryOperation carrier
-  multiplication : LRA.Operation.BinaryOperation carrier
+open LRA.AlgebraicStructures.Monoid.Interface.Signature
 
 def BuildMonoidModel
-    (signature : MonoidSignature) :
+    (signature : LRA.AlgebraicStructures.MonoidConceptSignature) :
     LRA.Logic.FirstOrder.Model MonoidFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.one⟩
   interpretFunction
     | .mul, args =>
-        signature.multiplication (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+        signature.multiply (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
   interpretRelation := fun RelationSymbol => nomatch RelationSymbol
   interpretConstant
     | .one => signature.one
@@ -27,6 +25,6 @@ def BuildMonoidModel
 def monoidFirstOrderModel (R : Type u) [Mul R] [OfNat R 1] :
     LRA.Logic.FirstOrder.Model MonoidFirstOrderSignature :=
   BuildMonoidModel
-    { carrier := R, one := 1, multiplication := (· * ·) }
+    { carrier := R, one := 1, multiply := (· * ·) }
 
-end LRA.AlgebraicStructures.Monoid.ModelTheory
+end LRA.AlgebraicStructures.Monoid.Interface.ModelTheory

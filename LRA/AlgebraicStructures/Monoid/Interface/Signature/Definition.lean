@@ -1,6 +1,6 @@
 import LRA.AlgebraicStructures.Semigroup.Interface.Signature.Definition
 
-namespace LRA.AlgebraicStructures.Monoid.ModelTheory
+namespace LRA.AlgebraicStructures.Monoid.Interface.Signature
 
 /-!
 First-order signature for monoids.
@@ -28,4 +28,4 @@ def MonoidFirstOrderSignature : LRA.Logic.Signature where
   Relations := MonoidFirstOrderRelations
   Constants := MonoidConstantSymbol
 
-end LRA.AlgebraicStructures.Monoid.ModelTheory
+end LRA.AlgebraicStructures.Monoid.Interface.Signature

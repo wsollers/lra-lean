@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Monoid.ModelTheory.FirstOrderSignature
+import LRA.AlgebraicStructures.Monoid.Interface.Signature.Definition
 
 namespace LRA.AlgebraicStructures.Group.Interface.Signature
 
@@ -15,7 +15,7 @@ inductive GroupFunctionSymbol where
 def GroupRelationSymbol : Type := Empty
 
 abbrev GroupConstantSymbol :=
-  LRA.AlgebraicStructures.Monoid.ModelTheory.MonoidConstantSymbol
+  LRA.AlgebraicStructures.Monoid.Interface.Signature.MonoidConstantSymbol
 
 def GroupFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
   Symbol := GroupFunctionSymbol

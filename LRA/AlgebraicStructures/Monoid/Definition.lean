@@ -1,12 +1,11 @@
 import LRA.AlgebraicStructures.Monoid.Laws.Definition
+import LRA.UniversalAlgebra.InterpretedOperationBundles
 
 namespace LRA.AlgebraicStructures
 
-/-!
-Monoid Definition module.
-
-This file is reserved for definition whose natural owner is the named
-algebraic structure Monoid. It intentionally contains no placeholder theorems.
--/
+/-- The algebraic signature of a monoid: multiplication and one. -/
+structure MonoidConceptSignature extends
+    LRA.UniversalAlgebra.InterpretedOperationBundles.MultiplicativeOperationBundle where
+  one : carrier
 
 end LRA.AlgebraicStructures

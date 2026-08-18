@@ -22,7 +22,7 @@ import LRA.AlgebraicStructures.LinearlyOrderedGroup.All
 import LRA.AlgebraicStructures.LinearlyOrderedRing.All
 import LRA.AlgebraicStructures.Magma
 import LRA.AlgebraicStructures.MeetSemilattice.All
-import LRA.AlgebraicStructures.Monoid.All
+import LRA.AlgebraicStructures.Monoid
 import LRA.AlgebraicStructures.NontrivialRing.All
 import LRA.AlgebraicStructures.OrderedField.All
 import LRA.AlgebraicStructures.OrderedGroup.All

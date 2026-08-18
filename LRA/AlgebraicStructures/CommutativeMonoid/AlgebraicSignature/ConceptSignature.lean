@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Monoid.AlgebraicSignature.ConceptSignature
+import LRA.AlgebraicStructures.Monoid.Definition
 
 namespace LRA.AlgebraicStructures
 
