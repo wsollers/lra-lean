@@ -3,3 +3,5 @@ import LRA.AlgebraicStructures.OrderedSemiring.Laws.Characterizations
 import LRA.AlgebraicStructures.OrderedSemiring.Laws.Consequences
 import LRA.AlgebraicStructures.OrderedSemiring.Laws.Relationships
 import LRA.AlgebraicStructures.OrderedSemiring.Laws.Theorems
+
+/-! Canonical import route for ordered-semiring law certificates. -/

@@ -1,13 +1,14 @@
 import LRA.AlgebraicStructures.OrderedSemiring.Laws.Definition
+import LRA.AlgebraicStructures.Semiring.Definition
 
 namespace LRA.AlgebraicStructures
 
 /-!
-Primitive named-structure API for ordered semirings.
-
-The current representation is the law certificate `OrderedSemiringLaws` over a
-carrier with operations and an order. Additional bundled structure, if needed,
-belongs here.
+Algebraic signature for ordered semirings.
 -/
+
+/-- The enriched signature of an ordered semiring: semiring operations and an order relation. -/
+structure OrderedSemiringConceptSignature extends SemiringConceptSignature where
+  le : carrier → carrier → Prop
 
 end LRA.AlgebraicStructures

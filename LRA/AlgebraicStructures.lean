@@ -27,7 +27,7 @@ import LRA.AlgebraicStructures.NontrivialRing.All
 import LRA.AlgebraicStructures.OrderedField.All
 import LRA.AlgebraicStructures.OrderedGroup
 import LRA.AlgebraicStructures.OrderedRing.All
-import LRA.AlgebraicStructures.OrderedSemiring.All
+import LRA.AlgebraicStructures.OrderedSemiring
 import LRA.AlgebraicStructures.Ring.All
 import LRA.AlgebraicStructures.Semigroup
 import LRA.AlgebraicStructures.Semiring

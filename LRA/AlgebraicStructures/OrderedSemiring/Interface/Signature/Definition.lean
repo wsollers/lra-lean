@@ -1,6 +1,6 @@
 import LRA.Logic.Model.Model
 
-namespace LRA.AlgebraicStructures.OrderedSemiring.ModelTheory
+namespace LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature
 
 /-!
 First-order signature for ordered semirings.
@@ -36,4 +36,4 @@ def OrderedSemiringFirstOrderSignature : LRA.Logic.Signature where
   Relations := OrderedSemiringFirstOrderRelations
   Constants := OrderedSemiringConstantSymbol
 
-end LRA.AlgebraicStructures.OrderedSemiring.ModelTheory
+end LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature
