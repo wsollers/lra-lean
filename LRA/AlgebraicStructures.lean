@@ -28,7 +28,7 @@ import LRA.AlgebraicStructures.OrderedField.All
 import LRA.AlgebraicStructures.OrderedGroup
 import LRA.AlgebraicStructures.OrderedRing.All
 import LRA.AlgebraicStructures.OrderedSemiring
-import LRA.AlgebraicStructures.Ring.All
+import LRA.AlgebraicStructures.Ring
 import LRA.AlgebraicStructures.Semigroup
 import LRA.AlgebraicStructures.Semiring
 import LRA.AlgebraicStructures.MathlibBridge

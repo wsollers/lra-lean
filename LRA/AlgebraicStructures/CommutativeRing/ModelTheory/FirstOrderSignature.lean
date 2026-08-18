@@ -1,25 +1,25 @@
-import LRA.AlgebraicStructures.Ring.ModelTheory.FirstOrderSignature
+import LRA.AlgebraicStructures.Ring.Interface.Signature.Definition
 
 namespace LRA.AlgebraicStructures.CommutativeRing.ModelTheory
 
 /-! Commutative rings use the ordinary ring first-order vocabulary. -/
 
 abbrev CommutativeRingFunctionSymbol :=
-  LRA.AlgebraicStructures.Ring.ModelTheory.RingFunctionSymbol
+  LRA.AlgebraicStructures.Ring.Interface.Signature.RingFunctionSymbol
 
 abbrev CommutativeRingRelationSymbol :=
-  LRA.AlgebraicStructures.Ring.ModelTheory.RingRelationSymbol
+  LRA.AlgebraicStructures.Ring.Interface.Signature.RingRelationSymbol
 
 abbrev CommutativeRingConstantSymbol :=
-  LRA.AlgebraicStructures.Ring.ModelTheory.RingConstantSymbol
+  LRA.AlgebraicStructures.Ring.Interface.Signature.RingConstantSymbol
 
 def CommutativeRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Ring.ModelTheory.RingFirstOrderFunctions
+  LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderFunctions
 
 def CommutativeRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Ring.ModelTheory.RingFirstOrderRelations
+  LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderRelations
 
 def CommutativeRingFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.Ring.ModelTheory.RingFirstOrderSignature
+  LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderSignature
 
 end LRA.AlgebraicStructures.CommutativeRing.ModelTheory

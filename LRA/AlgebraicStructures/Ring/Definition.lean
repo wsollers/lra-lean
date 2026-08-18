@@ -1,12 +1,10 @@
 import LRA.AlgebraicStructures.Ring.Laws.Definition
+import LRA.AlgebraicStructures.Semiring.Definition
 
 namespace LRA.AlgebraicStructures
 
-/-!
-Ring Definition module.
-
-This file is reserved for definition whose natural owner is the named
-algebraic structure Ring. It intentionally contains no placeholder theorems.
--/
+/-- The algebraic signature of a ring: semiring operations plus negation. -/
+structure RingConceptSignature extends SemiringConceptSignature where
+  neg : LRA.Operation.UnaryOperation carrier
 
 end LRA.AlgebraicStructures
