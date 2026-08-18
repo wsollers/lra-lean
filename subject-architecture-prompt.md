@@ -767,6 +767,31 @@ A concept directory whose definition is an alias is exactly the case where the
 theorems are *not* aliases: they were stated once, against the alias, and never
 restated anywhere else.
 
+**Sweep the alias surface separately, because it is not made of declarations.**
+Enumerating declarations cannot find a shim that declares nothing. The §7.0
+audit ran this rule and still left `LRA.Set.LRASet` in place — eight `Laws/`
+files each ending in an `export` block re-exporting some fifty names out of
+`LRA.Set.PredicateSet`, plus `abbrev LRASet := PredicateSet`, under doc-comments
+naming it "compatibility vocabulary for the pre-standardization `LRASet` name".
+Every declaration in those files had a canonical owner, so the audit passed
+them; the alias surface sat beside the declarations rather than among them.
+
+So run a second sweep for the constructs themselves, tree-wide:
+
+- `export` in any form. A re-export is a shim unless the second namespace is a
+  mathematically intentional synonym under §7.0.1, justified in the review by
+  the mathematics.
+- `abbrev` whose body is a single other name, and `notation`/`alias` doing the
+  same.
+- `open ... renaming`.
+- Doc-comments containing *compatibility*, *pre-standardization*, *legacy*,
+  *deprecated*, *historical*, or *awaiting migration*. Grep this literally, then
+  discard the mathematical uses by hand — "order compatibility" and "operation
+  compatibility" are real notions and dominate the raw hits.
+
+Report the surviving surface by construct and by name, the same as declarations.
+
+
 ### 7.1 Gather into subjects
 
 For each item below, move the declarations to the named owner, update every
@@ -916,6 +941,23 @@ Roughly 320 `Examples`, `AllWithExamples`, and `FailureModes` modules are
 compiled by no Lake target. Either wire each into a test-library module or delete
 it. Unverified Lean source is not an asset.
 
+**Do this before the Volume II–VII rows, not after them.** Gating one group —
+`LRA.Set.Interop`, reachable from no target — surfaced three latent defects the
+first time it compiled: two malformed imports of the form
+`import LRA.VolumeI.Set.LRA.Set.ZFC.Instances`, produced when an earlier phase's
+substitution intended for declaration text also matched import lines; an import
+of `LRA.Set.LRASet.Laws.Laws`, a path that has never existed; and a module
+importing the six adapters whose contents it is, with two theorems ordered
+before results they cite. All three were introduced *by* the migration, all
+three survived four phases, and none failed a build, because nothing compiled
+them.
+
+That is the argument for sequencing. Every remaining row repoints imports, an
+unbuilt module accepts a wrong repoint silently, and the defect is then
+attributed to whichever phase finally builds it. Closing the gap first converts
+each later row's mistakes into build failures in the commit that causes them.
+Wire the modules in before migrating through them.
+
 ### 7.4.1 Never remove a declaration with a regular expression
 
 Three declarations have been silently dropped in this migration by a
@@ -1055,8 +1097,12 @@ The effort succeeds only when **all** of these hold.
 - Every alias found was deleted or explicitly justified mathematically.
 - `LRA/VolumeI/Map/` and `LRA/VolumeI/Map.lean` no longer exist.
 - `LRA/Set/ZFC/Compatibility.lean` no longer exists.
-- Grepping the tree for `Historical`, `Compatibility alias`, `deprecated`, and
-  `awaiting migration` returns zero hits in `*.lean`.
+- Grepping the tree for `Historical`, `Compatibility alias`, `deprecated`,
+  `pre-standardization`, and `awaiting migration` returns zero hits in `*.lean`.
+- The alias-surface sweep of §7.0.3 was run. No `export`, single-name `abbrev`,
+  `alias`, or `open ... renaming` survives except ones justified in the review by
+  the mathematics. In particular `LRA.Set.LRASet` does not exist as a namespace,
+  an `abbrev`, or an export target.
 
 ### C.1 Reconcile per name, never by total
 
