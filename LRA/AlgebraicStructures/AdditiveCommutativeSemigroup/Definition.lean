@@ -1,12 +1,10 @@
 import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Laws.Definition
+import LRA.AlgebraicStructures.AdditiveSemigroup.Definition
 
 namespace LRA.AlgebraicStructures
 
-/-!
-AdditiveCommutativeSemigroup Definition module.
-
-This file is reserved for definition whose natural owner is the named
-algebraic structure AdditiveCommutativeSemigroup. It intentionally contains no placeholder theorems.
--/
+/-- A commutative additive semigroup has the additive semigroup signature. -/
+abbrev AdditiveCommutativeSemigroupConceptSignature :=
+  AdditiveSemigroupConceptSignature
 
 end LRA.AlgebraicStructures

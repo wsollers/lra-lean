@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Laws.All
+import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Laws
 
 namespace LRA.AlgebraicStructures
 
