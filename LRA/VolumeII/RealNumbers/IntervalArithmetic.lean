@@ -45,13 +45,13 @@ Logical form:
 def valid
     (real_model : RealModel)
     (interval : Interval real_model) : Prop :=
-  real_model.signature.NonstrictOrder interval.lower interval.upper
+  real_model.signature.le interval.lower interval.upper
 ```
 -/
 def valid
     (real_model : RealModel)
     (interval : Interval real_model) : Prop :=
-  real_model.signature.NonstrictOrder interval.lower interval.upper
+  real_model.signature.le interval.lower interval.upper
 
 /--
 **[Def — contains]**
@@ -66,16 +66,16 @@ def contains
     (real_model : RealModel)
     (interval : Interval real_model)
     (value : real_model.signature.carrier) : Prop :=
-  real_model.signature.NonstrictOrder interval.lower value ∧
-    real_model.signature.NonstrictOrder value interval.upper
+  real_model.signature.le interval.lower value ∧
+    real_model.signature.le value interval.upper
 ```
 -/
 def contains
     (real_model : RealModel)
     (interval : Interval real_model)
     (value : real_model.signature.carrier) : Prop :=
-  real_model.signature.NonstrictOrder interval.lower value ∧
-    real_model.signature.NonstrictOrder value interval.upper
+  real_model.signature.le interval.lower value ∧
+    real_model.signature.le value interval.upper
 
 /--
 **[Def — width]**
@@ -89,15 +89,15 @@ Logical form:
 def width
     (real_model : RealModel)
     (interval : Interval real_model) : real_model.signature.carrier :=
-  real_model.signature.addition interval.upper
-    (real_model.signature.negation interval.lower)
+  real_model.signature.add interval.upper
+    (real_model.signature.neg interval.lower)
 ```
 -/
 def width
     (real_model : RealModel)
     (interval : Interval real_model) : real_model.signature.carrier :=
-  real_model.signature.addition interval.upper
-    (real_model.signature.negation interval.lower)
+  real_model.signature.add interval.upper
+    (real_model.signature.neg interval.lower)
 
 /--
 **[Def — enclosure_addition]**
@@ -111,15 +111,15 @@ Logical form:
 def enclosure_addition
     (real_model : RealModel)
     (first second : Interval real_model) : Interval real_model where
-  lower := real_model.signature.addition first.lower second.lower
-  upper := real_model.signature.addition first.upper second.upper
+  lower := real_model.signature.add first.lower second.lower
+  upper := real_model.signature.add first.upper second.upper
 ```
 -/
 def enclosure_addition
     (real_model : RealModel)
     (first second : Interval real_model) : Interval real_model where
-  lower := real_model.signature.addition first.lower second.lower
-  upper := real_model.signature.addition first.upper second.upper
+  lower := real_model.signature.add first.lower second.lower
+  upper := real_model.signature.add first.upper second.upper
 
 /--
 **[Theorem — enclosure_addition_is_valid]**
@@ -193,7 +193,7 @@ structure EnclosesBinaryOperation
 /--
 **[Theorem — addition_enclosure_is_sound]**
 
-Mathematical statement (Lean): `theorem addition_enclosure_is_sound (real_model : RealModel) : EnclosesBinaryOperation real_model (enclosure_addition real_model) real_model.signature.addition`.
+Mathematical statement (Lean): `theorem addition_enclosure_is_sound (real_model : RealModel) : EnclosesBinaryOperation real_model (enclosure_addition real_model) real_model.signature.add`.
 
 *Proof status:* proof pending
 
@@ -205,14 +205,14 @@ theorem addition_enclosure_is_sound
     (real_model : RealModel) :
     EnclosesBinaryOperation real_model
       (enclosure_addition real_model)
-      real_model.signature.addition
+      real_model.signature.add
 ```
 -/
 theorem addition_enclosure_is_sound
     (real_model : RealModel) :
     EnclosesBinaryOperation real_model
       (enclosure_addition real_model)
-      real_model.signature.addition := by
+      real_model.signature.add := by
   sorry
 
 /--

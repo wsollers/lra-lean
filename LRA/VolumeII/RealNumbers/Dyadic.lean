@@ -309,7 +309,7 @@ Logical form:
 def IsDyadicRational (value : Rational dyadic_data) : Prop :=
   ∃ numerator : dyadic_data.integer_carrier,
     ∃ exponent : dyadic_data.whole_carrier,
-      value = dyadic_data.rational_model.signature.multiplication
+      value = dyadic_data.rational_model.signature.multiply
         (dyadic_data.integer_to_rational numerator)
         (dyadic_data.rational_model.signature.inverse
           (dyadic_data.power_of_two exponent))
@@ -318,7 +318,7 @@ def IsDyadicRational (value : Rational dyadic_data) : Prop :=
 def IsDyadicRational (value : Rational dyadic_data) : Prop :=
   ∃ numerator : dyadic_data.integer_carrier,
     ∃ exponent : dyadic_data.whole_carrier,
-      value = dyadic_data.rational_model.signature.multiplication
+      value = dyadic_data.rational_model.signature.multiply
         (dyadic_data.integer_to_rational numerator)
         (dyadic_data.rational_model.signature.inverse
           (dyadic_data.power_of_two exponent))
@@ -341,16 +341,16 @@ theorem dyadic_subring :
       IsDyadicRational dyadic_data first →
       IsDyadicRational dyadic_data second →
       IsDyadicRational dyadic_data
-        (dyadic_data.rational_model.signature.addition first second)) ∧
+        (dyadic_data.rational_model.signature.add first second)) ∧
     (∀ value : Rational dyadic_data,
       IsDyadicRational dyadic_data value →
       IsDyadicRational dyadic_data
-        (dyadic_data.rational_model.signature.negation value)) ∧
+        (dyadic_data.rational_model.signature.neg value)) ∧
     (∀ first second : Rational dyadic_data,
       IsDyadicRational dyadic_data first →
       IsDyadicRational dyadic_data second →
       IsDyadicRational dyadic_data
-        (dyadic_data.rational_model.signature.multiplication first second))
+        (dyadic_data.rational_model.signature.multiply first second))
 ```
 -/
 theorem dyadic_subring :
@@ -360,16 +360,16 @@ theorem dyadic_subring :
       IsDyadicRational dyadic_data first →
       IsDyadicRational dyadic_data second →
       IsDyadicRational dyadic_data
-        (dyadic_data.rational_model.signature.addition first second)) ∧
+        (dyadic_data.rational_model.signature.add first second)) ∧
     (∀ value : Rational dyadic_data,
       IsDyadicRational dyadic_data value →
       IsDyadicRational dyadic_data
-        (dyadic_data.rational_model.signature.negation value)) ∧
+        (dyadic_data.rational_model.signature.neg value)) ∧
     (∀ first second : Rational dyadic_data,
       IsDyadicRational dyadic_data first →
       IsDyadicRational dyadic_data second →
       IsDyadicRational dyadic_data
-        (dyadic_data.rational_model.signature.multiplication first second)) := by
+        (dyadic_data.rational_model.signature.multiply first second)) := by
   sorry
 
 
@@ -417,7 +417,7 @@ def fractional_partial_sum
     (bound : Nat) : Rational dyadic_data :=
   dyadic_data.finite_sum
     (fun index =>
-      dyadic_data.rational_model.signature.multiplication
+      dyadic_data.rational_model.signature.multiply
         (dyadic_data.digit_to_rational (digits index))
         (dyadic_data.rational_model.signature.inverse
           (dyadic_data.power_of_two (dyadic_data.exponent_of_index index))))
@@ -429,7 +429,7 @@ def fractional_partial_sum
     (bound : Nat) : Rational dyadic_data :=
   dyadic_data.finite_sum
     (fun index =>
-      dyadic_data.rational_model.signature.multiplication
+      dyadic_data.rational_model.signature.multiply
         (dyadic_data.digit_to_rational (digits index))
         (dyadic_data.rational_model.signature.inverse
           (dyadic_data.power_of_two (dyadic_data.exponent_of_index index))))

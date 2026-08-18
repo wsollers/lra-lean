@@ -318,7 +318,7 @@ def addition_lower_set (first second : Cut rational_model) : RationalSet rationa
     ∃ left right,
       contains rational_model first left ∧
       contains rational_model second right ∧
-      value = rational_model.signature.addition left right
+      value = rational_model.signature.add left right
 ```
 -/
 def addition_lower_set (first second : Cut rational_model) : RationalSet rational_model :=
@@ -326,7 +326,7 @@ def addition_lower_set (first second : Cut rational_model) : RationalSet rationa
     ∃ left right,
       contains rational_model first left ∧
       contains rational_model second right ∧
-      value = rational_model.signature.addition left right
+      value = rational_model.signature.add left right
 
 
 /-- Theorem 3.2: cut addition is closed.
@@ -395,7 +395,7 @@ def negation_lower_set (cut : Cut rational_model) : RationalSet rational_model :
     ∃ excluded,
       ¬ contains rational_model cut excluded ∧
       rational_model.signature.StrictOrder
-        value (rational_model.signature.negation excluded)
+        value (rational_model.signature.neg excluded)
 ```
 -/
 def negation_lower_set (cut : Cut rational_model) : RationalSet rational_model :=
@@ -403,7 +403,7 @@ def negation_lower_set (cut : Cut rational_model) : RationalSet rational_model :
     ∃ excluded,
       ¬ contains rational_model cut excluded ∧
       rational_model.signature.StrictOrder
-        value (rational_model.signature.negation excluded)
+        value (rational_model.signature.neg excluded)
 
 
 /-- Theorem 3.5: additive inverse is closed.
@@ -546,7 +546,7 @@ def nonnegative_product_lower_set
       rational_model.signature.StrictOrder rational_model.signature.zero left ∧
       rational_model.signature.StrictOrder rational_model.signature.zero right ∧
       rational_model.signature.StrictOrder
-        value (rational_model.signature.multiplication left right)
+        value (rational_model.signature.multiply left right)
 ```
 -/
 def nonnegative_product_lower_set
@@ -559,7 +559,7 @@ def nonnegative_product_lower_set
       rational_model.signature.StrictOrder rational_model.signature.zero left ∧
       rational_model.signature.StrictOrder rational_model.signature.zero right ∧
       rational_model.signature.StrictOrder
-        value (rational_model.signature.multiplication left right)
+        value (rational_model.signature.multiply left right)
 
 
 /-- Theorem 4.3: nonnegative multiplication is closed.

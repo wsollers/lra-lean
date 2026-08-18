@@ -33,19 +33,19 @@ structure RationalMetricData (rational_model : RationalModel) where
     absolute_value rational_model.signature.zero = rational_model.signature.zero
   absolute_value_negation :
     ∀ value,
-      absolute_value (rational_model.signature.negation value) =
+      absolute_value (rational_model.signature.neg value) =
         absolute_value value
   triangle_inequality :
     ∀ first second,
-      rational_model.signature.NonstrictOrder
+      rational_model.signature.le
         (absolute_value
-          (rational_model.signature.addition first second))
-        (rational_model.signature.addition
+          (rational_model.signature.add first second))
+        (rational_model.signature.add
           (absolute_value first)
           (absolute_value second))
   absolute_value_nonnegative :
     ∀ value,
-      rational_model.signature.NonstrictOrder
+      rational_model.signature.le
         rational_model.signature.zero
         (absolute_value value)
   absolute_value_eq_zero_iff :
@@ -61,19 +61,19 @@ structure RationalMetricData (rational_model : RationalModel) where
     absolute_value rational_model.signature.zero = rational_model.signature.zero
   absolute_value_negation :
     ∀ value,
-      absolute_value (rational_model.signature.negation value) =
+      absolute_value (rational_model.signature.neg value) =
         absolute_value value
   triangle_inequality :
     ∀ first second,
-      rational_model.signature.NonstrictOrder
+      rational_model.signature.le
         (absolute_value
-          (rational_model.signature.addition first second))
-        (rational_model.signature.addition
+          (rational_model.signature.add first second))
+        (rational_model.signature.add
           (absolute_value first)
           (absolute_value second))
   absolute_value_nonnegative :
     ∀ value,
-      rational_model.signature.NonstrictOrder
+      rational_model.signature.le
         rational_model.signature.zero
         (absolute_value value)
   absolute_value_eq_zero_iff :
@@ -383,7 +383,7 @@ def representative_addition
     (first second : Representative rational_model absolute_value_data) :
     Sequence rational_model :=
   fun index =>
-    rational_model.signature.addition
+    rational_model.signature.add
       (first.sequence index)
       (second.sequence index)
 ```
@@ -394,7 +394,7 @@ def representative_addition
     (first second : Representative rational_model absolute_value_data) :
     Sequence rational_model :=
   fun index =>
-    rational_model.signature.addition
+    rational_model.signature.add
       (first.sequence index)
       (second.sequence index)
 
@@ -413,7 +413,7 @@ def representative_negation
     (representative : Representative rational_model absolute_value_data) :
     Sequence rational_model :=
   fun index =>
-    rational_model.signature.negation (representative.sequence index)
+    rational_model.signature.neg (representative.sequence index)
 ```
 -/
 def representative_negation
@@ -422,7 +422,7 @@ def representative_negation
     (representative : Representative rational_model absolute_value_data) :
     Sequence rational_model :=
   fun index =>
-    rational_model.signature.negation (representative.sequence index)
+    rational_model.signature.neg (representative.sequence index)
 
 
 /-- Pointwise multiplication of rational-sequence representatives.
@@ -439,7 +439,7 @@ def representative_multiplication
     (first second : Representative rational_model absolute_value_data) :
     Sequence rational_model :=
   fun index =>
-    rational_model.signature.multiplication
+    rational_model.signature.multiply
       (first.sequence index)
       (second.sequence index)
 ```
@@ -450,7 +450,7 @@ def representative_multiplication
     (first second : Representative rational_model absolute_value_data) :
     Sequence rational_model :=
   fun index =>
-    rational_model.signature.multiplication
+    rational_model.signature.multiply
       (first.sequence index)
       (second.sequence index)
 

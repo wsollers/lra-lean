@@ -1,14 +1,14 @@
 -- LRA/VolumeII/NumberSystems/Models.lean
 -- Thin number-system model packages for Z, Q, and R.
 
-import LRA.AlgebraicStructures.OrderedRing.ModelTheory.ModelBuilder
+import LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory.Model
 import LRA.AlgebraicStructures.OrderedField.ModelTheory.ModelBuilder
 import LRA.AlgebraicStructures
 import LRA.Order
 namespace LRA.NumberSystems.Models
 
 open LRA.AlgebraicStructures
-open LRA.AlgebraicStructures.OrderedRing.ModelTheory
+open LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory
 open LRA.AlgebraicStructures.OrderedField.ModelTheory
 open LRA.Order
 
@@ -111,31 +111,16 @@ def IntegerModel.ofCarrier (R : Type u)
   { Carrier := R }
 
 /-- The derived operation bundle, for the first-order layer and
-signature-level consumers.
-
-Logical form:
-
-```lean
+signature-level consumers. -/
 def IntegerModel.signature (M : IntegerModel) : OrderedRingSignature where
   carrier := M.Carrier
   zero := 0
   one := 1
-  addition := (· + ·)
-  negation := (- ·)
-  multiplication := (· * ·)
+  add := (· + ·)
+  neg := (- ·)
+  multiply := (· * ·)
+  le := (· ≤ ·)
   StrictOrder := (· < ·)
-  NonstrictOrder := (· ≤ ·)
-```
--/
-def IntegerModel.signature (M : IntegerModel) : OrderedRingSignature where
-  carrier := M.Carrier
-  zero := 0
-  one := 1
-  addition := (· + ·)
-  negation := (- ·)
-  multiplication := (· * ·)
-  StrictOrder := (· < ·)
-  NonstrictOrder := (· ≤ ·)
 
 /-! ## The rational model: a densely ordered field -/
 
@@ -198,33 +183,17 @@ def RationalModel.ofCarrier (R : Type u)
     [DenseOrderLaw R] : RationalModel :=
   { Carrier := R }
 
-/-- The derived operation bundle.
-
-Logical form:
-
-```lean
+/-- The derived operation bundle. -/
 def RationalModel.signature (M : RationalModel) : OrderedFieldSignature where
   carrier := M.Carrier
   zero := 0
   one := 1
-  addition := (· + ·)
-  negation := (- ·)
-  multiplication := (· * ·)
+  add := (· + ·)
+  neg := (- ·)
+  multiply := (· * ·)
   inverse := (·⁻¹)
+  le := (· ≤ ·)
   StrictOrder := (· < ·)
-  NonstrictOrder := (· ≤ ·)
-```
--/
-def RationalModel.signature (M : RationalModel) : OrderedFieldSignature where
-  carrier := M.Carrier
-  zero := 0
-  one := 1
-  addition := (· + ·)
-  negation := (- ·)
-  multiplication := (· * ·)
-  inverse := (·⁻¹)
-  StrictOrder := (· < ·)
-  NonstrictOrder := (· ≤ ·)
 
 /-! ## The real model: a complete densely ordered field -/
 

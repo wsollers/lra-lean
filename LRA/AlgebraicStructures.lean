@@ -26,7 +26,7 @@ import LRA.AlgebraicStructures.Monoid
 import LRA.AlgebraicStructures.NontrivialRing
 import LRA.AlgebraicStructures.OrderedField.All
 import LRA.AlgebraicStructures.OrderedGroup
-import LRA.AlgebraicStructures.OrderedRing.All
+import LRA.AlgebraicStructures.OrderedRing
 import LRA.AlgebraicStructures.OrderedSemiring
 import LRA.AlgebraicStructures.Ring
 import LRA.AlgebraicStructures.Semigroup

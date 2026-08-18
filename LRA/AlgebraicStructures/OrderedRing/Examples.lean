@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.OrderedRing.All
+import LRA.AlgebraicStructures.OrderedRing
 
 namespace LRA.AlgebraicStructures
 

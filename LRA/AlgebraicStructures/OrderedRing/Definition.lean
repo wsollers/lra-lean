@@ -1,12 +1,10 @@
 import LRA.AlgebraicStructures.OrderedRing.Laws.Definition
+import LRA.AlgebraicStructures.Ring.Definition
 
 namespace LRA.AlgebraicStructures
 
-/-!
-OrderedRing Definition module.
-
-This file is reserved for definition whose natural owner is the named
-algebraic structure OrderedRing. It intentionally contains no placeholder theorems.
--/
+/-- The enriched signature of an ordered ring: ring operations and an order relation. -/
+structure OrderedRingConceptSignature extends RingConceptSignature where
+  le : carrier → carrier → Prop
 
 end LRA.AlgebraicStructures

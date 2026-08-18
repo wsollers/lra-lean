@@ -1,6 +1,6 @@
 import LRA.Logic.Model.Model
 
-namespace LRA.AlgebraicStructures.OrderedRing.ModelTheory
+namespace LRA.AlgebraicStructures.OrderedRing.Interface.Signature
 
 /-!
 First-order signature for ordered rings.
@@ -39,4 +39,4 @@ def OrderedRingFirstOrderSignature : LRA.Logic.Signature where
   Relations := OrderedRingFirstOrderRelations
   Constants := OrderedRingConstantSymbol
 
-end LRA.AlgebraicStructures.OrderedRing.ModelTheory
+end LRA.AlgebraicStructures.OrderedRing.Interface.Signature

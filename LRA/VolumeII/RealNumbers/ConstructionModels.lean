@@ -149,7 +149,7 @@ noncomputable def real_extension
 /--
 **[Theorem — reals_are_complete]**
 
-Mathematical statement (Lean): `theorem reals_are_complete (rational_model : RationalModel) : ∀ subset : (real_model rational_model).signature.carrier → Prop, (∃ member, subset member) → (∃ upper_bound, ∀ member, subset member → (real_model rational_model).signature.NonstrictOrder member...`.
+Mathematical statement (Lean): `theorem reals_are_complete (rational_model : RationalModel) : ∀ subset : (real_model rational_model).signature.carrier → Prop, (∃ member, subset member) → (∃ upper_bound, ∀ member, subset member → (real_model rational_model).signature.le member...`.
 
 
 Logical form:
@@ -162,19 +162,19 @@ theorem reals_are_complete
       (∃ upper_bound,
         ∀ member,
           subset member →
-          (real_model rational_model).signature.NonstrictOrder
+          (real_model rational_model).signature.le
             member upper_bound) →
       ∃ supremum,
         (∀ member,
           subset member →
-          (real_model rational_model).signature.NonstrictOrder
+          (real_model rational_model).signature.le
             member supremum) ∧
         (∀ upper_bound,
           (∀ member,
             subset member →
-            (real_model rational_model).signature.NonstrictOrder
+            (real_model rational_model).signature.le
               member upper_bound) →
-          (real_model rational_model).signature.NonstrictOrder
+          (real_model rational_model).signature.le
             supremum upper_bound)
 ```
 -/
@@ -185,19 +185,19 @@ theorem reals_are_complete
       (∃ upper_bound,
         ∀ member,
           subset member →
-          (real_model rational_model).signature.NonstrictOrder
+          (real_model rational_model).signature.le
             member upper_bound) →
       ∃ supremum,
         (∀ member,
           subset member →
-          (real_model rational_model).signature.NonstrictOrder
+          (real_model rational_model).signature.le
             member supremum) ∧
         (∀ upper_bound,
           (∀ member,
             subset member →
-            (real_model rational_model).signature.NonstrictOrder
+            (real_model rational_model).signature.le
               member upper_bound) →
-          (real_model rational_model).signature.NonstrictOrder
+          (real_model rational_model).signature.le
             supremum upper_bound) := by
   exact LRA.Order.Completeness
     (R := (real_model rational_model).Carrier)
@@ -823,23 +823,23 @@ structure ModelIsomorphism
   preserves_addition :
     ∀ first second,
       to_function
-          (first_model.signature.addition first second) =
-        second_model.signature.addition
+          (first_model.signature.add first second) =
+        second_model.signature.add
           (to_function first)
           (to_function second)
   preserves_multiplication :
     ∀ first second,
       to_function
-          (first_model.signature.multiplication first second) =
-        second_model.signature.multiplication
+          (first_model.signature.multiply first second) =
+        second_model.signature.multiply
           (to_function first)
           (to_function second)
   preserves_and_reflects_order :
     ∀ first second,
-      second_model.signature.NonstrictOrder
+      second_model.signature.le
           (to_function first)
           (to_function second) ↔
-        first_model.signature.NonstrictOrder first second
+        first_model.signature.le first second
 ```
 -/
 structure ModelIsomorphism
@@ -865,23 +865,23 @@ structure ModelIsomorphism
   preserves_addition :
     ∀ first second,
       to_function
-          (first_model.signature.addition first second) =
-        second_model.signature.addition
+          (first_model.signature.add first second) =
+        second_model.signature.add
           (to_function first)
           (to_function second)
   preserves_multiplication :
     ∀ first second,
       to_function
-          (first_model.signature.multiplication first second) =
-        second_model.signature.multiplication
+          (first_model.signature.multiply first second) =
+        second_model.signature.multiply
           (to_function first)
           (to_function second)
   preserves_and_reflects_order :
     ∀ first second,
-      second_model.signature.NonstrictOrder
+      second_model.signature.le
           (to_function first)
           (to_function second) ↔
-        first_model.signature.NonstrictOrder first second
+        first_model.signature.le first second
 
 /--
 **[Theorem — complete_archimedean_ordered_fields_are_uniquely_isomorphic]**

@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.OrderedRing.AlgebraicSignature.ConceptSignature
+import LRA.AlgebraicStructures.OrderedRing.Definition
 
 namespace LRA.AlgebraicStructures
 
