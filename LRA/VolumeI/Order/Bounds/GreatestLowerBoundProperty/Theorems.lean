@@ -1,25 +1,9 @@
-import LRA.VolumeI.Order.Bounds.GreatestLowerBoundProperty.Definition
-import LRA.VolumeI.Order.Bounds.Infimum.Theorems
+import LRA.Order.Bounds.GreatestLowerBoundProperty.Theorems
 
-namespace LRA.Order
+/-! Volume-I route to the canonical declarations, owned by
+`LRA.Order.Bounds.GreatestLowerBoundProperty.Theorems`.
 
-universe u v
-
-/-- The greatest-lower-bound property gives a unique infimum in an antisymmetric relation. -/
-theorem GreatestLowerBoundPropertyGivesUniqueInfimum
-    {Element : Type u} {SetObject : Type v}
-    [Membership Element SetObject]
-    {relation : LRA.Relation.Endorelation Element}
-    (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation)
-    (relationHasGreatestLowerBounds :
-      GreatestLowerBoundProperty SetObject relation)
-    (subset : SetObject)
-    (subsetIsNonempty : exists element, element ∈ subset)
-    (subsetIsBoundedBelow : BoundedBelow relation subset) :
-    exists infimum,
-      Infimum relation subset infimum /\
-        forall other,
-          Infimum relation subset other -> other = infimum := by
-  sorry
-
-end LRA.Order
+The copies that stood here were byte-identical to the canonical ones and
+carried nothing extra, so §7.2 deletes them rather than merging:
+* `GreatestLowerBoundPropertyGivesUniqueInfimum`
+-/

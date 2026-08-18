@@ -1,24 +1,9 @@
-import LRA.VolumeI.Relations.Basic.Relations
+import LRA.Order.Relation.GreaterThan.Definition
 
-namespace LRA.Order
+/-! Volume-I route to the canonical declarations, owned by
+`LRA.Order.Relation.GreaterThan.Definition`.
 
-universe u
-
-/--
-Greater-than relation derived by reversing a strict order relation.
-
-Logical form:
-
-```lean
-def GreaterThan {alpha : Type u}
-    (strictRelation : LRA.Relation.Endorelation alpha) :
-    LRA.Relation.Endorelation alpha :=
-  LRA.Relation.Converse strictRelation
-```
+The copies that stood here were byte-identical to the canonical ones and
+carried nothing extra, so §7.2 deletes them rather than merging:
+* `GreaterThan`
 -/
-def GreaterThan {alpha : Type u}
-    (strictRelation : LRA.Relation.Endorelation alpha) :
-    LRA.Relation.Endorelation alpha :=
-  fun left right => strictRelation right left
-
-end LRA.Order

@@ -1,21 +1,9 @@
-import LRA.Relation.Properties.Definition
-import LRA.VolumeI.Order.Directedness.Chain.Definition
-import LRA.VolumeI.Order.Directedness.Directed.Definition
+import LRA.Order.Directedness.Chain.Relationships
 
-namespace LRA.Order
+/-! Volume-I route to the canonical declarations, owned by
+`LRA.Order.Directedness.Chain.Relationships`.
 
-universe u v
-
-/-- Every nonempty chain for a reflexive relation is directed. -/
-theorem NonemptyChainIsDirected
-    {Element : Type u} {SetObject : Type v}
-    [Membership Element SetObject]
-    {relation : LRA.Relation.Endorelation Element}
-    {subset : SetObject}
-    (relationIsReflexive : LRA.Relation.Reflexive relation)
-    (subsetIsChain : Chain relation subset)
-    (subsetIsNonempty : exists element : Element, element ∈ subset) :
-    Directed relation subset := by
-  sorry
-
-end LRA.Order
+The copies that stood here were byte-identical to the canonical ones and
+carried nothing extra, so §7.2 deletes them rather than merging:
+* `NonemptyChainIsDirected`
+-/

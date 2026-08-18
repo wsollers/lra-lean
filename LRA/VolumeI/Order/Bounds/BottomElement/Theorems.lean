@@ -1,24 +1,9 @@
-import LRA.VolumeI.Order.Bounds.BottomElement.Definition
-import LRA.VolumeI.Set.Interface.Membership
+import LRA.Order.Bounds.BottomElement.Theorems
 
-namespace LRA.Order
+/-! Volume-I route to the canonical declarations, owned by
+`LRA.Order.Bounds.BottomElement.Theorems`.
 
-open scoped LRA.Set
-
-universe u v
-
-variable {Element : Type u} {SetObject : Type v}
-variable [Membership Element SetObject]
-variable [LRA.Set.HasUniversal SetObject]
-variable [LRA.Set.HasComplement SetObject]
-variable [LRA.Set.UniversalMembershipLaws Element SetObject]
-
-/-- A bottom element is exactly an element related to every carrier element. -/
-theorem BottomElementIffRelationToEvery
-    {relation : LRA.Relation.Endorelation Element}
-    {bottom : Element} :
-    BottomElement (SetObject := SetObject) relation bottom <->
-      forall element : Element, relation bottom element := by
-  sorry
-
-end LRA.Order
+The copies that stood here were byte-identical to the canonical ones and
+carried nothing extra, so §7.2 deletes them rather than merging:
+* `BottomElementIffRelationToEvery`
+-/

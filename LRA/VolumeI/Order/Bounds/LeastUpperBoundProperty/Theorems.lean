@@ -1,25 +1,9 @@
-import LRA.VolumeI.Order.Bounds.LeastUpperBoundProperty.Definition
-import LRA.VolumeI.Order.Bounds.Supremum.Theorems
+import LRA.Order.Bounds.LeastUpperBoundProperty.Theorems
 
-namespace LRA.Order
+/-! Volume-I route to the canonical declarations, owned by
+`LRA.Order.Bounds.LeastUpperBoundProperty.Theorems`.
 
-universe u v
-
-/-- The least-upper-bound property gives a unique supremum in an antisymmetric relation. -/
-theorem LeastUpperBoundPropertyGivesUniqueSupremum
-    {Element : Type u} {SetObject : Type v}
-    [Membership Element SetObject]
-    {relation : LRA.Relation.Endorelation Element}
-    (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation)
-    (relationHasLeastUpperBounds :
-      LeastUpperBoundProperty SetObject relation)
-    (subset : SetObject)
-    (subsetIsNonempty : exists element, element ∈ subset)
-    (subsetIsBoundedAbove : BoundedAbove relation subset) :
-    exists supremum,
-      Supremum relation subset supremum /\
-        forall other,
-          Supremum relation subset other -> other = supremum := by
-  sorry
-
-end LRA.Order
+The copies that stood here were byte-identical to the canonical ones and
+carried nothing extra, so §7.2 deletes them rather than merging:
+* `LeastUpperBoundPropertyGivesUniqueSupremum`
+-/
