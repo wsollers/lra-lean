@@ -1,9 +1,9 @@
-import LRA.VolumeI.Order.Interoperability.Mathlib.Bounds
-import LRA.VolumeI.Order.Interoperability.Mathlib.Certificates
-import LRA.VolumeI.Order.Interoperability.Mathlib.LinearOrder
+import LRA.Order.Interop.Mathlib
 import LRA.VolumeI.Order.Interoperability.Lattices
 
 /-!
-Topic aggregate for explicit order-theory interoperability boundaries,
-including Mathlib adapters and order/algebraic lattice bridges.
+Curricular aggregate for explicit order-theory interoperability boundaries.
+Mathlib adapters are canonically owned by `LRA.Order.Interop.Mathlib`; the
+order/algebraic lattice bridge remains here until AlgebraicStructures is
+standardized.
 -/
