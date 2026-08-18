@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.BooleanAlgebra.Laws.All
+import LRA.AlgebraicStructures.BooleanAlgebra.Laws
 
 namespace LRA.AlgebraicStructures
 
