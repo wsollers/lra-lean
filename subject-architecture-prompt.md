@@ -230,8 +230,19 @@ mathematical error.
 
 ### 1.5 The set-theoretic layer and its single bridge
 
-`main` already carries this layer, complete and building. Port it rather than
-rewriting it.
+`main` already carries this layer, complete and building under `lake build`. Port
+it rather than rewriting it. The source is:
+
+```text
+LRA/VolumeI/Function/SetTheoretic/Definition.lean      the two triples and their conditions
+LRA/VolumeI/Function/SetTheoretic/Theorems.lean        evaluation existence/uniqueness, extensionality
+LRA/VolumeI/Function/SetTheoretic/Relationships.lean   single-valuedness, the representation theorem
+```
+
+Read them with `git show origin/main:<path>`. They land at
+`LRA/Function/SetTheoretic/` under the subject layout of §2.1, split into the
+file roles of §2.3. Their namespace is already `LRA.Function.SetTheoretic`, so
+only the module paths change.
 
 `LRA.Function.SetTheoretic` owns, against the established LRA set backend:
 
