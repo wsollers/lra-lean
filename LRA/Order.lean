@@ -6,12 +6,15 @@ import LRA.Order.Directedness
 import LRA.Order.Lattices
 import LRA.Order.DiscreteOrder
 import LRA.Order.Constructions
+import LRA.Order.Morphisms
 
 /-!
 Canonical Order subject.
 
 Order specializes relation theory to comparison relations and owns ordered-set
-structures, bounds, density, directedness, lattices, discrete-order laws, and
-order constructions. Interoperability and the divisibility bridge remain for
-final cleanup before the legacy-import audit.
+structures, bounds, density, directedness, lattices, discrete-order laws,
+order constructions, and order-specific morphisms.
+
+Mathlib interoperability and set-image/preimage transport adapters remain
+explicit opt-in boundaries rather than part of this default aggregate.
 -/
