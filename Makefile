@@ -9,7 +9,7 @@
 #   make shell        — open interactive shell in Docker container
 #   make docker-build — build the Docker image
 #   make docker-blueprint-build — build the Blueprint Docker image
-#   make lint         — check doc-comment coverage (display names)
+#   make lint         — report doc-comment coverage (informational)
 #   make stats        — print proof counts per file
 #   make ci           — full CI pipeline (docker-build + check)
 #
@@ -161,7 +161,7 @@ docker-pull:  ## Pull a pre-built image if available
 	    || echo "No pre-built image found — run 'make docker-build'"
 
 .PHONY: lint
-lint:  ## Check that every theorem/def has a display name doc-comment
+lint:  ## Report doc-comment coverage (informational; LRA_DOCLINT_STRICT=1 to enforce)
 	@echo "── Doc-comment coverage check ──────────────────────"
 	@bash scripts/lint_doccomments.sh LRA/VolumeII \
 	    || echo "  (lint script not yet present — skipping)"
