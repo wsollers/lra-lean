@@ -313,18 +313,85 @@ further. This layer exists to show the shape, not to carry the development.
 
 ---
 
-## 6. Out of scope
+## 6. Deferred, with homes already assigned
 
-- Ordinals, well-ordering, transfinite induction and recursion.
-- Alephs, initial ordinals, cofinality.
-- Any proof of the continuum hypothesis in either direction.
-- Any cardinal *type* — cardinalities are compared by the relations above, not
-  reified into a carrier. Reification needs ordinals.
+None of the following is built in this phase. Each is named here with its owner
+so the placement decision is made once, now, rather than improvised when the work
+arrives.
 
-If a statement in layers 1–6 cannot be made without ordinals, stop and report it
-rather than importing an ordinal development.
+**Nothing below may be imported, stubbed, or partially introduced during this
+phase.** If a statement in layers 1–6 turns out to need one of them, stop and
+report it rather than reaching forward.
 
----
+### 6.1 Maximality and well-ordering → `LRA.Order`
+
+Zorn's lemma is one statement away, not a construction project: `LRA.Order.Chain`,
+`LRA.Order.Bounds.MaximalElement`, and `LRA.Order.Bounds.UpperBound` are already
+promoted and are exactly its ingredients. `WellOrder` still sits at
+`LRA/VolumeI/Order/OrderedSets/WellOrder/` and is promoted by §7.1 of the
+architecture document.
+
+```text
+LRA/Order/Choice.lean                                   router, as in Cardinality
+LRA/Order/Maximality.lean
+LRA/Order/Maximality/Zorn/ChoiceTheorems.lean           equivalent to AC
+LRA/Order/Maximality/Hausdorff/ChoiceTheorems.lean      equivalent to AC
+LRA/Order/Maximality/Tukey/ChoiceTheorems.lean          equivalent to AC
+LRA/Order/OrderedSets/WellOrder/ChoiceTheorems.lean     well-ordering theorem, equivalent to AC
+```
+
+`Maximality` is the group because Zorn, Hausdorff, and Tukey are maximality
+principles; the well-ordering theorem stays with `WellOrder`, whose order
+property it is. This confirms that the `ChoiceTheorems.lean` role of §3.1 is a
+repository-wide convention rather than a cardinality-local one.
+
+### 6.2 Ordinals → a new top-level subject `LRA.Ordinal`
+
+Ordinals need `LRA.Set` (the von Neumann construction), `LRA.Order` (well-ordering),
+and `LRA.Cardinality` (initial ordinals), and nothing imports them back — the same
+one-way shape that puts `Cardinality` at top level. Do **not** nest them under
+`Set` or `Order`; either choice forces a false dependency.
+
+Scope when it arrives: transitive sets and von Neumann ordinals; transfinite
+induction; transfinite recursion; ordinal arithmetic; initial ordinals; cofinality.
+
+Do not add `LRA.Ordinal` to the subject list in §1.1 of the architecture document
+until it owns declarations. §1.1 forbids empty roots.
+
+### 6.3 Alephs belong to `LRA.Ordinal`, not to `LRA.Cardinality`
+
+An aleph is a cardinal indexed by an ordinal, so `Aleph` needs ordinals.
+Defining it inside `LRA.Cardinality` would make `Cardinality` import `Ordinal`
+while `Ordinal` imports `Cardinality` — a cycle. Alephs therefore land in
+`LRA.Ordinal`, which is the later subject.
+
+The direction is not arbitrary: cardinality needs nothing from ordinals, whereas
+initial ordinals need both. Build in that order.
+
+### 6.4 The choice-equivalence cycle
+
+Across `LRA.Order`, `LRA.Cardinality`, and eventually `LRA.Ordinal`, six
+statements form a single equivalence class with AC:
+
+```text
+axiom of choice  ↔  Zorn's lemma  ↔  Hausdorff maximal principle
+                 ↔  well-ordering theorem
+                 ↔  cardinal comparability
+                 ↔  κ · κ ≈ κ for infinite κ
+```
+
+Stating that cycle in one place is the natural capstone, and it belongs in
+`LRA.Ordinal.Choice`, the only subject that sits above all of the others in
+dependency order. Until `LRA.Ordinal` exists, each subject's `Choice.lean` records
+its own principle locally and claims no equivalence it cannot state.
+
+### 6.5 Not deferred — genuinely excluded
+
+- The continuum hypothesis is **stated once** in this phase (§5.4) and never
+  proved in either direction. It is independent of ZFC. Restating it with alephs
+  is a §6.2 concern.
+- No cardinal *carrier type*. Cardinalities are compared by the relations of §5.1,
+  not reified into a type. Reification needs ordinals.
 
 ## 7. Acceptance gates
 
@@ -348,6 +415,7 @@ rather than importing an ordinal development.
   two `Countable` families as semantically distinct.
 - No `LRA/VolumeIII/.../Cardinality.lean` ad-hoc enumeration statement survives.
 - `lake build` succeeds.
+- Nothing from §6 was imported, stubbed, or partially introduced.
 - Every proof is `sorry`. No proof was completed.
 
 ---
@@ -360,5 +428,6 @@ rather than importing an ordinal development.
 3. the four notions moved out of the function subject and every consumer updated;
 4. what the structural presentation revealed that the arrow presentation hides —
    a short prose note, since that is the reason it exists;
-5. anything in layers 1–6 that turned out to need ordinals;
+5. anything in layers 1–6 that turned out to need ordinals, Zorn, or the
+   well-ordering theorem — reported, not reached for;
 6. verification commands and results.
