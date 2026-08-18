@@ -29,7 +29,7 @@ theorem SingleValuedOfIsSetTheoreticFunction
     [Membership Pair GraphObject]
     {triple : SetTheoreticFunctionTriple
       DomainObject CodomainObject GraphObject}
-    (isMap : IsSetTheoreticFunction
+    (isFunction : IsSetTheoreticFunction
       (DomainElement := DomainElement)
       (CodomainElement := CodomainElement)
       (Pair := Pair)
@@ -47,7 +47,7 @@ theorem SingleValuedOfIsSetTheoreticFunction
     [Membership Pair GraphObject]
     {triple : SetTheoreticFunctionTriple
       DomainObject CodomainObject GraphObject}
-    (isMap : IsSetTheoreticFunction
+    (isFunction : IsSetTheoreticFunction
       (DomainElement := DomainElement)
       (CodomainElement := CodomainElement)
       (Pair := Pair)
@@ -71,10 +71,10 @@ theorem BundledSingleValued
     [Membership DomainElement DomainObject]
     [Membership CodomainElement CodomainObject]
     [Membership Pair GraphObject]
-    (map : SetTheoreticFunction
+    (function : SetTheoreticFunction
       DomainElement CodomainElement Pair
       DomainObject CodomainObject GraphObject) :
-    IsSingleValued DomainElement CodomainElement map.triple.graph
+    IsSingleValued DomainElement CodomainElement function.triple.graph
 ```
 -/
 theorem BundledSingleValued
@@ -85,10 +85,10 @@ theorem BundledSingleValued
     [Membership DomainElement DomainObject]
     [Membership CodomainElement CodomainObject]
     [Membership Pair GraphObject]
-    (map : SetTheoreticFunction
+    (function : SetTheoreticFunction
       DomainElement CodomainElement Pair
       DomainObject CodomainObject GraphObject) :
-    IsSingleValued DomainElement CodomainElement map.triple.graph := by
+    IsSingleValued DomainElement CodomainElement function.triple.graph := by
   sorry
 
 /--
@@ -107,7 +107,7 @@ theorem TypedFunctionGraphRepresentation
     (domainEncoding : DomainObject)
     (codomainEncoding : CodomainObject)
     (ambientPairs : GraphObject)
-    (encodeDomainInjective : Function.Injective encodeDomain)
+    (encodeDomainInjective : _root_.Function.Injective encodeDomain)
     (domainEncodingExact : forall encoded : DomainElement,
       encoded ∈ domainEncoding <->
         exists input : Domain, encodeDomain input = encoded)
@@ -149,7 +149,7 @@ theorem TypedFunctionGraphRepresentation
     (domainEncoding : DomainObject)
     (codomainEncoding : CodomainObject)
     (ambientPairs : GraphObject)
-    (encodeDomainInjective : Function.Injective encodeDomain)
+    (encodeDomainInjective : _root_.Function.Injective encodeDomain)
     (domainEncodingExact : forall encoded : DomainElement,
       encoded ∈ domainEncoding <->
         exists input : Domain, encodeDomain input = encoded)

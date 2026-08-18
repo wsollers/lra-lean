@@ -54,13 +54,13 @@ Logical form:
 
 ```lean
 theorem EvaluationExists
-    (setMap : SetTheoreticFunction DomainElement CodomainElement Pair
+    (setFunction : SetTheoreticFunction DomainElement CodomainElement Pair
       DomainObject CodomainObject GraphObject)
     (input : DomainElement)
-    (inputInDomain : input ∈ setMap.triple.domain) :
+    (inputInDomain : input ∈ setFunction.triple.domain) :
     exists output : CodomainElement,
-      output ∈ setMap.triple.codomain /\
-      Relates setMap.triple.graph input output
+      output ∈ setFunction.triple.codomain /\
+      Relates setFunction.triple.graph input output
 ```
 -/
 theorem EvaluationExists
@@ -71,14 +71,14 @@ theorem EvaluationExists
     [Membership DomainElement DomainObject]
     [Membership CodomainElement CodomainObject]
     [Membership Pair GraphObject]
-    (setMap : SetTheoreticFunction DomainElement CodomainElement Pair
+    (setFunction : SetTheoreticFunction DomainElement CodomainElement Pair
       DomainObject CodomainObject GraphObject)
     (input : DomainElement)
-    (inputInDomain : input ∈ setMap.triple.domain) :
+    (inputInDomain : input ∈ setFunction.triple.domain) :
     exists output : CodomainElement,
-      output ∈ setMap.triple.codomain /\
-      Relates setMap.triple.graph input output :=
-  setMap.isMap.2.1 input inputInDomain
+      output ∈ setFunction.triple.codomain /\
+      Relates setFunction.triple.graph input output :=
+  setFunction.isFunction.2.1 input inputInDomain
 
 /--
 **[Theorem — EvaluationUnique]**
@@ -89,12 +89,12 @@ Logical form:
 
 ```lean
 theorem EvaluationUnique
-    (setMap : SetTheoreticFunction DomainElement CodomainElement Pair
+    (setFunction : SetTheoreticFunction DomainElement CodomainElement Pair
       DomainObject CodomainObject GraphObject)
     (input : DomainElement)
     (firstOutput secondOutput : CodomainElement)
-    (firstEvaluation : Relates setMap.triple.graph input firstOutput)
-    (secondEvaluation : Relates setMap.triple.graph input secondOutput) :
+    (firstEvaluation : Relates setFunction.triple.graph input firstOutput)
+    (secondEvaluation : Relates setFunction.triple.graph input secondOutput) :
     firstOutput = secondOutput
 ```
 -/
@@ -106,14 +106,14 @@ theorem EvaluationUnique
     [Membership DomainElement DomainObject]
     [Membership CodomainElement CodomainObject]
     [Membership Pair GraphObject]
-    (setMap : SetTheoreticFunction DomainElement CodomainElement Pair
+    (setFunction : SetTheoreticFunction DomainElement CodomainElement Pair
       DomainObject CodomainObject GraphObject)
     (input : DomainElement)
     (firstOutput secondOutput : CodomainElement)
-    (firstEvaluation : Relates setMap.triple.graph input firstOutput)
-    (secondEvaluation : Relates setMap.triple.graph input secondOutput) :
+    (firstEvaluation : Relates setFunction.triple.graph input firstOutput)
+    (secondEvaluation : Relates setFunction.triple.graph input secondOutput) :
     firstOutput = secondOutput :=
-  setMap.isMap.2.2 input firstOutput secondOutput
+  setFunction.isFunction.2.2 input firstOutput secondOutput
     firstEvaluation secondEvaluation
 
 /--

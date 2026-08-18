@@ -185,6 +185,6 @@ structure SetTheoreticFunction
     [Membership Pair GraphObject] where
   triple : SetTheoreticFunctionTriple
     DomainObject CodomainObject GraphObject
-  isMap : IsSetTheoreticFunction triple
+  isFunction : IsSetTheoreticFunction triple
 
 end LRA.Function.SetTheoretic
