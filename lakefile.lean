@@ -39,6 +39,7 @@ lean_lib LRATests where
     `LRA.VolumeI.Set.CollectionAlgebraAdaptersTest,
     `LRA.SemanticImportsSmoke,
     `LRA.FunctionFoundationsSmoke,
+    `LRA.QuarantinedAggregatesSmoke,
     `LRA.VolumeIII.Analysis.Bounding.BoundsTests,
     `LRA.VolumeIV.Learning.MetricTopologyAdapterTest,
     `LRA.VolumeIV.MetricSpaces.BallSubsetCustomMetricTest,

@@ -1,5 +1,8 @@
 import LRA.Function
 import LRA.Set
+-- Pulls the function tree's `Examples` and `FailureModes` modules into a
+-- build-gated target; the production `LRA.Function` router imports only `All`.
+import LRA.VolumeI.Function.AllWithExamples
 
 /-!
 Focused smoke checks for the function foundations.

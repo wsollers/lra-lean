@@ -4,10 +4,10 @@
 
 | Item | Value |
 |---|---|
-| Revision | `f9e95ad3599d9cf82b9175cc3b4a873516b3c528` |
+| Revision | `47ff3346688d195786ec6ea8192230e8985f5726` |
 | Branch | `claude/lra-namespace-simplify-4lyw5k` |
-| Inventory | `10,376` compiled-environment rows |
-| SHA-256 | `59f5e64a17da10d2835e2a570d12ad4425855468f2730fc7e93465ce44bba00d` |
+| Inventory | `10,372` compiled-environment rows |
+| SHA-256 | `1cf4d2cbbf956c558ee0d9bc4cf61d183a714069b8aca9841da0f9ba689b3d12` |
 | Generator | `scripts/DumpNamespaceEnvironment.lean` then `scripts/generate_namespace_inventory.py` |
 | Source-only findings | `0` (parser candidates; see reconciliation note) |
 | Exact duplicate names | `0` |
@@ -28,11 +28,11 @@ contains explicitly non-API orienting and scratch material.
 identity and equality are foundational rather than a branch of logic. There is
 no `LRA.Number`, no `LRA.Space`, and no `LRA.Carrier`.
 
-Immediate-root environment counts: `AlgebraicStructures` 1467, `Analysis` 1388, `Function` 348, `Identity` 81, `Internal` 197, `Interop` 33, `LinearAlgebra` 64, `Logic` 1398, `NumberSystems` 2671, `Operation` 200, `Order` 545, `Relation` 114, `Set` 1111, `Topology` 81, `UniversalAlgebra` 594.
+Immediate-root environment counts: `AlgebraicStructures` 1467, `Analysis` 1388, `Function` 348, `Identity` 81, `Internal` 197, `Interop` 33, `LinearAlgebra` 64, `Logic` 1398, `NumberSystems` 2671, `Operation` 200, `Order` 541, `Relation` 114, `Set` 1111, `Topology` 81, `UniversalAlgebra` 594.
 
 ## Evidence classification
 
-- `authored`: 4,023
+- `authored`: 4,019
 - `generated_companion`: 1,032
 - `generated_constructor`: 474
 - `generated_or_elaborated`: 3,509
@@ -40,7 +40,7 @@ Immediate-root environment counts: `AlgebraicStructures` 1467, `Analysis` 1388, 
 - `generated_recursor`: 348
 - `private_implementation`: 84
 
-API status: `internal` 197, `private` 84, `public` 10,095.
+API status: `internal` 197, `private` 84, `public` 10,091.
 
 The generator loads the freshly built `LRA` aggregate with `Lean.importModules`,
 iterates constants by defining module, and reconciles candidate authored names
