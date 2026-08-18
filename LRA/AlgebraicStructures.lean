@@ -18,7 +18,7 @@ import LRA.AlgebraicStructures.Group
 import LRA.AlgebraicStructures.IntegralDomain.All
 import LRA.AlgebraicStructures.JoinSemilattice.All
 import LRA.AlgebraicStructures.Lattice.All
-import LRA.AlgebraicStructures.LinearlyOrderedGroup.All
+import LRA.AlgebraicStructures.LinearlyOrderedGroup
 import LRA.AlgebraicStructures.LinearlyOrderedRing.All
 import LRA.AlgebraicStructures.Magma
 import LRA.AlgebraicStructures.MeetSemilattice.All

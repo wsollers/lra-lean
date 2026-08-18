@@ -1,9 +1,7 @@
-import LRA.AlgebraicStructures.LinearlyOrderedGroup.AlgebraicSignature.All
-import LRA.AlgebraicStructures.LinearlyOrderedGroup.Laws.All
 import LRA.AlgebraicStructures.LinearlyOrderedGroup.Definition
+import LRA.AlgebraicStructures.LinearlyOrderedGroup.Theorems
 import LRA.AlgebraicStructures.LinearlyOrderedGroup.Characterizations
 import LRA.AlgebraicStructures.LinearlyOrderedGroup.Consequences
 import LRA.AlgebraicStructures.LinearlyOrderedGroup.Relationships
-import LRA.AlgebraicStructures.LinearlyOrderedGroup.Theorems
 
-/-! Aggregate import for linearly ordered groups. -/
+/-! Canonical import route for linearly ordered groups. -/
