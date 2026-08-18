@@ -1,4 +1,4 @@
-import LRA.VolumeI.UniversalAlgebra.InterpretedOperationBundles
+import LRA.UniversalAlgebra.InterpretedOperationBundles
 
 namespace LRA.AlgebraicStructures
 

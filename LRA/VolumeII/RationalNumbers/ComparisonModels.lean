@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Rationals/ComparisonModels.lean
 -- Comparison models for alternate rational constructions.
 
-import LRA.VolumeI.UniversalAlgebra.Quotient.RepresentativeCompatibility
+import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeII.Integers.ConstructionModels
 

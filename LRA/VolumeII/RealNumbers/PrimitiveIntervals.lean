@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Reals/PrimitiveIntervals.lean
 -- Primitive construction of the reals from nested rational intervals.
 
-import LRA.VolumeI.UniversalAlgebra.Quotient.RepresentativeCompatibility
+import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeII.RealNumbers.Cauchy
 

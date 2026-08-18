@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Integers/ConstructionModels.lean
 -- Comparison models for alternate integer constructions.
 
-import LRA.VolumeI.UniversalAlgebra.Quotient.RepresentativeCompatibility
+import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeII.NaturalNumbers
 

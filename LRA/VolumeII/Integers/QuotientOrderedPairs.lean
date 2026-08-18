@@ -1,9 +1,9 @@
 -- LRA/VolumeII/Integers/QuotientOrderedPairs.lean
 -- Proof-ready construction of integers from quotient ordered pairs.
 
-import LRA.VolumeI.UniversalAlgebra.Quotient.RepresentativeCompatibility
+import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.VolumeI.Set
-import LRA.VolumeI.UniversalAlgebra
+import LRA.UniversalAlgebra
 namespace LRA.NumberSystems.Integers.QuotientOrderedPairs
 
 /-!
