@@ -707,6 +707,37 @@ Required:
 Report which `LRA/Function/` declarations survived, which were replaced by the
 ported set-theoretic family, and which were deleted outright.
 
+### 7.0.3 Judge a deletion by declaration, never by file or directory
+
+A directory is not an alias because its `Definition.lean` is. Classify every
+**declaration** you propose to delete, not the file or the folder containing it.
+
+This is not hypothetical. §7.0 B classified twelve concept directories as
+pure-alias by reading only their `Definition.lean`. For eight of them that
+judgment was wrong about the rest of the directory: those twelve held **43
+declarations outside `Definition.lean`**, of which **31 had no canonical
+counterpart** and were deleted outright. The worst case, `Composition`, had a
+one-line alias definition and fourteen real theorems behind it — associativity,
+the identity laws, the property-composition and composite-implies-factor
+theorems, and the inverse-composition family.
+
+The alias test was correct for the definition and wrong for the directory.
+
+So before deleting anything as redundant:
+
+- enumerate the declarations, not the files;
+- for each, name the surviving canonical owner **by fully qualified name**;
+- a declaration with no named survivor is a **loss**, not a redundancy, and
+  either gets restated in its canonical location or gets reported as a
+  deliberate removal with a reason;
+- `Relationships.lean`, `Consequences.lean`, and `FailureModes.lean` carry real
+  content and are the files most likely to be swept along by a judgment made
+  about `Definition.lean`.
+
+A concept directory whose definition is an alias is exactly the case where the
+theorems are *not* aliases: they were stated once, against the alias, and never
+restated anywhere else.
+
 ### 7.1 Gather into subjects
 
 For each item below, move the declarations to the named owner, update every
