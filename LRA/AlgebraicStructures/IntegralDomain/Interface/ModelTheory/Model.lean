@@ -1,11 +1,13 @@
 import LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.Model
-import LRA.AlgebraicStructures.IntegralDomain.ModelTheory.FirstOrderSignature
+import LRA.AlgebraicStructures.IntegralDomain.Interface.Signature.Definition
 
-namespace LRA.AlgebraicStructures.IntegralDomain.ModelTheory
+namespace LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory
 
 universe u
 
 /-! Law-free model builders for the first-order integral-domain language. -/
+
+open LRA.AlgebraicStructures.IntegralDomain.Interface.Signature
 
 abbrev IntegralDomainSignature :=
   LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.CommutativeRingSignature
@@ -20,4 +22,4 @@ def integralDomainFirstOrderModel (R : Type u)
     LRA.Logic.FirstOrder.Model IntegralDomainFirstOrderSignature :=
   LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.commutativeRingFirstOrderModel R
 
-end LRA.AlgebraicStructures.IntegralDomain.ModelTheory
+end LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory

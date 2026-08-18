@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.IntegralDomain.All
+import LRA.AlgebraicStructures.IntegralDomain
 
 namespace LRA.AlgebraicStructures
 

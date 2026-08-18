@@ -1,12 +1,10 @@
 import LRA.AlgebraicStructures.IntegralDomain.Laws.Definition
+import LRA.AlgebraicStructures.CommutativeRing.Definition
 
 namespace LRA.AlgebraicStructures
 
-/-!
-IntegralDomain Definition module.
-
-This file is reserved for definition whose natural owner is the named
-algebraic structure IntegralDomain. It intentionally contains no placeholder theorems.
--/
+/-- An integral domain has the commutative ring signature. -/
+abbrev IntegralDomainConceptSignature :=
+  CommutativeRingConceptSignature
 
 end LRA.AlgebraicStructures

@@ -1,1 +1,0 @@
-import LRA.AlgebraicStructures.IntegralDomain.AlgebraicSignature.ConceptSignature
