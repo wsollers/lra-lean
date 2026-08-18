@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.DivisionRing.All
+import LRA.AlgebraicStructures.DivisionRing
 
 namespace LRA.AlgebraicStructures
 

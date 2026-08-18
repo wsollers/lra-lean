@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.DivisionRing.ModelTheory.FirstOrderSignature
+import LRA.AlgebraicStructures.DivisionRing.Interface.Signature.Definition
 
 namespace LRA.AlgebraicStructures.Field.ModelTheory
 
@@ -10,21 +10,21 @@ commutativity as a law, not a new symbol.
 -/
 
 abbrev FieldFunctionSymbol :=
-  LRA.AlgebraicStructures.DivisionRing.ModelTheory.DivisionRingFunctionSymbol
+  LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFunctionSymbol
 
 abbrev FieldRelationSymbol :=
-  LRA.AlgebraicStructures.DivisionRing.ModelTheory.DivisionRingRelationSymbol
+  LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingRelationSymbol
 
 abbrev FieldConstantSymbol :=
-  LRA.AlgebraicStructures.DivisionRing.ModelTheory.DivisionRingConstantSymbol
+  LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingConstantSymbol
 
 def FieldFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.DivisionRing.ModelTheory.DivisionRingFirstOrderFunctions
+  LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFirstOrderFunctions
 
 def FieldFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.DivisionRing.ModelTheory.DivisionRingFirstOrderRelations
+  LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFirstOrderRelations
 
 def FieldFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.DivisionRing.ModelTheory.DivisionRingFirstOrderSignature
+  LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFirstOrderSignature
 
 end LRA.AlgebraicStructures.Field.ModelTheory

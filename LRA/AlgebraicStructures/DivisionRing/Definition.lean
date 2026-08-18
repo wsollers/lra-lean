@@ -1,7 +1,10 @@
 import LRA.AlgebraicStructures.DivisionRing.Laws.Definition
+import LRA.AlgebraicStructures.Field.AlgebraicSignature.ConceptSignature
 
 namespace LRA.AlgebraicStructures
 
-/-! DivisionRing definition module. -/
+/-- A division ring has the field operation signature; commutativity is not part of the signature. -/
+abbrev DivisionRingConceptSignature :=
+  FieldConceptSignature
 
 end LRA.AlgebraicStructures

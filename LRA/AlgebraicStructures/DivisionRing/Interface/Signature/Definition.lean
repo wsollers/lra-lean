@@ -1,6 +1,6 @@
 import LRA.Logic.Model.Model
 
-namespace LRA.AlgebraicStructures.DivisionRing.ModelTheory
+namespace LRA.AlgebraicStructures.DivisionRing.Interface.Signature
 
 /-!
 First-order signature for division rings.
@@ -38,4 +38,4 @@ def DivisionRingFirstOrderSignature : LRA.Logic.Signature where
   Relations := DivisionRingFirstOrderRelations
   Constants := DivisionRingConstantSymbol
 
-end LRA.AlgebraicStructures.DivisionRing.ModelTheory
+end LRA.AlgebraicStructures.DivisionRing.Interface.Signature

@@ -1,4 +1,4 @@
 import LRA.AlgebraicStructures.DivisionRing.Laws.Definition
 import LRA.AlgebraicStructures.DivisionRing.Laws.Consequences
 
-/-! Aggregate import for division-ring laws. -/
+/-! Canonical import route for division-ring law certificates. -/

@@ -12,7 +12,7 @@ import LRA.AlgebraicStructures.CommutativeSemiring
 import LRA.AlgebraicStructures.CompleteOrderedField.All
 import LRA.AlgebraicStructures.DiscreteInteger
 import LRA.AlgebraicStructures.DistributiveLattice
-import LRA.AlgebraicStructures.DivisionRing.All
+import LRA.AlgebraicStructures.DivisionRing
 import LRA.AlgebraicStructures.Field.All
 import LRA.AlgebraicStructures.Group
 import LRA.AlgebraicStructures.IntegralDomain
