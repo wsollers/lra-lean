@@ -372,6 +372,20 @@ invent new role names.
 `Definition.lean`, `Theorems.lean`, `Characterizations.lean`,
 `Consequences.lean`, `Relationships.lean`, or router may import them. See §6.
 
+**A role file may be present and empty.** The layout above is the canonical
+shape of a concept, and a concept that will acquire theorems is allowed to carry
+`Theorems.lean` before it has any. An empty role file holds a single import of
+the concept's current chain tail, so the module is well-formed and the group
+router can import it by name, plus its one-line doc header. That import is
+scaffold, not a re-export, and §7.0.1's ban on forwarding files does not reach
+it: the file is named for the role it will hold, it is imported by the router
+rather than standing in for a moved name, and nothing is aliased through it.
+
+Never delete a role file for being empty, and never route around it. An empty
+`Theorems.lean` next to a heavy `Consequences.lean` is a signal that the
+concept's theorems were filed one role too deep — the fix is to move the
+declarations up into the empty file, not to remove the file. See §7.5.
+
 Do not create `All.lean` or `AllWithExamples.lean` inside a concept directory.
 Aggregation is the group router's job.
 
@@ -734,6 +748,12 @@ So before deleting anything as redundant:
   content and are the files most likely to be swept along by a judgment made
   about `Definition.lean`.
 
+A file with **zero declarations is out of scope for this audit entirely**. The
+rule above asks whether each declaration has a surviving owner; a file with no
+declarations answers that vacuously, which would make every empty role file
+deletable on a technicality. It is not. Empty role files are canonical scaffold
+under §2.3 and are never removed by a deletion audit.
+
 A concept directory whose definition is an alias is exactly the case where the
 theorems are *not* aliases: they were stated once, against the alias, and never
 restated anywhere else.
@@ -861,6 +881,45 @@ Roughly 320 `Examples`, `AllWithExamples`, and `FailureModes` modules are
 compiled by no Lake target. Either wire each into a test-library module or delete
 it. Unverified Lean source is not an asset.
 
+### 7.5 Refile declarations that sit in the wrong role
+
+A declaration in the wrong role file is a content error, not a layout error. The
+directory is already canonical; what is wrong is which file inside it holds the
+result. The tell is an empty or thin `Theorems.lean` beside a heavy
+`Consequences.lean` or `Relationships.lean` — the concept's central results were
+filed downstream of themselves.
+
+Refile by §2.3's definitions of the roles:
+
+- `Theorems.lean` takes results **about the concept alone** — its structural
+  laws, stated in the concept's own vocabulary.
+- `Consequences.lean` takes what follows from those, and only that. A result
+  that nothing in `Theorems.lean` implies does not belong here.
+- `Relationships.lean` takes results whose statement **names a sibling concept**.
+  The sibling is the test, not the difficulty of the proof.
+- `Characterizations.lean` takes `iff` statements characterizing **this**
+  concept. An `iff` characterizing a *different* concept, merely stated through
+  this one, belongs to that other concept's directory.
+
+Rules for the move:
+
+1. A refile changes which file holds a declaration. It **must not** change the
+   declaration's fully qualified name, statement, or proof. If a name has to
+   change, that is a separate change with its own review.
+2. Fix the concept's import chain in the same commit. Roles import in the order
+   `Definition → Theorems → Characterizations → Consequences → Relationships`;
+   moving a declaration up the chain may require the file it left to import the
+   file it landed in.
+3. Ledger the move per name under §C.1, the same as any other relocation. A
+   refile is cheap to verify and just as easy to lose.
+4. Report, do not act on, any declaration that belongs in a **different concept
+   directory**. Crossing directories is a §7.2 ownership question, not a refile.
+
+Known instance, carried over from §7.0.3's audit: `LRA.Relation.Operations.Composition`
+holds its four central results in `Consequences.lean` behind an empty
+`Theorems.lean` and an empty `Relationships.lean`. It is the worked example for
+this section, not a special case.
+
 ---
 
 ## 8. Acceptance gates
@@ -909,6 +968,12 @@ The effort succeeds only when **all** of these hold.
 - Every subject has a working router; every group has a working router; routers
   hold no declarations.
 - Only the file roles in §2.3 appear as leaf filenames.
+- No role file was deleted for holding zero declarations. Empty role files are
+  scaffold under §2.3 and survive every audit.
+- No concept directory carries an empty `Theorems.lean` beside a
+  `Consequences.lean` or `Relationships.lean` holding results the concept's own
+  theorems do not imply. Where §7.5 found that shape, the refile landed and is
+  ledgered per name under C.1.
 - No Greek type binders in migrated code.
 - No `forall`, `exists`, `->`, `/\`, `\/`, or `<->` in migrated code.
 - Every router carries a module-level `/-! … -/` comment stating what the group
