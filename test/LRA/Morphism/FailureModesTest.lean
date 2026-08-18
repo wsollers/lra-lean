@@ -14,6 +14,7 @@ import LRA.Function.Examples.Canonical
 import LRA.Function.Examples.FailureModes
 import LRA.Order.Examples
 import LRA.Order.FailureModes
+import LRA.Operation.Examples
 
 /-!
 Build gate for the quarantined leaves of `LRA.Morphism`, `LRA.Function`, and `LRA.Order`.

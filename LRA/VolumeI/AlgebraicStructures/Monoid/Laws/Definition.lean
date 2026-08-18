@@ -1,5 +1,5 @@
 import LRA.VolumeI.AlgebraicStructures.Semigroup.Laws.Definition
-import LRA.VolumeI.Operations.Laws.Identity.Definition
+import LRA.Operation
 
 namespace LRA.AlgebraicStructures
 

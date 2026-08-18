@@ -1,5 +1,5 @@
 import LRA.VolumeI.AlgebraicStructures.AbelianGroup.ModelTheory.FirstOrderSignature
-import LRA.VolumeI.Operations
+import LRA.Operation
 
 namespace LRA.AlgebraicStructures.AbelianGroup.ModelTheory
 

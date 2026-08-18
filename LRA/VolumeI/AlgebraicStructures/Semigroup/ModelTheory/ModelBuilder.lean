@@ -1,5 +1,5 @@
 import LRA.VolumeI.AlgebraicStructures.Semigroup.ModelTheory.FirstOrderSignature
-import LRA.VolumeI.Operations
+import LRA.Operation
 
 namespace LRA.AlgebraicStructures.Semigroup.ModelTheory
 

@@ -1,4 +1,4 @@
-import LRA.VolumeI.Operations
+import LRA.Operation
 
 namespace LRA.UniversalAlgebra.InterpretedOperationBundles
 

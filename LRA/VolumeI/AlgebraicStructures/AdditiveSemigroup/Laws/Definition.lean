@@ -1,4 +1,4 @@
-import LRA.VolumeI.Operations.Laws.Associative.Definition
+import LRA.Operation
 
 namespace LRA.AlgebraicStructures
 

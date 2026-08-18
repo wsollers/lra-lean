@@ -2,7 +2,7 @@ import LRA.VolumeI.AlgebraicStructures.AdditiveCommutativeSemigroup.Laws.Definit
 import LRA.VolumeI.AlgebraicStructures.AdditiveMonoid.Laws.Definition
 import LRA.VolumeI.AlgebraicStructures.Monoid.Laws.Definition
 import LRA.VolumeI.AlgebraicStructures.Semiring.Laws.Distributive
-import LRA.VolumeI.Operations.Laws.Absorbing.Definition
+import LRA.Operation
 
 namespace LRA.AlgebraicStructures
 

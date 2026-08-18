@@ -1,6 +1,6 @@
-import LRA.VolumeI.Operations.Laws.Associative.Definition
-import LRA.VolumeI.Operations.Laws.Commutative.Definition
-import LRA.VolumeI.Operations.Laws.Idempotent.Definition
+import LRA.Operation
+import LRA.Operation
+import LRA.Operation
 
 namespace LRA.AlgebraicStructures
 

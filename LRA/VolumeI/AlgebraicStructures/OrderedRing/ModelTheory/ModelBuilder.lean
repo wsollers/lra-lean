@@ -1,6 +1,6 @@
 import LRA.VolumeI.AlgebraicStructures.OrderedRing.ModelTheory.FirstOrderSignature
-import LRA.VolumeI.Operations
-import LRA.VolumeI.Relations
+import LRA.Operation
+import LRA.Relation
 
 namespace LRA.AlgebraicStructures.OrderedRing.ModelTheory
 

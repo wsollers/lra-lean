@@ -1,6 +1,6 @@
 import LRA.VolumeI.AlgebraicStructures.JoinSemilattice.Laws.Definition
 import LRA.VolumeI.AlgebraicStructures.MeetSemilattice.Laws.Definition
-import LRA.VolumeI.Operations.Laws.Absorption.Definition
+import LRA.Operation
 
 namespace LRA.AlgebraicStructures
 

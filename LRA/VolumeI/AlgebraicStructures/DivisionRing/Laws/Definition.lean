@@ -1,5 +1,5 @@
 import LRA.VolumeI.AlgebraicStructures.NontrivialRing.Laws.Definition
-import LRA.VolumeI.Operations.Laws.Inverse.Definition
+import LRA.Operation
 
 namespace LRA.AlgebraicStructures
 

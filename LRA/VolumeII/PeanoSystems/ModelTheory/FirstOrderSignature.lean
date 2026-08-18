@@ -1,5 +1,5 @@
 import LRA.VolumeI.Logic.Model.Model
-import LRA.VolumeI.Operations
+import LRA.Operation
 import LRA.VolumeI.AlgebraicStructures.DiscreteInteger.Laws.Definition
 
 namespace LRA.NumberSystems.PeanoSystems.ModelTheory

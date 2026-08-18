@@ -1,5 +1,5 @@
 import LRA.VolumeI.AlgebraicStructures.Lattice.Laws.Definition
-import LRA.VolumeI.Operations.Laws.Distributive.Definition
+import LRA.Operation
 
 namespace LRA.AlgebraicStructures
 

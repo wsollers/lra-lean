@@ -1,5 +1,5 @@
-import LRA.VolumeI.Operations
-import LRA.VolumeI.Relations
+import LRA.Operation
+import LRA.Relation
 import LRA.VolumeI.UniversalAlgebra.Signature
 import LRA.VolumeI.UniversalAlgebra.InterpretedOperationBundles
 import LRA.VolumeI.UniversalAlgebra.Algebra.All

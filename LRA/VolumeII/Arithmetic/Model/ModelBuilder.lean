@@ -1,5 +1,5 @@
 import LRA.VolumeII.Arithmetic.Model.FirstOrderSignature
-import LRA.VolumeI.Operations
+import LRA.Operation
 
 namespace LRA.NumberSystems.Arithmetic.Model
 

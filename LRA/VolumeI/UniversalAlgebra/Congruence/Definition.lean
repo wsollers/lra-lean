@@ -1,5 +1,5 @@
-import LRA.VolumeI.Operations.Definition
-import LRA.VolumeI.Relations.Equivalence.EquivalenceRelation
+import LRA.Operation
+import LRA.Relation.Structures.Definition
 
 namespace LRA.UniversalAlgebra.Congruence
 
