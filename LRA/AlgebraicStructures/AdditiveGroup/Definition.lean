@@ -1,12 +1,10 @@
 import LRA.AlgebraicStructures.AdditiveGroup.Laws.Definition
+import LRA.AlgebraicStructures.AdditiveMonoid.Definition
 
 namespace LRA.AlgebraicStructures
 
-/-!
-AdditiveGroup Definition module.
-
-This file is reserved for definition whose natural owner is the named
-algebraic structure AdditiveGroup. It intentionally contains no placeholder theorems.
--/
+/-- The algebraic signature of an additive group: addition, zero, and negation. -/
+structure AdditiveGroupConceptSignature extends AdditiveMonoidConceptSignature where
+  neg : LRA.Operation.UnaryOperation carrier
 
 end LRA.AlgebraicStructures

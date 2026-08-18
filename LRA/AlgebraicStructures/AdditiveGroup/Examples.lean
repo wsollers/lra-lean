@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.AdditiveGroup.All
+import LRA.AlgebraicStructures.AdditiveGroup
 
 namespace LRA.AlgebraicStructures
 

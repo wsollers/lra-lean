@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.AdditiveGroup.AlgebraicSignature.ConceptSignature
+import LRA.AlgebraicStructures.AdditiveGroup.Definition
 
 namespace LRA.AlgebraicStructures
 
