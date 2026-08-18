@@ -36,9 +36,3 @@ instance : DistributivityLaws (LRA.Set.PredicateSet Alpha) where
     LRA.Set.PredicateSet.AbsorptionIntersectionUnion
 
 end LRA.Set.PredicateSet
-
-namespace LRA.Set.LRASet
-export LRA.Set.PredicateSet
-  (IntersectionDistributesOverUnion UnionDistributesOverIntersection
-   AbsorptionUnionIntersection AbsorptionIntersectionUnion)
-end LRA.Set.LRASet

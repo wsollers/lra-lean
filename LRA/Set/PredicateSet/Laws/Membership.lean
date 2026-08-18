@@ -57,7 +57,3 @@ instance : CollectionMembershipLaws
     CollectionIntersectionMembership C x
 
 end LRA.Set.PredicateSet
-
-namespace LRA.Set.LRASet
-export LRA.Set.PredicateSet (NotMemberOfEmpty)
-end LRA.Set.LRASet

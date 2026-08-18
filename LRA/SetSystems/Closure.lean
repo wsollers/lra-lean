@@ -55,9 +55,3 @@ def ClosedUnderFinite {Carrier : Type u} (collection : Collection Carrier)
       collection (operation objects)
 
 end LRA.SetSystems
-
-namespace LRA.Set.Algebra
-export LRA.SetSystems
-  (Collection Contains ContainsPredicate ClosedUnderNullary ClosedUnderUnary
-   ClosedUnderBinary ClosedUnderIndexed ClosedUnderCountable ClosedUnderFinite)
-end LRA.Set.Algebra

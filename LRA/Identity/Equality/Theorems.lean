@@ -3,6 +3,7 @@ import LRA.Relation.Definition
 import LRA.Relation.Properties.Definition
 import LRA.Relation.Canonical.IdentityRelation.Definition
 import LRA.Relation.Structures.Definition
+import LRA.Identity.Equality.Definition
 
 namespace LRA.Identity
 
@@ -24,22 +25,6 @@ theorem EqualityTransitivity {Carrier : Type u} {first second third : Carrier}
   have substitution :=
     LeibnizLaw FirstEqualsSecond (fun value => value = third)
   exact substitution.mpr SecondEqualsThird
-
-/-- A descriptive alias for Lean propositional equality. -/
-abbrev PropositionalEquality {Carrier : Type u} (left right : Carrier) : Prop :=
-  left = right
-
-/-- TeX label: `def:equality-relation`.
-
-Logical form:
-
-```lean
-abbrev EqualityRelation (Carrier : Type u) : Carrier -> Carrier -> Prop :=
-  LRA.Relation.IdentityRelation Carrier
-```
--/
-abbrev EqualityRelation (Carrier : Type u) : Carrier -> Carrier -> Prop :=
-  LRA.Relation.IdentityRelation Carrier
 
 /--
 Equality is reflexive as a named binary-relation predicate.

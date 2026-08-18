@@ -36,7 +36,3 @@ def SigmaAlgebraOfSets.toSigmaRingOfSets {ambient : SetObject}
   CountableUnionIsMember := sigma.CountableUnionIsMember
 
 end LRA.SetSystems
-
-namespace LRA.Set.Algebra
-export LRA.SetSystems (SigmaRingOfSets SigmaAlgebraOfSets)
-end LRA.Set.Algebra

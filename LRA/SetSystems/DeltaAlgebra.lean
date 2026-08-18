@@ -22,7 +22,3 @@ structure DeltaRingOfSets (ambient : SetObject) extends
         IsMember (HasCountableIntersection.countableIntersection family)
 
 end LRA.SetSystems
-
-namespace LRA.Set.Algebra
-export LRA.SetSystems (DeltaRingOfSets)
-end LRA.Set.Algebra

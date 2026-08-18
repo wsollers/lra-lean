@@ -69,12 +69,3 @@ instance : SymmDiffLaws (LRA.Set.PredicateSet Alpha) where
     LRA.Set.PredicateSet.SymmetricDifferenceSubsetUnion
 
 end LRA.Set.PredicateSet
-
-namespace LRA.Set.LRASet
-export LRA.Set.PredicateSet
-  (SymmetricDifferenceAsUnionDifferences
-   SymmetricDifferenceAsUnionDifferenceIntersection
-   SymmetricDifferenceCommutative SymmetricDifferenceAssociative
-   SymmetricDifferenceEmpty EmptySymmetricDifference SymmetricDifferenceSelf
-   SymmetricDifferenceEqEmptyIff SymmetricDifferenceSubsetUnion)
-end LRA.Set.LRASet

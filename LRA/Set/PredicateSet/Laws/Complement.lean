@@ -65,10 +65,3 @@ instance : ComplementLaws (LRA.Set.PredicateSet Alpha) where
   UniversalDifference := LRA.Set.PredicateSet.UniversalDifference
 
 end LRA.Set.PredicateSet
-
-namespace LRA.Set.LRASet
-export LRA.Set.PredicateSet
-  (DoubleComplement ComplementEmpty ComplementUniversal UnionComplement
-   IntersectionComplement DeMorganUnion DeMorganIntersection
-   DifferenceAsIntersectionComplement DifferenceUniversal UniversalDifference)
-end LRA.Set.LRASet

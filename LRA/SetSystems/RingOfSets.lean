@@ -29,7 +29,3 @@ structure RingOfSets (ambient : SetObject) where
     ∀ A B, IsMember A → IsMember B → IsMember (A ∆ B)
 
 end LRA.SetSystems
-
-namespace LRA.Set.Algebra
-export LRA.SetSystems (RingOfSets)
-end LRA.Set.Algebra

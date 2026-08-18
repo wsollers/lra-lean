@@ -18,17 +18,4 @@ theorem PredicateSetExtensionality {A B : PredicateSet Alpha}
   funext x
   exact propext (sameMembers x)
 
-/-! Compatibility vocabulary for the pre-standardization `LRASet` name. -/
-namespace LRASet
-
-abbrev LRASet (Alpha : Type u) := PredicateSet Alpha
-
-/-- Legacy theorem name forwarding to canonical predicate-set extensionality. -/
-theorem LRASetExtensionality {A B : LRASet Alpha}
-    (sameMembers : ∀ x : Alpha, x ∈ A ↔ x ∈ B) :
-    A = B :=
-  PredicateSetExtensionality sameMembers
-
-end LRASet
-
 end LRA.Set

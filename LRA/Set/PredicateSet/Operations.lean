@@ -193,32 +193,3 @@ theorem IndexedIntersectionMembership
   sorry
 
 end LRA.Set.PredicateSet
-
-/-!
-Compatibility exports for the pre-standardization `LRA.Set.LRASet` namespace.
-Canonical code should use `LRA.Set.PredicateSet`.
--/
-namespace LRA.Set.LRASet
-
-export LRA.Set.PredicateSet
-  (Empty EmptyMembership
-   Singleton SingletonMembership
-   Insert InsertMembership
-   Pair PairMembership PairEqualsInsertSingleton
-   Union UnionMembership
-   Intersection IntersectionMembership
-   Complement ComplementMembership
-   Universal UniversalMembership
-   Difference DifferenceMembership
-   IsRelativeComplementOf RelativeComplement
-   RelativeComplementIsRelativeComplementOf RelativeComplementMembership
-   SymmetricDifference SymmetricDifferenceMembership
-   Subset SubsetIff
-   PowerSet PowerSetMembership
-   CollectionUnion CollectionUnionMembership
-   CollectionIntersection CollectionIntersectionMembership
-   Nonempty Separation SeparationMembership
-   Family IndexedUnion IndexedUnionMembership
-   IndexedIntersection IndexedIntersectionMembership)
-
-end LRA.Set.LRASet

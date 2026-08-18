@@ -118,14 +118,3 @@ def BorelSigmaAlgebra
   GeneratedSigmaAlgebra ambient opens
 
 end LRA.SetSystems
-
-namespace LRA.Set.Algebra
-export LRA.SetSystems
-  (GeneratedSigmaAlgebraCollection GeneratedSigmaAlgebraMembersAreSubsets
-   GeneratedSigmaAlgebraEmptyIsMember GeneratedSigmaAlgebraUnionIsMember
-   GeneratedSigmaAlgebraIntersectionIsMember GeneratedSigmaAlgebraDifferenceIsMember
-   GeneratedSigmaAlgebraSymmetricDifferenceIsMember
-   GeneratedSigmaAlgebraAmbientIsMember GeneratedSigmaAlgebraCountableUnionIsMember
-   GeneratedSigmaAlgebra GeneratedSigmaAlgebraContainsGenerator
-   GeneratedSigmaAlgebraMinimal BorelSigmaAlgebra)
-end LRA.Set.Algebra

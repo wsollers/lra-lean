@@ -9,9 +9,9 @@ import LRA.SetSystems
 import LRA.SetSystems.AlgebraOfSets
 import LRA.SetSystems.SigmaAlgebra
 
-namespace LRA.Set.Algebra.Instantiations
+namespace LRA.SetSystems.Instantiations
 
-open LRA.Set.Algebra LRA.Set
+open LRA.SetSystems LRA.Set
 
 /-!
 Reference instantiations of the ambient-relative algebra structures at
@@ -321,8 +321,8 @@ Logical form:
 ```
 -/
 theorem lraSetAlgebraMembersAreSubsets (Point : Type) :
-    ∀ A : LRA.Set.LRASet.LRASet Point, True →
-      A ⊆ LRA.Set.LRASet.Universal Point := by
+    ∀ A : LRA.Set.PredicateSet Point, True →
+      A ⊆ LRA.Set.PredicateSet.Universal Point := by
   sorry
 
 /--
@@ -336,7 +336,7 @@ Logical form:
 ```
 -/
 theorem lraSetAlgebraUnionIsMember (Point : Type) :
-    ∀ A B : LRA.Set.LRASet.LRASet Point, True → True → True := by
+    ∀ A B : LRA.Set.PredicateSet Point, True → True → True := by
   sorry
 
 /--
@@ -350,7 +350,7 @@ Logical form:
 ```
 -/
 theorem lraSetAlgebraIntersectionIsMember (Point : Type) :
-    ∀ A B : LRA.Set.LRASet.LRASet Point, True → True → True := by
+    ∀ A B : LRA.Set.PredicateSet Point, True → True → True := by
   sorry
 
 /--
@@ -364,7 +364,7 @@ Logical form:
 ```
 -/
 theorem lraSetAlgebraDifferenceIsMember (Point : Type) :
-    ∀ A B : LRA.Set.LRASet.LRASet Point, True → True → True := by
+    ∀ A B : LRA.Set.PredicateSet Point, True → True → True := by
   sorry
 
 /--
@@ -378,7 +378,7 @@ Logical form:
 ```
 -/
 theorem lraSetAlgebraSymmetricDifferenceIsMember (Point : Type) :
-    ∀ A B : LRA.Set.LRASet.LRASet Point, True → True → True := by
+    ∀ A B : LRA.Set.PredicateSet Point, True → True → True := by
   sorry
 
 /--
@@ -393,7 +393,7 @@ def lraSetAlgebra (Point : Type) :
 ```
 -/
 def lraSetAlgebra (Point : Type) :
-    AlgebraOfSets (LRA.Set.LRASet.Universal Point) where
+    AlgebraOfSets (LRA.Set.PredicateSet.Universal Point) where
   IsMember := fun _ => True
   MembersAreSubsets := lraSetAlgebraMembersAreSubsets Point
   EmptyIsMember := trivial
@@ -404,4 +404,4 @@ def lraSetAlgebra (Point : Type) :
   AmbientIsMember := trivial
 
 
-end LRA.Set.Algebra.Instantiations
+end LRA.SetSystems.Instantiations

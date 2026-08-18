@@ -26,8 +26,3 @@ instance : SubsetLaws (LRA.Set.PredicateSet Alpha) where
     LRA.Set.PredicateSet.SetEqualityIffMutualSubset
 
 end LRA.Set.PredicateSet
-
-namespace LRA.Set.LRASet
-export LRA.Set.PredicateSet
-  (SubsetReflexive SubsetTransitive SetEqualityIffMutualSubset)
-end LRA.Set.LRASet

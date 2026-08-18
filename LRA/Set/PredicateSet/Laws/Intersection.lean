@@ -49,10 +49,3 @@ instance : IntersectionLaws (LRA.Set.PredicateSet Alpha) where
     LRA.Set.PredicateSet.SubsetIffIntersectionEqLeft
 
 end LRA.Set.PredicateSet
-
-namespace LRA.Set.LRASet
-export LRA.Set.PredicateSet
-  (IntersectionCommutative IntersectionAssociative EmptyIntersection
-   IntersectionEmpty IntersectionIdempotent IntersectionMonotone
-   SubsetIffIntersectionEqLeft)
-end LRA.Set.LRASet

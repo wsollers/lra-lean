@@ -48,9 +48,3 @@ instance : UnionLaws (LRA.Set.PredicateSet Alpha) where
   SubsetIffUnionEqRight := LRA.Set.PredicateSet.SubsetIffUnionEqRight
 
 end LRA.Set.PredicateSet
-
-namespace LRA.Set.LRASet
-export LRA.Set.PredicateSet
-  (UnionCommutative UnionAssociative EmptyUnion UnionEmpty UnionIdempotent
-   UnionMonotone SubsetIffUnionEqRight)
-end LRA.Set.LRASet

@@ -31,7 +31,3 @@ theorem RelativeComplementIsMember
 end AlgebraOfSets
 
 end LRA.SetSystems
-
-namespace LRA.Set.Algebra
-export LRA.SetSystems (AlgebraOfSets)
-end LRA.Set.Algebra

@@ -77,11 +77,3 @@ instance : DifferenceLaws (LRA.Set.PredicateSet Alpha) where
   DifferenceDisjointRight := LRA.Set.PredicateSet.DifferenceDisjointRight
 
 end LRA.Set.PredicateSet
-
-namespace LRA.Set.LRASet
-export LRA.Set.PredicateSet
-  (DifferenceMonotoneLeft DifferenceAntitoneRight DifferenceEmpty
-   EmptyDifference DifferenceSelf DifferenceUnion DifferenceIntersection
-   UnionDifferenceDistributes IntersectionDifferenceDistributes
-   DifferenceSubsetLeft DifferenceDisjointRight)
-end LRA.Set.LRASet
