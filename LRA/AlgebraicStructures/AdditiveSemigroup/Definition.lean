@@ -1,12 +1,10 @@
 import LRA.AlgebraicStructures.AdditiveSemigroup.Laws.Definition
+import LRA.UniversalAlgebra.InterpretedOperationBundles
 
 namespace LRA.AlgebraicStructures
 
-/-!
-AdditiveSemigroup Definition module.
-
-This file is reserved for definition whose natural owner is the named
-algebraic structure AdditiveSemigroup. It intentionally contains no placeholder theorems.
--/
+/-- The algebraic signature of an additive semigroup: one binary addition. -/
+abbrev AdditiveSemigroupConceptSignature :=
+  LRA.UniversalAlgebra.InterpretedOperationBundles.AdditiveOperationBundle
 
 end LRA.AlgebraicStructures

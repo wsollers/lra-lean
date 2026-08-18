@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.AdditiveSemigroup.AlgebraicSignature.ConceptSignature
+import LRA.AlgebraicStructures.AdditiveSemigroup.Definition
 
 namespace LRA.AlgebraicStructures
 
