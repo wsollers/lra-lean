@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.BoundedLattice.Laws.All
+import LRA.AlgebraicStructures.BoundedLattice.Laws
 
 namespace LRA.AlgebraicStructures
 
