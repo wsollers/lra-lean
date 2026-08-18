@@ -150,10 +150,15 @@ primitives**:
 
 - **`LRA/Morphism/Properties/`** — the Prop-valued preservation predicates above.
   These are the primitives. Everything else is defined from them.
-- **`LRA/Morphism/Definition.lean`** — a bundled `Morphism` structure carrying an
-  **arrow** `LRA.Function Source Target` together with its preservation evidence.
-  It must not carry a relational-function bundle; the arrow is the working
-  presentation (§1.2).
+- **There is no generic bundled `Morphism` structure.** "Structure" is polymorphic
+  — a relation, an operation, or a family of both — so a single bundle would have
+  to be parameterized by a signature, and a signature-parameterized morphism *is*
+  the universal-algebra notion, which §1.3 says must not own the primitives.
+  Bundling therefore happens per subject.
+
+Theorem transfer does not need a shared bundle and never did. It happens at the
+predicate level: a subject derives "a composite of my morphisms is my morphism"
+from `PreservesRelation (outer ∘ inner)`, not from a parent structure.
 
 One question decides how a subject specializes:
 
@@ -163,7 +168,7 @@ One question decides how a subject specializes:
 |---|---|
 | adds only constraints | a `def`/`abbrev` **in terms of** the generic predicate |
 | preserves several pieces of structure | a conjunction of generic predicates |
-| adds data (an inverse, a second operation, a unit) | a `structure … extends` the generic morphism |
+| adds data (an inverse, a second operation, a unit) | a `structure` bundling the arrow with the relevant generic predicates |
 
 Correct — constraints only, so definitional:
 
@@ -184,11 +189,15 @@ def IsRingHomomorphism (function : R → S) : Prop :=
   LRA.Morphism.PreservesNullaryOperation function oneR oneS
 ```
 
-Correct — adds an inverse, so a structure that `extends`:
+Correct — adds an inverse, so a structure of its own, whose fields are stated
+through the generic predicates:
 
 ```lean
-structure OrderIsomorphism … extends LRA.Morphism.Morphism … where
-  inverse : Beta → Alpha
+structure OrderIsomorphism (source : Endorelation Alpha) (target : Endorelation Beta) where
+  forward : LRA.Function Alpha Beta
+  inverse : LRA.Function Beta Alpha
+  forwardPreserves : LRA.Morphism.PreservesRelation forward source target
+  inversePreserves : LRA.Morphism.PreservesRelation inverse target source
   leftInverse : …
   rightInverse : …
 ```
@@ -208,18 +217,24 @@ exact failure the Relation → Function → Morphism chain exists to prevent.
 
 ### 1.3.2 Generic theory that must not be restated
 
-Proved once in `LRA.Morphism`, inherited everywhere:
+Proved once in `LRA.Morphism`, at the level of the preservation predicates, and
+derived by every subject rather than restated:
 
-- the identity function is a morphism;
-- a composite of morphisms is a morphism, and composition is associative;
-- an injective morphism is an embedding;
-- a bijective morphism whose inverse is a morphism is an isomorphism;
-- the image of a morphism is a substructure;
-- the kernel of a morphism induces a congruence.
+- the identity function preserves every relation and every operation;
+- a composite of preserving functions preserves, and composition is associative;
+- an injective preserving function is an embedding;
+- a bijective preserving function whose inverse preserves is an isomorphism.
 
 No subject may restate any of these. If `UniversalAlgebra`, `Order`, `Topology`,
 and `LinearAlgebra` each prove "a composite of homomorphisms is a homomorphism",
 the central subject has failed its purpose.
+
+**Two results that are not generic.** "The image of a morphism is a substructure"
+and "the kernel of a morphism induces a congruence" do not typecheck without a
+notion of *structure* to be a sub-thing of, and a notion of *congruence*. Both are
+`LRA.UniversalAlgebra`'s, and both results belong there. That is consistent with
+§1.3: `UniversalAlgebra` must not own the morphism **primitives**, but it does own
+theorems that require its own structure notion, stated through those primitives.
 
 **Why not `LRA.UniversalAlgebra.Morphisms`.** Universal algebra studies carriers
 with *operations only*; its signatures have no relation symbols. Three of the
@@ -702,7 +717,8 @@ consumer, delete the vacated module, and remove the old directory once empty.
 | morphism primitives (74 files) | `LRA/VolumeI/Map/Morphisms/` | `LRA/Morphism/` |
 | function concepts (19 dirs × 7 files) | `LRA/VolumeI/Map/*/` | already superseded by `LRA/Function/` — delete |
 | graph vocabulary | `LRA/VolumeI/Map/Graph/` | `LRA/Relation/Calculus/` and `LRA/Function/Definition.lean` |
-| set-backed adapters | `LRA/VolumeI/Map/SetTheoretic/` | `LRA/Function/SetTheoretic/` |
+| the triple layer only | `LRA/VolumeI/Map/SetTheoretic/` | `LRA/Function/SetTheoretic/` (§1.5 scope, nothing wider) |
+| the set-backed image/preimage/fiber/inverse calculus | `LRA/VolumeI/Map/{Image,Preimage,Fiber,Inverse}/` | **audit against `LRA.Set.Interface.RelationSets` first — see §7.1.1** |
 | remaining Volume I subjects | `LRA/VolumeI/{Logic,Set,Order,Operations,Relations,Identity,UniversalAlgebra,AlgebraicStructures}/` | the matching `LRA/<Subject>/` |
 | Volume II number systems | `LRA/VolumeII/` | `LRA/NumberSystems/` |
 | Volume III analysis | `LRA/VolumeIII/` | `LRA/Analysis/` |
@@ -712,6 +728,43 @@ consumer, delete the vacated module, and remove the old directory once empty.
 
 `LRA/VolumeI/Map/` must not exist when this is done. Delete
 `LRA/VolumeI/Map.lean` rather than keeping it as a compatibility aggregate.
+
+### 7.1.1 The set-backed function calculus is an audit, not a move
+
+`LRA/VolumeI/Map/{Image,Preimage,Fiber,Inverse}/` holds roughly 100 theorems about
+`HasSeparation`-built images, preimages, fibers, and inverses. Do **not** move them
+wholesale, and do **not** create a new group to hold them.
+
+`LRA/Set/Interface/RelationSets.lean` already owns that vocabulary at the relation
+level, separation-built:
+
+```text
+DomainOf  RangeOf  ImageOf  PreimageOf  FiberOf  InverseOf
+RestrictionOf  IsExtensionOf  GraphSetOf  IdentityOn  CompositionOf
+IsSingleValued  IsFunctionalSet  IsTotalOn
+```
+
+So this is a duplicate-ownership question, not a placement question, and §1.2.1
+already decides it: where a function concept is the relation concept applied to a
+function graph, define it **through `Graph`** rather than restating it.
+
+Sort every one of those declarations into exactly one bucket and report the
+counts. Do not assume the proportions; the name overlap is suggestive, not proof.
+
+| Bucket | Action |
+|---|---|
+| a restatement of a `RelationSets` fact at the function level | delete; the relation-level fact already covers it |
+| a genuine function-level specialization | state it in `LRA/Function/Calculus/` **through `Graph`**, one line, deriving from the relation-level result |
+| genuinely new mathematics with no relation-level analogue | keep, in `LRA/Function/Calculus/`, with a note saying why it has no analogue |
+
+If the audit shows `LRA.Set.Interface.RelationSets` and `LRA.Relation.Calculus`
+themselves overlap, record it and stop — that is a separate duplicate-ownership
+question between two promoted subjects, and it is not resolved by this phase.
+
+Placement of the remainder follows §7.1 directly: `Graph` splits between
+`LRA/Relation/Calculus/` and `LRA/Function/Definition.lean`; `PartialMap` becomes
+a `LRA/Function/Structures/` concept, which §2.2 already names; `HasDomain` and
+`HasCodomain` go to `LRA/Function/Calculus/Classes/`.
 
 ### 7.2 Resolve duplicate ownership
 
