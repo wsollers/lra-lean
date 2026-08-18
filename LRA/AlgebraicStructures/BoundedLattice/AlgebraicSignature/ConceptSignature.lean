@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Lattice.AlgebraicSignature.ConceptSignature
+import LRA.AlgebraicStructures.Lattice.Definition
 
 namespace LRA.AlgebraicStructures
 
