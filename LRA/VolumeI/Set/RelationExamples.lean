@@ -2,7 +2,8 @@
 -- Cross-backend smoke tests: relations-as-sets resolve from the types.
 
 import LRA.VolumeI.Set.Interface
-import LRA.VolumeI.Set.Enderton
+import LRA.Set.ZFC
+import LRA.Set.ZFCSet
 import LRA.VolumeI.Set.LRASet
 import LRA.VolumeI.Set.MathlibPredicateSet
 import LRA.VolumeI.Set.MathlibZFSet
@@ -31,7 +32,7 @@ pairs) with no switches and no plumbing.
 
 /-- Enderton: relations are sets of Kuratowski pairs — everything is a
 `Set`. -/
-example (f g : Enderton.Set) (a b : Enderton.Set) :
+example (f g : LRA.Set.ZFCSet) (a b : LRA.Set.ZFCSet) :
     Relates (f ∪ g) a b ↔ Relates f a b ∨ Relates g a b :=
   RelatesUnion f g a b
 
@@ -54,8 +55,8 @@ example {Alpha Beta : Type u} (f g : _root_.Set (Alpha × Beta))
 
 /-! ## The ambient-relative constructions elaborate per backend -/
 
-noncomputable example (R ambient : Enderton.Set) : Enderton.Set :=
-  DomainOf Enderton.Set R ambient
+noncomputable example (R ambient : LRA.Set.ZFCSet) : LRA.Set.ZFCSet :=
+  DomainOf LRA.Set.ZFCSet R ambient
 
 noncomputable example (R ambient : ZFSet) : ZFSet :=
   RangeOf ZFSet R ambient
@@ -93,8 +94,8 @@ example {Alpha Beta : Type u} (map : Alpha → Beta)
   GraphSetOf map ambient
 
 /-- Function-hood is one statement across backends. -/
-example (f : Enderton.Set) : Prop :=
-  IsFunctionalSet Enderton.Set Enderton.Set f
+example (f : LRA.Set.ZFCSet) : Prop :=
+  IsFunctionalSet LRA.Set.ZFCSet LRA.Set.ZFCSet f
 
 example {Alpha Beta : Type u} (f : _root_.Set (Alpha × Beta)) : Prop :=
   IsFunctionalSet Alpha Beta f

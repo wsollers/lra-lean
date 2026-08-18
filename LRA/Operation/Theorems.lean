@@ -24,7 +24,7 @@ theorem EndomapCompositionIdentity (Carrier : Type u) :
 theorem BijectiveEndomapHasCompositionInverse
     {Carrier : Type u}
     (map : Carrier → Carrier)
-    (bijective : LRA.Function.Bijective (LRA.Function.OfTypedFunction map)) :
+    (bijective : LRA.Function.Bijective map) :
     ∃ inverse : Carrier → Carrier,
       EndomapComposition Carrier inverse map = EndomapIdentity Carrier ∧
         EndomapComposition Carrier map inverse = EndomapIdentity Carrier := by

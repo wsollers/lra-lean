@@ -81,11 +81,11 @@ Logical form:
 
 ```lean
 theorem EqualityRelationIsEquivalence (Carrier : Type u) :
-    LRA.Relation.Equivalence (EqualityRelation Carrier)
+    LRA.Relation.EquivalenceRelation (EqualityRelation Carrier)
 ```
 -/
 theorem EqualityRelationIsEquivalence (Carrier : Type u) :
-    LRA.Relation.Equivalence (EqualityRelation Carrier) := by
+    LRA.Relation.EquivalenceRelation (EqualityRelation Carrier) := by
   exact ⟨
     EqualityRelationIsReflexive Carrier,
     EqualityRelationIsSymmetric Carrier,

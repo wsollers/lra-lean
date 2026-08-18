@@ -7,47 +7,47 @@ namespace LRA.Function
 open LRA.Set
 universe u v w
 
-/-- A typed function is a restriction of another along an inclusion-like map. -/
-def RestrictsToTyped
+/-- A function is a restriction of another along an inclusion-like function. -/
+def RestrictsTo
     {Subdomain : Type u} {Domain : Type v} {Codomain : Type w}
-    (restricted : TypedFunction Subdomain Codomain)
-    (original : TypedFunction Domain Codomain)
-    (inclusion : TypedFunction Subdomain Domain) : Prop :=
+    (restricted : LRA.Function Subdomain Codomain)
+    (original : LRA.Function Domain Codomain)
+    (inclusion : LRA.Function Subdomain Domain) : Prop :=
   ∀ input, restricted input = original (inclusion input)
 
-/-- Restrict a typed function along an inclusion-like map. -/
-def RestrictionTyped
+/-- Restrict a function along an inclusion-like function. -/
+def Restriction
     {Subdomain : Type u} {Domain : Type v} {Codomain : Type w}
-    (original : TypedFunction Domain Codomain)
-    (inclusion : TypedFunction Subdomain Domain) :
-    TypedFunction Subdomain Codomain :=
+    (original : LRA.Function Domain Codomain)
+    (inclusion : LRA.Function Subdomain Domain) :
+    LRA.Function Subdomain Codomain :=
   fun input => original (inclusion input)
 
-/-- A typed function extends another along an inclusion-like map. -/
-def ExtendsTyped
+/-- A function extends another along an inclusion-like function. -/
+def Extends
     {SmallDomain : Type u} {LargeDomain : Type v} {Codomain : Type w}
-    (extension : TypedFunction LargeDomain Codomain)
-    (original : TypedFunction SmallDomain Codomain)
-    (inclusion : TypedFunction SmallDomain LargeDomain) : Prop :=
+    (extension : LRA.Function LargeDomain Codomain)
+    (original : LRA.Function SmallDomain Codomain)
+    (inclusion : LRA.Function SmallDomain LargeDomain) : Prop :=
   ∀ input, extension (inclusion input) = original input
 
 /-- Restrict the graph of a function to a source class. -/
 abbrev RestrictDomainGraph {Domain : Type u} {Codomain : Type v}
-    (function : RelationalFunction Domain Codomain) (source : SetClass Domain) :
+    (function : LRA.Function Domain Codomain) (source : SetClass Domain) :
     FunctionRelation Domain Codomain :=
-  LRA.Relation.RestrictDomain function.graph source
+  LRA.Relation.RestrictDomain (Graph function) source
 
 /-- Restrict the graph of a function to a target class. -/
 abbrev RestrictCodomainGraph {Domain : Type u} {Codomain : Type v}
-    (function : RelationalFunction Domain Codomain) (target : SetClass Codomain) :
+    (function : LRA.Function Domain Codomain) (target : SetClass Codomain) :
     FunctionRelation Domain Codomain :=
-  LRA.Relation.RestrictCodomain function.graph target
+  LRA.Relation.RestrictCodomain (Graph function) target
 
 /-- Restrict the graph of a function to source and target classes. -/
 abbrev RestrictGraph {Domain : Type u} {Codomain : Type v}
-    (function : RelationalFunction Domain Codomain)
+    (function : LRA.Function Domain Codomain)
     (source : SetClass Domain) (target : SetClass Codomain) :
     FunctionRelation Domain Codomain :=
-  LRA.Relation.Restrict function.graph source target
+  LRA.Relation.Restrict (Graph function) source target
 
 end LRA.Function

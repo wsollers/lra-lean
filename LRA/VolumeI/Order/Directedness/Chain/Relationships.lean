@@ -1,3 +1,4 @@
+import LRA.Relation.Properties.Definition
 import LRA.VolumeI.Order.Directedness.Chain.Definition
 import LRA.VolumeI.Order.Directedness.Directed.Definition
 

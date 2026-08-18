@@ -22,11 +22,3 @@ instance : SubsetLaws Set where
   SetEqualityIffMutualSubset := SetEqualityIffMutualSubset
 
 end LRA.Set.ZFCSet
-
-namespace LRA.Set.Enderton
-
-abbrev SubsetReflexive := LRA.Set.ZFCSet.SubsetReflexive
-abbrev SubsetTransitive := LRA.Set.ZFCSet.SubsetTransitive
-abbrev SetEqualityIffMutualSubset := LRA.Set.ZFCSet.SetEqualityIffMutualSubset
-
-end LRA.Set.Enderton

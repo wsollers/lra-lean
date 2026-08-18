@@ -49,25 +49,3 @@ instance : PairingLaws Set Set Set :=
     KuratowskiPairInjective firstLeft secondLeft firstRight secondRight⟩
 
 end LRA.Set.ZFC
-
-/-! Compatibility aliases for the historical Enderton ordered-pair names. -/
-namespace LRA.Set.Enderton
-
-noncomputable abbrev SingletonSet (element : Set) : Set :=
-  LRA.Set.ZFC.SingletonSet element
-
-noncomputable abbrev KuratowskiPair (first second : Set) : Set :=
-  LRA.Set.ZFC.KuratowskiPair first second
-
-abbrev MemberOfSingletonSet (element candidate : Set) :=
-  LRA.Set.ZFC.MemberOfSingletonSet element candidate
-
-abbrev KuratowskiPairInjective
-    (firstLeft secondLeft firstRight secondRight : Set) :=
-  LRA.Set.ZFC.KuratowskiPairInjective
-    firstLeft secondLeft firstRight secondRight
-
-abbrev SingletonMemberOfKuratowskiPair (first second : Set) :=
-  LRA.Set.ZFC.SingletonMemberOfKuratowskiPair first second
-
-end LRA.Set.Enderton

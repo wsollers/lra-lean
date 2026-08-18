@@ -1,13 +1,13 @@
 import LRA.VolumeI.Map.Preimage.Definition
-import LRA.VolumeI.Map.Composition.Definition
-import LRA.VolumeI.Map.Identity.Definition
 import LRA.VolumeI.Set.Interface.Indexed
 import LRA.VolumeI.Identity.Model.Theory
+import LRA.Function.Canonical.Identity.Definition
+import LRA.Function.Definition
+import LRA.Function.Operations.Composition.Definition
 
 namespace LRA.Map.Preimage
 
 open LRA.Set
-open LRA.Map.Typed
 
 universe u₁ u₂ u₃ v₁ v₂ v₃
 
@@ -34,14 +34,14 @@ Logical form:
 
 ```lean
 theorem PreimageMembershipIff
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet)
     (input : DomainElement) :
     input ∈ (Preimage map target : DomainSet) <-> map input ∈ target
 ```
 -/
 theorem PreimageMembershipIff
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet)
     (input : DomainElement) :
     input ∈ (Preimage map target : DomainSet) <-> map input ∈ target := by
@@ -60,7 +60,7 @@ Logical form:
 
 ```lean
 theorem PreimageExists
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet) :
     LRA.Identity.Exists
       (fun preimageSet : DomainSet =>
@@ -68,7 +68,7 @@ theorem PreimageExists
 ```
 -/
 theorem PreimageExists
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet) :
     LRA.Identity.Exists
       (fun preimageSet : DomainSet =>
@@ -84,7 +84,7 @@ Logical form:
 
 ```lean
 theorem PreimageUnique
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet) :
     LRA.Identity.Unique
       (fun preimageSet : DomainSet =>
@@ -92,7 +92,7 @@ theorem PreimageUnique
 ```
 -/
 theorem PreimageUnique
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet) :
     LRA.Identity.Unique
       (fun preimageSet : DomainSet =>
@@ -108,7 +108,7 @@ Logical form:
 
 ```lean
 theorem PreimageExistsAndUnique
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet) :
     LRA.Identity.ExistsAndUnique
       (fun preimageSet : DomainSet =>
@@ -116,7 +116,7 @@ theorem PreimageExistsAndUnique
 ```
 -/
 theorem PreimageExistsAndUnique
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet) :
     LRA.Identity.ExistsAndUnique
       (fun preimageSet : DomainSet =>
@@ -149,12 +149,12 @@ Logical form:
 
 ```lean
 theorem PreimageUniversal
-    (map : TypedMap DomainElement CodomainElement) :
+    (map : LRA.Function DomainElement CodomainElement) :
     (Preimage map (𝒰 : CodomainSet) : DomainSet) = (𝒰 : DomainSet)
 ```
 -/
 theorem PreimageUniversal
-    (map : TypedMap DomainElement CodomainElement) :
+    (map : LRA.Function DomainElement CodomainElement) :
     (Preimage map (𝒰 : CodomainSet) : DomainSet) = (𝒰 : DomainSet) := by
   sorry
 
@@ -167,12 +167,12 @@ Logical form:
 
 ```lean
 theorem PreimageEmpty
-    (map : TypedMap DomainElement CodomainElement) :
+    (map : LRA.Function DomainElement CodomainElement) :
     (Preimage map (∅ : CodomainSet) : DomainSet) = ∅
 ```
 -/
 theorem PreimageEmpty
-    (map : TypedMap DomainElement CodomainElement) :
+    (map : LRA.Function DomainElement CodomainElement) :
     (Preimage map (∅ : CodomainSet) : DomainSet) = ∅ := by
   sorry
 
@@ -185,14 +185,14 @@ Logical form:
 
 ```lean
 theorem PreimageUnion
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left right : CodomainSet) :
     (Preimage map (left ∪ right) : DomainSet) =
       Preimage map left ∪ Preimage map right
 ```
 -/
 theorem PreimageUnion
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left right : CodomainSet) :
     (Preimage map (left ∪ right) : DomainSet) =
       Preimage map left ∪ Preimage map right := by
@@ -207,14 +207,14 @@ Logical form:
 
 ```lean
 theorem PreimageIntersection
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left right : CodomainSet) :
     (Preimage map (left ∩ right) : DomainSet) =
       Preimage map left ∩ Preimage map right
 ```
 -/
 theorem PreimageIntersection
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left right : CodomainSet) :
     (Preimage map (left ∩ right) : DomainSet) =
       Preimage map left ∩ Preimage map right := by
@@ -229,14 +229,14 @@ Logical form:
 
 ```lean
 theorem PreimageDifference
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left right : CodomainSet) :
     (Preimage map (left \ right) : DomainSet) =
       Preimage map left \ Preimage map right
 ```
 -/
 theorem PreimageDifference
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left right : CodomainSet) :
     (Preimage map (left \ right) : DomainSet) =
       Preimage map left \ Preimage map right := by
@@ -251,13 +251,13 @@ Logical form:
 
 ```lean
 theorem PreimageComplement
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet) :
     (Preimage map targetᶜ : DomainSet) = (Preimage map target)ᶜ
 ```
 -/
 theorem PreimageComplement
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet) :
     (Preimage map targetᶜ : DomainSet) = (Preimage map target)ᶜ := by
   sorry
@@ -271,14 +271,14 @@ Logical form:
 
 ```lean
 theorem PreimageSymmetricDifference
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left right : CodomainSet) :
     (Preimage map (left ∆ right) : DomainSet) =
       Preimage map left ∆ Preimage map right
 ```
 -/
 theorem PreimageSymmetricDifference
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left right : CodomainSet) :
     (Preimage map (left ∆ right) : DomainSet) =
       Preimage map left ∆ Preimage map right := by
@@ -293,13 +293,13 @@ Logical form:
 
 ```lean
 theorem PreimageSubsetUniversal
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet) :
     (Preimage map target : DomainSet) ⊆ (𝒰 : DomainSet)
 ```
 -/
 theorem PreimageSubsetUniversal
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet) :
     (Preimage map target : DomainSet) ⊆ (𝒰 : DomainSet) := by
   sorry
@@ -313,14 +313,14 @@ Logical form:
 
 ```lean
 theorem PreimageMonotone
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     {left right : CodomainSet}
     (subset : left ⊆ right) :
     (Preimage map left : DomainSet) ⊆ Preimage map right
 ```
 -/
 theorem PreimageMonotone
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     {left right : CodomainSet}
     (subset : left ⊆ right) :
     (Preimage map left : DomainSet) ⊆ Preimage map right := by
@@ -335,14 +335,14 @@ Logical form:
 
 ```lean
 theorem PreimageCongrFunction
-    (leftMap rightMap : TypedMap DomainElement CodomainElement)
+    (leftMap rightMap : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet)
     (sameValues : forall input, leftMap input = rightMap input) :
     (Preimage leftMap target : DomainSet) = Preimage rightMap target
 ```
 -/
 theorem PreimageCongrFunction
-    (leftMap rightMap : TypedMap DomainElement CodomainElement)
+    (leftMap rightMap : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet)
     (sameValues : forall input, leftMap input = rightMap input) :
     (Preimage leftMap target : DomainSet) = Preimage rightMap target := by
@@ -357,14 +357,14 @@ Logical form:
 
 ```lean
 theorem PreimageCongrSet
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left right : CodomainSet)
     (sameSet : left = right) :
     (Preimage map left : DomainSet) = Preimage map right
 ```
 -/
 theorem PreimageCongrSet
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left right : CodomainSet)
     (sameSet : left = right) :
     (Preimage map left : DomainSet) = Preimage map right := by
@@ -379,7 +379,7 @@ Logical form:
 
 ```lean
 theorem PreimageDifferenceUnion
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left middle right : CodomainSet) :
     (Preimage map (left \ (middle ∪ right)) : DomainSet) =
       Preimage map left \
@@ -387,7 +387,7 @@ theorem PreimageDifferenceUnion
 ```
 -/
 theorem PreimageDifferenceUnion
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left middle right : CodomainSet) :
     (Preimage map (left \ (middle ∪ right)) : DomainSet) =
       Preimage map left \
@@ -414,7 +414,7 @@ Logical form:
 
 ```lean
 theorem PreimageIndexedUnion
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (family : Index → CodomainSet) :
     (Preimage map (HasIndexedUnion.indexedUnion family) : DomainSet) =
       HasIndexedUnion.indexedUnion
@@ -422,7 +422,7 @@ theorem PreimageIndexedUnion
 ```
 -/
 theorem PreimageIndexedUnion
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (family : Index → CodomainSet) :
     (Preimage map (HasIndexedUnion.indexedUnion family) : DomainSet) =
       HasIndexedUnion.indexedUnion
@@ -438,7 +438,7 @@ Logical form:
 
 ```lean
 theorem PreimageIndexedIntersection
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (family : Index → CodomainSet) :
     (Preimage map (HasIndexedIntersection.indexedIntersection family) :
       DomainSet) =
@@ -447,7 +447,7 @@ theorem PreimageIndexedIntersection
 ```
 -/
 theorem PreimageIndexedIntersection
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (family : Index → CodomainSet) :
     (Preimage map (HasIndexedIntersection.indexedIntersection family) :
       DomainSet) =
@@ -474,7 +474,7 @@ Logical form:
 
 ```lean
 theorem PreimageCountableUnion
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (family : Nat → CodomainSet) :
     (Preimage map (HasCountableUnion.countableUnion family) : DomainSet) =
       HasCountableUnion.countableUnion
@@ -482,7 +482,7 @@ theorem PreimageCountableUnion
 ```
 -/
 theorem PreimageCountableUnion
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (family : Nat → CodomainSet) :
     (Preimage map (HasCountableUnion.countableUnion family) : DomainSet) =
       HasCountableUnion.countableUnion
@@ -498,7 +498,7 @@ Logical form:
 
 ```lean
 theorem PreimageCountableIntersection
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (family : Nat → CodomainSet) :
     (Preimage map (HasCountableIntersection.countableIntersection family) :
       DomainSet) =
@@ -507,7 +507,7 @@ theorem PreimageCountableIntersection
 ```
 -/
 theorem PreimageCountableIntersection
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (family : Nat → CodomainSet) :
     (Preimage map (HasCountableIntersection.countableIntersection family) :
       DomainSet) =
@@ -540,13 +540,13 @@ Logical form:
 ```lean
 theorem PreimageIdentity
     (subset : SetObject) :
-    (Preimage (LRA.Map.Identity.IdentityMap Element) subset : SetObject) =
+    (Preimage (LRA.Function.IdentityFunction Element) subset : SetObject) =
       subset
 ```
 -/
 theorem PreimageIdentity
     (subset : SetObject) :
-    (Preimage (LRA.Map.Identity.IdentityMap Element) subset : SetObject) =
+    (Preimage (LRA.Function.IdentityFunction Element) subset : SetObject) =
       subset := by
   sorry
 
@@ -583,10 +583,10 @@ theorem PreimageComposition
     [HasComplement FirstSet] [HasComplement MiddleSet]
     [UniversalMembershipLaws FirstElement FirstSet]
     [UniversalMembershipLaws MiddleElement MiddleSet]
-    (secondMap : TypedMap MiddleElement ThirdElement)
-    (firstMap : TypedMap FirstElement MiddleElement)
+    (secondMap : LRA.Function MiddleElement ThirdElement)
+    (firstMap : LRA.Function FirstElement MiddleElement)
     (target : ThirdSet) :
-    (Preimage (LRA.Map.Composition.Composition secondMap firstMap) target :
+    (Preimage (LRA.Function.Compose secondMap firstMap) target :
       FirstSet) =
       Preimage firstMap ((Preimage secondMap target : MiddleSet))
 ```
@@ -598,10 +598,10 @@ theorem PreimageComposition
     [HasComplement FirstSet] [HasComplement MiddleSet]
     [UniversalMembershipLaws FirstElement FirstSet]
     [UniversalMembershipLaws MiddleElement MiddleSet]
-    (secondMap : TypedMap MiddleElement ThirdElement)
-    (firstMap : TypedMap FirstElement MiddleElement)
+    (secondMap : LRA.Function MiddleElement ThirdElement)
+    (firstMap : LRA.Function FirstElement MiddleElement)
     (target : ThirdSet) :
-    (Preimage (LRA.Map.Composition.Composition secondMap firstMap) target :
+    (Preimage (LRA.Function.Compose secondMap firstMap) target :
       FirstSet) =
       Preimage firstMap ((Preimage secondMap target : MiddleSet)) := by
   sorry
@@ -625,13 +625,13 @@ theorem PreimageCompositionMonotone
     [SeparationLaws FirstElement FirstSet]
     [HasComplement FirstSet]
     [UniversalMembershipLaws FirstElement FirstSet]
-    (secondMap : TypedMap MiddleElement ThirdElement)
-    (firstMap : TypedMap FirstElement MiddleElement)
+    (secondMap : LRA.Function MiddleElement ThirdElement)
+    (firstMap : LRA.Function FirstElement MiddleElement)
     (left right : ThirdSet)
     (leftSubsetRight : left ⊆ right) :
-    (Preimage (LRA.Map.Composition.Composition secondMap firstMap) left :
+    (Preimage (LRA.Function.Compose secondMap firstMap) left :
       FirstSet) ⊆
-      Preimage (LRA.Map.Composition.Composition secondMap firstMap) right
+      Preimage (LRA.Function.Compose secondMap firstMap) right
 ```
 -/
 theorem PreimageCompositionMonotone
@@ -645,13 +645,13 @@ theorem PreimageCompositionMonotone
     [SeparationLaws FirstElement FirstSet]
     [HasComplement FirstSet]
     [UniversalMembershipLaws FirstElement FirstSet]
-    (secondMap : TypedMap MiddleElement ThirdElement)
-    (firstMap : TypedMap FirstElement MiddleElement)
+    (secondMap : LRA.Function MiddleElement ThirdElement)
+    (firstMap : LRA.Function FirstElement MiddleElement)
     (left right : ThirdSet)
     (leftSubsetRight : left ⊆ right) :
-    (Preimage (LRA.Map.Composition.Composition secondMap firstMap) left :
+    (Preimage (LRA.Function.Compose secondMap firstMap) left :
       FirstSet) ⊆
-      Preimage (LRA.Map.Composition.Composition secondMap firstMap) right := by
+      Preimage (LRA.Function.Compose secondMap firstMap) right := by
   sorry
 
 end Composition

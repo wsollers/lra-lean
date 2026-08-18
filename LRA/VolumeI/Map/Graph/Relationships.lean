@@ -1,9 +1,9 @@
 import LRA.VolumeI.Map.Graph.Theorems
 import LRA.VolumeI.Map.Graph.Definition
+import LRA.Function.Definition
 
 namespace LRA.Map.Graph
 
-open LRA.Map.Typed
 
 universe u v
 
@@ -17,13 +17,13 @@ Logical form:
 ```lean
 theorem GraphSingleValued
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
+    (map : LRA.Function Domain Codomain) :
     SingleValued (Graph map)
 ```
 -/
 theorem GraphSingleValued
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
+    (map : LRA.Function Domain Codomain) :
     SingleValued (Graph map) := by
   sorry
 /--
@@ -36,13 +36,13 @@ Logical form:
 ```lean
 theorem GraphTotalOverDomain
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
+    (map : LRA.Function Domain Codomain) :
     TotalOverDomain (Graph map)
 ```
 -/
 theorem GraphTotalOverDomain
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
+    (map : LRA.Function Domain Codomain) :
     TotalOverDomain (Graph map) := by
   sorry
 /--
@@ -55,13 +55,13 @@ Logical form:
 ```lean
 theorem GraphFunctionalRelation
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
+    (map : LRA.Function Domain Codomain) :
     FunctionalRelation (Graph map)
 ```
 -/
 theorem GraphFunctionalRelation
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
+    (map : LRA.Function Domain Codomain) :
     FunctionalRelation (Graph map) := by
   sorry
 end LRA.Map.Graph

@@ -1,8 +1,8 @@
 import LRA.VolumeI.Map.Fiber.Definition
+import LRA.Function.Definition
 
 namespace LRA.Map.Fiber
 
-open LRA.Map.Typed
 
 universe u v w
 
@@ -16,13 +16,13 @@ Logical form:
 ```lean
 theorem KernelRelationReflexive
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
+    (map : LRA.Function Domain Codomain) :
     forall input : Domain, KernelRelation map input input
 ```
 -/
 theorem KernelRelationReflexive
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
+    (map : LRA.Function Domain Codomain) :
     forall input : Domain, KernelRelation map input input := by
   sorry
 /--
@@ -35,7 +35,7 @@ Logical form:
 ```lean
 theorem KernelRelationSymmetric
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
+    (map : LRA.Function Domain Codomain) :
     forall left right : Domain,
       KernelRelation map left right ->
       KernelRelation map right left
@@ -43,7 +43,7 @@ theorem KernelRelationSymmetric
 -/
 theorem KernelRelationSymmetric
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
+    (map : LRA.Function Domain Codomain) :
     forall left right : Domain,
       KernelRelation map left right ->
       KernelRelation map right left := by
@@ -58,7 +58,7 @@ Logical form:
 ```lean
 theorem KernelRelationTransitive
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
+    (map : LRA.Function Domain Codomain) :
     forall first second third : Domain,
       KernelRelation map first second ->
       KernelRelation map second third ->
@@ -67,7 +67,7 @@ theorem KernelRelationTransitive
 -/
 theorem KernelRelationTransitive
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
+    (map : LRA.Function Domain Codomain) :
     forall first second third : Domain,
       KernelRelation map first second ->
       KernelRelation map second third ->
@@ -86,7 +86,7 @@ theorem FiberSaturatedByMap
     {DomainSet : Type w}
     [Membership Domain DomainSet]
     {fiberSet : DomainSet}
-    {map : TypedMap Domain Codomain}
+    {map : LRA.Function Domain Codomain}
     {output : Codomain}
     (isFiber : IsFiberOf fiberSet map output) :
     SaturatedBy fiberSet map
@@ -97,7 +97,7 @@ theorem FiberSaturatedByMap
     {DomainSet : Type w}
     [Membership Domain DomainSet]
     {fiberSet : DomainSet}
-    {map : TypedMap Domain Codomain}
+    {map : LRA.Function Domain Codomain}
     {output : Codomain}
     (isFiber : IsFiberOf fiberSet map output) :
     SaturatedBy fiberSet map := by

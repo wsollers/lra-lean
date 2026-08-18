@@ -4,8 +4,8 @@ import LRA.Set.ZFC.Public
 /-!
 Canonical ZFC theory layer.
 
-`ZFC` owns the axioms and mathematics derived from them. The primitive
-single-sorted carrier and membership relation live in `LRA.Set.ZFCSet`.
-New canonical code should use names under `LRA.Set.ZFC`; the historical
-`LRA.Set.Enderton` names remain only as migration compatibility aliases.
+`ZFC` owns the axioms and the mathematics derived from them, and is the sole
+owner of every name it declares. The primitive single-sorted carrier and its
+membership relation live in `LRA.Set.ZFCSet`; the law certificates realizing
+this carrier against the set interface live in `LRA.Set.ZFCSet.Laws`.
 -/

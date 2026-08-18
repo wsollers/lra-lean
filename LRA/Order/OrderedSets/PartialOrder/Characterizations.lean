@@ -47,11 +47,4 @@ theorem PartialOrderRelationIsTransitive
     LRA.Relation.Transitive order.relation :=
   PartialOrderIsTransitive order.relation order.relationIsPartialOrder
 
-/-- Compatibility theorem: a non-strict partial order relation is reflexive. -/
-theorem NonStrictRelationIsReflexive
-    {Carrier : Type u}
-    (order : NonStrictPartialOrder Carrier) :
-    LRA.Relation.Reflexive order.relation :=
-  PartialOrderRelationIsReflexive order
-
 end LRA.Order.OrderedSets.PartialOrder

@@ -1,11 +1,9 @@
 import LRA.VolumeI.Map.Image.Theorems
-import LRA.VolumeI.Map.Injective.FailureModes
-import LRA.VolumeI.Map.Surjective.FailureModes
+import LRA.Function.Definition
 
 namespace LRA.Map.Image
 
 open LRA.Set
-open LRA.Map.Typed
 
 universe u₁ u₂ v₁ v₂
 
@@ -28,7 +26,7 @@ def UnitProper
     [HasUniversal DomainSet]
     [HasSeparation CodomainElement CodomainSet]
     [HasUniversal CodomainSet]
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet) : Prop
 ```
 -/
@@ -42,7 +40,7 @@ def UnitProper
     [HasUniversal DomainSet]
     [HasSeparation CodomainElement CodomainSet]
     [HasUniversal CodomainSet]
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet) : Prop :=
   source ⊆
       (LRA.Map.Preimage.Preimage map
@@ -69,7 +67,7 @@ def CounitProper
     [HasUniversal DomainSet]
     [HasSeparation CodomainElement CodomainSet]
     [HasUniversal CodomainSet]
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet) : Prop
 ```
 -/
@@ -83,7 +81,7 @@ def CounitProper
     [HasUniversal DomainSet]
     [HasSeparation CodomainElement CodomainSet]
     [HasUniversal CodomainSet]
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet) : Prop :=
   (Image map
       (LRA.Map.Preimage.Preimage map target : DomainSet) : CodomainSet) ⊆

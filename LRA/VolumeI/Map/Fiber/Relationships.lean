@@ -1,11 +1,10 @@
 import LRA.VolumeI.Map.Fiber.Theorems
 import LRA.VolumeI.Map.Fiber.Definition
-import LRA.VolumeI.Map.Injective.Definition
-import LRA.VolumeI.Map.Surjective.Definition
+import LRA.Function.Definition
+import LRA.Function.Properties.Definition
 
 namespace LRA.Map.Fiber
 
-open LRA.Map.Typed
 
 universe u v
 
@@ -19,7 +18,7 @@ Logical form:
 ```lean
 theorem FiberMembership
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (output : Codomain)
     (input : Domain) :
     Fiber map output input <-> map input = output
@@ -27,7 +26,7 @@ theorem FiberMembership
 -/
 theorem FiberMembership
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (output : Codomain)
     (input : Domain) :
     Fiber map output input <-> map input = output := by
@@ -42,8 +41,8 @@ Logical form:
 ```lean
 theorem InjectiveIffFibersSubsingleton
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
-    LRA.Map.Injective.Injective map <->
+    (map : LRA.Function Domain Codomain) :
+    LRA.Function.Injective map <->
       forall output input₁ input₂,
         Fiber map output input₁ ->
         Fiber map output input₂ ->
@@ -52,8 +51,8 @@ theorem InjectiveIffFibersSubsingleton
 -/
 theorem InjectiveIffFibersSubsingleton
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
-    LRA.Map.Injective.Injective map <->
+    (map : LRA.Function Domain Codomain) :
+    LRA.Function.Injective map <->
       forall output input₁ input₂,
         Fiber map output input₁ ->
         Fiber map output input₂ ->
@@ -69,15 +68,15 @@ Logical form:
 ```lean
 theorem SurjectiveIffEveryFiberNonempty
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
-    LRA.Map.Surjective.Surjective map <->
+    (map : LRA.Function Domain Codomain) :
+    LRA.Function.Surjective map <->
       forall output, exists input, Fiber map output input
 ```
 -/
 theorem SurjectiveIffEveryFiberNonempty
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
-    LRA.Map.Surjective.Surjective map <->
+    (map : LRA.Function Domain Codomain) :
+    LRA.Function.Surjective map <->
       forall output, exists input, Fiber map output input := by
   sorry
 end LRA.Map.Fiber

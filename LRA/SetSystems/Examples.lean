@@ -1,4 +1,5 @@
 import Mathlib.Data.Set.Basic
+import LRA.Set.Interop.Mathlib.PredicateSet.Instances
 import LRA.VolumeI.Set
 import LRA.VolumeI.Set.Algebra.BooleanAlgebra
 import LRA.VolumeI.Set.Algebra.SigmaAlgebra

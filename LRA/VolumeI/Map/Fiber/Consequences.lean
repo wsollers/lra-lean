@@ -2,11 +2,11 @@ import LRA.VolumeI.Map.Fiber.Relationships
 import LRA.VolumeI.Map.Image.Definition
 import LRA.VolumeI.Relations.Equivalence.EquivalenceClass
 import LRA.VolumeI.Relations.Equivalence.QuotientSet
+import LRA.Function.Definition
 
 namespace LRA.Map.Fiber
 
 open scoped LRA.Set
-open LRA.Map.Typed
 
 universe u v w x
 
@@ -15,7 +15,7 @@ The kernel relation of any typed map is an equivalence relation.
 -/
 theorem KernelRelationEquivalenceRelation
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) :
+    (map : LRA.Function Domain Codomain) :
     LRA.Relation.EquivalenceRelation (KernelRelation map) := by
   sorry
 
@@ -30,7 +30,7 @@ theorem AmbientFiberEqualsKernelEquivalenceClass
     [LRA.Set.SeparationLaws Domain DomainSet]
     [LRA.Set.ExtensionalityLaw Domain DomainSet]
     (ambientDomain : DomainSet)
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (representative : Domain) :
     AmbientFiber ambientDomain map (map representative) =
       LRA.Relation.EquivalenceClass
@@ -43,7 +43,7 @@ relatedness to `representative`.
 -/
 theorem FiberOverValueIffKernelRelated
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (representative input : Domain) :
     Fiber map (map representative) input <->
       KernelRelation map input representative := by
@@ -60,7 +60,7 @@ theorem KernelQuotientProjectionWellDefined
     [LRA.Set.SeparationLaws Domain DomainSet]
     [LRA.Set.ExtensionalityLaw Domain DomainSet]
     {ambientDomain : DomainSet}
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     {left right : Domain}
     (related : KernelRelation map left right) :
     LRA.Relation.QuotientProjection
@@ -81,7 +81,7 @@ def KernelClassMapsTo
     [Membership Domain DomainSet]
     [LRA.Set.HasSeparation Domain DomainSet]
     (ambientDomain : DomainSet)
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (classSet : DomainSet)
     (output : Codomain) : Prop :=
   exists representative : Domain,
@@ -99,7 +99,7 @@ theorem KernelClassMapsTo.representative_value
     [Membership Domain DomainSet]
     [LRA.Set.HasSeparation Domain DomainSet]
     {ambientDomain : DomainSet}
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     {representative : Domain}
     (representativeInAmbient : representative ∈ ambientDomain) :
     KernelClassMapsTo
@@ -120,7 +120,7 @@ theorem KernelClassMapsTo.output_unique
     [LRA.Set.SeparationLaws Domain DomainSet]
     [LRA.Set.ExtensionalityLaw Domain DomainSet]
     {ambientDomain : DomainSet}
-    {map : TypedMap Domain Codomain}
+    {map : LRA.Function Domain Codomain}
     {classSet : DomainSet}
     {firstOutput secondOutput : Codomain}
     (firstMaps :
@@ -144,7 +144,7 @@ theorem KernelClassMapsTo.exists_of_range_member
     [LRA.Set.HasUniversal CodomainSet]
     [LRA.Set.SeparationLaws Codomain CodomainSet]
     {ambientDomain : DomainSet}
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     {output : Codomain}
     (outputInRange :
       output ∈

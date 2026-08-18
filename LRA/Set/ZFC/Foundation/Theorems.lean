@@ -21,11 +21,3 @@ theorem NoSetIsMemberOfItself (A : Set) :
   sorry
 
 end LRA.Set.ZFC
-
-/-! Compatibility aliases for the historical Enderton theorem names. -/
-namespace LRA.Set.Enderton
-
-abbrev FoundationWitnessExists := LRA.Set.ZFC.FoundationWitnessExists
-abbrev NoSetIsMemberOfItself := LRA.Set.ZFC.NoSetIsMemberOfItself
-
-end LRA.Set.Enderton

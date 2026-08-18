@@ -44,29 +44,3 @@ theorem EveryPowerSetOfEqualsThePowerSet
   sorry
 
 end LRA.Set.ZFC
-
-/-! Compatibility aliases for the historical Enderton power-set names. -/
-namespace LRA.Set.Enderton
-
-abbrev PowerSetOfExists (A : Set) := LRA.Set.ZFC.PowerSetOfExists A
-
-abbrev PowerSetOfIsUnique
-    {A P Q : Set}
-    (PIsPowerSetOf : IsPowerSetOf A P)
-    (QIsPowerSetOf : IsPowerSetOf A Q) : Q = P :=
-  LRA.Set.ZFC.PowerSetOfIsUnique PIsPowerSetOf QIsPowerSetOf
-
-abbrev PowerSetOfExistsAndIsUnique (A : Set) :=
-  LRA.Set.ZFC.PowerSetOfExistsAndIsUnique A
-
-noncomputable abbrev ThePowerSet (A : Set) : Set := LRA.Set.ZFC.ThePowerSet A
-
-abbrev ThePowerSetIsPowerSetOf (A : Set) :=
-  LRA.Set.ZFC.ThePowerSetIsPowerSetOf A
-
-abbrev EveryPowerSetOfEqualsThePowerSet
-    {A P : Set}
-    (PIsPowerSetOf : IsPowerSetOf A P) : P = ThePowerSet A :=
-  LRA.Set.ZFC.EveryPowerSetOfEqualsThePowerSet PIsPowerSetOf
-
-end LRA.Set.Enderton

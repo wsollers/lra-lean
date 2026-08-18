@@ -1,11 +1,38 @@
 import LRA.Relation.Definition
 import LRA.Relation.Properties.Definition
 
+/-!
+The working presentation of a function.
+
+To every subject outside `LRA.Function.SetTheoretic`, a function *is* an arrow
+`Domain → Codomain`. That arrow is deliberately not definitionally a
+set-theoretic triple: it is computable, it carries no proof fields, and it
+composes with Lean core and Mathlib without conversion.
+
+What a function *is* set-theoretically is the business of
+`LRA.Function.SetTheoretic`, which owns the relation and function triples, their
+conditions, and their bundles. The two presentations meet at exactly one
+theorem, `LRA.Function.SetTheoretic.TypedFunctionGraphRepresentation`. There are
+no coercions, no instances, and no second bridge.
+
+`Graph` is the one-way reading of an arrow as a relation, and is how this
+subject inherits the `LRA.Relation` calculus instead of restating it.
+-/
+
+namespace LRA
+
+universe u v
+
+/-- A function from `Domain` to `Codomain` is the arrow itself. -/
+abbrev Function (Domain : Type u) (Codomain : Type v) := Domain → Codomain
+
+end LRA
+
 namespace LRA.Function
 
 universe u v
 
-/-- The underlying heterogeneous relation type used to present a function. -/
+/-- The underlying heterogeneous relation type used to present a function graph. -/
 abbrev FunctionRelation (Domain : Type u) (Codomain : Type v) :=
   LRA.Relation.HeterogeneousBinaryRelation Domain Codomain
 
@@ -24,35 +51,12 @@ def IsFunctionRelation {Domain : Type u} {Codomain : Type v}
     (relation : FunctionRelation Domain Codomain) : Prop :=
   Total relation ∧ SingleValued relation
 
-/-- A relational presentation of a function from `Domain` to `Codomain`.
+/-- An endofunction is an arrow from a carrier to itself. -/
+abbrev Endofunction (Carrier : Type u) := LRA.Function Carrier Carrier
 
-Totality and single-valuedness are constitutive data of functionhood rather
-than optional function properties. -/
-structure RelationalFunction (Domain : Type u) (Codomain : Type v) where
-  graph : FunctionRelation Domain Codomain
-  total : Total graph
-  singleValued : SingleValued graph
-
-/-- An endofunction is a relational function from a carrier to itself. -/
-abbrev Endofunction (Carrier : Type u) := RelationalFunction Carrier Carrier
-
-/-- Ordinary Lean functions are the typed presentation of function values. -/
-abbrev TypedFunction (Domain : Type u) (Codomain : Type v) := Domain → Codomain
-
-/-- The graph relation associated with an ordinary typed function. -/
+/-- The graph relation of an arrow: it relates each input to its value. -/
 def Graph {Domain : Type u} {Codomain : Type v}
-    (function : TypedFunction Domain Codomain) : FunctionRelation Domain Codomain :=
+    (function : LRA.Function Domain Codomain) : FunctionRelation Domain Codomain :=
   fun input output => function input = output
-
-/-- Regard an ordinary typed function as a relational function.
-
-The proof fields are intentionally left to the learner. -/
-def OfTypedFunction {Domain : Type u} {Codomain : Type v}
-    (function : TypedFunction Domain Codomain) : RelationalFunction Domain Codomain where
-  graph := Graph function
-  total := by
-    sorry
-  singleValued := by
-    sorry
 
 end LRA.Function

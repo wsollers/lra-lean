@@ -61,7 +61,7 @@ theorem DifferenceBoundedBelow
     {relation : LRA.Relation.Endorelation Element}
     (subset removed : SetObject)
     (subsetIsBoundedBelow : BoundedBelow relation subset) :
-    BoundedBelow relation (subset \\ removed) := by
+    BoundedBelow relation (subset \ removed) := by
   sorry
 
 /-- A symmetric difference is bounded below when both operands are. -/

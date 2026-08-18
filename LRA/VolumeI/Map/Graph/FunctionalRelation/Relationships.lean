@@ -1,12 +1,12 @@
-import LRA.VolumeI.Relations.DomainRange.Definition
+import LRA.Relation.Calculus.Classes.Definition
 import LRA.VolumeI.Relations.Images.Definition
 import LRA.VolumeI.Map.Graph.Definition
 import LRA.VolumeI.Map.Image.Definition
 import LRA.VolumeI.Map.Preimage.Definition
+import LRA.Function.Definition
 
 namespace LRA.Relation
 
-open LRA.Map.Typed
 open LRA.Set
 
 universe u v w x
@@ -21,16 +21,16 @@ Logical form:
 
 ```lean
 theorem GraphRelationDomain
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (input : Domain) :
-    RelationDomain (LRA.Map.Graph.Graph map) input
+    LRA.Relation.DomainClass (LRA.Map.Graph.Graph map) input
 ```
 -/
 theorem GraphRelationDomain
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (input : Domain) :
-    RelationDomain (LRA.Map.Graph.Graph map) input := by
+    LRA.Relation.DomainClass (LRA.Map.Graph.Graph map) input := by
   sorry
 
 /--
@@ -43,17 +43,17 @@ Logical form:
 
 ```lean
 theorem GraphRelationRangeIff
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (output : Codomain) :
-    RelationRange (LRA.Map.Graph.Graph map) output <->
+    LRA.Relation.RangeClass (LRA.Map.Graph.Graph map) output <->
       exists input : Domain, map input = output
 ```
 -/
 theorem GraphRelationRangeIff
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (output : Codomain) :
-    RelationRange (LRA.Map.Graph.Graph map) output <->
+    LRA.Relation.RangeClass (LRA.Map.Graph.Graph map) output <->
       exists input : Domain, map input = output := by
   sorry
 
@@ -67,7 +67,7 @@ Logical form:
 
 ```lean
 theorem GraphRelationImageEqualsMapImage
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (source : DomainSet) :
     RelationImage (LRA.Map.Graph.Graph map) source =
       (LRA.Map.Image.Image map source : CodomainSet)
@@ -82,7 +82,7 @@ theorem GraphRelationImageEqualsMapImage
     [HasUniversal CodomainSet]
     [ExtensionalityLaw Codomain CodomainSet]
     [SeparationLaws Codomain CodomainSet]
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (source : DomainSet) :
     RelationImage (LRA.Map.Graph.Graph map) source =
       (LRA.Map.Image.Image map source : CodomainSet) := by
@@ -102,7 +102,7 @@ theorem GraphRelationPreimageEqualsMapPreimage
     [ExtensionalityLaw Domain DomainSet]
     [SeparationLaws Domain DomainSet]
     [UniversalMembershipLaws Domain DomainSet]
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (target : CodomainSet) :
     RelationPreimage (LRA.Map.Graph.Graph map) target =
       (LRA.Map.Preimage.Preimage map target : DomainSet)
@@ -119,7 +119,7 @@ theorem GraphRelationPreimageEqualsMapPreimage
     [ExtensionalityLaw Domain DomainSet]
     [SeparationLaws Domain DomainSet]
     [UniversalMembershipLaws Domain DomainSet]
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (target : CodomainSet) :
     RelationPreimage (LRA.Map.Graph.Graph map) target =
       (LRA.Map.Preimage.Preimage map target : DomainSet) := by

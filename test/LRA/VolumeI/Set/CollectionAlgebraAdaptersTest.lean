@@ -1,6 +1,8 @@
 import LRA.VolumeI.Set
 import LRA.VolumeI.Set.Algebra
-import LRA.VolumeI.Set.Algebra
+import LRA.SetSystems.Examples
+import LRA.Set.Interop.Mathlib.PredicateSet
+import LRA.Set.Interop.Mathlib.ZFSet
 
 /-!
 Smoke tests for the set-backend architecture.
@@ -17,7 +19,7 @@ namespace LRA.Tests.VolumeI.Set.CollectionAlgebraAdapters
 open LRA.Set
 
 -- Generic theorems resolve at all four backends from argument types.
-example (A B : Enderton.Set) : A ∪ B = B ∪ A :=
+example (A B : LRA.Set.ZFCSet) : A ∪ B = B ∪ A :=
   UnionCommutative A B
 example (A B : LRASet.LRASet Nat) : A ∪ B = B ∪ A :=
   UnionCommutative A B

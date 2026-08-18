@@ -1,3 +1,4 @@
+import LRA.Relation.Operations.Converse.Definition
 import LRA.VolumeI.Order.Lattices.Join.Definition
 import LRA.VolumeI.Order.Lattices.Meet.Definition
 

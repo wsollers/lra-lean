@@ -23,10 +23,3 @@ theorem SetEqualityIffSameMembers (A B : LRA.Set.ZFCSet) :
     exact Extensionality A B SameMembers
 
 end LRA.Set.ZFC
-
-namespace LRA.Set.Enderton
-
-/-- Compatibility alias for the historical Enderton theorem name. -/
-abbrev SetEqualityIffSameMembers := LRA.Set.ZFC.SetEqualityIffSameMembers
-
-end LRA.Set.Enderton

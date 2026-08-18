@@ -1,11 +1,10 @@
 import LRA.VolumeI.Map.Inverse.Theorems
 import LRA.VolumeI.Map.Inverse.Definition
-import LRA.VolumeI.Map.Injective.Definition
-import LRA.VolumeI.Map.Surjective.Definition
+import LRA.Function.Definition
+import LRA.Function.Properties.Definition
 
 namespace LRA.Map.Inverse
 
-open LRA.Map.Typed
 
 universe u v
 
@@ -19,18 +18,18 @@ Logical form:
 ```lean
 theorem InjectiveOfLeftInverse
     {Domain : Type u} {Codomain : Type v}
-    {map : TypedMap Domain Codomain}
-    {inverse : TypedMap Codomain Domain}
+    {map : LRA.Function Domain Codomain}
+    {inverse : LRA.Function Codomain Domain}
     (leftInverse : LeftInverse map inverse) :
-    LRA.Map.Injective.Injective map
+    LRA.Function.Injective map
 ```
 -/
 theorem InjectiveOfLeftInverse
     {Domain : Type u} {Codomain : Type v}
-    {map : TypedMap Domain Codomain}
-    {inverse : TypedMap Codomain Domain}
+    {map : LRA.Function Domain Codomain}
+    {inverse : LRA.Function Codomain Domain}
     (leftInverse : LeftInverse map inverse) :
-    LRA.Map.Injective.Injective map := by
+    LRA.Function.Injective map := by
   sorry
 /--
 **[Theorem — SurjectiveOfRightInverse]**
@@ -42,18 +41,18 @@ Logical form:
 ```lean
 theorem SurjectiveOfRightInverse
     {Domain : Type u} {Codomain : Type v}
-    {map : TypedMap Domain Codomain}
-    {inverse : TypedMap Codomain Domain}
+    {map : LRA.Function Domain Codomain}
+    {inverse : LRA.Function Codomain Domain}
     (rightInverse : RightInverse map inverse) :
-    LRA.Map.Surjective.Surjective map
+    LRA.Function.Surjective map
 ```
 -/
 theorem SurjectiveOfRightInverse
     {Domain : Type u} {Codomain : Type v}
-    {map : TypedMap Domain Codomain}
-    {inverse : TypedMap Codomain Domain}
+    {map : LRA.Function Domain Codomain}
+    {inverse : LRA.Function Codomain Domain}
     (rightInverse : RightInverse map inverse) :
-    LRA.Map.Surjective.Surjective map := by
+    LRA.Function.Surjective map := by
   sorry
 /--
 **[Theorem — InjectiveAndSurjectiveOfTwoSidedInverse]**
@@ -65,17 +64,17 @@ Logical form:
 ```lean
 theorem InjectiveAndSurjectiveOfTwoSidedInverse
     {Domain : Type u} {Codomain : Type v}
-    {map : TypedMap Domain Codomain}
-    {inverse : TypedMap Codomain Domain}
+    {map : LRA.Function Domain Codomain}
+    {inverse : LRA.Function Codomain Domain}
     (twoSided : TwoSidedInverse map inverse) :
-    LRA.Map.Injective.Injective map /\ LRA.Map.Surjective.Surjective map
+    LRA.Function.Injective map /\ LRA.Function.Surjective map
 ```
 -/
 theorem InjectiveAndSurjectiveOfTwoSidedInverse
     {Domain : Type u} {Codomain : Type v}
-    {map : TypedMap Domain Codomain}
-    {inverse : TypedMap Codomain Domain}
+    {map : LRA.Function Domain Codomain}
+    {inverse : LRA.Function Codomain Domain}
     (twoSided : TwoSidedInverse map inverse) :
-    LRA.Map.Injective.Injective map /\ LRA.Map.Surjective.Surjective map := by
+    LRA.Function.Injective map /\ LRA.Function.Surjective map := by
   sorry
 end LRA.Map.Inverse

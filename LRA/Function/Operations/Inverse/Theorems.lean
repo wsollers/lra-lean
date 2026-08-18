@@ -1,26 +1,39 @@
 import LRA.Function.Operations.Inverse.Definition
-import LRA.Function.Calculus.Definition
 
 namespace LRA.Function
 
 universe u v
 
-/-- A bijective function followed by its inverse returns the original input. -/
-theorem InverseAfterFunctionValue
+/-- A bijective function has a two-sided inverse.
+
+Stated as existence rather than as a construction: building the inverse arrow
+would require a choice principle, and no evaluation in this subject is routed
+through `Classical.choose`. -/
+theorem BijectiveHasTwoSidedInverse
     {Domain : Type u} {Codomain : Type v}
-    (function : RelationalFunction Domain Codomain)
-    (bijective : Bijective function)
-    (input : Domain) :
-    Value (Inverse function bijective) (Value function input) = input := by
+    (function : LRA.Function Domain Codomain)
+    (bijective : Bijective function) :
+    ∃ inverse : LRA.Function Codomain Domain,
+      TwoSidedInverse function inverse := by
   sorry
 
-/-- The inverse followed by the original bijection returns the original output. -/
-theorem FunctionAfterInverseValue
+/-- A function with a two-sided inverse is bijective. -/
+theorem TwoSidedInverseGivesBijective
     {Domain : Type u} {Codomain : Type v}
-    (function : RelationalFunction Domain Codomain)
-    (bijective : Bijective function)
-    (output : Codomain) :
-    Value function (Value (Inverse function bijective) output) = output := by
+    (function : LRA.Function Domain Codomain)
+    (inverse : LRA.Function Codomain Domain)
+    (twoSided : TwoSidedInverse function inverse) :
+    Bijective function := by
+  sorry
+
+/-- A two-sided inverse is unique. -/
+theorem TwoSidedInverseUnique
+    {Domain : Type u} {Codomain : Type v}
+    (function : LRA.Function Domain Codomain)
+    (first second : LRA.Function Codomain Domain)
+    (firstIsInverse : TwoSidedInverse function first)
+    (secondIsInverse : TwoSidedInverse function second) :
+    ∀ output, first output = second output := by
   sorry
 
 end LRA.Function

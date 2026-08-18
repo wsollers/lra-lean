@@ -36,9 +36,3 @@ instance : CollectionMembershipLaws Set Set Set where
     LRA.Set.ZFC.TheIntersectionOverMembership C x h
 
 end LRA.Set.ZFCSet
-
-namespace LRA.Set.Enderton
-
-abbrev SubsetIffAllMembers := LRA.Set.ZFCSet.SubsetIffAllMembers
-
-end LRA.Set.Enderton

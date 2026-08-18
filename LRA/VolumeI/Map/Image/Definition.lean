@@ -1,12 +1,11 @@
-import LRA.Function.Calculus.Definition
-import LRA.VolumeI.Map.Typed.Definition
+import LRA.Function.Calculus.Classes.Definition
 import LRA.Set.Interface.Membership
 import LRA.Set.Interface.Operations
+import LRA.Function.Definition
 
 namespace LRA.Map.Image
 
 open LRA.Set
-open LRA.Map.Typed
 
 universe u₁ u₂ v₁ v₂
 
@@ -19,22 +18,22 @@ variable [Membership CodomainElement CodomainSet]
 
 /-- Historical set-backed spelling of canonical `MapsIntoClass`. -/
 def MapsInto
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet)
     (target : CodomainSet) : Prop :=
   LRA.Function.MapsIntoClass
-    (LRA.Function.OfTypedFunction map)
+    (map)
     (fun input => input ∈ source)
     (fun output => output ∈ target)
 
 /-- Historical set-backed spelling of canonical image characterization. -/
 def IsImageOf
     (imageSet : CodomainSet)
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet) : Prop :=
   LRA.Function.IsImageClassOf
     (fun output => output ∈ imageSet)
-    (LRA.Function.OfTypedFunction map)
+    (map)
     (fun input => input ∈ source)
 
 section WithSeparation
@@ -44,7 +43,7 @@ variable [HasUniversal CodomainSet]
 
 /-- Legacy backend realization of an image by Separation. -/
 def Image
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet) : CodomainSet :=
   HasSeparation.separation (𝒰 : CodomainSet)
     (fun output : CodomainElement =>
@@ -52,7 +51,7 @@ def Image
 
 /-- Legacy backend realization of the range as the image of an ambient domain. -/
 def Range
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (ambientDomain : DomainSet) : CodomainSet :=
   Image map ambientDomain
 
@@ -81,7 +80,7 @@ def HasFiniteEnumeration
 
 /-- Legacy finiteness predicate for an image. -/
 def FiniteImage
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet) : Prop :=
   HasFiniteEnumeration
     (fun output : CodomainElement =>
@@ -89,7 +88,7 @@ def FiniteImage
 
 /-- Legacy finiteness predicate for a range relative to an ambient domain. -/
 def FiniteRange
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (ambientDomain : DomainSet) : Prop :=
   FiniteImage map ambientDomain
 

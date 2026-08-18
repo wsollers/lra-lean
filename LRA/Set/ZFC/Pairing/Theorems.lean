@@ -106,34 +106,3 @@ theorem TheSingletonIsSingletonSet (x : Set) :
     exact wInPairSet
 
 end LRA.Set.ZFC
-
-/-! Compatibility aliases for the historical Enderton pairing names. -/
-namespace LRA.Set.Enderton
-
-abbrev PairSetExists (x1 x2 : Set) := LRA.Set.ZFC.PairSetExists x1 x2
-
-abbrev PairSetIsUnique
-    {x1 x2 P G : Set}
-    (PIsPairSet : IsPairSet x1 x2 P)
-    (GIsPairSet : IsPairSet x1 x2 G) : G = P :=
-  LRA.Set.ZFC.PairSetIsUnique PIsPairSet GIsPairSet
-
-abbrev PairingOutputExistsAndIsUnique (x1 x2 : Set) :=
-  LRA.Set.ZFC.PairingOutputExistsAndIsUnique x1 x2
-
-noncomputable abbrev PairSet (x1 x2 : Set) : Set := LRA.Set.ZFC.PairSet x1 x2
-
-abbrev PairSetMembership (x1 x2 w : Set) :=
-  LRA.Set.ZFC.PairSetMembership x1 x2 w
-
-abbrev EveryPairSetEqualsPairSet
-    {x1 x2 P : Set}
-    (PIsPairSet : IsPairSet x1 x2 P) : P = PairSet x1 x2 :=
-  LRA.Set.ZFC.EveryPairSetEqualsPairSet PIsPairSet
-
-noncomputable abbrev TheSingleton (x : Set) : Set := LRA.Set.ZFC.TheSingleton x
-
-abbrev TheSingletonIsSingletonSet (x : Set) :=
-  LRA.Set.ZFC.TheSingletonIsSingletonSet x
-
-end LRA.Set.Enderton

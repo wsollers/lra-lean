@@ -32,23 +32,3 @@ theorem EverySymmetricDifferenceEqualsTheSymmetricDifference
   sorry
 
 end LRA.Set.ZFC
-
-/-! Compatibility aliases for the historical Enderton symmetric-difference names. -/
-namespace LRA.Set.Enderton
-
-noncomputable abbrev TheSymmetricDifference (A B : Set) : Set :=
-  LRA.Set.ZFC.TheSymmetricDifference A B
-
-abbrev TheSymmetricDifferenceIsSymmetricDifferenceOf (A B : Set) :=
-  LRA.Set.ZFC.TheSymmetricDifferenceIsSymmetricDifferenceOf A B
-
-abbrev TheSymmetricDifferenceMembership (A B x : Set) :=
-  LRA.Set.ZFC.TheSymmetricDifferenceMembership A B x
-
-abbrev EverySymmetricDifferenceEqualsTheSymmetricDifference
-    {A B D : Set}
-    (DIsSymmetricDifferenceOf : IsSymmetricDifferenceOf A B D) :
-    D = TheSymmetricDifference A B :=
-  LRA.Set.ZFC.EverySymmetricDifferenceEqualsTheSymmetricDifference DIsSymmetricDifferenceOf
-
-end LRA.Set.Enderton

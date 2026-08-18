@@ -1,12 +1,11 @@
 import LRA.VolumeI.Map.Image.Theorems
 import LRA.VolumeI.Map.Image.Definition
-import LRA.VolumeI.Map.Injective.Definition
-import LRA.VolumeI.Map.Surjective.Definition
+import LRA.Function.Definition
+import LRA.Function.Properties.Definition
 
 namespace LRA.Map.Image
 
 open LRA.Set
-open LRA.Map.Typed
 
 universe u₁ u₂ v₁ v₂
 
@@ -24,7 +23,7 @@ theorem ImageContainsValueOfSourceMember
     [Membership DomainElement DomainSet]
     [Membership CodomainElement CodomainSet]
     {imageSet : CodomainSet}
-    {map : TypedMap DomainElement CodomainElement}
+    {map : LRA.Function DomainElement CodomainElement}
     {source : DomainSet}
     (isImage : IsImageOf imageSet map source)
     {input : DomainElement}
@@ -38,7 +37,7 @@ theorem ImageContainsValueOfSourceMember
     [Membership DomainElement DomainSet]
     [Membership CodomainElement CodomainSet]
     {imageSet : CodomainSet}
-    {map : TypedMap DomainElement CodomainElement}
+    {map : LRA.Function DomainElement CodomainElement}
     {source : DomainSet}
     (isImage : IsImageOf imageSet map source)
     {input : DomainElement}
@@ -59,7 +58,7 @@ theorem ExistsSourceMemberOfImageMember
     [Membership DomainElement DomainSet]
     [Membership CodomainElement CodomainSet]
     {imageSet : CodomainSet}
-    {map : TypedMap DomainElement CodomainElement}
+    {map : LRA.Function DomainElement CodomainElement}
     {source : DomainSet}
     (isImage : IsImageOf imageSet map source)
     {output : CodomainElement}
@@ -73,7 +72,7 @@ theorem ExistsSourceMemberOfImageMember
     [Membership DomainElement DomainSet]
     [Membership CodomainElement CodomainSet]
     {imageSet : CodomainSet}
-    {map : TypedMap DomainElement CodomainElement}
+    {map : LRA.Function DomainElement CodomainElement}
     {source : DomainSet}
     (isImage : IsImageOf imageSet map source)
     {output : CodomainElement}
@@ -95,11 +94,11 @@ theorem SurjectiveOfImageCoversCodomain
     [Membership DomainElement DomainSet]
     [Membership CodomainElement CodomainSet]
     {imageSet : CodomainSet}
-    {map : TypedMap DomainElement CodomainElement}
+    {map : LRA.Function DomainElement CodomainElement}
     {ambientDomain : DomainSet}
     (isImage : IsImageOf imageSet map ambientDomain)
     (coversCodomain : forall output : CodomainElement, output ∈ imageSet) :
-    LRA.Map.Surjective.Surjective map
+    LRA.Function.Surjective map
 ```
 -/
 theorem SurjectiveOfImageCoversCodomain
@@ -108,11 +107,11 @@ theorem SurjectiveOfImageCoversCodomain
     [Membership DomainElement DomainSet]
     [Membership CodomainElement CodomainSet]
     {imageSet : CodomainSet}
-    {map : TypedMap DomainElement CodomainElement}
+    {map : LRA.Function DomainElement CodomainElement}
     {ambientDomain : DomainSet}
     (isImage : IsImageOf imageSet map ambientDomain)
     (coversCodomain : forall output : CodomainElement, output ∈ imageSet) :
-    LRA.Map.Surjective.Surjective map := by
+    LRA.Function.Surjective map := by
   sorry
 /--
 **[Theorem — ImageWitnessUniqueOfInjective]**
@@ -126,8 +125,8 @@ theorem ImageWitnessUniqueOfInjective
     {DomainElement : Type u₁} {CodomainElement : Type u₂}
     {DomainSet : Type v₁}
     [Membership DomainElement DomainSet]
-    {map : TypedMap DomainElement CodomainElement}
-    (injective : LRA.Map.Injective.Injective map)
+    {map : LRA.Function DomainElement CodomainElement}
+    (injective : LRA.Function.Injective map)
     {source : DomainSet}
     {output : CodomainElement}
     {input₁ input₂ : DomainElement}
@@ -142,8 +141,8 @@ theorem ImageWitnessUniqueOfInjective
     {DomainElement : Type u₁} {CodomainElement : Type u₂}
     {DomainSet : Type v₁}
     [Membership DomainElement DomainSet]
-    {map : TypedMap DomainElement CodomainElement}
-    (injective : LRA.Map.Injective.Injective map)
+    {map : LRA.Function DomainElement CodomainElement}
+    (injective : LRA.Function.Injective map)
     {source : DomainSet}
     {output : CodomainElement}
     {input₁ input₂ : DomainElement}

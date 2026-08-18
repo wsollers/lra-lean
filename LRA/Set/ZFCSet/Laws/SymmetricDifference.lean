@@ -51,19 +51,3 @@ instance : SymmDiffLaws Set where
   SymmetricDifferenceSubsetUnion := SymmetricDifferenceSubsetUnion
 
 end LRA.Set.ZFCSet
-
-namespace LRA.Set.Enderton
-
-abbrev SymmetricDifferenceAsUnionDifferences :=
-  LRA.Set.ZFCSet.SymmetricDifferenceAsUnionDifferences
-abbrev SymmetricDifferenceAsUnionDifferenceIntersection :=
-  LRA.Set.ZFCSet.SymmetricDifferenceAsUnionDifferenceIntersection
-abbrev SymmetricDifferenceCommutative := LRA.Set.ZFCSet.SymmetricDifferenceCommutative
-abbrev SymmetricDifferenceAssociative := LRA.Set.ZFCSet.SymmetricDifferenceAssociative
-abbrev SymmetricDifferenceEmpty := LRA.Set.ZFCSet.SymmetricDifferenceEmpty
-abbrev EmptySymmetricDifference := LRA.Set.ZFCSet.EmptySymmetricDifference
-abbrev SymmetricDifferenceSelf := LRA.Set.ZFCSet.SymmetricDifferenceSelf
-abbrev SymmetricDifferenceEqEmptyIff := LRA.Set.ZFCSet.SymmetricDifferenceEqEmptyIff
-abbrev SymmetricDifferenceSubsetUnion := LRA.Set.ZFCSet.SymmetricDifferenceSubsetUnion
-
-end LRA.Set.Enderton

@@ -7,7 +7,7 @@ import LRA.VolumeI.AlgebraicStructures.CommutativeSemiring.Laws.Definition
 import LRA.VolumeI.AlgebraicStructures.CompleteOrderedField.Laws.Definition
 import LRA.VolumeI.AlgebraicStructures.DiscreteInteger.Laws.Definition
 import LRA.VolumeI.AlgebraicStructures.IntegralDomain.Laws.Definition
-import LRA.VolumeI.Order.Interoperability.Mathlib.Certificates
+import LRA.Order.Interop.Mathlib.Certificates
 
 namespace LRA.AlgebraicStructures
 

@@ -112,7 +112,7 @@ theorem UpperBoundOfDifference
     {relation : LRA.Relation.Endorelation Element}
     {subset removed : SetObject} {bound : Element}
     (boundIsUpperForSubset : UpperBound relation subset bound) :
-    UpperBound relation (subset \\ removed) bound := by
+    UpperBound relation (subset \ removed) bound := by
   sorry
 
 /-- A common upper bound of two sets bounds their symmetric difference. -/

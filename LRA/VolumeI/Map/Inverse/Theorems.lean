@@ -1,13 +1,13 @@
 import LRA.VolumeI.Map.Inverse.Definition
-import LRA.VolumeI.Map.Bijective.Definition
 import LRA.VolumeI.Map.Preimage.Definition
 import LRA.VolumeI.Map.Image.Definition
 import LRA.VolumeI.Map.Image.Theorems
+import LRA.Function.Definition
+import LRA.Function.Properties.Definition
 
 namespace LRA.Map.Inverse
 
 open LRA.Set
-open LRA.Map.Typed
 
 universe u v w₁ w₂
 
@@ -24,14 +24,14 @@ Logical form:
 
 ```lean
 theorem InverseFunctionLeftCancellation
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (inverse : InverseFunction map)
     (input : Domain) :
     inverse.inverse (map input) = input
 ```
 -/
 theorem InverseFunctionLeftCancellation
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (inverse : InverseFunction map)
     (input : Domain) :
     inverse.inverse (map input) = input := by
@@ -46,14 +46,14 @@ Logical form:
 
 ```lean
 theorem InverseFunctionRightCancellation
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (inverse : InverseFunction map)
     (output : Codomain) :
     map (inverse.inverse output) = output
 ```
 -/
 theorem InverseFunctionRightCancellation
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (inverse : InverseFunction map)
     (output : Codomain) :
     map (inverse.inverse output) = output := by
@@ -68,17 +68,17 @@ Logical form:
 
 ```lean
 theorem TwoSidedInverseBijective
-    (map : TypedMap Domain Codomain)
-    (inverse : TypedMap Codomain Domain)
+    (map : LRA.Function Domain Codomain)
+    (inverse : LRA.Function Codomain Domain)
     (inverseLaw : TwoSidedInverse map inverse) :
-    LRA.Map.Bijective.Bijective inverse
+    LRA.Function.Bijective inverse
 ```
 -/
 theorem TwoSidedInverseBijective
-    (map : TypedMap Domain Codomain)
-    (inverse : TypedMap Codomain Domain)
+    (map : LRA.Function Domain Codomain)
+    (inverse : LRA.Function Codomain Domain)
     (inverseLaw : TwoSidedInverse map inverse) :
-    LRA.Map.Bijective.Bijective inverse := by
+    LRA.Function.Bijective inverse := by
   sorry
 
 /--
@@ -90,15 +90,15 @@ Logical form:
 
 ```lean
 theorem InverseFunctionBijective
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (inverse : InverseFunction map) :
-    LRA.Map.Bijective.Bijective inverse.inverse
+    LRA.Function.Bijective inverse.inverse
 ```
 -/
 theorem InverseFunctionBijective
-    (map : TypedMap Domain Codomain)
+    (map : LRA.Function Domain Codomain)
     (inverse : InverseFunction map) :
-    LRA.Map.Bijective.Bijective inverse.inverse := by
+    LRA.Function.Bijective inverse.inverse := by
   sorry
 
 /--
@@ -111,8 +111,8 @@ Logical form:
 ```lean
 theorem LeftInverseImpliesLeftInverseOn
     {DomainSet : Type w₁} [Membership Domain DomainSet]
-    (map : TypedMap Domain Codomain)
-    (inverse : TypedMap Codomain Domain)
+    (map : LRA.Function Domain Codomain)
+    (inverse : LRA.Function Codomain Domain)
     (source : DomainSet)
     (leftInverse : LeftInverse map inverse) :
     LeftInverseOn map inverse source
@@ -120,8 +120,8 @@ theorem LeftInverseImpliesLeftInverseOn
 -/
 theorem LeftInverseImpliesLeftInverseOn
     {DomainSet : Type w₁} [Membership Domain DomainSet]
-    (map : TypedMap Domain Codomain)
-    (inverse : TypedMap Codomain Domain)
+    (map : LRA.Function Domain Codomain)
+    (inverse : LRA.Function Codomain Domain)
     (source : DomainSet)
     (leftInverse : LeftInverse map inverse) :
     LeftInverseOn map inverse source := by
@@ -136,8 +136,8 @@ Logical form:
 ```lean
 theorem RightInverseImpliesRightInverseOn
     {CodomainSet : Type w₂} [Membership Codomain CodomainSet]
-    (map : TypedMap Domain Codomain)
-    (inverse : TypedMap Codomain Domain)
+    (map : LRA.Function Domain Codomain)
+    (inverse : LRA.Function Codomain Domain)
     (target : CodomainSet)
     (rightInverse : RightInverse map inverse) :
     RightInverseOn map inverse target
@@ -145,8 +145,8 @@ theorem RightInverseImpliesRightInverseOn
 -/
 theorem RightInverseImpliesRightInverseOn
     {CodomainSet : Type w₂} [Membership Codomain CodomainSet]
-    (map : TypedMap Domain Codomain)
-    (inverse : TypedMap Codomain Domain)
+    (map : LRA.Function Domain Codomain)
+    (inverse : LRA.Function Codomain Domain)
     (target : CodomainSet)
     (rightInverse : RightInverse map inverse) :
     RightInverseOn map inverse target := by
@@ -162,8 +162,8 @@ Logical form:
 theorem TwoSidedInverseImpliesTwoSidedInverseOn
     {DomainSet : Type w₁} {CodomainSet : Type w₂}
     [Membership Domain DomainSet] [Membership Codomain CodomainSet]
-    (map : TypedMap Domain Codomain)
-    (inverse : TypedMap Codomain Domain)
+    (map : LRA.Function Domain Codomain)
+    (inverse : LRA.Function Codomain Domain)
     (source : DomainSet)
     (target : CodomainSet)
     (inverseLaw : TwoSidedInverse map inverse) :
@@ -173,8 +173,8 @@ theorem TwoSidedInverseImpliesTwoSidedInverseOn
 theorem TwoSidedInverseImpliesTwoSidedInverseOn
     {DomainSet : Type w₁} {CodomainSet : Type w₂}
     [Membership Domain DomainSet] [Membership Codomain CodomainSet]
-    (map : TypedMap Domain Codomain)
-    (inverse : TypedMap Codomain Domain)
+    (map : LRA.Function Domain Codomain)
+    (inverse : LRA.Function Codomain Domain)
     (source : DomainSet)
     (target : CodomainSet)
     (inverseLaw : TwoSidedInverse map inverse) :
@@ -204,8 +204,8 @@ Logical form:
 
 ```lean
 theorem RightInverseOnImageOfLeftInverseOn
-    (map : TypedMap DomainElement CodomainElement)
-    (inverse : TypedMap CodomainElement DomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
+    (inverse : LRA.Function CodomainElement DomainElement)
     (source : DomainSet)
     (leftInverse : LeftInverseOn map inverse source) :
     RightInverseOn map inverse
@@ -213,8 +213,8 @@ theorem RightInverseOnImageOfLeftInverseOn
 ```
 -/
 theorem RightInverseOnImageOfLeftInverseOn
-    (map : TypedMap DomainElement CodomainElement)
-    (inverse : TypedMap CodomainElement DomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
+    (inverse : LRA.Function CodomainElement DomainElement)
     (source : DomainSet)
     (leftInverse : LeftInverseOn map inverse source) :
     RightInverseOn map inverse
@@ -231,8 +231,8 @@ Logical form:
 
 ```lean
 theorem TwoSidedInverseOnImageOfLeftInverseOn
-    (map : TypedMap DomainElement CodomainElement)
-    (inverse : TypedMap CodomainElement DomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
+    (inverse : LRA.Function CodomainElement DomainElement)
     (source : DomainSet)
     (leftInverse : LeftInverseOn map inverse source) :
     TwoSidedInverseOn map inverse source
@@ -240,8 +240,8 @@ theorem TwoSidedInverseOnImageOfLeftInverseOn
 ```
 -/
 theorem TwoSidedInverseOnImageOfLeftInverseOn
-    (map : TypedMap DomainElement CodomainElement)
-    (inverse : TypedMap CodomainElement DomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
+    (inverse : LRA.Function CodomainElement DomainElement)
     (source : DomainSet)
     (leftInverse : LeftInverseOn map inverse source) :
     TwoSidedInverseOn map inverse source
@@ -274,7 +274,7 @@ Logical form:
 
 ```lean
 theorem PreimageEqualsImageOfInverseFunction
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (inverse : InverseFunction map)
     (target : CodomainSet) :
     (LRA.Map.Preimage.Preimage map target : DomainSet) =
@@ -282,7 +282,7 @@ theorem PreimageEqualsImageOfInverseFunction
 ```
 -/
 theorem PreimageEqualsImageOfInverseFunction
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (inverse : InverseFunction map)
     (target : CodomainSet) :
     (LRA.Map.Preimage.Preimage map target : DomainSet) =

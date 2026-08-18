@@ -1,3 +1,4 @@
+import LRA.Relation.Operations.Converse.Definition
 import LRA.VolumeI.Order.Lattices.JoinSemilattice.Definition
 import LRA.VolumeI.Order.Lattices.Lattice.Definition
 import LRA.VolumeI.Order.Lattices.MeetSemilattice.Definition

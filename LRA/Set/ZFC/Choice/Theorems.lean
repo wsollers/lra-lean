@@ -39,19 +39,3 @@ theorem TheChoiceSetIsChoiceSetFor
   sorry
 
 end LRA.Set.ZFC
-
-/-! Compatibility aliases for the historical Enderton choice names. -/
-namespace LRA.Set.Enderton
-
-abbrev ChoiceSetExists := LRA.Set.ZFC.ChoiceSetExists
-
-noncomputable abbrev TheChoiceSet
-    (A : Set)
-    (membersNonempty : ∀ B : Set, B ∈ A → ∃ x : Set, x ∈ B)
-    (membersPairwiseDisjoint :
-      ∀ B C : Set, B ∈ A → C ∈ A → B ≠ C → ∀ x : Set, x ∈ B → x ∉ C) : Set :=
-  LRA.Set.ZFC.TheChoiceSet A membersNonempty membersPairwiseDisjoint
-
-abbrev TheChoiceSetIsChoiceSetFor := LRA.Set.ZFC.TheChoiceSetIsChoiceSetFor
-
-end LRA.Set.Enderton

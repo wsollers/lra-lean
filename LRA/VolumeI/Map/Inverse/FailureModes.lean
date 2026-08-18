@@ -1,8 +1,8 @@
 import LRA.VolumeI.Map.Inverse.Definition
+import LRA.Function.Definition
 
 namespace LRA.Map.Inverse
 
-open LRA.Map.Typed
 
 universe u v
 
@@ -17,13 +17,13 @@ Logical form:
 ```lean
 def MultipleLeftInverses
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) : Prop
+    (map : LRA.Function Domain Codomain) : Prop
 ```
 -/
 def MultipleLeftInverses
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) : Prop :=
-  exists first second : TypedMap Codomain Domain,
+    (map : LRA.Function Domain Codomain) : Prop :=
+  exists first second : LRA.Function Codomain Domain,
     first ≠ second /\ LeftInverse map first /\ LeftInverse map second
 
 /--
@@ -37,13 +37,13 @@ Logical form:
 ```lean
 def MultipleRightInverses
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) : Prop
+    (map : LRA.Function Domain Codomain) : Prop
 ```
 -/
 def MultipleRightInverses
     {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) : Prop :=
-  exists first second : TypedMap Codomain Domain,
+    (map : LRA.Function Domain Codomain) : Prop :=
+  exists first second : LRA.Function Codomain Domain,
     first ≠ second /\ RightInverse map first /\ RightInverse map second
 
 end LRA.Map.Inverse

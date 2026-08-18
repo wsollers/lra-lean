@@ -1,11 +1,11 @@
 import LRA.VolumeI.Map.Preimage.Theorems
 import LRA.VolumeI.Map.Preimage.Definition
 import LRA.VolumeI.Map.Fiber.Definition
+import LRA.Function.Definition
 
 namespace LRA.Map.Preimage
 
 open LRA.Set
-open LRA.Map.Typed
 
 universe u₁ u₂ v₁ v₂
 
@@ -24,7 +24,7 @@ theorem PreimageContainsInputOfTargetMember
     [Membership DomainElement DomainSet]
     [Membership CodomainElement CodomainSet]
     {preimageSet : DomainSet}
-    {map : TypedMap DomainElement CodomainElement}
+    {map : LRA.Function DomainElement CodomainElement}
     {target : CodomainSet}
     (isPreimage : IsPreimageOf preimageSet map target)
     {input : DomainElement}
@@ -38,7 +38,7 @@ theorem PreimageContainsInputOfTargetMember
     [Membership DomainElement DomainSet]
     [Membership CodomainElement CodomainSet]
     {preimageSet : DomainSet}
-    {map : TypedMap DomainElement CodomainElement}
+    {map : LRA.Function DomainElement CodomainElement}
     {target : CodomainSet}
     (isPreimage : IsPreimageOf preimageSet map target)
     {input : DomainElement}
@@ -59,7 +59,7 @@ theorem TargetMemberOfPreimageMember
     [Membership DomainElement DomainSet]
     [Membership CodomainElement CodomainSet]
     {preimageSet : DomainSet}
-    {map : TypedMap DomainElement CodomainElement}
+    {map : LRA.Function DomainElement CodomainElement}
     {target : CodomainSet}
     (isPreimage : IsPreimageOf preimageSet map target)
     {input : DomainElement}
@@ -73,7 +73,7 @@ theorem TargetMemberOfPreimageMember
     [Membership DomainElement DomainSet]
     [Membership CodomainElement CodomainSet]
     {preimageSet : DomainSet}
-    {map : TypedMap DomainElement CodomainElement}
+    {map : LRA.Function DomainElement CodomainElement}
     {target : CodomainSet}
     (isPreimage : IsPreimageOf preimageSet map target)
     {input : DomainElement}
@@ -94,7 +94,7 @@ theorem IsPreimageOfSingletonLikeIffIsFiberOf
     [Membership DomainElement DomainSet]
     [Membership CodomainElement CodomainSet]
     {preimageSet : DomainSet}
-    {map : TypedMap DomainElement CodomainElement}
+    {map : LRA.Function DomainElement CodomainElement}
     {target : CodomainSet}
     {output : CodomainElement}
     (singletonLike :
@@ -109,7 +109,7 @@ theorem IsPreimageOfSingletonLikeIffIsFiberOf
     [Membership DomainElement DomainSet]
     [Membership CodomainElement CodomainSet]
     {preimageSet : DomainSet}
-    {map : TypedMap DomainElement CodomainElement}
+    {map : LRA.Function DomainElement CodomainElement}
     {target : CodomainSet}
     {output : CodomainElement}
     (singletonLike :

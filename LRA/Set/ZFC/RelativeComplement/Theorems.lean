@@ -30,23 +30,3 @@ theorem EveryRelativeComplementEqualsTheRelativeComplement
   sorry
 
 end LRA.Set.ZFC
-
-/-! Compatibility aliases for the historical Enderton relative-complement names. -/
-namespace LRA.Set.Enderton
-
-noncomputable abbrev TheRelativeComplement (A B : Set) : Set :=
-  LRA.Set.ZFC.TheRelativeComplement A B
-
-abbrev TheRelativeComplementIsRelativeComplementOf (A B : Set) :=
-  LRA.Set.ZFC.TheRelativeComplementIsRelativeComplementOf A B
-
-abbrev TheRelativeComplementMembership (A B x : Set) :=
-  LRA.Set.ZFC.TheRelativeComplementMembership A B x
-
-abbrev EveryRelativeComplementEqualsTheRelativeComplement
-    {A B D : Set}
-    (DIsRelativeComplementOf : IsRelativeComplementOf A B D) :
-    D = TheRelativeComplement A B :=
-  LRA.Set.ZFC.EveryRelativeComplementEqualsTheRelativeComplement DIsRelativeComplementOf
-
-end LRA.Set.Enderton

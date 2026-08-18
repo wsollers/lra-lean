@@ -8,7 +8,7 @@ class for: absolute complement, universal set, and symmetric difference.
 
 Lean core already supplies `Union`, `Inter`, `HasSubset`,
 `EmptyCollection`, `SDiff`, and `Membership`; backends register against
-those directly (`Enderton/Instances.lean`, `LRASet/Instances.lean`). The
+those directly (`ZFCSet/Instances.lean`, `LRASet/Instances.lean`). The
 three classes below fill the remaining gaps in exactly the same style:
 data only, no laws. Laws about these operations live in the law classes
 under `Interface/Fluent/`, which take these classes as instance

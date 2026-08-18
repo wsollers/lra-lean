@@ -22,15 +22,3 @@ theorem TheIntersectionOverMembership (A x : Set)
   sorry
 
 end LRA.Set.ZFC
-
-/-! Compatibility aliases for the historical Enderton intersection-over names. -/
-namespace LRA.Set.Enderton
-
-noncomputable abbrev TheIntersectionOver (A : Set) : Set :=
-  LRA.Set.ZFC.TheIntersectionOver A
-
-abbrev TheIntersectionOverMembership (A x : Set)
-    (collectionNonempty : ∃ B : Set, B ∈ A) :=
-  LRA.Set.ZFC.TheIntersectionOverMembership A x collectionNonempty
-
-end LRA.Set.Enderton

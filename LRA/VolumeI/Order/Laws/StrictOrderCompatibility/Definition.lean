@@ -1,22 +1,4 @@
-namespace LRA.Order
+import LRA.Order.Laws.StrictOrderCompatibility.Definition
 
-universe u
-
-/-!
-Compatibility between native strict and non-strict order machines.
--/
-
-class StrictOrderCompatibilityLaw (R : Type u) [LT R] [LE R] : Prop where
-  LtIffLeNotLe : forall a b : R, a < b <-> a <= b /\ Not (b <= a)
-
-section Wrappers
-
-variable {R : Type u}
-
-theorem LtIffLeNotLe [LT R] [LE R] [StrictOrderCompatibilityLaw R] :
-    forall a b : R, a < b <-> a <= b /\ Not (b <= a) :=
-  StrictOrderCompatibilityLaw.LtIffLeNotLe
-
-end Wrappers
-
-end LRA.Order
+/-! Volume-I route to the strict/non-strict order compatibility law, owned by
+`LRA.Order.Laws.StrictOrderCompatibility.Definition`. -/

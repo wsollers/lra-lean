@@ -39,15 +39,3 @@ instance : IntersectionLaws Set where
   SubsetIffIntersectionEqLeft := SubsetIffIntersectionEqLeft
 
 end LRA.Set.ZFCSet
-
-namespace LRA.Set.Enderton
-
-abbrev IntersectionCommutative := LRA.Set.ZFCSet.IntersectionCommutative
-abbrev IntersectionAssociative := LRA.Set.ZFCSet.IntersectionAssociative
-abbrev EmptyIntersection := LRA.Set.ZFCSet.EmptyIntersection
-abbrev IntersectionEmpty := LRA.Set.ZFCSet.IntersectionEmpty
-abbrev IntersectionIdempotent := LRA.Set.ZFCSet.IntersectionIdempotent
-abbrev IntersectionMonotone := LRA.Set.ZFCSet.IntersectionMonotone
-abbrev SubsetIffIntersectionEqLeft := LRA.Set.ZFCSet.SubsetIffIntersectionEqLeft
-
-end LRA.Set.Enderton

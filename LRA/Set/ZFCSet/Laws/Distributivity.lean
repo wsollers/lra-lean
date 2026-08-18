@@ -28,12 +28,3 @@ instance : DistributivityLaws Set where
   AbsorptionIntersectionUnion := AbsorptionIntersectionUnion
 
 end LRA.Set.ZFCSet
-
-namespace LRA.Set.Enderton
-
-abbrev IntersectionDistributesOverUnion := LRA.Set.ZFCSet.IntersectionDistributesOverUnion
-abbrev UnionDistributesOverIntersection := LRA.Set.ZFCSet.UnionDistributesOverIntersection
-abbrev AbsorptionUnionIntersection := LRA.Set.ZFCSet.AbsorptionUnionIntersection
-abbrev AbsorptionIntersectionUnion := LRA.Set.ZFCSet.AbsorptionIntersectionUnion
-
-end LRA.Set.Enderton

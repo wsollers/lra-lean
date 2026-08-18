@@ -1,16 +1,15 @@
 import LRA.VolumeI.Map.Image.Definition
 import LRA.VolumeI.Map.Preimage.Definition
-import LRA.VolumeI.Map.Composition.Definition
-import LRA.VolumeI.Map.Identity.Definition
-import LRA.VolumeI.Map.Injective.Definition
-import LRA.VolumeI.Map.Surjective.Definition
 import LRA.VolumeI.Set.Interface.Indexed
 import LRA.VolumeI.Identity.Model.Theory
+import LRA.Function.Canonical.Identity.Definition
+import LRA.Function.Definition
+import LRA.Function.Operations.Composition.Definition
+import LRA.Function.Properties.Definition
 
 namespace LRA.Map.Image
 
 open LRA.Set
-open LRA.Map.Typed
 
 universe u₁ u₂ u₃ v₁ v₂ v₃
 
@@ -36,7 +35,7 @@ Logical form:
 
 ```lean
 theorem ImageMembershipIff
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet)
     (output : CodomainElement) :
     output ∈ (Image map source : CodomainSet) <->
@@ -44,7 +43,7 @@ theorem ImageMembershipIff
 ```
 -/
 theorem ImageMembershipIff
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet)
     (output : CodomainElement) :
     output ∈ (Image map source : CodomainSet) <->
@@ -64,7 +63,7 @@ Logical form:
 
 ```lean
 theorem ImageExists
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet) :
     LRA.Identity.Exists
       (fun imageSet : CodomainSet =>
@@ -72,7 +71,7 @@ theorem ImageExists
 ```
 -/
 theorem ImageExists
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet) :
     LRA.Identity.Exists
       (fun imageSet : CodomainSet =>
@@ -88,7 +87,7 @@ Logical form:
 
 ```lean
 theorem ImageUnique
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet) :
     LRA.Identity.Unique
       (fun imageSet : CodomainSet =>
@@ -96,7 +95,7 @@ theorem ImageUnique
 ```
 -/
 theorem ImageUnique
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet) :
     LRA.Identity.Unique
       (fun imageSet : CodomainSet =>
@@ -112,7 +111,7 @@ Logical form:
 
 ```lean
 theorem ImageExistsAndUnique
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet) :
     LRA.Identity.ExistsAndUnique
       (fun imageSet : CodomainSet =>
@@ -120,7 +119,7 @@ theorem ImageExistsAndUnique
 ```
 -/
 theorem ImageExistsAndUnique
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet) :
     LRA.Identity.ExistsAndUnique
       (fun imageSet : CodomainSet =>
@@ -139,7 +138,7 @@ Logical form:
 ```lean
 theorem ImageCongrFunction
     [ExtensionalityLaw CodomainElement CodomainSet]
-    (leftMap rightMap : TypedMap DomainElement CodomainElement)
+    (leftMap rightMap : LRA.Function DomainElement CodomainElement)
     (source : DomainSet)
     (sameValues : forall input, leftMap input = rightMap input) :
     (Image leftMap source : CodomainSet) = Image rightMap source
@@ -147,7 +146,7 @@ theorem ImageCongrFunction
 -/
 theorem ImageCongrFunction
     [ExtensionalityLaw CodomainElement CodomainSet]
-    (leftMap rightMap : TypedMap DomainElement CodomainElement)
+    (leftMap rightMap : LRA.Function DomainElement CodomainElement)
     (source : DomainSet)
     (sameValues : forall input, leftMap input = rightMap input) :
     (Image leftMap source : CodomainSet) = Image rightMap source := by
@@ -163,7 +162,7 @@ Logical form:
 ```lean
 theorem ImageCongrSet
     [ExtensionalityLaw CodomainElement CodomainSet]
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left right : DomainSet)
     (sameSet : left = right) :
     (Image map left : CodomainSet) = Image map right
@@ -171,7 +170,7 @@ theorem ImageCongrSet
 -/
 theorem ImageCongrSet
     [ExtensionalityLaw CodomainElement CodomainSet]
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left right : DomainSet)
     (sameSet : left = right) :
     (Image map left : CodomainSet) = Image map right := by
@@ -196,12 +195,12 @@ Logical form:
 
 ```lean
 theorem ImageEmpty
-    (map : TypedMap DomainElement CodomainElement) :
+    (map : LRA.Function DomainElement CodomainElement) :
     (Image map (∅ : DomainSet) : CodomainSet) = ∅
 ```
 -/
 theorem ImageEmpty
-    (map : TypedMap DomainElement CodomainElement) :
+    (map : LRA.Function DomainElement CodomainElement) :
     (Image map (∅ : DomainSet) : CodomainSet) = ∅ := by
   sorry
 
@@ -214,14 +213,14 @@ Logical form:
 
 ```lean
 theorem ImageUnion
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left right : DomainSet) :
     (Image map (left ∪ right) : CodomainSet) =
       Image map left ∪ Image map right
 ```
 -/
 theorem ImageUnion
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left right : DomainSet) :
     (Image map (left ∪ right) : CodomainSet) =
       Image map left ∪ Image map right := by
@@ -236,14 +235,14 @@ Logical form:
 
 ```lean
 theorem ImageIntersectionSubsetIntersectionImages
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left right : DomainSet) :
     (Image map (left ∩ right) : CodomainSet) ⊆
       Image map left ∩ Image map right
 ```
 -/
 theorem ImageIntersectionSubsetIntersectionImages
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left right : DomainSet) :
     (Image map (left ∩ right) : CodomainSet) ⊆
       Image map left ∩ Image map right := by
@@ -258,14 +257,14 @@ Logical form:
 
 ```lean
 theorem DifferenceImagesSubsetImageDifference
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left right : DomainSet) :
     (Image map left \ Image map right : CodomainSet) ⊆
       Image map (left \ right)
 ```
 -/
 theorem DifferenceImagesSubsetImageDifference
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (left right : DomainSet) :
     (Image map left \ Image map right : CodomainSet) ⊆
       Image map (left \ right) := by
@@ -280,16 +279,16 @@ Logical form:
 
 ```lean
 theorem ImageDifferenceOfInjective
-    (map : TypedMap DomainElement CodomainElement)
-    (injective : LRA.Map.Injective.Injective map)
+    (map : LRA.Function DomainElement CodomainElement)
+    (injective : LRA.Function.Injective map)
     (left right : DomainSet) :
     (Image map (left \ right) : CodomainSet) =
       Image map left \ Image map right
 ```
 -/
 theorem ImageDifferenceOfInjective
-    (map : TypedMap DomainElement CodomainElement)
-    (injective : LRA.Map.Injective.Injective map)
+    (map : LRA.Function DomainElement CodomainElement)
+    (injective : LRA.Function.Injective map)
     (left right : DomainSet) :
     (Image map (left \ right) : CodomainSet) =
       Image map left \ Image map right := by
@@ -304,16 +303,16 @@ Logical form:
 
 ```lean
 theorem ImageIntersectionOfInjective
-    (map : TypedMap DomainElement CodomainElement)
-    (injective : LRA.Map.Injective.Injective map)
+    (map : LRA.Function DomainElement CodomainElement)
+    (injective : LRA.Function.Injective map)
     (left right : DomainSet) :
     (Image map (left ∩ right) : CodomainSet) =
       Image map left ∩ Image map right
 ```
 -/
 theorem ImageIntersectionOfInjective
-    (map : TypedMap DomainElement CodomainElement)
-    (injective : LRA.Map.Injective.Injective map)
+    (map : LRA.Function DomainElement CodomainElement)
+    (injective : LRA.Function.Injective map)
     (left right : DomainSet) :
     (Image map (left ∩ right) : CodomainSet) =
       Image map left ∩ Image map right := by
@@ -328,14 +327,14 @@ Logical form:
 
 ```lean
 theorem ImageMonotone
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     {left right : DomainSet}
     (subset : left ⊆ right) :
     (Image map left : CodomainSet) ⊆ Image map right
 ```
 -/
 theorem ImageMonotone
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     {left right : DomainSet}
     (subset : left ⊆ right) :
     (Image map left : CodomainSet) ⊆ Image map right := by
@@ -358,7 +357,7 @@ Logical form:
 
 ```lean
 theorem ImageIndexedUnion
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (family : Index → DomainSet) :
     (Image map (HasIndexedUnion.indexedUnion family) : CodomainSet) =
       HasIndexedUnion.indexedUnion
@@ -366,7 +365,7 @@ theorem ImageIndexedUnion
 ```
 -/
 theorem ImageIndexedUnion
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (family : Index → DomainSet) :
     (Image map (HasIndexedUnion.indexedUnion family) : CodomainSet) =
       HasIndexedUnion.indexedUnion
@@ -383,7 +382,7 @@ Logical form:
 
 ```lean
 theorem ImageIndexedIntersectionSubset
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (family : Index → DomainSet) :
     (Image map (HasIndexedIntersection.indexedIntersection family) :
       CodomainSet) ⊆
@@ -392,7 +391,7 @@ theorem ImageIndexedIntersectionSubset
 ```
 -/
 theorem ImageIndexedIntersectionSubset
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (family : Index → DomainSet) :
     (Image map (HasIndexedIntersection.indexedIntersection family) :
       CodomainSet) ⊆
@@ -409,8 +408,8 @@ Logical form:
 
 ```lean
 theorem ImageIndexedIntersectionOfInjective
-    (map : TypedMap DomainElement CodomainElement)
-    (injective : LRA.Map.Injective.Injective map)
+    (map : LRA.Function DomainElement CodomainElement)
+    (injective : LRA.Function.Injective map)
     (family : Index → DomainSet) :
     (Image map (HasIndexedIntersection.indexedIntersection family) :
       CodomainSet) =
@@ -419,8 +418,8 @@ theorem ImageIndexedIntersectionOfInjective
 ```
 -/
 theorem ImageIndexedIntersectionOfInjective
-    (map : TypedMap DomainElement CodomainElement)
-    (injective : LRA.Map.Injective.Injective map)
+    (map : LRA.Function DomainElement CodomainElement)
+    (injective : LRA.Function.Injective map)
     (family : Index → DomainSet) :
     (Image map (HasIndexedIntersection.indexedIntersection family) :
       CodomainSet) =
@@ -446,7 +445,7 @@ Logical form:
 
 ```lean
 theorem ImageCountableUnion
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (family : Nat → DomainSet) :
     (Image map (HasCountableUnion.countableUnion family) : CodomainSet) =
       HasCountableUnion.countableUnion
@@ -454,7 +453,7 @@ theorem ImageCountableUnion
 ```
 -/
 theorem ImageCountableUnion
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (family : Nat → DomainSet) :
     (Image map (HasCountableUnion.countableUnion family) : CodomainSet) =
       HasCountableUnion.countableUnion
@@ -471,7 +470,7 @@ Logical form:
 
 ```lean
 theorem ImageCountableIntersectionSubset
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (family : Nat → DomainSet) :
     (Image map (HasCountableIntersection.countableIntersection family) :
       CodomainSet) ⊆
@@ -480,7 +479,7 @@ theorem ImageCountableIntersectionSubset
 ```
 -/
 theorem ImageCountableIntersectionSubset
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (family : Nat → DomainSet) :
     (Image map (HasCountableIntersection.countableIntersection family) :
       CodomainSet) ⊆
@@ -497,8 +496,8 @@ Logical form:
 
 ```lean
 theorem ImageCountableIntersectionOfInjective
-    (map : TypedMap DomainElement CodomainElement)
-    (injective : LRA.Map.Injective.Injective map)
+    (map : LRA.Function DomainElement CodomainElement)
+    (injective : LRA.Function.Injective map)
     (family : Nat → DomainSet) :
     (Image map (HasCountableIntersection.countableIntersection family) :
       CodomainSet) =
@@ -507,8 +506,8 @@ theorem ImageCountableIntersectionOfInjective
 ```
 -/
 theorem ImageCountableIntersectionOfInjective
-    (map : TypedMap DomainElement CodomainElement)
-    (injective : LRA.Map.Injective.Injective map)
+    (map : LRA.Function DomainElement CodomainElement)
+    (injective : LRA.Function.Injective map)
     (family : Nat → DomainSet) :
     (Image map (HasCountableIntersection.countableIntersection family) :
       CodomainSet) =
@@ -536,7 +535,7 @@ Logical form:
 
 ```lean
 theorem ImagePreimageSubsetAdjunction
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet)
     (target : CodomainSet) :
     source ⊆ (LRA.Map.Preimage.Preimage map target : DomainSet) <->
@@ -544,7 +543,7 @@ theorem ImagePreimageSubsetAdjunction
 ```
 -/
 theorem ImagePreimageSubsetAdjunction
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet)
     (target : CodomainSet) :
     source ⊆ (LRA.Map.Preimage.Preimage map target : DomainSet) <->
@@ -561,7 +560,7 @@ Logical form:
 
 ```lean
 theorem MapsIntoIffImageSubset
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet)
     (target : CodomainSet) :
     MapsInto map source target <->
@@ -569,7 +568,7 @@ theorem MapsIntoIffImageSubset
 ```
 -/
 theorem MapsIntoIffImageSubset
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet)
     (target : CodomainSet) :
     MapsInto map source target <->
@@ -586,7 +585,7 @@ Logical form:
 
 ```lean
 theorem MapsIntoIffSubsetPreimage
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet)
     (target : CodomainSet) :
     MapsInto map source target <->
@@ -594,7 +593,7 @@ theorem MapsIntoIffSubsetPreimage
 ```
 -/
 theorem MapsIntoIffSubsetPreimage
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet)
     (target : CodomainSet) :
     MapsInto map source target <->
@@ -610,7 +609,7 @@ Logical form:
 
 ```lean
 theorem SourceSubsetPreimageImage
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet) :
     source ⊆
       (LRA.Map.Preimage.Preimage map
@@ -618,7 +617,7 @@ theorem SourceSubsetPreimageImage
 ```
 -/
 theorem SourceSubsetPreimageImage
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet) :
     source ⊆
       (LRA.Map.Preimage.Preimage map
@@ -634,7 +633,7 @@ Logical form:
 
 ```lean
 theorem ImagePreimageSubset
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet) :
     (Image map
       (LRA.Map.Preimage.Preimage map target : DomainSet) : CodomainSet) ⊆
@@ -642,7 +641,7 @@ theorem ImagePreimageSubset
 ```
 -/
 theorem ImagePreimageSubset
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet) :
     (Image map
       (LRA.Map.Preimage.Preimage map target : DomainSet) : CodomainSet) ⊆
@@ -658,8 +657,8 @@ Logical form:
 
 ```lean
 theorem ImagePreimageOfSurjective
-    (map : TypedMap DomainElement CodomainElement)
-    (surjective : LRA.Map.Surjective.Surjective map)
+    (map : LRA.Function DomainElement CodomainElement)
+    (surjective : LRA.Function.Surjective map)
     (target : CodomainSet) :
     (Image map
       (LRA.Map.Preimage.Preimage map target : DomainSet) : CodomainSet) =
@@ -667,8 +666,8 @@ theorem ImagePreimageOfSurjective
 ```
 -/
 theorem ImagePreimageOfSurjective
-    (map : TypedMap DomainElement CodomainElement)
-    (surjective : LRA.Map.Surjective.Surjective map)
+    (map : LRA.Function DomainElement CodomainElement)
+    (surjective : LRA.Function.Surjective map)
     (target : CodomainSet) :
     (Image map
       (LRA.Map.Preimage.Preimage map target : DomainSet) : CodomainSet) =
@@ -684,7 +683,7 @@ Logical form:
 
 ```lean
 theorem ImagePreimageEqIntersectionRange
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet) :
     (Image map
       (LRA.Map.Preimage.Preimage map target : DomainSet) : CodomainSet) =
@@ -692,7 +691,7 @@ theorem ImagePreimageEqIntersectionRange
 ```
 -/
 theorem ImagePreimageEqIntersectionRange
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet) :
     (Image map
       (LRA.Map.Preimage.Preimage map target : DomainSet) : CodomainSet) =
@@ -709,7 +708,7 @@ Logical form:
 
 ```lean
 theorem ImagePreimageEqOfSubsetRange
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet)
     (targetSubsetRange :
       target ⊆ (Image map (𝒰 : DomainSet) : CodomainSet)) :
@@ -719,7 +718,7 @@ theorem ImagePreimageEqOfSubsetRange
 ```
 -/
 theorem ImagePreimageEqOfSubsetRange
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (target : CodomainSet)
     (targetSubsetRange :
       target ⊆ (Image map (𝒰 : DomainSet) : CodomainSet)) :
@@ -737,8 +736,8 @@ Logical form:
 
 ```lean
 theorem PreimageImageOfInjective
-    (map : TypedMap DomainElement CodomainElement)
-    (injective : LRA.Map.Injective.Injective map)
+    (map : LRA.Function DomainElement CodomainElement)
+    (injective : LRA.Function.Injective map)
     (source : DomainSet) :
     (LRA.Map.Preimage.Preimage map
       (Image map source : CodomainSet) : DomainSet) =
@@ -746,8 +745,8 @@ theorem PreimageImageOfInjective
 ```
 -/
 theorem PreimageImageOfInjective
-    (map : TypedMap DomainElement CodomainElement)
-    (injective : LRA.Map.Injective.Injective map)
+    (map : LRA.Function DomainElement CodomainElement)
+    (injective : LRA.Function.Injective map)
     (source : DomainSet) :
     (LRA.Map.Preimage.Preimage map
       (Image map source : CodomainSet) : DomainSet) =
@@ -779,13 +778,13 @@ Logical form:
 ```lean
 theorem ImageIdentity
     (subset : SetObject) :
-    (Image (LRA.Map.Identity.IdentityMap Element) subset : SetObject) =
+    (Image (LRA.Function.IdentityFunction Element) subset : SetObject) =
       subset
 ```
 -/
 theorem ImageIdentity
     (subset : SetObject) :
-    (Image (LRA.Map.Identity.IdentityMap Element) subset : SetObject) =
+    (Image (LRA.Function.IdentityFunction Element) subset : SetObject) =
       subset := by
   sorry
 
@@ -807,7 +806,7 @@ Logical form:
 
 ```lean
 theorem FiniteImageIff
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet) :
     FiniteImage map source <->
       HasFiniteEnumeration
@@ -817,7 +816,7 @@ theorem FiniteImageIff
 ```
 -/
 theorem FiniteImageIff
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (source : DomainSet) :
     FiniteImage map source <->
       HasFiniteEnumeration
@@ -835,13 +834,13 @@ Logical form:
 
 ```lean
 theorem FiniteRangeIffFiniteImage
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (ambientDomain : DomainSet) :
     FiniteRange map ambientDomain <-> FiniteImage map ambientDomain
 ```
 -/
 theorem FiniteRangeIffFiniteImage
-    (map : TypedMap DomainElement CodomainElement)
+    (map : LRA.Function DomainElement CodomainElement)
     (ambientDomain : DomainSet) :
     FiniteRange map ambientDomain <-> FiniteImage map ambientDomain := by
   rfl
@@ -879,19 +878,19 @@ Logical form:
 
 ```lean
 theorem ImageComposition
-    (secondMap : TypedMap MiddleElement ThirdElement)
-    (firstMap : TypedMap FirstElement MiddleElement)
+    (secondMap : LRA.Function MiddleElement ThirdElement)
+    (firstMap : LRA.Function FirstElement MiddleElement)
     (source : FirstSet) :
-    (Image (LRA.Map.Composition.Composition secondMap firstMap) source :
+    (Image (LRA.Function.Compose secondMap firstMap) source :
       ThirdSet) =
       Image secondMap ((Image firstMap source : MiddleSet))
 ```
 -/
 theorem ImageComposition
-    (secondMap : TypedMap MiddleElement ThirdElement)
-    (firstMap : TypedMap FirstElement MiddleElement)
+    (secondMap : LRA.Function MiddleElement ThirdElement)
+    (firstMap : LRA.Function FirstElement MiddleElement)
     (source : FirstSet) :
-    (Image (LRA.Map.Composition.Composition secondMap firstMap) source :
+    (Image (LRA.Function.Compose secondMap firstMap) source :
       ThirdSet) =
       Image secondMap ((Image firstMap source : MiddleSet)) := by
   sorry

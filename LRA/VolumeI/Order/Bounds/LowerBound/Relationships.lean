@@ -1,3 +1,4 @@
+import LRA.Relation.Operations.Converse.Definition
 import LRA.VolumeI.Order.Bounds.LowerBound.Definition
 import LRA.VolumeI.Order.Bounds.UpperBound.Definition
 

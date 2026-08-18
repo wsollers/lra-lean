@@ -15,11 +15,11 @@ Logical form:
 
 ```lean
 theorem EqualityIsEquivalenceRelation (Carrier : Type u) :
-    LRA.Relation.Equivalence (EqualityRelation Carrier)
+    LRA.Relation.EquivalenceRelation (EqualityRelation Carrier)
 ```
 -/
 theorem EqualityIsEquivalenceRelation (Carrier : Type u) :
-    LRA.Relation.Equivalence (EqualityRelation Carrier) :=
+    LRA.Relation.EquivalenceRelation (EqualityRelation Carrier) :=
   EqualityRelationIsEquivalence Carrier
 
 end LRA.Identity

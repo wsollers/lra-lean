@@ -1,15 +1,14 @@
-import LRA.Function.Calculus.Definition
-import LRA.VolumeI.Map.Typed.Definition
+import LRA.Function.Calculus.Classes.Definition
+import LRA.Function.Definition
 
 namespace LRA.Map.Codomain
 
-open LRA.Map.Typed
 universe u v
 
 /-- Historical typed-map spelling of the declared function codomain type. -/
 abbrev CodomainOf {Domain : Type u} {Codomain : Type v}
-    (map : TypedMap Domain Codomain) : Type v :=
-  LRA.Function.CodomainType (LRA.Function.OfTypedFunction map)
+    (map : LRA.Function Domain Codomain) : Type v :=
+  LRA.Function.CodomainType (map)
 
 /-- Legacy adapter: an object carries an explicit codomain object. -/
 class HasCodomain

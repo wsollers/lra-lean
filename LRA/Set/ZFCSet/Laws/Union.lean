@@ -39,15 +39,3 @@ instance : UnionLaws Set where
   SubsetIffUnionEqRight := SubsetIffUnionEqRight
 
 end LRA.Set.ZFCSet
-
-namespace LRA.Set.Enderton
-
-abbrev UnionCommutative := LRA.Set.ZFCSet.UnionCommutative
-abbrev UnionAssociative := LRA.Set.ZFCSet.UnionAssociative
-abbrev EmptyUnion := LRA.Set.ZFCSet.EmptyUnion
-abbrev UnionEmpty := LRA.Set.ZFCSet.UnionEmpty
-abbrev UnionIdempotent := LRA.Set.ZFCSet.UnionIdempotent
-abbrev UnionMonotone := LRA.Set.ZFCSet.UnionMonotone
-abbrev SubsetIffUnionEqRight := LRA.Set.ZFCSet.SubsetIffUnionEqRight
-
-end LRA.Set.Enderton

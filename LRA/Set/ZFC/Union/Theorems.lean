@@ -112,34 +112,3 @@ theorem TheUnionMembership (A B x : Set) :
       exact Or.inr rfl
 
 end LRA.Set.ZFC
-
-/-! Compatibility aliases for the historical Enderton union names. -/
-namespace LRA.Set.Enderton
-
-abbrev UnionOverExists (A : Set) := LRA.Set.ZFC.UnionOverExists A
-
-abbrev UnionOverIsUnique
-    {A U V : Set}
-    (UIsUnionOf : IsUnionOf A U)
-    (VIsUnionOf : IsUnionOf A V) : V = U :=
-  LRA.Set.ZFC.UnionOverIsUnique UIsUnionOf VIsUnionOf
-
-abbrev UnionOverExistsAndIsUnique (A : Set) :=
-  LRA.Set.ZFC.UnionOverExistsAndIsUnique A
-
-noncomputable abbrev TheUnionOver (A : Set) : Set := LRA.Set.ZFC.TheUnionOver A
-
-abbrev TheUnionOverIsUnionOf (A : Set) :=
-  LRA.Set.ZFC.TheUnionOverIsUnionOf A
-
-abbrev EveryUnionOverEqualsTheUnionOver
-    {A U : Set}
-    (UIsUnionOf : IsUnionOf A U) : U = TheUnionOver A :=
-  LRA.Set.ZFC.EveryUnionOverEqualsTheUnionOver UIsUnionOf
-
-noncomputable abbrev TheUnion (A B : Set) : Set := LRA.Set.ZFC.TheUnion A B
-
-abbrev TheUnionMembership (A B x : Set) :=
-  LRA.Set.ZFC.TheUnionMembership A B x
-
-end LRA.Set.Enderton

@@ -59,19 +59,3 @@ instance : DifferenceLaws Set where
   DifferenceDisjointRight := DifferenceDisjointRight
 
 end LRA.Set.ZFCSet
-
-namespace LRA.Set.Enderton
-
-abbrev DifferenceMonotoneLeft := LRA.Set.ZFCSet.DifferenceMonotoneLeft
-abbrev DifferenceAntitoneRight := LRA.Set.ZFCSet.DifferenceAntitoneRight
-abbrev DifferenceEmpty := LRA.Set.ZFCSet.DifferenceEmpty
-abbrev EmptyDifference := LRA.Set.ZFCSet.EmptyDifference
-abbrev DifferenceSelf := LRA.Set.ZFCSet.DifferenceSelf
-abbrev DifferenceUnion := LRA.Set.ZFCSet.DifferenceUnion
-abbrev DifferenceIntersection := LRA.Set.ZFCSet.DifferenceIntersection
-abbrev UnionDifferenceDistributes := LRA.Set.ZFCSet.UnionDifferenceDistributes
-abbrev IntersectionDifferenceDistributes := LRA.Set.ZFCSet.IntersectionDifferenceDistributes
-abbrev DifferenceSubsetLeft := LRA.Set.ZFCSet.DifferenceSubsetLeft
-abbrev DifferenceDisjointRight := LRA.Set.ZFCSet.DifferenceDisjointRight
-
-end LRA.Set.Enderton

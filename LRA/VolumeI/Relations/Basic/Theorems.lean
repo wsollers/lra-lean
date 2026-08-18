@@ -1,4 +1,6 @@
 import LRA.VolumeI.Relations.Basic.Properties
+import LRA.Relation.Canonical.IdentityRelation.Definition
+import LRA.Relation.Operations.Converse.Definition
 
 namespace LRA.Relation
 

@@ -27,7 +27,7 @@ def PreorderEquivalence
 theorem PreorderEquivalenceIsEquivalence
     {Carrier : Type u}
     (preorder : PreorderRelation Carrier) :
-    LRA.Relation.Equivalence (PreorderEquivalence preorder) := by
+    LRA.Relation.EquivalenceRelation (PreorderEquivalence preorder) := by
   sorry
 
 /-- The setoid obtained by identifying mutually related preorder elements. -/

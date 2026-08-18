@@ -4,8 +4,7 @@ import LRA.Identity.ExistenceAndUniqueness
 /-!
 Canonical predicates used by the ZFC set-theory development.
 
-The historical `LRA.Set.Enderton` names are retained below as compatibility
-aliases only; canonical ownership is `LRA.Set.ZFC`.
+`LRA.Set.ZFC` is the single owner of every predicate declared here.
 -/
 
 namespace LRA.Set.ZFC
@@ -89,27 +88,3 @@ def IsChoiceSetFor (A choiceSet : Set) : Prop :=
       ∀ other : Set, (other ∈ B ∧ other ∈ choiceSet) → other = x
 
 end LRA.Set.ZFC
-
-/-! Compatibility aliases for the historical Enderton namespace. -/
-namespace LRA.Set.Enderton
-
-abbrev Set := LRA.Set.ZFC.Set
-abbrev ExistsAndUnique := LRA.Set.ZFC.ExistsAndUnique
-abbrev IsEmptySet := LRA.Set.ZFC.IsEmptySet
-abbrev IsPairSet := LRA.Set.ZFC.IsPairSet
-abbrev IsSingletonSet := LRA.Set.ZFC.IsSingletonSet
-abbrev IsUnionOf := LRA.Set.ZFC.IsUnionOf
-abbrev IsPowerSetOf := LRA.Set.ZFC.IsPowerSetOf
-abbrev IsSeparatedSubset := LRA.Set.ZFC.IsSeparatedSubset
-abbrev IsRelativeComplementOf := LRA.Set.ZFC.IsRelativeComplementOf
-abbrev IsIntersectionOf := LRA.Set.ZFC.IsIntersectionOf
-abbrev IsSymmetricDifferenceOf := LRA.Set.ZFC.IsSymmetricDifferenceOf
-abbrev Subset := LRA.Set.ZFC.Subset
-abbrev IsFunctionalOn := LRA.Set.ZFC.IsFunctionalOn
-abbrev IsReplacementImageOf := LRA.Set.ZFC.IsReplacementImageOf
-abbrev IsSuccessorOf := LRA.Set.ZFC.IsSuccessorOf
-abbrev IsInductiveSet := LRA.Set.ZFC.IsInductiveSet
-abbrev IsFoundationWitness := LRA.Set.ZFC.IsFoundationWitness
-abbrev IsChoiceSetFor := LRA.Set.ZFC.IsChoiceSetFor
-
-end LRA.Set.Enderton

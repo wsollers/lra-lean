@@ -18,10 +18,3 @@ theorem InductiveSetExists :
   sorry
 
 end LRA.Set.ZFC
-
-/-! Compatibility alias for the historical Enderton theorem name. -/
-namespace LRA.Set.Enderton
-
-abbrev InductiveSetExists := LRA.Set.ZFC.InductiveSetExists
-
-end LRA.Set.Enderton

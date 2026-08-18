@@ -8,7 +8,7 @@ universe u v w
 
 /-- Historical spelling for the graph relation of a typed function. -/
 abbrev Graph {Domain : Type u} {Codomain : Type v}
-    (map : LRA.Function.TypedFunction Domain Codomain) :
+    (map : LRA.Function Domain Codomain) :
     LRA.Relation.HeterogeneousBinaryRelation Domain Codomain :=
   LRA.Function.Graph map
 

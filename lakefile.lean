@@ -29,6 +29,7 @@ lean_lib LRAStandardizedFoundations where
     `LRA.Relation,
     `LRA.Function,
     `LRA.Function.SetTheoretic,
+    `LRA.Morphism,
     `LRA.Operation,
     `LRA.Order
   ]
@@ -61,6 +62,7 @@ lean_lib LRATests where
   roots := #[
     `LRA.VolumeI.Set.CollectionAlgebraAdaptersTest,
     `LRA.SemanticImportsSmoke,
+    `LRA.Morphism.FailureModesTest,
     `LRA.VolumeIII.Analysis.Bounding.BoundsTests,
     `LRA.VolumeIV.Learning.MetricTopologyAdapterTest,
     `LRA.VolumeIV.TopologicalSpaces.TopologyCompatibilityTest

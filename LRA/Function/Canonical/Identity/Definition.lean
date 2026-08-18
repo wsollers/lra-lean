@@ -5,16 +5,8 @@ namespace LRA.Function
 
 universe u
 
-/-- The identity function in ordinary typed-function presentation. -/
-def IdentityTypedFunction (Carrier : Type u) : TypedFunction Carrier Carrier :=
+/-- The identity function on a carrier. -/
+def IdentityFunction (Carrier : Type u) : Endofunction Carrier :=
   fun input => input
-
-/-- The identity function on a carrier, presented by the identity relation. -/
-def IdentityFunction (Carrier : Type u) : Endofunction Carrier where
-  graph := LRA.Relation.IdentityRelation Carrier
-  total := by
-    sorry
-  singleValued := by
-    sorry
 
 end LRA.Function

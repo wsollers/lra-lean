@@ -30,23 +30,3 @@ theorem EveryIntersectionEqualsTheIntersection
   sorry
 
 end LRA.Set.ZFC
-
-/-! Compatibility aliases for the historical Enderton intersection names. -/
-namespace LRA.Set.Enderton
-
-noncomputable abbrev TheIntersection (A B : Set) : Set :=
-  LRA.Set.ZFC.TheIntersection A B
-
-abbrev TheIntersectionIsIntersectionOf (A B : Set) :=
-  LRA.Set.ZFC.TheIntersectionIsIntersectionOf A B
-
-abbrev TheIntersectionMembership (A B x : Set) :=
-  LRA.Set.ZFC.TheIntersectionMembership A B x
-
-abbrev EveryIntersectionEqualsTheIntersection
-    {A B D : Set}
-    (DIsIntersectionOf : IsIntersectionOf A B D) :
-    D = TheIntersection A B :=
-  LRA.Set.ZFC.EveryIntersectionEqualsTheIntersection DIsIntersectionOf
-
-end LRA.Set.Enderton

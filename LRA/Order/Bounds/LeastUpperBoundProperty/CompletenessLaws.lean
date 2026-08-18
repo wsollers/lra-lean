@@ -2,6 +2,12 @@ import LRA.Order.Bounds.LeastUpperBoundProperty.Definition
 
 namespace LRA.Order
 
+/-!
+Completeness is second-order: the chosen `SetObject` controls which subsets
+are quantified over. Instantiating `SetObject` with `Set R` gives the
+classical full-subset reading; smaller backends give weaker completeness.
+-/
+
 universe u v
 
 /-- Backend-relative least-upper-bound completeness for ordered carriers. -/

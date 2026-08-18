@@ -47,32 +47,3 @@ theorem EverySeparatedSubsetEqualsTheSeparatedSubset
   sorry
 
 end LRA.Set.ZFC
-
-/-! Compatibility aliases for the historical Enderton separation names. -/
-namespace LRA.Set.Enderton
-
-abbrev SeparatedSubsetExists (A : Set) (property : Set → Prop) :=
-  LRA.Set.ZFC.SeparatedSubsetExists A property
-
-abbrev SeparatedSubsetIsUnique
-    {A : Set} {property : Set → Prop} {B C : Set}
-    (BIsSeparatedSubset : IsSeparatedSubset A property B)
-    (CIsSeparatedSubset : IsSeparatedSubset A property C) : C = B :=
-  LRA.Set.ZFC.SeparatedSubsetIsUnique BIsSeparatedSubset CIsSeparatedSubset
-
-abbrev SeparatedSubsetExistsAndIsUnique (A : Set) (property : Set → Prop) :=
-  LRA.Set.ZFC.SeparatedSubsetExistsAndIsUnique A property
-
-noncomputable abbrev TheSeparatedSubset (A : Set) (property : Set → Prop) : Set :=
-  LRA.Set.ZFC.TheSeparatedSubset A property
-
-abbrev TheSeparatedSubsetIsSeparatedSubset (A : Set) (property : Set → Prop) :=
-  LRA.Set.ZFC.TheSeparatedSubsetIsSeparatedSubset A property
-
-abbrev EverySeparatedSubsetEqualsTheSeparatedSubset
-    {A : Set} {property : Set → Prop} {B : Set}
-    (BIsSeparatedSubset : IsSeparatedSubset A property B) :
-    B = TheSeparatedSubset A property :=
-  LRA.Set.ZFC.EverySeparatedSubsetEqualsTheSeparatedSubset BIsSeparatedSubset
-
-end LRA.Set.Enderton

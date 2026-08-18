@@ -70,31 +70,3 @@ theorem EveryEmptySetEqualsTheEmptySet
   exact EmptySetsAreEqual AIsEmpty TheEmptySetIsEmpty
 
 end LRA.Set.ZFC
-
-/-! Compatibility aliases for the historical Enderton theorem names. -/
-namespace LRA.Set.Enderton
-
-abbrev EmptySetExists := LRA.Set.ZFC.EmptySetExists
-
-abbrev EmptySetIsUnique
-    {A B : Set}
-    (AIsEmpty : IsEmptySet A)
-    (BIsEmpty : IsEmptySet B) : B = A :=
-  LRA.Set.ZFC.EmptySetIsUnique AIsEmpty BIsEmpty
-
-abbrev EmptySetsAreEqual
-    {A B : Set}
-    (AIsEmpty : IsEmptySet A)
-    (BIsEmpty : IsEmptySet B) : A = B :=
-  LRA.Set.ZFC.EmptySetsAreEqual AIsEmpty BIsEmpty
-
-abbrev EmptySetExistsAndIsUnique := LRA.Set.ZFC.EmptySetExistsAndIsUnique
-noncomputable abbrev TheEmptySet : Set := LRA.Set.ZFC.TheEmptySet
-abbrev TheEmptySetIsEmpty : IsEmptySet TheEmptySet := LRA.Set.ZFC.TheEmptySetIsEmpty
-
-abbrev EveryEmptySetEqualsTheEmptySet
-    {A : Set}
-    (AIsEmpty : IsEmptySet A) : A = TheEmptySet :=
-  LRA.Set.ZFC.EveryEmptySetEqualsTheEmptySet AIsEmpty
-
-end LRA.Set.Enderton

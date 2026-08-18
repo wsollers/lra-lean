@@ -1,5 +1,4 @@
 import LRA.VolumeI.Relations.Basic
-import LRA.VolumeI.Relations.DomainRange.All
 import LRA.VolumeI.Relations.Images.All
 import LRA.VolumeI.Relations.Operations.All
 import LRA.VolumeI.Relations.Equivalence

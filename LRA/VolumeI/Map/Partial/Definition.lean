@@ -1,9 +1,8 @@
-import LRA.VolumeI.Map.Typed.Definition
 import LRA.VolumeI.Relations.Basic.Relations
+import LRA.Function.Definition
 
 namespace LRA.Map.Partial
 
-open LRA.Map.Typed
 
 universe u v
 

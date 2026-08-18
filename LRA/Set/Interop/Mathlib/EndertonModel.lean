@@ -2,8 +2,8 @@
 -- The Enderton universe as an L_∈ structure.
 
 import LRA.VolumeI.Set.ModelTheory.Axioms
-import LRA.VolumeI.Set.Enderton.Instances
-import LRA.VolumeI.Set.Enderton.Axioms.Axioms
+import LRA.VolumeI.Set.LRA.Set.ZFC.Instances
+import LRA.VolumeI.Set.LRA.Set.ZFC.Axioms.Axioms
 import LRA.VolumeI.Logic.Semantics.Satisfaction
 
 namespace LRA.Set.ModelTheory
@@ -18,13 +18,13 @@ Verification status: model checked; satisfaction proofs pending
 (each is unfold-satisfaction-then-apply-the-matching-Enderton-axiom)
 
 The Enderton universe as an `L_∈` structure
-`⟨Enderton.Set, MembershipRelation, ∅⟩`, and the satisfaction
+`⟨LRA.Set.ZFCSet, MembershipRelation, ∅⟩`, and the satisfaction
 obligations `Enderton ⊨ ZFC` — one theorem per axiom. The primitive
 `Set`/`MembershipRelation` were *designed* from these axioms, so each
-satisfaction proof should bottom out in exactly one `Enderton.Axioms`
+satisfaction proof should bottom out in exactly one `LRA.Set.ZFC.Axioms`
 citation after the satisfaction relation is unfolded.
 
-Note the ontology fact this file makes precise: `Enderton.Set` and
+Note the ontology fact this file makes precise: `LRA.Set.ZFCSet` and
 `ZFSet` can be `L_∈`-structures because they are single-sorted —
 everything is a set. `LRASet Alpha` can NOT: it is two-sorted (atoms
 vs sets), so it is not an `L_∈`-structure at all. The backend
@@ -40,7 +40,7 @@ Logical form:
 
 ```lean
 noncomputable def EndertonMembershipModel : Model MembershipSignature where
-  Domain := Enderton.Set
+  Domain := LRA.Set.ZFCSet
   domainNonempty := ⟨∅⟩
   interpretFunction := fun functionSymbol => functionSymbol.elim
   interpretRelation := fun relationSymbol arguments =>
@@ -52,7 +52,7 @@ noncomputable def EndertonMembershipModel : Model MembershipSignature where
 ```
 -/
 @[reducible] noncomputable def EndertonMembershipModel : Model MembershipSignature where
-  Domain := Enderton.Set
+  Domain := LRA.Set.ZFCSet
   domainNonempty := ⟨∅⟩
   interpretFunction := fun functionSymbol => functionSymbol.elim
   interpretRelation := fun relationSymbol arguments =>
@@ -69,13 +69,13 @@ Logical form:
 
 ```lean
 theorem endertonInterpretsMem
-    (arguments : Fin (MembershipSignature.relationArity .mem) → Enderton.Set) :
+    (arguments : Fin (MembershipSignature.relationArity .mem) → LRA.Set.ZFCSet) :
     EndertonMembershipModel.interpretRelation .mem arguments =
       (arguments ⟨0, by decide⟩ ∈ arguments ⟨1, by decide⟩)
 ```
 -/
 @[simp] theorem endertonInterpretsMem
-    (arguments : Fin (MembershipSignature.relationArity .mem) → Enderton.Set) :
+    (arguments : Fin (MembershipSignature.relationArity .mem) → LRA.Set.ZFCSet) :
     EndertonMembershipModel.interpretRelation .mem arguments =
       (arguments ⟨0, by decide⟩ ∈ arguments ⟨1, by decide⟩) := rfl
 
@@ -87,18 +87,18 @@ Logical form:
 ```lean
 theorem endertonInterpretsEmpty :
     EndertonMembershipModel.interpretConstant .emptySet =
-      (∅ : Enderton.Set)
+      (∅ : LRA.Set.ZFCSet)
 ```
 -/
 @[simp] theorem endertonInterpretsEmpty :
     EndertonMembershipModel.interpretConstant .emptySet =
-      (∅ : Enderton.Set) := rfl
+      (∅ : LRA.Set.ZFCSet) := rfl
 
 /-! ## Satisfaction: Enderton ⊨ ZFC, axiom by axiom
 
 Each proof is the same recipe: unfold `Satisfies` through the
 transcribed formula, reduce the assignment bookkeeping, and apply the
-matching `Enderton.Axioms` axiom. All are on the proving queue.
+matching `LRA.Set.ZFC.Axioms` axiom. All are on the proving queue.
 -/
 
 /--
@@ -116,7 +116,7 @@ theorem endertonSatisfiesExtensionality
     (assignment : Nat → EndertonMembershipModel.Domain) :
     Satisfies EndertonMembershipModel assignment extensionalityFormula := by
   intro x y h
-  refine Enderton.Extensionality x y fun z => ?_
+  refine LRA.Set.ZFC.Extensionality x y fun z => ?_
   exact satisfiesIffF.mp (h z)
 
 /--
@@ -133,7 +133,7 @@ theorem endertonSatisfiesEmptySet
 theorem endertonSatisfiesEmptySet
     (assignment : Nat → EndertonMembershipModel.Domain) :
     Satisfies EndertonMembershipModel assignment emptySetFormula :=
-  fun a h => Enderton.TheEmptySetIsEmpty a h
+  fun a h => LRA.Set.ZFC.TheEmptySetIsEmpty a h
 
 /--
 `endertonSatisfiesPairing` states enderton satisfies pairing.
@@ -150,7 +150,7 @@ theorem endertonSatisfiesPairing
     (assignment : Nat → EndertonMembershipModel.Domain) :
     Satisfies EndertonMembershipModel assignment pairingFormula := by
   intro a b
-  obtain ⟨C, hC⟩ := Enderton.Pairing a b
+  obtain ⟨C, hC⟩ := LRA.Set.ZFC.Pairing a b
   refine (satisfiesExistsIffSomeWitness _ _ _ _).mpr ⟨C, fun x => ?_⟩
   refine satisfiesIffF.mpr
     ⟨fun h => satisfiesOrF.mpr ((hC x).mp h),
@@ -171,7 +171,7 @@ theorem endertonSatisfiesUnion
     (assignment : Nat → EndertonMembershipModel.Domain) :
     Satisfies EndertonMembershipModel assignment unionFormula := by
   intro F
-  obtain ⟨U, hU⟩ := Enderton.Union F
+  obtain ⟨U, hU⟩ := LRA.Set.ZFC.Union F
   refine (satisfiesExistsIffSomeWitness _ _ _ _).mpr ⟨U, fun x => ?_⟩
   refine satisfiesIffF.mpr ⟨fun h => ?_, fun h => ?_⟩
   · obtain ⟨B, hBF, hxB⟩ := (hU x).mp h
@@ -196,7 +196,7 @@ theorem endertonSatisfiesPowerSet
     (assignment : Nat → EndertonMembershipModel.Domain) :
     Satisfies EndertonMembershipModel assignment powerSetFormula := by
   intro A
-  obtain ⟨P, hP⟩ := Enderton.PowerSet A
+  obtain ⟨P, hP⟩ := LRA.Set.ZFC.PowerSet A
   refine (satisfiesExistsIffSomeWitness _ _ _ _).mpr ⟨P, fun X => ?_⟩
   exact satisfiesIffF.mpr (hP X)
 
@@ -269,7 +269,7 @@ theorem endertonSatisfiesSeparation
     Satisfies EndertonMembershipModel assignment
       (separationInstance property) := by
   intro A
-  obtain ⟨B, hB⟩ := Enderton.Separation
+  obtain ⟨B, hB⟩ := LRA.Set.ZFC.Separation
     (fun z => Satisfies EndertonMembershipModel
       (updateAssignment (updateAssignment assignment 1 A) 0 z) property)
     A

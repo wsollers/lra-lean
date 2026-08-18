@@ -1,3 +1,4 @@
+import LRA.Relation.Operations.Converse.Definition
 import LRA.VolumeI.Order.Lattices.CompleteLattice.Definition
 
 namespace LRA.Order

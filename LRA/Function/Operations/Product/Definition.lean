@@ -4,44 +4,44 @@ namespace LRA.Function
 
 universe u v w
 
-/-- A typed function whose source is a Cartesian product. -/
+/-- A function whose source is a Cartesian product. -/
 abbrev ProductDomainFunction
     (Left : Type u) (Right : Type v) (Codomain : Type w) :=
-  TypedFunction (Left × Right) Codomain
+  LRA.Function (Left × Right) Codomain
 
-/-- A curried binary typed function. -/
-abbrev BinaryTypedFunction
+/-- A curried binary function. -/
+abbrev BinaryFunction
     (Left : Type u) (Right : Type v) (Codomain : Type w) :=
   Left → Right → Codomain
 
-/-- Curry a typed function whose source is a product. -/
-def CurryTyped {Left : Type u} {Right : Type v} {Codomain : Type w}
+/-- Curry a function whose source is a product. -/
+def Curry {Left : Type u} {Right : Type v} {Codomain : Type w}
     (function : ProductDomainFunction Left Right Codomain) :
-    BinaryTypedFunction Left Right Codomain :=
+    BinaryFunction Left Right Codomain :=
   fun left right => function (left, right)
 
-/-- Uncurry a binary typed function. -/
-def UncurryTyped {Left : Type u} {Right : Type v} {Codomain : Type w}
-    (function : BinaryTypedFunction Left Right Codomain) :
+/-- Uncurry a binary function. -/
+def Uncurry {Left : Type u} {Right : Type v} {Codomain : Type w}
+    (function : BinaryFunction Left Right Codomain) :
     ProductDomainFunction Left Right Codomain :=
   fun pair => function pair.1 pair.2
 
 /-- First projection from a Cartesian product. -/
-def FirstProjectionTyped (Left : Type u) (Right : Type v) :
-    TypedFunction (Left × Right) Left :=
+def FirstProjection (Left : Type u) (Right : Type v) :
+    LRA.Function (Left × Right) Left :=
   fun pair => pair.1
 
 /-- Second projection from a Cartesian product. -/
-def SecondProjectionTyped (Left : Type u) (Right : Type v) :
-    TypedFunction (Left × Right) Right :=
+def SecondProjection (Left : Type u) (Right : Type v) :
+    LRA.Function (Left × Right) Right :=
   fun pair => pair.2
 
-/-- Pair two typed functions with common source into a product-valued function. -/
-def ProductTyped
+/-- Pair two functions with a common source into a product-valued function. -/
+def Product
     {Domain : Type u} {LeftCodomain : Type v} {RightCodomain : Type w}
-    (left : TypedFunction Domain LeftCodomain)
-    (right : TypedFunction Domain RightCodomain) :
-    TypedFunction Domain (LeftCodomain × RightCodomain) :=
+    (left : LRA.Function Domain LeftCodomain)
+    (right : LRA.Function Domain RightCodomain) :
+    LRA.Function Domain (LeftCodomain × RightCodomain) :=
   fun input => (left input, right input)
 
 end LRA.Function

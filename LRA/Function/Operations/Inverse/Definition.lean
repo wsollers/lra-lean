@@ -6,58 +6,46 @@ namespace LRA.Function
 
 universe u v
 
-/-- A typed function is a left inverse when it recovers every source value. -/
-def LeftInverseTyped
+/-- A function is a left inverse when it recovers every source value. -/
+def LeftInverse
     {Domain : Type u} {Codomain : Type v}
-    (function : TypedFunction Domain Codomain)
-    (inverse : TypedFunction Codomain Domain) : Prop :=
+    (function : LRA.Function Domain Codomain)
+    (inverse : LRA.Function Codomain Domain) : Prop :=
   ∀ input, inverse (function input) = input
 
-/-- A typed function is a right inverse when every target value is recovered. -/
-def RightInverseTyped
+/-- A function is a right inverse when every target value is recovered. -/
+def RightInverse
     {Domain : Type u} {Codomain : Type v}
-    (function : TypedFunction Domain Codomain)
-    (inverse : TypedFunction Codomain Domain) : Prop :=
+    (function : LRA.Function Domain Codomain)
+    (inverse : LRA.Function Codomain Domain) : Prop :=
   ∀ output, function (inverse output) = output
 
 /-- A two-sided inverse satisfies both cancellation laws. -/
-def TwoSidedInverseTyped
+def TwoSidedInverse
     {Domain : Type u} {Codomain : Type v}
-    (function : TypedFunction Domain Codomain)
-    (inverse : TypedFunction Codomain Domain) : Prop :=
-  LeftInverseTyped function inverse ∧ RightInverseTyped function inverse
+    (function : LRA.Function Domain Codomain)
+    (inverse : LRA.Function Codomain Domain) : Prop :=
+  LeftInverse function inverse ∧ RightInverse function inverse
 
 /-- Predicate form of the inverse-function relationship. -/
-def IsInverseTypedFunction
+def IsInverseFunction
     {Domain : Type u} {Codomain : Type v}
-    (inverse : TypedFunction Codomain Domain)
-    (function : TypedFunction Domain Codomain) : Prop :=
-  TwoSidedInverseTyped function inverse
+    (inverse : LRA.Function Codomain Domain)
+    (function : LRA.Function Domain Codomain) : Prop :=
+  TwoSidedInverse function inverse
 
 /-- A section is exactly a right inverse. -/
-abbrev SectionOfTyped
+abbrev SectionOf
     {Domain : Type u} {Codomain : Type v}
-    (sectionFunction : TypedFunction Codomain Domain)
-    (function : TypedFunction Domain Codomain) : Prop :=
-  RightInverseTyped function sectionFunction
+    (sectionFunction : LRA.Function Codomain Domain)
+    (function : LRA.Function Domain Codomain) : Prop :=
+  RightInverse function sectionFunction
 
-/-- A retraction is exactly a left inverse of the inclusion-like map. -/
-abbrev RetractionOfTyped
+/-- A retraction is exactly a left inverse of the inclusion-like function. -/
+abbrev RetractionOf
     {Small : Type u} {Large : Type v}
-    (retraction : TypedFunction Large Small)
-    (inclusion : TypedFunction Small Large) : Prop :=
-  LeftInverseTyped inclusion retraction
-
-/-- The inverse of a bijective relational function, presented by the converse graph relation. -/
-def Inverse
-    {Domain : Type u} {Codomain : Type v}
-    (function : RelationalFunction Domain Codomain)
-    (_bijective : Bijective function) :
-    RelationalFunction Codomain Domain where
-  graph := LRA.Relation.Converse function.graph
-  total := by
-    sorry
-  singleValued := by
-    sorry
+    (retraction : LRA.Function Large Small)
+    (inclusion : LRA.Function Small Large) : Prop :=
+  LeftInverse inclusion retraction
 
 end LRA.Function

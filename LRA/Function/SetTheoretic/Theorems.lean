@@ -82,23 +82,4 @@ codomains, and graphs are equal. -/
     left = right := by
   sorry
 
-/-- Historical extensionality theorem name. -/
-abbrev SetTheoreticMapExt
-    {DomainElement CodomainElement Pair : Type u}
-    {DomainObject : Type v} {CodomainObject : Type w}
-    {GraphObject : Type x}
-    [HasPairing DomainElement CodomainElement Pair]
-    [Membership DomainElement DomainObject]
-    [Membership CodomainElement CodomainObject]
-    [Membership Pair GraphObject]
-    {left right : SetTheoreticMap DomainElement CodomainElement Pair
-      DomainObject CodomainObject GraphObject}
-    (sameDomain : left.triple.domain = right.triple.domain)
-    (sameCodomain : left.triple.codomain = right.triple.codomain)
-    (sameGraph : left.triple.graph = right.triple.graph) :
-    left = right :=
-  SetTheoreticFunctionExt
-    (left := left) (right := right)
-    sameDomain sameCodomain sameGraph
-
 end LRA.Function.SetTheoretic

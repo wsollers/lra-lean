@@ -14,7 +14,7 @@ only a backend with an ambient carrier can register: `LRASet` (and,
 later, a Mathlib-backed `Set`) can; Enderton structurally cannot -- an
 absolute complement or universal set of ZFC sets is impossible by
 Russell's paradox. For Enderton, nothing here is "missing a proof":
-`Aᶜ` and `𝒰` do not even elaborate at `Enderton.Set`, so these theorems
+`Aᶜ` and `𝒰` do not even elaborate at `LRA.Set.ZFCSet`, so these theorems
 are unavailable at the parse level rather than falsely promised.
 
 `DifferenceUniversal` and `UniversalDifference` are difference laws by

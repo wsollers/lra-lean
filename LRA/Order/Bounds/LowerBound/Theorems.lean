@@ -84,7 +84,7 @@ theorem LowerBoundOfDifference
     {relation : LRA.Relation.Endorelation Element}
     {subset removed : SetObject} {bound : Element}
     (boundIsLowerForSubset : LowerBound relation subset bound) :
-    LowerBound relation (subset \\ removed) bound := by
+    LowerBound relation (subset \ removed) bound := by
   sorry
 
 /-- A common lower bound of two sets bounds their symmetric difference. -/
