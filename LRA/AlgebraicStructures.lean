@@ -8,7 +8,7 @@ import LRA.AlgebraicStructures.BoundedLattice
 import LRA.AlgebraicStructures.CommutativeMonoid
 import LRA.AlgebraicStructures.CommutativeRing.All
 import LRA.AlgebraicStructures.CommutativeSemigroup
-import LRA.AlgebraicStructures.CommutativeSemiring.All
+import LRA.AlgebraicStructures.CommutativeSemiring
 import LRA.AlgebraicStructures.CompleteOrderedField.All
 import LRA.AlgebraicStructures.DiscreteInteger.All
 import LRA.AlgebraicStructures.DistributiveLattice

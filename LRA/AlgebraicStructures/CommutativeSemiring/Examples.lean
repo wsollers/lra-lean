@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.CommutativeSemiring.All
+import LRA.AlgebraicStructures.CommutativeSemiring
 
 namespace LRA.AlgebraicStructures
 

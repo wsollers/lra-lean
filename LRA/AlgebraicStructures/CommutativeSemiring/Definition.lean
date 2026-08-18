@@ -1,12 +1,10 @@
 import LRA.AlgebraicStructures.CommutativeSemiring.Laws.Definition
+import LRA.AlgebraicStructures.Semiring.Definition
 
 namespace LRA.AlgebraicStructures
 
-/-!
-CommutativeSemiring Definition module.
-
-This file is reserved for definition whose natural owner is the named
-algebraic structure CommutativeSemiring. It intentionally contains no placeholder theorems.
--/
+/-- A commutative semiring has the semiring signature. -/
+abbrev CommutativeSemiringConceptSignature :=
+  SemiringConceptSignature
 
 end LRA.AlgebraicStructures
