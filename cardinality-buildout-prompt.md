@@ -110,64 +110,127 @@ reflexive, symmetric, and transitive. Do not mirror the whole development.
 
 ## 3. Marking the axiom of choice
 
-Where choice enters is **content in a foundations text, not a footnote.** It must
-be visible in the file layout, not discovered by reading a proof.
+Where choice enters is **content in a foundations text, not a footnote.** But a
+theorem belongs beside the mathematics it is about, not beside the other theorems
+that happen to share an axiom. Both requirements are met by marking in place and
+indexing separately.
 
-### 3.1 A new file role
+### 3.1 Theorems stay where they belong pedagogically
 
-Add one file role to §2.3 of the architecture document:
+A choice-dependent theorem lives in the `Theorems.lean` of its own concept,
+beside its siblings. Do **not** create a `ChoiceTheorems.lean`, and do not move
+a theorem away from its topic because of its axiom.
 
-| File | Contents |
+This matters most where a choice-free and a choice-dependent result are two
+directions of one biconditional. `Dedekind-infinite → infinite` needs nothing;
+`infinite → Dedekind-infinite` needs ACω. They are one idea and must be read
+together.
+
+### 3.2 Each such theorem carries a required marker
+
+Doc-comments are not required in this repository (architecture document §4).
+**This is the one exception.** Every theorem whose mathematical content depends
+on a choice principle carries a one-line marker as the first line of its
+doc-comment:
+
+```lean
+/-- Requires ACω. -/
+theorem InfiniteImpliesDedekindInfinite … := by
+  sorry
+
+/-- Equivalent to AC. -/
+theorem CardinalComparability … := by
+  sorry
+```
+
+Name the principle, not just "choice" — they are genuinely different:
+
+| Marker | Meaning |
 |---|---|
-| `ChoiceTheorems.lean` | theorems requiring the axiom of choice or a weaker choice principle |
+| `Requires AC.` | full axiom of choice |
+| `Requires ACω.` | countable choice |
+| `Requires DC.` | dependent choice |
+| `Equivalent to AC.` | equivalent, not merely implied — a stronger claim |
 
-It sits inside the concept directory alongside `Theorems.lean`, so a theorem
-stays with its topic. `LRA/Cardinality/Choice.lean` is a router importing every
-`ChoiceTheorems.lean` in the subject, so the full choice surface is visible in
-one place.
+### 3.3 `Choice.lean` is a name-checked index that declares nothing
 
-### 3.2 Name the principle, not just "choice"
+Each subject gets one `LRA/<Subject>/Choice.lean`. It imports the modules holding
+the marked theorems and lists them with anonymous `example`s grouped by principle:
 
-Each `ChoiceTheorems.lean` states in its module comment which principle each
-theorem needs. These are genuinely different and the differences are the point:
+```lean
+import LRA.Cardinality.Comparison
+import LRA.Cardinality.Finiteness
+import LRA.Cardinality.Countability
+import LRA.Cardinality.Arithmetic
 
-| Abbreviation | Principle |
+/-!
+The choice surface of `LRA.Cardinality`.
+
+This file declares nothing. It is an index: each entry names a theorem whose
+mathematical content depends on a choice principle, so the whole surface is
+visible in one place without moving any theorem away from its topic.
+-/
+
+section Equivalent_to_AC
+example := @LRA.Cardinality.CardinalComparability
+example := @LRA.Cardinality.InfiniteCardinalSquareAbsorption
+end Equivalent_to_AC
+
+section Requires_CountableChoice
+example := @LRA.Cardinality.InfiniteImpliesDedekindInfinite
+example := @LRA.Cardinality.InfiniteHasDenumerableSubset
+example := @LRA.Cardinality.CountableUnionOfCountableIsCountable
+end Requires_CountableChoice
+```
+
+`example` is anonymous, so no name enters the environment and §7.0.1 is not
+violated — this is an index, not a re-export. But the reference is elaborated, so
+renaming or removing a listed theorem **fails the build** with an unknown
+identifier. The index cannot silently rot.
+
+### 3.4 The marking is a documentation convention, not a verified property
+
+`#print axioms` will **not** agree with these markers, and nobody should
+"correct" them against it.
+
+In Lean, `Classical.choice` is a kernel axiom and excluded middle is derived from
+it, so any theorem proved by contradiction reports `Classical.choice` whether or
+not its mathematics needs choice. Cantor–Schröder–Bernstein will report it. And
+while proofs are `sorry`, `#print axioms` reports only `sorryAx` and says nothing
+about choice at all.
+
+What is being recorded is *mathematical* dependence on a choice principle — the
+thing a textbook flags — which is finer than the axioms of a particular Lean
+proof term. Prior art for tracking it at all is Metamath's `set.mm`, which marks
+theorems proved using `ax-ac`, and Coq's opt-in `ClassicalChoice` modules.
+Mathlib does not track it.
+
+### 3.5 The choice map for this subject
+
+| Result | Marker |
 |---|---|
-| `AC` | full axiom of choice |
-| `ACω` | countable choice |
-| `DC` | dependent choice |
+| Cantor–Schröder–Bernstein | *none* |
+| Cantor's theorem | *none* |
+| ℝ ≈ 𝒫(ℕ) | *none* |
+| finite pigeonhole | *none* |
+| Dedekind-infinite → infinite | *none* |
+| infinite → Dedekind-infinite | `Requires ACω.` |
+| every infinite set has a denumerable subset | `Requires ACω.` |
+| countable union of countable sets is countable | `Requires ACω.` |
+| cardinal comparability | `Equivalent to AC.` |
+| κ + κ ≈ κ for infinite κ | `Requires AC.` |
+| κ · κ ≈ κ for infinite κ | `Equivalent to AC.` (Tarski) |
 
-Where a statement is **equivalent** to a principle rather than merely implied by
-it, say so — that is a stronger and more interesting fact.
-
-### 3.3 The choice map for this subject
-
-| Result | Needs |
-|---|---|
-| Cantor–Schröder–Bernstein | **nothing** |
-| Cantor's theorem | **nothing** |
-| ℝ ≈ 𝒫(ℕ) | **nothing** |
-| finite pigeonhole | **nothing** |
-| Dedekind-infinite → infinite | **nothing** |
-| infinite → Dedekind-infinite | ACω |
-| every infinite set has a countably infinite subset | ACω |
-| countable union of countable sets is countable | ACω |
-| cardinal comparability (any two cardinals are comparable) | **equivalent to AC** |
-| κ + κ = κ for infinite κ | AC |
-| κ · κ = κ for infinite κ | **equivalent to AC** (Tarski) |
-
-That CSB is choice-free while comparability is equivalent to AC is the single
-most instructive fact in the section. Both belong to the same layer, and the
-layout should make the contrast impossible to miss: `Comparison/Theorems.lean`
-holds CSB, `Comparison/ChoiceTheorems.lean` holds comparability.
-
----
+That Cantor–Schröder–Bernstein needs nothing while comparability is equivalent to
+AC is the single most instructive fact in the section. Both are theorems about
+comparing cardinalities, they sit in the same group, and the markers are what
+make the contrast visible.
 
 ## 4. File layout
 
 ```text
 LRA/Cardinality.lean                                subject router
-LRA/Cardinality/Choice.lean                         router over every ChoiceTheorems.lean
+LRA/Cardinality/Choice.lean                         name-checked index, declares nothing
 LRA/Cardinality/Definition.lean                     Equinumerous, Dominated, StrictlyDominated
 
 LRA/Cardinality/Comparison.lean
@@ -176,7 +239,6 @@ LRA/Cardinality/Comparison/Equinumerosity/Theorems.lean
 LRA/Cardinality/Comparison/Dominance/Definition.lean
 LRA/Cardinality/Comparison/Dominance/Theorems.lean
 LRA/Cardinality/Comparison/SchroederBernstein/Theorems.lean
-LRA/Cardinality/Comparison/Comparability/ChoiceTheorems.lean
 
 LRA/Cardinality/Finiteness.lean
 LRA/Cardinality/Finiteness/Finite/Definition.lean
@@ -184,7 +246,6 @@ LRA/Cardinality/Finiteness/Finite/Theorems.lean
 LRA/Cardinality/Finiteness/Finite/FailureModes.lean
 LRA/Cardinality/Finiteness/Dedekind/Definition.lean
 LRA/Cardinality/Finiteness/Dedekind/Theorems.lean
-LRA/Cardinality/Finiteness/Dedekind/ChoiceTheorems.lean
 LRA/Cardinality/Finiteness/Pigeonhole/Theorems.lean
 LRA/Cardinality/Finiteness/Enumeration/Definition.lean      the four notions moved from Map/Image
 LRA/Cardinality/Finiteness/Enumeration/Theorems.lean
@@ -192,7 +253,6 @@ LRA/Cardinality/Finiteness/Enumeration/Theorems.lean
 LRA/Cardinality/Countability.lean
 LRA/Cardinality/Countability/Countable/Definition.lean
 LRA/Cardinality/Countability/Countable/Theorems.lean
-LRA/Cardinality/Countability/Countable/ChoiceTheorems.lean
 LRA/Cardinality/Countability/Denumerable/Definition.lean
 LRA/Cardinality/Countability/Denumerable/Theorems.lean
 LRA/Cardinality/Countability/NumberSystems/Theorems.lean   ℕ×ℕ ≈ ℕ, ℤ ≈ ℕ, ℚ ≈ ℕ
@@ -210,7 +270,6 @@ LRA/Cardinality/Arithmetic/Product/Definition.lean
 LRA/Cardinality/Arithmetic/Product/Theorems.lean
 LRA/Cardinality/Arithmetic/Exponentiation/Definition.lean
 LRA/Cardinality/Arithmetic/Exponentiation/Theorems.lean
-LRA/Cardinality/Arithmetic/Absorption/ChoiceTheorems.lean   κ+κ=κ, κ·κ=κ
 
 LRA/Cardinality/SetTheoretic.lean
 LRA/Cardinality/SetTheoretic/Definition.lean
@@ -233,7 +292,7 @@ Theorems: equinumerosity is reflexive, symmetric, transitive; dominance is
 reflexive and transitive; equinumerous implies dominated in both directions;
 **Cantor–Schröder–Bernstein** as antisymmetry up to equinumerosity.
 
-`ChoiceTheorems`: comparability, recorded as *equivalent* to AC.
+Marked `Equivalent to AC.`: cardinal comparability.
 
 ### 5.2 Finiteness
 
@@ -254,7 +313,7 @@ with `Finite` — state it, since it is the theorem that retires the second noti
 `FailureModes`: a set can be infinite without an obvious enumeration failing;
 the converse of pigeonhole fails for infinite sets.
 
-`ChoiceTheorems`: infinite → Dedekind-infinite (ACω); every infinite set has a
+Marked `Requires ACω.`: infinite → Dedekind-infinite (ACω); every infinite set has a
 countably infinite subset (ACω).
 
 ### 5.3 Countability
@@ -269,7 +328,7 @@ Theorems: `Countable ↔ Finite ∨ Denumerable`; a subset of a countable set is
 countable; ℕ × ℕ ≈ ℕ; ℤ ≈ ℕ; ℚ ≈ ℕ; a finite union of countable sets is
 countable.
 
-`ChoiceTheorems`: a countable union of countable sets is countable (ACω).
+Marked `Requires ACω.`: a countable union of countable sets is countable (ACω).
 
 ### 5.4 Cantor
 
@@ -294,8 +353,8 @@ classes via disjoint union, product, and function space. Theorems: each operatio
 is well defined with respect to equinumerosity; commutativity; associativity;
 distributivity; `2 ^ κ ≈ 𝒫(κ)`.
 
-`ChoiceTheorems`: `κ + κ ≈ κ` for infinite κ (AC); `κ · κ ≈ κ` for infinite κ,
-recorded as *equivalent* to AC.
+Marked `Requires AC.`: `κ + κ ≈ κ` for infinite κ. Marked `Equivalent to AC.`:
+`κ · κ ≈ κ` for infinite κ.
 
 ### 5.6 SetTheoretic
 
@@ -332,18 +391,18 @@ promoted and are exactly its ingredients. `WellOrder` still sits at
 architecture document.
 
 ```text
-LRA/Order/Choice.lean                                   router, as in Cardinality
+LRA/Order/Choice.lean                                   name-checked index, as in Cardinality
 LRA/Order/Maximality.lean
-LRA/Order/Maximality/Zorn/ChoiceTheorems.lean           equivalent to AC
-LRA/Order/Maximality/Hausdorff/ChoiceTheorems.lean      equivalent to AC
-LRA/Order/Maximality/Tukey/ChoiceTheorems.lean          equivalent to AC
-LRA/Order/OrderedSets/WellOrder/ChoiceTheorems.lean     well-ordering theorem, equivalent to AC
+LRA/Order/Maximality/Zorn/Theorems.lean                 marked Equivalent to AC.
+LRA/Order/Maximality/Hausdorff/Theorems.lean            marked Equivalent to AC.
+LRA/Order/Maximality/Tukey/Theorems.lean                marked Equivalent to AC.
+LRA/Order/OrderedSets/WellOrder/Theorems.lean           well-ordering theorem, marked Equivalent to AC.
 ```
 
 `Maximality` is the group because Zorn, Hausdorff, and Tukey are maximality
 principles; the well-ordering theorem stays with `WellOrder`, whose order
-property it is. This confirms that the `ChoiceTheorems.lean` role of §3.1 is a
-repository-wide convention rather than a cardinality-local one.
+property it is. This confirms that the marker-plus-index convention of §3 is
+repository-wide rather than cardinality-local.
 
 ### 6.2 Ordinals → a new top-level subject `LRA.Ordinal`
 
@@ -407,7 +466,7 @@ live in this repository.
 
 **(a) Baire category theorem ↔ dependent choice.** For complete metric spaces,
 BCT is equivalent to DC over ZF. This is the closest thing to a completeness–choice
-equivalence and it is a real theorem. Home: `LRA/Analysis/MetricSpaces/Baire/ChoiceTheorems.lean`.
+equivalence and it is a real theorem. Home: `LRA/Analysis/MetricSpaces/Baire/Theorems.lean`, marked `Equivalent to DC.`
 Nothing named `Baire` exists in the repository yet.
 
 **(b) The Cauchy reals and the Dedekind reals need ACω to agree.** In ZF alone
@@ -418,7 +477,8 @@ countable choice. ZF + ACω proves the two constructions isomorphic.
 This repository builds ℝ **both ways**, in `LRA/VolumeII/RealNumbers/Cauchy.lean`
 and `LRA/VolumeII/RealNumbers/Dedekind.lean`. So "our two constructions of ℝ
 agree" is **not** a ZF theorem here; it requires ACω, and the statement that they
-agree belongs in a `ChoiceTheorems.lean` under `LRA.NumberSystems.RealNumbers`.
+agree carries `Requires ACω.` and is indexed by a `Choice.lean` under
+`LRA.NumberSystems.RealNumbers`.
 This is the most consequential instance of the choice-marking policy in the whole
 project, because it concerns the object every later volume depends on.
 
@@ -431,8 +491,8 @@ This has a consequence for existing work that should be **audited, not assumed**
 subsequences and `CauchySequencesConverge` via sequences. The implications among
 LUB, monotone convergence, and the nested interval property are choice-free, but
 *Cauchy completeness plus Archimedean implies LUB* is not. When the completeness
-family is revisited, check each implication individually and move the ones that
-need ACω into a `ChoiceTheorems.lean` beside it. Do not audit it during this
+family is revisited, check each implication individually and mark the ones that
+need ACω and index them. Do not audit it during this
 phase; record it as pending.
 
 ### 6.5 Not deferred — genuinely excluded
@@ -450,12 +510,14 @@ phase; record it as pending.
 - The four finiteness notions no longer exist under the function subject, and
   their former consumers use `LRA.Cardinality`.
 - Exactly one owner of finiteness and one of countability across the repository.
-- Every choice-dependent theorem is in a `ChoiceTheorems.lean`, names its
-  principle as AC, ACω, or DC, and says so in the module comment.
-- Every theorem in a plain `Theorems.lean` is choice-free. If one is not, it is in
-  the wrong file.
-- Comparability and `κ · κ ≈ κ` are recorded as *equivalent* to AC, not merely
-  implied by it.
+- Every choice-dependent theorem carries a first-line marker naming AC, ACω, or
+  DC, or stating equivalence.
+- No `ChoiceTheorems.lean` exists; no theorem was moved away from its topic
+  because of its axiom.
+- `LRA/Cardinality/Choice.lean` indexes every marked theorem, declares nothing,
+  and would fail the build if a listed name were renamed or removed.
+- Comparability and `κ · κ ≈ κ` are marked *equivalent* to AC, not merely
+  requiring it.
 - Cantor–Schröder–Bernstein and Cantor's theorem are in choice-free files.
 - The continuum hypothesis appears exactly once, stated, marked independent, and
   unproved.
