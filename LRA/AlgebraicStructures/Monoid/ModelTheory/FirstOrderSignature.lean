@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Semigroup.ModelTheory.FirstOrderSignature
+import LRA.AlgebraicStructures.Semigroup.Interface.Signature.Definition
 
 namespace LRA.AlgebraicStructures.Monoid.ModelTheory
 
@@ -9,7 +9,7 @@ This extends the semigroup vocabulary by one distinguished identity constant.
 -/
 
 abbrev MonoidFunctionSymbol :=
-  LRA.AlgebraicStructures.Semigroup.ModelTheory.SemigroupFunctionSymbol
+  LRA.AlgebraicStructures.Semigroup.Interface.Signature.SemigroupFunctionSymbol
 
 def MonoidRelationSymbol : Type := Empty
 
@@ -17,7 +17,7 @@ inductive MonoidConstantSymbol where
   | one
 
 def MonoidFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Semigroup.ModelTheory.SemigroupFirstOrderFunctions
+  LRA.AlgebraicStructures.Semigroup.Interface.Signature.SemigroupFirstOrderFunctions
 
 def MonoidFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
   Symbol := MonoidRelationSymbol

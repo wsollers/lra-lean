@@ -1,6 +1,6 @@
 import LRA.Logic.Model.Model
 
-namespace LRA.AlgebraicStructures.Semigroup.ModelTheory
+namespace LRA.AlgebraicStructures.Semigroup.Interface.Signature
 
 /-!
 First-order signature for semigroups.
@@ -29,4 +29,4 @@ def SemigroupFirstOrderSignature : LRA.Logic.Signature where
   Relations := SemigroupFirstOrderRelations
   Constants := SemigroupConstantSymbol
 
-end LRA.AlgebraicStructures.Semigroup.ModelTheory
+end LRA.AlgebraicStructures.Semigroup.Interface.Signature

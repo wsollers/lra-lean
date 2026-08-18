@@ -29,7 +29,7 @@ import LRA.AlgebraicStructures.OrderedGroup.All
 import LRA.AlgebraicStructures.OrderedRing.All
 import LRA.AlgebraicStructures.OrderedSemiring.All
 import LRA.AlgebraicStructures.Ring.All
-import LRA.AlgebraicStructures.Semigroup.All
+import LRA.AlgebraicStructures.Semigroup
 import LRA.AlgebraicStructures.Semiring.All
 import LRA.AlgebraicStructures.MathlibBridge
 import LRA.AlgebraicStructures.MathlibAdapters

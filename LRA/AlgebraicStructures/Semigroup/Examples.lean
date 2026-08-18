@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Semigroup.All
+import LRA.AlgebraicStructures.Semigroup
 
 namespace LRA.AlgebraicStructures
 

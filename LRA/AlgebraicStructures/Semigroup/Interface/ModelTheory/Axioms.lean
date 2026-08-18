@@ -1,6 +1,6 @@
-import LRA.AlgebraicStructures.Semigroup.ModelTheory.FirstOrderSignature
+import LRA.AlgebraicStructures.Semigroup.Interface.Signature.Definition
 
-namespace LRA.AlgebraicStructures.Semigroup.ModelTheory
+namespace LRA.AlgebraicStructures.Semigroup.Interface.ModelTheory
 
 /-!
 First-order semigroup theory.
@@ -10,4 +10,4 @@ project-level first-order formula constructors are used to encode named
 algebraic theories.
 -/
 
-end LRA.AlgebraicStructures.Semigroup.ModelTheory
+end LRA.AlgebraicStructures.Semigroup.Interface.ModelTheory

@@ -1,12 +1,10 @@
 import LRA.AlgebraicStructures.Semigroup.Laws.Definition
+import LRA.UniversalAlgebra.InterpretedOperationBundles
 
 namespace LRA.AlgebraicStructures
 
-/-!
-Semigroup Definition module.
-
-This file is reserved for definition whose natural owner is the named
-algebraic structure Semigroup. It intentionally contains no placeholder theorems.
--/
+/-- The algebraic signature of a semigroup: one binary multiplication. -/
+abbrev SemigroupConceptSignature :=
+  LRA.UniversalAlgebra.InterpretedOperationBundles.MultiplicativeOperationBundle
 
 end LRA.AlgebraicStructures
