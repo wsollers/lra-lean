@@ -23,10 +23,12 @@ import LRA.Order.Bounds.Supremum.Theorems
 import LRA.Order.Bounds.Infimum.Definition
 import LRA.Order.Bounds.Infimum.Theorems
 import LRA.Order.Bounds.LeastUpperBoundProperty.Definition
+import LRA.Order.Bounds.LeastUpperBoundProperty.CompletenessLaws
 import LRA.Order.Bounds.GreatestLowerBoundProperty.Definition
 
 /-!
-Canonical foundational bounds vocabulary and theorem surface.
+Canonical foundational bounds vocabulary, theorem surface, and backend-relative
+order completeness certificate.
 
 Set-operation-specific preservation theorems that belong to explicit adapter
 layers remain outside this default aggregate.
