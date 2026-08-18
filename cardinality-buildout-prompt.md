@@ -368,10 +368,14 @@ while `Ordinal` imports `Cardinality` — a cycle. Alephs therefore land in
 The direction is not arbitrary: cardinality needs nothing from ordinals, whereas
 initial ordinals need both. Build in that order.
 
-### 6.4 The choice-equivalence cycle
+### 6.4 Equivalence families and where each one lives
 
-Across `LRA.Order`, `LRA.Cardinality`, and eventually `LRA.Ordinal`, six
-statements form a single equivalence class with AC:
+Two large equivalence families run through this repository. Each deserves a
+single named theorem file rather than being scattered, and the homes differ
+because the dependency orders differ.
+
+**The choice family.** Across `LRA.Order`, `LRA.Cardinality`, and eventually
+`LRA.Ordinal`, six statements form one equivalence class:
 
 ```text
 axiom of choice  ↔  Zorn's lemma  ↔  Hausdorff maximal principle
@@ -380,10 +384,56 @@ axiom of choice  ↔  Zorn's lemma  ↔  Hausdorff maximal principle
                  ↔  κ · κ ≈ κ for infinite κ
 ```
 
-Stating that cycle in one place is the natural capstone, and it belongs in
-`LRA.Ordinal.Choice`, the only subject that sits above all of the others in
-dependency order. Until `LRA.Ordinal` exists, each subject's `Choice.lean` records
-its own principle locally and claims no equivalence it cannot state.
+Two of the six — comparability and κ·κ≈κ — come from this phase. Stating the
+cycle needs a subject above both `Order` and `Cardinality`, and neither imports
+the other, so it lands in `LRA.Ordinal.Choice.Equivalences`. Until `LRA.Ordinal`
+exists, each subject's `Choice.lean` records its own principle and claims no
+equivalence it cannot state.
+
+**The completeness family.** `LRA/VolumeIII/Analysis/Completeness/CompletenessEquivalences.lean`
+already owns this and already states LUB ↔ monotone convergence ↔ nested
+intervals. It stays where it is, under `LRA.Analysis.Completeness`, which sits
+above `LRA.Order.Bounds.LeastUpperBoundProperty` and `LRA.NumberSystems.RealNumbers`.
+
+### 6.4.1 Choice and completeness are not equivalent — but they meet three times
+
+There is **no** theorem "choice ↔ completeness". Dedekind completeness of ℝ is a
+theorem of ZF, and AC is independent of ZF; neither implies the other. Do not
+state such an equivalence.
+
+There are, however, three genuine connections, and two of them are equivalences.
+All three are deferred, but they are recorded here because the second is already
+live in this repository.
+
+**(a) Baire category theorem ↔ dependent choice.** For complete metric spaces,
+BCT is equivalent to DC over ZF. This is the closest thing to a completeness–choice
+equivalence and it is a real theorem. Home: `LRA/Analysis/MetricSpaces/Baire/ChoiceTheorems.lean`.
+Nothing named `Baire` exists in the repository yet.
+
+**(b) The Cauchy reals and the Dedekind reals need ACω to agree.** In ZF alone
+the Cauchy reals may be a *proper subfield* of the Dedekind reals, and the Cauchy
+reals need not even be Cauchy complete — you cannot choose representatives without
+countable choice. ZF + ACω proves the two constructions isomorphic.
+
+This repository builds ℝ **both ways**, in `LRA/VolumeII/RealNumbers/Cauchy.lean`
+and `LRA/VolumeII/RealNumbers/Dedekind.lean`. So "our two constructions of ℝ
+agree" is **not** a ZF theorem here; it requires ACω, and the statement that they
+agree belongs in a `ChoiceTheorems.lean` under `LRA.NumberSystems.RealNumbers`.
+This is the most consequential instance of the choice-marking policy in the whole
+project, because it concerns the object every later volume depends on.
+
+**(c) Sequential notions in metric spaces need ACω.** "Sequentially closed
+implies closed", "sequentially continuous implies continuous", and "sequentially
+compact iff compact" each require countable choice for metric spaces.
+
+This has a consequence for existing work that should be **audited, not assumed**:
+`CompletenessEquivalences.lean` states `BolzanoWeierstrassProperty` via
+subsequences and `CauchySequencesConverge` via sequences. The implications among
+LUB, monotone convergence, and the nested interval property are choice-free, but
+*Cauchy completeness plus Archimedean implies LUB* is not. When the completeness
+family is revisited, check each implication individually and move the ones that
+need ACω into a `ChoiceTheorems.lean` beside it. Do not audit it during this
+phase; record it as pending.
 
 ### 6.5 Not deferred — genuinely excluded
 
