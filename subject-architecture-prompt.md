@@ -50,23 +50,66 @@ LRA.Internal          explicitly non-API orienting and scratch material
 Create a subject only when it owns durable declarations. Do not create empty
 roots.
 
-### 1.2 The generalization chain
+### 1.2 Two presentations, deliberately kept apart
 
-The three central subjects form a chain in which each layer adds exactly one
-condition, and each layer **specializes** the one above rather than restating it:
+A function has two presentations in this repository, and conflating them is the
+central design error to avoid.
 
-| Subject | What it is | Adds |
+**The foundational presentation — a set-theoretic triple.** A relation is a
+triple of a left domain, a right domain, and a graph. A function is that same
+shape with the function condition imposed. This is the object the repository
+*studies*: the layer where you prove what a function is.
+
+```text
+SetTheoreticRelationTriple   →   raw domain / codomain / graph data
+IsSetTheoreticRelation       →   the graph-typing condition
+SetTheoreticRelation         →   triple bundled with that evidence
+
+SetTheoreticFunctionTriple   →   the same raw data
+IsSetTheoreticFunction       →   graph typing ∧ totality ∧ uniqueness
+SetTheoreticFunction         →   triple bundled with that evidence
+```
+
+**The working presentation — the arrow.** To everything else in the repository, a
+function *is* `Domain → Codomain`.
+
+```lean
+abbrev LRA.Function (Domain : Type u) (Codomain : Type v) := Domain → Codomain
+```
+
+This is the convenient representation used by analysis and by every later
+subject. It is **not** definitionally a set-theoretic triple, is computable, and
+composes with Lean core and Mathlib without conversion.
+
+The two presentations meet at **exactly one** theorem,
+`LRA.Function.SetTheoretic.TypedFunctionGraphRepresentation` (§1.5). There are no
+coercions, no instances, and no second bridge.
+
+### 1.2.1 Where the generalization chain lives
+
+The chain is real, but it lives at both ends rather than in one column:
+
+| Layer | Chain | Status |
 |---|---|---|
-| `LRA.Relation` | any pairing of a domain with a codomain | — |
-| `LRA.Function` | a **total, single-valued** relation | totality, single-valuedness |
-| `LRA.Morphism` | a function that **preserves structure** | preservation |
+| foundational | `SetTheoreticRelation` → `SetTheoreticFunction` | definitional: the function condition *is* graph typing plus totality plus uniqueness |
+| working | arrow → `LRA.Morphism` | definitional: a morphism is an arrow plus preservation predicates |
 
-Consequences that are binding:
+So "a function is a total, single-valued relation" is a **theorem of the
+foundational layer**, not a definitional identity of the arrow. That is the
+intended design. Set theory says what a function *is*; the arrow is how a
+function is *used*.
 
-- `LRA.Function` must not redefine domain, range, image, preimage, fiber,
-  kernel, or saturation. It specializes the `LRA.Relation` calculus.
-- `LRA.Morphism` must not redefine function application, composition, or
-  injectivity. It specializes `LRA.Function`.
+Binding consequences:
+
+- Do **not** introduce a typed structure bundling an arrow with totality and
+  single-valuedness proofs. It is neither presentation, it forces
+  `noncomputable` evaluation through `Classical.choose`, and it requires a
+  conversion at every Mathlib boundary. See §7.5.
+- `LRA.Morphism` takes an **arrow**. It must not redefine function application,
+  composition, or injectivity.
+- `LRA.Relation` owns the generic relation calculus. Where a function concept is
+  genuinely the relation concept applied to a function graph, define it through
+  `Graph` rather than restating the quantifier.
 - "Map" is a **synonym** for function, not a refinement of it. There is no
   `LRA.Map` subject and there must never be one.
 
@@ -106,10 +149,10 @@ primitives**:
 
 - **`LRA/Morphism/Properties/`** — the Prop-valued preservation predicates above.
   These are the primitives. Everything else is defined from them.
-- **`LRA/Morphism/Definition.lean`** — a bundled `Morphism` structure: a
-  `LRA.Function.RelationalFunction` together with its preservation evidence.
-  This matches the `RelationalFunction` philosophy, in which the defining laws
-  are constitutive data rather than optional side conditions.
+- **`LRA/Morphism/Definition.lean`** — a bundled `Morphism` structure carrying an
+  **arrow** `LRA.Function Source Target` together with its preservation evidence.
+  It must not carry a relational-function bundle; the arrow is the working
+  presentation (§1.2).
 
 One question decides how a subject specializes:
 
@@ -184,6 +227,47 @@ asserts something false. It would also force `LRA.Order` to import
 `LRA.UniversalAlgebra` to say "monotone" and `LRA.Topology` to import it to say
 "continuous" — false dependencies that are the engineering symptom of the
 mathematical error.
+
+### 1.5 The set-theoretic layer and its single bridge
+
+`main` already carries this layer, complete and building. Port it rather than
+rewriting it.
+
+`LRA.Function.SetTheoretic` owns, against the established LRA set backend:
+
+| Declaration | Role |
+|---|---|
+| `SetTheoreticRelationTriple` | raw left-domain / right-domain / graph data |
+| `IsSetTheoreticRelation` | every graph member is a pair with coordinates in the displayed domains |
+| `SetTheoreticRelation` | the triple bundled with that evidence |
+| `SetTheoreticFunctionTriple` | raw domain / codomain / graph data |
+| `IsSetTheoreticFunction` | graph typing ∧ every domain element has a value ∧ that value is unique |
+| `SetTheoreticFunction` | the triple bundled with that evidence, in field `isFunction` |
+| `EvaluationExists`, `EvaluationUnique` | the evaluation theorems |
+| `SetTheoreticFunctionExt` | extensionality for the triple convention |
+| `SingleValuedOfIsSetTheoreticFunction`, `BundledSingleValued` | graph single-valuedness |
+
+Raw triple data stays separate from the proposition that the triple is a
+function. Use the repository's canonical membership, ordered pair, product, and
+separation. Do not invent a second set backend; if the backend lacks a
+construction the canonical statement needs, record the exact missing capability
+and add only the smallest correct interface.
+
+**The single bridge.** Exactly one theorem family relates the two presentations:
+
+```text
+LRA.Function.SetTheoretic.TypedFunctionGraphRepresentation
+```
+
+It takes a typed arrow plus explicit encodings of the domain and codomain into
+the backend, and makes every set-existence, ordered-pair, and encoding
+hypothesis explicit: pairing and separation operations and their laws,
+membership instances, encoding injectivity and coverage, an ambient pair set,
+and graph-pair existence. It concludes that the resulting graph triple is a
+set-theoretic function and that its evaluation agrees with the arrow.
+
+Binding: no coercions, no instances, no automatic conversion, and no second
+bridge. It must never claim that an arbitrary Lean type is a backend set.
 
 ### 1.4 A required correction to the current dependency direction
 
@@ -328,9 +412,9 @@ delete the directory once empty.
 
 | Kind | Convention | Example |
 |---|---|---|
-| Type, structure, class, abbreviation | `PascalCase` | `RelationalFunction` |
-| Proposition-valued definition | `PascalCase` | `Injective`, `IsFunctionRelation` |
-| Theorem | `PascalCase`, a readable claim | `ComposeValue`, `SupremumIsUpperBound` |
+| Type, structure, class, abbreviation | `PascalCase` | `SetTheoreticFunctionTriple` |
+| Proposition-valued definition | `PascalCase` | `Injective`, `IsSetTheoreticFunction` |
+| Theorem | `PascalCase`, a readable claim | `EvaluationUnique`, `SupremumIsUpperBound` |
 | Term-level value or constructor function | `camelCase` | `pureEqualityLanguage` |
 | Structure field | `camelCase` | `graph`, `singleValued` |
 | Typeclass instance | anonymous unless a name aids search | |
@@ -350,13 +434,13 @@ Use descriptive `PascalCase` binders for types and `camelCase` for values.
 
 ```lean
 -- required
-theorem ComposeValue {Domain : Type u} {Middle : Type v} {Codomain : Type w}
-    (outer : RelationalFunction Middle Codomain)
-    (inner : RelationalFunction Domain Middle)
+theorem ComposeApply {Domain : Type u} {Middle : Type v} {Codomain : Type w}
+    (outer : LRA.Function Middle Codomain)
+    (inner : LRA.Function Domain Middle)
     (input : Domain) : …
 
 -- not acceptable in new code
-theorem ComposeValue {α β γ : Type u} (g : … ) (f : … ) (x : α) : …
+theorem ComposeApply {α β γ : Type u} (g : … ) (f : … ) (x : α) : …
 ```
 
 Standard binder names: `Domain`, `Codomain`, `Middle`, `Carrier`, `Element`,
@@ -555,6 +639,47 @@ name that mathematics itself uses for the same object, such as
 `LRA.Order.TotalOrder` for `LRA.Order.LinearOrder`. Each must be justified in
 the review by the mathematics, not by migration history.
 
+### 7.0.2 Replace the relational-function design with the arrow plus the triple
+
+`standardization` currently models a function as a typed structure bundling an
+arrow with totality and single-valuedness proofs:
+
+```lean
+structure RelationalFunction (Domain : Type u) (Codomain : Type v) where
+  graph : FunctionRelation Domain Codomain
+  total : Total graph
+  singleValued : SingleValued graph
+```
+
+This is neither presentation of §1.2. It is a third thing, and it costs:
+
+- `Value` is `noncomputable`, defined by `Classical.choose (function.total input)`,
+  so nothing evaluates and every application rewrite goes through a
+  choice-extracted witness rather than definitional unfolding;
+- every boundary with Lean core or Mathlib needs a conversion;
+- `OfTypedFunction`, the conversion everything depends on, currently has both
+  `total` and `singleValued` left as `sorry`.
+
+The set-theoretic triple already models what this structure was reaching for,
+and does it at the foundational layer where the theorems belong.
+
+Required:
+
+1. Make `LRA.Function` the arrow abbreviation, per §1.2.
+2. Port the `LRA.Function.SetTheoretic` family from `main` (§1.5) — both triples,
+   both conditions, both bundles, the evaluation theorems, extensionality, and
+   the single representation theorem.
+3. Delete `RelationalFunction`, `TypedFunction`, `OfTypedFunction`, `Graph` as a
+   `RelationalFunction` constructor, `Value`, and every declaration whose type
+   mentions `RelationalFunction`.
+4. Restate the `LRA/Function/Properties/` predicates over the arrow. Where a
+   predicate is genuinely the relation notion applied to a function graph, define
+   it through `Graph` rather than restating the quantifier.
+5. Update every consumer. Do not leave a conversion shim — §7.0.1 applies.
+
+Report which `LRA/Function/` declarations survived, which were replaced by the
+ported set-theoretic family, and which were deleted outright.
+
 ### 7.1 Gather into subjects
 
 For each item below, move the declarations to the named owner, update every
@@ -625,6 +750,19 @@ The effort succeeds only when **all** of these hold.
 - `LRA.Morphism` exists as a top-level subject owning the eight primitives.
 - `LRA.Order.Morphisms.Monotone` is defined in terms of
   `LRA.Morphism.PreservesRelation`, not the reverse.
+- `LRA.Function` is the arrow abbreviation `Domain → Codomain`, accepting
+  independent universe levels, and a compile-time example demonstrates a
+  function between two different types.
+- No typed structure bundles an arrow with totality and single-valuedness
+  proofs; `RelationalFunction`, `OfTypedFunction`, and `Value` do not exist.
+- No evaluation of a function is `noncomputable` or routed through
+  `Classical.choose`.
+- The set-theoretic relation triple, the function triple, their conditions,
+  their bundles, evaluation existence and uniqueness, and extensionality are all
+  present against the canonical set backend.
+- Exactly one representation theorem family relates the arrow to its
+  set-theoretic graph, with every encoding and set-construction hypothesis
+  explicit, and there are no coercions or automatic bridge instances.
 - `LRA.Function` does not redefine any `LRA.Relation` calculus concept.
 - No subject restates a morphism law that `LRA.Morphism` already owns, and every
   specialization is definitional or by `extends`.
