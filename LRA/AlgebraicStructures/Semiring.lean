@@ -1,7 +1,7 @@
-import LRA.AlgebraicStructures.Semiring.AlgebraicSignature.All
-import LRA.AlgebraicStructures.Semiring.Laws.All
 import LRA.AlgebraicStructures.Semiring.Definition
+import LRA.AlgebraicStructures.Semiring.Theorems
 import LRA.AlgebraicStructures.Semiring.Characterizations
 import LRA.AlgebraicStructures.Semiring.Consequences
 import LRA.AlgebraicStructures.Semiring.Relationships
-import LRA.AlgebraicStructures.Semiring.Theorems
+
+/-! Canonical import route for semirings. -/

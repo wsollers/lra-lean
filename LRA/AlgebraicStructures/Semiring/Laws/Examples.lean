@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Semiring.Laws.All
+import LRA.AlgebraicStructures.Semiring.Laws
 
 namespace LRA.AlgebraicStructures
 

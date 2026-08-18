@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Semiring.AlgebraicSignature.ConceptSignature
+import LRA.AlgebraicStructures.Semiring.Definition
 
 namespace LRA.AlgebraicStructures
 

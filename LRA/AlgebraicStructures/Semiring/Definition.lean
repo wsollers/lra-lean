@@ -1,12 +1,10 @@
 import LRA.AlgebraicStructures.Semiring.Laws.Definition
+import LRA.UniversalAlgebra.InterpretedOperationBundles
 
 namespace LRA.AlgebraicStructures
 
-/-!
-Semiring Definition module.
-
-This file is reserved for definition whose natural owner is the named
-algebraic structure Semiring. It intentionally contains no placeholder theorems.
--/
+/-- The algebraic signature of a semiring: zero, one, addition, multiplication. -/
+structure SemiringConceptSignature extends
+    LRA.UniversalAlgebra.InterpretedOperationBundles.BooleanRingOperationBundle
 
 end LRA.AlgebraicStructures
