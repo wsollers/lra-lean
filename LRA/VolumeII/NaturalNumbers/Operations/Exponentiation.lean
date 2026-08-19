@@ -8,7 +8,7 @@ variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 
 
-open LRA.NumberSystems.PeanoSystems
+open LRA.NumberSystems.PeanoSystem.Recursion
 
 /--
 **[Definition - Exponentiation on N]**

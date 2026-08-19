@@ -1,4 +1,4 @@
-import LRA.VolumeII.PeanoSystems.PeanoSystem
+import LRA.NumberSystems.PeanoSystem.Definition
 import LRA.Logic.Model.Model
 
 /-!
@@ -108,12 +108,12 @@ Logical form:
 ```lean
 structure NModel (Element : Type u) (SetObject : Type v)
     [Membership Element SetObject]
-    extends LRA.NumberSystems.PeanoSystems.PeanoSystem Element SetObject
+    extends LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject
 ```
 -/
 structure NModel (Element : Type u) (SetObject : Type v)
     [Membership Element SetObject]
-    extends LRA.NumberSystems.PeanoSystems.PeanoSystem Element SetObject
+    extends LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject
 
 /--
 `NModel.toFirstOrderModel` defines the displayed object for to first order model.

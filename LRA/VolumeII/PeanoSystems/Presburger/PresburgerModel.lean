@@ -1,5 +1,5 @@
 import LRA.VolumeII.PeanoSystems.Presburger.Presburger
-import LRA.VolumeII.PeanoSystems.PeanoSystem
+import LRA.NumberSystems.PeanoSystem.Definition
 
 /-!
 First-order model data for the Presburger signature.
@@ -10,6 +10,8 @@ successor, order, axioms) stays bundled.
 -/
 
 namespace LRA.NumberSystems.PeanoSystems
+
+open LRA.NumberSystems.PeanoSystem (PeanoSystem)
 
 universe u v
 
