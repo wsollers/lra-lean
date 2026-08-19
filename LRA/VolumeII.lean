@@ -3,10 +3,10 @@ import LRA.NumberSystems.IntegerStructure
 import LRA.VolumeII.NumberSystems
 import LRA.VolumeII.PeanoSystems
 import LRA.VolumeII.Integers
-import LRA.VolumeII.GaussianIntegers
+import LRA.NumberSystems.GaussianIntegers
 import LRA.NumberSystems.RationalNumbers
 import LRA.NumberSystems.RealNumbers
-import LRA.VolumeII.ComplexNumbers
+import LRA.NumberSystems.ComplexNumbers
 import LRA.VolumeII.Arithmetic
 
 /-!
@@ -40,10 +40,20 @@ parameter). See `LRA/NumberSystems/RationalNumbers/ProofOrder.md`.
 
 The real-number system (six constructions -- Cauchy, Cantor, Dedekind,
 Dyadic, PrimitiveIntervals, Computable -- plus `ConstructionModels`,
-`Extensions`, `Extended`, `IntervalArithmetic`, `Irrationals`, and
-`Construction`) has promoted to `LRA.NumberSystems.RealNumbers`, likewise
-with no switch to retire (`realNumbersModel` takes its `RealModel` as an
-explicit parameter). See `LRA/NumberSystems/RealNumbers/ProofOrder.md`.
-Number-system modules will be imported here after their foundation
-dependencies are in place.
+`Extensions`, `Extended`, `NonNegative`, `IntervalArithmetic`,
+`Irrationals`, and `Construction`) has promoted to
+`LRA.NumberSystems.RealNumbers`, likewise with no switch to retire
+(`realNumbersModel` takes its `RealModel` as an explicit parameter). See
+`LRA/NumberSystems/RealNumbers/ProofOrder.md`.
+
+The complex-number system (`OrderedPairs`, generic over any certified
+carrier `R`, plus `Construction`) has promoted to
+`LRA.NumberSystems.ComplexNumbers`, likewise with no switch to retire.
+The Gaussian-integer system (`OrderedPairs`, plus the active
+instantiation over `LRA.NumberSystems.Integers.Z` in `Construction`) has
+promoted to `LRA.NumberSystems.GaussianIntegers`; unlike Complex, it
+*does* sit downstream of Integer's still-active switch
+(`LRA.VolumeII.Integers.Implementation`), unchanged by this move. See
+`LRA/NumberSystems/ComplexNumbers/ProofOrder.md` and
+`LRA/NumberSystems/GaussianIntegers/ProofOrder.md`.
 -/
