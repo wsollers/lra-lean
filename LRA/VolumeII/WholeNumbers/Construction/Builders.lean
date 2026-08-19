@@ -21,12 +21,12 @@ Verification status: checked builders (certificates delegate to the
 structure theorems, whose proofs remain pending)
 
 `Carrier natural_data` is definitionally `Option Element` for *every*
-choice of `natural_data`, so — exactly as with N-models — the
-operations can never be global instances: the carrier type does not
-determine the model. The builders below are `def`s for local
-activation (`letI := addOn natural_data`), mirroring
-`NModel.addOn`. The certificate builders delegate to the components of
-`additive_structure`, `semiring_structure`, and
+choice of `natural_data`, so — exactly as with the one-based `PeanoSystem`
+models `LandauAddOn` etc. build against — the operations can never be
+global instances: the carrier type does not determine the model. The
+builders below are `def`s for local activation (`letI := addOn natural_data`),
+mirroring `LandauAddOn`. The certificate builders delegate to the components
+of `additive_structure`, `semiring_structure`, and
 `ordered_semiring_structure`.
 -/
 

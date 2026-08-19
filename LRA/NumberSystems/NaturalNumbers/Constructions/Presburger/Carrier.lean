@@ -1,4 +1,5 @@
 import LRA.Set.PredicateSet.Definition
+import LRA.NumberSystems.PeanoSystem.Definition
 
 /-!
 The Presburger carrier: a fresh native inductive type, backed by
@@ -62,5 +63,53 @@ theorem PresburgerInductionPrinciple :
       (∀ n : PresburgerElement, n ∈ subset → PresburgerElement.succ n ∈ subset) →
       ∀ n : PresburgerElement, n ∈ subset := by
   sorry
+
+/-!
+`PresburgerModel` below is the *generic* Presburger interface -- any
+`Membership Element SetObject` backend, with the order relation as extra
+bundled data over `PeanoSystem`'s three fields. It is not hard-committed to
+`PresburgerElement`; moved here, unmoved in substance, from
+`LRA.VolumeII.PeanoSystems.Presburger.PresburgerModel` when that generic
+tree was collapsed into this construction. `PresburgerElement`/
+`PresburgerLessThan` above are one particular (concrete) way to build a
+value of it, not the only one this generic struct allows.
+-/
+
+universe u v
+
+/-- `PresburgerModel` packages the data and laws for a Presburger model,
+generic over any set backend. -/
+structure PresburgerModel (Element : Type u) (SetObject : Type v)
+    [Membership Element SetObject] where
+  zero : Element
+  successor : Element -> Element
+  zero_not_successor :
+    forall element : Element,
+      successor element ≠ zero
+  successor_injective :
+    forall first_element second_element : Element,
+      successor first_element = successor second_element ->
+      first_element = second_element
+  induction :
+    forall subset : SetObject,
+      zero ∈ subset ->
+      (forall element : Element,
+        element ∈ subset ->
+        successor element ∈ subset) ->
+      forall element : Element,
+        element ∈ subset
+  lessThan : Element -> Element -> Prop
+
+/-- Every `PresburgerModel` is (via its zero/successor/induction fields
+alone, forgetting `lessThan`) a `PeanoSystem`. -/
+def PresburgerModel.toPeanoSystem
+    {Element : Type u} {SetObject : Type v} [Membership Element SetObject]
+    (model : PresburgerModel Element SetObject) :
+    LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject where
+  one := model.zero
+  successor := model.successor
+  one_not_successor := model.zero_not_successor
+  successor_injective := model.successor_injective
+  induction := model.induction
 
 end LRA.NumberSystems.NaturalNumbers.Constructions.Presburger

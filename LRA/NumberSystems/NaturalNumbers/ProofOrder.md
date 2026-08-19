@@ -130,11 +130,9 @@ WellDefinedness, Laws, Behavior, and Instances are new:
 
 # Part B — Presburger (PredicateSet / type theory)
 
-Scoped narrowly for now: a fresh carrier realizing the bare Peano axioms.
-The order relation, addition, the existing generic `PresburgerModel`
-struct, and the existing `LRA.VolumeII.PeanoSystems.Presburger` content
-(untouched, still where it was) are a separate, later migration — not
-started here.
+A fresh carrier realizing the bare Peano axioms (§8-9), plus the generic
+`PresburgerModel`/`PresburgerAddition`/order-relation content, reconnected
+here from the old `LRA.VolumeII.PeanoSystems.Presburger` tree (§10).
 
 ## 8. The carrier and the three Peano properties (`Carrier.lean`) — written, flagged
 
@@ -162,20 +160,33 @@ are.
       PresburgerElement (PredicateSet PresburgerElement)` — bundles §8's
       three proofs. Not `noncomputable`: nothing here uses `Classical.choose`.
 
-## 10. Reconnect to the existing Presburger content — not started
+## 10. Reconnect to the existing Presburger content — done, decided as "stay generic"
 
-- [ ] Decide whether `PresburgerModel` (the existing generic struct in
-      `LRA.VolumeII.PeanoSystems.Presburger.PresburgerModel`), its order
-      field, and `PresburgerAddition` move here and get instantiated
-      concretely at `PresburgerElement`, or stay generic where they are with
-      this carrier as one instantiation among others.
-- [ ] Fix `LRA.NumberSystems.Integers.Construction.Model`'s import of
-      `LRA.VolumeII.PeanoSystems.Presburger.ModelTheory` if that content
-      moves too (it currently uses the *other* signature in that file,
-      `AdditiveOrderedSignature`, not `PresburgerModel` — check before
-      touching).
-- [ ] §1.6.1's remaining pipeline stages (Operations/WellDefinedness/Laws/
-      Behavior/Instances), same shape as Part A §7.
+Decided: `PresburgerModel` (order relation included), `PresburgerAddition`,
+and the FO signature/model stay *generic* over `[Membership Element SetObject]`
+— not collapsed onto `PresburgerElement` specifically — matching the same
+call made for Landau's arithmetic in Part C. `PresburgerElement`/
+`PresburgerLessThan`/`PresburgerPeanoSystem` (§8-9) are one particular,
+concrete instantiation of this generic interface, not a replacement for it.
+
+- [x] `PresburgerModel` (generic struct, order field included) and
+      `PresburgerModel.toPeanoSystem` moved to `Carrier.lean`, unchanged in
+      substance, from `LRA.VolumeII.PeanoSystems.Presburger.PresburgerModel`.
+- [x] `PresburgerArithmetic` moved to `WellFoundedness.lean`.
+- [x] `PresburgerAddition`/`PresburgerAdditionClauses` moved to
+      `Operations.lean` (`PresburgerAdditionWellDefined` stays `sorry`, as
+      it always was).
+- [x] The FO signature (`PresburgerFunctionSymbol` etc.,
+      `PresburgerSignature`) and `PresburgerModel.toFirstOrderModel` moved
+      to `Instances.lean`, per §1.6.1: a construction discharges its model
+      obligation once, by exhibiting the `Model`.
+- [x] `LRA.VolumeII.PeanoSystems.Presburger.ModelTheory.FirstOrderSignature`
+      (the *other* signature in that directory, `AdditiveOrderedSignature`)
+      confirmed NOT Presburger-specific and left untouched —
+      `LRA.NumberSystems.Integers.Construction.Model`'s import of it is
+      unaffected.
+- [ ] §1.6.1's remaining pipeline stages (WellDefinedness/Laws/Behavior),
+      same shape as Part A §7.
 
 ---
 
@@ -196,12 +207,27 @@ doc comment for why), not proof obligations to discharge later.
       LandauElement (PredicateSet LandauElement)` — built directly from the
       axioms above, no proof obligation of its own.
 
-## 12. §1.6.1 construction pipeline (depends on §11) — not started
+## 12. §1.6.1 construction pipeline — Operations done, rest not started
 
-Same shape as Part A §7 and Part B §10 — Operations, WellDefinedness, Laws,
-Behavior, Instances. Landau's own arithmetic (the existing one-based
-`LRA.VolumeII.NaturalNumbers.Operations.*` content, confirmed one-based by
-its `NAdditionWithOne`/`NMultiplicationWithOne`/`NExponentiationWithOne`
-base cases) is likely this construction's seed material for `Operations.lean`
-and `Laws.lean`, once `NModel`'s carrier is repointed at `LandauElement`
-instead of staying abstract — not decided or started.
+Decided the same way as Part B §10: kept *generic* over `[Membership Element
+SetObject]`, not collapsed onto `LandauElement` specifically —
+`WholeNumbers/Construction/Model.lean` genuinely needs that genericity (it
+adjoins a zero to "the active one-based carrier," not to `LandauElement` by
+name), and forcing it to commit would have narrowed a working consumer for
+no proof benefit (everything downstream is still `sorry` either way).
+
+- [x] `Operations/{Addition,Multiplication,Exponentiation,Builders}.lean` +
+      router, moved and renamed (`N` prefix -> `Landau` prefix) from
+      `LRA.VolumeII.NaturalNumbers.Operations.*`, confirmed one-based by
+      the base cases named below. `NModel` itself retired — it added no
+      field over `LRA.NumberSystems.PeanoSystem.PeanoSystem`, so `model`
+      throughout is a bare `PeanoSystem` value now, and every former
+      `model.toPeanoSystem` call is simply `model`.
+- [x] `WholeNumbers/Construction/Model.lean`, `Integers/ConstructionModels.lean`,
+      and `Integers/Mendelson/Construction/Model.lean` repointed at
+      `LRA.NumberSystems.PeanoSystem.PeanoSystem` (the last two only ever
+      used `NModel`'s type abstractly, `Nonempty (NModel ...)`; `WholeNumbers`
+      calls `LandauAddition`/`LandauMultiplication` directly, renamed in place).
+- [ ] WellDefinedness/Laws/Behavior — not started. (`Laws`-shaped content
+      already exists as `LandauAdditionIsAssociative` etc., still `sorry`,
+      moved as-is rather than freshly split into pipeline roles.)

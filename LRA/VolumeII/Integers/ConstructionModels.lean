@@ -3,7 +3,7 @@
 
 import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.VolumeII.NumberSystems.Models
-import LRA.VolumeII.NaturalNumbers
+import LRA.NumberSystems.PeanoSystem.Definition
 
 namespace LRA.NumberSystems.Integers
 
@@ -402,7 +402,7 @@ noncomputable def integer_model : IntegerModel :=
 
 /-- **[Theorem — Natural-Number Model Recovered from Positive Mendelson Integers Exists]**
 
-Mathematical statement (Lean): `theorem recovered_natural_number_model_exists : Nonempty LRA.NumberSystems.NaturalNumbers.NModel`.
+Mathematical statement (Lean): `theorem recovered_natural_number_model_exists : Nonempty LRA.NumberSystems.PeanoSystem.PeanoSystem`.
 
 *Proof status:* proof pending
 
@@ -413,20 +413,20 @@ Logical form:
 theorem recovered_natural_number_model_exists :
     ∃ (Element : Type) (SetObject : Type)
       (_ : Membership Element SetObject),
-      Nonempty (LRA.NumberSystems.NaturalNumbers.NModel Element SetObject)
+      Nonempty (LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject)
 ```
 -/
 theorem recovered_natural_number_model_exists :
     ∃ (Element : Type) (SetObject : Type)
       (_ : Membership Element SetObject),
-      Nonempty (LRA.NumberSystems.NaturalNumbers.NModel Element SetObject) := by
+      Nonempty (LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) := by
   sorry
 
 
 /-
 **[Definition — Natural-Number Model Recovered from Positive Mendelson Integers]**
 
-Under the parameterized `NModel Element SetObject` a bundled
+Under the parameterized `PeanoSystem Element SetObject` a bundled
 `Classical.choice` definition has no single type to inhabit; the recovered
 model lives inside the existential above. The former
 `recovered_natural_number_model` definition is subsumed by
@@ -445,13 +445,13 @@ Logical form:
 theorem positive_integers_recover_natural_number_model :
     ∃ (Element : Type) (SetObject : Type)
       (_ : Membership Element SetObject),
-      Nonempty (LRA.NumberSystems.NaturalNumbers.NModel Element SetObject)
+      Nonempty (LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject)
 ```
 -/
 theorem positive_integers_recover_natural_number_model :
     ∃ (Element : Type) (SetObject : Type)
       (_ : Membership Element SetObject),
-      Nonempty (LRA.NumberSystems.NaturalNumbers.NModel Element SetObject) :=
+      Nonempty (LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) :=
   recovered_natural_number_model_exists
 
 end LRA.NumberSystems.Integers.MendelsonComparison
