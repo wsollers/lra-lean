@@ -4,7 +4,7 @@ import LRA.VolumeII.NumberSystems
 import LRA.VolumeII.PeanoSystems
 import LRA.VolumeII.Integers
 import LRA.VolumeII.GaussianIntegers
-import LRA.VolumeII.RationalNumbers
+import LRA.NumberSystems.RationalNumbers
 import LRA.VolumeII.RealNumbers
 import LRA.VolumeII.RationalNumbers.ContinuedFractions
 import LRA.VolumeII.ComplexNumbers
@@ -31,7 +31,15 @@ The five integer constructions (`QuotientOrderedPairs`, `Tao`, `Mendelson`,
 generic two-sided-successor interface they realize (Polish's
 `TwoSidedSuccessor`, specifically) has promoted to
 `LRA.NumberSystems.IntegerStructure`, mirroring `LRA.NumberSystems.PeanoSystem`
-per §1.6.10. See `LRA/NumberSystems/Integers/ProofOrder.md`. Number-system
-modules will be imported here after their foundation dependencies are in
-place.
+per §1.6.10. See `LRA/NumberSystems/Integers/ProofOrder.md`.
+
+The rational-number system (`RationalQuotientFractions`, `ComparisonModels`,
+`Construction`) has promoted to `LRA.NumberSystems.RationalNumbers`, with
+no switch to retire (`rationalNumbersModel` takes its `RationalModel` as an
+explicit parameter). `ContinuedFractions` stays at
+`LRA.VolumeII.RationalNumbers.ContinuedFractions` -- it depends on
+`RealNumbers.Irrationals`, a forward dependency on the not-yet-migrated
+Real system -- and will move once Real is promoted. See
+`LRA/NumberSystems/RationalNumbers/ProofOrder.md`. Number-system modules
+will be imported here after their foundation dependencies are in place.
 -/

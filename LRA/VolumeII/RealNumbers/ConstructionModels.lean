@@ -3,7 +3,7 @@
 
 import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.VolumeII.NumberSystems.Models
-import LRA.VolumeII.RationalNumbers.RationalQuotientFractions
+import LRA.NumberSystems.RationalNumbers.Constructions.RationalQuotientFractions
 
 namespace LRA.NumberSystems.RealNumbers
 

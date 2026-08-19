@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Rationals/ContinuedFractions.lean
 -- Finite and infinite simple continued fractions.
 
-import LRA.VolumeII.RationalNumbers.RationalQuotientFractions
+import LRA.NumberSystems.RationalNumbers.Constructions.RationalQuotientFractions
 import LRA.VolumeII.RealNumbers.Irrationals
 
 namespace LRA.NumberSystems.RationalNumbers.ContinuedFractions
