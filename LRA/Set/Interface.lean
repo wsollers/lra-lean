@@ -2,6 +2,8 @@ import LRA.Set.Interface.Operations
 import LRA.Set.Interface.Pairing
 import LRA.Set.Interface.RelationSets
 import LRA.Set.Interface.RelationLaws
+import LRA.Set.Interface.CartesianProduct
+import LRA.Set.Interface.CartesianProductLaws
 import LRA.Set.Interface.Membership
 import LRA.Set.Interface.Indexed
 import LRA.Set.Interface.Families
