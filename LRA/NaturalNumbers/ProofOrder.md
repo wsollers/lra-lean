@@ -40,48 +40,71 @@ shape; these are restating them usably, the same one-line move
       (`Foundation/Theorems.lean`) — needed to rule out the 2-cycle
       `x ∈ y ∧ y ∈ x` in successor-injectivity, below.
 
-## 2. The successor operation
+## 2. The successor operation (`Carrier.lean`) — written
 
 No blockers — `TheEmptySet`, `PairSet`/`TheSingleton`, and `TheUnion` are
 already fully proved in `LRA.Set.ZFC`.
 
-- [ ] `VonNeumannSuccessor (x : ZFCSet) : ZFCSet := TheUnion x (TheSingleton x)`
+- [x] `VonNeumannSuccessor (x : Set) : Set := TheUnion x (TheSingleton x)`
       — a `def`, not a proof.
 - [ ] `VonNeumannSuccessorIsSuccessorOf : IsSuccessorOf x (VonNeumannSuccessor x)`
       — unfolds `TheUnionMembership` + `TheSingletonIsSingletonSet`.
 
-## 3. ω itself (depends on §1)
+## 3. ω itself (`Carrier.lean`, depends on §1) — written
 
-- [ ] Obtain an Infinity witness `A` via `Classical.choose` on the `Infinity`
-      axiom.
-- [ ] `Omega : ZFCSet := TheSeparatedSubset A (fun x => ∀ B, IsInductiveSet B →
-      Subset B A → x ∈ B)` — ω as "the elements of `A` in every inductive
-      subset of `A`." One Separation application; no new ZFC primitive needed.
-- [ ] `OmegaIsInductiveSet : IsInductiveSet Omega`.
-- [ ] `OmegaIsSmallestInductiveSet` — every inductive subset of `Omega` equals
-      `Omega`. This *is* the induction principle, stated set-theoretically;
-      §5 below just repackages it against `PeanoSystem`'s own shape.
+- [x] `TheInfinityWitness : Set := Classical.choose Infinity`.
+- [ ] `TheInfinityWitnessIsInductiveSet` — `Infinity`'s statement unfolds to
+      exactly `IsInductiveSet`.
+- [x] `Omega : Set := TheSeparatedSubset TheInfinityWitness (fun x => ∀ B,
+      IsInductiveSet B → Subset B TheInfinityWitness → x ∈ B)` — ω as "the
+      elements of the witness in every inductive subset of it." One
+      Separation application; no new ZFC primitive needed for "smallest."
+- [ ] `OmegaIsInductiveSet : IsInductiveSet Omega` — this *is* the induction
+      principle, stated set-theoretically; §5 below repackages it against
+      `PeanoSystem`'s own shape.
+- [ ] `TheEmptySetInOmega : TheEmptySet ∈ Omega` — base case, pulled out of
+      `OmegaIsInductiveSet` because §4 needs it directly.
+- [ ] `OmegaClosedUnderSuccessor : ∀ x ∈ Omega, VonNeumannSuccessor x ∈ Omega`
+      — closure case, same reason.
 
-## 4. The three Peano properties on ω (depends on §2, §3)
+## 4. The actual carrier (`Carrier.lean`, depends on §3) — written
 
-- [ ] `EmptySetIsNotVonNeumannSuccessor` — `VonNeumannSuccessor x` always
-      contains `x`, so it's never empty; doesn't need Foundation.
-- [ ] `VonNeumannSuccessorInjective` (depends on §1's Foundation lemma) —
-      the 2-cycle argument.
-- [ ] `OmegaInductionPrinciple` — restates §3's smallest-inductive-set fact
-      in `PeanoSystem.SuccessorClosedSubset`/`InductiveSubsetOfPeanoSystem`
-      terms.
+**Correction to the original plan**: the carrier is *not* `ZFCSet` itself.
+`PeanoSystem`'s `induction` field quantifies over its entire `Element` type,
+so `Element` has to *be* ω, not merely relate to it — `ZFCSet` contains every
+set, not just the naturals, and induction over all of `ZFCSet` would be
+false.
 
-## 5. Package as a `PeanoSystem`
+- [x] `NaturalElement : Type := {x : Set // x ∈ Omega}`.
+- [x] `instance : Membership NaturalElement Set` — reads off the underlying
+      set's native ZFC membership.
+- [x] `NaturalZero : NaturalElement := ⟨TheEmptySet, TheEmptySetInOmega⟩`
+      (`noncomputable`, since `TheEmptySet` is).
+- [x] `NaturalSuccessor (element) : NaturalElement := ⟨VonNeumannSuccessor
+      element.val, OmegaClosedUnderSuccessor element.val element.property⟩`
+      (`noncomputable`, same reason).
 
-- [ ] `VonNeumannPeanoSystem : LRA.NumberSystems.PeanoSystem.PeanoSystem
-      ZFCSet ZFCSet` — bundles §4's three proofs, the same shape
-      `PresburgerModel.toPeanoSystem` already uses.
+## 5. The three Peano properties on `NaturalElement` (`WellFoundedness.lean`, depends on §4) — written
 
-## 6. §1.6.1 construction pipeline (depends on §5)
+- [ ] `NaturalZeroIsNotSuccessor` — every von Neumann successor contains its
+      predecessor, so it's never empty; doesn't need Foundation.
+- [ ] `NaturalSuccessorInjective` (depends on §1's Foundation lemma) — the
+      2-cycle argument.
+- [ ] `NaturalInductionPrinciple` — restates §3's `OmegaIsInductiveSet`/ω-
+      minimality fact in `PeanoSystem`'s own field shape.
 
-Not started. Carrier/Equivalence/WellFoundedness are largely §2–§5 above,
-reframed; Operations/WellDefinedness/Laws/Behavior/Instances are new:
+## 6. Package as a `PeanoSystem` (`WellFoundedness.lean`, depends on §5) — written
+
+- [x] `VonNeumannPeanoSystem : LRA.NumberSystems.PeanoSystem.PeanoSystem
+      NaturalElement Set` — bundles §5's three proofs, the same shape
+      `PresburgerModel.toPeanoSystem` already uses. `noncomputable`, since
+      `NaturalZero`/`NaturalSuccessor` are.
+
+## 7. §1.6.1 construction pipeline (depends on §6) — not started
+
+`Carrier.lean`, `Equivalence.lean` (a stub — no quotient is taken; see the
+file itself), and `WellFoundedness.lean` are §2–§6 above. Operations,
+WellDefinedness, Laws, Behavior, and Instances are new:
 
 - [ ] `Operations.lean` — addition and multiplication via
       `PeanoSystem.Recursion`'s existing binary-iterator machinery (same
