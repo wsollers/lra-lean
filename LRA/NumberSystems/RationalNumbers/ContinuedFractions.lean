@@ -1,8 +1,8 @@
--- LRA/VolumeII/Rationals/ContinuedFractions.lean
+-- LRA/NumberSystems/RationalNumbers/ContinuedFractions.lean
 -- Finite and infinite simple continued fractions.
 
 import LRA.NumberSystems.RationalNumbers.Constructions.RationalQuotientFractions
-import LRA.VolumeII.RealNumbers.Irrationals
+import LRA.NumberSystems.RealNumbers.Irrationals
 
 namespace LRA.NumberSystems.RationalNumbers.ContinuedFractions
 open LRA.NumberSystems.Models
@@ -12,6 +12,11 @@ Volume II label: continued-fractions
 Lean module: LRA.NumberSystems.RationalNumbers.ContinuedFractions
 Source: docs/number-systems/gpt-03b-continued-fractions.md
 Verification status: statement-accepted-proof-pending
+
+Moved from `LRA.VolumeII.RationalNumbers.ContinuedFractions`, content
+unchanged except its `Irrationals` import repointed to the now-migrated
+`LRA.NumberSystems.RealNumbers.Irrationals`. Deferred during the Rational
+migration pass pending Real's promotion; see `RationalNumbers/ProofOrder.md`.
 -/
 
 open LRA.NumberSystems.Models

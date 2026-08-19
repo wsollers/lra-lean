@@ -5,8 +5,7 @@ import LRA.VolumeII.PeanoSystems
 import LRA.VolumeII.Integers
 import LRA.VolumeII.GaussianIntegers
 import LRA.NumberSystems.RationalNumbers
-import LRA.VolumeII.RealNumbers
-import LRA.VolumeII.RationalNumbers.ContinuedFractions
+import LRA.NumberSystems.RealNumbers
 import LRA.VolumeII.ComplexNumbers
 import LRA.VolumeII.Arithmetic
 
@@ -34,12 +33,17 @@ generic two-sided-successor interface they realize (Polish's
 per §1.6.10. See `LRA/NumberSystems/Integers/ProofOrder.md`.
 
 The rational-number system (`RationalQuotientFractions`, `ComparisonModels`,
-`Construction`) has promoted to `LRA.NumberSystems.RationalNumbers`, with
-no switch to retire (`rationalNumbersModel` takes its `RationalModel` as an
-explicit parameter). `ContinuedFractions` stays at
-`LRA.VolumeII.RationalNumbers.ContinuedFractions` -- it depends on
-`RealNumbers.Irrationals`, a forward dependency on the not-yet-migrated
-Real system -- and will move once Real is promoted. See
-`LRA/NumberSystems/RationalNumbers/ProofOrder.md`. Number-system modules
-will be imported here after their foundation dependencies are in place.
+`Construction`, `ContinuedFractions`) has promoted to
+`LRA.NumberSystems.RationalNumbers`, with no switch to retire
+(`rationalNumbersModel` takes its `RationalModel` as an explicit
+parameter). See `LRA/NumberSystems/RationalNumbers/ProofOrder.md`.
+
+The real-number system (six constructions -- Cauchy, Cantor, Dedekind,
+Dyadic, PrimitiveIntervals, Computable -- plus `ConstructionModels`,
+`Extensions`, `Extended`, `IntervalArithmetic`, `Irrationals`, and
+`Construction`) has promoted to `LRA.NumberSystems.RealNumbers`, likewise
+with no switch to retire (`realNumbersModel` takes its `RealModel` as an
+explicit parameter). See `LRA/NumberSystems/RealNumbers/ProofOrder.md`.
+Number-system modules will be imported here after their foundation
+dependencies are in place.
 -/
