@@ -1,14 +1,15 @@
--- LRA/VolumeII/ComplexNumbers/Construction/Model.lean
+-- LRA/NumberSystems/ComplexNumbers/Construction/Model.lean
 -- Complex numbers as a Volume I first-order algebraic model.
 
 import LRA.AlgebraicStructures.Field.Interface.Signature.Definition
 import LRA.AlgebraicStructures.Field.Interface.ModelTheory.Model
-import LRA.VolumeII.ComplexNumbers.Construction.Construction
+import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs
 
-namespace LRA.NumberSystems.ComplexNumbers.Construction.ComplexNumber
+namespace LRA.NumberSystems.ComplexNumbers.Construction
 
 open LRA.AlgebraicStructures.Field.Interface.Signature
 open LRA.AlgebraicStructures.Field.Interface.ModelTheory
+open LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs
 
 universe u
 
@@ -16,6 +17,15 @@ universe u
 Volume II label: complex-number-model
 Lean module: LRA.NumberSystems.ComplexNumbers.Construction.Model
 Verification status: checked definitions
+
+Moved from `LRA.VolumeII.ComplexNumbers.Construction.Model`, content
+unchanged except that `ComplexNumber` now resolves via
+`LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs` (the
+migrated pipeline) rather than the old
+`LRA.VolumeII.ComplexNumbers.Construction.Construction`/nested
+`ComplexNumber` namespace. Like Rational's and Real's
+`Construction/Model.lean`, there is no switch here -- `complexNumbersModel`
+takes its carrier `R` as an explicit parameter.
 
 `ComplexNumber R` carries `Add`, `Mul`, `Neg`, `Inv`, and numerals as
 instances, so the generic field builder applies directly — no
@@ -55,4 +65,4 @@ noncomputable def complexNumbersOverMathlibReals :
     LRA.Logic.FirstOrder.Model FieldFirstOrderSignature :=
   complexNumbersModel Real
 
-end LRA.NumberSystems.ComplexNumbers.Construction.ComplexNumber
+end LRA.NumberSystems.ComplexNumbers.Construction
