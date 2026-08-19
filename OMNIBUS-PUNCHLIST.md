@@ -182,7 +182,7 @@ spine rather than rebuilding it.
 ## Phase 3: Volume I Map Layer
 
 - [x] Create graph-based map definitions.
-  - Home: `LRA/VolumeI/Function/Typed/`, `LRA/VolumeI/Function/Graph/`, and
+  - Home: `LRA/VolumeI/Map/Typed/`, `LRA/VolumeI/Map/Graph/`, and
     `LRA/VolumeI/Relations/`.
   - Scope: graph, domain, codomain, single-valuedness, totality, function from
     one carrier to another, and the bridge between graph relations and ordinary
@@ -191,13 +191,13 @@ spine rather than rebuilding it.
     hiding that they are constructed from relations.
 
 - [x] Add image, preimage, and fiber definitions.
-  - Home: `LRA/VolumeI/Function/Image/`, `LRA/VolumeI/Function/Preimage/`, and
-    `LRA/VolumeI/Function/Fiber/`.
+  - Home: `LRA/VolumeI/Map/Image/`, `LRA/VolumeI/Map/Preimage/`, and
+    `LRA/VolumeI/Map/Fiber/`.
   - Scope: image of a set, preimage of a set, fibers of values.
   - Acceptance: later injective/surjective/bijective definitions can use these.
 
 - [x] Add injective, surjective, bijective, and inverse definitions.
-  - Home: `LRA/VolumeI/Function/Injective/`, `Surjective/`, `Bijective/`, and
+  - Home: `LRA/VolumeI/Map/Injective/`, `Surjective/`, `Bijective/`, and
     `Inverse/`.
   - Scope: fiber-based injectivity, surjectivity, bijectivity, inverse relation,
     inverse function when bijective.
@@ -205,7 +205,7 @@ spine rather than rebuilding it.
     round-trip laws.
 
 - [x] Add composition, identity, restriction, and extension.
-  - Home: `LRA/VolumeI/Function/Composition/`, `Identity/`, `Restriction/`,
+  - Home: `LRA/VolumeI/Map/Composition/`, `Identity/`, `Restriction/`,
     `Extension/`, `Section/`, and `Retraction/`.
   - Scope: identity function, composition, associativity, left/right identity,
     restriction, extension, graph-of-composite, graph-of-restriction.
@@ -213,8 +213,8 @@ spine rather than rebuilding it.
     consume it.
 
 - [x] Add image/preimage set-operation laws.
-  - Home: `LRA/VolumeI/Function/Image/Theorems.lean` and
-    `LRA/VolumeI/Function/Preimage/Theorems.lean`.
+  - Home: `LRA/VolumeI/Map/Image/Theorems.lean` and
+    `LRA/VolumeI/Map/Preimage/Theorems.lean`.
   - Scope: image/preimage union, intersection, difference, complement,
     monotonicity, round-trip laws.
   - Acceptance: omnibus Chapter 0A and law catalogue L29-L34 are represented.

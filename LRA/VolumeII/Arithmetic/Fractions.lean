@@ -1,8 +1,8 @@
 -- LRA/VolumeII/Arithmetic/Fractions.lean
 -- Elementary rational fraction manipulations.
 
-import Mathlib.Data.Rat.Defs
-import LRA.VolumeI.AlgebraicStructures
+import LRA.VolumeII.Switches.NumberSystems
+import LRA.AlgebraicStructures
 
 namespace LRA.NumberSystems.Arithmetic.Fractions
 

@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Integers/ConstructionModels.lean
 -- Comparison models for alternate integer constructions.
 
-import LRA.VolumeI.UniversalAlgebra.Quotient.RepresentativeCompatibility
+import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeII.NaturalNumbers
 
@@ -490,23 +490,23 @@ structure ModelIsomorphism
   preserves_addition :
     ∀ first second,
       to_function
-          (first_model.signature.addition first second) =
-        second_model.signature.addition
+          (first_model.signature.add first second) =
+        second_model.signature.add
           (to_function first)
           (to_function second)
   preserves_multiplication :
     ∀ first second,
       to_function
-          (first_model.signature.multiplication first second) =
-        second_model.signature.multiplication
+          (first_model.signature.multiply first second) =
+        second_model.signature.multiply
           (to_function first)
           (to_function second)
   preserves_and_reflects_order :
     ∀ first second,
-      second_model.signature.NonstrictOrder
+      second_model.signature.le
           (to_function first)
           (to_function second) ↔
-        first_model.signature.NonstrictOrder first second
+        first_model.signature.le first second
 ```
 -/
 structure ModelIsomorphism
@@ -532,23 +532,23 @@ structure ModelIsomorphism
   preserves_addition :
     ∀ first second,
       to_function
-          (first_model.signature.addition first second) =
-        second_model.signature.addition
+          (first_model.signature.add first second) =
+        second_model.signature.add
           (to_function first)
           (to_function second)
   preserves_multiplication :
     ∀ first second,
       to_function
-          (first_model.signature.multiplication first second) =
-        second_model.signature.multiplication
+          (first_model.signature.multiply first second) =
+        second_model.signature.multiply
           (to_function first)
           (to_function second)
   preserves_and_reflects_order :
     ∀ first second,
-      second_model.signature.NonstrictOrder
+      second_model.signature.le
           (to_function first)
           (to_function second) ↔
-        first_model.signature.NonstrictOrder first second
+        first_model.signature.le first second
 
 
 /-- **[Theorem — Quotient-Ordered-Pairs–Tao Integer Isomorphism Exists]**

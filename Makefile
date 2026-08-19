@@ -9,7 +9,7 @@
 #   make shell        — open interactive shell in Docker container
 #   make docker-build — build the Docker image
 #   make docker-blueprint-build — build the Blueprint Docker image
-#   make lint         — check doc-comment coverage (display names)
+#   make lint         — report doc-comment coverage (informational)
 #   make stats        — print proof counts per file
 #   make ci           — full CI pipeline (docker-build + check)
 #
@@ -72,11 +72,11 @@ endif
 	@echo "── Checking Volume VII wiring ──────────────────────"
 	@$(MAKE) check-volume-vii-wiring
 	@echo "── Checking Mathlib imports in VolumeI / VolumeII ──"
-ifdef NATIVE
-	@python3 scripts/check-mathlib-imports.py
-else
-	@$(RUN) python3 scripts/check-mathlib-imports.py
-endif
+	@$(RUN) bash -lc 'if grep -rn "^import Mathlib" LRA/VolumeI/ LRA/VolumeII/ LRA/VolumeI.lean LRA/VolumeII.lean --include="*.lean"; then \
+	    echo "✗ ERROR: Mathlib import found in VolumeI / VolumeII"; exit 1; \
+	  else \
+	    echo "✓ No Mathlib imports in VolumeI / VolumeII"; \
+	  fi'
 	@echo "── Checking for axiom leaks ────────────────────────"
 	@$(RUN) lake env lean --run scripts/check_axioms.lean 2>/dev/null \
 	    || echo "  (axiom check script not yet present — skipping)"
@@ -161,7 +161,7 @@ docker-pull:  ## Pull a pre-built image if available
 	    || echo "No pre-built image found — run 'make docker-build'"
 
 .PHONY: lint
-lint:  ## Check that every theorem/def has a display name doc-comment
+lint:  ## Report doc-comment coverage (informational; LRA_DOCLINT_STRICT=1 to enforce)
 	@echo "── Doc-comment coverage check ──────────────────────"
 	@bash scripts/lint_doccomments.sh LRA/VolumeII \
 	    || echo "  (lint script not yet present — skipping)"

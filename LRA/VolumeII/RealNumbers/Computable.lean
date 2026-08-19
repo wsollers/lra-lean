@@ -33,9 +33,9 @@ structure EffectiveApproximation (rational_model : RationalModel) where
       modulus precision ≤ index₂ →
         ∃ bound : rational_model.signature.carrier,
           rational_model.signature.StrictOrder
-            (rational_model.signature.addition
+            (rational_model.signature.add
               (approximate index₁)
-              (rational_model.signature.negation (approximate index₂)))
+              (rational_model.signature.neg (approximate index₂)))
             bound
 ```
 -/
@@ -48,9 +48,9 @@ structure EffectiveApproximation (rational_model : RationalModel) where
       modulus precision ≤ index₂ →
         ∃ bound : rational_model.signature.carrier,
           rational_model.signature.StrictOrder
-            (rational_model.signature.addition
+            (rational_model.signature.add
               (approximate index₁)
-              (rational_model.signature.negation (approximate index₂)))
+              (rational_model.signature.neg (approximate index₂)))
             bound
 
 /--

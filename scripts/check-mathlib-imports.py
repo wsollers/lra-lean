@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
-"""Check the Volume I/II Mathlib import policy.
+"""Check the Mathlib import policy for the foundational layer.
 
-Volume I and Volume II keep core definitions and theorem aggregates bare Lean.
-Mathlib is quarantined to examples, failure modes, adapters, and explicitly
-named interoperability leaves.  Keep the allow list here so local builds and
-GitHub Actions enforce the same rule.
+The foundational subjects and Volume II keep core definitions and theorem
+aggregates bare Lean.  Mathlib is quarantined to examples, failure modes,
+adapters, interop leaves, and explicitly named exceptions.  Keep the allow list
+here so local builds and GitHub Actions enforce the same rule.
+
+The roots below are the foundational *subjects*, not `LRA/VolumeI`.  Pointing
+this check at the volume directories was correct until the subject promotion
+emptied them; afterwards it silently passed, because it was scanning a tree that
+no longer existed.  A quarantine check that names a path can stop checking
+anything the moment that path moves, so the roots follow the architecture.
 """
 
 from __future__ import annotations
@@ -14,31 +20,44 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
-CHECK_ROOTS = [
-    ROOT / "LRA" / "VolumeI",
-    ROOT / "LRA" / "VolumeII",
-    ROOT / "LRA" / "VolumeI.lean",
-    ROOT / "LRA" / "VolumeII.lean",
+FOUNDATIONAL_SUBJECTS = [
+    "Logic",
+    "Identity",
+    "Set",
+    "SetSystems",
+    "Relation",
+    "Function",
+    "Morphism",
+    "Operation",
+    "Order",
+    "UniversalAlgebra",
+    "AlgebraicStructures",
 ]
 
+CHECK_ROOTS = (
+    [ROOT / "LRA" / subject for subject in FOUNDATIONAL_SUBJECTS]
+    + [ROOT / "LRA" / f"{subject}.lean" for subject in FOUNDATIONAL_SUBJECTS]
+    + [
+        ROOT / "LRA" / "VolumeII",
+        ROOT / "LRA" / "VolumeI.lean",
+        ROOT / "LRA" / "VolumeII.lean",
+    ]
+)
+
+# `LRA/Logic` carries the same exemption `LRA/VolumeI/Logic` did before the
+# promotion: its model and semantics layers are stated against Mathlib
+# structures.  The Mathlib set backends and the order interoperability leaves
+# moved under `Interop/`, which `ALLOWED_DIR_PARTS` already covers, so they no
+# longer need to be named here.
 ALLOWED_PREFIXES = [
-    pathlib.PurePosixPath("LRA/VolumeI/Logic"),
-    # Volume II's `BasicArithmetic` directory is now `Arithmetic`; the
-    # declarations it carries are owned by `LRA.NumberSystems.Arithmetic`.
-    pathlib.PurePosixPath("LRA/VolumeII/Arithmetic"),
+    pathlib.PurePosixPath("LRA/Logic"),
+    pathlib.PurePosixPath("LRA/VolumeII/BasicArithmetic"),
     pathlib.PurePosixPath("LRA/VolumeII/Switches/NumberSystems.lean"),
     pathlib.PurePosixPath("LRA/VolumeII/Switches/Sets/BackendEnvironment.lean"),
-    pathlib.PurePosixPath("LRA/VolumeI/Set/MathlibPredicateSet"),
-    pathlib.PurePosixPath("LRA/VolumeI/Set/MathlibZFSet"),
 ]
 
 ALLOWED_PATHS = {
-    # `UniversalAlgebra/Models/Satisfaction.lean` was reorganized into the
-    # per-concept `Satisfaction/` directory.
-    pathlib.PurePosixPath("LRA/VolumeI/UniversalAlgebra/Satisfaction/Definition.lean"),
-    pathlib.PurePosixPath("LRA/VolumeI/Order/Interoperability/Mathlib/Bounds.lean"),
-    pathlib.PurePosixPath("LRA/VolumeI/Set/ModelTheory/Language.lean"),
-    pathlib.PurePosixPath("LRA/VolumeI/Set/ModelTheory/ZFSetModel.lean"),
+    pathlib.PurePosixPath("LRA/UniversalAlgebra/Satisfaction/Definition.lean"),
 }
 
 ALLOWED_FILENAMES = {
@@ -54,13 +73,10 @@ ALLOWED_DIR_PARTS = {
     "MathlibAdapters",
     "MathlibBridge",
     "Interoperability",
+    "Interop",
 }
 
-CORE_AGGREGATE_ROOTS = [
-    ROOT / "LRA" / "VolumeI" / "Map",
-    ROOT / "LRA" / "VolumeI" / "Relations",
-    ROOT / "LRA" / "VolumeI" / "Order",
-]
+CORE_AGGREGATE_ROOTS = [ROOT / "LRA" / subject for subject in FOUNDATIONAL_SUBJECTS]
 
 QUARANTINED_IMPORT_MARKERS = (
     ".Examples",
@@ -68,6 +84,7 @@ QUARANTINED_IMPORT_MARKERS = (
     ".MathlibAdapters",
     ".MathlibBridge",
     ".Interoperability.Mathlib",
+    ".Interop.Mathlib",
 )
 
 
@@ -121,8 +138,26 @@ def imported_module(line: str) -> str | None:
 
 
 def main() -> int:
+    # A check that names paths goes quiet when the paths move, and reports
+    # success while doing so.  That is how this file came to be scanning
+    # LRA/VolumeI after the promotion emptied it.  Refuse to pass vacuously.
+    scanned = lean_files()
+    if not scanned:
+        print(
+            "ERROR: the Mathlib quarantine check found no files to scan. "
+            "CHECK_ROOTS no longer resolves to anything on disk.",
+            file=sys.stderr,
+        )
+        return 1
+    if not core_aggregate_files() and any(
+        (ROOT / "LRA" / subject).is_dir() for subject in FOUNDATIONAL_SUBJECTS
+    ):
+        # Not an error: All.lean is scheduled for removal, and its absence is
+        # the desired end state.  Say so, so the silence is legible.
+        print("Note: no core All.lean aggregates found to review.")
+
     failures: list[str] = []
-    for path in lean_files():
+    for path in scanned:
         if is_allowed(path):
             continue
         for line_number, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
@@ -148,7 +183,7 @@ def main() -> int:
         for failure in failures:
             print(failure, file=sys.stderr)
         print(
-            "ERROR: Mathlib import found in VolumeI/VolumeII outside the quarantine allow list.",
+            "ERROR: Mathlib import found in the foundational layer outside the quarantine allow list.",
             file=sys.stderr,
         )
         print("Allowed prefixes:", file=sys.stderr)
@@ -175,7 +210,7 @@ def main() -> int:
         )
         return 1
 
-    print("No disallowed Mathlib imports in VolumeI / VolumeII.")
+    print("No disallowed Mathlib imports in the foundational subjects or Volume II.")
     print("No reviewed core All.lean aggregate imports quarantined leaves.")
     return 0
 

@@ -1,0 +1,7 @@
+import LRA.AlgebraicStructures.DiscreteInteger.Laws.Definition
+import LRA.AlgebraicStructures.DiscreteInteger.Laws.Characterizations
+import LRA.AlgebraicStructures.DiscreteInteger.Laws.Consequences
+import LRA.AlgebraicStructures.DiscreteInteger.Laws.Relationships
+import LRA.AlgebraicStructures.DiscreteInteger.Laws.Theorems
+
+/-! Canonical import route for discrete-integer law certificates. -/

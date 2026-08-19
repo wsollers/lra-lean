@@ -1,0 +1,35 @@
+import LRA.Morphism.Properties.PreservesRelation.FailureModes
+import LRA.Morphism.Properties.ReflectsRelation.FailureModes
+import LRA.Morphism.Properties.RelationEmbedding.FailureModes
+import LRA.Morphism.Properties.PreservesNullaryOperation.FailureModes
+import LRA.Morphism.Properties.PreservesUnaryOperation.FailureModes
+import LRA.Morphism.Properties.PreservesBinaryOperation.FailureModes
+import LRA.Morphism.Properties.OperationEmbedding.FailureModes
+import LRA.Function.Calculus.Classes.FailureModes
+import LRA.Function.Operations.Inverse.FailureModes
+import LRA.Function.Properties.FailureModes
+import LRA.Function.Operations.Composition.FailureModes
+import LRA.Function.Calculus.Restriction.FailureModes
+import LRA.Function.Examples.Canonical
+import LRA.Function.Examples.FailureModes
+import LRA.Order.Examples
+import LRA.Order.FailureModes
+import LRA.Operation.Examples
+import LRA.Set.Interop
+import LRA.Order.Interop.Mathlib
+import LRA.Order.Interop.AlgebraicLattice
+
+/-!
+Build gate for the quarantined leaves of `LRA.Morphism`, `LRA.Function`,
+`LRA.Operation`, and `LRA.Order`, and for the opt-in `Interop` groups.
+
+The `Interop` groups are Mathlib-facing, so no core router may import them
+(§6). That left them reachable from no Lake target at all, which is how a
+malformed import in `LRA.Set.Interop.Mathlib.EndertonModel` survived several
+phases without ever failing a build. §2.7 requires every module to be
+reachable from some target; this is that target.
+
+`Examples.lean` and `FailureModes.lean` are quarantined leaves: no core `Definition`, `Theorems`, or
+router may import them, so the group routers do not. Importing them from here
+keeps them under a Lake target rather than letting them rot uncompiled.
+-/

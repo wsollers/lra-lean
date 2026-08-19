@@ -372,19 +372,15 @@ def gaussianArithmeticRingModel (R : Type u)
 
 /-- The active Gaussian integers as a first-order model.
 
-Named `Active…` to match `ActiveGaussianInteger`, and to keep it distinct from
-the carrier-generic `gaussianArithmeticRingModel` under case-insensitive
-comparison.
-
 Logical form:
 
 ```lean
-def ActiveGaussianArithmeticRingModel :
+def GaussianArithmeticRingModel :
     LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
   gaussianArithmeticRingModel LRA.NumberSystems.Integers.Z
 ```
 -/
-def ActiveGaussianArithmeticRingModel :
+def GaussianArithmeticRingModel :
     LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
   gaussianArithmeticRingModel LRA.NumberSystems.Integers.Z
 

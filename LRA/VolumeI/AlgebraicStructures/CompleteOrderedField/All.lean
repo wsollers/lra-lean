@@ -1,9 +1,0 @@
-import LRA.VolumeI.AlgebraicStructures.CompleteOrderedField.AlgebraicSignature.All
-import LRA.VolumeI.AlgebraicStructures.CompleteOrderedField.Laws.All
-import LRA.VolumeI.AlgebraicStructures.CompleteOrderedField.Definition
-import LRA.VolumeI.AlgebraicStructures.CompleteOrderedField.Characterizations
-import LRA.VolumeI.AlgebraicStructures.CompleteOrderedField.Consequences
-import LRA.VolumeI.AlgebraicStructures.CompleteOrderedField.Relationships
-import LRA.VolumeI.AlgebraicStructures.CompleteOrderedField.Theorems
-import LRA.VolumeI.AlgebraicStructures.CompleteOrderedField.FailureModes
-import LRA.VolumeI.AlgebraicStructures.CompleteOrderedField.ModelTheory.All

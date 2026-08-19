@@ -1,0 +1,18 @@
+import LRA.Morphism.Properties.PreservesBinaryOperation.Definition
+
+namespace LRA.Morphism
+
+universe u v
+
+/-- Apply binary-operation preservation at a pair of elements. -/
+theorem PreservesBinaryOperation.apply {Source : Type u} {Target : Type v}
+    {function : Source → Target}
+    {sourceOperation : LRA.Operation.BinaryEndoOperation Source}
+    {targetOperation : LRA.Operation.BinaryEndoOperation Target}
+    (law : PreservesBinaryOperation function sourceOperation targetOperation)
+    (left right : Source) :
+    function (sourceOperation left right) =
+      targetOperation (function left) (function right) :=
+  law left right
+
+end LRA.Morphism

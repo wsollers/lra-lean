@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Rationals/RationalQuotientFractions.lean
 -- Rational quotient-fraction construction from integers and positive naturals.
 
-import LRA.VolumeI.UniversalAlgebra.Quotient.RepresentativeCompatibility
+import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.VolumeII.NumberSystems.Models
 
 namespace LRA.NumberSystems.RationalNumbers.RationalQuotientFractions
@@ -38,7 +38,7 @@ structure IntegerAndPositiveNaturalData where
   multiplication_is_preserved :
     ∀ first second,
       to_integer (multiplication first second) =
-        integer_model.signature.multiplication
+        integer_model.signature.multiply
           (to_integer first)
           (to_integer second)
   absolute_numerator : integer_model.signature.carrier → natural_carrier
@@ -60,7 +60,7 @@ structure IntegerAndPositiveNaturalData where
   multiplication_is_preserved :
     ∀ first second,
       to_integer (multiplication first second) =
-        integer_model.signature.multiplication
+        integer_model.signature.multiply
           (to_integer first)
           (to_integer second)
   absolute_numerator : integer_model.signature.carrier → natural_carrier
@@ -95,17 +95,17 @@ Logical form:
 ```lean
 def equivalent (rational_data : IntegerAndPositiveNaturalData)
     (first second : Representative rational_data) : Prop :=
-  rational_data.integer_model.signature.multiplication
+  rational_data.integer_model.signature.multiply
       first.numerator (rational_data.to_integer second.denominator) =
-    rational_data.integer_model.signature.multiplication
+    rational_data.integer_model.signature.multiply
       second.numerator (rational_data.to_integer first.denominator)
 ```
 -/
 def equivalent (rational_data : IntegerAndPositiveNaturalData)
     (first second : Representative rational_data) : Prop :=
-  rational_data.integer_model.signature.multiplication
+  rational_data.integer_model.signature.multiply
       first.numerator (rational_data.to_integer second.denominator) =
-    rational_data.integer_model.signature.multiplication
+    rational_data.integer_model.signature.multiply
       second.numerator (rational_data.to_integer first.denominator)
 
 
@@ -171,10 +171,10 @@ Logical form:
 def representative_addition (rational_data : IntegerAndPositiveNaturalData)
     (first second : Representative rational_data) : Representative rational_data where
   numerator :=
-    rational_data.integer_model.signature.addition
-      (rational_data.integer_model.signature.multiplication
+    rational_data.integer_model.signature.add
+      (rational_data.integer_model.signature.multiply
         first.numerator (rational_data.to_integer second.denominator))
-      (rational_data.integer_model.signature.multiplication
+      (rational_data.integer_model.signature.multiply
         second.numerator (rational_data.to_integer first.denominator))
   denominator := rational_data.multiplication first.denominator second.denominator
 ```
@@ -182,10 +182,10 @@ def representative_addition (rational_data : IntegerAndPositiveNaturalData)
 def representative_addition (rational_data : IntegerAndPositiveNaturalData)
     (first second : Representative rational_data) : Representative rational_data where
   numerator :=
-    rational_data.integer_model.signature.addition
-      (rational_data.integer_model.signature.multiplication
+    rational_data.integer_model.signature.add
+      (rational_data.integer_model.signature.multiply
         first.numerator (rational_data.to_integer second.denominator))
-      (rational_data.integer_model.signature.multiplication
+      (rational_data.integer_model.signature.multiply
         second.numerator (rational_data.to_integer first.denominator))
   denominator := rational_data.multiplication first.denominator second.denominator
 
@@ -200,14 +200,14 @@ Logical form:
 ```lean
 def representative_multiplication (rational_data : IntegerAndPositiveNaturalData)
     (first second : Representative rational_data) : Representative rational_data where
-  numerator := rational_data.integer_model.signature.multiplication
+  numerator := rational_data.integer_model.signature.multiply
     first.numerator second.numerator
   denominator := rational_data.multiplication first.denominator second.denominator
 ```
 -/
 def representative_multiplication (rational_data : IntegerAndPositiveNaturalData)
     (first second : Representative rational_data) : Representative rational_data where
-  numerator := rational_data.integer_model.signature.multiplication
+  numerator := rational_data.integer_model.signature.multiply
     first.numerator second.numerator
   denominator := rational_data.multiplication first.denominator second.denominator
 
@@ -222,13 +222,13 @@ Logical form:
 ```lean
 def representative_negation (rational_data : IntegerAndPositiveNaturalData)
     (representative : Representative rational_data) : Representative rational_data where
-  numerator := rational_data.integer_model.signature.negation representative.numerator
+  numerator := rational_data.integer_model.signature.neg representative.numerator
   denominator := representative.denominator
 ```
 -/
 def representative_negation (rational_data : IntegerAndPositiveNaturalData)
     (representative : Representative rational_data) : Representative rational_data where
-  numerator := rational_data.integer_model.signature.negation representative.numerator
+  numerator := rational_data.integer_model.signature.neg representative.numerator
   denominator := representative.denominator
 
 
@@ -670,18 +670,18 @@ Logical form:
 def representative_strict_order (rational_data : IntegerAndPositiveNaturalData)
     (first second : Representative rational_data) : Prop :=
   rational_data.integer_model.signature.StrictOrder
-    (rational_data.integer_model.signature.multiplication
+    (rational_data.integer_model.signature.multiply
       first.numerator (rational_data.to_integer second.denominator))
-    (rational_data.integer_model.signature.multiplication
+    (rational_data.integer_model.signature.multiply
       second.numerator (rational_data.to_integer first.denominator))
 ```
 -/
 def representative_strict_order (rational_data : IntegerAndPositiveNaturalData)
     (first second : Representative rational_data) : Prop :=
   rational_data.integer_model.signature.StrictOrder
-    (rational_data.integer_model.signature.multiplication
+    (rational_data.integer_model.signature.multiply
       first.numerator (rational_data.to_integer second.denominator))
-    (rational_data.integer_model.signature.multiplication
+    (rational_data.integer_model.signature.multiply
       second.numerator (rational_data.to_integer first.denominator))
 
 
@@ -936,11 +936,11 @@ theorem integer_embedding_properties (rational_data : IntegerAndPositiveNaturalD
     integer_embedding rational_data rational_data.integer_model.signature.one = one rational_data ∧
     (∀ first second,
       integer_embedding rational_data
-          (rational_data.integer_model.signature.addition first second) =
+          (rational_data.integer_model.signature.add first second) =
         addition rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧
     (∀ first second,
       integer_embedding rational_data
-          (rational_data.integer_model.signature.multiplication first second) =
+          (rational_data.integer_model.signature.multiply first second) =
         multiplication rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧
     (∀ first second,
       strict_order rational_data (integer_embedding rational_data first) (integer_embedding rational_data second) ↔
@@ -954,11 +954,11 @@ theorem integer_embedding_properties (rational_data : IntegerAndPositiveNaturalD
     integer_embedding rational_data rational_data.integer_model.signature.one = one rational_data ∧
     (∀ first second,
       integer_embedding rational_data
-          (rational_data.integer_model.signature.addition first second) =
+          (rational_data.integer_model.signature.add first second) =
         addition rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧
     (∀ first second,
       integer_embedding rational_data
-          (rational_data.integer_model.signature.multiplication first second) =
+          (rational_data.integer_model.signature.multiply first second) =
         multiplication rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧
     (∀ first second,
       strict_order rational_data (integer_embedding rational_data first) (integer_embedding rational_data second) ↔
@@ -1134,7 +1134,7 @@ theorem integer_part_bounds (rational_data : IntegerAndPositiveNaturalData) (val
       nonstrict_order rational_data (integer_embedding rational_data integer) value ∧
       strict_order rational_data value
         (integer_embedding rational_data
-          (rational_data.integer_model.signature.addition
+          (rational_data.integer_model.signature.add
             integer rational_data.integer_model.signature.one))
 ```
 -/
@@ -1143,7 +1143,7 @@ theorem integer_part_bounds (rational_data : IntegerAndPositiveNaturalData) (val
       nonstrict_order rational_data (integer_embedding rational_data integer) value ∧
       strict_order rational_data value
         (integer_embedding rational_data
-          (rational_data.integer_model.signature.addition
+          (rational_data.integer_model.signature.add
             integer rational_data.integer_model.signature.one)) := by
   sorry
 

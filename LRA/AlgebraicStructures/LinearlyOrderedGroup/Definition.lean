@@ -1,0 +1,10 @@
+import LRA.AlgebraicStructures.LinearlyOrderedGroup.Laws.Definition
+import LRA.AlgebraicStructures.OrderedGroup.Definition
+
+namespace LRA.AlgebraicStructures
+
+/-- A linearly ordered group has the ordered-group algebraic signature. -/
+abbrev LinearlyOrderedGroupConceptSignature :=
+  OrderedGroupConceptSignature
+
+end LRA.AlgebraicStructures

@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Reals/PrimitiveIntervals.lean
 -- Primitive construction of the reals from nested rational intervals.
 
-import LRA.VolumeI.UniversalAlgebra.Quotient.RepresentativeCompatibility
+import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeII.RealNumbers.Cauchy
 
@@ -37,7 +37,7 @@ abbrev Rational := rational_model.signature.carrier
 
 /-- Reflexivity of the rational non-strict order.
 
-Mathematical statement (Lean): `theorem nonstrict_order_reflexive (value : Rational rational_model) : rational_model.signature.NonstrictOrder value value`.
+Mathematical statement (Lean): `theorem nonstrict_order_reflexive (value : Rational rational_model) : rational_model.signature.le value value`.
 
 *Proof status:* proof pending
 
@@ -47,12 +47,12 @@ Logical form:
 ```lean
 theorem nonstrict_order_reflexive
     (value : Rational rational_model) :
-    rational_model.signature.NonstrictOrder value value
+    rational_model.signature.le value value
 ```
 -/
 theorem nonstrict_order_reflexive
     (value : Rational rational_model) :
-    rational_model.signature.NonstrictOrder value value := by
+    rational_model.signature.le value value := by
   sorry
 
 
@@ -68,14 +68,14 @@ structure RationalInterval where
   left_endpoint : Rational rational_model
   right_endpoint : Rational rational_model
   endpoints_are_ordered :
-    rational_model.signature.NonstrictOrder left_endpoint right_endpoint
+    rational_model.signature.le left_endpoint right_endpoint
 ```
 -/
 structure RationalInterval where
   left_endpoint : Rational rational_model
   right_endpoint : Rational rational_model
   endpoints_are_ordered :
-    rational_model.signature.NonstrictOrder left_endpoint right_endpoint
+    rational_model.signature.le left_endpoint right_endpoint
 
 
 /-- Definition 1.2: membership in a rational closed interval.
@@ -89,15 +89,15 @@ Logical form:
 def contains
     (interval : RationalInterval rational_model)
     (value : Rational rational_model) : Prop :=
-  rational_model.signature.NonstrictOrder interval.left_endpoint value ∧
-  rational_model.signature.NonstrictOrder value interval.right_endpoint
+  rational_model.signature.le interval.left_endpoint value ∧
+  rational_model.signature.le value interval.right_endpoint
 ```
 -/
 def contains
     (interval : RationalInterval rational_model)
     (value : Rational rational_model) : Prop :=
-  rational_model.signature.NonstrictOrder interval.left_endpoint value ∧
-  rational_model.signature.NonstrictOrder value interval.right_endpoint
+  rational_model.signature.le interval.left_endpoint value ∧
+  rational_model.signature.le value interval.right_endpoint
 
 
 /-- Definition 1.3: interval inclusion.
@@ -110,17 +110,17 @@ Logical form:
 ```lean
 def subset
     (inner outer : RationalInterval rational_model) : Prop :=
-  rational_model.signature.NonstrictOrder
+  rational_model.signature.le
       outer.left_endpoint inner.left_endpoint ∧
-  rational_model.signature.NonstrictOrder
+  rational_model.signature.le
       inner.right_endpoint outer.right_endpoint
 ```
 -/
 def subset
     (inner outer : RationalInterval rational_model) : Prop :=
-  rational_model.signature.NonstrictOrder
+  rational_model.signature.le
       outer.left_endpoint inner.left_endpoint ∧
-  rational_model.signature.NonstrictOrder
+  rational_model.signature.le
       inner.right_endpoint outer.right_endpoint
 
 
@@ -418,20 +418,20 @@ Logical form:
 def IsIntervalSum
     (first second result : RationalInterval rational_model) : Prop :=
   result.left_endpoint =
-      rational_model.signature.addition
+      rational_model.signature.add
         first.left_endpoint second.left_endpoint ∧
   result.right_endpoint =
-      rational_model.signature.addition
+      rational_model.signature.add
         first.right_endpoint second.right_endpoint
 ```
 -/
 def IsIntervalSum
     (first second result : RationalInterval rational_model) : Prop :=
   result.left_endpoint =
-      rational_model.signature.addition
+      rational_model.signature.add
         first.left_endpoint second.left_endpoint ∧
   result.right_endpoint =
-      rational_model.signature.addition
+      rational_model.signature.add
         first.right_endpoint second.right_endpoint
 
 
@@ -495,17 +495,17 @@ Logical form:
 def IsIntervalNegation
     (interval result : RationalInterval rational_model) : Prop :=
   result.left_endpoint =
-      rational_model.signature.negation interval.right_endpoint ∧
+      rational_model.signature.neg interval.right_endpoint ∧
   result.right_endpoint =
-      rational_model.signature.negation interval.left_endpoint
+      rational_model.signature.neg interval.left_endpoint
 ```
 -/
 def IsIntervalNegation
     (interval result : RationalInterval rational_model) : Prop :=
   result.left_endpoint =
-      rational_model.signature.negation interval.right_endpoint ∧
+      rational_model.signature.neg interval.right_endpoint ∧
   result.right_endpoint =
-      rational_model.signature.negation interval.left_endpoint
+      rational_model.signature.neg interval.left_endpoint
 
 
 /-- The negated interval exists uniquely.
@@ -570,26 +570,26 @@ Logical form:
 def IsCornerProduct
     (first second : RationalInterval rational_model)
     (value : Rational rational_model) : Prop :=
-  value = rational_model.signature.multiplication
+  value = rational_model.signature.multiply
       first.left_endpoint second.left_endpoint ∨
-  value = rational_model.signature.multiplication
+  value = rational_model.signature.multiply
       first.left_endpoint second.right_endpoint ∨
-  value = rational_model.signature.multiplication
+  value = rational_model.signature.multiply
       first.right_endpoint second.left_endpoint ∨
-  value = rational_model.signature.multiplication
+  value = rational_model.signature.multiply
       first.right_endpoint second.right_endpoint
 ```
 -/
 def IsCornerProduct
     (first second : RationalInterval rational_model)
     (value : Rational rational_model) : Prop :=
-  value = rational_model.signature.multiplication
+  value = rational_model.signature.multiply
       first.left_endpoint second.left_endpoint ∨
-  value = rational_model.signature.multiplication
+  value = rational_model.signature.multiply
       first.left_endpoint second.right_endpoint ∨
-  value = rational_model.signature.multiplication
+  value = rational_model.signature.multiply
       first.right_endpoint second.left_endpoint ∨
-  value = rational_model.signature.multiplication
+  value = rational_model.signature.multiply
       first.right_endpoint second.right_endpoint
 
 
@@ -605,10 +605,10 @@ def IsIntervalProduct
     (first second result : RationalInterval rational_model) : Prop :=
   (∀ corner,
     IsCornerProduct rational_model first second corner →
-    rational_model.signature.NonstrictOrder result.left_endpoint corner) ∧
+    rational_model.signature.le result.left_endpoint corner) ∧
   (∀ corner,
     IsCornerProduct rational_model first second corner →
-    rational_model.signature.NonstrictOrder corner result.right_endpoint) ∧
+    rational_model.signature.le corner result.right_endpoint) ∧
   IsCornerProduct rational_model first second result.left_endpoint ∧
   IsCornerProduct rational_model first second result.right_endpoint
 ```
@@ -617,10 +617,10 @@ def IsIntervalProduct
     (first second result : RationalInterval rational_model) : Prop :=
   (∀ corner,
     IsCornerProduct rational_model first second corner →
-    rational_model.signature.NonstrictOrder result.left_endpoint corner) ∧
+    rational_model.signature.le result.left_endpoint corner) ∧
   (∀ corner,
     IsCornerProduct rational_model first second corner →
-    rational_model.signature.NonstrictOrder corner result.right_endpoint) ∧
+    rational_model.signature.le corner result.right_endpoint) ∧
   IsCornerProduct rational_model first second result.left_endpoint ∧
   IsCornerProduct rational_model first second result.right_endpoint
 
@@ -736,7 +736,7 @@ theorem negation_preserves_admissibility
 
 /-- Admissible representatives are uniformly rationally bounded.
 
-Mathematical statement (Lean): `theorem admissible_representatives_are_uniformly_bounded (representative : Representative rational_model) : ∃ lower upper, ∀ index value, contains rational_model (representative.interval index) value → rational_model.signature.NonstrictOrder lower value ∧...`.
+Mathematical statement (Lean): `theorem admissible_representatives_are_uniformly_bounded (representative : Representative rational_model) : ∃ lower upper, ∀ index value, contains rational_model (representative.interval index) value → rational_model.signature.le lower value ∧...`.
 
 *Proof status:* proof pending
 
@@ -749,8 +749,8 @@ theorem admissible_representatives_are_uniformly_bounded
     ∃ lower upper,
       ∀ index value,
         contains rational_model (representative.interval index) value →
-        rational_model.signature.NonstrictOrder lower value ∧
-        rational_model.signature.NonstrictOrder value upper
+        rational_model.signature.le lower value ∧
+        rational_model.signature.le value upper
 ```
 -/
 theorem admissible_representatives_are_uniformly_bounded
@@ -758,8 +758,8 @@ theorem admissible_representatives_are_uniformly_bounded
     ∃ lower upper,
       ∀ index value,
         contains rational_model (representative.interval index) value →
-        rational_model.signature.NonstrictOrder lower value ∧
-        rational_model.signature.NonstrictOrder value upper := by
+        rational_model.signature.le lower value ∧
+        rational_model.signature.le value upper := by
   sorry
 
 
@@ -1354,14 +1354,14 @@ theorem nonzero_eventually_separated_from_zero
         ((∃ threshold,
           ∀ index,
             threshold ≤ index →
-            rational_model.signature.NonstrictOrder delta
+            rational_model.signature.le delta
               (representative.interval index).left_endpoint) ∨
          (∃ threshold,
           ∀ index,
             threshold ≤ index →
-            rational_model.signature.NonstrictOrder
+            rational_model.signature.le
               (representative.interval index).right_endpoint
-              (rational_model.signature.negation delta)))
+              (rational_model.signature.neg delta)))
 ```
 -/
 theorem nonzero_eventually_separated_from_zero
@@ -1375,14 +1375,14 @@ theorem nonzero_eventually_separated_from_zero
         ((∃ threshold,
           ∀ index,
             threshold ≤ index →
-            rational_model.signature.NonstrictOrder delta
+            rational_model.signature.le delta
               (representative.interval index).left_endpoint) ∨
          (∃ threshold,
           ∀ index,
             threshold ≤ index →
-            rational_model.signature.NonstrictOrder
+            rational_model.signature.le
               (representative.interval index).right_endpoint
-              (rational_model.signature.negation delta))) := by
+              (rational_model.signature.neg delta))) := by
   sorry
 
 
@@ -1398,18 +1398,18 @@ def IsReciprocalInterval
     (interval reciprocal : RationalInterval rational_model) : Prop :=
   ¬ contains rational_model interval rational_model.signature.zero ∧
   reciprocal.left_endpoint =
-      rational_model.signature.inverse interval.right_endpoint ∧
+      rational_model.signature.inv interval.right_endpoint ∧
   reciprocal.right_endpoint =
-      rational_model.signature.inverse interval.left_endpoint
+      rational_model.signature.inv interval.left_endpoint
 ```
 -/
 def IsReciprocalInterval
     (interval reciprocal : RationalInterval rational_model) : Prop :=
   ¬ contains rational_model interval rational_model.signature.zero ∧
   reciprocal.left_endpoint =
-      rational_model.signature.inverse interval.right_endpoint ∧
+      rational_model.signature.inv interval.right_endpoint ∧
   reciprocal.right_endpoint =
-      rational_model.signature.inverse interval.left_endpoint
+      rational_model.signature.inv interval.left_endpoint
 
 
 /-- Theorem 6.3: reciprocal is representative-independent on nonzero classes.

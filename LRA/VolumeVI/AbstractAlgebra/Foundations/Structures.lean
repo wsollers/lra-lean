@@ -1,15 +1,12 @@
 /-!
 Reference definitions for abstract algebra.
 
-This module records textbook-level algebraic data for Volume VI orientation
-only. It is deliberately **not** part of the stable public API: the durable
-owner of named algebraic structures is `LRA.AlgebraicStructures`, and formal
-proofs in later volumes should use Mathlib's algebraic hierarchy directly.
-The declarations therefore live under the explicitly internal namespace
-`LRA.Internal.AbstractAlgebra`.
+This module records textbook-level algebraic data for Volume VI orientation. It
+is not intended as the proof foundation for later files; formal proofs should
+use Mathlib's algebraic hierarchy directly.
 -/
 
-namespace LRA.Internal.AbstractAlgebra
+namespace LRA.Algebra
 
 universe u
 
@@ -177,4 +174,4 @@ structure AlgebraicStructureDefinition where
   /-- The selected algebraic structure on the carrier. -/
   structureData : Carrier → Prop
 
-end LRA.Internal.AbstractAlgebra
+end LRA.Algebra

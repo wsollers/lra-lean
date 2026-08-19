@@ -5,7 +5,7 @@ import LRA.VolumeII.NumberSystems.Models
 
 namespace LRA.NumberSystems.Models.CharacteristicCardinality
 
-open LRA.AlgebraicStructures.OrderedRing.ModelTheory
+open LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory
 
 /-!
 Volume II label: characteristic-and-cardinality
@@ -13,26 +13,11 @@ Lean module: LRA.NumberSystems.Models.CharacteristicCardinality
 Source: docs/number-systems/gpt-09a-characteristic-cardinality.md
 Verification status: statement-accepted-proof-pending
 -/
-/--
-`CharacteristicZero` exposes this formal declaration.
-
-Logical form:
-
-```lean
 def CharacteristicZero (signature : OrderedRingSignature) : Prop :=
   ∀ n : Nat,
     n ≠ 0 →
       Nat.rec signature.zero
-        (fun _ previous => signature.addition previous signature.one)
-        n ≠ signature.zero
-```
--/
-
-def CharacteristicZero (signature : OrderedRingSignature) : Prop :=
-  ∀ n : Nat,
-    n ≠ 0 →
-      Nat.rec signature.zero
-        (fun _ previous => signature.addition previous signature.one)
+        (fun _ previous => signature.add previous signature.one)
         n ≠ signature.zero
 /--
 `Countable` exposes this formal declaration.

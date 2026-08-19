@@ -28,14 +28,14 @@ structure EndpointInterval (rational_model : RationalModel) where
   lower : rational_model.signature.carrier
   upper : rational_model.signature.carrier
   lower_le_upper :
-    rational_model.signature.NonstrictOrder lower upper
+    rational_model.signature.le lower upper
 ```
 -/
 structure EndpointInterval (rational_model : RationalModel) where
   lower : rational_model.signature.carrier
   upper : rational_model.signature.carrier
   lower_le_upper :
-    rational_model.signature.NonstrictOrder lower upper
+    rational_model.signature.le lower upper
 
 /--
 **[Structure — NestedIntervalSequence]**
@@ -50,18 +50,18 @@ structure NestedIntervalSequence (rational_model : RationalModel) where
   interval : Nat → EndpointInterval rational_model
   nested :
     ∀ index : Nat,
-      rational_model.signature.NonstrictOrder
+      rational_model.signature.le
         (interval index).lower ((interval (index + 1)).lower) ∧
-      rational_model.signature.NonstrictOrder
+      rational_model.signature.le
         ((interval (index + 1)).upper) (interval index).upper
   widths_converge_to_zero :
     ∀ positive_tolerance : rational_model.signature.carrier,
       rational_model.signature.StrictOrder rational_model.signature.zero positive_tolerance →
         ∃ index : Nat,
           rational_model.signature.StrictOrder
-            (rational_model.signature.addition
+            (rational_model.signature.add
               (interval index).upper
-              (rational_model.signature.negation (interval index).lower))
+              (rational_model.signature.neg (interval index).lower))
             positive_tolerance
 ```
 -/
@@ -69,18 +69,18 @@ structure NestedIntervalSequence (rational_model : RationalModel) where
   interval : Nat → EndpointInterval rational_model
   nested :
     ∀ index : Nat,
-      rational_model.signature.NonstrictOrder
+      rational_model.signature.le
         (interval index).lower ((interval (index + 1)).lower) ∧
-      rational_model.signature.NonstrictOrder
+      rational_model.signature.le
         ((interval (index + 1)).upper) (interval index).upper
   widths_converge_to_zero :
     ∀ positive_tolerance : rational_model.signature.carrier,
       rational_model.signature.StrictOrder rational_model.signature.zero positive_tolerance →
         ∃ index : Nat,
           rational_model.signature.StrictOrder
-            (rational_model.signature.addition
+            (rational_model.signature.add
               (interval index).upper
-              (rational_model.signature.negation (interval index).lower))
+              (rational_model.signature.neg (interval index).lower))
             positive_tolerance
 
 /--
@@ -99,9 +99,9 @@ def endpoint_equivalent
     rational_model.signature.StrictOrder rational_model.signature.zero tolerance →
       ∃ index : Nat,
         rational_model.signature.StrictOrder
-          (rational_model.signature.addition
+          (rational_model.signature.add
             (first.interval index).lower
-            (rational_model.signature.negation (second.interval index).upper))
+            (rational_model.signature.neg (second.interval index).upper))
           tolerance
 ```
 -/
@@ -112,9 +112,9 @@ def endpoint_equivalent
     rational_model.signature.StrictOrder rational_model.signature.zero tolerance →
       ∃ index : Nat,
         rational_model.signature.StrictOrder
-          (rational_model.signature.addition
+          (rational_model.signature.add
             (first.interval index).lower
-            (rational_model.signature.negation (second.interval index).upper))
+            (rational_model.signature.neg (second.interval index).upper))
           tolerance
 
 /--

@@ -109,8 +109,8 @@ structure Convergents
   recurrence_holds :
     ∀ index : Nat,
       numerator (index + 2) =
-        integer_model.signature.addition
-          (integer_model.signature.multiplication
+        integer_model.signature.add
+          (integer_model.signature.multiply
             (fraction (index + 2)) (numerator (index + 1)))
           (numerator index)
 ```
@@ -123,8 +123,8 @@ structure Convergents
   recurrence_holds :
     ∀ index : Nat,
       numerator (index + 2) =
-        integer_model.signature.addition
-          (integer_model.signature.multiplication
+        integer_model.signature.add
+          (integer_model.signature.multiply
             (fraction (index + 2)) (numerator (index + 1)))
           (numerator index)
 
@@ -258,11 +258,11 @@ theorem quadratic_irrational_iff_eventually_periodic
     (value : real_model.signature.carrier) :
     eventually_periodic fraction ↔
       ∃ coefficient_a coefficient_b coefficient_c : real_model.signature.carrier,
-        real_model.signature.addition
-          (real_model.signature.addition
-            (real_model.signature.multiplication coefficient_a
-              (real_model.signature.multiplication value value))
-            (real_model.signature.multiplication coefficient_b value))
+        real_model.signature.add
+          (real_model.signature.add
+            (real_model.signature.multiply coefficient_a
+              (real_model.signature.multiply value value))
+            (real_model.signature.multiply coefficient_b value))
           coefficient_c =
           real_model.signature.zero
 ```
@@ -274,11 +274,11 @@ theorem quadratic_irrational_iff_eventually_periodic
     (value : real_model.signature.carrier) :
     eventually_periodic fraction ↔
       ∃ coefficient_a coefficient_b coefficient_c : real_model.signature.carrier,
-        real_model.signature.addition
-          (real_model.signature.addition
-            (real_model.signature.multiplication coefficient_a
-              (real_model.signature.multiplication value value))
-            (real_model.signature.multiplication coefficient_b value))
+        real_model.signature.add
+          (real_model.signature.add
+            (real_model.signature.multiply coefficient_a
+              (real_model.signature.multiply value value))
+            (real_model.signature.multiply coefficient_b value))
           coefficient_c =
           real_model.signature.zero := by
   sorry

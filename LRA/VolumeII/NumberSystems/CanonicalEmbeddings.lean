@@ -5,8 +5,8 @@ import LRA.VolumeII.NumberSystems.Models
 
 namespace LRA.NumberSystems.Models.CanonicalEmbeddings
 
-open LRA.AlgebraicStructures.OrderedRing.ModelTheory
-open LRA.AlgebraicStructures.OrderedField.ModelTheory
+open LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory
+open LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory
 
 /-!
 Volume II label: canonical-embeddings
@@ -14,12 +14,6 @@ Lean module: LRA.NumberSystems.Models.CanonicalEmbeddings
 Source: docs/number-systems/gpt-00b-canonical-embeddings.md
 Verification status: statement-accepted-proof-pending
 -/
-/--
-`EmbeddingPreservesOrderedRing` exposes this formal declaration.
-
-Logical form:
-
-```lean
 structure EmbeddingPreservesOrderedRing
     (source target : OrderedRingSignature)
     (map : source.carrier → target.carrier) : Prop where
@@ -28,47 +22,18 @@ structure EmbeddingPreservesOrderedRing
   PreservesOne : map source.one = target.one
   PreservesAddition :
     ∀ first second,
-      map (source.addition first second) =
-        target.addition (map first) (map second)
+      map (source.add first second) =
+        target.add (map first) (map second)
   PreservesNegation :
-    ∀ value, map (source.negation value) = target.negation (map value)
+    ∀ value, map (source.neg value) = target.neg (map value)
   PreservesMultiplication :
     ∀ first second,
-      map (source.multiplication first second) =
-        target.multiplication (map first) (map second)
+      map (source.multiply first second) =
+        target.multiply (map first) (map second)
   PreservesAndReflectsOrder :
     ∀ first second,
-      target.NonstrictOrder (map first) (map second) ↔
-        source.NonstrictOrder first second
-```
--/
-
-structure EmbeddingPreservesOrderedRing
-    (source target : OrderedRingSignature)
-    (map : source.carrier → target.carrier) : Prop where
-  injective : ∀ first second, map first = map second → first = second
-  PreservesZero : map source.zero = target.zero
-  PreservesOne : map source.one = target.one
-  PreservesAddition :
-    ∀ first second,
-      map (source.addition first second) =
-        target.addition (map first) (map second)
-  PreservesNegation :
-    ∀ value, map (source.negation value) = target.negation (map value)
-  PreservesMultiplication :
-    ∀ first second,
-      map (source.multiplication first second) =
-        target.multiplication (map first) (map second)
-  PreservesAndReflectsOrder :
-    ∀ first second,
-      target.NonstrictOrder (map first) (map second) ↔
-        source.NonstrictOrder first second
-/--
-`EmbeddingPreservesOrderedField` exposes this formal declaration.
-
-Logical form:
-
-```lean
+      target.le (map first) (map second) ↔
+        source.le first second
 structure EmbeddingPreservesOrderedField
     (source target : OrderedFieldSignature)
     (map : source.carrier → target.carrier) : Prop
@@ -77,19 +42,7 @@ structure EmbeddingPreservesOrderedField
   PreservesInverse :
     ∀ value,
       value ≠ source.zero →
-        map (source.inverse value) = target.inverse (map value)
-```
--/
-
-structure EmbeddingPreservesOrderedField
-    (source target : OrderedFieldSignature)
-    (map : source.carrier → target.carrier) : Prop
-    extends EmbeddingPreservesOrderedRing
-      source.toOrderedRingSignature target.toOrderedRingSignature map where
-  PreservesInverse :
-    ∀ value,
-      value ≠ source.zero →
-        map (source.inverse value) = target.inverse (map value)
+        map (source.inv value) = target.inv (map value)
 /--
 `AdjacentTowerEmbeddings` exposes this formal declaration.
 

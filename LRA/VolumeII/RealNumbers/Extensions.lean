@@ -18,7 +18,7 @@ open LRA.NumberSystems.Models
 /--
 **[Def — integer_power]**
 
-Mathematical statement (Lean): `def integer_power (real_model : RealModel) (base : real_model.signature.carrier) : Nat → real_model.signature.carrier | 0 => real_model.signature.one | Nat.succ exponent => real_model.signature.multiplication (integer_power real_model base exponent) base de...`.
+Mathematical statement (Lean): `def integer_power (real_model : RealModel) (base : real_model.signature.carrier) : Nat → real_model.signature.carrier | 0 => real_model.signature.one | Nat.succ exponent => real_model.signature.multiply (integer_power real_model base exponent) base de...`.
 
 
 Logical form:
@@ -29,7 +29,7 @@ def integer_power
     (base : real_model.signature.carrier) : Nat → real_model.signature.carrier
   | 0 => real_model.signature.one
   | Nat.succ exponent =>
-      real_model.signature.multiplication
+      real_model.signature.multiply
         (integer_power real_model base exponent) base
 ```
 -/
@@ -38,7 +38,7 @@ def integer_power
     (base : real_model.signature.carrier) : Nat → real_model.signature.carrier
   | 0 => real_model.signature.one
   | Nat.succ exponent =>
-      real_model.signature.multiplication
+      real_model.signature.multiply
         (integer_power real_model base exponent) base
 
 /--
@@ -80,7 +80,7 @@ theorem archimedean_integer_part
     (real_extension : RealExtension rational_extension.RationalModel)
     (value : real_extension.RealModel.signature.carrier) :
     ∃ lower upper : integer_model.signature.carrier,
-      real_extension.RealModel.signature.NonstrictOrder
+      real_extension.RealModel.signature.le
         (real_extension.RationalEmbedding.ToReal
           (rational_extension.IntegerEmbedding.ToRational lower))
         value ∧
@@ -96,7 +96,7 @@ theorem archimedean_integer_part
     (real_extension : RealExtension rational_extension.RationalModel)
     (value : real_extension.RealModel.signature.carrier) :
     ∃ lower upper : integer_model.signature.carrier,
-      real_extension.RealModel.signature.NonstrictOrder
+      real_extension.RealModel.signature.le
         (real_extension.RationalEmbedding.ToReal
           (rational_extension.IntegerEmbedding.ToRational lower))
         value ∧
@@ -109,7 +109,7 @@ theorem archimedean_integer_part
 /--
 **[Theorem — nth_root_exists_for_nonnegative_reals]**
 
-Mathematical statement (Lean): `theorem nth_root_exists_for_nonnegative_reals (real_model : RealModel) (degree : Nat) (degree_positive : 0 < degree) (radicand : real_model.signature.carrier) (radicand_nonnegative : real_model.signature.NonstrictOrder real_model.signature.zero radicand) :...`.
+Mathematical statement (Lean): `theorem nth_root_exists_for_nonnegative_reals (real_model : RealModel) (degree : Nat) (degree_positive : 0 < degree) (radicand : real_model.signature.carrier) (radicand_nonnegative : real_model.signature.le real_model.signature.zero radicand) :...`.
 
 *Proof status:* proof pending
 
@@ -123,9 +123,9 @@ theorem nth_root_exists_for_nonnegative_reals
     (degree_positive : 0 < degree)
     (radicand : real_model.signature.carrier)
     (radicand_nonnegative :
-      real_model.signature.NonstrictOrder real_model.signature.zero radicand) :
+      real_model.signature.le real_model.signature.zero radicand) :
     ∃ root : real_model.signature.carrier,
-      real_model.signature.NonstrictOrder real_model.signature.zero root ∧
+      real_model.signature.le real_model.signature.zero root ∧
         is_nth_root real_model degree root radicand
 ```
 -/
@@ -135,9 +135,9 @@ theorem nth_root_exists_for_nonnegative_reals
     (degree_positive : 0 < degree)
     (radicand : real_model.signature.carrier)
     (radicand_nonnegative :
-      real_model.signature.NonstrictOrder real_model.signature.zero radicand) :
+      real_model.signature.le real_model.signature.zero radicand) :
     ∃ root : real_model.signature.carrier,
-      real_model.signature.NonstrictOrder real_model.signature.zero root ∧
+      real_model.signature.le real_model.signature.zero root ∧
         is_nth_root real_model degree root radicand := by
   sorry
 

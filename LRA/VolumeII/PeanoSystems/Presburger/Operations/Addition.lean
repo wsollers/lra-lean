@@ -1,8 +1,11 @@
 import LRA.VolumeII.PeanoSystems.Presburger.PresburgerModel
-import LRA.VolumeII.PeanoSystems.Recursion.BinaryIterator
-import LRA.VolumeI.Logic.Model.Model
+import LRA.NumberSystems.PeanoSystem.Recursion.BinaryIterator
+import LRA.Logic.Model.Model
 
 namespace LRA.NumberSystems.PeanoSystems
+
+open LRA.NumberSystems.PeanoSystem.Recursion (
+  BinaryIteratorOperationClauses ExistenceOfBinaryIteratorOperation)
 
 universe u v
 

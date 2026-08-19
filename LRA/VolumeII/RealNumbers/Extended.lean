@@ -38,7 +38,7 @@ inductive ExtendedReal (real_model : RealModel) where
 /--
 **[Def — nonstrict_order]**
 
-Mathematical statement (Lean): `def nonstrict_order (real_model : RealModel) : ExtendedReal real_model → ExtendedReal real_model → Prop | .negativeInfinity, _ => True | _, .positiveInfinity => True | .finite first, .finite second => real_model.signature.NonstrictOrder first second | _, _...`.
+Mathematical statement (Lean): `def nonstrict_order (real_model : RealModel) : ExtendedReal real_model → ExtendedReal real_model → Prop | .negativeInfinity, _ => True | _, .positiveInfinity => True | .finite first, .finite second => real_model.signature.le first second | _, _...`.
 
 
 Logical form:
@@ -49,7 +49,7 @@ def nonstrict_order
     ExtendedReal real_model → ExtendedReal real_model → Prop
   | .negativeInfinity, _ => True
   | _, .positiveInfinity => True
-  | .finite first, .finite second => real_model.signature.NonstrictOrder first second
+  | .finite first, .finite second => real_model.signature.le first second
   | _, _ => False
 ```
 -/
@@ -58,13 +58,13 @@ def nonstrict_order
     ExtendedReal real_model → ExtendedReal real_model → Prop
   | .negativeInfinity, _ => True
   | _, .positiveInfinity => True
-  | .finite first, .finite second => real_model.signature.NonstrictOrder first second
+  | .finite first, .finite second => real_model.signature.le first second
   | _, _ => False
 
 /--
 **[Def — negation]**
 
-Mathematical statement (Lean): `def negation (real_model : RealModel) : ExtendedReal real_model → ExtendedReal real_model | .negativeInfinity => .positiveInfinity | .positiveInfinity => .negativeInfinity | .finite value => .finite (real_model.signature.negation value) def supremum (real_m...`.
+Mathematical statement (Lean): `def negation (real_model : RealModel) : ExtendedReal real_model → ExtendedReal real_model | .negativeInfinity => .positiveInfinity | .positiveInfinity => .negativeInfinity | .finite value => .finite (real_model.signature.neg value) def supremum (real_m...`.
 
 
 Logical form:
@@ -75,7 +75,7 @@ def negation
     ExtendedReal real_model → ExtendedReal real_model
   | .negativeInfinity => .positiveInfinity
   | .positiveInfinity => .negativeInfinity
-  | .finite value => .finite (real_model.signature.negation value)
+  | .finite value => .finite (real_model.signature.neg value)
 ```
 -/
 def negation
@@ -83,7 +83,7 @@ def negation
     ExtendedReal real_model → ExtendedReal real_model
   | .negativeInfinity => .positiveInfinity
   | .positiveInfinity => .negativeInfinity
-  | .finite value => .finite (real_model.signature.negation value)
+  | .finite value => .finite (real_model.signature.neg value)
 
 /--
 **[Def — supremum]**
@@ -155,9 +155,9 @@ structure PartialOperation
     ∀ first second,
       defined_at (.finite first) (.finite second) →
         operation (.finite first) (.finite second) =
-          .finite (real_model.signature.addition first second) ∨
+          .finite (real_model.signature.add first second) ∨
         operation (.finite first) (.finite second) =
-          .finite (real_model.signature.multiplication first second)
+          .finite (real_model.signature.multiply first second)
 ```
 -/
 structure PartialOperation
@@ -168,8 +168,8 @@ structure PartialOperation
     ∀ first second,
       defined_at (.finite first) (.finite second) →
         operation (.finite first) (.finite second) =
-          .finite (real_model.signature.addition first second) ∨
+          .finite (real_model.signature.add first second) ∨
         operation (.finite first) (.finite second) =
-          .finite (real_model.signature.multiplication first second)
+          .finite (real_model.signature.multiply first second)
 
 end LRA.NumberSystems.RealNumbers.Extended

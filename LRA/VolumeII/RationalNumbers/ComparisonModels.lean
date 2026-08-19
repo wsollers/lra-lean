@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Rationals/ComparisonModels.lean
 -- Comparison models for alternate rational constructions.
 
-import LRA.VolumeI.UniversalAlgebra.Quotient.RepresentativeCompatibility
+import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.VolumeII.NumberSystems.Models
 import LRA.VolumeII.Integers.ConstructionModels
 
@@ -34,16 +34,16 @@ def is_order_complete (rational_model : RationalModel) : Prop :=
     (∃ upper_bound,
       ∀ member,
         subset member →
-        rational_model.signature.NonstrictOrder member upper_bound) →
+        rational_model.signature.le member upper_bound) →
     ∃ supremum,
       (∀ member,
         subset member →
-        rational_model.signature.NonstrictOrder member supremum) ∧
+        rational_model.signature.le member supremum) ∧
       (∀ upper_bound,
         (∀ member,
           subset member →
-          rational_model.signature.NonstrictOrder member upper_bound) →
-        rational_model.signature.NonstrictOrder supremum upper_bound)
+          rational_model.signature.le member upper_bound) →
+        rational_model.signature.le supremum upper_bound)
 ```
 -/
 def is_order_complete (rational_model : RationalModel) : Prop :=
@@ -52,16 +52,16 @@ def is_order_complete (rational_model : RationalModel) : Prop :=
     (∃ upper_bound,
       ∀ member,
         subset member →
-        rational_model.signature.NonstrictOrder member upper_bound) →
+        rational_model.signature.le member upper_bound) →
     ∃ supremum,
       (∀ member,
         subset member →
-        rational_model.signature.NonstrictOrder member supremum) ∧
+        rational_model.signature.le member supremum) ∧
       (∀ upper_bound,
         (∀ member,
           subset member →
-          rational_model.signature.NonstrictOrder member upper_bound) →
-        rational_model.signature.NonstrictOrder supremum upper_bound)
+          rational_model.signature.le member upper_bound) →
+        rational_model.signature.le supremum upper_bound)
 
 end LRA.NumberSystems.RationalNumbers
 namespace LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison
@@ -491,28 +491,28 @@ structure ModelIsomorphism
   preserves_addition :
     ∀ first second,
       to_function
-          (first_model.signature.addition first second) =
-        second_model.signature.addition
+          (first_model.signature.add first second) =
+        second_model.signature.add
           (to_function first)
           (to_function second)
   preserves_multiplication :
     ∀ first second,
       to_function
-          (first_model.signature.multiplication first second) =
-        second_model.signature.multiplication
+          (first_model.signature.multiply first second) =
+        second_model.signature.multiply
           (to_function first)
           (to_function second)
   preserves_inverse :
     ∀ value,
       to_function
-          (first_model.signature.inverse value) =
-        second_model.signature.inverse (to_function value)
+          (first_model.signature.inv value) =
+        second_model.signature.inv (to_function value)
   preserves_and_reflects_order :
     ∀ first second,
-      second_model.signature.NonstrictOrder
+      second_model.signature.le
           (to_function first)
           (to_function second) ↔
-        first_model.signature.NonstrictOrder first second
+        first_model.signature.le first second
 ```
 -/
 structure ModelIsomorphism
@@ -538,28 +538,28 @@ structure ModelIsomorphism
   preserves_addition :
     ∀ first second,
       to_function
-          (first_model.signature.addition first second) =
-        second_model.signature.addition
+          (first_model.signature.add first second) =
+        second_model.signature.add
           (to_function first)
           (to_function second)
   preserves_multiplication :
     ∀ first second,
       to_function
-          (first_model.signature.multiplication first second) =
-        second_model.signature.multiplication
+          (first_model.signature.multiply first second) =
+        second_model.signature.multiply
           (to_function first)
           (to_function second)
   preserves_inverse :
     ∀ value,
       to_function
-          (first_model.signature.inverse value) =
-        second_model.signature.inverse (to_function value)
+          (first_model.signature.inv value) =
+        second_model.signature.inv (to_function value)
   preserves_and_reflects_order :
     ∀ first second,
-      second_model.signature.NonstrictOrder
+      second_model.signature.le
           (to_function first)
           (to_function second) ↔
-        first_model.signature.NonstrictOrder first second
+        first_model.signature.le first second
 
 
 /-- **[Theorem — Rational Quotient-Fractions–Reduced Rational Isomorphism Exists]**

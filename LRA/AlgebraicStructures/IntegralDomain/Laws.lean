@@ -1,0 +1,7 @@
+import LRA.AlgebraicStructures.IntegralDomain.Laws.Definition
+import LRA.AlgebraicStructures.IntegralDomain.Laws.Characterizations
+import LRA.AlgebraicStructures.IntegralDomain.Laws.Consequences
+import LRA.AlgebraicStructures.IntegralDomain.Laws.Relationships
+import LRA.AlgebraicStructures.IntegralDomain.Laws.Theorems
+
+/-! Canonical import route for integral-domain law certificates. -/

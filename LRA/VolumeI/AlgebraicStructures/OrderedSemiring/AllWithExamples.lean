@@ -1,3 +1,0 @@
-import LRA.VolumeI.AlgebraicStructures.OrderedSemiring.All
-import LRA.VolumeI.AlgebraicStructures.OrderedSemiring.Examples
-import LRA.VolumeI.AlgebraicStructures.OrderedSemiring.Laws.AllWithExamples

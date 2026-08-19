@@ -1,6 +1,6 @@
-import LRA.VolumeI.Operations
+import LRA.Operation
 import LRA.VolumeII.NaturalNumbers.Construction.NModel
-import LRA.VolumeII.PeanoSystems.Recursion.BinaryIterator
+import LRA.NumberSystems.PeanoSystem.Recursion.BinaryIterator
 
 namespace LRA.NumberSystems.NaturalNumbers
 
@@ -10,7 +10,7 @@ variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 
 
-open LRA.NumberSystems.PeanoSystems
+open LRA.NumberSystems.PeanoSystem.Recursion
 
 /--
 **[Definition - Addition on N]**
