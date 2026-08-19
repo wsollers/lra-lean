@@ -1,6 +1,6 @@
-import LRA.VolumeII.PeanoSystems.PeanoSystem.PeanoSystem
+import LRA.NumberSystems.PeanoSystem.Definition
 
-namespace LRA.NumberSystems.PeanoSystems
+namespace LRA.NumberSystems.PeanoSystem
 
 universe u v
 
@@ -196,4 +196,4 @@ abbrev OneIsTheUniqueNonSuccessor := @OneIsUniqueNonSuccessor
 -/
 abbrev OneIsTheUniqueNonSuccessor := @OneIsUniqueNonSuccessor
 
-end LRA.NumberSystems.PeanoSystems
+end LRA.NumberSystems.PeanoSystem

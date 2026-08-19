@@ -1,36 +1,14 @@
-import LRA.Logic.Model.Model
+import LRA.NumberSystems.PeanoSystem.Interface.Signature.Definition
 import LRA.Operation
 import LRA.AlgebraicStructures.DiscreteInteger.Laws.Definition
 
-namespace LRA.NumberSystems.PeanoSystems.ModelTheory
+namespace LRA.NumberSystems.PeanoSystem.Interface.ModelTheory
 
 universe u
 
-/-!
-First-order Peano vocabulary used by Volume II number-system constructions.
--/
+/-! Law-free model builders for the first-order Peano language. -/
 
-inductive PeanoFunctionSymbol where
-  | successor
-
-def PeanoRelationSymbol : Type := Empty
-
-inductive PeanoConstantSymbol where
-  | one
-
-def PeanoFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := PeanoFunctionSymbol
-  arity
-    | .successor => 1
-
-def PeanoFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := PeanoRelationSymbol
-  arity := Empty.elim
-
-def PeanoFirstOrderSignature : LRA.Logic.Signature where
-  Functions := PeanoFirstOrderFunctions
-  Relations := PeanoFirstOrderRelations
-  Constants := PeanoConstantSymbol
+open LRA.NumberSystems.PeanoSystem.Interface.Signature
 
 structure PeanoSignature where
   carrier : Type u
@@ -53,4 +31,4 @@ def peanoFirstOrderModel (R : Type u) [OfNat R 1]
     LRA.Logic.FirstOrder.Model PeanoFirstOrderSignature :=
   BuildPeanoModel { carrier := R, one := 1, successor := LRA.AlgebraicStructures.Succ }
 
-end LRA.NumberSystems.PeanoSystems.ModelTheory
+end LRA.NumberSystems.PeanoSystem.Interface.ModelTheory

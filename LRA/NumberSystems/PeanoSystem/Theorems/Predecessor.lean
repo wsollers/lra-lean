@@ -1,6 +1,6 @@
-import LRA.VolumeII.PeanoSystems.PeanoSystem.Successor
+import LRA.NumberSystems.PeanoSystem.Theorems.Successor
 
-namespace LRA.NumberSystems.PeanoSystems
+namespace LRA.NumberSystems.PeanoSystem
 
 universe u v
 
@@ -186,4 +186,4 @@ theorem UniquePredecessorCharacterizationAwayFromOne
     element ≠ ps.one <-> UniquePredecessor ps element := by
   sorry
 
-end LRA.NumberSystems.PeanoSystems
+end LRA.NumberSystems.PeanoSystem

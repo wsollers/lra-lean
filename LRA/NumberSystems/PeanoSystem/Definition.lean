@@ -6,9 +6,8 @@ import LRA.Set.Model
 import LRA.SetSystems
 
 /-!
-Current TeX-facing Peano-system carrier for Volume II.
-
-This is the root namespace for the active Volume II Peano-system buildout.
+The Peano-system working type: the set-theoretic presentation of §1.6.10's
+generic axiomatic layer.
 
 A Peano system is stated generically over any set backend: `Element` is
 the carrier, `SetObject` the backend's sets over it, connected by Lean's
@@ -17,17 +16,28 @@ the carrier, `SetObject` the backend's sets over it, connected by Lean's
 `Alpha`/`Set Alpha`, or `ZFSet`/`ZFSet` alike, resolved from the argument
 types. Only what is genuinely Peano stays bundled: the distinguished
 element, the successor operation, and the axioms.
+
+This is `PeanoSystem`'s own `Definition.lean` in the sense §1.7.1 fixes for
+every concept in this migration: the working type code proves things about,
+kept apart from `Interface/Signature/Definition.lean`'s `LRA.Logic.Signature`
+presentation the same way §1.2 keeps the arrow and the set-theoretic triple
+apart. The two are not duplicates of one idea; they are the two
+presentations every concept here carries, and both are load-bearing --
+`NaturalNumbers/Construction/NModel.lean`'s `NModel` extends this structure
+directly, and `PeanoSystems/Presburger/PresburgerModel.lean`'s
+`PresburgerModel.toPeanoSystem` produces a value of it as the evidence that a
+Presburger model satisfies Peano's axioms.
 -/
 
-namespace LRA.NumberSystems.PeanoSystems
+namespace LRA.NumberSystems.PeanoSystem
 
 universe u v
 
 /--
 **[Definition - Peano System]**
 
-A one-based Peano system is a carrier equipped with a distinguished element,
-a successor operation, and the Peano axioms.
+A Peano system is a carrier equipped with a distinguished element, a
+successor operation, and the Peano axioms.
 
 Mathematical statement (Lean): `structure PeanoSystem`.
 
@@ -146,4 +156,4 @@ def InductiveSubsetOfPeanoSystem
 
 end
 
-end LRA.NumberSystems.PeanoSystems
+end LRA.NumberSystems.PeanoSystem

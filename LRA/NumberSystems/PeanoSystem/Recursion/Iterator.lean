@@ -1,6 +1,8 @@
-import LRA.VolumeII.PeanoSystems.Induction.Core
+import LRA.NumberSystems.PeanoSystem.Definition
 
-namespace LRA.NumberSystems.PeanoSystems
+namespace LRA.NumberSystems.PeanoSystem.Recursion
+
+open LRA.NumberSystems.PeanoSystem
 
 universe u v w
 
@@ -728,48 +730,4 @@ theorem GeneralRecursionTheoremForPeanoSystem
         other_recursive_function = recursive_function := by
   sorry
 
-/--
-`UniquenessOfPeanoSystemsUpToIsomorphism` states uniqueness of peano systems up to isomorphism.
-
-Logical form:
-
-```lean
-theorem UniquenessOfPeanoSystemsUpToIsomorphism
-    {SecondElement : Type u} {SecondSetObject : Type v}
-    [Membership SecondElement SecondSetObject]
-    (first : PeanoSystem Element SetObject)
-    (second : PeanoSystem SecondElement SecondSetObject) :
-    exists forward : Element -> SecondElement,
-      exists backward : SecondElement -> Element,
-        forward first.one = second.one /\
-        backward second.one = first.one /\
-        (forall element : Element,
-          forward (first.successor element) =
-            second.successor (forward element)) /\
-        (forall element : SecondElement,
-          backward (second.successor element) =
-            first.successor (backward element)) /\
-        (forall element : Element, backward (forward element) = element) /\
-        (forall element : SecondElement, forward (backward element) = element)
-```
--/
-theorem UniquenessOfPeanoSystemsUpToIsomorphism
-    {SecondElement : Type u} {SecondSetObject : Type v}
-    [Membership SecondElement SecondSetObject]
-    (first : PeanoSystem Element SetObject)
-    (second : PeanoSystem SecondElement SecondSetObject) :
-    exists forward : Element -> SecondElement,
-      exists backward : SecondElement -> Element,
-        forward first.one = second.one /\
-        backward second.one = first.one /\
-        (forall element : Element,
-          forward (first.successor element) =
-            second.successor (forward element)) /\
-        (forall element : SecondElement,
-          backward (second.successor element) =
-            first.successor (backward element)) /\
-        (forall element : Element, backward (forward element) = element) /\
-        (forall element : SecondElement, forward (backward element) = element) := by
-  sorry
-
-end LRA.NumberSystems.PeanoSystems
+end LRA.NumberSystems.PeanoSystem.Recursion
