@@ -335,6 +335,62 @@ than constructing the reals itself -- analogous in role to Rational's
 any single construction's `Constructions/` pipeline, mirroring how
 Rational's `ComparisonModels.lean` stayed top-level.
 
+`NonNegative.lean` (new, this pass) joins them for the same reason: given
+any `real_model : RealModel`, `NonNegativeReal`/`NonNegativeExtendedReal`
+are canonically determined subtypes, not a competing construction of the
+reals, so it gets no §1.6.1 pipeline of its own. See the section below.
+
+---
+
+## `NonNegative.lean` -- new, for distance/metric/norm use, not a construction
+
+Requested to support future metric-space and norm work (`d x y ≥ 0`
+needs a non-negative codomain; extended-valued metrics need a
+non-negative-extended one). Modeled as two subtypes of an existing
+`real_model : RealModel` / `ExtendedReal real_model`, mirroring the
+existing `Dedekind.Cut` / `Irrationals.Carrier` subtype idiom rather than
+introducing a fifth `NaturalNumbers`-style construction pipeline -- there
+is no alternate axiomatization to reconcile the way Peano vs. Presburger
+naturals, or Cauchy vs. Dedekind reals, compete over the same interface.
+
+- [x] `NonNegativeReal`, `NonNegativeExtendedReal` -- subtype definitions,
+      written (no proof obligation).
+- [ ] `ZeroIsNonNegative`, `PositiveInfinityIsNonNegative`,
+      `FiniteIsNonNegativeExtended`, `AdditionIsNonNegative`,
+      `AddExtendedRawIsNonNegative` -- the five closure/witness lemmas the
+      subtype constructors consume, all `sorry`. None looked "too trivial
+      to sorry": this migration's standing policy is to never assert a
+      proof it cannot verify compiles, including facts that look like a
+      one-line unfold (matching the source's own `zero_is_rational`/
+      `one_is_rational` precedent in `Irrationals.lean`).
+- [x] `zero`, `infinity`, `toExtended`, `add`, `addExtendedRaw`,
+      `addExtended`, `le`, `leExtended`, `toReal`, `toExtendedReal` --
+      written (each either a pure projection/pattern-match with no proof
+      obligation, or built directly from one of the `sorry`-stated lemmas
+      above).
+
+**Deliberately not included this pass:** multiplication on either type.
+Its natural convention (`0 * positiveInfinity = 0`, the measure-theoretic
+reading Mathlib's `ENNReal` uses rather than leaving the case undefined)
+is an independent modeling choice, and neither a metric (`d x y = 0 ↔ x =
+y`, symmetry, triangle inequality) nor a norm's scalar multiplication
+(which acts by the base `RealModel`, not by another `NonNegativeReal`)
+needs it. Left as a follow-up so this file stayed scoped to what was
+asked.
+
+**Mathlib bridge, kept out of the quarantine:**
+`Interop/Mathlib/Extended.lean` and `Interop/Mathlib/NonNegative.lean`
+state (both `sorry`) that `ExtendedReal mathlibRealModel`/`NonNegativeReal
+mathlibRealModel`/`NonNegativeExtendedReal mathlibRealModel` are
+order/addition-preserving-bijective with Mathlib's own `EReal`/`NNReal`/
+`ENNReal`. Neither file is imported by the `RealNumbers` router or by
+`NonNegative.lean` itself -- per `lakefile.lean`'s `Interop` carve-out,
+they are compiled only by the `LRAAll` full-coverage target, keeping the
+core route Mathlib-free. Their `Mathlib.Data.{EReal,NNReal,ENNReal}.Basic`
+import paths are this session's best guess at the pinned Mathlib
+version's module layout and may need correcting on first build; nothing
+else in either file depends on the choice.
+
 ---
 
 ## Construction/Model.lean -- no switch to retire
