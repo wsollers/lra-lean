@@ -74,8 +74,20 @@ The actual carrier `PeanoSystem` will be built over: not `ZFCSet` itself
 def NaturalElement : Type := {x : LRA.Set.ZFCSet // x ∈ Omega}
 
 /-- Membership of a natural element in an arbitrary `ZFCSet`, read off the
-underlying set's native ZFC membership. -/
-instance : Membership NaturalElement LRA.Set.ZFCSet where
+underlying set's native ZFC membership.
+
+`Membership`'s element-type parameter is `outParam`, so resolving `∈`
+searches only on the container type (`ZFCSet`) and infers the element type
+from whatever instance it finds. `LRA.Set.ZFCSet.Primitives` already
+declares `Membership ZFCSet ZFCSet` (the native "set contains set" ZFC
+membership) for that same container type, so an unprioritized instance
+here is a coin flip against it -- and losing that flip surfaces as
+"failed to synthesize `Membership NaturalElement ZFCSet`" even though this
+instance exists, because outParam resolution tried the *other* instance
+first, inferred `α := ZFCSet`, and then failed to unify that against the
+actual `NaturalElement` operand. `priority := high` forces this instance to
+be tried first for this container type, so it wins deterministically. -/
+instance (priority := high) : Membership NaturalElement LRA.Set.ZFCSet where
   mem containingSet element := element.val ∈ containingSet
 
 /-- The distinguished element: ∅, viewed as a natural element via
