@@ -1,6 +1,6 @@
 # Natural Numbers Proof Order
 
-Tracks the proofs needed to land all three natural-number constructions as
+Tracks the proofs needed to land all four natural-number constructions as
 working realizations of `LRA.NumberSystems.PeanoSystem`, in the order they
 must be discharged. Every item marked `[ ]` is currently `sorry` or (for
 Landau) a genuine `axiom`; nothing is filled in until it's checked off.
@@ -19,12 +19,21 @@ actually built, and how its three law fields (`one_not_successor`,
 | `VonNeumann` | `{x : LRA.Set.ZFCSet // x ∈ Omega}` / `LRA.Set.ZFCSet` | **Proved as theorems**, from `LRA.Set.ZFC`'s axioms (Pairing, Union, Empty Set, Infinity, Separation, Foundation) |
 | `Landau` | a bare postulated `LandauElement` / `PredicateSet LandauElement` | **Postulated directly as axioms**, mirroring how `LRA.Set.ZFCSet` itself is postulated (`axiom ZFCSet : Type`) |
 | `Presburger` | a fresh inductive `PresburgerElement` / `PredicateSet PresburgerElement` | **Proved as theorems**, free via the inductive type's own generated recursor/injectivity/no-confusion — see §8 |
+| `WholeNumbers` | `Option Element` / `PredicateSet (Option Element)`, generic over any one-based `model : PeanoSystem Element SetObject` | **Proved as theorems**, by adjoining a new zero (`none`) to whatever one-based system is passed in — see Part D |
 
-All three end up as values of the same `PeanoSystem Element SetObject` type,
+All four end up as values of the same `PeanoSystem Element SetObject` type,
 just for different `Element`/`SetObject` choices. That's why
 `PeanoSystem.Categoricity.UniquenessOfPeanoSystemsUpToIsomorphism` matters:
-it's the one proof that ties all three together as "the same" natural
-numbers, rather than three unrelated claims that happen to share a name.
+it's the one proof that ties all four together as "the same" natural
+numbers, rather than four unrelated claims that happen to share a name.
+
+`WholeNumbers` was originally a separate `LRA.VolumeII.WholeNumbers` system
+in the embedding chain ("naturals, whole, integer, rational, ..."); reading
+its actual content (`Carrier natural_data := Option Element`, plus the three
+Peano properties stated for it) showed it is a *fourth construction of the
+naturals themselves* — adjoining a zero to a one-based model is exactly what
+`VonNeumann` and `Presburger` also do, by different techniques — not a new
+rung on the ladder. It moved here rather than getting its own top-level home.
 
 ---
 
@@ -231,3 +240,59 @@ no proof benefit (everything downstream is still `sorry` either way).
 - [ ] WellDefinedness/Laws/Behavior — not started. (`Laws`-shaped content
       already exists as `LandauAdditionIsAssociative` etc., still `sorry`,
       moved as-is rather than freshly split into pipeline roles.)
+
+---
+
+# Part D — WholeNumbers (adjoin zero to a one-based system)
+
+Moved from `LRA.VolumeII.WholeNumbers.Construction.{Model,Builders}` in full
+(§1.6.1's whole pipeline, not just the carrier), since the source content
+already covered every role. Kept generic over `Element`/`SetObject`, same
+call as `Landau`/`Presburger`'s generic content — nothing here requires
+committing to a specific one-based system, though `LandauAddition`/
+`LandauMultiplication` (Landau's own, still generically-typed) are what it
+actually calls.
+
+## 13. Carrier and basic structure (`Carrier.lean`) — written, flagged
+
+- [x] `NaturalArithmeticForWholeNumbers`, `Carrier := Option Element`,
+      `zero`, `one`, `naturalEmbedding`, `successor` — moved unchanged.
+- [x] `strictOrder`/`nonstrictOrder` — moved here from the source file's own
+      "Operations" section, *not* to `Operations.lean`: `strong_induction`
+      (§14) needs `strictOrder` and §1.6.1's pipeline order is Carrier before
+      WellFoundedness before Operations, so the order relation has to be
+      carrier-level content here, ahead of where it originally sat.
+
+## 14. Peano properties and induction (`WellFoundedness.lean`, depends on §13) — written
+
+- [x] `basic_decomposition`, `zero_is_not_successor`, `successor_is_injective`,
+      `induction_from_zero`, `strong_induction` — moved unchanged, still `sorry`.
+- [x] `WholeNumbersPeanoSystem` — **new**, not moved: packages the three
+      properties into a `PeanoSystem (Carrier natural_data) (PredicateSet
+      (Carrier natural_data))` value, matching `VonNeumannPeanoSystem`/
+      `PresburgerPeanoSystem`/`LandauPeanoSystem`'s shape. The source file
+      never packaged one; added for structural consistency across all four
+      constructions. `Carrier natural_data → Prop` and `PredicateSet
+      (Carrier natural_data)` are definitionally the same type, so
+      `induction_from_zero` fits the `induction` field with no adjustment.
+
+## 15. Arithmetic (`Operations.lean`, depends on §13) — written
+
+- [x] `addition`, `multiplication` — moved unchanged, calling `LandauAddition`/
+      `LandauMultiplication` on `natural_data.model` (renamed in place when
+      `NAddition`/`NMultiplication` were, per Part C).
+
+## 16. Laws and Behavior (`Laws.lean`/`Behavior.lean`, depends on §15) — written
+
+- [x] `additive_structure`, `semiring_structure`, `ordered_semiring_structure`,
+      `well_ordering` (`Laws.lean`) — moved unchanged, still `sorry`.
+- [x] `natural_embedding_preserves_structure` (`Behavior.lean`) — moved
+      unchanged, still `sorry`: the one theorem stating the embedding
+      actually computes as expected, not merely that some structure exists.
+
+## 17. Instances (`Instances.lean`, depends on §16) — written
+
+- [x] `zeroOn`/`oneOn`/`succOn`/`addOn`/`mulOn`/`ltOn`/`leOn` and the nine
+      certificate builders (`additiveSemigroupLawsOn`, ...,
+      `distributiveLawsOn`) — moved unchanged from `Builders.lean`, matching
+      §1.6.1's role for typeclass-instance registration.
