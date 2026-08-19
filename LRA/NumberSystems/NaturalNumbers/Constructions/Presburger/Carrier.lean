@@ -5,7 +5,7 @@ The Presburger carrier: a fresh native inductive type, backed by
 `LRA.Set.PredicateSet` for its notion of subset -- the type-theoretic
 counterpart to `NaturalNumbers.Constructions.VonNeumann`'s ZFC-derived one
 and the (not yet built) Landau construction's directly-postulated one. See
-`LRA/NaturalNumbers/ProofOrder.md`'s Backends section.
+`LRA/NumberSystems/NaturalNumbers/ProofOrder.md`'s Backends section.
 
 This carrier is deliberately a *fresh* inductive type, not Lean/Mathlib's
 own `Nat` -- the point of a construction here is to build the naturals up,
@@ -25,7 +25,7 @@ directly. Left `sorry` anyway, for you to decide whether to fill in as
 one-liners or treat the same as everything else.
 -/
 
-namespace LRA.NaturalNumbers.Constructions.Presburger
+namespace LRA.NumberSystems.NaturalNumbers.Constructions.Presburger
 
 open LRA.Set
 
@@ -63,4 +63,4 @@ theorem PresburgerInductionPrinciple :
       ∀ n : PresburgerElement, n ∈ subset := by
   sorry
 
-end LRA.NaturalNumbers.Constructions.Presburger
+end LRA.NumberSystems.NaturalNumbers.Constructions.Presburger

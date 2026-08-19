@@ -1,4 +1,4 @@
-import LRA.NaturalNumbers.Constructions.Presburger.Carrier
+import LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.Carrier
 import LRA.NumberSystems.PeanoSystem.Definition
 
 /-!
@@ -11,7 +11,7 @@ and (also unlike `VonNeumann`) the carrier needs no subtype restriction --
 carved out of a larger ambient type.
 -/
 
-namespace LRA.NaturalNumbers.Constructions.Presburger
+namespace LRA.NumberSystems.NaturalNumbers.Constructions.Presburger
 
 open LRA.Set
 
@@ -27,4 +27,4 @@ def PresburgerPeanoSystem :
   successor_injective := PresburgerSuccessorInjective
   induction := PresburgerInductionPrinciple
 
-end LRA.NaturalNumbers.Constructions.Presburger
+end LRA.NumberSystems.NaturalNumbers.Constructions.Presburger

@@ -1,4 +1,4 @@
-import LRA.NaturalNumbers.Constructions.Landau.Carrier
+import LRA.NumberSystems.NaturalNumbers.Constructions.Landau.Carrier
 import LRA.NumberSystems.PeanoSystem.Definition
 
 /-!
@@ -8,7 +8,7 @@ axioms here, not proved, per this construction's whole point (see
 comes from `PredicateSet.Definition`, the same as `Presburger`'s.
 -/
 
-namespace LRA.NaturalNumbers.Constructions.Landau
+namespace LRA.NumberSystems.NaturalNumbers.Constructions.Landau
 
 open LRA.Set
 
@@ -40,4 +40,4 @@ noncomputable def LandauPeanoSystem :
   successor_injective := LandauSuccessorInjective
   induction := LandauInduction
 
-end LRA.NaturalNumbers.Constructions.Landau
+end LRA.NumberSystems.NaturalNumbers.Constructions.Landau

@@ -11,12 +11,12 @@ via Extensionality -- so `Equivalence.lean` in this directory is a thin
 note rather than a real quotient construction, and everything about ω's
 carrier-level structure lives here instead of being split across the two.
 
-Every theorem below is `sorry`. See `LRA/NaturalNumbers/ProofOrder.md` for
+Every theorem below is `sorry`. See `LRA/NumberSystems/NaturalNumbers/ProofOrder.md` for
 the order they are meant to be discharged in; nothing here jumps ahead of
 that order.
 -/
 
-namespace LRA.NaturalNumbers.Constructions.VonNeumann
+namespace LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann
 
 open LRA.Set.ZFC
 
@@ -88,4 +88,4 @@ noncomputable def NaturalZero : NaturalElement :=
 noncomputable def NaturalSuccessor (element : NaturalElement) : NaturalElement :=
   ⟨VonNeumannSuccessor element.val, OmegaClosedUnderSuccessor element.val element.property⟩
 
-end LRA.NaturalNumbers.Constructions.VonNeumann
+end LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann

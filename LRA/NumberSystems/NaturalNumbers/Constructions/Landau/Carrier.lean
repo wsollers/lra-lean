@@ -11,14 +11,14 @@ this construction is the one of the three (`VonNeumann` from ZFC,
 `Presburger` from a native inductive type, `Landau` here) that plays the
 role for the naturals that `LRA.Set.ZFC` plays for sets: the axiomatic
 bedrock, not a model built on top of a different foundation. See
-`LRA/NaturalNumbers/ProofOrder.md`'s Backends section.
+`LRA/NumberSystems/NaturalNumbers/ProofOrder.md`'s Backends section.
 
 Backed by `LRA.Set.PredicateSet` for its notion of subset, the same as
 `Presburger` -- there is no bespoke "Landau set" notion to build, unlike
 `VonNeumann`'s ZFC-generic membership.
 -/
 
-namespace LRA.NaturalNumbers.Constructions.Landau
+namespace LRA.NumberSystems.NaturalNumbers.Constructions.Landau
 
 /-- The Landau carrier, postulated directly. -/
 axiom LandauElement : Type
@@ -31,4 +31,4 @@ axiom LandauOne : LandauElement
 /-- The successor operation, postulated directly. -/
 axiom LandauSuccessor : LandauElement → LandauElement
 
-end LRA.NaturalNumbers.Constructions.Landau
+end LRA.NumberSystems.NaturalNumbers.Constructions.Landau

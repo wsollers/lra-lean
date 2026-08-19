@@ -1,4 +1,4 @@
-import LRA.NaturalNumbers.Constructions.VonNeumann.Carrier
+import LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Carrier
 import LRA.NumberSystems.PeanoSystem.Definition
 
 /-!
@@ -7,12 +7,12 @@ and their packaging into a `LRA.NumberSystems.PeanoSystem.PeanoSystem` value --
 the proof that this construction actually realizes the generic interface.
 
 Every theorem below is `sorry`. `NaturalSuccessorInjective` is the one that
-needs the Foundation prerequisite from `LRA/NaturalNumbers/ProofOrder.md`
+needs the Foundation prerequisite from `LRA/NumberSystems/NaturalNumbers/ProofOrder.md`
 section 1; the rest need only what `Carrier.lean` already states (also
 `sorry`, per the same order).
 -/
 
-namespace LRA.NaturalNumbers.Constructions.VonNeumann
+namespace LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann
 
 open LRA.Set.ZFC
 
@@ -54,4 +54,4 @@ noncomputable def VonNeumannPeanoSystem :
   successor_injective := NaturalSuccessorInjective
   induction := NaturalInductionPrinciple
 
-end LRA.NaturalNumbers.Constructions.VonNeumann
+end LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann
