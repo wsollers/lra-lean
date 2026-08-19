@@ -3,7 +3,6 @@
 
 import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.VolumeII.NumberSystems.Models
-import LRA.VolumeII.Integers.ConstructionModels
 
 namespace LRA.NumberSystems.RationalNumbers
 

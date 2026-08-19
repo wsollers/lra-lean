@@ -1,7 +1,7 @@
 -- LRA/VolumeII/Integers/Implementation.lean
 -- Active integer carrier selection.
 
-import LRA.VolumeII.Integers.Polish
+import LRA.NumberSystems.Integers.Constructions.Polish
 
 namespace LRA.NumberSystems.Integers
 

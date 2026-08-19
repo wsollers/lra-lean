@@ -1,0 +1,70 @@
+-- LRA/NumberSystems/IntegerStructure/Interface/ModelTheory/Axioms.lean
+-- The integer-structure axioms, as sentences over `IntegerFirstOrderSignature`.
+
+import LRA.NumberSystems.IntegerStructure.Interface.ModelTheory.Model
+import LRA.NumberSystems.IntegerStructure.Definition
+import LRA.Logic.Model.SecondOrderMonadic.HenkinModel
+
+namespace LRA.NumberSystems.IntegerStructure.Interface.ModelTheory
+
+open LRA.NumberSystems.IntegerStructure.Interface.Signature
+
+/-!
+The inverse, base-relation, and aperiodicity axioms are first-order and are
+stated over any `FirstOrder.Model` of the signature. Two-sided induction is
+a second-order schema, exactly as for `PeanoSystem`'s induction axiom, so it
+is stated over a `HenkinModel` instead. See
+`PeanoSystem.Interface.ModelTheory.Axioms` for the one-sided precedent this
+mirrors.
+-/
+
+/-- Successor and predecessor are mutual inverses. -/
+def IntegerInverseAxiom
+    (M : LRA.Logic.FirstOrder.Model IntegerFirstOrderSignature) : Prop :=
+  (∀ element : M.Domain,
+    M.interpretFunction .predecessor (fun _ => M.interpretFunction .successor (fun _ => element)) =
+      element) /\
+  (∀ element : M.Domain,
+    M.interpretFunction .successor (fun _ => M.interpretFunction .predecessor (fun _ => element)) =
+      element)
+
+/-- The successor of zero is one, and the predecessor of zero is negative
+one. -/
+def IntegerBaseNeighboursAxiom
+    (M : LRA.Logic.FirstOrder.Model IntegerFirstOrderSignature) : Prop :=
+  (M.interpretFunction .successor (fun _ => M.interpretConstant .zero) =
+    M.interpretConstant .one) /\
+  (M.interpretFunction .predecessor (fun _ => M.interpretConstant .zero) =
+    M.interpretConstant .negativeOne)
+
+/-- No positive number of forward steps from zero returns to zero. -/
+def IntegerAperiodicAxiom
+    (M : LRA.Logic.FirstOrder.Model IntegerFirstOrderSignature) : Prop :=
+  ∀ iterations : Nat, 0 < iterations ->
+    LRA.NumberSystems.IntegerStructure.iterate
+      (fun element => M.interpretFunction .successor (fun _ => element))
+      iterations (M.interpretConstant .zero) ≠
+      M.interpretConstant .zero
+
+/-- Two-sided induction: every subset of the Henkin domain containing zero
+and closed under both successor and predecessor contains every element. -/
+def IntegerInductionAxiom
+    (M : LRA.Logic.SecondOrderMonadic.HenkinModel IntegerFirstOrderSignature) : Prop :=
+  ∀ subset ∈ M.SecondOrderDomain,
+    M.interpretConstant .zero ∈ subset ->
+    (∀ element ∈ subset,
+      M.interpretFunction .successor (fun _ => element) ∈ subset) ->
+    (∀ element ∈ subset,
+      M.interpretFunction .predecessor (fun _ => element) ∈ subset) ->
+    ∀ element : M.Domain, element ∈ subset
+
+/-- The full second-order integer-structure theory, all read off one
+`HenkinModel`. -/
+def IntegerStructureAxioms
+    (M : LRA.Logic.SecondOrderMonadic.HenkinModel IntegerFirstOrderSignature) : Prop :=
+  IntegerInverseAxiom M.toModel /\
+  IntegerBaseNeighboursAxiom M.toModel /\
+  IntegerAperiodicAxiom M.toModel /\
+  IntegerInductionAxiom M
+
+end LRA.NumberSystems.IntegerStructure.Interface.ModelTheory
