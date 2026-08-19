@@ -21,7 +21,7 @@ namespace LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann
 open LRA.Set.ZFC
 
 /-- A chosen witness to the Axiom of Infinity: some inductive set. -/
-noncomputable def TheInfinityWitness : Set :=
+noncomputable def TheInfinityWitness : LRA.Set.ZFCSet :=
   Classical.choose Infinity
 
 /-- The chosen Infinity witness is inductive -- `Infinity`'s statement
@@ -31,21 +31,21 @@ theorem TheInfinityWitnessIsInductiveSet :
   sorry
 
 /-- The von Neumann successor of `x`: `x ∪ {x}`. -/
-noncomputable def VonNeumannSuccessor (x : Set) : Set :=
+noncomputable def VonNeumannSuccessor (x : LRA.Set.ZFCSet) : LRA.Set.ZFCSet :=
   TheUnion x (TheSingleton x)
 
 /-- The von Neumann successor of `x` is a successor of `x` in the ZFC
 sense: it contains exactly `x`'s members plus `x` itself. -/
-theorem VonNeumannSuccessorIsSuccessorOf (x : Set) :
+theorem VonNeumannSuccessorIsSuccessorOf (x : LRA.Set.ZFCSet) :
     IsSuccessorOf x (VonNeumannSuccessor x) := by
   sorry
 
 /-- ω: the elements of the Infinity witness that lie in every inductive
 subset of it -- the minimal inductive set, via a single Separation
 application (no new ZFC primitive needed for "smallest"). -/
-noncomputable def Omega : Set :=
+noncomputable def Omega : LRA.Set.ZFCSet :=
   TheSeparatedSubset TheInfinityWitness
-    (fun x => ∀ B : Set, IsInductiveSet B → Subset B TheInfinityWitness → x ∈ B)
+    (fun x => ∀ B : LRA.Set.ZFCSet, IsInductiveSet B → Subset B TheInfinityWitness → x ∈ B)
 
 /-- ω is itself an inductive set: it contains ∅ and is closed under the
 von Neumann successor. -/
@@ -60,7 +60,7 @@ theorem TheEmptySetInOmega : TheEmptySet ∈ Omega := by
 /-- ω is closed under the von Neumann successor -- the closure case of
 `OmegaIsInductiveSet`, pulled out for the same reason. -/
 theorem OmegaClosedUnderSuccessor :
-    ∀ x : Set, x ∈ Omega → VonNeumannSuccessor x ∈ Omega := by
+    ∀ x : LRA.Set.ZFCSet, x ∈ Omega → VonNeumannSuccessor x ∈ Omega := by
   sorry
 
 /-!
@@ -71,11 +71,11 @@ The actual carrier `PeanoSystem` will be built over: not `ZFCSet` itself
 -/
 
 /-- The von Neumann natural numbers: elements of `ZFCSet` that lie in ω. -/
-def NaturalElement : Type := {x : Set // x ∈ Omega}
+def NaturalElement : Type := {x : LRA.Set.ZFCSet // x ∈ Omega}
 
 /-- Membership of a natural element in an arbitrary `ZFCSet`, read off the
 underlying set's native ZFC membership. -/
-instance : Membership NaturalElement Set where
+instance : Membership NaturalElement LRA.Set.ZFCSet where
   mem containingSet element := element.val ∈ containingSet
 
 /-- The distinguished element: ∅, viewed as a natural element via

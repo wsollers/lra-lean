@@ -37,7 +37,7 @@ and closed under `NaturalSuccessor` contains every natural element. This is
 `Omega`'s minimality (`Carrier.lean`'s `TheSeparatedSubset` characterization)
 restated in `PeanoSystem`'s own shape. -/
 theorem NaturalInductionPrinciple :
-    ∀ subset : Set,
+    ∀ subset : LRA.Set.ZFCSet,
       NaturalZero ∈ subset →
       (∀ element : NaturalElement, element ∈ subset → NaturalSuccessor element ∈ subset) →
       ∀ element : NaturalElement, element ∈ subset := by
@@ -47,7 +47,7 @@ theorem NaturalInductionPrinciple :
 carrier and `ZFCSet` subsets -- the same shape
 `PresburgerModel.toPeanoSystem` already uses for Presburger's own backend. -/
 noncomputable def VonNeumannPeanoSystem :
-    LRA.NumberSystems.PeanoSystem.PeanoSystem NaturalElement Set where
+    LRA.NumberSystems.PeanoSystem.PeanoSystem NaturalElement LRA.Set.ZFCSet where
   one := NaturalZero
   successor := NaturalSuccessor
   one_not_successor := NaturalZeroIsNotSuccessor
