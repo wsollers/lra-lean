@@ -274,3 +274,82 @@ pass, once §6 is answered.
    `Polynomial`, §4.5's possible overlap with `RationalQuotientFractions`,
    §4.6's likely-redundant `MultiplicativeInverses.lean`) — resolve as part
    of this redesign, or file as follow-ups and keep this pass additive-only?
+
+## 7. Discussion notes (recorded, not yet resolved)
+
+Per the user's explicit instruction, these are recorded for later
+discussion — nothing below has been acted on, and §4 above is left
+unchanged so the original proposal stays visible next to the pushback.
+
+**A recurring pattern across all of this feedback**: a two-tier split,
+generic law in an algebra-flavored subject + a *concrete realization*
+instantiated at the actual constructed number systems in
+`NumberSystems/Arithmetic`. This is a sharper version of §4's placements
+than the design doc first drew — several of §4's "home: AlgebraicStructures"
+calls implicitly assumed the generic law was the whole story; the user's
+model keeps `NumberSystems/Arithmetic` alive as a real, non-thin location
+(concrete instantiations), not just a curricular aggregator as §3 assumed.
+
+**Intervals (§4.10) — pushback on the `LRA.Order` placement.** User's
+view: intervals belong in `NumberSystems`, as something like a "space"
+(possibly Euclidean space, possibly its own "Intervals" notion) — ordered
+lattices of a type, or of types embedded in a type (i.e. genuinely
+tied to the number-system embedding chain, not abstract-order-generic).
+Intervals are *sets*, so they carry the `LRA.Set` operations for free
+(membership, union, intersection, ...) the same way any other constructed
+set-of-something does elsewhere in this migration. Also wants: open/closed
+endpoints, length, distance — i.e. more than the pure order-theoretic
+content §4.10 proposed; length/distance reach toward metric structure.
+Not yet decided where exactly ("space," "Euclidean space," "Intervals" all
+floated) — needs its own follow-up discussion, possibly touching how far
+into metric/analysis-adjacent territory this should reach before it
+becomes `LRA.Analysis`'s job instead.
+
+**Elementary real-valued functions (§4.8) — resolved differently than my
+lean.** User's call: specific functions (absolute value, even/odd
+functions, and by extension this whole family) go into **`LRA.Analysis`**,
+not `LRA.Function` and not a new `RealNumbers/Functions` group. This
+overrides §1's blanket "nothing here is Analysis, everything is
+pre-analysis" framing — the user's model apparently treats "the study of
+named real-valued functions" as `Analysis`'s job specifically, distinct
+from the pre-analysis number-system constructions themselves. Worth
+reconciling explicitly with §1's framing in the next pass (is *all* of
+Analysis off-limits except this one family, or does this mean the
+pre-analysis/analysis boundary should be redrawn generally?).
+
+**Fractions, exponentiation, and similar (§4.2, §4.5) — confirmed as
+two-tier.** Generic algebraic structure stays generic (§4.2's
+`AlgebraicStructures` lean for exponentiation stands); the *concrete
+realizations* at the actual number-system carriers belong in
+`NumberSystems/Arithmetic` as a real, populated location — not folded
+away or left as a thin aggregator per §3's original framing.
+
+**Polynomials, polynomial fractions (§4.3, §4.4) — same two-tier pattern,
+subject name uncertain.** User: these belong in "Algebra," floating the
+possibility of "pushing `AlgebraicStructures` down" (i.e. `AlgebraicStructures`
+itself might need to become, or sit inside, a broader `Algebra` subject,
+or a new subject appears alongside it) — explicitly unresolved ("not
+sure"). Concrete realizations again go in `NumberSystems/Arithmetic`.
+This needs a decision on whether `LRA.AlgebraicStructures` (already a
+subject-list entry, §1.1) *is* "Algebra," or whether a distinct `LRA.Algebra`
+subject is being proposed on top of it — a structural question with
+knock-on effects for §4.2's exponentiation placement too, since that was
+also aimed at `AlgebraicStructures`.
+
+**Equations and inequalities (§4.9) — still open on the user's side.**
+Assistant's opinion, offered for the later discussion, not a decision:
+apply the same two-tier split symmetrically to *both* equations and
+inequalities, and place the generic solvability theory for both in
+Algebra/`AlgebraicStructures` rather than splitting inequalities off to
+`LRA.Order` as §4.9 first proposed. Reasoning: "solve this inequality" is
+not abstract order theory (posets, lattices, bounds) — it is specifically
+about how an order interacts with ring/field operations, which is what
+`OrderedField`/`OrderedRing`/`LinearlyOrderedRing` already encode as
+concrete structures under `AlgebraicStructures`
+(`AdditionRespectsOrderLaws`, `MultiplicationRespectsOrderLaws`, ...).
+Equation-solving is the same story one level down, with no order
+involved at all. This mirrors the user's own reasoning against the
+`Order` placement for intervals: arithmetic-flavored content stays closer
+to Algebra/NumberSystems than to abstract Order, even when an order
+relation is involved. Systems of either stay wherever their members do —
+no separate "systems" subject or group needed.
