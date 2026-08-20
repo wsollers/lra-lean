@@ -9,6 +9,7 @@ import LRA.Operation
 import LRA.Order
 import LRA.UniversalAlgebra
 import LRA.AlgebraicStructures
+import LRA.Analysis
 
 import LRA.VolumeI
 import LRA.VolumeII

@@ -6,6 +6,8 @@ import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.Behavior
 
 namespace LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs
 
+open LRA.AlgebraicStructures
+
 variable {R : Type u}
 
 section RingCertificates

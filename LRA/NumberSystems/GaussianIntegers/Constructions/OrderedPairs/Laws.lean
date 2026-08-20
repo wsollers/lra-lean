@@ -5,6 +5,8 @@ import LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.WellDefined
 
 namespace LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs
 
+open LRA.AlgebraicStructures
+
 variable {R : Type u}
 
 section RingTheorems

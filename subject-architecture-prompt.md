@@ -1,6 +1,6 @@
 # LRA Subject Architecture, Naming Conventions, and Coding Standards
 
-Work in the `lra-lean` repository, on the `standardization` line. Treat this as
+Work in the `lra-lean` repository, on the main line. Treat this as
 an implementation task, not an advisory review. Read the repository governance
 entrypoint and run the canonical route resolver before editing.
 
@@ -46,7 +46,6 @@ LRA.EuclideanSpace    coordinates, points, lines, planes, intervals: ℝ → ℝ
 LRA.Analysis          Bounds, MetricSpaces, MeasureTheory, FunctionalAnalysis
 LRA.Topology          general topology
 LRA.LinearAlgebra     vector spaces and linear maps
-LRA.Internal          explicitly non-API orienting and scratch material
 ```
 
 Create a subject only when it owns durable declarations. Do not create empty

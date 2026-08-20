@@ -5,6 +5,8 @@ import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.WellDefinedne
 
 namespace LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs
 
+open LRA.AlgebraicStructures
+
 variable {R : Type u}
 
 section RingTheorems

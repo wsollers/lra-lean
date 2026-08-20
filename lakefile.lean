@@ -75,7 +75,7 @@ lean_lib LRATests where
     `LRA.VolumeI.Set.CollectionAlgebraAdaptersTest,
     `LRA.SemanticImportsSmoke,
     `LRA.Morphism.FailureModesTest,
-    `LRA.VolumeIII.Analysis.Bounding.BoundsTests,
+    `LRA.Analysis.Bounding.BoundsTests,
     `LRA.VolumeIV.Learning.MetricTopologyAdapterTest,
     `LRA.VolumeIV.TopologicalSpaces.TopologyCompatibilityTest
   ]

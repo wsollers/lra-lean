@@ -6,6 +6,9 @@ import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.Laws
 
 namespace LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs
 
+open LRA.AlgebraicStructures
+open LRA.Order
+
 variable {R : Type u}
 
 section EmbeddingTheorems

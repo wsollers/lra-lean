@@ -1,5 +1,5 @@
 import LRA.VolumeIII.RealNumbers
-import LRA.VolumeIII.Analysis
+import LRA.Analysis
 
 /-!
 Aggregate import for Volume III.

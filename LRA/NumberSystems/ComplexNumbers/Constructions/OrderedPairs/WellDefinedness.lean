@@ -7,6 +7,8 @@ import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.Operations
 
 namespace LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs
 
+open LRA.AlgebraicStructures
+
 variable {R : Type u}
 
 section FieldTheorems

@@ -6,6 +6,8 @@ import LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.Behavior
 
 namespace LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs
 
+open LRA.AlgebraicStructures
+
 variable {R : Type u}
 
 section Certificates
