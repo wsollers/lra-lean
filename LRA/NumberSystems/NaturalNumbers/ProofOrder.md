@@ -1,298 +1,359 @@
-# Natural Numbers Proof Order
+# LRA.NumberSystems.NaturalNumbers — Proof Order
 
-Tracks the proofs needed to land all four natural-number constructions as
-working realizations of `LRA.NumberSystems.PeanoSystem`, in the order they
-must be discharged. Every item marked `[ ]` is currently `sorry` or (for
-Landau) a genuine `axiom`; nothing is filled in until it's checked off.
+Ledger notation: see [`LRA/ProofOrderNotation.md`](../../ProofOrderNotation.md).
 
-## Backends
+## Narrative order
 
-Every concrete natural-number system is written *generically* against
+Four constructions, all written *generically* against
 `PeanoSystem Element SetObject [Membership Element SetObject]` — the same
-interface, unparameterized by backend. What differs per construction is which
-concrete `Element`/`SetObject` pair gets plugged in when the system is
-actually built, and how its three law fields (`one_not_successor`,
-`successor_injective`, `induction`) get discharged:
+interface, unparameterized by backend. What differs per construction is
+which concrete `Element`/`SetObject` pair gets plugged in, and how the
+three Peano law fields (`one_not_successor`, `successor_injective`,
+`induction`) get discharged:
 
-| System | `Element` / `SetObject` | How the axioms are discharged |
+| Construction | `Element` / `SetObject` | How the Peano laws are discharged |
 |---|---|---|
-| `VonNeumann` | `{x : LRA.Set.ZFCSet // x ∈ Omega}` / `LRA.Set.ZFCSet` | **Proved as theorems**, from `LRA.Set.ZFC`'s axioms (Pairing, Union, Empty Set, Infinity, Separation, Foundation) |
-| `Landau` | a bare postulated `LandauElement` / `PredicateSet LandauElement` | **Postulated directly as axioms**, mirroring how `LRA.Set.ZFCSet` itself is postulated (`axiom ZFCSet : Type`) |
-| `Presburger` | a fresh inductive `PresburgerElement` / `PredicateSet PresburgerElement` | **Proved as theorems**, free via the inductive type's own generated recursor/injectivity/no-confusion — see §8 |
-| `WholeNumbers` | `Option Element` / `PredicateSet (Option Element)`, generic over any one-based `model : PeanoSystem Element SetObject` | **Proved as theorems**, by adjoining a new zero (`none`) to whatever one-based system is passed in — see Part D |
+| `VonNeumann` | `{x : ZFCSet // x ∈ Omega}` / `ZFCSet` | proved as theorems, from `LRA.Set.ZFC`'s axioms |
+| `Landau` | a bare postulated `LandauElement` / `PredicateSet LandauElement` | postulated directly as `axiom`s, mirroring `ZFCSet`'s own postulation |
+| `Presburger` | a fresh inductive `PresburgerElement` / `PredicateSet PresburgerElement` | proved as theorems, free via the inductive type's own generated recursor/injectivity/no-confusion |
+| `WholeNumbers` | `Option Element` / `PredicateSet (Option Element)`, generic over any one-based model | proved as theorems, by adjoining a new zero (`none`) to whatever one-based system is passed in |
 
-All four end up as values of the same `PeanoSystem Element SetObject` type,
-just for different `Element`/`SetObject` choices. That's why
-`PeanoSystem.Categoricity.UniquenessOfPeanoSystemsUpToIsomorphism` matters:
-it's the one proof that ties all four together as "the same" natural
-numbers, rather than four unrelated claims that happen to share a name.
+All four end up as values of the same `PeanoSystem Element SetObject`
+type for different `Element`/`SetObject` choices — why
+`PeanoSystem.Categoricity.UniquenessOfPeanoSystemsUpToIsomorphism` (owned
+by the `PeanoSystem` subject, not this one) matters: it ties all four
+together as "the same" natural numbers rather than four unrelated claims
+sharing a name. `WholeNumbers` reads as a fourth construction of the
+naturals themselves (adjoining a zero to a one-based model, the same move
+`VonNeumann`/`Presburger` make by different techniques), not a new rung on
+the embedding chain, which is why it lives here rather than as its own
+top-level system.
 
-`WholeNumbers` was originally a separate `LRA.VolumeII.WholeNumbers` system
-in the embedding chain ("naturals, whole, integer, rational, ..."); reading
-its actual content (`Carrier natural_data := Option Element`, plus the three
-Peano properties stated for it) showed it is a *fourth construction of the
-naturals themselves* — adjoining a zero to a one-based model is exactly what
-`VonNeumann` and `Presburger` also do, by different techniques — not a new
-rung on the ladder. It moved here rather than getting its own top-level home.
+`Landau`'s three base Peano properties (`LandauBaseNotSuccessor`,
+`LandauSuccessorInjective`, `LandauInduction`) are genuine `axiom`
+declarations by design, not proof obligations — not tracked below, the
+same way `ZFCSet`'s own postulation isn't.
 
----
+`VonNeumann`'s proof order additionally depends on two prerequisites
+outside this subject entirely, owned by `LRA.Set` (not yet audited for its
+own `ProofOrder.md`): `LRA.Set.ZFC.SeparatedSubsetExists` (needed to carve
+ω out of an Infinity witness) and `LRA.Set.ZFC.NoSetIsMemberOfItself`/
+`FoundationWitnessExists` (needed to rule out a 2-cycle in successor-
+injectivity). Both are still `sorry` as of this pass; `VonNeumann`'s own
+entries below are ordered Carrier before WellFoundedness regardless, since
+that dependency is external to this subject's own proof order.
 
-# Part A — VonNeumann (ZFC)
+`Landau`'s and `Presburger`'s arithmetic operations (`LandauAddition`/
+`LandauMultiplication`/`LandauExponentiation`, `PresburgerAddition`) are
+all built via `Classical.choose`/`choose_spec` over
+`LRA.NumberSystems.PeanoSystem.Recursion.BinaryIterator`'s
+`ExistenceOfBinaryIteratorOperation`/`BinaryIteratorOperationWellDefined`
+— both `sorry`, in the separate `PeanoSystem` subject. **Every theorem
+built on them below is therefore `PENDING`, including several whose own
+proof term contains no literal `sorry`** (e.g. `LandauAdditionClauses :=
+Classical.choose_spec (ExistenceOfBinaryIteratorOperation ...)`): the
+argument passed to `choose_spec` is itself an incomplete proof term, so
+the axiom closure carries `sorryAx` transitively. This is the load-bearing
+reason this repo's policy requires the axiom-closure check rather than a
+textual `sorry` scan — confirmed by direct trace here, not assumed.
 
-## 1. ZFC prerequisites
+## Per-theorem ledger
 
-Two proofs in `LRA.Set.ZFC` block everything below and are not specific to
-natural numbers — general set-theory lemmas the von Neumann construction
-happens to be the first consumer of. Both axioms already have the right
-shape; these are restating them usably, the same one-line move
-`PairSetExists`/`UnionOverExists` already are.
+Every entry not covered by the transitive note above has a proof body
+that is the single tactic `sorry` with no intermediate lemmas, so for
+those a textual read and an axiom-closure check agree exactly. Re-derive
+via `scripts/GenerateProofOrderManifest.lean` once a Lean toolchain is
+available, rather than trusting this by-eye pass (including its
+dependency trace through `BinaryIterator.lean`) for any future edit to
+this subject.
 
-- [ ] `LRA.Set.ZFC.SeparatedSubsetExists` (`Separation/Theorems.lean`) — needed
-      to carve the minimal inductive set (ω) out of an Infinity witness.
-- [ ] `LRA.Set.ZFC.FoundationWitnessExists` or `NoSetIsMemberOfItself`
-      (`Foundation/Theorems.lean`) — needed to rule out the 2-cycle
-      `x ∈ y ∧ y ∈ x` in successor-injectivity, below.
+### `Constructions/VonNeumann/Carrier.lean`
 
-## 2. The successor operation (`Carrier.lean`) — written
+#### TheInfinityWitnessIsInductiveSet
 
-No blockers — `TheEmptySet`, `PairSet`/`TheSingleton`, and `TheUnion` are
-already fully proved in `LRA.Set.ZFC`.
+IsInductiveSet(TheInfinityWitness)
 
-- [x] `VonNeumannSuccessor (x : Set) : Set := TheUnion x (TheSingleton x)`
-      — a `def`, not a proof.
-- [ ] `VonNeumannSuccessorIsSuccessorOf : IsSuccessorOf x (VonNeumannSuccessor x)`
-      — unfolds `TheUnionMembership` + `TheSingletonIsSingletonSet`.
+**Status: PENDING**
 
-## 3. ω itself (`Carrier.lean`, depends on §1) — written
+#### VonNeumannSuccessorIsSuccessorOf
 
-- [x] `TheInfinityWitness : Set := Classical.choose Infinity`.
-- [ ] `TheInfinityWitnessIsInductiveSet` — `Infinity`'s statement unfolds to
-      exactly `IsInductiveSet`.
-- [x] `Omega : Set := TheSeparatedSubset TheInfinityWitness (fun x => ∀ B,
-      IsInductiveSet B → Subset B TheInfinityWitness → x ∈ B)` — ω as "the
-      elements of the witness in every inductive subset of it." One
-      Separation application; no new ZFC primitive needed for "smallest."
-- [ ] `OmegaIsInductiveSet : IsInductiveSet Omega` — this *is* the induction
-      principle, stated set-theoretically; §5 below repackages it against
-      `PeanoSystem`'s own shape.
-- [ ] `TheEmptySetInOmega : TheEmptySet ∈ Omega` — base case, pulled out of
-      `OmegaIsInductiveSet` because §4 needs it directly.
-- [ ] `OmegaClosedUnderSuccessor : ∀ x ∈ Omega, VonNeumannSuccessor x ∈ Omega`
-      — closure case, same reason.
+∀ x : ZFCSet, IsSuccessorOf(x, VonNeumannSuccessor(x))
 
-## 4. The actual carrier (`Carrier.lean`, depends on §3) — written
+**Status: PENDING**
 
-**Correction to the original plan**: the carrier is *not* `ZFCSet` itself.
-`PeanoSystem`'s `induction` field quantifies over its entire `Element` type,
-so `Element` has to *be* ω, not merely relate to it — `ZFCSet` contains every
-set, not just the naturals, and induction over all of `ZFCSet` would be
-false.
+#### OmegaIsInductiveSet
 
-- [x] `NaturalElement : Type := {x : Set // x ∈ Omega}`.
-- [x] `instance : Membership NaturalElement Set` — reads off the underlying
-      set's native ZFC membership.
-- [x] `NaturalZero : NaturalElement := ⟨TheEmptySet, TheEmptySetInOmega⟩`
-      (`noncomputable`, since `TheEmptySet` is).
-- [x] `NaturalSuccessor (element) : NaturalElement := ⟨VonNeumannSuccessor
-      element.val, OmegaClosedUnderSuccessor element.val element.property⟩`
-      (`noncomputable`, same reason).
+IsInductiveSet(Omega)
 
-## 5. The three Peano properties on `NaturalElement` (`WellFoundedness.lean`, depends on §4) — written
+**Status: PENDING**
 
-- [ ] `NaturalZeroIsNotSuccessor` — every von Neumann successor contains its
-      predecessor, so it's never empty; doesn't need Foundation.
-- [ ] `NaturalSuccessorInjective` (depends on §1's Foundation lemma) — the
-      2-cycle argument.
-- [ ] `NaturalInductionPrinciple` — restates §3's `OmegaIsInductiveSet`/ω-
-      minimality fact in `PeanoSystem`'s own field shape.
+#### TheEmptySetInOmega
 
-## 6. Package as a `PeanoSystem` (`WellFoundedness.lean`, depends on §5) — written
+TheEmptySet ∈ Omega
 
-- [x] `VonNeumannPeanoSystem : LRA.NumberSystems.PeanoSystem.PeanoSystem
-      NaturalElement Set` — bundles §5's three proofs, the same shape
-      `PresburgerModel.toPeanoSystem` already uses. `noncomputable`, since
-      `NaturalZero`/`NaturalSuccessor` are.
+**Status: PENDING**
 
-## 7. §1.6.1 construction pipeline (depends on §6) — not started
+#### OmegaClosedUnderSuccessor
 
-`Carrier.lean`, `Equivalence.lean` (a stub — no quotient is taken; see the
-file itself), and `WellFoundedness.lean` are §2–§6 above. Operations,
-WellDefinedness, Laws, Behavior, and Instances are new:
+∀ x : ZFCSet, x ∈ Omega → VonNeumannSuccessor(x) ∈ Omega
 
-- [ ] `Operations.lean` — addition and multiplication via
-      `PeanoSystem.Recursion`'s existing binary-iterator machinery (same
-      pattern `NAddition`/`NMultiplication` already use).
-- [ ] `WellDefinedness.lean` — likely thin/trivial: no quotient is taken
-      here (ZFCSet equality is native, via Extensionality), unlike a
-      pairs-and-equivalence construction such as the integers.
-- [ ] `Laws.lean` — associativity, commutativity, distributivity: real
-      induction proofs, not restatements.
-- [ ] `Behavior.lean` — e.g. the successor of ∅'s embedding is the embedding
-      of "one," addition/multiplication compute as expected on small
-      concrete elements.
-- [ ] `Instances.lean` — registers into `PeanoSystem`/whichever system
-      interface consumes this construction, plus `Add`/`Mul`/`OfNat`
-      instances via the `Builders.lean`-style local-activation pattern
-      `NModel.addOn` etc. already establish.
+**Status: PENDING**
 
----
+### `Constructions/VonNeumann/WellFoundedness.lean`
 
-# Part B — Presburger (PredicateSet / type theory)
+#### NaturalZeroIsNotSuccessor
 
-A fresh carrier realizing the bare Peano axioms (§8-9), plus the generic
-`PresburgerModel`/`PresburgerAddition`/order-relation content, reconnected
-here from the old `LRA.VolumeII.PeanoSystems.Presburger` tree (§10).
+∀ element : NaturalElement, NaturalSuccessor(element) ≠ NaturalZero
 
-## 8. The carrier and the three Peano properties (`Carrier.lean`) — written, flagged
+**Status: PENDING**
 
-- [x] `inductive PresburgerElement | zero | succ (n : PresburgerElement)`.
-- [x] `PresburgerLessThan` — Presburger's primitive order relation, defined
-      directly by structural recursion (not derived from addition, matching
-      the `{0, S, +, <}` signature).
-- [ ] `PresburgerZeroIsNotSuccessor` — **free** via
-      `PresburgerElement.noConfusion`.
-- [ ] `PresburgerSuccessorInjective` — **free** via
-      `PresburgerElement.succ.inj`.
-- [ ] `PresburgerInductionPrinciple` — **free** via `PresburgerElement.rec`,
-      `subset` as the motive.
+#### NaturalSuccessorInjective
 
-These three are not open mathematical questions the way §1/§5's are — each
-is close to a one-line application of something the `inductive` keyword
-already generated. Left `sorry` for now per the same discipline as
-`VonNeumann`; worth revisiting whether to just fill them in, since
-"discharging" them isn't really an exercise the way the ZFC-dependent ones
-are.
+∀ first second : NaturalElement, NaturalSuccessor(first) = NaturalSuccessor(second) → first = second
 
-## 9. Package as a `PeanoSystem` (`WellFoundedness.lean`, depends on §8) — written
+**Status: PENDING**
 
-- [x] `PresburgerPeanoSystem : LRA.NumberSystems.PeanoSystem.PeanoSystem
-      PresburgerElement (PredicateSet PresburgerElement)` — bundles §8's
-      three proofs. Not `noncomputable`: nothing here uses `Classical.choose`.
+#### NaturalInductionPrinciple
 
-## 10. Reconnect to the existing Presburger content — done, decided as "stay generic"
+∀ subset : ZFCSet, NaturalZero ∈ subset ∧ (∀ element : NaturalElement, element ∈ subset → NaturalSuccessor(element) ∈ subset) → ∀ element : NaturalElement, element ∈ subset
 
-Decided: `PresburgerModel` (order relation included), `PresburgerAddition`,
-and the FO signature/model stay *generic* over `[Membership Element SetObject]`
-— not collapsed onto `PresburgerElement` specifically — matching the same
-call made for Landau's arithmetic in Part C. `PresburgerElement`/
-`PresburgerLessThan`/`PresburgerPeanoSystem` (§8-9) are one particular,
-concrete instantiation of this generic interface, not a replacement for it.
+**Status: PENDING**
 
-- [x] `PresburgerModel` (generic struct, order field included) and
-      `PresburgerModel.toPeanoSystem` moved to `Carrier.lean`, unchanged in
-      substance, from `LRA.VolumeII.PeanoSystems.Presburger.PresburgerModel`.
-- [x] `PresburgerArithmetic` moved to `WellFoundedness.lean`.
-- [x] `PresburgerAddition`/`PresburgerAdditionClauses` moved to
-      `Operations.lean` (`PresburgerAdditionWellDefined` stays `sorry`, as
-      it always was).
-- [x] The FO signature (`PresburgerFunctionSymbol` etc.,
-      `PresburgerSignature`) and `PresburgerModel.toFirstOrderModel` moved
-      to `Instances.lean`, per §1.6.1: a construction discharges its model
-      obligation once, by exhibiting the `Model`.
-- [x] `LRA.VolumeII.PeanoSystems.Presburger.ModelTheory.FirstOrderSignature`
-      (the *other* signature in that directory, `AdditiveOrderedSignature`)
-      confirmed NOT Presburger-specific and left untouched —
-      `LRA.NumberSystems.Integers.Construction.Model`'s import of it is
-      unaffected.
-- [ ] §1.6.1's remaining pipeline stages (WellDefinedness/Laws/Behavior),
-      same shape as Part A §7.
+### `Constructions/Presburger/Carrier.lean`
 
----
+#### PresburgerZeroIsNotSuccessor
 
-# Part C — Landau (postulated axioms)
+∀ n : PresburgerElement, succ(n) ≠ zero
 
-## 11. The carrier and axioms (`Carrier.lean` + `WellFoundedness.lean`) — written
+**Status: PENDING**
 
-Not `sorry` — these are genuine `axiom`s by design (see `Carrier.lean`'s own
-doc comment for why), not proof obligations to discharge later.
+#### PresburgerSuccessorInjective
 
-- [x] `axiom LandauElement : Type`.
-- [x] `axiom LandauOne : LandauElement`.
-- [x] `axiom LandauSuccessor : LandauElement → LandauElement`.
-- [x] `axiom LandauBaseNotSuccessor`.
-- [x] `axiom LandauSuccessorInjective`.
-- [x] `axiom LandauInduction`.
-- [x] `LandauPeanoSystem : LRA.NumberSystems.PeanoSystem.PeanoSystem
-      LandauElement (PredicateSet LandauElement)` — built directly from the
-      axioms above, no proof obligation of its own.
+∀ m n : PresburgerElement, succ(m) = succ(n) → m = n
 
-## 12. §1.6.1 construction pipeline — Operations done, rest not started
+**Status: PENDING**
 
-Decided the same way as Part B §10: kept *generic* over `[Membership Element
-SetObject]`, not collapsed onto `LandauElement` specifically —
-`WholeNumbers/Construction/Model.lean` genuinely needs that genericity (it
-adjoins a zero to "the active one-based carrier," not to `LandauElement` by
-name), and forcing it to commit would have narrowed a working consumer for
-no proof benefit (everything downstream is still `sorry` either way).
+#### PresburgerInductionPrinciple
 
-- [x] `Operations/{Addition,Multiplication,Exponentiation,Builders}.lean` +
-      router, moved and renamed (`N` prefix -> `Landau` prefix) from
-      `LRA.VolumeII.NaturalNumbers.Operations.*`, confirmed one-based by
-      the base cases named below. `NModel` itself retired — it added no
-      field over `LRA.NumberSystems.PeanoSystem.PeanoSystem`, so `model`
-      throughout is a bare `PeanoSystem` value now, and every former
-      `model.toPeanoSystem` call is simply `model`.
-- [x] `WholeNumbers/Construction/Model.lean`, `Integers/ConstructionModels.lean`,
-      and `Integers/Mendelson/Construction/Model.lean` repointed at
-      `LRA.NumberSystems.PeanoSystem.PeanoSystem` (the last two only ever
-      used `NModel`'s type abstractly, `Nonempty (NModel ...)`; `WholeNumbers`
-      calls `LandauAddition`/`LandauMultiplication` directly, renamed in place).
-- [ ] WellDefinedness/Laws/Behavior — not started. (`Laws`-shaped content
-      already exists as `LandauAdditionIsAssociative` etc., still `sorry`,
-      moved as-is rather than freshly split into pipeline roles.)
+∀ subset : PredicateSet(PresburgerElement), zero ∈ subset ∧ (∀ n : PresburgerElement, n ∈ subset → succ(n) ∈ subset) → ∀ n : PresburgerElement, n ∈ subset
 
----
+**Status: PENDING**
 
-# Part D — WholeNumbers (adjoin zero to a one-based system)
+### `Constructions/Presburger/Operations.lean`
 
-Moved from `LRA.VolumeII.WholeNumbers.Construction.{Model,Builders}` in full
-(§1.6.1's whole pipeline, not just the carrier), since the source content
-already covered every role. Kept generic over `Element`/`SetObject`, same
-call as `Landau`/`Presburger`'s generic content — nothing here requires
-committing to a specific one-based system, though `LandauAddition`/
-`LandauMultiplication` (Landau's own, still generically-typed) are what it
-actually calls.
+Context: let `model` be a `PresburgerModel(Element, SetObject)`.
 
-## 13. Carrier and basic structure (`Carrier.lean`) — written, flagged
+#### PresburgerAdditionClauses
 
-- [x] `NaturalArithmeticForWholeNumbers`, `Carrier := Option Element`,
-      `zero`, `one`, `naturalEmbedding`, `successor` — moved unchanged.
-- [x] `strictOrder`/`nonstrictOrder` — moved here from the source file's own
-      "Operations" section, *not* to `Operations.lean`: `strong_induction`
-      (§14) needs `strictOrder` and §1.6.1's pipeline order is Carrier before
-      WellFoundedness before Operations, so the order relation has to be
-      carrier-level content here, ahead of where it originally sat.
+BinaryIteratorOperationClauses(model.toPeanoSystem, (fun left => left), (fun _ value => model.successor(value)), PresburgerAddition(model))
 
-## 14. Peano properties and induction (`WellFoundedness.lean`, depends on §13) — written
+Proof term is `Classical.choose_spec (ExistenceOfBinaryIteratorOperation ...)` — transitively PENDING (see narrative note above), not a literal `sorry`.
 
-- [x] `basic_decomposition`, `zero_is_not_successor`, `successor_is_injective`,
-      `induction_from_zero`, `strong_induction` — moved unchanged, still `sorry`.
-- [x] `WholeNumbersPeanoSystem` — **new**, not moved: packages the three
-      properties into a `PeanoSystem (Carrier natural_data) (PredicateSet
-      (Carrier natural_data))` value, matching `VonNeumannPeanoSystem`/
-      `PresburgerPeanoSystem`/`LandauPeanoSystem`'s shape. The source file
-      never packaged one; added for structural consistency across all four
-      constructions. `Carrier natural_data → Prop` and `PredicateSet
-      (Carrier natural_data)` are definitionally the same type, so
-      `induction_from_zero` fits the `induction` field with no adjustment.
+**Status: PENDING**
 
-## 15. Arithmetic (`Operations.lean`, depends on §13) — written
+#### PresburgerAdditionWellDefined
 
-- [x] `addition`, `multiplication` — moved unchanged, calling `LandauAddition`/
-      `LandauMultiplication` on `natural_data.model` (renamed in place when
-      `NAddition`/`NMultiplication` were, per Part C).
+∃ addition : Element → Element → Element, BinaryIteratorOperationClauses(model.toPeanoSystem, (fun left => left), (fun _ value => model.successor(value)), addition) ∧ (∀ other, BinaryIteratorOperationClauses(model.toPeanoSystem, (fun left => left), (fun _ value => model.successor(value)), other) → other = addition)
 
-## 16. Laws and Behavior (`Laws.lean`/`Behavior.lean`, depends on §15) — written
+**Status: PENDING**
 
-- [x] `additive_structure`, `semiring_structure`, `ordered_semiring_structure`,
-      `well_ordering` (`Laws.lean`) — moved unchanged, still `sorry`.
-- [x] `natural_embedding_preserves_structure` (`Behavior.lean`) — moved
-      unchanged, still `sorry`: the one theorem stating the embedding
-      actually computes as expected, not merely that some structure exists.
+### `Constructions/Landau/Operations/Addition.lean`
 
-## 17. Instances (`Instances.lean`, depends on §16) — written
+Context: let `model` be a `PeanoSystem(Element, SetObject)`. Every entry
+in this file is transitively PENDING per the narrative note above.
 
-- [x] `zeroOn`/`oneOn`/`succOn`/`addOn`/`mulOn`/`ltOn`/`leOn` and the nine
-      certificate builders (`additiveSemigroupLawsOn`, ...,
-      `distributiveLawsOn`) — moved unchanged from `Builders.lean`, matching
-      §1.6.1's role for typeclass-instance registration.
+#### LandauAdditionClauses
+
+BinaryIteratorOperationClauses(model, (fun left => model.successor(left)), (fun _ value => model.successor(value)), LandauAddition(model))
+
+**Status: PENDING**
+
+#### LandauAdditionWellDefined
+
+∃ addition : Element → Element → Element, BinaryIteratorOperationClauses(model, (fun left => model.successor(left)), (fun _ value => model.successor(value)), addition) ∧ (∀ other, BinaryIteratorOperationClauses(model, ..., other) → other = addition)
+
+**Status: PENDING**
+
+#### LandauAdditionWithOne
+
+∀ left : Element, LandauAddition(model, left, model.one) = model.successor(left)
+
+**Status: PENDING**
+
+#### LandauAdditionSuccessorOnRight
+
+∀ left right : Element, LandauAddition(model, left, model.successor(right)) = model.successor(LandauAddition(model, left, right))
+
+**Status: PENDING**
+
+#### LandauAdditionIsAssociative
+
+Associative(LandauAddition(model))
+
+**Status: PENDING**
+
+#### LandauAdditionIsCommutative
+
+Commutative(LandauAddition(model))
+
+**Status: PENDING**
+
+### `Constructions/Landau/Operations/Multiplication.lean`
+
+Context: let `model` be a `PeanoSystem(Element, SetObject)`. Every entry
+in this file is transitively PENDING per the narrative note above.
+
+#### LandauMultiplicationClauses
+
+BinaryIteratorOperationClauses(model, (fun left => left), (fun left value => LandauAddition(model, value, left)), LandauMultiplication(model))
+
+**Status: PENDING**
+
+#### LandauMultiplicationWellDefined
+
+∃ multiplication : Element → Element → Element, BinaryIteratorOperationClauses(model, (fun left => left), (fun left value => LandauAddition(model, value, left)), multiplication) ∧ (∀ other, ... → other = multiplication)
+
+**Status: PENDING**
+
+#### LandauMultiplicationWithOne
+
+∀ left : Element, LandauMultiplication(model, left, model.one) = left
+
+**Status: PENDING**
+
+#### LandauMultiplicationSuccessorOnRight
+
+∀ left right : Element, LandauMultiplication(model, left, model.successor(right)) = LandauAddition(model, LandauMultiplication(model, left, right), left)
+
+**Status: PENDING**
+
+#### LandauMultiplicationDistributesOverAddition
+
+RightDistributive(LandauMultiplication(model), LandauAddition(model))
+
+**Status: PENDING**
+
+#### LandauLeftDistributivityOfMultiplicationOverAddition
+
+LeftDistributive(LandauMultiplication(model), LandauAddition(model))
+
+**Status: PENDING**
+
+#### LandauMultiplicationDistributesOverAdditionBothSides
+
+TwoSidedDistributive(LandauMultiplication(model), LandauAddition(model))
+
+**Status: PENDING**
+
+#### LandauMultiplicationIsAssociative
+
+Associative(LandauMultiplication(model))
+
+**Status: PENDING**
+
+#### LandauMultiplicationIsCommutative
+
+Commutative(LandauMultiplication(model))
+
+**Status: PENDING**
+
+### `Constructions/Landau/Operations/Exponentiation.lean`
+
+Context: let `model` be a `PeanoSystem(Element, SetObject)`. Every entry
+in this file is transitively PENDING per the narrative note above.
+
+#### LandauExponentiationClauses
+
+BinaryIteratorOperationClauses(model, (fun base => base), (fun base value => LandauMultiplication(model, value, base)), LandauExponentiation(model))
+
+**Status: PENDING**
+
+#### LandauExponentiationWellDefined
+
+∃ exponentiation : Element → Element → Element, BinaryIteratorOperationClauses(model, (fun base => base), (fun base value => LandauMultiplication(model, value, base)), exponentiation) ∧ (∀ other, ... → other = exponentiation)
+
+**Status: PENDING**
+
+#### LandauExponentiationWithOne
+
+∀ base : Element, LandauExponentiation(model, base, model.one) = base
+
+**Status: PENDING**
+
+#### LandauExponentiationSuccessorOnRight
+
+∀ base exponent : Element, LandauExponentiation(model, base, model.successor(exponent)) = LandauMultiplication(model, LandauExponentiation(model, base, exponent), base)
+
+**Status: PENDING**
+
+### `Constructions/WholeNumbers/WellFoundedness.lean`
+
+Context: let `natural_data : NaturalArithmeticForWholeNumbers(Element, SetObject)`.
+
+#### basic_decomposition
+
+∀ value : Carrier(natural_data), (value = zero(natural_data) ∨ ∃ n, value = naturalEmbedding(natural_data, n)) ∧ ¬(value = zero(natural_data) ∧ ∃ n, value = naturalEmbedding(natural_data, n)) ∧ (∀ first second, value = naturalEmbedding(natural_data, first) ∧ value = naturalEmbedding(natural_data, second) → first = second)
+
+**Status: PENDING**
+
+#### zero_is_not_successor
+
+∀ value : Carrier(natural_data), successor(natural_data, value) ≠ zero(natural_data)
+
+**Status: PENDING**
+
+#### successor_is_injective
+
+∀ first second : Carrier(natural_data), successor(natural_data, first) = successor(natural_data, second) → first = second
+
+**Status: PENDING**
+
+#### induction_from_zero
+
+∀ predicate : Carrier(natural_data) → Prop, predicate(zero(natural_data)) ∧ (∀ value, predicate(value) → predicate(successor(natural_data, value))) → ∀ value, predicate(value)
+
+**Status: PENDING**
+
+#### strong_induction
+
+∀ predicate : Carrier(natural_data) → Prop, (∀ value, (∀ smaller, strictOrder(natural_data, smaller, value) → predicate(smaller)) → predicate(value)) → ∀ value, predicate(value)
+
+**Status: PENDING**
+
+### `Constructions/WholeNumbers/Laws.lean`
+
+Context: let `natural_data : NaturalArithmeticForWholeNumbers(Element, SetObject)`.
+
+#### additive_structure
+
+Associative(addition(natural_data)) ∧ Commutative(addition(natural_data)) ∧ (∀ value, addition(natural_data, zero(natural_data), value) = value ∧ addition(natural_data, value, zero(natural_data)) = value) ∧ (∀ first second common, addition(natural_data, first, common) = addition(natural_data, second, common) → first = second)
+
+**Status: PENDING**
+
+#### semiring_structure
+
+zero(natural_data) ≠ one(natural_data) ∧ Associative(multiplication(natural_data)) ∧ Commutative(multiplication(natural_data)) ∧ (∀ value, multiplication(natural_data, one(natural_data), value) = value ∧ multiplication(natural_data, value, one(natural_data)) = value) ∧ (∀ value, multiplication(natural_data, zero(natural_data), value) = zero(natural_data) ∧ multiplication(natural_data, value, zero(natural_data)) = zero(natural_data)) ∧ LeftDistributive(multiplication(natural_data), addition(natural_data)) ∧ (∀ first second, multiplication(natural_data, first, second) = zero(natural_data) → first = zero(natural_data) ∨ second = zero(natural_data))
+
+**Status: PENDING**
+
+#### ordered_semiring_structure
+
+(∀ value, nonstrictOrder(natural_data, zero(natural_data), value)) ∧ (∀ first second, strictOrder(natural_data, first, second) ∨ first = second ∨ strictOrder(natural_data, second, first)) ∧ Transitive(strictOrder(natural_data)) ∧ (∀ first second translation, strictOrder(natural_data, first, second) ↔ strictOrder(natural_data, addition(natural_data, first, translation), addition(natural_data, second, translation))) ∧ (∀ first second positive, positive ≠ zero(natural_data) → (strictOrder(natural_data, first, second) ↔ strictOrder(natural_data, multiplication(natural_data, first, positive), multiplication(natural_data, second, positive))))
+
+**Status: PENDING**
+
+#### well_ordering
+
+∀ subset : Carrier(natural_data) → Prop, (∃ value, subset(value)) → ∃ least, subset(least) ∧ (∀ value, subset(value) → nonstrictOrder(natural_data, least, value))
+
+**Status: PENDING**
+
+### `Constructions/WholeNumbers/Behavior.lean`
+
+Context: let `natural_data : NaturalArithmeticForWholeNumbers(Element, SetObject)`.
+
+#### natural_embedding_preserves_structure
+
+(∀ value, naturalEmbedding(natural_data, natural_data.model.successor(value)) = successor(natural_data, naturalEmbedding(natural_data, value))) ∧ (∀ first second, naturalEmbedding(natural_data, LandauAddition(natural_data.model, first, second)) = addition(natural_data, naturalEmbedding(natural_data, first), naturalEmbedding(natural_data, second))) ∧ (∀ first second, naturalEmbedding(natural_data, LandauMultiplication(natural_data.model, first, second)) = multiplication(natural_data, naturalEmbedding(natural_data, first), naturalEmbedding(natural_data, second))) ∧ (∀ first second, strictOrder(natural_data, naturalEmbedding(natural_data, first), naturalEmbedding(natural_data, second)) ↔ natural_data.strictOrder(first, second))
+
+**Status: PENDING**
