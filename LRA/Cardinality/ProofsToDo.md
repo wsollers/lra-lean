@@ -115,7 +115,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : Type u), LRA.Cardinality.IsFinite A → LRA.Cardinality.IsCountable A
 Predicate logic (unfolded): ∀ (A : Type u), LRA.Cardinality.IsFinite A → LRA.Cardinality.IsCountable A
-Transliterated theorem: IsCountable A
+Transliterated theorem: (IsFinite A) → IsCountable A
 Logical form (Lean): (A : Type u) (finite : IsFinite A) : IsCountable A
 Source: ./Properties/Countability/Theorems.lean#L28
 
@@ -126,7 +126,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : Type u), LRA.Cardinality.IsCountablyInfinite A → LRA.Cardinality.IsCountable A
 Predicate logic (unfolded): ∀ (A : Type u), LRA.Cardinality.IsCountablyInfinite A → LRA.Cardinality.IsCountable A
-Transliterated theorem: IsCountable A
+Transliterated theorem: (IsCountablyInfinite A) → IsCountable A
 Logical form (Lean): (A : Type u) (countablyInfinite : IsCountablyInfinite A) : IsCountable A
 Source: ./Properties/Countability/Theorems.lean#L43
 
@@ -137,7 +137,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : Type u), LRA.Cardinality.IsCountablyInfinite A → LRA.Cardinality.IsInfinite A
 Predicate logic (unfolded): ∀ (A : Type u), LRA.Cardinality.IsCountablyInfinite A → LRA.Cardinality.IsInfinite A
-Transliterated theorem: IsInfinite A
+Transliterated theorem: (IsCountablyInfinite A) → IsInfinite A
 Logical form (Lean): (A : Type u) (countablyInfinite : IsCountablyInfinite A) : IsInfinite A
 Source: ./Properties/Countability/Theorems.lean#L59
 
@@ -159,7 +159,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : Type u) (B : Type v) (dominatesB : Dominates A B) (countableB : IsCountable B), IsCountable A
 Predicate logic (unfolded): ∀ (A : Type u) (B : Type v), (LRA.Cardinality.Dominates A B ∧ LRA.Cardinality.IsCountable B) → LRA.Cardinality.IsCountable A
-Transliterated theorem: IsCountable A
+Transliterated theorem: (IsCountable B) → IsCountable A
 Logical form (Lean): (A : Type u) (B : Type v) (dominatesB : Dominates A B) (countableB : IsCountable B) : IsCountable A
 Source: ./Properties/Countability/Theorems.lean#L91
 
@@ -170,7 +170,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Index : Type u} (family : Index → Type v) (countableIndex : IsCountable Index) (countableFibers : ∀ index : Index, IsCountable (family index)), IsCountable (Sigma family)
 Predicate logic (unfolded): ∀ {Index : Type u} (family : Index → Type v), (LRA.Cardinality.IsCountable Index ∧ ∀ (index : Index), LRA.Cardinality.IsCountable (family index)) → LRA.Cardinality.IsCountable (Sigma family)
-Transliterated theorem: (Index → Type v ∧ ∀ index : Index, IsCountable (family index)) → IsCountable (Sigma family)
+Transliterated theorem: (Index → Type v ∧ IsCountable Index ∧ ∀ index : Index, IsCountable (family index)) → IsCountable (Sigma family)
 Logical form (Lean): {Index : Type u} (family : Index → Type v) (countableIndex : IsCountable Index) (countableFibers : ∀ index : Index, IsCountable (family index)) : IsCountable (Sigma family)
 Source: ./Properties/Countability/Theorems.lean#L115
 
@@ -203,7 +203,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : Type u), LRA.Cardinality.IsFinite A → LRA.Cardinality.IsDedekindFinite A
 Predicate logic (unfolded): ∀ (A : Type u), LRA.Cardinality.IsFinite A → LRA.Cardinality.IsDedekindFinite A
-Transliterated theorem: IsDedekindFinite A
+Transliterated theorem: (IsFinite A) → IsDedekindFinite A
 Logical form (Lean): (A : Type u) (finite : IsFinite A) : IsDedekindFinite A
 Source: ./Properties/Finiteness/Theorems.lean#L60
 
@@ -214,7 +214,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : Type u), LRA.Cardinality.IsDedekindInfinite A → LRA.Cardinality.IsInfinite A
 Predicate logic (unfolded): ∀ (A : Type u), LRA.Cardinality.IsDedekindInfinite A → LRA.Cardinality.IsInfinite A
-Transliterated theorem: IsInfinite A
+Transliterated theorem: (IsDedekindInfinite A) → IsInfinite A
 Logical form (Lean): (A : Type u) (dedekindInfinite : IsDedekindInfinite A) : IsInfinite A
 Source: ./Properties/Finiteness/Theorems.lean#L77
 
@@ -225,6 +225,6 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : Type u) (B : Type v) (finiteA : IsFinite A) (infiniteB : IsInfinite B), Dominates A B
 Predicate logic (unfolded): ∀ (A : Type u) (B : Type v), (LRA.Cardinality.IsFinite A ∧ LRA.Cardinality.IsInfinite B) → LRA.Cardinality.Dominates A B
-Transliterated theorem: Dominates A B
+Transliterated theorem: (IsFinite A ∧ IsInfinite B) → Dominates A B
 Logical form (Lean): (A : Type u) (B : Type v) (finiteA : IsFinite A) (infiniteB : IsInfinite B) : Dominates A B
 Source: ./Properties/Finiteness/Theorems.lean#L93

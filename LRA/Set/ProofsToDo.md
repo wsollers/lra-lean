@@ -863,7 +863,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject],   LRA.Set.SeparationLaws Pair RelationObject →     ∀ [inst_3 : Membership Left DomainObject],       LRA.Set.PairingLaws Left Right Pair →         ∀ (relation : RelationObject) (inputs : DomainObject),           LRA.Set.IsFunctionalSet Left Right relation →             LRA.Set.IsFunctionalSet Left Right (LRA.Set.RestrictionOf Right relation inputs)
 Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject], LRA.Set.SeparationLaws Pair RelationObject → ∀ [inst_3 : Membership Left DomainObject], LRA.Set.PairingLaws Left Right Pair → ∀ (relation : RelationObject) (inputs : DomainObject), LRA.Set.IsFunctionalSet Left Right relation → LRA.Set.IsFunctionalSet Left Right (LRA.Set.RestrictionOf Right relation inputs)
-Transliterated theorem: (∀ relation ∈ RelationObject ∀ inputs ∈ DomainObject), IsFunctionalSet Left Right (RestrictionOf Right relation inputs)
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ inputs ∈ DomainObject), (IsFunctionalSet Left Right relation) → IsFunctionalSet Left Right (RestrictionOf Right relation inputs)
 Logical form (Lean): [HasPairing Left Right Pair] [Membership Pair RelationObject] [HasSeparation Pair RelationObject] [SeparationLaws Pair RelationObject] [Membership Left DomainObject] [PairingLaws Left Right Pair] (relation : RelationObject) (inputs : DomainObject) (functional : IsFunctionalSet Left Right relation) : IsFunctionalSet Left Right (RestrictionOf Right relation inputs)
 Source: ./Interface/RelationLaws.lean#L316
 
@@ -874,7 +874,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ [HasPairing Left Right Pair] [Membership Pair RelationObject] [Union RelationObject] [Inter RelationObject] [SDiff RelationObject] [EmptyCollection RelationObject] [HasSubset RelationObject] [MembershipLaws Pair RelationObject] (first second : RelationObject) (firstFunctional : IsFunctionalSet Left Right first) (secondFunctional : IsFunctionalSet Left Right second) (compatible : ∀ (input : Left) (firstOutput secondOutput : Right), Relates first input firstOutput → Relates second input secondOutput → firstOutput = secondOutput), IsFunctionalSet Left Right (first ∪ second)
 Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Union RelationObject] [inst_3 : Inter RelationObject] [inst_4 : SDiff RelationObject] [inst_5 : EmptyCollection RelationObject] [inst_6 : HasSubset RelationObject], LRA.Set.MembershipLaws Pair RelationObject → ∀ (first second : RelationObject), (LRA.Set.IsFunctionalSet Left Right first ∧ (LRA.Set.IsFunctionalSet Left Right second ∧ ∀ (input : Left) (firstOutput secondOutput : Right), LRA.Set.Relates first input firstOutput → LRA.Set.Relates second input secondOutput → firstOutput = secondOutput)) → LRA.Set.IsFunctionalSet Left Right (first ∪ second)
-Transliterated theorem: (∀ first second ∈ RelationObject), (∀ input ∈ Left firstOutput secondOutput ∈ Right, Relates first input firstOutput → Relates second input secondOutput → firstOutput = secondOutput) → IsFunctionalSet Left Right (first ∪ second)
+Transliterated theorem: (∀ first second ∈ RelationObject), (IsFunctionalSet Left Right first ∧ IsFunctionalSet Left Right second ∧ ∀ input ∈ Left firstOutput secondOutput ∈ Right, Relates first input firstOutput → Relates second input secondOutput → firstOutput = secondOutput) → IsFunctionalSet Left Right (first ∪ second)
 Logical form (Lean): [HasPairing Left Right Pair] [Membership Pair RelationObject] [Union RelationObject] [Inter RelationObject] [SDiff RelationObject] [EmptyCollection RelationObject] [HasSubset RelationObject] [MembershipLaws Pair RelationObject] (first second : RelationObject) (firstFunctional : IsFunctionalSet Left Right first) (secondFunctional : IsFunctionalSet Left Right second) (compatible : ∀ (input : Left) (firstOutput secondOutput : Right), Relates first input firstOutput → Relates second input secondOutput → firstOutput = secondOutput) : IsFunctionalSet Left Right (first ∪ second)
 Source: ./Interface/RelationLaws.lean#L347
 
@@ -907,7 +907,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ [HasPairing Left Right Pair] [Membership Pair RelationObject] (relation : RelationObject) (singleValued : IsSingleValued Left Right relation) (input : Left) (output : Right) (relates : Relates relation input output) (hits : ∃ someOutput : Right, Relates relation input someOutput), AppliedTo relation input hits = output
 Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] (relation : RelationObject), LRA.Set.IsSingleValued Left Right relation → ∀ (input : Left) (output : Right), LRA.Set.Relates relation input output → ∀ (hits : Exists fun someOutput => LRA.Set.Relates relation input someOutput), LRA.Set.AppliedTo relation input hits = output
-Transliterated theorem: (∀ relation ∈ RelationObject ∀ input ∈ Left ∀ output ∈ Right), (∃ someOutput ∈ Right, Relates relation input someOutput) → AppliedTo relation input hits = output
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ input ∈ Left ∀ output ∈ Right), (IsSingleValued Left Right relation ∧ ∃ someOutput ∈ Right, Relates relation input someOutput) → AppliedTo relation input hits = output
 Logical form (Lean): [HasPairing Left Right Pair] [Membership Pair RelationObject] (relation : RelationObject) (singleValued : IsSingleValued Left Right relation) (input : Left) (output : Right) (relates : Relates relation input output) (hits : ∃ someOutput : Right, Relates relation input someOutput) : AppliedTo relation input hits = output
 Source: ./Interface/RelationLaws.lean#L428
 
@@ -2260,7 +2260,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B), B = A
 Predicate logic (unfolded): ∀ {A B : LRA.Set.NBG.Set}, (LRA.Set.NBG.IsEmptySet A ∧ LRA.Set.NBG.IsEmptySet B) → B = A
-Transliterated theorem: B = A
+Transliterated theorem: (IsEmptySet A ∧ IsEmptySet B) → B = A
 Logical form (Lean): {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B) : B = A
 Source: ./NBG/EmptySet/Theorems.lean#L11
 
@@ -2315,7 +2315,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {x1 x2 P G : Set} (PIsPairSet : IsPairSet x1 x2 P) (GIsPairSet : IsPairSet x1 x2 G), G = P
 Predicate logic (unfolded): ∀ {x1 x2 P G : LRA.Set.NBG.Set}, (LRA.Set.NBG.IsPairSet x1 x2 P ∧ LRA.Set.NBG.IsPairSet x1 x2 G) → G = P
-Transliterated theorem: G = P
+Transliterated theorem: (IsPairSet x1 x2 P ∧ IsPairSet x1 x2 G) → G = P
 Logical form (Lean): {x1 x2 P G : Set} (PIsPairSet : IsPairSet x1 x2 P) (GIsPairSet : IsPairSet x1 x2 G) : G = P
 Source: ./NBG/Pairing/Theorems.lean#L11
 
@@ -2414,7 +2414,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A P Q : Set} (PIsPowerSetOf : IsPowerSetOf A P) (QIsPowerSetOf : IsPowerSetOf A Q), Q = P
 Predicate logic (unfolded): ∀ {A P Q : LRA.Set.NBG.Set}, (LRA.Set.NBG.IsPowerSetOf A P ∧ LRA.Set.NBG.IsPowerSetOf A Q) → Q = P
-Transliterated theorem: Q = P
+Transliterated theorem: (IsPowerSetOf A P ∧ IsPowerSetOf A Q) → Q = P
 Logical form (Lean): {A P Q : Set} (PIsPowerSetOf : IsPowerSetOf A P) (QIsPowerSetOf : IsPowerSetOf A Q) : Q = P
 Source: ./NBG/PowerSet/Theorems.lean#L11
 
@@ -2436,7 +2436,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : LRA.Set.NBG.Set) (relation : LRA.Set.NBG.Set → LRA.Set.NBG.Set → Prop),   LRA.Set.NBG.IsFunctionalOn A relation → Exists fun B => LRA.Set.NBG.IsReplacementImageOf A relation B
 Predicate logic (unfolded): ∀ (A : LRA.Set.NBG.Set) (relation : LRA.Set.NBG.Set → LRA.Set.NBG.Set → Prop), LRA.Set.NBG.IsFunctionalOn A relation → Exists fun B => LRA.Set.NBG.IsReplacementImageOf A relation B
-Transliterated theorem: (∀ A ∈ Set), exists B : Set, IsReplacementImageOf A relation B
+Transliterated theorem: (∀ A ∈ Set), (IsFunctionalOn A relation) → exists B : Set, IsReplacementImageOf A relation B
 Logical form (Lean): (A : Set) (relation : Set -> Set -> Prop) (functional : IsFunctionalOn A relation) : exists B : Set, IsReplacementImageOf A relation B
 Source: ./NBG/Replacement/Theorems.lean#L7
 
@@ -2447,7 +2447,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A : Set} {relation : Set -> Set -> Prop} {B C : Set} (BIsReplacementImageOf : IsReplacementImageOf A relation B) (CIsReplacementImageOf : IsReplacementImageOf A relation C), C = B
 Predicate logic (unfolded): ∀ {A : LRA.Set.NBG.Set} {relation : LRA.Set.NBG.Set → LRA.Set.NBG.Set → Prop} {B C : LRA.Set.NBG.Set}, (LRA.Set.NBG.IsReplacementImageOf A relation B ∧ LRA.Set.NBG.IsReplacementImageOf A relation C) → C = B
-Transliterated theorem: C = B
+Transliterated theorem: (IsReplacementImageOf A relation B ∧ IsReplacementImageOf A relation C) → C = B
 Logical form (Lean): {A : Set} {relation : Set -> Set -> Prop} {B C : Set} (BIsReplacementImageOf : IsReplacementImageOf A relation B) (CIsReplacementImageOf : IsReplacementImageOf A relation C) : C = B
 Source: ./NBG/Replacement/Theorems.lean#L14
 
@@ -2458,7 +2458,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : LRA.Set.NBG.Set) (relation : LRA.Set.NBG.Set → LRA.Set.NBG.Set → Prop)   (functional : LRA.Set.NBG.IsFunctionalOn A relation),   LRA.Set.NBG.IsReplacementImageOf A relation (LRA.Set.NBG.TheReplacementImage A relation functional)
 Predicate logic (unfolded): ∀ (A : LRA.Set.NBG.Set) (relation : LRA.Set.NBG.Set → LRA.Set.NBG.Set → Prop) (functional : LRA.Set.NBG.IsFunctionalOn A relation), LRA.Set.NBG.IsReplacementImageOf A relation (LRA.Set.NBG.TheReplacementImage A relation functional)
-Transliterated theorem: (∀ A ∈ Set), IsReplacementImageOf A relation (TheReplacementImage A relation functional)
+Transliterated theorem: (∀ A ∈ Set), (IsFunctionalOn A relation) → IsReplacementImageOf A relation (TheReplacementImage A relation functional)
 Logical form (Lean): (A : Set) (relation : Set -> Set -> Prop) (functional : IsFunctionalOn A relation) : IsReplacementImageOf A relation (TheReplacementImage A relation functional)
 Source: ./NBG/Replacement/Theorems.lean#L26
 
@@ -2480,7 +2480,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A : Set} {property : Set -> Prop} {B C : Set} (BIsSeparatedSubset : IsSeparatedSubset A property B) (CIsSeparatedSubset : IsSeparatedSubset A property C), C = B
 Predicate logic (unfolded): ∀ {A : LRA.Set.NBG.Set} {property : LRA.Set.NBG.Set → Prop} {B C : LRA.Set.NBG.Set}, (LRA.Set.NBG.IsSeparatedSubset A property B ∧ LRA.Set.NBG.IsSeparatedSubset A property C) → C = B
-Transliterated theorem: C = B
+Transliterated theorem: (IsSeparatedSubset A property B ∧ IsSeparatedSubset A property C) → C = B
 Logical form (Lean): {A : Set} {property : Set -> Prop} {B C : Set} (BIsSeparatedSubset : IsSeparatedSubset A property B) (CIsSeparatedSubset : IsSeparatedSubset A property C) : C = B
 Source: ./NBG/Separation/Theorems.lean#L12
 
@@ -2557,7 +2557,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A U V : Set} (UIsUnionOf : IsUnionOf A U) (VIsUnionOf : IsUnionOf A V), V = U
 Predicate logic (unfolded): ∀ {A U V : LRA.Set.NBG.Set}, (LRA.Set.NBG.IsUnionOf A U ∧ LRA.Set.NBG.IsUnionOf A V) → V = U
-Transliterated theorem: V = U
+Transliterated theorem: (IsUnionOf A U ∧ IsUnionOf A V) → V = U
 Logical form (Lean): {A U V : Set} (UIsUnionOf : IsUnionOf A U) (VIsUnionOf : IsUnionOf A V) : V = U
 Source: ./NBG/Union/Theorems.lean#L12
 
@@ -4427,7 +4427,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B), B = A
 Predicate logic (unfolded): ∀ {A B : LRA.Set.TG.Set}, (LRA.Set.TG.IsEmptySet A ∧ LRA.Set.TG.IsEmptySet B) → B = A
-Transliterated theorem: B = A
+Transliterated theorem: (IsEmptySet A ∧ IsEmptySet B) → B = A
 Logical form (Lean): {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B) : B = A
 Source: ./TG/EmptySet/Theorems.lean#L11
 
@@ -4504,7 +4504,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {x1 x2 P G : Set} (PIsPairSet : IsPairSet x1 x2 P) (GIsPairSet : IsPairSet x1 x2 G), G = P
 Predicate logic (unfolded): ∀ {x1 x2 P G : LRA.Set.TG.Set}, (LRA.Set.TG.IsPairSet x1 x2 P ∧ LRA.Set.TG.IsPairSet x1 x2 G) → G = P
-Transliterated theorem: G = P
+Transliterated theorem: (IsPairSet x1 x2 P ∧ IsPairSet x1 x2 G) → G = P
 Logical form (Lean): {x1 x2 P G : Set} (PIsPairSet : IsPairSet x1 x2 P) (GIsPairSet : IsPairSet x1 x2 G) : G = P
 Source: ./TG/Pairing/Theorems.lean#L11
 
@@ -4603,7 +4603,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A P Q : Set} (PIsPowerSetOf : IsPowerSetOf A P) (QIsPowerSetOf : IsPowerSetOf A Q), Q = P
 Predicate logic (unfolded): ∀ {A P Q : LRA.Set.TG.Set}, (LRA.Set.TG.IsPowerSetOf A P ∧ LRA.Set.TG.IsPowerSetOf A Q) → Q = P
-Transliterated theorem: Q = P
+Transliterated theorem: (IsPowerSetOf A P ∧ IsPowerSetOf A Q) → Q = P
 Logical form (Lean): {A P Q : Set} (PIsPowerSetOf : IsPowerSetOf A P) (QIsPowerSetOf : IsPowerSetOf A Q) : Q = P
 Source: ./TG/PowerSet/Theorems.lean#L11
 
@@ -4625,7 +4625,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : LRA.Set.TG.Set) (relation : LRA.Set.TG.Set → LRA.Set.TG.Set → Prop),   LRA.Set.TG.IsFunctionalOn A relation → Exists fun B => LRA.Set.TG.IsReplacementImageOf A relation B
 Predicate logic (unfolded): ∀ (A : LRA.Set.TG.Set) (relation : LRA.Set.TG.Set → LRA.Set.TG.Set → Prop), LRA.Set.TG.IsFunctionalOn A relation → Exists fun B => LRA.Set.TG.IsReplacementImageOf A relation B
-Transliterated theorem: (∀ A ∈ Set), exists B : Set, IsReplacementImageOf A relation B
+Transliterated theorem: (∀ A ∈ Set), (IsFunctionalOn A relation) → exists B : Set, IsReplacementImageOf A relation B
 Logical form (Lean): (A : Set) (relation : Set -> Set -> Prop) (functional : IsFunctionalOn A relation) : exists B : Set, IsReplacementImageOf A relation B
 Source: ./TG/Replacement/Theorems.lean#L7
 
@@ -4636,7 +4636,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A : Set} {relation : Set -> Set -> Prop} {B C : Set} (BIsReplacementImageOf : IsReplacementImageOf A relation B) (CIsReplacementImageOf : IsReplacementImageOf A relation C), C = B
 Predicate logic (unfolded): ∀ {A : LRA.Set.TG.Set} {relation : LRA.Set.TG.Set → LRA.Set.TG.Set → Prop} {B C : LRA.Set.TG.Set}, (LRA.Set.TG.IsReplacementImageOf A relation B ∧ LRA.Set.TG.IsReplacementImageOf A relation C) → C = B
-Transliterated theorem: C = B
+Transliterated theorem: (IsReplacementImageOf A relation B ∧ IsReplacementImageOf A relation C) → C = B
 Logical form (Lean): {A : Set} {relation : Set -> Set -> Prop} {B C : Set} (BIsReplacementImageOf : IsReplacementImageOf A relation B) (CIsReplacementImageOf : IsReplacementImageOf A relation C) : C = B
 Source: ./TG/Replacement/Theorems.lean#L14
 
@@ -4647,7 +4647,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : LRA.Set.TG.Set) (relation : LRA.Set.TG.Set → LRA.Set.TG.Set → Prop)   (functional : LRA.Set.TG.IsFunctionalOn A relation),   LRA.Set.TG.IsReplacementImageOf A relation (LRA.Set.TG.TheReplacementImage A relation functional)
 Predicate logic (unfolded): ∀ (A : LRA.Set.TG.Set) (relation : LRA.Set.TG.Set → LRA.Set.TG.Set → Prop) (functional : LRA.Set.TG.IsFunctionalOn A relation), LRA.Set.TG.IsReplacementImageOf A relation (LRA.Set.TG.TheReplacementImage A relation functional)
-Transliterated theorem: (∀ A ∈ Set), IsReplacementImageOf A relation (TheReplacementImage A relation functional)
+Transliterated theorem: (∀ A ∈ Set), (IsFunctionalOn A relation) → IsReplacementImageOf A relation (TheReplacementImage A relation functional)
 Logical form (Lean): (A : Set) (relation : Set -> Set -> Prop) (functional : IsFunctionalOn A relation) : IsReplacementImageOf A relation (TheReplacementImage A relation functional)
 Source: ./TG/Replacement/Theorems.lean#L26
 
@@ -4669,7 +4669,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A : Set} {property : Set -> Prop} {B C : Set} (BIsSeparatedSubset : IsSeparatedSubset A property B) (CIsSeparatedSubset : IsSeparatedSubset A property C), C = B
 Predicate logic (unfolded): ∀ {A : LRA.Set.TG.Set} {property : LRA.Set.TG.Set → Prop} {B C : LRA.Set.TG.Set}, (LRA.Set.TG.IsSeparatedSubset A property B ∧ LRA.Set.TG.IsSeparatedSubset A property C) → C = B
-Transliterated theorem: C = B
+Transliterated theorem: (IsSeparatedSubset A property B ∧ IsSeparatedSubset A property C) → C = B
 Logical form (Lean): {A : Set} {property : Set -> Prop} {B C : Set} (BIsSeparatedSubset : IsSeparatedSubset A property B) (CIsSeparatedSubset : IsSeparatedSubset A property C) : C = B
 Source: ./TG/Separation/Theorems.lean#L12
 
@@ -4746,7 +4746,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A U V : Set} (UIsUnionOf : IsUnionOf A U) (VIsUnionOf : IsUnionOf A V), V = U
 Predicate logic (unfolded): ∀ {A U V : LRA.Set.TG.Set}, (LRA.Set.TG.IsUnionOf A U ∧ LRA.Set.TG.IsUnionOf A V) → V = U
-Transliterated theorem: V = U
+Transliterated theorem: (IsUnionOf A U ∧ IsUnionOf A V) → V = U
 Logical form (Lean): {A U V : Set} (UIsUnionOf : IsUnionOf A U) (VIsUnionOf : IsUnionOf A V) : V = U
 Source: ./TG/Union/Theorems.lean#L12
 
@@ -5461,7 +5461,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B), B = A
 Predicate logic (unfolded): ∀ {A B : LRA.Set.ZFC.Set}, (LRA.Set.ZFC.IsEmptySet A ∧ LRA.Set.ZFC.IsEmptySet B) → B = A
-Transliterated theorem: B = A
+Transliterated theorem: (IsEmptySet A ∧ IsEmptySet B) → B = A
 Logical form (Lean): {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B) : B = A
 Source: ./ZFC/EmptySet/Theorems.lean#L17
 
@@ -5472,7 +5472,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B), A = B
 Predicate logic (unfolded): ∀ {A B : LRA.Set.ZFC.Set}, (LRA.Set.ZFC.IsEmptySet A ∧ LRA.Set.ZFC.IsEmptySet B) → A = B
-Transliterated theorem: A = B
+Transliterated theorem: (IsEmptySet A ∧ IsEmptySet B) → A = B
 Logical form (Lean): {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B) : A = B
 Source: ./ZFC/EmptySet/Theorems.lean#L25
 
@@ -5505,7 +5505,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A : Set} (AIsEmpty : IsEmptySet A), A = TheEmptySet
 Predicate logic (unfolded): ∀ {A : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsEmptySet A → A = LRA.Set.ZFC.TheEmptySet
-Transliterated theorem: A = TheEmptySet
+Transliterated theorem: (IsEmptySet A) → A = TheEmptySet
 Logical form (Lean): {A : Set} (AIsEmpty : IsEmptySet A) : A = TheEmptySet
 Source: ./ZFC/EmptySet/Theorems.lean#L48
 
@@ -5538,7 +5538,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {x1 x2 P G : Set} (PIsPairSet : IsPairSet x1 x2 P) (GIsPairSet : IsPairSet x1 x2 G), G = P
 Predicate logic (unfolded): ∀ {x1 x2 P G : LRA.Set.ZFC.Set}, (LRA.Set.ZFC.IsPairSet x1 x2 P ∧ LRA.Set.ZFC.IsPairSet x1 x2 G) → G = P
-Transliterated theorem: G = P
+Transliterated theorem: (IsPairSet x1 x2 P ∧ IsPairSet x1 x2 G) → G = P
 Logical form (Lean): {x1 x2 P G : Set} (PIsPairSet : IsPairSet x1 x2 P) (GIsPairSet : IsPairSet x1 x2 G) : G = P
 Source: ./ZFC/Pairing/Theorems.lean#L17
 
@@ -5571,7 +5571,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {x1 x2 P : Set} (PIsPairSet : IsPairSet x1 x2 P), P = PairSet x1 x2
 Predicate logic (unfolded): ∀ {x1 x2 P : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsPairSet x1 x2 P → P = LRA.Set.ZFC.PairSet x1 x2
-Transliterated theorem: P = PairSet x1 x2
+Transliterated theorem: (IsPairSet x1 x2 P) → P = PairSet x1 x2
 Logical form (Lean): {x1 x2 P : Set} (PIsPairSet : IsPairSet x1 x2 P) : P = PairSet x1 x2
 Source: ./ZFC/Pairing/Theorems.lean#L40
 
@@ -5670,7 +5670,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A P Q : Set} (PIsPowerSetOf : IsPowerSetOf A P) (QIsPowerSetOf : IsPowerSetOf A Q), Q = P
 Predicate logic (unfolded): ∀ {A P Q : LRA.Set.ZFC.Set}, (LRA.Set.ZFC.IsPowerSetOf A P ∧ LRA.Set.ZFC.IsPowerSetOf A Q) → Q = P
-Transliterated theorem: Q = P
+Transliterated theorem: (IsPowerSetOf A P ∧ IsPowerSetOf A Q) → Q = P
 Logical form (Lean): {A P Q : Set} (PIsPowerSetOf : IsPowerSetOf A P) (QIsPowerSetOf : IsPowerSetOf A Q) : Q = P
 Source: ./ZFC/PowerSet/Theorems.lean#L17
 
@@ -5703,7 +5703,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A P : Set} (PIsPowerSetOf : IsPowerSetOf A P), P = ThePowerSet A
 Predicate logic (unfolded): ∀ {A P : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsPowerSetOf A P → P = LRA.Set.ZFC.ThePowerSet A
-Transliterated theorem: P = ThePowerSet A
+Transliterated theorem: (IsPowerSetOf A P) → P = ThePowerSet A
 Logical form (Lean): {A P : Set} (PIsPowerSetOf : IsPowerSetOf A P) : P = ThePowerSet A
 Source: ./ZFC/PowerSet/Theorems.lean#L40
 
@@ -5714,7 +5714,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : LRA.Set.ZFC.Set) (relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop),   LRA.Set.ZFC.IsFunctionalOn A relation → Exists fun B => LRA.Set.ZFC.IsReplacementImageOf A relation B
 Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set) (relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop), LRA.Set.ZFC.IsFunctionalOn A relation → Exists fun B => LRA.Set.ZFC.IsReplacementImageOf A relation B
-Transliterated theorem: (∀ A ∈ Set), (Set → Set → Prop) → ∃ B ∈ Set, IsReplacementImageOf A relation B
+Transliterated theorem: (∀ A ∈ Set), (Set → Set → Prop ∧ IsFunctionalOn A relation) → ∃ B ∈ Set, IsReplacementImageOf A relation B
 Logical form (Lean): (A : Set) (relation : Set → Set → Prop) (functional : IsFunctionalOn A relation) : ∃ B : Set, IsReplacementImageOf A relation B
 Source: ./ZFC/Replacement/Theorems.lean#L15
 
@@ -5725,7 +5725,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A : Set} {relation : Set → Set → Prop} {B C : Set} (BIsReplacementImageOf : IsReplacementImageOf A relation B) (CIsReplacementImageOf : IsReplacementImageOf A relation C), C = B
 Predicate logic (unfolded): ∀ {A : LRA.Set.ZFC.Set} {relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop} {B C : LRA.Set.ZFC.Set}, (LRA.Set.ZFC.IsReplacementImageOf A relation B ∧ LRA.Set.ZFC.IsReplacementImageOf A relation C) → C = B
-Transliterated theorem: C = B
+Transliterated theorem: (IsReplacementImageOf A relation B ∧ IsReplacementImageOf A relation C) → C = B
 Logical form (Lean): {A : Set} {relation : Set → Set → Prop} {B C : Set} (BIsReplacementImageOf : IsReplacementImageOf A relation B) (CIsReplacementImageOf : IsReplacementImageOf A relation C) : C = B
 Source: ./ZFC/Replacement/Theorems.lean#L22
 
@@ -5736,7 +5736,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : LRA.Set.ZFC.Set) (relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop),   LRA.Set.ZFC.IsFunctionalOn A relation →     LRA.Set.ZFC.ExistsAndUnique fun B => LRA.Set.ZFC.IsReplacementImageOf A relation B
 Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set) (relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop), LRA.Set.ZFC.IsFunctionalOn A relation → LRA.Set.ZFC.ExistsAndUnique fun B => LRA.Set.ZFC.IsReplacementImageOf A relation B
-Transliterated theorem: (∀ A ∈ Set), (Set → Set → Prop) → ExistsAndUnique fun B ∈ Set => IsReplacementImageOf A relation B
+Transliterated theorem: (∀ A ∈ Set), (Set → Set → Prop ∧ IsFunctionalOn A relation) → ExistsAndUnique fun B ∈ Set => IsReplacementImageOf A relation B
 Logical form (Lean): (A : Set) (relation : Set → Set → Prop) (functional : IsFunctionalOn A relation) : ExistsAndUnique (fun B : Set => IsReplacementImageOf A relation B)
 Source: ./ZFC/Replacement/Theorems.lean#L31
 
@@ -5747,7 +5747,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : LRA.Set.ZFC.Set) (relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop)   (functional : LRA.Set.ZFC.IsFunctionalOn A relation),   LRA.Set.ZFC.IsReplacementImageOf A relation (LRA.Set.ZFC.TheReplacementImage A relation functional)
 Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set) (relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop) (functional : LRA.Set.ZFC.IsFunctionalOn A relation), LRA.Set.ZFC.IsReplacementImageOf A relation (LRA.Set.ZFC.TheReplacementImage A relation functional)
-Transliterated theorem: (∀ A ∈ Set), (Set → Set → Prop) → IsReplacementImageOf A relation (TheReplacementImage A relation functional)
+Transliterated theorem: (∀ A ∈ Set), (Set → Set → Prop ∧ IsFunctionalOn A relation) → IsReplacementImageOf A relation (TheReplacementImage A relation functional)
 Logical form (Lean): (A : Set) (relation : Set → Set → Prop) (functional : IsFunctionalOn A relation) : IsReplacementImageOf A relation (TheReplacementImage A relation functional)
 Source: ./ZFC/Replacement/Theorems.lean#L44
 
@@ -5758,7 +5758,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A : Set} {relation : Set → Set → Prop} (functional : IsFunctionalOn A relation) {B : Set} (BIsReplacementImageOf : IsReplacementImageOf A relation B), B = TheReplacementImage A relation functional
 Predicate logic (unfolded): ∀ {A : LRA.Set.ZFC.Set} {relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop} (functional : LRA.Set.ZFC.IsFunctionalOn A relation) {B : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsReplacementImageOf A relation B → B = LRA.Set.ZFC.TheReplacementImage A relation functional
-Transliterated theorem: B = TheReplacementImage A relation functional
+Transliterated theorem: (IsFunctionalOn A relation ∧ IsReplacementImageOf A relation B) → B = TheReplacementImage A relation functional
 Logical form (Lean): {A : Set} {relation : Set → Set → Prop} (functional : IsFunctionalOn A relation) {B : Set} (BIsReplacementImageOf : IsReplacementImageOf A relation B) : B = TheReplacementImage A relation functional
 Source: ./ZFC/Replacement/Theorems.lean#L51
 
@@ -5780,7 +5780,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A : Set} {property : Set → Prop} {B C : Set} (BIsSeparatedSubset : IsSeparatedSubset A property B) (CIsSeparatedSubset : IsSeparatedSubset A property C), C = B
 Predicate logic (unfolded): ∀ {A : LRA.Set.ZFC.Set} {property : LRA.Set.ZFC.Set → Prop} {B C : LRA.Set.ZFC.Set}, (LRA.Set.ZFC.IsSeparatedSubset A property B ∧ LRA.Set.ZFC.IsSeparatedSubset A property C) → C = B
-Transliterated theorem: C = B
+Transliterated theorem: (IsSeparatedSubset A property B ∧ IsSeparatedSubset A property C) → C = B
 Logical form (Lean): {A : Set} {property : Set → Prop} {B C : Set} (BIsSeparatedSubset : IsSeparatedSubset A property B) (CIsSeparatedSubset : IsSeparatedSubset A property C) : C = B
 Source: ./ZFC/Separation/Theorems.lean#L20
 
@@ -5813,7 +5813,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A : Set} {property : Set → Prop} {B : Set} (BIsSeparatedSubset : IsSeparatedSubset A property B), B = TheSeparatedSubset A property
 Predicate logic (unfolded): ∀ {A : LRA.Set.ZFC.Set} {property : LRA.Set.ZFC.Set → Prop} {B : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsSeparatedSubset A property B → B = LRA.Set.ZFC.TheSeparatedSubset A property
-Transliterated theorem: B = TheSeparatedSubset A property
+Transliterated theorem: (IsSeparatedSubset A property B) → B = TheSeparatedSubset A property
 Logical form (Lean): {A : Set} {property : Set → Prop} {B : Set} (BIsSeparatedSubset : IsSeparatedSubset A property B) : B = TheSeparatedSubset A property
 Source: ./ZFC/Separation/Theorems.lean#L43
 
@@ -5846,7 +5846,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A B D : Set} (DIsIntersectionOf : IsIntersectionOf A B D), D = TheIntersection A B
 Predicate logic (unfolded): ∀ {A B D : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsIntersectionOf A B D → D = LRA.Set.ZFC.TheIntersection A B
-Transliterated theorem: D = TheIntersection A B
+Transliterated theorem: (IsIntersectionOf A B D) → D = TheIntersection A B
 Logical form (Lean): {A B D : Set} (DIsIntersectionOf : IsIntersectionOf A B D) : D = TheIntersection A B
 Source: ./ZFC/Intersection/Theorems.lean#L26
 
@@ -5879,7 +5879,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A B D : Set} (DIsRelativeComplementOf : IsRelativeComplementOf A B D), D = TheRelativeComplement A B
 Predicate logic (unfolded): ∀ {A B D : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsRelativeComplementOf A B D → D = LRA.Set.ZFC.TheRelativeComplement A B
-Transliterated theorem: D = TheRelativeComplement A B
+Transliterated theorem: (IsRelativeComplementOf A B D) → D = TheRelativeComplement A B
 Logical form (Lean): {A B D : Set} (DIsRelativeComplementOf : IsRelativeComplementOf A B D) : D = TheRelativeComplement A B
 Source: ./ZFC/RelativeComplement/Theorems.lean#L26
 
@@ -5901,7 +5901,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A U V : Set} (UIsUnionOf : IsUnionOf A U) (VIsUnionOf : IsUnionOf A V), V = U
 Predicate logic (unfolded): ∀ {A U V : LRA.Set.ZFC.Set}, (LRA.Set.ZFC.IsUnionOf A U ∧ LRA.Set.ZFC.IsUnionOf A V) → V = U
-Transliterated theorem: V = U
+Transliterated theorem: (IsUnionOf A U ∧ IsUnionOf A V) → V = U
 Logical form (Lean): {A U V : Set} (UIsUnionOf : IsUnionOf A U) (VIsUnionOf : IsUnionOf A V) : V = U
 Source: ./ZFC/Union/Theorems.lean#L19
 
@@ -5934,7 +5934,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A U : Set} (UIsUnionOf : IsUnionOf A U), U = TheUnionOver A
 Predicate logic (unfolded): ∀ {A U : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsUnionOf A U → U = LRA.Set.ZFC.TheUnionOver A
-Transliterated theorem: U = TheUnionOver A
+Transliterated theorem: (IsUnionOf A U) → U = TheUnionOver A
 Logical form (Lean): {A U : Set} (UIsUnionOf : IsUnionOf A U) : U = TheUnionOver A
 Source: ./ZFC/Union/Theorems.lean#L42
 
@@ -5989,7 +5989,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {A B D : Set} (DIsSymmetricDifferenceOf : IsSymmetricDifferenceOf A B D), D = TheSymmetricDifference A B
 Predicate logic (unfolded): ∀ {A B D : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsSymmetricDifferenceOf A B D → D = LRA.Set.ZFC.TheSymmetricDifference A B
-Transliterated theorem: D = TheSymmetricDifference A B
+Transliterated theorem: (IsSymmetricDifferenceOf A B D) → D = TheSymmetricDifference A B
 Logical form (Lean): {A B D : Set} (DIsSymmetricDifferenceOf : IsSymmetricDifferenceOf A B D) : D = TheSymmetricDifference A B
 Source: ./ZFC/SymmetricDifference/Theorems.lean#L28
 

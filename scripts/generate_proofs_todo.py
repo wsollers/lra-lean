@@ -489,6 +489,7 @@ def is_proposition_shaped(binder_type: str) -> bool:
     return bool(
         binder_type.startswith(("∀", "∃"))
         or any(token in binder_type for token in ("→", "↔", "\\/", "/\\", " = ", " ∈ ", " < ", " ≤ "))
+        or re.match(r"(?:Is|Has|No|Non|Exists|Forall)[A-Z]\w*(?:\s|$)", binder_type)
     )
 
 

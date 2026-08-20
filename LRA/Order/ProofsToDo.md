@@ -2810,7 +2810,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier},   LRA.Order.PartialOrder relation →     ∀ {joinOperation : LRA.Operation.BinaryEndoOperation Carrier},       LRA.Order.IsJoinOperation relation joinOperation → LRA.Operation.Laws.Commutative.Commutative joinOperation
 Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}, LRA.Order.PartialOrder relation → ∀ {joinOperation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Order.IsJoinOperation relation joinOperation → LRA.Operation.Laws.Commutative.Commutative joinOperation
-Transliterated theorem: LRA.Operation.Laws.Commutative.Commutative joinOperation
+Transliterated theorem: (IsJoinOperation relation joinOperation) → LRA.Operation.Laws.Commutative.Commutative joinOperation
 Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {joinOperation : BinaryEndoOperation Carrier} (isJoinOperation : IsJoinOperation relation joinOperation) : LRA.Operation.Laws.Commutative.Commutative joinOperation
 Source: ./Lattices/Lattice/Consequences.lean#L36
 
@@ -2821,7 +2821,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier},   LRA.Order.PartialOrder relation →     ∀ {meetOperation : LRA.Operation.BinaryEndoOperation Carrier},       LRA.Order.IsMeetOperation relation meetOperation → LRA.Operation.Laws.Commutative.Commutative meetOperation
 Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}, LRA.Order.PartialOrder relation → ∀ {meetOperation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Order.IsMeetOperation relation meetOperation → LRA.Operation.Laws.Commutative.Commutative meetOperation
-Transliterated theorem: LRA.Operation.Laws.Commutative.Commutative meetOperation
+Transliterated theorem: (IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Commutative.Commutative meetOperation
 Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {meetOperation : BinaryEndoOperation Carrier} (isMeetOperation : IsMeetOperation relation meetOperation) : LRA.Operation.Laws.Commutative.Commutative meetOperation
 Source: ./Lattices/Lattice/Consequences.lean#L46
 
@@ -2832,7 +2832,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier},   LRA.Order.PartialOrder relation →     ∀ {joinOperation : LRA.Operation.BinaryEndoOperation Carrier},       LRA.Order.IsJoinOperation relation joinOperation → LRA.Operation.Laws.Idempotent.Idempotent joinOperation
 Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}, LRA.Order.PartialOrder relation → ∀ {joinOperation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Order.IsJoinOperation relation joinOperation → LRA.Operation.Laws.Idempotent.Idempotent joinOperation
-Transliterated theorem: LRA.Operation.Laws.Idempotent.Idempotent joinOperation
+Transliterated theorem: (IsJoinOperation relation joinOperation) → LRA.Operation.Laws.Idempotent.Idempotent joinOperation
 Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {joinOperation : BinaryEndoOperation Carrier} (isJoinOperation : IsJoinOperation relation joinOperation) : LRA.Operation.Laws.Idempotent.Idempotent joinOperation
 Source: ./Lattices/Lattice/Consequences.lean#L56
 
@@ -2843,7 +2843,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier},   LRA.Order.PartialOrder relation →     ∀ {meetOperation : LRA.Operation.BinaryEndoOperation Carrier},       LRA.Order.IsMeetOperation relation meetOperation → LRA.Operation.Laws.Idempotent.Idempotent meetOperation
 Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}, LRA.Order.PartialOrder relation → ∀ {meetOperation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Order.IsMeetOperation relation meetOperation → LRA.Operation.Laws.Idempotent.Idempotent meetOperation
-Transliterated theorem: LRA.Operation.Laws.Idempotent.Idempotent meetOperation
+Transliterated theorem: (IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Idempotent.Idempotent meetOperation
 Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {meetOperation : BinaryEndoOperation Carrier} (isMeetOperation : IsMeetOperation relation meetOperation) : LRA.Operation.Laws.Idempotent.Idempotent meetOperation
 Source: ./Lattices/Lattice/Consequences.lean#L66
 
@@ -2854,7 +2854,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier},   LRA.Order.PartialOrder relation →     ∀ {joinOperation : LRA.Operation.BinaryEndoOperation Carrier},       LRA.Order.IsJoinOperation relation joinOperation → LRA.Operation.Laws.Associative.Associative joinOperation
 Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}, LRA.Order.PartialOrder relation → ∀ {joinOperation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Order.IsJoinOperation relation joinOperation → LRA.Operation.Laws.Associative.Associative joinOperation
-Transliterated theorem: LRA.Operation.Laws.Associative.Associative joinOperation
+Transliterated theorem: (IsJoinOperation relation joinOperation) → LRA.Operation.Laws.Associative.Associative joinOperation
 Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {joinOperation : BinaryEndoOperation Carrier} (isJoinOperation : IsJoinOperation relation joinOperation) : LRA.Operation.Laws.Associative.Associative joinOperation
 Source: ./Lattices/Lattice/Consequences.lean#L76
 
@@ -2865,7 +2865,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier},   LRA.Order.PartialOrder relation →     ∀ {meetOperation : LRA.Operation.BinaryEndoOperation Carrier},       LRA.Order.IsMeetOperation relation meetOperation → LRA.Operation.Laws.Associative.Associative meetOperation
 Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}, LRA.Order.PartialOrder relation → ∀ {meetOperation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Order.IsMeetOperation relation meetOperation → LRA.Operation.Laws.Associative.Associative meetOperation
-Transliterated theorem: LRA.Operation.Laws.Associative.Associative meetOperation
+Transliterated theorem: (IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Associative.Associative meetOperation
 Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {meetOperation : BinaryEndoOperation Carrier} (isMeetOperation : IsMeetOperation relation meetOperation) : LRA.Operation.Laws.Associative.Associative meetOperation
 Source: ./Lattices/Lattice/Consequences.lean#L86
 
@@ -2876,7 +2876,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {joinOperation meetOperation : BinaryEndoOperation Carrier} (isJoinOperation : IsJoinOperation relation joinOperation) (isMeetOperation : IsMeetOperation relation meetOperation), LRA.Operation.Laws.Absorption.AbsorptionLaw joinOperation meetOperation
 Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}, LRA.Order.PartialOrder relation → ∀ {joinOperation meetOperation : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Order.IsJoinOperation relation joinOperation ∧ LRA.Order.IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Absorption.AbsorptionLaw joinOperation meetOperation
-Transliterated theorem: LRA.Operation.Laws.Absorption.AbsorptionLaw joinOperation meetOperation
+Transliterated theorem: (IsJoinOperation relation joinOperation ∧ IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Absorption.AbsorptionLaw joinOperation meetOperation
 Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {joinOperation meetOperation : BinaryEndoOperation Carrier} (isJoinOperation : IsJoinOperation relation joinOperation) (isMeetOperation : IsMeetOperation relation meetOperation) : LRA.Operation.Laws.Absorption.AbsorptionLaw joinOperation meetOperation
 Source: ./Lattices/Lattice/Consequences.lean#L96
 
@@ -2887,7 +2887,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {joinOperation meetOperation : BinaryEndoOperation Carrier} (isJoinOperation : IsJoinOperation relation joinOperation) (isMeetOperation : IsMeetOperation relation meetOperation), LRA.Operation.Laws.Absorption.AbsorptionLaw meetOperation joinOperation
 Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}, LRA.Order.PartialOrder relation → ∀ {joinOperation meetOperation : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Order.IsJoinOperation relation joinOperation ∧ LRA.Order.IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Absorption.AbsorptionLaw meetOperation joinOperation
-Transliterated theorem: LRA.Operation.Laws.Absorption.AbsorptionLaw meetOperation joinOperation
+Transliterated theorem: (IsJoinOperation relation joinOperation ∧ IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Absorption.AbsorptionLaw meetOperation joinOperation
 Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {joinOperation meetOperation : BinaryEndoOperation Carrier} (isJoinOperation : IsJoinOperation relation joinOperation) (isMeetOperation : IsMeetOperation relation meetOperation) : LRA.Operation.Laws.Absorption.AbsorptionLaw meetOperation joinOperation
 Source: ./Lattices/Lattice/Consequences.lean#L108
 
@@ -2898,7 +2898,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {joinOperation meetOperation : BinaryEndoOperation Carrier} (isJoinOperation : IsJoinOperation relation joinOperation) (isMeetOperation : IsMeetOperation relation meetOperation), LRA.Operation.Laws.Absorption.MutualAbsorptionLaw joinOperation meetOperation
 Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}, LRA.Order.PartialOrder relation → ∀ {joinOperation meetOperation : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Order.IsJoinOperation relation joinOperation ∧ LRA.Order.IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Absorption.MutualAbsorptionLaw joinOperation meetOperation
-Transliterated theorem: LRA.Operation.Laws.Absorption.MutualAbsorptionLaw joinOperation meetOperation
+Transliterated theorem: (IsJoinOperation relation joinOperation ∧ IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Absorption.MutualAbsorptionLaw joinOperation meetOperation
 Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {joinOperation meetOperation : BinaryEndoOperation Carrier} (isJoinOperation : IsJoinOperation relation joinOperation) (isMeetOperation : IsMeetOperation relation meetOperation) : LRA.Operation.Laws.Absorption.MutualAbsorptionLaw joinOperation meetOperation
 Source: ./Lattices/Lattice/Consequences.lean#L120
 
@@ -3151,7 +3151,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (element : Carrier),   order.relation element element
 Predicate logic (unfolded): ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (element : Carrier), order.relation element element
-Transliterated theorem: (∀ element ∈ Carrier), order.relation element element
+Transliterated theorem: (∀ element ∈ Carrier), (NonStrictPartialOrder Carrier) → order.relation element element
 Logical form (Lean): {Carrier : Type u} (order : NonStrictPartialOrder Carrier) (element : Carrier) : order.relation element element
 Source: ./OrderedSets/PartialOrder/Theorems.lean#L15
 
@@ -3162,7 +3162,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} (order : NonStrictPartialOrder Carrier) (left right : Carrier) (leftRelatedToRight : order.relation left right) (rightRelatedToLeft : order.relation right left), left = right
 Predicate logic (unfolded): ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (left right : Carrier), (order.relation left right ∧ order.relation right left) → left = right
-Transliterated theorem: (∀ left right ∈ Carrier), left = right
+Transliterated theorem: (∀ left right ∈ Carrier), (NonStrictPartialOrder Carrier) → left = right
 Logical form (Lean): {Carrier : Type u} (order : NonStrictPartialOrder Carrier) (left right : Carrier) (leftRelatedToRight : order.relation left right) (rightRelatedToLeft : order.relation right left) : left = right
 Source: ./OrderedSets/PartialOrder/Theorems.lean#L34
 
@@ -3173,7 +3173,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} (order : NonStrictPartialOrder Carrier) (left right : Carrier) (leftRelatedToRight : order.relation left right) (rightRelatedToLeft : order.relation right left), left = right
 Predicate logic (unfolded): ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (left right : Carrier), (order.relation left right ∧ order.relation right left) → left = right
-Transliterated theorem: (∀ left right ∈ Carrier), left = right
+Transliterated theorem: (∀ left right ∈ Carrier), (NonStrictPartialOrder Carrier) → left = right
 Logical form (Lean): {Carrier : Type u} (order : NonStrictPartialOrder Carrier) (left right : Carrier) (leftRelatedToRight : order.relation left right) (rightRelatedToLeft : order.relation right left) : left = right
 Source: ./OrderedSets/PartialOrder/Theorems.lean#L53
 
@@ -4042,7 +4042,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} (order : NonStrictPartialOrder Carrier) (left right : Carrier), StrictPart order left right <-> order.relation left right /\ left ≠ right
 Predicate logic (unfolded): ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (left right : Carrier), LRA.Order.OrderedSets.PartialOrder.StrictPart order left right ↔ (order.relation left right ∧ Ne left right)
-Transliterated theorem: (∀ left right ∈ Carrier), StrictPart order left right <-> order.relation left right ∧ left ≠ right
+Transliterated theorem: (∀ left right ∈ Carrier), (NonStrictPartialOrder Carrier) → StrictPart order left right <-> order.relation left right ∧ left ≠ right
 Logical form (Lean): {Carrier : Type u} (order : NonStrictPartialOrder Carrier) (left right : Carrier) : StrictPart order left right <-> order.relation left right /\ left ≠ right
 Source: ./OrderedSets/PartialOrder/Relationships.lean#L19
 
@@ -4053,7 +4053,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} (order : NonStrictPartialOrder Carrier) (left right : Carrier), StrictPart order left right <-> order.relation left right /\ Not (order.relation right left)
 Predicate logic (unfolded): ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (left right : Carrier), LRA.Order.OrderedSets.PartialOrder.StrictPart order left right ↔ (order.relation left right ∧ ¬ order.relation right left)
-Transliterated theorem: (∀ left right ∈ Carrier), StrictPart order left right <-> order.relation left right ∧ Not (order.relation right left)
+Transliterated theorem: (∀ left right ∈ Carrier), (NonStrictPartialOrder Carrier) → StrictPart order left right <-> order.relation left right ∧ Not (order.relation right left)
 Logical form (Lean): {Carrier : Type u} (order : NonStrictPartialOrder Carrier) (left right : Carrier) : StrictPart order left right <-> order.relation left right /\ Not (order.relation right left)
 Source: ./OrderedSets/PartialOrder/Relationships.lean#L28
 
@@ -4064,7 +4064,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier),   LRA.Order.StrictOrder (LRA.Order.OrderedSets.PartialOrder.StrictPart order)
 Predicate logic (unfolded): ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier), LRA.Order.StrictOrder (LRA.Order.OrderedSets.PartialOrder.StrictPart order)
-Transliterated theorem: LRA.Order.StrictOrder (StrictPart order)
+Transliterated theorem: (NonStrictPartialOrder Carrier) → LRA.Order.StrictOrder (StrictPart order)
 Logical form (Lean): {Carrier : Type u} (order : NonStrictPartialOrder Carrier) : LRA.Order.StrictOrder (StrictPart order)
 Source: ./OrderedSets/PartialOrder/Relationships.lean#L37
 
@@ -4075,7 +4075,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier),   LRA.Order.StrictOrder (LRA.Order.OrderedSets.PartialOrder.StrictPart order)
 Predicate logic (unfolded): ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier), LRA.Order.StrictOrder (LRA.Order.OrderedSets.PartialOrder.StrictPart order)
-Transliterated theorem: LRA.Order.StrictOrder (StrictPart order)
+Transliterated theorem: (NonStrictPartialOrder Carrier) → LRA.Order.StrictOrder (StrictPart order)
 Logical form (Lean): {Carrier : Type u} (order : NonStrictPartialOrder Carrier) : LRA.Order.StrictOrder (StrictPart order)
 Source: ./OrderedSets/PartialOrder/Relationships.lean#L52
 
@@ -4086,7 +4086,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier),   LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
 Predicate logic (unfolded): ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier), LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
-Transliterated theorem: LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
+Transliterated theorem: (NonStrictPartialOrder Carrier) → LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
 Logical form (Lean): {Carrier : Type u} (order : NonStrictPartialOrder Carrier) : LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
 Source: ./OrderedSets/PartialOrder/Relationships.lean#L59
 
@@ -4097,7 +4097,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier),   LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
 Predicate logic (unfolded): ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier), LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
-Transliterated theorem: LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
+Transliterated theorem: (NonStrictPartialOrder Carrier) → LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
 Logical form (Lean): {Carrier : Type u} (order : NonStrictPartialOrder Carrier) : LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
 Source: ./OrderedSets/PartialOrder/Relationships.lean#L75
 

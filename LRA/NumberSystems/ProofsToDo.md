@@ -1523,7 +1523,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z},   LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.IsNeg x →     LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos       (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x)
 Predicate logic (unfolded): ∀ {x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.IsNeg x → LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x)
-Transliterated theorem: Pos (-x)
+Transliterated theorem: (IsNeg x) → Pos (-x)
 Logical form (Lean): {x : Z} (negativeInput : IsNeg x) : Pos (-x)
 Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Laws.lean#L484
 
@@ -3635,7 +3635,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (rational_data : IntegerAndPositiveNaturalData) (first second : Representative rational_data) (first_reduced : IsReduced rational_data first) (second_reduced : IsReduced rational_data second) (same_value : Quotient.mk (representative_setoid rational_data) first = Quotient.mk (representative_setoid rational_data) second), first.numerator = second.numerator ∧ first.denominator = second.denominator
 Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (first second : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IsReduced rational_data first ∧ (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IsReduced rational_data second ∧ Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) first = Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) second)) → (first.numerator = second.numerator ∧ first.denominator = second.denominator)
-Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), (Quotient.mk (representative_setoid rational_data) first = Quotient.mk (representative_setoid rational_data) second) → first.numerator = second.numerator ∧ first.denominator = second.denominator
+Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), (IsReduced rational_data first ∧ IsReduced rational_data second ∧ Quotient.mk (representative_setoid rational_data) first = Quotient.mk (representative_setoid rational_data) second) → first.numerator = second.numerator ∧ first.denominator = second.denominator
 Logical form (Lean): (rational_data : IntegerAndPositiveNaturalData) (first second : Representative rational_data) (first_reduced : IsReduced rational_data first) (second_reduced : IsReduced rational_data second) (same_value : Quotient.mk (representative_setoid rational_data) first = Quotient.mk (representative_setoid rational_data) second) : first.numerator = second.numerator ∧ first.denominator = second.denominator
 Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L137
 
@@ -4218,7 +4218,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (first second : Cut rational_model) (first_nonnegative : IsNonnegative rational_model first) (second_nonnegative : IsNonnegative rational_model second), IsCut rational_model (nonnegative_product_lower_set rational_model first second)
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.RationalModel) (first second : LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model), (LRA.NumberSystems.RealNumbers.Dedekind.IsNonnegative rational_model first ∧ LRA.NumberSystems.RealNumbers.Dedekind.IsNonnegative rational_model second) → LRA.NumberSystems.RealNumbers.Dedekind.IsCut rational_model (LRA.NumberSystems.RealNumbers.Dedekind.nonnegative_product_lower_set rational_model first second)
-Transliterated theorem: IsCut rational_model (nonnegative_product_lower_set rational_model first second)
+Transliterated theorem: (IsNonnegative rational_model first ∧ IsNonnegative rational_model second) → IsCut rational_model (nonnegative_product_lower_set rational_model first second)
 Logical form (Lean): (first second : Cut rational_model) (first_nonnegative : IsNonnegative rational_model first) (second_nonnegative : IsNonnegative rational_model second) : IsCut rational_model (nonnegative_product_lower_set rational_model first second)
 Source: ./RealNumbers/Constructions/Dedekind/WellDefinedness.lean#L225
 
@@ -4328,7 +4328,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (first second : Cut rational_model) (first_positive : IsPositive rational_model first) (second_positive : IsPositive rational_model second), IsPositive rational_model (multiplication rational_model first second)
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.RationalModel) (first second : LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model), (LRA.NumberSystems.RealNumbers.Dedekind.IsPositive rational_model first ∧ LRA.NumberSystems.RealNumbers.Dedekind.IsPositive rational_model second) → LRA.NumberSystems.RealNumbers.Dedekind.IsPositive rational_model (LRA.NumberSystems.RealNumbers.Dedekind.multiplication rational_model first second)
-Transliterated theorem: IsPositive rational_model (multiplication rational_model first second)
+Transliterated theorem: (IsPositive rational_model first ∧ IsPositive rational_model second) → IsPositive rational_model (multiplication rational_model first second)
 Logical form (Lean): (first second : Cut rational_model) (first_positive : IsPositive rational_model first) (second_positive : IsPositive rational_model second) : IsPositive rational_model (multiplication rational_model first second)
 Source: ./RealNumbers/Constructions/Dedekind/Laws.lean#L209
 
@@ -4955,7 +4955,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {first second : RealCarrier rational_model real_extension} (first_is_rational : IsRational rational_model real_extension first) (second_is_rational : IsRational rational_model real_extension second), IsRational rational_model real_extension (real_extension.RealModel.signature.add first second)
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.RationalModel) (real_extension : LRA.NumberSystems.Models.RealExtension rational_model) {first second : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension first ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension second) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension (real_extension.RealModel.signature.add first second)
-Transliterated theorem: IsRational rational_model real_extension (real_extension.RealModel.signature.add first second)
+Transliterated theorem: (IsRational rational_model real_extension first ∧ IsRational rational_model real_extension second) → IsRational rational_model real_extension (real_extension.RealModel.signature.add first second)
 Logical form (Lean): {first second : RealCarrier rational_model real_extension} (first_is_rational : IsRational rational_model real_extension first) (second_is_rational : IsRational rational_model real_extension second) : IsRational rational_model real_extension (real_extension.RealModel.signature.add first second)
 Source: ./RealNumbers/Irrationals.lean#L211
 
@@ -4966,7 +4966,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.RationalModel)   (real_extension : LRA.NumberSystems.Models.RealExtension rational_model)   {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension},   LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension value →     LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension       (real_extension.RealModel.signature.neg value)
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.RationalModel) (real_extension : LRA.NumberSystems.Models.RealExtension rational_model) {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension value → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension (real_extension.RealModel.signature.neg value)
-Transliterated theorem: IsRational rational_model real_extension (real_extension.RealModel.signature.neg value)
+Transliterated theorem: (IsRational rational_model real_extension value) → IsRational rational_model real_extension (real_extension.RealModel.signature.neg value)
 Logical form (Lean): {value : RealCarrier rational_model real_extension} (value_is_rational : IsRational rational_model real_extension value) : IsRational rational_model real_extension (real_extension.RealModel.signature.neg value)
 Source: ./RealNumbers/Irrationals.lean#L236
 
@@ -4977,7 +4977,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {first second : RealCarrier rational_model real_extension} (first_is_rational : IsRational rational_model real_extension first) (second_is_rational : IsRational rational_model real_extension second), IsRational rational_model real_extension (real_extension.RealModel.signature.Subtraction first second)
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.RationalModel) (real_extension : LRA.NumberSystems.Models.RealExtension rational_model) {first second : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension first ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension second) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension (real_extension.RealModel.signature.Subtraction first second)
-Transliterated theorem: IsRational rational_model real_extension (real_extension.RealModel.signature.Subtraction first second)
+Transliterated theorem: (IsRational rational_model real_extension first ∧ IsRational rational_model real_extension second) → IsRational rational_model real_extension (real_extension.RealModel.signature.Subtraction first second)
 Logical form (Lean): {first second : RealCarrier rational_model real_extension} (first_is_rational : IsRational rational_model real_extension first) (second_is_rational : IsRational rational_model real_extension second) : IsRational rational_model real_extension (real_extension.RealModel.signature.Subtraction first second)
 Source: ./RealNumbers/Irrationals.lean#L261
 
@@ -4988,7 +4988,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {first second : RealCarrier rational_model real_extension} (first_is_rational : IsRational rational_model real_extension first) (second_is_rational : IsRational rational_model real_extension second), IsRational rational_model real_extension (real_extension.RealModel.signature.multiply first second)
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.RationalModel) (real_extension : LRA.NumberSystems.Models.RealExtension rational_model) {first second : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension first ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension second) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension (real_extension.RealModel.signature.multiply first second)
-Transliterated theorem: IsRational rational_model real_extension (real_extension.RealModel.signature.multiply first second)
+Transliterated theorem: (IsRational rational_model real_extension first ∧ IsRational rational_model real_extension second) → IsRational rational_model real_extension (real_extension.RealModel.signature.multiply first second)
 Logical form (Lean): {first second : RealCarrier rational_model real_extension} (first_is_rational : IsRational rational_model real_extension first) (second_is_rational : IsRational rational_model real_extension second) : IsRational rational_model real_extension (real_extension.RealModel.signature.multiply first second)
 Source: ./RealNumbers/Irrationals.lean#L287
 
@@ -4999,7 +4999,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {value : RealCarrier rational_model real_extension} (value_is_rational : IsRational rational_model real_extension value) (value_is_nonzero : value ≠ real_extension.RealModel.signature.zero), IsRational rational_model real_extension (real_extension.RealModel.signature.inv value)
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.RationalModel) (real_extension : LRA.NumberSystems.Models.RealExtension rational_model) {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension value ∧ Ne value real_extension.RealModel.signature.zero) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension (real_extension.RealModel.signature.inv value)
-Transliterated theorem: IsRational rational_model real_extension (real_extension.RealModel.signature.inv value)
+Transliterated theorem: (IsRational rational_model real_extension value) → IsRational rational_model real_extension (real_extension.RealModel.signature.inv value)
 Logical form (Lean): {value : RealCarrier rational_model real_extension} (value_is_rational : IsRational rational_model real_extension value) (value_is_nonzero : value ≠ real_extension.RealModel.signature.zero) : IsRational rational_model real_extension (real_extension.RealModel.signature.inv value)
 Source: ./RealNumbers/Irrationals.lean#L313
 
@@ -5010,7 +5010,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {numerator denominator : RealCarrier rational_model real_extension} (numerator_is_rational : IsRational rational_model real_extension numerator) (denominator_is_rational : IsRational rational_model real_extension denominator) (denominator_is_nonzero : denominator ≠ real_extension.RealModel.signature.zero), IsRational rational_model real_extension (real_extension.RealModel.signature.multiply numerator (real_extension.RealModel.signature.inv denominator))
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.RationalModel) (real_extension : LRA.NumberSystems.Models.RealExtension rational_model) {numerator denominator : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension numerator ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension denominator ∧ Ne denominator real_extension.RealModel.signature.zero)) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension (real_extension.RealModel.signature.multiply numerator (real_extension.RealModel.signature.inv denominator))
-Transliterated theorem: IsRational rational_model real_extension (real_extension.RealModel.signature.multiply numerator (real_extension.RealModel.signature.inv denominator))
+Transliterated theorem: (IsRational rational_model real_extension numerator ∧ IsRational rational_model real_extension denominator) → IsRational rational_model real_extension (real_extension.RealModel.signature.multiply numerator (real_extension.RealModel.signature.inv denominator))
 Logical form (Lean): {numerator denominator : RealCarrier rational_model real_extension} (numerator_is_rational : IsRational rational_model real_extension numerator) (denominator_is_rational : IsRational rational_model real_extension denominator) (denominator_is_nonzero : denominator ≠ real_extension.RealModel.signature.zero) : IsRational rational_model real_extension (real_extension.RealModel.signature.multiply numerator (real_extension.RealModel.signature.inv denominator))
 Source: ./RealNumbers/Irrationals.lean#L342
 
@@ -5021,7 +5021,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.RationalModel)   (real_extension : LRA.NumberSystems.Models.RealExtension rational_model)   {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension},   LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension value →     LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension       (real_extension.RealModel.signature.neg value)
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.RationalModel) (real_extension : LRA.NumberSystems.Models.RealExtension rational_model) {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension value → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension (real_extension.RealModel.signature.neg value)
-Transliterated theorem: IsIrrational rational_model real_extension (real_extension.RealModel.signature.neg value)
+Transliterated theorem: (IsIrrational rational_model real_extension value) → IsIrrational rational_model real_extension (real_extension.RealModel.signature.neg value)
 Logical form (Lean): {value : RealCarrier rational_model real_extension} (value_is_irrational : IsIrrational rational_model real_extension value) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.neg value)
 Source: ./RealNumbers/Irrationals.lean#L370
 
@@ -5032,7 +5032,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {rational_value irrational_value : RealCarrier rational_model real_extension} (rational_is_rational : IsRational rational_model real_extension rational_value) (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value), IsIrrational rational_model real_extension (real_extension.RealModel.signature.add rational_value irrational_value)
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.RationalModel) (real_extension : LRA.NumberSystems.Models.RealExtension rational_model) {rational_value irrational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension rational_value ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension irrational_value) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension (real_extension.RealModel.signature.add rational_value irrational_value)
-Transliterated theorem: IsIrrational rational_model real_extension (real_extension.RealModel.signature.add rational_value irrational_value)
+Transliterated theorem: (IsRational rational_model real_extension rational_value ∧ IsIrrational rational_model real_extension irrational_value) → IsIrrational rational_model real_extension (real_extension.RealModel.signature.add rational_value irrational_value)
 Logical form (Lean): {rational_value irrational_value : RealCarrier rational_model real_extension} (rational_is_rational : IsRational rational_model real_extension rational_value) (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.add rational_value irrational_value)
 Source: ./RealNumbers/Irrationals.lean#L395
 
@@ -5043,7 +5043,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational rational_model real_extension rational_value), IsIrrational rational_model real_extension (real_extension.RealModel.signature.add irrational_value rational_value)
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.RationalModel) (real_extension : LRA.NumberSystems.Models.RealExtension rational_model) {irrational_value rational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension irrational_value ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension rational_value) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension (real_extension.RealModel.signature.add irrational_value rational_value)
-Transliterated theorem: IsIrrational rational_model real_extension (real_extension.RealModel.signature.add irrational_value rational_value)
+Transliterated theorem: (IsIrrational rational_model real_extension irrational_value ∧ IsRational rational_model real_extension rational_value) → IsIrrational rational_model real_extension (real_extension.RealModel.signature.add irrational_value rational_value)
 Logical form (Lean): {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational rational_model real_extension rational_value) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.add irrational_value rational_value)
 Source: ./RealNumbers/Irrationals.lean#L421
 
@@ -5054,7 +5054,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {rational_value irrational_value : RealCarrier rational_model real_extension} (rational_is_rational : IsRational rational_model real_extension rational_value) (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value), IsIrrational rational_model real_extension (real_extension.RealModel.signature.Subtraction rational_value irrational_value)
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.RationalModel) (real_extension : LRA.NumberSystems.Models.RealExtension rational_model) {rational_value irrational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension rational_value ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension irrational_value) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension (real_extension.RealModel.signature.Subtraction rational_value irrational_value)
-Transliterated theorem: IsIrrational rational_model real_extension (real_extension.RealModel.signature.Subtraction rational_value irrational_value)
+Transliterated theorem: (IsRational rational_model real_extension rational_value ∧ IsIrrational rational_model real_extension irrational_value) → IsIrrational rational_model real_extension (real_extension.RealModel.signature.Subtraction rational_value irrational_value)
 Logical form (Lean): {rational_value irrational_value : RealCarrier rational_model real_extension} (rational_is_rational : IsRational rational_model real_extension rational_value) (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.Subtraction rational_value irrational_value)
 Source: ./RealNumbers/Irrationals.lean#L447
 
@@ -5065,7 +5065,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational rational_model real_extension rational_value), IsIrrational rational_model real_extension (real_extension.RealModel.signature.Subtraction irrational_value rational_value)
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.RationalModel) (real_extension : LRA.NumberSystems.Models.RealExtension rational_model) {irrational_value rational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension irrational_value ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension rational_value) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension (real_extension.RealModel.signature.Subtraction irrational_value rational_value)
-Transliterated theorem: IsIrrational rational_model real_extension (real_extension.RealModel.signature.Subtraction irrational_value rational_value)
+Transliterated theorem: (IsIrrational rational_model real_extension irrational_value ∧ IsRational rational_model real_extension rational_value) → IsIrrational rational_model real_extension (real_extension.RealModel.signature.Subtraction irrational_value rational_value)
 Logical form (Lean): {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational rational_model real_extension rational_value) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.Subtraction irrational_value rational_value)
 Source: ./RealNumbers/Irrationals.lean#L473
 
@@ -5076,7 +5076,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {rational_value irrational_value : RealCarrier rational_model real_extension} (rational_is_rational : IsRational rational_model real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value), IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply rational_value irrational_value)
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.RationalModel) (real_extension : LRA.NumberSystems.Models.RealExtension rational_model) {rational_value irrational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension rational_value ∧ (Ne rational_value real_extension.RealModel.signature.zero ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension irrational_value)) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply rational_value irrational_value)
-Transliterated theorem: IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply rational_value irrational_value)
+Transliterated theorem: (IsRational rational_model real_extension rational_value ∧ IsIrrational rational_model real_extension irrational_value) → IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply rational_value irrational_value)
 Logical form (Lean): {rational_value irrational_value : RealCarrier rational_model real_extension} (rational_is_rational : IsRational rational_model real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply rational_value irrational_value)
 Source: ./RealNumbers/Irrationals.lean#L500
 
@@ -5087,7 +5087,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational rational_model real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero), IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply irrational_value rational_value)
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.RationalModel) (real_extension : LRA.NumberSystems.Models.RealExtension rational_model) {irrational_value rational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension irrational_value ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension rational_value ∧ Ne rational_value real_extension.RealModel.signature.zero)) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply irrational_value rational_value)
-Transliterated theorem: IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply irrational_value rational_value)
+Transliterated theorem: (IsIrrational rational_model real_extension irrational_value ∧ IsRational rational_model real_extension rational_value) → IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply irrational_value rational_value)
 Logical form (Lean): {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational rational_model real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply irrational_value rational_value)
 Source: ./RealNumbers/Irrationals.lean#L528
 
@@ -5098,7 +5098,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational rational_model real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero), IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply irrational_value (real_extension.RealModel.signature.inv rational_value))
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.RationalModel) (real_extension : LRA.NumberSystems.Models.RealExtension rational_model) {irrational_value rational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension irrational_value ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension rational_value ∧ Ne rational_value real_extension.RealModel.signature.zero)) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply irrational_value (real_extension.RealModel.signature.inv rational_value))
-Transliterated theorem: IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply irrational_value (real_extension.RealModel.signature.inv rational_value))
+Transliterated theorem: (IsIrrational rational_model real_extension irrational_value ∧ IsRational rational_model real_extension rational_value) → IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply irrational_value (real_extension.RealModel.signature.inv rational_value))
 Logical form (Lean): {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational rational_model real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply irrational_value (real_extension.RealModel.signature.inv rational_value))
 Source: ./RealNumbers/Irrationals.lean#L558
 
@@ -5109,7 +5109,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {rational_value irrational_value : RealCarrier rational_model real_extension} (rational_is_rational : IsRational rational_model real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value), IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply rational_value (real_extension.RealModel.signature.inv irrational_value))
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.RationalModel) (real_extension : LRA.NumberSystems.Models.RealExtension rational_model) {rational_value irrational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension rational_value ∧ (Ne rational_value real_extension.RealModel.signature.zero ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension irrational_value)) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply rational_value (real_extension.RealModel.signature.inv irrational_value))
-Transliterated theorem: IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply rational_value (real_extension.RealModel.signature.inv irrational_value))
+Transliterated theorem: (IsRational rational_model real_extension rational_value ∧ IsIrrational rational_model real_extension irrational_value) → IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply rational_value (real_extension.RealModel.signature.inv irrational_value))
 Logical form (Lean): {rational_value irrational_value : RealCarrier rational_model real_extension} (rational_is_rational : IsRational rational_model real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply rational_value (real_extension.RealModel.signature.inv irrational_value))
 Source: ./RealNumbers/Irrationals.lean#L590
 
@@ -5120,7 +5120,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.RationalModel)   (real_extension : LRA.NumberSystems.Models.RealExtension rational_model)   {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension},   LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension value →     Ne value real_extension.RealModel.signature.zero
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.RationalModel) (real_extension : LRA.NumberSystems.Models.RealExtension rational_model) {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension value → Ne value real_extension.RealModel.signature.zero
-Transliterated theorem: value ≠ real_extension.RealModel.signature.zero
+Transliterated theorem: (IsIrrational rational_model real_extension value) → value ≠ real_extension.RealModel.signature.zero
 Logical form (Lean): {value : RealCarrier rational_model real_extension} (value_is_irrational : IsIrrational rational_model real_extension value) : value ≠ real_extension.RealModel.signature.zero
 Source: ./RealNumbers/Irrationals.lean#L617
 
