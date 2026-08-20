@@ -8,6 +8,7 @@ import LRA.NumberSystems.RationalNumbers
 import LRA.NumberSystems.RealNumbers
 import LRA.NumberSystems.ComplexNumbers
 import LRA.VolumeII.Arithmetic
+import LRA.EuclideanSpace
 
 /-!
 Aggregate import for Volume II.
@@ -56,4 +57,11 @@ promoted to `LRA.NumberSystems.GaussianIntegers`; unlike Complex, it
 (`LRA.VolumeII.Integers.Implementation`), unchanged by this move. See
 `LRA/NumberSystems/ComplexNumbers/ProofOrder.md` and
 `LRA/NumberSystems/GaussianIntegers/ProofOrder.md`.
+
+Volume II ends with `LRA.EuclideanSpace`, the new geometric layer between
+`LRA.NumberSystems` and `LRA.Analysis`: it consumes the real numbers this
+volume constructs and produces the geometric arena (coordinates, points,
+lines, planes, surfaces, intervals) that Volume III's `LRA.Analysis`
+generalizes from. See `LRA/EuclideanSpace.lean` for its agreed scope and
+the design discussion recorded in `LRA/VolumeII/Arithmetic/DesignDoc.md`.
 -/

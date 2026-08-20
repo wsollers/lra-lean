@@ -42,6 +42,7 @@ LRA.UniversalAlgebra  signatures, algebras, congruences, quotients
 LRA.AlgebraicStructures   the named structures: group, ring, field, lattice, …
 LRA.Order             order theory, bounds, lattices, order morphisms
 LRA.NumberSystems     ℕ, ℤ, ℚ, ℝ, ℂ, Gaussian integers, Peano systems
+LRA.EuclideanSpace    coordinates, points, lines, planes, intervals: ℝ → ℝ² → ℝ³
 LRA.Analysis          Bounds, MetricSpaces, MeasureTheory, FunctionalAnalysis
 LRA.Topology          general topology
 LRA.LinearAlgebra     vector spaces and linear maps
