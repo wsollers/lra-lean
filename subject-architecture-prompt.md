@@ -1112,6 +1112,37 @@ Use `section` for shared `variable`, hypothesis, notation, and `set_option`
 blocks. A `section` does **not** hide names: use `private` or an explicitly
 internal namespace when a name must stay out of the public API.
 
+### 5.1 Tracking file: `ProofOrder.md`
+
+Every subject with theorem content owns exactly one tracking file,
+`LRA/<Subject>/ProofOrder.md` (a subject that spans multiple systems, e.g.
+`NumberSystems`, owns one per system: `LRA/NumberSystems/<System>/ProofOrder.md`).
+There is no second, differently-named tracking file: do not introduce a
+sibling `ProofsToDo.md`, `TheoremIndex.md`, or similar — extend
+`ProofOrder.md` itself.
+
+`ProofOrder.md` serves both purposes a construction-heavy subject needs:
+
+- **Narrative order** — why one construction or stage precedes another
+  (a Cauchy-before-Cantor rationale, a staged §1.6.1 pipeline's reasoning),
+  in prose, as already practiced in `RealNumbers/ProofOrder.md`,
+  `Integers/ProofOrder.md`, etc.
+- **A per-theorem completion ledger** — every theorem/lemma the subject
+  owns, listed in dependency order (topologically, where a real dependency
+  graph is available; by file order otherwise), each entry giving:
+  - the theorem's name;
+  - its statement in raw predicate-calculus notation (∀/∃/¬/∧/∨/→/↔/=,
+    `f(x)` application) — not Lean syntax;
+  - a status line, `**Status: COMPLETE**` or `**Status: PENDING**`,
+    determined from Lean's own axiom-dependency check (`#print axioms`,
+    or its programmatic equivalent) rather than inferred from doc
+    comments, which can drift out of sync with the actual proof state.
+
+A subject with no theorems yet (a pure placeholder router, e.g.
+`LRA.EuclideanSpace` before its first concept lands) has no `ProofOrder.md`
+until it has content to track — this mirrors §1.1's "create a subject only
+when it owns durable declarations."
+
 ---
 
 ## 6. Mathlib quarantine
