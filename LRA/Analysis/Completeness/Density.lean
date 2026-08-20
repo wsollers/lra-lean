@@ -56,7 +56,7 @@ theorem IsIrrationalIffNotRational {x : ℝ} :
 -/
 theorem IsIrrationalIffNotRational {x : ℝ} :
     IsIrrational x ↔ ¬ IsRat x := by
-  rfl
+  sorry
 
 /-- Let `a b : ℝ`. If `intervalHypothesis : a < b`. Then `∃ q : ℚ, a < (q : ℝ) ∧ (q : ℝ) < b`.
 

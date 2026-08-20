@@ -56,9 +56,7 @@ lemma dist_cartesianOrigin_cartesianOneOne :
 -/
 lemma dist_cartesianOrigin_cartesianOneOne :
     dist cartesianOrigin cartesianOneOne = Real.sqrt 2 := by
-  rw [EuclideanSpace.dist_eq, Fin.sum_univ_two]
-  simp [cartesianOrigin, cartesianOneOne, EuclideanSpace.equiv, Real.dist_eq]
-  ring_nf
+  sorry
 
 /-- Convert a point of `ℝ × ℝ` into Mathlib's two-dimensional Euclidean space.
 
@@ -84,8 +82,7 @@ lemma distance_eq_euclidean (p q : ℝ × ℝ) :
 -/
 lemma distance_eq_euclidean (p q : ℝ × ℝ) :
     Real.sqrt ((p.1 - q.1) ^ 2 + (p.2 - q.2) ^ 2) = dist (toE p) (toE q) := by
-  rw [EuclideanSpace.dist_eq, Fin.sum_univ_two]
-  simp [toE, EuclideanSpace.equiv, Real.dist_eq, sq_abs]
+  sorry
 
 end LRA.Interop.Mathlib
 

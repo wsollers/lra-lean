@@ -16,6 +16,7 @@ theorem UnaryClosedUnder.apply {Domain : Type u} {Codomain : Type v}
     codomainCarrier (operation input) := by
   sorry
 
+
 theorem BinaryClosedUnder.apply {Left : Type u} {Right : Type v} {Codomain : Type w}
     {leftCarrier : Left → Prop}
     {rightCarrier : Right → Prop}
@@ -29,6 +30,7 @@ theorem BinaryClosedUnder.apply {Left : Type u} {Right : Type v} {Codomain : Typ
     resultCarrier (operation left right) := by
   sorry
 
+
 theorem BinaryEndoClosedOn.apply {Ambient : Type u}
     {carrier : Ambient → Prop}
     {operation : BinaryEndoOperation Ambient}
@@ -38,6 +40,7 @@ theorem BinaryEndoClosedOn.apply {Ambient : Type u}
     (right_mem : carrier right) :
     carrier (operation left right) := by
   sorry
+
 
 theorem BinaryEndoOperation.closed_on_full_carrier {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier) :

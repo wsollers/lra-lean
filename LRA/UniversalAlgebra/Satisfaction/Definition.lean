@@ -126,7 +126,7 @@ theorem modelsOfEquationalTheoryIsVariety {S : Signature}
 -/
 theorem modelsOfEquationalTheoryIsVariety {S : Signature}
     (theory : EquationalTheory S Nat) :
-    IsVariety (ModelsOfEquationalTheory.{u} theory) :=
-  ⟨theory, rfl⟩
+    IsVariety (ModelsOfEquationalTheory.{u} theory) := by
+  sorry
 
 end LRA.UniversalAlgebra

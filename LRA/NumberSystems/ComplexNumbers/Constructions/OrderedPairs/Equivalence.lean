@@ -30,8 +30,6 @@ theorem ext {first second : ComplexNumber R}
     (imaginary_parts_equal :
       first.imaginary_part = second.imaginary_part) :
     first = second := by
-  cases first
-  cases second
-  simp_all
+  sorry
 
 end LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs

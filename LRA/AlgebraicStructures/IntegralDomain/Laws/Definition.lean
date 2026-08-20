@@ -22,8 +22,8 @@ variable {R : Type u}
 
 /-- A vanishing product has a vanishing factor. -/
 theorem EqZeroOfMulEqZero [Mul R] [OfNat R 0] [NoZeroDivisorsLaw R] :
-    ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0 :=
-  NoZeroDivisorsLaw.EqZeroOfMulEqZero
+    ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0 := by
+  sorry
 
 end Wrappers
 

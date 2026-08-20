@@ -58,14 +58,14 @@ lean_lib LRAVolumeII where
 lean_lib LRAVolumeIII where
   roots := #[`LRA.VolumeIII]
 
-lean_lib LRAVolumeIV where
-  roots := #[`LRA.VolumeIV]
-
-lean_lib LRAVolumeVI where
-  roots := #[`LRA.VolumeVI]
-
 lean_lib LRAVolumeVII where
   roots := #[`LRA.VolumeVII]
+
+lean_lib LRAExamples where
+  roots := #[`LRA.Examples]
+
+lean_lib LRAFailures where
+  roots := #[`LRA.Failures]
 
 -- Build-gated smoke and regression checks. Production volume roots must not
 -- import these modules.

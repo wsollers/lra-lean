@@ -10,7 +10,7 @@ Pipeline
     lake env lean --run scripts/DumpProofsToDo.lean   # writes build/proofs-todo-environment.tsv
     python3 scripts/generate_proofs_todo.py            # writes LRA/<Folder>/ProofsToDo.md
 
-Each entry gets six fields:
+Each entry gets seven fields:
 
 * ``Name`` -- as written in source (dot-notation declarations, e.g.
   ``theorem Foo.bar``, keep their prefix). An *anonymous* ``instance``
@@ -50,6 +50,12 @@ Each entry gets six fields:
   actual `∃ M, ∀ x, x ∈ S → x ≤ M` body instead of the predicate's name.
   Falls back to the uncurried field, clearly labelled as such, when offline
   or when the Lean dumper's unfold step itself errored for that row.
+* ``Transliterated theorem`` -- a lightweight mathematical normalization of
+  the source signature. It keeps the theorem-shaped data already present,
+  but suppresses Lean infrastructure binders/classes, renames ordinary set
+  variables to `A`, `B`, ... and turns named hypotheses into implication
+  antecedents. This is intentionally deterministic and conservative: it is
+  not prose, just a more mathematician-facing formula.
 * ``Logical form (Lean)`` -- the declaration's own signature, verbatim, in
   Lean's own surface syntax. This deliberately mirrors the ``Logical form:``
   fenced block that this repo's own ``scripts/check-hover-docs.py`` already
@@ -278,6 +284,301 @@ def render_predicate_logic_from_signature(signature: str) -> str:
     return conclusion
 
 
+def has_compiled_surface_leak(value: str) -> bool:
+    """True when Lean's standalone pretty-printer exposed elaborated internals.
+
+    The environment dump is still authoritative for `uses_sorry` and for the
+    unfolded structure, but these strings are poor human-facing checklist text
+    when they contain instance dictionary projections such as `inst.mem` or
+    raw core connectives such as `And`/`Not`.
+    """
+    return bool(
+        re.search(
+            r"\b(?:And|Not|Eq|Iff)\b|(?:^|[\s(])inst(?:_\d+)?\.(?:mem|sdiff|union|inter|subset)",
+            value,
+        )
+    )
+
+
+def choose_predicate_logic(row: CompiledTheorem, source: SourceTheorem) -> str:
+    """Prefer source syntax when compiled pretty-printing leaks internals."""
+    compiled = row.pretty_type_uncurried.strip()
+    if not compiled or has_compiled_surface_leak(compiled):
+        return source.predicate_logic_fallback
+    return compiled
+
+
+def matching_paren(text: str, start: int) -> int | None:
+    depth = 0
+    for index in range(start, len(text)):
+        if text[index] == "(":
+            depth += 1
+        elif text[index] == ")":
+            depth -= 1
+            if depth == 0:
+                return index
+    return None
+
+
+def split_compiled_arg(text: str) -> tuple[str, str] | None:
+    text = text.lstrip()
+    if not text:
+        return None
+    if text[0] == "(":
+        end = matching_paren(text, 0)
+        if end is None:
+            return None
+        return text[1:end], text[end + 1 :]
+    depth = 0
+    for index, char in enumerate(text):
+        if char in BRACKET_OPEN:
+            depth += 1
+        elif char in BRACKET_CLOSE:
+            depth = max(0, depth - 1)
+        elif depth == 0 and char.isspace():
+            return text[:index], text[index + 1 :]
+    return text, ""
+
+
+def compiled_atom_to_notation(name: str, args: list[str]) -> str | None:
+    rendered = [humanize_compiled_logic(arg) for arg in args]
+    if name == "And" and len(rendered) == 2:
+        return f"({rendered[0]} ∧ {rendered[1]})"
+    if name == "Not" and len(rendered) == 1:
+        return f"¬ {rendered[0]}"
+    if name == "Eq" and len(rendered) == 2:
+        return f"{rendered[0]} = {rendered[1]}"
+    if name == "Iff" and len(rendered) == 2:
+        return f"{rendered[0]} ↔ {rendered[1]}"
+    if re.fullmatch(r"inst(?:_\d+)?\.mem", name) and len(rendered) == 2:
+        return f"{rendered[1]} ∈ {rendered[0]}"
+    if re.fullmatch(r"inst(?:_\d+)?\.sdiff", name) and len(rendered) == 2:
+        return f"{rendered[0]} \\ {rendered[1]}"
+    if re.fullmatch(r"inst(?:_\d+)?\.union", name) and len(rendered) == 2:
+        return f"{rendered[0]} ∪ {rendered[1]}"
+    if re.fullmatch(r"inst(?:_\d+)?\.inter", name) and len(rendered) == 2:
+        return f"{rendered[0]} ∩ {rendered[1]}"
+    return None
+
+
+def rewrite_compiled_prefix_at(text: str, start: int) -> tuple[str, int] | None:
+    match = re.match(r"(And|Not|Eq|Iff|inst(?:_\d+)?\.(?:mem|sdiff|union|inter))\b", text[start:])
+    if not match:
+        return None
+    name = match.group(1)
+    arity = 1 if name == "Not" else 2
+    rest_start = start + len(name)
+    args = []
+    rest = text[rest_start:]
+    for _ in range(arity):
+        split = split_compiled_arg(rest)
+        if split is None:
+            return None
+        arg, rest = split
+        args.append(arg)
+    rendered = compiled_atom_to_notation(name, args)
+    if rendered is None:
+        return None
+    consumed = len(text) - len(rest)
+    return rendered, consumed
+
+
+def humanize_compiled_logic(value: str) -> str:
+    """Best-effort cleanup for standalone Lean pretty-printer internals."""
+    result = value
+    for _ in range(8):
+        changed = False
+        output: list[str] = []
+        index = 0
+        while index < len(result):
+            rewrite = rewrite_compiled_prefix_at(result, index)
+            if rewrite is not None:
+                rendered, consumed = rewrite
+                output.append(rendered)
+                index = consumed
+                changed = True
+            else:
+                output.append(result[index])
+                index += 1
+        result = "".join(output)
+        if not changed:
+            break
+    result = re.sub(r"\s*→\s*", " → ", result)
+    result = re.sub(r"\s*↔\s*", " ↔ ", result)
+    result = re.sub(r"\s*∧\s*", " ∧ ", result)
+    result = re.sub(r"\s+", " ", result)
+    return result.strip()
+
+
+# ---------------------------------------------------------------------------
+# Mathematical transliteration
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class BinderGroup:
+    opener: str
+    content: str
+
+
+def split_binder_groups(text: str) -> list[BinderGroup]:
+    groups: list[BinderGroup] = []
+    index = 0
+    while index < len(text):
+        while index < len(text) and text[index].isspace():
+            index += 1
+        if index >= len(text) or text[index] not in BRACKET_OPEN:
+            break
+        opener = text[index]
+        closer = CLOSE_OF_OPEN[opener]
+        depth = 0
+        start = index
+        while index < len(text):
+            char = text[index]
+            if char == opener:
+                depth += 1
+            elif char == closer:
+                depth -= 1
+                if depth == 0:
+                    groups.append(BinderGroup(opener=opener, content=text[start + 1 : index].strip()))
+                    index += 1
+                    break
+            index += 1
+        else:
+            break
+    return groups
+
+
+def split_binder_content(content: str) -> tuple[list[str], str] | None:
+    colon = first_top_level_colon(content)
+    if colon is None:
+        return None
+    names = [name for name in content[:colon].strip().split() if name]
+    binder_type = content[colon + 1 :].strip()
+    if not names or not binder_type:
+        return None
+    return names, binder_type
+
+
+def transliterated_variable_names(names: list[str], binder_type: str, renames: dict[str, str]) -> list[str]:
+    set_names = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    element_names = ["x", "y", "z", "w", "a", "b", "c"]
+    rendered: list[str] = []
+    for name in names:
+        if name in renames:
+            rendered.append(renames[name])
+            continue
+        if binder_type == "SetObject":
+            used = {value for key, value in renames.items() if key != name}
+            replacement = next((candidate for candidate in set_names if candidate not in used), name)
+        elif binder_type == "Element":
+            used = {value for key, value in renames.items() if key != name}
+            replacement = next((candidate for candidate in element_names if candidate not in used), name)
+        else:
+            replacement = name
+        renames[name] = replacement
+        rendered.append(replacement)
+    return rendered
+
+
+def is_simple_domain_type(binder_type: str) -> bool:
+    return bool(re.fullmatch(r"[A-Za-z][\w'.]*", binder_type))
+
+
+def is_proposition_shaped(binder_type: str) -> bool:
+    return bool(
+        binder_type.startswith(("∀", "∃"))
+        or any(token in binder_type for token in ("→", "↔", "\\/", "/\\", " = ", " ∈ ", " < ", " ≤ "))
+    )
+
+
+def transliterate_inner_quantifiers(expr: str) -> str:
+    result = expr
+    for _ in range(4):
+        rewritten = re.sub(
+            r"∀\s+\(([^():]+)\s*:\s*([^)]+)\)",
+            lambda match: f"∀ {match.group(1).strip()} ∈ {match.group(2).strip()}",
+            result,
+        )
+        rewritten = re.sub(
+            r"\(([^():]+)\s*:\s*([^)]+)\)",
+            lambda match: f"{match.group(1).strip()} ∈ {match.group(2).strip()}",
+            rewritten,
+        )
+        rewritten = re.sub(
+            r"∃\s+([^():,]+)\s*:\s*([^,]+),",
+            lambda match: f"∃ {match.group(1).strip()} ∈ {match.group(2).strip()},",
+            rewritten,
+        )
+        if rewritten == result:
+            break
+        result = rewritten
+    return result
+
+
+def transliterate_expr(expr: str, renames: dict[str, str], relation_names: set[str]) -> str:
+    result = expr.strip()
+    result = result.replace("\\/", "∨").replace("/\\", "∧")
+    result = transliterate_inner_quantifiers(result)
+    for original, replacement in sorted(renames.items(), key=lambda item: len(item[0]), reverse=True):
+        result = re.sub(rf"\b{re.escape(original)}\b", replacement, result)
+    for relation in sorted(relation_names, key=len, reverse=True):
+        result = re.sub(rf"\bBoundedBelow\s+{re.escape(relation)}\s+(\([^()]*\)|[A-Za-z][\w']*)", r"BoundedBelow(\1)", result)
+        result = re.sub(rf"\bBoundedAbove\s+{re.escape(relation)}\s+(\([^()]*\)|[A-Za-z][\w']*)", r"BoundedAbove(\1)", result)
+        result = re.sub(rf"\bLeastElement\s+{re.escape(relation)}\s+(\([^()]*\)|[A-Za-z][\w']*)\s+(\([^()]*\)|[A-Za-z][\w']*)", r"LeastElement(\2, \1)", result)
+        result = re.sub(rf"\bGreatestElement\s+{re.escape(relation)}\s+(\([^()]*\)|[A-Za-z][\w']*)\s+(\([^()]*\)|[A-Za-z][\w']*)", r"GreatestElement(\2, \1)", result)
+    result = re.sub(r"\s+", " ", result)
+    result = re.sub(r"\(\s+", "(", result)
+    result = re.sub(r"\s+\)", ")", result)
+    result = re.sub(r"\b(BoundedBelow|BoundedAbove)\(\(([^()]*)\)\)", r"\1(\2)", result)
+    result = re.sub(r"\b(LeastElement|GreatestElement)\(([^(),]+), \(([^()]*)\)\)", r"\1(\2, \3)", result)
+    return result.strip()
+
+
+def transliterate_signature(signature: str) -> str:
+    colon = first_top_level_colon(signature)
+    if colon is None:
+        return signature
+
+    binder_text = signature[:colon].strip()
+    conclusion = signature[colon + 1 :].strip()
+    groups = split_binder_groups(binder_text)
+    renames: dict[str, str] = {}
+    relation_names: set[str] = set()
+    quantifiers: list[str] = []
+    hypotheses: list[str] = []
+
+    for group in groups:
+        if group.opener == "[":
+            continue
+        split = split_binder_content(group.content)
+        if split is None:
+            continue
+        names, binder_type = split
+        if binder_type.startswith("Type"):
+            continue
+        if binder_type == "LRA.Relation.Endorelation Element":
+            relation_names.update(names)
+            continue
+        if binder_type in {"SetObject", "Element"}:
+            rendered_names = transliterated_variable_names(names, binder_type, renames)
+            domain = "U" if binder_type == "SetObject" else "Element"
+            quantifiers.append(f"∀ {' '.join(rendered_names)} ∈ {domain}")
+            continue
+        if group.opener == "(" and is_simple_domain_type(binder_type):
+            rendered_names = transliterated_variable_names(names, binder_type, renames)
+            quantifiers.append(f"∀ {' '.join(rendered_names)} ∈ {binder_type}")
+            continue
+        if len(names) == 1 and group.opener == "(" and is_proposition_shaped(binder_type):
+            hypotheses.append(transliterate_expr(binder_type, renames, relation_names))
+
+    rendered_conclusion = transliterate_expr(conclusion, renames, relation_names)
+    body = f"({' ∧ '.join(hypotheses)}) → {rendered_conclusion}" if hypotheses else rendered_conclusion
+    if quantifiers:
+        return f"({' '.join(quantifiers)}), {body}"
+    return body
+
+
 # ---------------------------------------------------------------------------
 # Source scanning
 # ---------------------------------------------------------------------------
@@ -290,6 +591,7 @@ class SourceTheorem:
     line: int
     signature_lean: str
     predicate_logic_fallback: str
+    transliterated_theorem: str
 
 
 @dataclass
@@ -322,6 +624,7 @@ def scan_source_module(path: Path, folder_module_prefix: str) -> SourceModule:
         declaration_text = masked[match.start() : next_start]
         signature = extract_signature(declaration_text, match.end() - match.start())
         fallback = render_predicate_logic_from_signature(signature)
+        transliterated = transliterate_signature(signature)
         line = masked.count("\n", 0, match.start()) + 1
         theorems.append(
             SourceTheorem(
@@ -330,6 +633,7 @@ def scan_source_module(path: Path, folder_module_prefix: str) -> SourceModule:
                 line=line,
                 signature_lean=signature,
                 predicate_logic_fallback=fallback,
+                transliterated_theorem=transliterated,
             )
         )
 
@@ -427,6 +731,7 @@ class Entry:
     state: str
     predicate_logic: str
     predicate_logic_unfolded: str
+    transliterated_theorem: str
     logical_form_lean: str
     source_relative_path: str
     source_line: int | None
@@ -450,7 +755,8 @@ def resolve_unfolded(row: CompiledTheorem, uncurried_predicate: str) -> str:
         return f"{uncurried_predicate} [offline preview: unfolding not attempted]"
     if row.unfold_status.startswith("error:"):
         return f"{uncurried_predicate} [unfold error: {row.unfold_status[len('error:'):].strip()}]"
-    return row.pretty_type_unfolded.strip() or uncurried_predicate
+    unfolded = row.pretty_type_unfolded.strip()
+    return humanize_compiled_logic(unfolded) if unfolded else uncurried_predicate
 
 
 def reconcile(
@@ -484,7 +790,7 @@ def reconcile(
                 state = "Unknown (offline preview)"
             else:
                 state = "Sorry" if row.uses_sorry else "Completed"
-            predicate = row.pretty_type_uncurried.strip() or theorem.predicate_logic_fallback
+            predicate = choose_predicate_logic(row, theorem)
             entries.append(
                 Entry(
                     name=theorem.name,
@@ -492,6 +798,7 @@ def reconcile(
                     state=state,
                     predicate_logic=predicate,
                     predicate_logic_unfolded=resolve_unfolded(row, predicate),
+                    transliterated_theorem=theorem.transliterated_theorem,
                     logical_form_lean=theorem.signature_lean,
                     source_relative_path=mod.relative_path,
                     source_line=theorem.line,
@@ -530,6 +837,7 @@ def reconcile(
                         state=state,
                         predicate_logic=predicate,
                         predicate_logic_unfolded=resolve_unfolded(row, predicate),
+                        transliterated_theorem="(signature unavailable)",
                         logical_form_lean="(signature unavailable -- not found by source scan)",
                         source_relative_path=mod.relative_path,
                         source_line=None,
@@ -666,6 +974,7 @@ def render_folder(folder: Path, ordered: list[tuple[SourceModule, list[Entry]]],
                         f"State: {entry.state}",
                         f"Predicate logic: {entry.predicate_logic}",
                         f"Predicate logic (unfolded): {entry.predicate_logic_unfolded}",
+                        f"Transliterated theorem: {entry.transliterated_theorem}",
                         f"Logical form (Lean): {entry.logical_form_lean}",
                         f"Source: {source}",
                     ]

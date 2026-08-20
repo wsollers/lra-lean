@@ -12,7 +12,7 @@ theorem PreservesBinaryOperation.apply {Source : Type u} {Target : Type v}
     (law : PreservesBinaryOperation function sourceOperation targetOperation)
     (left right : Source) :
     function (sourceOperation left right) =
-      targetOperation (function left) (function right) :=
-  law left right
+      targetOperation (function left) (function right) := by
+  sorry
 
 end LRA.Morphism

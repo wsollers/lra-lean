@@ -18,7 +18,7 @@ theorem MinimalElementPrinciple
     (subset : SetObject)
     (subsetIsNonempty : ∃ element : Element, element ∈ subset) :
     ∃ minimalElement,
-      MinimalElement strictRelation subset minimalElement :=
-  strictRelationIsWellFounded subset subsetIsNonempty
+      MinimalElement strictRelation subset minimalElement := by
+  sorry
 
 end LRA.Relation

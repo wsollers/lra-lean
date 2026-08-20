@@ -72,7 +72,8 @@ theorem cauchy_integral_constant (a b c : ℝ) (hab : a ≤ b) :
 ```
 -/
 theorem cauchy_integral_constant (a b c : ℝ) (hab : a ≤ b) :
-    HasCauchyIntegral (fun _ => c) a b (c * (b - a)) := by sorry
+    HasCauchyIntegral (fun _ => c) a b (c * (b - a)) := by
+  sorry
 
 variable {f g : ℝ → ℝ} {a b : ℝ}
 
@@ -91,7 +92,8 @@ theorem cauchy_integral_linearity (hf : IsCauchyIntegrable f a b) (hg : IsCauchy
 -/
 theorem cauchy_integral_linearity (hf : IsCauchyIntegrable f a b) (hg : IsCauchyIntegrable g a b)
     (α β Lf Lg : ℝ) (hLf : HasCauchyIntegral f a b Lf) (hLg : HasCauchyIntegral g a b Lg) :
-    HasCauchyIntegral (fun x => α * f x + β * g x) a b (α * Lf + β * Lg) := by sorry
+    HasCauchyIntegral (fun x => α * f x + β * g x) a b (α * Lf + β * Lg) := by
+  sorry
 
 -- `thm:cauchy-integral-monotonicity`
 /-- Let `Lf Lg : ℝ`. If `hLf : HasCauchyIntegral f a b Lf`, `hLg : HasCauchyIntegral g a b Lg`, and

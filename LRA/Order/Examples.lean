@@ -36,8 +36,7 @@ theorem NaturalAdditionRightTranslationPreservesLessEqual :
     RightTranslationPreservesRelation
       (fun left right : Nat => left <= right)
       NaturalAdditionForOrderCompatibility := by
-  intro left right fixed related
-  exact Nat.add_le_add_right related fixed
+  sorry
 
 /-- Natural-number truncated subtraction for an order-compatibility example. -/
 def NaturalSubtractionForOrderCompatibilityExample :
@@ -53,8 +52,7 @@ theorem NaturalSubtractionRightTranslationPreservesLessEqual :
     RightTranslationPreservesRelation
       (fun left right : Nat => left <= right)
       NaturalSubtractionForOrderCompatibilityExample := by
-  intro left right fixed related
-  exact Nat.sub_le_sub_right related fixed
+  sorry
 
 end LRA.Order
 
@@ -74,14 +72,7 @@ LRA.Order.PartialOrder (fun left right : Nat => left <= right)
 -/
 theorem NaturalNumberLessEqualIsPartialOrder :
     LRA.Order.PartialOrder (fun left right : Nat => left <= right) := by
-  constructor
-  · intro element
-    exact Nat.le_refl element
-  · constructor
-    · intro left right left_le_right right_le_left
-      exact Nat.le_antisymm left_le_right right_le_left
-    · intro left middle right left_le_middle middle_le_right
-      exact Nat.le_trans left_le_middle middle_le_right
+  sorry
 
 /--
 `NaturalNumberNonStrictPartialOrder`
@@ -126,14 +117,7 @@ LRA.Order.PartialOrder (fun left right : Bool => left = right)
 -/
 theorem BooleanEqualityIsPartialOrder :
     LRA.Order.PartialOrder (fun left right : Bool => left = right) := by
-  constructor
-  · intro element
-    rfl
-  · constructor
-    · intro left right left_eq_right _right_eq_left
-      exact left_eq_right
-    · intro left middle right left_eq_middle middle_eq_right
-      exact Eq.trans left_eq_middle middle_eq_right
+  sorry
 
 /--
 `BooleanEqualityNonStrictPartialOrder`

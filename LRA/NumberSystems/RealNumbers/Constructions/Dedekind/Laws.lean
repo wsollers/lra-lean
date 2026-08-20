@@ -64,7 +64,6 @@ theorem additive_group_structure : AdditiveGroupStructure rational_model
 theorem additive_group_structure : AdditiveGroupStructure rational_model := by
   sorry
 
-
 /-- Proposition expressing multiplicative and distributive laws.
 
 Mathematical statement (Lean): `def MultiplicativeAndDistributiveLaws : Prop`.
@@ -123,7 +122,6 @@ theorem multiplicative_and_distributive_laws :
     MultiplicativeAndDistributiveLaws rational_model := by
   sorry
 
-
 /-- Proposition expressing field structure.
 
 Mathematical statement (Lean): `def FieldStructure : Prop`.
@@ -164,7 +162,6 @@ theorem field_structure : FieldStructure rational_model
 theorem field_structure : FieldStructure rational_model := by
   sorry
 
-
 /-- Theorem 5.1: translation invariance of strict order.
 
 Mathematical statement (Lean): `theorem translation_invariance (first second translation : Cut rational_model) (first_lt_second : strict_order rational_model first second) : strict_order rational_model (addition rational_model first translation) (addition rational_model second translation)`.
@@ -191,7 +188,6 @@ theorem translation_invariance
       (addition rational_model second translation) := by
   sorry
 
-
 /-- Theorem 5.2: positive products are positive.
 
 Mathematical statement (Lean): `theorem positive_products_are_positive (first second : Cut rational_model) (first_positive : IsPositive rational_model first) (second_positive : IsPositive rational_model second) : IsPositive rational_model (multiplication rational_model first second)`.
@@ -217,7 +213,6 @@ theorem positive_products_are_positive
     IsPositive rational_model
       (multiplication rational_model first second) := by
   sorry
-
 
 /-- Proposition expressing ordered-field structure.
 
@@ -273,7 +268,6 @@ theorem ordered_field_structure : OrderedFieldStructure rational_model
 theorem ordered_field_structure : OrderedFieldStructure rational_model := by
   sorry
 
-
 /-- Proposition expressing the least-upper-bound property.
 
 Mathematical statement (Lean): `def LeastUpperBoundProperty : Prop`.
@@ -327,7 +321,6 @@ theorem least_upper_bound_property : LeastUpperBoundProperty rational_model
 -/
 theorem least_upper_bound_property : LeastUpperBoundProperty rational_model := by
   sorry
-
 
 /-- Proposition expressing complete ordered-field structure.
 

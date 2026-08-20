@@ -16,8 +16,8 @@ section Wrappers
 variable {R : Type u}
 
 theorem LeTotal [LE R] [TotalOrderLaw R] :
-    forall a b : R, a <= b \/ b <= a :=
-  TotalOrderLaw.LeTotal
+    forall a b : R, a <= b \/ b <= a := by
+  sorry
 
 end Wrappers
 

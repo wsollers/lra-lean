@@ -63,7 +63,6 @@ theorem strict_total_order : StrictTotalOrder rational_model
 theorem strict_total_order : StrictTotalOrder rational_model := by
   sorry
 
-
 /-- Proposition expressing order compatibility.
 
 Mathematical statement (Lean): `def OrderCompatibility : Prop`.
@@ -116,7 +115,6 @@ theorem order_compatibility : OrderCompatibility rational_model
 theorem order_compatibility : OrderCompatibility rational_model := by
   sorry
 
-
 /-- Theorem 5.1: raw interval subdistributivity.
 
 Mathematical statement (Lean): `theorem raw_interval_subdistributivity (first second third : RationalInterval rational_model) : subset rational_model (interval_multiplication rational_model first (interval_addition rational_model second third)) (interval_addition rational_model (interval_...`.
@@ -146,7 +144,6 @@ theorem raw_interval_subdistributivity
         (interval_multiplication rational_model first second)
         (interval_multiplication rational_model first third)) := by
   sorry
-
 
 /-- Theorem 5.2: raw interval distributivity can fail strictly.
 
@@ -190,7 +187,6 @@ theorem raw_interval_distributivity_can_fail :
           (interval_addition rational_model second third)) := by
   sorry
 
-
 /-- Theorem 5.3: the distributive defect vanishes for shrinking representatives.
 
 Mathematical statement (Lean): `theorem distributive_defect_vanishes (first second third : Representative rational_model) : equivalent rational_model (representative_multiplication rational_model first (representative_addition rational_model second third)) (representative_addition rationa...`.
@@ -221,7 +217,6 @@ theorem distributive_defect_vanishes
         (representative_multiplication rational_model first third)) := by
   sorry
 
-
 /-- Corollary 5.4: exact distributivity in the quotient.
 
 Mathematical statement (Lean): `theorem quotient_distributivity (first second third : Carrier rational_model) : multiplication rational_model first (addition rational_model second third) = addition rational_model (multiplication rational_model first second) (multiplication rational_model...`.
@@ -249,7 +244,6 @@ theorem quotient_distributivity
         (multiplication rational_model first second)
         (multiplication rational_model first third) := by
   sorry
-
 
 /-- Lemma 6.1: nonzero classes admit representatives eventually separated from zero.
 
@@ -302,7 +296,6 @@ theorem nonzero_eventually_separated_from_zero
               (representative.interval index).right_endpoint
               (rational_model.signature.neg delta))) := by
   sorry
-
 
 /-- Definition 6.2: reciprocal interval specification away from zero.
 
@@ -359,7 +352,6 @@ theorem reciprocal_exists_uniquely
         multiplication rational_model value other = one rational_model →
         other = inverse_value := by
   sorry
-
 
 /-- Definition 6.3: multiplicative inverse of a nonzero class.
 
@@ -426,7 +418,6 @@ theorem ordered_field_structure : OrderedFieldStructure rational_model
 -/
 theorem ordered_field_structure : OrderedFieldStructure rational_model := by
   sorry
-
 
 /-- Proposition expressing least-upper-bound completeness.
 

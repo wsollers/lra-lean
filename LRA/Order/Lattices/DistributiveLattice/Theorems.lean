@@ -9,8 +9,8 @@ theorem DistributiveLatticeIsLattice
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
     (relationIsDistributiveLattice : DistributiveLattice relation) :
-    Lattice relation :=
-  relationIsDistributiveLattice.1
+    Lattice relation := by
+  sorry
 
 /-- Join distributes over meet in a distributive lattice. -/
 theorem JoinDistributesOverMeet

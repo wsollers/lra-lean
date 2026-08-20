@@ -1,7 +1,7 @@
 import LRA.Identity
 import LRA.Order
 import LRA.Analysis.Bounds
-import LRA.Analysis.MetricSpaces
+import LRA.Analysis.MetricSpace
 import LRA.Analysis.MeasureTheory
 import LRA.NumberSystems
 import LRA.Function.Definition

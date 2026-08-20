@@ -24,6 +24,7 @@ theorem NaturalMultiplicationFailsLeftCancellative :
     FailsLeftCancellative NaturalMultiplication := by
   sorry
 
+
 theorem NaturalMultiplicationFailsRightCancellative :
     FailsRightCancellative NaturalMultiplication := by
   sorry
@@ -43,6 +44,7 @@ def FailsRightRegular {Carrier : Type u}
 theorem NaturalZeroFailsLeftRegularUnderMultiplication :
     FailsLeftRegular NaturalMultiplication 0 := by
   sorry
+
 
 theorem NaturalZeroFailsRightRegularUnderMultiplication :
     FailsRightRegular NaturalMultiplication 0 := by

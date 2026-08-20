@@ -12,7 +12,7 @@ theorem PreservesRelation.apply {Source : Type u} {Target : Type v}
     (law : PreservesRelation function sourceRelation targetRelation)
     {left right : Source}
     (related : sourceRelation left right) :
-    targetRelation (function left) (function right) :=
-  law left right related
+    targetRelation (function left) (function right) := by
+  sorry
 
 end LRA.Morphism

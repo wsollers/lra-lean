@@ -50,13 +50,7 @@ theorem NonemptyFiniteSubsetHasGreatestElement
     (subsetIsFinite : subset.Finite)
     (subsetIsNonempty : exists element, element ∈ subset) :
     exists greatest, GreatestElement relation subset greatest := by
-  rcases NonemptyFiniteSubsetHasMaximalElement
-      relationIsLinearOrder.1 subset subsetIsFinite subsetIsNonempty with
-    ⟨greatest, greatestIsMaximal⟩
-  exact
-    ⟨greatest,
-      MaximalElementIsGreatestInLinearOrder
-        relationIsLinearOrder greatestIsMaximal⟩
+  sorry
 
 /-- Every nonempty finite predicate subset of a partial order has a minimal element. -/
 theorem NonemptyFiniteSubsetHasMinimalElement
@@ -85,12 +79,7 @@ theorem NonemptyFiniteSubsetHasLeastElement
     (subsetIsFinite : subset.Finite)
     (subsetIsNonempty : exists element, element ∈ subset) :
     exists least, LeastElement relation subset least := by
-  rcases NonemptyFiniteSubsetHasMinimalElement
-      relationIsLinearOrder.1 subset subsetIsFinite subsetIsNonempty with
-    ⟨least, leastIsMinimal⟩
-  exact
-    ⟨least,
-      MinimalElementIsLeastInLinearOrder relationIsLinearOrder leastIsMinimal⟩
+  sorry
 
 /-- Every nonempty finite lattice is complete for predicate subsets. -/
 theorem FiniteLatticeIsComplete

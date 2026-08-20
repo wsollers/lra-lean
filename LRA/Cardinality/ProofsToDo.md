@@ -9,6 +9,222 @@ keep source order, because Lean forbids forward references, so source order is
 already a valid topological order. Working this list top to bottom, no entry
 depends on anything not yet proved above it.
 
-**Inventory:** 0 entries across 0 module(s) (0 completed, 0 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
+**Inventory:** 20 entries across 3 module(s) (0 completed, 20 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
 
-No theorem declarations found under this folder yet.
+Name: EquinumerousReflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), LRA.Cardinality.Equinumerous A A
+Predicate logic (unfolded): ∀ (A : Type u), LRA.Cardinality.Equinumerous A A
+Transliterated theorem: Equinumerous A A
+Logical form (Lean): (A : Type u) : Equinumerous A A
+Source: ./Theorems.lean#L41
+
+
+
+Name: EquinumerousSymmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u) (B : Type v), LRA.Cardinality.Equinumerous A B → LRA.Cardinality.Equinumerous B A
+Predicate logic (unfolded): ∀ (A : Type u) (B : Type v), LRA.Cardinality.Equinumerous A B → LRA.Cardinality.Equinumerous B A
+Transliterated theorem: Equinumerous B A
+Logical form (Lean): (A : Type u) (B : Type v) (equinumerous : Equinumerous A B) : Equinumerous B A
+Source: ./Theorems.lean#L56
+
+
+
+Name: EquinumerousTransitive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u) (B : Type v) (C : Type w) (firstEquinumerous : Equinumerous A B) (secondEquinumerous : Equinumerous B C), Equinumerous A C
+Predicate logic (unfolded): ∀ (A : Type u) (B : Type v) (C : Type w), (LRA.Cardinality.Equinumerous A B ∧ LRA.Cardinality.Equinumerous B C) → LRA.Cardinality.Equinumerous A C
+Transliterated theorem: Equinumerous A C
+Logical form (Lean): (A : Type u) (B : Type v) (C : Type w) (firstEquinumerous : Equinumerous A B) (secondEquinumerous : Equinumerous B C) : Equinumerous A C
+Source: ./Theorems.lean#L72
+
+
+
+Name: DominatesReflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), LRA.Cardinality.Dominates A A
+Predicate logic (unfolded): ∀ (A : Type u), LRA.Cardinality.Dominates A A
+Transliterated theorem: Dominates A A
+Logical form (Lean): (A : Type u) : Dominates A A
+Source: ./Theorems.lean#L87
+
+
+
+Name: DominatesTransitive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u) (B : Type v) (C : Type w) (firstDominates : Dominates A B) (secondDominates : Dominates B C), Dominates A C
+Predicate logic (unfolded): ∀ (A : Type u) (B : Type v) (C : Type w), (LRA.Cardinality.Dominates A B ∧ LRA.Cardinality.Dominates B C) → LRA.Cardinality.Dominates A C
+Transliterated theorem: Dominates A C
+Logical form (Lean): (A : Type u) (B : Type v) (C : Type w) (firstDominates : Dominates A B) (secondDominates : Dominates B C) : Dominates A C
+Source: ./Theorems.lean#L102
+
+
+
+Name: DominatesOfEquinumerous
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u) (B : Type v), LRA.Cardinality.Equinumerous A B → LRA.Cardinality.Dominates A B
+Predicate logic (unfolded): ∀ (A : Type u) (B : Type v), LRA.Cardinality.Equinumerous A B → LRA.Cardinality.Dominates A B
+Transliterated theorem: Dominates A B
+Logical form (Lean): (A : Type u) (B : Type v) (equinumerous : Equinumerous A B) : Dominates A B
+Source: ./Theorems.lean#L119
+
+
+
+Name: CantorSchroederBernstein
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u) (B : Type v) (firstDominates : Dominates A B) (secondDominates : Dominates B A), Equinumerous A B
+Predicate logic (unfolded): ∀ (A : Type u) (B : Type v), (LRA.Cardinality.Dominates A B ∧ LRA.Cardinality.Dominates B A) → LRA.Cardinality.Equinumerous A B
+Transliterated theorem: Equinumerous A B
+Logical form (Lean): (A : Type u) (B : Type v) (firstDominates : Dominates A B) (secondDominates : Dominates B A) : Equinumerous A B
+Source: ./Theorems.lean#L140
+
+
+
+Name: CantorTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), ¬ ∃ f : A → (A → Prop), LRA.Function.Surjective f
+Predicate logic (unfolded): ∀ (A : Type u), ¬ Exists fun f => LRA.Function.Surjective f
+Transliterated theorem: ¬ ∃ f ∈ A → (A → Prop), LRA.Function.Surjective f
+Logical form (Lean): (A : Type u) : ¬ ∃ f : A → (A → Prop), LRA.Function.Surjective f
+Source: ./Theorems.lean#L160
+
+
+
+Name: StrictlyDominatesPowerset
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), LRA.Cardinality.StrictlyDominates A (A → Prop)
+Predicate logic (unfolded): ∀ (A : Type u), LRA.Cardinality.StrictlyDominates A (A → Prop)
+Transliterated theorem: StrictlyDominates A (A → Prop)
+Logical form (Lean): (A : Type u) : StrictlyDominates A (A → Prop)
+Source: ./Theorems.lean#L179
+
+
+
+Name: FiniteImpliesCountable
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), LRA.Cardinality.IsFinite A → LRA.Cardinality.IsCountable A
+Predicate logic (unfolded): ∀ (A : Type u), LRA.Cardinality.IsFinite A → LRA.Cardinality.IsCountable A
+Transliterated theorem: IsCountable A
+Logical form (Lean): (A : Type u) (finite : IsFinite A) : IsCountable A
+Source: ./Properties/Countability/Theorems.lean#L28
+
+
+
+Name: CountablyInfiniteImpliesCountable
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), LRA.Cardinality.IsCountablyInfinite A → LRA.Cardinality.IsCountable A
+Predicate logic (unfolded): ∀ (A : Type u), LRA.Cardinality.IsCountablyInfinite A → LRA.Cardinality.IsCountable A
+Transliterated theorem: IsCountable A
+Logical form (Lean): (A : Type u) (countablyInfinite : IsCountablyInfinite A) : IsCountable A
+Source: ./Properties/Countability/Theorems.lean#L43
+
+
+
+Name: CountablyInfiniteImpliesInfinite
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), LRA.Cardinality.IsCountablyInfinite A → LRA.Cardinality.IsInfinite A
+Predicate logic (unfolded): ∀ (A : Type u), LRA.Cardinality.IsCountablyInfinite A → LRA.Cardinality.IsInfinite A
+Transliterated theorem: IsInfinite A
+Logical form (Lean): (A : Type u) (countablyInfinite : IsCountablyInfinite A) : IsInfinite A
+Source: ./Properties/Countability/Theorems.lean#L59
+
+
+
+Name: IsCountableCongr
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u) (B : Type v) (equinumerous : Equinumerous A B), IsCountable A ↔ IsCountable B
+Predicate logic (unfolded): ∀ (A : Type u) (B : Type v), LRA.Cardinality.Equinumerous A B → LRA.Cardinality.IsCountable A ↔ LRA.Cardinality.IsCountable B
+Transliterated theorem: IsCountable A ↔ IsCountable B
+Logical form (Lean): (A : Type u) (B : Type v) (equinumerous : Equinumerous A B) : IsCountable A ↔ IsCountable B
+Source: ./Properties/Countability/Theorems.lean#L74
+
+
+
+Name: DominatesCountableIsCountable
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u) (B : Type v) (dominatesB : Dominates A B) (countableB : IsCountable B), IsCountable A
+Predicate logic (unfolded): ∀ (A : Type u) (B : Type v), (LRA.Cardinality.Dominates A B ∧ LRA.Cardinality.IsCountable B) → LRA.Cardinality.IsCountable A
+Transliterated theorem: IsCountable A
+Logical form (Lean): (A : Type u) (B : Type v) (dominatesB : Dominates A B) (countableB : IsCountable B) : IsCountable A
+Source: ./Properties/Countability/Theorems.lean#L91
+
+
+
+Name: CountableSigmaOfCountableIndexCountableFibers
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Index : Type u} (family : Index → Type v) (countableIndex : IsCountable Index) (countableFibers : ∀ index : Index, IsCountable (family index)), IsCountable (Sigma family)
+Predicate logic (unfolded): ∀ {Index : Type u} (family : Index → Type v), (LRA.Cardinality.IsCountable Index ∧ ∀ (index : Index), LRA.Cardinality.IsCountable (family index)) → LRA.Cardinality.IsCountable (Sigma family)
+Transliterated theorem: (Index → Type v ∧ ∀ index : Index, IsCountable (family index)) → IsCountable (Sigma family)
+Logical form (Lean): {Index : Type u} (family : Index → Type v) (countableIndex : IsCountable Index) (countableFibers : ∀ index : Index, IsCountable (family index)) : IsCountable (Sigma family)
+Source: ./Properties/Countability/Theorems.lean#L115
+
+
+
+Name: IsFiniteCongr
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u) (B : Type v) (equinumerous : Equinumerous A B), IsFinite A ↔ IsFinite B
+Predicate logic (unfolded): ∀ (A : Type u) (B : Type v), LRA.Cardinality.Equinumerous A B → LRA.Cardinality.IsFinite A ↔ LRA.Cardinality.IsFinite B
+Transliterated theorem: IsFinite A ↔ IsFinite B
+Logical form (Lean): (A : Type u) (B : Type v) (equinumerous : Equinumerous A B) : IsFinite A ↔ IsFinite B
+Source: ./Properties/Finiteness/Theorems.lean#L28
+
+
+
+Name: NotBothFiniteAndInfinite
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), ¬ (IsFinite A ∧ IsInfinite A)
+Predicate logic (unfolded): ∀ (A : Type u), ¬ (LRA.Cardinality.IsFinite A ∧ LRA.Cardinality.IsInfinite A)
+Transliterated theorem: ¬ (IsFinite A ∧ IsInfinite A)
+Logical form (Lean): (A : Type u) : ¬ (IsFinite A ∧ IsInfinite A)
+Source: ./Properties/Finiteness/Theorems.lean#L44
+
+
+
+Name: FiniteImpliesDedekindFinite
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), LRA.Cardinality.IsFinite A → LRA.Cardinality.IsDedekindFinite A
+Predicate logic (unfolded): ∀ (A : Type u), LRA.Cardinality.IsFinite A → LRA.Cardinality.IsDedekindFinite A
+Transliterated theorem: IsDedekindFinite A
+Logical form (Lean): (A : Type u) (finite : IsFinite A) : IsDedekindFinite A
+Source: ./Properties/Finiteness/Theorems.lean#L60
+
+
+
+Name: DedekindInfiniteImpliesInfinite
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), LRA.Cardinality.IsDedekindInfinite A → LRA.Cardinality.IsInfinite A
+Predicate logic (unfolded): ∀ (A : Type u), LRA.Cardinality.IsDedekindInfinite A → LRA.Cardinality.IsInfinite A
+Transliterated theorem: IsInfinite A
+Logical form (Lean): (A : Type u) (dedekindInfinite : IsDedekindInfinite A) : IsInfinite A
+Source: ./Properties/Finiteness/Theorems.lean#L77
+
+
+
+Name: DominatesOfFiniteInfinite
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u) (B : Type v) (finiteA : IsFinite A) (infiniteB : IsInfinite B), Dominates A B
+Predicate logic (unfolded): ∀ (A : Type u) (B : Type v), (LRA.Cardinality.IsFinite A ∧ LRA.Cardinality.IsInfinite B) → LRA.Cardinality.Dominates A B
+Transliterated theorem: Dominates A B
+Logical form (Lean): (A : Type u) (B : Type v) (finiteA : IsFinite A) (infiniteB : IsInfinite B) : Dominates A B
+Source: ./Properties/Finiteness/Theorems.lean#L93

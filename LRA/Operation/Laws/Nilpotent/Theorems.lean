@@ -14,11 +14,13 @@ theorem NilpotentElement.apply {Carrier : Type u}
       PositivePower operation element positiveExponent = zero := by
   sorry
 
+
 theorem PositivePower.first {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier)
     (element : Carrier) :
     PositivePower operation element 0 = element := by
   sorry
+
 
 theorem PositivePower.succ {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier)
@@ -28,11 +30,13 @@ theorem PositivePower.succ {Carrier : Type u}
       operation (PositivePower operation element exponent) element := by
   sorry
 
+
 theorem OperationPower.one {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier)
     (identity element : Carrier) :
     OperationPower operation identity element 1 = operation identity element := by
   sorry
+
 
 theorem OperationPower.succ {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier)

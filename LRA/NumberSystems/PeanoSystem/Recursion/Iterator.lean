@@ -271,7 +271,7 @@ theorem ForcedValuesAreUnique
         MinimalIteratorRelation ps data element first_value ->
         MinimalIteratorRelation ps data element second_value ->
         first_value = second_value := by
-  exact MinimalIteratorRelationDeterministic ps data
+  sorry
 
 /--
 **[Theorem - Existence of an Iterator Function]**

@@ -1,0 +1,11 @@
+import LRA.Analysis.MetricSpace.Failures
+import LRA.Analysis.NormedLinearSpace.Failures
+import LRA.Analysis.InnerProductSpace.Failures
+import LRA.Analysis.BanachSpace.Failures
+import LRA.Analysis.HilbertSpace.Failures
+import LRA.Analysis.MeasureTheory.MeasurableSpace.Failures
+import LRA.Analysis.MeasureTheory.MeasureSpace.Failures
+import LRA.Algebra.LinearAlgebra.VectorSpace.Failures
+import LRA.Topology.PointSetTopology.TopologicalSpace.Failures
+
+/-! Opt-in aggregate import for failure material. -/

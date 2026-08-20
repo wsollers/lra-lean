@@ -39,7 +39,6 @@ theorem embedded_rationals_are_dense
         (rational_embedding rational_model rational) second := by
   sorry
 
-
 /-- Theorem 7.2: Archimedean property.
 
 Mathematical statement (Lean): `theorem archimedean_property (natural_carrier : Type) (natural_to_rational : natural_carrier → Rational rational_model) (cut : Cut rational_model) : ∃ natural, strict_order rational_model cut (rational_embedding rational_model (natural_to_rational natural))`.
@@ -69,7 +68,6 @@ theorem archimedean_property
         (rational_embedding rational_model
           (natural_to_rational natural)) := by
   sorry
-
 
 /-- Proposition expressing the final reference-real summary.
 

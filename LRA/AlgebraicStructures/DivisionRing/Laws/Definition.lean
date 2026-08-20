@@ -37,20 +37,20 @@ variable {R : Type u}
 /-- Nonzero elements cancel against their inverses. -/
 theorem MulInvCancel [Mul R] [Inv R] [OfNat R 0] [OfNat R 1]
     [MultiplicativeInverseLaws R] :
-    ∀ a : R, a ≠ 0 → a * a⁻¹ = 1 :=
-  MultiplicativeInverseLaws.MulInvCancel
+    ∀ a : R, a ≠ 0 → a * a⁻¹ = 1 := by
+  sorry
 
 /-- The inverse of zero is zero, by convention. -/
 theorem InvZero [Mul R] [Inv R] [OfNat R 0] [OfNat R 1]
     [MultiplicativeInverseLaws R] :
-    (0 : R)⁻¹ = 0 :=
-  MultiplicativeInverseLaws.InvZero
+    (0 : R)⁻¹ = 0 := by
+  sorry
 
 /-- Division is multiplication by the inverse. -/
 theorem DivEqMulInv [Div R] [Mul R] [Inv R]
     [DivisionCompatibilityLaw R] :
-    ∀ a b : R, a / b = a * b⁻¹ :=
-  DivisionCompatibilityLaw.DivEqMulInv
+    ∀ a b : R, a / b = a * b⁻¹ := by
+  sorry
 
 end Wrappers
 

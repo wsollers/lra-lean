@@ -73,8 +73,9 @@ theorem DifferenceMonotoneLeft :
 ```
 -/
 theorem DifferenceMonotoneLeft :
-    ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B :=
-  DifferenceLaws.DifferenceMonotoneLeft
+    ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B := by
+  sorry
+
 /--
 Difference is antitone in its right argument.
 
@@ -86,8 +87,9 @@ theorem DifferenceAntitoneRight :
 ```
 -/
 theorem DifferenceAntitoneRight :
-    ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁ :=
-  DifferenceLaws.DifferenceAntitoneRight
+    ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁ := by
+  sorry
+
 /--
 Removing nothing changes nothing.
 
@@ -97,8 +99,9 @@ Logical form:
 theorem DifferenceEmpty : ∀ A : α, A \ (∅ : α) = A
 ```
 -/
-theorem DifferenceEmpty : ∀ A : α, A \ (∅ : α) = A :=
-  DifferenceLaws.DifferenceEmpty
+theorem DifferenceEmpty : ∀ A : α, A \ (∅ : α) = A := by
+  sorry
+
 /--
 The empty set minus anything is empty.
 
@@ -108,8 +111,9 @@ Logical form:
 theorem EmptyDifference : ∀ A : α, (∅ : α) \ A = (∅ : α)
 ```
 -/
-theorem EmptyDifference : ∀ A : α, (∅ : α) \ A = (∅ : α) :=
-  DifferenceLaws.EmptyDifference
+theorem EmptyDifference : ∀ A : α, (∅ : α) \ A = (∅ : α) := by
+  sorry
+
 /--
 Removing a set from itself leaves nothing.
 
@@ -119,8 +123,9 @@ Logical form:
 theorem DifferenceSelf : ∀ A : α, A \ A = (∅ : α)
 ```
 -/
-theorem DifferenceSelf : ∀ A : α, A \ A = (∅ : α) :=
-  DifferenceLaws.DifferenceSelf
+theorem DifferenceSelf : ∀ A : α, A \ A = (∅ : α) := by
+  sorry
+
 /--
 De Morgan for difference: `A \ (B ∪ C) = (A \ B) ∩ (A \ C)`.
 
@@ -132,8 +137,9 @@ theorem DifferenceUnion :
 ```
 -/
 theorem DifferenceUnion :
-    ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C) :=
-  DifferenceLaws.DifferenceUnion
+    ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C) := by
+  sorry
+
 /--
 De Morgan for difference: `A \ (B ∩ C) = (A \ B) ∪ (A \ C)`.
 
@@ -145,8 +151,9 @@ theorem DifferenceIntersection :
 ```
 -/
 theorem DifferenceIntersection :
-    ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C) :=
-  DifferenceLaws.DifferenceIntersection
+    ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C) := by
+  sorry
+
 /--
 Difference distributes over union on the left.
 
@@ -158,8 +165,9 @@ theorem UnionDifferenceDistributes :
 ```
 -/
 theorem UnionDifferenceDistributes :
-    ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C) :=
-  DifferenceLaws.UnionDifferenceDistributes
+    ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C) := by
+  sorry
+
 /--
 Difference distributes over intersection on the left.
 
@@ -171,8 +179,9 @@ theorem IntersectionDifferenceDistributes :
 ```
 -/
 theorem IntersectionDifferenceDistributes :
-    ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C) :=
-  DifferenceLaws.IntersectionDifferenceDistributes
+    ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C) := by
+  sorry
+
 /--
 `A \ B` is a subset of `A`.
 
@@ -182,8 +191,9 @@ Logical form:
 theorem DifferenceSubsetLeft : ∀ A B : α, A \ B ⊆ A
 ```
 -/
-theorem DifferenceSubsetLeft : ∀ A B : α, A \ B ⊆ A :=
-  DifferenceLaws.DifferenceSubsetLeft
+theorem DifferenceSubsetLeft : ∀ A B : α, A \ B ⊆ A := by
+  sorry
+
 /--
 `A \ B` is disjoint from `B`.
 
@@ -195,7 +205,7 @@ theorem DifferenceDisjointRight :
 ```
 -/
 theorem DifferenceDisjointRight :
-    ∀ A B : α, (A \ B) ∩ B = (∅ : α) :=
-  DifferenceLaws.DifferenceDisjointRight
+    ∀ A B : α, (A \ B) ∩ B = (∅ : α) := by
+  sorry
 
 end LRA.Set

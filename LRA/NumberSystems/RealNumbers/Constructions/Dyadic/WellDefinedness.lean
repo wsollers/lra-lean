@@ -46,7 +46,6 @@ theorem fractional_partial_sums_are_cauchy
       (fractional_partial_sum dyadic_data digits) := by
   sorry
 
-
 /-- Definition 2.5: value of a canonical fractional expansion.
 
 Mathematical statement (Lean): `def fractional_value (fraction : CanonicalFraction) : CauchyCarrier dyadic_data`.
@@ -139,7 +138,6 @@ theorem representation_exists
       value dyadic_data expansion = real_value := by
   sorry
 
-
 /-- Theorem 3.6: V is injective.
 
 Mathematical statement (Lean): `theorem value_is_injective : ∀ first second : Expansion, value dyadic_data first = value dyadic_data second → first = second`.
@@ -159,7 +157,6 @@ theorem value_is_injective :
     ∀ first second : Expansion,
       value dyadic_data first = value dyadic_data second → first = second := by
   sorry
-
 
 /-- Theorem 3.7: V is bijective.
 
@@ -186,7 +183,6 @@ theorem value_is_bijective :
     (∀ first second : Expansion,
       value dyadic_data first = value dyadic_data second → first = second) := by
   sorry
-
 
 /-- A bijection between two carriers, given by mutually inverse maps.
 

@@ -15,7 +15,6 @@ instance : Membership Alpha (PredicateSet Alpha) where
 theorem PredicateSetExtensionality {A B : PredicateSet Alpha}
     (sameMembers : ∀ x : Alpha, x ∈ A ↔ x ∈ B) :
     A = B := by
-  funext x
-  exact propext (sameMembers x)
+  sorry
 
 end LRA.Set

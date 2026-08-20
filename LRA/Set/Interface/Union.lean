@@ -62,8 +62,9 @@ Logical form:
 theorem UnionCommutative : ∀ A B : α, A ∪ B = B ∪ A
 ```
 -/
-theorem UnionCommutative : ∀ A B : α, A ∪ B = B ∪ A :=
-  UnionLaws.UnionCommutative
+theorem UnionCommutative : ∀ A B : α, A ∪ B = B ∪ A := by
+  sorry
+
 /--
 Union is associative.
 
@@ -73,8 +74,9 @@ Logical form:
 theorem UnionAssociative : ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C)
 ```
 -/
-theorem UnionAssociative : ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C) :=
-  UnionLaws.UnionAssociative
+theorem UnionAssociative : ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C) := by
+  sorry
+
 /--
 The empty set is a left identity for union.
 
@@ -84,8 +86,9 @@ Logical form:
 theorem EmptyUnion : ∀ A : α, (∅ : α) ∪ A = A
 ```
 -/
-theorem EmptyUnion : ∀ A : α, (∅ : α) ∪ A = A :=
-  UnionLaws.EmptyUnion
+theorem EmptyUnion : ∀ A : α, (∅ : α) ∪ A = A := by
+  sorry
+
 /--
 The empty set is a right identity for union.
 
@@ -95,8 +98,9 @@ Logical form:
 theorem UnionEmpty : ∀ A : α, A ∪ (∅ : α) = A
 ```
 -/
-theorem UnionEmpty : ∀ A : α, A ∪ (∅ : α) = A :=
-  UnionLaws.UnionEmpty
+theorem UnionEmpty : ∀ A : α, A ∪ (∅ : α) = A := by
+  sorry
+
 /--
 Union is idempotent.
 
@@ -106,8 +110,9 @@ Logical form:
 theorem UnionIdempotent : ∀ A : α, A ∪ A = A
 ```
 -/
-theorem UnionIdempotent : ∀ A : α, A ∪ A = A :=
-  UnionLaws.UnionIdempotent
+theorem UnionIdempotent : ∀ A : α, A ∪ A = A := by
+  sorry
+
 /--
 Union is monotone in both arguments.
 
@@ -119,8 +124,9 @@ theorem UnionMonotone :
 ```
 -/
 theorem UnionMonotone :
-    ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂ :=
-  UnionLaws.UnionMonotone
+    ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂ := by
+  sorry
+
 /--
 `A ⊆ B` exactly when `A ∪ B = B`: subset, characterized by union.
 
@@ -130,7 +136,7 @@ Logical form:
 theorem SubsetIffUnionEqRight : ∀ A B : α, A ⊆ B ↔ A ∪ B = B
 ```
 -/
-theorem SubsetIffUnionEqRight : ∀ A B : α, A ⊆ B ↔ A ∪ B = B :=
-  UnionLaws.SubsetIffUnionEqRight
+theorem SubsetIffUnionEqRight : ∀ A B : α, A ⊆ B ↔ A ∪ B = B := by
+  sorry
 
 end LRA.Set

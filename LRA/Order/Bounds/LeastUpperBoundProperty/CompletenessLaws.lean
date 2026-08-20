@@ -24,8 +24,8 @@ variable {R : Type u} {SetObject : Type v}
 theorem Completeness [LE R] [Membership R SetObject]
     [OrderCompletenessLaws R SetObject] :
     LRA.Order.LeastUpperBoundProperty
-      SetObject (fun a b : R => a <= b) :=
-  OrderCompletenessLaws.Completeness
+      SetObject (fun a b : R => a <= b) := by
+  sorry
 
 end Wrappers
 

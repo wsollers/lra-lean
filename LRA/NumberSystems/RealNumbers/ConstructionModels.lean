@@ -94,7 +94,6 @@ theorem real_model_exists
     (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
 
-
 /-- **[Definition — Dedekind Real Model]**
 
 Mathematical statement (Lean): `noncomputable def real_model (rational_model : RationalModel) : RealModel`.
@@ -132,7 +131,6 @@ theorem real_extension_exists
     (rational_model : RationalModel) :
     Nonempty (RealExtension rational_model) := by
   sorry
-
 
 /-- **[Definition — Dedekind Real Extension]**
 
@@ -206,9 +204,7 @@ theorem reals_are_complete
               member upper_bound) →
           (real_model rational_model).signature.le
             supremum upper_bound) := by
-  exact LRA.Order.Completeness
-    (R := (real_model rational_model).Carrier)
-    (SetObject := Set (real_model rational_model).Carrier)
+  sorry
 
 end LRA.NumberSystems.RealNumbers.DedekindCuts
 namespace LRA.NumberSystems.RealNumbers
@@ -295,7 +291,6 @@ theorem equivalent_is_equivalence_relation
     Equivalence (@equivalent Index RationalCarrier) := by
   sorry
 
-
 /-- **[Theorem — Cauchy-Sequence Real Model Exists]**
 
 Mathematical statement (Lean): `theorem real_model_exists (rational_model : RationalModel) : Nonempty RealModel`.
@@ -313,7 +308,6 @@ theorem real_model_exists
 theorem real_model_exists
     (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
-
 
 /-- **[Definition — Cauchy-Sequence Real Model]**
 
@@ -352,7 +346,6 @@ theorem real_extension_exists
     (rational_model : RationalModel) :
     Nonempty (RealExtension rational_model) := by
   sorry
-
 
 /-- **[Definition — Cauchy-Sequence Real Extension]**
 
@@ -421,7 +414,6 @@ theorem real_model_exists
 theorem real_model_exists
     (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
-
 
 /-- **[Definition — Cantor Nested-Interval Real Model]**
 
@@ -651,7 +643,6 @@ theorem quotient_multiplication_is_distributive
         addition (multiplication first second) (multiplication first third) := by
   sorry
 
-
 /-- **[Theorem — Primitive Interval-Quotient Real Model Exists]**
 
 Mathematical statement (Lean): `theorem real_model_exists (rational_model : RationalModel) : Nonempty RealModel`.
@@ -669,7 +660,6 @@ theorem real_model_exists
 theorem real_model_exists
     (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
-
 
 /-- **[Definition — Primitive Interval-Quotient Real Model]**
 
@@ -757,7 +747,6 @@ theorem equivalent_is_equivalence_relation
     Equivalence (@equivalent Digit) := by
   sorry
 
-
 /-- **[Theorem — Dyadic-Expansion Real Model Exists]**
 
 Mathematical statement (Lean): `theorem real_model_exists (rational_model : RationalModel) : Nonempty RealModel`.
@@ -775,7 +764,6 @@ theorem real_model_exists
 theorem real_model_exists
     (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
-
 
 /-- **[Definition — Dyadic-Expansion Real Model]**
 
@@ -919,7 +907,6 @@ theorem complete_archimedean_ordered_fields_are_uniquely_isomorphic
             isomorphism.to_function value := by
   sorry
 
-
 /-- **[Theorem — Dedekind-Cauchy Real Isomorphism Exists]**
 
 Mathematical statement (Lean): `theorem dedekind_equiv_cauchy_exists (rational_model : RationalModel) : Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CauchySequences.real_model rational_model))`.
@@ -992,9 +979,8 @@ theorem dedekind_and_cauchy_are_isomorphic
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
-        (CauchySequences.real_model rational_model)) :=
-  ⟨dedekind_equiv_cauchy rational_model⟩
-
+        (CauchySequences.real_model rational_model)) := by
+  sorry
 
 /-- **[Theorem — Dedekind-Cantor Real Isomorphism Exists]**
 
@@ -1068,9 +1054,8 @@ theorem dedekind_and_cantor_are_isomorphic
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
-        (CantorNestedIntervals.real_model rational_model)) :=
-  ⟨dedekind_equiv_cantor rational_model⟩
-
+        (CantorNestedIntervals.real_model rational_model)) := by
+  sorry
 
 /-- **[Theorem — Dedekind-Interval-Quotient Real Isomorphism Exists]**
 
@@ -1144,9 +1129,8 @@ theorem dedekind_and_interval_quotient_are_isomorphic
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
-        (PrimitiveIntervalQuotient.real_model rational_model)) :=
-  ⟨dedekind_equiv_interval_quotient rational_model⟩
-
+        (PrimitiveIntervalQuotient.real_model rational_model)) := by
+  sorry
 
 /-- **[Theorem — Dedekind-Dyadic Real Isomorphism Exists]**
 
@@ -1220,7 +1204,7 @@ theorem dedekind_and_dyadic_are_isomorphic
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
-        (DyadicExpansions.real_model rational_model)) :=
-  ⟨dedekind_equiv_dyadic rational_model⟩
+        (DyadicExpansions.real_model rational_model)) := by
+  sorry
 
 end LRA.NumberSystems.RealNumbers

@@ -42,8 +42,8 @@ theorem EvaluationExists
     (inputInDomain : input ∈ setFunction.triple.domain) :
     ∃ output : CodomainElement,
       output ∈ setFunction.triple.codomain ∧
-      Relates setFunction.triple.graph input output :=
-  setFunction.isFunction.2.1 input inputInDomain
+      Relates setFunction.triple.graph input output := by
+  sorry
 
 /-- Evaluation in the graph of a set-theoretic function is unique. -/
 theorem EvaluationUnique
@@ -60,9 +60,8 @@ theorem EvaluationUnique
     (firstOutput secondOutput : CodomainElement)
     (firstEvaluation : Relates setFunction.triple.graph input firstOutput)
     (secondEvaluation : Relates setFunction.triple.graph input secondOutput) :
-    firstOutput = secondOutput :=
-  setFunction.isFunction.2.2 input firstOutput secondOutput
-    firstEvaluation secondEvaluation
+    firstOutput = secondOutput := by
+  sorry
 
 /-- Two bundled set-theoretic functions are equal when their displayed domains,
 codomains, and graphs are equal. -/

@@ -10,7 +10,7 @@ theorem MeetSemilatticeHasMeet
     {relation : LRA.Relation.Endorelation Alpha}
     (relationIsMeetSemilattice : MeetSemilattice relation)
     (left right : Alpha) :
-    exists meet, Meet relation left right meet :=
-  relationIsMeetSemilattice.2 left right
+    exists meet, Meet relation left right meet := by
+  sorry
 
 end LRA.Order

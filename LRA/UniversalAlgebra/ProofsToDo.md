@@ -9,13 +9,25 @@ keep source order, because Lean forbids forward references, so source order is
 already a valid topological order. Working this list top to bottom, no entry
 depends on anything not yet proved above it.
 
-**Inventory:** 25 entries across 11 module(s) (10 completed, 15 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
+**Inventory:** 27 entries across 13 module(s) (0 completed, 27 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
+
+Name: SameParityFailsUnarySubstitutionForSuccessor
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.UniversalAlgebra.Congruence.FailsUnaryRelationSubstitution LRA.UniversalAlgebra.Congruence.SameParity   LRA.UniversalAlgebra.Congruence.NaturalSuccessor
+Predicate logic (unfolded): LRA.UniversalAlgebra.Congruence.FailsUnaryRelationSubstitution LRA.UniversalAlgebra.Congruence.SameParity LRA.UniversalAlgebra.Congruence.NaturalSuccessor
+Transliterated theorem: FailsUnaryRelationSubstitution SameParity NaturalSuccessor
+Logical form (Lean): : FailsUnaryRelationSubstitution SameParity NaturalSuccessor
+Source: ./Congruence/FailureModes.lean#L36
+
+
 
 Name: UnaryOperationCongruence.apply
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.UnaryEndoOperation Carrier},   LRA.UniversalAlgebra.Congruence.UnaryOperationCongruence relation operation →     ∀ {left right : Carrier}, relation left right → relation (operation left) (operation right)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.UnaryEndoOperation Carrier},   LRA.UniversalAlgebra.Congruence.UnaryOperationCongruence relation operation →     ∀ {left right : Carrier}, relation left right → relation (operation left) (operation right)
+Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : LRA.Operation.UnaryEndoOperation Carrier}, LRA.UniversalAlgebra.Congruence.UnaryOperationCongruence relation operation → ∀ {left right : Carrier}, relation left right → relation (operation left) (operation right)
+Transliterated theorem: relation (operation left) (operation right)
 Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : UnaryEndoOperation Carrier} (law : UnaryOperationCongruence relation operation) {left right : Carrier} (related_inputs : relation left right) : relation (operation left) (operation right)
 Source: ./Congruence/Theorems.lean#L10
 
@@ -23,9 +35,10 @@ Source: ./Congruence/Theorems.lean#L10
 
 Name: BinaryOperationCongruence.apply
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.UniversalAlgebra.Congruence.BinaryOperationCongruence relation operation →     ∀ {left₁ left₂ right₁ right₂ : Carrier},       And (relation left₁ left₂) (relation right₁ right₂) → relation (operation left₁ right₁) (operation left₂ right₂)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.UniversalAlgebra.Congruence.BinaryOperationCongruence relation operation →     ∀ {left₁ left₂ right₁ right₂ : Carrier},       And (relation left₁ left₂) (relation right₁ right₂) → relation (operation left₁ right₁) (operation left₂ right₂)
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (law : BinaryOperationCongruence relation operation) {left₁ left₂ right₁ right₂ : Carrier} (related_left_inputs : relation left₁ left₂) (related_right_inputs : relation right₁ right₂), relation (operation left₁ right₁) (operation left₂ right₂)
+Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.UniversalAlgebra.Congruence.BinaryOperationCongruence relation operation → ∀ {left₁ left₂ right₁ right₂ : Carrier}, (relation left₁ left₂ ∧ relation right₁ right₂) → relation (operation left₁ right₁) (operation left₂ right₂)
+Transliterated theorem: relation (operation left₁ right₁) (operation left₂ right₂)
 Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (law : BinaryOperationCongruence relation operation) {left₁ left₂ right₁ right₂ : Carrier} (related_left_inputs : relation left₁ left₂) (related_right_inputs : relation right₁ right₂) : relation (operation left₁ right₁) (operation left₂ right₂)
 Source: ./Congruence/Theorems.lean#L20
 
@@ -33,9 +46,10 @@ Source: ./Congruence/Theorems.lean#L20
 
 Name: UnaryOperationRelationRequirements.relation_is_equivalence
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.UnaryEndoOperation Carrier},   LRA.UniversalAlgebra.Congruence.UnaryOperationRelationRequirements relation operation →     LRA.Relation.EquivalenceRelation relation
-Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.UnaryEndoOperation Carrier},   LRA.UniversalAlgebra.Congruence.UnaryOperationRelationRequirements relation operation →     LRA.Relation.EquivalenceRelation relation
+Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : LRA.Operation.UnaryEndoOperation Carrier}, LRA.UniversalAlgebra.Congruence.UnaryOperationRelationRequirements relation operation → LRA.Relation.EquivalenceRelation relation
+Transliterated theorem: LRA.Relation.EquivalenceRelation relation
 Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : UnaryEndoOperation Carrier} (requirements : UnaryOperationRelationRequirements relation operation) : LRA.Relation.EquivalenceRelation relation
 Source: ./Congruence/Theorems.lean#L31
 
@@ -43,9 +57,10 @@ Source: ./Congruence/Theorems.lean#L31
 
 Name: UnaryOperationRelationRequirements.operation_congruence
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.UnaryEndoOperation Carrier},   LRA.UniversalAlgebra.Congruence.UnaryOperationRelationRequirements relation operation →     LRA.UniversalAlgebra.Congruence.UnaryOperationCongruence relation operation
-Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.UnaryEndoOperation Carrier},   LRA.UniversalAlgebra.Congruence.UnaryOperationRelationRequirements relation operation →     LRA.UniversalAlgebra.Congruence.UnaryOperationCongruence relation operation
+Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : LRA.Operation.UnaryEndoOperation Carrier}, LRA.UniversalAlgebra.Congruence.UnaryOperationRelationRequirements relation operation → LRA.UniversalAlgebra.Congruence.UnaryOperationCongruence relation operation
+Transliterated theorem: UnaryOperationCongruence relation operation
 Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : UnaryEndoOperation Carrier} (requirements : UnaryOperationRelationRequirements relation operation) : UnaryOperationCongruence relation operation
 Source: ./Congruence/Theorems.lean#L39
 
@@ -53,9 +68,10 @@ Source: ./Congruence/Theorems.lean#L39
 
 Name: BinaryOperationRelationRequirements.relation_is_equivalence
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.UniversalAlgebra.Congruence.BinaryOperationRelationRequirements relation operation →     LRA.Relation.EquivalenceRelation relation
-Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.UniversalAlgebra.Congruence.BinaryOperationRelationRequirements relation operation →     LRA.Relation.EquivalenceRelation relation
+Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.UniversalAlgebra.Congruence.BinaryOperationRelationRequirements relation operation → LRA.Relation.EquivalenceRelation relation
+Transliterated theorem: LRA.Relation.EquivalenceRelation relation
 Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (requirements : BinaryOperationRelationRequirements relation operation) : LRA.Relation.EquivalenceRelation relation
 Source: ./Congruence/Theorems.lean#L47
 
@@ -63,9 +79,10 @@ Source: ./Congruence/Theorems.lean#L47
 
 Name: BinaryOperationRelationRequirements.operation_congruence
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.UniversalAlgebra.Congruence.BinaryOperationRelationRequirements relation operation →     LRA.UniversalAlgebra.Congruence.BinaryOperationCongruence relation operation
-Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.UniversalAlgebra.Congruence.BinaryOperationRelationRequirements relation operation →     LRA.UniversalAlgebra.Congruence.BinaryOperationCongruence relation operation
+Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.UniversalAlgebra.Congruence.BinaryOperationRelationRequirements relation operation → LRA.UniversalAlgebra.Congruence.BinaryOperationCongruence relation operation
+Transliterated theorem: BinaryOperationCongruence relation operation
 Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (requirements : BinaryOperationRelationRequirements relation operation) : BinaryOperationCongruence relation operation
 Source: ./Congruence/Theorems.lean#L55
 
@@ -74,8 +91,9 @@ Source: ./Congruence/Theorems.lean#L55
 Name: UnaryOperationRelationRequirements.quotient_projection_respects_operation
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {SetObject : Type v} [inst : Membership Carrier SetObject]   [inst_1 : LRA.Set.HasSeparation Carrier SetObject],   And (LRA.Set.SeparationLaws Carrier SetObject) (LRA.Set.ExtensionalityLaw Carrier SetObject) →     ∀ {ambient : SetObject} {relation : LRA.Relation.Endorelation Carrier}       {operation : LRA.Operation.UnaryEndoOperation Carrier},       LRA.UniversalAlgebra.Congruence.UnaryOperationRelationRequirements relation operation →         ∀ {left right : Carrier},           relation left right →             Eq (LRA.Relation.QuotientProjection ambient relation (operation left))               (LRA.Relation.QuotientProjection ambient relation (operation right))
-Predicate logic (unfolded): ∀ {Carrier : Type u} {SetObject : Type v} [inst : Membership Carrier SetObject]   [inst_1 : LRA.Set.HasSeparation Carrier SetObject],   And (LRA.Set.SeparationLaws Carrier SetObject) (LRA.Set.ExtensionalityLaw Carrier SetObject) →     ∀ {ambient : SetObject} {relation : LRA.Relation.Endorelation Carrier}       {operation : LRA.Operation.UnaryEndoOperation Carrier},       LRA.UniversalAlgebra.Congruence.UnaryOperationRelationRequirements relation operation →         ∀ {left right : Carrier},           relation left right →             Eq (LRA.Relation.QuotientProjection ambient relation (operation left))               (LRA.Relation.QuotientProjection ambient relation (operation right))
+Predicate logic: ∀ {Carrier : Type u} {SetObject : Type v} [Membership Carrier SetObject] [LRA.Set.HasSeparation Carrier SetObject] [LRA.Set.SeparationLaws Carrier SetObject] [LRA.Set.ExtensionalityLaw Carrier SetObject] {ambient : SetObject} {relation : LRA.Relation.Endorelation Carrier} {operation : UnaryEndoOperation Carrier} (requirements : UnaryOperationRelationRequirements relation operation) {left right : Carrier} (related : relation left right), LRA.Relation.QuotientProjection ambient relation (operation left) = LRA.Relation.QuotientProjection ambient relation (operation right)
+Predicate logic (unfolded): ∀ {Carrier : Type u} {SetObject : Type v} [inst : Membership Carrier SetObject] [inst_1 : LRA.Set.HasSeparation Carrier SetObject], (LRA.Set.SeparationLaws Carrier SetObject ∧ LRA.Set.ExtensionalityLaw Carrier SetObject) → ∀ {ambient : SetObject} {relation : LRA.Relation.Endorelation Carrier} {operation : LRA.Operation.UnaryEndoOperation Carrier}, LRA.UniversalAlgebra.Congruence.UnaryOperationRelationRequirements relation operation → ∀ {left right : Carrier}, relation left right → LRA.Relation.QuotientProjection ambient relation (operation left) = LRA.Relation.QuotientProjection ambient relation (operation right)
+Transliterated theorem: (∀ A ∈ U), LRA.Relation.QuotientProjection A relation (operation left) = LRA.Relation.QuotientProjection A relation (operation right)
 Logical form (Lean): {Carrier : Type u} {SetObject : Type v} [Membership Carrier SetObject] [LRA.Set.HasSeparation Carrier SetObject] [LRA.Set.SeparationLaws Carrier SetObject] [LRA.Set.ExtensionalityLaw Carrier SetObject] {ambient : SetObject} {relation : LRA.Relation.Endorelation Carrier} {operation : UnaryEndoOperation Carrier} (requirements : UnaryOperationRelationRequirements relation operation) {left right : Carrier} (related : relation left right) : LRA.Relation.QuotientProjection ambient relation (operation left) = LRA.Relation.QuotientProjection ambient relation (operation right)
 Source: ./Congruence/Consequences.lean#L19
 
@@ -84,18 +102,31 @@ Source: ./Congruence/Consequences.lean#L19
 Name: BinaryOperationRelationRequirements.quotient_projection_respects_operation
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {SetObject : Type v} [inst : Membership Carrier SetObject]   [inst_1 : LRA.Set.HasSeparation Carrier SetObject],   And (LRA.Set.SeparationLaws Carrier SetObject) (LRA.Set.ExtensionalityLaw Carrier SetObject) →     ∀ {ambient : SetObject} {relation : LRA.Relation.Endorelation Carrier}       {operation : LRA.Operation.BinaryEndoOperation Carrier},       LRA.UniversalAlgebra.Congruence.BinaryOperationRelationRequirements relation operation →         ∀ {left₁ left₂ right₁ right₂ : Carrier},           And (relation left₁ left₂) (relation right₁ right₂) →             Eq (LRA.Relation.QuotientProjection ambient relation (operation left₁ right₁))               (LRA.Relation.QuotientProjection ambient relation (operation left₂ right₂))
-Predicate logic (unfolded): ∀ {Carrier : Type u} {SetObject : Type v} [inst : Membership Carrier SetObject]   [inst_1 : LRA.Set.HasSeparation Carrier SetObject],   And (LRA.Set.SeparationLaws Carrier SetObject) (LRA.Set.ExtensionalityLaw Carrier SetObject) →     ∀ {ambient : SetObject} {relation : LRA.Relation.Endorelation Carrier}       {operation : LRA.Operation.BinaryEndoOperation Carrier},       LRA.UniversalAlgebra.Congruence.BinaryOperationRelationRequirements relation operation →         ∀ {left₁ left₂ right₁ right₂ : Carrier},           And (relation left₁ left₂) (relation right₁ right₂) →             Eq (LRA.Relation.QuotientProjection ambient relation (operation left₁ right₁))               (LRA.Relation.QuotientProjection ambient relation (operation left₂ right₂))
+Predicate logic: ∀ {Carrier : Type u} {SetObject : Type v} [Membership Carrier SetObject] [LRA.Set.HasSeparation Carrier SetObject] [LRA.Set.SeparationLaws Carrier SetObject] [LRA.Set.ExtensionalityLaw Carrier SetObject] {ambient : SetObject} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (requirements : BinaryOperationRelationRequirements relation operation) {left₁ left₂ right₁ right₂ : Carrier} (leftRelated : relation left₁ left₂) (rightRelated : relation right₁ right₂), LRA.Relation.QuotientProjection ambient relation (operation left₁ right₁) = LRA.Relation.QuotientProjection ambient relation (operation left₂ right₂)
+Predicate logic (unfolded): ∀ {Carrier : Type u} {SetObject : Type v} [inst : Membership Carrier SetObject] [inst_1 : LRA.Set.HasSeparation Carrier SetObject], (LRA.Set.SeparationLaws Carrier SetObject ∧ LRA.Set.ExtensionalityLaw Carrier SetObject) → ∀ {ambient : SetObject} {relation : LRA.Relation.Endorelation Carrier} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.UniversalAlgebra.Congruence.BinaryOperationRelationRequirements relation operation → ∀ {left₁ left₂ right₁ right₂ : Carrier}, (relation left₁ left₂ ∧ relation right₁ right₂) → LRA.Relation.QuotientProjection ambient relation (operation left₁ right₁) = LRA.Relation.QuotientProjection ambient relation (operation left₂ right₂)
+Transliterated theorem: (∀ A ∈ U), LRA.Relation.QuotientProjection A relation (operation left₁ right₁) = LRA.Relation.QuotientProjection A relation (operation left₂ right₂)
 Logical form (Lean): {Carrier : Type u} {SetObject : Type v} [Membership Carrier SetObject] [LRA.Set.HasSeparation Carrier SetObject] [LRA.Set.SeparationLaws Carrier SetObject] [LRA.Set.ExtensionalityLaw Carrier SetObject] {ambient : SetObject} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (requirements : BinaryOperationRelationRequirements relation operation) {left₁ left₂ right₁ right₂ : Carrier} (leftRelated : relation left₁ left₂) (rightRelated : relation right₁ right₂) : LRA.Relation.QuotientProjection ambient relation (operation left₁ right₁) = LRA.Relation.QuotientProjection ambient relation (operation left₂ right₂)
 Source: ./Congruence/Consequences.lean#L40
+
+
+
+Name: SameParityAdditionCongruence
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.UniversalAlgebra.Congruence.BinaryOperationCongruence LRA.UniversalAlgebra.Congruence.SameParityForCongruenceExample   LRA.UniversalAlgebra.Congruence.NaturalAddition
+Predicate logic (unfolded): LRA.UniversalAlgebra.Congruence.BinaryOperationCongruence LRA.UniversalAlgebra.Congruence.SameParityForCongruenceExample LRA.UniversalAlgebra.Congruence.NaturalAddition
+Transliterated theorem: BinaryOperationCongruence SameParityForCongruenceExample NaturalAddition
+Logical form (Lean): : BinaryOperationCongruence SameParityForCongruenceExample NaturalAddition
+Source: ./Congruence/Examples.lean#L20
 
 
 
 Name: BinaryOperationCongruence.left
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.BinaryEndoOperation Carrier},   And (LRA.Relation.Reflexive relation) (LRA.UniversalAlgebra.Congruence.BinaryOperationCongruence relation operation) →     ∀ {left₁ left₂ : Carrier} (right : Carrier),       relation left₁ left₂ → relation (operation left₁ right) (operation left₂ right)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.BinaryEndoOperation Carrier},   And (LRA.Relation.Reflexive relation) (LRA.UniversalAlgebra.Congruence.BinaryOperationCongruence relation operation) →     ∀ {left₁ left₂ : Carrier} (right : Carrier),       relation left₁ left₂ → relation (operation left₁ right) (operation left₂ right)
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (reflexive : LRA.Relation.Reflexive relation) (law : BinaryOperationCongruence relation operation), forall {left₁ left₂ : Carrier} (right : Carrier), relation left₁ left₂ -> relation (operation left₁ right) (operation left₂ right)
+Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Relation.Reflexive relation ∧ LRA.UniversalAlgebra.Congruence.BinaryOperationCongruence relation operation) → ∀ {left₁ left₂ : Carrier} (right : Carrier), relation left₁ left₂ → relation (operation left₁ right) (operation left₂ right)
+Transliterated theorem: forall {left₁ left₂ : Carrier} right ∈ Carrier, relation left₁ left₂ -> relation (operation left₁ right) (operation left₂ right)
 Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (reflexive : LRA.Relation.Reflexive relation) (law : BinaryOperationCongruence relation operation) : forall {left₁ left₂ : Carrier} (right : Carrier), relation left₁ left₂ -> relation (operation left₁ right) (operation left₂ right)
 Source: ./Congruence/Relationships.lean#L10
 
@@ -104,8 +135,9 @@ Source: ./Congruence/Relationships.lean#L10
 Name: BinaryOperationCongruence.right
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.BinaryEndoOperation Carrier},   And (LRA.Relation.Reflexive relation) (LRA.UniversalAlgebra.Congruence.BinaryOperationCongruence relation operation) →     ∀ (left : Carrier) {right₁ right₂ : Carrier},       relation right₁ right₂ → relation (operation left right₁) (operation left right₂)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.BinaryEndoOperation Carrier},   And (LRA.Relation.Reflexive relation) (LRA.UniversalAlgebra.Congruence.BinaryOperationCongruence relation operation) →     ∀ (left : Carrier) {right₁ right₂ : Carrier},       relation right₁ right₂ → relation (operation left right₁) (operation left right₂)
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (reflexive : LRA.Relation.Reflexive relation) (law : BinaryOperationCongruence relation operation), forall (left : Carrier) {right₁ right₂ : Carrier}, relation right₁ right₂ -> relation (operation left right₁) (operation left right₂)
+Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Relation.Reflexive relation ∧ LRA.UniversalAlgebra.Congruence.BinaryOperationCongruence relation operation) → ∀ (left : Carrier) {right₁ right₂ : Carrier}, relation right₁ right₂ → relation (operation left right₁) (operation left right₂)
+Transliterated theorem: forall left ∈ Carrier {right₁ right₂ : Carrier}, relation right₁ right₂ -> relation (operation left right₁) (operation left right₂)
 Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (reflexive : LRA.Relation.Reflexive relation) (law : BinaryOperationCongruence relation operation) : forall (left : Carrier) {right₁ right₂ : Carrier}, relation right₁ right₂ -> relation (operation left right₁) (operation left right₂)
 Source: ./Congruence/Relationships.lean#L21
 
@@ -114,8 +146,9 @@ Source: ./Congruence/Relationships.lean#L21
 Name: binary_operation_respects_iff_left_and_right
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier),   Iff (LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid operation)     (And (LRA.UniversalAlgebra.Quotient.binary_operation_respects_left setoid operation)       (LRA.UniversalAlgebra.Quotient.binary_operation_respects_right setoid operation))
-Predicate logic (unfolded): ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier),   Iff (LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid operation)     (And (LRA.UniversalAlgebra.Quotient.binary_operation_respects_left setoid operation)       (LRA.UniversalAlgebra.Quotient.binary_operation_respects_right setoid operation))
+Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier), binary_operation_respects setoid operation ↔ binary_operation_respects_left setoid operation ∧ binary_operation_respects_right setoid operation
+Predicate logic (unfolded): ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier), LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid operation ↔ (LRA.UniversalAlgebra.Quotient.binary_operation_respects_left setoid operation ∧ LRA.UniversalAlgebra.Quotient.binary_operation_respects_right setoid operation)
+Transliterated theorem: (Carrier → Carrier → Carrier) → binary_operation_respects setoid operation ↔ binary_operation_respects_left setoid operation ∧ binary_operation_respects_right setoid operation
 Logical form (Lean): {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier) : binary_operation_respects setoid operation ↔ binary_operation_respects_left setoid operation ∧ binary_operation_respects_right setoid operation
 Source: ./Quotient/RepresentativeCompatibility.lean#L166
 
@@ -124,8 +157,9 @@ Source: ./Quotient/RepresentativeCompatibility.lean#L166
 Name: commutative_operation_respects_of_respects_left
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier),   And (∀ (first second : Carrier), Eq (operation first second) (operation second first))       (LRA.UniversalAlgebra.Quotient.binary_operation_respects_left setoid operation) →     LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid operation
-Predicate logic (unfolded): ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier),   And (∀ (first second : Carrier), Eq (operation first second) (operation second first))       (LRA.UniversalAlgebra.Quotient.binary_operation_respects_left setoid operation) →     LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid operation
+Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier) (operation_is_commutative : ∀ first second : Carrier, operation first second = operation second first) (operation_respects_left : binary_operation_respects_left setoid operation), binary_operation_respects setoid operation
+Predicate logic (unfolded): ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier), (∀ (first second : Carrier), operation first second = operation second first ∧ LRA.UniversalAlgebra.Quotient.binary_operation_respects_left setoid operation) → LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid operation
+Transliterated theorem: (Carrier → Carrier → Carrier ∧ ∀ first second : Carrier, operation first second = operation second first) → binary_operation_respects setoid operation
 Logical form (Lean): {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier) (operation_is_commutative : ∀ first second : Carrier, operation first second = operation second first) (operation_respects_left : binary_operation_respects_left setoid operation) : binary_operation_respects setoid operation
 Source: ./Quotient/RepresentativeCompatibility.lean#L201
 
@@ -134,8 +168,9 @@ Source: ./Quotient/RepresentativeCompatibility.lean#L201
 Name: induced_binary_operation_exists
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (representative_operation : Carrier → Carrier → Carrier),   LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid representative_operation →     Exists fun quotient_operation =>       ∀ (first_representative second_representative : Carrier),         Eq (quotient_operation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative))           (Quotient.mk setoid (representative_operation first_representative second_representative))
-Predicate logic (unfolded): ∀ {Carrier : Type} (setoid : Setoid Carrier) (representative_operation : Carrier → Carrier → Carrier),   LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid representative_operation →     Exists fun quotient_operation =>       ∀ (first_representative second_representative : Carrier),         Eq (quotient_operation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative))           (Quotient.mk setoid (representative_operation first_representative second_representative))
+Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (representative_operation : Carrier → Carrier → Carrier) (representative_operation_respects : binary_operation_respects setoid representative_operation), ∃ quotient_operation : Quotient setoid → Quotient setoid → Quotient setoid, ∀ first_representative second_representative : Carrier, quotient_operation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) = Quotient.mk setoid (representative_operation first_representative second_representative)
+Predicate logic (unfolded): ∀ {Carrier : Type} (setoid : Setoid Carrier) (representative_operation : Carrier → Carrier → Carrier), LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid representative_operation → Exists fun quotient_operation => ∀ (first_representative second_representative : Carrier), quotient_operation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) = Quotient.mk setoid (representative_operation first_representative second_representative)
+Transliterated theorem: (Carrier → Carrier → Carrier) → ∃ quotient_operation ∈ Quotient setoid → Quotient setoid → Quotient setoid, ∀ first_representative second_representative : Carrier, quotient_operation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) = Quotient.mk setoid (representative_operation first_representative second_representative)
 Logical form (Lean): {Carrier : Type} (setoid : Setoid Carrier) (representative_operation : Carrier → Carrier → Carrier) (representative_operation_respects : binary_operation_respects setoid representative_operation) : ∃ quotient_operation : Quotient setoid → Quotient setoid → Quotient setoid, ∀ first_representative second_representative : Carrier, quotient_operation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) = Quotient.mk setoid (representative_operation first_representative second_representative)
 Source: ./Quotient/RepresentativeCompatibility.lean#L246
 
@@ -144,8 +179,9 @@ Source: ./Quotient/RepresentativeCompatibility.lean#L246
 Name: compatible_predicate_has_constant_truth_on_classes
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (predicate : Carrier → Prop),   LRA.UniversalAlgebra.Quotient.predicate_respects setoid predicate →     ∀ (first_representative second_representative : Carrier),       setoid.r first_representative second_representative →         Iff (predicate first_representative) (predicate second_representative)
-Predicate logic (unfolded): ∀ {Carrier : Type} (setoid : Setoid Carrier) (predicate : Carrier → Prop),   LRA.UniversalAlgebra.Quotient.predicate_respects setoid predicate →     ∀ (first_representative second_representative : Carrier),       setoid.r first_representative second_representative →         Iff (predicate first_representative) (predicate second_representative)
+Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (predicate : Carrier → Prop) (predicate_is_compatible : predicate_respects setoid predicate) (first_representative second_representative : Carrier) (representatives_are_equivalent : setoid.r first_representative second_representative), predicate first_representative ↔ predicate second_representative
+Predicate logic (unfolded): ∀ {Carrier : Type} (setoid : Setoid Carrier) (predicate : Carrier → Prop), LRA.UniversalAlgebra.Quotient.predicate_respects setoid predicate → ∀ (first_representative second_representative : Carrier), setoid.r first_representative second_representative → predicate first_representative ↔ predicate second_representative
+Transliterated theorem: (∀ first_representative second_representative ∈ Carrier), (Carrier → Prop) → predicate first_representative ↔ predicate second_representative
 Logical form (Lean): {Carrier : Type} (setoid : Setoid Carrier) (predicate : Carrier → Prop) (predicate_is_compatible : predicate_respects setoid predicate) (first_representative second_representative : Carrier) (representatives_are_equivalent : setoid.r first_representative second_representative) : predicate first_representative ↔ predicate second_representative
 Source: ./Quotient/RepresentativeCompatibility.lean#L344
 
@@ -154,8 +190,9 @@ Source: ./Quotient/RepresentativeCompatibility.lean#L344
 Name: induced_relation_exists
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (representative_relation : Carrier → Carrier → Prop),   LRA.UniversalAlgebra.Quotient.relation_respects setoid representative_relation →     Exists fun quotient_relation =>       ∀ (first_representative second_representative : Carrier),         Iff (quotient_relation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative))           (representative_relation first_representative second_representative)
-Predicate logic (unfolded): ∀ {Carrier : Type} (setoid : Setoid Carrier) (representative_relation : Carrier → Carrier → Prop),   LRA.UniversalAlgebra.Quotient.relation_respects setoid representative_relation →     Exists fun quotient_relation =>       ∀ (first_representative second_representative : Carrier),         Iff (quotient_relation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative))           (representative_relation first_representative second_representative)
+Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (representative_relation : Carrier → Carrier → Prop) (representative_relation_respects : relation_respects setoid representative_relation), ∃ quotient_relation : Quotient setoid → Quotient setoid → Prop, ∀ first_representative second_representative : Carrier, quotient_relation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) ↔ representative_relation first_representative second_representative
+Predicate logic (unfolded): ∀ {Carrier : Type} (setoid : Setoid Carrier) (representative_relation : Carrier → Carrier → Prop), LRA.UniversalAlgebra.Quotient.relation_respects setoid representative_relation → Exists fun quotient_relation => ∀ (first_representative second_representative : Carrier), quotient_relation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) ↔ representative_relation first_representative second_representative
+Transliterated theorem: (Carrier → Carrier → Prop) → ∃ quotient_relation ∈ Quotient setoid → Quotient setoid → Prop, ∀ first_representative second_representative : Carrier, quotient_relation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) ↔ representative_relation first_representative second_representative
 Logical form (Lean): {Carrier : Type} (setoid : Setoid Carrier) (representative_relation : Carrier → Carrier → Prop) (representative_relation_respects : relation_respects setoid representative_relation) : ∃ quotient_relation : Quotient setoid → Quotient setoid → Prop, ∀ first_representative second_representative : Carrier, quotient_relation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) ↔ representative_relation first_representative second_representative
 Source: ./Quotient/RepresentativeCompatibility.lean#L382
 
@@ -163,9 +200,10 @@ Source: ./Quotient/RepresentativeCompatibility.lean#L382
 
 Name: algebraicSignatureIsAlgebraic
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (Functions : LRA.Logic.ArityIndexedSymbols) (Constants : Type),   (LRA.UniversalAlgebra.algebraicSignature Functions Constants).IsAlgebraic
-Predicate logic (unfolded): ∀ (Functions : LRA.Logic.ArityIndexedSymbols) (Constants : Type),   (LRA.UniversalAlgebra.algebraicSignature Functions Constants).IsAlgebraic
+Predicate logic (unfolded): ∀ (Functions : LRA.Logic.ArityIndexedSymbols) (Constants : Type), (LRA.UniversalAlgebra.algebraicSignature Functions Constants).IsAlgebraic
+Transliterated theorem: (∀ Functions ∈ ArityIndexedSymbols), (algebraicSignature Functions Constants).IsAlgebraic
 Logical form (Lean): (Functions : ArityIndexedSymbols) (Constants : Type) : (algebraicSignature Functions Constants).IsAlgebraic
 Source: ./Algebra/Definition.lean#L70
 
@@ -173,9 +211,10 @@ Source: ./Algebra/Definition.lean#L70
 
 Name: termAlgebraEvaluatesToItself
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ (S : LRA.Logic.Signature) (Variable : Type) [inst : Nonempty Variable] (term : LRA.Logic.FirstOrder.Term S Variable),   Eq     (LRA.Logic.FirstOrder.evaluateTerm (LRA.UniversalAlgebra.termAlgebra S Variable) LRA.Logic.FirstOrder.Term.var term)     term
-Predicate logic (unfolded): ∀ (S : LRA.Logic.Signature) (Variable : Type) [inst : Nonempty Variable] (term : LRA.Logic.FirstOrder.Term S Variable),   Eq     (LRA.Logic.FirstOrder.evaluateTerm (LRA.UniversalAlgebra.termAlgebra S Variable) LRA.Logic.FirstOrder.Term.var term)     term
+State: Sorry
+Predicate logic: ∀ (S : Signature) (Variable : Type) [Nonempty Variable] (term : Term S Variable), evaluateTerm (termAlgebra S Variable) Term.var term = term
+Predicate logic (unfolded): ∀ (S : LRA.Logic.Signature) (Variable : Type) [inst : Nonempty Variable] (term : LRA.Logic.FirstOrder.Term S Variable), LRA.Logic.FirstOrder.evaluateTerm (LRA.UniversalAlgebra.termAlgebra S Variable) LRA.Logic.FirstOrder.Term.var term = term
+Transliterated theorem: (∀ S ∈ Signature), evaluateTerm (termAlgebra S Variable) Term.var term = term
 Logical form (Lean): (S : Signature) (Variable : Type) [Nonempty Variable] (term : Term S Variable) : evaluateTerm (termAlgebra S Variable) Term.var term = term
 Source: ./Algebra/Definition.lean#L117
 
@@ -183,9 +222,10 @@ Source: ./Algebra/Definition.lean#L117
 
 Name: modelsOfEquationalTheoryIsVariety
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {S : LRA.Logic.Signature} (theory : LRA.UniversalAlgebra.EquationalTheory S Nat),   LRA.UniversalAlgebra.IsVariety (LRA.UniversalAlgebra.ModelsOfEquationalTheory theory)
-Predicate logic (unfolded): ∀ {S : LRA.Logic.Signature} (theory : LRA.UniversalAlgebra.EquationalTheory S Nat),   LRA.UniversalAlgebra.IsVariety (LRA.UniversalAlgebra.ModelsOfEquationalTheory theory)
+Predicate logic (unfolded): ∀ {S : LRA.Logic.Signature} (theory : LRA.UniversalAlgebra.EquationalTheory S Nat), LRA.UniversalAlgebra.IsVariety (LRA.UniversalAlgebra.ModelsOfEquationalTheory theory)
+Transliterated theorem: IsVariety (ModelsOfEquationalTheory.{u} theory)
 Logical form (Lean): {S : Signature} (theory : EquationalTheory S Nat) : IsVariety (ModelsOfEquationalTheory.{u} theory)
 Source: ./Satisfaction/Definition.lean#L127
 
@@ -194,8 +234,9 @@ Source: ./Satisfaction/Definition.lean#L127
 Name: Homomorphism.commutesWithTermEvaluation
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S}   (homomorphism : LRA.UniversalAlgebra.Homomorphism M N) (assignment : Variable → M.Domain)   (term : LRA.Logic.FirstOrder.Term S Variable),   Eq (homomorphism.map (LRA.Logic.FirstOrder.evaluateTerm M assignment term))     (LRA.Logic.FirstOrder.evaluateTerm N (fun v => homomorphism.map (assignment v)) term)
-Predicate logic (unfolded): ∀ {S : LRA.Logic.Signature} {Variable : Type} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S}   (homomorphism : LRA.UniversalAlgebra.Homomorphism M N) (assignment : Variable → M.Domain)   (term : LRA.Logic.FirstOrder.Term S Variable),   Eq (homomorphism.map (LRA.Logic.FirstOrder.evaluateTerm M assignment term))     (LRA.Logic.FirstOrder.evaluateTerm N (fun v => homomorphism.map (assignment v)) term)
+Predicate logic: ∀ {S : Signature} {Variable : Type} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) (assignment : Variable → M.Domain) (term : Term S Variable), homomorphism.map (evaluateTerm M assignment term) = evaluateTerm N (fun v => homomorphism.map (assignment v)) term
+Predicate logic (unfolded): ∀ {S : LRA.Logic.Signature} {Variable : Type} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S} (homomorphism : LRA.UniversalAlgebra.Homomorphism M N) (assignment : Variable → M.Domain) (term : LRA.Logic.FirstOrder.Term S Variable), homomorphism.map (LRA.Logic.FirstOrder.evaluateTerm M assignment term) = LRA.Logic.FirstOrder.evaluateTerm N (fun v => homomorphism.map (assignment v)) term
+Transliterated theorem: (Variable → M.Domain) → homomorphism.map (evaluateTerm M assignment term) = evaluateTerm N (fun v => homomorphism.map (assignment v)) term
 Logical form (Lean): {S : Signature} {Variable : Type} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) (assignment : Variable → M.Domain) (term : Term S Variable) : homomorphism.map (evaluateTerm M assignment term) = evaluateTerm N (fun v => homomorphism.map (assignment v)) term
 Source: ./Homomorphism/Definition.lean#L138
 
@@ -204,8 +245,9 @@ Source: ./Homomorphism/Definition.lean#L138
 Name: termExtensionUnique
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : Nonempty Variable] (M : LRA.Logic.FirstOrder.Model S)   (assignment : Variable → M.Domain)   (homomorphism : LRA.UniversalAlgebra.Homomorphism (LRA.UniversalAlgebra.termAlgebra S Variable) M),   (∀ (v : Variable), Eq (homomorphism.map (LRA.Logic.FirstOrder.Term.var v)) (assignment v)) →     ∀ (term : LRA.Logic.FirstOrder.Term S Variable),       Eq (homomorphism.map term) (LRA.Logic.FirstOrder.evaluateTerm M assignment term)
-Predicate logic (unfolded): ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : Nonempty Variable] (M : LRA.Logic.FirstOrder.Model S)   (assignment : Variable → M.Domain)   (homomorphism : LRA.UniversalAlgebra.Homomorphism (LRA.UniversalAlgebra.termAlgebra S Variable) M),   (∀ (v : Variable), Eq (homomorphism.map (LRA.Logic.FirstOrder.Term.var v)) (assignment v)) →     ∀ (term : LRA.Logic.FirstOrder.Term S Variable),       Eq (homomorphism.map term) (LRA.Logic.FirstOrder.evaluateTerm M assignment term)
+Predicate logic: ∀ {S : Signature} {Variable : Type} [Nonempty Variable] (M : Model.{0} S) (assignment : Variable → M.Domain) (homomorphism : Homomorphism (termAlgebra S Variable) M) (agreesOnVariables : ∀ v : Variable, homomorphism.map (.var v) = assignment v), ∀ term : Term S Variable, homomorphism.map term = evaluateTerm M assignment term
+Predicate logic (unfolded): ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : Nonempty Variable] (M : LRA.Logic.FirstOrder.Model S) (assignment : Variable → M.Domain) (homomorphism : LRA.UniversalAlgebra.Homomorphism (LRA.UniversalAlgebra.termAlgebra S Variable) M), (∀ (v : Variable), homomorphism.map (LRA.Logic.FirstOrder.Term.var v) = assignment v) → ∀ (term : LRA.Logic.FirstOrder.Term S Variable), homomorphism.map term = LRA.Logic.FirstOrder.evaluateTerm M assignment term
+Transliterated theorem: (Variable → M.Domain ∧ ∀ v : Variable, homomorphism.map (.var v) = assignment v) → ∀ term : Term S Variable, homomorphism.map term = evaluateTerm M assignment term
 Logical form (Lean): {S : Signature} {Variable : Type} [Nonempty Variable] (M : Model.{0} S) (assignment : Variable → M.Domain) (homomorphism : Homomorphism (termAlgebra S Variable) M) (agreesOnVariables : ∀ v : Variable, homomorphism.map (.var v) = assignment v) : ∀ term : Term S Variable, homomorphism.map term = evaluateTerm M assignment term
 Source: ./Homomorphism/Definition.lean#L192
 
@@ -214,8 +256,9 @@ Source: ./Homomorphism/Definition.lean#L192
 Name: equationTransportsAlongSurjection
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S}   (homomorphism : LRA.UniversalAlgebra.Homomorphism M N),   (∀ (target : N.Domain), Exists fun source => Eq (homomorphism.map source) target) →     ∀ (equation : LRA.UniversalAlgebra.Equation S Variable),       LRA.UniversalAlgebra.SatisfiesEquation M equation → LRA.UniversalAlgebra.SatisfiesEquation N equation
-Predicate logic (unfolded): ∀ {S : LRA.Logic.Signature} {Variable : Type} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S}   (homomorphism : LRA.UniversalAlgebra.Homomorphism M N),   (∀ (target : N.Domain), Exists fun source => Eq (homomorphism.map source) target) →     ∀ (equation : LRA.UniversalAlgebra.Equation S Variable),       LRA.UniversalAlgebra.SatisfiesEquation M equation → LRA.UniversalAlgebra.SatisfiesEquation N equation
+Predicate logic: ∀ {S : Signature} {Variable : Type} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) (surjective : ∀ target : N.Domain, ∃ source, homomorphism.map source = target) (equation : Equation S Variable) (sourceSatisfies : SatisfiesEquation M equation), SatisfiesEquation N equation
+Predicate logic (unfolded): ∀ {S : LRA.Logic.Signature} {Variable : Type} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S} (homomorphism : LRA.UniversalAlgebra.Homomorphism M N), (∀ (target : N.Domain), Exists fun source => homomorphism.map source = target) → ∀ (equation : LRA.UniversalAlgebra.Equation S Variable), LRA.UniversalAlgebra.SatisfiesEquation M equation → LRA.UniversalAlgebra.SatisfiesEquation N equation
+Transliterated theorem: (∀ target : N.Domain, ∃ source, homomorphism.map source = target) → SatisfiesEquation N equation
 Logical form (Lean): {S : Signature} {Variable : Type} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) (surjective : ∀ target : N.Domain, ∃ source, homomorphism.map source = target) (equation : Equation S Variable) (sourceSatisfies : SatisfiesEquation M equation) : SatisfiesEquation N equation
 Source: ./Homomorphism/Definition.lean#L218
 
@@ -225,7 +268,8 @@ Name: isomorphic_symm
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S},   LRA.UniversalAlgebra.Isomorphic M N → LRA.UniversalAlgebra.Isomorphic N M
-Predicate logic (unfolded): ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S},   LRA.UniversalAlgebra.Isomorphic M N → LRA.UniversalAlgebra.Isomorphic N M
+Predicate logic (unfolded): ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S}, LRA.UniversalAlgebra.Isomorphic M N → LRA.UniversalAlgebra.Isomorphic N M
+Transliterated theorem: Isomorphic M N → Isomorphic N M
 Logical form (Lean): {S : Signature} {M : Model.{u} S} {N : Model.{v} S} : Isomorphic M N → Isomorphic N M
 Source: ./Isomorphism/Definition.lean#L76
 
@@ -233,9 +277,10 @@ Source: ./Isomorphism/Definition.lean#L76
 
 Name: kernelRelationIsEquivalence
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S}   (homomorphism : LRA.UniversalAlgebra.Homomorphism M N), Equivalence (LRA.UniversalAlgebra.kernelRelation homomorphism)
-Predicate logic (unfolded): ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S}   (homomorphism : LRA.UniversalAlgebra.Homomorphism M N), Equivalence (LRA.UniversalAlgebra.kernelRelation homomorphism)
+Predicate logic (unfolded): ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S} (homomorphism : LRA.UniversalAlgebra.Homomorphism M N), Equivalence (LRA.UniversalAlgebra.kernelRelation homomorphism)
+Transliterated theorem: Equivalence (kernelRelation homomorphism)
 Logical form (Lean): {S : Signature} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) : Equivalence (kernelRelation homomorphism)
 Source: ./KernelCongruence/KernelRelation/Definition.lean#L52
 
@@ -244,8 +289,9 @@ Source: ./KernelCongruence/KernelRelation/Definition.lean#L52
 Name: quotientProjectionIsHomomorphism
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} (congruence : LRA.UniversalAlgebra.Congruence M),   Exists fun projection => ∀ (element : M.Domain), Eq (projection.map element) (Quot.mk congruence.rel element)
-Predicate logic (unfolded): ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} (congruence : LRA.UniversalAlgebra.Congruence M),   Exists fun projection => ∀ (element : M.Domain), Eq (projection.map element) (Quot.mk congruence.rel element)
+Predicate logic: ∀ {S : Signature} {M : Model.{u} S} (congruence : Congruence M), ∃ projection : Homomorphism M (quotientModel congruence), ∀ element, projection.map element = Quot.mk _ element
+Predicate logic (unfolded): ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} (congruence : LRA.UniversalAlgebra.Congruence M), Exists fun projection => ∀ (element : M.Domain), projection.map element = Quot.mk congruence.rel element
+Transliterated theorem: ∃ projection ∈ Homomorphism M (quotientModel congruence), ∀ element, projection.map element = Quot.mk _ element
 Logical form (Lean): {S : Signature} {M : Model.{u} S} (congruence : Congruence M) : ∃ projection : Homomorphism M (quotientModel congruence), ∀ element, projection.map element = Quot.mk _ element
 Source: ./Quotient/Definition.lean#L104
 
@@ -254,7 +300,8 @@ Source: ./Quotient/Definition.lean#L104
 Name: firstIsomorphismTheorem
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S}   (homomorphism : LRA.UniversalAlgebra.Homomorphism M N),   (∀ (target : N.Domain), Exists fun source => Eq (homomorphism.map source) target) →     LRA.UniversalAlgebra.Isomorphic       (LRA.UniversalAlgebra.quotientModel (LRA.UniversalAlgebra.kernelCongruence homomorphism)) N
-Predicate logic (unfolded): ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S}   (homomorphism : LRA.UniversalAlgebra.Homomorphism M N),   (∀ (target : N.Domain), Exists fun source => Eq (homomorphism.map source) target) →     LRA.UniversalAlgebra.Isomorphic       (LRA.UniversalAlgebra.quotientModel (LRA.UniversalAlgebra.kernelCongruence homomorphism)) N
+Predicate logic: ∀ {S : Signature} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) (surjective : ∀ target : N.Domain, ∃ source, homomorphism.map source = target), Isomorphic (quotientModel (kernelCongruence homomorphism)) N
+Predicate logic (unfolded): ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S} (homomorphism : LRA.UniversalAlgebra.Homomorphism M N), (∀ (target : N.Domain), Exists fun source => homomorphism.map source = target) → LRA.UniversalAlgebra.Isomorphic (LRA.UniversalAlgebra.quotientModel (LRA.UniversalAlgebra.kernelCongruence homomorphism)) N
+Transliterated theorem: (∀ target : N.Domain, ∃ source, homomorphism.map source = target) → Isomorphic (quotientModel (kernelCongruence homomorphism)) N
 Logical form (Lean): {S : Signature} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) (surjective : ∀ target : N.Domain, ∃ source, homomorphism.map source = target) : Isomorphic (quotientModel (kernelCongruence homomorphism)) N
 Source: ./KernelCongruence/Definition.lean#L71

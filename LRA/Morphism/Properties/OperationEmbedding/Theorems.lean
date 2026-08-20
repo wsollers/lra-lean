@@ -14,14 +14,14 @@ variable {targetOperation : LRA.Operation.BinaryEndoOperation Target}
 /-- A binary-operation embedding is injective. -/
 theorem BinaryOperationEmbedding.injective
     (law : BinaryOperationEmbedding function sourceOperation targetOperation) :
-    LRA.Function.Injective function :=
-  law.left
+    LRA.Function.Injective function := by
+  sorry
 
 /-- A binary-operation embedding preserves the operation. -/
 theorem BinaryOperationEmbedding.preserves
     (law : BinaryOperationEmbedding function sourceOperation targetOperation) :
-    PreservesBinaryOperation function sourceOperation targetOperation :=
-  law.right
+    PreservesBinaryOperation function sourceOperation targetOperation := by
+  sorry
 
 end OperationEmbedding
 

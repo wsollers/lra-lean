@@ -75,7 +75,8 @@ theorem MinOfPositiveIsPositive (a b : ℝ) (ha : a > 0) (hb : b > 0) :
 ```
 -/
 theorem MinOfPositiveIsPositive (a b : ℝ) (ha : a > 0) (hb : b > 0) :
-    min a b > 0 := by sorry
+    min a b > 0 := by
+  sorry
 
 -- `lem:half-epsilon-is-positive`
 /-- Let `ε : ℝ`. If `hε : ε > 0`. Then `ε / 2 > 0`.
@@ -86,7 +87,8 @@ Logical form:
 theorem HalfEpsilonIsPositive (ε : ℝ) (hε : ε > 0) : ε / 2 > 0
 ```
 -/
-theorem HalfEpsilonIsPositive (ε : ℝ) (hε : ε > 0) : ε / 2 > 0 := by sorry
+theorem HalfEpsilonIsPositive (ε : ℝ) (hε : ε > 0) : ε / 2 > 0 := by
+  sorry
 
 -- `lem:epsilon-splitting`
 /-- Let `ε : ℝ`. If `hε : ε > 0`. Then `ε / 2 + ε / 2 = ε`.
@@ -97,7 +99,8 @@ Logical form:
 theorem EpsilonSplitting (ε : ℝ) (hε : ε > 0) : ε / 2 + ε / 2 = ε
 ```
 -/
-theorem EpsilonSplitting (ε : ℝ) (hε : ε > 0) : ε / 2 + ε / 2 = ε := by sorry
+theorem EpsilonSplitting (ε : ℝ) (hε : ε > 0) : ε / 2 + ε / 2 = ε := by
+  sorry
 
 -- `lem:positive-minimum-bound`
 /-- Let `δ a b : ℝ`. If `h1 : 0 < δ`, `h2 : δ ≤ a`, and `h3 : δ ≤ b`. Then `δ ≤ min a b`.
@@ -110,7 +113,8 @@ theorem PositiveMinimumBound (δ a b : ℝ) (h1 : 0 < δ) (h2 : δ ≤ a) (h3 : 
 ```
 -/
 theorem PositiveMinimumBound (δ a b : ℝ) (h1 : 0 < δ) (h2 : δ ≤ a) (h3 : δ ≤ b) :
-    δ ≤ min a b := by sorry
+    δ ≤ min a b := by
+  sorry
 
 -- `lem:choosing-a-smaller-positive-number`
 /-- Let `ε c : ℝ`. If `hε : ε > 0` and `hc : c > 0`. Then `∃ δ, 0 < δ ∧ δ < ε ∧ δ < c`.
@@ -123,7 +127,8 @@ theorem ChoosingSmallerPositive (ε c : ℝ) (hε : ε > 0) (hc : c > 0) :
 ```
 -/
 theorem ChoosingSmallerPositive (ε c : ℝ) (hε : ε > 0) (hc : c > 0) :
-    ∃ δ, 0 < δ ∧ δ < ε ∧ δ < c := by sorry
+    ∃ δ, 0 < δ ∧ δ < ε ∧ δ < c := by
+  sorry
 
 /-- Let `x : ℝ`. Then `|x| = dist' x 0`.
 
@@ -133,7 +138,8 @@ Logical form:
 theorem AbsIsDistanceToZero (x : ℝ) : |x| = dist' x 0
 ```
 -/
-theorem AbsIsDistanceToZero (x : ℝ) : |x| = dist' x 0 := by sorry
+theorem AbsIsDistanceToZero (x : ℝ) : |x| = dist' x 0 := by
+  sorry
 
 -- ---------------------------------------------------------------------
 -- Intervals as Subsets.

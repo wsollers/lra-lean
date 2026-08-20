@@ -15,11 +15,13 @@ theorem EndomapCompositionAssociative (Carrier : Type u) :
       (EndomapComposition Carrier) := by
   sorry
 
+
 theorem EndomapCompositionIdentity (Carrier : Type u) :
     LRA.Operation.Laws.Identity.TwoSidedIdentity
       (EndomapComposition Carrier)
       (EndomapIdentity Carrier) := by
   sorry
+
 
 theorem BijectiveEndomapHasCompositionInverse
     {Carrier : Type u}
@@ -44,6 +46,7 @@ theorem PointwiseAssociative
       (PointwiseBinaryOperation (Domain := Domain) operation) := by
   sorry
 
+
 theorem PointwiseTwoSidedIdentity
     (operation : BinaryEndoOperation Codomain)
     (identity : Codomain)
@@ -53,6 +56,7 @@ theorem PointwiseTwoSidedIdentity
       (PointwiseBinaryOperation (Domain := Domain) operation)
       (fun _input : Domain => identity) := by
   sorry
+
 
 theorem PointwiseTwoSidedInverse
     (operation : BinaryEndoOperation Codomain)

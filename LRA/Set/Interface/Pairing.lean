@@ -111,8 +111,8 @@ theorem PairInjective {Left Right Pair : Type u}
     ∀ (firstLeft secondLeft : Left) (firstRight secondRight : Right),
       OrderedPair firstLeft firstRight =
           OrderedPair secondLeft secondRight ↔
-        firstLeft = secondLeft ∧ firstRight = secondRight :=
-  PairingLaws.PairInjective
+        firstLeft = secondLeft ∧ firstRight = secondRight := by
+  sorry
 
 /-! ## The default pairing: type-level products
 

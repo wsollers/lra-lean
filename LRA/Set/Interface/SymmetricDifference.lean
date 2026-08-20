@@ -71,8 +71,9 @@ theorem SymmetricDifferenceAsUnionDifferences :
 ```
 -/
 theorem SymmetricDifferenceAsUnionDifferences :
-    ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A) :=
-  SymmDiffLaws.SymmetricDifferenceAsUnionDifferences
+    ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A) := by
+  sorry
+
 /--
 `A ∆ B` is the union minus the intersection.
 
@@ -84,8 +85,9 @@ theorem SymmetricDifferenceAsUnionDifferenceIntersection :
 ```
 -/
 theorem SymmetricDifferenceAsUnionDifferenceIntersection :
-    ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B) :=
-  SymmDiffLaws.SymmetricDifferenceAsUnionDifferenceIntersection
+    ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B) := by
+  sorry
+
 /--
 Symmetric difference is commutative.
 
@@ -95,8 +97,9 @@ Logical form:
 theorem SymmetricDifferenceCommutative : ∀ A B : α, A ∆ B = B ∆ A
 ```
 -/
-theorem SymmetricDifferenceCommutative : ∀ A B : α, A ∆ B = B ∆ A :=
-  SymmDiffLaws.SymmetricDifferenceCommutative
+theorem SymmetricDifferenceCommutative : ∀ A B : α, A ∆ B = B ∆ A := by
+  sorry
+
 /--
 Symmetric difference is associative.
 
@@ -108,8 +111,9 @@ theorem SymmetricDifferenceAssociative :
 ```
 -/
 theorem SymmetricDifferenceAssociative :
-    ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C) :=
-  SymmDiffLaws.SymmetricDifferenceAssociative
+    ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C) := by
+  sorry
+
 /--
 The empty set is a right identity for symmetric difference.
 
@@ -119,8 +123,9 @@ Logical form:
 theorem SymmetricDifferenceEmpty : ∀ A : α, A ∆ (∅ : α) = A
 ```
 -/
-theorem SymmetricDifferenceEmpty : ∀ A : α, A ∆ (∅ : α) = A :=
-  SymmDiffLaws.SymmetricDifferenceEmpty
+theorem SymmetricDifferenceEmpty : ∀ A : α, A ∆ (∅ : α) = A := by
+  sorry
+
 /--
 The empty set is a left identity for symmetric difference.
 
@@ -130,8 +135,9 @@ Logical form:
 theorem EmptySymmetricDifference : ∀ A : α, (∅ : α) ∆ A = A
 ```
 -/
-theorem EmptySymmetricDifference : ∀ A : α, (∅ : α) ∆ A = A :=
-  SymmDiffLaws.EmptySymmetricDifference
+theorem EmptySymmetricDifference : ∀ A : α, (∅ : α) ∆ A = A := by
+  sorry
+
 /--
 Every set is its own inverse under symmetric difference.
 
@@ -141,8 +147,9 @@ Logical form:
 theorem SymmetricDifferenceSelf : ∀ A : α, A ∆ A = (∅ : α)
 ```
 -/
-theorem SymmetricDifferenceSelf : ∀ A : α, A ∆ A = (∅ : α) :=
-  SymmDiffLaws.SymmetricDifferenceSelf
+theorem SymmetricDifferenceSelf : ∀ A : α, A ∆ A = (∅ : α) := by
+  sorry
+
 /--
 `A ∆ B` is empty exactly when `A = B`.
 
@@ -154,8 +161,9 @@ theorem SymmetricDifferenceEqEmptyIff :
 ```
 -/
 theorem SymmetricDifferenceEqEmptyIff :
-    ∀ A B : α, A ∆ B = (∅ : α) ↔ A = B :=
-  SymmDiffLaws.SymmetricDifferenceEqEmptyIff
+    ∀ A B : α, A ∆ B = (∅ : α) ↔ A = B := by
+  sorry
+
 /--
 `A ∆ B` is a subset of `A ∪ B`.
 
@@ -165,7 +173,7 @@ Logical form:
 theorem SymmetricDifferenceSubsetUnion : ∀ A B : α, A ∆ B ⊆ A ∪ B
 ```
 -/
-theorem SymmetricDifferenceSubsetUnion : ∀ A B : α, A ∆ B ⊆ A ∪ B :=
-  SymmDiffLaws.SymmetricDifferenceSubsetUnion
+theorem SymmetricDifferenceSubsetUnion : ∀ A B : α, A ∆ B ⊆ A ∪ B := by
+  sorry
 
 end LRA.Set

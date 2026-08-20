@@ -36,7 +36,7 @@ def canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :
 theorem EqualityStructure.interpretsEqualityAsIdentity
     (equalityStructure : EqualityStructure.{u})
     (left right : equalityStructure.Carrier) :
-    equalityStructure.equalityInterpretation left right ↔ left = right :=
-  equalityStructure.equalityIsDiagonal left right
+    equalityStructure.equalityInterpretation left right ↔ left = right := by
+  sorry
 
 end LRA.Identity

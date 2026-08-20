@@ -115,7 +115,8 @@ theorem riemann_integral_linearity (α β Lf Lg : ℝ) (hLf : HasRiemannIntegral
 -/
 theorem riemann_integral_linearity (α β Lf Lg : ℝ) (hLf : HasRiemannIntegral f a b Lf)
     (hLg : HasRiemannIntegral g a b Lg) :
-    HasRiemannIntegral (fun x => α * f x + β * g x) a b (α * Lf + β * Lg) := by sorry
+    HasRiemannIntegral (fun x => α * f x + β * g x) a b (α * Lf + β * Lg) := by
+  sorry
 
 -- `thm:riemann-integral-monotonicity`
 /-- Let `Lf Lg : ℝ`. If `hLf : HasRiemannIntegral f a b Lf`, `hLg : HasRiemannIntegral g a b Lg`,

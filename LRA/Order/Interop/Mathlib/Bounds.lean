@@ -34,11 +34,13 @@ theorem upperBound_iff_mem_upperBounds
       candidate ∈ upperBounds subset := by
   sorry
 
+
 theorem lowerBound_iff_mem_lowerBounds
     {Alpha : Type u} [LE Alpha] (subset : Set Alpha) (candidate : Alpha) :
     LowerBound (fun left right : Alpha => left ≤ right) subset candidate ↔
       candidate ∈ lowerBounds subset := by
   sorry
+
 
 theorem leastElement_iff_isLeast
     {Alpha : Type u} [LE Alpha] (subset : Set Alpha) (candidate : Alpha) :
@@ -46,11 +48,13 @@ theorem leastElement_iff_isLeast
       IsLeast subset candidate := by
   sorry
 
+
 theorem greatestElement_iff_isGreatest
     {Alpha : Type u} [LE Alpha] (subset : Set Alpha) (candidate : Alpha) :
     GreatestElement (fun left right : Alpha => left ≤ right) subset candidate ↔
       IsGreatest subset candidate := by
   sorry
+
 
 theorem supremum_iff_isLUB
     {Alpha : Type u} [LE Alpha] (subset : Set Alpha) (candidate : Alpha) :
@@ -58,17 +62,20 @@ theorem supremum_iff_isLUB
       IsLUB subset candidate := by
   sorry
 
+
 theorem infimum_iff_isGLB
     {Alpha : Type u} [LE Alpha] (subset : Set Alpha) (candidate : Alpha) :
     Infimum (fun left right : Alpha => left ≤ right) subset candidate ↔
       IsGLB subset candidate := by
   sorry
 
+
 theorem boundedAbove_iff_bddAbove
     {Alpha : Type u} [LE Alpha] (subset : Set Alpha) :
     BoundedAbove (fun left right : Alpha => left ≤ right) subset ↔
       BddAbove subset := by
   sorry
+
 
 theorem boundedBelow_iff_bddBelow
     {Alpha : Type u} [LE Alpha] (subset : Set Alpha) :

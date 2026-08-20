@@ -40,6 +40,7 @@ def Pair (a b : Alpha) : LRA.Set.PredicateSet Alpha := fun x => x = a ∨ x = b
 theorem PairMembership (a b x : Alpha) : x ∈ Pair a b ↔ x = a ∨ x = b := by
   sorry
 
+
 theorem PairEqualsInsertSingleton (a b : Alpha) :
     Pair a b = Insert a (Singleton b) := by
   sorry
@@ -94,13 +95,14 @@ abbrev RelativeComplement
 
 theorem RelativeComplementIsRelativeComplementOf
     (A B : LRA.Set.PredicateSet Alpha) :
-    IsRelativeComplementOf A B (RelativeComplement A B) :=
-  DifferenceMembership A B
+    IsRelativeComplementOf A B (RelativeComplement A B) := by
+  sorry
+
 
 theorem RelativeComplementMembership
     (A B : LRA.Set.PredicateSet Alpha) (x : Alpha) :
-    x ∈ RelativeComplement A B ↔ x ∈ A ∧ x ∉ B :=
-  DifferenceMembership A B x
+    x ∈ RelativeComplement A B ↔ x ∈ A ∧ x ∉ B := by
+  sorry
 
 /-- Symmetric difference. -/
 def SymmetricDifference

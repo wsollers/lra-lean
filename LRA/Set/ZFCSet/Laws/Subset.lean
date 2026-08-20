@@ -8,9 +8,11 @@ namespace LRA.Set.ZFCSet
 theorem SubsetReflexive : ∀ A : Set, A ⊆ A := by
   sorry
 
+
 theorem SubsetTransitive :
     ∀ A B C : Set, A ⊆ B → B ⊆ C → A ⊆ C := by
   sorry
+
 
 theorem SetEqualityIffMutualSubset :
     ∀ A B : Set, A = B ↔ A ⊆ B ∧ B ⊆ A := by

@@ -218,12 +218,6 @@ theorem ConstantFunctionsAreMonotone (f : ℝ → ℝ) (A : Set ℝ)
     (h : FunctionConstant f A) : FunctionMonotone f A := by
   sorry
 
-/- ================================================================
-   ADDITIONS.md items 9-11 (Functions chapter, `real-valued-functions`
-   section). Added with user sign-off. See ADDITIONS.md for the full
-   rationale on each; docstrings here summarize.
-   ================================================================ -/
-
 /-- Let `A : Set ℝ`. If `f g : ℝ → ℝ`. Then `(FunctionIncreasing f A → FunctionIncreasing g A →
 FunctionIncreasing (fun x => f x + g x) A) ∧ (FunctionDecreasing f A → FunctionDecreasing g A →
 FunctionDecreasing (fun x => f x + g x) A) ∧ (FunctionIncreasing f A → FunctionIncreasing g A →
@@ -297,10 +291,6 @@ theorem MonotonicityRestriction (f : ℝ → ℝ) (S A : Set ℝ) (hS : S ⊆ A)
     (FunctionStrictlyIncreasing f A → FunctionStrictlyIncreasing f S) ∧
     (FunctionStrictlyDecreasing f A → FunctionStrictlyDecreasing f S) := by
   sorry
-
-/- ================================================================
-   ADDITIONS.md items 14-15. Added with user sign-off.
-   ================================================================ -/
 
 /-- Let `A B : Set ℝ`. If `f g : ℝ → ℝ` and `hmaps : ∀ x ∈ A, f x ∈ B`. Then `(FunctionIncreasing f
 A → FunctionIncreasing g B → FunctionIncreasing (g ∘ f) A) ∧ (FunctionDecreasing f A →

@@ -9,13 +9,14 @@ keep source order, because Lean forbids forward references, so source order is
 already a valid topological order. Working this list top to bottom, no entry
 depends on anything not yet proved above it.
 
-**Inventory:** 13 entries across 7 module(s) (13 completed, 0 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
+**Inventory:** 13 entries across 7 module(s) (0 completed, 13 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
 
 Name: BinaryOperationEmbedding.injective
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target}   {sourceOperation : LRA.Operation.BinaryEndoOperation Source}   {targetOperation : LRA.Operation.BinaryEndoOperation Target},   LRA.Morphism.BinaryOperationEmbedding function sourceOperation targetOperation → LRA.Function.Injective function
-Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target}   {sourceOperation : LRA.Operation.BinaryEndoOperation Source}   {targetOperation : LRA.Operation.BinaryEndoOperation Target},   LRA.Morphism.BinaryOperationEmbedding function sourceOperation targetOperation → LRA.Function.Injective function
+Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : LRA.Operation.BinaryEndoOperation Source} {targetOperation : LRA.Operation.BinaryEndoOperation Target}, LRA.Morphism.BinaryOperationEmbedding function sourceOperation targetOperation → LRA.Function.Injective function
+Transliterated theorem: LRA.Function.Injective function
 Logical form (Lean): (law : BinaryOperationEmbedding function sourceOperation targetOperation) : LRA.Function.Injective function
 Source: ./Properties/OperationEmbedding/Theorems.lean#L15
 
@@ -23,9 +24,10 @@ Source: ./Properties/OperationEmbedding/Theorems.lean#L15
 
 Name: BinaryOperationEmbedding.preserves
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target}   {sourceOperation : LRA.Operation.BinaryEndoOperation Source}   {targetOperation : LRA.Operation.BinaryEndoOperation Target},   LRA.Morphism.BinaryOperationEmbedding function sourceOperation targetOperation →     LRA.Morphism.PreservesBinaryOperation function sourceOperation targetOperation
-Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target}   {sourceOperation : LRA.Operation.BinaryEndoOperation Source}   {targetOperation : LRA.Operation.BinaryEndoOperation Target},   LRA.Morphism.BinaryOperationEmbedding function sourceOperation targetOperation →     LRA.Morphism.PreservesBinaryOperation function sourceOperation targetOperation
+Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : LRA.Operation.BinaryEndoOperation Source} {targetOperation : LRA.Operation.BinaryEndoOperation Target}, LRA.Morphism.BinaryOperationEmbedding function sourceOperation targetOperation → LRA.Morphism.PreservesBinaryOperation function sourceOperation targetOperation
+Transliterated theorem: PreservesBinaryOperation function sourceOperation targetOperation
 Logical form (Lean): (law : BinaryOperationEmbedding function sourceOperation targetOperation) : PreservesBinaryOperation function sourceOperation targetOperation
 Source: ./Properties/OperationEmbedding/Theorems.lean#L21
 
@@ -33,9 +35,10 @@ Source: ./Properties/OperationEmbedding/Theorems.lean#L21
 
 Name: PreservesBinaryOperation.apply
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target}   {sourceOperation : LRA.Operation.BinaryEndoOperation Source}   {targetOperation : LRA.Operation.BinaryEndoOperation Target},   LRA.Morphism.PreservesBinaryOperation function sourceOperation targetOperation →     ∀ (left right : Source),       Eq (function (sourceOperation left right)) (targetOperation (function left) (function right))
-Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target}   {sourceOperation : LRA.Operation.BinaryEndoOperation Source}   {targetOperation : LRA.Operation.BinaryEndoOperation Target},   LRA.Morphism.PreservesBinaryOperation function sourceOperation targetOperation →     ∀ (left right : Source),       Eq (function (sourceOperation left right)) (targetOperation (function left) (function right))
+State: Sorry
+Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : LRA.Operation.BinaryEndoOperation Source} {targetOperation : LRA.Operation.BinaryEndoOperation Target} (law : PreservesBinaryOperation function sourceOperation targetOperation) (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right)
+Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : LRA.Operation.BinaryEndoOperation Source} {targetOperation : LRA.Operation.BinaryEndoOperation Target}, LRA.Morphism.PreservesBinaryOperation function sourceOperation targetOperation → ∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right)
+Transliterated theorem: (∀ left right ∈ Source), function (sourceOperation left right) = targetOperation (function left) (function right)
 Logical form (Lean): {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : LRA.Operation.BinaryEndoOperation Source} {targetOperation : LRA.Operation.BinaryEndoOperation Target} (law : PreservesBinaryOperation function sourceOperation targetOperation) (left right : Source) : function (sourceOperation left right) = targetOperation (function left) (function right)
 Source: ./Properties/PreservesBinaryOperation/Theorems.lean#L8
 
@@ -43,9 +46,10 @@ Source: ./Properties/PreservesBinaryOperation/Theorems.lean#L8
 
 Name: PreservesNullaryOperation.apply
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target}   {sourceElement : LRA.Operation.NullaryOperation Source} {targetElement : LRA.Operation.NullaryOperation Target},   LRA.Morphism.PreservesNullaryOperation function sourceElement targetElement →     Eq (function sourceElement) targetElement
-Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target}   {sourceElement : LRA.Operation.NullaryOperation Source} {targetElement : LRA.Operation.NullaryOperation Target},   LRA.Morphism.PreservesNullaryOperation function sourceElement targetElement →     Eq (function sourceElement) targetElement
+State: Sorry
+Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceElement : LRA.Operation.NullaryOperation Source} {targetElement : LRA.Operation.NullaryOperation Target} (law : PreservesNullaryOperation function sourceElement targetElement), function sourceElement = targetElement
+Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceElement : LRA.Operation.NullaryOperation Source} {targetElement : LRA.Operation.NullaryOperation Target}, LRA.Morphism.PreservesNullaryOperation function sourceElement targetElement → function sourceElement = targetElement
+Transliterated theorem: function sourceElement = targetElement
 Logical form (Lean): {Source : Type u} {Target : Type v} {function : Source → Target} {sourceElement : LRA.Operation.NullaryOperation Source} {targetElement : LRA.Operation.NullaryOperation Target} (law : PreservesNullaryOperation function sourceElement targetElement) : function sourceElement = targetElement
 Source: ./Properties/PreservesNullaryOperation/Theorems.lean#L8
 
@@ -53,9 +57,10 @@ Source: ./Properties/PreservesNullaryOperation/Theorems.lean#L8
 
 Name: PreservesRelation.apply
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.PreservesRelation function sourceRelation targetRelation →     ∀ {left right : Source}, sourceRelation left right → targetRelation (function left) (function right)
-Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.PreservesRelation function sourceRelation targetRelation →     ∀ {left right : Source}, sourceRelation left right → targetRelation (function left) (function right)
+Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target}, LRA.Morphism.PreservesRelation function sourceRelation targetRelation → ∀ {left right : Source}, sourceRelation left right → targetRelation (function left) (function right)
+Transliterated theorem: targetRelation (function left) (function right)
 Logical form (Lean): {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target} (law : PreservesRelation function sourceRelation targetRelation) {left right : Source} (related : sourceRelation left right) : targetRelation (function left) (function right)
 Source: ./Properties/PreservesRelation/Theorems.lean#L8
 
@@ -63,9 +68,10 @@ Source: ./Properties/PreservesRelation/Theorems.lean#L8
 
 Name: PreservesUnaryOperation.apply
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target}   {sourceOperation : LRA.Operation.UnaryEndoOperation Source}   {targetOperation : LRA.Operation.UnaryEndoOperation Target},   LRA.Morphism.PreservesUnaryOperation function sourceOperation targetOperation →     ∀ (element : Source), Eq (function (sourceOperation element)) (targetOperation (function element))
-Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target}   {sourceOperation : LRA.Operation.UnaryEndoOperation Source}   {targetOperation : LRA.Operation.UnaryEndoOperation Target},   LRA.Morphism.PreservesUnaryOperation function sourceOperation targetOperation →     ∀ (element : Source), Eq (function (sourceOperation element)) (targetOperation (function element))
+State: Sorry
+Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : LRA.Operation.UnaryEndoOperation Source} {targetOperation : LRA.Operation.UnaryEndoOperation Target} (law : PreservesUnaryOperation function sourceOperation targetOperation) (element : Source), function (sourceOperation element) = targetOperation (function element)
+Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : LRA.Operation.UnaryEndoOperation Source} {targetOperation : LRA.Operation.UnaryEndoOperation Target}, LRA.Morphism.PreservesUnaryOperation function sourceOperation targetOperation → ∀ (element : Source), function (sourceOperation element) = targetOperation (function element)
+Transliterated theorem: (∀ element ∈ Source), function (sourceOperation element) = targetOperation (function element)
 Logical form (Lean): {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : LRA.Operation.UnaryEndoOperation Source} {targetOperation : LRA.Operation.UnaryEndoOperation Target} (law : PreservesUnaryOperation function sourceOperation targetOperation) (element : Source) : function (sourceOperation element) = targetOperation (function element)
 Source: ./Properties/PreservesUnaryOperation/Theorems.lean#L8
 
@@ -73,9 +79,10 @@ Source: ./Properties/PreservesUnaryOperation/Theorems.lean#L8
 
 Name: ReflectsRelation.apply
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.ReflectsRelation function sourceRelation targetRelation →     ∀ {left right : Source}, targetRelation (function left) (function right) → sourceRelation left right
-Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.ReflectsRelation function sourceRelation targetRelation →     ∀ {left right : Source}, targetRelation (function left) (function right) → sourceRelation left right
+Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target}, LRA.Morphism.ReflectsRelation function sourceRelation targetRelation → ∀ {left right : Source}, targetRelation (function left) (function right) → sourceRelation left right
+Transliterated theorem: sourceRelation left right
 Logical form (Lean): {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target} (law : ReflectsRelation function sourceRelation targetRelation) {left right : Source} (relatedValues : targetRelation (function left) (function right)) : sourceRelation left right
 Source: ./Properties/ReflectsRelation/Theorems.lean#L8
 
@@ -83,9 +90,10 @@ Source: ./Properties/ReflectsRelation/Theorems.lean#L8
 
 Name: PreservesAndReflectsRelation.preserves
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.PreservesAndReflectsRelation function sourceRelation targetRelation →     LRA.Morphism.PreservesRelation function sourceRelation targetRelation
-Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.PreservesAndReflectsRelation function sourceRelation targetRelation →     LRA.Morphism.PreservesRelation function sourceRelation targetRelation
+Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target}, LRA.Morphism.PreservesAndReflectsRelation function sourceRelation targetRelation → LRA.Morphism.PreservesRelation function sourceRelation targetRelation
+Transliterated theorem: PreservesRelation function sourceRelation targetRelation
 Logical form (Lean): (law : PreservesAndReflectsRelation function sourceRelation targetRelation) : PreservesRelation function sourceRelation targetRelation
 Source: ./Properties/RelationEmbedding/Theorems.lean#L15
 
@@ -93,9 +101,10 @@ Source: ./Properties/RelationEmbedding/Theorems.lean#L15
 
 Name: PreservesAndReflectsRelation.reflects
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.RelationEmbedding function sourceRelation targetRelation →     LRA.Morphism.ReflectsRelation function sourceRelation targetRelation
-Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.RelationEmbedding function sourceRelation targetRelation →     LRA.Morphism.ReflectsRelation function sourceRelation targetRelation
+Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target}, LRA.Morphism.RelationEmbedding function sourceRelation targetRelation → LRA.Morphism.ReflectsRelation function sourceRelation targetRelation
+Transliterated theorem: ReflectsRelation function sourceRelation targetRelation
 Logical form (Lean): (law : PreservesAndReflectsRelation function sourceRelation targetRelation) : ReflectsRelation function sourceRelation targetRelation
 Source: ./Properties/RelationEmbedding/Theorems.lean#L21
 
@@ -103,9 +112,10 @@ Source: ./Properties/RelationEmbedding/Theorems.lean#L21
 
 Name: RelationEmbedding.injective
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.RelationEmbedding function sourceRelation targetRelation → LRA.Function.Injective function
-Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.RelationEmbedding function sourceRelation targetRelation → LRA.Function.Injective function
+Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target}, LRA.Morphism.RelationEmbedding function sourceRelation targetRelation → LRA.Function.Injective function
+Transliterated theorem: LRA.Function.Injective function
 Logical form (Lean): (embedding : RelationEmbedding function sourceRelation targetRelation) : LRA.Function.Injective function
 Source: ./Properties/RelationEmbedding/Theorems.lean#L27
 
@@ -113,9 +123,10 @@ Source: ./Properties/RelationEmbedding/Theorems.lean#L27
 
 Name: RelationEmbedding.preserves_and_reflects
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.RelationEmbedding function sourceRelation targetRelation →     LRA.Morphism.PreservesAndReflectsRelation function sourceRelation targetRelation
-Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.RelationEmbedding function sourceRelation targetRelation →     LRA.Morphism.PreservesAndReflectsRelation function sourceRelation targetRelation
+Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target}, LRA.Morphism.RelationEmbedding function sourceRelation targetRelation → LRA.Morphism.PreservesAndReflectsRelation function sourceRelation targetRelation
+Transliterated theorem: PreservesAndReflectsRelation function sourceRelation targetRelation
 Logical form (Lean): (embedding : RelationEmbedding function sourceRelation targetRelation) : PreservesAndReflectsRelation function sourceRelation targetRelation
 Source: ./Properties/RelationEmbedding/Theorems.lean#L33
 
@@ -123,9 +134,10 @@ Source: ./Properties/RelationEmbedding/Theorems.lean#L33
 
 Name: RelationEmbedding.preserves
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.RelationEmbedding function sourceRelation targetRelation →     LRA.Morphism.PreservesRelation function sourceRelation targetRelation
-Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.RelationEmbedding function sourceRelation targetRelation →     LRA.Morphism.PreservesRelation function sourceRelation targetRelation
+Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target}, LRA.Morphism.RelationEmbedding function sourceRelation targetRelation → LRA.Morphism.PreservesRelation function sourceRelation targetRelation
+Transliterated theorem: PreservesRelation function sourceRelation targetRelation
 Logical form (Lean): (embedding : RelationEmbedding function sourceRelation targetRelation) : PreservesRelation function sourceRelation targetRelation
 Source: ./Properties/RelationEmbedding/Theorems.lean#L39
 
@@ -133,8 +145,9 @@ Source: ./Properties/RelationEmbedding/Theorems.lean#L39
 
 Name: RelationEmbedding.reflects
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.PreservesAndReflectsRelation function sourceRelation targetRelation →     LRA.Morphism.ReflectsRelation function sourceRelation targetRelation
-Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.PreservesAndReflectsRelation function sourceRelation targetRelation →     LRA.Morphism.ReflectsRelation function sourceRelation targetRelation
+Predicate logic (unfolded): ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target}, LRA.Morphism.PreservesAndReflectsRelation function sourceRelation targetRelation → LRA.Morphism.ReflectsRelation function sourceRelation targetRelation
+Transliterated theorem: ReflectsRelation function sourceRelation targetRelation
 Logical form (Lean): (embedding : RelationEmbedding function sourceRelation targetRelation) : ReflectsRelation function sourceRelation targetRelation
 Source: ./Properties/RelationEmbedding/Theorems.lean#L45

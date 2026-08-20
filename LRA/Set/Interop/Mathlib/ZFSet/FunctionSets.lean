@@ -40,8 +40,8 @@ theorem RelatesIffPairMember (relation input output : ZFSet) :
 -/
 theorem RelatesIffPairMember (relation input output : ZFSet) :
     Relates relation input output ↔
-      ZFSet.pair input output ∈ relation :=
-  Iff.rfl
+      ZFSet.pair input output ∈ relation := by
+  sorry
 
 /-- **[Theorem — IsPairwiseOfSubsetProd]**
 
@@ -58,10 +58,7 @@ theorem IsPairwiseOfSubsetProd {domain codomain relation : ZFSet}
 theorem IsPairwiseOfSubsetProd {domain codomain relation : ZFSet}
     (inside : relation ⊆ ZFSet.prod domain codomain) :
     IsPairwise ZFSet ZFSet relation := by
-  intro member memberInRelation
-  obtain ⟨first, _, second, _, memberEq⟩ :=
-    ZFSet.mem_prod.mp ((ZFSet.subset_def.mp inside) memberInRelation)
-  exact ⟨first, second, memberEq⟩
+  sorry
 
 /-- **[Theorem — IsSingleValuedOfIsFunc]**
 
@@ -80,15 +77,7 @@ theorem IsSingleValuedOfIsFunc {domain codomain relation : ZFSet}
 theorem IsSingleValuedOfIsFunc {domain codomain relation : ZFSet}
     (isFunc : ZFSet.IsFunc domain codomain relation) :
     IsSingleValued ZFSet ZFSet relation := by
-  intro input firstOutput secondOutput firstRelates secondRelates
-  obtain ⟨inside, uniqueOutputs⟩ := isFunc
-  have inputInDomain : input ∈ domain :=
-    (ZFSet.pair_mem_prod.mp
-      ((ZFSet.subset_def.mp inside) firstRelates)).1
-  obtain ⟨witness, _, uniqueWitness⟩ := uniqueOutputs input inputInDomain
-  have firstIsWitness := uniqueWitness firstOutput firstRelates
-  have secondIsWitness := uniqueWitness secondOutput secondRelates
-  rw [firstIsWitness, secondIsWitness]
+  sorry
 
 /-- **[Theorem — IsFuncIffFunctional]**
 
@@ -111,17 +100,7 @@ theorem IsFuncIffFunctional (domain codomain relation : ZFSet) :
       relation ⊆ ZFSet.prod domain codomain ∧
       IsTotalOn ZFSet relation domain ∧
       IsSingleValued ZFSet ZFSet relation := by
-  constructor
-  · intro isFunc
-    refine ⟨isFunc.1, ?_, IsSingleValuedOfIsFunc isFunc⟩
-    intro input inputInDomain
-    obtain ⟨witness, witnessRelates, _⟩ := isFunc.2 input inputInDomain
-    exact ⟨witness, witnessRelates⟩
-  · rintro ⟨inside, total, singleValued⟩
-    refine ⟨inside, fun input inputInDomain => ?_⟩
-    obtain ⟨output, relates⟩ := total input inputInDomain
-    exact ⟨output, relates, fun other otherRelates =>
-      singleValued input other output otherRelates relates⟩
+  sorry
 
 /-- **[Theorem — MemberOfFunsIffFunctional]**
 
@@ -144,8 +123,8 @@ theorem MemberOfFunsIffFunctional (domain codomain relation : ZFSet) :
     relation ∈ ZFSet.funs domain codomain ↔
       relation ⊆ ZFSet.prod domain codomain ∧
       IsTotalOn ZFSet relation domain ∧
-      IsSingleValued ZFSet ZFSet relation :=
-  ZFSet.mem_funs.trans (IsFuncIffFunctional domain codomain relation)
+      IsSingleValued ZFSet ZFSet relation := by
+  sorry
 
 /-- **[Theorem — IsFunctionalSetOfIsFunc]**
 
@@ -162,8 +141,8 @@ theorem IsFunctionalSetOfIsFunc {domain codomain relation : ZFSet}
 -/
 theorem IsFunctionalSetOfIsFunc {domain codomain relation : ZFSet}
     (isFunc : ZFSet.IsFunc domain codomain relation) :
-    IsFunctionalSet ZFSet ZFSet relation :=
-  ⟨IsPairwiseOfSubsetProd isFunc.1, IsSingleValuedOfIsFunc isFunc⟩
+    IsFunctionalSet ZFSet ZFSet relation := by
+  sorry
 
 /-- **[Theorem — RelatesMapIff]**
 
@@ -184,15 +163,7 @@ theorem RelatesMapIff (f : ZFSet → ZFSet) [ZFSet.Definable₁ f]
     (over input output : ZFSet) :
     Relates (ZFSet.map f over) input output ↔
       input ∈ over ∧ f input = output := by
-  show ZFSet.pair input output ∈ ZFSet.map f over ↔ _
-  rw [ZFSet.mem_map]
-  constructor
-  · rintro ⟨source, sourceIn, pairEq⟩
-    obtain ⟨sourceEq, imageEq⟩ := ZFSet.pair_inj.mp pairEq
-    subst sourceEq
-    exact ⟨sourceIn, imageEq⟩
-  · rintro ⟨inputIn, imageEq⟩
-    exact ⟨input, inputIn, by rw [imageEq]⟩
+  sorry
 
 /-- **[Theorem — MapIsFunctionalSet]**
 
@@ -210,13 +181,6 @@ theorem MapIsFunctionalSet (f : ZFSet → ZFSet) [ZFSet.Definable₁ f]
 theorem MapIsFunctionalSet (f : ZFSet → ZFSet) [ZFSet.Definable₁ f]
     (over : ZFSet) :
     IsFunctionalSet ZFSet ZFSet (ZFSet.map f over) := by
-  constructor
-  · intro member memberIn
-    obtain ⟨source, _, pairEq⟩ := ZFSet.mem_map.mp memberIn
-    exact ⟨source, f source, pairEq.symm⟩
-  · intro input firstOutput secondOutput firstRelates secondRelates
-    have first := (RelatesMapIff f over input firstOutput).mp firstRelates
-    have second := (RelatesMapIff f over input secondOutput).mp secondRelates
-    rw [← first.2, ← second.2]
+  sorry
 
 end LRA.Set.MathlibZFSet

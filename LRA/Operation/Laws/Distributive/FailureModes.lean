@@ -26,6 +26,7 @@ theorem NaturalAdditionFailsLeftDistributiveOverMultiplication :
       NaturalMultiplicationForDistributiveFailure := by
   sorry
 
+
 theorem NaturalAdditionFailsRightDistributiveOverMultiplication :
     FailsRightDistributive
       NaturalAdditionForDistributiveFailure

@@ -9,30 +9,38 @@ theorem SymmetricDifferenceAsUnionDifferences :
     ∀ A B : Set, A ∆ B = (A \ B) ∪ (B \ A) := by
   sorry
 
+
 theorem SymmetricDifferenceAsUnionDifferenceIntersection :
     ∀ A B : Set, A ∆ B = (A ∪ B) \ (A ∩ B) := by
   sorry
+
 
 theorem SymmetricDifferenceCommutative :
     ∀ A B : Set, A ∆ B = B ∆ A := by
   sorry
 
+
 theorem SymmetricDifferenceAssociative :
     ∀ A B C : Set, (A ∆ B) ∆ C = A ∆ (B ∆ C) := by
   sorry
 
+
 theorem SymmetricDifferenceEmpty : ∀ A : Set, A ∆ (∅ : Set) = A := by
   sorry
+
 
 theorem EmptySymmetricDifference : ∀ A : Set, (∅ : Set) ∆ A = A := by
   sorry
 
+
 theorem SymmetricDifferenceSelf : ∀ A : Set, A ∆ A = (∅ : Set) := by
   sorry
+
 
 theorem SymmetricDifferenceEqEmptyIff :
     ∀ A B : Set, A ∆ B = (∅ : Set) ↔ A = B := by
   sorry
+
 
 theorem SymmetricDifferenceSubsetUnion :
     ∀ A B : Set, A ∆ B ⊆ A ∪ B := by

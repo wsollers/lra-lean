@@ -21,8 +21,8 @@ variable {R : Type u}
 
 /-- One and zero are distinct. -/
 theorem OneNeZero [OfNat R 0] [OfNat R 1] [NontrivialityLaw R] :
-    (1 : R) ≠ 0 :=
-  NontrivialityLaw.OneNeZero
+    (1 : R) ≠ 0 := by
+  sorry
 
 end Wrappers
 

@@ -25,6 +25,7 @@ theorem NaturalAdditionFailsConstantZeroInverse :
       ConstantZeroNaturalInverseCandidate := by
   sorry
 
+
 theorem NaturalAdditionHasNoTwoSidedInverseOperation :
     Not
       (∃ inverse : UnaryEndoOperation Nat,

@@ -51,8 +51,9 @@ Logical form:
 theorem IntersectionCommutative : ∀ A B : α, A ∩ B = B ∩ A
 ```
 -/
-theorem IntersectionCommutative : ∀ A B : α, A ∩ B = B ∩ A :=
-  IntersectionLaws.IntersectionCommutative
+theorem IntersectionCommutative : ∀ A B : α, A ∩ B = B ∩ A := by
+  sorry
+
 /--
 Intersection is associative.
 
@@ -64,8 +65,9 @@ theorem IntersectionAssociative :
 ```
 -/
 theorem IntersectionAssociative :
-    ∀ A B C : α, (A ∩ B) ∩ C = A ∩ (B ∩ C) :=
-  IntersectionLaws.IntersectionAssociative
+    ∀ A B C : α, (A ∩ B) ∩ C = A ∩ (B ∩ C) := by
+  sorry
+
 /--
 The empty set annihilates intersection on the left.
 
@@ -75,8 +77,9 @@ Logical form:
 theorem EmptyIntersection : ∀ A : α, (∅ : α) ∩ A = (∅ : α)
 ```
 -/
-theorem EmptyIntersection : ∀ A : α, (∅ : α) ∩ A = (∅ : α) :=
-  IntersectionLaws.EmptyIntersection
+theorem EmptyIntersection : ∀ A : α, (∅ : α) ∩ A = (∅ : α) := by
+  sorry
+
 /--
 The empty set annihilates intersection on the right.
 
@@ -86,8 +89,9 @@ Logical form:
 theorem IntersectionEmpty : ∀ A : α, A ∩ (∅ : α) = (∅ : α)
 ```
 -/
-theorem IntersectionEmpty : ∀ A : α, A ∩ (∅ : α) = (∅ : α) :=
-  IntersectionLaws.IntersectionEmpty
+theorem IntersectionEmpty : ∀ A : α, A ∩ (∅ : α) = (∅ : α) := by
+  sorry
+
 /--
 Intersection is idempotent.
 
@@ -97,8 +101,9 @@ Logical form:
 theorem IntersectionIdempotent : ∀ A : α, A ∩ A = A
 ```
 -/
-theorem IntersectionIdempotent : ∀ A : α, A ∩ A = A :=
-  IntersectionLaws.IntersectionIdempotent
+theorem IntersectionIdempotent : ∀ A : α, A ∩ A = A := by
+  sorry
+
 /--
 Intersection is monotone in both arguments.
 
@@ -110,8 +115,8 @@ theorem IntersectionMonotone :
 ```
 -/
 theorem IntersectionMonotone :
-    ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂ :=
-  IntersectionLaws.IntersectionMonotone
+    ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂ := by
+  sorry
 
 /-- `A ⊆ B` exactly when `A ∩ B = A`: subset, characterized by
 intersection.
@@ -122,7 +127,7 @@ Logical form:
 theorem SubsetIffIntersectionEqLeft : ∀ A B : α, A ⊆ B ↔ A ∩ B = A
 ```
 -/
-theorem SubsetIffIntersectionEqLeft : ∀ A B : α, A ⊆ B ↔ A ∩ B = A :=
-  IntersectionLaws.SubsetIffIntersectionEqLeft
+theorem SubsetIffIntersectionEqLeft : ∀ A B : α, A ⊆ B ↔ A ∩ B = A := by
+  sorry
 
 end LRA.Set

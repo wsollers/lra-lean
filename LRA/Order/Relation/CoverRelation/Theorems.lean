@@ -10,8 +10,8 @@ theorem CoverRelationImpliesStrictRelation
     {strictRelation : LRA.Relation.Endorelation Alpha}
     {lower upper : Alpha}
     (lowerIsCoveredByUpper : CoverRelation strictRelation lower upper) :
-    strictRelation lower upper :=
-  lowerIsCoveredByUpper.1
+    strictRelation lower upper := by
+  sorry
 
 /-!
 For finite posets, the order is the reflexive-transitive closure of its cover

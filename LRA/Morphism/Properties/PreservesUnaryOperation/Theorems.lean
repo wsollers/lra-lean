@@ -11,7 +11,7 @@ theorem PreservesUnaryOperation.apply {Source : Type u} {Target : Type v}
     {targetOperation : LRA.Operation.UnaryEndoOperation Target}
     (law : PreservesUnaryOperation function sourceOperation targetOperation)
     (element : Source) :
-    function (sourceOperation element) = targetOperation (function element) :=
-  law element
+    function (sourceOperation element) = targetOperation (function element) := by
+  sorry
 
 end LRA.Morphism

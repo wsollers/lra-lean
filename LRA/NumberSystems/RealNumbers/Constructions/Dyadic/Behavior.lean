@@ -74,7 +74,6 @@ theorem binary_tail_ambiguity
         other = terminating := by
   sorry
 
-
 /-- Theorem 2.7: canonical fractional expansions are unique.
 
 Mathematical statement (Lean): `theorem canonical_fractional_uniqueness (first second : CanonicalFraction) : fractional_value dyadic_data first = fractional_value dyadic_data second ↔ first = second`.
@@ -96,7 +95,6 @@ theorem canonical_fractional_uniqueness
     fractional_value dyadic_data first = fractional_value dyadic_data second ↔
       first = second := by
   sorry
-
 
 /-- Proposition expressing complete Archimedean ordered-field structure.
 

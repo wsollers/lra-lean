@@ -69,6 +69,7 @@ theorem IntegerRationalRealHaveCharacteristicZero
       CharacteristicZero SelectedRationalModel.signature.toOrderedRingSignature ∧
       CharacteristicZero SelectedRealModel.signature.toOrderedRingSignature := by
   sorry
+
 /--
 `RationalsAreCountable` exposes this formal declaration.
 
@@ -85,6 +86,7 @@ theorem RationalsAreCountable
     (SelectedRationalModel : RationalModel) :
     Countable SelectedRationalModel.signature.carrier := by
   sorry
+
 /--
 `RealsAreUncountable` exposes this formal declaration.
 

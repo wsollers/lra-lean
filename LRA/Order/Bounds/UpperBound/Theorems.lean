@@ -18,10 +18,7 @@ theorem UpperBoundOfEmpty
     (relation : LRA.Relation.Endorelation Element)
     (bound : Element) :
     UpperBound relation (∅ : SetObject) bound := by
-  unfold UpperBound
-  intro e elementExists
-  exfalso
-  exact LRA.Set.MembershipLaws.EmptyMembership e elementExists
+  sorry
 
 /-- A bound of a larger represented subset bounds every subcollection. -/
 theorem UpperBoundOfSubcollection
@@ -32,10 +29,7 @@ theorem UpperBoundOfSubcollection
     (smallerIsContained : forall element, element ∈ smaller -> element ∈ larger)
     (boundIsUpperForLarger : UpperBound relation larger bound) :
     UpperBound relation smaller bound := by
-  intro smallerElement elementInSubset
-  have elementInLarger := smallerIsContained smallerElement elementInSubset
-  unfold UpperBound at boundIsUpperForLarger
-  exact boundIsUpperForLarger smallerElement elementInLarger
+  sorry
 
 /-- A common upper bound of two represented subsets bounds their union. -/
 theorem UpperBoundOfUnion
@@ -49,14 +43,7 @@ theorem UpperBoundOfUnion
     (boundIsUpperForLeft : UpperBound relation leftSubset bound)
     (boundIsUpperForRight : UpperBound relation rightSubset bound) :
     UpperBound relation (leftSubset ∪ rightSubset) bound := by
-  unfold UpperBound
-  intro chosen
-  intro chosenInUnion
-  have chosenInLeftOrRight :=
-    (LRA.Set.MembershipLaws.UnionMembership leftSubset rightSubset chosen).mp chosenInUnion
-  rcases chosenInLeftOrRight with (chosenInLeft | chosenInRight)
-  · exact boundIsUpperForLeft chosen chosenInLeft
-  · exact boundIsUpperForRight chosen chosenInRight
+  sorry
 
 /-- An element is an upper bound of a union iff it bounds each constituent subset. -/
 theorem UpperBoundOfUnionIff
@@ -70,22 +57,7 @@ theorem UpperBoundOfUnionIff
     UpperBound relation (leftSubset ∪ rightSubset) bound ↔
       UpperBound relation leftSubset bound /\
         UpperBound relation rightSubset bound := by
-    constructor
-    .
-      intro hypothesis
-      constructor
-      .
-        unfold UpperBound
-        intro chosen
-        intro chosenInLeft
-        have chosenInUnion : chosen ∈ leftSubset ∪ rightSubset := by
-          exact (LRA.Set.UnionMembership leftSubset rightSubset chosen).mpr
-            (Or.inl chosenInLeft)
-        exact hypothesis chosen chosenInUnion
-      .
-        sorry
-    .
-      sorry
+  sorry
 
 /-- An upper bound of either set is an upper bound of their intersection. -/
 theorem UpperBoundOfIntersection

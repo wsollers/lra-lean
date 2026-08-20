@@ -89,10 +89,6 @@ theorem ClosedSubsetOfCompactIsCompact
     IsCompactR F := by
   sorry
 
-/- ================================================================
-   ADDITIONS.md item 29. Added with user sign-off.
-   ================================================================ -/
-
 /-- Sequential compactness: every sequence valued in `K` has a subsequence
 converging to a point of `K`. Phrased in the Sequences chapter's own
 strictly-increasing-index-map idiom for subsequences, so this definition

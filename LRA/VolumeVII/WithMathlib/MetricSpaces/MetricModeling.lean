@@ -83,8 +83,8 @@ Logical form:
 theorem distance_self (x : Point) : M.distance x x = 0
 ```
 -/
-theorem distance_self (x : Point) : M.distance x x = 0 :=
-  (M.metric.distance_eq_zero_iff_equal x x).mpr rfl
+theorem distance_self (x : Point) : M.distance x x = 0 := by
+  sorry
 
 /-- Points at zero distance are equal in a scratch metric space.
 
@@ -96,8 +96,8 @@ theorem equal_of_distance_eq_zero
 ```
 -/
 theorem equal_of_distance_eq_zero
-    {x y : Point} (hypothesis : M.distance x y = 0) : x = y :=
-  (M.metric.distance_eq_zero_iff_equal x y).mp hypothesis
+    {x y : Point} (hypothesis : M.distance x y = 0) : x = y := by
+  sorry
 
 /-- Equal points have zero distance in a scratch metric space.
 
@@ -109,8 +109,8 @@ theorem distance_eq_zero_of_equal
 ```
 -/
 theorem distance_eq_zero_of_equal
-    {x y : Point} (hypothesis : x = y) : M.distance x y = 0 :=
-  (M.metric.distance_eq_zero_iff_equal x y).mpr hypothesis
+    {x y : Point} (hypothesis : x = y) : M.distance x y = 0 := by
+  sorry
 
 /-- Bridge a scratch metric space into Mathlib's metric-space hierarchy, once a
 compatible topology has been supplied.

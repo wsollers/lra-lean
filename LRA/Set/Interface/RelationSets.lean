@@ -467,8 +467,8 @@ theorem AppliedToRelates {Left Right Pair : Type u}
     [HasPairing Left Right Pair] [Membership Pair RelationObject]
     (relation : RelationObject) (input : Left)
     (hits : ∃ output : Right, Relates relation input output) :
-    Relates relation input (AppliedTo relation input hits) :=
-  Classical.choose_spec hits
+    Relates relation input (AppliedTo relation input hits) := by
+  sorry
 
 end Vocabulary
 

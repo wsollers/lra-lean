@@ -1,6 +1,6 @@
-import LRA.VolumeIV.BanachSpaces
-import LRA.VolumeIV.HilbertSpaces
-import LRA.VolumeIV.InnerProductSpaces
-import LRA.VolumeIV.NormedLinearSpaces
+import LRA.Analysis.BanachSpace
+import LRA.Analysis.HilbertSpace
+import LRA.Analysis.InnerProductSpace
+import LRA.Analysis.NormedLinearSpace
 
 /-! Canonical import route for functional analysis. -/

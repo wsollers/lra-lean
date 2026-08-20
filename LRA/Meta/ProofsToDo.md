@@ -9,6 +9,24 @@ keep source order, because Lean forbids forward references, so source order is
 already a valid topological order. Working this list top to bottom, no entry
 depends on anything not yet proved above it.
 
-**Inventory:** 0 entries across 0 module(s) (0 completed, 0 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
+**Inventory:** 2 entries across 1 module(s) (2 completed, 0 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
 
-No theorem declarations found under this folder yet.
+Name: corollary_smoke_test
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ (a : Nat), a + 0 = a
+Predicate logic (unfolded): ∀ (a : Nat), instHAdd.hAdd a 0 = a
+Transliterated theorem: (∀ a ∈ Nat), a + 0 = a
+Logical form (Lean): (a : Nat) : a + 0 = a
+Source: ./DeclarationKeywords.lean#L94
+
+
+
+Name: proposition_smoke_test
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ (a b : Nat), a + b = b + a
+Predicate logic (unfolded): ∀ (a b : Nat), instHAdd.hAdd a b = instHAdd.hAdd b a
+Transliterated theorem: (∀ a b ∈ Nat), a + b = b + a
+Logical form (Lean): (a b : Nat) : a + b = b + a
+Source: ./DeclarationKeywords.lean#L96

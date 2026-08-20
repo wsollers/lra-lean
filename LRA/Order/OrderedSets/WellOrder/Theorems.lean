@@ -14,8 +14,8 @@ theorem WellOrderingPrinciple
     (nonStrictRelationIsWellOrder : WellOrder SetObject nonStrictRelation)
     (subset : SetObject)
     (subsetIsNonempty : exists element : Element, element ∈ subset) :
-    exists leastElement, LeastElement nonStrictRelation subset leastElement :=
-  nonStrictRelationIsWellOrder.right subset subsetIsNonempty
+    exists leastElement, LeastElement nonStrictRelation subset leastElement := by
+  sorry
 
 /-- Every element that has a strict successor in a well-order has a least such successor. -/
 theorem WellOrderHasImmediateSuccessor

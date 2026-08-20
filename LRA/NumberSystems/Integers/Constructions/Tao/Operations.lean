@@ -82,7 +82,6 @@ theorem whole_embedding_is_injective
         first = second := by
   sorry
 
-
 /-- Definition 3.1: raw Tao addition.
 
 Logical form:

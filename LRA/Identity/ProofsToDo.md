@@ -9,13 +9,14 @@ keep source order, because Lean forbids forward references, so source order is
 already a valid topological order. Working this list top to bottom, no entry
 depends on anything not yet proved above it.
 
-**Inventory:** 22 entries across 6 module(s) (22 completed, 0 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
+**Inventory:** 33 entries across 8 module(s) (0 completed, 33 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
 
 Name: EqualitySymmetry
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} {left right : Carrier}, Eq left right → Eq right left
-Predicate logic (unfolded): ∀ {Carrier : Type u} {left right : Carrier}, Eq left right → Eq right left
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {left right : Carrier} (ObjectsAreEqual : left = right), right = left
+Predicate logic (unfolded): ∀ {Carrier : Type u} {left right : Carrier}, left = right → right = left
+Transliterated theorem: (left = right) → right = left
 Logical form (Lean): {Carrier : Type u} {left right : Carrier} (ObjectsAreEqual : left = right) : right = left
 Source: ./Equality/Theorems.lean#L13
 
@@ -23,69 +24,76 @@ Source: ./Equality/Theorems.lean#L13
 
 Name: EqualityTransitivity
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} {first second third : Carrier}, And (Eq first second) (Eq second third) → Eq first third
-Predicate logic (unfolded): ∀ {Carrier : Type u} {first second third : Carrier}, And (Eq first second) (Eq second third) → Eq first third
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {first second third : Carrier} (FirstEqualsSecond : first = second) (SecondEqualsThird : second = third), first = third
+Predicate logic (unfolded): ∀ {Carrier : Type u} {first second third : Carrier}, (first = second ∧ second = third) → first = third
+Transliterated theorem: (first = second ∧ second = third) → first = third
 Logical form (Lean): {Carrier : Type u} {first second third : Carrier} (FirstEqualsSecond : first = second) (SecondEqualsThird : second = third) : first = third
-Source: ./Equality/Theorems.lean#L21
+Source: ./Equality/Theorems.lean#L19
 
 
 
 Name: EqualityRelationIsReflexive
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (Carrier : Type u), LRA.Relation.Reflexive (LRA.Identity.EqualityRelation Carrier)
 Predicate logic (unfolded): ∀ (Carrier : Type u), LRA.Relation.Reflexive (LRA.Identity.EqualityRelation Carrier)
+Transliterated theorem: LRA.Relation.Reflexive (EqualityRelation Carrier)
 Logical form (Lean): (Carrier : Type u) : LRA.Relation.Reflexive (EqualityRelation Carrier)
-Source: ./Equality/Theorems.lean#L39
+Source: ./Equality/Theorems.lean#L35
 
 
 
 Name: EqualityRelationIsSymmetric
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (Carrier : Type u), LRA.Relation.Symmetric (LRA.Identity.EqualityRelation Carrier)
 Predicate logic (unfolded): ∀ (Carrier : Type u), LRA.Relation.Symmetric (LRA.Identity.EqualityRelation Carrier)
+Transliterated theorem: LRA.Relation.Symmetric (EqualityRelation Carrier)
 Logical form (Lean): (Carrier : Type u) : LRA.Relation.Symmetric (EqualityRelation Carrier)
-Source: ./Equality/Theorems.lean#L54
+Source: ./Equality/Theorems.lean#L49
 
 
 
 Name: EqualityRelationIsTransitive
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (Carrier : Type u), LRA.Relation.Transitive (LRA.Identity.EqualityRelation Carrier)
 Predicate logic (unfolded): ∀ (Carrier : Type u), LRA.Relation.Transitive (LRA.Identity.EqualityRelation Carrier)
+Transliterated theorem: LRA.Relation.Transitive (EqualityRelation Carrier)
 Logical form (Lean): (Carrier : Type u) : LRA.Relation.Transitive (EqualityRelation Carrier)
-Source: ./Equality/Theorems.lean#L69
+Source: ./Equality/Theorems.lean#L63
 
 
 
 Name: EqualityRelationIsEquivalence
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (Carrier : Type u), LRA.Relation.EquivalenceRelation (LRA.Identity.EqualityRelation Carrier)
 Predicate logic (unfolded): ∀ (Carrier : Type u), LRA.Relation.EquivalenceRelation (LRA.Identity.EqualityRelation Carrier)
+Transliterated theorem: LRA.Relation.EquivalenceRelation (EqualityRelation Carrier)
 Logical form (Lean): (Carrier : Type u) : LRA.Relation.EquivalenceRelation (EqualityRelation Carrier)
-Source: ./Equality/Theorems.lean#L84
+Source: ./Equality/Theorems.lean#L77
 
 
 
 Name: EqualityIsEquivalenceRelation
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (Carrier : Type u), LRA.Relation.EquivalenceRelation (LRA.Identity.EqualityRelation Carrier)
 Predicate logic (unfolded): ∀ (Carrier : Type u), LRA.Relation.EquivalenceRelation (LRA.Identity.EqualityRelation Carrier)
+Transliterated theorem: LRA.Relation.EquivalenceRelation (EqualityRelation Carrier)
 Logical form (Lean): (Carrier : Type u) : LRA.Relation.EquivalenceRelation (EqualityRelation Carrier)
-Source: ./Equality/Theorems.lean#L101
+Source: ./Equality/Theorems.lean#L91
 
 
 
 Name: EqualityLogicalSymbolIsBinary
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: LRA.Logic.Language.Notation.LogicalEqualitySymbols.IsBinary LRA.Logic.Language.Notation.LogicalEquality.eq
 Predicate logic (unfolded): LRA.Logic.Language.Notation.LogicalEqualitySymbols.IsBinary LRA.Logic.Language.Notation.LogicalEquality.eq
+Transliterated theorem: LRA.Logic.Language.Notation.LogicalEqualitySymbols.IsBinary .eq
 Logical form (Lean): : LRA.Logic.Language.Notation.LogicalEqualitySymbols.IsBinary .eq
 Source: ./Model/LStructure.lean#L29
 
@@ -93,9 +101,10 @@ Source: ./Model/LStructure.lean#L29
 
 Name: LeibnizSubstitution
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} {Left Right : Carrier},   Eq Left Right → ∀ (Property : Carrier → Prop), Iff (Property Left) (Property Right)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {Left Right : Carrier},   Eq Left Right → ∀ (Property : Carrier → Prop), Iff (Property Left) (Property Right)
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {Left Right : Carrier} (ObjectsAreIdentical : Left = Right) (Property : Carrier -> Prop), Property Left ↔ Property Right
+Predicate logic (unfolded): ∀ {Carrier : Type u} {Left Right : Carrier}, Left = Right → ∀ (Property : Carrier → Prop), Property Left ↔ Property Right
+Transliterated theorem: (Left = Right) → Property Left ↔ Property Right
 Logical form (Lean): {Carrier : Type u} {Left Right : Carrier} (ObjectsAreIdentical : Left = Right) (Property : Carrier -> Prop) : Property Left ↔ Property Right
 Source: ./Substitution/Theorems.lean#L9
 
@@ -103,9 +112,10 @@ Source: ./Substitution/Theorems.lean#L9
 
 Name: EqualitySubstitution
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} {left right : Carrier},   Eq left right → ∀ (formula : Carrier → Prop), Iff (formula left) (formula right)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {left right : Carrier},   Eq left right → ∀ (formula : Carrier → Prop), Iff (formula left) (formula right)
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {left right : Carrier} (ObjectsAreEqual : left = right) (formula : Carrier -> Prop), formula left ↔ formula right
+Predicate logic (unfolded): ∀ {Carrier : Type u} {left right : Carrier}, left = right → ∀ (formula : Carrier → Prop), formula left ↔ formula right
+Transliterated theorem: (left = right) → formula left ↔ formula right
 Logical form (Lean): {Carrier : Type u} {left right : Carrier} (ObjectsAreEqual : left = right) (formula : Carrier -> Prop) : formula left ↔ formula right
 Source: ./Substitution/Theorems.lean#L16
 
@@ -113,9 +123,10 @@ Source: ./Substitution/Theorems.lean#L16
 
 Name: SubstitutionPreservesPredicates
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} {left right : Carrier},   Eq left right → ∀ (predicate : Carrier → Prop), Iff (predicate left) (predicate right)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {left right : Carrier},   Eq left right → ∀ (predicate : Carrier → Prop), Iff (predicate left) (predicate right)
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {left right : Carrier} (ObjectsAreEqual : left = right) (predicate : Carrier -> Prop), predicate left ↔ predicate right
+Predicate logic (unfolded): ∀ {Carrier : Type u} {left right : Carrier}, left = right → ∀ (predicate : Carrier → Prop), predicate left ↔ predicate right
+Transliterated theorem: (left = right) → predicate left ↔ predicate right
 Logical form (Lean): {Carrier : Type u} {left right : Carrier} (ObjectsAreEqual : left = right) (predicate : Carrier -> Prop) : predicate left ↔ predicate right
 Source: ./Substitution/Theorems.lean#L23
 
@@ -123,9 +134,10 @@ Source: ./Substitution/Theorems.lean#L23
 
 Name: SubstitutionPreservesRelationsLeft
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} {left right fixed : Carrier},   Eq left right → ∀ (relation : Carrier → Carrier → Prop), Iff (relation left fixed) (relation right fixed)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {left right fixed : Carrier},   Eq left right → ∀ (relation : Carrier → Carrier → Prop), Iff (relation left fixed) (relation right fixed)
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {left right fixed : Carrier} (ObjectsAreEqual : left = right) (relation : Carrier -> Carrier -> Prop), relation left fixed ↔ relation right fixed
+Predicate logic (unfolded): ∀ {Carrier : Type u} {left right fixed : Carrier}, left = right → ∀ (relation : Carrier → Carrier → Prop), relation left fixed ↔ relation right fixed
+Transliterated theorem: (left = right) → relation left fixed ↔ relation right fixed
 Logical form (Lean): {Carrier : Type u} {left right fixed : Carrier} (ObjectsAreEqual : left = right) (relation : Carrier -> Carrier -> Prop) : relation left fixed ↔ relation right fixed
 Source: ./Substitution/Theorems.lean#L31
 
@@ -133,9 +145,10 @@ Source: ./Substitution/Theorems.lean#L31
 
 Name: SubstitutionPreservesRelationsRight
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} {left right fixed : Carrier},   Eq left right → ∀ (relation : Carrier → Carrier → Prop), Iff (relation fixed left) (relation fixed right)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {left right fixed : Carrier},   Eq left right → ∀ (relation : Carrier → Carrier → Prop), Iff (relation fixed left) (relation fixed right)
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {left right fixed : Carrier} (ObjectsAreEqual : left = right) (relation : Carrier -> Carrier -> Prop), relation fixed left ↔ relation fixed right
+Predicate logic (unfolded): ∀ {Carrier : Type u} {left right fixed : Carrier}, left = right → ∀ (relation : Carrier → Carrier → Prop), relation fixed left ↔ relation fixed right
+Transliterated theorem: (left = right) → relation fixed left ↔ relation fixed right
 Logical form (Lean): {Carrier : Type u} {left right fixed : Carrier} (ObjectsAreEqual : left = right) (relation : Carrier -> Carrier -> Prop) : relation fixed left ↔ relation fixed right
 Source: ./Substitution/Theorems.lean#L39
 
@@ -143,9 +156,10 @@ Source: ./Substitution/Theorems.lean#L39
 
 Name: SubstitutionPreservesRelations
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} {left left' right right' : Carrier},   And (Eq left left') (Eq right right') →     ∀ (relation : Carrier → Carrier → Prop), Iff (relation left right) (relation left' right')
-Predicate logic (unfolded): ∀ {Carrier : Type u} {left left' right right' : Carrier},   And (Eq left left') (Eq right right') →     ∀ (relation : Carrier → Carrier → Prop), Iff (relation left right) (relation left' right')
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {left left' right right' : Carrier} (LeftsAreEqual : left = left') (RightsAreEqual : right = right') (relation : Carrier -> Carrier -> Prop), relation left right ↔ relation left' right'
+Predicate logic (unfolded): ∀ {Carrier : Type u} {left left' right right' : Carrier}, (left = left' ∧ right = right') → ∀ (relation : Carrier → Carrier → Prop), relation left right ↔ relation left' right'
+Transliterated theorem: (left = left' ∧ right = right') → relation left right ↔ relation left' right'
 Logical form (Lean): {Carrier : Type u} {left left' right right' : Carrier} (LeftsAreEqual : left = left') (RightsAreEqual : right = right') (relation : Carrier -> Carrier -> Prop) : relation left right ↔ relation left' right'
 Source: ./Substitution/Theorems.lean#L47
 
@@ -153,49 +167,54 @@ Source: ./Substitution/Theorems.lean#L47
 
 Name: SubstitutionPreservesFunctions
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} {left right : Domain},   Eq left right → ∀ (function : Domain → Codomain), Eq (function left) (function right)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} {left right : Domain},   Eq left right → ∀ (function : Domain → Codomain), Eq (function left) (function right)
+State: Sorry
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} {left right : Domain} (ObjectsAreEqual : left = right) (function : Domain -> Codomain), function left = function right
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} {left right : Domain}, left = right → ∀ (function : Domain → Codomain), function left = function right
+Transliterated theorem: (left = right) → function left = function right
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} {left right : Domain} (ObjectsAreEqual : left = right) (function : Domain -> Codomain) : function left = function right
-Source: ./Substitution/Theorems.lean#L60
+Source: ./Substitution/Theorems.lean#L56
 
 
 
 Name: SubstitutionPreservesOperationsLeft
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} {left left' right : Carrier},   Eq left left' → ∀ (operation : Carrier → Carrier → Carrier), Eq (operation left right) (operation left' right)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {left left' right : Carrier},   Eq left left' → ∀ (operation : Carrier → Carrier → Carrier), Eq (operation left right) (operation left' right)
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {left left' right : Carrier} (LeftsAreEqual : left = left') (operation : Carrier -> Carrier -> Carrier), operation left right = operation left' right
+Predicate logic (unfolded): ∀ {Carrier : Type u} {left left' right : Carrier}, left = left' → ∀ (operation : Carrier → Carrier → Carrier), operation left right = operation left' right
+Transliterated theorem: (left = left') → operation left right = operation left' right
 Logical form (Lean): {Carrier : Type u} {left left' right : Carrier} (LeftsAreEqual : left = left') (operation : Carrier -> Carrier -> Carrier) : operation left right = operation left' right
-Source: ./Substitution/Theorems.lean#L70
+Source: ./Substitution/Theorems.lean#L64
 
 
 
 Name: SubstitutionPreservesOperationsRight
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} {left right right' : Carrier},   Eq right right' → ∀ (operation : Carrier → Carrier → Carrier), Eq (operation left right) (operation left right')
-Predicate logic (unfolded): ∀ {Carrier : Type u} {left right right' : Carrier},   Eq right right' → ∀ (operation : Carrier → Carrier → Carrier), Eq (operation left right) (operation left right')
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {left right right' : Carrier} (RightsAreEqual : right = right') (operation : Carrier -> Carrier -> Carrier), operation left right = operation left right'
+Predicate logic (unfolded): ∀ {Carrier : Type u} {left right right' : Carrier}, right = right' → ∀ (operation : Carrier → Carrier → Carrier), operation left right = operation left right'
+Transliterated theorem: (right = right') → operation left right = operation left right'
 Logical form (Lean): {Carrier : Type u} {left right right' : Carrier} (RightsAreEqual : right = right') (operation : Carrier -> Carrier -> Carrier) : operation left right = operation left right'
-Source: ./Substitution/Theorems.lean#L78
+Source: ./Substitution/Theorems.lean#L72
 
 
 
 Name: SubstitutionPreservesOperations
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} {left left' right right' : Carrier},   And (Eq left left') (Eq right right') →     ∀ (operation : Carrier → Carrier → Carrier), Eq (operation left right) (operation left' right')
-Predicate logic (unfolded): ∀ {Carrier : Type u} {left left' right right' : Carrier},   And (Eq left left') (Eq right right') →     ∀ (operation : Carrier → Carrier → Carrier), Eq (operation left right) (operation left' right')
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {left left' right right' : Carrier} (LeftsAreEqual : left = left') (RightsAreEqual : right = right') (operation : Carrier -> Carrier -> Carrier), operation left right = operation left' right'
+Predicate logic (unfolded): ∀ {Carrier : Type u} {left left' right right' : Carrier}, (left = left' ∧ right = right') → ∀ (operation : Carrier → Carrier → Carrier), operation left right = operation left' right'
+Transliterated theorem: (left = left' ∧ right = right') → operation left right = operation left' right'
 Logical form (Lean): {Carrier : Type u} {left left' right right' : Carrier} (LeftsAreEqual : left = left') (RightsAreEqual : right = right') (operation : Carrier -> Carrier -> Carrier) : operation left right = operation left' right'
-Source: ./Substitution/Theorems.lean#L86
+Source: ./Substitution/Theorems.lean#L80
 
 
 
 Name: CongruenceWithRespectToEqualityIsAutomatic
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} {left left' right right' : Carrier},   And (Eq left left') (Eq right right') →     And (∀ (predicate : Carrier → Prop), Iff (predicate left) (predicate left'))       (And (∀ (relation : Carrier → Carrier → Prop), Iff (relation left right) (relation left' right'))         (∀ (operation : Carrier → Carrier → Carrier), Eq (operation left right) (operation left' right')))
-Predicate logic (unfolded): ∀ {Carrier : Type u} {left left' right right' : Carrier},   And (Eq left left') (Eq right right') →     And (∀ (predicate : Carrier → Prop), Iff (predicate left) (predicate left'))       (And (∀ (relation : Carrier → Carrier → Prop), Iff (relation left right) (relation left' right'))         (∀ (operation : Carrier → Carrier → Carrier), Eq (operation left right) (operation left' right')))
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {left left' right right' : Carrier} (LeftsAreEqual : left = left') (RightsAreEqual : right = right'), (∀ predicate : Carrier -> Prop, predicate left ↔ predicate left') ∧ (∀ relation : Carrier -> Carrier -> Prop, relation left right ↔ relation left' right') ∧ (∀ operation : Carrier -> Carrier -> Carrier, operation left right = operation left' right')
+Predicate logic (unfolded): ∀ {Carrier : Type u} {left left' right right' : Carrier}, (left = left' ∧ right = right') → (∀ (predicate : Carrier → Prop), predicate left ↔ predicate left' ∧ (∀ (relation : Carrier → Carrier → Prop), relation left right ↔ relation left' right' ∧ ∀ (operation : Carrier → Carrier → Carrier), operation left right = operation left' right'))
+Transliterated theorem: (left = left' ∧ right = right') → ∀ predicate ∈ Carrier -> Prop, predicate left ↔ predicate left' ∧ ∀ relation ∈ Carrier -> Carrier -> Prop, relation left right ↔ relation left' right' ∧ ∀ operation ∈ Carrier -> Carrier -> Carrier, operation left right = operation left' right'
 Logical form (Lean): {Carrier : Type u} {left left' right right' : Carrier} (LeftsAreEqual : left = left') (RightsAreEqual : right = right') : (∀ predicate : Carrier -> Prop, predicate left ↔ predicate left') ∧ (∀ relation : Carrier -> Carrier -> Prop, relation left right ↔ relation left' right') ∧ (∀ operation : Carrier -> Carrier -> Carrier, operation left right = operation left' right')
 Source: ./Congruence/Theorems.lean#L8
 
@@ -203,19 +222,87 @@ Source: ./Congruence/Theorems.lean#L8
 
 Name: EqualityCongruence
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} {Left LeftPrime Right RightPrime : Carrier},   And (Eq Left LeftPrime) (Eq Right RightPrime) →     And (∀ (Predicate : Carrier → Prop), Iff (Predicate Left) (Predicate LeftPrime))       (And (∀ (Relation : Carrier → Carrier → Prop), Iff (Relation Left Right) (Relation LeftPrime RightPrime))         (∀ (Operation : Carrier → Carrier → Carrier), Eq (Operation Left Right) (Operation LeftPrime RightPrime)))
-Predicate logic (unfolded): ∀ {Carrier : Type u} {Left LeftPrime Right RightPrime : Carrier},   And (Eq Left LeftPrime) (Eq Right RightPrime) →     And (∀ (Predicate : Carrier → Prop), Iff (Predicate Left) (Predicate LeftPrime))       (And (∀ (Relation : Carrier → Carrier → Prop), Iff (Relation Left Right) (Relation LeftPrime RightPrime))         (∀ (Operation : Carrier → Carrier → Carrier), Eq (Operation Left Right) (Operation LeftPrime RightPrime)))
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {Left LeftPrime Right RightPrime : Carrier} (LeftCoordinatesEqual : Left = LeftPrime) (RightCoordinatesEqual : Right = RightPrime), (∀ Predicate : Carrier -> Prop, Predicate Left ↔ Predicate LeftPrime) ∧ (∀ Relation : Carrier -> Carrier -> Prop, Relation Left Right ↔ Relation LeftPrime RightPrime) ∧ (∀ Operation : Carrier -> Carrier -> Carrier, Operation Left Right = Operation LeftPrime RightPrime)
+Predicate logic (unfolded): ∀ {Carrier : Type u} {Left LeftPrime Right RightPrime : Carrier}, (Left = LeftPrime ∧ Right = RightPrime) → (∀ (Predicate : Carrier → Prop), Predicate Left ↔ Predicate LeftPrime ∧ (∀ (Relation : Carrier → Carrier → Prop), Relation Left Right ↔ Relation LeftPrime RightPrime ∧ ∀ (Operation : Carrier → Carrier → Carrier), Operation Left Right = Operation LeftPrime RightPrime))
+Transliterated theorem: (Left = LeftPrime ∧ Right = RightPrime) → ∀ Predicate ∈ Carrier -> Prop, Predicate Left ↔ Predicate LeftPrime ∧ ∀ Relation ∈ Carrier -> Carrier -> Prop, Relation Left Right ↔ Relation LeftPrime RightPrime ∧ ∀ Operation ∈ Carrier -> Carrier -> Carrier, Operation Left Right = Operation LeftPrime RightPrime
 Logical form (Lean): {Carrier : Type u} {Left LeftPrime Right RightPrime : Carrier} (LeftCoordinatesEqual : Left = LeftPrime) (RightCoordinatesEqual : Right = RightPrime) : (∀ Predicate : Carrier -> Prop, Predicate Left ↔ Predicate LeftPrime) ∧ (∀ Relation : Carrier -> Carrier -> Prop, Relation Left Right ↔ Relation LeftPrime RightPrime) ∧ (∀ Operation : Carrier -> Carrier -> Carrier, Operation Left Right = Operation LeftPrime RightPrime)
-Source: ./Congruence/Theorems.lean#L27
+Source: ./Congruence/Theorems.lean#L20
+
+
+
+Name: EqualityReasoningByReflexivity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (x : Carrier), x = x
+Predicate logic (unfolded): ∀ {Carrier : Type u} (x : Carrier), x = x
+Transliterated theorem: (∀ x ∈ Carrier), x = x
+Logical form (Lean): {Carrier : Type u} (x : Carrier) : x = x
+Source: ./Toolkit.lean#L12
+
+
+
+Name: EqualityReasoningBySymmetry
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {x y : Carrier} (EqualityProof : x = y), y = x
+Predicate logic (unfolded): ∀ {Carrier : Type u} {x y : Carrier}, x = y → y = x
+Transliterated theorem: (x = y) → y = x
+Logical form (Lean): {Carrier : Type u} {x y : Carrier} (EqualityProof : x = y) : y = x
+Source: ./Toolkit.lean#L17
+
+
+
+Name: EqualityReasoningByTransitivity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {x y z : Carrier} (FirstEquality : x = y) (SecondEquality : y = z), x = z
+Predicate logic (unfolded): ∀ {Carrier : Type u} {x y z : Carrier}, (x = y ∧ y = z) → x = z
+Transliterated theorem: (x = y ∧ y = z) → x = z
+Logical form (Lean): {Carrier : Type u} {x y z : Carrier} (FirstEquality : x = y) (SecondEquality : y = z) : x = z
+Source: ./Toolkit.lean#L23
+
+
+
+Name: RewritePropertyByEquality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {x y : Carrier} (EqualityProof : x = y) (Property : Carrier -> Prop), Property x ↔ Property y
+Predicate logic (unfolded): ∀ {Carrier : Type u} {x y : Carrier}, x = y → ∀ (Property : Carrier → Prop), Property x ↔ Property y
+Transliterated theorem: (x = y) → Property x ↔ Property y
+Logical form (Lean): {Carrier : Type u} {x y : Carrier} (EqualityProof : x = y) (Property : Carrier -> Prop) : Property x ↔ Property y
+Source: ./Toolkit.lean#L30
+
+
+
+Name: RewriteFunctionByEquality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} {x y : Domain} (EqualityProof : x = y) (function : Domain -> Codomain), function x = function y
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} {x y : Domain}, x = y → ∀ (function : Domain → Codomain), function x = function y
+Transliterated theorem: (x = y) → function x = function y
+Logical form (Lean): {Domain : Type u} {Codomain : Type v} {x y : Domain} (EqualityProof : x = y) (function : Domain -> Codomain) : function x = function y
+Source: ./Toolkit.lean#L37
+
+
+
+Name: RewriteRelationLeftByEquality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {x y z : Carrier} (EqualityProof : x = y) (relation : Carrier -> Carrier -> Prop), relation x z ↔ relation y z
+Predicate logic (unfolded): ∀ {Carrier : Type u} {x y z : Carrier}, x = y → ∀ (relation : Carrier → Carrier → Prop), relation x z ↔ relation y z
+Transliterated theorem: (x = y) → relation x z ↔ relation y z
+Logical form (Lean): {Carrier : Type u} {x y z : Carrier} (EqualityProof : x = y) (relation : Carrier -> Carrier -> Prop) : relation x z ↔ relation y z
+Source: ./Toolkit.lean#L45
 
 
 
 Name: NativeEqualitySatisfiesEqualityTheory
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (Carrier : Type u), LRA.Identity.EqualityTheory Carrier
 Predicate logic (unfolded): ∀ (Carrier : Type u), LRA.Identity.EqualityTheory Carrier
+Transliterated theorem: EqualityTheory Carrier
 Logical form (Lean): (Carrier : Type u) : EqualityTheory Carrier
 Source: ./Model/Theory.lean#L22
 
@@ -223,8 +310,64 @@ Source: ./Model/Theory.lean#L22
 
 Name: EqualityStructure.interpretsEqualityAsIdentity
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ (equalityStructure : LRA.Identity.EqualityStructure) (left right : equalityStructure.Carrier),   Iff (equalityStructure.equalityInterpretation left right) (Eq left right)
-Predicate logic (unfolded): ∀ (equalityStructure : LRA.Identity.EqualityStructure) (left right : equalityStructure.Carrier),   Iff (equalityStructure.equalityInterpretation left right) (Eq left right)
+State: Sorry
+Predicate logic: ∀ (equalityStructure : EqualityStructure.{u}) (left right : equalityStructure.Carrier), equalityStructure.equalityInterpretation left right ↔ left = right
+Predicate logic (unfolded): ∀ (equalityStructure : LRA.Identity.EqualityStructure) (left right : equalityStructure.Carrier), equalityStructure.equalityInterpretation left right ↔ left = right
+Transliterated theorem: (∀ left right ∈ equalityStructure.Carrier), equalityStructure.equalityInterpretation left right ↔ left = right
 Logical form (Lean): (equalityStructure : EqualityStructure.{u}) (left right : equalityStructure.Carrier) : equalityStructure.equalityInterpretation left right ↔ left = right
 Source: ./Model/Model.lean#L36
+
+
+
+Name: NativeEqualityIsDiagonal
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Carrier : Type u), ∀ left right, NativeEquality Carrier left right ↔ left = right
+Predicate logic (unfolded): ∀ (Carrier : Type u) (left right : Carrier), LRA.Identity.NativeEquality Carrier left right ↔ left = right
+Transliterated theorem: ∀ left right, NativeEquality Carrier left right ↔ left = right
+Logical form (Lean): (Carrier : Type u) : ∀ left right, NativeEquality Carrier left right ↔ left = right
+Source: ./Interop/Lean.lean#L15
+
+
+
+Name: FunctionCongruence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} {left right : Domain} (ObjectsAreEqual : left = right) (function : Domain -> Codomain), function left = function right
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} {left right : Domain}, left = right → ∀ (function : Domain → Codomain), function left = function right
+Transliterated theorem: (left = right) → function left = function right
+Logical form (Lean): {Domain : Type u} {Codomain : Type v} {left right : Domain} (ObjectsAreEqual : left = right) (function : Domain -> Codomain) : function left = function right
+Source: ./Interop/Lean.lean#L20
+
+
+
+Name: BinaryFunctionCongruence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {left left' right right' : Carrier} (LeftsAreEqual : left = left') (RightsAreEqual : right = right') (operation : Carrier -> Carrier -> Carrier), operation left right = operation left' right'
+Predicate logic (unfolded): ∀ {Carrier : Type u} {left left' right right' : Carrier}, (left = left' ∧ right = right') → ∀ (operation : Carrier → Carrier → Carrier), operation left right = operation left' right'
+Transliterated theorem: (left = left' ∧ right = right') → operation left right = operation left' right'
+Logical form (Lean): {Carrier : Type u} {left left' right right' : Carrier} (LeftsAreEqual : left = left') (RightsAreEqual : right = right') (operation : Carrier -> Carrier -> Carrier) : operation left right = operation left' right'
+Source: ./Interop/Lean.lean#L28
+
+
+
+Name: RelationCongruence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {left right : Carrier} (ObjectsAreEqual : left = right) (relation : Carrier -> Prop), relation left ↔ relation right
+Predicate logic (unfolded): ∀ {Carrier : Type u} {left right : Carrier}, left = right → ∀ (relation : Carrier → Prop), relation left ↔ relation right
+Transliterated theorem: (left = right) → relation left ↔ relation right
+Logical form (Lean): {Carrier : Type u} {left right : Carrier} (ObjectsAreEqual : left = right) (relation : Carrier -> Prop) : relation left ↔ relation right
+Source: ./Interop/Lean.lean#L37
+
+
+
+Name: BinaryRelationCongruence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {left left' right right' : Carrier} (LeftsAreEqual : left = left') (RightsAreEqual : right = right') (relation : Carrier -> Carrier -> Prop), relation left right ↔ relation left' right'
+Predicate logic (unfolded): ∀ {Carrier : Type u} {left left' right right' : Carrier}, (left = left' ∧ right = right') → ∀ (relation : Carrier → Carrier → Prop), relation left right ↔ relation left' right'
+Transliterated theorem: (left = left' ∧ right = right') → relation left right ↔ relation left' right'
+Logical form (Lean): {Carrier : Type u} {left left' right right' : Carrier} (LeftsAreEqual : left = left') (RightsAreEqual : right = right') (relation : Carrier -> Carrier -> Prop) : relation left right ↔ relation left' right'
+Source: ./Interop/Lean.lean#L45

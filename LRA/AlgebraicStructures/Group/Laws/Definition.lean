@@ -30,14 +30,14 @@ variable {R : Type u}
 /-- The inverse is a left multiplicative inverse. -/
 theorem InvMulCancel [Mul R] [Inv R] [OfNat R 1]
     [MultiplicativeGroupInverseLaws R] :
-    ∀ a : R, a⁻¹ * a = 1 :=
-  MultiplicativeGroupInverseLaws.InvMulCancel
+    ∀ a : R, a⁻¹ * a = 1 := by
+  sorry
 
 /-- The inverse is a right multiplicative inverse. -/
 theorem MulInvCancelGroup [Mul R] [Inv R] [OfNat R 1]
     [MultiplicativeGroupInverseLaws R] :
-    ∀ a : R, a * a⁻¹ = 1 :=
-  MultiplicativeGroupInverseLaws.MulInvCancel
+    ∀ a : R, a * a⁻¹ = 1 := by
+  sorry
 
 end Wrappers
 

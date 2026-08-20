@@ -9,37 +9,47 @@ theorem DifferenceMonotoneLeft :
     ∀ A₁ A₂ B : Set, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B := by
   sorry
 
+
 theorem DifferenceAntitoneRight :
     ∀ A B₁ B₂ : Set, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁ := by
   sorry
 
+
 theorem DifferenceEmpty : ∀ A : Set, A \ (∅ : Set) = A := by
   sorry
+
 
 theorem EmptyDifference : ∀ A : Set, (∅ : Set) \ A = (∅ : Set) := by
   sorry
 
+
 theorem DifferenceSelf : ∀ A : Set, A \ A = (∅ : Set) := by
   sorry
+
 
 theorem DifferenceUnion :
     ∀ A B C : Set, A \ (B ∪ C) = (A \ B) ∩ (A \ C) := by
   sorry
 
+
 theorem DifferenceIntersection :
     ∀ A B C : Set, A \ (B ∩ C) = (A \ B) ∪ (A \ C) := by
   sorry
+
 
 theorem UnionDifferenceDistributes :
     ∀ A B C : Set, (A ∪ B) \ C = (A \ C) ∪ (B \ C) := by
   sorry
 
+
 theorem IntersectionDifferenceDistributes :
     ∀ A B C : Set, (A ∩ B) \ C = (A \ C) ∩ (B \ C) := by
   sorry
 
+
 theorem DifferenceSubsetLeft : ∀ A B : Set, A \ B ⊆ A := by
   sorry
+
 
 theorem DifferenceDisjointRight :
     ∀ A B : Set, (A \ B) ∩ B = (∅ : Set) := by

@@ -42,7 +42,7 @@ theorem ReflexiveClosureIsPartialOrder
     {Carrier : Type u}
     (order : StrictOrderRelation Carrier) :
     LRA.Order.PartialOrder (ReflexiveClosure order) := by
-  exact ReflexiveClosureRelationIsPartialOrder order
+  sorry
 
 /-- Taking reflexive closure and then strict part returns the original strict relation. -/
 theorem StrictPartOfReflexiveClosureIff

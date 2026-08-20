@@ -291,8 +291,7 @@ theorem extensionalityIsClosed : IsClosedFormula extensionalityFormula
 ```
 -/
 theorem extensionalityIsClosed : IsClosedFormula extensionalityFormula := by
-  unfold IsClosedFormula
-  decide
+  sorry
 
 /--
 `emptySetIsClosed` states empty set is closed.
@@ -304,8 +303,7 @@ theorem emptySetIsClosed : IsClosedFormula emptySetFormula
 ```
 -/
 theorem emptySetIsClosed : IsClosedFormula emptySetFormula := by
-  unfold IsClosedFormula
-  decide
+  sorry
 
 /--
 `pairingIsClosed` states pairing is closed.
@@ -317,8 +315,7 @@ theorem pairingIsClosed : IsClosedFormula pairingFormula
 ```
 -/
 theorem pairingIsClosed : IsClosedFormula pairingFormula := by
-  unfold IsClosedFormula
-  decide
+  sorry
 
 /--
 `unionIsClosed` states union is closed.
@@ -330,8 +327,7 @@ theorem unionIsClosed : IsClosedFormula unionFormula
 ```
 -/
 theorem unionIsClosed : IsClosedFormula unionFormula := by
-  unfold IsClosedFormula
-  decide
+  sorry
 
 /--
 `powerSetIsClosed` states power set is closed.
@@ -343,8 +339,7 @@ theorem powerSetIsClosed : IsClosedFormula powerSetFormula
 ```
 -/
 theorem powerSetIsClosed : IsClosedFormula powerSetFormula := by
-  unfold IsClosedFormula
-  decide
+  sorry
 
 /--
 `infinityIsClosed` states infinity is closed.
@@ -356,8 +351,7 @@ theorem infinityIsClosed : IsClosedFormula infinityFormula
 ```
 -/
 theorem infinityIsClosed : IsClosedFormula infinityFormula := by
-  unfold IsClosedFormula
-  decide
+  sorry
 
 /--
 `foundationIsClosed` states foundation is closed.
@@ -369,8 +363,7 @@ theorem foundationIsClosed : IsClosedFormula foundationFormula
 ```
 -/
 theorem foundationIsClosed : IsClosedFormula foundationFormula := by
-  unfold IsClosedFormula
-  decide
+  sorry
 
 /--
 `choiceIsClosed` states choice is closed.
@@ -382,8 +375,7 @@ theorem choiceIsClosed : IsClosedFormula choiceFormula
 ```
 -/
 theorem choiceIsClosed : IsClosedFormula choiceFormula := by
-  unfold IsClosedFormula
-  decide
+  sorry
 
 /-- Extensionality as a sentence.
 
@@ -556,8 +548,7 @@ theorem satisfiesIffF {M : Model MembershipSignature}
     {φ ψ : Formula MembershipSignature Nat} :
     Satisfies M assignment (iffF φ ψ) ↔
       (Satisfies M assignment φ ↔ Satisfies M assignment ψ) := by
-  simp only [iffF, satisfiesAndIffSatisfiesBoth, Satisfies]
-  tauto
+  sorry
 
 /-- Satisfaction of `orF` is the expected disjunction.
 
@@ -576,7 +567,6 @@ theorem satisfiesOrF {M : Model MembershipSignature}
     {φ ψ : Formula MembershipSignature Nat} :
     Satisfies M assignment (orF φ ψ) ↔
       (Satisfies M assignment φ ∨ Satisfies M assignment ψ) := by
-  simp only [orF, Satisfies]
-  tauto
+  sorry
 
 end LRA.Set.ModelTheory

@@ -152,7 +152,6 @@ theorem equivalent_is_equivalence_relation
       (equivalent integer_multiplication natural_to_integer) := by
   sorry
 
-
 /-- **[Lemma — Rational Quotient-Fractions Addition Respects Equivalence]**
 
 *Proof status:* proof pending
@@ -181,7 +180,6 @@ theorem representative_addition_respects_equivalence
     LRA.UniversalAlgebra.Quotient.binary_operation_respects
       setoid representative_addition := by
   sorry
-
 
 /-- **[Lemma — Rational Quotient-Fractions Multiplication Respects Equivalence]**
 
@@ -212,7 +210,6 @@ theorem representative_multiplication_respects_equivalence
       setoid representative_multiplication := by
   sorry
 
-
 /-- **[Theorem — Rational Quotient-Fractions Model Exists]**
 
 *Proof status:* proof pending
@@ -227,7 +224,6 @@ theorem rational_model_exists
 theorem rational_model_exists
     (integer_model : IntegerModel) : Nonempty RationalModel := by
   sorry
-
 
 /-- **[Definition — Rational Quotient-Fractions Model]**
 
@@ -260,7 +256,6 @@ theorem rational_extension_exists
     (integer_model : IntegerModel) :
     Nonempty (RationalExtension integer_model) := by
   sorry
-
 
 /-- **[Definition — Rational Quotient-Fractions Extension]**
 
@@ -339,7 +334,6 @@ theorem rational_model_exists
     (integer_model : IntegerModel) : Nonempty RationalModel := by
   sorry
 
-
 /-- **[Definition — Reduced-Fraction Rational Model]**
 
 Logical form:
@@ -395,7 +389,6 @@ theorem rational_model_exists
     (fraction_field_data : IntegralDomainFractionFieldData) :
     Nonempty RationalModel := by
   sorry
-
 
 /-- **[Definition — Fraction-Field Rational Model]**
 
@@ -540,7 +533,6 @@ theorem rational_quotient_fractions_equiv_reduced_exists
         (Reduced.rational_model integer_model)) := by
   sorry
 
-
 /-- **[Definition — Rational Quotient-Fractions–Reduced Rational Isomorphism]**
 
 Logical form:
@@ -580,9 +572,8 @@ theorem rational_quotient_fractions_and_reduced_are_isomorphic
     Nonempty
       (ModelIsomorphism
         (QuotientFractionsComparison.rational_model integer_model)
-        (Reduced.rational_model integer_model)) :=
-  ⟨rational_quotient_fractions_equiv_reduced integer_model⟩
-
+        (Reduced.rational_model integer_model)) := by
+  sorry
 
 /-- **[Theorem — Rational Quotient-Fractions–Fraction-Field Rational Isomorphism Exists]**
 
@@ -606,7 +597,6 @@ theorem rational_quotient_fractions_equiv_fraction_field_exists
         (QuotientFractionsComparison.rational_model integer_model)
         (FractionField.rational_model ⟨integer_model⟩)) := by
   sorry
-
 
 /-- **[Definition — Rational Quotient-Fractions–Fraction-Field Rational Isomorphism]**
 
@@ -647,7 +637,7 @@ theorem rational_quotient_fractions_and_fraction_field_are_isomorphic
     Nonempty
       (ModelIsomorphism
         (QuotientFractionsComparison.rational_model integer_model)
-        (FractionField.rational_model ⟨integer_model⟩)) :=
-  ⟨rational_quotient_fractions_equiv_fraction_field integer_model⟩
+        (FractionField.rational_model ⟨integer_model⟩)) := by
+  sorry
 
 end LRA.NumberSystems.RationalNumbers

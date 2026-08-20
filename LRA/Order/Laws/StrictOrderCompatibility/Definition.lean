@@ -11,8 +11,8 @@ section Wrappers
 variable {R : Type u}
 
 theorem LtIffLeNotLe [LT R] [LE R] [StrictOrderCompatibilityLaw R] :
-    forall a b : R, a < b <-> a <= b /\ Not (b <= a) :=
-  StrictOrderCompatibilityLaw.LtIffLeNotLe
+    forall a b : R, a < b <-> a <= b /\ Not (b <= a) := by
+  sorry
 
 end Wrappers
 

@@ -9,15 +9,13 @@ universe u v
 theorem SetClassExtensionality {α : Type u} {left right : SetClass α}
     (sameMembers : ∀ element, left element ↔ right element) :
     left = right := by
-  funext element
-  exact propext (sameMembers element)
+  sorry
 
 /-- Every set object represents the class obtained from its own membership predicate. -/
 theorem SetRepresentsItsClass {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
     (setObject : SetObject) :
     Represents setObject (ClassOfSet setObject) := by
-  intro element
-  rfl
+  sorry
 
 end LRA.Set

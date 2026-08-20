@@ -9,13 +9,14 @@ keep source order, because Lean forbids forward references, so source order is
 already a valid topological order. Working this list top to bottom, no entry
 depends on anything not yet proved above it.
 
-**Inventory:** 338 entries across 50 module(s) (137 completed, 201 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
+**Inventory:** 612 entries across 105 module(s) (86 completed, 526 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
 
 Name: DifferenceMonotoneLeft
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α],   LRA.Set.DifferenceLaws α → ∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (inst.sdiff A₁ B) (inst.sdiff A₂ B)
-Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α],   LRA.Set.DifferenceLaws α → ∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (inst.sdiff A₁ B) (inst.sdiff A₂ B)
+State: Sorry
+Predicate logic: ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
+Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)
+Transliterated theorem: ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
 Logical form (Lean): : ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
 Source: ./Interface/Difference.lean#L75
 
@@ -23,109 +24,120 @@ Source: ./Interface/Difference.lean#L75
 
 Name: DifferenceAntitoneRight
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α],   LRA.Set.DifferenceLaws α → ∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (inst.sdiff A B₂) (inst.sdiff A B₁)
-Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α],   LRA.Set.DifferenceLaws α → ∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (inst.sdiff A B₂) (inst.sdiff A B₁)
+State: Sorry
+Predicate logic: ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
+Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)
+Transliterated theorem: ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
 Logical form (Lean): : ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
-Source: ./Interface/Difference.lean#L88
+Source: ./Interface/Difference.lean#L89
 
 
 
 Name: DifferenceEmpty
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A : α), Eq (inst.sdiff A inst_3.emptyCollection) A
-Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A : α), Eq (inst.sdiff A inst_3.emptyCollection) A
+State: Sorry
+Predicate logic: ∀ A : α, A \ (∅ : α) = A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A : α), A \ inst_3.emptyCollection = A
+Transliterated theorem: ∀ A : α, A \ ∅ ∈ α = A
 Logical form (Lean): : ∀ A : α, A \ (∅ : α) = A
-Source: ./Interface/Difference.lean#L100
+Source: ./Interface/Difference.lean#L102
 
 
 
 Name: EmptyDifference
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α],   LRA.Set.DifferenceLaws α → ∀ (A : α), Eq (inst.sdiff inst_3.emptyCollection A) inst_3.emptyCollection
-Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α],   LRA.Set.DifferenceLaws α → ∀ (A : α), Eq (inst.sdiff inst_3.emptyCollection A) inst_3.emptyCollection
+State: Sorry
+Predicate logic: ∀ A : α, (∅ : α) \ A = (∅ : α)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection
+Transliterated theorem: ∀ A : α, ∅ ∈ α \ A = ∅ ∈ α
 Logical form (Lean): : ∀ A : α, (∅ : α) \ A = (∅ : α)
-Source: ./Interface/Difference.lean#L111
+Source: ./Interface/Difference.lean#L114
 
 
 
 Name: DifferenceSelf
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A : α), Eq (inst.sdiff A A) inst_3.emptyCollection
-Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A : α), Eq (inst.sdiff A A) inst_3.emptyCollection
+State: Sorry
+Predicate logic: ∀ A : α, A \ A = (∅ : α)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A : α), A \ A = inst_3.emptyCollection
+Transliterated theorem: ∀ A : α, A \ A = ∅ ∈ α
 Logical form (Lean): : ∀ A : α, A \ A = (∅ : α)
-Source: ./Interface/Difference.lean#L122
+Source: ./Interface/Difference.lean#L126
 
 
 
 Name: DifferenceUnion
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α],   LRA.Set.DifferenceLaws α →     ∀ (A B C : α), Eq (inst.sdiff A (inst_1.union B C)) (inst_2.inter (inst.sdiff A B) (inst.sdiff A C))
-Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α],   LRA.Set.DifferenceLaws α →     ∀ (A B C : α), Eq (inst.sdiff A (inst_1.union B C)) (inst_2.inter (inst.sdiff A B) (inst.sdiff A C))
+State: Sorry
+Predicate logic: ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C
+Transliterated theorem: ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
 Logical form (Lean): : ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
-Source: ./Interface/Difference.lean#L134
+Source: ./Interface/Difference.lean#L139
 
 
 
 Name: DifferenceIntersection
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α],   LRA.Set.DifferenceLaws α →     ∀ (A B C : α), Eq (inst.sdiff A (inst_2.inter B C)) (inst_1.union (inst.sdiff A B) (inst.sdiff A C))
-Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α],   LRA.Set.DifferenceLaws α →     ∀ (A B C : α), Eq (inst.sdiff A (inst_2.inter B C)) (inst_1.union (inst.sdiff A B) (inst.sdiff A C))
+State: Sorry
+Predicate logic: ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C
+Transliterated theorem: ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
 Logical form (Lean): : ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
-Source: ./Interface/Difference.lean#L147
+Source: ./Interface/Difference.lean#L153
 
 
 
 Name: UnionDifferenceDistributes
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α],   LRA.Set.DifferenceLaws α →     ∀ (A B C : α), Eq (inst.sdiff (inst_1.union A B) C) (inst_1.union (inst.sdiff A C) (inst.sdiff B C))
-Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α],   LRA.Set.DifferenceLaws α →     ∀ (A B C : α), Eq (inst.sdiff (inst_1.union A B) C) (inst_1.union (inst.sdiff A C) (inst.sdiff B C))
+State: Sorry
+Predicate logic: ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C
+Transliterated theorem: ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
 Logical form (Lean): : ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
-Source: ./Interface/Difference.lean#L160
+Source: ./Interface/Difference.lean#L167
 
 
 
 Name: IntersectionDifferenceDistributes
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α],   LRA.Set.DifferenceLaws α →     ∀ (A B C : α), Eq (inst.sdiff (inst_2.inter A B) C) (inst_2.inter (inst.sdiff A C) (inst.sdiff B C))
-Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α],   LRA.Set.DifferenceLaws α →     ∀ (A B C : α), Eq (inst.sdiff (inst_2.inter A B) C) (inst_2.inter (inst.sdiff A C) (inst.sdiff B C))
+State: Sorry
+Predicate logic: ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C
+Transliterated theorem: ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
 Logical form (Lean): : ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
-Source: ./Interface/Difference.lean#L173
+Source: ./Interface/Difference.lean#L181
 
 
 
 Name: DifferenceSubsetLeft
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B : α), inst_4.Subset (inst.sdiff A B) A
-Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B : α), inst_4.Subset (inst.sdiff A B) A
+State: Sorry
+Predicate logic: ∀ A B : α, A \ B ⊆ A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B : α), inst_4.Subset (A \ B)A
+Transliterated theorem: ∀ A B : α, A \ B ⊆ A
 Logical form (Lean): : ∀ A B : α, A \ B ⊆ A
-Source: ./Interface/Difference.lean#L185
+Source: ./Interface/Difference.lean#L194
 
 
 
 Name: DifferenceDisjointRight
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α],   LRA.Set.DifferenceLaws α → ∀ (A B : α), Eq (inst_2.inter (inst.sdiff A B) B) inst_3.emptyCollection
-Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α]   [inst_4 : HasSubset α],   LRA.Set.DifferenceLaws α → ∀ (A B : α), Eq (inst_2.inter (inst.sdiff A B) B) inst_3.emptyCollection
+State: Sorry
+Predicate logic: ∀ A B : α, (A \ B) ∩ B = (∅ : α)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection
+Transliterated theorem: ∀ A B : α, (A \ B) ∩ B = ∅ ∈ α
 Logical form (Lean): : ∀ A B : α, (A \ B) ∩ B = (∅ : α)
-Source: ./Interface/Difference.lean#L197
+Source: ./Interface/Difference.lean#L207
 
 
 
 Name: IntersectionDistributesOverUnion
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : Union α] [inst_1 : Inter α],   LRA.Set.DistributivityLaws α →     ∀ (A B C : α), Eq (inst_1.inter A (inst.union B C)) (inst.union (inst_1.inter A B) (inst_1.inter A C))
-Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : Inter α],   LRA.Set.DistributivityLaws α →     ∀ (A B C : α), Eq (inst_1.inter A (inst.union B C)) (inst.union (inst_1.inter A B) (inst_1.inter A C))
+State: Sorry
+Predicate logic: ∀ A B C : α, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : Inter α], LRA.Set.DistributivityLaws α → ∀ (A B C : α), A ∩ B ∪ C = A ∩ B ∪ A ∩ C
+Transliterated theorem: ∀ A B C : α, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
 Logical form (Lean): : ∀ A B C : α, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
 Source: ./Interface/Distributivity.lean#L47
 
@@ -133,39 +145,43 @@ Source: ./Interface/Distributivity.lean#L47
 
 Name: UnionDistributesOverIntersection
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : Union α] [inst_1 : Inter α],   LRA.Set.DistributivityLaws α →     ∀ (A B C : α), Eq (inst.union A (inst_1.inter B C)) (inst_1.inter (inst.union A B) (inst.union A C))
-Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : Inter α],   LRA.Set.DistributivityLaws α →     ∀ (A B C : α), Eq (inst.union A (inst_1.inter B C)) (inst_1.inter (inst.union A B) (inst.union A C))
+State: Sorry
+Predicate logic: ∀ A B C : α, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : Inter α], LRA.Set.DistributivityLaws α → ∀ (A B C : α), A ∪ B ∩ C = A ∪ B ∩ A ∪ C
+Transliterated theorem: ∀ A B C : α, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
 Logical form (Lean): : ∀ A B C : α, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
-Source: ./Interface/Distributivity.lean#L60
+Source: ./Interface/Distributivity.lean#L61
 
 
 
 Name: AbsorptionUnionIntersection
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : Union α] [inst_1 : Inter α],   LRA.Set.DistributivityLaws α → ∀ (A B : α), Eq (inst.union A (inst_1.inter A B)) A
-Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : Inter α],   LRA.Set.DistributivityLaws α → ∀ (A B : α), Eq (inst.union A (inst_1.inter A B)) A
+State: Sorry
+Predicate logic: ∀ A B : α, A ∪ (A ∩ B) = A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : Inter α], LRA.Set.DistributivityLaws α → ∀ (A B : α), A ∪ A ∩ B = A
+Transliterated theorem: ∀ A B : α, A ∪ (A ∩ B) = A
 Logical form (Lean): : ∀ A B : α, A ∪ (A ∩ B) = A
-Source: ./Interface/Distributivity.lean#L72
+Source: ./Interface/Distributivity.lean#L74
 
 
 
 Name: AbsorptionIntersectionUnion
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : Union α] [inst_1 : Inter α],   LRA.Set.DistributivityLaws α → ∀ (A B : α), Eq (inst_1.inter A (inst.union A B)) A
-Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : Inter α],   LRA.Set.DistributivityLaws α → ∀ (A B : α), Eq (inst_1.inter A (inst.union A B)) A
+State: Sorry
+Predicate logic: ∀ A B : α, A ∩ (A ∪ B) = A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : Inter α], LRA.Set.DistributivityLaws α → ∀ (A B : α), A ∩ A ∪ B = A
+Transliterated theorem: ∀ A B : α, A ∩ (A ∪ B) = A
 Logical form (Lean): : ∀ A B : α, A ∩ (A ∪ B) = A
-Source: ./Interface/Distributivity.lean#L83
+Source: ./Interface/Distributivity.lean#L86
 
 
 
 Name: IntersectionCommutative
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.IntersectionLaws α → ∀ (A B : α), Eq (inst.inter A B) (inst.inter B A)
-Predicate logic (unfolded): ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.IntersectionLaws α → ∀ (A B : α), Eq (inst.inter A B) (inst.inter B A)
+State: Sorry
+Predicate logic: ∀ A B : α, A ∩ B = B ∩ A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A B : α), A ∩ B = B ∩ A
+Transliterated theorem: ∀ A B : α, A ∩ B = B ∩ A
 Logical form (Lean): : ∀ A B : α, A ∩ B = B ∩ A
 Source: ./Interface/Intersection.lean#L54
 
@@ -173,69 +189,76 @@ Source: ./Interface/Intersection.lean#L54
 
 Name: IntersectionAssociative
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.IntersectionLaws α → ∀ (A B C : α), Eq (inst.inter (inst.inter A B) C) (inst.inter A (inst.inter B C))
-Predicate logic (unfolded): ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.IntersectionLaws α → ∀ (A B C : α), Eq (inst.inter (inst.inter A B) C) (inst.inter A (inst.inter B C))
+State: Sorry
+Predicate logic: ∀ A B C : α, (A ∩ B) ∩ C = A ∩ (B ∩ C)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A B C : α), A ∩ B ∩ C = A ∩ B ∩ C
+Transliterated theorem: ∀ A B C : α, (A ∩ B) ∩ C = A ∩ (B ∩ C)
 Logical form (Lean): : ∀ A B C : α, (A ∩ B) ∩ C = A ∩ (B ∩ C)
-Source: ./Interface/Intersection.lean#L66
+Source: ./Interface/Intersection.lean#L67
 
 
 
 Name: EmptyIntersection
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.IntersectionLaws α → ∀ (A : α), Eq (inst.inter inst_1.emptyCollection A) inst_1.emptyCollection
-Predicate logic (unfolded): ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.IntersectionLaws α → ∀ (A : α), Eq (inst.inter inst_1.emptyCollection A) inst_1.emptyCollection
+State: Sorry
+Predicate logic: ∀ A : α, (∅ : α) ∩ A = (∅ : α)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A : α), inst_1.emptyCollection ∩ A = inst_1.emptyCollection
+Transliterated theorem: ∀ A : α, ∅ ∈ α ∩ A = ∅ ∈ α
 Logical form (Lean): : ∀ A : α, (∅ : α) ∩ A = (∅ : α)
-Source: ./Interface/Intersection.lean#L78
+Source: ./Interface/Intersection.lean#L80
 
 
 
 Name: IntersectionEmpty
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.IntersectionLaws α → ∀ (A : α), Eq (inst.inter A inst_1.emptyCollection) inst_1.emptyCollection
-Predicate logic (unfolded): ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.IntersectionLaws α → ∀ (A : α), Eq (inst.inter A inst_1.emptyCollection) inst_1.emptyCollection
+State: Sorry
+Predicate logic: ∀ A : α, A ∩ (∅ : α) = (∅ : α)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A : α), A ∩ inst_1.emptyCollection = inst_1.emptyCollection
+Transliterated theorem: ∀ A : α, A ∩ ∅ ∈ α = ∅ ∈ α
 Logical form (Lean): : ∀ A : α, A ∩ (∅ : α) = (∅ : α)
-Source: ./Interface/Intersection.lean#L89
+Source: ./Interface/Intersection.lean#L92
 
 
 
 Name: IntersectionIdempotent
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.IntersectionLaws α → ∀ (A : α), Eq (inst.inter A A) A
-Predicate logic (unfolded): ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.IntersectionLaws α → ∀ (A : α), Eq (inst.inter A A) A
+State: Sorry
+Predicate logic: ∀ A : α, A ∩ A = A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A : α), A ∩ A = A
+Transliterated theorem: ∀ A : α, A ∩ A = A
 Logical form (Lean): : ∀ A : α, A ∩ A = A
-Source: ./Interface/Intersection.lean#L100
+Source: ./Interface/Intersection.lean#L104
 
 
 
 Name: IntersectionMonotone
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.IntersectionLaws α →     ∀ (A₁ A₂ B₁ B₂ : α),       And (inst_2.Subset A₁ A₂) (inst_2.Subset B₁ B₂) → inst_2.Subset (inst.inter A₁ B₁) (inst.inter A₂ B₂)
-Predicate logic (unfolded): ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.IntersectionLaws α →     ∀ (A₁ A₂ B₁ B₂ : α),       And (inst_2.Subset A₁ A₂) (inst_2.Subset B₁ B₂) → inst_2.Subset (inst.inter A₁ B₁) (inst.inter A₂ B₂)
+State: Sorry
+Predicate logic: ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
+Predicate logic (unfolded): ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A₁ A₂ B₁ B₂ : α), (inst_2.Subset A₁ A₂ ∧ inst_2.Subset B₁ B₂) → inst_2.Subset (A₁ ∩ B₁)(A₂ ∩ B₂)
+Transliterated theorem: ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
 Logical form (Lean): : ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
-Source: ./Interface/Intersection.lean#L112
+Source: ./Interface/Intersection.lean#L117
 
 
 
 Name: SubsetIffIntersectionEqLeft
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.IntersectionLaws α → ∀ (A B : α), Iff (inst_2.Subset A B) (Eq (inst.inter A B) A)
-Predicate logic (unfolded): ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.IntersectionLaws α → ∀ (A B : α), Iff (inst_2.Subset A B) (Eq (inst.inter A B) A)
+State: Sorry
+Predicate logic: ∀ A B : α, A ⊆ B ↔ A ∩ B = A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A B : α), inst_2.Subset A B ↔ A ∩ B = A
+Transliterated theorem: ∀ A B : α, A ⊆ B ↔ A ∩ B = A
 Logical form (Lean): : ∀ A B : α, A ⊆ B ↔ A ∩ B = A
-Source: ./Interface/Intersection.lean#L125
+Source: ./Interface/Intersection.lean#L130
 
 
 
 Name: DoubleComplement
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α → ∀ (A : α), Eq (inst.complement (inst.complement A)) A
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α → ∀ (A : α), Eq (inst.complement (inst.complement A)) A
+State: Sorry
+Predicate logic: ∀ A : α, Aᶜᶜ = A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), inst.complement (inst.complement A) = A
+Transliterated theorem: ∀ A : α, Aᶜᶜ = A
 Logical form (Lean): : ∀ A : α, Aᶜᶜ = A
 Source: ./Interface/Complement.lean#L74
 
@@ -243,99 +266,109 @@ Source: ./Interface/Complement.lean#L74
 
 Name: ComplementEmpty
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α → Eq (inst.complement inst_5.emptyCollection) inst_1.universal
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α → Eq (inst.complement inst_5.emptyCollection) inst_1.universal
+State: Sorry
+Predicate logic: (∅ : α)ᶜ = (𝒰 : α)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → inst.complement inst_5.emptyCollection = inst_1.universal
+Transliterated theorem: ∅ ∈ αᶜ = 𝒰 ∈ α
 Logical form (Lean): : (∅ : α)ᶜ = (𝒰 : α)
-Source: ./Interface/Complement.lean#L85
+Source: ./Interface/Complement.lean#L86
 
 
 
 Name: ComplementUniversal
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α → Eq (inst.complement inst_1.universal) inst_5.emptyCollection
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α → Eq (inst.complement inst_1.universal) inst_5.emptyCollection
+State: Sorry
+Predicate logic: (𝒰 : α)ᶜ = (∅ : α)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → inst.complement inst_1.universal = inst_5.emptyCollection
+Transliterated theorem: 𝒰 ∈ αᶜ = ∅ ∈ α
 Logical form (Lean): : (𝒰 : α)ᶜ = (∅ : α)
-Source: ./Interface/Complement.lean#L96
+Source: ./Interface/Complement.lean#L98
 
 
 
 Name: UnionComplement
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α → ∀ (A : α), Eq (inst_2.union A (inst.complement A)) inst_1.universal
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α → ∀ (A : α), Eq (inst_2.union A (inst.complement A)) inst_1.universal
+State: Sorry
+Predicate logic: ∀ A : α, A ∪ Aᶜ = (𝒰 : α)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), A ∪ inst.complement A = inst_1.universal
+Transliterated theorem: ∀ A : α, A ∪ Aᶜ = 𝒰 ∈ α
 Logical form (Lean): : ∀ A : α, A ∪ Aᶜ = (𝒰 : α)
-Source: ./Interface/Complement.lean#L107
+Source: ./Interface/Complement.lean#L110
 
 
 
 Name: IntersectionComplement
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α → ∀ (A : α), Eq (inst_3.inter A (inst.complement A)) inst_5.emptyCollection
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α → ∀ (A : α), Eq (inst_3.inter A (inst.complement A)) inst_5.emptyCollection
+State: Sorry
+Predicate logic: ∀ A : α, A ∩ Aᶜ = (∅ : α)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection
+Transliterated theorem: ∀ A : α, A ∩ Aᶜ = ∅ ∈ α
 Logical form (Lean): : ∀ A : α, A ∩ Aᶜ = (∅ : α)
-Source: ./Interface/Complement.lean#L118
+Source: ./Interface/Complement.lean#L122
 
 
 
 Name: DeMorganUnion
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α →     ∀ (A B : α), Eq (inst.complement (inst_2.union A B)) (inst_3.inter (inst.complement A) (inst.complement B))
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α →     ∀ (A B : α), Eq (inst.complement (inst_2.union A B)) (inst_3.inter (inst.complement A) (inst.complement B))
+State: Sorry
+Predicate logic: ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B
+Transliterated theorem: ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
 Logical form (Lean): : ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
-Source: ./Interface/Complement.lean#L129
+Source: ./Interface/Complement.lean#L134
 
 
 
 Name: DeMorganIntersection
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α →     ∀ (A B : α), Eq (inst.complement (inst_3.inter A B)) (inst_2.union (inst.complement A) (inst.complement B))
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α →     ∀ (A B : α), Eq (inst.complement (inst_3.inter A B)) (inst_2.union (inst.complement A) (inst.complement B))
+State: Sorry
+Predicate logic: ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B
+Transliterated theorem: ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
 Logical form (Lean): : ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
-Source: ./Interface/Complement.lean#L140
+Source: ./Interface/Complement.lean#L146
 
 
 
 Name: DifferenceAsIntersectionComplement
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α → ∀ (A B : α), Eq (inst_4.sdiff A B) (inst_3.inter A (inst.complement B))
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α → ∀ (A B : α), Eq (inst_4.sdiff A B) (inst_3.inter A (inst.complement B))
+State: Sorry
+Predicate logic: ∀ A B : α, A \ B = A ∩ Bᶜ
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), A \ B = A ∩ inst.complement B
+Transliterated theorem: ∀ A B : α, A \ B = A ∩ Bᶜ
 Logical form (Lean): : ∀ A B : α, A \ B = A ∩ Bᶜ
-Source: ./Interface/Complement.lean#L152
+Source: ./Interface/Complement.lean#L159
 
 
 
 Name: DifferenceUniversal
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α → ∀ (A : α), Eq (inst_4.sdiff A inst_1.universal) inst_5.emptyCollection
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α → ∀ (A : α), Eq (inst_4.sdiff A inst_1.universal) inst_5.emptyCollection
+State: Sorry
+Predicate logic: ∀ A : α, A \ (𝒰 : α) = (∅ : α)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection
+Transliterated theorem: ∀ A : α, A \ 𝒰 ∈ α = ∅ ∈ α
 Logical form (Lean): : ∀ A : α, A \ (𝒰 : α) = (∅ : α)
-Source: ./Interface/Complement.lean#L164
+Source: ./Interface/Complement.lean#L172
 
 
 
 Name: UniversalDifference
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α → ∀ (A : α), Eq (inst_4.sdiff inst_1.universal A) (inst.complement A)
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α]   [inst_4 : SDiff α] [inst_5 : EmptyCollection α],   LRA.Set.ComplementLaws α → ∀ (A : α), Eq (inst_4.sdiff inst_1.universal A) (inst.complement A)
+State: Sorry
+Predicate logic: ∀ A : α, (𝒰 : α) \ A = Aᶜ
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), inst_1.universal \ A = inst.complement A
+Transliterated theorem: ∀ A : α, 𝒰 ∈ α \ A = Aᶜ
 Logical form (Lean): : ∀ A : α, (𝒰 : α) \ A = Aᶜ
-Source: ./Interface/Complement.lean#L175
+Source: ./Interface/Complement.lean#L184
 
 
 
 Name: CollectionUnionMembership
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} {Collection : Type w} [inst : Membership Element SetObject]   [inst_1 : Membership SetObject Collection] [inst_2 : LRA.Set.HasCollectionUnion SetObject Collection]   [inst_3 : LRA.Set.HasCollectionIntersection SetObject Collection],   LRA.Set.CollectionMembershipLaws Element SetObject Collection →     ∀ (collection : Collection) (x : Element),       Iff (inst.mem (inst_2.collectionUnion collection) x)         (Exists fun B => And (inst_1.mem collection B) (inst.mem B x))
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} {Collection : Type w} [inst : Membership Element SetObject]   [inst_1 : Membership SetObject Collection] [inst_2 : LRA.Set.HasCollectionUnion SetObject Collection]   [inst_3 : LRA.Set.HasCollectionIntersection SetObject Collection],   LRA.Set.CollectionMembershipLaws Element SetObject Collection →     ∀ (collection : Collection) (x : Element),       Iff (inst.mem (inst_2.collectionUnion collection) x)         (Exists fun B => And (inst_1.mem collection B) (inst.mem B x))
+State: Sorry
+Predicate logic: ∀ [CollectionMembershipLaws Element SetObject Collection] (collection : Collection) (x : Element), x ∈ HasCollectionUnion.collectionUnion collection ↔ ∃ B : SetObject, B ∈ collection ∧ x ∈ B
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} {Collection : Type w} [inst : Membership Element SetObject] [inst_1 : Membership SetObject Collection] [inst_2 : LRA.Set.HasCollectionUnion SetObject Collection] [inst_3 : LRA.Set.HasCollectionIntersection SetObject Collection], LRA.Set.CollectionMembershipLaws Element SetObject Collection → ∀ (collection : Collection) (x : Element), x ∈ inst_2.collectionUnion collection ↔ Exists fun B => (B ∈ collection ∧ x ∈ B)
+Transliterated theorem: (∀ collection ∈ Collection ∀ x ∈ Element), x ∈ HasCollectionUnion.collectionUnion collection ↔ ∃ B ∈ SetObject, B ∈ collection ∧ x ∈ B
 Logical form (Lean): [CollectionMembershipLaws Element SetObject Collection] (collection : Collection) (x : Element) : x ∈ HasCollectionUnion.collectionUnion collection ↔ ∃ B : SetObject, B ∈ collection ∧ x ∈ B
 Source: ./Interface/Families.lean#L79
 
@@ -343,9 +376,10 @@ Source: ./Interface/Families.lean#L79
 
 Name: CollectionIntersectionMembership
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} {Collection : Type w} [inst : Membership Element SetObject]   [inst_1 : Membership SetObject Collection] [inst_2 : LRA.Set.HasCollectionUnion SetObject Collection]   [inst_3 : LRA.Set.HasCollectionIntersection SetObject Collection],   LRA.Set.CollectionMembershipLaws Element SetObject Collection →     ∀ (collection : Collection) (x : Element),       (Exists fun B => inst_1.mem collection B) →         Iff (inst.mem (inst_3.collectionIntersection collection) x)           (∀ (B : SetObject), inst_1.mem collection B → inst.mem B x)
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} {Collection : Type w} [inst : Membership Element SetObject]   [inst_1 : Membership SetObject Collection] [inst_2 : LRA.Set.HasCollectionUnion SetObject Collection]   [inst_3 : LRA.Set.HasCollectionIntersection SetObject Collection],   LRA.Set.CollectionMembershipLaws Element SetObject Collection →     ∀ (collection : Collection) (x : Element),       (Exists fun B => inst_1.mem collection B) →         Iff (inst.mem (inst_3.collectionIntersection collection) x)           (∀ (B : SetObject), inst_1.mem collection B → inst.mem B x)
+State: Sorry
+Predicate logic: ∀ [CollectionMembershipLaws Element SetObject Collection] (collection : Collection) (x : Element) (collectionNonempty : ∃ B : SetObject, B ∈ collection), x ∈ HasCollectionIntersection.collectionIntersection collection ↔ ∀ B : SetObject, B ∈ collection → x ∈ B
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} {Collection : Type w} [inst : Membership Element SetObject] [inst_1 : Membership SetObject Collection] [inst_2 : LRA.Set.HasCollectionUnion SetObject Collection] [inst_3 : LRA.Set.HasCollectionIntersection SetObject Collection], LRA.Set.CollectionMembershipLaws Element SetObject Collection → ∀ (collection : Collection) (x : Element), (Exists fun B => B) ∈ collection → x ∈ inst_3.collectionIntersection collection ↔ ∀ (B : SetObject), B ∈ collection → x ∈ B
+Transliterated theorem: (∀ collection ∈ Collection ∀ x ∈ Element), (∃ B ∈ SetObject, B ∈ collection) → x ∈ HasCollectionIntersection.collectionIntersection collection ↔ ∀ B : SetObject, B ∈ collection → x ∈ B
 Logical form (Lean): [CollectionMembershipLaws Element SetObject Collection] (collection : Collection) (x : Element) (collectionNonempty : ∃ B : SetObject, B ∈ collection) : x ∈ HasCollectionIntersection.collectionIntersection collection ↔ ∀ B : SetObject, B ∈ collection → x ∈ B
 Source: ./Interface/Families.lean#L99
 
@@ -353,9 +387,10 @@ Source: ./Interface/Families.lean#L99
 
 Name: IndexedUnionMembership
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasIndexedUnion SetObject] [inst_2 : LRA.Set.HasIndexedIntersection SetObject],   LRA.Set.IndexedMembershipLaws Element SetObject →     ∀ {Index : Type w} (family : Index → SetObject) (x : Element),       Iff (inst.mem (inst_1.indexedUnion family) x) (Exists fun index => inst.mem (family index) x)
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasIndexedUnion SetObject] [inst_2 : LRA.Set.HasIndexedIntersection SetObject],   LRA.Set.IndexedMembershipLaws Element SetObject →     ∀ {Index : Type w} (family : Index → SetObject) (x : Element),       Iff (inst.mem (inst_1.indexedUnion family) x) (Exists fun index => inst.mem (family index) x)
+State: Sorry
+Predicate logic: ∀ [Membership Element SetObject] [HasIndexedUnion SetObject] [HasIndexedIntersection SetObject] [IndexedMembershipLaws Element SetObject] {Index : Type w} (family : Index → SetObject) (x : Element), x ∈ HasIndexedUnion.indexedUnion family ↔ ∃ index, x ∈ family index
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasIndexedUnion SetObject] [inst_2 : LRA.Set.HasIndexedIntersection SetObject], LRA.Set.IndexedMembershipLaws Element SetObject → ∀ {Index : Type w} (family : Index → SetObject) (x : Element), x ∈ inst_1.indexedUnion family ↔ Exists fun index => x ∈ family index
+Transliterated theorem: (∀ x ∈ Element), (Index → SetObject) → x ∈ HasIndexedUnion.indexedUnion family ↔ ∃ index, x ∈ family index
 Logical form (Lean): [Membership Element SetObject] [HasIndexedUnion SetObject] [HasIndexedIntersection SetObject] [IndexedMembershipLaws Element SetObject] {Index : Type w} (family : Index → SetObject) (x : Element) : x ∈ HasIndexedUnion.indexedUnion family ↔ ∃ index, x ∈ family index
 Source: ./Interface/Indexed.lean#L103
 
@@ -363,9 +398,10 @@ Source: ./Interface/Indexed.lean#L103
 
 Name: IndexedIntersectionMembership
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasIndexedUnion SetObject] [inst_2 : LRA.Set.HasIndexedIntersection SetObject],   LRA.Set.IndexedMembershipLaws Element SetObject →     ∀ {Index : Type w} (family : Index → SetObject) (x : Element),       Iff (inst.mem (inst_2.indexedIntersection family) x) (∀ (index : Index), inst.mem (family index) x)
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasIndexedUnion SetObject] [inst_2 : LRA.Set.HasIndexedIntersection SetObject],   LRA.Set.IndexedMembershipLaws Element SetObject →     ∀ {Index : Type w} (family : Index → SetObject) (x : Element),       Iff (inst.mem (inst_2.indexedIntersection family) x) (∀ (index : Index), inst.mem (family index) x)
+State: Sorry
+Predicate logic: ∀ [Membership Element SetObject] [HasIndexedUnion SetObject] [HasIndexedIntersection SetObject] [IndexedMembershipLaws Element SetObject] {Index : Type w} (family : Index → SetObject) (x : Element), x ∈ HasIndexedIntersection.indexedIntersection family ↔ ∀ index, x ∈ family index
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasIndexedUnion SetObject] [inst_2 : LRA.Set.HasIndexedIntersection SetObject], LRA.Set.IndexedMembershipLaws Element SetObject → ∀ {Index : Type w} (family : Index → SetObject) (x : Element), x ∈ inst_2.indexedIntersection family ↔ ∀ (index : Index), x ∈ family index
+Transliterated theorem: (∀ x ∈ Element), (Index → SetObject) → x ∈ HasIndexedIntersection.indexedIntersection family ↔ ∀ index, x ∈ family index
 Logical form (Lean): [Membership Element SetObject] [HasIndexedUnion SetObject] [HasIndexedIntersection SetObject] [IndexedMembershipLaws Element SetObject] {Index : Type w} (family : Index → SetObject) (x : Element) : x ∈ HasIndexedIntersection.indexedIntersection family ↔ ∀ index, x ∈ family index
 Source: ./Interface/Indexed.lean#L125
 
@@ -373,9 +409,10 @@ Source: ./Interface/Indexed.lean#L125
 
 Name: CountableUnionMembership
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasCountableUnion SetObject] [inst_2 : LRA.Set.HasCountableIntersection SetObject],   LRA.Set.CountableMembershipLaws Element SetObject →     ∀ (family : Nat → SetObject) (x : Element),       Iff (inst.mem (inst_1.countableUnion family) x) (Exists fun index => inst.mem (family index) x)
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasCountableUnion SetObject] [inst_2 : LRA.Set.HasCountableIntersection SetObject],   LRA.Set.CountableMembershipLaws Element SetObject →     ∀ (family : Nat → SetObject) (x : Element),       Iff (inst.mem (inst_1.countableUnion family) x) (Exists fun index => inst.mem (family index) x)
+State: Sorry
+Predicate logic: ∀ [Membership Element SetObject] [HasCountableUnion SetObject] [HasCountableIntersection SetObject] [CountableMembershipLaws Element SetObject] (family : Nat → SetObject) (x : Element), x ∈ HasCountableUnion.countableUnion family ↔ ∃ index, x ∈ family index
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasCountableUnion SetObject] [inst_2 : LRA.Set.HasCountableIntersection SetObject], LRA.Set.CountableMembershipLaws Element SetObject → ∀ (family : Nat → SetObject) (x : Element), x ∈ inst_1.countableUnion family ↔ Exists fun index => x ∈ family index
+Transliterated theorem: (∀ x ∈ Element), (Nat → SetObject) → x ∈ HasCountableUnion.countableUnion family ↔ ∃ index, x ∈ family index
 Logical form (Lean): [Membership Element SetObject] [HasCountableUnion SetObject] [HasCountableIntersection SetObject] [CountableMembershipLaws Element SetObject] (family : Nat → SetObject) (x : Element) : x ∈ HasCountableUnion.countableUnion family ↔ ∃ index, x ∈ family index
 Source: ./Interface/Indexed.lean#L148
 
@@ -383,9 +420,10 @@ Source: ./Interface/Indexed.lean#L148
 
 Name: CountableIntersectionMembership
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasCountableUnion SetObject] [inst_2 : LRA.Set.HasCountableIntersection SetObject],   LRA.Set.CountableMembershipLaws Element SetObject →     ∀ (family : Nat → SetObject) (x : Element),       Iff (inst.mem (inst_2.countableIntersection family) x) (∀ (index : Nat), inst.mem (family index) x)
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasCountableUnion SetObject] [inst_2 : LRA.Set.HasCountableIntersection SetObject],   LRA.Set.CountableMembershipLaws Element SetObject →     ∀ (family : Nat → SetObject) (x : Element),       Iff (inst.mem (inst_2.countableIntersection family) x) (∀ (index : Nat), inst.mem (family index) x)
+State: Sorry
+Predicate logic: ∀ [Membership Element SetObject] [HasCountableUnion SetObject] [HasCountableIntersection SetObject] [CountableMembershipLaws Element SetObject] (family : Nat → SetObject) (x : Element), x ∈ HasCountableIntersection.countableIntersection family ↔ ∀ index, x ∈ family index
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasCountableUnion SetObject] [inst_2 : LRA.Set.HasCountableIntersection SetObject], LRA.Set.CountableMembershipLaws Element SetObject → ∀ (family : Nat → SetObject) (x : Element), x ∈ inst_2.countableIntersection family ↔ ∀ (index : Nat), x ∈ family index
+Transliterated theorem: (∀ x ∈ Element), (Nat → SetObject) → x ∈ HasCountableIntersection.countableIntersection family ↔ ∀ index, x ∈ family index
 Logical form (Lean): [Membership Element SetObject] [HasCountableUnion SetObject] [HasCountableIntersection SetObject] [CountableMembershipLaws Element SetObject] (family : Nat → SetObject) (x : Element) : x ∈ HasCountableIntersection.countableIntersection family ↔ ∀ index, x ∈ family index
 Source: ./Interface/Indexed.lean#L171
 
@@ -393,9 +431,10 @@ Source: ./Interface/Indexed.lean#L171
 
 Name: SetExtensionality
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject],   LRA.Set.ExtensionalityLaw Element SetObject →     ∀ {A B : SetObject}, (∀ (x : Element), Iff (inst.mem A x) (inst.mem B x)) → Eq A B
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject],   LRA.Set.ExtensionalityLaw Element SetObject →     ∀ {A B : SetObject}, (∀ (x : Element), Iff (inst.mem A x) (inst.mem B x)) → Eq A B
+State: Sorry
+Predicate logic: ∀ [Membership Element SetObject] [ExtensionalityLaw Element SetObject] {A B : SetObject} (sameMembers : ∀ x : Element, x ∈ A ↔ x ∈ B), A = B
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject], LRA.Set.ExtensionalityLaw Element SetObject → ∀ {A B : SetObject}, (∀ (x : Element), x ∈ A ↔ x ∈ B) → A = B
+Transliterated theorem: (∀ A B ∈ U), (∀ x : Element, x ∈ A ↔ x ∈ B) → A = B
 Logical form (Lean): [Membership Element SetObject] [ExtensionalityLaw Element SetObject] {A B : SetObject} (sameMembers : ∀ x : Element, x ∈ A ↔ x ∈ B) : A = B
 Source: ./Interface/Membership.lean#L180
 
@@ -403,9 +442,10 @@ Source: ./Interface/Membership.lean#L180
 
 Name: EmptyMembership
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject]   [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject]   [inst_5 : HasSubset SetObject],   LRA.Set.MembershipLaws Element SetObject → ∀ (x : Element), Not (inst.mem inst_4.emptyCollection x)
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject]   [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject]   [inst_5 : HasSubset SetObject],   LRA.Set.MembershipLaws Element SetObject → ∀ (x : Element), Not (inst.mem inst_4.emptyCollection x)
+State: Sorry
+Predicate logic: ∀ [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject], ∀ x : Element, x ∉ (∅ : SetObject)
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (x : Element), ¬ x ∈ inst_4.emptyCollection
+Transliterated theorem: ∀ x : Element, x ∉ ∅ ∈ SetObject
 Logical form (Lean): [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject] : ∀ x : Element, x ∉ (∅ : SetObject)
 Source: ./Interface/Membership.lean#L198
 
@@ -413,9 +453,10 @@ Source: ./Interface/Membership.lean#L198
 
 Name: UnionMembership
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject]   [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject]   [inst_5 : HasSubset SetObject],   LRA.Set.MembershipLaws Element SetObject →     ∀ (A B : SetObject) (x : Element), Iff (inst.mem (inst_1.union A B) x) (Or (inst.mem A x) (inst.mem B x))
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject]   [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject]   [inst_5 : HasSubset SetObject],   LRA.Set.MembershipLaws Element SetObject →     ∀ (A B : SetObject) (x : Element), Iff (inst.mem (inst_1.union A B) x) (Or (inst.mem A x) (inst.mem B x))
+State: Sorry
+Predicate logic: ∀ [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject], ∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ Or (x) ∈ A(x) ∈ B
+Transliterated theorem: ∀ A B ∈ SetObject x ∈ Element, x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B
 Logical form (Lean): [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject] : ∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B
 Source: ./Interface/Membership.lean#L217
 
@@ -423,9 +464,10 @@ Source: ./Interface/Membership.lean#L217
 
 Name: IntersectionMembership
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject]   [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject]   [inst_5 : HasSubset SetObject],   LRA.Set.MembershipLaws Element SetObject →     ∀ (A B : SetObject) (x : Element), Iff (inst.mem (inst_2.inter A B) x) (And (inst.mem A x) (inst.mem B x))
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject]   [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject]   [inst_5 : HasSubset SetObject],   LRA.Set.MembershipLaws Element SetObject →     ∀ (A B : SetObject) (x : Element), Iff (inst.mem (inst_2.inter A B) x) (And (inst.mem A x) (inst.mem B x))
+State: Sorry
+Predicate logic: ∀ [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject], ∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ (x ∈ A ∧ x ∈ B)
+Transliterated theorem: ∀ A B ∈ SetObject x ∈ Element, x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B
 Logical form (Lean): [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject] : ∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B
 Source: ./Interface/Membership.lean#L236
 
@@ -433,9 +475,10 @@ Source: ./Interface/Membership.lean#L236
 
 Name: DifferenceMembership
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject]   [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject]   [inst_5 : HasSubset SetObject],   LRA.Set.MembershipLaws Element SetObject →     ∀ (A B : SetObject) (x : Element), Iff (inst.mem (inst_3.sdiff A B) x) (And (inst.mem A x) (Not (inst.mem B x)))
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject]   [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject]   [inst_5 : HasSubset SetObject],   LRA.Set.MembershipLaws Element SetObject →     ∀ (A B : SetObject) (x : Element), Iff (inst.mem (inst_3.sdiff A B) x) (And (inst.mem A x) (Not (inst.mem B x)))
+State: Sorry
+Predicate logic: ∀ [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject], ∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ x ∈ A ∧ x ∉ B
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ (x ∈ A ∧ ¬ x ∈ B)
+Transliterated theorem: ∀ A B ∈ SetObject x ∈ Element, x ∈ A \ B ↔ x ∈ A ∧ x ∉ B
 Logical form (Lean): [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject] : ∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ x ∈ A ∧ x ∉ B
 Source: ./Interface/Membership.lean#L255
 
@@ -443,9 +486,10 @@ Source: ./Interface/Membership.lean#L255
 
 Name: SubsetIffAllMembers
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject]   [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject]   [inst_5 : HasSubset SetObject],   LRA.Set.MembershipLaws Element SetObject →     ∀ (A B : SetObject), Iff (inst_5.Subset A B) (∀ (x : Element), inst.mem A x → inst.mem B x)
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject]   [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject]   [inst_5 : HasSubset SetObject],   LRA.Set.MembershipLaws Element SetObject →     ∀ (A B : SetObject), Iff (inst_5.Subset A B) (∀ (x : Element), inst.mem A x → inst.mem B x)
+State: Sorry
+Predicate logic: ∀ [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject], ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (A B : SetObject), inst_5.Subset A B ↔ ∀ (x : Element), x ∈ A → x ∈ B
+Transliterated theorem: ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B
 Logical form (Lean): [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject] : ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B
 Source: ./Interface/Membership.lean#L274
 
@@ -453,9 +497,10 @@ Source: ./Interface/Membership.lean#L274
 
 Name: SeparationMembership
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasSeparation Element SetObject],   LRA.Set.SeparationLaws Element SetObject →     ∀ (A : SetObject) (property : Element → Prop) (x : Element),       Iff (inst.mem (inst_1.separation A property) x) (And (inst.mem A x) (property x))
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasSeparation Element SetObject],   LRA.Set.SeparationLaws Element SetObject →     ∀ (A : SetObject) (property : Element → Prop) (x : Element),       Iff (inst.mem (inst_1.separation A property) x) (And (inst.mem A x) (property x))
+State: Sorry
+Predicate logic: ∀ [Membership Element SetObject] [HasSeparation Element SetObject] [SeparationLaws Element SetObject], ∀ (A : SetObject) (property : Element → Prop) (x : Element), x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject], LRA.Set.SeparationLaws Element SetObject → ∀ (A : SetObject) (property : Element → Prop) (x : Element), x ∈ inst_1.separation A property ↔ (x ∈ A ∧ property x)
+Transliterated theorem: ∀ A ∈ SetObject property ∈ Element → Prop x ∈ Element, x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x
 Logical form (Lean): [Membership Element SetObject] [HasSeparation Element SetObject] [SeparationLaws Element SetObject] : ∀ (A : SetObject) (property : Element → Prop) (x : Element), x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x
 Source: ./Interface/Membership.lean#L293
 
@@ -463,9 +508,10 @@ Source: ./Interface/Membership.lean#L293
 
 Name: UniversalMembership
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasUniversal SetObject] [inst_2 : LRA.Set.HasComplement SetObject],   LRA.Set.UniversalMembershipLaws Element SetObject → ∀ (x : Element), inst.mem inst_1.universal x
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasUniversal SetObject] [inst_2 : LRA.Set.HasComplement SetObject],   LRA.Set.UniversalMembershipLaws Element SetObject → ∀ (x : Element), inst.mem inst_1.universal x
+State: Sorry
+Predicate logic: ∀ [Membership Element SetObject] [HasUniversal SetObject] [HasComplement SetObject] [UniversalMembershipLaws Element SetObject], ∀ x : Element, x ∈ (𝒰 : SetObject)
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasUniversal SetObject] [inst_2 : LRA.Set.HasComplement SetObject], LRA.Set.UniversalMembershipLaws Element SetObject → ∀ (x : Element), x ∈ inst_1.universal
+Transliterated theorem: ∀ x : Element, x ∈ 𝒰 ∈ SetObject
 Logical form (Lean): [Membership Element SetObject] [HasUniversal SetObject] [HasComplement SetObject] [UniversalMembershipLaws Element SetObject] : ∀ x : Element, x ∈ (𝒰 : SetObject)
 Source: ./Interface/Membership.lean#L311
 
@@ -473,9 +519,10 @@ Source: ./Interface/Membership.lean#L311
 
 Name: ComplementMembership
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasUniversal SetObject] [inst_2 : LRA.Set.HasComplement SetObject],   LRA.Set.UniversalMembershipLaws Element SetObject →     ∀ (A : SetObject) (x : Element), Iff (inst.mem (inst_2.complement A) x) (Not (inst.mem A x))
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasUniversal SetObject] [inst_2 : LRA.Set.HasComplement SetObject],   LRA.Set.UniversalMembershipLaws Element SetObject →     ∀ (A : SetObject) (x : Element), Iff (inst.mem (inst_2.complement A) x) (Not (inst.mem A x))
+State: Sorry
+Predicate logic: ∀ [Membership Element SetObject] [HasUniversal SetObject] [HasComplement SetObject] [UniversalMembershipLaws Element SetObject], ∀ (A : SetObject) (x : Element), x ∈ Aᶜ ↔ x ∉ A
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasUniversal SetObject] [inst_2 : LRA.Set.HasComplement SetObject], LRA.Set.UniversalMembershipLaws Element SetObject → ∀ (A : SetObject) (x : Element), x ∈ inst_2.complement A ↔ ¬ x ∈ A
+Transliterated theorem: ∀ A ∈ SetObject x ∈ Element, x ∈ Aᶜ ↔ x ∉ A
 Logical form (Lean): [Membership Element SetObject] [HasUniversal SetObject] [HasComplement SetObject] [UniversalMembershipLaws Element SetObject] : ∀ (A : SetObject) (x : Element), x ∈ Aᶜ ↔ x ∉ A
 Source: ./Interface/Membership.lean#L328
 
@@ -483,9 +530,10 @@ Source: ./Interface/Membership.lean#L328
 
 Name: SymmetricDifferenceMembership
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasSymmDiff SetObject],   LRA.Set.SymmDiffMembershipLaws Element SetObject →     ∀ (A B : SetObject) (x : Element),       Iff (inst.mem (inst_1.symmDiff A B) x)         (Or (And (inst.mem A x) (Not (inst.mem B x))) (And (inst.mem B x) (Not (inst.mem A x))))
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasSymmDiff SetObject],   LRA.Set.SymmDiffMembershipLaws Element SetObject →     ∀ (A B : SetObject) (x : Element),       Iff (inst.mem (inst_1.symmDiff A B) x)         (Or (And (inst.mem A x) (Not (inst.mem B x))) (And (inst.mem B x) (Not (inst.mem A x))))
+State: Sorry
+Predicate logic: ∀ [Membership Element SetObject] [HasSymmDiff SetObject] [SymmDiffMembershipLaws Element SetObject], ∀ (A B : SetObject) (x : Element), x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSymmDiff SetObject], LRA.Set.SymmDiffMembershipLaws Element SetObject → ∀ (A B : SetObject) (x : Element), x ∈ inst_1.symmDiff A B ↔ Or ((x ∈ A ∧ ¬ x ∈ B)) ((x ∈ B ∧ ¬ x ∈ A))
+Transliterated theorem: ∀ A B ∈ SetObject x ∈ Element, x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
 Logical form (Lean): [Membership Element SetObject] [HasSymmDiff SetObject] [SymmDiffMembershipLaws Element SetObject] : ∀ (A B : SetObject) (x : Element), x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
 Source: ./Interface/Membership.lean#L346
 
@@ -493,9 +541,10 @@ Source: ./Interface/Membership.lean#L346
 
 Name: PowersetMembership
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {SetObject : Type u} {Collection : Type v} [inst : Membership SetObject Collection] [inst_1 : HasSubset SetObject]   [inst_2 : LRA.Set.HasPowerset SetObject Collection],   LRA.Set.PowersetMembershipLaws SetObject Collection →     ∀ (A B : SetObject), Iff (inst.mem (inst_2.powerset A) B) (inst_1.Subset B A)
-Predicate logic (unfolded): ∀ {SetObject : Type u} {Collection : Type v} [inst : Membership SetObject Collection] [inst_1 : HasSubset SetObject]   [inst_2 : LRA.Set.HasPowerset SetObject Collection],   LRA.Set.PowersetMembershipLaws SetObject Collection →     ∀ (A B : SetObject), Iff (inst.mem (inst_2.powerset A) B) (inst_1.Subset B A)
+State: Sorry
+Predicate logic: ∀ {SetObject : Type u} {Collection : Type v} [Membership SetObject Collection] [HasSubset SetObject] [HasPowerset SetObject Collection] [PowersetMembershipLaws SetObject Collection], ∀ A B : SetObject, B ∈ (HasPowerset.powerset A : Collection) ↔ B ⊆ A
+Predicate logic (unfolded): ∀ {SetObject : Type u} {Collection : Type v} [inst : Membership SetObject Collection] [inst_1 : HasSubset SetObject] [inst_2 : LRA.Set.HasPowerset SetObject Collection], LRA.Set.PowersetMembershipLaws SetObject Collection → ∀ (A B : SetObject), B ∈ inst_2.powerset A ↔ inst_1.Subset B A
+Transliterated theorem: ∀ A B : SetObject, B ∈ HasPowerset.powerset A ∈ Collection ↔ B ⊆ A
 Logical form (Lean): {SetObject : Type u} {Collection : Type v} [Membership SetObject Collection] [HasSubset SetObject] [HasPowerset SetObject Collection] [PowersetMembershipLaws SetObject Collection] : ∀ A B : SetObject, B ∈ (HasPowerset.powerset A : Collection) ↔ B ⊆ A
 Source: ./Interface/Membership.lean#L365
 
@@ -503,9 +552,10 @@ Source: ./Interface/Membership.lean#L365
 
 Name: PairInjective
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Left Right Pair : Type u} [inst : LRA.Set.HasPairing Left Right Pair],   LRA.Set.PairingLaws Left Right Pair →     ∀ (firstLeft secondLeft : Left) (firstRight secondRight : Right),       Iff (Eq (LRA.Set.OrderedPair firstLeft firstRight) (LRA.Set.OrderedPair secondLeft secondRight))         (And (Eq firstLeft secondLeft) (Eq firstRight secondRight))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} [inst : LRA.Set.HasPairing Left Right Pair],   LRA.Set.PairingLaws Left Right Pair →     ∀ (firstLeft secondLeft : Left) (firstRight secondRight : Right),       Iff (Eq (LRA.Set.OrderedPair firstLeft firstRight) (LRA.Set.OrderedPair secondLeft secondRight))         (And (Eq firstLeft secondLeft) (Eq firstRight secondRight))
+State: Sorry
+Predicate logic: ∀ {Left Right Pair : Type u} [HasPairing Left Right Pair] [PairingLaws Left Right Pair], ∀ (firstLeft secondLeft : Left) (firstRight secondRight : Right), OrderedPair firstLeft firstRight = OrderedPair secondLeft secondRight ↔ firstLeft = secondLeft ∧ firstRight = secondRight
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} [inst : LRA.Set.HasPairing Left Right Pair], LRA.Set.PairingLaws Left Right Pair → ∀ (firstLeft secondLeft : Left) (firstRight secondRight : Right), LRA.Set.OrderedPair firstLeft firstRight = LRA.Set.OrderedPair secondLeft secondRight ↔ (firstLeft = secondLeft ∧ firstRight = secondRight)
+Transliterated theorem: ∀ firstLeft secondLeft ∈ Left firstRight secondRight ∈ Right, OrderedPair firstLeft firstRight = OrderedPair secondLeft secondRight ↔ firstLeft = secondLeft ∧ firstRight = secondRight
 Logical form (Lean): {Left Right Pair : Type u} [HasPairing Left Right Pair] [PairingLaws Left Right Pair] : ∀ (firstLeft secondLeft : Left) (firstRight secondRight : Right), OrderedPair firstLeft firstRight = OrderedPair secondLeft secondRight ↔ firstLeft = secondLeft ∧ firstRight = secondRight
 Source: ./Interface/Pairing.lean#L109
 
@@ -516,6 +566,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: ∀ {Left Right : Type u}, LRA.Set.PairingLaws Left Right (Prod Left Right)
 Predicate logic (unfolded): ∀ {Left Right : Type u}, LRA.Set.PairingLaws Left Right (Prod Left Right)
+Transliterated theorem: PairingLaws Left Right (Left × Right) where PairInjective
 Logical form (Lean): {Left Right : Type u} : PairingLaws Left Right (Left × Right) where PairInjective
 Source: ./Interface/Pairing.lean#L149
 
@@ -523,9 +574,10 @@ Source: ./Interface/Pairing.lean#L149
 
 Name: AppliedToRelates
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] (relation : RelationObject) (input : Left)   (hits : Exists fun output => LRA.Set.Relates relation input output),   LRA.Set.Relates relation input (LRA.Set.AppliedTo relation input hits)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] (relation : RelationObject) (input : Left)   (hits : Exists fun output => LRA.Set.Relates relation input output),   LRA.Set.Relates relation input (LRA.Set.AppliedTo relation input hits)
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] (relation : RelationObject) (input : Left) (hits : Exists fun output => LRA.Set.Relates relation input output), LRA.Set.Relates relation input (LRA.Set.AppliedTo relation input hits)
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ input ∈ Left), (∃ output ∈ Right, Relates relation input output) → Relates relation input (AppliedTo relation input hits)
 Logical form (Lean): {Left Right Pair : Type u} {RelationObject : Type v} [HasPairing Left Right Pair] [Membership Pair RelationObject] (relation : RelationObject) (input : Left) (hits : ∃ output : Right, Relates relation input output) : Relates relation input (AppliedTo relation input hits)
 Source: ./Interface/RelationSets.lean#L465
 
@@ -534,8 +586,9 @@ Source: ./Interface/RelationSets.lean#L465
 Name: RelatesCartesianProductOf
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject) (a : Left) (b : Right),       Iff (LRA.Set.Relates (LRA.Set.CartesianProductOf left right ambientPairs) a b)         (And (inst_4.mem ambientPairs (LRA.Set.OrderedPair a b)) (And (inst_2.mem left a) (inst_3.mem right b)))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject) (a : Left) (b : Right),       Iff (LRA.Set.Relates (LRA.Set.CartesianProductOf left right ambientPairs) a b)         (And (inst_4.mem ambientPairs (LRA.Set.OrderedPair a b)) (And (inst_2.mem left a) (inst_3.mem right b)))
+Predicate logic: ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject) (a : Left) (b : Right), Relates (CartesianProductOf left right ambientPairs) a b ↔ (OrderedPair a b : Pair) ∈ ambientPairs ∧ a ∈ left ∧ b ∈ right
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject) (a : Left) (b : Right), LRA.Set.Relates (LRA.Set.CartesianProductOf left right ambientPairs) a b ↔ (LRA.Set.OrderedPair a b ∈ ambientPairs ∧ (a ∈ left ∧ b ∈ right))
+Transliterated theorem: (∀ left ∈ DomainObject ∀ right ∈ RangeObject ∀ ambientPairs ∈ RelationObject ∀ a ∈ Left ∀ b ∈ Right), Relates (CartesianProductOf left right ambientPairs) a b ↔ OrderedPair a b ∈ Pair ∈ ambientPairs ∧ a ∈ left ∧ b ∈ right
 Logical form (Lean): (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject) (a : Left) (b : Right) : Relates (CartesianProductOf left right ambientPairs) a b ↔ (OrderedPair a b : Pair) ∈ ambientPairs ∧ a ∈ left ∧ b ∈ right
 Source: ./Interface/CartesianProductLaws.lean#L60
 
@@ -544,8 +597,9 @@ Source: ./Interface/CartesianProductLaws.lean#L60
 Name: CartesianProductOfIsPairwise
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject),       LRA.Set.IsPairwise Left Right (LRA.Set.CartesianProductOf left right ambientPairs)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject),       LRA.Set.IsPairwise Left Right (LRA.Set.CartesianProductOf left right ambientPairs)
+Predicate logic: ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), IsPairwise Left Right (CartesianProductOf left right ambientPairs)
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), LRA.Set.IsPairwise Left Right (LRA.Set.CartesianProductOf left right ambientPairs)
+Transliterated theorem: (∀ left ∈ DomainObject ∀ right ∈ RangeObject ∀ ambientPairs ∈ RelationObject), IsPairwise Left Right (CartesianProductOf left right ambientPairs)
 Logical form (Lean): (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject) : IsPairwise Left Right (CartesianProductOf left right ambientPairs)
 Source: ./Interface/CartesianProductLaws.lean#L81
 
@@ -554,8 +608,9 @@ Source: ./Interface/CartesianProductLaws.lean#L81
 Name: CartesianProductOfSubsetAmbient
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject),           inst_19.Subset (LRA.Set.CartesianProductOf left right ambientPairs) ambientPairs
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject),           inst_19.Subset (LRA.Set.CartesianProductOf left right ambientPairs) ambientPairs
+Predicate logic: ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), CartesianProductOf left right ambientPairs ⊆ ambientPairs
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), inst_19.Subset (LRA.Set.CartesianProductOf left right ambientPairs) ambientPairs
+Transliterated theorem: (∀ left ∈ DomainObject ∀ right ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf left right ambientPairs ⊆ ambientPairs
 Logical form (Lean): (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject) : CartesianProductOf left right ambientPairs ⊆ ambientPairs
 Source: ./Interface/CartesianProductLaws.lean#L108
 
@@ -564,8 +619,9 @@ Source: ./Interface/CartesianProductLaws.lean#L108
 Name: CartesianProductOfMonotoneLeft
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (smaller larger : DomainObject) (right : RangeObject) (ambientPairs : RelationObject),           inst_9.Subset smaller larger →             inst_19.Subset (LRA.Set.CartesianProductOf smaller right ambientPairs)               (LRA.Set.CartesianProductOf larger right ambientPairs)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (smaller larger : DomainObject) (right : RangeObject) (ambientPairs : RelationObject),           inst_9.Subset smaller larger →             inst_19.Subset (LRA.Set.CartesianProductOf smaller right ambientPairs)               (LRA.Set.CartesianProductOf larger right ambientPairs)
+Predicate logic: ∀ (smaller larger : DomainObject) (right : RangeObject) (ambientPairs : RelationObject) (inclusion : smaller ⊆ larger), CartesianProductOf smaller right ambientPairs ⊆ CartesianProductOf larger right ambientPairs
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (smaller larger : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), inst_9.Subset smaller larger → inst_19.Subset (LRA.Set.CartesianProductOf smaller right ambientPairs) (LRA.Set.CartesianProductOf larger right ambientPairs)
+Transliterated theorem: (∀ smaller larger ∈ DomainObject ∀ right ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf smaller right ambientPairs ⊆ CartesianProductOf larger right ambientPairs
 Logical form (Lean): (smaller larger : DomainObject) (right : RangeObject) (ambientPairs : RelationObject) (inclusion : smaller ⊆ larger) : CartesianProductOf smaller right ambientPairs ⊆ CartesianProductOf larger right ambientPairs
 Source: ./Interface/CartesianProductLaws.lean#L126
 
@@ -574,8 +630,9 @@ Source: ./Interface/CartesianProductLaws.lean#L126
 Name: CartesianProductOfMonotoneRight
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (left : DomainObject) (smaller larger : RangeObject) (ambientPairs : RelationObject),           inst_14.Subset smaller larger →             inst_19.Subset (LRA.Set.CartesianProductOf left smaller ambientPairs)               (LRA.Set.CartesianProductOf left larger ambientPairs)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (left : DomainObject) (smaller larger : RangeObject) (ambientPairs : RelationObject),           inst_14.Subset smaller larger →             inst_19.Subset (LRA.Set.CartesianProductOf left smaller ambientPairs)               (LRA.Set.CartesianProductOf left larger ambientPairs)
+Predicate logic: ∀ (left : DomainObject) (smaller larger : RangeObject) (ambientPairs : RelationObject) (inclusion : smaller ⊆ larger), CartesianProductOf left smaller ambientPairs ⊆ CartesianProductOf left larger ambientPairs
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (smaller larger : RangeObject) (ambientPairs : RelationObject), inst_14.Subset smaller larger → inst_19.Subset (LRA.Set.CartesianProductOf left smaller ambientPairs) (LRA.Set.CartesianProductOf left larger ambientPairs)
+Transliterated theorem: (∀ left ∈ DomainObject ∀ smaller larger ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf left smaller ambientPairs ⊆ CartesianProductOf left larger ambientPairs
 Logical form (Lean): (left : DomainObject) (smaller larger : RangeObject) (ambientPairs : RelationObject) (inclusion : smaller ⊆ larger) : CartesianProductOf left smaller ambientPairs ⊆ CartesianProductOf left larger ambientPairs
 Source: ./Interface/CartesianProductLaws.lean#L145
 
@@ -584,8 +641,9 @@ Source: ./Interface/CartesianProductLaws.lean#L145
 Name: CartesianProductOfEmptyLeft
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (right : RangeObject) (ambientPairs : RelationObject),           Eq (LRA.Set.CartesianProductOf inst_8.emptyCollection right ambientPairs) inst_18.emptyCollection
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (right : RangeObject) (ambientPairs : RelationObject),           Eq (LRA.Set.CartesianProductOf inst_8.emptyCollection right ambientPairs) inst_18.emptyCollection
+Predicate logic: ∀ (right : RangeObject) (ambientPairs : RelationObject), CartesianProductOf (∅ : DomainObject) right ambientPairs = (∅ : RelationObject)
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (right : RangeObject) (ambientPairs : RelationObject), LRA.Set.CartesianProductOf inst_8.emptyCollection right ambientPairs = inst_18.emptyCollection
+Transliterated theorem: (∀ right ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf ∅ ∈ DomainObject right ambientPairs = ∅ ∈ RelationObject
 Logical form (Lean): (right : RangeObject) (ambientPairs : RelationObject) : CartesianProductOf (∅ : DomainObject) right ambientPairs = (∅ : RelationObject)
 Source: ./Interface/CartesianProductLaws.lean#L163
 
@@ -594,8 +652,9 @@ Source: ./Interface/CartesianProductLaws.lean#L163
 Name: CartesianProductOfEmptyRight
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (left : DomainObject) (ambientPairs : RelationObject),           Eq (LRA.Set.CartesianProductOf left inst_13.emptyCollection ambientPairs) inst_18.emptyCollection
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (left : DomainObject) (ambientPairs : RelationObject),           Eq (LRA.Set.CartesianProductOf left inst_13.emptyCollection ambientPairs) inst_18.emptyCollection
+Predicate logic: ∀ (left : DomainObject) (ambientPairs : RelationObject), CartesianProductOf left (∅ : RangeObject) ambientPairs = (∅ : RelationObject)
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (ambientPairs : RelationObject), LRA.Set.CartesianProductOf left inst_13.emptyCollection ambientPairs = inst_18.emptyCollection
+Transliterated theorem: (∀ left ∈ DomainObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf left ∅ ∈ RangeObject ambientPairs = ∅ ∈ RelationObject
 Logical form (Lean): (left : DomainObject) (ambientPairs : RelationObject) : CartesianProductOf left (∅ : RangeObject) ambientPairs = (∅ : RelationObject)
 Source: ./Interface/CartesianProductLaws.lean#L180
 
@@ -604,8 +663,9 @@ Source: ./Interface/CartesianProductLaws.lean#L180
 Name: CartesianProductOfUnionLeft
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject),           Eq (LRA.Set.CartesianProductOf (inst_5.union left left') right ambientPairs)             (inst_15.union (LRA.Set.CartesianProductOf left right ambientPairs)               (LRA.Set.CartesianProductOf left' right ambientPairs))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject),           Eq (LRA.Set.CartesianProductOf (inst_5.union left left') right ambientPairs)             (inst_15.union (LRA.Set.CartesianProductOf left right ambientPairs)               (LRA.Set.CartesianProductOf left' right ambientPairs))
+Predicate logic: ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), CartesianProductOf (left ∪ left') right ambientPairs = CartesianProductOf left right ambientPairs ∪ CartesianProductOf left' right ambientPairs
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), LRA.Set.CartesianProductOf (left ∪ left')right ambientPairs = LRA.Set.CartesianProductOf left right ambientPairs ∪ LRA.Set.CartesianProductOf left' right ambientPairs
+Transliterated theorem: (∀ left left' ∈ DomainObject ∀ right ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf (left ∪ left') right ambientPairs = CartesianProductOf left right ambientPairs ∪ CartesianProductOf left' right ambientPairs
 Logical form (Lean): (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject) : CartesianProductOf (left ∪ left') right ambientPairs = CartesianProductOf left right ambientPairs ∪ CartesianProductOf left' right ambientPairs
 Source: ./Interface/CartesianProductLaws.lean#L200
 
@@ -614,8 +674,9 @@ Source: ./Interface/CartesianProductLaws.lean#L200
 Name: CartesianProductOfUnionRight
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject),           Eq (LRA.Set.CartesianProductOf left (inst_10.union right right') ambientPairs)             (inst_15.union (LRA.Set.CartesianProductOf left right ambientPairs)               (LRA.Set.CartesianProductOf left right' ambientPairs))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject),           Eq (LRA.Set.CartesianProductOf left (inst_10.union right right') ambientPairs)             (inst_15.union (LRA.Set.CartesianProductOf left right ambientPairs)               (LRA.Set.CartesianProductOf left right' ambientPairs))
+Predicate logic: ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject), CartesianProductOf left (right ∪ right') ambientPairs = CartesianProductOf left right ambientPairs ∪ CartesianProductOf left right' ambientPairs
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject), LRA.Set.CartesianProductOf left (right ∪ right')ambientPairs = LRA.Set.CartesianProductOf left right ambientPairs ∪ LRA.Set.CartesianProductOf left right' ambientPairs
+Transliterated theorem: (∀ left ∈ DomainObject ∀ right right' ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf left (right ∪ right') ambientPairs = CartesianProductOf left right ambientPairs ∪ CartesianProductOf left right' ambientPairs
 Logical form (Lean): (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject) : CartesianProductOf left (right ∪ right') ambientPairs = CartesianProductOf left right ambientPairs ∪ CartesianProductOf left right' ambientPairs
 Source: ./Interface/CartesianProductLaws.lean#L222
 
@@ -624,8 +685,9 @@ Source: ./Interface/CartesianProductLaws.lean#L222
 Name: CartesianProductOfIntersectionLeft
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject),           Eq (LRA.Set.CartesianProductOf (inst_6.inter left left') right ambientPairs)             (inst_16.inter (LRA.Set.CartesianProductOf left right ambientPairs)               (LRA.Set.CartesianProductOf left' right ambientPairs))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject),           Eq (LRA.Set.CartesianProductOf (inst_6.inter left left') right ambientPairs)             (inst_16.inter (LRA.Set.CartesianProductOf left right ambientPairs)               (LRA.Set.CartesianProductOf left' right ambientPairs))
+Predicate logic: ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), CartesianProductOf (left ∩ left') right ambientPairs = CartesianProductOf left right ambientPairs ∩ CartesianProductOf left' right ambientPairs
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), LRA.Set.CartesianProductOf (left ∩ left')right ambientPairs = LRA.Set.CartesianProductOf left right ambientPairs ∩ LRA.Set.CartesianProductOf left' right ambientPairs
+Transliterated theorem: (∀ left left' ∈ DomainObject ∀ right ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf (left ∩ left') right ambientPairs = CartesianProductOf left right ambientPairs ∩ CartesianProductOf left' right ambientPairs
 Logical form (Lean): (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject) : CartesianProductOf (left ∩ left') right ambientPairs = CartesianProductOf left right ambientPairs ∩ CartesianProductOf left' right ambientPairs
 Source: ./Interface/CartesianProductLaws.lean#L244
 
@@ -634,8 +696,9 @@ Source: ./Interface/CartesianProductLaws.lean#L244
 Name: CartesianProductOfIntersectionRight
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject),           Eq (LRA.Set.CartesianProductOf left (inst_11.inter right right') ambientPairs)             (inst_16.inter (LRA.Set.CartesianProductOf left right ambientPairs)               (LRA.Set.CartesianProductOf left right' ambientPairs))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject),           Eq (LRA.Set.CartesianProductOf left (inst_11.inter right right') ambientPairs)             (inst_16.inter (LRA.Set.CartesianProductOf left right ambientPairs)               (LRA.Set.CartesianProductOf left right' ambientPairs))
+Predicate logic: ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject), CartesianProductOf left (right ∩ right') ambientPairs = CartesianProductOf left right ambientPairs ∩ CartesianProductOf left right' ambientPairs
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject), LRA.Set.CartesianProductOf left (right ∩ right')ambientPairs = LRA.Set.CartesianProductOf left right ambientPairs ∩ LRA.Set.CartesianProductOf left right' ambientPairs
+Transliterated theorem: (∀ left ∈ DomainObject ∀ right right' ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf left (right ∩ right') ambientPairs = CartesianProductOf left right ambientPairs ∩ CartesianProductOf left right' ambientPairs
 Logical form (Lean): (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject) : CartesianProductOf left (right ∩ right') ambientPairs = CartesianProductOf left right ambientPairs ∩ CartesianProductOf left right' ambientPairs
 Source: ./Interface/CartesianProductLaws.lean#L266
 
@@ -644,8 +707,9 @@ Source: ./Interface/CartesianProductLaws.lean#L266
 Name: IntersectionOfCartesianProducts
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (leftFirst leftSecond : DomainObject) (rightFirst rightSecond : RangeObject) (ambientPairs : RelationObject),           Eq             (inst_16.inter (LRA.Set.CartesianProductOf leftFirst rightFirst ambientPairs)               (LRA.Set.CartesianProductOf leftSecond rightSecond ambientPairs))             (LRA.Set.CartesianProductOf (inst_6.inter leftFirst leftSecond) (inst_11.inter rightFirst rightSecond)               ambientPairs)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (leftFirst leftSecond : DomainObject) (rightFirst rightSecond : RangeObject) (ambientPairs : RelationObject),           Eq             (inst_16.inter (LRA.Set.CartesianProductOf leftFirst rightFirst ambientPairs)               (LRA.Set.CartesianProductOf leftSecond rightSecond ambientPairs))             (LRA.Set.CartesianProductOf (inst_6.inter leftFirst leftSecond) (inst_11.inter rightFirst rightSecond)               ambientPairs)
+Predicate logic: ∀ (leftFirst leftSecond : DomainObject) (rightFirst rightSecond : RangeObject) (ambientPairs : RelationObject), CartesianProductOf leftFirst rightFirst ambientPairs ∩ CartesianProductOf leftSecond rightSecond ambientPairs = CartesianProductOf (leftFirst ∩ leftSecond) (rightFirst ∩ rightSecond) ambientPairs
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (leftFirst leftSecond : DomainObject) (rightFirst rightSecond : RangeObject) (ambientPairs : RelationObject), LRA.Set.CartesianProductOf leftFirst rightFirst ambientPairs ∩ LRA.Set.CartesianProductOf leftSecond rightSecond ambientPairs = LRA.Set.CartesianProductOf (leftFirst ∩ leftSecond)(rightFirst ∩ rightSecond) ambientPairs
+Transliterated theorem: (∀ leftFirst leftSecond ∈ DomainObject ∀ rightFirst rightSecond ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf leftFirst rightFirst ambientPairs ∩ CartesianProductOf leftSecond rightSecond ambientPairs = CartesianProductOf (leftFirst ∩ leftSecond) (rightFirst ∩ rightSecond) ambientPairs
 Logical form (Lean): (leftFirst leftSecond : DomainObject) (rightFirst rightSecond : RangeObject) (ambientPairs : RelationObject) : CartesianProductOf leftFirst rightFirst ambientPairs ∩ CartesianProductOf leftSecond rightSecond ambientPairs = CartesianProductOf (leftFirst ∩ leftSecond) (rightFirst ∩ rightSecond) ambientPairs
 Source: ./Interface/CartesianProductLaws.lean#L291
 
@@ -654,8 +718,9 @@ Source: ./Interface/CartesianProductLaws.lean#L291
 Name: CartesianProductOfDifferenceLeft
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject),           Eq (LRA.Set.CartesianProductOf (inst_7.sdiff left left') right ambientPairs)             (inst_17.sdiff (LRA.Set.CartesianProductOf left right ambientPairs)               (LRA.Set.CartesianProductOf left' right ambientPairs))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject),           Eq (LRA.Set.CartesianProductOf (inst_7.sdiff left left') right ambientPairs)             (inst_17.sdiff (LRA.Set.CartesianProductOf left right ambientPairs)               (LRA.Set.CartesianProductOf left' right ambientPairs))
+Predicate logic: ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), CartesianProductOf (left \ left') right ambientPairs = CartesianProductOf left right ambientPairs \ CartesianProductOf left' right ambientPairs
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), LRA.Set.CartesianProductOf (left \ left')right ambientPairs = LRA.Set.CartesianProductOf left right ambientPairs \ LRA.Set.CartesianProductOf left' right ambientPairs
+Transliterated theorem: (∀ left left' ∈ DomainObject ∀ right ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf (left \ left') right ambientPairs = CartesianProductOf left right ambientPairs \ CartesianProductOf left' right ambientPairs
 Logical form (Lean): (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject) : CartesianProductOf (left \ left') right ambientPairs = CartesianProductOf left right ambientPairs \ CartesianProductOf left' right ambientPairs
 Source: ./Interface/CartesianProductLaws.lean#L315
 
@@ -664,8 +729,9 @@ Source: ./Interface/CartesianProductLaws.lean#L315
 Name: CartesianProductOfDifferenceRight
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject),           Eq (LRA.Set.CartesianProductOf left (inst_12.sdiff right right') ambientPairs)             (inst_17.sdiff (LRA.Set.CartesianProductOf left right ambientPairs)               (LRA.Set.CartesianProductOf left right' ambientPairs))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject),           Eq (LRA.Set.CartesianProductOf left (inst_12.sdiff right right') ambientPairs)             (inst_17.sdiff (LRA.Set.CartesianProductOf left right ambientPairs)               (LRA.Set.CartesianProductOf left right' ambientPairs))
+Predicate logic: ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject), CartesianProductOf left (right \ right') ambientPairs = CartesianProductOf left right ambientPairs \ CartesianProductOf left right' ambientPairs
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject), LRA.Set.CartesianProductOf left (right \ right')ambientPairs = LRA.Set.CartesianProductOf left right ambientPairs \ LRA.Set.CartesianProductOf left right' ambientPairs
+Transliterated theorem: (∀ left ∈ DomainObject ∀ right right' ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf left (right \ right') ambientPairs = CartesianProductOf left right ambientPairs \ CartesianProductOf left right' ambientPairs
 Logical form (Lean): (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject) : CartesianProductOf left (right \ right') ambientPairs = CartesianProductOf left right ambientPairs \ CartesianProductOf left right' ambientPairs
 Source: ./Interface/CartesianProductLaws.lean#L337
 
@@ -674,8 +740,9 @@ Source: ./Interface/CartesianProductLaws.lean#L337
 Name: CartesianProductOfCongr
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (leftFirst leftSecond : DomainObject) (rightFirst rightSecond : RangeObject) (ambientPairs : RelationObject),           And (∀ (a : Left), Iff (inst_2.mem leftFirst a) (inst_2.mem leftSecond a))               (∀ (b : Right), Iff (inst_3.mem rightFirst b) (inst_3.mem rightSecond b)) →             Eq (LRA.Set.CartesianProductOf leftFirst rightFirst ambientPairs)               (LRA.Set.CartesianProductOf leftSecond rightSecond ambientPairs)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : Membership Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject]       [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject],       And (LRA.Set.MembershipLaws Left DomainObject)           (And (LRA.Set.MembershipLaws Right RangeObject) (LRA.Set.MembershipLaws Pair RelationObject)) →         ∀ (leftFirst leftSecond : DomainObject) (rightFirst rightSecond : RangeObject) (ambientPairs : RelationObject),           And (∀ (a : Left), Iff (inst_2.mem leftFirst a) (inst_2.mem leftSecond a))               (∀ (b : Right), Iff (inst_3.mem rightFirst b) (inst_3.mem rightSecond b)) →             Eq (LRA.Set.CartesianProductOf leftFirst rightFirst ambientPairs)               (LRA.Set.CartesianProductOf leftSecond rightSecond ambientPairs)
+Predicate logic: ∀ (leftFirst leftSecond : DomainObject) (rightFirst rightSecond : RangeObject) (ambientPairs : RelationObject) (sameLeft : ∀ a : Left, a ∈ leftFirst ↔ a ∈ leftSecond) (sameRight : ∀ b : Right, b ∈ rightFirst ↔ b ∈ rightSecond), CartesianProductOf leftFirst rightFirst ambientPairs = CartesianProductOf leftSecond rightSecond ambientPairs
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (leftFirst leftSecond : DomainObject) (rightFirst rightSecond : RangeObject) (ambientPairs : RelationObject), (∀ (a : Left), a ∈ leftFirst ↔ a ∈ leftSecond ∧ ∀ (b : Right), b ∈ rightFirst ↔ b ∈ rightSecond) → LRA.Set.CartesianProductOf leftFirst rightFirst ambientPairs = LRA.Set.CartesianProductOf leftSecond rightSecond ambientPairs
+Transliterated theorem: (∀ leftFirst leftSecond ∈ DomainObject ∀ rightFirst rightSecond ∈ RangeObject ∀ ambientPairs ∈ RelationObject), (∀ a : Left, a ∈ leftFirst ↔ a ∈ leftSecond ∧ ∀ b : Right, b ∈ rightFirst ↔ b ∈ rightSecond) → CartesianProductOf leftFirst rightFirst ambientPairs = CartesianProductOf leftSecond rightSecond ambientPairs
 Logical form (Lean): (leftFirst leftSecond : DomainObject) (rightFirst rightSecond : RangeObject) (ambientPairs : RelationObject) (sameLeft : ∀ a : Left, a ∈ leftFirst ↔ a ∈ leftSecond) (sameRight : ∀ b : Right, b ∈ rightFirst ↔ b ∈ rightSecond) : CartesianProductOf leftFirst rightFirst ambientPairs = CartesianProductOf leftSecond rightSecond ambientPairs
 Source: ./Interface/CartesianProductLaws.lean#L347
 
@@ -684,8 +751,9 @@ Source: ./Interface/CartesianProductLaws.lean#L347
 Name: RelatesUnion
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : Union RelationObject] [inst_3 : Inter RelationObject]   [inst_4 : SDiff RelationObject] [inst_5 : EmptyCollection RelationObject] [inst_6 : HasSubset RelationObject],   LRA.Set.MembershipLaws Pair RelationObject →     ∀ (first second : RelationObject) (input : Left) (output : Right),       Iff (LRA.Set.Relates (inst_2.union first second) input output)         (Or (LRA.Set.Relates first input output) (LRA.Set.Relates second input output))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : Union RelationObject] [inst_3 : Inter RelationObject]   [inst_4 : SDiff RelationObject] [inst_5 : EmptyCollection RelationObject] [inst_6 : HasSubset RelationObject],   LRA.Set.MembershipLaws Pair RelationObject →     ∀ (first second : RelationObject) (input : Left) (output : Right),       Iff (LRA.Set.Relates (inst_2.union first second) input output)         (Or (LRA.Set.Relates first input output) (LRA.Set.Relates second input output))
+Predicate logic: ∀ [HasPairing Left Right Pair] [Membership Pair RelationObject] [Union RelationObject] [Inter RelationObject] [SDiff RelationObject] [EmptyCollection RelationObject] [HasSubset RelationObject] [MembershipLaws Pair RelationObject] (first second : RelationObject) (input : Left) (output : Right), Relates (first ∪ second) input output ↔ Relates first input output ∨ Relates second input output
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Union RelationObject] [inst_3 : Inter RelationObject] [inst_4 : SDiff RelationObject] [inst_5 : EmptyCollection RelationObject] [inst_6 : HasSubset RelationObject], LRA.Set.MembershipLaws Pair RelationObject → ∀ (first second : RelationObject) (input : Left) (output : Right), LRA.Set.Relates (first ∪ second)input output ↔ Or (LRA.Set.Relates first input output) (LRA.Set.Relates second input output)
+Transliterated theorem: (∀ first second ∈ RelationObject ∀ input ∈ Left ∀ output ∈ Right), Relates (first ∪ second) input output ↔ Relates first input output ∨ Relates second input output
 Logical form (Lean): [HasPairing Left Right Pair] [Membership Pair RelationObject] [Union RelationObject] [Inter RelationObject] [SDiff RelationObject] [EmptyCollection RelationObject] [HasSubset RelationObject] [MembershipLaws Pair RelationObject] (first second : RelationObject) (input : Left) (output : Right) : Relates (first ∪ second) input output ↔ Relates first input output ∨ Relates second input output
 Source: ./Interface/RelationLaws.lean#L52
 
@@ -694,8 +762,9 @@ Source: ./Interface/RelationLaws.lean#L52
 Name: RelatesIntersection
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : Union RelationObject] [inst_3 : Inter RelationObject]   [inst_4 : SDiff RelationObject] [inst_5 : EmptyCollection RelationObject] [inst_6 : HasSubset RelationObject],   LRA.Set.MembershipLaws Pair RelationObject →     ∀ (first second : RelationObject) (input : Left) (output : Right),       Iff (LRA.Set.Relates (inst_3.inter first second) input output)         (And (LRA.Set.Relates first input output) (LRA.Set.Relates second input output))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : Union RelationObject] [inst_3 : Inter RelationObject]   [inst_4 : SDiff RelationObject] [inst_5 : EmptyCollection RelationObject] [inst_6 : HasSubset RelationObject],   LRA.Set.MembershipLaws Pair RelationObject →     ∀ (first second : RelationObject) (input : Left) (output : Right),       Iff (LRA.Set.Relates (inst_3.inter first second) input output)         (And (LRA.Set.Relates first input output) (LRA.Set.Relates second input output))
+Predicate logic: ∀ [HasPairing Left Right Pair] [Membership Pair RelationObject] [Union RelationObject] [Inter RelationObject] [SDiff RelationObject] [EmptyCollection RelationObject] [HasSubset RelationObject] [MembershipLaws Pair RelationObject] (first second : RelationObject) (input : Left) (output : Right), Relates (first ∩ second) input output ↔ Relates first input output ∧ Relates second input output
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Union RelationObject] [inst_3 : Inter RelationObject] [inst_4 : SDiff RelationObject] [inst_5 : EmptyCollection RelationObject] [inst_6 : HasSubset RelationObject], LRA.Set.MembershipLaws Pair RelationObject → ∀ (first second : RelationObject) (input : Left) (output : Right), LRA.Set.Relates (first ∩ second)input output ↔ (LRA.Set.Relates first input output ∧ LRA.Set.Relates second input output)
+Transliterated theorem: (∀ first second ∈ RelationObject ∀ input ∈ Left ∀ output ∈ Right), Relates (first ∩ second) input output ↔ Relates first input output ∧ Relates second input output
 Logical form (Lean): [HasPairing Left Right Pair] [Membership Pair RelationObject] [Union RelationObject] [Inter RelationObject] [SDiff RelationObject] [EmptyCollection RelationObject] [HasSubset RelationObject] [MembershipLaws Pair RelationObject] (first second : RelationObject) (input : Left) (output : Right) : Relates (first ∩ second) input output ↔ Relates first input output ∧ Relates second input output
 Source: ./Interface/RelationLaws.lean#L75
 
@@ -704,8 +773,9 @@ Source: ./Interface/RelationLaws.lean#L75
 Name: MemberOfDomainOf
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject]   [inst_3 : LRA.Set.HasSeparation Left DomainObject],   LRA.Set.SeparationLaws Left DomainObject →     ∀ (relation : RelationObject) (ambientDomain : DomainObject) (input : Left),       Iff (inst_2.mem (LRA.Set.DomainOf Right relation ambientDomain) input)         (And (inst_2.mem ambientDomain input) (Exists fun output => LRA.Set.Relates relation input output))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject]   [inst_3 : LRA.Set.HasSeparation Left DomainObject],   LRA.Set.SeparationLaws Left DomainObject →     ∀ (relation : RelationObject) (ambientDomain : DomainObject) (input : Left),       Iff (inst_2.mem (LRA.Set.DomainOf Right relation ambientDomain) input)         (And (inst_2.mem ambientDomain input) (Exists fun output => LRA.Set.Relates relation input output))
+Predicate logic: ∀ [HasPairing Left Right Pair] [Membership Pair RelationObject] [Membership Left DomainObject] [HasSeparation Left DomainObject] [SeparationLaws Left DomainObject] (relation : RelationObject) (ambientDomain : DomainObject) (input : Left), input ∈ DomainOf Right relation ambientDomain ↔ input ∈ ambientDomain ∧ ∃ output : Right, Relates relation input output
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : LRA.Set.HasSeparation Left DomainObject], LRA.Set.SeparationLaws Left DomainObject → ∀ (relation : RelationObject) (ambientDomain : DomainObject) (input : Left), input ∈ LRA.Set.DomainOf Right relation ambientDomain ↔ (input ∈ ambientDomain ∧ Exists fun output => LRA.Set.Relates relation input output)
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ ambientDomain ∈ DomainObject ∀ input ∈ Left), input ∈ DomainOf Right relation ambientDomain ↔ input ∈ ambientDomain ∧ ∃ output ∈ Right, Relates relation input output
 Logical form (Lean): [HasPairing Left Right Pair] [Membership Pair RelationObject] [Membership Left DomainObject] [HasSeparation Left DomainObject] [SeparationLaws Left DomainObject] (relation : RelationObject) (ambientDomain : DomainObject) (input : Left) : input ∈ DomainOf Right relation ambientDomain ↔ input ∈ ambientDomain ∧ ∃ output : Right, Relates relation input output
 Source: ./Interface/RelationLaws.lean#L100
 
@@ -714,8 +784,9 @@ Source: ./Interface/RelationLaws.lean#L100
 Name: MemberOfRangeOf
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Right RangeObject]   [inst_3 : LRA.Set.HasSeparation Right RangeObject],   LRA.Set.SeparationLaws Right RangeObject →     ∀ (relation : RelationObject) (ambientRange : RangeObject) (output : Right),       Iff (inst_2.mem (LRA.Set.RangeOf Left relation ambientRange) output)         (And (inst_2.mem ambientRange output) (Exists fun input => LRA.Set.Relates relation input output))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Right RangeObject]   [inst_3 : LRA.Set.HasSeparation Right RangeObject],   LRA.Set.SeparationLaws Right RangeObject →     ∀ (relation : RelationObject) (ambientRange : RangeObject) (output : Right),       Iff (inst_2.mem (LRA.Set.RangeOf Left relation ambientRange) output)         (And (inst_2.mem ambientRange output) (Exists fun input => LRA.Set.Relates relation input output))
+Predicate logic: ∀ [HasPairing Left Right Pair] [Membership Pair RelationObject] [Membership Right RangeObject] [HasSeparation Right RangeObject] [SeparationLaws Right RangeObject] (relation : RelationObject) (ambientRange : RangeObject) (output : Right), output ∈ RangeOf Left relation ambientRange ↔ output ∈ ambientRange ∧ ∃ input : Left, Relates relation input output
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Right RangeObject] [inst_3 : LRA.Set.HasSeparation Right RangeObject], LRA.Set.SeparationLaws Right RangeObject → ∀ (relation : RelationObject) (ambientRange : RangeObject) (output : Right), output ∈ LRA.Set.RangeOf Left relation ambientRange ↔ (output ∈ ambientRange ∧ Exists fun input => LRA.Set.Relates relation input output)
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ ambientRange ∈ RangeObject ∀ output ∈ Right), output ∈ RangeOf Left relation ambientRange ↔ output ∈ ambientRange ∧ ∃ input ∈ Left, Relates relation input output
 Logical form (Lean): [HasPairing Left Right Pair] [Membership Pair RelationObject] [Membership Right RangeObject] [HasSeparation Right RangeObject] [SeparationLaws Right RangeObject] (relation : RelationObject) (ambientRange : RangeObject) (output : Right) : output ∈ RangeOf Left relation ambientRange ↔ output ∈ ambientRange ∧ ∃ input : Left, Relates relation input output
 Source: ./Interface/RelationLaws.lean#L125
 
@@ -724,8 +795,9 @@ Source: ./Interface/RelationLaws.lean#L125
 Name: MemberOfImageOf
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   LRA.Set.SeparationLaws Right RangeObject →     ∀ (relation : RelationObject) (inputs : DomainObject) (ambientRange : RangeObject) (output : Right),       Iff (inst_3.mem (LRA.Set.ImageOf relation inputs ambientRange) output)         (And (inst_3.mem ambientRange output)           (Exists fun input => And (inst_2.mem inputs input) (LRA.Set.Relates relation input output)))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   LRA.Set.SeparationLaws Right RangeObject →     ∀ (relation : RelationObject) (inputs : DomainObject) (ambientRange : RangeObject) (output : Right),       Iff (inst_3.mem (LRA.Set.ImageOf relation inputs ambientRange) output)         (And (inst_3.mem ambientRange output)           (Exists fun input => And (inst_2.mem inputs input) (LRA.Set.Relates relation input output)))
+Predicate logic: ∀ [HasPairing Left Right Pair] [Membership Pair RelationObject] [Membership Left DomainObject] [Membership Right RangeObject] [HasSeparation Right RangeObject] [SeparationLaws Right RangeObject] (relation : RelationObject) (inputs : DomainObject) (ambientRange : RangeObject) (output : Right), output ∈ ImageOf relation inputs ambientRange ↔ output ∈ ambientRange ∧ ∃ input : Left, input ∈ inputs ∧ Relates relation input output
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], LRA.Set.SeparationLaws Right RangeObject → ∀ (relation : RelationObject) (inputs : DomainObject) (ambientRange : RangeObject) (output : Right), output ∈ LRA.Set.ImageOf relation inputs ambientRange ↔ (output ∈ ambientRange ∧ Exists fun input => (input ∈ inputs ∧ LRA.Set.Relates relation input output))
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ inputs ∈ DomainObject ∀ ambientRange ∈ RangeObject ∀ output ∈ Right), output ∈ ImageOf relation inputs ambientRange ↔ output ∈ ambientRange ∧ ∃ input ∈ Left, input ∈ inputs ∧ Relates relation input output
 Logical form (Lean): [HasPairing Left Right Pair] [Membership Pair RelationObject] [Membership Left DomainObject] [Membership Right RangeObject] [HasSeparation Right RangeObject] [SeparationLaws Right RangeObject] (relation : RelationObject) (inputs : DomainObject) (ambientRange : RangeObject) (output : Right) : output ∈ ImageOf relation inputs ambientRange ↔ output ∈ ambientRange ∧ ∃ input : Left, input ∈ inputs ∧ Relates relation input output
 Source: ./Interface/RelationLaws.lean#L151
 
@@ -734,8 +806,9 @@ Source: ./Interface/RelationLaws.lean#L151
 Name: MemberOfPreimageOf
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Right RangeObject] [inst_3 : Membership Left DomainObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   LRA.Set.SeparationLaws Left DomainObject →     ∀ (relation : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject) (input : Left),       Iff (inst_3.mem (LRA.Set.PreimageOf relation outputs ambientDomain) input)         (And (inst_3.mem ambientDomain input)           (Exists fun output => And (inst_2.mem outputs output) (LRA.Set.Relates relation input output)))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Right RangeObject] [inst_3 : Membership Left DomainObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   LRA.Set.SeparationLaws Left DomainObject →     ∀ (relation : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject) (input : Left),       Iff (inst_3.mem (LRA.Set.PreimageOf relation outputs ambientDomain) input)         (And (inst_3.mem ambientDomain input)           (Exists fun output => And (inst_2.mem outputs output) (LRA.Set.Relates relation input output)))
+Predicate logic: ∀ [HasPairing Left Right Pair] [Membership Pair RelationObject] [Membership Right RangeObject] [Membership Left DomainObject] [HasSeparation Left DomainObject] [SeparationLaws Left DomainObject] (relation : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject) (input : Left), input ∈ PreimageOf relation outputs ambientDomain ↔ input ∈ ambientDomain ∧ ∃ output : Right, output ∈ outputs ∧ Relates relation input output
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Right RangeObject] [inst_3 : Membership Left DomainObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], LRA.Set.SeparationLaws Left DomainObject → ∀ (relation : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject) (input : Left), input ∈ LRA.Set.PreimageOf relation outputs ambientDomain ↔ (input ∈ ambientDomain ∧ Exists fun output => (output ∈ outputs ∧ LRA.Set.Relates relation input output))
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ outputs ∈ RangeObject ∀ ambientDomain ∈ DomainObject ∀ input ∈ Left), input ∈ PreimageOf relation outputs ambientDomain ↔ input ∈ ambientDomain ∧ ∃ output ∈ Right, output ∈ outputs ∧ Relates relation input output
 Logical form (Lean): [HasPairing Left Right Pair] [Membership Pair RelationObject] [Membership Right RangeObject] [Membership Left DomainObject] [HasSeparation Left DomainObject] [SeparationLaws Left DomainObject] (relation : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject) (input : Left) : input ∈ PreimageOf relation outputs ambientDomain ↔ input ∈ ambientDomain ∧ ∃ output : Right, output ∈ outputs ∧ Relates relation input output
 Source: ./Interface/RelationLaws.lean#L178
 
@@ -744,8 +817,9 @@ Source: ./Interface/RelationLaws.lean#L178
 Name: MemberOfFiberOf
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject]   [inst_3 : LRA.Set.HasSeparation Left DomainObject],   LRA.Set.SeparationLaws Left DomainObject →     ∀ (relation : RelationObject) (output : Right) (ambientDomain : DomainObject) (input : Left),       Iff (inst_2.mem (LRA.Set.FiberOf relation output ambientDomain) input)         (And (inst_2.mem ambientDomain input) (LRA.Set.Relates relation input output))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject]   [inst_3 : LRA.Set.HasSeparation Left DomainObject],   LRA.Set.SeparationLaws Left DomainObject →     ∀ (relation : RelationObject) (output : Right) (ambientDomain : DomainObject) (input : Left),       Iff (inst_2.mem (LRA.Set.FiberOf relation output ambientDomain) input)         (And (inst_2.mem ambientDomain input) (LRA.Set.Relates relation input output))
+Predicate logic: ∀ [HasPairing Left Right Pair] [Membership Pair RelationObject] [Membership Left DomainObject] [HasSeparation Left DomainObject] [SeparationLaws Left DomainObject] (relation : RelationObject) (output : Right) (ambientDomain : DomainObject) (input : Left), input ∈ FiberOf relation output ambientDomain ↔ input ∈ ambientDomain ∧ Relates relation input output
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : LRA.Set.HasSeparation Left DomainObject], LRA.Set.SeparationLaws Left DomainObject → ∀ (relation : RelationObject) (output : Right) (ambientDomain : DomainObject) (input : Left), input ∈ LRA.Set.FiberOf relation output ambientDomain ↔ (input ∈ ambientDomain ∧ LRA.Set.Relates relation input output)
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ output ∈ Right ∀ ambientDomain ∈ DomainObject ∀ input ∈ Left), input ∈ FiberOf relation output ambientDomain ↔ input ∈ ambientDomain ∧ Relates relation input output
 Logical form (Lean): [HasPairing Left Right Pair] [Membership Pair RelationObject] [Membership Left DomainObject] [HasSeparation Left DomainObject] [SeparationLaws Left DomainObject] (relation : RelationObject) (output : Right) (ambientDomain : DomainObject) (input : Left) : input ∈ FiberOf relation output ambientDomain ↔ input ∈ ambientDomain ∧ Relates relation input output
 Source: ./Interface/RelationLaws.lean#L206
 
@@ -754,8 +828,9 @@ Source: ./Interface/RelationLaws.lean#L206
 Name: RelatesInverseOf
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject : Type v} {ReversedPair : Type u} {ReversedObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasPairing Right Left ReversedPair]   [inst_2 : Membership Pair RelationObject] [inst_3 : Membership ReversedPair ReversedObject]   [inst_4 : LRA.Set.HasSeparation ReversedPair ReversedObject],   And (LRA.Set.SeparationLaws ReversedPair ReversedObject) (LRA.Set.PairingLaws Right Left ReversedPair) →     ∀ (relation : RelationObject) (ambientReversed : ReversedObject) (input : Left) (output : Right),       Iff (LRA.Set.Relates (LRA.Set.InverseOf Left Right relation ambientReversed) output input)         (And (inst_3.mem ambientReversed (LRA.Set.OrderedPair output input)) (LRA.Set.Relates relation input output))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject : Type v} {ReversedPair : Type u} {ReversedObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasPairing Right Left ReversedPair]   [inst_2 : Membership Pair RelationObject] [inst_3 : Membership ReversedPair ReversedObject]   [inst_4 : LRA.Set.HasSeparation ReversedPair ReversedObject],   And (LRA.Set.SeparationLaws ReversedPair ReversedObject) (LRA.Set.PairingLaws Right Left ReversedPair) →     ∀ (relation : RelationObject) (ambientReversed : ReversedObject) (input : Left) (output : Right),       Iff (LRA.Set.Relates (LRA.Set.InverseOf Left Right relation ambientReversed) output input)         (And (inst_3.mem ambientReversed (LRA.Set.OrderedPair output input)) (LRA.Set.Relates relation input output))
+Predicate logic: ∀ {ReversedPair : Type u} {ReversedObject : Type v} [HasPairing Left Right Pair] [HasPairing Right Left ReversedPair] [Membership Pair RelationObject] [Membership ReversedPair ReversedObject] [HasSeparation ReversedPair ReversedObject] [SeparationLaws ReversedPair ReversedObject] [PairingLaws Right Left ReversedPair] (relation : RelationObject) (ambientReversed : ReversedObject) (input : Left) (output : Right), Relates (InverseOf Left Right relation ambientReversed) output input ↔ (OrderedPair output input : ReversedPair) ∈ ambientReversed ∧ Relates relation input output
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject : Type v} {ReversedPair : Type u} {ReversedObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasPairing Right Left ReversedPair] [inst_2 : Membership Pair RelationObject] [inst_3 : Membership ReversedPair ReversedObject] [inst_4 : LRA.Set.HasSeparation ReversedPair ReversedObject], (LRA.Set.SeparationLaws ReversedPair ReversedObject ∧ LRA.Set.PairingLaws Right Left ReversedPair) → ∀ (relation : RelationObject) (ambientReversed : ReversedObject) (input : Left) (output : Right), LRA.Set.Relates (LRA.Set.InverseOf Left Right relation ambientReversed) output input ↔ (LRA.Set.OrderedPair output input ∈ ambientReversed ∧ LRA.Set.Relates relation input output)
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ ambientReversed ∈ ReversedObject ∀ input ∈ Left ∀ output ∈ Right), Relates (InverseOf Left Right relation ambientReversed) output input ↔ OrderedPair output input ∈ ReversedPair ∈ ambientReversed ∧ Relates relation input output
 Logical form (Lean): {ReversedPair : Type u} {ReversedObject : Type v} [HasPairing Left Right Pair] [HasPairing Right Left ReversedPair] [Membership Pair RelationObject] [Membership ReversedPair ReversedObject] [HasSeparation ReversedPair ReversedObject] [SeparationLaws ReversedPair ReversedObject] [PairingLaws Right Left ReversedPair] (relation : RelationObject) (ambientReversed : ReversedObject) (input : Left) (output : Right) : Relates (InverseOf Left Right relation ambientReversed) output input ↔ (OrderedPair output input : ReversedPair) ∈ ambientReversed ∧ Relates relation input output
 Source: ./Interface/RelationLaws.lean#L234
 
@@ -764,8 +839,9 @@ Source: ./Interface/RelationLaws.lean#L234
 Name: RelatesRestrictionOf
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject],   LRA.Set.SeparationLaws Pair RelationObject →     ∀ [inst_3 : Membership Left DomainObject],       LRA.Set.PairingLaws Left Right Pair →         ∀ (relation : RelationObject) (inputs : DomainObject) (input : Left) (output : Right),           Iff (LRA.Set.Relates (LRA.Set.RestrictionOf Right relation inputs) input output)             (And (LRA.Set.Relates relation input output) (inst_3.mem inputs input))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject],   LRA.Set.SeparationLaws Pair RelationObject →     ∀ [inst_3 : Membership Left DomainObject],       LRA.Set.PairingLaws Left Right Pair →         ∀ (relation : RelationObject) (inputs : DomainObject) (input : Left) (output : Right),           Iff (LRA.Set.Relates (LRA.Set.RestrictionOf Right relation inputs) input output)             (And (LRA.Set.Relates relation input output) (inst_3.mem inputs input))
+Predicate logic: ∀ [HasPairing Left Right Pair] [Membership Pair RelationObject] [HasSeparation Pair RelationObject] [SeparationLaws Pair RelationObject] [Membership Left DomainObject] [PairingLaws Left Right Pair] (relation : RelationObject) (inputs : DomainObject) (input : Left) (output : Right), Relates (RestrictionOf Right relation inputs) input output ↔ Relates relation input output ∧ input ∈ inputs
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject], LRA.Set.SeparationLaws Pair RelationObject → ∀ [inst_3 : Membership Left DomainObject], LRA.Set.PairingLaws Left Right Pair → ∀ (relation : RelationObject) (inputs : DomainObject) (input : Left) (output : Right), LRA.Set.Relates (LRA.Set.RestrictionOf Right relation inputs) input output ↔ (LRA.Set.Relates relation input output ∧ input ∈ inputs)
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ inputs ∈ DomainObject ∀ input ∈ Left ∀ output ∈ Right), Relates (RestrictionOf Right relation inputs) input output ↔ Relates relation input output ∧ input ∈ inputs
 Logical form (Lean): [HasPairing Left Right Pair] [Membership Pair RelationObject] [HasSeparation Pair RelationObject] [SeparationLaws Pair RelationObject] [Membership Left DomainObject] [PairingLaws Left Right Pair] (relation : RelationObject) (inputs : DomainObject) (input : Left) (output : Right) : Relates (RestrictionOf Right relation inputs) input output ↔ Relates relation input output ∧ input ∈ inputs
 Source: ./Interface/RelationLaws.lean#L265
 
@@ -775,7 +851,8 @@ Name: RestrictionIsSubset
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject],   LRA.Set.SeparationLaws Pair RelationObject →     ∀ [inst_3 : Union RelationObject] [inst_4 : Inter RelationObject] [inst_5 : SDiff RelationObject]       [inst_6 : EmptyCollection RelationObject] [inst_7 : HasSubset RelationObject],       LRA.Set.MembershipLaws Pair RelationObject →         ∀ [inst_8 : Membership Left DomainObject] (relation : RelationObject) (inputs : DomainObject),           inst_7.Subset (LRA.Set.RestrictionOf Right relation inputs) relation
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject],   LRA.Set.SeparationLaws Pair RelationObject →     ∀ [inst_3 : Union RelationObject] [inst_4 : Inter RelationObject] [inst_5 : SDiff RelationObject]       [inst_6 : EmptyCollection RelationObject] [inst_7 : HasSubset RelationObject],       LRA.Set.MembershipLaws Pair RelationObject →         ∀ [inst_8 : Membership Left DomainObject] (relation : RelationObject) (inputs : DomainObject),           inst_7.Subset (LRA.Set.RestrictionOf Right relation inputs) relation
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject], LRA.Set.SeparationLaws Pair RelationObject → ∀ [inst_3 : Union RelationObject] [inst_4 : Inter RelationObject] [inst_5 : SDiff RelationObject] [inst_6 : EmptyCollection RelationObject] [inst_7 : HasSubset RelationObject], LRA.Set.MembershipLaws Pair RelationObject → ∀ [inst_8 : Membership Left DomainObject] (relation : RelationObject) (inputs : DomainObject), inst_7.Subset (LRA.Set.RestrictionOf Right relation inputs) relation
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ inputs ∈ DomainObject), RestrictionOf Right relation inputs ⊆ relation
 Logical form (Lean): [HasPairing Left Right Pair] [Membership Pair RelationObject] [HasSeparation Pair RelationObject] [SeparationLaws Pair RelationObject] [Union RelationObject] [Inter RelationObject] [SDiff RelationObject] [EmptyCollection RelationObject] [HasSubset RelationObject] [MembershipLaws Pair RelationObject] [Membership Left DomainObject] (relation : RelationObject) (inputs : DomainObject) : RestrictionOf Right relation inputs ⊆ relation
 Source: ./Interface/RelationLaws.lean#L290
 
@@ -785,7 +862,8 @@ Name: RestrictionOfFunctionalIsFunctional
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject],   LRA.Set.SeparationLaws Pair RelationObject →     ∀ [inst_3 : Membership Left DomainObject],       LRA.Set.PairingLaws Left Right Pair →         ∀ (relation : RelationObject) (inputs : DomainObject),           LRA.Set.IsFunctionalSet Left Right relation →             LRA.Set.IsFunctionalSet Left Right (LRA.Set.RestrictionOf Right relation inputs)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject],   LRA.Set.SeparationLaws Pair RelationObject →     ∀ [inst_3 : Membership Left DomainObject],       LRA.Set.PairingLaws Left Right Pair →         ∀ (relation : RelationObject) (inputs : DomainObject),           LRA.Set.IsFunctionalSet Left Right relation →             LRA.Set.IsFunctionalSet Left Right (LRA.Set.RestrictionOf Right relation inputs)
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject], LRA.Set.SeparationLaws Pair RelationObject → ∀ [inst_3 : Membership Left DomainObject], LRA.Set.PairingLaws Left Right Pair → ∀ (relation : RelationObject) (inputs : DomainObject), LRA.Set.IsFunctionalSet Left Right relation → LRA.Set.IsFunctionalSet Left Right (LRA.Set.RestrictionOf Right relation inputs)
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ inputs ∈ DomainObject), IsFunctionalSet Left Right (RestrictionOf Right relation inputs)
 Logical form (Lean): [HasPairing Left Right Pair] [Membership Pair RelationObject] [HasSeparation Pair RelationObject] [SeparationLaws Pair RelationObject] [Membership Left DomainObject] [PairingLaws Left Right Pair] (relation : RelationObject) (inputs : DomainObject) (functional : IsFunctionalSet Left Right relation) : IsFunctionalSet Left Right (RestrictionOf Right relation inputs)
 Source: ./Interface/RelationLaws.lean#L316
 
@@ -794,8 +872,9 @@ Source: ./Interface/RelationLaws.lean#L316
 Name: UnionOfCompatibleFunctionalIsFunctional
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : Union RelationObject] [inst_3 : Inter RelationObject]   [inst_4 : SDiff RelationObject] [inst_5 : EmptyCollection RelationObject] [inst_6 : HasSubset RelationObject],   LRA.Set.MembershipLaws Pair RelationObject →     ∀ (first second : RelationObject),       And (LRA.Set.IsFunctionalSet Left Right first)           (And (LRA.Set.IsFunctionalSet Left Right second)             (∀ (input : Left) (firstOutput secondOutput : Right),               LRA.Set.Relates first input firstOutput →                 LRA.Set.Relates second input secondOutput → Eq firstOutput secondOutput)) →         LRA.Set.IsFunctionalSet Left Right (inst_2.union first second)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : Union RelationObject] [inst_3 : Inter RelationObject]   [inst_4 : SDiff RelationObject] [inst_5 : EmptyCollection RelationObject] [inst_6 : HasSubset RelationObject],   LRA.Set.MembershipLaws Pair RelationObject →     ∀ (first second : RelationObject),       And (LRA.Set.IsFunctionalSet Left Right first)           (And (LRA.Set.IsFunctionalSet Left Right second)             (∀ (input : Left) (firstOutput secondOutput : Right),               LRA.Set.Relates first input firstOutput →                 LRA.Set.Relates second input secondOutput → Eq firstOutput secondOutput)) →         LRA.Set.IsFunctionalSet Left Right (inst_2.union first second)
+Predicate logic: ∀ [HasPairing Left Right Pair] [Membership Pair RelationObject] [Union RelationObject] [Inter RelationObject] [SDiff RelationObject] [EmptyCollection RelationObject] [HasSubset RelationObject] [MembershipLaws Pair RelationObject] (first second : RelationObject) (firstFunctional : IsFunctionalSet Left Right first) (secondFunctional : IsFunctionalSet Left Right second) (compatible : ∀ (input : Left) (firstOutput secondOutput : Right), Relates first input firstOutput → Relates second input secondOutput → firstOutput = secondOutput), IsFunctionalSet Left Right (first ∪ second)
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Union RelationObject] [inst_3 : Inter RelationObject] [inst_4 : SDiff RelationObject] [inst_5 : EmptyCollection RelationObject] [inst_6 : HasSubset RelationObject], LRA.Set.MembershipLaws Pair RelationObject → ∀ (first second : RelationObject), (LRA.Set.IsFunctionalSet Left Right first ∧ (LRA.Set.IsFunctionalSet Left Right second ∧ ∀ (input : Left) (firstOutput secondOutput : Right), LRA.Set.Relates first input firstOutput → LRA.Set.Relates second input secondOutput → firstOutput = secondOutput)) → LRA.Set.IsFunctionalSet Left Right (first ∪ second)
+Transliterated theorem: (∀ first second ∈ RelationObject), (∀ input ∈ Left firstOutput secondOutput ∈ Right, Relates first input firstOutput → Relates second input secondOutput → firstOutput = secondOutput) → IsFunctionalSet Left Right (first ∪ second)
 Logical form (Lean): [HasPairing Left Right Pair] [Membership Pair RelationObject] [Union RelationObject] [Inter RelationObject] [SDiff RelationObject] [EmptyCollection RelationObject] [HasSubset RelationObject] [MembershipLaws Pair RelationObject] (first second : RelationObject) (firstFunctional : IsFunctionalSet Left Right first) (secondFunctional : IsFunctionalSet Left Right second) (compatible : ∀ (input : Left) (firstOutput secondOutput : Right), Relates first input firstOutput → Relates second input secondOutput → firstOutput = secondOutput) : IsFunctionalSet Left Right (first ∪ second)
 Source: ./Interface/RelationLaws.lean#L347
 
@@ -804,8 +883,9 @@ Source: ./Interface/RelationLaws.lean#L347
 Name: RelatesGraphSetOf
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ (map : Left → Right) (ambientPairs : RelationObject) (input : Left) (output : Right),       Iff (LRA.Set.Relates (LRA.Set.GraphSetOf map ambientPairs) input output)         (And (inst_1.mem ambientPairs (LRA.Set.OrderedPair input output)) (Eq (map input) output))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ (map : Left → Right) (ambientPairs : RelationObject) (input : Left) (output : Right),       Iff (LRA.Set.Relates (LRA.Set.GraphSetOf map ambientPairs) input output)         (And (inst_1.mem ambientPairs (LRA.Set.OrderedPair input output)) (Eq (map input) output))
+Predicate logic: ∀ [HasPairing Left Right Pair] [Membership Pair RelationObject] [HasSeparation Pair RelationObject] [SeparationLaws Pair RelationObject] [PairingLaws Left Right Pair] (map : Left → Right) (ambientPairs : RelationObject) (input : Left) (output : Right), Relates (GraphSetOf map ambientPairs) input output ↔ (OrderedPair input output : Pair) ∈ ambientPairs ∧ map input = output
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ (map : Left → Right) (ambientPairs : RelationObject) (input : Left) (output : Right), LRA.Set.Relates (LRA.Set.GraphSetOf map ambientPairs) input output ↔ (LRA.Set.OrderedPair input output ∈ ambientPairs ∧ map input = output)
+Transliterated theorem: (∀ ambientPairs ∈ RelationObject ∀ input ∈ Left ∀ output ∈ Right), (Left → Right) → Relates (GraphSetOf map ambientPairs) input output ↔ OrderedPair input output ∈ Pair ∈ ambientPairs ∧ map input = output
 Logical form (Lean): [HasPairing Left Right Pair] [Membership Pair RelationObject] [HasSeparation Pair RelationObject] [SeparationLaws Pair RelationObject] [PairingLaws Left Right Pair] (map : Left → Right) (ambientPairs : RelationObject) (input : Left) (output : Right) : Relates (GraphSetOf map ambientPairs) input output ↔ (OrderedPair input output : Pair) ∈ ambientPairs ∧ map input = output
 Source: ./Interface/RelationLaws.lean#L377
 
@@ -814,8 +894,9 @@ Source: ./Interface/RelationLaws.lean#L377
 Name: GraphSetOfIsFunctional
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ (map : Left → Right) (ambientPairs : RelationObject),       LRA.Set.IsFunctionalSet Left Right (LRA.Set.GraphSetOf map ambientPairs)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject],   And (LRA.Set.SeparationLaws Pair RelationObject) (LRA.Set.PairingLaws Left Right Pair) →     ∀ (map : Left → Right) (ambientPairs : RelationObject),       LRA.Set.IsFunctionalSet Left Right (LRA.Set.GraphSetOf map ambientPairs)
+Predicate logic: ∀ [HasPairing Left Right Pair] [Membership Pair RelationObject] [HasSeparation Pair RelationObject] [SeparationLaws Pair RelationObject] [PairingLaws Left Right Pair] (map : Left → Right) (ambientPairs : RelationObject), IsFunctionalSet Left Right (GraphSetOf map ambientPairs)
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ (map : Left → Right) (ambientPairs : RelationObject), LRA.Set.IsFunctionalSet Left Right (LRA.Set.GraphSetOf map ambientPairs)
+Transliterated theorem: (∀ ambientPairs ∈ RelationObject), (Left → Right) → IsFunctionalSet Left Right (GraphSetOf map ambientPairs)
 Logical form (Lean): [HasPairing Left Right Pair] [Membership Pair RelationObject] [HasSeparation Pair RelationObject] [SeparationLaws Pair RelationObject] [PairingLaws Left Right Pair] (map : Left → Right) (ambientPairs : RelationObject) : IsFunctionalSet Left Right (GraphSetOf map ambientPairs)
 Source: ./Interface/RelationLaws.lean#L402
 
@@ -824,8 +905,9 @@ Source: ./Interface/RelationLaws.lean#L402
 Name: AppliedToUnique
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] (relation : RelationObject),   LRA.Set.IsSingleValued Left Right relation →     ∀ (input : Left) (output : Right),       LRA.Set.Relates relation input output →         ∀ (hits : Exists fun someOutput => LRA.Set.Relates relation input someOutput),           Eq (LRA.Set.AppliedTo relation input hits) output
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair]   [inst_1 : Membership Pair RelationObject] (relation : RelationObject),   LRA.Set.IsSingleValued Left Right relation →     ∀ (input : Left) (output : Right),       LRA.Set.Relates relation input output →         ∀ (hits : Exists fun someOutput => LRA.Set.Relates relation input someOutput),           Eq (LRA.Set.AppliedTo relation input hits) output
+Predicate logic: ∀ [HasPairing Left Right Pair] [Membership Pair RelationObject] (relation : RelationObject) (singleValued : IsSingleValued Left Right relation) (input : Left) (output : Right) (relates : Relates relation input output) (hits : ∃ someOutput : Right, Relates relation input someOutput), AppliedTo relation input hits = output
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] (relation : RelationObject), LRA.Set.IsSingleValued Left Right relation → ∀ (input : Left) (output : Right), LRA.Set.Relates relation input output → ∀ (hits : Exists fun someOutput => LRA.Set.Relates relation input someOutput), LRA.Set.AppliedTo relation input hits = output
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ input ∈ Left ∀ output ∈ Right), (∃ someOutput ∈ Right, Relates relation input someOutput) → AppliedTo relation input hits = output
 Logical form (Lean): [HasPairing Left Right Pair] [Membership Pair RelationObject] (relation : RelationObject) (singleValued : IsSingleValued Left Right relation) (input : Left) (output : Right) (relates : Relates relation input output) (hits : ∃ someOutput : Right, Relates relation input someOutput) : AppliedTo relation input hits = output
 Source: ./Interface/RelationLaws.lean#L428
 
@@ -834,8 +916,9 @@ Source: ./Interface/RelationLaws.lean#L428
 Name: ImageOfUnion
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject],       And (LRA.Set.MembershipLaws Left DomainObject) (LRA.Set.MembershipLaws Right RangeObject) →         ∀ (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject),           Eq (LRA.Set.ImageOf relation (inst_5.union left right) ambientRange)             (inst_10.union (LRA.Set.ImageOf relation left ambientRange) (LRA.Set.ImageOf relation right ambientRange))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject],       And (LRA.Set.MembershipLaws Left DomainObject) (LRA.Set.MembershipLaws Right RangeObject) →         ∀ (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject),           Eq (LRA.Set.ImageOf relation (inst_5.union left right) ambientRange)             (inst_10.union (LRA.Set.ImageOf relation left ambientRange) (LRA.Set.ImageOf relation right ambientRange))
+Predicate logic: ∀ [Union DomainObject] [Inter DomainObject] [SDiff DomainObject] [EmptyCollection DomainObject] [HasSubset DomainObject] [Union RangeObject] [Inter RangeObject] [SDiff RangeObject] [EmptyCollection RangeObject] [HasSubset RangeObject] [MembershipLaws Left DomainObject] [MembershipLaws Right RangeObject] (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), ImageOf relation (left ∪ right) ambientRange = ImageOf relation left ambientRange ∪ ImageOf relation right ambientRange
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject], (LRA.Set.MembershipLaws Left DomainObject ∧ LRA.Set.MembershipLaws Right RangeObject) → ∀ (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), LRA.Set.ImageOf relation (left ∪ right)ambientRange = LRA.Set.ImageOf relation left ambientRange ∪ LRA.Set.ImageOf relation right ambientRange
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ left right ∈ DomainObject ∀ ambientRange ∈ RangeObject), ImageOf relation (left ∪ right) ambientRange = ImageOf relation left ambientRange ∪ ImageOf relation right ambientRange
 Logical form (Lean): [Union DomainObject] [Inter DomainObject] [SDiff DomainObject] [EmptyCollection DomainObject] [HasSubset DomainObject] [Union RangeObject] [Inter RangeObject] [SDiff RangeObject] [EmptyCollection RangeObject] [HasSubset RangeObject] [MembershipLaws Left DomainObject] [MembershipLaws Right RangeObject] (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject) : ImageOf relation (left ∪ right) ambientRange = ImageOf relation left ambientRange ∪ ImageOf relation right ambientRange
 Source: ./Interface/RelationLaws.lean#L464
 
@@ -844,8 +927,9 @@ Source: ./Interface/RelationLaws.lean#L464
 Name: ImageOfEmpty
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject],       And (LRA.Set.MembershipLaws Left DomainObject) (LRA.Set.MembershipLaws Right RangeObject) →         ∀ (relation : RelationObject) (ambientRange : RangeObject),           Eq (LRA.Set.ImageOf relation inst_8.emptyCollection ambientRange) inst_13.emptyCollection
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject],       And (LRA.Set.MembershipLaws Left DomainObject) (LRA.Set.MembershipLaws Right RangeObject) →         ∀ (relation : RelationObject) (ambientRange : RangeObject),           Eq (LRA.Set.ImageOf relation inst_8.emptyCollection ambientRange) inst_13.emptyCollection
+Predicate logic: ∀ [Union DomainObject] [Inter DomainObject] [SDiff DomainObject] [EmptyCollection DomainObject] [HasSubset DomainObject] [Union RangeObject] [Inter RangeObject] [SDiff RangeObject] [EmptyCollection RangeObject] [HasSubset RangeObject] [MembershipLaws Left DomainObject] [MembershipLaws Right RangeObject] (relation : RelationObject) (ambientRange : RangeObject), ImageOf relation (∅ : DomainObject) ambientRange = (∅ : RangeObject)
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject], (LRA.Set.MembershipLaws Left DomainObject ∧ LRA.Set.MembershipLaws Right RangeObject) → ∀ (relation : RelationObject) (ambientRange : RangeObject), LRA.Set.ImageOf relation inst_8.emptyCollection ambientRange = inst_13.emptyCollection
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ ambientRange ∈ RangeObject), ImageOf relation ∅ ∈ DomainObject ambientRange = ∅ ∈ RangeObject
 Logical form (Lean): [Union DomainObject] [Inter DomainObject] [SDiff DomainObject] [EmptyCollection DomainObject] [HasSubset DomainObject] [Union RangeObject] [Inter RangeObject] [SDiff RangeObject] [EmptyCollection RangeObject] [HasSubset RangeObject] [MembershipLaws Left DomainObject] [MembershipLaws Right RangeObject] (relation : RelationObject) (ambientRange : RangeObject) : ImageOf relation (∅ : DomainObject) ambientRange = (∅ : RangeObject)
 Source: ./Interface/RelationLaws.lean#L477
 
@@ -854,8 +938,9 @@ Source: ./Interface/RelationLaws.lean#L477
 Name: ImageOfMonotone
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ [inst_5 : HasSubset DomainObject] [inst_6 : HasSubset RangeObject] (relation : RelationObject)       (smaller larger : DomainObject) (ambientRange : RangeObject),       inst_5.Subset smaller larger →         inst_6.Subset (LRA.Set.ImageOf relation smaller ambientRange) (LRA.Set.ImageOf relation larger ambientRange)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ [inst_5 : HasSubset DomainObject] [inst_6 : HasSubset RangeObject] (relation : RelationObject)       (smaller larger : DomainObject) (ambientRange : RangeObject),       inst_5.Subset smaller larger →         inst_6.Subset (LRA.Set.ImageOf relation smaller ambientRange) (LRA.Set.ImageOf relation larger ambientRange)
+Predicate logic: ∀ [HasSubset DomainObject] [HasSubset RangeObject] (relation : RelationObject) (smaller larger : DomainObject) (ambientRange : RangeObject) (inclusion : smaller ⊆ larger), ImageOf relation smaller ambientRange ⊆ ImageOf relation larger ambientRange
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : HasSubset DomainObject] [inst_6 : HasSubset RangeObject] (relation : RelationObject) (smaller larger : DomainObject) (ambientRange : RangeObject), inst_5.Subset smaller larger → inst_6.Subset (LRA.Set.ImageOf relation smaller ambientRange) (LRA.Set.ImageOf relation larger ambientRange)
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ smaller larger ∈ DomainObject ∀ ambientRange ∈ RangeObject), ImageOf relation smaller ambientRange ⊆ ImageOf relation larger ambientRange
 Logical form (Lean): [HasSubset DomainObject] [HasSubset RangeObject] (relation : RelationObject) (smaller larger : DomainObject) (ambientRange : RangeObject) (inclusion : smaller ⊆ larger) : ImageOf relation smaller ambientRange ⊆ ImageOf relation larger ambientRange
 Source: ./Interface/RelationLaws.lean#L488
 
@@ -864,8 +949,9 @@ Source: ./Interface/RelationLaws.lean#L488
 Name: ImageOfIntersectionSubset
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ [inst_5 : Inter DomainObject] [inst_6 : Inter RangeObject] [inst_7 : HasSubset RangeObject]       (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject),       inst_7.Subset (LRA.Set.ImageOf relation (inst_5.inter left right) ambientRange)         (inst_6.inter (LRA.Set.ImageOf relation left ambientRange) (LRA.Set.ImageOf relation right ambientRange))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ [inst_5 : Inter DomainObject] [inst_6 : Inter RangeObject] [inst_7 : HasSubset RangeObject]       (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject),       inst_7.Subset (LRA.Set.ImageOf relation (inst_5.inter left right) ambientRange)         (inst_6.inter (LRA.Set.ImageOf relation left ambientRange) (LRA.Set.ImageOf relation right ambientRange))
+Predicate logic: ∀ [Inter DomainObject] [Inter RangeObject] [HasSubset RangeObject] (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), ImageOf relation (left ∩ right) ambientRange ⊆ ImageOf relation left ambientRange ∩ ImageOf relation right ambientRange
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : Inter DomainObject] [inst_6 : Inter RangeObject] [inst_7 : HasSubset RangeObject] (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), inst_7.Subset (LRA.Set.ImageOf relation (left ∩ right)ambientRange) (LRA.Set.ImageOf relation left ambientRange ∩ LRA.Set.ImageOf relation right ambientRange)
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ left right ∈ DomainObject ∀ ambientRange ∈ RangeObject), ImageOf relation (left ∩ right) ambientRange ⊆ ImageOf relation left ambientRange ∩ ImageOf relation right ambientRange
 Logical form (Lean): [Inter DomainObject] [Inter RangeObject] [HasSubset RangeObject] (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject) : ImageOf relation (left ∩ right) ambientRange ⊆ ImageOf relation left ambientRange ∩ ImageOf relation right ambientRange
 Source: ./Interface/RelationLaws.lean#L496
 
@@ -874,8 +960,9 @@ Source: ./Interface/RelationLaws.lean#L496
 Name: DifferenceOfImagesSubsetImageOfDifference
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ [inst_5 : SDiff DomainObject] [inst_6 : SDiff RangeObject] [inst_7 : HasSubset RangeObject]       (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject),       inst_7.Subset         (inst_6.sdiff (LRA.Set.ImageOf relation left ambientRange) (LRA.Set.ImageOf relation right ambientRange))         (LRA.Set.ImageOf relation (inst_5.sdiff left right) ambientRange)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ [inst_5 : SDiff DomainObject] [inst_6 : SDiff RangeObject] [inst_7 : HasSubset RangeObject]       (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject),       inst_7.Subset         (inst_6.sdiff (LRA.Set.ImageOf relation left ambientRange) (LRA.Set.ImageOf relation right ambientRange))         (LRA.Set.ImageOf relation (inst_5.sdiff left right) ambientRange)
+Predicate logic: ∀ [SDiff DomainObject] [SDiff RangeObject] [HasSubset RangeObject] (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), ImageOf relation left ambientRange \ ImageOf relation right ambientRange ⊆ ImageOf relation (left \ right) ambientRange
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : SDiff DomainObject] [inst_6 : SDiff RangeObject] [inst_7 : HasSubset RangeObject] (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), inst_7.Subset (LRA.Set.ImageOf relation left ambientRange \ LRA.Set.ImageOf relation right ambientRange) (LRA.Set.ImageOf relation (left \ right)ambientRange)
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ left right ∈ DomainObject ∀ ambientRange ∈ RangeObject), ImageOf relation left ambientRange \ ImageOf relation right ambientRange ⊆ ImageOf relation (left \ right) ambientRange
 Logical form (Lean): [SDiff DomainObject] [SDiff RangeObject] [HasSubset RangeObject] (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject) : ImageOf relation left ambientRange \ ImageOf relation right ambientRange ⊆ ImageOf relation (left \ right) ambientRange
 Source: ./Interface/RelationLaws.lean#L505
 
@@ -884,8 +971,9 @@ Source: ./Interface/RelationLaws.lean#L505
 Name: ImageOfIndexedUnion
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ {Index : Type u} [inst_5 : LRA.Set.HasIndexedUnion DomainObject] [inst_6 : LRA.Set.HasIndexedUnion RangeObject]       (relation : RelationObject) (family : Index → DomainObject) (ambientRange : RangeObject),       Eq (LRA.Set.ImageOf relation (inst_5.indexedUnion family) ambientRange)         (inst_6.indexedUnion fun index => LRA.Set.ImageOf relation (family index) ambientRange)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ {Index : Type u} [inst_5 : LRA.Set.HasIndexedUnion DomainObject] [inst_6 : LRA.Set.HasIndexedUnion RangeObject]       (relation : RelationObject) (family : Index → DomainObject) (ambientRange : RangeObject),       Eq (LRA.Set.ImageOf relation (inst_5.indexedUnion family) ambientRange)         (inst_6.indexedUnion fun index => LRA.Set.ImageOf relation (family index) ambientRange)
+Predicate logic: ∀ {Index : Type u} [HasIndexedUnion DomainObject] [HasIndexedUnion RangeObject] (relation : RelationObject) (family : Index → DomainObject) (ambientRange : RangeObject), ImageOf relation (HasIndexedUnion.indexedUnion family) ambientRange = HasIndexedUnion.indexedUnion (fun index => ImageOf relation (family index) ambientRange)
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ {Index : Type u} [inst_5 : LRA.Set.HasIndexedUnion DomainObject] [inst_6 : LRA.Set.HasIndexedUnion RangeObject] (relation : RelationObject) (family : Index → DomainObject) (ambientRange : RangeObject), LRA.Set.ImageOf relation (inst_5.indexedUnion family) ambientRange = inst_6.indexedUnion fun index => LRA.Set.ImageOf relation (family index) ambientRange
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ ambientRange ∈ RangeObject), (Index → DomainObject) → ImageOf relation (HasIndexedUnion.indexedUnion family) ambientRange = HasIndexedUnion.indexedUnion (fun index => ImageOf relation (family index) ambientRange)
 Logical form (Lean): {Index : Type u} [HasIndexedUnion DomainObject] [HasIndexedUnion RangeObject] (relation : RelationObject) (family : Index → DomainObject) (ambientRange : RangeObject) : ImageOf relation (HasIndexedUnion.indexedUnion family) ambientRange = HasIndexedUnion.indexedUnion (fun index => ImageOf relation (family index) ambientRange)
 Source: ./Interface/RelationLaws.lean#L514
 
@@ -894,8 +982,9 @@ Source: ./Interface/RelationLaws.lean#L514
 Name: ImageOfIndexedIntersectionSubset
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ {Index : Type u} [inst_5 : LRA.Set.HasIndexedIntersection DomainObject]       [inst_6 : LRA.Set.HasIndexedIntersection RangeObject] [inst_7 : HasSubset RangeObject] (relation : RelationObject)       (family : Index → DomainObject) (ambientRange : RangeObject),       inst_7.Subset (LRA.Set.ImageOf relation (inst_5.indexedIntersection family) ambientRange)         (inst_6.indexedIntersection fun index => LRA.Set.ImageOf relation (family index) ambientRange)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ {Index : Type u} [inst_5 : LRA.Set.HasIndexedIntersection DomainObject]       [inst_6 : LRA.Set.HasIndexedIntersection RangeObject] [inst_7 : HasSubset RangeObject] (relation : RelationObject)       (family : Index → DomainObject) (ambientRange : RangeObject),       inst_7.Subset (LRA.Set.ImageOf relation (inst_5.indexedIntersection family) ambientRange)         (inst_6.indexedIntersection fun index => LRA.Set.ImageOf relation (family index) ambientRange)
+Predicate logic: ∀ {Index : Type u} [HasIndexedIntersection DomainObject] [HasIndexedIntersection RangeObject] [HasSubset RangeObject] (relation : RelationObject) (family : Index → DomainObject) (ambientRange : RangeObject), ImageOf relation (HasIndexedIntersection.indexedIntersection family) ambientRange ⊆ HasIndexedIntersection.indexedIntersection (fun index => ImageOf relation (family index) ambientRange)
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ {Index : Type u} [inst_5 : LRA.Set.HasIndexedIntersection DomainObject] [inst_6 : LRA.Set.HasIndexedIntersection RangeObject] [inst_7 : HasSubset RangeObject] (relation : RelationObject) (family : Index → DomainObject) (ambientRange : RangeObject), inst_7.Subset (LRA.Set.ImageOf relation (inst_5.indexedIntersection family) ambientRange) (inst_6.indexedIntersection fun index => LRA.Set.ImageOf relation (family index) ambientRange)
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ ambientRange ∈ RangeObject), (Index → DomainObject) → ImageOf relation (HasIndexedIntersection.indexedIntersection family) ambientRange ⊆ HasIndexedIntersection.indexedIntersection (fun index => ImageOf relation (family index) ambientRange)
 Logical form (Lean): {Index : Type u} [HasIndexedIntersection DomainObject] [HasIndexedIntersection RangeObject] [HasSubset RangeObject] (relation : RelationObject) (family : Index → DomainObject) (ambientRange : RangeObject) : ImageOf relation (HasIndexedIntersection.indexedIntersection family) ambientRange ⊆ HasIndexedIntersection.indexedIntersection (fun index => ImageOf relation (family index) ambientRange)
 Source: ./Interface/RelationLaws.lean#L525
 
@@ -904,8 +993,9 @@ Source: ./Interface/RelationLaws.lean#L525
 Name: ImageOfCountableUnion
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ [inst_5 : LRA.Set.HasCountableUnion DomainObject] [inst_6 : LRA.Set.HasCountableUnion RangeObject]       (relation : RelationObject) (family : Nat → DomainObject) (ambientRange : RangeObject),       Eq (LRA.Set.ImageOf relation (inst_5.countableUnion family) ambientRange)         (inst_6.countableUnion fun index => LRA.Set.ImageOf relation (family index) ambientRange)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ [inst_5 : LRA.Set.HasCountableUnion DomainObject] [inst_6 : LRA.Set.HasCountableUnion RangeObject]       (relation : RelationObject) (family : Nat → DomainObject) (ambientRange : RangeObject),       Eq (LRA.Set.ImageOf relation (inst_5.countableUnion family) ambientRange)         (inst_6.countableUnion fun index => LRA.Set.ImageOf relation (family index) ambientRange)
+Predicate logic: ∀ [HasCountableUnion DomainObject] [HasCountableUnion RangeObject] (relation : RelationObject) (family : Nat → DomainObject) (ambientRange : RangeObject), ImageOf relation (HasCountableUnion.countableUnion family) ambientRange = HasCountableUnion.countableUnion (fun index => ImageOf relation (family index) ambientRange)
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : LRA.Set.HasCountableUnion DomainObject] [inst_6 : LRA.Set.HasCountableUnion RangeObject] (relation : RelationObject) (family : Nat → DomainObject) (ambientRange : RangeObject), LRA.Set.ImageOf relation (inst_5.countableUnion family) ambientRange = inst_6.countableUnion fun index => LRA.Set.ImageOf relation (family index) ambientRange
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ ambientRange ∈ RangeObject), (Nat → DomainObject) → ImageOf relation (HasCountableUnion.countableUnion family) ambientRange = HasCountableUnion.countableUnion (fun index => ImageOf relation (family index) ambientRange)
 Logical form (Lean): [HasCountableUnion DomainObject] [HasCountableUnion RangeObject] (relation : RelationObject) (family : Nat → DomainObject) (ambientRange : RangeObject) : ImageOf relation (HasCountableUnion.countableUnion family) ambientRange = HasCountableUnion.countableUnion (fun index => ImageOf relation (family index) ambientRange)
 Source: ./Interface/RelationLaws.lean#L536
 
@@ -914,8 +1004,9 @@ Source: ./Interface/RelationLaws.lean#L536
 Name: ImageOfCountableIntersectionSubset
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ [inst_5 : LRA.Set.HasCountableIntersection DomainObject] [inst_6 : LRA.Set.HasCountableIntersection RangeObject]       [inst_7 : HasSubset RangeObject] (relation : RelationObject) (family : Nat → DomainObject)       (ambientRange : RangeObject),       inst_7.Subset (LRA.Set.ImageOf relation (inst_5.countableIntersection family) ambientRange)         (inst_6.countableIntersection fun index => LRA.Set.ImageOf relation (family index) ambientRange)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ [inst_5 : LRA.Set.HasCountableIntersection DomainObject] [inst_6 : LRA.Set.HasCountableIntersection RangeObject]       [inst_7 : HasSubset RangeObject] (relation : RelationObject) (family : Nat → DomainObject)       (ambientRange : RangeObject),       inst_7.Subset (LRA.Set.ImageOf relation (inst_5.countableIntersection family) ambientRange)         (inst_6.countableIntersection fun index => LRA.Set.ImageOf relation (family index) ambientRange)
+Predicate logic: ∀ [HasCountableIntersection DomainObject] [HasCountableIntersection RangeObject] [HasSubset RangeObject] (relation : RelationObject) (family : Nat → DomainObject) (ambientRange : RangeObject), ImageOf relation (HasCountableIntersection.countableIntersection family) ambientRange ⊆ HasCountableIntersection.countableIntersection (fun index => ImageOf relation (family index) ambientRange)
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : LRA.Set.HasCountableIntersection DomainObject] [inst_6 : LRA.Set.HasCountableIntersection RangeObject] [inst_7 : HasSubset RangeObject] (relation : RelationObject) (family : Nat → DomainObject) (ambientRange : RangeObject), inst_7.Subset (LRA.Set.ImageOf relation (inst_5.countableIntersection family) ambientRange) (inst_6.countableIntersection fun index => LRA.Set.ImageOf relation (family index) ambientRange)
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ ambientRange ∈ RangeObject), (Nat → DomainObject) → ImageOf relation (HasCountableIntersection.countableIntersection family) ambientRange ⊆ HasCountableIntersection.countableIntersection (fun index => ImageOf relation (family index) ambientRange)
 Logical form (Lean): [HasCountableIntersection DomainObject] [HasCountableIntersection RangeObject] [HasSubset RangeObject] (relation : RelationObject) (family : Nat → DomainObject) (ambientRange : RangeObject) : ImageOf relation (HasCountableIntersection.countableIntersection family) ambientRange ⊆ HasCountableIntersection.countableIntersection (fun index => ImageOf relation (family index) ambientRange)
 Source: ./Interface/RelationLaws.lean#L547
 
@@ -924,8 +1015,9 @@ Source: ./Interface/RelationLaws.lean#L547
 Name: ImageOfCongrRelation
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ (first second : RelationObject) (inputs : DomainObject) (ambientRange : RangeObject),       (∀ (input : Left) (output : Right),           Iff (LRA.Set.Relates first input output) (LRA.Set.Relates second input output)) →         Eq (LRA.Set.ImageOf first inputs ambientRange) (LRA.Set.ImageOf second inputs ambientRange)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ (first second : RelationObject) (inputs : DomainObject) (ambientRange : RangeObject),       (∀ (input : Left) (output : Right),           Iff (LRA.Set.Relates first input output) (LRA.Set.Relates second input output)) →         Eq (LRA.Set.ImageOf first inputs ambientRange) (LRA.Set.ImageOf second inputs ambientRange)
+Predicate logic: ∀ (first second : RelationObject) (inputs : DomainObject) (ambientRange : RangeObject) (sameRelation : ∀ (input : Left) (output : Right), Relates first input output ↔ Relates second input output), ImageOf first inputs ambientRange = ImageOf second inputs ambientRange
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ (first second : RelationObject) (inputs : DomainObject) (ambientRange : RangeObject), (∀ (input : Left) (output : Right), LRA.Set.Relates first input output ↔ LRA.Set.Relates second input output) → LRA.Set.ImageOf first inputs ambientRange = LRA.Set.ImageOf second inputs ambientRange
+Transliterated theorem: (∀ first second ∈ RelationObject ∀ inputs ∈ DomainObject ∀ ambientRange ∈ RangeObject), (∀ input ∈ Left output ∈ Right, Relates first input output ↔ Relates second input output) → ImageOf first inputs ambientRange = ImageOf second inputs ambientRange
 Logical form (Lean): (first second : RelationObject) (inputs : DomainObject) (ambientRange : RangeObject) (sameRelation : ∀ (input : Left) (output : Right), Relates first input output ↔ Relates second input output) : ImageOf first inputs ambientRange = ImageOf second inputs ambientRange
 Source: ./Interface/RelationLaws.lean#L558
 
@@ -934,8 +1026,9 @@ Source: ./Interface/RelationLaws.lean#L558
 Name: ImageOfCongrInputs
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject),       (∀ (input : Left), Iff (inst_2.mem left input) (inst_2.mem right input)) →         Eq (LRA.Set.ImageOf relation left ambientRange) (LRA.Set.ImageOf relation right ambientRange)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Right RangeObject],   And (LRA.Set.SeparationLaws Right RangeObject) (LRA.Set.ExtensionalityLaw Right RangeObject) →     ∀ (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject),       (∀ (input : Left), Iff (inst_2.mem left input) (inst_2.mem right input)) →         Eq (LRA.Set.ImageOf relation left ambientRange) (LRA.Set.ImageOf relation right ambientRange)
+Predicate logic: ∀ (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject) (sameInputs : ∀ input : Left, input ∈ left ↔ input ∈ right), ImageOf relation left ambientRange = ImageOf relation right ambientRange
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), (∀ (input : Left), input ∈ left ↔ input ∈ right) → LRA.Set.ImageOf relation left ambientRange = LRA.Set.ImageOf relation right ambientRange
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ left right ∈ DomainObject ∀ ambientRange ∈ RangeObject), (∀ input : Left, input ∈ left ↔ input ∈ right) → ImageOf relation left ambientRange = ImageOf relation right ambientRange
 Logical form (Lean): (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject) (sameInputs : ∀ input : Left, input ∈ left ↔ input ∈ right) : ImageOf relation left ambientRange = ImageOf relation right ambientRange
 Source: ./Interface/RelationLaws.lean#L567
 
@@ -944,8 +1037,9 @@ Source: ./Interface/RelationLaws.lean#L567
 Name: PreimageOfUnion
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   And (LRA.Set.SeparationLaws Left DomainObject) (LRA.Set.ExtensionalityLaw Left DomainObject) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject],       And (LRA.Set.MembershipLaws Left DomainObject) (LRA.Set.MembershipLaws Right RangeObject) →         ∀ (relation : RelationObject) (left right : RangeObject) (ambientDomain : DomainObject),           Eq (LRA.Set.PreimageOf relation (inst_10.union left right) ambientDomain)             (inst_5.union (LRA.Set.PreimageOf relation left ambientDomain)               (LRA.Set.PreimageOf relation right ambientDomain))
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   And (LRA.Set.SeparationLaws Left DomainObject) (LRA.Set.ExtensionalityLaw Left DomainObject) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject],       And (LRA.Set.MembershipLaws Left DomainObject) (LRA.Set.MembershipLaws Right RangeObject) →         ∀ (relation : RelationObject) (left right : RangeObject) (ambientDomain : DomainObject),           Eq (LRA.Set.PreimageOf relation (inst_10.union left right) ambientDomain)             (inst_5.union (LRA.Set.PreimageOf relation left ambientDomain)               (LRA.Set.PreimageOf relation right ambientDomain))
+Predicate logic: ∀ [Union DomainObject] [Inter DomainObject] [SDiff DomainObject] [EmptyCollection DomainObject] [HasSubset DomainObject] [Union RangeObject] [Inter RangeObject] [SDiff RangeObject] [EmptyCollection RangeObject] [HasSubset RangeObject] [MembershipLaws Left DomainObject] [MembershipLaws Right RangeObject] (relation : RelationObject) (left right : RangeObject) (ambientDomain : DomainObject), PreimageOf relation (left ∪ right) ambientDomain = PreimageOf relation left ambientDomain ∪ PreimageOf relation right ambientDomain
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject], (LRA.Set.MembershipLaws Left DomainObject ∧ LRA.Set.MembershipLaws Right RangeObject) → ∀ (relation : RelationObject) (left right : RangeObject) (ambientDomain : DomainObject), LRA.Set.PreimageOf relation (left ∪ right)ambientDomain = LRA.Set.PreimageOf relation left ambientDomain ∪ LRA.Set.PreimageOf relation right ambientDomain
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ left right ∈ RangeObject ∀ ambientDomain ∈ DomainObject), PreimageOf relation (left ∪ right) ambientDomain = PreimageOf relation left ambientDomain ∪ PreimageOf relation right ambientDomain
 Logical form (Lean): [Union DomainObject] [Inter DomainObject] [SDiff DomainObject] [EmptyCollection DomainObject] [HasSubset DomainObject] [Union RangeObject] [Inter RangeObject] [SDiff RangeObject] [EmptyCollection RangeObject] [HasSubset RangeObject] [MembershipLaws Left DomainObject] [MembershipLaws Right RangeObject] (relation : RelationObject) (left right : RangeObject) (ambientDomain : DomainObject) : PreimageOf relation (left ∪ right) ambientDomain = PreimageOf relation left ambientDomain ∪ PreimageOf relation right ambientDomain
 Source: ./Interface/RelationLaws.lean#L586
 
@@ -954,8 +1048,9 @@ Source: ./Interface/RelationLaws.lean#L586
 Name: PreimageOfEmpty
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   And (LRA.Set.SeparationLaws Left DomainObject) (LRA.Set.ExtensionalityLaw Left DomainObject) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject],       And (LRA.Set.MembershipLaws Left DomainObject) (LRA.Set.MembershipLaws Right RangeObject) →         ∀ (relation : RelationObject) (ambientDomain : DomainObject),           Eq (LRA.Set.PreimageOf relation inst_13.emptyCollection ambientDomain) inst_8.emptyCollection
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   And (LRA.Set.SeparationLaws Left DomainObject) (LRA.Set.ExtensionalityLaw Left DomainObject) →     ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject]       [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject]       [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject]       [inst_14 : HasSubset RangeObject],       And (LRA.Set.MembershipLaws Left DomainObject) (LRA.Set.MembershipLaws Right RangeObject) →         ∀ (relation : RelationObject) (ambientDomain : DomainObject),           Eq (LRA.Set.PreimageOf relation inst_13.emptyCollection ambientDomain) inst_8.emptyCollection
+Predicate logic: ∀ [Union DomainObject] [Inter DomainObject] [SDiff DomainObject] [EmptyCollection DomainObject] [HasSubset DomainObject] [Union RangeObject] [Inter RangeObject] [SDiff RangeObject] [EmptyCollection RangeObject] [HasSubset RangeObject] [MembershipLaws Left DomainObject] [MembershipLaws Right RangeObject] (relation : RelationObject) (ambientDomain : DomainObject), PreimageOf relation (∅ : RangeObject) ambientDomain = (∅ : DomainObject)
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject], (LRA.Set.MembershipLaws Left DomainObject ∧ LRA.Set.MembershipLaws Right RangeObject) → ∀ (relation : RelationObject) (ambientDomain : DomainObject), LRA.Set.PreimageOf relation inst_13.emptyCollection ambientDomain = inst_8.emptyCollection
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ ambientDomain ∈ DomainObject), PreimageOf relation ∅ ∈ RangeObject ambientDomain = ∅ ∈ DomainObject
 Logical form (Lean): [Union DomainObject] [Inter DomainObject] [SDiff DomainObject] [EmptyCollection DomainObject] [HasSubset DomainObject] [Union RangeObject] [Inter RangeObject] [SDiff RangeObject] [EmptyCollection RangeObject] [HasSubset RangeObject] [MembershipLaws Left DomainObject] [MembershipLaws Right RangeObject] (relation : RelationObject) (ambientDomain : DomainObject) : PreimageOf relation (∅ : RangeObject) ambientDomain = (∅ : DomainObject)
 Source: ./Interface/RelationLaws.lean#L600
 
@@ -964,8 +1059,9 @@ Source: ./Interface/RelationLaws.lean#L600
 Name: PreimageOfMonotone
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   And (LRA.Set.SeparationLaws Left DomainObject) (LRA.Set.ExtensionalityLaw Left DomainObject) →     ∀ [inst_5 : HasSubset DomainObject] [inst_6 : HasSubset RangeObject] (relation : RelationObject)       (smaller larger : RangeObject) (ambientDomain : DomainObject),       inst_6.Subset smaller larger →         inst_5.Subset (LRA.Set.PreimageOf relation smaller ambientDomain)           (LRA.Set.PreimageOf relation larger ambientDomain)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   And (LRA.Set.SeparationLaws Left DomainObject) (LRA.Set.ExtensionalityLaw Left DomainObject) →     ∀ [inst_5 : HasSubset DomainObject] [inst_6 : HasSubset RangeObject] (relation : RelationObject)       (smaller larger : RangeObject) (ambientDomain : DomainObject),       inst_6.Subset smaller larger →         inst_5.Subset (LRA.Set.PreimageOf relation smaller ambientDomain)           (LRA.Set.PreimageOf relation larger ambientDomain)
+Predicate logic: ∀ [HasSubset DomainObject] [HasSubset RangeObject] (relation : RelationObject) (smaller larger : RangeObject) (ambientDomain : DomainObject) (inclusion : smaller ⊆ larger), PreimageOf relation smaller ambientDomain ⊆ PreimageOf relation larger ambientDomain
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : HasSubset DomainObject] [inst_6 : HasSubset RangeObject] (relation : RelationObject) (smaller larger : RangeObject) (ambientDomain : DomainObject), inst_6.Subset smaller larger → inst_5.Subset (LRA.Set.PreimageOf relation smaller ambientDomain) (LRA.Set.PreimageOf relation larger ambientDomain)
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ smaller larger ∈ RangeObject ∀ ambientDomain ∈ DomainObject), PreimageOf relation smaller ambientDomain ⊆ PreimageOf relation larger ambientDomain
 Logical form (Lean): [HasSubset DomainObject] [HasSubset RangeObject] (relation : RelationObject) (smaller larger : RangeObject) (ambientDomain : DomainObject) (inclusion : smaller ⊆ larger) : PreimageOf relation smaller ambientDomain ⊆ PreimageOf relation larger ambientDomain
 Source: ./Interface/RelationLaws.lean#L611
 
@@ -974,8 +1070,9 @@ Source: ./Interface/RelationLaws.lean#L611
 Name: PreimageOfSubsetAmbient
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   And (LRA.Set.SeparationLaws Left DomainObject) (LRA.Set.ExtensionalityLaw Left DomainObject) →     ∀ [inst_5 : HasSubset DomainObject] (relation : RelationObject) (outputs : RangeObject)       (ambientDomain : DomainObject), inst_5.Subset (LRA.Set.PreimageOf relation outputs ambientDomain) ambientDomain
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   And (LRA.Set.SeparationLaws Left DomainObject) (LRA.Set.ExtensionalityLaw Left DomainObject) →     ∀ [inst_5 : HasSubset DomainObject] (relation : RelationObject) (outputs : RangeObject)       (ambientDomain : DomainObject), inst_5.Subset (LRA.Set.PreimageOf relation outputs ambientDomain) ambientDomain
+Predicate logic: ∀ [HasSubset DomainObject] (relation : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject), PreimageOf relation outputs ambientDomain ⊆ ambientDomain
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : HasSubset DomainObject] (relation : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject), inst_5.Subset (LRA.Set.PreimageOf relation outputs ambientDomain) ambientDomain
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ outputs ∈ RangeObject ∀ ambientDomain ∈ DomainObject), PreimageOf relation outputs ambientDomain ⊆ ambientDomain
 Logical form (Lean): [HasSubset DomainObject] (relation : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject) : PreimageOf relation outputs ambientDomain ⊆ ambientDomain
 Source: ./Interface/RelationLaws.lean#L619
 
@@ -984,8 +1081,9 @@ Source: ./Interface/RelationLaws.lean#L619
 Name: PreimageOfIndexedUnion
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   And (LRA.Set.SeparationLaws Left DomainObject) (LRA.Set.ExtensionalityLaw Left DomainObject) →     ∀ {Index : Type u} [inst_5 : LRA.Set.HasIndexedUnion DomainObject] [inst_6 : LRA.Set.HasIndexedUnion RangeObject]       (relation : RelationObject) (family : Index → RangeObject) (ambientDomain : DomainObject),       Eq (LRA.Set.PreimageOf relation (inst_6.indexedUnion family) ambientDomain)         (inst_5.indexedUnion fun index => LRA.Set.PreimageOf relation (family index) ambientDomain)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   And (LRA.Set.SeparationLaws Left DomainObject) (LRA.Set.ExtensionalityLaw Left DomainObject) →     ∀ {Index : Type u} [inst_5 : LRA.Set.HasIndexedUnion DomainObject] [inst_6 : LRA.Set.HasIndexedUnion RangeObject]       (relation : RelationObject) (family : Index → RangeObject) (ambientDomain : DomainObject),       Eq (LRA.Set.PreimageOf relation (inst_6.indexedUnion family) ambientDomain)         (inst_5.indexedUnion fun index => LRA.Set.PreimageOf relation (family index) ambientDomain)
+Predicate logic: ∀ {Index : Type u} [HasIndexedUnion DomainObject] [HasIndexedUnion RangeObject] (relation : RelationObject) (family : Index → RangeObject) (ambientDomain : DomainObject), PreimageOf relation (HasIndexedUnion.indexedUnion family) ambientDomain = HasIndexedUnion.indexedUnion (fun index => PreimageOf relation (family index) ambientDomain)
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ {Index : Type u} [inst_5 : LRA.Set.HasIndexedUnion DomainObject] [inst_6 : LRA.Set.HasIndexedUnion RangeObject] (relation : RelationObject) (family : Index → RangeObject) (ambientDomain : DomainObject), LRA.Set.PreimageOf relation (inst_6.indexedUnion family) ambientDomain = inst_5.indexedUnion fun index => LRA.Set.PreimageOf relation (family index) ambientDomain
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ ambientDomain ∈ DomainObject), (Index → RangeObject) → PreimageOf relation (HasIndexedUnion.indexedUnion family) ambientDomain = HasIndexedUnion.indexedUnion (fun index => PreimageOf relation (family index) ambientDomain)
 Logical form (Lean): {Index : Type u} [HasIndexedUnion DomainObject] [HasIndexedUnion RangeObject] (relation : RelationObject) (family : Index → RangeObject) (ambientDomain : DomainObject) : PreimageOf relation (HasIndexedUnion.indexedUnion family) ambientDomain = HasIndexedUnion.indexedUnion (fun index => PreimageOf relation (family index) ambientDomain)
 Source: ./Interface/RelationLaws.lean#L626
 
@@ -994,8 +1092,9 @@ Source: ./Interface/RelationLaws.lean#L626
 Name: PreimageOfCountableUnion
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   And (LRA.Set.SeparationLaws Left DomainObject) (LRA.Set.ExtensionalityLaw Left DomainObject) →     ∀ [inst_5 : LRA.Set.HasCountableUnion DomainObject] [inst_6 : LRA.Set.HasCountableUnion RangeObject]       (relation : RelationObject) (family : Nat → RangeObject) (ambientDomain : DomainObject),       Eq (LRA.Set.PreimageOf relation (inst_6.countableUnion family) ambientDomain)         (inst_5.countableUnion fun index => LRA.Set.PreimageOf relation (family index) ambientDomain)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   And (LRA.Set.SeparationLaws Left DomainObject) (LRA.Set.ExtensionalityLaw Left DomainObject) →     ∀ [inst_5 : LRA.Set.HasCountableUnion DomainObject] [inst_6 : LRA.Set.HasCountableUnion RangeObject]       (relation : RelationObject) (family : Nat → RangeObject) (ambientDomain : DomainObject),       Eq (LRA.Set.PreimageOf relation (inst_6.countableUnion family) ambientDomain)         (inst_5.countableUnion fun index => LRA.Set.PreimageOf relation (family index) ambientDomain)
+Predicate logic: ∀ [HasCountableUnion DomainObject] [HasCountableUnion RangeObject] (relation : RelationObject) (family : Nat → RangeObject) (ambientDomain : DomainObject), PreimageOf relation (HasCountableUnion.countableUnion family) ambientDomain = HasCountableUnion.countableUnion (fun index => PreimageOf relation (family index) ambientDomain)
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : LRA.Set.HasCountableUnion DomainObject] [inst_6 : LRA.Set.HasCountableUnion RangeObject] (relation : RelationObject) (family : Nat → RangeObject) (ambientDomain : DomainObject), LRA.Set.PreimageOf relation (inst_6.countableUnion family) ambientDomain = inst_5.countableUnion fun index => LRA.Set.PreimageOf relation (family index) ambientDomain
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ ambientDomain ∈ DomainObject), (Nat → RangeObject) → PreimageOf relation (HasCountableUnion.countableUnion family) ambientDomain = HasCountableUnion.countableUnion (fun index => PreimageOf relation (family index) ambientDomain)
 Logical form (Lean): [HasCountableUnion DomainObject] [HasCountableUnion RangeObject] (relation : RelationObject) (family : Nat → RangeObject) (ambientDomain : DomainObject) : PreimageOf relation (HasCountableUnion.countableUnion family) ambientDomain = HasCountableUnion.countableUnion (fun index => PreimageOf relation (family index) ambientDomain)
 Source: ./Interface/RelationLaws.lean#L636
 
@@ -1004,8 +1103,9 @@ Source: ./Interface/RelationLaws.lean#L636
 Name: PreimageOfCongrRelation
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   And (LRA.Set.SeparationLaws Left DomainObject) (LRA.Set.ExtensionalityLaw Left DomainObject) →     ∀ (first second : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject),       (∀ (input : Left) (output : Right),           Iff (LRA.Set.Relates first input output) (LRA.Set.Relates second input output)) →         Eq (LRA.Set.PreimageOf first outputs ambientDomain) (LRA.Set.PreimageOf second outputs ambientDomain)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   And (LRA.Set.SeparationLaws Left DomainObject) (LRA.Set.ExtensionalityLaw Left DomainObject) →     ∀ (first second : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject),       (∀ (input : Left) (output : Right),           Iff (LRA.Set.Relates first input output) (LRA.Set.Relates second input output)) →         Eq (LRA.Set.PreimageOf first outputs ambientDomain) (LRA.Set.PreimageOf second outputs ambientDomain)
+Predicate logic: ∀ (first second : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject) (sameRelation : ∀ (input : Left) (output : Right), Relates first input output ↔ Relates second input output), PreimageOf first outputs ambientDomain = PreimageOf second outputs ambientDomain
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ (first second : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject), (∀ (input : Left) (output : Right), LRA.Set.Relates first input output ↔ LRA.Set.Relates second input output) → LRA.Set.PreimageOf first outputs ambientDomain = LRA.Set.PreimageOf second outputs ambientDomain
+Transliterated theorem: (∀ first second ∈ RelationObject ∀ outputs ∈ RangeObject ∀ ambientDomain ∈ DomainObject), (∀ input ∈ Left output ∈ Right, Relates first input output ↔ Relates second input output) → PreimageOf first outputs ambientDomain = PreimageOf second outputs ambientDomain
 Logical form (Lean): (first second : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject) (sameRelation : ∀ (input : Left) (output : Right), Relates first input output ↔ Relates second input output) : PreimageOf first outputs ambientDomain = PreimageOf second outputs ambientDomain
 Source: ./Interface/RelationLaws.lean#L646
 
@@ -1014,8 +1114,9 @@ Source: ./Interface/RelationLaws.lean#L646
 Name: PreimageOfCongrOutputs
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   And (LRA.Set.SeparationLaws Left DomainObject) (LRA.Set.ExtensionalityLaw Left DomainObject) →     ∀ (relation : RelationObject) (left right : RangeObject) (ambientDomain : DomainObject),       (∀ (output : Right), Iff (inst_3.mem left output) (inst_3.mem right output)) →         Eq (LRA.Set.PreimageOf relation left ambientDomain) (LRA.Set.PreimageOf relation right ambientDomain)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   And (LRA.Set.SeparationLaws Left DomainObject) (LRA.Set.ExtensionalityLaw Left DomainObject) →     ∀ (relation : RelationObject) (left right : RangeObject) (ambientDomain : DomainObject),       (∀ (output : Right), Iff (inst_3.mem left output) (inst_3.mem right output)) →         Eq (LRA.Set.PreimageOf relation left ambientDomain) (LRA.Set.PreimageOf relation right ambientDomain)
+Predicate logic: ∀ (relation : RelationObject) (left right : RangeObject) (ambientDomain : DomainObject) (sameOutputs : ∀ output : Right, output ∈ left ↔ output ∈ right), PreimageOf relation left ambientDomain = PreimageOf relation right ambientDomain
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ (relation : RelationObject) (left right : RangeObject) (ambientDomain : DomainObject), (∀ (output : Right), output ∈ left ↔ output ∈ right) → LRA.Set.PreimageOf relation left ambientDomain = LRA.Set.PreimageOf relation right ambientDomain
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ left right ∈ RangeObject ∀ ambientDomain ∈ DomainObject), (∀ output : Right, output ∈ left ↔ output ∈ right) → PreimageOf relation left ambientDomain = PreimageOf relation right ambientDomain
 Logical form (Lean): (relation : RelationObject) (left right : RangeObject) (ambientDomain : DomainObject) (sameOutputs : ∀ output : Right, output ∈ left ↔ output ∈ right) : PreimageOf relation left ambientDomain = PreimageOf relation right ambientDomain
 Source: ./Interface/RelationLaws.lean#L656
 
@@ -1024,8 +1125,9 @@ Source: ./Interface/RelationLaws.lean#L656
 Name: ImageOfCompositionOf
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Mid Right FirstPair SecondPair CompositePair : Type u}   {FirstObject SecondObject CompositeObject DomainObject MidObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Mid FirstPair] [inst_1 : LRA.Set.HasPairing Mid Right SecondPair]   [inst_2 : LRA.Set.HasPairing Left Right CompositePair] [inst_3 : Membership FirstPair FirstObject]   [inst_4 : Membership SecondPair SecondObject] [inst_5 : Membership CompositePair CompositeObject]   [inst_6 : Membership Left DomainObject] [inst_7 : Membership Mid MidObject] [inst_8 : Membership Right RangeObject]   [inst_9 : LRA.Set.HasSeparation Mid MidObject] [inst_10 : LRA.Set.HasSeparation Right RangeObject],   LRA.Set.ExtensionalityLaw Right RangeObject →     ∀ (first : FirstObject) (second : SecondObject) (composite : CompositeObject) (inputs : DomainObject)       (ambientMid : MidObject) (ambientRange : RangeObject),       (∀ (input : Left) (output : Right),           Iff (LRA.Set.Relates composite input output)             (Exists fun middle => And (LRA.Set.Relates first input middle) (LRA.Set.Relates second middle output))) →         Eq (LRA.Set.ImageOf composite inputs ambientRange)           (LRA.Set.ImageOf second (LRA.Set.ImageOf first inputs ambientMid) ambientRange)
-Predicate logic (unfolded): ∀ {Left Mid Right FirstPair SecondPair CompositePair : Type u}   {FirstObject SecondObject CompositeObject DomainObject MidObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Mid FirstPair] [inst_1 : LRA.Set.HasPairing Mid Right SecondPair]   [inst_2 : LRA.Set.HasPairing Left Right CompositePair] [inst_3 : Membership FirstPair FirstObject]   [inst_4 : Membership SecondPair SecondObject] [inst_5 : Membership CompositePair CompositeObject]   [inst_6 : Membership Left DomainObject] [inst_7 : Membership Mid MidObject] [inst_8 : Membership Right RangeObject]   [inst_9 : LRA.Set.HasSeparation Mid MidObject] [inst_10 : LRA.Set.HasSeparation Right RangeObject],   LRA.Set.ExtensionalityLaw Right RangeObject →     ∀ (first : FirstObject) (second : SecondObject) (composite : CompositeObject) (inputs : DomainObject)       (ambientMid : MidObject) (ambientRange : RangeObject),       (∀ (input : Left) (output : Right),           Iff (LRA.Set.Relates composite input output)             (Exists fun middle => And (LRA.Set.Relates first input middle) (LRA.Set.Relates second middle output))) →         Eq (LRA.Set.ImageOf composite inputs ambientRange)           (LRA.Set.ImageOf second (LRA.Set.ImageOf first inputs ambientMid) ambientRange)
+Predicate logic: ∀ {Left Mid Right : Type u} {FirstPair SecondPair CompositePair : Type u} {FirstObject SecondObject CompositeObject : Type v} {DomainObject MidObject RangeObject : Type v} [HasPairing Left Mid FirstPair] [HasPairing Mid Right SecondPair] [HasPairing Left Right CompositePair] [Membership FirstPair FirstObject] [Membership SecondPair SecondObject] [Membership CompositePair CompositeObject] [Membership Left DomainObject] [Membership Mid MidObject] [Membership Right RangeObject] [HasSeparation Mid MidObject] [HasSeparation Right RangeObject] [ExtensionalityLaw Right RangeObject] (first : FirstObject) (second : SecondObject) (composite : CompositeObject) (inputs : DomainObject) (ambientMid : MidObject) (ambientRange : RangeObject) (isComposite : ∀ (input : Left) (output : Right), Relates composite input output ↔ ∃ middle : Mid, Relates first input middle ∧ Relates second middle output), ImageOf composite inputs ambientRange = ImageOf second (ImageOf first inputs ambientMid) ambientRange
+Predicate logic (unfolded): ∀ {Left Mid Right FirstPair SecondPair CompositePair : Type u} {FirstObject SecondObject CompositeObject DomainObject MidObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Mid FirstPair] [inst_1 : LRA.Set.HasPairing Mid Right SecondPair] [inst_2 : LRA.Set.HasPairing Left Right CompositePair] [inst_3 : Membership FirstPair FirstObject] [inst_4 : Membership SecondPair SecondObject] [inst_5 : Membership CompositePair CompositeObject] [inst_6 : Membership Left DomainObject] [inst_7 : Membership Mid MidObject] [inst_8 : Membership Right RangeObject] [inst_9 : LRA.Set.HasSeparation Mid MidObject] [inst_10 : LRA.Set.HasSeparation Right RangeObject], LRA.Set.ExtensionalityLaw Right RangeObject → ∀ (first : FirstObject) (second : SecondObject) (composite : CompositeObject) (inputs : DomainObject) (ambientMid : MidObject) (ambientRange : RangeObject), (∀ (input : Left) (output : Right), LRA.Set.Relates composite input output ↔ Exists fun middle => (LRA.Set.Relates first input middle ∧ LRA.Set.Relates second middle output)) → LRA.Set.ImageOf composite inputs ambientRange = LRA.Set.ImageOf second (LRA.Set.ImageOf first inputs ambientMid) ambientRange
+Transliterated theorem: (∀ first ∈ FirstObject ∀ second ∈ SecondObject ∀ composite ∈ CompositeObject ∀ inputs ∈ DomainObject ∀ ambientMid ∈ MidObject ∀ ambientRange ∈ RangeObject), (∀ input ∈ Left output ∈ Right, Relates composite input output ↔ ∃ middle ∈ Mid, Relates first input middle ∧ Relates second middle output) → ImageOf composite inputs ambientRange = ImageOf second (ImageOf first inputs ambientMid) ambientRange
 Logical form (Lean): {Left Mid Right : Type u} {FirstPair SecondPair CompositePair : Type u} {FirstObject SecondObject CompositeObject : Type v} {DomainObject MidObject RangeObject : Type v} [HasPairing Left Mid FirstPair] [HasPairing Mid Right SecondPair] [HasPairing Left Right CompositePair] [Membership FirstPair FirstObject] [Membership SecondPair SecondObject] [Membership CompositePair CompositeObject] [Membership Left DomainObject] [Membership Mid MidObject] [Membership Right RangeObject] [HasSeparation Mid MidObject] [HasSeparation Right RangeObject] [ExtensionalityLaw Right RangeObject] (first : FirstObject) (second : SecondObject) (composite : CompositeObject) (inputs : DomainObject) (ambientMid : MidObject) (ambientRange : RangeObject) (isComposite : ∀ (input : Left) (output : Right), Relates composite input output ↔ ∃ middle : Mid, Relates first input middle ∧ Relates second middle output) : ImageOf composite inputs ambientRange = ImageOf second (ImageOf first inputs ambientMid) ambientRange
 Source: ./Interface/RelationLaws.lean#L669
 
@@ -1034,8 +1136,9 @@ Source: ./Interface/RelationLaws.lean#L669
 Name: PreimageOfCompositionOf
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Mid Right FirstPair SecondPair CompositePair : Type u}   {FirstObject SecondObject CompositeObject DomainObject MidObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Mid FirstPair] [inst_1 : LRA.Set.HasPairing Mid Right SecondPair]   [inst_2 : LRA.Set.HasPairing Left Right CompositePair] [inst_3 : Membership FirstPair FirstObject]   [inst_4 : Membership SecondPair SecondObject] [inst_5 : Membership CompositePair CompositeObject]   [inst_6 : Membership Left DomainObject] [inst_7 : Membership Mid MidObject] [inst_8 : Membership Right RangeObject]   [inst_9 : LRA.Set.HasSeparation Left DomainObject] [inst_10 : LRA.Set.HasSeparation Mid MidObject],   LRA.Set.ExtensionalityLaw Left DomainObject →     ∀ (first : FirstObject) (second : SecondObject) (composite : CompositeObject) (outputs : RangeObject)       (ambientDomain : DomainObject) (ambientMid : MidObject),       (∀ (input : Left) (output : Right),           Iff (LRA.Set.Relates composite input output)             (Exists fun middle => And (LRA.Set.Relates first input middle) (LRA.Set.Relates second middle output))) →         Eq (LRA.Set.PreimageOf composite outputs ambientDomain)           (LRA.Set.PreimageOf first (LRA.Set.PreimageOf second outputs ambientMid) ambientDomain)
-Predicate logic (unfolded): ∀ {Left Mid Right FirstPair SecondPair CompositePair : Type u}   {FirstObject SecondObject CompositeObject DomainObject MidObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Mid FirstPair] [inst_1 : LRA.Set.HasPairing Mid Right SecondPair]   [inst_2 : LRA.Set.HasPairing Left Right CompositePair] [inst_3 : Membership FirstPair FirstObject]   [inst_4 : Membership SecondPair SecondObject] [inst_5 : Membership CompositePair CompositeObject]   [inst_6 : Membership Left DomainObject] [inst_7 : Membership Mid MidObject] [inst_8 : Membership Right RangeObject]   [inst_9 : LRA.Set.HasSeparation Left DomainObject] [inst_10 : LRA.Set.HasSeparation Mid MidObject],   LRA.Set.ExtensionalityLaw Left DomainObject →     ∀ (first : FirstObject) (second : SecondObject) (composite : CompositeObject) (outputs : RangeObject)       (ambientDomain : DomainObject) (ambientMid : MidObject),       (∀ (input : Left) (output : Right),           Iff (LRA.Set.Relates composite input output)             (Exists fun middle => And (LRA.Set.Relates first input middle) (LRA.Set.Relates second middle output))) →         Eq (LRA.Set.PreimageOf composite outputs ambientDomain)           (LRA.Set.PreimageOf first (LRA.Set.PreimageOf second outputs ambientMid) ambientDomain)
+Predicate logic: ∀ {Left Mid Right : Type u} {FirstPair SecondPair CompositePair : Type u} {FirstObject SecondObject CompositeObject : Type v} {DomainObject MidObject RangeObject : Type v} [HasPairing Left Mid FirstPair] [HasPairing Mid Right SecondPair] [HasPairing Left Right CompositePair] [Membership FirstPair FirstObject] [Membership SecondPair SecondObject] [Membership CompositePair CompositeObject] [Membership Left DomainObject] [Membership Mid MidObject] [Membership Right RangeObject] [HasSeparation Left DomainObject] [HasSeparation Mid MidObject] [ExtensionalityLaw Left DomainObject] (first : FirstObject) (second : SecondObject) (composite : CompositeObject) (outputs : RangeObject) (ambientDomain : DomainObject) (ambientMid : MidObject) (isComposite : ∀ (input : Left) (output : Right), Relates composite input output ↔ ∃ middle : Mid, Relates first input middle ∧ Relates second middle output), PreimageOf composite outputs ambientDomain = PreimageOf first (PreimageOf second outputs ambientMid) ambientDomain
+Predicate logic (unfolded): ∀ {Left Mid Right FirstPair SecondPair CompositePair : Type u} {FirstObject SecondObject CompositeObject DomainObject MidObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Mid FirstPair] [inst_1 : LRA.Set.HasPairing Mid Right SecondPair] [inst_2 : LRA.Set.HasPairing Left Right CompositePair] [inst_3 : Membership FirstPair FirstObject] [inst_4 : Membership SecondPair SecondObject] [inst_5 : Membership CompositePair CompositeObject] [inst_6 : Membership Left DomainObject] [inst_7 : Membership Mid MidObject] [inst_8 : Membership Right RangeObject] [inst_9 : LRA.Set.HasSeparation Left DomainObject] [inst_10 : LRA.Set.HasSeparation Mid MidObject], LRA.Set.ExtensionalityLaw Left DomainObject → ∀ (first : FirstObject) (second : SecondObject) (composite : CompositeObject) (outputs : RangeObject) (ambientDomain : DomainObject) (ambientMid : MidObject), (∀ (input : Left) (output : Right), LRA.Set.Relates composite input output ↔ Exists fun middle => (LRA.Set.Relates first input middle ∧ LRA.Set.Relates second middle output)) → LRA.Set.PreimageOf composite outputs ambientDomain = LRA.Set.PreimageOf first (LRA.Set.PreimageOf second outputs ambientMid) ambientDomain
+Transliterated theorem: (∀ first ∈ FirstObject ∀ second ∈ SecondObject ∀ composite ∈ CompositeObject ∀ outputs ∈ RangeObject ∀ ambientDomain ∈ DomainObject ∀ ambientMid ∈ MidObject), (∀ input ∈ Left output ∈ Right, Relates composite input output ↔ ∃ middle ∈ Mid, Relates first input middle ∧ Relates second middle output) → PreimageOf composite outputs ambientDomain = PreimageOf first (PreimageOf second outputs ambientMid) ambientDomain
 Logical form (Lean): {Left Mid Right : Type u} {FirstPair SecondPair CompositePair : Type u} {FirstObject SecondObject CompositeObject : Type v} {DomainObject MidObject RangeObject : Type v} [HasPairing Left Mid FirstPair] [HasPairing Mid Right SecondPair] [HasPairing Left Right CompositePair] [Membership FirstPair FirstObject] [Membership SecondPair SecondObject] [Membership CompositePair CompositeObject] [Membership Left DomainObject] [Membership Mid MidObject] [Membership Right RangeObject] [HasSeparation Left DomainObject] [HasSeparation Mid MidObject] [ExtensionalityLaw Left DomainObject] (first : FirstObject) (second : SecondObject) (composite : CompositeObject) (outputs : RangeObject) (ambientDomain : DomainObject) (ambientMid : MidObject) (isComposite : ∀ (input : Left) (output : Right), Relates composite input output ↔ ∃ middle : Mid, Relates first input middle ∧ Relates second middle output) : PreimageOf composite outputs ambientDomain = PreimageOf first (PreimageOf second outputs ambientMid) ambientDomain
 Source: ./Interface/RelationLaws.lean#L691
 
@@ -1045,7 +1148,8 @@ Name: PreimageOfCompositionMonotone
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   (a : Membership Left DomainObject) [inst_2 : Membership Right RangeObject]   [inst_3 : LRA.Set.HasSeparation Left DomainObject] [inst_4 : HasSubset DomainObject] [inst_5 : HasSubset RangeObject]   (composite : RelationObject) (smaller larger : RangeObject) (ambientDomain : DomainObject),   inst_5.Subset smaller larger →     inst_4.Subset (LRA.Set.PreimageOf composite smaller ambientDomain)       (LRA.Set.PreimageOf composite larger ambientDomain)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   (a : Membership Left DomainObject) [inst_2 : Membership Right RangeObject]   [inst_3 : LRA.Set.HasSeparation Left DomainObject] [inst_4 : HasSubset DomainObject] [inst_5 : HasSubset RangeObject]   (composite : RelationObject) (smaller larger : RangeObject) (ambientDomain : DomainObject),   inst_5.Subset smaller larger →     inst_4.Subset (LRA.Set.PreimageOf composite smaller ambientDomain)       (LRA.Set.PreimageOf composite larger ambientDomain)
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] (a : Membership Left DomainObject) [inst_2 : Membership Right RangeObject] [inst_3 : LRA.Set.HasSeparation Left DomainObject] [inst_4 : HasSubset DomainObject] [inst_5 : HasSubset RangeObject] (composite : RelationObject) (smaller larger : RangeObject) (ambientDomain : DomainObject), inst_5.Subset smaller larger → inst_4.Subset (LRA.Set.PreimageOf composite smaller ambientDomain) (LRA.Set.PreimageOf composite larger ambientDomain)
+Transliterated theorem: (∀ composite ∈ RelationObject ∀ smaller larger ∈ RangeObject ∀ ambientDomain ∈ DomainObject), PreimageOf composite smaller ambientDomain ⊆ PreimageOf composite larger ambientDomain
 Logical form (Lean): {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [HasPairing Left Right Pair] [Membership Pair RelationObject] [Membership Left DomainObject] [Membership Right RangeObject] [HasSeparation Left DomainObject] [HasSubset DomainObject] [HasSubset RangeObject] (composite : RelationObject) (smaller larger : RangeObject) (ambientDomain : DomainObject) (inclusion : smaller ⊆ larger) : PreimageOf composite smaller ambientDomain ⊆ PreimageOf composite larger ambientDomain
 Source: ./Interface/RelationLaws.lean#L713
 
@@ -1054,8 +1158,9 @@ Source: ./Interface/RelationLaws.lean#L713
 Name: ImageOfIdentityOn
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Left Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject]   [inst_3 : LRA.Set.HasSeparation Left DomainObject],   LRA.Set.ExtensionalityLaw Left DomainObject →     ∀ (identity : RelationObject) (inputs ambientDomain : DomainObject),       And           (∀ (leftElement rightElement : Left),             Iff (LRA.Set.Relates identity leftElement rightElement) (Eq leftElement rightElement))           (∀ (input : Left), inst_2.mem inputs input → inst_2.mem ambientDomain input) →         Eq (LRA.Set.ImageOf identity inputs ambientDomain) inputs
-Predicate logic (unfolded): ∀ {Left Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Left Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject]   [inst_3 : LRA.Set.HasSeparation Left DomainObject],   LRA.Set.ExtensionalityLaw Left DomainObject →     ∀ (identity : RelationObject) (inputs ambientDomain : DomainObject),       And           (∀ (leftElement rightElement : Left),             Iff (LRA.Set.Relates identity leftElement rightElement) (Eq leftElement rightElement))           (∀ (input : Left), inst_2.mem inputs input → inst_2.mem ambientDomain input) →         Eq (LRA.Set.ImageOf identity inputs ambientDomain) inputs
+Predicate logic: ∀ {Left Pair : Type u} {RelationObject DomainObject : Type v} [HasPairing Left Left Pair] [Membership Pair RelationObject] [Membership Left DomainObject] [HasSeparation Left DomainObject] [ExtensionalityLaw Left DomainObject] (identity : RelationObject) (inputs ambientDomain : DomainObject) (isIdentity : ∀ leftElement rightElement : Left, Relates identity leftElement rightElement ↔ leftElement = rightElement) (inputsInAmbient : ∀ input : Left, input ∈ inputs → input ∈ ambientDomain), ImageOf identity inputs ambientDomain = inputs
+Predicate logic (unfolded): ∀ {Left Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Left Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : LRA.Set.HasSeparation Left DomainObject], LRA.Set.ExtensionalityLaw Left DomainObject → ∀ (identity : RelationObject) (inputs ambientDomain : DomainObject), (∀ (leftElement rightElement : Left), LRA.Set.Relates identity leftElement rightElement ↔ leftElement = rightElement ∧ ∀ (input : Left), input ∈ inputs → input ∈ ambientDomain) → LRA.Set.ImageOf identity inputs ambientDomain = inputs
+Transliterated theorem: (∀ identity ∈ RelationObject ∀ inputs ambientDomain ∈ DomainObject), (∀ leftElement rightElement : Left, Relates identity leftElement rightElement ↔ leftElement = rightElement ∧ ∀ input : Left, input ∈ inputs → input ∈ ambientDomain) → ImageOf identity inputs ambientDomain = inputs
 Logical form (Lean): {Left Pair : Type u} {RelationObject DomainObject : Type v} [HasPairing Left Left Pair] [Membership Pair RelationObject] [Membership Left DomainObject] [HasSeparation Left DomainObject] [ExtensionalityLaw Left DomainObject] (identity : RelationObject) (inputs ambientDomain : DomainObject) (isIdentity : ∀ leftElement rightElement : Left, Relates identity leftElement rightElement ↔ leftElement = rightElement) (inputsInAmbient : ∀ input : Left, input ∈ inputs → input ∈ ambientDomain) : ImageOf identity inputs ambientDomain = inputs
 Source: ./Interface/RelationLaws.lean#L725
 
@@ -1064,8 +1169,9 @@ Source: ./Interface/RelationLaws.lean#L725
 Name: PreimageOfIdentityOn
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Left Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject]   [inst_3 : LRA.Set.HasSeparation Left DomainObject],   LRA.Set.ExtensionalityLaw Left DomainObject →     ∀ (identity : RelationObject) (outputs ambientDomain : DomainObject),       And           (∀ (leftElement rightElement : Left),             Iff (LRA.Set.Relates identity leftElement rightElement) (Eq leftElement rightElement))           (∀ (output : Left), inst_2.mem outputs output → inst_2.mem ambientDomain output) →         Eq (LRA.Set.PreimageOf identity outputs ambientDomain) outputs
-Predicate logic (unfolded): ∀ {Left Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Left Pair]   [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject]   [inst_3 : LRA.Set.HasSeparation Left DomainObject],   LRA.Set.ExtensionalityLaw Left DomainObject →     ∀ (identity : RelationObject) (outputs ambientDomain : DomainObject),       And           (∀ (leftElement rightElement : Left),             Iff (LRA.Set.Relates identity leftElement rightElement) (Eq leftElement rightElement))           (∀ (output : Left), inst_2.mem outputs output → inst_2.mem ambientDomain output) →         Eq (LRA.Set.PreimageOf identity outputs ambientDomain) outputs
+Predicate logic: ∀ {Left Pair : Type u} {RelationObject DomainObject : Type v} [HasPairing Left Left Pair] [Membership Pair RelationObject] [Membership Left DomainObject] [HasSeparation Left DomainObject] [ExtensionalityLaw Left DomainObject] (identity : RelationObject) (outputs ambientDomain : DomainObject) (isIdentity : ∀ leftElement rightElement : Left, Relates identity leftElement rightElement ↔ leftElement = rightElement) (outputsInAmbient : ∀ output : Left, output ∈ outputs → output ∈ ambientDomain), PreimageOf identity outputs ambientDomain = outputs
+Predicate logic (unfolded): ∀ {Left Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Left Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : LRA.Set.HasSeparation Left DomainObject], LRA.Set.ExtensionalityLaw Left DomainObject → ∀ (identity : RelationObject) (outputs ambientDomain : DomainObject), (∀ (leftElement rightElement : Left), LRA.Set.Relates identity leftElement rightElement ↔ leftElement = rightElement ∧ ∀ (output : Left), output ∈ outputs → output ∈ ambientDomain) → LRA.Set.PreimageOf identity outputs ambientDomain = outputs
+Transliterated theorem: (∀ identity ∈ RelationObject ∀ outputs ambientDomain ∈ DomainObject), (∀ leftElement rightElement : Left, Relates identity leftElement rightElement ↔ leftElement = rightElement ∧ ∀ output : Left, output ∈ outputs → output ∈ ambientDomain) → PreimageOf identity outputs ambientDomain = outputs
 Logical form (Lean): {Left Pair : Type u} {RelationObject DomainObject : Type v} [HasPairing Left Left Pair] [Membership Pair RelationObject] [Membership Left DomainObject] [HasSeparation Left DomainObject] [ExtensionalityLaw Left DomainObject] (identity : RelationObject) (outputs ambientDomain : DomainObject) (isIdentity : ∀ leftElement rightElement : Left, Relates identity leftElement rightElement ↔ leftElement = rightElement) (outputsInAmbient : ∀ output : Left, output ∈ outputs → output ∈ ambientDomain) : PreimageOf identity outputs ambientDomain = outputs
 Source: ./Interface/RelationLaws.lean#L738
 
@@ -1074,8 +1180,9 @@ Source: ./Interface/RelationLaws.lean#L738
 Name: PreimageOfSingletonIsFiberOf
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   LRA.Set.ExtensionalityLaw Left DomainObject →     ∀ (relation : RelationObject) (outputs : RangeObject) (output : Right) (ambientDomain : DomainObject),       (∀ (candidate : Right), Iff (inst_3.mem outputs candidate) (Eq candidate output)) →         Eq (LRA.Set.PreimageOf relation outputs ambientDomain) (LRA.Set.FiberOf relation output ambientDomain)
-Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v}   [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject]   [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject]   [inst_4 : LRA.Set.HasSeparation Left DomainObject],   LRA.Set.ExtensionalityLaw Left DomainObject →     ∀ (relation : RelationObject) (outputs : RangeObject) (output : Right) (ambientDomain : DomainObject),       (∀ (candidate : Right), Iff (inst_3.mem outputs candidate) (Eq candidate output)) →         Eq (LRA.Set.PreimageOf relation outputs ambientDomain) (LRA.Set.FiberOf relation output ambientDomain)
+Predicate logic: ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [HasPairing Left Right Pair] [Membership Pair RelationObject] [Membership Left DomainObject] [Membership Right RangeObject] [HasSeparation Left DomainObject] [ExtensionalityLaw Left DomainObject] (relation : RelationObject) (outputs : RangeObject) (output : Right) (ambientDomain : DomainObject) (isSingleton : ∀ candidate : Right, candidate ∈ outputs ↔ candidate = output), PreimageOf relation outputs ambientDomain = FiberOf relation output ambientDomain
+Predicate logic (unfolded): ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], LRA.Set.ExtensionalityLaw Left DomainObject → ∀ (relation : RelationObject) (outputs : RangeObject) (output : Right) (ambientDomain : DomainObject), (∀ (candidate : Right), candidate ∈ outputs ↔ candidate = output) → LRA.Set.PreimageOf relation outputs ambientDomain = LRA.Set.FiberOf relation output ambientDomain
+Transliterated theorem: (∀ relation ∈ RelationObject ∀ outputs ∈ RangeObject ∀ output ∈ Right ∀ ambientDomain ∈ DomainObject), (∀ candidate : Right, candidate ∈ outputs ↔ candidate = output) → PreimageOf relation outputs ambientDomain = FiberOf relation output ambientDomain
 Logical form (Lean): {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [HasPairing Left Right Pair] [Membership Pair RelationObject] [Membership Left DomainObject] [Membership Right RangeObject] [HasSeparation Left DomainObject] [ExtensionalityLaw Left DomainObject] (relation : RelationObject) (outputs : RangeObject) (output : Right) (ambientDomain : DomainObject) (isSingleton : ∀ candidate : Right, candidate ∈ outputs ↔ candidate = output) : PreimageOf relation outputs ambientDomain = FiberOf relation output ambientDomain
 Source: ./Interface/RelationLaws.lean#L751
 
@@ -1083,9 +1190,10 @@ Source: ./Interface/RelationLaws.lean#L751
 
 Name: SubsetReflexive
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {α : Type u} [inst : HasSubset α], LRA.Set.SubsetLaws α → ∀ (A : α), inst.Subset A A
 Predicate logic (unfolded): ∀ {α : Type u} [inst : HasSubset α], LRA.Set.SubsetLaws α → ∀ (A : α), inst.Subset A A
+Transliterated theorem: ∀ A : α, A ⊆ A
 Logical form (Lean): : ∀ A : α, A ⊆ A
 Source: ./Interface/Subset.lean#L43
 
@@ -1093,29 +1201,32 @@ Source: ./Interface/Subset.lean#L43
 
 Name: SubsetTransitive
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : HasSubset α],   LRA.Set.SubsetLaws α → ∀ (A B C : α), And (inst.Subset A B) (inst.Subset B C) → inst.Subset A C
-Predicate logic (unfolded): ∀ {α : Type u} [inst : HasSubset α],   LRA.Set.SubsetLaws α → ∀ (A B C : α), And (inst.Subset A B) (inst.Subset B C) → inst.Subset A C
+State: Sorry
+Predicate logic: ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C
+Predicate logic (unfolded): ∀ {α : Type u} [inst : HasSubset α], LRA.Set.SubsetLaws α → ∀ (A B C : α), (inst.Subset A B ∧ inst.Subset B C) → inst.Subset A C
+Transliterated theorem: ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C
 Logical form (Lean): : ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C
-Source: ./Interface/Subset.lean#L54
+Source: ./Interface/Subset.lean#L55
 
 
 
 Name: SetEqualityIffMutualSubset
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : HasSubset α],   LRA.Set.SubsetLaws α → ∀ (A B : α), Iff (Eq A B) (And (inst.Subset A B) (inst.Subset B A))
-Predicate logic (unfolded): ∀ {α : Type u} [inst : HasSubset α],   LRA.Set.SubsetLaws α → ∀ (A B : α), Iff (Eq A B) (And (inst.Subset A B) (inst.Subset B A))
+State: Sorry
+Predicate logic: ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : HasSubset α], LRA.Set.SubsetLaws α → ∀ (A B : α), A = B ↔ (inst.Subset A B ∧ inst.Subset B A)
+Transliterated theorem: ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A
 Logical form (Lean): : ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A
-Source: ./Interface/Subset.lean#L65
+Source: ./Interface/Subset.lean#L67
 
 
 
 Name: SymmetricDifferenceAsUnionDifferences
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α]   [inst_4 : EmptyCollection α] [inst_5 : HasSubset α],   LRA.Set.SymmDiffLaws α → ∀ (A B : α), Eq (inst.symmDiff A B) (inst_1.union (inst_3.sdiff A B) (inst_3.sdiff B A))
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α]   [inst_4 : EmptyCollection α] [inst_5 : HasSubset α],   LRA.Set.SymmDiffLaws α → ∀ (A B : α), Eq (inst.symmDiff A B) (inst_1.union (inst_3.sdiff A B) (inst_3.sdiff B A))
+State: Sorry
+Predicate logic: ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A
+Transliterated theorem: ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A)
 Logical form (Lean): : ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A)
 Source: ./Interface/SymmetricDifference.lean#L73
 
@@ -1123,89 +1234,98 @@ Source: ./Interface/SymmetricDifference.lean#L73
 
 Name: SymmetricDifferenceAsUnionDifferenceIntersection
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α]   [inst_4 : EmptyCollection α] [inst_5 : HasSubset α],   LRA.Set.SymmDiffLaws α → ∀ (A B : α), Eq (inst.symmDiff A B) (inst_3.sdiff (inst_1.union A B) (inst_2.inter A B))
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α]   [inst_4 : EmptyCollection α] [inst_5 : HasSubset α],   LRA.Set.SymmDiffLaws α → ∀ (A B : α), Eq (inst.symmDiff A B) (inst_3.sdiff (inst_1.union A B) (inst_2.inter A B))
+State: Sorry
+Predicate logic: ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B
+Transliterated theorem: ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B)
 Logical form (Lean): : ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B)
-Source: ./Interface/SymmetricDifference.lean#L86
+Source: ./Interface/SymmetricDifference.lean#L87
 
 
 
 Name: SymmetricDifferenceCommutative
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α]   [inst_4 : EmptyCollection α] [inst_5 : HasSubset α],   LRA.Set.SymmDiffLaws α → ∀ (A B : α), Eq (inst.symmDiff A B) (inst.symmDiff B A)
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α]   [inst_4 : EmptyCollection α] [inst_5 : HasSubset α],   LRA.Set.SymmDiffLaws α → ∀ (A B : α), Eq (inst.symmDiff A B) (inst.symmDiff B A)
+State: Sorry
+Predicate logic: ∀ A B : α, A ∆ B = B ∆ A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A
+Transliterated theorem: ∀ A B : α, A ∆ B = B ∆ A
 Logical form (Lean): : ∀ A B : α, A ∆ B = B ∆ A
-Source: ./Interface/SymmetricDifference.lean#L98
+Source: ./Interface/SymmetricDifference.lean#L100
 
 
 
 Name: SymmetricDifferenceAssociative
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α]   [inst_4 : EmptyCollection α] [inst_5 : HasSubset α],   LRA.Set.SymmDiffLaws α → ∀ (A B C : α), Eq (inst.symmDiff (inst.symmDiff A B) C) (inst.symmDiff A (inst.symmDiff B C))
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α]   [inst_4 : EmptyCollection α] [inst_5 : HasSubset α],   LRA.Set.SymmDiffLaws α → ∀ (A B C : α), Eq (inst.symmDiff (inst.symmDiff A B) C) (inst.symmDiff A (inst.symmDiff B C))
+State: Sorry
+Predicate logic: ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)
+Transliterated theorem: ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C)
 Logical form (Lean): : ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C)
-Source: ./Interface/SymmetricDifference.lean#L110
+Source: ./Interface/SymmetricDifference.lean#L113
 
 
 
 Name: SymmetricDifferenceEmpty
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α]   [inst_4 : EmptyCollection α] [inst_5 : HasSubset α],   LRA.Set.SymmDiffLaws α → ∀ (A : α), Eq (inst.symmDiff A inst_4.emptyCollection) A
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α]   [inst_4 : EmptyCollection α] [inst_5 : HasSubset α],   LRA.Set.SymmDiffLaws α → ∀ (A : α), Eq (inst.symmDiff A inst_4.emptyCollection) A
+State: Sorry
+Predicate logic: ∀ A : α, A ∆ (∅ : α) = A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A
+Transliterated theorem: ∀ A : α, A ∆ ∅ ∈ α = A
 Logical form (Lean): : ∀ A : α, A ∆ (∅ : α) = A
-Source: ./Interface/SymmetricDifference.lean#L122
+Source: ./Interface/SymmetricDifference.lean#L126
 
 
 
 Name: EmptySymmetricDifference
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α]   [inst_4 : EmptyCollection α] [inst_5 : HasSubset α],   LRA.Set.SymmDiffLaws α → ∀ (A : α), Eq (inst.symmDiff inst_4.emptyCollection A) A
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α]   [inst_4 : EmptyCollection α] [inst_5 : HasSubset α],   LRA.Set.SymmDiffLaws α → ∀ (A : α), Eq (inst.symmDiff inst_4.emptyCollection A) A
+State: Sorry
+Predicate logic: ∀ A : α, (∅ : α) ∆ A = A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A
+Transliterated theorem: ∀ A : α, ∅ ∈ α ∆ A = A
 Logical form (Lean): : ∀ A : α, (∅ : α) ∆ A = A
-Source: ./Interface/SymmetricDifference.lean#L133
+Source: ./Interface/SymmetricDifference.lean#L138
 
 
 
 Name: SymmetricDifferenceSelf
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α]   [inst_4 : EmptyCollection α] [inst_5 : HasSubset α],   LRA.Set.SymmDiffLaws α → ∀ (A : α), Eq (inst.symmDiff A A) inst_4.emptyCollection
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α]   [inst_4 : EmptyCollection α] [inst_5 : HasSubset α],   LRA.Set.SymmDiffLaws α → ∀ (A : α), Eq (inst.symmDiff A A) inst_4.emptyCollection
+State: Sorry
+Predicate logic: ∀ A : α, A ∆ A = (∅ : α)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection
+Transliterated theorem: ∀ A : α, A ∆ A = ∅ ∈ α
 Logical form (Lean): : ∀ A : α, A ∆ A = (∅ : α)
-Source: ./Interface/SymmetricDifference.lean#L144
+Source: ./Interface/SymmetricDifference.lean#L150
 
 
 
 Name: SymmetricDifferenceEqEmptyIff
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α]   [inst_4 : EmptyCollection α] [inst_5 : HasSubset α],   LRA.Set.SymmDiffLaws α → ∀ (A B : α), Iff (Eq (inst.symmDiff A B) inst_4.emptyCollection) (Eq A B)
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α]   [inst_4 : EmptyCollection α] [inst_5 : HasSubset α],   LRA.Set.SymmDiffLaws α → ∀ (A B : α), Iff (Eq (inst.symmDiff A B) inst_4.emptyCollection) (Eq A B)
+State: Sorry
+Predicate logic: ∀ A B : α, A ∆ B = (∅ : α) ↔ A = B
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B
+Transliterated theorem: ∀ A B : α, A ∆ B = ∅ ∈ α ↔ A = B
 Logical form (Lean): : ∀ A B : α, A ∆ B = (∅ : α) ↔ A = B
-Source: ./Interface/SymmetricDifference.lean#L156
+Source: ./Interface/SymmetricDifference.lean#L163
 
 
 
 Name: SymmetricDifferenceSubsetUnion
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α]   [inst_4 : EmptyCollection α] [inst_5 : HasSubset α],   LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (inst_1.union A B)
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α]   [inst_4 : EmptyCollection α] [inst_5 : HasSubset α],   LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (inst_1.union A B)
+State: Sorry
+Predicate logic: ∀ A B : α, A ∆ B ⊆ A ∪ B
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)
+Transliterated theorem: ∀ A B : α, A ∆ B ⊆ A ∪ B
 Logical form (Lean): : ∀ A B : α, A ∆ B ⊆ A ∪ B
-Source: ./Interface/SymmetricDifference.lean#L168
+Source: ./Interface/SymmetricDifference.lean#L176
 
 
 
 Name: UnionCommutative
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.UnionLaws α → ∀ (A B : α), Eq (inst.union A B) (inst.union B A)
-Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.UnionLaws α → ∀ (A B : α), Eq (inst.union A B) (inst.union B A)
+State: Sorry
+Predicate logic: ∀ A B : α, A ∪ B = B ∪ A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A B : α), A ∪ B = B ∪ A
+Transliterated theorem: ∀ A B : α, A ∪ B = B ∪ A
 Logical form (Lean): : ∀ A B : α, A ∪ B = B ∪ A
 Source: ./Interface/Union.lean#L65
 
@@ -1213,99 +1333,626 @@ Source: ./Interface/Union.lean#L65
 
 Name: UnionAssociative
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.UnionLaws α → ∀ (A B C : α), Eq (inst.union (inst.union A B) C) (inst.union A (inst.union B C))
-Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.UnionLaws α → ∀ (A B C : α), Eq (inst.union (inst.union A B) C) (inst.union A (inst.union B C))
+State: Sorry
+Predicate logic: ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A B C : α), A ∪ B ∪ C = A ∪ B ∪ C
+Transliterated theorem: ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C)
 Logical form (Lean): : ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C)
-Source: ./Interface/Union.lean#L76
+Source: ./Interface/Union.lean#L77
 
 
 
 Name: EmptyUnion
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.UnionLaws α → ∀ (A : α), Eq (inst.union inst_1.emptyCollection A) A
-Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.UnionLaws α → ∀ (A : α), Eq (inst.union inst_1.emptyCollection A) A
+State: Sorry
+Predicate logic: ∀ A : α, (∅ : α) ∪ A = A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A : α), inst_1.emptyCollection ∪ A = A
+Transliterated theorem: ∀ A : α, ∅ ∈ α ∪ A = A
 Logical form (Lean): : ∀ A : α, (∅ : α) ∪ A = A
-Source: ./Interface/Union.lean#L87
+Source: ./Interface/Union.lean#L89
 
 
 
 Name: UnionEmpty
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.UnionLaws α → ∀ (A : α), Eq (inst.union A inst_1.emptyCollection) A
-Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.UnionLaws α → ∀ (A : α), Eq (inst.union A inst_1.emptyCollection) A
+State: Sorry
+Predicate logic: ∀ A : α, A ∪ (∅ : α) = A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A : α), A ∪ inst_1.emptyCollection = A
+Transliterated theorem: ∀ A : α, A ∪ ∅ ∈ α = A
 Logical form (Lean): : ∀ A : α, A ∪ (∅ : α) = A
-Source: ./Interface/Union.lean#L98
+Source: ./Interface/Union.lean#L101
 
 
 
 Name: UnionIdempotent
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.UnionLaws α → ∀ (A : α), Eq (inst.union A A) A
-Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.UnionLaws α → ∀ (A : α), Eq (inst.union A A) A
+State: Sorry
+Predicate logic: ∀ A : α, A ∪ A = A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A : α), A ∪ A = A
+Transliterated theorem: ∀ A : α, A ∪ A = A
 Logical form (Lean): : ∀ A : α, A ∪ A = A
-Source: ./Interface/Union.lean#L109
+Source: ./Interface/Union.lean#L113
 
 
 
 Name: UnionMonotone
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.UnionLaws α →     ∀ (A₁ A₂ B₁ B₂ : α),       And (inst_2.Subset A₁ A₂) (inst_2.Subset B₁ B₂) → inst_2.Subset (inst.union A₁ B₁) (inst.union A₂ B₂)
-Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.UnionLaws α →     ∀ (A₁ A₂ B₁ B₂ : α),       And (inst_2.Subset A₁ A₂) (inst_2.Subset B₁ B₂) → inst_2.Subset (inst.union A₁ B₁) (inst.union A₂ B₂)
+State: Sorry
+Predicate logic: ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
+Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A₁ A₂ B₁ B₂ : α), (inst_2.Subset A₁ A₂ ∧ inst_2.Subset B₁ B₂) → inst_2.Subset (A₁ ∪ B₁)(A₂ ∪ B₂)
+Transliterated theorem: ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
 Logical form (Lean): : ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
-Source: ./Interface/Union.lean#L121
+Source: ./Interface/Union.lean#L126
 
 
 
 Name: SubsetIffUnionEqRight
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.UnionLaws α → ∀ (A B : α), Iff (inst_2.Subset A B) (Eq (inst.union A B) B)
-Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α],   LRA.Set.UnionLaws α → ∀ (A B : α), Iff (inst_2.Subset A B) (Eq (inst.union A B) B)
+State: Sorry
+Predicate logic: ∀ A B : α, A ⊆ B ↔ A ∪ B = B
+Predicate logic (unfolded): ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A B : α), inst_2.Subset A B ↔ A ∪ B = B
+Transliterated theorem: ∀ A B : α, A ⊆ B ↔ A ∪ B = B
 Logical form (Lean): : ∀ A B : α, A ⊆ B ↔ A ∪ B = B
-Source: ./Interface/Union.lean#L133
+Source: ./Interface/Union.lean#L139
+
+
+
+Name: instSymmDiffMembershipLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Alpha : Type u}, LRA.Set.SymmDiffMembershipLaws Alpha (Set Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.SymmDiffMembershipLaws Alpha (Set Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/PredicateSet/Laws.lean
+
+
+
+Name: instUnionLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Alpha : Type u}, LRA.Set.UnionLaws (Set Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.UnionLaws (Set Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/PredicateSet/Laws.lean
+
+
+
+Name: instUniversalMembershipLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Alpha : Type u}, LRA.Set.UniversalMembershipLaws Alpha (Set Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.UniversalMembershipLaws Alpha (Set Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/PredicateSet/Laws.lean
+
+
+
+Name: instCollectionMembershipLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Alpha : Type u}, LRA.Set.CollectionMembershipLaws Alpha (Set Alpha) (Set (Set Alpha))
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.CollectionMembershipLaws Alpha (Set Alpha) (Set (Set Alpha))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/PredicateSet/Laws.lean
+
+
+
+Name: instCountableMembershipLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Alpha : Type u}, LRA.Set.CountableMembershipLaws Alpha (Set Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.CountableMembershipLaws Alpha (Set Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/PredicateSet/Laws.lean
+
+
+
+Name: instSymmDiffLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Alpha : Type u}, LRA.Set.SymmDiffLaws (Set Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.SymmDiffLaws (Set Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/PredicateSet/Laws.lean
+
+
+
+Name: instIndexedMembershipLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Alpha : Type u}, LRA.Set.IndexedMembershipLaws Alpha (Set Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.IndexedMembershipLaws Alpha (Set Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/PredicateSet/Laws.lean
+
+
+
+Name: instSeparationLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Alpha : Type u}, LRA.Set.SeparationLaws Alpha (Set Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.SeparationLaws Alpha (Set Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/PredicateSet/Laws.lean
+
+
+
+Name: instComplementLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Alpha : Type u}, LRA.Set.ComplementLaws (Set Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.ComplementLaws (Set Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/PredicateSet/Laws.lean
+
+
+
+Name: instMembershipLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Alpha : Type u}, LRA.Set.MembershipLaws Alpha (Set Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.MembershipLaws Alpha (Set Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/PredicateSet/Laws.lean
+
+
+
+Name: instDifferenceLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Alpha : Type u}, LRA.Set.DifferenceLaws (Set Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.DifferenceLaws (Set Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/PredicateSet/Laws.lean
+
+
+
+Name: instPowersetMembershipLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Alpha : Type u}, LRA.Set.PowersetMembershipLaws (Set Alpha) (Set (Set Alpha))
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.PowersetMembershipLaws (Set Alpha) (Set (Set Alpha))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/PredicateSet/Laws.lean
+
+
+
+Name: instIntersectionLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Alpha : Type u}, LRA.Set.IntersectionLaws (Set Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.IntersectionLaws (Set Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/PredicateSet/Laws.lean
+
+
+
+Name: instExtensionalityLawSet
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Alpha : Type u}, LRA.Set.ExtensionalityLaw Alpha (Set Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.ExtensionalityLaw Alpha (Set Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/PredicateSet/Laws.lean
+
+
+
+Name: instSubsetLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Alpha : Type u}, LRA.Set.SubsetLaws (Set Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.SubsetLaws (Set Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/PredicateSet/Laws.lean
+
+
+
+Name: instDistributivityLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Alpha : Type u}, LRA.Set.DistributivityLaws (Set Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.DistributivityLaws (Set Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/PredicateSet/Laws.lean
+
+
+
+Name: mem_symmetricDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B z : ZFSet}, z ∈ SymmetricDifference A B ↔ (z ∈ A ∧ z ∉ B) ∨ (z ∈ B ∧ z ∉ A)
+Predicate logic (unfolded): ∀ {A B z : ZFSet}, SetLike.instMembership.mem (LRA.Set.MathlibZFSet.SymmetricDifference A B) z ↔ Or ((SetLike.instMembership.mem A z ∧ ¬ SetLike.instMembership.mem B z)) ((SetLike.instMembership.mem B z ∧ ¬ SetLike.instMembership.mem A z))
+Transliterated theorem: z ∈ SymmetricDifference A B ↔ (z ∈ A ∧ z ∉ B) ∨ (z ∈ B ∧ z ∉ A)
+Logical form (Lean): {A B z : ZFSet} : z ∈ SymmetricDifference A B ↔ (z ∈ A ∧ z ∉ B) ∨ (z ∈ B ∧ z ∉ A)
+Source: ./Interop/Mathlib/ZFSet/Laws.lean#L29
+
+
+
+Name: symmetricDifference_eq_union_sdiff_inter
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A B : ZFSet, SymmetricDifference A B = (A ∪ B) \ (A ∩ B)
+Predicate logic (unfolded): ∀ (A B : ZFSet), LRA.Set.MathlibZFSet.SymmetricDifference A B = ZFSet.instSDiff.sdiff (ZFSet.instUnion.union A B) (ZFSet.instInter.inter A B)
+Transliterated theorem: ∀ A B : ZFSet, SymmetricDifference A B = (A ∪ B) \ (A ∩ B)
+Logical form (Lean): : ∀ A B : ZFSet, SymmetricDifference A B = (A ∪ B) \ (A ∩ B)
+Source: ./Interop/Mathlib/ZFSet/Laws.lean#L175
+
+
+
+Name: symmetricDifference_comm
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A B : ZFSet, SymmetricDifference A B = SymmetricDifference B A
+Predicate logic (unfolded): ∀ (A B : ZFSet), LRA.Set.MathlibZFSet.SymmetricDifference A B = LRA.Set.MathlibZFSet.SymmetricDifference B A
+Transliterated theorem: ∀ A B : ZFSet, SymmetricDifference A B = SymmetricDifference B A
+Logical form (Lean): : ∀ A B : ZFSet, SymmetricDifference A B = SymmetricDifference B A
+Source: ./Interop/Mathlib/ZFSet/Laws.lean#L191
+
+
+
+Name: symmetricDifference_assoc
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A B C : ZFSet, SymmetricDifference (SymmetricDifference A B) C = SymmetricDifference A (SymmetricDifference B C)
+Predicate logic (unfolded): ∀ (A B C : ZFSet), LRA.Set.MathlibZFSet.SymmetricDifference (LRA.Set.MathlibZFSet.SymmetricDifference A B) C = LRA.Set.MathlibZFSet.SymmetricDifference A (LRA.Set.MathlibZFSet.SymmetricDifference B C)
+Transliterated theorem: ∀ A B C : ZFSet, SymmetricDifference (SymmetricDifference A B) C = SymmetricDifference A (SymmetricDifference B C)
+Logical form (Lean): : ∀ A B C : ZFSet, SymmetricDifference (SymmetricDifference A B) C = SymmetricDifference A (SymmetricDifference B C)
+Source: ./Interop/Mathlib/ZFSet/Laws.lean#L208
+
+
+
+Name: symmetricDifference_empty
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A : ZFSet, SymmetricDifference A (∅ : ZFSet) = A
+Predicate logic (unfolded): ∀ (A : ZFSet), LRA.Set.MathlibZFSet.SymmetricDifference A ZFSet.instEmptyCollection.emptyCollection = A
+Transliterated theorem: ∀ A : ZFSet, SymmetricDifference A ∅ ∈ ZFSet = A
+Logical form (Lean): : ∀ A : ZFSet, SymmetricDifference A (∅ : ZFSet) = A
+Source: ./Interop/Mathlib/ZFSet/Laws.lean#L224
+
+
+
+Name: empty_symmetricDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A : ZFSet, SymmetricDifference (∅ : ZFSet) A = A
+Predicate logic (unfolded): ∀ (A : ZFSet), LRA.Set.MathlibZFSet.SymmetricDifference ZFSet.instEmptyCollection.emptyCollection A = A
+Transliterated theorem: ∀ A : ZFSet, SymmetricDifference ∅ ∈ ZFSet A = A
+Logical form (Lean): : ∀ A : ZFSet, SymmetricDifference (∅ : ZFSet) A = A
+Source: ./Interop/Mathlib/ZFSet/Laws.lean#L238
+
+
+
+Name: symmetricDifference_self
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A : ZFSet, SymmetricDifference A A = (∅ : ZFSet)
+Predicate logic (unfolded): ∀ (A : ZFSet), LRA.Set.MathlibZFSet.SymmetricDifference A A = ZFSet.instEmptyCollection.emptyCollection
+Transliterated theorem: ∀ A : ZFSet, SymmetricDifference A A = ∅ ∈ ZFSet
+Logical form (Lean): : ∀ A : ZFSet, SymmetricDifference A A = (∅ : ZFSet)
+Source: ./Interop/Mathlib/ZFSet/Laws.lean#L252
+
+
+
+Name: symmetricDifference_eq_empty_iff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A B : ZFSet, SymmetricDifference A B = (∅ : ZFSet) ↔ A = B
+Predicate logic (unfolded): ∀ (A B : ZFSet), LRA.Set.MathlibZFSet.SymmetricDifference A B = ZFSet.instEmptyCollection.emptyCollection ↔ A = B
+Transliterated theorem: ∀ A B : ZFSet, SymmetricDifference A B = ∅ ∈ ZFSet ↔ A = B
+Logical form (Lean): : ∀ A B : ZFSet, SymmetricDifference A B = (∅ : ZFSet) ↔ A = B
+Source: ./Interop/Mathlib/ZFSet/Laws.lean#L266
+
+
+
+Name: symmetricDifference_subset_union
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B : ZFSet), ZFSet.instPartialOrder.le (LRA.Set.MathlibZFSet.SymmetricDifference A B) (ZFSet.instUnion.union A B)
+Predicate logic (unfolded): ∀ (A B : ZFSet), ZFSet.instPartialOrder.le (LRA.Set.MathlibZFSet.SymmetricDifference A B) (ZFSet.instUnion.union A B)
+Transliterated theorem: ∀ A B : ZFSet, SymmetricDifference A B ⊆ A ∪ B
+Logical form (Lean): : ∀ A B : ZFSet, SymmetricDifference A B ⊆ A ∪ B
+Source: ./Interop/Mathlib/ZFSet/Laws.lean#L280
+
+
+
+Name: mem_countableUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {family : Nat → ZFSet} {x : ZFSet}, x ∈ CountableUnion family ↔ ∃ index, x ∈ family index
+Predicate logic (unfolded): ∀ {family : Nat → ZFSet} {x : ZFSet}, SetLike.instMembership.mem (LRA.Set.MathlibZFSet.CountableUnion family) x ↔ Exists fun index => SetLike.instMembership.mem (family index) x
+Transliterated theorem: x ∈ CountableUnion family ↔ ∃ index, x ∈ family index
+Logical form (Lean): {family : Nat → ZFSet} {x : ZFSet} : x ∈ CountableUnion family ↔ ∃ index, x ∈ family index
+Source: ./Interop/Mathlib/ZFSet/Laws.lean#L306
+
+
+
+Name: mem_countableIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {family : Nat → ZFSet} {x : ZFSet}, x ∈ CountableIntersection family ↔ ∀ index, x ∈ family index
+Predicate logic (unfolded): ∀ {family : Nat → ZFSet} {x : ZFSet}, SetLike.instMembership.mem (LRA.Set.MathlibZFSet.CountableIntersection family) x ↔ ∀ (index : Nat), SetLike.instMembership.mem (family index) x
+Transliterated theorem: x ∈ CountableIntersection family ↔ ∀ index, x ∈ family index
+Logical form (Lean): {family : Nat → ZFSet} {x : ZFSet} : x ∈ CountableIntersection family ↔ ∀ index, x ∈ family index
+Source: ./Interop/Mathlib/ZFSet/Laws.lean#L320
+
+
+
+Name: instExtensionalityLawZFSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.ExtensionalityLaw ZFSet ZFSet
+Predicate logic (unfolded): LRA.Set.ExtensionalityLaw ZFSet ZFSet
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/ZFSet/Laws.lean
+
+
+
+Name: instSeparationLawsZFSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.SeparationLaws ZFSet ZFSet
+Predicate logic (unfolded): LRA.Set.SeparationLaws ZFSet ZFSet
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/ZFSet/Laws.lean
+
+
+
+Name: instCollectionMembershipLawsZFSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.CollectionMembershipLaws ZFSet ZFSet ZFSet
+Predicate logic (unfolded): LRA.Set.CollectionMembershipLaws ZFSet ZFSet ZFSet
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/ZFSet/Laws.lean
+
+
+
+Name: instPowersetMembershipLawsZFSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.PowersetMembershipLaws ZFSet ZFSet
+Predicate logic (unfolded): LRA.Set.PowersetMembershipLaws ZFSet ZFSet
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/ZFSet/Laws.lean
+
+
+
+Name: instUnionLawsZFSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.UnionLaws ZFSet
+Predicate logic (unfolded): LRA.Set.UnionLaws ZFSet
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/ZFSet/Laws.lean
+
+
+
+Name: instMembershipLawsZFSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.MembershipLaws ZFSet ZFSet
+Predicate logic (unfolded): LRA.Set.MembershipLaws ZFSet ZFSet
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/ZFSet/Laws.lean
+
+
+
+Name: instDistributivityLawsZFSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.DistributivityLaws ZFSet
+Predicate logic (unfolded): LRA.Set.DistributivityLaws ZFSet
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/ZFSet/Laws.lean
+
+
+
+Name: instSymmDiffLawsZFSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.SymmDiffLaws ZFSet
+Predicate logic (unfolded): LRA.Set.SymmDiffLaws ZFSet
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/ZFSet/Laws.lean
+
+
+
+Name: instSubsetLawsZFSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.SubsetLaws ZFSet
+Predicate logic (unfolded): LRA.Set.SubsetLaws ZFSet
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/ZFSet/Laws.lean
+
+
+
+Name: instSymmDiffMembershipLawsZFSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.SymmDiffMembershipLaws ZFSet ZFSet
+Predicate logic (unfolded): LRA.Set.SymmDiffMembershipLaws ZFSet ZFSet
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/ZFSet/Laws.lean
+
+
+
+Name: instCountableMembershipLawsZFSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.CountableMembershipLaws ZFSet ZFSet
+Predicate logic (unfolded): LRA.Set.CountableMembershipLaws ZFSet ZFSet
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/ZFSet/Laws.lean
+
+
+
+Name: instIntersectionLawsZFSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.IntersectionLaws ZFSet
+Predicate logic (unfolded): LRA.Set.IntersectionLaws ZFSet
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/ZFSet/Laws.lean
+
+
+
+Name: instDifferenceLawsZFSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.DifferenceLaws ZFSet
+Predicate logic (unfolded): LRA.Set.DifferenceLaws ZFSet
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/ZFSet/Laws.lean
+
+
+
+Name: instPairingLawsZFSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.PairingLaws ZFSet ZFSet ZFSet
+Predicate logic (unfolded): LRA.Set.PairingLaws ZFSet ZFSet ZFSet
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/ZFSet/Pairing.lean
+
+
+
+Name: RelatesIffPairMember
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (relation input output : ZFSet), Relates relation input output ↔ ZFSet.pair input output ∈ relation
+Predicate logic (unfolded): ∀ (relation input output : ZFSet), LRA.Set.Relates relation input output ↔ SetLike.instMembership.mem relation (input.pair output)
+Transliterated theorem: (∀ relation input output ∈ ZFSet), Relates relation input output ↔ ZFSet.pair input output ∈ relation
+Logical form (Lean): (relation input output : ZFSet) : Relates relation input output ↔ ZFSet.pair input output ∈ relation
+Source: ./Interop/Mathlib/ZFSet/FunctionSets.lean#L41
+
+
+
+Name: IsPairwiseOfSubsetProd
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {domain codomain relation : ZFSet},   ZFSet.instPartialOrder.le relation (domain.prod codomain) → LRA.Set.IsPairwise ZFSet ZFSet relation
+Predicate logic (unfolded): ∀ {domain codomain relation : ZFSet}, ZFSet.instPartialOrder.le relation (domain.prod codomain) → LRA.Set.IsPairwise ZFSet ZFSet relation
+Transliterated theorem: IsPairwise ZFSet ZFSet relation
+Logical form (Lean): {domain codomain relation : ZFSet} (inside : relation ⊆ ZFSet.prod domain codomain) : IsPairwise ZFSet ZFSet relation
+Source: ./Interop/Mathlib/ZFSet/FunctionSets.lean#L58
+
+
+
+Name: IsSingleValuedOfIsFunc
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {domain codomain relation : ZFSet}, domain.IsFunc codomain relation → LRA.Set.IsSingleValued ZFSet ZFSet relation
+Predicate logic (unfolded): ∀ {domain codomain relation : ZFSet}, domain.IsFunc codomain relation → LRA.Set.IsSingleValued ZFSet ZFSet relation
+Transliterated theorem: IsSingleValued ZFSet ZFSet relation
+Logical form (Lean): {domain codomain relation : ZFSet} (isFunc : ZFSet.IsFunc domain codomain relation) : IsSingleValued ZFSet ZFSet relation
+Source: ./Interop/Mathlib/ZFSet/FunctionSets.lean#L77
+
+
+
+Name: IsFuncIffFunctional
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (domain codomain relation : ZFSet), ZFSet.IsFunc domain codomain relation ↔ relation ⊆ ZFSet.prod domain codomain ∧ IsTotalOn ZFSet relation domain ∧ IsSingleValued ZFSet ZFSet relation
+Predicate logic (unfolded): ∀ (domain codomain relation : ZFSet), domain.IsFunc codomain relation ↔ (ZFSet.instPartialOrder.le relation (domain.prod codomain) ∧ (LRA.Set.IsTotalOn ZFSet relation domain ∧ LRA.Set.IsSingleValued ZFSet ZFSet relation))
+Transliterated theorem: (∀ domain codomain relation ∈ ZFSet), ZFSet.IsFunc domain codomain relation ↔ relation ⊆ ZFSet.prod domain codomain ∧ IsTotalOn ZFSet relation domain ∧ IsSingleValued ZFSet ZFSet relation
+Logical form (Lean): (domain codomain relation : ZFSet) : ZFSet.IsFunc domain codomain relation ↔ relation ⊆ ZFSet.prod domain codomain ∧ IsTotalOn ZFSet relation domain ∧ IsSingleValued ZFSet ZFSet relation
+Source: ./Interop/Mathlib/ZFSet/FunctionSets.lean#L98
+
+
+
+Name: MemberOfFunsIffFunctional
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (domain codomain relation : ZFSet), relation ∈ ZFSet.funs domain codomain ↔ relation ⊆ ZFSet.prod domain codomain ∧ IsTotalOn ZFSet relation domain ∧ IsSingleValued ZFSet ZFSet relation
+Predicate logic (unfolded): ∀ (domain codomain relation : ZFSet), SetLike.instMembership.mem (domain.funs codomain) relation ↔ (ZFSet.instPartialOrder.le relation (domain.prod codomain) ∧ (LRA.Set.IsTotalOn ZFSet relation domain ∧ LRA.Set.IsSingleValued ZFSet ZFSet relation))
+Transliterated theorem: (∀ domain codomain relation ∈ ZFSet), relation ∈ ZFSet.funs domain codomain ↔ relation ⊆ ZFSet.prod domain codomain ∧ IsTotalOn ZFSet relation domain ∧ IsSingleValued ZFSet ZFSet relation
+Logical form (Lean): (domain codomain relation : ZFSet) : relation ∈ ZFSet.funs domain codomain ↔ relation ⊆ ZFSet.prod domain codomain ∧ IsTotalOn ZFSet relation domain ∧ IsSingleValued ZFSet ZFSet relation
+Source: ./Interop/Mathlib/ZFSet/FunctionSets.lean#L122
+
+
+
+Name: IsFunctionalSetOfIsFunc
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {domain codomain relation : ZFSet}, domain.IsFunc codomain relation → LRA.Set.IsFunctionalSet ZFSet ZFSet relation
+Predicate logic (unfolded): ∀ {domain codomain relation : ZFSet}, domain.IsFunc codomain relation → LRA.Set.IsFunctionalSet ZFSet ZFSet relation
+Transliterated theorem: IsFunctionalSet ZFSet ZFSet relation
+Logical form (Lean): {domain codomain relation : ZFSet} (isFunc : ZFSet.IsFunc domain codomain relation) : IsFunctionalSet ZFSet ZFSet relation
+Source: ./Interop/Mathlib/ZFSet/FunctionSets.lean#L142
+
+
+
+Name: RelatesMapIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ZFSet → ZFSet) [ZFSet.Definable₁ f] (over input output : ZFSet), Relates (ZFSet.map f over) input output ↔ input ∈ over ∧ f input = output
+Predicate logic (unfolded): ∀ (f : ZFSet → ZFSet) [inst : ZFSet.Definable₁ f] (over input output : ZFSet), LRA.Set.Relates (ZFSet.map f over) input output ↔ (SetLike.instMembership.mem over input ∧ f input = output)
+Transliterated theorem: (∀ over input output ∈ ZFSet), (ZFSet → ZFSet) → Relates (ZFSet.map f over) input output ↔ input ∈ over ∧ f input = output
+Logical form (Lean): (f : ZFSet → ZFSet) [ZFSet.Definable₁ f] (over input output : ZFSet) : Relates (ZFSet.map f over) input output ↔ input ∈ over ∧ f input = output
+Source: ./Interop/Mathlib/ZFSet/FunctionSets.lean#L162
+
+
+
+Name: MapIsFunctionalSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ZFSet → ZFSet) [inst : ZFSet.Definable₁ f] (over : ZFSet), LRA.Set.IsFunctionalSet ZFSet ZFSet (ZFSet.map f over)
+Predicate logic (unfolded): ∀ (f : ZFSet → ZFSet) [inst : ZFSet.Definable₁ f] (over : ZFSet), LRA.Set.IsFunctionalSet ZFSet ZFSet (ZFSet.map f over)
+Transliterated theorem: (∀ over ∈ ZFSet), (ZFSet → ZFSet) → IsFunctionalSet ZFSet ZFSet (ZFSet.map f over)
+Logical form (Lean): (f : ZFSet → ZFSet) [ZFSet.Definable₁ f] (over : ZFSet) : IsFunctionalSet ZFSet ZFSet (ZFSet.map f over)
+Source: ./Interop/Mathlib/ZFSet/FunctionSets.lean#L181
 
 
 
 Name: MembershipSymbolIsBinary
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: LRA.Set.ModelTheory.MembershipSignature.IsBinaryRelationSymbol LRA.Set.ModelTheory.MembershipRelationSymbol.mem
 Predicate logic (unfolded): LRA.Set.ModelTheory.MembershipSignature.IsBinaryRelationSymbol LRA.Set.ModelTheory.MembershipRelationSymbol.mem
+Transliterated theorem: MembershipSignature.IsBinaryRelationSymbol .mem
 Logical form (Lean): : MembershipSignature.IsBinaryRelationSymbol .mem
 Source: ./Model/LStructure.lean#L58
 
 
 
-Name: ofNat_ctorIdx
-Kind: Theorem
-State: Completed
-Predicate logic: ∀ (x : LRA.Set.ModelTheory.MembershipConstantSymbol),   Eq (LRA.Set.ModelTheory.MembershipConstantSymbol.ofNat x.ctorIdx) x
-Predicate logic (unfolded): ∀ (x : LRA.Set.ModelTheory.MembershipConstantSymbol),   Eq (LRA.Set.ModelTheory.MembershipConstantSymbol.ofNat x.ctorIdx) x
-Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Model/LStructure.lean
-
-
-
-Name: ofNat_ctorIdx
-Kind: Theorem
-State: Completed
-Predicate logic: ∀ (x : LRA.Set.ModelTheory.MembershipRelationSymbol),   Eq (LRA.Set.ModelTheory.MembershipRelationSymbol.ofNat x.ctorIdx) x
-Predicate logic (unfolded): ∀ (x : LRA.Set.ModelTheory.MembershipRelationSymbol),   Eq (LRA.Set.ModelTheory.MembershipRelationSymbol.ofNat x.ctorIdx) x
-Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Model/LStructure.lean
-
-
-
 Name: extensionalityIsClosed
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.extensionalityFormula
 Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.extensionalityFormula
+Transliterated theorem: IsClosedFormula extensionalityFormula
 Logical form (Lean): : IsClosedFormula extensionalityFormula
 Source: ./Model/Theory.lean#L293
 
@@ -1313,99 +1960,1286 @@ Source: ./Model/Theory.lean#L293
 
 Name: emptySetIsClosed
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.emptySetFormula
 Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.emptySetFormula
+Transliterated theorem: IsClosedFormula emptySetFormula
 Logical form (Lean): : IsClosedFormula emptySetFormula
-Source: ./Model/Theory.lean#L306
+Source: ./Model/Theory.lean#L305
 
 
 
 Name: pairingIsClosed
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.pairingFormula
 Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.pairingFormula
+Transliterated theorem: IsClosedFormula pairingFormula
 Logical form (Lean): : IsClosedFormula pairingFormula
-Source: ./Model/Theory.lean#L319
+Source: ./Model/Theory.lean#L317
 
 
 
 Name: unionIsClosed
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.unionFormula
 Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.unionFormula
+Transliterated theorem: IsClosedFormula unionFormula
 Logical form (Lean): : IsClosedFormula unionFormula
-Source: ./Model/Theory.lean#L332
+Source: ./Model/Theory.lean#L329
 
 
 
 Name: powerSetIsClosed
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.powerSetFormula
 Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.powerSetFormula
+Transliterated theorem: IsClosedFormula powerSetFormula
 Logical form (Lean): : IsClosedFormula powerSetFormula
-Source: ./Model/Theory.lean#L345
+Source: ./Model/Theory.lean#L341
 
 
 
 Name: infinityIsClosed
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.infinityFormula
 Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.infinityFormula
+Transliterated theorem: IsClosedFormula infinityFormula
 Logical form (Lean): : IsClosedFormula infinityFormula
-Source: ./Model/Theory.lean#L358
+Source: ./Model/Theory.lean#L353
 
 
 
 Name: foundationIsClosed
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.foundationFormula
 Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.foundationFormula
+Transliterated theorem: IsClosedFormula foundationFormula
 Logical form (Lean): : IsClosedFormula foundationFormula
-Source: ./Model/Theory.lean#L371
+Source: ./Model/Theory.lean#L365
 
 
 
 Name: choiceIsClosed
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.choiceFormula
 Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.choiceFormula
+Transliterated theorem: IsClosedFormula choiceFormula
 Logical form (Lean): : IsClosedFormula choiceFormula
-Source: ./Model/Theory.lean#L384
+Source: ./Model/Theory.lean#L377
 
 
 
 Name: satisfiesIffF
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {M : LRA.Logic.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature} {assignment : Nat → M.Domain}   {φ ψ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat},   Iff (LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Set.ModelTheory.iffF φ ψ))     (Iff (LRA.Logic.FirstOrder.Satisfies M assignment φ) (LRA.Logic.FirstOrder.Satisfies M assignment ψ))
-Predicate logic (unfolded): ∀ {M : LRA.Logic.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature} {assignment : Nat → M.Domain}   {φ ψ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat},   Iff (LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Set.ModelTheory.iffF φ ψ))     (Iff (LRA.Logic.FirstOrder.Satisfies M assignment φ) (LRA.Logic.FirstOrder.Satisfies M assignment ψ))
+State: Sorry
+Predicate logic: ∀ {M : Model MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : Formula MembershipSignature Nat}, Satisfies M assignment (iffF φ ψ) ↔ (Satisfies M assignment φ ↔ Satisfies M assignment ψ)
+Predicate logic (unfolded): ∀ {M : LRA.Logic.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat}, LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Set.ModelTheory.iffF φ ψ) ↔ LRA.Logic.FirstOrder.Satisfies M assignment φ ↔ LRA.Logic.FirstOrder.Satisfies M assignment ψ
+Transliterated theorem: Satisfies M assignment (iffF φ ψ) ↔ (Satisfies M assignment φ ↔ Satisfies M assignment ψ)
 Logical form (Lean): {M : Model MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : Formula MembershipSignature Nat} : Satisfies M assignment (iffF φ ψ) ↔ (Satisfies M assignment φ ↔ Satisfies M assignment ψ)
-Source: ./Model/Theory.lean#L554
+Source: ./Model/Theory.lean#L546
 
 
 
 Name: satisfiesOrF
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {M : LRA.Logic.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature} {assignment : Nat → M.Domain}   {φ ψ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat},   Iff (LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Set.ModelTheory.orF φ ψ))     (Or (LRA.Logic.FirstOrder.Satisfies M assignment φ) (LRA.Logic.FirstOrder.Satisfies M assignment ψ))
-Predicate logic (unfolded): ∀ {M : LRA.Logic.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature} {assignment : Nat → M.Domain}   {φ ψ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat},   Iff (LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Set.ModelTheory.orF φ ψ))     (Or (LRA.Logic.FirstOrder.Satisfies M assignment φ) (LRA.Logic.FirstOrder.Satisfies M assignment ψ))
+State: Sorry
+Predicate logic: ∀ {M : Model MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : Formula MembershipSignature Nat}, Satisfies M assignment (orF φ ψ) ↔ (Satisfies M assignment φ ∨ Satisfies M assignment ψ)
+Predicate logic (unfolded): ∀ {M : LRA.Logic.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat}, LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Set.ModelTheory.orF φ ψ) ↔ Or (LRA.Logic.FirstOrder.Satisfies M assignment φ) (LRA.Logic.FirstOrder.Satisfies M assignment ψ)
+Transliterated theorem: Satisfies M assignment (orF φ ψ) ↔ (Satisfies M assignment φ ∨ Satisfies M assignment ψ)
 Logical form (Lean): {M : Model MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : Formula MembershipSignature Nat} : Satisfies M assignment (orF φ ψ) ↔ (Satisfies M assignment φ ∨ Satisfies M assignment ψ)
-Source: ./Model/Theory.lean#L574
+Source: ./Model/Theory.lean#L565
+
+
+
+Name: zfSetSatisfiesExtensionality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment     LRA.Set.ModelTheory.extensionalityFormula
+Predicate logic (unfolded): ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment LRA.Set.ModelTheory.extensionalityFormula
+Transliterated theorem: (Nat → ZFSetMembershipModel.Domain) → Satisfies ZFSetMembershipModel assignment extensionalityFormula
+Logical form (Lean): (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment extensionalityFormula
+Source: ./Interop/Mathlib/ZFSetModel.lean#L77
+
+
+
+Name: zfSetSatisfiesEmptySet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment LRA.Set.ModelTheory.emptySetFormula
+Predicate logic (unfolded): ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment LRA.Set.ModelTheory.emptySetFormula
+Transliterated theorem: (Nat → ZFSetMembershipModel.Domain) → Satisfies ZFSetMembershipModel assignment emptySetFormula
+Logical form (Lean): (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment emptySetFormula
+Source: ./Interop/Mathlib/ZFSetModel.lean#L91
+
+
+
+Name: zfSetSatisfiesPairing
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment LRA.Set.ModelTheory.pairingFormula
+Predicate logic (unfolded): ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment LRA.Set.ModelTheory.pairingFormula
+Transliterated theorem: (Nat → ZFSetMembershipModel.Domain) → Satisfies ZFSetMembershipModel assignment pairingFormula
+Logical form (Lean): (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment pairingFormula
+Source: ./Interop/Mathlib/ZFSetModel.lean#L105
+
+
+
+Name: zfSetSatisfiesUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment LRA.Set.ModelTheory.unionFormula
+Predicate logic (unfolded): ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment LRA.Set.ModelTheory.unionFormula
+Transliterated theorem: (Nat → ZFSetMembershipModel.Domain) → Satisfies ZFSetMembershipModel assignment unionFormula
+Logical form (Lean): (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment unionFormula
+Source: ./Interop/Mathlib/ZFSetModel.lean#L119
+
+
+
+Name: zfSetSatisfiesPowerSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment LRA.Set.ModelTheory.powerSetFormula
+Predicate logic (unfolded): ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment LRA.Set.ModelTheory.powerSetFormula
+Transliterated theorem: (Nat → ZFSetMembershipModel.Domain) → Satisfies ZFSetMembershipModel assignment powerSetFormula
+Logical form (Lean): (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment powerSetFormula
+Source: ./Interop/Mathlib/ZFSetModel.lean#L133
+
+
+
+Name: zfSetSatisfiesInfinity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment LRA.Set.ModelTheory.infinityFormula
+Predicate logic (unfolded): ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment LRA.Set.ModelTheory.infinityFormula
+Transliterated theorem: (Nat → ZFSetMembershipModel.Domain) → Satisfies ZFSetMembershipModel assignment infinityFormula
+Logical form (Lean): (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment infinityFormula
+Source: ./Interop/Mathlib/ZFSetModel.lean#L147
+
+
+
+Name: zfSetSatisfiesFoundation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment     LRA.Set.ModelTheory.foundationFormula
+Predicate logic (unfolded): ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment LRA.Set.ModelTheory.foundationFormula
+Transliterated theorem: (Nat → ZFSetMembershipModel.Domain) → Satisfies ZFSetMembershipModel assignment foundationFormula
+Logical form (Lean): (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment foundationFormula
+Source: ./Interop/Mathlib/ZFSetModel.lean#L161
+
+
+
+Name: zfSetSatisfiesChoice
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment LRA.Set.ModelTheory.choiceFormula
+Predicate logic (unfolded): ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment LRA.Set.ModelTheory.choiceFormula
+Transliterated theorem: (Nat → ZFSetMembershipModel.Domain) → Satisfies ZFSetMembershipModel assignment choiceFormula
+Logical form (Lean): (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment choiceFormula
+Source: ./Interop/Mathlib/ZFSetModel.lean#L176
+
+
+
+Name: zfSetSatisfiesSeparation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (property : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat),   LRA.Set.ModelTheory.SeparationHygienic property →     ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain),       LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment         (LRA.Set.ModelTheory.separationInstance property)
+Predicate logic (unfolded): ∀ (property : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), LRA.Set.ModelTheory.SeparationHygienic property → ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment (LRA.Set.ModelTheory.separationInstance property)
+Transliterated theorem: (Nat → ZFSetMembershipModel.Domain) → Satisfies ZFSetMembershipModel assignment (separationInstance property)
+Logical form (Lean): (property : Formula MembershipSignature Nat) (hygienic : SeparationHygienic property) (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment (separationInstance property)
+Source: ./Interop/Mathlib/ZFSetModel.lean#L194
+
+
+
+Name: zfSetSatisfiesReplacement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (relation : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat),   LRA.Set.ModelTheory.ReplacementHygienic relation →     ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain),       LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment         (LRA.Set.ModelTheory.replacementInstance relation)
+Predicate logic (unfolded): ∀ (relation : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), LRA.Set.ModelTheory.ReplacementHygienic relation → ∀ (assignment : Nat → LRA.Set.ModelTheory.ZFSetMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.ZFSetMembershipModel assignment (LRA.Set.ModelTheory.replacementInstance relation)
+Transliterated theorem: (Nat → ZFSetMembershipModel.Domain) → Satisfies ZFSetMembershipModel assignment (replacementInstance relation)
+Logical form (Lean): (relation : Formula MembershipSignature Nat) (hygienic : ReplacementHygienic relation) (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment (replacementInstance relation)
+Source: ./Interop/Mathlib/ZFSetModel.lean#L218
+
+
+
+Name: zfSetModelsZFC
+Kind: Theorem
+State: Sorry
+Predicate logic: Set.instMembership.mem (LRA.Logic.FirstOrder.ModelsOfFormulaTheory LRA.Set.ModelTheory.ZFCTheory)   LRA.Set.ModelTheory.ZFSetMembershipModel
+Predicate logic (unfolded): Set.instMembership.mem (LRA.Logic.FirstOrder.ModelsOfFormulaTheory LRA.Set.ModelTheory.ZFCTheory) LRA.Set.ModelTheory.ZFSetMembershipModel
+Transliterated theorem: ZFSetMembershipModel ∈ ModelsOfFormulaTheory ZFCTheory
+Logical form (Lean): : ZFSetMembershipModel ∈ ModelsOfFormulaTheory ZFCTheory
+Source: ./Interop/Mathlib/ZFSetModel.lean#L236
+
+
+
+Name: ChoiceSetExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Set) (membersNonempty : forall B : Set, B ∈ A -> exists x : Set, x ∈ B) (membersPairwiseDisjoint : forall B C : Set, B ∈ A -> C ∈ A -> B ≠ C -> forall x : Set, x ∈ B -> x ∉ C), exists choiceSet : Set, IsChoiceSetFor A choiceSet
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBG.Set), (∀ (B : LRA.Set.NBG.Set), LRA.Set.instMembershipNBGSet.mem A B → Exists fun x => LRA.Set.instMembershipNBGSet.mem B x ∧ ∀ (B C : LRA.Set.NBG.Set), LRA.Set.instMembershipNBGSet.mem A B → LRA.Set.instMembershipNBGSet.mem A C → Ne B C → ∀ (x : LRA.Set.NBG.Set), LRA.Set.instMembershipNBGSet.mem B x → ¬ LRA.Set.instMembershipNBGSet.mem C x) → Exists fun choiceSet => LRA.Set.NBG.IsChoiceSetFor A choiceSet
+Transliterated theorem: (∀ A ∈ Set), (forall B : Set, B ∈ A -> exists x : Set, x ∈ B ∧ forall B C : Set, B ∈ A -> C ∈ A -> B ≠ C -> forall x : Set, x ∈ B -> x ∉ C) → exists choiceSet : Set, IsChoiceSetFor A choiceSet
+Logical form (Lean): (A : Set) (membersNonempty : forall B : Set, B ∈ A -> exists x : Set, x ∈ B) (membersPairwiseDisjoint : forall B C : Set, B ∈ A -> C ∈ A -> B ≠ C -> forall x : Set, x ∈ B -> x ∉ C) : exists choiceSet : Set, IsChoiceSetFor A choiceSet
+Source: ./NBG/Choice/Theorems.lean#L6
+
+
+
+Name: TheChoiceSetIsChoiceSetFor
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Set) (membersNonempty : forall B : Set, B ∈ A -> exists x : Set, x ∈ B) (membersPairwiseDisjoint : forall B C : Set, B ∈ A -> C ∈ A -> B ≠ C -> forall x : Set, x ∈ B -> x ∉ C), IsChoiceSetFor A (TheChoiceSet A membersNonempty membersPairwiseDisjoint)
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBG.Set) (membersNonempty : ∀ (B : LRA.Set.NBG.Set), LRA.Set.instMembershipNBGSet.mem A B → Exists fun x => LRA.Set.instMembershipNBGSet.mem B x) (membersPairwiseDisjoint : ∀ (B C : LRA.Set.NBG.Set), LRA.Set.instMembershipNBGSet.mem A B → LRA.Set.instMembershipNBGSet.mem A C → Ne B C → ∀ (x : LRA.Set.NBG.Set), LRA.Set.instMembershipNBGSet.mem B x → ¬ LRA.Set.instMembershipNBGSet.mem C x), LRA.Set.NBG.IsChoiceSetFor A (LRA.Set.NBG.TheChoiceSet A membersNonempty membersPairwiseDisjoint)
+Transliterated theorem: (∀ A ∈ Set), (forall B : Set, B ∈ A -> exists x : Set, x ∈ B ∧ forall B C : Set, B ∈ A -> C ∈ A -> B ≠ C -> forall x : Set, x ∈ B -> x ∉ C) → IsChoiceSetFor A (TheChoiceSet A membersNonempty membersPairwiseDisjoint)
+Logical form (Lean): (A : Set) (membersNonempty : forall B : Set, B ∈ A -> exists x : Set, x ∈ B) (membersPairwiseDisjoint : forall B C : Set, B ∈ A -> C ∈ A -> B ≠ C -> forall x : Set, x ∈ B -> x ∉ C) : IsChoiceSetFor A (TheChoiceSet A membersNonempty membersPairwiseDisjoint)
+Source: ./NBG/Choice/Theorems.lean#L22
+
+
+
+Name: ClassComprehensionExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (property : LRA.Set.NBG.Set → Prop), Exists fun C => LRA.Set.NBG.IsClassComprehension property C
+Predicate logic (unfolded): ∀ (property : LRA.Set.NBG.Set → Prop), Exists fun C => LRA.Set.NBG.IsClassComprehension property C
+Transliterated theorem: exists C : Class, IsClassComprehension property C
+Logical form (Lean): (property : Set -> Prop) : exists C : Class, IsClassComprehension property C
+Source: ./NBG/ClassComprehension/Theorems.lean#L6
+
+
+
+Name: TheClassComprehensionIsClassComprehension
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (property : LRA.Set.NBG.Set → Prop),   LRA.Set.NBG.IsClassComprehension property (LRA.Set.NBG.TheClassComprehension property)
+Predicate logic (unfolded): ∀ (property : LRA.Set.NBG.Set → Prop), LRA.Set.NBG.IsClassComprehension property (LRA.Set.NBG.TheClassComprehension property)
+Transliterated theorem: IsClassComprehension property (TheClassComprehension property)
+Logical form (Lean): (property : Set -> Prop) : IsClassComprehension property (TheClassComprehension property)
+Source: ./NBG/ClassComprehension/Theorems.lean#L13
+
+
+
+Name: SetEqualityIffSameMembers
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B : LRA.Set.NBGSet), A = B <-> forall x : LRA.Set.NBGSet, x ∈ A <-> x ∈ B
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGSet), A = B ↔ ∀ (x : LRA.Set.NBGSet), LRA.Set.instMembershipNBGSet.mem A x ↔ LRA.Set.instMembershipNBGSet.mem B x
+Transliterated theorem: (∀ A B ∈ LRA.Set.NBGSet), A = B <-> forall x : LRA.Set.NBGSet, x ∈ A <-> x ∈ B
+Logical form (Lean): (A B : LRA.Set.NBGSet) : A = B <-> forall x : LRA.Set.NBGSet, x ∈ A <-> x ∈ B
+Source: ./NBG/Extensionality/Theorems.lean#L6
+
+
+
+Name: ClassEqualityIffSameMembers
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B : LRA.Set.NBGClass), A = B <-> forall x : LRA.Set.NBGSet, x ∈ A <-> x ∈ B
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGClass), A = B ↔ ∀ (x : LRA.Set.NBGSet), LRA.Set.instMembershipNBGSetNBGClass.mem A x ↔ LRA.Set.instMembershipNBGSetNBGClass.mem B x
+Transliterated theorem: (∀ A B ∈ LRA.Set.NBGClass), A = B <-> forall x : LRA.Set.NBGSet, x ∈ A <-> x ∈ B
+Logical form (Lean): (A B : LRA.Set.NBGClass) : A = B <-> forall x : LRA.Set.NBGSet, x ∈ A <-> x ∈ B
+Source: ./NBG/Extensionality/Theorems.lean#L11
+
+
+
+Name: EmptySetExists
+Kind: Theorem
+State: Sorry
+Predicate logic: Exists fun A => LRA.Set.NBG.IsEmptySet A
+Predicate logic (unfolded): Exists fun A => LRA.Set.NBG.IsEmptySet A
+Transliterated theorem: exists A : Set, IsEmptySet A
+Logical form (Lean): : exists A : Set, IsEmptySet A
+Source: ./NBG/EmptySet/Theorems.lean#L7
+
+
+
+Name: EmptySetIsUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B), B = A
+Predicate logic (unfolded): ∀ {A B : LRA.Set.NBG.Set}, (LRA.Set.NBG.IsEmptySet A ∧ LRA.Set.NBG.IsEmptySet B) → B = A
+Transliterated theorem: B = A
+Logical form (Lean): {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B) : B = A
+Source: ./NBG/EmptySet/Theorems.lean#L11
+
+
+
+Name: EmptySetExistsAndIsUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Set.NBG.ExistsAndUnique LRA.Set.NBG.IsEmptySet
+Predicate logic (unfolded): LRA.Set.NBG.ExistsAndUnique LRA.Set.NBG.IsEmptySet
+Transliterated theorem: ExistsAndUnique IsEmptySet
+Logical form (Lean): : ExistsAndUnique IsEmptySet
+Source: ./NBG/EmptySet/Theorems.lean#L16
+
+
+
+Name: TheEmptySetIsEmpty
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Set.NBG.IsEmptySet LRA.Set.NBG.TheEmptySet
+Predicate logic (unfolded): LRA.Set.NBG.IsEmptySet LRA.Set.NBG.TheEmptySet
+Transliterated theorem: IsEmptySet TheEmptySet
+Logical form (Lean): : IsEmptySet TheEmptySet
+Source: ./NBG/EmptySet/Theorems.lean#L22
+
+
+
+Name: InductiveSetExists
+Kind: Theorem
+State: Sorry
+Predicate logic: Exists fun A => LRA.Set.NBG.IsInductiveSet A
+Predicate logic (unfolded): Exists fun A => LRA.Set.NBG.IsInductiveSet A
+Transliterated theorem: exists A : Set, IsInductiveSet A
+Logical form (Lean): : exists A : Set, IsInductiveSet A
+Source: ./NBG/Infinity/Theorems.lean#L6
+
+
+
+Name: PairSetExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x1 x2 : LRA.Set.NBG.Set), Exists fun P => LRA.Set.NBG.IsPairSet x1 x2 P
+Predicate logic (unfolded): ∀ (x1 x2 : LRA.Set.NBG.Set), Exists fun P => LRA.Set.NBG.IsPairSet x1 x2 P
+Transliterated theorem: (∀ x1 x2 ∈ Set), exists P : Set, IsPairSet x1 x2 P
+Logical form (Lean): (x1 x2 : Set) : exists P : Set, IsPairSet x1 x2 P
+Source: ./NBG/Pairing/Theorems.lean#L7
+
+
+
+Name: PairSetIsUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x1 x2 P G : Set} (PIsPairSet : IsPairSet x1 x2 P) (GIsPairSet : IsPairSet x1 x2 G), G = P
+Predicate logic (unfolded): ∀ {x1 x2 P G : LRA.Set.NBG.Set}, (LRA.Set.NBG.IsPairSet x1 x2 P ∧ LRA.Set.NBG.IsPairSet x1 x2 G) → G = P
+Transliterated theorem: G = P
+Logical form (Lean): {x1 x2 P G : Set} (PIsPairSet : IsPairSet x1 x2 P) (GIsPairSet : IsPairSet x1 x2 G) : G = P
+Source: ./NBG/Pairing/Theorems.lean#L11
+
+
+
+Name: PairingOutputExistsAndIsUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x1 x2 : LRA.Set.NBG.Set), LRA.Set.NBG.ExistsAndUnique fun P => LRA.Set.NBG.IsPairSet x1 x2 P
+Predicate logic (unfolded): ∀ (x1 x2 : LRA.Set.NBG.Set), LRA.Set.NBG.ExistsAndUnique fun P => LRA.Set.NBG.IsPairSet x1 x2 P
+Transliterated theorem: (∀ x1 x2 ∈ Set), ExistsAndUnique fun P ∈ Set => IsPairSet x1 x2 P
+Logical form (Lean): (x1 x2 : Set) : ExistsAndUnique (fun P : Set => IsPairSet x1 x2 P)
+Source: ./NBG/Pairing/Theorems.lean#L17
+
+
+
+Name: PairSetMembership
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x1 x2 w : Set), w ∈ PairSet x1 x2 <-> w = x1 \/ w = x2
+Predicate logic (unfolded): ∀ (x1 x2 w : LRA.Set.NBG.Set), LRA.Set.instMembershipNBGSet.mem (LRA.Set.NBG.PairSet x1 x2) w ↔ Or (w = x1)(w = x2)
+Transliterated theorem: (∀ x1 x2 w ∈ Set), w ∈ PairSet x1 x2 <-> w = x1 ∨ w = x2
+Logical form (Lean): (x1 x2 w : Set) : w ∈ PairSet x1 x2 <-> w = x1 \/ w = x2
+Source: ./NBG/Pairing/Theorems.lean#L24
+
+
+
+Name: FoundationWitnessExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.NBG.Set),   (Exists fun w => LRA.Set.instMembershipNBGSet.mem A w) → Exists fun x => LRA.Set.NBG.IsFoundationWitness A x
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBG.Set), (Exists fun w => LRA.Set.instMembershipNBGSet.mem A w) → Exists fun x => LRA.Set.NBG.IsFoundationWitness A x
+Transliterated theorem: (∀ A ∈ Set), (exists w : Set, w ∈ A) → exists x : Set, IsFoundationWitness A x
+Logical form (Lean): (A : Set) (nonempty : exists w : Set, w ∈ A) : exists x : Set, IsFoundationWitness A x
+Source: ./NBG/Foundation/Theorems.lean#L7
+
+
+
+Name: NoSetIsMemberOfItself
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Set), A ∉ A
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBG.Set), ¬ LRA.Set.instMembershipNBGSet.mem A A
+Transliterated theorem: (∀ A ∈ Set), A ∉ A
+Logical form (Lean): (A : Set) : A ∉ A
+Source: ./NBG/Foundation/Theorems.lean#L12
+
+
+
+Name: MemberOfSingletonSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (element candidate : Set), candidate ∈ SingletonSet element <-> candidate = element
+Predicate logic (unfolded): ∀ (element candidate : LRA.Set.NBG.Set), LRA.Set.instMembershipNBGSet.mem (LRA.Set.NBG.SingletonSet element) candidate ↔ candidate = element
+Transliterated theorem: (∀ element candidate ∈ Set), candidate ∈ SingletonSet element <-> candidate = element
+Logical form (Lean): (element candidate : Set) : candidate ∈ SingletonSet element <-> candidate = element
+Source: ./NBG/OrderedPair/Theorems.lean#L12
+
+
+
+Name: KuratowskiPairInjective
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (firstLeft secondLeft firstRight secondRight : Set), KuratowskiPair firstLeft firstRight = KuratowskiPair secondLeft secondRight <-> firstLeft = secondLeft /\ firstRight = secondRight
+Predicate logic (unfolded): ∀ (firstLeft secondLeft firstRight secondRight : LRA.Set.NBG.Set), LRA.Set.NBG.KuratowskiPair firstLeft firstRight = LRA.Set.NBG.KuratowskiPair secondLeft secondRight ↔ (firstLeft = secondLeft ∧ firstRight = secondRight)
+Transliterated theorem: (∀ firstLeft secondLeft firstRight secondRight ∈ Set), KuratowskiPair firstLeft firstRight = KuratowskiPair secondLeft secondRight <-> firstLeft = secondLeft ∧ firstRight = secondRight
+Logical form (Lean): (firstLeft secondLeft firstRight secondRight : Set) : KuratowskiPair firstLeft firstRight = KuratowskiPair secondLeft secondRight <-> firstLeft = secondLeft /\ firstRight = secondRight
+Source: ./NBG/OrderedPair/Theorems.lean#L17
+
+
+
+Name: instPairingLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.PairingLaws LRA.Set.NBG.Set LRA.Set.NBG.Set LRA.Set.NBG.Set
+Predicate logic (unfolded): LRA.Set.PairingLaws LRA.Set.NBG.Set LRA.Set.NBG.Set LRA.Set.NBG.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NBG/OrderedPair/Theorems.lean
+
+
+
+Name: PowerSetOfExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.NBG.Set), Exists fun P => LRA.Set.NBG.IsPowerSetOf A P
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBG.Set), Exists fun P => LRA.Set.NBG.IsPowerSetOf A P
+Transliterated theorem: (∀ A ∈ Set), exists P : Set, IsPowerSetOf A P
+Logical form (Lean): (A : Set) : exists P : Set, IsPowerSetOf A P
+Source: ./NBG/PowerSet/Theorems.lean#L7
+
+
+
+Name: PowerSetOfIsUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A P Q : Set} (PIsPowerSetOf : IsPowerSetOf A P) (QIsPowerSetOf : IsPowerSetOf A Q), Q = P
+Predicate logic (unfolded): ∀ {A P Q : LRA.Set.NBG.Set}, (LRA.Set.NBG.IsPowerSetOf A P ∧ LRA.Set.NBG.IsPowerSetOf A Q) → Q = P
+Transliterated theorem: Q = P
+Logical form (Lean): {A P Q : Set} (PIsPowerSetOf : IsPowerSetOf A P) (QIsPowerSetOf : IsPowerSetOf A Q) : Q = P
+Source: ./NBG/PowerSet/Theorems.lean#L11
+
+
+
+Name: ThePowerSetIsPowerSetOf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.NBG.Set), LRA.Set.NBG.IsPowerSetOf A (LRA.Set.NBG.ThePowerSet A)
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBG.Set), LRA.Set.NBG.IsPowerSetOf A (LRA.Set.NBG.ThePowerSet A)
+Transliterated theorem: (∀ A ∈ Set), IsPowerSetOf A (ThePowerSet A)
+Logical form (Lean): (A : Set) : IsPowerSetOf A (ThePowerSet A)
+Source: ./NBG/PowerSet/Theorems.lean#L19
+
+
+
+Name: ReplacementImageExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.NBG.Set) (relation : LRA.Set.NBG.Set → LRA.Set.NBG.Set → Prop),   LRA.Set.NBG.IsFunctionalOn A relation → Exists fun B => LRA.Set.NBG.IsReplacementImageOf A relation B
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBG.Set) (relation : LRA.Set.NBG.Set → LRA.Set.NBG.Set → Prop), LRA.Set.NBG.IsFunctionalOn A relation → Exists fun B => LRA.Set.NBG.IsReplacementImageOf A relation B
+Transliterated theorem: (∀ A ∈ Set), exists B : Set, IsReplacementImageOf A relation B
+Logical form (Lean): (A : Set) (relation : Set -> Set -> Prop) (functional : IsFunctionalOn A relation) : exists B : Set, IsReplacementImageOf A relation B
+Source: ./NBG/Replacement/Theorems.lean#L7
+
+
+
+Name: ReplacementImageIsUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set} {relation : Set -> Set -> Prop} {B C : Set} (BIsReplacementImageOf : IsReplacementImageOf A relation B) (CIsReplacementImageOf : IsReplacementImageOf A relation C), C = B
+Predicate logic (unfolded): ∀ {A : LRA.Set.NBG.Set} {relation : LRA.Set.NBG.Set → LRA.Set.NBG.Set → Prop} {B C : LRA.Set.NBG.Set}, (LRA.Set.NBG.IsReplacementImageOf A relation B ∧ LRA.Set.NBG.IsReplacementImageOf A relation C) → C = B
+Transliterated theorem: C = B
+Logical form (Lean): {A : Set} {relation : Set -> Set -> Prop} {B C : Set} (BIsReplacementImageOf : IsReplacementImageOf A relation B) (CIsReplacementImageOf : IsReplacementImageOf A relation C) : C = B
+Source: ./NBG/Replacement/Theorems.lean#L14
+
+
+
+Name: TheReplacementImageIsReplacementImageOf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.NBG.Set) (relation : LRA.Set.NBG.Set → LRA.Set.NBG.Set → Prop)   (functional : LRA.Set.NBG.IsFunctionalOn A relation),   LRA.Set.NBG.IsReplacementImageOf A relation (LRA.Set.NBG.TheReplacementImage A relation functional)
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBG.Set) (relation : LRA.Set.NBG.Set → LRA.Set.NBG.Set → Prop) (functional : LRA.Set.NBG.IsFunctionalOn A relation), LRA.Set.NBG.IsReplacementImageOf A relation (LRA.Set.NBG.TheReplacementImage A relation functional)
+Transliterated theorem: (∀ A ∈ Set), IsReplacementImageOf A relation (TheReplacementImage A relation functional)
+Logical form (Lean): (A : Set) (relation : Set -> Set -> Prop) (functional : IsFunctionalOn A relation) : IsReplacementImageOf A relation (TheReplacementImage A relation functional)
+Source: ./NBG/Replacement/Theorems.lean#L26
+
+
+
+Name: SeparatedSubsetExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.NBG.Set) (property : LRA.Set.NBG.Set → Prop), Exists fun B => LRA.Set.NBG.IsSeparatedSubset A property B
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBG.Set) (property : LRA.Set.NBG.Set → Prop), Exists fun B => LRA.Set.NBG.IsSeparatedSubset A property B
+Transliterated theorem: (∀ A ∈ Set), exists B : Set, IsSeparatedSubset A property B
+Logical form (Lean): (A : Set) (property : Set -> Prop) : exists B : Set, IsSeparatedSubset A property B
+Source: ./NBG/Separation/Theorems.lean#L7
+
+
+
+Name: SeparatedSubsetIsUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set} {property : Set -> Prop} {B C : Set} (BIsSeparatedSubset : IsSeparatedSubset A property B) (CIsSeparatedSubset : IsSeparatedSubset A property C), C = B
+Predicate logic (unfolded): ∀ {A : LRA.Set.NBG.Set} {property : LRA.Set.NBG.Set → Prop} {B C : LRA.Set.NBG.Set}, (LRA.Set.NBG.IsSeparatedSubset A property B ∧ LRA.Set.NBG.IsSeparatedSubset A property C) → C = B
+Transliterated theorem: C = B
+Logical form (Lean): {A : Set} {property : Set -> Prop} {B C : Set} (BIsSeparatedSubset : IsSeparatedSubset A property B) (CIsSeparatedSubset : IsSeparatedSubset A property C) : C = B
+Source: ./NBG/Separation/Theorems.lean#L12
+
+
+
+Name: TheSeparatedSubsetIsSeparatedSubset
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.NBG.Set) (property : LRA.Set.NBG.Set → Prop),   LRA.Set.NBG.IsSeparatedSubset A property (LRA.Set.NBG.TheSeparatedSubset A property)
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBG.Set) (property : LRA.Set.NBG.Set → Prop), LRA.Set.NBG.IsSeparatedSubset A property (LRA.Set.NBG.TheSeparatedSubset A property)
+Transliterated theorem: (∀ A ∈ Set), IsSeparatedSubset A property (TheSeparatedSubset A property)
+Logical form (Lean): (A : Set) (property : Set -> Prop) : IsSeparatedSubset A property (TheSeparatedSubset A property)
+Source: ./NBG/Separation/Theorems.lean#L21
+
+
+
+Name: TheIntersectionIsIntersectionOf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B : LRA.Set.NBG.Set), LRA.Set.NBG.IsIntersectionOf A B (LRA.Set.NBG.TheIntersection A B)
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBG.Set), LRA.Set.NBG.IsIntersectionOf A B (LRA.Set.NBG.TheIntersection A B)
+Transliterated theorem: (∀ A B ∈ Set), IsIntersectionOf A B (TheIntersection A B)
+Logical form (Lean): (A B : Set) : IsIntersectionOf A B (TheIntersection A B)
+Source: ./NBG/Intersection/Theorems.lean#L9
+
+
+
+Name: TheIntersectionMembership
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B x : Set), x ∈ TheIntersection A B <-> x ∈ A /\ x ∈ B
+Predicate logic (unfolded): ∀ (A B x : LRA.Set.NBG.Set), LRA.Set.instMembershipNBGSet.mem (LRA.Set.NBG.TheIntersection A B) x ↔ (LRA.Set.instMembershipNBGSet.mem A x ∧ LRA.Set.instMembershipNBGSet.mem B x)
+Transliterated theorem: (∀ A B x ∈ Set), x ∈ TheIntersection A B <-> x ∈ A ∧ x ∈ B
+Logical form (Lean): (A B x : Set) : x ∈ TheIntersection A B <-> x ∈ A /\ x ∈ B
+Source: ./NBG/Intersection/Theorems.lean#L14
+
+
+
+Name: TheRelativeComplementIsRelativeComplementOf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B : LRA.Set.NBG.Set), LRA.Set.NBG.IsRelativeComplementOf A B (LRA.Set.NBG.TheRelativeComplement A B)
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBG.Set), LRA.Set.NBG.IsRelativeComplementOf A B (LRA.Set.NBG.TheRelativeComplement A B)
+Transliterated theorem: (∀ A B ∈ Set), IsRelativeComplementOf A B (TheRelativeComplement A B)
+Logical form (Lean): (A B : Set) : IsRelativeComplementOf A B (TheRelativeComplement A B)
+Source: ./NBG/RelativeComplement/Theorems.lean#L9
+
+
+
+Name: TheRelativeComplementMembership
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B x : Set), x ∈ TheRelativeComplement A B <-> x ∈ A /\ x ∉ B
+Predicate logic (unfolded): ∀ (A B x : LRA.Set.NBG.Set), LRA.Set.instMembershipNBGSet.mem (LRA.Set.NBG.TheRelativeComplement A B) x ↔ (LRA.Set.instMembershipNBGSet.mem A x ∧ ¬ LRA.Set.instMembershipNBGSet.mem B x)
+Transliterated theorem: (∀ A B x ∈ Set), x ∈ TheRelativeComplement A B <-> x ∈ A ∧ x ∉ B
+Logical form (Lean): (A B x : Set) : x ∈ TheRelativeComplement A B <-> x ∈ A /\ x ∉ B
+Source: ./NBG/RelativeComplement/Theorems.lean#L14
+
+
+
+Name: UnionOverExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.NBG.Set), Exists fun U => LRA.Set.NBG.IsUnionOf A U
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBG.Set), Exists fun U => LRA.Set.NBG.IsUnionOf A U
+Transliterated theorem: (∀ A ∈ Set), exists U : Set, IsUnionOf A U
+Logical form (Lean): (A : Set) : exists U : Set, IsUnionOf A U
+Source: ./NBG/Union/Theorems.lean#L8
+
+
+
+Name: UnionOverIsUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A U V : Set} (UIsUnionOf : IsUnionOf A U) (VIsUnionOf : IsUnionOf A V), V = U
+Predicate logic (unfolded): ∀ {A U V : LRA.Set.NBG.Set}, (LRA.Set.NBG.IsUnionOf A U ∧ LRA.Set.NBG.IsUnionOf A V) → V = U
+Transliterated theorem: V = U
+Logical form (Lean): {A U V : Set} (UIsUnionOf : IsUnionOf A U) (VIsUnionOf : IsUnionOf A V) : V = U
+Source: ./NBG/Union/Theorems.lean#L12
+
+
+
+Name: TheUnionOverIsUnionOf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.NBG.Set), LRA.Set.NBG.IsUnionOf A (LRA.Set.NBG.TheUnionOver A)
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBG.Set), LRA.Set.NBG.IsUnionOf A (LRA.Set.NBG.TheUnionOver A)
+Transliterated theorem: (∀ A ∈ Set), IsUnionOf A (TheUnionOver A)
+Logical form (Lean): (A : Set) : IsUnionOf A (TheUnionOver A)
+Source: ./NBG/Union/Theorems.lean#L20
+
+
+
+Name: TheUnionMembership
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B x : Set), x ∈ TheUnion A B <-> x ∈ A \/ x ∈ B
+Predicate logic (unfolded): ∀ (A B x : LRA.Set.NBG.Set), LRA.Set.instMembershipNBGSet.mem (LRA.Set.NBG.TheUnion A B) x ↔ Or (LRA.Set.instMembershipNBGSet.mem A x) (LRA.Set.instMembershipNBGSet.mem B x)
+Transliterated theorem: (∀ A B x ∈ Set), x ∈ TheUnion A B <-> x ∈ A ∨ x ∈ B
+Logical form (Lean): (A B x : Set) : x ∈ TheUnion A B <-> x ∈ A \/ x ∈ B
+Source: ./NBG/Union/Theorems.lean#L26
+
+
+
+Name: TheIntersectionOverMembership
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A x : Set) (collectionNonempty : exists B : Set, B ∈ A), x ∈ TheIntersectionOver A <-> forall B : Set, B ∈ A -> x ∈ B
+Predicate logic (unfolded): ∀ (A x : LRA.Set.NBG.Set), (Exists fun B => LRA.Set.instMembershipNBGSet.mem A B) → LRA.Set.instMembershipNBGSet.mem (LRA.Set.NBG.TheIntersectionOver A) x ↔ ∀ (B : LRA.Set.NBG.Set), LRA.Set.instMembershipNBGSet.mem A B → LRA.Set.instMembershipNBGSet.mem B x
+Transliterated theorem: (∀ A x ∈ Set), (exists B : Set, B ∈ A) → x ∈ TheIntersectionOver A <-> forall B : Set, B ∈ A -> x ∈ B
+Logical form (Lean): (A x : Set) (collectionNonempty : exists B : Set, B ∈ A) : x ∈ TheIntersectionOver A <-> forall B : Set, B ∈ A -> x ∈ B
+Source: ./NBG/IntersectionOver/Theorems.lean#L9
+
+
+
+Name: TheSymmetricDifferenceIsSymmetricDifferenceOf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B : LRA.Set.NBG.Set), LRA.Set.NBG.IsSymmetricDifferenceOf A B (LRA.Set.NBG.TheSymmetricDifference A B)
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBG.Set), LRA.Set.NBG.IsSymmetricDifferenceOf A B (LRA.Set.NBG.TheSymmetricDifference A B)
+Transliterated theorem: (∀ A B ∈ Set), IsSymmetricDifferenceOf A B (TheSymmetricDifference A B)
+Logical form (Lean): (A B : Set) : IsSymmetricDifferenceOf A B (TheSymmetricDifference A B)
+Source: ./NBG/SymmetricDifference/Theorems.lean#L9
+
+
+
+Name: TheSymmetricDifferenceMembership
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B x : Set), x ∈ TheSymmetricDifference A B <-> (x ∈ A /\ x ∉ B) \/ (x ∈ B /\ x ∉ A)
+Predicate logic (unfolded): ∀ (A B x : LRA.Set.NBG.Set), LRA.Set.instMembershipNBGSet.mem (LRA.Set.NBG.TheSymmetricDifference A B) x ↔ Or ((LRA.Set.instMembershipNBGSet.mem A x ∧ ¬ LRA.Set.instMembershipNBGSet.mem B x)) ((LRA.Set.instMembershipNBGSet.mem B x ∧ ¬ LRA.Set.instMembershipNBGSet.mem A x))
+Transliterated theorem: (∀ A B x ∈ Set), x ∈ TheSymmetricDifference A B <-> (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
+Logical form (Lean): (A B x : Set) : x ∈ TheSymmetricDifference A B <-> (x ∈ A /\ x ∉ B) \/ (x ∈ B /\ x ∉ A)
+Source: ./NBG/SymmetricDifference/Theorems.lean#L14
+
+
+
+Name: SetExtensionality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B : LRA.Set.NBGSet) (sameMembers : forall x : LRA.Set.NBGSet, x ∈ A <-> x ∈ B), A = B
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGSet), (∀ (x : LRA.Set.NBGSet), LRA.Set.instMembershipNBGSet.mem A x ↔ LRA.Set.instMembershipNBGSet.mem B x) → A = B
+Transliterated theorem: (∀ A B ∈ LRA.Set.NBGSet), (forall x : LRA.Set.NBGSet, x ∈ A <-> x ∈ B) → A = B
+Logical form (Lean): (A B : LRA.Set.NBGSet) (sameMembers : forall x : LRA.Set.NBGSet, x ∈ A <-> x ∈ B) : A = B
+Source: ./NBG/Public.lean#L9
+
+
+
+Name: ClassExtensionalityTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B : LRA.Set.NBGClass) (sameMembers : forall x : LRA.Set.NBGSet, x ∈ A <-> x ∈ B), A = B
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGClass), (∀ (x : LRA.Set.NBGSet), LRA.Set.instMembershipNBGSetNBGClass.mem A x ↔ LRA.Set.instMembershipNBGSetNBGClass.mem B x) → A = B
+Transliterated theorem: (∀ A B ∈ LRA.Set.NBGClass), (forall x : LRA.Set.NBGSet, x ∈ A <-> x ∈ B) → A = B
+Logical form (Lean): (A B : LRA.Set.NBGClass) (sameMembers : forall x : LRA.Set.NBGSet, x ∈ A <-> x ∈ B) : A = B
+Source: ./NBG/Public.lean#L16
+
+
+
+Name: DifferenceMonotoneLeft
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A1 A2 B : LRA.Set.NBGSet.Set),   LRA.Set.NBGSet.instHasSubset.Subset A1 A2 →     LRA.Set.NBGSet.instHasSubset.Subset (LRA.Set.NBGSet.instSDiff.sdiff A1 B) (LRA.Set.NBGSet.instSDiff.sdiff A2 B)
+Predicate logic (unfolded): ∀ (A1 A2 B : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSubset.Subset A1 A2 → LRA.Set.NBGSet.instHasSubset.Subset (LRA.Set.NBGSet.instSDiff.sdiff A1 B) (LRA.Set.NBGSet.instSDiff.sdiff A2 B)
+Transliterated theorem: forall A1 A2 B : Set, A1 ⊆ A2 -> A1 \ B ⊆ A2 \ B
+Logical form (Lean): : forall A1 A2 B : Set, A1 ⊆ A2 -> A1 \ B ⊆ A2 \ B
+Source: ./NBGSet/Laws/Difference.lean#L6
+
+
+
+Name: DifferenceAntitoneRight
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B1 B2 : LRA.Set.NBGSet.Set),   LRA.Set.NBGSet.instHasSubset.Subset B1 B2 →     LRA.Set.NBGSet.instHasSubset.Subset (LRA.Set.NBGSet.instSDiff.sdiff A B2) (LRA.Set.NBGSet.instSDiff.sdiff A B1)
+Predicate logic (unfolded): ∀ (A B1 B2 : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSubset.Subset B1 B2 → LRA.Set.NBGSet.instHasSubset.Subset (LRA.Set.NBGSet.instSDiff.sdiff A B2) (LRA.Set.NBGSet.instSDiff.sdiff A B1)
+Transliterated theorem: forall A B1 B2 : Set, B1 ⊆ B2 -> A \ B2 ⊆ A \ B1
+Logical form (Lean): : forall A B1 B2 : Set, B1 ⊆ B2 -> A \ B2 ⊆ A \ B1
+Source: ./NBGSet/Laws/Difference.lean#L11
+
+
+
+Name: DifferenceEmpty
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, A \ (∅ : Set) = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instSDiff.sdiff A LRA.Set.NBGSet.instEmptyCollection.emptyCollection = A
+Transliterated theorem: forall A : Set, A \ ∅ ∈ Set = A
+Logical form (Lean): : forall A : Set, A \ (∅ : Set) = A
+Source: ./NBGSet/Laws/Difference.lean#L16
+
+
+
+Name: EmptyDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, (∅ : Set) \ A = (∅ : Set)
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instSDiff.sdiff LRA.Set.NBGSet.instEmptyCollection.emptyCollection A = LRA.Set.NBGSet.instEmptyCollection.emptyCollection
+Transliterated theorem: forall A : Set, ∅ ∈ Set \ A = ∅ ∈ Set
+Logical form (Lean): : forall A : Set, (∅ : Set) \ A = (∅ : Set)
+Source: ./NBGSet/Laws/Difference.lean#L20
+
+
+
+Name: DifferenceSelf
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, A \ A = (∅ : Set)
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instSDiff.sdiff A A = LRA.Set.NBGSet.instEmptyCollection.emptyCollection
+Transliterated theorem: forall A : Set, A \ A = ∅ ∈ Set
+Logical form (Lean): : forall A : Set, A \ A = (∅ : Set)
+Source: ./NBGSet/Laws/Difference.lean#L24
+
+
+
+Name: DifferenceUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instSDiff.sdiff A (LRA.Set.NBGSet.instUnion.union B C) = LRA.Set.NBGSet.instInter.inter (LRA.Set.NBGSet.instSDiff.sdiff A B) (LRA.Set.NBGSet.instSDiff.sdiff A C)
+Transliterated theorem: forall A B C : Set, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
+Logical form (Lean): : forall A B C : Set, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
+Source: ./NBGSet/Laws/Difference.lean#L28
+
+
+
+Name: DifferenceIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instSDiff.sdiff A (LRA.Set.NBGSet.instInter.inter B C) = LRA.Set.NBGSet.instUnion.union (LRA.Set.NBGSet.instSDiff.sdiff A B) (LRA.Set.NBGSet.instSDiff.sdiff A C)
+Transliterated theorem: forall A B C : Set, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
+Logical form (Lean): : forall A B C : Set, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
+Source: ./NBGSet/Laws/Difference.lean#L33
+
+
+
+Name: UnionDifferenceDistributes
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instSDiff.sdiff (LRA.Set.NBGSet.instUnion.union A B) C = LRA.Set.NBGSet.instUnion.union (LRA.Set.NBGSet.instSDiff.sdiff A C) (LRA.Set.NBGSet.instSDiff.sdiff B C)
+Transliterated theorem: forall A B C : Set, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
+Logical form (Lean): : forall A B C : Set, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
+Source: ./NBGSet/Laws/Difference.lean#L38
+
+
+
+Name: IntersectionDifferenceDistributes
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instSDiff.sdiff (LRA.Set.NBGSet.instInter.inter A B) C = LRA.Set.NBGSet.instInter.inter (LRA.Set.NBGSet.instSDiff.sdiff A C) (LRA.Set.NBGSet.instSDiff.sdiff B C)
+Transliterated theorem: forall A B C : Set, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
+Logical form (Lean): : forall A B C : Set, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
+Source: ./NBGSet/Laws/Difference.lean#L43
+
+
+
+Name: DifferenceSubsetLeft
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSubset.Subset (LRA.Set.NBGSet.instSDiff.sdiff A B) A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSubset.Subset (LRA.Set.NBGSet.instSDiff.sdiff A B) A
+Transliterated theorem: forall A B : Set, A \ B ⊆ A
+Logical form (Lean): : forall A B : Set, A \ B ⊆ A
+Source: ./NBGSet/Laws/Difference.lean#L48
+
+
+
+Name: DifferenceDisjointRight
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, (A \ B) ∩ B = (∅ : Set)
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instInter.inter (LRA.Set.NBGSet.instSDiff.sdiff A B) B = LRA.Set.NBGSet.instEmptyCollection.emptyCollection
+Transliterated theorem: forall A B : Set, (A \ B) ∩ B = ∅ ∈ Set
+Logical form (Lean): : forall A B : Set, (A \ B) ∩ B = (∅ : Set)
+Source: ./NBGSet/Laws/Difference.lean#L52
+
+
+
+Name: instDifferenceLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.DifferenceLaws LRA.Set.NBGSet.Set
+Predicate logic (unfolded): LRA.Set.DifferenceLaws LRA.Set.NBGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NBGSet/Laws/Difference.lean
+
+
+
+Name: IntersectionDistributesOverUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instInter.inter A (LRA.Set.NBGSet.instUnion.union B C) = LRA.Set.NBGSet.instUnion.union (LRA.Set.NBGSet.instInter.inter A B) (LRA.Set.NBGSet.instInter.inter A C)
+Transliterated theorem: forall A B C : Set, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
+Logical form (Lean): : forall A B C : Set, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
+Source: ./NBGSet/Laws/Distributivity.lean#L6
+
+
+
+Name: UnionDistributesOverIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instUnion.union A (LRA.Set.NBGSet.instInter.inter B C) = LRA.Set.NBGSet.instInter.inter (LRA.Set.NBGSet.instUnion.union A B) (LRA.Set.NBGSet.instUnion.union A C)
+Transliterated theorem: forall A B C : Set, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
+Logical form (Lean): : forall A B C : Set, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
+Source: ./NBGSet/Laws/Distributivity.lean#L11
+
+
+
+Name: AbsorptionUnionIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ∪ (A ∩ B) = A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instUnion.union A (LRA.Set.NBGSet.instInter.inter A B) = A
+Transliterated theorem: forall A B : Set, A ∪ (A ∩ B) = A
+Logical form (Lean): : forall A B : Set, A ∪ (A ∩ B) = A
+Source: ./NBGSet/Laws/Distributivity.lean#L16
+
+
+
+Name: AbsorptionIntersectionUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ∩ (A ∪ B) = A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instInter.inter A (LRA.Set.NBGSet.instUnion.union A B) = A
+Transliterated theorem: forall A B : Set, A ∩ (A ∪ B) = A
+Logical form (Lean): : forall A B : Set, A ∩ (A ∪ B) = A
+Source: ./NBGSet/Laws/Distributivity.lean#L21
+
+
+
+Name: instDistributivityLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.DistributivityLaws LRA.Set.NBGSet.Set
+Predicate logic (unfolded): LRA.Set.DistributivityLaws LRA.Set.NBGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NBGSet/Laws/Distributivity.lean
+
+
+
+Name: IntersectionCommutative
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ∩ B = B ∩ A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instInter.inter A B = LRA.Set.NBGSet.instInter.inter B A
+Transliterated theorem: forall A B : Set, A ∩ B = B ∩ A
+Logical form (Lean): : forall A B : Set, A ∩ B = B ∩ A
+Source: ./NBGSet/Laws/Intersection.lean#L6
+
+
+
+Name: IntersectionAssociative
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, (A ∩ B) ∩ C = A ∩ (B ∩ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instInter.inter (LRA.Set.NBGSet.instInter.inter A B) C = LRA.Set.NBGSet.instInter.inter A (LRA.Set.NBGSet.instInter.inter B C)
+Transliterated theorem: forall A B C : Set, (A ∩ B) ∩ C = A ∩ (B ∩ C)
+Logical form (Lean): : forall A B C : Set, (A ∩ B) ∩ C = A ∩ (B ∩ C)
+Source: ./NBGSet/Laws/Intersection.lean#L10
+
+
+
+Name: IntersectionIdempotent
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, A ∩ A = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instInter.inter A A = A
+Transliterated theorem: forall A : Set, A ∩ A = A
+Logical form (Lean): : forall A : Set, A ∩ A = A
+Source: ./NBGSet/Laws/Intersection.lean#L15
+
+
+
+Name: EmptyIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, (∅ : Set) ∩ A = (∅ : Set)
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instInter.inter LRA.Set.NBGSet.instEmptyCollection.emptyCollection A = LRA.Set.NBGSet.instEmptyCollection.emptyCollection
+Transliterated theorem: forall A : Set, ∅ ∈ Set ∩ A = ∅ ∈ Set
+Logical form (Lean): : forall A : Set, (∅ : Set) ∩ A = (∅ : Set)
+Source: ./NBGSet/Laws/Intersection.lean#L19
+
+
+
+Name: IntersectionEmpty
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, A ∩ (∅ : Set) = (∅ : Set)
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instInter.inter A LRA.Set.NBGSet.instEmptyCollection.emptyCollection = LRA.Set.NBGSet.instEmptyCollection.emptyCollection
+Transliterated theorem: forall A : Set, A ∩ ∅ ∈ Set = ∅ ∈ Set
+Logical form (Lean): : forall A : Set, A ∩ (∅ : Set) = (∅ : Set)
+Source: ./NBGSet/Laws/Intersection.lean#L23
+
+
+
+Name: IntersectionMonotone
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A1 A2 B1 B2 : Set, A1 ⊆ A2 -> B1 ⊆ B2 -> A1 ∩ B1 ⊆ A2 ∩ B2
+Predicate logic (unfolded): ∀ (A1 A2 B1 B2 : LRA.Set.NBGSet.Set), (LRA.Set.NBGSet.instHasSubset.Subset A1 A2 ∧ LRA.Set.NBGSet.instHasSubset.Subset B1 B2) → LRA.Set.NBGSet.instHasSubset.Subset (LRA.Set.NBGSet.instInter.inter A1 B1) (LRA.Set.NBGSet.instInter.inter A2 B2)
+Transliterated theorem: forall A1 A2 B1 B2 : Set, A1 ⊆ A2 -> B1 ⊆ B2 -> A1 ∩ B1 ⊆ A2 ∩ B2
+Logical form (Lean): : forall A1 A2 B1 B2 : Set, A1 ⊆ A2 -> B1 ⊆ B2 -> A1 ∩ B1 ⊆ A2 ∩ B2
+Source: ./NBGSet/Laws/Intersection.lean#L27
+
+
+
+Name: SubsetIffIntersectionEqLeft
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ⊆ B <-> A ∩ B = A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSubset.Subset A B ↔ LRA.Set.NBGSet.instInter.inter A B = A
+Transliterated theorem: forall A B : Set, A ⊆ B <-> A ∩ B = A
+Logical form (Lean): : forall A B : Set, A ⊆ B <-> A ∩ B = A
+Source: ./NBGSet/Laws/Intersection.lean#L32
+
+
+
+Name: instIntersectionLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.IntersectionLaws LRA.Set.NBGSet.Set
+Predicate logic (unfolded): LRA.Set.IntersectionLaws LRA.Set.NBGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NBGSet/Laws/Intersection.lean
+
+
+
+Name: SubsetIffAllMembers
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ⊆ B <-> forall x : Set, x ∈ A -> x ∈ B
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSubset.Subset A B ↔ ∀ (x : LRA.Set.NBGSet.Set), LRA.Set.instMembershipNBGSet.mem A x → LRA.Set.instMembershipNBGSet.mem B x
+Transliterated theorem: forall A B : Set, A ⊆ B <-> forall x : Set, x ∈ A -> x ∈ B
+Logical form (Lean): : forall A B : Set, A ⊆ B <-> forall x : Set, x ∈ A -> x ∈ B
+Source: ./NBGSet/Laws/Membership.lean#L8
+
+
+
+Name: instSymmDiffMembershipLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.SymmDiffMembershipLaws LRA.Set.NBGSet.Set LRA.Set.NBGSet.Set
+Predicate logic (unfolded): LRA.Set.SymmDiffMembershipLaws LRA.Set.NBGSet.Set LRA.Set.NBGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NBGSet/Laws/Membership.lean
+
+
+
+Name: instCollectionMembershipLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.CollectionMembershipLaws LRA.Set.NBGSet.Set LRA.Set.NBGSet.Set LRA.Set.NBGSet.Set
+Predicate logic (unfolded): LRA.Set.CollectionMembershipLaws LRA.Set.NBGSet.Set LRA.Set.NBGSet.Set LRA.Set.NBGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NBGSet/Laws/Membership.lean
+
+
+
+Name: instExtensionalityLawSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.ExtensionalityLaw LRA.Set.NBGSet.Set LRA.Set.NBGSet.Set
+Predicate logic (unfolded): LRA.Set.ExtensionalityLaw LRA.Set.NBGSet.Set LRA.Set.NBGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NBGSet/Laws/Membership.lean
+
+
+
+Name: instPowersetMembershipLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.PowersetMembershipLaws LRA.Set.NBGSet.Set LRA.Set.NBGSet.Set
+Predicate logic (unfolded): LRA.Set.PowersetMembershipLaws LRA.Set.NBGSet.Set LRA.Set.NBGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NBGSet/Laws/Membership.lean
+
+
+
+Name: instMembershipLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.MembershipLaws LRA.Set.NBGSet.Set LRA.Set.NBGSet.Set
+Predicate logic (unfolded): LRA.Set.MembershipLaws LRA.Set.NBGSet.Set LRA.Set.NBGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NBGSet/Laws/Membership.lean
+
+
+
+Name: instSeparationLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.SeparationLaws LRA.Set.NBGSet.Set LRA.Set.NBGSet.Set
+Predicate logic (unfolded): LRA.Set.SeparationLaws LRA.Set.NBGSet.Set LRA.Set.NBGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NBGSet/Laws/Membership.lean
+
+
+
+Name: SubsetReflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSubset.Subset A A
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSubset.Subset A A
+Transliterated theorem: forall A : Set, A ⊆ A
+Logical form (Lean): : forall A : Set, A ⊆ A
+Source: ./NBGSet/Laws/Subset.lean#L6
+
+
+
+Name: SubsetTransitive
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, A ⊆ B -> B ⊆ C -> A ⊆ C
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.NBGSet.Set), (LRA.Set.NBGSet.instHasSubset.Subset A B ∧ LRA.Set.NBGSet.instHasSubset.Subset B C) → LRA.Set.NBGSet.instHasSubset.Subset A C
+Transliterated theorem: forall A B C : Set, A ⊆ B -> B ⊆ C -> A ⊆ C
+Logical form (Lean): : forall A B C : Set, A ⊆ B -> B ⊆ C -> A ⊆ C
+Source: ./NBGSet/Laws/Subset.lean#L10
+
+
+
+Name: SetEqualityIffMutualSubset
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A = B <-> A ⊆ B /\ B ⊆ A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGSet.Set), A = B ↔ (LRA.Set.NBGSet.instHasSubset.Subset A B ∧ LRA.Set.NBGSet.instHasSubset.Subset B A)
+Transliterated theorem: forall A B : Set, A = B <-> A ⊆ B ∧ B ⊆ A
+Logical form (Lean): : forall A B : Set, A = B <-> A ⊆ B /\ B ⊆ A
+Source: ./NBGSet/Laws/Subset.lean#L15
+
+
+
+Name: instSubsetLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.SubsetLaws LRA.Set.NBGSet.Set
+Predicate logic (unfolded): LRA.Set.SubsetLaws LRA.Set.NBGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NBGSet/Laws/Subset.lean
+
+
+
+Name: SymmetricDifferenceAsUnionDifferences
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ∆ B = (A \ B) ∪ (B \ A)
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSymmDiff.symmDiff A B = LRA.Set.NBGSet.instUnion.union (LRA.Set.NBGSet.instSDiff.sdiff A B) (LRA.Set.NBGSet.instSDiff.sdiff B A)
+Transliterated theorem: forall A B : Set, A ∆ B = (A \ B) ∪ (B \ A)
+Logical form (Lean): : forall A B : Set, A ∆ B = (A \ B) ∪ (B \ A)
+Source: ./NBGSet/Laws/SymmetricDifference.lean#L8
+
+
+
+Name: SymmetricDifferenceAsUnionDifferenceIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ∆ B = (A ∪ B) \ (A ∩ B)
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSymmDiff.symmDiff A B = LRA.Set.NBGSet.instSDiff.sdiff (LRA.Set.NBGSet.instUnion.union A B) (LRA.Set.NBGSet.instInter.inter A B)
+Transliterated theorem: forall A B : Set, A ∆ B = (A ∪ B) \ (A ∩ B)
+Logical form (Lean): : forall A B : Set, A ∆ B = (A ∪ B) \ (A ∩ B)
+Source: ./NBGSet/Laws/SymmetricDifference.lean#L13
+
+
+
+Name: SymmetricDifferenceCommutative
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ∆ B = B ∆ A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSymmDiff.symmDiff A B = LRA.Set.NBGSet.instHasSymmDiff.symmDiff B A
+Transliterated theorem: forall A B : Set, A ∆ B = B ∆ A
+Logical form (Lean): : forall A B : Set, A ∆ B = B ∆ A
+Source: ./NBGSet/Laws/SymmetricDifference.lean#L18
+
+
+
+Name: SymmetricDifferenceAssociative
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, (A ∆ B) ∆ C = A ∆ (B ∆ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSymmDiff.symmDiff (LRA.Set.NBGSet.instHasSymmDiff.symmDiff A B) C = LRA.Set.NBGSet.instHasSymmDiff.symmDiff A (LRA.Set.NBGSet.instHasSymmDiff.symmDiff B C)
+Transliterated theorem: forall A B C : Set, (A ∆ B) ∆ C = A ∆ (B ∆ C)
+Logical form (Lean): : forall A B C : Set, (A ∆ B) ∆ C = A ∆ (B ∆ C)
+Source: ./NBGSet/Laws/SymmetricDifference.lean#L23
+
+
+
+Name: SymmetricDifferenceEmpty
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, A ∆ (∅ : Set) = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSymmDiff.symmDiff A LRA.Set.NBGSet.instEmptyCollection.emptyCollection = A
+Transliterated theorem: forall A : Set, A ∆ ∅ ∈ Set = A
+Logical form (Lean): : forall A : Set, A ∆ (∅ : Set) = A
+Source: ./NBGSet/Laws/SymmetricDifference.lean#L28
+
+
+
+Name: EmptySymmetricDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, (∅ : Set) ∆ A = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSymmDiff.symmDiff LRA.Set.NBGSet.instEmptyCollection.emptyCollection A = A
+Transliterated theorem: forall A : Set, ∅ ∈ Set ∆ A = A
+Logical form (Lean): : forall A : Set, (∅ : Set) ∆ A = A
+Source: ./NBGSet/Laws/SymmetricDifference.lean#L32
+
+
+
+Name: SymmetricDifferenceSelf
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, A ∆ A = (∅ : Set)
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSymmDiff.symmDiff A A = LRA.Set.NBGSet.instEmptyCollection.emptyCollection
+Transliterated theorem: forall A : Set, A ∆ A = ∅ ∈ Set
+Logical form (Lean): : forall A : Set, A ∆ A = (∅ : Set)
+Source: ./NBGSet/Laws/SymmetricDifference.lean#L36
+
+
+
+Name: SymmetricDifferenceEqEmptyIff
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ∆ B = (∅ : Set) <-> A = B
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSymmDiff.symmDiff A B = LRA.Set.NBGSet.instEmptyCollection.emptyCollection ↔ A = B
+Transliterated theorem: forall A B : Set, A ∆ B = ∅ ∈ Set <-> A = B
+Logical form (Lean): : forall A B : Set, A ∆ B = (∅ : Set) <-> A = B
+Source: ./NBGSet/Laws/SymmetricDifference.lean#L40
+
+
+
+Name: SymmetricDifferenceSubsetUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B : LRA.Set.NBGSet.Set),   LRA.Set.NBGSet.instHasSubset.Subset (LRA.Set.NBGSet.instHasSymmDiff.symmDiff A B) (LRA.Set.NBGSet.instUnion.union A B)
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSubset.Subset (LRA.Set.NBGSet.instHasSymmDiff.symmDiff A B) (LRA.Set.NBGSet.instUnion.union A B)
+Transliterated theorem: forall A B : Set, A ∆ B ⊆ A ∪ B
+Logical form (Lean): : forall A B : Set, A ∆ B ⊆ A ∪ B
+Source: ./NBGSet/Laws/SymmetricDifference.lean#L45
+
+
+
+Name: instSymmDiffLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.SymmDiffLaws LRA.Set.NBGSet.Set
+Predicate logic (unfolded): LRA.Set.SymmDiffLaws LRA.Set.NBGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NBGSet/Laws/SymmetricDifference.lean
+
+
+
+Name: UnionCommutative
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ∪ B = B ∪ A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instUnion.union A B = LRA.Set.NBGSet.instUnion.union B A
+Transliterated theorem: forall A B : Set, A ∪ B = B ∪ A
+Logical form (Lean): : forall A B : Set, A ∪ B = B ∪ A
+Source: ./NBGSet/Laws/Union.lean#L6
+
+
+
+Name: UnionAssociative
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instUnion.union (LRA.Set.NBGSet.instUnion.union A B) C = LRA.Set.NBGSet.instUnion.union A (LRA.Set.NBGSet.instUnion.union B C)
+Transliterated theorem: forall A B C : Set, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+Logical form (Lean): : forall A B C : Set, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+Source: ./NBGSet/Laws/Union.lean#L10
+
+
+
+Name: EmptyUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, (∅ : Set) ∪ A = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instUnion.union LRA.Set.NBGSet.instEmptyCollection.emptyCollection A = A
+Transliterated theorem: forall A : Set, ∅ ∈ Set ∪ A = A
+Logical form (Lean): : forall A : Set, (∅ : Set) ∪ A = A
+Source: ./NBGSet/Laws/Union.lean#L15
+
+
+
+Name: UnionEmpty
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, A ∪ (∅ : Set) = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instUnion.union A LRA.Set.NBGSet.instEmptyCollection.emptyCollection = A
+Transliterated theorem: forall A : Set, A ∪ ∅ ∈ Set = A
+Logical form (Lean): : forall A : Set, A ∪ (∅ : Set) = A
+Source: ./NBGSet/Laws/Union.lean#L19
+
+
+
+Name: UnionIdempotent
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, A ∪ A = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instUnion.union A A = A
+Transliterated theorem: forall A : Set, A ∪ A = A
+Logical form (Lean): : forall A : Set, A ∪ A = A
+Source: ./NBGSet/Laws/Union.lean#L23
+
+
+
+Name: UnionMonotone
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A1 A2 B1 B2 : Set, A1 ⊆ A2 -> B1 ⊆ B2 -> A1 ∪ B1 ⊆ A2 ∪ B2
+Predicate logic (unfolded): ∀ (A1 A2 B1 B2 : LRA.Set.NBGSet.Set), (LRA.Set.NBGSet.instHasSubset.Subset A1 A2 ∧ LRA.Set.NBGSet.instHasSubset.Subset B1 B2) → LRA.Set.NBGSet.instHasSubset.Subset (LRA.Set.NBGSet.instUnion.union A1 B1) (LRA.Set.NBGSet.instUnion.union A2 B2)
+Transliterated theorem: forall A1 A2 B1 B2 : Set, A1 ⊆ A2 -> B1 ⊆ B2 -> A1 ∪ B1 ⊆ A2 ∪ B2
+Logical form (Lean): : forall A1 A2 B1 B2 : Set, A1 ⊆ A2 -> B1 ⊆ B2 -> A1 ∪ B1 ⊆ A2 ∪ B2
+Source: ./NBGSet/Laws/Union.lean#L27
+
+
+
+Name: SubsetIffUnionEqRight
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ⊆ B <-> A ∪ B = B
+Predicate logic (unfolded): ∀ (A B : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSubset.Subset A B ↔ LRA.Set.NBGSet.instUnion.union A B = B
+Transliterated theorem: forall A B : Set, A ⊆ B <-> A ∪ B = B
+Logical form (Lean): : forall A B : Set, A ⊆ B <-> A ∪ B = B
+Source: ./NBGSet/Laws/Union.lean#L32
+
+
+
+Name: instUnionLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.UnionLaws LRA.Set.NBGSet.Set
+Predicate logic (unfolded): LRA.Set.UnionLaws LRA.Set.NBGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NBGSet/Laws/Union.lean
 
 
 
 Name: PredicateSetExtensionality
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Alpha : Type u} {A B : LRA.Set.PredicateSet Alpha},   (∀ (x : Alpha), Iff (LRA.Set.instMembershipPredicateSet.mem A x) (LRA.Set.instMembershipPredicateSet.mem B x)) →     Eq A B
-Predicate logic (unfolded): ∀ {Alpha : Type u} {A B : LRA.Set.PredicateSet Alpha},   (∀ (x : Alpha), Iff (LRA.Set.instMembershipPredicateSet.mem A x) (LRA.Set.instMembershipPredicateSet.mem B x)) →     Eq A B
+State: Sorry
+Predicate logic: ∀ {A B : PredicateSet Alpha} (sameMembers : ∀ x : Alpha, x ∈ A ↔ x ∈ B), A = B
+Predicate logic (unfolded): ∀ {Alpha : Type u} {A B : LRA.Set.PredicateSet Alpha}, (∀ (x : Alpha), LRA.Set.instMembershipPredicateSet.mem A x ↔ LRA.Set.instMembershipPredicateSet.mem B x) → A = B
+Transliterated theorem: (∀ x : Alpha, x ∈ A ↔ x ∈ B) → A = B
 Logical form (Lean): {A B : PredicateSet Alpha} (sameMembers : ∀ x : Alpha, x ∈ A ↔ x ∈ B) : A = B
 Source: ./PredicateSet/Definition.lean#L15
 
@@ -1414,8 +3248,9 @@ Source: ./PredicateSet/Definition.lean#L15
 Name: EmptyMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (x : Alpha), Iff (LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.Empty Alpha) x) False
-Predicate logic (unfolded): ∀ {Alpha : Type u} (x : Alpha), Iff (LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.Empty Alpha) x) False
+Predicate logic: ∀ (x : Alpha), x ∈ Empty Alpha ↔ False
+Predicate logic (unfolded): ∀ {Alpha : Type u} (x : Alpha), LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.Empty Alpha) x ↔ False
+Transliterated theorem: (∀ x ∈ Alpha), x ∈ Empty Alpha ↔ False
 Logical form (Lean): (x : Alpha) : x ∈ Empty Alpha ↔ False
 Source: ./PredicateSet/Operations.lean#L20
 
@@ -1424,8 +3259,9 @@ Source: ./PredicateSet/Operations.lean#L20
 Name: SingletonMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (a x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.Singleton a) x) (Eq x a)
-Predicate logic (unfolded): ∀ {Alpha : Type u} (a x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.Singleton a) x) (Eq x a)
+Predicate logic: ∀ (a x : Alpha), x ∈ Singleton a ↔ x = a
+Predicate logic (unfolded): ∀ {Alpha : Type u} (a x : Alpha), LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.Singleton a) x ↔ x = a
+Transliterated theorem: (∀ a x ∈ Alpha), x ∈ Singleton a ↔ x = a
 Logical form (Lean): (a x : Alpha) : x ∈ Singleton a ↔ x = a
 Source: ./PredicateSet/Operations.lean#L26
 
@@ -1434,8 +3270,9 @@ Source: ./PredicateSet/Operations.lean#L26
 Name: InsertMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (a x : Alpha) (A : LRA.Set.PredicateSet Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.Insert a A) x)     (Or (Eq x a) (LRA.Set.instMembershipPredicateSet.mem A x))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (a x : Alpha) (A : LRA.Set.PredicateSet Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.Insert a A) x)     (Or (Eq x a) (LRA.Set.instMembershipPredicateSet.mem A x))
+Predicate logic: ∀ (a x : Alpha) (A : LRA.Set.PredicateSet Alpha), x ∈ Insert a A ↔ x = a ∨ x ∈ A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (a x : Alpha) (A : LRA.Set.PredicateSet Alpha), LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.Insert a A) x ↔ Or (x = a)(LRA.Set.instMembershipPredicateSet.mem A x)
+Transliterated theorem: (∀ a x ∈ Alpha), x ∈ Insert a A ↔ x = a ∨ x ∈ A
 Logical form (Lean): (a x : Alpha) (A : LRA.Set.PredicateSet Alpha) : x ∈ Insert a A ↔ x = a ∨ x ∈ A
 Source: ./PredicateSet/Operations.lean#L33
 
@@ -1444,8 +3281,9 @@ Source: ./PredicateSet/Operations.lean#L33
 Name: PairMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (a b x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.Pair a b) x) (Or (Eq x a) (Eq x b))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (a b x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.Pair a b) x) (Or (Eq x a) (Eq x b))
+Predicate logic: ∀ (a b x : Alpha), x ∈ Pair a b ↔ x = a ∨ x = b
+Predicate logic (unfolded): ∀ {Alpha : Type u} (a b x : Alpha), LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.Pair a b) x ↔ Or (x = a)(x = b)
+Transliterated theorem: (∀ a b x ∈ Alpha), x ∈ Pair a b ↔ x = a ∨ x = b
 Logical form (Lean): (a b x : Alpha) : x ∈ Pair a b ↔ x = a ∨ x = b
 Source: ./PredicateSet/Operations.lean#L40
 
@@ -1454,40 +3292,44 @@ Source: ./PredicateSet/Operations.lean#L40
 Name: PairEqualsInsertSingleton
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (a b : Alpha),   Eq (LRA.Set.PredicateSet.Pair a b) (LRA.Set.PredicateSet.Insert a (LRA.Set.PredicateSet.Singleton b))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (a b : Alpha),   Eq (LRA.Set.PredicateSet.Pair a b) (LRA.Set.PredicateSet.Insert a (LRA.Set.PredicateSet.Singleton b))
+Predicate logic: ∀ (a b : Alpha), Pair a b = Insert a (Singleton b)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (a b : Alpha), LRA.Set.PredicateSet.Pair a b = LRA.Set.PredicateSet.Insert a (LRA.Set.PredicateSet.Singleton b)
+Transliterated theorem: (∀ a b ∈ Alpha), Pair a b = Insert a (Singleton b)
 Logical form (Lean): (a b : Alpha) : Pair a b = Insert a (Singleton b)
-Source: ./PredicateSet/Operations.lean#L43
+Source: ./PredicateSet/Operations.lean#L44
 
 
 
 Name: UnionMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (A.Union B) x)     (Or (LRA.Set.instMembershipPredicateSet.mem A x) (LRA.Set.instMembershipPredicateSet.mem B x))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (A.Union B) x)     (Or (LRA.Set.instMembershipPredicateSet.mem A x) (LRA.Set.instMembershipPredicateSet.mem B x))
+Predicate logic: ∀ (A B : LRA.Set.PredicateSet Alpha) (x : Alpha), x ∈ Union A B ↔ x ∈ A ∨ x ∈ B
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha) (x : Alpha), LRA.Set.instMembershipPredicateSet.mem (A.Union B) x ↔ Or (LRA.Set.instMembershipPredicateSet.mem A x) (LRA.Set.instMembershipPredicateSet.mem B x)
+Transliterated theorem: (∀ x ∈ Alpha), x ∈ Union A B ↔ x ∈ A ∨ x ∈ B
 Logical form (Lean): (A B : LRA.Set.PredicateSet Alpha) (x : Alpha) : x ∈ Union A B ↔ x ∈ A ∨ x ∈ B
-Source: ./PredicateSet/Operations.lean#L51
+Source: ./PredicateSet/Operations.lean#L52
 
 
 
 Name: IntersectionMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (A.Intersection B) x)     (And (LRA.Set.instMembershipPredicateSet.mem A x) (LRA.Set.instMembershipPredicateSet.mem B x))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (A.Intersection B) x)     (And (LRA.Set.instMembershipPredicateSet.mem A x) (LRA.Set.instMembershipPredicateSet.mem B x))
+Predicate logic: ∀ (A B : LRA.Set.PredicateSet Alpha) (x : Alpha), x ∈ Intersection A B ↔ x ∈ A ∧ x ∈ B
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha) (x : Alpha), LRA.Set.instMembershipPredicateSet.mem (A.Intersection B) x ↔ (LRA.Set.instMembershipPredicateSet.mem A x ∧ LRA.Set.instMembershipPredicateSet.mem B x)
+Transliterated theorem: (∀ x ∈ Alpha), x ∈ Intersection A B ↔ x ∈ A ∧ x ∈ B
 Logical form (Lean): (A B : LRA.Set.PredicateSet Alpha) (x : Alpha) : x ∈ Intersection A B ↔ x ∈ A ∧ x ∈ B
-Source: ./PredicateSet/Operations.lean#L59
+Source: ./PredicateSet/Operations.lean#L60
 
 
 
 Name: ComplementMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem A.Complement x) (Not (LRA.Set.instMembershipPredicateSet.mem A x))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem A.Complement x) (Not (LRA.Set.instMembershipPredicateSet.mem A x))
+Predicate logic: ∀ (A : LRA.Set.PredicateSet Alpha) (x : Alpha), x ∈ Complement A ↔ x ∉ A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha) (x : Alpha), LRA.Set.instMembershipPredicateSet.mem A.Complement x ↔ ¬ LRA.Set.instMembershipPredicateSet.mem A x
+Transliterated theorem: (∀ x ∈ Alpha), x ∈ Complement A ↔ x ∉ A
 Logical form (Lean): (A : LRA.Set.PredicateSet Alpha) (x : Alpha) : x ∈ Complement A ↔ x ∉ A
-Source: ./PredicateSet/Operations.lean#L67
+Source: ./PredicateSet/Operations.lean#L68
 
 
 
@@ -1496,126 +3338,139 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Alpha : Type u} (x : Alpha), LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.Universal Alpha) x
 Predicate logic (unfolded): ∀ {Alpha : Type u} (x : Alpha), LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.Universal Alpha) x
+Transliterated theorem: (∀ x ∈ Alpha), x ∈ Universal Alpha
 Logical form (Lean): (x : Alpha) : x ∈ Universal Alpha
-Source: ./PredicateSet/Operations.lean#L74
+Source: ./PredicateSet/Operations.lean#L75
 
 
 
 Name: DifferenceMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (A.Difference B) x)     (And (LRA.Set.instMembershipPredicateSet.mem A x) (Not (LRA.Set.instMembershipPredicateSet.mem B x)))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (A.Difference B) x)     (And (LRA.Set.instMembershipPredicateSet.mem A x) (Not (LRA.Set.instMembershipPredicateSet.mem B x)))
+Predicate logic: ∀ (A B : LRA.Set.PredicateSet Alpha) (x : Alpha), x ∈ Difference A B ↔ x ∈ A ∧ x ∉ B
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha) (x : Alpha), LRA.Set.instMembershipPredicateSet.mem (A.Difference B) x ↔ (LRA.Set.instMembershipPredicateSet.mem A x ∧ ¬ LRA.Set.instMembershipPredicateSet.mem B x)
+Transliterated theorem: (∀ x ∈ Alpha), x ∈ Difference A B ↔ x ∈ A ∧ x ∉ B
 Logical form (Lean): (A B : LRA.Set.PredicateSet Alpha) (x : Alpha) : x ∈ Difference A B ↔ x ∈ A ∧ x ∉ B
-Source: ./PredicateSet/Operations.lean#L81
+Source: ./PredicateSet/Operations.lean#L82
 
 
 
 Name: RelativeComplementIsRelativeComplementOf
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), A.IsRelativeComplementOf B (A.RelativeComplement B)
 Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), A.IsRelativeComplementOf B (A.RelativeComplement B)
+Transliterated theorem: IsRelativeComplementOf A B (RelativeComplement A B)
 Logical form (Lean): (A B : LRA.Set.PredicateSet Alpha) : IsRelativeComplementOf A B (RelativeComplement A B)
-Source: ./PredicateSet/Operations.lean#L95
+Source: ./PredicateSet/Operations.lean#L96
 
 
 
 Name: RelativeComplementMembership
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (A.RelativeComplement B) x)     (And (LRA.Set.instMembershipPredicateSet.mem A x) (Not (LRA.Set.instMembershipPredicateSet.mem B x)))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (A.RelativeComplement B) x)     (And (LRA.Set.instMembershipPredicateSet.mem A x) (Not (LRA.Set.instMembershipPredicateSet.mem B x)))
+State: Sorry
+Predicate logic: ∀ (A B : LRA.Set.PredicateSet Alpha) (x : Alpha), x ∈ RelativeComplement A B ↔ x ∈ A ∧ x ∉ B
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha) (x : Alpha), LRA.Set.instMembershipPredicateSet.mem (A.RelativeComplement B) x ↔ (LRA.Set.instMembershipPredicateSet.mem A x ∧ ¬ LRA.Set.instMembershipPredicateSet.mem B x)
+Transliterated theorem: (∀ x ∈ Alpha), x ∈ RelativeComplement A B ↔ x ∈ A ∧ x ∉ B
 Logical form (Lean): (A B : LRA.Set.PredicateSet Alpha) (x : Alpha) : x ∈ RelativeComplement A B ↔ x ∈ A ∧ x ∉ B
-Source: ./PredicateSet/Operations.lean#L100
+Source: ./PredicateSet/Operations.lean#L102
 
 
 
 Name: SymmetricDifferenceMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (A.SymmetricDifference B) x)     (Or (And (LRA.Set.instMembershipPredicateSet.mem A x) (Not (LRA.Set.instMembershipPredicateSet.mem B x)))       (And (LRA.Set.instMembershipPredicateSet.mem B x) (Not (LRA.Set.instMembershipPredicateSet.mem A x))))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (A.SymmetricDifference B) x)     (Or (And (LRA.Set.instMembershipPredicateSet.mem A x) (Not (LRA.Set.instMembershipPredicateSet.mem B x)))       (And (LRA.Set.instMembershipPredicateSet.mem B x) (Not (LRA.Set.instMembershipPredicateSet.mem A x))))
+Predicate logic: ∀ (A B : LRA.Set.PredicateSet Alpha) (x : Alpha), x ∈ SymmetricDifference A B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha) (x : Alpha), LRA.Set.instMembershipPredicateSet.mem (A.SymmetricDifference B) x ↔ Or ((LRA.Set.instMembershipPredicateSet.mem A x ∧ ¬ LRA.Set.instMembershipPredicateSet.mem B x)) ((LRA.Set.instMembershipPredicateSet.mem B x ∧ ¬ LRA.Set.instMembershipPredicateSet.mem A x))
+Transliterated theorem: (∀ x ∈ Alpha), x ∈ SymmetricDifference A B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
 Logical form (Lean): (A B : LRA.Set.PredicateSet Alpha) (x : Alpha) : x ∈ SymmetricDifference A B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
-Source: ./PredicateSet/Operations.lean#L110
+Source: ./PredicateSet/Operations.lean#L112
 
 
 
 Name: SubsetIff
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Iff (A.Subset B)     (∀ (x : Alpha), LRA.Set.instMembershipPredicateSet.mem A x → LRA.Set.instMembershipPredicateSet.mem B x)
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Iff (A.Subset B)     (∀ (x : Alpha), LRA.Set.instMembershipPredicateSet.mem A x → LRA.Set.instMembershipPredicateSet.mem B x)
+Predicate logic: ∀ (A B : LRA.Set.PredicateSet Alpha), Subset A B ↔ ∀ x : Alpha, x ∈ A → x ∈ B
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), A.Subset B ↔ ∀ (x : Alpha), LRA.Set.instMembershipPredicateSet.mem A x → LRA.Set.instMembershipPredicateSet.mem B x
+Transliterated theorem: Subset A B ↔ ∀ x : Alpha, x ∈ A → x ∈ B
 Logical form (Lean): (A B : LRA.Set.PredicateSet Alpha) : Subset A B ↔ ∀ x : Alpha, x ∈ A → x ∈ B
-Source: ./PredicateSet/Operations.lean#L120
+Source: ./PredicateSet/Operations.lean#L122
 
 
 
 Name: PowerSetMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem A.PowerSet B) (B.Subset A)
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem A.PowerSet B) (B.Subset A)
+Predicate logic: ∀ (A B : LRA.Set.PredicateSet Alpha), B ∈ PowerSet A ↔ Subset B A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), LRA.Set.instMembershipPredicateSet.mem A.PowerSet B ↔ B.Subset A
+Transliterated theorem: B ∈ PowerSet A ↔ Subset B A
 Logical form (Lean): (A B : LRA.Set.PredicateSet Alpha) : B ∈ PowerSet A ↔ Subset B A
-Source: ./PredicateSet/Operations.lean#L129
+Source: ./PredicateSet/Operations.lean#L131
 
 
 
 Name: CollectionUnionMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (C : LRA.Set.PredicateSet (LRA.Set.PredicateSet Alpha)) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem C.CollectionUnion x)     (Exists fun B => And (LRA.Set.instMembershipPredicateSet.mem C B) (LRA.Set.instMembershipPredicateSet.mem B x))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (C : LRA.Set.PredicateSet (LRA.Set.PredicateSet Alpha)) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem C.CollectionUnion x)     (Exists fun B => And (LRA.Set.instMembershipPredicateSet.mem C B) (LRA.Set.instMembershipPredicateSet.mem B x))
+Predicate logic: ∀ (C : LRA.Set.PredicateSet (LRA.Set.PredicateSet Alpha)) (x : Alpha), x ∈ CollectionUnion C ↔ ∃ B, B ∈ C ∧ x ∈ B
+Predicate logic (unfolded): ∀ {Alpha : Type u} (C : LRA.Set.PredicateSet (LRA.Set.PredicateSet Alpha)) (x : Alpha), LRA.Set.instMembershipPredicateSet.mem C.CollectionUnion x ↔ Exists fun B => (LRA.Set.instMembershipPredicateSet.mem C B ∧ LRA.Set.instMembershipPredicateSet.mem B x)
+Transliterated theorem: (∀ x ∈ Alpha), x ∈ CollectionUnion C ↔ ∃ B, B ∈ C ∧ x ∈ B
 Logical form (Lean): (C : LRA.Set.PredicateSet (LRA.Set.PredicateSet Alpha)) (x : Alpha) : x ∈ CollectionUnion C ↔ ∃ B, B ∈ C ∧ x ∈ B
-Source: ./PredicateSet/Operations.lean#L140
+Source: ./PredicateSet/Operations.lean#L142
 
 
 
 Name: CollectionIntersectionMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (C : LRA.Set.PredicateSet (LRA.Set.PredicateSet Alpha)) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem C.CollectionIntersection x)     (∀ (B : LRA.Set.PredicateSet Alpha),       LRA.Set.instMembershipPredicateSet.mem C B → LRA.Set.instMembershipPredicateSet.mem B x)
-Predicate logic (unfolded): ∀ {Alpha : Type u} (C : LRA.Set.PredicateSet (LRA.Set.PredicateSet Alpha)) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem C.CollectionIntersection x)     (∀ (B : LRA.Set.PredicateSet Alpha),       LRA.Set.instMembershipPredicateSet.mem C B → LRA.Set.instMembershipPredicateSet.mem B x)
+Predicate logic: ∀ (C : LRA.Set.PredicateSet (LRA.Set.PredicateSet Alpha)) (x : Alpha), x ∈ CollectionIntersection C ↔ ∀ B, B ∈ C → x ∈ B
+Predicate logic (unfolded): ∀ {Alpha : Type u} (C : LRA.Set.PredicateSet (LRA.Set.PredicateSet Alpha)) (x : Alpha), LRA.Set.instMembershipPredicateSet.mem C.CollectionIntersection x ↔ ∀ (B : LRA.Set.PredicateSet Alpha), LRA.Set.instMembershipPredicateSet.mem C B → LRA.Set.instMembershipPredicateSet.mem B x
+Transliterated theorem: (∀ x ∈ Alpha), x ∈ CollectionIntersection C ↔ ∀ B, B ∈ C → x ∈ B
 Logical form (Lean): (C : LRA.Set.PredicateSet (LRA.Set.PredicateSet Alpha)) (x : Alpha) : x ∈ CollectionIntersection C ↔ ∀ B, B ∈ C → x ∈ B
-Source: ./PredicateSet/Operations.lean#L151
+Source: ./PredicateSet/Operations.lean#L153
 
 
 
 Name: SeparationMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha) (property : Alpha → Prop) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (A.Separation property) x)     (And (LRA.Set.instMembershipPredicateSet.mem A x) (property x))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha) (property : Alpha → Prop) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (A.Separation property) x)     (And (LRA.Set.instMembershipPredicateSet.mem A x) (property x))
+Predicate logic: ∀ (A : LRA.Set.PredicateSet Alpha) (property : Alpha → Prop) (x : Alpha), x ∈ Separation A property ↔ x ∈ A ∧ property x
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha) (property : Alpha → Prop) (x : Alpha), LRA.Set.instMembershipPredicateSet.mem (A.Separation property) x ↔ (LRA.Set.instMembershipPredicateSet.mem A x ∧ property x)
+Transliterated theorem: (∀ x ∈ Alpha), (Alpha → Prop) → x ∈ Separation A property ↔ x ∈ A ∧ property x
 Logical form (Lean): (A : LRA.Set.PredicateSet Alpha) (property : Alpha → Prop) (x : Alpha) : x ∈ Separation A property ↔ x ∈ A ∧ property x
-Source: ./PredicateSet/Operations.lean#L166
+Source: ./PredicateSet/Operations.lean#L168
 
 
 
 Name: IndexedUnionMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} {Index : Type v} (family : LRA.Set.PredicateSet.Family Index Alpha) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.IndexedUnion family) x)     (Exists fun i => LRA.Set.instMembershipPredicateSet.mem (family i) x)
-Predicate logic (unfolded): ∀ {Alpha : Type u} {Index : Type v} (family : LRA.Set.PredicateSet.Family Index Alpha) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.IndexedUnion family) x)     (Exists fun i => LRA.Set.instMembershipPredicateSet.mem (family i) x)
+Predicate logic: ∀ {Index : Type v} (family : Family Index Alpha) (x : Alpha), x ∈ IndexedUnion family ↔ ∃ i : Index, x ∈ family i
+Predicate logic (unfolded): ∀ {Alpha : Type u} {Index : Type v} (family : LRA.Set.PredicateSet.Family Index Alpha) (x : Alpha), LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.IndexedUnion family) x ↔ Exists fun i => LRA.Set.instMembershipPredicateSet.mem (family i) x
+Transliterated theorem: (∀ x ∈ Alpha), x ∈ IndexedUnion family ↔ ∃ i ∈ Index, x ∈ family i
 Logical form (Lean): {Index : Type v} (family : Family Index Alpha) (x : Alpha) : x ∈ IndexedUnion family ↔ ∃ i : Index, x ∈ family i
-Source: ./PredicateSet/Operations.lean#L180
+Source: ./PredicateSet/Operations.lean#L182
 
 
 
 Name: IndexedIntersectionMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} {Index : Type v} (family : LRA.Set.PredicateSet.Family Index Alpha) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.IndexedIntersection family) x)     (∀ (i : Index), LRA.Set.instMembershipPredicateSet.mem (family i) x)
-Predicate logic (unfolded): ∀ {Alpha : Type u} {Index : Type v} (family : LRA.Set.PredicateSet.Family Index Alpha) (x : Alpha),   Iff (LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.IndexedIntersection family) x)     (∀ (i : Index), LRA.Set.instMembershipPredicateSet.mem (family i) x)
+Predicate logic: ∀ {Index : Type v} (family : Family Index Alpha) (x : Alpha), x ∈ IndexedIntersection family ↔ ∀ i : Index, x ∈ family i
+Predicate logic (unfolded): ∀ {Alpha : Type u} {Index : Type v} (family : LRA.Set.PredicateSet.Family Index Alpha) (x : Alpha), LRA.Set.instMembershipPredicateSet.mem (LRA.Set.PredicateSet.IndexedIntersection family) x ↔ ∀ (i : Index), LRA.Set.instMembershipPredicateSet.mem (family i) x
+Transliterated theorem: (∀ x ∈ Alpha), x ∈ IndexedIntersection family ↔ ∀ i : Index, x ∈ family i
 Logical form (Lean): {Index : Type v} (family : Family Index Alpha) (x : Alpha) : x ∈ IndexedIntersection family ↔ ∀ i : Index, x ∈ family i
-Source: ./PredicateSet/Operations.lean#L190
+Source: ./PredicateSet/Operations.lean#L192
 
 
 
 Name: DoubleComplement
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasComplement.complement (LRA.Set.PredicateSet.instHasComplement.complement A)) A
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasComplement.complement (LRA.Set.PredicateSet.instHasComplement.complement A)) A
+Predicate logic: ∀ A : LRA.Set.PredicateSet Alpha, Aᶜᶜ = A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasComplement.complement (LRA.Set.PredicateSet.instHasComplement.complement A) = A
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Alpha, Aᶜᶜ = A
 Logical form (Lean): : ∀ A : LRA.Set.PredicateSet Alpha, Aᶜᶜ = A
 Source: ./PredicateSet/Laws/Complement.lean#L10
 
@@ -1624,90 +3479,99 @@ Source: ./PredicateSet/Laws/Complement.lean#L10
 Name: ComplementEmpty
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u},   Eq (LRA.Set.PredicateSet.instHasComplement.complement LRA.Set.PredicateSet.instEmptyCollection.emptyCollection)     LRA.Set.PredicateSet.instHasUniversal.universal
-Predicate logic (unfolded): ∀ {Alpha : Type u},   Eq (LRA.Set.PredicateSet.instHasComplement.complement LRA.Set.PredicateSet.instEmptyCollection.emptyCollection)     LRA.Set.PredicateSet.instHasUniversal.universal
+Predicate logic: (∅ : LRA.Set.PredicateSet Alpha)ᶜ = (𝒰 : LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.PredicateSet.instHasComplement.complement LRA.Set.PredicateSet.instEmptyCollection.emptyCollection = LRA.Set.PredicateSet.instHasUniversal.universal
+Transliterated theorem: ∅ ∈ LRA.Set.PredicateSet Alphaᶜ = 𝒰 ∈ LRA.Set.PredicateSet Alpha
 Logical form (Lean): : (∅ : LRA.Set.PredicateSet Alpha)ᶜ = (𝒰 : LRA.Set.PredicateSet Alpha)
-Source: ./PredicateSet/Laws/Complement.lean#L14
+Source: ./PredicateSet/Laws/Complement.lean#L15
 
 
 
 Name: ComplementUniversal
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u},   Eq (LRA.Set.PredicateSet.instHasComplement.complement LRA.Set.PredicateSet.instHasUniversal.universal)     LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
-Predicate logic (unfolded): ∀ {Alpha : Type u},   Eq (LRA.Set.PredicateSet.instHasComplement.complement LRA.Set.PredicateSet.instHasUniversal.universal)     LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
+Predicate logic: (𝒰 : LRA.Set.PredicateSet Alpha)ᶜ = (∅ : LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.PredicateSet.instHasComplement.complement LRA.Set.PredicateSet.instHasUniversal.universal = LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
+Transliterated theorem: 𝒰 ∈ LRA.Set.PredicateSet Alphaᶜ = ∅ ∈ LRA.Set.PredicateSet Alpha
 Logical form (Lean): : (𝒰 : LRA.Set.PredicateSet Alpha)ᶜ = (∅ : LRA.Set.PredicateSet Alpha)
-Source: ./PredicateSet/Laws/Complement.lean#L18
+Source: ./PredicateSet/Laws/Complement.lean#L20
 
 
 
 Name: UnionComplement
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instUnion.union A (LRA.Set.PredicateSet.instHasComplement.complement A))     LRA.Set.PredicateSet.instHasUniversal.universal
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instUnion.union A (LRA.Set.PredicateSet.instHasComplement.complement A))     LRA.Set.PredicateSet.instHasUniversal.universal
+Predicate logic: ∀ A : LRA.Set.PredicateSet Alpha, A ∪ Aᶜ = (𝒰 : LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instUnion.union A (LRA.Set.PredicateSet.instHasComplement.complement A) = LRA.Set.PredicateSet.instHasUniversal.universal
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Alpha, A ∪ Aᶜ = 𝒰 ∈ LRA.Set.PredicateSet Alpha
 Logical form (Lean): : ∀ A : LRA.Set.PredicateSet Alpha, A ∪ Aᶜ = (𝒰 : LRA.Set.PredicateSet Alpha)
-Source: ./PredicateSet/Laws/Complement.lean#L22
+Source: ./PredicateSet/Laws/Complement.lean#L25
 
 
 
 Name: IntersectionComplement
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instInter.inter A (LRA.Set.PredicateSet.instHasComplement.complement A))     LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instInter.inter A (LRA.Set.PredicateSet.instHasComplement.complement A))     LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
+Predicate logic: ∀ A : LRA.Set.PredicateSet Alpha, A ∩ Aᶜ = (∅ : LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instInter.inter A (LRA.Set.PredicateSet.instHasComplement.complement A) = LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Alpha, A ∩ Aᶜ = ∅ ∈ LRA.Set.PredicateSet Alpha
 Logical form (Lean): : ∀ A : LRA.Set.PredicateSet Alpha, A ∩ Aᶜ = (∅ : LRA.Set.PredicateSet Alpha)
-Source: ./PredicateSet/Laws/Complement.lean#L27
+Source: ./PredicateSet/Laws/Complement.lean#L31
 
 
 
 Name: DeMorganUnion
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasComplement.complement (LRA.Set.PredicateSet.instUnion.union A B))     (LRA.Set.PredicateSet.instInter.inter (LRA.Set.PredicateSet.instHasComplement.complement A)       (LRA.Set.PredicateSet.instHasComplement.complement B))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasComplement.complement (LRA.Set.PredicateSet.instUnion.union A B))     (LRA.Set.PredicateSet.instInter.inter (LRA.Set.PredicateSet.instHasComplement.complement A)       (LRA.Set.PredicateSet.instHasComplement.complement B))
+Predicate logic: ∀ A B : LRA.Set.PredicateSet Alpha, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasComplement.complement (LRA.Set.PredicateSet.instUnion.union A B) = LRA.Set.PredicateSet.instInter.inter (LRA.Set.PredicateSet.instHasComplement.complement A) (LRA.Set.PredicateSet.instHasComplement.complement B)
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Alpha, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
 Logical form (Lean): : ∀ A B : LRA.Set.PredicateSet Alpha, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
-Source: ./PredicateSet/Laws/Complement.lean#L32
+Source: ./PredicateSet/Laws/Complement.lean#L37
 
 
 
 Name: DeMorganIntersection
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasComplement.complement (LRA.Set.PredicateSet.instInter.inter A B))     (LRA.Set.PredicateSet.instUnion.union (LRA.Set.PredicateSet.instHasComplement.complement A)       (LRA.Set.PredicateSet.instHasComplement.complement B))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasComplement.complement (LRA.Set.PredicateSet.instInter.inter A B))     (LRA.Set.PredicateSet.instUnion.union (LRA.Set.PredicateSet.instHasComplement.complement A)       (LRA.Set.PredicateSet.instHasComplement.complement B))
+Predicate logic: ∀ A B : LRA.Set.PredicateSet Alpha, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasComplement.complement (LRA.Set.PredicateSet.instInter.inter A B) = LRA.Set.PredicateSet.instUnion.union (LRA.Set.PredicateSet.instHasComplement.complement A) (LRA.Set.PredicateSet.instHasComplement.complement B)
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Alpha, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
 Logical form (Lean): : ∀ A B : LRA.Set.PredicateSet Alpha, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
-Source: ./PredicateSet/Laws/Complement.lean#L36
+Source: ./PredicateSet/Laws/Complement.lean#L42
 
 
 
 Name: DifferenceAsIntersectionComplement
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff A B)     (LRA.Set.PredicateSet.instInter.inter A (LRA.Set.PredicateSet.instHasComplement.complement B))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff A B)     (LRA.Set.PredicateSet.instInter.inter A (LRA.Set.PredicateSet.instHasComplement.complement B))
+Predicate logic: ∀ A B : LRA.Set.PredicateSet Alpha, A \ B = A ∩ Bᶜ
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instSDiff.sdiff A B = LRA.Set.PredicateSet.instInter.inter A (LRA.Set.PredicateSet.instHasComplement.complement B)
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Alpha, A \ B = A ∩ Bᶜ
 Logical form (Lean): : ∀ A B : LRA.Set.PredicateSet Alpha, A \ B = A ∩ Bᶜ
-Source: ./PredicateSet/Laws/Complement.lean#L40
+Source: ./PredicateSet/Laws/Complement.lean#L47
 
 
 
 Name: DifferenceUniversal
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff A LRA.Set.PredicateSet.instHasUniversal.universal)     LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff A LRA.Set.PredicateSet.instHasUniversal.universal)     LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
+Predicate logic: ∀ A : LRA.Set.PredicateSet Alpha, A \ (𝒰 : LRA.Set.PredicateSet Alpha) = (∅ : LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instSDiff.sdiff A LRA.Set.PredicateSet.instHasUniversal.universal = LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Alpha, A \ 𝒰 ∈ LRA.Set.PredicateSet Alpha = ∅ ∈ LRA.Set.PredicateSet Alpha
 Logical form (Lean): : ∀ A : LRA.Set.PredicateSet Alpha, A \ (𝒰 : LRA.Set.PredicateSet Alpha) = (∅ : LRA.Set.PredicateSet Alpha)
-Source: ./PredicateSet/Laws/Complement.lean#L44
+Source: ./PredicateSet/Laws/Complement.lean#L52
 
 
 
 Name: UniversalDifference
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff LRA.Set.PredicateSet.instHasUniversal.universal A)     (LRA.Set.PredicateSet.instHasComplement.complement A)
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff LRA.Set.PredicateSet.instHasUniversal.universal A)     (LRA.Set.PredicateSet.instHasComplement.complement A)
+Predicate logic: ∀ A : LRA.Set.PredicateSet Alpha, (𝒰 : LRA.Set.PredicateSet Alpha) \ A = Aᶜ
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instSDiff.sdiff LRA.Set.PredicateSet.instHasUniversal.universal A = LRA.Set.PredicateSet.instHasComplement.complement A
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Alpha, 𝒰 ∈ LRA.Set.PredicateSet Alpha \ A = Aᶜ
 Logical form (Lean): : ∀ A : LRA.Set.PredicateSet Alpha, (𝒰 : LRA.Set.PredicateSet Alpha) \ A = Aᶜ
-Source: ./PredicateSet/Laws/Complement.lean#L49
+Source: ./PredicateSet/Laws/Complement.lean#L58
 
 
 
@@ -1716,6 +3580,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: ∀ {Alpha : Type u}, LRA.Set.ComplementLaws (LRA.Set.PredicateSet Alpha)
 Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.ComplementLaws (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./PredicateSet/Laws/Complement.lean
 
@@ -1725,7 +3590,8 @@ Name: DifferenceMonotoneLeft
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Alpha : Type u} (A₁ A₂ B : LRA.Set.PredicateSet Alpha),   LRA.Set.PredicateSet.instHasSubset.Subset A₁ A₂ →     LRA.Set.PredicateSet.instHasSubset.Subset (LRA.Set.PredicateSet.instSDiff.sdiff A₁ B)       (LRA.Set.PredicateSet.instSDiff.sdiff A₂ B)
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A₁ A₂ B : LRA.Set.PredicateSet Alpha),   LRA.Set.PredicateSet.instHasSubset.Subset A₁ A₂ →     LRA.Set.PredicateSet.instHasSubset.Subset (LRA.Set.PredicateSet.instSDiff.sdiff A₁ B)       (LRA.Set.PredicateSet.instSDiff.sdiff A₂ B)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A₁ A₂ B : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasSubset.Subset A₁ A₂ → LRA.Set.PredicateSet.instHasSubset.Subset (LRA.Set.PredicateSet.instSDiff.sdiff A₁ B) (LRA.Set.PredicateSet.instSDiff.sdiff A₂ B)
+Transliterated theorem: ∀ A₁ A₂ B : LRA.Set.PredicateSet Alpha, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
 Logical form (Lean): : ∀ A₁ A₂ B : LRA.Set.PredicateSet Alpha, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
 Source: ./PredicateSet/Laws/Difference.lean#L10
 
@@ -1735,79 +3601,87 @@ Name: DifferenceAntitoneRight
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Alpha : Type u} (A B₁ B₂ : LRA.Set.PredicateSet Alpha),   LRA.Set.PredicateSet.instHasSubset.Subset B₁ B₂ →     LRA.Set.PredicateSet.instHasSubset.Subset (LRA.Set.PredicateSet.instSDiff.sdiff A B₂)       (LRA.Set.PredicateSet.instSDiff.sdiff A B₁)
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B₁ B₂ : LRA.Set.PredicateSet Alpha),   LRA.Set.PredicateSet.instHasSubset.Subset B₁ B₂ →     LRA.Set.PredicateSet.instHasSubset.Subset (LRA.Set.PredicateSet.instSDiff.sdiff A B₂)       (LRA.Set.PredicateSet.instSDiff.sdiff A B₁)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B₁ B₂ : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasSubset.Subset B₁ B₂ → LRA.Set.PredicateSet.instHasSubset.Subset (LRA.Set.PredicateSet.instSDiff.sdiff A B₂) (LRA.Set.PredicateSet.instSDiff.sdiff A B₁)
+Transliterated theorem: ∀ A B₁ B₂ : LRA.Set.PredicateSet Alpha, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
 Logical form (Lean): : ∀ A B₁ B₂ : LRA.Set.PredicateSet Alpha, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
-Source: ./PredicateSet/Laws/Difference.lean#L15
+Source: ./PredicateSet/Laws/Difference.lean#L16
 
 
 
 Name: DifferenceEmpty
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff A LRA.Set.PredicateSet.instEmptyCollection.emptyCollection) A
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff A LRA.Set.PredicateSet.instEmptyCollection.emptyCollection) A
+Predicate logic: ∀ A : LRA.Set.PredicateSet Alpha, A \ (∅ : LRA.Set.PredicateSet Alpha) = A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instSDiff.sdiff A LRA.Set.PredicateSet.instEmptyCollection.emptyCollection = A
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Alpha, A \ ∅ ∈ LRA.Set.PredicateSet Alpha = A
 Logical form (Lean): : ∀ A : LRA.Set.PredicateSet Alpha, A \ (∅ : LRA.Set.PredicateSet Alpha) = A
-Source: ./PredicateSet/Laws/Difference.lean#L20
+Source: ./PredicateSet/Laws/Difference.lean#L22
 
 
 
 Name: EmptyDifference
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff LRA.Set.PredicateSet.instEmptyCollection.emptyCollection A)     LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff LRA.Set.PredicateSet.instEmptyCollection.emptyCollection A)     LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
+Predicate logic: ∀ A : LRA.Set.PredicateSet Alpha, (∅ : LRA.Set.PredicateSet Alpha) \ A = (∅ : LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instSDiff.sdiff LRA.Set.PredicateSet.instEmptyCollection.emptyCollection A = LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Alpha, ∅ ∈ LRA.Set.PredicateSet Alpha \ A = ∅ ∈ LRA.Set.PredicateSet Alpha
 Logical form (Lean): : ∀ A : LRA.Set.PredicateSet Alpha, (∅ : LRA.Set.PredicateSet Alpha) \ A = (∅ : LRA.Set.PredicateSet Alpha)
-Source: ./PredicateSet/Laws/Difference.lean#L25
+Source: ./PredicateSet/Laws/Difference.lean#L28
 
 
 
 Name: DifferenceSelf
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff A A) LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff A A) LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
+Predicate logic: ∀ A : LRA.Set.PredicateSet Alpha, A \ A = (∅ : LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instSDiff.sdiff A A = LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Alpha, A \ A = ∅ ∈ LRA.Set.PredicateSet Alpha
 Logical form (Lean): : ∀ A : LRA.Set.PredicateSet Alpha, A \ A = (∅ : LRA.Set.PredicateSet Alpha)
-Source: ./PredicateSet/Laws/Difference.lean#L30
+Source: ./PredicateSet/Laws/Difference.lean#L34
 
 
 
 Name: DifferenceUnion
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff A (LRA.Set.PredicateSet.instUnion.union B C))     (LRA.Set.PredicateSet.instInter.inter (LRA.Set.PredicateSet.instSDiff.sdiff A B)       (LRA.Set.PredicateSet.instSDiff.sdiff A C))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff A (LRA.Set.PredicateSet.instUnion.union B C))     (LRA.Set.PredicateSet.instInter.inter (LRA.Set.PredicateSet.instSDiff.sdiff A B)       (LRA.Set.PredicateSet.instSDiff.sdiff A C))
+Predicate logic: ∀ A B C : LRA.Set.PredicateSet Alpha, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instSDiff.sdiff A (LRA.Set.PredicateSet.instUnion.union B C) = LRA.Set.PredicateSet.instInter.inter (LRA.Set.PredicateSet.instSDiff.sdiff A B) (LRA.Set.PredicateSet.instSDiff.sdiff A C)
+Transliterated theorem: ∀ A B C : LRA.Set.PredicateSet Alpha, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
 Logical form (Lean): : ∀ A B C : LRA.Set.PredicateSet Alpha, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
-Source: ./PredicateSet/Laws/Difference.lean#L35
+Source: ./PredicateSet/Laws/Difference.lean#L40
 
 
 
 Name: DifferenceIntersection
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff A (LRA.Set.PredicateSet.instInter.inter B C))     (LRA.Set.PredicateSet.instUnion.union (LRA.Set.PredicateSet.instSDiff.sdiff A B)       (LRA.Set.PredicateSet.instSDiff.sdiff A C))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff A (LRA.Set.PredicateSet.instInter.inter B C))     (LRA.Set.PredicateSet.instUnion.union (LRA.Set.PredicateSet.instSDiff.sdiff A B)       (LRA.Set.PredicateSet.instSDiff.sdiff A C))
+Predicate logic: ∀ A B C : LRA.Set.PredicateSet Alpha, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instSDiff.sdiff A (LRA.Set.PredicateSet.instInter.inter B C) = LRA.Set.PredicateSet.instUnion.union (LRA.Set.PredicateSet.instSDiff.sdiff A B) (LRA.Set.PredicateSet.instSDiff.sdiff A C)
+Transliterated theorem: ∀ A B C : LRA.Set.PredicateSet Alpha, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
 Logical form (Lean): : ∀ A B C : LRA.Set.PredicateSet Alpha, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
-Source: ./PredicateSet/Laws/Difference.lean#L40
+Source: ./PredicateSet/Laws/Difference.lean#L46
 
 
 
 Name: UnionDifferenceDistributes
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff (LRA.Set.PredicateSet.instUnion.union A B) C)     (LRA.Set.PredicateSet.instUnion.union (LRA.Set.PredicateSet.instSDiff.sdiff A C)       (LRA.Set.PredicateSet.instSDiff.sdiff B C))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff (LRA.Set.PredicateSet.instUnion.union A B) C)     (LRA.Set.PredicateSet.instUnion.union (LRA.Set.PredicateSet.instSDiff.sdiff A C)       (LRA.Set.PredicateSet.instSDiff.sdiff B C))
+Predicate logic: ∀ A B C : LRA.Set.PredicateSet Alpha, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instSDiff.sdiff (LRA.Set.PredicateSet.instUnion.union A B) C = LRA.Set.PredicateSet.instUnion.union (LRA.Set.PredicateSet.instSDiff.sdiff A C) (LRA.Set.PredicateSet.instSDiff.sdiff B C)
+Transliterated theorem: ∀ A B C : LRA.Set.PredicateSet Alpha, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
 Logical form (Lean): : ∀ A B C : LRA.Set.PredicateSet Alpha, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
-Source: ./PredicateSet/Laws/Difference.lean#L45
+Source: ./PredicateSet/Laws/Difference.lean#L52
 
 
 
 Name: IntersectionDifferenceDistributes
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff (LRA.Set.PredicateSet.instInter.inter A B) C)     (LRA.Set.PredicateSet.instInter.inter (LRA.Set.PredicateSet.instSDiff.sdiff A C)       (LRA.Set.PredicateSet.instSDiff.sdiff B C))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instSDiff.sdiff (LRA.Set.PredicateSet.instInter.inter A B) C)     (LRA.Set.PredicateSet.instInter.inter (LRA.Set.PredicateSet.instSDiff.sdiff A C)       (LRA.Set.PredicateSet.instSDiff.sdiff B C))
+Predicate logic: ∀ A B C : LRA.Set.PredicateSet Alpha, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instSDiff.sdiff (LRA.Set.PredicateSet.instInter.inter A B) C = LRA.Set.PredicateSet.instInter.inter (LRA.Set.PredicateSet.instSDiff.sdiff A C) (LRA.Set.PredicateSet.instSDiff.sdiff B C)
+Transliterated theorem: ∀ A B C : LRA.Set.PredicateSet Alpha, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
 Logical form (Lean): : ∀ A B C : LRA.Set.PredicateSet Alpha, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
-Source: ./PredicateSet/Laws/Difference.lean#L50
+Source: ./PredicateSet/Laws/Difference.lean#L58
 
 
 
@@ -1815,19 +3689,21 @@ Name: DifferenceSubsetLeft
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   LRA.Set.PredicateSet.instHasSubset.Subset (LRA.Set.PredicateSet.instSDiff.sdiff A B) A
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   LRA.Set.PredicateSet.instHasSubset.Subset (LRA.Set.PredicateSet.instSDiff.sdiff A B) A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasSubset.Subset (LRA.Set.PredicateSet.instSDiff.sdiff A B) A
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Alpha, A \ B ⊆ A
 Logical form (Lean): : ∀ A B : LRA.Set.PredicateSet Alpha, A \ B ⊆ A
-Source: ./PredicateSet/Laws/Difference.lean#L55
+Source: ./PredicateSet/Laws/Difference.lean#L64
 
 
 
 Name: DifferenceDisjointRight
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instInter.inter (LRA.Set.PredicateSet.instSDiff.sdiff A B) B)     LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instInter.inter (LRA.Set.PredicateSet.instSDiff.sdiff A B) B)     LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
+Predicate logic: ∀ A B : LRA.Set.PredicateSet Alpha, (A \ B) ∩ B = (∅ : LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instInter.inter (LRA.Set.PredicateSet.instSDiff.sdiff A B) B = LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Alpha, (A \ B) ∩ B = ∅ ∈ LRA.Set.PredicateSet Alpha
 Logical form (Lean): : ∀ A B : LRA.Set.PredicateSet Alpha, (A \ B) ∩ B = (∅ : LRA.Set.PredicateSet Alpha)
-Source: ./PredicateSet/Laws/Difference.lean#L59
+Source: ./PredicateSet/Laws/Difference.lean#L69
 
 
 
@@ -1836,6 +3712,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: ∀ {Alpha : Type u}, LRA.Set.DifferenceLaws (LRA.Set.PredicateSet Alpha)
 Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.DifferenceLaws (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./PredicateSet/Laws/Difference.lean
 
@@ -1844,8 +3721,9 @@ Source: ./PredicateSet/Laws/Difference.lean
 Name: IntersectionDistributesOverUnion
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instInter.inter A (LRA.Set.PredicateSet.instUnion.union B C))     (LRA.Set.PredicateSet.instUnion.union (LRA.Set.PredicateSet.instInter.inter A B)       (LRA.Set.PredicateSet.instInter.inter A C))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instInter.inter A (LRA.Set.PredicateSet.instUnion.union B C))     (LRA.Set.PredicateSet.instUnion.union (LRA.Set.PredicateSet.instInter.inter A B)       (LRA.Set.PredicateSet.instInter.inter A C))
+Predicate logic: ∀ A B C : LRA.Set.PredicateSet Alpha, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instInter.inter A (LRA.Set.PredicateSet.instUnion.union B C) = LRA.Set.PredicateSet.instUnion.union (LRA.Set.PredicateSet.instInter.inter A B) (LRA.Set.PredicateSet.instInter.inter A C)
+Transliterated theorem: ∀ A B C : LRA.Set.PredicateSet Alpha, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
 Logical form (Lean): : ∀ A B C : LRA.Set.PredicateSet Alpha, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
 Source: ./PredicateSet/Laws/Distributivity.lean#L10
 
@@ -1854,30 +3732,33 @@ Source: ./PredicateSet/Laws/Distributivity.lean#L10
 Name: UnionDistributesOverIntersection
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instUnion.union A (LRA.Set.PredicateSet.instInter.inter B C))     (LRA.Set.PredicateSet.instInter.inter (LRA.Set.PredicateSet.instUnion.union A B)       (LRA.Set.PredicateSet.instUnion.union A C))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instUnion.union A (LRA.Set.PredicateSet.instInter.inter B C))     (LRA.Set.PredicateSet.instInter.inter (LRA.Set.PredicateSet.instUnion.union A B)       (LRA.Set.PredicateSet.instUnion.union A C))
+Predicate logic: ∀ A B C : LRA.Set.PredicateSet Alpha, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instUnion.union A (LRA.Set.PredicateSet.instInter.inter B C) = LRA.Set.PredicateSet.instInter.inter (LRA.Set.PredicateSet.instUnion.union A B) (LRA.Set.PredicateSet.instUnion.union A C)
+Transliterated theorem: ∀ A B C : LRA.Set.PredicateSet Alpha, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
 Logical form (Lean): : ∀ A B C : LRA.Set.PredicateSet Alpha, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
-Source: ./PredicateSet/Laws/Distributivity.lean#L15
+Source: ./PredicateSet/Laws/Distributivity.lean#L16
 
 
 
 Name: AbsorptionUnionIntersection
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instUnion.union A (LRA.Set.PredicateSet.instInter.inter A B)) A
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instUnion.union A (LRA.Set.PredicateSet.instInter.inter A B)) A
+Predicate logic: ∀ A B : LRA.Set.PredicateSet Alpha, A ∪ (A ∩ B) = A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instUnion.union A (LRA.Set.PredicateSet.instInter.inter A B) = A
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Alpha, A ∪ (A ∩ B) = A
 Logical form (Lean): : ∀ A B : LRA.Set.PredicateSet Alpha, A ∪ (A ∩ B) = A
-Source: ./PredicateSet/Laws/Distributivity.lean#L20
+Source: ./PredicateSet/Laws/Distributivity.lean#L22
 
 
 
 Name: AbsorptionIntersectionUnion
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instInter.inter A (LRA.Set.PredicateSet.instUnion.union A B)) A
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instInter.inter A (LRA.Set.PredicateSet.instUnion.union A B)) A
+Predicate logic: ∀ A B : LRA.Set.PredicateSet Alpha, A ∩ (A ∪ B) = A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instInter.inter A (LRA.Set.PredicateSet.instUnion.union A B) = A
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Alpha, A ∩ (A ∪ B) = A
 Logical form (Lean): : ∀ A B : LRA.Set.PredicateSet Alpha, A ∩ (A ∪ B) = A
-Source: ./PredicateSet/Laws/Distributivity.lean#L24
+Source: ./PredicateSet/Laws/Distributivity.lean#L27
 
 
 
@@ -1886,6 +3767,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: ∀ {Alpha : Type u}, LRA.Set.DistributivityLaws (LRA.Set.PredicateSet Alpha)
 Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.DistributivityLaws (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./PredicateSet/Laws/Distributivity.lean
 
@@ -1894,8 +3776,9 @@ Source: ./PredicateSet/Laws/Distributivity.lean
 Name: IntersectionCommutative
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instInter.inter A B) (LRA.Set.PredicateSet.instInter.inter B A)
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instInter.inter A B) (LRA.Set.PredicateSet.instInter.inter B A)
+Predicate logic: ∀ A B : LRA.Set.PredicateSet Alpha, A ∩ B = B ∩ A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instInter.inter A B = LRA.Set.PredicateSet.instInter.inter B A
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Alpha, A ∩ B = B ∩ A
 Logical form (Lean): : ∀ A B : LRA.Set.PredicateSet Alpha, A ∩ B = B ∩ A
 Source: ./PredicateSet/Laws/Intersection.lean#L10
 
@@ -1904,60 +3787,66 @@ Source: ./PredicateSet/Laws/Intersection.lean#L10
 Name: IntersectionAssociative
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instInter.inter (LRA.Set.PredicateSet.instInter.inter A B) C)     (LRA.Set.PredicateSet.instInter.inter A (LRA.Set.PredicateSet.instInter.inter B C))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instInter.inter (LRA.Set.PredicateSet.instInter.inter A B) C)     (LRA.Set.PredicateSet.instInter.inter A (LRA.Set.PredicateSet.instInter.inter B C))
+Predicate logic: ∀ A B C : LRA.Set.PredicateSet Alpha, (A ∩ B) ∩ C = A ∩ (B ∩ C)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instInter.inter (LRA.Set.PredicateSet.instInter.inter A B) C = LRA.Set.PredicateSet.instInter.inter A (LRA.Set.PredicateSet.instInter.inter B C)
+Transliterated theorem: ∀ A B C : LRA.Set.PredicateSet Alpha, (A ∩ B) ∩ C = A ∩ (B ∩ C)
 Logical form (Lean): : ∀ A B C : LRA.Set.PredicateSet Alpha, (A ∩ B) ∩ C = A ∩ (B ∩ C)
-Source: ./PredicateSet/Laws/Intersection.lean#L14
+Source: ./PredicateSet/Laws/Intersection.lean#L15
 
 
 
 Name: EmptyIntersection
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instInter.inter LRA.Set.PredicateSet.instEmptyCollection.emptyCollection A)     LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instInter.inter LRA.Set.PredicateSet.instEmptyCollection.emptyCollection A)     LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
+Predicate logic: ∀ A : LRA.Set.PredicateSet Alpha, (∅ : LRA.Set.PredicateSet Alpha) ∩ A = (∅ : LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instInter.inter LRA.Set.PredicateSet.instEmptyCollection.emptyCollection A = LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Alpha, ∅ ∈ LRA.Set.PredicateSet Alpha ∩ A = ∅ ∈ LRA.Set.PredicateSet Alpha
 Logical form (Lean): : ∀ A : LRA.Set.PredicateSet Alpha, (∅ : LRA.Set.PredicateSet Alpha) ∩ A = (∅ : LRA.Set.PredicateSet Alpha)
-Source: ./PredicateSet/Laws/Intersection.lean#L18
+Source: ./PredicateSet/Laws/Intersection.lean#L20
 
 
 
 Name: IntersectionEmpty
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instInter.inter A LRA.Set.PredicateSet.instEmptyCollection.emptyCollection)     LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instInter.inter A LRA.Set.PredicateSet.instEmptyCollection.emptyCollection)     LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
+Predicate logic: ∀ A : LRA.Set.PredicateSet Alpha, A ∩ (∅ : LRA.Set.PredicateSet Alpha) = (∅ : LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instInter.inter A LRA.Set.PredicateSet.instEmptyCollection.emptyCollection = LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Alpha, A ∩ ∅ ∈ LRA.Set.PredicateSet Alpha = ∅ ∈ LRA.Set.PredicateSet Alpha
 Logical form (Lean): : ∀ A : LRA.Set.PredicateSet Alpha, A ∩ (∅ : LRA.Set.PredicateSet Alpha) = (∅ : LRA.Set.PredicateSet Alpha)
-Source: ./PredicateSet/Laws/Intersection.lean#L23
+Source: ./PredicateSet/Laws/Intersection.lean#L26
 
 
 
 Name: IntersectionIdempotent
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), Eq (LRA.Set.PredicateSet.instInter.inter A A) A
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), Eq (LRA.Set.PredicateSet.instInter.inter A A) A
+Predicate logic: ∀ A : LRA.Set.PredicateSet Alpha, A ∩ A = A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instInter.inter A A = A
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Alpha, A ∩ A = A
 Logical form (Lean): : ∀ A : LRA.Set.PredicateSet Alpha, A ∩ A = A
-Source: ./PredicateSet/Laws/Intersection.lean#L28
+Source: ./PredicateSet/Laws/Intersection.lean#L32
 
 
 
 Name: IntersectionMonotone
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A₁ A₂ B₁ B₂ : LRA.Set.PredicateSet Alpha),   And (LRA.Set.PredicateSet.instHasSubset.Subset A₁ A₂) (LRA.Set.PredicateSet.instHasSubset.Subset B₁ B₂) →     LRA.Set.PredicateSet.instHasSubset.Subset (LRA.Set.PredicateSet.instInter.inter A₁ B₁)       (LRA.Set.PredicateSet.instInter.inter A₂ B₂)
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A₁ A₂ B₁ B₂ : LRA.Set.PredicateSet Alpha),   And (LRA.Set.PredicateSet.instHasSubset.Subset A₁ A₂) (LRA.Set.PredicateSet.instHasSubset.Subset B₁ B₂) →     LRA.Set.PredicateSet.instHasSubset.Subset (LRA.Set.PredicateSet.instInter.inter A₁ B₁)       (LRA.Set.PredicateSet.instInter.inter A₂ B₂)
+Predicate logic: ∀ A₁ A₂ B₁ B₂ : LRA.Set.PredicateSet Alpha, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A₁ A₂ B₁ B₂ : LRA.Set.PredicateSet Alpha), (LRA.Set.PredicateSet.instHasSubset.Subset A₁ A₂ ∧ LRA.Set.PredicateSet.instHasSubset.Subset B₁ B₂) → LRA.Set.PredicateSet.instHasSubset.Subset (LRA.Set.PredicateSet.instInter.inter A₁ B₁) (LRA.Set.PredicateSet.instInter.inter A₂ B₂)
+Transliterated theorem: ∀ A₁ A₂ B₁ B₂ : LRA.Set.PredicateSet Alpha, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
 Logical form (Lean): : ∀ A₁ A₂ B₁ B₂ : LRA.Set.PredicateSet Alpha, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
-Source: ./PredicateSet/Laws/Intersection.lean#L32
+Source: ./PredicateSet/Laws/Intersection.lean#L37
 
 
 
 Name: SubsetIffIntersectionEqLeft
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Iff (LRA.Set.PredicateSet.instHasSubset.Subset A B) (Eq (LRA.Set.PredicateSet.instInter.inter A B) A)
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Iff (LRA.Set.PredicateSet.instHasSubset.Subset A B) (Eq (LRA.Set.PredicateSet.instInter.inter A B) A)
+Predicate logic: ∀ A B : LRA.Set.PredicateSet Alpha, A ⊆ B ↔ A ∩ B = A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasSubset.Subset A B ↔ LRA.Set.PredicateSet.instInter.inter A B = A
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Alpha, A ⊆ B ↔ A ∩ B = A
 Logical form (Lean): : ∀ A B : LRA.Set.PredicateSet Alpha, A ⊆ B ↔ A ∩ B = A
-Source: ./PredicateSet/Laws/Intersection.lean#L37
+Source: ./PredicateSet/Laws/Intersection.lean#L43
 
 
 
@@ -1966,6 +3855,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: ∀ {Alpha : Type u}, LRA.Set.IntersectionLaws (LRA.Set.PredicateSet Alpha)
 Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.IntersectionLaws (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./PredicateSet/Laws/Intersection.lean
 
@@ -1974,8 +3864,9 @@ Source: ./PredicateSet/Laws/Intersection.lean
 Name: NotMemberOfEmpty
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (x : Alpha),   Not (LRA.Set.instMembershipPredicateSet.mem LRA.Set.PredicateSet.instEmptyCollection.emptyCollection x)
-Predicate logic (unfolded): ∀ {Alpha : Type u} (x : Alpha),   Not (LRA.Set.instMembershipPredicateSet.mem LRA.Set.PredicateSet.instEmptyCollection.emptyCollection x)
+Predicate logic: ∀ x : Alpha, x ∉ (∅ : LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (x : Alpha), ¬ LRA.Set.instMembershipPredicateSet.mem LRA.Set.PredicateSet.instEmptyCollection.emptyCollection x
+Transliterated theorem: ∀ x : Alpha, x ∉ ∅ ∈ LRA.Set.PredicateSet Alpha
 Logical form (Lean): : ∀ x : Alpha, x ∉ (∅ : LRA.Set.PredicateSet Alpha)
 Source: ./PredicateSet/Laws/Membership.lean#L12
 
@@ -1986,6 +3877,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: ∀ {Alpha : Type u}, LRA.Set.SeparationLaws Alpha (LRA.Set.PredicateSet Alpha)
 Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.SeparationLaws Alpha (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./PredicateSet/Laws/Membership.lean
 
@@ -1996,6 +3888,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: ∀ {Alpha : Type u}, LRA.Set.IndexedMembershipLaws Alpha (LRA.Set.PredicateSet Alpha)
 Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.IndexedMembershipLaws Alpha (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./PredicateSet/Laws/Membership.lean
 
@@ -2005,7 +3898,8 @@ Name: instPowersetMembershipLaws
 Kind: Theorem
 State: Completed
 Predicate logic: ∀ {Alpha : Type u},   LRA.Set.PowersetMembershipLaws (LRA.Set.PredicateSet Alpha) (LRA.Set.PredicateSet (LRA.Set.PredicateSet Alpha))
-Predicate logic (unfolded): ∀ {Alpha : Type u},   LRA.Set.PowersetMembershipLaws (LRA.Set.PredicateSet Alpha) (LRA.Set.PredicateSet (LRA.Set.PredicateSet Alpha))
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.PowersetMembershipLaws (LRA.Set.PredicateSet Alpha) (LRA.Set.PredicateSet (LRA.Set.PredicateSet Alpha))
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./PredicateSet/Laws/Membership.lean
 
@@ -2016,6 +3910,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: ∀ {Alpha : Type u}, LRA.Set.UniversalMembershipLaws Alpha (LRA.Set.PredicateSet Alpha)
 Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.UniversalMembershipLaws Alpha (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./PredicateSet/Laws/Membership.lean
 
@@ -2025,7 +3920,8 @@ Name: instCollectionMembershipLaws
 Kind: Theorem
 State: Completed
 Predicate logic: ∀ {Alpha : Type u},   LRA.Set.CollectionMembershipLaws Alpha (LRA.Set.PredicateSet Alpha)     (LRA.Set.PredicateSet (LRA.Set.PredicateSet Alpha))
-Predicate logic (unfolded): ∀ {Alpha : Type u},   LRA.Set.CollectionMembershipLaws Alpha (LRA.Set.PredicateSet Alpha)     (LRA.Set.PredicateSet (LRA.Set.PredicateSet Alpha))
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.CollectionMembershipLaws Alpha (LRA.Set.PredicateSet Alpha) (LRA.Set.PredicateSet (LRA.Set.PredicateSet Alpha))
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./PredicateSet/Laws/Membership.lean
 
@@ -2036,6 +3932,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: ∀ {Alpha : Type u}, LRA.Set.SymmDiffMembershipLaws Alpha (LRA.Set.PredicateSet Alpha)
 Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.SymmDiffMembershipLaws Alpha (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./PredicateSet/Laws/Membership.lean
 
@@ -2046,6 +3943,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: ∀ {Alpha : Type u}, LRA.Set.CountableMembershipLaws Alpha (LRA.Set.PredicateSet Alpha)
 Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.CountableMembershipLaws Alpha (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./PredicateSet/Laws/Membership.lean
 
@@ -2056,6 +3954,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: ∀ {Alpha : Type u}, LRA.Set.ExtensionalityLaw Alpha (LRA.Set.PredicateSet Alpha)
 Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.ExtensionalityLaw Alpha (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./PredicateSet/Laws/Membership.lean
 
@@ -2066,6 +3965,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: ∀ {Alpha : Type u}, LRA.Set.MembershipLaws Alpha (LRA.Set.PredicateSet Alpha)
 Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.MembershipLaws Alpha (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./PredicateSet/Laws/Membership.lean
 
@@ -2076,6 +3976,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasSubset.Subset A A
 Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasSubset.Subset A A
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Alpha, A ⊆ A
 Logical form (Lean): : ∀ A : LRA.Set.PredicateSet Alpha, A ⊆ A
 Source: ./PredicateSet/Laws/Subset.lean#L10
 
@@ -2084,20 +3985,22 @@ Source: ./PredicateSet/Laws/Subset.lean#L10
 Name: SubsetTransitive
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   And (LRA.Set.PredicateSet.instHasSubset.Subset A B) (LRA.Set.PredicateSet.instHasSubset.Subset B C) →     LRA.Set.PredicateSet.instHasSubset.Subset A C
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   And (LRA.Set.PredicateSet.instHasSubset.Subset A B) (LRA.Set.PredicateSet.instHasSubset.Subset B C) →     LRA.Set.PredicateSet.instHasSubset.Subset A C
+Predicate logic: ∀ A B C : LRA.Set.PredicateSet Alpha, A ⊆ B → B ⊆ C → A ⊆ C
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha), (LRA.Set.PredicateSet.instHasSubset.Subset A B ∧ LRA.Set.PredicateSet.instHasSubset.Subset B C) → LRA.Set.PredicateSet.instHasSubset.Subset A C
+Transliterated theorem: ∀ A B C : LRA.Set.PredicateSet Alpha, A ⊆ B → B ⊆ C → A ⊆ C
 Logical form (Lean): : ∀ A B C : LRA.Set.PredicateSet Alpha, A ⊆ B → B ⊆ C → A ⊆ C
-Source: ./PredicateSet/Laws/Subset.lean#L14
+Source: ./PredicateSet/Laws/Subset.lean#L15
 
 
 
 Name: SetEqualityIffMutualSubset
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Iff (Eq A B) (And (LRA.Set.PredicateSet.instHasSubset.Subset A B) (LRA.Set.PredicateSet.instHasSubset.Subset B A))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Iff (Eq A B) (And (LRA.Set.PredicateSet.instHasSubset.Subset A B) (LRA.Set.PredicateSet.instHasSubset.Subset B A))
+Predicate logic: ∀ A B : LRA.Set.PredicateSet Alpha, A = B ↔ A ⊆ B ∧ B ⊆ A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), A = B ↔ (LRA.Set.PredicateSet.instHasSubset.Subset A B ∧ LRA.Set.PredicateSet.instHasSubset.Subset B A)
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Alpha, A = B ↔ A ⊆ B ∧ B ⊆ A
 Logical form (Lean): : ∀ A B : LRA.Set.PredicateSet Alpha, A = B ↔ A ⊆ B ∧ B ⊆ A
-Source: ./PredicateSet/Laws/Subset.lean#L18
+Source: ./PredicateSet/Laws/Subset.lean#L20
 
 
 
@@ -2106,6 +4009,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: ∀ {Alpha : Type u}, LRA.Set.SubsetLaws (LRA.Set.PredicateSet Alpha)
 Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.SubsetLaws (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./PredicateSet/Laws/Subset.lean
 
@@ -2114,8 +4018,9 @@ Source: ./PredicateSet/Laws/Subset.lean
 Name: SymmetricDifferenceAsUnionDifferences
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A B)     (LRA.Set.PredicateSet.instUnion.union (LRA.Set.PredicateSet.instSDiff.sdiff A B)       (LRA.Set.PredicateSet.instSDiff.sdiff B A))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A B)     (LRA.Set.PredicateSet.instUnion.union (LRA.Set.PredicateSet.instSDiff.sdiff A B)       (LRA.Set.PredicateSet.instSDiff.sdiff B A))
+Predicate logic: ∀ A B : LRA.Set.PredicateSet Alpha, A ∆ B = (A \ B) ∪ (B \ A)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A B = LRA.Set.PredicateSet.instUnion.union (LRA.Set.PredicateSet.instSDiff.sdiff A B) (LRA.Set.PredicateSet.instSDiff.sdiff B A)
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Alpha, A ∆ B = (A \ B) ∪ (B \ A)
 Logical form (Lean): : ∀ A B : LRA.Set.PredicateSet Alpha, A ∆ B = (A \ B) ∪ (B \ A)
 Source: ./PredicateSet/Laws/SymmetricDifference.lean#L10
 
@@ -2124,70 +4029,77 @@ Source: ./PredicateSet/Laws/SymmetricDifference.lean#L10
 Name: SymmetricDifferenceAsUnionDifferenceIntersection
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A B)     (LRA.Set.PredicateSet.instSDiff.sdiff (LRA.Set.PredicateSet.instUnion.union A B)       (LRA.Set.PredicateSet.instInter.inter A B))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A B)     (LRA.Set.PredicateSet.instSDiff.sdiff (LRA.Set.PredicateSet.instUnion.union A B)       (LRA.Set.PredicateSet.instInter.inter A B))
+Predicate logic: ∀ A B : LRA.Set.PredicateSet Alpha, A ∆ B = (A ∪ B) \ (A ∩ B)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A B = LRA.Set.PredicateSet.instSDiff.sdiff (LRA.Set.PredicateSet.instUnion.union A B) (LRA.Set.PredicateSet.instInter.inter A B)
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Alpha, A ∆ B = (A ∪ B) \ (A ∩ B)
 Logical form (Lean): : ∀ A B : LRA.Set.PredicateSet Alpha, A ∆ B = (A ∪ B) \ (A ∩ B)
-Source: ./PredicateSet/Laws/SymmetricDifference.lean#L14
+Source: ./PredicateSet/Laws/SymmetricDifference.lean#L15
 
 
 
 Name: SymmetricDifferenceCommutative
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A B) (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff B A)
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A B) (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff B A)
+Predicate logic: ∀ A B : LRA.Set.PredicateSet Alpha, A ∆ B = B ∆ A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A B = LRA.Set.PredicateSet.instHasSymmDiff.symmDiff B A
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Alpha, A ∆ B = B ∆ A
 Logical form (Lean): : ∀ A B : LRA.Set.PredicateSet Alpha, A ∆ B = B ∆ A
-Source: ./PredicateSet/Laws/SymmetricDifference.lean#L18
+Source: ./PredicateSet/Laws/SymmetricDifference.lean#L20
 
 
 
 Name: SymmetricDifferenceAssociative
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A B) C)     (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff B C))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A B) C)     (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff B C))
+Predicate logic: ∀ A B C : LRA.Set.PredicateSet Alpha, (A ∆ B) ∆ C = A ∆ (B ∆ C)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasSymmDiff.symmDiff (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A B) C = LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff B C)
+Transliterated theorem: ∀ A B C : LRA.Set.PredicateSet Alpha, (A ∆ B) ∆ C = A ∆ (B ∆ C)
 Logical form (Lean): : ∀ A B C : LRA.Set.PredicateSet Alpha, (A ∆ B) ∆ C = A ∆ (B ∆ C)
-Source: ./PredicateSet/Laws/SymmetricDifference.lean#L22
+Source: ./PredicateSet/Laws/SymmetricDifference.lean#L25
 
 
 
 Name: SymmetricDifferenceEmpty
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A LRA.Set.PredicateSet.instEmptyCollection.emptyCollection) A
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A LRA.Set.PredicateSet.instEmptyCollection.emptyCollection) A
+Predicate logic: ∀ A : LRA.Set.PredicateSet Alpha, A ∆ (∅ : LRA.Set.PredicateSet Alpha) = A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A LRA.Set.PredicateSet.instEmptyCollection.emptyCollection = A
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Alpha, A ∆ ∅ ∈ LRA.Set.PredicateSet Alpha = A
 Logical form (Lean): : ∀ A : LRA.Set.PredicateSet Alpha, A ∆ (∅ : LRA.Set.PredicateSet Alpha) = A
-Source: ./PredicateSet/Laws/SymmetricDifference.lean#L27
+Source: ./PredicateSet/Laws/SymmetricDifference.lean#L31
 
 
 
 Name: EmptySymmetricDifference
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff LRA.Set.PredicateSet.instEmptyCollection.emptyCollection A) A
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff LRA.Set.PredicateSet.instEmptyCollection.emptyCollection A) A
+Predicate logic: ∀ A : LRA.Set.PredicateSet Alpha, (∅ : LRA.Set.PredicateSet Alpha) ∆ A = A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasSymmDiff.symmDiff LRA.Set.PredicateSet.instEmptyCollection.emptyCollection A = A
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Alpha, ∅ ∈ LRA.Set.PredicateSet Alpha ∆ A = A
 Logical form (Lean): : ∀ A : LRA.Set.PredicateSet Alpha, (∅ : LRA.Set.PredicateSet Alpha) ∆ A = A
-Source: ./PredicateSet/Laws/SymmetricDifference.lean#L32
+Source: ./PredicateSet/Laws/SymmetricDifference.lean#L37
 
 
 
 Name: SymmetricDifferenceSelf
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A A) LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A A) LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
+Predicate logic: ∀ A : LRA.Set.PredicateSet Alpha, A ∆ A = (∅ : LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A A = LRA.Set.PredicateSet.instEmptyCollection.emptyCollection
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Alpha, A ∆ A = ∅ ∈ LRA.Set.PredicateSet Alpha
 Logical form (Lean): : ∀ A : LRA.Set.PredicateSet Alpha, A ∆ A = (∅ : LRA.Set.PredicateSet Alpha)
-Source: ./PredicateSet/Laws/SymmetricDifference.lean#L37
+Source: ./PredicateSet/Laws/SymmetricDifference.lean#L43
 
 
 
 Name: SymmetricDifferenceEqEmptyIff
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Iff (Eq (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A B) LRA.Set.PredicateSet.instEmptyCollection.emptyCollection)     (Eq A B)
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Iff (Eq (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A B) LRA.Set.PredicateSet.instEmptyCollection.emptyCollection)     (Eq A B)
+Predicate logic: ∀ A B : LRA.Set.PredicateSet Alpha, A ∆ B = (∅ : LRA.Set.PredicateSet Alpha) ↔ A = B
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A B = LRA.Set.PredicateSet.instEmptyCollection.emptyCollection ↔ A = B
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Alpha, A ∆ B = ∅ ∈ LRA.Set.PredicateSet Alpha ↔ A = B
 Logical form (Lean): : ∀ A B : LRA.Set.PredicateSet Alpha, A ∆ B = (∅ : LRA.Set.PredicateSet Alpha) ↔ A = B
-Source: ./PredicateSet/Laws/SymmetricDifference.lean#L42
+Source: ./PredicateSet/Laws/SymmetricDifference.lean#L49
 
 
 
@@ -2195,9 +4107,10 @@ Name: SymmetricDifferenceSubsetUnion
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   LRA.Set.PredicateSet.instHasSubset.Subset (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A B)     (LRA.Set.PredicateSet.instUnion.union A B)
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   LRA.Set.PredicateSet.instHasSubset.Subset (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A B)     (LRA.Set.PredicateSet.instUnion.union A B)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasSubset.Subset (LRA.Set.PredicateSet.instHasSymmDiff.symmDiff A B) (LRA.Set.PredicateSet.instUnion.union A B)
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Alpha, A ∆ B ⊆ A ∪ B
 Logical form (Lean): : ∀ A B : LRA.Set.PredicateSet Alpha, A ∆ B ⊆ A ∪ B
-Source: ./PredicateSet/Laws/SymmetricDifference.lean#L47
+Source: ./PredicateSet/Laws/SymmetricDifference.lean#L55
 
 
 
@@ -2206,6 +4119,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: ∀ {Alpha : Type u}, LRA.Set.SymmDiffLaws (LRA.Set.PredicateSet Alpha)
 Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.SymmDiffLaws (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./PredicateSet/Laws/SymmetricDifference.lean
 
@@ -2214,8 +4128,9 @@ Source: ./PredicateSet/Laws/SymmetricDifference.lean
 Name: UnionCommutative
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instUnion.union A B) (LRA.Set.PredicateSet.instUnion.union B A)
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instUnion.union A B) (LRA.Set.PredicateSet.instUnion.union B A)
+Predicate logic: ∀ A B : LRA.Set.PredicateSet Alpha, A ∪ B = B ∪ A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instUnion.union A B = LRA.Set.PredicateSet.instUnion.union B A
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Alpha, A ∪ B = B ∪ A
 Logical form (Lean): : ∀ A B : LRA.Set.PredicateSet Alpha, A ∪ B = B ∪ A
 Source: ./PredicateSet/Laws/Union.lean#L10
 
@@ -2224,60 +4139,66 @@ Source: ./PredicateSet/Laws/Union.lean#L10
 Name: UnionAssociative
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instUnion.union (LRA.Set.PredicateSet.instUnion.union A B) C)     (LRA.Set.PredicateSet.instUnion.union A (LRA.Set.PredicateSet.instUnion.union B C))
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instUnion.union (LRA.Set.PredicateSet.instUnion.union A B) C)     (LRA.Set.PredicateSet.instUnion.union A (LRA.Set.PredicateSet.instUnion.union B C))
+Predicate logic: ∀ A B C : LRA.Set.PredicateSet Alpha, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instUnion.union (LRA.Set.PredicateSet.instUnion.union A B) C = LRA.Set.PredicateSet.instUnion.union A (LRA.Set.PredicateSet.instUnion.union B C)
+Transliterated theorem: ∀ A B C : LRA.Set.PredicateSet Alpha, (A ∪ B) ∪ C = A ∪ (B ∪ C)
 Logical form (Lean): : ∀ A B C : LRA.Set.PredicateSet Alpha, (A ∪ B) ∪ C = A ∪ (B ∪ C)
-Source: ./PredicateSet/Laws/Union.lean#L14
+Source: ./PredicateSet/Laws/Union.lean#L15
 
 
 
 Name: EmptyUnion
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instUnion.union LRA.Set.PredicateSet.instEmptyCollection.emptyCollection A) A
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instUnion.union LRA.Set.PredicateSet.instEmptyCollection.emptyCollection A) A
+Predicate logic: ∀ A : LRA.Set.PredicateSet Alpha, (∅ : LRA.Set.PredicateSet Alpha) ∪ A = A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instUnion.union LRA.Set.PredicateSet.instEmptyCollection.emptyCollection A = A
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Alpha, ∅ ∈ LRA.Set.PredicateSet Alpha ∪ A = A
 Logical form (Lean): : ∀ A : LRA.Set.PredicateSet Alpha, (∅ : LRA.Set.PredicateSet Alpha) ∪ A = A
-Source: ./PredicateSet/Laws/Union.lean#L18
+Source: ./PredicateSet/Laws/Union.lean#L20
 
 
 
 Name: UnionEmpty
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instUnion.union A LRA.Set.PredicateSet.instEmptyCollection.emptyCollection) A
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha),   Eq (LRA.Set.PredicateSet.instUnion.union A LRA.Set.PredicateSet.instEmptyCollection.emptyCollection) A
+Predicate logic: ∀ A : LRA.Set.PredicateSet Alpha, A ∪ (∅ : LRA.Set.PredicateSet Alpha) = A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instUnion.union A LRA.Set.PredicateSet.instEmptyCollection.emptyCollection = A
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Alpha, A ∪ ∅ ∈ LRA.Set.PredicateSet Alpha = A
 Logical form (Lean): : ∀ A : LRA.Set.PredicateSet Alpha, A ∪ (∅ : LRA.Set.PredicateSet Alpha) = A
-Source: ./PredicateSet/Laws/Union.lean#L23
+Source: ./PredicateSet/Laws/Union.lean#L26
 
 
 
 Name: UnionIdempotent
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), Eq (LRA.Set.PredicateSet.instUnion.union A A) A
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), Eq (LRA.Set.PredicateSet.instUnion.union A A) A
+Predicate logic: ∀ A : LRA.Set.PredicateSet Alpha, A ∪ A = A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instUnion.union A A = A
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Alpha, A ∪ A = A
 Logical form (Lean): : ∀ A : LRA.Set.PredicateSet Alpha, A ∪ A = A
-Source: ./PredicateSet/Laws/Union.lean#L28
+Source: ./PredicateSet/Laws/Union.lean#L32
 
 
 
 Name: UnionMonotone
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A₁ A₂ B₁ B₂ : LRA.Set.PredicateSet Alpha),   And (LRA.Set.PredicateSet.instHasSubset.Subset A₁ A₂) (LRA.Set.PredicateSet.instHasSubset.Subset B₁ B₂) →     LRA.Set.PredicateSet.instHasSubset.Subset (LRA.Set.PredicateSet.instUnion.union A₁ B₁)       (LRA.Set.PredicateSet.instUnion.union A₂ B₂)
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A₁ A₂ B₁ B₂ : LRA.Set.PredicateSet Alpha),   And (LRA.Set.PredicateSet.instHasSubset.Subset A₁ A₂) (LRA.Set.PredicateSet.instHasSubset.Subset B₁ B₂) →     LRA.Set.PredicateSet.instHasSubset.Subset (LRA.Set.PredicateSet.instUnion.union A₁ B₁)       (LRA.Set.PredicateSet.instUnion.union A₂ B₂)
+Predicate logic: ∀ A₁ A₂ B₁ B₂ : LRA.Set.PredicateSet Alpha, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A₁ A₂ B₁ B₂ : LRA.Set.PredicateSet Alpha), (LRA.Set.PredicateSet.instHasSubset.Subset A₁ A₂ ∧ LRA.Set.PredicateSet.instHasSubset.Subset B₁ B₂) → LRA.Set.PredicateSet.instHasSubset.Subset (LRA.Set.PredicateSet.instUnion.union A₁ B₁) (LRA.Set.PredicateSet.instUnion.union A₂ B₂)
+Transliterated theorem: ∀ A₁ A₂ B₁ B₂ : LRA.Set.PredicateSet Alpha, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
 Logical form (Lean): : ∀ A₁ A₂ B₁ B₂ : LRA.Set.PredicateSet Alpha, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
-Source: ./PredicateSet/Laws/Union.lean#L32
+Source: ./PredicateSet/Laws/Union.lean#L37
 
 
 
 Name: SubsetIffUnionEqRight
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Iff (LRA.Set.PredicateSet.instHasSubset.Subset A B) (Eq (LRA.Set.PredicateSet.instUnion.union A B) B)
-Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha),   Iff (LRA.Set.PredicateSet.instHasSubset.Subset A B) (Eq (LRA.Set.PredicateSet.instUnion.union A B) B)
+Predicate logic: ∀ A B : LRA.Set.PredicateSet Alpha, A ⊆ B ↔ A ∪ B = B
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B : LRA.Set.PredicateSet Alpha), LRA.Set.PredicateSet.instHasSubset.Subset A B ↔ LRA.Set.PredicateSet.instUnion.union A B = B
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Alpha, A ⊆ B ↔ A ∪ B = B
 Logical form (Lean): : ∀ A B : LRA.Set.PredicateSet Alpha, A ⊆ B ↔ A ∪ B = B
-Source: ./PredicateSet/Laws/Union.lean#L37
+Source: ./PredicateSet/Laws/Union.lean#L43
 
 
 
@@ -2286,16 +4207,161 @@ Kind: Theorem
 State: Completed
 Predicate logic: ∀ {Alpha : Type u}, LRA.Set.UnionLaws (LRA.Set.PredicateSet Alpha)
 Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.Set.UnionLaws (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./PredicateSet/Laws/Union.lean
 
 
 
+Name: UniversalIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A : PredicateSet Alpha, 1 * A = A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), instHMul.hMul 1 A = A
+Transliterated theorem: ∀ A : PredicateSet Alpha, 1 * A = A
+Logical form (Lean): : ∀ A : PredicateSet Alpha, 1 * A = A
+Source: ./Interop/AlgebraicRing.lean#L69
+
+
+
+Name: IntersectionUniversal
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A : PredicateSet Alpha, A * 1 = A
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A : LRA.Set.PredicateSet Alpha), instHMul.hMul A 1 = A
+Transliterated theorem: ∀ A : PredicateSet Alpha, A * 1 = A
+Logical form (Lean): : ∀ A : PredicateSet Alpha, A * 1 = A
+Source: ./Interop/AlgebraicRing.lean#L80
+
+
+
+Name: IntersectionDistributesOverSymmetricDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A B C : PredicateSet Alpha, A * (B + C) = A * B + A * C
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha), instHMul.hMul A (instHAdd.hAdd B C) = instHAdd.hAdd (instHMul.hMul A B) (instHMul.hMul A C)
+Transliterated theorem: ∀ A B C : PredicateSet Alpha, A * (B + C) = A * B + A * C
+Logical form (Lean): : ∀ A B C : PredicateSet Alpha, A * (B + C) = A * B + A * C
+Source: ./Interop/AlgebraicRing.lean#L92
+
+
+
+Name: SymmetricDifferenceIntersectionDistributes
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A B C : PredicateSet Alpha, (A + B) * C = A * C + B * C
+Predicate logic (unfolded): ∀ {Alpha : Type u} (A B C : LRA.Set.PredicateSet Alpha), instHMul.hMul (instHAdd.hAdd A B) C = instHAdd.hAdd (instHMul.hMul A C) (instHMul.hMul B C)
+Transliterated theorem: ∀ A B C : PredicateSet Alpha, (A + B) * C = A * C + B * C
+Logical form (Lean): : ∀ A B C : PredicateSet Alpha, (A + B) * C = A * C + B * C
+Source: ./Interop/AlgebraicRing.lean#L105
+
+
+
+Name: instMultiplicativeSemigroupLawsPredicateSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u}, LRA.AlgebraicStructures.MultiplicativeSemigroupLaws (LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.AlgebraicStructures.MultiplicativeSemigroupLaws (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/AlgebraicRing.lean
+
+
+
+Name: instAdditiveInverseLawsPredicateSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u}, LRA.AlgebraicStructures.AdditiveInverseLaws (LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.AlgebraicStructures.AdditiveInverseLaws (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/AlgebraicRing.lean
+
+
+
+Name: instZeroAbsorbingLawsPredicateSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u}, LRA.AlgebraicStructures.ZeroAbsorbingLaws (LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.AlgebraicStructures.ZeroAbsorbingLaws (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/AlgebraicRing.lean
+
+
+
+Name: instAdditiveCommutativeLawsPredicateSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u}, LRA.AlgebraicStructures.AdditiveCommutativeLaws (LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.AlgebraicStructures.AdditiveCommutativeLaws (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/AlgebraicRing.lean
+
+
+
+Name: instDistributiveLawsPredicateSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u}, LRA.AlgebraicStructures.DistributiveLaws (LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.AlgebraicStructures.DistributiveLaws (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/AlgebraicRing.lean
+
+
+
+Name: instMultiplicativeCommutativeLawsPredicateSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u}, LRA.AlgebraicStructures.MultiplicativeCommutativeLaws (LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.AlgebraicStructures.MultiplicativeCommutativeLaws (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/AlgebraicRing.lean
+
+
+
+Name: instAdditiveIdentityLawsPredicateSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u}, LRA.AlgebraicStructures.AdditiveIdentityLaws (LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.AlgebraicStructures.AdditiveIdentityLaws (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/AlgebraicRing.lean
+
+
+
+Name: instAdditiveSemigroupLawsPredicateSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u}, LRA.AlgebraicStructures.AdditiveSemigroupLaws (LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.AlgebraicStructures.AdditiveSemigroupLaws (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/AlgebraicRing.lean
+
+
+
+Name: instMultiplicativeIdentityLawsPredicateSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u}, LRA.AlgebraicStructures.MultiplicativeIdentityLaws (LRA.Set.PredicateSet Alpha)
+Predicate logic (unfolded): ∀ {Alpha : Type u}, LRA.AlgebraicStructures.MultiplicativeIdentityLaws (LRA.Set.PredicateSet Alpha)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/AlgebraicRing.lean
+
+
+
 Name: SetClassExtensionality
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {α : Type u} {left right : LRA.Set.SetClass α}, (∀ (element : α), Iff (left element) (right element)) → Eq left right
-Predicate logic (unfolded): ∀ {α : Type u} {left right : LRA.Set.SetClass α}, (∀ (element : α), Iff (left element) (right element)) → Eq left right
+State: Sorry
+Predicate logic: ∀ {α : Type u} {left right : SetClass α} (sameMembers : ∀ element, left element ↔ right element), left = right
+Predicate logic (unfolded): ∀ {α : Type u} {left right : LRA.Set.SetClass α}, (∀ (element : α), left element ↔ right element) → left = right
+Transliterated theorem: (∀ element, left element ↔ right element) → left = right
 Logical form (Lean): {α : Type u} {left right : SetClass α} (sameMembers : ∀ element, left element ↔ right element) : left = right
 Source: ./SetClass/Theorems.lean#L9
 
@@ -2303,19 +4369,1055 @@ Source: ./SetClass/Theorems.lean#L9
 
 Name: SetRepresentsItsClass
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (setObject : SetObject),   LRA.Set.Represents setObject (LRA.Set.ClassOfSet setObject)
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (setObject : SetObject),   LRA.Set.Represents setObject (LRA.Set.ClassOfSet setObject)
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (setObject : SetObject), LRA.Set.Represents setObject (LRA.Set.ClassOfSet setObject)
+Transliterated theorem: (∀ A ∈ U), Represents A (ClassOfSet A)
 Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] (setObject : SetObject) : Represents setObject (ClassOfSet setObject)
-Source: ./SetClass/Theorems.lean#L16
+Source: ./SetClass/Theorems.lean#L15
 
 
 
 Name: ChoiceSetExists
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A : LRA.Set.ZFC.Set),   And       (∀ (B : LRA.Set.ZFC.Set),         LRA.Set.instMembershipZFCSet.mem A B → Exists fun x => LRA.Set.instMembershipZFCSet.mem B x)       (∀ (B C : LRA.Set.ZFC.Set),         LRA.Set.instMembershipZFCSet.mem A B →           LRA.Set.instMembershipZFCSet.mem A C →             Ne B C →               ∀ (x : LRA.Set.ZFC.Set),                 LRA.Set.instMembershipZFCSet.mem B x → Not (LRA.Set.instMembershipZFCSet.mem C x)) →     Exists fun choiceSet => LRA.Set.ZFC.IsChoiceSetFor A choiceSet
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set),   And       (∀ (B : LRA.Set.ZFC.Set),         LRA.Set.instMembershipZFCSet.mem A B → Exists fun x => LRA.Set.instMembershipZFCSet.mem B x)       (∀ (B C : LRA.Set.ZFC.Set),         LRA.Set.instMembershipZFCSet.mem A B →           LRA.Set.instMembershipZFCSet.mem A C →             Ne B C →               ∀ (x : LRA.Set.ZFC.Set),                 LRA.Set.instMembershipZFCSet.mem B x → Not (LRA.Set.instMembershipZFCSet.mem C x)) →     Exists fun choiceSet => LRA.Set.ZFC.IsChoiceSetFor A choiceSet
+Predicate logic: ∀ (A : Set) (membersNonempty : forall B : Set, B ∈ A -> exists x : Set, x ∈ B) (membersPairwiseDisjoint : forall B C : Set, B ∈ A -> C ∈ A -> B ≠ C -> forall x : Set, x ∈ B -> x ∉ C), exists choiceSet : Set, IsChoiceSetFor A choiceSet
+Predicate logic (unfolded): ∀ (A : LRA.Set.TG.Set), (∀ (B : LRA.Set.TG.Set), LRA.Set.instMembershipTGSet.mem A B → Exists fun x => LRA.Set.instMembershipTGSet.mem B x ∧ ∀ (B C : LRA.Set.TG.Set), LRA.Set.instMembershipTGSet.mem A B → LRA.Set.instMembershipTGSet.mem A C → Ne B C → ∀ (x : LRA.Set.TG.Set), LRA.Set.instMembershipTGSet.mem B x → ¬ LRA.Set.instMembershipTGSet.mem C x) → Exists fun choiceSet => LRA.Set.TG.IsChoiceSetFor A choiceSet
+Transliterated theorem: (∀ A ∈ Set), (forall B : Set, B ∈ A -> exists x : Set, x ∈ B ∧ forall B C : Set, B ∈ A -> C ∈ A -> B ≠ C -> forall x : Set, x ∈ B -> x ∉ C) → exists choiceSet : Set, IsChoiceSetFor A choiceSet
+Logical form (Lean): (A : Set) (membersNonempty : forall B : Set, B ∈ A -> exists x : Set, x ∈ B) (membersPairwiseDisjoint : forall B C : Set, B ∈ A -> C ∈ A -> B ≠ C -> forall x : Set, x ∈ B -> x ∉ C) : exists choiceSet : Set, IsChoiceSetFor A choiceSet
+Source: ./TG/Choice/Theorems.lean#L6
+
+
+
+Name: TheChoiceSetIsChoiceSetFor
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Set) (membersNonempty : forall B : Set, B ∈ A -> exists x : Set, x ∈ B) (membersPairwiseDisjoint : forall B C : Set, B ∈ A -> C ∈ A -> B ≠ C -> forall x : Set, x ∈ B -> x ∉ C), IsChoiceSetFor A (TheChoiceSet A membersNonempty membersPairwiseDisjoint)
+Predicate logic (unfolded): ∀ (A : LRA.Set.TG.Set) (membersNonempty : ∀ (B : LRA.Set.TG.Set), LRA.Set.instMembershipTGSet.mem A B → Exists fun x => LRA.Set.instMembershipTGSet.mem B x) (membersPairwiseDisjoint : ∀ (B C : LRA.Set.TG.Set), LRA.Set.instMembershipTGSet.mem A B → LRA.Set.instMembershipTGSet.mem A C → Ne B C → ∀ (x : LRA.Set.TG.Set), LRA.Set.instMembershipTGSet.mem B x → ¬ LRA.Set.instMembershipTGSet.mem C x), LRA.Set.TG.IsChoiceSetFor A (LRA.Set.TG.TheChoiceSet A membersNonempty membersPairwiseDisjoint)
+Transliterated theorem: (∀ A ∈ Set), (forall B : Set, B ∈ A -> exists x : Set, x ∈ B ∧ forall B C : Set, B ∈ A -> C ∈ A -> B ≠ C -> forall x : Set, x ∈ B -> x ∉ C) → IsChoiceSetFor A (TheChoiceSet A membersNonempty membersPairwiseDisjoint)
+Logical form (Lean): (A : Set) (membersNonempty : forall B : Set, B ∈ A -> exists x : Set, x ∈ B) (membersPairwiseDisjoint : forall B C : Set, B ∈ A -> C ∈ A -> B ≠ C -> forall x : Set, x ∈ B -> x ∉ C) : IsChoiceSetFor A (TheChoiceSet A membersNonempty membersPairwiseDisjoint)
+Source: ./TG/Choice/Theorems.lean#L22
+
+
+
+Name: SetEqualityIffSameMembers
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B : LRA.Set.TGSet), A = B <-> forall x : LRA.Set.TGSet, x ∈ A <-> x ∈ B
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TGSet), A = B ↔ ∀ (x : LRA.Set.TGSet), LRA.Set.instMembershipTGSet.mem A x ↔ LRA.Set.instMembershipTGSet.mem B x
+Transliterated theorem: (∀ A B ∈ LRA.Set.TGSet), A = B <-> forall x : LRA.Set.TGSet, x ∈ A <-> x ∈ B
+Logical form (Lean): (A B : LRA.Set.TGSet) : A = B <-> forall x : LRA.Set.TGSet, x ∈ A <-> x ∈ B
+Source: ./TG/Extensionality/Theorems.lean#L7
+
+
+
+Name: EmptySetExists
+Kind: Theorem
+State: Sorry
+Predicate logic: Exists fun A => LRA.Set.TG.IsEmptySet A
+Predicate logic (unfolded): Exists fun A => LRA.Set.TG.IsEmptySet A
+Transliterated theorem: exists A : Set, IsEmptySet A
+Logical form (Lean): : exists A : Set, IsEmptySet A
+Source: ./TG/EmptySet/Theorems.lean#L7
+
+
+
+Name: EmptySetIsUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B), B = A
+Predicate logic (unfolded): ∀ {A B : LRA.Set.TG.Set}, (LRA.Set.TG.IsEmptySet A ∧ LRA.Set.TG.IsEmptySet B) → B = A
+Transliterated theorem: B = A
+Logical form (Lean): {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B) : B = A
+Source: ./TG/EmptySet/Theorems.lean#L11
+
+
+
+Name: EmptySetExistsAndIsUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Set.TG.ExistsAndUnique LRA.Set.TG.IsEmptySet
+Predicate logic (unfolded): LRA.Set.TG.ExistsAndUnique LRA.Set.TG.IsEmptySet
+Transliterated theorem: ExistsAndUnique IsEmptySet
+Logical form (Lean): : ExistsAndUnique IsEmptySet
+Source: ./TG/EmptySet/Theorems.lean#L16
+
+
+
+Name: TheEmptySetIsEmpty
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Set.TG.IsEmptySet LRA.Set.TG.TheEmptySet
+Predicate logic (unfolded): LRA.Set.TG.IsEmptySet LRA.Set.TG.TheEmptySet
+Transliterated theorem: IsEmptySet TheEmptySet
+Logical form (Lean): : IsEmptySet TheEmptySet
+Source: ./TG/EmptySet/Theorems.lean#L22
+
+
+
+Name: GrothendieckUniverseExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.TG.Set), Exists fun U => LRA.Set.TG.IsGrothendieckUniverseFor A U
+Predicate logic (unfolded): ∀ (A : LRA.Set.TG.Set), Exists fun U => LRA.Set.TG.IsGrothendieckUniverseFor A U
+Transliterated theorem: (∀ A ∈ Set), exists U : Set, IsGrothendieckUniverseFor A U
+Logical form (Lean): (A : Set) : exists U : Set, IsGrothendieckUniverseFor A U
+Source: ./TG/GrothendieckUniverse/Theorems.lean#L7
+
+
+
+Name: TheGrothendieckUniverseIsGrothendieckUniverseFor
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.TG.Set), LRA.Set.TG.IsGrothendieckUniverseFor A (LRA.Set.TG.TheGrothendieckUniverse A)
+Predicate logic (unfolded): ∀ (A : LRA.Set.TG.Set), LRA.Set.TG.IsGrothendieckUniverseFor A (LRA.Set.TG.TheGrothendieckUniverse A)
+Transliterated theorem: (∀ A ∈ Set), IsGrothendieckUniverseFor A (TheGrothendieckUniverse A)
+Logical form (Lean): (A : Set) : IsGrothendieckUniverseFor A (TheGrothendieckUniverse A)
+Source: ./TG/GrothendieckUniverse/Theorems.lean#L16
+
+
+
+Name: InductiveSetExists
+Kind: Theorem
+State: Sorry
+Predicate logic: Exists fun A => LRA.Set.TG.IsInductiveSet A
+Predicate logic (unfolded): Exists fun A => LRA.Set.TG.IsInductiveSet A
+Transliterated theorem: exists A : Set, IsInductiveSet A
+Logical form (Lean): : exists A : Set, IsInductiveSet A
+Source: ./TG/Infinity/Theorems.lean#L7
+
+
+
+Name: PairSetExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x1 x2 : LRA.Set.TG.Set), Exists fun P => LRA.Set.TG.IsPairSet x1 x2 P
+Predicate logic (unfolded): ∀ (x1 x2 : LRA.Set.TG.Set), Exists fun P => LRA.Set.TG.IsPairSet x1 x2 P
+Transliterated theorem: (∀ x1 x2 ∈ Set), exists P : Set, IsPairSet x1 x2 P
+Logical form (Lean): (x1 x2 : Set) : exists P : Set, IsPairSet x1 x2 P
+Source: ./TG/Pairing/Theorems.lean#L7
+
+
+
+Name: PairSetIsUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x1 x2 P G : Set} (PIsPairSet : IsPairSet x1 x2 P) (GIsPairSet : IsPairSet x1 x2 G), G = P
+Predicate logic (unfolded): ∀ {x1 x2 P G : LRA.Set.TG.Set}, (LRA.Set.TG.IsPairSet x1 x2 P ∧ LRA.Set.TG.IsPairSet x1 x2 G) → G = P
+Transliterated theorem: G = P
+Logical form (Lean): {x1 x2 P G : Set} (PIsPairSet : IsPairSet x1 x2 P) (GIsPairSet : IsPairSet x1 x2 G) : G = P
+Source: ./TG/Pairing/Theorems.lean#L11
+
+
+
+Name: PairingOutputExistsAndIsUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x1 x2 : LRA.Set.TG.Set), LRA.Set.TG.ExistsAndUnique fun P => LRA.Set.TG.IsPairSet x1 x2 P
+Predicate logic (unfolded): ∀ (x1 x2 : LRA.Set.TG.Set), LRA.Set.TG.ExistsAndUnique fun P => LRA.Set.TG.IsPairSet x1 x2 P
+Transliterated theorem: (∀ x1 x2 ∈ Set), ExistsAndUnique fun P ∈ Set => IsPairSet x1 x2 P
+Logical form (Lean): (x1 x2 : Set) : ExistsAndUnique (fun P : Set => IsPairSet x1 x2 P)
+Source: ./TG/Pairing/Theorems.lean#L17
+
+
+
+Name: PairSetMembership
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x1 x2 w : Set), w ∈ PairSet x1 x2 <-> w = x1 \/ w = x2
+Predicate logic (unfolded): ∀ (x1 x2 w : LRA.Set.TG.Set), LRA.Set.instMembershipTGSet.mem (LRA.Set.TG.PairSet x1 x2) w ↔ Or (w = x1)(w = x2)
+Transliterated theorem: (∀ x1 x2 w ∈ Set), w ∈ PairSet x1 x2 <-> w = x1 ∨ w = x2
+Logical form (Lean): (x1 x2 w : Set) : w ∈ PairSet x1 x2 <-> w = x1 \/ w = x2
+Source: ./TG/Pairing/Theorems.lean#L24
+
+
+
+Name: FoundationWitnessExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.TG.Set),   (Exists fun w => LRA.Set.instMembershipTGSet.mem A w) → Exists fun x => LRA.Set.TG.IsFoundationWitness A x
+Predicate logic (unfolded): ∀ (A : LRA.Set.TG.Set), (Exists fun w => LRA.Set.instMembershipTGSet.mem A w) → Exists fun x => LRA.Set.TG.IsFoundationWitness A x
+Transliterated theorem: (∀ A ∈ Set), (exists w : Set, w ∈ A) → exists x : Set, IsFoundationWitness A x
+Logical form (Lean): (A : Set) (nonempty : exists w : Set, w ∈ A) : exists x : Set, IsFoundationWitness A x
+Source: ./TG/Foundation/Theorems.lean#L7
+
+
+
+Name: NoSetIsMemberOfItself
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Set), A ∉ A
+Predicate logic (unfolded): ∀ (A : LRA.Set.TG.Set), ¬ LRA.Set.instMembershipTGSet.mem A A
+Transliterated theorem: (∀ A ∈ Set), A ∉ A
+Logical form (Lean): (A : Set) : A ∉ A
+Source: ./TG/Foundation/Theorems.lean#L12
+
+
+
+Name: MemberOfSingletonSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (element candidate : Set), candidate ∈ SingletonSet element <-> candidate = element
+Predicate logic (unfolded): ∀ (element candidate : LRA.Set.TG.Set), LRA.Set.instMembershipTGSet.mem (LRA.Set.TG.SingletonSet element) candidate ↔ candidate = element
+Transliterated theorem: (∀ element candidate ∈ Set), candidate ∈ SingletonSet element <-> candidate = element
+Logical form (Lean): (element candidate : Set) : candidate ∈ SingletonSet element <-> candidate = element
+Source: ./TG/OrderedPair/Theorems.lean#L12
+
+
+
+Name: KuratowskiPairInjective
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (firstLeft secondLeft firstRight secondRight : Set), KuratowskiPair firstLeft firstRight = KuratowskiPair secondLeft secondRight <-> firstLeft = secondLeft /\ firstRight = secondRight
+Predicate logic (unfolded): ∀ (firstLeft secondLeft firstRight secondRight : LRA.Set.TG.Set), LRA.Set.TG.KuratowskiPair firstLeft firstRight = LRA.Set.TG.KuratowskiPair secondLeft secondRight ↔ (firstLeft = secondLeft ∧ firstRight = secondRight)
+Transliterated theorem: (∀ firstLeft secondLeft firstRight secondRight ∈ Set), KuratowskiPair firstLeft firstRight = KuratowskiPair secondLeft secondRight <-> firstLeft = secondLeft ∧ firstRight = secondRight
+Logical form (Lean): (firstLeft secondLeft firstRight secondRight : Set) : KuratowskiPair firstLeft firstRight = KuratowskiPair secondLeft secondRight <-> firstLeft = secondLeft /\ firstRight = secondRight
+Source: ./TG/OrderedPair/Theorems.lean#L17
+
+
+
+Name: instPairingLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.PairingLaws LRA.Set.TG.Set LRA.Set.TG.Set LRA.Set.TG.Set
+Predicate logic (unfolded): LRA.Set.PairingLaws LRA.Set.TG.Set LRA.Set.TG.Set LRA.Set.TG.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./TG/OrderedPair/Theorems.lean
+
+
+
+Name: PowerSetOfExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.TG.Set), Exists fun P => LRA.Set.TG.IsPowerSetOf A P
+Predicate logic (unfolded): ∀ (A : LRA.Set.TG.Set), Exists fun P => LRA.Set.TG.IsPowerSetOf A P
+Transliterated theorem: (∀ A ∈ Set), exists P : Set, IsPowerSetOf A P
+Logical form (Lean): (A : Set) : exists P : Set, IsPowerSetOf A P
+Source: ./TG/PowerSet/Theorems.lean#L7
+
+
+
+Name: PowerSetOfIsUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A P Q : Set} (PIsPowerSetOf : IsPowerSetOf A P) (QIsPowerSetOf : IsPowerSetOf A Q), Q = P
+Predicate logic (unfolded): ∀ {A P Q : LRA.Set.TG.Set}, (LRA.Set.TG.IsPowerSetOf A P ∧ LRA.Set.TG.IsPowerSetOf A Q) → Q = P
+Transliterated theorem: Q = P
+Logical form (Lean): {A P Q : Set} (PIsPowerSetOf : IsPowerSetOf A P) (QIsPowerSetOf : IsPowerSetOf A Q) : Q = P
+Source: ./TG/PowerSet/Theorems.lean#L11
+
+
+
+Name: ThePowerSetIsPowerSetOf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.TG.Set), LRA.Set.TG.IsPowerSetOf A (LRA.Set.TG.ThePowerSet A)
+Predicate logic (unfolded): ∀ (A : LRA.Set.TG.Set), LRA.Set.TG.IsPowerSetOf A (LRA.Set.TG.ThePowerSet A)
+Transliterated theorem: (∀ A ∈ Set), IsPowerSetOf A (ThePowerSet A)
+Logical form (Lean): (A : Set) : IsPowerSetOf A (ThePowerSet A)
+Source: ./TG/PowerSet/Theorems.lean#L19
+
+
+
+Name: ReplacementImageExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.TG.Set) (relation : LRA.Set.TG.Set → LRA.Set.TG.Set → Prop),   LRA.Set.TG.IsFunctionalOn A relation → Exists fun B => LRA.Set.TG.IsReplacementImageOf A relation B
+Predicate logic (unfolded): ∀ (A : LRA.Set.TG.Set) (relation : LRA.Set.TG.Set → LRA.Set.TG.Set → Prop), LRA.Set.TG.IsFunctionalOn A relation → Exists fun B => LRA.Set.TG.IsReplacementImageOf A relation B
+Transliterated theorem: (∀ A ∈ Set), exists B : Set, IsReplacementImageOf A relation B
+Logical form (Lean): (A : Set) (relation : Set -> Set -> Prop) (functional : IsFunctionalOn A relation) : exists B : Set, IsReplacementImageOf A relation B
+Source: ./TG/Replacement/Theorems.lean#L7
+
+
+
+Name: ReplacementImageIsUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set} {relation : Set -> Set -> Prop} {B C : Set} (BIsReplacementImageOf : IsReplacementImageOf A relation B) (CIsReplacementImageOf : IsReplacementImageOf A relation C), C = B
+Predicate logic (unfolded): ∀ {A : LRA.Set.TG.Set} {relation : LRA.Set.TG.Set → LRA.Set.TG.Set → Prop} {B C : LRA.Set.TG.Set}, (LRA.Set.TG.IsReplacementImageOf A relation B ∧ LRA.Set.TG.IsReplacementImageOf A relation C) → C = B
+Transliterated theorem: C = B
+Logical form (Lean): {A : Set} {relation : Set -> Set -> Prop} {B C : Set} (BIsReplacementImageOf : IsReplacementImageOf A relation B) (CIsReplacementImageOf : IsReplacementImageOf A relation C) : C = B
+Source: ./TG/Replacement/Theorems.lean#L14
+
+
+
+Name: TheReplacementImageIsReplacementImageOf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.TG.Set) (relation : LRA.Set.TG.Set → LRA.Set.TG.Set → Prop)   (functional : LRA.Set.TG.IsFunctionalOn A relation),   LRA.Set.TG.IsReplacementImageOf A relation (LRA.Set.TG.TheReplacementImage A relation functional)
+Predicate logic (unfolded): ∀ (A : LRA.Set.TG.Set) (relation : LRA.Set.TG.Set → LRA.Set.TG.Set → Prop) (functional : LRA.Set.TG.IsFunctionalOn A relation), LRA.Set.TG.IsReplacementImageOf A relation (LRA.Set.TG.TheReplacementImage A relation functional)
+Transliterated theorem: (∀ A ∈ Set), IsReplacementImageOf A relation (TheReplacementImage A relation functional)
+Logical form (Lean): (A : Set) (relation : Set -> Set -> Prop) (functional : IsFunctionalOn A relation) : IsReplacementImageOf A relation (TheReplacementImage A relation functional)
+Source: ./TG/Replacement/Theorems.lean#L26
+
+
+
+Name: SeparatedSubsetExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.TG.Set) (property : LRA.Set.TG.Set → Prop), Exists fun B => LRA.Set.TG.IsSeparatedSubset A property B
+Predicate logic (unfolded): ∀ (A : LRA.Set.TG.Set) (property : LRA.Set.TG.Set → Prop), Exists fun B => LRA.Set.TG.IsSeparatedSubset A property B
+Transliterated theorem: (∀ A ∈ Set), exists B : Set, IsSeparatedSubset A property B
+Logical form (Lean): (A : Set) (property : Set -> Prop) : exists B : Set, IsSeparatedSubset A property B
+Source: ./TG/Separation/Theorems.lean#L7
+
+
+
+Name: SeparatedSubsetIsUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set} {property : Set -> Prop} {B C : Set} (BIsSeparatedSubset : IsSeparatedSubset A property B) (CIsSeparatedSubset : IsSeparatedSubset A property C), C = B
+Predicate logic (unfolded): ∀ {A : LRA.Set.TG.Set} {property : LRA.Set.TG.Set → Prop} {B C : LRA.Set.TG.Set}, (LRA.Set.TG.IsSeparatedSubset A property B ∧ LRA.Set.TG.IsSeparatedSubset A property C) → C = B
+Transliterated theorem: C = B
+Logical form (Lean): {A : Set} {property : Set -> Prop} {B C : Set} (BIsSeparatedSubset : IsSeparatedSubset A property B) (CIsSeparatedSubset : IsSeparatedSubset A property C) : C = B
+Source: ./TG/Separation/Theorems.lean#L12
+
+
+
+Name: TheSeparatedSubsetIsSeparatedSubset
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.TG.Set) (property : LRA.Set.TG.Set → Prop),   LRA.Set.TG.IsSeparatedSubset A property (LRA.Set.TG.TheSeparatedSubset A property)
+Predicate logic (unfolded): ∀ (A : LRA.Set.TG.Set) (property : LRA.Set.TG.Set → Prop), LRA.Set.TG.IsSeparatedSubset A property (LRA.Set.TG.TheSeparatedSubset A property)
+Transliterated theorem: (∀ A ∈ Set), IsSeparatedSubset A property (TheSeparatedSubset A property)
+Logical form (Lean): (A : Set) (property : Set -> Prop) : IsSeparatedSubset A property (TheSeparatedSubset A property)
+Source: ./TG/Separation/Theorems.lean#L21
+
+
+
+Name: TheIntersectionIsIntersectionOf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B : LRA.Set.TG.Set), LRA.Set.TG.IsIntersectionOf A B (LRA.Set.TG.TheIntersection A B)
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TG.Set), LRA.Set.TG.IsIntersectionOf A B (LRA.Set.TG.TheIntersection A B)
+Transliterated theorem: (∀ A B ∈ Set), IsIntersectionOf A B (TheIntersection A B)
+Logical form (Lean): (A B : Set) : IsIntersectionOf A B (TheIntersection A B)
+Source: ./TG/Intersection/Theorems.lean#L9
+
+
+
+Name: TheIntersectionMembership
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B x : Set), x ∈ TheIntersection A B <-> x ∈ A /\ x ∈ B
+Predicate logic (unfolded): ∀ (A B x : LRA.Set.TG.Set), LRA.Set.instMembershipTGSet.mem (LRA.Set.TG.TheIntersection A B) x ↔ (LRA.Set.instMembershipTGSet.mem A x ∧ LRA.Set.instMembershipTGSet.mem B x)
+Transliterated theorem: (∀ A B x ∈ Set), x ∈ TheIntersection A B <-> x ∈ A ∧ x ∈ B
+Logical form (Lean): (A B x : Set) : x ∈ TheIntersection A B <-> x ∈ A /\ x ∈ B
+Source: ./TG/Intersection/Theorems.lean#L14
+
+
+
+Name: TheRelativeComplementIsRelativeComplementOf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B : LRA.Set.TG.Set), LRA.Set.TG.IsRelativeComplementOf A B (LRA.Set.TG.TheRelativeComplement A B)
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TG.Set), LRA.Set.TG.IsRelativeComplementOf A B (LRA.Set.TG.TheRelativeComplement A B)
+Transliterated theorem: (∀ A B ∈ Set), IsRelativeComplementOf A B (TheRelativeComplement A B)
+Logical form (Lean): (A B : Set) : IsRelativeComplementOf A B (TheRelativeComplement A B)
+Source: ./TG/RelativeComplement/Theorems.lean#L9
+
+
+
+Name: TheRelativeComplementMembership
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B x : Set), x ∈ TheRelativeComplement A B <-> x ∈ A /\ x ∉ B
+Predicate logic (unfolded): ∀ (A B x : LRA.Set.TG.Set), LRA.Set.instMembershipTGSet.mem (LRA.Set.TG.TheRelativeComplement A B) x ↔ (LRA.Set.instMembershipTGSet.mem A x ∧ ¬ LRA.Set.instMembershipTGSet.mem B x)
+Transliterated theorem: (∀ A B x ∈ Set), x ∈ TheRelativeComplement A B <-> x ∈ A ∧ x ∉ B
+Logical form (Lean): (A B x : Set) : x ∈ TheRelativeComplement A B <-> x ∈ A /\ x ∉ B
+Source: ./TG/RelativeComplement/Theorems.lean#L14
+
+
+
+Name: UnionOverExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.TG.Set), Exists fun U => LRA.Set.TG.IsUnionOf A U
+Predicate logic (unfolded): ∀ (A : LRA.Set.TG.Set), Exists fun U => LRA.Set.TG.IsUnionOf A U
+Transliterated theorem: (∀ A ∈ Set), exists U : Set, IsUnionOf A U
+Logical form (Lean): (A : Set) : exists U : Set, IsUnionOf A U
+Source: ./TG/Union/Theorems.lean#L8
+
+
+
+Name: UnionOverIsUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A U V : Set} (UIsUnionOf : IsUnionOf A U) (VIsUnionOf : IsUnionOf A V), V = U
+Predicate logic (unfolded): ∀ {A U V : LRA.Set.TG.Set}, (LRA.Set.TG.IsUnionOf A U ∧ LRA.Set.TG.IsUnionOf A V) → V = U
+Transliterated theorem: V = U
+Logical form (Lean): {A U V : Set} (UIsUnionOf : IsUnionOf A U) (VIsUnionOf : IsUnionOf A V) : V = U
+Source: ./TG/Union/Theorems.lean#L12
+
+
+
+Name: TheUnionOverIsUnionOf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.TG.Set), LRA.Set.TG.IsUnionOf A (LRA.Set.TG.TheUnionOver A)
+Predicate logic (unfolded): ∀ (A : LRA.Set.TG.Set), LRA.Set.TG.IsUnionOf A (LRA.Set.TG.TheUnionOver A)
+Transliterated theorem: (∀ A ∈ Set), IsUnionOf A (TheUnionOver A)
+Logical form (Lean): (A : Set) : IsUnionOf A (TheUnionOver A)
+Source: ./TG/Union/Theorems.lean#L20
+
+
+
+Name: TheUnionMembership
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B x : Set), x ∈ TheUnion A B <-> x ∈ A \/ x ∈ B
+Predicate logic (unfolded): ∀ (A B x : LRA.Set.TG.Set), LRA.Set.instMembershipTGSet.mem (LRA.Set.TG.TheUnion A B) x ↔ Or (LRA.Set.instMembershipTGSet.mem A x) (LRA.Set.instMembershipTGSet.mem B x)
+Transliterated theorem: (∀ A B x ∈ Set), x ∈ TheUnion A B <-> x ∈ A ∨ x ∈ B
+Logical form (Lean): (A B x : Set) : x ∈ TheUnion A B <-> x ∈ A \/ x ∈ B
+Source: ./TG/Union/Theorems.lean#L26
+
+
+
+Name: TheIntersectionOverMembership
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A x : Set) (collectionNonempty : exists B : Set, B ∈ A), x ∈ TheIntersectionOver A <-> forall B : Set, B ∈ A -> x ∈ B
+Predicate logic (unfolded): ∀ (A x : LRA.Set.TG.Set), (Exists fun B => LRA.Set.instMembershipTGSet.mem A B) → LRA.Set.instMembershipTGSet.mem (LRA.Set.TG.TheIntersectionOver A) x ↔ ∀ (B : LRA.Set.TG.Set), LRA.Set.instMembershipTGSet.mem A B → LRA.Set.instMembershipTGSet.mem B x
+Transliterated theorem: (∀ A x ∈ Set), (exists B : Set, B ∈ A) → x ∈ TheIntersectionOver A <-> forall B : Set, B ∈ A -> x ∈ B
+Logical form (Lean): (A x : Set) (collectionNonempty : exists B : Set, B ∈ A) : x ∈ TheIntersectionOver A <-> forall B : Set, B ∈ A -> x ∈ B
+Source: ./TG/IntersectionOver/Theorems.lean#L9
+
+
+
+Name: TheSymmetricDifferenceIsSymmetricDifferenceOf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B : LRA.Set.TG.Set), LRA.Set.TG.IsSymmetricDifferenceOf A B (LRA.Set.TG.TheSymmetricDifference A B)
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TG.Set), LRA.Set.TG.IsSymmetricDifferenceOf A B (LRA.Set.TG.TheSymmetricDifference A B)
+Transliterated theorem: (∀ A B ∈ Set), IsSymmetricDifferenceOf A B (TheSymmetricDifference A B)
+Logical form (Lean): (A B : Set) : IsSymmetricDifferenceOf A B (TheSymmetricDifference A B)
+Source: ./TG/SymmetricDifference/Theorems.lean#L9
+
+
+
+Name: TheSymmetricDifferenceMembership
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B x : Set), x ∈ TheSymmetricDifference A B <-> (x ∈ A /\ x ∉ B) \/ (x ∈ B /\ x ∉ A)
+Predicate logic (unfolded): ∀ (A B x : LRA.Set.TG.Set), LRA.Set.instMembershipTGSet.mem (LRA.Set.TG.TheSymmetricDifference A B) x ↔ Or ((LRA.Set.instMembershipTGSet.mem A x ∧ ¬ LRA.Set.instMembershipTGSet.mem B x)) ((LRA.Set.instMembershipTGSet.mem B x ∧ ¬ LRA.Set.instMembershipTGSet.mem A x))
+Transliterated theorem: (∀ A B x ∈ Set), x ∈ TheSymmetricDifference A B <-> (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
+Logical form (Lean): (A B x : Set) : x ∈ TheSymmetricDifference A B <-> (x ∈ A /\ x ∉ B) \/ (x ∈ B /\ x ∉ A)
+Source: ./TG/SymmetricDifference/Theorems.lean#L14
+
+
+
+Name: SetExtensionality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B : LRA.Set.TGSet) (sameMembers : forall x : LRA.Set.TGSet, x ∈ A <-> x ∈ B), A = B
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TGSet), (∀ (x : LRA.Set.TGSet), LRA.Set.instMembershipTGSet.mem A x ↔ LRA.Set.instMembershipTGSet.mem B x) → A = B
+Transliterated theorem: (∀ A B ∈ LRA.Set.TGSet), (forall x : LRA.Set.TGSet, x ∈ A <-> x ∈ B) → A = B
+Logical form (Lean): (A B : LRA.Set.TGSet) (sameMembers : forall x : LRA.Set.TGSet, x ∈ A <-> x ∈ B) : A = B
+Source: ./TG/Public.lean#L9
+
+
+
+Name: DifferenceMonotoneLeft
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A1 A2 B : LRA.Set.TGSet.Set),   LRA.Set.TGSet.instHasSubset.Subset A1 A2 →     LRA.Set.TGSet.instHasSubset.Subset (LRA.Set.TGSet.instSDiff.sdiff A1 B) (LRA.Set.TGSet.instSDiff.sdiff A2 B)
+Predicate logic (unfolded): ∀ (A1 A2 B : LRA.Set.TGSet.Set), LRA.Set.TGSet.instHasSubset.Subset A1 A2 → LRA.Set.TGSet.instHasSubset.Subset (LRA.Set.TGSet.instSDiff.sdiff A1 B) (LRA.Set.TGSet.instSDiff.sdiff A2 B)
+Transliterated theorem: forall A1 A2 B : Set, A1 ⊆ A2 -> A1 \ B ⊆ A2 \ B
+Logical form (Lean): : forall A1 A2 B : Set, A1 ⊆ A2 -> A1 \ B ⊆ A2 \ B
+Source: ./TGSet/Laws/Difference.lean#L8
+
+
+
+Name: DifferenceAntitoneRight
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B1 B2 : LRA.Set.TGSet.Set),   LRA.Set.TGSet.instHasSubset.Subset B1 B2 →     LRA.Set.TGSet.instHasSubset.Subset (LRA.Set.TGSet.instSDiff.sdiff A B2) (LRA.Set.TGSet.instSDiff.sdiff A B1)
+Predicate logic (unfolded): ∀ (A B1 B2 : LRA.Set.TGSet.Set), LRA.Set.TGSet.instHasSubset.Subset B1 B2 → LRA.Set.TGSet.instHasSubset.Subset (LRA.Set.TGSet.instSDiff.sdiff A B2) (LRA.Set.TGSet.instSDiff.sdiff A B1)
+Transliterated theorem: forall A B1 B2 : Set, B1 ⊆ B2 -> A \ B2 ⊆ A \ B1
+Logical form (Lean): : forall A B1 B2 : Set, B1 ⊆ B2 -> A \ B2 ⊆ A \ B1
+Source: ./TGSet/Laws/Difference.lean#L13
+
+
+
+Name: DifferenceEmpty
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, A \ (∅ : Set) = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.TGSet.Set), LRA.Set.TGSet.instSDiff.sdiff A LRA.Set.TGSet.instEmptyCollection.emptyCollection = A
+Transliterated theorem: forall A : Set, A \ ∅ ∈ Set = A
+Logical form (Lean): : forall A : Set, A \ (∅ : Set) = A
+Source: ./TGSet/Laws/Difference.lean#L18
+
+
+
+Name: EmptyDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, (∅ : Set) \ A = (∅ : Set)
+Predicate logic (unfolded): ∀ (A : LRA.Set.TGSet.Set), LRA.Set.TGSet.instSDiff.sdiff LRA.Set.TGSet.instEmptyCollection.emptyCollection A = LRA.Set.TGSet.instEmptyCollection.emptyCollection
+Transliterated theorem: forall A : Set, ∅ ∈ Set \ A = ∅ ∈ Set
+Logical form (Lean): : forall A : Set, (∅ : Set) \ A = (∅ : Set)
+Source: ./TGSet/Laws/Difference.lean#L22
+
+
+
+Name: DifferenceSelf
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, A \ A = (∅ : Set)
+Predicate logic (unfolded): ∀ (A : LRA.Set.TGSet.Set), LRA.Set.TGSet.instSDiff.sdiff A A = LRA.Set.TGSet.instEmptyCollection.emptyCollection
+Transliterated theorem: forall A : Set, A \ A = ∅ ∈ Set
+Logical form (Lean): : forall A : Set, A \ A = (∅ : Set)
+Source: ./TGSet/Laws/Difference.lean#L26
+
+
+
+Name: DifferenceUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.TGSet.Set), LRA.Set.TGSet.instSDiff.sdiff A (LRA.Set.TGSet.instUnion.union B C) = LRA.Set.TGSet.instInter.inter (LRA.Set.TGSet.instSDiff.sdiff A B) (LRA.Set.TGSet.instSDiff.sdiff A C)
+Transliterated theorem: forall A B C : Set, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
+Logical form (Lean): : forall A B C : Set, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
+Source: ./TGSet/Laws/Difference.lean#L30
+
+
+
+Name: DifferenceIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.TGSet.Set), LRA.Set.TGSet.instSDiff.sdiff A (LRA.Set.TGSet.instInter.inter B C) = LRA.Set.TGSet.instUnion.union (LRA.Set.TGSet.instSDiff.sdiff A B) (LRA.Set.TGSet.instSDiff.sdiff A C)
+Transliterated theorem: forall A B C : Set, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
+Logical form (Lean): : forall A B C : Set, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
+Source: ./TGSet/Laws/Difference.lean#L35
+
+
+
+Name: UnionDifferenceDistributes
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.TGSet.Set), LRA.Set.TGSet.instSDiff.sdiff (LRA.Set.TGSet.instUnion.union A B) C = LRA.Set.TGSet.instUnion.union (LRA.Set.TGSet.instSDiff.sdiff A C) (LRA.Set.TGSet.instSDiff.sdiff B C)
+Transliterated theorem: forall A B C : Set, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
+Logical form (Lean): : forall A B C : Set, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
+Source: ./TGSet/Laws/Difference.lean#L40
+
+
+
+Name: IntersectionDifferenceDistributes
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.TGSet.Set), LRA.Set.TGSet.instSDiff.sdiff (LRA.Set.TGSet.instInter.inter A B) C = LRA.Set.TGSet.instInter.inter (LRA.Set.TGSet.instSDiff.sdiff A C) (LRA.Set.TGSet.instSDiff.sdiff B C)
+Transliterated theorem: forall A B C : Set, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
+Logical form (Lean): : forall A B C : Set, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
+Source: ./TGSet/Laws/Difference.lean#L45
+
+
+
+Name: DifferenceSubsetLeft
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B : LRA.Set.TGSet.Set), LRA.Set.TGSet.instHasSubset.Subset (LRA.Set.TGSet.instSDiff.sdiff A B) A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TGSet.Set), LRA.Set.TGSet.instHasSubset.Subset (LRA.Set.TGSet.instSDiff.sdiff A B) A
+Transliterated theorem: forall A B : Set, A \ B ⊆ A
+Logical form (Lean): : forall A B : Set, A \ B ⊆ A
+Source: ./TGSet/Laws/Difference.lean#L50
+
+
+
+Name: DifferenceDisjointRight
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, (A \ B) ∩ B = (∅ : Set)
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TGSet.Set), LRA.Set.TGSet.instInter.inter (LRA.Set.TGSet.instSDiff.sdiff A B) B = LRA.Set.TGSet.instEmptyCollection.emptyCollection
+Transliterated theorem: forall A B : Set, (A \ B) ∩ B = ∅ ∈ Set
+Logical form (Lean): : forall A B : Set, (A \ B) ∩ B = (∅ : Set)
+Source: ./TGSet/Laws/Difference.lean#L54
+
+
+
+Name: instDifferenceLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.DifferenceLaws LRA.Set.TGSet.Set
+Predicate logic (unfolded): LRA.Set.DifferenceLaws LRA.Set.TGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./TGSet/Laws/Difference.lean
+
+
+
+Name: IntersectionDistributesOverUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.TGSet.Set), LRA.Set.TGSet.instInter.inter A (LRA.Set.TGSet.instUnion.union B C) = LRA.Set.TGSet.instUnion.union (LRA.Set.TGSet.instInter.inter A B) (LRA.Set.TGSet.instInter.inter A C)
+Transliterated theorem: forall A B C : Set, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
+Logical form (Lean): : forall A B C : Set, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
+Source: ./TGSet/Laws/Distributivity.lean#L8
+
+
+
+Name: UnionDistributesOverIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.TGSet.Set), LRA.Set.TGSet.instUnion.union A (LRA.Set.TGSet.instInter.inter B C) = LRA.Set.TGSet.instInter.inter (LRA.Set.TGSet.instUnion.union A B) (LRA.Set.TGSet.instUnion.union A C)
+Transliterated theorem: forall A B C : Set, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
+Logical form (Lean): : forall A B C : Set, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
+Source: ./TGSet/Laws/Distributivity.lean#L13
+
+
+
+Name: AbsorptionUnionIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ∪ (A ∩ B) = A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TGSet.Set), LRA.Set.TGSet.instUnion.union A (LRA.Set.TGSet.instInter.inter A B) = A
+Transliterated theorem: forall A B : Set, A ∪ (A ∩ B) = A
+Logical form (Lean): : forall A B : Set, A ∪ (A ∩ B) = A
+Source: ./TGSet/Laws/Distributivity.lean#L18
+
+
+
+Name: AbsorptionIntersectionUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ∩ (A ∪ B) = A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TGSet.Set), LRA.Set.TGSet.instInter.inter A (LRA.Set.TGSet.instUnion.union A B) = A
+Transliterated theorem: forall A B : Set, A ∩ (A ∪ B) = A
+Logical form (Lean): : forall A B : Set, A ∩ (A ∪ B) = A
+Source: ./TGSet/Laws/Distributivity.lean#L23
+
+
+
+Name: instDistributivityLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.DistributivityLaws LRA.Set.TGSet.Set
+Predicate logic (unfolded): LRA.Set.DistributivityLaws LRA.Set.TGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./TGSet/Laws/Distributivity.lean
+
+
+
+Name: IntersectionCommutative
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ∩ B = B ∩ A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TGSet.Set), LRA.Set.TGSet.instInter.inter A B = LRA.Set.TGSet.instInter.inter B A
+Transliterated theorem: forall A B : Set, A ∩ B = B ∩ A
+Logical form (Lean): : forall A B : Set, A ∩ B = B ∩ A
+Source: ./TGSet/Laws/Intersection.lean#L8
+
+
+
+Name: IntersectionAssociative
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, (A ∩ B) ∩ C = A ∩ (B ∩ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.TGSet.Set), LRA.Set.TGSet.instInter.inter (LRA.Set.TGSet.instInter.inter A B) C = LRA.Set.TGSet.instInter.inter A (LRA.Set.TGSet.instInter.inter B C)
+Transliterated theorem: forall A B C : Set, (A ∩ B) ∩ C = A ∩ (B ∩ C)
+Logical form (Lean): : forall A B C : Set, (A ∩ B) ∩ C = A ∩ (B ∩ C)
+Source: ./TGSet/Laws/Intersection.lean#L12
+
+
+
+Name: IntersectionIdempotent
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, A ∩ A = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.TGSet.Set), LRA.Set.TGSet.instInter.inter A A = A
+Transliterated theorem: forall A : Set, A ∩ A = A
+Logical form (Lean): : forall A : Set, A ∩ A = A
+Source: ./TGSet/Laws/Intersection.lean#L17
+
+
+
+Name: EmptyIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, (∅ : Set) ∩ A = (∅ : Set)
+Predicate logic (unfolded): ∀ (A : LRA.Set.TGSet.Set), LRA.Set.TGSet.instInter.inter LRA.Set.TGSet.instEmptyCollection.emptyCollection A = LRA.Set.TGSet.instEmptyCollection.emptyCollection
+Transliterated theorem: forall A : Set, ∅ ∈ Set ∩ A = ∅ ∈ Set
+Logical form (Lean): : forall A : Set, (∅ : Set) ∩ A = (∅ : Set)
+Source: ./TGSet/Laws/Intersection.lean#L21
+
+
+
+Name: IntersectionEmpty
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, A ∩ (∅ : Set) = (∅ : Set)
+Predicate logic (unfolded): ∀ (A : LRA.Set.TGSet.Set), LRA.Set.TGSet.instInter.inter A LRA.Set.TGSet.instEmptyCollection.emptyCollection = LRA.Set.TGSet.instEmptyCollection.emptyCollection
+Transliterated theorem: forall A : Set, A ∩ ∅ ∈ Set = ∅ ∈ Set
+Logical form (Lean): : forall A : Set, A ∩ (∅ : Set) = (∅ : Set)
+Source: ./TGSet/Laws/Intersection.lean#L25
+
+
+
+Name: IntersectionMonotone
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A1 A2 B1 B2 : Set, A1 ⊆ A2 -> B1 ⊆ B2 -> A1 ∩ B1 ⊆ A2 ∩ B2
+Predicate logic (unfolded): ∀ (A1 A2 B1 B2 : LRA.Set.TGSet.Set), (LRA.Set.TGSet.instHasSubset.Subset A1 A2 ∧ LRA.Set.TGSet.instHasSubset.Subset B1 B2) → LRA.Set.TGSet.instHasSubset.Subset (LRA.Set.TGSet.instInter.inter A1 B1) (LRA.Set.TGSet.instInter.inter A2 B2)
+Transliterated theorem: forall A1 A2 B1 B2 : Set, A1 ⊆ A2 -> B1 ⊆ B2 -> A1 ∩ B1 ⊆ A2 ∩ B2
+Logical form (Lean): : forall A1 A2 B1 B2 : Set, A1 ⊆ A2 -> B1 ⊆ B2 -> A1 ∩ B1 ⊆ A2 ∩ B2
+Source: ./TGSet/Laws/Intersection.lean#L29
+
+
+
+Name: SubsetIffIntersectionEqLeft
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ⊆ B <-> A ∩ B = A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TGSet.Set), LRA.Set.TGSet.instHasSubset.Subset A B ↔ LRA.Set.TGSet.instInter.inter A B = A
+Transliterated theorem: forall A B : Set, A ⊆ B <-> A ∩ B = A
+Logical form (Lean): : forall A B : Set, A ⊆ B <-> A ∩ B = A
+Source: ./TGSet/Laws/Intersection.lean#L34
+
+
+
+Name: instIntersectionLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.IntersectionLaws LRA.Set.TGSet.Set
+Predicate logic (unfolded): LRA.Set.IntersectionLaws LRA.Set.TGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./TGSet/Laws/Intersection.lean
+
+
+
+Name: SubsetIffAllMembers
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ⊆ B <-> forall x : Set, x ∈ A -> x ∈ B
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TGSet.Set), LRA.Set.TGSet.instHasSubset.Subset A B ↔ ∀ (x : LRA.Set.TGSet.Set), LRA.Set.instMembershipTGSet.mem A x → LRA.Set.instMembershipTGSet.mem B x
+Transliterated theorem: forall A B : Set, A ⊆ B <-> forall x : Set, x ∈ A -> x ∈ B
+Logical form (Lean): : forall A B : Set, A ⊆ B <-> forall x : Set, x ∈ A -> x ∈ B
+Source: ./TGSet/Laws/Membership.lean#L10
+
+
+
+Name: instExtensionalityLawSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.ExtensionalityLaw LRA.Set.TGSet.Set LRA.Set.TGSet.Set
+Predicate logic (unfolded): LRA.Set.ExtensionalityLaw LRA.Set.TGSet.Set LRA.Set.TGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./TGSet/Laws/Membership.lean
+
+
+
+Name: instPowersetMembershipLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.PowersetMembershipLaws LRA.Set.TGSet.Set LRA.Set.TGSet.Set
+Predicate logic (unfolded): LRA.Set.PowersetMembershipLaws LRA.Set.TGSet.Set LRA.Set.TGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./TGSet/Laws/Membership.lean
+
+
+
+Name: instSymmDiffMembershipLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.SymmDiffMembershipLaws LRA.Set.TGSet.Set LRA.Set.TGSet.Set
+Predicate logic (unfolded): LRA.Set.SymmDiffMembershipLaws LRA.Set.TGSet.Set LRA.Set.TGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./TGSet/Laws/Membership.lean
+
+
+
+Name: instSeparationLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.SeparationLaws LRA.Set.TGSet.Set LRA.Set.TGSet.Set
+Predicate logic (unfolded): LRA.Set.SeparationLaws LRA.Set.TGSet.Set LRA.Set.TGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./TGSet/Laws/Membership.lean
+
+
+
+Name: instCollectionMembershipLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.CollectionMembershipLaws LRA.Set.TGSet.Set LRA.Set.TGSet.Set LRA.Set.TGSet.Set
+Predicate logic (unfolded): LRA.Set.CollectionMembershipLaws LRA.Set.TGSet.Set LRA.Set.TGSet.Set LRA.Set.TGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./TGSet/Laws/Membership.lean
+
+
+
+Name: instMembershipLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.MembershipLaws LRA.Set.TGSet.Set LRA.Set.TGSet.Set
+Predicate logic (unfolded): LRA.Set.MembershipLaws LRA.Set.TGSet.Set LRA.Set.TGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./TGSet/Laws/Membership.lean
+
+
+
+Name: SubsetReflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : LRA.Set.TGSet.Set), LRA.Set.TGSet.instHasSubset.Subset A A
+Predicate logic (unfolded): ∀ (A : LRA.Set.TGSet.Set), LRA.Set.TGSet.instHasSubset.Subset A A
+Transliterated theorem: forall A : Set, A ⊆ A
+Logical form (Lean): : forall A : Set, A ⊆ A
+Source: ./TGSet/Laws/Subset.lean#L8
+
+
+
+Name: SubsetTransitive
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, A ⊆ B -> B ⊆ C -> A ⊆ C
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.TGSet.Set), (LRA.Set.TGSet.instHasSubset.Subset A B ∧ LRA.Set.TGSet.instHasSubset.Subset B C) → LRA.Set.TGSet.instHasSubset.Subset A C
+Transliterated theorem: forall A B C : Set, A ⊆ B -> B ⊆ C -> A ⊆ C
+Logical form (Lean): : forall A B C : Set, A ⊆ B -> B ⊆ C -> A ⊆ C
+Source: ./TGSet/Laws/Subset.lean#L12
+
+
+
+Name: SetEqualityIffMutualSubset
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A = B <-> A ⊆ B /\ B ⊆ A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TGSet.Set), A = B ↔ (LRA.Set.TGSet.instHasSubset.Subset A B ∧ LRA.Set.TGSet.instHasSubset.Subset B A)
+Transliterated theorem: forall A B : Set, A = B <-> A ⊆ B ∧ B ⊆ A
+Logical form (Lean): : forall A B : Set, A = B <-> A ⊆ B /\ B ⊆ A
+Source: ./TGSet/Laws/Subset.lean#L17
+
+
+
+Name: instSubsetLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.SubsetLaws LRA.Set.TGSet.Set
+Predicate logic (unfolded): LRA.Set.SubsetLaws LRA.Set.TGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./TGSet/Laws/Subset.lean
+
+
+
+Name: SymmetricDifferenceAsUnionDifferences
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ∆ B = (A \ B) ∪ (B \ A)
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TGSet.Set), LRA.Set.TGSet.instHasSymmDiff.symmDiff A B = LRA.Set.TGSet.instUnion.union (LRA.Set.TGSet.instSDiff.sdiff A B) (LRA.Set.TGSet.instSDiff.sdiff B A)
+Transliterated theorem: forall A B : Set, A ∆ B = (A \ B) ∪ (B \ A)
+Logical form (Lean): : forall A B : Set, A ∆ B = (A \ B) ∪ (B \ A)
+Source: ./TGSet/Laws/SymmetricDifference.lean#L8
+
+
+
+Name: SymmetricDifferenceAsUnionDifferenceIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ∆ B = (A ∪ B) \ (A ∩ B)
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TGSet.Set), LRA.Set.TGSet.instHasSymmDiff.symmDiff A B = LRA.Set.TGSet.instSDiff.sdiff (LRA.Set.TGSet.instUnion.union A B) (LRA.Set.TGSet.instInter.inter A B)
+Transliterated theorem: forall A B : Set, A ∆ B = (A ∪ B) \ (A ∩ B)
+Logical form (Lean): : forall A B : Set, A ∆ B = (A ∪ B) \ (A ∩ B)
+Source: ./TGSet/Laws/SymmetricDifference.lean#L13
+
+
+
+Name: SymmetricDifferenceCommutative
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ∆ B = B ∆ A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TGSet.Set), LRA.Set.TGSet.instHasSymmDiff.symmDiff A B = LRA.Set.TGSet.instHasSymmDiff.symmDiff B A
+Transliterated theorem: forall A B : Set, A ∆ B = B ∆ A
+Logical form (Lean): : forall A B : Set, A ∆ B = B ∆ A
+Source: ./TGSet/Laws/SymmetricDifference.lean#L18
+
+
+
+Name: SymmetricDifferenceAssociative
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, (A ∆ B) ∆ C = A ∆ (B ∆ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.TGSet.Set), LRA.Set.TGSet.instHasSymmDiff.symmDiff (LRA.Set.TGSet.instHasSymmDiff.symmDiff A B) C = LRA.Set.TGSet.instHasSymmDiff.symmDiff A (LRA.Set.TGSet.instHasSymmDiff.symmDiff B C)
+Transliterated theorem: forall A B C : Set, (A ∆ B) ∆ C = A ∆ (B ∆ C)
+Logical form (Lean): : forall A B C : Set, (A ∆ B) ∆ C = A ∆ (B ∆ C)
+Source: ./TGSet/Laws/SymmetricDifference.lean#L23
+
+
+
+Name: SymmetricDifferenceEmpty
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, A ∆ (∅ : Set) = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.TGSet.Set), LRA.Set.TGSet.instHasSymmDiff.symmDiff A LRA.Set.TGSet.instEmptyCollection.emptyCollection = A
+Transliterated theorem: forall A : Set, A ∆ ∅ ∈ Set = A
+Logical form (Lean): : forall A : Set, A ∆ (∅ : Set) = A
+Source: ./TGSet/Laws/SymmetricDifference.lean#L28
+
+
+
+Name: EmptySymmetricDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, (∅ : Set) ∆ A = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.TGSet.Set), LRA.Set.TGSet.instHasSymmDiff.symmDiff LRA.Set.TGSet.instEmptyCollection.emptyCollection A = A
+Transliterated theorem: forall A : Set, ∅ ∈ Set ∆ A = A
+Logical form (Lean): : forall A : Set, (∅ : Set) ∆ A = A
+Source: ./TGSet/Laws/SymmetricDifference.lean#L32
+
+
+
+Name: SymmetricDifferenceSelf
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, A ∆ A = (∅ : Set)
+Predicate logic (unfolded): ∀ (A : LRA.Set.TGSet.Set), LRA.Set.TGSet.instHasSymmDiff.symmDiff A A = LRA.Set.TGSet.instEmptyCollection.emptyCollection
+Transliterated theorem: forall A : Set, A ∆ A = ∅ ∈ Set
+Logical form (Lean): : forall A : Set, A ∆ A = (∅ : Set)
+Source: ./TGSet/Laws/SymmetricDifference.lean#L36
+
+
+
+Name: SymmetricDifferenceEqEmptyIff
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ∆ B = (∅ : Set) <-> A = B
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TGSet.Set), LRA.Set.TGSet.instHasSymmDiff.symmDiff A B = LRA.Set.TGSet.instEmptyCollection.emptyCollection ↔ A = B
+Transliterated theorem: forall A B : Set, A ∆ B = ∅ ∈ Set <-> A = B
+Logical form (Lean): : forall A B : Set, A ∆ B = (∅ : Set) <-> A = B
+Source: ./TGSet/Laws/SymmetricDifference.lean#L40
+
+
+
+Name: SymmetricDifferenceSubsetUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A B : LRA.Set.TGSet.Set),   LRA.Set.TGSet.instHasSubset.Subset (LRA.Set.TGSet.instHasSymmDiff.symmDiff A B) (LRA.Set.TGSet.instUnion.union A B)
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TGSet.Set), LRA.Set.TGSet.instHasSubset.Subset (LRA.Set.TGSet.instHasSymmDiff.symmDiff A B) (LRA.Set.TGSet.instUnion.union A B)
+Transliterated theorem: forall A B : Set, A ∆ B ⊆ A ∪ B
+Logical form (Lean): : forall A B : Set, A ∆ B ⊆ A ∪ B
+Source: ./TGSet/Laws/SymmetricDifference.lean#L45
+
+
+
+Name: instSymmDiffLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.SymmDiffLaws LRA.Set.TGSet.Set
+Predicate logic (unfolded): LRA.Set.SymmDiffLaws LRA.Set.TGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./TGSet/Laws/SymmetricDifference.lean
+
+
+
+Name: UnionCommutative
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ∪ B = B ∪ A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TGSet.Set), LRA.Set.TGSet.instUnion.union A B = LRA.Set.TGSet.instUnion.union B A
+Transliterated theorem: forall A B : Set, A ∪ B = B ∪ A
+Logical form (Lean): : forall A B : Set, A ∪ B = B ∪ A
+Source: ./TGSet/Laws/Union.lean#L8
+
+
+
+Name: UnionAssociative
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B C : Set, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.TGSet.Set), LRA.Set.TGSet.instUnion.union (LRA.Set.TGSet.instUnion.union A B) C = LRA.Set.TGSet.instUnion.union A (LRA.Set.TGSet.instUnion.union B C)
+Transliterated theorem: forall A B C : Set, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+Logical form (Lean): : forall A B C : Set, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+Source: ./TGSet/Laws/Union.lean#L12
+
+
+
+Name: EmptyUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, (∅ : Set) ∪ A = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.TGSet.Set), LRA.Set.TGSet.instUnion.union LRA.Set.TGSet.instEmptyCollection.emptyCollection A = A
+Transliterated theorem: forall A : Set, ∅ ∈ Set ∪ A = A
+Logical form (Lean): : forall A : Set, (∅ : Set) ∪ A = A
+Source: ./TGSet/Laws/Union.lean#L17
+
+
+
+Name: UnionEmpty
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, A ∪ (∅ : Set) = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.TGSet.Set), LRA.Set.TGSet.instUnion.union A LRA.Set.TGSet.instEmptyCollection.emptyCollection = A
+Transliterated theorem: forall A : Set, A ∪ ∅ ∈ Set = A
+Logical form (Lean): : forall A : Set, A ∪ (∅ : Set) = A
+Source: ./TGSet/Laws/Union.lean#L21
+
+
+
+Name: UnionIdempotent
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A : Set, A ∪ A = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.TGSet.Set), LRA.Set.TGSet.instUnion.union A A = A
+Transliterated theorem: forall A : Set, A ∪ A = A
+Logical form (Lean): : forall A : Set, A ∪ A = A
+Source: ./TGSet/Laws/Union.lean#L25
+
+
+
+Name: UnionMonotone
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A1 A2 B1 B2 : Set, A1 ⊆ A2 -> B1 ⊆ B2 -> A1 ∪ B1 ⊆ A2 ∪ B2
+Predicate logic (unfolded): ∀ (A1 A2 B1 B2 : LRA.Set.TGSet.Set), (LRA.Set.TGSet.instHasSubset.Subset A1 A2 ∧ LRA.Set.TGSet.instHasSubset.Subset B1 B2) → LRA.Set.TGSet.instHasSubset.Subset (LRA.Set.TGSet.instUnion.union A1 B1) (LRA.Set.TGSet.instUnion.union A2 B2)
+Transliterated theorem: forall A1 A2 B1 B2 : Set, A1 ⊆ A2 -> B1 ⊆ B2 -> A1 ∪ B1 ⊆ A2 ∪ B2
+Logical form (Lean): : forall A1 A2 B1 B2 : Set, A1 ⊆ A2 -> B1 ⊆ B2 -> A1 ∪ B1 ⊆ A2 ∪ B2
+Source: ./TGSet/Laws/Union.lean#L29
+
+
+
+Name: SubsetIffUnionEqRight
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set, A ⊆ B <-> A ∪ B = B
+Predicate logic (unfolded): ∀ (A B : LRA.Set.TGSet.Set), LRA.Set.TGSet.instHasSubset.Subset A B ↔ LRA.Set.TGSet.instUnion.union A B = B
+Transliterated theorem: forall A B : Set, A ⊆ B <-> A ∪ B = B
+Logical form (Lean): : forall A B : Set, A ⊆ B <-> A ∪ B = B
+Source: ./TGSet/Laws/Union.lean#L34
+
+
+
+Name: instUnionLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.UnionLaws LRA.Set.TGSet.Set
+Predicate logic (unfolded): LRA.Set.UnionLaws LRA.Set.TGSet.Set
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./TGSet/Laws/Union.lean
+
+
+
+Name: ChoiceSetExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Set) (membersNonempty : ∀ B : Set, B ∈ A → ∃ x : Set, x ∈ B) (membersPairwiseDisjoint : ∀ B C : Set, B ∈ A → C ∈ A → B ≠ C → ∀ x : Set, x ∈ B → x ∉ C), ∃ choiceSet : Set, IsChoiceSetFor A choiceSet
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set), (∀ (B : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.mem A B → Exists fun x => LRA.Set.instMembershipZFCSet.mem B x ∧ ∀ (B C : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.mem A B → LRA.Set.instMembershipZFCSet.mem A C → Ne B C → ∀ (x : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.mem B x → ¬ LRA.Set.instMembershipZFCSet.mem C x) → Exists fun choiceSet => LRA.Set.ZFC.IsChoiceSetFor A choiceSet
+Transliterated theorem: (∀ A ∈ Set), (∀ B : Set, B ∈ A → ∃ x ∈ Set, x ∈ B ∧ ∀ B C : Set, B ∈ A → C ∈ A → B ≠ C → ∀ x : Set, x ∈ B → x ∉ C) → ∃ choiceSet ∈ Set, IsChoiceSetFor A choiceSet
 Logical form (Lean): (A : Set) (membersNonempty : ∀ B : Set, B ∈ A → ∃ x : Set, x ∈ B) (membersPairwiseDisjoint : ∀ B C : Set, B ∈ A → C ∈ A → B ≠ C → ∀ x : Set, x ∈ B → x ∉ C) : ∃ choiceSet : Set, IsChoiceSetFor A choiceSet
 Source: ./ZFC/Choice/Theorems.lean#L14
 
@@ -2324,8 +5426,9 @@ Source: ./ZFC/Choice/Theorems.lean#L14
 Name: TheChoiceSetIsChoiceSetFor
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A : LRA.Set.ZFC.Set)   (membersNonempty :     ∀ (B : LRA.Set.ZFC.Set),       LRA.Set.instMembershipZFCSet.mem A B → Exists fun x => LRA.Set.instMembershipZFCSet.mem B x)   (membersPairwiseDisjoint :     ∀ (B C : LRA.Set.ZFC.Set),       LRA.Set.instMembershipZFCSet.mem A B →         LRA.Set.instMembershipZFCSet.mem A C →           Ne B C →             ∀ (x : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.mem B x → Not (LRA.Set.instMembershipZFCSet.mem C x)),   LRA.Set.ZFC.IsChoiceSetFor A (LRA.Set.ZFC.TheChoiceSet A membersNonempty membersPairwiseDisjoint)
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set)   (membersNonempty :     ∀ (B : LRA.Set.ZFC.Set),       LRA.Set.instMembershipZFCSet.mem A B → Exists fun x => LRA.Set.instMembershipZFCSet.mem B x)   (membersPairwiseDisjoint :     ∀ (B C : LRA.Set.ZFC.Set),       LRA.Set.instMembershipZFCSet.mem A B →         LRA.Set.instMembershipZFCSet.mem A C →           Ne B C →             ∀ (x : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.mem B x → Not (LRA.Set.instMembershipZFCSet.mem C x)),   LRA.Set.ZFC.IsChoiceSetFor A (LRA.Set.ZFC.TheChoiceSet A membersNonempty membersPairwiseDisjoint)
+Predicate logic: ∀ (A : Set) (membersNonempty : ∀ B : Set, B ∈ A → ∃ x : Set, x ∈ B) (membersPairwiseDisjoint : ∀ B C : Set, B ∈ A → C ∈ A → B ≠ C → ∀ x : Set, x ∈ B → x ∉ C), IsChoiceSetFor A (TheChoiceSet A membersNonempty membersPairwiseDisjoint)
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set) (membersNonempty : ∀ (B : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.mem A B → Exists fun x => LRA.Set.instMembershipZFCSet.mem B x) (membersPairwiseDisjoint : ∀ (B C : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.mem A B → LRA.Set.instMembershipZFCSet.mem A C → Ne B C → ∀ (x : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.mem B x → ¬ LRA.Set.instMembershipZFCSet.mem C x), LRA.Set.ZFC.IsChoiceSetFor A (LRA.Set.ZFC.TheChoiceSet A membersNonempty membersPairwiseDisjoint)
+Transliterated theorem: (∀ A ∈ Set), (∀ B : Set, B ∈ A → ∃ x ∈ Set, x ∈ B ∧ ∀ B C : Set, B ∈ A → C ∈ A → B ≠ C → ∀ x : Set, x ∈ B → x ∉ C) → IsChoiceSetFor A (TheChoiceSet A membersNonempty membersPairwiseDisjoint)
 Logical form (Lean): (A : Set) (membersNonempty : ∀ B : Set, B ∈ A → ∃ x : Set, x ∈ B) (membersPairwiseDisjoint : ∀ B C : Set, B ∈ A → C ∈ A → B ≠ C → ∀ x : Set, x ∈ B → x ∉ C) : IsChoiceSetFor A (TheChoiceSet A membersNonempty membersPairwiseDisjoint)
 Source: ./ZFC/Choice/Theorems.lean#L32
 
@@ -2333,9 +5436,10 @@ Source: ./ZFC/Choice/Theorems.lean#L32
 
 Name: SetEqualityIffSameMembers
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ (A B : LRA.Set.ZFCSet),   Iff (Eq A B)     (∀ (x : LRA.Set.ZFCSet), Iff (LRA.Set.instMembershipZFCSet.mem A x) (LRA.Set.instMembershipZFCSet.mem B x))
-Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet),   Iff (Eq A B)     (∀ (x : LRA.Set.ZFCSet), Iff (LRA.Set.instMembershipZFCSet.mem A x) (LRA.Set.instMembershipZFCSet.mem B x))
+State: Sorry
+Predicate logic: ∀ (A B : LRA.Set.ZFCSet), A = B ↔ ∀ x : LRA.Set.ZFCSet, x ∈ A ↔ x ∈ B
+Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet), A = B ↔ ∀ (x : LRA.Set.ZFCSet), LRA.Set.instMembershipZFCSet.mem A x ↔ LRA.Set.instMembershipZFCSet.mem B x
+Transliterated theorem: (∀ A B ∈ LRA.Set.ZFCSet), A = B ↔ ∀ x : LRA.Set.ZFCSet, x ∈ A ↔ x ∈ B
 Logical form (Lean): (A B : LRA.Set.ZFCSet) : A = B ↔ ∀ x : LRA.Set.ZFCSet, x ∈ A ↔ x ∈ B
 Source: ./ZFC/Extensionality/Theorems.lean#L15
 
@@ -2343,9 +5447,10 @@ Source: ./ZFC/Extensionality/Theorems.lean#L15
 
 Name: EmptySetExists
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: Exists fun A => LRA.Set.ZFC.IsEmptySet A
 Predicate logic (unfolded): Exists fun A => LRA.Set.ZFC.IsEmptySet A
+Transliterated theorem: ∃ A ∈ Set, IsEmptySet A
 Logical form (Lean): : ∃ A : Set, IsEmptySet A
 Source: ./ZFC/EmptySet/Theorems.lean#L12
 
@@ -2353,51 +5458,56 @@ Source: ./ZFC/EmptySet/Theorems.lean#L12
 
 Name: EmptySetIsUnique
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {A B : LRA.Set.ZFC.Set}, And (LRA.Set.ZFC.IsEmptySet A) (LRA.Set.ZFC.IsEmptySet B) → Eq B A
-Predicate logic (unfolded): ∀ {A B : LRA.Set.ZFC.Set}, And (LRA.Set.ZFC.IsEmptySet A) (LRA.Set.ZFC.IsEmptySet B) → Eq B A
+State: Sorry
+Predicate logic: ∀ {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B), B = A
+Predicate logic (unfolded): ∀ {A B : LRA.Set.ZFC.Set}, (LRA.Set.ZFC.IsEmptySet A ∧ LRA.Set.ZFC.IsEmptySet B) → B = A
+Transliterated theorem: B = A
 Logical form (Lean): {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B) : B = A
-Source: ./ZFC/EmptySet/Theorems.lean#L20
+Source: ./ZFC/EmptySet/Theorems.lean#L17
 
 
 
 Name: EmptySetsAreEqual
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {A B : LRA.Set.ZFC.Set}, And (LRA.Set.ZFC.IsEmptySet A) (LRA.Set.ZFC.IsEmptySet B) → Eq A B
-Predicate logic (unfolded): ∀ {A B : LRA.Set.ZFC.Set}, And (LRA.Set.ZFC.IsEmptySet A) (LRA.Set.ZFC.IsEmptySet B) → Eq A B
+State: Sorry
+Predicate logic: ∀ {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B), A = B
+Predicate logic (unfolded): ∀ {A B : LRA.Set.ZFC.Set}, (LRA.Set.ZFC.IsEmptySet A ∧ LRA.Set.ZFC.IsEmptySet B) → A = B
+Transliterated theorem: A = B
 Logical form (Lean): {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B) : A = B
-Source: ./ZFC/EmptySet/Theorems.lean#L38
+Source: ./ZFC/EmptySet/Theorems.lean#L25
 
 
 
 Name: EmptySetExistsAndIsUnique
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: LRA.Set.ZFC.ExistsAndUnique LRA.Set.ZFC.IsEmptySet
 Predicate logic (unfolded): LRA.Set.ZFC.ExistsAndUnique LRA.Set.ZFC.IsEmptySet
+Transliterated theorem: ExistsAndUnique IsEmptySet
 Logical form (Lean): : ExistsAndUnique IsEmptySet
-Source: ./ZFC/EmptySet/Theorems.lean#L47
+Source: ./ZFC/EmptySet/Theorems.lean#L34
 
 
 
 Name: TheEmptySetIsEmpty
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: LRA.Set.ZFC.IsEmptySet LRA.Set.ZFC.TheEmptySet
 Predicate logic (unfolded): LRA.Set.ZFC.IsEmptySet LRA.Set.ZFC.TheEmptySet
+Transliterated theorem: IsEmptySet TheEmptySet
 Logical form (Lean): : IsEmptySet TheEmptySet
-Source: ./ZFC/EmptySet/Theorems.lean#L59
+Source: ./ZFC/EmptySet/Theorems.lean#L43
 
 
 
 Name: EveryEmptySetEqualsTheEmptySet
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {A : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsEmptySet A → Eq A LRA.Set.ZFC.TheEmptySet
-Predicate logic (unfolded): ∀ {A : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsEmptySet A → Eq A LRA.Set.ZFC.TheEmptySet
+State: Sorry
+Predicate logic: ∀ {A : Set} (AIsEmpty : IsEmptySet A), A = TheEmptySet
+Predicate logic (unfolded): ∀ {A : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsEmptySet A → A = LRA.Set.ZFC.TheEmptySet
+Transliterated theorem: A = TheEmptySet
 Logical form (Lean): {A : Set} (AIsEmpty : IsEmptySet A) : A = TheEmptySet
-Source: ./ZFC/EmptySet/Theorems.lean#L66
+Source: ./ZFC/EmptySet/Theorems.lean#L48
 
 
 
@@ -2406,6 +5516,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: Exists fun A => LRA.Set.ZFC.IsInductiveSet A
 Predicate logic (unfolded): Exists fun A => LRA.Set.ZFC.IsInductiveSet A
+Transliterated theorem: ∃ A ∈ Set, IsInductiveSet A
 Logical form (Lean): : ∃ A : Set, IsInductiveSet A
 Source: ./ZFC/Infinity/Theorems.lean#L16
 
@@ -2413,9 +5524,10 @@ Source: ./ZFC/Infinity/Theorems.lean#L16
 
 Name: PairSetExists
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (x1 x2 : LRA.Set.ZFC.Set), Exists fun P => LRA.Set.ZFC.IsPairSet x1 x2 P
 Predicate logic (unfolded): ∀ (x1 x2 : LRA.Set.ZFC.Set), Exists fun P => LRA.Set.ZFC.IsPairSet x1 x2 P
+Transliterated theorem: (∀ x1 x2 ∈ Set), ∃ P ∈ Set, IsPairSet x1 x2 P
 Logical form (Lean): (x1 x2 : Set) : ∃ P : Set, IsPairSet x1 x2 P
 Source: ./ZFC/Pairing/Theorems.lean#L12
 
@@ -2423,51 +5535,56 @@ Source: ./ZFC/Pairing/Theorems.lean#L12
 
 Name: PairSetIsUnique
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {x1 x2 P G : LRA.Set.ZFC.Set}, And (LRA.Set.ZFC.IsPairSet x1 x2 P) (LRA.Set.ZFC.IsPairSet x1 x2 G) → Eq G P
-Predicate logic (unfolded): ∀ {x1 x2 P G : LRA.Set.ZFC.Set}, And (LRA.Set.ZFC.IsPairSet x1 x2 P) (LRA.Set.ZFC.IsPairSet x1 x2 G) → Eq G P
+State: Sorry
+Predicate logic: ∀ {x1 x2 P G : Set} (PIsPairSet : IsPairSet x1 x2 P) (GIsPairSet : IsPairSet x1 x2 G), G = P
+Predicate logic (unfolded): ∀ {x1 x2 P G : LRA.Set.ZFC.Set}, (LRA.Set.ZFC.IsPairSet x1 x2 P ∧ LRA.Set.ZFC.IsPairSet x1 x2 G) → G = P
+Transliterated theorem: G = P
 Logical form (Lean): {x1 x2 P G : Set} (PIsPairSet : IsPairSet x1 x2 P) (GIsPairSet : IsPairSet x1 x2 G) : G = P
-Source: ./ZFC/Pairing/Theorems.lean#L18
+Source: ./ZFC/Pairing/Theorems.lean#L17
 
 
 
 Name: PairingOutputExistsAndIsUnique
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (x1 x2 : LRA.Set.ZFC.Set), LRA.Set.ZFC.ExistsAndUnique fun P => LRA.Set.ZFC.IsPairSet x1 x2 P
 Predicate logic (unfolded): ∀ (x1 x2 : LRA.Set.ZFC.Set), LRA.Set.ZFC.ExistsAndUnique fun P => LRA.Set.ZFC.IsPairSet x1 x2 P
+Transliterated theorem: (∀ x1 x2 ∈ Set), ExistsAndUnique fun P ∈ Set => IsPairSet x1 x2 P
 Logical form (Lean): (x1 x2 : Set) : ExistsAndUnique (fun P : Set => IsPairSet x1 x2 P)
-Source: ./ZFC/Pairing/Theorems.lean#L55
+Source: ./ZFC/Pairing/Theorems.lean#L26
 
 
 
 Name: PairSetMembership
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ (x1 x2 w : LRA.Set.ZFC.Set),   Iff (LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.PairSet x1 x2) w) (Or (Eq w x1) (Eq w x2))
-Predicate logic (unfolded): ∀ (x1 x2 w : LRA.Set.ZFC.Set),   Iff (LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.PairSet x1 x2) w) (Or (Eq w x1) (Eq w x2))
+State: Sorry
+Predicate logic: ∀ (x1 x2 w : Set), w ∈ PairSet x1 x2 ↔ w = x1 ∨ w = x2
+Predicate logic (unfolded): ∀ (x1 x2 w : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.PairSet x1 x2) w ↔ Or (w = x1)(w = x2)
+Transliterated theorem: (∀ x1 x2 w ∈ Set), w ∈ PairSet x1 x2 ↔ w = x1 ∨ w = x2
 Logical form (Lean): (x1 x2 w : Set) : w ∈ PairSet x1 x2 ↔ w = x1 ∨ w = x2
-Source: ./ZFC/Pairing/Theorems.lean#L68
+Source: ./ZFC/Pairing/Theorems.lean#L35
 
 
 
 Name: EveryPairSetEqualsPairSet
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {x1 x2 P : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsPairSet x1 x2 P → Eq P (LRA.Set.ZFC.PairSet x1 x2)
-Predicate logic (unfolded): ∀ {x1 x2 P : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsPairSet x1 x2 P → Eq P (LRA.Set.ZFC.PairSet x1 x2)
+State: Sorry
+Predicate logic: ∀ {x1 x2 P : Set} (PIsPairSet : IsPairSet x1 x2 P), P = PairSet x1 x2
+Predicate logic (unfolded): ∀ {x1 x2 P : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsPairSet x1 x2 P → P = LRA.Set.ZFC.PairSet x1 x2
+Transliterated theorem: P = PairSet x1 x2
 Logical form (Lean): {x1 x2 P : Set} (PIsPairSet : IsPairSet x1 x2 P) : P = PairSet x1 x2
-Source: ./ZFC/Pairing/Theorems.lean#L75
+Source: ./ZFC/Pairing/Theorems.lean#L40
 
 
 
 Name: TheSingletonIsSingletonSet
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (x : LRA.Set.ZFC.Set), LRA.Set.ZFC.IsSingletonSet x (LRA.Set.ZFC.TheSingleton x)
 Predicate logic (unfolded): ∀ (x : LRA.Set.ZFC.Set), LRA.Set.ZFC.IsSingletonSet x (LRA.Set.ZFC.TheSingleton x)
+Transliterated theorem: (∀ x ∈ Set), IsSingletonSet x (TheSingleton x)
 Logical form (Lean): (x : Set) : IsSingletonSet x (TheSingleton x)
-Source: ./ZFC/Pairing/Theorems.lean#L88
+Source: ./ZFC/Pairing/Theorems.lean#L51
 
 
 
@@ -2475,7 +5592,8 @@ Name: FoundationWitnessExists
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : LRA.Set.ZFC.Set),   (Exists fun w => LRA.Set.instMembershipZFCSet.mem A w) → Exists fun x => LRA.Set.ZFC.IsFoundationWitness A x
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set),   (Exists fun w => LRA.Set.instMembershipZFCSet.mem A w) → Exists fun x => LRA.Set.ZFC.IsFoundationWitness A x
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set), (Exists fun w => LRA.Set.instMembershipZFCSet.mem A w) → Exists fun x => LRA.Set.ZFC.IsFoundationWitness A x
+Transliterated theorem: (∀ A ∈ Set), (∃ w ∈ Set, w ∈ A) → ∃ x ∈ Set, IsFoundationWitness A x
 Logical form (Lean): (A : Set) (nonempty : ∃ w : Set, w ∈ A) : ∃ x : Set, IsFoundationWitness A x
 Source: ./ZFC/Foundation/Theorems.lean#L13
 
@@ -2484,8 +5602,9 @@ Source: ./ZFC/Foundation/Theorems.lean#L13
 Name: NoSetIsMemberOfItself
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A : LRA.Set.ZFC.Set), Not (LRA.Set.instMembershipZFCSet.mem A A)
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set), Not (LRA.Set.instMembershipZFCSet.mem A A)
+Predicate logic: ∀ (A : Set), A ∉ A
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set), ¬ LRA.Set.instMembershipZFCSet.mem A A
+Transliterated theorem: (∀ A ∈ Set), A ∉ A
 Logical form (Lean): (A : Set) : A ∉ A
 Source: ./ZFC/Foundation/Theorems.lean#L19
 
@@ -2494,8 +5613,9 @@ Source: ./ZFC/Foundation/Theorems.lean#L19
 Name: MemberOfSingletonSet
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (element candidate : LRA.Set.ZFC.Set),   Iff (LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.SingletonSet element) candidate) (Eq candidate element)
-Predicate logic (unfolded): ∀ (element candidate : LRA.Set.ZFC.Set),   Iff (LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.SingletonSet element) candidate) (Eq candidate element)
+Predicate logic: ∀ (element candidate : Set), candidate ∈ SingletonSet element ↔ candidate = element
+Predicate logic (unfolded): ∀ (element candidate : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.SingletonSet element) candidate ↔ candidate = element
+Transliterated theorem: (∀ element candidate ∈ Set), candidate ∈ SingletonSet element ↔ candidate = element
 Logical form (Lean): (element candidate : Set) : candidate ∈ SingletonSet element ↔ candidate = element
 Source: ./ZFC/OrderedPair/Theorems.lean#L23
 
@@ -2504,8 +5624,9 @@ Source: ./ZFC/OrderedPair/Theorems.lean#L23
 Name: KuratowskiPairInjective
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (firstLeft secondLeft firstRight secondRight : LRA.Set.ZFC.Set),   Iff (Eq (LRA.Set.ZFC.KuratowskiPair firstLeft firstRight) (LRA.Set.ZFC.KuratowskiPair secondLeft secondRight))     (And (Eq firstLeft secondLeft) (Eq firstRight secondRight))
-Predicate logic (unfolded): ∀ (firstLeft secondLeft firstRight secondRight : LRA.Set.ZFC.Set),   Iff (Eq (LRA.Set.ZFC.KuratowskiPair firstLeft firstRight) (LRA.Set.ZFC.KuratowskiPair secondLeft secondRight))     (And (Eq firstLeft secondLeft) (Eq firstRight secondRight))
+Predicate logic: ∀ (firstLeft secondLeft firstRight secondRight : Set), KuratowskiPair firstLeft firstRight = KuratowskiPair secondLeft secondRight ↔ firstLeft = secondLeft ∧ firstRight = secondRight
+Predicate logic (unfolded): ∀ (firstLeft secondLeft firstRight secondRight : LRA.Set.ZFC.Set), LRA.Set.ZFC.KuratowskiPair firstLeft firstRight = LRA.Set.ZFC.KuratowskiPair secondLeft secondRight ↔ (firstLeft = secondLeft ∧ firstRight = secondRight)
+Transliterated theorem: (∀ firstLeft secondLeft firstRight secondRight ∈ Set), KuratowskiPair firstLeft firstRight = KuratowskiPair secondLeft secondRight ↔ firstLeft = secondLeft ∧ firstRight = secondRight
 Logical form (Lean): (firstLeft secondLeft firstRight secondRight : Set) : KuratowskiPair firstLeft firstRight = KuratowskiPair secondLeft secondRight ↔ firstLeft = secondLeft ∧ firstRight = secondRight
 Source: ./ZFC/OrderedPair/Theorems.lean#L29
 
@@ -2515,7 +5636,8 @@ Name: SingletonMemberOfKuratowskiPair
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (first second : LRA.Set.ZFC.Set),   LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.KuratowskiPair first second) (LRA.Set.ZFC.SingletonSet first)
-Predicate logic (unfolded): ∀ (first second : LRA.Set.ZFC.Set),   LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.KuratowskiPair first second) (LRA.Set.ZFC.SingletonSet first)
+Predicate logic (unfolded): ∀ (first second : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.KuratowskiPair first second) (LRA.Set.ZFC.SingletonSet first)
+Transliterated theorem: (∀ first second ∈ Set), SingletonSet first ∈ KuratowskiPair first second
 Logical form (Lean): (first second : Set) : SingletonSet first ∈ KuratowskiPair first second
 Source: ./ZFC/OrderedPair/Theorems.lean#L37
 
@@ -2526,6 +5648,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: LRA.Set.PairingLaws LRA.Set.ZFC.Set LRA.Set.ZFC.Set LRA.Set.ZFC.Set
 Predicate logic (unfolded): LRA.Set.PairingLaws LRA.Set.ZFC.Set LRA.Set.ZFC.Set LRA.Set.ZFC.Set
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./ZFC/OrderedPair/Theorems.lean
 
@@ -2536,6 +5659,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : LRA.Set.ZFC.Set), Exists fun P => LRA.Set.ZFC.IsPowerSetOf A P
 Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set), Exists fun P => LRA.Set.ZFC.IsPowerSetOf A P
+Transliterated theorem: (∀ A ∈ Set), ∃ P ∈ Set, IsPowerSetOf A P
 Logical form (Lean): (A : Set) : ∃ P : Set, IsPowerSetOf A P
 Source: ./ZFC/PowerSet/Theorems.lean#L12
 
@@ -2544,8 +5668,9 @@ Source: ./ZFC/PowerSet/Theorems.lean#L12
 Name: PowerSetOfIsUnique
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {A P Q : LRA.Set.ZFC.Set}, And (LRA.Set.ZFC.IsPowerSetOf A P) (LRA.Set.ZFC.IsPowerSetOf A Q) → Eq Q P
-Predicate logic (unfolded): ∀ {A P Q : LRA.Set.ZFC.Set}, And (LRA.Set.ZFC.IsPowerSetOf A P) (LRA.Set.ZFC.IsPowerSetOf A Q) → Eq Q P
+Predicate logic: ∀ {A P Q : Set} (PIsPowerSetOf : IsPowerSetOf A P) (QIsPowerSetOf : IsPowerSetOf A Q), Q = P
+Predicate logic (unfolded): ∀ {A P Q : LRA.Set.ZFC.Set}, (LRA.Set.ZFC.IsPowerSetOf A P ∧ LRA.Set.ZFC.IsPowerSetOf A Q) → Q = P
+Transliterated theorem: Q = P
 Logical form (Lean): {A P Q : Set} (PIsPowerSetOf : IsPowerSetOf A P) (QIsPowerSetOf : IsPowerSetOf A Q) : Q = P
 Source: ./ZFC/PowerSet/Theorems.lean#L17
 
@@ -2556,6 +5681,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : LRA.Set.ZFC.Set), LRA.Set.ZFC.ExistsAndUnique fun P => LRA.Set.ZFC.IsPowerSetOf A P
 Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set), LRA.Set.ZFC.ExistsAndUnique fun P => LRA.Set.ZFC.IsPowerSetOf A P
+Transliterated theorem: (∀ A ∈ Set), ExistsAndUnique fun P ∈ Set => IsPowerSetOf A P
 Logical form (Lean): (A : Set) : ExistsAndUnique (fun P : Set => IsPowerSetOf A P)
 Source: ./ZFC/PowerSet/Theorems.lean#L26
 
@@ -2566,6 +5692,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : LRA.Set.ZFC.Set), LRA.Set.ZFC.IsPowerSetOf A (LRA.Set.ZFC.ThePowerSet A)
 Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set), LRA.Set.ZFC.IsPowerSetOf A (LRA.Set.ZFC.ThePowerSet A)
+Transliterated theorem: (∀ A ∈ Set), IsPowerSetOf A (ThePowerSet A)
 Logical form (Lean): (A : Set) : IsPowerSetOf A (ThePowerSet A)
 Source: ./ZFC/PowerSet/Theorems.lean#L35
 
@@ -2574,8 +5701,9 @@ Source: ./ZFC/PowerSet/Theorems.lean#L35
 Name: EveryPowerSetOfEqualsThePowerSet
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {A P : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsPowerSetOf A P → Eq P (LRA.Set.ZFC.ThePowerSet A)
-Predicate logic (unfolded): ∀ {A P : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsPowerSetOf A P → Eq P (LRA.Set.ZFC.ThePowerSet A)
+Predicate logic: ∀ {A P : Set} (PIsPowerSetOf : IsPowerSetOf A P), P = ThePowerSet A
+Predicate logic (unfolded): ∀ {A P : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsPowerSetOf A P → P = LRA.Set.ZFC.ThePowerSet A
+Transliterated theorem: P = ThePowerSet A
 Logical form (Lean): {A P : Set} (PIsPowerSetOf : IsPowerSetOf A P) : P = ThePowerSet A
 Source: ./ZFC/PowerSet/Theorems.lean#L40
 
@@ -2585,7 +5713,8 @@ Name: ReplacementImageExists
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : LRA.Set.ZFC.Set) (relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop),   LRA.Set.ZFC.IsFunctionalOn A relation → Exists fun B => LRA.Set.ZFC.IsReplacementImageOf A relation B
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set) (relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop),   LRA.Set.ZFC.IsFunctionalOn A relation → Exists fun B => LRA.Set.ZFC.IsReplacementImageOf A relation B
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set) (relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop), LRA.Set.ZFC.IsFunctionalOn A relation → Exists fun B => LRA.Set.ZFC.IsReplacementImageOf A relation B
+Transliterated theorem: (∀ A ∈ Set), (Set → Set → Prop) → ∃ B ∈ Set, IsReplacementImageOf A relation B
 Logical form (Lean): (A : Set) (relation : Set → Set → Prop) (functional : IsFunctionalOn A relation) : ∃ B : Set, IsReplacementImageOf A relation B
 Source: ./ZFC/Replacement/Theorems.lean#L15
 
@@ -2594,8 +5723,9 @@ Source: ./ZFC/Replacement/Theorems.lean#L15
 Name: ReplacementImageIsUnique
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {A : LRA.Set.ZFC.Set} {relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop} {B C : LRA.Set.ZFC.Set},   And (LRA.Set.ZFC.IsReplacementImageOf A relation B) (LRA.Set.ZFC.IsReplacementImageOf A relation C) → Eq C B
-Predicate logic (unfolded): ∀ {A : LRA.Set.ZFC.Set} {relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop} {B C : LRA.Set.ZFC.Set},   And (LRA.Set.ZFC.IsReplacementImageOf A relation B) (LRA.Set.ZFC.IsReplacementImageOf A relation C) → Eq C B
+Predicate logic: ∀ {A : Set} {relation : Set → Set → Prop} {B C : Set} (BIsReplacementImageOf : IsReplacementImageOf A relation B) (CIsReplacementImageOf : IsReplacementImageOf A relation C), C = B
+Predicate logic (unfolded): ∀ {A : LRA.Set.ZFC.Set} {relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop} {B C : LRA.Set.ZFC.Set}, (LRA.Set.ZFC.IsReplacementImageOf A relation B ∧ LRA.Set.ZFC.IsReplacementImageOf A relation C) → C = B
+Transliterated theorem: C = B
 Logical form (Lean): {A : Set} {relation : Set → Set → Prop} {B C : Set} (BIsReplacementImageOf : IsReplacementImageOf A relation B) (CIsReplacementImageOf : IsReplacementImageOf A relation C) : C = B
 Source: ./ZFC/Replacement/Theorems.lean#L22
 
@@ -2605,7 +5735,8 @@ Name: ReplacementImageExistsAndIsUnique
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : LRA.Set.ZFC.Set) (relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop),   LRA.Set.ZFC.IsFunctionalOn A relation →     LRA.Set.ZFC.ExistsAndUnique fun B => LRA.Set.ZFC.IsReplacementImageOf A relation B
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set) (relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop),   LRA.Set.ZFC.IsFunctionalOn A relation →     LRA.Set.ZFC.ExistsAndUnique fun B => LRA.Set.ZFC.IsReplacementImageOf A relation B
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set) (relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop), LRA.Set.ZFC.IsFunctionalOn A relation → LRA.Set.ZFC.ExistsAndUnique fun B => LRA.Set.ZFC.IsReplacementImageOf A relation B
+Transliterated theorem: (∀ A ∈ Set), (Set → Set → Prop) → ExistsAndUnique fun B ∈ Set => IsReplacementImageOf A relation B
 Logical form (Lean): (A : Set) (relation : Set → Set → Prop) (functional : IsFunctionalOn A relation) : ExistsAndUnique (fun B : Set => IsReplacementImageOf A relation B)
 Source: ./ZFC/Replacement/Theorems.lean#L31
 
@@ -2615,7 +5746,8 @@ Name: TheReplacementImageIsReplacementImageOf
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : LRA.Set.ZFC.Set) (relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop)   (functional : LRA.Set.ZFC.IsFunctionalOn A relation),   LRA.Set.ZFC.IsReplacementImageOf A relation (LRA.Set.ZFC.TheReplacementImage A relation functional)
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set) (relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop)   (functional : LRA.Set.ZFC.IsFunctionalOn A relation),   LRA.Set.ZFC.IsReplacementImageOf A relation (LRA.Set.ZFC.TheReplacementImage A relation functional)
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set) (relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop) (functional : LRA.Set.ZFC.IsFunctionalOn A relation), LRA.Set.ZFC.IsReplacementImageOf A relation (LRA.Set.ZFC.TheReplacementImage A relation functional)
+Transliterated theorem: (∀ A ∈ Set), (Set → Set → Prop) → IsReplacementImageOf A relation (TheReplacementImage A relation functional)
 Logical form (Lean): (A : Set) (relation : Set → Set → Prop) (functional : IsFunctionalOn A relation) : IsReplacementImageOf A relation (TheReplacementImage A relation functional)
 Source: ./ZFC/Replacement/Theorems.lean#L44
 
@@ -2624,8 +5756,9 @@ Source: ./ZFC/Replacement/Theorems.lean#L44
 Name: EveryReplacementImageEqualsTheReplacementImage
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {A : LRA.Set.ZFC.Set} {relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop}   (functional : LRA.Set.ZFC.IsFunctionalOn A relation) {B : LRA.Set.ZFC.Set},   LRA.Set.ZFC.IsReplacementImageOf A relation B → Eq B (LRA.Set.ZFC.TheReplacementImage A relation functional)
-Predicate logic (unfolded): ∀ {A : LRA.Set.ZFC.Set} {relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop}   (functional : LRA.Set.ZFC.IsFunctionalOn A relation) {B : LRA.Set.ZFC.Set},   LRA.Set.ZFC.IsReplacementImageOf A relation B → Eq B (LRA.Set.ZFC.TheReplacementImage A relation functional)
+Predicate logic: ∀ {A : Set} {relation : Set → Set → Prop} (functional : IsFunctionalOn A relation) {B : Set} (BIsReplacementImageOf : IsReplacementImageOf A relation B), B = TheReplacementImage A relation functional
+Predicate logic (unfolded): ∀ {A : LRA.Set.ZFC.Set} {relation : LRA.Set.ZFC.Set → LRA.Set.ZFC.Set → Prop} (functional : LRA.Set.ZFC.IsFunctionalOn A relation) {B : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsReplacementImageOf A relation B → B = LRA.Set.ZFC.TheReplacementImage A relation functional
+Transliterated theorem: B = TheReplacementImage A relation functional
 Logical form (Lean): {A : Set} {relation : Set → Set → Prop} (functional : IsFunctionalOn A relation) {B : Set} (BIsReplacementImageOf : IsReplacementImageOf A relation B) : B = TheReplacementImage A relation functional
 Source: ./ZFC/Replacement/Theorems.lean#L51
 
@@ -2636,6 +5769,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : LRA.Set.ZFC.Set) (property : LRA.Set.ZFC.Set → Prop), Exists fun B => LRA.Set.ZFC.IsSeparatedSubset A property B
 Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set) (property : LRA.Set.ZFC.Set → Prop), Exists fun B => LRA.Set.ZFC.IsSeparatedSubset A property B
+Transliterated theorem: (∀ A ∈ Set), (Set → Prop) → ∃ B ∈ Set, IsSeparatedSubset A property B
 Logical form (Lean): (A : Set) (property : Set → Prop) : ∃ B : Set, IsSeparatedSubset A property B
 Source: ./ZFC/Separation/Theorems.lean#L15
 
@@ -2644,8 +5778,9 @@ Source: ./ZFC/Separation/Theorems.lean#L15
 Name: SeparatedSubsetIsUnique
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {A : LRA.Set.ZFC.Set} {property : LRA.Set.ZFC.Set → Prop} {B C : LRA.Set.ZFC.Set},   And (LRA.Set.ZFC.IsSeparatedSubset A property B) (LRA.Set.ZFC.IsSeparatedSubset A property C) → Eq C B
-Predicate logic (unfolded): ∀ {A : LRA.Set.ZFC.Set} {property : LRA.Set.ZFC.Set → Prop} {B C : LRA.Set.ZFC.Set},   And (LRA.Set.ZFC.IsSeparatedSubset A property B) (LRA.Set.ZFC.IsSeparatedSubset A property C) → Eq C B
+Predicate logic: ∀ {A : Set} {property : Set → Prop} {B C : Set} (BIsSeparatedSubset : IsSeparatedSubset A property B) (CIsSeparatedSubset : IsSeparatedSubset A property C), C = B
+Predicate logic (unfolded): ∀ {A : LRA.Set.ZFC.Set} {property : LRA.Set.ZFC.Set → Prop} {B C : LRA.Set.ZFC.Set}, (LRA.Set.ZFC.IsSeparatedSubset A property B ∧ LRA.Set.ZFC.IsSeparatedSubset A property C) → C = B
+Transliterated theorem: C = B
 Logical form (Lean): {A : Set} {property : Set → Prop} {B C : Set} (BIsSeparatedSubset : IsSeparatedSubset A property B) (CIsSeparatedSubset : IsSeparatedSubset A property C) : C = B
 Source: ./ZFC/Separation/Theorems.lean#L20
 
@@ -2655,7 +5790,8 @@ Name: SeparatedSubsetExistsAndIsUnique
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : LRA.Set.ZFC.Set) (property : LRA.Set.ZFC.Set → Prop),   LRA.Set.ZFC.ExistsAndUnique fun B => LRA.Set.ZFC.IsSeparatedSubset A property B
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set) (property : LRA.Set.ZFC.Set → Prop),   LRA.Set.ZFC.ExistsAndUnique fun B => LRA.Set.ZFC.IsSeparatedSubset A property B
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set) (property : LRA.Set.ZFC.Set → Prop), LRA.Set.ZFC.ExistsAndUnique fun B => LRA.Set.ZFC.IsSeparatedSubset A property B
+Transliterated theorem: (∀ A ∈ Set), (Set → Prop) → ExistsAndUnique fun B ∈ Set => IsSeparatedSubset A property B
 Logical form (Lean): (A : Set) (property : Set → Prop) : ExistsAndUnique (fun B : Set => IsSeparatedSubset A property B)
 Source: ./ZFC/Separation/Theorems.lean#L29
 
@@ -2665,7 +5801,8 @@ Name: TheSeparatedSubsetIsSeparatedSubset
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : LRA.Set.ZFC.Set) (property : LRA.Set.ZFC.Set → Prop),   LRA.Set.ZFC.IsSeparatedSubset A property (LRA.Set.ZFC.TheSeparatedSubset A property)
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set) (property : LRA.Set.ZFC.Set → Prop),   LRA.Set.ZFC.IsSeparatedSubset A property (LRA.Set.ZFC.TheSeparatedSubset A property)
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set) (property : LRA.Set.ZFC.Set → Prop), LRA.Set.ZFC.IsSeparatedSubset A property (LRA.Set.ZFC.TheSeparatedSubset A property)
+Transliterated theorem: (∀ A ∈ Set), (Set → Prop) → IsSeparatedSubset A property (TheSeparatedSubset A property)
 Logical form (Lean): (A : Set) (property : Set → Prop) : IsSeparatedSubset A property (TheSeparatedSubset A property)
 Source: ./ZFC/Separation/Theorems.lean#L38
 
@@ -2674,8 +5811,9 @@ Source: ./ZFC/Separation/Theorems.lean#L38
 Name: EverySeparatedSubsetEqualsTheSeparatedSubset
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {A : LRA.Set.ZFC.Set} {property : LRA.Set.ZFC.Set → Prop} {B : LRA.Set.ZFC.Set},   LRA.Set.ZFC.IsSeparatedSubset A property B → Eq B (LRA.Set.ZFC.TheSeparatedSubset A property)
-Predicate logic (unfolded): ∀ {A : LRA.Set.ZFC.Set} {property : LRA.Set.ZFC.Set → Prop} {B : LRA.Set.ZFC.Set},   LRA.Set.ZFC.IsSeparatedSubset A property B → Eq B (LRA.Set.ZFC.TheSeparatedSubset A property)
+Predicate logic: ∀ {A : Set} {property : Set → Prop} {B : Set} (BIsSeparatedSubset : IsSeparatedSubset A property B), B = TheSeparatedSubset A property
+Predicate logic (unfolded): ∀ {A : LRA.Set.ZFC.Set} {property : LRA.Set.ZFC.Set → Prop} {B : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsSeparatedSubset A property B → B = LRA.Set.ZFC.TheSeparatedSubset A property
+Transliterated theorem: B = TheSeparatedSubset A property
 Logical form (Lean): {A : Set} {property : Set → Prop} {B : Set} (BIsSeparatedSubset : IsSeparatedSubset A property B) : B = TheSeparatedSubset A property
 Source: ./ZFC/Separation/Theorems.lean#L43
 
@@ -2686,6 +5824,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A B : LRA.Set.ZFC.Set), LRA.Set.ZFC.IsIntersectionOf A B (LRA.Set.ZFC.TheIntersection A B)
 Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFC.Set), LRA.Set.ZFC.IsIntersectionOf A B (LRA.Set.ZFC.TheIntersection A B)
+Transliterated theorem: (∀ A B ∈ Set), IsIntersectionOf A B (TheIntersection A B)
 Logical form (Lean): (A B : Set) : IsIntersectionOf A B (TheIntersection A B)
 Source: ./ZFC/Intersection/Theorems.lean#L16
 
@@ -2694,8 +5833,9 @@ Source: ./ZFC/Intersection/Theorems.lean#L16
 Name: TheIntersectionMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B x : LRA.Set.ZFC.Set),   Iff (LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.TheIntersection A B) x)     (And (LRA.Set.instMembershipZFCSet.mem A x) (LRA.Set.instMembershipZFCSet.mem B x))
-Predicate logic (unfolded): ∀ (A B x : LRA.Set.ZFC.Set),   Iff (LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.TheIntersection A B) x)     (And (LRA.Set.instMembershipZFCSet.mem A x) (LRA.Set.instMembershipZFCSet.mem B x))
+Predicate logic: ∀ (A B x : Set), x ∈ TheIntersection A B ↔ x ∈ A ∧ x ∈ B
+Predicate logic (unfolded): ∀ (A B x : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.TheIntersection A B) x ↔ (LRA.Set.instMembershipZFCSet.mem A x ∧ LRA.Set.instMembershipZFCSet.mem B x)
+Transliterated theorem: (∀ A B x ∈ Set), x ∈ TheIntersection A B ↔ x ∈ A ∧ x ∈ B
 Logical form (Lean): (A B x : Set) : x ∈ TheIntersection A B ↔ x ∈ A ∧ x ∈ B
 Source: ./ZFC/Intersection/Theorems.lean#L21
 
@@ -2704,8 +5844,9 @@ Source: ./ZFC/Intersection/Theorems.lean#L21
 Name: EveryIntersectionEqualsTheIntersection
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {A B D : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsIntersectionOf A B D → Eq D (LRA.Set.ZFC.TheIntersection A B)
-Predicate logic (unfolded): ∀ {A B D : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsIntersectionOf A B D → Eq D (LRA.Set.ZFC.TheIntersection A B)
+Predicate logic: ∀ {A B D : Set} (DIsIntersectionOf : IsIntersectionOf A B D), D = TheIntersection A B
+Predicate logic (unfolded): ∀ {A B D : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsIntersectionOf A B D → D = LRA.Set.ZFC.TheIntersection A B
+Transliterated theorem: D = TheIntersection A B
 Logical form (Lean): {A B D : Set} (DIsIntersectionOf : IsIntersectionOf A B D) : D = TheIntersection A B
 Source: ./ZFC/Intersection/Theorems.lean#L26
 
@@ -2716,6 +5857,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A B : LRA.Set.ZFC.Set), LRA.Set.ZFC.IsRelativeComplementOf A B (LRA.Set.ZFC.TheRelativeComplement A B)
 Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFC.Set), LRA.Set.ZFC.IsRelativeComplementOf A B (LRA.Set.ZFC.TheRelativeComplement A B)
+Transliterated theorem: (∀ A B ∈ Set), IsRelativeComplementOf A B (TheRelativeComplement A B)
 Logical form (Lean): (A B : Set) : IsRelativeComplementOf A B (TheRelativeComplement A B)
 Source: ./ZFC/RelativeComplement/Theorems.lean#L16
 
@@ -2724,8 +5866,9 @@ Source: ./ZFC/RelativeComplement/Theorems.lean#L16
 Name: TheRelativeComplementMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B x : LRA.Set.ZFC.Set),   Iff (LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.TheRelativeComplement A B) x)     (And (LRA.Set.instMembershipZFCSet.mem A x) (Not (LRA.Set.instMembershipZFCSet.mem B x)))
-Predicate logic (unfolded): ∀ (A B x : LRA.Set.ZFC.Set),   Iff (LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.TheRelativeComplement A B) x)     (And (LRA.Set.instMembershipZFCSet.mem A x) (Not (LRA.Set.instMembershipZFCSet.mem B x)))
+Predicate logic: ∀ (A B x : Set), x ∈ TheRelativeComplement A B ↔ x ∈ A ∧ x ∉ B
+Predicate logic (unfolded): ∀ (A B x : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.TheRelativeComplement A B) x ↔ (LRA.Set.instMembershipZFCSet.mem A x ∧ ¬ LRA.Set.instMembershipZFCSet.mem B x)
+Transliterated theorem: (∀ A B x ∈ Set), x ∈ TheRelativeComplement A B ↔ x ∈ A ∧ x ∉ B
 Logical form (Lean): (A B x : Set) : x ∈ TheRelativeComplement A B ↔ x ∈ A ∧ x ∉ B
 Source: ./ZFC/RelativeComplement/Theorems.lean#L21
 
@@ -2734,8 +5877,9 @@ Source: ./ZFC/RelativeComplement/Theorems.lean#L21
 Name: EveryRelativeComplementEqualsTheRelativeComplement
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {A B D : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsRelativeComplementOf A B D → Eq D (LRA.Set.ZFC.TheRelativeComplement A B)
-Predicate logic (unfolded): ∀ {A B D : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsRelativeComplementOf A B D → Eq D (LRA.Set.ZFC.TheRelativeComplement A B)
+Predicate logic: ∀ {A B D : Set} (DIsRelativeComplementOf : IsRelativeComplementOf A B D), D = TheRelativeComplement A B
+Predicate logic (unfolded): ∀ {A B D : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsRelativeComplementOf A B D → D = LRA.Set.ZFC.TheRelativeComplement A B
+Transliterated theorem: D = TheRelativeComplement A B
 Logical form (Lean): {A B D : Set} (DIsRelativeComplementOf : IsRelativeComplementOf A B D) : D = TheRelativeComplement A B
 Source: ./ZFC/RelativeComplement/Theorems.lean#L26
 
@@ -2743,9 +5887,10 @@ Source: ./ZFC/RelativeComplement/Theorems.lean#L26
 
 Name: UnionOverExists
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (A : LRA.Set.ZFC.Set), Exists fun U => LRA.Set.ZFC.IsUnionOf A U
 Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set), Exists fun U => LRA.Set.ZFC.IsUnionOf A U
+Transliterated theorem: (∀ A ∈ Set), ∃ U ∈ Set, IsUnionOf A U
 Logical form (Lean): (A : Set) : ∃ U : Set, IsUnionOf A U
 Source: ./ZFC/Union/Theorems.lean#L14
 
@@ -2753,59 +5898,65 @@ Source: ./ZFC/Union/Theorems.lean#L14
 
 Name: UnionOverIsUnique
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {A U V : LRA.Set.ZFC.Set}, And (LRA.Set.ZFC.IsUnionOf A U) (LRA.Set.ZFC.IsUnionOf A V) → Eq V U
-Predicate logic (unfolded): ∀ {A U V : LRA.Set.ZFC.Set}, And (LRA.Set.ZFC.IsUnionOf A U) (LRA.Set.ZFC.IsUnionOf A V) → Eq V U
+State: Sorry
+Predicate logic: ∀ {A U V : Set} (UIsUnionOf : IsUnionOf A U) (VIsUnionOf : IsUnionOf A V), V = U
+Predicate logic (unfolded): ∀ {A U V : LRA.Set.ZFC.Set}, (LRA.Set.ZFC.IsUnionOf A U ∧ LRA.Set.ZFC.IsUnionOf A V) → V = U
+Transliterated theorem: V = U
 Logical form (Lean): {A U V : Set} (UIsUnionOf : IsUnionOf A U) (VIsUnionOf : IsUnionOf A V) : V = U
-Source: ./ZFC/Union/Theorems.lean#L21
+Source: ./ZFC/Union/Theorems.lean#L19
 
 
 
 Name: UnionOverExistsAndIsUnique
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (A : LRA.Set.ZFC.Set), LRA.Set.ZFC.ExistsAndUnique fun U => LRA.Set.ZFC.IsUnionOf A U
 Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set), LRA.Set.ZFC.ExistsAndUnique fun U => LRA.Set.ZFC.IsUnionOf A U
+Transliterated theorem: (∀ A ∈ Set), ExistsAndUnique fun U ∈ Set => IsUnionOf A U
 Logical form (Lean): (A : Set) : ExistsAndUnique (fun U : Set => IsUnionOf A U)
-Source: ./ZFC/Union/Theorems.lean#L44
+Source: ./ZFC/Union/Theorems.lean#L28
 
 
 
 Name: TheUnionOverIsUnionOf
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (A : LRA.Set.ZFC.Set), LRA.Set.ZFC.IsUnionOf A (LRA.Set.ZFC.TheUnionOver A)
 Predicate logic (unfolded): ∀ (A : LRA.Set.ZFC.Set), LRA.Set.ZFC.IsUnionOf A (LRA.Set.ZFC.TheUnionOver A)
+Transliterated theorem: (∀ A ∈ Set), IsUnionOf A (TheUnionOver A)
 Logical form (Lean): (A : Set) : IsUnionOf A (TheUnionOver A)
-Source: ./ZFC/Union/Theorems.lean#L62
+Source: ./ZFC/Union/Theorems.lean#L37
 
 
 
 Name: EveryUnionOverEqualsTheUnionOver
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {A U : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsUnionOf A U → Eq U (LRA.Set.ZFC.TheUnionOver A)
-Predicate logic (unfolded): ∀ {A U : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsUnionOf A U → Eq U (LRA.Set.ZFC.TheUnionOver A)
+State: Sorry
+Predicate logic: ∀ {A U : Set} (UIsUnionOf : IsUnionOf A U), U = TheUnionOver A
+Predicate logic (unfolded): ∀ {A U : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsUnionOf A U → U = LRA.Set.ZFC.TheUnionOver A
+Transliterated theorem: U = TheUnionOver A
 Logical form (Lean): {A U : Set} (UIsUnionOf : IsUnionOf A U) : U = TheUnionOver A
-Source: ./ZFC/Union/Theorems.lean#L68
+Source: ./ZFC/Union/Theorems.lean#L42
 
 
 
 Name: TheUnionMembership
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ (A B x : LRA.Set.ZFC.Set),   Iff (LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.TheUnion A B) x)     (Or (LRA.Set.instMembershipZFCSet.mem A x) (LRA.Set.instMembershipZFCSet.mem B x))
-Predicate logic (unfolded): ∀ (A B x : LRA.Set.ZFC.Set),   Iff (LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.TheUnion A B) x)     (Or (LRA.Set.instMembershipZFCSet.mem A x) (LRA.Set.instMembershipZFCSet.mem B x))
+State: Sorry
+Predicate logic: ∀ (A B x : Set), x ∈ TheUnion A B ↔ x ∈ A ∨ x ∈ B
+Predicate logic (unfolded): ∀ (A B x : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.TheUnion A B) x ↔ Or (LRA.Set.instMembershipZFCSet.mem A x) (LRA.Set.instMembershipZFCSet.mem B x)
+Transliterated theorem: (∀ A B x ∈ Set), x ∈ TheUnion A B ↔ x ∈ A ∨ x ∈ B
 Logical form (Lean): (A B x : Set) : x ∈ TheUnion A B ↔ x ∈ A ∨ x ∈ B
-Source: ./ZFC/Union/Theorems.lean#L84
+Source: ./ZFC/Union/Theorems.lean#L53
 
 
 
 Name: TheIntersectionOverMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A x : LRA.Set.ZFC.Set),   (Exists fun B => LRA.Set.instMembershipZFCSet.mem A B) →     Iff (LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.TheIntersectionOver A) x)       (∀ (B : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.mem A B → LRA.Set.instMembershipZFCSet.mem B x)
-Predicate logic (unfolded): ∀ (A x : LRA.Set.ZFC.Set),   (Exists fun B => LRA.Set.instMembershipZFCSet.mem A B) →     Iff (LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.TheIntersectionOver A) x)       (∀ (B : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.mem A B → LRA.Set.instMembershipZFCSet.mem B x)
+Predicate logic: ∀ (A x : Set) (collectionNonempty : ∃ B : Set, B ∈ A), x ∈ TheIntersectionOver A ↔ ∀ B : Set, B ∈ A → x ∈ B
+Predicate logic (unfolded): ∀ (A x : LRA.Set.ZFC.Set), (Exists fun B => LRA.Set.instMembershipZFCSet.mem A B) → LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.TheIntersectionOver A) x ↔ ∀ (B : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.mem A B → LRA.Set.instMembershipZFCSet.mem B x
+Transliterated theorem: (∀ A x ∈ Set), (∃ B ∈ Set, B ∈ A) → x ∈ TheIntersectionOver A ↔ ∀ B : Set, B ∈ A → x ∈ B
 Logical form (Lean): (A x : Set) (collectionNonempty : ∃ B : Set, B ∈ A) : x ∈ TheIntersectionOver A ↔ ∀ B : Set, B ∈ A → x ∈ B
 Source: ./ZFC/IntersectionOver/Theorems.lean#L19
 
@@ -2816,6 +5967,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A B : LRA.Set.ZFC.Set), LRA.Set.ZFC.IsSymmetricDifferenceOf A B (LRA.Set.ZFC.TheSymmetricDifference A B)
 Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFC.Set), LRA.Set.ZFC.IsSymmetricDifferenceOf A B (LRA.Set.ZFC.TheSymmetricDifference A B)
+Transliterated theorem: (∀ A B ∈ Set), IsSymmetricDifferenceOf A B (TheSymmetricDifference A B)
 Logical form (Lean): (A B : Set) : IsSymmetricDifferenceOf A B (TheSymmetricDifference A B)
 Source: ./ZFC/SymmetricDifference/Theorems.lean#L17
 
@@ -2824,8 +5976,9 @@ Source: ./ZFC/SymmetricDifference/Theorems.lean#L17
 Name: TheSymmetricDifferenceMembership
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B x : LRA.Set.ZFC.Set),   Iff (LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.TheSymmetricDifference A B) x)     (Or (And (LRA.Set.instMembershipZFCSet.mem A x) (Not (LRA.Set.instMembershipZFCSet.mem B x)))       (And (LRA.Set.instMembershipZFCSet.mem B x) (Not (LRA.Set.instMembershipZFCSet.mem A x))))
-Predicate logic (unfolded): ∀ (A B x : LRA.Set.ZFC.Set),   Iff (LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.TheSymmetricDifference A B) x)     (Or (And (LRA.Set.instMembershipZFCSet.mem A x) (Not (LRA.Set.instMembershipZFCSet.mem B x)))       (And (LRA.Set.instMembershipZFCSet.mem B x) (Not (LRA.Set.instMembershipZFCSet.mem A x))))
+Predicate logic: ∀ (A B x : Set), x ∈ TheSymmetricDifference A B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
+Predicate logic (unfolded): ∀ (A B x : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.mem (LRA.Set.ZFC.TheSymmetricDifference A B) x ↔ Or ((LRA.Set.instMembershipZFCSet.mem A x ∧ ¬ LRA.Set.instMembershipZFCSet.mem B x)) ((LRA.Set.instMembershipZFCSet.mem B x ∧ ¬ LRA.Set.instMembershipZFCSet.mem A x))
+Transliterated theorem: (∀ A B x ∈ Set), x ∈ TheSymmetricDifference A B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
 Logical form (Lean): (A B x : Set) : x ∈ TheSymmetricDifference A B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
 Source: ./ZFC/SymmetricDifference/Theorems.lean#L22
 
@@ -2834,8 +5987,9 @@ Source: ./ZFC/SymmetricDifference/Theorems.lean#L22
 Name: EverySymmetricDifferenceEqualsTheSymmetricDifference
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {A B D : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsSymmetricDifferenceOf A B D → Eq D (LRA.Set.ZFC.TheSymmetricDifference A B)
-Predicate logic (unfolded): ∀ {A B D : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsSymmetricDifferenceOf A B D → Eq D (LRA.Set.ZFC.TheSymmetricDifference A B)
+Predicate logic: ∀ {A B D : Set} (DIsSymmetricDifferenceOf : IsSymmetricDifferenceOf A B D), D = TheSymmetricDifference A B
+Predicate logic (unfolded): ∀ {A B D : LRA.Set.ZFC.Set}, LRA.Set.ZFC.IsSymmetricDifferenceOf A B D → D = LRA.Set.ZFC.TheSymmetricDifference A B
+Transliterated theorem: D = TheSymmetricDifference A B
 Logical form (Lean): {A B D : Set} (DIsSymmetricDifferenceOf : IsSymmetricDifferenceOf A B D) : D = TheSymmetricDifference A B
 Source: ./ZFC/SymmetricDifference/Theorems.lean#L28
 
@@ -2844,10 +5998,154 @@ Source: ./ZFC/SymmetricDifference/Theorems.lean#L28
 Name: SetExtensionality
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B : LRA.Set.ZFCSet),   (∀ (x : LRA.Set.ZFCSet), Iff (LRA.Set.instMembershipZFCSet.mem A x) (LRA.Set.instMembershipZFCSet.mem B x)) → Eq A B
-Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet),   (∀ (x : LRA.Set.ZFCSet), Iff (LRA.Set.instMembershipZFCSet.mem A x) (LRA.Set.instMembershipZFCSet.mem B x)) → Eq A B
+Predicate logic: ∀ (A B : LRA.Set.ZFCSet) (sameMembers : ∀ x : LRA.Set.ZFCSet, x ∈ A ↔ x ∈ B), A = B
+Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet), (∀ (x : LRA.Set.ZFCSet), LRA.Set.instMembershipZFCSet.mem A x ↔ LRA.Set.instMembershipZFCSet.mem B x) → A = B
+Transliterated theorem: (∀ A B ∈ LRA.Set.ZFCSet), (∀ x : LRA.Set.ZFCSet, x ∈ A ↔ x ∈ B) → A = B
 Logical form (Lean): (A B : LRA.Set.ZFCSet) (sameMembers : ∀ x : LRA.Set.ZFCSet, x ∈ A ↔ x ∈ B) : A = B
 Source: ./ZFC/Public.lean#L14
+
+
+
+Name: endertonInterpretsMem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (arguments : Fin (MembershipSignature.relationArity .mem) → LRA.Set.ZFCSet), EndertonMembershipModel.interpretRelation .mem arguments = (arguments ⟨0, by decide⟩ ∈ arguments ⟨1, by decide⟩)
+Predicate logic (unfolded): ∀ (arguments : Fin (LRA.Set.ModelTheory.MembershipSignature.relationArity LRA.Set.ModelTheory.MembershipRelationSymbol.mem) → LRA.Set.ZFCSet), LRA.Set.ModelTheory.EndertonMembershipModel.interpretRelation LRA.Set.ModelTheory.MembershipRelationSymbol.mem arguments = LRA.Set.instMembershipZFCSet.mem (arguments ⟨1, ⋯⟩) (arguments ⟨0, ⋯⟩)
+Transliterated theorem: (Fin (MembershipSignature.relationArity .mem) → LRA.Set.ZFCSet) → EndertonMembershipModel.interpretRelation .mem arguments = (arguments ⟨0, by decide⟩ ∈ arguments ⟨1, by decide⟩)
+Logical form (Lean): (arguments : Fin (MembershipSignature.relationArity .mem) → LRA.Set.ZFCSet) : EndertonMembershipModel.interpretRelation .mem arguments = (arguments ⟨0, by decide⟩ ∈ arguments ⟨1, by decide⟩)
+Source: ./Interop/Mathlib/EndertonModel.lean#L77
+
+
+
+Name: endertonInterpretsEmpty
+Kind: Theorem
+State: Sorry
+Predicate logic: EndertonMembershipModel.interpretConstant .emptySet = (∅ : LRA.Set.ZFCSet)
+Predicate logic (unfolded): LRA.Set.ModelTheory.EndertonMembershipModel.interpretConstant LRA.Set.ModelTheory.MembershipConstantSymbol.emptySet = LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
+Transliterated theorem: EndertonMembershipModel.interpretConstant .emptySet = ∅ ∈ LRA.Set.ZFCSet
+Logical form (Lean): : EndertonMembershipModel.interpretConstant .emptySet = (∅ : LRA.Set.ZFCSet)
+Source: ./Interop/Mathlib/EndertonModel.lean#L94
+
+
+
+Name: endertonSatisfiesExtensionality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment     LRA.Set.ModelTheory.extensionalityFormula
+Predicate logic (unfolded): ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment LRA.Set.ModelTheory.extensionalityFormula
+Transliterated theorem: (Nat → EndertonMembershipModel.Domain) → Satisfies EndertonMembershipModel assignment extensionalityFormula
+Logical form (Lean): (assignment : Nat → EndertonMembershipModel.Domain) : Satisfies EndertonMembershipModel assignment extensionalityFormula
+Source: ./Interop/Mathlib/EndertonModel.lean#L117
+
+
+
+Name: endertonSatisfiesEmptySet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment     LRA.Set.ModelTheory.emptySetFormula
+Predicate logic (unfolded): ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment LRA.Set.ModelTheory.emptySetFormula
+Transliterated theorem: (Nat → EndertonMembershipModel.Domain) → Satisfies EndertonMembershipModel assignment emptySetFormula
+Logical form (Lean): (assignment : Nat → EndertonMembershipModel.Domain) : Satisfies EndertonMembershipModel assignment emptySetFormula
+Source: ./Interop/Mathlib/EndertonModel.lean#L133
+
+
+
+Name: endertonSatisfiesPairing
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment     LRA.Set.ModelTheory.pairingFormula
+Predicate logic (unfolded): ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment LRA.Set.ModelTheory.pairingFormula
+Transliterated theorem: (Nat → EndertonMembershipModel.Domain) → Satisfies EndertonMembershipModel assignment pairingFormula
+Logical form (Lean): (assignment : Nat → EndertonMembershipModel.Domain) : Satisfies EndertonMembershipModel assignment pairingFormula
+Source: ./Interop/Mathlib/EndertonModel.lean#L149
+
+
+
+Name: endertonSatisfiesUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment LRA.Set.ModelTheory.unionFormula
+Predicate logic (unfolded): ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment LRA.Set.ModelTheory.unionFormula
+Transliterated theorem: (Nat → EndertonMembershipModel.Domain) → Satisfies EndertonMembershipModel assignment unionFormula
+Logical form (Lean): (assignment : Nat → EndertonMembershipModel.Domain) : Satisfies EndertonMembershipModel assignment unionFormula
+Source: ./Interop/Mathlib/EndertonModel.lean#L165
+
+
+
+Name: endertonSatisfiesPowerSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment     LRA.Set.ModelTheory.powerSetFormula
+Predicate logic (unfolded): ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment LRA.Set.ModelTheory.powerSetFormula
+Transliterated theorem: (Nat → EndertonMembershipModel.Domain) → Satisfies EndertonMembershipModel assignment powerSetFormula
+Logical form (Lean): (assignment : Nat → EndertonMembershipModel.Domain) : Satisfies EndertonMembershipModel assignment powerSetFormula
+Source: ./Interop/Mathlib/EndertonModel.lean#L181
+
+
+
+Name: endertonSatisfiesInfinity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment     LRA.Set.ModelTheory.infinityFormula
+Predicate logic (unfolded): ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment LRA.Set.ModelTheory.infinityFormula
+Transliterated theorem: (Nat → EndertonMembershipModel.Domain) → Satisfies EndertonMembershipModel assignment infinityFormula
+Logical form (Lean): (assignment : Nat → EndertonMembershipModel.Domain) : Satisfies EndertonMembershipModel assignment infinityFormula
+Source: ./Interop/Mathlib/EndertonModel.lean#L197
+
+
+
+Name: endertonSatisfiesFoundation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment     LRA.Set.ModelTheory.foundationFormula
+Predicate logic (unfolded): ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment LRA.Set.ModelTheory.foundationFormula
+Transliterated theorem: (Nat → EndertonMembershipModel.Domain) → Satisfies EndertonMembershipModel assignment foundationFormula
+Logical form (Lean): (assignment : Nat → EndertonMembershipModel.Domain) : Satisfies EndertonMembershipModel assignment foundationFormula
+Source: ./Interop/Mathlib/EndertonModel.lean#L213
+
+
+
+Name: endertonSatisfiesChoice
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment     LRA.Set.ModelTheory.choiceFormula
+Predicate logic (unfolded): ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment LRA.Set.ModelTheory.choiceFormula
+Transliterated theorem: (Nat → EndertonMembershipModel.Domain) → Satisfies EndertonMembershipModel assignment choiceFormula
+Logical form (Lean): (assignment : Nat → EndertonMembershipModel.Domain) : Satisfies EndertonMembershipModel assignment choiceFormula
+Source: ./Interop/Mathlib/EndertonModel.lean#L229
+
+
+
+Name: endertonSatisfiesSeparation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (property : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat),   LRA.Set.ModelTheory.SeparationHygienic property →     ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain),       LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment         (LRA.Set.ModelTheory.separationInstance property)
+Predicate logic (unfolded): ∀ (property : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), LRA.Set.ModelTheory.SeparationHygienic property → ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment (LRA.Set.ModelTheory.separationInstance property)
+Transliterated theorem: (Nat → EndertonMembershipModel.Domain) → Satisfies EndertonMembershipModel assignment (separationInstance property)
+Logical form (Lean): (property : Formula MembershipSignature Nat) (hygienic : SeparationHygienic property) (assignment : Nat → EndertonMembershipModel.Domain) : Satisfies EndertonMembershipModel assignment (separationInstance property)
+Source: ./Interop/Mathlib/EndertonModel.lean#L248
+
+
+
+Name: endertonSatisfiesReplacement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (relation : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat),   LRA.Set.ModelTheory.ReplacementHygienic relation →     ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain),       LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment         (LRA.Set.ModelTheory.replacementInstance relation)
+Predicate logic (unfolded): ∀ (relation : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), LRA.Set.ModelTheory.ReplacementHygienic relation → ∀ (assignment : Nat → LRA.Set.ModelTheory.EndertonMembershipModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Set.ModelTheory.EndertonMembershipModel assignment (LRA.Set.ModelTheory.replacementInstance relation)
+Transliterated theorem: (Nat → EndertonMembershipModel.Domain) → Satisfies EndertonMembershipModel assignment (replacementInstance relation)
+Logical form (Lean): (relation : Formula MembershipSignature Nat) (hygienic : ReplacementHygienic relation) (assignment : Nat → EndertonMembershipModel.Domain) : Satisfies EndertonMembershipModel assignment (replacementInstance relation)
+Source: ./Interop/Mathlib/EndertonModel.lean#L270
+
+
+
+Name: endertonModelsZFC
+Kind: Theorem
+State: Sorry
+Predicate logic: Set.instMembership.mem (LRA.Logic.FirstOrder.ModelsOfFormulaTheory LRA.Set.ModelTheory.ZFCTheory)   LRA.Set.ModelTheory.EndertonMembershipModel
+Predicate logic (unfolded): Set.instMembership.mem (LRA.Logic.FirstOrder.ModelsOfFormulaTheory LRA.Set.ModelTheory.ZFCTheory) LRA.Set.ModelTheory.EndertonMembershipModel
+Transliterated theorem: EndertonMembershipModel ∈ ModelsOfFormulaTheory ZFCTheory
+Logical form (Lean): : EndertonMembershipModel ∈ ModelsOfFormulaTheory ZFCTheory
+Source: ./Interop/Mathlib/EndertonModel.lean#L288
 
 
 
@@ -2855,7 +6153,8 @@ Name: DifferenceMonotoneLeft
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A₁ A₂ B : LRA.Set.ZFCSet.Set),   LRA.Set.ZFCSet.instHasSubset.Subset A₁ A₂ →     LRA.Set.ZFCSet.instHasSubset.Subset (LRA.Set.ZFCSet.instSDiff.sdiff A₁ B) (LRA.Set.ZFCSet.instSDiff.sdiff A₂ B)
-Predicate logic (unfolded): ∀ (A₁ A₂ B : LRA.Set.ZFCSet.Set),   LRA.Set.ZFCSet.instHasSubset.Subset A₁ A₂ →     LRA.Set.ZFCSet.instHasSubset.Subset (LRA.Set.ZFCSet.instSDiff.sdiff A₁ B) (LRA.Set.ZFCSet.instSDiff.sdiff A₂ B)
+Predicate logic (unfolded): ∀ (A₁ A₂ B : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instHasSubset.Subset A₁ A₂ → LRA.Set.ZFCSet.instHasSubset.Subset (LRA.Set.ZFCSet.instSDiff.sdiff A₁ B) (LRA.Set.ZFCSet.instSDiff.sdiff A₂ B)
+Transliterated theorem: ∀ A₁ A₂ B : Set, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
 Logical form (Lean): : ∀ A₁ A₂ B : Set, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
 Source: ./ZFCSet/Laws/Difference.lean#L8
 
@@ -2865,79 +6164,87 @@ Name: DifferenceAntitoneRight
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A B₁ B₂ : LRA.Set.ZFCSet.Set),   LRA.Set.ZFCSet.instHasSubset.Subset B₁ B₂ →     LRA.Set.ZFCSet.instHasSubset.Subset (LRA.Set.ZFCSet.instSDiff.sdiff A B₂) (LRA.Set.ZFCSet.instSDiff.sdiff A B₁)
-Predicate logic (unfolded): ∀ (A B₁ B₂ : LRA.Set.ZFCSet.Set),   LRA.Set.ZFCSet.instHasSubset.Subset B₁ B₂ →     LRA.Set.ZFCSet.instHasSubset.Subset (LRA.Set.ZFCSet.instSDiff.sdiff A B₂) (LRA.Set.ZFCSet.instSDiff.sdiff A B₁)
+Predicate logic (unfolded): ∀ (A B₁ B₂ : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instHasSubset.Subset B₁ B₂ → LRA.Set.ZFCSet.instHasSubset.Subset (LRA.Set.ZFCSet.instSDiff.sdiff A B₂) (LRA.Set.ZFCSet.instSDiff.sdiff A B₁)
+Transliterated theorem: ∀ A B₁ B₂ : Set, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
 Logical form (Lean): : ∀ A B₁ B₂ : Set, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
-Source: ./ZFCSet/Laws/Difference.lean#L12
+Source: ./ZFCSet/Laws/Difference.lean#L13
 
 
 
 Name: DifferenceEmpty
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instSDiff.sdiff A LRA.Set.ZFCSet.instEmptyCollection.emptyCollection) A
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instSDiff.sdiff A LRA.Set.ZFCSet.instEmptyCollection.emptyCollection) A
+Predicate logic: ∀ A : Set, A \ (∅ : Set) = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instSDiff.sdiff A LRA.Set.ZFCSet.instEmptyCollection.emptyCollection = A
+Transliterated theorem: ∀ A : Set, A \ ∅ ∈ Set = A
 Logical form (Lean): : ∀ A : Set, A \ (∅ : Set) = A
-Source: ./ZFCSet/Laws/Difference.lean#L16
+Source: ./ZFCSet/Laws/Difference.lean#L18
 
 
 
 Name: EmptyDifference
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instSDiff.sdiff LRA.Set.ZFCSet.instEmptyCollection.emptyCollection A)     LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instSDiff.sdiff LRA.Set.ZFCSet.instEmptyCollection.emptyCollection A)     LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
+Predicate logic: ∀ A : Set, (∅ : Set) \ A = (∅ : Set)
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instSDiff.sdiff LRA.Set.ZFCSet.instEmptyCollection.emptyCollection A = LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
+Transliterated theorem: ∀ A : Set, ∅ ∈ Set \ A = ∅ ∈ Set
 Logical form (Lean): : ∀ A : Set, (∅ : Set) \ A = (∅ : Set)
-Source: ./ZFCSet/Laws/Difference.lean#L19
+Source: ./ZFCSet/Laws/Difference.lean#L22
 
 
 
 Name: DifferenceSelf
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instSDiff.sdiff A A) LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instSDiff.sdiff A A) LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
+Predicate logic: ∀ A : Set, A \ A = (∅ : Set)
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instSDiff.sdiff A A = LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
+Transliterated theorem: ∀ A : Set, A \ A = ∅ ∈ Set
 Logical form (Lean): : ∀ A : Set, A \ A = (∅ : Set)
-Source: ./ZFCSet/Laws/Difference.lean#L22
+Source: ./ZFCSet/Laws/Difference.lean#L26
 
 
 
 Name: DifferenceUnion
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B C : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instSDiff.sdiff A (LRA.Set.ZFCSet.instUnion.union B C))     (LRA.Set.ZFCSet.instInter.inter (LRA.Set.ZFCSet.instSDiff.sdiff A B) (LRA.Set.ZFCSet.instSDiff.sdiff A C))
-Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instSDiff.sdiff A (LRA.Set.ZFCSet.instUnion.union B C))     (LRA.Set.ZFCSet.instInter.inter (LRA.Set.ZFCSet.instSDiff.sdiff A B) (LRA.Set.ZFCSet.instSDiff.sdiff A C))
+Predicate logic: ∀ A B C : Set, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instSDiff.sdiff A (LRA.Set.ZFCSet.instUnion.union B C) = LRA.Set.ZFCSet.instInter.inter (LRA.Set.ZFCSet.instSDiff.sdiff A B) (LRA.Set.ZFCSet.instSDiff.sdiff A C)
+Transliterated theorem: ∀ A B C : Set, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
 Logical form (Lean): : ∀ A B C : Set, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
-Source: ./ZFCSet/Laws/Difference.lean#L25
+Source: ./ZFCSet/Laws/Difference.lean#L30
 
 
 
 Name: DifferenceIntersection
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B C : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instSDiff.sdiff A (LRA.Set.ZFCSet.instInter.inter B C))     (LRA.Set.ZFCSet.instUnion.union (LRA.Set.ZFCSet.instSDiff.sdiff A B) (LRA.Set.ZFCSet.instSDiff.sdiff A C))
-Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instSDiff.sdiff A (LRA.Set.ZFCSet.instInter.inter B C))     (LRA.Set.ZFCSet.instUnion.union (LRA.Set.ZFCSet.instSDiff.sdiff A B) (LRA.Set.ZFCSet.instSDiff.sdiff A C))
+Predicate logic: ∀ A B C : Set, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instSDiff.sdiff A (LRA.Set.ZFCSet.instInter.inter B C) = LRA.Set.ZFCSet.instUnion.union (LRA.Set.ZFCSet.instSDiff.sdiff A B) (LRA.Set.ZFCSet.instSDiff.sdiff A C)
+Transliterated theorem: ∀ A B C : Set, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
 Logical form (Lean): : ∀ A B C : Set, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
-Source: ./ZFCSet/Laws/Difference.lean#L29
+Source: ./ZFCSet/Laws/Difference.lean#L35
 
 
 
 Name: UnionDifferenceDistributes
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B C : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instSDiff.sdiff (LRA.Set.ZFCSet.instUnion.union A B) C)     (LRA.Set.ZFCSet.instUnion.union (LRA.Set.ZFCSet.instSDiff.sdiff A C) (LRA.Set.ZFCSet.instSDiff.sdiff B C))
-Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instSDiff.sdiff (LRA.Set.ZFCSet.instUnion.union A B) C)     (LRA.Set.ZFCSet.instUnion.union (LRA.Set.ZFCSet.instSDiff.sdiff A C) (LRA.Set.ZFCSet.instSDiff.sdiff B C))
+Predicate logic: ∀ A B C : Set, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instSDiff.sdiff (LRA.Set.ZFCSet.instUnion.union A B) C = LRA.Set.ZFCSet.instUnion.union (LRA.Set.ZFCSet.instSDiff.sdiff A C) (LRA.Set.ZFCSet.instSDiff.sdiff B C)
+Transliterated theorem: ∀ A B C : Set, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
 Logical form (Lean): : ∀ A B C : Set, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
-Source: ./ZFCSet/Laws/Difference.lean#L33
+Source: ./ZFCSet/Laws/Difference.lean#L40
 
 
 
 Name: IntersectionDifferenceDistributes
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B C : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instSDiff.sdiff (LRA.Set.ZFCSet.instInter.inter A B) C)     (LRA.Set.ZFCSet.instInter.inter (LRA.Set.ZFCSet.instSDiff.sdiff A C) (LRA.Set.ZFCSet.instSDiff.sdiff B C))
-Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instSDiff.sdiff (LRA.Set.ZFCSet.instInter.inter A B) C)     (LRA.Set.ZFCSet.instInter.inter (LRA.Set.ZFCSet.instSDiff.sdiff A C) (LRA.Set.ZFCSet.instSDiff.sdiff B C))
+Predicate logic: ∀ A B C : Set, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instSDiff.sdiff (LRA.Set.ZFCSet.instInter.inter A B) C = LRA.Set.ZFCSet.instInter.inter (LRA.Set.ZFCSet.instSDiff.sdiff A C) (LRA.Set.ZFCSet.instSDiff.sdiff B C)
+Transliterated theorem: ∀ A B C : Set, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
 Logical form (Lean): : ∀ A B C : Set, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
-Source: ./ZFCSet/Laws/Difference.lean#L37
+Source: ./ZFCSet/Laws/Difference.lean#L45
 
 
 
@@ -2946,18 +6253,20 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A B : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instHasSubset.Subset (LRA.Set.ZFCSet.instSDiff.sdiff A B) A
 Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instHasSubset.Subset (LRA.Set.ZFCSet.instSDiff.sdiff A B) A
+Transliterated theorem: ∀ A B : Set, A \ B ⊆ A
 Logical form (Lean): : ∀ A B : Set, A \ B ⊆ A
-Source: ./ZFCSet/Laws/Difference.lean#L41
+Source: ./ZFCSet/Laws/Difference.lean#L50
 
 
 
 Name: DifferenceDisjointRight
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instInter.inter (LRA.Set.ZFCSet.instSDiff.sdiff A B) B)     LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
-Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instInter.inter (LRA.Set.ZFCSet.instSDiff.sdiff A B) B)     LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
+Predicate logic: ∀ A B : Set, (A \ B) ∩ B = (∅ : Set)
+Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instInter.inter (LRA.Set.ZFCSet.instSDiff.sdiff A B) B = LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
+Transliterated theorem: ∀ A B : Set, (A \ B) ∩ B = ∅ ∈ Set
 Logical form (Lean): : ∀ A B : Set, (A \ B) ∩ B = (∅ : Set)
-Source: ./ZFCSet/Laws/Difference.lean#L44
+Source: ./ZFCSet/Laws/Difference.lean#L54
 
 
 
@@ -2966,6 +6275,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: LRA.Set.DifferenceLaws LRA.Set.ZFCSet.Set
 Predicate logic (unfolded): LRA.Set.DifferenceLaws LRA.Set.ZFCSet.Set
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./ZFCSet/Laws/Difference.lean
 
@@ -2974,8 +6284,9 @@ Source: ./ZFCSet/Laws/Difference.lean
 Name: IntersectionDistributesOverUnion
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B C : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instInter.inter A (LRA.Set.ZFCSet.instUnion.union B C))     (LRA.Set.ZFCSet.instUnion.union (LRA.Set.ZFCSet.instInter.inter A B) (LRA.Set.ZFCSet.instInter.inter A C))
-Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instInter.inter A (LRA.Set.ZFCSet.instUnion.union B C))     (LRA.Set.ZFCSet.instUnion.union (LRA.Set.ZFCSet.instInter.inter A B) (LRA.Set.ZFCSet.instInter.inter A C))
+Predicate logic: ∀ A B C : Set, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instInter.inter A (LRA.Set.ZFCSet.instUnion.union B C) = LRA.Set.ZFCSet.instUnion.union (LRA.Set.ZFCSet.instInter.inter A B) (LRA.Set.ZFCSet.instInter.inter A C)
+Transliterated theorem: ∀ A B C : Set, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
 Logical form (Lean): : ∀ A B C : Set, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
 Source: ./ZFCSet/Laws/Distributivity.lean#L8
 
@@ -2984,30 +6295,33 @@ Source: ./ZFCSet/Laws/Distributivity.lean#L8
 Name: UnionDistributesOverIntersection
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B C : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instUnion.union A (LRA.Set.ZFCSet.instInter.inter B C))     (LRA.Set.ZFCSet.instInter.inter (LRA.Set.ZFCSet.instUnion.union A B) (LRA.Set.ZFCSet.instUnion.union A C))
-Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instUnion.union A (LRA.Set.ZFCSet.instInter.inter B C))     (LRA.Set.ZFCSet.instInter.inter (LRA.Set.ZFCSet.instUnion.union A B) (LRA.Set.ZFCSet.instUnion.union A C))
+Predicate logic: ∀ A B C : Set, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instUnion.union A (LRA.Set.ZFCSet.instInter.inter B C) = LRA.Set.ZFCSet.instInter.inter (LRA.Set.ZFCSet.instUnion.union A B) (LRA.Set.ZFCSet.instUnion.union A C)
+Transliterated theorem: ∀ A B C : Set, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
 Logical form (Lean): : ∀ A B C : Set, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
-Source: ./ZFCSet/Laws/Distributivity.lean#L12
+Source: ./ZFCSet/Laws/Distributivity.lean#L13
 
 
 
 Name: AbsorptionUnionIntersection
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instUnion.union A (LRA.Set.ZFCSet.instInter.inter A B)) A
-Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instUnion.union A (LRA.Set.ZFCSet.instInter.inter A B)) A
+Predicate logic: ∀ A B : Set, A ∪ (A ∩ B) = A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instUnion.union A (LRA.Set.ZFCSet.instInter.inter A B) = A
+Transliterated theorem: ∀ A B : Set, A ∪ (A ∩ B) = A
 Logical form (Lean): : ∀ A B : Set, A ∪ (A ∩ B) = A
-Source: ./ZFCSet/Laws/Distributivity.lean#L16
+Source: ./ZFCSet/Laws/Distributivity.lean#L18
 
 
 
 Name: AbsorptionIntersectionUnion
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instInter.inter A (LRA.Set.ZFCSet.instUnion.union A B)) A
-Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instInter.inter A (LRA.Set.ZFCSet.instUnion.union A B)) A
+Predicate logic: ∀ A B : Set, A ∩ (A ∪ B) = A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instInter.inter A (LRA.Set.ZFCSet.instUnion.union A B) = A
+Transliterated theorem: ∀ A B : Set, A ∩ (A ∪ B) = A
 Logical form (Lean): : ∀ A B : Set, A ∩ (A ∪ B) = A
-Source: ./ZFCSet/Laws/Distributivity.lean#L20
+Source: ./ZFCSet/Laws/Distributivity.lean#L23
 
 
 
@@ -3016,6 +6330,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: LRA.Set.DistributivityLaws LRA.Set.ZFCSet.Set
 Predicate logic (unfolded): LRA.Set.DistributivityLaws LRA.Set.ZFCSet.Set
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./ZFCSet/Laws/Distributivity.lean
 
@@ -3024,8 +6339,9 @@ Source: ./ZFCSet/Laws/Distributivity.lean
 Name: IntersectionCommutative
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instInter.inter A B) (LRA.Set.ZFCSet.instInter.inter B A)
-Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instInter.inter A B) (LRA.Set.ZFCSet.instInter.inter B A)
+Predicate logic: ∀ A B : Set, A ∩ B = B ∩ A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instInter.inter A B = LRA.Set.ZFCSet.instInter.inter B A
+Transliterated theorem: ∀ A B : Set, A ∩ B = B ∩ A
 Logical form (Lean): : ∀ A B : Set, A ∩ B = B ∩ A
 Source: ./ZFCSet/Laws/Intersection.lean#L8
 
@@ -3034,60 +6350,66 @@ Source: ./ZFCSet/Laws/Intersection.lean#L8
 Name: IntersectionAssociative
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B C : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instInter.inter (LRA.Set.ZFCSet.instInter.inter A B) C)     (LRA.Set.ZFCSet.instInter.inter A (LRA.Set.ZFCSet.instInter.inter B C))
-Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instInter.inter (LRA.Set.ZFCSet.instInter.inter A B) C)     (LRA.Set.ZFCSet.instInter.inter A (LRA.Set.ZFCSet.instInter.inter B C))
+Predicate logic: ∀ A B C : Set, (A ∩ B) ∩ C = A ∩ (B ∩ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instInter.inter (LRA.Set.ZFCSet.instInter.inter A B) C = LRA.Set.ZFCSet.instInter.inter A (LRA.Set.ZFCSet.instInter.inter B C)
+Transliterated theorem: ∀ A B C : Set, (A ∩ B) ∩ C = A ∩ (B ∩ C)
 Logical form (Lean): : ∀ A B C : Set, (A ∩ B) ∩ C = A ∩ (B ∩ C)
-Source: ./ZFCSet/Laws/Intersection.lean#L11
+Source: ./ZFCSet/Laws/Intersection.lean#L12
 
 
 
 Name: EmptyIntersection
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instInter.inter LRA.Set.ZFCSet.instEmptyCollection.emptyCollection A)     LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instInter.inter LRA.Set.ZFCSet.instEmptyCollection.emptyCollection A)     LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
+Predicate logic: ∀ A : Set, (∅ : Set) ∩ A = (∅ : Set)
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instInter.inter LRA.Set.ZFCSet.instEmptyCollection.emptyCollection A = LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
+Transliterated theorem: ∀ A : Set, ∅ ∈ Set ∩ A = ∅ ∈ Set
 Logical form (Lean): : ∀ A : Set, (∅ : Set) ∩ A = (∅ : Set)
-Source: ./ZFCSet/Laws/Intersection.lean#L15
+Source: ./ZFCSet/Laws/Intersection.lean#L17
 
 
 
 Name: IntersectionEmpty
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instInter.inter A LRA.Set.ZFCSet.instEmptyCollection.emptyCollection)     LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instInter.inter A LRA.Set.ZFCSet.instEmptyCollection.emptyCollection)     LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
+Predicate logic: ∀ A : Set, A ∩ (∅ : Set) = (∅ : Set)
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instInter.inter A LRA.Set.ZFCSet.instEmptyCollection.emptyCollection = LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
+Transliterated theorem: ∀ A : Set, A ∩ ∅ ∈ Set = ∅ ∈ Set
 Logical form (Lean): : ∀ A : Set, A ∩ (∅ : Set) = (∅ : Set)
-Source: ./ZFCSet/Laws/Intersection.lean#L18
+Source: ./ZFCSet/Laws/Intersection.lean#L21
 
 
 
 Name: IntersectionIdempotent
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instInter.inter A A) A
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instInter.inter A A) A
+Predicate logic: ∀ A : Set, A ∩ A = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instInter.inter A A = A
+Transliterated theorem: ∀ A : Set, A ∩ A = A
 Logical form (Lean): : ∀ A : Set, A ∩ A = A
-Source: ./ZFCSet/Laws/Intersection.lean#L21
+Source: ./ZFCSet/Laws/Intersection.lean#L25
 
 
 
 Name: IntersectionMonotone
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A₁ A₂ B₁ B₂ : LRA.Set.ZFCSet.Set),   And (LRA.Set.ZFCSet.instHasSubset.Subset A₁ A₂) (LRA.Set.ZFCSet.instHasSubset.Subset B₁ B₂) →     LRA.Set.ZFCSet.instHasSubset.Subset (LRA.Set.ZFCSet.instInter.inter A₁ B₁) (LRA.Set.ZFCSet.instInter.inter A₂ B₂)
-Predicate logic (unfolded): ∀ (A₁ A₂ B₁ B₂ : LRA.Set.ZFCSet.Set),   And (LRA.Set.ZFCSet.instHasSubset.Subset A₁ A₂) (LRA.Set.ZFCSet.instHasSubset.Subset B₁ B₂) →     LRA.Set.ZFCSet.instHasSubset.Subset (LRA.Set.ZFCSet.instInter.inter A₁ B₁) (LRA.Set.ZFCSet.instInter.inter A₂ B₂)
+Predicate logic: ∀ A₁ A₂ B₁ B₂ : Set, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
+Predicate logic (unfolded): ∀ (A₁ A₂ B₁ B₂ : LRA.Set.ZFCSet.Set), (LRA.Set.ZFCSet.instHasSubset.Subset A₁ A₂ ∧ LRA.Set.ZFCSet.instHasSubset.Subset B₁ B₂) → LRA.Set.ZFCSet.instHasSubset.Subset (LRA.Set.ZFCSet.instInter.inter A₁ B₁) (LRA.Set.ZFCSet.instInter.inter A₂ B₂)
+Transliterated theorem: ∀ A₁ A₂ B₁ B₂ : Set, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
 Logical form (Lean): : ∀ A₁ A₂ B₁ B₂ : Set, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
-Source: ./ZFCSet/Laws/Intersection.lean#L24
+Source: ./ZFCSet/Laws/Intersection.lean#L29
 
 
 
 Name: SubsetIffIntersectionEqLeft
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B : LRA.Set.ZFCSet.Set), Iff (LRA.Set.ZFCSet.instHasSubset.Subset A B) (Eq (LRA.Set.ZFCSet.instInter.inter A B) A)
-Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), Iff (LRA.Set.ZFCSet.instHasSubset.Subset A B) (Eq (LRA.Set.ZFCSet.instInter.inter A B) A)
+Predicate logic: ∀ A B : Set, A ⊆ B ↔ A ∩ B = A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instHasSubset.Subset A B ↔ LRA.Set.ZFCSet.instInter.inter A B = A
+Transliterated theorem: ∀ A B : Set, A ⊆ B ↔ A ∩ B = A
 Logical form (Lean): : ∀ A B : Set, A ⊆ B ↔ A ∩ B = A
-Source: ./ZFCSet/Laws/Intersection.lean#L28
+Source: ./ZFCSet/Laws/Intersection.lean#L34
 
 
 
@@ -3096,6 +6418,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: LRA.Set.IntersectionLaws LRA.Set.ZFCSet.Set
 Predicate logic (unfolded): LRA.Set.IntersectionLaws LRA.Set.ZFCSet.Set
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./ZFCSet/Laws/Intersection.lean
 
@@ -3104,8 +6427,9 @@ Source: ./ZFCSet/Laws/Intersection.lean
 Name: SubsetIffAllMembers
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B : LRA.Set.ZFCSet.Set),   Iff (LRA.Set.ZFCSet.instHasSubset.Subset A B)     (∀ (x : LRA.Set.ZFCSet.Set), LRA.Set.instMembershipZFCSet.mem A x → LRA.Set.instMembershipZFCSet.mem B x)
-Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set),   Iff (LRA.Set.ZFCSet.instHasSubset.Subset A B)     (∀ (x : LRA.Set.ZFCSet.Set), LRA.Set.instMembershipZFCSet.mem A x → LRA.Set.instMembershipZFCSet.mem B x)
+Predicate logic: ∀ A B : Set, A ⊆ B ↔ ∀ x : Set, x ∈ A → x ∈ B
+Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instHasSubset.Subset A B ↔ ∀ (x : LRA.Set.ZFCSet.Set), LRA.Set.instMembershipZFCSet.mem A x → LRA.Set.instMembershipZFCSet.mem B x
+Transliterated theorem: ∀ A B : Set, A ⊆ B ↔ ∀ x : Set, x ∈ A → x ∈ B
 Logical form (Lean): : ∀ A B : Set, A ⊆ B ↔ ∀ x : Set, x ∈ A → x ∈ B
 Source: ./ZFCSet/Laws/Membership.lean#L10
 
@@ -3116,6 +6440,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: LRA.Set.ExtensionalityLaw LRA.Set.ZFCSet.Set LRA.Set.ZFCSet.Set
 Predicate logic (unfolded): LRA.Set.ExtensionalityLaw LRA.Set.ZFCSet.Set LRA.Set.ZFCSet.Set
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./ZFCSet/Laws/Membership.lean
 
@@ -3126,6 +6451,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: LRA.Set.SymmDiffMembershipLaws LRA.Set.ZFCSet.Set LRA.Set.ZFCSet.Set
 Predicate logic (unfolded): LRA.Set.SymmDiffMembershipLaws LRA.Set.ZFCSet.Set LRA.Set.ZFCSet.Set
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./ZFCSet/Laws/Membership.lean
 
@@ -3136,6 +6462,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: LRA.Set.PowersetMembershipLaws LRA.Set.ZFCSet.Set LRA.Set.ZFCSet.Set
 Predicate logic (unfolded): LRA.Set.PowersetMembershipLaws LRA.Set.ZFCSet.Set LRA.Set.ZFCSet.Set
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./ZFCSet/Laws/Membership.lean
 
@@ -3146,6 +6473,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: LRA.Set.SeparationLaws LRA.Set.ZFCSet.Set LRA.Set.ZFCSet.Set
 Predicate logic (unfolded): LRA.Set.SeparationLaws LRA.Set.ZFCSet.Set LRA.Set.ZFCSet.Set
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./ZFCSet/Laws/Membership.lean
 
@@ -3156,6 +6484,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: LRA.Set.CollectionMembershipLaws LRA.Set.ZFCSet.Set LRA.Set.ZFCSet.Set LRA.Set.ZFCSet.Set
 Predicate logic (unfolded): LRA.Set.CollectionMembershipLaws LRA.Set.ZFCSet.Set LRA.Set.ZFCSet.Set LRA.Set.ZFCSet.Set
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./ZFCSet/Laws/Membership.lean
 
@@ -3166,6 +6495,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: LRA.Set.MembershipLaws LRA.Set.ZFCSet.Set LRA.Set.ZFCSet.Set
 Predicate logic (unfolded): LRA.Set.MembershipLaws LRA.Set.ZFCSet.Set LRA.Set.ZFCSet.Set
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./ZFCSet/Laws/Membership.lean
 
@@ -3176,6 +6506,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instHasSubset.Subset A A
 Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instHasSubset.Subset A A
+Transliterated theorem: ∀ A : Set, A ⊆ A
 Logical form (Lean): : ∀ A : Set, A ⊆ A
 Source: ./ZFCSet/Laws/Subset.lean#L8
 
@@ -3184,20 +6515,22 @@ Source: ./ZFCSet/Laws/Subset.lean#L8
 Name: SubsetTransitive
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B C : LRA.Set.ZFCSet.Set),   And (LRA.Set.ZFCSet.instHasSubset.Subset A B) (LRA.Set.ZFCSet.instHasSubset.Subset B C) →     LRA.Set.ZFCSet.instHasSubset.Subset A C
-Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set),   And (LRA.Set.ZFCSet.instHasSubset.Subset A B) (LRA.Set.ZFCSet.instHasSubset.Subset B C) →     LRA.Set.ZFCSet.instHasSubset.Subset A C
+Predicate logic: ∀ A B C : Set, A ⊆ B → B ⊆ C → A ⊆ C
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set), (LRA.Set.ZFCSet.instHasSubset.Subset A B ∧ LRA.Set.ZFCSet.instHasSubset.Subset B C) → LRA.Set.ZFCSet.instHasSubset.Subset A C
+Transliterated theorem: ∀ A B C : Set, A ⊆ B → B ⊆ C → A ⊆ C
 Logical form (Lean): : ∀ A B C : Set, A ⊆ B → B ⊆ C → A ⊆ C
-Source: ./ZFCSet/Laws/Subset.lean#L11
+Source: ./ZFCSet/Laws/Subset.lean#L12
 
 
 
 Name: SetEqualityIffMutualSubset
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B : LRA.Set.ZFCSet.Set),   Iff (Eq A B) (And (LRA.Set.ZFCSet.instHasSubset.Subset A B) (LRA.Set.ZFCSet.instHasSubset.Subset B A))
-Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set),   Iff (Eq A B) (And (LRA.Set.ZFCSet.instHasSubset.Subset A B) (LRA.Set.ZFCSet.instHasSubset.Subset B A))
+Predicate logic: ∀ A B : Set, A = B ↔ A ⊆ B ∧ B ⊆ A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), A = B ↔ (LRA.Set.ZFCSet.instHasSubset.Subset A B ∧ LRA.Set.ZFCSet.instHasSubset.Subset B A)
+Transliterated theorem: ∀ A B : Set, A = B ↔ A ⊆ B ∧ B ⊆ A
 Logical form (Lean): : ∀ A B : Set, A = B ↔ A ⊆ B ∧ B ⊆ A
-Source: ./ZFCSet/Laws/Subset.lean#L15
+Source: ./ZFCSet/Laws/Subset.lean#L17
 
 
 
@@ -3206,6 +6539,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: LRA.Set.SubsetLaws LRA.Set.ZFCSet.Set
 Predicate logic (unfolded): LRA.Set.SubsetLaws LRA.Set.ZFCSet.Set
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./ZFCSet/Laws/Subset.lean
 
@@ -3214,8 +6548,9 @@ Source: ./ZFCSet/Laws/Subset.lean
 Name: SymmetricDifferenceAsUnionDifferences
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A B)     (LRA.Set.ZFCSet.instUnion.union (LRA.Set.ZFCSet.instSDiff.sdiff A B) (LRA.Set.ZFCSet.instSDiff.sdiff B A))
-Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A B)     (LRA.Set.ZFCSet.instUnion.union (LRA.Set.ZFCSet.instSDiff.sdiff A B) (LRA.Set.ZFCSet.instSDiff.sdiff B A))
+Predicate logic: ∀ A B : Set, A ∆ B = (A \ B) ∪ (B \ A)
+Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A B = LRA.Set.ZFCSet.instUnion.union (LRA.Set.ZFCSet.instSDiff.sdiff A B) (LRA.Set.ZFCSet.instSDiff.sdiff B A)
+Transliterated theorem: ∀ A B : Set, A ∆ B = (A \ B) ∪ (B \ A)
 Logical form (Lean): : ∀ A B : Set, A ∆ B = (A \ B) ∪ (B \ A)
 Source: ./ZFCSet/Laws/SymmetricDifference.lean#L8
 
@@ -3224,70 +6559,77 @@ Source: ./ZFCSet/Laws/SymmetricDifference.lean#L8
 Name: SymmetricDifferenceAsUnionDifferenceIntersection
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A B)     (LRA.Set.ZFCSet.instSDiff.sdiff (LRA.Set.ZFCSet.instUnion.union A B) (LRA.Set.ZFCSet.instInter.inter A B))
-Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A B)     (LRA.Set.ZFCSet.instSDiff.sdiff (LRA.Set.ZFCSet.instUnion.union A B) (LRA.Set.ZFCSet.instInter.inter A B))
+Predicate logic: ∀ A B : Set, A ∆ B = (A ∪ B) \ (A ∩ B)
+Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A B = LRA.Set.ZFCSet.instSDiff.sdiff (LRA.Set.ZFCSet.instUnion.union A B) (LRA.Set.ZFCSet.instInter.inter A B)
+Transliterated theorem: ∀ A B : Set, A ∆ B = (A ∪ B) \ (A ∩ B)
 Logical form (Lean): : ∀ A B : Set, A ∆ B = (A ∪ B) \ (A ∩ B)
-Source: ./ZFCSet/Laws/SymmetricDifference.lean#L12
+Source: ./ZFCSet/Laws/SymmetricDifference.lean#L13
 
 
 
 Name: SymmetricDifferenceCommutative
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A B) (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff B A)
-Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A B) (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff B A)
+Predicate logic: ∀ A B : Set, A ∆ B = B ∆ A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A B = LRA.Set.ZFCSet.instHasSymmDiff.symmDiff B A
+Transliterated theorem: ∀ A B : Set, A ∆ B = B ∆ A
 Logical form (Lean): : ∀ A B : Set, A ∆ B = B ∆ A
-Source: ./ZFCSet/Laws/SymmetricDifference.lean#L16
+Source: ./ZFCSet/Laws/SymmetricDifference.lean#L18
 
 
 
 Name: SymmetricDifferenceAssociative
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B C : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A B) C)     (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff B C))
-Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A B) C)     (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff B C))
+Predicate logic: ∀ A B C : Set, (A ∆ B) ∆ C = A ∆ (B ∆ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instHasSymmDiff.symmDiff (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A B) C = LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff B C)
+Transliterated theorem: ∀ A B C : Set, (A ∆ B) ∆ C = A ∆ (B ∆ C)
 Logical form (Lean): : ∀ A B C : Set, (A ∆ B) ∆ C = A ∆ (B ∆ C)
-Source: ./ZFCSet/Laws/SymmetricDifference.lean#L20
+Source: ./ZFCSet/Laws/SymmetricDifference.lean#L23
 
 
 
 Name: SymmetricDifferenceEmpty
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A LRA.Set.ZFCSet.instEmptyCollection.emptyCollection) A
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A LRA.Set.ZFCSet.instEmptyCollection.emptyCollection) A
+Predicate logic: ∀ A : Set, A ∆ (∅ : Set) = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A LRA.Set.ZFCSet.instEmptyCollection.emptyCollection = A
+Transliterated theorem: ∀ A : Set, A ∆ ∅ ∈ Set = A
 Logical form (Lean): : ∀ A : Set, A ∆ (∅ : Set) = A
-Source: ./ZFCSet/Laws/SymmetricDifference.lean#L24
+Source: ./ZFCSet/Laws/SymmetricDifference.lean#L28
 
 
 
 Name: EmptySymmetricDifference
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff LRA.Set.ZFCSet.instEmptyCollection.emptyCollection A) A
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff LRA.Set.ZFCSet.instEmptyCollection.emptyCollection A) A
+Predicate logic: ∀ A : Set, (∅ : Set) ∆ A = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instHasSymmDiff.symmDiff LRA.Set.ZFCSet.instEmptyCollection.emptyCollection A = A
+Transliterated theorem: ∀ A : Set, ∅ ∈ Set ∆ A = A
 Logical form (Lean): : ∀ A : Set, (∅ : Set) ∆ A = A
-Source: ./ZFCSet/Laws/SymmetricDifference.lean#L27
+Source: ./ZFCSet/Laws/SymmetricDifference.lean#L32
 
 
 
 Name: SymmetricDifferenceSelf
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A A) LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A A) LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
+Predicate logic: ∀ A : Set, A ∆ A = (∅ : Set)
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A A = LRA.Set.ZFCSet.instEmptyCollection.emptyCollection
+Transliterated theorem: ∀ A : Set, A ∆ A = ∅ ∈ Set
 Logical form (Lean): : ∀ A : Set, A ∆ A = (∅ : Set)
-Source: ./ZFCSet/Laws/SymmetricDifference.lean#L30
+Source: ./ZFCSet/Laws/SymmetricDifference.lean#L36
 
 
 
 Name: SymmetricDifferenceEqEmptyIff
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B : LRA.Set.ZFCSet.Set),   Iff (Eq (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A B) LRA.Set.ZFCSet.instEmptyCollection.emptyCollection) (Eq A B)
-Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set),   Iff (Eq (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A B) LRA.Set.ZFCSet.instEmptyCollection.emptyCollection) (Eq A B)
+Predicate logic: ∀ A B : Set, A ∆ B = (∅ : Set) ↔ A = B
+Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A B = LRA.Set.ZFCSet.instEmptyCollection.emptyCollection ↔ A = B
+Transliterated theorem: ∀ A B : Set, A ∆ B = ∅ ∈ Set ↔ A = B
 Logical form (Lean): : ∀ A B : Set, A ∆ B = (∅ : Set) ↔ A = B
-Source: ./ZFCSet/Laws/SymmetricDifference.lean#L33
+Source: ./ZFCSet/Laws/SymmetricDifference.lean#L40
 
 
 
@@ -3295,9 +6637,10 @@ Name: SymmetricDifferenceSubsetUnion
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (A B : LRA.Set.ZFCSet.Set),   LRA.Set.ZFCSet.instHasSubset.Subset (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A B) (LRA.Set.ZFCSet.instUnion.union A B)
-Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set),   LRA.Set.ZFCSet.instHasSubset.Subset (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A B) (LRA.Set.ZFCSet.instUnion.union A B)
+Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instHasSubset.Subset (LRA.Set.ZFCSet.instHasSymmDiff.symmDiff A B) (LRA.Set.ZFCSet.instUnion.union A B)
+Transliterated theorem: ∀ A B : Set, A ∆ B ⊆ A ∪ B
 Logical form (Lean): : ∀ A B : Set, A ∆ B ⊆ A ∪ B
-Source: ./ZFCSet/Laws/SymmetricDifference.lean#L37
+Source: ./ZFCSet/Laws/SymmetricDifference.lean#L45
 
 
 
@@ -3306,6 +6649,7 @@ Kind: Theorem
 State: Completed
 Predicate logic: LRA.Set.SymmDiffLaws LRA.Set.ZFCSet.Set
 Predicate logic (unfolded): LRA.Set.SymmDiffLaws LRA.Set.ZFCSet.Set
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./ZFCSet/Laws/SymmetricDifference.lean
 
@@ -3314,8 +6658,9 @@ Source: ./ZFCSet/Laws/SymmetricDifference.lean
 Name: UnionCommutative
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instUnion.union A B) (LRA.Set.ZFCSet.instUnion.union B A)
-Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instUnion.union A B) (LRA.Set.ZFCSet.instUnion.union B A)
+Predicate logic: ∀ A B : Set, A ∪ B = B ∪ A
+Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instUnion.union A B = LRA.Set.ZFCSet.instUnion.union B A
+Transliterated theorem: ∀ A B : Set, A ∪ B = B ∪ A
 Logical form (Lean): : ∀ A B : Set, A ∪ B = B ∪ A
 Source: ./ZFCSet/Laws/Union.lean#L8
 
@@ -3324,60 +6669,66 @@ Source: ./ZFCSet/Laws/Union.lean#L8
 Name: UnionAssociative
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B C : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instUnion.union (LRA.Set.ZFCSet.instUnion.union A B) C)     (LRA.Set.ZFCSet.instUnion.union A (LRA.Set.ZFCSet.instUnion.union B C))
-Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set),   Eq (LRA.Set.ZFCSet.instUnion.union (LRA.Set.ZFCSet.instUnion.union A B) C)     (LRA.Set.ZFCSet.instUnion.union A (LRA.Set.ZFCSet.instUnion.union B C))
+Predicate logic: ∀ A B C : Set, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+Predicate logic (unfolded): ∀ (A B C : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instUnion.union (LRA.Set.ZFCSet.instUnion.union A B) C = LRA.Set.ZFCSet.instUnion.union A (LRA.Set.ZFCSet.instUnion.union B C)
+Transliterated theorem: ∀ A B C : Set, (A ∪ B) ∪ C = A ∪ (B ∪ C)
 Logical form (Lean): : ∀ A B C : Set, (A ∪ B) ∪ C = A ∪ (B ∪ C)
-Source: ./ZFCSet/Laws/Union.lean#L11
+Source: ./ZFCSet/Laws/Union.lean#L12
 
 
 
 Name: EmptyUnion
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instUnion.union LRA.Set.ZFCSet.instEmptyCollection.emptyCollection A) A
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instUnion.union LRA.Set.ZFCSet.instEmptyCollection.emptyCollection A) A
+Predicate logic: ∀ A : Set, (∅ : Set) ∪ A = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instUnion.union LRA.Set.ZFCSet.instEmptyCollection.emptyCollection A = A
+Transliterated theorem: ∀ A : Set, ∅ ∈ Set ∪ A = A
 Logical form (Lean): : ∀ A : Set, (∅ : Set) ∪ A = A
-Source: ./ZFCSet/Laws/Union.lean#L15
+Source: ./ZFCSet/Laws/Union.lean#L17
 
 
 
 Name: UnionEmpty
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instUnion.union A LRA.Set.ZFCSet.instEmptyCollection.emptyCollection) A
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instUnion.union A LRA.Set.ZFCSet.instEmptyCollection.emptyCollection) A
+Predicate logic: ∀ A : Set, A ∪ (∅ : Set) = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instUnion.union A LRA.Set.ZFCSet.instEmptyCollection.emptyCollection = A
+Transliterated theorem: ∀ A : Set, A ∪ ∅ ∈ Set = A
 Logical form (Lean): : ∀ A : Set, A ∪ (∅ : Set) = A
-Source: ./ZFCSet/Laws/Union.lean#L18
+Source: ./ZFCSet/Laws/Union.lean#L21
 
 
 
 Name: UnionIdempotent
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instUnion.union A A) A
-Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), Eq (LRA.Set.ZFCSet.instUnion.union A A) A
+Predicate logic: ∀ A : Set, A ∪ A = A
+Predicate logic (unfolded): ∀ (A : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instUnion.union A A = A
+Transliterated theorem: ∀ A : Set, A ∪ A = A
 Logical form (Lean): : ∀ A : Set, A ∪ A = A
-Source: ./ZFCSet/Laws/Union.lean#L21
+Source: ./ZFCSet/Laws/Union.lean#L25
 
 
 
 Name: UnionMonotone
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A₁ A₂ B₁ B₂ : LRA.Set.ZFCSet.Set),   And (LRA.Set.ZFCSet.instHasSubset.Subset A₁ A₂) (LRA.Set.ZFCSet.instHasSubset.Subset B₁ B₂) →     LRA.Set.ZFCSet.instHasSubset.Subset (LRA.Set.ZFCSet.instUnion.union A₁ B₁) (LRA.Set.ZFCSet.instUnion.union A₂ B₂)
-Predicate logic (unfolded): ∀ (A₁ A₂ B₁ B₂ : LRA.Set.ZFCSet.Set),   And (LRA.Set.ZFCSet.instHasSubset.Subset A₁ A₂) (LRA.Set.ZFCSet.instHasSubset.Subset B₁ B₂) →     LRA.Set.ZFCSet.instHasSubset.Subset (LRA.Set.ZFCSet.instUnion.union A₁ B₁) (LRA.Set.ZFCSet.instUnion.union A₂ B₂)
+Predicate logic: ∀ A₁ A₂ B₁ B₂ : Set, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
+Predicate logic (unfolded): ∀ (A₁ A₂ B₁ B₂ : LRA.Set.ZFCSet.Set), (LRA.Set.ZFCSet.instHasSubset.Subset A₁ A₂ ∧ LRA.Set.ZFCSet.instHasSubset.Subset B₁ B₂) → LRA.Set.ZFCSet.instHasSubset.Subset (LRA.Set.ZFCSet.instUnion.union A₁ B₁) (LRA.Set.ZFCSet.instUnion.union A₂ B₂)
+Transliterated theorem: ∀ A₁ A₂ B₁ B₂ : Set, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
 Logical form (Lean): : ∀ A₁ A₂ B₁ B₂ : Set, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
-Source: ./ZFCSet/Laws/Union.lean#L24
+Source: ./ZFCSet/Laws/Union.lean#L29
 
 
 
 Name: SubsetIffUnionEqRight
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A B : LRA.Set.ZFCSet.Set), Iff (LRA.Set.ZFCSet.instHasSubset.Subset A B) (Eq (LRA.Set.ZFCSet.instUnion.union A B) B)
-Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), Iff (LRA.Set.ZFCSet.instHasSubset.Subset A B) (Eq (LRA.Set.ZFCSet.instUnion.union A B) B)
+Predicate logic: ∀ A B : Set, A ⊆ B ↔ A ∪ B = B
+Predicate logic (unfolded): ∀ (A B : LRA.Set.ZFCSet.Set), LRA.Set.ZFCSet.instHasSubset.Subset A B ↔ LRA.Set.ZFCSet.instUnion.union A B = B
+Transliterated theorem: ∀ A B : Set, A ⊆ B ↔ A ∪ B = B
 Logical form (Lean): : ∀ A B : Set, A ⊆ B ↔ A ∪ B = B
-Source: ./ZFCSet/Laws/Union.lean#L28
+Source: ./ZFCSet/Laws/Union.lean#L34
 
 
 
@@ -3386,5 +6737,6 @@ Kind: Theorem
 State: Completed
 Predicate logic: LRA.Set.UnionLaws LRA.Set.ZFCSet.Set
 Predicate logic (unfolded): LRA.Set.UnionLaws LRA.Set.ZFCSet.Set
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./ZFCSet/Laws/Union.lean

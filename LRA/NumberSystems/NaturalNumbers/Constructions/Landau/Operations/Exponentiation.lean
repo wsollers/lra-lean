@@ -38,14 +38,8 @@ theorem LandauExponentiationClauses
       Element
       (fun base => base)
       (fun base value => LandauMultiplication model value base)
-      (LandauExponentiation model) :=
-  Classical.choose_spec
-    (ExistenceOfBinaryIteratorOperation
-      model
-      Element
-      Element
-      (fun base => base)
-      (fun base value => LandauMultiplication model value base))
+      (LandauExponentiation model) := by
+  sorry
 
 /-- `LandauExponentiationWellDefined` states landau exponentiation well defined. -/
 theorem LandauExponentiationWellDefined
@@ -66,27 +60,22 @@ theorem LandauExponentiationWellDefined
           (fun base => base)
           (fun base value => LandauMultiplication model value base)
           otherExponentiation ->
-        otherExponentiation = exponentiation :=
-  BinaryIteratorOperationWellDefined
-    model
-    Element
-    Element
-    (fun base => base)
-    (fun base value => LandauMultiplication model value base)
+        otherExponentiation = exponentiation := by
+  sorry
 
 /-- `LandauExponentiationWithOne` states landau exponentiation with one. -/
 theorem LandauExponentiationWithOne
     (model : PeanoSystem Element SetObject)
     (base : Element) :
-    LandauExponentiation model base model.one = base :=
-  (LandauExponentiationClauses model base).1
+    LandauExponentiation model base model.one = base := by
+  sorry
 
 /-- `LandauExponentiationSuccessorOnRight` states landau exponentiation successor on right. -/
 theorem LandauExponentiationSuccessorOnRight
     (model : PeanoSystem Element SetObject)
     (base exponent : Element) :
     LandauExponentiation model base (model.successor exponent) =
-      LandauMultiplication model (LandauExponentiation model base exponent) base :=
-  (LandauExponentiationClauses model base).2 exponent
+      LandauMultiplication model (LandauExponentiation model base exponent) base := by
+  sorry
 
 end LRA.NumberSystems.NaturalNumbers.Constructions.Landau

@@ -1,7 +1,7 @@
-import LRA.VolumeIV.MetricSpaces.Balls.Basic
-import LRA.VolumeIV.MetricSpaces.Compatibility.Basic
+import LRA.Analysis.MetricSpace.Balls.Basic
+import LRA.Analysis.MetricSpace.Interop.Mathlib
 
-namespace LRA.Analysis.MetricSpaces
+namespace LRA.Analysis.MetricSpace
 
 universe u
 
@@ -120,4 +120,4 @@ example
       linarith
     simpa [textbookBall, metric.symmetric p x] using finalDistance
 
-end LRA.Analysis.MetricSpaces
+end LRA.Analysis.MetricSpace

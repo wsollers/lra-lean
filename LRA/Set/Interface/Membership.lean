@@ -180,8 +180,8 @@ theorem SetExtensionality
 theorem SetExtensionality
     [Membership Element SetObject] [ExtensionalityLaw Element SetObject]
     {A B : SetObject} (sameMembers : ∀ x : Element, x ∈ A ↔ x ∈ B) :
-    A = B :=
-  ExtensionalityLaw.SetExtensionality sameMembers
+    A = B := by
+  sorry
 
 /-- Nothing is a member of the empty set.
 
@@ -199,8 +199,8 @@ theorem EmptyMembership
     [Membership Element SetObject] [Union SetObject] [Inter SetObject]
     [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject]
     [MembershipLaws Element SetObject] :
-    ∀ x : Element, x ∉ (∅ : SetObject) :=
-  MembershipLaws.EmptyMembership
+    ∀ x : Element, x ∉ (∅ : SetObject) := by
+  sorry
 
 /-- Membership in a union.
 
@@ -218,8 +218,8 @@ theorem UnionMembership
     [Membership Element SetObject] [Union SetObject] [Inter SetObject]
     [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject]
     [MembershipLaws Element SetObject] :
-    ∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B :=
-  MembershipLaws.UnionMembership
+    ∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B := by
+  sorry
 
 /-- Membership in an intersection.
 
@@ -237,8 +237,8 @@ theorem IntersectionMembership
     [Membership Element SetObject] [Union SetObject] [Inter SetObject]
     [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject]
     [MembershipLaws Element SetObject] :
-    ∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B :=
-  MembershipLaws.IntersectionMembership
+    ∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B := by
+  sorry
 
 /-- Membership in a difference.
 
@@ -256,8 +256,8 @@ theorem DifferenceMembership
     [Membership Element SetObject] [Union SetObject] [Inter SetObject]
     [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject]
     [MembershipLaws Element SetObject] :
-    ∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ x ∈ A ∧ x ∉ B :=
-  MembershipLaws.DifferenceMembership
+    ∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ x ∈ A ∧ x ∉ B := by
+  sorry
 
 /-- Subset means every member carries over.
 
@@ -275,8 +275,8 @@ theorem SubsetIffAllMembers
     [Membership Element SetObject] [Union SetObject] [Inter SetObject]
     [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject]
     [MembershipLaws Element SetObject] :
-    ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B :=
-  MembershipLaws.SubsetIffAllMembers
+    ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B := by
+  sorry
 
 /-- Membership in a separated subset.
 
@@ -294,8 +294,8 @@ theorem SeparationMembership
     [Membership Element SetObject] [HasSeparation Element SetObject]
     [SeparationLaws Element SetObject] :
     ∀ (A : SetObject) (property : Element → Prop) (x : Element),
-      x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x :=
-  SeparationLaws.SeparationMembership
+      x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x := by
+  sorry
 
 /-- Everything is a member of the universal set.
 
@@ -311,8 +311,8 @@ theorem UniversalMembership
 theorem UniversalMembership
     [Membership Element SetObject] [HasUniversal SetObject]
     [HasComplement SetObject] [UniversalMembershipLaws Element SetObject] :
-    ∀ x : Element, x ∈ (𝒰 : SetObject) :=
-  UniversalMembershipLaws.UniversalMembership
+    ∀ x : Element, x ∈ (𝒰 : SetObject) := by
+  sorry
 
 /-- Membership in a complement.
 
@@ -328,8 +328,8 @@ theorem ComplementMembership
 theorem ComplementMembership
     [Membership Element SetObject] [HasUniversal SetObject]
     [HasComplement SetObject] [UniversalMembershipLaws Element SetObject] :
-    ∀ (A : SetObject) (x : Element), x ∈ Aᶜ ↔ x ∉ A :=
-  UniversalMembershipLaws.ComplementMembership
+    ∀ (A : SetObject) (x : Element), x ∈ Aᶜ ↔ x ∉ A := by
+  sorry
 
 /-- Membership in a symmetric difference.
 
@@ -347,8 +347,8 @@ theorem SymmetricDifferenceMembership
     [Membership Element SetObject] [HasSymmDiff SetObject]
     [SymmDiffMembershipLaws Element SetObject] :
     ∀ (A B : SetObject) (x : Element),
-      x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A) :=
-  SymmDiffMembershipLaws.SymmetricDifferenceMembership
+      x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A) := by
+  sorry
 
 /-- Membership in a power set is being a subset.
 
@@ -366,8 +366,8 @@ theorem PowersetMembership {SetObject : Type u} {Collection : Type v}
     [Membership SetObject Collection] [HasSubset SetObject]
     [HasPowerset SetObject Collection]
     [PowersetMembershipLaws SetObject Collection] :
-    ∀ A B : SetObject, B ∈ (HasPowerset.powerset A : Collection) ↔ B ⊆ A :=
-  PowersetMembershipLaws.PowersetMembership
+    ∀ A B : SetObject, B ∈ (HasPowerset.powerset A : Collection) ↔ B ⊆ A := by
+  sorry
 
 end Wrappers
 

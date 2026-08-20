@@ -26,13 +26,13 @@ variable {R : Type u}
 
 /-- One is a left identity for multiplication. -/
 theorem OneMul [Mul R] [OfNat R 1] [MultiplicativeIdentityLaws R] :
-    ∀ a : R, 1 * a = a :=
-  MultiplicativeIdentityLaws.OneMul
+    ∀ a : R, 1 * a = a := by
+  sorry
 
 /-- One is a right identity for multiplication. -/
 theorem MulOne [Mul R] [OfNat R 1] [MultiplicativeIdentityLaws R] :
-    ∀ a : R, a * 1 = a :=
-  MultiplicativeIdentityLaws.MulOne
+    ∀ a : R, a * 1 = a := by
+  sorry
 
 end Wrappers
 

@@ -16,44 +16,21 @@ theorem RelationComposition.associative
         (RelationComposition secondRelation firstRelation) =
       RelationComposition
         (RelationComposition thirdRelation secondRelation) firstRelation := by
-  funext first fourth
-  apply propext
-  constructor
-  · intro composed
-    rcases composed with ⟨third, secondComposedFirst, thirdRelatedFourth⟩
-    rcases secondComposedFirst with ⟨second, firstRelatedSecond, secondRelatedThird⟩
-    exact ⟨second, firstRelatedSecond, third, secondRelatedThird, thirdRelatedFourth⟩
-  · intro composed
-    rcases composed with ⟨second, firstRelatedSecond, third, secondRelatedThird, thirdRelatedFourth⟩
-    exact ⟨third, ⟨second, firstRelatedSecond, secondRelatedThird⟩, thirdRelatedFourth⟩
+  sorry
 
 /-- The identity relation is a left unit for relation composition. -/
 theorem RelationComposition.identity_left
     {Alpha : Type u} {Beta : Type v}
     (relation : HeterogeneousBinaryRelation Alpha Beta) :
     RelationComposition (IdentityRelation Beta) relation = relation := by
-  funext first second
-  apply propext
-  constructor
-  · intro composed
-    rcases composed with ⟨middle, firstRelatedMiddle, middleEqualsSecond⟩
-    rwa [middleEqualsSecond] at firstRelatedMiddle
-  · intro firstRelatedSecond
-    exact ⟨second, firstRelatedSecond, rfl⟩
+  sorry
 
 /-- The identity relation is a right unit for relation composition. -/
 theorem RelationComposition.identity_right
     {Alpha : Type u} {Beta : Type v}
     (relation : HeterogeneousBinaryRelation Alpha Beta) :
     RelationComposition relation (IdentityRelation Alpha) = relation := by
-  funext first second
-  apply propext
-  constructor
-  · intro composed
-    rcases composed with ⟨middle, firstEqualsMiddle, middleRelatedSecond⟩
-    rwa [← firstEqualsMiddle] at middleRelatedSecond
-  · intro firstRelatedSecond
-    exact ⟨first, rfl, firstRelatedSecond⟩
+  sorry
 
 /-- Converse reverses relation composition. -/
 theorem Converse.relationComposition
@@ -61,14 +38,6 @@ theorem Converse.relationComposition
     (leftRelation rightRelation : Endorelation Alpha) :
     Converse (RelationComposition rightRelation leftRelation) =
       RelationComposition (Converse leftRelation) (Converse rightRelation) := by
-  funext first third
-  apply propext
-  constructor
-  · intro composed
-    rcases composed with ⟨middle, thirdRelatedMiddle, middleRelatedFirst⟩
-    exact ⟨middle, middleRelatedFirst, thirdRelatedMiddle⟩
-  · intro composed
-    rcases composed with ⟨middle, middleRelatedFirst, thirdRelatedMiddle⟩
-    exact ⟨middle, thirdRelatedMiddle, middleRelatedFirst⟩
+  sorry
 
 end LRA.Relation

@@ -18,13 +18,7 @@ theorem pred_succ (x : Z) : pred (succ x) = x
 ```
 -/
 theorem pred_succ (x : Z) : pred (succ x) = x := by
-  cases x with
-  | zero => rfl
-  | pos p => rfl
-  | neg n =>
-      cases n with
-      | predZero => rfl
-      | pred n' => rfl
+  sorry
 
 /--
 **[Theorem — succ_pred]**
@@ -36,13 +30,7 @@ theorem succ_pred (x : Z) : succ (pred x) = x
 ```
 -/
 theorem succ_pred (x : Z) : succ (pred x) = x := by
-  cases x with
-  | zero => rfl
-  | pos p =>
-      cases p with
-      | succZero => rfl
-      | succ p' => rfl
-  | neg n => rfl
+  sorry
 
 /--
 **[Def — recP]**
@@ -102,7 +90,8 @@ theorem recZ_zero {α : Type} (a0 : α) (stepSucc stepPred : α → α) :
 ```
 -/
 theorem recZ_zero {α : Type} (a0 : α) (stepSucc stepPred : α → α) :
-    recZ a0 stepSucc stepPred zero = a0 := rfl
+    recZ a0 stepSucc stepPred zero = a0 := by
+  sorry
 
 /--
 **[Theorem — recZ_succ]**
@@ -120,18 +109,7 @@ theorem recZ_succ {α : Type} (a0 : α) (stepSucc stepPred : α → α)
     (rightInverse : ∀ a, stepSucc (stepPred a) = a) :
     ∀ x : Z, recZ a0 stepSucc stepPred (succ x) =
       stepSucc (recZ a0 stepSucc stepPred x) := by
-  intro x
-  cases x with
-  | zero => rfl
-  | pos p => rfl
-  | neg n =>
-      cases n with
-      | predZero =>
-          change a0 = stepSucc (stepPred a0)
-          rw [rightInverse]
-      | pred n' =>
-          change recN a0 stepPred n' = stepSucc (stepPred (recN a0 stepPred n'))
-          rw [rightInverse]
+  sorry
 
 /--
 **[Theorem — recZ_pred]**
@@ -149,18 +127,7 @@ theorem recZ_pred {α : Type} (a0 : α) (stepSucc stepPred : α → α)
     (leftInverse : ∀ a, stepPred (stepSucc a) = a) :
     ∀ x : Z, recZ a0 stepSucc stepPred (pred x) =
       stepPred (recZ a0 stepSucc stepPred x) := by
-  intro x
-  cases x with
-  | zero => rfl
-  | pos p =>
-      cases p with
-      | succZero =>
-          change a0 = stepPred (stepSucc a0)
-          rw [leftInverse]
-      | succ p' =>
-          change recP a0 stepSucc p' = stepPred (stepSucc (recP a0 stepSucc p'))
-          rw [leftInverse]
-  | neg n => rfl
+  sorry
 
 /--
 **[Theorem — recursion_exists]**
@@ -184,10 +151,7 @@ theorem recursion_exists {α : Type} (a0 : α) (stepSucc stepPred : α → α)
       h zero = a0 ∧
       (∀ x, h (succ x) = stepSucc (h x)) ∧
       (∀ x, h (pred x) = stepPred (h x)) := by
-  refine ⟨recZ a0 stepSucc stepPred, ?_, ?_, ?_⟩
-  · rfl
-  · exact recZ_succ a0 stepSucc stepPred rightInverse
-  · exact recZ_pred a0 stepSucc stepPred leftInverse
+  sorry
 
 /--
 **[Theorem — succ_injective]**
@@ -201,9 +165,7 @@ theorem succ_injective {x y : Z} (successorEquality : succ x = succ y) : x = y
 ```
 -/
 theorem succ_injective {x y : Z} (successorEquality : succ x = succ y) : x = y := by
-  have inverseEquality := congrArg pred successorEquality
-  rw [pred_succ, pred_succ] at inverseEquality
-  exact inverseEquality
+  sorry
 
 /--
 **[Theorem — pred_injective]**
@@ -217,9 +179,7 @@ theorem pred_injective {x y : Z} (predecessorEquality : pred x = pred y) : x = y
 ```
 -/
 theorem pred_injective {x y : Z} (predecessorEquality : pred x = pred y) : x = y := by
-  have inverseEquality := congrArg succ predecessorEquality
-  rw [succ_pred, succ_pred] at inverseEquality
-  exact inverseEquality
+  sorry
 
 /-- Two-sided induction, proved from the structural definition of `Z`.
 Moved from `LandauWorkup`.
@@ -244,17 +204,7 @@ theorem twoSidedInduction
     (succStep : ∀ x, A x → A (succ x))
     (predStep : ∀ x, A x → A (pred x)) :
     ∀ x, A x := by
-  intro x
-  cases x with
-  | zero => exact zeroCase
-  | pos p =>
-      induction p with
-      | succZero => exact succStep Z.zero zeroCase
-      | succ p' ih => exact succStep (Z.pos p') ih
-  | neg n =>
-      induction n with
-      | predZero => exact predStep Z.zero zeroCase
-      | pred n' ih => exact predStep (Z.neg n') ih
+  sorry
 
 /-- Recursion into a two-sided successor target is unique. Moved from
 `LandauWorkup`.
@@ -286,11 +236,6 @@ theorem recursion_unique {α : Type}
     (secondFunction_succ : ∀ x, secondFunction (succ x) = stepSucc (secondFunction x))
     (secondFunction_pred : ∀ x, secondFunction (pred x) = stepPred (secondFunction x)) :
     ∀ x, firstFunction x = secondFunction x := by
-  apply twoSidedInduction
-  · rw [firstFunction_zero, secondFunction_zero]
-  · intro x inductionHypothesis
-    rw [firstFunction_succ, secondFunction_succ, inductionHypothesis]
-  · intro x inductionHypothesis
-    rw [firstFunction_pred, secondFunction_pred, inductionHypothesis]
+  sorry
 
 end LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor

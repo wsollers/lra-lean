@@ -100,10 +100,6 @@ theorem LittleOImpliesBigOAtTop
     IsBigOAtTop f g := by
   sorry
 
-/- ================================================================
-   ADDITIONS.md item 26 — Young's Inequality.
-   ================================================================ -/
-
 /-- Let `a b : ℝ` and `p q : ℝ`. If `ha : 0 ≤ a`, `hb : 0 ≤ b`, `hp : 1 < p`, `hq : 1 < q`, and `hpq
 : 1 / p + 1 / q = 1`. Then `a * b ≤ a ^ p / p + b ^ q / q`.
 
@@ -121,10 +117,6 @@ theorem YoungsInequality
     (p q : ℝ) (hp : 1 < p) (hq : 1 < q) (hpq : 1 / p + 1 / q = 1) :
     a * b ≤ a ^ p / p + b ^ q / q := by
   sorry
-
-/- ================================================================
-   ADDITIONS.md item 27 — Jensen's Inequality (finite form).
-   ================================================================ -/
 
 /-- Convexity of `φ` on all of `ℝ`, stated in the book's own two-point
 `∀x,y,λ` idiom rather than reached for via Mathlib's `ConvexOn` machinery —

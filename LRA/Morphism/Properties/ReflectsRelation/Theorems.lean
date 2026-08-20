@@ -12,7 +12,7 @@ theorem ReflectsRelation.apply {Source : Type u} {Target : Type v}
     (law : ReflectsRelation function sourceRelation targetRelation)
     {left right : Source}
     (relatedValues : targetRelation (function left) (function right)) :
-    sourceRelation left right :=
-  law left right relatedValues
+    sourceRelation left right := by
+  sorry
 
 end LRA.Morphism

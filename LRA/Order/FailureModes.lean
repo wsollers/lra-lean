@@ -845,9 +845,7 @@ theorem ReflexiveRelationIsRawDense
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha} :
     ReflexivityMakesRawDensityVacuous relation := by
-  intro relationIsReflexive
-  intro left right leftRelatedToRight
-  exact ⟨left, relationIsReflexive left, leftRelatedToRight⟩
+  sorry
 
 end LRA.Order
 
@@ -1251,8 +1249,7 @@ theorem NaturalSubtractionFailsLeftTranslationPreservesLessEqual :
     FailsLeftTranslationPreservesRelation
       (fun left right : Nat => left <= right)
       NaturalSubtractionForOrderCompatibilityFailure := by
-  intro law
-  exact Nat.not_succ_le_zero 0 (law 1 0 1 (Nat.zero_le 1))
+  sorry
 
 end LRA.Order
 

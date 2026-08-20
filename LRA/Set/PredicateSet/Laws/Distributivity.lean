@@ -12,14 +12,17 @@ theorem IntersectionDistributesOverUnion :
       A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) := by
   sorry
 
+
 theorem UnionDistributesOverIntersection :
     ∀ A B C : LRA.Set.PredicateSet Alpha,
       A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C) := by
   sorry
 
+
 theorem AbsorptionUnionIntersection :
     ∀ A B : LRA.Set.PredicateSet Alpha, A ∪ (A ∩ B) = A := by
   sorry
+
 
 theorem AbsorptionIntersectionUnion :
     ∀ A B : LRA.Set.PredicateSet Alpha, A ∩ (A ∪ B) = A := by

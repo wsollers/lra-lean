@@ -12,49 +12,59 @@ theorem DifferenceMonotoneLeft :
       A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B := by
   sorry
 
+
 theorem DifferenceAntitoneRight :
     ∀ A B₁ B₂ : LRA.Set.PredicateSet Alpha,
       B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁ := by
   sorry
+
 
 theorem DifferenceEmpty :
     ∀ A : LRA.Set.PredicateSet Alpha,
       A \ (∅ : LRA.Set.PredicateSet Alpha) = A := by
   sorry
 
+
 theorem EmptyDifference :
     ∀ A : LRA.Set.PredicateSet Alpha,
       (∅ : LRA.Set.PredicateSet Alpha) \ A = (∅ : LRA.Set.PredicateSet Alpha) := by
   sorry
+
 
 theorem DifferenceSelf :
     ∀ A : LRA.Set.PredicateSet Alpha,
       A \ A = (∅ : LRA.Set.PredicateSet Alpha) := by
   sorry
 
+
 theorem DifferenceUnion :
     ∀ A B C : LRA.Set.PredicateSet Alpha,
       A \ (B ∪ C) = (A \ B) ∩ (A \ C) := by
   sorry
+
 
 theorem DifferenceIntersection :
     ∀ A B C : LRA.Set.PredicateSet Alpha,
       A \ (B ∩ C) = (A \ B) ∪ (A \ C) := by
   sorry
 
+
 theorem UnionDifferenceDistributes :
     ∀ A B C : LRA.Set.PredicateSet Alpha,
       (A ∪ B) \ C = (A \ C) ∪ (B \ C) := by
   sorry
+
 
 theorem IntersectionDifferenceDistributes :
     ∀ A B C : LRA.Set.PredicateSet Alpha,
       (A ∩ B) \ C = (A \ C) ∩ (B \ C) := by
   sorry
 
+
 theorem DifferenceSubsetLeft :
     ∀ A B : LRA.Set.PredicateSet Alpha, A \ B ⊆ A := by
   sorry
+
 
 theorem DifferenceDisjointRight :
     ∀ A B : LRA.Set.PredicateSet Alpha,

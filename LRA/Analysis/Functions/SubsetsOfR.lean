@@ -430,20 +430,6 @@ theorem TrueNearStableUnderConjunction (P Q : ℝ → Prop) (x₀ : ℝ)
     TrueNear (fun x => P x ∧ Q x) x₀ := by
   sorry
 
-/- ================================================================
-   ADDITIONS.md items 16-18. Added with user sign-off.
-
-   Rationale (per discussion): this file deliberately scopes its whole
-   toolkit (cluster/adherent/interior/closure/boundary/closed) to
-   concrete ℝ with ε-intervals — clearly the "see it happen with actual
-   numbers" pass before a later general topological-space treatment —
-   but conspicuously never defines OPEN, even though it already uses
-   "closed and bounded" (Heine–Borel) and is visibly laying track toward
-   function limits (`def:true-near` says so explicitly). Adding it here
-   is the concrete ℝ instance a later general topology definition should
-   specialize down to, not a duplicate of that later work.
-   ================================================================ -/
-
 /-- ADDITIONS.md #16. `X` is open iff it equals its own interior — the
 direct parallel to the existing `def:closed-set-r` (`X` closed iff it
 equals its own closure), completing the open/closed pair that the file

@@ -53,7 +53,7 @@ theorem StrictPartIsStrictOrder
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
     LRA.Order.StrictOrder (StrictPart order) := by
-  exact StrictPartRelationIsStrictOrder order
+  sorry
 
 /-- The converse relation of a non-strict partial order satisfies the partial-order laws. -/
 theorem DualRelationIsPartialOrder
@@ -77,6 +77,6 @@ theorem DualIsPartialOrder
     (order : NonStrictPartialOrder Carrier) :
     LRA.Order.PartialOrder
       (LRA.Relation.Converse order.relation) := by
-  exact DualRelationIsPartialOrder order
+  sorry
 
 end LRA.Order.OrderedSets.PartialOrder

@@ -27,10 +27,12 @@ theorem GeneratedSigmaAlgebraMembersAreSubsets
       A ⊆ ambient := by
   sorry
 
+
 theorem GeneratedSigmaAlgebraEmptyIsMember
     (ambient : SetObject) (generator : SetObject → Prop) :
     GeneratedSigmaAlgebraCollection ambient generator (∅ : SetObject) := by
   sorry
+
 
 theorem GeneratedSigmaAlgebraUnionIsMember
     (ambient : SetObject) (generator : SetObject → Prop) :
@@ -40,6 +42,7 @@ theorem GeneratedSigmaAlgebraUnionIsMember
       GeneratedSigmaAlgebraCollection ambient generator (A ∪ B) := by
   sorry
 
+
 theorem GeneratedSigmaAlgebraIntersectionIsMember
     (ambient : SetObject) (generator : SetObject → Prop) :
     ∀ A B,
@@ -47,6 +50,7 @@ theorem GeneratedSigmaAlgebraIntersectionIsMember
       GeneratedSigmaAlgebraCollection ambient generator B →
       GeneratedSigmaAlgebraCollection ambient generator (A ∩ B) := by
   sorry
+
 
 theorem GeneratedSigmaAlgebraDifferenceIsMember
     (ambient : SetObject) (generator : SetObject → Prop) :
@@ -56,6 +60,7 @@ theorem GeneratedSigmaAlgebraDifferenceIsMember
       GeneratedSigmaAlgebraCollection ambient generator (A \ B) := by
   sorry
 
+
 theorem GeneratedSigmaAlgebraSymmetricDifferenceIsMember
     (ambient : SetObject) (generator : SetObject → Prop) :
     ∀ A B,
@@ -64,10 +69,12 @@ theorem GeneratedSigmaAlgebraSymmetricDifferenceIsMember
       GeneratedSigmaAlgebraCollection ambient generator (A ∆ B) := by
   sorry
 
+
 theorem GeneratedSigmaAlgebraAmbientIsMember
     (ambient : SetObject) (generator : SetObject → Prop) :
     GeneratedSigmaAlgebraCollection ambient generator ambient := by
   sorry
+
 
 theorem GeneratedSigmaAlgebraCountableUnionIsMember
     (ambient : SetObject) (generator : SetObject → Prop) :
@@ -100,6 +107,7 @@ theorem GeneratedSigmaAlgebraContainsGenerator
     (G : SetObject) (GIsGenerator : generator G) :
     (GeneratedSigmaAlgebra ambient generator).IsMember G := by
   sorry
+
 
 theorem GeneratedSigmaAlgebraMinimal
     (ambient : SetObject) (generator : SetObject → Prop)

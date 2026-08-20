@@ -25,7 +25,8 @@ theorem IneqAmGmTwo (a b : ℝ) (ha : a ≥ 0) (hb : b ≥ 0) :
 ```
 -/
 theorem IneqAmGmTwo (a b : ℝ) (ha : a ≥ 0) (hb : b ≥ 0) :
-    Real.sqrt (a * b) ≤ (a + b) / 2 := by sorry
+    Real.sqrt (a * b) ≤ (a + b) / 2 := by
+  sorry
 
 /-- `def:classical-means`: arithmetic, geometric, and harmonic means of a
 finite positive list.
@@ -76,7 +77,8 @@ theorem IneqAmGm (n : ℕ) (hn : 0 < n) (a : Fin n → ℝ) (ha : ∀ i, a i > 0
 ```
 -/
 theorem IneqAmGm (n : ℕ) (hn : 0 < n) (a : Fin n → ℝ) (ha : ∀ i, a i > 0) :
-    GeometricMean n a ≤ ArithmeticMean n a := by sorry
+    GeometricMean n a ≤ ArithmeticMean n a := by
+  sorry
 
 -- `thm:ineq-am-gm-hm`
 /-- Let `n : ℕ`. If `hn : 0 < n`, `a : Fin n → ℝ`, and `ha : ∀ i, a i > 0`. Then `HarmonicMean n a ≤
@@ -109,7 +111,8 @@ theorem IneqCauchySchwarz (n : ℕ) (a b : Fin n → ℝ) :
 theorem IneqCauchySchwarz (n : ℕ) (a b : Fin n → ℝ) :
     |Finset.univ.sum (fun j => a j * b j)| ≤
       Real.sqrt (Finset.univ.sum (fun j => a j ^ 2)) *
-        Real.sqrt (Finset.univ.sum (fun j => b j ^ 2)) := by sorry
+        Real.sqrt (Finset.univ.sum (fun j => b j ^ 2)) := by
+  sorry
 
 -- `thm:ineq-chebyshev-sum`
 /-- Let `n : ℕ`. If `hn : 0 < n`, `a b : Fin n → ℝ`, `ha : Monotone a`, and `hb : Monotone b`. Then
@@ -127,7 +130,8 @@ theorem IneqChebyshevSum (n : ℕ) (hn : 0 < n) (a b : Fin n → ℝ)
 theorem IneqChebyshevSum (n : ℕ) (hn : 0 < n) (a b : Fin n → ℝ)
     (ha : Monotone a) (hb : Monotone b) :
     (ArithmeticMean n a) * (ArithmeticMean n b) ≤
-      ArithmeticMean n (fun j => a j * b j) := by sorry
+      ArithmeticMean n (fun j => a j * b j) := by
+  sorry
 
 -- `thm:ineq-rearrangement`
 /-- Let `n : ℕ` and `σ : Equiv.Perm (Fin n)`. If `a b : Fin n → ℝ`, `ha : Monotone a`, and `hb :
@@ -150,7 +154,8 @@ theorem IneqRearrangement (n : ℕ) (a b : Fin n → ℝ) (ha : Monotone a) (hb 
     Finset.univ.sum (fun j => a j * b (Fin.rev j)) ≤
       Finset.univ.sum (fun j => a j * b (σ j)) ∧
     Finset.univ.sum (fun j => a j * b (σ j)) ≤
-      Finset.univ.sum (fun j => a j * b j) := by sorry
+      Finset.univ.sum (fun j => a j * b j) := by
+  sorry
 
 -- `thm:ineq-holder`
 /-- Let `n : ℕ` and `p q : ℝ`. If `hp : p > 1`, `hq : q > 1`, `hpq : 1 / p + 1 / q = 1`, and `a b :
@@ -171,7 +176,8 @@ theorem IneqHolder (n : ℕ) (p q : ℝ) (hp : p > 1) (hq : q > 1)
     (hpq : 1 / p + 1 / q = 1) (a b : Fin n → ℝ) :
     Finset.univ.sum (fun j => |a j * b j|) ≤
       (Finset.univ.sum (fun j => |a j| ^ p)) ^ (1 / p) *
-        (Finset.univ.sum (fun j => |b j| ^ q)) ^ (1 / q) := by sorry
+        (Finset.univ.sum (fun j => |b j| ^ q)) ^ (1 / q) := by
+  sorry
 
 -- `thm:ineq-minkowski`
 /-- Let `n : ℕ` and `p : ℝ`. If `hp : p ≥ 1` and `a b : Fin n → ℝ`. Then `(Finset.univ.sum (fun j =>
@@ -190,7 +196,8 @@ theorem IneqMinkowski (n : ℕ) (p : ℝ) (hp : p ≥ 1) (a b : Fin n → ℝ) :
 theorem IneqMinkowski (n : ℕ) (p : ℝ) (hp : p ≥ 1) (a b : Fin n → ℝ) :
     (Finset.univ.sum (fun j => |a j + b j| ^ p)) ^ (1 / p) ≤
       (Finset.univ.sum (fun j => |a j| ^ p)) ^ (1 / p) +
-        (Finset.univ.sum (fun j => |b j| ^ p)) ^ (1 / p) := by sorry
+        (Finset.univ.sum (fun j => |b j| ^ p)) ^ (1 / p) := by
+  sorry
 
 -- `thm:ineq-bernoulli`
 /-- Let `x : ℝ` and `n : ℕ`. If `hx : x ≥ -1`. Then `(1 + x) ^ n ≥ 1 + n * x`.
@@ -203,6 +210,7 @@ theorem IneqBernoulli (x : ℝ) (n : ℕ) (hx : x ≥ -1) :
 ```
 -/
 theorem IneqBernoulli (x : ℝ) (n : ℕ) (hx : x ≥ -1) :
-    (1 + x) ^ n ≥ 1 + n * x := by sorry
+    (1 + x) ^ n ≥ 1 + n * x := by
+  sorry
 
 end LRA.Analysis.RealAnalysis

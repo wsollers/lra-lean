@@ -107,18 +107,6 @@ theorem OrdinaryInfimumInSIsRelativeInfimum
     IsRelativeInfimum i A S := by
   sorry
 
-/- ================================================================
-   ADDITIONS.md item 21. Added with user sign-off. Worked example
-   instantiating the file's own recurring motivating remark
-   (`{q∈ℚ:q²<2}` has no relative supremum in `ℚ` but supremum `√2` in
-   `ℝ`) against the actual `IsRelativeSupremum` machinery above, with
-   the ambient type fixed to `ℝ` and `S` ranging over the embedded
-   copy of `ℚ` versus all of `ℝ`. Companion to
-   `CompletenessAdditions.lean`'s `RationalsLackLubProperty`
-   (ADDITIONS.md #20) — same underlying fact, viewed through the
-   relative-bounds lens instead of the plain-LUB-property lens.
-   ================================================================ -/
-
 /-- The set `{q∈ℚ:q²<2}`, viewed as a subset of the ambient `ℝ` (cast
 along `ℚ ↪ ℝ`) — the file's own recurring motivating example, made
 concrete.

@@ -19,8 +19,8 @@ variable {R : Type u}
 
 /-- Addition is commutative. -/
 theorem AddCommutative [Add R] [AdditiveCommutativeLaws R] :
-    ∀ a b : R, a + b = b + a :=
-  AdditiveCommutativeLaws.AddCommutative
+    ∀ a b : R, a + b = b + a := by
+  sorry
 
 end Wrappers
 

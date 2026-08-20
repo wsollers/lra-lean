@@ -29,7 +29,6 @@ theorem InjectiveIffKernelIsIdentityRelation
       KernelRelation function = LRA.Relation.IdentityRelation Domain := by
   sorry
 
-
 /-!
 ## The genuinely functional image and preimage laws
 
@@ -259,7 +258,6 @@ theorem FiberClassOverValueIffKernelRelated
 theorem FiberClassSaturatedBy (output : Codomain) :
     SaturatedBy (FiberClass function output) function := by
   sorry
-
 
 /-- The fiber over a value is the kernel equivalence class of a representative.
 

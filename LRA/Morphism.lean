@@ -18,7 +18,7 @@ the structure they preserve — `Homomorphism`, `Isomorphism`, `Embedding`, and
 `Congruence` in `LRA.UniversalAlgebra`; `Monotone`, `Antitone`,
 `OrderEmbedding`, and `OrderIsomorphism` in `LRA.Order.Morphisms`;
 `ModelEmbedding` in `LRA.Logic.FirstOrder`; `Continuous` in `LRA.Topology`;
-`Isometry` in `LRA.Analysis.MetricSpaces`; `LinearMap` in `LRA.LinearAlgebra`.
+`Isometry` in `LRA.Analysis.MetricSpace`; `LinearMap` in `LRA.LinearAlgebra`.
 
 Why this is a top-level subject rather than part of `LRA.UniversalAlgebra`:
 universal algebra studies carriers with operations only, and its signatures have

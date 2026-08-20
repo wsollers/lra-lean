@@ -54,7 +54,6 @@ theorem equivalent_is_equivalence_relation :
     Equivalence (equivalent rational_model) := by
   sorry
 
-
 /-- Definition 1.9: the representative setoid.
 
 Mathematical statement (Lean): `def representative_setoid : Setoid (Representative rational_model)`.
@@ -112,7 +111,6 @@ theorem constant_degenerate_sequence_is_admissible
         representative.interval index =
           degenerate_interval rational_model value := by
   sorry
-
 
 /-- Definition 2.1: the constant representative C_q.
 

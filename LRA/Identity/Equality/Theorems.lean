@@ -13,18 +13,14 @@ universe u
 theorem EqualitySymmetry {Carrier : Type u} {left right : Carrier}
     (ObjectsAreEqual : left = right) :
     right = left := by
-  have substitution :=
-    LeibnizLaw ObjectsAreEqual (fun value => value = left)
-  exact substitution.mp (EqualityReflexivity left)
+  sorry
 
 /-- Equality is transitive, derived from Leibniz substitution. -/
 theorem EqualityTransitivity {Carrier : Type u} {first second third : Carrier}
     (FirstEqualsSecond : first = second)
     (SecondEqualsThird : second = third) :
     first = third := by
-  have substitution :=
-    LeibnizLaw FirstEqualsSecond (fun value => value = third)
-  exact substitution.mpr SecondEqualsThird
+  sorry
 
 /--
 Equality is reflexive as a named binary-relation predicate.
@@ -38,8 +34,7 @@ theorem EqualityRelationIsReflexive (Carrier : Type u) :
 -/
 theorem EqualityRelationIsReflexive (Carrier : Type u) :
     LRA.Relation.Reflexive (EqualityRelation Carrier) := by
-  intro element
-  exact EqualityReflexivity element
+  sorry
 
 /--
 Equality is symmetric as a named binary-relation predicate.
@@ -53,8 +48,7 @@ theorem EqualityRelationIsSymmetric (Carrier : Type u) :
 -/
 theorem EqualityRelationIsSymmetric (Carrier : Type u) :
     LRA.Relation.Symmetric (EqualityRelation Carrier) := by
-  intro left right ObjectsAreEqual
-  exact EqualitySymmetry ObjectsAreEqual
+  sorry
 
 /--
 Equality is transitive as a named binary-relation predicate.
@@ -68,8 +62,7 @@ theorem EqualityRelationIsTransitive (Carrier : Type u) :
 -/
 theorem EqualityRelationIsTransitive (Carrier : Type u) :
     LRA.Relation.Transitive (EqualityRelation Carrier) := by
-  intro first second third FirstEqualsSecond SecondEqualsThird
-  exact EqualityTransitivity FirstEqualsSecond SecondEqualsThird
+  sorry
 
 /--
 Equality is an equivalence relation.
@@ -83,10 +76,7 @@ theorem EqualityRelationIsEquivalence (Carrier : Type u) :
 -/
 theorem EqualityRelationIsEquivalence (Carrier : Type u) :
     LRA.Relation.EquivalenceRelation (EqualityRelation Carrier) := by
-  exact ⟨
-    EqualityRelationIsReflexive Carrier,
-    EqualityRelationIsSymmetric Carrier,
-    EqualityRelationIsTransitive Carrier⟩
+  sorry
 
 /--
 Equality is the canonical equivalence relation on every carrier.
@@ -99,7 +89,7 @@ theorem EqualityIsEquivalenceRelation (Carrier : Type u) :
 ```
 -/
 theorem EqualityIsEquivalenceRelation (Carrier : Type u) :
-    LRA.Relation.EquivalenceRelation (EqualityRelation Carrier) :=
-  EqualityRelationIsEquivalence Carrier
+    LRA.Relation.EquivalenceRelation (EqualityRelation Carrier) := by
+  sorry
 
 end LRA.Identity

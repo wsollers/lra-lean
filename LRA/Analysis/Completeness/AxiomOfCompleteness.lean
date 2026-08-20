@@ -53,7 +53,7 @@ theorem CompletenessGivesRealSupremum {A : Set ℝ}
 theorem CompletenessGivesRealSupremum {A : Set ℝ}
     (nonemptyHypothesis : A.Nonempty)
     (boundedAboveHypothesis : ∃ u, IsUpperBound u A) :
-    ∃ s, IsSupremum s A :=
-  AxiomOfCompleteness A nonemptyHypothesis boundedAboveHypothesis
+    ∃ s, IsSupremum s A := by
+  sorry
 
 end LRA.Analysis.Completeness

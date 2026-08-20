@@ -33,7 +33,6 @@ theorem representative_addition_is_cauchy
       (representative_addition rational_model absolute_value_data first second) := by
   sorry
 
-
 /-- Pointwise negation preserves the Cauchy property.
 
 Mathematical statement (Lean): `theorem representative_negation_is_cauchy (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (representative : Representative rational_model absolute_value_data) : is_cauchy rational_model absolute_value_data (represe...`.
@@ -60,7 +59,6 @@ theorem representative_negation_is_cauchy
       (representative_negation rational_model absolute_value_data representative) := by
   sorry
 
-
 /-- Pointwise multiplication preserves the Cauchy property.
 
 Mathematical statement (Lean): `theorem representative_multiplication_is_cauchy (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (first second : Representative rational_model absolute_value_data) : is_cauchy rational_model absolute_value_data (rep...`.
@@ -86,7 +84,6 @@ theorem representative_multiplication_is_cauchy
     is_cauchy rational_model absolute_value_data
       (representative_multiplication rational_model absolute_value_data first second) := by
   sorry
-
 
 /-- Pointwise addition is independent of the chosen representatives.
 
@@ -119,7 +116,6 @@ theorem representative_addition_respects_equivalence
           representative_addition_is_cauchy
             rational_model absolute_value_data first second⟩) := by
   sorry
-
 
 /-- Pointwise multiplication is independent of the chosen representatives.
 

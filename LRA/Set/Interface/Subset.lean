@@ -40,8 +40,9 @@ Logical form:
 theorem SubsetReflexive : ∀ A : α, A ⊆ A
 ```
 -/
-theorem SubsetReflexive : ∀ A : α, A ⊆ A :=
-  SubsetLaws.SubsetReflexive
+theorem SubsetReflexive : ∀ A : α, A ⊆ A := by
+  sorry
+
 /--
 Subset is transitive.
 
@@ -51,8 +52,9 @@ Logical form:
 theorem SubsetTransitive : ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C
 ```
 -/
-theorem SubsetTransitive : ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C :=
-  SubsetLaws.SubsetTransitive
+theorem SubsetTransitive : ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C := by
+  sorry
+
 /--
 Two sets are equal exactly when each is a subset of the other.
 
@@ -62,7 +64,7 @@ Logical form:
 theorem SetEqualityIffMutualSubset : ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A
 ```
 -/
-theorem SetEqualityIffMutualSubset : ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A :=
-  SubsetLaws.SetEqualityIffMutualSubset
+theorem SetEqualityIffMutualSubset : ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A := by
+  sorry
 
 end LRA.Set

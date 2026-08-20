@@ -54,7 +54,6 @@ theorem representative_equivalent_is_equivalence
       (representative_equivalent rational_model absolute_value_data) := by
   sorry
 
-
 /-- The setoid used for the Cauchy quotient.
 
 Mathematical statement (Lean): `def representative_setoid (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) : Setoid (Representative rational_model absolute_value_data)`.

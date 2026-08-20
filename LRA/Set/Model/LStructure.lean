@@ -56,7 +56,8 @@ def MembershipSignature : Signature where
 
 /-- The membership symbol is binary. -/
 theorem MembershipSymbolIsBinary :
-    MembershipSignature.IsBinaryRelationSymbol .mem := rfl
+    MembershipSignature.IsBinaryRelationSymbol .mem := by
+  sorry
 
 /-! ## Formula-building helpers -/
 

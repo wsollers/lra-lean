@@ -11,9 +11,11 @@ theorem SubsetReflexive :
     ∀ A : LRA.Set.PredicateSet Alpha, A ⊆ A := by
   sorry
 
+
 theorem SubsetTransitive :
     ∀ A B C : LRA.Set.PredicateSet Alpha, A ⊆ B → B ⊆ C → A ⊆ C := by
   sorry
+
 
 theorem SetEqualityIffMutualSubset :
     ∀ A B : LRA.Set.PredicateSet Alpha, A = B ↔ A ⊆ B ∧ B ⊆ A := by

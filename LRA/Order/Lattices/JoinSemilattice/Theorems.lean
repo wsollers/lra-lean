@@ -10,7 +10,7 @@ theorem JoinSemilatticeHasJoin
     {relation : LRA.Relation.Endorelation Alpha}
     (relationIsJoinSemilattice : JoinSemilattice relation)
     (left right : Alpha) :
-    exists join, Join relation left right join :=
-  relationIsJoinSemilattice.2 left right
+    exists join, Join relation left right join := by
+  sorry
 
 end LRA.Order

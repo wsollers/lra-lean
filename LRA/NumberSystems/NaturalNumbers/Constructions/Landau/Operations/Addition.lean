@@ -55,14 +55,8 @@ theorem LandauAdditionClauses
       Element
       (fun left => model.successor left)
       (fun _ value => model.successor value)
-      (LandauAddition model) :=
-  Classical.choose_spec
-    (ExistenceOfBinaryIteratorOperation
-      model
-      Element
-      Element
-      (fun left => model.successor left)
-      (fun _ value => model.successor value))
+      (LandauAddition model) := by
+  sorry
 
 /-- `LandauAdditionWellDefined` states landau addition well defined. -/
 theorem LandauAdditionWellDefined
@@ -83,28 +77,23 @@ theorem LandauAdditionWellDefined
           (fun left => model.successor left)
           (fun _ value => model.successor value)
           otherAddition ->
-        otherAddition = addition :=
-  BinaryIteratorOperationWellDefined
-    model
-    Element
-    Element
-    (fun left => model.successor left)
-    (fun _ value => model.successor value)
+        otherAddition = addition := by
+  sorry
 
 /-- `LandauAdditionWithOne` states landau addition with one. -/
 theorem LandauAdditionWithOne
     (model : PeanoSystem Element SetObject)
     (left : Element) :
-    LandauAddition model left model.one = model.successor left :=
-  (LandauAdditionClauses model left).1
+    LandauAddition model left model.one = model.successor left := by
+  sorry
 
 /-- `LandauAdditionSuccessorOnRight` states landau addition successor on right. -/
 theorem LandauAdditionSuccessorOnRight
     (model : PeanoSystem Element SetObject)
     (left right : Element) :
     LandauAddition model left (model.successor right) =
-      model.successor (LandauAddition model left right) :=
-  (LandauAdditionClauses model left).2 right
+      model.successor (LandauAddition model left right) := by
+  sorry
 
 /-- `LandauAdditionIsAssociative` states landau addition is associative. -/
 theorem LandauAdditionIsAssociative

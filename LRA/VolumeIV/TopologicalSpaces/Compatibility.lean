@@ -1,4 +1,0 @@
-import LRA.VolumeIV.TopologicalSpaces.Compatibility.Topology
-import LRA.VolumeIV.TopologicalSpaces.Compatibility.TopologicalSpace
-import LRA.VolumeIV.TopologicalSpaces.Compatibility.Basic
-import LRA.VolumeIV.TopologicalSpaces.Compatibility.Switch

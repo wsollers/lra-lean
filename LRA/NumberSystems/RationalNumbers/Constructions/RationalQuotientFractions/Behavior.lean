@@ -83,7 +83,6 @@ theorem integer_embedding_properties (rational_data : IntegerAndPositiveNaturalD
         rational_data.integer_model.signature.StrictOrder first second) := by
   sorry
 
-
 /-- Definition 5.1: a representative is reduced when gcd(|a|,b)=1.
 
 Logical form:
@@ -118,7 +117,6 @@ theorem reduced_representative_exists (rational_data : IntegerAndPositiveNatural
       IsReduced rational_data representative ∧ Quotient.mk _ representative = value := by
   sorry
 
-
 /-- Theorem 5.3: reduced representatives are unique.
 
 *Proof status:* proof pending
@@ -145,7 +143,6 @@ theorem reduced_representative_unique (rational_data : IntegerAndPositiveNatural
     first.numerator = second.numerator ∧
     first.denominator = second.denominator := by
   sorry
-
 
 /-- Corollary 5.4: every rational has a unique lowest-term form.
 
@@ -176,7 +173,6 @@ theorem unique_lowest_term_form (rational_data : IntegerAndPositiveNaturalData) 
         other.denominator = representative.denominator := by
   sorry
 
-
 /-- Theorem 6.1: density of the RationalNumbers.
 
 *Proof status:* proof pending
@@ -198,7 +194,6 @@ theorem density (rational_data : IntegerAndPositiveNaturalData)
       strict_order rational_data first middle ∧ strict_order rational_data middle second := by
   sorry
 
-
 /-- Theorem 6.2: Archimedean property of the RationalNumbers.
 
 *Proof status:* proof pending
@@ -217,7 +212,6 @@ theorem archimedean_property (rational_data : IntegerAndPositiveNaturalData) (va
       strict_order rational_data value
         (integer_embedding rational_data (rational_data.to_integer natural)) := by
   sorry
-
 
 /-- Corollary 6.3: integer-part bounds.
 
@@ -243,7 +237,6 @@ theorem integer_part_bounds (rational_data : IntegerAndPositiveNaturalData) (val
           (rational_data.integer_model.signature.add
             integer rational_data.integer_model.signature.one)) := by
   sorry
-
 
 /-- Definition 7.1: the rational square-root cut for two.
 
@@ -289,7 +282,6 @@ theorem square_root_two_cut_nonempty_bounded (rational_data : IntegerAndPositive
         nonstrict_order rational_data value upper) := by
   sorry
 
-
 /-- Theorem 7.3: no rational squares to two.
 
 *Proof status:* proof pending
@@ -304,7 +296,6 @@ theorem no_rational_square_root_two (rational_data : IntegerAndPositiveNaturalDa
 theorem no_rational_square_root_two (rational_data : IntegerAndPositiveNaturalData) (two : Carrier rational_data) :
     ¬ ∃ value, multiplication rational_data value value = two := by
   sorry
-
 
 /-- Theorem 7.4: the square-root cut has no rational supremum.
 
@@ -338,7 +329,6 @@ theorem square_root_two_cut_has_no_supremum (rational_data : IntegerAndPositiveN
           nonstrict_order rational_data value upper) →
         nonstrict_order rational_data supremum upper) := by
   sorry
-
 
 /-- Proposition expressing failure of order completeness.
 
@@ -381,7 +371,6 @@ theorem not_order_complete (rational_data : IntegerAndPositiveNaturalData) : Not
 -/
 theorem not_order_complete (rational_data : IntegerAndPositiveNaturalData) : NotOrderComplete rational_data := by
   sorry
-
 
 /-- Proposition expressing the final structural summary.
 

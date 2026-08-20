@@ -28,7 +28,8 @@ Logical form:
 theorem SquareNonnegative (a : ℝ) : a ^ 2 ≥ 0
 ```
 -/
-theorem SquareNonnegative (a : ℝ) : a ^ 2 ≥ 0 := by sorry
+theorem SquareNonnegative (a : ℝ) : a ^ 2 ≥ 0 := by
+  sorry
 
 /-- Let `a : ℝ`. If `ha : a ≥ 0`. Then `∃! b : ℝ, b ≥ 0 ∧ b ^ 2 = a`.
 
@@ -40,7 +41,8 @@ theorem RealSquareRootFunction (a : ℝ) (ha : a ≥ 0) :
 ```
 -/
 theorem RealSquareRootFunction (a : ℝ) (ha : a ≥ 0) :
-    ∃! b : ℝ, b ≥ 0 ∧ b ^ 2 = a := by sorry
+    ∃! b : ℝ, b ≥ 0 ∧ b ^ 2 = a := by
+  sorry
 
 -- `thm:sqrt-nonnegative`
 /-- Let `a : ℝ`. If `ha : a ≥ 0`. Then `Real.sqrt a ≥ 0`.
@@ -51,7 +53,8 @@ Logical form:
 theorem SqrtNonnegative (a : ℝ) (ha : a ≥ 0) : Real.sqrt a ≥ 0
 ```
 -/
-theorem SqrtNonnegative (a : ℝ) (ha : a ≥ 0) : Real.sqrt a ≥ 0 := by sorry
+theorem SqrtNonnegative (a : ℝ) (ha : a ≥ 0) : Real.sqrt a ≥ 0 := by
+  sorry
 
 -- `thm:sqrt-square`
 /-- Let `a : ℝ`. If `ha : a ≥ 0`. Then `Real.sqrt a ^ 2 = a`.
@@ -62,7 +65,8 @@ Logical form:
 theorem SqrtSquare (a : ℝ) (ha : a ≥ 0) : Real.sqrt a ^ 2 = a
 ```
 -/
-theorem SqrtSquare (a : ℝ) (ha : a ≥ 0) : Real.sqrt a ^ 2 = a := by sorry
+theorem SqrtSquare (a : ℝ) (ha : a ≥ 0) : Real.sqrt a ^ 2 = a := by
+  sorry
 
 -- `thm:sqrt-zero-one`
 /-- The theorem asserts `Real.sqrt 0 = 0 ∧ Real.sqrt 1 = 1`.
@@ -73,7 +77,8 @@ Logical form:
 theorem SqrtZeroOne : Real.sqrt 0 = 0 ∧ Real.sqrt 1 = 1
 ```
 -/
-theorem SqrtZeroOne : Real.sqrt 0 = 0 ∧ Real.sqrt 1 = 1 := by sorry
+theorem SqrtZeroOne : Real.sqrt 0 = 0 ∧ Real.sqrt 1 = 1 := by
+  sorry
 
 -- `thm:sqrt-positive`
 /-- Let `a : ℝ`. If `ha : a > 0`. Then `Real.sqrt a > 0`.
@@ -84,7 +89,8 @@ Logical form:
 theorem SqrtPositive (a : ℝ) (ha : a > 0) : Real.sqrt a > 0
 ```
 -/
-theorem SqrtPositive (a : ℝ) (ha : a > 0) : Real.sqrt a > 0 := by sorry
+theorem SqrtPositive (a : ℝ) (ha : a > 0) : Real.sqrt a > 0 := by
+  sorry
 
 -- `thm:sqrt-of-square-absolute-value`
 /-- Let `a : ℝ`. Then `Real.sqrt (a ^ 2) = |a|`.
@@ -110,7 +116,8 @@ theorem SqrtProduct (a b : ℝ) (ha : a ≥ 0) (hb : b ≥ 0) :
 ```
 -/
 theorem SqrtProduct (a b : ℝ) (ha : a ≥ 0) (hb : b ≥ 0) :
-    Real.sqrt (a * b) = Real.sqrt a * Real.sqrt b := by sorry
+    Real.sqrt (a * b) = Real.sqrt a * Real.sqrt b := by
+  sorry
 
 -- `thm:sqrt-quotient`
 /-- Let `a b : ℝ`. If `ha : a ≥ 0` and `hb : b > 0`. Then `Real.sqrt (a / b) = Real.sqrt a /
@@ -124,7 +131,8 @@ theorem SqrtQuotient (a b : ℝ) (ha : a ≥ 0) (hb : b > 0) :
 ```
 -/
 theorem SqrtQuotient (a b : ℝ) (ha : a ≥ 0) (hb : b > 0) :
-    Real.sqrt (a / b) = Real.sqrt a / Real.sqrt b := by sorry
+    Real.sqrt (a / b) = Real.sqrt a / Real.sqrt b := by
+  sorry
 
 -- `thm:ineq-square-root-strict-monotone`
 /-- Let `a b : ℝ`. Then `0 ≤ a ∧ a < b → Real.sqrt a < Real.sqrt b`.
@@ -137,7 +145,8 @@ theorem IneqSquareRootStrictMonotone (a b : ℝ) :
 ```
 -/
 theorem IneqSquareRootStrictMonotone (a b : ℝ) :
-    0 ≤ a ∧ a < b → Real.sqrt a < Real.sqrt b := by sorry
+    0 ≤ a ∧ a < b → Real.sqrt a < Real.sqrt b := by
+  sorry
 
 -- `lem:positive-powers-are-positive`
 /-- Let `x : ℝ` and `n : ℕ`. If `hx : x > 0`. Then `x ^ n > 0`.
@@ -162,7 +171,8 @@ theorem PowersPreserveOrderForPositiveNumbers (x y : ℝ) (n : ℕ) :
 ```
 -/
 theorem PowersPreserveOrderForPositiveNumbers (x y : ℝ) (n : ℕ) :
-    0 < x ∧ x < y → x ^ n < y ^ n := by sorry
+    0 < x ∧ x < y → x ^ n < y ^ n := by
+  sorry
 
 -- `thm:ineq-square-monotone`
 /-- Let `a b : ℝ`. Then `0 ≤ a ∧ a < b → a ^ 2 < b ^ 2`.
@@ -187,7 +197,8 @@ theorem IneqSquareRootMonotone (a b : ℝ) :
 ```
 -/
 theorem IneqSquareRootMonotone (a b : ℝ) :
-    0 ≤ a ∧ a ≤ b → Real.sqrt a ≤ Real.sqrt b := by sorry
+    0 ≤ a ∧ a ≤ b → Real.sqrt a ≤ Real.sqrt b := by
+  sorry
 
 -- `thm:positive-square-comparison`
 /-- Let `a b : ℝ`. If `ha : a > 0`, `hb : b > 0`, and `h : a ^ 2 < b ^ 2`. Then `a < b`.
@@ -200,7 +211,8 @@ theorem PositiveSquareComparison (a b : ℝ) (ha : a > 0) (hb : b > 0)
 ```
 -/
 theorem PositiveSquareComparison (a b : ℝ) (ha : a > 0) (hb : b > 0)
-    (h : a ^ 2 < b ^ 2) : a < b := by sorry
+    (h : a ^ 2 < b ^ 2) : a < b := by
+  sorry
 
 -- `thm:unit-interval-square-bounds`
 /-- Let `a : ℝ`. Then `(0 < a ∧ a < 1 → a ^ 2 < a) ∧ (a > 1 → a ^ 2 > a)`.
@@ -213,6 +225,7 @@ theorem UnitIntervalSquareBounds (a : ℝ) :
 ```
 -/
 theorem UnitIntervalSquareBounds (a : ℝ) :
-    (0 < a ∧ a < 1 → a ^ 2 < a) ∧ (a > 1 → a ^ 2 > a) := by sorry
+    (0 < a ∧ a < 1 → a ^ 2 < a) ∧ (a > 1 → a ^ 2 > a) := by
+  sorry
 
 end LRA.Analysis.RealAnalysis

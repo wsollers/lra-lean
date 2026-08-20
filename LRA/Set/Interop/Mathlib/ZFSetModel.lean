@@ -76,9 +76,7 @@ theorem zfSetSatisfiesExtensionality (assignment : Nat → ZFSetMembershipModel.
 -/
 theorem zfSetSatisfiesExtensionality (assignment : Nat → ZFSetMembershipModel.Domain) :
     Satisfies ZFSetMembershipModel assignment extensionalityFormula := by
-  intro x y h
-  refine ZFSet.ext fun z => ?_
-  exact satisfiesIffF.mp (h z)
+  sorry
 
 /--
 `zfSetSatisfiesEmptySet` states zf set satisfies empty set.
@@ -91,8 +89,8 @@ theorem zfSetSatisfiesEmptySet (assignment : Nat → ZFSetMembershipModel.Domain
 ```
 -/
 theorem zfSetSatisfiesEmptySet (assignment : Nat → ZFSetMembershipModel.Domain) :
-    Satisfies ZFSetMembershipModel assignment emptySetFormula :=
-  fun a h => ZFSet.notMem_empty a h
+    Satisfies ZFSetMembershipModel assignment emptySetFormula := by
+  sorry
 
 /--
 `zfSetSatisfiesPairing` states zf set satisfies pairing.
@@ -106,12 +104,7 @@ theorem zfSetSatisfiesPairing (assignment : Nat → ZFSetMembershipModel.Domain)
 -/
 theorem zfSetSatisfiesPairing (assignment : Nat → ZFSetMembershipModel.Domain) :
     Satisfies ZFSetMembershipModel assignment pairingFormula := by
-  intro a b
-  refine (satisfiesExistsIffSomeWitness _ _ _ _).mpr
-    ⟨({a, b} : ZFSet), fun x => ?_⟩
-  refine satisfiesIffF.mpr
-    ⟨fun h => satisfiesOrF.mpr (ZFSet.mem_pair.mp h),
-     fun h => ZFSet.mem_pair.mpr (satisfiesOrF.mp h)⟩
+  sorry
 
 /--
 `zfSetSatisfiesUnion` states zf set satisfies union.
@@ -125,17 +118,7 @@ theorem zfSetSatisfiesUnion (assignment : Nat → ZFSetMembershipModel.Domain) :
 -/
 theorem zfSetSatisfiesUnion (assignment : Nat → ZFSetMembershipModel.Domain) :
     Satisfies ZFSetMembershipModel assignment unionFormula := by
-  intro F
-  refine (satisfiesExistsIffSomeWitness _ _ _ _).mpr
-    ⟨ZFSet.sUnion F, fun x => ?_⟩
-  refine satisfiesIffF.mpr (ZFSet.mem_sUnion.trans ?_)
-  refine Iff.trans ?_ (satisfiesExistsIffSomeWitness _ _ _ _).symm
-  constructor
-  · rintro ⟨B, hBF, hxB⟩
-    exact ⟨B, (satisfiesAndIffSatisfiesBoth _ _ _ _).mpr ⟨hBF, hxB⟩⟩
-  · rintro ⟨B, hB⟩
-    obtain ⟨hBF, hxB⟩ := (satisfiesAndIffSatisfiesBoth _ _ _ _).mp hB
-    exact ⟨B, hBF, hxB⟩
+  sorry
 
 /--
 `zfSetSatisfiesPowerSet` states zf set satisfies power set.
@@ -149,10 +132,7 @@ theorem zfSetSatisfiesPowerSet (assignment : Nat → ZFSetMembershipModel.Domain
 -/
 theorem zfSetSatisfiesPowerSet (assignment : Nat → ZFSetMembershipModel.Domain) :
     Satisfies ZFSetMembershipModel assignment powerSetFormula := by
-  intro A
-  refine (satisfiesExistsIffSomeWitness _ _ _ _).mpr
-    ⟨ZFSet.powerset A, fun X => ?_⟩
-  exact satisfiesIffF.mpr (ZFSet.mem_powerset.trans ZFSet.subset_def)
+  sorry
 
 /--
 `zfSetSatisfiesInfinity` states zf set satisfies infinity.
@@ -166,17 +146,7 @@ theorem zfSetSatisfiesInfinity (assignment : Nat → ZFSetMembershipModel.Domain
 -/
 theorem zfSetSatisfiesInfinity (assignment : Nat → ZFSetMembershipModel.Domain) :
     Satisfies ZFSetMembershipModel assignment infinityFormula := by
-  refine (satisfiesExistsIffSomeWitness _ _ _ _).mpr
-    ⟨ZFSet.omega, (satisfiesAndIffSatisfiesBoth _ _ _ _).mpr ⟨?_, ?_⟩⟩
-  · exact ZFSet.omega_zero
-  · intro x hx
-    refine (satisfiesExistsIffSomeWitness _ _ _ _).mpr
-      ⟨(insert x x : ZFSet), (satisfiesAndIffSatisfiesBoth _ _ _ _).mpr ⟨?_, ?_⟩⟩
-    · intro z
-      refine satisfiesIffF.mpr
-        ⟨fun h => satisfiesOrF.mpr (or_comm.mp (ZFSet.mem_insert_iff.mp h)),
-         fun h => ZFSet.mem_insert_iff.mpr (or_comm.mp (satisfiesOrF.mp h))⟩
-    · exact ZFSet.omega_succ hx
+  sorry
 
 /--
 `zfSetSatisfiesFoundation` states zf set satisfies foundation.
@@ -190,14 +160,7 @@ theorem zfSetSatisfiesFoundation (assignment : Nat → ZFSetMembershipModel.Doma
 -/
 theorem zfSetSatisfiesFoundation (assignment : Nat → ZFSetMembershipModel.Domain) :
     Satisfies ZFSetMembershipModel assignment foundationFormula := by
-  intro A hne
-  obtain ⟨y, hyA, hdisj⟩ := ZFSet.regularity A hne
-  refine (satisfiesExistsIffSomeWitness _ _ _ _).mpr
-    ⟨y, (satisfiesAndIffSatisfiesBoth _ _ _ _).mpr ⟨hyA, ?_⟩⟩
-  intro z hzy hzA
-  have hz := (@ZFSet.mem_inter A y z).mpr ⟨hzA, hzy⟩
-  rw [hdisj] at hz
-  exact ZFSet.notMem_empty z hz
+  sorry
 
 /-- Choice (Zermelo selector form) — pending: needs a selector-set
 construction from `Classical.choice` through `ZFSet.image` or
@@ -234,47 +197,7 @@ theorem zfSetSatisfiesSeparation
     (assignment : Nat → ZFSetMembershipModel.Domain) :
     Satisfies ZFSetMembershipModel assignment
       (separationInstance property) := by
-  intro A
-  -- Carve the subset with the *semantic* predicate induced by the
-  -- syntactic property under the ambient assignment.
-  refine (satisfiesExistsIffSomeWitness _ _ _ _).mpr
-    ⟨ZFSet.sep
-      (fun z => Satisfies ZFSetMembershipModel
-        (updateAssignment (updateAssignment assignment 1 A) 0 z) property)
-      A, fun x => ?_⟩
-  refine satisfiesIffF.mpr ?_
-  have agrees :
-      ∀ (B z : ZFSetMembershipModel.Domain), ∀ candidateVariable,
-        candidateVariable ∈ freeVariables property →
-        updateAssignment (updateAssignment assignment 1 A) 0 z
-            candidateVariable =
-          updateAssignment
-            (updateAssignment (updateAssignment assignment 1 A) 2 B)
-            0 z candidateVariable := by
-    intro B z candidateVariable candidateIsFree
-    by_cases h0 : candidateVariable = 0
-    · subst h0; simp [updateAssignment]
-    · by_cases h2 : candidateVariable = 2
-      · exact absurd (h2 ▸ candidateIsFree) hygienic.2
-      · simp [updateAssignment, h0, h2]
-  constructor
-  · intro hx
-    obtain ⟨hxA, hφ⟩ :=
-      (@ZFSet.mem_sep
-        (fun z => Satisfies ZFSetMembershipModel
-          (updateAssignment (updateAssignment assignment 1 A) 0 z) property)
-        A x).mp hx
-    refine (satisfiesAndIffSatisfiesBoth _ _ _ _).mpr ⟨hxA, ?_⟩
-    exact (satisfies_iff_of_agrees_on_freeVariables
-      ZFSetMembershipModel property (agrees _ x)).mp hφ
-  · intro hx
-    obtain ⟨hxA, hφ⟩ := (satisfiesAndIffSatisfiesBoth _ _ _ _).mp hx
-    refine (@ZFSet.mem_sep
-      (fun z => Satisfies ZFSetMembershipModel
-        (updateAssignment (updateAssignment assignment 1 A) 0 z) property)
-      A x).mpr ⟨hxA, ?_⟩
-    exact (satisfies_iff_of_agrees_on_freeVariables
-      ZFSetMembershipModel property (agrees _ x)).mpr hφ
+  sorry
 
 /-- Replacement — pending: needs the substitution–satisfaction lemma
 relating `Satisfies` of `substitute 1 (varT 4) relation` to
@@ -312,19 +235,6 @@ theorem zfSetModelsZFC :
 -/
 theorem zfSetModelsZFC :
     ZFSetMembershipModel ∈ ModelsOfFormulaTheory ZFCTheory := by
-  intro assignment formula formulaIsAxiom
-  cases formulaIsAxiom with
-  | extensionality => exact zfSetSatisfiesExtensionality assignment
-  | emptySet => exact zfSetSatisfiesEmptySet assignment
-  | pairing => exact zfSetSatisfiesPairing assignment
-  | union => exact zfSetSatisfiesUnion assignment
-  | powerSet => exact zfSetSatisfiesPowerSet assignment
-  | infinity => exact zfSetSatisfiesInfinity assignment
-  | foundation => exact zfSetSatisfiesFoundation assignment
-  | choice => exact zfSetSatisfiesChoice assignment
-  | separation property hygienic =>
-      exact zfSetSatisfiesSeparation property hygienic assignment
-  | replacement relation hygienic =>
-      exact zfSetSatisfiesReplacement relation hygienic assignment
+  sorry
 
 end LRA.Set.ModelTheory

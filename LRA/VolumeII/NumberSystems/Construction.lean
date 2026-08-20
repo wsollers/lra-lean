@@ -191,7 +191,7 @@ theorem DefaultRealConstructionIsDedekind :
 -/
 theorem DefaultRealConstructionIsDedekind :
     CanonicalConstruction.real = RealConstruction.dedekind := by
-  rfl
+  sorry
 
 /--
 **[Corollary — The Default Tower Uses the Canonical Rational Construction]**
@@ -205,6 +205,6 @@ theorem DefaultRationalConstructionIsCanonical :
 -/
 theorem DefaultRationalConstructionIsCanonical :
     CanonicalConstruction.rational = RationalConstruction.canonical := by
-  rfl
+  sorry
 
 end LRA.NumberSystems.Models

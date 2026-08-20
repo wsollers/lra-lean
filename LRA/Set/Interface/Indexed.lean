@@ -105,8 +105,8 @@ theorem IndexedUnionMembership
     [HasIndexedUnion SetObject] [HasIndexedIntersection SetObject]
     [IndexedMembershipLaws Element SetObject]
     {Index : Type w} (family : Index → SetObject) (x : Element) :
-    x ∈ HasIndexedUnion.indexedUnion family ↔ ∃ index, x ∈ family index :=
-  IndexedMembershipLaws.IndexedUnionMembership family x
+    x ∈ HasIndexedUnion.indexedUnion family ↔ ∃ index, x ∈ family index := by
+  sorry
 
 /-- Membership in an indexed intersection.
 
@@ -128,8 +128,8 @@ theorem IndexedIntersectionMembership
     [IndexedMembershipLaws Element SetObject]
     {Index : Type w} (family : Index → SetObject) (x : Element) :
     x ∈ HasIndexedIntersection.indexedIntersection family ↔
-      ∀ index, x ∈ family index :=
-  IndexedMembershipLaws.IndexedIntersectionMembership family x
+      ∀ index, x ∈ family index := by
+  sorry
 
 /-- Membership in a countable union.
 
@@ -151,8 +151,8 @@ theorem CountableUnionMembership
     [CountableMembershipLaws Element SetObject]
     (family : Nat → SetObject) (x : Element) :
     x ∈ HasCountableUnion.countableUnion family ↔
-      ∃ index, x ∈ family index :=
-  CountableMembershipLaws.CountableUnionMembership family x
+      ∃ index, x ∈ family index := by
+  sorry
 
 /-- Membership in a countable intersection.
 
@@ -174,8 +174,8 @@ theorem CountableIntersectionMembership
     [CountableMembershipLaws Element SetObject]
     (family : Nat → SetObject) (x : Element) :
     x ∈ HasCountableIntersection.countableIntersection family ↔
-      ∀ index, x ∈ family index :=
-  CountableMembershipLaws.CountableIntersectionMembership family x
+      ∀ index, x ∈ family index := by
+  sorry
 
 end Wrappers
 

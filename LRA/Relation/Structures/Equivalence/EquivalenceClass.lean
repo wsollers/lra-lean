@@ -47,6 +47,7 @@ theorem EquivalenceClassExists
       IsEquivalenceClassOf classSet ambient relation representative := by
   sorry
 
+
 theorem EquivalenceClassUnique
     (ambient : SetObject)
     (relation : Endorelation Element)
@@ -55,6 +56,7 @@ theorem EquivalenceClassUnique
       (fun classSet : SetObject =>
         IsEquivalenceClassOf classSet ambient relation representative) := by
   sorry
+
 
 theorem EquivalenceClassExistsAndUnique
     (ambient : SetObject)
@@ -65,6 +67,7 @@ theorem EquivalenceClassExistsAndUnique
         IsEquivalenceClassOf classSet ambient relation representative) := by
   sorry
 
+
 theorem EquivalenceClassMembershipIff
     (ambient : SetObject)
     (relation : Endorelation Element)
@@ -72,6 +75,7 @@ theorem EquivalenceClassMembershipIff
     candidate ∈ EquivalenceClass ambient relation representative ↔
       candidate ∈ ambient ∧ relation candidate representative := by
   sorry
+
 
 theorem RelatedRepresentativesHaveSameEquivalenceClass
     {relation : Endorelation Element}

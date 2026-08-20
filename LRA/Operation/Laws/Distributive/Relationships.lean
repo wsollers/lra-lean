@@ -15,6 +15,7 @@ theorem Commutative.left_distributive_to_right_distributive {Carrier : Type u}
     RightDistributive outer inner := by
   sorry
 
+
 theorem Commutative.right_distributive_to_left_distributive {Carrier : Type u}
     {outer inner : BinaryEndoOperation Carrier}
     (outerCommutative :

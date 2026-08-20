@@ -19,8 +19,8 @@ variable {R : Type u}
 
 /-- Multiplication is commutative. -/
 theorem MulCommutative [Mul R] [MultiplicativeCommutativeLaws R] :
-    ∀ a b : R, a * b = b * a :=
-  MultiplicativeCommutativeLaws.MulCommutative
+    ∀ a b : R, a * b = b * a := by
+  sorry
 
 end Wrappers
 

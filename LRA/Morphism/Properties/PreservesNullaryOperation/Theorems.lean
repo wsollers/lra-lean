@@ -10,7 +10,7 @@ theorem PreservesNullaryOperation.apply {Source : Type u} {Target : Type v}
     {sourceElement : LRA.Operation.NullaryOperation Source}
     {targetElement : LRA.Operation.NullaryOperation Target}
     (law : PreservesNullaryOperation function sourceElement targetElement) :
-    function sourceElement = targetElement :=
-  law
+    function sourceElement = targetElement := by
+  sorry
 
 end LRA.Morphism

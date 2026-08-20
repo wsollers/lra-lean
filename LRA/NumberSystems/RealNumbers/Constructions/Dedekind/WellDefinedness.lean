@@ -34,7 +34,6 @@ theorem rational_lower_ray_is_cut (value : Rational rational_model) :
     IsCut rational_model (rational_lower_ray rational_model value) := by
   sorry
 
-
 /-- Definition 2.3: rational embedding into Dedekind cuts.
 
 Mathematical statement (Lean): `def rational_embedding (value : Rational rational_model) : Cut rational_model`.
@@ -85,7 +84,6 @@ theorem rational_embedding_is_order_embedding :
           (rational_embedding rational_model second)) := by
   sorry
 
-
 /-- Theorem 3.2: cut addition is closed.
 
 Mathematical statement (Lean): `theorem addition_lower_set_is_cut (first second : Cut rational_model) : IsCut rational_model (addition_lower_set rational_model first second)`.
@@ -103,7 +101,6 @@ theorem addition_lower_set_is_cut (first second : Cut rational_model) :
 theorem addition_lower_set_is_cut (first second : Cut rational_model) :
     IsCut rational_model (addition_lower_set rational_model first second) := by
   sorry
-
 
 /-- Definition 3.1: addition of cuts.
 
@@ -156,7 +153,6 @@ theorem negation_lower_set_is_cut (cut : Cut rational_model) :
 theorem negation_lower_set_is_cut (cut : Cut rational_model) :
     IsCut rational_model (negation_lower_set rational_model cut) := by
   sorry
-
 
 /-- Definition 3.4: additive inverse of a cut.
 
@@ -233,7 +229,6 @@ theorem nonnegative_product_is_cut
     IsCut rational_model
       (nonnegative_product_lower_set rational_model first second) := by
   sorry
-
 
 /-- The nonnegative product cut.
 
@@ -359,7 +354,6 @@ theorem product_exists_uniquely (first second : Cut rational_model) :
       ∀ other, IsProduct rational_model first second other → other = product := by
   sorry
 
-
 /-- Definition 4.4: multiplication of arbitrary cuts.
 
 Mathematical statement (Lean): `noncomputable def multiplication (first second : Cut rational_model) : Cut rational_model`.
@@ -438,7 +432,6 @@ theorem reciprocal_exists_uniquely
       ∀ other, IsReciprocal rational_model cut other → other = reciprocal := by
   sorry
 
-
 /-- Definition 4.7–4.8: reciprocal of a nonzero cut.
 
 Mathematical statement (Lean): `noncomputable def inverse (cut : Cut rational_model) (cut_nonzero : cut ≠ zero rational_model) : Cut rational_model`.
@@ -485,7 +478,6 @@ theorem inverse_correct
       (inverse rational_model cut cut_nonzero) := by
   sorry
 
-
 /-- Theorem 6.1: a nonempty bounded family has a union cut.
 
 Mathematical statement (Lean): `theorem family_union_is_cut (family : Cut rational_model → Prop) (family_nonempty : ∃ cut, family cut) (family_bounded : ∃ upper, ∀ cut, family cut → nonstrict_order rational_model cut upper) : IsCut rational_model (family_union rational_model family)`.
@@ -515,7 +507,6 @@ theorem family_union_is_cut
           family cut → nonstrict_order rational_model cut upper) :
     IsCut rational_model (family_union rational_model family) := by
   sorry
-
 
 /-- The union cut of a nonempty bounded family.
 

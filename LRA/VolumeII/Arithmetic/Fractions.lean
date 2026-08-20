@@ -77,7 +77,6 @@ theorem CrossMultiplication {a b c d : Q}
     a / b = c / d ↔ a * d = c * b := by
   sorry
 
-
 /-- Cancellation rule for fractions: `(a*m)/(a*n) = m/n` when `a,n ≠ 0`.
 
 Mathematical statement (Lean): `theorem FractionCancellation {a m n : Z} (a_nonzero : a ≠ 0) (n_nonzero : n ≠ 0) : toQ (a * m) / toQ (a * n) = toQ m / toQ n`.
@@ -98,7 +97,6 @@ theorem FractionCancellation {a m n : Z}
     toQ (a * m) / toQ (a * n) = toQ m / toQ n := by
   sorry
 
-
 /-- Moving a sign from the numerator to the denominator preserves a quotient.
 
 Mathematical statement (Lean): `theorem NegativeNumeratorEqualsNegativeDenominator {m n : Z} (n_nonzero : n ≠ 0) : toQ (-m) / toQ n = toQ m / toQ (-n)`.
@@ -118,7 +116,6 @@ theorem NegativeNumeratorEqualsNegativeDenominator {m n : Z}
     (n_nonzero : n ≠ 0) :
     toQ (-m) / toQ n = toQ m / toQ (-n) := by
   sorry
-
 
 /-- A common divisor can be cancelled from a rational quotient.
 

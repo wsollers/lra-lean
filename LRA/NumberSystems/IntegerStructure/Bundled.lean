@@ -55,7 +55,8 @@ theorem iterate_succ' {α : Type u} (f : α → α) (n : Nat) (x : α) :
 ```
 -/
 theorem iterate_succ' {α : Type u} (f : α → α) (n : Nat) (x : α) :
-    iterate f (n + 1) x = f (iterate f n x) := rfl
+    iterate f (n + 1) x = f (iterate f n x) := by
+  sorry
 
 /--
 **[Theorem — iterate_comm]**
@@ -69,12 +70,7 @@ theorem iterate_comm {α : Type u} (f : α → α) (n : Nat) (x : α) :
 -/
 theorem iterate_comm {α : Type u} (f : α → α) (n : Nat) (x : α) :
     f (iterate f n x) = iterate f n (f x) := by
-  induction n with
-  | zero => rfl
-  | succ k ih =>
-      show f (f (iterate f k x)) = iterate f (k + 1) (f x)
-      rw [ih]
-      rfl
+  sorry
 
 /--
 **[Theorem — iterate_succ_apply]**
@@ -87,8 +83,8 @@ theorem iterate_succ_apply {α : Type u} (f : α → α) (n : Nat) (x : α) :
 ```
 -/
 theorem iterate_succ_apply {α : Type u} (f : α → α) (n : Nat) (x : α) :
-    iterate f (n + 1) x = iterate f n (f x) :=
-  iterate_comm f n x
+    iterate f (n + 1) x = iterate f n (f x) := by
+  sorry
 
 /--
 **[Theorem — iterate_add]**
@@ -102,12 +98,7 @@ theorem iterate_add {α : Type u} (f : α → α) (m n : Nat) (x : α) :
 -/
 theorem iterate_add {α : Type u} (f : α → α) (m n : Nat) (x : α) :
     iterate f (m + n) x = iterate f m (iterate f n x) := by
-  induction n with
-  | zero => rfl
-  | succ k ih =>
-      show f (iterate f (m + k) x) = iterate f m (f (iterate f k x))
-      rw [ih]
-      exact iterate_comm f m (iterate f k x)
+  sorry
 
 /--
 **[Def — Injective]**
@@ -208,7 +199,8 @@ Logical form:
 theorem rep_zero : S.rep 0 = S.zero
 ```
 -/
-@[simp] theorem rep_zero : S.rep 0 = S.zero := rfl
+@[simp] theorem rep_zero : S.rep 0 = S.zero := by
+  sorry
 
 /--
 **[Theorem — pred_iterate_succ_iterate]**
@@ -222,15 +214,7 @@ theorem pred_iterate_succ_iterate (n : Nat) (x : S.carrier) :
 -/
 theorem pred_iterate_succ_iterate (n : Nat) (x : S.carrier) :
     iterate S.pred n (iterate S.succ n x) = x := by
-  induction n with
-  | zero => rfl
-  | succ k ih =>
-      rw [
-        iterate_succ' S.succ k x,
-        iterate_succ_apply S.pred k (S.succ (iterate S.succ k x)),
-        S.pred_succ
-      ]
-      exact ih
+  sorry
 
 /--
 **[Theorem — succ_iterate_pred_iterate]**
@@ -244,15 +228,7 @@ theorem succ_iterate_pred_iterate (n : Nat) (x : S.carrier) :
 -/
 theorem succ_iterate_pred_iterate (n : Nat) (x : S.carrier) :
     iterate S.succ n (iterate S.pred n x) = x := by
-  induction n with
-  | zero => rfl
-  | succ k ih =>
-      rw [
-        iterate_succ' S.pred k x,
-        iterate_succ_apply S.succ k (S.pred (iterate S.pred k x)),
-        S.succ_pred
-      ]
-      exact ih
+  sorry
 
 /--
 **[Theorem — aperiodic_pred]**
@@ -266,11 +242,7 @@ theorem aperiodic_pred (n : Nat) (h : 0 < n) :
 -/
 theorem aperiodic_pred (n : Nat) (h : 0 < n) :
     iterate S.pred n S.zero ≠ S.zero := by
-  intro heq
-  apply S.aperiodic n h
-  have h2 := congrArg (iterate S.succ n) heq
-  rw [S.succ_iterate_pred_iterate] at h2
-  exact h2.symm
+  sorry
 
 /--
 **[Theorem — iterate_succ_injective]**
@@ -283,10 +255,7 @@ theorem iterate_succ_injective (n : Nat) : Injective (iterate S.succ n)
 -/
 theorem iterate_succ_injective (n : Nat) :
     _root_.Function.Injective (iterate S.succ n) := by
-  intro x y hxy
-  have h := congrArg (iterate S.pred n) hxy
-  rw [S.pred_iterate_succ_iterate, S.pred_iterate_succ_iterate] at h
-  exact h
+  sorry
 
 /--
 **[Theorem — iterate_pred_injective]**
@@ -299,10 +268,7 @@ theorem iterate_pred_injective (n : Nat) : Injective (iterate S.pred n)
 -/
 theorem iterate_pred_injective (n : Nat) :
     _root_.Function.Injective (iterate S.pred n) := by
-  intro x y hxy
-  have h := congrArg (iterate S.succ n) hxy
-  rw [S.succ_iterate_pred_iterate, S.succ_iterate_pred_iterate] at h
-  exact h
+  sorry
 
 /--
 **[Theorem — no_forward_collision]**
@@ -320,29 +286,7 @@ theorem no_forward_collision
     (m n : Nat)
     (h : iterate S.succ m S.zero = iterate S.succ n S.zero) :
     m = n := by
-  rcases Nat.le_total m n with hmn | hmn
-  · obtain ⟨k, rfl⟩ := Nat.le.dest hmn
-    have h1 :
-        iterate S.succ m S.zero =
-          iterate S.succ m (iterate S.succ k S.zero) := by
-      rw [← iterate_add]
-      exact h
-    have hz : iterate S.succ k S.zero = S.zero :=
-      (S.iterate_succ_injective m) h1.symm
-    rcases Nat.eq_zero_or_pos k with hk | hk
-    · omega
-    · exact absurd hz (S.aperiodic k hk)
-  · obtain ⟨k, rfl⟩ := Nat.le.dest hmn
-    have h1 :
-        iterate S.succ n S.zero =
-          iterate S.succ n (iterate S.succ k S.zero) := by
-      rw [← iterate_add]
-      exact h.symm
-    have hz : iterate S.succ k S.zero = S.zero :=
-      (S.iterate_succ_injective n) h1.symm
-    rcases Nat.eq_zero_or_pos k with hk | hk
-    · omega
-    · exact absurd hz (S.aperiodic k hk)
+  sorry
 
 /--
 **[Theorem — no_backward_collision]**
@@ -360,29 +304,7 @@ theorem no_backward_collision
     (m n : Nat)
     (h : iterate S.pred m S.zero = iterate S.pred n S.zero) :
     m = n := by
-  rcases Nat.le_total m n with hmn | hmn
-  · obtain ⟨k, rfl⟩ := Nat.le.dest hmn
-    have h1 :
-        iterate S.pred m S.zero =
-          iterate S.pred m (iterate S.pred k S.zero) := by
-      rw [← iterate_add]
-      exact h
-    have hz : iterate S.pred k S.zero = S.zero :=
-      (S.iterate_pred_injective m) h1.symm
-    rcases Nat.eq_zero_or_pos k with hk | hk
-    · omega
-    · exact absurd hz (S.aperiodic_pred k hk)
-  · obtain ⟨k, rfl⟩ := Nat.le.dest hmn
-    have h1 :
-        iterate S.pred n S.zero =
-          iterate S.pred n (iterate S.pred k S.zero) := by
-      rw [← iterate_add]
-      exact h.symm
-    have hz : iterate S.pred k S.zero = S.zero :=
-      (S.iterate_pred_injective n) h1.symm
-    rcases Nat.eq_zero_or_pos k with hk | hk
-    · omega
-    · exact absurd hz (S.aperiodic_pred k hk)
+  sorry
 
 /--
 **[Theorem — no_mixed_collision]**
@@ -400,10 +322,7 @@ theorem no_mixed_collision
     (m n : Nat)
     (h : iterate S.succ m S.zero = iterate S.pred (n + 1) S.zero) :
     False := by
-  have h1 := congrArg (iterate S.succ (n + 1)) h
-  rw [S.succ_iterate_pred_iterate] at h1
-  rw [← iterate_add] at h1
-  exact absurd h1 (S.aperiodic (n + 1 + m) (by omega))
+  sorry
 
 /--
 **[Theorem — rep_injective]**
@@ -415,25 +334,7 @@ theorem rep_injective : Injective S.rep
 ```
 -/
 theorem rep_injective : _root_.Function.Injective S.rep := by
-  intro a b hab
-  match a, b with
-  | Int.ofNat m, Int.ofNat n =>
-      have heq : m = n := S.no_forward_collision m n hab
-      subst heq
-      rfl
-  | Int.negSucc m, Int.negSucc n =>
-      have hab' :
-          iterate S.pred (m + 1) S.zero =
-            iterate S.pred (n + 1) S.zero := hab
-      have heq : m + 1 = n + 1 :=
-        S.no_backward_collision (m + 1) (n + 1) hab'
-      have hmn : m = n := by omega
-      subst hmn
-      rfl
-  | Int.ofNat m, Int.negSucc n =>
-      exact absurd hab (S.no_mixed_collision m n)
-  | Int.negSucc m, Int.ofNat n =>
-      exact absurd hab.symm (S.no_mixed_collision n m)
+  sorry
 
 /--
 **[Theorem — rep_succ]**
@@ -445,23 +346,7 @@ theorem rep_succ (n : Int) : S.rep (n + 1) = S.succ (S.rep n)
 ```
 -/
 theorem rep_succ (n : Int) : S.rep (n + 1) = S.succ (S.rep n) := by
-  match n with
-  | Int.ofNat k => rfl
-  | Int.negSucc 0 =>
-      show S.rep 0 = S.succ (S.rep (Int.negSucc 0))
-      show S.zero = S.succ (iterate S.pred 1 S.zero)
-      show S.zero = S.succ (S.pred S.zero)
-      rw [S.succ_pred]
-  | Int.negSucc (k + 1) =>
-      have hcast : Int.negSucc (k + 1) + 1 = Int.negSucc k := by omega
-      rw [hcast]
-      show
-        iterate S.pred (k + 1) S.zero =
-          S.succ (iterate S.pred (k + 2) S.zero)
-      have step :
-          iterate S.pred (k + 2) S.zero =
-            S.pred (iterate S.pred (k + 1) S.zero) := rfl
-      rw [step, S.succ_pred]
+  sorry
 
 /--
 **[Theorem — rep_pred]**
@@ -473,12 +358,7 @@ theorem rep_pred (n : Int) : S.rep (n - 1) = S.pred (S.rep n)
 ```
 -/
 theorem rep_pred (n : Int) : S.rep (n - 1) = S.pred (S.rep n) := by
-  have h := S.rep_succ (n - 1)
-  have hn : n - 1 + 1 = n := by omega
-  rw [hn] at h
-  have h2 := congrArg S.pred h
-  rw [S.pred_succ] at h2
-  exact h2.symm
+  sorry
 
 /--
 **[Theorem — rep_surjective]**
@@ -490,13 +370,7 @@ theorem rep_surjective : Surjective S.rep
 ```
 -/
 theorem rep_surjective : _root_.Function.Surjective S.rep := by
-  intro x
-  apply S.induction (fun x => ∃ n : Int, S.rep n = x)
-  · exact ⟨0, S.rep_zero⟩
-  · rintro y ⟨n, rfl⟩
-    exact ⟨n + 1, S.rep_succ n⟩
-  · rintro y ⟨n, rfl⟩
-    exact ⟨n - 1, S.rep_pred n⟩
+  sorry
 
 /--
 **[Theorem — rep_bijective]**
@@ -508,8 +382,8 @@ theorem rep_bijective : Bijective S.rep
 ```
 -/
 theorem rep_bijective :
-    _root_.Function.Injective S.rep ∧ _root_.Function.Surjective S.rep :=
-  ⟨S.rep_injective, S.rep_surjective⟩
+    _root_.Function.Injective S.rep ∧ _root_.Function.Surjective S.rep := by
+  sorry
 
 /--
 **[Theorem — categoricity]**
@@ -526,8 +400,8 @@ theorem categoricity :
 theorem categoricity :
     (_root_.Function.Injective S.rep ∧ _root_.Function.Surjective S.rep) ∧
       S.rep 0 = S.zero ∧
-      ∀ n : Int, S.rep (n + 1) = S.succ (S.rep n) :=
-  ⟨S.rep_bijective, S.rep_zero, S.rep_succ⟩
+      ∀ n : Int, S.rep (n + 1) = S.succ (S.rep n) := by
+  sorry
 
 end LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure
 namespace LRA.NumberSystems.IntegerStructure.Bundled

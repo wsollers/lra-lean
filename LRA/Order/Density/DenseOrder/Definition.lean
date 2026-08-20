@@ -20,8 +20,8 @@ section Wrappers
 variable {R : Type u}
 
 theorem ExistsBetween [LT R] [DenseOrderLaw R] :
-    forall a b : R, a < b -> exists middle : R, a < middle /\ middle < b :=
-  DenseOrderLaw.ExistsBetween
+    forall a b : R, a < b -> exists middle : R, a < middle /\ middle < b := by
+  sorry
 
 end Wrappers
 

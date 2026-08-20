@@ -50,7 +50,6 @@ theorem interval_sum_exists_uniquely
         other = result := by
   sorry
 
-
 /-- Definition 3.1: Minkowski interval addition.
 
 Mathematical statement (Lean): `noncomputable def interval_addition (first second : RationalInterval rational_model) : RationalInterval rational_model`.
@@ -98,7 +97,6 @@ theorem interval_negation_exists_uniquely
         IsIntervalNegation rational_model interval other →
         other = result := by
   sorry
-
 
 /-- Definition 3.2: interval negation.
 
@@ -150,7 +148,6 @@ theorem interval_product_exists_uniquely
         other = result := by
   sorry
 
-
 /-- Definition 3.3: interval multiplication.
 
 Mathematical statement (Lean): `noncomputable def interval_multiplication (first second : RationalInterval rational_model) : RationalInterval rational_model`.
@@ -201,7 +198,6 @@ theorem addition_preserves_admissibility
             (first.interval index) (second.interval index) := by
   sorry
 
-
 /-- Theorem 3.4: termwise negation preserves admissibility.
 
 Mathematical statement (Lean): `theorem negation_preserves_admissibility (representative : Representative rational_model) : ∃ result : Representative rational_model, ∀ index, result.interval index = interval_negation rational_model (representative.interval index)`.
@@ -229,7 +225,6 @@ theorem negation_preserves_admissibility
           interval_negation rational_model
             (representative.interval index) := by
   sorry
-
 
 /-- Admissible representatives are uniformly rationally bounded.
 
@@ -259,7 +254,6 @@ theorem admissible_representatives_are_uniformly_bounded
         rational_model.signature.le value upper := by
   sorry
 
-
 /-- Theorem 3.4: termwise multiplication preserves admissibility.
 
 Mathematical statement (Lean): `theorem multiplication_preserves_admissibility (first second : Representative rational_model) : ∃ result : Representative rational_model, ∀ index, result.interval index = interval_multiplication rational_model (first.interval index) (second.interval index)`.
@@ -287,7 +281,6 @@ theorem multiplication_preserves_admissibility
           interval_multiplication rational_model
             (first.interval index) (second.interval index) := by
   sorry
-
 
 /-- Chosen representative operations.
 
@@ -388,7 +381,6 @@ theorem representative_operations_respect_equivalence :
         (representative_setoid rational_model)
         (representative_multiplication rational_model) := by
   sorry
-
 
 /-- Definition 3.6: quotient arithmetic.
 
@@ -508,7 +500,6 @@ theorem representative_strict_order_respects_equivalence :
       (representative_setoid rational_model)
       (representative_strict_order rational_model) := by
   sorry
-
 
 /-- Definition 4.1: strict order on quotient classes.
 

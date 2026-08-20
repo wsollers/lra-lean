@@ -19,8 +19,8 @@ variable {R : Type u}
 
 /-- Multiplication is associative. -/
 theorem MulAssociative [Mul R] [MultiplicativeSemigroupLaws R] :
-    ∀ a b c : R, (a * b) * c = a * (b * c) :=
-  MultiplicativeSemigroupLaws.MulAssociative
+    ∀ a b c : R, (a * b) * c = a * (b * c) := by
+  sorry
 
 end Wrappers
 

@@ -11,40 +11,49 @@ theorem DoubleComplement :
     ∀ A : LRA.Set.PredicateSet Alpha, Aᶜᶜ = A := by
   sorry
 
+
 theorem ComplementEmpty :
     (∅ : LRA.Set.PredicateSet Alpha)ᶜ = (𝒰 : LRA.Set.PredicateSet Alpha) := by
   sorry
 
+
 theorem ComplementUniversal :
     (𝒰 : LRA.Set.PredicateSet Alpha)ᶜ = (∅ : LRA.Set.PredicateSet Alpha) := by
   sorry
+
 
 theorem UnionComplement :
     ∀ A : LRA.Set.PredicateSet Alpha,
       A ∪ Aᶜ = (𝒰 : LRA.Set.PredicateSet Alpha) := by
   sorry
 
+
 theorem IntersectionComplement :
     ∀ A : LRA.Set.PredicateSet Alpha,
       A ∩ Aᶜ = (∅ : LRA.Set.PredicateSet Alpha) := by
   sorry
 
+
 theorem DeMorganUnion :
     ∀ A B : LRA.Set.PredicateSet Alpha, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ := by
   sorry
+
 
 theorem DeMorganIntersection :
     ∀ A B : LRA.Set.PredicateSet Alpha, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ := by
   sorry
 
+
 theorem DifferenceAsIntersectionComplement :
     ∀ A B : LRA.Set.PredicateSet Alpha, A \ B = A ∩ Bᶜ := by
   sorry
+
 
 theorem DifferenceUniversal :
     ∀ A : LRA.Set.PredicateSet Alpha,
       A \ (𝒰 : LRA.Set.PredicateSet Alpha) = (∅ : LRA.Set.PredicateSet Alpha) := by
   sorry
+
 
 theorem UniversalDifference :
     ∀ A : LRA.Set.PredicateSet Alpha,

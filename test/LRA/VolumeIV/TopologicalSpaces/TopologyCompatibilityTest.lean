@@ -1,5 +1,5 @@
-import LRA.VolumeIV.TopologicalSpaces.Compatibility
-import LRA.VolumeIV.TopologicalSpaces.Foundations
+import LRA.Topology.PointSetTopology.TopologicalSpace.Interop
+import LRA.Topology.PointSetTopology.TopologicalSpace.Theorems
 
 namespace LRA.Topology
 

@@ -53,7 +53,6 @@ theorem additive_group_laws (rational_data : IntegerAndPositiveNaturalData) : Ad
 theorem additive_group_laws (rational_data : IntegerAndPositiveNaturalData) : AdditiveGroupLaws rational_data := by
   sorry
 
-
 /-- Proposition expressing multiplicative and distributive laws.
 
 Logical form:
@@ -106,7 +105,6 @@ theorem multiplicative_and_distributive_laws (rational_data : IntegerAndPositive
     MultiplicativeAndDistributiveLaws rational_data := by
   sorry
 
-
 /-- Definition 2.10: reciprocal specification for a nonzero rational.
 
 Logical form:
@@ -145,7 +143,6 @@ theorem reciprocal_exists_uniquely (rational_data : IntegerAndPositiveNaturalDat
       ∀ other, IsReciprocal rational_data value other → other = reciprocal := by
   sorry
 
-
 /-- Definition 2.10: rational reciprocal.
 
 Logical form:
@@ -177,7 +174,6 @@ theorem inverse_is_two_sided (rational_data : IntegerAndPositiveNaturalData)
     (value : Carrier rational_data) (value_nonzero : value ≠ zero rational_data) :
     IsReciprocal rational_data value (inverse rational_data value value_nonzero) := by
   sorry
-
 
 /-- Proposition expressing the field structure.
 
@@ -212,7 +208,6 @@ theorem field_structure (rational_data : IntegerAndPositiveNaturalData) : FieldS
 -/
 theorem field_structure (rational_data : IntegerAndPositiveNaturalData) : FieldStructure rational_data := by
   sorry
-
 
 /-- Proposition expressing strict total order.
 
@@ -253,7 +248,6 @@ theorem strict_total_order (rational_data : IntegerAndPositiveNaturalData) : Str
 -/
 theorem strict_total_order (rational_data : IntegerAndPositiveNaturalData) : StrictTotalOrder rational_data := by
   sorry
-
 
 /-- Proposition expressing ordered-field compatibility.
 
@@ -298,7 +292,6 @@ theorem ordered_field_compatibility (rational_data : IntegerAndPositiveNaturalDa
 theorem ordered_field_compatibility (rational_data : IntegerAndPositiveNaturalData) :
     OrderedFieldCompatibility rational_data := by
   sorry
-
 
 /-- Proposition expressing ordered-field structure.
 

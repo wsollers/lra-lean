@@ -53,17 +53,7 @@ theorem add_succ (x y : Z) : x + succ y = succ (x + y)
 ```
 -/
 theorem add_succ (x y : Z) : x + succ y = succ (x + y) := by
-  cases y with
-  | zero => rfl
-  | pos p => rfl
-  | neg n =>
-      cases n with
-      | predZero =>
-          change x = succ (pred x)
-          rw [succ_pred]
-      | pred n' =>
-          change x + neg n' = succ (pred (x + neg n'))
-          rw [succ_pred]
+  sorry
 
 /--
 **[Theorem — add_pred]**
@@ -75,17 +65,7 @@ theorem add_pred (x y : Z) : x + pred y = pred (x + y)
 ```
 -/
 theorem add_pred (x y : Z) : x + pred y = pred (x + y) := by
-  cases y with
-  | zero => rfl
-  | pos p =>
-      cases p with
-      | succZero =>
-          change x = pred (succ x)
-          rw [pred_succ]
-      | succ p' =>
-          change x + pos p' = pred (succ (x + pos p'))
-          rw [pred_succ]
-  | neg n => rfl
+  sorry
 
 /--
 **[Def — negZ]**
@@ -168,7 +148,8 @@ Logical form:
 theorem mul_zero (x : Z) : x * zero = zero
 ```
 -/
-theorem mul_zero (x : Z) : x * zero = zero := rfl
+theorem mul_zero (x : Z) : x * zero = zero := by
+  sorry
 
 /--
 **[Theorem — mul_pos_succZero]**
@@ -179,7 +160,8 @@ Logical form:
 theorem mul_pos_succZero (x : Z) : x * pos P.succZero = x
 ```
 -/
-theorem mul_pos_succZero (x : Z) : x * pos P.succZero = x := rfl
+theorem mul_pos_succZero (x : Z) : x * pos P.succZero = x := by
+  sorry
 
 /--
 **[Theorem — mul_pos_succ]**
@@ -190,7 +172,8 @@ Logical form:
 theorem mul_pos_succ (x : Z) (p : P) : x * pos (P.succ p) = x * pos p + x
 ```
 -/
-theorem mul_pos_succ (x : Z) (p : P) : x * pos (P.succ p) = x * pos p + x := rfl
+theorem mul_pos_succ (x : Z) (p : P) : x * pos (P.succ p) = x * pos p + x := by
+  sorry
 
 /--
 **[Theorem — mul_neg_predZero]**
@@ -201,7 +184,8 @@ Logical form:
 theorem mul_neg_predZero (x : Z) : x * neg N.predZero = -x
 ```
 -/
-theorem mul_neg_predZero (x : Z) : x * neg N.predZero = -x := rfl
+theorem mul_neg_predZero (x : Z) : x * neg N.predZero = -x := by
+  sorry
 
 /--
 **[Theorem — mul_neg_pred]**
@@ -212,6 +196,7 @@ Logical form:
 theorem mul_neg_pred (x : Z) (n : N) : x * neg (N.pred n) = x * neg n + -x
 ```
 -/
-theorem mul_neg_pred (x : Z) (n : N) : x * neg (N.pred n) = x * neg n + -x := rfl
+theorem mul_neg_pred (x : Z) (n : N) : x * neg (N.pred n) = x * neg n + -x := by
+  sorry
 
 end LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor

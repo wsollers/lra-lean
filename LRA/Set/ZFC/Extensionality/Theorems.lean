@@ -14,12 +14,6 @@ Axiom of Extensionality.
 -/
 theorem SetEqualityIffSameMembers (A B : LRA.Set.ZFCSet) :
     A = B ↔ ∀ x : LRA.Set.ZFCSet, x ∈ A ↔ x ∈ B := by
-  constructor
-  · intro SetsAreEqual
-    intro x
-    exact LRA.Identity.LeibnizLaw SetsAreEqual
-      (fun Candidate : LRA.Set.ZFCSet => x ∈ Candidate)
-  · intro SameMembers
-    exact Extensionality A B SameMembers
+  sorry
 
 end LRA.Set.ZFC

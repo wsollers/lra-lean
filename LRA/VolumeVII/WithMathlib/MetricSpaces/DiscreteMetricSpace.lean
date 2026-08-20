@@ -7,10 +7,12 @@ theorem discreteScratchMetricNonnegative
     ∀ x y : Point, 0 ≤ (if x = y then 0 else 1 : Real) := by
   sorry
 
+
 theorem discreteScratchMetricEqZeroIffEqual
     (Point : Type u) [DecidableEq Point] :
     ∀ x y : Point, (if x = y then 0 else 1 : Real) = 0 ↔ x = y := by
   sorry
+
 
 theorem discreteScratchMetricSymmetric
     (Point : Type u) [DecidableEq Point] :
@@ -18,6 +20,7 @@ theorem discreteScratchMetricSymmetric
       (if x = y then 0 else 1 : Real) =
         if y = x then 0 else 1 := by
   sorry
+
 
 theorem discreteScratchMetricTriangle
     (Point : Type u) [DecidableEq Point] :

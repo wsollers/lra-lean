@@ -21,8 +21,7 @@ theorem IdentityRelationIsReflexive :
 theorem IdentityRelationIsReflexive
     {Alpha : Type u} :
     Reflexive (IdentityRelation Alpha) := by
-  intro element
-  rfl
+  sorry
 
 /--
 **[Theorem — IdentityRelationIsSymmetric]**
@@ -39,8 +38,7 @@ theorem IdentityRelationIsSymmetric :
 theorem IdentityRelationIsSymmetric
     {Alpha : Type u} :
     Symmetric (IdentityRelation Alpha) := by
-  intro left right related
-  exact related.symm
+  sorry
 
 /--
 **[Theorem — IdentityRelationIsTransitive]**
@@ -57,7 +55,6 @@ theorem IdentityRelationIsTransitive :
 theorem IdentityRelationIsTransitive
     {Alpha : Type u} :
     Transitive (IdentityRelation Alpha) := by
-  intro first second third firstRelatedSecond secondRelatedThird
-  exact firstRelatedSecond.trans secondRelatedThird
+  sorry
 
 end LRA.Relation

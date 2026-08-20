@@ -140,9 +140,8 @@ theorem MaximumIsSupremum [Preorder F] {m : F} {A : Set F}
 ```
 -/
 theorem MaximumIsSupremum [Preorder F] {m : F} {A : Set F}
-    (maximum_hypothesis : IsMaximum m A) : IsSupremum m A :=
-  ⟨maximum_hypothesis.2, fun _ upper_hypothesis =>
-    upper_hypothesis m maximum_hypothesis.1⟩
+    (maximum_hypothesis : IsMaximum m A) : IsSupremum m A := by
+  sorry
 
 /-- Let `s t : F` and `A : Set F`. If `[PartialOrder F]`, `left_supremum : IsSupremum s A`, and
 `right_supremum : IsSupremum t A`. Then `s = t`.
@@ -157,10 +156,8 @@ theorem SupremumUnique [PartialOrder F] {s t : F} {A : Set F}
 -/
 theorem SupremumUnique [PartialOrder F] {s t : F} {A : Set F}
     (left_supremum : IsSupremum s A)
-    (right_supremum : IsSupremum t A) : s = t :=
-  le_antisymm
-    (left_supremum.2 t right_supremum.1)
-    (right_supremum.2 s left_supremum.1)
+    (right_supremum : IsSupremum t A) : s = t := by
+  sorry
 
 /-- Let `s t : F` and `A : Set F`. If `[PartialOrder F]`, `left_infimum : IsInfimum s A`, and
 `right_infimum : IsInfimum t A`. Then `s = t`.
@@ -175,10 +172,8 @@ theorem InfimumUnique [PartialOrder F] {s t : F} {A : Set F}
 -/
 theorem InfimumUnique [PartialOrder F] {s t : F} {A : Set F}
     (left_infimum : IsInfimum s A)
-    (right_infimum : IsInfimum t A) : s = t :=
-  le_antisymm
-    (right_infimum.2 s left_infimum.1)
-    (left_infimum.2 t right_infimum.1)
+    (right_infimum : IsInfimum t A) : s = t := by
+  sorry
 
 /-- Let `s : F` and `A : Set F`. If `[Preorder F]`. Then `IsSupremum s A <-> IsLUB A s`.
 
@@ -191,13 +186,7 @@ theorem SupremumIffIsLUB [Preorder F] {s : F} {A : Set F} :
 -/
 theorem SupremumIffIsLUB [Preorder F] {s : F} {A : Set F} :
     IsSupremum s A <-> IsLUB A s := by
-  constructor
-  case mp =>
-    sorry
-  case mpr =>
-    sorry
-
-
+  sorry
 
 end LRA.Analysis.Bounds
 namespace LRA.Analysis.Bounds.Algebra

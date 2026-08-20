@@ -27,8 +27,8 @@ abbrev EqualityLogicalSymbol := LRA.Logic.Language.Notation.LogicalEquality
 
 /-- The logical equality symbol is binary. -/
 theorem EqualityLogicalSymbolIsBinary :
-    LRA.Logic.Language.Notation.LogicalEqualitySymbols.IsBinary .eq :=
-  LRA.Logic.Language.Notation.LogicalEqualitySymbols.eqIsBinary
+    LRA.Logic.Language.Notation.LogicalEqualitySymbols.IsBinary .eq := by
+  sorry
 
 /-- The diagonal equality relation on a carrier. -/
 def EqualityDiagonal (Carrier : Type u) : Carrier -> Carrier -> Prop :=

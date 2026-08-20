@@ -21,11 +21,7 @@ structure EqualityTheory (Carrier : Type u) : Prop where
 /-- The chosen equality axioms satisfy the equality theory. -/
 theorem NativeEqualitySatisfiesEqualityTheory (Carrier : Type u) :
     EqualityTheory Carrier := by
-  constructor
-  · intro x
-    exact EqualityReflexivity x
-  · intro x y equalityWitness property
-    exact LeibnizLaw equalityWitness property
+  sorry
 
 /-- Transitional existence predicate; ownership will be revisited with Logic. -/
 def Exists {Carrier : Type u} (predicate : Carrier -> Prop) : Prop :=

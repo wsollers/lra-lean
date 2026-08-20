@@ -40,7 +40,6 @@ theorem equivalent_is_equivalence_relation (rational_data : IntegerAndPositiveNa
     Equivalence (equivalent rational_data) := by
   sorry
 
-
 /-- Definition 1.4: the fraction setoid.
 
 Logical form:

@@ -14,14 +14,7 @@ theorem CongruenceWithRespectToEqualityIsAutomatic {Carrier : Type u}
         relation left right ↔ relation left' right') ∧
       (∀ operation : Carrier -> Carrier -> Carrier,
         operation left right = operation left' right') := by
-  constructor
-  · intro predicate
-    exact EqualitySubstitution LeftsAreEqual predicate
-  constructor
-  · intro relation
-    exact SubstitutionPreservesRelations LeftsAreEqual RightsAreEqual relation
-  · intro operation
-    exact SubstitutionPreservesOperations LeftsAreEqual RightsAreEqual operation
+  sorry
 
 /-- Public congruence theorem for equality. -/
 theorem EqualityCongruence {Carrier : Type u}
@@ -32,9 +25,7 @@ theorem EqualityCongruence {Carrier : Type u}
       (∀ Relation : Carrier -> Carrier -> Prop,
         Relation Left Right ↔ Relation LeftPrime RightPrime) ∧
       (∀ Operation : Carrier -> Carrier -> Carrier,
-        Operation Left Right = Operation LeftPrime RightPrime) :=
-  CongruenceWithRespectToEqualityIsAutomatic
-    LeftCoordinatesEqual
-    RightCoordinatesEqual
+        Operation Left Right = Operation LeftPrime RightPrime) := by
+  sorry
 
 end LRA.Identity

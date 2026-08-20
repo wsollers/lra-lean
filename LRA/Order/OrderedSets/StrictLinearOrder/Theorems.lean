@@ -18,15 +18,15 @@ theorem StrictLinearOrderIsStrictOrder
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
     (relationIsStrictLinearOrder : StrictLinearOrder relation) :
-    StrictOrder relation :=
-  relationIsStrictLinearOrder.1
+    StrictOrder relation := by
+  sorry
 
 /-- Every strict linear order satisfies exact trichotomy. -/
 theorem StrictLinearOrderIsExactlyTrichotomous
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
     (relationIsStrictLinearOrder : StrictLinearOrder relation) :
-    LRA.Relation.ExactlyTrichotomous relation :=
-  relationIsStrictLinearOrder.2
+    LRA.Relation.ExactlyTrichotomous relation := by
+  sorry
 
 end LRA.Order

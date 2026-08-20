@@ -50,9 +50,11 @@ instance : AdditiveSemigroupLaws Z := ⟨add_assoc⟩
 
 instance : AdditiveCommutativeLaws Z := ⟨add_comm⟩
 
-instance : AdditiveIdentityLaws Z := ⟨zero_add, add_zero⟩
+instance : AdditiveIdentityLaws Z := by
+  sorry
 
-instance : AdditiveInverseLaws Z := ⟨neg_add_self, add_neg_self⟩
+instance : AdditiveInverseLaws Z := by
+  sorry
 
 instance : SubtractionCompatibilityLaw Z := ⟨fun _ _ => rfl⟩
 
@@ -64,7 +66,8 @@ instance : MultiplicativeCommutativeLaws Z := ⟨mul_comm⟩
 
 instance : MultiplicativeIdentityLaws Z := ⟨one_mul, mul_pos_succZero⟩
 
-instance : ZeroAbsorbingLaws Z := ⟨zero_mul, mul_zero⟩
+instance : ZeroAbsorbingLaws Z := by
+  sorry
 
 instance : DistributiveLaws Z := ⟨distrib_left, distrib_right⟩
 
@@ -113,7 +116,7 @@ instance : SuccessorMultiplicationLaws Z := ⟨mul_succ, mul_pred⟩
 
 instance : DiscretenessLaw Z where
   SuccAperiodic := by sorry
-  TwoSidedInduction := twoSidedInduction
+  TwoSidedInduction := by sorry
 
 /-! ## Smoke tests: bundles synthesize from the leaf certificates -/
 

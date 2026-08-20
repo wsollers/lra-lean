@@ -80,8 +80,8 @@ theorem CollectionUnionMembership
     [CollectionMembershipLaws Element SetObject Collection]
     (collection : Collection) (x : Element) :
     x ∈ HasCollectionUnion.collectionUnion collection ↔
-      ∃ B : SetObject, B ∈ collection ∧ x ∈ B :=
-  CollectionMembershipLaws.CollectionUnionMembership collection x
+      ∃ B : SetObject, B ∈ collection ∧ x ∈ B := by
+  sorry
 
 /-- Membership in the intersection over a *nonempty* collection of sets.
 
@@ -101,9 +101,8 @@ theorem CollectionIntersectionMembership
     (collection : Collection) (x : Element)
     (collectionNonempty : ∃ B : SetObject, B ∈ collection) :
     x ∈ HasCollectionIntersection.collectionIntersection collection ↔
-      ∀ B : SetObject, B ∈ collection → x ∈ B :=
-  CollectionMembershipLaws.CollectionIntersectionMembership
-    collection x collectionNonempty
+      ∀ B : SetObject, B ∈ collection → x ∈ B := by
+  sorry
 
 end Wrappers
 

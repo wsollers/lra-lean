@@ -150,7 +150,6 @@ theorem embedded_rational_is_rational
       (embedRational rational_model real_extension value) := by
   sorry
 
-
 /-- Real zero is rational.
 
 Mathematical statement (Lean): `theorem zero_is_rational : IsRational rational_model real_extension real_extension.RealModel.signature.zero`.
@@ -171,7 +170,6 @@ theorem zero_is_rational :
       real_extension.RealModel.signature.zero := by
   sorry
 
-
 /-- Real one is rational.
 
 Mathematical statement (Lean): `theorem one_is_rational : IsRational rational_model real_extension real_extension.RealModel.signature.one`.
@@ -191,7 +189,6 @@ theorem one_is_rational :
     IsRational rational_model real_extension
       real_extension.RealModel.signature.one := by
   sorry
-
 
 /-- Rational real numbers are closed under addition.
 
@@ -219,7 +216,6 @@ theorem rational_addition_is_rational
       (real_extension.RealModel.signature.add first second) := by
   sorry
 
-
 /-- Rational real numbers are closed under negation.
 
 Mathematical statement (Lean): `theorem rational_negation_is_rational {value : RealCarrier rational_model real_extension} (value_is_rational : IsRational rational_model real_extension value) : IsRational rational_model real_extension (real_extension.RealModel.signature.neg value)`.
@@ -243,7 +239,6 @@ theorem rational_negation_is_rational
     IsRational rational_model real_extension
       (real_extension.RealModel.signature.neg value) := by
   sorry
-
 
 /-- Rational real numbers are closed under subtraction.
 
@@ -271,7 +266,6 @@ theorem rational_subtraction_is_rational
       (real_extension.RealModel.signature.Subtraction first second) := by
   sorry
 
-
 /-- Rational real numbers are closed under multiplication.
 
 Mathematical statement (Lean): `theorem rational_multiplication_is_rational {first second : RealCarrier rational_model real_extension} (first_is_rational : IsRational rational_model real_extension first) (second_is_rational : IsRational rational_model real_extension second) : IsRational r...`.
@@ -298,7 +292,6 @@ theorem rational_multiplication_is_rational
       (real_extension.RealModel.signature.multiply first second) := by
   sorry
 
-
 /-- A nonzero rational real has rational inverse.
 
 Mathematical statement (Lean): `theorem rational_inverse_is_rational {value : RealCarrier rational_model real_extension} (value_is_rational : IsRational rational_model real_extension value) (value_is_nonzero : value ≠ real_extension.RealModel.signature.zero) : IsRational rational_model r...`.
@@ -324,7 +317,6 @@ theorem rational_inverse_is_rational
     IsRational rational_model real_extension
       (real_extension.RealModel.signature.inv value) := by
   sorry
-
 
 /-- Rational real numbers are closed under division by a nonzero rational.
 
@@ -358,7 +350,6 @@ theorem rational_division_is_rational
         (real_extension.RealModel.signature.inv denominator)) := by
   sorry
 
-
 /-- The negation of an irrational is irrational.
 
 Mathematical statement (Lean): `theorem negation_is_irrational {value : RealCarrier rational_model real_extension} (value_is_irrational : IsIrrational rational_model real_extension value) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.neg value)`.
@@ -382,7 +373,6 @@ theorem negation_is_irrational
     IsIrrational rational_model real_extension
       (real_extension.RealModel.signature.neg value) := by
   sorry
-
 
 /-- Rational plus irrational is irrational.
 
@@ -410,7 +400,6 @@ theorem rational_add_irrational_is_irrational
       (real_extension.RealModel.signature.add rational_value irrational_value) := by
   sorry
 
-
 /-- Irrational plus rational is irrational.
 
 Mathematical statement (Lean): `theorem irrational_add_rational_is_irrational {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational rational_...`.
@@ -436,7 +425,6 @@ theorem irrational_add_rational_is_irrational
     IsIrrational rational_model real_extension
       (real_extension.RealModel.signature.add irrational_value rational_value) := by
   sorry
-
 
 /-- Rational minus irrational is irrational.
 
@@ -464,7 +452,6 @@ theorem rational_sub_irrational_is_irrational
       (real_extension.RealModel.signature.Subtraction rational_value irrational_value) := by
   sorry
 
-
 /-- Irrational minus rational is irrational.
 
 Mathematical statement (Lean): `theorem irrational_sub_rational_is_irrational {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational rational_...`.
@@ -490,7 +477,6 @@ theorem irrational_sub_rational_is_irrational
     IsIrrational rational_model real_extension
       (real_extension.RealModel.signature.Subtraction irrational_value rational_value) := by
   sorry
-
 
 /-- A nonzero rational times an irrational is irrational.
 
@@ -520,7 +506,6 @@ theorem nonzero_rational_mul_irrational_is_irrational
       (real_extension.RealModel.signature.multiply rational_value irrational_value) := by
   sorry
 
-
 /-- An irrational times a nonzero rational is irrational.
 
 Mathematical statement (Lean): `theorem irrational_mul_nonzero_rational_is_irrational {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational r...`.
@@ -548,7 +533,6 @@ theorem irrational_mul_nonzero_rational_is_irrational
     IsIrrational rational_model real_extension
       (real_extension.RealModel.signature.multiply irrational_value rational_value) := by
   sorry
-
 
 /-- An irrational divided by a nonzero rational is irrational.
 
@@ -582,7 +566,6 @@ theorem irrational_div_nonzero_rational_is_irrational
         (real_extension.RealModel.signature.inv rational_value)) := by
   sorry
 
-
 /-- A nonzero rational divided by an irrational is irrational.
 
 Mathematical statement (Lean): `theorem nonzero_rational_div_irrational_is_irrational {rational_value irrational_value : RealCarrier rational_model real_extension} (rational_is_rational : IsRational rational_model real_extension rational_value) (rational_is_nonzero : rational_value ≠ real...`.
@@ -615,7 +598,6 @@ theorem nonzero_rational_div_irrational_is_irrational
         (real_extension.RealModel.signature.inv irrational_value)) := by
   sorry
 
-
 /-- Every irrational real is nonzero because zero is rational.
 
 Mathematical statement (Lean): `theorem irrational_is_nonzero {value : RealCarrier rational_model real_extension} (value_is_irrational : IsIrrational rational_model real_extension value) : value ≠ real_extension.RealModel.signature.zero`.
@@ -637,7 +619,6 @@ theorem irrational_is_nonzero
     (value_is_irrational : IsIrrational rational_model real_extension value) :
     value ≠ real_extension.RealModel.signature.zero := by
   sorry
-
 
 /-- Data witnessing a chosen square root of the embedded rational number two.
 
@@ -697,7 +678,6 @@ theorem irrationals_not_closed_under_addition
         (real_extension.RealModel.signature.add first second) := by
   sorry
 
-
 /-- Irrationals are not closed under subtraction: α - α = 0.
 
 Mathematical statement (Lean): `theorem irrationals_not_closed_under_subtraction (witness : SquareRootTwoWitness rational_model real_extension) : ∃ first second : RealCarrier rational_model real_extension, IsIrrational rational_model real_extension first ∧ IsIrrational rational_model real...`.
@@ -726,7 +706,6 @@ theorem irrationals_not_closed_under_subtraction
         (real_extension.RealModel.signature.Subtraction first second) := by
   sorry
 
-
 /-- Irrationals are not closed under multiplication: √2 · √2 = 2.
 
 Mathematical statement (Lean): `theorem irrationals_not_closed_under_multiplication (witness : SquareRootTwoWitness rational_model real_extension) : ∃ first second : RealCarrier rational_model real_extension, IsIrrational rational_model real_extension first ∧ IsIrrational rational_model r...`.
@@ -754,7 +733,6 @@ theorem irrationals_not_closed_under_multiplication
       IsRational rational_model real_extension
         (real_extension.RealModel.signature.multiply first second) := by
   sorry
-
 
 /-- Irrationals are not closed under division: √2 / √2 = 1.
 

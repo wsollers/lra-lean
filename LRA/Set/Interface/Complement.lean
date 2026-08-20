@@ -71,8 +71,9 @@ Logical form:
 theorem DoubleComplement : ∀ A : α, Aᶜᶜ = A
 ```
 -/
-theorem DoubleComplement : ∀ A : α, Aᶜᶜ = A :=
-  ComplementLaws.DoubleComplement
+theorem DoubleComplement : ∀ A : α, Aᶜᶜ = A := by
+  sorry
+
 /--
 The complement of the empty set is the universal set.
 
@@ -82,8 +83,9 @@ Logical form:
 theorem ComplementEmpty : (∅ : α)ᶜ = (𝒰 : α)
 ```
 -/
-theorem ComplementEmpty : (∅ : α)ᶜ = (𝒰 : α) :=
-  ComplementLaws.ComplementEmpty
+theorem ComplementEmpty : (∅ : α)ᶜ = (𝒰 : α) := by
+  sorry
+
 /--
 The complement of the universal set is the empty set.
 
@@ -93,8 +95,9 @@ Logical form:
 theorem ComplementUniversal : (𝒰 : α)ᶜ = (∅ : α)
 ```
 -/
-theorem ComplementUniversal : (𝒰 : α)ᶜ = (∅ : α) :=
-  ComplementLaws.ComplementUniversal
+theorem ComplementUniversal : (𝒰 : α)ᶜ = (∅ : α) := by
+  sorry
+
 /--
 Excluded middle for sets: `A ∪ Aᶜ = 𝒰`.
 
@@ -104,8 +107,9 @@ Logical form:
 theorem UnionComplement : ∀ A : α, A ∪ Aᶜ = (𝒰 : α)
 ```
 -/
-theorem UnionComplement : ∀ A : α, A ∪ Aᶜ = (𝒰 : α) :=
-  ComplementLaws.UnionComplement
+theorem UnionComplement : ∀ A : α, A ∪ Aᶜ = (𝒰 : α) := by
+  sorry
+
 /--
 Non-contradiction for sets: `A ∩ Aᶜ = ∅`.
 
@@ -115,8 +119,9 @@ Logical form:
 theorem IntersectionComplement : ∀ A : α, A ∩ Aᶜ = (∅ : α)
 ```
 -/
-theorem IntersectionComplement : ∀ A : α, A ∩ Aᶜ = (∅ : α) :=
-  ComplementLaws.IntersectionComplement
+theorem IntersectionComplement : ∀ A : α, A ∩ Aᶜ = (∅ : α) := by
+  sorry
+
 /--
 De Morgan: `(A ∪ B)ᶜ = Aᶜ ∩ Bᶜ`.
 
@@ -126,8 +131,9 @@ Logical form:
 theorem DeMorganUnion : ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
 ```
 -/
-theorem DeMorganUnion : ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ :=
-  ComplementLaws.DeMorganUnion
+theorem DeMorganUnion : ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ := by
+  sorry
+
 /--
 De Morgan: `(A ∩ B)ᶜ = Aᶜ ∪ Bᶜ`.
 
@@ -137,8 +143,9 @@ Logical form:
 theorem DeMorganIntersection : ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
 ```
 -/
-theorem DeMorganIntersection : ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ :=
-  ComplementLaws.DeMorganIntersection
+theorem DeMorganIntersection : ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ := by
+  sorry
+
 /--
 Difference is intersection with the complement: `A \ B = A ∩ Bᶜ`.
 
@@ -150,8 +157,9 @@ theorem DifferenceAsIntersectionComplement :
 ```
 -/
 theorem DifferenceAsIntersectionComplement :
-    ∀ A B : α, A \ B = A ∩ Bᶜ :=
-  ComplementLaws.DifferenceAsIntersectionComplement
+    ∀ A B : α, A \ B = A ∩ Bᶜ := by
+  sorry
+
 /--
 Removing everything leaves nothing: `A \ 𝒰 = ∅`.
 
@@ -161,8 +169,9 @@ Logical form:
 theorem DifferenceUniversal : ∀ A : α, A \ (𝒰 : α) = (∅ : α)
 ```
 -/
-theorem DifferenceUniversal : ∀ A : α, A \ (𝒰 : α) = (∅ : α) :=
-  ComplementLaws.DifferenceUniversal
+theorem DifferenceUniversal : ∀ A : α, A \ (𝒰 : α) = (∅ : α) := by
+  sorry
+
 /--
 Removing `A` from everything is the complement: `𝒰 \ A = Aᶜ`.
 
@@ -172,7 +181,7 @@ Logical form:
 theorem UniversalDifference : ∀ A : α, (𝒰 : α) \ A = Aᶜ
 ```
 -/
-theorem UniversalDifference : ∀ A : α, (𝒰 : α) \ A = Aᶜ :=
-  ComplementLaws.UniversalDifference
+theorem UniversalDifference : ∀ A : α, (𝒰 : α) \ A = Aᶜ := by
+  sorry
 
 end LRA.Set

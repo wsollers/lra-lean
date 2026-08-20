@@ -107,25 +107,7 @@ theorem TranslationPreservesSuprema {A : Set ℝ}
     (nonemptyHypothesis : A.Nonempty)
     {s : ℝ} (supremumHypothesis : IsSupremum s A) (c : ℝ) :
     IsSupremum (s + c) (A + {c}) := by
-  rcases supremumHypothesis with ⟨upperBoundHypothesis, leastUpperBoundHypothesis⟩
-  constructor
-  · intro translatedElement pointwiseSumHypothesis
-    rcases pointwiseSumHypothesis with
-      ⟨elementInA, elementInAMembership, singletonElement,
-        singletonMembership, sumHypothesis⟩
-    rw [Set.mem_singleton_iff] at singletonMembership
-    subst singletonElement
-    subst translatedElement
-    simpa [add_comm, add_left_comm, add_assoc] using
-      add_le_add_left (upperBoundHypothesis elementInA elementInAMembership) c
-  · intro translatedUpperBound translatedUpperBoundHypothesis
-    have shiftedUpperBoundHypothesis : IsUpperBound (translatedUpperBound - c) A := by
-      intro elementInA elementInAMembership
-      exact (le_sub_iff_add_le).2
-        (translatedUpperBoundHypothesis (elementInA + c)
-          ⟨elementInA, elementInAMembership, c, by simp, rfl⟩)
-    exact (le_sub_iff_add_le).1
-      (leastUpperBoundHypothesis (translatedUpperBound - c) shiftedUpperBoundHypothesis)
+  sorry
 
 /-- Let `A` be a nonempty subset of `ℝ` with infimum `i`, and let `c : ℝ`.
 Then the translated set `A + {c}` has infimum `i + c`.
@@ -143,25 +125,7 @@ theorem TranslationPreservesInfima {A : Set ℝ}
     (nonemptyHypothesis : A.Nonempty)
     {i : ℝ} (infimumHypothesis : IsInfimum i A) (c : ℝ) :
     IsInfimum (i + c) (A + {c}) := by
-  rcases infimumHypothesis with ⟨lowerBoundHypothesis, greatestLowerBoundHypothesis⟩
-  constructor
-  . intro translatedElement pointwiseSumHypothesis
-    rcases pointwiseSumHypothesis with
-      ⟨elementInA, elementInAMembership, singletonElement,
-        singletonMembership, sumHypothesis⟩
-    rw [Set.mem_singleton_iff] at singletonMembership
-    subst singletonElement
-    subst translatedElement
-    simpa [add_comm, add_left_comm, add_assoc] using
-      add_le_add_left (lowerBoundHypothesis elementInA elementInAMembership) c
-  · intro translatedLowerBound translatedLowerBoundHypothesis
-    have shiftedLowerBoundHypothesis : IsLowerBound (translatedLowerBound - c) A := by
-      intro elementInA elementInAMembership
-      exact (sub_le_iff_le_add).2
-        (translatedLowerBoundHypothesis (elementInA + c)
-          ⟨elementInA, elementInAMembership, c, by simp, rfl⟩)
-    exact (sub_le_iff_le_add).1
-      (greatestLowerBoundHypothesis (translatedLowerBound - c) shiftedLowerBoundHypothesis)
+  sorry
 
 /-- Let `A` be a nonempty subset of `ℝ` with supremum `s`, and let
 `scale > 0`. Then the scalar image `scale • A` has supremum `scale * s`.

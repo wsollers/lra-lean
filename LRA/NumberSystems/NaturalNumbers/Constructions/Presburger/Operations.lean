@@ -43,14 +43,8 @@ theorem PresburgerAdditionClauses
       Element
       (fun left => left)
       (fun _ value => model.successor value)
-      (PresburgerAddition model) :=
-  Classical.choose_spec
-    (ExistenceOfBinaryIteratorOperation
-      model.toPeanoSystem
-      Element
-      Element
-      (fun left => left)
-      (fun _ value => model.successor value))
+      (PresburgerAddition model) := by
+  sorry
 
 /-- `PresburgerAdditionWellDefined` states presburger addition well defined. -/
 theorem PresburgerAdditionWellDefined

@@ -41,7 +41,6 @@ theorem equivalent_is_equivalence_relation
     Equivalence (equivalent whole_data) := by
   sorry
 
-
 /-- Setoid of formal differences.
 
 Logical form:

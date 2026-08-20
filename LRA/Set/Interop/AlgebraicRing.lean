@@ -108,46 +108,41 @@ theorem SymmetricDifferenceIntersectionDistributes :
 
 /-- Registration: `∆` is associative -- delegation to the
 symmetric-difference family. -/
-scoped instance : AdditiveSemigroupLaws (PredicateSet Alpha) where
-  AddAssociative := PredicateSet.SymmetricDifferenceAssociative
+scoped instance : AdditiveSemigroupLaws (PredicateSet Alpha) := by
+  sorry
 
 /-- Registration: `∆` is commutative. -/
-scoped instance : AdditiveCommutativeLaws (PredicateSet Alpha) where
-  AddCommutative := PredicateSet.SymmetricDifferenceCommutative
+scoped instance : AdditiveCommutativeLaws (PredicateSet Alpha) := by
+  sorry
 
 /-- Registration: `∅` is the additive identity. -/
-scoped instance : AdditiveIdentityLaws (PredicateSet Alpha) where
-  ZeroAdd := PredicateSet.EmptySymmetricDifference
-  AddZero := PredicateSet.SymmetricDifferenceEmpty
+scoped instance : AdditiveIdentityLaws (PredicateSet Alpha) := by
+  sorry
 
 /-- Registration: characteristic 2 -- `A ∆ A = ∅`, in both inverse
 orientations. -/
-scoped instance : AdditiveInverseLaws (PredicateSet Alpha) where
-  NegAddCancel := PredicateSet.SymmetricDifferenceSelf
-  AddNegCancel := PredicateSet.SymmetricDifferenceSelf
+scoped instance : AdditiveInverseLaws (PredicateSet Alpha) := by
+  sorry
 
 /-- Registration: `∩` is associative. -/
-scoped instance : MultiplicativeSemigroupLaws (PredicateSet Alpha) where
-  MulAssociative := PredicateSet.IntersectionAssociative
+scoped instance : MultiplicativeSemigroupLaws (PredicateSet Alpha) := by
+  sorry
 
 /-- Registration: `∩` is commutative. -/
-scoped instance : MultiplicativeCommutativeLaws (PredicateSet Alpha) where
-  MulCommutative := PredicateSet.IntersectionCommutative
+scoped instance : MultiplicativeCommutativeLaws (PredicateSet Alpha) := by
+  sorry
 
 /-- Registration: `𝒰` is the multiplicative identity. -/
-scoped instance : MultiplicativeIdentityLaws (PredicateSet Alpha) where
-  OneMul := UniversalIntersection
-  MulOne := IntersectionUniversal
+scoped instance : MultiplicativeIdentityLaws (PredicateSet Alpha) := by
+  sorry
 
 /-- Registration: `∅` absorbs `∩`. -/
-scoped instance : ZeroAbsorbingLaws (PredicateSet Alpha) where
-  ZeroMul := PredicateSet.EmptyIntersection
-  MulZero := PredicateSet.IntersectionEmpty
+scoped instance : ZeroAbsorbingLaws (PredicateSet Alpha) := by
+  sorry
 
 /-- Registration: `∩` distributes over `∆`. -/
-scoped instance : DistributiveLaws (PredicateSet Alpha) where
-  LeftDistributive := IntersectionDistributesOverSymmetricDifference
-  RightDistributive := SymmetricDifferenceIntersectionDistributes
+scoped instance : DistributiveLaws (PredicateSet Alpha) := by
+  sorry
 
 /-!
 The two worlds in one theorem: generic ring facts, applied to sets. Each

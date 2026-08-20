@@ -36,7 +36,6 @@ theorem quotient_addition_is_associative
         addition first (addition second third) := by
   sorry
 
-
 /-- The quotient addition is commutative.
 
 *Proof status:* proof pending
@@ -65,7 +64,6 @@ theorem quotient_addition_is_commutative
     ∀ first second,
       addition first second = addition second first := by
   sorry
-
 
 /-- Negation supplies additive inverses in the quotient.
 
@@ -107,7 +105,6 @@ theorem quotient_negation_is_additive_inverse
       addition value (negation value) =
         Quotient.mk _ (zero_representative whole_data) := by
   sorry
-
 
 /-- Multiplication distributes over addition in the quotient.
 

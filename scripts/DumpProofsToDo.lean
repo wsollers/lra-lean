@@ -97,35 +97,17 @@ file:
   check) is low risk: `getProjectionFnInfo?` is already proven in
   `scripts/DumpNamespaceEnvironment.lean`, and the rest is plain
   `Name`/`String` matching with no unverified `Meta`/`Core` API calls.
-* `PrettyPrinter.ppExpr` replaces an earlier `Meta.ppExpr` that compiled
-  and ran without error across three real runs, but turned out to be the
-  wrong function: real output showed `∀`/`∃` rendering correctly (they are
-  core Pi-type/`Exists` term formers, not notation) while `And`, `Eq`,
-  `Iff`, `Not`, and every typeclass-based operator (`+`, `⊆`, `∈`, `\`, …)
-  printed as raw function application instead of their usual infix/prefix
-  notation — meaning whatever `Meta.ppExpr` is, it does not run the
-  delaborator/unexpander pipeline that `PrettyPrinter.ppExpr` (the same
-  function behind `#check` and error-message rendering) does. This is a
-  third untested-API risk, on the same footing as `classifyDefn` below; if
-  this file fails to compile at a `PrettyPrinter.ppExpr` call site, that
-  identifier is the first thing to check.
-* `classifyDefn` is a second untested-API bundle, on top of the ones
-  `uncurryHypotheses`/`unfoldAllowed` already introduce: `Meta.isInstance`
-  and `Meta.isProp` are both standard, commonly-used names, but neither had
-  been individually exercised anywhere else in this repository's tooling.
-  A first real run, gating `Meta.isProp` behind `Meta.isInstance`, compiled
-  and ran cleanly but reported zero instances with zero errors either way —
-  confidently wrong, given this repository's `AlgebraicStructures/*Laws*`
-  pattern (confirmed present in source: `MathlibBridge.lean` alone has
-  several `instance … : SomeLaws R where …` declarations). Rather than
-  guess a third API name, the two checks were decoupled: `main` now
-  captures a row whenever `Meta.isProp` alone says `true` (this
-  repository's convention proves "laws" only via `instance`, never a bare
-  `Prop`-valued `def`, which makes this equivalent in practice without
-  depending on `Meta.isInstance` at all), and still runs `Meta.isInstance`
-  alongside purely for a diagnostic cross-tab printed every run, so a
-  disagreement between the two remains visible instead of silently
-  resolving to a suspicious zero again.
+* `Meta.ppExpr` is used for rendering with ordinary display options enabled.
+  In this standalone runner, Lean may still expose some elaborated constants
+  such as `Eq`, `And`, and `instHAdd.hAdd`; the source-side generator keeps
+  the declaration signature separately for cases where exact surface syntax
+  matters.
+* `classifyDefn` intentionally uses `Meta.isProp` only. Lean's own
+  `Meta.isInstance` asks whether a declaration is currently available to
+  typeclass search; it is not a robust authored-`instance` detector for
+  scoped instances or auxiliary declarations. In this repository, the only
+  non-generated `Prop`-valued `.defnInfo` declarations under `LRA` are the
+  "instance law" proof obligations this dump wants.
 -/
 
 open Lean
@@ -242,7 +224,8 @@ so they compile as theorems, not defs) that `generatedTailBlocklist`'s
 private def isNumberedAuxiliary (s : String) : Bool :=
   let prefixes := ["eq_", "eqn_", "match_", "proof_", "below_", "unfold_"]
   prefixes.any fun p =>
-    p.isPrefixOf s && !(s.drop p.length).isEmpty && (s.drop p.length).all Char.isDigit
+    p.isPrefixOf s && !(s.drop p.length).isEmpty &&
+      (s.drop p.length).all fun c => c.isDigit || c == '_'
 
 /--
 Exact-match blocklist of tail (last-component) names that Lean's own
@@ -257,7 +240,8 @@ excluded.
 -/
 def generatedTailBlocklist : List String := [
   "injEq", "inj", "sizeOf_spec", "noConfusion", "noConfusionType",
-  "below", "brecOn", "ndrec", "rec", "recOn", "casesOn", "below_1"
+  "below", "brecOn", "ndrec", "rec", "recOn", "casesOn", "below_1",
+  "eq", "eq_def", "congr_simp", "ofNat_ctorIdx"
 ]
 
 /--
@@ -321,20 +305,43 @@ declarations (never a bare `Prop`-valued `def`) makes redundant here in
 practice: a `Prop`-valued `.defnInfo` under `LRA` is, by this repository's
 own convention, an `instance` law, whether or not `Meta.isInstance` agrees.
 -/
-private def classifyDefn (env : Environment) (name : Name) (type : Expr) :
-    IO (Option Bool × Option Bool) := do
+private def classifyDefn (env : Environment) (type : Expr) : IO (Option Bool) := do
   let ctx : Core.Context := { fileName := "DumpProofsToDo", fileMap := default }
-  let isPropResult ← try
+  try
     let (r, _) ← ((Meta.isProp type).run' : CoreM Bool).toIO ctx { env := env }
     pure (some r)
   catch _ =>
     pure none
-  let isInstanceResult ← try
-    let (r, _) ← (Meta.isInstance name : CoreM Bool).toIO ctx { env := env }
-    pure (some r)
-  catch _ =>
-    pure none
-  pure (isPropResult, isInstanceResult)
+
+private def ppOptions (opts : Options) : Options :=
+  let opts := pp.notation.set opts true
+  let opts := pp.explicit.set opts false
+  let opts := pp.universes.set opts false
+  pp.fullNames.set opts false
+
+private def pathToModuleName (rootPrefix extension : String) (path : System.FilePath) : Option Name :=
+  let normalized := path.toString.replace "\\" "/"
+  if !normalized.startsWith rootPrefix || !normalized.endsWith extension then
+    none
+  else
+    let relative := normalized.replace rootPrefix ""
+    let withoutExt := relative.take (relative.length - extension.length)
+    some (withoutExt.replace "/" ".").toName
+
+private def moduleSourceExists (moduleName : Name) : IO Bool := do
+  let path : System.FilePath := moduleName.toString.replace "." "/" ++ ".lean"
+  return ← path.pathExists
+
+private def discoveredLraImports : IO (Array Import) := do
+  let paths ← System.FilePath.walkDir ".lake/build/lib/lean/LRA"
+  let mut modules : Array Name := #[]
+  for path in paths do
+    if path.toString.replace "\\" "/" |>.endsWith ".olean" then
+      if let some moduleName := pathToModuleName ".lake/build/lib/lean/" ".olean" path then
+        if ← moduleSourceExists moduleName then
+          modules := modules.push moduleName
+  let sortedModules := modules.qsort (fun a b => a.toString < b.toString)
+  pure <| sortedModules.map fun module => { module := module }
 
 /--
 Recursively delta-unfolds every application of an allow-listed definition
@@ -399,7 +406,7 @@ declaration, so one problematic declaration cannot take down the whole dump.
 -/
 private def prettyType (env : Environment) (type : Expr) : IO String := do
   let ctx : Core.Context := { fileName := "DumpProofsToDo", fileMap := default }
-  let coreAct : CoreM Format := (PrettyPrinter.ppExpr type).run'
+  let coreAct : CoreM Format := (withOptions ppOptions <| Meta.ppExpr type).run'
   try
     let (fmt, _) ← coreAct.toIO ctx { env := env }
     pure fmt.pretty
@@ -418,12 +425,12 @@ private def computeFolRenderings (env : Environment) (type : Expr) :
   let plain ← prettyType env type
   let act : CoreM (String × String × String) := (do
     let uncurried ← uncurryHypotheses type
-    let uncurriedFmt ← PrettyPrinter.ppExpr uncurried
+    let uncurriedFmt ← withOptions ppOptions <| Meta.ppExpr uncurried
     let uncurriedStr := uncurriedFmt.pretty
     try
       let unfolded ← unfoldAllowed 6 type
       let unfoldedUncurried ← uncurryHypotheses unfolded
-      let unfoldedFmt ← PrettyPrinter.ppExpr unfoldedUncurried
+      let unfoldedFmt ← withOptions ppOptions <| Meta.ppExpr unfoldedUncurried
       pure (uncurriedStr, unfoldedFmt.pretty, "ok")
     catch _ =>
       -- Deliberately not trying to render the exception's message here:
@@ -440,30 +447,14 @@ private def computeFolRenderings (env : Environment) (type : Expr) :
     pure (plain, plain, plain, "error:unavailable")
 
 unsafe def main : IO Unit := do
-  let env ← importModules #[{ module := `LRA }] {} (trustLevel := 0)
+  let env ← importModules (← discoveredLraImports) {} (trustLevel := 0)
   let mut rows : Array String := #[]
   let mut theoremCount := 0
   let mut instanceCount := 0
-  -- Diagnostic-only counters for `classifyDefn`'s two independent axes
-  -- (see its doc comment): this is the least-trusted classification in the
-  -- file, so `main` reports the full cross-tab every run rather than only
-  -- the final instance count, to make a silent-failure mode (`Meta.isProp`
-  -- or `Meta.isInstance` erroring, or `Meta.isInstance` disagreeing with
-  -- `Meta.isProp` on every row) visible immediately instead of just
-  -- showing up as a suspicious zero, the way it did on the first run of
-  -- the `Meta.isInstance`-gated version of this check.
   let mut defnInfoCount := 0
   let mut propTrueCount := 0
   let mut propFalseCount := 0
   let mut propErrorCount := 0
-  let mut instTrueCount := 0
-  let mut instFalseCount := 0
-  let mut instErrorCount := 0
-  -- Of the rows actually captured (`isProp = some true`), how many did
-  -- `Meta.isInstance` also agree were instances? If this stays 0 while
-  -- `propTrueCount` is not, that confirms `Meta.isInstance` itself is the
-  -- broken/misunderstood piece, not `Meta.isProp` or the overall approach.
-  let mut propTrueInstTrueCount := 0
   for h : moduleIndex in *...env.header.moduleNames.size do
     let moduleName := env.header.moduleNames[moduleIndex]
     let renderedModule := moduleName.toString
@@ -489,18 +480,12 @@ unsafe def main : IO Unit := do
           ]
         else if let .defnInfo defn := info then
           defnInfoCount := defnInfoCount + 1
-          let (isPropResult, isInstanceResult) ← classifyDefn env name defn.type
-          match isInstanceResult with
-          | none => instErrorCount := instErrorCount + 1
-          | some true => instTrueCount := instTrueCount + 1
-          | some false => instFalseCount := instFalseCount + 1
+          let isPropResult ← classifyDefn env defn.type
           match isPropResult with
           | none => propErrorCount := propErrorCount + 1
           | some false => propFalseCount := propFalseCount + 1
           | some true =>
             propTrueCount := propTrueCount + 1
-            if isInstanceResult == some true then
-              propTrueInstTrueCount := propTrueInstTrueCount + 1
             let sorryUsed := usesSorry defn.value
             let (_plain, uncurried, unfolded, status) ← computeFolRenderings env defn.type
             instanceCount := instanceCount + 1
@@ -520,5 +505,3 @@ unsafe def main : IO Unit := do
   IO.println s!"wrote {rows.size} declarations ({theoremCount} theorem, {instanceCount} instance)"
   IO.println s!"defnInfo scanned (post-noise-filter): {defnInfoCount}"
   IO.println s!"  Meta.isProp:      true={propTrueCount} (captured as instance rows) false={propFalseCount} error={propErrorCount}"
-  IO.println s!"  Meta.isInstance:  true={instTrueCount} false={instFalseCount} error={instErrorCount}"
-  IO.println s!"  of the {propTrueCount} captured (isProp=true), isInstance also agreed true for {propTrueInstTrueCount}"

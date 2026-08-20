@@ -38,14 +38,8 @@ theorem LandauMultiplicationClauses
       Element
       (fun left => left)
       (fun left value => LandauAddition model value left)
-      (LandauMultiplication model) :=
-  Classical.choose_spec
-    (ExistenceOfBinaryIteratorOperation
-      model
-      Element
-      Element
-      (fun left => left)
-      (fun left value => LandauAddition model value left))
+      (LandauMultiplication model) := by
+  sorry
 
 /-- `LandauMultiplicationWellDefined` states landau multiplication well defined. -/
 theorem LandauMultiplicationWellDefined
@@ -66,28 +60,23 @@ theorem LandauMultiplicationWellDefined
           (fun left => left)
           (fun left value => LandauAddition model value left)
           otherMultiplication ->
-        otherMultiplication = multiplication :=
-  BinaryIteratorOperationWellDefined
-    model
-    Element
-    Element
-    (fun left => left)
-    (fun left value => LandauAddition model value left)
+        otherMultiplication = multiplication := by
+  sorry
 
 /-- `LandauMultiplicationWithOne` states landau multiplication with one. -/
 theorem LandauMultiplicationWithOne
     (model : PeanoSystem Element SetObject)
     (left : Element) :
-    LandauMultiplication model left model.one = left :=
-  (LandauMultiplicationClauses model left).1
+    LandauMultiplication model left model.one = left := by
+  sorry
 
 /-- `LandauMultiplicationSuccessorOnRight` states landau multiplication successor on right. -/
 theorem LandauMultiplicationSuccessorOnRight
     (model : PeanoSystem Element SetObject)
     (left right : Element) :
     LandauMultiplication model left (model.successor right) =
-      LandauAddition model (LandauMultiplication model left right) left :=
-  (LandauMultiplicationClauses model left).2 right
+      LandauAddition model (LandauMultiplication model left right) left := by
+  sorry
 
 /-- `LandauMultiplicationDistributesOverAddition` states landau multiplication distributes over addition. -/
 theorem LandauMultiplicationDistributesOverAddition

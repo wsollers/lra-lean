@@ -70,7 +70,6 @@ theorem dyadic_subring :
         (dyadic_data.rational_model.signature.multiply first second)) := by
   sorry
 
-
 /-- Theorem 1.3: dyadic rationals are dense in Q.
 
 Mathematical statement (Lean): `theorem dyadic_rationals_are_dense (first second : Rational dyadic_data) (first_lt_second : dyadic_data.rational_model.signature.StrictOrder first second) : ∃ dyadic : Rational dyadic_data, IsDyadicRational dyadic_data dyadic ∧ dyadic_data.rational_model.s...`.

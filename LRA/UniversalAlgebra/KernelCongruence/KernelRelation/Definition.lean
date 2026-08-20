@@ -52,7 +52,7 @@ theorem kernelRelationIsEquivalence {S : Signature}
 theorem kernelRelationIsEquivalence {S : Signature}
     {M : Model.{u} S} {N : Model.{v} S}
     (homomorphism : Homomorphism M N) :
-    Equivalence (kernelRelation homomorphism) :=
-  ⟨fun _ => rfl, Eq.symm, Eq.trans⟩
+    Equivalence (kernelRelation homomorphism) := by
+  sorry
 
 end LRA.UniversalAlgebra

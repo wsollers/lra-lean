@@ -9,13 +9,14 @@ keep source order, because Lean forbids forward references, so source order is
 already a valid topological order. Working this list top to bottom, no entry
 depends on anything not yet proved above it.
 
-**Inventory:** 96 entries across 11 module(s) (3 completed, 93 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
+**Inventory:** 102 entries across 13 module(s) (1 completed, 101 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
 
 Name: GraphRelatesValue
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain),   function.Graph input (function input)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain),   function.Graph input (function input)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain), function.Graph input (function input)
+Transliterated theorem: (∀ input ∈ Domain), Graph function input (function input)
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain) : Graph function input (function input)
 Source: ./Calculus/Evaluation/Theorems.lean#L14
 
@@ -24,8 +25,9 @@ Source: ./Calculus/Evaluation/Theorems.lean#L14
 Name: GraphOutputEqualsValue
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain) (output : Codomain),   function.Graph input output → Eq output (function input)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain) (output : Codomain),   function.Graph input output → Eq output (function input)
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain) (output : Codomain) (related : Graph function input output), output = function input
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain) (output : Codomain), function.Graph input output → output = function input
+Transliterated theorem: (∀ input ∈ Domain ∀ output ∈ Codomain), output = function input
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain) (output : Codomain) (related : Graph function input output) : output = function input
 Source: ./Calculus/Evaluation/Theorems.lean#L20
 
@@ -34,8 +36,9 @@ Source: ./Calculus/Evaluation/Theorems.lean#L20
 Name: PointImageClassIffValue
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain) (output : Codomain),   Iff (function.PointImageClass input output) (Eq output (function input))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain) (output : Codomain),   Iff (function.PointImageClass input output) (Eq output (function input))
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain) (output : Codomain), PointImageClass function input output ↔ output = function input
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain) (output : Codomain), function.PointImageClass input output ↔ output = function input
+Transliterated theorem: (∀ input ∈ Domain ∀ output ∈ Codomain), PointImageClass function input output ↔ output = function input
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain) (output : Codomain) : PointImageClass function input output ↔ output = function input
 Source: ./Calculus/Evaluation/Theorems.lean#L28
 
@@ -44,8 +47,9 @@ Source: ./Calculus/Evaluation/Theorems.lean#L28
 Name: FiberClassIffValue
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain) (input : Domain),   Iff (function.FiberClass output input) (Eq output (function input))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain) (input : Domain),   Iff (function.FiberClass output input) (Eq output (function input))
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain) (input : Domain), FiberClass function output input ↔ output = function input
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain) (input : Domain), function.FiberClass output input ↔ output = function input
+Transliterated theorem: (∀ output ∈ Codomain ∀ input ∈ Domain), FiberClass function output input ↔ output = function input
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain) (input : Domain) : FiberClass function output input ↔ output = function input
 Source: ./Calculus/Evaluation/Theorems.lean#L36
 
@@ -54,8 +58,9 @@ Source: ./Calculus/Evaluation/Theorems.lean#L36
 Name: RangeClassIffValue
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain),   Iff (function.RangeClass output) (Exists fun input => Eq output (function input))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain),   Iff (function.RangeClass output) (Exists fun input => Eq output (function input))
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain), RangeClass function output ↔ ∃ input, output = function input
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain), function.RangeClass output ↔ Exists fun input => output = function input
+Transliterated theorem: (∀ output ∈ Codomain), RangeClass function output ↔ ∃ input, output = function input
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain) : RangeClass function output ↔ ∃ input, output = function input
 Source: ./Calculus/Evaluation/Theorems.lean#L44
 
@@ -64,8 +69,9 @@ Source: ./Calculus/Evaluation/Theorems.lean#L44
 Name: ImageClassIffValue
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain)   (output : Codomain),   Iff (function.ImageClass source output) (Exists fun input => And (source input) (Eq output (function input)))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain)   (output : Codomain),   Iff (function.ImageClass source output) (Exists fun input => And (source input) (Eq output (function input)))
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain) (output : Codomain), ImageClass function source output ↔ ∃ input, source input ∧ output = function input
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain) (output : Codomain), function.ImageClass source output ↔ Exists fun input => (source input ∧ output = function input)
+Transliterated theorem: (∀ output ∈ Codomain), ImageClass function source output ↔ ∃ input, source input ∧ output = function input
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain) (output : Codomain) : ImageClass function source output ↔ ∃ input, source input ∧ output = function input
 Source: ./Calculus/Evaluation/Theorems.lean#L53
 
@@ -74,8 +80,9 @@ Source: ./Calculus/Evaluation/Theorems.lean#L53
 Name: PreimageClassIffValue
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain)   (input : Domain), Iff (function.PreimageClass target input) (target (function input))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain)   (input : Domain), Iff (function.PreimageClass target input) (target (function input))
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain) (input : Domain), PreimageClass function target input ↔ target (function input)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain) (input : Domain), function.PreimageClass target input ↔ target (function input)
+Transliterated theorem: (∀ input ∈ Domain), PreimageClass function target input ↔ target (function input)
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain) (input : Domain) : PreimageClass function target input ↔ target (function input)
 Source: ./Calculus/Evaluation/Theorems.lean#L63
 
@@ -84,8 +91,9 @@ Source: ./Calculus/Evaluation/Theorems.lean#L63
 Name: FiniteImageIffEnumerable
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain),   Iff (function.FiniteImage source)     (LRA.Function.HasFiniteEnumeration fun output =>       Exists fun input => And (source input) (Eq (function input) output))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain),   Iff (function.FiniteImage source)     (LRA.Function.HasFiniteEnumeration fun output =>       Exists fun input => And (source input) (Eq (function input) output))
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : SetClass Domain), FiniteImage function source ↔ HasFiniteEnumeration (fun output : Codomain => ∃ input : Domain, source input ∧ function input = output)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain), function.FiniteImage source ↔ LRA.Function.HasFiniteEnumeration fun output => Exists fun input => (source input ∧ function input = output)
+Transliterated theorem: FiniteImage function source ↔ HasFiniteEnumeration fun output ∈ Codomain => ∃ input ∈ Domain, source input ∧ function input = output
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : SetClass Domain) : FiniteImage function source ↔ HasFiniteEnumeration (fun output : Codomain => ∃ input : Domain, source input ∧ function input = output)
 Source: ./Calculus/Finiteness/Theorems.lean#L10
 
@@ -94,8 +102,9 @@ Source: ./Calculus/Finiteness/Theorems.lean#L10
 Name: FiniteRangeIffFiniteImageOfUniversal
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.FiniteRange (function.FiniteImage LRA.Set.SetClass.Universal)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.FiniteRange (function.FiniteImage LRA.Set.SetClass.Universal)
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), FiniteRange function ↔ FiniteImage function (SetClass.Universal : SetClass Domain)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.FiniteRange ↔ function.FiniteImage LRA.Set.SetClass.Universal
+Transliterated theorem: FiniteRange function ↔ FiniteImage function SetClass.Universal ∈ SetClass Domain
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : FiniteRange function ↔ FiniteImage function (SetClass.Universal : SetClass Domain)
 Source: ./Calculus/Finiteness/Theorems.lean#L20
 
@@ -104,8 +113,9 @@ Source: ./Calculus/Finiteness/Theorems.lean#L20
 Name: CurryAfterUncurry
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left : Type u} {Right : Type v} {Codomain : Type w} (function : LRA.Function.BinaryFunction Left Right Codomain),   Eq (LRA.Function.Curry (LRA.Function.Uncurry function)) function
-Predicate logic (unfolded): ∀ {Left : Type u} {Right : Type v} {Codomain : Type w} (function : LRA.Function.BinaryFunction Left Right Codomain),   Eq (LRA.Function.Curry (LRA.Function.Uncurry function)) function
+Predicate logic: ∀ {Left : Type u} {Right : Type v} {Codomain : Type w} (function : BinaryFunction Left Right Codomain), Curry (Uncurry function) = function
+Predicate logic (unfolded): ∀ {Left : Type u} {Right : Type v} {Codomain : Type w} (function : LRA.Function.BinaryFunction Left Right Codomain), LRA.Function.Curry (LRA.Function.Uncurry function) = function
+Transliterated theorem: Curry (Uncurry function) = function
 Logical form (Lean): {Left : Type u} {Right : Type v} {Codomain : Type w} (function : BinaryFunction Left Right Codomain) : Curry (Uncurry function) = function
 Source: ./Operations/Product/Theorems.lean#L8
 
@@ -114,8 +124,9 @@ Source: ./Operations/Product/Theorems.lean#L8
 Name: UncurryAfterCurry
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left : Type u} {Right : Type v} {Codomain : Type w}   (function : LRA.Function.ProductDomainFunction Left Right Codomain),   Eq (LRA.Function.Uncurry (LRA.Function.Curry function)) function
-Predicate logic (unfolded): ∀ {Left : Type u} {Right : Type v} {Codomain : Type w}   (function : LRA.Function.ProductDomainFunction Left Right Codomain),   Eq (LRA.Function.Uncurry (LRA.Function.Curry function)) function
+Predicate logic: ∀ {Left : Type u} {Right : Type v} {Codomain : Type w} (function : ProductDomainFunction Left Right Codomain), Uncurry (Curry function) = function
+Predicate logic (unfolded): ∀ {Left : Type u} {Right : Type v} {Codomain : Type w} (function : LRA.Function.ProductDomainFunction Left Right Codomain), LRA.Function.Uncurry (LRA.Function.Curry function) = function
+Transliterated theorem: Uncurry (Curry function) = function
 Logical form (Lean): {Left : Type u} {Right : Type v} {Codomain : Type w} (function : ProductDomainFunction Left Right Codomain) : Uncurry (Curry function) = function
 Source: ./Operations/Product/Theorems.lean#L15
 
@@ -124,8 +135,9 @@ Source: ./Operations/Product/Theorems.lean#L15
 Name: FirstProjectionProductValue
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {LeftCodomain : Type v} {RightCodomain : Type w} (left : LRA.Function Domain LeftCodomain)   (right : LRA.Function Domain RightCodomain) (input : Domain),   Eq (LRA.Function.FirstProjection LeftCodomain RightCodomain (left.Product right input)) (left input)
-Predicate logic (unfolded): ∀ {Domain : Type u} {LeftCodomain : Type v} {RightCodomain : Type w} (left : LRA.Function Domain LeftCodomain)   (right : LRA.Function Domain RightCodomain) (input : Domain),   Eq (LRA.Function.FirstProjection LeftCodomain RightCodomain (left.Product right input)) (left input)
+Predicate logic: ∀ {Domain : Type u} {LeftCodomain : Type v} {RightCodomain : Type w} (left : LRA.Function Domain LeftCodomain) (right : LRA.Function Domain RightCodomain) (input : Domain), FirstProjection LeftCodomain RightCodomain (Product left right input) = left input
+Predicate logic (unfolded): ∀ {Domain : Type u} {LeftCodomain : Type v} {RightCodomain : Type w} (left : LRA.Function Domain LeftCodomain) (right : LRA.Function Domain RightCodomain) (input : Domain), LRA.Function.FirstProjection LeftCodomain RightCodomain (left.Product right input) = left input
+Transliterated theorem: (∀ input ∈ Domain), FirstProjection LeftCodomain RightCodomain (Product left right input) = left input
 Logical form (Lean): {Domain : Type u} {LeftCodomain : Type v} {RightCodomain : Type w} (left : LRA.Function Domain LeftCodomain) (right : LRA.Function Domain RightCodomain) (input : Domain) : FirstProjection LeftCodomain RightCodomain (Product left right input) = left input
 Source: ./Operations/Product/Theorems.lean#L22
 
@@ -134,8 +146,9 @@ Source: ./Operations/Product/Theorems.lean#L22
 Name: SecondProjectionProductValue
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {LeftCodomain : Type v} {RightCodomain : Type w} (left : LRA.Function Domain LeftCodomain)   (right : LRA.Function Domain RightCodomain) (input : Domain),   Eq (LRA.Function.SecondProjection LeftCodomain RightCodomain (left.Product right input)) (right input)
-Predicate logic (unfolded): ∀ {Domain : Type u} {LeftCodomain : Type v} {RightCodomain : Type w} (left : LRA.Function Domain LeftCodomain)   (right : LRA.Function Domain RightCodomain) (input : Domain),   Eq (LRA.Function.SecondProjection LeftCodomain RightCodomain (left.Product right input)) (right input)
+Predicate logic: ∀ {Domain : Type u} {LeftCodomain : Type v} {RightCodomain : Type w} (left : LRA.Function Domain LeftCodomain) (right : LRA.Function Domain RightCodomain) (input : Domain), SecondProjection LeftCodomain RightCodomain (Product left right input) = right input
+Predicate logic (unfolded): ∀ {Domain : Type u} {LeftCodomain : Type v} {RightCodomain : Type w} (left : LRA.Function Domain LeftCodomain) (right : LRA.Function Domain RightCodomain) (input : Domain), LRA.Function.SecondProjection LeftCodomain RightCodomain (left.Product right input) = right input
+Transliterated theorem: (∀ input ∈ Domain), SecondProjection LeftCodomain RightCodomain (Product left right input) = right input
 Logical form (Lean): {Domain : Type u} {LeftCodomain : Type v} {RightCodomain : Type w} (left : LRA.Function Domain LeftCodomain) (right : LRA.Function Domain RightCodomain) (input : Domain) : SecondProjection LeftCodomain RightCodomain (Product left right input) = right input
 Source: ./Operations/Product/Theorems.lean#L32
 
@@ -145,7 +158,8 @@ Name: EveryInputInDomainClass
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain),   function.DomainClass input
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain),   function.DomainClass input
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain), function.DomainClass input
+Transliterated theorem: (∀ input ∈ Domain), DomainClass function input
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain) : DomainClass function input
 Source: ./Calculus/Classes/Theorems.lean#L12
 
@@ -155,7 +169,8 @@ Name: KernelRelationIsEquivalenceRelation
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   LRA.Relation.EquivalenceRelation function.KernelRelation
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   LRA.Relation.EquivalenceRelation function.KernelRelation
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), LRA.Relation.EquivalenceRelation function.KernelRelation
+Transliterated theorem: LRA.Relation.EquivalenceRelation (KernelRelation function)
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : LRA.Relation.EquivalenceRelation (KernelRelation function)
 Source: ./Calculus/Classes/Theorems.lean#L18
 
@@ -164,8 +179,9 @@ Source: ./Calculus/Classes/Theorems.lean#L18
 Name: InjectiveIffKernelIsIdentityRelation
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.Injective (Eq function.KernelRelation (LRA.Relation.IdentityRelation Domain))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.Injective (Eq function.KernelRelation (LRA.Relation.IdentityRelation Domain))
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), Injective function ↔ KernelRelation function = LRA.Relation.IdentityRelation Domain
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective ↔ function.KernelRelation = LRA.Relation.IdentityRelation Domain
+Transliterated theorem: Injective function ↔ KernelRelation function = LRA.Relation.IdentityRelation Domain
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : Injective function ↔ KernelRelation function = LRA.Relation.IdentityRelation Domain
 Source: ./Calculus/Classes/Theorems.lean#L25
 
@@ -174,90 +190,99 @@ Source: ./Calculus/Classes/Theorems.lean#L25
 Name: PreimageClassIntersection
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (left right : LRA.Set.SetClass Codomain),   Eq (function.PreimageClass (left.Intersection right))     ((function.PreimageClass left).Intersection (function.PreimageClass right))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (left right : LRA.Set.SetClass Codomain),   Eq (function.PreimageClass (left.Intersection right))     ((function.PreimageClass left).Intersection (function.PreimageClass right))
+Predicate logic: ∀ (left right : SetClass Codomain), PreimageClass function (SetClass.Intersection left right) = SetClass.Intersection (PreimageClass function left) (PreimageClass function right)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (left right : LRA.Set.SetClass Codomain), function.PreimageClass (left.Intersection right) = (function.PreimageClass left).Intersection (function.PreimageClass right)
+Transliterated theorem: PreimageClass function (SetClass.Intersection left right) = SetClass.Intersection (PreimageClass function left) (PreimageClass function right)
 Logical form (Lean): (left right : SetClass Codomain) : PreimageClass function (SetClass.Intersection left right) = SetClass.Intersection (PreimageClass function left) (PreimageClass function right)
-Source: ./Calculus/Classes/Theorems.lean#L60
+Source: ./Calculus/Classes/Theorems.lean#L59
 
 
 
 Name: PreimageClassDifference
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (left right : LRA.Set.SetClass Codomain),   Eq (function.PreimageClass (left.Difference right))     ((function.PreimageClass left).Difference (function.PreimageClass right))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (left right : LRA.Set.SetClass Codomain),   Eq (function.PreimageClass (left.Difference right))     ((function.PreimageClass left).Difference (function.PreimageClass right))
+Predicate logic: ∀ (left right : SetClass Codomain), PreimageClass function (SetClass.Difference left right) = SetClass.Difference (PreimageClass function left) (PreimageClass function right)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (left right : LRA.Set.SetClass Codomain), function.PreimageClass (left.Difference right) = (function.PreimageClass left).Difference (function.PreimageClass right)
+Transliterated theorem: PreimageClass function (SetClass.Difference left right) = SetClass.Difference (PreimageClass function left) (PreimageClass function right)
 Logical form (Lean): (left right : SetClass Codomain) : PreimageClass function (SetClass.Difference left right) = SetClass.Difference (PreimageClass function left) (PreimageClass function right)
-Source: ./Calculus/Classes/Theorems.lean#L67
+Source: ./Calculus/Classes/Theorems.lean#L66
 
 
 
 Name: PreimageClassComplement
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain),   Eq (function.PreimageClass target.Complement) (function.PreimageClass target).Complement
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain),   Eq (function.PreimageClass target.Complement) (function.PreimageClass target).Complement
+Predicate logic: ∀ (target : SetClass Codomain), PreimageClass function (SetClass.Complement target) = SetClass.Complement (PreimageClass function target)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain), function.PreimageClass target.Complement = function.PreimageClass target.Complement
+Transliterated theorem: PreimageClass function (SetClass.Complement target) = SetClass.Complement (PreimageClass function target)
 Logical form (Lean): (target : SetClass Codomain) : PreimageClass function (SetClass.Complement target) = SetClass.Complement (PreimageClass function target)
-Source: ./Calculus/Classes/Theorems.lean#L74
+Source: ./Calculus/Classes/Theorems.lean#L73
 
 
 
 Name: PreimageClassSymmetricDifference
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (left right : LRA.Set.SetClass Codomain),   Eq (function.PreimageClass ((left.Difference right).Union (right.Difference left)))     (((function.PreimageClass left).Difference (function.PreimageClass right)).Union       ((function.PreimageClass right).Difference (function.PreimageClass left)))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (left right : LRA.Set.SetClass Codomain),   Eq (function.PreimageClass ((left.Difference right).Union (right.Difference left)))     (((function.PreimageClass left).Difference (function.PreimageClass right)).Union       ((function.PreimageClass right).Difference (function.PreimageClass left)))
+Predicate logic: ∀ (left right : SetClass Codomain), PreimageClass function (SetClass.Union (SetClass.Difference left right) (SetClass.Difference right left)) = SetClass.Union (SetClass.Difference (PreimageClass function left) (PreimageClass function right)) (SetClass.Difference (PreimageClass function right) (PreimageClass function left))
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (left right : LRA.Set.SetClass Codomain), function.PreimageClass ((left.Difference right).Union (right.Difference left)) = ((function.PreimageClass left).Difference (function.PreimageClass right)).Union ((function.PreimageClass right).Difference (function.PreimageClass left))
+Transliterated theorem: PreimageClass function (SetClass.Union (SetClass.Difference left right) (SetClass.Difference right left)) = SetClass.Union (SetClass.Difference (PreimageClass function left) (PreimageClass function right)) (SetClass.Difference (PreimageClass function right) (PreimageClass function left))
 Logical form (Lean): (left right : SetClass Codomain) : PreimageClass function (SetClass.Union (SetClass.Difference left right) (SetClass.Difference right left)) = SetClass.Union (SetClass.Difference (PreimageClass function left) (PreimageClass function right)) (SetClass.Difference (PreimageClass function right) (PreimageClass function left))
-Source: ./Calculus/Classes/Theorems.lean#L80
+Source: ./Calculus/Classes/Theorems.lean#L79
 
 
 
 Name: PreimageClassDifferenceUnion
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (left middle right : LRA.Set.SetClass Codomain),   Eq (function.PreimageClass (left.Difference (middle.Union right)))     ((function.PreimageClass left).Difference ((function.PreimageClass middle).Union (function.PreimageClass right)))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (left middle right : LRA.Set.SetClass Codomain),   Eq (function.PreimageClass (left.Difference (middle.Union right)))     ((function.PreimageClass left).Difference ((function.PreimageClass middle).Union (function.PreimageClass right)))
+Predicate logic: ∀ (left middle right : SetClass Codomain), PreimageClass function (SetClass.Difference left (SetClass.Union middle right)) = SetClass.Difference (PreimageClass function left) (SetClass.Union (PreimageClass function middle) (PreimageClass function right))
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (left middle right : LRA.Set.SetClass Codomain), function.PreimageClass (left.Difference (middle.Union right)) = (function.PreimageClass left).Difference ((function.PreimageClass middle).Union (function.PreimageClass right))
+Transliterated theorem: PreimageClass function (SetClass.Difference left (SetClass.Union middle right)) = SetClass.Difference (PreimageClass function left) (SetClass.Union (PreimageClass function middle) (PreimageClass function right))
 Logical form (Lean): (left middle right : SetClass Codomain) : PreimageClass function (SetClass.Difference left (SetClass.Union middle right)) = SetClass.Difference (PreimageClass function left) (SetClass.Union (PreimageClass function middle) (PreimageClass function right))
-Source: ./Calculus/Classes/Theorems.lean#L92
+Source: ./Calculus/Classes/Theorems.lean#L91
 
 
 
 Name: PreimageClassUniversal
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Eq (function.PreimageClass LRA.Set.SetClass.Universal) LRA.Set.SetClass.Universal
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Eq (function.PreimageClass LRA.Set.SetClass.Universal) LRA.Set.SetClass.Universal
+Predicate logic: PreimageClass function (SetClass.Universal : SetClass Codomain) = (SetClass.Universal : SetClass Domain)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.PreimageClass LRA.Set.SetClass.Universal = LRA.Set.SetClass.Universal
+Transliterated theorem: PreimageClass function SetClass.Universal ∈ SetClass Codomain = SetClass.Universal ∈ SetClass Domain
 Logical form (Lean): : PreimageClass function (SetClass.Universal : SetClass Codomain) = (SetClass.Universal : SetClass Domain)
-Source: ./Calculus/Classes/Theorems.lean#L101
+Source: ./Calculus/Classes/Theorems.lean#L100
 
 
 
 Name: PreimageClassIndexedIntersection
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) {Index : Type w}   (family : Index → LRA.Set.SetClass Codomain),   Eq (function.PreimageClass fun output => ∀ (index : Index), family index output) fun input =>     ∀ (index : Index), function.PreimageClass (family index) input
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) {Index : Type w}   (family : Index → LRA.Set.SetClass Codomain),   Eq (function.PreimageClass fun output => ∀ (index : Index), family index output) fun input =>     ∀ (index : Index), function.PreimageClass (family index) input
+Predicate logic: ∀ {Index : Type w} (family : Index → SetClass Codomain), PreimageClass function (fun output => ∀ index, family index output) = (fun input => ∀ index, PreimageClass function (family index) input)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) {Index : Type w} (family : Index → LRA.Set.SetClass Codomain), function.PreimageClass fun output => ∀ (index : Index), family index output = funinput => ∀ (index : Index), function.PreimageClass (family index) input
+Transliterated theorem: (Index → SetClass Codomain) → PreimageClass function (fun output => ∀ index, family index output) = (fun input => ∀ index, PreimageClass function (family index) input)
 Logical form (Lean): {Index : Type w} (family : Index → SetClass Codomain) : PreimageClass function (fun output => ∀ index, family index output) = (fun input => ∀ index, PreimageClass function (family index) input)
-Source: ./Calculus/Classes/Theorems.lean#L107
+Source: ./Calculus/Classes/Theorems.lean#L106
 
 
 
 Name: PreimageClassCountableIntersection
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (family : Nat → LRA.Set.SetClass Codomain),   Eq (function.PreimageClass fun output => ∀ (index : Nat), family index output) fun input =>     ∀ (index : Nat), function.PreimageClass (family index) input
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (family : Nat → LRA.Set.SetClass Codomain),   Eq (function.PreimageClass fun output => ∀ (index : Nat), family index output) fun input =>     ∀ (index : Nat), function.PreimageClass (family index) input
+Predicate logic: ∀ (family : Nat → SetClass Codomain), PreimageClass function (fun output => ∀ index, family index output) = (fun input => ∀ index, PreimageClass function (family index) input)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (family : Nat → LRA.Set.SetClass Codomain), function.PreimageClass fun output => ∀ (index : Nat), family index output = funinput => ∀ (index : Nat), function.PreimageClass (family index) input
+Transliterated theorem: (Nat → SetClass Codomain) → PreimageClass function (fun output => ∀ index, family index output) = (fun input => ∀ index, PreimageClass function (family index) input)
 Logical form (Lean): (family : Nat → SetClass Codomain) : PreimageClass function (fun output => ∀ index, family index output) = (fun input => ∀ index, PreimageClass function (family index) input)
-Source: ./Calculus/Classes/Theorems.lean#L114
+Source: ./Calculus/Classes/Theorems.lean#L113
 
 
 
 Name: ImagePreimageAdjunction
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain)   (target : LRA.Set.SetClass Codomain),   Iff (source.Included (function.PreimageClass target)) ((function.ImageClass source).Included target)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain)   (target : LRA.Set.SetClass Codomain),   Iff (source.Included (function.PreimageClass target)) ((function.ImageClass source).Included target)
+Predicate logic: ∀ (source : SetClass Domain) (target : SetClass Codomain), SetClass.Included source (PreimageClass function target) ↔ SetClass.Included (ImageClass function source) target
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain) (target : LRA.Set.SetClass Codomain), source.Included (function.PreimageClass target) ↔ (function.ImageClass source).Included target
+Transliterated theorem: SetClass.Included source (PreimageClass function target) ↔ SetClass.Included (ImageClass function source) target
 Logical form (Lean): (source : SetClass Domain) (target : SetClass Codomain) : SetClass.Included source (PreimageClass function target) ↔ SetClass.Included (ImageClass function source) target
-Source: ./Calculus/Classes/Theorems.lean#L128
+Source: ./Calculus/Classes/Theorems.lean#L127
 
 
 
@@ -265,9 +290,10 @@ Name: ImageOfPreimageClassIncluded
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain),   (function.ImageClass (function.PreimageClass target)).Included target
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain),   (function.ImageClass (function.PreimageClass target)).Included target
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain), (function.ImageClass (function.PreimageClass target)).Included target
+Transliterated theorem: SetClass.Included (ImageClass function (PreimageClass function target)) target
 Logical form (Lean): (target : SetClass Codomain) : SetClass.Included (ImageClass function (PreimageClass function target)) target
-Source: ./Calculus/Classes/Theorems.lean#L136
+Source: ./Calculus/Classes/Theorems.lean#L135
 
 
 
@@ -275,119 +301,131 @@ Name: SourceIncludedInPreimageOfImageClass
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain),   source.Included (function.PreimageClass (function.ImageClass source))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain),   source.Included (function.PreimageClass (function.ImageClass source))
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain), source.Included (function.PreimageClass (function.ImageClass source))
+Transliterated theorem: SetClass.Included source (PreimageClass function (ImageClass function source))
 Logical form (Lean): (source : SetClass Domain) : SetClass.Included source (PreimageClass function (ImageClass function source))
-Source: ./Calculus/Classes/Theorems.lean#L143
+Source: ./Calculus/Classes/Theorems.lean#L142
 
 
 
 Name: ImageOfPreimageClassEqualsMeetWithRange
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain),   Eq (function.ImageClass (function.PreimageClass target)) (target.Intersection function.RangeClass)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain),   Eq (function.ImageClass (function.PreimageClass target)) (target.Intersection function.RangeClass)
+Predicate logic: ∀ (target : SetClass Codomain), ImageClass function (PreimageClass function target) = SetClass.Intersection target (RangeClass function)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain), function.ImageClass (function.PreimageClass target) = target.Intersection function.RangeClass
+Transliterated theorem: ImageClass function (PreimageClass function target) = SetClass.Intersection target (RangeClass function)
 Logical form (Lean): (target : SetClass Codomain) : ImageClass function (PreimageClass function target) = SetClass.Intersection target (RangeClass function)
-Source: ./Calculus/Classes/Theorems.lean#L149
+Source: ./Calculus/Classes/Theorems.lean#L148
 
 
 
 Name: ImageOfPreimageClassOfIncludedInRange
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain),   target.Included function.RangeClass → Eq (function.ImageClass (function.PreimageClass target)) target
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain),   target.Included function.RangeClass → Eq (function.ImageClass (function.PreimageClass target)) target
+Predicate logic: ∀ (target : SetClass Codomain) (insideRange : SetClass.Included target (RangeClass function)), ImageClass function (PreimageClass function target) = target
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain), target.Included function.RangeClass → function.ImageClass (function.PreimageClass target) = target
+Transliterated theorem: ImageClass function (PreimageClass function target) = target
 Logical form (Lean): (target : SetClass Codomain) (insideRange : SetClass.Included target (RangeClass function)) : ImageClass function (PreimageClass function target) = target
-Source: ./Calculus/Classes/Theorems.lean#L155
+Source: ./Calculus/Classes/Theorems.lean#L154
 
 
 
 Name: MapsIntoClassIffImageIncluded
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain)   (target : LRA.Set.SetClass Codomain),   Iff (function.MapsIntoClass source target) ((function.ImageClass source).Included target)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain)   (target : LRA.Set.SetClass Codomain),   Iff (function.MapsIntoClass source target) ((function.ImageClass source).Included target)
+Predicate logic: ∀ (source : SetClass Domain) (target : SetClass Codomain), MapsIntoClass function source target ↔ SetClass.Included (ImageClass function source) target
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain) (target : LRA.Set.SetClass Codomain), function.MapsIntoClass source target ↔ (function.ImageClass source).Included target
+Transliterated theorem: MapsIntoClass function source target ↔ SetClass.Included (ImageClass function source) target
 Logical form (Lean): (source : SetClass Domain) (target : SetClass Codomain) : MapsIntoClass function source target ↔ SetClass.Included (ImageClass function source) target
-Source: ./Calculus/Classes/Theorems.lean#L162
+Source: ./Calculus/Classes/Theorems.lean#L161
 
 
 
 Name: MapsIntoClassIffIncludedInPreimage
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain)   (target : LRA.Set.SetClass Codomain),   Iff (function.MapsIntoClass source target) (source.Included (function.PreimageClass target))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain)   (target : LRA.Set.SetClass Codomain),   Iff (function.MapsIntoClass source target) (source.Included (function.PreimageClass target))
+Predicate logic: ∀ (source : SetClass Domain) (target : SetClass Codomain), MapsIntoClass function source target ↔ SetClass.Included source (PreimageClass function target)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain) (target : LRA.Set.SetClass Codomain), function.MapsIntoClass source target ↔ source.Included (function.PreimageClass target)
+Transliterated theorem: MapsIntoClass function source target ↔ SetClass.Included source (PreimageClass function target)
 Logical form (Lean): (source : SetClass Domain) (target : SetClass Codomain) : MapsIntoClass function source target ↔ SetClass.Included source (PreimageClass function target)
-Source: ./Calculus/Classes/Theorems.lean#L170
+Source: ./Calculus/Classes/Theorems.lean#L169
 
 
 
 Name: ImageClassIntersectionOfInjective
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   function.Injective →     ∀ (left right : LRA.Set.SetClass Domain),       Eq (function.ImageClass (left.Intersection right))         ((function.ImageClass left).Intersection (function.ImageClass right))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   function.Injective →     ∀ (left right : LRA.Set.SetClass Domain),       Eq (function.ImageClass (left.Intersection right))         ((function.ImageClass left).Intersection (function.ImageClass right))
+Predicate logic: ∀ (injective : Injective function) (left right : SetClass Domain), ImageClass function (SetClass.Intersection left right) = SetClass.Intersection (ImageClass function left) (ImageClass function right)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective → ∀ (left right : LRA.Set.SetClass Domain), function.ImageClass (left.Intersection right) = (function.ImageClass left).Intersection (function.ImageClass right)
+Transliterated theorem: ImageClass function (SetClass.Intersection left right) = SetClass.Intersection (ImageClass function left) (ImageClass function right)
 Logical form (Lean): (injective : Injective function) (left right : SetClass Domain) : ImageClass function (SetClass.Intersection left right) = SetClass.Intersection (ImageClass function left) (ImageClass function right)
-Source: ./Calculus/Classes/Theorems.lean#L185
+Source: ./Calculus/Classes/Theorems.lean#L184
 
 
 
 Name: ImageClassDifferenceOfInjective
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   function.Injective →     ∀ (left right : LRA.Set.SetClass Domain),       Eq (function.ImageClass (left.Difference right))         ((function.ImageClass left).Difference (function.ImageClass right))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   function.Injective →     ∀ (left right : LRA.Set.SetClass Domain),       Eq (function.ImageClass (left.Difference right))         ((function.ImageClass left).Difference (function.ImageClass right))
+Predicate logic: ∀ (injective : Injective function) (left right : SetClass Domain), ImageClass function (SetClass.Difference left right) = SetClass.Difference (ImageClass function left) (ImageClass function right)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective → ∀ (left right : LRA.Set.SetClass Domain), function.ImageClass (left.Difference right) = (function.ImageClass left).Difference (function.ImageClass right)
+Transliterated theorem: ImageClass function (SetClass.Difference left right) = SetClass.Difference (ImageClass function left) (ImageClass function right)
 Logical form (Lean): (injective : Injective function) (left right : SetClass Domain) : ImageClass function (SetClass.Difference left right) = SetClass.Difference (ImageClass function left) (ImageClass function right)
-Source: ./Calculus/Classes/Theorems.lean#L193
+Source: ./Calculus/Classes/Theorems.lean#L192
 
 
 
 Name: ImageClassIndexedIntersectionOfInjective
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) {Index : Type w},   function.Injective →     ∀ (family : Index → LRA.Set.SetClass Domain),       Eq (function.ImageClass fun input => ∀ (index : Index), family index input) fun output =>         ∀ (index : Index), function.ImageClass (family index) output
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) {Index : Type w},   function.Injective →     ∀ (family : Index → LRA.Set.SetClass Domain),       Eq (function.ImageClass fun input => ∀ (index : Index), family index input) fun output =>         ∀ (index : Index), function.ImageClass (family index) output
+Predicate logic: ∀ {Index : Type w} (injective : Injective function) (family : Index → SetClass Domain), ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) {Index : Type w}, function.Injective → ∀ (family : Index → LRA.Set.SetClass Domain), function.ImageClass fun input => ∀ (index : Index), family index input = funoutput => ∀ (index : Index), function.ImageClass (family index) output
+Transliterated theorem: (Index → SetClass Domain) → ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
 Logical form (Lean): {Index : Type w} (injective : Injective function) (family : Index → SetClass Domain) : ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
-Source: ./Calculus/Classes/Theorems.lean#L201
+Source: ./Calculus/Classes/Theorems.lean#L200
 
 
 
 Name: ImageClassCountableIntersectionOfInjective
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   function.Injective →     ∀ (family : Nat → LRA.Set.SetClass Domain),       Eq (function.ImageClass fun input => ∀ (index : Nat), family index input) fun output =>         ∀ (index : Nat), function.ImageClass (family index) output
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   function.Injective →     ∀ (family : Nat → LRA.Set.SetClass Domain),       Eq (function.ImageClass fun input => ∀ (index : Nat), family index input) fun output =>         ∀ (index : Nat), function.ImageClass (family index) output
+Predicate logic: ∀ (injective : Injective function) (family : Nat → SetClass Domain), ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective → ∀ (family : Nat → LRA.Set.SetClass Domain), function.ImageClass fun input => ∀ (index : Nat), family index input = funoutput => ∀ (index : Nat), function.ImageClass (family index) output
+Transliterated theorem: (Nat → SetClass Domain) → ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
 Logical form (Lean): (injective : Injective function) (family : Nat → SetClass Domain) : ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
-Source: ./Calculus/Classes/Theorems.lean#L208
+Source: ./Calculus/Classes/Theorems.lean#L207
 
 
 
 Name: ImageClassWitnessUniqueOfInjective
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   function.Injective →     ∀ (source : LRA.Set.SetClass Domain) (output : Codomain) (firstInput secondInput : Domain),       And (And (source firstInput) (Eq (function firstInput) output))           (And (source secondInput) (Eq (function secondInput) output)) →         Eq firstInput secondInput
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   function.Injective →     ∀ (source : LRA.Set.SetClass Domain) (output : Codomain) (firstInput secondInput : Domain),       And (And (source firstInput) (Eq (function firstInput) output))           (And (source secondInput) (Eq (function secondInput) output)) →         Eq firstInput secondInput
+Predicate logic: ∀ (injective : Injective function) (source : SetClass Domain) (output : Codomain) (firstInput secondInput : Domain) (firstWitness : source firstInput ∧ function firstInput = output) (secondWitness : source secondInput ∧ function secondInput = output), firstInput = secondInput
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective → ∀ (source : LRA.Set.SetClass Domain) (output : Codomain) (firstInput secondInput : Domain), ((source firstInput ∧ function firstInput = output) ∧ (source secondInput ∧ function secondInput = output)) → firstInput = secondInput
+Transliterated theorem: (∀ output ∈ Codomain ∀ firstInput secondInput ∈ Domain), (source firstInput ∧ function firstInput = output ∧ source secondInput ∧ function secondInput = output) → firstInput = secondInput
 Logical form (Lean): (injective : Injective function) (source : SetClass Domain) (output : Codomain) (firstInput secondInput : Domain) (firstWitness : source firstInput ∧ function firstInput = output) (secondWitness : source secondInput ∧ function secondInput = output) : firstInput = secondInput
-Source: ./Calculus/Classes/Theorems.lean#L215
+Source: ./Calculus/Classes/Theorems.lean#L214
 
 
 
 Name: PreimageOfImageClassOfInjective
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   function.Injective →     ∀ (source : LRA.Set.SetClass Domain), Eq (function.PreimageClass (function.ImageClass source)) source
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   function.Injective →     ∀ (source : LRA.Set.SetClass Domain), Eq (function.PreimageClass (function.ImageClass source)) source
+Predicate logic: ∀ (injective : Injective function) (source : SetClass Domain), PreimageClass function (ImageClass function source) = source
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective → ∀ (source : LRA.Set.SetClass Domain), function.PreimageClass (function.ImageClass source) = source
+Transliterated theorem: PreimageClass function (ImageClass function source) = source
 Logical form (Lean): (injective : Injective function) (source : SetClass Domain) : PreimageClass function (ImageClass function source) = source
-Source: ./Calculus/Classes/Theorems.lean#L224
+Source: ./Calculus/Classes/Theorems.lean#L223
 
 
 
 Name: ImageOfPreimageClassOfSurjective
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   function.Surjective →     ∀ (target : LRA.Set.SetClass Codomain), Eq (function.ImageClass (function.PreimageClass target)) target
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   function.Surjective →     ∀ (target : LRA.Set.SetClass Codomain), Eq (function.ImageClass (function.PreimageClass target)) target
+Predicate logic: ∀ (surjective : Surjective function) (target : SetClass Codomain), ImageClass function (PreimageClass function target) = target
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Surjective → ∀ (target : LRA.Set.SetClass Codomain), function.ImageClass (function.PreimageClass target) = target
+Transliterated theorem: ImageClass function (PreimageClass function target) = target
 Logical form (Lean): (surjective : Surjective function) (target : SetClass Codomain) : ImageClass function (PreimageClass function target) = target
-Source: ./Calculus/Classes/Theorems.lean#L230
+Source: ./Calculus/Classes/Theorems.lean#L229
 
 
 
@@ -395,19 +433,21 @@ Name: SurjectiveOfImageClassCoversCodomain
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   (∀ (output : Codomain), function.ImageClass LRA.Set.SetClass.Universal output) → function.Surjective
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   (∀ (output : Codomain), function.ImageClass LRA.Set.SetClass.Universal output) → function.Surjective
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), (∀ (output : Codomain), function.ImageClass LRA.Set.SetClass.Universal output) → function.Surjective
+Transliterated theorem: (∀ output : Codomain, ImageClass function SetClass.Universal ∈ SetClass Domain output) → Surjective function
 Logical form (Lean): (covers : ∀ output : Codomain, ImageClass function (SetClass.Universal : SetClass Domain) output) : Surjective function
-Source: ./Calculus/Classes/Theorems.lean#L237
+Source: ./Calculus/Classes/Theorems.lean#L236
 
 
 
 Name: FiberClassOverValueIffKernelRelated
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (representative input : Domain),   Iff (function.FiberClass (function representative) input) (function.KernelRelation input representative)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (representative input : Domain),   Iff (function.FiberClass (function representative) input) (function.KernelRelation input representative)
+Predicate logic: ∀ (representative input : Domain), FiberClass function (function representative) input ↔ KernelRelation function input representative
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (representative input : Domain), function.FiberClass (function representative) input ↔ function.KernelRelation input representative
+Transliterated theorem: (∀ representative input ∈ Domain), FiberClass function (function representative) input ↔ KernelRelation function input representative
 Logical form (Lean): (representative input : Domain) : FiberClass function (function representative) input ↔ KernelRelation function input representative
-Source: ./Calculus/Classes/Theorems.lean#L252
+Source: ./Calculus/Classes/Theorems.lean#L251
 
 
 
@@ -415,19 +455,21 @@ Name: FiberClassSaturatedBy
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain),   LRA.Function.SaturatedBy (function.FiberClass output) function
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain),   LRA.Function.SaturatedBy (function.FiberClass output) function
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain), LRA.Function.SaturatedBy (function.FiberClass output) function
+Transliterated theorem: (∀ output ∈ Codomain), SaturatedBy (FiberClass function output) function
 Logical form (Lean): (output : Codomain) : SaturatedBy (FiberClass function output) function
-Source: ./Calculus/Classes/Theorems.lean#L259
+Source: ./Calculus/Classes/Theorems.lean#L258
 
 
 
 Name: FiberClassEqualsKernelEquivalenceClass
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (representative : Domain),   Eq (function.FiberClass (function representative)) fun input => function.KernelRelation input representative
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (representative : Domain),   Eq (function.FiberClass (function representative)) fun input => function.KernelRelation input representative
+Predicate logic: ∀ (representative : Domain), FiberClass function (function representative) = (fun input => KernelRelation function input representative)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (representative : Domain), function.FiberClass (function representative) = funinput => function.KernelRelation input representative
+Transliterated theorem: (∀ representative ∈ Domain), FiberClass function (function representative) = (fun input => KernelRelation function input representative)
 Logical form (Lean): (representative : Domain) : FiberClass function (function representative) = (fun input => KernelRelation function input representative)
-Source: ./Calculus/Classes/Theorems.lean#L269
+Source: ./Calculus/Classes/Theorems.lean#L267
 
 
 
@@ -435,39 +477,43 @@ Name: KernelClassMapsToRepresentativeValue
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (representative : Domain),   function.KernelClassMapsTo (function.FiberClass (function representative)) (function representative)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (representative : Domain),   function.KernelClassMapsTo (function.FiberClass (function representative)) (function representative)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (representative : Domain), function.KernelClassMapsTo (function.FiberClass (function representative)) (function representative)
+Transliterated theorem: (∀ representative ∈ Domain), KernelClassMapsTo function (FiberClass function (function representative)) (function representative)
 Logical form (Lean): (representative : Domain) : KernelClassMapsTo function (FiberClass function (function representative)) (function representative)
-Source: ./Calculus/Classes/Theorems.lean#L281
+Source: ./Calculus/Classes/Theorems.lean#L279
 
 
 
 Name: KernelClassMapsToOutputUnique
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (classOfInputs : LRA.Set.SetClass Domain) (firstOutput secondOutput : Codomain),   And (Exists fun input => classOfInputs input)       (And (function.KernelClassMapsTo classOfInputs firstOutput)         (function.KernelClassMapsTo classOfInputs secondOutput)) →     Eq firstOutput secondOutput
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (classOfInputs : LRA.Set.SetClass Domain) (firstOutput secondOutput : Codomain),   And (Exists fun input => classOfInputs input)       (And (function.KernelClassMapsTo classOfInputs firstOutput)         (function.KernelClassMapsTo classOfInputs secondOutput)) →     Eq firstOutput secondOutput
+Predicate logic: ∀ (classOfInputs : SetClass Domain) (firstOutput secondOutput : Codomain) (inhabited : ∃ input, classOfInputs input) (firstMapsTo : KernelClassMapsTo function classOfInputs firstOutput) (secondMapsTo : KernelClassMapsTo function classOfInputs secondOutput), firstOutput = secondOutput
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (classOfInputs : LRA.Set.SetClass Domain) (firstOutput secondOutput : Codomain), (Exists fun input => classOfInputs input ∧ (function.KernelClassMapsTo classOfInputs firstOutput ∧ function.KernelClassMapsTo classOfInputs secondOutput)) → firstOutput = secondOutput
+Transliterated theorem: (∀ firstOutput secondOutput ∈ Codomain), (∃ input, classOfInputs input) → firstOutput = secondOutput
 Logical form (Lean): (classOfInputs : SetClass Domain) (firstOutput secondOutput : Codomain) (inhabited : ∃ input, classOfInputs input) (firstMapsTo : KernelClassMapsTo function classOfInputs firstOutput) (secondMapsTo : KernelClassMapsTo function classOfInputs secondOutput) : firstOutput = secondOutput
-Source: ./Calculus/Classes/Theorems.lean#L288
+Source: ./Calculus/Classes/Theorems.lean#L286
 
 
 
 Name: KernelClassMapsToExistsOfRangeMember
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain),   function.RangeClass output →     Exists fun classOfInputs =>       And (Exists fun input => classOfInputs input) (function.KernelClassMapsTo classOfInputs output)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain),   function.RangeClass output →     Exists fun classOfInputs =>       And (Exists fun input => classOfInputs input) (function.KernelClassMapsTo classOfInputs output)
+Predicate logic: ∀ (output : Codomain) (inRange : RangeClass function output), ∃ classOfInputs : SetClass Domain, (∃ input, classOfInputs input) ∧ KernelClassMapsTo function classOfInputs output
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain), function.RangeClass output → Exists fun classOfInputs => (Exists fun input => classOfInputs input ∧ function.KernelClassMapsTo classOfInputs output)
+Transliterated theorem: (∀ output ∈ Codomain), ∃ classOfInputs ∈ SetClass Domain, (∃ input, classOfInputs input) ∧ KernelClassMapsTo function classOfInputs output
 Logical form (Lean): (output : Codomain) (inRange : RangeClass function output) : ∃ classOfInputs : SetClass Domain, (∃ input, classOfInputs input) ∧ KernelClassMapsTo function classOfInputs output
-Source: ./Calculus/Classes/Theorems.lean#L297
+Source: ./Calculus/Classes/Theorems.lean#L295
 
 
 
 Name: KernelQuotientProjectionWellDefined
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (leftInput rightInput : Domain),   function.KernelRelation leftInput rightInput → Eq (function leftInput) (function rightInput)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (leftInput rightInput : Domain),   function.KernelRelation leftInput rightInput → Eq (function leftInput) (function rightInput)
+Predicate logic: ∀ (leftInput rightInput : Domain) (kernelRelated : KernelRelation function leftInput rightInput), function leftInput = function rightInput
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (leftInput rightInput : Domain), function.KernelRelation leftInput rightInput → function leftInput = function rightInput
+Transliterated theorem: (∀ leftInput rightInput ∈ Domain), function leftInput = function rightInput
 Logical form (Lean): (leftInput rightInput : Domain) (kernelRelated : KernelRelation function leftInput rightInput) : function leftInput = function rightInput
-Source: ./Calculus/Classes/Theorems.lean#L305
+Source: ./Calculus/Classes/Theorems.lean#L303
 
 
 
@@ -475,7 +521,8 @@ Name: RestrictionRestrictsTo
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : LRA.Function Domain Codomain)   (inclusion : LRA.Function Subdomain Domain), (original.Restriction inclusion).RestrictsTo original inclusion
-Predicate logic (unfolded): ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : LRA.Function Domain Codomain)   (inclusion : LRA.Function Subdomain Domain), (original.Restriction inclusion).RestrictsTo original inclusion
+Predicate logic (unfolded): ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : LRA.Function Domain Codomain) (inclusion : LRA.Function Subdomain Domain), (original.Restriction inclusion).RestrictsTo original inclusion
+Transliterated theorem: RestrictsTo (Restriction original inclusion) original inclusion
 Logical form (Lean): : RestrictsTo (Restriction original inclusion) original inclusion
 Source: ./Calculus/Restriction/Theorems.lean#L14
 
@@ -484,8 +531,9 @@ Source: ./Calculus/Restriction/Theorems.lean#L14
 Name: RestrictionEqualsCompose
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : LRA.Function Domain Codomain)   (inclusion : LRA.Function Subdomain Domain), Eq (original.Restriction inclusion) (original.Compose inclusion)
-Predicate logic (unfolded): ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : LRA.Function Domain Codomain)   (inclusion : LRA.Function Subdomain Domain), Eq (original.Restriction inclusion) (original.Compose inclusion)
+Predicate logic: Restriction original inclusion = Compose original inclusion
+Predicate logic (unfolded): ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : LRA.Function Domain Codomain) (inclusion : LRA.Function Subdomain Domain), original.Restriction inclusion = original.Compose inclusion
+Transliterated theorem: Restriction original inclusion = Compose original inclusion
 Logical form (Lean): : Restriction original inclusion = Compose original inclusion
 Source: ./Calculus/Restriction/Theorems.lean#L19
 
@@ -494,8 +542,9 @@ Source: ./Calculus/Restriction/Theorems.lean#L19
 Name: RestrictionInjective
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : LRA.Function Domain Codomain)   (inclusion : LRA.Function Subdomain Domain),   And original.Injective inclusion.Injective → (original.Restriction inclusion).Injective
-Predicate logic (unfolded): ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : LRA.Function Domain Codomain)   (inclusion : LRA.Function Subdomain Domain),   And original.Injective inclusion.Injective → (original.Restriction inclusion).Injective
+Predicate logic: ∀ (originalInjective : Injective original) (inclusionInjective : Injective inclusion), Injective (Restriction original inclusion)
+Predicate logic (unfolded): ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : LRA.Function Domain Codomain) (inclusion : LRA.Function Subdomain Domain), (original.Injective ∧ inclusion.Injective) → (original.Restriction inclusion).Injective
+Transliterated theorem: Injective (Restriction original inclusion)
 Logical form (Lean): (originalInjective : Injective original) (inclusionInjective : Injective inclusion) : Injective (Restriction original inclusion)
 Source: ./Calculus/Restriction/Theorems.lean#L24
 
@@ -504,8 +553,9 @@ Source: ./Calculus/Restriction/Theorems.lean#L24
 Name: RestrictionSurjectiveOfSurjective
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : LRA.Function Domain Codomain)   (inclusion : LRA.Function Subdomain Domain),   And original.Surjective inclusion.Surjective → (original.Restriction inclusion).Surjective
-Predicate logic (unfolded): ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : LRA.Function Domain Codomain)   (inclusion : LRA.Function Subdomain Domain),   And original.Surjective inclusion.Surjective → (original.Restriction inclusion).Surjective
+Predicate logic: ∀ (originalSurjective : Surjective original) (inclusionSurjective : Surjective inclusion), Surjective (Restriction original inclusion)
+Predicate logic (unfolded): ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : LRA.Function Domain Codomain) (inclusion : LRA.Function Subdomain Domain), (original.Surjective ∧ inclusion.Surjective) → (original.Restriction inclusion).Surjective
+Transliterated theorem: Surjective (Restriction original inclusion)
 Logical form (Lean): (originalSurjective : Surjective original) (inclusionSurjective : Surjective inclusion) : Surjective (Restriction original inclusion)
 Source: ./Calculus/Restriction/Theorems.lean#L31
 
@@ -514,8 +564,9 @@ Source: ./Calculus/Restriction/Theorems.lean#L31
 Name: IdentityFunctionValue
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} (input : Carrier), Eq (LRA.Function.IdentityFunction Carrier input) input
-Predicate logic (unfolded): ∀ {Carrier : Type u} (input : Carrier), Eq (LRA.Function.IdentityFunction Carrier input) input
+Predicate logic: ∀ {Carrier : Type u} (input : Carrier), IdentityFunction Carrier input = input
+Predicate logic (unfolded): ∀ {Carrier : Type u} (input : Carrier), LRA.Function.IdentityFunction Carrier input = input
+Transliterated theorem: (∀ input ∈ Carrier), IdentityFunction Carrier input = input
 Logical form (Lean): {Carrier : Type u} (input : Carrier) : IdentityFunction Carrier input = input
 Source: ./Canonical/Identity/Theorems.lean#L10
 
@@ -526,6 +577,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u}, LRA.Function.Injective (LRA.Function.IdentityFunction Carrier)
 Predicate logic (unfolded): ∀ {Carrier : Type u}, LRA.Function.Injective (LRA.Function.IdentityFunction Carrier)
+Transliterated theorem: Injective (IdentityFunction Carrier)
 Logical form (Lean): {Carrier : Type u} : Injective (IdentityFunction Carrier)
 Source: ./Canonical/Identity/Theorems.lean#L16
 
@@ -536,6 +588,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u}, LRA.Function.Surjective (LRA.Function.IdentityFunction Carrier)
 Predicate logic (unfolded): ∀ {Carrier : Type u}, LRA.Function.Surjective (LRA.Function.IdentityFunction Carrier)
+Transliterated theorem: Surjective (IdentityFunction Carrier)
 Logical form (Lean): {Carrier : Type u} : Surjective (IdentityFunction Carrier)
 Source: ./Canonical/Identity/Theorems.lean#L21
 
@@ -546,6 +599,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u}, LRA.Function.Bijective (LRA.Function.IdentityFunction Carrier)
 Predicate logic (unfolded): ∀ {Carrier : Type u}, LRA.Function.Bijective (LRA.Function.IdentityFunction Carrier)
+Transliterated theorem: Bijective (IdentityFunction Carrier)
 Logical form (Lean): {Carrier : Type u} : Bijective (IdentityFunction Carrier)
 Source: ./Canonical/Identity/Theorems.lean#L26
 
@@ -555,7 +609,8 @@ Name: IdentityFunctionTwoSidedInverse
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (Carrier : Type u),   LRA.Function.TwoSidedInverse (LRA.Function.IdentityFunction Carrier) (LRA.Function.IdentityFunction Carrier)
-Predicate logic (unfolded): ∀ (Carrier : Type u),   LRA.Function.TwoSidedInverse (LRA.Function.IdentityFunction Carrier) (LRA.Function.IdentityFunction Carrier)
+Predicate logic (unfolded): ∀ (Carrier : Type u), LRA.Function.TwoSidedInverse (LRA.Function.IdentityFunction Carrier) (LRA.Function.IdentityFunction Carrier)
+Transliterated theorem: TwoSidedInverse (IdentityFunction Carrier) (IdentityFunction Carrier)
 Logical form (Lean): (Carrier : Type u) : TwoSidedInverse (IdentityFunction Carrier) (IdentityFunction Carrier)
 Source: ./Canonical/Identity/Theorems.lean#L31
 
@@ -564,8 +619,9 @@ Source: ./Canonical/Identity/Theorems.lean#L31
 Name: ComposeValue
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} (outer : LRA.Function Middle Codomain)   (inner : LRA.Function Domain Middle) (input : Domain), Eq (outer.Compose inner input) (outer (inner input))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} (outer : LRA.Function Middle Codomain)   (inner : LRA.Function Domain Middle) (input : Domain), Eq (outer.Compose inner input) (outer (inner input))
+Predicate logic: ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} (outer : LRA.Function Middle Codomain) (inner : LRA.Function Domain Middle) (input : Domain), Compose outer inner input = outer (inner input)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} (outer : LRA.Function Middle Codomain) (inner : LRA.Function Domain Middle) (input : Domain), outer.Compose inner input = outer (inner input)
+Transliterated theorem: (∀ input ∈ Domain), Compose outer inner input = outer (inner input)
 Logical form (Lean): {Domain : Type u} {Middle : Type v} {Codomain : Type w} (outer : LRA.Function Middle Codomain) (inner : LRA.Function Domain Middle) (input : Domain) : Compose outer inner input = outer (inner input)
 Source: ./Operations/Composition/Theorems.lean#L11
 
@@ -574,8 +630,9 @@ Source: ./Operations/Composition/Theorems.lean#L11
 Name: ComposeLeftIdentity
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Eq (LRA.Function.Compose (LRA.Function.IdentityFunction Codomain) function) function
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Eq (LRA.Function.Compose (LRA.Function.IdentityFunction Codomain) function) function
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), Compose (IdentityFunction Codomain) function = function
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), LRA.Function.Compose (LRA.Function.IdentityFunction Codomain) function = function
+Transliterated theorem: Compose (IdentityFunction Codomain) function = function
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : Compose (IdentityFunction Codomain) function = function
 Source: ./Operations/Composition/Theorems.lean#L20
 
@@ -584,8 +641,9 @@ Source: ./Operations/Composition/Theorems.lean#L20
 Name: ComposeRightIdentity
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Eq (function.Compose (LRA.Function.IdentityFunction Domain)) function
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Eq (function.Compose (LRA.Function.IdentityFunction Domain)) function
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), Compose function (IdentityFunction Domain) = function
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Compose (LRA.Function.IdentityFunction Domain) = function
+Transliterated theorem: Compose function (IdentityFunction Domain) = function
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : Compose function (IdentityFunction Domain) = function
 Source: ./Operations/Composition/Theorems.lean#L26
 
@@ -594,8 +652,9 @@ Source: ./Operations/Composition/Theorems.lean#L26
 Name: ComposeAssociative
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Middle : Type v} {Later : Type w} {Codomain : Type x} (outer : LRA.Function Later Codomain)   (middle : LRA.Function Middle Later) (inner : LRA.Function Domain Middle),   Eq (outer.Compose (middle.Compose inner)) ((outer.Compose middle).Compose inner)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Later : Type w} {Codomain : Type x} (outer : LRA.Function Later Codomain)   (middle : LRA.Function Middle Later) (inner : LRA.Function Domain Middle),   Eq (outer.Compose (middle.Compose inner)) ((outer.Compose middle).Compose inner)
+Predicate logic: ∀ {Domain : Type u} {Middle : Type v} {Later : Type w} {Codomain : Type x} (outer : LRA.Function Later Codomain) (middle : LRA.Function Middle Later) (inner : LRA.Function Domain Middle), Compose outer (Compose middle inner) = Compose (Compose outer middle) inner
+Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Later : Type w} {Codomain : Type x} (outer : LRA.Function Later Codomain) (middle : LRA.Function Middle Later) (inner : LRA.Function Domain Middle), outer.Compose (middle.Compose inner) = (outer.Compose middle).Compose inner
+Transliterated theorem: Compose outer (Compose middle inner) = Compose (Compose outer middle) inner
 Logical form (Lean): {Domain : Type u} {Middle : Type v} {Later : Type w} {Codomain : Type x} (outer : LRA.Function Later Codomain) (middle : LRA.Function Middle Later) (inner : LRA.Function Domain Middle) : Compose outer (Compose middle inner) = Compose (Compose outer middle) inner
 Source: ./Operations/Composition/Theorems.lean#L32
 
@@ -604,8 +663,9 @@ Source: ./Operations/Composition/Theorems.lean#L32
 Name: ComposeInjective
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain}   {inner : LRA.Function Domain Middle}, And outer.Injective inner.Injective → (outer.Compose inner).Injective
-Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain}   {inner : LRA.Function Domain Middle}, And outer.Injective inner.Injective → (outer.Compose inner).Injective
+Predicate logic: ∀ (outerInjective : Injective outer) (innerInjective : Injective inner), Injective (Compose outer inner)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain} {inner : LRA.Function Domain Middle}, (outer.Injective ∧ inner.Injective) → (outer.Compose inner).Injective
+Transliterated theorem: Injective (Compose outer inner)
 Logical form (Lean): (outerInjective : Injective outer) (innerInjective : Injective inner) : Injective (Compose outer inner)
 Source: ./Operations/Composition/Theorems.lean#L47
 
@@ -614,8 +674,9 @@ Source: ./Operations/Composition/Theorems.lean#L47
 Name: ComposeSurjective
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain}   {inner : LRA.Function Domain Middle}, And outer.Surjective inner.Surjective → (outer.Compose inner).Surjective
-Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain}   {inner : LRA.Function Domain Middle}, And outer.Surjective inner.Surjective → (outer.Compose inner).Surjective
+Predicate logic: ∀ (outerSurjective : Surjective outer) (innerSurjective : Surjective inner), Surjective (Compose outer inner)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain} {inner : LRA.Function Domain Middle}, (outer.Surjective ∧ inner.Surjective) → (outer.Compose inner).Surjective
+Transliterated theorem: Surjective (Compose outer inner)
 Logical form (Lean): (outerSurjective : Surjective outer) (innerSurjective : Surjective inner) : Surjective (Compose outer inner)
 Source: ./Operations/Composition/Theorems.lean#L53
 
@@ -624,8 +685,9 @@ Source: ./Operations/Composition/Theorems.lean#L53
 Name: ComposeBijective
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain}   {inner : LRA.Function Domain Middle}, And outer.Bijective inner.Bijective → (outer.Compose inner).Bijective
-Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain}   {inner : LRA.Function Domain Middle}, And outer.Bijective inner.Bijective → (outer.Compose inner).Bijective
+Predicate logic: ∀ (outerBijective : Bijective outer) (innerBijective : Bijective inner), Bijective (Compose outer inner)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain} {inner : LRA.Function Domain Middle}, (outer.Bijective ∧ inner.Bijective) → (outer.Compose inner).Bijective
+Transliterated theorem: Bijective (Compose outer inner)
 Logical form (Lean): (outerBijective : Bijective outer) (innerBijective : Bijective inner) : Bijective (Compose outer inner)
 Source: ./Operations/Composition/Theorems.lean#L59
 
@@ -635,7 +697,8 @@ Name: ComposeInjectiveGivesInnerInjective
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain}   {inner : LRA.Function Domain Middle}, (outer.Compose inner).Injective → inner.Injective
-Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain}   {inner : LRA.Function Domain Middle}, (outer.Compose inner).Injective → inner.Injective
+Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain} {inner : LRA.Function Domain Middle}, (outer.Compose inner).Injective → inner.Injective
+Transliterated theorem: Injective inner
 Logical form (Lean): (compositeInjective : Injective (Compose outer inner)) : Injective inner
 Source: ./Operations/Composition/Theorems.lean#L65
 
@@ -645,7 +708,8 @@ Name: ComposeSurjectiveGivesOuterSurjective
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain}   {inner : LRA.Function Domain Middle}, (outer.Compose inner).Surjective → outer.Surjective
-Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain}   {inner : LRA.Function Domain Middle}, (outer.Compose inner).Surjective → outer.Surjective
+Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain} {inner : LRA.Function Domain Middle}, (outer.Compose inner).Surjective → outer.Surjective
+Transliterated theorem: Surjective outer
 Logical form (Lean): (compositeSurjective : Surjective (Compose outer inner)) : Surjective outer
 Source: ./Operations/Composition/Theorems.lean#L71
 
@@ -654,8 +718,9 @@ Source: ./Operations/Composition/Theorems.lean#L71
 Name: ComposeLeftInverse
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain}   {inner : LRA.Function Domain Middle} {outerInverse : LRA.Function Codomain Middle}   {innerInverse : LRA.Function Middle Domain},   And (outer.LeftInverse outerInverse) (inner.LeftInverse innerInverse) →     (outer.Compose inner).LeftInverse (innerInverse.Compose outerInverse)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain}   {inner : LRA.Function Domain Middle} {outerInverse : LRA.Function Codomain Middle}   {innerInverse : LRA.Function Middle Domain},   And (outer.LeftInverse outerInverse) (inner.LeftInverse innerInverse) →     (outer.Compose inner).LeftInverse (innerInverse.Compose outerInverse)
+Predicate logic: ∀ (outerLeftInverse : LeftInverse outer outerInverse) (innerLeftInverse : LeftInverse inner innerInverse), LeftInverse (Compose outer inner) (Compose innerInverse outerInverse)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain} {inner : LRA.Function Domain Middle} {outerInverse : LRA.Function Codomain Middle} {innerInverse : LRA.Function Middle Domain}, (outer.LeftInverse outerInverse ∧ inner.LeftInverse innerInverse) → (outer.Compose inner).LeftInverse (innerInverse.Compose outerInverse)
+Transliterated theorem: LeftInverse (Compose outer inner) (Compose innerInverse outerInverse)
 Logical form (Lean): (outerLeftInverse : LeftInverse outer outerInverse) (innerLeftInverse : LeftInverse inner innerInverse) : LeftInverse (Compose outer inner) (Compose innerInverse outerInverse)
 Source: ./Operations/Composition/Theorems.lean#L87
 
@@ -664,8 +729,9 @@ Source: ./Operations/Composition/Theorems.lean#L87
 Name: ComposeRightInverse
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain}   {inner : LRA.Function Domain Middle} {outerInverse : LRA.Function Codomain Middle}   {innerInverse : LRA.Function Middle Domain},   And (outer.RightInverse outerInverse) (inner.RightInverse innerInverse) →     (outer.Compose inner).RightInverse (innerInverse.Compose outerInverse)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain}   {inner : LRA.Function Domain Middle} {outerInverse : LRA.Function Codomain Middle}   {innerInverse : LRA.Function Middle Domain},   And (outer.RightInverse outerInverse) (inner.RightInverse innerInverse) →     (outer.Compose inner).RightInverse (innerInverse.Compose outerInverse)
+Predicate logic: ∀ (outerRightInverse : RightInverse outer outerInverse) (innerRightInverse : RightInverse inner innerInverse), RightInverse (Compose outer inner) (Compose innerInverse outerInverse)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain} {inner : LRA.Function Domain Middle} {outerInverse : LRA.Function Codomain Middle} {innerInverse : LRA.Function Middle Domain}, (outer.RightInverse outerInverse ∧ inner.RightInverse innerInverse) → (outer.Compose inner).RightInverse (innerInverse.Compose outerInverse)
+Transliterated theorem: RightInverse (Compose outer inner) (Compose innerInverse outerInverse)
 Logical form (Lean): (outerRightInverse : RightInverse outer outerInverse) (innerRightInverse : RightInverse inner innerInverse) : RightInverse (Compose outer inner) (Compose innerInverse outerInverse)
 Source: ./Operations/Composition/Theorems.lean#L94
 
@@ -674,8 +740,9 @@ Source: ./Operations/Composition/Theorems.lean#L94
 Name: ComposeTwoSidedInverse
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain}   {inner : LRA.Function Domain Middle} {outerInverse : LRA.Function Codomain Middle}   {innerInverse : LRA.Function Middle Domain},   And (outer.TwoSidedInverse outerInverse) (inner.TwoSidedInverse innerInverse) →     (outer.Compose inner).TwoSidedInverse (innerInverse.Compose outerInverse)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain}   {inner : LRA.Function Domain Middle} {outerInverse : LRA.Function Codomain Middle}   {innerInverse : LRA.Function Middle Domain},   And (outer.TwoSidedInverse outerInverse) (inner.TwoSidedInverse innerInverse) →     (outer.Compose inner).TwoSidedInverse (innerInverse.Compose outerInverse)
+Predicate logic: ∀ (outerTwoSided : TwoSidedInverse outer outerInverse) (innerTwoSided : TwoSidedInverse inner innerInverse), TwoSidedInverse (Compose outer inner) (Compose innerInverse outerInverse)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain} {inner : LRA.Function Domain Middle} {outerInverse : LRA.Function Codomain Middle} {innerInverse : LRA.Function Middle Domain}, (outer.TwoSidedInverse outerInverse ∧ inner.TwoSidedInverse innerInverse) → (outer.Compose inner).TwoSidedInverse (innerInverse.Compose outerInverse)
+Transliterated theorem: TwoSidedInverse (Compose outer inner) (Compose innerInverse outerInverse)
 Logical form (Lean): (outerTwoSided : TwoSidedInverse outer outerInverse) (innerTwoSided : TwoSidedInverse inner innerInverse) : TwoSidedInverse (Compose outer inner) (Compose innerInverse outerInverse)
 Source: ./Operations/Composition/Theorems.lean#L101
 
@@ -685,7 +752,8 @@ Name: BijectiveHasTwoSidedInverse
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   function.Bijective → Exists fun inverse => function.TwoSidedInverse inverse
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   function.Bijective → Exists fun inverse => function.TwoSidedInverse inverse
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Bijective → Exists fun inverse => function.TwoSidedInverse inverse
+Transliterated theorem: ∃ inverse ∈ LRA.Function Codomain Domain, TwoSidedInverse function inverse
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (bijective : Bijective function) : ∃ inverse : LRA.Function Codomain Domain, TwoSidedInverse function inverse
 Source: ./Operations/Inverse/Theorems.lean#L13
 
@@ -695,7 +763,8 @@ Name: TwoSidedInverseGivesBijective
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (inverse : LRA.Function Codomain Domain), function.TwoSidedInverse inverse → function.Bijective
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (inverse : LRA.Function Codomain Domain), function.TwoSidedInverse inverse → function.Bijective
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (inverse : LRA.Function Codomain Domain), function.TwoSidedInverse inverse → function.Bijective
+Transliterated theorem: Bijective function
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (inverse : LRA.Function Codomain Domain) (twoSided : TwoSidedInverse function inverse) : Bijective function
 Source: ./Operations/Inverse/Theorems.lean#L22
 
@@ -704,8 +773,9 @@ Source: ./Operations/Inverse/Theorems.lean#L22
 Name: TwoSidedInverseUnique
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (first second : LRA.Function Codomain Domain),   And (function.TwoSidedInverse first) (function.TwoSidedInverse second) →     ∀ (output : Codomain), Eq (first output) (second output)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (first second : LRA.Function Codomain Domain),   And (function.TwoSidedInverse first) (function.TwoSidedInverse second) →     ∀ (output : Codomain), Eq (first output) (second output)
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (first second : LRA.Function Codomain Domain) (firstIsInverse : TwoSidedInverse function first) (secondIsInverse : TwoSidedInverse function second), ∀ output, first output = second output
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (first second : LRA.Function Codomain Domain), (function.TwoSidedInverse first ∧ function.TwoSidedInverse second) → ∀ (output : Codomain), first output = second output
+Transliterated theorem: ∀ output, first output = second output
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (first second : LRA.Function Codomain Domain) (firstIsInverse : TwoSidedInverse function first) (secondIsInverse : TwoSidedInverse function second) : ∀ output, first output = second output
 Source: ./Operations/Inverse/Theorems.lean#L31
 
@@ -715,7 +785,8 @@ Name: LeftInverseGivesLeftInverseOn
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (inverse : LRA.Function Codomain Domain),   function.LeftInverse inverse → ∀ (source : LRA.Set.SetClass Domain), function.LeftInverseOn inverse source
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (inverse : LRA.Function Codomain Domain),   function.LeftInverse inverse → ∀ (source : LRA.Set.SetClass Domain), function.LeftInverseOn inverse source
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (inverse : LRA.Function Codomain Domain), function.LeftInverse inverse → ∀ (source : LRA.Set.SetClass Domain), function.LeftInverseOn inverse source
+Transliterated theorem: LeftInverseOn function inverse source
 Logical form (Lean): (leftInverse : LeftInverse function inverse) (source : SetClass Domain) : LeftInverseOn function inverse source
 Source: ./Operations/Inverse/Theorems.lean#L48
 
@@ -725,7 +796,8 @@ Name: RightInverseGivesRightInverseOn
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (inverse : LRA.Function Codomain Domain),   function.RightInverse inverse → ∀ (target : LRA.Set.SetClass Codomain), function.RightInverseOn inverse target
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (inverse : LRA.Function Codomain Domain),   function.RightInverse inverse → ∀ (target : LRA.Set.SetClass Codomain), function.RightInverseOn inverse target
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (inverse : LRA.Function Codomain Domain), function.RightInverse inverse → ∀ (target : LRA.Set.SetClass Codomain), function.RightInverseOn inverse target
+Transliterated theorem: RightInverseOn function inverse target
 Logical form (Lean): (rightInverse : RightInverse function inverse) (target : SetClass Codomain) : RightInverseOn function inverse target
 Source: ./Operations/Inverse/Theorems.lean#L54
 
@@ -735,7 +807,8 @@ Name: TwoSidedInverseGivesTwoSidedInverseOn
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (inverse : LRA.Function Codomain Domain),   function.TwoSidedInverse inverse →     ∀ (source : LRA.Set.SetClass Domain) (target : LRA.Set.SetClass Codomain),       function.TwoSidedInverseOn inverse source target
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (inverse : LRA.Function Codomain Domain),   function.TwoSidedInverse inverse →     ∀ (source : LRA.Set.SetClass Domain) (target : LRA.Set.SetClass Codomain),       function.TwoSidedInverseOn inverse source target
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (inverse : LRA.Function Codomain Domain), function.TwoSidedInverse inverse → ∀ (source : LRA.Set.SetClass Domain) (target : LRA.Set.SetClass Codomain), function.TwoSidedInverseOn inverse source target
+Transliterated theorem: TwoSidedInverseOn function inverse source target
 Logical form (Lean): (twoSided : TwoSidedInverse function inverse) (source : SetClass Domain) (target : SetClass Codomain) : TwoSidedInverseOn function inverse source target
 Source: ./Operations/Inverse/Theorems.lean#L60
 
@@ -745,7 +818,8 @@ Name: RightInverseOnImageOfLeftInverseOn
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (inverse : LRA.Function Codomain Domain) (source : LRA.Set.SetClass Domain),   function.LeftInverseOn inverse source → function.RightInverseOn inverse (function.ImageClass source)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (inverse : LRA.Function Codomain Domain) (source : LRA.Set.SetClass Domain),   function.LeftInverseOn inverse source → function.RightInverseOn inverse (function.ImageClass source)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (inverse : LRA.Function Codomain Domain) (source : LRA.Set.SetClass Domain), function.LeftInverseOn inverse source → function.RightInverseOn inverse (function.ImageClass source)
+Transliterated theorem: RightInverseOn function inverse (ImageClass function source)
 Logical form (Lean): (source : SetClass Domain) (leftInverse : LeftInverseOn function inverse source) : RightInverseOn function inverse (ImageClass function source)
 Source: ./Operations/Inverse/Theorems.lean#L67
 
@@ -755,7 +829,8 @@ Name: TwoSidedInverseOnImageOfLeftInverseOn
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (inverse : LRA.Function Codomain Domain) (source : LRA.Set.SetClass Domain),   function.LeftInverseOn inverse source → function.TwoSidedInverseOn inverse source (function.ImageClass source)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (inverse : LRA.Function Codomain Domain) (source : LRA.Set.SetClass Domain),   function.LeftInverseOn inverse source → function.TwoSidedInverseOn inverse source (function.ImageClass source)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (inverse : LRA.Function Codomain Domain) (source : LRA.Set.SetClass Domain), function.LeftInverseOn inverse source → function.TwoSidedInverseOn inverse source (function.ImageClass source)
+Transliterated theorem: TwoSidedInverseOn function inverse source (ImageClass function source)
 Logical form (Lean): (source : SetClass Domain) (leftInverse : LeftInverseOn function inverse source) : TwoSidedInverseOn function inverse source (ImageClass function source)
 Source: ./Operations/Inverse/Theorems.lean#L75
 
@@ -764,8 +839,9 @@ Source: ./Operations/Inverse/Theorems.lean#L75
 Name: PreimageClassEqualsImageClassOfInverse
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (inverse : LRA.Function Codomain Domain),   function.TwoSidedInverse inverse →     ∀ (target : LRA.Set.SetClass Codomain), Eq (function.PreimageClass target) (inverse.ImageClass target)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain)   (inverse : LRA.Function Codomain Domain),   function.TwoSidedInverse inverse →     ∀ (target : LRA.Set.SetClass Codomain), Eq (function.PreimageClass target) (inverse.ImageClass target)
+Predicate logic: ∀ (twoSided : TwoSidedInverse function inverse) (target : SetClass Codomain), PreimageClass function target = ImageClass inverse target
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (inverse : LRA.Function Codomain Domain), function.TwoSidedInverse inverse → ∀ (target : LRA.Set.SetClass Codomain), function.PreimageClass target = inverse.ImageClass target
+Transliterated theorem: PreimageClass function target = ImageClass inverse target
 Logical form (Lean): (twoSided : TwoSidedInverse function inverse) (target : SetClass Codomain) : PreimageClass function target = ImageClass inverse target
 Source: ./Operations/Inverse/Theorems.lean#L82
 
@@ -775,7 +851,8 @@ Name: InjectiveOfLeftInverse
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} {function : LRA.Function Domain Codomain}   {inverse : LRA.Function Codomain Domain}, function.LeftInverse inverse → function.Injective
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} {function : LRA.Function Domain Codomain}   {inverse : LRA.Function Codomain Domain}, function.LeftInverse inverse → function.Injective
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} {function : LRA.Function Domain Codomain} {inverse : LRA.Function Codomain Domain}, function.LeftInverse inverse → function.Injective
+Transliterated theorem: Injective function
 Logical form (Lean): (leftInverse : LeftInverse function inverse) : Injective function
 Source: ./Operations/Inverse/Theorems.lean#L96
 
@@ -785,7 +862,8 @@ Name: SurjectiveOfRightInverse
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} {function : LRA.Function Domain Codomain}   {inverse : LRA.Function Codomain Domain}, function.RightInverse inverse → function.Surjective
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} {function : LRA.Function Domain Codomain}   {inverse : LRA.Function Codomain Domain}, function.RightInverse inverse → function.Surjective
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} {function : LRA.Function Domain Codomain} {inverse : LRA.Function Codomain Domain}, function.RightInverse inverse → function.Surjective
+Transliterated theorem: Surjective function
 Logical form (Lean): (rightInverse : RightInverse function inverse) : Surjective function
 Source: ./Operations/Inverse/Theorems.lean#L101
 
@@ -795,17 +873,85 @@ Name: TwoSidedInverseIsBijective
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} {function : LRA.Function Domain Codomain}   {inverse : LRA.Function Codomain Domain}, function.TwoSidedInverse inverse → inverse.Bijective
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} {function : LRA.Function Domain Codomain}   {inverse : LRA.Function Codomain Domain}, function.TwoSidedInverse inverse → inverse.Bijective
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} {function : LRA.Function Domain Codomain} {inverse : LRA.Function Codomain Domain}, function.TwoSidedInverse inverse → inverse.Bijective
+Transliterated theorem: Bijective inverse
 Logical form (Lean): (twoSided : TwoSidedInverse function inverse) : Bijective inverse
 Source: ./Operations/Inverse/Theorems.lean#L106
+
+
+
+Name: HasCollisionIffNotInjective
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), HasCollision function ↔ ¬ Injective function
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.HasCollision ↔ ¬ function.Injective
+Transliterated theorem: HasCollision function ↔ ¬ Injective function
+Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : HasCollision function ↔ ¬ Injective function
+Source: ./Properties/FailureModes.lean#L27
+
+
+
+Name: MissesValueIffNotSurjective
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), MissesValue function ↔ ¬ Surjective function
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.MissesValue ↔ ¬ function.Surjective
+Transliterated theorem: MissesValue function ↔ ¬ Surjective function
+Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : MissesValue function ↔ ¬ Surjective function
+Source: ./Properties/FailureModes.lean#L33
+
+
+
+Name: CollapseHasCollision
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Function.Examples.collapse.HasCollision
+Predicate logic (unfolded): LRA.Function.Examples.collapse.HasCollision
+Transliterated theorem: HasCollision collapse
+Logical form (Lean): : HasCollision collapse
+Source: ./Examples/FailureModes.lean#L15
+
+
+
+Name: CollapseNotInjective
+Kind: Theorem
+State: Sorry
+Predicate logic: ¬ Injective collapse
+Predicate logic (unfolded): ¬ LRA.Function.Examples.collapse.Injective
+Transliterated theorem: ¬ Injective collapse
+Logical form (Lean): : ¬ Injective collapse
+Source: ./Examples/FailureModes.lean#L19
+
+
+
+Name: ShiftMissesZero
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Function.MissesValue LRA.Function.Examples.shift
+Predicate logic (unfolded): LRA.Function.MissesValue LRA.Function.Examples.shift
+Transliterated theorem: MissesValue shift
+Logical form (Lean): : MissesValue shift
+Source: ./Examples/FailureModes.lean#L23
+
+
+
+Name: ShiftNotSurjective
+Kind: Theorem
+State: Sorry
+Predicate logic: ¬ Surjective shift
+Predicate logic (unfolded): ¬ LRA.Function.Surjective LRA.Function.Examples.shift
+Transliterated theorem: ¬ Surjective shift
+Logical form (Lean): : ¬ Surjective shift
+Source: ./Examples/FailureModes.lean#L27
 
 
 
 Name: InjectiveIffFibersSubsingleton
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.Injective     (∀ (output : Codomain) (left right : Domain),       function.FiberClass output left → function.FiberClass output right → Eq left right)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.Injective     (∀ (output : Codomain) (left right : Domain),       function.FiberClass output left → function.FiberClass output right → Eq left right)
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), Injective function ↔ ∀ output left right, FiberClass function output left → FiberClass function output right → left = right
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective ↔ ∀ (output : Codomain) (left right : Domain), function.FiberClass output left → function.FiberClass output right → left = right
+Transliterated theorem: Injective function ↔ ∀ output left right, FiberClass function output left → FiberClass function output right → left = right
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : Injective function ↔ ∀ output left right, FiberClass function output left → FiberClass function output right → left = right
 Source: ./Properties/Theorems.lean#L10
 
@@ -814,8 +960,9 @@ Source: ./Properties/Theorems.lean#L10
 Name: SurjectiveIffFibersNonempty
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.Surjective (∀ (output : Codomain), Exists fun input => function.FiberClass output input)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.Surjective (∀ (output : Codomain), Exists fun input => function.FiberClass output input)
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), Surjective function ↔ ∀ output, ∃ input, FiberClass function output input
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Surjective ↔ ∀ (output : Codomain), Exists fun input => function.FiberClass output input
+Transliterated theorem: Surjective function ↔ ∀ output, ∃ input, FiberClass function output input
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : Surjective function ↔ ∀ output, ∃ input, FiberClass function output input
 Source: ./Properties/Theorems.lean#L21
 
@@ -824,8 +971,9 @@ Source: ./Properties/Theorems.lean#L21
 Name: InjectiveIffConverseSingleValued
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.Injective (LRA.Function.SingleValued (LRA.Relation.Converse function.Graph))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.Injective (LRA.Function.SingleValued (LRA.Relation.Converse function.Graph))
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), Injective function ↔ SingleValued (LRA.Relation.Converse (Graph function))
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective ↔ LRA.Function.SingleValued (LRA.Relation.Converse function.Graph)
+Transliterated theorem: Injective function ↔ SingleValued (LRA.Relation.Converse (Graph function))
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : Injective function ↔ SingleValued (LRA.Relation.Converse (Graph function))
 Source: ./Properties/Theorems.lean#L29
 
@@ -834,8 +982,9 @@ Source: ./Properties/Theorems.lean#L29
 Name: SurjectiveIffConverseTotal
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.Surjective (LRA.Function.Total (LRA.Relation.Converse function.Graph))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.Surjective (LRA.Function.Total (LRA.Relation.Converse function.Graph))
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), Surjective function ↔ Total (LRA.Relation.Converse (Graph function))
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Surjective ↔ LRA.Function.Total (LRA.Relation.Converse function.Graph)
+Transliterated theorem: Surjective function ↔ Total (LRA.Relation.Converse (Graph function))
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : Surjective function ↔ Total (LRA.Relation.Converse (Graph function))
 Source: ./Properties/Theorems.lean#L37
 
@@ -844,8 +993,9 @@ Source: ./Properties/Theorems.lean#L37
 Name: BijectiveIffConverseIsFunctionRelation
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.Bijective (LRA.Function.IsFunctionRelation (LRA.Relation.Converse function.Graph))
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.Bijective (LRA.Function.IsFunctionRelation (LRA.Relation.Converse function.Graph))
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), Bijective function ↔ IsFunctionRelation (LRA.Relation.Converse (Graph function))
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Bijective ↔ LRA.Function.IsFunctionRelation (LRA.Relation.Converse function.Graph)
+Transliterated theorem: Bijective function ↔ IsFunctionRelation (LRA.Relation.Converse (Graph function))
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : Bijective function ↔ IsFunctionRelation (LRA.Relation.Converse (Graph function))
 Source: ./Properties/Theorems.lean#L45
 
@@ -855,7 +1005,8 @@ Name: GraphIsFunctionRelation
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   LRA.Function.IsFunctionRelation function.Graph
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   LRA.Function.IsFunctionRelation function.Graph
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), LRA.Function.IsFunctionRelation function.Graph
+Transliterated theorem: IsFunctionRelation (Graph function)
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : IsFunctionRelation (Graph function)
 Source: ./Properties/Theorems.lean#L57
 
@@ -864,8 +1015,9 @@ Source: ./Properties/Theorems.lean#L57
 Name: InjectiveIffStandard
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.Injective (∀ (left right : Domain), Eq (function left) (function right) → Eq left right)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.Injective (∀ (left right : Domain), Eq (function left) (function right) → Eq left right)
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), Injective function ↔ ∀ left right, function left = function right → left = right
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective ↔ ∀ (left right : Domain), function left = function right → left = right
+Transliterated theorem: Injective function ↔ ∀ left right, function left = function right → left = right
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : Injective function ↔ ∀ left right, function left = function right → left = right
 Source: ./Properties/Theorems.lean#L64
 
@@ -874,8 +1026,9 @@ Source: ./Properties/Theorems.lean#L64
 Name: SurjectiveIffStandard
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.Surjective (∀ (output : Codomain), Exists fun input => Eq (function input) output)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.Surjective (∀ (output : Codomain), Exists fun input => Eq (function input) output)
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), Surjective function ↔ ∀ output, ∃ input, function input = output
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Surjective ↔ ∀ (output : Codomain), Exists fun input => function input = output
+Transliterated theorem: Surjective function ↔ ∀ output, ∃ input, function input = output
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : Surjective function ↔ ∀ output, ∃ input, function input = output
 Source: ./Properties/Theorems.lean#L70
 
@@ -884,8 +1037,9 @@ Source: ./Properties/Theorems.lean#L70
 Name: SurjectiveIffRangeCoversCodomain
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.Surjective (∀ (output : Codomain), function.RangeClass output)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain),   Iff function.Surjective (∀ (output : Codomain), function.RangeClass output)
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), Surjective function ↔ ∀ output : Codomain, RangeClass function output
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Surjective ↔ ∀ (output : Codomain), function.RangeClass output
+Transliterated theorem: Surjective function ↔ ∀ output : Codomain, RangeClass function output
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : Surjective function ↔ ∀ output : Codomain, RangeClass function output
 Source: ./Properties/Theorems.lean#L76
 
@@ -894,8 +1048,9 @@ Source: ./Properties/Theorems.lean#L76
 Name: RelationGraphMemberCoordinates
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {LeftElement RightElement Pair : Type u} {LeftDomainObject : Type v} {RightDomainObject : Type w}   {GraphObject : Type x} [inst : LRA.Set.HasPairing LeftElement RightElement Pair]   [inst_1 : Membership LeftElement LeftDomainObject] [inst_2 : Membership RightElement RightDomainObject]   [inst_3 : Membership Pair GraphObject]   (relation :     LRA.Function.SetTheoretic.SetTheoreticRelation LeftElement RightElement Pair LeftDomainObject RightDomainObject       GraphObject)   (member : Pair),   inst_3.mem relation.triple.graph member →     Exists fun left =>       Exists fun right =>         And (Eq member (LRA.Set.OrderedPair left right))           (And (inst_1.mem relation.triple.leftDomain left) (inst_2.mem relation.triple.rightDomain right))
-Predicate logic (unfolded): ∀ {LeftElement RightElement Pair : Type u} {LeftDomainObject : Type v} {RightDomainObject : Type w}   {GraphObject : Type x} [inst : LRA.Set.HasPairing LeftElement RightElement Pair]   [inst_1 : Membership LeftElement LeftDomainObject] [inst_2 : Membership RightElement RightDomainObject]   [inst_3 : Membership Pair GraphObject]   (relation :     LRA.Function.SetTheoretic.SetTheoreticRelation LeftElement RightElement Pair LeftDomainObject RightDomainObject       GraphObject)   (member : Pair),   inst_3.mem relation.triple.graph member →     Exists fun left =>       Exists fun right =>         And (Eq member (LRA.Set.OrderedPair left right))           (And (inst_1.mem relation.triple.leftDomain left) (inst_2.mem relation.triple.rightDomain right))
+Predicate logic: ∀ {LeftElement RightElement Pair : Type u} {LeftDomainObject : Type v} {RightDomainObject : Type w} {GraphObject : Type x} [HasPairing LeftElement RightElement Pair] [Membership LeftElement LeftDomainObject] [Membership RightElement RightDomainObject] [Membership Pair GraphObject] (relation : SetTheoreticRelation LeftElement RightElement Pair LeftDomainObject RightDomainObject GraphObject) (member : Pair) (memberInGraph : member ∈ relation.triple.graph), ∃ (left : LeftElement) (right : RightElement), member = OrderedPair left right ∧ left ∈ relation.triple.leftDomain ∧ right ∈ relation.triple.rightDomain
+Predicate logic (unfolded): ∀ {LeftElement RightElement Pair : Type u} {LeftDomainObject : Type v} {RightDomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing LeftElement RightElement Pair] [inst_1 : Membership LeftElement LeftDomainObject] [inst_2 : Membership RightElement RightDomainObject] [inst_3 : Membership Pair GraphObject] (relation : LRA.Function.SetTheoretic.SetTheoreticRelation LeftElement RightElement Pair LeftDomainObject RightDomainObject GraphObject) (member : Pair), member ∈ relation.triple.graph → Exists fun left => Exists fun right => (member = LRA.Set.OrderedPair left right ∧ (left ∈ relation.triple.leftDomain ∧ right ∈ relation.triple.rightDomain))
+Transliterated theorem: (∀ member ∈ Pair), (member ∈ relation.triple.graph) → ∃ left ∈ LeftElement right ∈ RightElement, member = OrderedPair left right ∧ left ∈ relation.triple.leftDomain ∧ right ∈ relation.triple.rightDomain
 Logical form (Lean): {LeftElement RightElement Pair : Type u} {LeftDomainObject : Type v} {RightDomainObject : Type w} {GraphObject : Type x} [HasPairing LeftElement RightElement Pair] [Membership LeftElement LeftDomainObject] [Membership RightElement RightDomainObject] [Membership Pair GraphObject] (relation : SetTheoreticRelation LeftElement RightElement Pair LeftDomainObject RightDomainObject GraphObject) (member : Pair) (memberInGraph : member ∈ relation.triple.graph) : ∃ (left : LeftElement) (right : RightElement), member = OrderedPair left right ∧ left ∈ relation.triple.leftDomain ∧ right ∈ relation.triple.rightDomain
 Source: ./SetTheoretic/Theorems.lean#L11
 
@@ -903,9 +1058,10 @@ Source: ./SetTheoretic/Theorems.lean#L11
 
 Name: EvaluationExists
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x}   [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject]   [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject]   (setFunction :     LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject       GraphObject)   (input : DomainElement),   inst_1.mem setFunction.triple.domain input →     Exists fun output =>       And (inst_2.mem setFunction.triple.codomain output) (LRA.Set.Relates setFunction.triple.graph input output)
-Predicate logic (unfolded): ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x}   [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject]   [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject]   (setFunction :     LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject       GraphObject)   (input : DomainElement),   inst_1.mem setFunction.triple.domain input →     Exists fun output =>       And (inst_2.mem setFunction.triple.codomain output) (LRA.Set.Relates setFunction.triple.graph input output)
+State: Sorry
+Predicate logic: ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [HasPairing DomainElement CodomainElement Pair] [Membership DomainElement DomainObject] [Membership CodomainElement CodomainObject] [Membership Pair GraphObject] (setFunction : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject) (input : DomainElement) (inputInDomain : input ∈ setFunction.triple.domain), ∃ output : CodomainElement, output ∈ setFunction.triple.codomain ∧ Relates setFunction.triple.graph input output
+Predicate logic (unfolded): ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject] [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject] (setFunction : LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject) (input : DomainElement), input ∈ setFunction.triple.domain → Exists fun output => (output ∈ setFunction.triple.codomain ∧ LRA.Set.Relates setFunction.triple.graph input output)
+Transliterated theorem: (∀ input ∈ DomainElement), (input ∈ setFunction.triple.domain) → ∃ output ∈ CodomainElement, output ∈ setFunction.triple.codomain ∧ Relates setFunction.triple.graph input output
 Logical form (Lean): {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [HasPairing DomainElement CodomainElement Pair] [Membership DomainElement DomainObject] [Membership CodomainElement CodomainObject] [Membership Pair GraphObject] (setFunction : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject) (input : DomainElement) (inputInDomain : input ∈ setFunction.triple.domain) : ∃ output : CodomainElement, output ∈ setFunction.triple.codomain ∧ Relates setFunction.triple.graph input output
 Source: ./SetTheoretic/Theorems.lean#L31
 
@@ -913,9 +1069,10 @@ Source: ./SetTheoretic/Theorems.lean#L31
 
 Name: EvaluationUnique
 Kind: Theorem
-State: Completed
-Predicate logic: ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x}   [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject]   [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject]   (setFunction :     LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject       GraphObject)   (input : DomainElement) (firstOutput secondOutput : CodomainElement),   And (LRA.Set.Relates setFunction.triple.graph input firstOutput)       (LRA.Set.Relates setFunction.triple.graph input secondOutput) →     Eq firstOutput secondOutput
-Predicate logic (unfolded): ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x}   [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject]   [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject]   (setFunction :     LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject       GraphObject)   (input : DomainElement) (firstOutput secondOutput : CodomainElement),   And (LRA.Set.Relates setFunction.triple.graph input firstOutput)       (LRA.Set.Relates setFunction.triple.graph input secondOutput) →     Eq firstOutput secondOutput
+State: Sorry
+Predicate logic: ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [HasPairing DomainElement CodomainElement Pair] [Membership DomainElement DomainObject] [Membership CodomainElement CodomainObject] [Membership Pair GraphObject] (setFunction : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject) (input : DomainElement) (firstOutput secondOutput : CodomainElement) (firstEvaluation : Relates setFunction.triple.graph input firstOutput) (secondEvaluation : Relates setFunction.triple.graph input secondOutput), firstOutput = secondOutput
+Predicate logic (unfolded): ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject] [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject] (setFunction : LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject) (input : DomainElement) (firstOutput secondOutput : CodomainElement), (LRA.Set.Relates setFunction.triple.graph input firstOutput ∧ LRA.Set.Relates setFunction.triple.graph input secondOutput) → firstOutput = secondOutput
+Transliterated theorem: (∀ input ∈ DomainElement ∀ firstOutput secondOutput ∈ CodomainElement), firstOutput = secondOutput
 Logical form (Lean): {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [HasPairing DomainElement CodomainElement Pair] [Membership DomainElement DomainObject] [Membership CodomainElement CodomainObject] [Membership Pair GraphObject] (setFunction : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject) (input : DomainElement) (firstOutput secondOutput : CodomainElement) (firstEvaluation : Relates setFunction.triple.graph input firstOutput) (secondEvaluation : Relates setFunction.triple.graph input secondOutput) : firstOutput = secondOutput
 Source: ./SetTheoretic/Theorems.lean#L49
 
@@ -924,10 +1081,11 @@ Source: ./SetTheoretic/Theorems.lean#L49
 Name: SetTheoreticFunctionExt
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x}   [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject]   [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject]   {left right :     LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject       GraphObject},   And (Eq left.triple.domain right.triple.domain)       (And (Eq left.triple.codomain right.triple.codomain) (Eq left.triple.graph right.triple.graph)) →     Eq left right
-Predicate logic (unfolded): ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x}   [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject]   [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject]   {left right :     LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject       GraphObject},   And (Eq left.triple.domain right.triple.domain)       (And (Eq left.triple.codomain right.triple.codomain) (Eq left.triple.graph right.triple.graph)) →     Eq left right
+Predicate logic: ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [HasPairing DomainElement CodomainElement Pair] [Membership DomainElement DomainObject] [Membership CodomainElement CodomainObject] [Membership Pair GraphObject] {left right : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject} (sameDomain : left.triple.domain = right.triple.domain) (sameCodomain : left.triple.codomain = right.triple.codomain) (sameGraph : left.triple.graph = right.triple.graph), left = right
+Predicate logic (unfolded): ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject] [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject] {left right : LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject}, (left.triple.domain = right.triple.domain ∧ (left.triple.codomain = right.triple.codomain ∧ left.triple.graph = right.triple.graph)) → left = right
+Transliterated theorem: (left.triple.domain = right.triple.domain ∧ left.triple.codomain = right.triple.codomain ∧ left.triple.graph = right.triple.graph) → left = right
 Logical form (Lean): {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [HasPairing DomainElement CodomainElement Pair] [Membership DomainElement DomainObject] [Membership CodomainElement CodomainObject] [Membership Pair GraphObject] {left right : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject} (sameDomain : left.triple.domain = right.triple.domain) (sameCodomain : left.triple.codomain = right.triple.codomain) (sameGraph : left.triple.graph = right.triple.graph) : left = right
-Source: ./SetTheoretic/Theorems.lean#L69
+Source: ./SetTheoretic/Theorems.lean#L68
 
 
 
@@ -935,7 +1093,8 @@ Name: SetTheoreticFunctionExt_iff
 Kind: Theorem
 State: Completed
 Predicate logic: ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x}   [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject]   [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject]   {left right :     LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject       GraphObject},   Iff (Eq left right)     (And (Eq left.triple.domain right.triple.domain)       (And (Eq left.triple.codomain right.triple.codomain) (Eq left.triple.graph right.triple.graph)))
-Predicate logic (unfolded): ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x}   [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject]   [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject]   {left right :     LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject       GraphObject},   Iff (Eq left right)     (And (Eq left.triple.domain right.triple.domain)       (And (Eq left.triple.codomain right.triple.codomain) (Eq left.triple.graph right.triple.graph)))
+Predicate logic (unfolded): ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject] [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject] {left right : LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject}, left = right ↔ (left.triple.domain = right.triple.domain ∧ (left.triple.codomain = right.triple.codomain ∧ left.triple.graph = right.triple.graph))
+Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./SetTheoretic/Theorems.lean
 
@@ -945,7 +1104,8 @@ Name: SingleValuedOfIsSetTheoreticFunction
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x}   [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject]   [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject]   {triple : LRA.Function.SetTheoretic.SetTheoreticFunctionTriple DomainObject CodomainObject GraphObject},   LRA.Function.SetTheoretic.IsSetTheoreticFunction triple →     LRA.Set.IsSingleValued DomainElement CodomainElement triple.graph
-Predicate logic (unfolded): ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x}   [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject]   [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject]   {triple : LRA.Function.SetTheoretic.SetTheoreticFunctionTriple DomainObject CodomainObject GraphObject},   LRA.Function.SetTheoretic.IsSetTheoreticFunction triple →     LRA.Set.IsSingleValued DomainElement CodomainElement triple.graph
+Predicate logic (unfolded): ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject] [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject] {triple : LRA.Function.SetTheoretic.SetTheoreticFunctionTriple DomainObject CodomainObject GraphObject}, LRA.Function.SetTheoretic.IsSetTheoreticFunction triple → LRA.Set.IsSingleValued DomainElement CodomainElement triple.graph
+Transliterated theorem: IsSingleValued DomainElement CodomainElement triple.graph
 Logical form (Lean): {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [HasPairing DomainElement CodomainElement Pair] [Membership DomainElement DomainObject] [Membership CodomainElement CodomainObject] [Membership Pair GraphObject] {triple : SetTheoreticFunctionTriple DomainObject CodomainObject GraphObject} (isFunction : IsSetTheoreticFunction (DomainElement := DomainElement) (CodomainElement := CodomainElement) (Pair := Pair) triple) : IsSingleValued DomainElement CodomainElement triple.graph
 Source: ./SetTheoretic/Relationships.lean#L12
 
@@ -955,7 +1115,8 @@ Name: BundledSingleValued
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x}   [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject]   [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject]   (function :     LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject       GraphObject),   LRA.Set.IsSingleValued DomainElement CodomainElement function.triple.graph
-Predicate logic (unfolded): ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x}   [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject]   [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject]   (function :     LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject       GraphObject),   LRA.Set.IsSingleValued DomainElement CodomainElement function.triple.graph
+Predicate logic (unfolded): ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject] [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject] (function : LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject), LRA.Set.IsSingleValued DomainElement CodomainElement function.triple.graph
+Transliterated theorem: IsSingleValued DomainElement CodomainElement function.triple.graph
 Logical form (Lean): {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [HasPairing DomainElement CodomainElement Pair] [Membership DomainElement DomainObject] [Membership CodomainElement CodomainObject] [Membership Pair GraphObject] (function : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject) : IsSingleValued DomainElement CodomainElement function.triple.graph
 Source: ./SetTheoretic/Relationships.lean#L31
 
@@ -964,7 +1125,8 @@ Source: ./SetTheoretic/Relationships.lean#L31
 Name: TypedFunctionGraphRepresentation
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Domain : Type y} {Codomain : Type z} {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v}   {CodomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair],   LRA.Set.PairingLaws DomainElement CodomainElement Pair →     ∀ [inst_1 : Membership DomainElement DomainObject] [inst_2 : Membership CodomainElement CodomainObject]       [inst_3 : Membership Pair GraphObject] [inst_4 : LRA.Set.HasSeparation Pair GraphObject],       LRA.Set.SeparationLaws Pair GraphObject →         ∀ (function : LRA.Function Domain Codomain) (encodeDomain : Domain → DomainElement)           (encodeCodomain : Codomain → CodomainElement) (domainEncoding : DomainObject)           (codomainEncoding : CodomainObject) (ambientPairs : GraphObject),           And (Function.Injective encodeDomain)               (And                 (∀ (encoded : DomainElement),                   Iff (inst_1.mem domainEncoding encoded) (Exists fun input => Eq (encodeDomain input) encoded))                 (And (∀ (output : Codomain), inst_2.mem codomainEncoding (encodeCodomain output))                   (∀ (input : Domain),                     inst_3.mem ambientPairs                       (LRA.Set.OrderedPair (encodeDomain input) (encodeCodomain (function input)))))) →             Exists fun represented =>               And (Eq represented.triple.domain domainEncoding)                 (And (Eq represented.triple.codomain codomainEncoding)                   (And                     (Eq represented.triple.graph                       (inst_4.separation ambientPairs fun member =>                         Exists fun input =>                           Eq member (LRA.Set.OrderedPair (encodeDomain input) (encodeCodomain (function input)))))                     (∀ (input : Domain),                       LRA.Set.Relates represented.triple.graph (encodeDomain input) (encodeCodomain (function input)))))
-Predicate logic (unfolded): ∀ {Domain : Type y} {Codomain : Type z} {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v}   {CodomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair],   LRA.Set.PairingLaws DomainElement CodomainElement Pair →     ∀ [inst_1 : Membership DomainElement DomainObject] [inst_2 : Membership CodomainElement CodomainObject]       [inst_3 : Membership Pair GraphObject] [inst_4 : LRA.Set.HasSeparation Pair GraphObject],       LRA.Set.SeparationLaws Pair GraphObject →         ∀ (function : LRA.Function Domain Codomain) (encodeDomain : Domain → DomainElement)           (encodeCodomain : Codomain → CodomainElement) (domainEncoding : DomainObject)           (codomainEncoding : CodomainObject) (ambientPairs : GraphObject),           And (Function.Injective encodeDomain)               (And                 (∀ (encoded : DomainElement),                   Iff (inst_1.mem domainEncoding encoded) (Exists fun input => Eq (encodeDomain input) encoded))                 (And (∀ (output : Codomain), inst_2.mem codomainEncoding (encodeCodomain output))                   (∀ (input : Domain),                     inst_3.mem ambientPairs                       (LRA.Set.OrderedPair (encodeDomain input) (encodeCodomain (function input)))))) →             Exists fun represented =>               And (Eq represented.triple.domain domainEncoding)                 (And (Eq represented.triple.codomain codomainEncoding)                   (And                     (Eq represented.triple.graph                       (inst_4.separation ambientPairs fun member =>                         Exists fun input =>                           Eq member (LRA.Set.OrderedPair (encodeDomain input) (encodeCodomain (function input)))))                     (∀ (input : Domain),                       LRA.Set.Relates represented.triple.graph (encodeDomain input) (encodeCodomain (function input)))))
+Predicate logic: ∀ {Domain : Type y} {Codomain : Type z} {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [HasPairing DomainElement CodomainElement Pair] [PairingLaws DomainElement CodomainElement Pair] [Membership DomainElement DomainObject] [Membership CodomainElement CodomainObject] [Membership Pair GraphObject] [HasSeparation Pair GraphObject] [SeparationLaws Pair GraphObject] (function : LRA.Function Domain Codomain) (encodeDomain : Domain → DomainElement) (encodeCodomain : Codomain → CodomainElement) (domainEncoding : DomainObject) (codomainEncoding : CodomainObject) (ambientPairs : GraphObject) (encodeDomainInjective : _root_.Function.Injective encodeDomain) (domainEncodingExact : ∀ encoded : DomainElement, encoded ∈ domainEncoding ↔ ∃ input : Domain, encodeDomain input = encoded) (codomainEncodingCovers : ∀ output : Codomain, encodeCodomain output ∈ codomainEncoding) (graphPairsExist : ∀ input : Domain, (OrderedPair (encodeDomain input) (encodeCodomain (function input)) : Pair) ∈ ambientPairs), ∃ represented : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject, represented.triple.domain = domainEncoding ∧ represented.triple.codomain = codomainEncoding ∧ represented.triple.graph = HasSeparation.separation ambientPairs (fun member : Pair => ∃ input : Domain, member = OrderedPair (encodeDomain input) (encodeCodomain (function input))) ∧ ∀ input : Domain, Relates represented.triple.graph (encodeDomain input) (encodeCodomain (function input))
+Predicate logic (unfolded): ∀ {Domain : Type y} {Codomain : Type z} {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair], LRA.Set.PairingLaws DomainElement CodomainElement Pair → ∀ [inst_1 : Membership DomainElement DomainObject] [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject] [inst_4 : LRA.Set.HasSeparation Pair GraphObject], LRA.Set.SeparationLaws Pair GraphObject → ∀ (function : LRA.Function Domain Codomain) (encodeDomain : Domain → DomainElement) (encodeCodomain : Codomain → CodomainElement) (domainEncoding : DomainObject) (codomainEncoding : CodomainObject) (ambientPairs : GraphObject), (Function.Injective encodeDomain ∧ (∀ (encoded : DomainElement), encoded ∈ domainEncoding ↔ Exists fun input => encodeDomain input = encoded ∧ (∀ (output : Codomain), encodeCodomain output ∈ codomainEncoding ∧ ∀ (input : Domain), LRA.Set.OrderedPair (encodeDomain input) (encodeCodomain (function input)) ∈ ambientPairs))) → Exists fun represented => (represented.triple.domain = domainEncoding ∧ (represented.triple.codomain = codomainEncoding ∧ (represented.triple.graph = inst_4.separation ambientPairs fun member => Exists fun input => member = LRA.Set.OrderedPair (encodeDomain input) (encodeCodomain (function input)) ∧ ∀ (input : Domain), LRA.Set.Relates represented.triple.graph (encodeDomain input) (encodeCodomain (function input)))))
+Transliterated theorem: (∀ domainEncoding ∈ DomainObject ∀ codomainEncoding ∈ CodomainObject ∀ ambientPairs ∈ GraphObject), (Domain → DomainElement ∧ Codomain → CodomainElement ∧ ∀ encoded : DomainElement, encoded ∈ domainEncoding ↔ ∃ input ∈ Domain, encodeDomain input = encoded ∧ ∀ output : Codomain, encodeCodomain output ∈ codomainEncoding ∧ ∀ input : Domain, (OrderedPair (encodeDomain input) (encodeCodomain (function input)) : Pair) ∈ ambientPairs) → ∃ represented ∈ SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject, represented.triple.domain = domainEncoding ∧ represented.triple.codomain = codomainEncoding ∧ represented.triple.graph = HasSeparation.separation ambientPairs fun member ∈ Pair => ∃ input ∈ Domain, member = OrderedPair (encodeDomain input (encodeCodomain (function input))) ∧ ∀ input : Domain, Relates represented.triple.graph (encodeDomain input) (encodeCodomain (function input))
 Logical form (Lean): {Domain : Type y} {Codomain : Type z} {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [HasPairing DomainElement CodomainElement Pair] [PairingLaws DomainElement CodomainElement Pair] [Membership DomainElement DomainObject] [Membership CodomainElement CodomainObject] [Membership Pair GraphObject] [HasSeparation Pair GraphObject] [SeparationLaws Pair GraphObject] (function : LRA.Function Domain Codomain) (encodeDomain : Domain → DomainElement) (encodeCodomain : Codomain → CodomainElement) (domainEncoding : DomainObject) (codomainEncoding : CodomainObject) (ambientPairs : GraphObject) (encodeDomainInjective : _root_.Function.Injective encodeDomain) (domainEncodingExact : ∀ encoded : DomainElement, encoded ∈ domainEncoding ↔ ∃ input : Domain, encodeDomain input = encoded) (codomainEncodingCovers : ∀ output : Codomain, encodeCodomain output ∈ codomainEncoding) (graphPairsExist : ∀ input : Domain, (OrderedPair (encodeDomain input) (encodeCodomain (function input)) : Pair) ∈ ambientPairs) : ∃ represented : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject, represented.triple.domain = domainEncoding ∧ represented.triple.codomain = codomainEncoding ∧ represented.triple.graph = HasSeparation.separation ambientPairs (fun member : Pair => ∃ input : Domain, member = OrderedPair (encodeDomain input) (encodeCodomain (function input))) ∧ ∀ input : Domain, Relates represented.triple.graph (encodeDomain input) (encodeCodomain (function input))
 Source: ./SetTheoretic/Relationships.lean#L48

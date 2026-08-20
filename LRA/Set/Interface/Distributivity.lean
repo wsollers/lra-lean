@@ -45,8 +45,9 @@ theorem IntersectionDistributesOverUnion :
 ```
 -/
 theorem IntersectionDistributesOverUnion :
-    ∀ A B C : α, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) :=
-  DistributivityLaws.IntersectionDistributesOverUnion
+    ∀ A B C : α, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) := by
+  sorry
+
 /--
 Union distributes over intersection.
 
@@ -58,8 +59,9 @@ theorem UnionDistributesOverIntersection :
 ```
 -/
 theorem UnionDistributesOverIntersection :
-    ∀ A B C : α, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C) :=
-  DistributivityLaws.UnionDistributesOverIntersection
+    ∀ A B C : α, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C) := by
+  sorry
+
 /--
 Absorption: `A ∪ (A ∩ B) = A`.
 
@@ -69,8 +71,9 @@ Logical form:
 theorem AbsorptionUnionIntersection : ∀ A B : α, A ∪ (A ∩ B) = A
 ```
 -/
-theorem AbsorptionUnionIntersection : ∀ A B : α, A ∪ (A ∩ B) = A :=
-  DistributivityLaws.AbsorptionUnionIntersection
+theorem AbsorptionUnionIntersection : ∀ A B : α, A ∪ (A ∩ B) = A := by
+  sorry
+
 /--
 Absorption: `A ∩ (A ∪ B) = A`.
 
@@ -80,7 +83,7 @@ Logical form:
 theorem AbsorptionIntersectionUnion : ∀ A B : α, A ∩ (A ∪ B) = A
 ```
 -/
-theorem AbsorptionIntersectionUnion : ∀ A B : α, A ∩ (A ∪ B) = A :=
-  DistributivityLaws.AbsorptionIntersectionUnion
+theorem AbsorptionIntersectionUnion : ∀ A B : α, A ∩ (A ∪ B) = A := by
+  sorry
 
 end LRA.Set

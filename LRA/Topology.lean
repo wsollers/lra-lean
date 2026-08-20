@@ -1,3 +1,3 @@
-import LRA.VolumeIV.TopologicalSpaces
+import LRA.Topology.PointSetTopology.TopologicalSpace
 
-/-! Canonical import route for general topology. -/
+/-! Canonical import route for topology. -/

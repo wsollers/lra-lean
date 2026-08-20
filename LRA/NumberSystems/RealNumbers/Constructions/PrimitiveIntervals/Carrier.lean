@@ -72,7 +72,6 @@ theorem nonstrict_order_reflexive
     rational_model.signature.le value value := by
   sorry
 
-
 /-- Definition 1.1: a rational closed interval.
 
 Mathematical statement (Lean): `structure RationalInterval`.

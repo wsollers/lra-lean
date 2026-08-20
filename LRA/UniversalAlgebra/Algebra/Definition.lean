@@ -69,8 +69,8 @@ theorem algebraicSignatureIsAlgebraic
 -/
 theorem algebraicSignatureIsAlgebraic
     (Functions : ArityIndexedSymbols) (Constants : Type) :
-    (algebraicSignature Functions Constants).IsAlgebraic :=
-  fun relationSymbol => Empty.elim relationSymbol
+    (algebraicSignature Functions Constants).IsAlgebraic := by
+  sorry
 
 /-- The term algebra over a signature: terms are the elements, and
 each function symbol acts by formal application. Relation symbols are
@@ -118,13 +118,6 @@ theorem termAlgebraEvaluatesToItself
     (S : Signature) (Variable : Type) [Nonempty Variable]
     (term : Term S Variable) :
     evaluateTerm (termAlgebra S Variable) Term.var term = term := by
-  induction term with
-  | var v => rfl
-  | const c => rfl
-  | apply f args ih =>
-      show Term.apply f _ = Term.apply f args
-      congr 1
-      funext i
-      exact ih i
+  sorry
 
 end LRA.UniversalAlgebra

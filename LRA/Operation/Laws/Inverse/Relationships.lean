@@ -20,6 +20,7 @@ theorem LeftInverseEqualsRightInverse {Carrier : Type u}
     leftCandidate = rightCandidate := by
   sorry
 
+
 theorem TwoSidedInverseUnique {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity : Carrier}
@@ -31,6 +32,7 @@ theorem TwoSidedInverseUnique {Carrier : Type u}
     firstInverse = secondInverse := by
   sorry
 
+
 theorem LeftCancellativeOfLeftInverse {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity : Carrier}
@@ -40,6 +42,7 @@ theorem LeftCancellativeOfLeftInverse {Carrier : Type u}
     (leftInverse : LeftInverse operation identity inverse) :
     LRA.Operation.Laws.Cancellation.LeftCancellative operation := by
   sorry
+
 
 theorem RightCancellativeOfRightInverse {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
@@ -51,6 +54,7 @@ theorem RightCancellativeOfRightInverse {Carrier : Type u}
     LRA.Operation.Laws.Cancellation.RightCancellative operation := by
   sorry
 
+
 theorem LeftInverse.to_left_inverse_of {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity : Carrier}
@@ -59,6 +63,7 @@ theorem LeftInverse.to_left_inverse_of {Carrier : Type u}
     (element : Carrier) :
     LeftInverseOf operation identity element (inverse element) := by
   sorry
+
 
 theorem RightInverse.to_right_inverse_of {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
@@ -69,6 +74,7 @@ theorem RightInverse.to_right_inverse_of {Carrier : Type u}
     RightInverseOf operation identity element (inverse element) := by
   sorry
 
+
 theorem TwoSidedInverse.to_two_sided_inverse_of {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity : Carrier}
@@ -78,6 +84,7 @@ theorem TwoSidedInverse.to_two_sided_inverse_of {Carrier : Type u}
     TwoSidedInverseOf operation identity element (inverse element) := by
   sorry
 
+
 theorem Commutative.left_inverse_of_to_right_inverse_of {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity element inverse : Carrier}
@@ -85,6 +92,7 @@ theorem Commutative.left_inverse_of_to_right_inverse_of {Carrier : Type u}
     (leftLaw : LeftInverseOf operation identity element inverse) :
     RightInverseOf operation identity element inverse := by
   sorry
+
 
 theorem Commutative.right_inverse_of_to_left_inverse_of {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
@@ -94,6 +102,7 @@ theorem Commutative.right_inverse_of_to_left_inverse_of {Carrier : Type u}
     LeftInverseOf operation identity element inverse := by
   sorry
 
+
 theorem Commutative.left_inverse_to_right_inverse {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity : Carrier}
@@ -102,6 +111,7 @@ theorem Commutative.left_inverse_to_right_inverse {Carrier : Type u}
     (leftLaw : LeftInverse operation identity inverse) :
     RightInverse operation identity inverse := by
   sorry
+
 
 theorem Commutative.right_inverse_to_left_inverse {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}

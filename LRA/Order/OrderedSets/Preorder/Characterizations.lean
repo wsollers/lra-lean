@@ -6,14 +6,14 @@ namespace LRA.Order.OrderedSets.Preorder
 theorem PreorderRelationIsReflexive
     {Carrier : Type u}
     (preorder : PreorderRelation Carrier) :
-    LRA.Relation.Reflexive preorder.relation :=
-  preorder.isPreorder.1
+    LRA.Relation.Reflexive preorder.relation := by
+  sorry
 
 /-- Projection accessor: the relation packaged by a preorder is transitive. -/
 theorem PreorderRelationIsTransitive
     {Carrier : Type u}
     (preorder : PreorderRelation Carrier) :
-    LRA.Relation.Transitive preorder.relation :=
-  preorder.isPreorder.2
+    LRA.Relation.Transitive preorder.relation := by
+  sorry
 
 end LRA.Order.OrderedSets.Preorder

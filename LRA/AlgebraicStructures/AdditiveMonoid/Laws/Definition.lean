@@ -26,13 +26,13 @@ variable {R : Type u}
 
 /-- Zero is a left identity for addition. -/
 theorem ZeroAdd [Add R] [OfNat R 0] [AdditiveIdentityLaws R] :
-    ∀ a : R, 0 + a = a :=
-  AdditiveIdentityLaws.ZeroAdd
+    ∀ a : R, 0 + a = a := by
+  sorry
 
 /-- Zero is a right identity for addition. -/
 theorem AddZero [Add R] [OfNat R 0] [AdditiveIdentityLaws R] :
-    ∀ a : R, a + 0 = a :=
-  AdditiveIdentityLaws.AddZero
+    ∀ a : R, a + 0 = a := by
+  sorry
 
 end Wrappers
 

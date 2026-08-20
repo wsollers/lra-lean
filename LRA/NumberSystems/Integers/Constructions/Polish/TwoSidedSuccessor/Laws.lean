@@ -30,7 +30,8 @@ Logical form:
 theorem add_zero (x : Z) : x + Z.zero = x
 ```
 -/
-theorem add_zero (x : Z) : x + Z.zero = x := rfl
+theorem add_zero (x : Z) : x + Z.zero = x := by
+  sorry
 
 /--
 **[Theorem — succ_pred_comm]**
@@ -42,7 +43,7 @@ theorem succ_pred_comm (w : Z) : succ (pred w) = pred (succ w)
 ```
 -/
 theorem succ_pred_comm (w : Z) : succ (pred w) = pred (succ w) := by
-  rw [succ_pred, pred_succ]
+  sorry
 
 /--
 **[Theorem — zero_add]**
@@ -54,12 +55,7 @@ theorem zero_add (x : Z) : Z.zero + x = x
 ```
 -/
 theorem zero_add (x : Z) : Z.zero + x = x := by
-  apply twoSidedInduction (fun x => Z.zero + x = x)
-  · rfl
-  · intro x ih
-    rw [add_succ, ih]
-  · intro x ih
-    rw [add_pred, ih]
+  sorry
 
 /--
 **[Theorem — succ_add]**
@@ -71,13 +67,7 @@ theorem succ_add (x y : Z) : succ x + y = succ (x + y)
 ```
 -/
 theorem succ_add (x y : Z) : succ x + y = succ (x + y) := by
-  revert y
-  apply twoSidedInduction
-  · rfl
-  · intro y ih
-    rw [add_succ, ih, add_succ]
-  · intro y ih
-    rw [add_pred, ih, add_pred, succ_pred_comm]
+  sorry
 
 /--
 **[Theorem — pred_add]**
@@ -89,13 +79,7 @@ theorem pred_add (x y : Z) : pred x + y = pred (x + y)
 ```
 -/
 theorem pred_add (x y : Z) : pred x + y = pred (x + y) := by
-  revert y
-  apply twoSidedInduction
-  · rfl
-  · intro y ih
-    rw [add_succ, ih, add_succ, succ_pred_comm]
-  · intro y ih
-    rw [add_pred, ih, add_pred]
+  sorry
 
 /--
 **[Theorem — add_comm]**
@@ -107,13 +91,7 @@ theorem add_comm (x y : Z) : x + y = y + x
 ```
 -/
 theorem add_comm (x y : Z) : x + y = y + x := by
-  revert y
-  apply twoSidedInduction
-  · rw [add_zero, zero_add]
-  · intro y ih
-    rw [add_succ, ih, succ_add]
-  · intro y ih
-    rw [add_pred, ih, pred_add]
+  sorry
 
 /--
 **[Theorem — add_assoc]**
@@ -125,13 +103,7 @@ theorem add_assoc (x y z : Z) : (x + y) + z = x + (y + z)
 ```
 -/
 theorem add_assoc (x y z : Z) : (x + y) + z = x + (y + z) := by
-  revert z
-  apply twoSidedInduction
-  · rfl
-  · intro z ih
-    rw [add_succ, add_succ, ih, add_succ]
-  · intro z ih
-    rw [add_pred, add_pred, ih, add_pred]
+  sorry
 
 /--
 **[Theorem — neg_zero]**
@@ -142,7 +114,8 @@ Logical form:
 theorem neg_zero : (-Z.zero : Z) = Z.zero
 ```
 -/
-theorem neg_zero : (-Z.zero : Z) = Z.zero := rfl
+theorem neg_zero : (-Z.zero : Z) = Z.zero := by
+  sorry
 
 /--
 **[Theorem — neg_succ]**
@@ -154,13 +127,7 @@ theorem neg_succ (x : Z) : -(succ x) = pred (-x)
 ```
 -/
 theorem neg_succ (x : Z) : -(succ x) = pred (-x) := by
-  cases x with
-  | zero => rfl
-  | pos p => rfl
-  | neg n =>
-      cases n with
-      | predZero => rfl
-      | pred n' => rfl
+  sorry
 
 /--
 **[Theorem — neg_pred]**
@@ -172,13 +139,7 @@ theorem neg_pred (x : Z) : -(pred x) = succ (-x)
 ```
 -/
 theorem neg_pred (x : Z) : -(pred x) = succ (-x) := by
-  cases x with
-  | zero => rfl
-  | pos p =>
-      cases p with
-      | succZero => rfl
-      | succ p' => rfl
-  | neg n => rfl
+  sorry
 
 /--
 **[Theorem — neg_neg]**
@@ -190,12 +151,7 @@ theorem neg_neg (x : Z) : -(-x) = x
 ```
 -/
 theorem neg_neg (x : Z) : -(-x) = x := by
-  apply twoSidedInduction (fun x => -(-x) = x)
-  · rfl
-  · intro x ih
-    rw [neg_succ, neg_pred, ih]
-  · intro x ih
-    rw [neg_pred, neg_succ, ih]
+  sorry
 
 /--
 **[Theorem — add_neg_self]**
@@ -207,12 +163,7 @@ theorem add_neg_self (x : Z) : x + (-x) = Z.zero
 ```
 -/
 theorem add_neg_self (x : Z) : x + (-x) = Z.zero := by
-  apply twoSidedInduction (fun x => x + (-x) = Z.zero)
-  · rfl
-  · intro x ih
-    rw [neg_succ, add_pred, succ_add, ih, pred_succ]
-  · intro x ih
-    rw [neg_pred, add_succ, pred_add, ih, succ_pred]
+  sorry
 
 /--
 **[Theorem — neg_add_self]**
@@ -224,7 +175,7 @@ theorem neg_add_self (x : Z) : (-x) + x = Z.zero
 ```
 -/
 theorem neg_add_self (x : Z) : (-x) + x = Z.zero := by
-  rw [add_comm, add_neg_self]
+  sorry
 
 /--
 **[Theorem — neg_add]**
@@ -236,13 +187,7 @@ theorem neg_add (x y : Z) : -(x + y) = (-x) + (-y)
 ```
 -/
 theorem neg_add (x y : Z) : -(x + y) = (-x) + (-y) := by
-  revert y
-  apply twoSidedInduction
-  · rw [add_zero, neg_zero, add_zero]
-  · intro y ih
-    rw [add_succ, neg_succ, ih, neg_succ, add_pred]
-  · intro y ih
-    rw [add_pred, neg_pred, ih, neg_pred, add_succ]
+  sorry
 
 /--
 **[Theorem — mul_succ]**
@@ -254,19 +199,7 @@ theorem mul_succ (x y : Z) : x * succ y = x * y + x
 ```
 -/
 theorem mul_succ (x y : Z) : x * succ y = x * y + x := by
-  cases y with
-  | zero =>
-      show x * Z.pos P.succZero = x * Z.zero + x
-      rw [mul_pos_succZero, mul_zero, zero_add]
-  | pos p => exact mul_pos_succ x p
-  | neg n =>
-      cases n with
-      | predZero =>
-          show x * Z.zero = x * Z.neg N.predZero + x
-          rw [mul_zero, mul_neg_predZero, neg_add_self]
-      | pred n' =>
-          show x * Z.neg n' = x * Z.neg (N.pred n') + x
-          rw [mul_neg_pred, add_assoc, neg_add_self, add_zero]
+  sorry
 
 /--
 **[Theorem — mul_pred]**
@@ -278,19 +211,7 @@ theorem mul_pred (x y : Z) : x * pred y = x * y + (-x)
 ```
 -/
 theorem mul_pred (x y : Z) : x * pred y = x * y + (-x) := by
-  cases y with
-  | zero =>
-      show x * Z.neg N.predZero = x * Z.zero + (-x)
-      rw [mul_neg_predZero, mul_zero, zero_add]
-  | pos p =>
-      cases p with
-      | succZero =>
-          show x * Z.zero = x * Z.pos P.succZero + (-x)
-          rw [mul_zero, mul_pos_succZero, add_neg_self]
-      | succ p' =>
-          show x * Z.pos p' = x * Z.pos (P.succ p') + (-x)
-          rw [mul_pos_succ, add_assoc, add_neg_self, add_zero]
-  | neg n => exact mul_neg_pred x n
+  sorry
 
 /--
 **[Theorem — zero_mul]**
@@ -302,12 +223,7 @@ theorem zero_mul (x : Z) : Z.zero * x = Z.zero
 ```
 -/
 theorem zero_mul (x : Z) : Z.zero * x = Z.zero := by
-  apply twoSidedInduction (fun x => Z.zero * x = Z.zero)
-  · rfl
-  · intro x ih
-    rw [mul_succ, ih, add_zero]
-  · intro x ih
-    rw [mul_pred, ih, neg_zero, add_zero]
+  sorry
 
 /--
 **[Theorem — add_one]**
@@ -319,8 +235,7 @@ theorem add_one (x : Z) : x + one = succ x
 ```
 -/
 theorem add_one (x : Z) : x + one = succ x := by
-  show x + succ Z.zero = succ x
-  rw [add_succ, add_zero]
+  sorry
 
 /--
 **[Theorem — neg_one_eq]**
@@ -332,8 +247,7 @@ theorem neg_one_eq : (-one : Z) = pred Z.zero
 ```
 -/
 theorem neg_one_eq : (-one : Z) = pred Z.zero := by
-  show -(succ Z.zero) = pred Z.zero
-  rw [neg_succ, neg_zero]
+  sorry
 
 /--
 **[Theorem — add_neg_one]**
@@ -345,7 +259,7 @@ theorem add_neg_one (x : Z) : x + (-one) = pred x
 ```
 -/
 theorem add_neg_one (x : Z) : x + (-one) = pred x := by
-  rw [neg_one_eq, add_pred, add_zero]
+  sorry
 
 /--
 **[Theorem — one_mul]**
@@ -357,12 +271,7 @@ theorem one_mul (x : Z) : one * x = x
 ```
 -/
 theorem one_mul (x : Z) : one * x = x := by
-  apply twoSidedInduction (fun x => one * x = x)
-  · rfl
-  · intro x ih
-    rw [mul_succ, ih, add_one]
-  · intro x ih
-    rw [mul_pred, ih, add_neg_one]
+  sorry
 
 /--
 **[Theorem — succ_mul]**
@@ -374,16 +283,7 @@ theorem succ_mul (x y : Z) : succ x * y = x * y + y
 ```
 -/
 theorem succ_mul (x y : Z) : succ x * y = x * y + y := by
-  revert y
-  apply twoSidedInduction
-  · rw [mul_zero, mul_zero, add_zero]
-  · intro y ih
-    rw [mul_succ, ih, mul_succ, add_succ, add_succ, add_assoc, add_assoc, add_comm x y]
-  · intro y ih
-    rw [
-      mul_pred, ih, mul_pred, neg_succ, add_pred, add_assoc,
-      add_comm y (-x), ← add_assoc, ← add_pred
-    ]
+  sorry
 
 /--
 **[Theorem — pred_mul]**
@@ -395,19 +295,7 @@ theorem pred_mul (x y : Z) : pred x * y = x * y + (-y)
 ```
 -/
 theorem pred_mul (x y : Z) : pred x * y = x * y + (-y) := by
-  revert y
-  apply twoSidedInduction
-  · rw [mul_zero, mul_zero, neg_zero, add_zero]
-  · intro y ih
-    rw [
-      mul_succ, ih, mul_succ, neg_succ, add_pred, add_assoc,
-      add_comm (-y) x, ← add_assoc, ← add_pred
-    ]
-  · intro y ih
-    rw [
-      mul_pred, ih, mul_pred, neg_pred, neg_pred, add_succ, add_succ,
-      add_assoc, add_comm (-y) (-x), ← add_assoc
-    ]
+  sorry
 
 /--
 **[Theorem — mul_comm]**
@@ -419,12 +307,7 @@ theorem mul_comm (x y : Z) : x * y = y * x
 ```
 -/
 theorem mul_comm (x y : Z) : x * y = y * x := by
-  apply twoSidedInduction (fun y => x * y = y * x)
-  · rw [mul_zero, zero_mul]
-  · intro y ih
-    rw [mul_succ, ih, succ_mul]
-  · intro y ih
-    rw [mul_pred, ih, pred_mul]
+  sorry
 
 /-- Rearrangement helper: `(a+b)+(c+d) = (a+c)+(b+d)`.
 
@@ -435,7 +318,7 @@ theorem add_add_comm (a b c d : Z) : (a + b) + (c + d) = (a + c) + (b + d)
 ```
 -/
 theorem add_add_comm (a b c d : Z) : (a + b) + (c + d) = (a + c) + (b + d) := by
-  rw [add_assoc, ← add_assoc b c d, add_comm b c, add_assoc, ← add_assoc]
+  sorry
 
 /--
 **[Theorem — distrib_right]**
@@ -447,13 +330,7 @@ theorem distrib_right (a b c : Z) : (a + b) * c = a * c + b * c
 ```
 -/
 theorem distrib_right (a b c : Z) : (a + b) * c = a * c + b * c := by
-  revert c
-  apply twoSidedInduction
-  · rw [mul_zero, mul_zero, mul_zero, add_zero]
-  · intro c ih
-    rw [mul_succ, ih, mul_succ, mul_succ, add_add_comm]
-  · intro c ih
-    rw [mul_pred, ih, mul_pred, mul_pred, neg_add, add_add_comm]
+  sorry
 
 /--
 **[Theorem — distrib_left]**
@@ -465,7 +342,7 @@ theorem distrib_left (a b c : Z) : a * (b + c) = a * b + a * c
 ```
 -/
 theorem distrib_left (a b c : Z) : a * (b + c) = a * b + a * c := by
-  rw [mul_comm a (b + c), distrib_right, mul_comm b a, mul_comm c a]
+  sorry
 
 /--
 **[Theorem — mul_neg]**
@@ -477,13 +354,7 @@ theorem mul_neg (x y : Z) : x * (-y) = -(x * y)
 ```
 -/
 theorem mul_neg (x y : Z) : x * (-y) = -(x * y) := by
-  apply twoSidedInduction (fun y => x * (-y) = -(x * y))
-  · rw [neg_zero, mul_zero]
-    exact neg_zero.symm
-  · intro y ih
-    rw [neg_succ, mul_pred, ih, mul_succ, neg_add]
-  · intro y ih
-    rw [neg_pred, mul_succ, ih, mul_pred, neg_add, neg_neg]
+  sorry
 
 /--
 **[Theorem — neg_mul]**
@@ -495,7 +366,7 @@ theorem neg_mul (x y : Z) : (-x) * y = -(x * y)
 ```
 -/
 theorem neg_mul (x y : Z) : (-x) * y = -(x * y) := by
-  rw [mul_comm, mul_neg, mul_comm]
+  sorry
 
 /--
 **[Theorem — mul_assoc]**
@@ -507,13 +378,7 @@ theorem mul_assoc (x y z : Z) : (x * y) * z = x * (y * z)
 ```
 -/
 theorem mul_assoc (x y z : Z) : (x * y) * z = x * (y * z) := by
-  revert z
-  apply twoSidedInduction
-  · rw [mul_zero, mul_zero, mul_zero]
-  · intro z ih
-    rw [mul_succ, ih, mul_succ, distrib_left]
-  · intro z ih
-    rw [mul_pred, ih, mul_pred, distrib_left, ← mul_neg]
+  sorry
 
 /-- `Pos z` means `z` lies on the positive ray.
 
@@ -545,8 +410,7 @@ theorem not_pos_zero : ¬ Pos Z.zero
 ```
 -/
 theorem not_pos_zero : ¬ Pos Z.zero := by
-  rintro ⟨p, hp⟩
-  injection hp
+  sorry
 
 /--
 **[Theorem — not_isNeg_zero]**
@@ -558,8 +422,7 @@ theorem not_isNeg_zero : ¬ IsNeg Z.zero
 ```
 -/
 theorem not_isNeg_zero : ¬ IsNeg Z.zero := by
-  rintro ⟨n, hn⟩
-  injection hn
+  sorry
 
 /--
 **[Theorem — not_pos_and_isNeg]**
@@ -571,9 +434,7 @@ theorem not_pos_and_isNeg (z : Z) : ¬ (Pos z ∧ IsNeg z)
 ```
 -/
 theorem not_pos_and_isNeg (z : Z) : ¬ (Pos z ∧ IsNeg z) := by
-  rintro ⟨⟨p, hp⟩, ⟨n, hn⟩⟩
-  rw [hp] at hn
-  injection hn
+  sorry
 
 /--
 **[Theorem — trichotomy]**
@@ -585,10 +446,7 @@ theorem trichotomy (z : Z) : z = Z.zero ∨ Pos z ∨ IsNeg z
 ```
 -/
 theorem trichotomy (z : Z) : z = Z.zero ∨ Pos z ∨ IsNeg z := by
-  cases z with
-  | zero => exact Or.inl rfl
-  | pos p => exact Or.inr (Or.inl ⟨p, rfl⟩)
-  | neg n => exact Or.inr (Or.inr ⟨n, rfl⟩)
+  sorry
 
 /--
 **[Theorem — pos_add]**
@@ -600,24 +458,7 @@ theorem pos_add {x y : Z} (leftPositive : Pos x) (rightPositive : Pos y) : Pos (
 ```
 -/
 theorem pos_add {x y : Z} (leftPositive : Pos x) (rightPositive : Pos y) : Pos (x + y) := by
-  obtain ⟨leftPositiveRay, rfl⟩ := leftPositive
-  induction leftPositiveRay with
-  | succZero =>
-      obtain ⟨rightPositiveRay, rfl⟩ := rightPositive
-      refine ⟨P.succ rightPositiveRay, ?_⟩
-      show Z.pos P.succZero + Z.pos rightPositiveRay = Z.pos (P.succ rightPositiveRay)
-      rw [show Z.pos P.succZero = succ Z.zero from rfl, succ_add, zero_add]
-      rfl
-  | succ previousPositiveRay inductionHypothesis =>
-      obtain ⟨sumPositiveRay, sumPositiveRayEquality⟩ := inductionHypothesis
-      refine ⟨P.succ sumPositiveRay, ?_⟩
-      show Z.pos (P.succ previousPositiveRay) + y = Z.pos (P.succ sumPositiveRay)
-      rw [
-        show Z.pos (P.succ previousPositiveRay) = succ (Z.pos previousPositiveRay) from rfl,
-        succ_add,
-        sumPositiveRayEquality
-      ]
-      rfl
+  sorry
 
 /--
 **[Theorem — isNeg_neg_of_pos]**
@@ -629,21 +470,7 @@ theorem isNeg_neg_of_pos {x : Z} (positiveInput : Pos x) : IsNeg (-x)
 ```
 -/
 theorem isNeg_neg_of_pos {x : Z} (positiveInput : Pos x) : IsNeg (-x) := by
-  obtain ⟨positiveRay, rfl⟩ := positiveInput
-  induction positiveRay with
-  | succZero =>
-      exact ⟨N.predZero, by
-        rw [show Z.pos P.succZero = succ Z.zero from rfl, neg_succ, neg_zero]
-        rfl⟩
-  | succ previousPositiveRay inductionHypothesis =>
-      obtain ⟨negativeRay, negativeRayEquality⟩ := inductionHypothesis
-      exact ⟨N.pred negativeRay, by
-        rw [
-          show Z.pos (P.succ previousPositiveRay) = succ (Z.pos previousPositiveRay) from rfl,
-          neg_succ,
-          negativeRayEquality
-        ]
-        rfl⟩
+  sorry
 
 /--
 **[Theorem — pos_neg_of_isNeg]**
@@ -655,21 +482,7 @@ theorem pos_neg_of_isNeg {x : Z} (negativeInput : IsNeg x) : Pos (-x)
 ```
 -/
 theorem pos_neg_of_isNeg {x : Z} (negativeInput : IsNeg x) : Pos (-x) := by
-  obtain ⟨negativeRay, rfl⟩ := negativeInput
-  induction negativeRay with
-  | predZero =>
-      exact ⟨P.succZero, by
-        rw [show Z.neg N.predZero = pred Z.zero from rfl, neg_pred, neg_zero]
-        rfl⟩
-  | pred previousNegativeRay inductionHypothesis =>
-      obtain ⟨positiveRay, positiveRayEquality⟩ := inductionHypothesis
-      exact ⟨P.succ positiveRay, by
-        rw [
-          show Z.neg (N.pred previousNegativeRay) = pred (Z.neg previousNegativeRay) from rfl,
-          neg_pred,
-          positiveRayEquality
-        ]
-        rfl⟩
+  sorry
 
 /--
 **[Theorem — pos_neg_iff_isNeg]**
@@ -681,20 +494,7 @@ theorem pos_neg_iff_isNeg (x : Z) : Pos (-x) ↔ IsNeg x
 ```
 -/
 theorem pos_neg_iff_isNeg (x : Z) : Pos (-x) ↔ IsNeg x := by
-  constructor
-  · intro negatedInputIsPositive
-    rcases trichotomy x with inputIsZero | inputIsPositive | inputIsNegative
-    · exfalso
-      rw [inputIsZero, neg_zero] at negatedInputIsPositive
-      exact not_pos_zero negatedInputIsPositive
-    · exfalso
-      have negatedInputIsNegative := isNeg_neg_of_pos inputIsPositive
-      obtain ⟨positiveRay, positiveRayEquality⟩ := negatedInputIsPositive
-      obtain ⟨negativeRay, negativeRayEquality⟩ := negatedInputIsNegative
-      rw [positiveRayEquality] at negativeRayEquality
-      injection negativeRayEquality
-    · exact inputIsNegative
-  · exact pos_neg_of_isNeg
+  sorry
 
 /--
 **[Def — lt]**
@@ -733,7 +533,8 @@ Logical form:
 theorem lt_def (x y : Z) : x < y ↔ Pos (y + (-x))
 ```
 -/
-theorem lt_def (x y : Z) : x < y ↔ Pos (y + (-x)) := Iff.rfl
+theorem lt_def (x y : Z) : x < y ↔ Pos (y + (-x)) := by
+  sorry
 
 /--
 **[Theorem — pos_of_zero_lt]**
@@ -745,9 +546,7 @@ theorem pos_of_zero_lt (x : Z) : Z.zero < x → Pos x
 ```
 -/
 theorem pos_of_zero_lt (x : Z) : Z.zero < x → Pos x := by
-  intro h
-  rw [lt_def, neg_zero, add_zero] at h
-  exact h
+  sorry
 
 /--
 **[Theorem — lt_irrefl]**
@@ -759,8 +558,7 @@ theorem lt_irrefl (x : Z) : ¬ x < x
 ```
 -/
 theorem lt_irrefl (x : Z) : ¬ x < x := by
-  rw [lt_def, add_neg_self]
-  exact not_pos_zero
+  sorry
 
 /--
 **[Theorem — lt_trans]**
@@ -772,18 +570,7 @@ theorem lt_trans {x y z : Z} (firstLessSecond : x < y) (secondLessThird : y < z)
 ```
 -/
 theorem lt_trans {x y z : Z} (firstLessSecond : x < y) (secondLessThird : y < z) : x < z := by
-  have positiveSum := pos_add firstLessSecond secondLessThird
-  have collapsedDifferenceEquality : (y + (-x)) + (z + (-y)) = z + (-x) := by
-    calc
-      (y + -x) + (z + -y)
-          = (z + -y) + (y + -x) := add_comm _ _
-      _ = z + (-y + (y + -x)) := add_assoc z (-y) (y + -x)
-      _ = z + ((-y + y) + -x) := by rw [add_assoc]
-      _ = z + (Z.zero + -x) := by rw [neg_add_self]
-      _ = z + -x := by rw [zero_add]
-  rw [lt_def]
-  rw [collapsedDifferenceEquality] at positiveSum
-  exact positiveSum
+  sorry
 
 /--
 **[Theorem — lt_trichotomy]**
@@ -795,27 +582,7 @@ theorem lt_trichotomy (x y : Z) : x < y ∨ x = y ∨ y < x
 ```
 -/
 theorem lt_trichotomy (x y : Z) : x < y ∨ x = y ∨ y < x := by
-  rcases trichotomy (y + (-x)) with differenceIsZero | differenceIsPositive | differenceIsNegative
-  · right
-    left
-    have differencePlusRightEndpoint := congrArg (fun w => w + x) differenceIsZero
-    have endpointsEqualInReverseOrder : y = x := by
-      calc
-        y = y + Z.zero := (add_zero y).symm
-        _ = y + (-x + x) := by rw [neg_add_self]
-        _ = (y + -x) + x := (add_assoc y (-x) x).symm
-        _ = Z.zero + x := differencePlusRightEndpoint
-        _ = x := zero_add x
-    exact endpointsEqualInReverseOrder.symm
-  · left
-    exact differenceIsPositive
-  · right
-    right
-    have negativeDifferenceBecomesPositive := pos_neg_of_isNeg differenceIsNegative
-    have negatedDifferenceEquality : -(y + -x) = x + -y := by
-      rw [neg_add, neg_neg, add_comm]
-    rw [lt_def, ← negatedDifferenceEquality]
-    exact negativeDifferenceBecomesPositive
+  sorry
 
 /--
 **[Theorem — lt_succ_self]**
@@ -827,8 +594,7 @@ theorem lt_succ_self (x : Z) : x < succ x
 ```
 -/
 theorem lt_succ_self (x : Z) : x < succ x := by
-  rw [lt_def, succ_add, add_neg_self]
-  exact ⟨P.succZero, rfl⟩
+  sorry
 
 /--
 **[Theorem — pred_lt_self]**
@@ -840,8 +606,7 @@ theorem pred_lt_self (x : Z) : pred x < x
 ```
 -/
 theorem pred_lt_self (x : Z) : pred x < x := by
-  rw [lt_def, neg_pred, add_succ, add_neg_self]
-  exact ⟨P.succZero, rfl⟩
+  sorry
 
 /--
 **[Theorem — add_lt_add_right]**
@@ -853,17 +618,7 @@ theorem add_lt_add_right {x y : Z} (firstLessSecond : x < y) (z : Z) : x + z < y
 ```
 -/
 theorem add_lt_add_right {x y : Z} (firstLessSecond : x < y) (z : Z) : x + z < y + z := by
-  have translatedDifferenceEquality : (y + z) + -(x + z) = y + -x := by
-    rw [neg_add]
-    calc
-      (y + z) + (-x + -z)
-          = y + (z + (-x + -z)) := add_assoc y z (-x + -z)
-      _ = y + (z + (-z + -x)) := by rw [add_comm (-x) (-z)]
-      _ = y + ((z + -z) + -x) := by rw [add_assoc]
-      _ = y + (Z.zero + -x) := by rw [add_neg_self]
-      _ = y + -x := by rw [zero_add]
-  rw [lt_def, translatedDifferenceEquality]
-  exact firstLessSecond
+  sorry
 
 /--
 **[Theorem — le_iff]**
@@ -874,7 +629,8 @@ Logical form:
 theorem le_iff (x y : Z) : x ≤ y ↔ x = y ∨ x < y
 ```
 -/
-theorem le_iff (x y : Z) : x ≤ y ↔ x = y ∨ x < y := Iff.rfl
+theorem le_iff (x y : Z) : x ≤ y ↔ x = y ∨ x < y := by
+  sorry
 
 /--
 **[Theorem — le_refl]**
@@ -885,7 +641,8 @@ Logical form:
 theorem le_refl (x : Z) : x ≤ x
 ```
 -/
-theorem le_refl (x : Z) : x ≤ x := Or.inl rfl
+theorem le_refl (x : Z) : x ≤ x := by
+  sorry
 
 /--
 **[Theorem — lt_of_le_of_lt]**
@@ -899,9 +656,7 @@ theorem lt_of_le_of_lt {x y z : Z} (firstLeSecond : x ≤ y) (secondLessThird : 
 -/
 theorem lt_of_le_of_lt {x y z : Z} (firstLeSecond : x ≤ y) (secondLessThird : y < z) :
     x < z := by
-  rcases firstLeSecond with rfl | firstLessSecond
-  · exact secondLessThird
-  · exact lt_trans firstLessSecond secondLessThird
+  sorry
 
 /--
 **[Theorem — le_antisymm]**
@@ -913,11 +668,7 @@ theorem le_antisymm {x y : Z} (firstLeSecond : x ≤ y) (secondLeFirst : y ≤ x
 ```
 -/
 theorem le_antisymm {x y : Z} (firstLeSecond : x ≤ y) (secondLeFirst : y ≤ x) : x = y := by
-  rcases firstLeSecond with rfl | firstLessSecond
-  · rfl
-  · rcases secondLeFirst with rfl | secondLessFirst
-    · rfl
-    · exact absurd (lt_trans firstLessSecond secondLessFirst) (lt_irrefl x)
+  sorry
 
 /--
 **[Theorem — pos_mul]**
@@ -929,16 +680,7 @@ theorem pos_mul {x y : Z} (leftPositive : Pos x) (rightPositive : Pos y) : Pos (
 ```
 -/
 theorem pos_mul {x y : Z} (leftPositive : Pos x) (rightPositive : Pos y) : Pos (x * y) := by
-  obtain ⟨leftPositiveRay, rfl⟩ := leftPositive
-  induction leftPositiveRay with
-  | succZero =>
-      show Pos (Z.pos P.succZero * y)
-      rw [show Z.pos P.succZero = one from rfl, one_mul]
-      exact rightPositive
-  | succ previousPositiveRay inductionHypothesis =>
-      show Pos (Z.pos (P.succ previousPositiveRay) * y)
-      rw [show Z.pos (P.succ previousPositiveRay) = succ (Z.pos previousPositiveRay) from rfl, succ_mul]
-      exact pos_add inductionHypothesis rightPositive
+  sorry
 
 /--
 **[Theorem — mul_lt_mul_pos_right]**
@@ -952,10 +694,6 @@ theorem mul_lt_mul_pos_right {x y z : Z} (firstLessSecond : x < y) (multiplierPo
 -/
 theorem mul_lt_mul_pos_right {x y z : Z} (firstLessSecond : x < y) (multiplierPositive : Pos z) :
     x * z < y * z := by
-  have productDifferencePositive := pos_mul firstLessSecond multiplierPositive
-  have productDifferenceEquality : (y + -x) * z = y * z + -(x * z) := by
-    rw [distrib_right, neg_mul]
-  rw [lt_def, ← productDifferenceEquality]
-  exact productDifferencePositive
+  sorry
 
 end LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor

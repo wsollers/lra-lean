@@ -21,8 +21,8 @@ variable {R : Type u}
 
 theorem NoStrictBetweenAddOne [LT R] [Add R] [OfNat R 1]
     [OrderDiscretenessLaw R] :
-    forall a : R, Not (exists middle : R, a < middle /\ middle < a + 1) :=
-  OrderDiscretenessLaw.NoStrictBetweenAddOne
+    forall a : R, Not (exists middle : R, a < middle /\ middle < a + 1) := by
+  sorry
 
 end Wrappers
 

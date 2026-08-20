@@ -1,4 +1,4 @@
-import LRA.VolumeIV.VectorSpaces
-import LRA.VolumeVI.LinearAlgebra
+import LRA.Algebra.LinearAlgebra.VectorSpace
+import LRA.Algebra.LinearAlgebra
 
 /-! Canonical import route for linear algebra. -/

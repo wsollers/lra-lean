@@ -23,8 +23,8 @@ variable {R : Type u}
 
 /-- Addition is associative. -/
 theorem AddAssociative [Add R] [AdditiveSemigroupLaws R] :
-    ∀ a b c : R, (a + b) + c = a + (b + c) :=
-  AdditiveSemigroupLaws.AddAssociative
+    ∀ a b c : R, (a + b) + c = a + (b + c) := by
+  sorry
 
 end Wrappers
 

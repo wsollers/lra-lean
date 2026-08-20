@@ -60,6 +60,7 @@ theorem QuotientSetExists
       IsQuotientSetOf quotient ambient relation := by
   sorry
 
+
 theorem QuotientSetUnique
     (ambient : SetObject)
     (relation : Endorelation Element) :
@@ -68,6 +69,7 @@ theorem QuotientSetUnique
         IsQuotientSetOf quotient ambient relation) := by
   sorry
 
+
 theorem QuotientSetExistsAndUnique
     (ambient : SetObject)
     (relation : Endorelation Element) :
@@ -75,6 +77,7 @@ theorem QuotientSetExistsAndUnique
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation) := by
   sorry
+
 
 theorem QuotientSetMembership
     (ambient : SetObject)
@@ -119,6 +122,7 @@ theorem QuotientProjectionWellDefined
     QuotientProjection ambient relation firstRepresentative =
       QuotientProjection ambient relation secondRepresentative := by
   sorry
+
 
 theorem QuotientClassElementWellDefined
     {ambient : SetObject}

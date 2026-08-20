@@ -41,8 +41,8 @@ theorem InfimumIsLowerBound
     {relation : LRA.Relation.Endorelation Element}
     {subset : SetObject} {infimum : Element}
     (infimumIsInfimum : Infimum relation subset infimum) :
-    LowerBound relation subset infimum :=
-  infimumIsInfimum.1
+    LowerBound relation subset infimum := by
+  sorry
 
 /-- Every lower bound of a represented subset lies below its infimum. -/
 theorem EveryLowerBoundRelatedToInfimum
@@ -52,8 +52,8 @@ theorem EveryLowerBoundRelatedToInfimum
     {subset : SetObject} {infimum bound : Element}
     (infimumIsInfimum : Infimum relation subset infimum)
     (boundIsLowerBound : LowerBound relation subset bound) :
-    relation bound infimum :=
-  infimumIsInfimum.2 bound boundIsLowerBound
+    relation bound infimum := by
+  sorry
 
 /-- Once an infimum exists, lower bounds are exactly the elements below it. -/
 theorem LowerBoundIffRelatedToInfimum

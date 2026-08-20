@@ -63,49 +63,49 @@ variable {R : Type u}
 
 /-- Predecessor undoes successor. -/
 theorem PredSucc [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R] :
-    ∀ a : R, Pred (Succ a) = a :=
-  SuccessorLaws.PredSucc
+    ∀ a : R, Pred (Succ a) = a := by
+  sorry
 
 /-- Successor undoes predecessor. -/
 theorem SuccPred [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R] :
-    ∀ a : R, Succ (Pred a) = a :=
-  SuccessorLaws.SuccPred
+    ∀ a : R, Succ (Pred a) = a := by
+  sorry
 
 /-- The successor step is injective. -/
 theorem SuccInjective [HasSuccessor R] [HasPredecessor R]
     [SuccessorLaws R] :
-    ∀ a b : R, Succ a = Succ b → a = b :=
-  SuccessorLaws.SuccInjective
+    ∀ a b : R, Succ a = Succ b → a = b := by
+  sorry
 
 /-- The predecessor step is injective. -/
 theorem PredInjective [HasSuccessor R] [HasPredecessor R]
     [SuccessorLaws R] :
-    ∀ a b : R, Pred a = Pred b → a = b :=
-  SuccessorLaws.PredInjective
+    ∀ a b : R, Pred a = Pred b → a = b := by
+  sorry
 
 /-- The successor step is addition of one. -/
 theorem SuccEqAddOne [HasSuccessor R] [Add R] [OfNat R 1]
     [SuccessorAdditionLaw R] :
-    ∀ a : R, Succ a = a + 1 :=
-  SuccessorAdditionLaw.SuccEqAddOne
+    ∀ a : R, Succ a = a + 1 := by
+  sorry
 
 /-- Multiplying into a successor accumulates one more copy. -/
 theorem MulSucc [HasSuccessor R] [HasPredecessor R]
     [Add R] [Mul R] [Neg R] [SuccessorMultiplicationLaws R] :
-    ∀ a b : R, a * Succ b = a * b + a :=
-  SuccessorMultiplicationLaws.MulSucc
+    ∀ a b : R, a * Succ b = a * b + a := by
+  sorry
 
 /-- Multiplying into a predecessor removes one copy. -/
 theorem MulPred [HasSuccessor R] [HasPredecessor R]
     [Add R] [Mul R] [Neg R] [SuccessorMultiplicationLaws R] :
-    ∀ a b : R, a * Pred b = a * b + -a :=
-  SuccessorMultiplicationLaws.MulPred
+    ∀ a b : R, a * Pred b = a * b + -a := by
+  sorry
 
 /-- The forward walk from zero never returns to zero. -/
 theorem SuccAperiodic [HasSuccessor R] [HasPredecessor R] [OfNat R 0]
     [DiscretenessLaw R] :
-    ∀ n : Nat, 0 < n → SuccIterate n (0 : R) ≠ 0 :=
-  DiscretenessLaw.SuccAperiodic
+    ∀ n : Nat, 0 < n → SuccIterate n (0 : R) ≠ 0 := by
+  sorry
 
 /-- Two-sided induction from zero reaches every element. -/
 theorem TwoSidedInduction [HasSuccessor R] [HasPredecessor R]
@@ -114,8 +114,8 @@ theorem TwoSidedInduction [HasSuccessor R] [HasPredecessor R]
       motive 0 →
       (∀ a, motive a → motive (Succ a)) →
       (∀ a, motive a → motive (Pred a)) →
-      ∀ a, motive a :=
-  DiscretenessLaw.TwoSidedInduction
+      ∀ a, motive a := by
+  sorry
 
 end Wrappers
 

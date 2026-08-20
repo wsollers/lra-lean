@@ -51,7 +51,7 @@ theorem ConverseInvolutive
     {Alpha : Type u}
     (relation : Endorelation Alpha) :
     Converse (Converse relation) = relation := by
-  rfl
+  sorry
 
 /--
 **[Theorem — ReflexiveConverseIff]**
@@ -70,11 +70,7 @@ theorem ReflexiveConverseIff
     {Alpha : Type u}
     (relation : Endorelation Alpha) :
     Reflexive (Converse relation) ↔ Reflexive relation := by
-  constructor
-  · intro converseReflexive element
-    exact converseReflexive element
-  · intro reflexive element
-    exact reflexive element
+  sorry
 
 /--
 **[Theorem — IrreflexiveConverseIff]**
@@ -93,11 +89,7 @@ theorem IrreflexiveConverseIff
     {Alpha : Type u}
     (relation : Endorelation Alpha) :
     Irreflexive (Converse relation) ↔ Irreflexive relation := by
-  constructor
-  · intro converseIrreflexive element
-    exact converseIrreflexive element
-  · intro irreflexive element
-    exact irreflexive element
+  sorry
 
 /--
 **[Theorem — TransitiveConverseIff]**
@@ -116,11 +108,7 @@ theorem TransitiveConverseIff
     {Alpha : Type u}
     (relation : Endorelation Alpha) :
     Transitive (Converse relation) ↔ Transitive relation := by
-  constructor
-  · intro converseTransitive first second third firstRelatedSecond secondRelatedThird
-    exact converseTransitive third second first secondRelatedThird firstRelatedSecond
-  · intro transitive first second third firstRelatedSecond secondRelatedThird
-    exact transitive third second first secondRelatedThird firstRelatedSecond
+  sorry
 
 /--
 **[Theorem — AntisymmetricConverseIff]**
@@ -139,11 +127,7 @@ theorem AntisymmetricConverseIff
     {Alpha : Type u}
     (relation : Endorelation Alpha) :
     Antisymmetric (Converse relation) ↔ Antisymmetric relation := by
-  constructor
-  · intro converseAntisymmetric left right leftRelatedRight rightRelatedLeft
-    exact converseAntisymmetric left right rightRelatedLeft leftRelatedRight
-  · intro antisymmetric left right leftRelatedRight rightRelatedLeft
-    exact (antisymmetric right left leftRelatedRight rightRelatedLeft).symm
+  sorry
 
 /--
 **[Theorem — TotalConverseIff]**
@@ -162,15 +146,7 @@ theorem TotalConverseIff
     {Alpha : Type u}
     (relation : Endorelation Alpha) :
     Total (Converse relation) ↔ Total relation := by
-  constructor
-  · intro converseTotal left right
-    cases converseTotal left right with
-    | inl rightRelatedLeft => exact Or.inr rightRelatedLeft
-    | inr leftRelatedRight => exact Or.inl leftRelatedRight
-  · intro total left right
-    cases total left right with
-    | inl leftRelatedRight => exact Or.inr leftRelatedRight
-    | inr rightRelatedLeft => exact Or.inl rightRelatedLeft
+  sorry
 
 /--
 **[Theorem — DenseConverseIff]**
@@ -189,14 +165,6 @@ theorem DenseConverseIff
     {Alpha : Type u}
     (relation : Endorelation Alpha) :
     Dense (Converse relation) ↔ Dense relation := by
-  constructor
-  · intro converseDense left right leftRelatedRight
-    rcases converseDense right left leftRelatedRight with
-      ⟨middle, middleRelatedRight, leftRelatedMiddle⟩
-    exact ⟨middle, leftRelatedMiddle, middleRelatedRight⟩
-  · intro dense left right leftRelatedRight
-    rcases dense right left leftRelatedRight with
-      ⟨middle, rightRelatedMiddle, middleRelatedLeft⟩
-    exact ⟨middle, middleRelatedLeft, rightRelatedMiddle⟩
+  sorry
 
 end LRA.Relation

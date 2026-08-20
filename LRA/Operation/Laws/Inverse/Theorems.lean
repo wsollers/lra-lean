@@ -15,6 +15,7 @@ theorem LeftInverse.apply {Carrier : Type u}
     operation (inverse element) element = identity := by
   sorry
 
+
 theorem RightInverse.apply {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity : Carrier}
@@ -24,12 +25,14 @@ theorem RightInverse.apply {Carrier : Type u}
     operation element (inverse element) = identity := by
   sorry
 
+
 theorem LeftInverseOf.apply {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity element inverse : Carrier}
     (law : LeftInverseOf operation identity element inverse) :
     operation inverse element = identity := by
   sorry
+
 
 theorem RightInverseOf.apply {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
@@ -38,12 +41,14 @@ theorem RightInverseOf.apply {Carrier : Type u}
     operation element inverse = identity := by
   sorry
 
+
 theorem TwoSidedInverseOf.left {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity element inverse : Carrier}
     (law : TwoSidedInverseOf operation identity element inverse) :
     LeftInverseOf operation identity element inverse := by
   sorry
+
 
 theorem TwoSidedInverseOf.right {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
@@ -52,6 +57,7 @@ theorem TwoSidedInverseOf.right {Carrier : Type u}
     RightInverseOf operation identity element inverse := by
   sorry
 
+
 theorem TwoSidedInverseOf.of_left_right {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity element inverse : Carrier}
@@ -59,6 +65,7 @@ theorem TwoSidedInverseOf.of_left_right {Carrier : Type u}
     (rightLaw : RightInverseOf operation identity element inverse) :
     TwoSidedInverseOf operation identity element inverse := by
   sorry
+
 
 theorem LeftInvertibleOn.apply {Carrier : Type u}
     {eligible : Carrier → Prop}
@@ -69,6 +76,7 @@ theorem LeftInvertibleOn.apply {Carrier : Type u}
     ∃ inverse, LeftInverseOf operation identity element inverse := by
   sorry
 
+
 theorem RightInvertibleOn.apply {Carrier : Type u}
     {eligible : Carrier → Prop}
     {operation : BinaryEndoOperation Carrier}
@@ -77,6 +85,7 @@ theorem RightInvertibleOn.apply {Carrier : Type u}
     (eligible_element : eligible element) :
     ∃ inverse, RightInverseOf operation identity element inverse := by
   sorry
+
 
 theorem TwoSidedInvertibleOn.apply {Carrier : Type u}
     {eligible : Carrier → Prop}
@@ -87,6 +96,7 @@ theorem TwoSidedInvertibleOn.apply {Carrier : Type u}
     ∃ inverse, TwoSidedInverseOf operation identity element inverse := by
   sorry
 
+
 theorem TwoSidedInverse.left {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity : Carrier}
@@ -95,6 +105,7 @@ theorem TwoSidedInverse.left {Carrier : Type u}
     LeftInverse operation identity inverse := by
   sorry
 
+
 theorem TwoSidedInverse.right {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity : Carrier}
@@ -102,6 +113,7 @@ theorem TwoSidedInverse.right {Carrier : Type u}
     (law : TwoSidedInverse operation identity inverse) :
     RightInverse operation identity inverse := by
   sorry
+
 
 theorem TwoSidedInverse.of_left_right {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}

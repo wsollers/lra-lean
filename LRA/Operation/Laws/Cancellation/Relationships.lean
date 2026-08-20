@@ -16,6 +16,7 @@ theorem Commutative.left_cancellative_to_right_cancellative {Carrier : Type u}
     RightCancellative operation := by
   sorry
 
+
 theorem Commutative.right_cancellative_to_left_cancellative {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     (commutative :
@@ -24,12 +25,14 @@ theorem Commutative.right_cancellative_to_left_cancellative {Carrier : Type u}
     LeftCancellative operation := by
   sorry
 
+
 theorem LeftCancellative.left_regular {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     (law : LeftCancellative operation)
     (fixed : Carrier) :
     LeftRegular operation fixed := by
   sorry
+
 
 theorem RightCancellative.right_regular {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
@@ -38,6 +41,7 @@ theorem RightCancellative.right_regular {Carrier : Type u}
     RightRegular operation fixed := by
   sorry
 
+
 theorem LeftCancellative.to_left_cancellative_on {Carrier : Type u}
     {eligible : Carrier -> Prop}
     {operation : BinaryEndoOperation Carrier}
@@ -45,12 +49,14 @@ theorem LeftCancellative.to_left_cancellative_on {Carrier : Type u}
     LeftCancellativeOn eligible operation := by
   sorry
 
+
 theorem RightCancellative.to_right_cancellative_on {Carrier : Type u}
     {eligible : Carrier -> Prop}
     {operation : BinaryEndoOperation Carrier}
     (law : RightCancellative operation) :
     RightCancellativeOn eligible operation := by
   sorry
+
 
 theorem LeftAbsorbing.not_left_regular_of_distinct {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}

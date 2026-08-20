@@ -28,7 +28,7 @@ theorem mem_symmetricDifference {A B z : ZFSet} :
 -/
 theorem mem_symmetricDifference {A B z : ZFSet} :
     z ∈ SymmetricDifference A B ↔ (z ∈ A ∧ z ∉ B) ∨ (z ∈ B ∧ z ∉ A) := by
-  simp [SymmetricDifference, ZFSet.mem_union, ZFSet.mem_sdiff]
+  sorry
 
 instance : ExtensionalityLaw ZFSet ZFSet where
   SetExtensionality := fun h => ZFSet.ext h
@@ -174,10 +174,8 @@ theorem symmetricDifference_eq_union_sdiff_inter :
 -/
 theorem symmetricDifference_eq_union_sdiff_inter :
     ∀ A B : ZFSet,
-      SymmetricDifference A B = (A ∪ B) \ (A ∩ B) := fun A B =>
-  ZFSet.ext fun z => by
-    simp [mem_symmetricDifference, ZFSet.mem_sdiff, ZFSet.mem_union,
-      ZFSet.mem_inter] <;> tauto
+      SymmetricDifference A B = (A ∪ B) \ (A ∩ B) := by
+  sorry
 
 /--
 `symmetricDifference_comm` states symmetric difference comm.
@@ -192,8 +190,8 @@ theorem symmetricDifference_comm :
 -/
 theorem symmetricDifference_comm :
     ∀ A B : ZFSet,
-      SymmetricDifference A B = SymmetricDifference B A := fun A B =>
-  ZFSet.ext fun z => by simp [mem_symmetricDifference] <;> tauto
+      SymmetricDifference A B = SymmetricDifference B A := by
+  sorry
 
 /--
 `symmetricDifference_assoc` states symmetric difference assoc.
@@ -210,8 +208,8 @@ theorem symmetricDifference_assoc :
 theorem symmetricDifference_assoc :
     ∀ A B C : ZFSet,
       SymmetricDifference (SymmetricDifference A B) C =
-        SymmetricDifference A (SymmetricDifference B C) := fun A B C =>
-  ZFSet.ext fun z => by simp [mem_symmetricDifference] <;> tauto
+        SymmetricDifference A (SymmetricDifference B C) := by
+  sorry
 
 /--
 `symmetricDifference_empty` states symmetric difference empty.
@@ -224,9 +222,8 @@ theorem symmetricDifference_empty :
 ```
 -/
 theorem symmetricDifference_empty :
-    ∀ A : ZFSet, SymmetricDifference A (∅ : ZFSet) = A := fun A =>
-  ZFSet.ext fun z => by
-    simp [mem_symmetricDifference, ZFSet.notMem_empty]
+    ∀ A : ZFSet, SymmetricDifference A (∅ : ZFSet) = A := by
+  sorry
 
 /--
 `empty_symmetricDifference` states empty symmetric difference.
@@ -239,9 +236,8 @@ theorem empty_symmetricDifference :
 ```
 -/
 theorem empty_symmetricDifference :
-    ∀ A : ZFSet, SymmetricDifference (∅ : ZFSet) A = A := fun A =>
-  ZFSet.ext fun z => by
-    simp [mem_symmetricDifference, ZFSet.notMem_empty]
+    ∀ A : ZFSet, SymmetricDifference (∅ : ZFSet) A = A := by
+  sorry
 
 /--
 `symmetricDifference_self` states symmetric difference self.
@@ -254,9 +250,8 @@ theorem symmetricDifference_self :
 ```
 -/
 theorem symmetricDifference_self :
-    ∀ A : ZFSet, SymmetricDifference A A = (∅ : ZFSet) := fun A =>
-  ZFSet.ext fun z => by
-    simp [mem_symmetricDifference, ZFSet.notMem_empty]
+    ∀ A : ZFSet, SymmetricDifference A A = (∅ : ZFSet) := by
+  sorry
 
 /--
 `symmetricDifference_eq_empty_iff` states symmetric difference eq empty iff.
@@ -270,22 +265,7 @@ theorem symmetricDifference_eq_empty_iff :
 -/
 theorem symmetricDifference_eq_empty_iff :
     ∀ A B : ZFSet, SymmetricDifference A B = (∅ : ZFSet) ↔ A = B := by
-  intro A B
-  constructor
-  · intro h
-    refine ZFSet.ext fun z => ⟨fun hz => ?_, fun hz => ?_⟩
-    · by_contra hn
-      have hmem : z ∈ SymmetricDifference A B :=
-        mem_symmetricDifference.mpr (Or.inl ⟨hz, hn⟩)
-      rw [h] at hmem
-      exact ZFSet.notMem_empty z hmem
-    · by_contra hn
-      have hmem : z ∈ SymmetricDifference A B :=
-        mem_symmetricDifference.mpr (Or.inr ⟨hz, hn⟩)
-      rw [h] at hmem
-      exact ZFSet.notMem_empty z hmem
-  · rintro rfl
-    exact symmetricDifference_self A
+  sorry
 
 /--
 `symmetricDifference_subset_union` states symmetric difference subset union.
@@ -298,11 +278,8 @@ theorem symmetricDifference_subset_union :
 ```
 -/
 theorem symmetricDifference_subset_union :
-    ∀ A B : ZFSet, SymmetricDifference A B ⊆ A ∪ B := fun A B =>
-  ZFSet.subset_def.mpr fun z hz => by
-    rcases mem_symmetricDifference.mp hz with h | h
-    · exact ZFSet.mem_union.mpr (Or.inl h.1)
-    · exact ZFSet.mem_union.mpr (Or.inr h.1)
+    ∀ A B : ZFSet, SymmetricDifference A B ⊆ A ∪ B := by
+  sorry
 
 instance : SymmDiffLaws ZFSet where
   SymmetricDifferenceAsUnionDifferences := fun A B => rfl
@@ -328,13 +305,7 @@ theorem mem_countableUnion {family : Nat → ZFSet} {x : ZFSet} :
 -/
 theorem mem_countableUnion {family : Nat → ZFSet} {x : ZFSet} :
     x ∈ CountableUnion family ↔ ∃ index, x ∈ family index := by
-  rw [CountableUnion, ZFSet.mem_sUnion]
-  constructor
-  · rintro ⟨z, hz, hx⟩
-    obtain ⟨i, rfl⟩ := ZFSet.mem_range.mp hz
-    exact ⟨i, hx⟩
-  · rintro ⟨i, hx⟩
-    exact ⟨family i, ZFSet.mem_range_self i, hx⟩
+  sorry
 
 /--
 `mem_countableIntersection` states mem countable intersection.
@@ -348,14 +319,7 @@ theorem mem_countableIntersection {family : Nat → ZFSet} {x : ZFSet} :
 -/
 theorem mem_countableIntersection {family : Nat → ZFSet} {x : ZFSet} :
     x ∈ CountableIntersection family ↔ ∀ index, x ∈ family index := by
-  rw [CountableIntersection,
-    ZFSet.mem_sInter ⟨family 0, ZFSet.mem_range_self 0⟩]
-  constructor
-  · intro h i
-    exact h (family i) (ZFSet.mem_range_self i)
-  · intro h z hz
-    obtain ⟨i, rfl⟩ := ZFSet.mem_range.mp hz
-    exact h i
+  sorry
 
 /-- Registration: collection union/intersection readings, straight from
 `ZFSet.mem_sUnion` and the nonemptiness-conditioned `ZFSet.mem_sInter` --

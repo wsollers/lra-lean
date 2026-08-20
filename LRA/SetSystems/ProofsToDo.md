@@ -9,15 +9,214 @@ keep source order, because Lean forbids forward references, so source order is
 already a valid topological order. Working this list top to bottom, no entry
 depends on anything not yet proved above it.
 
-**Inventory:** 11 entries across 2 module(s) (0 completed, 11 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
+**Inventory:** 29 entries across 3 module(s) (0 completed, 29 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
 
 Name: RelativeComplementIsMember
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   {ambient : SetObject} (algebra : LRA.SetSystems.AlgebraOfSets ambient) (A : SetObject),   algebra.IsMember A → algebra.IsMember (inst_2.sdiff ambient A)
-Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   {ambient : SetObject} (algebra : LRA.SetSystems.AlgebraOfSets ambient) (A : SetObject),   algebra.IsMember A → algebra.IsMember (inst_2.sdiff ambient A)
+Predicate logic: ∀ (algebra : AlgebraOfSets ambient) (A : SetObject) (AIsMember : algebra.IsMember A), algebra.IsMember (ambient \ A)
+Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] {ambient : SetObject} (algebra : LRA.SetSystems.AlgebraOfSets ambient) (A : SetObject), algebra.IsMember A → algebra.IsMember (ambient \ A)
+Transliterated theorem: (∀ A ∈ U), algebra.IsMember (ambient \ A)
 Logical form (Lean): (algebra : AlgebraOfSets ambient) (A : SetObject) (AIsMember : algebra.IsMember A) : algebra.IsMember (ambient \ A)
 Source: ./AlgebraOfSets.lean#L25
+
+
+
+Name: activeSetAlgebraMembersAreSubsets
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Point : Type) (A : LRA.SetSystems.Instantiations.ActiveSet Point), True → Set.instLE.le A Set.univ
+Predicate logic (unfolded): ∀ (Point : Type) (A : LRA.SetSystems.Instantiations.ActiveSet Point), True → Set.instLE.le A Set.univ
+Transliterated theorem: ∀ A : ActiveSet Point, True → A ⊆ Set.univ
+Logical form (Lean): (Point : Type) : ∀ A : ActiveSet Point, True → A ⊆ Set.univ
+Source: ./Examples.lean#L47
+
+
+
+Name: activeSetAlgebraUnionIsMember
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), True → True → True
+Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), True → True → True [unfold error: unavailable]
+Transliterated theorem: ∀ A B : ActiveSet Point, True → True → True
+Logical form (Lean): (Point : Type) : ∀ A B : ActiveSet Point, True → True → True
+Source: ./Examples.lean#L61
+
+
+
+Name: activeSetAlgebraIntersectionIsMember
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), True → True → True
+Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), True → True → True [unfold error: unavailable]
+Transliterated theorem: ∀ A B : ActiveSet Point, True → True → True
+Logical form (Lean): (Point : Type) : ∀ A B : ActiveSet Point, True → True → True
+Source: ./Examples.lean#L75
+
+
+
+Name: activeSetAlgebraDifferenceIsMember
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), True → True → True
+Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), True → True → True [unfold error: unavailable]
+Transliterated theorem: ∀ A B : ActiveSet Point, True → True → True
+Logical form (Lean): (Point : Type) : ∀ A B : ActiveSet Point, True → True → True
+Source: ./Examples.lean#L89
+
+
+
+Name: activeSetAlgebraSymmetricDifferenceIsMember
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), True → True → True
+Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), True → True → True [unfold error: unavailable]
+Transliterated theorem: ∀ A B : ActiveSet Point, True → True → True
+Logical form (Lean): (Point : Type) : ∀ A B : ActiveSet Point, True → True → True
+Source: ./Examples.lean#L103
+
+
+
+Name: emptyUniversalSetAlgebraMembersAreSubsets
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Point : Type), ∀ A : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → A ⊆ Set.univ
+Predicate logic (unfolded): ∀ (Point : Type) (A : LRA.SetSystems.Instantiations.ActiveSet Point), Or (A = Set.instEmptyCollection.emptyCollection)(A = Set.univ) → Set.instLE.le A Set.univ
+Transliterated theorem: ∀ A : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → A ⊆ Set.univ
+Logical form (Lean): (Point : Type) : ∀ A : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → A ⊆ Set.univ
+Source: ./Examples.lean#L141
+
+
+
+Name: emptyUniversalSetAlgebraEmptyIsMember
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Point : Type), ((∅ : ActiveSet Point) = ∅ ∨ (∅ : ActiveSet Point) = Set.univ)
+Predicate logic (unfolded): ∀ (Point : Type), Or (Set.instEmptyCollection.emptyCollection = Set.instEmptyCollection.emptyCollection) (Set.instEmptyCollection.emptyCollection = Set.univ)
+Transliterated theorem: (∅ ∈ ActiveSet Point = ∅ ∨ ∅ ∈ ActiveSet Point = Set.univ)
+Logical form (Lean): (Point : Type) : ((∅ : ActiveSet Point) = ∅ ∨ (∅ : ActiveSet Point) = Set.univ)
+Source: ./Examples.lean#L155
+
+
+
+Name: emptyUniversalSetAlgebraUnionIsMember
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Point : Type), ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A ∪ B = ∅ ∨ A ∪ B = Set.univ)
+Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), (Or (A = Set.instEmptyCollection.emptyCollection)(A = Set.univ) ∧ Or (B = Set.instEmptyCollection.emptyCollection)(B = Set.univ)) → Or (Set.instUnion.union A B = Set.instEmptyCollection.emptyCollection)(Set.instUnion.union A B = Set.univ)
+Transliterated theorem: ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A ∪ B = ∅ ∨ A ∪ B = Set.univ)
+Logical form (Lean): (Point : Type) : ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A ∪ B = ∅ ∨ A ∪ B = Set.univ)
+Source: ./Examples.lean#L172
+
+
+
+Name: emptyUniversalSetAlgebraIntersectionIsMember
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Point : Type), ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A ∩ B = ∅ ∨ A ∩ B = Set.univ)
+Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), (Or (A = Set.instEmptyCollection.emptyCollection)(A = Set.univ) ∧ Or (B = Set.instEmptyCollection.emptyCollection)(B = Set.univ)) → Or (Set.instInter.inter A B = Set.instEmptyCollection.emptyCollection)(Set.instInter.inter A B = Set.univ)
+Transliterated theorem: ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A ∩ B = ∅ ∨ A ∩ B = Set.univ)
+Logical form (Lean): (Point : Type) : ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A ∩ B = ∅ ∨ A ∩ B = Set.univ)
+Source: ./Examples.lean#L192
+
+
+
+Name: emptyUniversalSetAlgebraDifferenceIsMember
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Point : Type), ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A \ B = ∅ ∨ A \ B = Set.univ)
+Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), (Or (A = Set.instEmptyCollection.emptyCollection)(A = Set.univ) ∧ Or (B = Set.instEmptyCollection.emptyCollection)(B = Set.univ)) → Or (Set.instSDiff.sdiff A B = Set.instEmptyCollection.emptyCollection)(Set.instSDiff.sdiff A B = Set.univ)
+Transliterated theorem: ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A \ B = ∅ ∨ A \ B = Set.univ)
+Logical form (Lean): (Point : Type) : ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A \ B = ∅ ∨ A \ B = Set.univ)
+Source: ./Examples.lean#L212
+
+
+
+Name: emptyUniversalSetAlgebraSymmetricDifferenceIsMember
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Point : Type), ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A ∆ B = ∅ ∨ A ∆ B = Set.univ)
+Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), (Or (A = Set.instEmptyCollection.emptyCollection)(A = Set.univ) ∧ Or (B = Set.instEmptyCollection.emptyCollection)(B = Set.univ)) → Or (LRA.Set.MathlibPredicateSet.instHasSymmDiffSet.symmDiff A B = Set.instEmptyCollection.emptyCollection) (LRA.Set.MathlibPredicateSet.instHasSymmDiffSet.symmDiff A B = Set.univ)
+Transliterated theorem: ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A ∆ B = ∅ ∨ A ∆ B = Set.univ)
+Logical form (Lean): (Point : Type) : ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A ∆ B = ∅ ∨ A ∆ B = Set.univ)
+Source: ./Examples.lean#L232
+
+
+
+Name: emptyUniversalSetAlgebraAmbientIsMember
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Point : Type), ((Set.univ : ActiveSet Point) = ∅ ∨ (Set.univ : ActiveSet Point) = Set.univ)
+Predicate logic (unfolded): ∀ (Point : Type), Or (Set.univ = Set.instEmptyCollection.emptyCollection)(Set.univ = Set.univ)
+Transliterated theorem: (Set.univ ∈ ActiveSet Point = ∅ ∨ Set.univ ∈ ActiveSet Point = Set.univ)
+Logical form (Lean): (Point : Type) : ((Set.univ : ActiveSet Point) = ∅ ∨ (Set.univ : ActiveSet Point) = Set.univ)
+Source: ./Examples.lean#L250
+
+
+
+Name: activeSigmaAlgebraCountableUnionIsMember
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Point : Type) (family : Nat → LRA.SetSystems.Instantiations.ActiveSet Point),   (∀ (index : Nat), (LRA.SetSystems.Instantiations.activeSetAlgebra Point).IsMember (family index)) →     (LRA.SetSystems.Instantiations.activeSetAlgebra Point).IsMember       (LRA.Set.MathlibPredicateSet.instHasCountableUnionSet.countableUnion family)
+Predicate logic (unfolded): ∀ (Point : Type) (family : Nat → LRA.SetSystems.Instantiations.ActiveSet Point), (∀ (index : Nat), (LRA.SetSystems.Instantiations.activeSetAlgebra Point).IsMember (family index)) → (LRA.SetSystems.Instantiations.activeSetAlgebra Point).IsMember (LRA.Set.MathlibPredicateSet.instHasCountableUnionSet.countableUnion family)
+Transliterated theorem: ∀ family : Nat → ActiveSet Point, (∀ index, (activeSetAlgebra Point).IsMember (family index)) → (activeSetAlgebra Point).IsMember (HasCountableUnion.countableUnion family)
+Logical form (Lean): (Point : Type) : ∀ family : Nat → ActiveSet Point, (∀ index, (activeSetAlgebra Point).IsMember (family index)) → (activeSetAlgebra Point).IsMember (HasCountableUnion.countableUnion family)
+Source: ./Examples.lean#L288
+
+
+
+Name: lraSetAlgebraMembersAreSubsets
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Point : Type) (A : LRA.Set.PredicateSet Point),   True → LRA.Set.PredicateSet.instHasSubset.Subset A (LRA.Set.PredicateSet.Universal Point)
+Predicate logic (unfolded): ∀ (Point : Type) (A : LRA.Set.PredicateSet Point), True → LRA.Set.PredicateSet.instHasSubset.Subset A (LRA.Set.PredicateSet.Universal Point)
+Transliterated theorem: ∀ A : LRA.Set.PredicateSet Point, True → A ⊆ LRA.Set.PredicateSet.Universal Point
+Logical form (Lean): (Point : Type) : ∀ A : LRA.Set.PredicateSet Point, True → A ⊆ LRA.Set.PredicateSet.Universal Point
+Source: ./Examples.lean#L323
+
+
+
+Name: lraSetAlgebraUnionIsMember
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Point : Type) (A B : LRA.Set.PredicateSet Point), True → True → True
+Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.Set.PredicateSet Point), True → True → True [unfold error: unavailable]
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Point, True → True → True
+Logical form (Lean): (Point : Type) : ∀ A B : LRA.Set.PredicateSet Point, True → True → True
+Source: ./Examples.lean#L338
+
+
+
+Name: lraSetAlgebraIntersectionIsMember
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Point : Type) (A B : LRA.Set.PredicateSet Point), True → True → True
+Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.Set.PredicateSet Point), True → True → True [unfold error: unavailable]
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Point, True → True → True
+Logical form (Lean): (Point : Type) : ∀ A B : LRA.Set.PredicateSet Point, True → True → True
+Source: ./Examples.lean#L352
+
+
+
+Name: lraSetAlgebraDifferenceIsMember
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Point : Type) (A B : LRA.Set.PredicateSet Point), True → True → True
+Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.Set.PredicateSet Point), True → True → True [unfold error: unavailable]
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Point, True → True → True
+Logical form (Lean): (Point : Type) : ∀ A B : LRA.Set.PredicateSet Point, True → True → True
+Source: ./Examples.lean#L366
+
+
+
+Name: lraSetAlgebraSymmetricDifferenceIsMember
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Point : Type) (A B : LRA.Set.PredicateSet Point), True → True → True
+Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.Set.PredicateSet Point), True → True → True [unfold error: unavailable]
+Transliterated theorem: ∀ A B : LRA.Set.PredicateSet Point, True → True → True
+Logical form (Lean): (Point : Type) : ∀ A B : LRA.Set.PredicateSet Point, True → True → True
+Source: ./Examples.lean#L380
 
 
 
@@ -25,7 +224,8 @@ Name: GeneratedSigmaAlgebraMembersAreSubsets
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A : SetObject),   LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A → inst_4.Subset A ambient
-Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A : SetObject),   LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A → inst_4.Subset A ambient
+Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A : SetObject), LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A → inst_4.Subset A ambient
+Transliterated theorem: (∀ A ∈ U), (SetObject → Prop) → ∀ A, GeneratedSigmaAlgebraCollection A generator A → A ⊆ A
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) : ∀ A, GeneratedSigmaAlgebraCollection ambient generator A → A ⊆ ambient
 Source: ./GeneratedSigmaAlgebra.lean#L24
 
@@ -35,49 +235,54 @@ Name: GeneratedSigmaAlgebraEmptyIsMember
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop),   LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator inst_3.emptyCollection
-Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop),   LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator inst_3.emptyCollection
+Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop), LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator inst_3.emptyCollection
+Transliterated theorem: (∀ A ∈ U), (SetObject → Prop) → GeneratedSigmaAlgebraCollection A generator ∅ ∈ SetObject
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) : GeneratedSigmaAlgebraCollection ambient generator (∅ : SetObject)
-Source: ./GeneratedSigmaAlgebra.lean#L30
+Source: ./GeneratedSigmaAlgebra.lean#L31
 
 
 
 Name: GeneratedSigmaAlgebraUnionIsMember
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject),   And (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A)       (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator B) →     LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (inst.union A B)
-Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject),   And (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A)       (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator B) →     LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (inst.union A B)
+Predicate logic: ∀ (ambient : SetObject) (generator : SetObject → Prop), ∀ A B, GeneratedSigmaAlgebraCollection ambient generator A → GeneratedSigmaAlgebraCollection ambient generator B → GeneratedSigmaAlgebraCollection ambient generator (A ∪ B)
+Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject), (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A ∧ LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator B) → LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (A ∪ B)
+Transliterated theorem: (∀ A ∈ U), (SetObject → Prop) → ∀ A B, GeneratedSigmaAlgebraCollection A generator A → GeneratedSigmaAlgebraCollection A generator B → GeneratedSigmaAlgebraCollection A generator (A ∪ B)
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) : ∀ A B, GeneratedSigmaAlgebraCollection ambient generator A → GeneratedSigmaAlgebraCollection ambient generator B → GeneratedSigmaAlgebraCollection ambient generator (A ∪ B)
-Source: ./GeneratedSigmaAlgebra.lean#L35
+Source: ./GeneratedSigmaAlgebra.lean#L37
 
 
 
 Name: GeneratedSigmaAlgebraIntersectionIsMember
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject),   And (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A)       (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator B) →     LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (inst_1.inter A B)
-Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject),   And (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A)       (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator B) →     LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (inst_1.inter A B)
+Predicate logic: ∀ (ambient : SetObject) (generator : SetObject → Prop), ∀ A B, GeneratedSigmaAlgebraCollection ambient generator A → GeneratedSigmaAlgebraCollection ambient generator B → GeneratedSigmaAlgebraCollection ambient generator (A ∩ B)
+Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject), (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A ∧ LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator B) → LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (A ∩ B)
+Transliterated theorem: (∀ A ∈ U), (SetObject → Prop) → ∀ A B, GeneratedSigmaAlgebraCollection A generator A → GeneratedSigmaAlgebraCollection A generator B → GeneratedSigmaAlgebraCollection A generator (A ∩ B)
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) : ∀ A B, GeneratedSigmaAlgebraCollection ambient generator A → GeneratedSigmaAlgebraCollection ambient generator B → GeneratedSigmaAlgebraCollection ambient generator (A ∩ B)
-Source: ./GeneratedSigmaAlgebra.lean#L43
+Source: ./GeneratedSigmaAlgebra.lean#L46
 
 
 
 Name: GeneratedSigmaAlgebraDifferenceIsMember
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject),   And (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A)       (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator B) →     LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (inst_2.sdiff A B)
-Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject),   And (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A)       (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator B) →     LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (inst_2.sdiff A B)
+Predicate logic: ∀ (ambient : SetObject) (generator : SetObject → Prop), ∀ A B, GeneratedSigmaAlgebraCollection ambient generator A → GeneratedSigmaAlgebraCollection ambient generator B → GeneratedSigmaAlgebraCollection ambient generator (A \ B)
+Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject), (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A ∧ LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator B) → LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (A \ B)
+Transliterated theorem: (∀ A ∈ U), (SetObject → Prop) → ∀ A B, GeneratedSigmaAlgebraCollection A generator A → GeneratedSigmaAlgebraCollection A generator B → GeneratedSigmaAlgebraCollection A generator (A \ B)
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) : ∀ A B, GeneratedSigmaAlgebraCollection ambient generator A → GeneratedSigmaAlgebraCollection ambient generator B → GeneratedSigmaAlgebraCollection ambient generator (A \ B)
-Source: ./GeneratedSigmaAlgebra.lean#L51
+Source: ./GeneratedSigmaAlgebra.lean#L55
 
 
 
 Name: GeneratedSigmaAlgebraSymmetricDifferenceIsMember
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject),   And (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A)       (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator B) →     LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (inst_5.symmDiff A B)
-Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject),   And (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A)       (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator B) →     LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (inst_5.symmDiff A B)
+Predicate logic: ∀ (ambient : SetObject) (generator : SetObject → Prop), ∀ A B, GeneratedSigmaAlgebraCollection ambient generator A → GeneratedSigmaAlgebraCollection ambient generator B → GeneratedSigmaAlgebraCollection ambient generator (A ∆ B)
+Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject), (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A ∧ LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator B) → LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (inst_5.symmDiff A B)
+Transliterated theorem: (∀ A ∈ U), (SetObject → Prop) → ∀ A B, GeneratedSigmaAlgebraCollection A generator A → GeneratedSigmaAlgebraCollection A generator B → GeneratedSigmaAlgebraCollection A generator (A ∆ B)
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) : ∀ A B, GeneratedSigmaAlgebraCollection ambient generator A → GeneratedSigmaAlgebraCollection ambient generator B → GeneratedSigmaAlgebraCollection ambient generator (A ∆ B)
-Source: ./GeneratedSigmaAlgebra.lean#L59
+Source: ./GeneratedSigmaAlgebra.lean#L64
 
 
 
@@ -85,9 +290,10 @@ Name: GeneratedSigmaAlgebraAmbientIsMember
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop),   LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator ambient
-Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop),   LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator ambient
+Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop), LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator ambient
+Transliterated theorem: (∀ A ∈ U), (SetObject → Prop) → GeneratedSigmaAlgebraCollection A generator A
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) : GeneratedSigmaAlgebraCollection ambient generator ambient
-Source: ./GeneratedSigmaAlgebra.lean#L67
+Source: ./GeneratedSigmaAlgebra.lean#L73
 
 
 
@@ -95,9 +301,10 @@ Name: GeneratedSigmaAlgebraCountableUnionIsMember
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop)   (family : Nat → SetObject),   (∀ (index : Nat), LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (family index)) →     LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (inst_6.countableUnion family)
-Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop)   (family : Nat → SetObject),   (∀ (index : Nat), LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (family index)) →     LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (inst_6.countableUnion family)
+Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (family : Nat → SetObject), (∀ (index : Nat), LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (family index)) → LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (inst_6.countableUnion family)
+Transliterated theorem: (∀ A ∈ U), (SetObject → Prop) → ∀ family : Nat → SetObject, (∀ index, GeneratedSigmaAlgebraCollection A generator (family index)) → GeneratedSigmaAlgebraCollection A generator (HasCountableUnion.countableUnion family)
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) : ∀ family : Nat → SetObject, (∀ index, GeneratedSigmaAlgebraCollection ambient generator (family index)) → GeneratedSigmaAlgebraCollection ambient generator (HasCountableUnion.countableUnion family)
-Source: ./GeneratedSigmaAlgebra.lean#L72
+Source: ./GeneratedSigmaAlgebra.lean#L79
 
 
 
@@ -105,9 +312,10 @@ Name: GeneratedSigmaAlgebraContainsGenerator
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (G : SetObject),   generator G → (LRA.SetSystems.GeneratedSigmaAlgebra ambient generator).IsMember G
-Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (G : SetObject),   generator G → (LRA.SetSystems.GeneratedSigmaAlgebra ambient generator).IsMember G
+Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (G : SetObject), generator G → (LRA.SetSystems.GeneratedSigmaAlgebra ambient generator).IsMember G
+Transliterated theorem: (∀ A ∈ U ∀ B ∈ U), (SetObject → Prop) → (GeneratedSigmaAlgebra A generator).IsMember B
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) (G : SetObject) (GIsGenerator : generator G) : (GeneratedSigmaAlgebra ambient generator).IsMember G
-Source: ./GeneratedSigmaAlgebra.lean#L98
+Source: ./GeneratedSigmaAlgebra.lean#L105
 
 
 
@@ -115,6 +323,7 @@ Name: GeneratedSigmaAlgebraMinimal
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop)   (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient),   (∀ (G : SetObject), generator G → sigma.IsMember G) →     ∀ (A : SetObject), (LRA.SetSystems.GeneratedSigmaAlgebra ambient generator).IsMember A → sigma.IsMember A
-Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject]   [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject]   [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop)   (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient),   (∀ (G : SetObject), generator G → sigma.IsMember G) →     ∀ (A : SetObject), (LRA.SetSystems.GeneratedSigmaAlgebra ambient generator).IsMember A → sigma.IsMember A
+Predicate logic (unfolded): ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.IsMember G) → ∀ (A : SetObject), (LRA.SetSystems.GeneratedSigmaAlgebra ambient generator).IsMember A → sigma.IsMember A
+Transliterated theorem: (∀ A ∈ U), (SetObject → Prop ∧ ∀ G, generator G → sigma.IsMember G) → ∀ A, (GeneratedSigmaAlgebra A generator).IsMember A → sigma.IsMember A
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) (sigma : SigmaAlgebraOfSets ambient) (sigmaAdmitsGenerators : ∀ G, generator G → sigma.IsMember G) : ∀ A, (GeneratedSigmaAlgebra ambient generator).IsMember A → sigma.IsMember A
-Source: ./GeneratedSigmaAlgebra.lean#L104
+Source: ./GeneratedSigmaAlgebra.lean#L112

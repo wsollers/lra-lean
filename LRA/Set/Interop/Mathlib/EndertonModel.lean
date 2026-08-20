@@ -77,7 +77,8 @@ theorem endertonInterpretsMem
 @[simp] theorem endertonInterpretsMem
     (arguments : Fin (MembershipSignature.relationArity .mem) → LRA.Set.ZFCSet) :
     EndertonMembershipModel.interpretRelation .mem arguments =
-      (arguments ⟨0, by decide⟩ ∈ arguments ⟨1, by decide⟩) := rfl
+      (arguments ⟨0, by decide⟩ ∈ arguments ⟨1, by decide⟩) := by
+  sorry
 
 /--
 `endertonInterpretsEmpty` states enderton interprets empty.
@@ -92,7 +93,8 @@ theorem endertonInterpretsEmpty :
 -/
 @[simp] theorem endertonInterpretsEmpty :
     EndertonMembershipModel.interpretConstant .emptySet =
-      (∅ : LRA.Set.ZFCSet) := rfl
+      (∅ : LRA.Set.ZFCSet) := by
+  sorry
 
 /-! ## Satisfaction: Enderton ⊨ ZFC, axiom by axiom
 
@@ -115,9 +117,7 @@ theorem endertonSatisfiesExtensionality
 theorem endertonSatisfiesExtensionality
     (assignment : Nat → EndertonMembershipModel.Domain) :
     Satisfies EndertonMembershipModel assignment extensionalityFormula := by
-  intro x y h
-  refine LRA.Set.ZFC.Extensionality x y fun z => ?_
-  exact satisfiesIffF.mp (h z)
+  sorry
 
 /--
 `endertonSatisfiesEmptySet` states enderton satisfies empty set.
@@ -132,8 +132,8 @@ theorem endertonSatisfiesEmptySet
 -/
 theorem endertonSatisfiesEmptySet
     (assignment : Nat → EndertonMembershipModel.Domain) :
-    Satisfies EndertonMembershipModel assignment emptySetFormula :=
-  fun a h => LRA.Set.ZFC.TheEmptySetIsEmpty a h
+    Satisfies EndertonMembershipModel assignment emptySetFormula := by
+  sorry
 
 /--
 `endertonSatisfiesPairing` states enderton satisfies pairing.
@@ -149,12 +149,7 @@ theorem endertonSatisfiesPairing
 theorem endertonSatisfiesPairing
     (assignment : Nat → EndertonMembershipModel.Domain) :
     Satisfies EndertonMembershipModel assignment pairingFormula := by
-  intro a b
-  obtain ⟨C, hC⟩ := LRA.Set.ZFC.Pairing a b
-  refine (satisfiesExistsIffSomeWitness _ _ _ _).mpr ⟨C, fun x => ?_⟩
-  refine satisfiesIffF.mpr
-    ⟨fun h => satisfiesOrF.mpr ((hC x).mp h),
-     fun h => (hC x).mpr (satisfiesOrF.mp h)⟩
+  sorry
 
 /--
 `endertonSatisfiesUnion` states enderton satisfies union.
@@ -170,16 +165,7 @@ theorem endertonSatisfiesUnion
 theorem endertonSatisfiesUnion
     (assignment : Nat → EndertonMembershipModel.Domain) :
     Satisfies EndertonMembershipModel assignment unionFormula := by
-  intro F
-  obtain ⟨U, hU⟩ := LRA.Set.ZFC.Union F
-  refine (satisfiesExistsIffSomeWitness _ _ _ _).mpr ⟨U, fun x => ?_⟩
-  refine satisfiesIffF.mpr ⟨fun h => ?_, fun h => ?_⟩
-  · obtain ⟨B, hBF, hxB⟩ := (hU x).mp h
-    exact (satisfiesExistsIffSomeWitness _ _ _ _).mpr
-      ⟨B, (satisfiesAndIffSatisfiesBoth _ _ _ _).mpr ⟨hBF, hxB⟩⟩
-  · obtain ⟨B, hB⟩ := (satisfiesExistsIffSomeWitness _ _ _ _).mp h
-    obtain ⟨hBF, hxB⟩ := (satisfiesAndIffSatisfiesBoth _ _ _ _).mp hB
-    exact (hU x).mpr ⟨B, hBF, hxB⟩
+  sorry
 
 /--
 `endertonSatisfiesPowerSet` states enderton satisfies power set.
@@ -195,10 +181,7 @@ theorem endertonSatisfiesPowerSet
 theorem endertonSatisfiesPowerSet
     (assignment : Nat → EndertonMembershipModel.Domain) :
     Satisfies EndertonMembershipModel assignment powerSetFormula := by
-  intro A
-  obtain ⟨P, hP⟩ := LRA.Set.ZFC.PowerSet A
-  refine (satisfiesExistsIffSomeWitness _ _ _ _).mpr ⟨P, fun X => ?_⟩
-  exact satisfiesIffF.mpr (hP X)
+  sorry
 
 /--
 `endertonSatisfiesInfinity` states enderton satisfies infinity.
@@ -268,38 +251,7 @@ theorem endertonSatisfiesSeparation
     (assignment : Nat → EndertonMembershipModel.Domain) :
     Satisfies EndertonMembershipModel assignment
       (separationInstance property) := by
-  intro A
-  obtain ⟨B, hB⟩ := LRA.Set.ZFC.Separation
-    (fun z => Satisfies EndertonMembershipModel
-      (updateAssignment (updateAssignment assignment 1 A) 0 z) property)
-    A
-  refine (satisfiesExistsIffSomeWitness _ _ _ _).mpr ⟨B, fun x => ?_⟩
-  refine satisfiesIffF.mpr ?_
-  have agrees :
-      ∀ (C z : EndertonMembershipModel.Domain), ∀ candidateVariable,
-        candidateVariable ∈ freeVariables property →
-        updateAssignment (updateAssignment assignment 1 A) 0 z
-            candidateVariable =
-          updateAssignment
-            (updateAssignment (updateAssignment assignment 1 A) 2 C)
-            0 z candidateVariable := by
-    intro C z candidateVariable candidateIsFree
-    by_cases h0 : candidateVariable = 0
-    · subst h0; simp [updateAssignment]
-    · by_cases h2 : candidateVariable = 2
-      · exact absurd (h2 ▸ candidateIsFree) hygienic.2
-      · simp [updateAssignment, h0, h2]
-  constructor
-  · intro hx
-    obtain ⟨hxA, hφ⟩ := (hB x).mp hx
-    refine (satisfiesAndIffSatisfiesBoth _ _ _ _).mpr ⟨hxA, ?_⟩
-    exact (satisfies_iff_of_agrees_on_freeVariables
-      EndertonMembershipModel property (agrees _ x)).mp hφ
-  · intro hx
-    obtain ⟨hxA, hφ⟩ := (satisfiesAndIffSatisfiesBoth _ _ _ _).mp hx
-    refine (hB x).mpr ⟨hxA, ?_⟩
-    exact (satisfies_iff_of_agrees_on_freeVariables
-      EndertonMembershipModel property (agrees _ x)).mpr hφ
+  sorry
 
 /--
 `endertonSatisfiesReplacement` states enderton satisfies replacement.
@@ -335,19 +287,6 @@ theorem endertonModelsZFC :
 -/
 theorem endertonModelsZFC :
     EndertonMembershipModel ∈ ModelsOfFormulaTheory ZFCTheory := by
-  intro assignment formula formulaIsAxiom
-  cases formulaIsAxiom with
-  | extensionality => exact endertonSatisfiesExtensionality assignment
-  | emptySet => exact endertonSatisfiesEmptySet assignment
-  | pairing => exact endertonSatisfiesPairing assignment
-  | union => exact endertonSatisfiesUnion assignment
-  | powerSet => exact endertonSatisfiesPowerSet assignment
-  | infinity => exact endertonSatisfiesInfinity assignment
-  | foundation => exact endertonSatisfiesFoundation assignment
-  | choice => exact endertonSatisfiesChoice assignment
-  | separation property hygienic =>
-      exact endertonSatisfiesSeparation property hygienic assignment
-  | replacement relation hygienic =>
-      exact endertonSatisfiesReplacement relation hygienic assignment
+  sorry
 
 end LRA.Set.ModelTheory

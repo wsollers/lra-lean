@@ -41,8 +41,8 @@ theorem SupremumIsUpperBound
     {relation : LRA.Relation.Endorelation Element}
     {subset : SetObject} {supremum : Element}
     (supremumIsSupremum : Supremum relation subset supremum) :
-    UpperBound relation subset supremum :=
-  supremumIsSupremum.1
+    UpperBound relation subset supremum := by
+  sorry
 
 /-- A supremum lies below every upper bound of the represented subset. -/
 theorem SupremumRelatedToEveryUpperBound
@@ -52,8 +52,8 @@ theorem SupremumRelatedToEveryUpperBound
     {subset : SetObject} {supremum bound : Element}
     (supremumIsSupremum : Supremum relation subset supremum)
     (boundIsUpperBound : UpperBound relation subset bound) :
-    relation supremum bound :=
-  supremumIsSupremum.2 bound boundIsUpperBound
+    relation supremum bound := by
+  sorry
 
 /-- Once a supremum exists, upper bounds are exactly the elements above it. -/
 theorem UpperBoundIffSupremumRelated

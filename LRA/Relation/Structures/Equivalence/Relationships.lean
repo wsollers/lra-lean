@@ -14,13 +14,6 @@ vocabulary.
 -/
 theorem IdentityRelationIsEquivalenceRelation {α : Type u} :
     EquivalenceRelation (IdentityRelation α) := by
-  constructor
-  · intro x
-    exact LRA.Identity.EqualityReflexivity x
-  constructor
-  · intro x y h
-    exact LRA.Identity.EqualitySymmetry h
-  · intro x y z hxy hyz
-    exact LRA.Identity.EqualityTransitivity hxy hyz
+  sorry
 
 end LRA.Relation

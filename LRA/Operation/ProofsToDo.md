@@ -9,13 +9,212 @@ keep source order, because Lean forbids forward references, so source order is
 already a valid topological order. Working this list top to bottom, no entry
 depends on anything not yet proved above it.
 
-**Inventory:** 119 entries across 35 module(s) (0 completed, 119 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
+**Inventory:** 137 entries across 36 module(s) (0 completed, 137 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
+
+Name: BooleanFalseIsTwoSidedAbsorbingForAnd
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing LRA.Operation.Laws.Absorbing.BooleanAndOperation Bool.false
+Predicate logic (unfolded): LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing LRA.Operation.Laws.Absorbing.BooleanAndOperation Bool.false
+Transliterated theorem: TwoSidedAbsorbing BooleanAndOperation false
+Logical form (Lean): : TwoSidedAbsorbing BooleanAndOperation false
+Source: ./Examples.lean#L33
+
+
+
+Name: BooleanTrueIsTwoSidedAbsorbingForOr
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing LRA.Operation.Laws.Absorbing.BooleanOrOperation Bool.true
+Predicate logic (unfolded): LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing LRA.Operation.Laws.Absorbing.BooleanOrOperation Bool.true
+Transliterated theorem: TwoSidedAbsorbing BooleanOrOperation true
+Logical form (Lean): : TwoSidedAbsorbing BooleanOrOperation true
+Source: ./Examples.lean#L46
+
+
+
+Name: BooleanOrAndMutualAbsorption
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Operation.Laws.Absorption.MutualAbsorptionLaw LRA.Operation.Laws.Absorption.BooleanOrOperation   LRA.Operation.Laws.Absorption.BooleanAndOperation
+Predicate logic (unfolded): LRA.Operation.Laws.Absorption.MutualAbsorptionLaw LRA.Operation.Laws.Absorption.BooleanOrOperation LRA.Operation.Laws.Absorption.BooleanAndOperation
+Transliterated theorem: MutualAbsorptionLaw BooleanOrOperation BooleanAndOperation
+Logical form (Lean): : MutualAbsorptionLaw BooleanOrOperation BooleanAndOperation
+Source: ./Examples.lean#L71
+
+
+
+Name: NaturalMaxMinMutualAbsorption
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Operation.Laws.Absorption.MutualAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalMaxOperation   LRA.Operation.Laws.Absorption.NaturalMinOperation
+Predicate logic (unfolded): LRA.Operation.Laws.Absorption.MutualAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalMaxOperation LRA.Operation.Laws.Absorption.NaturalMinOperation
+Transliterated theorem: MutualAbsorptionLaw NaturalMaxOperation NaturalMinOperation
+Logical form (Lean): : MutualAbsorptionLaw NaturalMaxOperation NaturalMinOperation
+Source: ./Examples.lean#L80
+
+
+
+Name: NaturalAdditionAssociative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u_1} {NaturalAddition : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Associative.Associative NaturalAddition
+Predicate logic (unfolded): ∀ {Carrier : Type u_1} {NaturalAddition : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Associative.Associative NaturalAddition
+Transliterated theorem: Associative NaturalAddition
+Logical form (Lean): : Associative NaturalAddition
+Source: ./Examples.lean#L97
+
+
+
+Name: NaturalAdditionTwoSidedCancellative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u_1} {NaturalAddition : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.TwoSidedCancellative NaturalAddition
+Predicate logic (unfolded): ∀ {Carrier : Type u_1} {NaturalAddition : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Cancellation.TwoSidedCancellative NaturalAddition
+Transliterated theorem: TwoSidedCancellative NaturalAddition
+Logical form (Lean): : TwoSidedCancellative NaturalAddition
+Source: ./Examples.lean#L114
+
+
+
+Name: NaturalMultiplicationLeftCancellativeOnNonzero
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Operation.Laws.Cancellation.LeftCancellativeOn (fun fixed => Ne fixed 0)   LRA.Operation.Laws.Cancellation.NaturalMultiplicationForRestrictedCancellation
+Predicate logic (unfolded): LRA.Operation.Laws.Cancellation.LeftCancellativeOn (fun fixed => Ne fixed 0) LRA.Operation.Laws.Cancellation.NaturalMultiplicationForRestrictedCancellation
+Transliterated theorem: LeftCancellativeOn fun fixed ∈ Nat => fixed ≠ 0 NaturalMultiplicationForRestrictedCancellation
+Logical form (Lean): : LeftCancellativeOn (fun fixed : Nat => fixed ≠ 0) NaturalMultiplicationForRestrictedCancellation
+Source: ./Examples.lean#L123
+
+
+
+Name: NaturalMultiplicationRightCancellativeOnNonzero
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Operation.Laws.Cancellation.RightCancellativeOn (fun fixed => Ne fixed 0)   LRA.Operation.Laws.Cancellation.NaturalMultiplicationForRestrictedCancellation
+Predicate logic (unfolded): LRA.Operation.Laws.Cancellation.RightCancellativeOn (fun fixed => Ne fixed 0) LRA.Operation.Laws.Cancellation.NaturalMultiplicationForRestrictedCancellation
+Transliterated theorem: RightCancellativeOn fun fixed ∈ Nat => fixed ≠ 0 NaturalMultiplicationForRestrictedCancellation
+Logical form (Lean): : RightCancellativeOn (fun fixed : Nat => fixed ≠ 0) NaturalMultiplicationForRestrictedCancellation
+Source: ./Examples.lean#L130
+
+
+
+Name: NaturalAdditionClosedOnFullCarrier
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {NaturalAddition : LRA.Operation.BinaryEndoOperation Nat},   LRA.Operation.Laws.Closure.BinaryEndoClosedOn (fun x => True) NaturalAddition
+Predicate logic (unfolded): ∀ {NaturalAddition : LRA.Operation.BinaryEndoOperation Nat}, LRA.Operation.Laws.Closure.BinaryEndoClosedOn (fun x => True) NaturalAddition
+Transliterated theorem: BinaryEndoClosedOn fun _ ∈ Nat => True NaturalAddition
+Logical form (Lean): : BinaryEndoClosedOn (fun _ : Nat => True) NaturalAddition
+Source: ./Examples.lean#L149
+
+
+
+Name: NaturalAdditionCommutative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u_1} {NaturalAddition : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Commutative.Commutative NaturalAddition
+Predicate logic (unfolded): ∀ {Carrier : Type u_1} {NaturalAddition : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Commutative.Commutative NaturalAddition
+Transliterated theorem: Commutative NaturalAddition
+Logical form (Lean): : Commutative NaturalAddition
+Source: ./Examples.lean#L166
+
+
+
+Name: NaturalMultiplicationDistributesOverAddition
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u_1} {NaturalMultiplication NaturalAddition : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Distributive.TwoSidedDistributive NaturalMultiplication NaturalAddition
+Predicate logic (unfolded): ∀ {Carrier : Type u_1} {NaturalMultiplication NaturalAddition : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Distributive.TwoSidedDistributive NaturalMultiplication NaturalAddition
+Transliterated theorem: TwoSidedDistributive NaturalMultiplication NaturalAddition
+Logical form (Lean): : TwoSidedDistributive NaturalMultiplication NaturalAddition
+Source: ./Examples.lean#L183
+
+
+
+Name: BooleanOrIdempotent
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Operation.Laws.Idempotent.Idempotent LRA.Operation.Laws.Idempotent.BooleanOrOperation
+Predicate logic (unfolded): LRA.Operation.Laws.Idempotent.Idempotent LRA.Operation.Laws.Idempotent.BooleanOrOperation
+Transliterated theorem: Idempotent BooleanOrOperation
+Logical form (Lean): : Idempotent BooleanOrOperation
+Source: ./Examples.lean#L204
+
+
+
+Name: BooleanAndIdempotent
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Operation.Laws.Idempotent.Idempotent LRA.Operation.Laws.Idempotent.BooleanAndOperation
+Predicate logic (unfolded): LRA.Operation.Laws.Idempotent.Idempotent LRA.Operation.Laws.Idempotent.BooleanAndOperation
+Transliterated theorem: Idempotent BooleanAndOperation
+Logical form (Lean): : Idempotent BooleanAndOperation
+Source: ./Examples.lean#L217
+
+
+
+Name: BooleanFalseIsTwoSidedIdentityForOr
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Operation.Laws.Identity.TwoSidedIdentity LRA.Operation.Laws.Identity.BooleanOrOperation Bool.false
+Predicate logic (unfolded): LRA.Operation.Laws.Identity.TwoSidedIdentity LRA.Operation.Laws.Identity.BooleanOrOperation Bool.false
+Transliterated theorem: TwoSidedIdentity BooleanOrOperation false
+Logical form (Lean): : TwoSidedIdentity BooleanOrOperation false
+Source: ./Examples.lean#L238
+
+
+
+Name: BooleanTrueIsTwoSidedIdentityForAnd
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Operation.Laws.Identity.TwoSidedIdentity LRA.Operation.Laws.Identity.BooleanAndOperation Bool.true
+Predicate logic (unfolded): LRA.Operation.Laws.Identity.TwoSidedIdentity LRA.Operation.Laws.Identity.BooleanAndOperation Bool.true
+Transliterated theorem: TwoSidedIdentity BooleanAndOperation true
+Logical form (Lean): : TwoSidedIdentity BooleanAndOperation true
+Source: ./Examples.lean#L251
+
+
+
+Name: BooleanXorSelfInverse
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Operation.Laws.Inverse.TwoSidedInverse LRA.Operation.Laws.Inverse.BooleanXorOperation Bool.false   LRA.Operation.Laws.Inverse.BooleanXorInverse
+Predicate logic (unfolded): LRA.Operation.Laws.Inverse.TwoSidedInverse LRA.Operation.Laws.Inverse.BooleanXorOperation Bool.false LRA.Operation.Laws.Inverse.BooleanXorInverse
+Transliterated theorem: TwoSidedInverse BooleanXorOperation false BooleanXorInverse
+Logical form (Lean): : TwoSidedInverse BooleanXorOperation false BooleanXorInverse
+Source: ./Examples.lean#L276
+
+
+
+Name: IntegerAdditionNegationTwoSidedInverse
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Operation.Laws.Inverse.TwoSidedInverse LRA.Operation.Laws.Inverse.IntegerAdditionForInverseExample 0   LRA.Operation.Laws.Inverse.IntegerAdditiveInverse
+Predicate logic (unfolded): LRA.Operation.Laws.Inverse.TwoSidedInverse LRA.Operation.Laws.Inverse.IntegerAdditionForInverseExample 0 LRA.Operation.Laws.Inverse.IntegerAdditiveInverse
+Transliterated theorem: TwoSidedInverse IntegerAdditionForInverseExample 0 IntegerAdditiveInverse
+Logical form (Lean): : TwoSidedInverse IntegerAdditionForInverseExample 0 IntegerAdditiveInverse
+Source: ./Examples.lean#L289
+
+
+
+Name: NaturalZeroNilpotentUnderMultiplication
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Operation.Laws.Nilpotent.NilpotentElement LRA.Operation.Laws.Nilpotent.NaturalMultiplicationForNilpotenceExample 0 0
+Predicate logic (unfolded): LRA.Operation.Laws.Nilpotent.NilpotentElement LRA.Operation.Laws.Nilpotent.NaturalMultiplicationForNilpotenceExample 0 0
+Transliterated theorem: NilpotentElement NaturalMultiplicationForNilpotenceExample 0 0
+Logical form (Lean): : NilpotentElement NaturalMultiplicationForNilpotenceExample 0 0
+Source: ./Examples.lean#L310
+
+
 
 Name: BooleanFirstProjectionLeftAbsorbingButNotRightAbsorbing
 Kind: Theorem
 State: Sorry
-Predicate logic: And (LRA.Operation.Laws.Absorbing.LeftAbsorbing LRA.Operation.Laws.Absorbing.BooleanFirstProjection Bool.false)   (LRA.Operation.Laws.Absorbing.FailsRightAbsorbing LRA.Operation.Laws.Absorbing.BooleanFirstProjection Bool.false)
-Predicate logic (unfolded): And (LRA.Operation.Laws.Absorbing.LeftAbsorbing LRA.Operation.Laws.Absorbing.BooleanFirstProjection Bool.false)   (LRA.Operation.Laws.Absorbing.FailsRightAbsorbing LRA.Operation.Laws.Absorbing.BooleanFirstProjection Bool.false)
+Predicate logic: LeftAbsorbing BooleanFirstProjection false ∧ FailsRightAbsorbing BooleanFirstProjection false
+Predicate logic (unfolded): (LRA.Operation.Laws.Absorbing.LeftAbsorbing LRA.Operation.Laws.Absorbing.BooleanFirstProjection Bool.false ∧ LRA.Operation.Laws.Absorbing.FailsRightAbsorbing LRA.Operation.Laws.Absorbing.BooleanFirstProjection Bool.false)
+Transliterated theorem: LeftAbsorbing BooleanFirstProjection false ∧ FailsRightAbsorbing BooleanFirstProjection false
 Logical form (Lean): : LeftAbsorbing BooleanFirstProjection false ∧ FailsRightAbsorbing BooleanFirstProjection false
 Source: ./Laws/Absorbing/FailureModes.lean#L30
 
@@ -24,8 +223,9 @@ Source: ./Laws/Absorbing/FailureModes.lean#L30
 Name: BooleanSecondProjectionRightAbsorbingButNotLeftAbsorbing
 Kind: Theorem
 State: Sorry
-Predicate logic: And (LRA.Operation.Laws.Absorbing.RightAbsorbing LRA.Operation.Laws.Absorbing.BooleanSecondProjection Bool.false)   (LRA.Operation.Laws.Absorbing.FailsLeftAbsorbing LRA.Operation.Laws.Absorbing.BooleanSecondProjection Bool.false)
-Predicate logic (unfolded): And (LRA.Operation.Laws.Absorbing.RightAbsorbing LRA.Operation.Laws.Absorbing.BooleanSecondProjection Bool.false)   (LRA.Operation.Laws.Absorbing.FailsLeftAbsorbing LRA.Operation.Laws.Absorbing.BooleanSecondProjection Bool.false)
+Predicate logic: RightAbsorbing BooleanSecondProjection false ∧ FailsLeftAbsorbing BooleanSecondProjection false
+Predicate logic (unfolded): (LRA.Operation.Laws.Absorbing.RightAbsorbing LRA.Operation.Laws.Absorbing.BooleanSecondProjection Bool.false ∧ LRA.Operation.Laws.Absorbing.FailsLeftAbsorbing LRA.Operation.Laws.Absorbing.BooleanSecondProjection Bool.false)
+Transliterated theorem: RightAbsorbing BooleanSecondProjection false ∧ FailsLeftAbsorbing BooleanSecondProjection false
 Logical form (Lean): : RightAbsorbing BooleanSecondProjection false ∧ FailsLeftAbsorbing BooleanSecondProjection false
 Source: ./Laws/Absorbing/FailureModes.lean#L36
 
@@ -34,8 +234,9 @@ Source: ./Laws/Absorbing/FailureModes.lean#L36
 Name: LeftAbsorbing.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier},   LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber →     ∀ (element : Carrier), Eq (operation element absorber) absorber
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier},   LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber →     ∀ (element : Carrier), Eq (operation element absorber) absorber
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (law : LeftAbsorbing operation absorber) (element : Carrier), operation absorber element = absorber
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier}, LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber → ∀ (element : Carrier), operation element absorber = absorber
+Transliterated theorem: (∀ element ∈ Carrier), operation absorber element = absorber
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (law : LeftAbsorbing operation absorber) (element : Carrier) : operation absorber element = absorber
 Source: ./Laws/Absorbing/Theorems.lean#L10
 
@@ -44,8 +245,9 @@ Source: ./Laws/Absorbing/Theorems.lean#L10
 Name: RightAbsorbing.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier},   LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber →     ∀ (element : Carrier), Eq (operation absorber element) absorber
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier},   LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber →     ∀ (element : Carrier), Eq (operation absorber element) absorber
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (law : RightAbsorbing operation absorber) (element : Carrier), operation element absorber = absorber
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier}, LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber → ∀ (element : Carrier), operation absorber element = absorber
+Transliterated theorem: (∀ element ∈ Carrier), operation element absorber = absorber
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (law : RightAbsorbing operation absorber) (element : Carrier) : operation element absorber = absorber
 Source: ./Laws/Absorbing/Theorems.lean#L19
 
@@ -55,7 +257,8 @@ Name: TwoSidedAbsorbing.left
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier},   LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing operation absorber →     LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier},   LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing operation absorber →     LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier}, LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing operation absorber → LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber
+Transliterated theorem: LeftAbsorbing operation absorber
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (law : TwoSidedAbsorbing operation absorber) : LeftAbsorbing operation absorber
 Source: ./Laws/Absorbing/Theorems.lean#L28
 
@@ -65,7 +268,8 @@ Name: TwoSidedAbsorbing.right
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier},   LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing operation absorber →     LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier},   LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing operation absorber →     LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier}, LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing operation absorber → LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber
+Transliterated theorem: RightAbsorbing operation absorber
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (law : TwoSidedAbsorbing operation absorber) : RightAbsorbing operation absorber
 Source: ./Laws/Absorbing/Theorems.lean#L36
 
@@ -74,8 +278,9 @@ Source: ./Laws/Absorbing/Theorems.lean#L36
 Name: TwoSidedAbsorbing.of_left_right
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier},   And (LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber)       (LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber) →     LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing operation absorber
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier},   And (LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber)       (LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber) →     LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing operation absorber
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (leftLaw : LeftAbsorbing operation absorber) (rightLaw : RightAbsorbing operation absorber), TwoSidedAbsorbing operation absorber
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier}, (LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber ∧ LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber) → LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing operation absorber
+Transliterated theorem: TwoSidedAbsorbing operation absorber
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (leftLaw : LeftAbsorbing operation absorber) (rightLaw : RightAbsorbing operation absorber) : TwoSidedAbsorbing operation absorber
 Source: ./Laws/Absorbing/Theorems.lean#L44
 
@@ -84,8 +289,9 @@ Source: ./Laws/Absorbing/Theorems.lean#L44
 Name: LeftRightAbsorbersCoincide
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {leftAbsorber rightAbsorber : Carrier},   And (LRA.Operation.Laws.Absorbing.LeftAbsorbing operation leftAbsorber)       (LRA.Operation.Laws.Absorbing.RightAbsorbing operation rightAbsorber) →     Eq leftAbsorber rightAbsorber
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {leftAbsorber rightAbsorber : Carrier},   And (LRA.Operation.Laws.Absorbing.LeftAbsorbing operation leftAbsorber)       (LRA.Operation.Laws.Absorbing.RightAbsorbing operation rightAbsorber) →     Eq leftAbsorber rightAbsorber
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {leftAbsorber rightAbsorber : Carrier} (leftLaw : LeftAbsorbing operation leftAbsorber) (rightLaw : RightAbsorbing operation rightAbsorber), leftAbsorber = rightAbsorber
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {leftAbsorber rightAbsorber : Carrier}, (LRA.Operation.Laws.Absorbing.LeftAbsorbing operation leftAbsorber ∧ LRA.Operation.Laws.Absorbing.RightAbsorbing operation rightAbsorber) → leftAbsorber = rightAbsorber
+Transliterated theorem: leftAbsorber = rightAbsorber
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {leftAbsorber rightAbsorber : Carrier} (leftLaw : LeftAbsorbing operation leftAbsorber) (rightLaw : RightAbsorbing operation rightAbsorber) : leftAbsorber = rightAbsorber
 Source: ./Laws/Absorbing/Relationships.lean#L10
 
@@ -94,8 +300,9 @@ Source: ./Laws/Absorbing/Relationships.lean#L10
 Name: TwoSidedAbsorbingUnique
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {firstAbsorber secondAbsorber : Carrier},   And (LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing operation firstAbsorber)       (LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing operation secondAbsorber) →     Eq firstAbsorber secondAbsorber
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {firstAbsorber secondAbsorber : Carrier},   And (LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing operation firstAbsorber)       (LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing operation secondAbsorber) →     Eq firstAbsorber secondAbsorber
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {firstAbsorber secondAbsorber : Carrier} (firstLaw : TwoSidedAbsorbing operation firstAbsorber) (secondLaw : TwoSidedAbsorbing operation secondAbsorber), firstAbsorber = secondAbsorber
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {firstAbsorber secondAbsorber : Carrier}, (LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing operation firstAbsorber ∧ LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing operation secondAbsorber) → firstAbsorber = secondAbsorber
+Transliterated theorem: firstAbsorber = secondAbsorber
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {firstAbsorber secondAbsorber : Carrier} (firstLaw : TwoSidedAbsorbing operation firstAbsorber) (secondLaw : TwoSidedAbsorbing operation secondAbsorber) : firstAbsorber = secondAbsorber
 Source: ./Laws/Absorbing/Relationships.lean#L19
 
@@ -104,8 +311,9 @@ Source: ./Laws/Absorbing/Relationships.lean#L19
 Name: NaturalAdditionMultiplicationFailAbsorption
 Kind: Theorem
 State: Sorry
-Predicate logic: And   (LRA.Operation.Laws.Absorption.FailsAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalAdditionOperation     LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation)   (LRA.Operation.Laws.Absorption.FailsAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation     LRA.Operation.Laws.Absorption.NaturalAdditionOperation)
-Predicate logic (unfolded): And   (LRA.Operation.Laws.Absorption.FailsAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalAdditionOperation     LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation)   (LRA.Operation.Laws.Absorption.FailsAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation     LRA.Operation.Laws.Absorption.NaturalAdditionOperation)
+Predicate logic: FailsAbsorptionLaw NaturalAdditionOperation NaturalMultiplicationOperation ∧ FailsAbsorptionLaw NaturalMultiplicationOperation NaturalAdditionOperation
+Predicate logic (unfolded): (LRA.Operation.Laws.Absorption.FailsAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalAdditionOperation LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation ∧ LRA.Operation.Laws.Absorption.FailsAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation LRA.Operation.Laws.Absorption.NaturalAdditionOperation)
+Transliterated theorem: FailsAbsorptionLaw NaturalAdditionOperation NaturalMultiplicationOperation ∧ FailsAbsorptionLaw NaturalMultiplicationOperation NaturalAdditionOperation
 Logical form (Lean): : FailsAbsorptionLaw NaturalAdditionOperation NaturalMultiplicationOperation ∧ FailsAbsorptionLaw NaturalMultiplicationOperation NaturalAdditionOperation
 Source: ./Laws/Absorption/FailureModes.lean#L38
 
@@ -114,8 +322,9 @@ Source: ./Laws/Absorption/FailureModes.lean#L38
 Name: NaturalMultiplicationHasAbsorberButFailsAbsorption
 Kind: Theorem
 State: Sorry
-Predicate logic: And (LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation 0)   (LRA.Operation.Laws.Absorption.FailsAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation     LRA.Operation.Laws.Absorption.NaturalAdditionOperation)
-Predicate logic (unfolded): And (LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation 0)   (LRA.Operation.Laws.Absorption.FailsAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation     LRA.Operation.Laws.Absorption.NaturalAdditionOperation)
+Predicate logic: LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing NaturalMultiplicationOperation 0 ∧ FailsAbsorptionLaw NaturalMultiplicationOperation NaturalAdditionOperation
+Predicate logic (unfolded): (LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation 0 ∧ LRA.Operation.Laws.Absorption.FailsAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation LRA.Operation.Laws.Absorption.NaturalAdditionOperation)
+Transliterated theorem: LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing NaturalMultiplicationOperation 0 ∧ FailsAbsorptionLaw NaturalMultiplicationOperation NaturalAdditionOperation
 Logical form (Lean): : LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing NaturalMultiplicationOperation 0 ∧ FailsAbsorptionLaw NaturalMultiplicationOperation NaturalAdditionOperation
 Source: ./Laws/Absorption/FailureModes.lean#L45
 
@@ -124,8 +333,9 @@ Source: ./Laws/Absorption/FailureModes.lean#L45
 Name: NaturalMaxHasNoAbsorbingElement
 Kind: Theorem
 State: Sorry
-Predicate logic: And   (LRA.Operation.Laws.Absorption.MutualAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalMaxOperation     LRA.Operation.Laws.Absorption.NaturalMinOperation)   (Not     (Exists fun absorber =>       LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing LRA.Operation.Laws.Absorption.NaturalMaxOperation absorber))
-Predicate logic (unfolded): And   (LRA.Operation.Laws.Absorption.MutualAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalMaxOperation     LRA.Operation.Laws.Absorption.NaturalMinOperation)   (Not     (Exists fun absorber =>       LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing LRA.Operation.Laws.Absorption.NaturalMaxOperation absorber))
+Predicate logic: MutualAbsorptionLaw NaturalMaxOperation NaturalMinOperation ∧ Not (∃ absorber : Nat, LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing NaturalMaxOperation absorber)
+Predicate logic (unfolded): (LRA.Operation.Laws.Absorption.MutualAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalMaxOperation LRA.Operation.Laws.Absorption.NaturalMinOperation ∧ ¬ Exists fun absorber => LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing LRA.Operation.Laws.Absorption.NaturalMaxOperation absorber)
+Transliterated theorem: MutualAbsorptionLaw NaturalMaxOperation NaturalMinOperation ∧ Not ∃ absorber ∈ Nat, LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing NaturalMaxOperation absorber
 Logical form (Lean): : MutualAbsorptionLaw NaturalMaxOperation NaturalMinOperation ∧ Not (∃ absorber : Nat, LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing NaturalMaxOperation absorber)
 Source: ./Laws/Absorption/FailureModes.lean#L54
 
@@ -136,6 +346,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: LRA.Operation.Laws.Associative.FailsAssociative LRA.Operation.Laws.Associative.NaturalSubtraction
 Predicate logic (unfolded): LRA.Operation.Laws.Associative.FailsAssociative LRA.Operation.Laws.Associative.NaturalSubtraction
+Transliterated theorem: FailsAssociative NaturalSubtraction
 Logical form (Lean): : FailsAssociative NaturalSubtraction
 Source: ./Laws/Associative/FailureModes.lean#L19
 
@@ -144,8 +355,9 @@ Source: ./Laws/Associative/FailureModes.lean#L19
 Name: Associative.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Associative.Associative operation →     ∀ (first second third : Carrier),       Eq (operation (operation first second) third) (operation first (operation second third))
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Associative.Associative operation →     ∀ (first second third : Carrier),       Eq (operation (operation first second) third) (operation first (operation second third))
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Associative operation) (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Associative.Associative operation → ∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
+Transliterated theorem: (∀ first second third ∈ Carrier), operation (operation first second) third = operation first (operation second third)
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Associative operation) (first second third : Carrier) : operation (operation first second) third = operation first (operation second third)
 Source: ./Laws/Associative/Theorems.lean#L10
 
@@ -154,8 +366,9 @@ Source: ./Laws/Associative/Theorems.lean#L10
 Name: Associative.reassociate_left
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Associative.Associative operation →     ∀ (first second third : Carrier),       Eq (operation (operation first second) third) (operation first (operation second third))
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Associative.Associative operation →     ∀ (first second third : Carrier),       Eq (operation (operation first second) third) (operation first (operation second third))
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Associative operation) (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Associative.Associative operation → ∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
+Transliterated theorem: (∀ first second third ∈ Carrier), operation (operation first second) third = operation first (operation second third)
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Associative operation) (first second third : Carrier) : operation (operation first second) third = operation first (operation second third)
 Source: ./Laws/Associative/Theorems.lean#L19
 
@@ -164,8 +377,9 @@ Source: ./Laws/Associative/Theorems.lean#L19
 Name: Associative.reassociate_right
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Associative.Associative operation →     ∀ (first second third : Carrier),       Eq (operation first (operation second third)) (operation (operation first second) third)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Associative.Associative operation →     ∀ (first second third : Carrier),       Eq (operation first (operation second third)) (operation (operation first second) third)
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Associative operation) (first second third : Carrier), operation first (operation second third) = operation (operation first second) third
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Associative.Associative operation → ∀ (first second third : Carrier), operation first (operation second third) = operation (operation first second) third
+Transliterated theorem: (∀ first second third ∈ Carrier), operation first (operation second third) = operation (operation first second) third
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Associative operation) (first second third : Carrier) : operation first (operation second third) = operation (operation first second) third
 Source: ./Laws/Associative/Theorems.lean#L28
 
@@ -174,8 +388,9 @@ Source: ./Laws/Associative/Theorems.lean#L28
 Name: Associative.four_left
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Associative.Associative operation →     ∀ (first second third fourth : Carrier),       Eq (operation (operation (operation first second) third) fourth)         (operation first (operation second (operation third fourth)))
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Associative.Associative operation →     ∀ (first second third fourth : Carrier),       Eq (operation (operation (operation first second) third) fourth)         (operation first (operation second (operation third fourth)))
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Associative operation) (first second third fourth : Carrier), operation (operation (operation first second) third) fourth = operation first (operation second (operation third fourth))
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Associative.Associative operation → ∀ (first second third fourth : Carrier), operation (operation (operation first second) third) fourth = operation first (operation second (operation third fourth))
+Transliterated theorem: (∀ first second third fourth ∈ Carrier), operation (operation (operation first second) third) fourth = operation first (operation second (operation third fourth))
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Associative operation) (first second third fourth : Carrier) : operation (operation (operation first second) third) fourth = operation first (operation second (operation third fourth))
 Source: ./Laws/Associative/Theorems.lean#L37
 
@@ -184,8 +399,9 @@ Source: ./Laws/Associative/Theorems.lean#L37
 Name: Associative.four_right
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Associative.Associative operation →     ∀ (first second third fourth : Carrier),       Eq (operation first (operation second (operation third fourth)))         (operation (operation (operation first second) third) fourth)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Associative.Associative operation →     ∀ (first second third fourth : Carrier),       Eq (operation first (operation second (operation third fourth)))         (operation (operation (operation first second) third) fourth)
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Associative operation) (first second third fourth : Carrier), operation first (operation second (operation third fourth)) = operation (operation (operation first second) third) fourth
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Associative.Associative operation → ∀ (first second third fourth : Carrier), operation first (operation second (operation third fourth)) = operation (operation (operation first second) third) fourth
+Transliterated theorem: (∀ first second third fourth ∈ Carrier), operation first (operation second (operation third fourth)) = operation (operation (operation first second) third) fourth
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Associative operation) (first second third fourth : Carrier) : operation first (operation second (operation third fourth)) = operation (operation (operation first second) third) fourth
 Source: ./Laws/Associative/Theorems.lean#L46
 
@@ -194,8 +410,9 @@ Source: ./Laws/Associative/Theorems.lean#L46
 Name: Associative.preserves_left_nested_shape
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Associative.Associative operation →     ∀ (first second third : Carrier),       Eq (operation (operation first second) third) (operation first (operation second third))
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Associative.Associative operation →     ∀ (first second third : Carrier),       Eq (operation (operation first second) third) (operation first (operation second third))
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Associative operation) (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Associative.Associative operation → ∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
+Transliterated theorem: (∀ first second third ∈ Carrier), operation (operation first second) third = operation first (operation second third)
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Associative operation) (first second third : Carrier) : operation (operation first second) third = operation first (operation second third)
 Source: ./Laws/Associative/Relationships.lean#L10
 
@@ -206,6 +423,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: LRA.Operation.Laws.Cancellation.FailsLeftCancellative LRA.Operation.Laws.Cancellation.NaturalMultiplication
 Predicate logic (unfolded): LRA.Operation.Laws.Cancellation.FailsLeftCancellative LRA.Operation.Laws.Cancellation.NaturalMultiplication
+Transliterated theorem: FailsLeftCancellative NaturalMultiplication
 Logical form (Lean): : FailsLeftCancellative NaturalMultiplication
 Source: ./Laws/Cancellation/FailureModes.lean#L23
 
@@ -216,8 +434,9 @@ Kind: Theorem
 State: Sorry
 Predicate logic: LRA.Operation.Laws.Cancellation.FailsRightCancellative LRA.Operation.Laws.Cancellation.NaturalMultiplication
 Predicate logic (unfolded): LRA.Operation.Laws.Cancellation.FailsRightCancellative LRA.Operation.Laws.Cancellation.NaturalMultiplication
+Transliterated theorem: FailsRightCancellative NaturalMultiplication
 Logical form (Lean): : FailsRightCancellative NaturalMultiplication
-Source: ./Laws/Cancellation/FailureModes.lean#L27
+Source: ./Laws/Cancellation/FailureModes.lean#L28
 
 
 
@@ -226,8 +445,9 @@ Kind: Theorem
 State: Sorry
 Predicate logic: LRA.Operation.Laws.Cancellation.FailsLeftRegular LRA.Operation.Laws.Cancellation.NaturalMultiplication 0
 Predicate logic (unfolded): LRA.Operation.Laws.Cancellation.FailsLeftRegular LRA.Operation.Laws.Cancellation.NaturalMultiplication 0
+Transliterated theorem: FailsLeftRegular NaturalMultiplication 0
 Logical form (Lean): : FailsLeftRegular NaturalMultiplication 0
-Source: ./Laws/Cancellation/FailureModes.lean#L43
+Source: ./Laws/Cancellation/FailureModes.lean#L44
 
 
 
@@ -236,16 +456,18 @@ Kind: Theorem
 State: Sorry
 Predicate logic: LRA.Operation.Laws.Cancellation.FailsRightRegular LRA.Operation.Laws.Cancellation.NaturalMultiplication 0
 Predicate logic (unfolded): LRA.Operation.Laws.Cancellation.FailsRightRegular LRA.Operation.Laws.Cancellation.NaturalMultiplication 0
+Transliterated theorem: FailsRightRegular NaturalMultiplication 0
 Logical form (Lean): : FailsRightRegular NaturalMultiplication 0
-Source: ./Laws/Cancellation/FailureModes.lean#L47
+Source: ./Laws/Cancellation/FailureModes.lean#L49
 
 
 
 Name: LeftCancellative.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {fixed : Carrier},   LRA.Operation.Laws.Cancellation.RightRegular operation fixed →     ∀ (first second : Carrier), Eq (operation first fixed) (operation second fixed) → Eq first second
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {fixed : Carrier},   LRA.Operation.Laws.Cancellation.RightRegular operation fixed →     ∀ (first second : Carrier), Eq (operation first fixed) (operation second fixed) → Eq first second
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : LeftCancellative operation) (fixed first second : Carrier) (equal_products : operation fixed first = operation fixed second), first = second
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {fixed : Carrier}, LRA.Operation.Laws.Cancellation.RightRegular operation fixed → ∀ (first second : Carrier), operation first fixed = operation second fixed → first = second
+Transliterated theorem: (∀ fixed first second ∈ Carrier), (operation fixed first = operation fixed second) → first = second
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : LeftCancellative operation) (fixed first second : Carrier) (equal_products : operation fixed first = operation fixed second) : first = second
 Source: ./Laws/Cancellation/Theorems.lean#L9
 
@@ -255,39 +477,43 @@ Name: RightCancellative.apply
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.RightCancellativeOn eligible operation →     ∀ (fixed : Carrier), eligible fixed → LRA.Operation.Laws.Cancellation.RightRegular operation fixed
-Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.RightCancellativeOn eligible operation →     ∀ (fixed : Carrier), eligible fixed → LRA.Operation.Laws.Cancellation.RightRegular operation fixed
+Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Cancellation.RightCancellativeOn eligible operation → ∀ (fixed : Carrier), eligible fixed → LRA.Operation.Laws.Cancellation.RightRegular operation fixed
+Transliterated theorem: (∀ first second fixed ∈ Carrier), (operation first fixed = operation second fixed) → first = second
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : RightCancellative operation) (first second fixed : Carrier) (equal_products : operation first fixed = operation second fixed) : first = second
-Source: ./Laws/Cancellation/Theorems.lean#L17
+Source: ./Laws/Cancellation/Theorems.lean#L18
 
 
 
 Name: LeftRegular.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.RightCancellative operation →     ∀ (first second fixed : Carrier), Eq (operation first fixed) (operation second fixed) → Eq first second
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.RightCancellative operation →     ∀ (first second fixed : Carrier), Eq (operation first fixed) (operation second fixed) → Eq first second
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {fixed : Carrier} (law : LeftRegular operation fixed) (first second : Carrier) (equal_products : operation fixed first = operation fixed second), first = second
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Cancellation.RightCancellative operation → ∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second
+Transliterated theorem: (∀ first second ∈ Carrier), (operation fixed first = operation fixed second) → first = second
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {fixed : Carrier} (law : LeftRegular operation fixed) (first second : Carrier) (equal_products : operation fixed first = operation fixed second) : first = second
-Source: ./Laws/Cancellation/Theorems.lean#L25
+Source: ./Laws/Cancellation/Theorems.lean#L27
 
 
 
 Name: RightRegular.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.LeftCancellative operation →     ∀ (fixed first second : Carrier), Eq (operation fixed first) (operation fixed second) → Eq first second
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.LeftCancellative operation →     ∀ (fixed first second : Carrier), Eq (operation fixed first) (operation fixed second) → Eq first second
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {fixed : Carrier} (law : RightRegular operation fixed) (first second : Carrier) (equal_products : operation first fixed = operation second fixed), first = second
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Cancellation.LeftCancellative operation → ∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second
+Transliterated theorem: (∀ first second ∈ Carrier), (operation first fixed = operation second fixed) → first = second
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {fixed : Carrier} (law : RightRegular operation fixed) (first second : Carrier) (equal_products : operation first fixed = operation second fixed) : first = second
-Source: ./Laws/Cancellation/Theorems.lean#L34
+Source: ./Laws/Cancellation/Theorems.lean#L37
 
 
 
 Name: LeftCancellativeOn.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {fixed : Carrier},   LRA.Operation.Laws.Cancellation.LeftRegular operation fixed →     ∀ (first second : Carrier), Eq (operation fixed first) (operation fixed second) → Eq first second
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {fixed : Carrier},   LRA.Operation.Laws.Cancellation.LeftRegular operation fixed →     ∀ (first second : Carrier), Eq (operation fixed first) (operation fixed second) → Eq first second
+Predicate logic: ∀ {Carrier : Type u} {eligible : Carrier -> Prop} {operation : BinaryEndoOperation Carrier} (law : LeftCancellativeOn eligible operation) (fixed : Carrier) (eligible_fixed : eligible fixed), LeftRegular operation fixed
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {fixed : Carrier}, LRA.Operation.Laws.Cancellation.LeftRegular operation fixed → ∀ (first second : Carrier), operation fixed first = operation fixed second → first = second
+Transliterated theorem: (∀ fixed ∈ Carrier), LeftRegular operation fixed
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier -> Prop} {operation : BinaryEndoOperation Carrier} (law : LeftCancellativeOn eligible operation) (fixed : Carrier) (eligible_fixed : eligible fixed) : LeftRegular operation fixed
-Source: ./Laws/Cancellation/Theorems.lean#L43
+Source: ./Laws/Cancellation/Theorems.lean#L47
 
 
 
@@ -295,9 +521,10 @@ Name: RightCancellativeOn.apply
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.LeftCancellativeOn eligible operation →     ∀ (fixed : Carrier), eligible fixed → LRA.Operation.Laws.Cancellation.LeftRegular operation fixed
-Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.LeftCancellativeOn eligible operation →     ∀ (fixed : Carrier), eligible fixed → LRA.Operation.Laws.Cancellation.LeftRegular operation fixed
+Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Cancellation.LeftCancellativeOn eligible operation → ∀ (fixed : Carrier), eligible fixed → LRA.Operation.Laws.Cancellation.LeftRegular operation fixed
+Transliterated theorem: (∀ fixed ∈ Carrier), RightRegular operation fixed
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier -> Prop} {operation : BinaryEndoOperation Carrier} (law : RightCancellativeOn eligible operation) (fixed : Carrier) (eligible_fixed : eligible fixed) : RightRegular operation fixed
-Source: ./Laws/Cancellation/Theorems.lean#L52
+Source: ./Laws/Cancellation/Theorems.lean#L57
 
 
 
@@ -305,9 +532,10 @@ Name: TwoSidedCancellativeOn.left
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.TwoSidedCancellativeOn eligible operation →     LRA.Operation.Laws.Cancellation.LeftCancellativeOn eligible operation
-Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.TwoSidedCancellativeOn eligible operation →     LRA.Operation.Laws.Cancellation.LeftCancellativeOn eligible operation
+Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Cancellation.TwoSidedCancellativeOn eligible operation → LRA.Operation.Laws.Cancellation.LeftCancellativeOn eligible operation
+Transliterated theorem: LeftCancellativeOn eligible operation
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier -> Prop} {operation : BinaryEndoOperation Carrier} (law : TwoSidedCancellativeOn eligible operation) : LeftCancellativeOn eligible operation
-Source: ./Laws/Cancellation/Theorems.lean#L61
+Source: ./Laws/Cancellation/Theorems.lean#L67
 
 
 
@@ -315,19 +543,21 @@ Name: TwoSidedCancellativeOn.right
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.TwoSidedCancellativeOn eligible operation →     LRA.Operation.Laws.Cancellation.RightCancellativeOn eligible operation
-Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.TwoSidedCancellativeOn eligible operation →     LRA.Operation.Laws.Cancellation.RightCancellativeOn eligible operation
+Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Cancellation.TwoSidedCancellativeOn eligible operation → LRA.Operation.Laws.Cancellation.RightCancellativeOn eligible operation
+Transliterated theorem: RightCancellativeOn eligible operation
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier -> Prop} {operation : BinaryEndoOperation Carrier} (law : TwoSidedCancellativeOn eligible operation) : RightCancellativeOn eligible operation
-Source: ./Laws/Cancellation/Theorems.lean#L68
+Source: ./Laws/Cancellation/Theorems.lean#L75
 
 
 
 Name: TwoSidedCancellativeOn.of_left_right
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier},   And (LRA.Operation.Laws.Cancellation.LeftCancellativeOn eligible operation)       (LRA.Operation.Laws.Cancellation.RightCancellativeOn eligible operation) →     LRA.Operation.Laws.Cancellation.TwoSidedCancellativeOn eligible operation
-Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier},   And (LRA.Operation.Laws.Cancellation.LeftCancellativeOn eligible operation)       (LRA.Operation.Laws.Cancellation.RightCancellativeOn eligible operation) →     LRA.Operation.Laws.Cancellation.TwoSidedCancellativeOn eligible operation
+Predicate logic: ∀ {Carrier : Type u} {eligible : Carrier -> Prop} {operation : BinaryEndoOperation Carrier} (leftLaw : LeftCancellativeOn eligible operation) (rightLaw : RightCancellativeOn eligible operation), TwoSidedCancellativeOn eligible operation
+Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Operation.Laws.Cancellation.LeftCancellativeOn eligible operation ∧ LRA.Operation.Laws.Cancellation.RightCancellativeOn eligible operation) → LRA.Operation.Laws.Cancellation.TwoSidedCancellativeOn eligible operation
+Transliterated theorem: TwoSidedCancellativeOn eligible operation
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier -> Prop} {operation : BinaryEndoOperation Carrier} (leftLaw : LeftCancellativeOn eligible operation) (rightLaw : RightCancellativeOn eligible operation) : TwoSidedCancellativeOn eligible operation
-Source: ./Laws/Cancellation/Theorems.lean#L75
+Source: ./Laws/Cancellation/Theorems.lean#L83
 
 
 
@@ -335,9 +565,10 @@ Name: TwoSidedCancellative.left
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.TwoSidedCancellative operation →     LRA.Operation.Laws.Cancellation.LeftCancellative operation
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.TwoSidedCancellative operation →     LRA.Operation.Laws.Cancellation.LeftCancellative operation
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Cancellation.TwoSidedCancellative operation → LRA.Operation.Laws.Cancellation.LeftCancellative operation
+Transliterated theorem: LeftCancellative operation
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : TwoSidedCancellative operation) : LeftCancellative operation
-Source: ./Laws/Cancellation/Theorems.lean#L83
+Source: ./Laws/Cancellation/Theorems.lean#L92
 
 
 
@@ -345,19 +576,21 @@ Name: TwoSidedCancellative.right
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.TwoSidedCancellative operation →     LRA.Operation.Laws.Cancellation.RightCancellative operation
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.TwoSidedCancellative operation →     LRA.Operation.Laws.Cancellation.RightCancellative operation
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Cancellation.TwoSidedCancellative operation → LRA.Operation.Laws.Cancellation.RightCancellative operation
+Transliterated theorem: RightCancellative operation
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : TwoSidedCancellative operation) : RightCancellative operation
-Source: ./Laws/Cancellation/Theorems.lean#L89
+Source: ./Laws/Cancellation/Theorems.lean#L99
 
 
 
 Name: TwoSidedCancellative.of_left_right
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   And (LRA.Operation.Laws.Cancellation.LeftCancellative operation)       (LRA.Operation.Laws.Cancellation.RightCancellative operation) →     LRA.Operation.Laws.Cancellation.TwoSidedCancellative operation
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   And (LRA.Operation.Laws.Cancellation.LeftCancellative operation)       (LRA.Operation.Laws.Cancellation.RightCancellative operation) →     LRA.Operation.Laws.Cancellation.TwoSidedCancellative operation
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (leftLaw : LeftCancellative operation) (rightLaw : RightCancellative operation), TwoSidedCancellative operation
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Operation.Laws.Cancellation.LeftCancellative operation ∧ LRA.Operation.Laws.Cancellation.RightCancellative operation) → LRA.Operation.Laws.Cancellation.TwoSidedCancellative operation
+Transliterated theorem: TwoSidedCancellative operation
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (leftLaw : LeftCancellative operation) (rightLaw : RightCancellative operation) : TwoSidedCancellative operation
-Source: ./Laws/Cancellation/Theorems.lean#L95
+Source: ./Laws/Cancellation/Theorems.lean#L106
 
 
 
@@ -365,7 +598,8 @@ Name: OddNaturalAdditionFailsClosure
 Kind: Theorem
 State: Sorry
 Predicate logic: LRA.Operation.Laws.Closure.FailsBinaryClosedUnder LRA.Operation.Laws.Closure.OddNaturalCarrier   LRA.Operation.Laws.Closure.OddNaturalCarrier LRA.Operation.Laws.Closure.OddNaturalCarrier   LRA.Operation.Laws.Closure.NaturalAdditionForClosureFailure
-Predicate logic (unfolded): LRA.Operation.Laws.Closure.FailsBinaryClosedUnder LRA.Operation.Laws.Closure.OddNaturalCarrier   LRA.Operation.Laws.Closure.OddNaturalCarrier LRA.Operation.Laws.Closure.OddNaturalCarrier   LRA.Operation.Laws.Closure.NaturalAdditionForClosureFailure
+Predicate logic (unfolded): LRA.Operation.Laws.Closure.FailsBinaryClosedUnder LRA.Operation.Laws.Closure.OddNaturalCarrier LRA.Operation.Laws.Closure.OddNaturalCarrier LRA.Operation.Laws.Closure.OddNaturalCarrier LRA.Operation.Laws.Closure.NaturalAdditionForClosureFailure
+Transliterated theorem: FailsBinaryClosedUnder OddNaturalCarrier OddNaturalCarrier OddNaturalCarrier NaturalAdditionForClosureFailure
 Logical form (Lean): : FailsBinaryClosedUnder OddNaturalCarrier OddNaturalCarrier OddNaturalCarrier NaturalAdditionForClosureFailure
 Source: ./Laws/Closure/FailureModes.lean#L22
 
@@ -374,8 +608,9 @@ Source: ./Laws/Closure/FailureModes.lean#L22
 Name: UnaryClosedUnder.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Left : Type u} {Right : Type v} {Codomain : Type w} {leftCarrier : Left → Prop} {rightCarrier : Right → Prop}   {resultCarrier : Codomain → Prop} {operation : LRA.Operation.HeterogeneousBinaryOperation Left Right Codomain},   LRA.Operation.Laws.Closure.BinaryClosedUnder leftCarrier rightCarrier resultCarrier operation →     ∀ {left : Left} {right : Right}, And (leftCarrier left) (rightCarrier right) → resultCarrier (operation left right)
-Predicate logic (unfolded): ∀ {Left : Type u} {Right : Type v} {Codomain : Type w} {leftCarrier : Left → Prop} {rightCarrier : Right → Prop}   {resultCarrier : Codomain → Prop} {operation : LRA.Operation.HeterogeneousBinaryOperation Left Right Codomain},   LRA.Operation.Laws.Closure.BinaryClosedUnder leftCarrier rightCarrier resultCarrier operation →     ∀ {left : Left} {right : Right}, And (leftCarrier left) (rightCarrier right) → resultCarrier (operation left right)
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} {domainCarrier : Domain → Prop} {codomainCarrier : Codomain → Prop} {operation : HeterogeneousUnaryOperation Domain Codomain} (law : UnaryClosedUnder domainCarrier codomainCarrier operation) {input : Domain} (input_mem : domainCarrier input), codomainCarrier (operation input)
+Predicate logic (unfolded): ∀ {Left : Type u} {Right : Type v} {Codomain : Type w} {leftCarrier : Left → Prop} {rightCarrier : Right → Prop} {resultCarrier : Codomain → Prop} {operation : LRA.Operation.HeterogeneousBinaryOperation Left Right Codomain}, LRA.Operation.Laws.Closure.BinaryClosedUnder leftCarrier rightCarrier resultCarrier operation → ∀ {left : Left} {right : Right}, (leftCarrier left ∧ rightCarrier right) → resultCarrier (operation left right)
+Transliterated theorem: codomainCarrier (operation input)
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} {domainCarrier : Domain → Prop} {codomainCarrier : Codomain → Prop} {operation : HeterogeneousUnaryOperation Domain Codomain} (law : UnaryClosedUnder domainCarrier codomainCarrier operation) {input : Domain} (input_mem : domainCarrier input) : codomainCarrier (operation input)
 Source: ./Laws/Closure/Theorems.lean#L9
 
@@ -385,19 +620,21 @@ Name: BinaryClosedUnder.apply
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} {domainCarrier : Domain → Prop} {codomainCarrier : Codomain → Prop}   {operation : LRA.Operation.HeterogeneousUnaryOperation Domain Codomain},   LRA.Operation.Laws.Closure.UnaryClosedUnder domainCarrier codomainCarrier operation →     ∀ {input : Domain}, domainCarrier input → codomainCarrier (operation input)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} {domainCarrier : Domain → Prop} {codomainCarrier : Codomain → Prop}   {operation : LRA.Operation.HeterogeneousUnaryOperation Domain Codomain},   LRA.Operation.Laws.Closure.UnaryClosedUnder domainCarrier codomainCarrier operation →     ∀ {input : Domain}, domainCarrier input → codomainCarrier (operation input)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} {domainCarrier : Domain → Prop} {codomainCarrier : Codomain → Prop} {operation : LRA.Operation.HeterogeneousUnaryOperation Domain Codomain}, LRA.Operation.Laws.Closure.UnaryClosedUnder domainCarrier codomainCarrier operation → ∀ {input : Domain}, domainCarrier input → codomainCarrier (operation input)
+Transliterated theorem: resultCarrier (operation left right)
 Logical form (Lean): {Left : Type u} {Right : Type v} {Codomain : Type w} {leftCarrier : Left → Prop} {rightCarrier : Right → Prop} {resultCarrier : Codomain → Prop} {operation : HeterogeneousBinaryOperation Left Right Codomain} (law : BinaryClosedUnder leftCarrier rightCarrier resultCarrier operation) {left : Left} {right : Right} (left_mem : leftCarrier left) (right_mem : rightCarrier right) : resultCarrier (operation left right)
-Source: ./Laws/Closure/Theorems.lean#L19
+Source: ./Laws/Closure/Theorems.lean#L20
 
 
 
 Name: BinaryEndoClosedOn.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Ambient : Type u} {carrier : Ambient → Prop} {operation : LRA.Operation.BinaryEndoOperation Ambient},   LRA.Operation.Laws.Closure.BinaryEndoClosedOn carrier operation →     ∀ {left right : Ambient}, And (carrier left) (carrier right) → carrier (operation left right)
-Predicate logic (unfolded): ∀ {Ambient : Type u} {carrier : Ambient → Prop} {operation : LRA.Operation.BinaryEndoOperation Ambient},   LRA.Operation.Laws.Closure.BinaryEndoClosedOn carrier operation →     ∀ {left right : Ambient}, And (carrier left) (carrier right) → carrier (operation left right)
+Predicate logic: ∀ {Ambient : Type u} {carrier : Ambient → Prop} {operation : BinaryEndoOperation Ambient} (law : BinaryEndoClosedOn carrier operation) {left right : Ambient} (left_mem : carrier left) (right_mem : carrier right), carrier (operation left right)
+Predicate logic (unfolded): ∀ {Ambient : Type u} {carrier : Ambient → Prop} {operation : LRA.Operation.BinaryEndoOperation Ambient}, LRA.Operation.Laws.Closure.BinaryEndoClosedOn carrier operation → ∀ {left right : Ambient}, (carrier left ∧ carrier right) → carrier (operation left right)
+Transliterated theorem: carrier (operation left right)
 Logical form (Lean): {Ambient : Type u} {carrier : Ambient → Prop} {operation : BinaryEndoOperation Ambient} (law : BinaryEndoClosedOn carrier operation) {left right : Ambient} (left_mem : carrier left) (right_mem : carrier right) : carrier (operation left right)
-Source: ./Laws/Closure/Theorems.lean#L32
+Source: ./Laws/Closure/Theorems.lean#L34
 
 
 
@@ -405,17 +642,19 @@ Name: BinaryEndoOperation.closed_on_full_carrier
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier),   LRA.Operation.Laws.Closure.BinaryEndoClosedOn (fun x => True) operation
-Predicate logic (unfolded): ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier),   LRA.Operation.Laws.Closure.BinaryEndoClosedOn (fun x => True) operation
+Predicate logic (unfolded): ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier), LRA.Operation.Laws.Closure.BinaryEndoClosedOn (fun x => True) operation
+Transliterated theorem: BinaryEndoClosedOn fun _ ∈ Carrier => True operation
 Logical form (Lean): {Carrier : Type u} (operation : BinaryEndoOperation Carrier) : BinaryEndoClosedOn (fun _ : Carrier => True) operation
-Source: ./Laws/Closure/Theorems.lean#L42
+Source: ./Laws/Closure/Theorems.lean#L45
 
 
 
 Name: BinaryEndoClosedOn.iff_binary_closed_under
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Ambient : Type u} {carrier : Ambient → Prop} {operation : LRA.Operation.BinaryEndoOperation Ambient},   Iff (LRA.Operation.Laws.Closure.BinaryEndoClosedOn carrier operation)     (LRA.Operation.Laws.Closure.BinaryClosedUnder carrier carrier carrier operation)
-Predicate logic (unfolded): ∀ {Ambient : Type u} {carrier : Ambient → Prop} {operation : LRA.Operation.BinaryEndoOperation Ambient},   Iff (LRA.Operation.Laws.Closure.BinaryEndoClosedOn carrier operation)     (LRA.Operation.Laws.Closure.BinaryClosedUnder carrier carrier carrier operation)
+Predicate logic: ∀ {Ambient : Type u} {carrier : Ambient → Prop} {operation : BinaryEndoOperation Ambient}, BinaryEndoClosedOn carrier operation ↔ BinaryClosedUnder carrier carrier carrier operation
+Predicate logic (unfolded): ∀ {Ambient : Type u} {carrier : Ambient → Prop} {operation : LRA.Operation.BinaryEndoOperation Ambient}, LRA.Operation.Laws.Closure.BinaryEndoClosedOn carrier operation ↔ LRA.Operation.Laws.Closure.BinaryClosedUnder carrier carrier carrier operation
+Transliterated theorem: BinaryEndoClosedOn carrier operation ↔ BinaryClosedUnder carrier carrier carrier operation
 Logical form (Lean): {Ambient : Type u} {carrier : Ambient → Prop} {operation : BinaryEndoOperation Ambient} : BinaryEndoClosedOn carrier operation ↔ BinaryClosedUnder carrier carrier carrier operation
 Source: ./Laws/Closure/Relationships.lean#L9
 
@@ -424,8 +663,9 @@ Source: ./Laws/Closure/Relationships.lean#L9
 Name: Commutative.left_cancellative_to_right_cancellative
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Cancellation.LeftCancellative operation) →     LRA.Operation.Laws.Cancellation.RightCancellative operation
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Cancellation.LeftCancellative operation) →     LRA.Operation.Laws.Cancellation.RightCancellative operation
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (leftLaw : LeftCancellative operation), RightCancellative operation
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Operation.Laws.Commutative.Commutative operation ∧ LRA.Operation.Laws.Cancellation.LeftCancellative operation) → LRA.Operation.Laws.Cancellation.RightCancellative operation
+Transliterated theorem: RightCancellative operation
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (leftLaw : LeftCancellative operation) : RightCancellative operation
 Source: ./Laws/Cancellation/Relationships.lean#L11
 
@@ -434,10 +674,11 @@ Source: ./Laws/Cancellation/Relationships.lean#L11
 Name: Commutative.right_cancellative_to_left_cancellative
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Cancellation.RightCancellative operation) →     LRA.Operation.Laws.Cancellation.LeftCancellative operation
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Cancellation.RightCancellative operation) →     LRA.Operation.Laws.Cancellation.LeftCancellative operation
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (rightLaw : RightCancellative operation), LeftCancellative operation
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Operation.Laws.Commutative.Commutative operation ∧ LRA.Operation.Laws.Cancellation.RightCancellative operation) → LRA.Operation.Laws.Cancellation.LeftCancellative operation
+Transliterated theorem: LeftCancellative operation
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (rightLaw : RightCancellative operation) : LeftCancellative operation
-Source: ./Laws/Cancellation/Relationships.lean#L19
+Source: ./Laws/Cancellation/Relationships.lean#L20
 
 
 
@@ -445,9 +686,10 @@ Name: LeftCancellative.left_regular
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.LeftCancellative operation →     ∀ (fixed : Carrier), LRA.Operation.Laws.Cancellation.LeftRegular operation fixed
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.LeftCancellative operation →     ∀ (fixed : Carrier), LRA.Operation.Laws.Cancellation.LeftRegular operation fixed
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Cancellation.LeftCancellative operation → ∀ (fixed : Carrier), LRA.Operation.Laws.Cancellation.LeftRegular operation fixed
+Transliterated theorem: (∀ fixed ∈ Carrier), LeftRegular operation fixed
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : LeftCancellative operation) (fixed : Carrier) : LeftRegular operation fixed
-Source: ./Laws/Cancellation/Relationships.lean#L27
+Source: ./Laws/Cancellation/Relationships.lean#L29
 
 
 
@@ -455,9 +697,10 @@ Name: RightCancellative.right_regular
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.RightCancellative operation →     ∀ (fixed : Carrier), LRA.Operation.Laws.Cancellation.RightRegular operation fixed
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.RightCancellative operation →     ∀ (fixed : Carrier), LRA.Operation.Laws.Cancellation.RightRegular operation fixed
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Cancellation.RightCancellative operation → ∀ (fixed : Carrier), LRA.Operation.Laws.Cancellation.RightRegular operation fixed
+Transliterated theorem: (∀ fixed ∈ Carrier), RightRegular operation fixed
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : RightCancellative operation) (fixed : Carrier) : RightRegular operation fixed
-Source: ./Laws/Cancellation/Relationships.lean#L34
+Source: ./Laws/Cancellation/Relationships.lean#L37
 
 
 
@@ -465,9 +708,10 @@ Name: LeftCancellative.to_left_cancellative_on
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.LeftCancellative operation →     LRA.Operation.Laws.Cancellation.LeftCancellativeOn eligible operation
-Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.LeftCancellative operation →     LRA.Operation.Laws.Cancellation.LeftCancellativeOn eligible operation
+Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Cancellation.LeftCancellative operation → LRA.Operation.Laws.Cancellation.LeftCancellativeOn eligible operation
+Transliterated theorem: LeftCancellativeOn eligible operation
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier -> Prop} {operation : BinaryEndoOperation Carrier} (law : LeftCancellative operation) : LeftCancellativeOn eligible operation
-Source: ./Laws/Cancellation/Relationships.lean#L41
+Source: ./Laws/Cancellation/Relationships.lean#L45
 
 
 
@@ -475,19 +719,21 @@ Name: RightCancellative.to_right_cancellative_on
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.RightCancellative operation →     LRA.Operation.Laws.Cancellation.RightCancellativeOn eligible operation
-Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Cancellation.RightCancellative operation →     LRA.Operation.Laws.Cancellation.RightCancellativeOn eligible operation
+Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Cancellation.RightCancellative operation → LRA.Operation.Laws.Cancellation.RightCancellativeOn eligible operation
+Transliterated theorem: RightCancellativeOn eligible operation
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier -> Prop} {operation : BinaryEndoOperation Carrier} (law : RightCancellative operation) : RightCancellativeOn eligible operation
-Source: ./Laws/Cancellation/Relationships.lean#L48
+Source: ./Laws/Cancellation/Relationships.lean#L53
 
 
 
 Name: LeftAbsorbing.not_left_regular_of_distinct
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber first second : Carrier},   And (LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber) (Ne first second) →     Not (LRA.Operation.Laws.Cancellation.LeftRegular operation absorber)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber first second : Carrier},   And (LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber) (Ne first second) →     Not (LRA.Operation.Laws.Cancellation.LeftRegular operation absorber)
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber first second : Carrier} (absorbing : LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber) (distinct : first ≠ second), Not (LeftRegular operation absorber)
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber first second : Carrier}, (LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber ∧ Ne first second) → ¬ LRA.Operation.Laws.Cancellation.LeftRegular operation absorber
+Transliterated theorem: Not (LeftRegular operation absorber)
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber first second : Carrier} (absorbing : LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber) (distinct : first ≠ second) : Not (LeftRegular operation absorber)
-Source: ./Laws/Cancellation/Relationships.lean#L55
+Source: ./Laws/Cancellation/Relationships.lean#L61
 
 
 
@@ -496,6 +742,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: LRA.Operation.Laws.Commutative.FailsCommutative LRA.Operation.Laws.Commutative.NaturalSubtraction
 Predicate logic (unfolded): LRA.Operation.Laws.Commutative.FailsCommutative LRA.Operation.Laws.Commutative.NaturalSubtraction
+Transliterated theorem: FailsCommutative NaturalSubtraction
 Logical form (Lean): : FailsCommutative NaturalSubtraction
 Source: ./Laws/Commutative/FailureModes.lean#L19
 
@@ -504,8 +751,9 @@ Source: ./Laws/Commutative/FailureModes.lean#L19
 Name: Commutative.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Commutative.Commutative operation →     ∀ (first second : Carrier), Eq (operation first second) (operation second first)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Commutative.Commutative operation →     ∀ (first second : Carrier), Eq (operation first second) (operation second first)
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Commutative operation) (first second : Carrier), operation first second = operation second first
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Commutative.Commutative operation → ∀ (first second : Carrier), operation first second = operation second first
+Transliterated theorem: (∀ first second ∈ Carrier), operation first second = operation second first
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Commutative operation) (first second : Carrier) : operation first second = operation second first
 Source: ./Laws/Commutative/Theorems.lean#L10
 
@@ -514,8 +762,9 @@ Source: ./Laws/Commutative/Theorems.lean#L10
 Name: Commutative.symm_apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Commutative.Commutative operation →     ∀ (first second : Carrier), Eq (operation second first) (operation first second)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Commutative.Commutative operation →     ∀ (first second : Carrier), Eq (operation second first) (operation first second)
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Commutative operation) (first second : Carrier), operation second first = operation first second
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Commutative.Commutative operation → ∀ (first second : Carrier), operation second first = operation first second
+Transliterated theorem: (∀ first second ∈ Carrier), operation second first = operation first second
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Commutative operation) (first second : Carrier) : operation second first = operation first second
 Source: ./Laws/Commutative/Theorems.lean#L18
 
@@ -525,7 +774,8 @@ Name: NaturalAdditionFailsLeftDistributiveOverMultiplication
 Kind: Theorem
 State: Sorry
 Predicate logic: LRA.Operation.Laws.Distributive.FailsLeftDistributive   LRA.Operation.Laws.Distributive.NaturalAdditionForDistributiveFailure   LRA.Operation.Laws.Distributive.NaturalMultiplicationForDistributiveFailure
-Predicate logic (unfolded): LRA.Operation.Laws.Distributive.FailsLeftDistributive   LRA.Operation.Laws.Distributive.NaturalAdditionForDistributiveFailure   LRA.Operation.Laws.Distributive.NaturalMultiplicationForDistributiveFailure
+Predicate logic (unfolded): LRA.Operation.Laws.Distributive.FailsLeftDistributive LRA.Operation.Laws.Distributive.NaturalAdditionForDistributiveFailure LRA.Operation.Laws.Distributive.NaturalMultiplicationForDistributiveFailure
+Transliterated theorem: FailsLeftDistributive NaturalAdditionForDistributiveFailure NaturalMultiplicationForDistributiveFailure
 Logical form (Lean): : FailsLeftDistributive NaturalAdditionForDistributiveFailure NaturalMultiplicationForDistributiveFailure
 Source: ./Laws/Distributive/FailureModes.lean#L23
 
@@ -535,17 +785,19 @@ Name: NaturalAdditionFailsRightDistributiveOverMultiplication
 Kind: Theorem
 State: Sorry
 Predicate logic: LRA.Operation.Laws.Distributive.FailsRightDistributive   LRA.Operation.Laws.Distributive.NaturalAdditionForDistributiveFailure   LRA.Operation.Laws.Distributive.NaturalMultiplicationForDistributiveFailure
-Predicate logic (unfolded): LRA.Operation.Laws.Distributive.FailsRightDistributive   LRA.Operation.Laws.Distributive.NaturalAdditionForDistributiveFailure   LRA.Operation.Laws.Distributive.NaturalMultiplicationForDistributiveFailure
+Predicate logic (unfolded): LRA.Operation.Laws.Distributive.FailsRightDistributive LRA.Operation.Laws.Distributive.NaturalAdditionForDistributiveFailure LRA.Operation.Laws.Distributive.NaturalMultiplicationForDistributiveFailure
+Transliterated theorem: FailsRightDistributive NaturalAdditionForDistributiveFailure NaturalMultiplicationForDistributiveFailure
 Logical form (Lean): : FailsRightDistributive NaturalAdditionForDistributiveFailure NaturalMultiplicationForDistributiveFailure
-Source: ./Laws/Distributive/FailureModes.lean#L29
+Source: ./Laws/Distributive/FailureModes.lean#L30
 
 
 
 Name: LeftDistributive.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Distributive.LeftDistributive outer inner →     ∀ (left right third : Carrier), Eq (outer left (inner right third)) (inner (outer left right) (outer left third))
-Predicate logic (unfolded): ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Distributive.LeftDistributive outer inner →     ∀ (left right third : Carrier), Eq (outer left (inner right third)) (inner (outer left right) (outer left third))
+Predicate logic: ∀ {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (law : LeftDistributive outer inner) (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)
+Predicate logic (unfolded): ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Distributive.LeftDistributive outer inner → ∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)
+Transliterated theorem: (∀ left right third ∈ Carrier), outer left (inner right third) = inner (outer left right) (outer left third)
 Logical form (Lean): {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (law : LeftDistributive outer inner) (left right third : Carrier) : outer left (inner right third) = inner (outer left right) (outer left third)
 Source: ./Laws/Distributive/Theorems.lean#L9
 
@@ -554,10 +806,11 @@ Source: ./Laws/Distributive/Theorems.lean#L9
 Name: RightDistributive.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Distributive.RightDistributive outer inner →     ∀ (left right third : Carrier), Eq (outer (inner left right) third) (inner (outer left third) (outer right third))
-Predicate logic (unfolded): ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Distributive.RightDistributive outer inner →     ∀ (left right third : Carrier), Eq (outer (inner left right) third) (inner (outer left third) (outer right third))
+Predicate logic: ∀ {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (law : RightDistributive outer inner) (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third)
+Predicate logic (unfolded): ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Distributive.RightDistributive outer inner → ∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third)
+Transliterated theorem: (∀ left right third ∈ Carrier), outer (inner left right) third = inner (outer left third) (outer right third)
 Logical form (Lean): {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (law : RightDistributive outer inner) (left right third : Carrier) : outer (inner left right) third = inner (outer left third) (outer right third)
-Source: ./Laws/Distributive/Theorems.lean#L17
+Source: ./Laws/Distributive/Theorems.lean#L18
 
 
 
@@ -565,9 +818,10 @@ Name: TwoSidedDistributive.left
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Distributive.TwoSidedDistributive outer inner →     LRA.Operation.Laws.Distributive.LeftDistributive outer inner
-Predicate logic (unfolded): ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Distributive.TwoSidedDistributive outer inner →     LRA.Operation.Laws.Distributive.LeftDistributive outer inner
+Predicate logic (unfolded): ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Distributive.TwoSidedDistributive outer inner → LRA.Operation.Laws.Distributive.LeftDistributive outer inner
+Transliterated theorem: LeftDistributive outer inner
 Logical form (Lean): {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (law : TwoSidedDistributive outer inner) : LeftDistributive outer inner
-Source: ./Laws/Distributive/Theorems.lean#L25
+Source: ./Laws/Distributive/Theorems.lean#L27
 
 
 
@@ -575,27 +829,30 @@ Name: TwoSidedDistributive.right
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Distributive.TwoSidedDistributive outer inner →     LRA.Operation.Laws.Distributive.RightDistributive outer inner
-Predicate logic (unfolded): ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Distributive.TwoSidedDistributive outer inner →     LRA.Operation.Laws.Distributive.RightDistributive outer inner
+Predicate logic (unfolded): ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Distributive.TwoSidedDistributive outer inner → LRA.Operation.Laws.Distributive.RightDistributive outer inner
+Transliterated theorem: RightDistributive outer inner
 Logical form (Lean): {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (law : TwoSidedDistributive outer inner) : RightDistributive outer inner
-Source: ./Laws/Distributive/Theorems.lean#L31
+Source: ./Laws/Distributive/Theorems.lean#L34
 
 
 
 Name: TwoSidedDistributive.of_left_right
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier},   And (LRA.Operation.Laws.Distributive.LeftDistributive outer inner)       (LRA.Operation.Laws.Distributive.RightDistributive outer inner) →     LRA.Operation.Laws.Distributive.TwoSidedDistributive outer inner
-Predicate logic (unfolded): ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier},   And (LRA.Operation.Laws.Distributive.LeftDistributive outer inner)       (LRA.Operation.Laws.Distributive.RightDistributive outer inner) →     LRA.Operation.Laws.Distributive.TwoSidedDistributive outer inner
+Predicate logic: ∀ {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (leftLaw : LeftDistributive outer inner) (rightLaw : RightDistributive outer inner), TwoSidedDistributive outer inner
+Predicate logic (unfolded): ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Operation.Laws.Distributive.LeftDistributive outer inner ∧ LRA.Operation.Laws.Distributive.RightDistributive outer inner) → LRA.Operation.Laws.Distributive.TwoSidedDistributive outer inner
+Transliterated theorem: TwoSidedDistributive outer inner
 Logical form (Lean): {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (leftLaw : LeftDistributive outer inner) (rightLaw : RightDistributive outer inner) : TwoSidedDistributive outer inner
-Source: ./Laws/Distributive/Theorems.lean#L37
+Source: ./Laws/Distributive/Theorems.lean#L41
 
 
 
 Name: Commutative.left_distributive_to_right_distributive
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier},   And (LRA.Operation.Laws.Commutative.Commutative outer)       (LRA.Operation.Laws.Distributive.LeftDistributive outer inner) →     LRA.Operation.Laws.Distributive.RightDistributive outer inner
-Predicate logic (unfolded): ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier},   And (LRA.Operation.Laws.Commutative.Commutative outer)       (LRA.Operation.Laws.Distributive.LeftDistributive outer inner) →     LRA.Operation.Laws.Distributive.RightDistributive outer inner
+Predicate logic: ∀ {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (outerCommutative : LRA.Operation.Laws.Commutative.Commutative outer) (leftLaw : LeftDistributive outer inner), RightDistributive outer inner
+Predicate logic (unfolded): ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Operation.Laws.Commutative.Commutative outer ∧ LRA.Operation.Laws.Distributive.LeftDistributive outer inner) → LRA.Operation.Laws.Distributive.RightDistributive outer inner
+Transliterated theorem: RightDistributive outer inner
 Logical form (Lean): {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (outerCommutative : LRA.Operation.Laws.Commutative.Commutative outer) (leftLaw : LeftDistributive outer inner) : RightDistributive outer inner
 Source: ./Laws/Distributive/Relationships.lean#L10
 
@@ -604,10 +861,11 @@ Source: ./Laws/Distributive/Relationships.lean#L10
 Name: Commutative.right_distributive_to_left_distributive
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier},   And (LRA.Operation.Laws.Commutative.Commutative outer)       (LRA.Operation.Laws.Distributive.RightDistributive outer inner) →     LRA.Operation.Laws.Distributive.LeftDistributive outer inner
-Predicate logic (unfolded): ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier},   And (LRA.Operation.Laws.Commutative.Commutative outer)       (LRA.Operation.Laws.Distributive.RightDistributive outer inner) →     LRA.Operation.Laws.Distributive.LeftDistributive outer inner
+Predicate logic: ∀ {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (outerCommutative : LRA.Operation.Laws.Commutative.Commutative outer) (rightLaw : RightDistributive outer inner), LeftDistributive outer inner
+Predicate logic (unfolded): ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Operation.Laws.Commutative.Commutative outer ∧ LRA.Operation.Laws.Distributive.RightDistributive outer inner) → LRA.Operation.Laws.Distributive.LeftDistributive outer inner
+Transliterated theorem: LeftDistributive outer inner
 Logical form (Lean): {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (outerCommutative : LRA.Operation.Laws.Commutative.Commutative outer) (rightLaw : RightDistributive outer inner) : LeftDistributive outer inner
-Source: ./Laws/Distributive/Relationships.lean#L18
+Source: ./Laws/Distributive/Relationships.lean#L19
 
 
 
@@ -615,7 +873,8 @@ Name: MutualAbsorptionLaw.first_idempotent
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {first second : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Absorption.MutualAbsorptionLaw first second → LRA.Operation.Laws.Idempotent.Idempotent first
-Predicate logic (unfolded): ∀ {Carrier : Type u} {first second : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Absorption.MutualAbsorptionLaw first second → LRA.Operation.Laws.Idempotent.Idempotent first
+Predicate logic (unfolded): ∀ {Carrier : Type u} {first second : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Absorption.MutualAbsorptionLaw first second → LRA.Operation.Laws.Idempotent.Idempotent first
+Transliterated theorem: LRA.Operation.Laws.Idempotent.Idempotent first
 Logical form (Lean): {Carrier : Type u} {first second : BinaryEndoOperation Carrier} (law : MutualAbsorptionLaw first second) : LRA.Operation.Laws.Idempotent.Idempotent first
 Source: ./Laws/Absorption/Theorems.lean#L11
 
@@ -625,7 +884,8 @@ Name: MutualAbsorptionLaw.second_idempotent
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {first second : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Absorption.MutualAbsorptionLaw first second → LRA.Operation.Laws.Idempotent.Idempotent second
-Predicate logic (unfolded): ∀ {Carrier : Type u} {first second : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Absorption.MutualAbsorptionLaw first second → LRA.Operation.Laws.Idempotent.Idempotent second
+Predicate logic (unfolded): ∀ {Carrier : Type u} {first second : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Absorption.MutualAbsorptionLaw first second → LRA.Operation.Laws.Idempotent.Idempotent second
+Transliterated theorem: LRA.Operation.Laws.Idempotent.Idempotent second
 Logical form (Lean): {Carrier : Type u} {first second : BinaryEndoOperation Carrier} (law : MutualAbsorptionLaw first second) : LRA.Operation.Laws.Idempotent.Idempotent second
 Source: ./Laws/Absorption/Theorems.lean#L18
 
@@ -634,8 +894,9 @@ Source: ./Laws/Absorption/Theorems.lean#L18
 Name: MutualAbsorptionLaw.idempotent_pair
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {first second : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Absorption.MutualAbsorptionLaw first second →     And (LRA.Operation.Laws.Idempotent.Idempotent first) (LRA.Operation.Laws.Idempotent.Idempotent second)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {first second : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Absorption.MutualAbsorptionLaw first second →     And (LRA.Operation.Laws.Idempotent.Idempotent first) (LRA.Operation.Laws.Idempotent.Idempotent second)
+Predicate logic: ∀ {Carrier : Type u} {first second : BinaryEndoOperation Carrier} (law : MutualAbsorptionLaw first second), LRA.Operation.Laws.Idempotent.Idempotent first ∧ LRA.Operation.Laws.Idempotent.Idempotent second
+Predicate logic (unfolded): ∀ {Carrier : Type u} {first second : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Absorption.MutualAbsorptionLaw first second → (LRA.Operation.Laws.Idempotent.Idempotent first ∧ LRA.Operation.Laws.Idempotent.Idempotent second)
+Transliterated theorem: LRA.Operation.Laws.Idempotent.Idempotent first ∧ LRA.Operation.Laws.Idempotent.Idempotent second
 Logical form (Lean): {Carrier : Type u} {first second : BinaryEndoOperation Carrier} (law : MutualAbsorptionLaw first second) : LRA.Operation.Laws.Idempotent.Idempotent first ∧ LRA.Operation.Laws.Idempotent.Idempotent second
 Source: ./Laws/Absorption/Relationships.lean#L11
 
@@ -646,6 +907,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: LRA.Operation.Laws.Idempotent.FailsIdempotent LRA.Operation.Laws.Idempotent.NaturalAddition
 Predicate logic (unfolded): LRA.Operation.Laws.Idempotent.FailsIdempotent LRA.Operation.Laws.Idempotent.NaturalAddition
+Transliterated theorem: FailsIdempotent NaturalAddition
 Logical form (Lean): : FailsIdempotent NaturalAddition
 Source: ./Laws/Idempotent/FailureModes.lean#L18
 
@@ -654,8 +916,9 @@ Source: ./Laws/Idempotent/FailureModes.lean#L18
 Name: Idempotent.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Idempotent.Idempotent operation → ∀ (element : Carrier), Eq (operation element element) element
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Idempotent.Idempotent operation → ∀ (element : Carrier), Eq (operation element element) element
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Idempotent operation) (element : Carrier), operation element element = element
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Idempotent.Idempotent operation → ∀ (element : Carrier), operation element element = element
+Transliterated theorem: (∀ element ∈ Carrier), operation element element = element
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Idempotent operation) (element : Carrier) : operation element element = element
 Source: ./Laws/Idempotent/Theorems.lean#L9
 
@@ -664,8 +927,9 @@ Source: ./Laws/Idempotent/Theorems.lean#L9
 Name: Idempotent.fixed_by_self_operation
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Idempotent.Idempotent operation → ∀ (element : Carrier), Eq (operation element element) element
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Operation.Laws.Idempotent.Idempotent operation → ∀ (element : Carrier), Eq (operation element element) element
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Idempotent operation) (element : Carrier), operation element element = element
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Idempotent.Idempotent operation → ∀ (element : Carrier), operation element element = element
+Transliterated theorem: (∀ element ∈ Carrier), operation element element = element
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Idempotent operation) (element : Carrier) : operation element element = element
 Source: ./Laws/Idempotent/Relationships.lean#L10
 
@@ -674,8 +938,9 @@ Source: ./Laws/Idempotent/Relationships.lean#L10
 Name: DivisibilityPreorder
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Alpha : Type u} {multiplication : LRA.Operation.BinaryOperation Alpha} {identity : Alpha},   And (LRA.Operation.Laws.Associative.Associative multiplication)       (LRA.Operation.Laws.Identity.TwoSidedIdentity multiplication identity) →     LRA.Order.Preorder (LRA.Operation.Divides multiplication)
-Predicate logic (unfolded): ∀ {Alpha : Type u} {multiplication : LRA.Operation.BinaryOperation Alpha} {identity : Alpha},   And (LRA.Operation.Laws.Associative.Associative multiplication)       (LRA.Operation.Laws.Identity.TwoSidedIdentity multiplication identity) →     LRA.Order.Preorder (LRA.Operation.Divides multiplication)
+Predicate logic: ∀ {Alpha : Type u} {multiplication : BinaryOperation Alpha} {identity : Alpha} (multiplicationIsAssociative : LRA.Operation.Laws.Associative.Associative multiplication) (identityIsTwoSided : LRA.Operation.Laws.Identity.TwoSidedIdentity multiplication identity), LRA.Order.Preorder (Divides multiplication)
+Predicate logic (unfolded): ∀ {Alpha : Type u} {multiplication : LRA.Operation.BinaryOperation Alpha} {identity : Alpha}, (LRA.Operation.Laws.Associative.Associative multiplication ∧ LRA.Operation.Laws.Identity.TwoSidedIdentity multiplication identity) → LRA.Order.Preorder (LRA.Operation.Divides multiplication)
+Transliterated theorem: LRA.Order.Preorder (Divides multiplication)
 Logical form (Lean): {Alpha : Type u} {multiplication : BinaryOperation Alpha} {identity : Alpha} (multiplicationIsAssociative : LRA.Operation.Laws.Associative.Associative multiplication) (identityIsTwoSided : LRA.Operation.Laws.Identity.TwoSidedIdentity multiplication identity) : LRA.Order.Preorder (Divides multiplication)
 Source: ./Divisibility.lean#L25
 
@@ -684,8 +949,9 @@ Source: ./Divisibility.lean#L25
 Name: Commutative.left_identity_to_right_identity
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Identity.LeftIdentity operation identity) →     LRA.Operation.Laws.Identity.RightIdentity operation identity
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Identity.LeftIdentity operation identity) →     LRA.Operation.Laws.Identity.RightIdentity operation identity
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (commutative : Commutative operation) (leftIdentity : LRA.Operation.Laws.Identity.LeftIdentity operation identity), LRA.Operation.Laws.Identity.RightIdentity operation identity
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}, (LRA.Operation.Laws.Commutative.Commutative operation ∧ LRA.Operation.Laws.Identity.LeftIdentity operation identity) → LRA.Operation.Laws.Identity.RightIdentity operation identity
+Transliterated theorem: LRA.Operation.Laws.Identity.RightIdentity operation identity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (commutative : Commutative operation) (leftIdentity : LRA.Operation.Laws.Identity.LeftIdentity operation identity) : LRA.Operation.Laws.Identity.RightIdentity operation identity
 Source: ./Laws/Commutative/Relationships.lean#L12
 
@@ -694,8 +960,9 @@ Source: ./Laws/Commutative/Relationships.lean#L12
 Name: Commutative.right_identity_to_left_identity
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Identity.RightIdentity operation identity) →     LRA.Operation.Laws.Identity.LeftIdentity operation identity
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Identity.RightIdentity operation identity) →     LRA.Operation.Laws.Identity.LeftIdentity operation identity
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (commutative : Commutative operation) (rightIdentity : LRA.Operation.Laws.Identity.RightIdentity operation identity), LRA.Operation.Laws.Identity.LeftIdentity operation identity
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}, (LRA.Operation.Laws.Commutative.Commutative operation ∧ LRA.Operation.Laws.Identity.RightIdentity operation identity) → LRA.Operation.Laws.Identity.LeftIdentity operation identity
+Transliterated theorem: LRA.Operation.Laws.Identity.LeftIdentity operation identity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (commutative : Commutative operation) (rightIdentity : LRA.Operation.Laws.Identity.RightIdentity operation identity) : LRA.Operation.Laws.Identity.LeftIdentity operation identity
 Source: ./Laws/Commutative/Relationships.lean#L21
 
@@ -704,8 +971,9 @@ Source: ./Laws/Commutative/Relationships.lean#L21
 Name: Commutative.left_absorbing_to_right_absorbing
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber) →     LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber) →     LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (commutative : Commutative operation) (leftAbsorbing : LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber), LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier}, (LRA.Operation.Laws.Commutative.Commutative operation ∧ LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber) → LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber
+Transliterated theorem: LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (commutative : Commutative operation) (leftAbsorbing : LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber) : LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber
 Source: ./Laws/Commutative/Relationships.lean#L30
 
@@ -714,8 +982,9 @@ Source: ./Laws/Commutative/Relationships.lean#L30
 Name: Commutative.right_absorbing_to_left_absorbing
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber) →     LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber) →     LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (commutative : Commutative operation) (rightAbsorbing : LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber), LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier}, (LRA.Operation.Laws.Commutative.Commutative operation ∧ LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber) → LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber
+Transliterated theorem: LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (commutative : Commutative operation) (rightAbsorbing : LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber) : LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber
 Source: ./Laws/Commutative/Relationships.lean#L39
 
@@ -724,8 +993,9 @@ Source: ./Laws/Commutative/Relationships.lean#L39
 Name: BooleanSecondProjectionLeftIdentityButNotRightIdentity
 Kind: Theorem
 State: Sorry
-Predicate logic: And (LRA.Operation.Laws.Identity.LeftIdentity LRA.Operation.Laws.Identity.BooleanSecondProjection Bool.false)   (LRA.Operation.Laws.Identity.FailsRightIdentity LRA.Operation.Laws.Identity.BooleanSecondProjection Bool.false)
-Predicate logic (unfolded): And (LRA.Operation.Laws.Identity.LeftIdentity LRA.Operation.Laws.Identity.BooleanSecondProjection Bool.false)   (LRA.Operation.Laws.Identity.FailsRightIdentity LRA.Operation.Laws.Identity.BooleanSecondProjection Bool.false)
+Predicate logic: LeftIdentity BooleanSecondProjection false ∧ FailsRightIdentity BooleanSecondProjection false
+Predicate logic (unfolded): (LRA.Operation.Laws.Identity.LeftIdentity LRA.Operation.Laws.Identity.BooleanSecondProjection Bool.false ∧ LRA.Operation.Laws.Identity.FailsRightIdentity LRA.Operation.Laws.Identity.BooleanSecondProjection Bool.false)
+Transliterated theorem: LeftIdentity BooleanSecondProjection false ∧ FailsRightIdentity BooleanSecondProjection false
 Logical form (Lean): : LeftIdentity BooleanSecondProjection false ∧ FailsRightIdentity BooleanSecondProjection false
 Source: ./Laws/Identity/FailureModes.lean#L30
 
@@ -734,8 +1004,9 @@ Source: ./Laws/Identity/FailureModes.lean#L30
 Name: BooleanFirstProjectionRightIdentityButNotLeftIdentity
 Kind: Theorem
 State: Sorry
-Predicate logic: And (LRA.Operation.Laws.Identity.RightIdentity LRA.Operation.Laws.Identity.BooleanFirstProjection Bool.false)   (LRA.Operation.Laws.Identity.FailsLeftIdentity LRA.Operation.Laws.Identity.BooleanFirstProjection Bool.false)
-Predicate logic (unfolded): And (LRA.Operation.Laws.Identity.RightIdentity LRA.Operation.Laws.Identity.BooleanFirstProjection Bool.false)   (LRA.Operation.Laws.Identity.FailsLeftIdentity LRA.Operation.Laws.Identity.BooleanFirstProjection Bool.false)
+Predicate logic: RightIdentity BooleanFirstProjection false ∧ FailsLeftIdentity BooleanFirstProjection false
+Predicate logic (unfolded): (LRA.Operation.Laws.Identity.RightIdentity LRA.Operation.Laws.Identity.BooleanFirstProjection Bool.false ∧ LRA.Operation.Laws.Identity.FailsLeftIdentity LRA.Operation.Laws.Identity.BooleanFirstProjection Bool.false)
+Transliterated theorem: RightIdentity BooleanFirstProjection false ∧ FailsLeftIdentity BooleanFirstProjection false
 Logical form (Lean): : RightIdentity BooleanFirstProjection false ∧ FailsLeftIdentity BooleanFirstProjection false
 Source: ./Laws/Identity/FailureModes.lean#L36
 
@@ -744,8 +1015,9 @@ Source: ./Laws/Identity/FailureModes.lean#L36
 Name: LeftIdentity.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier},   LRA.Operation.Laws.Identity.RightIdentity operation identity →     ∀ (element : Carrier), Eq (operation element identity) element
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier},   LRA.Operation.Laws.Identity.RightIdentity operation identity →     ∀ (element : Carrier), Eq (operation element identity) element
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (law : LeftIdentity operation identity) (element : Carrier), operation identity element = element
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}, LRA.Operation.Laws.Identity.RightIdentity operation identity → ∀ (element : Carrier), operation element identity = element
+Transliterated theorem: (∀ element ∈ Carrier), operation identity element = element
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (law : LeftIdentity operation identity) (element : Carrier) : operation identity element = element
 Source: ./Laws/Identity/Theorems.lean#L10
 
@@ -754,8 +1026,9 @@ Source: ./Laws/Identity/Theorems.lean#L10
 Name: RightIdentity.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier},   LRA.Operation.Laws.Identity.LeftIdentity operation identity →     ∀ (element : Carrier), Eq (operation identity element) element
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier},   LRA.Operation.Laws.Identity.LeftIdentity operation identity →     ∀ (element : Carrier), Eq (operation identity element) element
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (law : RightIdentity operation identity) (element : Carrier), operation element identity = element
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}, LRA.Operation.Laws.Identity.LeftIdentity operation identity → ∀ (element : Carrier), operation identity element = element
+Transliterated theorem: (∀ element ∈ Carrier), operation element identity = element
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (law : RightIdentity operation identity) (element : Carrier) : operation element identity = element
 Source: ./Laws/Identity/Theorems.lean#L19
 
@@ -765,7 +1038,8 @@ Name: TwoSidedIdentity.left
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier},   LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity →     LRA.Operation.Laws.Identity.LeftIdentity operation identity
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier},   LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity →     LRA.Operation.Laws.Identity.LeftIdentity operation identity
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}, LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity → LRA.Operation.Laws.Identity.LeftIdentity operation identity
+Transliterated theorem: LeftIdentity operation identity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (law : TwoSidedIdentity operation identity) : LeftIdentity operation identity
 Source: ./Laws/Identity/Theorems.lean#L28
 
@@ -775,7 +1049,8 @@ Name: TwoSidedIdentity.right
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier},   LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity →     LRA.Operation.Laws.Identity.RightIdentity operation identity
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier},   LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity →     LRA.Operation.Laws.Identity.RightIdentity operation identity
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}, LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity → LRA.Operation.Laws.Identity.RightIdentity operation identity
+Transliterated theorem: RightIdentity operation identity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (law : TwoSidedIdentity operation identity) : RightIdentity operation identity
 Source: ./Laws/Identity/Theorems.lean#L36
 
@@ -784,8 +1059,9 @@ Source: ./Laws/Identity/Theorems.lean#L36
 Name: TwoSidedIdentity.of_left_right
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier},   And (LRA.Operation.Laws.Identity.LeftIdentity operation identity)       (LRA.Operation.Laws.Identity.RightIdentity operation identity) →     LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier},   And (LRA.Operation.Laws.Identity.LeftIdentity operation identity)       (LRA.Operation.Laws.Identity.RightIdentity operation identity) →     LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (leftLaw : LeftIdentity operation identity) (rightLaw : RightIdentity operation identity), TwoSidedIdentity operation identity
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}, (LRA.Operation.Laws.Identity.LeftIdentity operation identity ∧ LRA.Operation.Laws.Identity.RightIdentity operation identity) → LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity
+Transliterated theorem: TwoSidedIdentity operation identity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (leftLaw : LeftIdentity operation identity) (rightLaw : RightIdentity operation identity) : TwoSidedIdentity operation identity
 Source: ./Laws/Identity/Theorems.lean#L44
 
@@ -794,8 +1070,9 @@ Source: ./Laws/Identity/Theorems.lean#L44
 Name: LeftRightIdentitiesCoincide
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {leftIdentity rightIdentity : Carrier},   And (LRA.Operation.Laws.Identity.LeftIdentity operation leftIdentity)       (LRA.Operation.Laws.Identity.RightIdentity operation rightIdentity) →     Eq leftIdentity rightIdentity
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {leftIdentity rightIdentity : Carrier},   And (LRA.Operation.Laws.Identity.LeftIdentity operation leftIdentity)       (LRA.Operation.Laws.Identity.RightIdentity operation rightIdentity) →     Eq leftIdentity rightIdentity
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {leftIdentity rightIdentity : Carrier} (leftLaw : LeftIdentity operation leftIdentity) (rightLaw : RightIdentity operation rightIdentity), leftIdentity = rightIdentity
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {leftIdentity rightIdentity : Carrier}, (LRA.Operation.Laws.Identity.LeftIdentity operation leftIdentity ∧ LRA.Operation.Laws.Identity.RightIdentity operation rightIdentity) → leftIdentity = rightIdentity
+Transliterated theorem: leftIdentity = rightIdentity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {leftIdentity rightIdentity : Carrier} (leftLaw : LeftIdentity operation leftIdentity) (rightLaw : RightIdentity operation rightIdentity) : leftIdentity = rightIdentity
 Source: ./Laws/Identity/Relationships.lean#L10
 
@@ -804,8 +1081,9 @@ Source: ./Laws/Identity/Relationships.lean#L10
 Name: TwoSidedIdentityUnique
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {firstIdentity secondIdentity : Carrier},   And (LRA.Operation.Laws.Identity.TwoSidedIdentity operation firstIdentity)       (LRA.Operation.Laws.Identity.TwoSidedIdentity operation secondIdentity) →     Eq firstIdentity secondIdentity
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {firstIdentity secondIdentity : Carrier},   And (LRA.Operation.Laws.Identity.TwoSidedIdentity operation firstIdentity)       (LRA.Operation.Laws.Identity.TwoSidedIdentity operation secondIdentity) →     Eq firstIdentity secondIdentity
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {firstIdentity secondIdentity : Carrier} (firstLaw : TwoSidedIdentity operation firstIdentity) (secondLaw : TwoSidedIdentity operation secondIdentity), firstIdentity = secondIdentity
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {firstIdentity secondIdentity : Carrier}, (LRA.Operation.Laws.Identity.TwoSidedIdentity operation firstIdentity ∧ LRA.Operation.Laws.Identity.TwoSidedIdentity operation secondIdentity) → firstIdentity = secondIdentity
+Transliterated theorem: firstIdentity = secondIdentity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {firstIdentity secondIdentity : Carrier} (firstLaw : TwoSidedIdentity operation firstIdentity) (secondLaw : TwoSidedIdentity operation secondIdentity) : firstIdentity = secondIdentity
 Source: ./Laws/Identity/Relationships.lean#L19
 
@@ -815,7 +1093,8 @@ Name: NaturalAdditionFailsConstantZeroInverse
 Kind: Theorem
 State: Sorry
 Predicate logic: LRA.Operation.Laws.Inverse.FailsTwoSidedInverse LRA.Operation.Laws.Inverse.NaturalAdditionForInverseFailure 0   LRA.Operation.Laws.Inverse.ConstantZeroNaturalInverseCandidate
-Predicate logic (unfolded): LRA.Operation.Laws.Inverse.FailsTwoSidedInverse LRA.Operation.Laws.Inverse.NaturalAdditionForInverseFailure 0   LRA.Operation.Laws.Inverse.ConstantZeroNaturalInverseCandidate
+Predicate logic (unfolded): LRA.Operation.Laws.Inverse.FailsTwoSidedInverse LRA.Operation.Laws.Inverse.NaturalAdditionForInverseFailure 0 LRA.Operation.Laws.Inverse.ConstantZeroNaturalInverseCandidate
+Transliterated theorem: FailsTwoSidedInverse NaturalAdditionForInverseFailure 0 ConstantZeroNaturalInverseCandidate
 Logical form (Lean): : FailsTwoSidedInverse NaturalAdditionForInverseFailure 0 ConstantZeroNaturalInverseCandidate
 Source: ./Laws/Inverse/FailureModes.lean#L21
 
@@ -824,18 +1103,20 @@ Source: ./Laws/Inverse/FailureModes.lean#L21
 Name: NaturalAdditionHasNoTwoSidedInverseOperation
 Kind: Theorem
 State: Sorry
-Predicate logic: Not   (Exists fun inverse =>     LRA.Operation.Laws.Inverse.TwoSidedInverse LRA.Operation.Laws.Inverse.NaturalAdditionForInverseFailure 0 inverse)
-Predicate logic (unfolded): Not   (Exists fun inverse =>     LRA.Operation.Laws.Inverse.TwoSidedInverse LRA.Operation.Laws.Inverse.NaturalAdditionForInverseFailure 0 inverse)
+Predicate logic: Not (∃ inverse : UnaryEndoOperation Nat, TwoSidedInverse NaturalAdditionForInverseFailure 0 inverse)
+Predicate logic (unfolded): ¬ Exists fun inverse => LRA.Operation.Laws.Inverse.TwoSidedInverse LRA.Operation.Laws.Inverse.NaturalAdditionForInverseFailure 0 inverse
+Transliterated theorem: Not ∃ inverse ∈ UnaryEndoOperation Nat, TwoSidedInverse NaturalAdditionForInverseFailure 0 inverse
 Logical form (Lean): : Not (∃ inverse : UnaryEndoOperation Nat, TwoSidedInverse NaturalAdditionForInverseFailure 0 inverse)
-Source: ./Laws/Inverse/FailureModes.lean#L28
+Source: ./Laws/Inverse/FailureModes.lean#L29
 
 
 
 Name: LeftInverse.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse →     ∀ (element : Carrier), Eq (operation (inverse element) element) identity
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse →     ∀ (element : Carrier), Eq (operation (inverse element) element) identity
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (law : LeftInverse operation identity inverse) (element : Carrier), operation (inverse element) element = identity
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier} {inverse : LRA.Operation.UnaryEndoOperation Carrier}, LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse → ∀ (element : Carrier), operation (inverse element) element = identity
+Transliterated theorem: (∀ element ∈ Carrier), operation (inverse element) element = identity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (law : LeftInverse operation identity inverse) (element : Carrier) : operation (inverse element) element = identity
 Source: ./Laws/Inverse/Theorems.lean#L9
 
@@ -844,30 +1125,33 @@ Source: ./Laws/Inverse/Theorems.lean#L9
 Name: RightInverse.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier},   LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse → Eq (operation element inverse) identity
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier},   LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse → Eq (operation element inverse) identity
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (law : RightInverse operation identity inverse) (element : Carrier), operation element (inverse element) = identity
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier}, LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse → operation element inverse = identity
+Transliterated theorem: (∀ element ∈ Carrier), operation element (inverse element) = identity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (law : RightInverse operation identity inverse) (element : Carrier) : operation element (inverse element) = identity
-Source: ./Laws/Inverse/Theorems.lean#L18
+Source: ./Laws/Inverse/Theorems.lean#L19
 
 
 
 Name: LeftInverseOf.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   LRA.Operation.Laws.Inverse.RightInverse operation identity inverse →     ∀ (element : Carrier), Eq (operation element (inverse element)) identity
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   LRA.Operation.Laws.Inverse.RightInverse operation identity inverse →     ∀ (element : Carrier), Eq (operation element (inverse element)) identity
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (law : LeftInverseOf operation identity element inverse), operation inverse element = identity
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier} {inverse : LRA.Operation.UnaryEndoOperation Carrier}, LRA.Operation.Laws.Inverse.RightInverse operation identity inverse → ∀ (element : Carrier), operation element (inverse element) = identity
+Transliterated theorem: operation inverse element = identity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (law : LeftInverseOf operation identity element inverse) : operation inverse element = identity
-Source: ./Laws/Inverse/Theorems.lean#L27
+Source: ./Laws/Inverse/Theorems.lean#L29
 
 
 
 Name: RightInverseOf.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier},   LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse → Eq (operation inverse element) identity
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier},   LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse → Eq (operation inverse element) identity
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (law : RightInverseOf operation identity element inverse), operation element inverse = identity
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier}, LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse → operation inverse element = identity
+Transliterated theorem: operation element inverse = identity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (law : RightInverseOf operation identity element inverse) : operation element inverse = identity
-Source: ./Laws/Inverse/Theorems.lean#L34
+Source: ./Laws/Inverse/Theorems.lean#L37
 
 
 
@@ -875,9 +1159,10 @@ Name: TwoSidedInverseOf.left
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse →     LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse →     LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier} {inverse : LRA.Operation.UnaryEndoOperation Carrier}, LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse → LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse
+Transliterated theorem: LeftInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (law : TwoSidedInverseOf operation identity element inverse) : LeftInverseOf operation identity element inverse
-Source: ./Laws/Inverse/Theorems.lean#L41
+Source: ./Laws/Inverse/Theorems.lean#L45
 
 
 
@@ -885,49 +1170,54 @@ Name: TwoSidedInverseOf.right
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier},   LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element inverse →     LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier},   LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element inverse →     LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier}, LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element inverse → LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse
+Transliterated theorem: RightInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (law : TwoSidedInverseOf operation identity element inverse) : RightInverseOf operation identity element inverse
-Source: ./Laws/Inverse/Theorems.lean#L48
+Source: ./Laws/Inverse/Theorems.lean#L53
 
 
 
 Name: TwoSidedInverseOf.of_left_right
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   And (LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse)       (LRA.Operation.Laws.Inverse.RightInverse operation identity inverse) →     LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   And (LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse)       (LRA.Operation.Laws.Inverse.RightInverse operation identity inverse) →     LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (leftLaw : LeftInverseOf operation identity element inverse) (rightLaw : RightInverseOf operation identity element inverse), TwoSidedInverseOf operation identity element inverse
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier} {inverse : LRA.Operation.UnaryEndoOperation Carrier}, (LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse ∧ LRA.Operation.Laws.Inverse.RightInverse operation identity inverse) → LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse
+Transliterated theorem: TwoSidedInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (leftLaw : LeftInverseOf operation identity element inverse) (rightLaw : RightInverseOf operation identity element inverse) : TwoSidedInverseOf operation identity element inverse
-Source: ./Laws/Inverse/Theorems.lean#L55
+Source: ./Laws/Inverse/Theorems.lean#L61
 
 
 
 Name: LeftInvertibleOn.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}   {identity element : Carrier},   And (LRA.Operation.Laws.Inverse.LeftInvertibleOn eligible operation identity) (eligible element) →     Exists fun inverse => LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse
-Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}   {identity element : Carrier},   And (LRA.Operation.Laws.Inverse.LeftInvertibleOn eligible operation identity) (eligible element) →     Exists fun inverse => LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse
+Predicate logic: ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : BinaryEndoOperation Carrier} {identity element : Carrier} (law : LeftInvertibleOn eligible operation identity) (eligible_element : eligible element), ∃ inverse, LeftInverseOf operation identity element inverse
+Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element : Carrier}, (LRA.Operation.Laws.Inverse.LeftInvertibleOn eligible operation identity ∧ eligible element) → Exists fun inverse => LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse
+Transliterated theorem: ∃ inverse, LeftInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier → Prop} {operation : BinaryEndoOperation Carrier} {identity element : Carrier} (law : LeftInvertibleOn eligible operation identity) (eligible_element : eligible element) : ∃ inverse, LeftInverseOf operation identity element inverse
-Source: ./Laws/Inverse/Theorems.lean#L63
+Source: ./Laws/Inverse/Theorems.lean#L70
 
 
 
 Name: RightInvertibleOn.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}   {identity element : Carrier},   And (LRA.Operation.Laws.Inverse.RightInvertibleOn eligible operation identity) (eligible element) →     Exists fun inverse => LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse
-Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}   {identity element : Carrier},   And (LRA.Operation.Laws.Inverse.RightInvertibleOn eligible operation identity) (eligible element) →     Exists fun inverse => LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse
+Predicate logic: ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : BinaryEndoOperation Carrier} {identity element : Carrier} (law : RightInvertibleOn eligible operation identity) (eligible_element : eligible element), ∃ inverse, RightInverseOf operation identity element inverse
+Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element : Carrier}, (LRA.Operation.Laws.Inverse.RightInvertibleOn eligible operation identity ∧ eligible element) → Exists fun inverse => LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse
+Transliterated theorem: ∃ inverse, RightInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier → Prop} {operation : BinaryEndoOperation Carrier} {identity element : Carrier} (law : RightInvertibleOn eligible operation identity) (eligible_element : eligible element) : ∃ inverse, RightInverseOf operation identity element inverse
-Source: ./Laws/Inverse/Theorems.lean#L72
+Source: ./Laws/Inverse/Theorems.lean#L80
 
 
 
 Name: TwoSidedInvertibleOn.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}   {identity element : Carrier},   And (LRA.Operation.Laws.Inverse.TwoSidedInvertibleOn eligible operation identity) (eligible element) →     Exists fun inverse => LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element inverse
-Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}   {identity element : Carrier},   And (LRA.Operation.Laws.Inverse.TwoSidedInvertibleOn eligible operation identity) (eligible element) →     Exists fun inverse => LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element inverse
+Predicate logic: ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : BinaryEndoOperation Carrier} {identity element : Carrier} (law : TwoSidedInvertibleOn eligible operation identity) (eligible_element : eligible element), ∃ inverse, TwoSidedInverseOf operation identity element inverse
+Predicate logic (unfolded): ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element : Carrier}, (LRA.Operation.Laws.Inverse.TwoSidedInvertibleOn eligible operation identity ∧ eligible element) → Exists fun inverse => LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element inverse
+Transliterated theorem: ∃ inverse, TwoSidedInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier → Prop} {operation : BinaryEndoOperation Carrier} {identity element : Carrier} (law : TwoSidedInvertibleOn eligible operation identity) (eligible_element : eligible element) : ∃ inverse, TwoSidedInverseOf operation identity element inverse
-Source: ./Laws/Inverse/Theorems.lean#L81
+Source: ./Laws/Inverse/Theorems.lean#L90
 
 
 
@@ -935,9 +1225,10 @@ Name: TwoSidedInverse.left
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier},   LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element inverse →     LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier},   LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element inverse →     LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier}, LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element inverse → LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse
+Transliterated theorem: LeftInverse operation identity inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (law : TwoSidedInverse operation identity inverse) : LeftInverse operation identity inverse
-Source: ./Laws/Inverse/Theorems.lean#L90
+Source: ./Laws/Inverse/Theorems.lean#L100
 
 
 
@@ -945,27 +1236,30 @@ Name: TwoSidedInverse.right
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse →     LRA.Operation.Laws.Inverse.RightInverse operation identity inverse
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse →     LRA.Operation.Laws.Inverse.RightInverse operation identity inverse
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier} {inverse : LRA.Operation.UnaryEndoOperation Carrier}, LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse → LRA.Operation.Laws.Inverse.RightInverse operation identity inverse
+Transliterated theorem: RightInverse operation identity inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (law : TwoSidedInverse operation identity inverse) : RightInverse operation identity inverse
-Source: ./Laws/Inverse/Theorems.lean#L98
+Source: ./Laws/Inverse/Theorems.lean#L109
 
 
 
 Name: TwoSidedInverse.of_left_right
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier},   And (LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse)       (LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse) →     LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element inverse
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier},   And (LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse)       (LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse) →     LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element inverse
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (leftLaw : LeftInverse operation identity inverse) (rightLaw : RightInverse operation identity inverse), TwoSidedInverse operation identity inverse
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier}, (LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse ∧ LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse) → LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element inverse
+Transliterated theorem: TwoSidedInverse operation identity inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (leftLaw : LeftInverse operation identity inverse) (rightLaw : RightInverse operation identity inverse) : TwoSidedInverse operation identity inverse
-Source: ./Laws/Inverse/Theorems.lean#L106
+Source: ./Laws/Inverse/Theorems.lean#L118
 
 
 
 Name: LeftInverseEqualsRightInverse
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}   {identity element leftCandidate rightCandidate : Carrier},   And (LRA.Operation.Laws.Associative.Associative operation)       (And (LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity)         (And (Eq (operation leftCandidate element) identity) (Eq (operation element rightCandidate) identity))) →     Eq leftCandidate rightCandidate
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}   {identity element leftCandidate rightCandidate : Carrier},   And (LRA.Operation.Laws.Associative.Associative operation)       (And (LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity)         (And (Eq (operation leftCandidate element) identity) (Eq (operation element rightCandidate) identity))) →     Eq leftCandidate rightCandidate
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element leftCandidate rightCandidate : Carrier} (associative : LRA.Operation.Laws.Associative.Associative operation) (identityLaw : LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity) (leftInverseLaw : operation leftCandidate element = identity) (rightInverseLaw : operation element rightCandidate = identity), leftCandidate = rightCandidate
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element leftCandidate rightCandidate : Carrier}, (LRA.Operation.Laws.Associative.Associative operation ∧ (LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity ∧ (operation leftCandidate element = identity ∧ operation element rightCandidate = identity))) → leftCandidate = rightCandidate
+Transliterated theorem: (operation leftCandidate element = identity ∧ operation element rightCandidate = identity) → leftCandidate = rightCandidate
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element leftCandidate rightCandidate : Carrier} (associative : LRA.Operation.Laws.Associative.Associative operation) (identityLaw : LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity) (leftInverseLaw : operation leftCandidate element = identity) (rightInverseLaw : operation element rightCandidate = identity) : leftCandidate = rightCandidate
 Source: ./Laws/Inverse/Relationships.lean#L13
 
@@ -974,30 +1268,33 @@ Source: ./Laws/Inverse/Relationships.lean#L13
 Name: TwoSidedInverseUnique
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {firstInverse secondInverse : LRA.Operation.UnaryEndoOperation Carrier},   And (LRA.Operation.Laws.Associative.Associative operation)       (And (LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity)         (And (LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity firstInverse)           (LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity secondInverse))) →     Eq firstInverse secondInverse
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {firstInverse secondInverse : LRA.Operation.UnaryEndoOperation Carrier},   And (LRA.Operation.Laws.Associative.Associative operation)       (And (LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity)         (And (LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity firstInverse)           (LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity secondInverse))) →     Eq firstInverse secondInverse
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {firstInverse secondInverse : UnaryEndoOperation Carrier} (associative : LRA.Operation.Laws.Associative.Associative operation) (identityLaw : LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity) (firstLaw : TwoSidedInverse operation identity firstInverse) (secondLaw : TwoSidedInverse operation identity secondInverse), firstInverse = secondInverse
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier} {firstInverse secondInverse : LRA.Operation.UnaryEndoOperation Carrier}, (LRA.Operation.Laws.Associative.Associative operation ∧ (LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity ∧ (LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity firstInverse ∧ LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity secondInverse))) → firstInverse = secondInverse
+Transliterated theorem: firstInverse = secondInverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {firstInverse secondInverse : UnaryEndoOperation Carrier} (associative : LRA.Operation.Laws.Associative.Associative operation) (identityLaw : LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity) (firstLaw : TwoSidedInverse operation identity firstInverse) (secondLaw : TwoSidedInverse operation identity secondInverse) : firstInverse = secondInverse
-Source: ./Laws/Inverse/Relationships.lean#L23
+Source: ./Laws/Inverse/Relationships.lean#L24
 
 
 
 Name: LeftCancellativeOfLeftInverse
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   And (LRA.Operation.Laws.Associative.Associative operation)       (And (LRA.Operation.Laws.Identity.LeftIdentity operation identity)         (LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse)) →     LRA.Operation.Laws.Cancellation.LeftCancellative operation
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   And (LRA.Operation.Laws.Associative.Associative operation)       (And (LRA.Operation.Laws.Identity.LeftIdentity operation identity)         (LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse)) →     LRA.Operation.Laws.Cancellation.LeftCancellative operation
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (associative : LRA.Operation.Laws.Associative.Associative operation) (leftIdentity : LRA.Operation.Laws.Identity.LeftIdentity operation identity) (leftInverse : LeftInverse operation identity inverse), LRA.Operation.Laws.Cancellation.LeftCancellative operation
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier} {inverse : LRA.Operation.UnaryEndoOperation Carrier}, (LRA.Operation.Laws.Associative.Associative operation ∧ (LRA.Operation.Laws.Identity.LeftIdentity operation identity ∧ LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse)) → LRA.Operation.Laws.Cancellation.LeftCancellative operation
+Transliterated theorem: LRA.Operation.Laws.Cancellation.LeftCancellative operation
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (associative : LRA.Operation.Laws.Associative.Associative operation) (leftIdentity : LRA.Operation.Laws.Identity.LeftIdentity operation identity) (leftInverse : LeftInverse operation identity inverse) : LRA.Operation.Laws.Cancellation.LeftCancellative operation
-Source: ./Laws/Inverse/Relationships.lean#L34
+Source: ./Laws/Inverse/Relationships.lean#L36
 
 
 
 Name: RightCancellativeOfRightInverse
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   And (LRA.Operation.Laws.Associative.Associative operation)       (And (LRA.Operation.Laws.Identity.RightIdentity operation identity)         (LRA.Operation.Laws.Inverse.RightInverse operation identity inverse)) →     LRA.Operation.Laws.Cancellation.RightCancellative operation
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   And (LRA.Operation.Laws.Associative.Associative operation)       (And (LRA.Operation.Laws.Identity.RightIdentity operation identity)         (LRA.Operation.Laws.Inverse.RightInverse operation identity inverse)) →     LRA.Operation.Laws.Cancellation.RightCancellative operation
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (associative : LRA.Operation.Laws.Associative.Associative operation) (rightIdentity : LRA.Operation.Laws.Identity.RightIdentity operation identity) (rightInverse : RightInverse operation identity inverse), LRA.Operation.Laws.Cancellation.RightCancellative operation
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier} {inverse : LRA.Operation.UnaryEndoOperation Carrier}, (LRA.Operation.Laws.Associative.Associative operation ∧ (LRA.Operation.Laws.Identity.RightIdentity operation identity ∧ LRA.Operation.Laws.Inverse.RightInverse operation identity inverse)) → LRA.Operation.Laws.Cancellation.RightCancellative operation
+Transliterated theorem: LRA.Operation.Laws.Cancellation.RightCancellative operation
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (associative : LRA.Operation.Laws.Associative.Associative operation) (rightIdentity : LRA.Operation.Laws.Identity.RightIdentity operation identity) (rightInverse : RightInverse operation identity inverse) : LRA.Operation.Laws.Cancellation.RightCancellative operation
-Source: ./Laws/Inverse/Relationships.lean#L44
+Source: ./Laws/Inverse/Relationships.lean#L47
 
 
 
@@ -1005,9 +1302,10 @@ Name: LeftInverse.to_left_inverse_of
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse →     ∀ (element : Carrier), LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element (inverse element)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse →     ∀ (element : Carrier), LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element (inverse element)
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier} {inverse : LRA.Operation.UnaryEndoOperation Carrier}, LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse → ∀ (element : Carrier), LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element (inverse element)
+Transliterated theorem: (∀ element ∈ Carrier), LeftInverseOf operation identity element (inverse element)
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (law : LeftInverse operation identity inverse) (element : Carrier) : LeftInverseOf operation identity element (inverse element)
-Source: ./Laws/Inverse/Relationships.lean#L54
+Source: ./Laws/Inverse/Relationships.lean#L58
 
 
 
@@ -1015,9 +1313,10 @@ Name: RightInverse.to_right_inverse_of
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   LRA.Operation.Laws.Inverse.RightInverse operation identity inverse →     ∀ (element : Carrier), LRA.Operation.Laws.Inverse.RightInverseOf operation identity element (inverse element)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   LRA.Operation.Laws.Inverse.RightInverse operation identity inverse →     ∀ (element : Carrier), LRA.Operation.Laws.Inverse.RightInverseOf operation identity element (inverse element)
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier} {inverse : LRA.Operation.UnaryEndoOperation Carrier}, LRA.Operation.Laws.Inverse.RightInverse operation identity inverse → ∀ (element : Carrier), LRA.Operation.Laws.Inverse.RightInverseOf operation identity element (inverse element)
+Transliterated theorem: (∀ element ∈ Carrier), RightInverseOf operation identity element (inverse element)
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (law : RightInverse operation identity inverse) (element : Carrier) : RightInverseOf operation identity element (inverse element)
-Source: ./Laws/Inverse/Relationships.lean#L63
+Source: ./Laws/Inverse/Relationships.lean#L68
 
 
 
@@ -1025,49 +1324,54 @@ Name: TwoSidedInverse.to_two_sided_inverse_of
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse →     ∀ (element : Carrier), LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element (inverse element)
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse →     ∀ (element : Carrier), LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element (inverse element)
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier} {inverse : LRA.Operation.UnaryEndoOperation Carrier}, LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse → ∀ (element : Carrier), LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element (inverse element)
+Transliterated theorem: (∀ element ∈ Carrier), TwoSidedInverseOf operation identity element (inverse element)
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (law : TwoSidedInverse operation identity inverse) (element : Carrier) : TwoSidedInverseOf operation identity element (inverse element)
-Source: ./Laws/Inverse/Relationships.lean#L72
+Source: ./Laws/Inverse/Relationships.lean#L78
 
 
 
 Name: Commutative.left_inverse_of_to_right_inverse_of
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse) →     LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse) →     LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (leftLaw : LeftInverseOf operation identity element inverse), RightInverseOf operation identity element inverse
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier}, (LRA.Operation.Laws.Commutative.Commutative operation ∧ LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse) → LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse
+Transliterated theorem: RightInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (leftLaw : LeftInverseOf operation identity element inverse) : RightInverseOf operation identity element inverse
-Source: ./Laws/Inverse/Relationships.lean#L81
+Source: ./Laws/Inverse/Relationships.lean#L88
 
 
 
 Name: Commutative.right_inverse_of_to_left_inverse_of
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse) →     LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse) →     LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (rightLaw : RightInverseOf operation identity element inverse), LeftInverseOf operation identity element inverse
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier}, (LRA.Operation.Laws.Commutative.Commutative operation ∧ LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse) → LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse
+Transliterated theorem: LeftInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (rightLaw : RightInverseOf operation identity element inverse) : LeftInverseOf operation identity element inverse
-Source: ./Laws/Inverse/Relationships.lean#L89
+Source: ./Laws/Inverse/Relationships.lean#L97
 
 
 
 Name: Commutative.left_inverse_to_right_inverse
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse) →     LRA.Operation.Laws.Inverse.RightInverse operation identity inverse
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse) →     LRA.Operation.Laws.Inverse.RightInverse operation identity inverse
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (leftLaw : LeftInverse operation identity inverse), RightInverse operation identity inverse
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier} {inverse : LRA.Operation.UnaryEndoOperation Carrier}, (LRA.Operation.Laws.Commutative.Commutative operation ∧ LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse) → LRA.Operation.Laws.Inverse.RightInverse operation identity inverse
+Transliterated theorem: RightInverse operation identity inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (leftLaw : LeftInverse operation identity inverse) : RightInverse operation identity inverse
-Source: ./Laws/Inverse/Relationships.lean#L97
+Source: ./Laws/Inverse/Relationships.lean#L106
 
 
 
 Name: Commutative.right_inverse_to_left_inverse
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Inverse.RightInverse operation identity inverse) →     LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}   {inverse : LRA.Operation.UnaryEndoOperation Carrier},   And (LRA.Operation.Laws.Commutative.Commutative operation)       (LRA.Operation.Laws.Inverse.RightInverse operation identity inverse) →     LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (rightLaw : RightInverse operation identity inverse), LeftInverse operation identity inverse
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier} {inverse : LRA.Operation.UnaryEndoOperation Carrier}, (LRA.Operation.Laws.Commutative.Commutative operation ∧ LRA.Operation.Laws.Inverse.RightInverse operation identity inverse) → LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse
+Transliterated theorem: LeftInverse operation identity inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (rightLaw : RightInverse operation identity inverse) : LeftInverse operation identity inverse
-Source: ./Laws/Inverse/Relationships.lean#L106
+Source: ./Laws/Inverse/Relationships.lean#L116
 
 
 
@@ -1075,7 +1379,8 @@ Name: NaturalOneFailsNilpotentUnderMultiplication
 Kind: Theorem
 State: Sorry
 Predicate logic: LRA.Operation.Laws.Nilpotent.FailsNilpotentElement   LRA.Operation.Laws.Nilpotent.NaturalMultiplicationForNilpotenceFailure 0 1
-Predicate logic (unfolded): LRA.Operation.Laws.Nilpotent.FailsNilpotentElement   LRA.Operation.Laws.Nilpotent.NaturalMultiplicationForNilpotenceFailure 0 1
+Predicate logic (unfolded): LRA.Operation.Laws.Nilpotent.FailsNilpotentElement LRA.Operation.Laws.Nilpotent.NaturalMultiplicationForNilpotenceFailure 0 1
+Transliterated theorem: FailsNilpotentElement NaturalMultiplicationForNilpotenceFailure 0 1
 Logical form (Lean): : FailsNilpotentElement NaturalMultiplicationForNilpotenceFailure 0 1
 Source: ./Laws/Nilpotent/FailureModes.lean#L17
 
@@ -1084,8 +1389,9 @@ Source: ./Laws/Nilpotent/FailureModes.lean#L17
 Name: NilpotentElement.apply
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {zero element : Carrier},   LRA.Operation.Laws.Nilpotent.NilpotentElement operation zero element →     Exists fun positiveExponent =>       Eq (LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent) zero
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {zero element : Carrier},   LRA.Operation.Laws.Nilpotent.NilpotentElement operation zero element →     Exists fun positiveExponent =>       Eq (LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent) zero
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {zero element : Carrier} (law : NilpotentElement operation zero element), ∃ positiveExponent : Nat, PositivePower operation element positiveExponent = zero
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {zero element : Carrier}, LRA.Operation.Laws.Nilpotent.NilpotentElement operation zero element → Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero
+Transliterated theorem: ∃ positiveExponent ∈ Nat, PositivePower operation element positiveExponent = zero
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {zero element : Carrier} (law : NilpotentElement operation zero element) : ∃ positiveExponent : Nat, PositivePower operation element positiveExponent = zero
 Source: ./Laws/Nilpotent/Theorems.lean#L9
 
@@ -1094,48 +1400,53 @@ Source: ./Laws/Nilpotent/Theorems.lean#L9
 Name: PositivePower.first
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier) (element : Carrier),   Eq (LRA.Operation.Laws.Nilpotent.PositivePower operation element 0) element
-Predicate logic (unfolded): ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier) (element : Carrier),   Eq (LRA.Operation.Laws.Nilpotent.PositivePower operation element 0) element
+Predicate logic: ∀ {Carrier : Type u} (operation : BinaryEndoOperation Carrier) (element : Carrier), PositivePower operation element 0 = element
+Predicate logic (unfolded): ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier) (element : Carrier), LRA.Operation.Laws.Nilpotent.PositivePower operation element 0 = element
+Transliterated theorem: (∀ element ∈ Carrier), PositivePower operation element 0 = element
 Logical form (Lean): {Carrier : Type u} (operation : BinaryEndoOperation Carrier) (element : Carrier) : PositivePower operation element 0 = element
-Source: ./Laws/Nilpotent/Theorems.lean#L17
+Source: ./Laws/Nilpotent/Theorems.lean#L18
 
 
 
 Name: PositivePower.succ
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier) (identity element : Carrier)   (exponent : Nat),   Eq (LRA.Operation.Laws.Nilpotent.OperationPower operation identity element exponent.succ)     (operation (LRA.Operation.Laws.Nilpotent.OperationPower operation identity element exponent) element)
-Predicate logic (unfolded): ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier) (identity element : Carrier)   (exponent : Nat),   Eq (LRA.Operation.Laws.Nilpotent.OperationPower operation identity element exponent.succ)     (operation (LRA.Operation.Laws.Nilpotent.OperationPower operation identity element exponent) element)
+Predicate logic: ∀ {Carrier : Type u} (operation : BinaryEndoOperation Carrier) (element : Carrier) (exponent : Nat), PositivePower operation element (Nat.succ exponent) = operation (PositivePower operation element exponent) element
+Predicate logic (unfolded): ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier) (identity element : Carrier) (exponent : Nat), LRA.Operation.Laws.Nilpotent.OperationPower operation identity element exponent.succ = operation (LRA.Operation.Laws.Nilpotent.OperationPower operation identity element exponent) element
+Transliterated theorem: (∀ element ∈ Carrier ∀ exponent ∈ Nat), PositivePower operation element (Nat.succ exponent) = operation (PositivePower operation element exponent) element
 Logical form (Lean): {Carrier : Type u} (operation : BinaryEndoOperation Carrier) (element : Carrier) (exponent : Nat) : PositivePower operation element (Nat.succ exponent) = operation (PositivePower operation element exponent) element
-Source: ./Laws/Nilpotent/Theorems.lean#L23
+Source: ./Laws/Nilpotent/Theorems.lean#L25
 
 
 
 Name: OperationPower.one
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier) (identity element : Carrier),   Eq (LRA.Operation.Laws.Nilpotent.OperationPower operation identity element 1) (operation identity element)
-Predicate logic (unfolded): ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier) (identity element : Carrier),   Eq (LRA.Operation.Laws.Nilpotent.OperationPower operation identity element 1) (operation identity element)
+Predicate logic: ∀ {Carrier : Type u} (operation : BinaryEndoOperation Carrier) (identity element : Carrier), OperationPower operation identity element 1 = operation identity element
+Predicate logic (unfolded): ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier) (identity element : Carrier), LRA.Operation.Laws.Nilpotent.OperationPower operation identity element 1 = operation identity element
+Transliterated theorem: (∀ identity element ∈ Carrier), OperationPower operation identity element 1 = operation identity element
 Logical form (Lean): {Carrier : Type u} (operation : BinaryEndoOperation Carrier) (identity element : Carrier) : OperationPower operation identity element 1 = operation identity element
-Source: ./Laws/Nilpotent/Theorems.lean#L31
+Source: ./Laws/Nilpotent/Theorems.lean#L34
 
 
 
 Name: OperationPower.succ
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier) (element : Carrier) (exponent : Nat),   Eq (LRA.Operation.Laws.Nilpotent.PositivePower operation element exponent.succ)     (operation (LRA.Operation.Laws.Nilpotent.PositivePower operation element exponent) element)
-Predicate logic (unfolded): ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier) (element : Carrier) (exponent : Nat),   Eq (LRA.Operation.Laws.Nilpotent.PositivePower operation element exponent.succ)     (operation (LRA.Operation.Laws.Nilpotent.PositivePower operation element exponent) element)
+Predicate logic: ∀ {Carrier : Type u} (operation : BinaryEndoOperation Carrier) (identity element : Carrier) (exponent : Nat), OperationPower operation identity element (Nat.succ exponent) = operation (OperationPower operation identity element exponent) element
+Predicate logic (unfolded): ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier) (element : Carrier) (exponent : Nat), LRA.Operation.Laws.Nilpotent.PositivePower operation element exponent.succ = operation (LRA.Operation.Laws.Nilpotent.PositivePower operation element exponent) element
+Transliterated theorem: (∀ identity element ∈ Carrier ∀ exponent ∈ Nat), OperationPower operation identity element (Nat.succ exponent) = operation (OperationPower operation identity element exponent) element
 Logical form (Lean): {Carrier : Type u} (operation : BinaryEndoOperation Carrier) (identity element : Carrier) (exponent : Nat) : OperationPower operation identity element (Nat.succ exponent) = operation (OperationPower operation identity element exponent) element
-Source: ./Laws/Nilpotent/Theorems.lean#L37
+Source: ./Laws/Nilpotent/Theorems.lean#L41
 
 
 
 Name: NilpotentElement.respects_element_equality
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {zero first second : Carrier},   And (Eq first second) (LRA.Operation.Laws.Nilpotent.NilpotentElement operation zero first) →     LRA.Operation.Laws.Nilpotent.NilpotentElement operation zero second
-Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {zero first second : Carrier},   And (Eq first second) (LRA.Operation.Laws.Nilpotent.NilpotentElement operation zero first) →     LRA.Operation.Laws.Nilpotent.NilpotentElement operation zero second
+Predicate logic: ∀ {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {zero first second : Carrier} (equal_elements : first = second) (law : NilpotentElement operation zero first), NilpotentElement operation zero second
+Predicate logic (unfolded): ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {zero first second : Carrier}, (first = second ∧ LRA.Operation.Laws.Nilpotent.NilpotentElement operation zero first) → LRA.Operation.Laws.Nilpotent.NilpotentElement operation zero second
+Transliterated theorem: (first = second) → NilpotentElement operation zero second
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {zero first second : Carrier} (equal_elements : first = second) (law : NilpotentElement operation zero first) : NilpotentElement operation zero second
 Source: ./Laws/Nilpotent/Relationships.lean#L9
 
@@ -1146,6 +1457,7 @@ Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (Carrier : Type u), LRA.Operation.Laws.Associative.Associative (LRA.Operation.EndomapComposition Carrier)
 Predicate logic (unfolded): ∀ (Carrier : Type u), LRA.Operation.Laws.Associative.Associative (LRA.Operation.EndomapComposition Carrier)
+Transliterated theorem: LRA.Operation.Laws.Associative.Associative (EndomapComposition Carrier)
 Logical form (Lean): (Carrier : Type u) : LRA.Operation.Laws.Associative.Associative (EndomapComposition Carrier)
 Source: ./Theorems.lean#L13
 
@@ -1155,19 +1467,21 @@ Name: EndomapCompositionIdentity
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (Carrier : Type u),   LRA.Operation.Laws.Identity.TwoSidedIdentity (LRA.Operation.EndomapComposition Carrier)     (LRA.Operation.EndomapIdentity Carrier)
-Predicate logic (unfolded): ∀ (Carrier : Type u),   LRA.Operation.Laws.Identity.TwoSidedIdentity (LRA.Operation.EndomapComposition Carrier)     (LRA.Operation.EndomapIdentity Carrier)
+Predicate logic (unfolded): ∀ (Carrier : Type u), LRA.Operation.Laws.Identity.TwoSidedIdentity (LRA.Operation.EndomapComposition Carrier) (LRA.Operation.EndomapIdentity Carrier)
+Transliterated theorem: LRA.Operation.Laws.Identity.TwoSidedIdentity (EndomapComposition Carrier) (EndomapIdentity Carrier)
 Logical form (Lean): (Carrier : Type u) : LRA.Operation.Laws.Identity.TwoSidedIdentity (EndomapComposition Carrier) (EndomapIdentity Carrier)
-Source: ./Theorems.lean#L18
+Source: ./Theorems.lean#L19
 
 
 
 Name: BijectiveEndomapHasCompositionInverse
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Carrier : Type u} (map : Carrier → Carrier),   LRA.Function.Bijective map →     Exists fun inverse =>       And (Eq (LRA.Operation.EndomapComposition Carrier inverse map) (LRA.Operation.EndomapIdentity Carrier))         (Eq (LRA.Operation.EndomapComposition Carrier map inverse) (LRA.Operation.EndomapIdentity Carrier))
-Predicate logic (unfolded): ∀ {Carrier : Type u} (map : Carrier → Carrier),   LRA.Function.Bijective map →     Exists fun inverse =>       And (Eq (LRA.Operation.EndomapComposition Carrier inverse map) (LRA.Operation.EndomapIdentity Carrier))         (Eq (LRA.Operation.EndomapComposition Carrier map inverse) (LRA.Operation.EndomapIdentity Carrier))
+Predicate logic: ∀ {Carrier : Type u} (map : Carrier → Carrier) (bijective : LRA.Function.Bijective map), ∃ inverse : Carrier → Carrier, EndomapComposition Carrier inverse map = EndomapIdentity Carrier ∧ EndomapComposition Carrier map inverse = EndomapIdentity Carrier
+Predicate logic (unfolded): ∀ {Carrier : Type u} (map : Carrier → Carrier), LRA.Function.Bijective map → Exists fun inverse => (LRA.Operation.EndomapComposition Carrier inverse map = LRA.Operation.EndomapIdentity Carrier ∧ LRA.Operation.EndomapComposition Carrier map inverse = LRA.Operation.EndomapIdentity Carrier)
+Transliterated theorem: (Carrier → Carrier) → ∃ inverse ∈ Carrier → Carrier, EndomapComposition Carrier inverse map = EndomapIdentity Carrier ∧ EndomapComposition Carrier map inverse = EndomapIdentity Carrier
 Logical form (Lean): {Carrier : Type u} (map : Carrier → Carrier) (bijective : LRA.Function.Bijective map) : ∃ inverse : Carrier → Carrier, EndomapComposition Carrier inverse map = EndomapIdentity Carrier ∧ EndomapComposition Carrier map inverse = EndomapIdentity Carrier
-Source: ./Theorems.lean#L24
+Source: ./Theorems.lean#L26
 
 
 
@@ -1175,9 +1489,10 @@ Name: PointwiseAssociative
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (operation : LRA.Operation.BinaryEndoOperation Codomain),   LRA.Operation.Laws.Associative.Associative operation →     LRA.Operation.Laws.Associative.Associative (LRA.Operation.PointwiseBinaryOperation operation)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (operation : LRA.Operation.BinaryEndoOperation Codomain),   LRA.Operation.Laws.Associative.Associative operation →     LRA.Operation.Laws.Associative.Associative (LRA.Operation.PointwiseBinaryOperation operation)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (operation : LRA.Operation.BinaryEndoOperation Codomain), LRA.Operation.Laws.Associative.Associative operation → LRA.Operation.Laws.Associative.Associative (LRA.Operation.PointwiseBinaryOperation operation)
+Transliterated theorem: LRA.Operation.Laws.Associative.Associative (PointwiseBinaryOperation Domain ∈ = Domain operation)
 Logical form (Lean): (operation : BinaryEndoOperation Codomain) (associative : LRA.Operation.Laws.Associative.Associative operation) : LRA.Operation.Laws.Associative.Associative (PointwiseBinaryOperation (Domain := Domain) operation)
-Source: ./Theorems.lean#L39
+Source: ./Theorems.lean#L41
 
 
 
@@ -1185,9 +1500,10 @@ Name: PointwiseTwoSidedIdentity
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (operation : LRA.Operation.BinaryEndoOperation Codomain) (identity : Codomain),   LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity →     LRA.Operation.Laws.Identity.TwoSidedIdentity (LRA.Operation.PointwiseBinaryOperation operation) fun _input =>       identity
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (operation : LRA.Operation.BinaryEndoOperation Codomain) (identity : Codomain),   LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity →     LRA.Operation.Laws.Identity.TwoSidedIdentity (LRA.Operation.PointwiseBinaryOperation operation) fun _input =>       identity
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (operation : LRA.Operation.BinaryEndoOperation Codomain) (identity : Codomain), LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity → LRA.Operation.Laws.Identity.TwoSidedIdentity (LRA.Operation.PointwiseBinaryOperation operation) fun _input => identity
+Transliterated theorem: (∀ identity ∈ Codomain), LRA.Operation.Laws.Identity.TwoSidedIdentity (PointwiseBinaryOperation Domain ∈ = Domain operation) fun _input ∈ Domain => identity
 Logical form (Lean): (operation : BinaryEndoOperation Codomain) (identity : Codomain) (identityLaw : LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity) : LRA.Operation.Laws.Identity.TwoSidedIdentity (PointwiseBinaryOperation (Domain := Domain) operation) (fun _input : Domain => identity)
-Source: ./Theorems.lean#L47
+Source: ./Theorems.lean#L50
 
 
 
@@ -1195,6 +1511,7 @@ Name: PointwiseTwoSidedInverse
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (operation : LRA.Operation.BinaryEndoOperation Codomain) (identity : Codomain)   (inverse : LRA.Operation.UnaryEndoOperation Codomain),   LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse →     LRA.Operation.Laws.Inverse.TwoSidedInverse (LRA.Operation.PointwiseBinaryOperation operation)       (fun _input => identity) (LRA.Operation.PointwiseUnaryOperation inverse)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (operation : LRA.Operation.BinaryEndoOperation Codomain) (identity : Codomain)   (inverse : LRA.Operation.UnaryEndoOperation Codomain),   LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse →     LRA.Operation.Laws.Inverse.TwoSidedInverse (LRA.Operation.PointwiseBinaryOperation operation)       (fun _input => identity) (LRA.Operation.PointwiseUnaryOperation inverse)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (operation : LRA.Operation.BinaryEndoOperation Codomain) (identity : Codomain) (inverse : LRA.Operation.UnaryEndoOperation Codomain), LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse → LRA.Operation.Laws.Inverse.TwoSidedInverse (LRA.Operation.PointwiseBinaryOperation operation) (fun _input => identity) (LRA.Operation.PointwiseUnaryOperation inverse)
+Transliterated theorem: (∀ identity ∈ Codomain), LRA.Operation.Laws.Inverse.TwoSidedInverse (PointwiseBinaryOperation Domain ∈ = Domain operation) fun _input ∈ Domain => identity (PointwiseUnaryOperation Domain ∈ = Domain inverse)
 Logical form (Lean): (operation : BinaryEndoOperation Codomain) (identity : Codomain) (inverse : UnaryEndoOperation Codomain) (inverseLaw : LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse) : LRA.Operation.Laws.Inverse.TwoSidedInverse (PointwiseBinaryOperation (Domain := Domain) operation) (fun _input : Domain => identity) (PointwiseUnaryOperation (Domain := Domain) inverse)
-Source: ./Theorems.lean#L57
+Source: ./Theorems.lean#L61

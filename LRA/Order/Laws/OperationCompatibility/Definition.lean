@@ -107,17 +107,19 @@ section Wrappers
 variable {R : Type u}
 
 theorem AddLeAddLeft [Add R] [LE R] [AdditionRespectsOrderLaws R] :
-    forall a b : R, a <= b -> forall c : R, c + a <= c + b :=
-  AdditionRespectsOrderLaws.AddLeAddLeft
+    forall a b : R, a <= b -> forall c : R, c + a <= c + b := by
+  sorry
+
 
 theorem AddLeAddRight [Add R] [LE R] [AdditionRespectsOrderLaws R] :
-    forall a b : R, a <= b -> forall c : R, a + c <= b + c :=
-  AdditionRespectsOrderLaws.AddLeAddRight
+    forall a b : R, a <= b -> forall c : R, a + c <= b + c := by
+  sorry
+
 
 theorem MulNonneg [Mul R] [LE R] [OfNat R 0]
     [MultiplicationRespectsOrderLaws R] :
-    forall a b : R, 0 <= a -> 0 <= b -> 0 <= a * b :=
-  MultiplicationRespectsOrderLaws.MulNonneg
+    forall a b : R, 0 <= a -> 0 <= b -> 0 <= a * b := by
+  sorry
 
 end Wrappers
 

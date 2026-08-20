@@ -56,7 +56,6 @@ theorem persistent_overlap_iff_endpoint_null
             (second.interval index).left_endpoint) := by
   sorry
 
-
 /-- Corollary 8.2: canonical comparison with the Cantor endpoint construction.
 
 Mathematical statement (Lean): `theorem canonical_comparison_isomorphism_exists : ∃ comparison : Carrier rational_model → Carrier rational_model, (∀ value, comparison value = value) ∧ (∀ rational, comparison (rational_embedding rational_model rational) = rational_embedding rational_model...`.
@@ -82,7 +81,6 @@ theorem canonical_comparison_isomorphism_exists :
         comparison (rational_embedding rational_model rational) =
           rational_embedding rational_model rational) := by
   sorry
-
 
 /-- Proposition expressing the final primitive-interval construction theorem.
 

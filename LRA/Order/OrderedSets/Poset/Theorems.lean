@@ -14,8 +14,8 @@ poset.NonStrictOrder element element
 theorem PosetElementRelatesToItself
     (poset : LRA.Order.Poset)
     (element : poset.Carrier) :
-    poset.NonStrictOrder element element :=
-  PosetOrderIsReflexive poset element
+    poset.NonStrictOrder element element := by
+  sorry
 
 /--
 Two mutually related elements of a poset are equal.
@@ -33,8 +33,8 @@ theorem PosetMutualOrderImpliesEqual
     (left right : poset.Carrier)
     (leftBelowRight : poset.NonStrictOrder left right)
     (rightBelowLeft : poset.NonStrictOrder right left) :
-    left = right :=
-  PosetOrderIsAntisymmetric poset left right leftBelowRight rightBelowLeft
+    left = right := by
+  sorry
 
 /--
 The non-strict order in a poset composes transitively.
@@ -52,8 +52,7 @@ theorem PosetOrderTrans
     (first second third : poset.Carrier)
     (firstBelowSecond : poset.NonStrictOrder first second)
     (secondBelowThird : poset.NonStrictOrder second third) :
-    poset.NonStrictOrder first third :=
-  PosetOrderIsTransitive poset first second third
-    firstBelowSecond secondBelowThird
+    poset.NonStrictOrder first third := by
+  sorry
 
 end LRA.Order.OrderedSets.Poset

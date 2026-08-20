@@ -9,6 +9,7768 @@ keep source order, because Lean forbids forward references, so source order is
 already a valid topological order. Working this list top to bottom, no entry
 depends on anything not yet proved above it.
 
-**Inventory:** 0 entries across 0 module(s) (0 completed, 0 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
+**Inventory:** 706 entries across 96 module(s) (0 completed, 706 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
 
-No theorem declarations found under this folder yet.
+Name: MaximumIsSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {F : Type u_1} [inst : Preorder F] {m : F} {A : Set F},   LRA.Analysis.Bounds.IsMaximum m A → LRA.Analysis.Bounds.IsSupremum m A
+Predicate logic (unfolded): ∀ {F : Type u_1} [inst : Preorder F] {m : F} {A : Set F}, LRA.Analysis.Bounds.IsMaximum m A → LRA.Analysis.Bounds.IsSupremum m A
+Transliterated theorem: IsSupremum m A
+Logical form (Lean): [Preorder F] {m : F} {A : Set F} (maximum_hypothesis : IsMaximum m A) : IsSupremum m A
+Source: ./Bounding/Bounds.lean#L142
+
+
+
+Name: SupremumUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [PartialOrder F] {s t : F} {A : Set F} (left_supremum : IsSupremum s A) (right_supremum : IsSupremum t A), s = t
+Predicate logic (unfolded): ∀ {F : Type u_1} [inst : PartialOrder F] {s t : F} {A : Set F}, (LRA.Analysis.Bounds.IsSupremum s A ∧ LRA.Analysis.Bounds.IsSupremum t A) → s = t
+Transliterated theorem: s = t
+Logical form (Lean): [PartialOrder F] {s t : F} {A : Set F} (left_supremum : IsSupremum s A) (right_supremum : IsSupremum t A) : s = t
+Source: ./Bounding/Bounds.lean#L157
+
+
+
+Name: InfimumUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [PartialOrder F] {s t : F} {A : Set F} (left_infimum : IsInfimum s A) (right_infimum : IsInfimum t A), s = t
+Predicate logic (unfolded): ∀ {F : Type u_1} [inst : PartialOrder F] {s t : F} {A : Set F}, (LRA.Analysis.Bounds.IsInfimum s A ∧ LRA.Analysis.Bounds.IsInfimum t A) → s = t
+Transliterated theorem: s = t
+Logical form (Lean): [PartialOrder F] {s t : F} {A : Set F} (left_infimum : IsInfimum s A) (right_infimum : IsInfimum t A) : s = t
+Source: ./Bounding/Bounds.lean#L173
+
+
+
+Name: SupremumIffIsLUB
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [Preorder F] {s : F} {A : Set F}, IsSupremum s A <-> IsLUB A s
+Predicate logic (unfolded): ∀ {F : Type u_1} [inst : Preorder F] {s : F} {A : Set F}, LRA.Analysis.Bounds.IsSupremum s A ↔ IsLUB A s
+Transliterated theorem: IsSupremum s A <-> IsLUB A s
+Logical form (Lean): [Preorder F] {s : F} {A : Set F} : IsSupremum s A <-> IsLUB A s
+Source: ./Bounding/Bounds.lean#L187
+
+
+
+Name: SupremumOfSum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {sA sB : F} {A B : Set F} (A_nonempty : A.Nonempty) (B_nonempty : B.Nonempty) (left_supremum : IsSupremum sA A) (right_supremum : IsSupremum sB B), IsSupremum (sA + sB) (A + B)
+Predicate logic (unfolded): ∀ {F : Type u_1} [inst : Field F] [inst_1 : LinearOrder F], IsStrictOrderedRing F → ∀ {sA sB : F} {A B : Set F}, (A.Nonempty ∧ (B.Nonempty ∧ (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsSupremum sB B))) → LRA.Analysis.Bounds.IsSupremum (instHAdd.hAdd sA sB) (instHAdd.hAdd A B)
+Transliterated theorem: (∀ A_nonempty ∈ A.Nonempty ∀ B_nonempty ∈ B.Nonempty), IsSupremum (sA + sB) (A + B)
+Logical form (Lean): {sA sB : F} {A B : Set F} (A_nonempty : A.Nonempty) (B_nonempty : B.Nonempty) (left_supremum : IsSupremum sA A) (right_supremum : IsSupremum sB B) : IsSupremum (sA + sB) (A + B)
+Source: ./Bounding/Bounds.lean#L212
+
+
+
+Name: InfimumOfSum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {iA iB : F} {A B : Set F} (A_nonempty : A.Nonempty) (B_nonempty : B.Nonempty) (left_infimum : IsInfimum iA A) (right_infimum : IsInfimum iB B), IsInfimum (iA + iB) (A + B)
+Predicate logic (unfolded): ∀ {F : Type u_1} [inst : Field F] [inst_1 : LinearOrder F], IsStrictOrderedRing F → ∀ {iA iB : F} {A B : Set F}, (A.Nonempty ∧ (B.Nonempty ∧ (LRA.Analysis.Bounds.IsInfimum iA A ∧ LRA.Analysis.Bounds.IsInfimum iB B))) → LRA.Analysis.Bounds.IsInfimum (instHAdd.hAdd iA iB) (instHAdd.hAdd A B)
+Transliterated theorem: (∀ A_nonempty ∈ A.Nonempty ∀ B_nonempty ∈ B.Nonempty), IsInfimum (iA + iB) (A + B)
+Logical form (Lean): {iA iB : F} {A B : Set F} (A_nonempty : A.Nonempty) (B_nonempty : B.Nonempty) (left_infimum : IsInfimum iA A) (right_infimum : IsInfimum iB B) : IsInfimum (iA + iB) (A + B)
+Source: ./Bounding/Bounds.lean#L235
+
+
+
+Name: SupremumOfPositiveScale
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {a s : F} {A : Set F} (A_nonempty : A.Nonempty) (scale_positive : 0 < a) (supremum_hypothesis : IsSupremum s A), IsSupremum (a * s) ((fun x => a * x) '' A)
+Predicate logic (unfolded): ∀ {F : Type u_1} [inst : Field F] [inst_1 : LinearOrder F], IsStrictOrderedRing F → ∀ {a s : F} {A : Set F}, (A.Nonempty ∧ (instDistribLatticeOfLinearOrder.toSemilatticeInf.lt 0 a ∧ LRA.Analysis.Bounds.IsSupremum s A)) → LRA.Analysis.Bounds.IsSupremum (instHMul.hMul a s) (Set.image (fun x => instHMul.hMul a x) A)
+Transliterated theorem: (∀ A_nonempty ∈ A.Nonempty), (0 < a) → IsSupremum (a * s) ((fun x => a * x) '' A)
+Logical form (Lean): {a s : F} {A : Set F} (A_nonempty : A.Nonempty) (scale_positive : 0 < a) (supremum_hypothesis : IsSupremum s A) : IsSupremum (a * s) ((fun x => a * x) '' A)
+Source: ./Bounding/Bounds.lean#L256
+
+
+
+Name: NegationSwapsSupremumInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {s : F} {A : Set F}, IsSupremum s A <-> IsInfimum (-s) (-A)
+Predicate logic (unfolded): ∀ {F : Type u_1} [inst : Field F] [inst_1 : LinearOrder F], IsStrictOrderedRing F → ∀ {s : F} {A : Set F}, LRA.Analysis.Bounds.IsSupremum s A ↔ LRA.Analysis.Bounds.IsInfimum (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg s) (Set.neg.neg A)
+Transliterated theorem: IsSupremum s A <-> IsInfimum (-s) (-A)
+Logical form (Lean): {s : F} {A : Set F} : IsSupremum s A <-> IsInfimum (-s) (-A)
+Source: ./Bounding/Bounds.lean#L272
+
+
+
+Name: SupremumMonotone
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {sA sB : F} {A B : Set F} (subset_hypothesis : A ⊆ B) (left_supremum : IsSupremum sA A) (right_supremum : IsSupremum sB B), sA <= sB
+Predicate logic (unfolded): ∀ {F : Type u_1} [inst : Field F] [inst_1 : LinearOrder F], IsStrictOrderedRing F → ∀ {sA sB : F} {A B : Set F}, (Set.instLE.le A B ∧ (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsSupremum sB B)) → instDistribLatticeOfLinearOrder.toSemilatticeInf.le sA sB
+Transliterated theorem: sA <= sB
+Logical form (Lean): {sA sB : F} {A B : Set F} (subset_hypothesis : A ⊆ B) (left_supremum : IsSupremum sA A) (right_supremum : IsSupremum sB B) : sA <= sB
+Source: ./Bounding/Bounds.lean#L289
+
+
+
+Name: IsBoundedIffAbsBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [AddCommGroup F] [LinearOrder F] [IsOrderedAddMonoid F] (A : Set F), IsBounded A ↔ ∃ M, 0 ≤ M ∧ ∀ a ∈ A, |a| ≤ M
+Predicate logic (unfolded): ∀ {F : Type u_1} [inst : AddCommGroup F] [inst_1 : LinearOrder F], IsOrderedAddMonoid F → ∀ (A : Set F), LRA.Analysis.Bounds.IsBounded A ↔ Exists fun M => (instDistribLatticeOfLinearOrder.toSemilatticeInf.le 0 M ∧ ∀ (a : F), Set.instMembership.mem A a → instDistribLatticeOfLinearOrder.toSemilatticeInf.le (abs a) M)
+Transliterated theorem: IsBounded A ↔ ∃ M, 0 ≤ M ∧ ∀ a ∈ A, |a| ≤ M
+Logical form (Lean): [AddCommGroup F] [LinearOrder F] [IsOrderedAddMonoid F] (A : Set F) : IsBounded A ↔ ∃ M, 0 ≤ M ∧ ∀ a ∈ A, |a| ≤ M
+Source: ./Bounding/ExtremalBounds/UpperLowerBounds.lean#L39
+
+
+
+Name: TranslationPreservesUpperBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set Real} {c u : Real},   LRA.Analysis.Bounds.IsUpperBound u A →     LRA.Analysis.Bounds.IsUpperBound (instHAdd.hAdd u c) (LRA.Analysis.Bounds.Algebra.Displace A c)
+Predicate logic (unfolded): ∀ {A : Set Real} {c u : Real}, LRA.Analysis.Bounds.IsUpperBound u A → LRA.Analysis.Bounds.IsUpperBound (instHAdd.hAdd u c) (LRA.Analysis.Bounds.Algebra.Displace A c)
+Transliterated theorem: LRA.Analysis.Bounds.IsUpperBound (u + c) (Displace A c)
+Logical form (Lean): {A : Set ℝ} {c u : ℝ} (upperBoundHypothesis : LRA.Analysis.Bounds.IsUpperBound u A) : LRA.Analysis.Bounds.IsUpperBound (u + c) (Displace A c)
+Source: ./Bounding/BoundAlgebra/BoundAlgebra.lean#L60
+
+
+
+Name: TranslationPreservesLowerBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set Real} {c l : Real},   LRA.Analysis.Bounds.IsLowerBound l A →     LRA.Analysis.Bounds.IsLowerBound (instHAdd.hAdd l c) (LRA.Analysis.Bounds.Algebra.Displace A c)
+Predicate logic (unfolded): ∀ {A : Set Real} {c l : Real}, LRA.Analysis.Bounds.IsLowerBound l A → LRA.Analysis.Bounds.IsLowerBound (instHAdd.hAdd l c) (LRA.Analysis.Bounds.Algebra.Displace A c)
+Transliterated theorem: LRA.Analysis.Bounds.IsLowerBound (l + c) (Displace A c)
+Logical form (Lean): {A : Set ℝ} {c l : ℝ} (lowerBoundHypothesis : LRA.Analysis.Bounds.IsLowerBound l A) : LRA.Analysis.Bounds.IsLowerBound (l + c) (Displace A c)
+Source: ./Bounding/BoundAlgebra/BoundAlgebra.lean#L79
+
+
+
+Name: PositiveDilationPreservesUpperBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} {scale u : ℝ} (positiveScale : 0 < scale) (upperBoundHypothesis : LRA.Analysis.Bounds.IsUpperBound u A), LRA.Analysis.Bounds.IsUpperBound (scale * u) (Dilate A scale)
+Predicate logic (unfolded): ∀ {A : Set Real} {scale u : Real}, (Real.instLT.lt 0 scale ∧ LRA.Analysis.Bounds.IsUpperBound u A) → LRA.Analysis.Bounds.IsUpperBound (instHMul.hMul scale u) (LRA.Analysis.Bounds.Algebra.Dilate A scale)
+Transliterated theorem: (0 < scale) → LRA.Analysis.Bounds.IsUpperBound (scale * u) (Dilate A scale)
+Logical form (Lean): {A : Set ℝ} {scale u : ℝ} (positiveScale : 0 < scale) (upperBoundHypothesis : LRA.Analysis.Bounds.IsUpperBound u A) : LRA.Analysis.Bounds.IsUpperBound (scale * u) (Dilate A scale)
+Source: ./Bounding/BoundAlgebra/BoundAlgebra.lean#L100
+
+
+
+Name: PositiveDilationPreservesLowerBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} {scale l : ℝ} (positiveScale : 0 < scale) (lowerBoundHypothesis : LRA.Analysis.Bounds.IsLowerBound l A), LRA.Analysis.Bounds.IsLowerBound (scale * l) (Dilate A scale)
+Predicate logic (unfolded): ∀ {A : Set Real} {scale l : Real}, (Real.instLT.lt 0 scale ∧ LRA.Analysis.Bounds.IsLowerBound l A) → LRA.Analysis.Bounds.IsLowerBound (instHMul.hMul scale l) (LRA.Analysis.Bounds.Algebra.Dilate A scale)
+Transliterated theorem: (0 < scale) → LRA.Analysis.Bounds.IsLowerBound (scale * l) (Dilate A scale)
+Logical form (Lean): {A : Set ℝ} {scale l : ℝ} (positiveScale : 0 < scale) (lowerBoundHypothesis : LRA.Analysis.Bounds.IsLowerBound l A) : LRA.Analysis.Bounds.IsLowerBound (scale * l) (Dilate A scale)
+Source: ./Bounding/BoundAlgebra/BoundAlgebra.lean#L123
+
+
+
+Name: NegativeDilationSendsLowerToUpperBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} {scale l : ℝ} (negativeScale : scale < 0) (lowerBoundHypothesis : LRA.Analysis.Bounds.IsLowerBound l A), LRA.Analysis.Bounds.IsUpperBound (scale * l) (Dilate A scale)
+Predicate logic (unfolded): ∀ {A : Set Real} {scale l : Real}, (Real.instLT.lt scale 0 ∧ LRA.Analysis.Bounds.IsLowerBound l A) → LRA.Analysis.Bounds.IsUpperBound (instHMul.hMul scale l) (LRA.Analysis.Bounds.Algebra.Dilate A scale)
+Transliterated theorem: (scale < 0) → LRA.Analysis.Bounds.IsUpperBound (scale * l) (Dilate A scale)
+Logical form (Lean): {A : Set ℝ} {scale l : ℝ} (negativeScale : scale < 0) (lowerBoundHypothesis : LRA.Analysis.Bounds.IsLowerBound l A) : LRA.Analysis.Bounds.IsUpperBound (scale * l) (Dilate A scale)
+Source: ./Bounding/BoundAlgebra/BoundAlgebra.lean#L146
+
+
+
+Name: NegativeDilationSendsUpperToLowerBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} {scale u : ℝ} (negativeScale : scale < 0) (upperBoundHypothesis : LRA.Analysis.Bounds.IsUpperBound u A), LRA.Analysis.Bounds.IsLowerBound (scale * u) (Dilate A scale)
+Predicate logic (unfolded): ∀ {A : Set Real} {scale u : Real}, (Real.instLT.lt scale 0 ∧ LRA.Analysis.Bounds.IsUpperBound u A) → LRA.Analysis.Bounds.IsLowerBound (instHMul.hMul scale u) (LRA.Analysis.Bounds.Algebra.Dilate A scale)
+Transliterated theorem: (scale < 0) → LRA.Analysis.Bounds.IsLowerBound (scale * u) (Dilate A scale)
+Logical form (Lean): {A : Set ℝ} {scale u : ℝ} (negativeScale : scale < 0) (upperBoundHypothesis : LRA.Analysis.Bounds.IsUpperBound u A) : LRA.Analysis.Bounds.IsLowerBound (scale * u) (Dilate A scale)
+Source: ./Bounding/BoundAlgebra/BoundAlgebra.lean#L169
+
+
+
+Name: ReflectionSwapsUpperBoundsToLowerBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} {b : ℝ}, LRA.Analysis.Bounds.IsUpperBound b A ↔ LRA.Analysis.Bounds.IsLowerBound (-b) (Reflect A)
+Predicate logic (unfolded): ∀ {A : Set Real} {b : Real}, LRA.Analysis.Bounds.IsUpperBound b A ↔ LRA.Analysis.Bounds.IsLowerBound (Real.instNeg.neg b) (LRA.Analysis.Bounds.Algebra.Reflect A)
+Transliterated theorem: LRA.Analysis.Bounds.IsUpperBound b A ↔ LRA.Analysis.Bounds.IsLowerBound (-b) (Reflect A)
+Logical form (Lean): {A : Set ℝ} {b : ℝ} : LRA.Analysis.Bounds.IsUpperBound b A ↔ LRA.Analysis.Bounds.IsLowerBound (-b) (Reflect A)
+Source: ./Bounding/BoundAlgebra/BoundAlgebra.lean#L188
+
+
+
+Name: ReflectionSwapsLowerBoundsToUpperBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} {b : ℝ}, LRA.Analysis.Bounds.IsLowerBound b A ↔ LRA.Analysis.Bounds.IsUpperBound (-b) (Reflect A)
+Predicate logic (unfolded): ∀ {A : Set Real} {b : Real}, LRA.Analysis.Bounds.IsLowerBound b A ↔ LRA.Analysis.Bounds.IsUpperBound (Real.instNeg.neg b) (LRA.Analysis.Bounds.Algebra.Reflect A)
+Transliterated theorem: LRA.Analysis.Bounds.IsLowerBound b A ↔ LRA.Analysis.Bounds.IsUpperBound (-b) (Reflect A)
+Logical form (Lean): {A : Set ℝ} {b : ℝ} : LRA.Analysis.Bounds.IsLowerBound b A ↔ LRA.Analysis.Bounds.IsUpperBound (-b) (Reflect A)
+Source: ./Bounding/BoundAlgebra/BoundAlgebra.lean#L204
+
+
+
+Name: UnionPreservesUpperBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [LE S] {A B : Set S} {u : S} (leftUpperBound : IsUpperBound u A) (rightUpperBound : IsUpperBound u B), IsUpperBound u (A ∪ B)
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {u : S}, (LRA.Analysis.Bounds.IsUpperBound u A ∧ LRA.Analysis.Bounds.IsUpperBound u B) → LRA.Analysis.Bounds.IsUpperBound u (Set.instUnion.union A B)
+Transliterated theorem: IsUpperBound u (A ∪ B)
+Logical form (Lean): [LE S] {A B : Set S} {u : S} (leftUpperBound : IsUpperBound u A) (rightUpperBound : IsUpperBound u B) : IsUpperBound u (A ∪ B)
+Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L26
+
+
+
+Name: UnionPreservesLowerBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [LE S] {A B : Set S} {l : S} (leftLowerBound : IsLowerBound l A) (rightLowerBound : IsLowerBound l B), IsLowerBound l (A ∪ B)
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {l : S}, (LRA.Analysis.Bounds.IsLowerBound l A ∧ LRA.Analysis.Bounds.IsLowerBound l B) → LRA.Analysis.Bounds.IsLowerBound l (Set.instUnion.union A B)
+Transliterated theorem: IsLowerBound l (A ∪ B)
+Logical form (Lean): [LE S] {A B : Set S} {l : S} (leftLowerBound : IsLowerBound l A) (rightLowerBound : IsLowerBound l B) : IsLowerBound l (A ∪ B)
+Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L44
+
+
+
+Name: UnionBoundedAboveIffPiecesBoundedAbove
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [LE S] {A B : Set S}, IsBoundedAbove (A ∪ B) ↔ IsBoundedAbove A ∧ IsBoundedAbove B
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A B : Set S}, LRA.Analysis.Bounds.IsBoundedAbove (Set.instUnion.union A B) ↔ (LRA.Analysis.Bounds.IsBoundedAbove A ∧ LRA.Analysis.Bounds.IsBoundedAbove B)
+Transliterated theorem: IsBoundedAbove (A ∪ B) ↔ IsBoundedAbove A ∧ IsBoundedAbove B
+Logical form (Lean): [LE S] {A B : Set S} : IsBoundedAbove (A ∪ B) ↔ IsBoundedAbove A ∧ IsBoundedAbove B
+Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L60
+
+
+
+Name: UnionBoundedBelowIffPiecesBoundedBelow
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [LE S] {A B : Set S}, IsBoundedBelow (A ∪ B) ↔ IsBoundedBelow A ∧ IsBoundedBelow B
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A B : Set S}, LRA.Analysis.Bounds.IsBoundedBelow (Set.instUnion.union A B) ↔ (LRA.Analysis.Bounds.IsBoundedBelow A ∧ LRA.Analysis.Bounds.IsBoundedBelow B)
+Transliterated theorem: IsBoundedBelow (A ∪ B) ↔ IsBoundedBelow A ∧ IsBoundedBelow B
+Logical form (Lean): [LE S] {A B : Set S} : IsBoundedBelow (A ∪ B) ↔ IsBoundedBelow A ∧ IsBoundedBelow B
+Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L74
+
+
+
+Name: UnionBoundedIffPiecesBounded
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [LE S] {A B : Set S}, IsBounded (A ∪ B) ↔ IsBounded A ∧ IsBounded B
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A B : Set S}, LRA.Analysis.Bounds.IsBounded (Set.instUnion.union A B) ↔ (LRA.Analysis.Bounds.IsBounded A ∧ LRA.Analysis.Bounds.IsBounded B)
+Transliterated theorem: IsBounded (A ∪ B) ↔ IsBounded A ∧ IsBounded B
+Logical form (Lean): [LE S] {A B : Set S} : IsBounded (A ∪ B) ↔ IsBounded A ∧ IsBounded B
+Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L87
+
+
+
+Name: SubsetsPreserveUpperBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [Preorder S] {C A : Set S} {u : S} (subsetHypothesis : C ⊆ A) (upperBoundHypothesis : IsUpperBound u A), IsUpperBound u C
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {C A : Set S} {u : S}, (Set.instLE.le C A ∧ LRA.Analysis.Bounds.IsUpperBound u A) → LRA.Analysis.Bounds.IsUpperBound u C
+Transliterated theorem: IsUpperBound u C
+Logical form (Lean): [Preorder S] {C A : Set S} {u : S} (subsetHypothesis : C ⊆ A) (upperBoundHypothesis : IsUpperBound u A) : IsUpperBound u C
+Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L103
+
+
+
+Name: SubsetsPreserveLowerBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [Preorder S] {C A : Set S} {l : S} (subsetHypothesis : C ⊆ A) (lowerBoundHypothesis : IsLowerBound l A), IsLowerBound l C
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {C A : Set S} {l : S}, (Set.instLE.le C A ∧ LRA.Analysis.Bounds.IsLowerBound l A) → LRA.Analysis.Bounds.IsLowerBound l C
+Transliterated theorem: IsLowerBound l C
+Logical form (Lean): [Preorder S] {C A : Set S} {l : S} (subsetHypothesis : C ⊆ A) (lowerBoundHypothesis : IsLowerBound l A) : IsLowerBound l C
+Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L121
+
+
+
+Name: IntersectionsInheritUpperBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {u : S},   LRA.Analysis.Bounds.IsUpperBound u A → LRA.Analysis.Bounds.IsUpperBound u (Set.instInter.inter A B)
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {u : S}, LRA.Analysis.Bounds.IsUpperBound u A → LRA.Analysis.Bounds.IsUpperBound u (Set.instInter.inter A B)
+Transliterated theorem: IsUpperBound u (A ∩ B)
+Logical form (Lean): [LE S] {A B : Set S} {u : S} (upperBoundHypothesis : IsUpperBound u A) : IsUpperBound u (A ∩ B)
+Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L138
+
+
+
+Name: IntersectionsInheritLowerBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {l : S},   LRA.Analysis.Bounds.IsLowerBound l A → LRA.Analysis.Bounds.IsLowerBound l (Set.instInter.inter A B)
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {l : S}, LRA.Analysis.Bounds.IsLowerBound l A → LRA.Analysis.Bounds.IsLowerBound l (Set.instInter.inter A B)
+Transliterated theorem: IsLowerBound l (A ∩ B)
+Logical form (Lean): [LE S] {A B : Set S} {l : S} (lowerBoundHypothesis : IsLowerBound l A) : IsLowerBound l (A ∩ B)
+Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L154
+
+
+
+Name: DifferencesInheritUpperBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {u : S},   LRA.Analysis.Bounds.IsUpperBound u A → LRA.Analysis.Bounds.IsUpperBound u (Set.instSDiff.sdiff A B)
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {u : S}, LRA.Analysis.Bounds.IsUpperBound u A → LRA.Analysis.Bounds.IsUpperBound u (Set.instSDiff.sdiff A B)
+Transliterated theorem: IsUpperBound u (A \ B)
+Logical form (Lean): [LE S] {A B : Set S} {u : S} (upperBoundHypothesis : IsUpperBound u A) : IsUpperBound u (A \ B)
+Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L170
+
+
+
+Name: DifferencesInheritLowerBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {l : S},   LRA.Analysis.Bounds.IsLowerBound l A → LRA.Analysis.Bounds.IsLowerBound l (Set.instSDiff.sdiff A B)
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {l : S}, LRA.Analysis.Bounds.IsLowerBound l A → LRA.Analysis.Bounds.IsLowerBound l (Set.instSDiff.sdiff A B)
+Transliterated theorem: IsLowerBound l (A \ B)
+Logical form (Lean): [LE S] {A B : Set S} {l : S} (lowerBoundHypothesis : IsLowerBound l A) : IsLowerBound l (A \ B)
+Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L186
+
+
+
+Name: ComplementsInheritUpperBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Type u_1} [inst : LE S] {A T : Set S} {u : S},   LRA.Analysis.Bounds.IsUpperBound u T → LRA.Analysis.Bounds.IsUpperBound u (Set.instSDiff.sdiff T A)
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A T : Set S} {u : S}, LRA.Analysis.Bounds.IsUpperBound u T → LRA.Analysis.Bounds.IsUpperBound u (Set.instSDiff.sdiff T A)
+Transliterated theorem: IsUpperBound u (T \ A)
+Logical form (Lean): [LE S] {A T : Set S} {u : S} (upperBoundHypothesis : IsUpperBound u T) : IsUpperBound u (T \ A)
+Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L202
+
+
+
+Name: ComplementsInheritLowerBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Type u_1} [inst : LE S] {A T : Set S} {l : S},   LRA.Analysis.Bounds.IsLowerBound l T → LRA.Analysis.Bounds.IsLowerBound l (Set.instSDiff.sdiff T A)
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A T : Set S} {l : S}, LRA.Analysis.Bounds.IsLowerBound l T → LRA.Analysis.Bounds.IsLowerBound l (Set.instSDiff.sdiff T A)
+Transliterated theorem: IsLowerBound l (T \ A)
+Logical form (Lean): [LE S] {A T : Set S} {l : S} (lowerBoundHypothesis : IsLowerBound l T) : IsLowerBound l (T \ A)
+Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L218
+
+
+
+Name: SupremumIsUpperBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {s : S},   LRA.Analysis.Bounds.IsSupremum s A → LRA.Analysis.Bounds.IsUpperBound s A
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {s : S}, LRA.Analysis.Bounds.IsSupremum s A → LRA.Analysis.Bounds.IsUpperBound s A
+Transliterated theorem: IsUpperBound s A
+Logical form (Lean): [Preorder S] {A : Set S} {s : S} (supremumHypothesis : IsSupremum s A) : IsUpperBound s A
+Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L25
+
+
+
+Name: InfimumIsLowerBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {i : S},   LRA.Analysis.Bounds.IsInfimum i A → LRA.Analysis.Bounds.IsLowerBound i A
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {i : S}, LRA.Analysis.Bounds.IsInfimum i A → LRA.Analysis.Bounds.IsLowerBound i A
+Transliterated theorem: IsLowerBound i A
+Logical form (Lean): [Preorder S] {A : Set S} {i : S} (infimumHypothesis : IsInfimum i A) : IsLowerBound i A
+Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L39
+
+
+
+Name: SubsetPreservesUpperBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [Preorder S] {A B : Set S} {u : S} (subsetHypothesis : A ⊆ B) (upperBoundHypothesis : IsUpperBound u B), IsUpperBound u A
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {A B : Set S} {u : S}, (Set.instLE.le A B ∧ LRA.Analysis.Bounds.IsUpperBound u B) → LRA.Analysis.Bounds.IsUpperBound u A
+Transliterated theorem: IsUpperBound u A
+Logical form (Lean): [Preorder S] {A B : Set S} {u : S} (subsetHypothesis : A ⊆ B) (upperBoundHypothesis : IsUpperBound u B) : IsUpperBound u A
+Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L54
+
+
+
+Name: SubsetPreservesLowerBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [Preorder S] {A B : Set S} {l : S} (subsetHypothesis : A ⊆ B) (lowerBoundHypothesis : IsLowerBound l B), IsLowerBound l A
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {A B : Set S} {l : S}, (Set.instLE.le A B ∧ LRA.Analysis.Bounds.IsLowerBound l B) → LRA.Analysis.Bounds.IsLowerBound l A
+Transliterated theorem: IsLowerBound l A
+Logical form (Lean): [Preorder S] {A B : Set S} {l : S} (subsetHypothesis : A ⊆ B) (lowerBoundHypothesis : IsLowerBound l B) : IsLowerBound l A
+Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L70
+
+
+
+Name: SupremumMonotoneUnderInclusion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [PartialOrder S] {A B : Set S} {sA sB : S} (subsetHypothesis : A ⊆ B) (leftSupremum : IsSupremum sA A) (rightSupremum : IsSupremum sB B), sA ≤ sB
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A B : Set S} {sA sB : S}, (Set.instLE.le A B ∧ (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsSupremum sB B)) → inst.le sA sB
+Transliterated theorem: sA ≤ sB
+Logical form (Lean): [PartialOrder S] {A B : Set S} {sA sB : S} (subsetHypothesis : A ⊆ B) (leftSupremum : IsSupremum sA A) (rightSupremum : IsSupremum sB B) : sA ≤ sB
+Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L88
+
+
+
+Name: InfimumAntitoneUnderInclusion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [PartialOrder S] {A B : Set S} {iA iB : S} (subsetHypothesis : A ⊆ B) (leftInfimum : IsInfimum iA A) (rightInfimum : IsInfimum iB B), iB ≤ iA
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A B : Set S} {iA iB : S}, (Set.instLE.le A B ∧ (LRA.Analysis.Bounds.IsInfimum iA A ∧ LRA.Analysis.Bounds.IsInfimum iB B)) → inst.le iB iA
+Transliterated theorem: iB ≤ iA
+Logical form (Lean): [PartialOrder S] {A B : Set S} {iA iB : S} (subsetHypothesis : A ⊆ B) (leftInfimum : IsInfimum iA A) (rightInfimum : IsInfimum iB B) : iB ≤ iA
+Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L108
+
+
+
+Name: UpperBoundIffSupremumLe
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [PartialOrder S] {A : Set S} {s u : S} (supremumHypothesis : IsSupremum s A), IsUpperBound u A ↔ s ≤ u
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {s u : S}, LRA.Analysis.Bounds.IsSupremum s A → LRA.Analysis.Bounds.IsUpperBound u A ↔ inst.le s u
+Transliterated theorem: IsUpperBound u A ↔ s ≤ u
+Logical form (Lean): [PartialOrder S] {A : Set S} {s u : S} (supremumHypothesis : IsSupremum s A) : IsUpperBound u A ↔ s ≤ u
+Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L126
+
+
+
+Name: LowerBoundIffLeInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [PartialOrder S] {A : Set S} {i l : S} (infimumHypothesis : IsInfimum i A), IsLowerBound l A ↔ l ≤ i
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {i l : S}, LRA.Analysis.Bounds.IsInfimum i A → LRA.Analysis.Bounds.IsLowerBound l A ↔ inst.le l i
+Transliterated theorem: IsLowerBound l A ↔ l ≤ i
+Logical form (Lean): [PartialOrder S] {A : Set S} {i l : S} (infimumHypothesis : IsInfimum i A) : IsLowerBound l A ↔ l ≤ i
+Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L142
+
+
+
+Name: EveryElementLeSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {s : S},   LRA.Analysis.Bounds.IsSupremum s A → ∀ (x : S), Set.instMembership.mem A x → inst.le x s
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {s : S}, LRA.Analysis.Bounds.IsSupremum s A → ∀ (x : S), Set.instMembership.mem A x → inst.le x s
+Transliterated theorem: ∀ x ∈ A, x ≤ s
+Logical form (Lean): [Preorder S] {A : Set S} {s : S} (supremumHypothesis : IsSupremum s A) : ∀ x ∈ A, x ≤ s
+Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L158
+
+
+
+Name: InfimumLeEveryElement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {i : S},   LRA.Analysis.Bounds.IsInfimum i A → ∀ (x : S), Set.instMembership.mem A x → inst.le i x
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {i : S}, LRA.Analysis.Bounds.IsInfimum i A → ∀ (x : S), Set.instMembership.mem A x → inst.le i x
+Transliterated theorem: ∀ x ∈ A, i ≤ x
+Logical form (Lean): [Preorder S] {A : Set S} {i : S} (infimumHypothesis : IsInfimum i A) : ∀ x ∈ A, i ≤ x
+Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L174
+
+
+
+Name: InfimumLeSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [PartialOrder S] {A : Set S} {i s : S} (infimumHypothesis : IsInfimum i A) (supremumHypothesis : IsSupremum s A), i ≤ s
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {i s : S}, (LRA.Analysis.Bounds.IsInfimum i A ∧ LRA.Analysis.Bounds.IsSupremum s A) → inst.le i s
+Transliterated theorem: i ≤ s
+Logical form (Lean): [PartialOrder S] {A : Set S} {i s : S} (infimumHypothesis : IsInfimum i A) (supremumHypothesis : IsSupremum s A) : i ≤ s
+Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L190
+
+
+
+Name: SupremumNeedNotBelongToSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∃ (A : Set ℝ) (s : ℝ), A.Nonempty ∧ IsSupremum s A ∧ s ∉ A
+Predicate logic (unfolded): Exists fun A => Exists fun s => (A.Nonempty ∧ (LRA.Analysis.Bounds.IsSupremum s A ∧ ¬ Set.instMembership.mem A s))
+Transliterated theorem: ∃ A ∈ Set ℝ s ∈ ℝ, A.Nonempty ∧ IsSupremum s A ∧ s ∉ A
+Logical form (Lean): : ∃ (A : Set ℝ) (s : ℝ), A.Nonempty ∧ IsSupremum s A ∧ s ∉ A
+Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L204
+
+
+
+Name: InfimumNeedNotBelongToSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∃ (A : Set ℝ) (i : ℝ), A.Nonempty ∧ IsInfimum i A ∧ i ∉ A
+Predicate logic (unfolded): Exists fun A => Exists fun i => (A.Nonempty ∧ (LRA.Analysis.Bounds.IsInfimum i A ∧ ¬ Set.instMembership.mem A i))
+Transliterated theorem: ∃ A ∈ Set ℝ i ∈ ℝ, A.Nonempty ∧ IsInfimum i A ∧ i ∉ A
+Logical form (Lean): : ∃ (A : Set ℝ) (i : ℝ), A.Nonempty ∧ IsInfimum i A ∧ i ∉ A
+Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L217
+
+
+
+Name: SupremumComparisonByDominatingSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [PartialOrder S] {A B : Set S} {sA sB : S} (leftSupremum : IsSupremum sA A) (rightSupremum : IsSupremum sB B) (dominationHypothesis : ∀ a ∈ A, ∃ b ∈ B, a ≤ b), sA ≤ sB
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A B : Set S} {sA sB : S}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ (LRA.Analysis.Bounds.IsSupremum sB B ∧ ∀ (a : S), Set.instMembership.mem A a → Exists fun b => (Set.instMembership.mem B b ∧ inst.le a b))) → inst.le sA sB
+Transliterated theorem: (∀ a ∈ A, ∃ b ∈ B, a ≤ b) → sA ≤ sB
+Logical form (Lean): [PartialOrder S] {A B : Set S} {sA sB : S} (leftSupremum : IsSupremum sA A) (rightSupremum : IsSupremum sB B) (dominationHypothesis : ∀ a ∈ A, ∃ b ∈ B, a ≤ b) : sA ≤ sB
+Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L234
+
+
+
+Name: LubPropertyGivesSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedAboveHypothesis : ∃ u, IsUpperBound u A), ∃! s : ℝ, IsSupremum s A
+Predicate logic (unfolded): ∀ {A : Set Real}, (A.Nonempty ∧ Exists fun u => LRA.Analysis.Bounds.IsUpperBound u A) → ExistsUnique fun s => LRA.Analysis.Bounds.IsSupremum s A
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (∃ u, IsUpperBound u A) → ∃! s : ℝ, IsSupremum s A
+Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedAboveHypothesis : ∃ u, IsUpperBound u A) : ∃! s : ℝ, IsSupremum s A
+Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L252
+
+
+
+Name: GlbPropertyGivesInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedBelowHypothesis : ∃ l, IsLowerBound l A), ∃! i : ℝ, IsInfimum i A
+Predicate logic (unfolded): ∀ {A : Set Real}, (A.Nonempty ∧ Exists fun l => LRA.Analysis.Bounds.IsLowerBound l A) → ExistsUnique fun i => LRA.Analysis.Bounds.IsInfimum i A
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (∃ l, IsLowerBound l A) → ∃! i : ℝ, IsInfimum i A
+Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedBelowHypothesis : ∃ l, IsLowerBound l A) : ∃! i : ℝ, IsInfimum i A
+Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L270
+
+
+
+Name: BoundedSetHasSupremumAndInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedHypothesis : IsBounded A), (∃! s : ℝ, IsSupremum s A) ∧ (∃! i : ℝ, IsInfimum i A)
+Predicate logic (unfolded): ∀ {A : Set Real}, (A.Nonempty ∧ LRA.Analysis.Bounds.IsBounded A) → (ExistsUnique fun s => LRA.Analysis.Bounds.IsSupremum s A ∧ ExistsUnique fun i => LRA.Analysis.Bounds.IsInfimum i A)
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), ∃! s ∈ ℝ, IsSupremum s A ∧ ∃! i ∈ ℝ, IsInfimum i A
+Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedHypothesis : IsBounded A) : (∃! s : ℝ, IsSupremum s A) ∧ (∃! i : ℝ, IsInfimum i A)
+Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L288
+
+
+
+Name: TranslationPreservesSuprema
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set Real},   A.Nonempty →     ∀ {s : Real},       LRA.Analysis.Bounds.IsSupremum s A →         ∀ (c : Real),           LRA.Analysis.Bounds.IsSupremum (instHAdd.hAdd s c) (instHAdd.hAdd A (Set.instSingletonSet.singleton c))
+Predicate logic (unfolded): ∀ {A : Set Real}, A.Nonempty → ∀ {s : Real}, LRA.Analysis.Bounds.IsSupremum s A → ∀ (c : Real), LRA.Analysis.Bounds.IsSupremum (instHAdd.hAdd s c) (instHAdd.hAdd A (Set.instSingletonSet.singleton c))
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), IsSupremum (s + c) (A + {c})
+Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {s : ℝ} (supremumHypothesis : IsSupremum s A) (c : ℝ) : IsSupremum (s + c) (A + {c})
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L106
+
+
+
+Name: TranslationPreservesInfima
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set Real},   A.Nonempty →     ∀ {i : Real},       LRA.Analysis.Bounds.IsInfimum i A →         ∀ (c : Real),           LRA.Analysis.Bounds.IsInfimum (instHAdd.hAdd i c) (instHAdd.hAdd A (Set.instSingletonSet.singleton c))
+Predicate logic (unfolded): ∀ {A : Set Real}, A.Nonempty → ∀ {i : Real}, LRA.Analysis.Bounds.IsInfimum i A → ∀ (c : Real), LRA.Analysis.Bounds.IsInfimum (instHAdd.hAdd i c) (instHAdd.hAdd A (Set.instSingletonSet.singleton c))
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), IsInfimum (i + c) (A + {c})
+Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {i : ℝ} (infimumHypothesis : IsInfimum i A) (c : ℝ) : IsInfimum (i + c) (A + {c})
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L124
+
+
+
+Name: PositiveScalarMultiplicationPreservesSuprema
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {s scale : ℝ} (supremumHypothesis : IsSupremum s A) (positiveScaleHypothesis : scale > 0), IsSupremum (scale * s) (ScalarImage scale A)
+Predicate logic (unfolded): ∀ {A : Set Real}, A.Nonempty → ∀ {s scale : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ GT.gt scale 0) → LRA.Analysis.Bounds.IsSupremum (instHMul.hMul scale s) (LRA.Analysis.Bounds.Algebra.ScalarImage scale A)
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), IsSupremum (scale * s) (ScalarImage scale A)
+Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {s scale : ℝ} (supremumHypothesis : IsSupremum s A) (positiveScaleHypothesis : scale > 0) : IsSupremum (scale * s) (ScalarImage scale A)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L143
+
+
+
+Name: PositiveScalarMultiplicationPreservesInfima
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {i scale : ℝ} (infimumHypothesis : IsInfimum i A) (positiveScaleHypothesis : scale > 0), IsInfimum (scale * i) (ScalarImage scale A)
+Predicate logic (unfolded): ∀ {A : Set Real}, A.Nonempty → ∀ {i scale : Real}, (LRA.Analysis.Bounds.IsInfimum i A ∧ GT.gt scale 0) → LRA.Analysis.Bounds.IsInfimum (instHMul.hMul scale i) (LRA.Analysis.Bounds.Algebra.ScalarImage scale A)
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), IsInfimum (scale * i) (ScalarImage scale A)
+Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {i scale : ℝ} (infimumHypothesis : IsInfimum i A) (positiveScaleHypothesis : scale > 0) : IsInfimum (scale * i) (ScalarImage scale A)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L163
+
+
+
+Name: NegativeScalarMultiplicationSendsInfimaToSuprema
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {i scale : ℝ} (infimumHypothesis : IsInfimum i A) (negativeScaleHypothesis : scale < 0), IsSupremum (scale * i) (ScalarImage scale A)
+Predicate logic (unfolded): ∀ {A : Set Real}, A.Nonempty → ∀ {i scale : Real}, (LRA.Analysis.Bounds.IsInfimum i A ∧ Real.instLT.lt scale 0) → LRA.Analysis.Bounds.IsSupremum (instHMul.hMul scale i) (LRA.Analysis.Bounds.Algebra.ScalarImage scale A)
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (scale < 0) → IsSupremum (scale * i) (ScalarImage scale A)
+Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {i scale : ℝ} (infimumHypothesis : IsInfimum i A) (negativeScaleHypothesis : scale < 0) : IsSupremum (scale * i) (ScalarImage scale A)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L183
+
+
+
+Name: NegativeScalarMultiplicationSendsSupremaToInfima
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {s scale : ℝ} (supremumHypothesis : IsSupremum s A) (negativeScaleHypothesis : scale < 0), IsInfimum (scale * s) (ScalarImage scale A)
+Predicate logic (unfolded): ∀ {A : Set Real}, A.Nonempty → ∀ {s scale : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ Real.instLT.lt scale 0) → LRA.Analysis.Bounds.IsInfimum (instHMul.hMul scale s) (LRA.Analysis.Bounds.Algebra.ScalarImage scale A)
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (scale < 0) → IsInfimum (scale * s) (ScalarImage scale A)
+Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {s scale : ℝ} (supremumHypothesis : IsSupremum s A) (negativeScaleHypothesis : scale < 0) : IsInfimum (scale * s) (ScalarImage scale A)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L203
+
+
+
+Name: NegationExchangesInfimaAndSuprema
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set Real},   A.Nonempty →     ∀ {i : Real},       LRA.Analysis.Bounds.IsInfimum i A → LRA.Analysis.Bounds.IsSupremum (Real.instNeg.neg i) (Set.neg.neg A)
+Predicate logic (unfolded): ∀ {A : Set Real}, A.Nonempty → ∀ {i : Real}, LRA.Analysis.Bounds.IsInfimum i A → LRA.Analysis.Bounds.IsSupremum (Real.instNeg.neg i) (Set.neg.neg A)
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), IsSupremum (-i) (-A)
+Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {i : ℝ} (infimumHypothesis : IsInfimum i A) : IsSupremum (-i) (-A)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L222
+
+
+
+Name: SupremumOfPointwiseSum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (rightSupremumHypothesis : IsSupremum sB B), IsSupremum (sA + sB) (A + B)
+Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsSupremum sB B) → LRA.Analysis.Bounds.IsSupremum (instHAdd.hAdd sA sB) (instHAdd.hAdd A B)
+Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), IsSupremum (sA + sB) (A + B)
+Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (rightSupremumHypothesis : IsSupremum sB B) : IsSupremum (sA + sB) (A + B)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L244
+
+
+
+Name: InfimumOfPointwiseSum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {iA iB : ℝ} (leftInfimumHypothesis : IsInfimum iA A) (rightInfimumHypothesis : IsInfimum iB B), IsInfimum (iA + iB) (A + B)
+Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {iA iB : Real}, (LRA.Analysis.Bounds.IsInfimum iA A ∧ LRA.Analysis.Bounds.IsInfimum iB B) → LRA.Analysis.Bounds.IsInfimum (instHAdd.hAdd iA iB) (instHAdd.hAdd A B)
+Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), IsInfimum (iA + iB) (A + B)
+Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {iA iB : ℝ} (leftInfimumHypothesis : IsInfimum iA A) (rightInfimumHypothesis : IsInfimum iB B) : IsInfimum (iA + iB) (A + B)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L269
+
+
+
+Name: SupremumOfPointwiseDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA iB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (rightInfimumHypothesis : IsInfimum iB B), IsSupremum (sA - iB) (A - B)
+Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA iB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsInfimum iB B) → LRA.Analysis.Bounds.IsSupremum (instHSub.hSub sA iB) (instHSub.hSub A B)
+Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), IsSupremum (sA - iB) (A - B)
+Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA iB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (rightInfimumHypothesis : IsInfimum iB B) : IsSupremum (sA - iB) (A - B)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L294
+
+
+
+Name: InfimumOfPointwiseDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {iA sB : ℝ} (leftInfimumHypothesis : IsInfimum iA A) (rightSupremumHypothesis : IsSupremum sB B), IsInfimum (iA - sB) (A - B)
+Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {iA sB : Real}, (LRA.Analysis.Bounds.IsInfimum iA A ∧ LRA.Analysis.Bounds.IsSupremum sB B) → LRA.Analysis.Bounds.IsInfimum (instHSub.hSub iA sB) (instHSub.hSub A B)
+Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), IsInfimum (iA - sB) (A - B)
+Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {iA sB : ℝ} (leftInfimumHypothesis : IsInfimum iA A) (rightSupremumHypothesis : IsSupremum sB B) : IsInfimum (iA - sB) (A - B)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L319
+
+
+
+Name: SupremumOfDilation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedHypothesis : IsBounded A) (scale : ℝ) {s i : ℝ} (supremumHypothesis : IsSupremum s A) (infimumHypothesis : IsInfimum i A), IsSupremum (if scale > 0 then scale * s else if scale = 0 then 0 else scale * i) (ScalarImage scale A)
+Predicate logic (unfolded): ∀ {A : Set Real}, (A.Nonempty ∧ LRA.Analysis.Bounds.IsBounded A) → ∀ (scale : Real) {s i : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ LRA.Analysis.Bounds.IsInfimum i A) → LRA.Analysis.Bounds.IsSupremum (ite (GT.gt scale 0) (instHMul.hMul scale s) (ite (scale = 0)0 (instHMul.hMul scale i))) (LRA.Analysis.Bounds.Algebra.ScalarImage scale A)
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), IsSupremum (if scale > 0 then scale * s else if scale = 0 then 0 else scale * i) (ScalarImage scale A)
+Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedHypothesis : IsBounded A) (scale : ℝ) {s i : ℝ} (supremumHypothesis : IsSupremum s A) (infimumHypothesis : IsInfimum i A) : IsSupremum (if scale > 0 then scale * s else if scale = 0 then 0 else scale * i) (ScalarImage scale A)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L347
+
+
+
+Name: SupremumOfAbsoluteValueImage
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {s i : ℝ} (supremumHypothesis : IsSupremum s A) (infimumHypothesis : IsInfimum i A), IsSupremum (max |i| |s|) (abs '' A)
+Predicate logic (unfolded): ∀ {A : Set Real}, A.Nonempty → ∀ {s i : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ LRA.Analysis.Bounds.IsInfimum i A) → LRA.Analysis.Bounds.IsSupremum (Real.instMax.max (abs i) (abs s)) (Set.image abs A)
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), IsSupremum (max |i| |s|) (abs '' A)
+Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {s i : ℝ} (supremumHypothesis : IsSupremum s A) (infimumHypothesis : IsInfimum i A) : IsSupremum (max |i| |s|) (abs '' A)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L372
+
+
+
+Name: SupremumOfReciprocalSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedHypothesis : IsBounded A) {s i : ℝ} (supremumHypothesis : IsSupremum s A) (infimumHypothesis : IsInfimum i A) (separatedFromZeroHypothesis : 0 < i ∨ s < 0), IsSupremum i⁻¹ (Reciprocal A)
+Predicate logic (unfolded): ∀ {A : Set Real}, (A.Nonempty ∧ LRA.Analysis.Bounds.IsBounded A) → ∀ {s i : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ (LRA.Analysis.Bounds.IsInfimum i A ∧ Or (Real.instLT.lt 0 i) (Real.instLT.lt s 0))) → LRA.Analysis.Bounds.IsSupremum (Real.instInv.inv i) (LRA.Analysis.Bounds.Algebra.Reciprocal A)
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (0 < i ∨ s < 0) → IsSupremum i⁻¹ (Reciprocal A)
+Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedHypothesis : IsBounded A) {s i : ℝ} (supremumHypothesis : IsSupremum s A) (infimumHypothesis : IsInfimum i A) (separatedFromZeroHypothesis : 0 < i ∨ s < 0) : IsSupremum i⁻¹ (Reciprocal A)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L396
+
+
+
+Name: InfimumOfReciprocalSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedHypothesis : IsBounded A) {s i : ℝ} (supremumHypothesis : IsSupremum s A) (infimumHypothesis : IsInfimum i A) (separatedFromZeroHypothesis : 0 < i ∨ s < 0), IsInfimum s⁻¹ (Reciprocal A)
+Predicate logic (unfolded): ∀ {A : Set Real}, (A.Nonempty ∧ LRA.Analysis.Bounds.IsBounded A) → ∀ {s i : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ (LRA.Analysis.Bounds.IsInfimum i A ∧ Or (Real.instLT.lt 0 i) (Real.instLT.lt s 0))) → LRA.Analysis.Bounds.IsInfimum (Real.instInv.inv s) (LRA.Analysis.Bounds.Algebra.Reciprocal A)
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (0 < i ∨ s < 0) → IsInfimum s⁻¹ (Reciprocal A)
+Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedHypothesis : IsBounded A) {s i : ℝ} (supremumHypothesis : IsSupremum s A) (infimumHypothesis : IsInfimum i A) (separatedFromZeroHypothesis : 0 < i ∨ s < 0) : IsInfimum s⁻¹ (Reciprocal A)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L423
+
+
+
+Name: SupremumOfPointwiseProduct
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB iA iB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (leftInfimumHypothesis : IsInfimum iA A) (rightSupremumHypothesis : IsSupremum sB B) (rightInfimumHypothesis : IsInfimum iB B), IsSupremum (max (max (iA * iB) (iA * sB)) (max (sA * iB) (sA * sB))) (A * B)
+Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB iA iB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ (LRA.Analysis.Bounds.IsInfimum iA A ∧ (LRA.Analysis.Bounds.IsSupremum sB B ∧ LRA.Analysis.Bounds.IsInfimum iB B))) → LRA.Analysis.Bounds.IsSupremum (Real.instMax.max (Real.instMax.max (instHMul.hMul iA iB) (instHMul.hMul iA sB)) (Real.instMax.max (instHMul.hMul sA iB) (instHMul.hMul sA sB))) (instHMul.hMul A B)
+Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), IsSupremum (max (max (iA * iB) (iA * sB)) (max (sA * iB) (sA * sB))) (A * B)
+Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB iA iB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (leftInfimumHypothesis : IsInfimum iA A) (rightSupremumHypothesis : IsSupremum sB B) (rightInfimumHypothesis : IsInfimum iB B) : IsSupremum (max (max (iA * iB) (iA * sB)) (max (sA * iB) (sA * sB))) (A * B)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L455
+
+
+
+Name: InfimumOfPointwiseProduct
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB iA iB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (leftInfimumHypothesis : IsInfimum iA A) (rightSupremumHypothesis : IsSupremum sB B) (rightInfimumHypothesis : IsInfimum iB B), IsInfimum (min (min (iA * iB) (iA * sB)) (min (sA * iB) (sA * sB))) (A * B)
+Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB iA iB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ (LRA.Analysis.Bounds.IsInfimum iA A ∧ (LRA.Analysis.Bounds.IsSupremum sB B ∧ LRA.Analysis.Bounds.IsInfimum iB B))) → LRA.Analysis.Bounds.IsInfimum (Real.instMin.min (Real.instMin.min (instHMul.hMul iA iB) (instHMul.hMul iA sB)) (Real.instMin.min (instHMul.hMul sA iB) (instHMul.hMul sA sB))) (instHMul.hMul A B)
+Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), IsInfimum (min (min (iA * iB) (iA * sB)) (min (sA * iB) (sA * sB))) (A * B)
+Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB iA iB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (leftInfimumHypothesis : IsInfimum iA A) (rightSupremumHypothesis : IsSupremum sB B) (rightInfimumHypothesis : IsInfimum iB B) : IsInfimum (min (min (iA * iB) (iA * sB)) (min (sA * iB) (sA * sB))) (A * B)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L490
+
+
+
+Name: SupremumOfQuotientSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB iA iB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (leftInfimumHypothesis : IsInfimum iA A) (rightSupremumHypothesis : IsSupremum sB B) (rightInfimumHypothesis : IsInfimum iB B) (denominatorSeparatedFromZeroHypothesis : 0 < iB ∨ sB < 0), IsSupremum (max (max (iA / iB) (iA / sB)) (max (sA / iB) (sA / sB))) (A * Reciprocal B)
+Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB iA iB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ (LRA.Analysis.Bounds.IsInfimum iA A ∧ (LRA.Analysis.Bounds.IsSupremum sB B ∧ (LRA.Analysis.Bounds.IsInfimum iB B ∧ Or (Real.instLT.lt 0 iB) (Real.instLT.lt sB 0))))) → LRA.Analysis.Bounds.IsSupremum (Real.instMax.max (Real.instMax.max (instHDiv.hDiv iA iB) (instHDiv.hDiv iA sB)) (Real.instMax.max (instHDiv.hDiv sA iB) (instHDiv.hDiv sA sB))) (instHMul.hMul A (LRA.Analysis.Bounds.Algebra.Reciprocal B))
+Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (0 < iB ∨ sB < 0) → IsSupremum (max (max (iA / iB) (iA / sB)) (max (sA / iB) (sA / sB))) (A * Reciprocal B)
+Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB iA iB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (leftInfimumHypothesis : IsInfimum iA A) (rightSupremumHypothesis : IsSupremum sB B) (rightInfimumHypothesis : IsInfimum iB B) (denominatorSeparatedFromZeroHypothesis : 0 < iB ∨ sB < 0) : IsSupremum (max (max (iA / iB) (iA / sB)) (max (sA / iB) (sA / sB))) (A * Reciprocal B)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L527
+
+
+
+Name: InfimumOfQuotientSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB iA iB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (leftInfimumHypothesis : IsInfimum iA A) (rightSupremumHypothesis : IsSupremum sB B) (rightInfimumHypothesis : IsInfimum iB B) (denominatorSeparatedFromZeroHypothesis : 0 < iB ∨ sB < 0), IsInfimum (min (min (iA / iB) (iA / sB)) (min (sA / iB) (sA / sB))) (A * Reciprocal B)
+Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB iA iB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ (LRA.Analysis.Bounds.IsInfimum iA A ∧ (LRA.Analysis.Bounds.IsSupremum sB B ∧ (LRA.Analysis.Bounds.IsInfimum iB B ∧ Or (Real.instLT.lt 0 iB) (Real.instLT.lt sB 0))))) → LRA.Analysis.Bounds.IsInfimum (Real.instMin.min (Real.instMin.min (instHDiv.hDiv iA iB) (instHDiv.hDiv iA sB)) (Real.instMin.min (instHDiv.hDiv sA iB) (instHDiv.hDiv sA sB))) (instHMul.hMul A (LRA.Analysis.Bounds.Algebra.Reciprocal B))
+Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (0 < iB ∨ sB < 0) → IsInfimum (min (min (iA / iB) (iA / sB)) (min (sA / iB) (sA / sB))) (A * Reciprocal B)
+Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB iA iB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (leftInfimumHypothesis : IsInfimum iA A) (rightSupremumHypothesis : IsSupremum sB B) (rightInfimumHypothesis : IsInfimum iB B) (denominatorSeparatedFromZeroHypothesis : 0 < iB ∨ sB < 0) : IsInfimum (min (min (iA / iB) (iA / sB)) (min (sA / iB) (sA / sB))) (A * Reciprocal B)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L565
+
+
+
+Name: PointwiseSumPreservesUpperBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B : Set ℝ} {uA uB : ℝ} (leftUpperBoundHypothesis : IsUpperBound uA A) (rightUpperBoundHypothesis : IsUpperBound uB B), IsUpperBound (uA + uB) (A + B)
+Predicate logic (unfolded): ∀ {A B : Set Real} {uA uB : Real}, (LRA.Analysis.Bounds.IsUpperBound uA A ∧ LRA.Analysis.Bounds.IsUpperBound uB B) → LRA.Analysis.Bounds.IsUpperBound (instHAdd.hAdd uA uB) (instHAdd.hAdd A B)
+Transliterated theorem: IsUpperBound (uA + uB) (A + B)
+Logical form (Lean): {A B : Set ℝ} {uA uB : ℝ} (leftUpperBoundHypothesis : IsUpperBound uA A) (rightUpperBoundHypothesis : IsUpperBound uB B) : IsUpperBound (uA + uB) (A + B)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L591
+
+
+
+Name: PointwiseSumPreservesLowerBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B : Set ℝ} {lA lB : ℝ} (leftLowerBoundHypothesis : IsLowerBound lA A) (rightLowerBoundHypothesis : IsLowerBound lB B), IsLowerBound (lA + lB) (A + B)
+Predicate logic (unfolded): ∀ {A B : Set Real} {lA lB : Real}, (LRA.Analysis.Bounds.IsLowerBound lA A ∧ LRA.Analysis.Bounds.IsLowerBound lB B) → LRA.Analysis.Bounds.IsLowerBound (instHAdd.hAdd lA lB) (instHAdd.hAdd A B)
+Transliterated theorem: IsLowerBound (lA + lB) (A + B)
+Logical form (Lean): {A B : Set ℝ} {lA lB : ℝ} (leftLowerBoundHypothesis : IsLowerBound lA A) (rightLowerBoundHypothesis : IsLowerBound lB B) : IsLowerBound (lA + lB) (A + B)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L609
+
+
+
+Name: RelativeUpperBoundsRespectAmbientOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [Preorder P] {A S T : Set P} (setContainedInSmallerAmbient : A ⊆ S) (smallerAmbientContainedInLarger : S ⊆ T), {u | IsRelativeUpperBound S u A} = S ∩ {u | IsRelativeUpperBound T u A}
+Predicate logic (unfolded): ∀ {P : Type u_1} [inst : Preorder P] {A S T : Set P}, (Set.instLE.le A S ∧ Set.instLE.le S T) → setOf fun u => LRA.Analysis.Bounds.Algebra.IsRelativeUpperBound S u A = Set.instInter.inter S (setOf fun u => LRA.Analysis.Bounds.Algebra.IsRelativeUpperBound T u A)
+Transliterated theorem: {u | IsRelativeUpperBound S u A} = S ∩ {u | IsRelativeUpperBound T u A}
+Logical form (Lean): [Preorder P] {A S T : Set P} (setContainedInSmallerAmbient : A ⊆ S) (smallerAmbientContainedInLarger : S ⊆ T) : {u | IsRelativeUpperBound S u A} = S ∩ {u | IsRelativeUpperBound T u A}
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L629
+
+
+
+Name: RelativeSupremaCanDependOnAmbientSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∃ (A S T : Set ℝ), A ⊆ S ∧ S ⊆ T ∧ ∃ sS sT : ℝ, IsRelativeSupremum S sS A ∧ IsRelativeSupremum T sT A ∧ sS ≠ sT
+Predicate logic (unfolded): Exists fun A => Exists fun S => Exists fun T => (Set.instLE.le A S ∧ (Set.instLE.le S T ∧ Exists fun sS => Exists fun sT => (LRA.Analysis.Bounds.Algebra.IsRelativeSupremum S sS A ∧ (LRA.Analysis.Bounds.Algebra.IsRelativeSupremum T sT A ∧ Ne sS sT))))
+Transliterated theorem: ∃ A S T ∈ Set ℝ, A ⊆ S ∧ S ⊆ T ∧ ∃ sS sT ∈ ℝ, IsRelativeSupremum S sS A ∧ IsRelativeSupremum T sT A ∧ sS ≠ sT
+Logical form (Lean): : ∃ (A S T : Set ℝ), A ⊆ S ∧ S ⊆ T ∧ ∃ sS sT : ℝ, IsRelativeSupremum S sS A ∧ IsRelativeSupremum T sT A ∧ sS ≠ sT
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L648
+
+
+
+Name: RelativeSupremumExistenceCanDependOnAmbientSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∃ (A S T : Set ℝ), A ⊆ S ∧ S ⊆ T ∧ (∃ s, IsRelativeSupremum T s A) ∧ ¬(∃ s, IsRelativeUpperBound S s A)
+Predicate logic (unfolded): Exists fun A => Exists fun S => Exists fun T => (Set.instLE.le A S ∧ (Set.instLE.le S T ∧ (Exists fun s => LRA.Analysis.Bounds.Algebra.IsRelativeSupremum T s A ∧ ¬ Exists fun s => LRA.Analysis.Bounds.Algebra.IsRelativeUpperBound S s A)))
+Transliterated theorem: ∃ A S T ∈ Set ℝ, A ⊆ S ∧ S ⊆ T ∧ (∃ s, IsRelativeSupremum T s A) ∧ ¬(∃ s, IsRelativeUpperBound S s A)
+Logical form (Lean): : ∃ (A S T : Set ℝ), A ⊆ S ∧ S ⊆ T ∧ (∃ s, IsRelativeSupremum T s A) ∧ ¬(∃ s, IsRelativeUpperBound S s A)
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L666
+
+
+
+Name: RationalSquareRootGapHasNoRationalSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: {q : ℚ | q ^ 2 < 2}.Nonempty ∧ (∃ u : ℚ, IsUpperBound u {q : ℚ | q ^ 2 < 2}) ∧ ¬(∃ s : ℚ, IsSupremum s {q : ℚ | q ^ 2 < 2})
+Predicate logic (unfolded): (setOf fun q => Rat.instLT.lt (instHPow.hPow q 2) 2 ∧ .Nonempty) ((Exists fun u => LRA.Analysis.Bounds.IsUpperBound u (setOf fun q => Rat.instLT.lt (instHPow.hPow q 2) 2) ∧ ¬ Exists fun s => LRA.Analysis.Bounds.IsSupremum s (setOf fun q => Rat.instLT.lt (instHPow.hPow q 2) 2)))
+Transliterated theorem: {q : ℚ | q ^ 2 < 2}.Nonempty ∧ ∃ u ∈ ℚ, IsUpperBound u {q : ℚ | q ^ 2 < 2} ∧ ¬∃ s ∈ ℚ, IsSupremum s {q : ℚ | q ^ 2 < 2}
+Logical form (Lean): : {q : ℚ | q ^ 2 < 2}.Nonempty ∧ (∃ u : ℚ, IsUpperBound u {q : ℚ | q ^ 2 < 2}) ∧ ¬(∃ s : ℚ, IsSupremum s {q : ℚ | q ^ 2 < 2})
+Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L684
+
+
+
+Name: IncreasingImagePreservesSuprema
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {I A : Set ℝ} (setContainedInDomain : A ⊆ I) (nonemptyHypothesis : A.Nonempty) {s : ℝ} (supremumHypothesis : IsSupremum s A) (supremumInDomain : s ∈ I) {f : ℝ → ℝ} (monotoneHypothesis : MonotoneOn f I) (continuityHypothesis : ContinuousWithinAt f I s), IsSupremum (f s) (f '' A)
+Predicate logic (unfolded): ∀ {I A : Set Real}, (Set.instLE.le A I ∧ A.Nonempty) → ∀ {s : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ Set.instMembership.mem I s) → ∀ {f : Real → Real}, (MonotoneOn f I ∧ ContinuousWithinAt f I s) → LRA.Analysis.Bounds.IsSupremum (f s) (Set.image f A)
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (s ∈ I) → IsSupremum (f s) (f '' A)
+Logical form (Lean): {I A : Set ℝ} (setContainedInDomain : A ⊆ I) (nonemptyHypothesis : A.Nonempty) {s : ℝ} (supremumHypothesis : IsSupremum s A) (supremumInDomain : s ∈ I) {f : ℝ → ℝ} (monotoneHypothesis : MonotoneOn f I) (continuityHypothesis : ContinuousWithinAt f I s) : IsSupremum (f s) (f '' A)
+Source: ./Bounding/BoundAlgebra/ImageInverseExtrema.lean#L37
+
+
+
+Name: IncreasingImagePreservesInfima
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {I A : Set ℝ} (setContainedInDomain : A ⊆ I) (nonemptyHypothesis : A.Nonempty) {i : ℝ} (infimumHypothesis : IsInfimum i A) (infimumInDomain : i ∈ I) {f : ℝ → ℝ} (monotoneHypothesis : MonotoneOn f I) (continuityHypothesis : ContinuousWithinAt f I i), IsInfimum (f i) (f '' A)
+Predicate logic (unfolded): ∀ {I A : Set Real}, (Set.instLE.le A I ∧ A.Nonempty) → ∀ {i : Real}, (LRA.Analysis.Bounds.IsInfimum i A ∧ Set.instMembership.mem I i) → ∀ {f : Real → Real}, (MonotoneOn f I ∧ ContinuousWithinAt f I i) → LRA.Analysis.Bounds.IsInfimum (f i) (Set.image f A)
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (i ∈ I) → IsInfimum (f i) (f '' A)
+Logical form (Lean): {I A : Set ℝ} (setContainedInDomain : A ⊆ I) (nonemptyHypothesis : A.Nonempty) {i : ℝ} (infimumHypothesis : IsInfimum i A) (infimumInDomain : i ∈ I) {f : ℝ → ℝ} (monotoneHypothesis : MonotoneOn f I) (continuityHypothesis : ContinuousWithinAt f I i) : IsInfimum (f i) (f '' A)
+Source: ./Bounding/BoundAlgebra/ImageInverseExtrema.lean#L69
+
+
+
+Name: DecreasingImageSendsInfimaToSuprema
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {I A : Set ℝ} (setContainedInDomain : A ⊆ I) (nonemptyHypothesis : A.Nonempty) {i : ℝ} (infimumHypothesis : IsInfimum i A) (infimumInDomain : i ∈ I) {f : ℝ → ℝ} (antitoneHypothesis : AntitoneOn f I) (continuityHypothesis : ContinuousWithinAt f I i), IsSupremum (f i) (f '' A)
+Predicate logic (unfolded): ∀ {I A : Set Real}, (Set.instLE.le A I ∧ A.Nonempty) → ∀ {i : Real}, (LRA.Analysis.Bounds.IsInfimum i A ∧ Set.instMembership.mem I i) → ∀ {f : Real → Real}, (AntitoneOn f I ∧ ContinuousWithinAt f I i) → LRA.Analysis.Bounds.IsSupremum (f i) (Set.image f A)
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (i ∈ I) → IsSupremum (f i) (f '' A)
+Logical form (Lean): {I A : Set ℝ} (setContainedInDomain : A ⊆ I) (nonemptyHypothesis : A.Nonempty) {i : ℝ} (infimumHypothesis : IsInfimum i A) (infimumInDomain : i ∈ I) {f : ℝ → ℝ} (antitoneHypothesis : AntitoneOn f I) (continuityHypothesis : ContinuousWithinAt f I i) : IsSupremum (f i) (f '' A)
+Source: ./Bounding/BoundAlgebra/ImageInverseExtrema.lean#L101
+
+
+
+Name: DecreasingImageSendsSupremaToInfima
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {I A : Set ℝ} (setContainedInDomain : A ⊆ I) (nonemptyHypothesis : A.Nonempty) {s : ℝ} (supremumHypothesis : IsSupremum s A) (supremumInDomain : s ∈ I) {f : ℝ → ℝ} (antitoneHypothesis : AntitoneOn f I) (continuityHypothesis : ContinuousWithinAt f I s), IsInfimum (f s) (f '' A)
+Predicate logic (unfolded): ∀ {I A : Set Real}, (Set.instLE.le A I ∧ A.Nonempty) → ∀ {s : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ Set.instMembership.mem I s) → ∀ {f : Real → Real}, (AntitoneOn f I ∧ ContinuousWithinAt f I s) → LRA.Analysis.Bounds.IsInfimum (f s) (Set.image f A)
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (s ∈ I) → IsInfimum (f s) (f '' A)
+Logical form (Lean): {I A : Set ℝ} (setContainedInDomain : A ⊆ I) (nonemptyHypothesis : A.Nonempty) {s : ℝ} (supremumHypothesis : IsSupremum s A) (supremumInDomain : s ∈ I) {f : ℝ → ℝ} (antitoneHypothesis : AntitoneOn f I) (continuityHypothesis : ContinuousWithinAt f I s) : IsInfimum (f s) (f '' A)
+Source: ./Bounding/BoundAlgebra/ImageInverseExtrema.lean#L133
+
+
+
+Name: IncreasingInversePreservesSuprema
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {I J B : Set ℝ} {f g : ℝ → ℝ} (bijectionHypothesis : Set.BijOn f I J) (inverseHypothesis : Set.InvOn g f I J) (setContainedInCodomain : B ⊆ J) (nonemptyHypothesis : B.Nonempty) {u : ℝ} (supremumHypothesis : IsSupremum u B) (supremumInCodomain : u ∈ J) (inverseMonotoneHypothesis : MonotoneOn g J) (inverseContinuityHypothesis : ContinuousWithinAt g J u), IsSupremum (g u) (g '' B)
+Predicate logic (unfolded): ∀ {I J B : Set Real} {f g : Real → Real}, (Set.BijOn f I J ∧ (Set.InvOn g f I J ∧ (Set.instLE.le B J ∧ B.Nonempty))) → ∀ {u : Real}, (LRA.Analysis.Bounds.IsSupremum u B ∧ (Set.instMembership.mem J u ∧ (MonotoneOn g J ∧ ContinuousWithinAt g J u))) → LRA.Analysis.Bounds.IsSupremum (g u) (Set.image g B)
+Transliterated theorem: (∀ nonemptyHypothesis ∈ B.Nonempty), (u ∈ J) → IsSupremum (g u) (g '' B)
+Logical form (Lean): {I J B : Set ℝ} {f g : ℝ → ℝ} (bijectionHypothesis : Set.BijOn f I J) (inverseHypothesis : Set.InvOn g f I J) (setContainedInCodomain : B ⊆ J) (nonemptyHypothesis : B.Nonempty) {u : ℝ} (supremumHypothesis : IsSupremum u B) (supremumInCodomain : u ∈ J) (inverseMonotoneHypothesis : MonotoneOn g J) (inverseContinuityHypothesis : ContinuousWithinAt g J u) : IsSupremum (g u) (g '' B)
+Source: ./Bounding/BoundAlgebra/ImageInverseExtrema.lean#L168
+
+
+
+Name: IncreasingInversePreservesInfima
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {I J B : Set ℝ} {f g : ℝ → ℝ} (bijectionHypothesis : Set.BijOn f I J) (inverseHypothesis : Set.InvOn g f I J) (setContainedInCodomain : B ⊆ J) (nonemptyHypothesis : B.Nonempty) {v : ℝ} (infimumHypothesis : IsInfimum v B) (infimumInCodomain : v ∈ J) (inverseMonotoneHypothesis : MonotoneOn g J) (inverseContinuityHypothesis : ContinuousWithinAt g J v), IsInfimum (g v) (g '' B)
+Predicate logic (unfolded): ∀ {I J B : Set Real} {f g : Real → Real}, (Set.BijOn f I J ∧ (Set.InvOn g f I J ∧ (Set.instLE.le B J ∧ B.Nonempty))) → ∀ {v : Real}, (LRA.Analysis.Bounds.IsInfimum v B ∧ (Set.instMembership.mem J v ∧ (MonotoneOn g J ∧ ContinuousWithinAt g J v))) → LRA.Analysis.Bounds.IsInfimum (g v) (Set.image g B)
+Transliterated theorem: (∀ nonemptyHypothesis ∈ B.Nonempty), (v ∈ J) → IsInfimum (g v) (g '' B)
+Logical form (Lean): {I J B : Set ℝ} {f g : ℝ → ℝ} (bijectionHypothesis : Set.BijOn f I J) (inverseHypothesis : Set.InvOn g f I J) (setContainedInCodomain : B ⊆ J) (nonemptyHypothesis : B.Nonempty) {v : ℝ} (infimumHypothesis : IsInfimum v B) (infimumInCodomain : v ∈ J) (inverseMonotoneHypothesis : MonotoneOn g J) (inverseContinuityHypothesis : ContinuousWithinAt g J v) : IsInfimum (g v) (g '' B)
+Source: ./Bounding/BoundAlgebra/ImageInverseExtrema.lean#L205
+
+
+
+Name: DecreasingInverseSendsInfimaToSuprema
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {I J B : Set ℝ} {f g : ℝ → ℝ} (bijectionHypothesis : Set.BijOn f I J) (inverseHypothesis : Set.InvOn g f I J) (setContainedInCodomain : B ⊆ J) (nonemptyHypothesis : B.Nonempty) {v : ℝ} (infimumHypothesis : IsInfimum v B) (infimumInCodomain : v ∈ J) (inverseAntitoneHypothesis : AntitoneOn g J) (inverseContinuityHypothesis : ContinuousWithinAt g J v), IsSupremum (g v) (g '' B)
+Predicate logic (unfolded): ∀ {I J B : Set Real} {f g : Real → Real}, (Set.BijOn f I J ∧ (Set.InvOn g f I J ∧ (Set.instLE.le B J ∧ B.Nonempty))) → ∀ {v : Real}, (LRA.Analysis.Bounds.IsInfimum v B ∧ (Set.instMembership.mem J v ∧ (AntitoneOn g J ∧ ContinuousWithinAt g J v))) → LRA.Analysis.Bounds.IsSupremum (g v) (Set.image g B)
+Transliterated theorem: (∀ nonemptyHypothesis ∈ B.Nonempty), (v ∈ J) → IsSupremum (g v) (g '' B)
+Logical form (Lean): {I J B : Set ℝ} {f g : ℝ → ℝ} (bijectionHypothesis : Set.BijOn f I J) (inverseHypothesis : Set.InvOn g f I J) (setContainedInCodomain : B ⊆ J) (nonemptyHypothesis : B.Nonempty) {v : ℝ} (infimumHypothesis : IsInfimum v B) (infimumInCodomain : v ∈ J) (inverseAntitoneHypothesis : AntitoneOn g J) (inverseContinuityHypothesis : ContinuousWithinAt g J v) : IsSupremum (g v) (g '' B)
+Source: ./Bounding/BoundAlgebra/ImageInverseExtrema.lean#L242
+
+
+
+Name: DecreasingInverseSendsSupremaToInfima
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {I J B : Set ℝ} {f g : ℝ → ℝ} (bijectionHypothesis : Set.BijOn f I J) (inverseHypothesis : Set.InvOn g f I J) (setContainedInCodomain : B ⊆ J) (nonemptyHypothesis : B.Nonempty) {u : ℝ} (supremumHypothesis : IsSupremum u B) (supremumInCodomain : u ∈ J) (inverseAntitoneHypothesis : AntitoneOn g J) (inverseContinuityHypothesis : ContinuousWithinAt g J u), IsInfimum (g u) (g '' B)
+Predicate logic (unfolded): ∀ {I J B : Set Real} {f g : Real → Real}, (Set.BijOn f I J ∧ (Set.InvOn g f I J ∧ (Set.instLE.le B J ∧ B.Nonempty))) → ∀ {u : Real}, (LRA.Analysis.Bounds.IsSupremum u B ∧ (Set.instMembership.mem J u ∧ (AntitoneOn g J ∧ ContinuousWithinAt g J u))) → LRA.Analysis.Bounds.IsInfimum (g u) (Set.image g B)
+Transliterated theorem: (∀ nonemptyHypothesis ∈ B.Nonempty), (u ∈ J) → IsInfimum (g u) (g '' B)
+Logical form (Lean): {I J B : Set ℝ} {f g : ℝ → ℝ} (bijectionHypothesis : Set.BijOn f I J) (inverseHypothesis : Set.InvOn g f I J) (setContainedInCodomain : B ⊆ J) (nonemptyHypothesis : B.Nonempty) {u : ℝ} (supremumHypothesis : IsSupremum u B) (supremumInCodomain : u ∈ J) (inverseAntitoneHypothesis : AntitoneOn g J) (inverseContinuityHypothesis : ContinuousWithinAt g J u) : IsInfimum (g u) (g '' B)
+Source: ./Bounding/BoundAlgebra/ImageInverseExtrema.lean#L279
+
+
+
+Name: SupremumOfPairwiseMaximumSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (rightSupremumHypothesis : IsSupremum sB B), IsSupremum (max sA sB) (PairwiseMax A B)
+Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsSupremum sB B) → LRA.Analysis.Bounds.IsSupremum (Real.instMax.max sA sB) (LRA.Analysis.Bounds.Algebra.PairwiseMax A B)
+Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), IsSupremum (max sA sB) (PairwiseMax A B)
+Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (rightSupremumHypothesis : IsSupremum sB B) : IsSupremum (max sA sB) (PairwiseMax A B)
+Source: ./Bounding/BoundAlgebra/LatticeOperationsAndBounds.lean#L54
+
+
+
+Name: InfimumOfPairwiseMaximumSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {iA iB : ℝ} (leftInfimumHypothesis : IsInfimum iA A) (rightInfimumHypothesis : IsInfimum iB B), IsInfimum (max iA iB) (PairwiseMax A B)
+Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {iA iB : Real}, (LRA.Analysis.Bounds.IsInfimum iA A ∧ LRA.Analysis.Bounds.IsInfimum iB B) → LRA.Analysis.Bounds.IsInfimum (Real.instMax.max iA iB) (LRA.Analysis.Bounds.Algebra.PairwiseMax A B)
+Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), IsInfimum (max iA iB) (PairwiseMax A B)
+Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {iA iB : ℝ} (leftInfimumHypothesis : IsInfimum iA A) (rightInfimumHypothesis : IsInfimum iB B) : IsInfimum (max iA iB) (PairwiseMax A B)
+Source: ./Bounding/BoundAlgebra/LatticeOperationsAndBounds.lean#L79
+
+
+
+Name: SupremumOfPairwiseMinimumSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (rightSupremumHypothesis : IsSupremum sB B), IsSupremum (min sA sB) (PairwiseMin A B)
+Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsSupremum sB B) → LRA.Analysis.Bounds.IsSupremum (Real.instMin.min sA sB) (LRA.Analysis.Bounds.Algebra.PairwiseMin A B)
+Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), IsSupremum (min sA sB) (PairwiseMin A B)
+Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (rightSupremumHypothesis : IsSupremum sB B) : IsSupremum (min sA sB) (PairwiseMin A B)
+Source: ./Bounding/BoundAlgebra/LatticeOperationsAndBounds.lean#L104
+
+
+
+Name: InfimumOfPairwiseMinimumSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {iA iB : ℝ} (leftInfimumHypothesis : IsInfimum iA A) (rightInfimumHypothesis : IsInfimum iB B), IsInfimum (min iA iB) (PairwiseMin A B)
+Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {iA iB : Real}, (LRA.Analysis.Bounds.IsInfimum iA A ∧ LRA.Analysis.Bounds.IsInfimum iB B) → LRA.Analysis.Bounds.IsInfimum (Real.instMin.min iA iB) (LRA.Analysis.Bounds.Algebra.PairwiseMin A B)
+Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), IsInfimum (min iA iB) (PairwiseMin A B)
+Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {iA iB : ℝ} (leftInfimumHypothesis : IsInfimum iA A) (rightInfimumHypothesis : IsInfimum iB B) : IsInfimum (min iA iB) (PairwiseMin A B)
+Source: ./Bounding/BoundAlgebra/LatticeOperationsAndBounds.lean#L129
+
+
+
+Name: SupremumEpsilonCharacterization
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} {s : ℝ}, IsSupremum s A ↔ IsUpperBound s A ∧ ∀ ε : ℝ, 0 < ε → ∃ a ∈ A, s - ε < a
+Predicate logic (unfolded): ∀ {A : Set Real} {s : Real}, LRA.Analysis.Bounds.IsSupremum s A ↔ (LRA.Analysis.Bounds.IsUpperBound s A ∧ ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun a => (Set.instMembership.mem A a ∧ Real.instLT.lt (instHSub.hSub s ε) a))
+Transliterated theorem: IsSupremum s A ↔ IsUpperBound s A ∧ ∀ ε : ℝ, 0 < ε → ∃ a ∈ A, s - ε < a
+Logical form (Lean): {A : Set ℝ} {s : ℝ} : IsSupremum s A ↔ IsUpperBound s A ∧ ∀ ε : ℝ, 0 < ε → ∃ a ∈ A, s - ε < a
+Source: ./Bounding/ExtremalBounds/EpsilonCharacterization.lean#L20
+
+
+
+Name: InfimumEpsilonCharacterization
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} {i : ℝ}, IsInfimum i A ↔ IsLowerBound i A ∧ ∀ ε : ℝ, 0 < ε → ∃ a ∈ A, a < i + ε
+Predicate logic (unfolded): ∀ {A : Set Real} {i : Real}, LRA.Analysis.Bounds.IsInfimum i A ↔ (LRA.Analysis.Bounds.IsLowerBound i A ∧ ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun a => (Set.instMembership.mem A a ∧ Real.instLT.lt a (instHAdd.hAdd i ε)))
+Transliterated theorem: IsInfimum i A ↔ IsLowerBound i A ∧ ∀ ε : ℝ, 0 < ε → ∃ a ∈ A, a < i + ε
+Logical form (Lean): {A : Set ℝ} {i : ℝ} : IsInfimum i A ↔ IsLowerBound i A ∧ ∀ ε : ℝ, 0 < ε → ∃ a ∈ A, a < i + ε
+Source: ./Bounding/ExtremalBounds/EpsilonCharacterization.lean#L36
+
+
+
+Name: SupremumStrictUpperApproximation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} {s u : ℝ} (supremumHypothesis : IsSupremum s A) (strictApproximation : u < s), ∃ a ∈ A, u < a
+Predicate logic (unfolded): ∀ {A : Set Real} {s u : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ Real.instLT.lt u s) → Exists fun a => (Set.instMembership.mem A a ∧ Real.instLT.lt u a)
+Transliterated theorem: (u < s) → ∃ a ∈ A, u < a
+Logical form (Lean): {A : Set ℝ} {s u : ℝ} (supremumHypothesis : IsSupremum s A) (strictApproximation : u < s) : ∃ a ∈ A, u < a
+Source: ./Bounding/ExtremalBounds/EpsilonCharacterization.lean#L53
+
+
+
+Name: InfimumStrictLowerApproximation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} {i l : ℝ} (infimumHypothesis : IsInfimum i A) (strictApproximation : i < l), ∃ a ∈ A, a < l
+Predicate logic (unfolded): ∀ {A : Set Real} {i l : Real}, (LRA.Analysis.Bounds.IsInfimum i A ∧ Real.instLT.lt i l) → Exists fun a => (Set.instMembership.mem A a ∧ Real.instLT.lt a l)
+Transliterated theorem: (i < l) → ∃ a ∈ A, a < l
+Logical form (Lean): {A : Set ℝ} {i l : ℝ} (infimumHypothesis : IsInfimum i A) (strictApproximation : i < l) : ∃ a ∈ A, a < l
+Source: ./Bounding/ExtremalBounds/EpsilonCharacterization.lean#L71
+
+
+
+Name: MaximumUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [PartialOrder S] {A : Set S} {m₁ m₂ : S} (leftMaximum : IsMaximum m₁ A) (rightMaximum : IsMaximum m₂ A), m₁ = m₂
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {m₁ m₂ : S}, (LRA.Analysis.Bounds.IsMaximum m₁ A ∧ LRA.Analysis.Bounds.IsMaximum m₂ A) → m₁ = m₂
+Transliterated theorem: m₁ = m₂
+Logical form (Lean): [PartialOrder S] {A : Set S} {m₁ m₂ : S} (leftMaximum : IsMaximum m₁ A) (rightMaximum : IsMaximum m₂ A) : m₁ = m₂
+Source: ./Bounding/ExtremalBounds/MaximaMinima.lean#L24
+
+
+
+Name: MinimumUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [PartialOrder S] {A : Set S} {m₁ m₂ : S} (leftMinimum : IsMinimum m₁ A) (rightMinimum : IsMinimum m₂ A), m₁ = m₂
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {m₁ m₂ : S}, (LRA.Analysis.Bounds.IsMinimum m₁ A ∧ LRA.Analysis.Bounds.IsMinimum m₂ A) → m₁ = m₂
+Transliterated theorem: m₁ = m₂
+Logical form (Lean): [PartialOrder S] {A : Set S} {m₁ m₂ : S} (leftMinimum : IsMinimum m₁ A) (rightMinimum : IsMinimum m₂ A) : m₁ = m₂
+Source: ./Bounding/ExtremalBounds/MaximaMinima.lean#L38
+
+
+
+Name: MaximumIsSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {m : S},   LRA.Analysis.Bounds.IsMaximum m A → LRA.Analysis.Bounds.IsSupremum m A
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {m : S}, LRA.Analysis.Bounds.IsMaximum m A → LRA.Analysis.Bounds.IsSupremum m A
+Transliterated theorem: IsSupremum m A
+Logical form (Lean): [PartialOrder S] {A : Set S} {m : S} (maximumHypothesis : IsMaximum m A) : IsSupremum m A
+Source: ./Bounding/ExtremalBounds/MaximaMinima.lean#L52
+
+
+
+Name: MinimumIsInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {m : S},   LRA.Analysis.Bounds.IsMinimum m A → LRA.Analysis.Bounds.IsInfimum m A
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {m : S}, LRA.Analysis.Bounds.IsMinimum m A → LRA.Analysis.Bounds.IsInfimum m A
+Transliterated theorem: IsInfimum m A
+Logical form (Lean): [PartialOrder S] {A : Set S} {m : S} (minimumHypothesis : IsMinimum m A) : IsInfimum m A
+Source: ./Bounding/ExtremalBounds/MaximaMinima.lean#L66
+
+
+
+Name: SupremumInSetIsMaximum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [Preorder S] {A : Set S} {s : S} (supremumHypothesis : IsSupremum s A) (membershipHypothesis : s ∈ A), IsMaximum s A
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {s : S}, (LRA.Analysis.Bounds.IsSupremum s A ∧ Set.instMembership.mem A s) → LRA.Analysis.Bounds.IsMaximum s A
+Transliterated theorem: (s ∈ A) → IsMaximum s A
+Logical form (Lean): [Preorder S] {A : Set S} {s : S} (supremumHypothesis : IsSupremum s A) (membershipHypothesis : s ∈ A) : IsMaximum s A
+Source: ./Bounding/ExtremalBounds/MaximaMinima.lean#L81
+
+
+
+Name: InfimumInSetIsMinimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [Preorder S] {A : Set S} {i : S} (infimumHypothesis : IsInfimum i A) (membershipHypothesis : i ∈ A), IsMinimum i A
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {i : S}, (LRA.Analysis.Bounds.IsInfimum i A ∧ Set.instMembership.mem A i) → LRA.Analysis.Bounds.IsMinimum i A
+Transliterated theorem: (i ∈ A) → IsMinimum i A
+Logical form (Lean): [Preorder S] {A : Set S} {i : S} (infimumHypothesis : IsInfimum i A) (membershipHypothesis : i ∈ A) : IsMinimum i A
+Source: ./Bounding/ExtremalBounds/MaximaMinima.lean#L97
+
+
+
+Name: MaximumIffSupremumAndMembership
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [PartialOrder S] {A : Set S} {s : S}, IsMaximum s A ↔ IsSupremum s A ∧ s ∈ A
+Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {s : S}, LRA.Analysis.Bounds.IsMaximum s A ↔ (LRA.Analysis.Bounds.IsSupremum s A ∧ Set.instMembership.mem A s)
+Transliterated theorem: IsMaximum s A ↔ IsSupremum s A ∧ s ∈ A
+Logical form (Lean): [PartialOrder S] {A : Set S} {s : S} : IsMaximum s A ↔ IsSupremum s A ∧ s ∈ A
+Source: ./Bounding/ExtremalBounds/MaximaMinima.lean#L112
+
+
+
+Name: OrdinarySupremumInSIsRelativeSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A S : Set T) (s : T) (hs : IsLUB A s) (hsS : s ∈ S), IsRelativeSupremum s A S
+Predicate logic (unfolded): ∀ {T : Type u_1} [inst : Preorder T] (A S : Set T) (s : T), (IsLUB A s ∧ Set.instMembership.mem S s) → LRA.Analysis.Bounds.IsRelativeSupremum s A S
+Transliterated theorem: (∀ s ∈ T), (s ∈ S) → IsRelativeSupremum s A S
+Logical form (Lean): (A S : Set T) (s : T) (hs : IsLUB A s) (hsS : s ∈ S) : IsRelativeSupremum s A S
+Source: ./Bounding/RelativeBounds.lean#L89
+
+
+
+Name: OrdinaryInfimumInSIsRelativeInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A S : Set T) (i : T) (hi : IsGLB A i) (hiS : i ∈ S), IsRelativeInfimum i A S
+Predicate logic (unfolded): ∀ {T : Type u_1} [inst : Preorder T] (A S : Set T) (i : T), (IsGLB A i ∧ Set.instMembership.mem S i) → LRA.Analysis.Bounds.IsRelativeInfimum i A S
+Transliterated theorem: (∀ i ∈ T), (i ∈ S) → IsRelativeInfimum i A S
+Logical form (Lean): (A S : Set T) (i : T) (hi : IsGLB A i) (hiS : i ∈ S) : IsRelativeInfimum i A S
+Source: ./Bounding/RelativeBounds.lean#L105
+
+
+
+Name: NoRelativeSupremumOfRationalsExample
+Kind: Theorem
+State: Sorry
+Predicate logic: ¬ ∃ s : ℝ, IsRelativeSupremum s RationalsWithSquareLessThanTwoInR (Set.range ((↑) : ℚ → ℝ))
+Predicate logic (unfolded): ¬ Exists fun s => LRA.Analysis.Bounds.IsRelativeSupremum s LRA.Analysis.Bounds.RationalsWithSquareLessThanTwoInR (Set.range Rat.cast)
+Transliterated theorem: ¬ ∃ s ∈ ℝ, IsRelativeSupremum s RationalsWithSquareLessThanTwoInR (Set.range ((↑) : ℚ → ℝ))
+Logical form (Lean): : ¬ ∃ s : ℝ, IsRelativeSupremum s RationalsWithSquareLessThanTwoInR (Set.range ((↑) : ℚ → ℝ))
+Source: ./Bounding/RelativeBounds.lean#L135
+
+
+
+Name: RelativeSupremumOfRationalsInRExample
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Analysis.Bounds.IsRelativeSupremum (Real.sqrt 2) LRA.Analysis.Bounds.RationalsWithSquareLessThanTwoInR Set.univ
+Predicate logic (unfolded): LRA.Analysis.Bounds.IsRelativeSupremum (Real.sqrt 2) LRA.Analysis.Bounds.RationalsWithSquareLessThanTwoInR Set.univ
+Transliterated theorem: IsRelativeSupremum (Real.sqrt 2) RationalsWithSquareLessThanTwoInR Set.univ ∈ Set ℝ
+Logical form (Lean): : IsRelativeSupremum (Real.sqrt 2) RationalsWithSquareLessThanTwoInR (Set.univ : Set ℝ)
+Source: ./Bounding/RelativeBounds.lean#L151
+
+
+
+Name: ArchimedeanProperty
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : ℝ} (positiveScaleHypothesis : x > 0) (positiveTargetHypothesis : y > 0), ∃ n : ℕ, (n : ℝ) * x > y
+Predicate logic (unfolded): ∀ {x y : Real}, (GT.gt x 0 ∧ GT.gt y 0) → Exists fun n => GT.gt (instHMul.hMul n.cast x) y
+Transliterated theorem: ∃ n ∈ ℕ, n ∈ ℝ * x > y
+Logical form (Lean): {x y : ℝ} (positiveScaleHypothesis : x > 0) (positiveTargetHypothesis : y > 0) : ∃ n : ℕ, (n : ℝ) * x > y
+Source: ./Completeness/ArchimedeanProperty.lean#L24
+
+
+
+Name: ArchimedeanReciprocalForm
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {ε : ℝ} (positiveToleranceHypothesis : ε > 0), ∃ n : ℕ, 0 < 1 / (n : ℝ) ∧ 1 / (n : ℝ) < ε
+Predicate logic (unfolded): ∀ {ε : Real}, GT.gt ε 0 → Exists fun n => (Real.instLT.lt 0 (instHDiv.hDiv 1 n.cast) ∧ Real.instLT.lt (instHDiv.hDiv 1 n.cast) ε)
+Transliterated theorem: ∃ n ∈ ℕ, 0 < 1 / n ∈ ℝ ∧ 1 / n ∈ ℝ < ε
+Logical form (Lean): {ε : ℝ} (positiveToleranceHypothesis : ε > 0) : ∃ n : ℕ, 0 < 1 / (n : ℝ) ∧ 1 / (n : ℝ) < ε
+Source: ./Completeness/ArchimedeanProperty.lean#L41
+
+
+
+Name: ArchimedeanReciprocal
+Kind: Theorem
+State: Sorry
+Predicate logic: Filter.Tendsto (fun n => instHDiv.hDiv 1 n.cast) Filter.atTop (nhds 0)
+Predicate logic (unfolded): Filter.Tendsto (fun n => instHDiv.hDiv 1 n.cast) Filter.atTop (nhds 0)
+Transliterated theorem: Filter.Tendsto fun n ∈ ℕ => 1 / n ∈ ℝ Filter.atTop (nhds 0)
+Logical form (Lean): : Filter.Tendsto (fun n : ℕ => 1 / (n : ℝ)) Filter.atTop (nhds 0)
+Source: ./Completeness/ArchimedeanProperty.lean#L55
+
+
+
+Name: IntegerPartLemma
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : ℝ} (nonnegativeHypothesis : x ≥ 0), ∃! n : ℕ, (n : ℝ) ≤ x ∧ x < (n : ℝ) + 1
+Predicate logic (unfolded): ∀ {x : Real}, GE.ge x 0 → ExistsUnique fun n => (Real.instLE.le n.cast x ∧ Real.instLT.lt x (instHAdd.hAdd n.cast 1))
+Transliterated theorem: ∃! n : ℕ, n ∈ ℝ ≤ x ∧ x < n ∈ ℝ + 1
+Logical form (Lean): {x : ℝ} (nonnegativeHypothesis : x ≥ 0) : ∃! n : ℕ, (n : ℝ) ≤ x ∧ x < (n : ℝ) + 1
+Source: ./Completeness/ArchimedeanProperty.lean#L69
+
+
+
+Name: ArchimedeanIntegerPartLemma
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : ℝ), ∃! m : ℤ, (m : ℝ) ≤ x ∧ x < (m : ℝ) + 1
+Predicate logic (unfolded): ∀ (x : Real), ExistsUnique fun m => (Real.instLE.le m.cast x ∧ Real.instLT.lt x (instHAdd.hAdd m.cast 1))
+Transliterated theorem: ∃! m : ℤ, m ∈ ℝ ≤ x ∧ x < m ∈ ℝ + 1
+Logical form (Lean): (x : ℝ) : ∃! m : ℤ, (m : ℝ) ≤ x ∧ x < (m : ℝ) + 1
+Source: ./Completeness/ArchimedeanProperty.lean#L83
+
+
+
+Name: IntegerCeilingLemma
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : ℝ), ∃! m : ℤ, (m : ℝ) - 1 < x ∧ x ≤ (m : ℝ)
+Predicate logic (unfolded): ∀ (x : Real), ExistsUnique fun m => (Real.instLT.lt (instHSub.hSub m.cast 1) x ∧ Real.instLE.le x m.cast)
+Transliterated theorem: ∃! m : ℤ, m ∈ ℝ - 1 < x ∧ x ≤ m ∈ ℝ
+Logical form (Lean): (x : ℝ) : ∃! m : ℤ, (m : ℝ) - 1 < x ∧ x ≤ (m : ℝ)
+Source: ./Completeness/ArchimedeanProperty.lean#L96
+
+
+
+Name: IntegerAboveLemma
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : Real), Exists fun n => Real.instLT.lt x n.cast
+Predicate logic (unfolded): ∀ (x : Real), Exists fun n => Real.instLT.lt x n.cast
+Transliterated theorem: ∃ n ∈ ℕ, x < n ∈ ℝ
+Logical form (Lean): (x : ℝ) : ∃ n : ℕ, x < (n : ℝ)
+Source: ./Completeness/ArchimedeanProperty.lean#L109
+
+
+
+Name: UnitLengthIntervalContainsInteger
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : ℝ), ∃ m : ℤ, x ≤ (m : ℝ) ∧ (m : ℝ) ≤ x + 1
+Predicate logic (unfolded): ∀ (x : Real), Exists fun m => (Real.instLE.le x m.cast ∧ Real.instLE.le m.cast (instHAdd.hAdd x 1))
+Transliterated theorem: ∃ m ∈ ℤ, x ≤ m ∈ ℝ ∧ m ∈ ℝ ≤ x + 1
+Logical form (Lean): (x : ℝ) : ∃ m : ℤ, x ≤ (m : ℝ) ∧ (m : ℝ) ≤ x + 1
+Source: ./Completeness/ArchimedeanProperty.lean#L122
+
+
+
+Name: NaturalsUnboundedAbove
+Kind: Theorem
+State: Sorry
+Predicate logic: ¬ BddAbove (Set.range ((↑) : ℕ → ℝ))
+Predicate logic (unfolded): ¬ BddAbove (Set.range Nat.cast)
+Transliterated theorem: ¬ BddAbove (Set.range ((↑) : ℕ → ℝ))
+Logical form (Lean): : ¬ BddAbove (Set.range ((↑) : ℕ → ℝ))
+Source: ./Completeness/ArchimedeanProperty.lean#L135
+
+
+
+Name: CompletenessGivesRealSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedAboveHypothesis : ∃ u, IsUpperBound u A), ∃ s, IsSupremum s A
+Predicate logic (unfolded): ∀ {A : Set Real}, (A.Nonempty ∧ Exists fun u => LRA.Analysis.Bounds.IsUpperBound u A) → Exists fun s => LRA.Analysis.Bounds.IsSupremum s A
+Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (∃ u, IsUpperBound u A) → ∃ s, IsSupremum s A
+Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedAboveHypothesis : ∃ u, IsUpperBound u A) : ∃ s, IsSupremum s A
+Source: ./Completeness/AxiomOfCompleteness.lean#L53
+
+
+
+Name: ExistsUniqueNonnegSqrt
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : ℝ) (ha : 0 ≤ a), ∃! b : ℝ, 0 ≤ b ∧ b ^ 2 = a
+Predicate logic (unfolded): ∀ (a : Real), Real.instLE.le 0 a → ExistsUnique fun b => (Real.instLE.le 0 b ∧ instHPow.hPow b 2 = a)
+Transliterated theorem: (0 ≤ a) → ∃! b : ℝ, 0 ≤ b ∧ b ^ 2 = a
+Logical form (Lean): (a : ℝ) (ha : 0 ≤ a) : ∃! b : ℝ, 0 ≤ b ∧ b ^ 2 = a
+Source: ./Completeness/CompletenessAdditions.lean#L36
+
+
+
+Name: RationalsLackLubProperty
+Kind: Theorem
+State: Sorry
+Predicate logic: ({x : ℚ | x ^ 2 < 2} : Set ℚ).Nonempty ∧ (∃ u : ℚ, ∀ x ∈ ({x : ℚ | x ^ 2 < 2} : Set ℚ), x ≤ u) ∧ ¬ ∃ s : ℚ, IsLUB ({x : ℚ | x ^ 2 < 2} : Set ℚ) s
+Predicate logic (unfolded): (setOf fun x => Rat.instLT.lt (instHPow.hPow x 2) 2 ∧ .Nonempty) ((Exists fun u => ∀ (x : Rat), Set.instMembership.mem (setOf fun x => Rat.instLT.lt (instHPow.hPow x 2) 2) x → Rat.instLE.le x u ∧ ¬ Exists fun s => IsLUB (setOf fun x => Rat.instLT.lt (instHPow.hPow x 2) 2) s))
+Transliterated theorem: {x ∈ ℚ | x ^ 2 < 2} : Set ℚ.Nonempty ∧ ∃ u ∈ ℚ, ∀ x ∈ {x ∈ ℚ | x ^ 2 < 2} : Set ℚ, x ≤ u ∧ ¬ ∃ s ∈ ℚ, IsLUB {x ∈ ℚ | x ^ 2 < 2} : Set ℚ s
+Logical form (Lean): : ({x : ℚ | x ^ 2 < 2} : Set ℚ).Nonempty ∧ (∃ u : ℚ, ∀ x ∈ ({x : ℚ | x ^ 2 < 2} : Set ℚ), x ≤ u) ∧ ¬ ∃ s : ℚ, IsLUB ({x : ℚ | x ^ 2 < 2} : Set ℚ) s
+Source: ./Completeness/CompletenessAdditions.lean#L52
+
+
+
+Name: RationalDedekindCutAtSqrtTwoHasAGap
+Kind: Theorem
+State: Sorry
+Predicate logic: (¬ ∃ m ∈ RationalCutLowerAtSqrtTwo, ∀ x ∈ RationalCutLowerAtSqrtTwo, x ≤ m) ∧ (¬ ∃ m ∈ RationalCutUpperAtSqrtTwo, ∀ x ∈ RationalCutUpperAtSqrtTwo, m ≤ x)
+Predicate logic (unfolded): (¬ Exists fun m => (Set.instMembership.mem LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo m ∧ ∀ (x : Rat), Set.instMembership.mem LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo x → Rat.instLE.le x m) ∧ ¬ Exists fun m => (Set.instMembership.mem LRA.Analysis.Completeness.RationalCutUpperAtSqrtTwo m ∧ ∀ (x : Rat), Set.instMembership.mem LRA.Analysis.Completeness.RationalCutUpperAtSqrtTwo x → Rat.instLE.le m x))
+Transliterated theorem: (¬ ∃ m ∈ RationalCutLowerAtSqrtTwo, ∀ x ∈ RationalCutLowerAtSqrtTwo, x ≤ m) ∧ (¬ ∃ m ∈ RationalCutUpperAtSqrtTwo, ∀ x ∈ RationalCutUpperAtSqrtTwo, m ≤ x)
+Logical form (Lean): : (¬ ∃ m ∈ RationalCutLowerAtSqrtTwo, ∀ x ∈ RationalCutLowerAtSqrtTwo, x ≤ m) ∧ (¬ ∃ m ∈ RationalCutUpperAtSqrtTwo, ∀ x ∈ RationalCutUpperAtSqrtTwo, m ≤ x)
+Source: ./Completeness/CompletenessAdditions.lean#L92
+
+
+
+Name: RealDedekindCutAtSqrtTwoHasNoGap
+Kind: Theorem
+State: Sorry
+Predicate logic: (¬ ∃ m ∈ RealCutLowerAtSqrtTwo, ∀ x ∈ RealCutLowerAtSqrtTwo, x ≤ m) ∧ (Real.sqrt 2 ∈ RealCutUpperAtSqrtTwo ∧ ∀ x ∈ RealCutUpperAtSqrtTwo, Real.sqrt 2 ≤ x)
+Predicate logic (unfolded): (¬ Exists fun m => (Set.instMembership.mem LRA.Analysis.Completeness.RealCutLowerAtSqrtTwo m ∧ ∀ (x : Real), Set.instMembership.mem LRA.Analysis.Completeness.RealCutLowerAtSqrtTwo x → Real.instLE.le x m) ∧ (Set.instMembership.mem LRA.Analysis.Completeness.RealCutUpperAtSqrtTwo (Real.sqrt 2) ∧ ∀ (x : Real), Set.instMembership.mem LRA.Analysis.Completeness.RealCutUpperAtSqrtTwo x → Real.instLE.le (Real.sqrt 2) x))
+Transliterated theorem: (¬ ∃ m ∈ RealCutLowerAtSqrtTwo, ∀ x ∈ RealCutLowerAtSqrtTwo, x ≤ m) ∧ (Real.sqrt 2 ∈ RealCutUpperAtSqrtTwo ∧ ∀ x ∈ RealCutUpperAtSqrtTwo, Real.sqrt 2 ≤ x)
+Logical form (Lean): : (¬ ∃ m ∈ RealCutLowerAtSqrtTwo, ∀ x ∈ RealCutLowerAtSqrtTwo, x ≤ m) ∧ (Real.sqrt 2 ∈ RealCutUpperAtSqrtTwo ∧ ∀ x ∈ RealCutUpperAtSqrtTwo, Real.sqrt 2 ≤ x)
+Source: ./Completeness/CompletenessAdditions.lean#L131
+
+
+
+Name: BisectionStepsTowardSqrtTwo
+Kind: Theorem
+State: Sorry
+Predicate logic: (1 : ℝ) < Real.sqrt 2 ∧ Real.sqrt 2 < 2 ∧ (1.4 : ℝ) < Real.sqrt 2 ∧ Real.sqrt 2 < 1.5 ∧ (1.41 : ℝ) < Real.sqrt 2 ∧ Real.sqrt 2 < 1.42
+Predicate logic (unfolded): (Real.instLT.lt 1 (Real.sqrt 2) ∧ (Real.instLT.lt (Real.sqrt 2) 2 ∧ (Real.instLT.lt 1.4 (Real.sqrt 2) ∧ (Real.instLT.lt (Real.sqrt 2) 1.5 ∧ (Real.instLT.lt 1.41 (Real.sqrt 2) ∧ Real.instLT.lt (Real.sqrt 2) 1.42)))))
+Transliterated theorem: 1 ∈ ℝ < Real.sqrt 2 ∧ Real.sqrt 2 < 2 ∧ 1.4 ∈ ℝ < Real.sqrt 2 ∧ Real.sqrt 2 < 1.5 ∧ 1.41 ∈ ℝ < Real.sqrt 2 ∧ Real.sqrt 2 < 1.42
+Logical form (Lean): : (1 : ℝ) < Real.sqrt 2 ∧ Real.sqrt 2 < 2 ∧ (1.4 : ℝ) < Real.sqrt 2 ∧ Real.sqrt 2 < 1.5 ∧ (1.41 : ℝ) < Real.sqrt 2 ∧ Real.sqrt 2 < 1.42
+Source: ./Completeness/CompletenessAdditions.lean#L149
+
+
+
+Name: IsIrrationalIffNotRational
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : ℝ}, IsIrrational x ↔ ¬ IsRat x
+Predicate logic (unfolded): ∀ {x : Real}, LRA.Analysis.Completeness.IsIrrational x ↔ ¬ LRA.Analysis.Completeness.IsRat x
+Transliterated theorem: IsIrrational x ↔ ¬ IsRat x
+Logical form (Lean): {x : ℝ} : IsIrrational x ↔ ¬ IsRat x
+Source: ./Completeness/Density.lean#L57
+
+
+
+Name: DensityOfRationalsInReals
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {a b : ℝ} (intervalHypothesis : a < b), ∃ q : ℚ, a < (q : ℝ) ∧ (q : ℝ) < b
+Predicate logic (unfolded): ∀ {a b : Real}, Real.instLT.lt a b → Exists fun q => (Real.instLT.lt a q.cast ∧ Real.instLT.lt q.cast b)
+Transliterated theorem: (a < b) → ∃ q ∈ ℚ, a < q ∈ ℝ ∧ q ∈ ℝ < b
+Logical form (Lean): {a b : ℝ} (intervalHypothesis : a < b) : ∃ q : ℚ, a < (q : ℝ) ∧ (q : ℝ) < b
+Source: ./Completeness/Density.lean#L71
+
+
+
+Name: RationalTranslationPreservesRationality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (r q : Rat), LRA.Analysis.Completeness.IsRat (instHAdd.hAdd r.cast q.cast)
+Predicate logic (unfolded): ∀ (r q : Rat), LRA.Analysis.Completeness.IsRat (instHAdd.hAdd r.cast q.cast)
+Transliterated theorem: IsRat (r ∈ ℝ + q ∈ ℝ)
+Logical form (Lean): (r q : ℚ) : IsRat ((r : ℝ) + (q : ℝ))
+Source: ./Completeness/Density.lean#L85
+
+
+
+Name: RationalDifferencePreservesRationality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (r q : Rat), LRA.Analysis.Completeness.IsRat (instHSub.hSub r.cast q.cast)
+Predicate logic (unfolded): ∀ (r q : Rat), LRA.Analysis.Completeness.IsRat (instHSub.hSub r.cast q.cast)
+Transliterated theorem: IsRat (r ∈ ℝ - q ∈ ℝ)
+Logical form (Lean): (r q : ℚ) : IsRat ((r : ℝ) - (q : ℝ))
+Source: ./Completeness/Density.lean#L98
+
+
+
+Name: NonzeroRationalProductPreservesIrrationality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {q : ℚ} (nonzeroRationalHypothesis : q ≠ 0) {x : ℝ} (irrationalHypothesis : ¬ IsRat x), ¬ IsRat ((q : ℝ) * x)
+Predicate logic (unfolded): ∀ {q : Rat}, Ne q 0 → ∀ {x : Real}, ¬ LRA.Analysis.Completeness.IsRat x → ¬ LRA.Analysis.Completeness.IsRat (instHMul.hMul q.cast x)
+Transliterated theorem: ¬ IsRat (q ∈ ℝ * x)
+Logical form (Lean): {q : ℚ} (nonzeroRationalHypothesis : q ≠ 0) {x : ℝ} (irrationalHypothesis : ¬ IsRat x) : ¬ IsRat ((q : ℝ) * x)
+Source: ./Completeness/Density.lean#L115
+
+
+
+Name: RationalTranslationPreservesIrrationality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {q : ℚ} {x : ℝ} (irrationalHypothesis : ¬ IsRat x), ¬ IsRat ((q : ℝ) + x)
+Predicate logic (unfolded): ∀ {q : Rat} {x : Real}, ¬ LRA.Analysis.Completeness.IsRat x → ¬ LRA.Analysis.Completeness.IsRat (instHAdd.hAdd q.cast x)
+Transliterated theorem: ¬ IsRat (q ∈ ℝ + x)
+Logical form (Lean): {q : ℚ} {x : ℝ} (irrationalHypothesis : ¬ IsRat x) : ¬ IsRat ((q : ℝ) + x)
+Source: ./Completeness/Density.lean#L132
+
+
+
+Name: IrrationalMinusIrrationalNeedNotBeIrrational
+Kind: Theorem
+State: Sorry
+Predicate logic: ∃ x y : ℝ, ¬ IsRat x ∧ ¬ IsRat y ∧ IsRat (x - y)
+Predicate logic (unfolded): Exists fun x => Exists fun y => (¬ LRA.Analysis.Completeness.IsRat x ∧ (¬ LRA.Analysis.Completeness.IsRat y ∧ LRA.Analysis.Completeness.IsRat (instHSub.hSub x y)))
+Transliterated theorem: ∃ x y ∈ ℝ, ¬ IsRat x ∧ ¬ IsRat y ∧ IsRat (x - y)
+Logical form (Lean): : ∃ x y : ℝ, ¬ IsRat x ∧ ¬ IsRat y ∧ IsRat (x - y)
+Source: ./Completeness/Density.lean#L146
+
+
+
+Name: RationalMinusIrrationalIsIrrational
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {q : ℚ} {x : ℝ} (irrationalHypothesis : ¬ IsRat x), ¬ IsRat ((q : ℝ) - x)
+Predicate logic (unfolded): ∀ {q : Rat} {x : Real}, ¬ LRA.Analysis.Completeness.IsRat x → ¬ LRA.Analysis.Completeness.IsRat (instHSub.hSub q.cast x)
+Transliterated theorem: ¬ IsRat (q ∈ ℝ - x)
+Logical form (Lean): {q : ℚ} {x : ℝ} (irrationalHypothesis : ¬ IsRat x) : ¬ IsRat ((q : ℝ) - x)
+Source: ./Completeness/Density.lean#L160
+
+
+
+Name: IrrationalPlusRationalIsIrrational
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : ℝ} {q : ℚ} (irrationalHypothesis : ¬ IsRat x), ¬ IsRat (x + (q : ℝ))
+Predicate logic (unfolded): ∀ {x : Real} {q : Rat}, ¬ LRA.Analysis.Completeness.IsRat x → ¬ LRA.Analysis.Completeness.IsRat (instHAdd.hAdd x q.cast)
+Transliterated theorem: ¬ IsRat (x + q ∈ ℝ)
+Logical form (Lean): {x : ℝ} {q : ℚ} (irrationalHypothesis : ¬ IsRat x) : ¬ IsRat (x + (q : ℝ))
+Source: ./Completeness/Density.lean#L175
+
+
+
+Name: IrrationalMinusRationalIsIrrational
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : ℝ} {q : ℚ} (irrationalHypothesis : ¬ IsRat x), ¬ IsRat (x - (q : ℝ))
+Predicate logic (unfolded): ∀ {x : Real} {q : Rat}, ¬ LRA.Analysis.Completeness.IsRat x → ¬ LRA.Analysis.Completeness.IsRat (instHSub.hSub x q.cast)
+Transliterated theorem: ¬ IsRat (x - q ∈ ℝ)
+Logical form (Lean): {x : ℝ} {q : ℚ} (irrationalHypothesis : ¬ IsRat x) : ¬ IsRat (x - (q : ℝ))
+Source: ./Completeness/Density.lean#L190
+
+
+
+Name: DensityOfIrrationalsInReals
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {a b : ℝ} (intervalHypothesis : a < b), ∃ s : ℝ, ¬ IsRat s ∧ a < s ∧ s < b
+Predicate logic (unfolded): ∀ {a b : Real}, Real.instLT.lt a b → Exists fun s => (¬ LRA.Analysis.Completeness.IsRat s ∧ (Real.instLT.lt a s ∧ Real.instLT.lt s b))
+Transliterated theorem: (a < b) → ∃ s ∈ ℝ, ¬ IsRat s ∧ a < s ∧ s < b
+Logical form (Lean): {a b : ℝ} (intervalHypothesis : a < b) : ∃ s : ℝ, ¬ IsRat s ∧ a < s ∧ s < b
+Source: ./Completeness/Density.lean#L205
+
+
+
+Name: IrrationalBetweenAnyTwoRationals
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {r s : ℚ} (rationalIntervalHypothesis : r < s), ∃ x : ℝ, ¬ IsRat x ∧ (r : ℝ) < x ∧ x < (s : ℝ)
+Predicate logic (unfolded): ∀ {r s : Rat}, Rat.instLT.lt r s → Exists fun x => (¬ LRA.Analysis.Completeness.IsRat x ∧ (Real.instLT.lt r.cast x ∧ Real.instLT.lt x s.cast))
+Transliterated theorem: (r < s) → ∃ x ∈ ℝ, ¬ IsRat x ∧ r ∈ ℝ < x ∧ x < s ∈ ℝ
+Logical form (Lean): {r s : ℚ} (rationalIntervalHypothesis : r < s) : ∃ x : ℝ, ¬ IsRat x ∧ (r : ℝ) < x ∧ x < (s : ℝ)
+Source: ./Completeness/Density.lean#L221
+
+
+
+Name: RationalBetweenAnyTwoIrrationals
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : ℝ} (leftIrrationalHypothesis : ¬ IsRat x) (rightIrrationalHypothesis : ¬ IsRat y) (intervalHypothesis : x < y), ∃ q : ℚ, x < (q : ℝ) ∧ (q : ℝ) < y
+Predicate logic (unfolded): ∀ {x y : Real}, (¬ LRA.Analysis.Completeness.IsRat x ∧ (¬ LRA.Analysis.Completeness.IsRat y ∧ Real.instLT.lt x y)) → Exists fun q => (Real.instLT.lt x q.cast ∧ Real.instLT.lt q.cast y)
+Transliterated theorem: (x < y) → ∃ q ∈ ℚ, x < q ∈ ℝ ∧ q ∈ ℝ < y
+Logical form (Lean): {x y : ℝ} (leftIrrationalHypothesis : ¬ IsRat x) (rightIrrationalHypothesis : ¬ IsRat y) (intervalHypothesis : x < y) : ∃ q : ℚ, x < (q : ℝ) ∧ (q : ℝ) < y
+Source: ./Completeness/Density.lean#L239
+
+
+
+Name: SmallIrrationalPositiveNumber
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {ε : ℝ} (positiveToleranceHypothesis : ε > 0), ∃ η : ℝ, ¬ IsRat η ∧ 0 < η ∧ η < ε
+Predicate logic (unfolded): ∀ {ε : Real}, GT.gt ε 0 → Exists fun η => (¬ LRA.Analysis.Completeness.IsRat η ∧ (Real.instLT.lt 0 η ∧ Real.instLT.lt η ε))
+Transliterated theorem: ∃ η ∈ ℝ, ¬ IsRat η ∧ 0 < η ∧ η < ε
+Logical form (Lean): {ε : ℝ} (positiveToleranceHypothesis : ε > 0) : ∃ η : ℝ, ¬ IsRat η ∧ 0 < η ∧ η < ε
+Source: ./Completeness/Density.lean#L257
+
+
+
+Name: NoAdjacentRealNumbers
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {a b : ℝ} (intervalHypothesis : a < b), ∃ c : ℝ, a < c ∧ c < b
+Predicate logic (unfolded): ∀ {a b : Real}, Real.instLT.lt a b → Exists fun c => (Real.instLT.lt a c ∧ Real.instLT.lt c b)
+Transliterated theorem: (a < b) → ∃ c ∈ ℝ, a < c ∧ c < b
+Logical form (Lean): {a b : ℝ} (intervalHypothesis : a < b) : ∃ c : ℝ, a < c ∧ c < b
+Source: ./Completeness/Density.lean#L272
+
+
+
+Name: NoImmediateSuccessorsInReals
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : ℝ), ¬ ∃ m : ℝ, a < m ∧ ∀ x : ℝ, a < x → m ≤ x
+Predicate logic (unfolded): ∀ (a : Real), ¬ Exists fun m => (Real.instLT.lt a m ∧ ∀ (x : Real), Real.instLT.lt a x → Real.instLE.le m x)
+Transliterated theorem: ¬ ∃ m ∈ ℝ, a < m ∧ ∀ x : ℝ, a < x → m ≤ x
+Logical form (Lean): (a : ℝ) : ¬ ∃ m : ℝ, a < m ∧ ∀ x : ℝ, a < x → m ≤ x
+Source: ./Completeness/Density.lean#L286
+
+
+
+Name: NoImmediatePredecessorsInReals
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : ℝ), ¬ ∃ m : ℝ, m < a ∧ ∀ x : ℝ, x < a → x ≤ m
+Predicate logic (unfolded): ∀ (a : Real), ¬ Exists fun m => (Real.instLT.lt m a ∧ ∀ (x : Real), Real.instLT.lt x a → Real.instLE.le x m)
+Transliterated theorem: ¬ ∃ m ∈ ℝ, m < a ∧ ∀ x : ℝ, x < a → x ≤ m
+Logical form (Lean): (a : ℝ) : ¬ ∃ m : ℝ, m < a ∧ ∀ x : ℝ, x < a → x ≤ m
+Source: ./Completeness/Density.lean#L299
+
+
+
+Name: EveryOpenIntervalContainsRationalAndIrrational
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {a b : ℝ} (intervalHypothesis : a < b), (∃ q : ℚ, a < (q : ℝ) ∧ (q : ℝ) < b) ∧ ∃ s : ℝ, ¬ IsRat s ∧ a < s ∧ s < b
+Predicate logic (unfolded): ∀ {a b : Real}, Real.instLT.lt a b → (Exists fun q => (Real.instLT.lt a q.cast ∧ Real.instLT.lt q.cast b) ∧ Exists fun s => (¬ LRA.Analysis.Completeness.IsRat s ∧ (Real.instLT.lt a s ∧ Real.instLT.lt s b)))
+Transliterated theorem: (a < b) → ∃ q ∈ ℚ, a < q ∈ ℝ ∧ q ∈ ℝ < b ∧ ∃ s ∈ ℝ, ¬ IsRat s ∧ a < s ∧ s < b
+Logical form (Lean): {a b : ℝ} (intervalHypothesis : a < b) : (∃ q : ℚ, a < (q : ℝ) ∧ (q : ℝ) < b) ∧ ∃ s : ℝ, ¬ IsRat s ∧ a < s ∧ s < b
+Source: ./Completeness/Density.lean#L315
+
+
+
+Name: InfinitelyManyRationalsAndIrrationalsInOpenInterval
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {a b : ℝ} (intervalHypothesis : a < b), {q : ℚ | a < (q : ℝ) ∧ (q : ℝ) < b}.Infinite ∧ {s : ℝ | ¬ IsRat s ∧ a < s ∧ s < b}.Infinite
+Predicate logic (unfolded): ∀ {a b : Real}, Real.instLT.lt a b → (setOf fun q => (Real.instLT.lt a q.cast ∧ Real.instLT.lt q.cast b) ∧ .Infinite) (setOf fun s => (¬ LRA.Analysis.Completeness.IsRat s ∧ (Real.instLT.lt a s ∧ Real.instLT.lt s b))).Infinite
+Transliterated theorem: (a < b) → {q : ℚ | a < q ∈ ℝ ∧ q ∈ ℝ < b}.Infinite ∧ {s : ℝ | ¬ IsRat s ∧ a < s ∧ s < b}.Infinite
+Logical form (Lean): {a b : ℝ} (intervalHypothesis : a < b) : {q : ℚ | a < (q : ℝ) ∧ (q : ℝ) < b}.Infinite ∧ {s : ℝ | ¬ IsRat s ∧ a < s ∧ s < b}.Infinite
+Source: ./Completeness/Density.lean#L333
+
+
+
+Name: NestedClosedIntervalsHaveOrderedEndpoints
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) {m n : ℕ} (indexOrderHypothesis : n ≤ m), a n ≤ a m ∧ a m ≤ b m ∧ b m ≤ b n
+Predicate logic (unfolded): ∀ (a b : Nat → Real), (∀ (n : Nat), Real.instLE.le (a n) (b n) ∧ ∀ (n : Nat), Set.instLE.le (Set.Icc (a (instHAdd.hAdd n 1)) (b (instHAdd.hAdd n 1))) (Set.Icc (a n) (b n))) → ∀ {m n : Nat}, instLENat.le n m → (Real.instLE.le (a n) (a m) ∧ (Real.instLE.le (a m) (b m) ∧ Real.instLE.le (b m) (b n)))
+Transliterated theorem: (∀ n, a n ≤ b n ∧ ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n) ∧ n ≤ m) → a n ≤ a m ∧ a m ≤ b m ∧ b m ≤ b n
+Logical form (Lean): (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) {m n : ℕ} (indexOrderHypothesis : n ≤ m) : a n ≤ a m ∧ a m ≤ b m ∧ b m ≤ b n
+Source: ./Completeness/NestedIntervalProperty.lean#L62
+
+
+
+Name: LeftEndpointsOfNestedIntervalsIncrease
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)), ∀ n, a n ≤ a (n + 1)
+Predicate logic (unfolded): ∀ (a b : Nat → Real), (∀ (n : Nat), Real.instLE.le (a n) (b n) ∧ ∀ (n : Nat), Set.instLE.le (Set.Icc (a (instHAdd.hAdd n 1)) (b (instHAdd.hAdd n 1))) (Set.Icc (a n) (b n))) → ∀ (n : Nat), Real.instLE.le (a n) (a (instHAdd.hAdd n 1))
+Transliterated theorem: (∀ n, a n ≤ b n ∧ ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) → ∀ n, a n ≤ a (n + 1)
+Logical form (Lean): (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) : ∀ n, a n ≤ a (n + 1)
+Source: ./Completeness/NestedIntervalProperty.lean#L82
+
+
+
+Name: RightEndpointsOfNestedIntervalsDecrease
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)), ∀ n, b (n + 1) ≤ b n
+Predicate logic (unfolded): ∀ (a b : Nat → Real), (∀ (n : Nat), Real.instLE.le (a n) (b n) ∧ ∀ (n : Nat), Set.instLE.le (Set.Icc (a (instHAdd.hAdd n 1)) (b (instHAdd.hAdd n 1))) (Set.Icc (a n) (b n))) → ∀ (n : Nat), Real.instLE.le (b (instHAdd.hAdd n 1)) (b n)
+Transliterated theorem: (∀ n, a n ≤ b n ∧ ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) → ∀ n, b (n + 1) ≤ b n
+Logical form (Lean): (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) : ∀ n, b (n + 1) ≤ b n
+Source: ./Completeness/NestedIntervalProperty.lean#L100
+
+
+
+Name: LeftEndpointsAreBoundedAboveByRightEndpoints
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)), ∀ m n, a n ≤ b m
+Predicate logic (unfolded): ∀ (a b : Nat → Real), (∀ (n : Nat), Real.instLE.le (a n) (b n) ∧ ∀ (n : Nat), Set.instLE.le (Set.Icc (a (instHAdd.hAdd n 1)) (b (instHAdd.hAdd n 1))) (Set.Icc (a n) (b n))) → ∀ (m n : Nat), Real.instLE.le (a n) (b m)
+Transliterated theorem: (∀ n, a n ≤ b n ∧ ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) → ∀ m n, a n ≤ b m
+Logical form (Lean): (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) : ∀ m n, a n ≤ b m
+Source: ./Completeness/NestedIntervalProperty.lean#L118
+
+
+
+Name: EndpointSupremumLeEndpointInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) {leftEndpointLimit rightEndpointLimit : ℝ} (leftSupremumHypothesis : IsSupremum leftEndpointLimit (Set.range a)) (rightInfimumHypothesis : IsInfimum rightEndpointLimit (Set.range b)), leftEndpointLimit ≤ rightEndpointLimit
+Predicate logic (unfolded): ∀ (a b : Nat → Real), (∀ (n : Nat), Real.instLE.le (a n) (b n) ∧ ∀ (n : Nat), Set.instLE.le (Set.Icc (a (instHAdd.hAdd n 1)) (b (instHAdd.hAdd n 1))) (Set.Icc (a n) (b n))) → ∀ {leftEndpointLimit rightEndpointLimit : Real}, (LRA.Analysis.Bounds.IsSupremum leftEndpointLimit (Set.range a) ∧ LRA.Analysis.Bounds.IsInfimum rightEndpointLimit (Set.range b)) → Real.instLE.le leftEndpointLimit rightEndpointLimit
+Transliterated theorem: (∀ n, a n ≤ b n ∧ ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) → leftEndpointLimit ≤ rightEndpointLimit
+Logical form (Lean): (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) {leftEndpointLimit rightEndpointLimit : ℝ} (leftSupremumHypothesis : IsSupremum leftEndpointLimit (Set.range a)) (rightInfimumHypothesis : IsInfimum rightEndpointLimit (Set.range b)) : leftEndpointLimit ≤ rightEndpointLimit
+Source: ./Completeness/NestedIntervalProperty.lean#L142
+
+
+
+Name: NestedIntervalTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) {leftEndpointLimit rightEndpointLimit : ℝ} (leftSupremumHypothesis : IsSupremum leftEndpointLimit (Set.range a)) (rightInfimumHypothesis : IsInfimum rightEndpointLimit (Set.range b)), leftEndpointLimit ≤ rightEndpointLimit ∧ (⋂ n, Set.Icc (a n) (b n)).Nonempty ∧ ∃ x : ℝ, ∀ n, a n ≤ x ∧ x ≤ b n
+Predicate logic (unfolded): ∀ (a b : Nat → Real), (∀ (n : Nat), Real.instLE.le (a n) (b n) ∧ ∀ (n : Nat), Set.instLE.le (Set.Icc (a (instHAdd.hAdd n 1)) (b (instHAdd.hAdd n 1))) (Set.Icc (a n) (b n))) → ∀ {leftEndpointLimit rightEndpointLimit : Real}, (LRA.Analysis.Bounds.IsSupremum leftEndpointLimit (Set.range a) ∧ LRA.Analysis.Bounds.IsInfimum rightEndpointLimit (Set.range b)) → (Real.instLE.le leftEndpointLimit rightEndpointLimit ∧ (Set.iInter fun n => Set.Icc (a n) (b n) ∧ .Nonempty) (Exists fun x => ∀ (n : Nat), (Real.instLE.le (a n) x ∧ Real.instLE.le x (b n))))
+Transliterated theorem: (∀ n, a n ≤ b n ∧ ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) → leftEndpointLimit ≤ rightEndpointLimit ∧ (⋂ n, Set.Icc (a n) (b n)).Nonempty ∧ ∃ x ∈ ℝ, ∀ n, a n ≤ x ∧ x ≤ b n
+Logical form (Lean): (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) {leftEndpointLimit rightEndpointLimit : ℝ} (leftSupremumHypothesis : IsSupremum leftEndpointLimit (Set.range a)) (rightInfimumHypothesis : IsInfimum rightEndpointLimit (Set.range b)) : leftEndpointLimit ≤ rightEndpointLimit ∧ (⋂ n, Set.Icc (a n) (b n)).Nonempty ∧ ∃ x : ℝ, ∀ n, a n ≤ x ∧ x ≤ b n
+Source: ./Completeness/NestedIntervalProperty.lean#L171
+
+
+
+Name: NestedIntervalIntersectionContainsEndpointSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) {leftEndpointLimit : ℝ} (leftSupremumHypothesis : IsSupremum leftEndpointLimit (Set.range a)), (∀ n, a n ≤ leftEndpointLimit ∧ leftEndpointLimit ≤ b n) ∧ leftEndpointLimit ∈ ⋂ n, Set.Icc (a n) (b n)
+Predicate logic (unfolded): ∀ (a b : Nat → Real), (∀ (n : Nat), Real.instLE.le (a n) (b n) ∧ ∀ (n : Nat), Set.instLE.le (Set.Icc (a (instHAdd.hAdd n 1)) (b (instHAdd.hAdd n 1))) (Set.Icc (a n) (b n))) → ∀ {leftEndpointLimit : Real}, LRA.Analysis.Bounds.IsSupremum leftEndpointLimit (Set.range a) → (∀ (n : Nat), (Real.instLE.le (a n) leftEndpointLimit ∧ Real.instLE.le leftEndpointLimit (b n)) ∧ Set.instMembership.mem (Set.iInter fun n => Set.Icc (a n) (b n)) leftEndpointLimit)
+Transliterated theorem: (∀ n, a n ≤ b n ∧ ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) → (∀ n, a n ≤ leftEndpointLimit ∧ leftEndpointLimit ≤ b n) ∧ leftEndpointLimit ∈ ⋂ n, Set.Icc (a n) (b n)
+Logical form (Lean): (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) {leftEndpointLimit : ℝ} (leftSupremumHypothesis : IsSupremum leftEndpointLimit (Set.range a)) : (∀ n, a n ≤ leftEndpointLimit ∧ leftEndpointLimit ≤ b n) ∧ leftEndpointLimit ∈ ⋂ n, Set.Icc (a n) (b n)
+Source: ./Completeness/NestedIntervalProperty.lean#L199
+
+
+
+Name: NestedIntervalIntersectionContainsEndpointInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) {rightEndpointLimit : ℝ} (rightInfimumHypothesis : IsInfimum rightEndpointLimit (Set.range b)), (∀ n, a n ≤ rightEndpointLimit ∧ rightEndpointLimit ≤ b n) ∧ rightEndpointLimit ∈ ⋂ n, Set.Icc (a n) (b n)
+Predicate logic (unfolded): ∀ (a b : Nat → Real), (∀ (n : Nat), Real.instLE.le (a n) (b n) ∧ ∀ (n : Nat), Set.instLE.le (Set.Icc (a (instHAdd.hAdd n 1)) (b (instHAdd.hAdd n 1))) (Set.Icc (a n) (b n))) → ∀ {rightEndpointLimit : Real}, LRA.Analysis.Bounds.IsInfimum rightEndpointLimit (Set.range b) → (∀ (n : Nat), (Real.instLE.le (a n) rightEndpointLimit ∧ Real.instLE.le rightEndpointLimit (b n)) ∧ Set.instMembership.mem (Set.iInter fun n => Set.Icc (a n) (b n)) rightEndpointLimit)
+Transliterated theorem: (∀ n, a n ≤ b n ∧ ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) → (∀ n, a n ≤ rightEndpointLimit ∧ rightEndpointLimit ≤ b n) ∧ rightEndpointLimit ∈ ⋂ n, Set.Icc (a n) (b n)
+Logical form (Lean): (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) {rightEndpointLimit : ℝ} (rightInfimumHypothesis : IsInfimum rightEndpointLimit (Set.range b)) : (∀ n, a n ≤ rightEndpointLimit ∧ rightEndpointLimit ≤ b n) ∧ rightEndpointLimit ∈ ⋂ n, Set.Icc (a n) (b n)
+Source: ./Completeness/NestedIntervalProperty.lean#L225
+
+
+
+Name: NestedIntervalsWithVanishingLengthHaveUniquePoint
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) (vanishingLengthHypothesis : ∀ ε > 0, ∃ N, ∀ n ≥ N, 0 ≤ b n - a n ∧ b n - a n < ε), ∃! x : ℝ, (∀ n, a n ≤ x ∧ x ≤ b n) ∧ IsSupremum x (Set.range a) ∧ IsInfimum x (Set.range b)
+Predicate logic (unfolded): ∀ (a b : Nat → Real), (∀ (n : Nat), Real.instLE.le (a n) (b n) ∧ (∀ (n : Nat), Set.instLE.le (Set.Icc (a (instHAdd.hAdd n 1)) (b (instHAdd.hAdd n 1))) (Set.Icc (a n) (b n)) ∧ ∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (n : Nat), GE.ge n N → (Real.instLE.le 0 (instHSub.hSub (b n) (a n)) ∧ Real.instLT.lt (instHSub.hSub (b n) (a n)) ε))) → ExistsUnique fun x => (∀ (n : Nat), (Real.instLE.le (a n) x ∧ Real.instLE.le x (b n)) ∧ (LRA.Analysis.Bounds.IsSupremum x (Set.range a) ∧ LRA.Analysis.Bounds.IsInfimum x (Set.range b)))
+Transliterated theorem: (∀ n, a n ≤ b n ∧ ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n) ∧ ∀ ε > 0, ∃ N, ∀ n ≥ N, 0 ≤ b n - a n ∧ b n - a n < ε) → ∃! x : ℝ, (∀ n, a n ≤ x ∧ x ≤ b n) ∧ IsSupremum x (Set.range a) ∧ IsInfimum x (Set.range b)
+Logical form (Lean): (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) (vanishingLengthHypothesis : ∀ ε > 0, ∃ N, ∀ n ≥ N, 0 ≤ b n - a n ∧ b n - a n < ε) : ∃! x : ℝ, (∀ n, a n ≤ x ∧ x ≤ b n) ∧ IsSupremum x (Set.range a) ∧ IsInfimum x (Set.range b)
+Source: ./Completeness/NestedIntervalProperty.lean#L251
+
+
+
+Name: NestedIntervalsWithVanishingLengthHaveEqualEndpointLimits
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) (vanishingLengthHypothesis : ∀ ε > 0, ∃ N, ∀ n ≥ N, b n - a n < ε), ∃ x : ℝ, Filter.Tendsto a Filter.atTop (nhds x) ∧ Filter.Tendsto b Filter.atTop (nhds x)
+Predicate logic (unfolded): ∀ (a b : Nat → Real), (∀ (n : Nat), Real.instLE.le (a n) (b n) ∧ (∀ (n : Nat), Set.instLE.le (Set.Icc (a (instHAdd.hAdd n 1)) (b (instHAdd.hAdd n 1))) (Set.Icc (a n) (b n)) ∧ ∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLT.lt (instHSub.hSub (b n) (a n)) ε)) → Exists fun x => (Filter.Tendsto a Filter.atTop (nhds x) ∧ Filter.Tendsto b Filter.atTop (nhds x))
+Transliterated theorem: (∀ n, a n ≤ b n ∧ ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n) ∧ ∀ ε > 0, ∃ N, ∀ n ≥ N, b n - a n < ε) → ∃ x ∈ ℝ, Filter.Tendsto a Filter.atTop (nhds x) ∧ Filter.Tendsto b Filter.atTop (nhds x)
+Logical form (Lean): (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) (vanishingLengthHypothesis : ∀ ε > 0, ∃ N, ∀ n ≥ N, b n - a n < ε) : ∃ x : ℝ, Filter.Tendsto a Filter.atTop (nhds x) ∧ Filter.Tendsto b Filter.atTop (nhds x)
+Source: ./Completeness/NestedIntervalProperty.lean#L276
+
+
+
+Name: UniquePointInNestedIntervalsIsEndpointLimit
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) {x : ℝ} (singletonIntersectionHypothesis : (⋂ n, Set.Icc (a n) (b n)) = {x}), Filter.Tendsto a Filter.atTop (nhds x) ∧ Filter.Tendsto b Filter.atTop (nhds x)
+Predicate logic (unfolded): ∀ (a b : Nat → Real), (∀ (n : Nat), Real.instLE.le (a n) (b n) ∧ ∀ (n : Nat), Set.instLE.le (Set.Icc (a (instHAdd.hAdd n 1)) (b (instHAdd.hAdd n 1))) (Set.Icc (a n) (b n))) → ∀ {x : Real}, Set.iInter fun n => Set.Icc (a n) (b n) = Set.instSingletonSet.singleton x → (Filter.Tendsto a Filter.atTop (nhds x) ∧ Filter.Tendsto b Filter.atTop (nhds x))
+Transliterated theorem: (∀ n, a n ≤ b n ∧ ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n) ∧ (⋂ n, Set.Icc (a n) (b n)) = {x}) → Filter.Tendsto a Filter.atTop (nhds x) ∧ Filter.Tendsto b Filter.atTop (nhds x)
+Logical form (Lean): (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) {x : ℝ} (singletonIntersectionHypothesis : (⋂ n, Set.Icc (a n) (b n)) = {x}) : Filter.Tendsto a Filter.atTop (nhds x) ∧ Filter.Tendsto b Filter.atTop (nhds x)
+Source: ./Completeness/NestedIntervalProperty.lean#L301
+
+
+
+Name: OpenNestedIntervalsNeedNotHaveNonemptyIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∃ a b : ℕ → ℝ, (∀ n, a n < b n) ∧ (∀ n, Set.Ioo (a (n + 1)) (b (n + 1)) ⊆ Set.Ioo (a n) (b n)) ∧ (⋂ n, Set.Ioo (a n) (b n)) = ∅
+Predicate logic (unfolded): Exists fun a => Exists fun b => (∀ (n : Nat), Real.instLT.lt (a n) (b n) ∧ (∀ (n : Nat), Set.instLE.le (Set.Ioo (a (instHAdd.hAdd n 1)) (b (instHAdd.hAdd n 1))) (Set.Ioo (a n) (b n)) ∧ Set.iInter fun n => Set.Ioo (a n) (b n) = Set.instEmptyCollection.emptyCollection))
+Transliterated theorem: ∃ a b ∈ ℕ → ℝ, (∀ n, a n < b n) ∧ (∀ n, Set.Ioo (a (n + 1)) (b (n + 1)) ⊆ Set.Ioo (a n) (b n)) ∧ (⋂ n, Set.Ioo (a n) (b n)) = ∅
+Logical form (Lean): : ∃ a b : ℕ → ℝ, (∀ n, a n < b n) ∧ (∀ n, Set.Ioo (a (n + 1)) (b (n + 1)) ⊆ Set.Ioo (a n) (b n)) ∧ (⋂ n, Set.Ioo (a n) (b n)) = ∅
+Source: ./Completeness/NestedIntervalProperty.lean#L322
+
+
+
+Name: ClosednessIsNecessaryInNestedIntervalTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∃ a b : ℕ → ℝ, (∀ n, a n < b n) ∧ (∀ n, Set.Ioc (a (n + 1)) (b (n + 1)) ⊆ Set.Ioc (a n) (b n)) ∧ (⋂ n, Set.Ioc (a n) (b n)) = ∅
+Predicate logic (unfolded): Exists fun a => Exists fun b => (∀ (n : Nat), Real.instLT.lt (a n) (b n) ∧ (∀ (n : Nat), Set.instLE.le (Set.Ioc (a (instHAdd.hAdd n 1)) (b (instHAdd.hAdd n 1))) (Set.Ioc (a n) (b n)) ∧ Set.iInter fun n => Set.Ioc (a n) (b n) = Set.instEmptyCollection.emptyCollection))
+Transliterated theorem: ∃ a b ∈ ℕ → ℝ, (∀ n, a n < b n) ∧ (∀ n, Set.Ioc (a (n + 1)) (b (n + 1)) ⊆ Set.Ioc (a n) (b n)) ∧ (⋂ n, Set.Ioc (a n) (b n)) = ∅
+Logical form (Lean): : ∃ a b : ℕ → ℝ, (∀ n, a n < b n) ∧ (∀ n, Set.Ioc (a (n + 1)) (b (n + 1)) ⊆ Set.Ioc (a n) (b n)) ∧ (⋂ n, Set.Ioc (a n) (b n)) = ∅
+Source: ./Completeness/NestedIntervalProperty.lean#L340
+
+
+
+Name: BoundednessIsNecessaryInNestedIntervalTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∃ a : ℕ → ℝ, (∀ n, Set.Ici (a (n + 1)) ⊆ Set.Ici (a n)) ∧ (⋂ n, Set.Ici (a n)) = ∅
+Predicate logic (unfolded): Exists fun a => (∀ (n : Nat), Set.instLE.le (Set.Ici (a (instHAdd.hAdd n 1))) (Set.Ici (a n)) ∧ Set.iInter fun n => Set.Ici (a n) = Set.instEmptyCollection.emptyCollection)
+Transliterated theorem: ∃ a ∈ ℕ → ℝ, (∀ n, Set.Ici (a (n + 1)) ⊆ Set.Ici (a n)) ∧ (⋂ n, Set.Ici (a n)) = ∅
+Logical form (Lean): : ∃ a : ℕ → ℝ, (∀ n, Set.Ici (a (n + 1)) ⊆ Set.Ici (a n)) ∧ (⋂ n, Set.Ici (a n)) = ∅
+Source: ./Completeness/NestedIntervalProperty.lean#L357
+
+
+
+Name: IncreasingBoundedProcessHasLimit
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [LinearOrder F] [TopologicalSpace F] [OrderTopology F] (leastUpperBoundProperty : HasLeastUpperBoundProperty F) {a : ℕ → F} (monotoneHypothesis : Monotone a) (boundedAboveHypothesis : ∃ u, IsUpperBound u (Set.range a)), ∃ L, IsSupremum L (Set.range a) ∧ Filter.Tendsto a Filter.atTop (nhds L)
+Predicate logic (unfolded): ∀ (F : Type u_1) [inst : LinearOrder F] [inst_1 : TopologicalSpace F], (OrderTopology F ∧ LRA.Analysis.Completeness.HasLeastUpperBoundProperty F) → ∀ {a : Nat → F}, (Monotone a ∧ Exists fun u => LRA.Analysis.Bounds.IsUpperBound u (Set.range a)) → Exists fun L => (LRA.Analysis.Bounds.IsSupremum L (Set.range a) ∧ Filter.Tendsto a Filter.atTop (nhds L))
+Transliterated theorem: (∃ u, IsUpperBound u (Set.range a)) → ∃ L, IsSupremum L (Set.range a) ∧ Filter.Tendsto a Filter.atTop (nhds L)
+Logical form (Lean): [LinearOrder F] [TopologicalSpace F] [OrderTopology F] (leastUpperBoundProperty : HasLeastUpperBoundProperty F) {a : ℕ → F} (monotoneHypothesis : Monotone a) (boundedAboveHypothesis : ∃ u, IsUpperBound u (Set.range a)) : ∃ L, IsSupremum L (Set.range a) ∧ Filter.Tendsto a Filter.atTop (nhds L)
+Source: ./Completeness/CompletenessProcesses.lean#L78
+
+
+
+Name: DecreasingBoundedProcessHasLimit
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [LinearOrder F] [TopologicalSpace F] [OrderTopology F] (leastUpperBoundProperty : HasLeastUpperBoundProperty F) {a : ℕ → F} (antitoneHypothesis : Antitone a) (boundedBelowHypothesis : ∃ l, IsLowerBound l (Set.range a)), ∃ L, IsInfimum L (Set.range a) ∧ Filter.Tendsto a Filter.atTop (nhds L)
+Predicate logic (unfolded): ∀ (F : Type u_1) [inst : LinearOrder F] [inst_1 : TopologicalSpace F], (OrderTopology F ∧ LRA.Analysis.Completeness.HasLeastUpperBoundProperty F) → ∀ {a : Nat → F}, (Antitone a ∧ Exists fun l => LRA.Analysis.Bounds.IsLowerBound l (Set.range a)) → Exists fun L => (LRA.Analysis.Bounds.IsInfimum L (Set.range a) ∧ Filter.Tendsto a Filter.atTop (nhds L))
+Transliterated theorem: (∃ l, IsLowerBound l (Set.range a)) → ∃ L, IsInfimum L (Set.range a) ∧ Filter.Tendsto a Filter.atTop (nhds L)
+Logical form (Lean): [LinearOrder F] [TopologicalSpace F] [OrderTopology F] (leastUpperBoundProperty : HasLeastUpperBoundProperty F) {a : ℕ → F} (antitoneHypothesis : Antitone a) (boundedBelowHypothesis : ∃ l, IsLowerBound l (Set.range a)) : ∃ L, IsInfimum L (Set.range a) ∧ Filter.Tendsto a Filter.atTop (nhds L)
+Source: ./Completeness/CompletenessProcesses.lean#L104
+
+
+
+Name: ShrinkingNestedIntervalProcessHasUniqueLimit
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {a b : ℕ → ℝ} (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) (vanishingLengthHypothesis : ∀ ε > 0, ∃ N, ∀ n ≥ N, b n - a n < ε), ∃! x : ℝ, (∀ n, a n ≤ x ∧ x ≤ b n) ∧ Filter.Tendsto a Filter.atTop (nhds x) ∧ Filter.Tendsto b Filter.atTop (nhds x)
+Predicate logic (unfolded): ∀ {a b : Nat → Real}, (∀ (n : Nat), Real.instLE.le (a n) (b n) ∧ (∀ (n : Nat), Set.instLE.le (Set.Icc (a (instHAdd.hAdd n 1)) (b (instHAdd.hAdd n 1))) (Set.Icc (a n) (b n)) ∧ ∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLT.lt (instHSub.hSub (b n) (a n)) ε)) → ExistsUnique fun x => (∀ (n : Nat), (Real.instLE.le (a n) x ∧ Real.instLE.le x (b n)) ∧ (Filter.Tendsto a Filter.atTop (nhds x) ∧ Filter.Tendsto b Filter.atTop (nhds x)))
+Transliterated theorem: (∀ n, a n ≤ b n ∧ ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n) ∧ ∀ ε > 0, ∃ N, ∀ n ≥ N, b n - a n < ε) → ∃! x : ℝ, (∀ n, a n ≤ x ∧ x ≤ b n) ∧ Filter.Tendsto a Filter.atTop (nhds x) ∧ Filter.Tendsto b Filter.atTop (nhds x)
+Logical form (Lean): {a b : ℕ → ℝ} (orderedEndpointHypothesis : ∀ n, a n ≤ b n) (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) (vanishingLengthHypothesis : ∀ ε > 0, ∃ N, ∀ n ≥ N, b n - a n < ε) : ∃! x : ℝ, (∀ n, a n ≤ x ∧ x ≤ b n) ∧ Filter.Tendsto a Filter.atTop (nhds x) ∧ Filter.Tendsto b Filter.atTop (nhds x)
+Source: ./Completeness/CompletenessProcesses.lean#L131
+
+
+
+Name: ArchimedeanReciprocalProcessTendsToZero
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Analysis.Completeness.ArchimedeanReciprocalProperty
+Predicate logic (unfolded): LRA.Analysis.Completeness.ArchimedeanReciprocalProperty
+Transliterated theorem: ArchimedeanReciprocalProperty
+Logical form (Lean): : ArchimedeanReciprocalProperty
+Source: ./Completeness/CompletenessProcesses.lean#L150
+
+
+
+Name: LubPropertyImpliesIncreasingProcessConvergence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [LinearOrder F] [TopologicalSpace F] [OrderTopology F] (leastUpperBoundProperty : HasLeastUpperBoundProperty F), IncreasingBoundedProcessesConverge F
+Predicate logic (unfolded): ∀ (F : Type u_1) [inst : LinearOrder F] [inst_1 : TopologicalSpace F], (OrderTopology F ∧ LRA.Analysis.Completeness.HasLeastUpperBoundProperty F) → LRA.Analysis.Completeness.IncreasingBoundedProcessesConverge F
+Transliterated theorem: IncreasingBoundedProcessesConverge F
+Logical form (Lean): [LinearOrder F] [TopologicalSpace F] [OrderTopology F] (leastUpperBoundProperty : HasLeastUpperBoundProperty F) : IncreasingBoundedProcessesConverge F
+Source: ./Completeness/CompletenessEquivalences.lean#L76
+
+
+
+Name: LubPropertyImpliesDecreasingProcessConvergence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [LinearOrder F] [TopologicalSpace F] [OrderTopology F] (leastUpperBoundProperty : HasLeastUpperBoundProperty F), DecreasingBoundedProcessesConverge F
+Predicate logic (unfolded): ∀ (F : Type u_1) [inst : LinearOrder F] [inst_1 : TopologicalSpace F], (OrderTopology F ∧ LRA.Analysis.Completeness.HasLeastUpperBoundProperty F) → LRA.Analysis.Completeness.DecreasingBoundedProcessesConverge F
+Transliterated theorem: DecreasingBoundedProcessesConverge F
+Logical form (Lean): [LinearOrder F] [TopologicalSpace F] [OrderTopology F] (leastUpperBoundProperty : HasLeastUpperBoundProperty F) : DecreasingBoundedProcessesConverge F
+Source: ./Completeness/CompletenessEquivalences.lean#L94
+
+
+
+Name: MonotoneProcessConvergenceImpliesLubProperty
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [Field F] [LinearOrder F] [IsStrictOrderedRing F] [Archimedean F] [TopologicalSpace F] [OrderTopology F] (monotoneProcessConvergenceHypothesis : IncreasingBoundedProcessesConverge F), HasLeastUpperBoundProperty F
+Predicate logic (unfolded): ∀ (F : Type u_1) [inst : Field F] [inst_1 : LinearOrder F], (IsStrictOrderedRing F ∧ Archimedean F) → ∀ [inst : TopologicalSpace F], (OrderTopology F ∧ LRA.Analysis.Completeness.IncreasingBoundedProcessesConverge F) → LRA.Analysis.Completeness.HasLeastUpperBoundProperty F
+Transliterated theorem: HasLeastUpperBoundProperty F
+Logical form (Lean): [Field F] [LinearOrder F] [IsStrictOrderedRing F] [Archimedean F] [TopologicalSpace F] [OrderTopology F] (monotoneProcessConvergenceHypothesis : IncreasingBoundedProcessesConverge F) : HasLeastUpperBoundProperty F
+Source: ./Completeness/CompletenessEquivalences.lean#L114
+
+
+
+Name: LubPropertyEquivalentToMonotoneProcessConvergence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [Field F] [LinearOrder F] [IsStrictOrderedRing F] [Archimedean F] [TopologicalSpace F] [OrderTopology F], [HasLeastUpperBoundProperty F, IncreasingBoundedProcessesConverge F, DecreasingBoundedProcessesConverge F].TFAE
+Predicate logic (unfolded): ∀ (F : Type u_1) [inst : Field F] [inst_1 : LinearOrder F], (IsStrictOrderedRing F ∧ Archimedean F) → ∀ [inst : TopologicalSpace F], OrderTopology F → (List.cons (LRA.Analysis.Completeness.HasLeastUpperBoundProperty F) (List.cons (LRA.Analysis.Completeness.IncreasingBoundedProcessesConverge F) (List.cons (LRA.Analysis.Completeness.DecreasingBoundedProcessesConverge F) List.nil))).TFAE
+Transliterated theorem: [HasLeastUpperBoundProperty F, IncreasingBoundedProcessesConverge F, DecreasingBoundedProcessesConverge F].TFAE
+Logical form (Lean): [Field F] [LinearOrder F] [IsStrictOrderedRing F] [Archimedean F] [TopologicalSpace F] [OrderTopology F] : [HasLeastUpperBoundProperty F, IncreasingBoundedProcessesConverge F, DecreasingBoundedProcessesConverge F].TFAE
+Source: ./Completeness/CompletenessEquivalences.lean#L136
+
+
+
+Name: LubPropertyEquivalentToNestedIntervalProperty
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [Field F] [LinearOrder F] [IsStrictOrderedRing F] [Archimedean F] [TopologicalSpace F] [OrderTopology F], [HasLeastUpperBoundProperty F, NestedIntervalProperty F].TFAE
+Predicate logic (unfolded): ∀ (F : Type u_1) [inst : Field F] [inst_1 : LinearOrder F], (IsStrictOrderedRing F ∧ Archimedean F) → ∀ [inst : TopologicalSpace F], OrderTopology F → (List.cons (LRA.Analysis.Completeness.HasLeastUpperBoundProperty F) (List.cons (LRA.Analysis.Completeness.NestedIntervalProperty F) List.nil)).TFAE
+Transliterated theorem: [HasLeastUpperBoundProperty F, NestedIntervalProperty F].TFAE
+Logical form (Lean): [Field F] [LinearOrder F] [IsStrictOrderedRing F] [Archimedean F] [TopologicalSpace F] [OrderTopology F] : [HasLeastUpperBoundProperty F, NestedIntervalProperty F].TFAE
+Source: ./Completeness/CompletenessEquivalences.lean#L157
+
+
+
+Name: StandardCompletenessEquivalences
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [Field F] [LinearOrder F] [IsStrictOrderedRing F] [Archimedean F] [UniformSpace F] [OrderTopology F], [HasLeastUpperBoundProperty F, HasGreatestLowerBoundProperty F, IncreasingBoundedProcessesConverge F, DecreasingBoundedProcessesConverge F, NestedIntervalProperty F, ArchimedeanReciprocalProperty, CauchySequencesConverge F, BolzanoWeierstrassProperty F].TFAE
+Predicate logic (unfolded): ∀ (F : Type u_1) [inst : Field F] [inst_1 : LinearOrder F], (IsStrictOrderedRing F ∧ Archimedean F) → ∀ [inst : UniformSpace F], OrderTopology F → (List.cons (LRA.Analysis.Completeness.HasLeastUpperBoundProperty F) (List.cons (LRA.Analysis.Completeness.HasGreatestLowerBoundProperty F) (List.cons (LRA.Analysis.Completeness.IncreasingBoundedProcessesConverge F) (List.cons (LRA.Analysis.Completeness.DecreasingBoundedProcessesConverge F) (List.cons (LRA.Analysis.Completeness.NestedIntervalProperty F) (List.cons LRA.Analysis.Completeness.ArchimedeanReciprocalProperty (List.cons (LRA.Analysis.Completeness.CauchySequencesConverge F) (List.cons (LRA.Analysis.Completeness.BolzanoWeierstrassProperty F) List.nil)))))))).TFAE
+Transliterated theorem: [HasLeastUpperBoundProperty F, HasGreatestLowerBoundProperty F, IncreasingBoundedProcessesConverge F, DecreasingBoundedProcessesConverge F, NestedIntervalProperty F, ArchimedeanReciprocalProperty, CauchySequencesConverge F, BolzanoWeierstrassProperty F].TFAE
+Logical form (Lean): [Field F] [LinearOrder F] [IsStrictOrderedRing F] [Archimedean F] [UniformSpace F] [OrderTopology F] : [HasLeastUpperBoundProperty F, HasGreatestLowerBoundProperty F, IncreasingBoundedProcessesConverge F, DecreasingBoundedProcessesConverge F, NestedIntervalProperty F, ArchimedeanReciprocalProperty, CauchySequencesConverge F, BolzanoWeierstrassProperty F].TFAE
+Source: ./Completeness/CompletenessEquivalences.lean#L185
+
+
+
+Name: OrderSeparationBySupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) (separationHypothesis : ∀ a ∈ A, ∀ b ∈ B, a ≤ b), (∃ u, IsUpperBound u A) ∧ (∃ l, IsLowerBound l B) ∧ ∃ c : ℝ, IsSupremum c A ∧ (∀ a ∈ A, ∀ b ∈ B, a ≤ c ∧ c ≤ b)
+Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ (B.Nonempty ∧ ∀ (a : Real), Set.instMembership.mem A a → ∀ (b : Real), Set.instMembership.mem B b → Real.instLE.le a b)) → (Exists fun u => LRA.Analysis.Bounds.IsUpperBound u A ∧ (Exists fun l => LRA.Analysis.Bounds.IsLowerBound l B ∧ Exists fun c => (LRA.Analysis.Bounds.IsSupremum c A ∧ ∀ (a : Real), Set.instMembership.mem A a → ∀ (b : Real), Set.instMembership.mem B b → (Real.instLE.le a c ∧ Real.instLE.le c b))))
+Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (∀ a ∈ A, ∀ b ∈ B, a ≤ b) → (∃ u, IsUpperBound u A) ∧ (∃ l, IsLowerBound l B) ∧ ∃ c ∈ ℝ, IsSupremum c A ∧ (∀ a ∈ A, ∀ b ∈ B, a ≤ c ∧ c ≤ b)
+Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) (separationHypothesis : ∀ a ∈ A, ∀ b ∈ B, a ≤ b) : (∃ u, IsUpperBound u A) ∧ (∃ l, IsLowerBound l B) ∧ ∃ c : ℝ, IsSupremum c A ∧ (∀ a ∈ A, ∀ b ∈ B, a ≤ c ∧ c ≤ b)
+Source: ./Completeness/OrderSeparation.lean#L30
+
+
+
+Name: SupremumLeInfimumOfOrderSeparatedSets
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) (separationHypothesis : ∀ a ∈ A, ∀ b ∈ B, a ≤ b) {s i : ℝ} (supremumHypothesis : IsSupremum s A) (infimumHypothesis : IsInfimum i B), s ≤ i
+Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ (B.Nonempty ∧ ∀ (a : Real), Set.instMembership.mem A a → ∀ (b : Real), Set.instMembership.mem B b → Real.instLE.le a b)) → ∀ {s i : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ LRA.Analysis.Bounds.IsInfimum i B) → Real.instLE.le s i
+Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (∀ a ∈ A, ∀ b ∈ B, a ≤ b) → s ≤ i
+Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) (separationHypothesis : ∀ a ∈ A, ∀ b ∈ B, a ≤ b) {s i : ℝ} (supremumHypothesis : IsSupremum s A) (infimumHypothesis : IsInfimum i B) : s ≤ i
+Source: ./Completeness/OrderSeparation.lean#L55
+
+
+
+Name: DedekindCutProperty
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {L U : Set ℝ} (lowerSetNonemptyHypothesis : L.Nonempty) (upperSetNonemptyHypothesis : U.Nonempty) (disjointHypothesis : L ∩ U = ∅) (coverHypothesis : L ∪ U = Set.univ) (strictSeparationHypothesis : ∀ l ∈ L, ∀ u ∈ U, l < u), (∃ m, IsMaximum m L) ∨ (∃ n, IsMinimum n U)
+Predicate logic (unfolded): ∀ {L U : Set Real}, (L.Nonempty ∧ (U.Nonempty ∧ (Set.instInter.inter L U = Set.instEmptyCollection.emptyCollection ∧ (Set.instUnion.union L U = Set.univ ∧ ∀ (l : Real), Set.instMembership.mem L l → ∀ (u : Real), Set.instMembership.mem U u → Real.instLT.lt l u)))) → Or (Exists fun m => LRA.Analysis.Bounds.IsMaximum m L) (Exists fun n => LRA.Analysis.Bounds.IsMinimum n U)
+Transliterated theorem: (∀ lowerSetNonemptyHypothesis ∈ L.Nonempty ∀ upperSetNonemptyHypothesis ∈ U.Nonempty), (L ∩ U = ∅ ∧ L ∪ U = Set.univ ∧ ∀ l ∈ L, ∀ u ∈ U, l < u) → (∃ m, IsMaximum m L) ∨ (∃ n, IsMinimum n U)
+Logical form (Lean): {L U : Set ℝ} (lowerSetNonemptyHypothesis : L.Nonempty) (upperSetNonemptyHypothesis : U.Nonempty) (disjointHypothesis : L ∩ U = ∅) (coverHypothesis : L ∪ U = Set.univ) (strictSeparationHypothesis : ∀ l ∈ L, ∀ u ∈ U, l < u) : (∃ m, IsMaximum m L) ∨ (∃ n, IsMinimum n U)
+Source: ./Completeness/OrderSeparation.lean#L82
+
+
+
+Name: NoGapsInReals
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {L U : Set ℝ} (lowerSetNonemptyHypothesis : L.Nonempty) (upperSetNonemptyHypothesis : U.Nonempty) (disjointHypothesis : L ∩ U = ∅) (coverHypothesis : L ∪ U = Set.univ) (strictSeparationHypothesis : ∀ l ∈ L, ∀ u ∈ U, l < u), ∃! c : ℝ, (L = {x : ℝ | x < c} ∧ U = {x : ℝ | c ≤ x}) ∨ (L = {x : ℝ | x ≤ c} ∧ U = {x : ℝ | c < x})
+Predicate logic (unfolded): ∀ {L U : Set Real}, (L.Nonempty ∧ (U.Nonempty ∧ (Set.instInter.inter L U = Set.instEmptyCollection.emptyCollection ∧ (Set.instUnion.union L U = Set.univ ∧ ∀ (l : Real), Set.instMembership.mem L l → ∀ (u : Real), Set.instMembership.mem U u → Real.instLT.lt l u)))) → ExistsUnique fun c => Or ((L = setOf fun x => Real.instLT.lt x c ∧ U = setOf fun x => Real.instLE.le c x)) ((L = setOf fun x => Real.instLE.le x c ∧ U = setOf fun x => Real.instLT.lt c x))
+Transliterated theorem: (∀ lowerSetNonemptyHypothesis ∈ L.Nonempty ∀ upperSetNonemptyHypothesis ∈ U.Nonempty), (L ∩ U = ∅ ∧ L ∪ U = Set.univ ∧ ∀ l ∈ L, ∀ u ∈ U, l < u) → ∃! c : ℝ, L = {x ∈ ℝ | x < c} ∧ U = {x : ℝ | c ≤ x} ∨ L = {x ∈ ℝ | x ≤ c} ∧ U = {x : ℝ | c < x}
+Logical form (Lean): {L U : Set ℝ} (lowerSetNonemptyHypothesis : L.Nonempty) (upperSetNonemptyHypothesis : U.Nonempty) (disjointHypothesis : L ∩ U = ∅) (coverHypothesis : L ∪ U = Set.univ) (strictSeparationHypothesis : ∀ l ∈ L, ∀ u ∈ U, l < u) : ∃! c : ℝ, (L = {x : ℝ | x < c} ∧ U = {x : ℝ | c ≤ x}) ∨ (L = {x : ℝ | x ≤ c} ∧ U = {x : ℝ | c < x})
+Source: ./Completeness/OrderSeparation.lean#L109
+
+
+
+Name: CousinsTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : Real),   Real.instLE.le a b →     ∀ (δ : Real → Real), LRA.Analysis.Continuity.IsGauge a b δ → Exists fun P => LRA.Analysis.Continuity.IsDeltaFine P δ
+Predicate logic (unfolded): ∀ (a b : Real), Real.instLE.le a b → ∀ (δ : Real → Real), LRA.Analysis.Continuity.IsGauge a b δ → Exists fun P => LRA.Analysis.Continuity.IsDeltaFine P δ
+Transliterated theorem: (a ≤ b ∧ ℝ → ℝ) → ∃ P ∈ TaggedPartition a b, IsDeltaFine P δ
+Logical form (Lean): (a b : ℝ) (hab : a ≤ b) (δ : ℝ → ℝ) (hδ : IsGauge a b δ) : ∃ P : TaggedPartition a b, IsDeltaFine P δ
+Source: ./Continuity/Gauge.lean#L94
+
+
+
+Name: CommonRefinementExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {a b : Real} (P₁ P₂ : LRA.Analysis.Continuity.IntervalPartition a b),   LRA.Analysis.Continuity.HasCommonRefinement P₁ P₂
+Predicate logic (unfolded): ∀ {a b : Real} (P₁ P₂ : LRA.Analysis.Continuity.IntervalPartition a b), LRA.Analysis.Continuity.HasCommonRefinement P₁ P₂
+Transliterated theorem: HasCommonRefinement P₁ P₂
+Logical form (Lean): {a b : ℝ} (P₁ P₂ : IntervalPartition a b) : HasCommonRefinement P₁ P₂
+Source: ./Continuity/Gauge.lean#L146
+
+
+
+Name: EveryPointCoveredByTag
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {a b : Real} (P : LRA.Analysis.Continuity.TaggedPartition a b) (x : Real),   Set.instMembership.mem (Set.Icc a b) x →     Exists fun i => Set.instMembership.mem (Set.Icc (P.points i.castSucc) (P.points i.succ)) x
+Predicate logic (unfolded): ∀ {a b : Real} (P : LRA.Analysis.Continuity.TaggedPartition a b) (x : Real), Set.instMembership.mem (Set.Icc a b) x → Exists fun i => Set.instMembership.mem (Set.Icc (P.points i.castSucc) (P.points i.succ)) x
+Transliterated theorem: ∀ x ∈ Set.Icc a b, ∃ i ∈ Fin P.n, x ∈ Set.Icc (P.points i.castSucc) (P.points i.succ)
+Logical form (Lean): {a b : ℝ} (P : TaggedPartition a b) : ∀ x ∈ Set.Icc a b, ∃ i : Fin P.n, x ∈ Set.Icc (P.points i.castSucc) (P.points i.succ)
+Source: ./Continuity/Gauge.lean#L161
+
+
+
+Name: TendstoUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c L₁ L₂ : ℝ) (hc : ∀ δ > 0, ∃ x ∈ A, 0 < |x - c| ∧ |x - c| < δ) (h₁ : TendsTo f A c L₁) (h₂ : TendsTo f A c L₂), L₁ = L₂
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c L₁ L₂ : Real), (∀ (δ : Real), GT.gt δ 0 → Exists fun x => (Set.instMembership.mem A x ∧ (Real.instLT.lt 0 (abs (instHSub.hSub x c)) ∧ Real.instLT.lt (abs (instHSub.hSub x c)) δ)) ∧ (LRA.Analysis.Continuity.TendsTo f A c L₁ ∧ LRA.Analysis.Continuity.TendsTo f A c L₂)) → L₁ = L₂
+Transliterated theorem: (ℝ → ℝ ∧ ∀ δ > 0, ∃ x ∈ A, 0 < |x - c| ∧ |x - c| < δ) → L₁ = L₂
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c L₁ L₂ : ℝ) (hc : ∀ δ > 0, ∃ x ∈ A, 0 < |x - c| ∧ |x - c| < δ) (h₁ : TendsTo f A c L₁) (h₂ : TendsTo f A c L₂) : L₁ = L₂
+Source: ./Continuity/Limits.lean#L43
+
+
+
+Name: TendstoIffOneSidedAgree
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ), TendsTo f A c L ↔ TendsToLeft f A c L ∧ TendsToRight f A c L
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c L : Real), LRA.Analysis.Continuity.TendsTo f A c L ↔ (LRA.Analysis.Continuity.TendsToLeft f A c L ∧ LRA.Analysis.Continuity.TendsToRight f A c L)
+Transliterated theorem: (ℝ → ℝ) → TendsTo f A c L ↔ TendsToLeft f A c L ∧ TendsToRight f A c L
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) : TendsTo f A c L ↔ TendsToLeft f A c L ∧ TendsToRight f A c L
+Source: ./Continuity/Limits.lean#L83
+
+
+
+Name: TendstoAdd
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg), TendsTo (fun x => f x + g x) A c (Lf + Lg)
+Predicate logic (unfolded): ∀ {f g : Real → Real} {A : Set Real} {c Lf Lg : Real}, (LRA.Analysis.Continuity.TendsTo f A c Lf ∧ LRA.Analysis.Continuity.TendsTo g A c Lg) → LRA.Analysis.Continuity.TendsTo (fun x => instHAdd.hAdd (f x) (g x)) A c (instHAdd.hAdd Lf Lg)
+Transliterated theorem: TendsTo (fun x => f x + g x) A c (Lf + Lg)
+Logical form (Lean): (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg) : TendsTo (fun x => f x + g x) A c (Lf + Lg)
+Source: ./Continuity/Limits.lean#L108
+
+
+
+Name: TendstoSub
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg), TendsTo (fun x => f x - g x) A c (Lf - Lg)
+Predicate logic (unfolded): ∀ {f g : Real → Real} {A : Set Real} {c Lf Lg : Real}, (LRA.Analysis.Continuity.TendsTo f A c Lf ∧ LRA.Analysis.Continuity.TendsTo g A c Lg) → LRA.Analysis.Continuity.TendsTo (fun x => instHSub.hSub (f x) (g x)) A c (instHSub.hSub Lf Lg)
+Transliterated theorem: TendsTo (fun x => f x - g x) A c (Lf - Lg)
+Logical form (Lean): (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg) : TendsTo (fun x => f x - g x) A c (Lf - Lg)
+Source: ./Continuity/Limits.lean#L122
+
+
+
+Name: TendstoScalar
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {f : Real → Real} {A : Set Real} {c Lf : Real},   LRA.Analysis.Continuity.TendsTo f A c Lf →     ∀ (α : Real), LRA.Analysis.Continuity.TendsTo (fun x => instHMul.hMul α (f x)) A c (instHMul.hMul α Lf)
+Predicate logic (unfolded): ∀ {f : Real → Real} {A : Set Real} {c Lf : Real}, LRA.Analysis.Continuity.TendsTo f A c Lf → ∀ (α : Real), LRA.Analysis.Continuity.TendsTo (fun x => instHMul.hMul α (f x)) A c (instHMul.hMul α Lf)
+Transliterated theorem: TendsTo (fun x => α * f x) A c (α * Lf)
+Logical form (Lean): (hf : TendsTo f A c Lf) (α : ℝ) : TendsTo (fun x => α * f x) A c (α * Lf)
+Source: ./Continuity/Limits.lean#L136
+
+
+
+Name: TendstoMul
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg), TendsTo (fun x => f x * g x) A c (Lf * Lg)
+Predicate logic (unfolded): ∀ {f g : Real → Real} {A : Set Real} {c Lf Lg : Real}, (LRA.Analysis.Continuity.TendsTo f A c Lf ∧ LRA.Analysis.Continuity.TendsTo g A c Lg) → LRA.Analysis.Continuity.TendsTo (fun x => instHMul.hMul (f x) (g x)) A c (instHMul.hMul Lf Lg)
+Transliterated theorem: TendsTo (fun x => f x * g x) A c (Lf * Lg)
+Logical form (Lean): (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg) : TendsTo (fun x => f x * g x) A c (Lf * Lg)
+Source: ./Continuity/Limits.lean#L151
+
+
+
+Name: TendstoDiv
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg) (hLg : Lg ≠ 0), TendsTo (fun x => f x / g x) A c (Lf / Lg)
+Predicate logic (unfolded): ∀ {f g : Real → Real} {A : Set Real} {c Lf Lg : Real}, (LRA.Analysis.Continuity.TendsTo f A c Lf ∧ (LRA.Analysis.Continuity.TendsTo g A c Lg ∧ Ne Lg 0)) → LRA.Analysis.Continuity.TendsTo (fun x => instHDiv.hDiv (f x) (g x)) A c (instHDiv.hDiv Lf Lg)
+Transliterated theorem: TendsTo (fun x => f x / g x) A c (Lf / Lg)
+Logical form (Lean): (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg) (hLg : Lg ≠ 0) : TendsTo (fun x => f x / g x) A c (Lf / Lg)
+Source: ./Continuity/Limits.lean#L167
+
+
+
+Name: SqueezeFunctionLimits
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g h : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) (hfg : ∀ x ∈ A, f x ≤ g x) (hgh : ∀ x ∈ A, g x ≤ h x) (hf : TendsTo f A c L) (hh : TendsTo h A c L), TendsTo g A c L
+Predicate logic (unfolded): ∀ (f g h : Real → Real) (A : Set Real) (c L : Real), (∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (f x) (g x) ∧ (∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (g x) (h x) ∧ (LRA.Analysis.Continuity.TendsTo f A c L ∧ LRA.Analysis.Continuity.TendsTo h A c L))) → LRA.Analysis.Continuity.TendsTo g A c L
+Transliterated theorem: (∀ x ∈ A, f x ≤ g x ∧ ∀ x ∈ A, g x ≤ h x) → TendsTo g A c L
+Logical form (Lean): (f g h : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) (hfg : ∀ x ∈ A, f x ≤ g x) (hgh : ∀ x ∈ A, g x ≤ h x) (hf : TendsTo f A c L) (hh : TendsTo h A c L) : TendsTo g A c L
+Source: ./Continuity/Limits.lean#L187
+
+
+
+Name: SequentialCriterionTendsto
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ), TendsTo f A c L ↔ ∀ xs : ℕ → ℝ, ApproachesButNotEqual xs A c → ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |f (xs n) - L| < ε
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c L : Real), LRA.Analysis.Continuity.TendsTo f A c L ↔ ∀ (xs : Nat → Real), LRA.Analysis.Continuity.ApproachesButNotEqual xs A c → ∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLT.lt (abs (instHSub.hSub (f (xs n)) L)) ε
+Transliterated theorem: (ℝ → ℝ) → TendsTo f A c L ↔ ∀ xs : ℕ → ℝ, ApproachesButNotEqual xs A c → ∀ ε > 0, ∃ N ∈ ℕ, ∀ n ≥ N, |f (xs n) - L| < ε
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) : TendsTo f A c L ↔ ∀ xs : ℕ → ℝ, ApproachesButNotEqual xs A c → ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |f (xs n) - L| < ε
+Source: ./Continuity/Limits.lean#L221
+
+
+
+Name: TendstoComp
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A B : Set ℝ) (c₁ c₂ L₂ : ℝ) (hf : TendsTo f A c₁ c₂) (hfA : ∀ x ∈ A, f x ∈ B) (hg : TendsTo g B c₂ L₂) (hgc : g c₂ = L₂), TendsTo (fun x => g (f x)) A c₁ L₂
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A B : Set Real) (c₁ c₂ L₂ : Real), (LRA.Analysis.Continuity.TendsTo f A c₁ c₂ ∧ (∀ (x : Real), Set.instMembership.mem A x → Set.instMembership.mem B (f x) ∧ (LRA.Analysis.Continuity.TendsTo g B c₂ L₂ ∧ g c₂ = L₂))) → LRA.Analysis.Continuity.TendsTo (fun x => g (f x)) A c₁ L₂
+Transliterated theorem: (∀ x ∈ A, f x ∈ B ∧ g c₂ = L₂) → TendsTo (fun x => g (f x)) A c₁ L₂
+Logical form (Lean): (f g : ℝ → ℝ) (A B : Set ℝ) (c₁ c₂ L₂ : ℝ) (hf : TendsTo f A c₁ c₂) (hfA : ∀ x ∈ A, f x ∈ B) (hg : TendsTo g B c₂ L₂) (hgc : g c₂ = L₂) : TendsTo (fun x => g (f x)) A c₁ L₂
+Source: ./Continuity/Limits.lean#L241
+
+
+
+Name: LimitAtNegInfinityIffReflection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (X : Set ℝ) (L : ℝ), TendsToNegInfty f X L ↔ TendsToInfty (fun x => f (-x)) {x : ℝ | -x ∈ X} L
+Predicate logic (unfolded): ∀ (f : Real → Real) (X : Set Real) (L : Real), LRA.Analysis.Continuity.TendsToNegInfty f X L ↔ LRA.Analysis.Continuity.TendsToInfty (fun x => f (Real.instNeg.neg x)) (setOf fun x => Set.instMembership.mem X (Real.instNeg.neg x)) L
+Transliterated theorem: (ℝ → ℝ) → TendsToNegInfty f X L ↔ TendsToInfty (fun x => f (-x)) {x : ℝ | -x ∈ X} L
+Logical form (Lean): (f : ℝ → ℝ) (X : Set ℝ) (L : ℝ) : TendsToNegInfty f X L ↔ TendsToInfty (fun x => f (-x)) {x : ℝ | -x ∈ X} L
+Source: ./Continuity/LimitsAtInfinityAdditions.lean#L60
+
+
+
+Name: TendstoInftyAdd
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hf : TendsToInfty f X Lf) (hg : TendsToInfty g X Lg), TendsToInfty (fun x => f x + g x) X (Lf + Lg)
+Predicate logic (unfolded): ∀ {f g : Real → Real} {X : Set Real} {Lf Lg : Real}, (LRA.Analysis.Continuity.TendsToInfty f X Lf ∧ LRA.Analysis.Continuity.TendsToInfty g X Lg) → LRA.Analysis.Continuity.TendsToInfty (fun x => instHAdd.hAdd (f x) (g x)) X (instHAdd.hAdd Lf Lg)
+Transliterated theorem: TendsToInfty (fun x => f x + g x) X (Lf + Lg)
+Logical form (Lean): (hf : TendsToInfty f X Lf) (hg : TendsToInfty g X Lg) : TendsToInfty (fun x => f x + g x) X (Lf + Lg)
+Source: ./Continuity/LimitsAtInfinityAdditions.lean#L82
+
+
+
+Name: TendstoInftySub
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hf : TendsToInfty f X Lf) (hg : TendsToInfty g X Lg), TendsToInfty (fun x => f x - g x) X (Lf - Lg)
+Predicate logic (unfolded): ∀ {f g : Real → Real} {X : Set Real} {Lf Lg : Real}, (LRA.Analysis.Continuity.TendsToInfty f X Lf ∧ LRA.Analysis.Continuity.TendsToInfty g X Lg) → LRA.Analysis.Continuity.TendsToInfty (fun x => instHSub.hSub (f x) (g x)) X (instHSub.hSub Lf Lg)
+Transliterated theorem: TendsToInfty (fun x => f x - g x) X (Lf - Lg)
+Logical form (Lean): (hf : TendsToInfty f X Lf) (hg : TendsToInfty g X Lg) : TendsToInfty (fun x => f x - g x) X (Lf - Lg)
+Source: ./Continuity/LimitsAtInfinityAdditions.lean#L96
+
+
+
+Name: TendstoInftyScalar
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {f : Real → Real} {X : Set Real} {Lf : Real},   LRA.Analysis.Continuity.TendsToInfty f X Lf →     ∀ (c : Real), LRA.Analysis.Continuity.TendsToInfty (fun x => instHMul.hMul c (f x)) X (instHMul.hMul c Lf)
+Predicate logic (unfolded): ∀ {f : Real → Real} {X : Set Real} {Lf : Real}, LRA.Analysis.Continuity.TendsToInfty f X Lf → ∀ (c : Real), LRA.Analysis.Continuity.TendsToInfty (fun x => instHMul.hMul c (f x)) X (instHMul.hMul c Lf)
+Transliterated theorem: TendsToInfty (fun x => c * f x) X (c * Lf)
+Logical form (Lean): (hf : TendsToInfty f X Lf) (c : ℝ) : TendsToInfty (fun x => c * f x) X (c * Lf)
+Source: ./Continuity/LimitsAtInfinityAdditions.lean#L109
+
+
+
+Name: TendstoInftyMul
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hf : TendsToInfty f X Lf) (hg : TendsToInfty g X Lg), TendsToInfty (fun x => f x * g x) X (Lf * Lg)
+Predicate logic (unfolded): ∀ {f g : Real → Real} {X : Set Real} {Lf Lg : Real}, (LRA.Analysis.Continuity.TendsToInfty f X Lf ∧ LRA.Analysis.Continuity.TendsToInfty g X Lg) → LRA.Analysis.Continuity.TendsToInfty (fun x => instHMul.hMul (f x) (g x)) X (instHMul.hMul Lf Lg)
+Transliterated theorem: TendsToInfty (fun x => f x * g x) X (Lf * Lg)
+Logical form (Lean): (hf : TendsToInfty f X Lf) (hg : TendsToInfty g X Lg) : TendsToInfty (fun x => f x * g x) X (Lf * Lg)
+Source: ./Continuity/LimitsAtInfinityAdditions.lean#L123
+
+
+
+Name: TendstoInftyDiv
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hf : TendsToInfty f X Lf) (hg : TendsToInfty g X Lg) (hLg : Lg ≠ 0), TendsToInfty (fun x => f x / g x) X (Lf / Lg)
+Predicate logic (unfolded): ∀ {f g : Real → Real} {X : Set Real} {Lf Lg : Real}, (LRA.Analysis.Continuity.TendsToInfty f X Lf ∧ (LRA.Analysis.Continuity.TendsToInfty g X Lg ∧ Ne Lg 0)) → LRA.Analysis.Continuity.TendsToInfty (fun x => instHDiv.hDiv (f x) (g x)) X (instHDiv.hDiv Lf Lg)
+Transliterated theorem: TendsToInfty (fun x => f x / g x) X (Lf / Lg)
+Logical form (Lean): (hf : TendsToInfty f X Lf) (hg : TendsToInfty g X Lg) (hLg : Lg ≠ 0) : TendsToInfty (fun x => f x / g x) X (Lf / Lg)
+Source: ./Continuity/LimitsAtInfinityAdditions.lean#L138
+
+
+
+Name: SequentialCriterionTendstoInfty
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (X : Set ℝ) (L : ℝ) (hX : ∀ M : ℝ, ∃ x ∈ X, x > M), TendsToInfty f X L ↔ ∀ xs : ℕ → ℝ, (∀ n, xs n ∈ X) → EscapesToInfty xs → ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |f (xs n) - L| < ε
+Predicate logic (unfolded): ∀ (f : Real → Real) (X : Set Real) (L : Real), (∀ (M : Real), Exists fun x => (Set.instMembership.mem X x ∧ GT.gt x M)) → LRA.Analysis.Continuity.TendsToInfty f X L ↔ ∀ (xs : Nat → Real), (∀ (n : Nat), Set.instMembership.mem X (xs n)) → LRA.Analysis.Continuity.EscapesToInfty xs → ∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLT.lt (abs (instHSub.hSub (f (xs n)) L)) ε
+Transliterated theorem: (ℝ → ℝ ∧ ∀ M : ℝ, ∃ x ∈ X, x > M) → TendsToInfty f X L ↔ ∀ xs : ℕ → ℝ, (∀ n, xs n ∈ X) → EscapesToInfty xs → ∀ ε > 0, ∃ N ∈ ℕ, ∀ n ≥ N, |f (xs n) - L| < ε
+Logical form (Lean): (f : ℝ → ℝ) (X : Set ℝ) (L : ℝ) (hX : ∀ M : ℝ, ∃ x ∈ X, x > M) : TendsToInfty f X L ↔ ∀ xs : ℕ → ℝ, (∀ n, xs n ∈ X) → EscapesToInfty xs → ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |f (xs n) - L| < ε
+Source: ./Continuity/LimitsAtInfinityAdditions.lean#L177
+
+
+
+Name: ContinuousAtPointIffNbhd
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ), ContinuousAtPoint f A c ↔ ContinuousAtPointNbhd f A c
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c : Real), LRA.Analysis.Continuity.ContinuousAtPoint f A c ↔ LRA.Analysis.Continuity.ContinuousAtPointNbhd f A c
+Transliterated theorem: (ℝ → ℝ) → ContinuousAtPoint f A c ↔ ContinuousAtPointNbhd f A c
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : ContinuousAtPoint f A c ↔ ContinuousAtPointNbhd f A c
+Source: ./Continuity/PointContinuity.lean#L64
+
+
+
+Name: ContinuousAtPointIffSeq
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hc : c ∈ A), ContinuousAtPoint f A c ↔ ContinuousAtPointSeq f A c
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c : Real), Set.instMembership.mem A c → LRA.Analysis.Continuity.ContinuousAtPoint f A c ↔ LRA.Analysis.Continuity.ContinuousAtPointSeq f A c
+Transliterated theorem: (ℝ → ℝ ∧ c ∈ A) → ContinuousAtPoint f A c ↔ ContinuousAtPointSeq f A c
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hc : c ∈ A) : ContinuousAtPoint f A c ↔ ContinuousAtPointSeq f A c
+Source: ./Continuity/PointContinuity.lean#L95
+
+
+
+Name: DiscontinuityIffSequential
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ), PointOfDiscontinuity f A c ↔ SequentialDiscontinuity f A c
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c : Real), LRA.Analysis.Continuity.PointOfDiscontinuity f A c ↔ LRA.Analysis.Continuity.SequentialDiscontinuity f A c
+Transliterated theorem: (ℝ → ℝ) → PointOfDiscontinuity f A c ↔ SequentialDiscontinuity f A c
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : PointOfDiscontinuity f A c ↔ SequentialDiscontinuity f A c
+Source: ./Continuity/PointContinuity.lean#L138
+
+
+
+Name: DiscontinuityIffNeighborhood
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ), PointOfDiscontinuity f A c ↔ NeighborhoodDiscontinuity f A c
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c : Real), LRA.Analysis.Continuity.PointOfDiscontinuity f A c ↔ LRA.Analysis.Continuity.NeighborhoodDiscontinuity f A c
+Transliterated theorem: (ℝ → ℝ) → PointOfDiscontinuity f A c ↔ NeighborhoodDiscontinuity f A c
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : PointOfDiscontinuity f A c ↔ NeighborhoodDiscontinuity f A c
+Source: ./Continuity/PointContinuity.lean#L165
+
+
+
+Name: JumpSubsetEssential
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : Real → Real) (A : Set Real) (c : Real),   LRA.Analysis.Continuity.IsJumpDiscontinuity f A c → LRA.Analysis.Continuity.IsEssentialDiscontinuity f A c
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c : Real), LRA.Analysis.Continuity.IsJumpDiscontinuity f A c → LRA.Analysis.Continuity.IsEssentialDiscontinuity f A c
+Transliterated theorem: (ℝ → ℝ) → IsEssentialDiscontinuity f A c
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (h : IsJumpDiscontinuity f A c) : IsEssentialDiscontinuity f A c
+Source: ./Continuity/PointContinuity.lean#L240
+
+
+
+Name: ContinuousAtPointIffZeroOscillation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hc : c ∈ A), ContinuousAtPoint f A c ↔ OscillationAtPoint f A c = 0
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c : Real), Set.instMembership.mem A c → LRA.Analysis.Continuity.ContinuousAtPoint f A c ↔ LRA.Analysis.Continuity.OscillationAtPoint f A c = 0
+Transliterated theorem: (ℝ → ℝ ∧ c ∈ A) → ContinuousAtPoint f A c ↔ OscillationAtPoint f A c = 0
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hc : c ∈ A) : ContinuousAtPoint f A c ↔ OscillationAtPoint f A c = 0
+Source: ./Continuity/PointContinuity.lean#L285
+
+
+
+Name: DiscontinuitySetEqUnionOscillationBounded
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ), {c ∈ A | PointOfDiscontinuity f A c} = ⋃ n : ℕ, {c ∈ A | OscillationAtPoint f A c ≥ 1 / (n + 1 : ℝ)}
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real), setOf fun c => (Set.instMembership.mem A c ∧ LRA.Analysis.Continuity.PointOfDiscontinuity f A c) = Set.iUnion fun n => setOf fun c => (Set.instMembership.mem A c ∧ GE.ge (LRA.Analysis.Continuity.OscillationAtPoint f A c) (instHDiv.hDiv 1 (instHAdd.hAdd n.cast 1)))
+Transliterated theorem: (ℝ → ℝ) → {c ∈ A | PointOfDiscontinuity f A c} = ⋃ n : ℕ, {c ∈ A | OscillationAtPoint f A c ≥ 1 / n + 1 ∈ ℝ}
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) : {c ∈ A | PointOfDiscontinuity f A c} = ⋃ n : ℕ, {c ∈ A | OscillationAtPoint f A c ≥ 1 / (n + 1 : ℝ)}
+Source: ./Continuity/PointContinuity.lean#L301
+
+
+
+Name: BoundednessTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hf : ContinuousOn' f (Set.Icc a b)), BoundedOnSet f (Set.Icc a b)
+Predicate logic (unfolded): ∀ (f : Real → Real) (a b : Real), (Real.instLE.le a b ∧ LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) → LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)
+Transliterated theorem: (ℝ → ℝ ∧ a ≤ b) → BoundedOnSet f (Set.Icc a b)
+Logical form (Lean): (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hf : ContinuousOn' f (Set.Icc a b)) : BoundedOnSet f (Set.Icc a b)
+Source: ./Continuity/GlobalTheorems.lean#L52
+
+
+
+Name: ExtremeValueTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hf : ContinuousOn' f (Set.Icc a b)), (∃ c, IsAbsoluteMaximum f (Set.Icc a b) c) ∧ (∃ c, IsAbsoluteMinimum f (Set.Icc a b) c)
+Predicate logic (unfolded): ∀ (f : Real → Real) (a b : Real), (Real.instLE.le a b ∧ LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) → (Exists fun c => LRA.Analysis.Continuity.IsAbsoluteMaximum f (Set.Icc a b) c ∧ Exists fun c => LRA.Analysis.Continuity.IsAbsoluteMinimum f (Set.Icc a b) c)
+Transliterated theorem: (ℝ → ℝ ∧ a ≤ b) → (∃ c, IsAbsoluteMaximum f (Set.Icc a b) c) ∧ (∃ c, IsAbsoluteMinimum f (Set.Icc a b) c)
+Logical form (Lean): (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hf : ContinuousOn' f (Set.Icc a b)) : (∃ c, IsAbsoluteMaximum f (Set.Icc a b) c) ∧ (∃ c, IsAbsoluteMinimum f (Set.Icc a b) c)
+Source: ./Continuity/GlobalTheorems.lean#L94
+
+
+
+Name: LocationOfRoots
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (a b : ℝ) (hab : a < b) (hf : ContinuousOn' f (Set.Icc a b)) (hsign : f a * f b < 0), ∃ c ∈ Set.Ioo a b, f c = 0
+Predicate logic (unfolded): ∀ (f : Real → Real) (a b : Real), (Real.instLT.lt a b ∧ (LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b) ∧ Real.instLT.lt (instHMul.hMul (f a) (f b)) 0)) → Exists fun c => (Set.instMembership.mem (Set.Ioo a b) c ∧ f c = 0)
+Transliterated theorem: (ℝ → ℝ ∧ a < b ∧ f a * f b < 0) → ∃ c ∈ Set.Ioo a b, f c = 0
+Logical form (Lean): (f : ℝ → ℝ) (a b : ℝ) (hab : a < b) (hf : ContinuousOn' f (Set.Icc a b)) (hsign : f a * f b < 0) : ∃ c ∈ Set.Ioo a b, f c = 0
+Source: ./Continuity/GlobalTheorems.lean#L112
+
+
+
+Name: BolzanoIntermediateValue
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (a b y : ℝ) (hab : a < b) (hf : ContinuousOn' f (Set.Icc a b)) (hy : (f a < y ∧ y < f b) ∨ (f b < y ∧ y < f a)), ∃ c ∈ Set.Ioo a b, f c = y
+Predicate logic (unfolded): ∀ (f : Real → Real) (a b y : Real), (Real.instLT.lt a b ∧ (LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b) ∧ Or ((Real.instLT.lt (f a) y ∧ Real.instLT.lt y (f b))) ((Real.instLT.lt (f b) y ∧ Real.instLT.lt y (f a))))) → Exists fun c => (Set.instMembership.mem (Set.Ioo a b) c ∧ f c = y)
+Transliterated theorem: (ℝ → ℝ ∧ a < b ∧ (f a < y ∧ y < f b) ∨ (f b < y ∧ y < f a)) → ∃ c ∈ Set.Ioo a b, f c = y
+Logical form (Lean): (f : ℝ → ℝ) (a b y : ℝ) (hab : a < b) (hf : ContinuousOn' f (Set.Icc a b)) (hy : (f a < y ∧ y < f b) ∨ (f b < y ∧ y < f a)) : ∃ c ∈ Set.Ioo a b, f c = y
+Source: ./Continuity/GlobalTheorems.lean#L130
+
+
+
+Name: PreservationOfIntervals
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hf : ContinuousOn' f I), (f '' I).OrdConnected
+Predicate logic (unfolded): ∀ (f : Real → Real) (I : Set Real), (I.OrdConnected ∧ LRA.Analysis.Continuity.ContinuousOn' f I) → (Set.image f I).OrdConnected
+Transliterated theorem: (∀ hI ∈ I.OrdConnected), (ℝ → ℝ) → (f '' I).OrdConnected
+Logical form (Lean): (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hf : ContinuousOn' f I) : (f '' I).OrdConnected
+Source: ./Continuity/GlobalTheorems.lean#L147
+
+
+
+Name: ContinuousImpliesDarbouxProperty
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hf : ContinuousOn' f I), DarbouxProperty f I
+Predicate logic (unfolded): ∀ (f : Real → Real) (I : Set Real), (I.OrdConnected ∧ LRA.Analysis.Continuity.ContinuousOn' f I) → LRA.Analysis.Continuity.DarbouxProperty f I
+Transliterated theorem: (∀ hI ∈ I.OrdConnected), (ℝ → ℝ) → DarbouxProperty f I
+Logical form (Lean): (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hf : ContinuousOn' f I) : DarbouxProperty f I
+Source: ./Continuity/GlobalTheorems.lean#L179
+
+
+
+Name: HeineCantor
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hf : ContinuousOn' f (Set.Icc a b)), ∀ ε > 0, ∃ δ > 0, ∀ x ∈ Set.Icc a b, ∀ y ∈ Set.Icc a b, |x - y| < δ → |f x - f y| < ε
+Predicate logic (unfolded): ∀ (f : Real → Real) (a b : Real), (Real.instLE.le a b ∧ LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) → ∀ (ε : Real), GT.gt ε 0 → Exists fun δ => (GT.gt δ 0 ∧ ∀ (x : Real), Set.instMembership.mem (Set.Icc a b) x → ∀ (y : Real), Set.instMembership.mem (Set.Icc a b) y → Real.instLT.lt (abs (instHSub.hSub x y)) δ → Real.instLT.lt (abs (instHSub.hSub (f x) (f y))) ε)
+Transliterated theorem: (ℝ → ℝ ∧ a ≤ b) → ∀ ε > 0, ∃ δ > 0, ∀ x ∈ Set.Icc a b, ∀ y ∈ Set.Icc a b, |x - y| < δ → |f x - f y| < ε
+Logical form (Lean): (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hf : ContinuousOn' f (Set.Icc a b)) : ∀ ε > 0, ∃ δ > 0, ∀ x ∈ Set.Icc a b, ∀ y ∈ Set.Icc a b, |x - y| < δ → |f x - f y| < ε
+Source: ./Continuity/GlobalTheorems.lean#L196
+
+
+
+Name: ImageOfClosedBoundedInterval
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hf : ContinuousOn' f (Set.Icc a b)), ∃ m M, m ≤ M ∧ f '' Set.Icc a b = Set.Icc m M
+Predicate logic (unfolded): ∀ (f : Real → Real) (a b : Real), (Real.instLE.le a b ∧ LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) → Exists fun m => Exists fun M => (Real.instLE.le m M ∧ Set.image f (Set.Icc a b) = Set.Icc m M)
+Transliterated theorem: (ℝ → ℝ ∧ a ≤ b) → ∃ m M, m ≤ M ∧ f '' Set.Icc a b = Set.Icc m M
+Logical form (Lean): (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hf : ContinuousOn' f (Set.Icc a b)) : ∃ m M, m ≤ M ∧ f '' Set.Icc a b = Set.Icc m M
+Source: ./Continuity/GlobalTheorems.lean#L214
+
+
+
+Name: StepFunctionApproximation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hf : ContinuousOn' f (Set.Icc a b)), ∀ ε > 0, ∃ g : ℝ → ℝ, IsStepFunction g a b ∧ ∀ x ∈ Set.Icc a b, |f x - g x| < ε
+Predicate logic (unfolded): ∀ (f : Real → Real) (a b : Real), (Real.instLE.le a b ∧ LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) → ∀ (ε : Real), GT.gt ε 0 → Exists fun g => (LRA.Analysis.Continuity.IsStepFunction g a b ∧ ∀ (x : Real), Set.instMembership.mem (Set.Icc a b) x → Real.instLT.lt (abs (instHSub.hSub (f x) (g x))) ε)
+Transliterated theorem: (ℝ → ℝ ∧ a ≤ b) → ∀ ε > 0, ∃ g ∈ ℝ → ℝ, IsStepFunction g a b ∧ ∀ x ∈ Set.Icc a b, |f x - g x| < ε
+Logical form (Lean): (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hf : ContinuousOn' f (Set.Icc a b)) : ∀ ε > 0, ∃ g : ℝ → ℝ, IsStepFunction g a b ∧ ∀ x ∈ Set.Icc a b, |f x - g x| < ε
+Source: ./Continuity/Approximation.lean#L45
+
+
+
+Name: PiecewiseLinearApproximation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hf : ContinuousOn' f (Set.Icc a b)), ∀ ε > 0, ∃ g : ℝ → ℝ, IsPiecewiseLinear g a b ∧ ∀ x ∈ Set.Icc a b, |f x - g x| < ε
+Predicate logic (unfolded): ∀ (f : Real → Real) (a b : Real), (Real.instLE.le a b ∧ LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) → ∀ (ε : Real), GT.gt ε 0 → Exists fun g => (LRA.Analysis.Continuity.IsPiecewiseLinear g a b ∧ ∀ (x : Real), Set.instMembership.mem (Set.Icc a b) x → Real.instLT.lt (abs (instHSub.hSub (f x) (g x))) ε)
+Transliterated theorem: (ℝ → ℝ ∧ a ≤ b) → ∀ ε > 0, ∃ g ∈ ℝ → ℝ, IsPiecewiseLinear g a b ∧ ∀ x ∈ Set.Icc a b, |f x - g x| < ε
+Logical form (Lean): (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hf : ContinuousOn' f (Set.Icc a b)) : ∀ ε > 0, ∃ g : ℝ → ℝ, IsPiecewiseLinear g a b ∧ ∀ x ∈ Set.Icc a b, |f x - g x| < ε
+Source: ./Continuity/Approximation.lean#L83
+
+
+
+Name: WeierstrassApproximation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hf : ContinuousOn' f (Set.Icc a b)), ∀ ε > 0, ∃ p : Polynomial ℝ, ∀ x ∈ Set.Icc a b, |f x - p.eval x| < ε
+Predicate logic (unfolded): ∀ (f : Real → Real) (a b : Real), (Real.instLE.le a b ∧ LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) → ∀ (ε : Real), GT.gt ε 0 → Exists fun p => ∀ (x : Real), Set.instMembership.mem (Set.Icc a b) x → Real.instLT.lt (abs (instHSub.hSub (f x) (Polynomial.eval x p))) ε
+Transliterated theorem: (ℝ → ℝ ∧ a ≤ b) → ∀ ε > 0, ∃ p ∈ Polynomial ℝ, ∀ x ∈ Set.Icc a b, |f x - p.eval x| < ε
+Logical form (Lean): (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hf : ContinuousOn' f (Set.Icc a b)) : ∀ ε > 0, ∃ p : Polynomial ℝ, ∀ x ∈ Set.Icc a b, |f x - p.eval x| < ε
+Source: ./Continuity/Approximation.lean#L101
+
+
+
+Name: BernsteinApproximation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : Real → Real),   LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc 0 1) →     ∀ (ε : Real),       GT.gt ε 0 →         Exists fun N =>           ∀ (n : Nat),             GE.ge n N →               ∀ (x : Real),                 Set.instMembership.mem (Set.Icc 0 1) x →                   Real.instLT.lt                     (abs (instHSub.hSub (f x) (Polynomial.eval x (LRA.Analysis.Continuity.BernsteinPolynomial f n)))) ε
+Predicate logic (unfolded): ∀ (f : Real → Real), LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc 0 1) → ∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (n : Nat), GE.ge n N → ∀ (x : Real), Set.instMembership.mem (Set.Icc 0 1) x → Real.instLT.lt (abs (instHSub.hSub (f x) (Polynomial.eval x (LRA.Analysis.Continuity.BernsteinPolynomial f n)))) ε
+Transliterated theorem: (ℝ → ℝ) → ∀ ε > 0, ∃ N ∈ ℕ, ∀ n ≥ N, ∀ x ∈ Set.Icc 0 ∈ ℝ 1, |f x - (BernsteinPolynomial f n).eval x| < ε
+Logical form (Lean): (f : ℝ → ℝ) (hf : ContinuousOn' f (Set.Icc 0 1)) : ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, ∀ x ∈ Set.Icc (0:ℝ) 1, |f x - (BernsteinPolynomial f n).eval x| < ε
+Source: ./Continuity/Approximation.lean#L137
+
+
+
+Name: MonotoneHasOneSidedLimits
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c : ℝ) (hc : c ∈ I), (∃ L, ∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c - δ < x → x < c → |f x - L| < ε) ∧ (∃ L, ∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c < x → x < c + δ → |f x - L| < ε)
+Predicate logic (unfolded): ∀ (f : Real → Real) (I : Set Real), (I.OrdConnected ∧ MonotoneOn f I) → ∀ (c : Real), Set.instMembership.mem I c → (Exists fun L => ∀ (ε : Real), GT.gt ε 0 → Exists fun δ => (GT.gt δ 0 ∧ ∀ (x : Real), Set.instMembership.mem I x → Real.instLT.lt (instHSub.hSub c δ) x → Real.instLT.lt x c → Real.instLT.lt (abs (instHSub.hSub (f x) L)) ε) ∧ Exists fun L => ∀ (ε : Real), GT.gt ε 0 → Exists fun δ => (GT.gt δ 0 ∧ ∀ (x : Real), Set.instMembership.mem I x → Real.instLT.lt c x → Real.instLT.lt x (instHAdd.hAdd c δ) → Real.instLT.lt (abs (instHSub.hSub (f x) L)) ε))
+Transliterated theorem: (∀ hI ∈ I.OrdConnected), (ℝ → ℝ ∧ c ∈ I) → (∃ L, ∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c - δ < x → x < c → |f x - L| < ε) ∧ (∃ L, ∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c < x → x < c + δ → |f x - L| < ε)
+Logical form (Lean): (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c : ℝ) (hc : c ∈ I) : (∃ L, ∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c - δ < x → x < c → |f x - L| < ε) ∧ (∃ L, ∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c < x → x < c + δ → |f x - L| < ε)
+Source: ./Continuity/MonotoneFunctions.lean#L31
+
+
+
+Name: MonotoneContinuousIffOneSidedLimitsAgree
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c : ℝ) (hc : c ∈ I), ContinuousAtPoint f I c ↔ (∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c - δ < x → x < c → |f x - f c| < ε) ∧ (∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c < x → x < c + δ → |f x - f c| < ε)
+Predicate logic (unfolded): ∀ (f : Real → Real) (I : Set Real), (I.OrdConnected ∧ MonotoneOn f I) → ∀ (c : Real), Set.instMembership.mem I c → LRA.Analysis.Continuity.ContinuousAtPoint f I c ↔ (∀ (ε : Real), GT.gt ε 0 → Exists fun δ => (GT.gt δ 0 ∧ ∀ (x : Real), Set.instMembership.mem I x → Real.instLT.lt (instHSub.hSub c δ) x → Real.instLT.lt x c → Real.instLT.lt (abs (instHSub.hSub (f x) (f c))) ε) ∧ ∀ (ε : Real), GT.gt ε 0 → Exists fun δ => (GT.gt δ 0 ∧ ∀ (x : Real), Set.instMembership.mem I x → Real.instLT.lt c x → Real.instLT.lt x (instHAdd.hAdd c δ) → Real.instLT.lt (abs (instHSub.hSub (f x) (f c))) ε))
+Transliterated theorem: (∀ hI ∈ I.OrdConnected), (ℝ → ℝ ∧ c ∈ I) → ContinuousAtPoint f I c ↔ (∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c - δ < x → x < c → |f x - f c| < ε) ∧ (∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c < x → x < c + δ → |f x - f c| < ε)
+Logical form (Lean): (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c : ℝ) (hc : c ∈ I) : ContinuousAtPoint f I c ↔ (∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c - δ < x → x < c → |f x - f c| < ε) ∧ (∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c < x → x < c + δ → |f x - f c| < ε)
+Source: ./Continuity/MonotoneFunctions.lean#L51
+
+
+
+Name: MonotoneDiscontinuitiesAreJumps
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c : ℝ) (hc : c ∈ I) (hdisc : PointOfDiscontinuity f I c), JumpOf f I c > 0
+Predicate logic (unfolded): ∀ (f : Real → Real) (I : Set Real), (I.OrdConnected ∧ MonotoneOn f I) → ∀ (c : Real), (Set.instMembership.mem I c ∧ LRA.Analysis.Continuity.PointOfDiscontinuity f I c) → GT.gt (LRA.Analysis.Continuity.JumpOf f I c) 0
+Transliterated theorem: (∀ hI ∈ I.OrdConnected), (ℝ → ℝ ∧ c ∈ I) → JumpOf f I c > 0
+Logical form (Lean): (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c : ℝ) (hc : c ∈ I) (hdisc : PointOfDiscontinuity f I c) : JumpOf f I c > 0
+Source: ./Continuity/MonotoneFunctions.lean#L83
+
+
+
+Name: JumpIntervalsDisjoint
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c₁ c₂ : ℝ) (hc₁ : PointOfDiscontinuity f I c₁) (hc₂ : PointOfDiscontinuity f I c₂) (hne : c₁ ≠ c₂), Disjoint (Set.Ioc c₁ (c₁ + JumpOf f I c₁)) (Set.Ioc c₂ (c₂ + JumpOf f I c₂))
+Predicate logic (unfolded): ∀ (f : Real → Real) (I : Set Real), (I.OrdConnected ∧ MonotoneOn f I) → ∀ (c₁ c₂ : Real), (LRA.Analysis.Continuity.PointOfDiscontinuity f I c₁ ∧ (LRA.Analysis.Continuity.PointOfDiscontinuity f I c₂ ∧ Ne c₁ c₂)) → Disjoint (Set.Ioc c₁ (instHAdd.hAdd c₁ (LRA.Analysis.Continuity.JumpOf f I c₁))) (Set.Ioc c₂ (instHAdd.hAdd c₂ (LRA.Analysis.Continuity.JumpOf f I c₂)))
+Transliterated theorem: (∀ hI ∈ I.OrdConnected), (ℝ → ℝ) → Disjoint (Set.Ioc c₁ (c₁ + JumpOf f I c₁)) (Set.Ioc c₂ (c₂ + JumpOf f I c₂))
+Logical form (Lean): (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c₁ c₂ : ℝ) (hc₁ : PointOfDiscontinuity f I c₁) (hc₂ : PointOfDiscontinuity f I c₂) (hne : c₁ ≠ c₂) : Disjoint (Set.Ioc c₁ (c₁ + JumpOf f I c₁)) (Set.Ioc c₂ (c₂ + JumpOf f I c₂))
+Source: ./Continuity/MonotoneFunctions.lean#L105
+
+
+
+Name: MonotoneDiscontinuitiesCountable
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hmono : MonotoneOn f I), Set.Countable {c : ℝ | c ∈ I ∧ PointOfDiscontinuity f I c}
+Predicate logic (unfolded): ∀ (f : Real → Real) (I : Set Real), (I.OrdConnected ∧ MonotoneOn f I) → (setOf fun c => (Set.instMembership.mem I c ∧ LRA.Analysis.Continuity.PointOfDiscontinuity f I c)).Countable
+Transliterated theorem: (∀ hI ∈ I.OrdConnected), (ℝ → ℝ) → Set.Countable {c : ℝ | c ∈ I ∧ PointOfDiscontinuity f I c}
+Logical form (Lean): (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hmono : MonotoneOn f I) : Set.Countable {c : ℝ | c ∈ I ∧ PointOfDiscontinuity f I c}
+Source: ./Continuity/MonotoneFunctions.lean#L126
+
+
+
+Name: ContinuousInjectiveIffStrictMono
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hf : ContinuousOn' f I), Set.InjOn f I ↔ StrictMonoOn f I ∨ StrictAntiOn f I
+Predicate logic (unfolded): ∀ (f : Real → Real) (I : Set Real), (I.OrdConnected ∧ LRA.Analysis.Continuity.ContinuousOn' f I) → Set.InjOn f I ↔ Or (StrictMonoOn f I) (StrictAntiOn f I)
+Transliterated theorem: (∀ hI ∈ I.OrdConnected), (ℝ → ℝ) → Set.InjOn f I ↔ StrictMonoOn f I ∨ StrictAntiOn f I
+Logical form (Lean): (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hf : ContinuousOn' f I) : Set.InjOn f I ↔ StrictMonoOn f I ∨ StrictAntiOn f I
+Source: ./Continuity/MonotoneFunctions.lean#L142
+
+
+
+Name: ContinuousInverseTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hf : ContinuousOn' f I) (hmono : StrictMonoOn f I) (finv : ℝ → ℝ) (hfinv : ∀ x ∈ I, finv (f x) = x), ContinuousOn' finv (f '' I)
+Predicate logic (unfolded): ∀ (f : Real → Real) (I : Set Real), (I.OrdConnected ∧ (LRA.Analysis.Continuity.ContinuousOn' f I ∧ StrictMonoOn f I)) → ∀ (finv : Real → Real), (∀ (x : Real), Set.instMembership.mem I x → finv (f x) = x) → LRA.Analysis.Continuity.ContinuousOn' finv (Set.image f I)
+Transliterated theorem: (∀ hI ∈ I.OrdConnected), (ℝ → ℝ ∧ ℝ → ℝ ∧ ∀ x ∈ I, finv (f x) = x) → ContinuousOn' finv (f '' I)
+Logical form (Lean): (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hf : ContinuousOn' f I) (hmono : StrictMonoOn f I) (finv : ℝ → ℝ) (hfinv : ∀ x ∈ I, finv (f x) = x) : ContinuousOn' finv (f '' I)
+Source: ./Continuity/MonotoneFunctions.lean#L161
+
+
+
+Name: TendstoIffLimsupEqLiminf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ), (∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → |f x - L| < ε) ↔ LimsupAt f A c = L ∧ LiminfAt f A c = L
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c L : Real), ∀ (ε : Real), GT.gt ε 0 → Exists fun δ => (GT.gt δ 0 ∧ ∀ (x : Real), Set.instMembership.mem A x → Real.instLT.lt 0 (abs (instHSub.hSub x c)) → Real.instLT.lt (abs (instHSub.hSub x c)) δ → Real.instLT.lt (abs (instHSub.hSub (f x) L)) ε) ↔ (LRA.Analysis.Continuity.LimsupAt f A c = L ∧ LRA.Analysis.Continuity.LiminfAt f A c = L)
+Transliterated theorem: (ℝ → ℝ) → (∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → |f x - L| < ε) ↔ LimsupAt f A c = L ∧ LiminfAt f A c = L
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) : (∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → |f x - L| < ε) ↔ LimsupAt f A c = L ∧ LiminfAt f A c = L
+Source: ./Continuity/MonotoneFunctions.lean#L207
+
+
+
+Name: LiminfLeLimsup
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hbdd : BddAbove (f '' A)) (hbdd' : BddBelow (f '' A)), LiminfAt f A c ≤ LimsupAt f A c
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c : Real), (BddAbove (Set.image f A) ∧ BddBelow (Set.image f A)) → Real.instLE.le (LRA.Analysis.Continuity.LiminfAt f A c) (LRA.Analysis.Continuity.LimsupAt f A c)
+Transliterated theorem: (ℝ → ℝ) → LiminfAt f A c ≤ LimsupAt f A c
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hbdd : BddAbove (f '' A)) (hbdd' : BddBelow (f '' A)) : LiminfAt f A c ≤ LimsupAt f A c
+Source: ./Continuity/MonotoneFunctions.lean#L223
+
+
+
+Name: UcAdd
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (hf : IsUniformlyContinuous f A) (hg : IsUniformlyContinuous g A), IsUniformlyContinuous (fun x => f x + g x) A
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real), (LRA.Analysis.Continuity.IsUniformlyContinuous f A ∧ LRA.Analysis.Continuity.IsUniformlyContinuous g A) → LRA.Analysis.Continuity.IsUniformlyContinuous (fun x => instHAdd.hAdd (f x) (g x)) A
+Transliterated theorem: IsUniformlyContinuous (fun x => f x + g x) A
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (hf : IsUniformlyContinuous f A) (hg : IsUniformlyContinuous g A) : IsUniformlyContinuous (fun x => f x + g x) A
+Source: ./Continuity/UniformContinuity.lean#L39
+
+
+
+Name: UcMulOfBounded
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (hf : IsUniformlyContinuous f A) (hg : IsUniformlyContinuous g A) (hfB : BoundedOnSet f A) (hgB : BoundedOnSet g A), IsUniformlyContinuous (fun x => f x * g x) A
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real), (LRA.Analysis.Continuity.IsUniformlyContinuous f A ∧ (LRA.Analysis.Continuity.IsUniformlyContinuous g A ∧ (LRA.Analysis.Continuity.BoundedOnSet f A ∧ LRA.Analysis.Continuity.BoundedOnSet g A))) → LRA.Analysis.Continuity.IsUniformlyContinuous (fun x => instHMul.hMul (f x) (g x)) A
+Transliterated theorem: IsUniformlyContinuous (fun x => f x * g x) A
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (hf : IsUniformlyContinuous f A) (hg : IsUniformlyContinuous g A) (hfB : BoundedOnSet f A) (hgB : BoundedOnSet g A) : IsUniformlyContinuous (fun x => f x * g x) A
+Source: ./Continuity/UniformContinuity.lean#L57
+
+
+
+Name: UcComp
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A B : Set ℝ) (hf : IsUniformlyContinuous f A) (hfA : ∀ x ∈ A, f x ∈ B) (hg : IsUniformlyContinuous g B), IsUniformlyContinuous (fun x => g (f x)) A
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A B : Set Real), (LRA.Analysis.Continuity.IsUniformlyContinuous f A ∧ (∀ (x : Real), Set.instMembership.mem A x → Set.instMembership.mem B (f x) ∧ LRA.Analysis.Continuity.IsUniformlyContinuous g B)) → LRA.Analysis.Continuity.IsUniformlyContinuous (fun x => g (f x)) A
+Transliterated theorem: (∀ x ∈ A, f x ∈ B) → IsUniformlyContinuous (fun x => g (f x)) A
+Logical form (Lean): (f g : ℝ → ℝ) (A B : Set ℝ) (hf : IsUniformlyContinuous f A) (hfA : ∀ x ∈ A, f x ∈ B) (hg : IsUniformlyContinuous g B) : IsUniformlyContinuous (fun x => g (f x)) A
+Source: ./Continuity/UniformContinuity.lean#L76
+
+
+
+Name: UcIffSequential
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ), IsUniformlyContinuous f A ↔ ∀ xs ys : ℕ → ℝ, (∀ n, xs n ∈ A) → (∀ n, ys n ∈ A) → (∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |xs n - ys n| < ε) → ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |f (xs n) - f (ys n)| < ε
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real), LRA.Analysis.Continuity.IsUniformlyContinuous f A ↔ ∀ (xs ys : Nat → Real), (∀ (n : Nat), Set.instMembership.mem A (xs n)) → (∀ (n : Nat), Set.instMembership.mem A (ys n)) → (∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLT.lt (abs (instHSub.hSub (xs n) (ys n))) ε) → ∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLT.lt (abs (instHSub.hSub (f (xs n)) (f (ys n)))) ε
+Transliterated theorem: (ℝ → ℝ) → IsUniformlyContinuous f A ↔ ∀ xs ys : ℕ → ℝ, (∀ n, xs n ∈ A) → (∀ n, ys n ∈ A) → ∀ ε > 0, ∃ N ∈ ℕ, ∀ n ≥ N, |xs n - ys n| < ε → ∀ ε > 0, ∃ N ∈ ℕ, ∀ n ≥ N, |f (xs n) - f (ys n)| < ε
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) : IsUniformlyContinuous f A ↔ ∀ xs ys : ℕ → ℝ, (∀ n, xs n ∈ A) → (∀ n, ys n ∈ A) → (∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |xs n - ys n| < ε) → ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |f (xs n) - f (ys n)| < ε
+Source: ./Continuity/UniformContinuity.lean#L96
+
+
+
+Name: UcMapsCauchyToCauchy
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (hf : IsUniformlyContinuous f A) (xs : ℕ → ℝ) (hxs : ∀ n, xs n ∈ A) (hCauchy : ∀ ε > 0, ∃ N : ℕ, ∀ m ≥ N, ∀ n ≥ N, |xs m - xs n| < ε), ∀ ε > 0, ∃ N : ℕ, ∀ m ≥ N, ∀ n ≥ N, |f (xs m) - f (xs n)| < ε
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real), LRA.Analysis.Continuity.IsUniformlyContinuous f A → ∀ (xs : Nat → Real), (∀ (n : Nat), Set.instMembership.mem A (xs n) ∧ ∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (m : Nat), GE.ge m N → ∀ (n : Nat), GE.ge n N → Real.instLT.lt (abs (instHSub.hSub (xs m) (xs n))) ε) → ∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (m : Nat), GE.ge m N → ∀ (n : Nat), GE.ge n N → Real.instLT.lt (abs (instHSub.hSub (f (xs m)) (f (xs n)))) ε
+Transliterated theorem: (ℝ → ℝ ∧ ℕ → ℝ ∧ ∀ n, xs n ∈ A ∧ ∀ ε > 0, ∃ N ∈ ℕ, ∀ m ≥ N, ∀ n ≥ N, |xs m - xs n| < ε) → ∀ ε > 0, ∃ N ∈ ℕ, ∀ m ≥ N, ∀ n ≥ N, |f (xs m) - f (xs n)| < ε
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (hf : IsUniformlyContinuous f A) (xs : ℕ → ℝ) (hxs : ∀ n, xs n ∈ A) (hCauchy : ∀ ε > 0, ∃ N : ℕ, ∀ m ≥ N, ∀ n ≥ N, |xs m - xs n| < ε) : ∀ ε > 0, ∃ N : ℕ, ∀ m ≥ N, ∀ n ≥ N, |f (xs m) - f (xs n)| < ε
+Source: ./Continuity/UniformContinuity.lean#L116
+
+
+
+Name: LipschitzImpliesUc
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : Real → Real) (A : Set Real) (K : Real),   LRA.Analysis.Continuity.IsLipschitzOn f A K → LRA.Analysis.Continuity.IsUniformlyContinuous f A
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (K : Real), LRA.Analysis.Continuity.IsLipschitzOn f A K → LRA.Analysis.Continuity.IsUniformlyContinuous f A
+Transliterated theorem: (ℝ → ℝ) → IsUniformlyContinuous f A
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (K : ℝ) (hf : IsLipschitzOn f A K) : IsUniformlyContinuous f A
+Source: ./Continuity/UniformContinuity.lean#L147
+
+
+
+Name: BiLipschitzInverseIsLipschitz
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (α K : ℝ) (hf : IsBiLipschitzOn f A α K) (finv : ℝ → ℝ) (hfinv : ∀ x ∈ A, finv (f x) = x), IsLipschitzOn finv (f '' A) (1 / α)
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (α K : Real), LRA.Analysis.Continuity.IsBiLipschitzOn f A α K → ∀ (finv : Real → Real), (∀ (x : Real), Set.instMembership.mem A x → finv (f x) = x) → LRA.Analysis.Continuity.IsLipschitzOn finv (Set.image f A) (instHDiv.hDiv 1 α)
+Transliterated theorem: (ℝ → ℝ ∧ ℝ → ℝ ∧ ∀ x ∈ A, finv (f x) = x) → IsLipschitzOn finv (f '' A) (1 / α)
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (α K : ℝ) (hf : IsBiLipschitzOn f A α K) (finv : ℝ → ℝ) (hfinv : ∀ x ∈ A, finv (f x) = x) : IsLipschitzOn finv (f '' A) (1 / α)
+Source: ./Continuity/UniformContinuity.lean#L178
+
+
+
+Name: SqrtUcNotLipschitz
+Kind: Theorem
+State: Sorry
+Predicate logic: IsUniformlyContinuous Real.sqrt (Set.Icc (0:ℝ) 1) ∧ ¬ ∃ K, IsLipschitzOn Real.sqrt (Set.Icc (0:ℝ) 1) K
+Predicate logic (unfolded): (LRA.Analysis.Continuity.IsUniformlyContinuous Real.sqrt (Set.Icc 0 1) ∧ ¬ Exists fun K => LRA.Analysis.Continuity.IsLipschitzOn Real.sqrt (Set.Icc 0 1) K)
+Transliterated theorem: IsUniformlyContinuous Real.sqrt (Set.Icc 0 ∈ ℝ 1) ∧ ¬ ∃ K, IsLipschitzOn Real.sqrt (Set.Icc 0 ∈ ℝ 1) K
+Logical form (Lean): : IsUniformlyContinuous Real.sqrt (Set.Icc (0:ℝ) 1) ∧ ¬ ∃ K, IsLipschitzOn Real.sqrt (Set.Icc (0:ℝ) 1) K
+Source: ./Continuity/UniformContinuity.lean#L195
+
+
+
+Name: DerivativeEquivalence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ), Derivative D f A c ↔ DerivativeTop D f A c ∧ DerivativeSeq D f A c
+Predicate logic (unfolded): ∀ (D : Real) (f : Real → Real) (A : Set Real) (c : Real), LRA.Analysis.Differentiation.Derivative D f A c ↔ (LRA.Analysis.Differentiation.DerivativeTop D f A c ∧ LRA.Analysis.Differentiation.DerivativeSeq D f A c)
+Transliterated theorem: (ℝ → ℝ) → Derivative D f A c ↔ DerivativeTop D f A c ∧ DerivativeSeq D f A c
+Logical form (Lean): (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Derivative D f A c ↔ DerivativeTop D f A c ∧ DerivativeSeq D f A c
+Source: ./Differentiation/DerivativeDefinition.lean#L106
+
+
+
+Name: DerivativeHFormEquivalence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ), Derivative D f A c ↔ (∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → |(f x - f c) / (x - c) - D| < ε)
+Predicate logic (unfolded): ∀ (D : Real) (f : Real → Real) (A : Set Real) (c : Real), LRA.Analysis.Differentiation.Derivative D f A c ↔ ∀ (ε : Real), GT.gt ε 0 → Exists fun δ => (GT.gt δ 0 ∧ ∀ (x : Real), Set.instMembership.mem A x → Real.instLT.lt 0 (abs (instHSub.hSub x c)) → Real.instLT.lt (abs (instHSub.hSub x c)) δ → Real.instLT.lt (abs (instHSub.hSub (instHDiv.hDiv (instHSub.hSub (f x) (f c)) (instHSub.hSub x c)) D)) ε)
+Transliterated theorem: (ℝ → ℝ) → Derivative D f A c ↔ (∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → |(f x - f c) / (x - c) - D| < ε)
+Logical form (Lean): (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Derivative D f A c ↔ (∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → |(f x - f c) / (x - c) - D| < ε)
+Source: ./Differentiation/DerivativeDefinition.lean#L122
+
+
+
+Name: DifferentiableImpliesContinuous
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : Real → Real) (A : Set Real) (c : Real),   LRA.Analysis.Differentiation.IsDifferentiable f A c → LRA.Analysis.Continuity.ContinuousAtPoint f A c
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c : Real), LRA.Analysis.Differentiation.IsDifferentiable f A c → LRA.Analysis.Continuity.ContinuousAtPoint f A c
+Transliterated theorem: (ℝ → ℝ) → LRA.Analysis.Continuity.ContinuousAtPoint f A c
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (h : IsDifferentiable f A c) : LRA.Analysis.Continuity.ContinuousAtPoint f A c
+Source: ./Differentiation/DerivativeDefinition.lean#L140
+
+
+
+Name: DerivativeUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c D₁ D₂ : ℝ) (h₁ : Derivative D₁ f A c) (h₂ : Derivative D₂ f A c), D₁ = D₂
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c D₁ D₂ : Real), (LRA.Analysis.Differentiation.Derivative D₁ f A c ∧ LRA.Analysis.Differentiation.Derivative D₂ f A c) → D₁ = D₂
+Transliterated theorem: (ℝ → ℝ) → D₁ = D₂
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c D₁ D₂ : ℝ) (h₁ : Derivative D₁ f A c) (h₂ : Derivative D₂ f A c) : D₁ = D₂
+Source: ./Differentiation/DerivativeDefinition.lean#L156
+
+
+
+Name: CaratheodoryCharacterization
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c D : ℝ), Derivative D f A c ↔ ∃ φ : ℝ → ℝ, φ c = D ∧ LRA.Analysis.Continuity.ContinuousAtPoint φ A c ∧ ∀ x ∈ A, f x - f c = (x - c) * φ x
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c D : Real), LRA.Analysis.Differentiation.Derivative D f A c ↔ Exists fun φ => (φ c = D ∧ (LRA.Analysis.Continuity.ContinuousAtPoint φ A c ∧ ∀ (x : Real), Set.instMembership.mem A x → instHSub.hSub (f x) (f c) = instHMul.hMul (instHSub.hSub x c) (φ x)))
+Transliterated theorem: (ℝ → ℝ) → Derivative D f A c ↔ ∃ φ ∈ ℝ → ℝ, φ c = D ∧ LRA.Analysis.Continuity.ContinuousAtPoint φ A c ∧ ∀ x ∈ A, f x - f c = (x - c) * φ x
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c D : ℝ) : Derivative D f A c ↔ ∃ φ : ℝ → ℝ, φ c = D ∧ LRA.Analysis.Continuity.ContinuousAtPoint φ A c ∧ ∀ x ∈ A, f x - f c = (x - c) * φ x
+Source: ./Differentiation/ChainRule.lean#L32
+
+
+
+Name: ChainRule
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A B : Set ℝ) (c Df Dg : ℝ) (hf : Derivative Df f A c) (hfAB : ∀ x ∈ A, f x ∈ B) (hg : Derivative Dg g B (f c)), Derivative (Dg * Df) (fun x => g (f x)) A c
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A B : Set Real) (c Df Dg : Real), (LRA.Analysis.Differentiation.Derivative Df f A c ∧ (∀ (x : Real), Set.instMembership.mem A x → Set.instMembership.mem B (f x) ∧ LRA.Analysis.Differentiation.Derivative Dg g B (f c))) → LRA.Analysis.Differentiation.Derivative (instHMul.hMul Dg Df) (fun x => g (f x)) A c
+Transliterated theorem: (∀ x ∈ A, f x ∈ B) → Derivative (Dg * Df) (fun x => g (f x)) A c
+Logical form (Lean): (f g : ℝ → ℝ) (A B : Set ℝ) (c Df Dg : ℝ) (hf : Derivative Df f A c) (hfAB : ∀ x ∈ A, f x ∈ B) (hg : Derivative Dg g B (f c)) : Derivative (Dg * Df) (fun x => g (f x)) A c
+Source: ./Differentiation/ChainRule.lean#L53
+
+
+
+Name: LeibnizRule
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (fD gD hD : ℕ → ℝ → ℝ) (A : Set ℝ) (n : ℕ) (c : ℝ) (hf : NthDerivativeAt f fD A n c) (hg : NthDerivativeAt g gD A n c) (hh : NthDerivativeAt (fun x => f x * g x) hD A n c), hD n c = ∑ k ∈ Finset.range (n + 1), (n.choose k : ℝ) * fD k c * gD (n - k) c
+Predicate logic (unfolded): ∀ (f g : Real → Real) (fD gD hD : Nat → Real → Real) (A : Set Real) (n : Nat) (c : Real), (LRA.Analysis.Differentiation.NthDerivativeAt f fD A n c ∧ (LRA.Analysis.Differentiation.NthDerivativeAt g gD A n c ∧ LRA.Analysis.Differentiation.NthDerivativeAt (fun x => instHMul.hMul (f x) (g x)) hD A n c)) → hD n c = (Finset.range (instHAdd.hAdd n 1)).sum fun k => instHMul.hMul (instHMul.hMul (n.choose k).cast (fD k c)) (gD (instHSub.hSub n k) c)
+Transliterated theorem: hD n c = ∑ k ∈ Finset.range (n + 1), n.choose k ∈ ℝ * fD k c * gD (n - k) c
+Logical form (Lean): (f g : ℝ → ℝ) (fD gD hD : ℕ → ℝ → ℝ) (A : Set ℝ) (n : ℕ) (c : ℝ) (hf : NthDerivativeAt f fD A n c) (hg : NthDerivativeAt g gD A n c) (hh : NthDerivativeAt (fun x => f x * g x) hD A n c) : hD n c = ∑ k ∈ Finset.range (n + 1), (n.choose k : ℝ) * fD k c * gD (n - k) c
+Source: ./Differentiation/ChainRule.lean#L90
+
+
+
+Name: FaaDiBrunoSecondOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (fD gD hD : ℕ → ℝ → ℝ) (A B : Set ℝ) (c : ℝ) (hf : NthDerivativeAt f fD A 2 c) (hfAB : ∀ x ∈ A, f x ∈ B) (hg : NthDerivativeAt g gD B 2 (f c)) (hh : NthDerivativeAt (fun x => g (f x)) hD A 2 c), hD 2 c = gD 2 (f c) * (fD 1 c) ^ 2 + gD 1 (f c) * fD 2 c
+Predicate logic (unfolded): ∀ (f g : Real → Real) (fD gD hD : Nat → Real → Real) (A B : Set Real) (c : Real), (LRA.Analysis.Differentiation.NthDerivativeAt f fD A 2 c ∧ (∀ (x : Real), Set.instMembership.mem A x → Set.instMembership.mem B (f x) ∧ (LRA.Analysis.Differentiation.NthDerivativeAt g gD B 2 (f c) ∧ LRA.Analysis.Differentiation.NthDerivativeAt (fun x => g (f x)) hD A 2 c))) → hD 2 c = instHAdd.hAdd (instHMul.hMul (gD 2 (f c)) (instHPow.hPow (fD 1 c) 2)) (instHMul.hMul (gD 1 (f c)) (fD 2 c))
+Transliterated theorem: (∀ x ∈ A, f x ∈ B) → hD 2 c = gD 2 (f c) * (fD 1 c) ^ 2 + gD 1 (f c) * fD 2 c
+Logical form (Lean): (f g : ℝ → ℝ) (fD gD hD : ℕ → ℝ → ℝ) (A B : Set ℝ) (c : ℝ) (hf : NthDerivativeAt f fD A 2 c) (hfAB : ∀ x ∈ A, f x ∈ B) (hg : NthDerivativeAt g gD B 2 (f c)) (hh : NthDerivativeAt (fun x => g (f x)) hD A 2 c) : hD 2 c = gD 2 (f c) * (fD 1 c) ^ 2 + gD 1 (f c) * fD 2 c
+Source: ./Differentiation/ChainRule.lean#L112
+
+
+
+Name: NecessaryConditionExtremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hc : c ∈ A) (hext : IsRelativeMinimum f A c ∨ IsRelativeMaximum f A c), ¬ IsDifferentiable f A c ∨ Derivative 0 f A c
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c : Real), (Set.instMembership.mem A c ∧ Or (LRA.Analysis.Differentiation.IsRelativeMinimum f A c) (LRA.Analysis.Differentiation.IsRelativeMaximum f A c)) → Or (¬ LRA.Analysis.Differentiation.IsDifferentiable f A c) (LRA.Analysis.Differentiation.Derivative 0 f A c)
+Transliterated theorem: (ℝ → ℝ ∧ c ∈ A) → ¬ IsDifferentiable f A c ∨ Derivative 0 f A c
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hc : c ∈ A) (hext : IsRelativeMinimum f A c ∨ IsRelativeMaximum f A c) : ¬ IsDifferentiable f A c ∨ Derivative 0 f A c
+Source: ./Differentiation/DerivativeGeometry.lean#L58
+
+
+
+Name: RelativeExtremumNecessaryCondition
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hc : c ∈ A) (hext : IsRelativeMinimum f A c ∨ IsRelativeMaximum f A c), Derivative 0 f A c ∨ ¬ IsDifferentiable f A c
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c : Real), (Set.instMembership.mem A c ∧ Or (LRA.Analysis.Differentiation.IsRelativeMinimum f A c) (LRA.Analysis.Differentiation.IsRelativeMaximum f A c)) → Or (LRA.Analysis.Differentiation.Derivative 0 f A c) (¬ LRA.Analysis.Differentiation.IsDifferentiable f A c)
+Transliterated theorem: (ℝ → ℝ ∧ c ∈ A) → Derivative 0 f A c ∨ ¬ IsDifferentiable f A c
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hc : c ∈ A) (hext : IsRelativeMinimum f A c ∨ IsRelativeMaximum f A c) : Derivative 0 f A c ∨ ¬ IsDifferentiable f A c
+Source: ./Differentiation/DerivativeGeometry.lean#L76
+
+
+
+Name: NonincreasingIffNonposDerivative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hdiff : ∀ x ∈ I, IsDifferentiable f I x), OrderReversing f I ↔ ∀ x ∈ I, ∀ D, Derivative D f I x → D ≤ 0
+Predicate logic (unfolded): ∀ (f : Real → Real) (I : Set Real), (I.OrdConnected ∧ ∀ (x : Real), Set.instMembership.mem I x → LRA.Analysis.Differentiation.IsDifferentiable f I x) → LRA.Analysis.Differentiation.OrderReversing f I ↔ ∀ (x : Real), Set.instMembership.mem I x → ∀ (D : Real), LRA.Analysis.Differentiation.Derivative D f I x → Real.instLE.le D 0
+Transliterated theorem: (∀ hI ∈ I.OrdConnected), (ℝ → ℝ ∧ ∀ x ∈ I, IsDifferentiable f I x) → OrderReversing f I ↔ ∀ x ∈ I, ∀ D, Derivative D f I x → D ≤ 0
+Logical form (Lean): (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hdiff : ∀ x ∈ I, IsDifferentiable f I x) : OrderReversing f I ↔ ∀ x ∈ I, ∀ D, Derivative D f I x → D ≤ 0
+Source: ./Differentiation/GraphReading.lean#L77
+
+
+
+Name: ZeroDerivativeImpliesConstant
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hdiff : ∀ x ∈ I, Derivative 0 f I x), ∃ k : ℝ, ∀ x ∈ I, f x = k
+Predicate logic (unfolded): ∀ (f : Real → Real) (I : Set Real), (I.OrdConnected ∧ ∀ (x : Real), Set.instMembership.mem I x → LRA.Analysis.Differentiation.Derivative 0 f I x) → Exists fun k => ∀ (x : Real), Set.instMembership.mem I x → f x = k
+Transliterated theorem: (∀ hI ∈ I.OrdConnected), (ℝ → ℝ ∧ ∀ x ∈ I, Derivative 0 f I x) → ∃ k ∈ ℝ, ∀ x ∈ I, f x = k
+Logical form (Lean): (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hdiff : ∀ x ∈ I, Derivative 0 f I x) : ∃ k : ℝ, ∀ x ∈ I, f x = k
+Source: ./Differentiation/GraphReading.lean#L94
+
+
+
+Name: EqualDerivativesConstantDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hdiff : ∀ x ∈ I, ∀ D, Derivative D f I x ↔ Derivative D g I x), ∃ k : ℝ, ∀ x ∈ I, f x - g x = k
+Predicate logic (unfolded): ∀ (f g : Real → Real) (I : Set Real), (I.OrdConnected ∧ ∀ (x : Real), Set.instMembership.mem I x → ∀ (D : Real), LRA.Analysis.Differentiation.Derivative D f I x ↔ LRA.Analysis.Differentiation.Derivative D g I x) → Exists fun k => ∀ (x : Real), Set.instMembership.mem I x → instHSub.hSub (f x) (g x) = k
+Transliterated theorem: (∀ hI ∈ I.OrdConnected), (∀ x ∈ I, ∀ D, Derivative D f I x ↔ Derivative D g I x) → ∃ k ∈ ℝ, ∀ x ∈ I, f x - g x = k
+Logical form (Lean): (f g : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hdiff : ∀ x ∈ I, ∀ D, Derivative D f I x ↔ Derivative D g I x) : ∃ k : ℝ, ∀ x ∈ I, f x - g x = k
+Source: ./Differentiation/GraphReading.lean#L110
+
+
+
+Name: FirstDerivativeTestMaximum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hc : c ∈ interior A) (hcrit : Derivative 0 f A c) (hpos : ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → ∀ D, Derivative D f A x → D > 0) (hneg : ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → ∀ D, Derivative D f A x → D < 0), IsRelativeMaximum f A c
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c : Real), (Set.instMembership.mem (interior A) c ∧ (LRA.Analysis.Differentiation.Derivative 0 f A c ∧ (Exists fun δ => (GT.gt δ 0 ∧ ∀ (x : Real), Set.instMembership.mem A x → Real.instLT.lt (instHSub.hSub c δ) x → Real.instLT.lt x c → ∀ (D : Real), LRA.Analysis.Differentiation.Derivative D f A x → GT.gt D 0) ∧ Exists fun δ => (GT.gt δ 0 ∧ ∀ (x : Real), Set.instMembership.mem A x → Real.instLT.lt c x → Real.instLT.lt x (instHAdd.hAdd c δ) → ∀ (D : Real), LRA.Analysis.Differentiation.Derivative D f A x → Real.instLT.lt D 0)))) → LRA.Analysis.Differentiation.IsRelativeMaximum f A c
+Transliterated theorem: (ℝ → ℝ ∧ c ∈ interior A ∧ ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → ∀ D, Derivative D f A x → D > 0 ∧ ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → ∀ D, Derivative D f A x → D < 0) → IsRelativeMaximum f A c
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hc : c ∈ interior A) (hcrit : Derivative 0 f A c) (hpos : ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → ∀ D, Derivative D f A x → D > 0) (hneg : ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → ∀ D, Derivative D f A x → D < 0) : IsRelativeMaximum f A c
+Source: ./Differentiation/GraphReading.lean#L131
+
+
+
+Name: FirstDerivativeTestMinimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hc : c ∈ interior A) (hcrit : Derivative 0 f A c) (hneg : ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → ∀ D, Derivative D f A x → D < 0) (hpos : ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → ∀ D, Derivative D f A x → D > 0), IsRelativeMinimum f A c
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c : Real), (Set.instMembership.mem (interior A) c ∧ (LRA.Analysis.Differentiation.Derivative 0 f A c ∧ (Exists fun δ => (GT.gt δ 0 ∧ ∀ (x : Real), Set.instMembership.mem A x → Real.instLT.lt (instHSub.hSub c δ) x → Real.instLT.lt x c → ∀ (D : Real), LRA.Analysis.Differentiation.Derivative D f A x → Real.instLT.lt D 0) ∧ Exists fun δ => (GT.gt δ 0 ∧ ∀ (x : Real), Set.instMembership.mem A x → Real.instLT.lt c x → Real.instLT.lt x (instHAdd.hAdd c δ) → ∀ (D : Real), LRA.Analysis.Differentiation.Derivative D f A x → GT.gt D 0)))) → LRA.Analysis.Differentiation.IsRelativeMinimum f A c
+Transliterated theorem: (ℝ → ℝ ∧ c ∈ interior A ∧ ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → ∀ D, Derivative D f A x → D < 0 ∧ ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → ∀ D, Derivative D f A x → D > 0) → IsRelativeMinimum f A c
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hc : c ∈ interior A) (hcrit : Derivative 0 f A c) (hneg : ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → ∀ D, Derivative D f A x → D < 0) (hpos : ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → ∀ D, Derivative D f A x → D > 0) : IsRelativeMinimum f A c
+Source: ./Differentiation/GraphReading.lean#L154
+
+
+
+Name: SecondDerivativeConvexityTest
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hD1 : ∀ x ∈ I, Derivative (fD1 x) f I x) (hD2 : ∀ x ∈ I, Derivative (fD2 x) fD1 I x) (hpos : ∀ x ∈ I, fD2 x ≥ 0), IsConvexOn f I
+Predicate logic (unfolded): ∀ (f fD1 fD2 : Real → Real) (I : Set Real), (I.OrdConnected ∧ (∀ (x : Real), Set.instMembership.mem I x → LRA.Analysis.Differentiation.Derivative (fD1 x) f I x ∧ (∀ (x : Real), Set.instMembership.mem I x → LRA.Analysis.Differentiation.Derivative (fD2 x) fD1 I x ∧ ∀ (x : Real), Set.instMembership.mem I x → GE.ge (fD2 x) 0))) → LRA.Analysis.Differentiation.IsConvexOn f I
+Transliterated theorem: (∀ hI ∈ I.OrdConnected), (∀ x ∈ I, Derivative (fD1 x) f I x ∧ ∀ x ∈ I, Derivative (fD2 x) fD1 I x ∧ ∀ x ∈ I, fD2 x ≥ 0) → IsConvexOn f I
+Logical form (Lean): (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hD1 : ∀ x ∈ I, Derivative (fD1 x) f I x) (hD2 : ∀ x ∈ I, Derivative (fD2 x) fD1 I x) (hpos : ∀ x ∈ I, fD2 x ≥ 0) : IsConvexOn f I
+Source: ./Differentiation/GraphReading.lean#L205
+
+
+
+Name: SecondDerivativeConcavityTest
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hD1 : ∀ x ∈ I, Derivative (fD1 x) f I x) (hD2 : ∀ x ∈ I, Derivative (fD2 x) fD1 I x) (hneg : ∀ x ∈ I, fD2 x ≤ 0), IsConcaveOn f I
+Predicate logic (unfolded): ∀ (f fD1 fD2 : Real → Real) (I : Set Real), (I.OrdConnected ∧ (∀ (x : Real), Set.instMembership.mem I x → LRA.Analysis.Differentiation.Derivative (fD1 x) f I x ∧ (∀ (x : Real), Set.instMembership.mem I x → LRA.Analysis.Differentiation.Derivative (fD2 x) fD1 I x ∧ ∀ (x : Real), Set.instMembership.mem I x → Real.instLE.le (fD2 x) 0))) → LRA.Analysis.Differentiation.IsConcaveOn f I
+Transliterated theorem: (∀ hI ∈ I.OrdConnected), (∀ x ∈ I, Derivative (fD1 x) f I x ∧ ∀ x ∈ I, Derivative (fD2 x) fD1 I x ∧ ∀ x ∈ I, fD2 x ≤ 0) → IsConcaveOn f I
+Logical form (Lean): (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hD1 : ∀ x ∈ I, Derivative (fD1 x) f I x) (hD2 : ∀ x ∈ I, Derivative (fD2 x) fD1 I x) (hneg : ∀ x ∈ I, fD2 x ≤ 0) : IsConcaveOn f I
+Source: ./Differentiation/GraphReading.lean#L227
+
+
+
+Name: SecondDerivativeTest
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f fD1 fD2 : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hD1c : Derivative 0 f A c) (hD1 : ∀ x ∈ A, Derivative (fD1 x) f A x) (hD2c : Derivative (fD2 c) fD1 A c), (fD2 c > 0 → IsRelativeMinimum f A c) ∧ (fD2 c < 0 → IsRelativeMaximum f A c)
+Predicate logic (unfolded): ∀ (f fD1 fD2 : Real → Real) (A : Set Real) (c : Real), (LRA.Analysis.Differentiation.Derivative 0 f A c ∧ (∀ (x : Real), Set.instMembership.mem A x → LRA.Analysis.Differentiation.Derivative (fD1 x) f A x ∧ LRA.Analysis.Differentiation.Derivative (fD2 c) fD1 A c)) → (GT.gt (fD2 c) 0 → LRA.Analysis.Differentiation.IsRelativeMinimum f A c ∧ Real.instLT.lt (fD2 c) 0 → LRA.Analysis.Differentiation.IsRelativeMaximum f A c)
+Transliterated theorem: (∀ x ∈ A, Derivative (fD1 x) f A x) → (fD2 c > 0 → IsRelativeMinimum f A c) ∧ (fD2 c < 0 → IsRelativeMaximum f A c)
+Logical form (Lean): (f fD1 fD2 : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hD1c : Derivative 0 f A c) (hD1 : ∀ x ∈ A, Derivative (fD1 x) f A x) (hD2c : Derivative (fD2 c) fD1 A c) : (fD2 c > 0 → IsRelativeMinimum f A c) ∧ (fD2 c < 0 → IsRelativeMaximum f A c)
+Source: ./Differentiation/GraphReading.lean#L248
+
+
+
+Name: InflectionPointNecessaryCondition
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f fD1 fD2 : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hinfl : IsInflection f c) (hD1 : ∀ x ∈ A, Derivative (fD1 x) f A x) (hD2 : ∀ x ∈ A, Derivative (fD2 x) fD1 A x) (hcont : LRA.Analysis.Continuity.ContinuousAtPoint fD2 A c), fD2 c = 0
+Predicate logic (unfolded): ∀ (f fD1 fD2 : Real → Real) (A : Set Real) (c : Real), (LRA.Analysis.Differentiation.IsInflection f c ∧ (∀ (x : Real), Set.instMembership.mem A x → LRA.Analysis.Differentiation.Derivative (fD1 x) f A x ∧ (∀ (x : Real), Set.instMembership.mem A x → LRA.Analysis.Differentiation.Derivative (fD2 x) fD1 A x ∧ LRA.Analysis.Continuity.ContinuousAtPoint fD2 A c))) → fD2 c = 0
+Transliterated theorem: (∀ x ∈ A, Derivative (fD1 x) f A x ∧ ∀ x ∈ A, Derivative (fD2 x) fD1 A x) → fD2 c = 0
+Logical form (Lean): (f fD1 fD2 : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hinfl : IsInflection f c) (hD1 : ∀ x ∈ A, Derivative (fD1 x) f A x) (hD2 : ∀ x ∈ A, Derivative (fD2 x) fD1 A x) (hcont : LRA.Analysis.Continuity.ContinuousAtPoint fD2 A c) : fD2 c = 0
+Source: ./Differentiation/GraphReading.lean#L268
+
+
+
+Name: darboux
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (a b : ℝ) (hab : a < b) (hdiff : ∀ x ∈ Set.Icc a b, IsDifferentiable f (Set.Icc a b) x) (Da Db : ℝ) (hDa : Derivative Da f (Set.Icc a b) a) (hDb : Derivative Db f (Set.Icc a b) b) (k : ℝ) (hk : (Da < k ∧ k < Db) ∨ (Db < k ∧ k < Da)), ∃ c ∈ Set.Ioo a b, Derivative k f (Set.Icc a b) c
+Predicate logic (unfolded): ∀ (f : Real → Real) (a b : Real), (Real.instLT.lt a b ∧ ∀ (x : Real), Set.instMembership.mem (Set.Icc a b) x → LRA.Analysis.Differentiation.IsDifferentiable f (Set.Icc a b) x) → ∀ (Da Db : Real), (LRA.Analysis.Differentiation.Derivative Da f (Set.Icc a b) a ∧ LRA.Analysis.Differentiation.Derivative Db f (Set.Icc a b) b) → ∀ (k : Real), Or ((Real.instLT.lt Da k ∧ Real.instLT.lt k Db)) ((Real.instLT.lt Db k ∧ Real.instLT.lt k Da)) → Exists fun c => (Set.instMembership.mem (Set.Ioo a b) c ∧ LRA.Analysis.Differentiation.Derivative k f (Set.Icc a b) c)
+Transliterated theorem: (ℝ → ℝ ∧ a < b ∧ ∀ x ∈ Set.Icc a b, IsDifferentiable f (Set.Icc a b) x ∧ (Da < k ∧ k < Db) ∨ (Db < k ∧ k < Da)) → ∃ c ∈ Set.Ioo a b, Derivative k f (Set.Icc a b) c
+Logical form (Lean): (f : ℝ → ℝ) (a b : ℝ) (hab : a < b) (hdiff : ∀ x ∈ Set.Icc a b, IsDifferentiable f (Set.Icc a b) x) (Da Db : ℝ) (hDa : Derivative Da f (Set.Icc a b) a) (hDb : Derivative Db f (Set.Icc a b) b) (k : ℝ) (hk : (Da < k ∧ k < Db) ∨ (Db < k ∧ k < Da)) : ∃ c ∈ Set.Ioo a b, Derivative k f (Set.Icc a b) c
+Source: ./Differentiation/GraphReading.lean#L295
+
+
+
+Name: SmoothnessTower
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (I : Set ℝ) (hI : I.Nontrivial), (∀ f fD k, IsClassCk f fD I (k + 1) → IsClassCk f fD I k) ∧ (∀ f fD, IsClassCOmega f fD I → IsClassCInfty f fD I)
+Predicate logic (unfolded): ∀ (I : Set Real), I.Nontrivial → (∀ (f : Real → Real) (fD : Nat → Real → Real) (k : Nat), LRA.Analysis.Differentiation.IsClassCk f fD I (instHAdd.hAdd k 1) → LRA.Analysis.Differentiation.IsClassCk f fD I k ∧ ∀ (f : Real → Real) (fD : Nat → Real → Real), LRA.Analysis.Differentiation.IsClassCOmega f fD I → LRA.Analysis.Differentiation.IsClassCInfty f fD I)
+Transliterated theorem: (∀ hI ∈ I.Nontrivial), (∀ f fD k, IsClassCk f fD I (k + 1) → IsClassCk f fD I k) ∧ (∀ f fD, IsClassCOmega f fD I → IsClassCInfty f fD I)
+Logical form (Lean): (I : Set ℝ) (hI : I.Nontrivial) : (∀ f fD k, IsClassCk f fD I (k + 1) → IsClassCk f fD I k) ∧ (∀ f fD, IsClassCOmega f fD I → IsClassCInfty f fD I)
+Source: ./Differentiation/GraphReading.lean#L377
+
+
+
+Name: C11Placement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (I : Set Real),   I.Nontrivial →     ∀ (f fD1 : Real → Real),       LRA.Analysis.Differentiation.IsClassC11 f fD1 I → LRA.Analysis.Differentiation.IsClassC1 f fD1 I
+Predicate logic (unfolded): ∀ (I : Set Real), I.Nontrivial → ∀ (f fD1 : Real → Real), LRA.Analysis.Differentiation.IsClassC11 f fD1 I → LRA.Analysis.Differentiation.IsClassC1 f fD1 I
+Transliterated theorem: (∀ hI ∈ I.Nontrivial), (∀ f fD1, IsClassC11 f fD1 I → IsClassC1 f fD1 I)
+Logical form (Lean): (I : Set ℝ) (hI : I.Nontrivial) : (∀ f fD1, IsClassC11 f fD1 I → IsClassC1 f fD1 I)
+Source: ./Differentiation/GraphReading.lean#L409
+
+
+
+Name: BoundedSecondDerivativeImpliesC11
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (M : ℝ) (hM : M ≥ 0) (hclass : IsClassCk f (fun n => if n = 0 then f else if n = 1 then fD1 else fD2) I 2) (hbound : ∀ x ∈ I, |fD2 x| ≤ M), IsClassC11 f fD1 I ∧ LRA.Analysis.Continuity.IsLipschitzOn fD1 I M
+Predicate logic (unfolded): ∀ (f fD1 fD2 : Real → Real) (I : Set Real) (M : Real), (GE.ge M 0 ∧ (LRA.Analysis.Differentiation.IsClassCk f (fun n => ite (n = 0)f (ite (n = 1)fD1 fD2)) I 2 ∧ ∀ (x : Real), Set.instMembership.mem I x → Real.instLE.le (abs (fD2 x)) M)) → (LRA.Analysis.Differentiation.IsClassC11 f fD1 I ∧ LRA.Analysis.Continuity.IsLipschitzOn fD1 I M)
+Transliterated theorem: (IsClassCk f (fun n => if n = 0 then f else if n = 1 then fD1 else fD2) I 2 ∧ ∀ x ∈ I, |fD2 x| ≤ M) → IsClassC11 f fD1 I ∧ LRA.Analysis.Continuity.IsLipschitzOn fD1 I M
+Logical form (Lean): (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (M : ℝ) (hM : M ≥ 0) (hclass : IsClassCk f (fun n => if n = 0 then f else if n = 1 then fD1 else fD2) I 2) (hbound : ∀ x ∈ I, |fD2 x| ≤ M) : IsClassC11 f fD1 I ∧ LRA.Analysis.Continuity.IsLipschitzOn fD1 I M
+Source: ./Differentiation/GraphReading.lean#L426
+
+
+
+Name: DifferentiableIffHasLinearApproximation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ), IsDifferentiable f A c ↔ ∃ L, HasLinearApproximation f c L
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c : Real), LRA.Analysis.Differentiation.IsDifferentiable f A c ↔ Exists fun L => LRA.Analysis.Differentiation.HasLinearApproximation f c L
+Transliterated theorem: (ℝ → ℝ) → IsDifferentiable f A c ↔ ∃ L, HasLinearApproximation f c L
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : IsDifferentiable f A c ↔ ∃ L, HasLinearApproximation f c L
+Source: ./Differentiation/LinearApproximation.lean#L43
+
+
+
+Name: LinearApproximationSlopeEqDerivative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c D : ℝ) (hD : Derivative D f A c) (L : ℝ) (hL : HasLinearApproximation f c L), L = D
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c D : Real), LRA.Analysis.Differentiation.Derivative D f A c → ∀ (L : Real), LRA.Analysis.Differentiation.HasLinearApproximation f c L → L = D
+Transliterated theorem: (ℝ → ℝ) → L = D
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c D : ℝ) (hD : Derivative D f A c) (L : ℝ) (hL : HasLinearApproximation f c L) : L = D
+Source: ./Differentiation/LinearApproximation.lean#L58
+
+
+
+Name: RollesTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (a b : ℝ) (hab : a < b) (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) (hdiff : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x) (hfab : f a = f b), ∃ c ∈ Set.Ioo a b, Derivative 0 f (Set.Ioo a b) c
+Predicate logic (unfolded): ∀ (f : Real → Real) (a b : Real), (Real.instLT.lt a b ∧ (LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b) ∧ (∀ (x : Real), Set.instMembership.mem (Set.Ioo a b) x → LRA.Analysis.Differentiation.IsDifferentiable f (Set.Ioo a b) x ∧ f a = f b))) → Exists fun c => (Set.instMembership.mem (Set.Ioo a b) c ∧ LRA.Analysis.Differentiation.Derivative 0 f (Set.Ioo a b) c)
+Transliterated theorem: (ℝ → ℝ ∧ a < b ∧ ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x ∧ f a = f b) → ∃ c ∈ Set.Ioo a b, Derivative 0 f (Set.Ioo a b) c
+Logical form (Lean): (f : ℝ → ℝ) (a b : ℝ) (hab : a < b) (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) (hdiff : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x) (hfab : f a = f b) : ∃ c ∈ Set.Ioo a b, Derivative 0 f (Set.Ioo a b) c
+Source: ./Differentiation/MeanValueTheorem.lean#L32
+
+
+
+Name: MeanValueTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (a b : ℝ) (hab : a < b) (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) (hdiff : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x), ∃ c ∈ Set.Ioo a b, Derivative ((f b - f a) / (b - a)) f (Set.Ioo a b) c
+Predicate logic (unfolded): ∀ (f : Real → Real) (a b : Real), (Real.instLT.lt a b ∧ (LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b) ∧ ∀ (x : Real), Set.instMembership.mem (Set.Ioo a b) x → LRA.Analysis.Differentiation.IsDifferentiable f (Set.Ioo a b) x)) → Exists fun c => (Set.instMembership.mem (Set.Ioo a b) c ∧ LRA.Analysis.Differentiation.Derivative (instHDiv.hDiv (instHSub.hSub (f b) (f a)) (instHSub.hSub b a)) f (Set.Ioo a b) c)
+Transliterated theorem: (ℝ → ℝ ∧ a < b ∧ ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x) → ∃ c ∈ Set.Ioo a b, Derivative ((f b - f a) / (b - a)) f (Set.Ioo a b) c
+Logical form (Lean): (f : ℝ → ℝ) (a b : ℝ) (hab : a < b) (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) (hdiff : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x) : ∃ c ∈ Set.Ioo a b, Derivative ((f b - f a) / (b - a)) f (Set.Ioo a b) c
+Source: ./Differentiation/MeanValueTheorem.lean#L54
+
+
+
+Name: CauchyMeanValueTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b) (hfcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) (hgcont : LRA.Analysis.Continuity.ContinuousOn' g (Set.Icc a b)) (hfdiff : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x) (hgdiff : ∀ x ∈ Set.Ioo a b, IsDifferentiable g (Set.Ioo a b) x) (hgD : ∀ x ∈ Set.Ioo a b, ¬ Derivative 0 g (Set.Ioo a b) x), ∃ c ∈ Set.Ioo a b, ∃ Df Dg, Derivative Df f (Set.Ioo a b) c ∧ Derivative Dg g (Set.Ioo a b) c ∧ Df * (g b - g a) = Dg * (f b - f a)
+Predicate logic (unfolded): ∀ (f g : Real → Real) (a b : Real), (Real.instLT.lt a b ∧ (LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b) ∧ (LRA.Analysis.Continuity.ContinuousOn' g (Set.Icc a b) ∧ (∀ (x : Real), Set.instMembership.mem (Set.Ioo a b) x → LRA.Analysis.Differentiation.IsDifferentiable f (Set.Ioo a b) x ∧ (∀ (x : Real), Set.instMembership.mem (Set.Ioo a b) x → LRA.Analysis.Differentiation.IsDifferentiable g (Set.Ioo a b) x ∧ ∀ (x : Real), Set.instMembership.mem (Set.Ioo a b) x → ¬ LRA.Analysis.Differentiation.Derivative 0 g (Set.Ioo a b) x))))) → Exists fun c => (Set.instMembership.mem (Set.Ioo a b) c ∧ Exists fun Df => Exists fun Dg => (LRA.Analysis.Differentiation.Derivative Df f (Set.Ioo a b) c ∧ (LRA.Analysis.Differentiation.Derivative Dg g (Set.Ioo a b) c ∧ instHMul.hMul Df (instHSub.hSub (g b) (g a)) = instHMul.hMul Dg (instHSub.hSub (f b) (f a)))))
+Transliterated theorem: (a < b ∧ ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x ∧ ∀ x ∈ Set.Ioo a b, IsDifferentiable g (Set.Ioo a b) x ∧ ∀ x ∈ Set.Ioo a b, ¬ Derivative 0 g (Set.Ioo a b) x) → ∃ c ∈ Set.Ioo a b, ∃ Df Dg, Derivative Df f (Set.Ioo a b) c ∧ Derivative Dg g (Set.Ioo a b) c ∧ Df * (g b - g a) = Dg * (f b - f a)
+Logical form (Lean): (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b) (hfcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) (hgcont : LRA.Analysis.Continuity.ContinuousOn' g (Set.Icc a b)) (hfdiff : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x) (hgdiff : ∀ x ∈ Set.Ioo a b, IsDifferentiable g (Set.Ioo a b) x) (hgD : ∀ x ∈ Set.Ioo a b, ¬ Derivative 0 g (Set.Ioo a b) x) : ∃ c ∈ Set.Ioo a b, ∃ Df Dg, Derivative Df f (Set.Ioo a b) c ∧ Derivative Dg g (Set.Ioo a b) c ∧ Df * (g b - g a) = Dg * (f b - f a)
+Source: ./Differentiation/MeanValueTheorem.lean#L83
+
+
+
+Name: NondecreasingIffNonnegDerivative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hdiff : ∀ x ∈ I, IsDifferentiable f I x), MonotoneOn f I ↔ ∀ x ∈ I, ∀ D, Derivative D f I x → D ≥ 0
+Predicate logic (unfolded): ∀ (f : Real → Real) (I : Set Real), (I.OrdConnected ∧ ∀ (x : Real), Set.instMembership.mem I x → LRA.Analysis.Differentiation.IsDifferentiable f I x) → MonotoneOn f I ↔ ∀ (x : Real), Set.instMembership.mem I x → ∀ (D : Real), LRA.Analysis.Differentiation.Derivative D f I x → GE.ge D 0
+Transliterated theorem: (∀ hI ∈ I.OrdConnected), (ℝ → ℝ ∧ ∀ x ∈ I, IsDifferentiable f I x) → MonotoneOn f I ↔ ∀ x ∈ I, ∀ D, Derivative D f I x → D ≥ 0
+Logical form (Lean): (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hdiff : ∀ x ∈ I, IsDifferentiable f I x) : MonotoneOn f I ↔ ∀ x ∈ I, ∀ D, Derivative D f I x → D ≥ 0
+Source: ./Differentiation/MeanValueTheorem.lean#L106
+
+
+
+Name: DerivativeBoundImpliesLipschitz
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hdiff : ∀ x ∈ I, IsDifferentiable f I x) (M : ℝ) (hM : M ≥ 0) (hbound : ∀ x ∈ I, ∀ D, Derivative D f I x → |D| ≤ M), LRA.Analysis.Continuity.IsLipschitzOn f I M
+Predicate logic (unfolded): ∀ (f : Real → Real) (I : Set Real), (I.OrdConnected ∧ ∀ (x : Real), Set.instMembership.mem I x → LRA.Analysis.Differentiation.IsDifferentiable f I x) → ∀ (M : Real), (GE.ge M 0 ∧ ∀ (x : Real), Set.instMembership.mem I x → ∀ (D : Real), LRA.Analysis.Differentiation.Derivative D f I x → Real.instLE.le (abs D) M) → LRA.Analysis.Continuity.IsLipschitzOn f I M
+Transliterated theorem: (∀ hI ∈ I.OrdConnected), (ℝ → ℝ ∧ ∀ x ∈ I, IsDifferentiable f I x ∧ ∀ x ∈ I, ∀ D, Derivative D f I x → |D| ≤ M) → LRA.Analysis.Continuity.IsLipschitzOn f I M
+Logical form (Lean): (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConnected) (hdiff : ∀ x ∈ I, IsDifferentiable f I x) (M : ℝ) (hM : M ≥ 0) (hbound : ∀ x ∈ I, ∀ D, Derivative D f I x → |D| ≤ M) : LRA.Analysis.Continuity.IsLipschitzOn f I M
+Source: ./Differentiation/MeanValueTheorem.lean#L124
+
+
+
+Name: ConstantMultipleRule
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {f : Real → Real} {A : Set Real} {c Df : Real},   LRA.Analysis.Differentiation.Derivative Df f A c →     ∀ (α : Real), LRA.Analysis.Differentiation.Derivative (instHMul.hMul α Df) (fun x => instHMul.hMul α (f x)) A c
+Predicate logic (unfolded): ∀ {f : Real → Real} {A : Set Real} {c Df : Real}, LRA.Analysis.Differentiation.Derivative Df f A c → ∀ (α : Real), LRA.Analysis.Differentiation.Derivative (instHMul.hMul α Df) (fun x => instHMul.hMul α (f x)) A c
+Transliterated theorem: Derivative (α * Df) (fun x => α * f x) A c
+Logical form (Lean): (hf : Derivative Df f A c) (α : ℝ) : Derivative (α * Df) (fun x => α * f x) A c
+Source: ./Differentiation/AlgebraOfDerivatives.lean#L33
+
+
+
+Name: SumRule
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hf : Derivative Df f A c) (hg : Derivative Dg g A c), Derivative (Df + Dg) (fun x => f x + g x) A c
+Predicate logic (unfolded): ∀ {f g : Real → Real} {A : Set Real} {c Df Dg : Real}, (LRA.Analysis.Differentiation.Derivative Df f A c ∧ LRA.Analysis.Differentiation.Derivative Dg g A c) → LRA.Analysis.Differentiation.Derivative (instHAdd.hAdd Df Dg) (fun x => instHAdd.hAdd (f x) (g x)) A c
+Transliterated theorem: Derivative (Df + Dg) (fun x => f x + g x) A c
+Logical form (Lean): (hf : Derivative Df f A c) (hg : Derivative Dg g A c) : Derivative (Df + Dg) (fun x => f x + g x) A c
+Source: ./Differentiation/AlgebraOfDerivatives.lean#L48
+
+
+
+Name: ProductRule
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hf : Derivative Df f A c) (hg : Derivative Dg g A c), Derivative (Df * g c + f c * Dg) (fun x => f x * g x) A c
+Predicate logic (unfolded): ∀ {f g : Real → Real} {A : Set Real} {c Df Dg : Real}, (LRA.Analysis.Differentiation.Derivative Df f A c ∧ LRA.Analysis.Differentiation.Derivative Dg g A c) → LRA.Analysis.Differentiation.Derivative (instHAdd.hAdd (instHMul.hMul Df (g c)) (instHMul.hMul (f c) Dg)) (fun x => instHMul.hMul (f x) (g x)) A c
+Transliterated theorem: Derivative (Df * g c + f c * Dg) (fun x => f x * g x) A c
+Logical form (Lean): (hf : Derivative Df f A c) (hg : Derivative Dg g A c) : Derivative (Df * g c + f c * Dg) (fun x => f x * g x) A c
+Source: ./Differentiation/AlgebraOfDerivatives.lean#L63
+
+
+
+Name: QuotientRule
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hf : Derivative Df f A c) (hg : Derivative Dg g A c) (hgc : g c ≠ 0), Derivative ((Df * g c - f c * Dg) / (g c) ^ 2) (fun x => f x / g x) A c
+Predicate logic (unfolded): ∀ {f g : Real → Real} {A : Set Real} {c Df Dg : Real}, (LRA.Analysis.Differentiation.Derivative Df f A c ∧ (LRA.Analysis.Differentiation.Derivative Dg g A c ∧ Ne (g c) 0)) → LRA.Analysis.Differentiation.Derivative (instHDiv.hDiv (instHSub.hSub (instHMul.hMul Df (g c)) (instHMul.hMul (f c) Dg)) (instHPow.hPow (g c) 2)) (fun x => instHDiv.hDiv (f x) (g x)) A c
+Transliterated theorem: Derivative ((Df * g c - f c * Dg) / (g c) ^ 2) (fun x => f x / g x) A c
+Logical form (Lean): (hf : Derivative Df f A c) (hg : Derivative Dg g A c) (hgc : g c ≠ 0) : Derivative ((Df * g c - f c * Dg) / (g c) ^ 2) (fun x => f x / g x) A c
+Source: ./Differentiation/AlgebraOfDerivatives.lean#L79
+
+
+
+Name: FiniteSumRule
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set Real} {c : Real} (n : Nat) (fs : Fin n → Real → Real) (αs Ds : Fin n → Real),   (∀ (i : Fin n), LRA.Analysis.Differentiation.Derivative (Ds i) (fs i) A c) →     LRA.Analysis.Differentiation.Derivative (Finset.univ.sum fun i => instHMul.hMul (αs i) (Ds i))       (fun x => Finset.univ.sum fun i => instHMul.hMul (αs i) (fs i x)) A c
+Predicate logic (unfolded): ∀ {A : Set Real} {c : Real} (n : Nat) (fs : Fin n → Real → Real) (αs Ds : Fin n → Real), (∀ (i : Fin n), LRA.Analysis.Differentiation.Derivative (Ds i) (fs i) A c) → LRA.Analysis.Differentiation.Derivative (Finset.univ.sum fun i => instHMul.hMul (αs i) (Ds i)) (fun x => Finset.univ.sum fun i => instHMul.hMul (αs i) (fs i x)) A c
+Transliterated theorem: (Fin n → ℝ → ℝ ∧ Fin n → ℝ ∧ Fin n → ℝ ∧ ∀ i, Derivative (Ds i) (fs i) A c) → Derivative (∑ i, αs i * Ds i) (fun x => ∑ i, αs i * fs i x) A c
+Logical form (Lean): (n : ℕ) (fs : Fin n → ℝ → ℝ) (αs : Fin n → ℝ) (Ds : Fin n → ℝ) (hfs : ∀ i, Derivative (Ds i) (fs i) A c) : Derivative (∑ i, αs i * Ds i) (fun x => ∑ i, αs i * fs i x) A c
+Source: ./Differentiation/AlgebraOfDerivatives.lean#L96
+
+
+
+Name: ExtendedProductRule
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set Real} {c : Real} (n : Nat) (fs : Fin n → Real → Real) (Ds : Fin n → Real),   (∀ (i : Fin n), LRA.Analysis.Differentiation.Derivative (Ds i) (fs i) A c) →     LRA.Analysis.Differentiation.Derivative       (Finset.univ.sum fun k => instHMul.hMul (Ds k) ((Finset.univ.erase k).prod fun i => fs i c))       (fun x => Finset.univ.prod fun i => fs i x) A c
+Predicate logic (unfolded): ∀ {A : Set Real} {c : Real} (n : Nat) (fs : Fin n → Real → Real) (Ds : Fin n → Real), (∀ (i : Fin n), LRA.Analysis.Differentiation.Derivative (Ds i) (fs i) A c) → LRA.Analysis.Differentiation.Derivative (Finset.univ.sum fun k => instHMul.hMul (Ds k) ((Finset.univ.erase k).prod fun i => fs i c)) (fun x => Finset.univ.prod fun i => fs i x) A c
+Transliterated theorem: (Fin n → ℝ → ℝ ∧ Fin n → ℝ ∧ ∀ i, Derivative (Ds i) (fs i) A c) → Derivative (∑ k, Ds k * ∏ i ∈ Finset.univ.erase k, fs i c) (fun x => ∏ i, fs i x) A c
+Logical form (Lean): (n : ℕ) (fs : Fin n → ℝ → ℝ) (Ds : Fin n → ℝ) (hfs : ∀ i, Derivative (Ds i) (fs i) A c) : Derivative (∑ k, Ds k * ∏ i ∈ Finset.univ.erase k, fs i c) (fun x => ∏ i, fs i x) A c
+Source: ./Differentiation/AlgebraOfDerivatives.lean#L114
+
+
+
+Name: PowerRuleSpecialCase
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {f : Real → Real} {A : Set Real} {c Df : Real},   LRA.Analysis.Differentiation.Derivative Df f A c →     ∀ (n : Nat),       LRA.Analysis.Differentiation.Derivative         (instHMul.hMul (instHMul.hMul n.cast (instHPow.hPow (f c) (instHSub.hSub n 1))) Df)         (fun x => instHPow.hPow (f x) n) A c
+Predicate logic (unfolded): ∀ {f : Real → Real} {A : Set Real} {c Df : Real}, LRA.Analysis.Differentiation.Derivative Df f A c → ∀ (n : Nat), LRA.Analysis.Differentiation.Derivative (instHMul.hMul (instHMul.hMul n.cast (instHPow.hPow (f c) (instHSub.hSub n 1))) Df) (fun x => instHPow.hPow (f x) n) A c
+Transliterated theorem: Derivative (n * (f c) ^ (n - 1) * Df) (fun x => (f x) ^ n) A c
+Logical form (Lean): (hf : Derivative Df f A c) (n : ℕ) : Derivative (n * (f c) ^ (n - 1) * Df) (fun x => (f x) ^ n) A c
+Source: ./Differentiation/AlgebraOfDerivatives.lean#L130
+
+
+
+Name: FiniteLinearCombinationRule
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A : Set Real} {c : Real} (n : Nat) (fs : Fin n → Real → Real) (αs Ds : Fin n → Real),   (∀ (i : Fin n), LRA.Analysis.Differentiation.Derivative (Ds i) (fs i) A c) →     LRA.Analysis.Differentiation.Derivative (Finset.univ.sum fun i => instHMul.hMul (αs i) (Ds i))       (fun x => Finset.univ.sum fun i => instHMul.hMul (αs i) (fs i x)) A c
+Predicate logic (unfolded): ∀ {A : Set Real} {c : Real} (n : Nat) (fs : Fin n → Real → Real) (αs Ds : Fin n → Real), (∀ (i : Fin n), LRA.Analysis.Differentiation.Derivative (Ds i) (fs i) A c) → LRA.Analysis.Differentiation.Derivative (Finset.univ.sum fun i => instHMul.hMul (αs i) (Ds i)) (fun x => Finset.univ.sum fun i => instHMul.hMul (αs i) (fs i x)) A c
+Transliterated theorem: (Fin n → ℝ → ℝ ∧ Fin n → ℝ ∧ Fin n → ℝ ∧ ∀ i, Derivative (Ds i) (fs i) A c) → Derivative (∑ i, αs i * Ds i) (fun x => ∑ i, αs i * fs i x) A c
+Logical form (Lean): (n : ℕ) (fs : Fin n → ℝ → ℝ) (αs : Fin n → ℝ) (Ds : Fin n → ℝ) (hfs : ∀ i, Derivative (Ds i) (fs i) A c) : Derivative (∑ i, αs i * Ds i) (fun x => ∑ i, αs i * fs i x) A c
+Source: ./Differentiation/AlgebraOfDerivatives.lean#L147
+
+
+
+Name: IntervalFormsOfAlgebraRules
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (I : Set ℝ) (hI : I.OrdConnected) (f g : ℝ → ℝ) (fD gD : ℝ → ℝ) (α : ℝ) (hf : ∀ x ∈ I, Derivative (fD x) f I x) (hg : ∀ x ∈ I, Derivative (gD x) g I x), (∀ x ∈ I, Derivative (α * fD x) (fun y => α * f y) I x) ∧ (∀ x ∈ I, Derivative (fD x + gD x) (fun y => f y + g y) I x) ∧ (∀ x ∈ I, Derivative (fD x * g x + f x * gD x) (fun y => f y * g y) I x)
+Predicate logic (unfolded): ∀ (I : Set Real), I.OrdConnected → ∀ (f g fD gD : Real → Real) (α : Real), (∀ (x : Real), Set.instMembership.mem I x → LRA.Analysis.Differentiation.Derivative (fD x) f I x ∧ ∀ (x : Real), Set.instMembership.mem I x → LRA.Analysis.Differentiation.Derivative (gD x) g I x) → (∀ (x : Real), Set.instMembership.mem I x → LRA.Analysis.Differentiation.Derivative (instHMul.hMul α (fD x)) (fun y => instHMul.hMul α (f y)) I x ∧ (∀ (x : Real), Set.instMembership.mem I x → LRA.Analysis.Differentiation.Derivative (instHAdd.hAdd (fD x) (gD x)) (fun y => instHAdd.hAdd (f y) (g y)) I x ∧ ∀ (x : Real), Set.instMembership.mem I x → LRA.Analysis.Differentiation.Derivative (instHAdd.hAdd (instHMul.hMul (fD x) (g x)) (instHMul.hMul (f x) (gD x))) (fun y => instHMul.hMul (f y) (g y)) I x))
+Transliterated theorem: (∀ hI ∈ I.OrdConnected), (∀ x ∈ I, Derivative (fD x) f I x ∧ ∀ x ∈ I, Derivative (gD x) g I x) → (∀ x ∈ I, Derivative (α * fD x) (fun y => α * f y) I x) ∧ (∀ x ∈ I, Derivative (fD x + gD x) (fun y => f y + g y) I x) ∧ (∀ x ∈ I, Derivative (fD x * g x + f x * gD x) (fun y => f y * g y) I x)
+Logical form (Lean): (I : Set ℝ) (hI : I.OrdConnected) (f g : ℝ → ℝ) (fD gD : ℝ → ℝ) (α : ℝ) (hf : ∀ x ∈ I, Derivative (fD x) f I x) (hg : ∀ x ∈ I, Derivative (gD x) g I x) : (∀ x ∈ I, Derivative (α * fD x) (fun y => α * f y) I x) ∧ (∀ x ∈ I, Derivative (fD x + gD x) (fun y => f y + g y) I x) ∧ (∀ x ∈ I, Derivative (fD x * g x + f x * gD x) (fun y => f y * g y) I x)
+Source: ./Differentiation/AlgebraOfDerivatives.lean#L174
+
+
+
+Name: InverseFunctionTheoremOneVariable
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f fD1 : ℝ → ℝ) (I : Set ℝ) (hI : IsOpen I) (hclass : IsClassC1 f fD1 I) (c : ℝ) (hc : c ∈ I) (hnz : fD1 c ≠ 0), ∃ U V : Set ℝ, IsOpen U ∧ IsOpen V ∧ c ∈ U ∧ f c ∈ V ∧ U ⊆ I ∧ Set.BijOn f U V ∧ ∃ g : ℝ → ℝ, (∀ x ∈ U, g (f x) = x) ∧ (∀ y ∈ V, f (g y) = y) ∧ ∃ gD1 : ℝ → ℝ, IsClassC1 g gD1 V ∧ ∀ y ∈ V, ∃ x ∈ U, f x = y ∧ gD1 y * fD1 x = 1
+Predicate logic (unfolded): ∀ (f fD1 : Real → Real) (I : Set Real), (IsOpen I ∧ LRA.Analysis.Differentiation.IsClassC1 f fD1 I) → ∀ (c : Real), (Set.instMembership.mem I c ∧ Ne (fD1 c) 0) → Exists fun U => Exists fun V => (IsOpen U ∧ (IsOpen V ∧ (Set.instMembership.mem U c ∧ (Set.instMembership.mem V (f c) ∧ (Set.instLE.le U I ∧ (Set.BijOn f U V ∧ Exists fun g => (∀ (x : Real), Set.instMembership.mem U x → g (f x) = x ∧ (∀ (y : Real), Set.instMembership.mem V y → f (g y) = y ∧ Exists fun gD1 => (LRA.Analysis.Differentiation.IsClassC1 g gD1 V ∧ ∀ (y : Real), Set.instMembership.mem V y → Exists fun x => (Set.instMembership.mem U x ∧ (f x = y ∧ instHMul.hMul (gD1 y) (fD1 x) = 1)))))))))))
+Transliterated theorem: (c ∈ I) → ∃ U V ∈ Set ℝ, IsOpen U ∧ IsOpen V ∧ c ∈ U ∧ f c ∈ V ∧ U ⊆ I ∧ Set.BijOn f U V ∧ ∃ g ∈ ℝ → ℝ, (∀ x ∈ U, g (f x) = x) ∧ (∀ y ∈ V, f (g y) = y) ∧ ∃ gD1 ∈ ℝ → ℝ, IsClassC1 g gD1 V ∧ ∀ y ∈ V, ∃ x ∈ U, f x = y ∧ gD1 y * fD1 x = 1
+Logical form (Lean): (f fD1 : ℝ → ℝ) (I : Set ℝ) (hI : IsOpen I) (hclass : IsClassC1 f fD1 I) (c : ℝ) (hc : c ∈ I) (hnz : fD1 c ≠ 0) : ∃ U V : Set ℝ, IsOpen U ∧ IsOpen V ∧ c ∈ U ∧ f c ∈ V ∧ U ⊆ I ∧ Set.BijOn f U V ∧ ∃ g : ℝ → ℝ, (∀ x ∈ U, g (f x) = x) ∧ (∀ y ∈ V, f (g y) = y) ∧ ∃ gD1 : ℝ → ℝ, IsClassC1 g gD1 V ∧ ∀ y ∈ V, ∃ x ∈ U, f x = y ∧ gD1 y * fD1 x = 1
+Source: ./Differentiation/AlgebraOfDerivatives.lean#L204
+
+
+
+Name: InverseFunctionDerivative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g fD1 : ℝ → ℝ) (U V : Set ℝ) (hf : ∀ x ∈ U, Derivative (fD1 x) f U x) (hnz : ∀ x ∈ U, fD1 x ≠ 0) (hinv : ∀ x ∈ U, g (f x) = x) (hinv' : ∀ y ∈ V, f (g y) = y), ∀ y ∈ V, Derivative (1 / fD1 (g y)) g V y
+Predicate logic (unfolded): ∀ (f g fD1 : Real → Real) (U V : Set Real), (∀ (x : Real), Set.instMembership.mem U x → LRA.Analysis.Differentiation.Derivative (fD1 x) f U x ∧ (∀ (x : Real), Set.instMembership.mem U x → Ne (fD1 x) 0 ∧ (∀ (x : Real), Set.instMembership.mem U x → g (f x) = x ∧ ∀ (y : Real), Set.instMembership.mem V y → f (g y) = y))) → ∀ (y : Real), Set.instMembership.mem V y → LRA.Analysis.Differentiation.Derivative (instHDiv.hDiv 1 (fD1 (g y))) g V y
+Transliterated theorem: (∀ x ∈ U, Derivative (fD1 x) f U x ∧ ∀ x ∈ U, fD1 x ≠ 0 ∧ ∀ x ∈ U, g (f x) = x ∧ ∀ y ∈ V, f (g y) = y) → ∀ y ∈ V, Derivative (1 / fD1 (g y)) g V y
+Logical form (Lean): (f g fD1 : ℝ → ℝ) (U V : Set ℝ) (hf : ∀ x ∈ U, Derivative (fD1 x) f U x) (hnz : ∀ x ∈ U, fD1 x ≠ 0) (hinv : ∀ x ∈ U, g (f x) = x) (hinv' : ∀ y ∈ V, f (g y) = y) : ∀ y ∈ V, Derivative (1 / fD1 (g y)) g V y
+Source: ./Differentiation/AlgebraOfDerivatives.lean#L226
+
+
+
+Name: LhopitalZeroOverZero
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b) (hf : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x) (hg : ∀ x ∈ Set.Ioo a b, IsDifferentiable g (Set.Ioo a b) x) (hgD : ∀ x ∈ Set.Ioo a b, ∀ D, Derivative D g (Set.Ioo a b) x → D ≠ 0) (hf0 : TendsToRight f (Set.Ioo a b) a 0) (hg0 : TendsToRight g (Set.Ioo a b) a 0) (fD gD : ℝ → ℝ) (hfD : ∀ x ∈ Set.Ioo a b, Derivative (fD x) f (Set.Ioo a b) x) (hgD' : ∀ x ∈ Set.Ioo a b, Derivative (gD x) g (Set.Ioo a b) x) (L : ℝ) (hL : TendsToRight (fun x => fD x / gD x) (Set.Ioo a b) a L), TendsToRight (fun x => f x / g x) (Set.Ioo a b) a L
+Predicate logic (unfolded): ∀ (f g : Real → Real) (a b : Real), (Real.instLT.lt a b ∧ (∀ (x : Real), Set.instMembership.mem (Set.Ioo a b) x → LRA.Analysis.Differentiation.IsDifferentiable f (Set.Ioo a b) x ∧ (∀ (x : Real), Set.instMembership.mem (Set.Ioo a b) x → LRA.Analysis.Differentiation.IsDifferentiable g (Set.Ioo a b) x ∧ (∀ (x : Real), Set.instMembership.mem (Set.Ioo a b) x → ∀ (D : Real), LRA.Analysis.Differentiation.Derivative D g (Set.Ioo a b) x → Ne D 0 ∧ (LRA.Analysis.Continuity.TendsToRight f (Set.Ioo a b) a 0 ∧ LRA.Analysis.Continuity.TendsToRight g (Set.Ioo a b) a 0))))) → ∀ (fD gD : Real → Real), (∀ (x : Real), Set.instMembership.mem (Set.Ioo a b) x → LRA.Analysis.Differentiation.Derivative (fD x) f (Set.Ioo a b) x ∧ ∀ (x : Real), Set.instMembership.mem (Set.Ioo a b) x → LRA.Analysis.Differentiation.Derivative (gD x) g (Set.Ioo a b) x) → ∀ (L : Real), LRA.Analysis.Continuity.TendsToRight (fun x => instHDiv.hDiv (fD x) (gD x)) (Set.Ioo a b) a L → LRA.Analysis.Continuity.TendsToRight (fun x => instHDiv.hDiv (f x) (g x)) (Set.Ioo a b) a L
+Transliterated theorem: (a < b ∧ ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x ∧ ∀ x ∈ Set.Ioo a b, IsDifferentiable g (Set.Ioo a b) x ∧ ∀ x ∈ Set.Ioo a b, ∀ D, Derivative D g (Set.Ioo a b) x → D ≠ 0 ∧ ∀ x ∈ Set.Ioo a b, Derivative (fD x) f (Set.Ioo a b) x ∧ ∀ x ∈ Set.Ioo a b, Derivative (gD x) g (Set.Ioo a b) x) → TendsToRight (fun x => f x / g x) (Set.Ioo a b) a L
+Logical form (Lean): (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b) (hf : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x) (hg : ∀ x ∈ Set.Ioo a b, IsDifferentiable g (Set.Ioo a b) x) (hgD : ∀ x ∈ Set.Ioo a b, ∀ D, Derivative D g (Set.Ioo a b) x → D ≠ 0) (hf0 : TendsToRight f (Set.Ioo a b) a 0) (hg0 : TendsToRight g (Set.Ioo a b) a 0) (fD gD : ℝ → ℝ) (hfD : ∀ x ∈ Set.Ioo a b, Derivative (fD x) f (Set.Ioo a b) x) (hgD' : ∀ x ∈ Set.Ioo a b, Derivative (gD x) g (Set.Ioo a b) x) (L : ℝ) (hL : TendsToRight (fun x => fD x / gD x) (Set.Ioo a b) a L) : TendsToRight (fun x => f x / g x) (Set.Ioo a b) a L
+Source: ./Differentiation/AlgebraOfDerivatives.lean#L260
+
+
+
+Name: LhopitalInfinityOverInfinity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b) (hf : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x) (hg : ∀ x ∈ Set.Ioo a b, IsDifferentiable g (Set.Ioo a b) x) (hgD : ∀ x ∈ Set.Ioo a b, ∀ D, Derivative D g (Set.Ioo a b) x → D ≠ 0) (hgInf : ∀ M > 0, ∃ δ > 0, ∀ x ∈ Set.Ioo a b, x < a + δ → |g x| > M) (fD gD : ℝ → ℝ) (hfD : ∀ x ∈ Set.Ioo a b, Derivative (fD x) f (Set.Ioo a b) x) (hgD' : ∀ x ∈ Set.Ioo a b, Derivative (gD x) g (Set.Ioo a b) x) (L : ℝ) (hL : TendsToRight (fun x => fD x / gD x) (Set.Ioo a b) a L), TendsToRight (fun x => f x / g x) (Set.Ioo a b) a L
+Predicate logic (unfolded): ∀ (f g : Real → Real) (a b : Real), (Real.instLT.lt a b ∧ (∀ (x : Real), Set.instMembership.mem (Set.Ioo a b) x → LRA.Analysis.Differentiation.IsDifferentiable f (Set.Ioo a b) x ∧ (∀ (x : Real), Set.instMembership.mem (Set.Ioo a b) x → LRA.Analysis.Differentiation.IsDifferentiable g (Set.Ioo a b) x ∧ (∀ (x : Real), Set.instMembership.mem (Set.Ioo a b) x → ∀ (D : Real), LRA.Analysis.Differentiation.Derivative D g (Set.Ioo a b) x → Ne D 0 ∧ ∀ (M : Real), GT.gt M 0 → Exists fun δ => (GT.gt δ 0 ∧ ∀ (x : Real), Set.instMembership.mem (Set.Ioo a b) x → Real.instLT.lt x (instHAdd.hAdd a δ) → GT.gt (abs (g x)) M))))) → ∀ (fD gD : Real → Real), (∀ (x : Real), Set.instMembership.mem (Set.Ioo a b) x → LRA.Analysis.Differentiation.Derivative (fD x) f (Set.Ioo a b) x ∧ ∀ (x : Real), Set.instMembership.mem (Set.Ioo a b) x → LRA.Analysis.Differentiation.Derivative (gD x) g (Set.Ioo a b) x) → ∀ (L : Real), LRA.Analysis.Continuity.TendsToRight (fun x => instHDiv.hDiv (fD x) (gD x)) (Set.Ioo a b) a L → LRA.Analysis.Continuity.TendsToRight (fun x => instHDiv.hDiv (f x) (g x)) (Set.Ioo a b) a L
+Transliterated theorem: (a < b ∧ ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x ∧ ∀ x ∈ Set.Ioo a b, IsDifferentiable g (Set.Ioo a b) x ∧ ∀ x ∈ Set.Ioo a b, ∀ D, Derivative D g (Set.Ioo a b) x → D ≠ 0 ∧ ∀ M > 0, ∃ δ > 0, ∀ x ∈ Set.Ioo a b, x < a + δ → |g x| > M ∧ ∀ x ∈ Set.Ioo a b, Derivative (fD x) f (Set.Ioo a b) x ∧ ∀ x ∈ Set.Ioo a b, Derivative (gD x) g (Set.Ioo a b) x) → TendsToRight (fun x => f x / g x) (Set.Ioo a b) a L
+Logical form (Lean): (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b) (hf : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x) (hg : ∀ x ∈ Set.Ioo a b, IsDifferentiable g (Set.Ioo a b) x) (hgD : ∀ x ∈ Set.Ioo a b, ∀ D, Derivative D g (Set.Ioo a b) x → D ≠ 0) (hgInf : ∀ M > 0, ∃ δ > 0, ∀ x ∈ Set.Ioo a b, x < a + δ → |g x| > M) (fD gD : ℝ → ℝ) (hfD : ∀ x ∈ Set.Ioo a b, Derivative (fD x) f (Set.Ioo a b) x) (hgD' : ∀ x ∈ Set.Ioo a b, Derivative (gD x) g (Set.Ioo a b) x) (L : ℝ) (hL : TendsToRight (fun x => fD x / gD x) (Set.Ioo a b) a L) : TendsToRight (fun x => f x / g x) (Set.Ioo a b) a L
+Source: ./Differentiation/AlgebraOfDerivatives.lean#L295
+
+
+
+Name: DifferentiableIffOneSidedDerivativesAgree
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ), IsDifferentiable f A c ↔ ∃ D, LeftDerivative D f A c ∧ RightDerivative D f A c
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c : Real), LRA.Analysis.Differentiation.IsDifferentiable f A c ↔ Exists fun D => (LRA.Analysis.Differentiation.LeftDerivative D f A c ∧ LRA.Analysis.Differentiation.RightDerivative D f A c)
+Transliterated theorem: (ℝ → ℝ) → IsDifferentiable f A c ↔ ∃ D, LeftDerivative D f A c ∧ RightDerivative D f A c
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : IsDifferentiable f A c ↔ ∃ D, LeftDerivative D f A c ∧ RightDerivative D f A c
+Source: ./Differentiation/OneSidedDerivatives.lean#L54
+
+
+
+Name: TaylorTheoremLagrangeRemainder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (a b : ℝ) (hab : a < b) (n : ℕ) (hcont : ∀ k ≤ n, LRA.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b)) (hDnp1 : ∀ x ∈ Set.Ioo a b, ∃ D, Derivative D (fD n) (Set.Ioo a b) x), ∀ x ∈ Set.Ioo a b, ∃ c, (a < c ∧ c < x) ∧ ∃ Dnp1, Derivative Dnp1 (fD n) (Set.Ioo a b) c ∧ f x = TaylorPoly fD n a x + Dnp1 / (Nat.factorial (n + 1)) * (x - a) ^ (n + 1)
+Predicate logic (unfolded): ∀ (f : Real → Real) (fD : Nat → Real → Real) (a b : Real), Real.instLT.lt a b → ∀ (n : Nat), (∀ (k : Nat), instLENat.le k n → LRA.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b) ∧ ∀ (x : Real), Set.instMembership.mem (Set.Ioo a b) x → Exists fun D => LRA.Analysis.Differentiation.Derivative D (fD n) (Set.Ioo a b) x) → ∀ (x : Real), Set.instMembership.mem (Set.Ioo a b) x → Exists fun c => ((Real.instLT.lt a c ∧ Real.instLT.lt c x) ∧ Exists fun Dnp1 => (LRA.Analysis.Differentiation.Derivative Dnp1 (fD n) (Set.Ioo a b) c ∧ f x = instHAdd.hAdd (LRA.Analysis.Differentiation.TaylorPoly fD n a x) (instHMul.hMul (instHDiv.hDiv Dnp1 (instHAdd.hAdd n 1).factorial.cast) (instHPow.hPow (instHSub.hSub x a) (instHAdd.hAdd n 1)))))
+Transliterated theorem: (ℝ → ℝ ∧ ℕ → ℝ → ℝ ∧ a < b ∧ ∀ k ≤ n, LRA.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b) ∧ ∀ x ∈ Set.Ioo a b, ∃ D, Derivative D (fD n) (Set.Ioo a b) x) → ∀ x ∈ Set.Ioo a b, ∃ c, (a < c ∧ c < x) ∧ ∃ Dnp1, Derivative Dnp1 (fD n) (Set.Ioo a b) c ∧ f x = TaylorPoly fD n a x + Dnp1 / (Nat.factorial (n + 1)) * (x - a) ^ (n + 1)
+Logical form (Lean): (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (a b : ℝ) (hab : a < b) (n : ℕ) (hcont : ∀ k ≤ n, LRA.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b)) (hDnp1 : ∀ x ∈ Set.Ioo a b, ∃ D, Derivative D (fD n) (Set.Ioo a b) x) : ∀ x ∈ Set.Ioo a b, ∃ c, (a < c ∧ c < x) ∧ ∃ Dnp1, Derivative Dnp1 (fD n) (Set.Ioo a b) c ∧ f x = TaylorPoly fD n a x + Dnp1 / (Nat.factorial (n + 1)) * (x - a) ^ (n + 1)
+Source: ./Differentiation/TaylorExpansion.lean#L81
+
+
+
+Name: TaylorExpansionPeanoRemainder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (I : Set ℝ) (a : ℝ) (n : ℕ) (ha : a ∈ interior I) (hD : HigherDerivativeAt f fD I n a) (hcont : LRA.Analysis.Continuity.ContinuousAtPoint (fD n) I a), Filter.Tendsto (fun x => (f x - TaylorPoly fD n a x) / (x - a) ^ n) (nhdsWithin a {a}ᶜ) (nhds 0)
+Predicate logic (unfolded): ∀ (f : Real → Real) (fD : Nat → Real → Real) (I : Set Real) (a : Real) (n : Nat), (Set.instMembership.mem (interior I) a ∧ (LRA.Analysis.Differentiation.HigherDerivativeAt f fD I n a ∧ LRA.Analysis.Continuity.ContinuousAtPoint (fD n) I a)) → Filter.Tendsto (fun x => instHDiv.hDiv (instHSub.hSub (f x) (LRA.Analysis.Differentiation.TaylorPoly fD n a x)) (instHPow.hPow (instHSub.hSub x a) n)) (nhdsWithin a (Set.instCompl.compl (Set.instSingletonSet.singleton a))) (nhds 0)
+Transliterated theorem: (ℝ → ℝ ∧ ℕ → ℝ → ℝ ∧ a ∈ interior I) → Filter.Tendsto (fun x => (f x - TaylorPoly fD n a x) / (x - a) ^ n) (nhdsWithin a {a}ᶜ) (nhds 0)
+Logical form (Lean): (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (I : Set ℝ) (a : ℝ) (n : ℕ) (ha : a ∈ interior I) (hD : HigherDerivativeAt f fD I n a) (hcont : LRA.Analysis.Continuity.ContinuousAtPoint (fD n) I a) : Filter.Tendsto (fun x => (f x - TaylorPoly fD n a x) / (x - a) ^ n) (nhdsWithin a {a}ᶜ) (nhds 0)
+Source: ./Differentiation/TaylorExpansion.lean#L105
+
+
+
+Name: FirstOrderPeanoRemainder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : Real → Real) (A : Set Real) (c D : Real),   LRA.Analysis.Differentiation.Derivative D f A c →     Filter.Tendsto       (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (instHMul.hMul D h)) h)       (nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0))) (nhds 0)
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c D : Real), LRA.Analysis.Differentiation.Derivative D f A c → Filter.Tendsto (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (instHMul.hMul D h)) h) (nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0))) (nhds 0)
+Transliterated theorem: (ℝ → ℝ) → Filter.Tendsto (fun h => (f (c + h) - f c - D * h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c D : ℝ) (hf : Derivative D f A c) : Filter.Tendsto (fun h => (f (c + h) - f c - D * h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)
+Source: ./Differentiation/TaylorExpansion.lean#L123
+
+
+
+Name: FlatFunctionProperties
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (fD : ℕ → ℝ → ℝ) (hfD0 : fD 0 = FlatFunction), IsClassCInfty FlatFunction fD Set.univ ∧ (∀ n : ℕ, fD n 0 = 0) ∧ ¬ IsClassCOmega FlatFunction fD Set.univ
+Predicate logic (unfolded): ∀ (fD : Nat → Real → Real), fD 0 = LRA.Analysis.Differentiation.FlatFunction → (LRA.Analysis.Differentiation.IsClassCInfty LRA.Analysis.Differentiation.FlatFunction fD Set.univ ∧ (∀ (n : Nat), fD n 0 = 0 ∧ ¬ LRA.Analysis.Differentiation.IsClassCOmega LRA.Analysis.Differentiation.FlatFunction fD Set.univ))
+Transliterated theorem: (ℕ → ℝ → ℝ ∧ fD 0 = FlatFunction) → IsClassCInfty FlatFunction fD Set.univ ∧ ∀ n ∈ ℕ, fD n 0 = 0 ∧ ¬ IsClassCOmega FlatFunction fD Set.univ
+Logical form (Lean): (fD : ℕ → ℝ → ℝ) (hfD0 : fD 0 = FlatFunction) : IsClassCInfty FlatFunction fD Set.univ ∧ (∀ n : ℕ, fD n 0 = 0) ∧ ¬ IsClassCOmega FlatFunction fD Set.univ
+Source: ./Differentiation/TaylorExpansion.lean#L151
+
+
+
+Name: DifferentialAndDerivativeAgree
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ), IsDifferentiable f A c ↔ DifferentiableByDifferential f c
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c : Real), LRA.Analysis.Differentiation.IsDifferentiable f A c ↔ LRA.Analysis.Differentiation.DifferentiableByDifferential f c
+Transliterated theorem: (ℝ → ℝ) → IsDifferentiable f A c ↔ DifferentiableByDifferential f c
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : IsDifferentiable f A c ↔ DifferentiableByDifferential f c
+Source: ./Differentiation/TaylorExpansion.lean#L187
+
+
+
+Name: UniquenessOfTheDifferential
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (c : ℝ) (L₁ L₂ : ℝ →ₗ[ℝ] ℝ) (h₁ : Filter.Tendsto (fun h => (f (c + h) - f c - L₁ h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)) (h₂ : Filter.Tendsto (fun h => (f (c + h) - f c - L₂ h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)), L₁ = L₂
+Predicate logic (unfolded): ∀ (f : Real → Real) (c : Real) (L₁ L₂ : LinearMap (RingHom.id Real) Real Real), (Filter.Tendsto (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (LinearMap.instFunLike.coe L₁ h)) h) (nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0))) (nhds 0) ∧ Filter.Tendsto (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (LinearMap.instFunLike.coe L₂ h)) h) (nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0))) (nhds 0)) → L₁ = L₂
+Transliterated theorem: (ℝ → ℝ) → L₁ = L₂
+Logical form (Lean): (f : ℝ → ℝ) (c : ℝ) (L₁ L₂ : ℝ →ₗ[ℝ] ℝ) (h₁ : Filter.Tendsto (fun h => (f (c + h) - f c - L₁ h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)) (h₂ : Filter.Tendsto (fun h => (f (c + h) - f c - L₂ h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)) : L₁ = L₂
+Source: ./Differentiation/TaylorExpansion.lean#L205
+
+
+
+Name: DifferentialContinuityCriterion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : Real → Real) (A : Set Real) (c : Real),   LRA.Analysis.Differentiation.DifferentiableByDifferential f c → LRA.Analysis.Continuity.ContinuousAtPoint f A c
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (c : Real), LRA.Analysis.Differentiation.DifferentiableByDifferential f c → LRA.Analysis.Continuity.ContinuousAtPoint f A c
+Transliterated theorem: (ℝ → ℝ) → LRA.Analysis.Continuity.ContinuousAtPoint f A c
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (h : DifferentiableByDifferential f c) : LRA.Analysis.Continuity.ContinuousAtPoint f A c
+Source: ./Differentiation/TaylorExpansion.lean#L223
+
+
+
+Name: ChainRuleForDifferentials
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (c : ℝ) (hf : DifferentiableByDifferential f c) (hg : DifferentiableByDifferential g (f c)), DifferentiableByDifferential (fun x => g (f x)) c
+Predicate logic (unfolded): ∀ (f g : Real → Real) (c : Real), (LRA.Analysis.Differentiation.DifferentiableByDifferential f c ∧ LRA.Analysis.Differentiation.DifferentiableByDifferential g (f c)) → LRA.Analysis.Differentiation.DifferentiableByDifferential (fun x => g (f x)) c
+Transliterated theorem: DifferentiableByDifferential (fun x => g (f x)) c
+Logical form (Lean): (f g : ℝ → ℝ) (c : ℝ) (hf : DifferentiableByDifferential f c) (hg : DifferentiableByDifferential g (f c)) : DifferentiableByDifferential (fun x => g (f x)) c
+Source: ./Differentiation/TaylorExpansion.lean#L240
+
+
+
+Name: LinearityOfTheDifferential
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (c α β : ℝ) (hf : DifferentiableByDifferential f c) (hg : DifferentiableByDifferential g c), DifferentiableByDifferential (fun x => α * f x + β * g x) c
+Predicate logic (unfolded): ∀ (f g : Real → Real) (c α β : Real), (LRA.Analysis.Differentiation.DifferentiableByDifferential f c ∧ LRA.Analysis.Differentiation.DifferentiableByDifferential g c) → LRA.Analysis.Differentiation.DifferentiableByDifferential (fun x => instHAdd.hAdd (instHMul.hMul α (f x)) (instHMul.hMul β (g x))) c
+Transliterated theorem: DifferentiableByDifferential (fun x => α * f x + β * g x) c
+Logical form (Lean): (f g : ℝ → ℝ) (c α β : ℝ) (hf : DifferentiableByDifferential f c) (hg : DifferentiableByDifferential g c) : DifferentiableByDifferential (fun x => α * f x + β * g x) c
+Source: ./Differentiation/TaylorExpansion.lean#L258
+
+
+
+Name: CompositionInjective
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {f : A → B} {g : B → C} (hf : IsInjectiveOn f) (hg : IsInjectiveOn g), IsInjectiveOn (g ∘ f)
+Predicate logic (unfolded): ∀ {A : Type u_1} {B : Type u_2} {C : Type u_3} {f : A → B} {g : B → C}, (LRA.Analysis.Functions.IsInjectiveOn f ∧ LRA.Analysis.Functions.IsInjectiveOn g) → LRA.Analysis.Functions.IsInjectiveOn (Function.comp g f)
+Transliterated theorem: IsInjectiveOn (g ∘ f)
+Logical form (Lean): {f : A → B} {g : B → C} (hf : IsInjectiveOn f) (hg : IsInjectiveOn g) : IsInjectiveOn (g ∘ f)
+Source: ./Functions/AlgebraOfFunctions.lean#L130
+
+
+
+Name: CompositionSurjective
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {f : A → B} {g : B → C} (hf : IsSurjectiveOn f) (hg : IsSurjectiveOn g), IsSurjectiveOn (g ∘ f)
+Predicate logic (unfolded): ∀ {A : Type u_1} {B : Type u_2} {C : Type u_3} {f : A → B} {g : B → C}, (LRA.Analysis.Functions.IsSurjectiveOn f ∧ LRA.Analysis.Functions.IsSurjectiveOn g) → LRA.Analysis.Functions.IsSurjectiveOn (Function.comp g f)
+Transliterated theorem: IsSurjectiveOn (g ∘ f)
+Logical form (Lean): {f : A → B} {g : B → C} (hf : IsSurjectiveOn f) (hg : IsSurjectiveOn g) : IsSurjectiveOn (g ∘ f)
+Source: ./Functions/AlgebraOfFunctions.lean#L145
+
+
+
+Name: CompositionBijective
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {f : A → B} {g : B → C} (hf : IsBijectiveOn f) (hg : IsBijectiveOn g), IsBijectiveOn (g ∘ f)
+Predicate logic (unfolded): ∀ {A : Type u_1} {B : Type u_2} {C : Type u_3} {f : A → B} {g : B → C}, (LRA.Analysis.Functions.IsBijectiveOn f ∧ LRA.Analysis.Functions.IsBijectiveOn g) → LRA.Analysis.Functions.IsBijectiveOn (Function.comp g f)
+Transliterated theorem: IsBijectiveOn (g ∘ f)
+Logical form (Lean): {f : A → B} {g : B → C} (hf : IsBijectiveOn f) (hg : IsBijectiveOn g) : IsBijectiveOn (g ∘ f)
+Source: ./Functions/AlgebraOfFunctions.lean#L160
+
+
+
+Name: InverseBijection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {f : A → B} (hf : IsBijectiveOn f), ∃ g : B → A, IsInverseFunctionOf g f ∧ IsBijectiveOn g
+Predicate logic (unfolded): ∀ {A : Type u_1} {B : Type u_2} {f : A → B}, LRA.Analysis.Functions.IsBijectiveOn f → Exists fun g => (LRA.Analysis.Functions.IsInverseFunctionOf g f ∧ LRA.Analysis.Functions.IsBijectiveOn g)
+Transliterated theorem: ∃ g ∈ B → A, IsInverseFunctionOf g f ∧ IsBijectiveOn g
+Logical form (Lean): {f : A → B} (hf : IsBijectiveOn f) : ∃ g : B → A, IsInverseFunctionOf g f ∧ IsBijectiveOn g
+Source: ./Functions/AlgebraOfFunctions.lean#L174
+
+
+
+Name: PreimageUnionIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {f : A → B} (S T : Set B), f ⁻¹' (S ∪ T) = f ⁻¹' S ∪ f ⁻¹' T ∧ f ⁻¹' (S ∩ T) = f ⁻¹' S ∩ f ⁻¹' T ∧ f ⁻¹' Sᶜ = (f ⁻¹' S)ᶜ
+Predicate logic (unfolded): ∀ {A : Type u_1} {B : Type u_2} {f : A → B} (S T : Set B), (Set.preimage f (Set.instUnion.union S T) = Set.instUnion.union (Set.preimage f S) (Set.preimage f T) ∧ (Set.preimage f (Set.instInter.inter S T) = Set.instInter.inter (Set.preimage f S) (Set.preimage f T) ∧ Set.preimage f (Set.instCompl.compl S) = Set.instCompl.compl (Set.preimage f S)))
+Transliterated theorem: f ⁻¹' (S ∪ T) = f ⁻¹' S ∪ f ⁻¹' T ∧ f ⁻¹' (S ∩ T) = f ⁻¹' S ∩ f ⁻¹' T ∧ f ⁻¹' Sᶜ = (f ⁻¹' S)ᶜ
+Logical form (Lean): {f : A → B} (S T : Set B) : f ⁻¹' (S ∪ T) = f ⁻¹' S ∪ f ⁻¹' T ∧ f ⁻¹' (S ∩ T) = f ⁻¹' S ∩ f ⁻¹' T ∧ f ⁻¹' Sᶜ = (f ⁻¹' S)ᶜ
+Source: ./Functions/AlgebraOfFunctions.lean#L190
+
+
+
+Name: BoundedIffAbsoluteValueBoundedAbove
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ), FunctionBounded f A ↔ FunctionBoundedAbove (fun x => |f x|) A
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real), LRA.Analysis.Functions.FunctionBounded f A ↔ LRA.Analysis.Functions.FunctionBoundedAbove (fun x => abs (f x)) A
+Transliterated theorem: (ℝ → ℝ) → FunctionBounded f A ↔ FunctionBoundedAbove (fun x => |f x|) A
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) : FunctionBounded f A ↔ FunctionBoundedAbove (fun x => |f x|) A
+Source: ./Functions/BoundedFunctions.lean#L136
+
+
+
+Name: BoundednessRestriction
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (S A : Set ℝ) (hS : S ⊆ A) (h : FunctionBounded f A), FunctionBounded f S
+Predicate logic (unfolded): ∀ (f : Real → Real) (S A : Set Real), (Set.instLE.le S A ∧ LRA.Analysis.Functions.FunctionBounded f A) → LRA.Analysis.Functions.FunctionBounded f S
+Transliterated theorem: (ℝ → ℝ) → FunctionBounded f S
+Logical form (Lean): (f : ℝ → ℝ) (S A : Set ℝ) (hS : S ⊆ A) (h : FunctionBounded f A) : FunctionBounded f S
+Source: ./Functions/BoundedFunctions.lean#L150
+
+
+
+Name: BoundednessNotPreservedUnderExtension
+Kind: Theorem
+State: Sorry
+Predicate logic: ∃ (A B : Set ℝ) (f g : ℝ → ℝ), A ⊆ B ∧ FunctionBounded f A ∧ (∀ x ∈ A, g x = f x) ∧ ¬ FunctionBounded g B
+Predicate logic (unfolded): Exists fun A => Exists fun B => Exists fun f => Exists fun g => (Set.instLE.le A B ∧ (LRA.Analysis.Functions.FunctionBounded f A ∧ (∀ (x : Real), Set.instMembership.mem A x → g x = f x ∧ ¬ LRA.Analysis.Functions.FunctionBounded g B)))
+Transliterated theorem: ∃ A B ∈ Set ℝ f g ∈ ℝ → ℝ, A ⊆ B ∧ FunctionBounded f A ∧ (∀ x ∈ A, g x = f x) ∧ ¬ FunctionBounded g B
+Logical form (Lean): : ∃ (A B : Set ℝ) (f g : ℝ → ℝ), A ⊆ B ∧ FunctionBounded f A ∧ (∀ x ∈ A, g x = f x) ∧ ¬ FunctionBounded g B
+Source: ./Functions/BoundedFunctions.lean#L166
+
+
+
+Name: BoundedAwayFromZeroImpliesNonzero
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : Real → Real) (A : Set Real),   LRA.Analysis.Functions.FunctionBoundedAwayFromZero f A → ∀ (x : Real), Set.instMembership.mem A x → Ne (f x) 0
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real), LRA.Analysis.Functions.FunctionBoundedAwayFromZero f A → ∀ (x : Real), Set.instMembership.mem A x → Ne (f x) 0
+Transliterated theorem: (ℝ → ℝ) → ∀ x ∈ A, f x ≠ 0
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (h : FunctionBoundedAwayFromZero f A) : ∀ x ∈ A, f x ≠ 0
+Source: ./Functions/BoundedFunctions.lean#L182
+
+
+
+Name: BoundedAwayFromZeroNearImpliesNonzeroNear
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (c : ℝ) (A : Set ℝ) (h : FunctionBoundedAwayFromZeroNear f c A), ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| ∧ |x - c| < δ → f x ≠ 0
+Predicate logic (unfolded): ∀ (f : Real → Real) (c : Real) (A : Set Real), LRA.Analysis.Functions.FunctionBoundedAwayFromZeroNear f c A → Exists fun δ => (GT.gt δ 0 ∧ ∀ (x : Real), Set.instMembership.mem A x → (Real.instLT.lt 0 (abs (instHSub.hSub x c)) ∧ Real.instLT.lt (abs (instHSub.hSub x c)) δ) → Ne (f x) 0)
+Transliterated theorem: (ℝ → ℝ) → ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| ∧ |x - c| < δ → f x ≠ 0
+Logical form (Lean): (f : ℝ → ℝ) (c : ℝ) (A : Set ℝ) (h : FunctionBoundedAwayFromZeroNear f c A) : ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| ∧ |x - c| < δ → f x ≠ 0
+Source: ./Functions/BoundedFunctions.lean#L197
+
+
+
+Name: BoundedAwayFromZeroGivesBoundedReciprocal
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : Real → Real) (A : Set Real),   LRA.Analysis.Functions.FunctionBoundedAwayFromZero f A →     LRA.Analysis.Functions.FunctionBounded (fun x => instHDiv.hDiv 1 (f x)) A
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real), LRA.Analysis.Functions.FunctionBoundedAwayFromZero f A → LRA.Analysis.Functions.FunctionBounded (fun x => instHDiv.hDiv 1 (f x)) A
+Transliterated theorem: (ℝ → ℝ) → FunctionBounded (fun x => 1 / f x) A
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (h : FunctionBoundedAwayFromZero f A) : FunctionBounded (fun x => 1 / f x) A
+Source: ./Functions/BoundedFunctions.lean#L214
+
+
+
+Name: LocalBoundedAwayFromZeroGivesLocalBoundedReciprocal
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : Real → Real) (c : Real) (A : Set Real),   LRA.Analysis.Functions.FunctionBoundedAwayFromZeroNear f c A →     LRA.Analysis.Functions.FunctionBoundedNear (fun x => instHDiv.hDiv 1 (f x)) c A
+Predicate logic (unfolded): ∀ (f : Real → Real) (c : Real) (A : Set Real), LRA.Analysis.Functions.FunctionBoundedAwayFromZeroNear f c A → LRA.Analysis.Functions.FunctionBoundedNear (fun x => instHDiv.hDiv 1 (f x)) c A
+Transliterated theorem: (ℝ → ℝ) → FunctionBoundedNear (fun x => 1 / f x) c A
+Logical form (Lean): (f : ℝ → ℝ) (c : ℝ) (A : Set ℝ) (h : FunctionBoundedAwayFromZeroNear f c A) : FunctionBoundedNear (fun x => 1 / f x) c A
+Source: ./Functions/BoundedFunctions.lean#L231
+
+
+
+Name: UniformBoundednessTransferUnderPointwiseLimit
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℕ → ℝ → ℝ) (F : ℝ → ℝ) (A : Set ℝ) (hunif : UniformlyBoundedFamily f A) (hlim : ∀ x ∈ A, Filter.Tendsto (fun n => f n x) Filter.atTop (nhds (F x))), FunctionBounded F A
+Predicate logic (unfolded): ∀ (f : Nat → Real → Real) (F : Real → Real) (A : Set Real), (LRA.Analysis.Functions.UniformlyBoundedFamily f A ∧ ∀ (x : Real), Set.instMembership.mem A x → Filter.Tendsto (fun n => f n x) Filter.atTop (nhds (F x))) → LRA.Analysis.Functions.FunctionBounded F A
+Transliterated theorem: (ℕ → ℝ → ℝ ∧ ℝ → ℝ ∧ ∀ x ∈ A, Filter.Tendsto (fun n => f n x) Filter.atTop (nhds (F x))) → FunctionBounded F A
+Logical form (Lean): (f : ℕ → ℝ → ℝ) (F : ℝ → ℝ) (A : Set ℝ) (hunif : UniformlyBoundedFamily f A) (hlim : ∀ x ∈ A, Filter.Tendsto (fun n => f n x) Filter.atTop (nhds (F x))) : FunctionBounded F A
+Source: ./Functions/BoundedFunctions.lean#L251
+
+
+
+Name: BoundedFunctionAlgebraClosure
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hf : FunctionBounded f A) (hg : FunctionBounded g A), FunctionBounded (fun x => f x + g x) A ∧ FunctionBounded (fun x => f x - g x) A ∧ FunctionBounded (fun x => f x * g x) A ∧ FunctionBounded (fun x => lam * f x) A ∧ FunctionBounded (fun x => |f x|) A ∧ FunctionBounded (fun x => max (f x) (g x)) A ∧ FunctionBounded (fun x => min (f x) (g x)) A
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real) (lam : Real), (LRA.Analysis.Functions.FunctionBounded f A ∧ LRA.Analysis.Functions.FunctionBounded g A) → (LRA.Analysis.Functions.FunctionBounded (fun x => instHAdd.hAdd (f x) (g x)) A ∧ (LRA.Analysis.Functions.FunctionBounded (fun x => instHSub.hSub (f x) (g x)) A ∧ (LRA.Analysis.Functions.FunctionBounded (fun x => instHMul.hMul (f x) (g x)) A ∧ (LRA.Analysis.Functions.FunctionBounded (fun x => instHMul.hMul lam (f x)) A ∧ (LRA.Analysis.Functions.FunctionBounded (fun x => abs (f x)) A ∧ (LRA.Analysis.Functions.FunctionBounded (fun x => Real.instMax.max (f x) (g x)) A ∧ LRA.Analysis.Functions.FunctionBounded (fun x => Real.instMin.min (f x) (g x)) A))))))
+Transliterated theorem: FunctionBounded (fun x => f x + g x) A ∧ FunctionBounded (fun x => f x - g x) A ∧ FunctionBounded (fun x => f x * g x) A ∧ FunctionBounded (fun x => lam * f x) A ∧ FunctionBounded (fun x => |f x|) A ∧ FunctionBounded (fun x => max (f x) (g x)) A ∧ FunctionBounded (fun x => min (f x) (g x)) A
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hf : FunctionBounded f A) (hg : FunctionBounded g A) : FunctionBounded (fun x => f x + g x) A ∧ FunctionBounded (fun x => f x - g x) A ∧ FunctionBounded (fun x => f x * g x) A ∧ FunctionBounded (fun x => lam * f x) A ∧ FunctionBounded (fun x => |f x|) A ∧ FunctionBounded (fun x => max (f x) (g x)) A ∧ FunctionBounded (fun x => min (f x) (g x)) A
+Source: ./Functions/BoundedFunctions.lean#L279
+
+
+
+Name: BoundedSum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (hf : FunctionBounded f A) (hg : FunctionBounded g A), FunctionBounded (fun x => f x + g x) A
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real), (LRA.Analysis.Functions.FunctionBounded f A ∧ LRA.Analysis.Functions.FunctionBounded g A) → LRA.Analysis.Functions.FunctionBounded (fun x => instHAdd.hAdd (f x) (g x)) A
+Transliterated theorem: FunctionBounded (fun x => f x + g x) A
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (hf : FunctionBounded f A) (hg : FunctionBounded g A) : FunctionBounded (fun x => f x + g x) A
+Source: ./Functions/BoundedFunctions.lean#L301
+
+
+
+Name: BoundedDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (hf : FunctionBounded f A) (hg : FunctionBounded g A), FunctionBounded (fun x => f x - g x) A
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real), (LRA.Analysis.Functions.FunctionBounded f A ∧ LRA.Analysis.Functions.FunctionBounded g A) → LRA.Analysis.Functions.FunctionBounded (fun x => instHSub.hSub (f x) (g x)) A
+Transliterated theorem: FunctionBounded (fun x => f x - g x) A
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (hf : FunctionBounded f A) (hg : FunctionBounded g A) : FunctionBounded (fun x => f x - g x) A
+Source: ./Functions/BoundedFunctions.lean#L317
+
+
+
+Name: BoundedProduct
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (hf : FunctionBounded f A) (hg : FunctionBounded g A), FunctionBounded (fun x => f x * g x) A
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real), (LRA.Analysis.Functions.FunctionBounded f A ∧ LRA.Analysis.Functions.FunctionBounded g A) → LRA.Analysis.Functions.FunctionBounded (fun x => instHMul.hMul (f x) (g x)) A
+Transliterated theorem: FunctionBounded (fun x => f x * g x) A
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (hf : FunctionBounded f A) (hg : FunctionBounded g A) : FunctionBounded (fun x => f x * g x) A
+Source: ./Functions/BoundedFunctions.lean#L333
+
+
+
+Name: BoundedScalarMultiple
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : Real → Real) (A : Set Real) (lam : Real),   LRA.Analysis.Functions.FunctionBounded f A →     LRA.Analysis.Functions.FunctionBounded (fun x => instHMul.hMul lam (f x)) A
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (lam : Real), LRA.Analysis.Functions.FunctionBounded f A → LRA.Analysis.Functions.FunctionBounded (fun x => instHMul.hMul lam (f x)) A
+Transliterated theorem: (ℝ → ℝ) → FunctionBounded (fun x => lam * f x) A
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hf : FunctionBounded f A) : FunctionBounded (fun x => lam * f x) A
+Source: ./Functions/BoundedFunctions.lean#L348
+
+
+
+Name: BoundedAbsoluteValue
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : Real → Real) (A : Set Real),   LRA.Analysis.Functions.FunctionBounded f A → LRA.Analysis.Functions.FunctionBounded (fun x => abs (f x)) A
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real), LRA.Analysis.Functions.FunctionBounded f A → LRA.Analysis.Functions.FunctionBounded (fun x => abs (f x)) A
+Transliterated theorem: (ℝ → ℝ) → FunctionBounded (fun x => |f x|) A
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (hf : FunctionBounded f A) : FunctionBounded (fun x => |f x|) A
+Source: ./Functions/BoundedFunctions.lean#L362
+
+
+
+Name: BoundedMaxMin
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (hf : FunctionBounded f A) (hg : FunctionBounded g A), FunctionBounded (fun x => max (f x) (g x)) A ∧ FunctionBounded (fun x => min (f x) (g x)) A
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real), (LRA.Analysis.Functions.FunctionBounded f A ∧ LRA.Analysis.Functions.FunctionBounded g A) → (LRA.Analysis.Functions.FunctionBounded (fun x => Real.instMax.max (f x) (g x)) A ∧ LRA.Analysis.Functions.FunctionBounded (fun x => Real.instMin.min (f x) (g x)) A)
+Transliterated theorem: FunctionBounded (fun x => max (f x) (g x)) A ∧ FunctionBounded (fun x => min (f x) (g x)) A
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (hf : FunctionBounded f A) (hg : FunctionBounded g A) : FunctionBounded (fun x => max (f x) (g x)) A ∧ FunctionBounded (fun x => min (f x) (g x)) A
+Source: ./Functions/BoundedFunctions.lean#L379
+
+
+
+Name: BoundedFunctionsFormCommutativeRing
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Set ℝ), ∀ f g : ℝ → ℝ, FunctionBounded f A → FunctionBounded g A → FunctionBounded (fun x => f x + g x) A ∧ FunctionBounded (fun x => -f x) A ∧ FunctionBounded (fun x => f x * g x) A ∧ FunctionBounded (fun _ => (0 : ℝ)) A ∧ FunctionBounded (fun _ => (1 : ℝ)) A
+Predicate logic (unfolded): ∀ (A : Set Real) (f g : Real → Real), (LRA.Analysis.Functions.FunctionBounded f A ∧ LRA.Analysis.Functions.FunctionBounded g A) → (LRA.Analysis.Functions.FunctionBounded (fun x => instHAdd.hAdd (f x) (g x)) A ∧ (LRA.Analysis.Functions.FunctionBounded (fun x => Real.instNeg.neg (f x)) A ∧ (LRA.Analysis.Functions.FunctionBounded (fun x => instHMul.hMul (f x) (g x)) A ∧ (LRA.Analysis.Functions.FunctionBounded (fun x => 0) A ∧ LRA.Analysis.Functions.FunctionBounded (fun x => 1) A))))
+Transliterated theorem: ∀ f g : ℝ → ℝ, FunctionBounded f A → FunctionBounded g A → FunctionBounded (fun x => f x + g x) A ∧ FunctionBounded (fun x => -f x) A ∧ FunctionBounded (fun x => f x * g x) A ∧ FunctionBounded (fun _ => 0 ∈ ℝ) A ∧ FunctionBounded (fun _ => 1 ∈ ℝ) A
+Logical form (Lean): (A : Set ℝ) : ∀ f g : ℝ → ℝ, FunctionBounded f A → FunctionBounded g A → FunctionBounded (fun x => f x + g x) A ∧ FunctionBounded (fun x => -f x) A ∧ FunctionBounded (fun x => f x * g x) A ∧ FunctionBounded (fun _ => (0 : ℝ)) A ∧ FunctionBounded (fun _ => (1 : ℝ)) A
+Source: ./Functions/BoundedFunctions.lean#L403
+
+
+
+Name: BoundedFunctionsFormRealVectorSpace
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Set ℝ), ∀ f g : ℝ → ℝ, ∀ lam : ℝ, FunctionBounded f A → FunctionBounded g A → FunctionBounded (fun x => f x + g x) A ∧ FunctionBounded (fun x => -f x) A ∧ FunctionBounded (fun x => lam * f x) A ∧ FunctionBounded (fun _ => (0 : ℝ)) A
+Predicate logic (unfolded): ∀ (A : Set Real) (f g : Real → Real) (lam : Real), (LRA.Analysis.Functions.FunctionBounded f A ∧ LRA.Analysis.Functions.FunctionBounded g A) → (LRA.Analysis.Functions.FunctionBounded (fun x => instHAdd.hAdd (f x) (g x)) A ∧ (LRA.Analysis.Functions.FunctionBounded (fun x => Real.instNeg.neg (f x)) A ∧ (LRA.Analysis.Functions.FunctionBounded (fun x => instHMul.hMul lam (f x)) A ∧ LRA.Analysis.Functions.FunctionBounded (fun x => 0) A)))
+Transliterated theorem: ∀ f g : ℝ → ℝ, ∀ lam : ℝ, FunctionBounded f A → FunctionBounded g A → FunctionBounded (fun x => f x + g x) A ∧ FunctionBounded (fun x => -f x) A ∧ FunctionBounded (fun x => lam * f x) A ∧ FunctionBounded (fun _ => 0 ∈ ℝ) A
+Logical form (Lean): (A : Set ℝ) : ∀ f g : ℝ → ℝ, ∀ lam : ℝ, FunctionBounded f A → FunctionBounded g A → FunctionBounded (fun x => f x + g x) A ∧ FunctionBounded (fun x => -f x) A ∧ FunctionBounded (fun x => lam * f x) A ∧ FunctionBounded (fun _ => (0 : ℝ)) A
+Source: ./Functions/BoundedFunctions.lean#L428
+
+
+
+Name: BoundedAwayQuotient
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (hf : FunctionBounded f A) (hg : FunctionBoundedAwayFromZero g A), FunctionBounded (fun x => f x / g x) A
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real), (LRA.Analysis.Functions.FunctionBounded f A ∧ LRA.Analysis.Functions.FunctionBoundedAwayFromZero g A) → LRA.Analysis.Functions.FunctionBounded (fun x => instHDiv.hDiv (f x) (g x)) A
+Transliterated theorem: FunctionBounded (fun x => f x / g x) A
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (hf : FunctionBounded f A) (hg : FunctionBoundedAwayFromZero g A) : FunctionBounded (fun x => f x / g x) A
+Source: ./Functions/BoundedFunctions.lean#L448
+
+
+
+Name: BoundedQuotientByBoundedAwayDenominator
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (hf : FunctionBounded f A) (hg : FunctionBoundedAwayFromZero g A), FunctionBounded (fun x => f x / g x) A
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real), (LRA.Analysis.Functions.FunctionBounded f A ∧ LRA.Analysis.Functions.FunctionBoundedAwayFromZero g A) → LRA.Analysis.Functions.FunctionBounded (fun x => instHDiv.hDiv (f x) (g x)) A
+Transliterated theorem: FunctionBounded (fun x => f x / g x) A
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (hf : FunctionBounded f A) (hg : FunctionBoundedAwayFromZero g A) : FunctionBounded (fun x => f x / g x) A
+Source: ./Functions/BoundedFunctions.lean#L464
+
+
+
+Name: CommonMaximumGivesSumMaximum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ) (hx₀ : x₀ ∈ A) (hf : ∀ x ∈ A, f x ≤ f x₀) (hg : ∀ x ∈ A, g x ≤ g x₀), ∀ x ∈ A, f x + g x ≤ f x₀ + g x₀
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real) (x₀ : Real), (Set.instMembership.mem A x₀ ∧ (∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (f x) (f x₀) ∧ ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (g x) (g x₀))) → ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (instHAdd.hAdd (f x) (g x)) (instHAdd.hAdd (f x₀) (g x₀))
+Transliterated theorem: (x₀ ∈ A ∧ ∀ x ∈ A, f x ≤ f x₀ ∧ ∀ x ∈ A, g x ≤ g x₀) → ∀ x ∈ A, f x + g x ≤ f x₀ + g x₀
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ) (hx₀ : x₀ ∈ A) (hf : ∀ x ∈ A, f x ≤ f x₀) (hg : ∀ x ∈ A, g x ≤ g x₀) : ∀ x ∈ A, f x + g x ≤ f x₀ + g x₀
+Source: ./Functions/ExtremumPoints.lean#L38
+
+
+
+Name: CommonMinimumGivesSumMinimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ) (hx₀ : x₀ ∈ A) (hf : ∀ x ∈ A, f x₀ ≤ f x) (hg : ∀ x ∈ A, g x₀ ≤ g x), ∀ x ∈ A, f x₀ + g x₀ ≤ f x + g x
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real) (x₀ : Real), (Set.instMembership.mem A x₀ ∧ (∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (f x₀) (f x) ∧ ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (g x₀) (g x))) → ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (instHAdd.hAdd (f x₀) (g x₀)) (instHAdd.hAdd (f x) (g x))
+Transliterated theorem: (x₀ ∈ A ∧ ∀ x ∈ A, f x₀ ≤ f x ∧ ∀ x ∈ A, g x₀ ≤ g x) → ∀ x ∈ A, f x₀ + g x₀ ≤ f x + g x
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ) (hx₀ : x₀ ∈ A) (hf : ∀ x ∈ A, f x₀ ≤ f x) (hg : ∀ x ∈ A, g x₀ ≤ g x) : ∀ x ∈ A, f x₀ + g x₀ ≤ f x + g x
+Source: ./Functions/ExtremumPoints.lean#L56
+
+
+
+Name: CommonExtremumConverseFails
+Kind: Theorem
+State: Sorry
+Predicate logic: ∃ (A : Set ℝ) (f g : ℝ → ℝ) (x₀ : ℝ), x₀ ∈ A ∧ (∀ x ∈ A, f x + g x ≤ f x₀ + g x₀) ∧ ¬ (∀ x ∈ A, f x ≤ f x₀)
+Predicate logic (unfolded): Exists fun A => Exists fun f => Exists fun g => Exists fun x₀ => (Set.instMembership.mem A x₀ ∧ (∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (instHAdd.hAdd (f x) (g x)) (instHAdd.hAdd (f x₀) (g x₀)) ∧ ¬ ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (f x) (f x₀)))
+Transliterated theorem: ∃ A ∈ Set ℝ f g ∈ ℝ → ℝ x₀ ∈ ℝ, x₀ ∈ A ∧ (∀ x ∈ A, f x + g x ≤ f x₀ + g x₀) ∧ ¬ (∀ x ∈ A, f x ≤ f x₀)
+Logical form (Lean): : ∃ (A : Set ℝ) (f g : ℝ → ℝ) (x₀ : ℝ), x₀ ∈ A ∧ (∀ x ∈ A, f x + g x ≤ f x₀ + g x₀) ∧ ¬ (∀ x ∈ A, f x ≤ f x₀)
+Source: ./Functions/ExtremumPoints.lean#L74
+
+
+
+Name: MaximumPointCharacterizedBySupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ) (hx₀ : x₀ ∈ A) (hA : A.Nonempty) (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M), FunctionMaximumPoint f A x₀ ↔ IsLUB (f '' A) (f x₀)
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (x₀ : Real), (Set.instMembership.mem A x₀ ∧ (A.Nonempty ∧ Exists fun M => ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (f x) M)) → LRA.Analysis.Functions.FunctionMaximumPoint f A x₀ ↔ IsLUB (Set.image f A) (f x₀)
+Transliterated theorem: (∀ hA ∈ A.Nonempty), (ℝ → ℝ ∧ x₀ ∈ A ∧ ∃ M, ∀ x ∈ A, f x ≤ M) → FunctionMaximumPoint f A x₀ ↔ IsLUB (f '' A) (f x₀)
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ) (hx₀ : x₀ ∈ A) (hA : A.Nonempty) (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M) : FunctionMaximumPoint f A x₀ ↔ IsLUB (f '' A) (f x₀)
+Source: ./Functions/ExtremumPoints.lean#L104
+
+
+
+Name: MinimumPointCharacterizedByInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ) (hx₀ : x₀ ∈ A) (hA : A.Nonempty) (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x), FunctionMinimumPoint f A x₀ ↔ IsGLB (f '' A) (f x₀)
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (x₀ : Real), (Set.instMembership.mem A x₀ ∧ (A.Nonempty ∧ Exists fun m => ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le m (f x))) → LRA.Analysis.Functions.FunctionMinimumPoint f A x₀ ↔ IsGLB (Set.image f A) (f x₀)
+Transliterated theorem: (∀ hA ∈ A.Nonempty), (ℝ → ℝ ∧ x₀ ∈ A ∧ ∃ m, ∀ x ∈ A, m ≤ f x) → FunctionMinimumPoint f A x₀ ↔ IsGLB (f '' A) (f x₀)
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ) (hx₀ : x₀ ∈ A) (hA : A.Nonempty) (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x) : FunctionMinimumPoint f A x₀ ↔ IsGLB (f '' A) (f x₀)
+Source: ./Functions/ExtremumPoints.lean#L133
+
+
+
+Name: FunctionExtremumValuesAreUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (x₁ x₂ : ℝ) (h₁ : FunctionMaximumPoint f A x₁) (h₂ : FunctionMaximumPoint f A x₂), f x₁ = f x₂
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (x₁ x₂ : Real), (LRA.Analysis.Functions.FunctionMaximumPoint f A x₁ ∧ LRA.Analysis.Functions.FunctionMaximumPoint f A x₂) → f x₁ = f x₂
+Transliterated theorem: (ℝ → ℝ) → f x₁ = f x₂
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (x₁ x₂ : ℝ) (h₁ : FunctionMaximumPoint f A x₁) (h₂ : FunctionMaximumPoint f A x₂) : f x₁ = f x₂
+Source: ./Functions/ExtremumPoints.lean#L149
+
+
+
+Name: LinearCombinationClosure
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (a b : ℝ) (A : Set ℝ), ∀ x ∈ A, LinearCombo a b f g x = a * f x + b * g x
+Predicate logic (unfolded): ∀ (f g : Real → Real) (a b : Real) (A : Set Real) (x : Real), Set.instMembership.mem A x → LRA.Analysis.Functions.LinearCombo a b f g x = instHAdd.hAdd (instHMul.hMul a (f x)) (instHMul.hMul b (g x))
+Transliterated theorem: ∀ x ∈ A, LinearCombo a b f g x = a * f x + b * g x
+Logical form (Lean): (f g : ℝ → ℝ) (a b : ℝ) (A : Set ℝ) : ∀ x ∈ A, LinearCombo a b f g x = a * f x + b * g x
+Source: ./Functions/LinearCombinations.lean#L44
+
+
+
+Name: BoundedLinearCombination
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (a b : ℝ) (hf : ∃ B > 0, ∀ x ∈ A, |f x| ≤ B) (hg : ∃ B > 0, ∀ x ∈ A, |g x| ≤ B), ∃ B > 0, ∀ x ∈ A, |LinearCombo a b f g x| ≤ B
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real) (a b : Real), (Exists fun B => (GT.gt B 0 ∧ ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (abs (f x)) B) ∧ Exists fun B => (GT.gt B 0 ∧ ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (abs (g x)) B)) → Exists fun B => (GT.gt B 0 ∧ ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (abs (LRA.Analysis.Functions.LinearCombo a b f g x)) B)
+Transliterated theorem: (∃ B > 0, ∀ x ∈ A, |f x| ≤ B ∧ ∃ B > 0, ∀ x ∈ A, |g x| ≤ B) → ∃ B > 0, ∀ x ∈ A, |LinearCombo a b f g x| ≤ B
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (a b : ℝ) (hf : ∃ B > 0, ∀ x ∈ A, |f x| ≤ B) (hg : ∃ B > 0, ∀ x ∈ A, |g x| ≤ B) : ∃ B > 0, ∀ x ∈ A, |LinearCombo a b f g x| ≤ B
+Source: ./Functions/LinearCombinations.lean#L59
+
+
+
+Name: RealLinearRuleTest
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (C : Set (ℝ → ℝ)) (hC : IsClosedUnderLinearCombinations C) (T : (ℝ → ℝ) → ℝ), IsRealLinearRule C T ↔ ((∀ f g, f ∈ C → g ∈ C → T (fun x => f x + g x) = T f + T g) ∧ (∀ f, f ∈ C → ∀ a : ℝ, T (fun x => a * f x) = a * T f))
+Predicate logic (unfolded): ∀ (C : Set (Real → Real)), LRA.Analysis.Functions.IsClosedUnderLinearCombinations C → ∀ (T : (Real → Real) → Real), LRA.Analysis.Functions.IsRealLinearRule C T ↔ (∀ (f g : Real → Real), Set.instMembership.mem C f → Set.instMembership.mem C g → T fun x => instHAdd.hAdd (f x) (g x) = instHAdd.hAdd (T f) (T g) ∧ ∀ (f : Real → Real), Set.instMembership.mem C f → ∀ (a : Real), T fun x => instHMul.hMul a (f x) = instHMul.hMul a (T f))
+Transliterated theorem: (Set (ℝ → ℝ) ∧ (ℝ → ℝ) → ℝ) → IsRealLinearRule C T ↔ ((∀ f g, f ∈ C → g ∈ C → T (fun x => f x + g x) = T f + T g) ∧ ∀ f, f ∈ C → ∀ a ∈ ℝ, T (fun x => a * f x = a * T f))
+Logical form (Lean): (C : Set (ℝ → ℝ)) (hC : IsClosedUnderLinearCombinations C) (T : (ℝ → ℝ) → ℝ) : IsRealLinearRule C T ↔ ((∀ f g, f ∈ C → g ∈ C → T (fun x => f x + g x) = T f + T g) ∧ (∀ f, f ∈ C → ∀ a : ℝ, T (fun x => a * f x) = a * T f))
+Source: ./Functions/LinearCombinations.lean#L103
+
+
+
+Name: RealLinearRuleBasicValues
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (C : Set (ℝ → ℝ)) (hC : IsClosedUnderLinearCombinations C) (T : (ℝ → ℝ) → ℝ) (hT : IsRealLinearRule C T) (h0 : (fun _ : ℝ => (0 : ℝ)) ∈ C), T (fun _ => 0) = 0 ∧ ∀ f, f ∈ C → T (fun x => -f x) = -T f
+Predicate logic (unfolded): ∀ (C : Set (Real → Real)), LRA.Analysis.Functions.IsClosedUnderLinearCombinations C → ∀ (T : (Real → Real) → Real), (LRA.Analysis.Functions.IsRealLinearRule C T ∧ Set.instMembership.mem C fun x => 0) → (T fun x => 0 = 0 ∧ ∀ (f : Real → Real), Set.instMembership.mem C f → T fun x => Real.instNeg.neg (f x) = Real.instNeg.neg (T f))
+Transliterated theorem: (Set (ℝ → ℝ) ∧ (ℝ → ℝ) → ℝ ∧ fun _ ∈ ℝ => 0 ∈ ℝ ∈ C) → T (fun _ => 0) = 0 ∧ ∀ f, f ∈ C → T (fun x => -f x) = -T f
+Logical form (Lean): (C : Set (ℝ → ℝ)) (hC : IsClosedUnderLinearCombinations C) (T : (ℝ → ℝ) → ℝ) (hT : IsRealLinearRule C T) (h0 : (fun _ : ℝ => (0 : ℝ)) ∈ C) : T (fun _ => 0) = 0 ∧ ∀ f, f ∈ C → T (fun x => -f x) = -T f
+Source: ./Functions/LinearCombinations.lean#L123
+
+
+
+Name: StrictlyIncreasingImpliesIncreasing
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : Real → Real) (A : Set Real),   LRA.Analysis.Functions.FunctionStrictlyIncreasing f A → LRA.Analysis.Functions.FunctionIncreasing f A
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real), LRA.Analysis.Functions.FunctionStrictlyIncreasing f A → LRA.Analysis.Functions.FunctionIncreasing f A
+Transliterated theorem: (ℝ → ℝ) → FunctionIncreasing f A
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (h : FunctionStrictlyIncreasing f A) : FunctionIncreasing f A
+Source: ./Functions/MonotoneConstantFunctions.lean#L63
+
+
+
+Name: StrictlyDecreasingImpliesDecreasing
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : Real → Real) (A : Set Real),   LRA.Analysis.Functions.FunctionStrictlyDecreasing f A → LRA.Analysis.Functions.FunctionDecreasing f A
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real), LRA.Analysis.Functions.FunctionStrictlyDecreasing f A → LRA.Analysis.Functions.FunctionDecreasing f A
+Transliterated theorem: (ℝ → ℝ) → FunctionDecreasing f A
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (h : FunctionStrictlyDecreasing f A) : FunctionDecreasing f A
+Source: ./Functions/MonotoneConstantFunctions.lean#L101
+
+
+
+Name: NegationReversesMonotonicity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ), (FunctionIncreasing f A ↔ FunctionDecreasing (fun x => -f x) A) ∧ (FunctionDecreasing f A ↔ FunctionIncreasing (fun x => -f x) A)
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real), (LRA.Analysis.Functions.FunctionIncreasing f A ↔ LRA.Analysis.Functions.FunctionDecreasing (fun x => Real.instNeg.neg (f x)) A ∧ LRA.Analysis.Functions.FunctionDecreasing f A ↔ LRA.Analysis.Functions.FunctionIncreasing (fun x => Real.instNeg.neg (f x)) A)
+Transliterated theorem: (ℝ → ℝ) → (FunctionIncreasing f A ↔ FunctionDecreasing (fun x => -f x) A) ∧ (FunctionDecreasing f A ↔ FunctionIncreasing (fun x => -f x) A)
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) : (FunctionIncreasing f A ↔ FunctionDecreasing (fun x => -f x) A) ∧ (FunctionDecreasing f A ↔ FunctionIncreasing (fun x => -f x) A)
+Source: ./Functions/MonotoneConstantFunctions.lean#L128
+
+
+
+Name: PositiveScalarMultiplesPreserveMonotonicity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hlam : 0 < lam), (FunctionIncreasing f A ↔ FunctionIncreasing (fun x => lam * f x) A) ∧ (FunctionDecreasing f A ↔ FunctionDecreasing (fun x => lam * f x) A)
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (lam : Real), Real.instLT.lt 0 lam → (LRA.Analysis.Functions.FunctionIncreasing f A ↔ LRA.Analysis.Functions.FunctionIncreasing (fun x => instHMul.hMul lam (f x)) A ∧ LRA.Analysis.Functions.FunctionDecreasing f A ↔ LRA.Analysis.Functions.FunctionDecreasing (fun x => instHMul.hMul lam (f x)) A)
+Transliterated theorem: (ℝ → ℝ ∧ 0 < lam) → (FunctionIncreasing f A ↔ FunctionIncreasing (fun x => lam * f x) A) ∧ (FunctionDecreasing f A ↔ FunctionDecreasing (fun x => lam * f x) A)
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hlam : 0 < lam) : (FunctionIncreasing f A ↔ FunctionIncreasing (fun x => lam * f x) A) ∧ (FunctionDecreasing f A ↔ FunctionDecreasing (fun x => lam * f x) A)
+Source: ./Functions/MonotoneConstantFunctions.lean#L146
+
+
+
+Name: MonotoneNeedNotBeStrict
+Kind: Theorem
+State: Sorry
+Predicate logic: ∃ (A : Set ℝ) (f : ℝ → ℝ), FunctionIncreasing f A ∧ ¬ FunctionStrictlyIncreasing f A
+Predicate logic (unfolded): Exists fun A => Exists fun f => (LRA.Analysis.Functions.FunctionIncreasing f A ∧ ¬ LRA.Analysis.Functions.FunctionStrictlyIncreasing f A)
+Transliterated theorem: ∃ A ∈ Set ℝ f ∈ ℝ → ℝ, FunctionIncreasing f A ∧ ¬ FunctionStrictlyIncreasing f A
+Logical form (Lean): : ∃ (A : Set ℝ) (f : ℝ → ℝ), FunctionIncreasing f A ∧ ¬ FunctionStrictlyIncreasing f A
+Source: ./Functions/MonotoneConstantFunctions.lean#L163
+
+
+
+Name: ConstantFunctionCharacterization
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ), FunctionConstant f A ↔ (FunctionIncreasing f A ∧ FunctionDecreasing f A)
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real), LRA.Analysis.Functions.FunctionConstant f A ↔ (LRA.Analysis.Functions.FunctionIncreasing f A ∧ LRA.Analysis.Functions.FunctionDecreasing f A)
+Transliterated theorem: (ℝ → ℝ) → FunctionConstant f A ↔ (FunctionIncreasing f A ∧ FunctionDecreasing f A)
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) : FunctionConstant f A ↔ (FunctionIncreasing f A ∧ FunctionDecreasing f A)
+Source: ./Functions/MonotoneConstantFunctions.lean#L190
+
+
+
+Name: ConstantFunctionsAreBounded
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (h : FunctionConstant f A), ∃ B > 0, ∀ x ∈ A, |f x| ≤ B
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real), LRA.Analysis.Functions.FunctionConstant f A → Exists fun B => (GT.gt B 0 ∧ ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (abs (f x)) B)
+Transliterated theorem: (ℝ → ℝ) → ∃ B > 0, ∀ x ∈ A, |f x| ≤ B
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (h : FunctionConstant f A) : ∃ B > 0, ∀ x ∈ A, |f x| ≤ B
+Source: ./Functions/MonotoneConstantFunctions.lean#L204
+
+
+
+Name: ConstantFunctionsAreMonotone
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : Real → Real) (A : Set Real),   LRA.Analysis.Functions.FunctionConstant f A → LRA.Analysis.Functions.FunctionMonotone f A
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real), LRA.Analysis.Functions.FunctionConstant f A → LRA.Analysis.Functions.FunctionMonotone f A
+Transliterated theorem: (ℝ → ℝ) → FunctionMonotone f A
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (h : FunctionConstant f A) : FunctionMonotone f A
+Source: ./Functions/MonotoneConstantFunctions.lean#L217
+
+
+
+Name: MonotoneFunctionAlgebra
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ), (FunctionIncreasing f A → FunctionIncreasing g A → FunctionIncreasing (fun x => f x + g x) A) ∧ (FunctionDecreasing f A → FunctionDecreasing g A → FunctionDecreasing (fun x => f x + g x) A) ∧ (FunctionIncreasing f A → FunctionIncreasing g A → (∀ x ∈ A, 0 ≤ f x) → (∀ x ∈ A, 0 ≤ g x) → FunctionIncreasing (fun x => f x * g x) A) ∧ (FunctionDecreasing f A → FunctionDecreasing g A → (∀ x ∈ A, 0 ≤ f x) → (∀ x ∈ A, 0 ≤ g x) → FunctionDecreasing (fun x => f x * g x) A)
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real), (LRA.Analysis.Functions.FunctionIncreasing f A → LRA.Analysis.Functions.FunctionIncreasing g A → LRA.Analysis.Functions.FunctionIncreasing (fun x => instHAdd.hAdd (f x) (g x)) A ∧ (LRA.Analysis.Functions.FunctionDecreasing f A → LRA.Analysis.Functions.FunctionDecreasing g A → LRA.Analysis.Functions.FunctionDecreasing (fun x => instHAdd.hAdd (f x) (g x)) A ∧ (LRA.Analysis.Functions.FunctionIncreasing f A → LRA.Analysis.Functions.FunctionIncreasing g A → (∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le 0 (f x)) → (∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le 0 (g x)) → LRA.Analysis.Functions.FunctionIncreasing (fun x => instHMul.hMul (f x) (g x)) A ∧ LRA.Analysis.Functions.FunctionDecreasing f A → LRA.Analysis.Functions.FunctionDecreasing g A → (∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le 0 (f x)) → (∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le 0 (g x)) → LRA.Analysis.Functions.FunctionDecreasing (fun x => instHMul.hMul (f x) (g x)) A)))
+Transliterated theorem: (FunctionIncreasing f A → FunctionIncreasing g A → FunctionIncreasing (fun x => f x + g x) A) ∧ (FunctionDecreasing f A → FunctionDecreasing g A → FunctionDecreasing (fun x => f x + g x) A) ∧ (FunctionIncreasing f A → FunctionIncreasing g A → (∀ x ∈ A, 0 ≤ f x) → (∀ x ∈ A, 0 ≤ g x) → FunctionIncreasing (fun x => f x * g x) A) ∧ (FunctionDecreasing f A → FunctionDecreasing g A → (∀ x ∈ A, 0 ≤ f x) → (∀ x ∈ A, 0 ≤ g x) → FunctionDecreasing (fun x => f x * g x) A)
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) : (FunctionIncreasing f A → FunctionIncreasing g A → FunctionIncreasing (fun x => f x + g x) A) ∧ (FunctionDecreasing f A → FunctionDecreasing g A → FunctionDecreasing (fun x => f x + g x) A) ∧ (FunctionIncreasing f A → FunctionIncreasing g A → (∀ x ∈ A, 0 ≤ f x) → (∀ x ∈ A, 0 ≤ g x) → FunctionIncreasing (fun x => f x * g x) A) ∧ (FunctionDecreasing f A → FunctionDecreasing g A → (∀ x ∈ A, 0 ≤ f x) → (∀ x ∈ A, 0 ≤ g x) → FunctionDecreasing (fun x => f x * g x) A)
+Source: ./Functions/MonotoneConstantFunctions.lean#L244
+
+
+
+Name: StrictlyMonotoneImpliesInjective
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (h : FunctionStrictlyIncreasing f A ∨ FunctionStrictlyDecreasing f A), ∀ x ∈ A, ∀ y ∈ A, f x = f y → x = y
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real), Or (LRA.Analysis.Functions.FunctionStrictlyIncreasing f A) (LRA.Analysis.Functions.FunctionStrictlyDecreasing f A) → ∀ (x : Real), Set.instMembership.mem A x → ∀ (y : Real), (Set.instMembership.mem A y ∧ f x = f y) → x = y
+Transliterated theorem: (ℝ → ℝ) → ∀ x ∈ A, ∀ y ∈ A, f x = f y → x = y
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (h : FunctionStrictlyIncreasing f A ∨ FunctionStrictlyDecreasing f A) : ∀ x ∈ A, ∀ y ∈ A, f x = f y → x = y
+Source: ./Functions/MonotoneConstantFunctions.lean#L268
+
+
+
+Name: MonotonicityRestriction
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (S A : Set ℝ) (hS : S ⊆ A), (FunctionIncreasing f A → FunctionIncreasing f S) ∧ (FunctionDecreasing f A → FunctionDecreasing f S) ∧ (FunctionStrictlyIncreasing f A → FunctionStrictlyIncreasing f S) ∧ (FunctionStrictlyDecreasing f A → FunctionStrictlyDecreasing f S)
+Predicate logic (unfolded): ∀ (f : Real → Real) (S A : Set Real), Set.instLE.le S A → (LRA.Analysis.Functions.FunctionIncreasing f A → LRA.Analysis.Functions.FunctionIncreasing f S ∧ (LRA.Analysis.Functions.FunctionDecreasing f A → LRA.Analysis.Functions.FunctionDecreasing f S ∧ (LRA.Analysis.Functions.FunctionStrictlyIncreasing f A → LRA.Analysis.Functions.FunctionStrictlyIncreasing f S ∧ LRA.Analysis.Functions.FunctionStrictlyDecreasing f A → LRA.Analysis.Functions.FunctionStrictlyDecreasing f S)))
+Transliterated theorem: (ℝ → ℝ) → (FunctionIncreasing f A → FunctionIncreasing f S) ∧ (FunctionDecreasing f A → FunctionDecreasing f S) ∧ (FunctionStrictlyIncreasing f A → FunctionStrictlyIncreasing f S) ∧ (FunctionStrictlyDecreasing f A → FunctionStrictlyDecreasing f S)
+Logical form (Lean): (f : ℝ → ℝ) (S A : Set ℝ) (hS : S ⊆ A) : (FunctionIncreasing f A → FunctionIncreasing f S) ∧ (FunctionDecreasing f A → FunctionDecreasing f S) ∧ (FunctionStrictlyIncreasing f A → FunctionStrictlyIncreasing f S) ∧ (FunctionStrictlyDecreasing f A → FunctionStrictlyDecreasing f S)
+Source: ./Functions/MonotoneConstantFunctions.lean#L288
+
+
+
+Name: CompositionOfMonotoneFunctions
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A B : Set ℝ) (hmaps : ∀ x ∈ A, f x ∈ B), (FunctionIncreasing f A → FunctionIncreasing g B → FunctionIncreasing (g ∘ f) A) ∧ (FunctionDecreasing f A → FunctionDecreasing g B → FunctionIncreasing (g ∘ f) A) ∧ (FunctionIncreasing f A → FunctionDecreasing g B → FunctionDecreasing (g ∘ f) A) ∧ (FunctionDecreasing f A → FunctionIncreasing g B → FunctionDecreasing (g ∘ f) A)
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A B : Set Real), (∀ (x : Real), Set.instMembership.mem A x → Set.instMembership.mem B (f x)) → (LRA.Analysis.Functions.FunctionIncreasing f A → LRA.Analysis.Functions.FunctionIncreasing g B → LRA.Analysis.Functions.FunctionIncreasing (Function.comp g f) A ∧ (LRA.Analysis.Functions.FunctionDecreasing f A → LRA.Analysis.Functions.FunctionDecreasing g B → LRA.Analysis.Functions.FunctionIncreasing (Function.comp g f) A ∧ (LRA.Analysis.Functions.FunctionIncreasing f A → LRA.Analysis.Functions.FunctionDecreasing g B → LRA.Analysis.Functions.FunctionDecreasing (Function.comp g f) A ∧ LRA.Analysis.Functions.FunctionDecreasing f A → LRA.Analysis.Functions.FunctionIncreasing g B → LRA.Analysis.Functions.FunctionDecreasing (Function.comp g f) A)))
+Transliterated theorem: (∀ x ∈ A, f x ∈ B) → (FunctionIncreasing f A → FunctionIncreasing g B → FunctionIncreasing (g ∘ f) A) ∧ (FunctionDecreasing f A → FunctionDecreasing g B → FunctionIncreasing (g ∘ f) A) ∧ (FunctionIncreasing f A → FunctionDecreasing g B → FunctionDecreasing (g ∘ f) A) ∧ (FunctionDecreasing f A → FunctionIncreasing g B → FunctionDecreasing (g ∘ f) A)
+Logical form (Lean): (f g : ℝ → ℝ) (A B : Set ℝ) (hmaps : ∀ x ∈ A, f x ∈ B) : (FunctionIncreasing f A → FunctionIncreasing g B → FunctionIncreasing (g ∘ f) A) ∧ (FunctionDecreasing f A → FunctionDecreasing g B → FunctionIncreasing (g ∘ f) A) ∧ (FunctionIncreasing f A → FunctionDecreasing g B → FunctionDecreasing (g ∘ f) A) ∧ (FunctionDecreasing f A → FunctionIncreasing g B → FunctionDecreasing (g ∘ f) A)
+Source: ./Functions/MonotoneConstantFunctions.lean#L316
+
+
+
+Name: InverseOfStrictlyMonotoneBijectionIsStrictlyMonotone
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f f' : ℝ → ℝ) (A B : Set ℝ) (hmaps : ∀ x ∈ A, f x ∈ B) (hsurj : ∀ y ∈ B, ∃ x ∈ A, f x = y) (hleft : ∀ x ∈ A, f' (f x) = x) (hright : ∀ y ∈ B, f (f' y) = y), (FunctionStrictlyIncreasing f A → FunctionStrictlyIncreasing f' B) ∧ (FunctionStrictlyDecreasing f A → FunctionStrictlyDecreasing f' B)
+Predicate logic (unfolded): ∀ (f f' : Real → Real) (A B : Set Real), (∀ (x : Real), Set.instMembership.mem A x → Set.instMembership.mem B (f x) ∧ (∀ (y : Real), Set.instMembership.mem B y → Exists fun x => (Set.instMembership.mem A x ∧ f x = y) ∧ (∀ (x : Real), Set.instMembership.mem A x → f' (f x) = x ∧ ∀ (y : Real), Set.instMembership.mem B y → f (f' y) = y))) → (LRA.Analysis.Functions.FunctionStrictlyIncreasing f A → LRA.Analysis.Functions.FunctionStrictlyIncreasing f' B ∧ LRA.Analysis.Functions.FunctionStrictlyDecreasing f A → LRA.Analysis.Functions.FunctionStrictlyDecreasing f' B)
+Transliterated theorem: (∀ x ∈ A, f x ∈ B ∧ ∀ y ∈ B, ∃ x ∈ A, f x = y ∧ ∀ x ∈ A, f' (f x) = x ∧ ∀ y ∈ B, f (f' y) = y) → (FunctionStrictlyIncreasing f A → FunctionStrictlyIncreasing f' B) ∧ (FunctionStrictlyDecreasing f A → FunctionStrictlyDecreasing f' B)
+Logical form (Lean): (f f' : ℝ → ℝ) (A B : Set ℝ) (hmaps : ∀ x ∈ A, f x ∈ B) (hsurj : ∀ y ∈ B, ∃ x ∈ A, f x = y) (hleft : ∀ x ∈ A, f' (f x) = x) (hright : ∀ y ∈ B, f (f' y) = y) : (FunctionStrictlyIncreasing f A → FunctionStrictlyIncreasing f' B) ∧ (FunctionStrictlyDecreasing f A → FunctionStrictlyDecreasing f' B)
+Source: ./Functions/MonotoneConstantFunctions.lean#L344
+
+
+
+Name: FunctionAlgebraClosure
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (lam : ℝ) (A : Set ℝ), (∀ x ∈ A, PointwiseSum f g x = f x + g x) ∧ (∀ x ∈ A, PointwiseDiff f g x = f x - g x) ∧ (∀ x ∈ A, PointwiseProd f g x = f x * g x) ∧ (∀ x ∈ A, PointwiseScalarMul lam f x = lam * f x) ∧ (∀ x ∈ A, PointwiseAbs f x = |f x|) ∧ (∀ x ∈ A, PointwiseMax f g x = max (f x) (g x)) ∧ (∀ x ∈ A, PointwiseMin f g x = min (f x) (g x))
+Predicate logic (unfolded): ∀ (f g : Real → Real) (lam : Real) (A : Set Real), (∀ (x : Real), Set.instMembership.mem A x → LRA.Analysis.Functions.PointwiseSum f g x = instHAdd.hAdd (f x) (g x) ∧ (∀ (x : Real), Set.instMembership.mem A x → LRA.Analysis.Functions.PointwiseDiff f g x = instHSub.hSub (f x) (g x) ∧ (∀ (x : Real), Set.instMembership.mem A x → LRA.Analysis.Functions.PointwiseProd f g x = instHMul.hMul (f x) (g x) ∧ (∀ (x : Real), Set.instMembership.mem A x → LRA.Analysis.Functions.PointwiseScalarMul lam f x = instHMul.hMul lam (f x) ∧ (∀ (x : Real), Set.instMembership.mem A x → LRA.Analysis.Functions.PointwiseAbs f x = abs (f x) ∧ (∀ (x : Real), Set.instMembership.mem A x → LRA.Analysis.Functions.PointwiseMax f g x = Real.instMax.max (f x) (g x) ∧ ∀ (x : Real), Set.instMembership.mem A x → LRA.Analysis.Functions.PointwiseMin f g x = Real.instMin.min (f x) (g x)))))))
+Transliterated theorem: (∀ x ∈ A, PointwiseSum f g x = f x + g x) ∧ (∀ x ∈ A, PointwiseDiff f g x = f x - g x) ∧ (∀ x ∈ A, PointwiseProd f g x = f x * g x) ∧ (∀ x ∈ A, PointwiseScalarMul lam f x = lam * f x) ∧ (∀ x ∈ A, PointwiseAbs f x = |f x|) ∧ (∀ x ∈ A, PointwiseMax f g x = max (f x) (g x)) ∧ (∀ x ∈ A, PointwiseMin f g x = min (f x) (g x))
+Logical form (Lean): (f g : ℝ → ℝ) (lam : ℝ) (A : Set ℝ) : (∀ x ∈ A, PointwiseSum f g x = f x + g x) ∧ (∀ x ∈ A, PointwiseDiff f g x = f x - g x) ∧ (∀ x ∈ A, PointwiseProd f g x = f x * g x) ∧ (∀ x ∈ A, PointwiseScalarMul lam f x = lam * f x) ∧ (∀ x ∈ A, PointwiseAbs f x = |f x|) ∧ (∀ x ∈ A, PointwiseMax f g x = max (f x) (g x)) ∧ (∀ x ∈ A, PointwiseMin f g x = min (f x) (g x))
+Source: ./Functions/PointwiseAlgebra.lean#L145
+
+
+
+Name: FunctionQuotientClosure
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (h : ∀ x ∈ A, g x ≠ 0), ∀ x ∈ A, PointwiseQuotient f g x = f x / g x
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real), (∀ (x : Real), Set.instMembership.mem A x → Ne (g x) 0) → ∀ (x : Real), Set.instMembership.mem A x → LRA.Analysis.Functions.PointwiseQuotient f g x = instHDiv.hDiv (f x) (g x)
+Transliterated theorem: (∀ x ∈ A, g x ≠ 0) → ∀ x ∈ A, PointwiseQuotient f g x = f x / g x
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (h : ∀ x ∈ A, g x ≠ 0) : ∀ x ∈ A, PointwiseQuotient f g x = f x / g x
+Source: ./Functions/PointwiseAlgebra.lean#L166
+
+
+
+Name: PointwiseMaxMinAbsoluteValueFormulas
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ), ∀ x ∈ A, PointwiseMax f g x = (f x + g x + |f x - g x|) / 2 ∧ PointwiseMin f g x = (f x + g x - |f x - g x|) / 2
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real) (x : Real), Set.instMembership.mem A x → (LRA.Analysis.Functions.PointwiseMax f g x = instHDiv.hDiv (instHAdd.hAdd (instHAdd.hAdd (f x) (g x)) (abs (instHSub.hSub (f x) (g x)))) 2 ∧ LRA.Analysis.Functions.PointwiseMin f g x = instHDiv.hDiv (instHSub.hSub (instHAdd.hAdd (f x) (g x)) (abs (instHSub.hSub (f x) (g x)))) 2)
+Transliterated theorem: ∀ x ∈ A, PointwiseMax f g x = (f x + g x + |f x - g x|) / 2 ∧ PointwiseMin f g x = (f x + g x - |f x - g x|) / 2
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) : ∀ x ∈ A, PointwiseMax f g x = (f x + g x + |f x - g x|) / 2 ∧ PointwiseMin f g x = (f x + g x - |f x - g x|) / 2
+Source: ./Functions/PointwiseAlgebra.lean#L181
+
+
+
+Name: PointwiseMaxMinBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ), ∀ x ∈ A, PointwiseMin f g x ≤ f x ∧ f x ≤ PointwiseMax f g x ∧ PointwiseMin f g x ≤ g x ∧ g x ≤ PointwiseMax f g x
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real) (x : Real), Set.instMembership.mem A x → (Real.instLE.le (LRA.Analysis.Functions.PointwiseMin f g x) (f x) ∧ (Real.instLE.le (f x) (LRA.Analysis.Functions.PointwiseMax f g x) ∧ (Real.instLE.le (LRA.Analysis.Functions.PointwiseMin f g x) (g x) ∧ Real.instLE.le (g x) (LRA.Analysis.Functions.PointwiseMax f g x))))
+Transliterated theorem: ∀ x ∈ A, PointwiseMin f g x ≤ f x ∧ f x ≤ PointwiseMax f g x ∧ PointwiseMin f g x ≤ g x ∧ g x ≤ PointwiseMax f g x
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) : ∀ x ∈ A, PointwiseMin f g x ≤ f x ∧ f x ≤ PointwiseMax f g x ∧ PointwiseMin f g x ≤ g x ∧ g x ≤ PointwiseMax f g x
+Source: ./Functions/PointwiseAlgebra.lean#L197
+
+
+
+Name: QuotientUndefinedWhenDenominatorVanishes
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ) (hx₀ : x₀ ∈ A) (hg : g x₀ = 0), ¬ (∀ x ∈ A, g x ≠ 0)
+Predicate logic (unfolded): ∀ (a g : Real → Real) (A : Set Real) (x₀ : Real), (Set.instMembership.mem A x₀ ∧ g x₀ = 0) → ¬ ∀ (x : Real), Set.instMembership.mem A x → Ne (g x) 0
+Transliterated theorem: (x₀ ∈ A ∧ g x₀ = 0) → ¬ (∀ x ∈ A, g x ≠ 0)
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (x₀ : ℝ) (hx₀ : x₀ ∈ A) (hg : g x₀ = 0) : ¬ (∀ x ∈ A, g x ≠ 0)
+Source: ./Functions/PointwiseAlgebra.lean#L213
+
+
+
+Name: PointwiseOperationEvaluation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {n : ℕ} (Φ : (Fin n → ℝ) → ℝ) (f : Fin n → (ℝ → ℝ)) (A : Set ℝ), ∀ x ∈ A, PointwiseOperationOnSet Φ f x = AtPointOperation Φ f x
+Predicate logic (unfolded): ∀ {n : Nat} (Φ : (Fin n → Real) → Real) (f : Fin n → Real → Real) (A : Set Real) (x : Real), Set.instMembership.mem A x → LRA.Analysis.Functions.PointwiseOperationOnSet Φ f x = LRA.Analysis.Functions.AtPointOperation Φ f x
+Transliterated theorem: ((Fin n → ℝ) → ℝ ∧ Fin n → (ℝ → ℝ)) → ∀ x ∈ A, PointwiseOperationOnSet Φ f x = AtPointOperation Φ f x
+Logical form (Lean): {n : ℕ} (Φ : (Fin n → ℝ) → ℝ) (f : Fin n → (ℝ → ℝ)) (A : Set ℝ) : ∀ x ∈ A, PointwiseOperationOnSet Φ f x = AtPointOperation Φ f x
+Source: ./Functions/PointwiseOperationsRelations.lean#L114
+
+
+
+Name: PointwiseRelationEvaluation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {n : ℕ} (R : (Fin n → ℝ) → Prop) (f : Fin n → (ℝ → ℝ)) (A : Set ℝ), PointwiseRelationOnSet R f A ↔ ∀ x ∈ A, AtPointRelation R f x
+Predicate logic (unfolded): ∀ {n : Nat} (R : (Fin n → Real) → Prop) (f : Fin n → Real → Real) (A : Set Real), LRA.Analysis.Functions.PointwiseRelationOnSet R f A ↔ ∀ (x : Real), Set.instMembership.mem A x → LRA.Analysis.Functions.AtPointRelation R f x
+Transliterated theorem: ((Fin n → ℝ) → Prop ∧ Fin n → (ℝ → ℝ)) → PointwiseRelationOnSet R f A ↔ ∀ x ∈ A, AtPointRelation R f x
+Logical form (Lean): {n : ℕ} (R : (Fin n → ℝ) → Prop) (f : Fin n → (ℝ → ℝ)) (A : Set ℝ) : PointwiseRelationOnSet R f A ↔ ∀ x ∈ A, AtPointRelation R f x
+Source: ./Functions/PointwiseOperationsRelations.lean#L130
+
+
+
+Name: PointwiseRelationNearUnpacking
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {n : ℕ} (R : (Fin n → ℝ) → Prop) (f : Fin n → (ℝ → ℝ)) (c : ℝ) (A : Set ℝ), PointwiseRelationNearPoint R f c A ↔ ∃ δ > 0, ∀ x ∈ A, (0 < |x - c| ∧ |x - c| < δ) → R (fun i => f i x)
+Predicate logic (unfolded): ∀ {n : Nat} (R : (Fin n → Real) → Prop) (f : Fin n → Real → Real) (c : Real) (A : Set Real), LRA.Analysis.Functions.PointwiseRelationNearPoint R f c A ↔ Exists fun δ => (GT.gt δ 0 ∧ ∀ (x : Real), Set.instMembership.mem A x → (Real.instLT.lt 0 (abs (instHSub.hSub x c)) ∧ Real.instLT.lt (abs (instHSub.hSub x c)) δ) → R fun i => f i x)
+Transliterated theorem: ((Fin n → ℝ) → Prop ∧ Fin n → (ℝ → ℝ)) → PointwiseRelationNearPoint R f c A ↔ ∃ δ > 0, ∀ x ∈ A, (0 < |x - c| ∧ |x - c| < δ) → R (fun i => f i x)
+Logical form (Lean): {n : ℕ} (R : (Fin n → ℝ) → Prop) (f : Fin n → (ℝ → ℝ)) (c : ℝ) (A : Set ℝ) : PointwiseRelationNearPoint R f c A ↔ ∃ δ > 0, ∀ x ∈ A, (0 < |x - c| ∧ |x - c| < δ) → R (fun i => f i x)
+Source: ./Functions/PointwiseOperationsRelations.lean#L148
+
+
+
+Name: PointwiseOrderLaws
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Set ℝ), (∀ f : ℝ → ℝ, PointwiseLe f f A) ∧ (∀ f g : ℝ → ℝ, PointwiseLe f g A → PointwiseLe g f A → PointwiseEq f g A) ∧ (∀ f g h : ℝ → ℝ, PointwiseLe f g A → PointwiseLe g h A → PointwiseLe f h A)
+Predicate logic (unfolded): ∀ (A : Set Real), (∀ (f : Real → Real), LRA.Analysis.Functions.PointwiseLe f f A ∧ (∀ (f g : Real → Real), LRA.Analysis.Functions.PointwiseLe f g A → LRA.Analysis.Functions.PointwiseLe g f A → LRA.Analysis.Functions.Pointwisef = gA ∧ ∀ (f g h : Real → Real), LRA.Analysis.Functions.PointwiseLe f g A → LRA.Analysis.Functions.PointwiseLe g h A → LRA.Analysis.Functions.PointwiseLe f h A))
+Transliterated theorem: ∀ f ∈ ℝ → ℝ, PointwiseLe f f A ∧ ∀ f g ∈ ℝ → ℝ, PointwiseLe f g A → PointwiseLe g f A → PointwiseEq f g A ∧ ∀ f g h ∈ ℝ → ℝ, PointwiseLe f g A → PointwiseLe g h A → PointwiseLe f h A
+Logical form (Lean): (A : Set ℝ) : (∀ f : ℝ → ℝ, PointwiseLe f f A) ∧ (∀ f g : ℝ → ℝ, PointwiseLe f g A → PointwiseLe g f A → PointwiseEq f g A) ∧ (∀ f g h : ℝ → ℝ, PointwiseLe f g A → PointwiseLe g h A → PointwiseLe f h A)
+Source: ./Functions/PointwiseOrder.lean#L70
+
+
+
+Name: StrictPointwiseOrderImpliesWeak
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : Real → Real) (A : Set Real),   LRA.Analysis.Functions.PointwiseLt f g A → LRA.Analysis.Functions.PointwiseLe f g A
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real), LRA.Analysis.Functions.PointwiseLt f g A → LRA.Analysis.Functions.PointwiseLe f g A
+Transliterated theorem: PointwiseLe f g A
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (h : PointwiseLt f g A) : PointwiseLe f g A
+Source: ./Functions/PointwiseOrder.lean#L85
+
+
+
+Name: PointwiseOrderArithmetic
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g h f₂ g₂ : ℝ → ℝ) (A : Set ℝ) (hfg : PointwiseLe f g A) (hf₂g₂ : PointwiseLe f₂ g₂ A), PointwiseLe (fun x => f x + h x) (fun x => g x + h x) A ∧ PointwiseLe (fun x => -g x) (fun x => -f x) A ∧ (∀ lam : ℝ, 0 ≤ lam → PointwiseLe (fun x => lam * f x) (fun x => lam * g x) A) ∧ (∀ lam : ℝ, lam ≤ 0 → PointwiseLe (fun x => lam * g x) (fun x => lam * f x) A) ∧ PointwiseLe (fun x => f x + f₂ x) (fun x => g x + g₂ x) A
+Predicate logic (unfolded): ∀ (f g h f₂ g₂ : Real → Real) (A : Set Real), (LRA.Analysis.Functions.PointwiseLe f g A ∧ LRA.Analysis.Functions.PointwiseLe f₂ g₂ A) → (LRA.Analysis.Functions.PointwiseLe (fun x => instHAdd.hAdd (f x) (h x)) (fun x => instHAdd.hAdd (g x) (h x)) A ∧ (LRA.Analysis.Functions.PointwiseLe (fun x => Real.instNeg.neg (g x)) (fun x => Real.instNeg.neg (f x)) A ∧ (∀ (lam : Real), Real.instLE.le 0 lam → LRA.Analysis.Functions.PointwiseLe (fun x => instHMul.hMul lam (f x)) (fun x => instHMul.hMul lam (g x)) A ∧ (∀ (lam : Real), Real.instLE.le lam 0 → LRA.Analysis.Functions.PointwiseLe (fun x => instHMul.hMul lam (g x)) (fun x => instHMul.hMul lam (f x)) A ∧ LRA.Analysis.Functions.PointwiseLe (fun x => instHAdd.hAdd (f x) (f₂ x)) (fun x => instHAdd.hAdd (g x) (g₂ x)) A))))
+Transliterated theorem: PointwiseLe (fun x => f x + h x) (fun x => g x + h x) A ∧ PointwiseLe (fun x => -g x) (fun x => -f x) A ∧ ∀ lam ∈ ℝ, 0 ≤ lam → PointwiseLe (fun x => lam * f x (fun x => lam * g x) A) ∧ ∀ lam ∈ ℝ, lam ≤ 0 → PointwiseLe (fun x => lam * g x (fun x => lam * f x) A) ∧ PointwiseLe (fun x => f x + f₂ x) (fun x => g x + g₂ x) A
+Logical form (Lean): (f g h f₂ g₂ : ℝ → ℝ) (A : Set ℝ) (hfg : PointwiseLe f g A) (hf₂g₂ : PointwiseLe f₂ g₂ A) : PointwiseLe (fun x => f x + h x) (fun x => g x + h x) A ∧ PointwiseLe (fun x => -g x) (fun x => -f x) A ∧ (∀ lam : ℝ, 0 ≤ lam → PointwiseLe (fun x => lam * f x) (fun x => lam * g x) A) ∧ (∀ lam : ℝ, lam ≤ 0 → PointwiseLe (fun x => lam * g x) (fun x => lam * f x) A) ∧ PointwiseLe (fun x => f x + f₂ x) (fun x => g x + g₂ x) A
+Source: ./Functions/PointwiseOrder.lean#L110
+
+
+
+Name: PointwiseProductOrderNonnegative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f₁ g₁ f₂ g₂ : ℝ → ℝ) (A : Set ℝ) (h₁ : ∀ x ∈ A, 0 ≤ f₁ x ∧ f₁ x ≤ g₁ x) (h₂ : ∀ x ∈ A, 0 ≤ f₂ x ∧ f₂ x ≤ g₂ x), PointwiseLe (fun x => f₁ x * f₂ x) (fun x => g₁ x * g₂ x) A
+Predicate logic (unfolded): ∀ (f₁ g₁ f₂ g₂ : Real → Real) (A : Set Real), (∀ (x : Real), Set.instMembership.mem A x → (Real.instLE.le 0 (f₁ x) ∧ Real.instLE.le (f₁ x) (g₁ x)) ∧ ∀ (x : Real), Set.instMembership.mem A x → (Real.instLE.le 0 (f₂ x) ∧ Real.instLE.le (f₂ x) (g₂ x))) → LRA.Analysis.Functions.PointwiseLe (fun x => instHMul.hMul (f₁ x) (f₂ x)) (fun x => instHMul.hMul (g₁ x) (g₂ x)) A
+Transliterated theorem: (∀ x ∈ A, 0 ≤ f₁ x ∧ f₁ x ≤ g₁ x ∧ ∀ x ∈ A, 0 ≤ f₂ x ∧ f₂ x ≤ g₂ x) → PointwiseLe (fun x => f₁ x * f₂ x) (fun x => g₁ x * g₂ x) A
+Logical form (Lean): (f₁ g₁ f₂ g₂ : ℝ → ℝ) (A : Set ℝ) (h₁ : ∀ x ∈ A, 0 ≤ f₁ x ∧ f₁ x ≤ g₁ x) (h₂ : ∀ x ∈ A, 0 ≤ f₂ x ∧ f₂ x ≤ g₂ x) : PointwiseLe (fun x => f₁ x * f₂ x) (fun x => g₁ x * g₂ x) A
+Source: ./Functions/PointwiseOrder.lean#L134
+
+
+
+Name: ReciprocalOrderReversal
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (h : ∀ x ∈ A, 0 < f x ∧ f x ≤ g x), PointwiseLe (fun x => 1 / g x) (fun x => 1 / f x) A
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real), (∀ (x : Real), Set.instMembership.mem A x → (Real.instLT.lt 0 (f x) ∧ Real.instLE.le (f x) (g x))) → LRA.Analysis.Functions.PointwiseLe (fun x => instHDiv.hDiv 1 (g x)) (fun x => instHDiv.hDiv 1 (f x)) A
+Transliterated theorem: (∀ x ∈ A, 0 < f x ∧ f x ≤ g x) → PointwiseLe (fun x => 1 / g x) (fun x => 1 / f x) A
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (h : ∀ x ∈ A, 0 < f x ∧ f x ≤ g x) : PointwiseLe (fun x => 1 / g x) (fun x => 1 / f x) A
+Source: ./Functions/PointwiseOrder.lean#L151
+
+
+
+Name: QuotientOrderSignControlled
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f₁ g₁ f₂ g₂ : ℝ → ℝ) (A : Set ℝ) (h₁ : ∀ x ∈ A, 0 ≤ f₁ x ∧ f₁ x ≤ g₁ x) (h₂ : ∀ x ∈ A, 0 < f₂ x ∧ f₂ x ≤ g₂ x), PointwiseLe (fun x => f₁ x / g₂ x) (fun x => g₁ x / f₂ x) A
+Predicate logic (unfolded): ∀ (f₁ g₁ f₂ g₂ : Real → Real) (A : Set Real), (∀ (x : Real), Set.instMembership.mem A x → (Real.instLE.le 0 (f₁ x) ∧ Real.instLE.le (f₁ x) (g₁ x)) ∧ ∀ (x : Real), Set.instMembership.mem A x → (Real.instLT.lt 0 (f₂ x) ∧ Real.instLE.le (f₂ x) (g₂ x))) → LRA.Analysis.Functions.PointwiseLe (fun x => instHDiv.hDiv (f₁ x) (g₂ x)) (fun x => instHDiv.hDiv (g₁ x) (f₂ x)) A
+Transliterated theorem: (∀ x ∈ A, 0 ≤ f₁ x ∧ f₁ x ≤ g₁ x ∧ ∀ x ∈ A, 0 < f₂ x ∧ f₂ x ≤ g₂ x) → PointwiseLe (fun x => f₁ x / g₂ x) (fun x => g₁ x / f₂ x) A
+Logical form (Lean): (f₁ g₁ f₂ g₂ : ℝ → ℝ) (A : Set ℝ) (h₁ : ∀ x ∈ A, 0 ≤ f₁ x ∧ f₁ x ≤ g₁ x) (h₂ : ∀ x ∈ A, 0 < f₂ x ∧ f₂ x ≤ g₂ x) : PointwiseLe (fun x => f₁ x / g₂ x) (fun x => g₁ x / f₂ x) A
+Source: ./Functions/PointwiseOrder.lean#L169
+
+
+
+Name: NoUnconditionalQuotientOrderLaw
+Kind: Theorem
+State: Sorry
+Predicate logic: ¬ ∀ (f₁ g₁ f₂ g₂ : ℝ → ℝ) (A : Set ℝ), PointwiseLe f₁ g₁ A → PointwiseLe f₂ g₂ A → PointwiseLe (fun x => f₁ x / f₂ x) (fun x => g₁ x / g₂ x) A
+Predicate logic (unfolded): ¬ ∀ (f₁ g₁ f₂ g₂ : Real → Real) (A : Set Real), LRA.Analysis.Functions.PointwiseLe f₁ g₁ A → LRA.Analysis.Functions.PointwiseLe f₂ g₂ A → LRA.Analysis.Functions.PointwiseLe (fun x => instHDiv.hDiv (f₁ x) (f₂ x)) (fun x => instHDiv.hDiv (g₁ x) (g₂ x)) A
+Transliterated theorem: ¬ ∀ f₁ g₁ f₂ g₂ ∈ ℝ → ℝ A ∈ Set ℝ, PointwiseLe f₁ g₁ A → PointwiseLe f₂ g₂ A → PointwiseLe (fun x => f₁ x / f₂ x) (fun x => g₁ x / g₂ x) A
+Logical form (Lean): : ¬ ∀ (f₁ g₁ f₂ g₂ : ℝ → ℝ) (A : Set ℝ), PointwiseLe f₁ g₁ A → PointwiseLe f₂ g₂ A → PointwiseLe (fun x => f₁ x / f₂ x) (fun x => g₁ x / g₂ x) A
+Source: ./Functions/PointwiseOrder.lean#L187
+
+
+
+Name: ClusterPointSequential
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (c : ℝ) (A : Set ℝ), IsClusterPointR c A ↔ ∃ a : ℕ → ℝ, (∀ n, a n ∈ A \ {c}) ∧ Filter.Tendsto a Filter.atTop (nhds c)
+Predicate logic (unfolded): ∀ (c : Real) (A : Set Real), LRA.Analysis.Functions.IsClusterPointR c A ↔ Exists fun a => (∀ (n : Nat), Set.instMembership.mem (Set.instSDiff.sdiff A (Set.instSingletonSet.singleton c)) (a n) ∧ Filter.Tendsto a Filter.atTop (nhds c))
+Transliterated theorem: IsClusterPointR c A ↔ ∃ a ∈ ℕ → ℝ, (∀ n, a n ∈ A \ {c}) ∧ Filter.Tendsto a Filter.atTop (nhds c)
+Logical form (Lean): (c : ℝ) (A : Set ℝ) : IsClusterPointR c A ↔ ∃ a : ℕ → ℝ, (∀ n, a n ∈ A \ {c}) ∧ Filter.Tendsto a Filter.atTop (nhds c)
+Source: ./Functions/SubsetsOfR.lean#L125
+
+
+
+Name: AdherentPointsAreClosurePoints
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : ℝ) (X : Set ℝ), x ∈ ClosureR X ↔ IsAdherentPointR x X
+Predicate logic (unfolded): ∀ (x : Real) (X : Set Real), Set.instMembership.mem (LRA.Analysis.Functions.ClosureR X) x ↔ LRA.Analysis.Functions.IsAdherentPointR x X
+Transliterated theorem: x ∈ ClosureR X ↔ IsAdherentPointR x X
+Logical form (Lean): (x : ℝ) (X : Set ℝ) : x ∈ ClosureR X ↔ IsAdherentPointR x X
+Source: ./Functions/SubsetsOfR.lean#L220
+
+
+
+Name: IsolatedPointsAreNonclusterAdherentPoints
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : ℝ) (X : Set ℝ) (hx : x ∈ X), IsIsolatedPointR x X ↔ IsAdherentPointR x X ∧ ¬ IsClusterPointR x X
+Predicate logic (unfolded): ∀ (x : Real) (X : Set Real), Set.instMembership.mem X x → LRA.Analysis.Functions.IsIsolatedPointR x X ↔ (LRA.Analysis.Functions.IsAdherentPointR x X ∧ ¬ LRA.Analysis.Functions.IsClusterPointR x X)
+Transliterated theorem: (x ∈ X) → IsIsolatedPointR x X ↔ IsAdherentPointR x X ∧ ¬ IsClusterPointR x X
+Logical form (Lean): (x : ℝ) (X : Set ℝ) (hx : x ∈ X) : IsIsolatedPointR x X ↔ IsAdherentPointR x X ∧ ¬ IsClusterPointR x X
+Source: ./Functions/SubsetsOfR.lean#L235
+
+
+
+Name: InteriorMembershipCharacterization
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : ℝ) (X : Set ℝ), x ∈ InteriorR X ↔ IsInteriorPointR x X
+Predicate logic (unfolded): ∀ (x : Real) (X : Set Real), Set.instMembership.mem (LRA.Analysis.Functions.InteriorR X) x ↔ LRA.Analysis.Functions.IsInteriorPointR x X
+Transliterated theorem: x ∈ InteriorR X ↔ IsInteriorPointR x X
+Logical form (Lean): (x : ℝ) (X : Set ℝ) : x ∈ InteriorR X ↔ IsInteriorPointR x X
+Source: ./Functions/SubsetsOfR.lean#L249
+
+
+
+Name: InteriorIsContainedInSet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (X : Set Real), Set.instLE.le (LRA.Analysis.Functions.InteriorR X) X
+Predicate logic (unfolded): ∀ (X : Set Real), Set.instLE.le (LRA.Analysis.Functions.InteriorR X) X
+Transliterated theorem: InteriorR X ⊆ X
+Logical form (Lean): (X : Set ℝ) : InteriorR X ⊆ X
+Source: ./Functions/SubsetsOfR.lean#L261
+
+
+
+Name: ClosureIsSmallestClosedSuperset
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (X : Set ℝ), X ⊆ ClosureR X ∧ IsClosedR (ClosureR X) ∧ ∀ C : Set ℝ, IsClosedR C → X ⊆ C → ClosureR X ⊆ C
+Predicate logic (unfolded): ∀ (X : Set Real), (Set.instLE.le X (LRA.Analysis.Functions.ClosureR X) ∧ (LRA.Analysis.Functions.IsClosedR (LRA.Analysis.Functions.ClosureR X) ∧ ∀ (C : Set Real), LRA.Analysis.Functions.IsClosedR C → Set.instLE.le X C → Set.instLE.le (LRA.Analysis.Functions.ClosureR X) C))
+Transliterated theorem: X ⊆ ClosureR X ∧ IsClosedR (ClosureR X) ∧ ∀ C : Set ℝ, IsClosedR C → X ⊆ C → ClosureR X ⊆ C
+Logical form (Lean): (X : Set ℝ) : X ⊆ ClosureR X ∧ IsClosedR (ClosureR X) ∧ ∀ C : Set ℝ, IsClosedR C → X ⊆ C → ClosureR X ⊆ C
+Source: ./Functions/SubsetsOfR.lean#L285
+
+
+
+Name: BoundaryAsClosureMinusInterior
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (X : Set ℝ), BoundaryR X = ClosureR X \ InteriorR X
+Predicate logic (unfolded): ∀ (X : Set Real), LRA.Analysis.Functions.BoundaryR X = Set.instSDiff.sdiff (LRA.Analysis.Functions.ClosureR X) (LRA.Analysis.Functions.InteriorR X)
+Transliterated theorem: BoundaryR X = ClosureR X \ InteriorR X
+Logical form (Lean): (X : Set ℝ) : BoundaryR X = ClosureR X \ InteriorR X
+Source: ./Functions/SubsetsOfR.lean#L299
+
+
+
+Name: ClosureElementary
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (X Y : Set ℝ), X ⊆ ClosureR X ∧ ClosureR (X ∪ Y) = ClosureR X ∪ ClosureR Y ∧ ClosureR (X ∩ Y) ⊆ ClosureR X ∩ ClosureR Y ∧ (X ⊆ Y → ClosureR X ⊆ ClosureR Y)
+Predicate logic (unfolded): ∀ (X Y : Set Real), (Set.instLE.le X (LRA.Analysis.Functions.ClosureR X) ∧ (LRA.Analysis.Functions.ClosureR (Set.instUnion.union X Y) = Set.instUnion.union (LRA.Analysis.Functions.ClosureR X) (LRA.Analysis.Functions.ClosureR Y) ∧ (Set.instLE.le (LRA.Analysis.Functions.ClosureR (Set.instInter.inter X Y)) (Set.instInter.inter (LRA.Analysis.Functions.ClosureR X) (LRA.Analysis.Functions.ClosureR Y)) ∧ Set.instLE.le X Y → Set.instLE.le (LRA.Analysis.Functions.ClosureR X) (LRA.Analysis.Functions.ClosureR Y))))
+Transliterated theorem: X ⊆ ClosureR X ∧ ClosureR (X ∪ Y) = ClosureR X ∪ ClosureR Y ∧ ClosureR (X ∩ Y) ⊆ ClosureR X ∩ ClosureR Y ∧ (X ⊆ Y → ClosureR X ⊆ ClosureR Y)
+Logical form (Lean): (X Y : Set ℝ) : X ⊆ ClosureR X ∧ ClosureR (X ∪ Y) = ClosureR X ∪ ClosureR Y ∧ ClosureR (X ∩ Y) ⊆ ClosureR X ∩ ClosureR Y ∧ (X ⊆ Y → ClosureR X ⊆ ClosureR Y)
+Source: ./Functions/SubsetsOfR.lean#L317
+
+
+
+Name: ClosedIffSeqLimits
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (X : Set ℝ), IsClosedR X ↔ ∀ a : ℕ → ℝ, (∀ n, a n ∈ X) → ∀ x : ℝ, Filter.Tendsto a Filter.atTop (nhds x) → x ∈ X
+Predicate logic (unfolded): ∀ (X : Set Real), LRA.Analysis.Functions.IsClosedR X ↔ ∀ (a : Nat → Real), (∀ (n : Nat), Set.instMembership.mem X (a n)) → ∀ (x : Real), Filter.Tendsto a Filter.atTop (nhds x) → Set.instMembership.mem X x
+Transliterated theorem: IsClosedR X ↔ ∀ a : ℕ → ℝ, (∀ n, a n ∈ X) → ∀ x : ℝ, Filter.Tendsto a Filter.atTop (nhds x) → x ∈ X
+Logical form (Lean): (X : Set ℝ) : IsClosedR X ↔ ∀ a : ℕ → ℝ, (∀ n, a n ∈ X) → ∀ x : ℝ, Filter.Tendsto a Filter.atTop (nhds x) → x ∈ X
+Source: ./Functions/SubsetsOfR.lean#L336
+
+
+
+Name: IntervalAllLimitPoints
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (I : Set Real), I.OrdConnected → ∀ (x : Real), Set.instMembership.mem I x → LRA.Analysis.Functions.IsClusterPointR x I
+Predicate logic (unfolded): ∀ (I : Set Real), I.OrdConnected → ∀ (x : Real), Set.instMembership.mem I x → LRA.Analysis.Functions.IsClusterPointR x I
+Transliterated theorem: (∀ hI ∈ I.OrdConnected), ∀ x ∈ I, IsClusterPointR x I
+Logical form (Lean): (I : Set ℝ) (hI : I.OrdConnected) : ∀ x ∈ I, IsClusterPointR x I
+Source: ./Functions/SubsetsOfR.lean#L351
+
+
+
+Name: HeineBorelSubsetsRealLine
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (X : Set ℝ), (IsClosedR X ∧ IsBoundedSetR X) ↔ ∀ a : ℕ → ℝ, (∀ n, a n ∈ X) → ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∃ L ∈ X, Filter.Tendsto (a ∘ φ) Filter.atTop (nhds L)
+Predicate logic (unfolded): ∀ (X : Set Real), (LRA.Analysis.Functions.IsClosedR X ∧ LRA.Analysis.Functions.IsBoundedSetR X) ↔ ∀ (a : Nat → Real), (∀ (n : Nat), Set.instMembership.mem X (a n)) → Exists fun φ => (StrictMono φ ∧ Exists fun L => (Set.instMembership.mem X L ∧ Filter.Tendsto (Function.comp a φ) Filter.atTop (nhds L)))
+Transliterated theorem: (IsClosedR X ∧ IsBoundedSetR X) ↔ ∀ a : ℕ → ℝ, (∀ n, a n ∈ X) → ∃ φ ∈ ℕ → ℕ, StrictMono φ ∧ ∃ L ∈ X, Filter.Tendsto (a ∘ φ) Filter.atTop (nhds L)
+Logical form (Lean): (X : Set ℝ) : (IsClosedR X ∧ IsBoundedSetR X) ↔ ∀ a : ℕ → ℝ, (∀ n, a n ∈ X) → ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∃ L ∈ X, Filter.Tendsto (a ∘ φ) Filter.atTop (nhds L)
+Source: ./Functions/SubsetsOfR.lean#L379
+
+
+
+Name: TrueNearStableUnderShrinking
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Q : ℝ → Prop) (x₀ : ℝ) (h : TrueNear Q x₀), ∃ η > 0, ∀ x : ℝ, 0 < |x - x₀| ∧ |x - x₀| < η → Q x
+Predicate logic (unfolded): ∀ (Q : Real → Prop) (x₀ : Real), LRA.Analysis.Functions.TrueNear Q x₀ → Exists fun η => (GT.gt η 0 ∧ ∀ (x : Real), (Real.instLT.lt 0 (abs (instHSub.hSub x x₀)) ∧ Real.instLT.lt (abs (instHSub.hSub x x₀)) η) → Q x)
+Transliterated theorem: (ℝ → Prop) → ∃ η > 0, ∀ x : ℝ, 0 < |x - x₀| ∧ |x - x₀| < η → Q x
+Logical form (Lean): (Q : ℝ → Prop) (x₀ : ℝ) (h : TrueNear Q x₀) : ∃ η > 0, ∀ x : ℝ, 0 < |x - x₀| ∧ |x - x₀| < η → Q x
+Source: ./Functions/SubsetsOfR.lean#L412
+
+
+
+Name: TrueNearStableUnderConjunction
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (P Q : ℝ → Prop) (x₀ : ℝ) (hP : TrueNear P x₀) (hQ : TrueNear Q x₀), TrueNear (fun x => P x ∧ Q x) x₀
+Predicate logic (unfolded): ∀ (P Q : Real → Prop) (x₀ : Real), (LRA.Analysis.Functions.TrueNear P x₀ ∧ LRA.Analysis.Functions.TrueNear Q x₀) → LRA.Analysis.Functions.TrueNear (fun x => (P x ∧ Q x)) x₀
+Transliterated theorem: TrueNear (fun x => P x ∧ Q x) x₀
+Logical form (Lean): (P Q : ℝ → Prop) (x₀ : ℝ) (hP : TrueNear P x₀) (hQ : TrueNear Q x₀) : TrueNear (fun x => P x ∧ Q x) x₀
+Source: ./Functions/SubsetsOfR.lean#L428
+
+
+
+Name: OpenIffComplementClosed
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (X : Set ℝ), IsOpenR X ↔ IsClosedR Xᶜ
+Predicate logic (unfolded): ∀ (X : Set Real), LRA.Analysis.Functions.IsOpenR X ↔ LRA.Analysis.Functions.IsClosedR (Set.instCompl.compl X)
+Transliterated theorem: IsOpenR X ↔ IsClosedR Xᶜ
+Logical form (Lean): (X : Set ℝ) : IsOpenR X ↔ IsClosedR Xᶜ
+Source: ./Functions/SubsetsOfR.lean#L455
+
+
+
+Name: FiniteSetIsClosed
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (X : Set ℝ) (hX : X.Finite), (∀ x : ℝ, ¬ IsClusterPointR x X) ∧ IsClosedR X
+Predicate logic (unfolded): ∀ (X : Set Real), X.Finite → (∀ (x : Real), ¬ LRA.Analysis.Functions.IsClusterPointR x X ∧ LRA.Analysis.Functions.IsClosedR X)
+Transliterated theorem: (∀ hX ∈ X.Finite), ∀ x ∈ ℝ, ¬ IsClusterPointR x X ∧ IsClosedR X
+Logical form (Lean): (X : Set ℝ) (hX : X.Finite) : (∀ x : ℝ, ¬ IsClusterPointR x X) ∧ IsClosedR X
+Source: ./Functions/SubsetsOfR.lean#L468
+
+
+
+Name: FunctionSupremumExistence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty) (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M), ∃ s : ℝ, IsLUB (f '' A) s
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real), (A.Nonempty ∧ Exists fun M => ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (f x) M) → Exists fun s => IsLUB (Set.image f A) s
+Transliterated theorem: (∀ hA ∈ A.Nonempty), (ℝ → ℝ ∧ ∃ M, ∀ x ∈ A, f x ≤ M) → ∃ s ∈ ℝ, IsLUB (f '' A) s
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty) (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M) : ∃ s : ℝ, IsLUB (f '' A) s
+Source: ./Functions/SupInfOfFunctions.lean#L94
+
+
+
+Name: FunctionInfimumExistence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty) (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x), ∃ s : ℝ, IsGLB (f '' A) s
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real), (A.Nonempty ∧ Exists fun m => ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le m (f x)) → Exists fun s => IsGLB (Set.image f A) s
+Transliterated theorem: (∀ hA ∈ A.Nonempty), (ℝ → ℝ ∧ ∃ m, ∀ x ∈ A, m ≤ f x) → ∃ s ∈ ℝ, IsGLB (f '' A) s
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty) (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x) : ∃ s : ℝ, IsGLB (f '' A) s
+Source: ./Functions/SupInfOfFunctions.lean#L111
+
+
+
+Name: SupremumMonotoneUnderPointwiseOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty) (hbddf : ∃ M, ∀ x ∈ A, f x ≤ M) (hbddg : ∃ M, ∀ x ∈ A, g x ≤ M) (h : ∀ x ∈ A, f x ≤ g x), FunctionSupremumOnSet f A ≤ FunctionSupremumOnSet g A
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real), (A.Nonempty ∧ (Exists fun M => ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (f x) M ∧ (Exists fun M => ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (g x) M ∧ ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (f x) (g x)))) → Real.instLE.le (LRA.Analysis.Functions.FunctionSupremumOnSet f A) (LRA.Analysis.Functions.FunctionSupremumOnSet g A)
+Transliterated theorem: (∀ hA ∈ A.Nonempty), (∃ M, ∀ x ∈ A, f x ≤ M ∧ ∃ M, ∀ x ∈ A, g x ≤ M ∧ ∀ x ∈ A, f x ≤ g x) → FunctionSupremumOnSet f A ≤ FunctionSupremumOnSet g A
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty) (hbddf : ∃ M, ∀ x ∈ A, f x ≤ M) (hbddg : ∃ M, ∀ x ∈ A, g x ≤ M) (h : ∀ x ∈ A, f x ≤ g x) : FunctionSupremumOnSet f A ≤ FunctionSupremumOnSet g A
+Source: ./Functions/SupInfOfFunctions.lean#L131
+
+
+
+Name: InfimumMonotoneUnderPointwiseOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty) (hbddf : ∃ m, ∀ x ∈ A, m ≤ f x) (hbddg : ∃ m, ∀ x ∈ A, m ≤ g x) (h : ∀ x ∈ A, f x ≤ g x), FunctionInfimumOnSet f A ≤ FunctionInfimumOnSet g A
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real), (A.Nonempty ∧ (Exists fun m => ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le m (f x) ∧ (Exists fun m => ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le m (g x) ∧ ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (f x) (g x)))) → Real.instLE.le (LRA.Analysis.Functions.FunctionInfimumOnSet f A) (LRA.Analysis.Functions.FunctionInfimumOnSet g A)
+Transliterated theorem: (∀ hA ∈ A.Nonempty), (∃ m, ∀ x ∈ A, m ≤ f x ∧ ∃ m, ∀ x ∈ A, m ≤ g x ∧ ∀ x ∈ A, f x ≤ g x) → FunctionInfimumOnSet f A ≤ FunctionInfimumOnSet g A
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty) (hbddf : ∃ m, ∀ x ∈ A, m ≤ f x) (hbddg : ∃ m, ∀ x ∈ A, m ≤ g x) (h : ∀ x ∈ A, f x ≤ g x) : FunctionInfimumOnSet f A ≤ FunctionInfimumOnSet g A
+Source: ./Functions/SupInfOfFunctions.lean#L153
+
+
+
+Name: SupremumMonotonicityConverseFails
+Kind: Theorem
+State: Sorry
+Predicate logic: ∃ (A : Set ℝ) (f g : ℝ → ℝ), A.Nonempty ∧ (∃ M, ∀ x ∈ A, f x ≤ M) ∧ (∃ M, ∀ x ∈ A, g x ≤ M) ∧ FunctionSupremumOnSet f A ≤ FunctionSupremumOnSet g A ∧ ¬ (∀ x ∈ A, f x ≤ g x)
+Predicate logic (unfolded): Exists fun A => Exists fun f => Exists fun g => (A.Nonempty ∧ (Exists fun M => ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (f x) M ∧ (Exists fun M => ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (g x) M ∧ (Real.instLE.le (LRA.Analysis.Functions.FunctionSupremumOnSet f A) (LRA.Analysis.Functions.FunctionSupremumOnSet g A) ∧ ¬ ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (f x) (g x)))))
+Transliterated theorem: ∃ A ∈ Set ℝ f g ∈ ℝ → ℝ, A.Nonempty ∧ (∃ M, ∀ x ∈ A, f x ≤ M) ∧ (∃ M, ∀ x ∈ A, g x ≤ M) ∧ FunctionSupremumOnSet f A ≤ FunctionSupremumOnSet g A ∧ ¬ (∀ x ∈ A, f x ≤ g x)
+Logical form (Lean): : ∃ (A : Set ℝ) (f g : ℝ → ℝ), A.Nonempty ∧ (∃ M, ∀ x ∈ A, f x ≤ M) ∧ (∃ M, ∀ x ∈ A, g x ≤ M) ∧ FunctionSupremumOnSet f A ≤ FunctionSupremumOnSet g A ∧ ¬ (∀ x ∈ A, f x ≤ g x)
+Source: ./Functions/SupInfOfFunctions.lean#L174
+
+
+
+Name: PointwiseSupremumEvaluation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {I : Type*} [Fintype I] [Inhabited I] (f : I → ℝ → ℝ) (x : ℝ), ∃ α : I, PointwiseSupremumFamily f x = f α x ∧ ∀ β : I, f β x ≤ f α x
+Predicate logic (unfolded): ∀ {I : Type*} [Fintype I] [Inhabited I] (f : I → ℝ → ℝ) (x : ℝ), ∃ α : I, PointwiseSupremumFamily f x = f α x ∧ ∀ β : I, f β x ≤ f α x [unfold error: unavailable]
+Transliterated theorem: (I → ℝ → ℝ) → ∃ α ∈ I, PointwiseSupremumFamily f x = f α x ∧ ∀ β : I, f β x ≤ f α x
+Logical form (Lean): {I : Type*} [Fintype I] [Inhabited I] (f : I → ℝ → ℝ) (x : ℝ) : ∃ α : I, PointwiseSupremumFamily f x = f α x ∧ ∀ β : I, f β x ≤ f α x
+Source: ./Functions/SupInfOfFunctions.lean#L193
+
+
+
+Name: PointwiseInfimumEvaluation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {I : Type*} [Fintype I] [Inhabited I] (f : I → ℝ → ℝ) (x : ℝ), ∃ α : I, PointwiseInfimumFamily f x = f α x ∧ ∀ β : I, f α x ≤ f β x
+Predicate logic (unfolded): ∀ {I : Type*} [Fintype I] [Inhabited I] (f : I → ℝ → ℝ) (x : ℝ), ∃ α : I, PointwiseInfimumFamily f x = f α x ∧ ∀ β : I, f α x ≤ f β x [unfold error: unavailable]
+Transliterated theorem: (I → ℝ → ℝ) → ∃ α ∈ I, PointwiseInfimumFamily f x = f α x ∧ ∀ β : I, f α x ≤ f β x
+Logical form (Lean): {I : Type*} [Fintype I] [Inhabited I] (f : I → ℝ → ℝ) (x : ℝ) : ∃ α : I, PointwiseInfimumFamily f x = f α x ∧ ∀ β : I, f α x ≤ f β x
+Source: ./Functions/SupInfOfFunctions.lean#L210
+
+
+
+Name: SupremumSubadditivity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty) (hbddf : ∃ M, ∀ x ∈ A, f x ≤ M) (hbddg : ∃ M, ∀ x ∈ A, g x ≤ M), FunctionSupremumOnSet (fun x => f x + g x) A ≤ FunctionSupremumOnSet f A + FunctionSupremumOnSet g A
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real), (A.Nonempty ∧ (Exists fun M => ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (f x) M ∧ Exists fun M => ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (g x) M)) → Real.instLE.le (LRA.Analysis.Functions.FunctionSupremumOnSet (fun x => instHAdd.hAdd (f x) (g x)) A) (instHAdd.hAdd (LRA.Analysis.Functions.FunctionSupremumOnSet f A) (LRA.Analysis.Functions.FunctionSupremumOnSet g A))
+Transliterated theorem: (∀ hA ∈ A.Nonempty), (∃ M, ∀ x ∈ A, f x ≤ M ∧ ∃ M, ∀ x ∈ A, g x ≤ M) → FunctionSupremumOnSet (fun x => f x + g x) A ≤ FunctionSupremumOnSet f A + FunctionSupremumOnSet g A
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty) (hbddf : ∃ M, ∀ x ∈ A, f x ≤ M) (hbddg : ∃ M, ∀ x ∈ A, g x ≤ M) : FunctionSupremumOnSet (fun x => f x + g x) A ≤ FunctionSupremumOnSet f A + FunctionSupremumOnSet g A
+Source: ./Functions/SupInfOfFunctions.lean#L229
+
+
+
+Name: InfimumSuperadditivity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty) (hbddf : ∃ m, ∀ x ∈ A, m ≤ f x) (hbddg : ∃ m, ∀ x ∈ A, m ≤ g x), FunctionInfimumOnSet f A + FunctionInfimumOnSet g A ≤ FunctionInfimumOnSet (fun x => f x + g x) A
+Predicate logic (unfolded): ∀ (f g : Real → Real) (A : Set Real), (A.Nonempty ∧ (Exists fun m => ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le m (f x) ∧ Exists fun m => ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le m (g x))) → Real.instLE.le (instHAdd.hAdd (LRA.Analysis.Functions.FunctionInfimumOnSet f A) (LRA.Analysis.Functions.FunctionInfimumOnSet g A)) (LRA.Analysis.Functions.FunctionInfimumOnSet (fun x => instHAdd.hAdd (f x) (g x)) A)
+Transliterated theorem: (∀ hA ∈ A.Nonempty), (∃ m, ∀ x ∈ A, m ≤ f x ∧ ∃ m, ∀ x ∈ A, m ≤ g x) → FunctionInfimumOnSet f A + FunctionInfimumOnSet g A ≤ FunctionInfimumOnSet (fun x => f x + g x) A
+Logical form (Lean): (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty) (hbddf : ∃ m, ∀ x ∈ A, m ≤ f x) (hbddg : ∃ m, ∀ x ∈ A, m ≤ g x) : FunctionInfimumOnSet f A + FunctionInfimumOnSet g A ≤ FunctionInfimumOnSet (fun x => f x + g x) A
+Source: ./Functions/SupInfOfFunctions.lean#L249
+
+
+
+Name: SupremumNegation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty) (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M), FunctionSupremumOnSet (fun x => -f x) A = - FunctionInfimumOnSet f A
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real), (A.Nonempty ∧ Exists fun M => ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (f x) M) → LRA.Analysis.Functions.FunctionSupremumOnSet (fun x => Real.instNeg.neg (f x)) A = Real.instNeg.neg (LRA.Analysis.Functions.FunctionInfimumOnSet f A)
+Transliterated theorem: (∀ hA ∈ A.Nonempty), (ℝ → ℝ ∧ ∃ M, ∀ x ∈ A, f x ≤ M) → FunctionSupremumOnSet (fun x => -f x) A = - FunctionInfimumOnSet f A
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty) (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M) : FunctionSupremumOnSet (fun x => -f x) A = - FunctionInfimumOnSet f A
+Source: ./Functions/SupInfOfFunctions.lean#L267
+
+
+
+Name: InfimumNegation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty) (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x), FunctionInfimumOnSet (fun x => -f x) A = - FunctionSupremumOnSet f A
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real), (A.Nonempty ∧ Exists fun m => ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le m (f x)) → LRA.Analysis.Functions.FunctionInfimumOnSet (fun x => Real.instNeg.neg (f x)) A = Real.instNeg.neg (LRA.Analysis.Functions.FunctionSupremumOnSet f A)
+Transliterated theorem: (∀ hA ∈ A.Nonempty), (ℝ → ℝ ∧ ∃ m, ∀ x ∈ A, m ≤ f x) → FunctionInfimumOnSet (fun x => -f x) A = - FunctionSupremumOnSet f A
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty) (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x) : FunctionInfimumOnSet (fun x => -f x) A = - FunctionSupremumOnSet f A
+Source: ./Functions/SupInfOfFunctions.lean#L284
+
+
+
+Name: SupremumScalarMultiple
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hA : A.Nonempty) (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M), (0 ≤ lam → FunctionSupremumOnSet (fun x => lam * f x) A = lam * FunctionSupremumOnSet f A) ∧ (lam ≤ 0 → FunctionSupremumOnSet (fun x => lam * f x) A = lam * FunctionInfimumOnSet f A)
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (lam : Real), (A.Nonempty ∧ Exists fun M => ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (f x) M) → (Real.instLE.le 0 lam → LRA.Analysis.Functions.FunctionSupremumOnSet (fun x => instHMul.hMul lam (f x)) A = instHMul.hMul lam (LRA.Analysis.Functions.FunctionSupremumOnSet f A) ∧ Real.instLE.le lam 0 → LRA.Analysis.Functions.FunctionSupremumOnSet (fun x => instHMul.hMul lam (f x)) A = instHMul.hMul lam (LRA.Analysis.Functions.FunctionInfimumOnSet f A))
+Transliterated theorem: (∀ hA ∈ A.Nonempty), (ℝ → ℝ ∧ ∃ M, ∀ x ∈ A, f x ≤ M) → (0 ≤ lam → FunctionSupremumOnSet (fun x => lam * f x) A = lam * FunctionSupremumOnSet f A) ∧ (lam ≤ 0 → FunctionSupremumOnSet (fun x => lam * f x) A = lam * FunctionInfimumOnSet f A)
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hA : A.Nonempty) (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M) : (0 ≤ lam → FunctionSupremumOnSet (fun x => lam * f x) A = lam * FunctionSupremumOnSet f A) ∧ (lam ≤ 0 → FunctionSupremumOnSet (fun x => lam * f x) A = lam * FunctionInfimumOnSet f A)
+Source: ./Functions/SupInfOfFunctions.lean#L306
+
+
+
+Name: InfimumScalarMultiple
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hA : A.Nonempty) (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x), (0 ≤ lam → FunctionInfimumOnSet (fun x => lam * f x) A = lam * FunctionInfimumOnSet f A) ∧ (lam ≤ 0 → FunctionInfimumOnSet (fun x => lam * f x) A = lam * FunctionSupremumOnSet f A)
+Predicate logic (unfolded): ∀ (f : Real → Real) (A : Set Real) (lam : Real), (A.Nonempty ∧ Exists fun m => ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le m (f x)) → (Real.instLE.le 0 lam → LRA.Analysis.Functions.FunctionInfimumOnSet (fun x => instHMul.hMul lam (f x)) A = instHMul.hMul lam (LRA.Analysis.Functions.FunctionInfimumOnSet f A) ∧ Real.instLE.le lam 0 → LRA.Analysis.Functions.FunctionInfimumOnSet (fun x => instHMul.hMul lam (f x)) A = instHMul.hMul lam (LRA.Analysis.Functions.FunctionSupremumOnSet f A))
+Transliterated theorem: (∀ hA ∈ A.Nonempty), (ℝ → ℝ ∧ ∃ m, ∀ x ∈ A, m ≤ f x) → (0 ≤ lam → FunctionInfimumOnSet (fun x => lam * f x) A = lam * FunctionInfimumOnSet f A) ∧ (lam ≤ 0 → FunctionInfimumOnSet (fun x => lam * f x) A = lam * FunctionSupremumOnSet f A)
+Logical form (Lean): (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hA : A.Nonempty) (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x) : (0 ≤ lam → FunctionInfimumOnSet (fun x => lam * f x) A = lam * FunctionInfimumOnSet f A) ∧ (lam ≤ 0 → FunctionInfimumOnSet (fun x => lam * f x) A = lam * FunctionSupremumOnSet f A)
+Source: ./Functions/SupInfOfFunctions.lean#L331
+
+
+
+Name: FiniteFamilyPointwiseSupremumIsMaximum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {I : Type*} [Fintype I] [Inhabited I] (f : I → ℝ → ℝ) (x : ℝ), ∃ α : I, PointwiseSupremumFamily f x = f α x
+Predicate logic (unfolded): ∀ {I : Type*} [Fintype I] [Inhabited I] (f : I → ℝ → ℝ) (x : ℝ), ∃ α : I, PointwiseSupremumFamily f x = f α x [unfold error: unavailable]
+Transliterated theorem: (I → ℝ → ℝ) → ∃ α ∈ I, PointwiseSupremumFamily f x = f α x
+Logical form (Lean): {I : Type*} [Fintype I] [Inhabited I] (f : I → ℝ → ℝ) (x : ℝ) : ∃ α : I, PointwiseSupremumFamily f x = f α x
+Source: ./Functions/SupInfOfFunctions.lean#L350
+
+
+
+Name: FiniteFamilyPointwiseInfimumIsMinimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {I : Type*} [Fintype I] [Inhabited I] (f : I → ℝ → ℝ) (x : ℝ), ∃ α : I, PointwiseInfimumFamily f x = f α x
+Predicate logic (unfolded): ∀ {I : Type*} [Fintype I] [Inhabited I] (f : I → ℝ → ℝ) (x : ℝ), ∃ α : I, PointwiseInfimumFamily f x = f α x [unfold error: unavailable]
+Transliterated theorem: (I → ℝ → ℝ) → ∃ α ∈ I, PointwiseInfimumFamily f x = f α x
+Logical form (Lean): {I : Type*} [Fintype I] [Inhabited I] (f : I → ℝ → ℝ) (x : ℝ) : ∃ α : I, PointwiseInfimumFamily f x = f α x
+Source: ./Functions/SupInfOfFunctions.lean#L366
+
+
+
+Name: common_refinement_partitions
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {a b : ℝ} (P Q : IntegrationPartition a b), ∃ R : IntegrationPartition a b, RefinesPartition R P ∧ RefinesPartition R Q
+Predicate logic (unfolded): ∀ {a b : Real} (P Q : LRA.Analysis.Integration.IntegrationPartition a b), Exists fun R => (LRA.Analysis.Integration.RefinesPartition R P ∧ LRA.Analysis.Integration.RefinesPartition R Q)
+Transliterated theorem: ∃ R ∈ IntegrationPartition a b, RefinesPartition R P ∧ RefinesPartition R Q
+Logical form (Lean): {a b : ℝ} (P Q : IntegrationPartition a b) : ∃ R : IntegrationPartition a b, RefinesPartition R P ∧ RefinesPartition R Q
+Source: ./Integration/Partitions.lean#L105
+
+
+
+Name: cauchy_integral_constant
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c : Real),   Real.instLE.le a b → LRA.Analysis.Integration.HasCauchyIntegral (fun x => c) a b (instHMul.hMul c (instHSub.hSub b a))
+Predicate logic (unfolded): ∀ (a b c : Real), Real.instLE.le a b → LRA.Analysis.Integration.HasCauchyIntegral (fun x => c) a b (instHMul.hMul c (instHSub.hSub b a))
+Transliterated theorem: (a ≤ b) → HasCauchyIntegral (fun _ => c) a b (c * (b - a))
+Logical form (Lean): (a b c : ℝ) (hab : a ≤ b) : HasCauchyIntegral (fun _ => c) a b (c * (b - a))
+Source: ./Integration/CauchyIntegral/Basic.lean#L74
+
+
+
+Name: cauchy_integral_linearity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hf : IsCauchyIntegrable f a b) (hg : IsCauchyIntegrable g a b) (α β Lf Lg : ℝ) (hLf : HasCauchyIntegral f a b Lf) (hLg : HasCauchyIntegral g a b Lg), HasCauchyIntegral (fun x => α * f x + β * g x) a b (α * Lf + β * Lg)
+Predicate logic (unfolded): ∀ {f g : Real → Real} {a b : Real}, (LRA.Analysis.Integration.IsCauchyIntegrable f a b ∧ LRA.Analysis.Integration.IsCauchyIntegrable g a b) → ∀ (α β Lf Lg : Real), (LRA.Analysis.Integration.HasCauchyIntegral f a b Lf ∧ LRA.Analysis.Integration.HasCauchyIntegral g a b Lg) → LRA.Analysis.Integration.HasCauchyIntegral (fun x => instHAdd.hAdd (instHMul.hMul α (f x)) (instHMul.hMul β (g x))) a b (instHAdd.hAdd (instHMul.hMul α Lf) (instHMul.hMul β Lg))
+Transliterated theorem: HasCauchyIntegral (fun x => α * f x + β * g x) a b (α * Lf + β * Lg)
+Logical form (Lean): (hf : IsCauchyIntegrable f a b) (hg : IsCauchyIntegrable g a b) (α β Lf Lg : ℝ) (hLf : HasCauchyIntegral f a b Lf) (hLg : HasCauchyIntegral g a b Lg) : HasCauchyIntegral (fun x => α * f x + β * g x) a b (α * Lf + β * Lg)
+Source: ./Integration/CauchyIntegral/Basic.lean#L93
+
+
+
+Name: cauchy_integral_monotonicity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Lf Lg : ℝ) (hLf : HasCauchyIntegral f a b Lf) (hLg : HasCauchyIntegral g a b Lg) (hle : ∀ x ∈ Set.Icc a b, f x ≤ g x), Lf ≤ Lg
+Predicate logic (unfolded): ∀ {f g : Real → Real} {a b : Real} (Lf Lg : Real), (LRA.Analysis.Integration.HasCauchyIntegral f a b Lf ∧ (LRA.Analysis.Integration.HasCauchyIntegral g a b Lg ∧ ∀ (x : Real), Set.instMembership.mem (Set.Icc a b) x → Real.instLE.le (f x) (g x))) → Real.instLE.le Lf Lg
+Transliterated theorem: (∀ x ∈ Set.Icc a b, f x ≤ g x) → Lf ≤ Lg
+Logical form (Lean): (Lf Lg : ℝ) (hLf : HasCauchyIntegral f a b Lf) (hLg : HasCauchyIntegral g a b Lg) (hle : ∀ x ∈ Set.Icc a b, f x ≤ g x) : Lf ≤ Lg
+Source: ./Integration/CauchyIntegral/Basic.lean#L109
+
+
+
+Name: cauchy_integral_bounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hab : a ≤ b) (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) (L m M : ℝ) (hL : HasCauchyIntegral f a b L) (hm : ∀ x ∈ Set.Icc a b, m ≤ f x) (hM : ∀ x ∈ Set.Icc a b, f x ≤ M), m * (b - a) ≤ L ∧ L ≤ M * (b - a)
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real}, (Real.instLE.le a b ∧ LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) → ∀ (L m M : Real), (LRA.Analysis.Integration.HasCauchyIntegral f a b L ∧ (∀ (x : Real), Set.instMembership.mem (Set.Icc a b) x → Real.instLE.le m (f x) ∧ ∀ (x : Real), Set.instMembership.mem (Set.Icc a b) x → Real.instLE.le (f x) M)) → (Real.instLE.le (instHMul.hMul m (instHSub.hSub b a)) L ∧ Real.instLE.le L (instHMul.hMul M (instHSub.hSub b a)))
+Transliterated theorem: (a ≤ b ∧ ∀ x ∈ Set.Icc a b, m ≤ f x ∧ ∀ x ∈ Set.Icc a b, f x ≤ M) → m * (b - a) ≤ L ∧ L ≤ M * (b - a)
+Logical form (Lean): (hab : a ≤ b) (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) (L m M : ℝ) (hL : HasCauchyIntegral f a b L) (hm : ∀ x ∈ Set.Icc a b, m ≤ f x) (hM : ∀ x ∈ Set.Icc a b, f x ≤ M) : m * (b - a) ≤ L ∧ L ≤ M * (b - a)
+Source: ./Integration/CauchyIntegral/Basic.lean#L127
+
+
+
+Name: cauchy_integral_triangle_inequality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (L L' : ℝ) (hL : HasCauchyIntegral f a b L) (hL' : HasCauchyIntegral (fun x => |f x|) a b L'), |L| ≤ L'
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real} (L L' : Real), (LRA.Analysis.Integration.HasCauchyIntegral f a b L ∧ LRA.Analysis.Integration.HasCauchyIntegral (fun x => abs (f x)) a b L') → Real.instLE.le (abs L) L'
+Transliterated theorem: |L| ≤ L'
+Logical form (Lean): (L L' : ℝ) (hL : HasCauchyIntegral f a b L) (hL' : HasCauchyIntegral (fun x => |f x|) a b L') : |L| ≤ L'
+Source: ./Integration/CauchyIntegral/Basic.lean#L145
+
+
+
+Name: cauchy_integral_interval_additivity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (c : ℝ) (hac : a ≤ c) (hcb : c ≤ b) (Lab Lac Lcb : ℝ) (hab' : HasCauchyIntegral f a b Lab) (hac' : HasCauchyIntegral f a c Lac) (hcb' : HasCauchyIntegral f c b Lcb), Lab = Lac + Lcb
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real} (c : Real), (Real.instLE.le a c ∧ Real.instLE.le c b) → ∀ (Lab Lac Lcb : Real), (LRA.Analysis.Integration.HasCauchyIntegral f a b Lab ∧ (LRA.Analysis.Integration.HasCauchyIntegral f a c Lac ∧ LRA.Analysis.Integration.HasCauchyIntegral f c b Lcb)) → Lab = instHAdd.hAdd Lac Lcb
+Transliterated theorem: (a ≤ c ∧ c ≤ b) → Lab = Lac + Lcb
+Logical form (Lean): (c : ℝ) (hac : a ≤ c) (hcb : c ≤ b) (Lab Lac Lcb : ℝ) (hab' : HasCauchyIntegral f a b Lab) (hac' : HasCauchyIntegral f a c Lac) (hcb' : HasCauchyIntegral f c b Lcb) : Lab = Lac + Lcb
+Source: ./Integration/CauchyIntegral/Basic.lean#L162
+
+
+
+Name: continuous_cauchy_integrable
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hab : a ≤ b) (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)), IsCauchyIntegrable f a b
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real}, (Real.instLE.le a b ∧ LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) → LRA.Analysis.Integration.IsCauchyIntegrable f a b
+Transliterated theorem: (a ≤ b) → IsCauchyIntegrable f a b
+Logical form (Lean): (hab : a ≤ b) (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) : IsCauchyIntegrable f a b
+Source: ./Integration/CauchyIntegral/Basic.lean#L193
+
+
+
+Name: cauchy_tag_independence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hab : a ≤ b) (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) (L : ℝ) (hL : HasCauchyIntegral f a b L), ∀ ε > 0, ∃ δ > 0, ∀ P : TaggedPartitionIntegration a b, PartitionMesh P.toIntegrationPartition < δ → |(∑ i : Fin P.n, f (P.tag i) * SubintervalWidth P.toIntegrationPartition i) - L| < ε
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real}, (Real.instLE.le a b ∧ LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) → ∀ (L : Real), LRA.Analysis.Integration.HasCauchyIntegral f a b L → ∀ (ε : Real), GT.gt ε 0 → Exists fun δ => (GT.gt δ 0 ∧ ∀ (P : LRA.Analysis.Integration.TaggedPartitionIntegration a b), Real.instLT.lt (LRA.Analysis.Integration.PartitionMesh P.toIntegrationPartition) δ → Real.instLT.lt (abs (instHSub.hSub (Finset.univ.sum fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) L)) ε)
+Transliterated theorem: (a ≤ b) → ∀ ε > 0, ∃ δ > 0, ∀ P : TaggedPartitionIntegration a b, PartitionMesh P.toIntegrationPartition < δ → |∑ i ∈ Fin P.n, f (P.tag i * SubintervalWidth P.toIntegrationPartition i) - L| < ε
+Logical form (Lean): (hab : a ≤ b) (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) (L : ℝ) (hL : HasCauchyIntegral f a b L) : ∀ ε > 0, ∃ δ > 0, ∀ P : TaggedPartitionIntegration a b, PartitionMesh P.toIntegrationPartition < δ → |(∑ i : Fin P.n, f (P.tag i) * SubintervalWidth P.toIntegrationPartition i) - L| < ε
+Source: ./Integration/CauchyIntegral/Basic.lean#L214
+
+
+
+Name: cauchy_step_function_failure_witness
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Analysis.Integration.IsCauchyIntegrable (fun x => ite (Real.instLT.lt x (1 / 2)) 0 1) 0 1
+Predicate logic (unfolded): LRA.Analysis.Integration.IsCauchyIntegrable (fun x => ite (Real.instLT.lt x (1 / 2)) 0 1) 0 1
+Transliterated theorem: IsCauchyIntegrable (fun x => if x < 1 ∈ ℝ/2 then 0 ∈ ℝ else 1) 0 1
+Logical form (Lean): : IsCauchyIntegrable (fun x => if x < (1:ℝ)/2 then (0:ℝ) else 1) 0 1
+Source: ./Integration/CauchyIntegral/Basic.lean#L230
+
+
+
+Name: continuous_riemann_integrable
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hab : a ≤ b) (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)), IsRiemannIntegrable f a b
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real}, (Real.instLE.le a b ∧ LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) → LRA.Analysis.Integration.IsRiemannIntegrable f a b
+Transliterated theorem: (a ≤ b) → IsRiemannIntegrable f a b
+Logical form (Lean): (hab : a ≤ b) (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) : IsRiemannIntegrable f a b
+Source: ./Integration/RiemannIntegral/Basic.lean#L78
+
+
+
+Name: thomae_riemann_integrable_zero
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (T : ℝ → ℝ) (hT : ∀ x ∈ Set.Icc (0:ℝ) 1, (LRA.Analysis.Completeness.IsIrrational x → T x = 0) ∧ (∀ p q : ℕ, q > 0 → Nat.Coprime p q → x = (p : ℝ) / q → T x = 1 / q)), HasRiemannIntegral T 0 1 0
+Predicate logic (unfolded): ∀ (T : Real → Real), (∀ (x : Real), Set.instMembership.mem (Set.Icc 0 1) x → (LRA.Analysis.Completeness.IsIrrational x → T x = 0 ∧ ∀ (p q : Nat), GT.gt q 0 → p.Coprime q → x = instHDiv.hDiv p.cast q.cast → T x = instHDiv.hDiv 1 q.cast)) → LRA.Analysis.Integration.HasRiemannIntegral T 0 1 0
+Transliterated theorem: (ℝ → ℝ ∧ ∀ x ∈ Set.Icc 0 ∈ ℝ 1, (LRA.Analysis.Completeness.IsIrrational x → T x = 0) ∧ ∀ p q ∈ ℕ, q > 0 → Nat.Coprime p q → x = p ∈ ℝ / q → T x = 1 / q) → HasRiemannIntegral T 0 1 0
+Logical form (Lean): (T : ℝ → ℝ) (hT : ∀ x ∈ Set.Icc (0:ℝ) 1, (LRA.Analysis.Completeness.IsIrrational x → T x = 0) ∧ (∀ p q : ℕ, q > 0 → Nat.Coprime p q → x = (p : ℝ) / q → T x = 1 / q)) : HasRiemannIntegral T 0 1 0
+Source: ./Integration/RiemannIntegral/Basic.lean#L97
+
+
+
+Name: riemann_integral_linearity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (α β Lf Lg : ℝ) (hLf : HasRiemannIntegral f a b Lf) (hLg : HasRiemannIntegral g a b Lg), HasRiemannIntegral (fun x => α * f x + β * g x) a b (α * Lf + β * Lg)
+Predicate logic (unfolded): ∀ {f g : Real → Real} {a b : Real} (α β Lf Lg : Real), (LRA.Analysis.Integration.HasRiemannIntegral f a b Lf ∧ LRA.Analysis.Integration.HasRiemannIntegral g a b Lg) → LRA.Analysis.Integration.HasRiemannIntegral (fun x => instHAdd.hAdd (instHMul.hMul α (f x)) (instHMul.hMul β (g x))) a b (instHAdd.hAdd (instHMul.hMul α Lf) (instHMul.hMul β Lg))
+Transliterated theorem: HasRiemannIntegral (fun x => α * f x + β * g x) a b (α * Lf + β * Lg)
+Logical form (Lean): (α β Lf Lg : ℝ) (hLf : HasRiemannIntegral f a b Lf) (hLg : HasRiemannIntegral g a b Lg) : HasRiemannIntegral (fun x => α * f x + β * g x) a b (α * Lf + β * Lg)
+Source: ./Integration/RiemannIntegral/Basic.lean#L116
+
+
+
+Name: riemann_integral_monotonicity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Lf Lg : ℝ) (hLf : HasRiemannIntegral f a b Lf) (hLg : HasRiemannIntegral g a b Lg) (hle : ∀ x ∈ Set.Icc a b, f x ≤ g x), Lf ≤ Lg
+Predicate logic (unfolded): ∀ {f g : Real → Real} {a b : Real} (Lf Lg : Real), (LRA.Analysis.Integration.HasRiemannIntegral f a b Lf ∧ (LRA.Analysis.Integration.HasRiemannIntegral g a b Lg ∧ ∀ (x : Real), Set.instMembership.mem (Set.Icc a b) x → Real.instLE.le (f x) (g x))) → Real.instLE.le Lf Lg
+Transliterated theorem: (∀ x ∈ Set.Icc a b, f x ≤ g x) → Lf ≤ Lg
+Logical form (Lean): (Lf Lg : ℝ) (hLf : HasRiemannIntegral f a b Lf) (hLg : HasRiemannIntegral g a b Lg) (hle : ∀ x ∈ Set.Icc a b, f x ≤ g x) : Lf ≤ Lg
+Source: ./Integration/RiemannIntegral/Basic.lean#L132
+
+
+
+Name: riemann_integral_triangle_inequality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hf : IsRiemannIntegrable f a b), IsRiemannIntegrable (fun x => |f x|) a b ∧ ∀ L L', HasRiemannIntegral f a b L → HasRiemannIntegral (fun x => |f x|) a b L' → |L| ≤ L'
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real}, LRA.Analysis.Integration.IsRiemannIntegrable f a b → (LRA.Analysis.Integration.IsRiemannIntegrable (fun x => abs (f x)) a b ∧ ∀ (L L' : Real), LRA.Analysis.Integration.HasRiemannIntegral f a b L → LRA.Analysis.Integration.HasRiemannIntegral (fun x => abs (f x)) a b L' → Real.instLE.le (abs L) L')
+Transliterated theorem: IsRiemannIntegrable (fun x => |f x|) a b ∧ ∀ L L', HasRiemannIntegral f a b L → HasRiemannIntegral (fun x => |f x|) a b L' → |L| ≤ L'
+Logical form (Lean): (hf : IsRiemannIntegrable f a b) : IsRiemannIntegrable (fun x => |f x|) a b ∧ ∀ L L', HasRiemannIntegral f a b L → HasRiemannIntegral (fun x => |f x|) a b L' → |L| ≤ L'
+Source: ./Integration/RiemannIntegral/Basic.lean#L149
+
+
+
+Name: riemann_integral_interval_additivity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (c : ℝ) (hac : a ≤ c) (hcb : c ≤ b), IsRiemannIntegrable f a b ↔ IsRiemannIntegrable f a c ∧ IsRiemannIntegrable f c b
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real} (c : Real), (Real.instLE.le a c ∧ Real.instLE.le c b) → LRA.Analysis.Integration.IsRiemannIntegrable f a b ↔ (LRA.Analysis.Integration.IsRiemannIntegrable f a c ∧ LRA.Analysis.Integration.IsRiemannIntegrable f c b)
+Transliterated theorem: (a ≤ c ∧ c ≤ b) → IsRiemannIntegrable f a b ↔ IsRiemannIntegrable f a c ∧ IsRiemannIntegrable f c b
+Logical form (Lean): (c : ℝ) (hac : a ≤ c) (hcb : c ≤ b) : IsRiemannIntegrable f a b ↔ IsRiemannIntegrable f a c ∧ IsRiemannIntegrable f c b
+Source: ./Integration/RiemannIntegral/Basic.lean#L166
+
+
+
+Name: riemann_integral_interval_additivity_value
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (c Lab Lac Lcb : ℝ) (hac : a ≤ c) (hcb : c ≤ b) (hab' : HasRiemannIntegral f a b Lab) (hac' : HasRiemannIntegral f a c Lac) (hcb' : HasRiemannIntegral f c b Lcb), Lab = Lac + Lcb
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real} (c Lab Lac Lcb : Real), (Real.instLE.le a c ∧ (Real.instLE.le c b ∧ (LRA.Analysis.Integration.HasRiemannIntegral f a b Lab ∧ (LRA.Analysis.Integration.HasRiemannIntegral f a c Lac ∧ LRA.Analysis.Integration.HasRiemannIntegral f c b Lcb)))) → Lab = instHAdd.hAdd Lac Lcb
+Transliterated theorem: (a ≤ c ∧ c ≤ b) → Lab = Lac + Lcb
+Logical form (Lean): (c Lab Lac Lcb : ℝ) (hac : a ≤ c) (hcb : c ≤ b) (hab' : HasRiemannIntegral f a b Lab) (hac' : HasRiemannIntegral f a c Lac) (hcb' : HasRiemannIntegral f c b Lcb) : Lab = Lac + Lcb
+Source: ./Integration/RiemannIntegral/Basic.lean#L182
+
+
+
+Name: riemann_cauchy_criterion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hab : a ≤ b) (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)), IsRiemannIntegrable f a b ↔ ∀ ε > 0, ∃ δ > 0, ∀ P Q : TaggedPartitionIntegration a b, PartitionMesh P.toIntegrationPartition < δ → PartitionMesh Q.toIntegrationPartition < δ → |RiemannSum f P - RiemannSum f Q| < ε
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real}, (Real.instLE.le a b ∧ LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) → LRA.Analysis.Integration.IsRiemannIntegrable f a b ↔ ∀ (ε : Real), GT.gt ε 0 → Exists fun δ => (GT.gt δ 0 ∧ ∀ (P Q : LRA.Analysis.Integration.TaggedPartitionIntegration a b), Real.instLT.lt (LRA.Analysis.Integration.PartitionMesh P.toIntegrationPartition) δ → Real.instLT.lt (LRA.Analysis.Integration.PartitionMesh Q.toIntegrationPartition) δ → Real.instLT.lt (abs (instHSub.hSub (LRA.Analysis.Integration.RiemannSum f P) (LRA.Analysis.Integration.RiemannSum f Q))) ε)
+Transliterated theorem: (a ≤ b) → IsRiemannIntegrable f a b ↔ ∀ ε > 0, ∃ δ > 0, ∀ P Q : TaggedPartitionIntegration a b, PartitionMesh P.toIntegrationPartition < δ → PartitionMesh Q.toIntegrationPartition < δ → |RiemannSum f P - RiemannSum f Q| < ε
+Logical form (Lean): (hab : a ≤ b) (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) : IsRiemannIntegrable f a b ↔ ∀ ε > 0, ∃ δ > 0, ∀ P Q : TaggedPartitionIntegration a b, PartitionMesh P.toIntegrationPartition < δ → PartitionMesh Q.toIntegrationPartition < δ → |RiemannSum f P - RiemannSum f Q| < ε
+Source: ./Integration/RiemannIntegral/Basic.lean#L204
+
+
+
+Name: darboux_refinement_squeeze
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (P P' : IntegrationPartition a b) (h : RefinesPartition P' P), LowerDarbouxSum f P ≤ LowerDarbouxSum f P' ∧ LowerDarbouxSum f P' ≤ UpperDarbouxSum f P' ∧ UpperDarbouxSum f P' ≤ UpperDarbouxSum f P
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real} (P P' : LRA.Analysis.Integration.IntegrationPartition a b), LRA.Analysis.Integration.RefinesPartition P' P → (Real.instLE.le (LRA.Analysis.Integration.LowerDarbouxSum f P) (LRA.Analysis.Integration.LowerDarbouxSum f P') ∧ (Real.instLE.le (LRA.Analysis.Integration.LowerDarbouxSum f P') (LRA.Analysis.Integration.UpperDarbouxSum f P') ∧ Real.instLE.le (LRA.Analysis.Integration.UpperDarbouxSum f P') (LRA.Analysis.Integration.UpperDarbouxSum f P)))
+Transliterated theorem: LowerDarbouxSum f P ≤ LowerDarbouxSum f P' ∧ LowerDarbouxSum f P' ≤ UpperDarbouxSum f P' ∧ UpperDarbouxSum f P' ≤ UpperDarbouxSum f P
+Logical form (Lean): (P P' : IntegrationPartition a b) (h : RefinesPartition P' P) : LowerDarbouxSum f P ≤ LowerDarbouxSum f P' ∧ LowerDarbouxSum f P' ≤ UpperDarbouxSum f P' ∧ UpperDarbouxSum f P' ≤ UpperDarbouxSum f P
+Source: ./Integration/DarbouxIntegral/Basic.lean#L60
+
+
+
+Name: darboux_criterion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)), IsDarbouxIntegrable f a b ↔ ∀ ε > 0, ∃ P : IntegrationPartition a b, UpperDarbouxSum f P - LowerDarbouxSum f P < ε
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real}, LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b) → LRA.Analysis.Integration.IsDarbouxIntegrable f a b ↔ ∀ (ε : Real), GT.gt ε 0 → Exists fun P => Real.instLT.lt (instHSub.hSub (LRA.Analysis.Integration.UpperDarbouxSum f P) (LRA.Analysis.Integration.LowerDarbouxSum f P)) ε
+Transliterated theorem: IsDarbouxIntegrable f a b ↔ ∀ ε > 0, ∃ P ∈ IntegrationPartition a b, UpperDarbouxSum f P - LowerDarbouxSum f P < ε
+Logical form (Lean): (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) : IsDarbouxIntegrable f a b ↔ ∀ ε > 0, ∃ P : IntegrationPartition a b, UpperDarbouxSum f P - LowerDarbouxSum f P < ε
+Source: ./Integration/DarbouxIntegral/Basic.lean#L93
+
+
+
+Name: riemann_darboux_equivalence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hab : a ≤ b) (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)), IsRiemannIntegrable f a b ↔ IsDarbouxIntegrable f a b
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real}, (Real.instLE.le a b ∧ LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) → LRA.Analysis.Integration.IsRiemannIntegrable f a b ↔ LRA.Analysis.Integration.IsDarbouxIntegrable f a b
+Transliterated theorem: (a ≤ b) → IsRiemannIntegrable f a b ↔ IsDarbouxIntegrable f a b
+Logical form (Lean): (hab : a ≤ b) (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) : IsRiemannIntegrable f a b ↔ IsDarbouxIntegrable f a b
+Source: ./Integration/DarbouxIntegral/Basic.lean#L110
+
+
+
+Name: continuous_darboux_integrable
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hab : a ≤ b) (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)), IsDarbouxIntegrable f a b
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real}, (Real.instLE.le a b ∧ LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) → LRA.Analysis.Integration.IsDarbouxIntegrable f a b
+Transliterated theorem: (a ≤ b) → IsDarbouxIntegrable f a b
+Logical form (Lean): (hab : a ≤ b) (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) : IsDarbouxIntegrable f a b
+Source: ./Integration/DarbouxIntegral/Basic.lean#L127
+
+
+
+Name: monotone_darboux_integrable
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hab : a ≤ b) (hmono : MonotoneOn f (Set.Icc a b)), IsDarbouxIntegrable f a b
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real}, (Real.instLE.le a b ∧ MonotoneOn f (Set.Icc a b)) → LRA.Analysis.Integration.IsDarbouxIntegrable f a b
+Transliterated theorem: (a ≤ b) → IsDarbouxIntegrable f a b
+Logical form (Lean): (hab : a ≤ b) (hmono : MonotoneOn f (Set.Icc a b)) : IsDarbouxIntegrable f a b
+Source: ./Integration/DarbouxIntegral/Basic.lean#L142
+
+
+
+Name: finite_discontinuities_darboux_integrable
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hab : a ≤ b) (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) (hfin : {x ∈ Set.Icc a b | LRA.Analysis.Continuity.PointOfDiscontinuity f (Set.Icc a b) x}.Finite), IsDarbouxIntegrable f a b
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real}, (Real.instLE.le a b ∧ (LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b) ∧ setOf fun x => (Set.instMembership.mem (Set.Icc a b) x ∧ LRA.Analysis.Continuity.PointOfDiscontinuity f (Set.Icc a b) x)).Finite) → LRA.Analysis.Integration.IsDarbouxIntegrable f a b
+Transliterated theorem: (a ≤ b ∧ {x ∈ Set.Icc a b | LRA.Analysis.Continuity.PointOfDiscontinuity f (Set.Icc a b) x}.Finite) → IsDarbouxIntegrable f a b
+Logical form (Lean): (hab : a ≤ b) (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) (hfin : {x ∈ Set.Icc a b | LRA.Analysis.Continuity.PointOfDiscontinuity f (Set.Icc a b) x}.Finite) : IsDarbouxIntegrable f a b
+Source: ./Integration/DarbouxIntegral/Basic.lean#L160
+
+
+
+Name: darboux_integrable_linear_combinations
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hf : IsDarbouxIntegrable f a b) (hg : IsDarbouxIntegrable g a b) (α β : ℝ), IsDarbouxIntegrable (fun x => α * f x + β * g x) a b
+Predicate logic (unfolded): ∀ {f g : Real → Real} {a b : Real}, (LRA.Analysis.Integration.IsDarbouxIntegrable f a b ∧ LRA.Analysis.Integration.IsDarbouxIntegrable g a b) → ∀ (α β : Real), LRA.Analysis.Integration.IsDarbouxIntegrable (fun x => instHAdd.hAdd (instHMul.hMul α (f x)) (instHMul.hMul β (g x))) a b
+Transliterated theorem: IsDarbouxIntegrable (fun x => α * f x + β * g x) a b
+Logical form (Lean): (hf : IsDarbouxIntegrable f a b) (hg : IsDarbouxIntegrable g a b) (α β : ℝ) : IsDarbouxIntegrable (fun x => α * f x + β * g x) a b
+Source: ./Integration/DarbouxIntegral/Basic.lean#L178
+
+
+
+Name: darboux_integrable_products
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hf : IsDarbouxIntegrable f a b) (hg : IsDarbouxIntegrable g a b), IsDarbouxIntegrable (fun x => f x * g x) a b
+Predicate logic (unfolded): ∀ {f g : Real → Real} {a b : Real}, (LRA.Analysis.Integration.IsDarbouxIntegrable f a b ∧ LRA.Analysis.Integration.IsDarbouxIntegrable g a b) → LRA.Analysis.Integration.IsDarbouxIntegrable (fun x => instHMul.hMul (f x) (g x)) a b
+Transliterated theorem: IsDarbouxIntegrable (fun x => f x * g x) a b
+Logical form (Lean): (hf : IsDarbouxIntegrable f a b) (hg : IsDarbouxIntegrable g a b) : IsDarbouxIntegrable (fun x => f x * g x) a b
+Source: ./Integration/DarbouxIntegral/Basic.lean#L194
+
+
+
+Name: darboux_integrable_absolute_value
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {f : Real → Real} {a b : Real},   LRA.Analysis.Integration.IsDarbouxIntegrable f a b →     LRA.Analysis.Integration.IsDarbouxIntegrable (fun x => abs (f x)) a b
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real}, LRA.Analysis.Integration.IsDarbouxIntegrable f a b → LRA.Analysis.Integration.IsDarbouxIntegrable (fun x => abs (f x)) a b
+Transliterated theorem: IsDarbouxIntegrable (fun x => |f x|) a b
+Logical form (Lean): (hf : IsDarbouxIntegrable f a b) : IsDarbouxIntegrable (fun x => |f x|) a b
+Source: ./Integration/DarbouxIntegral/Basic.lean#L208
+
+
+
+Name: darboux_integrable_continuous_composition
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hf : IsDarbouxIntegrable f a b) (hfbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) (J : Set ℝ) (hJ : f '' Set.Icc a b ⊆ J) (φ : ℝ → ℝ) (hφ : LRA.Analysis.Continuity.ContinuousOn' φ J), IsDarbouxIntegrable (fun x => φ (f x)) a b
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real}, (LRA.Analysis.Integration.IsDarbouxIntegrable f a b ∧ LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) → ∀ (J : Set Real), Set.instLE.le (Set.image f (Set.Icc a b)) J → ∀ (φ : Real → Real), LRA.Analysis.Continuity.ContinuousOn' φ J → LRA.Analysis.Integration.IsDarbouxIntegrable (fun x => φ (f x)) a b
+Transliterated theorem: (ℝ → ℝ) → IsDarbouxIntegrable (fun x => φ (f x)) a b
+Logical form (Lean): (hf : IsDarbouxIntegrable f a b) (hfbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) (J : Set ℝ) (hJ : f '' Set.Icc a b ⊆ J) (φ : ℝ → ℝ) (hφ : LRA.Analysis.Continuity.ContinuousOn' φ J) : IsDarbouxIntegrable (fun x => φ (f x)) a b
+Source: ./Integration/DarbouxIntegral/Basic.lean#L228
+
+
+
+Name: dirichlet_not_darboux_integrable
+Kind: Theorem
+State: Sorry
+Predicate logic: ¬ IsDarbouxIntegrable (fun _ => (0 : ℝ)) 0 1
+Predicate logic (unfolded): ¬ LRA.Analysis.Integration.IsDarbouxIntegrable (fun x => 0) 0 1
+Transliterated theorem: ¬ IsDarbouxIntegrable (fun _ => 0 ∈ ℝ) 0 1
+Logical form (Lean): : ¬ IsDarbouxIntegrable (fun _ => (0 : ℝ)) 0 1
+Source: ./Integration/DarbouxIntegral/Basic.lean#L244
+
+
+
+Name: cousins_lemma
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : Real),   Real.instLE.le a b →     ∀ (δ : Real → Real),       LRA.Analysis.Integration.IsGaugeOn a b δ → Exists fun P => LRA.Analysis.Integration.IsHKDeltaFine P δ
+Predicate logic (unfolded): ∀ (a b : Real), Real.instLE.le a b → ∀ (δ : Real → Real), LRA.Analysis.Integration.IsGaugeOn a b δ → Exists fun P => LRA.Analysis.Integration.IsHKDeltaFine P δ
+Transliterated theorem: (a ≤ b ∧ ℝ → ℝ) → ∃ P ∈ TaggedPartitionIntegration a b, IsHKDeltaFine P δ
+Logical form (Lean): (a b : ℝ) (hab : a ≤ b) (δ : ℝ → ℝ) (hδ : IsGaugeOn a b δ) : ∃ P : TaggedPartitionIntegration a b, IsHKDeltaFine P δ
+Source: ./Integration/HenstockKurzweil/Basic.lean#L94
+
+
+
+Name: riemann_integrable_implies_hk_integrable
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {f : Real → Real} {a b : Real},   Real.instLE.le a b →     ∀ (L : Real), LRA.Analysis.Integration.HasRiemannIntegral f a b L → LRA.Analysis.Integration.HasHKIntegral f a b L
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real}, Real.instLE.le a b → ∀ (L : Real), LRA.Analysis.Integration.HasRiemannIntegral f a b L → LRA.Analysis.Integration.HasHKIntegral f a b L
+Transliterated theorem: (a ≤ b) → HasHKIntegral f a b L
+Logical form (Lean): (hab : a ≤ b) (L : ℝ) (hR : HasRiemannIntegral f a b L) : HasHKIntegral f a b L
+Source: ./Integration/HenstockKurzweil/Basic.lean#L111
+
+
+
+Name: hk_straddle
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (F : ℝ → ℝ) (ξ : ℝ) (Dξ : ℝ) (hF : LRA.Analysis.Differentiation.Derivative Dξ F Set.univ ξ), ∀ ε > 0, ∃ δξ > 0, ∀ u v : ℝ, u ≤ ξ → ξ ≤ v → u ∈ Set.Ioo (ξ - δξ) (ξ + δξ) → v ∈ Set.Ioo (ξ - δξ) (ξ + δξ) → |F v - F u - Dξ * (v - u)| ≤ ε * (v - u)
+Predicate logic (unfolded): ∀ (F : Real → Real) (ξ Dξ : Real), LRA.Analysis.Differentiation.Derivative Dξ F Set.univ ξ → ∀ (ε : Real), GT.gt ε 0 → Exists fun δξ => (GT.gt δξ 0 ∧ ∀ (u v : Real), Real.instLE.le u ξ → Real.instLE.le ξ v → Set.instMembership.mem (Set.Ioo (instHSub.hSub ξ δξ) (instHAdd.hAdd ξ δξ)) u → Set.instMembership.mem (Set.Ioo (instHSub.hSub ξ δξ) (instHAdd.hAdd ξ δξ)) v → Real.instLE.le (abs (instHSub.hSub (instHSub.hSub (F v) (F u)) (instHMul.hMul Dξ (instHSub.hSub v u)))) (instHMul.hMul ε (instHSub.hSub v u)))
+Transliterated theorem: (ℝ → ℝ) → ∀ ε > 0, ∃ δξ > 0, ∀ u v : ℝ, u ≤ ξ → ξ ≤ v → u ∈ Set.Ioo (ξ - δξ) (ξ + δξ) → v ∈ Set.Ioo (ξ - δξ) (ξ + δξ) → |F v - F u - Dξ * (v - u)| ≤ ε * (v - u)
+Logical form (Lean): (F : ℝ → ℝ) (ξ : ℝ) (Dξ : ℝ) (hF : LRA.Analysis.Differentiation.Derivative Dξ F Set.univ ξ) : ∀ ε > 0, ∃ δξ > 0, ∀ u v : ℝ, u ≤ ξ → ξ ≤ v → u ∈ Set.Ioo (ξ - δξ) (ξ + δξ) → v ∈ Set.Ioo (ξ - δξ) (ξ + δξ) → |F v - F u - Dξ * (v - u)| ≤ ε * (v - u)
+Source: ./Integration/HenstockKurzweil/Basic.lean#L130
+
+
+
+Name: hk_fundamental_theorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (F FD : ℝ → ℝ) (hab : a ≤ b) (hF : ∀ x ∈ Set.Icc a b, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x), HasHKIntegral FD a b (F b - F a)
+Predicate logic (unfolded): ∀ {a b : Real} (F FD : Real → Real), (Real.instLE.le a b ∧ ∀ (x : Real), Set.instMembership.mem (Set.Icc a b) x → LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x) → LRA.Analysis.Integration.HasHKIntegral FD a b (instHSub.hSub (F b) (F a))
+Transliterated theorem: (a ≤ b ∧ ∀ x ∈ Set.Icc a b, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x) → HasHKIntegral FD a b (F b - F a)
+Logical form (Lean): (F FD : ℝ → ℝ) (hab : a ≤ b) (hF : ∀ x ∈ Set.Icc a b, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x) : HasHKIntegral FD a b (F b - F a)
+Source: ./Integration/HenstockKurzweil/Basic.lean#L149
+
+
+
+Name: continuous_hk_integrable
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hab : a ≤ b) (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)), IsHKIntegrable f a b
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real}, (Real.instLE.le a b ∧ LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) → LRA.Analysis.Integration.IsHKIntegrable f a b
+Transliterated theorem: (a ≤ b) → IsHKIntegrable f a b
+Logical form (Lean): (hab : a ≤ b) (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) : IsHKIntegrable f a b
+Source: ./Integration/HenstockKurzweil/Basic.lean#L166
+
+
+
+Name: hk_strictly_wider_than_lebesgue_witness
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (F FD : ℝ → ℝ) (hF : ∀ x : ℝ, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x), IsHKIntegrable FD (-1) 1 ∧ ¬ IsRiemannIntegrable (fun x => |FD x|) (-1) 1
+Predicate logic (unfolded): ∀ (F FD : Real → Real), (∀ (x : Real), LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x) → (LRA.Analysis.Integration.IsHKIntegrable FD (-1) 1 ∧ ¬ LRA.Analysis.Integration.IsRiemannIntegrable (fun x => abs (FD x)) (-1) 1)
+Transliterated theorem: (∀ x : ℝ, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x) → IsHKIntegrable FD (-1) 1 ∧ ¬ IsRiemannIntegrable (fun x => |FD x|) (-1) 1
+Logical form (Lean): (F FD : ℝ → ℝ) (hF : ∀ x : ℝ, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x) : IsHKIntegrable FD (-1) 1 ∧ ¬ IsRiemannIntegrable (fun x => |FD x|) (-1) 1
+Source: ./Integration/HenstockKurzweil/Basic.lean#L182
+
+
+
+Name: monotone_bounded_variation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (α : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hmono : MonotoneOn α (Set.Icc a b)), HasBoundedVariation α a b
+Predicate logic (unfolded): ∀ (α : Real → Real) (a b : Real), (Real.instLE.le a b ∧ MonotoneOn α (Set.Icc a b)) → LRA.Analysis.Integration.HasBoundedVariation α a b
+Transliterated theorem: (ℝ → ℝ ∧ a ≤ b) → HasBoundedVariation α a b
+Logical form (Lean): (α : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hmono : MonotoneOn α (Set.Icc a b)) : HasBoundedVariation α a b
+Source: ./Integration/RiemannStieltjes/Basic.lean#L78
+
+
+
+Name: rs_continuous_bv_existence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hab : a ≤ b) (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) (hbv : HasBoundedVariation α a b), IsRiemannStieltjesIntegrable f α a b
+Predicate logic (unfolded): ∀ {f α : Real → Real} {a b : Real}, (Real.instLE.le a b ∧ (LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b) ∧ LRA.Analysis.Integration.HasBoundedVariation α a b)) → LRA.Analysis.Integration.IsRiemannStieltjesIntegrable f α a b
+Transliterated theorem: (a ≤ b) → IsRiemannStieltjesIntegrable f α a b
+Logical form (Lean): (hab : a ≤ b) (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) (hbv : HasBoundedVariation α a b) : IsRiemannStieltjesIntegrable f α a b
+Source: ./Integration/RiemannStieltjes/Basic.lean#L130
+
+
+
+Name: rs_bilinearity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Lfα Lgα : ℝ) (hf : HasRiemannStieltjesIntegral f α a b Lfα) (hg : HasRiemannStieltjesIntegral g α a b Lgα) (lam μ : ℝ), HasRiemannStieltjesIntegral (fun x => lam * f x + μ * g x) α a b (lam * Lfα + μ * Lgα) ∧ (∀ Lfβ : ℝ, HasRiemannStieltjesIntegral f β a b Lfβ → HasRiemannStieltjesIntegral f (fun x => lam * α x + μ * β x) a b (lam * Lfα + μ * Lfβ))
+Predicate logic (unfolded): ∀ {f α β : Real → Real} {a b : Real} {g : Real → Real} (Lfα Lgα : Real), (LRA.Analysis.Integration.HasRiemannStieltjesIntegral f α a b Lfα ∧ LRA.Analysis.Integration.HasRiemannStieltjesIntegral g α a b Lgα) → ∀ (lam μ : Real), (LRA.Analysis.Integration.HasRiemannStieltjesIntegral (fun x => instHAdd.hAdd (instHMul.hMul lam (f x)) (instHMul.hMul μ (g x))) α a b (instHAdd.hAdd (instHMul.hMul lam Lfα) (instHMul.hMul μ Lgα)) ∧ ∀ (Lfβ : Real), LRA.Analysis.Integration.HasRiemannStieltjesIntegral f β a b Lfβ → LRA.Analysis.Integration.HasRiemannStieltjesIntegral f (fun x => instHAdd.hAdd (instHMul.hMul lam (α x)) (instHMul.hMul μ (β x))) a b (instHAdd.hAdd (instHMul.hMul lam Lfα) (instHMul.hMul μ Lfβ)))
+Transliterated theorem: HasRiemannStieltjesIntegral (fun x => lam * f x + μ * g x) α a b (lam * Lfα + μ * Lgα) ∧ ∀ Lfβ ∈ ℝ, HasRiemannStieltjesIntegral f β a b Lfβ → HasRiemannStieltjesIntegral f (fun x => lam * α x + μ * β x a b (lam * Lfα + μ * Lfβ))
+Logical form (Lean): (Lfα Lgα : ℝ) (hf : HasRiemannStieltjesIntegral f α a b Lfα) (hg : HasRiemannStieltjesIntegral g α a b Lgα) (lam μ : ℝ) : HasRiemannStieltjesIntegral (fun x => lam * f x + μ * g x) α a b (lam * Lfα + μ * Lgα) ∧ (∀ Lfβ : ℝ, HasRiemannStieltjesIntegral f β a b Lfβ → HasRiemannStieltjesIntegral f (fun x => lam * α x + μ * β x) a b (lam * Lfα + μ * Lfβ))
+Source: ./Integration/RiemannStieltjes/Basic.lean#L151
+
+
+
+Name: rs_interval_additivity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (c Lab Lac Lcb : ℝ) (hac : a ≤ c) (hcb : c ≤ b) (hab' : HasRiemannStieltjesIntegral f α a b Lab) (hac' : HasRiemannStieltjesIntegral f α a c Lac) (hcb' : HasRiemannStieltjesIntegral f α c b Lcb), Lab = Lac + Lcb
+Predicate logic (unfolded): ∀ {f α : Real → Real} {a b : Real} (c Lab Lac Lcb : Real), (Real.instLE.le a c ∧ (Real.instLE.le c b ∧ (LRA.Analysis.Integration.HasRiemannStieltjesIntegral f α a b Lab ∧ (LRA.Analysis.Integration.HasRiemannStieltjesIntegral f α a c Lac ∧ LRA.Analysis.Integration.HasRiemannStieltjesIntegral f α c b Lcb)))) → Lab = instHAdd.hAdd Lac Lcb
+Transliterated theorem: (a ≤ c ∧ c ≤ b) → Lab = Lac + Lcb
+Logical form (Lean): (c Lab Lac Lcb : ℝ) (hac : a ≤ c) (hcb : c ≤ b) (hab' : HasRiemannStieltjesIntegral f α a b Lab) (hac' : HasRiemannStieltjesIntegral f α a c Lac) (hcb' : HasRiemannStieltjesIntegral f α c b Lcb) : Lab = Lac + Lcb
+Source: ./Integration/RiemannStieltjes/Basic.lean#L172
+
+
+
+Name: rs_integration_by_parts
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (L : ℝ) (hL : HasRiemannStieltjesIntegral f α a b L), ∃ L', HasRiemannStieltjesIntegral α f a b L' ∧ L + L' = f b * α b - f a * α a
+Predicate logic (unfolded): ∀ {f α : Real → Real} {a b : Real} (L : Real), LRA.Analysis.Integration.HasRiemannStieltjesIntegral f α a b L → Exists fun L' => (LRA.Analysis.Integration.HasRiemannStieltjesIntegral α f a b L' ∧ instHAdd.hAdd L L' = instHSub.hSub (instHMul.hMul (f b) (α b)) (instHMul.hMul (f a) (α a)))
+Transliterated theorem: ∃ L', HasRiemannStieltjesIntegral α f a b L' ∧ L + L' = f b * α b - f a * α a
+Logical form (Lean): (L : ℝ) (hL : HasRiemannStieltjesIntegral f α a b L) : ∃ L', HasRiemannStieltjesIntegral α f a b L' ∧ L + L' = f b * α b - f a * α a
+Source: ./Integration/RiemannStieltjes/Basic.lean#L189
+
+
+
+Name: rs_c1_reduction
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hab : a ≤ b) (αD : ℝ → ℝ) (hα : LRA.Analysis.Differentiation.IsClassC1 α αD (Set.Icc a b)) (hf : IsRiemannIntegrable (fun x => f x * αD x) a b) (Lint : ℝ) (hLint : HasRiemannIntegral (fun x => f x * αD x) a b Lint), HasRiemannStieltjesIntegral f α a b Lint
+Predicate logic (unfolded): ∀ {f α : Real → Real} {a b : Real}, Real.instLE.le a b → ∀ (αD : Real → Real), (LRA.Analysis.Differentiation.IsClassC1 α αD (Set.Icc a b) ∧ LRA.Analysis.Integration.IsRiemannIntegrable (fun x => instHMul.hMul (f x) (αD x)) a b) → ∀ (Lint : Real), LRA.Analysis.Integration.HasRiemannIntegral (fun x => instHMul.hMul (f x) (αD x)) a b Lint → LRA.Analysis.Integration.HasRiemannStieltjesIntegral f α a b Lint
+Transliterated theorem: (a ≤ b ∧ ℝ → ℝ) → HasRiemannStieltjesIntegral f α a b Lint
+Logical form (Lean): (hab : a ≤ b) (αD : ℝ → ℝ) (hα : LRA.Analysis.Differentiation.IsClassC1 α αD (Set.Icc a b)) (hf : IsRiemannIntegrable (fun x => f x * αD x) a b) (Lint : ℝ) (hLint : HasRiemannIntegral (fun x => f x * αD x) a b Lint) : HasRiemannStieltjesIntegral f α a b Lint
+Source: ./Integration/RiemannStieltjes/Basic.lean#L209
+
+
+
+Name: rs_step_integrator_finite_sum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (n : ℕ) (c : Fin n → ℝ) (hc : ∀ i, c i ∈ Set.Icc a b) (jump : Fin n → ℝ) (hstep : ∀ x ∈ Set.Icc a b, (∀ i, x ≠ c i) → ∃ k, ∀ y ∈ Set.Icc a b, (∀ i, y ≠ c i) → α y = k) (hcont : ∀ i, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) (c i)), HasRiemannStieltjesIntegral f α a b (∑ i, f (c i) * jump i)
+Predicate logic (unfolded): ∀ {f α : Real → Real} {a b : Real} (n : Nat) (c : Fin n → Real), (∀ (i : Fin n), Set.instMembership.mem (Set.Icc a b) (c i)) → ∀ (jump : Fin n → Real), (∀ (x : Real), Set.instMembership.mem (Set.Icc a b) x → (∀ (i : Fin n), Ne x (c i)) → Exists fun k => ∀ (y : Real), Set.instMembership.mem (Set.Icc a b) y → (∀ (i : Fin n), Ne y (c i)) → α y = k ∧ ∀ (i : Fin n), LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) (c i)) → LRA.Analysis.Integration.HasRiemannStieltjesIntegral f α a b (Finset.univ.sum fun i => instHMul.hMul (f (c i)) (jump i))
+Transliterated theorem: (Fin n → ℝ ∧ ∀ i, c i ∈ Set.Icc a b ∧ Fin n → ℝ ∧ ∀ x ∈ Set.Icc a b, (∀ i, x ≠ c i) → ∃ k, ∀ y ∈ Set.Icc a b, (∀ i, y ≠ c i) → α y = k ∧ ∀ i, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) (c i)) → HasRiemannStieltjesIntegral f α a b (∑ i, f (c i) * jump i)
+Logical form (Lean): (n : ℕ) (c : Fin n → ℝ) (hc : ∀ i, c i ∈ Set.Icc a b) (jump : Fin n → ℝ) (hstep : ∀ x ∈ Set.Icc a b, (∀ i, x ≠ c i) → ∃ k, ∀ y ∈ Set.Icc a b, (∀ i, y ≠ c i) → α y = k) (hcont : ∀ i, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) (c i)) : HasRiemannStieltjesIntegral f α a b (∑ i, f (c i) * jump i)
+Source: ./Integration/RiemannStieltjes/Basic.lean#L232
+
+
+
+Name: rs_shared_jump_failure_witness
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (c : ℝ) (hc : c ∈ Set.Ioo (0:ℝ) 1), ¬ IsRiemannStieltjesIntegrable (fun x => if x ≥ c then (1:ℝ) else 0) (fun x => if x ≥ c then (1:ℝ) else 0) 0 1
+Predicate logic (unfolded): ∀ (c : Real), Set.instMembership.mem (Set.Ioo 0 1) c → ¬ LRA.Analysis.Integration.IsRiemannStieltjesIntegrable (fun x => ite (GE.ge x c) 1 0) (fun x => ite (GE.ge x c) 1 0) 0 1
+Transliterated theorem: (c ∈ Set.Ioo 0 ∈ ℝ 1) → ¬ IsRiemannStieltjesIntegrable (fun x => if x ≥ c then 1 ∈ ℝ else 0) (fun x => if x ≥ c then 1 ∈ ℝ else 0) 0 1
+Logical form (Lean): (c : ℝ) (hc : c ∈ Set.Ioo (0:ℝ) 1) : ¬ IsRiemannStieltjesIntegrable (fun x => if x ≥ c then (1:ℝ) else 0) (fun x => if x ≥ c then (1:ℝ) else 0) 0 1
+Source: ./Integration/RiemannStieltjes/Basic.lean#L250
+
+
+
+Name: center_mem_ball
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [inst : MetricSpace X] (x : X) {r : Real},   Real.instLT.lt 0 r → Set.instMembership.mem (Metric.ball x r) x
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] (x : X) {r : Real}, Real.instLT.lt 0 r → Set.instMembership.mem (Metric.ball x r) x
+Transliterated theorem: (∀ x ∈ X), (0 < r) → x ∈ Metric.ball x r
+Logical form (Lean): (x : X) {r : Real} (radius_positive : 0 < r) : x ∈ Metric.ball x r
+Source: ./MetricSpace/Balls/Basic.lean#L29
+
+
+
+Name: ball_subset_ball
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [inst : MetricSpace X] (x : X) {r s : Real},   Real.instLE.le r s → Set.instLE.le (Metric.ball x r) (Metric.ball x s)
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] (x : X) {r s : Real}, Real.instLE.le r s → Set.instLE.le (Metric.ball x r) (Metric.ball x s)
+Transliterated theorem: (∀ x ∈ X), (r ≤ s) → Metric.ball x r ⊆ Metric.ball x s
+Logical form (Lean): (x : X) {r s : Real} (radius_le : r ≤ s) : Metric.ball x r ⊆ Metric.ball x s
+Source: ./MetricSpace/Balls/Basic.lean#L53
+
+
+
+Name: ball_subset_closedBall
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [inst : MetricSpace X] (x : X) (r : Real), Set.instLE.le (Metric.ball x r) (Metric.closedBall x r)
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] (x : X) (r : Real), Set.instLE.le (Metric.ball x r) (Metric.closedBall x r)
+Transliterated theorem: (∀ x ∈ X ∀ r ∈ Real), Metric.ball x r ⊆ Metric.closedBall x r
+Logical form (Lean): (x : X) (r : Real) : Metric.ball x r ⊆ Metric.closedBall x r
+Source: ./MetricSpace/Balls/Basic.lean#L76
+
+
+
+Name: ball_subset_ball_of_mem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : X} {r : Real} (pointInBall : y ∈ Metric.ball x r), ∃ ε > 0, Metric.ball y ε ⊆ Metric.ball x r
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] {x y : X} {r : Real}, Set.instMembership.mem (Metric.ball x r) y → Exists fun ε => (GT.gt ε 0 ∧ Set.instLE.le (Metric.ball y ε) (Metric.ball x r))
+Transliterated theorem: (y ∈ Metric.ball x r) → ∃ ε > 0, Metric.ball y ε ⊆ Metric.ball x r
+Logical form (Lean): {x y : X} {r : Real} (pointInBall : y ∈ Metric.ball x r) : ∃ ε > 0, Metric.ball y ε ⊆ Metric.ball x r
+Source: ./MetricSpace/Balls/Basic.lean#L99
+
+
+
+Name: EuclideanRMetricPositive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ a b : ℝ, 0 ≤ |a - b| ∧ (|a - b| = 0 ↔ a = b)
+Predicate logic (unfolded): ∀ (a b : Real), (Real.instLE.le 0 (abs (instHSub.hSub a b)) ∧ abs (instHSub.hSub a b) = 0 ↔ a = b)
+Transliterated theorem: ∀ a b : ℝ, 0 ≤ |a - b| ∧ (|a - b| = 0 ↔ a = b)
+Logical form (Lean): : ∀ a b : ℝ, 0 ≤ |a - b| ∧ (|a - b| = 0 ↔ a = b)
+Source: ./MetricSpace/Definition/Metrics.lean#L55
+
+
+
+Name: EuclideanRMetricSymmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ a b : ℝ, |a - b| = |b - a|
+Predicate logic (unfolded): ∀ (a b : Real), abs (instHSub.hSub a b) = abs (instHSub.hSub b a)
+Transliterated theorem: ∀ a b : ℝ, |a - b| = |b - a|
+Logical form (Lean): : ∀ a b : ℝ, |a - b| = |b - a|
+Source: ./MetricSpace/Definition/Metrics.lean#L60
+
+
+
+Name: EuclideanRMetricTriangle
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c : Real),   Real.instLE.le (abs (instHSub.hSub a c)) (instHAdd.hAdd (abs (instHSub.hSub a b)) (abs (instHSub.hSub b c)))
+Predicate logic (unfolded): ∀ (a b c : Real), Real.instLE.le (abs (instHSub.hSub a c)) (instHAdd.hAdd (abs (instHSub.hSub a b)) (abs (instHSub.hSub b c)))
+Transliterated theorem: ∀ a b c : ℝ, |a - c| ≤ |a - b| + |b - c|
+Logical form (Lean): : ∀ a b c : ℝ, |a - c| ≤ |a - b| + |b - c|
+Source: ./MetricSpace/Definition/Metrics.lean#L65
+
+
+
+Name: ComplexModulusMetricPositive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ a b : ℂ, 0 ≤ ‖a - b‖ ∧ (‖a - b‖ = 0 ↔ a = b)
+Predicate logic (unfolded): ∀ (a b : Complex), (Real.instLE.le 0 (Complex.instNorm.norm (instHSub.hSub a b)) ∧ Complex.instNorm.norm (instHSub.hSub a b) = 0 ↔ a = b)
+Transliterated theorem: ∀ a b : ℂ, 0 ≤ ‖a - b‖ ∧ (‖a - b‖ = 0 ↔ a = b)
+Logical form (Lean): : ∀ a b : ℂ, 0 ≤ ‖a - b‖ ∧ (‖a - b‖ = 0 ↔ a = b)
+Source: ./MetricSpace/Definition/Metrics.lean#L112
+
+
+
+Name: ComplexModulusMetricSymmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ a b : ℂ, ‖a - b‖ = ‖b - a‖
+Predicate logic (unfolded): ∀ (a b : Complex), Complex.instNorm.norm (instHSub.hSub a b) = Complex.instNorm.norm (instHSub.hSub b a)
+Transliterated theorem: ∀ a b : ℂ, ‖a - b‖ = ‖b - a‖
+Logical form (Lean): : ∀ a b : ℂ, ‖a - b‖ = ‖b - a‖
+Source: ./MetricSpace/Definition/Metrics.lean#L117
+
+
+
+Name: ComplexModulusMetricTriangle
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c : Complex),   Real.instLE.le (Complex.instNorm.norm (instHSub.hSub a c))     (instHAdd.hAdd (Complex.instNorm.norm (instHSub.hSub a b)) (Complex.instNorm.norm (instHSub.hSub b c)))
+Predicate logic (unfolded): ∀ (a b c : Complex), Real.instLE.le (Complex.instNorm.norm (instHSub.hSub a c)) (instHAdd.hAdd (Complex.instNorm.norm (instHSub.hSub a b)) (Complex.instNorm.norm (instHSub.hSub b c)))
+Transliterated theorem: ∀ a b c : ℂ, ‖a - c‖ ≤ ‖a - b‖ + ‖b - c‖
+Logical form (Lean): : ∀ a b c : ℂ, ‖a - c‖ ≤ ‖a - b‖ + ‖b - c‖
+Source: ./MetricSpace/Definition/Metrics.lean#L122
+
+
+
+Name: ComplexCircleChordMetricPositive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (center : ℂ) (radius : ℝ) (radiusPositive : 0 < radius), ∀ a b : {z : ℂ // ‖z - center‖ = radius}, 0 ≤ ‖a.1 - b.1‖ ∧ (‖a.1 - b.1‖ = 0 ↔ a = b)
+Predicate logic (unfolded): ∀ (center : Complex) (radius : Real), Real.instLT.lt 0 radius → ∀ (a b : Subtype fun z => Complex.instNorm.norm (instHSub.hSub z center) = radius), (Real.instLE.le 0 (Complex.instNorm.norm (instHSub.hSub a.val b.val)) ∧ Complex.instNorm.norm (instHSub.hSub a.val b.val) = 0 ↔ a = b)
+Transliterated theorem: (0 < radius) → ∀ a b : {z : ℂ // ‖z - center‖ = radius}, 0 ≤ ‖a.1 - b.1‖ ∧ (‖a.1 - b.1‖ = 0 ↔ a = b)
+Logical form (Lean): (center : ℂ) (radius : ℝ) (radiusPositive : 0 < radius) : ∀ a b : {z : ℂ // ‖z - center‖ = radius}, 0 ≤ ‖a.1 - b.1‖ ∧ (‖a.1 - b.1‖ = 0 ↔ a = b)
+Source: ./MetricSpace/Definition/Metrics.lean#L178
+
+
+
+Name: ComplexCircleChordMetricSymmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (center : ℂ) (radius : ℝ) (radiusPositive : 0 < radius), ∀ a b : {z : ℂ // ‖z - center‖ = radius}, ‖a.1 - b.1‖ = ‖b.1 - a.1‖
+Predicate logic (unfolded): ∀ (center : Complex) (radius : Real), Real.instLT.lt 0 radius → ∀ (a b : Subtype fun z => Complex.instNorm.norm (instHSub.hSub z center) = radius), Complex.instNorm.norm (instHSub.hSub a.val b.val) = Complex.instNorm.norm (instHSub.hSub b.val a.val)
+Transliterated theorem: (0 < radius) → ∀ a b : {z : ℂ // ‖z - center‖ = radius}, ‖a.1 - b.1‖ = ‖b.1 - a.1‖
+Logical form (Lean): (center : ℂ) (radius : ℝ) (radiusPositive : 0 < radius) : ∀ a b : {z : ℂ // ‖z - center‖ = radius}, ‖a.1 - b.1‖ = ‖b.1 - a.1‖
+Source: ./MetricSpace/Definition/Metrics.lean#L185
+
+
+
+Name: ComplexCircleChordMetricTriangle
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (center : ℂ) (radius : ℝ) (radiusPositive : 0 < radius), ∀ a b c : {z : ℂ // ‖z - center‖ = radius}, ‖a.1 - c.1‖ ≤ ‖a.1 - b.1‖ + ‖b.1 - c.1‖
+Predicate logic (unfolded): ∀ (center : Complex) (radius : Real), Real.instLT.lt 0 radius → ∀ (a b c : Subtype fun z => Complex.instNorm.norm (instHSub.hSub z center) = radius), Real.instLE.le (Complex.instNorm.norm (instHSub.hSub a.val c.val)) (instHAdd.hAdd (Complex.instNorm.norm (instHSub.hSub a.val b.val)) (Complex.instNorm.norm (instHSub.hSub b.val c.val)))
+Transliterated theorem: (0 < radius) → ∀ a b c : {z : ℂ // ‖z - center‖ = radius}, ‖a.1 - c.1‖ ≤ ‖a.1 - b.1‖ + ‖b.1 - c.1‖
+Logical form (Lean): (center : ℂ) (radius : ℝ) (radiusPositive : 0 < radius) : ∀ a b c : {z : ℂ // ‖z - center‖ = radius}, ‖a.1 - c.1‖ ≤ ‖a.1 - b.1‖ + ‖b.1 - c.1‖
+Source: ./MetricSpace/Definition/Metrics.lean#L192
+
+
+
+Name: EuclideanDistanceIsAMetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∃ metric : MetricDefinition ℝ, ∀ a b : ℝ, metric.distance a b = |a - b|
+Predicate logic (unfolded): Exists fun metric => ∀ (a b : Real), metric.distance a b = abs (instHSub.hSub a b)
+Transliterated theorem: ∃ metric ∈ MetricDefinition ℝ, ∀ a b : ℝ, metric.distance a b = |a - b|
+Logical form (Lean): : ∃ metric : MetricDefinition ℝ, ∀ a b : ℝ, metric.distance a b = |a - b|
+Source: ./MetricSpace/Definition/InitialTheorems.lean#L25
+
+
+
+Name: EmptySetIsAMetricSpace
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u}, Nonempty (LRA.Analysis.MetricSpace.MetricDefinition Set.instEmptyCollection.emptyCollection.Elem)
+Predicate logic (unfolded): ∀ {X : Type u}, Nonempty (LRA.Analysis.MetricSpace.MetricDefinition Set.instEmptyCollection.emptyCollection.Elem)
+Transliterated theorem: Nonempty (MetricDefinition ∅ ∈ Set X)
+Logical form (Lean): {X : Type u} : Nonempty (MetricDefinition (∅ : Set X))
+Source: ./MetricSpace/Definition/InitialTheorems.lean#L39
+
+
+
+Name: SingletonSetIsAMetricSpace
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} (point : X),   Nonempty (LRA.Analysis.MetricSpace.MetricDefinition (Set.instSingletonSet.singleton point).Elem)
+Predicate logic (unfolded): ∀ {X : Type u} (point : X), Nonempty (LRA.Analysis.MetricSpace.MetricDefinition (Set.instSingletonSet.singleton point).Elem)
+Transliterated theorem: (∀ point ∈ X), Nonempty (MetricDefinition {point} ∈ Set X)
+Logical form (Lean): {X : Type u} (point : X) : Nonempty (MetricDefinition ({point} : Set X))
+Source: ./MetricSpace/Definition/InitialTheorems.lean#L52
+
+
+
+Name: ModulusIsAMetricOnTheComplexNumbers
+Kind: Theorem
+State: Sorry
+Predicate logic: ∃ metric : MetricDefinition ℂ, ∀ a b : ℂ, metric.distance a b = ‖a - b‖
+Predicate logic (unfolded): Exists fun metric => ∀ (a b : Complex), metric.distance a b = Complex.instNorm.norm (instHSub.hSub a b)
+Transliterated theorem: ∃ metric ∈ MetricDefinition ℂ, ∀ a b : ℂ, metric.distance a b = ‖a - b‖
+Logical form (Lean): : ∃ metric : MetricDefinition ℂ, ∀ a b : ℂ, metric.distance a b = ‖a - b‖
+Source: ./MetricSpace/Definition/InitialTheorems.lean#L67
+
+
+
+Name: CircleAdmitsChordAsMetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (center : ℂ) (radius : ℝ), 0 < radius → ∃ metric : MetricDefinition {z : ℂ // ‖z - center‖ = radius}, ∀ a b, metric.distance a b = ‖a.1 - b.1‖
+Predicate logic (unfolded): ∀ (center : Complex) (radius : Real), Real.instLT.lt 0 radius → Exists fun metric => ∀ (a b : Subtype fun z => Complex.instNorm.norm (instHSub.hSub z center) = radius), metric.distance a b = Complex.instNorm.norm (instHSub.hSub a.val b.val)
+Transliterated theorem: ∀ center ∈ ℂ radius ∈ ℝ, 0 < radius → ∃ metric ∈ MetricDefinition {z ∈ ℂ // ‖z - center‖ = radius}, ∀ a b, metric.distance a b = ‖a.1 - b.1‖
+Logical form (Lean): : ∀ (center : ℂ) (radius : ℝ), 0 < radius → ∃ metric : MetricDefinition {z : ℂ // ‖z - center‖ = radius}, ∀ a b, metric.distance a b = ‖a.1 - b.1‖
+Source: ./MetricSpace/Definition/InitialTheorems.lean#L84
+
+
+
+Name: DistanceSelf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} (metric : MetricDefinition X) (x : X), metric.distance x x = 0
+Predicate logic (unfolded): ∀ {X : Type u} (metric : LRA.Analysis.MetricSpace.MetricDefinition X) (x : X), metric.distance x x = 0
+Transliterated theorem: (∀ x ∈ X), metric.distance x x = 0
+Logical form (Lean): {X : Type u} (metric : MetricDefinition X) (x : X) : metric.distance x x = 0
+Source: ./MetricSpace/Definition/InitialTheorems.lean#L101
+
+
+
+Name: DistanceNonnegative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} (metric : LRA.Analysis.MetricSpace.MetricDefinition X) (x y : X), Real.instLE.le 0 (metric.distance x y)
+Predicate logic (unfolded): ∀ {X : Type u} (metric : LRA.Analysis.MetricSpace.MetricDefinition X) (x y : X), Real.instLE.le 0 (metric.distance x y)
+Transliterated theorem: (∀ x y ∈ X), 0 ≤ metric.distance x y
+Logical form (Lean): {X : Type u} (metric : MetricDefinition X) (x y : X) : 0 ≤ metric.distance x y
+Source: ./MetricSpace/Definition/InitialTheorems.lean#L114
+
+
+
+Name: DistanceEqZeroIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} (metric : MetricDefinition X) (x y : X), metric.distance x y = 0 ↔ x = y
+Predicate logic (unfolded): ∀ {X : Type u} (metric : LRA.Analysis.MetricSpace.MetricDefinition X) (x y : X), metric.distance x y = 0 ↔ x = y
+Transliterated theorem: (∀ x y ∈ X), metric.distance x y = 0 ↔ x = y
+Logical form (Lean): {X : Type u} (metric : MetricDefinition X) (x y : X) : metric.distance x y = 0 ↔ x = y
+Source: ./MetricSpace/Definition/InitialTheorems.lean#L127
+
+
+
+Name: DistanceSymmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} (metric : MetricDefinition X) (x y : X), metric.distance x y = metric.distance y x
+Predicate logic (unfolded): ∀ {X : Type u} (metric : LRA.Analysis.MetricSpace.MetricDefinition X) (x y : X), metric.distance x y = metric.distance y x
+Transliterated theorem: (∀ x y ∈ X), metric.distance x y = metric.distance y x
+Logical form (Lean): {X : Type u} (metric : MetricDefinition X) (x y : X) : metric.distance x y = metric.distance y x
+Source: ./MetricSpace/Definition/InitialTheorems.lean#L140
+
+
+
+Name: TriangleInequality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} (metric : LRA.Analysis.MetricSpace.MetricDefinition X) (x y z : X),   Real.instLE.le (metric.distance x z) (instHAdd.hAdd (metric.distance x y) (metric.distance y z))
+Predicate logic (unfolded): ∀ {X : Type u} (metric : LRA.Analysis.MetricSpace.MetricDefinition X) (x y z : X), Real.instLE.le (metric.distance x z) (instHAdd.hAdd (metric.distance x y) (metric.distance y z))
+Transliterated theorem: (∀ x y z ∈ X), metric.distance x z ≤ metric.distance x y + metric.distance y z
+Logical form (Lean): {X : Type u} (metric : MetricDefinition X) (x y z : X) : metric.distance x z ≤ metric.distance x y + metric.distance y z
+Source: ./MetricSpace/Definition/InitialTheorems.lean#L153
+
+
+
+Name: ReverseTriangleInequality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} (metric : LRA.Analysis.MetricSpace.MetricDefinition X) (x y z : X),   Real.instLE.le (abs (instHSub.hSub (metric.distance x z) (metric.distance y z))) (metric.distance x y)
+Predicate logic (unfolded): ∀ {X : Type u} (metric : LRA.Analysis.MetricSpace.MetricDefinition X) (x y z : X), Real.instLE.le (abs (instHSub.hSub (metric.distance x z) (metric.distance y z))) (metric.distance x y)
+Transliterated theorem: (∀ x y z ∈ X), |metric.distance x z - metric.distance y z| ≤ metric.distance x y
+Logical form (Lean): {X : Type u} (metric : MetricDefinition X) (x y z : X) : |metric.distance x z - metric.distance y z| ≤ metric.distance x y
+Source: ./MetricSpace/Definition/InitialTheorems.lean#L166
+
+
+
+Name: RearrangementOfTriangleInequalityFromMetricDefinition
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} (metric : LRA.Analysis.MetricSpace.MetricDefinition X) (a b c : X),   Real.instLE.le (abs (instHSub.hSub (metric.distance a b) (metric.distance b c))) (metric.distance a c)
+Predicate logic (unfolded): ∀ {X : Type u} (metric : LRA.Analysis.MetricSpace.MetricDefinition X) (a b c : X), Real.instLE.le (abs (instHSub.hSub (metric.distance a b) (metric.distance b c))) (metric.distance a c)
+Transliterated theorem: (∀ a b c ∈ X), |metric.distance a b - metric.distance b c| ≤ metric.distance a c
+Logical form (Lean): {X : Type u} (metric : MetricDefinition X) (a b c : X) : |metric.distance a b - metric.distance b c| ≤ metric.distance a c
+Source: ./MetricSpace/Definition/InitialTheorems.lean#L190
+
+
+
+Name: rearrangement_of_triangle_inequality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [inst : MetricSpace X] (a b c : X),   Real.instLE.le (abs (instHSub.hSub (inst.dist a b) (inst.dist b c))) (inst.dist a c)
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] (a b c : X), Real.instLE.le (abs (instHSub.hSub (inst.dist a b) (inst.dist b c))) (inst.dist a c)
+Transliterated theorem: (∀ a b c ∈ X), |dist a b - dist b c| ≤ dist a c
+Logical form (Lean): {X : Type u} [MetricSpace X] (a b c : X) : |dist a b - dist b c| ≤ dist a c
+Source: ./MetricSpace/Definition/InitialTheorems.lean#L215
+
+
+
+Name: coe_pointFunction
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (z x : X), ((pointFunction z x : NNReal) : Real) = dist z x
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] (z x : X), LRA.Analysis.MetricSpace.pointFunction z x = .toReal(inst.dist z x)
+Transliterated theorem: (∀ z x ∈ X), pointFunction z x ∈ NNReal ∈ Real = dist z x
+Logical form (Lean): (z x : X) : ((pointFunction z x : NNReal) : Real) = dist z x
+Source: ./MetricSpace/Functions/Pointlike.lean#L49
+
+
+
+Name: pointFunction_self
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (z : X), pointFunction z z = 0
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] (z : X), LRA.Analysis.MetricSpace.pointFunction z z = 0
+Transliterated theorem: (∀ z ∈ X), pointFunction z z = 0
+Logical form (Lean): (z : X) : pointFunction z z = 0
+Source: ./MetricSpace/Functions/Pointlike.lean#L67
+
+
+
+Name: pointFunction_mem_pointFunctions
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [inst : MetricSpace X] (z : X),   Set.instMembership.mem (LRA.Analysis.MetricSpace.pointFunctions X) (LRA.Analysis.MetricSpace.pointFunction z)
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] (z : X), Set.instMembership.mem (LRA.Analysis.MetricSpace.pointFunctions X) (LRA.Analysis.MetricSpace.pointFunction z)
+Transliterated theorem: (∀ z ∈ X), pointFunction z ∈ pointFunctions X
+Logical form (Lean): (z : X) : pointFunction z ∈ pointFunctions X
+Source: ./MetricSpace/Functions/Pointlike.lean#L125
+
+
+
+Name: point_functions_identify_points
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [inst : MetricSpace X], Function.Bijective fun z => ⟨LRA.Analysis.MetricSpace.pointFunction z, ⋯⟩
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X], Function.Bijective fun z => ⟨LRA.Analysis.MetricSpace.pointFunction z, ⋯⟩
+Transliterated theorem: Function.Bijective fun z ∈ X => ⟨pointFunction z, pointFunction_mem_pointFunctions z⟩ ∈ {u : X → NNReal // u ∈ pointFunctions X}
+Logical form (Lean): : Function.Bijective (fun z : X => (⟨pointFunction z, pointFunction_mem_pointFunctions z⟩ : {u : X → NNReal // u ∈ pointFunctions X}))
+Source: ./MetricSpace/Functions/Pointlike.lean#L146
+
+
+
+Name: point_function_inequalities
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (z : X), (∀ a b : X, (pointFunction z b : Real) - (pointFunction z a : Real) ≤ dist a b ∧ dist a b ≤ (pointFunction z b : Real) + (pointFunction z a : Real)) ∧ pointFunction z z = 0
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] (z : X), (∀ (a b : X), (Real.instLE.le (instHSub.hSub (LRA.Analysis.MetricSpace.pointFunction z b).toReal (LRA.Analysis.MetricSpace.pointFunction z a).toReal) (inst.dist a b) ∧ Real.instLE.le (inst.dist a b) (instHAdd.hAdd (LRA.Analysis.MetricSpace.pointFunction z b).toReal (LRA.Analysis.MetricSpace.pointFunction z a).toReal)) ∧ LRA.Analysis.MetricSpace.pointFunction z z = 0)
+Transliterated theorem: (∀ z ∈ X), ∀ a b ∈ X, pointFunction z b ∈ Real - pointFunction z a ∈ Real ≤ dist a b ∧ dist a b ≤ pointFunction z b ∈ Real + pointFunction z a ∈ Real ∧ pointFunction z z = 0
+Logical form (Lean): (z : X) : (∀ a b : X, (pointFunction z b : Real) - (pointFunction z a : Real) ≤ dist a b ∧ dist a b ≤ (pointFunction z b : Real) + (pointFunction z a : Real)) ∧ pointFunction z z = 0
+Source: ./MetricSpace/Functions/Pointlike.lean#L171
+
+
+
+Name: pointFunction_pointlike
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [inst : MetricSpace X] (z : X),   LRA.Analysis.MetricSpace.Pointlike (LRA.Analysis.MetricSpace.pointFunction z)
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] (z : X), LRA.Analysis.MetricSpace.Pointlike (LRA.Analysis.MetricSpace.pointFunction z)
+Transliterated theorem: (∀ z ∈ X), Pointlike (pointFunction z)
+Logical form (Lean): (z : X) : Pointlike (pointFunction z)
+Source: ./MetricSpace/Functions/Pointlike.lean#L191
+
+
+
+Name: pointlike_eq_pointFunction_of_zero
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {u : X → NNReal} (u_pointlike : Pointlike u) {w : X} (zero_at_w : u w = 0), u = pointFunction w
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] {u : X → NNReal}, LRA.Analysis.MetricSpace.Pointlike u → ∀ {w : X}, u w = 0 → u = LRA.Analysis.MetricSpace.pointFunction w
+Transliterated theorem: (u w = 0) → u = pointFunction w
+Logical form (Lean): {u : X → NNReal} (u_pointlike : Pointlike u) {w : X} (zero_at_w : u w = 0) : u = pointFunction w
+Source: ./MetricSpace/Functions/Pointlike.lean#L214
+
+
+
+Name: pointlike_zero_point_function
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (u : X → NNReal), u ∈ pointFunctions X ↔ Pointlike u ∧ 0 ∈ Set.range u
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] (u : X → NNReal), Set.instMembership.mem (LRA.Analysis.MetricSpace.pointFunctions X) u ↔ (LRA.Analysis.MetricSpace.Pointlike u ∧ Set.instMembership.mem (Set.range u) 0)
+Transliterated theorem: (X → NNReal) → u ∈ pointFunctions X ↔ Pointlike u ∧ 0 ∈ Set.range u
+Logical form (Lean): (u : X → NNReal) : u ∈ pointFunctions X ↔ Pointlike u ∧ 0 ∈ Set.range u
+Source: ./MetricSpace/Functions/Pointlike.lean#L242
+
+
+
+Name: pointlike_zero_unique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {u : X → NNReal} (u_pointlike : Pointlike u) {w₁ w₂ : X} (zero_at_w₁ : u w₁ = 0) (zero_at_w₂ : u w₂ = 0), w₁ = w₂
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] {u : X → NNReal}, LRA.Analysis.MetricSpace.Pointlike u → ∀ {w₁ w₂ : X}, (u w₁ = 0 ∧ u w₂ = 0) → w₁ = w₂
+Transliterated theorem: (u w₁ = 0 ∧ u w₂ = 0) → w₁ = w₂
+Logical form (Lean): {u : X → NNReal} (u_pointlike : Pointlike u) {w₁ w₂ : X} (zero_at_w₁ : u w₁ = 0) (zero_at_w₂ : u w₂ = 0) : w₁ = w₂
+Source: ./MetricSpace/Functions/Pointlike.lean#L266
+
+
+
+Name: ToMathlibDistance
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} (metric : MetricDefinition X) (x y : X), letI : MetricSpace X
+Predicate logic (unfolded): ∀ {X : Type u} (metric : LRA.Analysis.MetricSpace.MetricDefinition X) (x y : X), metric.ToMathlibMetricSpace.dist x y = metric.distance x y
+Transliterated theorem: (∀ x y ∈ X), letI : MetricSpace X
+Logical form (Lean): {X : Type u} (metric : MetricDefinition X) (x y : X) : letI : MetricSpace X
+Source: ./MetricSpace/Interop/Mathlib.lean#L84
+
+
+
+Name: FromMathlibMetricIsCompatibleWithMathlibMetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [inst : MetricSpace X],   LRA.Analysis.MetricSpace.IsCompatibleWithMathlibMetric (LRA.Analysis.MetricSpace.MetricDefinition.FromMathlibMetric X)
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X], LRA.Analysis.MetricSpace.IsCompatibleWithMathlibMetric (LRA.Analysis.MetricSpace.MetricDefinition.FromMathlibMetric X)
+Transliterated theorem: IsCompatibleWithMathlibMetric (MetricDefinition.FromMathlibMetric X)
+Logical form (Lean): {X : Type u} [MetricSpace X] : IsCompatibleWithMathlibMetric (MetricDefinition.FromMathlibMetric X)
+Source: ./MetricSpace/Interop/Mathlib.lean#L134
+
+
+
+Name: ReverseTriangleInequalityFromMathlibCompatibility
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [inst : MetricSpace X] (metric : LRA.Analysis.MetricSpace.MetricDefinition X),   LRA.Analysis.MetricSpace.IsCompatibleWithMathlibMetric metric →     ∀ (x y z : X),       Real.instLE.le (abs (instHSub.hSub (metric.distance x z) (metric.distance y z))) (metric.distance x y)
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] (metric : LRA.Analysis.MetricSpace.MetricDefinition X), LRA.Analysis.MetricSpace.IsCompatibleWithMathlibMetric metric → ∀ (x y z : X), Real.instLE.le (abs (instHSub.hSub (metric.distance x z) (metric.distance y z))) (metric.distance x y)
+Transliterated theorem: (∀ x y z ∈ X), |metric.distance x z - metric.distance y z| ≤ metric.distance x y
+Logical form (Lean): {X : Type u} [MetricSpace X] (metric : MetricDefinition X) (compatibilityHypothesis : IsCompatibleWithMathlibMetric metric) (x y z : X) : |metric.distance x z - metric.distance y z| ≤ metric.distance x y
+Source: ./MetricSpace/Interop/Mathlib.lean#L153
+
+
+
+Name: SelectMathlibMetricSpaceDistanceInduced
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} (metric : MetricDefinition X) [MetricSpace X] (x y : X), letI : MetricSpace X
+Predicate logic (unfolded): ∀ {X : Type u} (metric : LRA.Analysis.MetricSpace.MetricDefinition X) [inst : MetricSpace X] (x y : X), (LRA.Analysis.MetricSpace.SelectMathlibMetricSpace LRA.Analysis.MetricSpace.MetricSpaceBackend.inducedFromMetricDefinition metric).dist x y = metric.distance x y
+Transliterated theorem: (∀ x y ∈ X), letI : MetricSpace X
+Logical form (Lean): {X : Type u} (metric : MetricDefinition X) [MetricSpace X] (x y : X) : letI : MetricSpace X
+Source: ./MetricSpace/Interop/Switch.lean#L126
+
+
+
+Name: isMetricIsometry_injective
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} {Y : Type v} [inst : MetricSpace X] [inst_1 : MetricSpace Y] {isometricMap : X → Y},   LRA.Analysis.MetricSpace.MetricIsometry.IsMetricIsometry isometricMap →     LRA.Analysis.MetricSpace.MetricIsometry.IsInjectiveMap isometricMap
+Predicate logic (unfolded): ∀ {X : Type u} {Y : Type v} [inst : MetricSpace X] [inst_1 : MetricSpace Y] {isometricMap : X → Y}, LRA.Analysis.MetricSpace.MetricIsometry.IsMetricIsometry isometricMap → LRA.Analysis.MetricSpace.MetricIsometry.IsInjectiveMap isometricMap
+Transliterated theorem: IsInjectiveMap isometricMap
+Logical form (Lean): {X : Type u} {Y : Type v} [MetricSpace X] [MetricSpace Y] {isometricMap : X → Y} (isometry_preserves_distance : IsMetricIsometry isometricMap) : IsInjectiveMap isometricMap
+Source: ./MetricSpace/MetricIsometry/Isometry.lean#L87
+
+
+
+Name: positiveOpenRay_isMetricIsometry_negativeOpenRay
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Analysis.MetricSpace.MetricIsometry.IsMetricIsometry fun positivePoint => ⟨Real.instNeg.neg positivePoint.val, ⋯⟩
+Predicate logic (unfolded): LRA.Analysis.MetricSpace.MetricIsometry.IsMetricIsometry fun positivePoint => ⟨Real.instNeg.neg positivePoint.val, ⋯⟩
+Transliterated theorem: IsMetricIsometry fun positivePoint ∈ Set.Ioi 0 ∈ Real => (⟨-positivePoint ∈ Real, by exact neg_lt_zero.mpr show 0 < positivePoint ∈ Real from positivePoint.property⟩ ∈ Set.Iio 0 ∈ Real)
+Logical form (Lean): : IsMetricIsometry (fun positivePoint : Set.Ioi (0 : Real) => (⟨-(positivePoint : Real), by exact neg_lt_zero.mpr (show 0 < (positivePoint : Real) from positivePoint.property)⟩ : Set.Iio (0 : Real)))
+Source: ./MetricSpace/MetricIsometry/Isometry.lean#L113
+
+
+
+Name: diameterSet_mono
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [inst : MetricSpace X] {A B : Set X},   Set.instLE.le A B → Set.instLE.le (LRA.Analysis.MetricSpace.diameterSet A) (LRA.Analysis.MetricSpace.diameterSet B)
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] {A B : Set X}, Set.instLE.le A B → Set.instLE.le (LRA.Analysis.MetricSpace.diameterSet A) (LRA.Analysis.MetricSpace.diameterSet B)
+Transliterated theorem: diameterSet A ⊆ diameterSet B
+Logical form (Lean): {X : Type u} [MetricSpace X] {A B : Set X} (set_inclusion : A ⊆ B) : diameterSet A ⊆ diameterSet B
+Source: ./MetricSpace/SetGeometry/Diameter.lean#L69
+
+
+
+Name: diameter_monotone_under_inclusion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [MetricSpace X] {A B : Set X} (set_inclusion : A ⊆ B) (A_diameterSet_nonempty : (diameterSet A).Nonempty) (B_diameterSet_bddAbove : BddAbove (diameterSet B)), diameter A ≤ diameter B
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] {A B : Set X}, (Set.instLE.le A B ∧ (LRA.Analysis.MetricSpace.diameterSet A ∧ .Nonempty)(BddAbove (LRA.Analysis.MetricSpace.diameterSet B))) → Real.instLE.le (LRA.Analysis.MetricSpace.diameter A) (LRA.Analysis.MetricSpace.diameter B)
+Transliterated theorem: diameter A ≤ diameter B
+Logical form (Lean): {X : Type u} [MetricSpace X] {A B : Set X} (set_inclusion : A ⊆ B) (A_diameterSet_nonempty : (diameterSet A).Nonempty) (B_diameterSet_bddAbove : BddAbove (diameterSet B)) : diameter A ≤ diameter B
+Source: ./MetricSpace/SetGeometry/Diameter.lean#L95
+
+
+
+Name: distanceSet_nonempty
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [inst : MetricSpace X] (x : X) {S : Set X},   S.Nonempty → (LRA.Analysis.MetricSpace.distanceSet x S).Nonempty
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] (x : X) {S : Set X}, S.Nonempty → (LRA.Analysis.MetricSpace.distanceSet x S).Nonempty
+Transliterated theorem: (∀ x ∈ X ∀ set_nonempty ∈ S.Nonempty), (distanceSet x S).Nonempty
+Logical form (Lean): {X : Type u} [MetricSpace X] (x : X) {S : Set X} (set_nonempty : S.Nonempty) : (distanceSet x S).Nonempty
+Source: ./MetricSpace/SetGeometry/DistanceToSet.lean#L76
+
+
+
+Name: distanceSet_bddBelow
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [inst : MetricSpace X] (x : X) (S : Set X), BddBelow (LRA.Analysis.MetricSpace.distanceSet x S)
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] (x : X) (S : Set X), BddBelow (LRA.Analysis.MetricSpace.distanceSet x S)
+Transliterated theorem: (∀ x ∈ X), BddBelow (distanceSet x S)
+Logical form (Lean): {X : Type u} [MetricSpace X] (x : X) (S : Set X) : BddBelow (distanceSet x S)
+Source: ./MetricSpace/SetGeometry/DistanceToSet.lean#L101
+
+
+
+Name: distanceToSet_isGLB
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [inst : MetricSpace X] (x : X) {S : Set X},   S.Nonempty → IsGLB (LRA.Analysis.MetricSpace.distanceSet x S) (LRA.Analysis.MetricSpace.distanceToSet x S)
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] (x : X) {S : Set X}, S.Nonempty → IsGLB (LRA.Analysis.MetricSpace.distanceSet x S) (LRA.Analysis.MetricSpace.distanceToSet x S)
+Transliterated theorem: (∀ x ∈ X ∀ set_nonempty ∈ S.Nonempty), IsGLB (distanceSet x S) (distanceToSet x S)
+Logical form (Lean): {X : Type u} [MetricSpace X] (x : X) {S : Set X} (set_nonempty : S.Nonempty) : IsGLB (distanceSet x S) (distanceToSet x S)
+Source: ./MetricSpace/SetGeometry/DistanceToSet.lean#L128
+
+
+
+Name: distanceToSet_le_distance_to_point_of_mem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [inst : MetricSpace X] (x : X) {A : Set X} {a : X},   Set.instMembership.mem A a → Real.instLE.le (LRA.Analysis.MetricSpace.distanceToSet x A) (inst.dist x a)
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] (x : X) {A : Set X} {a : X}, Set.instMembership.mem A a → Real.instLE.le (LRA.Analysis.MetricSpace.distanceToSet x A) (inst.dist x a)
+Transliterated theorem: (∀ x ∈ X), (a ∈ A) → distanceToSet x A ≤ dist x a
+Logical form (Lean): {X : Type u} [MetricSpace X] (x : X) {A : Set X} {a : X} (point_in_set : a ∈ A) : distanceToSet x A ≤ dist x a
+Source: ./MetricSpace/SetGeometry/DistanceToSet.lean#L155
+
+
+
+Name: distanceToSet_eq_zero_of_mem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [MetricSpace X] {A : Set X} {x : X} (point_in_set : x ∈ A), distanceToSet x A = 0
+Predicate logic (unfolded): ∀ {X : Type u} [inst : MetricSpace X] {A : Set X} {x : X}, Set.instMembership.mem A x → LRA.Analysis.MetricSpace.distanceToSet x A = 0
+Transliterated theorem: (x ∈ A) → distanceToSet x A = 0
+Logical form (Lean): {X : Type u} [MetricSpace X] {A : Set X} {x : X} (point_in_set : x ∈ A) : distanceToSet x A = 0
+Source: ./MetricSpace/SetGeometry/DistanceToSet.lean#L182
+
+
+
+Name: closedUnitInterval_isMetricSubspace
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Analysis.MetricSpace.SubSuperSpaces.IsMetricSubspace (Set.Icc 0 1)
+Predicate logic (unfolded): LRA.Analysis.MetricSpace.SubSuperSpaces.IsMetricSubspace (Set.Icc 0 1)
+Transliterated theorem: IsMetricSubspace (Set.Icc 0 ∈ Real 1)
+Logical form (Lean): : IsMetricSubspace (Set.Icc (0 : Real) 1)
+Source: ./MetricSpace/SubSuperSpaces/Basic.lean#L172
+
+
+
+Name: real_isMetricSuperspace_closedUnitInterval
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Analysis.MetricSpace.SubSuperSpaces.IsMetricSuperspace Real (Set.Icc 0 1)
+Predicate logic (unfolded): LRA.Analysis.MetricSpace.SubSuperSpaces.IsMetricSuperspace Real (Set.Icc 0 1)
+Transliterated theorem: IsMetricSuperspace Real (Set.Icc 0 ∈ Real 1)
+Logical form (Lean): : IsMetricSuperspace Real (Set.Icc (0 : Real) 1)
+Source: ./MetricSpace/SubSuperSpaces/Basic.lean#L188
+
+
+
+Name: LittleOImpliesBigOAt
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (a : ℝ) (ho : ∀ ε > 0, ∃ δ > 0, ∀ x, 0 < |x - a| → |x - a| < δ → |f x| ≤ ε * |g x|), IsBigOAt f g a
+Predicate logic (unfolded): ∀ (f g : Real → Real) (a : Real), (∀ (ε : Real), GT.gt ε 0 → Exists fun δ => (GT.gt δ 0 ∧ ∀ (x : Real), Real.instLT.lt 0 (abs (instHSub.hSub x a)) → Real.instLT.lt (abs (instHSub.hSub x a)) δ → Real.instLE.le (abs (f x)) (instHMul.hMul ε (abs (g x))))) → LRA.Analysis.RealAnalysis.IsBigOAt f g a
+Transliterated theorem: (∀ ε > 0, ∃ δ > 0, ∀ x, 0 < |x - a| → |x - a| < δ → |f x| ≤ ε * |g x|) → IsBigOAt f g a
+Logical form (Lean): (f g : ℝ → ℝ) (a : ℝ) (ho : ∀ ε > 0, ∃ δ > 0, ∀ x, 0 < |x - a| → |x - a| < δ → |f x| ≤ ε * |g x|) : IsBigOAt f g a
+Source: ./RealAnalysis/AsymptoticAndInequalityAdditions.lean#L79
+
+
+
+Name: LittleOImpliesBigOAtTop
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (ho : ∀ ε > 0, ∃ R > 0, ∀ x, x > R → |f x| ≤ ε * |g x|), IsBigOAtTop f g
+Predicate logic (unfolded): ∀ (f g : Real → Real), (∀ (ε : Real), GT.gt ε 0 → Exists fun R => (GT.gt R 0 ∧ ∀ (x : Real), GT.gt x R → Real.instLE.le (abs (f x)) (instHMul.hMul ε (abs (g x))))) → LRA.Analysis.RealAnalysis.IsBigOAtTop f g
+Transliterated theorem: (∀ ε > 0, ∃ R > 0, ∀ x, x > R → |f x| ≤ ε * |g x|) → IsBigOAtTop f g
+Logical form (Lean): (f g : ℝ → ℝ) (ho : ∀ ε > 0, ∃ R > 0, ∀ x, x > R → |f x| ≤ ε * |g x|) : IsBigOAtTop f g
+Source: ./RealAnalysis/AsymptoticAndInequalityAdditions.lean#L97
+
+
+
+Name: YoungsInequality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) (p q : ℝ) (hp : 1 < p) (hq : 1 < q) (hpq : 1 / p + 1 / q = 1), a * b ≤ a ^ p / p + b ^ q / q
+Predicate logic (unfolded): ∀ (a b : Real), (Real.instLE.le 0 a ∧ Real.instLE.le 0 b) → ∀ (p q : Real), (Real.instLT.lt 1 p ∧ (Real.instLT.lt 1 q ∧ instHAdd.hAdd (instHDiv.hDiv 1 p) (instHDiv.hDiv 1 q) = 1)) → Real.instLE.le (instHMul.hMul a b) (instHAdd.hAdd (instHDiv.hDiv (instHPow.hPow a p) p) (instHDiv.hDiv (instHPow.hPow b q) q))
+Transliterated theorem: (0 ≤ a ∧ 0 ≤ b ∧ 1 < p ∧ 1 < q ∧ 1 / p + 1 / q = 1) → a * b ≤ a ^ p / p + b ^ q / q
+Logical form (Lean): (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) (p q : ℝ) (hp : 1 < p) (hq : 1 < q) (hpq : 1 / p + 1 / q = 1) : a * b ≤ a ^ p / p + b ^ q / q
+Source: ./RealAnalysis/AsymptoticAndInequalityAdditions.lean#L115
+
+
+
+Name: JensensInequalityFinite
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (φ : ℝ → ℝ) (hφ : IsConvexOnR φ) (n : ℕ) (hn : 0 < n) (x lam : Fin n → ℝ) (hlam_nonneg : ∀ i, 0 ≤ lam i) (hlam_sum : (Finset.univ.sum lam) = 1), φ (Finset.univ.sum (fun i => lam i * x i)) ≤ Finset.univ.sum (fun i => lam i * φ (x i))
+Predicate logic (unfolded): ∀ (φ : Real → Real), LRA.Analysis.RealAnalysis.IsConvexOnR φ → ∀ (n : Nat), instLTNat.lt 0 n → ∀ (x lam : Fin n → Real), (∀ (i : Fin n), Real.instLE.le 0 (lam i) ∧ Finset.univ.sum lam = 1) → Real.instLE.le (φ (Finset.univ.sum fun i => instHMul.hMul (lam i) (x i))) (Finset.univ.sum fun i => instHMul.hMul (lam i) (φ (x i)))
+Transliterated theorem: (ℝ → ℝ ∧ 0 < n ∧ ∀ i, 0 ≤ lam i ∧ (Finset.univ.sum lam) = 1) → φ (Finset.univ.sum (fun i => lam i * x i)) ≤ Finset.univ.sum (fun i => lam i * φ (x i))
+Logical form (Lean): (φ : ℝ → ℝ) (hφ : IsConvexOnR φ) (n : ℕ) (hn : 0 < n) (x lam : Fin n → ℝ) (hlam_nonneg : ∀ i, 0 ≤ lam i) (hlam_sum : (Finset.univ.sum lam) = 1) : φ (Finset.univ.sum (fun i => lam i * x i)) ≤ Finset.univ.sum (fun i => lam i * φ (x i))
+Source: ./RealAnalysis/AsymptoticAndInequalityAdditions.lean#L154
+
+
+
+Name: LittleOQuotientCharacterization
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g : ℝ → ℝ) (a : ℝ) (hg : Filter.Eventually (fun x => g x ≠ 0) (nhdsWithin a {a}ᶜ)), IsLittleOAt f g a ↔ Filter.Tendsto (fun x => f x / g x) (nhdsWithin a {a}ᶜ) (nhds 0)
+Predicate logic (unfolded): ∀ (f g : Real → Real) (a : Real), Filter.Eventually (fun x => Ne (g x) 0) (nhdsWithin a (Set.instCompl.compl (Set.instSingletonSet.singleton a))) → LRA.Analysis.RealAnalysis.IsLittleOAt f g a ↔ Filter.Tendsto (fun x => instHDiv.hDiv (f x) (g x)) (nhdsWithin a (Set.instCompl.compl (Set.instSingletonSet.singleton a))) (nhds 0)
+Transliterated theorem: IsLittleOAt f g a ↔ Filter.Tendsto (fun x => f x / g x) (nhdsWithin a {a}ᶜ) (nhds 0)
+Logical form (Lean): (f g : ℝ → ℝ) (a : ℝ) (hg : Filter.Eventually (fun x => g x ≠ 0) (nhdsWithin a {a}ᶜ)) : IsLittleOAt f g a ↔ Filter.Tendsto (fun x => f x / g x) (nhdsWithin a {a}ᶜ) (nhds 0)
+Source: ./RealAnalysis/AsymptoticNotation.lean#L65
+
+
+
+Name: LittleOSumRule
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f1 f2 g : ℝ → ℝ) (a : ℝ) (h1 : IsLittleOAt f1 g a) (h2 : IsLittleOAt f2 g a), IsLittleOAt (fun x => f1 x + f2 x) g a
+Predicate logic (unfolded): ∀ (f1 f2 g : Real → Real) (a : Real), (LRA.Analysis.RealAnalysis.IsLittleOAt f1 g a ∧ LRA.Analysis.RealAnalysis.IsLittleOAt f2 g a) → LRA.Analysis.RealAnalysis.IsLittleOAt (fun x => instHAdd.hAdd (f1 x) (f2 x)) g a
+Transliterated theorem: IsLittleOAt (fun x => f1 x + f2 x) g a
+Logical form (Lean): (f1 f2 g : ℝ → ℝ) (a : ℝ) (h1 : IsLittleOAt f1 g a) (h2 : IsLittleOAt f2 g a) : IsLittleOAt (fun x => f1 x + f2 x) g a
+Source: ./RealAnalysis/AsymptoticNotation.lean#L82
+
+
+
+Name: LittleOBoundedFactorRule
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f g m : ℝ → ℝ) (a : ℝ) (hf : IsLittleOAt f g a) (hm : ∃ M > 0, ∃ η > 0, ∀ x, 0 < |x - a| → |x - a| < η → |m x| ≤ M), IsLittleOAt (fun x => m x * f x) g a
+Predicate logic (unfolded): ∀ (f g m : Real → Real) (a : Real), (LRA.Analysis.RealAnalysis.IsLittleOAt f g a ∧ Exists fun M => (GT.gt M 0 ∧ Exists fun η => (GT.gt η 0 ∧ ∀ (x : Real), Real.instLT.lt 0 (abs (instHSub.hSub x a)) → Real.instLT.lt (abs (instHSub.hSub x a)) η → Real.instLE.le (abs (m x)) M))) → LRA.Analysis.RealAnalysis.IsLittleOAt (fun x => instHMul.hMul (m x) (f x)) g a
+Transliterated theorem: (∃ M > 0, ∃ η > 0, ∀ x, 0 < |x - a| → |x - a| < η → |m x| ≤ M) → IsLittleOAt (fun x => m x * f x) g a
+Logical form (Lean): (f g m : ℝ → ℝ) (a : ℝ) (hf : IsLittleOAt f g a) (hm : ∃ M > 0, ∃ η > 0, ∀ x, 0 < |x - a| → |x - a| < η → |m x| ≤ M) : IsLittleOAt (fun x => m x * f x) g a
+Source: ./RealAnalysis/AsymptoticNotation.lean#L99
+
+
+
+Name: NestedIntervalProperty
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℕ → ℝ) (hle : ∀ n, a n ≤ b n) (hnest : ∀ n, a n ≤ a (n + 1) ∧ b (n + 1) ≤ b n), ∃ x : ℝ, ∀ n, a n ≤ x ∧ x ≤ b n
+Predicate logic (unfolded): ∀ (a b : Nat → Real), (∀ (n : Nat), Real.instLE.le (a n) (b n) ∧ ∀ (n : Nat), (Real.instLE.le (a n) (a (instHAdd.hAdd n 1)) ∧ Real.instLE.le (b (instHAdd.hAdd n 1)) (b n))) → Exists fun x => ∀ (n : Nat), (Real.instLE.le (a n) x ∧ Real.instLE.le x (b n))
+Transliterated theorem: (∀ n, a n ≤ b n ∧ ∀ n, a n ≤ a (n + 1) ∧ b (n + 1) ≤ b n) → ∃ x ∈ ℝ, ∀ n, a n ≤ x ∧ x ≤ b n
+Logical form (Lean): (a b : ℕ → ℝ) (hle : ∀ n, a n ≤ b n) (hnest : ∀ n, a n ≤ a (n + 1) ∧ b (n + 1) ≤ b n) : ∃ x : ℝ, ∀ n, a n ≤ x ∧ x ≤ b n
+Source: ./RealAnalysis/BisectionNestedIntervalsToolkit.lean#L37
+
+
+
+Name: IvtBisection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (a b L : ℝ) (hab : a < b) (hf : ContinuousOn f (Set.Icc a b)) (hL : (f a < L ∧ L < f b) ∨ (f a > L ∧ L > f b)), ∃ c ∈ Set.Ioo a b, f c = L
+Predicate logic (unfolded): ∀ (f : Real → Real) (a b L : Real), (Real.instLT.lt a b ∧ (ContinuousOn f (Set.Icc a b) ∧ Or ((Real.instLT.lt (f a) L ∧ Real.instLT.lt L (f b))) ((GT.gt (f a) L ∧ GT.gt L (f b))))) → Exists fun c => (Set.instMembership.mem (Set.Ioo a b) c ∧ f c = L)
+Transliterated theorem: (ℝ → ℝ ∧ a < b ∧ (f a < L ∧ L < f b) ∨ (f a > L ∧ L > f b)) → ∃ c ∈ Set.Ioo a b, f c = L
+Logical form (Lean): (f : ℝ → ℝ) (a b L : ℝ) (hab : a < b) (hf : ContinuousOn f (Set.Icc a b)) (hL : (f a < L ∧ L < f b) ∨ (f a > L ∧ L > f b)) : ∃ c ∈ Set.Ioo a b, f c = L
+Source: ./RealAnalysis/BisectionNestedIntervalsToolkit.lean#L55
+
+
+
+Name: RUncountable
+Kind: Theorem
+State: Sorry
+Predicate logic: ¬ ∃ x : ℕ → ℝ, Function.Surjective x
+Predicate logic (unfolded): ¬ Exists fun x => Function.Surjective x
+Transliterated theorem: ¬ ∃ x ∈ ℕ → ℝ, Function.Surjective x
+Logical form (Lean): : ¬ ∃ x : ℕ → ℝ, Function.Surjective x
+Source: ./RealAnalysis/BisectionNestedIntervalsToolkit.lean#L69
+
+
+
+Name: EpsCharSup
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (S : Set ℝ) (s : ℝ) (hne : S.Nonempty) (hbdd : BddAbove S) (hs : IsLUB S s), ∀ ε > 0, ∃ x ∈ S, x > s - ε
+Predicate logic (unfolded): ∀ (S : Set Real) (s : Real), (S.Nonempty ∧ (BddAbove S ∧ IsLUB S s)) → ∀ (ε : Real), GT.gt ε 0 → Exists fun x => (Set.instMembership.mem S x ∧ GT.gt x (instHSub.hSub s ε))
+Transliterated theorem: (∀ hne ∈ S.Nonempty), ∀ ε > 0, ∃ x ∈ S, x > s - ε
+Logical form (Lean): (S : Set ℝ) (s : ℝ) (hne : S.Nonempty) (hbdd : BddAbove S) (hs : IsLUB S s) : ∀ ε > 0, ∃ x ∈ S, x > s - ε
+Source: ./RealAnalysis/CompletenessConstructionToolkit.lean#L37
+
+
+
+Name: InductiveSelection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (S : Set ℝ) (s : ℝ) (hne : S.Nonempty) (hbdd : BddAbove S) (hs : IsLUB S s), ∃ x : ℕ → ℝ, (∀ n, x n ∈ S) ∧ StrictMono x ∧ Filter.Tendsto x Filter.atTop (nhds s)
+Predicate logic (unfolded): ∀ (S : Set Real) (s : Real), (S.Nonempty ∧ (BddAbove S ∧ IsLUB S s)) → Exists fun x => (∀ (n : Nat), Set.instMembership.mem S (x n) ∧ (StrictMono x ∧ Filter.Tendsto x Filter.atTop (nhds s)))
+Transliterated theorem: (∀ hne ∈ S.Nonempty), ∃ x ∈ ℕ → ℝ, (∀ n, x n ∈ S) ∧ StrictMono x ∧ Filter.Tendsto x Filter.atTop (nhds s)
+Logical form (Lean): (S : Set ℝ) (s : ℝ) (hne : S.Nonempty) (hbdd : BddAbove S) (hs : IsLUB S s) : ∃ x : ℕ → ℝ, (∀ n, x n ∈ S) ∧ StrictMono x ∧ Filter.Tendsto x Filter.atTop (nhds s)
+Source: ./RealAnalysis/CompletenessConstructionToolkit.lean#L55
+
+
+
+Name: MonotoneApproxBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (S : Set ℝ) (hne : S.Nonempty) (hbdd_above : BddAbove S) (hbdd_below : BddBelow S), (∃ x : ℕ → ℝ, (∀ n, x n ∈ S) ∧ Monotone x ∧ Filter.Tendsto x Filter.atTop (nhds (sSup S))) ∧ (∃ y : ℕ → ℝ, (∀ n, y n ∈ S) ∧ Antitone y ∧ Filter.Tendsto y Filter.atTop (nhds (sInf S)))
+Predicate logic (unfolded): ∀ (S : Set Real), (S.Nonempty ∧ (BddAbove S ∧ BddBelow S)) → (Exists fun x => (∀ (n : Nat), Set.instMembership.mem S (x n) ∧ (Monotone x ∧ Filter.Tendsto x Filter.atTop (nhds (Real.instSupSet.sSup S)))) ∧ Exists fun y => (∀ (n : Nat), Set.instMembership.mem S (y n) ∧ (Antitone y ∧ Filter.Tendsto y Filter.atTop (nhds (Real.instInfSet.sInf S)))))
+Transliterated theorem: (∀ hne ∈ S.Nonempty), ∃ x ∈ ℕ → ℝ, (∀ n, x n ∈ S ∧ Monotone x ∧ Filter.Tendsto x Filter.atTop (nhds (sSup S))) ∧ ∃ y ∈ ℕ → ℝ, (∀ n, y n ∈ S ∧ Antitone y ∧ Filter.Tendsto y Filter.atTop (nhds (sInf S)))
+Logical form (Lean): (S : Set ℝ) (hne : S.Nonempty) (hbdd_above : BddAbove S) (hbdd_below : BddBelow S) : (∃ x : ℕ → ℝ, (∀ n, x n ∈ S) ∧ Monotone x ∧ Filter.Tendsto x Filter.atTop (nhds (sSup S))) ∧ (∃ y : ℕ → ℝ, (∀ n, y n ∈ S) ∧ Antitone y ∧ Filter.Tendsto y Filter.atTop (nhds (sInf S)))
+Source: ./RealAnalysis/CompletenessConstructionToolkit.lean#L77
+
+
+
+Name: AbsoluteErrorSum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x y xTilde yTilde : Real),   Real.instLE.le (LRA.Analysis.RealAnalysis.AbsoluteError (instHAdd.hAdd x y) (instHAdd.hAdd xTilde yTilde))     (instHAdd.hAdd (LRA.Analysis.RealAnalysis.AbsoluteError x xTilde)       (LRA.Analysis.RealAnalysis.AbsoluteError y yTilde))
+Predicate logic (unfolded): ∀ (x y xTilde yTilde : Real), Real.instLE.le (LRA.Analysis.RealAnalysis.AbsoluteError (instHAdd.hAdd x y) (instHAdd.hAdd xTilde yTilde)) (instHAdd.hAdd (LRA.Analysis.RealAnalysis.AbsoluteError x xTilde) (LRA.Analysis.RealAnalysis.AbsoluteError y yTilde))
+Transliterated theorem: AbsoluteError (x + y) (xTilde + yTilde) ≤ AbsoluteError x xTilde + AbsoluteError y yTilde
+Logical form (Lean): (x y xTilde yTilde : ℝ) : AbsoluteError (x + y) (xTilde + yTilde) ≤ AbsoluteError x xTilde + AbsoluteError y yTilde
+Source: ./RealAnalysis/ErrorPropagation.lean#L44
+
+
+
+Name: AbsoluteErrorProduct
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x y xTilde yTilde : Real),   Real.instLE.le (LRA.Analysis.RealAnalysis.AbsoluteError (instHMul.hMul x y) (instHMul.hMul xTilde yTilde))     (instHAdd.hAdd       (instHAdd.hAdd (instHMul.hMul (abs xTilde) (LRA.Analysis.RealAnalysis.AbsoluteError y yTilde))         (instHMul.hMul (abs yTilde) (LRA.Analysis.RealAnalysis.AbsoluteError x xTilde)))       (instHMul.hMul (LRA.Analysis.RealAnalysis.AbsoluteError x xTilde)         (LRA.Analysis.RealAnalysis.AbsoluteError y yTilde)))
+Predicate logic (unfolded): ∀ (x y xTilde yTilde : Real), Real.instLE.le (LRA.Analysis.RealAnalysis.AbsoluteError (instHMul.hMul x y) (instHMul.hMul xTilde yTilde)) (instHAdd.hAdd (instHAdd.hAdd (instHMul.hMul (abs xTilde) (LRA.Analysis.RealAnalysis.AbsoluteError y yTilde)) (instHMul.hMul (abs yTilde) (LRA.Analysis.RealAnalysis.AbsoluteError x xTilde))) (instHMul.hMul (LRA.Analysis.RealAnalysis.AbsoluteError x xTilde) (LRA.Analysis.RealAnalysis.AbsoluteError y yTilde)))
+Transliterated theorem: AbsoluteError (x * y) (xTilde * yTilde) ≤ |xTilde| * AbsoluteError y yTilde + |yTilde| * AbsoluteError x xTilde + AbsoluteError x xTilde * AbsoluteError y yTilde
+Logical form (Lean): (x y xTilde yTilde : ℝ) : AbsoluteError (x * y) (xTilde * yTilde) ≤ |xTilde| * AbsoluteError y yTilde + |yTilde| * AbsoluteError x xTilde + AbsoluteError x xTilde * AbsoluteError y yTilde
+Source: ./RealAnalysis/ErrorPropagation.lean#L63
+
+
+
+Name: AbsoluteErrorQuotient
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x y xTilde yTilde : ℝ) (hy : y ≠ 0) (hyTilde : yTilde ≠ 0) (hdelta : RelativeError y yTilde < 1), AbsoluteError (x / y) (xTilde / yTilde) ≤ (|xTilde| * AbsoluteError y yTilde + |yTilde| * AbsoluteError x xTilde) / yTilde ^ 2 * (1 / (1 - RelativeError y yTilde))
+Predicate logic (unfolded): ∀ (x y xTilde yTilde : Real), (Ne y 0 ∧ (Ne yTilde 0 ∧ Real.instLT.lt (LRA.Analysis.RealAnalysis.RelativeError y yTilde) 1)) → Real.instLE.le (LRA.Analysis.RealAnalysis.AbsoluteError (instHDiv.hDiv x y) (instHDiv.hDiv xTilde yTilde)) (instHMul.hMul (instHDiv.hDiv (instHAdd.hAdd (instHMul.hMul (abs xTilde) (LRA.Analysis.RealAnalysis.AbsoluteError y yTilde)) (instHMul.hMul (abs yTilde) (LRA.Analysis.RealAnalysis.AbsoluteError x xTilde))) (instHPow.hPow yTilde 2)) (instHDiv.hDiv 1 (instHSub.hSub 1 (LRA.Analysis.RealAnalysis.RelativeError y yTilde))))
+Transliterated theorem: (RelativeError y yTilde < 1) → AbsoluteError (x / y) (xTilde / yTilde) ≤ (|xTilde| * AbsoluteError y yTilde + |yTilde| * AbsoluteError x xTilde) / yTilde ^ 2 * (1 / (1 - RelativeError y yTilde))
+Logical form (Lean): (x y xTilde yTilde : ℝ) (hy : y ≠ 0) (hyTilde : yTilde ≠ 0) (hdelta : RelativeError y yTilde < 1) : AbsoluteError (x / y) (xTilde / yTilde) ≤ (|xTilde| * AbsoluteError y yTilde + |yTilde| * AbsoluteError x xTilde) / yTilde ^ 2 * (1 / (1 - RelativeError y yTilde))
+Source: ./RealAnalysis/ErrorPropagation.lean#L86
+
+
+
+Name: RelativeErrorProduct
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x y xTilde yTilde : ℝ) (hxTilde : xTilde ≠ 0) (hyTilde : yTilde ≠ 0), RelativeError (x * y) (xTilde * yTilde) ≤ RelativeError x xTilde + RelativeError y yTilde + RelativeError x xTilde * RelativeError y yTilde
+Predicate logic (unfolded): ∀ (x y xTilde yTilde : Real), (Ne xTilde 0 ∧ Ne yTilde 0) → Real.instLE.le (LRA.Analysis.RealAnalysis.RelativeError (instHMul.hMul x y) (instHMul.hMul xTilde yTilde)) (instHAdd.hAdd (instHAdd.hAdd (LRA.Analysis.RealAnalysis.RelativeError x xTilde) (LRA.Analysis.RealAnalysis.RelativeError y yTilde)) (instHMul.hMul (LRA.Analysis.RealAnalysis.RelativeError x xTilde) (LRA.Analysis.RealAnalysis.RelativeError y yTilde)))
+Transliterated theorem: RelativeError (x * y) (xTilde * yTilde) ≤ RelativeError x xTilde + RelativeError y yTilde + RelativeError x xTilde * RelativeError y yTilde
+Logical form (Lean): (x y xTilde yTilde : ℝ) (hxTilde : xTilde ≠ 0) (hyTilde : yTilde ≠ 0) : RelativeError (x * y) (xTilde * yTilde) ≤ RelativeError x xTilde + RelativeError y yTilde + RelativeError x xTilde * RelativeError y yTilde
+Source: ./RealAnalysis/ErrorPropagation.lean#L108
+
+
+
+Name: RelativeErrorQuotient
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x y xTilde yTilde : ℝ) (hxTilde : xTilde ≠ 0) (hyTilde : yTilde ≠ 0) (hdelta : RelativeError y yTilde < 1), RelativeError (x / y) (xTilde / yTilde) ≤ (RelativeError x xTilde + RelativeError y yTilde) / (1 - RelativeError y yTilde)
+Predicate logic (unfolded): ∀ (x y xTilde yTilde : Real), (Ne xTilde 0 ∧ (Ne yTilde 0 ∧ Real.instLT.lt (LRA.Analysis.RealAnalysis.RelativeError y yTilde) 1)) → Real.instLE.le (LRA.Analysis.RealAnalysis.RelativeError (instHDiv.hDiv x y) (instHDiv.hDiv xTilde yTilde)) (instHDiv.hDiv (instHAdd.hAdd (LRA.Analysis.RealAnalysis.RelativeError x xTilde) (LRA.Analysis.RealAnalysis.RelativeError y yTilde)) (instHSub.hSub 1 (LRA.Analysis.RealAnalysis.RelativeError y yTilde)))
+Transliterated theorem: (RelativeError y yTilde < 1) → RelativeError (x / y) (xTilde / yTilde) ≤ (RelativeError x xTilde + RelativeError y yTilde) / (1 - RelativeError y yTilde)
+Logical form (Lean): (x y xTilde yTilde : ℝ) (hxTilde : xTilde ≠ 0) (hyTilde : yTilde ≠ 0) (hdelta : RelativeError y yTilde < 1) : RelativeError (x / y) (xTilde / yTilde) ≤ (RelativeError x xTilde + RelativeError y yTilde) / (1 - RelativeError y yTilde)
+Source: ./RealAnalysis/ErrorPropagation.lean#L130
+
+
+
+Name: OrderArithmetic
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c d y : ℝ), (a ≤ b ∧ c ≤ d → a + c ≤ b + d) ∧ (a ≤ b ∧ c > 0 → a * c ≤ b * c) ∧ (a ≤ b ∧ c < 0 → a * c ≥ b * c) ∧ (y ≥ 0 → (|a| ≤ y ↔ -y ≤ a ∧ a ≤ y))
+Predicate logic (unfolded): ∀ (a b c d y : Real), ((Real.instLE.le a b ∧ Real.instLE.le c d) → Real.instLE.le (instHAdd.hAdd a c) (instHAdd.hAdd b d) ∧ ((Real.instLE.le a b ∧ GT.gt c 0) → Real.instLE.le (instHMul.hMul a c) (instHMul.hMul b c) ∧ ((Real.instLE.le a b ∧ Real.instLT.lt c 0) → GE.ge (instHMul.hMul a c) (instHMul.hMul b c) ∧ GE.ge y 0 → Real.instLE.le (abs a) y ↔ (Real.instLE.le (Real.instNeg.neg y) a ∧ Real.instLE.le a y))))
+Transliterated theorem: (a ≤ b ∧ c ≤ d → a + c ≤ b + d) ∧ (a ≤ b ∧ c > 0 → a * c ≤ b * c) ∧ (a ≤ b ∧ c < 0 → a * c ≥ b * c) ∧ (y ≥ 0 → (|a| ≤ y ↔ -y ≤ a ∧ a ≤ y))
+Logical form (Lean): (a b c d y : ℝ) : (a ≤ b ∧ c ≤ d → a + c ≤ b + d) ∧ (a ≤ b ∧ c > 0 → a * c ≤ b * c) ∧ (a ≤ b ∧ c < 0 → a * c ≥ b * c) ∧ (y ≥ 0 → (|a| ≤ y ↔ -y ≤ a ∧ a ≤ y))
+Source: ./RealAnalysis/InequalitiesBoundingToolkit.lean#L37
+
+
+
+Name: IneqAmGmTwo
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ) (ha : a ≥ 0) (hb : b ≥ 0), Real.sqrt (a * b) ≤ (a + b) / 2
+Predicate logic (unfolded): ∀ (a b : Real), (GE.ge a 0 ∧ GE.ge b 0) → Real.instLE.le (instHMul.hMul a b).sqrt (instHDiv.hDiv (instHAdd.hAdd a b) 2)
+Transliterated theorem: Real.sqrt (a * b) ≤ (a + b) / 2
+Logical form (Lean): (a b : ℝ) (ha : a ≥ 0) (hb : b ≥ 0) : Real.sqrt (a * b) ≤ (a + b) / 2
+Source: ./RealAnalysis/InequalityNamedInequalities.lean#L27
+
+
+
+Name: IneqAmGm
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (n : Nat),   instLTNat.lt 0 n →     ∀ (a : Fin n → Real),       (∀ (i : Fin n), GT.gt (a i) 0) →         Real.instLE.le (LRA.Analysis.RealAnalysis.GeometricMean n a) (LRA.Analysis.RealAnalysis.ArithmeticMean n a)
+Predicate logic (unfolded): ∀ (n : Nat), instLTNat.lt 0 n → ∀ (a : Fin n → Real), (∀ (i : Fin n), GT.gt (a i) 0) → Real.instLE.le (LRA.Analysis.RealAnalysis.GeometricMean n a) (LRA.Analysis.RealAnalysis.ArithmeticMean n a)
+Transliterated theorem: (0 < n ∧ Fin n → ℝ ∧ ∀ i, a i > 0) → GeometricMean n a ≤ ArithmeticMean n a
+Logical form (Lean): (n : ℕ) (hn : 0 < n) (a : Fin n → ℝ) (ha : ∀ i, a i > 0) : GeometricMean n a ≤ ArithmeticMean n a
+Source: ./RealAnalysis/InequalityNamedInequalities.lean#L79
+
+
+
+Name: IneqAmGmHm
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (n : ℕ) (hn : 0 < n) (a : Fin n → ℝ) (ha : ∀ i, a i > 0), HarmonicMean n a ≤ GeometricMean n a ∧ GeometricMean n a ≤ ArithmeticMean n a
+Predicate logic (unfolded): ∀ (n : Nat), instLTNat.lt 0 n → ∀ (a : Fin n → Real), (∀ (i : Fin n), GT.gt (a i) 0) → (Real.instLE.le (LRA.Analysis.RealAnalysis.HarmonicMean n a) (LRA.Analysis.RealAnalysis.GeometricMean n a) ∧ Real.instLE.le (LRA.Analysis.RealAnalysis.GeometricMean n a) (LRA.Analysis.RealAnalysis.ArithmeticMean n a))
+Transliterated theorem: (0 < n ∧ Fin n → ℝ ∧ ∀ i, a i > 0) → HarmonicMean n a ≤ GeometricMean n a ∧ GeometricMean n a ≤ ArithmeticMean n a
+Logical form (Lean): (n : ℕ) (hn : 0 < n) (a : Fin n → ℝ) (ha : ∀ i, a i > 0) : HarmonicMean n a ≤ GeometricMean n a ∧ GeometricMean n a ≤ ArithmeticMean n a
+Source: ./RealAnalysis/InequalityNamedInequalities.lean#L94
+
+
+
+Name: IneqCauchySchwarz
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (n : Nat) (a b : Fin n → Real),   Real.instLE.le (abs (Finset.univ.sum fun j => instHMul.hMul (a j) (b j)))     (instHMul.hMul (Finset.univ.sum fun j => instHPow.hPow (a j) 2).sqrt       (Finset.univ.sum fun j => instHPow.hPow (b j) 2).sqrt)
+Predicate logic (unfolded): ∀ (n : Nat) (a b : Fin n → Real), Real.instLE.le (abs (Finset.univ.sum fun j => instHMul.hMul (a j) (b j))) (instHMul.hMul (Finset.univ.sum fun j => instHPow.hPow (a j) 2).sqrt (Finset.univ.sum fun j => instHPow.hPow (b j) 2).sqrt)
+Transliterated theorem: |Finset.univ.sum (fun j => a j * b j)| ≤ Real.sqrt (Finset.univ.sum (fun j => a j ^ 2)) * Real.sqrt (Finset.univ.sum (fun j => b j ^ 2))
+Logical form (Lean): (n : ℕ) (a b : Fin n → ℝ) : |Finset.univ.sum (fun j => a j * b j)| ≤ Real.sqrt (Finset.univ.sum (fun j => a j ^ 2)) * Real.sqrt (Finset.univ.sum (fun j => b j ^ 2))
+Source: ./RealAnalysis/InequalityNamedInequalities.lean#L111
+
+
+
+Name: IneqChebyshevSum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (n : ℕ) (hn : 0 < n) (a b : Fin n → ℝ) (ha : Monotone a) (hb : Monotone b), (ArithmeticMean n a) * (ArithmeticMean n b) ≤ ArithmeticMean n (fun j => a j * b j)
+Predicate logic (unfolded): ∀ (n : Nat), instLTNat.lt 0 n → ∀ (a b : Fin n → Real), (Monotone a ∧ Monotone b) → Real.instLE.le (instHMul.hMul (LRA.Analysis.RealAnalysis.ArithmeticMean n a) (LRA.Analysis.RealAnalysis.ArithmeticMean n b)) (LRA.Analysis.RealAnalysis.ArithmeticMean n fun j => instHMul.hMul (a j) (b j))
+Transliterated theorem: (0 < n) → (ArithmeticMean n a) * (ArithmeticMean n b) ≤ ArithmeticMean n (fun j => a j * b j)
+Logical form (Lean): (n : ℕ) (hn : 0 < n) (a b : Fin n → ℝ) (ha : Monotone a) (hb : Monotone b) : (ArithmeticMean n a) * (ArithmeticMean n b) ≤ ArithmeticMean n (fun j => a j * b j)
+Source: ./RealAnalysis/InequalityNamedInequalities.lean#L130
+
+
+
+Name: IneqRearrangement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (n : ℕ) (a b : Fin n → ℝ) (ha : Monotone a) (hb : Monotone b) (σ : Equiv.Perm (Fin n)), Finset.univ.sum (fun j => a j * b (Fin.rev j)) ≤ Finset.univ.sum (fun j => a j * b (σ j)) ∧ Finset.univ.sum (fun j => a j * b (σ j)) ≤ Finset.univ.sum (fun j => a j * b j)
+Predicate logic (unfolded): ∀ (n : Nat) (a b : Fin n → Real), (Monotone a ∧ Monotone b) → ∀ (σ : Equiv.Perm (Fin n)), (Real.instLE.le (Finset.univ.sum fun j => instHMul.hMul (a j) (b j.rev)) (Finset.univ.sum fun j => instHMul.hMul (a j) (b (EquivLike.toFunLike.coe σ j))) ∧ Real.instLE.le (Finset.univ.sum fun j => instHMul.hMul (a j) (b (EquivLike.toFunLike.coe σ j))) (Finset.univ.sum fun j => instHMul.hMul (a j) (b j)))
+Transliterated theorem: Finset.univ.sum (fun j => a j * b (Fin.rev j)) ≤ Finset.univ.sum (fun j => a j * b (σ j)) ∧ Finset.univ.sum (fun j => a j * b (σ j)) ≤ Finset.univ.sum (fun j => a j * b j)
+Logical form (Lean): (n : ℕ) (a b : Fin n → ℝ) (ha : Monotone a) (hb : Monotone b) (σ : Equiv.Perm (Fin n)) : Finset.univ.sum (fun j => a j * b (Fin.rev j)) ≤ Finset.univ.sum (fun j => a j * b (σ j)) ∧ Finset.univ.sum (fun j => a j * b (σ j)) ≤ Finset.univ.sum (fun j => a j * b j)
+Source: ./RealAnalysis/InequalityNamedInequalities.lean#L152
+
+
+
+Name: IneqHolder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (n : ℕ) (p q : ℝ) (hp : p > 1) (hq : q > 1) (hpq : 1 / p + 1 / q = 1) (a b : Fin n → ℝ), Finset.univ.sum (fun j => |a j * b j|) ≤ (Finset.univ.sum (fun j => |a j| ^ p)) ^ (1 / p) * (Finset.univ.sum (fun j => |b j| ^ q)) ^ (1 / q)
+Predicate logic (unfolded): ∀ (n : Nat) (p q : Real), (GT.gt p 1 ∧ (GT.gt q 1 ∧ instHAdd.hAdd (instHDiv.hDiv 1 p) (instHDiv.hDiv 1 q) = 1)) → ∀ (a b : Fin n → Real), Real.instLE.le (Finset.univ.sum fun j => abs (instHMul.hMul (a j) (b j))) (instHMul.hMul (instHPow.hPow (Finset.univ.sum fun j => instHPow.hPow (abs (a j)) p) (instHDiv.hDiv 1 p)) (instHPow.hPow (Finset.univ.sum fun j => instHPow.hPow (abs (b j)) q) (instHDiv.hDiv 1 q)))
+Transliterated theorem: (1 / p + 1 / q = 1) → Finset.univ.sum (fun j => |a j * b j|) ≤ (Finset.univ.sum (fun j => |a j| ^ p)) ^ (1 / p) * (Finset.univ.sum (fun j => |b j| ^ q)) ^ (1 / q)
+Logical form (Lean): (n : ℕ) (p q : ℝ) (hp : p > 1) (hq : q > 1) (hpq : 1 / p + 1 / q = 1) (a b : Fin n → ℝ) : Finset.univ.sum (fun j => |a j * b j|) ≤ (Finset.univ.sum (fun j => |a j| ^ p)) ^ (1 / p) * (Finset.univ.sum (fun j => |b j| ^ q)) ^ (1 / q)
+Source: ./RealAnalysis/InequalityNamedInequalities.lean#L175
+
+
+
+Name: IneqMinkowski
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (n : Nat) (p : Real),   GE.ge p 1 →     ∀ (a b : Fin n → Real),       Real.instLE.le         (instHPow.hPow (Finset.univ.sum fun j => instHPow.hPow (abs (instHAdd.hAdd (a j) (b j))) p) (instHDiv.hDiv 1 p))         (instHAdd.hAdd (instHPow.hPow (Finset.univ.sum fun j => instHPow.hPow (abs (a j)) p) (instHDiv.hDiv 1 p))           (instHPow.hPow (Finset.univ.sum fun j => instHPow.hPow (abs (b j)) p) (instHDiv.hDiv 1 p)))
+Predicate logic (unfolded): ∀ (n : Nat) (p : Real), GE.ge p 1 → ∀ (a b : Fin n → Real), Real.instLE.le (instHPow.hPow (Finset.univ.sum fun j => instHPow.hPow (abs (instHAdd.hAdd (a j) (b j))) p) (instHDiv.hDiv 1 p)) (instHAdd.hAdd (instHPow.hPow (Finset.univ.sum fun j => instHPow.hPow (abs (a j)) p) (instHDiv.hDiv 1 p)) (instHPow.hPow (Finset.univ.sum fun j => instHPow.hPow (abs (b j)) p) (instHDiv.hDiv 1 p)))
+Transliterated theorem: (Finset.univ.sum (fun j => |a j + b j| ^ p)) ^ (1 / p) ≤ (Finset.univ.sum (fun j => |a j| ^ p)) ^ (1 / p) + (Finset.univ.sum (fun j => |b j| ^ p)) ^ (1 / p)
+Logical form (Lean): (n : ℕ) (p : ℝ) (hp : p ≥ 1) (a b : Fin n → ℝ) : (Finset.univ.sum (fun j => |a j + b j| ^ p)) ^ (1 / p) ≤ (Finset.univ.sum (fun j => |a j| ^ p)) ^ (1 / p) + (Finset.univ.sum (fun j => |b j| ^ p)) ^ (1 / p)
+Source: ./RealAnalysis/InequalityNamedInequalities.lean#L196
+
+
+
+Name: IneqBernoulli
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : Real) (n : Nat),   GE.ge x (-1) → GE.ge (instHPow.hPow (instHAdd.hAdd 1 x) n) (instHAdd.hAdd 1 (instHMul.hMul n.cast x))
+Predicate logic (unfolded): ∀ (x : Real) (n : Nat), GE.ge x (-1) → GE.ge (instHPow.hPow (instHAdd.hAdd 1 x) n) (instHAdd.hAdd 1 (instHMul.hMul n.cast x))
+Transliterated theorem: (1 + x) ^ n ≥ 1 + n * x
+Logical form (Lean): (x : ℝ) (n : ℕ) (hx : x ≥ -1) : (1 + x) ^ n ≥ 1 + n * x
+Source: ./RealAnalysis/InequalityNamedInequalities.lean#L212
+
+
+
+Name: RealOrderTrichotomy
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ), (a < b ∧ a ≠ b ∧ ¬ a > b) ∨ (a = b ∧ ¬ a < b ∧ ¬ a > b) ∨ (a > b ∧ a ≠ b ∧ ¬ a < b)
+Predicate logic (unfolded): ∀ (a b : Real), Or ((Real.instLT.lt a b ∧ (Ne a b ∧ ¬ GT.gt a b))) (Or ((a = b ∧ (¬ Real.instLT.lt a b ∧ ¬ GT.gt a b))) ((GT.gt a b ∧ (Ne a b ∧ ¬ Real.instLT.lt a b))))
+Transliterated theorem: (a < b ∧ a ≠ b ∧ ¬ a > b) ∨ (a = b ∧ ¬ a < b ∧ ¬ a > b) ∨ (a > b ∧ a ≠ b ∧ ¬ a < b)
+Logical form (Lean): (a b : ℝ) : (a < b ∧ a ≠ b ∧ ¬ a > b) ∨ (a = b ∧ ¬ a < b ∧ ¬ a > b) ∨ (a > b ∧ a ≠ b ∧ ¬ a < b)
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L28
+
+
+
+Name: IneqAddBothSides
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c : Real), Real.instLT.lt a b → Real.instLT.lt (instHAdd.hAdd a c) (instHAdd.hAdd b c)
+Predicate logic (unfolded): ∀ (a b c : Real), Real.instLT.lt a b → Real.instLT.lt (instHAdd.hAdd a c) (instHAdd.hAdd b c)
+Transliterated theorem: a < b → a + c < b + c
+Logical form (Lean): (a b c : ℝ) : a < b → a + c < b + c
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L42
+
+
+
+Name: IneqNonstrictAddBothSides
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c : Real), Real.instLE.le a b → Real.instLE.le (instHAdd.hAdd a c) (instHAdd.hAdd b c)
+Predicate logic (unfolded): ∀ (a b c : Real), Real.instLE.le a b → Real.instLE.le (instHAdd.hAdd a c) (instHAdd.hAdd b c)
+Transliterated theorem: a ≤ b → a + c ≤ b + c
+Logical form (Lean): (a b c : ℝ) : a ≤ b → a + c ≤ b + c
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L54
+
+
+
+Name: IneqAddInequalities
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c d : ℝ), a < b ∧ c < d → a + c < b + d
+Predicate logic (unfolded): ∀ (a b c d : Real), (Real.instLT.lt a b ∧ Real.instLT.lt c d) → Real.instLT.lt (instHAdd.hAdd a c) (instHAdd.hAdd b d)
+Transliterated theorem: a < b ∧ c < d → a + c < b + d
+Logical form (Lean): (a b c d : ℝ) : a < b ∧ c < d → a + c < b + d
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L67
+
+
+
+Name: IneqNonstrictAddInequalities
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c d : ℝ), a ≤ b ∧ c ≤ d → a + c ≤ b + d
+Predicate logic (unfolded): ∀ (a b c d : Real), (Real.instLE.le a b ∧ Real.instLE.le c d) → Real.instLE.le (instHAdd.hAdd a c) (instHAdd.hAdd b d)
+Transliterated theorem: a ≤ b ∧ c ≤ d → a + c ≤ b + d
+Logical form (Lean): (a b c d : ℝ) : a ≤ b ∧ c ≤ d → a + c ≤ b + d
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L81
+
+
+
+Name: PositiveSum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ), (a > 0 ∧ b > 0) → a + b > 0
+Predicate logic (unfolded): ∀ (a b : Real), (GT.gt a 0 ∧ GT.gt b 0) → GT.gt (instHAdd.hAdd a b) 0
+Transliterated theorem: a > 0 → b > 0 → a + b > 0
+Logical form (Lean): (a b : ℝ) : a > 0 → b > 0 → a + b > 0
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L94
+
+
+
+Name: SubtractionOfInequalitiesNotValid
+Kind: Theorem
+State: Sorry
+Predicate logic: ∃ a b c d : ℝ, a > b ∧ c > d ∧ ¬ (a - c > b - d) ∧ ¬ (c - a > d - b)
+Predicate logic (unfolded): Exists fun a => Exists fun b => Exists fun c => Exists fun d => (GT.gt a b ∧ (GT.gt c d ∧ (¬ GT.gt (instHSub.hSub a c) (instHSub.hSub b d) ∧ ¬ GT.gt (instHSub.hSub c a) (instHSub.hSub d b))))
+Transliterated theorem: ∃ a b c d ∈ ℝ, a > b ∧ c > d ∧ ¬ (a - c > b - d) ∧ ¬ (c - a > d - b)
+Logical form (Lean): : ∃ a b c d : ℝ, a > b ∧ c > d ∧ ¬ (a - c > b - d) ∧ ¬ (c - a > d - b)
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L106
+
+
+
+Name: IneqMixedAdd
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c d : ℝ), a ≤ b ∧ c < d → a + c < b + d
+Predicate logic (unfolded): ∀ (a b c d : Real), (Real.instLE.le a b ∧ Real.instLT.lt c d) → Real.instLT.lt (instHAdd.hAdd a c) (instHAdd.hAdd b d)
+Transliterated theorem: a ≤ b ∧ c < d → a + c < b + d
+Logical form (Lean): (a b c d : ℝ) : a ≤ b ∧ c < d → a + c < b + d
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L119
+
+
+
+Name: IneqMultiplyPositive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c : ℝ), a < b ∧ 0 < c → a * c < b * c
+Predicate logic (unfolded): ∀ (a b c : Real), (Real.instLT.lt a b ∧ Real.instLT.lt 0 c) → Real.instLT.lt (instHMul.hMul a c) (instHMul.hMul b c)
+Transliterated theorem: a < b ∧ 0 < c → a * c < b * c
+Logical form (Lean): (a b c : ℝ) : a < b ∧ 0 < c → a * c < b * c
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L131
+
+
+
+Name: IneqMultiplyNegative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c : ℝ), a < b ∧ c < 0 → a * c > b * c
+Predicate logic (unfolded): ∀ (a b c : Real), (Real.instLT.lt a b ∧ Real.instLT.lt c 0) → GT.gt (instHMul.hMul a c) (instHMul.hMul b c)
+Transliterated theorem: a < b ∧ c < 0 → a * c > b * c
+Logical form (Lean): (a b c : ℝ) : a < b ∧ c < 0 → a * c > b * c
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L143
+
+
+
+Name: IneqNonstrictMultiplyPositive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c : ℝ), a ≤ b ∧ 0 < c → a * c ≤ b * c
+Predicate logic (unfolded): ∀ (a b c : Real), (Real.instLE.le a b ∧ Real.instLT.lt 0 c) → Real.instLE.le (instHMul.hMul a c) (instHMul.hMul b c)
+Transliterated theorem: a ≤ b ∧ 0 < c → a * c ≤ b * c
+Logical form (Lean): (a b c : ℝ) : a ≤ b ∧ 0 < c → a * c ≤ b * c
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L156
+
+
+
+Name: IneqNonstrictMultiplyNonneg
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c : ℝ), a ≤ b ∧ 0 ≤ c → a * c ≤ b * c
+Predicate logic (unfolded): ∀ (a b c : Real), (Real.instLE.le a b ∧ Real.instLE.le 0 c) → Real.instLE.le (instHMul.hMul a c) (instHMul.hMul b c)
+Transliterated theorem: a ≤ b ∧ 0 ≤ c → a * c ≤ b * c
+Logical form (Lean): (a b c : ℝ) : a ≤ b ∧ 0 ≤ c → a * c ≤ b * c
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L170
+
+
+
+Name: PositiveProduct
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ), (a > 0 ∧ b > 0) → a * b > 0
+Predicate logic (unfolded): ∀ (a b : Real), (GT.gt a 0 ∧ GT.gt b 0) → GT.gt (instHMul.hMul a b) 0
+Transliterated theorem: a > 0 → b > 0 → a * b > 0
+Logical form (Lean): (a b : ℝ) : a > 0 → b > 0 → a * b > 0
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L183
+
+
+
+Name: NegativeTimesNegativeIsPositive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ), (a < 0 ∧ b < 0) → a * b > 0
+Predicate logic (unfolded): ∀ (a b : Real), (Real.instLT.lt a 0 ∧ Real.instLT.lt b 0) → GT.gt (instHMul.hMul a b) 0
+Transliterated theorem: a < 0 → b < 0 → a * b > 0
+Logical form (Lean): (a b : ℝ) : a < 0 → b < 0 → a * b > 0
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L196
+
+
+
+Name: PositiveTimesNegativeIsNegative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ), (a > 0 ∧ b < 0) → a * b < 0
+Predicate logic (unfolded): ∀ (a b : Real), (GT.gt a 0 ∧ Real.instLT.lt b 0) → Real.instLT.lt (instHMul.hMul a b) 0
+Transliterated theorem: a > 0 → b < 0 → a * b < 0
+Logical form (Lean): (a b : ℝ) : a > 0 → b < 0 → a * b < 0
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L210
+
+
+
+Name: NegativeTimesPositiveIsNegative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ), (a < 0 ∧ b > 0) → a * b < 0
+Predicate logic (unfolded): ∀ (a b : Real), (Real.instLT.lt a 0 ∧ GT.gt b 0) → Real.instLT.lt (instHMul.hMul a b) 0
+Transliterated theorem: a < 0 → b > 0 → a * b < 0
+Logical form (Lean): (a b : ℝ) : a < 0 → b > 0 → a * b < 0
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L224
+
+
+
+Name: OrderAndSubtraction
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ), a < b ↔ b - a > 0
+Predicate logic (unfolded): ∀ (a b : Real), Real.instLT.lt a b ↔ GT.gt (instHSub.hSub b a) 0
+Transliterated theorem: a < b ↔ b - a > 0
+Logical form (Lean): (a b : ℝ) : a < b ↔ b - a > 0
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L237
+
+
+
+Name: NonStrictOrderAndSubtraction
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ), a ≤ b ↔ b - a ≥ 0
+Predicate logic (unfolded): ∀ (a b : Real), Real.instLE.le a b ↔ GE.ge (instHSub.hSub b a) 0
+Transliterated theorem: a ≤ b ↔ b - a ≥ 0
+Logical form (Lean): (a b : ℝ) : a ≤ b ↔ b - a ≥ 0
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L249
+
+
+
+Name: DivisionByPositivePreservesOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c : ℝ), (a < b ∧ c > 0) → a / c < b / c
+Predicate logic (unfolded): ∀ (a b c : Real), (Real.instLT.lt a b ∧ GT.gt c 0) → Real.instLT.lt (instHDiv.hDiv a c) (instHDiv.hDiv b c)
+Transliterated theorem: a < b → c > 0 → a / c < b / c
+Logical form (Lean): (a b c : ℝ) : a < b → c > 0 → a / c < b / c
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L262
+
+
+
+Name: DivisionByNegativeReversesOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c : ℝ), (a < b ∧ c < 0) → b / c < a / c
+Predicate logic (unfolded): ∀ (a b c : Real), (Real.instLT.lt a b ∧ Real.instLT.lt c 0) → Real.instLT.lt (instHDiv.hDiv b c) (instHDiv.hDiv a c)
+Transliterated theorem: a < b → c < 0 → b / c < a / c
+Logical form (Lean): (a b c : ℝ) : a < b → c < 0 → b / c < a / c
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L276
+
+
+
+Name: PositiveMultiplicationCancellation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c : ℝ), (c > 0 ∧ a * c < b * c) → a < b
+Predicate logic (unfolded): ∀ (a b c : Real), (GT.gt c 0 ∧ Real.instLT.lt (instHMul.hMul a c) (instHMul.hMul b c)) → Real.instLT.lt a b
+Transliterated theorem: c > 0 → a * c < b * c → a < b
+Logical form (Lean): (a b c : ℝ) : c > 0 → a * c < b * c → a < b
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L290
+
+
+
+Name: DivisionOfInequalitiesNotValid
+Kind: Theorem
+State: Sorry
+Predicate logic: ∃ a b c d : ℝ, a ≠ 0 ∧ b ≠ 0 ∧ c ≠ 0 ∧ d ≠ 0 ∧ a > b ∧ c > d ∧ ¬ (a / c > b / d) ∧ ¬ (c / a > d / b)
+Predicate logic (unfolded): Exists fun a => Exists fun b => Exists fun c => Exists fun d => (Ne a 0 ∧ (Ne b 0 ∧ (Ne c 0 ∧ (Ne d 0 ∧ (GT.gt a b ∧ (GT.gt c d ∧ (¬ GT.gt (instHDiv.hDiv a c) (instHDiv.hDiv b d) ∧ ¬ GT.gt (instHDiv.hDiv c a) (instHDiv.hDiv d b))))))))
+Transliterated theorem: ∃ a b c d ∈ ℝ, a ≠ 0 ∧ b ≠ 0 ∧ c ≠ 0 ∧ d ≠ 0 ∧ a > b ∧ c > d ∧ ¬ (a / c > b / d) ∧ ¬ (c / a > d / b)
+Logical form (Lean): : ∃ a b c d : ℝ, a ≠ 0 ∧ b ≠ 0 ∧ c ≠ 0 ∧ d ≠ 0 ∧ a > b ∧ c > d ∧ ¬ (a / c > b / d) ∧ ¬ (c / a > d / b)
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L305
+
+
+
+Name: IneqSqueeze
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c : ℝ), a ≤ b ∧ b ≤ c ∧ a = c → b = a
+Predicate logic (unfolded): ∀ (a b c : Real), (Real.instLE.le a b ∧ (Real.instLE.le b c ∧ a = c)) → b = a
+Transliterated theorem: a ≤ b ∧ b ≤ c ∧ a = c → b = a
+Logical form (Lean): (a b c : ℝ) : a ≤ b ∧ b ≤ c ∧ a = c → b = a
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L319
+
+
+
+Name: IneqTransitivityStrict
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c : ℝ), a < b ∧ b < c → a < c
+Predicate logic (unfolded): ∀ (a b c : Real), (Real.instLT.lt a b ∧ Real.instLT.lt b c) → Real.instLT.lt a c
+Transliterated theorem: a < b ∧ b < c → a < c
+Logical form (Lean): (a b c : ℝ) : a < b ∧ b < c → a < c
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L331
+
+
+
+Name: IneqTransitivityMixed
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c : ℝ), a ≤ b ∧ b < c → a < c
+Predicate logic (unfolded): ∀ (a b c : Real), (Real.instLE.le a b ∧ Real.instLT.lt b c) → Real.instLT.lt a c
+Transliterated theorem: a ≤ b ∧ b < c → a < c
+Logical form (Lean): (a b c : ℝ) : a ≤ b ∧ b < c → a < c
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L343
+
+
+
+Name: IneqReciprocalPositive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ), 0 < a ∧ a < b → 0 < 1 / b ∧ 1 / b < 1 / a
+Predicate logic (unfolded): ∀ (a b : Real), (Real.instLT.lt 0 a ∧ Real.instLT.lt a b) → (Real.instLT.lt 0 (instHDiv.hDiv 1 b) ∧ Real.instLT.lt (instHDiv.hDiv 1 b) (instHDiv.hDiv 1 a))
+Transliterated theorem: 0 < a ∧ a < b → 0 < 1 / b ∧ 1 / b < 1 / a
+Logical form (Lean): (a b : ℝ) : 0 < a ∧ a < b → 0 < 1 / b ∧ 1 / b < 1 / a
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L356
+
+
+
+Name: IneqReciprocalFlip
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ) (ha : a > 0) (hb : b > 0), a < b ↔ 1 / b < 1 / a
+Predicate logic (unfolded): ∀ (a b : Real), (GT.gt a 0 ∧ GT.gt b 0) → Real.instLT.lt a b ↔ Real.instLT.lt (instHDiv.hDiv 1 b) (instHDiv.hDiv 1 a)
+Transliterated theorem: a < b ↔ 1 / b < 1 / a
+Logical form (Lean): (a b : ℝ) (ha : a > 0) (hb : b > 0) : a < b ↔ 1 / b < 1 / a
+Source: ./RealAnalysis/InequalityOrderArithmetic.lean#L370
+
+
+
+Name: SquareNonnegative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : Real), GE.ge (instHPow.hPow a 2) 0
+Predicate logic (unfolded): ∀ (a : Real), GE.ge (instHPow.hPow a 2) 0
+Transliterated theorem: a ^ 2 ≥ 0
+Logical form (Lean): (a : ℝ) : a ^ 2 ≥ 0
+Source: ./RealAnalysis/InequalitySquaresAndRoots.lean#L31
+
+
+
+Name: RealSquareRootFunction
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : ℝ) (ha : a ≥ 0), ∃! b : ℝ, b ≥ 0 ∧ b ^ 2 = a
+Predicate logic (unfolded): ∀ (a : Real), GE.ge a 0 → ExistsUnique fun b => (GE.ge b 0 ∧ instHPow.hPow b 2 = a)
+Transliterated theorem: ∃! b : ℝ, b ≥ 0 ∧ b ^ 2 = a
+Logical form (Lean): (a : ℝ) (ha : a ≥ 0) : ∃! b : ℝ, b ≥ 0 ∧ b ^ 2 = a
+Source: ./RealAnalysis/InequalitySquaresAndRoots.lean#L43
+
+
+
+Name: SqrtNonnegative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : Real), GE.ge a 0 → GE.ge a.sqrt 0
+Predicate logic (unfolded): ∀ (a : Real), GE.ge a 0 → GE.ge a.sqrt 0
+Transliterated theorem: Real.sqrt a ≥ 0
+Logical form (Lean): (a : ℝ) (ha : a ≥ 0) : Real.sqrt a ≥ 0
+Source: ./RealAnalysis/InequalitySquaresAndRoots.lean#L56
+
+
+
+Name: SqrtSquare
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : ℝ) (ha : a ≥ 0), Real.sqrt a ^ 2 = a
+Predicate logic (unfolded): ∀ (a : Real), GE.ge a 0 → instHPow.hPow a.sqrt 2 = a
+Transliterated theorem: Real.sqrt a ^ 2 = a
+Logical form (Lean): (a : ℝ) (ha : a ≥ 0) : Real.sqrt a ^ 2 = a
+Source: ./RealAnalysis/InequalitySquaresAndRoots.lean#L68
+
+
+
+Name: SqrtZeroOne
+Kind: Theorem
+State: Sorry
+Predicate logic: Real.sqrt 0 = 0 ∧ Real.sqrt 1 = 1
+Predicate logic (unfolded): (Real.sqrt 0 = 0 ∧ Real.sqrt 1 = 1)
+Transliterated theorem: Real.sqrt 0 = 0 ∧ Real.sqrt 1 = 1
+Logical form (Lean): : Real.sqrt 0 = 0 ∧ Real.sqrt 1 = 1
+Source: ./RealAnalysis/InequalitySquaresAndRoots.lean#L80
+
+
+
+Name: SqrtPositive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : Real), GT.gt a 0 → GT.gt a.sqrt 0
+Predicate logic (unfolded): ∀ (a : Real), GT.gt a 0 → GT.gt a.sqrt 0
+Transliterated theorem: Real.sqrt a > 0
+Logical form (Lean): (a : ℝ) (ha : a > 0) : Real.sqrt a > 0
+Source: ./RealAnalysis/InequalitySquaresAndRoots.lean#L92
+
+
+
+Name: SqrtOfSquareAbsoluteValue
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : ℝ), Real.sqrt (a ^ 2) = |a|
+Predicate logic (unfolded): ∀ (a : Real), instHPow.hPow a 2 = .sqrt(abs a)
+Transliterated theorem: Real.sqrt (a ^ 2) = |a|
+Logical form (Lean): (a : ℝ) : Real.sqrt (a ^ 2) = |a|
+Source: ./RealAnalysis/InequalitySquaresAndRoots.lean#L104
+
+
+
+Name: SqrtProduct
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ) (ha : a ≥ 0) (hb : b ≥ 0), Real.sqrt (a * b) = Real.sqrt a * Real.sqrt b
+Predicate logic (unfolded): ∀ (a b : Real), (GE.ge a 0 ∧ GE.ge b 0) → instHMul.hMul a b = .sqrt(instHMul.hMul a.sqrt b.sqrt)
+Transliterated theorem: Real.sqrt (a * b) = Real.sqrt a * Real.sqrt b
+Logical form (Lean): (a b : ℝ) (ha : a ≥ 0) (hb : b ≥ 0) : Real.sqrt (a * b) = Real.sqrt a * Real.sqrt b
+Source: ./RealAnalysis/InequalitySquaresAndRoots.lean#L118
+
+
+
+Name: SqrtQuotient
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ) (ha : a ≥ 0) (hb : b > 0), Real.sqrt (a / b) = Real.sqrt a / Real.sqrt b
+Predicate logic (unfolded): ∀ (a b : Real), (GE.ge a 0 ∧ GT.gt b 0) → instHDiv.hDiv a b = .sqrt(instHDiv.hDiv a.sqrt b.sqrt)
+Transliterated theorem: Real.sqrt (a / b) = Real.sqrt a / Real.sqrt b
+Logical form (Lean): (a b : ℝ) (ha : a ≥ 0) (hb : b > 0) : Real.sqrt (a / b) = Real.sqrt a / Real.sqrt b
+Source: ./RealAnalysis/InequalitySquaresAndRoots.lean#L133
+
+
+
+Name: IneqSquareRootStrictMonotone
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ), 0 ≤ a ∧ a < b → Real.sqrt a < Real.sqrt b
+Predicate logic (unfolded): ∀ (a b : Real), (Real.instLE.le 0 a ∧ Real.instLT.lt a b) → Real.instLT.lt a.sqrt b.sqrt
+Transliterated theorem: 0 ≤ a ∧ a < b → Real.sqrt a < Real.sqrt b
+Logical form (Lean): (a b : ℝ) : 0 ≤ a ∧ a < b → Real.sqrt a < Real.sqrt b
+Source: ./RealAnalysis/InequalitySquaresAndRoots.lean#L147
+
+
+
+Name: PositivePowersArePositive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : Real) (n : Nat), GT.gt x 0 → GT.gt (instHPow.hPow x n) 0
+Predicate logic (unfolded): ∀ (x : Real) (n : Nat), GT.gt x 0 → GT.gt (instHPow.hPow x n) 0
+Transliterated theorem: x ^ n > 0
+Logical form (Lean): (x : ℝ) (n : ℕ) (hx : x > 0) : x ^ n > 0
+Source: ./RealAnalysis/InequalitySquaresAndRoots.lean#L160
+
+
+
+Name: PowersPreserveOrderForPositiveNumbers
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x y : ℝ) (n : ℕ), 0 < x ∧ x < y → x ^ n < y ^ n
+Predicate logic (unfolded): ∀ (x y : Real) (n : Nat), (Real.instLT.lt 0 x ∧ Real.instLT.lt x y) → Real.instLT.lt (instHPow.hPow x n) (instHPow.hPow y n)
+Transliterated theorem: 0 < x ∧ x < y → x ^ n < y ^ n
+Logical form (Lean): (x y : ℝ) (n : ℕ) : 0 < x ∧ x < y → x ^ n < y ^ n
+Source: ./RealAnalysis/InequalitySquaresAndRoots.lean#L173
+
+
+
+Name: IneqSquareMonotone
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ), 0 ≤ a ∧ a < b → a ^ 2 < b ^ 2
+Predicate logic (unfolded): ∀ (a b : Real), (Real.instLE.le 0 a ∧ Real.instLT.lt a b) → Real.instLT.lt (instHPow.hPow a 2) (instHPow.hPow b 2)
+Transliterated theorem: 0 ≤ a ∧ a < b → a ^ 2 < b ^ 2
+Logical form (Lean): (a b : ℝ) : 0 ≤ a ∧ a < b → a ^ 2 < b ^ 2
+Source: ./RealAnalysis/InequalitySquaresAndRoots.lean#L186
+
+
+
+Name: IneqSquareRootMonotone
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ), 0 ≤ a ∧ a ≤ b → Real.sqrt a ≤ Real.sqrt b
+Predicate logic (unfolded): ∀ (a b : Real), (Real.instLE.le 0 a ∧ Real.instLE.le a b) → Real.instLE.le a.sqrt b.sqrt
+Transliterated theorem: 0 ≤ a ∧ a ≤ b → Real.sqrt a ≤ Real.sqrt b
+Logical form (Lean): (a b : ℝ) : 0 ≤ a ∧ a ≤ b → Real.sqrt a ≤ Real.sqrt b
+Source: ./RealAnalysis/InequalitySquaresAndRoots.lean#L199
+
+
+
+Name: PositiveSquareComparison
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ) (ha : a > 0) (hb : b > 0) (h : a ^ 2 < b ^ 2), a < b
+Predicate logic (unfolded): ∀ (a b : Real), (GT.gt a 0 ∧ (GT.gt b 0 ∧ Real.instLT.lt (instHPow.hPow a 2) (instHPow.hPow b 2))) → Real.instLT.lt a b
+Transliterated theorem: (a ^ 2 < b ^ 2) → a < b
+Logical form (Lean): (a b : ℝ) (ha : a > 0) (hb : b > 0) (h : a ^ 2 < b ^ 2) : a < b
+Source: ./RealAnalysis/InequalitySquaresAndRoots.lean#L213
+
+
+
+Name: UnitIntervalSquareBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : ℝ), (0 < a ∧ a < 1 → a ^ 2 < a) ∧ (a > 1 → a ^ 2 > a)
+Predicate logic (unfolded): ∀ (a : Real), ((Real.instLT.lt 0 a ∧ Real.instLT.lt a 1) → Real.instLT.lt (instHPow.hPow a 2) a ∧ GT.gt a 1 → GT.gt (instHPow.hPow a 2) a)
+Transliterated theorem: (0 < a ∧ a < 1 → a ^ 2 < a) ∧ (a > 1 → a ^ 2 > a)
+Logical form (Lean): (a : ℝ) : (0 < a ∧ a < 1 → a ^ 2 < a) ∧ (a > 1 → a ^ 2 > a)
+Source: ./RealAnalysis/InequalitySquaresAndRoots.lean#L227
+
+
+
+Name: AbsoluteValueNonneg
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : Real), GE.ge (LRA.Analysis.RealAnalysis.AbsR a) 0
+Predicate logic (unfolded): ∀ (a : Real), GE.ge (LRA.Analysis.RealAnalysis.AbsR a) 0
+Transliterated theorem: AbsR a ≥ 0
+Logical form (Lean): (a : ℝ) : AbsR a ≥ 0
+Source: ./RealAnalysis/Modulus.lean#L37
+
+
+
+Name: AbsoluteValueZeroIffZero
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : ℝ), AbsR a = 0 ↔ a = 0
+Predicate logic (unfolded): ∀ (a : Real), LRA.Analysis.RealAnalysis.AbsR a = 0 ↔ a = 0
+Transliterated theorem: AbsR a = 0 ↔ a = 0
+Logical form (Lean): (a : ℝ) : AbsR a = 0 ↔ a = 0
+Source: ./RealAnalysis/Modulus.lean#L49
+
+
+
+Name: AbsoluteValueSelfOrNeg
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : ℝ), AbsR a = a ∨ AbsR a = -a
+Predicate logic (unfolded): ∀ (a : Real), Or (LRA.Analysis.RealAnalysis.AbsR a = a)(LRA.Analysis.RealAnalysis.AbsR a = Real.instNeg.neg a)
+Transliterated theorem: AbsR a = a ∨ AbsR a = -a
+Logical form (Lean): (a : ℝ) : AbsR a = a ∨ AbsR a = -a
+Source: ./RealAnalysis/Modulus.lean#L61
+
+
+
+Name: AbsoluteValueSymmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : ℝ), AbsR (-a) = AbsR a
+Predicate logic (unfolded): ∀ (a : Real), LRA.Analysis.RealAnalysis.AbsR (Real.instNeg.neg a) = LRA.Analysis.RealAnalysis.AbsR a
+Transliterated theorem: AbsR (-a) = AbsR a
+Logical form (Lean): (a : ℝ) : AbsR (-a) = AbsR a
+Source: ./RealAnalysis/Modulus.lean#L73
+
+
+
+Name: AbsoluteValueProduct
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ), AbsR (a * b) = AbsR a * AbsR b
+Predicate logic (unfolded): ∀ (a b : Real), LRA.Analysis.RealAnalysis.AbsR (instHMul.hMul a b) = instHMul.hMul (LRA.Analysis.RealAnalysis.AbsR a) (LRA.Analysis.RealAnalysis.AbsR b)
+Transliterated theorem: AbsR (a * b) = AbsR a * AbsR b
+Logical form (Lean): (a b : ℝ) : AbsR (a * b) = AbsR a * AbsR b
+Source: ./RealAnalysis/Modulus.lean#L85
+
+
+
+Name: AbsoluteValueQuotient
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ) (hb : b ≠ 0), AbsR (a / b) = AbsR a / AbsR b
+Predicate logic (unfolded): ∀ (a b : Real), Ne b 0 → LRA.Analysis.RealAnalysis.AbsR (instHDiv.hDiv a b) = instHDiv.hDiv (LRA.Analysis.RealAnalysis.AbsR a) (LRA.Analysis.RealAnalysis.AbsR b)
+Transliterated theorem: AbsR (a / b) = AbsR a / AbsR b
+Logical form (Lean): (a b : ℝ) (hb : b ≠ 0) : AbsR (a / b) = AbsR a / AbsR b
+Source: ./RealAnalysis/Modulus.lean#L98
+
+
+
+Name: AbsoluteValueBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : ℝ), -AbsR a ≤ a ∧ a ≤ AbsR a
+Predicate logic (unfolded): ∀ (a : Real), (Real.instLE.le (Real.instNeg.neg (LRA.Analysis.RealAnalysis.AbsR a)) a ∧ Real.instLE.le a (LRA.Analysis.RealAnalysis.AbsR a))
+Transliterated theorem: -AbsR a ≤ a ∧ a ≤ AbsR a
+Logical form (Lean): (a : ℝ) : -AbsR a ≤ a ∧ a ≤ AbsR a
+Source: ./RealAnalysis/Modulus.lean#L111
+
+
+
+Name: AbsoluteValueLeIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a r : ℝ) (hr : r ≥ 0), AbsR a ≤ r ↔ -r ≤ a ∧ a ≤ r
+Predicate logic (unfolded): ∀ (a r : Real), GE.ge r 0 → Real.instLE.le (LRA.Analysis.RealAnalysis.AbsR a) r ↔ (Real.instLE.le (Real.instNeg.neg r) a ∧ Real.instLE.le a r)
+Transliterated theorem: AbsR a ≤ r ↔ -r ≤ a ∧ a ≤ r
+Logical form (Lean): (a r : ℝ) (hr : r ≥ 0) : AbsR a ≤ r ↔ -r ≤ a ∧ a ≤ r
+Source: ./RealAnalysis/Modulus.lean#L124
+
+
+
+Name: AbsoluteValueLtIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a r : ℝ) (hr : r > 0), AbsR a < r ↔ -r < a ∧ a < r
+Predicate logic (unfolded): ∀ (a r : Real), GT.gt r 0 → Real.instLT.lt (LRA.Analysis.RealAnalysis.AbsR a) r ↔ (Real.instLT.lt (Real.instNeg.neg r) a ∧ Real.instLT.lt a r)
+Transliterated theorem: AbsR a < r ↔ -r < a ∧ a < r
+Logical form (Lean): (a r : ℝ) (hr : r > 0) : AbsR a < r ↔ -r < a ∧ a < r
+Source: ./RealAnalysis/Modulus.lean#L138
+
+
+
+Name: ReverseTriangleInequality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : Real),   Real.instLE.le     (LRA.Analysis.RealAnalysis.AbsR       (instHSub.hSub (LRA.Analysis.RealAnalysis.AbsR a) (LRA.Analysis.RealAnalysis.AbsR b)))     (LRA.Analysis.RealAnalysis.AbsR (instHSub.hSub a b))
+Predicate logic (unfolded): ∀ (a b : Real), Real.instLE.le (LRA.Analysis.RealAnalysis.AbsR (instHSub.hSub (LRA.Analysis.RealAnalysis.AbsR a) (LRA.Analysis.RealAnalysis.AbsR b))) (LRA.Analysis.RealAnalysis.AbsR (instHSub.hSub a b))
+Transliterated theorem: AbsR (AbsR a - AbsR b) ≤ AbsR (a - b)
+Logical form (Lean): (a b : ℝ) : AbsR (AbsR a - AbsR b) ≤ AbsR (a - b)
+Source: ./RealAnalysis/Modulus.lean#L152
+
+
+
+Name: AbsoluteValueSumBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (n : Nat) (a : Fin n → Real),   Real.instLE.le (LRA.Analysis.RealAnalysis.AbsR (Finset.univ.sum a))     (Finset.univ.sum fun i => LRA.Analysis.RealAnalysis.AbsR (a i))
+Predicate logic (unfolded): ∀ (n : Nat) (a : Fin n → Real), Real.instLE.le (LRA.Analysis.RealAnalysis.AbsR (Finset.univ.sum a)) (Finset.univ.sum fun i => LRA.Analysis.RealAnalysis.AbsR (a i))
+Transliterated theorem: (Fin n → ℝ) → AbsR (Finset.univ.sum a) ≤ Finset.univ.sum (fun i => AbsR (a i))
+Logical form (Lean): (n : ℕ) (a : Fin n → ℝ) : AbsR (Finset.univ.sum a) ≤ Finset.univ.sum (fun i => AbsR (a i))
+Source: ./RealAnalysis/Modulus.lean#L167
+
+
+
+Name: IoEvDichotomy
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (P : ℕ → Prop), (∀ N, ∃ n ≥ N, P n) ↔ ¬ (∃ N, ∀ n ≥ N, ¬ P n)
+Predicate logic (unfolded): ∀ (P : Nat → Prop), ∀ (N : Nat), Exists fun n => (GE.ge n N ∧ P n) ↔ ¬ Exists fun N => ∀ (n : Nat), GE.ge n N → ¬ P n
+Transliterated theorem: (ℕ → Prop) → (∀ N, ∃ n ≥ N, P n) ↔ ¬ (∃ N, ∀ n ≥ N, ¬ P n)
+Logical form (Lean): (P : ℕ → Prop) : (∀ N, ∃ n ≥ N, P n) ↔ ¬ (∃ N, ∀ n ≥ N, ¬ P n)
+Source: ./RealAnalysis/PredicateWalkingToolkit.lean#L35
+
+
+
+Name: MonotoneSubsequence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : ℕ → ℝ), ∃ φ : ℕ → ℕ, StrictMono φ ∧ (Monotone (x ∘ φ) ∨ Antitone (x ∘ φ))
+Predicate logic (unfolded): ∀ (x : Nat → Real), Exists fun φ => (StrictMono φ ∧ Or (Monotone (Function.comp x φ)) (Antitone (Function.comp x φ)))
+Transliterated theorem: (ℕ → ℝ) → ∃ φ ∈ ℕ → ℕ, StrictMono φ ∧ (Monotone (x ∘ φ) ∨ Antitone (x ∘ φ))
+Logical form (Lean): (x : ℕ → ℝ) : ∃ φ : ℕ → ℕ, StrictMono φ ∧ (Monotone (x ∘ φ) ∨ Antitone (x ∘ φ))
+Source: ./RealAnalysis/PredicateWalkingToolkit.lean#L49
+
+
+
+Name: BwBisection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : ℕ → ℝ) (hbdd : ∃ M, ∀ n, |x n| ≤ M), ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∃ L : ℝ, Filter.Tendsto (x ∘ φ) Filter.atTop (nhds L)
+Predicate logic (unfolded): ∀ (x : Nat → Real), (Exists fun M => ∀ (n : Nat), Real.instLE.le (abs (x n)) M) → Exists fun φ => (StrictMono φ ∧ Exists fun L => Filter.Tendsto (Function.comp x φ) Filter.atTop (nhds L))
+Transliterated theorem: (ℕ → ℝ ∧ ∃ M, ∀ n, |x n| ≤ M) → ∃ φ ∈ ℕ → ℕ, StrictMono φ ∧ ∃ L ∈ ℝ, Filter.Tendsto (x ∘ φ) Filter.atTop (nhds L)
+Logical form (Lean): (x : ℕ → ℝ) (hbdd : ∃ M, ∀ n, |x n| ≤ M) : ∃ φ : ℕ → ℕ, StrictMono φ ∧ ∃ L : ℝ, Filter.Tendsto (x ∘ φ) Filter.atTop (nhds L)
+Source: ./RealAnalysis/PredicateWalkingToolkit.lean#L64
+
+
+
+Name: KPeriodicity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : ℕ → ℝ) (k : ℕ) (hk : 2 ≤ k) (L : ℝ), Filter.Tendsto a Filter.atTop (nhds L) ↔ ∀ r < k, Filter.Tendsto (fun n => a (k * n + r)) Filter.atTop (nhds L)
+Predicate logic (unfolded): ∀ (a : Nat → Real) (k : Nat), instLENat.le 2 k → ∀ (L : Real), Filter.Tendsto a Filter.atTop (nhds L) ↔ ∀ (r : Nat), instLTNat.lt r k → Filter.Tendsto (fun n => a (instHAdd.hAdd (instHMul.hMul k n) r)) Filter.atTop (nhds L)
+Transliterated theorem: (ℕ → ℝ ∧ 2 ≤ k) → Filter.Tendsto a Filter.atTop (nhds L) ↔ ∀ r < k, Filter.Tendsto (fun n => a (k * n + r)) Filter.atTop (nhds L)
+Logical form (Lean): (a : ℕ → ℝ) (k : ℕ) (hk : 2 ≤ k) (L : ℝ) : Filter.Tendsto a Filter.atTop (nhds L) ↔ ∀ r < k, Filter.Tendsto (fun n => a (k * n + r)) Filter.atTop (nhds L)
+Source: ./RealAnalysis/ResiduePartitionToolkit.lean#L27
+
+
+
+Name: ResidueDivergence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : ℕ → ℝ) (k r s : ℕ) (hr : r < k) (hs : s < k) (L M : ℝ) (hLM : L ≠ M) (hL : Filter.Tendsto (fun n => a (k * n + r)) Filter.atTop (nhds L)) (hM : Filter.Tendsto (fun n => a (k * n + s)) Filter.atTop (nhds M)), ¬ ∃ N, Filter.Tendsto a Filter.atTop (nhds N)
+Predicate logic (unfolded): ∀ (a : Nat → Real) (k r s : Nat), (instLTNat.lt r k ∧ instLTNat.lt s k) → ∀ (L M : Real), (Ne L M ∧ (Filter.Tendsto (fun n => a (instHAdd.hAdd (instHMul.hMul k n) r)) Filter.atTop (nhds L) ∧ Filter.Tendsto (fun n => a (instHAdd.hAdd (instHMul.hMul k n) s)) Filter.atTop (nhds M))) → ¬ Exists fun N => Filter.Tendsto a Filter.atTop (nhds N)
+Transliterated theorem: (ℕ → ℝ ∧ r < k ∧ s < k) → ¬ ∃ N, Filter.Tendsto a Filter.atTop (nhds N)
+Logical form (Lean): (a : ℕ → ℝ) (k r s : ℕ) (hr : r < k) (hs : s < k) (L M : ℝ) (hLM : L ≠ M) (hL : Filter.Tendsto (fun n => a (k * n + r)) Filter.atTop (nhds L)) (hM : Filter.Tendsto (fun n => a (k * n + s)) Filter.atTop (nhds M)) : ¬ ∃ N, Filter.Tendsto a Filter.atTop (nhds N)
+Source: ./RealAnalysis/ResiduePartitionToolkit.lean#L46
+
+
+
+Name: AlternatingSeriesTest
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : ℕ → ℝ) (hpos : ∀ n, 0 < a n) (hdec : ∀ n, a (n + 1) ≤ a n) (hnull : Filter.Tendsto a Filter.atTop (nhds 0)), ∃ L : ℝ, Filter.Tendsto (fun n => ∑ i ∈ Finset.range n, (-1 : ℝ) ^ i * a (i + 1)) Filter.atTop (nhds L)
+Predicate logic (unfolded): ∀ (a : Nat → Real), (∀ (n : Nat), Real.instLT.lt 0 (a n) ∧ (∀ (n : Nat), Real.instLE.le (a (instHAdd.hAdd n 1)) (a n) ∧ Filter.Tendsto a Filter.atTop (nhds 0))) → Exists fun L => Filter.Tendsto (fun n => (Finset.range n).sum fun i => instHMul.hMul (instHPow.hPow (-1) i) (a (instHAdd.hAdd i 1))) Filter.atTop (nhds L)
+Transliterated theorem: (ℕ → ℝ ∧ ∀ n, 0 < a n ∧ ∀ n, a (n + 1) ≤ a n) → ∃ L ∈ ℝ, Filter.Tendsto (fun n => ∑ i ∈ Finset.range n, -1 ∈ ℝ ^ i * a (i + 1)) Filter.atTop (nhds L)
+Logical form (Lean): (a : ℕ → ℝ) (hpos : ∀ n, 0 < a n) (hdec : ∀ n, a (n + 1) ≤ a n) (hnull : Filter.Tendsto a Filter.atTop (nhds 0)) : ∃ L : ℝ, Filter.Tendsto (fun n => ∑ i ∈ Finset.range n, (-1 : ℝ) ^ i * a (i + 1)) Filter.atTop (nhds L)
+Source: ./RealAnalysis/ResiduePartitionToolkit.lean#L69
+
+
+
+Name: ConstantSequenceConverges
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (c : Real), Filter.Tendsto (fun x => c) Filter.atTop (nhds c)
+Predicate logic (unfolded): ∀ (c : Real), Filter.Tendsto (fun x => c) Filter.atTop (nhds c)
+Transliterated theorem: Filter.Tendsto fun _ ∈ ℕ => c Filter.atTop (nhds c)
+Logical form (Lean): (c : ℝ) : Filter.Tendsto (fun _ : ℕ => c) Filter.atTop (nhds c)
+Source: ./Sequences/SequenceDefinitions.lean#L90
+
+
+
+Name: ReciprocalSequenceConvergesToZero
+Kind: Theorem
+State: Sorry
+Predicate logic: Filter.Tendsto (fun n => instHDiv.hDiv 1 n.cast) Filter.atTop (nhds 0)
+Predicate logic (unfolded): Filter.Tendsto (fun n => instHDiv.hDiv 1 n.cast) Filter.atTop (nhds 0)
+Transliterated theorem: Filter.Tendsto fun n ∈ ℕ => 1 / n ∈ ℝ Filter.atTop (nhds 0)
+Logical form (Lean): : Filter.Tendsto (fun n : ℕ => 1 / (n : ℝ)) Filter.atTop (nhds 0)
+Source: ./Sequences/SequenceDefinitions.lean#L103
+
+
+
+Name: NaturalNumberSequenceDiverges
+Kind: Theorem
+State: Sorry
+Predicate logic: Filter.Tendsto (fun n => n.cast) Filter.atTop Filter.atTop
+Predicate logic (unfolded): Filter.Tendsto (fun n => n.cast) Filter.atTop Filter.atTop
+Transliterated theorem: Filter.Tendsto fun n ∈ ℕ => n ∈ ℝ Filter.atTop Filter.atTop
+Logical form (Lean): : Filter.Tendsto (fun n : ℕ => (n : ℝ)) Filter.atTop Filter.atTop
+Source: ./Sequences/SequenceDefinitions.lean#L116
+
+
+
+Name: EquivalenceOfConvergenceFormulations
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : RealSequence) (L : ℝ), [ConvergesTo x L, ∀ ε > 0, ∃ K : ℕ, ∀ n ≥ K, |x n - L| < ε, ∀ ε > 0, ∃ K : ℕ, ∀ n ≥ K, L - ε < x n ∧ x n < L + ε, ConvergesToNbhd x L].TFAE
+Predicate logic (unfolded): ∀ (x : LRA.Analysis.Sequences.RealSequence) (L : Real), (List.cons (LRA.Analysis.Sequences.ConvergesTo x L) (List.cons (∀ (ε : Real), GT.gt ε 0 → Exists fun K => ∀ (n : Nat), GE.ge n K → Real.instLT.lt (abs (instHSub.hSub (x n) L)) ε) (List.cons (∀ (ε : Real), GT.gt ε 0 → Exists fun K => ∀ (n : Nat), GE.ge n K → (Real.instLT.lt (instHSub.hSub L ε) (x n) ∧ Real.instLT.lt (x n) (instHAdd.hAdd L ε))) (List.cons (LRA.Analysis.Sequences.ConvergesToNbhd x L) List.nil)))).TFAE
+Transliterated theorem: (∀ x ∈ RealSequence), [ConvergesTo x L, ∀ ε > 0, ∃ K ∈ ℕ, ∀ n ≥ K, |x n - L| < ε, ∀ ε > 0, ∃ K ∈ ℕ, ∀ n ≥ K, L - ε < x n ∧ x n < L + ε, ConvergesToNbhd x L].TFAE
+Logical form (Lean): (x : RealSequence) (L : ℝ) : [ConvergesTo x L, ∀ ε > 0, ∃ K : ℕ, ∀ n ≥ K, |x n - L| < ε, ∀ ε > 0, ∃ K : ℕ, ∀ n ≥ K, L - ε < x n ∧ x n < L + ε, ConvergesToNbhd x L].TFAE
+Source: ./Sequences/Convergence.lean#L114
+
+
+
+Name: NewtonApproximationSqrtTwo
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Analysis.Sequences.ConvergesTo LRA.Analysis.Sequences.NewtonSeqSqrtTwo (Real.sqrt 2)
+Predicate logic (unfolded): LRA.Analysis.Sequences.ConvergesTo LRA.Analysis.Sequences.NewtonSeqSqrtTwo (Real.sqrt 2)
+Transliterated theorem: ConvergesTo NewtonSeqSqrtTwo (Real.sqrt 2)
+Logical form (Lean): : ConvergesTo NewtonSeqSqrtTwo (Real.sqrt 2)
+Source: ./Sequences/Applications.lean#L72
+
+
+
+Name: FactorialPartialSumsApproximateE
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Analysis.Sequences.ConvergesTo LRA.Analysis.Sequences.FactorialPartialSums (Real.exp 1)
+Predicate logic (unfolded): LRA.Analysis.Sequences.ConvergesTo LRA.Analysis.Sequences.FactorialPartialSums (Real.exp 1)
+Transliterated theorem: ConvergesTo FactorialPartialSums (Real.exp 1)
+Logical form (Lean): : ConvergesTo FactorialPartialSums (Real.exp 1)
+Source: ./Sequences/Applications.lean#L98
+
+
+
+Name: CompoundInterestApproximationE
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Analysis.Sequences.ConvergesTo LRA.Analysis.Sequences.CompoundInterestSeq (Real.exp 1)
+Predicate logic (unfolded): LRA.Analysis.Sequences.ConvergesTo LRA.Analysis.Sequences.CompoundInterestSeq (Real.exp 1)
+Transliterated theorem: ConvergesTo CompoundInterestSeq (Real.exp 1)
+Logical form (Lean): : ConvergesTo CompoundInterestSeq (Real.exp 1)
+Source: ./Sequences/Applications.lean#L126
+
+
+
+Name: DecimalTruncationsConverge
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (α : Real), LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.DecimalTruncationSeq α) α
+Predicate logic (unfolded): ∀ (α : Real), LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.DecimalTruncationSeq α) α
+Transliterated theorem: ConvergesTo (DecimalTruncationSeq α) α
+Logical form (Lean): (α : ℝ) : ConvergesTo (DecimalTruncationSeq α) α
+Source: ./Sequences/Applications.lean#L152
+
+
+
+Name: ConstantSequenceConvergence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real},   LRA.Analysis.Sequences.IsConstant x c → Filter.Tendsto x Filter.atTop (nhds c)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real}, LRA.Analysis.Sequences.IsConstant x c → Filter.Tendsto x Filter.atTop (nhds c)
+Transliterated theorem: Filter.Tendsto x Filter.atTop (nhds c)
+Logical form (Lean): {x : RealSequence} {c : ℝ} (h : IsConstant x c) : Filter.Tendsto x Filter.atTop (nhds c)
+Source: ./Sequences/NullConstantSequences.lean#L133
+
+
+
+Name: ZeroSequenceIsNull
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsConstant x 0 → LRA.Analysis.Sequences.IsNull x
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsConstant x 0 → LRA.Analysis.Sequences.IsNull x
+Transliterated theorem: IsNull x
+Logical form (Lean): {x : RealSequence} (h : IsConstant x 0) : IsNull x
+Source: ./Sequences/NullConstantSequences.lean#L147
+
+
+
+Name: ConstantNullSequence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {c : ℝ} (h : IsConstant x c), IsNull x ↔ c = 0
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real}, LRA.Analysis.Sequences.IsConstant x c → LRA.Analysis.Sequences.IsNull x ↔ c = 0
+Transliterated theorem: IsNull x ↔ c = 0
+Logical form (Lean): {x : RealSequence} {c : ℝ} (h : IsConstant x c) : IsNull x ↔ c = 0
+Source: ./Sequences/NullConstantSequences.lean#L161
+
+
+
+Name: DifferenceFromLimitIsNull
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : RealSequence) (L : ℝ), Filter.Tendsto x Filter.atTop (nhds L) ↔ IsNull (fun n => x n - L)
+Predicate logic (unfolded): ∀ (x : LRA.Analysis.Sequences.RealSequence) (L : Real), Filter.Tendsto x Filter.atTop (nhds L) ↔ LRA.Analysis.Sequences.IsNull fun n => instHSub.hSub (x n) L
+Transliterated theorem: (∀ x ∈ RealSequence), Filter.Tendsto x Filter.atTop (nhds L) ↔ IsNull (fun n => x n - L)
+Logical form (Lean): (x : RealSequence) (L : ℝ) : Filter.Tendsto x Filter.atTop (nhds L) ↔ IsNull (fun n => x n - L)
+Source: ./Sequences/NullConstantSequences.lean#L176
+
+
+
+Name: UltimatelyConstantSequenceConvergence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real},   LRA.Analysis.Sequences.IsUltimatelyConstant x c → Filter.Tendsto x Filter.atTop (nhds c)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real}, LRA.Analysis.Sequences.IsUltimatelyConstant x c → Filter.Tendsto x Filter.atTop (nhds c)
+Transliterated theorem: Filter.Tendsto x Filter.atTop (nhds c)
+Logical form (Lean): {x : RealSequence} {c : ℝ} (h : IsUltimatelyConstant x c) : Filter.Tendsto x Filter.atTop (nhds c)
+Source: ./Sequences/NullConstantSequences.lean#L192
+
+
+
+Name: ConstantImpliesUltimatelyConstant
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real},   LRA.Analysis.Sequences.IsConstant x c → LRA.Analysis.Sequences.IsUltimatelyConstant x c
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real}, LRA.Analysis.Sequences.IsConstant x c → LRA.Analysis.Sequences.IsUltimatelyConstant x c
+Transliterated theorem: IsUltimatelyConstant x c
+Logical form (Lean): {x : RealSequence} {c : ℝ} (h : IsConstant x c) : IsUltimatelyConstant x c
+Source: ./Sequences/NullConstantSequences.lean#L207
+
+
+
+Name: UltimatelyZeroSequenceIsNull
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence},   LRA.Analysis.Sequences.IsUltimatelyConstant x 0 → LRA.Analysis.Sequences.IsNull x
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsUltimatelyConstant x 0 → LRA.Analysis.Sequences.IsNull x
+Transliterated theorem: IsNull x
+Logical form (Lean): {x : RealSequence} (h : IsUltimatelyConstant x 0) : IsNull x
+Source: ./Sequences/NullConstantSequences.lean#L221
+
+
+
+Name: UltimatelyConstantNullSequence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {c : ℝ} (h : IsUltimatelyConstant x c), IsNull x ↔ c = 0
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real}, LRA.Analysis.Sequences.IsUltimatelyConstant x c → LRA.Analysis.Sequences.IsNull x ↔ c = 0
+Transliterated theorem: IsNull x ↔ c = 0
+Logical form (Lean): {x : RealSequence} {c : ℝ} (h : IsUltimatelyConstant x c) : IsNull x ↔ c = 0
+Source: ./Sequences/NullConstantSequences.lean#L235
+
+
+
+Name: TailEqualityPreservesConvergence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : RealSequence} (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, x n = y n) (L : ℝ), Filter.Tendsto x Filter.atTop (nhds L) ↔ Filter.Tendsto y Filter.atTop (nhds L)
+Predicate logic (unfolded): ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (Exists fun N₀ => ∀ (n : Nat), GE.ge n N₀ → x n = y n) → ∀ (L : Real), Filter.Tendsto x Filter.atTop (nhds L) ↔ Filter.Tendsto y Filter.atTop (nhds L)
+Transliterated theorem: (∃ N₀ ∈ ℕ, ∀ n ≥ N₀, x n = y n) → Filter.Tendsto x Filter.atTop (nhds L) ↔ Filter.Tendsto y Filter.atTop (nhds L)
+Logical form (Lean): {x y : RealSequence} (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, x n = y n) (L : ℝ) : Filter.Tendsto x Filter.atTop (nhds L) ↔ Filter.Tendsto y Filter.atTop (nhds L)
+Source: ./Sequences/NullConstantSequences.lean#L252
+
+
+
+Name: EventuallyBoundedAboveTailFormulation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : RealSequence), BoundedAboveSeq x ↔ ∃ N₀ : ℕ, ∃ M : ℝ, ∀ n ≥ N₀, x n ≤ M
+Predicate logic (unfolded): ∀ (x : LRA.Analysis.Sequences.RealSequence), LRA.Analysis.Sequences.BoundedAboveSeq x ↔ Exists fun N₀ => Exists fun M => ∀ (n : Nat), GE.ge n N₀ → Real.instLE.le (x n) M
+Transliterated theorem: (∀ x ∈ RealSequence), BoundedAboveSeq x ↔ ∃ N₀ ∈ ℕ, ∃ M ∈ ℝ, ∀ n ≥ N₀, x n ≤ M
+Logical form (Lean): (x : RealSequence) : BoundedAboveSeq x ↔ ∃ N₀ : ℕ, ∃ M : ℝ, ∀ n ≥ N₀, x n ≤ M
+Source: ./Sequences/NullConstantSequences.lean#L268
+
+
+
+Name: EventuallyBoundedBelowTailFormulation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : RealSequence), BoundedBelowSeq x ↔ ∃ N₀ : ℕ, ∃ m : ℝ, ∀ n ≥ N₀, m ≤ x n
+Predicate logic (unfolded): ∀ (x : LRA.Analysis.Sequences.RealSequence), LRA.Analysis.Sequences.BoundedBelowSeq x ↔ Exists fun N₀ => Exists fun m => ∀ (n : Nat), GE.ge n N₀ → Real.instLE.le m (x n)
+Transliterated theorem: (∀ x ∈ RealSequence), BoundedBelowSeq x ↔ ∃ N₀ ∈ ℕ, ∃ m ∈ ℝ, ∀ n ≥ N₀, m ≤ x n
+Logical form (Lean): (x : RealSequence) : BoundedBelowSeq x ↔ ∃ N₀ : ℕ, ∃ m : ℝ, ∀ n ≥ N₀, m ≤ x n
+Source: ./Sequences/NullConstantSequences.lean#L282
+
+
+
+Name: EventuallyBoundedTailFormulation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : RealSequence), BoundedSeq x ↔ ∃ N₀ : ℕ, ∃ M > 0, ∀ n ≥ N₀, |x n| ≤ M
+Predicate logic (unfolded): ∀ (x : LRA.Analysis.Sequences.RealSequence), LRA.Analysis.Sequences.BoundedSeq x ↔ Exists fun N₀ => Exists fun M => (GT.gt M 0 ∧ ∀ (n : Nat), GE.ge n N₀ → Real.instLE.le (abs (x n)) M)
+Transliterated theorem: (∀ x ∈ RealSequence), BoundedSeq x ↔ ∃ N₀ ∈ ℕ, ∃ M > 0, ∀ n ≥ N₀, |x n| ≤ M
+Logical form (Lean): (x : RealSequence) : BoundedSeq x ↔ ∃ N₀ : ℕ, ∃ M > 0, ∀ n ≥ N₀, |x n| ≤ M
+Source: ./Sequences/NullConstantSequences.lean#L296
+
+
+
+Name: BoundedSequenceBoundedAboveBelow
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : RealSequence), BoundedSeq x ↔ (BoundedAboveSeq x ∧ BoundedBelowSeq x)
+Predicate logic (unfolded): ∀ (x : LRA.Analysis.Sequences.RealSequence), LRA.Analysis.Sequences.BoundedSeq x ↔ (LRA.Analysis.Sequences.BoundedAboveSeq x ∧ LRA.Analysis.Sequences.BoundedBelowSeq x)
+Transliterated theorem: (∀ x ∈ RealSequence), BoundedSeq x ↔ (BoundedAboveSeq x ∧ BoundedBelowSeq x)
+Logical form (Lean): (x : RealSequence) : BoundedSeq x ↔ (BoundedAboveSeq x ∧ BoundedBelowSeq x)
+Source: ./Sequences/NullConstantSequences.lean#L310
+
+
+
+Name: AbsoluteBoundUpperLowerBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {K : ℝ} (hK : K > 0) (h : ∀ n, |x n| ≤ K), ∀ n, -K ≤ x n ∧ x n ≤ K
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {K : Real}, (GT.gt K 0 ∧ ∀ (n : Nat), Real.instLE.le (abs (x n)) K) → ∀ (n : Nat), (Real.instLE.le (Real.instNeg.neg K) (x n) ∧ Real.instLE.le (x n) K)
+Transliterated theorem: (∀ n, |x n| ≤ K) → ∀ n, -K ≤ x n ∧ x n ≤ K
+Logical form (Lean): {x : RealSequence} {K : ℝ} (hK : K > 0) (h : ∀ n, |x n| ≤ K) : ∀ n, -K ≤ x n ∧ x n ≤ K
+Source: ./Sequences/NullConstantSequences.lean#L325
+
+
+
+Name: UpperLowerBoundsAbsoluteBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {m M : ℝ} (h : ∀ n, m ≤ x n ∧ x n ≤ M), ∃ K > 0, ∀ n, |x n| ≤ K
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {m M : Real}, (∀ (n : Nat), (Real.instLE.le m (x n) ∧ Real.instLE.le (x n) M)) → Exists fun K => (GT.gt K 0 ∧ ∀ (n : Nat), Real.instLE.le (abs (x n)) K)
+Transliterated theorem: (∀ n, m ≤ x n ∧ x n ≤ M) → ∃ K > 0, ∀ n, |x n| ≤ K
+Logical form (Lean): {x : RealSequence} {m M : ℝ} (h : ∀ n, m ≤ x n ∧ x n ≤ M) : ∃ K > 0, ∀ n, |x n| ≤ K
+Source: ./Sequences/NullConstantSequences.lean#L340
+
+
+
+Name: ExampleConstantSequence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (c : Real), LRA.Analysis.Sequences.ConvergesTo (fun x => c) c
+Predicate logic (unfolded): ∀ (c : Real), LRA.Analysis.Sequences.ConvergesTo (fun x => c) c
+Transliterated theorem: ConvergesTo fun _ ∈ ℕ => c c
+Logical form (Lean): (c : ℝ) : ConvergesTo (fun _ : ℕ => c) c
+Source: ./Sequences/ExamplesCounterexamples.lean#L50
+
+
+
+Name: ExampleReciprocalSequence
+Kind: Theorem
+State: Sorry
+Predicate logic: (∀ n : ℕ, (1 : ℝ) / (n + 2) < 1 / (n + 1)) ∧ (∀ n : ℕ, 0 ≤ 1 / ((n : ℝ) + 1)) ∧ ConvergesTo (fun n : ℕ => 1 / ((n : ℝ) + 1)) 0
+Predicate logic (unfolded): (∀ (n : Nat), Real.instLT.lt (instHDiv.hDiv 1 (instHAdd.hAdd n.cast 2)) (instHDiv.hDiv 1 (instHAdd.hAdd n.cast 1)) ∧ (∀ (n : Nat), Real.instLE.le 0 (instHDiv.hDiv 1 (instHAdd.hAdd n.cast 1)) ∧ LRA.Analysis.Sequences.ConvergesTo (fun n => instHDiv.hDiv 1 (instHAdd.hAdd n.cast 1)) 0))
+Transliterated theorem: ∀ n ∈ ℕ, 1 ∈ ℝ / (n + 2 < 1 / (n + 1)) ∧ ∀ n ∈ ℕ, 0 ≤ 1 / (n ∈ ℝ + 1) ∧ ConvergesTo fun n ∈ ℕ => 1 / (n ∈ ℝ + 1) 0
+Logical form (Lean): : (∀ n : ℕ, (1 : ℝ) / (n + 2) < 1 / (n + 1)) ∧ (∀ n : ℕ, 0 ≤ 1 / ((n : ℝ) + 1)) ∧ ConvergesTo (fun n : ℕ => 1 / ((n : ℝ) + 1)) 0
+Source: ./Sequences/ExamplesCounterexamples.lean#L66
+
+
+
+Name: ExampleAlternatingNullSequence
+Kind: Theorem
+State: Sorry
+Predicate logic: ¬ Monotone (fun n : ℕ => (-1 : ℝ) ^ n / (n + 1)) ∧ ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n / (n + 1)) 0
+Predicate logic (unfolded): (¬ Monotone fun n => instHDiv.hDiv (instHPow.hPow (-1) n) (instHAdd.hAdd n.cast 1) ∧ LRA.Analysis.Sequences.ConvergesTo (fun n => instHDiv.hDiv (instHPow.hPow (-1) n) (instHAdd.hAdd n.cast 1)) 0)
+Transliterated theorem: ¬ Monotone fun n ∈ ℕ => -1 ∈ ℝ ^ n / (n + 1) ∧ ConvergesTo fun n ∈ ℕ => -1 ∈ ℝ ^ n / (n + 1) 0
+Logical form (Lean): : ¬ Monotone (fun n : ℕ => (-1 : ℝ) ^ n / (n + 1)) ∧ ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n / (n + 1)) 0
+Source: ./Sequences/ExamplesCounterexamples.lean#L83
+
+
+
+Name: ExampleOscillatingSequence
+Kind: Theorem
+State: Sorry
+Predicate logic: BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧ (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧ ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n)) 1 ∧ ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n + 1)) (-1)
+Predicate logic (unfolded): (LRA.Analysis.Sequences.BoundedSeq fun n => instHPow.hPow (-1) n ∧ (¬ Exists fun L => LRA.Analysis.Sequences.ConvergesTo (fun n => instHPow.hPow (-1) n) L ∧ (LRA.Analysis.Sequences.ConvergesTo (fun n => instHPow.hPow (-1) (instHMul.hMul 2 n)) 1 ∧ LRA.Analysis.Sequences.ConvergesTo (fun n => instHPow.hPow (-1) (instHAdd.hAdd (instHMul.hMul 2 n) 1)) (-1))))
+Transliterated theorem: BoundedSeq fun n ∈ ℕ => -1 ∈ ℝ ^ n ∧ (¬ ∃ L, ConvergesTo fun n ∈ ℕ => -1 ∈ ℝ ^ n L) ∧ ConvergesTo fun n ∈ ℕ => -1 ∈ ℝ ^ (2 * n) 1 ∧ ConvergesTo fun n ∈ ℕ => -1 ∈ ℝ ^ (2 * n + 1) (-1)
+Logical form (Lean): : BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧ (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧ ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n)) 1 ∧ ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n + 1)) (-1)
+Source: ./Sequences/ExamplesCounterexamples.lean#L102
+
+
+
+Name: ExampleGeometricSequence
+Kind: Theorem
+State: Sorry
+Predicate logic: (∀ r : ℝ, |r| < 1 → ConvergesTo (fun n : ℕ => r ^ n) 0) ∧ ConvergesTo (fun _ : ℕ => (1 : ℝ) ^ (0 : ℕ)) 1 ∧ (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧ (∀ r : ℝ, |r| > 1 → ¬ BoundedSeq (fun n : ℕ => r ^ n))
+Predicate logic (unfolded): (∀ (r : Real), Real.instLT.lt (abs r) 1 → LRA.Analysis.Sequences.ConvergesTo (fun n => instHPow.hPow r n) 0 ∧ (LRA.Analysis.Sequences.ConvergesTo (fun x => instHPow.hPow 1 0) 1 ∧ (¬ Exists fun L => LRA.Analysis.Sequences.ConvergesTo (fun n => instHPow.hPow (-1) n) L ∧ ∀ (r : Real), GT.gt (abs r) 1 → ¬ LRA.Analysis.Sequences.BoundedSeq fun n => instHPow.hPow r n)))
+Transliterated theorem: ∀ r ∈ ℝ, |r| < 1 → ConvergesTo fun n ∈ ℕ => r ^ n 0 ∧ ConvergesTo fun _ ∈ ℕ => 1 ∈ ℝ ^ 0 ∈ ℕ 1 ∧ (¬ ∃ L, ConvergesTo fun n ∈ ℕ => -1 ∈ ℝ ^ n L) ∧ ∀ r ∈ ℝ, |r| > 1 → ¬ BoundedSeq fun n ∈ ℕ => r ^ n
+Logical form (Lean): : (∀ r : ℝ, |r| < 1 → ConvergesTo (fun n : ℕ => r ^ n) 0) ∧ ConvergesTo (fun _ : ℕ => (1 : ℝ) ^ (0 : ℕ)) 1 ∧ (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧ (∀ r : ℝ, |r| > 1 → ¬ BoundedSeq (fun n : ℕ => r ^ n))
+Source: ./Sequences/ExamplesCounterexamples.lean#L123
+
+
+
+Name: ExampleBoundedNotConvergent
+Kind: Theorem
+State: Sorry
+Predicate logic: BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧ ¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L
+Predicate logic (unfolded): (LRA.Analysis.Sequences.BoundedSeq fun n => instHPow.hPow (-1) n ∧ ¬ Exists fun L => LRA.Analysis.Sequences.ConvergesTo (fun n => instHPow.hPow (-1) n) L)
+Transliterated theorem: BoundedSeq fun n ∈ ℕ => -1 ∈ ℝ ^ n ∧ ¬ ∃ L, ConvergesTo fun n ∈ ℕ => -1 ∈ ℝ ^ n L
+Logical form (Lean): : BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧ ¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L
+Source: ./Sequences/ExamplesCounterexamples.lean#L141
+
+
+
+Name: ExampleVanishingDifferencesNotCauchy
+Kind: Theorem
+State: Sorry
+Predicate logic: ConvergesTo (fun n : ℕ => 1 / ((n : ℝ) + 2)) 0 ∧ ¬ BoundedSeq (fun n : ℕ => ∑ k ∈ Finset.range (n + 1), 1 / ((k : ℝ) + 1))
+Predicate logic (unfolded): (LRA.Analysis.Sequences.ConvergesTo (fun n => instHDiv.hDiv 1 (instHAdd.hAdd n.cast 2)) 0 ∧ ¬ LRA.Analysis.Sequences.BoundedSeq fun n => (Finset.range (instHAdd.hAdd n 1)).sum fun k => instHDiv.hDiv 1 (instHAdd.hAdd k.cast 1))
+Transliterated theorem: ConvergesTo fun n ∈ ℕ => 1 / (n ∈ ℝ + 2) 0 ∧ ¬ BoundedSeq fun n ∈ ℕ => ∑ k ∈ Finset.range (n + 1, 1 / (k ∈ ℝ + 1))
+Logical form (Lean): : ConvergesTo (fun n : ℕ => 1 / ((n : ℝ) + 2)) 0 ∧ ¬ BoundedSeq (fun n : ℕ => ∑ k ∈ Finset.range (n + 1), 1 / ((k : ℝ) + 1))
+Source: ./Sequences/ExamplesCounterexamples.lean#L157
+
+
+
+Name: UniquenessOfLimits
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {L K : ℝ} (hL : ConvergesTo x L) (hK : ConvergesTo x K), L = K
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L K : Real}, (LRA.Analysis.Sequences.ConvergesTo x L ∧ LRA.Analysis.Sequences.ConvergesTo x K) → L = K
+Transliterated theorem: L = K
+Logical form (Lean): {x : RealSequence} {L K : ℝ} (hL : ConvergesTo x L) (hK : ConvergesTo x K) : L = K
+Source: ./Sequences/Limits.lean#L67
+
+
+
+Name: LimitPreservesEventualOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : RealSequence} {L M : ℝ} (hL : ConvergesTo x L) (hM : ConvergesTo y M) (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, x n ≤ y n), L ≤ M
+Predicate logic (unfolded): ∀ {x y : LRA.Analysis.Sequences.RealSequence} {L M : Real}, (LRA.Analysis.Sequences.ConvergesTo x L ∧ (LRA.Analysis.Sequences.ConvergesTo y M ∧ Exists fun N₀ => ∀ (n : Nat), GE.ge n N₀ → Real.instLE.le (x n) (y n))) → Real.instLE.le L M
+Transliterated theorem: (∃ N₀ ∈ ℕ, ∀ n ≥ N₀, x n ≤ y n) → L ≤ M
+Logical form (Lean): {x y : RealSequence} {L M : ℝ} (hL : ConvergesTo x L) (hM : ConvergesTo y M) (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, x n ≤ y n) : L ≤ M
+Source: ./Sequences/Limits.lean#L83
+
+
+
+Name: StrictLimitSeparationGivesEventualOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : RealSequence} {A B : ℝ} (hA : ConvergesTo x A) (hB : ConvergesTo y B) (hAB : A < B), ∃ N : ℕ, ∀ n ≥ N, x n < y n
+Predicate logic (unfolded): ∀ {x y : LRA.Analysis.Sequences.RealSequence} {A B : Real}, (LRA.Analysis.Sequences.ConvergesTo x A ∧ (LRA.Analysis.Sequences.ConvergesTo y B ∧ Real.instLT.lt A B)) → Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLT.lt (x n) (y n)
+Transliterated theorem: (A < B) → ∃ N ∈ ℕ, ∀ n ≥ N, x n < y n
+Logical form (Lean): {x y : RealSequence} {A B : ℝ} (hA : ConvergesTo x A) (hB : ConvergesTo y B) (hAB : A < B) : ∃ N : ℕ, ∀ n ≥ N, x n < y n
+Source: ./Sequences/Limits.lean#L100
+
+
+
+Name: EventualStrictComparisonPreservesWeakLimitOrderLt
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : RealSequence} {A B : ℝ} (hA : ConvergesTo x A) (hB : ConvergesTo y B) (h : ∃ N : ℕ, ∀ n ≥ N, x n < y n), A ≤ B
+Predicate logic (unfolded): ∀ {x y : LRA.Analysis.Sequences.RealSequence} {A B : Real}, (LRA.Analysis.Sequences.ConvergesTo x A ∧ (LRA.Analysis.Sequences.ConvergesTo y B ∧ Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLT.lt (x n) (y n))) → Real.instLE.le A B
+Transliterated theorem: (∃ N ∈ ℕ, ∀ n ≥ N, x n < y n) → A ≤ B
+Logical form (Lean): {x y : RealSequence} {A B : ℝ} (hA : ConvergesTo x A) (hB : ConvergesTo y B) (h : ∃ N : ℕ, ∀ n ≥ N, x n < y n) : A ≤ B
+Source: ./Sequences/Limits.lean#L117
+
+
+
+Name: EventualStrictComparisonPreservesWeakLimitOrderGt
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : RealSequence} {A B : ℝ} (hA : ConvergesTo x A) (hB : ConvergesTo y B) (h : ∃ N : ℕ, ∀ n ≥ N, x n > y n), A ≥ B
+Predicate logic (unfolded): ∀ {x y : LRA.Analysis.Sequences.RealSequence} {A B : Real}, (LRA.Analysis.Sequences.ConvergesTo x A ∧ (LRA.Analysis.Sequences.ConvergesTo y B ∧ Exists fun N => ∀ (n : Nat), GE.ge n N → GT.gt (x n) (y n))) → GE.ge A B
+Transliterated theorem: (∃ N ∈ ℕ, ∀ n ≥ N, x n > y n) → A ≥ B
+Logical form (Lean): {x y : RealSequence} {A B : ℝ} (hA : ConvergesTo x A) (hB : ConvergesTo y B) (h : ∃ N : ℕ, ∀ n ≥ N, x n > y n) : A ≥ B
+Source: ./Sequences/Limits.lean#L134
+
+
+
+Name: ConstantComparisonSequenceLimitsLe
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {A B : ℝ} (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n ≤ B), A ≤ B
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {A B : Real}, (LRA.Analysis.Sequences.ConvergesTo x A ∧ Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLE.le (x n) B) → Real.instLE.le A B
+Transliterated theorem: (∃ N ∈ ℕ, ∀ n ≥ N, x n ≤ B) → A ≤ B
+Logical form (Lean): {x : RealSequence} {A B : ℝ} (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n ≤ B) : A ≤ B
+Source: ./Sequences/Limits.lean#L150
+
+
+
+Name: ConstantComparisonSequenceLimitsLt
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {A B : ℝ} (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n < B), A ≤ B
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {A B : Real}, (LRA.Analysis.Sequences.ConvergesTo x A ∧ Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLT.lt (x n) B) → Real.instLE.le A B
+Transliterated theorem: (∃ N ∈ ℕ, ∀ n ≥ N, x n < B) → A ≤ B
+Logical form (Lean): {x : RealSequence} {A B : ℝ} (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n < B) : A ≤ B
+Source: ./Sequences/Limits.lean#L165
+
+
+
+Name: ConstantComparisonSequenceLimitsGe
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {A B : ℝ} (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n ≥ B), A ≥ B
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {A B : Real}, (LRA.Analysis.Sequences.ConvergesTo x A ∧ Exists fun N => ∀ (n : Nat), GE.ge n N → GE.ge (x n) B) → GE.ge A B
+Transliterated theorem: (∃ N ∈ ℕ, ∀ n ≥ N, x n ≥ B) → A ≥ B
+Logical form (Lean): {x : RealSequence} {A B : ℝ} (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n ≥ B) : A ≥ B
+Source: ./Sequences/Limits.lean#L180
+
+
+
+Name: ConstantComparisonSequenceLimitsGt
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {A B : ℝ} (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n > B), A ≥ B
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {A B : Real}, (LRA.Analysis.Sequences.ConvergesTo x A ∧ Exists fun N => ∀ (n : Nat), GE.ge n N → GT.gt (x n) B) → GE.ge A B
+Transliterated theorem: (∃ N ∈ ℕ, ∀ n ≥ N, x n > B) → A ≥ B
+Logical form (Lean): {x : RealSequence} {A B : ℝ} (hA : ConvergesTo x A) (h : ∃ N : ℕ, ∀ n ≥ N, x n > B) : A ≥ B
+Source: ./Sequences/Limits.lean#L195
+
+
+
+Name: ConstantSqueezeTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {L : ℝ} (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, L ≤ x n ∧ x n ≤ L), ConvergesTo x L
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, (Exists fun N₀ => ∀ (n : Nat), GE.ge n N₀ → (Real.instLE.le L (x n) ∧ Real.instLE.le (x n) L)) → LRA.Analysis.Sequences.ConvergesTo x L
+Transliterated theorem: (∃ N₀ ∈ ℕ, ∀ n ≥ N₀, L ≤ x n ∧ x n ≤ L) → ConvergesTo x L
+Logical form (Lean): {x : RealSequence} {L : ℝ} (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, L ≤ x n ∧ x n ≤ L) : ConvergesTo x L
+Source: ./Sequences/Limits.lean#L210
+
+
+
+Name: SequenceSqueezeTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {a x b : RealSequence} {L : ℝ} (ha : ConvergesTo a L) (hb : ConvergesTo b L) (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, a n ≤ x n ∧ x n ≤ b n), ConvergesTo x L
+Predicate logic (unfolded): ∀ {a x b : LRA.Analysis.Sequences.RealSequence} {L : Real}, (LRA.Analysis.Sequences.ConvergesTo a L ∧ (LRA.Analysis.Sequences.ConvergesTo b L ∧ Exists fun N₀ => ∀ (n : Nat), GE.ge n N₀ → (Real.instLE.le (a n) (x n) ∧ Real.instLE.le (x n) (b n)))) → LRA.Analysis.Sequences.ConvergesTo x L
+Transliterated theorem: (∃ N₀ ∈ ℕ, ∀ n ≥ N₀, a n ≤ x n ∧ x n ≤ b n) → ConvergesTo x L
+Logical form (Lean): {a x b : RealSequence} {L : ℝ} (ha : ConvergesTo a L) (hb : ConvergesTo b L) (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, a n ≤ x n ∧ x n ≤ b n) : ConvergesTo x L
+Source: ./Sequences/Limits.lean#L226
+
+
+
+Name: AbsoluteValueSqueezeTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x u : RealSequence} {L : ℝ} (hu : ConvergesTo u 0) (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, |x n - L| ≤ u n), ConvergesTo x L
+Predicate logic (unfolded): ∀ {x u : LRA.Analysis.Sequences.RealSequence} {L : Real}, (LRA.Analysis.Sequences.ConvergesTo u 0 ∧ Exists fun N₀ => ∀ (n : Nat), GE.ge n N₀ → Real.instLE.le (abs (instHSub.hSub (x n) L)) (u n)) → LRA.Analysis.Sequences.ConvergesTo x L
+Transliterated theorem: (∃ N₀ ∈ ℕ, ∀ n ≥ N₀, |x n - L| ≤ u n) → ConvergesTo x L
+Logical form (Lean): {x u : RealSequence} {L : ℝ} (hu : ConvergesTo u 0) (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, |x n - L| ≤ u n) : ConvergesTo x L
+Source: ./Sequences/Limits.lean#L243
+
+
+
+Name: ConvergentSequenceIsBounded
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real},   LRA.Analysis.Sequences.ConvergesTo x L → LRA.Analysis.Sequences.BoundedSeq x
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, LRA.Analysis.Sequences.ConvergesTo x L → LRA.Analysis.Sequences.BoundedSeq x
+Transliterated theorem: BoundedSeq x
+Logical form (Lean): {x : RealSequence} {L : ℝ} (h : ConvergesTo x L) : BoundedSeq x
+Source: ./Sequences/Limits.lean#L257
+
+
+
+Name: LimitOfScalarMultiple
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence} {L α : Real},   LRA.Analysis.Sequences.ConvergesTo x L →     LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.ScalarMultiple α x) (instHMul.hMul α L)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L α : Real}, LRA.Analysis.Sequences.ConvergesTo x L → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.ScalarMultiple α x) (instHMul.hMul α L)
+Transliterated theorem: ConvergesTo (ScalarMultiple α x) (α * L)
+Logical form (Lean): {x : RealSequence} {L α : ℝ} (h : ConvergesTo x L) : ConvergesTo (ScalarMultiple α x) (α * L)
+Source: ./Sequences/AlgebraOfLimits.lean#L187
+
+
+
+Name: LimitOfASum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : RealSequence} {L M : ℝ} (hx : ConvergesTo x L) (hy : ConvergesTo y M), ConvergesTo (PointwiseSum x y) (L + M)
+Predicate logic (unfolded): ∀ {x y : LRA.Analysis.Sequences.RealSequence} {L M : Real}, (LRA.Analysis.Sequences.ConvergesTo x L ∧ LRA.Analysis.Sequences.ConvergesTo y M) → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.PointwiseSum x y) (instHAdd.hAdd L M)
+Transliterated theorem: ConvergesTo (PointwiseSum x y) (L + M)
+Logical form (Lean): {x y : RealSequence} {L M : ℝ} (hx : ConvergesTo x L) (hy : ConvergesTo y M) : ConvergesTo (PointwiseSum x y) (L + M)
+Source: ./Sequences/AlgebraOfLimits.lean#L203
+
+
+
+Name: LimitOfANegation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real},   LRA.Analysis.Sequences.ConvergesTo x L →     LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.PointwiseNegation x) (Real.instNeg.neg L)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, LRA.Analysis.Sequences.ConvergesTo x L → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.PointwiseNegation x) (Real.instNeg.neg L)
+Transliterated theorem: ConvergesTo (PointwiseNegation x) (-L)
+Logical form (Lean): {x : RealSequence} {L : ℝ} (h : ConvergesTo x L) : ConvergesTo (PointwiseNegation x) (-L)
+Source: ./Sequences/AlgebraOfLimits.lean#L219
+
+
+
+Name: LimitOfADifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : RealSequence} {L M : ℝ} (hx : ConvergesTo x L) (hy : ConvergesTo y M), ConvergesTo (PointwiseDifference x y) (L - M)
+Predicate logic (unfolded): ∀ {x y : LRA.Analysis.Sequences.RealSequence} {L M : Real}, (LRA.Analysis.Sequences.ConvergesTo x L ∧ LRA.Analysis.Sequences.ConvergesTo y M) → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.PointwiseDifference x y) (instHSub.hSub L M)
+Transliterated theorem: ConvergesTo (PointwiseDifference x y) (L - M)
+Logical form (Lean): {x y : RealSequence} {L M : ℝ} (hx : ConvergesTo x L) (hy : ConvergesTo y M) : ConvergesTo (PointwiseDifference x y) (L - M)
+Source: ./Sequences/AlgebraOfLimits.lean#L235
+
+
+
+Name: LimitOfAProduct
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : RealSequence} {L M : ℝ} (hx : ConvergesTo x L) (hy : ConvergesTo y M), ConvergesTo (PointwiseProduct x y) (L * M)
+Predicate logic (unfolded): ∀ {x y : LRA.Analysis.Sequences.RealSequence} {L M : Real}, (LRA.Analysis.Sequences.ConvergesTo x L ∧ LRA.Analysis.Sequences.ConvergesTo y M) → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.PointwiseProduct x y) (instHMul.hMul L M)
+Transliterated theorem: ConvergesTo (PointwiseProduct x y) (L * M)
+Logical form (Lean): {x y : RealSequence} {L M : ℝ} (hx : ConvergesTo x L) (hy : ConvergesTo y M) : ConvergesTo (PointwiseProduct x y) (L * M)
+Source: ./Sequences/AlgebraOfLimits.lean#L252
+
+
+
+Name: NonzeroLimitEventuallyNonzero
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {L : ℝ} (hL : L ≠ 0) (h : ConvergesTo x L), ∃ N : ℕ, ∀ n ≥ N, x n ≠ 0
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, (Ne L 0 ∧ LRA.Analysis.Sequences.ConvergesTo x L) → Exists fun N => ∀ (n : Nat), GE.ge n N → Ne (x n) 0
+Transliterated theorem: ∃ N ∈ ℕ, ∀ n ≥ N, x n ≠ 0
+Logical form (Lean): {x : RealSequence} {L : ℝ} (hL : L ≠ 0) (h : ConvergesTo x L) : ∃ N : ℕ, ∀ n ≥ N, x n ≠ 0
+Source: ./Sequences/AlgebraOfLimits.lean#L268
+
+
+
+Name: LimitOfAReciprocal
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (hx : ∀ n, x n ≠ 0) {L : ℝ} (hL : L ≠ 0) (h : ConvergesTo x L), ConvergesTo (ReciprocalSeq x) (1 / L)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Ne (x n) 0) → ∀ {L : Real}, (Ne L 0 ∧ LRA.Analysis.Sequences.ConvergesTo x L) → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.ReciprocalSeq x) (instHDiv.hDiv 1 L)
+Transliterated theorem: (∀ n, x n ≠ 0) → ConvergesTo (ReciprocalSeq x) (1 / L)
+Logical form (Lean): {x : RealSequence} (hx : ∀ n, x n ≠ 0) {L : ℝ} (hL : L ≠ 0) (h : ConvergesTo x L) : ConvergesTo (ReciprocalSeq x) (1 / L)
+Source: ./Sequences/AlgebraOfLimits.lean#L284
+
+
+
+Name: LimitOfAQuotient
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : RealSequence} (hy : ∀ n, y n ≠ 0) {L M : ℝ} (hM : M ≠ 0) (hx : ConvergesTo x L) (hy' : ConvergesTo y M), ConvergesTo (PointwiseQuotient x y) (L / M)
+Predicate logic (unfolded): ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Ne (y n) 0) → ∀ {L M : Real}, (Ne M 0 ∧ (LRA.Analysis.Sequences.ConvergesTo x L ∧ LRA.Analysis.Sequences.ConvergesTo y M)) → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.PointwiseQuotient x y) (instHDiv.hDiv L M)
+Transliterated theorem: (∀ n, y n ≠ 0) → ConvergesTo (PointwiseQuotient x y) (L / M)
+Logical form (Lean): {x y : RealSequence} (hy : ∀ n, y n ≠ 0) {L M : ℝ} (hM : M ≠ 0) (hx : ConvergesTo x L) (hy' : ConvergesTo y M) : ConvergesTo (PointwiseQuotient x y) (L / M)
+Source: ./Sequences/AlgebraOfLimits.lean#L301
+
+
+
+Name: LimitOfASquare
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real},   LRA.Analysis.Sequences.ConvergesTo x L →     LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.SquareSeq x) (instHPow.hPow L 2)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, LRA.Analysis.Sequences.ConvergesTo x L → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.SquareSeq x) (instHPow.hPow L 2)
+Transliterated theorem: ConvergesTo (SquareSeq x) (L ^ 2)
+Logical form (Lean): {x : RealSequence} {L : ℝ} (h : ConvergesTo x L) : ConvergesTo (SquareSeq x) (L ^ 2)
+Source: ./Sequences/AlgebraOfLimits.lean#L317
+
+
+
+Name: LimitOfAnAbsoluteValue
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real},   LRA.Analysis.Sequences.ConvergesTo x L → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.AbsSeq x) (abs L)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, LRA.Analysis.Sequences.ConvergesTo x L → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.AbsSeq x) (abs L)
+Transliterated theorem: ConvergesTo (AbsSeq x) |L|
+Logical form (Lean): {x : RealSequence} {L : ℝ} (h : ConvergesTo x L) : ConvergesTo (AbsSeq x) |L|
+Source: ./Sequences/AlgebraOfLimits.lean#L331
+
+
+
+Name: PositiveLimitEventuallyPositive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {L : ℝ} (hL : L > 0) (h : ConvergesTo x L), ∃ N : ℕ, ∀ n ≥ N, 0 < x n
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, (GT.gt L 0 ∧ LRA.Analysis.Sequences.ConvergesTo x L) → Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLT.lt 0 (x n)
+Transliterated theorem: ∃ N ∈ ℕ, ∀ n ≥ N, 0 < x n
+Logical form (Lean): {x : RealSequence} {L : ℝ} (hL : L > 0) (h : ConvergesTo x L) : ∃ N : ℕ, ∀ n ≥ N, 0 < x n
+Source: ./Sequences/AlgebraOfLimits.lean#L346
+
+
+
+Name: LimitOfASquareRoot
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (hx : ∀ n, 0 ≤ x n) {L : ℝ} (h : ConvergesTo x L), 0 ≤ L ∧ ConvergesTo (SqrtSeq x) (Real.sqrt L)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Real.instLE.le 0 (x n)) → ∀ {L : Real}, LRA.Analysis.Sequences.ConvergesTo x L → (Real.instLE.le 0 L ∧ LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.SqrtSeq x) L.sqrt)
+Transliterated theorem: (∀ n, 0 ≤ x n) → 0 ≤ L ∧ ConvergesTo (SqrtSeq x) (Real.sqrt L)
+Logical form (Lean): {x : RealSequence} (hx : ∀ n, 0 ≤ x n) {L : ℝ} (h : ConvergesTo x L) : 0 ≤ L ∧ ConvergesTo (SqrtSeq x) (Real.sqrt L)
+Source: ./Sequences/AlgebraOfLimits.lean#L362
+
+
+
+Name: PolynomialSequenceLimit
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real} (p : Polynomial Real),   LRA.Analysis.Sequences.ConvergesTo x L →     LRA.Analysis.Sequences.ConvergesTo (fun n => Polynomial.eval (x n) p) (Polynomial.eval L p)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real} (p : Polynomial Real), LRA.Analysis.Sequences.ConvergesTo x L → LRA.Analysis.Sequences.ConvergesTo (fun n => Polynomial.eval (x n) p) (Polynomial.eval L p)
+Transliterated theorem: ConvergesTo (fun n => p.eval (x n)) (p.eval L)
+Logical form (Lean): {x : RealSequence} {L : ℝ} (p : Polynomial ℝ) (h : ConvergesTo x L) : ConvergesTo (fun n => p.eval (x n)) (p.eval L)
+Source: ./Sequences/AlgebraOfLimits.lean#L379
+
+
+
+Name: RationalSequenceLimit
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {L : ℝ} (p q : Polynomial ℝ) (hqL : q.eval L ≠ 0) (hqx : ∀ n, q.eval (x n) ≠ 0) (h : ConvergesTo x L), ConvergesTo (fun n => p.eval (x n) / q.eval (x n)) (p.eval L / q.eval L)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real} (p q : Polynomial Real), (Ne (Polynomial.eval L q) 0 ∧ (∀ (n : Nat), Ne (Polynomial.eval (x n) q) 0 ∧ LRA.Analysis.Sequences.ConvergesTo x L)) → LRA.Analysis.Sequences.ConvergesTo (fun n => instHDiv.hDiv (Polynomial.eval (x n) p) (Polynomial.eval (x n) q)) (instHDiv.hDiv (Polynomial.eval L p) (Polynomial.eval L q))
+Transliterated theorem: (∀ n, q.eval (x n) ≠ 0) → ConvergesTo (fun n => p.eval (x n) / q.eval (x n)) (p.eval L / q.eval L)
+Logical form (Lean): {x : RealSequence} {L : ℝ} (p q : Polynomial ℝ) (hqL : q.eval L ≠ 0) (hqx : ∀ n, q.eval (x n) ≠ 0) (h : ConvergesTo x L) : ConvergesTo (fun n => p.eval (x n) / q.eval (x n)) (p.eval L / q.eval L)
+Source: ./Sequences/AlgebraOfLimits.lean#L398
+
+
+
+Name: ConvergenceOfTail
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : RealSequence) (m : ℕ), ((∃ L, ConvergesTo x L) ↔ (∃ L, ConvergesTo (MTail x m) L)) ∧ (∀ L, ConvergesTo x L → ConvergesTo (MTail x m) L)
+Predicate logic (unfolded): ∀ (x : LRA.Analysis.Sequences.RealSequence) (m : Nat), (Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L ↔ Exists fun L => LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.MTail x m) L ∧ ∀ (L : Real), LRA.Analysis.Sequences.ConvergesTo x L → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.MTail x m) L)
+Transliterated theorem: (∀ x ∈ RealSequence), ((∃ L, ConvergesTo x L) ↔ (∃ L, ConvergesTo (MTail x m) L)) ∧ (∀ L, ConvergesTo x L → ConvergesTo (MTail x m) L)
+Logical form (Lean): (x : RealSequence) (m : ℕ) : ((∃ L, ConvergesTo x L) ↔ (∃ L, ConvergesTo (MTail x m) L)) ∧ (∀ L, ConvergesTo x L → ConvergesTo (MTail x m) L)
+Source: ./Sequences/Tails.lean#L84
+
+
+
+Name: ConvergenceByDomination
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {L : ℝ} {a : RealSequence} (ha_pos : ∀ n, 0 < a n) (ha_null : ConvergesTo a 0) (h : ∃ c > 0, ∃ m : ℕ, ∀ n ≥ m, |x n - L| ≤ c * a n), ConvergesTo x L
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real} {a : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Real.instLT.lt 0 (a n) ∧ (LRA.Analysis.Sequences.ConvergesTo a 0 ∧ Exists fun c => (GT.gt c 0 ∧ Exists fun m => ∀ (n : Nat), GE.ge n m → Real.instLE.le (abs (instHSub.hSub (x n) L)) (instHMul.hMul c (a n))))) → LRA.Analysis.Sequences.ConvergesTo x L
+Transliterated theorem: (∀ n, 0 < a n ∧ ∃ c > 0, ∃ m ∈ ℕ, ∀ n ≥ m, |x n - L| ≤ c * a n) → ConvergesTo x L
+Logical form (Lean): {x : RealSequence} {L : ℝ} {a : RealSequence} (ha_pos : ∀ n, 0 < a n) (ha_null : ConvergesTo a 0) (h : ∃ c > 0, ∃ m : ℕ, ∀ n ≥ m, |x n - L| ≤ c * a n) : ConvergesTo x L
+Source: ./Sequences/Tails.lean#L103
+
+
+
+Name: RatioLimitLessThanOneImpliesNull
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (hx_pos : ∀ n, 0 < x n) {L : ℝ} (hratio : ConvergesTo (fun n => x (n + 1) / x n) L) (hL : L < 1), ConvergesTo x 0
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Real.instLT.lt 0 (x n)) → ∀ {L : Real}, (LRA.Analysis.Sequences.ConvergesTo (fun n => instHDiv.hDiv (x (instHAdd.hAdd n 1)) (x n)) L ∧ Real.instLT.lt L 1) → LRA.Analysis.Sequences.ConvergesTo x 0
+Transliterated theorem: (∀ n, 0 < x n ∧ L < 1) → ConvergesTo x 0
+Logical form (Lean): {x : RealSequence} (hx_pos : ∀ n, 0 < x n) {L : ℝ} (hratio : ConvergesTo (fun n => x (n + 1) / x n) L) (hL : L < 1) : ConvergesTo x 0
+Source: ./Sequences/Tails.lean#L122
+
+
+
+Name: MonotoneConvergenceTheoremIncreasing
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (hinc : IsIncreasing x) (hbdd : BoundedAboveSeq x), ∃ L, ConvergesTo x L ∧ IsSupremum L (Set.range x)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsIncreasing x ∧ LRA.Analysis.Sequences.BoundedAboveSeq x) → Exists fun L => (LRA.Analysis.Sequences.ConvergesTo x L ∧ LRA.Analysis.Bounds.IsSupremum L (Set.range x))
+Transliterated theorem: ∃ L, ConvergesTo x L ∧ IsSupremum L (Set.range x)
+Logical form (Lean): {x : RealSequence} (hinc : IsIncreasing x) (hbdd : BoundedAboveSeq x) : ∃ L, ConvergesTo x L ∧ IsSupremum L (Set.range x)
+Source: ./Sequences/Monotonicity.lean#L167
+
+
+
+Name: MonotoneConvergenceTheoremDecreasing
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (hdec : IsDecreasing x) (hbdd : BoundedBelowSeq x), ∃ L, ConvergesTo x L ∧ IsInfimum L (Set.range x)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsDecreasing x ∧ LRA.Analysis.Sequences.BoundedBelowSeq x) → Exists fun L => (LRA.Analysis.Sequences.ConvergesTo x L ∧ LRA.Analysis.Bounds.IsInfimum L (Set.range x))
+Transliterated theorem: ∃ L, ConvergesTo x L ∧ IsInfimum L (Set.range x)
+Logical form (Lean): {x : RealSequence} (hdec : IsDecreasing x) (hbdd : BoundedBelowSeq x) : ∃ L, ConvergesTo x L ∧ IsInfimum L (Set.range x)
+Source: ./Sequences/Monotonicity.lean#L184
+
+
+
+Name: StrictIncreasingImpliesIncreasing
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence},   LRA.Analysis.Sequences.IsStrictlyIncreasing x → LRA.Analysis.Sequences.IsIncreasing x
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsStrictlyIncreasing x → LRA.Analysis.Sequences.IsIncreasing x
+Transliterated theorem: IsIncreasing x
+Logical form (Lean): {x : RealSequence} (h : IsStrictlyIncreasing x) : IsIncreasing x
+Source: ./Sequences/Monotonicity.lean#L199
+
+
+
+Name: StrictDecreasingImpliesDecreasing
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence},   LRA.Analysis.Sequences.IsStrictlyDecreasing x → LRA.Analysis.Sequences.IsDecreasing x
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsStrictlyDecreasing x → LRA.Analysis.Sequences.IsDecreasing x
+Transliterated theorem: IsDecreasing x
+Logical form (Lean): {x : RealSequence} (h : IsStrictlyDecreasing x) : IsDecreasing x
+Source: ./Sequences/Monotonicity.lean#L213
+
+
+
+Name: BoundedMonotoneSequenceEquivalencesIncr
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (h : IsIncreasing x), (∃ L, ConvergesTo x L) ↔ BoundedAboveSeq x
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsIncreasing x → Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L ↔ LRA.Analysis.Sequences.BoundedAboveSeq x
+Transliterated theorem: (∃ L, ConvergesTo x L) ↔ BoundedAboveSeq x
+Logical form (Lean): {x : RealSequence} (h : IsIncreasing x) : (∃ L, ConvergesTo x L) ↔ BoundedAboveSeq x
+Source: ./Sequences/Monotonicity.lean#L229
+
+
+
+Name: BoundedMonotoneSequenceEquivalencesDecr
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (h : IsDecreasing x), (∃ L, ConvergesTo x L) ↔ BoundedBelowSeq x
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsDecreasing x → Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L ↔ LRA.Analysis.Sequences.BoundedBelowSeq x
+Transliterated theorem: (∃ L, ConvergesTo x L) ↔ BoundedBelowSeq x
+Logical form (Lean): {x : RealSequence} (h : IsDecreasing x) : (∃ L, ConvergesTo x L) ↔ BoundedBelowSeq x
+Source: ./Sequences/Monotonicity.lean#L246
+
+
+
+Name: IncreasingBoundedBelowByFirstTerm
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence},   LRA.Analysis.Sequences.IsIncreasing x → ∀ (n : Nat), Real.instLE.le (x 0) (x n)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsIncreasing x → ∀ (n : Nat), Real.instLE.le (x 0) (x n)
+Transliterated theorem: ∀ n, x 0 ≤ x n
+Logical form (Lean): {x : RealSequence} (h : IsIncreasing x) : ∀ n, x 0 ≤ x n
+Source: ./Sequences/Monotonicity.lean#L260
+
+
+
+Name: DecreasingBoundedAboveByFirstTerm
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence},   LRA.Analysis.Sequences.IsDecreasing x → ∀ (n : Nat), Real.instLE.le (x n) (x 0)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsDecreasing x → ∀ (n : Nat), Real.instLE.le (x n) (x 0)
+Transliterated theorem: ∀ n, x n ≤ x 0
+Logical form (Lean): {x : RealSequence} (h : IsDecreasing x) : ∀ n, x n ≤ x 0
+Source: ./Sequences/Monotonicity.lean#L273
+
+
+
+Name: BoundedMonotoneSequenceEquivalences
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (h : IsMonotoneSeq x), (∃ L, ConvergesTo x L) ↔ BoundedSeq x
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsMonotoneSeq x → Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L ↔ LRA.Analysis.Sequences.BoundedSeq x
+Transliterated theorem: (∃ L, ConvergesTo x L) ↔ BoundedSeq x
+Logical form (Lean): {x : RealSequence} (h : IsMonotoneSeq x) : (∃ L, ConvergesTo x L) ↔ BoundedSeq x
+Source: ./Sequences/Monotonicity.lean#L288
+
+
+
+Name: EventuallyMonotoneConvergenceTheoremIncr
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (h : IsEventuallyIncreasing x) (hbdd : BoundedAboveSeq x), ∃ L, ConvergesTo x L
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsEventuallyIncreasing x ∧ LRA.Analysis.Sequences.BoundedAboveSeq x) → Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L
+Transliterated theorem: ∃ L, ConvergesTo x L
+Logical form (Lean): {x : RealSequence} (h : IsEventuallyIncreasing x) (hbdd : BoundedAboveSeq x) : ∃ L, ConvergesTo x L
+Source: ./Sequences/Monotonicity.lean#L305
+
+
+
+Name: EventuallyMonotoneConvergenceTheoremDecr
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (h : IsEventuallyDecreasing x) (hbdd : BoundedBelowSeq x), ∃ L, ConvergesTo x L
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsEventuallyDecreasing x ∧ LRA.Analysis.Sequences.BoundedBelowSeq x) → Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L
+Transliterated theorem: ∃ L, ConvergesTo x L
+Logical form (Lean): {x : RealSequence} (h : IsEventuallyDecreasing x) (hbdd : BoundedBelowSeq x) : ∃ L, ConvergesTo x L
+Source: ./Sequences/Monotonicity.lean#L322
+
+
+
+Name: EventuallyMonotoneConvergenceTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (h : IsEventuallyMonotone x) (hbdd : BoundedSeq x), ∃ L, ConvergesTo x L
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsEventuallyMonotone x ∧ LRA.Analysis.Sequences.BoundedSeq x) → Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L
+Transliterated theorem: ∃ L, ConvergesTo x L
+Logical form (Lean): {x : RealSequence} (h : IsEventuallyMonotone x) (hbdd : BoundedSeq x) : ∃ L, ConvergesTo x L
+Source: ./Sequences/Monotonicity.lean#L339
+
+
+
+Name: UnboundedMonotoneDivergencePos
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (hinc : IsIncreasing x) (hunbdd : ¬ BoundedAboveSeq x), Filter.Tendsto x Filter.atTop Filter.atTop
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsIncreasing x ∧ ¬ LRA.Analysis.Sequences.BoundedAboveSeq x) → Filter.Tendsto x Filter.atTop Filter.atTop
+Transliterated theorem: Filter.Tendsto x Filter.atTop Filter.atTop
+Logical form (Lean): {x : RealSequence} (hinc : IsIncreasing x) (hunbdd : ¬ BoundedAboveSeq x) : Filter.Tendsto x Filter.atTop Filter.atTop
+Source: ./Sequences/Monotonicity.lean#L356
+
+
+
+Name: UnboundedMonotoneDivergenceNeg
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (hdec : IsDecreasing x) (hunbdd : ¬ BoundedBelowSeq x), Filter.Tendsto x Filter.atTop Filter.atBot
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsDecreasing x ∧ ¬ LRA.Analysis.Sequences.BoundedBelowSeq x) → Filter.Tendsto x Filter.atTop Filter.atBot
+Transliterated theorem: Filter.Tendsto x Filter.atTop Filter.atBot
+Logical form (Lean): {x : RealSequence} (hdec : IsDecreasing x) (hunbdd : ¬ BoundedBelowSeq x) : Filter.Tendsto x Filter.atTop Filter.atBot
+Source: ./Sequences/Monotonicity.lean#L373
+
+
+
+Name: TranslationPreservesIncreasing
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real},   LRA.Analysis.Sequences.IsIncreasing x → LRA.Analysis.Sequences.IsIncreasing fun n => instHAdd.hAdd (x n) c
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real}, LRA.Analysis.Sequences.IsIncreasing x → LRA.Analysis.Sequences.IsIncreasing fun n => instHAdd.hAdd (x n) c
+Transliterated theorem: IsIncreasing (fun n => x n + c)
+Logical form (Lean): {x : RealSequence} {c : ℝ} (h : IsIncreasing x) : IsIncreasing (fun n => x n + c)
+Source: ./Sequences/Monotonicity.lean#L389
+
+
+
+Name: TranslationPreservesDecreasing
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real},   LRA.Analysis.Sequences.IsDecreasing x → LRA.Analysis.Sequences.IsDecreasing fun n => instHAdd.hAdd (x n) c
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real}, LRA.Analysis.Sequences.IsDecreasing x → LRA.Analysis.Sequences.IsDecreasing fun n => instHAdd.hAdd (x n) c
+Transliterated theorem: IsDecreasing (fun n => x n + c)
+Logical form (Lean): {x : RealSequence} {c : ℝ} (h : IsDecreasing x) : IsDecreasing (fun n => x n + c)
+Source: ./Sequences/Monotonicity.lean#L404
+
+
+
+Name: PositiveScalarPreservesIncreasing
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {α : ℝ} (h : IsIncreasing x) (hα : α > 0), IsIncreasing (fun n => α * x n)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {α : Real}, (LRA.Analysis.Sequences.IsIncreasing x ∧ GT.gt α 0) → LRA.Analysis.Sequences.IsIncreasing fun n => instHMul.hMul α (x n)
+Transliterated theorem: IsIncreasing (fun n => α * x n)
+Logical form (Lean): {x : RealSequence} {α : ℝ} (h : IsIncreasing x) (hα : α > 0) : IsIncreasing (fun n => α * x n)
+Source: ./Sequences/Monotonicity.lean#L419
+
+
+
+Name: NegativeScalarReversesIncreasing
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {α : ℝ} (h : IsIncreasing x) (hα : α < 0), IsDecreasing (fun n => α * x n)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {α : Real}, (LRA.Analysis.Sequences.IsIncreasing x ∧ Real.instLT.lt α 0) → LRA.Analysis.Sequences.IsDecreasing fun n => instHMul.hMul α (x n)
+Transliterated theorem: (α < 0) → IsDecreasing (fun n => α * x n)
+Logical form (Lean): {x : RealSequence} {α : ℝ} (h : IsIncreasing x) (hα : α < 0) : IsDecreasing (fun n => α * x n)
+Source: ./Sequences/Monotonicity.lean#L434
+
+
+
+Name: NegationReversesIncreasing
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence},   LRA.Analysis.Sequences.IsIncreasing x → LRA.Analysis.Sequences.IsDecreasing fun n => Real.instNeg.neg (x n)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsIncreasing x → LRA.Analysis.Sequences.IsDecreasing fun n => Real.instNeg.neg (x n)
+Transliterated theorem: IsDecreasing (fun n => -x n)
+Logical form (Lean): {x : RealSequence} (h : IsIncreasing x) : IsDecreasing (fun n => -x n)
+Source: ./Sequences/Monotonicity.lean#L448
+
+
+
+Name: NegationReversesDecreasing
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence},   LRA.Analysis.Sequences.IsDecreasing x → LRA.Analysis.Sequences.IsIncreasing fun n => Real.instNeg.neg (x n)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsDecreasing x → LRA.Analysis.Sequences.IsIncreasing fun n => Real.instNeg.neg (x n)
+Transliterated theorem: IsIncreasing (fun n => -x n)
+Logical form (Lean): {x : RealSequence} (h : IsDecreasing x) : IsIncreasing (fun n => -x n)
+Source: ./Sequences/Monotonicity.lean#L462
+
+
+
+Name: SubsequenceIndicesDominateIdentity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {σ : Nat → Nat}, LRA.Analysis.Sequences.IsStrictlyIncreasingIndexMap σ → ∀ (k : Nat), instLENat.le k (σ k)
+Predicate logic (unfolded): ∀ {σ : Nat → Nat}, LRA.Analysis.Sequences.IsStrictlyIncreasingIndexMap σ → ∀ (k : Nat), instLENat.le k (σ k)
+Transliterated theorem: ∀ k, k ≤ σ k
+Logical form (Lean): {σ : ℕ → ℕ} (h : IsStrictlyIncreasingIndexMap σ) : ∀ k, k ≤ σ k
+Source: ./Sequences/Subsequences.lean#L132
+
+
+
+Name: SubsequencesPreserveLimits
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {L : ℝ} {σ : ℕ → ℕ} (hx : ConvergesTo x L) (hσ : IsStrictlyIncreasingIndexMap σ), ConvergesTo (fun k => x (σ k)) L
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real} {σ : Nat → Nat}, (LRA.Analysis.Sequences.ConvergesTo x L ∧ LRA.Analysis.Sequences.IsStrictlyIncreasingIndexMap σ) → LRA.Analysis.Sequences.ConvergesTo (fun k => x (σ k)) L
+Transliterated theorem: ConvergesTo (fun k => x (σ k)) L
+Logical form (Lean): {x : RealSequence} {L : ℝ} {σ : ℕ → ℕ} (hx : ConvergesTo x L) (hσ : IsStrictlyIncreasingIndexMap σ) : ConvergesTo (fun k => x (σ k)) L
+Source: ./Sequences/Subsequences.lean#L148
+
+
+
+Name: SubsequentialLimitOfConvergentSequence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {L K : ℝ} (hL : ConvergesTo x L) (hK : IsSubsequentialLimit x K), K = L
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L K : Real}, (LRA.Analysis.Sequences.ConvergesTo x L ∧ LRA.Analysis.Sequences.IsSubsequentialLimit x K) → K = L
+Transliterated theorem: K = L
+Logical form (Lean): {x : RealSequence} {L K : ℝ} (hL : ConvergesTo x L) (hK : IsSubsequentialLimit x K) : K = L
+Source: ./Sequences/Subsequences.lean#L165
+
+
+
+Name: DivergenceByTwoSubsequentialLimits
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {L K : ℝ} (hL : IsSubsequentialLimit x L) (hK : IsSubsequentialLimit x K) (hLK : L ≠ K), ¬ ∃ A, ConvergesTo x A
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L K : Real}, (LRA.Analysis.Sequences.IsSubsequentialLimit x L ∧ (LRA.Analysis.Sequences.IsSubsequentialLimit x K ∧ Ne L K)) → ¬ Exists fun A => LRA.Analysis.Sequences.ConvergesTo x A
+Transliterated theorem: ¬ ∃ A, ConvergesTo x A
+Logical form (Lean): {x : RealSequence} {L K : ℝ} (hL : IsSubsequentialLimit x L) (hK : IsSubsequentialLimit x K) (hLK : L ≠ K) : ¬ ∃ A, ConvergesTo x A
+Source: ./Sequences/Subsequences.lean#L182
+
+
+
+Name: BoundednessPassesToSubsequences
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {σ : ℕ → ℕ} (hx : BoundedSeq x) (hσ : IsStrictlyIncreasingIndexMap σ), BoundedSeq (fun k => x (σ k))
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {σ : Nat → Nat}, (LRA.Analysis.Sequences.BoundedSeq x ∧ LRA.Analysis.Sequences.IsStrictlyIncreasingIndexMap σ) → LRA.Analysis.Sequences.BoundedSeq fun k => x (σ k)
+Transliterated theorem: BoundedSeq (fun k => x (σ k))
+Logical form (Lean): {x : RealSequence} {σ : ℕ → ℕ} (hx : BoundedSeq x) (hσ : IsStrictlyIncreasingIndexMap σ) : BoundedSeq (fun k => x (σ k))
+Source: ./Sequences/Subsequences.lean#L199
+
+
+
+Name: MonotonicityPassesToSubsequencesIncr
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {σ : ℕ → ℕ} (hx : IsIncreasing x) (hσ : IsStrictlyIncreasingIndexMap σ), IsIncreasing (fun k => x (σ k))
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {σ : Nat → Nat}, (LRA.Analysis.Sequences.IsIncreasing x ∧ LRA.Analysis.Sequences.IsStrictlyIncreasingIndexMap σ) → LRA.Analysis.Sequences.IsIncreasing fun k => x (σ k)
+Transliterated theorem: IsIncreasing (fun k => x (σ k))
+Logical form (Lean): {x : RealSequence} {σ : ℕ → ℕ} (hx : IsIncreasing x) (hσ : IsStrictlyIncreasingIndexMap σ) : IsIncreasing (fun k => x (σ k))
+Source: ./Sequences/Subsequences.lean#L216
+
+
+
+Name: MonotonicityPassesToSubsequencesDecr
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {σ : ℕ → ℕ} (hx : IsDecreasing x) (hσ : IsStrictlyIncreasingIndexMap σ), IsDecreasing (fun k => x (σ k))
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {σ : Nat → Nat}, (LRA.Analysis.Sequences.IsDecreasing x ∧ LRA.Analysis.Sequences.IsStrictlyIncreasingIndexMap σ) → LRA.Analysis.Sequences.IsDecreasing fun k => x (σ k)
+Transliterated theorem: IsDecreasing (fun k => x (σ k))
+Logical form (Lean): {x : RealSequence} {σ : ℕ → ℕ} (hx : IsDecreasing x) (hσ : IsStrictlyIncreasingIndexMap σ) : IsDecreasing (fun k => x (σ k))
+Source: ./Sequences/Subsequences.lean#L233
+
+
+
+Name: SubsequenceOfSubsequence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {σ τ : ℕ → ℕ} (hσ : IsStrictlyIncreasingIndexMap σ) (hτ : IsStrictlyIncreasingIndexMap τ), IsSubsequenceOf (fun k => x (σ (τ k))) x
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {σ τ : Nat → Nat}, (LRA.Analysis.Sequences.IsStrictlyIncreasingIndexMap σ ∧ LRA.Analysis.Sequences.IsStrictlyIncreasingIndexMap τ) → LRA.Analysis.Sequences.IsSubsequenceOf (fun k => x (σ (τ k))) x
+Transliterated theorem: IsSubsequenceOf (fun k => x (σ (τ k))) x
+Logical form (Lean): {x : RealSequence} {σ τ : ℕ → ℕ} (hσ : IsStrictlyIncreasingIndexMap σ) (hτ : IsStrictlyIncreasingIndexMap τ) : IsSubsequenceOf (fun k => x (σ (τ k))) x
+Source: ./Sequences/Subsequences.lean#L250
+
+
+
+Name: EventualPropertiesPassToSubsequences
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {P : ℕ → Prop} {σ : ℕ → ℕ} (h : ∃ N : ℕ, ∀ n ≥ N, P n) (hσ : IsStrictlyIncreasingIndexMap σ), ∃ K : ℕ, ∀ k ≥ K, P (σ k)
+Predicate logic (unfolded): ∀ {P : Nat → Prop} {σ : Nat → Nat}, (Exists fun N => ∀ (n : Nat), GE.ge n N → P n ∧ LRA.Analysis.Sequences.IsStrictlyIncreasingIndexMap σ) → Exists fun K => ∀ (k : Nat), GE.ge k K → P (σ k)
+Transliterated theorem: (∃ N ∈ ℕ, ∀ n ≥ N, P n) → ∃ K ∈ ℕ, ∀ k ≥ K, P (σ k)
+Logical form (Lean): {P : ℕ → Prop} {σ : ℕ → ℕ} (h : ∃ N : ℕ, ∀ n ≥ N, P n) (hσ : IsStrictlyIncreasingIndexMap σ) : ∃ K : ℕ, ∀ k ≥ K, P (σ k)
+Source: ./Sequences/Subsequences.lean#L267
+
+
+
+Name: FrequentPropertiesYieldSubsequences
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {P : ℕ → Prop} (h : ∀ N : ℕ, ∃ n ≥ N, P n), ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ ∀ k, P (σ k)
+Predicate logic (unfolded): ∀ {P : Nat → Prop}, (∀ (N : Nat), Exists fun n => (GE.ge n N ∧ P n)) → Exists fun σ => (LRA.Analysis.Sequences.IsStrictlyIncreasingIndexMap σ ∧ ∀ (k : Nat), P (σ k))
+Transliterated theorem: (∀ N : ℕ, ∃ n ≥ N, P n) → ∃ σ ∈ ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ ∀ k, P (σ k)
+Logical form (Lean): {P : ℕ → Prop} (h : ∀ N : ℕ, ∃ n ≥ N, P n) : ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ ∀ k, P (σ k)
+Source: ./Sequences/Subsequences.lean#L284
+
+
+
+Name: SubsequentialLimitsRespectBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {L m M : ℝ} (hL : IsSubsequentialLimit x L) (h : ∀ n, m ≤ x n ∧ x n ≤ M), m ≤ L ∧ L ≤ M
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L m M : Real}, (LRA.Analysis.Sequences.IsSubsequentialLimit x L ∧ ∀ (n : Nat), (Real.instLE.le m (x n) ∧ Real.instLE.le (x n) M)) → (Real.instLE.le m L ∧ Real.instLE.le L M)
+Transliterated theorem: (∀ n, m ≤ x n ∧ x n ≤ M) → m ≤ L ∧ L ≤ M
+Logical form (Lean): {x : RealSequence} {L m M : ℝ} (hL : IsSubsequentialLimit x L) (h : ∀ n, m ≤ x n ∧ x n ≤ M) : m ≤ L ∧ L ≤ M
+Source: ./Sequences/Subsequences.lean#L301
+
+
+
+Name: SqueezePassesToSubsequences
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {a x b : RealSequence} {σ : ℕ → ℕ} (h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n) (hσ : IsStrictlyIncreasingIndexMap σ), ∃ K : ℕ, ∀ k ≥ K, a (σ k) ≤ x (σ k) ∧ x (σ k) ≤ b (σ k)
+Predicate logic (unfolded): ∀ {a x b : LRA.Analysis.Sequences.RealSequence} {σ : Nat → Nat}, (Exists fun N => ∀ (n : Nat), GE.ge n N → (Real.instLE.le (a n) (x n) ∧ Real.instLE.le (x n) (b n)) ∧ LRA.Analysis.Sequences.IsStrictlyIncreasingIndexMap σ) → Exists fun K => ∀ (k : Nat), GE.ge k K → (Real.instLE.le (a (σ k)) (x (σ k)) ∧ Real.instLE.le (x (σ k)) (b (σ k)))
+Transliterated theorem: (∃ N ∈ ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n) → ∃ K ∈ ℕ, ∀ k ≥ K, a (σ k) ≤ x (σ k) ∧ x (σ k) ≤ b (σ k)
+Logical form (Lean): {a x b : RealSequence} {σ : ℕ → ℕ} (h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n) (hσ : IsStrictlyIncreasingIndexMap σ) : ∃ K : ℕ, ∀ k ≥ K, a (σ k) ≤ x (σ k) ∧ x (σ k) ≤ b (σ k)
+Source: ./Sequences/Subsequences.lean#L320
+
+
+
+Name: MonotoneSubsequenceTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : RealSequence), ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ (IsIncreasing (fun k => x (σ k)) ∨ IsDecreasing (fun k => x (σ k)))
+Predicate logic (unfolded): ∀ (x : LRA.Analysis.Sequences.RealSequence), Exists fun σ => (LRA.Analysis.Sequences.IsStrictlyIncreasingIndexMap σ ∧ Or (LRA.Analysis.Sequences.IsIncreasing fun k => x (σ k)) (LRA.Analysis.Sequences.IsDecreasing fun k => x (σ k)))
+Transliterated theorem: (∀ x ∈ RealSequence), ∃ σ ∈ ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ (IsIncreasing (fun k => x (σ k)) ∨ IsDecreasing (fun k => x (σ k)))
+Logical form (Lean): (x : RealSequence) : ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ (IsIncreasing (fun k => x (σ k)) ∨ IsDecreasing (fun k => x (σ k)))
+Source: ./Sequences/Subsequences.lean#L338
+
+
+
+Name: BolzanoWeierstrassSequences
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence},   LRA.Analysis.Sequences.BoundedSeq x → LRA.Analysis.Sequences.HasConvergentSubsequence x
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.BoundedSeq x → LRA.Analysis.Sequences.HasConvergentSubsequence x
+Transliterated theorem: HasConvergentSubsequence x
+Logical form (Lean): {x : RealSequence} (h : BoundedSeq x) : HasConvergentSubsequence x
+Source: ./Sequences/Subsequences.lean#L353
+
+
+
+Name: SequentialCompactnessClosedBoundedInterval
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {a b : ℝ} {x : RealSequence} (hab : a ≤ b) (hx : ∀ n, a ≤ x n ∧ x n ≤ b), ∃ σ : ℕ → ℕ, ∃ L : ℝ, IsStrictlyIncreasingIndexMap σ ∧ ConvergesTo (fun k => x (σ k)) L ∧ a ≤ L ∧ L ≤ b
+Predicate logic (unfolded): ∀ {a b : Real} {x : LRA.Analysis.Sequences.RealSequence}, (Real.instLE.le a b ∧ ∀ (n : Nat), (Real.instLE.le a (x n) ∧ Real.instLE.le (x n) b)) → Exists fun σ => Exists fun L => (LRA.Analysis.Sequences.IsStrictlyIncreasingIndexMap σ ∧ (LRA.Analysis.Sequences.ConvergesTo (fun k => x (σ k)) L ∧ (Real.instLE.le a L ∧ Real.instLE.le L b)))
+Transliterated theorem: (a ≤ b ∧ ∀ n, a ≤ x n ∧ x n ≤ b) → ∃ σ ∈ ℕ → ℕ, ∃ L ∈ ℝ, IsStrictlyIncreasingIndexMap σ ∧ ConvergesTo (fun k => x (σ k)) L ∧ a ≤ L ∧ L ≤ b
+Logical form (Lean): {a b : ℝ} {x : RealSequence} (hab : a ≤ b) (hx : ∀ n, a ≤ x n ∧ x n ≤ b) : ∃ σ : ℕ → ℕ, ∃ L : ℝ, IsStrictlyIncreasingIndexMap σ ∧ ConvergesTo (fun k => x (σ k)) L ∧ a ≤ L ∧ L ≤ b
+Source: ./Sequences/Subsequences.lean#L371
+
+
+
+Name: SubsequencePrinciple
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {L : ℝ}, ConvergesTo x L ↔ ∀ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ → ∃ τ : ℕ → ℕ, IsStrictlyIncreasingIndexMap τ ∧ ConvergesTo (fun k => x (σ (τ k))) L
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, LRA.Analysis.Sequences.ConvergesTo x L ↔ ∀ (σ : Nat → Nat), LRA.Analysis.Sequences.IsStrictlyIncreasingIndexMap σ → Exists fun τ => (LRA.Analysis.Sequences.IsStrictlyIncreasingIndexMap τ ∧ LRA.Analysis.Sequences.ConvergesTo (fun k => x (σ (τ k))) L)
+Transliterated theorem: ConvergesTo x L ↔ ∀ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ → ∃ τ ∈ ℕ → ℕ, IsStrictlyIncreasingIndexMap τ ∧ ConvergesTo (fun k => x (σ (τ k))) L
+Logical form (Lean): {x : RealSequence} {L : ℝ} : ConvergesTo x L ↔ ∀ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ → ∃ τ : ℕ → ℕ, IsStrictlyIncreasingIndexMap τ ∧ ConvergesTo (fun k => x (σ (τ k))) L
+Source: ./Sequences/Subsequences.lean#L391
+
+
+
+Name: BoundedSequenceConvergesIffUniqueSubsequentialLimit
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {L : ℝ} (hbdd : BoundedSeq x), ConvergesTo x L ↔ (IsSubsequentialLimit x L ∧ ∀ K, IsSubsequentialLimit x K → K = L)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, LRA.Analysis.Sequences.BoundedSeq x → LRA.Analysis.Sequences.ConvergesTo x L ↔ (LRA.Analysis.Sequences.IsSubsequentialLimit x L ∧ ∀ (K : Real), LRA.Analysis.Sequences.IsSubsequentialLimit x K → K = L)
+Transliterated theorem: ConvergesTo x L ↔ (IsSubsequentialLimit x L ∧ ∀ K, IsSubsequentialLimit x K → K = L)
+Logical form (Lean): {x : RealSequence} {L : ℝ} (hbdd : BoundedSeq x) : ConvergesTo x L ↔ (IsSubsequentialLimit x L ∧ ∀ K, IsSubsequentialLimit x K → K = L)
+Source: ./Sequences/Subsequences.lean#L410
+
+
+
+Name: ConvergentSequencesAreCauchy
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence},   (Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L) → LRA.Analysis.Sequences.IsCauchy x
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, (Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L) → LRA.Analysis.Sequences.IsCauchy x
+Transliterated theorem: (∃ L ∈ ℝ, ConvergesTo x L) → IsCauchy x
+Logical form (Lean): {x : RealSequence} (h : ∃ L : ℝ, ConvergesTo x L) : IsCauchy x
+Source: ./Sequences/Cauchy.lean#L69
+
+
+
+Name: CauchySequencesAreBounded
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsCauchy x → LRA.Analysis.Sequences.BoundedSeq x
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsCauchy x → LRA.Analysis.Sequences.BoundedSeq x
+Transliterated theorem: BoundedSeq x
+Logical form (Lean): {x : RealSequence} (h : IsCauchy x) : BoundedSeq x
+Source: ./Sequences/Cauchy.lean#L83
+
+
+
+Name: CauchyConvergentSubsequenceConverges
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {L : ℝ} (hcauchy : IsCauchy x) (hsub : IsSubsequentialLimit x L), ConvergesTo x L
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, (LRA.Analysis.Sequences.IsCauchy x ∧ LRA.Analysis.Sequences.IsSubsequentialLimit x L) → LRA.Analysis.Sequences.ConvergesTo x L
+Transliterated theorem: ConvergesTo x L
+Logical form (Lean): {x : RealSequence} {L : ℝ} (hcauchy : IsCauchy x) (hsub : IsSubsequentialLimit x L) : ConvergesTo x L
+Source: ./Sequences/Cauchy.lean#L99
+
+
+
+Name: CauchyCriterionRealSequences
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence}, (∃ L : ℝ, ConvergesTo x L) ↔ IsCauchy x
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L ↔ LRA.Analysis.Sequences.IsCauchy x
+Transliterated theorem: ∃ L ∈ ℝ, ConvergesTo x L ↔ IsCauchy x
+Logical form (Lean): {x : RealSequence} : (∃ L : ℝ, ConvergesTo x L) ↔ IsCauchy x
+Source: ./Sequences/Cauchy.lean#L114
+
+
+
+Name: CauchyCriterionViaTails
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence}, IsCauchy x ↔ ∀ ε > 0, ∃ N : ℕ, ∀ p q : ℕ, |x (N + p) - x (N + q)| < ε
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsCauchy x ↔ ∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (p q : Nat), Real.instLT.lt (abs (instHSub.hSub (x (instHAdd.hAdd N p)) (x (instHAdd.hAdd N q)))) ε
+Transliterated theorem: IsCauchy x ↔ ∀ ε > 0, ∃ N ∈ ℕ, ∀ p q : ℕ, |x (N + p) - x (N + q)| < ε
+Logical form (Lean): {x : RealSequence} : IsCauchy x ↔ ∀ ε > 0, ∃ N : ℕ, ∀ p q : ℕ, |x (N + p) - x (N + q)| < ε
+Source: ./Sequences/Cauchy.lean#L129
+
+
+
+Name: CauchyTailDiameterCriterion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence}, IsCauchy x ↔ ∀ ε > 0, ∃ N₀ : ℕ, ∀ N ≥ N₀, ∀ m ≥ N, ∀ n ≥ N, |x m - x n| < ε
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsCauchy x ↔ ∀ (ε : Real), GT.gt ε 0 → Exists fun N₀ => ∀ (N : Nat), GE.ge N N₀ → ∀ (m : Nat), GE.ge m N → ∀ (n : Nat), GE.ge n N → Real.instLT.lt (abs (instHSub.hSub (x m) (x n))) ε
+Transliterated theorem: IsCauchy x ↔ ∀ ε > 0, ∃ N₀ ∈ ℕ, ∀ N ≥ N₀, ∀ m ≥ N, ∀ n ≥ N, |x m - x n| < ε
+Logical form (Lean): {x : RealSequence} : IsCauchy x ↔ ∀ ε > 0, ∃ N₀ : ℕ, ∀ N ≥ N₀, ∀ m ≥ N, ∀ n ≥ N, |x m - x n| < ε
+Source: ./Sequences/Cauchy.lean#L145
+
+
+
+Name: CauchySuccessiveDifferencesVanish
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence},   LRA.Analysis.Sequences.IsCauchy x →     LRA.Analysis.Sequences.IsNull fun n => abs (instHSub.hSub (x (instHAdd.hAdd n 1)) (x n))
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsCauchy x → LRA.Analysis.Sequences.IsNull fun n => abs (instHSub.hSub (x (instHAdd.hAdd n 1)) (x n))
+Transliterated theorem: IsNull (fun n => |x (n + 1) - x n|)
+Logical form (Lean): {x : RealSequence} (h : IsCauchy x) : IsNull (fun n => |x (n + 1) - x n|)
+Source: ./Sequences/Cauchy.lean#L160
+
+
+
+Name: ScalarMultipleCauchySequence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence} {α : Real},   LRA.Analysis.Sequences.IsCauchy x → LRA.Analysis.Sequences.IsCauchy fun n => instHMul.hMul α (x n)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {α : Real}, LRA.Analysis.Sequences.IsCauchy x → LRA.Analysis.Sequences.IsCauchy fun n => instHMul.hMul α (x n)
+Transliterated theorem: IsCauchy (fun n => α * x n)
+Logical form (Lean): {x : RealSequence} {α : ℝ} (h : IsCauchy x) : IsCauchy (fun n => α * x n)
+Source: ./Sequences/Cauchy.lean#L174
+
+
+
+Name: SumCauchySequences
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : RealSequence} (hx : IsCauchy x) (hy : IsCauchy y), IsCauchy (fun n => x n + y n)
+Predicate logic (unfolded): ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsCauchy x ∧ LRA.Analysis.Sequences.IsCauchy y) → LRA.Analysis.Sequences.IsCauchy fun n => instHAdd.hAdd (x n) (y n)
+Transliterated theorem: IsCauchy (fun n => x n + y n)
+Logical form (Lean): {x y : RealSequence} (hx : IsCauchy x) (hy : IsCauchy y) : IsCauchy (fun n => x n + y n)
+Source: ./Sequences/Cauchy.lean#L189
+
+
+
+Name: DifferenceCauchySequences
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : RealSequence} (hx : IsCauchy x) (hy : IsCauchy y), IsCauchy (fun n => x n - y n)
+Predicate logic (unfolded): ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsCauchy x ∧ LRA.Analysis.Sequences.IsCauchy y) → LRA.Analysis.Sequences.IsCauchy fun n => instHSub.hSub (x n) (y n)
+Transliterated theorem: IsCauchy (fun n => x n - y n)
+Logical form (Lean): {x y : RealSequence} (hx : IsCauchy x) (hy : IsCauchy y) : IsCauchy (fun n => x n - y n)
+Source: ./Sequences/Cauchy.lean#L204
+
+
+
+Name: LinearCombinationCauchySequences
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : RealSequence} {α β : ℝ} (hx : IsCauchy x) (hy : IsCauchy y), IsCauchy (fun n => α * x n + β * y n)
+Predicate logic (unfolded): ∀ {x y : LRA.Analysis.Sequences.RealSequence} {α β : Real}, (LRA.Analysis.Sequences.IsCauchy x ∧ LRA.Analysis.Sequences.IsCauchy y) → LRA.Analysis.Sequences.IsCauchy fun n => instHAdd.hAdd (instHMul.hMul α (x n)) (instHMul.hMul β (y n))
+Transliterated theorem: IsCauchy (fun n => α * x n + β * y n)
+Logical form (Lean): {x y : RealSequence} {α β : ℝ} (hx : IsCauchy x) (hy : IsCauchy y) : IsCauchy (fun n => α * x n + β * y n)
+Source: ./Sequences/Cauchy.lean#L220
+
+
+
+Name: ProductCauchySequences
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : RealSequence} (hx : IsCauchy x) (hy : IsCauchy y), IsCauchy (fun n => x n * y n)
+Predicate logic (unfolded): ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsCauchy x ∧ LRA.Analysis.Sequences.IsCauchy y) → LRA.Analysis.Sequences.IsCauchy fun n => instHMul.hMul (x n) (y n)
+Transliterated theorem: IsCauchy (fun n => x n * y n)
+Logical form (Lean): {x y : RealSequence} (hx : IsCauchy x) (hy : IsCauchy y) : IsCauchy (fun n => x n * y n)
+Source: ./Sequences/Cauchy.lean#L236
+
+
+
+Name: ReciprocalCauchySequence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (hx : IsCauchy x) (h : ∃ c > 0, ∃ N₀ : ℕ, ∀ n ≥ N₀, c ≤ |x n|), IsCauchy (fun n => 1 / x n)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsCauchy x ∧ Exists fun c => (GT.gt c 0 ∧ Exists fun N₀ => ∀ (n : Nat), GE.ge n N₀ → Real.instLE.le c (abs (x n)))) → LRA.Analysis.Sequences.IsCauchy fun n => instHDiv.hDiv 1 (x n)
+Transliterated theorem: (∃ c > 0, ∃ N₀ ∈ ℕ, ∀ n ≥ N₀, c ≤ |x n|) → IsCauchy (fun n => 1 / x n)
+Logical form (Lean): {x : RealSequence} (hx : IsCauchy x) (h : ∃ c > 0, ∃ N₀ : ℕ, ∀ n ≥ N₀, c ≤ |x n|) : IsCauchy (fun n => 1 / x n)
+Source: ./Sequences/Cauchy.lean#L252
+
+
+
+Name: QuotientCauchySequences
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : RealSequence} (hx : IsCauchy x) (hy : IsCauchy y) (h : ∃ c > 0, ∃ N₀ : ℕ, ∀ n ≥ N₀, c ≤ |y n|), IsCauchy (fun n => x n / y n)
+Predicate logic (unfolded): ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsCauchy x ∧ (LRA.Analysis.Sequences.IsCauchy y ∧ Exists fun c => (GT.gt c 0 ∧ Exists fun N₀ => ∀ (n : Nat), GE.ge n N₀ → Real.instLE.le c (abs (y n))))) → LRA.Analysis.Sequences.IsCauchy fun n => instHDiv.hDiv (x n) (y n)
+Transliterated theorem: (∃ c > 0, ∃ N₀ ∈ ℕ, ∀ n ≥ N₀, c ≤ |y n|) → IsCauchy (fun n => x n / y n)
+Logical form (Lean): {x y : RealSequence} (hx : IsCauchy x) (hy : IsCauchy y) (h : ∃ c > 0, ∃ N₀ : ℕ, ∀ n ≥ N₀, c ≤ |y n|) : IsCauchy (fun n => x n / y n)
+Source: ./Sequences/Cauchy.lean#L270
+
+
+
+Name: AbsoluteValueCauchySequence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence},   LRA.Analysis.Sequences.IsCauchy x → LRA.Analysis.Sequences.IsCauchy fun n => abs (x n)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsCauchy x → LRA.Analysis.Sequences.IsCauchy fun n => abs (x n)
+Transliterated theorem: IsCauchy (fun n => |x n|)
+Logical form (Lean): {x : RealSequence} (h : IsCauchy x) : IsCauchy (fun n => |x n|)
+Source: ./Sequences/Cauchy.lean#L286
+
+
+
+Name: DivergenceToInfinityImpliesRealDivergence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence},   Or (LRA.Analysis.Sequences.DivergesToPosInf x) (LRA.Analysis.Sequences.DivergesToNegInf x) →     LRA.Analysis.Sequences.IsDivergent x
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, Or (LRA.Analysis.Sequences.DivergesToPosInf x) (LRA.Analysis.Sequences.DivergesToNegInf x) → LRA.Analysis.Sequences.IsDivergent x
+Transliterated theorem: IsDivergent x
+Logical form (Lean): {x : RealSequence} (h : DivergesToPosInf x ∨ DivergesToNegInf x) : IsDivergent x
+Source: ./Sequences/Divergence.lean#L109
+
+
+
+Name: TwoSubsequentialLimitsForceDivergence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {L K : ℝ} (hLK : L ≠ K) (hL : IsSubsequentialLimit x L) (hK : IsSubsequentialLimit x K), IsDivergent x
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L K : Real}, (Ne L K ∧ (LRA.Analysis.Sequences.IsSubsequentialLimit x L ∧ LRA.Analysis.Sequences.IsSubsequentialLimit x K)) → LRA.Analysis.Sequences.IsDivergent x
+Transliterated theorem: IsDivergent x
+Logical form (Lean): {x : RealSequence} {L K : ℝ} (hLK : L ≠ K) (hL : IsSubsequentialLimit x L) (hK : IsSubsequentialLimit x K) : IsDivergent x
+Source: ./Sequences/Divergence.lean#L125
+
+
+
+Name: UnboundedAboveHasPositiveInfinitySubsequence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (h : ¬ BoundedAboveSeq x), ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ DivergesToPosInf (fun k => x (σ k))
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, ¬ LRA.Analysis.Sequences.BoundedAboveSeq x → Exists fun σ => (LRA.Analysis.Sequences.IsStrictlyIncreasingIndexMap σ ∧ LRA.Analysis.Sequences.DivergesToPosInf fun k => x (σ k))
+Transliterated theorem: ∃ σ ∈ ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ DivergesToPosInf (fun k => x (σ k))
+Logical form (Lean): {x : RealSequence} (h : ¬ BoundedAboveSeq x) : ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ DivergesToPosInf (fun k => x (σ k))
+Source: ./Sequences/Divergence.lean#L143
+
+
+
+Name: UnboundedBelowHasNegativeInfinitySubsequence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (h : ¬ BoundedBelowSeq x), ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ DivergesToNegInf (fun k => x (σ k))
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, ¬ LRA.Analysis.Sequences.BoundedBelowSeq x → Exists fun σ => (LRA.Analysis.Sequences.IsStrictlyIncreasingIndexMap σ ∧ LRA.Analysis.Sequences.DivergesToNegInf fun k => x (σ k))
+Transliterated theorem: ∃ σ ∈ ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ DivergesToNegInf (fun k => x (σ k))
+Logical form (Lean): {x : RealSequence} (h : ¬ BoundedBelowSeq x) : ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ DivergesToNegInf (fun k => x (σ k))
+Source: ./Sequences/Divergence.lean#L162
+
+
+
+Name: BoundedDivergenceProducesTwoSubsequentialLimits
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (hbdd : BoundedSeq x) (hdiv : IsDivergent x), ∃ L K : ℝ, L ≠ K ∧ IsSubsequentialLimit x L ∧ IsSubsequentialLimit x K
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.BoundedSeq x ∧ LRA.Analysis.Sequences.IsDivergent x) → Exists fun L => Exists fun K => (Ne L K ∧ (LRA.Analysis.Sequences.IsSubsequentialLimit x L ∧ LRA.Analysis.Sequences.IsSubsequentialLimit x K))
+Transliterated theorem: ∃ L K ∈ ℝ, L ≠ K ∧ IsSubsequentialLimit x L ∧ IsSubsequentialLimit x K
+Logical form (Lean): {x : RealSequence} (hbdd : BoundedSeq x) (hdiv : IsDivergent x) : ∃ L K : ℝ, L ≠ K ∧ IsSubsequentialLimit x L ∧ IsSubsequentialLimit x K
+Source: ./Sequences/Divergence.lean#L180
+
+
+
+Name: TailSupremaAreDecreasing
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence},   LRA.Analysis.Sequences.BoundedSeq x → LRA.Analysis.Sequences.IsDecreasing (LRA.Analysis.Sequences.TailSupSeq x)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.BoundedSeq x → LRA.Analysis.Sequences.IsDecreasing (LRA.Analysis.Sequences.TailSupSeq x)
+Transliterated theorem: IsDecreasing (TailSupSeq x)
+Logical form (Lean): {x : RealSequence} (h : BoundedSeq x) : IsDecreasing (TailSupSeq x)
+Source: ./Sequences/LiminfLimsup.lean#L127
+
+
+
+Name: TailInfimaAreIncreasing
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence},   LRA.Analysis.Sequences.BoundedSeq x → LRA.Analysis.Sequences.IsIncreasing (LRA.Analysis.Sequences.TailInfSeq x)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.BoundedSeq x → LRA.Analysis.Sequences.IsIncreasing (LRA.Analysis.Sequences.TailInfSeq x)
+Transliterated theorem: IsIncreasing (TailInfSeq x)
+Logical form (Lean): {x : RealSequence} (h : BoundedSeq x) : IsIncreasing (TailInfSeq x)
+Source: ./Sequences/LiminfLimsup.lean#L141
+
+
+
+Name: LiminfBelowLimsup
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (hbdd : BoundedSeq x) {I S : ℝ} (hI : LiminfSeq x I) (hS : LimsupSeq x S), I ≤ S
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.BoundedSeq x → ∀ {I S : Real}, (LRA.Analysis.Sequences.LiminfSeq x I ∧ LRA.Analysis.Sequences.LimsupSeq x S) → Real.instLE.le I S
+Transliterated theorem: I ≤ S
+Logical form (Lean): {x : RealSequence} (hbdd : BoundedSeq x) {I S : ℝ} (hI : LiminfSeq x I) (hS : LimsupSeq x S) : I ≤ S
+Source: ./Sequences/LiminfLimsup.lean#L156
+
+
+
+Name: ConvergenceIffLiminfEqualsLimsup
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (hbdd : BoundedSeq x) {L : ℝ}, ConvergesTo x L ↔ (LiminfSeq x L ∧ LimsupSeq x L)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.BoundedSeq x → ∀ {L : Real}, LRA.Analysis.Sequences.ConvergesTo x L ↔ (LRA.Analysis.Sequences.LiminfSeq x L ∧ LRA.Analysis.Sequences.LimsupSeq x L)
+Transliterated theorem: ConvergesTo x L ↔ (LiminfSeq x L ∧ LimsupSeq x L)
+Logical form (Lean): {x : RealSequence} (hbdd : BoundedSeq x) {L : ℝ} : ConvergesTo x L ↔ (LiminfSeq x L ∧ LimsupSeq x L)
+Source: ./Sequences/LiminfLimsup.lean#L172
+
+
+
+Name: LimsupLargestSubsequentialLimit
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (hbdd : BoundedSeq x) {S : ℝ} (hS : LimsupSeq x S), IsSubsequentialLimit x S ∧ ∀ L, IsSubsequentialLimit x L → L ≤ S
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.BoundedSeq x → ∀ {S : Real}, LRA.Analysis.Sequences.LimsupSeq x S → (LRA.Analysis.Sequences.IsSubsequentialLimit x S ∧ ∀ (L : Real), LRA.Analysis.Sequences.IsSubsequentialLimit x L → Real.instLE.le L S)
+Transliterated theorem: IsSubsequentialLimit x S ∧ ∀ L, IsSubsequentialLimit x L → L ≤ S
+Logical form (Lean): {x : RealSequence} (hbdd : BoundedSeq x) {S : ℝ} (hS : LimsupSeq x S) : IsSubsequentialLimit x S ∧ ∀ L, IsSubsequentialLimit x L → L ≤ S
+Source: ./Sequences/LiminfLimsup.lean#L189
+
+
+
+Name: LiminfSmallestSubsequentialLimit
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (hbdd : BoundedSeq x) {I : ℝ} (hI : LiminfSeq x I), IsSubsequentialLimit x I ∧ ∀ L, IsSubsequentialLimit x L → I ≤ L
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.BoundedSeq x → ∀ {I : Real}, LRA.Analysis.Sequences.LiminfSeq x I → (LRA.Analysis.Sequences.IsSubsequentialLimit x I ∧ ∀ (L : Real), LRA.Analysis.Sequences.IsSubsequentialLimit x L → Real.instLE.le I L)
+Transliterated theorem: IsSubsequentialLimit x I ∧ ∀ L, IsSubsequentialLimit x L → I ≤ L
+Logical form (Lean): {x : RealSequence} (hbdd : BoundedSeq x) {I : ℝ} (hI : LiminfSeq x I) : IsSubsequentialLimit x I ∧ ∀ L, IsSubsequentialLimit x L → I ≤ L
+Source: ./Sequences/LiminfLimsup.lean#L206
+
+
+
+Name: OscillationCriterionViaLiminfLimsup
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (hbdd : BoundedSeq x) {I S : ℝ} (hI : LiminfSeq x I) (hS : LimsupSeq x S), I < S ↔ ∃ L K : ℝ, L ≠ K ∧ IsSubsequentialLimit x L ∧ IsSubsequentialLimit x K
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.BoundedSeq x → ∀ {I S : Real}, (LRA.Analysis.Sequences.LiminfSeq x I ∧ LRA.Analysis.Sequences.LimsupSeq x S) → Real.instLT.lt I S ↔ Exists fun L => Exists fun K => (Ne L K ∧ (LRA.Analysis.Sequences.IsSubsequentialLimit x L ∧ LRA.Analysis.Sequences.IsSubsequentialLimit x K))
+Transliterated theorem: I < S ↔ ∃ L K ∈ ℝ, L ≠ K ∧ IsSubsequentialLimit x L ∧ IsSubsequentialLimit x K
+Logical form (Lean): {x : RealSequence} (hbdd : BoundedSeq x) {I S : ℝ} (hI : LiminfSeq x I) (hS : LimsupSeq x S) : I < S ↔ ∃ L K : ℝ, L ≠ K ∧ IsSubsequentialLimit x L ∧ IsSubsequentialLimit x K
+Source: ./Sequences/LiminfLimsup.lean#L224
+
+
+
+Name: LimsupComparisonUnderEventualOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : RealSequence} (hx : BoundedSeq x) (hy : BoundedSeq y) (h : ∃ N : ℕ, ∀ n ≥ N, x n ≤ y n) {Sx Sy : ℝ} (hSx : LimsupSeq x Sx) (hSy : LimsupSeq y Sy), Sx ≤ Sy
+Predicate logic (unfolded): ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.BoundedSeq x ∧ (LRA.Analysis.Sequences.BoundedSeq y ∧ Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLE.le (x n) (y n))) → ∀ {Sx Sy : Real}, (LRA.Analysis.Sequences.LimsupSeq x Sx ∧ LRA.Analysis.Sequences.LimsupSeq y Sy) → Real.instLE.le Sx Sy
+Transliterated theorem: (∃ N ∈ ℕ, ∀ n ≥ N, x n ≤ y n) → Sx ≤ Sy
+Logical form (Lean): {x y : RealSequence} (hx : BoundedSeq x) (hy : BoundedSeq y) (h : ∃ N : ℕ, ∀ n ≥ N, x n ≤ y n) {Sx Sy : ℝ} (hSx : LimsupSeq x Sx) (hSy : LimsupSeq y Sy) : Sx ≤ Sy
+Source: ./Sequences/LiminfLimsup.lean#L242
+
+
+
+Name: LiminfComparisonUnderEventualOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x y : RealSequence} (hx : BoundedSeq x) (hy : BoundedSeq y) (h : ∃ N : ℕ, ∀ n ≥ N, x n ≤ y n) {Ix Iy : ℝ} (hIx : LiminfSeq x Ix) (hIy : LiminfSeq y Iy), Ix ≤ Iy
+Predicate logic (unfolded): ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.BoundedSeq x ∧ (LRA.Analysis.Sequences.BoundedSeq y ∧ Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLE.le (x n) (y n))) → ∀ {Ix Iy : Real}, (LRA.Analysis.Sequences.LiminfSeq x Ix ∧ LRA.Analysis.Sequences.LiminfSeq y Iy) → Real.instLE.le Ix Iy
+Transliterated theorem: (∃ N ∈ ℕ, ∀ n ≥ N, x n ≤ y n) → Ix ≤ Iy
+Logical form (Lean): {x y : RealSequence} (hx : BoundedSeq x) (hy : BoundedSeq y) (h : ∃ N : ℕ, ∀ n ≥ N, x n ≤ y n) {Ix Iy : ℝ} (hIx : LiminfSeq x Ix) (hIy : LiminfSeq y Iy) : Ix ≤ Iy
+Source: ./Sequences/LiminfLimsup.lean#L261
+
+
+
+Name: LimsupSqueezeUnderEventualOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {a x b : RealSequence} (ha : BoundedSeq a) (hx : BoundedSeq x) (hb : BoundedSeq b) (h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n) {Sa Sx Sb : ℝ} (hSa : LimsupSeq a Sa) (hSx : LimsupSeq x Sx) (hSb : LimsupSeq b Sb), Sa ≤ Sx ∧ Sx ≤ Sb
+Predicate logic (unfolded): ∀ {a x b : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.BoundedSeq a ∧ (LRA.Analysis.Sequences.BoundedSeq x ∧ (LRA.Analysis.Sequences.BoundedSeq b ∧ Exists fun N => ∀ (n : Nat), GE.ge n N → (Real.instLE.le (a n) (x n) ∧ Real.instLE.le (x n) (b n))))) → ∀ {Sa Sx Sb : Real}, (LRA.Analysis.Sequences.LimsupSeq a Sa ∧ (LRA.Analysis.Sequences.LimsupSeq x Sx ∧ LRA.Analysis.Sequences.LimsupSeq b Sb)) → (Real.instLE.le Sa Sx ∧ Real.instLE.le Sx Sb)
+Transliterated theorem: (∃ N ∈ ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n) → Sa ≤ Sx ∧ Sx ≤ Sb
+Logical form (Lean): {a x b : RealSequence} (ha : BoundedSeq a) (hx : BoundedSeq x) (hb : BoundedSeq b) (h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n) {Sa Sx Sb : ℝ} (hSa : LimsupSeq a Sa) (hSx : LimsupSeq x Sx) (hSb : LimsupSeq b Sb) : Sa ≤ Sx ∧ Sx ≤ Sb
+Source: ./Sequences/LiminfLimsup.lean#L282
+
+
+
+Name: LiminfSqueezeUnderEventualOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {a x b : RealSequence} (ha : BoundedSeq a) (hx : BoundedSeq x) (hb : BoundedSeq b) (h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n) {Ia Ix Ib : ℝ} (hIa : LiminfSeq a Ia) (hIx : LiminfSeq x Ix) (hIb : LiminfSeq b Ib), Ia ≤ Ix ∧ Ix ≤ Ib
+Predicate logic (unfolded): ∀ {a x b : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.BoundedSeq a ∧ (LRA.Analysis.Sequences.BoundedSeq x ∧ (LRA.Analysis.Sequences.BoundedSeq b ∧ Exists fun N => ∀ (n : Nat), GE.ge n N → (Real.instLE.le (a n) (x n) ∧ Real.instLE.le (x n) (b n))))) → ∀ {Ia Ix Ib : Real}, (LRA.Analysis.Sequences.LiminfSeq a Ia ∧ (LRA.Analysis.Sequences.LiminfSeq x Ix ∧ LRA.Analysis.Sequences.LiminfSeq b Ib)) → (Real.instLE.le Ia Ix ∧ Real.instLE.le Ix Ib)
+Transliterated theorem: (∃ N ∈ ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n) → Ia ≤ Ix ∧ Ix ≤ Ib
+Logical form (Lean): {a x b : RealSequence} (ha : BoundedSeq a) (hx : BoundedSeq x) (hb : BoundedSeq b) (h : ∃ N : ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n) {Ia Ix Ib : ℝ} (hIa : LiminfSeq a Ia) (hIx : LiminfSeq x Ix) (hIb : LiminfSeq b Ib) : Ia ≤ Ix ∧ Ix ≤ Ib
+Source: ./Sequences/LiminfLimsup.lean#L304
+
+
+
+Name: LimsupNegEqNegLiminf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {L : ℝ}, LimsupSeq (fun n => -x n) L ↔ LiminfSeq x (-L)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, LRA.Analysis.Sequences.LimsupSeq (fun n => Real.instNeg.neg (x n)) L ↔ LRA.Analysis.Sequences.LiminfSeq x (Real.instNeg.neg L)
+Transliterated theorem: LimsupSeq (fun n => -x n) L ↔ LiminfSeq x (-L)
+Logical form (Lean): {x : RealSequence} {L : ℝ} : LimsupSeq (fun n => -x n) L ↔ LiminfSeq x (-L)
+Source: ./Sequences/LiminfLimsup.lean#L320
+
+
+
+Name: LiminfNegEqNegLimsup
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {L : ℝ}, LiminfSeq (fun n => -x n) L ↔ LimsupSeq x (-L)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, LRA.Analysis.Sequences.LiminfSeq (fun n => Real.instNeg.neg (x n)) L ↔ LRA.Analysis.Sequences.LimsupSeq x (Real.instNeg.neg L)
+Transliterated theorem: LiminfSeq (fun n => -x n) L ↔ LimsupSeq x (-L)
+Logical form (Lean): {x : RealSequence} {L : ℝ} : LiminfSeq (fun n => -x n) L ↔ LimsupSeq x (-L)
+Source: ./Sequences/LiminfLimsup.lean#L333
+
+
+
+Name: ClusterValuesAreSubsequentialLimits
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {L : ℝ}, IsClusterValueOf x L ↔ IsSubsequentialLimit x L
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, LRA.Analysis.Sequences.IsClusterValueOf x L ↔ LRA.Analysis.Sequences.IsSubsequentialLimit x L
+Transliterated theorem: IsClusterValueOf x L ↔ IsSubsequentialLimit x L
+Logical form (Lean): {x : RealSequence} {L : ℝ} : IsClusterValueOf x L ↔ IsSubsequentialLimit x L
+Source: ./Sequences/ClusterValues.lean#L77
+
+
+
+Name: BoundedSequencesHaveClusterValues
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence},   LRA.Analysis.Sequences.BoundedSeq x → Exists fun L => LRA.Analysis.Sequences.IsClusterValueOf x L
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.BoundedSeq x → Exists fun L => LRA.Analysis.Sequences.IsClusterValueOf x L
+Transliterated theorem: ∃ L ∈ ℝ, IsClusterValueOf x L
+Logical form (Lean): {x : RealSequence} (h : BoundedSeq x) : ∃ L : ℝ, IsClusterValueOf x L
+Source: ./Sequences/ClusterValues.lean#L91
+
+
+
+Name: LimsupLiminfExtremalClusterValues
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (hbdd : BoundedSeq x) {S I : ℝ} (hS : LimsupSeq x S) (hI : LiminfSeq x I), (IsClusterValueOf x S ∧ ∀ L, IsClusterValueOf x L → L ≤ S) ∧ (IsClusterValueOf x I ∧ ∀ L, IsClusterValueOf x L → I ≤ L)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.BoundedSeq x → ∀ {S I : Real}, (LRA.Analysis.Sequences.LimsupSeq x S ∧ LRA.Analysis.Sequences.LiminfSeq x I) → ((LRA.Analysis.Sequences.IsClusterValueOf x S ∧ ∀ (L : Real), LRA.Analysis.Sequences.IsClusterValueOf x L → Real.instLE.le L S) ∧ (LRA.Analysis.Sequences.IsClusterValueOf x I ∧ ∀ (L : Real), LRA.Analysis.Sequences.IsClusterValueOf x L → Real.instLE.le I L))
+Transliterated theorem: (IsClusterValueOf x S ∧ ∀ L, IsClusterValueOf x L → L ≤ S) ∧ (IsClusterValueOf x I ∧ ∀ L, IsClusterValueOf x L → I ≤ L)
+Logical form (Lean): {x : RealSequence} (hbdd : BoundedSeq x) {S I : ℝ} (hS : LimsupSeq x S) (hI : LiminfSeq x I) : (IsClusterValueOf x S ∧ ∀ L, IsClusterValueOf x L → L ≤ S) ∧ (IsClusterValueOf x I ∧ ∀ L, IsClusterValueOf x L → I ≤ L)
+Source: ./Sequences/ClusterValues.lean#L109
+
+
+
+Name: IncreasingSequenceLimitAsSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {S : ℝ} (hinc : IsIncreasing x) (hbdd : BoundedAboveSeq x) (hS : IsSupremum S (Set.range x)), ConvergesTo x S
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {S : Real}, (LRA.Analysis.Sequences.IsIncreasing x ∧ (LRA.Analysis.Sequences.BoundedAboveSeq x ∧ LRA.Analysis.Bounds.IsSupremum S (Set.range x))) → LRA.Analysis.Sequences.ConvergesTo x S
+Transliterated theorem: ConvergesTo x S
+Logical form (Lean): {x : RealSequence} {S : ℝ} (hinc : IsIncreasing x) (hbdd : BoundedAboveSeq x) (hS : IsSupremum S (Set.range x)) : ConvergesTo x S
+Source: ./Sequences/OrderLimits.lean#L55
+
+
+
+Name: DecreasingSequenceLimitAsInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} {I : ℝ} (hdec : IsDecreasing x) (hbdd : BoundedBelowSeq x) (hI : IsInfimum I (Set.range x)), ConvergesTo x I
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {I : Real}, (LRA.Analysis.Sequences.IsDecreasing x ∧ (LRA.Analysis.Sequences.BoundedBelowSeq x ∧ LRA.Analysis.Bounds.IsInfimum I (Set.range x))) → LRA.Analysis.Sequences.ConvergesTo x I
+Transliterated theorem: ConvergesTo x I
+Logical form (Lean): {x : RealSequence} {I : ℝ} (hdec : IsDecreasing x) (hbdd : BoundedBelowSeq x) (hI : IsInfimum I (Set.range x)) : ConvergesTo x I
+Source: ./Sequences/OrderLimits.lean#L72
+
+
+
+Name: TailSupremaInfimaConverge
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (h : BoundedSeq x), (∃ S : ℝ, ConvergesTo (TailSupSeq x) S) ∧ (∃ I : ℝ, ConvergesTo (TailInfSeq x) I)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.BoundedSeq x → (Exists fun S => LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.TailSupSeq x) S ∧ Exists fun I => LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.TailInfSeq x) I)
+Transliterated theorem: ∃ S ∈ ℝ, ConvergesTo (TailSupSeq x S) ∧ ∃ I ∈ ℝ, ConvergesTo (TailInfSeq x I)
+Logical form (Lean): {x : RealSequence} (h : BoundedSeq x) : (∃ S : ℝ, ConvergesTo (TailSupSeq x) S) ∧ (∃ I : ℝ, ConvergesTo (TailInfSeq x) I)
+Source: ./Sequences/OrderLimits.lean#L89
+
+
+
+Name: BoundedSequenceLimsupLiminf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x : RealSequence} (h : BoundedSeq x), (∃ S : ℝ, LimsupSeq x S) ∧ (∃ I : ℝ, LiminfSeq x I)
+Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.BoundedSeq x → (Exists fun S => LRA.Analysis.Sequences.LimsupSeq x S ∧ Exists fun I => LRA.Analysis.Sequences.LiminfSeq x I)
+Transliterated theorem: ∃ S ∈ ℝ, LimsupSeq x S ∧ ∃ I ∈ ℝ, LiminfSeq x I
+Logical form (Lean): {x : RealSequence} (h : BoundedSeq x) : (∃ S : ℝ, LimsupSeq x S) ∧ (∃ I : ℝ, LiminfSeq x I)
+Source: ./Sequences/OrderLimits.lean#L105
+
+
+
+Name: ClosedUnitIntervalUncountable
+Kind: Theorem
+State: Sorry
+Predicate logic: ¬ ∃ enumerate : ℕ → ℝ, ∀ x : ℝ, x ∈ Set.Icc (0 : ℝ) 1 → ∃ index : ℕ, enumerate index = x
+Predicate logic (unfolded): ¬ Exists fun enumerate => ∀ (x : Real), Set.instMembership.mem (Set.Icc 0 1) x → Exists fun index => enumerate index = x
+Transliterated theorem: ¬ ∃ enumerate ∈ ℕ → ℝ, ∀ x : ℝ, x ∈ Set.Icc 0 ∈ ℝ 1 → ∃ index ∈ ℕ, enumerate index = x
+Logical form (Lean): : ¬ ∃ enumerate : ℕ → ℝ, ∀ x : ℝ, x ∈ Set.Icc (0 : ℝ) 1 → ∃ index : ℕ, enumerate index = x
+Source: ./StructureOfRealLine/Cardinality.lean#L20
+
+
+
+Name: ClosedSubsetOfCompactIsCompact
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (F K : Set ℝ) (hFK : F ⊆ K) (hF : IsClosedR F) (hK : IsCompactR K), IsCompactR F
+Predicate logic (unfolded): ∀ (F K : Set Real), (Set.instLE.le F K ∧ (LRA.Analysis.StructureOfRealLine.IsClosedR F ∧ LRA.Analysis.StructureOfRealLine.IsCompactR K)) → LRA.Analysis.StructureOfRealLine.IsCompactR F
+Transliterated theorem: IsCompactR F
+Logical form (Lean): (F K : Set ℝ) (hFK : F ⊆ K) (hF : IsClosedR F) (hK : IsCompactR K) : IsCompactR F
+Source: ./StructureOfRealLine/CompactnessAdditions.lean#L87
+
+
+
+Name: SequentialCompactnessIffOpenCoverCompactness
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (K : Set ℝ), IsSeqCompactR K ↔ IsCompactR K
+Predicate logic (unfolded): ∀ (K : Set Real), LRA.Analysis.StructureOfRealLine.IsSeqCompactR K ↔ LRA.Analysis.StructureOfRealLine.IsCompactR K
+Transliterated theorem: IsSeqCompactR K ↔ IsCompactR K
+Logical form (Lean): (K : Set ℝ) : IsSeqCompactR K ↔ IsCompactR K
+Source: ./StructureOfRealLine/CompactnessAdditions.lean#L121
+
+
+
+Name: OpenIntervalIsOpen
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : Real), Real.instLT.lt a b → LRA.Analysis.StructureOfRealLine.IsOpenSet (Set.Ioo a b)
+Predicate logic (unfolded): ∀ (a b : Real), Real.instLT.lt a b → LRA.Analysis.StructureOfRealLine.IsOpenSet (Set.Ioo a b)
+Transliterated theorem: (a < b) → IsOpenSet (Set.Ioo a b)
+Logical form (Lean): (a b : ℝ) (hab : a < b) : IsOpenSet (Set.Ioo a b)
+Source: ./StructureOfRealLine/OpenClosedSets.lean#L58
+
+
+
+Name: OpenSetClosureOperations
+Kind: Theorem
+State: Sorry
+Predicate logic: IsOpenSet (∅ : Set ℝ) ∧ IsOpenSet (Set.univ : Set ℝ) ∧ (∀ (ι : Type) (U : ι → Set ℝ), (∀ i, IsOpenSet (U i)) → IsOpenSet (⋃ i, U i)) ∧ (∀ (n : ℕ) (U : Fin n → Set ℝ), (∀ i, IsOpenSet (U i)) → IsOpenSet (⋂ i, U i))
+Predicate logic (unfolded): (LRA.Analysis.StructureOfRealLine.IsOpenSet Set.instEmptyCollection.emptyCollection ∧ (LRA.Analysis.StructureOfRealLine.IsOpenSet Set.univ ∧ (∀ (ι : Type) (U : ι → Set Real), (∀ (i : ι), LRA.Analysis.StructureOfRealLine.IsOpenSet (U i)) → LRA.Analysis.StructureOfRealLine.IsOpenSet (Set.iUnion fun i => U i) ∧ ∀ (n : Nat) (U : Fin n → Set Real), (∀ (i : Fin n), LRA.Analysis.StructureOfRealLine.IsOpenSet (U i)) → LRA.Analysis.StructureOfRealLine.IsOpenSet (Set.iInter fun i => U i))))
+Transliterated theorem: IsOpenSet ∅ ∈ Set ℝ ∧ IsOpenSet Set.univ ∈ Set ℝ ∧ (∀ ι ∈ Type U ∈ ι → Set ℝ, (∀ i, IsOpenSet (U i)) → IsOpenSet (⋃ i, U i)) ∧ (∀ n ∈ ℕ U ∈ Fin n → Set ℝ, (∀ i, IsOpenSet (U i)) → IsOpenSet (⋂ i, U i))
+Logical form (Lean): : IsOpenSet (∅ : Set ℝ) ∧ IsOpenSet (Set.univ : Set ℝ) ∧ (∀ (ι : Type) (U : ι → Set ℝ), (∀ i, IsOpenSet (U i)) → IsOpenSet (⋃ i, U i)) ∧ (∀ (n : ℕ) (U : Fin n → Set ℝ), (∀ i, IsOpenSet (U i)) → IsOpenSet (⋂ i, U i))
+Source: ./StructureOfRealLine/OpenClosedSets.lean#L75
+
+
+
+Name: ClosedIffContainsLimitPoints
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (F : Set ℝ), IsClosedSet F ↔ ∀ x : ℝ, (∀ r > 0, (OpenBall x r \ {x}) ∩ F ≠ ∅) → x ∈ F
+Predicate logic (unfolded): ∀ (F : Set Real), LRA.Analysis.StructureOfRealLine.IsClosedSet F ↔ ∀ (x : Real), (∀ (r : Real), GT.gt r 0 → Ne (Set.instInter.inter (Set.instSDiff.sdiff (LRA.Analysis.StructureOfRealLine.OpenBall x r) (Set.instSingletonSet.singleton x)) F) Set.instEmptyCollection.emptyCollection) → Set.instMembership.mem F x
+Transliterated theorem: IsClosedSet F ↔ ∀ x : ℝ, (∀ r > 0, (OpenBall x r \ {x}) ∩ F ≠ ∅) → x ∈ F
+Logical form (Lean): (F : Set ℝ) : IsClosedSet F ↔ ∀ x : ℝ, (∀ r > 0, (OpenBall x r \ {x}) ∩ F ≠ ∅) → x ∈ F
+Source: ./StructureOfRealLine/OpenClosedSets.lean#L102
+
+
+
+Name: ClosedSetClosureOperations
+Kind: Theorem
+State: Sorry
+Predicate logic: IsClosedSet (∅ : Set ℝ) ∧ IsClosedSet (Set.univ : Set ℝ) ∧ (∀ (ι : Type) (F : ι → Set ℝ), (∀ i, IsClosedSet (F i)) → IsClosedSet (⋂ i, F i)) ∧ (∀ (n : ℕ) (F : Fin n → Set ℝ), (∀ i, IsClosedSet (F i)) → IsClosedSet (⋃ i, F i))
+Predicate logic (unfolded): (LRA.Analysis.StructureOfRealLine.IsClosedSet Set.instEmptyCollection.emptyCollection ∧ (LRA.Analysis.StructureOfRealLine.IsClosedSet Set.univ ∧ (∀ (ι : Type) (F : ι → Set Real), (∀ (i : ι), LRA.Analysis.StructureOfRealLine.IsClosedSet (F i)) → LRA.Analysis.StructureOfRealLine.IsClosedSet (Set.iInter fun i => F i) ∧ ∀ (n : Nat) (F : Fin n → Set Real), (∀ (i : Fin n), LRA.Analysis.StructureOfRealLine.IsClosedSet (F i)) → LRA.Analysis.StructureOfRealLine.IsClosedSet (Set.iUnion fun i => F i))))
+Transliterated theorem: IsClosedSet ∅ ∈ Set ℝ ∧ IsClosedSet Set.univ ∈ Set ℝ ∧ (∀ ι ∈ Type F ∈ ι → Set ℝ, (∀ i, IsClosedSet (F i)) → IsClosedSet (⋂ i, F i)) ∧ (∀ n ∈ ℕ F ∈ Fin n → Set ℝ, (∀ i, IsClosedSet (F i)) → IsClosedSet (⋃ i, F i))
+Logical form (Lean): : IsClosedSet (∅ : Set ℝ) ∧ IsClosedSet (Set.univ : Set ℝ) ∧ (∀ (ι : Type) (F : ι → Set ℝ), (∀ i, IsClosedSet (F i)) → IsClosedSet (⋂ i, F i)) ∧ (∀ (n : ℕ) (F : Fin n → Set ℝ), (∀ i, IsClosedSet (F i)) → IsClosedSet (⋃ i, F i))
+Source: ./StructureOfRealLine/OpenClosedSets.lean#L184
+
+
+
+Name: lebesgue_criterion_riemann_integrability
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)), IsRiemannIntegrable f a b ↔ IsMeasureZero {x ∈ Set.Icc a b | PointOscillation f a b x > 0}
+Predicate logic (unfolded): ∀ (f : Real → Real) (a b : Real), (Real.instLE.le a b ∧ LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) → LRA.Analysis.Integration.IsRiemannIntegrable f a b ↔ LRA.Analysis.Integration.IsMeasureZero (setOf fun x => (Set.instMembership.mem (Set.Icc a b) x ∧ GT.gt (LRA.Analysis.Integration.PointOscillation f a b x) 0))
+Transliterated theorem: (ℝ → ℝ ∧ a ≤ b) → IsRiemannIntegrable f a b ↔ IsMeasureZero {x ∈ Set.Icc a b | PointOscillation f a b x > 0}
+Logical form (Lean): (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b) (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) : IsRiemannIntegrable f a b ↔ IsMeasureZero {x ∈ Set.Icc a b | PointOscillation f a b x > 0}
+Source: ./Integration/MeasureZero.lean#L64
+
+
+
+Name: riemann_mcshane_hk_inclusions
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hab : a ≤ b) (L : ℝ), (HasRiemannIntegral f a b L → HasMcShaneIntegral f a b L) ∧ (HasMcShaneIntegral f a b L → HasHKIntegral f a b L)
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real}, Real.instLE.le a b → ∀ (L : Real), (LRA.Analysis.Integration.HasRiemannIntegral f a b L → LRA.Analysis.Integration.HasMcShaneIntegral f a b L ∧ LRA.Analysis.Integration.HasMcShaneIntegral f a b L → LRA.Analysis.Integration.HasHKIntegral f a b L)
+Transliterated theorem: (a ≤ b) → (HasRiemannIntegral f a b L → HasMcShaneIntegral f a b L) ∧ (HasMcShaneIntegral f a b L → HasHKIntegral f a b L)
+Logical form (Lean): (hab : a ≤ b) (L : ℝ) : (HasRiemannIntegral f a b L → HasMcShaneIntegral f a b L) ∧ (HasMcShaneIntegral f a b L → HasHKIntegral f a b L)
+Source: ./Integration/McShaneIntegral/Basic.lean#L106
+
+
+
+Name: mcshane_equals_lebesgue
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (hab : a ≤ b), IsMcShaneIntegrable f a b ↔ ∃ E : Set ℝ, IsMeasureZero E ∧ ∀ x ∈ Set.Icc a b \ E, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) x
+Predicate logic (unfolded): ∀ {f : Real → Real} {a b : Real}, Real.instLE.le a b → LRA.Analysis.Integration.IsMcShaneIntegrable f a b ↔ Exists fun E => (LRA.Analysis.Integration.IsMeasureZero E ∧ ∀ (x : Real), Set.instMembership.mem (Set.instSDiff.sdiff (Set.Icc a b) E) x → LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) x)
+Transliterated theorem: (a ≤ b) → IsMcShaneIntegrable f a b ↔ ∃ E ∈ Set ℝ, IsMeasureZero E ∧ ∀ x ∈ Set.Icc a b \ E, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) x
+Logical form (Lean): (hab : a ≤ b) : IsMcShaneIntegrable f a b ↔ ∃ E : Set ℝ, IsMeasureZero E ∧ ∀ x ∈ Set.Icc a b \ E, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) x
+Source: ./Integration/McShaneIntegral/Basic.lean#L124
+
+
+
+Name: hk_strictly_wider_than_mcshane
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (F FD : ℝ → ℝ) (hF : ∀ x : ℝ, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x) (hHK : IsHKIntegrable FD (-1) 1) (hnotLebesgue : ¬ IsRiemannIntegrable (fun x => |FD x|) (-1) 1), ¬ IsMcShaneIntegrable FD (-1) 1
+Predicate logic (unfolded): ∀ (F FD : Real → Real), (∀ (x : Real), LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x ∧ (LRA.Analysis.Integration.IsHKIntegrable FD (-1) 1 ∧ ¬ LRA.Analysis.Integration.IsRiemannIntegrable (fun x => abs (FD x)) (-1) 1)) → ¬ LRA.Analysis.Integration.IsMcShaneIntegrable FD (-1) 1
+Transliterated theorem: (∀ x : ℝ, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x) → ¬ IsMcShaneIntegrable FD (-1) 1
+Logical form (Lean): (F FD : ℝ → ℝ) (hF : ∀ x : ℝ, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x) (hHK : IsHKIntegrable FD (-1) 1) (hnotLebesgue : ¬ IsRiemannIntegrable (fun x => |FD x|) (-1) 1) : ¬ IsMcShaneIntegrable FD (-1) 1
+Source: ./Integration/McShaneIntegral/Basic.lean#L143
+
+
+
+Name: CompactImpliesClosedBounded
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (K : Set ℝ) (hK : IsCompactSet K), IsClosedSet K ∧ ∃ M > 0, ∀ x ∈ K, |x| ≤ M
+Predicate logic (unfolded): ∀ (K : Set Real), LRA.Analysis.StructureOfRealLine.IsCompactSet K → (LRA.Analysis.StructureOfRealLine.IsClosedSet K ∧ Exists fun M => (GT.gt M 0 ∧ ∀ (x : Real), Set.instMembership.mem K x → Real.instLE.le (abs x) M))
+Transliterated theorem: IsClosedSet K ∧ ∃ M > 0, ∀ x ∈ K, |x| ≤ M
+Logical form (Lean): (K : Set ℝ) (hK : IsCompactSet K) : IsClosedSet K ∧ ∃ M > 0, ∀ x ∈ K, |x| ≤ M
+Source: ./StructureOfRealLine/Compactness.lean#L69
+
+
+
+Name: ClosedBoundedIntervalCompact
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : Real), Real.instLE.le a b → LRA.Analysis.StructureOfRealLine.IsCompactSet (Set.Icc a b)
+Predicate logic (unfolded): ∀ (a b : Real), Real.instLE.le a b → LRA.Analysis.StructureOfRealLine.IsCompactSet (Set.Icc a b)
+Transliterated theorem: (a ≤ b) → IsCompactSet (Set.Icc a b)
+Logical form (Lean): (a b : ℝ) (hab : a ≤ b) : IsCompactSet (Set.Icc a b)
+Source: ./StructureOfRealLine/Compactness.lean#L83
+
+
+
+Name: IsCompactSetIffIsCompactR
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (K : Set ℝ), IsCompactSet K ↔ IsCompactR K
+Predicate logic (unfolded): ∀ (K : Set Real), LRA.Analysis.StructureOfRealLine.IsCompactSet K ↔ LRA.Analysis.StructureOfRealLine.IsCompactR K
+Transliterated theorem: IsCompactSet K ↔ IsCompactR K
+Logical form (Lean): (K : Set ℝ) : IsCompactSet K ↔ IsCompactR K
+Source: ./StructureOfRealLine/Compactness.lean#L95
+
+
+
+Name: IsClosedSetIffIsClosedR
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (F : Set ℝ), IsClosedSet F ↔ IsClosedR F
+Predicate logic (unfolded): ∀ (F : Set Real), LRA.Analysis.StructureOfRealLine.IsClosedSet F ↔ LRA.Analysis.StructureOfRealLine.IsClosedR F
+Transliterated theorem: IsClosedSet F ↔ IsClosedR F
+Logical form (Lean): (F : Set ℝ) : IsClosedSet F ↔ IsClosedR F
+Source: ./StructureOfRealLine/Compactness.lean#L106
+
+
+
+Name: HeineBorel
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (K : Set ℝ), IsCompactSet K ↔ IsClosedSet K ∧ ∃ M > 0, ∀ x ∈ K, |x| ≤ M
+Predicate logic (unfolded): ∀ (K : Set Real), LRA.Analysis.StructureOfRealLine.IsCompactSet K ↔ (LRA.Analysis.StructureOfRealLine.IsClosedSet K ∧ Exists fun M => (GT.gt M 0 ∧ ∀ (x : Real), Set.instMembership.mem K x → Real.instLE.le (abs x) M))
+Transliterated theorem: IsCompactSet K ↔ IsClosedSet K ∧ ∃ M > 0, ∀ x ∈ K, |x| ≤ M
+Logical form (Lean): (K : Set ℝ) : IsCompactSet K ↔ IsClosedSet K ∧ ∃ M > 0, ∀ x ∈ K, |x| ≤ M
+Source: ./StructureOfRealLine/Compactness.lean#L119
+
+
+
+Name: DistanceIsAMetric
+Kind: Theorem
+State: Sorry
+Predicate logic: (∀ x y : ℝ, dist' x y ≥ 0) ∧ (∀ x y : ℝ, dist' x y = 0 ↔ x = y) ∧ (∀ x y : ℝ, dist' x y = dist' y x) ∧ (∀ x y z : ℝ, dist' x z ≤ dist' x y + dist' y z)
+Predicate logic (unfolded): (∀ (x y : Real), GE.ge (LRA.Analysis.StructureOfRealLine.dist' x y) 0 ∧ (∀ (x y : Real), LRA.Analysis.StructureOfRealLine.dist' x y = 0 ↔ x = y ∧ (∀ (x y : Real), LRA.Analysis.StructureOfRealLine.dist' x y = LRA.Analysis.StructureOfRealLine.dist' y x ∧ ∀ (x y z : Real), Real.instLE.le (LRA.Analysis.StructureOfRealLine.dist' x z) (instHAdd.hAdd (LRA.Analysis.StructureOfRealLine.dist' x y) (LRA.Analysis.StructureOfRealLine.dist' y z)))))
+Transliterated theorem: ∀ x y ∈ ℝ, dist' x y ≥ 0 ∧ ∀ x y ∈ ℝ, dist' x y = 0 ↔ x = y ∧ ∀ x y ∈ ℝ, dist' x y = dist' y x ∧ ∀ x y z ∈ ℝ, dist' x z ≤ dist' x y + dist' y z
+Logical form (Lean): : (∀ x y : ℝ, dist' x y ≥ 0) ∧ (∀ x y : ℝ, dist' x y = 0 ↔ x = y) ∧ (∀ x y : ℝ, dist' x y = dist' y x) ∧ (∀ x y z : ℝ, dist' x z ≤ dist' x y + dist' y z)
+Source: ./StructureOfRealLine/OrderDistanceIntervals.lean#L47
+
+
+
+Name: RealLineStructuralOrderFacts
+Kind: Theorem
+State: Sorry
+Predicate logic: (∀ A : Set ℝ, A.Nonempty → BddAbove A → ∃ s, IsLUB A s)
+Predicate logic (unfolded): ∀ (A : Set Real), (A.Nonempty ∧ BddAbove A) → Exists fun s => IsLUB A s
+Transliterated theorem: ∀ A ∈ Set ℝ, A.Nonempty → BddAbove A → ∃ s, IsLUB A s
+Logical form (Lean): : (∀ A : Set ℝ, A.Nonempty → BddAbove A → ∃ s, IsLUB A s)
+Source: ./StructureOfRealLine/OrderDistanceIntervals.lean#L63
+
+
+
+Name: MinOfPositiveIsPositive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ) (ha : a > 0) (hb : b > 0), min a b > 0
+Predicate logic (unfolded): ∀ (a b : Real), (GT.gt a 0 ∧ GT.gt b 0) → GT.gt (Real.instMin.min a b) 0
+Transliterated theorem: min a b > 0
+Logical form (Lean): (a b : ℝ) (ha : a > 0) (hb : b > 0) : min a b > 0
+Source: ./StructureOfRealLine/OrderDistanceIntervals.lean#L77
+
+
+
+Name: HalfEpsilonIsPositive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (ε : Real), GT.gt ε 0 → GT.gt (instHDiv.hDiv ε 2) 0
+Predicate logic (unfolded): ∀ (ε : Real), GT.gt ε 0 → GT.gt (instHDiv.hDiv ε 2) 0
+Transliterated theorem: ε / 2 > 0
+Logical form (Lean): (ε : ℝ) (hε : ε > 0) : ε / 2 > 0
+Source: ./StructureOfRealLine/OrderDistanceIntervals.lean#L90
+
+
+
+Name: EpsilonSplitting
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (ε : ℝ) (hε : ε > 0), ε / 2 + ε / 2 = ε
+Predicate logic (unfolded): ∀ (ε : Real), GT.gt ε 0 → instHAdd.hAdd (instHDiv.hDiv ε 2) (instHDiv.hDiv ε 2) = ε
+Transliterated theorem: ε / 2 + ε / 2 = ε
+Logical form (Lean): (ε : ℝ) (hε : ε > 0) : ε / 2 + ε / 2 = ε
+Source: ./StructureOfRealLine/OrderDistanceIntervals.lean#L102
+
+
+
+Name: PositiveMinimumBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (δ a b : ℝ) (h1 : 0 < δ) (h2 : δ ≤ a) (h3 : δ ≤ b), δ ≤ min a b
+Predicate logic (unfolded): ∀ (δ a b : Real), (Real.instLT.lt 0 δ ∧ (Real.instLE.le δ a ∧ Real.instLE.le δ b)) → Real.instLE.le δ (Real.instMin.min a b)
+Transliterated theorem: (0 < δ ∧ δ ≤ a ∧ δ ≤ b) → δ ≤ min a b
+Logical form (Lean): (δ a b : ℝ) (h1 : 0 < δ) (h2 : δ ≤ a) (h3 : δ ≤ b) : δ ≤ min a b
+Source: ./StructureOfRealLine/OrderDistanceIntervals.lean#L115
+
+
+
+Name: ChoosingSmallerPositive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (ε c : ℝ) (hε : ε > 0) (hc : c > 0), ∃ δ, 0 < δ ∧ δ < ε ∧ δ < c
+Predicate logic (unfolded): ∀ (ε c : Real), (GT.gt ε 0 ∧ GT.gt c 0) → Exists fun δ => (Real.instLT.lt 0 δ ∧ (Real.instLT.lt δ ε ∧ Real.instLT.lt δ c))
+Transliterated theorem: ∃ δ, 0 < δ ∧ δ < ε ∧ δ < c
+Logical form (Lean): (ε c : ℝ) (hε : ε > 0) (hc : c > 0) : ∃ δ, 0 < δ ∧ δ < ε ∧ δ < c
+Source: ./StructureOfRealLine/OrderDistanceIntervals.lean#L129
+
+
+
+Name: AbsIsDistanceToZero
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : ℝ), |x| = dist' x 0
+Predicate logic (unfolded): ∀ (x : Real), abs x = LRA.Analysis.StructureOfRealLine.dist' x 0
+Transliterated theorem: |x| = dist' x 0
+Logical form (Lean): (x : ℝ) : |x| = dist' x 0
+Source: ./StructureOfRealLine/OrderDistanceIntervals.lean#L141
+
+
+
+Name: IntervalSetOpsAreOrdinarySetOps
+Kind: Theorem
+State: Sorry
+Predicate logic: forall A B : Set ℝ, A ∪ B = B ∪ A
+Predicate logic (unfolded): ∀ (A B : Set Real), Set.instUnion.union A B = Set.instUnion.union B A
+Transliterated theorem: forall A B : Set ℝ, A ∪ B = B ∪ A
+Logical form (Lean): : forall A B : Set ℝ, A ∪ B = B ∪ A
+Source: ./StructureOfRealLine/OrderDistanceIntervals.lean#L167

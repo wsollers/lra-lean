@@ -9,13 +9,16 @@ theorem IntersectionDistributesOverUnion :
     ∀ A B C : Set, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) := by
   sorry
 
+
 theorem UnionDistributesOverIntersection :
     ∀ A B C : Set, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C) := by
   sorry
 
+
 theorem AbsorptionUnionIntersection :
     ∀ A B : Set, A ∪ (A ∩ B) = A := by
   sorry
+
 
 theorem AbsorptionIntersectionUnion :
     ∀ A B : Set, A ∩ (A ∪ B) = A := by

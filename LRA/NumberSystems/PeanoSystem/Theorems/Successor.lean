@@ -28,8 +28,8 @@ theorem SuccessorInjective
 theorem SuccessorInjective
     (ps : PeanoSystem Element SetObject) :
     forall first second : Element,
-      ps.successor first = ps.successor second -> first = second :=
-  ps.successor_injective
+      ps.successor first = ps.successor second -> first = second := by
+  sorry
 
 /--
 **[Theorem - One Is Not a Successor]**
@@ -52,8 +52,8 @@ theorem OneIsNotSuccessor
 theorem OneIsNotSuccessor
     (ps : PeanoSystem Element SetObject) :
     forall element : Element,
-      ps.successor element ≠ ps.one :=
-  ps.one_not_successor
+      ps.successor element ≠ ps.one := by
+  sorry
 
 /--
 **[Theorem - Successor Preserves Inequality]**
@@ -79,8 +79,7 @@ theorem SuccessorPreservesInequality
     (first_element second_element : Element)
     (elements_not_equal : first_element ≠ second_element) :
     ps.successor first_element ≠ ps.successor second_element := by
-  intro successors_equal
-  exact elements_not_equal (SuccessorInjective ps first_element second_element successors_equal)
+  sorry
 
 /--
 **[Theorem - Successor Inequality Reflection]**
@@ -103,8 +102,7 @@ theorem SuccessorInequalityReflection
     (ps : PeanoSystem Element SetObject)
     (first second : Element) :
     ps.successor first ≠ ps.successor second -> first ≠ second := by
-  intro successors_not_equal elements_equal
-  exact successors_not_equal (congrArg ps.successor elements_equal)
+  sorry
 
 /--
 **[Theorem - Every Element Is Either One or a Successor]**

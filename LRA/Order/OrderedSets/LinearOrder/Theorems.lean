@@ -17,15 +17,15 @@ theorem LinearOrderIsPartialOrder
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
     (relationIsLinearOrder : LinearOrder relation) :
-    PartialOrder relation :=
-  relationIsLinearOrder.1
+    PartialOrder relation := by
+  sorry
 
 /-- Every linear order is total. -/
 theorem LinearOrderIsTotal
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
     (relationIsLinearOrder : LinearOrder relation) :
-    LRA.Relation.Total relation :=
-  relationIsLinearOrder.2
+    LRA.Relation.Total relation := by
+  sorry
 
 end LRA.Order

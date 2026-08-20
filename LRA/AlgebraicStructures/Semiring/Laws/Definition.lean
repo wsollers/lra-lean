@@ -33,13 +33,13 @@ variable {R : Type u}
 
 /-- Zero absorbs multiplication on the left. -/
 theorem ZeroMul [Mul R] [OfNat R 0] [ZeroAbsorbingLaws R] :
-    ∀ a : R, 0 * a = 0 :=
-  ZeroAbsorbingLaws.ZeroMul
+    ∀ a : R, 0 * a = 0 := by
+  sorry
 
 /-- Zero absorbs multiplication on the right. -/
 theorem MulZero [Mul R] [OfNat R 0] [ZeroAbsorbingLaws R] :
-    ∀ a : R, a * 0 = 0 :=
-  ZeroAbsorbingLaws.MulZero
+    ∀ a : R, a * 0 = 0 := by
+  sorry
 
 end Wrappers
 

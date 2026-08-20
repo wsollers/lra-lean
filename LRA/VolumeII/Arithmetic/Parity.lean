@@ -78,7 +78,6 @@ theorem EvenAddEven {a b : N}
     IsEven (a + b) := by
   sorry
 
-
 /-- The sum of an even and an odd natural number is odd.
 
 Mathematical statement (Lean): `theorem EvenAddOdd {a b : N} (a_even : IsEven a) (b_odd : IsOdd b) : IsOdd (a + b)`.
@@ -98,7 +97,6 @@ theorem EvenAddOdd {a b : N}
     (a_even : IsEven a) (b_odd : IsOdd b) :
     IsOdd (a + b) := by
   sorry
-
 
 /-- The sum of an odd and an even natural number is odd.
 
@@ -120,7 +118,6 @@ theorem OddAddEven {a b : N}
     IsOdd (a + b) := by
   sorry
 
-
 /-- The sum of two odd natural numbers is even.
 
 Mathematical statement (Lean): `theorem OddAddOdd {a b : N} (a_odd : IsOdd a) (b_odd : IsOdd b) : IsEven (a + b)`.
@@ -141,7 +138,6 @@ theorem OddAddOdd {a b : N}
     IsEven (a + b) := by
   sorry
 
-
 /-- The square of an even natural number is even.
 
 Mathematical statement (Lean): `theorem SqEvenOfEven {a : N} (a_even : IsEven a) : IsEven (a ^ 2)`.
@@ -159,7 +155,6 @@ theorem SqEvenOfEven {a : N} (a_even : IsEven a) :
 theorem SqEvenOfEven {a : N} (a_even : IsEven a) :
     IsEven (a ^ 2) := by
   sorry
-
 
 /-- The square of an odd natural number is odd.
 
@@ -179,7 +174,6 @@ theorem SqOddOfOdd {a : N} (a_odd : IsOdd a) :
     IsOdd (a ^ 2) := by
   sorry
 
-
 /-- If a square is even, then the original natural number is even.
 
 Mathematical statement (Lean): `theorem EvenOfSqEven {a : N} (square_even : IsEven (a ^ 2)) : IsEven a`.
@@ -197,7 +191,6 @@ theorem EvenOfSqEven {a : N} (square_even : IsEven (a ^ 2)) :
 theorem EvenOfSqEven {a : N} (square_even : IsEven (a ^ 2)) :
     IsEven a := by
   sorry
-
 
 /-- If a square is odd, then the original natural number is odd.
 

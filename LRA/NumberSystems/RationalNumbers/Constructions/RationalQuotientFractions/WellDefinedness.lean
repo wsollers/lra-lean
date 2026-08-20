@@ -31,7 +31,6 @@ theorem representative_operations_respect_equivalence (rational_data : IntegerAn
         (representative_setoid rational_data) (representative_negation rational_data) := by
   sorry
 
-
 /-- Definition 2.5: quotient addition.
 
 Logical form:
@@ -99,7 +98,6 @@ theorem negation_exists (rational_data : IntegerAndPositiveNaturalData) :
           Quotient.mk _ (representative_negation rational_data representative) := by
   sorry
 
-
 /-- Definition 2.7: quotient additive inverse.
 
 Logical form:
@@ -131,7 +129,6 @@ theorem representative_strict_order_respects_equivalence (rational_data : Intege
       (representative_setoid rational_data)
       (representative_strict_order rational_data) := by
   sorry
-
 
 /-- Definition 3.1: rational strict order.
 

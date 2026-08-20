@@ -37,6 +37,7 @@ theorem PartitionBlockContained
       candidate ∈ ambient := by
   sorry
 
+
 theorem EquivalenceClassesCoverAmbient
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject] [HasSeparation Element SetObject]
@@ -48,6 +49,7 @@ theorem EquivalenceClassesCoverAmbient
         element ∈ EquivalenceClass ambient relation representative.1 := by
   sorry
 
+
 theorem EquivalenceClassBlocksNonempty
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject] [HasSeparation Element SetObject]
@@ -58,6 +60,7 @@ theorem EquivalenceClassBlocksNonempty
       ∃ candidate : Element,
         candidate ∈ EquivalenceClass ambient relation representative.1 := by
   sorry
+
 
 theorem EquivalenceClassBlocksDisjointOrEqual
     {Element : Type u} {SetObject : Type v}
