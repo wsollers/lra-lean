@@ -1,8 +1,8 @@
 import LRA.AlgebraicStructures.CommutativeRing.Definition
 import LRA.AlgebraicStructures.CommutativeRing.Interface.Signature.Definition
+import LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.LStructure
+import LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.Theory
 import LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.Model
-import LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.Axioms
-import LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.Satisfaction
 import LRA.AlgebraicStructures.CommutativeRing.Theorems
 import LRA.AlgebraicStructures.CommutativeRing.Characterizations
 import LRA.AlgebraicStructures.CommutativeRing.Consequences
