@@ -1,5 +1,3 @@
-import LRA.EuclideanSpace.Tarski.Signature
-import LRA.EuclideanSpace.Tarski.Model
 import LRA.EuclideanSpace.Tarski.Primitives
 import LRA.EuclideanSpace.Tarski.Axioms
 import LRA.EuclideanSpace.Tarski.Laws
@@ -8,11 +6,11 @@ import LRA.EuclideanSpace.Tarski.Laws
 Aggregate import for the `Tarski` concept: the in-house axiomatic
 realization of Tarski's `{Between, Congruent}` axiomatization of
 `n`-dimensional Euclidean geometry (`E_n`), mirroring `LRA.Set.ZFC`'s own
-`Signature`/`Primitives`/`Axioms`/`Laws` split.
+`Primitives`/`Axioms`/`Laws` split. The generic vocabulary and model
+registration (`TarskiFirstOrderSignature`, `BuildTarskiModel`) are not
+part of this concept -- they are shared, backend-agnostic infrastructure
+and live in `LRA.EuclideanSpace.Interface`.
 
-* `TarskiRelationSymbol` and `TarskiFirstOrderSignature` live in
-  `Tarski/Signature.lean`; `BuildTarskiModel` (a generic model builder,
-  not tied to this concrete realization) lives in `Tarski/Model.lean`.
 * `TarskiPoint`, `TarskiBetween`, `TarskiCongruent` -- the primitive,
   opaque carrier and relations of the in-house axiomatic universe --
   live in `Tarski/Primitives.lean`.

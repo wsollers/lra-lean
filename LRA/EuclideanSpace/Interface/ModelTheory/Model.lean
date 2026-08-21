@@ -1,4 +1,4 @@
-import LRA.EuclideanSpace.Tarski.Signature
+import LRA.EuclideanSpace.Interface.Signature
 import LRA.Logic.Model.Model
 
 namespace LRA.EuclideanSpace
