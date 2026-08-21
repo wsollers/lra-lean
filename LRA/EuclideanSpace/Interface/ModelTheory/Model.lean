@@ -12,7 +12,7 @@ A Euclidean model in the strict model-theoretic sense:
 Earlier code in this repository used `BuildTarskiModel` for step (1),
 because `LRA.Logic.FirstOrder.Model` is the repository's generic name for
 an `L`-structure. That constructor still exists, but now via
-`ModelTheory/Structure.lean` where its role is stated explicitly.
+`ModelTheory/LStructure.lean` where its role is stated explicitly.
 -/
 
 end LRA.EuclideanSpace

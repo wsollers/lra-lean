@@ -1,4 +1,4 @@
-import LRA.EuclideanSpace.Interface.ModelTheory.Structure
+import LRA.EuclideanSpace.Interface.ModelTheory.LStructure
 import LRA.Logic.Theory
 
 namespace LRA.EuclideanSpace
