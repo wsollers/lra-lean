@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures.Group.Laws.Definition
-import LRA.AlgebraicStructures.Group.Interface.ModelTheory.Satisfaction
+import LRA.AlgebraicStructures.Group.Interface.ModelTheory.Model
 
 namespace LRA.AlgebraicStructures
 
