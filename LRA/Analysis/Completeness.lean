@@ -5,6 +5,7 @@ import LRA.Analysis.Completeness.OrderSeparation
 import LRA.Analysis.Completeness.Density
 import LRA.Analysis.Completeness.CompletenessProcesses
 import LRA.Analysis.Completeness.CompletenessEquivalences
+import LRA.Analysis.Completeness.Equivalence
 import LRA.Analysis.Completeness.CompletenessAdditions
 
 /-!
