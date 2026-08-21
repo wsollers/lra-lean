@@ -1,34 +1,30 @@
-import LRA.NumberSystems.PeanoSystem.Interface.Signature.Definition
-import LRA.Operation
-import LRA.AlgebraicStructures.DiscreteInteger.Laws.Definition
+-- LRA/NumberSystems/PeanoSystem/Interface/ModelTheory/Model.lean
+-- The strict model-theoretic structure/theory/model split for Peano system.
+
+import LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.Theory
+import LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.LStructure
 
 namespace LRA.NumberSystems.PeanoSystem.Interface.ModelTheory
 
-universe u
+/-!
+A Peano model in the strict model-theoretic sense:
 
-/-! Law-free model builders for the first-order Peano language. -/
+1. an `L_nat`-structure (`PeanoLStructure`);
+2. the Peano theory (`PeanoTheory`);
+3. a proof that the structure satisfies that theory.
 
-open LRA.NumberSystems.PeanoSystem.Interface.Signature
+The bridge lemma from native `PeanoSystem` data into this logical form is
+still pending.
+-/
 
-structure PeanoSignature where
-  carrier : Type u
-  one : LRA.Operation.NullaryOperation carrier
-  successor : LRA.Operation.UnaryOperation carrier
+/-- A concrete model of the Peano theory: a Henkin model together with a
+proof that it satisfies the full theory. -/
+structure PeanoModel where
+  toHenkinModel : LRA.Logic.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature
+  satisfiesTheory : PeanoTheory toHenkinModel
 
-def BuildPeanoModel
-    (signature : PeanoSignature) :
-    LRA.Logic.FirstOrder.Model PeanoFirstOrderSignature where
-  Domain := signature.carrier
-  domainNonempty := ⟨signature.one⟩
-  interpretFunction
-    | .successor, args => signature.successor (args ⟨0, by decide⟩)
-  interpretRelation := fun RelationSymbol => nomatch RelationSymbol
-  interpretConstant
-    | .one => signature.one
-
-def peanoFirstOrderModel (R : Type u) [OfNat R 1]
-    [LRA.AlgebraicStructures.HasSuccessor R] :
-    LRA.Logic.FirstOrder.Model PeanoFirstOrderSignature :=
-  BuildPeanoModel { carrier := R, one := 1, successor := LRA.AlgebraicStructures.Succ }
+/-- Backward-compatible scaffold name while bridge lemmas are still being
+developed. -/
+abbrev PeanoSatisfaction := PeanoModel
 
 end LRA.NumberSystems.PeanoSystem.Interface.ModelTheory

@@ -15,7 +15,7 @@ open LRA.NumberSystems.IntegerStructure.Interface.Signature
 The inverse, base-relation, and aperiodicity axioms are first-order and are
 stated over any `L_int`-structure. Two-sided induction is a second-order
 schema, exactly as for `PeanoSystem`'s induction axiom, so it is stated over
-a `HenkinModel` instead. See `PeanoSystem.Interface.ModelTheory.Axioms` for
+a `HenkinModel` instead. See `PeanoSystem.Interface.ModelTheory.Theory` for
 the one-sided precedent this mirrors.
 -/
 
