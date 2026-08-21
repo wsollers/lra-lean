@@ -1,4 +1,6 @@
 import LRA.EuclideanSpace.Interface
+import LRA.EuclideanSpace.Tarski
+import LRA.EuclideanSpace.MathlibPoint
 import LRA.EuclideanSpace.RealLine
 
 /-!
@@ -54,11 +56,18 @@ Declarations across all concepts share the flat `LRA.EuclideanSpace`
 namespace (subfolders do not add a namespace layer), so names are
 dimension-qualified where a bare name would otherwise collide.
 
-- `Interface`: the abstract characterization of Euclidean space, via
-  Tarski's `{Between, Congruent}` first-order axiomatization of `E_n`.
-  Currently registers only the vocabulary (`TarskiFirstOrderSignature`)
-  and the shape of a model (`BuildTarskiModel`); the eleven axioms and
-  the standard model are later work.
+- `Interface`: the generic, backend-agnostic characterization of
+  Euclidean space -- law-classes over an arbitrary `Point` type plus
+  `between`/`congruent` relations, mirroring `LRA.Set.Interface`'s
+  `MembershipLaws`. Any concrete realization (`Tarski`, a future
+  Mathlib-backed one) is checked against this, not against each other.
+- `Tarski`: the in-house axiomatic realization -- `TarskiPoint`,
+  `TarskiBetween`, `TarskiCongruent` as primitives, Tarski's eleven
+  axioms about them, and a `Laws.lean` proving they satisfy `Interface`.
+  Mirrors `LRA.Set.ZFC`/`ZFCSet`.
+- `MathlibPoint`: the pragmatic realization built directly from
+  Mathlib's `EuclideanSpace ℝ (Fin n)`, with its own `Laws.lean` proving
+  it too satisfies `Interface`. Mirrors `LRA.Set.PredicateSet`.
 - `RealLine` (Lecture 1): the real continuum, distance, intervals and
   rays, translation/dilation. Points are `ℝ` itself.
 

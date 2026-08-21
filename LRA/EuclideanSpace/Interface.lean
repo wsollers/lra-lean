@@ -1,15 +1,15 @@
-import LRA.EuclideanSpace.Interface.Signature
-import LRA.EuclideanSpace.Interface.Model
+import LRA.EuclideanSpace.Interface.Relations
+import LRA.EuclideanSpace.Interface.Laws
 
 /-!
-Aggregate import for the `Interface` concept: the abstract
-model-theoretic characterization of Euclidean space, via Tarski's
-`{Between, Congruent}` axiomatization of `E_n`. `TarskiRelationSymbol`
-and `TarskiFirstOrderSignature` live in `Interface/Signature.lean`;
-`BuildTarskiModel` lives in `Interface/Model.lean`. The theory (Tarski's
-eleven axioms) and the standard `Point n` model proving them are later
-work -- this concept currently registers only the vocabulary and the
-shape of a model, mirroring how `AlgebraicStructures.OrderedField`'s own
-`Interface/ModelTheory/Axioms.lean` is empty and the real axiom content
-lives in a separate `Laws` layer.
+Aggregate import for the `Interface` concept: the generic,
+backend-agnostic characterization of Euclidean space -- mirroring
+`LRA.Set.Interface`'s role for `LRA.Set.ZFCSet`/`PredicateSet`. `Between`
+and `Congruent` (the capability typeclasses) live in `Interface/
+Relations.lean`; `CongruenceLaws`, `SegmentConstructionLaw`,
+`FiveSegmentLaw`, `BetweennessLaws`, `ParallelLaw`, `ContinuityLaw`, and
+`DimensionLaws` (Tarski's eleven axioms, restated generically) live in
+`Interface/Laws.lean`. A concrete realization registers instances of
+`Between`/`Congruent` for its own `Point` type and proves it satisfies
+these classes -- see `Tarski/Laws.lean`.
 -/
