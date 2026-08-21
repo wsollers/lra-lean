@@ -48,6 +48,56 @@ def DivergesToNegInftyAt (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
 def DivergesToNegInftyAt (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   ∀ M : ℝ, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → f x < M
 
+/-- `f` diverges to `+∞` at `c` from the right — one-sided blow-up, needed since a two-sided blow-up
+can fail even when a vertical asymptote is genuinely present (e.g. `1/x` at `0`, which blows up
+to `+∞` from the right and `-∞` from the left).
+
+Logical form:
+
+```lean
+def DivergesToInftyFromRight (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
+  ∀ M : ℝ, ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → f x > M
+```
+-/
+def DivergesToInftyFromRight (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
+  ∀ M : ℝ, ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → f x > M
+
+/-- `f` diverges to `+∞` at `c` from the left.
+
+Logical form:
+
+```lean
+def DivergesToInftyFromLeft (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
+  ∀ M : ℝ, ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → f x > M
+```
+-/
+def DivergesToInftyFromLeft (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
+  ∀ M : ℝ, ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → f x > M
+
+/-- `f` diverges to `-∞` at `c` from the right.
+
+Logical form:
+
+```lean
+def DivergesToNegInftyFromRight (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
+  ∀ M : ℝ, ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → f x < M
+```
+-/
+def DivergesToNegInftyFromRight (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
+  ∀ M : ℝ, ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → f x < M
+
+/-- `f` diverges to `-∞` at `c` from the left.
+
+Logical form:
+
+```lean
+def DivergesToNegInftyFromLeft (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
+  ∀ M : ℝ, ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → f x < M
+```
+-/
+def DivergesToNegInftyFromLeft (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
+  ∀ M : ℝ, ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → f x < M
+
 /-- `f` has no (finite) limit at `c`: the general non-existence predicate, agnostic to the reason.
 
 Logical form:
