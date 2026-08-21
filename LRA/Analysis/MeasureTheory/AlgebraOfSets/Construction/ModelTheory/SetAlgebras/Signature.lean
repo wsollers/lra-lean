@@ -1,30 +1,99 @@
-import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.SetRings.Signature
+import LRA.Logic
 
 namespace LRA.Logic.ModelTheory.SetAlgebras
 
 /-!
-Source-facing signature for algebras of sets.
-
-The abstract distinguished elements are named `zero` and `one`; concrete
-powerset models will interpret `zero` as the empty set and `one` as the
-ambient universe.
+First-order signature for algebras of sets.
 -/
 
-/-- A set-algebra signature is a set-ring signature with a distinguished `one`
-and a complement operation; equivalently, in powerset models `zero` is `∅`,
-`one` is `U`, `join` is union, `meet` is intersection, and `complement` is set
-complement relative to `U`.
+/-- Function symbols for the set-algebra language `(0, 1, ∪, ∩, complement)`.
 
 Logical form:
 
 ```lean
-structure SetAlgebraSignature extends LRA.Logic.ModelTheory.SetRings.SetRingSignature where
-  one : carrier
-  complement : LRA.Operation.UnaryOperation carrier
+inductive SetAlgebraFunctionSymbol where
+  | join
+  | meet
+  | complement
 ```
 -/
-structure SetAlgebraSignature extends LRA.Logic.ModelTheory.SetRings.SetRingSignature where
-  one : carrier
-  complement : LRA.Operation.UnaryOperation carrier
+inductive SetAlgebraFunctionSymbol where
+  | join
+  | meet
+  | complement
+
+/-- Set algebras have no primitive relation symbols in this language.
+
+Logical form:
+
+```lean
+def SetAlgebraRelationSymbol : Type := Empty
+```
+-/
+def SetAlgebraRelationSymbol : Type := Empty
+
+/-- Constant symbols for the set-algebra language.
+
+Logical form:
+
+```lean
+inductive SetAlgebraConstantSymbol where
+  | zero
+  | one
+```
+-/
+inductive SetAlgebraConstantSymbol where
+  | zero
+  | one
+
+/-- Arity assignment for set-algebra function symbols.
+
+Logical form:
+
+```lean
+def SetAlgebraFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
+  Symbol := SetAlgebraFunctionSymbol
+  arity
+    | .join => 2
+    | .meet => 2
+    | .complement => 1
+```
+-/
+def SetAlgebraFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
+  Symbol := SetAlgebraFunctionSymbol
+  arity
+    | .join => 2
+    | .meet => 2
+    | .complement => 1
+
+/-- Arity assignment for set-algebra relation symbols.
+
+Logical form:
+
+```lean
+def SetAlgebraFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
+  Symbol := SetAlgebraRelationSymbol
+  arity := Empty.elim
+```
+-/
+def SetAlgebraFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
+  Symbol := SetAlgebraRelationSymbol
+  arity := Empty.elim
+
+/-- The first-order set-algebra signature `(0, 1, ∪, ∩, complement)`.
+
+Logical form:
+
+```lean
+def SetAlgebraFirstOrderSignature : LRA.Logic.Signature where
+  Functions := SetAlgebraFirstOrderFunctions
+  Relations := SetAlgebraFirstOrderRelations
+  Constants := SetAlgebraConstantSymbol
+```
+-/
+def SetAlgebraFirstOrderSignature : LRA.Logic.Signature where
+  Functions := SetAlgebraFirstOrderFunctions
+  Relations := SetAlgebraFirstOrderRelations
+  Constants := SetAlgebraConstantSymbol
 
 end LRA.Logic.ModelTheory.SetAlgebras

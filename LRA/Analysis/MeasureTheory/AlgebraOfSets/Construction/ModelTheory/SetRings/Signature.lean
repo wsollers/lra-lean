@@ -1,36 +1,97 @@
-import LRA.UniversalAlgebra.InterpretedOperationBundles
+import LRA.Logic
 
 namespace LRA.Logic.ModelTheory.SetRings
 
 /-!
-Source-facing signature for rings of sets.
-
-The abstract distinguished element is named `zero`; concrete powerset models
-will interpret `zero` as the empty set. A set ring is not required to have a
-distinguished `one`, because the ambient universe need not belong to the ring.
+First-order signature for rings of sets.
 -/
 
-/-- A set-ring signature names the carrier of set-objects, the distinguished
-zero object, and the finite set operations used by rings of sets; equivalently,
-in powerset models `zero` is `∅`, `join` is union, `meet` is intersection,
-`difference` is relative complement, and `add` is symmetric difference.
+/-- Function symbols for the set-ring language `(0, ∪, ∩, \)`.
 
 Logical form:
 
 ```lean
-structure SetRingSignature extends LRA.UniversalAlgebra.InterpretedOperationBundles.CarrierBundle where
-  zero : carrier
-  add : LRA.Operation.BinaryOperation carrier
-  join : LRA.Operation.BinaryOperation carrier
-  meet : LRA.Operation.BinaryOperation carrier
-  difference : LRA.Operation.BinaryOperation carrier
+inductive SetRingFunctionSymbol where
+  | join
+  | meet
+  | difference
 ```
 -/
-structure SetRingSignature extends LRA.UniversalAlgebra.InterpretedOperationBundles.CarrierBundle where
-  zero : carrier
-  add : LRA.Operation.BinaryOperation carrier
-  join : LRA.Operation.BinaryOperation carrier
-  meet : LRA.Operation.BinaryOperation carrier
-  difference : LRA.Operation.BinaryOperation carrier
+inductive SetRingFunctionSymbol where
+  | join
+  | meet
+  | difference
+
+/-- Set rings have no primitive relation symbols in this language.
+
+Logical form:
+
+```lean
+def SetRingRelationSymbol : Type := Empty
+```
+-/
+def SetRingRelationSymbol : Type := Empty
+
+/-- Constant symbols for the set-ring language.
+
+Logical form:
+
+```lean
+inductive SetRingConstantSymbol where
+  | zero
+```
+-/
+inductive SetRingConstantSymbol where
+  | zero
+
+/-- Arity assignment for set-ring function symbols.
+
+Logical form:
+
+```lean
+def SetRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
+  Symbol := SetRingFunctionSymbol
+  arity
+    | .join => 2
+    | .meet => 2
+    | .difference => 2
+```
+-/
+def SetRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
+  Symbol := SetRingFunctionSymbol
+  arity
+    | .join => 2
+    | .meet => 2
+    | .difference => 2
+
+/-- Arity assignment for set-ring relation symbols.
+
+Logical form:
+
+```lean
+def SetRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
+  Symbol := SetRingRelationSymbol
+  arity := Empty.elim
+```
+-/
+def SetRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
+  Symbol := SetRingRelationSymbol
+  arity := Empty.elim
+
+/-- The first-order set-ring signature `(0, ∪, ∩, \)`.
+
+Logical form:
+
+```lean
+def SetRingFirstOrderSignature : LRA.Logic.Signature where
+  Functions := SetRingFirstOrderFunctions
+  Relations := SetRingFirstOrderRelations
+  Constants := SetRingConstantSymbol
+```
+-/
+def SetRingFirstOrderSignature : LRA.Logic.Signature where
+  Functions := SetRingFirstOrderFunctions
+  Relations := SetRingFirstOrderRelations
+  Constants := SetRingConstantSymbol
 
 end LRA.Logic.ModelTheory.SetRings

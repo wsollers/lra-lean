@@ -1,9 +1,9 @@
-import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.SetAlgebras.Language
 import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.SetAlgebras.Signature
+import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.SetAlgebras.ConceptSignature
 
 namespace LRA.Logic.ModelTheory.SetAlgebras
 
-/-- Build a first-order model of the set-algebra language from a set-algebra
+/-- Build a first-order model of the set-algebra signature from a set-algebra
 operation signature. In powerset models, `zero` is `∅`, `one` is `U`, `join`
 is union, `meet` is intersection, and `complement` is relative complement.
 
@@ -11,14 +11,14 @@ Logical form:
 
 ```lean
 def BuildSetAlgebraModel
-    (signature : SetAlgebraSignature) :
-    LRA.Logic.FirstOrder.Model SetAlgebraFirstOrderLanguage where
+    (signature : SetAlgebraConceptSignature) :
+    LRA.Logic.FirstOrder.Model SetAlgebraFirstOrderSignature where
   Domain
 ```
 -/
 def BuildSetAlgebraModel
-    (signature : SetAlgebraSignature) :
-    LRA.Logic.FirstOrder.Model SetAlgebraFirstOrderLanguage where
+    (signature : SetAlgebraConceptSignature) :
+    LRA.Logic.FirstOrder.Model SetAlgebraFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction

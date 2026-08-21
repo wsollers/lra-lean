@@ -1,9 +1,9 @@
-import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.BooleanAlgebras.Language
 import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.BooleanAlgebras.Signature
+import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.BooleanAlgebras.ConceptSignature
 
 namespace LRA.Logic.ModelTheory.BooleanAlgebras
 
-/-- Build a first-order model of the Boolean-algebra language from a Boolean
+/-- Build a first-order model of the Boolean-algebra signature from a Boolean
 algebra operation signature. Powerset models interpret this abstract language
 by `zero = ∅`, `one = U`, `join = ∪`, `meet = ∩`, and `complement = Aᶜ`.
 
@@ -11,14 +11,14 @@ Logical form:
 
 ```lean
 def BuildBooleanAlgebraModel
-    (signature : BooleanAlgebraSignature) :
-    LRA.Logic.FirstOrder.Model BooleanAlgebraFirstOrderLanguage where
+    (signature : BooleanAlgebraConceptSignature) :
+    LRA.Logic.FirstOrder.Model BooleanAlgebraFirstOrderSignature where
   Domain
 ```
 -/
 def BuildBooleanAlgebraModel
-    (signature : BooleanAlgebraSignature) :
-    LRA.Logic.FirstOrder.Model BooleanAlgebraFirstOrderLanguage where
+    (signature : BooleanAlgebraConceptSignature) :
+    LRA.Logic.FirstOrder.Model BooleanAlgebraFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction

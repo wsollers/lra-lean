@@ -1,9 +1,9 @@
-import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.SetRings.Language
 import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.SetRings.Signature
+import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.SetRings.ConceptSignature
 
 namespace LRA.Logic.ModelTheory.SetRings
 
-/-- Build a first-order model of the set-ring language from a set-ring
+/-- Build a first-order model of the set-ring signature from a set-ring
 operation signature. The distinguished constant `zero` is interpreted by the
 signature's `zero`, and the function symbols are interpreted by `join`, `meet`,
 and `difference`.
@@ -12,14 +12,14 @@ Logical form:
 
 ```lean
 def BuildSetRingModel
-    (signature : SetRingSignature) :
-    LRA.Logic.FirstOrder.Model SetRingFirstOrderLanguage where
+    (signature : SetRingConceptSignature) :
+    LRA.Logic.FirstOrder.Model SetRingFirstOrderSignature where
   Domain
 ```
 -/
 def BuildSetRingModel
-    (signature : SetRingSignature) :
-    LRA.Logic.FirstOrder.Model SetRingFirstOrderLanguage where
+    (signature : SetRingConceptSignature) :
+    LRA.Logic.FirstOrder.Model SetRingFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
