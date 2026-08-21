@@ -280,4 +280,29 @@ theorem UniquePointInNestedIntervalsIsEndpointLimit
       Filter.Tendsto b Filter.atTop (nhds x) := by
   sorry
 
+/-- Let `a b : ℕ → ℝ`. Then `IsNestedClosedIntervalFamily a b ↔ Monotone a ∧ Antitone b ∧ ∀ n, a n
+≤ b n`.
+
+Logical form:
+
+```lean
+theorem IsNestedClosedIntervalFamilyIffMonotoneAntitone (a b : ℕ → ℝ) :
+    IsNestedClosedIntervalFamily a b ↔ Monotone a ∧ Antitone b ∧ ∀ n, a n ≤ b n
+```
+-/
+theorem IsNestedClosedIntervalFamilyIffMonotoneAntitone (a b : ℕ → ℝ) :
+    IsNestedClosedIntervalFamily a b ↔ Monotone a ∧ Antitone b ∧ ∀ n, a n ≤ b n := by
+  sorry
+
+/-- The theorem asserts `NestedIntervalProperty ℝ`.
+
+Logical form:
+
+```lean
+theorem RealsSatisfyNestedIntervalProperty : NestedIntervalProperty ℝ
+```
+-/
+theorem RealsSatisfyNestedIntervalProperty : NestedIntervalProperty ℝ := by
+  sorry
+
 end LRA.Analysis.Completeness
