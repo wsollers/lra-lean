@@ -1,5 +1,7 @@
-import LRA.Analysis.MetricSpace.Interop
-import LRA.Analysis.MetricSpace.Definition.Theorems
+import LRA.Analysis.MetricSpace.Analysis
+import LRA.Analysis.MetricSpace.Construction
+import LRA.Analysis.MetricSpace.Definition
+import LRA.Analysis.MetricSpace.Realizations
 import LRA.Analysis.MetricSpace.MetricsAndMetricSpaces
 import LRA.Analysis.MetricSpace.MetricSubspacesAndSuperspaces
 import LRA.Analysis.MetricSpace.MetricIsometry
@@ -9,4 +11,7 @@ import LRA.Analysis.MetricSpace.OpenAndClosedSets
 import LRA.Analysis.MetricSpace.ClosuresBoundariesAndBoundedSets
 import LRA.Analysis.MetricSpace.LimitPointsAndIsolatedPoints
 import LRA.Analysis.MetricSpace.SequentialConvergence
+import LRA.Analysis.MetricSpace.Functions
 import LRA.Analysis.MetricSpace.OpenSets
+import LRA.Analysis.MetricSpace.SetGeometry
+import LRA.Analysis.MetricSpace.SubSuperSpaces
