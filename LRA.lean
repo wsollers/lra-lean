@@ -4,6 +4,8 @@ import LRA.Set
 import LRA.SetSystems
 import LRA.Relation
 import LRA.Function
+import LRA.Carrier
+import LRA.Cardinality
 import LRA.Morphism
 import LRA.Operation
 import LRA.Order
