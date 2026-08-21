@@ -19,11 +19,11 @@ larger.
 Logical form:
 
 ```lean
-def RealLineDistance (a b : ℝ) : ℝ :=
+noncomputable def RealLineDistance (a b : ℝ) : ℝ :=
   if b ≥ a then b - a else a - b
 ```
 -/
-def RealLineDistance (a b : ℝ) : ℝ :=
+noncomputable def RealLineDistance (a b : ℝ) : ℝ :=
   if b ≥ a then b - a else a - b
 
 /-- The open interval `(a, b)`: points strictly between `a` and `b`.
