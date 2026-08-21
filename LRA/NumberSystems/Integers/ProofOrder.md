@@ -48,14 +48,17 @@ from `0` returns to `0`, and two-sided induction. Mirrors
       obligations (a record type).
 - [x] `IntegerStructure.Interface.Signature.Definition` — the FO vocabulary
       (`successor`, `predecessor`, `zero`, `one`, `negativeOne`), written.
-- [x] `IntegerStructure.Interface.ModelTheory.Model` — law-free model
-      builders (`BuildIntegerStructureModel`, `integerStructureFirstOrderModel`),
-      written.
-- [x] `IntegerStructure.Interface.ModelTheory.Axioms` — the axioms as
-      `Prop`s over a `FirstOrder.Model`/`HenkinModel`, written.
-- [ ] `IntegerStructure.Interface.ModelTheory.Satisfaction` — scaffold only;
-      the bridge lemma ("every `IntegerStructure Element SetObject` yields a
-      `HenkinModel` satisfying `IntegerStructureAxioms`") is not yet stated.
+- [x] `IntegerStructure.Interface.ModelTheory.LStructure` — law-free
+      `L_int`-structure builders
+      (`BuildIntegerStructureLStructure`/`BuildIntegerStructureModel`,
+      `integerStructureFirstOrderModel`), written.
+- [x] `IntegerStructure.Interface.ModelTheory.Theory` — the axioms as
+      `Prop`s over an `L_int`-structure/`HenkinModel`, written.
+- [ ] `IntegerStructure.Interface.ModelTheory.Model` — strict
+      structure/theory/model packaging is present, but the bridge lemma
+      ("every `IntegerStructure Element SetObject` yields a `HenkinModel`
+      satisfying `IntegerStructureTheory`/`IntegerStructureAxioms`") is not
+      yet stated.
 - [ ] `IntegerStructure.Categoricity.UniquenessOfIntegerStructuresUpToIsomorphism`
       — any two integer structures are isomorphic via the canonical map
       `0 ↦ 0`, `Sⁿ 0 ↦ Sⁿ 0`, `Pⁿ 0 ↦ Pⁿ 0`. Mirrors

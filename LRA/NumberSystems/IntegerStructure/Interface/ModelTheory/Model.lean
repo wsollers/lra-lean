@@ -1,48 +1,31 @@
 -- LRA/NumberSystems/IntegerStructure/Interface/ModelTheory/Model.lean
--- Law-free model builders for the first-order integer-structure language.
+-- The strict model-theoretic structure/theory/model split for integer structure.
 
-import LRA.NumberSystems.IntegerStructure.Interface.Signature.Definition
-import LRA.Operation
-import LRA.AlgebraicStructures.DiscreteInteger.Laws.Definition
+import LRA.NumberSystems.IntegerStructure.Interface.ModelTheory.Theory
+import LRA.NumberSystems.IntegerStructure.Interface.ModelTheory.LStructure
 
 namespace LRA.NumberSystems.IntegerStructure.Interface.ModelTheory
 
-universe u
+/-!
+An integer model in the strict model-theoretic sense:
 
-open LRA.NumberSystems.IntegerStructure.Interface.Signature
+1. an `L_int`-structure (`IntegerStructureLStructure`);
+2. the integer-structure theory (`IntegerStructureTheory`);
+3. a proof that the structure satisfies that theory.
 
-structure IntegerStructureSignature where
-  carrier : Type u
-  zero : LRA.Operation.NullaryOperation carrier
-  one : LRA.Operation.NullaryOperation carrier
-  negativeOne : LRA.Operation.NullaryOperation carrier
-  successor : LRA.Operation.UnaryOperation carrier
-  predecessor : LRA.Operation.UnaryOperation carrier
+The bridge lemma from native `IntegerStructure` data into this logical form
+is still pending and is tracked in `Integers/ProofOrder.md`.
+-/
 
-def BuildIntegerStructureModel
-    (signature : IntegerStructureSignature) :
-    LRA.Logic.FirstOrder.Model IntegerFirstOrderSignature where
-  Domain := signature.carrier
-  domainNonempty := ⟨signature.zero⟩
-  interpretFunction
-    | .successor, args => signature.successor (args ⟨0, by decide⟩)
-    | .predecessor, args => signature.predecessor (args ⟨0, by decide⟩)
-  interpretRelation := fun RelationSymbol => nomatch RelationSymbol
-  interpretConstant
-    | .zero => signature.zero
-    | .one => signature.one
-    | .negativeOne => signature.negativeOne
+/-- A concrete model of the integer-structure theory: a Henkin model
+together with a proof that it satisfies the full theory. -/
+structure IntegerStructureModel where
+  toHenkinModel : LRA.Logic.SecondOrderMonadic.HenkinModel IntegerFirstOrderSignature
+  satisfiesTheory : IntegerStructureTheory toHenkinModel
 
-def integerStructureFirstOrderModel (R : Type u) [OfNat R 0] [OfNat R 1]
-    [LRA.AlgebraicStructures.HasSuccessor R]
-    [LRA.AlgebraicStructures.HasPredecessor R] (negativeOneValue : R) :
-    LRA.Logic.FirstOrder.Model IntegerFirstOrderSignature :=
-  BuildIntegerStructureModel
-    { carrier := R
-      zero := 0
-      one := 1
-      negativeOne := negativeOneValue
-      successor := LRA.AlgebraicStructures.Succ
-      predecessor := LRA.AlgebraicStructures.Pred }
+/-- Backward-compatible scaffold name while the bridge lemmas are still
+being developed. -/
+abbrev IntegerStructureSatisfaction :=
+  IntegerStructureModel
 
 end LRA.NumberSystems.IntegerStructure.Interface.ModelTheory
