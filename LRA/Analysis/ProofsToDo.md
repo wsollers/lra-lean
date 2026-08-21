@@ -18,7 +18,7 @@ Predicate logic: ∀ {F : Type u_1} [inst : Preorder F] {m : F} {A : Set F},   L
 Predicate logic (unfolded): ∀ {F : Type u_1} [inst : Preorder F] {m : F} {A : Set F}, LRA.Analysis.Bounds.IsMaximum m A → LRA.Analysis.Bounds.IsSupremum m A
 Transliterated theorem: (IsMaximum m A) → IsSupremum m A
 Logical form (Lean): [Preorder F] {m : F} {A : Set F} (maximum_hypothesis : IsMaximum m A) : IsSupremum m A
-Source: ./Bounding/Bounds.lean#L142
+Source: ./Bounds/Bounds.lean#L142
 
 
 
@@ -29,7 +29,7 @@ Predicate logic: ∀ [PartialOrder F] {s t : F} {A : Set F} (left_supremum : IsS
 Predicate logic (unfolded): ∀ {F : Type u_1} [inst : PartialOrder F] {s t : F} {A : Set F}, (LRA.Analysis.Bounds.IsSupremum s A ∧ LRA.Analysis.Bounds.IsSupremum t A) → s = t
 Transliterated theorem: (IsSupremum s A ∧ IsSupremum t A) → s = t
 Logical form (Lean): [PartialOrder F] {s t : F} {A : Set F} (left_supremum : IsSupremum s A) (right_supremum : IsSupremum t A) : s = t
-Source: ./Bounding/Bounds.lean#L157
+Source: ./Bounds/Bounds.lean#L157
 
 
 
@@ -40,7 +40,7 @@ Predicate logic: ∀ [PartialOrder F] {s t : F} {A : Set F} (left_infimum : IsIn
 Predicate logic (unfolded): ∀ {F : Type u_1} [inst : PartialOrder F] {s t : F} {A : Set F}, (LRA.Analysis.Bounds.IsInfimum s A ∧ LRA.Analysis.Bounds.IsInfimum t A) → s = t
 Transliterated theorem: (IsInfimum s A ∧ IsInfimum t A) → s = t
 Logical form (Lean): [PartialOrder F] {s t : F} {A : Set F} (left_infimum : IsInfimum s A) (right_infimum : IsInfimum t A) : s = t
-Source: ./Bounding/Bounds.lean#L173
+Source: ./Bounds/Bounds.lean#L173
 
 
 
@@ -51,7 +51,7 @@ Predicate logic: ∀ [Preorder F] {s : F} {A : Set F}, IsSupremum s A <-> IsLUB 
 Predicate logic (unfolded): ∀ {F : Type u_1} [inst : Preorder F] {s : F} {A : Set F}, LRA.Analysis.Bounds.IsSupremum s A ↔ IsLUB A s
 Transliterated theorem: IsSupremum s A <-> IsLUB A s
 Logical form (Lean): [Preorder F] {s : F} {A : Set F} : IsSupremum s A <-> IsLUB A s
-Source: ./Bounding/Bounds.lean#L187
+Source: ./Bounds/Bounds.lean#L187
 
 
 
@@ -62,7 +62,7 @@ Predicate logic: ∀ {sA sB : F} {A B : Set F} (A_nonempty : A.Nonempty) (B_none
 Predicate logic (unfolded): ∀ {F : Type u_1} [inst : Field F] [inst_1 : LinearOrder F], IsStrictOrderedRing F → ∀ {sA sB : F} {A B : Set F}, (A.Nonempty ∧ (B.Nonempty ∧ (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsSupremum sB B))) → LRA.Analysis.Bounds.IsSupremum (instHAdd.hAdd sA sB) (instHAdd.hAdd A B)
 Transliterated theorem: (∀ A_nonempty ∈ A.Nonempty ∀ B_nonempty ∈ B.Nonempty), (IsSupremum sA A ∧ IsSupremum sB B) → IsSupremum (sA + sB) (A + B)
 Logical form (Lean): {sA sB : F} {A B : Set F} (A_nonempty : A.Nonempty) (B_nonempty : B.Nonempty) (left_supremum : IsSupremum sA A) (right_supremum : IsSupremum sB B) : IsSupremum (sA + sB) (A + B)
-Source: ./Bounding/Bounds.lean#L212
+Source: ./Bounds/Bounds.lean#L212
 
 
 
@@ -73,7 +73,7 @@ Predicate logic: ∀ {iA iB : F} {A B : Set F} (A_nonempty : A.Nonempty) (B_none
 Predicate logic (unfolded): ∀ {F : Type u_1} [inst : Field F] [inst_1 : LinearOrder F], IsStrictOrderedRing F → ∀ {iA iB : F} {A B : Set F}, (A.Nonempty ∧ (B.Nonempty ∧ (LRA.Analysis.Bounds.IsInfimum iA A ∧ LRA.Analysis.Bounds.IsInfimum iB B))) → LRA.Analysis.Bounds.IsInfimum (instHAdd.hAdd iA iB) (instHAdd.hAdd A B)
 Transliterated theorem: (∀ A_nonempty ∈ A.Nonempty ∀ B_nonempty ∈ B.Nonempty), (IsInfimum iA A ∧ IsInfimum iB B) → IsInfimum (iA + iB) (A + B)
 Logical form (Lean): {iA iB : F} {A B : Set F} (A_nonempty : A.Nonempty) (B_nonempty : B.Nonempty) (left_infimum : IsInfimum iA A) (right_infimum : IsInfimum iB B) : IsInfimum (iA + iB) (A + B)
-Source: ./Bounding/Bounds.lean#L235
+Source: ./Bounds/Bounds.lean#L235
 
 
 
@@ -84,7 +84,7 @@ Predicate logic: ∀ {a s : F} {A : Set F} (A_nonempty : A.Nonempty) (scale_posi
 Predicate logic (unfolded): ∀ {F : Type u_1} [inst : Field F] [inst_1 : LinearOrder F], IsStrictOrderedRing F → ∀ {a s : F} {A : Set F}, (A.Nonempty ∧ (instDistribLatticeOfLinearOrder.toSemilatticeInf.lt 0 a ∧ LRA.Analysis.Bounds.IsSupremum s A)) → LRA.Analysis.Bounds.IsSupremum (instHMul.hMul a s) (Set.image (fun x => instHMul.hMul a x) A)
 Transliterated theorem: (∀ A_nonempty ∈ A.Nonempty), (0 < a ∧ IsSupremum s A) → IsSupremum (a * s) ((fun x => a * x) '' A)
 Logical form (Lean): {a s : F} {A : Set F} (A_nonempty : A.Nonempty) (scale_positive : 0 < a) (supremum_hypothesis : IsSupremum s A) : IsSupremum (a * s) ((fun x => a * x) '' A)
-Source: ./Bounding/Bounds.lean#L256
+Source: ./Bounds/Bounds.lean#L256
 
 
 
@@ -95,7 +95,7 @@ Predicate logic: ∀ {s : F} {A : Set F}, IsSupremum s A <-> IsInfimum (-s) (-A)
 Predicate logic (unfolded): ∀ {F : Type u_1} [inst : Field F] [inst_1 : LinearOrder F], IsStrictOrderedRing F → ∀ {s : F} {A : Set F}, LRA.Analysis.Bounds.IsSupremum s A ↔ LRA.Analysis.Bounds.IsInfimum (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg s) (Set.neg.neg A)
 Transliterated theorem: IsSupremum s A <-> IsInfimum (-s) (-A)
 Logical form (Lean): {s : F} {A : Set F} : IsSupremum s A <-> IsInfimum (-s) (-A)
-Source: ./Bounding/Bounds.lean#L272
+Source: ./Bounds/Bounds.lean#L272
 
 
 
@@ -106,7 +106,7 @@ Predicate logic: ∀ {sA sB : F} {A B : Set F} (subset_hypothesis : A ⊆ B) (le
 Predicate logic (unfolded): ∀ {F : Type u_1} [inst : Field F] [inst_1 : LinearOrder F], IsStrictOrderedRing F → ∀ {sA sB : F} {A B : Set F}, (Set.instLE.le A B ∧ (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsSupremum sB B)) → instDistribLatticeOfLinearOrder.toSemilatticeInf.le sA sB
 Transliterated theorem: (IsSupremum sA A ∧ IsSupremum sB B) → sA <= sB
 Logical form (Lean): {sA sB : F} {A B : Set F} (subset_hypothesis : A ⊆ B) (left_supremum : IsSupremum sA A) (right_supremum : IsSupremum sB B) : sA <= sB
-Source: ./Bounding/Bounds.lean#L289
+Source: ./Bounds/Bounds.lean#L289
 
 
 
@@ -117,7 +117,7 @@ Predicate logic: ∀ [AddCommGroup F] [LinearOrder F] [IsOrderedAddMonoid F] (A 
 Predicate logic (unfolded): ∀ {F : Type u_1} [inst : AddCommGroup F] [inst_1 : LinearOrder F], IsOrderedAddMonoid F → ∀ (A : Set F), LRA.Analysis.Bounds.IsBounded A ↔ Exists fun M => (instDistribLatticeOfLinearOrder.toSemilatticeInf.le 0 M ∧ ∀ (a : F), Set.instMembership.mem A a → instDistribLatticeOfLinearOrder.toSemilatticeInf.le (abs a) M)
 Transliterated theorem: IsBounded A ↔ ∃ M, 0 ≤ M ∧ ∀ a ∈ A, |a| ≤ M
 Logical form (Lean): [AddCommGroup F] [LinearOrder F] [IsOrderedAddMonoid F] (A : Set F) : IsBounded A ↔ ∃ M, 0 ≤ M ∧ ∀ a ∈ A, |a| ≤ M
-Source: ./Bounding/ExtremalBounds/UpperLowerBounds.lean#L39
+Source: ./Bounds/Extrema/UpperLowerBounds.lean#L39
 
 
 
@@ -128,7 +128,7 @@ Predicate logic: ∀ {A : Set Real} {c u : Real},   LRA.Analysis.Bounds.IsUpperB
 Predicate logic (unfolded): ∀ {A : Set Real} {c u : Real}, LRA.Analysis.Bounds.IsUpperBound u A → LRA.Analysis.Bounds.IsUpperBound (instHAdd.hAdd u c) (LRA.Analysis.Bounds.Algebra.Displace A c)
 Transliterated theorem: LRA.Analysis.Bounds.IsUpperBound (u + c) (Displace A c)
 Logical form (Lean): {A : Set ℝ} {c u : ℝ} (upperBoundHypothesis : LRA.Analysis.Bounds.IsUpperBound u A) : LRA.Analysis.Bounds.IsUpperBound (u + c) (Displace A c)
-Source: ./Bounding/BoundAlgebra/BoundAlgebra.lean#L60
+Source: ./Bounds/Algebra/Algebra.lean#L60
 
 
 
@@ -139,7 +139,7 @@ Predicate logic: ∀ {A : Set Real} {c l : Real},   LRA.Analysis.Bounds.IsLowerB
 Predicate logic (unfolded): ∀ {A : Set Real} {c l : Real}, LRA.Analysis.Bounds.IsLowerBound l A → LRA.Analysis.Bounds.IsLowerBound (instHAdd.hAdd l c) (LRA.Analysis.Bounds.Algebra.Displace A c)
 Transliterated theorem: LRA.Analysis.Bounds.IsLowerBound (l + c) (Displace A c)
 Logical form (Lean): {A : Set ℝ} {c l : ℝ} (lowerBoundHypothesis : LRA.Analysis.Bounds.IsLowerBound l A) : LRA.Analysis.Bounds.IsLowerBound (l + c) (Displace A c)
-Source: ./Bounding/BoundAlgebra/BoundAlgebra.lean#L79
+Source: ./Bounds/Algebra/Algebra.lean#L79
 
 
 
@@ -150,7 +150,7 @@ Predicate logic: ∀ {A : Set ℝ} {scale u : ℝ} (positiveScale : 0 < scale) (
 Predicate logic (unfolded): ∀ {A : Set Real} {scale u : Real}, (Real.instLT.lt 0 scale ∧ LRA.Analysis.Bounds.IsUpperBound u A) → LRA.Analysis.Bounds.IsUpperBound (instHMul.hMul scale u) (LRA.Analysis.Bounds.Algebra.Dilate A scale)
 Transliterated theorem: (0 < scale) → LRA.Analysis.Bounds.IsUpperBound (scale * u) (Dilate A scale)
 Logical form (Lean): {A : Set ℝ} {scale u : ℝ} (positiveScale : 0 < scale) (upperBoundHypothesis : LRA.Analysis.Bounds.IsUpperBound u A) : LRA.Analysis.Bounds.IsUpperBound (scale * u) (Dilate A scale)
-Source: ./Bounding/BoundAlgebra/BoundAlgebra.lean#L100
+Source: ./Bounds/Algebra/Algebra.lean#L100
 
 
 
@@ -161,7 +161,7 @@ Predicate logic: ∀ {A : Set ℝ} {scale l : ℝ} (positiveScale : 0 < scale) (
 Predicate logic (unfolded): ∀ {A : Set Real} {scale l : Real}, (Real.instLT.lt 0 scale ∧ LRA.Analysis.Bounds.IsLowerBound l A) → LRA.Analysis.Bounds.IsLowerBound (instHMul.hMul scale l) (LRA.Analysis.Bounds.Algebra.Dilate A scale)
 Transliterated theorem: (0 < scale) → LRA.Analysis.Bounds.IsLowerBound (scale * l) (Dilate A scale)
 Logical form (Lean): {A : Set ℝ} {scale l : ℝ} (positiveScale : 0 < scale) (lowerBoundHypothesis : LRA.Analysis.Bounds.IsLowerBound l A) : LRA.Analysis.Bounds.IsLowerBound (scale * l) (Dilate A scale)
-Source: ./Bounding/BoundAlgebra/BoundAlgebra.lean#L123
+Source: ./Bounds/Algebra/Algebra.lean#L123
 
 
 
@@ -172,7 +172,7 @@ Predicate logic: ∀ {A : Set ℝ} {scale l : ℝ} (negativeScale : scale < 0) (
 Predicate logic (unfolded): ∀ {A : Set Real} {scale l : Real}, (Real.instLT.lt scale 0 ∧ LRA.Analysis.Bounds.IsLowerBound l A) → LRA.Analysis.Bounds.IsUpperBound (instHMul.hMul scale l) (LRA.Analysis.Bounds.Algebra.Dilate A scale)
 Transliterated theorem: (scale < 0) → LRA.Analysis.Bounds.IsUpperBound (scale * l) (Dilate A scale)
 Logical form (Lean): {A : Set ℝ} {scale l : ℝ} (negativeScale : scale < 0) (lowerBoundHypothesis : LRA.Analysis.Bounds.IsLowerBound l A) : LRA.Analysis.Bounds.IsUpperBound (scale * l) (Dilate A scale)
-Source: ./Bounding/BoundAlgebra/BoundAlgebra.lean#L146
+Source: ./Bounds/Algebra/Algebra.lean#L146
 
 
 
@@ -183,7 +183,7 @@ Predicate logic: ∀ {A : Set ℝ} {scale u : ℝ} (negativeScale : scale < 0) (
 Predicate logic (unfolded): ∀ {A : Set Real} {scale u : Real}, (Real.instLT.lt scale 0 ∧ LRA.Analysis.Bounds.IsUpperBound u A) → LRA.Analysis.Bounds.IsLowerBound (instHMul.hMul scale u) (LRA.Analysis.Bounds.Algebra.Dilate A scale)
 Transliterated theorem: (scale < 0) → LRA.Analysis.Bounds.IsLowerBound (scale * u) (Dilate A scale)
 Logical form (Lean): {A : Set ℝ} {scale u : ℝ} (negativeScale : scale < 0) (upperBoundHypothesis : LRA.Analysis.Bounds.IsUpperBound u A) : LRA.Analysis.Bounds.IsLowerBound (scale * u) (Dilate A scale)
-Source: ./Bounding/BoundAlgebra/BoundAlgebra.lean#L169
+Source: ./Bounds/Algebra/Algebra.lean#L169
 
 
 
@@ -194,7 +194,7 @@ Predicate logic: ∀ {A : Set ℝ} {b : ℝ}, LRA.Analysis.Bounds.IsUpperBound b
 Predicate logic (unfolded): ∀ {A : Set Real} {b : Real}, LRA.Analysis.Bounds.IsUpperBound b A ↔ LRA.Analysis.Bounds.IsLowerBound (Real.instNeg.neg b) (LRA.Analysis.Bounds.Algebra.Reflect A)
 Transliterated theorem: LRA.Analysis.Bounds.IsUpperBound b A ↔ LRA.Analysis.Bounds.IsLowerBound (-b) (Reflect A)
 Logical form (Lean): {A : Set ℝ} {b : ℝ} : LRA.Analysis.Bounds.IsUpperBound b A ↔ LRA.Analysis.Bounds.IsLowerBound (-b) (Reflect A)
-Source: ./Bounding/BoundAlgebra/BoundAlgebra.lean#L188
+Source: ./Bounds/Algebra/Algebra.lean#L188
 
 
 
@@ -205,7 +205,7 @@ Predicate logic: ∀ {A : Set ℝ} {b : ℝ}, LRA.Analysis.Bounds.IsLowerBound b
 Predicate logic (unfolded): ∀ {A : Set Real} {b : Real}, LRA.Analysis.Bounds.IsLowerBound b A ↔ LRA.Analysis.Bounds.IsUpperBound (Real.instNeg.neg b) (LRA.Analysis.Bounds.Algebra.Reflect A)
 Transliterated theorem: LRA.Analysis.Bounds.IsLowerBound b A ↔ LRA.Analysis.Bounds.IsUpperBound (-b) (Reflect A)
 Logical form (Lean): {A : Set ℝ} {b : ℝ} : LRA.Analysis.Bounds.IsLowerBound b A ↔ LRA.Analysis.Bounds.IsUpperBound (-b) (Reflect A)
-Source: ./Bounding/BoundAlgebra/BoundAlgebra.lean#L204
+Source: ./Bounds/Algebra/Algebra.lean#L204
 
 
 
@@ -216,7 +216,7 @@ Predicate logic: ∀ [LE S] {A B : Set S} {u : S} (leftUpperBound : IsUpperBound
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {u : S}, (LRA.Analysis.Bounds.IsUpperBound u A ∧ LRA.Analysis.Bounds.IsUpperBound u B) → LRA.Analysis.Bounds.IsUpperBound u (Set.instUnion.union A B)
 Transliterated theorem: (IsUpperBound u A ∧ IsUpperBound u B) → IsUpperBound u (A ∪ B)
 Logical form (Lean): [LE S] {A B : Set S} {u : S} (leftUpperBound : IsUpperBound u A) (rightUpperBound : IsUpperBound u B) : IsUpperBound u (A ∪ B)
-Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L26
+Source: ./Bounds/Algebra/SetOperationsAndBounds.lean#L26
 
 
 
@@ -227,7 +227,7 @@ Predicate logic: ∀ [LE S] {A B : Set S} {l : S} (leftLowerBound : IsLowerBound
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {l : S}, (LRA.Analysis.Bounds.IsLowerBound l A ∧ LRA.Analysis.Bounds.IsLowerBound l B) → LRA.Analysis.Bounds.IsLowerBound l (Set.instUnion.union A B)
 Transliterated theorem: (IsLowerBound l A ∧ IsLowerBound l B) → IsLowerBound l (A ∪ B)
 Logical form (Lean): [LE S] {A B : Set S} {l : S} (leftLowerBound : IsLowerBound l A) (rightLowerBound : IsLowerBound l B) : IsLowerBound l (A ∪ B)
-Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L44
+Source: ./Bounds/Algebra/SetOperationsAndBounds.lean#L44
 
 
 
@@ -238,7 +238,7 @@ Predicate logic: ∀ [LE S] {A B : Set S}, IsBoundedAbove (A ∪ B) ↔ IsBounde
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A B : Set S}, LRA.Analysis.Bounds.IsBoundedAbove (Set.instUnion.union A B) ↔ (LRA.Analysis.Bounds.IsBoundedAbove A ∧ LRA.Analysis.Bounds.IsBoundedAbove B)
 Transliterated theorem: IsBoundedAbove (A ∪ B) ↔ IsBoundedAbove A ∧ IsBoundedAbove B
 Logical form (Lean): [LE S] {A B : Set S} : IsBoundedAbove (A ∪ B) ↔ IsBoundedAbove A ∧ IsBoundedAbove B
-Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L60
+Source: ./Bounds/Algebra/SetOperationsAndBounds.lean#L60
 
 
 
@@ -249,7 +249,7 @@ Predicate logic: ∀ [LE S] {A B : Set S}, IsBoundedBelow (A ∪ B) ↔ IsBounde
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A B : Set S}, LRA.Analysis.Bounds.IsBoundedBelow (Set.instUnion.union A B) ↔ (LRA.Analysis.Bounds.IsBoundedBelow A ∧ LRA.Analysis.Bounds.IsBoundedBelow B)
 Transliterated theorem: IsBoundedBelow (A ∪ B) ↔ IsBoundedBelow A ∧ IsBoundedBelow B
 Logical form (Lean): [LE S] {A B : Set S} : IsBoundedBelow (A ∪ B) ↔ IsBoundedBelow A ∧ IsBoundedBelow B
-Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L74
+Source: ./Bounds/Algebra/SetOperationsAndBounds.lean#L74
 
 
 
@@ -260,7 +260,7 @@ Predicate logic: ∀ [LE S] {A B : Set S}, IsBounded (A ∪ B) ↔ IsBounded A �
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A B : Set S}, LRA.Analysis.Bounds.IsBounded (Set.instUnion.union A B) ↔ (LRA.Analysis.Bounds.IsBounded A ∧ LRA.Analysis.Bounds.IsBounded B)
 Transliterated theorem: IsBounded (A ∪ B) ↔ IsBounded A ∧ IsBounded B
 Logical form (Lean): [LE S] {A B : Set S} : IsBounded (A ∪ B) ↔ IsBounded A ∧ IsBounded B
-Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L87
+Source: ./Bounds/Algebra/SetOperationsAndBounds.lean#L87
 
 
 
@@ -271,7 +271,7 @@ Predicate logic: ∀ [Preorder S] {C A : Set S} {u : S} (subsetHypothesis : C �
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {C A : Set S} {u : S}, (Set.instLE.le C A ∧ LRA.Analysis.Bounds.IsUpperBound u A) → LRA.Analysis.Bounds.IsUpperBound u C
 Transliterated theorem: (IsUpperBound u A) → IsUpperBound u C
 Logical form (Lean): [Preorder S] {C A : Set S} {u : S} (subsetHypothesis : C ⊆ A) (upperBoundHypothesis : IsUpperBound u A) : IsUpperBound u C
-Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L103
+Source: ./Bounds/Algebra/SetOperationsAndBounds.lean#L103
 
 
 
@@ -282,7 +282,7 @@ Predicate logic: ∀ [Preorder S] {C A : Set S} {l : S} (subsetHypothesis : C �
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {C A : Set S} {l : S}, (Set.instLE.le C A ∧ LRA.Analysis.Bounds.IsLowerBound l A) → LRA.Analysis.Bounds.IsLowerBound l C
 Transliterated theorem: (IsLowerBound l A) → IsLowerBound l C
 Logical form (Lean): [Preorder S] {C A : Set S} {l : S} (subsetHypothesis : C ⊆ A) (lowerBoundHypothesis : IsLowerBound l A) : IsLowerBound l C
-Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L121
+Source: ./Bounds/Algebra/SetOperationsAndBounds.lean#L121
 
 
 
@@ -293,7 +293,7 @@ Predicate logic: ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {u : S},   LRA.A
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {u : S}, LRA.Analysis.Bounds.IsUpperBound u A → LRA.Analysis.Bounds.IsUpperBound u (Set.instInter.inter A B)
 Transliterated theorem: (IsUpperBound u A) → IsUpperBound u (A ∩ B)
 Logical form (Lean): [LE S] {A B : Set S} {u : S} (upperBoundHypothesis : IsUpperBound u A) : IsUpperBound u (A ∩ B)
-Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L138
+Source: ./Bounds/Algebra/SetOperationsAndBounds.lean#L138
 
 
 
@@ -304,7 +304,7 @@ Predicate logic: ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {l : S},   LRA.A
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {l : S}, LRA.Analysis.Bounds.IsLowerBound l A → LRA.Analysis.Bounds.IsLowerBound l (Set.instInter.inter A B)
 Transliterated theorem: (IsLowerBound l A) → IsLowerBound l (A ∩ B)
 Logical form (Lean): [LE S] {A B : Set S} {l : S} (lowerBoundHypothesis : IsLowerBound l A) : IsLowerBound l (A ∩ B)
-Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L154
+Source: ./Bounds/Algebra/SetOperationsAndBounds.lean#L154
 
 
 
@@ -315,7 +315,7 @@ Predicate logic: ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {u : S},   LRA.A
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {u : S}, LRA.Analysis.Bounds.IsUpperBound u A → LRA.Analysis.Bounds.IsUpperBound u (Set.instSDiff.sdiff A B)
 Transliterated theorem: (IsUpperBound u A) → IsUpperBound u (A \ B)
 Logical form (Lean): [LE S] {A B : Set S} {u : S} (upperBoundHypothesis : IsUpperBound u A) : IsUpperBound u (A \ B)
-Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L170
+Source: ./Bounds/Algebra/SetOperationsAndBounds.lean#L170
 
 
 
@@ -326,7 +326,7 @@ Predicate logic: ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {l : S},   LRA.A
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {l : S}, LRA.Analysis.Bounds.IsLowerBound l A → LRA.Analysis.Bounds.IsLowerBound l (Set.instSDiff.sdiff A B)
 Transliterated theorem: (IsLowerBound l A) → IsLowerBound l (A \ B)
 Logical form (Lean): [LE S] {A B : Set S} {l : S} (lowerBoundHypothesis : IsLowerBound l A) : IsLowerBound l (A \ B)
-Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L186
+Source: ./Bounds/Algebra/SetOperationsAndBounds.lean#L186
 
 
 
@@ -337,7 +337,7 @@ Predicate logic: ∀ {S : Type u_1} [inst : LE S] {A T : Set S} {u : S},   LRA.A
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A T : Set S} {u : S}, LRA.Analysis.Bounds.IsUpperBound u T → LRA.Analysis.Bounds.IsUpperBound u (Set.instSDiff.sdiff T A)
 Transliterated theorem: (IsUpperBound u T) → IsUpperBound u (T \ A)
 Logical form (Lean): [LE S] {A T : Set S} {u : S} (upperBoundHypothesis : IsUpperBound u T) : IsUpperBound u (T \ A)
-Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L202
+Source: ./Bounds/Algebra/SetOperationsAndBounds.lean#L202
 
 
 
@@ -348,7 +348,7 @@ Predicate logic: ∀ {S : Type u_1} [inst : LE S] {A T : Set S} {l : S},   LRA.A
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : LE S] {A T : Set S} {l : S}, LRA.Analysis.Bounds.IsLowerBound l T → LRA.Analysis.Bounds.IsLowerBound l (Set.instSDiff.sdiff T A)
 Transliterated theorem: (IsLowerBound l T) → IsLowerBound l (T \ A)
 Logical form (Lean): [LE S] {A T : Set S} {l : S} (lowerBoundHypothesis : IsLowerBound l T) : IsLowerBound l (T \ A)
-Source: ./Bounding/BoundAlgebra/SetOperationsAndBounds.lean#L218
+Source: ./Bounds/Algebra/SetOperationsAndBounds.lean#L218
 
 
 
@@ -359,7 +359,7 @@ Predicate logic: ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {s : S},   L
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {s : S}, LRA.Analysis.Bounds.IsSupremum s A → LRA.Analysis.Bounds.IsUpperBound s A
 Transliterated theorem: (IsSupremum s A) → IsUpperBound s A
 Logical form (Lean): [Preorder S] {A : Set S} {s : S} (supremumHypothesis : IsSupremum s A) : IsUpperBound s A
-Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L25
+Source: ./Bounds/Extrema/SupremaInfima.lean#L25
 
 
 
@@ -370,7 +370,7 @@ Predicate logic: ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {i : S},   L
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {i : S}, LRA.Analysis.Bounds.IsInfimum i A → LRA.Analysis.Bounds.IsLowerBound i A
 Transliterated theorem: (IsInfimum i A) → IsLowerBound i A
 Logical form (Lean): [Preorder S] {A : Set S} {i : S} (infimumHypothesis : IsInfimum i A) : IsLowerBound i A
-Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L39
+Source: ./Bounds/Extrema/SupremaInfima.lean#L39
 
 
 
@@ -381,7 +381,7 @@ Predicate logic: ∀ [Preorder S] {A B : Set S} {u : S} (subsetHypothesis : A �
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {A B : Set S} {u : S}, (Set.instLE.le A B ∧ LRA.Analysis.Bounds.IsUpperBound u B) → LRA.Analysis.Bounds.IsUpperBound u A
 Transliterated theorem: (IsUpperBound u B) → IsUpperBound u A
 Logical form (Lean): [Preorder S] {A B : Set S} {u : S} (subsetHypothesis : A ⊆ B) (upperBoundHypothesis : IsUpperBound u B) : IsUpperBound u A
-Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L54
+Source: ./Bounds/Extrema/SupremaInfima.lean#L54
 
 
 
@@ -392,7 +392,7 @@ Predicate logic: ∀ [Preorder S] {A B : Set S} {l : S} (subsetHypothesis : A �
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {A B : Set S} {l : S}, (Set.instLE.le A B ∧ LRA.Analysis.Bounds.IsLowerBound l B) → LRA.Analysis.Bounds.IsLowerBound l A
 Transliterated theorem: (IsLowerBound l B) → IsLowerBound l A
 Logical form (Lean): [Preorder S] {A B : Set S} {l : S} (subsetHypothesis : A ⊆ B) (lowerBoundHypothesis : IsLowerBound l B) : IsLowerBound l A
-Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L70
+Source: ./Bounds/Extrema/SupremaInfima.lean#L70
 
 
 
@@ -403,7 +403,7 @@ Predicate logic: ∀ [PartialOrder S] {A B : Set S} {sA sB : S} (subsetHypothesi
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A B : Set S} {sA sB : S}, (Set.instLE.le A B ∧ (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsSupremum sB B)) → inst.le sA sB
 Transliterated theorem: (IsSupremum sA A ∧ IsSupremum sB B) → sA ≤ sB
 Logical form (Lean): [PartialOrder S] {A B : Set S} {sA sB : S} (subsetHypothesis : A ⊆ B) (leftSupremum : IsSupremum sA A) (rightSupremum : IsSupremum sB B) : sA ≤ sB
-Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L88
+Source: ./Bounds/Extrema/SupremaInfima.lean#L88
 
 
 
@@ -414,7 +414,7 @@ Predicate logic: ∀ [PartialOrder S] {A B : Set S} {iA iB : S} (subsetHypothesi
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A B : Set S} {iA iB : S}, (Set.instLE.le A B ∧ (LRA.Analysis.Bounds.IsInfimum iA A ∧ LRA.Analysis.Bounds.IsInfimum iB B)) → inst.le iB iA
 Transliterated theorem: (IsInfimum iA A ∧ IsInfimum iB B) → iB ≤ iA
 Logical form (Lean): [PartialOrder S] {A B : Set S} {iA iB : S} (subsetHypothesis : A ⊆ B) (leftInfimum : IsInfimum iA A) (rightInfimum : IsInfimum iB B) : iB ≤ iA
-Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L108
+Source: ./Bounds/Extrema/SupremaInfima.lean#L108
 
 
 
@@ -425,7 +425,7 @@ Predicate logic: ∀ [PartialOrder S] {A : Set S} {s u : S} (supremumHypothesis 
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {s u : S}, LRA.Analysis.Bounds.IsSupremum s A → LRA.Analysis.Bounds.IsUpperBound u A ↔ inst.le s u
 Transliterated theorem: (IsSupremum s A) → IsUpperBound u A ↔ s ≤ u
 Logical form (Lean): [PartialOrder S] {A : Set S} {s u : S} (supremumHypothesis : IsSupremum s A) : IsUpperBound u A ↔ s ≤ u
-Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L126
+Source: ./Bounds/Extrema/SupremaInfima.lean#L126
 
 
 
@@ -436,7 +436,7 @@ Predicate logic: ∀ [PartialOrder S] {A : Set S} {i l : S} (infimumHypothesis :
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {i l : S}, LRA.Analysis.Bounds.IsInfimum i A → LRA.Analysis.Bounds.IsLowerBound l A ↔ inst.le l i
 Transliterated theorem: (IsInfimum i A) → IsLowerBound l A ↔ l ≤ i
 Logical form (Lean): [PartialOrder S] {A : Set S} {i l : S} (infimumHypothesis : IsInfimum i A) : IsLowerBound l A ↔ l ≤ i
-Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L142
+Source: ./Bounds/Extrema/SupremaInfima.lean#L142
 
 
 
@@ -447,7 +447,7 @@ Predicate logic: ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {s : S},   L
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {s : S}, LRA.Analysis.Bounds.IsSupremum s A → ∀ (x : S), Set.instMembership.mem A x → inst.le x s
 Transliterated theorem: (IsSupremum s A) → ∀ x ∈ A, x ≤ s
 Logical form (Lean): [Preorder S] {A : Set S} {s : S} (supremumHypothesis : IsSupremum s A) : ∀ x ∈ A, x ≤ s
-Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L158
+Source: ./Bounds/Extrema/SupremaInfima.lean#L158
 
 
 
@@ -458,7 +458,7 @@ Predicate logic: ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {i : S},   L
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {i : S}, LRA.Analysis.Bounds.IsInfimum i A → ∀ (x : S), Set.instMembership.mem A x → inst.le i x
 Transliterated theorem: (IsInfimum i A) → ∀ x ∈ A, i ≤ x
 Logical form (Lean): [Preorder S] {A : Set S} {i : S} (infimumHypothesis : IsInfimum i A) : ∀ x ∈ A, i ≤ x
-Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L174
+Source: ./Bounds/Extrema/SupremaInfima.lean#L174
 
 
 
@@ -469,7 +469,7 @@ Predicate logic: ∀ [PartialOrder S] {A : Set S} {i s : S} (infimumHypothesis :
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {i s : S}, (LRA.Analysis.Bounds.IsInfimum i A ∧ LRA.Analysis.Bounds.IsSupremum s A) → inst.le i s
 Transliterated theorem: (IsInfimum i A ∧ IsSupremum s A) → i ≤ s
 Logical form (Lean): [PartialOrder S] {A : Set S} {i s : S} (infimumHypothesis : IsInfimum i A) (supremumHypothesis : IsSupremum s A) : i ≤ s
-Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L190
+Source: ./Bounds/Extrema/SupremaInfima.lean#L190
 
 
 
@@ -480,7 +480,7 @@ Predicate logic: ∃ (A : Set ℝ) (s : ℝ), A.Nonempty ∧ IsSupremum s A ∧ 
 Predicate logic (unfolded): Exists fun A => Exists fun s => (A.Nonempty ∧ (LRA.Analysis.Bounds.IsSupremum s A ∧ ¬ Set.instMembership.mem A s))
 Transliterated theorem: ∃ A ∈ Set ℝ s ∈ ℝ, A.Nonempty ∧ IsSupremum s A ∧ s ∉ A
 Logical form (Lean): : ∃ (A : Set ℝ) (s : ℝ), A.Nonempty ∧ IsSupremum s A ∧ s ∉ A
-Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L204
+Source: ./Bounds/Extrema/SupremaInfima.lean#L204
 
 
 
@@ -491,7 +491,7 @@ Predicate logic: ∃ (A : Set ℝ) (i : ℝ), A.Nonempty ∧ IsInfimum i A ∧ i
 Predicate logic (unfolded): Exists fun A => Exists fun i => (A.Nonempty ∧ (LRA.Analysis.Bounds.IsInfimum i A ∧ ¬ Set.instMembership.mem A i))
 Transliterated theorem: ∃ A ∈ Set ℝ i ∈ ℝ, A.Nonempty ∧ IsInfimum i A ∧ i ∉ A
 Logical form (Lean): : ∃ (A : Set ℝ) (i : ℝ), A.Nonempty ∧ IsInfimum i A ∧ i ∉ A
-Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L217
+Source: ./Bounds/Extrema/SupremaInfima.lean#L217
 
 
 
@@ -502,7 +502,7 @@ Predicate logic: ∀ [PartialOrder S] {A B : Set S} {sA sB : S} (leftSupremum : 
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A B : Set S} {sA sB : S}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ (LRA.Analysis.Bounds.IsSupremum sB B ∧ ∀ (a : S), Set.instMembership.mem A a → Exists fun b => (Set.instMembership.mem B b ∧ inst.le a b))) → inst.le sA sB
 Transliterated theorem: (IsSupremum sA A ∧ IsSupremum sB B ∧ ∀ a ∈ A, ∃ b ∈ B, a ≤ b) → sA ≤ sB
 Logical form (Lean): [PartialOrder S] {A B : Set S} {sA sB : S} (leftSupremum : IsSupremum sA A) (rightSupremum : IsSupremum sB B) (dominationHypothesis : ∀ a ∈ A, ∃ b ∈ B, a ≤ b) : sA ≤ sB
-Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L234
+Source: ./Bounds/Extrema/SupremaInfima.lean#L234
 
 
 
@@ -513,7 +513,7 @@ Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedAbo
 Predicate logic (unfolded): ∀ {A : Set Real}, (A.Nonempty ∧ Exists fun u => LRA.Analysis.Bounds.IsUpperBound u A) → ExistsUnique fun s => LRA.Analysis.Bounds.IsSupremum s A
 Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (∃ u, IsUpperBound u A) → ∃! s : ℝ, IsSupremum s A
 Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedAboveHypothesis : ∃ u, IsUpperBound u A) : ∃! s : ℝ, IsSupremum s A
-Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L252
+Source: ./Bounds/Extrema/SupremaInfima.lean#L252
 
 
 
@@ -524,7 +524,7 @@ Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedBel
 Predicate logic (unfolded): ∀ {A : Set Real}, (A.Nonempty ∧ Exists fun l => LRA.Analysis.Bounds.IsLowerBound l A) → ExistsUnique fun i => LRA.Analysis.Bounds.IsInfimum i A
 Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (∃ l, IsLowerBound l A) → ∃! i : ℝ, IsInfimum i A
 Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedBelowHypothesis : ∃ l, IsLowerBound l A) : ∃! i : ℝ, IsInfimum i A
-Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L270
+Source: ./Bounds/Extrema/SupremaInfima.lean#L270
 
 
 
@@ -535,7 +535,7 @@ Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedHyp
 Predicate logic (unfolded): ∀ {A : Set Real}, (A.Nonempty ∧ LRA.Analysis.Bounds.IsBounded A) → (ExistsUnique fun s => LRA.Analysis.Bounds.IsSupremum s A ∧ ExistsUnique fun i => LRA.Analysis.Bounds.IsInfimum i A)
 Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (IsBounded A) → ∃! s ∈ ℝ, IsSupremum s A ∧ ∃! i ∈ ℝ, IsInfimum i A
 Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedHypothesis : IsBounded A) : (∃! s : ℝ, IsSupremum s A) ∧ (∃! i : ℝ, IsInfimum i A)
-Source: ./Bounding/ExtremalBounds/SupremaInfima.lean#L288
+Source: ./Bounds/Extrema/SupremaInfima.lean#L288
 
 
 
@@ -546,7 +546,7 @@ Predicate logic: ∀ {A : Set Real},   A.Nonempty →     ∀ {s : Real},       
 Predicate logic (unfolded): ∀ {A : Set Real}, A.Nonempty → ∀ {s : Real}, LRA.Analysis.Bounds.IsSupremum s A → ∀ (c : Real), LRA.Analysis.Bounds.IsSupremum (instHAdd.hAdd s c) (instHAdd.hAdd A (Set.instSingletonSet.singleton c))
 Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (IsSupremum s A) → IsSupremum (s + c) (A + {c})
 Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {s : ℝ} (supremumHypothesis : IsSupremum s A) (c : ℝ) : IsSupremum (s + c) (A + {c})
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L106
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L106
 
 
 
@@ -557,7 +557,7 @@ Predicate logic: ∀ {A : Set Real},   A.Nonempty →     ∀ {i : Real},       
 Predicate logic (unfolded): ∀ {A : Set Real}, A.Nonempty → ∀ {i : Real}, LRA.Analysis.Bounds.IsInfimum i A → ∀ (c : Real), LRA.Analysis.Bounds.IsInfimum (instHAdd.hAdd i c) (instHAdd.hAdd A (Set.instSingletonSet.singleton c))
 Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (IsInfimum i A) → IsInfimum (i + c) (A + {c})
 Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {i : ℝ} (infimumHypothesis : IsInfimum i A) (c : ℝ) : IsInfimum (i + c) (A + {c})
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L124
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L124
 
 
 
@@ -568,7 +568,7 @@ Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {s scale : 
 Predicate logic (unfolded): ∀ {A : Set Real}, A.Nonempty → ∀ {s scale : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ GT.gt scale 0) → LRA.Analysis.Bounds.IsSupremum (instHMul.hMul scale s) (LRA.Analysis.Bounds.Algebra.ScalarImage scale A)
 Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (IsSupremum s A) → IsSupremum (scale * s) (ScalarImage scale A)
 Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {s scale : ℝ} (supremumHypothesis : IsSupremum s A) (positiveScaleHypothesis : scale > 0) : IsSupremum (scale * s) (ScalarImage scale A)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L143
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L143
 
 
 
@@ -579,7 +579,7 @@ Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {i scale : 
 Predicate logic (unfolded): ∀ {A : Set Real}, A.Nonempty → ∀ {i scale : Real}, (LRA.Analysis.Bounds.IsInfimum i A ∧ GT.gt scale 0) → LRA.Analysis.Bounds.IsInfimum (instHMul.hMul scale i) (LRA.Analysis.Bounds.Algebra.ScalarImage scale A)
 Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (IsInfimum i A) → IsInfimum (scale * i) (ScalarImage scale A)
 Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {i scale : ℝ} (infimumHypothesis : IsInfimum i A) (positiveScaleHypothesis : scale > 0) : IsInfimum (scale * i) (ScalarImage scale A)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L163
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L163
 
 
 
@@ -590,7 +590,7 @@ Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {i scale : 
 Predicate logic (unfolded): ∀ {A : Set Real}, A.Nonempty → ∀ {i scale : Real}, (LRA.Analysis.Bounds.IsInfimum i A ∧ Real.instLT.lt scale 0) → LRA.Analysis.Bounds.IsSupremum (instHMul.hMul scale i) (LRA.Analysis.Bounds.Algebra.ScalarImage scale A)
 Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (IsInfimum i A ∧ scale < 0) → IsSupremum (scale * i) (ScalarImage scale A)
 Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {i scale : ℝ} (infimumHypothesis : IsInfimum i A) (negativeScaleHypothesis : scale < 0) : IsSupremum (scale * i) (ScalarImage scale A)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L183
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L183
 
 
 
@@ -601,7 +601,7 @@ Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {s scale : 
 Predicate logic (unfolded): ∀ {A : Set Real}, A.Nonempty → ∀ {s scale : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ Real.instLT.lt scale 0) → LRA.Analysis.Bounds.IsInfimum (instHMul.hMul scale s) (LRA.Analysis.Bounds.Algebra.ScalarImage scale A)
 Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (IsSupremum s A ∧ scale < 0) → IsInfimum (scale * s) (ScalarImage scale A)
 Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {s scale : ℝ} (supremumHypothesis : IsSupremum s A) (negativeScaleHypothesis : scale < 0) : IsInfimum (scale * s) (ScalarImage scale A)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L203
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L203
 
 
 
@@ -612,7 +612,7 @@ Predicate logic: ∀ {A : Set Real},   A.Nonempty →     ∀ {i : Real},       
 Predicate logic (unfolded): ∀ {A : Set Real}, A.Nonempty → ∀ {i : Real}, LRA.Analysis.Bounds.IsInfimum i A → LRA.Analysis.Bounds.IsSupremum (Real.instNeg.neg i) (Set.neg.neg A)
 Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (IsInfimum i A) → IsSupremum (-i) (-A)
 Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {i : ℝ} (infimumHypothesis : IsInfimum i A) : IsSupremum (-i) (-A)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L222
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L222
 
 
 
@@ -623,7 +623,7 @@ Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (righ
 Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsSupremum sB B) → LRA.Analysis.Bounds.IsSupremum (instHAdd.hAdd sA sB) (instHAdd.hAdd A B)
 Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsSupremum sA A ∧ IsSupremum sB B) → IsSupremum (sA + sB) (A + B)
 Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (rightSupremumHypothesis : IsSupremum sB B) : IsSupremum (sA + sB) (A + B)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L244
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L244
 
 
 
@@ -634,7 +634,7 @@ Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (righ
 Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {iA iB : Real}, (LRA.Analysis.Bounds.IsInfimum iA A ∧ LRA.Analysis.Bounds.IsInfimum iB B) → LRA.Analysis.Bounds.IsInfimum (instHAdd.hAdd iA iB) (instHAdd.hAdd A B)
 Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsInfimum iA A ∧ IsInfimum iB B) → IsInfimum (iA + iB) (A + B)
 Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {iA iB : ℝ} (leftInfimumHypothesis : IsInfimum iA A) (rightInfimumHypothesis : IsInfimum iB B) : IsInfimum (iA + iB) (A + B)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L269
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L269
 
 
 
@@ -645,7 +645,7 @@ Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (righ
 Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA iB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsInfimum iB B) → LRA.Analysis.Bounds.IsSupremum (instHSub.hSub sA iB) (instHSub.hSub A B)
 Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsSupremum sA A ∧ IsInfimum iB B) → IsSupremum (sA - iB) (A - B)
 Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA iB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (rightInfimumHypothesis : IsInfimum iB B) : IsSupremum (sA - iB) (A - B)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L294
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L294
 
 
 
@@ -656,7 +656,7 @@ Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (righ
 Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {iA sB : Real}, (LRA.Analysis.Bounds.IsInfimum iA A ∧ LRA.Analysis.Bounds.IsSupremum sB B) → LRA.Analysis.Bounds.IsInfimum (instHSub.hSub iA sB) (instHSub.hSub A B)
 Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsInfimum iA A ∧ IsSupremum sB B) → IsInfimum (iA - sB) (A - B)
 Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {iA sB : ℝ} (leftInfimumHypothesis : IsInfimum iA A) (rightSupremumHypothesis : IsSupremum sB B) : IsInfimum (iA - sB) (A - B)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L319
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L319
 
 
 
@@ -667,7 +667,7 @@ Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedHyp
 Predicate logic (unfolded): ∀ {A : Set Real}, (A.Nonempty ∧ LRA.Analysis.Bounds.IsBounded A) → ∀ (scale : Real) {s i : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ LRA.Analysis.Bounds.IsInfimum i A) → LRA.Analysis.Bounds.IsSupremum (ite (GT.gt scale 0) (instHMul.hMul scale s) (ite (scale = 0)0 (instHMul.hMul scale i))) (LRA.Analysis.Bounds.Algebra.ScalarImage scale A)
 Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (IsBounded A ∧ IsSupremum s A ∧ IsInfimum i A) → IsSupremum (if scale > 0 then scale * s else if scale = 0 then 0 else scale * i) (ScalarImage scale A)
 Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedHypothesis : IsBounded A) (scale : ℝ) {s i : ℝ} (supremumHypothesis : IsSupremum s A) (infimumHypothesis : IsInfimum i A) : IsSupremum (if scale > 0 then scale * s else if scale = 0 then 0 else scale * i) (ScalarImage scale A)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L347
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L347
 
 
 
@@ -678,7 +678,7 @@ Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {s i : ℝ}
 Predicate logic (unfolded): ∀ {A : Set Real}, A.Nonempty → ∀ {s i : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ LRA.Analysis.Bounds.IsInfimum i A) → LRA.Analysis.Bounds.IsSupremum (Real.instMax.max (abs i) (abs s)) (Set.image abs A)
 Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (IsSupremum s A ∧ IsInfimum i A) → IsSupremum (max |i| |s|) (abs '' A)
 Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) {s i : ℝ} (supremumHypothesis : IsSupremum s A) (infimumHypothesis : IsInfimum i A) : IsSupremum (max |i| |s|) (abs '' A)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L372
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L372
 
 
 
@@ -689,7 +689,7 @@ Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedHyp
 Predicate logic (unfolded): ∀ {A : Set Real}, (A.Nonempty ∧ LRA.Analysis.Bounds.IsBounded A) → ∀ {s i : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ (LRA.Analysis.Bounds.IsInfimum i A ∧ Or (Real.instLT.lt 0 i) (Real.instLT.lt s 0))) → LRA.Analysis.Bounds.IsSupremum (Real.instInv.inv i) (LRA.Analysis.Bounds.Algebra.Reciprocal A)
 Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (IsBounded A ∧ IsSupremum s A ∧ IsInfimum i A ∧ 0 < i ∨ s < 0) → IsSupremum i⁻¹ (Reciprocal A)
 Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedHypothesis : IsBounded A) {s i : ℝ} (supremumHypothesis : IsSupremum s A) (infimumHypothesis : IsInfimum i A) (separatedFromZeroHypothesis : 0 < i ∨ s < 0) : IsSupremum i⁻¹ (Reciprocal A)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L396
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L396
 
 
 
@@ -700,7 +700,7 @@ Predicate logic: ∀ {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedHyp
 Predicate logic (unfolded): ∀ {A : Set Real}, (A.Nonempty ∧ LRA.Analysis.Bounds.IsBounded A) → ∀ {s i : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ (LRA.Analysis.Bounds.IsInfimum i A ∧ Or (Real.instLT.lt 0 i) (Real.instLT.lt s 0))) → LRA.Analysis.Bounds.IsInfimum (Real.instInv.inv s) (LRA.Analysis.Bounds.Algebra.Reciprocal A)
 Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (IsBounded A ∧ IsSupremum s A ∧ IsInfimum i A ∧ 0 < i ∨ s < 0) → IsInfimum s⁻¹ (Reciprocal A)
 Logical form (Lean): {A : Set ℝ} (nonemptyHypothesis : A.Nonempty) (boundedHypothesis : IsBounded A) {s i : ℝ} (supremumHypothesis : IsSupremum s A) (infimumHypothesis : IsInfimum i A) (separatedFromZeroHypothesis : 0 < i ∨ s < 0) : IsInfimum s⁻¹ (Reciprocal A)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L423
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L423
 
 
 
@@ -711,7 +711,7 @@ Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (righ
 Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB iA iB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ (LRA.Analysis.Bounds.IsInfimum iA A ∧ (LRA.Analysis.Bounds.IsSupremum sB B ∧ LRA.Analysis.Bounds.IsInfimum iB B))) → LRA.Analysis.Bounds.IsSupremum (Real.instMax.max (Real.instMax.max (instHMul.hMul iA iB) (instHMul.hMul iA sB)) (Real.instMax.max (instHMul.hMul sA iB) (instHMul.hMul sA sB))) (instHMul.hMul A B)
 Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsSupremum sA A ∧ IsInfimum iA A ∧ IsSupremum sB B ∧ IsInfimum iB B) → IsSupremum (max (max (iA * iB) (iA * sB)) (max (sA * iB) (sA * sB))) (A * B)
 Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB iA iB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (leftInfimumHypothesis : IsInfimum iA A) (rightSupremumHypothesis : IsSupremum sB B) (rightInfimumHypothesis : IsInfimum iB B) : IsSupremum (max (max (iA * iB) (iA * sB)) (max (sA * iB) (sA * sB))) (A * B)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L455
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L455
 
 
 
@@ -722,7 +722,7 @@ Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (righ
 Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB iA iB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ (LRA.Analysis.Bounds.IsInfimum iA A ∧ (LRA.Analysis.Bounds.IsSupremum sB B ∧ LRA.Analysis.Bounds.IsInfimum iB B))) → LRA.Analysis.Bounds.IsInfimum (Real.instMin.min (Real.instMin.min (instHMul.hMul iA iB) (instHMul.hMul iA sB)) (Real.instMin.min (instHMul.hMul sA iB) (instHMul.hMul sA sB))) (instHMul.hMul A B)
 Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsSupremum sA A ∧ IsInfimum iA A ∧ IsSupremum sB B ∧ IsInfimum iB B) → IsInfimum (min (min (iA * iB) (iA * sB)) (min (sA * iB) (sA * sB))) (A * B)
 Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB iA iB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (leftInfimumHypothesis : IsInfimum iA A) (rightSupremumHypothesis : IsSupremum sB B) (rightInfimumHypothesis : IsInfimum iB B) : IsInfimum (min (min (iA * iB) (iA * sB)) (min (sA * iB) (sA * sB))) (A * B)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L490
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L490
 
 
 
@@ -733,7 +733,7 @@ Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (righ
 Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB iA iB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ (LRA.Analysis.Bounds.IsInfimum iA A ∧ (LRA.Analysis.Bounds.IsSupremum sB B ∧ (LRA.Analysis.Bounds.IsInfimum iB B ∧ Or (Real.instLT.lt 0 iB) (Real.instLT.lt sB 0))))) → LRA.Analysis.Bounds.IsSupremum (Real.instMax.max (Real.instMax.max (instHDiv.hDiv iA iB) (instHDiv.hDiv iA sB)) (Real.instMax.max (instHDiv.hDiv sA iB) (instHDiv.hDiv sA sB))) (instHMul.hMul A (LRA.Analysis.Bounds.Algebra.Reciprocal B))
 Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsSupremum sA A ∧ IsInfimum iA A ∧ IsSupremum sB B ∧ IsInfimum iB B ∧ 0 < iB ∨ sB < 0) → IsSupremum (max (max (iA / iB) (iA / sB)) (max (sA / iB) (sA / sB))) (A * Reciprocal B)
 Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB iA iB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (leftInfimumHypothesis : IsInfimum iA A) (rightSupremumHypothesis : IsSupremum sB B) (rightInfimumHypothesis : IsInfimum iB B) (denominatorSeparatedFromZeroHypothesis : 0 < iB ∨ sB < 0) : IsSupremum (max (max (iA / iB) (iA / sB)) (max (sA / iB) (sA / sB))) (A * Reciprocal B)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L527
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L527
 
 
 
@@ -744,7 +744,7 @@ Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (righ
 Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB iA iB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ (LRA.Analysis.Bounds.IsInfimum iA A ∧ (LRA.Analysis.Bounds.IsSupremum sB B ∧ (LRA.Analysis.Bounds.IsInfimum iB B ∧ Or (Real.instLT.lt 0 iB) (Real.instLT.lt sB 0))))) → LRA.Analysis.Bounds.IsInfimum (Real.instMin.min (Real.instMin.min (instHDiv.hDiv iA iB) (instHDiv.hDiv iA sB)) (Real.instMin.min (instHDiv.hDiv sA iB) (instHDiv.hDiv sA sB))) (instHMul.hMul A (LRA.Analysis.Bounds.Algebra.Reciprocal B))
 Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsSupremum sA A ∧ IsInfimum iA A ∧ IsSupremum sB B ∧ IsInfimum iB B ∧ 0 < iB ∨ sB < 0) → IsInfimum (min (min (iA / iB) (iA / sB)) (min (sA / iB) (sA / sB))) (A * Reciprocal B)
 Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB iA iB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (leftInfimumHypothesis : IsInfimum iA A) (rightSupremumHypothesis : IsSupremum sB B) (rightInfimumHypothesis : IsInfimum iB B) (denominatorSeparatedFromZeroHypothesis : 0 < iB ∨ sB < 0) : IsInfimum (min (min (iA / iB) (iA / sB)) (min (sA / iB) (sA / sB))) (A * Reciprocal B)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L565
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L565
 
 
 
@@ -755,7 +755,7 @@ Predicate logic: ∀ {A B : Set ℝ} {uA uB : ℝ} (leftUpperBoundHypothesis : I
 Predicate logic (unfolded): ∀ {A B : Set Real} {uA uB : Real}, (LRA.Analysis.Bounds.IsUpperBound uA A ∧ LRA.Analysis.Bounds.IsUpperBound uB B) → LRA.Analysis.Bounds.IsUpperBound (instHAdd.hAdd uA uB) (instHAdd.hAdd A B)
 Transliterated theorem: (IsUpperBound uA A ∧ IsUpperBound uB B) → IsUpperBound (uA + uB) (A + B)
 Logical form (Lean): {A B : Set ℝ} {uA uB : ℝ} (leftUpperBoundHypothesis : IsUpperBound uA A) (rightUpperBoundHypothesis : IsUpperBound uB B) : IsUpperBound (uA + uB) (A + B)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L591
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L591
 
 
 
@@ -766,7 +766,7 @@ Predicate logic: ∀ {A B : Set ℝ} {lA lB : ℝ} (leftLowerBoundHypothesis : I
 Predicate logic (unfolded): ∀ {A B : Set Real} {lA lB : Real}, (LRA.Analysis.Bounds.IsLowerBound lA A ∧ LRA.Analysis.Bounds.IsLowerBound lB B) → LRA.Analysis.Bounds.IsLowerBound (instHAdd.hAdd lA lB) (instHAdd.hAdd A B)
 Transliterated theorem: (IsLowerBound lA A ∧ IsLowerBound lB B) → IsLowerBound (lA + lB) (A + B)
 Logical form (Lean): {A B : Set ℝ} {lA lB : ℝ} (leftLowerBoundHypothesis : IsLowerBound lA A) (rightLowerBoundHypothesis : IsLowerBound lB B) : IsLowerBound (lA + lB) (A + B)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L609
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L609
 
 
 
@@ -777,7 +777,7 @@ Predicate logic: ∀ [Preorder P] {A S T : Set P} (setContainedInSmallerAmbient 
 Predicate logic (unfolded): ∀ {P : Type u_1} [inst : Preorder P] {A S T : Set P}, (Set.instLE.le A S ∧ Set.instLE.le S T) → setOf fun u => LRA.Analysis.Bounds.Algebra.IsRelativeUpperBound S u A = Set.instInter.inter S (setOf fun u => LRA.Analysis.Bounds.Algebra.IsRelativeUpperBound T u A)
 Transliterated theorem: {u | IsRelativeUpperBound S u A} = S ∩ {u | IsRelativeUpperBound T u A}
 Logical form (Lean): [Preorder P] {A S T : Set P} (setContainedInSmallerAmbient : A ⊆ S) (smallerAmbientContainedInLarger : S ⊆ T) : {u | IsRelativeUpperBound S u A} = S ∩ {u | IsRelativeUpperBound T u A}
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L629
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L629
 
 
 
@@ -788,7 +788,7 @@ Predicate logic: ∃ (A S T : Set ℝ), A ⊆ S ∧ S ⊆ T ∧ ∃ sS sT : ℝ,
 Predicate logic (unfolded): Exists fun A => Exists fun S => Exists fun T => (Set.instLE.le A S ∧ (Set.instLE.le S T ∧ Exists fun sS => Exists fun sT => (LRA.Analysis.Bounds.Algebra.IsRelativeSupremum S sS A ∧ (LRA.Analysis.Bounds.Algebra.IsRelativeSupremum T sT A ∧ Ne sS sT))))
 Transliterated theorem: ∃ A S T ∈ Set ℝ, A ⊆ S ∧ S ⊆ T ∧ ∃ sS sT ∈ ℝ, IsRelativeSupremum S sS A ∧ IsRelativeSupremum T sT A ∧ sS ≠ sT
 Logical form (Lean): : ∃ (A S T : Set ℝ), A ⊆ S ∧ S ⊆ T ∧ ∃ sS sT : ℝ, IsRelativeSupremum S sS A ∧ IsRelativeSupremum T sT A ∧ sS ≠ sT
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L648
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L648
 
 
 
@@ -799,7 +799,7 @@ Predicate logic: ∃ (A S T : Set ℝ), A ⊆ S ∧ S ⊆ T ∧ (∃ s, IsRelati
 Predicate logic (unfolded): Exists fun A => Exists fun S => Exists fun T => (Set.instLE.le A S ∧ (Set.instLE.le S T ∧ (Exists fun s => LRA.Analysis.Bounds.Algebra.IsRelativeSupremum T s A ∧ ¬ Exists fun s => LRA.Analysis.Bounds.Algebra.IsRelativeUpperBound S s A)))
 Transliterated theorem: ∃ A S T ∈ Set ℝ, A ⊆ S ∧ S ⊆ T ∧ (∃ s, IsRelativeSupremum T s A) ∧ ¬(∃ s, IsRelativeUpperBound S s A)
 Logical form (Lean): : ∃ (A S T : Set ℝ), A ⊆ S ∧ S ⊆ T ∧ (∃ s, IsRelativeSupremum T s A) ∧ ¬(∃ s, IsRelativeUpperBound S s A)
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L666
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L666
 
 
 
@@ -810,7 +810,7 @@ Predicate logic: {q : ℚ | q ^ 2 < 2}.Nonempty ∧ (∃ u : ℚ, IsUpperBound u
 Predicate logic (unfolded): (setOf fun q => Rat.instLT.lt (instHPow.hPow q 2) 2 ∧ .Nonempty) ((Exists fun u => LRA.Analysis.Bounds.IsUpperBound u (setOf fun q => Rat.instLT.lt (instHPow.hPow q 2) 2) ∧ ¬ Exists fun s => LRA.Analysis.Bounds.IsSupremum s (setOf fun q => Rat.instLT.lt (instHPow.hPow q 2) 2)))
 Transliterated theorem: {q : ℚ | q ^ 2 < 2}.Nonempty ∧ ∃ u ∈ ℚ, IsUpperBound u {q : ℚ | q ^ 2 < 2} ∧ ¬∃ s ∈ ℚ, IsSupremum s {q : ℚ | q ^ 2 < 2}
 Logical form (Lean): : {q : ℚ | q ^ 2 < 2}.Nonempty ∧ (∃ u : ℚ, IsUpperBound u {q : ℚ | q ^ 2 < 2}) ∧ ¬(∃ s : ℚ, IsSupremum s {q : ℚ | q ^ 2 < 2})
-Source: ./Bounding/BoundAlgebra/AlgebraOfSupremumInfimum.lean#L684
+Source: ./Bounds/Algebra/AlgebraOfSupremumInfimum.lean#L684
 
 
 
@@ -821,7 +821,7 @@ Predicate logic: ∀ {I A : Set ℝ} (setContainedInDomain : A ⊆ I) (nonemptyH
 Predicate logic (unfolded): ∀ {I A : Set Real}, (Set.instLE.le A I ∧ A.Nonempty) → ∀ {s : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ Set.instMembership.mem I s) → ∀ {f : Real → Real}, (MonotoneOn f I ∧ ContinuousWithinAt f I s) → LRA.Analysis.Bounds.IsSupremum (f s) (Set.image f A)
 Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (IsSupremum s A ∧ s ∈ I) → IsSupremum (f s) (f '' A)
 Logical form (Lean): {I A : Set ℝ} (setContainedInDomain : A ⊆ I) (nonemptyHypothesis : A.Nonempty) {s : ℝ} (supremumHypothesis : IsSupremum s A) (supremumInDomain : s ∈ I) {f : ℝ → ℝ} (monotoneHypothesis : MonotoneOn f I) (continuityHypothesis : ContinuousWithinAt f I s) : IsSupremum (f s) (f '' A)
-Source: ./Bounding/BoundAlgebra/ImageInverseExtrema.lean#L37
+Source: ./Bounds/Algebra/ImageInverseExtrema.lean#L37
 
 
 
@@ -832,7 +832,7 @@ Predicate logic: ∀ {I A : Set ℝ} (setContainedInDomain : A ⊆ I) (nonemptyH
 Predicate logic (unfolded): ∀ {I A : Set Real}, (Set.instLE.le A I ∧ A.Nonempty) → ∀ {i : Real}, (LRA.Analysis.Bounds.IsInfimum i A ∧ Set.instMembership.mem I i) → ∀ {f : Real → Real}, (MonotoneOn f I ∧ ContinuousWithinAt f I i) → LRA.Analysis.Bounds.IsInfimum (f i) (Set.image f A)
 Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (IsInfimum i A ∧ i ∈ I) → IsInfimum (f i) (f '' A)
 Logical form (Lean): {I A : Set ℝ} (setContainedInDomain : A ⊆ I) (nonemptyHypothesis : A.Nonempty) {i : ℝ} (infimumHypothesis : IsInfimum i A) (infimumInDomain : i ∈ I) {f : ℝ → ℝ} (monotoneHypothesis : MonotoneOn f I) (continuityHypothesis : ContinuousWithinAt f I i) : IsInfimum (f i) (f '' A)
-Source: ./Bounding/BoundAlgebra/ImageInverseExtrema.lean#L69
+Source: ./Bounds/Algebra/ImageInverseExtrema.lean#L69
 
 
 
@@ -843,7 +843,7 @@ Predicate logic: ∀ {I A : Set ℝ} (setContainedInDomain : A ⊆ I) (nonemptyH
 Predicate logic (unfolded): ∀ {I A : Set Real}, (Set.instLE.le A I ∧ A.Nonempty) → ∀ {i : Real}, (LRA.Analysis.Bounds.IsInfimum i A ∧ Set.instMembership.mem I i) → ∀ {f : Real → Real}, (AntitoneOn f I ∧ ContinuousWithinAt f I i) → LRA.Analysis.Bounds.IsSupremum (f i) (Set.image f A)
 Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (IsInfimum i A ∧ i ∈ I) → IsSupremum (f i) (f '' A)
 Logical form (Lean): {I A : Set ℝ} (setContainedInDomain : A ⊆ I) (nonemptyHypothesis : A.Nonempty) {i : ℝ} (infimumHypothesis : IsInfimum i A) (infimumInDomain : i ∈ I) {f : ℝ → ℝ} (antitoneHypothesis : AntitoneOn f I) (continuityHypothesis : ContinuousWithinAt f I i) : IsSupremum (f i) (f '' A)
-Source: ./Bounding/BoundAlgebra/ImageInverseExtrema.lean#L101
+Source: ./Bounds/Algebra/ImageInverseExtrema.lean#L101
 
 
 
@@ -854,7 +854,7 @@ Predicate logic: ∀ {I A : Set ℝ} (setContainedInDomain : A ⊆ I) (nonemptyH
 Predicate logic (unfolded): ∀ {I A : Set Real}, (Set.instLE.le A I ∧ A.Nonempty) → ∀ {s : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ Set.instMembership.mem I s) → ∀ {f : Real → Real}, (AntitoneOn f I ∧ ContinuousWithinAt f I s) → LRA.Analysis.Bounds.IsInfimum (f s) (Set.image f A)
 Transliterated theorem: (∀ nonemptyHypothesis ∈ A.Nonempty), (IsSupremum s A ∧ s ∈ I) → IsInfimum (f s) (f '' A)
 Logical form (Lean): {I A : Set ℝ} (setContainedInDomain : A ⊆ I) (nonemptyHypothesis : A.Nonempty) {s : ℝ} (supremumHypothesis : IsSupremum s A) (supremumInDomain : s ∈ I) {f : ℝ → ℝ} (antitoneHypothesis : AntitoneOn f I) (continuityHypothesis : ContinuousWithinAt f I s) : IsInfimum (f s) (f '' A)
-Source: ./Bounding/BoundAlgebra/ImageInverseExtrema.lean#L133
+Source: ./Bounds/Algebra/ImageInverseExtrema.lean#L133
 
 
 
@@ -865,7 +865,7 @@ Predicate logic: ∀ {I J B : Set ℝ} {f g : ℝ → ℝ} (bijectionHypothesis 
 Predicate logic (unfolded): ∀ {I J B : Set Real} {f g : Real → Real}, (Set.BijOn f I J ∧ (Set.InvOn g f I J ∧ (Set.instLE.le B J ∧ B.Nonempty))) → ∀ {u : Real}, (LRA.Analysis.Bounds.IsSupremum u B ∧ (Set.instMembership.mem J u ∧ (MonotoneOn g J ∧ ContinuousWithinAt g J u))) → LRA.Analysis.Bounds.IsSupremum (g u) (Set.image g B)
 Transliterated theorem: (∀ nonemptyHypothesis ∈ B.Nonempty), (IsSupremum u B ∧ u ∈ J) → IsSupremum (g u) (g '' B)
 Logical form (Lean): {I J B : Set ℝ} {f g : ℝ → ℝ} (bijectionHypothesis : Set.BijOn f I J) (inverseHypothesis : Set.InvOn g f I J) (setContainedInCodomain : B ⊆ J) (nonemptyHypothesis : B.Nonempty) {u : ℝ} (supremumHypothesis : IsSupremum u B) (supremumInCodomain : u ∈ J) (inverseMonotoneHypothesis : MonotoneOn g J) (inverseContinuityHypothesis : ContinuousWithinAt g J u) : IsSupremum (g u) (g '' B)
-Source: ./Bounding/BoundAlgebra/ImageInverseExtrema.lean#L168
+Source: ./Bounds/Algebra/ImageInverseExtrema.lean#L168
 
 
 
@@ -876,7 +876,7 @@ Predicate logic: ∀ {I J B : Set ℝ} {f g : ℝ → ℝ} (bijectionHypothesis 
 Predicate logic (unfolded): ∀ {I J B : Set Real} {f g : Real → Real}, (Set.BijOn f I J ∧ (Set.InvOn g f I J ∧ (Set.instLE.le B J ∧ B.Nonempty))) → ∀ {v : Real}, (LRA.Analysis.Bounds.IsInfimum v B ∧ (Set.instMembership.mem J v ∧ (MonotoneOn g J ∧ ContinuousWithinAt g J v))) → LRA.Analysis.Bounds.IsInfimum (g v) (Set.image g B)
 Transliterated theorem: (∀ nonemptyHypothesis ∈ B.Nonempty), (IsInfimum v B ∧ v ∈ J) → IsInfimum (g v) (g '' B)
 Logical form (Lean): {I J B : Set ℝ} {f g : ℝ → ℝ} (bijectionHypothesis : Set.BijOn f I J) (inverseHypothesis : Set.InvOn g f I J) (setContainedInCodomain : B ⊆ J) (nonemptyHypothesis : B.Nonempty) {v : ℝ} (infimumHypothesis : IsInfimum v B) (infimumInCodomain : v ∈ J) (inverseMonotoneHypothesis : MonotoneOn g J) (inverseContinuityHypothesis : ContinuousWithinAt g J v) : IsInfimum (g v) (g '' B)
-Source: ./Bounding/BoundAlgebra/ImageInverseExtrema.lean#L205
+Source: ./Bounds/Algebra/ImageInverseExtrema.lean#L205
 
 
 
@@ -887,7 +887,7 @@ Predicate logic: ∀ {I J B : Set ℝ} {f g : ℝ → ℝ} (bijectionHypothesis 
 Predicate logic (unfolded): ∀ {I J B : Set Real} {f g : Real → Real}, (Set.BijOn f I J ∧ (Set.InvOn g f I J ∧ (Set.instLE.le B J ∧ B.Nonempty))) → ∀ {v : Real}, (LRA.Analysis.Bounds.IsInfimum v B ∧ (Set.instMembership.mem J v ∧ (AntitoneOn g J ∧ ContinuousWithinAt g J v))) → LRA.Analysis.Bounds.IsSupremum (g v) (Set.image g B)
 Transliterated theorem: (∀ nonemptyHypothesis ∈ B.Nonempty), (IsInfimum v B ∧ v ∈ J) → IsSupremum (g v) (g '' B)
 Logical form (Lean): {I J B : Set ℝ} {f g : ℝ → ℝ} (bijectionHypothesis : Set.BijOn f I J) (inverseHypothesis : Set.InvOn g f I J) (setContainedInCodomain : B ⊆ J) (nonemptyHypothesis : B.Nonempty) {v : ℝ} (infimumHypothesis : IsInfimum v B) (infimumInCodomain : v ∈ J) (inverseAntitoneHypothesis : AntitoneOn g J) (inverseContinuityHypothesis : ContinuousWithinAt g J v) : IsSupremum (g v) (g '' B)
-Source: ./Bounding/BoundAlgebra/ImageInverseExtrema.lean#L242
+Source: ./Bounds/Algebra/ImageInverseExtrema.lean#L242
 
 
 
@@ -898,7 +898,7 @@ Predicate logic: ∀ {I J B : Set ℝ} {f g : ℝ → ℝ} (bijectionHypothesis 
 Predicate logic (unfolded): ∀ {I J B : Set Real} {f g : Real → Real}, (Set.BijOn f I J ∧ (Set.InvOn g f I J ∧ (Set.instLE.le B J ∧ B.Nonempty))) → ∀ {u : Real}, (LRA.Analysis.Bounds.IsSupremum u B ∧ (Set.instMembership.mem J u ∧ (AntitoneOn g J ∧ ContinuousWithinAt g J u))) → LRA.Analysis.Bounds.IsInfimum (g u) (Set.image g B)
 Transliterated theorem: (∀ nonemptyHypothesis ∈ B.Nonempty), (IsSupremum u B ∧ u ∈ J) → IsInfimum (g u) (g '' B)
 Logical form (Lean): {I J B : Set ℝ} {f g : ℝ → ℝ} (bijectionHypothesis : Set.BijOn f I J) (inverseHypothesis : Set.InvOn g f I J) (setContainedInCodomain : B ⊆ J) (nonemptyHypothesis : B.Nonempty) {u : ℝ} (supremumHypothesis : IsSupremum u B) (supremumInCodomain : u ∈ J) (inverseAntitoneHypothesis : AntitoneOn g J) (inverseContinuityHypothesis : ContinuousWithinAt g J u) : IsInfimum (g u) (g '' B)
-Source: ./Bounding/BoundAlgebra/ImageInverseExtrema.lean#L279
+Source: ./Bounds/Algebra/ImageInverseExtrema.lean#L279
 
 
 
@@ -909,7 +909,7 @@ Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (righ
 Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsSupremum sB B) → LRA.Analysis.Bounds.IsSupremum (Real.instMax.max sA sB) (LRA.Analysis.Bounds.Algebra.PairwiseMax A B)
 Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsSupremum sA A ∧ IsSupremum sB B) → IsSupremum (max sA sB) (PairwiseMax A B)
 Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (rightSupremumHypothesis : IsSupremum sB B) : IsSupremum (max sA sB) (PairwiseMax A B)
-Source: ./Bounding/BoundAlgebra/LatticeOperationsAndBounds.lean#L54
+Source: ./Bounds/Algebra/LatticeOperationsAndBounds.lean#L54
 
 
 
@@ -920,7 +920,7 @@ Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (righ
 Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {iA iB : Real}, (LRA.Analysis.Bounds.IsInfimum iA A ∧ LRA.Analysis.Bounds.IsInfimum iB B) → LRA.Analysis.Bounds.IsInfimum (Real.instMax.max iA iB) (LRA.Analysis.Bounds.Algebra.PairwiseMax A B)
 Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsInfimum iA A ∧ IsInfimum iB B) → IsInfimum (max iA iB) (PairwiseMax A B)
 Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {iA iB : ℝ} (leftInfimumHypothesis : IsInfimum iA A) (rightInfimumHypothesis : IsInfimum iB B) : IsInfimum (max iA iB) (PairwiseMax A B)
-Source: ./Bounding/BoundAlgebra/LatticeOperationsAndBounds.lean#L79
+Source: ./Bounds/Algebra/LatticeOperationsAndBounds.lean#L79
 
 
 
@@ -931,7 +931,7 @@ Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (righ
 Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsSupremum sB B) → LRA.Analysis.Bounds.IsSupremum (Real.instMin.min sA sB) (LRA.Analysis.Bounds.Algebra.PairwiseMin A B)
 Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsSupremum sA A ∧ IsSupremum sB B) → IsSupremum (min sA sB) (PairwiseMin A B)
 Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {sA sB : ℝ} (leftSupremumHypothesis : IsSupremum sA A) (rightSupremumHypothesis : IsSupremum sB B) : IsSupremum (min sA sB) (PairwiseMin A B)
-Source: ./Bounding/BoundAlgebra/LatticeOperationsAndBounds.lean#L104
+Source: ./Bounds/Algebra/LatticeOperationsAndBounds.lean#L104
 
 
 
@@ -942,7 +942,7 @@ Predicate logic: ∀ {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (righ
 Predicate logic (unfolded): ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {iA iB : Real}, (LRA.Analysis.Bounds.IsInfimum iA A ∧ LRA.Analysis.Bounds.IsInfimum iB B) → LRA.Analysis.Bounds.IsInfimum (Real.instMin.min iA iB) (LRA.Analysis.Bounds.Algebra.PairwiseMin A B)
 Transliterated theorem: (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsInfimum iA A ∧ IsInfimum iB B) → IsInfimum (min iA iB) (PairwiseMin A B)
 Logical form (Lean): {A B : Set ℝ} (leftNonemptyHypothesis : A.Nonempty) (rightNonemptyHypothesis : B.Nonempty) {iA iB : ℝ} (leftInfimumHypothesis : IsInfimum iA A) (rightInfimumHypothesis : IsInfimum iB B) : IsInfimum (min iA iB) (PairwiseMin A B)
-Source: ./Bounding/BoundAlgebra/LatticeOperationsAndBounds.lean#L129
+Source: ./Bounds/Algebra/LatticeOperationsAndBounds.lean#L129
 
 
 
@@ -953,7 +953,7 @@ Predicate logic: ∀ {A : Set ℝ} {s : ℝ}, IsSupremum s A ↔ IsUpperBound s 
 Predicate logic (unfolded): ∀ {A : Set Real} {s : Real}, LRA.Analysis.Bounds.IsSupremum s A ↔ (LRA.Analysis.Bounds.IsUpperBound s A ∧ ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun a => (Set.instMembership.mem A a ∧ Real.instLT.lt (instHSub.hSub s ε) a))
 Transliterated theorem: IsSupremum s A ↔ IsUpperBound s A ∧ ∀ ε : ℝ, 0 < ε → ∃ a ∈ A, s - ε < a
 Logical form (Lean): {A : Set ℝ} {s : ℝ} : IsSupremum s A ↔ IsUpperBound s A ∧ ∀ ε : ℝ, 0 < ε → ∃ a ∈ A, s - ε < a
-Source: ./Bounding/ExtremalBounds/EpsilonCharacterization.lean#L20
+Source: ./Bounds/Extrema/EpsilonCharacterization.lean#L20
 
 
 
@@ -964,7 +964,7 @@ Predicate logic: ∀ {A : Set ℝ} {i : ℝ}, IsInfimum i A ↔ IsLowerBound i A
 Predicate logic (unfolded): ∀ {A : Set Real} {i : Real}, LRA.Analysis.Bounds.IsInfimum i A ↔ (LRA.Analysis.Bounds.IsLowerBound i A ∧ ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun a => (Set.instMembership.mem A a ∧ Real.instLT.lt a (instHAdd.hAdd i ε)))
 Transliterated theorem: IsInfimum i A ↔ IsLowerBound i A ∧ ∀ ε : ℝ, 0 < ε → ∃ a ∈ A, a < i + ε
 Logical form (Lean): {A : Set ℝ} {i : ℝ} : IsInfimum i A ↔ IsLowerBound i A ∧ ∀ ε : ℝ, 0 < ε → ∃ a ∈ A, a < i + ε
-Source: ./Bounding/ExtremalBounds/EpsilonCharacterization.lean#L36
+Source: ./Bounds/Extrema/EpsilonCharacterization.lean#L36
 
 
 
@@ -975,7 +975,7 @@ Predicate logic: ∀ {A : Set ℝ} {s u : ℝ} (supremumHypothesis : IsSupremum 
 Predicate logic (unfolded): ∀ {A : Set Real} {s u : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ Real.instLT.lt u s) → Exists fun a => (Set.instMembership.mem A a ∧ Real.instLT.lt u a)
 Transliterated theorem: (IsSupremum s A ∧ u < s) → ∃ a ∈ A, u < a
 Logical form (Lean): {A : Set ℝ} {s u : ℝ} (supremumHypothesis : IsSupremum s A) (strictApproximation : u < s) : ∃ a ∈ A, u < a
-Source: ./Bounding/ExtremalBounds/EpsilonCharacterization.lean#L53
+Source: ./Bounds/Extrema/EpsilonCharacterization.lean#L53
 
 
 
@@ -986,7 +986,7 @@ Predicate logic: ∀ {A : Set ℝ} {i l : ℝ} (infimumHypothesis : IsInfimum i 
 Predicate logic (unfolded): ∀ {A : Set Real} {i l : Real}, (LRA.Analysis.Bounds.IsInfimum i A ∧ Real.instLT.lt i l) → Exists fun a => (Set.instMembership.mem A a ∧ Real.instLT.lt a l)
 Transliterated theorem: (IsInfimum i A ∧ i < l) → ∃ a ∈ A, a < l
 Logical form (Lean): {A : Set ℝ} {i l : ℝ} (infimumHypothesis : IsInfimum i A) (strictApproximation : i < l) : ∃ a ∈ A, a < l
-Source: ./Bounding/ExtremalBounds/EpsilonCharacterization.lean#L71
+Source: ./Bounds/Extrema/EpsilonCharacterization.lean#L71
 
 
 
@@ -997,7 +997,7 @@ Predicate logic: ∀ [PartialOrder S] {A : Set S} {m₁ m₂ : S} (leftMaximum :
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {m₁ m₂ : S}, (LRA.Analysis.Bounds.IsMaximum m₁ A ∧ LRA.Analysis.Bounds.IsMaximum m₂ A) → m₁ = m₂
 Transliterated theorem: (IsMaximum m₁ A ∧ IsMaximum m₂ A) → m₁ = m₂
 Logical form (Lean): [PartialOrder S] {A : Set S} {m₁ m₂ : S} (leftMaximum : IsMaximum m₁ A) (rightMaximum : IsMaximum m₂ A) : m₁ = m₂
-Source: ./Bounding/ExtremalBounds/MaximaMinima.lean#L24
+Source: ./Bounds/Extrema/MaximaMinima.lean#L24
 
 
 
@@ -1008,7 +1008,7 @@ Predicate logic: ∀ [PartialOrder S] {A : Set S} {m₁ m₂ : S} (leftMinimum :
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {m₁ m₂ : S}, (LRA.Analysis.Bounds.IsMinimum m₁ A ∧ LRA.Analysis.Bounds.IsMinimum m₂ A) → m₁ = m₂
 Transliterated theorem: (IsMinimum m₁ A ∧ IsMinimum m₂ A) → m₁ = m₂
 Logical form (Lean): [PartialOrder S] {A : Set S} {m₁ m₂ : S} (leftMinimum : IsMinimum m₁ A) (rightMinimum : IsMinimum m₂ A) : m₁ = m₂
-Source: ./Bounding/ExtremalBounds/MaximaMinima.lean#L38
+Source: ./Bounds/Extrema/MaximaMinima.lean#L38
 
 
 
@@ -1019,7 +1019,7 @@ Predicate logic: ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {m : S},
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {m : S}, LRA.Analysis.Bounds.IsMaximum m A → LRA.Analysis.Bounds.IsSupremum m A
 Transliterated theorem: (IsMaximum m A) → IsSupremum m A
 Logical form (Lean): [PartialOrder S] {A : Set S} {m : S} (maximumHypothesis : IsMaximum m A) : IsSupremum m A
-Source: ./Bounding/ExtremalBounds/MaximaMinima.lean#L52
+Source: ./Bounds/Extrema/MaximaMinima.lean#L52
 
 
 
@@ -1030,7 +1030,7 @@ Predicate logic: ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {m : S},
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {m : S}, LRA.Analysis.Bounds.IsMinimum m A → LRA.Analysis.Bounds.IsInfimum m A
 Transliterated theorem: (IsMinimum m A) → IsInfimum m A
 Logical form (Lean): [PartialOrder S] {A : Set S} {m : S} (minimumHypothesis : IsMinimum m A) : IsInfimum m A
-Source: ./Bounding/ExtremalBounds/MaximaMinima.lean#L66
+Source: ./Bounds/Extrema/MaximaMinima.lean#L66
 
 
 
@@ -1041,7 +1041,7 @@ Predicate logic: ∀ [Preorder S] {A : Set S} {s : S} (supremumHypothesis : IsSu
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {s : S}, (LRA.Analysis.Bounds.IsSupremum s A ∧ Set.instMembership.mem A s) → LRA.Analysis.Bounds.IsMaximum s A
 Transliterated theorem: (IsSupremum s A ∧ s ∈ A) → IsMaximum s A
 Logical form (Lean): [Preorder S] {A : Set S} {s : S} (supremumHypothesis : IsSupremum s A) (membershipHypothesis : s ∈ A) : IsMaximum s A
-Source: ./Bounding/ExtremalBounds/MaximaMinima.lean#L81
+Source: ./Bounds/Extrema/MaximaMinima.lean#L81
 
 
 
@@ -1052,7 +1052,7 @@ Predicate logic: ∀ [Preorder S] {A : Set S} {i : S} (infimumHypothesis : IsInf
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {i : S}, (LRA.Analysis.Bounds.IsInfimum i A ∧ Set.instMembership.mem A i) → LRA.Analysis.Bounds.IsMinimum i A
 Transliterated theorem: (IsInfimum i A ∧ i ∈ A) → IsMinimum i A
 Logical form (Lean): [Preorder S] {A : Set S} {i : S} (infimumHypothesis : IsInfimum i A) (membershipHypothesis : i ∈ A) : IsMinimum i A
-Source: ./Bounding/ExtremalBounds/MaximaMinima.lean#L97
+Source: ./Bounds/Extrema/MaximaMinima.lean#L97
 
 
 
@@ -1063,7 +1063,7 @@ Predicate logic: ∀ [PartialOrder S] {A : Set S} {s : S}, IsMaximum s A ↔ IsS
 Predicate logic (unfolded): ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {s : S}, LRA.Analysis.Bounds.IsMaximum s A ↔ (LRA.Analysis.Bounds.IsSupremum s A ∧ Set.instMembership.mem A s)
 Transliterated theorem: IsMaximum s A ↔ IsSupremum s A ∧ s ∈ A
 Logical form (Lean): [PartialOrder S] {A : Set S} {s : S} : IsMaximum s A ↔ IsSupremum s A ∧ s ∈ A
-Source: ./Bounding/ExtremalBounds/MaximaMinima.lean#L112
+Source: ./Bounds/Extrema/MaximaMinima.lean#L112
 
 
 
@@ -1074,7 +1074,7 @@ Predicate logic: ∀ (A S : Set T) (s : T) (hs : IsLUB A s) (hsS : s ∈ S), IsR
 Predicate logic (unfolded): ∀ {T : Type u_1} [inst : Preorder T] (A S : Set T) (s : T), (IsLUB A s ∧ Set.instMembership.mem S s) → LRA.Analysis.Bounds.IsRelativeSupremum s A S
 Transliterated theorem: (∀ s ∈ T), (IsLUB A s ∧ s ∈ S) → IsRelativeSupremum s A S
 Logical form (Lean): (A S : Set T) (s : T) (hs : IsLUB A s) (hsS : s ∈ S) : IsRelativeSupremum s A S
-Source: ./Bounding/RelativeBounds.lean#L89
+Source: ./Bounds/RelativeBounds.lean#L89
 
 
 
@@ -1085,7 +1085,7 @@ Predicate logic: ∀ (A S : Set T) (i : T) (hi : IsGLB A i) (hiS : i ∈ S), IsR
 Predicate logic (unfolded): ∀ {T : Type u_1} [inst : Preorder T] (A S : Set T) (i : T), (IsGLB A i ∧ Set.instMembership.mem S i) → LRA.Analysis.Bounds.IsRelativeInfimum i A S
 Transliterated theorem: (∀ i ∈ T), (IsGLB A i ∧ i ∈ S) → IsRelativeInfimum i A S
 Logical form (Lean): (A S : Set T) (i : T) (hi : IsGLB A i) (hiS : i ∈ S) : IsRelativeInfimum i A S
-Source: ./Bounding/RelativeBounds.lean#L105
+Source: ./Bounds/RelativeBounds.lean#L105
 
 
 
@@ -1096,7 +1096,7 @@ Predicate logic: ¬ ∃ s : ℝ, IsRelativeSupremum s RationalsWithSquareLessTha
 Predicate logic (unfolded): ¬ Exists fun s => LRA.Analysis.Bounds.IsRelativeSupremum s LRA.Analysis.Bounds.RationalsWithSquareLessThanTwoInR (Set.range Rat.cast)
 Transliterated theorem: ¬ ∃ s ∈ ℝ, IsRelativeSupremum s RationalsWithSquareLessThanTwoInR (Set.range ((↑) : ℚ → ℝ))
 Logical form (Lean): : ¬ ∃ s : ℝ, IsRelativeSupremum s RationalsWithSquareLessThanTwoInR (Set.range ((↑) : ℚ → ℝ))
-Source: ./Bounding/RelativeBounds.lean#L135
+Source: ./Bounds/RelativeBounds.lean#L135
 
 
 
@@ -1107,7 +1107,7 @@ Predicate logic: LRA.Analysis.Bounds.IsRelativeSupremum (Real.sqrt 2) LRA.Analys
 Predicate logic (unfolded): LRA.Analysis.Bounds.IsRelativeSupremum (Real.sqrt 2) LRA.Analysis.Bounds.RationalsWithSquareLessThanTwoInR Set.univ
 Transliterated theorem: IsRelativeSupremum (Real.sqrt 2) RationalsWithSquareLessThanTwoInR Set.univ ∈ Set ℝ
 Logical form (Lean): : IsRelativeSupremum (Real.sqrt 2) RationalsWithSquareLessThanTwoInR (Set.univ : Set ℝ)
-Source: ./Bounding/RelativeBounds.lean#L151
+Source: ./Bounds/RelativeBounds.lean#L151
 
 
 
@@ -6090,7 +6090,7 @@ Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real},   LRA
 Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real}, LRA.Analysis.Sequences.IsConstant x c → Filter.Tendsto x Filter.atTop (nhds c)
 Transliterated theorem: (IsConstant x c) → Filter.Tendsto x Filter.atTop (nhds c)
 Logical form (Lean): {x : RealSequence} {c : ℝ} (h : IsConstant x c) : Filter.Tendsto x Filter.atTop (nhds c)
-Source: ./Sequences/NullConstantSequences.lean#L133
+Source: ./Sequences/ConstantSequences.lean#L22
 
 
 
@@ -6101,7 +6101,7 @@ Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Seq
 Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsConstant x 0 → LRA.Analysis.Sequences.IsNull x
 Transliterated theorem: (IsConstant x 0) → IsNull x
 Logical form (Lean): {x : RealSequence} (h : IsConstant x 0) : IsNull x
-Source: ./Sequences/NullConstantSequences.lean#L147
+Source: ./Sequences/NullSequences.lean#L21
 
 
 
@@ -6112,7 +6112,7 @@ Predicate logic: ∀ {x : RealSequence} {c : ℝ} (h : IsConstant x c), IsNull x
 Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real}, LRA.Analysis.Sequences.IsConstant x c → LRA.Analysis.Sequences.IsNull x ↔ c = 0
 Transliterated theorem: (IsConstant x c) → IsNull x ↔ c = 0
 Logical form (Lean): {x : RealSequence} {c : ℝ} (h : IsConstant x c) : IsNull x ↔ c = 0
-Source: ./Sequences/NullConstantSequences.lean#L161
+Source: ./Sequences/NullSequences.lean#L35
 
 
 
@@ -6123,7 +6123,7 @@ Predicate logic: ∀ (x : RealSequence) (L : ℝ), Filter.Tendsto x Filter.atTop
 Predicate logic (unfolded): ∀ (x : LRA.Analysis.Sequences.RealSequence) (L : Real), Filter.Tendsto x Filter.atTop (nhds L) ↔ LRA.Analysis.Sequences.IsNull fun n => instHSub.hSub (x n) L
 Transliterated theorem: (∀ x ∈ RealSequence), Filter.Tendsto x Filter.atTop (nhds L) ↔ IsNull (fun n => x n - L)
 Logical form (Lean): (x : RealSequence) (L : ℝ) : Filter.Tendsto x Filter.atTop (nhds L) ↔ IsNull (fun n => x n - L)
-Source: ./Sequences/NullConstantSequences.lean#L176
+Source: ./Sequences/NullSequences.lean#L50
 
 
 
@@ -6134,7 +6134,7 @@ Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real},   LRA
 Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real}, LRA.Analysis.Sequences.IsUltimatelyConstant x c → Filter.Tendsto x Filter.atTop (nhds c)
 Transliterated theorem: (IsUltimatelyConstant x c) → Filter.Tendsto x Filter.atTop (nhds c)
 Logical form (Lean): {x : RealSequence} {c : ℝ} (h : IsUltimatelyConstant x c) : Filter.Tendsto x Filter.atTop (nhds c)
-Source: ./Sequences/NullConstantSequences.lean#L192
+Source: ./Sequences/ConstantSequences.lean#L38
 
 
 
@@ -6145,7 +6145,7 @@ Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real},   LRA
 Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real}, LRA.Analysis.Sequences.IsConstant x c → LRA.Analysis.Sequences.IsUltimatelyConstant x c
 Transliterated theorem: (IsConstant x c) → IsUltimatelyConstant x c
 Logical form (Lean): {x : RealSequence} {c : ℝ} (h : IsConstant x c) : IsUltimatelyConstant x c
-Source: ./Sequences/NullConstantSequences.lean#L207
+Source: ./Sequences/ConstantSequences.lean#L53
 
 
 
@@ -6156,7 +6156,7 @@ Predicate logic: ∀ {x : LRA.Analysis.Sequences.RealSequence},   LRA.Analysis.S
 Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsUltimatelyConstant x 0 → LRA.Analysis.Sequences.IsNull x
 Transliterated theorem: (IsUltimatelyConstant x 0) → IsNull x
 Logical form (Lean): {x : RealSequence} (h : IsUltimatelyConstant x 0) : IsNull x
-Source: ./Sequences/NullConstantSequences.lean#L221
+Source: ./Sequences/NullSequences.lean#L64
 
 
 
@@ -6167,7 +6167,7 @@ Predicate logic: ∀ {x : RealSequence} {c : ℝ} (h : IsUltimatelyConstant x c)
 Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real}, LRA.Analysis.Sequences.IsUltimatelyConstant x c → LRA.Analysis.Sequences.IsNull x ↔ c = 0
 Transliterated theorem: (IsUltimatelyConstant x c) → IsNull x ↔ c = 0
 Logical form (Lean): {x : RealSequence} {c : ℝ} (h : IsUltimatelyConstant x c) : IsNull x ↔ c = 0
-Source: ./Sequences/NullConstantSequences.lean#L235
+Source: ./Sequences/NullSequences.lean#L78
 
 
 
@@ -6178,7 +6178,7 @@ Predicate logic: ∀ {x y : RealSequence} (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, x
 Predicate logic (unfolded): ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (Exists fun N₀ => ∀ (n : Nat), GE.ge n N₀ → x n = y n) → ∀ (L : Real), Filter.Tendsto x Filter.atTop (nhds L) ↔ Filter.Tendsto y Filter.atTop (nhds L)
 Transliterated theorem: (∃ N₀ ∈ ℕ, ∀ n ≥ N₀, x n = y n) → Filter.Tendsto x Filter.atTop (nhds L) ↔ Filter.Tendsto y Filter.atTop (nhds L)
 Logical form (Lean): {x y : RealSequence} (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, x n = y n) (L : ℝ) : Filter.Tendsto x Filter.atTop (nhds L) ↔ Filter.Tendsto y Filter.atTop (nhds L)
-Source: ./Sequences/NullConstantSequences.lean#L252
+Source: ./Sequences/NullSequences.lean#L95
 
 
 
@@ -6189,7 +6189,7 @@ Predicate logic: ∀ (x : RealSequence), BoundedAboveSeq x ↔ ∃ N₀ : ℕ, �
 Predicate logic (unfolded): ∀ (x : LRA.Analysis.Sequences.RealSequence), LRA.Analysis.Sequences.BoundedAboveSeq x ↔ Exists fun N₀ => Exists fun M => ∀ (n : Nat), GE.ge n N₀ → Real.instLE.le (x n) M
 Transliterated theorem: (∀ x ∈ RealSequence), BoundedAboveSeq x ↔ ∃ N₀ ∈ ℕ, ∃ M ∈ ℝ, ∀ n ≥ N₀, x n ≤ M
 Logical form (Lean): (x : RealSequence) : BoundedAboveSeq x ↔ ∃ N₀ : ℕ, ∃ M : ℝ, ∀ n ≥ N₀, x n ≤ M
-Source: ./Sequences/NullConstantSequences.lean#L268
+Source: ./Sequences/BoundedSequences.lean#L20
 
 
 
@@ -6200,7 +6200,7 @@ Predicate logic: ∀ (x : RealSequence), BoundedBelowSeq x ↔ ∃ N₀ : ℕ, �
 Predicate logic (unfolded): ∀ (x : LRA.Analysis.Sequences.RealSequence), LRA.Analysis.Sequences.BoundedBelowSeq x ↔ Exists fun N₀ => Exists fun m => ∀ (n : Nat), GE.ge n N₀ → Real.instLE.le m (x n)
 Transliterated theorem: (∀ x ∈ RealSequence), BoundedBelowSeq x ↔ ∃ N₀ ∈ ℕ, ∃ m ∈ ℝ, ∀ n ≥ N₀, m ≤ x n
 Logical form (Lean): (x : RealSequence) : BoundedBelowSeq x ↔ ∃ N₀ : ℕ, ∃ m : ℝ, ∀ n ≥ N₀, m ≤ x n
-Source: ./Sequences/NullConstantSequences.lean#L282
+Source: ./Sequences/BoundedSequences.lean#L34
 
 
 
@@ -6211,7 +6211,7 @@ Predicate logic: ∀ (x : RealSequence), BoundedSeq x ↔ ∃ N₀ : ℕ, ∃ M 
 Predicate logic (unfolded): ∀ (x : LRA.Analysis.Sequences.RealSequence), LRA.Analysis.Sequences.BoundedSeq x ↔ Exists fun N₀ => Exists fun M => (GT.gt M 0 ∧ ∀ (n : Nat), GE.ge n N₀ → Real.instLE.le (abs (x n)) M)
 Transliterated theorem: (∀ x ∈ RealSequence), BoundedSeq x ↔ ∃ N₀ ∈ ℕ, ∃ M > 0, ∀ n ≥ N₀, |x n| ≤ M
 Logical form (Lean): (x : RealSequence) : BoundedSeq x ↔ ∃ N₀ : ℕ, ∃ M > 0, ∀ n ≥ N₀, |x n| ≤ M
-Source: ./Sequences/NullConstantSequences.lean#L296
+Source: ./Sequences/BoundedSequences.lean#L48
 
 
 
@@ -6222,7 +6222,7 @@ Predicate logic: ∀ (x : RealSequence), BoundedSeq x ↔ (BoundedAboveSeq x ∧
 Predicate logic (unfolded): ∀ (x : LRA.Analysis.Sequences.RealSequence), LRA.Analysis.Sequences.BoundedSeq x ↔ (LRA.Analysis.Sequences.BoundedAboveSeq x ∧ LRA.Analysis.Sequences.BoundedBelowSeq x)
 Transliterated theorem: (∀ x ∈ RealSequence), BoundedSeq x ↔ (BoundedAboveSeq x ∧ BoundedBelowSeq x)
 Logical form (Lean): (x : RealSequence) : BoundedSeq x ↔ (BoundedAboveSeq x ∧ BoundedBelowSeq x)
-Source: ./Sequences/NullConstantSequences.lean#L310
+Source: ./Sequences/BoundedSequences.lean#L62
 
 
 
@@ -6233,7 +6233,7 @@ Predicate logic: ∀ {x : RealSequence} {K : ℝ} (hK : K > 0) (h : ∀ n, |x n|
 Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {K : Real}, (GT.gt K 0 ∧ ∀ (n : Nat), Real.instLE.le (abs (x n)) K) → ∀ (n : Nat), (Real.instLE.le (Real.instNeg.neg K) (x n) ∧ Real.instLE.le (x n) K)
 Transliterated theorem: (∀ n, |x n| ≤ K) → ∀ n, -K ≤ x n ∧ x n ≤ K
 Logical form (Lean): {x : RealSequence} {K : ℝ} (hK : K > 0) (h : ∀ n, |x n| ≤ K) : ∀ n, -K ≤ x n ∧ x n ≤ K
-Source: ./Sequences/NullConstantSequences.lean#L325
+Source: ./Sequences/BoundedSequences.lean#L77
 
 
 
@@ -6244,7 +6244,7 @@ Predicate logic: ∀ {x : RealSequence} {m M : ℝ} (h : ∀ n, m ≤ x n ∧ x 
 Predicate logic (unfolded): ∀ {x : LRA.Analysis.Sequences.RealSequence} {m M : Real}, (∀ (n : Nat), (Real.instLE.le m (x n) ∧ Real.instLE.le (x n) M)) → Exists fun K => (GT.gt K 0 ∧ ∀ (n : Nat), Real.instLE.le (abs (x n)) K)
 Transliterated theorem: (∀ n, m ≤ x n ∧ x n ≤ M) → ∃ K > 0, ∀ n, |x n| ≤ K
 Logical form (Lean): {x : RealSequence} {m M : ℝ} (h : ∀ n, m ≤ x n ∧ x n ≤ M) : ∃ K > 0, ∀ n, |x n| ≤ K
-Source: ./Sequences/NullConstantSequences.lean#L340
+Source: ./Sequences/BoundedSequences.lean#L92
 
 
 
@@ -6255,7 +6255,7 @@ Predicate logic: ∀ (c : Real), LRA.Analysis.Sequences.ConvergesTo (fun x => c)
 Predicate logic (unfolded): ∀ (c : Real), LRA.Analysis.Sequences.ConvergesTo (fun x => c) c
 Transliterated theorem: ConvergesTo fun _ ∈ ℕ => c c
 Logical form (Lean): (c : ℝ) : ConvergesTo (fun _ : ℕ => c) c
-Source: ./Sequences/ExamplesCounterexamples.lean#L50
+Source: ./Sequences/Examples.lean#L24
 
 
 
@@ -6266,7 +6266,7 @@ Predicate logic: (∀ n : ℕ, (1 : ℝ) / (n + 2) < 1 / (n + 1)) ∧ (∀ n : �
 Predicate logic (unfolded): (∀ (n : Nat), Real.instLT.lt (instHDiv.hDiv 1 (instHAdd.hAdd n.cast 2)) (instHDiv.hDiv 1 (instHAdd.hAdd n.cast 1)) ∧ (∀ (n : Nat), Real.instLE.le 0 (instHDiv.hDiv 1 (instHAdd.hAdd n.cast 1)) ∧ LRA.Analysis.Sequences.ConvergesTo (fun n => instHDiv.hDiv 1 (instHAdd.hAdd n.cast 1)) 0))
 Transliterated theorem: ∀ n ∈ ℕ, 1 ∈ ℝ / (n + 2 < 1 / (n + 1)) ∧ ∀ n ∈ ℕ, 0 ≤ 1 / (n ∈ ℝ + 1) ∧ ConvergesTo fun n ∈ ℕ => 1 / (n ∈ ℝ + 1) 0
 Logical form (Lean): : (∀ n : ℕ, (1 : ℝ) / (n + 2) < 1 / (n + 1)) ∧ (∀ n : ℕ, 0 ≤ 1 / ((n : ℝ) + 1)) ∧ ConvergesTo (fun n : ℕ => 1 / ((n : ℝ) + 1)) 0
-Source: ./Sequences/ExamplesCounterexamples.lean#L66
+Source: ./Sequences/Examples.lean#L39
 
 
 
@@ -6277,51 +6277,51 @@ Predicate logic: ¬ Monotone (fun n : ℕ => (-1 : ℝ) ^ n / (n + 1)) ∧ Conve
 Predicate logic (unfolded): (¬ Monotone fun n => instHDiv.hDiv (instHPow.hPow (-1) n) (instHAdd.hAdd n.cast 1) ∧ LRA.Analysis.Sequences.ConvergesTo (fun n => instHDiv.hDiv (instHPow.hPow (-1) n) (instHAdd.hAdd n.cast 1)) 0)
 Transliterated theorem: ¬ Monotone fun n ∈ ℕ => -1 ∈ ℝ ^ n / (n + 1) ∧ ConvergesTo fun n ∈ ℕ => -1 ∈ ℝ ^ n / (n + 1) 0
 Logical form (Lean): : ¬ Monotone (fun n : ℕ => (-1 : ℝ) ^ n / (n + 1)) ∧ ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n / (n + 1)) 0
-Source: ./Sequences/ExamplesCounterexamples.lean#L83
+Source: ./Sequences/Examples.lean#L55
 
 
 
-Name: ExampleOscillatingSequence
+Name: FailureOscillatingSequence
 Kind: Theorem
 State: Sorry
 Predicate logic: BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧ (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧ ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n)) 1 ∧ ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n + 1)) (-1)
 Predicate logic (unfolded): (LRA.Analysis.Sequences.BoundedSeq fun n => instHPow.hPow (-1) n ∧ (¬ Exists fun L => LRA.Analysis.Sequences.ConvergesTo (fun n => instHPow.hPow (-1) n) L ∧ (LRA.Analysis.Sequences.ConvergesTo (fun n => instHPow.hPow (-1) (instHMul.hMul 2 n)) 1 ∧ LRA.Analysis.Sequences.ConvergesTo (fun n => instHPow.hPow (-1) (instHAdd.hAdd (instHMul.hMul 2 n) 1)) (-1))))
 Transliterated theorem: BoundedSeq fun n ∈ ℕ => -1 ∈ ℝ ^ n ∧ (¬ ∃ L, ConvergesTo fun n ∈ ℕ => -1 ∈ ℝ ^ n L) ∧ ConvergesTo fun n ∈ ℕ => -1 ∈ ℝ ^ (2 * n) 1 ∧ ConvergesTo fun n ∈ ℕ => -1 ∈ ℝ ^ (2 * n + 1) (-1)
 Logical form (Lean): : BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧ (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧ ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n)) 1 ∧ ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n + 1)) (-1)
-Source: ./Sequences/ExamplesCounterexamples.lean#L102
+Source: ./Sequences/Failures.lean#L28
 
 
 
-Name: ExampleGeometricSequence
+Name: ExampleGeometricSequenceDecay / ExampleGeometricSequenceOne / FailureGeometricSequenceAlternating / FailureGeometricSequenceGrowth
 Kind: Theorem
 State: Sorry
 Predicate logic: (∀ r : ℝ, |r| < 1 → ConvergesTo (fun n : ℕ => r ^ n) 0) ∧ ConvergesTo (fun _ : ℕ => (1 : ℝ) ^ (0 : ℕ)) 1 ∧ (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧ (∀ r : ℝ, |r| > 1 → ¬ BoundedSeq (fun n : ℕ => r ^ n))
 Predicate logic (unfolded): (∀ (r : Real), Real.instLT.lt (abs r) 1 → LRA.Analysis.Sequences.ConvergesTo (fun n => instHPow.hPow r n) 0 ∧ (LRA.Analysis.Sequences.ConvergesTo (fun x => instHPow.hPow 1 0) 1 ∧ (¬ Exists fun L => LRA.Analysis.Sequences.ConvergesTo (fun n => instHPow.hPow (-1) n) L ∧ ∀ (r : Real), GT.gt (abs r) 1 → ¬ LRA.Analysis.Sequences.BoundedSeq fun n => instHPow.hPow r n)))
 Transliterated theorem: ∀ r ∈ ℝ, |r| < 1 → ConvergesTo fun n ∈ ℕ => r ^ n 0 ∧ ConvergesTo fun _ ∈ ℕ => 1 ∈ ℝ ^ 0 ∈ ℕ 1 ∧ (¬ ∃ L, ConvergesTo fun n ∈ ℕ => -1 ∈ ℝ ^ n L) ∧ ∀ r ∈ ℝ, |r| > 1 → ¬ BoundedSeq fun n ∈ ℕ => r ^ n
 Logical form (Lean): : (∀ r : ℝ, |r| < 1 → ConvergesTo (fun n : ℕ => r ^ n) 0) ∧ ConvergesTo (fun _ : ℕ => (1 : ℝ) ^ (0 : ℕ)) 1 ∧ (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧ (∀ r : ℝ, |r| > 1 → ¬ BoundedSeq (fun n : ℕ => r ^ n))
-Source: ./Sequences/ExamplesCounterexamples.lean#L123
+Source: ./Sequences/Examples.lean#L69 and ./Sequences/Examples.lean#L82; ./Sequences/Failures.lean#L44 and ./Sequences/Failures.lean#L57
 
 
 
-Name: ExampleBoundedNotConvergent
+Name: FailureBoundedNotConvergent
 Kind: Theorem
 State: Sorry
 Predicate logic: BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧ ¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L
 Predicate logic (unfolded): (LRA.Analysis.Sequences.BoundedSeq fun n => instHPow.hPow (-1) n ∧ ¬ Exists fun L => LRA.Analysis.Sequences.ConvergesTo (fun n => instHPow.hPow (-1) n) L)
 Transliterated theorem: BoundedSeq fun n ∈ ℕ => -1 ∈ ℝ ^ n ∧ ¬ ∃ L, ConvergesTo fun n ∈ ℕ => -1 ∈ ℝ ^ n L
 Logical form (Lean): : BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧ ¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L
-Source: ./Sequences/ExamplesCounterexamples.lean#L141
+Source: ./Sequences/Failures.lean#L71
 
 
 
-Name: ExampleVanishingDifferencesNotCauchy
+Name: FailureVanishingDifferencesNotCauchy
 Kind: Theorem
 State: Sorry
 Predicate logic: ConvergesTo (fun n : ℕ => 1 / ((n : ℝ) + 2)) 0 ∧ ¬ BoundedSeq (fun n : ℕ => ∑ k ∈ Finset.range (n + 1), 1 / ((k : ℝ) + 1))
 Predicate logic (unfolded): (LRA.Analysis.Sequences.ConvergesTo (fun n => instHDiv.hDiv 1 (instHAdd.hAdd n.cast 2)) 0 ∧ ¬ LRA.Analysis.Sequences.BoundedSeq fun n => (Finset.range (instHAdd.hAdd n 1)).sum fun k => instHDiv.hDiv 1 (instHAdd.hAdd k.cast 1))
 Transliterated theorem: ConvergesTo fun n ∈ ℕ => 1 / (n ∈ ℝ + 2) 0 ∧ ¬ BoundedSeq fun n ∈ ℕ => ∑ k ∈ Finset.range (n + 1, 1 / (k ∈ ℝ + 1))
 Logical form (Lean): : ConvergesTo (fun n : ℕ => 1 / ((n : ℝ) + 2)) 0 ∧ ¬ BoundedSeq (fun n : ℕ => ∑ k ∈ Finset.range (n + 1), 1 / ((k : ℝ) + 1))
-Source: ./Sequences/ExamplesCounterexamples.lean#L157
+Source: ./Sequences/Failures.lean#L87
 
 
 

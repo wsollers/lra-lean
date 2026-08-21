@@ -6,7 +6,7 @@ Source: real-analysis/notes/proof-techniques/bisection-nested-intervals.tex
 Audit note: `thm:nested-interval-property` here is this chapter's own
 restatement of NIP — the SAME underlying fact as the Completeness
 chapter's own `thm:nested-interval-property` content (see
-`Bounding/NestedIntervalProperty.lean`, formalized earlier in
+`Completeness/NestedIntervalProperty.lean`, formalized earlier in
 this pass). Both get their own Lean statement since they are distinct
 labeled nodes in distinct chapters. `def:bisection-sequence` is a
 schema/template (branches on an unspecified property `P`), not a single

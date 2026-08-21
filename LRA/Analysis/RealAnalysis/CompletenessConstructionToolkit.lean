@@ -5,7 +5,7 @@ Source: real-analysis/notes/proof-techniques/completeness-construction.tex
 
 Audit note: `prop:eps-char-sup` here is the SAME underlying fact as the
 Bounds chapter's `epsilon_characterization_of_supremum`
-(`Bounding/EpsilonCharacterization.lean`) — restated in this
+(`Bounds/Extrema/EpsilonCharacterization.lean`) — restated in this
 chapter's own "proof technique" framing (unpacked directly over `ℝ`
 rather than via the `IsSupremum` predicate). Stated independently below
 since it is its own labeled node with its own dependency chain in this

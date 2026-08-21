@@ -13,10 +13,11 @@ canonical concrete carrier both formalizations are checked against:
 
 * Formal first-order model theory: `TarskiRelationSymbol` and
   `TarskiFirstOrderSignature` (the `L_geom` vocabulary) live in
-  `Interface/Signature/Definition.lean`; `BuildTarskiModel` (registers
-  any `Point` type as a formal `L_geom`-structure) lives in
-  `Interface/ModelTheory/Model.lean`. Mirrors `AlgebraicStructures.
-  OrderedField.Interface.Signature`/`.ModelTheory`.
+  `Interface/Signature/Definition.lean`; the `L_geom`-structure
+  constructor `BuildTarskiStructure`/`BuildTarskiModel`, Euclidean
+  theories `TarskiTheory`, and the notion of a structure satisfying a
+  theory live in `Interface/ModelTheory`. Mirrors
+  `AlgebraicStructures.OrderedField.Interface.Signature`/`.ModelTheory`.
 * Typeclass-based laws: `Between`/`Congruent` (the capability
   typeclasses) live in `Interface/Relations.lean`; `CongruenceLaws`,
   `SegmentConstructionLaw`, `FiveSegmentLaw`, `BetweennessLaws`,

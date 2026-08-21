@@ -1,4 +1,5 @@
 import LRA.EuclideanSpace.Interface
+import LRA.EuclideanSpace.Model
 import LRA.EuclideanSpace.Tarski
 import LRA.EuclideanSpace.MathlibPoint
 import LRA.EuclideanSpace.RealLine
@@ -56,6 +57,12 @@ Declarations across all concepts share the flat `LRA.EuclideanSpace`
 namespace (subfolders do not add a namespace layer), so names are
 dimension-qualified where a bare name would otherwise collide.
 
+- `Model`: the model-first analytic-geometry progression built over a
+  chosen `RealModel`. `Rn` is the generic ordered-tuple carrier;
+  `R1`, `R2`, `R3`, and `R4` are named low-dimensional specializations.
+  The vocabulary grows with dimension: intervals/rays on the line,
+  rectangles/disks/graphs in the plane, boxes/spheres/planes in
+  three-space, then higher-dimensional extensions.
 - `Interface`: the generic, backend-agnostic characterization of
   Euclidean space -- law-classes over an arbitrary `Point` type plus
   `between`/`congruent` relations, mirroring `LRA.Set.Interface`'s
