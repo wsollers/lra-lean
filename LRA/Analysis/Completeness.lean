@@ -1,4 +1,5 @@
 import LRA.Analysis.Completeness.AxiomOfCompleteness
+import LRA.Analysis.Completeness.Completeness
 import LRA.Analysis.Completeness.NestedIntervalProperty
 import LRA.Analysis.Completeness.ArchimedeanProperty
 import LRA.Analysis.Completeness.OrderSeparation
