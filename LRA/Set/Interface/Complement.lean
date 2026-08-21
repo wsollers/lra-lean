@@ -1,4 +1,6 @@
 import LRA.Set.Interface.Operations
+import LRA.Set.Interface.Union
+import LRA.Set.Interface.Intersection
 
 namespace LRA.Set
 
@@ -183,5 +185,83 @@ theorem UniversalDifference : ∀ A : α, (𝒰 : α) \ A = Aᶜ
 -/
 theorem UniversalDifference : ∀ A : α, (𝒰 : α) \ A = Aᶜ := by
   sorry
+
+/--
+The set-level dual of `A`: its complement. Named to match
+`LRA.Order`'s order-reversing `Dual` (`OrderedSets.PartialOrder.Dual`,
+`Lattices.Lattice.JoinIffMeetOfDual`/`MeetIffJoinOfDual`) -- complementation
+is exactly the concrete realization of order-duality for sets: it
+reverses `⊆` (`DualAntitone` below) and swaps the roles of `∪`/`∩`
+(`DeMorganUnion`/`DeMorganIntersection` above), which is *why* De
+Morgan's laws hold, not an unrelated fact about sets.
+
+Logical form:
+
+```lean
+def Dual (A : α) : α := Aᶜ
+```
+-/
+def Dual (A : α) : α := Aᶜ
+
+/--
+`Dual` is order-reversing: `A ⊆ B ↔ Dual B ⊆ Dual A`.
+
+Equivalently: complement turns subset into superset. Derived from
+`SubsetIffUnionEqRight`/`SubsetIffIntersectionEqLeft` together with
+`DeMorganUnion` and `IntersectionCommutative`, not an independent axiom
+-- `A ⊆ B ↔ A ∪ B = B`, take complements of both sides of the equation
+to get `Aᶜ ∩ Bᶜ = Bᶜ` (via `DeMorganUnion`), which is `Bᶜ ⊆ Aᶜ` (via
+`SubsetIffIntersectionEqLeft`, up to `IntersectionCommutative`).
+
+Logical form:
+
+```lean
+theorem DualAntitone [UnionLaws α] [IntersectionLaws α] :
+    ∀ A B : α, A ⊆ B ↔ Dual B ⊆ Dual A
+```
+-/
+theorem DualAntitone [UnionLaws α] [IntersectionLaws α] :
+    ∀ A B : α, A ⊆ B ↔ Dual B ⊆ Dual A := by
+  sorry
+
+/--
+`Dual` swaps union into intersection: `Dual (A ∪ B) = Dual A ∩ Dual B`.
+This is `DeMorganUnion` restated through the named `Dual` operation.
+
+Logical form:
+
+```lean
+theorem DualUnion : ∀ A B : α, Dual (A ∪ B) = Dual A ∩ Dual B
+```
+-/
+theorem DualUnion : ∀ A B : α, Dual (A ∪ B) = Dual A ∩ Dual B :=
+  DeMorganUnion
+
+/--
+`Dual` swaps intersection into union: `Dual (A ∩ B) = Dual A ∪ Dual B`.
+This is `DeMorganIntersection` restated through the named `Dual`
+operation.
+
+Logical form:
+
+```lean
+theorem DualIntersection : ∀ A B : α, Dual (A ∩ B) = Dual A ∪ Dual B
+```
+-/
+theorem DualIntersection : ∀ A B : α, Dual (A ∩ B) = Dual A ∪ Dual B :=
+  DeMorganIntersection
+
+/--
+`Dual` is an involution: applying it twice gives back the original set.
+This is `DoubleComplement` restated through `Dual`.
+
+Logical form:
+
+```lean
+theorem DualInvolutive : ∀ A : α, Dual (Dual A) = A
+```
+-/
+theorem DualInvolutive : ∀ A : α, Dual (Dual A) = A :=
+  DoubleComplement
 
 end LRA.Set
