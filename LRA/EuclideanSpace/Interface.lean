@@ -2,12 +2,14 @@ import LRA.EuclideanSpace.Interface.Signature
 import LRA.EuclideanSpace.Interface.ModelTheory
 import LRA.EuclideanSpace.Interface.Relations
 import LRA.EuclideanSpace.Interface.Laws
+import LRA.EuclideanSpace.Interface.Point
 
 /-!
 Aggregate import for the `Interface` concept: the generic,
 backend-agnostic characterization of Euclidean space -- mirroring
 `LRA.Set.Interface`'s role for `LRA.Set.ZFCSet`/`PredicateSet`. Two
-complementary formalizations of the same generic vocabulary:
+complementary formalizations of the same generic vocabulary, plus the
+canonical concrete carrier both formalizations are checked against:
 
 * Formal first-order model theory: `TarskiRelationSymbol` and
   `TarskiFirstOrderSignature` (the `L_geom` vocabulary) live in
@@ -20,8 +22,16 @@ complementary formalizations of the same generic vocabulary:
   `SegmentConstructionLaw`, `FiveSegmentLaw`, `BetweennessLaws`,
   `ParallelLaw`, `ContinuityLaw`, and `DimensionLaws` (Tarski's eleven
   axioms, restated generically) live in `Interface/Laws.lean`.
+* `Interface/Point`: `Point n R`, an `n`-tuple over an *abstract* ordered
+  field `R` -- not fixed to `ℝ`, uniformly instantiable at
+  `mathlibRealModel`'s carrier or at any `RealModel` construction --
+  together with the proof that it satisfies the law-classes above.
+  Unlike `Tarski` (opaque, axiomatic) and `MathlibPoint` (fixed to
+  Mathlib's own `ℝ`), `Point n R` is the concrete, coordinate-based
+  family the generic model was missing a canonical carrier for.
 
 A concrete realization registers `Between`/`Congruent` instances for its
 own `Point` type and proves it satisfies the law-classes -- see
-`Tarski/Laws.lean` and `MathlibPoint/Laws.lean`.
+`Tarski/Laws.lean`, `MathlibPoint/Laws.lean`, and `Interface/Point/
+Laws.lean`.
 -/
