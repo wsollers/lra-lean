@@ -5,7 +5,7 @@ import LRA.Identity.Substitution
 import LRA.Identity.Congruence
 import LRA.Identity.Uniqueness
 import LRA.Identity.ExistenceAndUniqueness
-import LRA.Identity.Model
+import LRA.Identity.Interface
 
 /-!
 Canonical import route for identity and equality.

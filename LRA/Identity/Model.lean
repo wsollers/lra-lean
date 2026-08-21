@@ -1,5 +1,5 @@
-import LRA.Identity.Model.LStructure
-import LRA.Identity.Model.Theory
-import LRA.Identity.Model.Model
+import LRA.Identity.Interface.ModelTheory.LStructure
+import LRA.Identity.Interface.ModelTheory.Theory
+import LRA.Identity.Interface.ModelTheory.Model
 
-/-! Aggregate import for the model-theoretic treatment of identity. -/
+/-! Backward-compatible aggregate import for the model-theoretic treatment of identity. -/

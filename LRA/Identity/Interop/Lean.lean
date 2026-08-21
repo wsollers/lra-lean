@@ -1,4 +1,4 @@
-import LRA.Identity.Model
+import LRA.Identity.Interface
 import LRA.Identity.Substitution
 
 namespace LRA.Identity

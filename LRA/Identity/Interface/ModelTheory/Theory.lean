@@ -2,7 +2,7 @@ import LRA.Identity.Axioms
 import LRA.Identity.Distinctness
 import LRA.Identity.Uniqueness
 import LRA.Identity.ExistenceAndUniqueness
-import LRA.Identity.Model.LStructure
+import LRA.Identity.Interface.ModelTheory.LStructure
 
 namespace LRA.Identity
 
