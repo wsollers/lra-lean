@@ -162,7 +162,7 @@ adapter for order belongs to `Order/Interop`; one for metric spaces belongs to
 `Analysis/MetricSpace/Interop`; one for sets belongs to `Set/Interop`.
 
 For the repository-wide standard governing when a subject gets `Interface`,
-`Model`, `UniversalAlgebra`, and `Construction/Realization`, see
+`Interface/ModelTheory`, `Interface/UniversalAlgebra`, and `Realizations`, see
 `ExternalInterfaces.md`. That document is the canonical decision guide for
 external compatibility surfaces and logical/algebraic packaging.
 
@@ -247,9 +247,10 @@ An algebraic-structure folder owns:
 | `Definition.lean` | Working typeclass, law bundle, or certificate for the named structure. |
 | `Laws/` | Law-level components and their consequences. |
 | `Interface/Signature/Definition.lean` | First-order or algebraic signature when the structure is modeled logically. |
-| `Interface/ModelTheory/Model.lean` | The model associated with that signature. |
-| `Interface/ModelTheory/Axioms.lean` | The axioms for the structure. |
-| `Interface/ModelTheory/Satisfaction.lean` | Proof that the model satisfies the axioms. |
+| `Interface/ModelTheory/LStructure.lean` | The interpreted first-order structure for that signature. |
+| `Interface/ModelTheory/Theory.lean` | The formal theory of the structure. |
+| `Interface/ModelTheory/Model.lean` | The packaged notion tying structure and theory together as modelhood. |
+| `Realizations/` | Concrete backends proved to satisfy the interface contract. |
 | `Consequences.lean` | Structure-level consequences. |
 | `Relationships.lean` | Links to parent/child or sibling structures. |
 
@@ -276,19 +277,20 @@ The system-level pattern is:
 
 ```text
 Interface/Signature/Definition.lean
+Interface/ModelTheory/LStructure.lean
+Interface/ModelTheory/Theory.lean
 Interface/ModelTheory/Model.lean
-Interface/ModelTheory/Axioms.lean
-Interface/ModelTheory/Satisfaction.lean
-Interface/Realization.lean
+Interface/UniversalAlgebra/Signature/Definition.lean
+Realizations/
 ```
 
-`Realization.lean` ties the native working structure to the generic interface:
-the implementation is not merely a carrier with operations; it is proved to be a
-model satisfying the intended axioms.
+`Realizations/` ties native working structures or external backends to the
+generic interface: the implementation is not merely a carrier with operations;
+it is proved to satisfy the intended interface contract.
 
 The broader decision of whether a subject should have only `Interface`,
-`Interface + Model`, `Interface + UniversalAlgebra`, or all three is governed
-by `ExternalInterfaces.md`.
+`Interface + ModelTheory`, `Interface + UniversalAlgebra`, or all three is
+governed by `ExternalInterfaces.md`.
 
 ## Generic Interfaces And Implementations
 

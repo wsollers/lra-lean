@@ -26,9 +26,10 @@ It plays the role of the repository's native compatibility surface:
 `Interface` is not a reimplementation of Mathlib. It is the LRA-owned surface
 through which we state theorems in the mathematical language we want to use.
 
-### `Model`
+### `Interface/ModelTheory`
 
-`Model` is for logical or model-theoretic packaging.
+`Interface/ModelTheory` is for logical or model-theoretic packaging of the
+interface.
 
 Use it when the subject genuinely needs:
 
@@ -37,11 +38,31 @@ Use it when the subject genuinely needs:
 - a theory or axioms over those structures,
 - satisfaction or modelhood.
 
-`Model` is not the same thing as "concrete implementation."
+This is the formal contract of what the subject is in first-order logical
+terms.
 
-### `UniversalAlgebra`
+Its preferred internal shape is:
 
-`UniversalAlgebra` is for operation-based packaging.
+```text
+Interface/
+  ModelTheory/
+    LStructure.lean
+    Theory.lean
+    Model.lean
+```
+
+Meaning:
+
+- `LStructure.lean`
+  The interpreted first-order structure of the subject vocabulary.
+- `Theory.lean`
+  The formal first-order theory of the subject.
+- `Model.lean`
+  The packaged notion tying structure and theory together as modelhood.
+
+### `Interface/UniversalAlgebra`
+
+`Interface/UniversalAlgebra` is for operation-based packaging of the interface.
 
 Use it when the subject is fundamentally about:
 
@@ -53,12 +74,22 @@ Use it when the subject is fundamentally about:
 - kernels,
 - induced operations and universal properties.
 
-This is different from model theory. Universal algebra is about the algebraic
-machinery of operations, not primarily about first-order satisfaction.
+This is the algebraic contract of what the subject is. It is different from
+model theory: universal algebra is about the algebraic machinery of
+operations, not primarily about first-order satisfaction.
 
-### `Construction/Realization`
+Its preferred entrypoint shape is:
 
-`Construction/Realization` is for concrete realizations of the interface.
+```text
+Interface/
+  UniversalAlgebra/
+    Signature/
+      Definition.lean
+```
+
+### `Realizations`
+
+`Realizations` is for concrete realizations of the interface.
 
 This is where a subject proves that a specific carrier or backend satisfies the
 abstract interface.
@@ -69,8 +100,8 @@ Examples:
 - a Mathlib-backed implementation realizing an LRA interface,
 - a set-backed implementation proving abstraction boundaries are honest.
 
-Do not use `Model` to mean "one implementation." Use `Realization` or a named
-implementation file instead.
+Do not use model-theoretic folders to mean "one implementation." Use
+`Realizations` or a named implementation file instead.
 
 ## Decision Table
 
@@ -79,18 +110,18 @@ Use this table when deciding what folders a subject gets.
 | Question | If yes | If no |
 |---|---|---|
 | Does the subject need an LRA-owned abstract surface? | Add `Interface` | Stop only if the subject is purely internal plumbing |
-| Does the subject need formal signatures, structures, axioms, or satisfaction? | Add `Model` | No `Model` folder |
-| Does the subject need operation-level algebraic machinery? | Add `UniversalAlgebra` | No `UniversalAlgebra` folder |
-| Does the subject have one or more concrete backends or realizations? | Add `Construction/Realization` | No realization folder yet |
+| Does the subject need formal signatures, structures, axioms, or satisfaction? | Add `Interface/ModelTheory` | No model-theory folder |
+| Does the subject need operation-level algebraic machinery? | Add `Interface/UniversalAlgebra` | No universal-algebra folder |
+| Does the subject have one or more concrete backends or realizations? | Add `Realizations` | No realization folder yet |
 
 This yields four normal cases:
 
 | Shape | Use |
 |---|---|
 | `Interface` only | Abstract subject surface with theorems, no separate logical or algebraic packaging needed |
-| `Interface + Model` | Logical theories with signatures, structures, axioms, satisfaction |
+| `Interface + ModelTheory` | Logical theories with signatures, structures, theory, modelhood |
 | `Interface + UniversalAlgebra` | Operation-driven structures where algebraic machinery matters but separate logical packaging does not |
-| `Interface + Model + UniversalAlgebra` | Subjects with both a useful logical reading and a useful algebraic reading |
+| `Interface + ModelTheory + UniversalAlgebra` | Subjects with both a useful logical reading and a useful algebraic reading |
 
 ## Standard Folder Shapes
 
@@ -107,68 +138,66 @@ LRA/XXX/
   Interop/
 ```
 
-### 2. Interface plus Model
+### 2. Interface plus ModelTheory
 
 ```text
 LRA/XXX/
   Interface.lean
-  Model.lean
+  Realizations.lean
   Interface/
     Definition.lean
-  Model/
-    LStructure.lean
-    Theory.lean
-    Model.lean
-  Construction/
-    Realization.lean
+    ModelTheory/
+      LStructure.lean
+      Theory.lean
+      Model.lean
+  Realizations/
+    ...
   Interop/
 ```
-
-This is the preferred subject-native model layout.
 
 ### 3. Interface plus UniversalAlgebra
 
 ```text
 LRA/XXX/
   Interface.lean
-  UniversalAlgebra.lean
+  Realizations.lean
   Interface/
     Definition.lean
-  UniversalAlgebra/
-    Signature/
-      Definition.lean
-  Construction/
-    Realization.lean
+    UniversalAlgebra/
+      Signature/
+        Definition.lean
+  Realizations/
+    ...
   Interop/
 ```
 
-### 4. Interface plus Model plus UniversalAlgebra
+### 4. Interface plus ModelTheory plus UniversalAlgebra
 
 ```text
 LRA/XXX/
   Interface.lean
-  Model.lean
-  UniversalAlgebra.lean
+  Realizations.lean
   Interface/
     Definition.lean
-  Model/
-    LStructure.lean
-    Theory.lean
-    Model.lean
-  UniversalAlgebra/
-    Signature/
-      Definition.lean
-  Construction/
-    Realization.lean
+    ModelTheory/
+      LStructure.lean
+      Theory.lean
+      Model.lean
+    UniversalAlgebra/
+      Signature/
+        Definition.lean
+  Realizations/
+    ...
   Interop/
 ```
 
 ## When To Use Each Shape
 
-### Use `Model` only
+### Use `Interface/ModelTheory` only
 
-Use `Model` without `UniversalAlgebra` when relations or logical theories are
-central and operation-only algebra is not the right main reading.
+Use `Interface/ModelTheory` without `Interface/UniversalAlgebra` when
+relations or logical theories are central and operation-only algebra is not the
+right main reading.
 
 Examples:
 
@@ -179,11 +208,11 @@ Examples:
 These subjects care about formal structures and theories, but they are not
 primarily universal-algebraic subjects.
 
-### Use `UniversalAlgebra` only
+### Use `Interface/UniversalAlgebra` only
 
-Use `UniversalAlgebra` without `Model` when the subject is fundamentally about
-operations and algebraic machinery, and full first-order packaging would add
-little.
+Use `Interface/UniversalAlgebra` without `Interface/ModelTheory` when the
+subject is fundamentally about operations and algebraic machinery, and full
+first-order packaging would add little.
 
 Typical use:
 
@@ -204,8 +233,8 @@ Examples:
 
 The split is:
 
-- `Model` answers: what is the formal theory?
-- `UniversalAlgebra` answers: what algebraic machinery acts on it?
+- `Interface/ModelTheory` answers: what is the formal theory?
+- `Interface/UniversalAlgebra` answers: what algebraic machinery acts on it?
 
 ### Use neither beyond `Interface`
 
@@ -223,14 +252,14 @@ In those cases, stop at `Interface` unless a real need appears.
 
 | Subject | Recommended shape | Reason |
 |---|---|---|
-| `Set` | `Interface + Model` | Membership is relational and model-theoretic |
-| `Identity` | `Interface + Model` | Equality structure is logical, not mainly algebraic |
-| `EuclideanSpace.Interface` | `Interface + Model` | Tarski-style relations make model theory natural |
-| `Ring` | `Interface + Model + UniversalAlgebra` | Both first-order and algebraic readings are useful |
-| `Field` | `Interface + Model + UniversalAlgebra` | Same reason as rings |
-| `MetricSpace` | `Interface` first, optionally `Model` later | Metric spaces are not primarily universal-algebraic |
-| `MeasurableSpace` | `Interface`, possibly `Model` | Logical packaging may be useful; universal algebra usually is not |
-| `MeasureSpace` | `Interface`, possibly `Model` | Same pattern as measurable spaces |
+| `Set` | `Interface + ModelTheory` | Membership is relational and model-theoretic |
+| `Identity` | `Interface + ModelTheory` | Equality structure is logical, not mainly algebraic |
+| `EuclideanSpace.Interface` | `Interface + ModelTheory` | Tarski-style relations make model theory natural |
+| `Ring` | `Interface + ModelTheory + UniversalAlgebra` | Both first-order and algebraic readings are useful |
+| `Field` | `Interface + ModelTheory + UniversalAlgebra` | Same reason as rings |
+| `MetricSpace` | `Interface` first, optionally `Interface/ModelTheory` later | Metric spaces are not primarily universal-algebraic |
+| `MeasurableSpace` | `Interface`, possibly `Interface/ModelTheory` | Logical packaging may be useful; universal algebra usually is not |
+| `MeasureSpace` | `Interface`, possibly `Interface/ModelTheory` | Same pattern as measurable spaces |
 
 ## Naming Rules
 
@@ -238,22 +267,22 @@ Use these names consistently:
 
 - `Interface`
   The subject's LRA-native abstraction boundary.
-- `Model`
-  Logical/model-theoretic packaging only.
-- `UniversalAlgebra`
-  Operation-based algebraic packaging only.
-- `Construction/Realization`
+- `Interface/ModelTheory`
+  Logical/model-theoretic contract of the interface.
+- `Interface/UniversalAlgebra`
+  Operation-based algebraic contract of the interface.
+- `Realizations`
   Concrete implementations or realizations of the interface.
 
 Avoid these collisions:
 
-- do not use `Model` to mean "implementation";
+- do not use `Interface/ModelTheory` to mean "implementation";
 - do not use `Construction/ModelTheory` for files that are really concrete
   realizations;
 - do not mix `Language` and `Signature` arbitrarily for the same role inside
   one local subsystem;
-- do not duplicate the same concept under both `Model` and
-  `Construction/Realization` unless the distinction is explicit.
+- do not duplicate the same concept under both `Interface/ModelTheory` and
+  `Realizations` unless the distinction is explicit.
 
 ## Refactor Guidance
 
@@ -262,11 +291,11 @@ When cleaning up an existing subject:
 1. Identify the public abstraction boundary.
    That becomes `Interface`.
 2. Ask whether the subject truly needs logical signatures and satisfaction.
-   If yes, add or normalize `Model`.
+   If yes, add or normalize `Interface/ModelTheory`.
 3. Ask whether the subject truly needs operation-level algebraic machinery.
-   If yes, add or normalize `UniversalAlgebra`.
-4. Move concrete backend-specific files under `Construction/Realization` or a
-   named implementation folder beneath it.
+   If yes, add or normalize `Interface/UniversalAlgebra`.
+4. Move concrete backend-specific files under `Realizations` or a named
+   implementation folder beneath it.
 5. Keep Mathlib bridges in `Interop`, even when Mathlib also appears as one
    realization backend.
 
@@ -275,7 +304,7 @@ When cleaning up an existing subject:
 This standard is intended to guide global cleanup of inconsistent `Model`
 usage across the repository, especially where:
 
-- `Model` currently means both logical model and implementation,
+- logical-model folders and implementation folders are currently mixed,
 - `Construction/ModelTheory` is being used for concrete realizations,
 - `Language` and `Signature` are mixed for the same local role,
 - and interface/model/algebra boundaries are unclear.

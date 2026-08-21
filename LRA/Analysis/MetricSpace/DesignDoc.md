@@ -5,8 +5,9 @@
 This note records the concrete target structure for
 `LRA.Analysis.MetricSpace`.
 
-Repository-wide rules for when a subject gets `Interface`, `Model`,
-`UniversalAlgebra`, and `Construction/Realization` live in
+Repository-wide rules for when a subject gets `Interface`,
+`Interface/ModelTheory`, `Interface/UniversalAlgebra`, and `Realizations` live
+in
 `ExternalInterfaces.md`. This file applies that standard specifically to metric
 space.
 
@@ -16,7 +17,9 @@ space.
 with:
 
 - a generic interface,
-- a model layer whose fields carry the primitive metric assumptions,
+- an interface-level model-theoretic layer if and when formal logical packaging
+  is needed,
+- a native model layer whose fields carry the primitive metric assumptions,
 - laws derived from those model fields,
 - concrete realizations separated from the core theory,
 - explicit Mathlib interop,
@@ -30,7 +33,6 @@ Euclidean space is one of its most important realizations in this repository.
 ```text
 LRA/Analysis/MetricSpace/
   Interface.lean
-  Model.lean
   Laws.lean
   Realizations.lean
   Interop.lean
@@ -39,10 +41,13 @@ LRA/Analysis/MetricSpace/
   Interface/
     Metric.lean
     MetricSpace.lean
-
-  Model/
-    Metric.lean
-    MetricSpace.lean
+    ModelTheory/
+      LStructure.lean
+      Theory.lean
+      Model.lean
+    UniversalAlgebra/
+      Signature/
+        Definition.lean
 
   Laws/
     Metric.lean
@@ -85,9 +90,37 @@ It should own:
 This is the layer where book-style theorems should be stated whenever they
 depend only on metric-space abstraction.
 
-### `Model`
+### `Interface`
 
-`Model` owns the primitive assumptions.
+`Interface` is the public abstract surface for metric-space mathematics.
+
+It should own:
+
+- the generic notion of metric,
+- the generic notion of metric space,
+- any backend-neutral declarations used throughout the subject.
+
+This is the layer where book-style theorems should be stated whenever they
+depend only on metric-space abstraction.
+
+### `Interface/ModelTheory`
+
+`Interface/ModelTheory` is reserved for the full first-order logical workup of
+metric space if we decide the subject needs one.
+
+That layer would contain:
+
+- `LStructure.lean`,
+- `Theory.lean`,
+- `Model.lean`.
+
+At present, the immediate refactor priority for metric space is the abstract
+interface, native model data, laws, realizations, and interop. A full
+model-theoretic contract may come later if it earns its keep.
+
+### Native model data
+
+The native metric-space model layer owns the primitive assumptions.
 
 For metric space, this means the model fields carry:
 
@@ -102,7 +135,7 @@ downstream theorem files.
 
 ### `Laws`
 
-`Laws` owns theorems proved from the model fields.
+`Laws` owns theorems proved from the native model fields.
 
 Typical early laws include:
 
@@ -116,7 +149,7 @@ Typical early laws include:
 
 This gives the clean split:
 
-- `Model` = assumptions,
+- native model data = assumptions,
 - `Laws` = consequences of every model.
 
 ### `Realizations`
@@ -218,8 +251,8 @@ When adding a declaration, use this test:
 
 Future metric-space cleanup should aim at:
 
-- replacing ad hoc definition files with the `Interface / Model / Laws`
-  structure,
+- replacing ad hoc definition files with the
+  `Interface / native model data / Laws` structure,
 - renaming concrete backend files into `Realizations`,
 - keeping Mathlib bridges in `Interop`,
 - and keeping Euclidean geometry ownership inside `LRA.EuclideanSpace`.
