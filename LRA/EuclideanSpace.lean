@@ -1,3 +1,4 @@
+import LRA.EuclideanSpace.Interface
 import LRA.EuclideanSpace.RealLine
 
 /-!
@@ -49,25 +50,18 @@ the two, per the design discussion recorded in
 
 ## Structure
 
-One concept per lecture/dimension, each with its own `Definition`/
-`Theorems` split; declarations across all four concepts share the flat
-`LRA.EuclideanSpace` namespace (subfolders do not add a namespace
-layer), so names are dimension-qualified where a bare name would
-otherwise collide (`RealLineDistance`/`PlaneDistance`/`SpaceDistance`/
-`EuclideanDistance`, `Point2`/`Point3`/`PointN`, ...).
+Declarations across all concepts share the flat `LRA.EuclideanSpace`
+namespace (subfolders do not add a namespace layer), so names are
+dimension-qualified where a bare name would otherwise collide.
 
+- `Interface`: the abstract characterization of Euclidean space, via
+  Tarski's `{Between, Congruent}` first-order axiomatization of `E_n`.
+  Currently registers only the vocabulary (`TarskiFirstOrderSignature`)
+  and the shape of a model (`BuildTarskiModel`); the eleven axioms and
+  the standard model are later work.
 - `RealLine` (Lecture 1): the real continuum, distance, intervals and
   rays, translation/dilation. Points are `ℝ` itself.
-- `CartesianPlane` (Lecture 2): ℝ² as points, boxes, lines (implicit/
-  explicit/parametric), distance, projections and slices. Points are
-  the named-field `Point2` structure.
-- `Space3D` (Lecture 3): ℝ³ as points, boxes, planes and lines,
-  surfaces/graphs, distance, projections. Points are the named-field
-  `Point3` structure.
-- `NSpace` (Lecture 4): general ℝⁿ, hyperrectangles, hyperplanes,
-  distance, coordinate projections/slices, functions and level sets.
-  Points are `PointN n := Fin n → ℝ` (a named-field structure isn't
-  possible at this generality).
 
-Still to build: `CartesianPlane`, `Space3D`, `NSpace`.
+Still to build, pending the generic point-type design (in progress):
+`CartesianPlane`, `Space3D`, `NSpace`.
 -/
