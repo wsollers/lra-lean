@@ -1,7 +1,7 @@
 import Mathlib.Algebra.Group.Pointwise.Set.Basic
 import Mathlib.Data.Rat.Defs
 import Mathlib.Data.Real.Basic
-import LRA.Analysis.Bounding.ExtremalBounds.SupremaInfima
+import LRA.Analysis.Bounds.Extrema.SupremaInfima
 
 /-!
 Algebraic behavior of suprema and infima under set operations.
@@ -12,7 +12,7 @@ open scoped Pointwise
 namespace LRA.Analysis.Bounds.Algebra
 open scoped Pointwise
 
-open LRA.Analysis.Bounds.Extremal
+open LRA.Analysis.Bounds.Extrema
 open LRA.Analysis.Bounds
 
 /-- The reciprocal image of a real set.

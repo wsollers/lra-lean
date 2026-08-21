@@ -1,5 +1,5 @@
 import Mathlib.Data.Real.Basic
-import LRA.Analysis.Bounding.ExtremalBounds.SupremaInfima
+import LRA.Analysis.Bounds.Extrema.SupremaInfima
 
 /-!
 The least-upper-bound property and completeness of the real line.
@@ -7,7 +7,7 @@ The least-upper-bound property and completeness of the real line.
 
 namespace LRA.Analysis.Completeness
 
-open LRA.Analysis.Bounds.Extremal
+open LRA.Analysis.Bounds.Extrema
 open LRA.Analysis.Bounds
 
 /-- A preorder has the least-upper-bound property when every nonempty bounded-above set has a supremum.

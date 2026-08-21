@@ -1,7 +1,7 @@
 import Mathlib.Data.Real.Basic
 import Mathlib.Data.Set.Basic
-import LRA.Analysis.Bounding.ExtremalBounds.MaximaMinima
-import LRA.Analysis.Bounding.ExtremalBounds.SupremaInfima
+import LRA.Analysis.Bounds.Extrema.MaximaMinima
+import LRA.Analysis.Bounds.Extrema.SupremaInfima
 
 /-!
 Order separation consequences of completeness.
@@ -9,7 +9,7 @@ Order separation consequences of completeness.
 
 namespace LRA.Analysis.Completeness
 
-open LRA.Analysis.Bounds.Extremal
+open LRA.Analysis.Bounds.Extrema
 open LRA.Analysis.Bounds
 
 /-- Let `A B : Set ℝ`. If `leftNonemptyHypothesis : A.Nonempty`, `rightNonemptyHypothesis :

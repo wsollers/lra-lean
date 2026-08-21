@@ -1,12 +1,12 @@
 import Mathlib.Algebra.Order.Group.Abs
 import Mathlib.Data.Set.Basic
-import LRA.Analysis.Bounding.Bounds
+import LRA.Analysis.Bounds.Bounds
 
 /-!
 Upper and lower bounds for ordered carriers.
 -/
 
-namespace LRA.Analysis.Bounds.Extremal
+namespace LRA.Analysis.Bounds.Extrema
 
 variable {F : Type*}
 
@@ -41,4 +41,4 @@ theorem IsBoundedIffAbsBound [AddCommGroup F] [LinearOrder F] [IsOrderedAddMonoi
     IsBounded A ↔ ∃ M, 0 ≤ M ∧ ∀ a ∈ A, |a| ≤ M := by
   sorry
 
-end LRA.Analysis.Bounds.Extremal
+end LRA.Analysis.Bounds.Extrema

@@ -14,7 +14,7 @@ Standard equivalences between order completeness and process-level completeness.
 
 namespace LRA.Analysis.Completeness
 
-open LRA.Analysis.Bounds.Extremal
+open LRA.Analysis.Bounds.Extrema
 open LRA.Analysis.Bounds
 
 variable (F : Type*)

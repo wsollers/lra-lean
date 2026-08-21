@@ -1,6 +1,6 @@
 import Mathlib.Data.Real.Basic
 import Mathlib.Data.Set.Basic
-import LRA.Analysis.Bounding.ExtremalBounds.SupremaInfima
+import LRA.Analysis.Bounds.Extrema.SupremaInfima
 
 /-!
 Pairwise lattice operations on bounded real sets.
@@ -8,7 +8,7 @@ Pairwise lattice operations on bounded real sets.
 
 namespace LRA.Analysis.Bounds.Algebra
 
-open LRA.Analysis.Bounds.Extremal
+open LRA.Analysis.Bounds.Extrema
 open LRA.Analysis.Bounds
 
 /-- The set of pairwise maxima of elements from `A` and `B`.

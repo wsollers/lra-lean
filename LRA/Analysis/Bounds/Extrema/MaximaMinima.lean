@@ -1,10 +1,10 @@
-import LRA.Analysis.Bounding.ExtremalBounds.SupremaInfima
+import LRA.Analysis.Bounds.Extrema.SupremaInfima
 
 /-!
 Maxima and minima as attained extremal bounds.
 -/
 
-namespace LRA.Analysis.Bounds.Extremal
+namespace LRA.Analysis.Bounds.Extrema
 
 variable {S : Type*}
 
@@ -113,4 +113,4 @@ theorem MaximumIffSupremumAndMembership [PartialOrder S] {A : Set S} {s : S} :
     IsMaximum s A ↔ IsSupremum s A ∧ s ∈ A := by
   sorry
 
-end LRA.Analysis.Bounds.Extremal
+end LRA.Analysis.Bounds.Extrema

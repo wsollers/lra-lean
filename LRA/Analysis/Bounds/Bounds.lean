@@ -1,4 +1,4 @@
--- LRA/Analysis/Bounding/Bounds.lean
+-- LRA/Analysis/Bounds/Bounds.lean
 -- Bounds, extrema, suprema, and infima over ordered carriers.
 
 import Mathlib.Algebra.Order.Field.Basic

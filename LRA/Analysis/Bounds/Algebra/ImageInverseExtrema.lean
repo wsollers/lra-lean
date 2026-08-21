@@ -3,7 +3,7 @@ import Mathlib.Data.Set.Basic
 import Mathlib.Topology.Instances.Real.Lemmas
 import Mathlib.Topology.Order.MonotoneContinuity
 import Mathlib.Topology.Order.OrderClosed
-import LRA.Analysis.Bounding.ExtremalBounds.SupremaInfima
+import LRA.Analysis.Bounds.Extrema.SupremaInfima
 
 /-!
 Extrema of monotone continuous images and inverse images.
@@ -11,7 +11,7 @@ Extrema of monotone continuous images and inverse images.
 
 namespace LRA.Analysis.Bounds.Algebra
 
-open LRA.Analysis.Bounds.Extremal
+open LRA.Analysis.Bounds.Extrema
 open LRA.Analysis.Bounds
 
 /-- Let `I A : Set ℝ` and `s : ℝ`. If `setContainedInDomain : A ⊆ I`, `nonemptyHypothesis :

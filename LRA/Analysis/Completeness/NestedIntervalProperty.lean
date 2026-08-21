@@ -1,7 +1,7 @@
 import Mathlib.Data.Real.Basic
 import Mathlib.Data.Set.Basic
 import Mathlib.Topology.Instances.Real.Lemmas
-import LRA.Analysis.Bounding.ExtremalBounds.SupremaInfima
+import LRA.Analysis.Bounds.Extrema.SupremaInfima
 
 /-!
 Nested closed interval properties over the real line.
@@ -9,7 +9,7 @@ Nested closed interval properties over the real line.
 
 namespace LRA.Analysis.Completeness
 
-open LRA.Analysis.Bounds.Extremal
+open LRA.Analysis.Bounds.Extrema
 open LRA.Analysis.Bounds
 
 variable (F : Type*)

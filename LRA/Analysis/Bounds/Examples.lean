@@ -1,8 +1,8 @@
--- LRA/Analysis/Bounding/Examples.lean
+-- LRA/Analysis/Bounds/Examples.lean
 -- Small examples for the bounds interface.
 
 import Mathlib.Tactic
-import LRA.Analysis.Bounding.Bounds
+import LRA.Analysis.Bounds.Bounds
 import LRA.VolumeIII.RealNumbers.LraReal
 
 namespace LRA.Analysis.Bounds.Examples

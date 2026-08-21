@@ -34,7 +34,7 @@ import LRA.Analysis.Sequences.Convergence
 import LRA.Analysis.Sequences.NullConstantSequences
 import LRA.Analysis.Sequences.Monotonicity
 import LRA.Analysis.Sequences.LiminfLimsup
-import LRA.Analysis.Bounding.ExtremalBounds.SupremaInfima
+import LRA.Analysis.Bounds.Extrema.SupremaInfima
 
 namespace LRA.Analysis.Sequences
 

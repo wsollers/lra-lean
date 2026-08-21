@@ -1,10 +1,10 @@
-import LRA.Analysis.Bounding.ExtremalBounds.SupremaInfima
+import LRA.Analysis.Bounds.Extrema.SupremaInfima
 
 /-!
 Epsilon characterizations of suprema and infima in the real line.
 -/
 
-namespace LRA.Analysis.Bounds.Extremal
+namespace LRA.Analysis.Bounds.Extrema
 
 /-- Let `A : Set ℝ` and `s : ℝ`. Then `IsSupremum s A ↔ IsUpperBound s A ∧ ∀ ε : ℝ, 0 < ε → ∃ a ∈ A,
 s - ε < a`.
@@ -74,4 +74,4 @@ theorem InfimumStrictLowerApproximation {A : Set ℝ} {i l : ℝ}
     ∃ a ∈ A, a < l := by
   sorry
 
-end LRA.Analysis.Bounds.Extremal
+end LRA.Analysis.Bounds.Extrema

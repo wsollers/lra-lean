@@ -1,4 +1,4 @@
-import LRA.Analysis.Bounding.ExtremalBounds.UpperLowerBounds
+import LRA.Analysis.Bounds.Extrema.UpperLowerBounds
 
 /-!
 Set operations and inherited bounds.
@@ -6,7 +6,7 @@ Set operations and inherited bounds.
 
 namespace LRA.Analysis.Bounds.Algebra
 
-open LRA.Analysis.Bounds.Extremal
+open LRA.Analysis.Bounds.Extrema
 open LRA.Analysis.Bounds
 
 variable {S : Type*}

@@ -1,11 +1,11 @@
 import Mathlib.Data.Real.Basic
-import LRA.Analysis.Bounding.ExtremalBounds.UpperLowerBounds
+import LRA.Analysis.Bounds.Extrema.UpperLowerBounds
 
 /-!
 Suprema and infima for ordered carriers.
 -/
 
-namespace LRA.Analysis.Bounds.Extremal
+namespace LRA.Analysis.Bounds.Extrema
 
 variable {S : Type*}
 
@@ -291,4 +291,4 @@ theorem BoundedSetHasSupremumAndInfimum {A : Set ℝ}
     (∃! s : ℝ, IsSupremum s A) ∧ (∃! i : ℝ, IsInfimum i A) := by
   sorry
 
-end LRA.Analysis.Bounds.Extremal
+end LRA.Analysis.Bounds.Extrema

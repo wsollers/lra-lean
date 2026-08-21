@@ -1,6 +1,6 @@
 import Mathlib.Data.Real.Basic
 import Mathlib.Data.Set.Basic
-import LRA.Analysis.Bounding.ExtremalBounds.UpperLowerBounds
+import LRA.Analysis.Bounds.Extrema.UpperLowerBounds
 
 /-!
 Translation, dilation, and reflection of bounded subsets of the real line.

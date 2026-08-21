@@ -13,7 +13,7 @@ Process-level consequences of completeness used before the sequence chapter.
 
 namespace LRA.Analysis.Completeness
 
-open LRA.Analysis.Bounds.Extremal
+open LRA.Analysis.Bounds.Extrema
 open LRA.Analysis.Bounds
 
 variable (F : Type*)

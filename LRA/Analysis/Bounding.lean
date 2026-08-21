@@ -1,8 +1,8 @@
-import LRA.Analysis.Bounding.Bounds
-import LRA.Analysis.Bounding.ExtremalBounds
-import LRA.Analysis.Bounding.BoundAlgebra
-import LRA.Analysis.Bounding.RelativeBounds
-import LRA.Analysis.Bounding.Examples
+import LRA.Analysis.Bounds.Bounds
+import LRA.Analysis.Bounds.Extrema
+import LRA.Analysis.Bounds.Algebra
+import LRA.Analysis.Bounds.RelativeBounds
+import LRA.Analysis.Bounds.Examples
 
 /-!
 Aggregate import for Volume III bounding analysis.

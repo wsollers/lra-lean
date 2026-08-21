@@ -1,8 +1,8 @@
--- test/LRA/Analysis/Bounding/BoundsTests.lean
+-- test/LRA/Analysis/Bounds/BoundsTests.lean
 -- Smoke checks for the Volume III bounds interface.
 
 import Mathlib.Tactic
-import LRA.Analysis.Bounding.Bounds
+import LRA.Analysis.Bounds.Bounds
 import LRA.VolumeIII.RealNumbers.LraReal
 
 namespace LRA.Analysis.BoundsTests
