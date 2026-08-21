@@ -76,8 +76,7 @@ dimension-qualified where a bare name would otherwise collide.
   Mathlib's `EuclideanSpace ℝ (Fin n)`, with its own `Laws.lean` proving
   it too satisfies `Interface`. Mirrors `LRA.Set.PredicateSet`.
 - `RealLine` (Lecture 1): the real continuum, distance, intervals and
-  rays, translation/dilation. Points are `ℝ` itself.
-
-Still to build, pending the generic point-type design (in progress):
-`CartesianPlane`, `Space3D`, `NSpace`.
+  rays, translation/dilation, built directly over Mathlib's `ℝ` -- kept
+  alongside `Model.R1` (the `RealModel`-generic version of the same
+  concept) rather than merged into it; the two don't share names.
 -/
