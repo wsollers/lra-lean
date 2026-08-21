@@ -1,9 +1,30 @@
+import Mathlib.Algebra.Order.Archimedean.Basic
+import Mathlib.Algebra.Order.Field.Basic
+import Mathlib.Order.Filter.AtTopBot.Basic
+import Mathlib.Topology.Instances.Real.Lemmas
+
 /-!
-Scaffolding for the `ArchimedeanProperty` concept's definitions.
-No declarations yet; existing material remains in
-`LRA/Analysis/Completeness/ArchimedeanProperty.lean` pending migration.
+The Archimedean property of the real line.
 -/
 
-namespace LRA.Analysis.Completeness.ArchimedeanProperty
+namespace LRA.Analysis.Completeness
 
-end LRA.Analysis.Completeness.ArchimedeanProperty
+/-- Let `x y : ℝ`. If `positiveScaleHypothesis : x > 0` and `positiveTargetHypothesis : y > 0`. Then
+`∃ n : ℕ, (n : ℝ) * x > y`.
+
+Logical form:
+
+```lean
+theorem ArchimedeanProperty {x y : ℝ}
+    (positiveScaleHypothesis : x > 0)
+    (positiveTargetHypothesis : y > 0) :
+    ∃ n : ℕ, (n : ℝ) * x > y
+```
+-/
+theorem ArchimedeanProperty {x y : ℝ}
+    (positiveScaleHypothesis : x > 0)
+    (positiveTargetHypothesis : y > 0) :
+    ∃ n : ℕ, (n : ℝ) * x > y := by
+  sorry
+
+end LRA.Analysis.Completeness

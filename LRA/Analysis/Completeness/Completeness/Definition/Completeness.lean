@@ -7,6 +7,6 @@ No declarations yet; existing material remains in
 migration.
 -/
 
-namespace LRA.Analysis.Completeness.Completeness
+namespace LRA.Analysis.Completeness
 
-end LRA.Analysis.Completeness.Completeness
+end LRA.Analysis.Completeness
