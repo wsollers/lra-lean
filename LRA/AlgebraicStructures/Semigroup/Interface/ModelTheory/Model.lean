@@ -1,29 +1,8 @@
-import LRA.AlgebraicStructures.Semigroup.Definition
-import LRA.AlgebraicStructures.Semigroup.Interface.Signature.Definition
-import LRA.Operation
+import LRA.AlgebraicStructures.Semigroup.Interface.ModelTheory.Theory
+import LRA.AlgebraicStructures.Semigroup.Interface.ModelTheory.LStructure
 
 namespace LRA.AlgebraicStructures.Semigroup.Interface.ModelTheory
 
-universe u
-
-/-! Law-free model builders for the first-order semigroup language. -/
-
-open LRA.AlgebraicStructures.Semigroup.Interface.Signature
-
-def BuildSemigroupModel
-    (signature : LRA.AlgebraicStructures.SemigroupConceptSignature)
-    (witness : signature.carrier) :
-    LRA.Logic.FirstOrder.Model SemigroupFirstOrderSignature where
-  Domain := signature.carrier
-  domainNonempty := ⟨witness⟩
-  interpretFunction
-    | .mul, args =>
-        signature.multiply (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
-  interpretRelation := fun RelationSymbol => nomatch RelationSymbol
-  interpretConstant := fun ConstantSymbol => nomatch ConstantSymbol
-
-def semigroupFirstOrderModel (R : Type u) [Inhabited R] [Mul R] :
-    LRA.Logic.FirstOrder.Model SemigroupFirstOrderSignature :=
-  BuildSemigroupModel { carrier := R, multiply := (· * ·) } default
+/-! Satisfaction lemmas for native semigroup data and `SemigroupTheory`. -/
 
 end LRA.AlgebraicStructures.Semigroup.Interface.ModelTheory
