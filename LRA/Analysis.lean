@@ -1,5 +1,4 @@
 import LRA.Analysis.Bounds
-import LRA.Analysis.Bounding
 import LRA.Analysis.Completeness
 import LRA.Analysis.Functions
 import LRA.Analysis.Sequences

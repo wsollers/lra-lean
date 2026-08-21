@@ -42,7 +42,7 @@ Two minor findings, reported not fixed:
 
 Pointwise operations formalized as plain `fun n => ...` combinators
 (matching the `Displace`/`Dilate` precedent from the Bounds pass's
-`BoundAlgebra.lean` rather than reaching for Mathlib's `Pi` ring
+`Algebra.lean` rather than reaching for Mathlib's `Pi` ring
 structure, to keep the correspondence with the .tex's own named
 operations explicit and citable). `ConvergesTo` reused from
 `Convergence.lean`; `BoundedSeq` reused from `NullConstantSequences.lean`.
