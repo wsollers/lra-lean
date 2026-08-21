@@ -4,6 +4,7 @@ import LRA.Analysis.Limits.Algebra
 import LRA.Analysis.Limits.Order
 import LRA.Analysis.Limits.Equivalence
 import LRA.Analysis.Limits.LimitsAtInfinity
+import LRA.Analysis.Limits.Divergence
 
 /-!
 Aggregate import for function-limit modules. `Definition`/`Theorems` hold
@@ -12,8 +13,8 @@ composition); `Algebra` holds compatibility with `ℝ`'s ring operations and
 the squeeze theorem; `Order` holds `≤`-preservation, local boundedness,
 and sign persistence; `Equivalence` holds the one-sided/sequential/
 neighborhood characterizations and their TFAE; `LimitsAtInfinity` holds
-limits as `x → ±∞`. `Divergence`, `Asymptotes`, and `IndeterminateForms`
-are still to come.
+limits as `x → ±∞`; `Divergence` holds the ways a limit can fail to exist.
+`Asymptotes` and `IndeterminateForms` are still to come.
 
 Promoted out of `Continuity` — its algebra depends on `Functions`'
 pointwise-operation algebra to even state (`lim (f+g) = lim f + lim g`
