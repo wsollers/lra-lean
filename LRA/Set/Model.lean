@@ -1,5 +1,3 @@
-import LRA.Set.Model.LStructure
-import LRA.Set.Model.Theory
-import LRA.Set.Model.Model
+import LRA.Set.Interface.ModelTheory
 
-/-! Canonical, Mathlib-free model-theory aggregate for Set. -/
+/-! Backward-compatible aggregate import for Set model theory. -/
