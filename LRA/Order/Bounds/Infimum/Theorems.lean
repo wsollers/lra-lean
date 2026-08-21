@@ -1,7 +1,9 @@
 import LRA.Order.Bounds.Infimum.Definition
 import LRA.Order.Bounds.LeastElement.Definition
 import LRA.Relation.Properties.Definition
+import LRA.Relation.Operations.Converse.Definition
 import LRA.Order.Lattices.Meet.Definition
+import LRA.Order.Relation.Dominated.Definition
 import LRA.Set.Interface.Membership
 import LRA.Set.Interface.Indexed
 
@@ -78,7 +80,12 @@ theorem InfimumMonotoneUnderInclusion
     relation largerInfimum smallerInfimum := by
   sorry
 
-/-- Pointwise domination of one represented subset by another compares their infima. -/
+/-- Pointwise domination of one represented subset by another compares their infima.
+
+Dualizes `SupremaCompareUnderPointwiseDomination`: the hypothesis is
+domination under the *converse* relation, since "every element of
+`leftSubset` has some smaller element of `rightSubset`" is exactly
+`Dominated (LRA.Relation.Converse relation) leftSubset rightSubset`. -/
 theorem InfimaCompareUnderPointwiseDomination
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -86,9 +93,8 @@ theorem InfimaCompareUnderPointwiseDomination
     (relationIsTransitive : LRA.Relation.Transitive relation)
     {leftSubset rightSubset : SetObject}
     {leftInfimum rightInfimum : Element}
-    (everyLeftHasSmallerRight :
-      forall left, left ∈ leftSubset ->
-        exists right, right ∈ rightSubset /\ relation right left)
+    (leftDominatedByRightUnderConverse :
+      Dominated (LRA.Relation.Converse relation) leftSubset rightSubset)
     (leftInfimumIsInfimum : Infimum relation leftSubset leftInfimum)
     (rightInfimumIsInfimum : Infimum relation rightSubset rightInfimum) :
     relation rightInfimum leftInfimum := by

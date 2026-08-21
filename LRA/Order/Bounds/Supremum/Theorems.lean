@@ -2,6 +2,7 @@ import LRA.Order.Bounds.Supremum.Definition
 import LRA.Order.Bounds.GreatestElement.Definition
 import LRA.Relation.Properties.Definition
 import LRA.Order.Lattices.Join.Definition
+import LRA.Order.Relation.Dominated.Definition
 import LRA.Set.Interface.Membership
 import LRA.Set.Interface.Indexed
 
@@ -88,9 +89,7 @@ theorem SupremaCompareUnderPointwiseDomination
     (relationIsTransitive : LRA.Relation.Transitive relation)
     {leftSubset rightSubset : SetObject}
     {leftSupremum rightSupremum : Element}
-    (everyLeftHasLargerRight :
-      forall left, left ∈ leftSubset ->
-        exists right, right ∈ rightSubset /\ relation left right)
+    (leftDominatedByRight : Dominated relation leftSubset rightSubset)
     (leftSupremumIsSupremum :
       Supremum relation leftSubset leftSupremum)
     (rightSupremumIsSupremum :
