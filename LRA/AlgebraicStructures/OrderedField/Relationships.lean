@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures.OrderedField.Laws.Definition
-import LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.Satisfaction
+import LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.Model
 
 namespace LRA.AlgebraicStructures
 
