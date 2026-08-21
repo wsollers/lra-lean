@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures.OrderedSemiring.Definition
-import LRA.AlgebraicStructures.OrderedSemiring.Interface.ModelTheory.Satisfaction
+import LRA.AlgebraicStructures.OrderedSemiring.Interface.ModelTheory.Model
 
 namespace LRA.AlgebraicStructures
 
