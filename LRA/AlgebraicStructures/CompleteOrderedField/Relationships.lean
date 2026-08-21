@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures.CompleteOrderedField.Laws.Definition
-import LRA.AlgebraicStructures.CompleteOrderedField.Interface.ModelTheory.Satisfaction
+import LRA.AlgebraicStructures.CompleteOrderedField.Interface.ModelTheory.Model
 
 namespace LRA.AlgebraicStructures
 
