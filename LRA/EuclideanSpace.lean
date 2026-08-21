@@ -1,18 +1,19 @@
-import LRA.EuclideanSpace.Definition
+import LRA.EuclideanSpace.RealLine
 
 /-!
 Euclidean space: the geometric layer between `LRA.NumberSystems` and
 `LRA.Analysis`.
 
-## Scope (agreed, not yet built out)
+## Scope
 
 Constructs Euclidean space FROM the number systems -- starting at ℝ
-(`RealModel`), then ℝ², then ℝ³ -- as its own geometric development:
-points, coordinates, lines, planes, surfaces, intervals. The starting
-point is analytic geometry (coordinates), but the vocabulary built on
-top of them is meant to read like Hilbert's geometry -- points and
-lines as genuine geometric primitives with their own definitions, not
-names re-exported from an abstraction built for other purposes.
+(`RealModel`), then ℝ², then ℝ³, then general ℝⁿ -- as its own geometric
+development: points, coordinates, lines, planes, surfaces, intervals.
+The starting point is analytic geometry (coordinates), but the
+vocabulary built on top of them is meant to read like Hilbert's
+geometry -- points and lines as genuine geometric primitives with their
+own definitions, not names re-exported from an abstraction built for
+other purposes.
 
 Explicitly **not** the starting point:
 
@@ -46,8 +47,27 @@ Positioned last in `LRA.VolumeII` (§7.7's number-system chain: naturals
 the two, per the design discussion recorded in
 `LRA/VolumeII/Arithmetic/DesignDoc.md`.
 
-No file structure, namespace, or content below `Definition.lean` is
-decided yet. This router and its one core-notion file exist to hold the
-subject's place and record the agreed scope; content starts once the
-first concept (coordinates in ℝ, ℝ², ℝ³) is directed.
+## Structure
+
+One concept per lecture/dimension, each with its own `Definition`/
+`Theorems` split; declarations across all four concepts share the flat
+`LRA.EuclideanSpace` namespace (subfolders do not add a namespace
+layer), so names are dimension-qualified where a bare name would
+otherwise collide (`RealLineDistance`/`PlaneDistance`/`SpaceDistance`/
+`EuclideanDistance`, `Point2`/`Point3`/`PointN`, ...).
+
+- `RealLine` (Lecture 1): the real continuum, distance, intervals and
+  rays, translation/dilation. Points are `ℝ` itself.
+- `CartesianPlane` (Lecture 2): ℝ² as points, boxes, lines (implicit/
+  explicit/parametric), distance, projections and slices. Points are
+  the named-field `Point2` structure.
+- `Space3D` (Lecture 3): ℝ³ as points, boxes, planes and lines,
+  surfaces/graphs, distance, projections. Points are the named-field
+  `Point3` structure.
+- `NSpace` (Lecture 4): general ℝⁿ, hyperrectangles, hyperplanes,
+  distance, coordinate projections/slices, functions and level sets.
+  Points are `PointN n := Fin n → ℝ` (a named-field structure isn't
+  possible at this generality).
+
+Still to build: `CartesianPlane`, `Space3D`, `NSpace`.
 -/
