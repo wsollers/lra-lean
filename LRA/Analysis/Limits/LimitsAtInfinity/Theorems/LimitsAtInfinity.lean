@@ -1,5 +1,5 @@
 import Mathlib.Data.Real.Basic
-import LRA.Analysis.Limits.Definition
+import LRA.Analysis.Limits.LimitsAtInfinity.Definition
 
 /-!
 Source: book-analysis-ii/continuity/notes/limits-at-infinity/notes-limits-at-infinity.tex.
@@ -8,6 +8,38 @@ of limits" and a "sequential criterion" for limits at infinity.
 -/
 
 namespace LRA.Analysis.Limits
+
+/-- Let `X : Set ℝ` and `L₁ L₂ : ℝ`. If `f : ℝ → ℝ`, `hX : PlusInftyAdherent X`, `h₁ : TendsToInfty f
+X L₁`, and `h₂ : TendsToInfty f X L₂`. Then `L₁ = L₂`.
+
+Logical form:
+
+```lean
+theorem TendstoInftyUnique (f : ℝ → ℝ) (X : Set ℝ) (L₁ L₂ : ℝ)
+    (hX : PlusInftyAdherent X)
+    (h₁ : TendsToInfty f X L₁) (h₂ : TendsToInfty f X L₂) : L₁ = L₂
+```
+-/
+theorem TendstoInftyUnique (f : ℝ → ℝ) (X : Set ℝ) (L₁ L₂ : ℝ)
+    (hX : PlusInftyAdherent X)
+    (h₁ : TendsToInfty f X L₁) (h₂ : TendsToInfty f X L₂) : L₁ = L₂ := by
+  sorry
+
+/-- Let `X : Set ℝ` and `L₁ L₂ : ℝ`. If `f : ℝ → ℝ`, `hX : MinusInftyAdherent X`, `h₁ :
+TendsToNegInfty f X L₁`, and `h₂ : TendsToNegInfty f X L₂`. Then `L₁ = L₂`.
+
+Logical form:
+
+```lean
+theorem TendstoNegInftyUnique (f : ℝ → ℝ) (X : Set ℝ) (L₁ L₂ : ℝ)
+    (hX : MinusInftyAdherent X)
+    (h₁ : TendsToNegInfty f X L₁) (h₂ : TendsToNegInfty f X L₂) : L₁ = L₂
+```
+-/
+theorem TendstoNegInftyUnique (f : ℝ → ℝ) (X : Set ℝ) (L₁ L₂ : ℝ)
+    (hX : MinusInftyAdherent X)
+    (h₁ : TendsToNegInfty f X L₁) (h₂ : TendsToNegInfty f X L₂) : L₁ = L₂ := by
+  sorry
 
 /-- Let `X : Set ℝ` and `L : ℝ`. If `f : ℝ → ℝ`. Then `TendsToNegInfty f X L ↔ TendsToInfty (fun x
 => f (-x)) {x : ℝ | -x ∈ X} L`.
