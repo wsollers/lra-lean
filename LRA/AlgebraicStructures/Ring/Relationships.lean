@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures.Ring.Laws.Definition
-import LRA.AlgebraicStructures.Ring.Interface.ModelTheory.Satisfaction
+import LRA.AlgebraicStructures.Ring.Interface.ModelTheory.Model
 
 namespace LRA.AlgebraicStructures
 
