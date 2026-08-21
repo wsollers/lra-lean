@@ -1,32 +1,12 @@
-/-
-Draft module; not yet imported by the active Volume III root.
+import Mathlib.Data.Real.Basic
+import LRA.Analysis.Limits.Definition
+
+/-!
 Source: book-analysis-ii/continuity/notes/limits/{notes-limits.tex,
 notes-one-sided-limits.tex, notes-algebra-of-limits.tex}.
-
-Full-coverage pass over the `limits` section (the section housing the book's
-ε-δ definition of a function limit — see ADDITIONS.md's "biggest finding").
-One Lean statement per book label, `sorry`-bodied. Statements reflect the
-book's own theorem/definition boxes and Standard-quantified-statement
-blocks, NOT the (sometimes buggy, see ISSUES.md) "Predicate reading" remark
-formulas.
 -/
 
-import Mathlib.Data.Real.Basic
-
-namespace LRA.Analysis.Continuity
-
-/-- `def:limit-function`: the ε-δ definition of the limit of `f` at `c`,
-on domain `A`, `c` a limit point of `A`.
-
-Logical form:
-
-```lean
-def TendsTo (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) : Prop :=
-  ∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → |f x - L| < ε
-```
--/
-def TendsTo (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) : Prop :=
-  ∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → |f x - L| < ε
+namespace LRA.Analysis.Limits
 
 -- `thm:limit-unique`
 /-- Let `A : Set ℝ` and `c L₁ L₂ : ℝ`. If `f : ℝ → ℝ`, `hc : ∀ δ > 0, ∃ x ∈ A, 0 < |x - c| ∧ |x - c|
@@ -44,30 +24,6 @@ theorem TendstoUnique (f : ℝ → ℝ) (A : Set ℝ) (c L₁ L₂ : ℝ)
     (hc : ∀ δ > 0, ∃ x ∈ A, 0 < |x - c| ∧ |x - c| < δ)
     (h₁ : TendsTo f A c L₁) (h₂ : TendsTo f A c L₂) : L₁ = L₂ := by
   sorry
-
-/-- `def:right-hand-limit`.
-
-Logical form:
-
-```lean
-def TendsToRight (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) : Prop :=
-  ∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → |f x - L| < ε
-```
--/
-def TendsToRight (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) : Prop :=
-  ∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → |f x - L| < ε
-
-/-- `def:left-hand-limit`.
-
-Logical form:
-
-```lean
-def TendsToLeft (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) : Prop :=
-  ∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → |f x - L| < ε
-```
--/
-def TendsToLeft (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) : Prop :=
-  ∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → |f x - L| < ε
 
 -- `thm:two-sided-limit-iff-matching-one-sided-limits`
 /-- Let `A : Set ℝ` and `c L : ℝ`. If `f : ℝ → ℝ`. Then `TendsTo f A c L ↔ TendsToLeft f A c L ∧
@@ -190,22 +146,6 @@ theorem SqueezeFunctionLimits (f g h : ℝ → ℝ) (A : Set ℝ) (c L : ℝ)
     TendsTo g A c L := by
   sorry
 
-/-- `prop:sequential-criterion-limits`: a sequence-based characterization
-of `TendsTo`, referenced from the `limits-at-infinity` section's toolkit
-table and from the Differentiation chapter.
-
-Logical form:
-
-```lean
-def ApproachesButNotEqual (xs : ℕ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
-  (∀ n, xs n ∈ A) ∧ (∀ n, xs n ≠ c) ∧
-    ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |xs n - c| < ε
-```
--/
-def ApproachesButNotEqual (xs : ℕ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
-  (∀ n, xs n ∈ A) ∧ (∀ n, xs n ≠ c) ∧
-    ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |xs n - c| < ε
-
 /-- Let `A : Set ℝ` and `c L : ℝ`. If `f : ℝ → ℝ`. Then `TendsTo f A c L ↔ ∀ xs : ℕ → ℝ,
 ApproachesButNotEqual xs A c → ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |f (xs n) - L| < ε`.
 
@@ -244,4 +184,4 @@ theorem TendstoComp (f g : ℝ → ℝ) (A B : Set ℝ) (c₁ c₂ L₂ : ℝ)
     TendsTo (fun x => g (f x)) A c₁ L₂ := by
   sorry
 
-end LRA.Analysis.Continuity
+end LRA.Analysis.Limits

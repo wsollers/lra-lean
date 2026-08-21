@@ -7,7 +7,7 @@ statement per book label, `sorry`-bodied.
 -/
 
 import Mathlib.Data.Real.Basic
-import LRA.Analysis.Continuity.Limits
+import LRA.Analysis.Limits
 import LRA.Analysis.Continuity.PointContinuity
 
 namespace LRA.Analysis.Differentiation
@@ -36,13 +36,13 @@ Logical form:
 ```lean
 def ZorichDerivative (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   ∃ α : ℝ → ℝ,
-    LRA.Analysis.Continuity.TendsTo α A c 0 ∧
+    LRA.Analysis.Limits.TendsTo α A c 0 ∧
       ∀ x ∈ A, f x = f c + D * (x - c) + α x * (x - c)
 ```
 -/
 def ZorichDerivative (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   ∃ α : ℝ → ℝ,
-    LRA.Analysis.Continuity.TendsTo α A c 0 ∧
+    LRA.Analysis.Limits.TendsTo α A c 0 ∧
       ∀ x ∈ A, f x = f c + D * (x - c) + α x * (x - c)
 
 /-- `IsDifferentiable`: existential wrapper used throughout the chapter's

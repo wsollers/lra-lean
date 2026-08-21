@@ -1,51 +1,13 @@
-/-
-Draft module; not yet imported by the active Volume III root.
-Source: book-analysis-ii/continuity/notes/limits-at-infinity/notes-limits-at-infinity.tex.
-ADDITIONS.md items 30-32 (Continuity chapter, Ch.9*), added with sign-off.
-
-Fills ISSUES.md #51: the section's own toolkit table promises an "algebra
-of limits" and a "sequential criterion" for limits at infinity, and links
-to the finite-point versions (`thm:limit-sum`, `prop:sequential-criterion-
-limits` from the `limits` section) rather than actually stating/proving
-the x→+∞ extension. It also never states a `x→−∞` companion to
-`def:limit-at-infinity`, despite `def:infinite-adherent-points` treating
-+∞ and −∞ symmetrically.
-
-`TendsToInfty` below restates the book's own `def:limit-at-infinity`
-(the ε/M condition only — the "X is unbounded above" hypothesis on the
-domain is carried as a separate explicit hypothesis where needed, exactly
-as the book's own Standard-quantified-statement block does).
--/
-
 import Mathlib.Data.Real.Basic
+import LRA.Analysis.Limits.Definition
 
-namespace LRA.Analysis.Continuity
-
-/-- `def:limit-at-infinity` (restated): the limit of `f` at `+∞`, on
-domain `X`, equals `L`.
-
-Logical form:
-
-```lean
-def TendsToInfty (f : ℝ → ℝ) (X : Set ℝ) (L : ℝ) : Prop :=
-  ∀ ε > 0, ∃ M : ℝ, ∀ x ∈ X, x > M → |f x - L| < ε
-```
+/-!
+Source: book-analysis-ii/continuity/notes/limits-at-infinity/notes-limits-at-infinity.tex.
+Fills ISSUES.md #51: the section's own toolkit table promises an "algebra
+of limits" and a "sequential criterion" for limits at infinity.
 -/
-def TendsToInfty (f : ℝ → ℝ) (X : Set ℝ) (L : ℝ) : Prop :=
-  ∀ ε > 0, ∃ M : ℝ, ∀ x ∈ X, x > M → |f x - L| < ε
 
-/-- Item 32: the `x → −∞` companion to `def:limit-at-infinity`, the
-missing symmetric case flagged in ISSUES.md #51.
-
-Logical form:
-
-```lean
-def TendsToNegInfty (f : ℝ → ℝ) (X : Set ℝ) (L : ℝ) : Prop :=
-  ∀ ε > 0, ∃ M : ℝ, ∀ x ∈ X, x < M → |f x - L| < ε
-```
--/
-def TendsToNegInfty (f : ℝ → ℝ) (X : Set ℝ) (L : ℝ) : Prop :=
-  ∀ ε > 0, ∃ M : ℝ, ∀ x ∈ X, x < M → |f x - L| < ε
+namespace LRA.Analysis.Limits
 
 /-- Let `X : Set ℝ` and `L : ℝ`. If `f : ℝ → ℝ`. Then `TendsToNegInfty f X L ↔ TendsToInfty (fun x
 => f (-x)) {x : ℝ | -x ∈ X} L`.
@@ -146,20 +108,6 @@ end AlgebraOfLimitsAtInfinity
 -- Item 31: Sequential criterion for limits at infinity.
 -- ---------------------------------------------------------------------
 
-/-- A sequence "escapes to `+∞`": eventually exceeds every bound. Hand-
-rolled rather than `Filter.Tendsto atTop atTop`, matching this book's
-own elementary (non-filter) style throughout.
-
-Logical form:
-
-```lean
-def EscapesToInfty (xs : ℕ → ℝ) : Prop :=
-  ∀ M : ℝ, ∃ N : ℕ, ∀ n ≥ N, xs n > M
-```
--/
-def EscapesToInfty (xs : ℕ → ℝ) : Prop :=
-  ∀ M : ℝ, ∃ N : ℕ, ∀ n ≥ N, xs n > M
-
 /-- Let `X : Set ℝ` and `L : ℝ`. If `f : ℝ → ℝ` and `hX : ∀ M : ℝ, ∃ x ∈ X, x > M`. Then
 `TendsToInfty f X L ↔ ∀ xs : ℕ → ℝ, (∀ n, xs n ∈ X) → EscapesToInfty xs → ∀ ε > 0, ∃ N : ℕ, ∀ n
 ≥ N, |f (xs n) - L| < ε`.
@@ -181,4 +129,4 @@ theorem SequentialCriterionTendstoInfty (f : ℝ → ℝ) (X : Set ℝ) (L : ℝ
         ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |f (xs n) - L| < ε := by
   sorry
 
-end LRA.Analysis.Continuity
+end LRA.Analysis.Limits

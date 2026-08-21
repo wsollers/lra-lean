@@ -14,7 +14,7 @@ import Mathlib.Data.Real.Basic
 import LRA.Analysis.Differentiation.DerivativeDefinition
 import LRA.Analysis.Differentiation.MeanValueTheorem
 import LRA.Analysis.Differentiation.GraphReading
-import LRA.Analysis.Continuity.Limits
+import LRA.Analysis.Limits
 
 namespace LRA.Analysis.Differentiation
 
@@ -233,7 +233,7 @@ theorem InverseFunctionDerivative (f g fD1 : ℝ → ℝ) (U V : Set ℝ)
 -- Indeterminate forms: L'Hôpital's Rule.
 -- ---------------------------------------------------------------------
 
-open LRA.Analysis.Continuity in
+open LRA.Analysis.Limits in
 -- `thm:lhopital-zero-over-zero`
 /-- Let `a b : ℝ` and `L : ℝ`. If `f g : ℝ → ℝ`, `hab : a < b`, `hf : ∀ x ∈ Set.Ioo a b,
 IsDifferentiable f (Set.Ioo a b) x`, `hg : ∀ x ∈ Set.Ioo a b, IsDifferentiable g (Set.Ioo a b)
@@ -268,7 +268,7 @@ theorem LhopitalZeroOverZero (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     TendsToRight (fun x => f x / g x) (Set.Ioo a b) a L := by
   sorry
 
-open LRA.Analysis.Continuity in
+open LRA.Analysis.Limits in
 -- `thm:lhopital-infinity-over-infinity`
 /-- Let `a b : ℝ` and `L : ℝ`. If `f g : ℝ → ℝ`, `hab : a < b`, `hf : ∀ x ∈ Set.Ioo a b,
 IsDifferentiable f (Set.Ioo a b) x`, `hg : ∀ x ∈ Set.Ioo a b, IsDifferentiable g (Set.Ioo a b)
