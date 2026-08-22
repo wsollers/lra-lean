@@ -1,6 +1,7 @@
 -- LRA/VolumeII/NumberSystems/UniversalProperties.lean
 -- Generic model-level universal properties for reals.
 
+import LRA.Function.Properties.Definition
 import LRA.VolumeII.NumberSystems.CanonicalEmbeddings
 
 namespace LRA.NumberSystems.Models.UniversalProperties
@@ -29,17 +30,19 @@ structure CompleteOrderedFieldCharacterization
     (SelectedRealModel : RealModel.{u}) : Prop where
   UniqueUpToOrderedFieldIsomorphism :
     ∀ other : RealModel.{u},
-      ∃ comparison : SelectedRealModel.signature.carrier → other.signature.carrier,
+      ∃! comparison : SelectedRealModel.signature.carrier → other.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedField
-          SelectedRealModel.signature other.signature comparison
+          SelectedRealModel.signature other.signature comparison ∧
+        LRA.Function.Surjective comparison
 ```
 -/
 structure CompleteOrderedFieldCharacterization
     (SelectedRealModel : RealModel.{u}) : Prop where
   UniqueUpToOrderedFieldIsomorphism :
     ∀ other : RealModel.{u},
-      ∃ comparison : SelectedRealModel.signature.carrier → other.signature.carrier,
+      ∃! comparison : SelectedRealModel.signature.carrier → other.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedField
-          SelectedRealModel.signature other.signature comparison
+          SelectedRealModel.signature other.signature comparison ∧
+        LRA.Function.Surjective comparison
 
 end LRA.NumberSystems.Models.UniversalProperties

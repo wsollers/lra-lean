@@ -150,7 +150,7 @@ theorem nth_root_exists_for_nonnegative_reals
 /--
 **[Theorem — complete_archimedean_ordered_field_unique]**
 
-Mathematical statement (Lean): `theorem complete_archimedean_ordered_field_unique (first second : RealModel) : ∃ comparison : first.signature.carrier → second.signature.carrier, LRA.NumberSystems.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField first.signature second.signature...`.
+Mathematical statement (Lean): `theorem complete_archimedean_ordered_field_unique (first second : RealModel) : ∃! comparison : first.signature.carrier → second.signature.carrier, LRA.NumberSystems.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField first.signature second.signature comparison ∧ LRA.Function.Surjective comparison`.
 
 *Proof status:* proof pending
 
@@ -160,16 +160,18 @@ Logical form:
 ```lean
 theorem complete_archimedean_ordered_field_unique
     (first second : RealModel) :
-    ∃ comparison : first.signature.carrier → second.signature.carrier,
+    ∃! comparison : first.signature.carrier → second.signature.carrier,
       LRA.NumberSystems.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField
-        first.signature second.signature comparison
+        first.signature second.signature comparison ∧
+      LRA.Function.Surjective comparison
 ```
 -/
 theorem complete_archimedean_ordered_field_unique
     (first second : RealModel) :
-    ∃ comparison : first.signature.carrier → second.signature.carrier,
+    ∃! comparison : first.signature.carrier → second.signature.carrier,
       LRA.NumberSystems.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField
-        first.signature second.signature comparison := by
+        first.signature second.signature comparison ∧
+      LRA.Function.Surjective comparison := by
   sorry
 
 end LRA.NumberSystems.RealNumbers.Extensions
