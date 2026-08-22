@@ -108,7 +108,7 @@ def CanonicalConstruction : NumberSystemConstruction where
 **[Definition — Number-System Tower]**
 
 A tower stores an integer model, a rational extension of it, and a real
-extension of the selected rational model.
+extension of the selected densely ordered field model.
 
 Logical form:
 
@@ -117,14 +117,14 @@ structure NumberSystemTower where
   IntegerModel : IntegerModel
   RationalExtension : RationalExtension IntegerModel
   RealExtension :
-    RealExtension RationalExtension.RationalModel
+    RealExtension RationalExtension.DenselyOrderedFieldModel
 ```
 -/
 structure NumberSystemTower where
   IntegerModel : IntegerModel
   RationalExtension : RationalExtension IntegerModel
   RealExtension :
-    RealExtension RationalExtension.RationalModel
+    RealExtension RationalExtension.DenselyOrderedFieldModel
 
 /--
 **[Theorem — Every Supported Construction Configuration Builds a Tower]**
