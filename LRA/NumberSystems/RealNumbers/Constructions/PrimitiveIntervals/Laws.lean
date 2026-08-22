@@ -386,7 +386,12 @@ Logical form:
 def OrderedFieldStructure : Prop :=
   StrictTotalOrder rational_model ∧
   OrderCompatibility rational_model ∧
-  quotient_distributivity rational_model = quotient_distributivity rational_model ∧
+  (∀ first second third : Carrier rational_model,
+    multiplication rational_model first
+        (addition rational_model second third) =
+      addition rational_model
+        (multiplication rational_model first second)
+        (multiplication rational_model first third)) ∧
   (∀ value : Carrier rational_model,
     value ≠ zero rational_model →
     ∃ inverse_value,
@@ -396,7 +401,12 @@ def OrderedFieldStructure : Prop :=
 def OrderedFieldStructure : Prop :=
   StrictTotalOrder rational_model ∧
   OrderCompatibility rational_model ∧
-  quotient_distributivity rational_model = quotient_distributivity rational_model ∧
+  (∀ first second third : Carrier rational_model,
+    multiplication rational_model first
+        (addition rational_model second third) =
+      addition rational_model
+        (multiplication rational_model first second)
+        (multiplication rational_model first third)) ∧
   (∀ value : Carrier rational_model,
     value ≠ zero rational_model →
     ∃ inverse_value,
