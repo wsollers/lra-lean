@@ -78,7 +78,7 @@ structure Cut (RationalCarrier : Type)
 
 /-- **[Theorem — Dedekind Real Model Exists]**
 
-Mathematical statement (Lean): `theorem real_model_exists (rational_model : RationalModel) : Nonempty RealModel`.
+Mathematical statement (Lean): `theorem real_model_exists (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel`.
 
 *Proof status:* proof pending
 
@@ -87,34 +87,34 @@ Logical form:
 
 ```lean
 theorem real_model_exists
-    (rational_model : RationalModel) : Nonempty RealModel
+    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel
 ```
 -/
 theorem real_model_exists
-    (rational_model : RationalModel) : Nonempty RealModel := by
+    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel := by
   sorry
 
 /-- **[Definition — Dedekind Real Model]**
 
-Mathematical statement (Lean): `noncomputable def real_model (rational_model : RationalModel) : RealModel`.
+Mathematical statement (Lean): `noncomputable def real_model (rational_model : DenselyOrderedFieldModel) : RealModel`.
 
 
 Logical form:
 
 ```lean
 noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
+    (rational_model : DenselyOrderedFieldModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 ```
 -/
 noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
+    (rational_model : DenselyOrderedFieldModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 
 
 /-- **[Theorem — Dedekind Real Extension Exists]**
 
-Mathematical statement (Lean): `theorem real_extension_exists (rational_model : RationalModel) : Nonempty (RealExtension rational_model)`.
+Mathematical statement (Lean): `theorem real_extension_exists (rational_model : DenselyOrderedFieldModel) : Nonempty (RealExtension rational_model)`.
 
 *Proof status:* proof pending
 
@@ -123,45 +123,45 @@ Logical form:
 
 ```lean
 theorem real_extension_exists
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty (RealExtension rational_model)
 ```
 -/
 theorem real_extension_exists
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty (RealExtension rational_model) := by
   sorry
 
 /-- **[Definition — Dedekind Real Extension]**
 
-Mathematical statement (Lean): `noncomputable def real_extension (rational_model : RationalModel) : RealExtension rational_model`.
+Mathematical statement (Lean): `noncomputable def real_extension (rational_model : DenselyOrderedFieldModel) : RealExtension rational_model`.
 
 
 Logical form:
 
 ```lean
 noncomputable def real_extension
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     RealExtension rational_model :=
   Classical.choice (real_extension_exists rational_model)
 ```
 -/
 noncomputable def real_extension
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     RealExtension rational_model :=
   Classical.choice (real_extension_exists rational_model)
 
 /--
 **[Theorem — reals_are_complete]**
 
-Mathematical statement (Lean): `theorem reals_are_complete (rational_model : RationalModel) : ∀ subset : (real_model rational_model).signature.carrier → Prop, (∃ member, subset member) → (∃ upper_bound, ∀ member, subset member → (real_model rational_model).signature.le member...`.
+Mathematical statement (Lean): `theorem reals_are_complete (rational_model : DenselyOrderedFieldModel) : ∀ subset : (real_model rational_model).signature.carrier → Prop, (∃ member, subset member) → (∃ upper_bound, ∀ member, subset member → (real_model rational_model).signature.le member...`.
 
 
 Logical form:
 
 ```lean
 theorem reals_are_complete
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     ∀ subset : (real_model rational_model).signature.carrier → Prop,
       (∃ member, subset member) →
       (∃ upper_bound,
@@ -184,7 +184,7 @@ theorem reals_are_complete
 ```
 -/
 theorem reals_are_complete
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     ∀ subset : (real_model rational_model).signature.carrier → Prop,
       (∃ member, subset member) →
       (∃ upper_bound,
@@ -293,7 +293,7 @@ theorem equivalent_is_equivalence_relation
 
 /-- **[Theorem — Cauchy-Sequence Real Model Exists]**
 
-Mathematical statement (Lean): `theorem real_model_exists (rational_model : RationalModel) : Nonempty RealModel`.
+Mathematical statement (Lean): `theorem real_model_exists (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel`.
 
 *Proof status:* proof pending
 
@@ -302,34 +302,34 @@ Logical form:
 
 ```lean
 theorem real_model_exists
-    (rational_model : RationalModel) : Nonempty RealModel
+    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel
 ```
 -/
 theorem real_model_exists
-    (rational_model : RationalModel) : Nonempty RealModel := by
+    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel := by
   sorry
 
 /-- **[Definition — Cauchy-Sequence Real Model]**
 
-Mathematical statement (Lean): `noncomputable def real_model (rational_model : RationalModel) : RealModel`.
+Mathematical statement (Lean): `noncomputable def real_model (rational_model : DenselyOrderedFieldModel) : RealModel`.
 
 
 Logical form:
 
 ```lean
 noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
+    (rational_model : DenselyOrderedFieldModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 ```
 -/
 noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
+    (rational_model : DenselyOrderedFieldModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 
 
 /-- **[Theorem — Cauchy-Sequence Real Extension Exists]**
 
-Mathematical statement (Lean): `theorem real_extension_exists (rational_model : RationalModel) : Nonempty (RealExtension rational_model)`.
+Mathematical statement (Lean): `theorem real_extension_exists (rational_model : DenselyOrderedFieldModel) : Nonempty (RealExtension rational_model)`.
 
 *Proof status:* proof pending
 
@@ -338,31 +338,31 @@ Logical form:
 
 ```lean
 theorem real_extension_exists
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty (RealExtension rational_model)
 ```
 -/
 theorem real_extension_exists
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty (RealExtension rational_model) := by
   sorry
 
 /-- **[Definition — Cauchy-Sequence Real Extension]**
 
-Mathematical statement (Lean): `noncomputable def real_extension (rational_model : RationalModel) : RealExtension rational_model`.
+Mathematical statement (Lean): `noncomputable def real_extension (rational_model : DenselyOrderedFieldModel) : RealExtension rational_model`.
 
 
 Logical form:
 
 ```lean
 noncomputable def real_extension
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     RealExtension rational_model :=
   Classical.choice (real_extension_exists rational_model)
 ```
 -/
 noncomputable def real_extension
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     RealExtension rational_model :=
   Classical.choice (real_extension_exists rational_model)
 
@@ -399,7 +399,7 @@ structure IntervalSequence (Index RationalCarrier : Type) where
 
 /-- **[Theorem — Cantor Nested-Interval Real Model Exists]**
 
-Mathematical statement (Lean): `theorem real_model_exists (rational_model : RationalModel) : Nonempty RealModel`.
+Mathematical statement (Lean): `theorem real_model_exists (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel`.
 
 *Proof status:* proof pending
 
@@ -408,34 +408,34 @@ Logical form:
 
 ```lean
 theorem real_model_exists
-    (rational_model : RationalModel) : Nonempty RealModel
+    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel
 ```
 -/
 theorem real_model_exists
-    (rational_model : RationalModel) : Nonempty RealModel := by
+    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel := by
   sorry
 
 /-- **[Definition — Cantor Nested-Interval Real Model]**
 
-Mathematical statement (Lean): `noncomputable def real_model (rational_model : RationalModel) : RealModel`.
+Mathematical statement (Lean): `noncomputable def real_model (rational_model : DenselyOrderedFieldModel) : RealModel`.
 
 
 Logical form:
 
 ```lean
 noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
+    (rational_model : DenselyOrderedFieldModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 ```
 -/
 noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
+    (rational_model : DenselyOrderedFieldModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 
 /--
 **[Theorem — endpoint_sequences_determine_cauchy_class]**
 
-Mathematical statement (Lean): `theorem endpoint_sequences_determine_cauchy_class (rational_model : RationalModel) {Index RationalCarrier : Type} (interval_sequence : IntervalSequence Index RationalCarrier) : CauchySequences.equivalent interval_sequence.left_endpoint interval_sequence.lef...`.
+Mathematical statement (Lean): `theorem endpoint_sequences_determine_cauchy_class (rational_model : DenselyOrderedFieldModel) {Index RationalCarrier : Type} (interval_sequence : IntervalSequence Index RationalCarrier) : CauchySequences.equivalent interval_sequence.left_endpoint interval_sequence.lef...`.
 
 *Proof status:* proof pending
 
@@ -444,7 +444,7 @@ Logical form:
 
 ```lean
 theorem endpoint_sequences_determine_cauchy_class
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     {Index RationalCarrier : Type}
     (interval_sequence : IntervalSequence Index RationalCarrier) :
     CauchySequences.equivalent
@@ -453,7 +453,7 @@ theorem endpoint_sequences_determine_cauchy_class
 ```
 -/
 theorem endpoint_sequences_determine_cauchy_class
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     {Index RationalCarrier : Type}
     (interval_sequence : IntervalSequence Index RationalCarrier) :
     CauchySequences.equivalent
@@ -645,7 +645,7 @@ theorem quotient_multiplication_is_distributive
 
 /-- **[Theorem — Primitive Interval-Quotient Real Model Exists]**
 
-Mathematical statement (Lean): `theorem real_model_exists (rational_model : RationalModel) : Nonempty RealModel`.
+Mathematical statement (Lean): `theorem real_model_exists (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel`.
 
 *Proof status:* proof pending
 
@@ -654,28 +654,28 @@ Logical form:
 
 ```lean
 theorem real_model_exists
-    (rational_model : RationalModel) : Nonempty RealModel
+    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel
 ```
 -/
 theorem real_model_exists
-    (rational_model : RationalModel) : Nonempty RealModel := by
+    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel := by
   sorry
 
 /-- **[Definition — Primitive Interval-Quotient Real Model]**
 
-Mathematical statement (Lean): `noncomputable def real_model (rational_model : RationalModel) : RealModel`.
+Mathematical statement (Lean): `noncomputable def real_model (rational_model : DenselyOrderedFieldModel) : RealModel`.
 
 
 Logical form:
 
 ```lean
 noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
+    (rational_model : DenselyOrderedFieldModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 ```
 -/
 noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
+    (rational_model : DenselyOrderedFieldModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 
 end LRA.NumberSystems.RealNumbers.PrimitiveIntervalQuotient
@@ -749,7 +749,7 @@ theorem equivalent_is_equivalence_relation
 
 /-- **[Theorem — Dyadic-Expansion Real Model Exists]**
 
-Mathematical statement (Lean): `theorem real_model_exists (rational_model : RationalModel) : Nonempty RealModel`.
+Mathematical statement (Lean): `theorem real_model_exists (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel`.
 
 *Proof status:* proof pending
 
@@ -758,28 +758,28 @@ Logical form:
 
 ```lean
 theorem real_model_exists
-    (rational_model : RationalModel) : Nonempty RealModel
+    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel
 ```
 -/
 theorem real_model_exists
-    (rational_model : RationalModel) : Nonempty RealModel := by
+    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel := by
   sorry
 
 /-- **[Definition — Dyadic-Expansion Real Model]**
 
-Mathematical statement (Lean): `noncomputable def real_model (rational_model : RationalModel) : RealModel`.
+Mathematical statement (Lean): `noncomputable def real_model (rational_model : DenselyOrderedFieldModel) : RealModel`.
 
 
 Logical form:
 
 ```lean
 noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
+    (rational_model : DenselyOrderedFieldModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 ```
 -/
 noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
+    (rational_model : DenselyOrderedFieldModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 
 end LRA.NumberSystems.RealNumbers.DyadicExpansions
@@ -909,7 +909,7 @@ theorem complete_archimedean_ordered_fields_are_uniquely_isomorphic
 
 /-- **[Theorem — Dedekind-Cauchy Real Isomorphism Exists]**
 
-Mathematical statement (Lean): `theorem dedekind_equiv_cauchy_exists (rational_model : RationalModel) : Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CauchySequences.real_model rational_model))`.
+Mathematical statement (Lean): `theorem dedekind_equiv_cauchy_exists (rational_model : DenselyOrderedFieldModel) : Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CauchySequences.real_model rational_model))`.
 
 *Proof status:* proof pending
 
@@ -918,7 +918,7 @@ Logical form:
 
 ```lean
 theorem dedekind_equiv_cauchy_exists
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -926,7 +926,7 @@ theorem dedekind_equiv_cauchy_exists
 ```
 -/
 theorem dedekind_equiv_cauchy_exists
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -936,14 +936,14 @@ theorem dedekind_equiv_cauchy_exists
 /--
 **[Def — dedekind_equiv_cauchy]**
 
-Mathematical statement (Lean): `noncomputable def dedekind_equiv_cauchy (rational_model : RationalModel) : ModelIsomorphism (DedekindCuts.real_model rational_model) (CauchySequences.real_model rational_model)`.
+Mathematical statement (Lean): `noncomputable def dedekind_equiv_cauchy (rational_model : DenselyOrderedFieldModel) : ModelIsomorphism (DedekindCuts.real_model rational_model) (CauchySequences.real_model rational_model)`.
 
 
 Logical form:
 
 ```lean
 noncomputable def dedekind_equiv_cauchy
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (CauchySequences.real_model rational_model) :=
@@ -951,7 +951,7 @@ noncomputable def dedekind_equiv_cauchy
 ```
 -/
 noncomputable def dedekind_equiv_cauchy
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (CauchySequences.real_model rational_model) :=
@@ -960,14 +960,14 @@ noncomputable def dedekind_equiv_cauchy
 /--
 **[Theorem — dedekind_and_cauchy_are_isomorphic]**
 
-Mathematical statement (Lean): `theorem dedekind_and_cauchy_are_isomorphic (rational_model : RationalModel) : Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CauchySequences.real_model rational_model))`.
+Mathematical statement (Lean): `theorem dedekind_and_cauchy_are_isomorphic (rational_model : DenselyOrderedFieldModel) : Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CauchySequences.real_model rational_model))`.
 
 
 Logical form:
 
 ```lean
 theorem dedekind_and_cauchy_are_isomorphic
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -975,7 +975,7 @@ theorem dedekind_and_cauchy_are_isomorphic
 ```
 -/
 theorem dedekind_and_cauchy_are_isomorphic
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -984,7 +984,7 @@ theorem dedekind_and_cauchy_are_isomorphic
 
 /-- **[Theorem — Dedekind-Cantor Real Isomorphism Exists]**
 
-Mathematical statement (Lean): `theorem dedekind_equiv_cantor_exists (rational_model : RationalModel) : Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CantorNestedIntervals.real_model rational_model))`.
+Mathematical statement (Lean): `theorem dedekind_equiv_cantor_exists (rational_model : DenselyOrderedFieldModel) : Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CantorNestedIntervals.real_model rational_model))`.
 
 *Proof status:* proof pending
 
@@ -993,7 +993,7 @@ Logical form:
 
 ```lean
 theorem dedekind_equiv_cantor_exists
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -1001,7 +1001,7 @@ theorem dedekind_equiv_cantor_exists
 ```
 -/
 theorem dedekind_equiv_cantor_exists
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -1011,14 +1011,14 @@ theorem dedekind_equiv_cantor_exists
 /--
 **[Def — dedekind_equiv_cantor]**
 
-Mathematical statement (Lean): `noncomputable def dedekind_equiv_cantor (rational_model : RationalModel) : ModelIsomorphism (DedekindCuts.real_model rational_model) (CantorNestedIntervals.real_model rational_model)`.
+Mathematical statement (Lean): `noncomputable def dedekind_equiv_cantor (rational_model : DenselyOrderedFieldModel) : ModelIsomorphism (DedekindCuts.real_model rational_model) (CantorNestedIntervals.real_model rational_model)`.
 
 
 Logical form:
 
 ```lean
 noncomputable def dedekind_equiv_cantor
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (CantorNestedIntervals.real_model rational_model) :=
@@ -1026,7 +1026,7 @@ noncomputable def dedekind_equiv_cantor
 ```
 -/
 noncomputable def dedekind_equiv_cantor
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (CantorNestedIntervals.real_model rational_model) :=
@@ -1035,14 +1035,14 @@ noncomputable def dedekind_equiv_cantor
 /--
 **[Theorem — dedekind_and_cantor_are_isomorphic]**
 
-Mathematical statement (Lean): `theorem dedekind_and_cantor_are_isomorphic (rational_model : RationalModel) : Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CantorNestedIntervals.real_model rational_model))`.
+Mathematical statement (Lean): `theorem dedekind_and_cantor_are_isomorphic (rational_model : DenselyOrderedFieldModel) : Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CantorNestedIntervals.real_model rational_model))`.
 
 
 Logical form:
 
 ```lean
 theorem dedekind_and_cantor_are_isomorphic
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -1050,7 +1050,7 @@ theorem dedekind_and_cantor_are_isomorphic
 ```
 -/
 theorem dedekind_and_cantor_are_isomorphic
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -1059,7 +1059,7 @@ theorem dedekind_and_cantor_are_isomorphic
 
 /-- **[Theorem — Dedekind-Interval-Quotient Real Isomorphism Exists]**
 
-Mathematical statement (Lean): `theorem dedekind_equiv_interval_quotient_exists (rational_model : RationalModel) : Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (PrimitiveIntervalQuotient.real_model rational_model))`.
+Mathematical statement (Lean): `theorem dedekind_equiv_interval_quotient_exists (rational_model : DenselyOrderedFieldModel) : Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (PrimitiveIntervalQuotient.real_model rational_model))`.
 
 *Proof status:* proof pending
 
@@ -1068,7 +1068,7 @@ Logical form:
 
 ```lean
 theorem dedekind_equiv_interval_quotient_exists
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -1076,7 +1076,7 @@ theorem dedekind_equiv_interval_quotient_exists
 ```
 -/
 theorem dedekind_equiv_interval_quotient_exists
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -1086,14 +1086,14 @@ theorem dedekind_equiv_interval_quotient_exists
 /--
 **[Def — dedekind_equiv_interval_quotient]**
 
-Mathematical statement (Lean): `noncomputable def dedekind_equiv_interval_quotient (rational_model : RationalModel) : ModelIsomorphism (DedekindCuts.real_model rational_model) (PrimitiveIntervalQuotient.real_model rational_model)`.
+Mathematical statement (Lean): `noncomputable def dedekind_equiv_interval_quotient (rational_model : DenselyOrderedFieldModel) : ModelIsomorphism (DedekindCuts.real_model rational_model) (PrimitiveIntervalQuotient.real_model rational_model)`.
 
 
 Logical form:
 
 ```lean
 noncomputable def dedekind_equiv_interval_quotient
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (PrimitiveIntervalQuotient.real_model rational_model) :=
@@ -1101,7 +1101,7 @@ noncomputable def dedekind_equiv_interval_quotient
 ```
 -/
 noncomputable def dedekind_equiv_interval_quotient
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (PrimitiveIntervalQuotient.real_model rational_model) :=
@@ -1110,14 +1110,14 @@ noncomputable def dedekind_equiv_interval_quotient
 /--
 **[Theorem — dedekind_and_interval_quotient_are_isomorphic]**
 
-Mathematical statement (Lean): `theorem dedekind_and_interval_quotient_are_isomorphic (rational_model : RationalModel) : Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (PrimitiveIntervalQuotient.real_model rational_model))`.
+Mathematical statement (Lean): `theorem dedekind_and_interval_quotient_are_isomorphic (rational_model : DenselyOrderedFieldModel) : Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (PrimitiveIntervalQuotient.real_model rational_model))`.
 
 
 Logical form:
 
 ```lean
 theorem dedekind_and_interval_quotient_are_isomorphic
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -1125,7 +1125,7 @@ theorem dedekind_and_interval_quotient_are_isomorphic
 ```
 -/
 theorem dedekind_and_interval_quotient_are_isomorphic
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -1134,7 +1134,7 @@ theorem dedekind_and_interval_quotient_are_isomorphic
 
 /-- **[Theorem — Dedekind-Dyadic Real Isomorphism Exists]**
 
-Mathematical statement (Lean): `theorem dedekind_equiv_dyadic_exists (rational_model : RationalModel) : Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (DyadicExpansions.real_model rational_model))`.
+Mathematical statement (Lean): `theorem dedekind_equiv_dyadic_exists (rational_model : DenselyOrderedFieldModel) : Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (DyadicExpansions.real_model rational_model))`.
 
 *Proof status:* proof pending
 
@@ -1143,7 +1143,7 @@ Logical form:
 
 ```lean
 theorem dedekind_equiv_dyadic_exists
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -1151,7 +1151,7 @@ theorem dedekind_equiv_dyadic_exists
 ```
 -/
 theorem dedekind_equiv_dyadic_exists
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -1161,14 +1161,14 @@ theorem dedekind_equiv_dyadic_exists
 /--
 **[Def — dedekind_equiv_dyadic]**
 
-Mathematical statement (Lean): `noncomputable def dedekind_equiv_dyadic (rational_model : RationalModel) : ModelIsomorphism (DedekindCuts.real_model rational_model) (DyadicExpansions.real_model rational_model)`.
+Mathematical statement (Lean): `noncomputable def dedekind_equiv_dyadic (rational_model : DenselyOrderedFieldModel) : ModelIsomorphism (DedekindCuts.real_model rational_model) (DyadicExpansions.real_model rational_model)`.
 
 
 Logical form:
 
 ```lean
 noncomputable def dedekind_equiv_dyadic
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (DyadicExpansions.real_model rational_model) :=
@@ -1176,7 +1176,7 @@ noncomputable def dedekind_equiv_dyadic
 ```
 -/
 noncomputable def dedekind_equiv_dyadic
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (DyadicExpansions.real_model rational_model) :=
@@ -1185,14 +1185,14 @@ noncomputable def dedekind_equiv_dyadic
 /--
 **[Theorem — dedekind_and_dyadic_are_isomorphic]**
 
-Mathematical statement (Lean): `theorem dedekind_and_dyadic_are_isomorphic (rational_model : RationalModel) : Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (DyadicExpansions.real_model rational_model))`.
+Mathematical statement (Lean): `theorem dedekind_and_dyadic_are_isomorphic (rational_model : DenselyOrderedFieldModel) : Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (DyadicExpansions.real_model rational_model))`.
 
 
 Logical form:
 
 ```lean
 theorem dedekind_and_dyadic_are_isomorphic
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -1200,7 +1200,7 @@ theorem dedekind_and_dyadic_are_isomorphic
 ```
 -/
 theorem dedekind_and_dyadic_are_isomorphic
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)

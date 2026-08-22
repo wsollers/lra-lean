@@ -115,7 +115,7 @@ Working branch: `codex/volume-i-restructure`.
 | `Algebra.Models.RealLaws.rational_like_laws` | `Algebra.Models.RealLaws.RationalLikeLaws` | PascalCase public field |
 | `Algebra.Models.RealLaws.least_upper_bound_property` | `Algebra.Models.RealLaws.LeastUpperBoundProperty` | PascalCase public field |
 | `Algebra.Models.IntegerEmbeddingIntoRational.to_rational` | `Algebra.Models.IntegerEmbeddingIntoRational.ToRational` | PascalCase public field |
-| `Algebra.Models.RationalExtension.rational_model` | `Algebra.Models.RationalExtension.RationalModel` | PascalCase public field |
+| `Algebra.Models.RationalExtension.rational_model` | `Algebra.Models.RationalExtension.DenselyOrderedFieldModel` | PascalCase public field |
 | `Algebra.Models.RationalExtension.integer_embedding` | `Algebra.Models.RationalExtension.IntegerEmbedding` | PascalCase public field |
 | `Algebra.Models.RationalExtension.archimedean_property` | `Algebra.Models.RationalExtension.ArchimedeanProperty` | PascalCase public field |
 | `Algebra.Models.RationalEmbeddingIntoReal.to_real` | `Algebra.Models.RationalEmbeddingIntoReal.ToReal` | PascalCase public field |
@@ -128,7 +128,7 @@ Working branch: `codex/volume-i-restructure`.
 | `lefts_are_equal` / `rights_are_equal` | `LeftsAreEqual` / `RightsAreEqual` | PascalCase local hypotheses |
 | `left_identity_law` / `right_identity_law` | `LeftIdentityLaw` / `RightIdentityLaw` | PascalCase local hypotheses |
 | `first_identity_law` / `second_identity_law` | `FirstIdentityLaw` / `SecondIdentityLaw` | PascalCase local hypotheses |
-| `integer_model` / `rational_model` / `real_model` | `SelectedIntegerModel` / `SelectedRationalModel` / `SelectedRealModel` | PascalCase local binders |
+| `integer_model` / `rational_model` / `real_model` | `SelectedIntegerModel` / `SelectedDenselyOrderedFieldModel` / `SelectedRealModel` | PascalCase local binders |
 | `rational_extension` / `real_extension` | `SelectedRationalExtension` / `SelectedRealExtension` | PascalCase local binders |
 | `upper_bound` | `UpperBound` | PascalCase local mathematical object |
 | `source_*` / `target_*` | `Source*` / `Target*` | PascalCase local structure parameters |

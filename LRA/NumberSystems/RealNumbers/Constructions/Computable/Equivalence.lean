@@ -20,14 +20,14 @@ carry. `equivalent` is moved below exactly as stated. See
 /--
 **[Def — equivalent]**
 
-Mathematical statement (Lean): `def equivalent {rational_model : RationalModel} (first second : EffectiveApproximation rational_model) : Prop`.
+Mathematical statement (Lean): `def equivalent {rational_model : DenselyOrderedFieldModel} (first second : EffectiveApproximation rational_model) : Prop`.
 
 
 Logical form:
 
 ```lean
 def equivalent
-    {rational_model : RationalModel}
+    {rational_model : DenselyOrderedFieldModel}
     (first second : EffectiveApproximation rational_model) : Prop :=
   ∀ precision : Nat,
     ∃ index : Nat,
@@ -35,7 +35,7 @@ def equivalent
 ```
 -/
 def equivalent
-    {rational_model : RationalModel}
+    {rational_model : DenselyOrderedFieldModel}
     (first second : EffectiveApproximation rational_model) : Prop :=
   ∀ precision : Nat,
     ∃ index : Nat,

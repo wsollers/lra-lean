@@ -14,7 +14,7 @@ import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.Operations
 namespace LRA.NumberSystems.RealNumbers.Dedekind
 open LRA.NumberSystems.Models
 
-variable (rational_model : RationalModel)
+variable (rational_model : DenselyOrderedFieldModel)
 
 /-- Theorem 2.4: every rational lower ray is a cut.
 

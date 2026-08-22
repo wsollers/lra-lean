@@ -23,7 +23,7 @@ Logical form:
 
 ```lean
 theorem InductionOnRepresentatives
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model)
     (motive : Carrier rational_model absolute_value_data → Prop)
     (onRepresentative :
@@ -33,7 +33,7 @@ theorem InductionOnRepresentatives
 ```
 -/
 theorem InductionOnRepresentatives
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model)
     (motive : Carrier rational_model absolute_value_data → Prop)
     (onRepresentative :

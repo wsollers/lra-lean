@@ -62,7 +62,7 @@ Mathlib, full stop, with a decorative import suggesting otherwise. §7.7's
 own words: *"`Arithmetic/` is written against whichever carrier the switch
 selected. It is the natural first consumer to rewrite against interface
 binders, and the test of whether the interface is adequate."* This redesign
-is that rewrite — binding against `IntegerModel`/`RationalModel`/`RealModel`
+is that rewrite — binding against `IntegerModel`/`DenselyOrderedFieldModel`/`RealModel`
 (or the underlying `IntegerAndPositiveNaturalData`-style embedding records
 already used by `RationalQuotientFractions`) as explicit parameters, the
 same way every migrated `NumberSystems` file already does, not against a
@@ -74,7 +74,7 @@ concrete Mathlib type.
 `MultiplicativeInverseLaws`/`NontrivialityLaw`/field certificates already
 give generically (these are exactly the certificates
 `ComplexNumbers.Constructions.OrderedPairs.Instances` and every
-`RationalModel`/`RealModel` already register). Worth confirming whether
+`DenselyOrderedFieldModel`/`RealModel` already register). Worth confirming whether
 this file survives the redesign as its own thing, or collapses into direct
 use of the existing generic certificates at the relevant number-system
 carrier.
@@ -87,7 +87,7 @@ presentation order, not ownership."* Lang's chapter groupings are the
 *reading order*; they are not a reason to keep this content in one place.
 Each topic below is placed by what it's fundamentally **about**, generic
 over an interface parameter wherever the existing migrated systems already
-do that (`RationalModel`, `RealModel`, `IntegerModel`, or a plain
+do that (`DenselyOrderedFieldModel`, `RealModel`, `IntegerModel`, or a plain
 `[CommutativeRingLaws R]`-style mixin the way `AlgebraicIdentities.lean`
 already does it) — never hardcoded to a Mathlib concrete type, and never
 routed through a "switch."
@@ -147,7 +147,7 @@ worth checking before building a second copy).
 
 ### 4.5 Numeric fractions (existing `Fractions.lean`)
 **Home: `LRA.NumberSystems.RationalNumbers`**, rewritten against
-`IntegerAndPositiveNaturalData`/`RationalModel` (the parameters
+`IntegerAndPositiveNaturalData`/`DenselyOrderedFieldModel` (the parameters
 `RationalQuotientFractions` already takes) instead of Mathlib `Int`/`Rat`.
 `CrossMultiplication`, `FractionCancellation`, and
 `NegativeNumeratorEqualsNegativeDenominator` are arguably already *proven*
@@ -160,7 +160,7 @@ duplication check belongs in the file-structure pass, not here.
 If any content survives after checking against
 `LRA.AlgebraicStructures`'s existing `MultiplicativeInverseLaws`/
 `NontrivialityLaw` certificates, it lands wherever those already live,
-specialized at `RationalModel`.
+specialized at `DenselyOrderedFieldModel`.
 
 ### 4.7 Parity — integer evenness (existing `Parity.lean`)
 **Home: `LRA.NumberSystems.Integers`** (or `NaturalNumbers`, whichever

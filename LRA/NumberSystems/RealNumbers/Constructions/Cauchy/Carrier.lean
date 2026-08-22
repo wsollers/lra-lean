@@ -24,13 +24,13 @@ the whole pipeline); split per §1.6.1 into `Carrier` (this file),
 
 /-- Absolute-value data required to state the rational Cauchy condition.
 
-Mathematical statement (Lean): `structure RationalMetricData (rational_model : RationalModel)`.
+Mathematical statement (Lean): `structure RationalMetricData (rational_model : DenselyOrderedFieldModel)`.
 
 
 Logical form:
 
 ```lean
-structure RationalMetricData (rational_model : RationalModel) where
+structure RationalMetricData (rational_model : DenselyOrderedFieldModel) where
   absolute_value :
     rational_model.signature.carrier → rational_model.signature.carrier
   absolute_value_zero :
@@ -58,7 +58,7 @@ structure RationalMetricData (rational_model : RationalModel) where
         value = rational_model.signature.zero
 ```
 -/
-structure RationalMetricData (rational_model : RationalModel) where
+structure RationalMetricData (rational_model : DenselyOrderedFieldModel) where
   absolute_value :
     rational_model.signature.carrier → rational_model.signature.carrier
   absolute_value_zero :
@@ -88,30 +88,30 @@ structure RationalMetricData (rational_model : RationalModel) where
 
 /-- A rational sequence is a function from the natural numbers to the rational carrier.
 
-Mathematical statement (Lean): `abbrev Sequence (rational_model : RationalModel)`.
+Mathematical statement (Lean): `abbrev Sequence (rational_model : DenselyOrderedFieldModel)`.
 
 
 Logical form:
 
 ```lean
-abbrev Sequence (rational_model : RationalModel) :=
+abbrev Sequence (rational_model : DenselyOrderedFieldModel) :=
   Nat → rational_model.signature.carrier
 ```
 -/
-abbrev Sequence (rational_model : RationalModel) :=
+abbrev Sequence (rational_model : DenselyOrderedFieldModel) :=
   Nat → rational_model.signature.carrier
 
 
 /-- The distance induced by rational subtraction and absolute value.
 
-Mathematical statement (Lean): `def distance (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (first second : rational_model.signature.carrier) : rational_model.signature.carrier`.
+Mathematical statement (Lean): `def distance (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) (first second : rational_model.signature.carrier) : rational_model.signature.carrier`.
 
 
 Logical form:
 
 ```lean
 def distance
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model)
     (first second : rational_model.signature.carrier) :
     rational_model.signature.carrier :=
@@ -120,7 +120,7 @@ def distance
 ```
 -/
 def distance
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model)
     (first second : rational_model.signature.carrier) :
     rational_model.signature.carrier :=
@@ -130,34 +130,34 @@ def distance
 
 /-- A rational number is positive when it is strictly greater than zero.
 
-Mathematical statement (Lean): `def is_positive (rational_model : RationalModel) (value : rational_model.signature.carrier) : Prop`.
+Mathematical statement (Lean): `def is_positive (rational_model : DenselyOrderedFieldModel) (value : rational_model.signature.carrier) : Prop`.
 
 
 Logical form:
 
 ```lean
 def is_positive
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (value : rational_model.signature.carrier) : Prop :=
   rational_model.signature.StrictOrder rational_model.signature.zero value
 ```
 -/
 def is_positive
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (value : rational_model.signature.carrier) : Prop :=
   rational_model.signature.StrictOrder rational_model.signature.zero value
 
 
 /-- The epsilon-tail definition of a rational Cauchy sequence.
 
-Mathematical statement (Lean): `def is_cauchy (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (sequence : Sequence rational_model) : Prop`.
+Mathematical statement (Lean): `def is_cauchy (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) (sequence : Sequence rational_model) : Prop`.
 
 
 Logical form:
 
 ```lean
 def is_cauchy
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model)
     (sequence : Sequence rational_model) : Prop :=
   ∀ epsilon,
@@ -174,7 +174,7 @@ def is_cauchy
 ```
 -/
 def is_cauchy
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model)
     (sequence : Sequence rational_model) : Prop :=
   ∀ epsilon,
@@ -192,14 +192,14 @@ def is_cauchy
 
 /-- A null sequence converges to rational zero.
 
-Mathematical statement (Lean): `def is_null (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (sequence : Sequence rational_model) : Prop`.
+Mathematical statement (Lean): `def is_null (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) (sequence : Sequence rational_model) : Prop`.
 
 
 Logical form:
 
 ```lean
 def is_null
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model)
     (sequence : Sequence rational_model) : Prop :=
   ∀ epsilon,
@@ -213,7 +213,7 @@ def is_null
 ```
 -/
 def is_null
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model)
     (sequence : Sequence rational_model) : Prop :=
   ∀ epsilon,
@@ -228,14 +228,14 @@ def is_null
 
 /-- Two rational sequences are equivalent when their pointwise difference is null.
 
-Mathematical statement (Lean): `def equivalent (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (first second : Sequence rational_model) : Prop`.
+Mathematical statement (Lean): `def equivalent (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) (first second : Sequence rational_model) : Prop`.
 
 
 Logical form:
 
 ```lean
 def equivalent
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model)
     (first second : Sequence rational_model) : Prop :=
   is_null rational_model absolute_value_data
@@ -246,7 +246,7 @@ def equivalent
 ```
 -/
 def equivalent
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model)
     (first second : Sequence rational_model) : Prop :=
   is_null rational_model absolute_value_data
@@ -258,14 +258,14 @@ def equivalent
 
 /-- The carrier of admissible Cauchy-sequence representatives.
 
-Mathematical statement (Lean): `structure Representative (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model)`.
+Mathematical statement (Lean): `structure Representative (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model)`.
 
 
 Logical form:
 
 ```lean
 structure Representative
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model) where
   sequence : Sequence rational_model
   sequence_is_cauchy :
@@ -273,7 +273,7 @@ structure Representative
 ```
 -/
 structure Representative
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model) where
   sequence : Sequence rational_model
   sequence_is_cauchy :

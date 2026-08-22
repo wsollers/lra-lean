@@ -693,7 +693,7 @@ Deferred concepts:
 NumberSystemTower
 NaturalNumberInterface
 IntegerModel
-RationalModel
+DenselyOrderedFieldModel
 RealModel
 CanonicalEmbeddings
 IntegerEmbeddingIntoRational

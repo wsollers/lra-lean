@@ -22,7 +22,7 @@ constructions, `Cut` is a subtype (no `Setoid`/`Quotient`), so
 the analogous role -- see its header comment. See `RealNumbers/ProofOrder.md`.
 -/
 
-variable (rational_model : RationalModel)
+variable (rational_model : DenselyOrderedFieldModel)
 
 /--
 **[Abbrev — Rational]**

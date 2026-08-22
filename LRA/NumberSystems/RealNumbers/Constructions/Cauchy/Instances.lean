@@ -23,13 +23,13 @@ Logical form:
 
 ```lean
 noncomputable def CauchyRealizesRealModel
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model) :
     LRA.NumberSystems.Models.RealModel
 ```
 -/
 noncomputable def CauchyRealizesRealModel
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model) :
     LRA.NumberSystems.Models.RealModel := by
   sorry

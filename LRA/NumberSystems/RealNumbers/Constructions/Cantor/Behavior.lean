@@ -11,7 +11,7 @@ open LRA.NumberSystems.Models
 /--
 **[Theorem — cantor_reals_are_isomorphic_to_cauchy_reals]**
 
-Mathematical statement (Lean): `theorem cantor_reals_are_isomorphic_to_cauchy_reals (rational_model : RationalModel) (metric_data : Cauchy.RationalMetricData rational_model) : ∃ comparison : Carrier rational_model → Cauchy.Carrier rational_model metric_data, ∀ first second, comparison fir...`.
+Mathematical statement (Lean): `theorem cantor_reals_are_isomorphic_to_cauchy_reals (rational_model : DenselyOrderedFieldModel) (metric_data : Cauchy.RationalMetricData rational_model) : ∃ comparison : Carrier rational_model → Cauchy.Carrier rational_model metric_data, ∀ first second, comparison fir...`.
 
 *Proof status:* proof pending
 
@@ -20,7 +20,7 @@ Logical form:
 
 ```lean
 theorem cantor_reals_are_isomorphic_to_cauchy_reals
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (metric_data : Cauchy.RationalMetricData rational_model) :
     ∃ comparison :
       Carrier rational_model → Cauchy.Carrier rational_model metric_data,
@@ -29,7 +29,7 @@ theorem cantor_reals_are_isomorphic_to_cauchy_reals
 ```
 -/
 theorem cantor_reals_are_isomorphic_to_cauchy_reals
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (metric_data : Cauchy.RationalMetricData rational_model) :
     ∃ comparison :
       Carrier rational_model → Cauchy.Carrier rational_model metric_data,

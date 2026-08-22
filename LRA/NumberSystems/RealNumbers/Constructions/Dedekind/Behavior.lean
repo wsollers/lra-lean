@@ -7,7 +7,7 @@ import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.Laws
 namespace LRA.NumberSystems.RealNumbers.Dedekind
 open LRA.NumberSystems.Models
 
-variable (rational_model : RationalModel)
+variable (rational_model : DenselyOrderedFieldModel)
 
 /-- Theorem 7.1: embedded rationals are order-dense.
 

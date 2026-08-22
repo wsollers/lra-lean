@@ -10,7 +10,7 @@ import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.WellDefinedness
 namespace LRA.NumberSystems.RealNumbers.Dedekind
 open LRA.NumberSystems.Models
 
-variable (rational_model : RationalModel)
+variable (rational_model : DenselyOrderedFieldModel)
 
 /-- Proposition expressing the abelian-group laws.
 

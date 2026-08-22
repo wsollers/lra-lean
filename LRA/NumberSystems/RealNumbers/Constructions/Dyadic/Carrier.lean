@@ -207,7 +207,7 @@ Logical form:
 
 ```lean
 structure RationalDyadicApproximationData where
-  rational_model : RationalModel
+  rational_model : DenselyOrderedFieldModel
   absolute_value_data : Cauchy.RationalMetricData rational_model
   integer_carrier : Type
   whole_carrier : Type
@@ -245,7 +245,7 @@ structure RationalDyadicApproximationData where
 ```
 -/
 structure RationalDyadicApproximationData where
-  rational_model : RationalModel
+  rational_model : DenselyOrderedFieldModel
   absolute_value_data : Cauchy.RationalMetricData rational_model
   integer_carrier : Type
   whole_carrier : Type

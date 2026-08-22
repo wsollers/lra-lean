@@ -18,7 +18,7 @@ migration's policy of never completing a proof it did not already carry.
 Tracked in `RealNumbers/ProofOrder.md`.
 -/
 
-variable (rational_model : RationalModel)
+variable (rational_model : DenselyOrderedFieldModel)
 
 /-- Every Dedekind cut in this construction is built from some lower set
 together with a proof that the lower set satisfies `IsCut`: induction on

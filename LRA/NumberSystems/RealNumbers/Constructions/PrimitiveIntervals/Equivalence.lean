@@ -10,7 +10,7 @@ import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals.Carrier
 namespace LRA.NumberSystems.RealNumbers.PrimitiveIntervals
 open LRA.NumberSystems.Models
 
-variable (rational_model : RationalModel)
+variable (rational_model : DenselyOrderedFieldModel)
 
 /-- Definition 1.7: persistent cross-level overlap.
 

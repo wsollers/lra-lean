@@ -42,7 +42,7 @@ structure FiniteSimpleContinuedFraction (integer_model : IntegerModel) where
 /--
 **[Structure — FiniteValue]**
 
-Mathematical statement (Lean): `structure FiniteValue (integer_model : IntegerModel) (rational_model : RationalModel) (integer_embedding : IntegerEmbeddingIntoRational integer_model rational_model) (fraction : FiniteSimpleContinuedFraction integer_model) (value : rational_model.signature....`.
+Mathematical statement (Lean): `structure FiniteValue (integer_model : IntegerModel) (rational_model : DenselyOrderedFieldModel) (integer_embedding : IntegerEmbeddingIntoRational integer_model rational_model) (fraction : FiniteSimpleContinuedFraction integer_model) (value : rational_model.signature....`.
 
 
 Logical form:
@@ -50,7 +50,7 @@ Logical form:
 ```lean
 structure FiniteValue
     (integer_model : IntegerModel)
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (integer_embedding : IntegerEmbeddingIntoRational integer_model rational_model)
     (fraction : FiniteSimpleContinuedFraction integer_model)
     (value : rational_model.signature.carrier) : Prop where
@@ -62,7 +62,7 @@ structure FiniteValue
 -/
 structure FiniteValue
     (integer_model : IntegerModel)
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (integer_embedding : IntegerEmbeddingIntoRational integer_model rational_model)
     (fraction : FiniteSimpleContinuedFraction integer_model)
     (value : rational_model.signature.carrier) : Prop where
@@ -178,7 +178,7 @@ def eventually_periodic
 /--
 **[Theorem — rational_has_unique_canonical_finite_expansion]**
 
-Mathematical statement (Lean): `theorem rational_has_unique_canonical_finite_expansion (integer_model : IntegerModel) (rational_model : RationalModel) (integer_embedding : IntegerEmbeddingIntoRational integer_model rational_model) (value : rational_model.signature.carrier) : ∃ fraction :...`.
+Mathematical statement (Lean): `theorem rational_has_unique_canonical_finite_expansion (integer_model : IntegerModel) (rational_model : DenselyOrderedFieldModel) (integer_embedding : IntegerEmbeddingIntoRational integer_model rational_model) (value : rational_model.signature.carrier) : ∃ fraction :...`.
 
 *Proof status:* proof pending
 
@@ -188,7 +188,7 @@ Logical form:
 ```lean
 theorem rational_has_unique_canonical_finite_expansion
     (integer_model : IntegerModel)
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (integer_embedding : IntegerEmbeddingIntoRational integer_model rational_model)
     (value : rational_model.signature.carrier) :
     ∃ fraction : FiniteSimpleContinuedFraction integer_model,
@@ -202,7 +202,7 @@ theorem rational_has_unique_canonical_finite_expansion
 -/
 theorem rational_has_unique_canonical_finite_expansion
     (integer_model : IntegerModel)
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (integer_embedding : IntegerEmbeddingIntoRational integer_model rational_model)
     (value : rational_model.signature.carrier) :
     ∃ fraction : FiniteSimpleContinuedFraction integer_model,

@@ -62,7 +62,7 @@ that's out of scope for the Real migration).
 ### Fixed during this pass: missing `open` in generated stage files
 
 Six parallel migration passes initially produced stage files (all but
-each construction's `Carrier.lean`) that referenced `RationalModel`/
+each construction's `Carrier.lean`) that referenced `DenselyOrderedFieldModel`/
 `RealModel`/etc. -- declared in `LRA.NumberSystems.Models`, a sibling
 namespace, not an ancestor of `LRA.NumberSystems.RealNumbers.<Construction>`
 -- unqualified, without their own `open LRA.NumberSystems.Models` line.
@@ -72,7 +72,7 @@ failed to elaborate. Fixed uniformly across all 27 affected files by adding
 line, matching the pattern each construction's own `Carrier.lean` already
 used. Not caught by the (unavailable, no local toolchain) `lake build`
 gate -- flagged instead by cross-referencing the generated files' import
-graph against how `RationalModel` is actually declared.
+graph against how `DenselyOrderedFieldModel` is actually declared.
 
 ---
 

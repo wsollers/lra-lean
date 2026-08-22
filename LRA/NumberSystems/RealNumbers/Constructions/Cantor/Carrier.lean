@@ -22,20 +22,20 @@ the whole pipeline); split per §1.6.1 into `Carrier` (this file),
 /--
 **[Structure — EndpointInterval]**
 
-Mathematical statement (Lean): `structure EndpointInterval (rational_model : RationalModel)`.
+Mathematical statement (Lean): `structure EndpointInterval (rational_model : DenselyOrderedFieldModel)`.
 
 
 Logical form:
 
 ```lean
-structure EndpointInterval (rational_model : RationalModel) where
+structure EndpointInterval (rational_model : DenselyOrderedFieldModel) where
   lower : rational_model.signature.carrier
   upper : rational_model.signature.carrier
   lower_le_upper :
     rational_model.signature.le lower upper
 ```
 -/
-structure EndpointInterval (rational_model : RationalModel) where
+structure EndpointInterval (rational_model : DenselyOrderedFieldModel) where
   lower : rational_model.signature.carrier
   upper : rational_model.signature.carrier
   lower_le_upper :
@@ -44,13 +44,13 @@ structure EndpointInterval (rational_model : RationalModel) where
 /--
 **[Structure — NestedIntervalSequence]**
 
-Mathematical statement (Lean): `structure NestedIntervalSequence (rational_model : RationalModel)`.
+Mathematical statement (Lean): `structure NestedIntervalSequence (rational_model : DenselyOrderedFieldModel)`.
 
 
 Logical form:
 
 ```lean
-structure NestedIntervalSequence (rational_model : RationalModel) where
+structure NestedIntervalSequence (rational_model : DenselyOrderedFieldModel) where
   interval : Nat → EndpointInterval rational_model
   nested :
     ∀ index : Nat,
@@ -69,7 +69,7 @@ structure NestedIntervalSequence (rational_model : RationalModel) where
             positive_tolerance
 ```
 -/
-structure NestedIntervalSequence (rational_model : RationalModel) where
+structure NestedIntervalSequence (rational_model : DenselyOrderedFieldModel) where
   interval : Nat → EndpointInterval rational_model
   nested :
     ∀ index : Nat,

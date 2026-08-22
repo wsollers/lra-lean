@@ -11,7 +11,7 @@ import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.WellFoundedness
 namespace LRA.NumberSystems.RealNumbers.Dedekind
 open LRA.NumberSystems.Models
 
-variable (rational_model : RationalModel)
+variable (rational_model : DenselyOrderedFieldModel)
 
 /-- Definition 2.3: the rational lower ray determined by q.
 

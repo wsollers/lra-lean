@@ -315,11 +315,11 @@ Separate fraction-field construction from optional gcd/reduced-form enrichment a
 
 # Number-system façade and universal properties
 
-`IntegerModel`, `RationalModel`, and `RealModel` are broad structural classes, not categorical names for `Z`, `Q`, `R`.
+`IntegerModel`, `DenselyOrderedFieldModel`, and `RealModel` are broad structural classes, not categorical names for `Z`, `Q`, `R`.
 
 ### P0 — `RationalsAreCountable`
 
-Every `RationalModel` need not be countable: `Real` is a dense ordered field. Restrict countability to the actual rational construction/canonical rational system.
+Every `DenselyOrderedFieldModel` need not be countable: `Real` is a dense ordered field. Restrict countability to the actual rational construction/canonical rational system.
 
 Universal property records are weaker than their names:
 
@@ -341,7 +341,7 @@ Repair by proving canonical law certificates on the constructed carrier and pack
 
 ### Source strength
 
-An arbitrary dense ordered `RationalModel` may be non-Archimedean. Dedekind/interval/Cauchy real constructions should consume a rational model plus Archimedean/cofinality data, preferably the canonical `RationalExtension` from the integer tower.
+An arbitrary dense ordered `DenselyOrderedFieldModel` may be non-Archimedean. Dedekind/interval/Cauchy real constructions should consume a rational model plus Archimedean/cofinality data, preferably the canonical `RationalExtension` from the integer tower.
 
 ### Dedekind
 

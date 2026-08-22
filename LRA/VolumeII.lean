@@ -36,7 +36,7 @@ per §1.6.10. See `LRA/NumberSystems/Integers/ProofOrder.md`.
 The rational-number system (`RationalQuotientFractions`, `ComparisonModels`,
 `Construction`, `ContinuedFractions`) has promoted to
 `LRA.NumberSystems.RationalNumbers`, with no switch to retire
-(`rationalNumbersModel` takes its `RationalModel` as an explicit
+(`rationalNumbersModel` takes its `DenselyOrderedFieldModel` as an explicit
 parameter). See `LRA/NumberSystems/RationalNumbers/ProofOrder.md`.
 
 The real-number system (six constructions -- Cauchy, Cantor, Dedekind,

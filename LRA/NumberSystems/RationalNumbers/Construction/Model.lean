@@ -18,7 +18,7 @@ Verification status: definitions accepted
 
 Moved from `LRA.VolumeII.RationalNumbers.Construction.Model`, content
 unchanged. Unlike Integer's `Construction/Model.lean`, there is no
-switch here -- `rationalNumbersModel` takes its `RationalModel` as an
+switch here -- `rationalNumbersModel` takes its `DenselyOrderedFieldModel` as an
 explicit parameter rather than selecting one globally.
 -/
 
@@ -29,13 +29,13 @@ Logical form:
 
 ```lean
 def rationalNumbersModel
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
   BuildOrderedFieldModel rational_model.signature
 ```
 -/
 def rationalNumbersModel
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
   BuildOrderedFieldModel rational_model.signature
 

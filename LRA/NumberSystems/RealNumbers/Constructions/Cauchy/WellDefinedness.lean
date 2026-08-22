@@ -9,7 +9,7 @@ open LRA.NumberSystems.Models
 
 /-- Pointwise addition preserves the Cauchy property.
 
-Mathematical statement (Lean): `theorem representative_addition_is_cauchy (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (first second : Representative rational_model absolute_value_data) : is_cauchy rational_model absolute_value_data (represent...`.
+Mathematical statement (Lean): `theorem representative_addition_is_cauchy (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) (first second : Representative rational_model absolute_value_data) : is_cauchy rational_model absolute_value_data (represent...`.
 
 *Proof status:* proof pending
 
@@ -18,7 +18,7 @@ Logical form:
 
 ```lean
 theorem representative_addition_is_cauchy
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model)
     (first second : Representative rational_model absolute_value_data) :
     is_cauchy rational_model absolute_value_data
@@ -26,7 +26,7 @@ theorem representative_addition_is_cauchy
 ```
 -/
 theorem representative_addition_is_cauchy
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model)
     (first second : Representative rational_model absolute_value_data) :
     is_cauchy rational_model absolute_value_data
@@ -35,7 +35,7 @@ theorem representative_addition_is_cauchy
 
 /-- Pointwise negation preserves the Cauchy property.
 
-Mathematical statement (Lean): `theorem representative_negation_is_cauchy (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (representative : Representative rational_model absolute_value_data) : is_cauchy rational_model absolute_value_data (represe...`.
+Mathematical statement (Lean): `theorem representative_negation_is_cauchy (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) (representative : Representative rational_model absolute_value_data) : is_cauchy rational_model absolute_value_data (represe...`.
 
 *Proof status:* proof pending
 
@@ -44,7 +44,7 @@ Logical form:
 
 ```lean
 theorem representative_negation_is_cauchy
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model)
     (representative : Representative rational_model absolute_value_data) :
     is_cauchy rational_model absolute_value_data
@@ -52,7 +52,7 @@ theorem representative_negation_is_cauchy
 ```
 -/
 theorem representative_negation_is_cauchy
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model)
     (representative : Representative rational_model absolute_value_data) :
     is_cauchy rational_model absolute_value_data
@@ -61,7 +61,7 @@ theorem representative_negation_is_cauchy
 
 /-- Pointwise multiplication preserves the Cauchy property.
 
-Mathematical statement (Lean): `theorem representative_multiplication_is_cauchy (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (first second : Representative rational_model absolute_value_data) : is_cauchy rational_model absolute_value_data (rep...`.
+Mathematical statement (Lean): `theorem representative_multiplication_is_cauchy (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) (first second : Representative rational_model absolute_value_data) : is_cauchy rational_model absolute_value_data (rep...`.
 
 *Proof status:* proof pending
 
@@ -70,7 +70,7 @@ Logical form:
 
 ```lean
 theorem representative_multiplication_is_cauchy
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model)
     (first second : Representative rational_model absolute_value_data) :
     is_cauchy rational_model absolute_value_data
@@ -78,7 +78,7 @@ theorem representative_multiplication_is_cauchy
 ```
 -/
 theorem representative_multiplication_is_cauchy
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model)
     (first second : Representative rational_model absolute_value_data) :
     is_cauchy rational_model absolute_value_data
@@ -87,7 +87,7 @@ theorem representative_multiplication_is_cauchy
 
 /-- Pointwise addition is independent of the chosen representatives.
 
-Mathematical statement (Lean): `theorem representative_addition_respects_equivalence (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) : LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid rational_model absolute_value_data) (fun...`.
+Mathematical statement (Lean): `theorem representative_addition_respects_equivalence (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) : LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid rational_model absolute_value_data) (fun...`.
 
 *Proof status:* proof pending
 
@@ -96,7 +96,7 @@ Logical form:
 
 ```lean
 theorem representative_addition_respects_equivalence
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model) :
     LRA.UniversalAlgebra.Quotient.binary_operation_respects
       (representative_setoid rational_model absolute_value_data)
@@ -107,7 +107,7 @@ theorem representative_addition_respects_equivalence
 ```
 -/
 theorem representative_addition_respects_equivalence
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model) :
     LRA.UniversalAlgebra.Quotient.binary_operation_respects
       (representative_setoid rational_model absolute_value_data)
@@ -119,7 +119,7 @@ theorem representative_addition_respects_equivalence
 
 /-- Pointwise multiplication is independent of the chosen representatives.
 
-Mathematical statement (Lean): `theorem representative_multiplication_respects_equivalence (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) : LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid rational_model absolute_value_data...`.
+Mathematical statement (Lean): `theorem representative_multiplication_respects_equivalence (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) : LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid rational_model absolute_value_data...`.
 
 *Proof status:* proof pending
 
@@ -128,7 +128,7 @@ Logical form:
 
 ```lean
 theorem representative_multiplication_respects_equivalence
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model) :
     LRA.UniversalAlgebra.Quotient.binary_operation_respects
       (representative_setoid rational_model absolute_value_data)
@@ -139,7 +139,7 @@ theorem representative_multiplication_respects_equivalence
 ```
 -/
 theorem representative_multiplication_respects_equivalence
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model) :
     LRA.UniversalAlgebra.Quotient.binary_operation_respects
       (representative_setoid rational_model absolute_value_data)

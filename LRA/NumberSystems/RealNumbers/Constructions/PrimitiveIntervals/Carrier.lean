@@ -35,7 +35,7 @@ This construction is definitionally independent of the Cantor and Cauchy real
 constructions. Its primitive equivalence is persistent cross-level overlap.
 -/
 
-variable (rational_model : RationalModel)
+variable (rational_model : DenselyOrderedFieldModel)
 
 /--
 **[Abbrev — Rational]**

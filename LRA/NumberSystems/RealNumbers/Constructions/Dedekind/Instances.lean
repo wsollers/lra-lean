@@ -16,7 +16,7 @@ than composed field-by-field without a toolchain to check the composition.
 Tracked in `RealNumbers/ProofOrder.md`.
 -/
 
-variable (rational_model : RationalModel)
+variable (rational_model : DenselyOrderedFieldModel)
 
 /-- `Cut rational_model` realizes the generic complete ordered-field
 `RealModel` interface.

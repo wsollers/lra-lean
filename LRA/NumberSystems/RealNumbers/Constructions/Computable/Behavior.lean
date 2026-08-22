@@ -9,7 +9,7 @@ open LRA.NumberSystems.Models
 /--
 **[Theorem — computable_reals_closed_under_arithmetic]**
 
-Mathematical statement (Lean): `theorem computable_reals_closed_under_arithmetic (rational_model : RationalModel) : ∃ add mul neg : ComputableReal rational_model → ComputableReal rational_model → ComputableReal rational_model, ∀ first second, equivalent (add first second).approximation (a...`.
+Mathematical statement (Lean): `theorem computable_reals_closed_under_arithmetic (rational_model : DenselyOrderedFieldModel) : ∃ add mul neg : ComputableReal rational_model → ComputableReal rational_model → ComputableReal rational_model, ∀ first second, equivalent (add first second).approximation (a...`.
 
 *Proof status:* proof pending
 
@@ -18,7 +18,7 @@ Logical form:
 
 ```lean
 theorem computable_reals_closed_under_arithmetic
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     ∃ add mul neg :
       ComputableReal rational_model → ComputableReal rational_model → ComputableReal rational_model,
       ∀ first second, equivalent (add first second).approximation (add first second).approximation ∧
@@ -27,7 +27,7 @@ theorem computable_reals_closed_under_arithmetic
 ```
 -/
 theorem computable_reals_closed_under_arithmetic
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     ∃ add mul neg :
       ComputableReal rational_model → ComputableReal rational_model → ComputableReal rational_model,
       ∀ first second, equivalent (add first second).approximation (add first second).approximation ∧
@@ -38,7 +38,7 @@ theorem computable_reals_closed_under_arithmetic
 /--
 **[Theorem — computable_reals_are_countable]**
 
-Mathematical statement (Lean): `theorem computable_reals_are_countable (rational_model : RationalModel) : ∃ enumerate : Nat → ComputableReal rational_model, ∀ value : ComputableReal rational_model, ∃ index : Nat, enumerate index = value`.
+Mathematical statement (Lean): `theorem computable_reals_are_countable (rational_model : DenselyOrderedFieldModel) : ∃ enumerate : Nat → ComputableReal rational_model, ∀ value : ComputableReal rational_model, ∃ index : Nat, enumerate index = value`.
 
 *Proof status:* proof pending
 
@@ -47,14 +47,14 @@ Logical form:
 
 ```lean
 theorem computable_reals_are_countable
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     ∃ enumerate : Nat → ComputableReal rational_model,
       ∀ value : ComputableReal rational_model,
         ∃ index : Nat, enumerate index = value
 ```
 -/
 theorem computable_reals_are_countable
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     ∃ enumerate : Nat → ComputableReal rational_model,
       ∀ value : ComputableReal rational_model,
         ∃ index : Nat, enumerate index = value := by

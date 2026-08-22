@@ -11,7 +11,7 @@ import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals.WellDefine
 namespace LRA.NumberSystems.RealNumbers.PrimitiveIntervals
 open LRA.NumberSystems.Models
 
-variable (rational_model : RationalModel)
+variable (rational_model : DenselyOrderedFieldModel)
 
 /-- Proposition expressing strict total order.
 

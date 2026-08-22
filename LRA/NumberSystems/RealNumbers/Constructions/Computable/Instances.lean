@@ -23,12 +23,12 @@ Logical form:
 
 ```lean
 noncomputable def ComputableRealizesRealModel
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     LRA.NumberSystems.Models.RealModel
 ```
 -/
 noncomputable def ComputableRealizesRealModel
-    (rational_model : RationalModel) :
+    (rational_model : DenselyOrderedFieldModel) :
     LRA.NumberSystems.Models.RealModel := by
   sorry
 

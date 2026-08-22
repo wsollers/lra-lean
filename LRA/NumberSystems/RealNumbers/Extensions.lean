@@ -72,7 +72,7 @@ def is_nth_root
 /--
 **[Theorem — archimedean_integer_part]**
 
-Mathematical statement (Lean): `theorem archimedean_integer_part (integer_model : IntegerModel) (rational_extension : RationalExtension integer_model) (real_extension : RealExtension rational_extension.RationalModel) (value : real_extension.RealModel.signature.carrier) : ∃ lower upper :...`.
+Mathematical statement (Lean): `theorem archimedean_integer_part (integer_model : IntegerModel) (rational_extension : RationalExtension integer_model) (real_extension : RealExtension rational_extension.DenselyOrderedFieldModel) (value : real_extension.RealModel.signature.carrier) : ∃ lower upper :...`.
 
 *Proof status:* proof pending
 
@@ -83,7 +83,7 @@ Logical form:
 theorem archimedean_integer_part
     (integer_model : IntegerModel)
     (rational_extension : RationalExtension integer_model)
-    (real_extension : RealExtension rational_extension.RationalModel)
+    (real_extension : RealExtension rational_extension.DenselyOrderedFieldModel)
     (value : real_extension.RealModel.signature.carrier) :
     ∃ lower upper : integer_model.signature.carrier,
       real_extension.RealModel.signature.le
@@ -99,7 +99,7 @@ theorem archimedean_integer_part
 theorem archimedean_integer_part
     (integer_model : IntegerModel)
     (rational_extension : RationalExtension integer_model)
-    (real_extension : RealExtension rational_extension.RationalModel)
+    (real_extension : RealExtension rational_extension.DenselyOrderedFieldModel)
     (value : real_extension.RealModel.signature.carrier) :
     ∃ lower upper : integer_model.signature.carrier,
       real_extension.RealModel.signature.le

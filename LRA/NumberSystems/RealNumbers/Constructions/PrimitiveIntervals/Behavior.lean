@@ -22,7 +22,7 @@ import LRA.NumberSystems.RealNumbers.Constructions.Cauchy
 namespace LRA.NumberSystems.RealNumbers.PrimitiveIntervals
 open LRA.NumberSystems.Models
 
-variable (rational_model : RationalModel)
+variable (rational_model : DenselyOrderedFieldModel)
 
 /-- Theorem 8.1: persistent overlap equals endpoint-null equivalence.
 

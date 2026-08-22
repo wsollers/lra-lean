@@ -24,7 +24,7 @@ import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals.WellFounde
 namespace LRA.NumberSystems.RealNumbers.PrimitiveIntervals
 open LRA.NumberSystems.Models
 
-variable (rational_model : RationalModel)
+variable (rational_model : DenselyOrderedFieldModel)
 
 /-- Definition 3.1: endpoint specification of the Minkowski sum.
 

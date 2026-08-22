@@ -19,7 +19,7 @@ unchanged. Unlike `LRA.VolumeII.Integers.ConstructionModels` (deleted
 during the Integer migration -- see `Integers/ProofOrder.md`), this file
 is actively imported (via `RationalNumbers.lean`), and its three
 namespaces (`QuotientFractionsComparison`, `Reduced`, `FractionField`)
-are thin alternate-model existence claims (`Nonempty RationalModel`), not
+are thin alternate-model existence claims (`Nonempty DenselyOrderedFieldModel`), not
 full restatements of a concrete construction competing with
 `RationalQuotientFractions`. Kept as system-level content, sibling to
 `Constructions/`.
@@ -34,7 +34,7 @@ carry a completeness field.
 Logical form:
 
 ```lean
-def is_order_complete (rational_model : RationalModel) : Prop :=
+def is_order_complete (rational_model : DenselyOrderedFieldModel) : Prop :=
   ∀ subset : rational_model.signature.carrier → Prop,
     (∃ member, subset member) →
     (∃ upper_bound,
@@ -52,7 +52,7 @@ def is_order_complete (rational_model : RationalModel) : Prop :=
         rational_model.signature.le supremum upper_bound)
 ```
 -/
-def is_order_complete (rational_model : RationalModel) : Prop :=
+def is_order_complete (rational_model : DenselyOrderedFieldModel) : Prop :=
   ∀ subset : rational_model.signature.carrier → Prop,
     (∃ member, subset member) →
     (∃ upper_bound,
@@ -218,11 +218,11 @@ Logical form:
 
 ```lean
 theorem rational_model_exists
-    (integer_model : IntegerModel) : Nonempty RationalModel
+    (integer_model : IntegerModel) : Nonempty DenselyOrderedFieldModel
 ```
 -/
 theorem rational_model_exists
-    (integer_model : IntegerModel) : Nonempty RationalModel := by
+    (integer_model : IntegerModel) : Nonempty DenselyOrderedFieldModel := by
   sorry
 
 /-- **[Definition — Rational Quotient-Fractions Model]**
@@ -231,12 +231,12 @@ Logical form:
 
 ```lean
 noncomputable def rational_model
-    (integer_model : IntegerModel) : RationalModel :=
+    (integer_model : IntegerModel) : DenselyOrderedFieldModel :=
   Classical.choice (rational_model_exists integer_model)
 ```
 -/
 noncomputable def rational_model
-    (integer_model : IntegerModel) : RationalModel :=
+    (integer_model : IntegerModel) : DenselyOrderedFieldModel :=
   Classical.choice (rational_model_exists integer_model)
 
 
@@ -327,11 +327,11 @@ Logical form:
 
 ```lean
 theorem rational_model_exists
-    (integer_model : IntegerModel) : Nonempty RationalModel
+    (integer_model : IntegerModel) : Nonempty DenselyOrderedFieldModel
 ```
 -/
 theorem rational_model_exists
-    (integer_model : IntegerModel) : Nonempty RationalModel := by
+    (integer_model : IntegerModel) : Nonempty DenselyOrderedFieldModel := by
   sorry
 
 /-- **[Definition — Reduced-Fraction Rational Model]**
@@ -340,12 +340,12 @@ Logical form:
 
 ```lean
 noncomputable def rational_model
-    (integer_model : IntegerModel) : RationalModel :=
+    (integer_model : IntegerModel) : DenselyOrderedFieldModel :=
   Classical.choice (rational_model_exists integer_model)
 ```
 -/
 noncomputable def rational_model
-    (integer_model : IntegerModel) : RationalModel :=
+    (integer_model : IntegerModel) : DenselyOrderedFieldModel :=
   Classical.choice (rational_model_exists integer_model)
 
 end LRA.NumberSystems.RationalNumbers.Reduced
@@ -382,12 +382,12 @@ Logical form:
 ```lean
 theorem rational_model_exists
     (fraction_field_data : IntegralDomainFractionFieldData) :
-    Nonempty RationalModel
+    Nonempty DenselyOrderedFieldModel
 ```
 -/
 theorem rational_model_exists
     (fraction_field_data : IntegralDomainFractionFieldData) :
-    Nonempty RationalModel := by
+    Nonempty DenselyOrderedFieldModel := by
   sorry
 
 /-- **[Definition — Fraction-Field Rational Model]**
@@ -397,13 +397,13 @@ Logical form:
 ```lean
 noncomputable def rational_model
     (fraction_field_data : IntegralDomainFractionFieldData) :
-    RationalModel :=
+    DenselyOrderedFieldModel :=
   Classical.choice (rational_model_exists fraction_field_data)
 ```
 -/
 noncomputable def rational_model
     (fraction_field_data : IntegralDomainFractionFieldData) :
-    RationalModel :=
+    DenselyOrderedFieldModel :=
   Classical.choice (rational_model_exists fraction_field_data)
 
 end LRA.NumberSystems.RationalNumbers.FractionField
@@ -417,7 +417,7 @@ Logical form:
 
 ```lean
 structure ModelIsomorphism
-    (first_model second_model : RationalModel) where
+    (first_model second_model : DenselyOrderedFieldModel) where
   to_function :
     first_model.signature.carrier →
       second_model.signature.carrier
@@ -464,7 +464,7 @@ structure ModelIsomorphism
 ```
 -/
 structure ModelIsomorphism
-    (first_model second_model : RationalModel) where
+    (first_model second_model : DenselyOrderedFieldModel) where
   to_function :
     first_model.signature.carrier →
       second_model.signature.carrier

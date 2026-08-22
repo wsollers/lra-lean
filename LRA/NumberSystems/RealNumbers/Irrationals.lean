@@ -27,7 +27,7 @@ irrational are rational.
 -/
 
 variable
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (real_extension : RealExtension rational_model)
 
 /--

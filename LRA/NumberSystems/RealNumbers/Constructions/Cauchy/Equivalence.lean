@@ -10,21 +10,21 @@ open LRA.NumberSystems.Models
 
 /-- Null-difference equivalence restricted to Cauchy representatives.
 
-Mathematical statement (Lean): `def representative_equivalent (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) (first second : Representative rational_model absolute_value_data) : Prop`.
+Mathematical statement (Lean): `def representative_equivalent (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) (first second : Representative rational_model absolute_value_data) : Prop`.
 
 
 Logical form:
 
 ```lean
 def representative_equivalent
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model)
     (first second : Representative rational_model absolute_value_data) : Prop :=
   equivalent rational_model absolute_value_data first.sequence second.sequence
 ```
 -/
 def representative_equivalent
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model)
     (first second : Representative rational_model absolute_value_data) : Prop :=
   equivalent rational_model absolute_value_data first.sequence second.sequence
@@ -32,7 +32,7 @@ def representative_equivalent
 
 /-- Cauchy equivalence is reflexive, symmetric, and transitive.
 
-Mathematical statement (Lean): `theorem representative_equivalent_is_equivalence (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) : Equivalence (representative_equivalent rational_model absolute_value_data)`.
+Mathematical statement (Lean): `theorem representative_equivalent_is_equivalence (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) : Equivalence (representative_equivalent rational_model absolute_value_data)`.
 
 *Proof status:* proof pending
 
@@ -41,14 +41,14 @@ Logical form:
 
 ```lean
 theorem representative_equivalent_is_equivalence
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model) :
     Equivalence
       (representative_equivalent rational_model absolute_value_data)
 ```
 -/
 theorem representative_equivalent_is_equivalence
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model) :
     Equivalence
       (representative_equivalent rational_model absolute_value_data) := by
@@ -56,14 +56,14 @@ theorem representative_equivalent_is_equivalence
 
 /-- The setoid used for the Cauchy quotient.
 
-Mathematical statement (Lean): `def representative_setoid (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model) : Setoid (Representative rational_model absolute_value_data)`.
+Mathematical statement (Lean): `def representative_setoid (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) : Setoid (Representative rational_model absolute_value_data)`.
 
 
 Logical form:
 
 ```lean
 def representative_setoid
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model) :
     Setoid (Representative rational_model absolute_value_data) where
   r := representative_equivalent rational_model absolute_value_data
@@ -72,7 +72,7 @@ def representative_setoid
 ```
 -/
 def representative_setoid
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model) :
     Setoid (Representative rational_model absolute_value_data) where
   r := representative_equivalent rational_model absolute_value_data
@@ -82,20 +82,20 @@ def representative_setoid
 
 /-- The Cauchy real carrier is the quotient of rational Cauchy sequences.
 
-Mathematical statement (Lean): `abbrev Carrier (rational_model : RationalModel) (absolute_value_data : RationalMetricData rational_model)`.
+Mathematical statement (Lean): `abbrev Carrier (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model)`.
 
 
 Logical form:
 
 ```lean
 abbrev Carrier
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model) :=
   Quotient (representative_setoid rational_model absolute_value_data)
 ```
 -/
 abbrev Carrier
-    (rational_model : RationalModel)
+    (rational_model : DenselyOrderedFieldModel)
     (absolute_value_data : RationalMetricData rational_model) :=
   Quotient (representative_setoid rational_model absolute_value_data)
 

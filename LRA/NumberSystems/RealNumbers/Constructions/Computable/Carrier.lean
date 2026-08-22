@@ -22,13 +22,13 @@ file) and split into the §1.6.1 pipeline: `Carrier` (this file),
 /--
 **[Structure — EffectiveApproximation]**
 
-Mathematical statement (Lean): `structure EffectiveApproximation (rational_model : RationalModel)`.
+Mathematical statement (Lean): `structure EffectiveApproximation (rational_model : DenselyOrderedFieldModel)`.
 
 
 Logical form:
 
 ```lean
-structure EffectiveApproximation (rational_model : RationalModel) where
+structure EffectiveApproximation (rational_model : DenselyOrderedFieldModel) where
   approximate : Nat → rational_model.signature.carrier
   modulus : Nat → Nat
   cauchy_effective :
@@ -43,7 +43,7 @@ structure EffectiveApproximation (rational_model : RationalModel) where
             bound
 ```
 -/
-structure EffectiveApproximation (rational_model : RationalModel) where
+structure EffectiveApproximation (rational_model : DenselyOrderedFieldModel) where
   approximate : Nat → rational_model.signature.carrier
   modulus : Nat → Nat
   cauchy_effective :
@@ -60,17 +60,17 @@ structure EffectiveApproximation (rational_model : RationalModel) where
 /--
 **[Structure — ComputableReal]**
 
-Mathematical statement (Lean): `structure ComputableReal (rational_model : RationalModel)`.
+Mathematical statement (Lean): `structure ComputableReal (rational_model : DenselyOrderedFieldModel)`.
 
 
 Logical form:
 
 ```lean
-structure ComputableReal (rational_model : RationalModel) where
+structure ComputableReal (rational_model : DenselyOrderedFieldModel) where
   approximation : EffectiveApproximation rational_model
 ```
 -/
-structure ComputableReal (rational_model : RationalModel) where
+structure ComputableReal (rational_model : DenselyOrderedFieldModel) where
   approximation : EffectiveApproximation rational_model
 
 end LRA.NumberSystems.RealNumbers.Computable

@@ -1,7 +1,7 @@
 # Rational Numbers Proof Order
 
 Tracks the proofs needed to land the rational-number construction as a
-working realization of `LRA.NumberSystems.Models.RationalModel`, in the
+working realization of `LRA.NumberSystems.Models.DenselyOrderedFieldModel`, in the
 order they should be discharged. Every item marked `[ ]` is currently
 `sorry`; nothing is filled in until it's checked off.
 
@@ -13,11 +13,11 @@ interface) and `Integers` (five constructions split across
 construction here: `RationalQuotientFractions`, quotient fractions built
 generically over any `IntegerAndPositiveNaturalData` (an integer model plus
 a positive-natural carrier with a `to_integer` embedding). It realizes
-`LRA.NumberSystems.Models.RationalModel` -- a densely ordered field.
+`LRA.NumberSystems.Models.DenselyOrderedFieldModel` -- a densely ordered field.
 
 `ComparisonModels.lean`'s three namespaces (`QuotientFractionsComparison`,
 `Reduced`, `FractionField`) are thinner alternate-model *existence* claims
-(`Nonempty RationalModel`), not full constructions run through the §1.6.1
+(`Nonempty DenselyOrderedFieldModel`), not full constructions run through the §1.6.1
 pipeline -- see the note there and the research question below.
 
 ---
@@ -53,7 +53,7 @@ Split from the former single 1351-line file.
       `square_root_two_cut_has_no_supremum`, `not_order_complete`,
       `structure_of_the_rationals` (final summary) — all `sorry`, moved
       unchanged.
-- [ ] `Instances.lean` — new: `RationalQuotientFractionsRealizesRationalModel`,
+- [ ] `Instances.lean` — new: `RationalQuotientFractionsRealizesDenselyOrderedFieldModel`,
       `sorry`.
 
 ---
@@ -69,10 +69,10 @@ it is actively imported via the old `RationalNumbers.lean` aggregate (now
 imports `RationalQuotientFractions` directly (not through this file).
 
 **Research question, not resolved in this pass:** `QuotientFractionsComparison`,
-`Reduced`, and `FractionField` are three *abstract* ways a `RationalModel`
+`Reduced`, and `FractionField` are three *abstract* ways a `DenselyOrderedFieldModel`
 might arise (quotient fractions again, reduced fractions, or a generic
 integral-domain fraction field), each only asserting existence
-(`Nonempty RationalModel`) rather than being concrete constructions like
+(`Nonempty DenselyOrderedFieldModel`) rather than being concrete constructions like
 `RationalQuotientFractions` is. The three pairwise `ModelIsomorphism`
 theorems at the bottom of the file argue these three abstract existence
 claims agree with each other -- but none of them is tied back to the real
@@ -83,7 +83,7 @@ claims agree with each other -- but none of them is tied back to the real
    which construction realizes it), or
 2. the same kind of pairwise-comparison duplication the Integer migration's
    research note flagged (better superseded by each construction proving it
-   realizes `RationalModel`, plus one shared `RationalModel` categoricity
+   realizes `DenselyOrderedFieldModel`, plus one shared `DenselyOrderedFieldModel` categoricity
    theorem)
 
 is open. Kept as-is here since, unlike Integer's case, it is not orphaned
@@ -112,4 +112,4 @@ group, multiplicative/distributive, field, strict total order, ordered-field
 compatibility) -- nothing new was invented in `Laws.lean` beyond the file
 split itself. The only genuinely new content added in this pass is
 `WellFoundedness.lean`'s induction principle and `Instances.lean`'s
-`RationalModel` realization, both flagged above.
+`DenselyOrderedFieldModel` realization, both flagged above.
