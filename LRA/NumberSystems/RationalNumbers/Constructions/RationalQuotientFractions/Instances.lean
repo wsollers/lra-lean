@@ -1,5 +1,5 @@
 -- LRA/NumberSystems/RationalNumbers/Constructions/RationalQuotientFractions/Instances.lean
--- Registration into the system's interface.
+-- Registration into the system's interfaces.
 
 import LRA.NumberSystems.RationalNumbers.Constructions.RationalQuotientFractions.Behavior
 import LRA.NumberSystems.RationalNumbers.Definition
@@ -9,43 +9,42 @@ namespace LRA.NumberSystems.RationalNumbers.RationalQuotientFractions
 /-!
 The quotient-fractions construction first realizes the generic densely ordered
 field interface and then the stronger rational-number-system interface. The
-second package records which integer model the fractions were constructed from
-and adds the fraction-generation property.
+second package records the actual integer number system from which the fractions
+were constructed and adds the fraction-generation property.
 -/
 
-/-- `Carrier rational_data` realizes the generic ordered-field
-`DenselyOrderedFieldModel` interface.
+/-- `Carrier rationalData` realizes the generic densely ordered field model.
 
 Logical form:
 
 ```lean
 noncomputable def RationalQuotientFractionsRealizesDenselyOrderedFieldModel
-    (rational_data : IntegerAndPositiveNaturalData) :
+    (rationalData : IntegerAndPositiveNaturalData) :
     LRA.NumberSystems.Models.DenselyOrderedFieldModel
 ```
 -/
 noncomputable def RationalQuotientFractionsRealizesDenselyOrderedFieldModel
-    (rational_data : IntegerAndPositiveNaturalData) :
+    (rationalData : IntegerAndPositiveNaturalData) :
     LRA.NumberSystems.Models.DenselyOrderedFieldModel := by
   sorry
 
 /-- The quotient-fractions construction realizes a rational number system whose
-chosen integer model is exactly the integer model supplied by `rational_data`.
+selected integer system is exactly the one supplied by `rationalData`.
 
 Logical form:
 
 ```lean
 noncomputable def RationalQuotientFractionsRealizesRationalNumberSystem
-    (rational_data : IntegerAndPositiveNaturalData) :
+    (rationalData : IntegerAndPositiveNaturalData) :
     LRA.NumberSystems.RationalNumbers.RationalNumberSystem
 ```
 -/
 noncomputable def RationalQuotientFractionsRealizesRationalNumberSystem
-    (rational_data : IntegerAndPositiveNaturalData) :
+    (rationalData : IntegerAndPositiveNaturalData) :
     LRA.NumberSystems.RationalNumbers.RationalNumberSystem where
-  DiscretelyOrderedIntegralDomainModel := rational_data.integer_system.Model
+  IntegerSystem := rationalData.integer_system
   FieldModel :=
-    RationalQuotientFractionsRealizesDenselyOrderedFieldModel rational_data
+    RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData
   IntegerEmbedding := by
     sorry
   EveryElementIsIntegerFraction := by
