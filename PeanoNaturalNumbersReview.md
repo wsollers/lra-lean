@@ -2,7 +2,7 @@
 
 ## Scope
 
-Focused review of the generic Peano-system layer, concrete natural-number realizations, and the parallel generic integer-structure layer.
+Focused review of the generic Peano-system layer, concrete natural-number realizations, the WholeNumbers zero-adjunction layer, and the parallel generic integer-structure layer.
 
 Project rule: `sorry` proof bodies are neutral. A theorem whose hypotheses do not imply its conclusion is not neutral.
 
@@ -18,6 +18,10 @@ Project rule: `sorry` proof bodies are neutral. A theorem whose hypotheses do no
 - `LRA/NumberSystems/NaturalNumbers/Constructions/Presburger/Carrier.lean`
 - `LRA/NumberSystems/NaturalNumbers/Constructions/VonNeumann/Carrier.lean`
 - `LRA/NumberSystems/NaturalNumbers/Constructions/VonNeumann/WellFoundedness.lean`
+- `LRA/NumberSystems/NaturalNumbers/Constructions/WholeNumbers/Carrier.lean`
+- `LRA/NumberSystems/NaturalNumbers/Constructions/WholeNumbers/Operations.lean`
+- `LRA/NumberSystems/NaturalNumbers/Constructions/WholeNumbers/Laws.lean`
+- `LRA/NumberSystems/NaturalNumbers/Constructions/WholeNumbers/Instances.lean`
 - `LRA/NumberSystems/IntegerStructure/Definition.lean`
 - `LRA/NumberSystems/IntegerStructure/Categoricity.lean`
 
@@ -246,6 +250,90 @@ Then derive full predicate induction for `VonNeumannPeanoSystem` and only afterw
 
 ---
 
+# WholeNumbers: adjoining zero to a Peano carrier
+
+The carrier construction itself is clean:
+
+```text
+Carrier = Option Element
+none    = new zero
+some n  = embedded positive natural n.
+```
+
+Successor maps the new zero to the source basepoint and otherwise follows source successor.
+
+Addition and multiplication extend the one-based arithmetic and make the adjoined zero respectively identity/absorbing.
+
+This is a good way to turn a genuinely one-based natural system into a zero-based whole-number system.
+
+## P0 — source order contract is too weak
+
+`NaturalArithmeticForWholeNumbers` stores
+
+```text
+model : PeanoSystem Element SetObject
+strictOrder : Element -> Element -> Prop
+```
+
+with **no laws at all on `strictOrder`**.
+
+Yet `ordered_semiring_structure` later claims the induced WholeNumbers order is:
+
+- zero-minimal;
+- total;
+- transitive;
+- translation invariant;
+- preserved/reflected by multiplication by positive elements.
+
+These conclusions do not follow from an arbitrary relation.
+
+### Immediate counterexample
+
+Take any valid source Peano model with at least two elements and set
+
+```text
+strictOrder := fun _ _ => False.
+```
+
+Then distinct positive elements in `Carrier` are incomparable, contradicting the claimed totality theorem.
+
+**Severity: P0 FALSE GENERIC ORDER THEOREM / SOURCE CONTRACT TOO WEAK.**
+
+### Repair
+
+Replace the bare relation with canonical order certificates, for example requiring the source natural carrier to carry the appropriate strict linear/well order and arithmetic compatibility laws.
+
+## Recursion dependency
+
+`addition` and `multiplication` use the generic Landau recursion operations applied to `natural_data.model`.
+
+Thus, for arbitrary weak-backend `PeanoSystem`, the WholeNumbers arithmetic layer inherits the generic iterator-completeness defect unless the source model is additionally certified to have full predicate induction / reachability.
+
+For Landau and Presburger concrete sources this should be repairable because they use `PredicateSet`; for the generic constructor it must be an explicit hypothesis.
+
+## Certificate destination is correct
+
+`Instances.lean` builds canonical project certificates such as:
+
+- `AdditiveSemigroupLaws`;
+- `AdditiveCommutativeLaws`;
+- `AdditiveIdentityLaws`;
+- `MultiplicativeSemigroupLaws`;
+- `MultiplicativeCommutativeLaws`;
+- `MultiplicativeIdentityLaws`;
+- `ZeroAbsorbingLaws`;
+- `NontrivialityLaw`;
+- `NoZeroDivisorsLaw`;
+- `DistributiveLaws`.
+
+This is architecturally excellent and matches the successful complex-number pattern.
+
+The issue is not where the construction lands; it is that its generic input contract does not justify the source theorems used to build those certificates.
+
+**Verdict: carrier/certificate architecture PASS; generic assumptions P0 too weak.**
+
+---
+
 # Generic IntegerStructure
 
 `IntegerStructure` is a clean two-sided analogue of Peano structure:
@@ -317,9 +405,7 @@ This is a useful separation of foundational viewpoints:
 - Landau: axiomatic naturals;
 - Presburger: native inductive/syntactic arithmetic realization;
 - Von Neumann: ZFC set-theoretic naturals;
-- WholeNumbers: zero-based arithmetic layer.
-
-The remaining audit should verify the arithmetic/certificate registrations and explicit convention bridges among these constructions.
+- WholeNumbers: zero-adjunction from a positive-natural model.
 
 ---
 
@@ -328,7 +414,7 @@ The remaining audit should verify the arithmetic/certificate registrations and e
 No genuine family-wise Axiom-of-Choice dependency was identified here.
 
 - choosing an Infinity witness is witness extraction from the Infinity axiom;
-- the recursion/categoricity problem is logical strength / subset expressiveness, not Choice.
+- recursion/categoricity issues are logical strength / subset expressiveness, not Choice.
 
 ---
 
@@ -346,6 +432,9 @@ No genuine family-wise Axiom-of-Choice dependency was identified here.
 | Presburger construction | **PASS / STRONG PredicateSet BACKEND** |
 | Von Neumann carrier | **PASS** |
 | Von Neumann full-predicate adequacy bridge | **P1 SHOULD BE EXPLICIT** |
+| WholeNumbers `Option` carrier | **PASS** |
+| WholeNumbers arbitrary source `strictOrder` | **P0 TOO WEAK** |
+| WholeNumbers canonical certificate builders | **PASS ARCHITECTURE** |
 | IntegerStructure axioms | **PASS UNDER FULL INDUCTION** |
 | generic IntegerStructure categoricity | **P0 FALSE FOR ARBITRARY BACKENDS** |
 | Choice usage | **NONE NEW** |
@@ -360,6 +449,6 @@ No genuine family-wise Axiom-of-Choice dependency was identified here.
 4. restrict/strengthen IntegerStructure categoricity;
 5. rename the generic Peano basepoint or formalize explicit zero-/one-based façades;
 6. add an explicit ZFCSet comprehension/adequacy bridge for predicates on `NaturalElement`;
-7. add reachability theorems only under full induction;
-8. continue through WholeNumbers and arithmetic certificate registrations;
-9. then verify explicit natural-to-integer embedding and universal-property statements.
+7. strengthen `NaturalArithmeticForWholeNumbers` with canonical source order/compatibility certificates;
+8. add reachability theorems only under full induction;
+9. then verify the natural-to-integer embedding and universal-property statements.
