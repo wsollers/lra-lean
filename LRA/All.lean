@@ -1,5 +1,3 @@
 import LRA
-import LRA.Examples
-import LRA.Failures
 
-/-! Aggregate import for core, examples, and failures. -/
+/-! Aggregate import for the core LRA tree. Examples and failures stay opt-in. -/

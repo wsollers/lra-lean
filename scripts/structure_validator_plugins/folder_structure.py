@@ -102,9 +102,7 @@ def _check_core_import_quarantine(repo_root: Path, directory: Path) -> list[Find
     findings: list[Finding] = []
 
     for file_path in directory.glob("*.lean"):
-        if file_path.name in CORE_QUARANTINE_FILES:
-            continue
-        if any(part in CORE_QUARANTINE_DIRS for part in file_path.parts):
+        if _is_quarantined_leaf(file_path):
             continue
 
         try:
@@ -136,6 +134,16 @@ def _check_core_import_quarantine(repo_root: Path, directory: Path) -> list[Find
                 )
 
     return findings
+
+
+def _is_quarantined_leaf(file_path: Path) -> bool:
+    if file_path.name in CORE_QUARANTINE_FILES:
+        return True
+    if any(part in CORE_QUARANTINE_DIRS for part in file_path.parts):
+        return True
+
+    stem = file_path.stem.lower()
+    return "example" in stem or "failure" in stem
 
 
 def _check_legacy_modeltheory(directory: Path, args: object) -> list[Finding]:

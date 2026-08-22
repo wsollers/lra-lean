@@ -12,8 +12,7 @@ import LRA.Analysis.Sequences.Cauchy
 import LRA.Analysis.Sequences.ClusterValues
 import LRA.Analysis.Sequences.Divergence
 import LRA.Analysis.Sequences.Applications
-import LRA.Analysis.Sequences.ExamplesCounterexamples
 
 /-!
-Aggregate import for Volume III sequence modules.
+Aggregate import for core Volume III sequence modules.
 -/
