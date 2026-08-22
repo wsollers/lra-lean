@@ -1,6 +1,5 @@
 -- LRA/NumberSystems/RealNumbers/Constructions/Dyadic/Behavior.lean
--- Canonical-form uniqueness for binary expansions and transported field
--- behavior.
+-- Canonical-form uniqueness for binary expansions.
 
 import LRA.NumberSystems.RealNumbers.Constructions.Dyadic.Laws
 
@@ -36,17 +35,11 @@ theorem CanonicalFractionalUniqueness
       first = second := by
   sorry
 
-/-- The transported binary-expansion structure is a complete Archimedean
-ordered field precisely when the selected bridge is an ordered-field
-isomorphism and the source Cauchy carrier carries the advertised property. -/
-def CompleteArchimedeanOrderedField : Prop :=
-  OrderedFieldIsomorphism dyadicData ∧
-    dyadicData.cauchy_complete_archimedean_ordered_field
-
-/-- Binary expansions inherit the complete Archimedean ordered-field property
-from the selected Cauchy carrier. -/
-theorem BinaryExpansionsFormCompleteArchimedeanOrderedField :
-    CompleteArchimedeanOrderedField dyadicData := by
-  sorry
+/-!
+Completeness is deliberately not represented by a standalone proposition in
+this package. The construction-level statement is
+`DyadicExpansionRealModelExists` in `Instances.lean`, which ties the
+`RealModel` carrier to `Expansion` itself.
+-/
 
 end LRA.NumberSystems.RealNumbers.Dyadic
