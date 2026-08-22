@@ -1,102 +1,80 @@
 -- LRA/NumberSystems/RealNumbers/Constructions/Cantor/Equivalence.lean
--- Endpoint equivalence between nested interval sequences, the proof that it
--- is an equivalence relation, the resulting setoid, and the Cantor real
--- carrier as the quotient by that setoid.
+-- Equivalence between shrinking nested interval sequences.
 
 import LRA.NumberSystems.RealNumbers.Constructions.Cantor.Carrier
 
 namespace LRA.NumberSystems.RealNumbers.Cantor
+
 open LRA.NumberSystems.Models
 
-/--
-**[Def — endpoint_equivalent]**
+/-- Two shrinking nested interval sequences represent the same limit when,
+for every positive tolerance, some common stage has each interval lying within
+that tolerance of the other.
 
-Mathematical statement (Lean): `def endpoint_equivalent (rational_model : DenselyOrderedFieldModel) (first second : NestedIntervalSequence rational_model) : Prop`.
-
-
-Logical form:
-
-```lean
-def endpoint_equivalent
-    (rational_model : DenselyOrderedFieldModel)
-    (first second : NestedIntervalSequence rational_model) : Prop :=
-  ∀ tolerance : rational_model.signature.carrier,
-    rational_model.signature.StrictOrder rational_model.signature.zero tolerance →
-      ∃ index : Nat,
-        rational_model.signature.StrictOrder
-          (rational_model.signature.add
-            (first.interval index).lower
-            (rational_model.signature.neg (second.interval index).upper))
-          tolerance
-```
--/
-def endpoint_equivalent
-    (rational_model : DenselyOrderedFieldModel)
-    (first second : NestedIntervalSequence rational_model) : Prop :=
-  ∀ tolerance : rational_model.signature.carrier,
-    rational_model.signature.StrictOrder rational_model.signature.zero tolerance →
-      ∃ index : Nat,
-        rational_model.signature.StrictOrder
-          (rational_model.signature.add
-            (first.interval index).lower
-            (rational_model.signature.neg (second.interval index).upper))
-          tolerance
-
-/--
-**[Theorem — endpoint_equivalent_is_equivalence]**
-
-Mathematical statement (Lean): `theorem endpoint_equivalent_is_equivalence (rational_model : DenselyOrderedFieldModel) : Equivalence (endpoint_equivalent rational_model)`.
-
-*Proof status:* proof pending
-
+Equivalently, neither interval is separated from the other by a positive gap
+bounded away from zero. Both inequalities are required; the former one-sided
+condition was not symmetric and therefore could not define a quotient
+relation.
 
 Logical form:
 
 ```lean
-theorem endpoint_equivalent_is_equivalence
-    (rational_model : DenselyOrderedFieldModel) :
-    Equivalence (endpoint_equivalent rational_model)
+def EndpointEquivalent
+    (fieldModel : DenselyOrderedFieldModel)
+    (first second : NestedIntervalSequence fieldModel) : Prop :=
+  ∀ tolerance : fieldModel.Carrier,
+    0 < tolerance →
+      ∃ index : Nat,
+        first.interval index |>.lower - second.interval index |>.upper < tolerance ∧
+        second.interval index |>.lower - first.interval index |>.upper < tolerance
 ```
 -/
-theorem endpoint_equivalent_is_equivalence
-    (rational_model : DenselyOrderedFieldModel) :
-    Equivalence (endpoint_equivalent rational_model) := by
+def EndpointEquivalent
+    (fieldModel : DenselyOrderedFieldModel)
+    (first second : NestedIntervalSequence fieldModel) : Prop :=
+  ∀ tolerance : fieldModel.Carrier,
+    0 < tolerance →
+      ∃ index : Nat,
+        (first.interval index).lower - (second.interval index).upper < tolerance ∧
+        (second.interval index).lower - (first.interval index).upper < tolerance
+
+/-- Symmetric asymptotic overlap is an equivalence relation on shrinking nested
+interval sequences.
+
+Reflexivity uses `lower ≤ upper`. Symmetry exchanges the two conjuncts.
+Transitivity combines the two comparison gaps with a sufficiently small width
+of the middle interval sequence.
+
+Logical form:
+
+```lean
+theorem EndpointEquivalentIsEquivalence
+    (fieldModel : DenselyOrderedFieldModel) :
+    Equivalence (EndpointEquivalent fieldModel)
+```
+-/
+theorem EndpointEquivalentIsEquivalence
+    (fieldModel : DenselyOrderedFieldModel) :
+    Equivalence (EndpointEquivalent fieldModel) := by
   sorry
 
-/--
-**[Def — setoid]**
-
-Mathematical statement (Lean): `def setoid (rational_model : DenselyOrderedFieldModel) : Setoid (NestedIntervalSequence rational_model)`.
-
+/-- The setoid of shrinking nested interval sequences representing the same
+limit.
 
 Logical form:
 
 ```lean
-def setoid (rational_model : DenselyOrderedFieldModel) :
-    Setoid (NestedIntervalSequence rational_model) where
-  r := endpoint_equivalent rational_model
-  iseqv := endpoint_equivalent_is_equivalence rational_model
+def EndpointSetoid (fieldModel : DenselyOrderedFieldModel) :
+    Setoid (NestedIntervalSequence fieldModel)
 ```
 -/
-def setoid (rational_model : DenselyOrderedFieldModel) :
-    Setoid (NestedIntervalSequence rational_model) where
-  r := endpoint_equivalent rational_model
-  iseqv := endpoint_equivalent_is_equivalence rational_model
+def EndpointSetoid (fieldModel : DenselyOrderedFieldModel) :
+    Setoid (NestedIntervalSequence fieldModel) where
+  r := EndpointEquivalent fieldModel
+  iseqv := EndpointEquivalentIsEquivalence fieldModel
 
-/--
-**[Abbrev — Carrier]**
-
-Mathematical statement (Lean): `abbrev Carrier (rational_model : DenselyOrderedFieldModel)`.
-
-
-Logical form:
-
-```lean
-abbrev Carrier (rational_model : DenselyOrderedFieldModel) :=
-  Quotient (setoid rational_model)
-```
--/
-abbrev Carrier (rational_model : DenselyOrderedFieldModel) :=
-  Quotient (setoid rational_model)
+/-- The quotient carrier of the Cantor nested-interval construction. -/
+abbrev Carrier (fieldModel : DenselyOrderedFieldModel) :=
+  Quotient (EndpointSetoid fieldModel)
 
 end LRA.NumberSystems.RealNumbers.Cantor
