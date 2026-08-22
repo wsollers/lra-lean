@@ -11,11 +11,8 @@ universe u
 /-- The rational number system has the fraction-field universal property.
 
 Given a densely ordered field receiving an ordered-ring embedding of the
-selected integer system, there is a unique ordered-field embedding from the
-rational field that extends the supplied integer embedding.
-
-The universal property is derived from `RationalNumberSystem`; it is not an
-independent certificate stored in the rational system.
+selected integer number system, there is a unique ordered-field embedding from
+the rational field that extends the supplied integer embedding.
 
 Logical form:
 
@@ -23,18 +20,16 @@ Logical form:
 theorem FractionFieldUniversalProperty
     (rationalSystem : RationalNumberSystem.{u})
     (target : DenselyOrderedFieldModel.{u})
-    (integerMap : rationalSystem.DiscretelyOrderedIntegralDomainModel.Carrier → target.Carrier)
+    (integerMap : rationalSystem.IntegerSystem.Model.Carrier → target.Carrier)
     (integerMapIsEmbedding :
       EmbeddingPreservesOrderedRing
-        rationalSystem.DiscretelyOrderedIntegralDomainModel.signature
+        rationalSystem.IntegerSystem.Model.signature
         target.signature.toOrderedRingSignature
         integerMap) :
     ∃! rationalMap : rationalSystem.FieldModel.Carrier → target.Carrier,
       EmbeddingPreservesOrderedField
-          rationalSystem.FieldModel.signature
-          target.signature
-          rationalMap ∧
-        ∀ integerValue : rationalSystem.DiscretelyOrderedIntegralDomainModel.Carrier,
+          rationalSystem.FieldModel.signature target.signature rationalMap ∧
+        ∀ integerValue : rationalSystem.IntegerSystem.Model.Carrier,
           rationalMap
               (rationalSystem.IntegerEmbedding.ToRational integerValue) =
             integerMap integerValue
@@ -43,18 +38,16 @@ theorem FractionFieldUniversalProperty
 theorem FractionFieldUniversalProperty
     (rationalSystem : RationalNumberSystem.{u})
     (target : DenselyOrderedFieldModel.{u})
-    (integerMap : rationalSystem.DiscretelyOrderedIntegralDomainModel.Carrier → target.Carrier)
+    (integerMap : rationalSystem.IntegerSystem.Model.Carrier → target.Carrier)
     (integerMapIsEmbedding :
       EmbeddingPreservesOrderedRing
-        rationalSystem.DiscretelyOrderedIntegralDomainModel.signature
+        rationalSystem.IntegerSystem.Model.signature
         target.signature.toOrderedRingSignature
         integerMap) :
     ∃! rationalMap : rationalSystem.FieldModel.Carrier → target.Carrier,
       EmbeddingPreservesOrderedField
-          rationalSystem.FieldModel.signature
-          target.signature
-          rationalMap ∧
-        ∀ integerValue : rationalSystem.DiscretelyOrderedIntegralDomainModel.Carrier,
+          rationalSystem.FieldModel.signature target.signature rationalMap ∧
+        ∀ integerValue : rationalSystem.IntegerSystem.Model.Carrier,
           rationalMap
               (rationalSystem.IntegerEmbedding.ToRational integerValue) =
             integerMap integerValue := by
