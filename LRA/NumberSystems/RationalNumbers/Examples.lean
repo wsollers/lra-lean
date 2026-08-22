@@ -19,7 +19,7 @@ section MathlibIntegers
 /-- A quotient-fraction rational system built over Mathlib's integer model.
 
 The equality hypothesis records that the denominator/numerator construction
-data was prepared over `mathlibIntegerModel`; the resulting rational system then
+data was prepared over `mathlibDiscretelyOrderedIntegralDomainModel`; the resulting rational system then
 remembers exactly that choice.
 
 Logical form:
@@ -28,14 +28,14 @@ Logical form:
 noncomputable def MathlibRationalSystem
     (rational_data : IntegerAndPositiveNaturalData)
     (usesMathlibIntegers :
-      rational_data.integer_model = mathlibIntegerModel) :
+      rational_data.integer_model = mathlibDiscretelyOrderedIntegralDomainModel) :
     RationalNumberSystem
 ```
 -/
 noncomputable def MathlibRationalSystem
     (rational_data : IntegerAndPositiveNaturalData)
     (_usesMathlibIntegers :
-      rational_data.integer_model = mathlibIntegerModel) :
+      rational_data.integer_model = mathlibDiscretelyOrderedIntegralDomainModel) :
     RationalNumberSystem :=
   RationalQuotientFractionsRealizesRationalNumberSystem rational_data
 
@@ -48,17 +48,17 @@ Logical form:
 theorem MathlibRationalSystemUsesMathlibIntegers
     (rational_data : IntegerAndPositiveNaturalData)
     (usesMathlibIntegers :
-      rational_data.integer_model = mathlibIntegerModel) :
+      rational_data.integer_model = mathlibDiscretelyOrderedIntegralDomainModel) :
     (MathlibRationalSystem rational_data usesMathlibIntegers).DiscretelyOrderedIntegralDomainModel =
-      mathlibIntegerModel
+      mathlibDiscretelyOrderedIntegralDomainModel
 ```
 -/
 theorem MathlibRationalSystemUsesMathlibIntegers
     (rational_data : IntegerAndPositiveNaturalData)
     (usesMathlibIntegers :
-      rational_data.integer_model = mathlibIntegerModel) :
+      rational_data.integer_model = mathlibDiscretelyOrderedIntegralDomainModel) :
     (MathlibRationalSystem rational_data usesMathlibIntegers).DiscretelyOrderedIntegralDomainModel =
-      mathlibIntegerModel := by
+      mathlibDiscretelyOrderedIntegralDomainModel := by
   exact usesMathlibIntegers
 
 end MathlibIntegers

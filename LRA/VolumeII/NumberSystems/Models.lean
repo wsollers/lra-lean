@@ -248,15 +248,15 @@ def RealModel.signature (M : RealModel) : OrderedFieldSignature :=
 /-! ## Mathlib carriers as models, one line each -/
 
 /--
-`mathlibIntegerModel` defines the displayed object for mathlib integer model.
+`mathlibDiscretelyOrderedIntegralDomainModel` defines the displayed object for mathlib integer model.
 
 Logical form:
 
 ```lean
-def mathlibIntegerModel : DiscretelyOrderedIntegralDomainModel := DiscretelyOrderedIntegralDomainModel.ofCarrier Int
+def mathlibDiscretelyOrderedIntegralDomainModel : DiscretelyOrderedIntegralDomainModel := DiscretelyOrderedIntegralDomainModel.ofCarrier Int
 ```
 -/
-def mathlibIntegerModel : DiscretelyOrderedIntegralDomainModel := DiscretelyOrderedIntegralDomainModel.ofCarrier Int
+def mathlibDiscretelyOrderedIntegralDomainModel : DiscretelyOrderedIntegralDomainModel := DiscretelyOrderedIntegralDomainModel.ofCarrier Int
 
 /-- The Mathlib rational carrier packaged as a densely ordered field model.
 
@@ -457,7 +457,7 @@ example (M : RealModel) :
       (Set M.Carrier) (fun a b : M.Carrier => a ≤ b) :=
   Completeness
 
-example (a b : mathlibIntegerModel.Carrier) : a * b = b * a :=
+example (a b : mathlibDiscretelyOrderedIntegralDomainModel.Carrier) : a * b = b * a :=
   MulCommutative a b
 
 end LRA.NumberSystems.Models

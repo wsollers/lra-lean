@@ -1554,20 +1554,20 @@
       "status": "draft"
     },
     {
-      "id": "LRA/VolumeI/UniversalAlgebra/Models/Models.lean:287:mathlibIntegerModel",
-      "name": "mathlibIntegerModel",
+      "id": "LRA/VolumeI/UniversalAlgebra/Models/Models.lean:287:mathlibDiscretelyOrderedIntegralDomainModel",
+      "name": "mathlibDiscretelyOrderedIntegralDomainModel",
       "kind": "def",
       "file": "LRA/VolumeI/UniversalAlgebra/Models/Models.lean",
       "line": 287,
-      "declaration": "def mathlibIntegerModel : DiscretelyOrderedIntegralDomainModel := DiscretelyOrderedIntegralDomainModel.ofCarrier Int",
-      "formal_statement": "def mathlibIntegerModel : DiscretelyOrderedIntegralDomainModel := DiscretelyOrderedIntegralDomainModel.ofCarrier Int",
-      "existing_doc": "`mathlibIntegerModel` defines the displayed object for mathlib integer model.\n\nLogical form:\n\n```lean\ndef mathlibIntegerModel : DiscretelyOrderedIntegralDomainModel := DiscretelyOrderedIntegralDomainModel.ofCarrier Int\n```",
+      "declaration": "def mathlibDiscretelyOrderedIntegralDomainModel : DiscretelyOrderedIntegralDomainModel := DiscretelyOrderedIntegralDomainModel.ofCarrier Int",
+      "formal_statement": "def mathlibDiscretelyOrderedIntegralDomainModel : DiscretelyOrderedIntegralDomainModel := DiscretelyOrderedIntegralDomainModel.ofCarrier Int",
+      "existing_doc": "`mathlibDiscretelyOrderedIntegralDomainModel` defines the displayed object for mathlib integer model.\n\nLogical form:\n\n```lean\ndef mathlibDiscretelyOrderedIntegralDomainModel : DiscretelyOrderedIntegralDomainModel := DiscretelyOrderedIntegralDomainModel.ofCarrier Int\n```",
       "detected_connectives": [],
       "suggested_moves": [
         "unfold"
       ],
-      "generated_comment": "/--\n`mathlibIntegerModel` defines the displayed object for mathlib integer model.\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\nFormal statement:\n\n```lean\ndef mathlibIntegerModel : DiscretelyOrderedIntegralDomainModel := DiscretelyOrderedIntegralDomainModel.ofCarrier Int\n```\n-/",
-      "meaning": "`mathlibIntegerModel` defines the displayed object for mathlib integer model.",
+      "generated_comment": "/--\n`mathlibDiscretelyOrderedIntegralDomainModel` defines the displayed object for mathlib integer model.\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\nFormal statement:\n\n```lean\ndef mathlibDiscretelyOrderedIntegralDomainModel : DiscretelyOrderedIntegralDomainModel := DiscretelyOrderedIntegralDomainModel.ofCarrier Int\n```\n-/",
+      "meaning": "`mathlibDiscretelyOrderedIntegralDomainModel` defines the displayed object for mathlib integer model.",
       "type_theoretic_form": [],
       "proof_use": [],
       "after_unfold": [],
