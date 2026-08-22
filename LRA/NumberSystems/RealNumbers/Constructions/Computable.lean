@@ -5,11 +5,14 @@ import LRA.NumberSystems.RealNumbers.Constructions.Computable.Operations
 import LRA.NumberSystems.RealNumbers.Constructions.Computable.WellDefinedness
 import LRA.NumberSystems.RealNumbers.Constructions.Computable.Laws
 import LRA.NumberSystems.RealNumbers.Constructions.Computable.Behavior
-import LRA.NumberSystems.RealNumbers.Constructions.Computable.Instances
 
 /-!
-Canonical import route for the computable-reals construction (effective
-rational approximations). Moved from `LRA.VolumeII.RealNumbers.Computable`
-(previously one 150-line file) and split into the §1.6.1 pipeline. See
-`RealNumbers/ProofOrder.md`.
+Canonical import route for the current computable-real representation layer.
+
+This package does **not** realize `LRA.NumberSystems.Models.RealModel`:
+computable reals form only a proper, countable subfield of the real numbers and
+are not Dedekind complete. The current carrier also still uses arbitrary Lean
+functions for approximation data, so a later repair must replace that with a
+genuine effective/code-based notion before the countability theorem can be
+trusted.
 -/
