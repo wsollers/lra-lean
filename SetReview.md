@@ -2,7 +2,7 @@
 
 ## Scope
 
-Maintained review of the canonical backend-agnostic `LRA.Set` interface and its elementary set-algebra laws. This pass deliberately reviews the shared interface before the concrete ZFC/NBG/TG realizations.
+Maintained review of the canonical backend-agnostic `LRA.Set` interface and its elementary set-algebra laws. This review also checks representative concrete typed/Mathlib/ZF-style backends against the advertised capability boundaries.
 
 Project-wide review rules apply: `sorry` is neutral scaffolding; foundational axioms are judged by mathematical legitimacy, not by mere presence; genuine choice use outside dedicated set-theory choice developments is tracked separately.
 
@@ -155,31 +155,13 @@ These are mathematically correct generic definitions and are a good low-level ow
 
 # Union laws
 
-The union law certificate contains the expected elementary laws:
-
-- commutativity;
-- associativity;
-- empty left/right identity;
-- idempotence;
-- monotonicity;
-- subset characterization `A ⊆ B ↔ A ∪ B = B`.
-
-All are correct.
+The union law certificate contains the expected elementary laws: commutativity, associativity, empty identities, idempotence, monotonicity, and the characterization `A ⊆ B ↔ A ∪ B = B`.
 
 **Verdict: PASS.**
 
 # Intersection laws
 
-The intersection law certificate contains:
-
-- commutativity;
-- associativity;
-- empty annihilation;
-- idempotence;
-- monotonicity;
-- subset characterization `A ⊆ B ↔ A ∩ B = A`.
-
-All are correct.
+The intersection law certificate contains commutativity, associativity, empty annihilation, idempotence, monotonicity, and the characterization `A ⊆ B ↔ A ∩ B = A`.
 
 **Verdict: PASS.**
 
@@ -193,17 +175,7 @@ Both distributive laws and both absorption laws are correctly stated and depend 
 
 # Difference laws
 
-The relative-difference law family correctly records:
-
-- monotonicity in the left argument;
-- antitonicity in the right argument;
-- empty/self identities;
-- difference across union/intersection;
-- left distribution through union/intersection;
-- `A \ B ⊆ A`;
-- disjointness from the removed set.
-
-All statements are standard and correct.
+The relative-difference law family correctly records monotonicity in the left argument, antitonicity in the right argument, empty/self identities, difference across union/intersection, left distribution through union/intersection, subset-of-left, and disjointness from the removed set.
 
 The laws mentioning the absolute universal set are correctly *not* placed here; they belong to the stronger complement capability.
 
@@ -213,14 +185,7 @@ The laws mentioning the absolute universal set are correctly *not* placed here; 
 
 # Complement laws
 
-For backends with an absolute complement/universal set, the interface correctly gives:
-
-- double complement;
-- complements of empty/universal;
-- union/intersection with complement;
-- both De Morgan laws;
-- difference as intersection with complement;
-- difference from universal set identities.
+For backends with an absolute complement/universal set, the interface correctly gives double complement, complements of empty/universal, union/intersection with complement, both De Morgan laws, difference as intersection with complement, and universal-difference identities.
 
 The named `Dual` presentation is also mathematically illuminating: complement reverses subset and swaps union/intersection, making the order-duality relationship explicit.
 
@@ -230,13 +195,7 @@ The named `Dual` presentation is also mathematically illuminating: complement re
 
 # Subset laws and relation-theoretic bridge
 
-`SubsetLaws` contains:
-
-- reflexivity;
-- transitivity;
-- equality iff mutual inclusion.
-
-This is enough to derive antisymmetry, hence subset is a partial order on set objects satisfying these laws.
+`SubsetLaws` contains reflexivity, transitivity, and equality iff mutual inclusion. This is enough to derive antisymmetry, hence subset is a partial order on set objects satisfying these laws.
 
 ## Recommended additions
 
@@ -248,59 +207,124 @@ For a learning/reference surface, add explicit named theorems if not already els
 - proper subset is irreflexive and transitive;
 - `A ⊂ B ↔ A ⊆ B ∧ ∃ x, x ∈ B ∧ x ∉ A`, under the usual extensional membership assumptions.
 
-These are not missing mathematical foundations, but they make the relationship between set inclusion and the generic relation/order chapters explicit — one of the project's stated design goals.
-
 **Severity: P2/P1 LEARNING/API BRIDGE.**
 
 ---
 
 # Possible redundancy versus theorem minimality
 
-Several law classes include facts that are derivable from membership semantics plus extensionality. For example, commutativity/idempotence of union can be proved from `UnionMembership` and extensionality.
+Several law classes include facts derivable from membership semantics plus extensionality. For example, union commutativity/idempotence can be proved from `UnionMembership` and extensionality.
 
-This is not mathematically wrong. It reflects a deliberate certification strategy: a backend can register the algebraic laws once and downstream proofs can use them without rebuilding them from membership each time.
+This is not mathematically wrong. It reflects a certification strategy: a backend registers the algebraic laws once and downstream proofs use them directly.
 
-However, if the project wants a Landau-style hierarchy of dependencies, it may be worth distinguishing:
-
-1. **primitive semantic laws** — membership readings + extensionality; and
-2. **derived algebraic theorems** — commutativity, associativity, distributivity, etc.
-
-That would reduce the number of independent obligations a concrete backend must certify.
-
-This is an architectural choice, not a correctness defect.
+If the project wants a maximally Landau-like dependency hierarchy, it may be worth distinguishing primitive semantic laws from derived algebraic theorems, thereby reducing independent backend obligations.
 
 **Severity: OPTIONAL DESIGN REFINEMENT.**
 
 ---
 
+# Review 2 — concrete predicate and Mathlib/ZF backend registrations
+
+## Files reviewed
+
+- `LRA/Set/PredicateSet/Definition.lean`
+- `LRA/Set/PredicateSet/Instances.lean`
+- `LRA/Set/PredicateSet/Laws.lean`
+- `LRA/Set/PredicateSet/Laws/Membership.lean`
+- `LRA/Set/Interop/Mathlib/PredicateSet.lean`
+- `LRA/Set/Interop/Mathlib/PredicateSet/Instances.lean`
+- `LRA/Set/Interop/Mathlib/PredicateSet/Laws.lean`
+- `LRA/Set/Interop/Mathlib/ZFSet.lean`
+- `LRA/Set/Interop/Mathlib/ZFSet/Instances.lean`
+- `LRA/Set/Interop/Mathlib/ZFSet/Laws.lean`
+
+## In-house predicate-set backend
+
+`PredicateSet Alpha := Alpha → Prop`, with membership given by predicate evaluation. This is the standard typed-set representation.
+
+The backend correctly registers the full typed capability profile:
+
+- union/intersection/difference/subset/empty/singletons;
+- absolute complement and universal set;
+- symmetric difference;
+- separation;
+- powerset one type level up;
+- arbitrary indexed unions/intersections;
+- countable unions/intersections;
+- collection union/intersection.
+
+All of these are genuinely available pointwise for predicate sets.
+
+Its membership certificates correctly register extensionality and the expected pointwise semantics for every supported operation.
+
+**Verdict: PASS.**
+
+## Mathlib `Set Alpha` adapter
+
+The Mathlib predicate-set adapter has the same mathematically correct capability profile as the in-house predicate backend. Its only special work is bridging Mathlib's order-based subset representation to the project's `HasSubset` class and registering the project's capability names.
+
+The law file certifies the entire interface against Mathlib's established lemmas: union, intersection, distributivity, subset, difference, symmetric difference, complement, membership, separation, powerset, arbitrary/countable indexed operations, and collection operations.
+
+This is an excellent realization test for the generic interface: a mature external set implementation satisfies the same contracts directly.
+
+**Verdict: PASS.**
+
+## Mathlib `ZFSet` adapter — capability honesty confirmed
+
+The ZFSet backend deliberately registers only the capabilities available in an ordinary ZF/ZFC set universe:
+
+- separation;
+- powerset;
+- symmetric difference derived from relative complements;
+- union/intersection/difference and subset supplied by Mathlib;
+- collection union/intersection;
+- countable union/intersection.
+
+It deliberately does **not** register:
+
+- absolute universal set;
+- absolute complement;
+- arbitrary Lean-type-indexed union/intersection.
+
+This is exactly the intended capability firewall.
+
+### Countable unions do not require Choice here
+
+The adapter constructs a countable union as the union of the range of the `Nat`-indexed family. Conceptually this is Replacement/range formation followed by ordinary Union. It is not a use of the Axiom of Choice because the family is already given as an actual function `Nat → ZFSet`; no witnesses must be selected.
+
+The countable intersection similarly uses the range of the already-given family; the range is nonempty because `Nat` is inhabited, avoiding the empty-family universal-set issue.
+
+**Choice classification: NO AC.**
+
+The ZFSet law registrations correctly omit complement/universal-membership certificates while providing the laws for every supported operation.
+
+**Verdict: PASS — BACKEND CAPABILITY BOUNDARY WORKS IN PRACTICE.**
+
+---
+
 # Pre-measure-theory relevance
 
-This set interface already supplies the operations needed for measure theory:
+The set layer is already strong enough to support sigma algebras and ordinary measure-theory set manipulation across both typed and ZF-style backends.
 
-- finite union/intersection/difference;
-- countable union/intersection capabilities;
-- families and covers;
-- powersets/separation where available;
-- backend-independent subset and membership semantics.
-
-The key remaining set-facing additions for the measure-theory transition are therefore not basic set operations but:
+The important remaining work is now theorem/API integration rather than basic set correctness:
 
 - countable De Morgan theorems;
-- closure of sigma algebras under countable intersections;
+- sigma-algebra closure under countable intersections;
 - generated sigma algebra/Borel bridges;
-- countability tools for countable generating families.
+- subset-as-order named bridges;
+- measurable preimage theory reusing the canonical relation/set preimage layer where appropriate.
 
 ---
 
 # Choice audit
 
-No genuine Axiom-of-Choice use was identified in the shared set-interface laws reviewed in this chunk.
+No genuine Axiom-of-Choice use was identified in the shared set-interface laws, predicate-set realizations, Mathlib Set adapter, or Mathlib ZFSet countable-operation adapter reviewed here.
 
-The interface carefully avoids requiring selection or representative choices merely to state ordinary set algebra.
+In particular, constructing `⋃ n, A n` from an already supplied function `A : Nat → ZFSet` is not a selection problem.
 
 ---
 
-# Final verdict for Review 1
+# Final verdict through Review 2
 
 | Dimension | Verdict |
 |---|---|
@@ -312,11 +336,14 @@ The interface carefully avoids requiring selection or representative choices mer
 | Union/intersection/distributivity laws | **PASS** |
 | Difference/complement laws | **PASS** |
 | Covers/subcovers | **PASS** |
-| Subset/order bridge | **MATHEMATICS PRESENT; NAMED BRIDGE COULD BE STRONGER** |
+| PredicateSet backend | **PASS** |
+| Mathlib `Set` backend | **PASS** |
+| Mathlib `ZFSet` capability restrictions | **PASS** |
+| Choice leakage in reviewed adapters | **NONE** |
 | Pre-measure-theory set foundation | **STRONG** |
 
 ---
 
 # Next review chunk
 
-Review pairing, Cartesian products, relation-sets, indexed/collection constructions, and then the concrete predicate/ZFC/NBG/TG realizations. In the concrete foundational trees, track exactly where Choice appears and distinguish dedicated choice axioms from witness extraction in ordinary theorems.
+Sample the in-house ZFC/NBG/TG backend registration files to ensure they advertise the same honest capability profiles as Mathlib ZFSet, then continue the non-foundational Choice audit and move outward to function/preimage architecture where it intersects measurable-map theory.
