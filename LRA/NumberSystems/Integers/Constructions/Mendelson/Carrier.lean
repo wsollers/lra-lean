@@ -18,10 +18,18 @@ one file covering the whole pipeline); split per §1.6.1 into `Carrier`
 `mendelson_compares_with_quotient_ordered_pairs` (a cross-construction
 isomorphism claim, not this construction's own carrier/law/behavior) is
 deleted per the research note in `Integers/ProofOrder.md`.
+
+Like Tao's construction, this pre-carrier inherits the strengthened
+whole-number input contract from `QuotientOrderedPairs`: common translation of
+the whole-number order must preserve and reflect comparisons.
 -/
 
 /--
 **[Abbrev — PositiveNaturalPairData]**
+
+This is exactly the strengthened quotient-ordered-pairs input contract, so any
+Mendelson realization now inherits translation order reflection as part of its
+whole-number hypotheses.
 
 Logical form:
 

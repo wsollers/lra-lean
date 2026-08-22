@@ -14,7 +14,9 @@ Verification status: definitions complete; proofs pending
 Tao's construction presents integers as formal differences `a -- b` of whole
 numbers, with equality given by cross-addition.  This module keeps that
 presentation explicit while reusing the same whole-number arithmetic interface
-as the default quotient-ordered-pairs construction.
+as the default quotient-ordered-pairs construction, including the strengthened
+requirement that common translation of the whole-number order both preserves
+and reflects comparisons.
 
 Moved from `LRA.VolumeII.Integers.Tao.Construction.Model` (previously one
 file covering the whole pipeline); split per §1.6.1 into `Carrier` (this
@@ -27,6 +29,10 @@ carrier/law/behavior) is deleted per the research note in
 
 /--
 **[Abbrev — WholeNumberArithmeticForTaoFormalDifferences]**
+
+This is exactly the strengthened quotient-ordered-pairs input contract, so any
+Tao realization now inherits translation order reflection as part of its
+whole-number hypotheses.
 
 Logical form:
 

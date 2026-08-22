@@ -18,8 +18,8 @@ Lean module: LRA.NumberSystems.Integers.QuotientOrderedPairs
 Verification status: definitions complete; proofs pending
 
 This module formalizes the default quotient-ordered-pairs construction of the
-integers from formal differences of whole numbers. It follows the mathematical order in
-`docs/number-systems/gpt-02-integers.md`.
+integers from formal differences of whole numbers. It follows the mathematical
+order in `docs/number-systems/gpt-02-integers.md`.
 
 Moved from `LRA.VolumeII.Integers.QuotientOrderedPairs` (previously one file
 covering the whole pipeline); split per §1.6.1 into `Carrier` (this file),
@@ -28,6 +28,11 @@ covering the whole pipeline); split per §1.6.1 into `Carrier` (this file),
 -/
 
 /-- Algebraic data required from the whole-number carrier.
+
+The quotient order on formal differences compares translated sums
+`a + d` and `c + b`. To make that order faithful to the underlying
+whole-number order, the input contract must let a common translation be
+cancelled on order comparisons, not merely preserved.
 
 Logical form:
 
@@ -78,12 +83,12 @@ structure WholeNumberArithmeticForQuotientPairs where
       nonstrict_order first second →
       nonstrict_order second first →
       first = second
-  addition_preserves_order :
+  addition_preserves_and_reflects_order :
     ∀ first second translation,
-      nonstrict_order first second →
       nonstrict_order
         (addition first translation)
-        (addition second translation)
+        (addition second translation) ↔
+      nonstrict_order first second
 ```
 -/
 structure WholeNumberArithmeticForQuotientPairs where
@@ -132,12 +137,12 @@ structure WholeNumberArithmeticForQuotientPairs where
       nonstrict_order first second →
       nonstrict_order second first →
       first = second
-  addition_preserves_order :
+  addition_preserves_and_reflects_order :
     ∀ first second translation,
-      nonstrict_order first second →
       nonstrict_order
         (addition first translation)
-        (addition second translation)
+        (addition second translation) ↔
+      nonstrict_order first second
 
 
 /-- A formal difference `(positive_coordinate, negative_coordinate)`.
