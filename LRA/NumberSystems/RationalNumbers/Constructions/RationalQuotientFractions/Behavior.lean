@@ -14,13 +14,13 @@ Logical form:
 
 ```lean
 def integer_representative (rational_data : IntegerAndPositiveNaturalData)
-    (value : rational_data.integer_model.signature.carrier) : Representative rational_data where
+    (value : rational_data.integer_system.Model.signature.carrier) : Representative rational_data where
   numerator := value
   denominator := rational_data.one
 ```
 -/
 def integer_representative (rational_data : IntegerAndPositiveNaturalData)
-    (value : rational_data.integer_model.signature.carrier) : Representative rational_data where
+    (value : rational_data.integer_system.Model.signature.carrier) : Representative rational_data where
   numerator := value
   denominator := rational_data.one
 
@@ -31,12 +31,12 @@ Logical form:
 
 ```lean
 def integer_embedding (rational_data : IntegerAndPositiveNaturalData)
-    (value : rational_data.integer_model.signature.carrier) : Carrier rational_data :=
+    (value : rational_data.integer_system.Model.signature.carrier) : Carrier rational_data :=
   Quotient.mk _ (integer_representative rational_data value)
 ```
 -/
 def integer_embedding (rational_data : IntegerAndPositiveNaturalData)
-    (value : rational_data.integer_model.signature.carrier) : Carrier rational_data :=
+    (value : rational_data.integer_system.Model.signature.carrier) : Carrier rational_data :=
   Quotient.mk _ (integer_representative rational_data value)
 
 
@@ -50,37 +50,37 @@ Logical form:
 theorem integer_embedding_properties (rational_data : IntegerAndPositiveNaturalData) :
     (∀ first second,
       integer_embedding rational_data first = integer_embedding rational_data second → first = second) ∧
-    integer_embedding rational_data rational_data.integer_model.signature.zero = zero rational_data ∧
-    integer_embedding rational_data rational_data.integer_model.signature.one = one rational_data ∧
+    integer_embedding rational_data rational_data.integer_system.Model.signature.zero = zero rational_data ∧
+    integer_embedding rational_data rational_data.integer_system.Model.signature.one = one rational_data ∧
     (∀ first second,
       integer_embedding rational_data
-          (rational_data.integer_model.signature.add first second) =
+          (rational_data.integer_system.Model.signature.add first second) =
         addition rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧
     (∀ first second,
       integer_embedding rational_data
-          (rational_data.integer_model.signature.multiply first second) =
+          (rational_data.integer_system.Model.signature.multiply first second) =
         multiplication rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧
     (∀ first second,
       strict_order rational_data (integer_embedding rational_data first) (integer_embedding rational_data second) ↔
-        rational_data.integer_model.signature.StrictOrder first second)
+        rational_data.integer_system.Model.signature.StrictOrder first second)
 ```
 -/
 theorem integer_embedding_properties (rational_data : IntegerAndPositiveNaturalData) :
     (∀ first second,
       integer_embedding rational_data first = integer_embedding rational_data second → first = second) ∧
-    integer_embedding rational_data rational_data.integer_model.signature.zero = zero rational_data ∧
-    integer_embedding rational_data rational_data.integer_model.signature.one = one rational_data ∧
+    integer_embedding rational_data rational_data.integer_system.Model.signature.zero = zero rational_data ∧
+    integer_embedding rational_data rational_data.integer_system.Model.signature.one = one rational_data ∧
     (∀ first second,
       integer_embedding rational_data
-          (rational_data.integer_model.signature.add first second) =
+          (rational_data.integer_system.Model.signature.add first second) =
         addition rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧
     (∀ first second,
       integer_embedding rational_data
-          (rational_data.integer_model.signature.multiply first second) =
+          (rational_data.integer_system.Model.signature.multiply first second) =
         multiplication rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧
     (∀ first second,
       strict_order rational_data (integer_embedding rational_data first) (integer_embedding rational_data second) ↔
-        rational_data.integer_model.signature.StrictOrder first second) := by
+        rational_data.integer_system.Model.signature.StrictOrder first second) := by
   sorry
 
 /-- Definition 5.1: a representative is reduced when gcd(|a|,b)=1.
@@ -221,21 +221,21 @@ Logical form:
 
 ```lean
 theorem integer_part_bounds (rational_data : IntegerAndPositiveNaturalData) (value : Carrier rational_data) :
-    ∃ integer : rational_data.integer_model.signature.carrier,
+    ∃ integer : rational_data.integer_system.Model.signature.carrier,
       nonstrict_order rational_data (integer_embedding rational_data integer) value ∧
       strict_order rational_data value
         (integer_embedding rational_data
-          (rational_data.integer_model.signature.add
-            integer rational_data.integer_model.signature.one))
+          (rational_data.integer_system.Model.signature.add
+            integer rational_data.integer_system.Model.signature.one))
 ```
 -/
 theorem integer_part_bounds (rational_data : IntegerAndPositiveNaturalData) (value : Carrier rational_data) :
-    ∃ integer : rational_data.integer_model.signature.carrier,
+    ∃ integer : rational_data.integer_system.Model.signature.carrier,
       nonstrict_order rational_data (integer_embedding rational_data integer) value ∧
       strict_order rational_data value
         (integer_embedding rational_data
-          (rational_data.integer_model.signature.add
-            integer rational_data.integer_model.signature.one)) := by
+          (rational_data.integer_system.Model.signature.add
+            integer rational_data.integer_system.Model.signature.one)) := by
   sorry
 
 /-- Definition 7.1: the rational square-root cut for two.

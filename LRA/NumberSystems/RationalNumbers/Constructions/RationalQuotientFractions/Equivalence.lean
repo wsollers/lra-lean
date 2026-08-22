@@ -11,17 +11,17 @@ Logical form:
 ```lean
 def equivalent (rational_data : IntegerAndPositiveNaturalData)
     (first second : Representative rational_data) : Prop :=
-  rational_data.integer_model.signature.multiply
+  rational_data.integer_system.Model.signature.multiply
       first.numerator (rational_data.to_integer second.denominator) =
-    rational_data.integer_model.signature.multiply
+    rational_data.integer_system.Model.signature.multiply
       second.numerator (rational_data.to_integer first.denominator)
 ```
 -/
 def equivalent (rational_data : IntegerAndPositiveNaturalData)
     (first second : Representative rational_data) : Prop :=
-  rational_data.integer_model.signature.multiply
+  rational_data.integer_system.Model.signature.multiply
       first.numerator (rational_data.to_integer second.denominator) =
-    rational_data.integer_model.signature.multiply
+    rational_data.integer_system.Model.signature.multiply
       second.numerator (rational_data.to_integer first.denominator)
 
 
