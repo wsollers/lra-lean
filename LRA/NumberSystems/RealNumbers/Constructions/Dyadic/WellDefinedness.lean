@@ -12,8 +12,8 @@ variable (dyadicData : RationalDyadicApproximationData)
 theorem FractionalPartialSumsAreCauchy
     (digits : FractionalDigits) :
     Cauchy.is_cauchy
-      dyadicData.rational_model
-      dyadicData.absolute_value_data
+      dyadicData.RationalSystem.FieldModel
+      dyadicData.AbsoluteValueData
       (FractionalPartialSum dyadicData digits) := by
   sorry
 
@@ -26,25 +26,25 @@ def FractionalValue
 
 /-- Semantic value of a finite whole binary numeral. -/
 def WholeNumeralValue : WholeBinaryNumeral → CauchyCarrier dyadicData
-  | WholeBinaryNumeral.zero => dyadicData.cauchy_zero
+  | WholeBinaryNumeral.zero => dyadicData.CauchyZero
   | WholeBinaryNumeral.positive numeral =>
-      dyadicData.rational_to_cauchy
-        (dyadicData.positive_numeral_value numeral)
+      dyadicData.RationalToCauchy
+        (PositiveBinaryNumeralValue dyadicData.RationalSystem numeral)
 
 /-- Value of an unsigned expansion. -/
 def UnsignedValue
     (expansion : UnsignedExpansion) : CauchyCarrier dyadicData :=
-  dyadicData.cauchy_addition
+  dyadicData.CauchyAddition
     (WholeNumeralValue dyadicData expansion.IntegerPart)
     (FractionalValue dyadicData expansion.FractionalPart)
 
 /-- Signed binary value map. -/
 def Value : Expansion → CauchyCarrier dyadicData
-  | Expansion.zero => dyadicData.cauchy_zero
+  | Expansion.zero => dyadicData.CauchyZero
   | Expansion.nonzero Sign.positive magnitude =>
       UnsignedValue dyadicData magnitude.Magnitude
   | Expansion.nonzero Sign.negative magnitude =>
-      dyadicData.cauchy_negation
+      dyadicData.CauchyNegation
         (UnsignedValue dyadicData magnitude.Magnitude)
 
 /-- Every Cauchy real has a canonical signed binary expansion. -/
