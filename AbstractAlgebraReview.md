@@ -2,7 +2,7 @@
 
 ## Scope
 
-Maintained mathematical review of the reference abstract-algebra definitions under `LRA.Algebra.AbstractAlgebra` and their suitability as upstream algebraic vocabulary for number systems, linear algebra, and analysis.
+Maintained mathematical review of the reference abstract-algebra definitions under `LRA.Algebra.AbstractAlgebra` and their relationship to the canonical `LRA.Operation` / `LRA.AlgebraicStructures` law-certificate hierarchy.
 
 Project-wide rules apply: `sorry` proof bodies are neutral; genuine definition defects and missing law hypotheses are not.
 
@@ -13,115 +13,143 @@ Project-wide rules apply: `sorry` proof bodies are neutral; genuine definition d
 - `LRA/Algebra.lean`
 - `LRA/Algebra/AbstractAlgebra.lean`
 - `LRA/Algebra/AbstractAlgebra/Definition/Structures.lean`
+- `LRA/Operation/Laws.lean`
+- `LRA/Operation/Laws/Associative/Definition.lean`
+- `LRA/Operation/Laws/Identity/Definition.lean`
+- `LRA/Operation/Theorems.lean`
+- `LRA/AlgebraicStructures.lean`
+- `LRA/AlgebraicStructures/Field/Definition.lean`
+- `LRA/AlgebraicStructures/Field/Laws/Definition.lean`
+- `LRA/AlgebraicStructures/DivisionRing/Laws/Definition.lean`
+- `LRA/AlgebraicStructures/NontrivialRing/Laws/Definition.lean`
+- `LRA/UniversalAlgebra/Algebra/Definition.lean`
 
 ---
 
-# Semigroup
+# Semigroup / monoid / group / ring reference records
 
-`SemigroupDefinition` consists of a binary operation together with associativity.
+The reference records are mathematically conventional:
 
-**Verdict: PASS.**
+- semigroup = associative binary operation;
+- monoid = semigroup + two-sided identity;
+- group = monoid + a chosen left inverse for every element;
+- ring = abelian additive group + unital associative multiplication + both distributive laws.
 
----
+The economical one-sided inverse/additive-inverse axioms are sufficient because the surrounding monoid/abelian-group laws derive the other side.
 
-# Monoid
-
-`MonoidDefinition` extends the semigroup data with an identity and both left/right identity laws.
-
-**Verdict: PASS.**
-
----
-
-# Group
-
-`GroupDefinition` extends the monoid with an inverse operation and the single axiom
-
-```text
-inv(a) * a = 1.
-```
-
-Because the underlying multiplication is associative and already has a two-sided identity, a left inverse for every element is sufficient to derive the corresponding right-inverse law.
-
-So this is a legitimate economical group axiom system.
-
-Recommended derived theorems include:
-
-- right inverse;
-- inverse uniqueness;
-- inverse of identity;
-- inverse of inverse;
-- inverse of a product;
-- cancellation laws.
-
-**Verdict: PASS.**
+**Verdict: PASS as reference definitions.**
 
 ---
 
-# Ring
+# P1 defect confined to the duplicate reference `FieldDefinition`
 
-`RingDefinition` gives:
-
-- an abelian additive group in economical left-inverse form;
-- associative multiplication with a two-sided unit;
-- both distributive laws.
-
-The omitted right additive identity/right inverse are derivable from additive commutativity.
-
-This is a standard unital ring definition; multiplication is intentionally not assumed commutative.
-
-**Verdict: PASS.**
-
----
-
-# P0/P1 — `FieldDefinition` lacks nontriviality
-
-`FieldDefinition` extends `RingDefinition` with:
-
-```text
-mul_comm
-inv : K -> K
-forall a, a != 0 -> inv(a) * a = 1.
-```
-
-But it does **not** require
+`LRA.Algebra.AbstractAlgebra.Definition.FieldDefinition` extends the reference ring with commutative multiplication and inverses for nonzero elements but omits
 
 ```text
 0 != 1.
 ```
 
-Consequently the one-element zero ring satisfies the entire structure:
+Hence the trivial one-element ring satisfies that reference record.
 
-- all ring laws hold;
-- multiplication is commutative;
-- the inverse condition is vacuous because no element is nonzero.
+This is not the standard definition of a field.
 
-Thus the current record includes the trivial ring and is not the standard field notion used by Mathlib or ordinary analysis/algebra.
+## Important scope correction
 
-## Required repair
+The repository's **canonical** algebraic-structures layer does not have this defect.
 
-Add an explicit nontriviality axiom, preferably
+`LRA.AlgebraicStructures.FieldLaws` is defined as
 
 ```text
-zero_ne_one : zero != one.
+DivisionRingLaws R, MultiplicativeCommutativeLaws R
 ```
 
-Equivalent formulations are possible, but the project should expose this requirement by name because it is an important law-certification fact for concrete number systems.
+and `DivisionRingLaws` explicitly includes `NontrivialityLaw R`. That law states
 
-After that, derive:
+```text
+1 != 0.
+```
 
-- nonzero inverses are also right inverses;
-- inverse of a nonzero element is nonzero;
-- no zero divisors;
-- multiplicative cancellation for nonzero factors;
-- quotient/division laws.
+Therefore the actual machine/certificate field hierarchy correctly excludes the zero ring.
 
-**Severity: P0/P1 FOUNDATIONAL DEFINITION DEFECT.**
+**Revised severity:** **P1 DUPLICATE REFERENCE-LAYER DEFECT**, not a defect in the canonical algebraic foundation.
 
-It is P0 if this record is already being used as the project's actual notion of field; P1 if it remains orientation-only reference data as the file comment suggests.
+### Repair
+
+Either:
+
+1. add `zero_ne_one` to the reference `FieldDefinition`; or preferably
+2. define/derive the reference record from the canonical `FieldLaws` certificate so the two layers cannot drift.
 
 ---
 
-# `AlgebraicStructureDefinition` is not really an algebraic-structure package
+# Canonical operation-law ownership is strong
+
+`LRA.Operation.Laws` already owns independent law families including:
+
+- associativity;
+- commutativity;
+- identity;
+- inverse;
+- distributivity;
+- cancellation;
+- closure;
+- absorption/idempotence/etc.
+
+Representative definitions have exactly the desired Landau-style form, e.g.
+
+```text
+Associative op := forall a b c, (a op b) op c = a op (b op c)
+```
+
+and
+
+```text
+TwoSidedIdentity op e := LeftIdentity op e and RightIdentity op e.
+```
+
+The theorem layer already proves transfer facts such as associativity/identity/inverses for endomap composition and pointwise lifting.
+
+**Verdict: PASS — this should remain the canonical law owner.**
+
+---
+
+# Canonical `LRA.AlgebraicStructures` architecture is the right structure layer
+
+The current aggregate explicitly follows the intended machine/certificate/bundle design:
+
+```text
+operations supplied by Lean classes
+        +
+small named Prop law certificates
+        ->
+named algebraic structure law bundles
+```
+
+It includes semigroup, monoid, group, ring, nontrivial ring, integral domain, division ring, field, ordered structures, lattices, and Mathlib bridges/adapters.
+
+This is substantially richer and more appropriate than the later orientation-only `AbstractAlgebra` records.
+
+Recommended ownership rule:
+
+> `LRA.Operation` owns individual laws; `LRA.AlgebraicStructures` owns named combinations/certificates; `LRA.UniversalAlgebra` owns signatures, models, equations, homomorphisms, products, quotients, and free/universal constructions; `LRA.Algebra.AbstractAlgebra` should be a thin pedagogical facade or be retired.
+
+---
+
+# Universal algebra relationship
+
+The universal-algebra core is conceptually sound:
+
+- algebraic signatures are first-order signatures with no relation symbols;
+- the term algebra has terms as its domain and formal application as operations;
+- term evaluation is the canonical map out of the term algebra.
+
+The `Classical.choice` used to obtain one variable from `[Nonempty Variable]` is ordinary single-witness extraction, not family-wise mathematical AC.
+
+Universal algebra should not replace the named operation-law layer; instead, equations such as associativity and distributivity can later be represented semantically/syntactically there and connected by satisfaction theorems.
+
+---
+
+# `AlgebraicStructureDefinition` is mis-modeled for its name
 
 Current shape:
 
@@ -131,61 +159,44 @@ structure AlgebraicStructureDefinition where
   structureData : Carrier -> Prop
 ```
 
-A predicate on **elements** of the carrier does not package algebraic operations and laws on that carrier. For example, it cannot by itself distinguish two different group structures on the same underlying type.
+A unary predicate on elements does not package algebraic operations and laws and cannot distinguish different algebra structures on the same carrier.
 
-If the intent is merely “a carrier together with a distinguished unary property,” rename it accordingly.
-
-If the intent is a generic package for one of the reference structures, use a genuinely structural representation, for example a tagged/sigma-style package whose data contains the selected operations/laws, or avoid this wrapper entirely and keep the typed structures separate.
+Because the canonical `LRA.AlgebraicStructures` machinery already exists, the cleanest fix is probably to remove or rename this wrapper rather than invent another generic packaging mechanism.
 
 **Severity: P1 MODELING/NAMING ISSUE.**
 
 ---
 
-# Relationship to the operation-law architecture
+# Recommended certification pattern
 
-For the project's Landau-style design, the most valuable abstraction is not merely a parallel list of bundled structures but explicit named law predicates and certification theorems.
-
-Recommended dependency direction:
+For every named structure, preserve theorem-level statements of its exact requirements:
 
 ```text
-binary operation
-  -> associative / commutative / identity / inverse laws
-  -> Semigroup certificate
-  -> Monoid certificate
-  -> Group certificate
+SemigroupLaws op
+  iff associative op
 
-(additive group + multiplicative monoid + distributivity)
-  -> Ring certificate
+MonoidLaws op e
+  iff associative op and two-sided-identity op e
 
-(commutative ring + nontriviality + inverse law for nonzero elements)
-  -> Field certificate.
+GroupLaws op e inv
+  iff monoid laws and inverse laws
+
+RingLaws (+,*,0,1,-)
+  iff additive-group laws
+      and multiplicative-monoid laws
+      and left/right distributivity
+
+FieldLaws
+  iff commutative-ring laws
+      and 1 != 0
+      and nonzero inverse laws.
 ```
 
-This allows concrete systems such as integers, rationals, reals, modular systems, polynomial rings, and function spaces to prove exactly which law requirements they satisfy.
-
-For each bundled structure, expose theorem-level equivalences or constructors saying precisely which named laws are necessary and sufficient.
+The canonical certificate hierarchy is already close to this design; continue adding characterizations rather than creating duplicate bundled structures.
 
 ---
 
-# Interop
-
-The file comment says these structures are reference/orientation data and formal proofs should use Mathlib's hierarchy.
-
-That is reasonable, but if these names are intended to appear in notes and learning proofs, add explicit bridges:
-
-```text
-SemigroupDefinition <-> Mathlib Semigroup data
-MonoidDefinition <-> Mathlib Monoid data
-GroupDefinition <-> Mathlib Group data
-RingDefinition <-> Mathlib Ring data
-FieldDefinition <-> Mathlib Field data
-```
-
-The `FieldDefinition` bridge cannot be correct until nontriviality is added.
-
----
-
-# Examples and failure modes worth adding
+# Examples and failure modes
 
 High-value examples:
 
@@ -194,25 +205,27 @@ High-value examples:
 - `Int` with `+` and `*`: commutative ring, not field;
 - `Rat` / `Real`: fields;
 - matrices: rings, generally noncommutative;
-- functions `X -> R` under pointwise operations: rings when `R` is a ring.
+- functions `X -> R`: pointwise algebraic structures inherited from `R`.
 
-High-value failure separators:
+High-value separators:
 
-- associative operation need not have identity;
-- monoid need not have inverses;
+- associative need not imply identity;
+- monoid need not imply inverses;
 - group need not be commutative;
 - ring need not be commutative;
-- commutative ring need not be a field;
-- the trivial ring demonstrates why `0 != 1` is a genuine field requirement;
-- integral domains and division rings should be distinguished from fields if/when added.
+- commutative ring need not be an integral domain;
+- integral domain need not be a field;
+- the trivial ring demonstrates why field nontriviality is necessary.
 
 ---
 
 # Choice audit
 
-No Axiom-of-Choice dependency is inherent in these algebraic definitions.
+No genuine family-wise Choice dependency is inherent in these operation/algebraic-structure definitions.
 
-Existence of bases belongs to linear algebra and is audited separately; it should not leak into the elementary group/ring/field hierarchy.
+The universal-algebra term-algebra witness extraction from `[Nonempty Variable]` is not a substantive AC use.
+
+Basis-existence Choice belongs to linear algebra and remains audited separately.
 
 ---
 
@@ -220,25 +233,23 @@ Existence of bases belongs to linear algebra and is audited separately; it shoul
 
 | Dimension | Verdict |
 |---|---|
-| Semigroup definition | **PASS** |
-| Monoid definition | **PASS** |
-| Group definition | **PASS — economical axiom system** |
-| Ring definition | **PASS** |
-| Field inverse law | **PASS IN SHAPE** |
-| Field nontriviality `0 != 1` | **MISSING / FOUNDATIONAL DEFECT** |
-| Generic algebraic-structure package | **P1 MIS-MODELED / MISNAMED** |
-| Mathlib interop | **NOT LOCATED** |
-| Law-certificate bridge | **NEEDS BUILDOUT** |
-| Choice usage | **NONE** |
+| Canonical operation-law families | **PASS — STRONG OWNER** |
+| Canonical algebraic-structure certificates | **PASS — STRONG OWNER** |
+| Canonical field nontriviality | **PASS (`1 != 0` explicit)** |
+| Reference semigroup/monoid/group/ring records | **PASS** |
+| Reference `FieldDefinition` | **P1 DUPLICATE DEFECT — omits nontriviality** |
+| `AlgebraicStructureDefinition` wrapper | **P1 MIS-MODELED / MISNAMED** |
+| Universal-algebra signature/term-algebra core | **PASS** |
+| Mathlib bridge in canonical structure layer | **PRESENT** |
+| Choice usage | **NO GENUINE AC FOUND IN THIS CHUNK** |
 
 ---
 
 # Immediate implementation order
 
-1. add `zero_ne_one` to `FieldDefinition`;
-2. derive standard group/ring/field consequences rather than adding redundant axioms;
-3. connect these bundles to the project's named operation-law predicates;
-4. repair or rename `AlgebraicStructureDefinition`;
-5. add Mathlib interop;
-6. add canonical examples and failure separators;
-7. build the missing linear-subspace/span/basis hierarchy on top of the corrected field/vector-space foundation.
+1. make `LRA.Operation` + `LRA.AlgebraicStructures` explicitly canonical in ownership docs;
+2. fix or replace the duplicate reference `FieldDefinition` using canonical `FieldLaws`;
+3. remove/rename `AlgebraicStructureDefinition` unless a real use is specified;
+4. expand characterization theorems saying exactly what laws certify each named structure;
+5. continue concrete number-system certification against those canonical bundles;
+6. keep universal algebra focused on signatures/equations/homomorphisms/free constructions rather than duplicating named algebraic laws.
