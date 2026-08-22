@@ -1,0 +1,45 @@
+name: One-shot RationalModel rename
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-shot-rename-rational-model.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rename generic dense ordered field model everywhere
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t files < <(git grep -Il 'RationalModel' -- ':!*.lock' ':!lake-manifest.json' || true)
+          if ((${#files[@]})); then
+            sed -i 's/RationalModel/DenselyOrderedFieldModel/g' "${files[@]}"
+          fi
+
+          if git grep -n 'RationalModel' -- ':!*.lock' ':!lake-manifest.json'; then
+            echo 'RationalModel references remain after rename.' >&2
+            exit 1
+          fi
+
+          rm .github/workflows/one-shot-rename-rational-model.yml
+
+      - name: Commit clean rename
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'BoondockTaints'
+          git config user.email 'wsollers@gmail.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'Rename RationalModel to DenselyOrderedFieldModel'
+          git push origin HEAD:main
