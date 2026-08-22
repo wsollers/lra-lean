@@ -154,14 +154,15 @@
       "verification_result": "approved",
       "gate_result": "passed",
       "commit_sha": "56eceea3",
-      "pushed": false,
+      "pushed": true,
       "notes": [
         "2026-08-22: coordinator audited the continuity owner modules and confirmed live placeholder definitions for `OscillationOnSet`, `OscillationAtPoint`, `JumpOf`, `LimsupAt`, and `LiminfAt`",
         "2026-08-22: [LRA/Analysis/Continuity/PointContinuity.lean] was repaired by replacing oscillation placeholders with relation-style contracts and tightening the discontinuity taxonomy so jump discontinuities are not classified as essential",
         "2026-08-22: [LRA/Analysis/Continuity/MonotoneFunctions.lean] was repaired by replacing `JumpOf`, `LimsupAt`, and `LiminfAt` placeholders with relation-style definitions and retargeting the immediate theorem surfaces",
         "2026-08-22: `python scripts/validate_structure.py --path LRA/Analysis/Continuity` passed",
         "2026-08-22: `lake build LRA.Analysis.Continuity` passed",
-        "2026-08-22: implementation committed as `56eceea3` (`Repair continuity placeholder semantics and close p0-05`) and queued for push on `origin/main`"
+        "2026-08-22: implementation committed as `56eceea3` (`Repair continuity placeholder semantics and close p0-05`)",
+        "2026-08-22: checkpoint metadata committed as `c2104f4a` and pushed on `origin/main`"
       ]
     },
     {
