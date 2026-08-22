@@ -1,19 +1,27 @@
 -- LRA/NumberSystems/RealNumbers/Constructions/Dyadic/Carrier.lean
 -- Canonical binary expansions and the data needed to interpret them.
 
-import LRA.VolumeII.NumberSystems.Models
+import LRA.NumberSystems.RationalNumbers.Definition
 import LRA.NumberSystems.RealNumbers.Constructions.Cauchy
 
 namespace LRA.NumberSystems.RealNumbers.Dyadic
 
 open LRA.NumberSystems.Models
+open LRA.NumberSystems.RationalNumbers
+
+universe u
 
 /-!
 A signed binary expansion must represent numbers in `(0,1)` as well as numbers
-with nonzero whole part.  Accordingly, a positive finite numeral is separated
-from a whole binary numeral, which has an explicit zero case.  The signed
+with nonzero whole part. A positive finite numeral is therefore separated from
+a whole binary numeral, which has an explicit zero case. The signed
 `Expansion.nonzero` constructor carries a genuinely nonzero magnitude so that
 zero has only the canonical `Expansion.zero` representation.
+
+The interpretation data are anchored to an actual `RationalNumberSystem`.
+Binary digits, powers of two, finite binary numerals, and dyadic rationals are
+then defined from that rational system rather than supplied as unrelated
+carriers or arbitrary functions.
 -/
 
 /-- A binary digit. -/
@@ -97,61 +105,95 @@ inductive Expansion where
   | zero
   | nonzero (Sign : Sign) (Magnitude : NonzeroUnsignedExpansion)
 
-/-- Data required to interpret binary expansions through the existing Cauchy
-real construction. -/
-structure RationalDyadicApproximationData where
-  rational_model : DenselyOrderedFieldModel
-  absolute_value_data : Cauchy.RationalMetricData rational_model
-  integer_carrier : Type
-  whole_carrier : Type
-  integer_to_rational : integer_carrier → rational_model.signature.carrier
-  exponent_of_index : Nat → whole_carrier
-  power_of_two : whole_carrier → rational_model.signature.carrier
-  digit_to_rational : Digit → rational_model.signature.carrier
-  finite_sum :
-    (Nat → rational_model.signature.carrier) →
-      Nat → rational_model.signature.carrier
-  positive_numeral_value : PositiveBinaryNumeral → rational_model.signature.carrier
-  rational_to_cauchy :
-    rational_model.signature.carrier →
-      Cauchy.Carrier rational_model absolute_value_data
-  cauchy_zero : Cauchy.Carrier rational_model absolute_value_data
-  cauchy_one : Cauchy.Carrier rational_model absolute_value_data
-  cauchy_addition :
-    Cauchy.Carrier rational_model absolute_value_data →
-      Cauchy.Carrier rational_model absolute_value_data →
-      Cauchy.Carrier rational_model absolute_value_data
-  cauchy_negation :
-    Cauchy.Carrier rational_model absolute_value_data →
-      Cauchy.Carrier rational_model absolute_value_data
-  cauchy_multiplication :
-    Cauchy.Carrier rational_model absolute_value_data →
-      Cauchy.Carrier rational_model absolute_value_data →
-      Cauchy.Carrier rational_model absolute_value_data
-  cauchy_inverse :
-    Cauchy.Carrier rational_model absolute_value_data →
-      Cauchy.Carrier rational_model absolute_value_data
-  cauchy_strict_order :
-    Cauchy.Carrier rational_model absolute_value_data →
-      Cauchy.Carrier rational_model absolute_value_data → Prop
-  cauchy_complete_archimedean_ordered_field : Prop
+/-- Interpret a binary digit in the rational field. -/
+def DigitValue
+    (rationalSystem : RationalNumberSystem.{u}) :
+    Digit → rationalSystem.FieldModel.Carrier
+  | Digit.zero => 0
+  | Digit.one => 1
 
-variable (dyadic_data : RationalDyadicApproximationData)
+/-- The canonical rational power `2^exponent`. -/
+def PowerOfTwo
+    (rationalSystem : RationalNumberSystem.{u}) :
+    Nat → rationalSystem.FieldModel.Carrier
+  | 0 => 1
+  | exponent + 1 =>
+      PowerOfTwo rationalSystem exponent * (1 + 1)
+
+/-- Sum the first `count` digits of a positive finite binary numeral. -/
+def PositiveBinaryNumeralPartialValue
+    (rationalSystem : RationalNumberSystem.{u})
+    (numeral : PositiveBinaryNumeral) :
+    Nat → rationalSystem.FieldModel.Carrier
+  | 0 => 0
+  | count + 1 =>
+      if indexBound : count < numeral.HighestExponent + 1 then
+        PositiveBinaryNumeralPartialValue rationalSystem numeral count +
+          DigitValue rationalSystem (numeral.DigitAt ⟨count, indexBound⟩) *
+            PowerOfTwo rationalSystem count
+      else
+        PositiveBinaryNumeralPartialValue rationalSystem numeral count
+
+/-- Canonical rational value of a positive finite binary numeral. -/
+def PositiveBinaryNumeralValue
+    (rationalSystem : RationalNumberSystem.{u})
+    (numeral : PositiveBinaryNumeral) :
+    rationalSystem.FieldModel.Carrier :=
+  PositiveBinaryNumeralPartialValue rationalSystem numeral
+    (numeral.HighestExponent + 1)
+
+/-- Data still needed to interpret canonical binary expansions through the
+existing Cauchy-real construction.
+
+The arithmetic source is an actual rational number system. The remaining
+fields are only the Cauchy-carrier transport operations that the current Cauchy
+construction has not yet exposed canonically as reusable quotient operations.
+No independent completeness proposition is stored here.
+-/
+structure RationalDyadicApproximationData where
+  RationalSystem : RationalNumberSystem.{u}
+  AbsoluteValueData : Cauchy.RationalMetricData RationalSystem.FieldModel
+  RationalToCauchy :
+    RationalSystem.FieldModel.Carrier →
+      Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData
+  CauchyZero : Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData
+  CauchyOne : Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData
+  CauchyAddition :
+    Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData →
+      Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData →
+      Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData
+  CauchyNegation :
+    Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData →
+      Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData
+  CauchyMultiplication :
+    Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData →
+      Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData →
+      Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData
+  CauchyInverse :
+    Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData →
+      Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData
+  CauchyStrictOrder :
+    Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData →
+      Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData → Prop
+
+variable (dyadicData : RationalDyadicApproximationData.{u})
 
 /-- Rational carrier used by the representation data. -/
-abbrev Rational := dyadic_data.rational_model.signature.carrier
+abbrev Rational := dyadicData.RationalSystem.FieldModel.Carrier
+
+/-- Integer carrier selected by the rational number system. -/
+abbrev Integer := dyadicData.RationalSystem.IntegerSystem.Model.Carrier
 
 /-- Cauchy-real carrier used as the semantic target of binary expansions. -/
 abbrev CauchyCarrier :=
-  Cauchy.Carrier dyadic_data.rational_model dyadic_data.absolute_value_data
+  Cauchy.Carrier dyadicData.RationalSystem.FieldModel dyadicData.AbsoluteValueData
 
 /-- A rational is dyadic when it has the form `m / 2^n`. -/
-def IsDyadicRational (value : Rational dyadic_data) : Prop :=
-  ∃ numerator : dyadic_data.integer_carrier,
-    ∃ exponent : dyadic_data.whole_carrier,
-      value = dyadic_data.rational_model.signature.multiply
-        (dyadic_data.integer_to_rational numerator)
-        (dyadic_data.rational_model.signature.inv
-          (dyadic_data.power_of_two exponent))
+def IsDyadicRational (value : Rational dyadicData) : Prop :=
+  ∃ numerator : Integer dyadicData,
+    ∃ exponent : Nat,
+      value =
+        dyadicData.RationalSystem.IntegerEmbedding.ToField numerator *
+          (PowerOfTwo dyadicData.RationalSystem exponent)⁻¹
 
 end LRA.NumberSystems.RealNumbers.Dyadic
