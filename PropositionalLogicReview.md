@@ -9,6 +9,8 @@ Files reviewed include:
 - `LRA/Logic/Syntax/Propositional/Formula.lean`
 - `LRA/Logic/Model/Propositional/PropositionalModel.lean`
 - `LRA/Logic/Model/Propositional/ModelsAndTheories.lean`
+- `LRA/Logic/Language/FirstOrder/Signature.lean`
+- `LRA/Logic/Language/Symbols/Signature.lean`
 - the current `LRA/Logic/Proof` tree by repository search.
 
 Project rule: unfinished proofs are neutral; this review concerns definition/theorem correctness and readiness.
@@ -52,8 +54,6 @@ L.Atoms -> Bool.
 This is the right semantic object. It should not be forced into the first-order `Model` type merely for uniformity.
 
 The documentation also correctly identifies the genuine bridge to first-order logic: propositional atoms correspond to nullary relation symbols.
-
-That is an excellent conceptual point and would make a useful explicit interop theorem later.
 
 **Verdict: PASS.**
 
@@ -195,9 +195,9 @@ Depending on how arbitrary atom types and theories are handled, the proof strate
 
 ---
 
-# Bridge to first-order logic
+# Bridge to first-order logic — confirmed supported by current signature machinery
 
-The source already identifies the correct embedding:
+The source identifies the correct embedding:
 
 ```text
 propositional atom p
@@ -205,7 +205,18 @@ propositional atom p
 nullary relation symbol R_p.
 ```
 
-Recommended later bridge:
+This is fully supported by the existing first-order signature representation:
+
+```text
+ArityIndexedSymbols.arity : Symbol -> Nat
+ArityIndexedSymbols.IsNullary symbol := arity symbol = 0.
+```
+
+`Signature.Relations` uses exactly this arity-indexed representation, and the first-order model interprets a relation symbol of arity `n` as a predicate on `Fin n -> Domain`. At arity zero, the argument type is empty, so the relation interpretation is simply a truth value independent of domain elements.
+
+Thus no redesign of the first-order signature/model layer is needed.
+
+Recommended bridge:
 
 1. build a first-order signature with one nullary relation for each propositional atom;
 2. translate propositional formulas to first-order sentences;
@@ -214,7 +225,7 @@ Recommended later bridge:
 
 This gives a precise theorem that propositional semantics is the nullary-relational fragment of first-order semantics.
 
-**Severity: P2 illuminating bridge, not required for correctness.**
+**Severity: P2 illuminating bridge; technically ready to implement.**
 
 ---
 
@@ -240,7 +251,7 @@ Future compactness proofs should document any use of ultrafilters, maximal consi
 | syntactic derivability | **MISSING** |
 | soundness/completeness | **P1 MAJOR NEXT STEP** |
 | propositional compactness | **MISSING, HIGH-VALUE PRECURSOR** |
-| first-order nullary-relation bridge | **P2 HIGH-VALUE ADDITION** |
+| first-order nullary-relation bridge | **SUPPORTED BY CURRENT SIGNATURE; P2 ADDITION** |
 | Choice usage | **NONE CURRENTLY** |
 
 ---
