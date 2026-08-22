@@ -8,8 +8,10 @@ Files reviewed include:
 
 - `LRA/Logic/Proof/System/Basic.lean`
 - `LRA/Logic/Proof/System/Derivation.lean`
+- `LRA/Logic/Proof/System/Takeuti/Alphabet.lean`
 - `LRA/Logic/Proof/System/Takeuti/Term.lean`
 - `LRA/Logic/Proof/System/Takeuti/Formula.lean`
+- `LRA/Logic/Proof/System/Takeuti/Judgement.lean`
 - `LRA/Logic/Proof/System/Takeuti/Rule.lean`
 - `LRA/Logic/Proof/System/Takeuti/LK.lean`
 - `LRA/Logic/Proof/System/Takeuti/LJ.lean`
@@ -133,6 +135,38 @@ Until this is repaired, the current LK/LJ quantifier rule relation should not be
 
 ---
 
+# P1 — raw Takeuti formulas do not enforce bound-variable scope
+
+`FormulaArg` has a constructor
+
+```text
+FormulaArg.bound : BoundVar -> FormulaArg
+```
+
+and `Formula.atom` accepts arbitrary `FormulaArg`s.
+
+Therefore a raw formula can contain a bound-variable occurrence with no enclosing `all`/`ex` binder for that variable.
+
+No `WellScoped` / well-formedness predicate was located in the Takeuti subtree.
+
+This matters because the module documentation presents bound variables as variables that appear in argument positions *after a quantifier has promoted selected free-variable occurrences*. The raw datatype does not enforce that invariant.
+
+This is not necessarily inconsistent if future semantics deliberately interprets formulas relative to a separate bound-variable environment, but that would be a different design and should be stated explicitly. Under the current documented intent, malformed/dangling-bound formulas inhabit the same type used by LK/LJ.
+
+Recommended repairs:
+
+1. define `Formula.WellScoped` and use a subtype for judgements/derivations; or
+2. prove every rule preserves well-scopedness from well-scoped premises; or
+3. replace named bound variables with a scoped representation such as de Bruijn indices / locally nameless syntax.
+
+If retaining named bound variables, also add alpha-renaming and shadowing lemmas.
+
+**Severity: P1 SYNTAX-INVARIANT / PROOF-READINESS GAP.**
+
+It becomes P0 if later semantics/soundness theorems quantify over every raw `Formula` while assuming all bound occurrences have binders.
+
+---
+
 # LJ construction
 
 `LJ` reuses the LK rule relation but restricts every premise and conclusion to `IsIntuitionistic`, i.e. sequents with at most one succedent formula.
@@ -160,6 +194,29 @@ This is good honesty in the source: there is no false cut-elimination theorem pr
 However, it means the current proof-theory layer is not yet ready for metatheoretic use that depends on normalization/subformula properties.
 
 **Severity: P1 readiness gap, not a mathematical defect.**
+
+---
+
+# No Takeuti semantics / translation located
+
+No Takeuti-specific term evaluation, formula satisfaction, sequent validity, or translation into the repository's general first-order syntax was located.
+
+Because Takeuti uses a distinct free-variable/bound-variable representation, the already-correct general `LRA.Logic.FirstOrder.Satisfies` layer cannot simply be assumed to apply without an explicit bridge.
+
+Two good architecture choices are possible:
+
+```text
+A. give Takeuti syntax its own semantics and prove equivalence to general FOL;
+```
+
+or
+
+```text
+B. define a capture-safe translation Takeuti.Formula -> FirstOrder.Formula
+   and reuse the canonical semantics through the translation.
+```
+
+Option B reduces duplicate semantic infrastructure, but only after the binding/capture issues are repaired.
 
 ---
 
@@ -233,6 +290,7 @@ The current rules include (1) but omit (2).
 Recommended theorem/definition surface:
 
 ```text
+TakeutiWellScoped
 TakeutiTermEvaluation
 TakeutiFormulaSatisfaction
 TakeutiTermEvaluationSubstitution
@@ -244,6 +302,20 @@ EigenvariableRenaming
 ```
 
 If the Takeuti syntax is intentionally independent from the general first-order syntax, these should be proved locally rather than assumed from the other syntax layer.
+
+---
+
+# Variable-supply note
+
+A capture-safe named-variable calculus typically needs enough fresh variables for alpha-renaming/eigenvariable steps.
+
+`Alphabet` currently allows arbitrary `FreeVar` and `BoundVar` types, including finite or empty ones. That is not a defect in the raw syntax, but later completeness/cut-elimination theorems that require always choosing a fresh variable must either:
+
+- assume an infinite/fresh-variable supply;
+- carry freshness witnesses as hypotheses; or
+- use a representation where freshness is generated structurally.
+
+This is a future hypothesis-discipline item, not an Axiom-of-Choice issue.
 
 ---
 
@@ -283,30 +355,33 @@ Fresh-variable generation may require an infinite supply/freshness assumption on
 | generic `ProofSystem` | **PASS** |
 | generic finite `Derivable` | **PASS** |
 | LK structural/propositional rule shapes | **PASS** |
-| Takeuti bound/free variable syntax idea | **GOOD** |
+| Takeuti bound/free variable syntax idea | **GOOD BUT NEEDS SCOPE INVARIANT** |
 | quantifier abstraction by `substFreeByBound` | **P0 CAPTURE DEFECT WITHOUT BOUND FRESHNESS** |
+| raw bound-variable scope | **P1 WELL-SCOPEDNESS GAP** |
 | LJ single-succedent restriction | **PASS, INHERITS QUANTIFIER P0** |
 | free eigenvariable conditions | **PRESENT** |
 | bound-variable freshness condition | **MISSING P0** |
+| Takeuti semantics/translation | **MISSING** |
 | sequent semantics | **MISSING** |
 | soundness of rules/derivations | **P1 MAJOR GAP AFTER P0 REPAIR** |
 | cut elimination | **EXPLICIT SCAFFOLD ONLY** |
-| proof-theory readiness | **PROPOSITIONAL RULE SYNTAX PROMISING; FIRST-ORDER QUANTIFIER RULES NOT YET SOUND** |
+| proof-theory readiness | **PROPOSITIONAL RULE SYNTAX PROMISING; FIRST-ORDER QUANTIFIER LAYER NOT YET SOUND/SCOPED** |
 | Choice usage | **NONE NEW** |
 
 ---
 
 # Immediate repair / development order
 
-1. repair bound-variable capture in all four quantifier rules;
-2. add/verify alpha-renaming or fresh-bound-variable abstraction;
-3. define Takeuti term/formula semantics;
-4. define sequent satisfaction/validity;
-5. prove initial sequents valid;
-6. prove soundness of structural/propositional rules;
-7. prove Takeuti quantifier substitution/eigenvariable lemmas;
-8. prove soundness of repaired quantifier rules;
-9. lift rule soundness to `Derivable` soundness;
-10. add cut-free derivation predicate / derivation complexity measures;
-11. develop cut elimination and subformula consequences;
-12. only then move to completeness if desired.
+1. define/enforce well-scoped Takeuti formulas;
+2. repair bound-variable capture in all four quantifier rules;
+3. add alpha-renaming or fresh-bound-variable abstraction;
+4. define a Takeuti-to-general-FOL translation or local semantics;
+5. define sequent satisfaction/validity;
+6. prove initial sequents valid;
+7. prove soundness of structural/propositional rules;
+8. prove Takeuti quantifier substitution/eigenvariable lemmas;
+9. prove soundness of repaired quantifier rules;
+10. lift rule soundness to `Derivable` soundness;
+11. add cut-free derivation predicate / derivation complexity measures;
+12. develop cut elimination and subformula consequences;
+13. only then move to completeness if desired.
