@@ -30,6 +30,8 @@ Project-wide rules apply: `sorry` is neutral scaffolding; missing theorem surfac
 - `LRA/Analysis/HilbertSpace/Definition/HilbertSpace.lean`
 - `LRA/Analysis/HilbertSpace/Interop/ToMathlib.lean`
 - `LRA/Analysis/HilbertSpace/Interop/FromMathlib.lean`
+- `LRA/Algebra/LinearAlgebra/VectorSpace/Definition/VectorSpace.lean`
+- `LRA/Algebra/LinearAlgebra/LinearMap/Definition/LinearMap.lean`
 
 ---
 
@@ -217,6 +219,67 @@ This means the current reference Hilbert structure has no theorem-level path to:
 
 ---
 
+# Review 3 — underlying linear-algebra dependency
+
+## Vector spaces
+
+`VectorSpaceDefinition` is mathematically sound. Its primitive laws give an abelian additive group and the standard field-action/module laws. Right additive identity and right inverse are derivable from commutativity together with the supplied left laws.
+
+**Verdict: PASS.**
+
+## Linear maps
+
+`LinearMapDefinition` correctly consists of a function preserving vector addition and scalar multiplication. Preservation of zero and additive inverses should be derived theorems rather than extra axioms.
+
+**Verdict: PASS.**
+
+## P1 — the canonical linear-algebra hierarchy is currently too thin for the planned functional-analysis layer
+
+The current `LRA/Algebra/LinearAlgebra` tree contains only vector spaces and linear maps. No canonical project-facing owners were located there for:
+
+- linear subspaces;
+- span;
+- linear combinations of vectors;
+- linear independence;
+- generating sets;
+- bases;
+- dimension / finite-dimensionality;
+- kernel and range as linear subspaces;
+- quotient vector spaces;
+- linear isomorphisms.
+
+This is not a correctness defect in the existing definitions, but it is a real dependency gap for several desired functional-analysis theorems.
+
+In particular, the following should not be developed ad hoc inside Hilbert/Banach modules:
+
+- finite-dimensional normed spaces are complete;
+- orthonormal families and bases;
+- projection onto a subspace;
+- closed-subspace completeness;
+- continuous linear operators and their kernels/ranges;
+- quotient normed spaces later.
+
+### Recommended ownership
+
+Build the algebraic hierarchy first:
+
+```text
+VectorSpace
+  -> LinearSubspace
+  -> Span
+  -> LinearIndependent
+  -> Basis
+  -> FiniteDimensional / Dimension
+  -> LinearMap kernel/range
+  -> LinearEquiv
+```
+
+Then functional analysis can enrich these with norms/topology rather than redeclaring the algebra.
+
+**Severity: P1 FOUNDATION/CURRICULUM GAP.**
+
+---
+
 # Recommended bridge ladder
 
 A coherent implementation order is:
@@ -321,9 +384,11 @@ Useful explicit separators:
 
 # Choice audit
 
-No genuine family-wise Axiom-of-Choice dependency was identified in the reviewed definitions, construction placeholders, or interop placeholders.
+No genuine family-wise Axiom-of-Choice dependency was identified in the reviewed definitions, construction placeholders, interop placeholders, vector-space definition, or linear-map definition.
 
 Later statements involving existence of Hamel bases are strongly Choice-sensitive and should be audited separately. Orthonormal-basis existence in arbitrary Hilbert spaces also invokes substantial choice/Zorn-style reasoning; finite orthonormal families, Gram-Schmidt on an explicitly finite/listed family, and the canonical standard basis of `l^2` do not.
+
+A theorem asserting that every vector space has a basis should be explicitly marked Choice/Zorn-sensitive rather than treated as routine linear algebra.
 
 ---
 
@@ -331,6 +396,9 @@ Later statements involving existence of Hamel bases are strongly Choice-sensitiv
 
 | Dimension | Verdict |
 |---|---|
+| Vector-space axioms | **PASS** |
+| Linear-map definition | **PASS** |
+| Subspace/span/independence/basis hierarchy | **NOT BUILT / P1** |
 | Normed linear-space axioms | **PASS** |
 | Norm -> metric bridge | **MISSING / P1** |
 | Normed-space canonical realizations | **SCAFFOLD ONLY** |
@@ -349,13 +417,14 @@ Later statements involving existence of Hamel bases are strongly Choice-sensitiv
 
 # Immediate implementation order
 
-1. derive norm elementary laws and the induced metric;
-2. bridge norm convergence/Cauchy to the metric-space layer;
-3. prove Cauchy–Schwarz from `RealInnerProductSpaceDefinition`;
-4. construct/prove the induced norm axioms;
-5. bridge inner-product spaces to normed linear spaces;
-6. bridge Hilbert spaces to Banach spaces;
-7. add Mathlib compatibility conversions;
-8. add `Real^n`, `C([a,b])`, and a simple incomplete normed-space example;
-9. add `l^2` after the sequence/function-space prerequisites are ready;
-10. only then build projection/Riesz/operator theory.
+1. build canonical linear-subspace/span/independence/basis vocabulary;
+2. derive norm elementary laws and the induced metric;
+3. bridge norm convergence/Cauchy to the metric-space layer;
+4. prove Cauchy–Schwarz from `RealInnerProductSpaceDefinition`;
+5. construct/prove the induced norm axioms;
+6. bridge inner-product spaces to normed linear spaces;
+7. bridge Hilbert spaces to Banach spaces;
+8. add Mathlib compatibility conversions;
+9. add `Real^n`, `C([a,b])`, and a simple incomplete normed-space example;
+10. add `l^2` after the sequence/function-space prerequisites are ready;
+11. only then build projection/Riesz/operator theory.
