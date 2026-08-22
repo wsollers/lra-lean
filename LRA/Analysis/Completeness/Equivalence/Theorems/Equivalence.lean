@@ -10,9 +10,13 @@ import LRA.Analysis.Completeness.NestedIntervalProperty
 
 /-!
 Hub-and-spoke equivalences with `HasLeastUpperBoundProperty` as the hub.
-Each spoke pairs the least-upper-bound property against one of the other
-standard completeness characterizations; the TFAE theorems at the end chain
-them into the full completeness equivalence.
+Each spoke pairs the least-upper-bound property against another genuine
+completeness characterization; the TFAE theorems at the end chain them into
+the full completeness equivalence.
+
+The Archimedean reciprocal property is intentionally not included: reciprocal
+convergence is a consequence of completeness, but it is not equivalent to
+completeness (the rationals are the standard counterexample).
 -/
 
 namespace LRA.Analysis.Completeness
@@ -58,25 +62,6 @@ theorem HasLeastUpperBoundPropertyIffNestedIntervalProperty
     [Field F] [LinearOrder F] [IsStrictOrderedRing F] [Archimedean F]
     [TopologicalSpace F] [OrderTopology F] :
     HasLeastUpperBoundProperty F ↔ NestedIntervalProperty F := by
-  sorry
-
-/-- If `[Field F]`, `[LinearOrder F]`, `[IsStrictOrderedRing F]`, `[Archimedean F]`,
-`[TopologicalSpace F]`, and `[OrderTopology F]`. Then `HasLeastUpperBoundProperty F ↔
-ArchimedeanReciprocalProperty`.
-
-Logical form:
-
-```lean
-theorem HasLeastUpperBoundPropertyIffArchimedeanReciprocalProperty
-    [Field F] [LinearOrder F] [IsStrictOrderedRing F] [Archimedean F]
-    [TopologicalSpace F] [OrderTopology F] :
-    HasLeastUpperBoundProperty F ↔ ArchimedeanReciprocalProperty
-```
--/
-theorem HasLeastUpperBoundPropertyIffArchimedeanReciprocalProperty
-    [Field F] [LinearOrder F] [IsStrictOrderedRing F] [Archimedean F]
-    [TopologicalSpace F] [OrderTopology F] :
-    HasLeastUpperBoundProperty F ↔ ArchimedeanReciprocalProperty := by
   sorry
 
 /-- If `[Field F]`, `[LinearOrder F]`, `[IsStrictOrderedRing F]`, `[Archimedean F]`,
@@ -162,8 +147,7 @@ theorem LubPropertyEquivalentToNestedIntervalProperty
 /-- If `[Field F]`, `[LinearOrder F]`, `[IsStrictOrderedRing F]`, `[Archimedean F]`, `[UniformSpace
 F]`, and `[OrderTopology F]`. Then `[HasLeastUpperBoundProperty F, HasGreatestLowerBoundProperty
 F, IncreasingBoundedProcessesConverge F, DecreasingBoundedProcessesConverge F,
-NestedIntervalProperty F, ArchimedeanReciprocalProperty, CauchySequencesConverge F,
-BolzanoWeierstrassProperty F].TFAE`.
+NestedIntervalProperty F, CauchySequencesConverge F, BolzanoWeierstrassProperty F].TFAE`.
 
 Logical form:
 
@@ -176,7 +160,6 @@ theorem StandardCompletenessEquivalences
       IncreasingBoundedProcessesConverge F,
       DecreasingBoundedProcessesConverge F,
       NestedIntervalProperty F,
-      ArchimedeanReciprocalProperty,
       CauchySequencesConverge F,
       BolzanoWeierstrassProperty F].TFAE
 ```
@@ -189,7 +172,6 @@ theorem StandardCompletenessEquivalences
       IncreasingBoundedProcessesConverge F,
       DecreasingBoundedProcessesConverge F,
       NestedIntervalProperty F,
-      ArchimedeanReciprocalProperty,
       CauchySequencesConverge F,
       BolzanoWeierstrassProperty F].TFAE := by
   sorry

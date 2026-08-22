@@ -99,17 +99,44 @@ theorem ShrinkingNestedIntervalProcessHasUniqueLimit
         Filter.Tendsto b Filter.atTop (nhds x) := by
   sorry
 
-/-- The theorem asserts `ArchimedeanReciprocalProperty`.
+/-- In an Archimedean ordered field with its order topology, the reciprocal sequence tends to zero.
 
 Logical form:
 
 ```lean
-theorem ArchimedeanReciprocalProcessTendsToZero :
-    ArchimedeanReciprocalProperty
+theorem ArchimedeanReciprocalProcessTendsToZero
+    [Field F] [LinearOrder F] [IsStrictOrderedRing F] [Archimedean F]
+    [TopologicalSpace F] [OrderTopology F] :
+    ArchimedeanReciprocalProperty F
 ```
 -/
-theorem ArchimedeanReciprocalProcessTendsToZero :
-    ArchimedeanReciprocalProperty := by
+theorem ArchimedeanReciprocalProcessTendsToZero
+    [Field F] [LinearOrder F] [IsStrictOrderedRing F] [Archimedean F]
+    [TopologicalSpace F] [OrderTopology F] :
+    ArchimedeanReciprocalProperty F := by
+  sorry
+
+/-- The least-upper-bound property of an ordered field implies the reciprocal Archimedean property.
+
+Equivalently, Dedekind/order completeness is strong enough to force `1 / n → 0` in the
+field's order topology; the converse is false, as the rational counterexample in
+`Completeness.Failures` shows.
+
+Logical form:
+
+```lean
+theorem LeastUpperBoundPropertyImpliesArchimedeanReciprocalProperty
+    [Field F] [LinearOrder F] [IsStrictOrderedRing F]
+    [TopologicalSpace F] [OrderTopology F]
+    (leastUpperBoundProperty : HasLeastUpperBoundProperty F) :
+    ArchimedeanReciprocalProperty F
+```
+-/
+theorem LeastUpperBoundPropertyImpliesArchimedeanReciprocalProperty
+    [Field F] [LinearOrder F] [IsStrictOrderedRing F]
+    [TopologicalSpace F] [OrderTopology F]
+    (leastUpperBoundProperty : HasLeastUpperBoundProperty F) :
+    ArchimedeanReciprocalProperty F := by
   sorry
 
 end LRA.Analysis.Completeness

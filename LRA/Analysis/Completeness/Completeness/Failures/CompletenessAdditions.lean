@@ -3,34 +3,60 @@ import Mathlib.Order.Bounds.Basic
 import LRA.Analysis.Completeness.Completeness.Definition
 
 /-!
-The rationals lack the least-upper-bound property, witnessed concretely by
-the Dedekind cut of `ℚ` at `√2` having a gap.
+The rationals lack the least-upper-bound property. The failure is witnessed by
+the Dedekind cut of `ℚ` at `√2`, whose lower set is nonempty and bounded above
+but has no least upper bound in `ℚ`.
 
 Source: ADDITIONS.md items 19, 20, 22, 23.
 -/
 
 namespace LRA.Analysis.Completeness
 
-/-- The theorem asserts `({x : ℚ | x ^ 2 < 2} : Set ℚ).Nonempty ∧ (∃ u : ℚ, ∀ x ∈ ({x : ℚ | x ^ 2 <
-2} : Set ℚ), x ≤ u) ∧ ¬ ∃ s : ℚ, IsLUB ({x : ℚ | x ^ 2 < 2} : Set ℚ) s`.
+section RationalLeastUpperBoundFailure
+
+/-- The rational lower cut at `√2` is nonempty and bounded above, but has no least upper bound in `ℚ`.
 
 Logical form:
 
 ```lean
 theorem RationalsLackLubProperty :
-    ({x : ℚ | x ^ 2 < 2} : Set ℚ).Nonempty ∧
-      (∃ u : ℚ, ∀ x ∈ ({x : ℚ | x ^ 2 < 2} : Set ℚ), x ≤ u) ∧
-      ¬ ∃ s : ℚ, IsLUB ({x : ℚ | x ^ 2 < 2} : Set ℚ) s
+    RationalCutLowerAtSqrtTwo.Nonempty ∧
+      (∃ u : ℚ, ∀ x ∈ RationalCutLowerAtSqrtTwo, x ≤ u) ∧
+      ¬ ∃ s : ℚ, IsLUB RationalCutLowerAtSqrtTwo s
 ```
 -/
 theorem RationalsLackLubProperty :
-    ({x : ℚ | x ^ 2 < 2} : Set ℚ).Nonempty ∧
-      (∃ u : ℚ, ∀ x ∈ ({x : ℚ | x ^ 2 < 2} : Set ℚ), x ≤ u) ∧
-      ¬ ∃ s : ℚ, IsLUB ({x : ℚ | x ^ 2 < 2} : Set ℚ) s := by
+    RationalCutLowerAtSqrtTwo.Nonempty ∧
+      (∃ u : ℚ, ∀ x ∈ RationalCutLowerAtSqrtTwo, x ≤ u) ∧
+      ¬ ∃ s : ℚ, IsLUB RationalCutLowerAtSqrtTwo s := by
   sorry
 
-/-- The theorem asserts `(¬ ∃ m ∈ RationalCutLowerAtSqrtTwo, ∀ x ∈ RationalCutLowerAtSqrtTwo, x ≤ m)
-∧ (¬ ∃ m ∈ RationalCutUpperAtSqrtTwo, ∀ x ∈ RationalCutUpperAtSqrtTwo, m ≤ x)`.
+/-- `ℚ` does not satisfy the least-upper-bound property.
+
+Logical form:
+
+```lean
+def RationalsDoNotHaveLeastUpperBoundProperty : Prop :=
+  ¬ HasLeastUpperBoundProperty ℚ
+```
+-/
+def RationalsDoNotHaveLeastUpperBoundProperty : Prop :=
+  ¬ HasLeastUpperBoundProperty ℚ
+
+/-- The rational cut at `√2` proves that `ℚ` does not have the least-upper-bound property.
+
+Logical form:
+
+```lean
+theorem RationalSqrtTwoCutProvesRationalsDoNotHaveLeastUpperBoundProperty :
+    RationalsDoNotHaveLeastUpperBoundProperty
+```
+-/
+theorem RationalSqrtTwoCutProvesRationalsDoNotHaveLeastUpperBoundProperty :
+    RationalsDoNotHaveLeastUpperBoundProperty := by
+  sorry
+
+/-- Neither side of the rational Dedekind cut at `√2` has an endpoint in `ℚ`.
 
 Logical form:
 
@@ -48,5 +74,7 @@ theorem RationalDedekindCutAtSqrtTwoHasAGap :
     (¬ ∃ m ∈ RationalCutUpperAtSqrtTwo,
         ∀ x ∈ RationalCutUpperAtSqrtTwo, m ≤ x) := by
   sorry
+
+end RationalLeastUpperBoundFailure
 
 end LRA.Analysis.Completeness
