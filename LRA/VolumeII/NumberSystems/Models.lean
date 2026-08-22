@@ -122,15 +122,16 @@ def IntegerModel.signature (M : IntegerModel) : OrderedRingSignature where
   le := (· ≤ ·)
   StrictOrder := (· < ·)
 
-/-! ## The rational model: a densely ordered field -/
+/-! ## The densely ordered field model -/
 
 /--
-`RationalModel` packages the data and laws for rational model.
+`DenselyOrderedFieldModel` packages the data and laws of a densely ordered field.
+It is a structural model class; it does not characterize the rational numbers.
 
 Logical form:
 
 ```lean
-structure RationalModel : Type (u + 1) where
+structure DenselyOrderedFieldModel : Type (u + 1) where
   Carrier : Type u
   [addInst : Add Carrier]
   [mulInst : Mul Carrier]
@@ -145,7 +146,7 @@ structure RationalModel : Type (u + 1) where
   [denseCert : DenseOrderLaw Carrier]
 ```
 -/
-structure RationalModel : Type (u + 1) where
+structure DenselyOrderedFieldModel : Type (u + 1) where
   Carrier : Type u
   [addInst : Add Carrier]
   [mulInst : Mul Carrier]
@@ -159,32 +160,32 @@ structure RationalModel : Type (u + 1) where
   [strictCert : StrictOrderCompatibilityLaw Carrier]
   [denseCert : DenseOrderLaw Carrier]
 
-attribute [instance] RationalModel.addInst RationalModel.mulInst
-  RationalModel.negInst RationalModel.invInst RationalModel.zeroInst
-  RationalModel.oneInst RationalModel.ltInst RationalModel.leInst
-  RationalModel.fieldCert RationalModel.strictCert
-  RationalModel.denseCert
+attribute [instance] DenselyOrderedFieldModel.addInst DenselyOrderedFieldModel.mulInst
+  DenselyOrderedFieldModel.negInst DenselyOrderedFieldModel.invInst DenselyOrderedFieldModel.zeroInst
+  DenselyOrderedFieldModel.oneInst DenselyOrderedFieldModel.ltInst DenselyOrderedFieldModel.leInst
+  DenselyOrderedFieldModel.fieldCert DenselyOrderedFieldModel.strictCert
+  DenselyOrderedFieldModel.denseCert
 
-/-- Package any certified carrier as a rational model.
+/-- Package any certified carrier as a densely ordered field model.
 
 Logical form:
 
 ```lean
-def RationalModel.ofCarrier (R : Type u)
+def DenselyOrderedFieldModel.ofCarrier (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R]
     [OrderedFieldLaws R] [StrictOrderCompatibilityLaw R]
-    [DenseOrderLaw R] : RationalModel :=
+    [DenseOrderLaw R] : DenselyOrderedFieldModel :=
   { Carrier := R }
 ```
 -/
-def RationalModel.ofCarrier (R : Type u)
+def DenselyOrderedFieldModel.ofCarrier (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R]
     [OrderedFieldLaws R] [StrictOrderCompatibilityLaw R]
-    [DenseOrderLaw R] : RationalModel :=
+    [DenseOrderLaw R] : DenselyOrderedFieldModel :=
   { Carrier := R }
 
 /-- The derived operation bundle. -/
-def RationalModel.signature (M : RationalModel) : OrderedFieldSignature where
+def DenselyOrderedFieldModel.signature (M : DenselyOrderedFieldModel) : OrderedFieldSignature where
   carrier := M.Carrier
   zero := 0
   one := 1
@@ -197,19 +198,18 @@ def RationalModel.signature (M : RationalModel) : OrderedFieldSignature where
 
 /-! ## The real model: a complete densely ordered field -/
 
-/-- A real model is a rational-style model (densely ordered field) whose
-order is complete relative to the classical subset backend
-`Set Carrier`.
+/-- A real model is a densely ordered field model whose order is complete
+relative to the classical subset backend `Set Carrier`.
 
 Logical form:
 
 ```lean
-structure RealModel extends RationalModel where
+structure RealModel extends DenselyOrderedFieldModel where
   [completeCert :
     OrderCompletenessLaws Carrier (Set Carrier)]
 ```
 -/
-structure RealModel extends RationalModel where
+structure RealModel extends DenselyOrderedFieldModel where
   [completeCert :
     OrderCompletenessLaws Carrier (Set Carrier)]
 
@@ -239,11 +239,11 @@ Logical form:
 
 ```lean
 def RealModel.signature (M : RealModel) : OrderedFieldSignature :=
-  M.toRationalModel.signature
+  M.toDenselyOrderedFieldModel.signature
 ```
 -/
 def RealModel.signature (M : RealModel) : OrderedFieldSignature :=
-  M.toRationalModel.signature
+  M.toDenselyOrderedFieldModel.signature
 
 /-! ## Mathlib carriers as models, one line each -/
 
@@ -258,16 +258,17 @@ def mathlibIntegerModel : IntegerModel := IntegerModel.ofCarrier Int
 -/
 def mathlibIntegerModel : IntegerModel := IntegerModel.ofCarrier Int
 
-/--
-`mathlibRationalModel` defines the displayed object for mathlib rational model.
+/-- The Mathlib rational carrier packaged as a densely ordered field model.
 
 Logical form:
 
 ```lean
-def mathlibRationalModel : RationalModel := RationalModel.ofCarrier Rat
+def mathlibDenselyOrderedFieldModel : DenselyOrderedFieldModel :=
+  DenselyOrderedFieldModel.ofCarrier Rat
 ```
 -/
-def mathlibRationalModel : RationalModel := RationalModel.ofCarrier Rat
+def mathlibDenselyOrderedFieldModel : DenselyOrderedFieldModel :=
+  DenselyOrderedFieldModel.ofCarrier Rat
 
 /--
 `mathlibRealModel` defines the displayed object for mathlib real model.
@@ -294,9 +295,9 @@ Logical form:
 ```lean
 structure IntegerEmbeddingIntoRational
     (SelectedIntegerModel : IntegerModel)
-    (SelectedRationalModel : RationalModel) where
+    (SelectedDenselyOrderedFieldModel : DenselyOrderedFieldModel) where
   ToRational :
-    SelectedIntegerModel.Carrier → SelectedRationalModel.Carrier
+    SelectedIntegerModel.Carrier → SelectedDenselyOrderedFieldModel.Carrier
   injective :
     ∀ first second,
       ToRational first = ToRational second → first = second
@@ -317,9 +318,9 @@ structure IntegerEmbeddingIntoRational
 -/
 structure IntegerEmbeddingIntoRational
     (SelectedIntegerModel : IntegerModel)
-    (SelectedRationalModel : RationalModel) where
+    (SelectedDenselyOrderedFieldModel : DenselyOrderedFieldModel) where
   ToRational :
-    SelectedIntegerModel.Carrier → SelectedRationalModel.Carrier
+    SelectedIntegerModel.Carrier → SelectedDenselyOrderedFieldModel.Carrier
   injective :
     ∀ first second,
       ToRational first = ToRational second → first = second
@@ -337,30 +338,30 @@ structure IntegerEmbeddingIntoRational
     ∀ first second,
       ToRational first ≤ ToRational second ↔ first ≤ second
 
-/-- A rational extension of an integer model: a rational model together
-with an embedding whose image is cofinal (the Archimedean property).
+/-- A rational extension of an integer model: a densely ordered field model
+together with an embedding whose image is cofinal (the Archimedean property).
 
 Logical form:
 
 ```lean
 structure RationalExtension
     (SelectedIntegerModel : IntegerModel.{u}) where
-  RationalModel : RationalModel.{u}
+  DenselyOrderedFieldModel : DenselyOrderedFieldModel.{u}
   IntegerEmbedding :
-    IntegerEmbeddingIntoRational SelectedIntegerModel RationalModel
+    IntegerEmbeddingIntoRational SelectedIntegerModel DenselyOrderedFieldModel
   ArchimedeanProperty :
-    ∀ RationalValue : RationalModel.Carrier,
+    ∀ RationalValue : DenselyOrderedFieldModel.Carrier,
       ∃ IntegerValue : SelectedIntegerModel.Carrier,
         RationalValue < IntegerEmbedding.ToRational IntegerValue
 ```
 -/
 structure RationalExtension
     (SelectedIntegerModel : IntegerModel.{u}) where
-  RationalModel : RationalModel.{u}
+  DenselyOrderedFieldModel : DenselyOrderedFieldModel.{u}
   IntegerEmbedding :
-    IntegerEmbeddingIntoRational SelectedIntegerModel RationalModel
+    IntegerEmbeddingIntoRational SelectedIntegerModel DenselyOrderedFieldModel
   ArchimedeanProperty :
-    ∀ RationalValue : RationalModel.Carrier,
+    ∀ RationalValue : DenselyOrderedFieldModel.Carrier,
       ∃ IntegerValue : SelectedIntegerModel.Carrier,
         RationalValue < IntegerEmbedding.ToRational IntegerValue
 
@@ -371,10 +372,10 @@ Logical form:
 
 ```lean
 structure RationalEmbeddingIntoReal
-    (SelectedRationalModel : RationalModel)
+    (SelectedDenselyOrderedFieldModel : DenselyOrderedFieldModel)
     (SelectedRealModel : RealModel) where
   ToReal :
-    SelectedRationalModel.Carrier → SelectedRealModel.Carrier
+    SelectedDenselyOrderedFieldModel.Carrier → SelectedRealModel.Carrier
   injective :
     ∀ first second, ToReal first = ToReal second → first = second
   PreservesZero : ToReal 0 = 0
@@ -394,10 +395,10 @@ structure RationalEmbeddingIntoReal
 ```
 -/
 structure RationalEmbeddingIntoReal
-    (SelectedRationalModel : RationalModel)
+    (SelectedDenselyOrderedFieldModel : DenselyOrderedFieldModel)
     (SelectedRealModel : RealModel) where
   ToReal :
-    SelectedRationalModel.Carrier → SelectedRealModel.Carrier
+    SelectedDenselyOrderedFieldModel.Carrier → SelectedRealModel.Carrier
   injective :
     ∀ first second, ToReal first = ToReal second → first = second
   PreservesZero : ToReal 0 = 0
@@ -415,31 +416,31 @@ structure RationalEmbeddingIntoReal
   PreservesAndReflectsOrder :
     ∀ first second, ToReal first ≤ ToReal second ↔ first ≤ second
 
-/-- A real extension of a rational model: a real model together with an
-embedding whose image is cofinal.
+/-- A real extension of a densely ordered field model: a real model together
+with an embedding whose image is cofinal.
 
 Logical form:
 
 ```lean
 structure RealExtension
-    (SelectedRationalModel : RationalModel.{u}) where
+    (SelectedDenselyOrderedFieldModel : DenselyOrderedFieldModel.{u}) where
   RealModel : RealModel.{u}
   RationalEmbedding :
-    RationalEmbeddingIntoReal SelectedRationalModel RealModel
+    RationalEmbeddingIntoReal SelectedDenselyOrderedFieldModel RealModel
   RationalEmbeddingIsCofinal :
     ∀ RealValue : RealModel.Carrier,
-      ∃ RationalValue : SelectedRationalModel.Carrier,
+      ∃ RationalValue : SelectedDenselyOrderedFieldModel.Carrier,
         RealValue < RationalEmbedding.ToReal RationalValue
 ```
 -/
 structure RealExtension
-    (SelectedRationalModel : RationalModel.{u}) where
+    (SelectedDenselyOrderedFieldModel : DenselyOrderedFieldModel.{u}) where
   RealModel : RealModel.{u}
   RationalEmbedding :
-    RationalEmbeddingIntoReal SelectedRationalModel RealModel
+    RationalEmbeddingIntoReal SelectedDenselyOrderedFieldModel RealModel
   RationalEmbeddingIsCofinal :
     ∀ RealValue : RealModel.Carrier,
-      ∃ RationalValue : SelectedRationalModel.Carrier,
+      ∃ RationalValue : SelectedDenselyOrderedFieldModel.Carrier,
         RealValue < RationalEmbedding.ToReal RationalValue
 
 /-! ## Smoke tests: fluent mixin theorems land on model carriers -/
@@ -447,7 +448,7 @@ structure RealExtension
 example (M : IntegerModel) (a b : M.Carrier) : a + b = b + a :=
   AddCommutative a b
 
-example (M : RationalModel) (a b : M.Carrier) (h : a < b) :
+example (M : DenselyOrderedFieldModel) (a b : M.Carrier) (h : a < b) :
     ∃ middle, a < middle ∧ middle < b :=
   ExistsBetween a b h
 
