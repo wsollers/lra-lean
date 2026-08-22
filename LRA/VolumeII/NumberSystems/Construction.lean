@@ -3,6 +3,7 @@
 
 import LRA.NumberSystems.Integers.Definition
 import LRA.NumberSystems.RationalNumbers.Definition
+import LRA.NumberSystems.RealNumbers.Definition
 import LRA.VolumeII.NumberSystems.Models
 
 namespace LRA.NumberSystems.Models
@@ -70,30 +71,48 @@ def CanonicalConstruction : NumberSystemConstruction where
   Rational := .canonical
   Real := .dedekind
 
-/-- A coherent number-system tower stores actual integer and rational number
-systems, together with a real extension of the selected rational field.
+/-- A coherent number-system tower stores the selected integer, rational, and
+real carriers explicitly, together with the actual systems built on those
+carriers.
 
-The equality field records that the rational construction was built from the
-same integer system selected by the integer stage.
+The equality fields prevent the selected carriers from being hidden inside the
+bundles: downstream declarations can state their conclusions against the exact
+Z/Q/R carriers chosen by the selector. The rational-system equality records
+that the rational stage was built from the same integer system selected by the
+integer stage.
 
 Logical form:
 
 ```lean
 structure NumberSystemTower where
-  IntegerSystem : IntegerNumberSystem
-  RationalSystem : RationalNumberSystem
+  IntegerCarrier : Type u
+  RationalCarrier : Type u
+  RealCarrier : Type u
+  IntegerSystem : IntegerNumberSystem.{u}
+  RationalSystem : RationalNumberSystem.{u}
   RationalUsesIntegerSystem : RationalSystem.IntegerSystem = IntegerSystem
-  CofinalRealExtension : CofinalRealExtension RationalSystem.FieldModel
+  RealExtension :
+    LRA.NumberSystems.RealNumbers.RationalRealExtension RationalSystem
+  IntegerCarrierMatches : IntegerSystem.Model.Carrier = IntegerCarrier
+  RationalCarrierMatches : RationalSystem.FieldModel.Carrier = RationalCarrier
+  RealCarrierMatches : RealExtension.RealModel.Carrier = RealCarrier
 ```
 -/
 structure NumberSystemTower where
-  IntegerSystem : IntegerNumberSystem
-  RationalSystem : RationalNumberSystem
+  IntegerCarrier : Type u
+  RationalCarrier : Type u
+  RealCarrier : Type u
+  IntegerSystem : IntegerNumberSystem.{u}
+  RationalSystem : RationalNumberSystem.{u}
   RationalUsesIntegerSystem : RationalSystem.IntegerSystem = IntegerSystem
-  CofinalRealExtension : CofinalRealExtension RationalSystem.FieldModel
+  RealExtension :
+    LRA.NumberSystems.RealNumbers.RationalRealExtension RationalSystem
+  IntegerCarrierMatches : IntegerSystem.Model.Carrier = IntegerCarrier
+  RationalCarrierMatches : RationalSystem.FieldModel.Carrier = RationalCarrier
+  RealCarrierMatches : RealExtension.RealModel.Carrier = RealCarrier
 
 /-- Every supported construction configuration builds a coherent number-system
-tower.
+tower with explicit selected carriers.
 
 Logical form:
 
@@ -108,7 +127,11 @@ theorem NumberSystemTowerExists
     Nonempty NumberSystemTower := by
   sorry
 
-/-- Build the bundled tower for a construction configuration. -/
+/-- Build the bundled tower for a construction configuration.
+
+The selected integer, rational, and real carriers remain explicit fields of
+the result rather than being hidden inside existentially chosen model bundles.
+-/
 noncomputable def BuildNumberSystemTower
     (construction : NumberSystemConstruction) : NumberSystemTower :=
   Classical.choice (NumberSystemTowerExists construction)

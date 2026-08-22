@@ -18,8 +18,7 @@ Verification status: statement-accepted-proof-pending
 Logical form:
 
 ```lean
-structure SystemLedger where
-  carrier : Type
+structure SystemLedger (carrier : Type _) where
   HasAdditiveStructure : Prop
   HasMultiplicativeStructure : Prop
   HasRingOrFieldStructure : Prop
@@ -30,8 +29,7 @@ structure SystemLedger where
 ```
 -/
 
-structure SystemLedger where
-  carrier : Type
+structure SystemLedger (carrier : Type _) where
   HasAdditiveStructure : Prop
   HasMultiplicativeStructure : Prop
   HasRingOrFieldStructure : Prop
@@ -66,6 +64,54 @@ structure CanonicalMapLedger {source target : Type}
   PreservesAndReflectsOrder : Prop
   DenseImage : Prop
   UniversalRole : Prop
+
+/--
+`ZQRComparisonMatrix` ties the system and map ledgers to the exact carriers and
+canonical embeddings selected in a Z/Q/R tower.
+
+Logical form:
+
+```lean
+structure ZQRComparisonMatrix
+    (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel)
+    (SelectedArchimedeanDenseOrderedFieldExtension :
+      ArchimedeanDenseOrderedFieldExtension SelectedIntegerModel)
+    (SelectedCofinalRealExtension :
+      CofinalRealExtension
+        SelectedArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel)
+    where
+  IntegerLedger : SystemLedger SelectedIntegerModel.Carrier
+  RationalLedger :
+    SystemLedger
+      SelectedArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel.Carrier
+  RealLedger : SystemLedger SelectedCofinalRealExtension.RealModel.Carrier
+  IntegerToRationalLedger :
+    CanonicalMapLedger
+      SelectedArchimedeanDenseOrderedFieldExtension.IntegerEmbedding.ToField
+  RationalToRealLedger :
+    CanonicalMapLedger
+      SelectedCofinalRealExtension.DenseOrderedFieldEmbedding.ToReal
+```
+-/
+structure ZQRComparisonMatrix
+    (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel)
+    (SelectedArchimedeanDenseOrderedFieldExtension :
+      ArchimedeanDenseOrderedFieldExtension SelectedIntegerModel)
+    (SelectedCofinalRealExtension :
+      CofinalRealExtension
+        SelectedArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel)
+    where
+  IntegerLedger : SystemLedger SelectedIntegerModel.Carrier
+  RationalLedger :
+    SystemLedger
+      SelectedArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel.Carrier
+  RealLedger : SystemLedger SelectedCofinalRealExtension.RealModel.Carrier
+  IntegerToRationalLedger :
+    CanonicalMapLedger
+      SelectedArchimedeanDenseOrderedFieldExtension.IntegerEmbedding.ToField
+  RationalToRealLedger :
+    CanonicalMapLedger
+      SelectedCofinalRealExtension.DenseOrderedFieldEmbedding.ToReal
 /--
 `ComparisonMatrixForZQR` exposes this formal declaration.
 
@@ -76,10 +122,11 @@ theorem ComparisonMatrixForZQR
     (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel)
     (SelectedArchimedeanDenseOrderedFieldExtension : ArchimedeanDenseOrderedFieldExtension SelectedIntegerModel)
     (SelectedCofinalRealExtension : CofinalRealExtension SelectedArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel) :
-    ∃ IntegerLedger RationalLedger RealLedger : SystemLedger,
-      IntegerLedger.HasRingOrFieldStructure ∧
-        RationalLedger.HasRingOrFieldStructure ∧
-        RealLedger.HasCompletenessProperty
+    Nonempty
+      (ZQRComparisonMatrix
+        SelectedIntegerModel
+        SelectedArchimedeanDenseOrderedFieldExtension
+        SelectedCofinalRealExtension)
 ```
 -/
 
@@ -87,10 +134,11 @@ theorem ComparisonMatrixForZQR
     (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel)
     (SelectedArchimedeanDenseOrderedFieldExtension : ArchimedeanDenseOrderedFieldExtension SelectedIntegerModel)
     (SelectedCofinalRealExtension : CofinalRealExtension SelectedArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel) :
-    ∃ IntegerLedger RationalLedger RealLedger : SystemLedger,
-      IntegerLedger.HasRingOrFieldStructure ∧
-        RationalLedger.HasRingOrFieldStructure ∧
-        RealLedger.HasCompletenessProperty := by
+    Nonempty
+      (ZQRComparisonMatrix
+        SelectedIntegerModel
+        SelectedArchimedeanDenseOrderedFieldExtension
+        SelectedCofinalRealExtension) := by
   sorry
 
 end LRA.NumberSystems.Models.ComparisonMatrix
