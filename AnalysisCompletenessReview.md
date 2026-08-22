@@ -84,7 +84,7 @@ Remove the reciprocal property from the TFAE list. The remaining standard comple
 
 ---
 
-# P1/P0 candidate — Cauchy completeness equivalence has insufficient uniform-structure hypotheses
+# P0 — Cauchy completeness equivalence has insufficient uniform-structure hypotheses
 
 The theorem currently states:
 
@@ -95,21 +95,17 @@ theorem HasLeastUpperBoundPropertyIffCauchySequencesConverge
     HasLeastUpperBoundProperty F ↔ CauchySequencesConverge F
 ```
 
-The issue is that Cauchy completeness is a property of a **uniform structure**, not merely of the topology. `OrderTopology F` constrains the induced topology, but the theorem does not require the chosen uniformity to be the standard additive/order-compatible uniformity.
+Cauchy completeness is a property of a **uniform structure**, not merely of the topology. `OrderTopology F` constrains the topology induced by the chosen uniformity, but the theorem does not require that uniformity to be the standard additive/order-compatible uniformity.
 
-Completeness is not a topological invariant. One can put different compatible uniformities/metrics on the same topological real line, some complete and some incomplete, while the order LUB property is unchanged.
+Completeness is not a topological invariant. The ordinary real line can be given an incomplete metric/uniformity inducing its usual topology, for example by transporting the Euclidean metric from the bounded interval `(-π/2, π/2)` along the homeomorphism `arctan`. The order LUB property is unchanged, but Cauchy completeness changes.
 
-A conceptual example on `ℝ` is the metric induced through the homeomorphism `arctan : ℝ → (-π/2, π/2)`: it has the ordinary topology but is incomplete, whereas `ℝ` remains Dedekind/order complete.
-
-Therefore the displayed hypotheses are not sufficient for a general equivalence between order completeness and `CauchySeq` convergence.
+Therefore the displayed hypotheses are insufficient.
 
 ## Recommended correction
 
-State the equivalence only with a canonical metric/uniform structure tied to the ordered additive group/field, for example using appropriate Mathlib compatibility assumptions (`UniformAddGroup`, an ordered additive commutative group with its standard uniformity, or a more concrete real-number theorem).
+State the equivalence only for a canonical metric/uniform structure tied to the ordered additive group/field, or state the result concretely for `ℝ`. If a generic theorem is desired, require the appropriate uniform-additive/order compatibility rather than an arbitrary `UniformSpace F` sharing the order topology.
 
-At minimum, the theorem should not quantify over an arbitrary `UniformSpace F` that merely induces the order topology.
-
-**Severity: HIGH; likely P0 statement defect unless additional hidden typeclass coherence forces the canonical uniformity.**
+**Severity: P0 — FALSE AT THE DISPLAYED LEVEL OF GENERALITY.**
 
 ---
 
@@ -149,35 +145,163 @@ The predicate states that every order-bounded sequence has a convergent subseque
 
 For an Archimedean linearly ordered field with its order topology, this is the expected real-analysis Bolzano–Weierstrass completeness principle.
 
-The theorem equivalence should be retained subject to later checking of all exact topology/order assumptions and any implicit nontriviality requirements.
-
-**Initial verdict: PLAUSIBLE/CORRECT UNDER INTENDED STANDARD STRUCTURE; retain for detailed proof-level statement review.**
+**Verdict: CORRECT UNDER THE STATED INTENDED ORDER-TOPOLOGICAL SETTING.**
 
 ---
 
-# Missing distinction: order completeness vs metric/uniform completeness
+# Review 2 — Concrete Archimedean, nested-interval, rational-gap, and real-completeness material
 
-The repository contains both:
+## Files reviewed
 
-- order-theoretic LUB/GLB completeness; and
-- Cauchy/uniform completeness.
+- `LRA/Analysis/Completeness/ArchimedeanProperty/Definition/ArchimedeanProperty.lean`
+- `LRA/Analysis/Completeness/ArchimedeanProperty/Theorems/ArchimedeanProperty.lean`
+- `LRA/Analysis/Completeness/NestedIntervalProperty/Theorems/NestedIntervalProperty.lean`
+- `LRA/Analysis/Completeness/NestedIntervalProperty/Failures/NestedIntervalProperty.lean`
+- `LRA/Analysis/Completeness/Completeness/Definition/CompletenessAdditions.lean`
+- `LRA/Analysis/Completeness/Completeness/Failures/CompletenessAdditions.lean`
+- `LRA/Analysis/Completeness/Completeness/Theorems/AxiomOfCompleteness.lean`
+- `LRA/Analysis/Completeness/Completeness/Theorems/CompletenessEquivalences.lean`
 
-These should be named distinctly throughout the public API. Before measure theory, a student should understand:
+## Concrete Archimedean development
 
-1. what order completeness means;
-2. what metric/Cauchy completeness means;
-3. that they are different concepts in general;
-4. why they coincide for the usual real-number structure under the appropriate compatibility assumptions.
+The real-number theorem
 
-This conceptual separation is important and should be made explicit rather than hidden under the generic term “completeness.”
+```text
+x > 0, y > 0  ⇒  ∃ n : Nat, n*x > y
+```
+
+is a standard Archimedean formulation.
+
+The associated consequences are also standard and correct:
+
+- reciprocal smallness: for every `ε > 0`, some positive `1/n < ε`;
+- `1/n → 0` in `ℝ`;
+- integer-part/floor-style existence and uniqueness;
+- ceiling-style integer bracketing;
+- existence of a natural number above every real;
+- existence of an integer in every closed interval `[x,x+1]`;
+- natural numbers are unbounded above in `ℝ`.
+
+This confirms that the reciprocal theorem already has the **correct conceptual home** in the Archimedean-property subject. It should not also appear as a completeness equivalent.
+
+**Verdict: PASS.**
+
+## Nested interval theorem family
+
+The concrete real nested-interval theorems correctly establish:
+
+- monotonicity of left and right endpoints from nesting;
+- cross-bound inequalities `a_n ≤ b_m`;
+- `sup range(a) ≤ inf range(b)`;
+- nonempty total intersection once endpoint sup/inf exist;
+- the endpoint supremum and endpoint infimum lie in all intervals;
+- vanishing interval length gives a unique common point;
+- vanishing length forces the two endpoint sequences to converge to the same point.
+
+These are standard and pedagogically useful consequences of completeness.
+
+**Verdict: PASS.**
+
+## Nested-interval failure examples
+
+The library includes the right elementary failure modes:
+
+1. nested open intervals may have empty intersection;
+2. nested half-open intervals may have empty intersection;
+3. nested closed but unbounded intervals may have empty intersection.
+
+This correctly teaches why closedness and boundedness matter in the classical nested-interval theorem.
+
+**Verdict: PASS; GOOD FAILURE-MODE COVERAGE.**
+
+## Rational incompleteness at `√2`
+
+`RationalsLackLubProperty` uses
+
+```text
+{x : ℚ | x^2 < 2}
+```
+
+as a concrete nonempty bounded-above rational subset with no rational least upper bound. This is the standard example.
+
+`RationalDedekindCutAtSqrtTwoHasAGap` likewise records that the lower cut has no greatest element and the upper cut has no least element.
+
+These are mathematically correct and particularly valuable before measure theory because they distinguish Archimedeanness from completeness: `ℚ` is Archimedean but not Dedekind complete.
+
+**Verdict: PASS; KEY COUNTEREXAMPLE.**
+
+## Concrete real completeness consequence
+
+`CompletenessGivesRealSupremum` is the exact direct consequence expected from `AxiomOfCompleteness`: every nonempty bounded-above real set has a supremum.
+
+**Verdict: PASS.**
+
+## Directional monotone-convergence implications
+
+The following are correctly shaped:
+
+- LUB completeness + linear order + order topology ⇒ bounded increasing processes converge to their suprema;
+- LUB completeness similarly yields bounded decreasing process convergence (via the dual GLB fact);
+- for an Archimedean ordered field with its order topology, bounded increasing process convergence ⇒ LUB completeness.
+
+The reverse direction uses stronger algebraic/Archimedean hypotheses than the forward direction, which is mathematically sensible: recovering a supremum from a *sequence* approximation requires enough countable order density/Archimedean structure.
+
+**Verdict: PASS.**
+
+---
+
+# Conceptual map that should replace the current over-broad TFAE
+
+For pre-measure-theory notes, the clean hierarchy should be:
+
+### Order completeness
+
+- LUB property;
+- GLB property;
+- nested interval property;
+- bounded monotone sequence convergence;
+- Bolzano–Weierstrass, under the standard Archimedean ordered-field/order-topology context.
+
+### Archimedean consequences
+
+- naturals unbounded above;
+- integer-part lemma;
+- reciprocal smallness;
+- `1/n → 0`.
+
+These are **not** completeness characterizations: `ℚ` is the canonical separating example.
+
+### Metric/uniform completeness
+
+- every Cauchy sequence converges.
+
+This coincides with real/order completeness only after specifying the standard compatible metric/uniform structure. It is not equivalent merely from topological compatibility.
+
+This three-way separation should be explicit in both theorem organization and learning notes.
+
+---
+
+# Duplicate order-completeness vocabulary
+
+The analysis-facing `HasLeastUpperBoundProperty`/`HasGreatestLowerBoundProperty` are Mathlib-`Set` versions of concepts already represented generically in `LRA.Order`.
+
+Recommended architecture:
+
+1. `LRA.Order` owns the abstract mathematical notions.
+2. A bridge specializes the generic backend to `Set F`/Mathlib bounds.
+3. `LRA.Analysis` states real-number consequences through that bridge rather than maintaining a semantically independent second definition family.
+
+This is not urgent for mathematical truth, but it matters for the repository goal that every concept be defined once at the correct level of generality.
+
+**Severity: P1 ARCHITECTURAL CONSOLIDATION.**
 
 ---
 
 # Choice audit
 
-No genuine Axiom-of-Choice use is inherent in the definitions or statement corrections identified in this chunk.
+No genuine Axiom-of-Choice use is inherent in the theorem statements reviewed here.
 
-Bolzano–Weierstrass proofs may use subsequence selection, but countable/dependent choice usage must be assessed from the actual proof architecture once proofs are in scope; no choice classification is made solely from the existential theorem statement.
+The existential subsequence in Bolzano–Weierstrass does not by itself imply an AC dependency; choice classification belongs to the actual proof architecture rather than the statement alone.
 
 ---
 
@@ -185,24 +309,30 @@ Bolzano–Weierstrass proofs may use subsequence selection, but countable/depend
 
 | Finding | Severity |
 |---|---|
-| `ArchimedeanReciprocalProperty` fixed to `ℝ` but claimed equivalent to completeness of arbitrary `F` | **P0** |
-| Reciprocal property is Archimedean, not a completeness characterization even after parameterization | **P0** |
+| reciprocal-to-zero property claimed equivalent to completeness | **P0** |
 | `StandardCompletenessEquivalences` includes reciprocal property | **P0** |
-| LUB ↔ arbitrary-uniform-space Cauchy completeness | **HIGH / likely P0** |
-| Duplicate Order vs Analysis LUB vocabulary | **P1 architectural** |
-| LUB ↔ GLB assumptions stronger than needed | **P2 improvement** |
-| Nested interval property | **PASS** |
-| Monotone convergence predicates | **PASS** |
+| arbitrary-uniform-space Cauchy completeness claimed equivalent to LUB | **P0** |
+| duplicate Order vs Analysis LUB/GLB definitions | **P1 architectural** |
+| concrete Archimedean theorem family | **PASS** |
+| rational `√2` incompleteness example | **PASS** |
+| concrete nested interval theorems | **PASS** |
+| nested interval failure examples | **PASS** |
+| concrete real completeness consequence | **PASS** |
+| monotone process implications | **PASS** |
+| Bolzano–Weierstrass predicate/equivalence under intended structure | **PASS** |
 
 ---
 
 # Next review chunk
 
-Continue inside `LRA.Analysis.Completeness` with:
+Move into `LRA.Analysis.Sequences` while keeping the scope pre-measure-theory:
 
-1. Archimedean property definitions/theorems, to relocate the reciprocal theorem correctly;
-2. nested interval theorems and failures;
-3. concrete `ℚ` incompleteness and `ℝ` completeness examples;
-4. the exact Bolzano–Weierstrass and Cauchy completeness statements.
+- sequence convergence;
+- subsequences;
+- Cauchy sequences;
+- bounded and monotone sequences;
+- limsup/liminf if present;
+- divergence and standard failure modes;
+- interaction with the corrected completeness map.
 
-The goal is to repair the completeness implication/equivalence map before moving on to sequences/topology.
+Pay particular attention to whether sequence completeness is accidentally conflated with order completeness outside the standard real/metric setting.
