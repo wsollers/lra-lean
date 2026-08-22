@@ -1,0 +1,48 @@
+name: One-shot Cantor equivalence reference update
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-shot-cantor-equivalence-names.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Update Cantor references
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          root = Path('LRA/NumberSystems/RealNumbers/Constructions/Cantor')
+          for path in root.rglob('*.lean'):
+              if path.name == 'Equivalence.lean':
+                  continue
+              text = path.read_text()
+              new = text.replace('endpoint_equivalent_is_equivalence', 'EndpointEquivalentIsEquivalence')
+              new = new.replace('endpoint_equivalent', 'EndpointEquivalent')
+              # Only replace the local Cantor setoid identifier, not the word in prose generally.
+              new = new.replace('(setoid rational_model)', '(EndpointSetoid rational_model)')
+              new = new.replace('(setoid fieldModel)', '(EndpointSetoid fieldModel)')
+              if new != text:
+                  path.write_text(new)
+          PY
+          rm .github/workflows/one-shot-cantor-equivalence-names.yml
+      - name: Commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'BoondockTaints'
+          git config user.email 'wsollers@gmail.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'Update Cantor equivalence references'
+          git push origin HEAD:main
