@@ -8,6 +8,7 @@ Files reviewed include:
 
 - `LRA/Logic/Syntax/FirstOrder/Substitute.lean`
 - `LRA/Logic/Syntax/FirstOrder/IsSubstitutable.lean`
+- `LRA/Logic/Syntax/FirstOrder/SubstitutionFreeVariables.lean`
 - `LRA/Logic/Semantics/Substitution.lean`
 - related free-variable / closed-formula semantics through their theorem use.
 
@@ -73,6 +74,30 @@ is correctly guarded by `IsSubstitutable`.
 
 ---
 
+# Free-variable bounds under substitution
+
+`SubstitutionFreeVariables.lean` already proves the expected inclusion bounds.
+
+For terms:
+
+```text
+FV(s[x := t]) ⊆ FV(s) ∪ FV(t).
+```
+
+For formulas:
+
+```text
+FV(phi[x := t]) ⊆ FV(phi) ∪ FV(t).
+```
+
+These are correct unconditional upper bounds and are useful prerequisites for substitution composition, freshness, and alpha-renaming theorems.
+
+A sharper equality formula would require distinguishing whether `x` actually occurs free, so the present subset formulation is a good robust theorem surface.
+
+**Verdict: PASS.**
+
+---
+
 # P3/P2 API note — `IsSubstitutable` is sufficient but stronger than necessary
 
 The binder clause is
@@ -121,22 +146,44 @@ The closed-sentence layer then correctly derives assignment independence for sen
 
 ---
 
+# Alpha-renaming and substitution composition
+
+No dedicated first-order syntax owner for alpha-renaming / alpha-equivalence or substitution composition was located in the reviewed directory.
+
+This is not a correctness defect in the existing substitution layer, but these theorems become important once the proof calculus manipulates eigenvariables and quantified formulas systematically.
+
+Recommended additions:
+
+```text
+RenameBoundVariable
+AlphaEquivalent
+AlphaRenamingPreservesSatisfaction
+SubstitutionComposition
+SubstitutionIrrelevantWhenNotFree
+```
+
+with the standard freshness/capture side conditions.
+
+The current free-variable and semantic-substitution lemmas are strong enough to support this development.
+
+**Severity: P1/P2 theorem-surface gap.**
+
+---
+
 # Recommended theorem surface
 
 Useful additions before a full proof-theory / model-theory curriculum:
 
-1. free variables after term substitution;
-2. free variables after formula substitution under `IsSubstitutable`;
-3. substitution identity (`phi[x := x] = phi` where formulated via variable term);
-4. substitution irrelevance when `x` is not free;
-5. composition of substitutions with the standard freshness hypotheses;
-6. alpha-renaming / bound-variable renaming theorem;
-7. alpha-equivalence or a documented decision not to quotient syntax by alpha-equivalence;
-8. term evaluation commuting with model embeddings;
-9. quantifier-free satisfaction transport under embeddings;
-10. full satisfaction transport under isomorphisms / elementary embeddings.
+1. substitution identity (`phi[x := x] = phi` where formulated via variable term);
+2. substitution irrelevance when `x` is not free;
+3. composition of substitutions with the standard freshness hypotheses;
+4. alpha-renaming / bound-variable renaming theorem;
+5. alpha-equivalence or a documented decision not to quotient syntax by alpha-equivalence;
+6. term evaluation commuting with model embeddings;
+7. quantifier-free satisfaction transport under embeddings;
+8. full satisfaction transport under isomorphisms / elementary embeddings.
 
-The present syntax is strong enough to support these.
+The free-variable substitution bounds are already present and need not be re-added.
 
 ---
 
@@ -154,6 +201,7 @@ No Choice dependency is inherent in the reviewed substitution definitions or pro
 | formula substitution binder behavior | **PASS** |
 | capture-avoidance concept | **PASS** |
 | semantic substitution lemma | **PASS** |
+| free-variable substitution bounds | **PASS** |
 | assignment depends only on free variables | **PASS** |
 | closed sentence assignment independence | **PASS** |
 | substitutability exactness | **OVER-STRONG BUT SAFE** |
