@@ -30,8 +30,10 @@ Project-wide rules apply: `sorry` is neutral scaffolding; missing theorem surfac
 - `LRA/Analysis/HilbertSpace/Definition/HilbertSpace.lean`
 - `LRA/Analysis/HilbertSpace/Interop/ToMathlib.lean`
 - `LRA/Analysis/HilbertSpace/Interop/FromMathlib.lean`
+- `LRA/Algebra/LinearAlgebra.lean`
 - `LRA/Algebra/LinearAlgebra/VectorSpace/Definition/VectorSpace.lean`
 - `LRA/Algebra/LinearAlgebra/LinearMap/Definition/LinearMap.lean`
+- `LRA/Algebra/ProofsToDo.md`
 
 ---
 
@@ -235,7 +237,13 @@ This means the current reference Hilbert structure has no theorem-level path to:
 
 ## P1 — the canonical linear-algebra hierarchy is currently too thin for the planned functional-analysis layer
 
-The current `LRA/Algebra/LinearAlgebra` tree contains only vector spaces and linear maps. No canonical project-facing owners were located there for:
+This is now confirmed by both the current directory tree and the generated proof inventory:
+
+- `LRA/Algebra/LinearAlgebra.lean` imports only `LinearMap.Definition`;
+- the current `LRA/Algebra/LinearAlgebra` directory contains only `VectorSpace` and `LinearMap` subjects;
+- `LRA/Algebra/ProofsToDo.md` reports **0 theorem declarations across 0 modules** under the algebra proof inventory.
+
+No canonical project-facing owners were located for:
 
 - linear subspaces;
 - span;
@@ -272,9 +280,28 @@ VectorSpace
   -> FiniteDimensional / Dimension
   -> LinearMap kernel/range
   -> LinearEquiv
+  -> QuotientVectorSpace
 ```
 
 Then functional analysis can enrich these with norms/topology rather than redeclaring the algebra.
+
+### High-value algebraic laws to expose
+
+For the project's Landau-style law/certificate architecture, include named theorem surfaces such as:
+
+- zero subspace and whole-space subspace;
+- intersection of subspaces;
+- span is the least subspace containing a set;
+- span monotonicity;
+- linear-map kernel and range are subspaces;
+- injective linear map iff kernel is zero;
+- linear independence iff only the trivial finite linear combination vanishes;
+- basis = linearly independent + spanning;
+- coordinates with respect to a basis are unique;
+- finite-dimensional dimension invariance under linear equivalence;
+- rank-nullity once finite-dimensionality exists.
+
+These are particularly useful because they state both the object and the requirements that characterize it, matching the project's intended theorem/law style.
 
 **Severity: P1 FOUNDATION/CURRICULUM GAP.**
 
@@ -398,6 +425,7 @@ A theorem asserting that every vector space has a basis should be explicitly mar
 |---|---|
 | Vector-space axioms | **PASS** |
 | Linear-map definition | **PASS** |
+| Algebra theorem surface | **EMPTY — 0 DECLARATIONS IN CURRENT PROOF INVENTORY** |
 | Subspace/span/independence/basis hierarchy | **NOT BUILT / P1** |
 | Normed linear-space axioms | **PASS** |
 | Norm -> metric bridge | **MISSING / P1** |
@@ -418,13 +446,14 @@ A theorem asserting that every vector space has a basis should be explicitly mar
 # Immediate implementation order
 
 1. build canonical linear-subspace/span/independence/basis vocabulary;
-2. derive norm elementary laws and the induced metric;
-3. bridge norm convergence/Cauchy to the metric-space layer;
-4. prove Cauchy–Schwarz from `RealInnerProductSpaceDefinition`;
-5. construct/prove the induced norm axioms;
-6. bridge inner-product spaces to normed linear spaces;
-7. bridge Hilbert spaces to Banach spaces;
-8. add Mathlib compatibility conversions;
-9. add `Real^n`, `C([a,b])`, and a simple incomplete normed-space example;
-10. add `l^2` after the sequence/function-space prerequisites are ready;
-11. only then build projection/Riesz/operator theory.
+2. add kernel/range/linear-equivalence and finite-dimensional dimension theory;
+3. derive norm elementary laws and the induced metric;
+4. bridge norm convergence/Cauchy to the metric-space layer;
+5. prove Cauchy–Schwarz from `RealInnerProductSpaceDefinition`;
+6. construct/prove the induced norm axioms;
+7. bridge inner-product spaces to normed linear spaces;
+8. bridge Hilbert spaces to Banach spaces;
+9. add Mathlib compatibility conversions;
+10. add `Real^n`, `C([a,b])`, and a simple incomplete normed-space example;
+11. add `l^2` after the sequence/function-space prerequisites are ready;
+12. only then build projection/Riesz/operator theory.
