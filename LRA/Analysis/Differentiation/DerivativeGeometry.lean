@@ -43,38 +43,40 @@ def IsRelativeMaximum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   c ∈ A ∧ ∃ δ > 0, ∀ x ∈ A, |x - c| < δ → f x ≤ f c
 
 -- `thm:necessary-condition-extremum`
-/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`, `hc : c ∈ A`, and `hext : IsRelativeMinimum f A c ∨
-IsRelativeMaximum f A c`. Then `¬ IsDifferentiable f A c ∨ Derivative 0 f A c`.
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`, `hc : c ∈ interior A`, and `hext :
+IsRelativeMinimum f A c ∨ IsRelativeMaximum f A c`. Then `¬ IsDifferentiable f A c ∨ Derivative 0
+f A c`.
 
 Logical form:
 
 ```lean
 theorem NecessaryConditionExtremum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
-    (hc : c ∈ A)
+    (hc : c ∈ interior A)
     (hext : IsRelativeMinimum f A c ∨ IsRelativeMaximum f A c) :
     ¬ IsDifferentiable f A c ∨ Derivative 0 f A c
 ```
 -/
 theorem NecessaryConditionExtremum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
-    (hc : c ∈ A)
+    (hc : c ∈ interior A)
     (hext : IsRelativeMinimum f A c ∨ IsRelativeMaximum f A c) :
     ¬ IsDifferentiable f A c ∨ Derivative 0 f A c := by
   sorry
 
-/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`, `hc : c ∈ A`, and `hext : IsRelativeMinimum f A c ∨
-IsRelativeMaximum f A c`. Then `Derivative 0 f A c ∨ ¬ IsDifferentiable f A c`.
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`, `hc : c ∈ interior A`, and `hext :
+IsRelativeMinimum f A c ∨ IsRelativeMaximum f A c`. Then `Derivative 0 f A c ∨ ¬ IsDifferentiable
+f A c`.
 
 Logical form:
 
 ```lean
 theorem RelativeExtremumNecessaryCondition (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
-    (hc : c ∈ A)
+    (hc : c ∈ interior A)
     (hext : IsRelativeMinimum f A c ∨ IsRelativeMaximum f A c) :
     Derivative 0 f A c ∨ ¬ IsDifferentiable f A c
 ```
 -/
 theorem RelativeExtremumNecessaryCondition (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
-    (hc : c ∈ A)
+    (hc : c ∈ interior A)
     (hext : IsRelativeMinimum f A c ∨ IsRelativeMaximum f A c) :
     Derivative 0 f A c ∨ ¬ IsDifferentiable f A c := by
   sorry

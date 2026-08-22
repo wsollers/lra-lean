@@ -143,17 +143,20 @@ theorem DifferentiableImpliesContinuous (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ
   sorry
 
 -- `thm:uniqueness-of-the-derivative`
-/-- Let `A : Set ℝ` and `c D₁ D₂ : ℝ`. If `f : ℝ → ℝ`, `h₁ : Derivative D₁ f A c`, and `h₂ :
+/-- Let `A : Set ℝ` and `c D₁ D₂ : ℝ`. If `f : ℝ → ℝ`, `hacc : ∃ xs : ℕ → ℝ,
+LRA.Analysis.Limits.ApproachesButNotEqual xs A c`, `h₁ : Derivative D₁ f A c`, and `h₂ :
 Derivative D₂ f A c`. Then `D₁ = D₂`.
 
 Logical form:
 
 ```lean
 theorem DerivativeUnique (f : ℝ → ℝ) (A : Set ℝ) (c D₁ D₂ : ℝ)
+    (hacc : ∃ xs : ℕ → ℝ, LRA.Analysis.Limits.ApproachesButNotEqual xs A c)
     (h₁ : Derivative D₁ f A c) (h₂ : Derivative D₂ f A c) : D₁ = D₂
 ```
 -/
 theorem DerivativeUnique (f : ℝ → ℝ) (A : Set ℝ) (c D₁ D₂ : ℝ)
+    (hacc : ∃ xs : ℕ → ℝ, LRA.Analysis.Limits.ApproachesButNotEqual xs A c)
     (h₁ : Derivative D₁ f A c) (h₂ : Derivative D₂ f A c) : D₁ = D₂ := by
   sorry
 

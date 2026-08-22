@@ -211,20 +211,22 @@ theorem InverseFunctionTheoremOneVariable (f fD1 : ℝ → ℝ) (I : Set ℝ) (h
   sorry
 
 /-- Let `U V : Set ℝ`. If `f g fD1 : ℝ → ℝ`, `hf : ∀ x ∈ U, Derivative (fD1 x) f U x`, `hnz : ∀ x ∈
-U, fD1 x ≠ 0`, `hinv : ∀ x ∈ U, g (f x) = x`, and `hinv' : ∀ y ∈ V, f (g y) = y`. Then `∀ y ∈ V,
-Derivative (1 / fD1 (g y)) g V y`.
+U, fD1 x ≠ 0`, `hgVU : ∀ y ∈ V, g y ∈ U`, `hinv : ∀ x ∈ U, g (f x) = x`, and `hinv' : ∀ y ∈ V, f
+(g y) = y`. Then `∀ y ∈ V, Derivative (1 / fD1 (g y)) g V y`.
 
 Logical form:
 
 ```lean
 theorem InverseFunctionDerivative (f g fD1 : ℝ → ℝ) (U V : Set ℝ)
     (hf : ∀ x ∈ U, Derivative (fD1 x) f U x) (hnz : ∀ x ∈ U, fD1 x ≠ 0)
+    (hgVU : ∀ y ∈ V, g y ∈ U)
     (hinv : ∀ x ∈ U, g (f x) = x) (hinv' : ∀ y ∈ V, f (g y) = y) :
     ∀ y ∈ V, Derivative (1 / fD1 (g y)) g V y
 ```
 -/
 theorem InverseFunctionDerivative (f g fD1 : ℝ → ℝ) (U V : Set ℝ)
     (hf : ∀ x ∈ U, Derivative (fD1 x) f U x) (hnz : ∀ x ∈ U, fD1 x ≠ 0)
+    (hgVU : ∀ y ∈ V, g y ∈ U)
     (hinv : ∀ x ∈ U, g (f x) = x) (hinv' : ∀ y ∈ V, f (g y) = y) :
     ∀ y ∈ V, Derivative (1 / fD1 (g y)) g V y := by
   sorry

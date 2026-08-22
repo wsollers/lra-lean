@@ -61,9 +61,9 @@ noncomputable def MaclaurinPoly (fD : ℕ → ℝ → ℝ) (n : ℕ) : ℝ → �
 
 -- `thm:taylor-theorem-lagrange-remainder`
 /-- Let `a b : ℝ` and `n : ℕ`. If `f : ℝ → ℝ`, `fD : ℕ → ℝ → ℝ`, `hab : a < b`, `hcont : ∀ k ≤ n,
-LRA.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b)`, and `hDnp1 : ∀ x ∈
-Set.Ioo a b, ∃ D, Derivative D (fD n) (Set.Ioo a b) x`. Then `∀ x ∈ Set.Ioo a b, ∃ c, (a < c ∧ c
-< x) ∧ ∃ Dnp1, Derivative Dnp1 (fD n) (Set.Ioo a b) c ∧ f x = TaylorPoly fD n a x + Dnp1 /
+LRA.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b)`, and `hchain : ∀ x ∈ Set.Ioo a b,
+HigherDerivativeAt f fD (Set.Ioo a b) (n + 1) x`. Then `∀ x ∈ Set.Ioo a b, ∃ c, (a < c ∧ c < x) ∧
+∃ Dnp1, Derivative Dnp1 (fD n) (Set.Ioo a b) c ∧ f x = TaylorPoly fD n a x + Dnp1 /
 (Nat.factorial (n + 1)) * (x - a) ^ (n + 1)`.
 
 Logical form:
@@ -72,7 +72,7 @@ Logical form:
 theorem TaylorTheoremLagrangeRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (a b : ℝ)
     (hab : a < b) (n : ℕ)
     (hcont : ∀ k ≤ n, LRA.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b))
-    (hDnp1 : ∀ x ∈ Set.Ioo a b, ∃ D, Derivative D (fD n) (Set.Ioo a b) x) :
+    (hchain : ∀ x ∈ Set.Ioo a b, HigherDerivativeAt f fD (Set.Ioo a b) (n + 1) x) :
     ∀ x ∈ Set.Ioo a b, ∃ c, (a < c ∧ c < x) ∧ ∃ Dnp1,
       Derivative Dnp1 (fD n) (Set.Ioo a b) c ∧
       f x = TaylorPoly fD n a x + Dnp1 / (Nat.factorial (n + 1)) * (x - a) ^ (n + 1)
@@ -81,7 +81,7 @@ theorem TaylorTheoremLagrangeRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → �
 theorem TaylorTheoremLagrangeRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (a b : ℝ)
     (hab : a < b) (n : ℕ)
     (hcont : ∀ k ≤ n, LRA.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b))
-    (hDnp1 : ∀ x ∈ Set.Ioo a b, ∃ D, Derivative D (fD n) (Set.Ioo a b) x) :
+    (hchain : ∀ x ∈ Set.Ioo a b, HigherDerivativeAt f fD (Set.Ioo a b) (n + 1) x) :
     ∀ x ∈ Set.Ioo a b, ∃ c, (a < c ∧ c < x) ∧ ∃ Dnp1,
       Derivative Dnp1 (fD n) (Set.Ioo a b) c ∧
       f x = TaylorPoly fD n a x + Dnp1 / (Nat.factorial (n + 1)) * (x - a) ^ (n + 1) := by
@@ -90,7 +90,7 @@ theorem TaylorTheoremLagrangeRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → �
 /-- Let `I : Set ℝ`, `a : ℝ`, and `n : ℕ`. If `f : ℝ → ℝ`, `fD : ℕ → ℝ → ℝ`, `ha : a ∈ interior I`,
 `hD : HigherDerivativeAt f fD I n a`, and `hcont :
 LRA.Analysis.Continuity.ContinuousAtPoint (fD n) I a`. Then `Filter.Tendsto (fun x =>
-(f x - TaylorPoly fD n a x) / (x - a) ^ n) (nhdsWithin a {a}ᶜ) (nhds 0)`.
+(f x - TaylorPoly fD n a x) / (x - a) ^ n) (nhdsWithin a (I \ {a})) (nhds 0)`.
 
 Logical form:
 
@@ -99,30 +99,33 @@ theorem TaylorExpansionPeanoRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → �
     (n : ℕ) (ha : a ∈ interior I) (hD : HigherDerivativeAt f fD I n a)
     (hcont : LRA.Analysis.Continuity.ContinuousAtPoint (fD n) I a) :
     Filter.Tendsto (fun x => (f x - TaylorPoly fD n a x) / (x - a) ^ n)
-      (nhdsWithin a {a}ᶜ) (nhds 0)
+      (nhdsWithin a (I \ {a})) (nhds 0)
 ```
 -/
 theorem TaylorExpansionPeanoRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (I : Set ℝ) (a : ℝ)
     (n : ℕ) (ha : a ∈ interior I) (hD : HigherDerivativeAt f fD I n a)
     (hcont : LRA.Analysis.Continuity.ContinuousAtPoint (fD n) I a) :
     Filter.Tendsto (fun x => (f x - TaylorPoly fD n a x) / (x - a) ^ n)
-      (nhdsWithin a {a}ᶜ) (nhds 0) := by
+      (nhdsWithin a (I \ {a})) (nhds 0) := by
   sorry
 
 /-- Let `A : Set ℝ` and `c D : ℝ`. If `f : ℝ → ℝ` and `hf : Derivative D f A c`. Then
-`Filter.Tendsto (fun h => (f (c + h) - f c - D * h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)`.
+`Filter.Tendsto (fun h => (f (c + h) - f c - D * h) / h)
+(nhdsWithin 0 {h : ℝ | c + h ∈ A ∧ h ≠ 0}) (nhds 0)`.
 
 Logical form:
 
 ```lean
 theorem FirstOrderPeanoRemainder (f : ℝ → ℝ) (A : Set ℝ) (c D : ℝ)
     (hf : Derivative D f A c) :
-    Filter.Tendsto (fun h => (f (c + h) - f c - D * h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)
+    Filter.Tendsto (fun h => (f (c + h) - f c - D * h) / h)
+      (nhdsWithin 0 {h : ℝ | c + h ∈ A ∧ h ≠ 0}) (nhds 0)
 ```
 -/
 theorem FirstOrderPeanoRemainder (f : ℝ → ℝ) (A : Set ℝ) (c D : ℝ)
     (hf : Derivative D f A c) :
-    Filter.Tendsto (fun h => (f (c + h) - f c - D * h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0) := by
+    Filter.Tendsto (fun h => (f (c + h) - f c - D * h) / h)
+      (nhdsWithin 0 {h : ℝ | c + h ∈ A ∧ h ≠ 0}) (nhds 0) := by
   sorry
 
 /-- `prop:flat-function`: the classic flat function separating
@@ -174,17 +177,19 @@ def DifferentiableByDifferential (f : ℝ → ℝ) (c : ℝ) : Prop :=
     Filter.Tendsto (fun h => (f (c + h) - f c - L h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)
 
 -- `thm:differential-and-derivative-agree`
-/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`. Then `IsDifferentiable f A c ↔
-DifferentiableByDifferential f c`.
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ` and `hc : c ∈ interior A`. Then
+`IsDifferentiable f A c ↔ DifferentiableByDifferential f c`.
 
 Logical form:
 
 ```lean
-theorem DifferentialAndDerivativeAgree (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
+theorem DifferentialAndDerivativeAgree (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
+    (hc : c ∈ interior A) :
     IsDifferentiable f A c ↔ DifferentiableByDifferential f c
 ```
 -/
-theorem DifferentialAndDerivativeAgree (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
+theorem DifferentialAndDerivativeAgree (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
+    (hc : c ∈ interior A) :
     IsDifferentiable f A c ↔ DifferentiableByDifferential f c := by
   sorry
 
