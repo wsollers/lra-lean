@@ -45,19 +45,12 @@ and (iv) entirely (not corrupted/misplaced elsewhere, as in the earlier
 `prop:preimage-union-intersection` bug — just silently dropped).
 Formalized below with all four parts, from the theorem box itself.
 
-Finding 4 (see ISSUES.md #36, 🟠 — possible genuine gap, flagging for
-your judgment since this file doesn't define "interval"):
-`cor:interval-all-limit-points` states "if `I` is an interval, then
-every `x∈I` is a cluster point of `I`" with NO nondegeneracy hypothesis.
-This is FALSE for a degenerate single-point interval `I = {a}` (under
-the common convention — e.g. Mathlib's `Set.OrdConnected` — that a
-singleton counts as an interval): `x = a` has no OTHER point of `I`
-nearby, so `a` is not a cluster point of `{a}`. If this corpus's own
-`def:interval` (defined elsewhere, not yet read this pass) requires at
-least two points, this finding is moot — otherwise it's a genuine
-missing hypothesis. Formalized below exactly as stated (via
-`Set.OrdConnected`, Mathlib's interval predicate, which does admit
-singletons), with the counterexample noted inline.
+Finding 4 (see ISSUES.md #36, repaired at the Lean surface):
+`cor:interval-all-limit-points` needs a nondegeneracy hypothesis if it is
+formalized via `Set.OrdConnected`, because Mathlib admits singleton
+intervals. The active theorem surface below therefore carries
+`I.Nontrivial` explicitly, excluding the degenerate singleton
+counterexample `I = {a}` where `a` has no distinct nearby point of `I`.
 
 Formalized using project-parallel predicate names (`IsClusterPointR`
 etc., suffixed `R` to avoid colliding with the cluster-point-vs-
@@ -339,16 +332,17 @@ theorem ClosedIffSeqLimits (X : Set ℝ) :
         ∀ x : ℝ, Filter.Tendsto a Filter.atTop (nhds x) → x ∈ X := by
   sorry
 
-/-- Let `I : Set ℝ`. If `hI : I.OrdConnected`. Then `∀ x ∈ I, IsClusterPointR x I`.
+/-- Let `I : Set ℝ`. If `hI : I.OrdConnected` and `hnontrivial : I.Nontrivial`, then `∀ x ∈ I,
+IsClusterPointR x I`.
 
 Logical form:
 
 ```lean
-theorem IntervalAllLimitPoints (I : Set ℝ) (hI : I.OrdConnected) :
+theorem IntervalAllLimitPoints (I : Set ℝ) (hI : I.OrdConnected) (hnontrivial : I.Nontrivial) :
     ∀ x ∈ I, IsClusterPointR x I
 ```
 -/
-theorem IntervalAllLimitPoints (I : Set ℝ) (hI : I.OrdConnected) :
+theorem IntervalAllLimitPoints (I : Set ℝ) (hI : I.OrdConnected) (hnontrivial : I.Nontrivial) :
     ∀ x ∈ I, IsClusterPointR x I := by
   sorry
 
