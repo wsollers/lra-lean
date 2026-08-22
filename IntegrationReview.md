@@ -2,11 +2,9 @@
 
 ## Scope
 
-Maintained mathematical review of the active Volume III integration layer, focusing first on the common partition machinery, Cauchy/Riemann/Darboux integration, measure-zero diagnostics, and Henstock–Kurzweil statements.
+Maintained mathematical review of the active Volume III integration layer, focusing first on the common partition machinery, Cauchy/Riemann/Darboux integration, measure-zero diagnostics, Henstock–Kurzweil, McShane, and Riemann–Stieltjes statements.
 
 Project-wide rule: `sorry` proof bodies are neutral. Concrete placeholder **definitions** are not neutral when substantive theorem statements depend on their intended semantics.
-
-This is a first integration chunk, not yet an exhaustive audit of McShane or Riemann–Stieltjes material.
 
 ---
 
@@ -20,6 +18,8 @@ This is a first integration chunk, not yet an exhaustive audit of McShane or Rie
 - `LRA/Analysis/Integration/DarbouxIntegral/Basic.lean`
 - `LRA/Analysis/Integration/MeasureZero.lean`
 - `LRA/Analysis/Integration/HenstockKurzweil/Basic.lean`
+- `LRA/Analysis/Integration/McShaneIntegral/Basic.lean`
+- `LRA/Analysis/Integration/RiemannStieltjes/Basic.lean`
 
 ---
 
@@ -53,7 +53,7 @@ PartitionMesh P := 0
 
 The intended mesh is the maximum subinterval width.
 
-This zero stub is not harmless because the Cauchy and Riemann integral definitions use the condition
+This zero stub is not harmless because the Cauchy, Riemann, and Riemann–Stieltjes integral definitions use the condition
 
 ```text
 PartitionMesh P < delta.
@@ -61,7 +61,7 @@ PartitionMesh P < delta.
 
 For every positive `delta`, every partition automatically satisfies that condition.
 
-Thus the definitions no longer express convergence as partitions become fine.
+Thus these definitions no longer express convergence as partitions become fine.
 
 ### Required correction
 
@@ -297,6 +297,133 @@ Do not universalize this to every derivative.
 
 ---
 
+# McShane integral
+
+The structural distinction from Henstock–Kurzweil is represented correctly:
+
+- McShane tags need only lie in `[a,b]`, not in their own partition cell;
+- the cell must still lie inside the gauge interval about the tag;
+- the integral uses the corresponding tagged sums.
+
+The inclusion direction
+
+```text
+Riemann -> McShane -> HK
+```
+
+is the expected direction.
+
+**Core definition verdict: PASS IN SHAPE.**
+
+## P0 — `mcshane_equals_lebesgue` states the Riemann criterion, not Lebesgue integrability
+
+Current theorem claims
+
+```text
+IsMcShaneIntegrable f a b
+iff
+there exists a measure-zero E such that f is continuous at every point of [a,b] \ E.
+```
+
+That is not a characterization of Lebesgue/McShane integrability.
+
+A direct counterexample is the Dirichlet indicator of the rationals on `[0,1]`:
+
+```text
+f = 1_Q.
+```
+
+It is Lebesgue integrable (hence McShane integrable under the intended equivalence), with integral zero, but it is discontinuous at every point. No measure-zero exceptional set can remove all its discontinuities because the entire interval is not measure zero.
+
+The displayed right side is instead closely related to the Lebesgue criterion for **Riemann integrability of a bounded function**.
+
+**Severity: P0 FALSE THEOREM / WRONG CHARACTERIZATION.**
+
+## `hk_strictly_wider_than_mcshane` uses a mislabeled hypothesis
+
+The hypothesis named `hnotLebesgue` is actually
+
+```text
+not IsRiemannIntegrable |FD| (-1) 1.
+```
+
+Failure of absolute Riemann integrability is not the same as failure of Lebesgue/McShane integrability. This theorem should be revisited after the McShane/Lebesgue bridge is stated correctly.
+
+**Severity: P1/P0 depending on intended witness theorem; current justification is insufficient.**
+
+---
+
+# Riemann–Stieltjes integral
+
+`VariationSums` correctly records sums of absolute increments over partitions, and
+
+```text
+HasBoundedVariation alpha a b := BddAbove (VariationSums alpha a b)
+```
+
+is a sound definition of bounded variation.
+
+## P1/P0 — `TotalVariation` is a zero stub
+
+Despite the surrounding comment correctly warning about totalized `sSup`, the actual definition is
+
+```text
+TotalVariation alpha a b := 0.
+```
+
+It should be the supremum of `VariationSums` under a bounded-variation hypothesis or otherwise use a type/domain design that prevents junk values.
+
+No reviewed theorem here directly uses `TotalVariation` to assert a false numerical equality, so classify the stub as P1 until consumed; it becomes P0 wherever downstream mathematics treats it as genuine variation.
+
+## Riemann–Stieltjes integral inherits the zero-mesh P0
+
+Its convergence definition uses `PartitionMesh < delta`, so it suffers exactly the same semantic collapse as the current Riemann integral.
+
+Thus existence statements such as continuous integrand + bounded-variation integrator cannot be trusted under the active definitions until mesh is repaired.
+
+## P0 — finite step-integrator theorem does not connect `jump` to `alpha`
+
+The theorem `rs_step_integrator_finite_sum` supplies:
+
+- a list of points `c i`;
+- arbitrary numbers `jump i`;
+- a condition intended to describe a step integrator `alpha`;
+- continuity of `f` at each listed point;
+
+and concludes
+
+```text
+integral f d alpha = sum_i f(c_i) * jump_i.
+```
+
+But there is no hypothesis saying that `jump i` is actually the jump of `alpha` at `c i`.
+
+A simple contradiction shape is:
+
+```text
+alpha = 0,
+f = 1,
+jump_i = 1
+```
+
+with the step/continuity hypotheses satisfied in the obvious finite setting. The Riemann–Stieltjes integral against a constant integrator is zero, while the claimed value is the sum of the arbitrary nonzero `jump_i` values.
+
+The `hstep` condition is itself unusually strong/global: away from the listed points it says `alpha` is one common constant, rather than describing different constant values on successive cells.
+
+### Required correction
+
+Represent a finite-jump integrator with ordered jump locations and explicitly define/relate
+
+```text
+jump_i = alpha(c_i+) - alpha(c_i-)
+```
+
+(or the chosen right/left-continuous convention), together with a genuine piecewise-constant condition between jump locations.
+
+**Severity: P0 FALSE THEOREM / MISSING LOAD-BEARING HYPOTHESIS.**
+
+---
+
 # Architecture — avoid duplicate partitions/oscillation
 
 There are currently parallel notions in continuity and integration:
@@ -319,7 +446,7 @@ function oscillation
     -> integration imports it for Riemann criterion
 ```
 
-Then Cauchy/Riemann/Darboux/HK are different integral structures built on shared partition and oscillation vocabulary.
+Then Cauchy/Riemann/Darboux/HK/McShane/Riemann–Stieltjes are different integral structures built on shared partition and oscillation vocabulary.
 
 **Severity: P1 API/OWNERSHIP CONSOLIDATION.**
 
@@ -337,7 +464,7 @@ Riemann/Darboux/gauge integration
 measure theory + Lebesgue integration
 ```
 
-or the two can be developed in parallel, but terminology such as “Lebesgue criterion” and “wider than Lebesgue” should not imply that the abstract Lebesgue theory is already formalized when it is not.
+or the two can be developed in parallel, but terminology such as “Lebesgue criterion,” “McShane = Lebesgue,” and “wider than Lebesgue” must use the actual Lebesgue-integrability notion once that layer exists.
 
 ---
 
@@ -349,7 +476,7 @@ Cousin-type existence arguments and finite partition refinements do not inherent
 
 ---
 
-# Final verdict for this chunk
+# Final verdict
 
 | Dimension | Verdict |
 |---|---|
@@ -367,6 +494,12 @@ Cousin-type existence arguments and finite partition refinements do not inherent
 | Lebesgue criterion for Riemann integrability | **P0 CURRENTLY FALSE** |
 | HK core definition | **PASS IN SHAPE** |
 | HK strictness witness theorem | **P0 FALSE UNIVERSAL CLAIM** |
+| McShane core definition | **PASS IN SHAPE** |
+| `McShane = Lebesgue` characterization | **P0 WRONG CHARACTERIZATION** |
+| Bounded-variation predicate | **PASS** |
+| Total variation | **P1 ZERO STUB** |
+| Riemann–Stieltjes convergence | **POISONED BY MESH P0** |
+| Step-integrator finite-sum theorem | **P0 MISSING JUMP RELATION** |
 | Shared partition/oscillation ownership | **P1 CONSOLIDATION NEEDED** |
 
 ---
@@ -378,5 +511,8 @@ Cousin-type existence arguments and finite partition refinements do not inherent
 3. replace the constant-zero “Dirichlet” counterexample with the actual intended function;
 4. unify/repair oscillation definitions and reuse them in the Lebesgue criterion;
 5. repair the HK strictness theorem to an actual existential separation statement and correct the Lebesgue/Riemann labeling;
-6. consolidate duplicate partition/tag/mesh concepts;
-7. only then rely on the Cauchy/Riemann/Darboux equivalence and continuity-implies-integrability theorem surface.
+6. replace `mcshane_equals_lebesgue` with an actual McShane/Lebesgue integrability equivalence once Lebesgue integration exists;
+7. implement `TotalVariation` honestly;
+8. add the missing relation between step-integrator jump data and the integrator;
+9. consolidate duplicate partition/tag/mesh concepts;
+10. only then rely on the Cauchy/Riemann/Darboux/Riemann–Stieltjes theorem surfaces.
