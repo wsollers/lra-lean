@@ -52,15 +52,15 @@ Logical form:
 structure AdjacentTowerEmbeddings
     (SelectedIntegerModel : IntegerModel)
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
-    (SelectedRealExtension : RealExtension SelectedRationalExtension.RationalModel) : Prop where
+    (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel) : Prop where
   IntegerToRationalPreserves :
     EmbeddingPreservesOrderedRing
       SelectedIntegerModel.signature
-      SelectedRationalExtension.RationalModel.signature.toOrderedRingSignature
+      SelectedRationalExtension.DenselyOrderedFieldModel.signature.toOrderedRingSignature
       SelectedRationalExtension.IntegerEmbedding.ToRational
   RationalToRealPreserves :
     EmbeddingPreservesOrderedField
-      SelectedRationalExtension.RationalModel.signature
+      SelectedRationalExtension.DenselyOrderedFieldModel.signature
       SelectedRealExtension.RealModel.signature
       SelectedRealExtension.RationalEmbedding.ToReal
 ```
@@ -69,15 +69,15 @@ structure AdjacentTowerEmbeddings
 structure AdjacentTowerEmbeddings
     (SelectedIntegerModel : IntegerModel)
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
-    (SelectedRealExtension : RealExtension SelectedRationalExtension.RationalModel) : Prop where
+    (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel) : Prop where
   IntegerToRationalPreserves :
     EmbeddingPreservesOrderedRing
       SelectedIntegerModel.signature
-      SelectedRationalExtension.RationalModel.signature.toOrderedRingSignature
+      SelectedRationalExtension.DenselyOrderedFieldModel.signature.toOrderedRingSignature
       SelectedRationalExtension.IntegerEmbedding.ToRational
   RationalToRealPreserves :
     EmbeddingPreservesOrderedField
-      SelectedRationalExtension.RationalModel.signature
+      SelectedRationalExtension.DenselyOrderedFieldModel.signature
       SelectedRealExtension.RealModel.signature
       SelectedRealExtension.RationalEmbedding.ToReal
 /--
@@ -89,7 +89,7 @@ Logical form:
 def CompositeIntegerToReal
     {SelectedIntegerModel : IntegerModel}
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
-    (SelectedRealExtension : RealExtension SelectedRationalExtension.RationalModel) :
+    (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel) :
     SelectedIntegerModel.signature.carrier → SelectedRealExtension.RealModel.signature.carrier :=
   fun value =>
     SelectedRealExtension.RationalEmbedding.ToReal
@@ -100,7 +100,7 @@ def CompositeIntegerToReal
 def CompositeIntegerToReal
     {SelectedIntegerModel : IntegerModel}
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
-    (SelectedRealExtension : RealExtension SelectedRationalExtension.RationalModel) :
+    (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel) :
     SelectedIntegerModel.signature.carrier → SelectedRealExtension.RealModel.signature.carrier :=
   fun value =>
     SelectedRealExtension.RationalEmbedding.ToReal
@@ -114,7 +114,7 @@ Logical form:
 theorem CompositeIntegerToRealIsEmbedding
     {SelectedIntegerModel : IntegerModel}
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
-    (SelectedRealExtension : RealExtension SelectedRationalExtension.RationalModel)
+    (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel)
     (AdjacentEmbeddings :
       AdjacentTowerEmbeddings SelectedIntegerModel SelectedRationalExtension SelectedRealExtension) :
     EmbeddingPreservesOrderedRing
@@ -127,7 +127,7 @@ theorem CompositeIntegerToRealIsEmbedding
 theorem CompositeIntegerToRealIsEmbedding
     {SelectedIntegerModel : IntegerModel}
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
-    (SelectedRealExtension : RealExtension SelectedRationalExtension.RationalModel)
+    (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel)
     (AdjacentEmbeddings :
       AdjacentTowerEmbeddings SelectedIntegerModel SelectedRationalExtension SelectedRealExtension) :
     EmbeddingPreservesOrderedRing
