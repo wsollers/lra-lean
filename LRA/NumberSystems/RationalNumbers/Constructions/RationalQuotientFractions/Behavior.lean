@@ -85,16 +85,24 @@ theorem integer_embedding_properties (rational_data : IntegerAndPositiveNaturalD
 
 /-- Definition 5.1: a representative is reduced when gcd(|a|,b)=1.
 
+This enrichment is optional: quotient fractions themselves only require the
+core denominator data, while lowest-terms statements additionally consume a
+chosen `gcd` and absolute-numerator normalization.
+
 Logical form:
 
 ```lean
-def IsReduced (rational_data : IntegerAndPositiveNaturalData) (representative : Representative rational_data) : Prop :=
+def IsReduced
+    (rational_data : IntegerAndPositiveNaturalReductionData)
+    (representative : Representative rational_data.toIntegerAndPositiveNaturalData) : Prop :=
   rational_data.gcd
       (rational_data.absolute_numerator representative.numerator)
       representative.denominator = rational_data.one
 ```
 -/
-def IsReduced (rational_data : IntegerAndPositiveNaturalData) (representative : Representative rational_data) : Prop :=
+def IsReduced
+    (rational_data : IntegerAndPositiveNaturalReductionData)
+    (representative : Representative rational_data.toIntegerAndPositiveNaturalData) : Prop :=
   rational_data.gcd
       (rational_data.absolute_numerator representative.numerator)
       representative.denominator = rational_data.one
@@ -107,13 +115,17 @@ def IsReduced (rational_data : IntegerAndPositiveNaturalData) (representative : 
 Logical form:
 
 ```lean
-theorem reduced_representative_exists (rational_data : IntegerAndPositiveNaturalData) (value : Carrier rational_data) :
-    ∃ representative : Representative rational_data,
+theorem reduced_representative_exists
+    (rational_data : IntegerAndPositiveNaturalReductionData)
+    (value : Carrier rational_data.toIntegerAndPositiveNaturalData) :
+    ∃ representative : Representative rational_data.toIntegerAndPositiveNaturalData,
       IsReduced rational_data representative ∧ Quotient.mk _ representative = value
 ```
 -/
-theorem reduced_representative_exists (rational_data : IntegerAndPositiveNaturalData) (value : Carrier rational_data) :
-    ∃ representative : Representative rational_data,
+theorem reduced_representative_exists
+    (rational_data : IntegerAndPositiveNaturalReductionData)
+    (value : Carrier rational_data.toIntegerAndPositiveNaturalData) :
+    ∃ representative : Representative rational_data.toIntegerAndPositiveNaturalData,
       IsReduced rational_data representative ∧ Quotient.mk _ representative = value := by
   sorry
 
@@ -124,22 +136,30 @@ theorem reduced_representative_exists (rational_data : IntegerAndPositiveNatural
 Logical form:
 
 ```lean
-theorem reduced_representative_unique (rational_data : IntegerAndPositiveNaturalData)
-    (first second : Representative rational_data)
+theorem reduced_representative_unique
+    (rational_data : IntegerAndPositiveNaturalReductionData)
+    (first second : Representative rational_data.toIntegerAndPositiveNaturalData)
     (first_reduced : IsReduced rational_data first)
     (second_reduced : IsReduced rational_data second)
-    (same_value : Quotient.mk (representative_setoid rational_data) first =
-      Quotient.mk (representative_setoid rational_data) second) :
+    (same_value :
+      Quotient.mk
+          (representative_setoid rational_data.toIntegerAndPositiveNaturalData) first =
+        Quotient.mk
+          (representative_setoid rational_data.toIntegerAndPositiveNaturalData) second) :
     first.numerator = second.numerator ∧
     first.denominator = second.denominator
 ```
 -/
-theorem reduced_representative_unique (rational_data : IntegerAndPositiveNaturalData)
-    (first second : Representative rational_data)
+theorem reduced_representative_unique
+    (rational_data : IntegerAndPositiveNaturalReductionData)
+    (first second : Representative rational_data.toIntegerAndPositiveNaturalData)
     (first_reduced : IsReduced rational_data first)
     (second_reduced : IsReduced rational_data second)
-    (same_value : Quotient.mk (representative_setoid rational_data) first =
-      Quotient.mk (representative_setoid rational_data) second) :
+    (same_value :
+      Quotient.mk
+          (representative_setoid rational_data.toIntegerAndPositiveNaturalData) first =
+        Quotient.mk
+          (representative_setoid rational_data.toIntegerAndPositiveNaturalData) second) :
     first.numerator = second.numerator ∧
     first.denominator = second.denominator := by
   sorry
@@ -151,22 +171,26 @@ theorem reduced_representative_unique (rational_data : IntegerAndPositiveNatural
 Logical form:
 
 ```lean
-theorem unique_lowest_term_form (rational_data : IntegerAndPositiveNaturalData) (value : Carrier rational_data) :
-    ∃ representative : Representative rational_data,
+theorem unique_lowest_term_form
+    (rational_data : IntegerAndPositiveNaturalReductionData)
+    (value : Carrier rational_data.toIntegerAndPositiveNaturalData) :
+    ∃ representative : Representative rational_data.toIntegerAndPositiveNaturalData,
       IsReduced rational_data representative ∧
       Quotient.mk _ representative = value ∧
-      ∀ other : Representative rational_data,
+      ∀ other : Representative rational_data.toIntegerAndPositiveNaturalData,
         IsReduced rational_data other →
         Quotient.mk _ other = value →
         other.numerator = representative.numerator ∧
         other.denominator = representative.denominator
 ```
 -/
-theorem unique_lowest_term_form (rational_data : IntegerAndPositiveNaturalData) (value : Carrier rational_data) :
-    ∃ representative : Representative rational_data,
+theorem unique_lowest_term_form
+    (rational_data : IntegerAndPositiveNaturalReductionData)
+    (value : Carrier rational_data.toIntegerAndPositiveNaturalData) :
+    ∃ representative : Representative rational_data.toIntegerAndPositiveNaturalData,
       IsReduced rational_data representative ∧
       Quotient.mk _ representative = value ∧
-      ∀ other : Representative rational_data,
+      ∀ other : Representative rational_data.toIntegerAndPositiveNaturalData,
         IsReduced rational_data other →
         Quotient.mk _ other = value →
         other.numerator = representative.numerator ∧
