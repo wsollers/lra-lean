@@ -10,6 +10,7 @@ statement per book label, `sorry`-bodied.
 import Mathlib.Data.Real.Basic
 import LRA.Analysis.Integration.RiemannIntegral
 import LRA.Analysis.Integration.DarbouxIntegral
+import LRA.Analysis.Continuity.PointContinuity
 import LRA.Analysis.StructureOfRealLine.OpenClosedSets
 
 namespace LRA.Analysis.Integration
@@ -34,23 +35,23 @@ def IsMeasureZero (E : Set ℝ) : Prop :=
     ∃ L ≤ ε, HasSum (fun k => q k - p k) L
 
 /-- `def:point-oscillation-integration`.
-Mathematical statement (Lean): `noncomputable def PointOscillation (f : ℝ → ℝ) (a b x : ℝ) : ℝ :=`.
+Mathematical statement (Lean): `def PointOscillation (f : ℝ → ℝ) (a b x ω : ℝ) : Prop :=`.
 
 
 Logical form:
 
 ```lean
-noncomputable def PointOscillation (f : ℝ → ℝ) (a b x : ℝ) : ℝ :=
-  0
+def PointOscillation (f : ℝ → ℝ) (a b x ω : ℝ) : Prop :=
+  x ∈ Set.Icc a b ∧ LRA.Analysis.Continuity.OscillationAtPoint f (Set.Icc a b) x ω
 ```
 -/
-noncomputable def PointOscillation (f : ℝ → ℝ) (a b x : ℝ) : ℝ :=
-  0
+def PointOscillation (f : ℝ → ℝ) (a b x ω : ℝ) : Prop :=
+  x ∈ Set.Icc a b ∧ LRA.Analysis.Continuity.OscillationAtPoint f (Set.Icc a b) x ω
 
 -- `thm:lebesgue-criterion-riemann-integrability`
 /-- Let `a b : ℝ`. If `f : ℝ → ℝ`, `hab : a ≤ b`, and `hbdd :
 LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)`. Then `IsRiemannIntegrable f a b
-↔ IsMeasureZero {x ∈ Set.Icc a b | PointOscillation f a b x > 0}`.
+↔ IsMeasureZero {x ∈ Set.Icc a b | ∃ ω : ℝ, 0 < ω ∧ PointOscillation f a b x ω}`.
 
 Logical form:
 
@@ -58,13 +59,13 @@ Logical form:
 theorem lebesgue_criterion_riemann_integrability (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
     (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
     IsRiemannIntegrable f a b ↔
-      IsMeasureZero {x ∈ Set.Icc a b | PointOscillation f a b x > 0}
+      IsMeasureZero {x ∈ Set.Icc a b | ∃ ω : ℝ, 0 < ω ∧ PointOscillation f a b x ω}
 ```
 -/
 theorem lebesgue_criterion_riemann_integrability (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
     (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
     IsRiemannIntegrable f a b ↔
-      IsMeasureZero {x ∈ Set.Icc a b | PointOscillation f a b x > 0} := by
+      IsMeasureZero {x ∈ Set.Icc a b | ∃ ω : ℝ, 0 < ω ∧ PointOscillation f a b x ω} := by
   sorry
 
 end LRA.Analysis.Integration

@@ -12,6 +12,7 @@ stochastic-calculus-on-a-torus goal. One Lean statement per book label,
 -/
 
 import Mathlib.Data.Real.Basic
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 import Mathlib.Algebra.BigOperators.Ring.Finset
 import LRA.Analysis.Integration.Partitions
 import LRA.Analysis.Integration.RiemannIntegral.Basic
@@ -60,10 +61,10 @@ Mathematical statement (Lean): `noncomputable def TotalVariation (α : ℝ → �
 Logical form:
 
 ```lean
-noncomputable def TotalVariation (α : ℝ → ℝ) (a b : ℝ) : ℝ := 0
+noncomputable def TotalVariation (α : ℝ → ℝ) (a b : ℝ) : ℝ := sSup (VariationSums α a b)
 ```
 -/
-noncomputable def TotalVariation (α : ℝ → ℝ) (a b : ℝ) : ℝ := 0
+noncomputable def TotalVariation (α : ℝ → ℝ) (a b : ℝ) : ℝ := sSup (VariationSums α a b)
 
 /-- Let `a b : ℝ`. If `α : ℝ → ℝ`, `hab : a ≤ b`, and `hmono : MonotoneOn α (Set.Icc a b)`. Then
 `HasBoundedVariation α a b`.
@@ -215,7 +216,8 @@ theorem rs_c1_reduction (hab : a ≤ b)
 
 -- `thm:rs-step-integrator-finite-sum`
 /-- Let `n : ℕ`. If `c : Fin n → ℝ`, `hc : ∀ i, c i ∈ Set.Icc a b`, `jump : Fin n → ℝ`, `hstep : ∀ x
-∈ Set.Icc a b, (∀ i, x ≠ c i) → ∃ k, ∀ y ∈ Set.Icc a b, (∀ i, y ≠ c i) → α y = k`, and `hcont :
+∈ Set.Icc a b, (∀ i, x ≠ c i) → ∃ k, ∀ y ∈ Set.Icc a b, (∀ i, y ≠ c i) → α y = k`,
+`hjump : ∀ i, LRA.Analysis.Continuity.JumpOf α (Set.Icc a b) (c i) (jump i)`, and `hcont :
 ∀ i, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) (c i)`. Then
 `HasRiemannStieltjesIntegral f α a b (∑ i, f (c i) * jump i)`.
 
@@ -225,6 +227,7 @@ Logical form:
 theorem rs_step_integrator_finite_sum (n : ℕ) (c : Fin n → ℝ) (hc : ∀ i, c i ∈ Set.Icc a b)
     (jump : Fin n → ℝ)
     (hstep : ∀ x ∈ Set.Icc a b, (∀ i, x ≠ c i) → ∃ k, ∀ y ∈ Set.Icc a b, (∀ i, y ≠ c i) → α y = k)
+    (hjump : ∀ i, LRA.Analysis.Continuity.JumpOf α (Set.Icc a b) (c i) (jump i))
     (hcont : ∀ i, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) (c i)) :
     HasRiemannStieltjesIntegral f α a b (∑ i, f (c i) * jump i)
 ```
@@ -232,6 +235,7 @@ theorem rs_step_integrator_finite_sum (n : ℕ) (c : Fin n → ℝ) (hc : ∀ i,
 theorem rs_step_integrator_finite_sum (n : ℕ) (c : Fin n → ℝ) (hc : ∀ i, c i ∈ Set.Icc a b)
     (jump : Fin n → ℝ)
     (hstep : ∀ x ∈ Set.Icc a b, (∀ i, x ≠ c i) → ∃ k, ∀ y ∈ Set.Icc a b, (∀ i, y ≠ c i) → α y = k)
+    (hjump : ∀ i, LRA.Analysis.Continuity.JumpOf α (Set.Icc a b) (c i) (jump i))
     (hcont : ∀ i, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) (c i)) :
     HasRiemannStieltjesIntegral f α a b (∑ i, f (c i) * jump i) := by
   sorry

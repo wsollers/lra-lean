@@ -8,6 +8,7 @@ chapter builds on. One Lean statement per book label, `sorry`-bodied.
 -/
 
 import Mathlib.Data.Real.Basic
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 namespace LRA.Analysis.Integration
 
@@ -55,11 +56,11 @@ Logical form:
 
 ```lean
 noncomputable def PartitionMesh {a b : ℝ} (P : IntegrationPartition a b) : ℝ :=
-  0
+  sSup ({0} ∪ {w : ℝ | ∃ i : Fin P.n, w = SubintervalWidth P i})
 ```
 -/
 noncomputable def PartitionMesh {a b : ℝ} (P : IntegrationPartition a b) : ℝ :=
-  0
+  sSup ({0} ∪ {w : ℝ | ∃ i : Fin P.n, w = SubintervalWidth P i})
 
 /-- `def:tagged-partition-integration`: a partition together with a tag
 Mathematical statement (Lean): `structure TaggedPartitionIntegration (a b : ℝ) extends IntegrationPartition a b`.

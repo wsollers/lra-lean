@@ -3,8 +3,7 @@ Draft module promoted from scratch and wired into the Volume III Analysis integr
 Source: book-integration/riemann-integration/notes/mcshane-integral/notes-mcshane-integral.tex.
 
 Full-coverage pass over the `mcshane-integral` section — the chapter's
-final stop before the handoff to measure theory (McShane = Lebesgue
-exactly). Fixes ISSUES.md #69/#70: distinct name `IsMcShaneDeltaFine`
+final stop before the handoff to measure theory. Fixes ISSUES.md #69/#70: distinct name `IsMcShaneDeltaFine`
 (vs. HK's `IsHKDeltaFine`) for the tag-can-be-outside-slab relation, and
 the McShane tagged-partition structure below does not reuse
 `TaggedPartitionIntegration` (whose tag-in-slab requirement is exactly
@@ -108,42 +107,8 @@ theorem riemann_mcshane_hk_inclusions (hab : a ≤ b) (L : ℝ) :
     (HasMcShaneIntegral f a b L → HasHKIntegral f a b L) := by
   sorry
 
--- `thm:mcshane-equals-lebesgue`
-/-- If `hab : a ≤ b`. Then `IsMcShaneIntegrable f a b ↔ ∃ E : Set ℝ, IsMeasureZero E ∧ ∀ x ∈ Set.Icc
-a b \ E, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) x`.
-
-Logical form:
-
-```lean
-theorem mcshane_equals_lebesgue (hab : a ≤ b) :
-    IsMcShaneIntegrable f a b ↔
-      ∃ E : Set ℝ, IsMeasureZero E ∧
-        ∀ x ∈ Set.Icc a b \ E, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) x
-```
--/
-theorem mcshane_equals_lebesgue (hab : a ≤ b) :
-    IsMcShaneIntegrable f a b ↔
-      ∃ E : Set ℝ, IsMeasureZero E ∧
-        ∀ x ∈ Set.Icc a b \ E, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) x := by
-  sorry
-
-/-- If `F FD : ℝ → ℝ`, `hF : ∀ x : ℝ, LRA.Analysis.Differentiation.Derivative (FD x) F
-Set.univ x`, `hHK : IsHKIntegrable FD (-1) 1`, and `hnotLebesgue : ¬ IsRiemannIntegrable (fun x
-=> |FD x|) (-1) 1`. Then `¬ IsMcShaneIntegrable FD (-1) 1`.
-
-Logical form:
-
-```lean
-theorem hk_strictly_wider_than_mcshane (F FD : ℝ → ℝ)
-    (hF : ∀ x : ℝ, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x)
-    (hHK : IsHKIntegrable FD (-1) 1) (hnotLebesgue : ¬ IsRiemannIntegrable (fun x => |FD x|) (-1) 1) :
-    ¬ IsMcShaneIntegrable FD (-1) 1
-```
--/
-theorem hk_strictly_wider_than_mcshane (F FD : ℝ → ℝ)
-    (hF : ∀ x : ℝ, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x)
-    (hHK : IsHKIntegrable FD (-1) 1) (hnotLebesgue : ¬ IsRiemannIntegrable (fun x => |FD x|) (-1) 1) :
-    ¬ IsMcShaneIntegrable FD (-1) 1 := by
-  sorry
+-- McShane/Lebesgue equivalence and strict HK-vs-McShane witness claims
+-- are deferred until the repository has a genuine measure-theoretic
+-- integration layer.
 
 end LRA.Analysis.Integration

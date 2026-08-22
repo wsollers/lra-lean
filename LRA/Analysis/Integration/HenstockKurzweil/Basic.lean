@@ -168,20 +168,7 @@ theorem continuous_hk_integrable (hab : a ≤ b)
     IsHKIntegrable f a b := by
   sorry
 
-/-- If `F FD : ℝ → ℝ` and `hF : ∀ x : ℝ, LRA.Analysis.Differentiation.Derivative (FD x) F
-Set.univ x`. Then `IsHKIntegrable FD (-1) 1 ∧ ¬ IsRiemannIntegrable (fun x => |FD x|) (-1) 1`.
-
-Logical form:
-
-```lean
-theorem hk_strictly_wider_than_lebesgue_witness (F FD : ℝ → ℝ)
-    (hF : ∀ x : ℝ, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x) :
-    IsHKIntegrable FD (-1) 1 ∧ ¬ IsRiemannIntegrable (fun x => |FD x|) (-1) 1
-```
--/
-theorem hk_strictly_wider_than_lebesgue_witness (F FD : ℝ → ℝ)
-    (hF : ∀ x : ℝ, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x) :
-    IsHKIntegrable FD (-1) 1 ∧ ¬ IsRiemannIntegrable (fun x => |FD x|) (-1) 1 := by
-  sorry
+-- Strict HK-vs-Riemann/Lebesgue witness examples are deferred until the
+-- repository has a genuine measure-theoretic integration layer.
 
 end LRA.Analysis.Integration

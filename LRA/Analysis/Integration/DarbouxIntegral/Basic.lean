@@ -7,6 +7,7 @@ statement per book label, `sorry`-bodied.
 -/
 
 import Mathlib.Data.Real.Basic
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 import LRA.Analysis.Integration.Partitions
 import LRA.Analysis.Integration.RiemannIntegral.Basic
 import LRA.Analysis.Continuity.MonotoneFunctions
@@ -23,11 +24,15 @@ Logical form:
 
 ```lean
 noncomputable def LowerDarbouxSum (f : ℝ → ℝ) {a b : ℝ} (P : IntegrationPartition a b) : ℝ :=
-  0
+  ∑ i : Fin P.n,
+    SubintervalWidth P i *
+      sInf (f '' Set.Icc (P.points i.castSucc) (P.points i.succ))
 ```
 -/
 noncomputable def LowerDarbouxSum (f : ℝ → ℝ) {a b : ℝ} (P : IntegrationPartition a b) : ℝ :=
-  0
+  ∑ i : Fin P.n,
+    SubintervalWidth P i *
+      sInf (f '' Set.Icc (P.points i.castSucc) (P.points i.succ))
 
 /-- `UpperDarbouxSum`.
 Mathematical statement (Lean): `noncomputable def UpperDarbouxSum (f : ℝ → ℝ) {a b : ℝ} (P : IntegrationPartition a b) : ℝ :=`.
@@ -37,11 +42,15 @@ Logical form:
 
 ```lean
 noncomputable def UpperDarbouxSum (f : ℝ → ℝ) {a b : ℝ} (P : IntegrationPartition a b) : ℝ :=
-  0
+  ∑ i : Fin P.n,
+    SubintervalWidth P i *
+      sSup (f '' Set.Icc (P.points i.castSucc) (P.points i.succ))
 ```
 -/
 noncomputable def UpperDarbouxSum (f : ℝ → ℝ) {a b : ℝ} (P : IntegrationPartition a b) : ℝ :=
-  0
+  ∑ i : Fin P.n,
+    SubintervalWidth P i *
+      sSup (f '' Set.Icc (P.points i.castSucc) (P.points i.succ))
 
 -- `lem:darboux-refinement-squeeze`
 /-- Let `P P' : IntegrationPartition a b`. If `h : RefinesPartition P' P`. Then `LowerDarbouxSum f P
@@ -232,17 +241,24 @@ theorem darboux_integrable_continuous_composition (hf : IsDarbouxIntegrable f a 
     IsDarbouxIntegrable (fun x => φ (f x)) a b := by
   sorry
 
-/-- The theorem asserts `¬ IsDarbouxIntegrable (fun _ => (0 : ℝ)) 0 1`.
+/-- The theorem asserts non-integrability of the Dirichlet function on
+`[0,1]`.
 
 Logical form:
 
 ```lean
 theorem dirichlet_not_darboux_integrable :
-    ¬ IsDarbouxIntegrable (fun _ => (0 : ℝ)) 0 1
+    ¬ IsDarbouxIntegrable
+      (fun x => by
+        classical
+        exact if LRA.Analysis.Completeness.IsIrrational x then (0 : ℝ) else 1) 0 1
 ```
 -/
 theorem dirichlet_not_darboux_integrable :
-    ¬ IsDarbouxIntegrable (fun _ => (0 : ℝ)) 0 1 := by
+    ¬ IsDarbouxIntegrable
+      (fun x => by
+        classical
+        exact if LRA.Analysis.Completeness.IsIrrational x then (0 : ℝ) else 1) 0 1 := by
   sorry
 
 end LRA.Analysis.Integration
