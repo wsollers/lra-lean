@@ -216,11 +216,11 @@ to get `Aᶜ ∩ Bᶜ = Bᶜ` (via `DeMorganUnion`), which is `Bᶜ ⊆ Aᶜ` (v
 Logical form:
 
 ```lean
-theorem DualAntitone [UnionLaws α] [IntersectionLaws α] :
+theorem DualAntitone [HasSubset α] [UnionLaws α] [IntersectionLaws α] :
     ∀ A B : α, A ⊆ B ↔ Dual B ⊆ Dual A
 ```
 -/
-theorem DualAntitone [UnionLaws α] [IntersectionLaws α] :
+theorem DualAntitone [HasSubset α] [UnionLaws α] [IntersectionLaws α] :
     ∀ A B : α, A ⊆ B ↔ Dual B ⊆ Dual A := by
   sorry
 
