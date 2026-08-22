@@ -81,7 +81,16 @@ def IsChoiceSetFor (A choiceSet : Set) : Prop :=
       (x ∈ B /\ x ∈ choiceSet) /\
       forall other : Set, (other ∈ B /\ other ∈ choiceSet) -> other = x
 
-/-- `U` is a Grothendieck universe containing `A`. -/
+/-- `U` is a Grothendieck universe containing `A`.
+
+Besides transitivity and powerset closure, the universe is closed both under
+forming the range of a `U`-indexed family of `U`-members and under the indexed
+union of such a family. The latter is the standard union closure needed for a
+Grothendieck universe.
+
+Logical form:
+
+```lean
 def IsGrothendieckUniverseFor (A U : Set) : Prop :=
   A ∈ U /\
   (forall x : Set, x ∈ U -> forall y : Set, y ∈ x -> y ∈ U) /\
@@ -92,6 +101,31 @@ def IsGrothendieckUniverseFor (A U : Set) : Prop :=
       (forall i : Set, i ∈ I -> family i ∈ U) ->
         exists image : Set,
           image ∈ U /\
-          forall y : Set, y ∈ image <-> exists i : Set, i ∈ I /\ y = family i)
+          forall y : Set, y ∈ image <-> exists i : Set, i ∈ I /\ y = family i) /\
+  (forall I : Set, I ∈ U ->
+    forall family : Set -> Set,
+      (forall i : Set, i ∈ I -> family i ∈ U) ->
+        exists union : Set,
+          union ∈ U /\
+          forall x : Set, x ∈ union <-> exists i : Set, i ∈ I /\ x ∈ family i)
+```
+-/
+def IsGrothendieckUniverseFor (A U : Set) : Prop :=
+  A ∈ U /\
+  (forall x : Set, x ∈ U -> forall y : Set, y ∈ x -> y ∈ U) /\
+  (forall x : Set, x ∈ U -> exists P : Set,
+    P ∈ U /\ IsPowerSetOf x P) /\
+  (forall I : Set, I ∈ U ->
+    forall family : Set -> Set,
+      (forall i : Set, i ∈ I -> family i ∈ U) ->
+        exists image : Set,
+          image ∈ U /\
+          forall y : Set, y ∈ image <-> exists i : Set, i ∈ I /\ y = family i) /\
+  (forall I : Set, I ∈ U ->
+    forall family : Set -> Set,
+      (forall i : Set, i ∈ I -> family i ∈ U) ->
+        exists union : Set,
+          union ∈ U /\
+          forall x : Set, x ∈ union <-> exists i : Set, i ∈ I /\ x ∈ family i)
 
 end LRA.Set.TG
