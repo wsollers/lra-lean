@@ -30,6 +30,12 @@ Project-wide rule: `sorry` proof bodies are neutral. Under-specified theorem sta
 - `LRA/VolumeII/NumberSystems/CharacteristicCardinality.lean`
 - `LRA/VolumeII/NumberSystems/ComparisonMatrix.lean`
 - `LRA/VolumeII/NumberSystems/Construction.lean`
+- `LRA/NumberSystems/Integers/Constructions/QuotientOrderedPairs/Carrier.lean`
+- `LRA/NumberSystems/Integers/Constructions/QuotientOrderedPairs/Equivalence.lean`
+- `LRA/NumberSystems/Integers/Constructions/QuotientOrderedPairs/Operations.lean`
+- `LRA/NumberSystems/Integers/Constructions/QuotientOrderedPairs/WellDefinedness.lean`
+- `LRA/NumberSystems/Integers/Constructions/QuotientOrderedPairs/Laws.lean`
+- `LRA/NumberSystems/Integers/Constructions/QuotientOrderedPairs/Instances.lean`
 
 ---
 
@@ -296,12 +302,143 @@ What is missing is a canonical-map uniqueness theorem where universal properties
 
 ---
 
+# Concrete integer construction: quotient ordered pairs
+
+The quotient construction follows the standard formal-difference pattern:
+
+```text
+(a,b) ~ (c,d) iff a+d = c+b,
+```
+
+with coordinatewise addition, swapped-coordinate negation, and
+
+```text
+(a,b)(c,d) = (ac+bd, ad+bc).
+```
+
+These formulas are mathematically correct.
+
+The problem is the **generality of the advertised input interface**.
+
+## P0 — `WholeNumberArithmeticForQuotientPairs` is too weak to imply `IntegerModel`
+
+`WholeNumberArithmeticForQuotientPairs` requires a cancellative commutative additive monoid, commutative associative multiplication with unit and distributivity, a partial order, and addition preserving that order.
+
+It does **not** require, among other things:
+
+- `zero ≠ one`;
+- no zero divisors / multiplicative cancellation;
+- totality of the order;
+- order reflection/cancellation under translation;
+- integer-style order discreteness.
+
+Yet `QuotientOrderedPairsRealizesIntegerModel whole_data` is stated for every such `whole_data`.
+
+### Immediate counterexample
+
+Take the one-element carrier with `zero = one`, all operations trivial, and the unique relation as order. Every displayed field of `WholeNumberArithmeticForQuotientPairs` holds.
+
+The quotient carrier is again one element, but `IntegerModel` requires `IntegralDomainLaws`, which includes the nontriviality law `1 ≠ 0`.
+
+Therefore `QuotientOrderedPairsRealizesIntegerModel` is false under its current hypotheses.
+
+**Severity: P0 FALSE REALIZATION THEOREM.**
+
+### Repair
+
+Replace the bespoke weak input record by a canonical whole-number certificate, or add exactly the missing requirements needed to derive:
+
+```text
+IntegralDomainLaws quotient
+LinearOrderLaws quotient
+order-operation compatibility
+OrderDiscretenessLaw quotient.
+```
+
+This is exactly where the project's named law architecture should be reused rather than re-listed manually.
+
+## P0 — quotient order is not well-defined from order preservation alone
+
+Current order on representatives is
+
+```text
+(a,b) ≤ (c,d) iff a+d ≤ c+b.
+```
+
+`representative_order_respects_equivalence` is claimed from the current whole-number interface.
+
+But the interface only assumes
+
+```text
+a ≤ b -> a+c ≤ b+c,
+```
+
+not the converse needed to cancel a common translation.
+
+### Concrete countermodel
+
+Use ordinary natural-number addition and multiplication, and define a partial order
+
+```text
+a ≼ b iff a = b or (1 ≤ a and a < b).
+```
+
+This relation is reflexive, antisymmetric, transitive, and preserved by addition.
+
+However
+
+```text
+0 ≰ 1,
+1 ≼ 2.
+```
+
+The equivalent representatives `(0,0) ~ (1,1)` then give different order answers when compared with `(1,0)`:
+
+```text
+(0,0) ≤ (1,0)  reduces to 0 ≼ 1   -- false
+(1,1) ≤ (1,0)  reduces to 1 ≼ 2   -- true.
+```
+
+So `representative_order_respects_equivalence` is false with the current hypotheses.
+
+### Required law
+
+Add an order-cancellation/reflection requirement such as
+
+```text
+a+c ≤ b+c ↔ a ≤ b
+```
+
+or use a canonical ordered-cancellative-additive structure whose laws imply it.
+
+**Severity: P0 FALSE WELL-DEFINEDNESS THEOREM.**
+
+## Architecture note
+
+The quotient-pairs pipeline is otherwise very well split:
+
+```text
+Carrier
+-> Equivalence
+-> WellFoundedness
+-> Operations
+-> WellDefinedness
+-> Laws
+-> Behavior
+-> Instances.
+```
+
+The defect is not the construction pattern; it is that the generic input contract does not state enough mathematics for the later output contract.
+
+---
+
 # Choice audit
 
 No new genuine family-wise AC dependency was identified in this chunk.
 
 - selecting a tower with `Classical.choice` from a single existential is witness extraction, not AC;
 - universal-property existence statements do not themselves create an AC dependency;
+- quotient construction/lifting does not inherently require AC;
 - no arbitrary family of nonempty sets is being simultaneously selected here.
 
 ---
@@ -325,17 +462,24 @@ No new genuine family-wise AC dependency was identified in this chunk.
 | Canonical embedding records | **PASS** |
 | Construction selector | **P0 DETACHED FROM CONFIGURATION** |
 | Comparison matrix | **SEMANTICALLY DETACHED / P1-P0** |
+| Quotient-pairs formulas | **PASS** |
+| Quotient-pairs whole-number input contract | **P0 TOO WEAK** |
+| Quotient order well-definedness | **P0 FALSE UNDER CURRENT INPUT** |
+| Quotient-pairs integer-model realization | **P0 FALSE UNDER CURRENT INPUT** |
 | Choice usage | **NO NEW GENUINE AC** |
 
 ---
 
 # Immediate repair order
 
-1. repair `RationalsAreCountable` so it targets the actual rational construction, not arbitrary dense ordered fields;
-2. add uniqueness to the integer and rational universal properties;
-3. replace the real “isomorphism” claim with an actual ordered-field isomorphism/bijection plus uniqueness theorem as intended;
-4. index/certify `NumberSystemTower` by its selected construction configuration;
-5. tie comparison ledgers definitionally to their supplied carriers/certificates;
-6. unify or bridge the two integer-discreteness notions;
-7. migrate local countability vocabulary to the canonical Carrier/Cardinality layer;
-8. then audit each concrete integer/rational/real construction and its certificate registrations.
+1. strengthen/refactor `WholeNumberArithmeticForQuotientPairs` using canonical law certificates;
+2. add order translation reflection/cancellation before quotienting the order;
+3. only then state `QuotientOrderedPairsRealizesIntegerModel`;
+4. repair `RationalsAreCountable` so it targets the actual rational construction, not arbitrary dense ordered fields;
+5. add uniqueness to the integer and rational universal properties;
+6. replace the real “isomorphism” claim with an actual ordered-field isomorphism/bijection plus uniqueness theorem as intended;
+7. index/certify `NumberSystemTower` by its selected construction configuration;
+8. tie comparison ledgers definitionally to their supplied carriers/certificates;
+9. unify or bridge the two integer-discreteness notions;
+10. migrate local countability vocabulary to the canonical Carrier/Cardinality layer;
+11. continue with the concrete rational and real constructions after the integer input contract is corrected.
