@@ -6,7 +6,6 @@ import LRA.NumberSystems.RationalNumbers.Definition
 
 namespace LRA.NumberSystems.RationalNumbers.ContinuedFractions
 
-open LRA.NumberSystems.Models
 open LRA.Arithmetic.ContinuedFractions
 
 universe u
@@ -16,11 +15,6 @@ This module interprets the arithmetic continued-fraction objects from
 `LRA.Arithmetic.ContinuedFractions` in an actual `RationalNumberSystem`.
 The generic syntax, canonicality predicate, and eventual-periodicity predicate
 are owned by `LRA.Arithmetic`.
-
-Infinite convergence and the Lagrange theorem are real-number results and are
-not stated here. The former statements in this file did not express genuine
-convergence or the correct quadratic-irrational criterion, so they are removed
-rather than migrated unchanged.
 -/
 
 /-- Embed an integer coefficient into the rational field selected by a rational
@@ -31,14 +25,14 @@ Logical form:
 ```lean
 def EmbedIntegerCoefficient
     (rationalSystem : RationalNumberSystem.{u})
-    (coefficient : rationalSystem.DiscretelyOrderedIntegralDomainModel.Carrier) :
+    (coefficient : rationalSystem.IntegerSystem.Model.Carrier) :
     rationalSystem.FieldModel.Carrier :=
   rationalSystem.IntegerEmbedding.ToRational coefficient
 ```
 -/
 def EmbedIntegerCoefficient
     (rationalSystem : RationalNumberSystem.{u})
-    (coefficient : rationalSystem.DiscretelyOrderedIntegralDomainModel.Carrier) :
+    (coefficient : rationalSystem.IntegerSystem.Model.Carrier) :
     rationalSystem.FieldModel.Carrier :=
   rationalSystem.IntegerEmbedding.ToRational coefficient
 
@@ -47,21 +41,20 @@ coefficients.
 
 A singleton list `[a]` evaluates to the embedded integer `a`. A longer list
 `a :: rest` evaluates to `a + 1/r`, where `rest` evaluates to the nonzero value
-`r`. Thus the relation states the usual continued-fraction expression directly
-and records failure exactly when a reciprocal denominator would be zero.
+`r`.
 
 Logical form:
 
 ```lean
 def CoefficientsEvaluateTo
     (rationalSystem : RationalNumberSystem.{u}) :
-    List rationalSystem.DiscretelyOrderedIntegralDomainModel.Carrier →
+    List rationalSystem.IntegerSystem.Model.Carrier →
       rationalSystem.FieldModel.Carrier → Prop
 ```
 -/
 def CoefficientsEvaluateTo
     (rationalSystem : RationalNumberSystem.{u}) :
-    List rationalSystem.DiscretelyOrderedIntegralDomainModel.Carrier →
+    List rationalSystem.IntegerSystem.Model.Carrier →
       rationalSystem.FieldModel.Carrier → Prop
   | [], _ => False
   | [coefficient], value =>
@@ -82,7 +75,7 @@ Logical form:
 def FiniteSimpleContinuedFractionEvaluatesTo
     (rationalSystem : RationalNumberSystem.{u})
     (fraction :
-      FiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel)
+      FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (value : rationalSystem.FieldModel.Carrier) : Prop :=
   CoefficientsEvaluateTo rationalSystem
     (fraction.Head :: fraction.Tail) value
@@ -91,14 +84,14 @@ def FiniteSimpleContinuedFractionEvaluatesTo
 def FiniteSimpleContinuedFractionEvaluatesTo
     (rationalSystem : RationalNumberSystem.{u})
     (fraction :
-      FiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel)
+      FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (value : rationalSystem.FieldModel.Carrier) : Prop :=
   CoefficientsEvaluateTo rationalSystem
     (fraction.Head :: fraction.Tail) value
 
 /-- Every rational value has a unique canonical finite simple continued-fraction
-expansion relative to the integer system bundled into the rational number
-system.
+expansion relative to the integer number system bundled into the rational
+number system.
 
 Logical form:
 
@@ -107,12 +100,12 @@ theorem EveryRationalHasUniqueCanonicalFiniteSimpleContinuedFraction
     (rationalSystem : RationalNumberSystem.{u})
     (value : rationalSystem.FieldModel.Carrier) :
     ∃ fraction :
-        FiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel,
+        FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model,
       IsCanonicalSimpleContinuedFraction fraction ∧
         FiniteSimpleContinuedFractionEvaluatesTo
           rationalSystem fraction value ∧
         ∀ other :
-            FiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel,
+            FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model,
           IsCanonicalSimpleContinuedFraction other →
           FiniteSimpleContinuedFractionEvaluatesTo
             rationalSystem other value →
@@ -123,12 +116,12 @@ theorem EveryRationalHasUniqueCanonicalFiniteSimpleContinuedFraction
     (rationalSystem : RationalNumberSystem.{u})
     (value : rationalSystem.FieldModel.Carrier) :
     ∃ fraction :
-        FiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel,
+        FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model,
       IsCanonicalSimpleContinuedFraction fraction ∧
         FiniteSimpleContinuedFractionEvaluatesTo
           rationalSystem fraction value ∧
         ∀ other :
-            FiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel,
+            FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model,
           IsCanonicalSimpleContinuedFraction other →
           FiniteSimpleContinuedFractionEvaluatesTo
             rationalSystem other value →
