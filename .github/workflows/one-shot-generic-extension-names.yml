@@ -1,0 +1,67 @@
+name: One-shot generic extension rename
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-shot-generic-extension-names.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rename:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rename generic embedding and extension types
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import pathlib
+          replacements = [
+              ('IntegerEmbeddingIntoRational', 'OrderedRingEmbeddingIntoDenseOrderedField'),
+              ('RationalExtension', 'ArchimedeanDenseOrderedFieldExtension'),
+              ('RationalEmbeddingIntoReal', 'DenseOrderedFieldEmbeddingIntoReal'),
+              ('RealExtension', 'CofinalRealExtension'),
+              ('RationalEmbeddingIsCofinal', 'DenseOrderedFieldEmbeddingIsCofinal'),
+              ('RationalEmbedding', 'DenseOrderedFieldEmbedding'),
+              ('ToRational', 'ToField'),
+          ]
+          for root in [pathlib.Path('LRA'), pathlib.Path('docs'), pathlib.Path('tmp')]:
+              if not root.exists():
+                  continue
+              for path in root.rglob('*'):
+                  if not path.is_file() or path.suffix not in {'.lean', '.md', '.tsv', '.json'}:
+                      continue
+                  text = path.read_text(errors='ignore')
+                  new = text
+                  for old, repl in replacements:
+                      new = new.replace(old, repl)
+                  if new != text:
+                      path.write_text(new)
+          PY
+
+          for old in IntegerEmbeddingIntoRational RationalExtension RationalEmbeddingIntoReal RationalEmbeddingIsCofinal; do
+            if git grep -n "$old" -- LRA docs tmp 2>/dev/null; then
+              echo "Old generic name remains: $old" >&2
+              exit 1
+            fi
+          done
+
+          rm .github/workflows/one-shot-generic-extension-names.yml
+
+      - name: Commit clean generic names
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'BoondockTaints'
+          git config user.email 'wsollers@gmail.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'Rename generic number-system extensions'
+          git push origin HEAD:main
