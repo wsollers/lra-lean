@@ -217,11 +217,10 @@ Split from the former single 1676-line file, the largest of the six.
 Despite its own doc comment claiming "definitional independence" from
 Cantor and Cauchy, it imports `Cauchy` and uses it in
 `persistent_overlap_iff_endpoint_null` -- preserved verbatim, not "fixed".
-Also preserved verbatim: `ordered_field_structure`'s self-referential
-`quotient_distributivity rational_model = quotient_distributivity
-rational_model` conjunct, and `canonical_comparison_isomorphism_exists`'s
-self-comparison of `Carrier` to itself. These look like source bugs but
-are not this migration's to resolve.
+The earlier self-referential field-summary certificate and fake self-comparison
+have been removed. Individual law theorems remain in `Laws.lean`; the
+authoritative real-number certification is the carrier-tied
+`PrimitiveIntervalCarrierRealModelExists` theorem in `Instances.lean`.
 
 - [x] `Carrier.lean` -- `Rational`, `RationalInterval`, `contains`,
       `subset`, `overlaps`, `width`, `IntervalSequence`, `Representative`,
@@ -257,9 +256,9 @@ are not this migration's to resolve.
       `raw_interval_distributivity_can_fail`, `distributive_defect_vanishes`,
       `quotient_distributivity`, `nonzero_eventually_separated_from_zero`,
       `IsReciprocalInterval`, `reciprocal_exists_uniquely`, `inverse`,
-      `OrderedFieldStructure`/`ordered_field_structure` (self-referential
-      conjunct preserved), `LeastUpperBoundProperty`/
-      `least_upper_bound_property` -- all `sorry` except raw defs.
+      `LeastUpperBoundProperty`/`least_upper_bound_property` -- all `sorry`
+      except raw defs. The former ad-hoc `OrderedFieldStructure` summary was
+      removed in favor of the canonical carrier-tied `RealModel` certificate.
 - [ ] `Behavior.lean` -- `persistent_overlap_iff_endpoint_null` (`sorry`,
       repointed to `LRA.NumberSystems.RealNumbers.Cauchy`),
       `canonical_comparison_isomorphism_exists` (`sorry`, self-referential,

@@ -3,8 +3,8 @@
 -- subdistributivity and the strict failure of raw interval distributivity;
 -- vanishing of the distributive defect on shrinking representatives and
 -- exact quotient distributivity; separation of nonzero classes from zero;
--- the reciprocal interval and its existence/uniqueness away from zero; the
--- Archimedean ordered-field structure; and least-upper-bound completeness.
+-- the reciprocal interval and its existence/uniqueness away from zero; and
+-- least-upper-bound completeness.
 
 import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals.WellDefinedness
 
@@ -374,60 +374,6 @@ noncomputable def inverse
   Classical.choose
     (reciprocal_exists_uniquely rational_model value value_nonzero)
 
-
-/-- Proposition expressing the Archimedean ordered-field laws.
-
-Mathematical statement (Lean): `def OrderedFieldStructure : Prop`.
-
-
-Logical form:
-
-```lean
-def OrderedFieldStructure : Prop :=
-  StrictTotalOrder rational_model ∧
-  OrderCompatibility rational_model ∧
-  (∀ first second third : Carrier rational_model,
-    multiplication rational_model first
-        (addition rational_model second third) =
-      addition rational_model
-        (multiplication rational_model first second)
-        (multiplication rational_model first third)) ∧
-  (∀ value : Carrier rational_model,
-    value ≠ zero rational_model →
-    ∃ inverse_value,
-      multiplication rational_model value inverse_value = one rational_model)
-```
--/
-def OrderedFieldStructure : Prop :=
-  StrictTotalOrder rational_model ∧
-  OrderCompatibility rational_model ∧
-  (∀ first second third : Carrier rational_model,
-    multiplication rational_model first
-        (addition rational_model second third) =
-      addition rational_model
-        (multiplication rational_model first second)
-        (multiplication rational_model first third)) ∧
-  (∀ value : Carrier rational_model,
-    value ≠ zero rational_model →
-    ∃ inverse_value,
-      multiplication rational_model value inverse_value = one rational_model)
-
-
-/-- Theorem 7.1: the quotient is an Archimedean ordered field.
-
-Mathematical statement (Lean): `theorem ordered_field_structure : OrderedFieldStructure rational_model`.
-
-*Proof status:* proof pending
-
-
-Logical form:
-
-```lean
-theorem ordered_field_structure : OrderedFieldStructure rational_model
-```
--/
-theorem ordered_field_structure : OrderedFieldStructure rational_model := by
-  sorry
 
 /-- Proposition expressing least-upper-bound completeness.
 
