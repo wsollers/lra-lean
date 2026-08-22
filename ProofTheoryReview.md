@@ -8,6 +8,8 @@ Files reviewed include:
 
 - `LRA/Logic/Proof/System/Basic.lean`
 - `LRA/Logic/Proof/System/Derivation.lean`
+- `LRA/Logic/Proof/System/Takeuti/Term.lean`
+- `LRA/Logic/Proof/System/Takeuti/Formula.lean`
 - `LRA/Logic/Proof/System/Takeuti/Rule.lean`
 - `LRA/Logic/Proof/System/Takeuti/LK.lean`
 - `LRA/Logic/Proof/System/Takeuti/LJ.lean`
@@ -62,9 +64,72 @@ A |- A.
 
 The quantifier rules use a separate free-variable/bound-variable syntax and explicit eigenvariable side conditions for `forall`-right and `exists`-left.
 
-At the statement level these are recognizably standard Gentzen-style LK rules.
+However, the bound-variable substitution used to construct quantified formulas has an additional freshness obligation not currently present in the rules; see the P0 below.
 
-**Verdict: PASS at the rule-schema level.**
+---
+
+# P0 — Takeuti quantifier construction permits bound-variable capture
+
+Takeuti syntax deliberately distinguishes:
+
+```text
+Term       -- free variables only
+FormulaArg -- free variables, bound variables, and function applications
+```
+
+A quantified formula is constructed by replacing a chosen free variable `a` in a body by a named bound variable `x`:
+
+```text
+body.substFreeByBound a x
+```
+
+and then wrapping it in `Formula.all x` or `Formula.ex x`.
+
+But `Formula.substFreeByArg` recursively replaces the free variable throughout the entire formula, including under already-existing quantifiers, and the four quantifier rule constructors do not require
+
+```text
+Formula.BoundVarFresh x body.
+```
+
+That predicate already exists in `Formula.lean`, but is not used by `allLeft`, `allRight`, `exLeft`, or `exRight`.
+
+## Capture example
+
+Take a schematic body
+
+```text
+P(a) ∧ forall x, Q(a,x).
+```
+
+Replacing free `a` by bound `x` globally gives
+
+```text
+P(x) ∧ forall x, Q(x,x).
+```
+
+After wrapping an outer `forall x`, the first occurrence of `x` is bound by the new outer quantifier, but the occurrence replacing `a` inside the inner `forall x` is captured by the inner quantifier instead.
+
+Thus the syntactic transformation does not in general express the intended abstraction of all occurrences of the eigen/free variable into one newly introduced binder.
+
+The same issue affects existential introduction/elimination shapes built through `substFreeByBound`.
+
+## Repair
+
+At minimum, require
+
+```text
+Formula.BoundVarFresh x body
+```
+
+on every rule that introduces `Formula.all x (body.substFreeByBound a x)` or `Formula.ex x (...)`.
+
+Alternatively, implement alpha-renaming/fresh-bound-variable generation before abstraction, so the rule can always choose a fresh binder.
+
+The free-variable eigencondition on `a` in `forall`-right / `exists`-left is a **different** condition and does not repair bound-variable capture.
+
+**Severity: P0 RULE-SCHEMA SOUNDNESS DEFECT.**
+
+Until this is repaired, the current LK/LJ quantifier rule relation should not be treated as a sound first-order calculus.
 
 ---
 
@@ -74,7 +139,9 @@ At the statement level these are recognizably standard Gentzen-style LK rules.
 
 This is a reasonable and economical implementation of the usual single-succedent intuitionistic restriction.
 
-**Verdict: PASS.**
+Its quantifier fragment inherits the bound-variable-capture P0 from the shared `Rule` relation.
+
+**Verdict: propositional/single-succedent architecture PASS; quantifier rules inherit P0.**
 
 ---
 
@@ -110,9 +177,9 @@ EachLJRulePreservesValidity
 DerivableImpliesValid
 ```
 
-The quantifier-rule soundness proofs will depend on the substitution and free-variable/eigenvariable semantics reviewed in `LogicSyntaxReview.md`.
+The quantifier-rule soundness proofs will depend on Takeuti-local substitution, assignment-independence, and eigenvariable/fresh-bound-variable semantics.
 
-This is the highest-value next theorem layer for the proof calculus.
+This is the highest-value next theorem layer after the P0 capture repair.
 
 **Severity: P1 major proof-readiness gap.**
 
@@ -156,19 +223,23 @@ This provides a direct induction target for `Derivable`.
 
 # Quantifier/eigenvariable readiness
 
-The rule statements already expose the relevant freshness hypotheses:
+There are two distinct freshness requirements and both should be represented explicitly:
 
-- `forall` right: eigenvariable absent from the conclusion sequent;
-- `exists` left: eigenvariable absent from the conclusion sequent.
+1. **free eigenvariable freshness** for `forall`-right and `exists`-left: the chosen free variable must not occur in the surrounding conclusion sequent;
+2. **bound-variable freshness** for abstraction: the bound variable introduced by `substFreeByBound` must be fresh in the body, or the body must first be alpha-renamed.
 
-To make their soundness proofs robust, add/confirm bridge lemmas connecting Takeuti's free-variable occurrence predicates to semantic assignment independence and substitution.
+The current rules include (1) but omit (2).
 
-Recommended theorem shapes:
+Recommended theorem/definition surface:
 
 ```text
+TakeutiTermEvaluation
+TakeutiFormulaSatisfaction
 TakeutiTermEvaluationSubstitution
 TakeutiFormulaSatisfactionSubstitution
 FreeVariableAbsentImpliesAssignmentIrrelevance
+BoundVariableRenaming
+FreshBoundVariableAbstraction
 EigenvariableRenaming
 ```
 
@@ -178,7 +249,7 @@ If the Takeuti syntax is intentionally independent from the general first-order 
 
 # Cut elimination roadmap
 
-Once soundness and syntax infrastructure are stable, the appropriate proof-theory progression is:
+Once the quantifier rules and soundness infrastructure are stable, the appropriate proof-theory progression is:
 
 ```text
 height / complexity of derivations
@@ -201,6 +272,8 @@ No genuine family-wise Axiom-of-Choice use appears in the proof-system definitio
 
 Inverse extraction in model isomorphism infrastructure is unrelated to the sequent calculus and is ordinary single-witness choice.
 
+Fresh-variable generation may require an infinite supply/freshness assumption on the variable types, but that is not inherently the Axiom of Choice.
+
 ---
 
 # Verdict
@@ -209,26 +282,31 @@ Inverse extraction in model isomorphism infrastructure is unrelated to the seque
 |---|---|
 | generic `ProofSystem` | **PASS** |
 | generic finite `Derivable` | **PASS** |
-| LK rule schemata | **PASS** |
-| LJ single-succedent restriction | **PASS** |
-| quantifier eigenvariable conditions | **GOOD SHAPE** |
+| LK structural/propositional rule shapes | **PASS** |
+| Takeuti bound/free variable syntax idea | **GOOD** |
+| quantifier abstraction by `substFreeByBound` | **P0 CAPTURE DEFECT WITHOUT BOUND FRESHNESS** |
+| LJ single-succedent restriction | **PASS, INHERITS QUANTIFIER P0** |
+| free eigenvariable conditions | **PRESENT** |
+| bound-variable freshness condition | **MISSING P0** |
 | sequent semantics | **MISSING** |
-| soundness of rules/derivations | **P1 MAJOR GAP** |
+| soundness of rules/derivations | **P1 MAJOR GAP AFTER P0 REPAIR** |
 | cut elimination | **EXPLICIT SCAFFOLD ONLY** |
-| proof-theory readiness | **RULE-SYNTAX READY, METATHEORY NOT YET READY** |
+| proof-theory readiness | **PROPOSITIONAL RULE SYNTAX PROMISING; FIRST-ORDER QUANTIFIER RULES NOT YET SOUND** |
 | Choice usage | **NONE NEW** |
 
 ---
 
 # Immediate repair / development order
 
-1. define sequent satisfaction/validity;
-2. prove initial sequents valid;
-3. prove soundness of structural/propositional rules;
-4. prove Takeuti quantifier substitution/eigenvariable lemmas;
-5. prove soundness of quantifier rules;
-6. lift rule soundness to `Derivable` soundness;
-7. add cut-free derivation predicate / derivation complexity measures;
-8. develop cut elimination;
-9. derive subformula and consistency consequences;
-10. only then move to completeness if desired.
+1. repair bound-variable capture in all four quantifier rules;
+2. add/verify alpha-renaming or fresh-bound-variable abstraction;
+3. define Takeuti term/formula semantics;
+4. define sequent satisfaction/validity;
+5. prove initial sequents valid;
+6. prove soundness of structural/propositional rules;
+7. prove Takeuti quantifier substitution/eigenvariable lemmas;
+8. prove soundness of repaired quantifier rules;
+9. lift rule soundness to `Derivable` soundness;
+10. add cut-free derivation predicate / derivation complexity measures;
+11. develop cut elimination and subformula consequences;
+12. only then move to completeness if desired.
