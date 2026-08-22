@@ -302,9 +302,86 @@ The ZFSet law registrations correctly omit complement/universal-membership certi
 
 ---
 
+# Review 3 — in-house ZFCSet, NBGSet, and TGSet registrations
+
+## Files reviewed
+
+- `LRA/Set/ZFCSet/Instances.lean`
+- `LRA/Set/ZFCSet/Laws.lean`
+- `LRA/Set/NBGSet/Instances.lean`
+- `LRA/Set/NBGSet/Laws.lean`
+- `LRA/Set/TGSet/Instances.lean`
+- `LRA/Set/TGSet/Laws.lean`
+
+## Shared set-sized capability profile
+
+All three in-house single-sorted set carriers expose the same appropriate set-sized operations:
+
+- binary union and intersection;
+- subset;
+- empty set;
+- relative difference;
+- symmetric difference;
+- separation;
+- powerset;
+- union over a set/collection of sets;
+- intersection over a set/collection of sets.
+
+They do **not** expose:
+
+- a universal set of all sets;
+- absolute complement relative to such a universal set;
+- arbitrary Lean-`Type`-indexed unions/intersections.
+
+This is the correct capability profile for the set carriers themselves.
+
+**Verdict: PASS.**
+
+## NBG subtlety handled correctly
+
+NBG has a universal **class**, but `NBGSet` is the carrier of sets, not classes. Therefore it would be mathematically wrong to register `HasUniversal NBGSet` merely because the theory has a universal class.
+
+The current adapter correctly avoids that mistake.
+
+**Verdict: PASS.**
+
+## TG subtlety handled correctly
+
+The Tarski–Grothendieck universe axiom says individual sets lie in sufficiently large Grothendieck universes; it does not make the total collection of all TG sets into one TG set.
+
+Therefore the absence of `HasUniversal TGSet` and arbitrary meta-type indexed set union is still correct.
+
+This backend registration remains sound even though the separate TG foundation review identified a defect in the *definition of Grothendieck universe itself* (missing indexed-union closure). That defect belongs to the foundation axiom/predicate layer, not to this interface registration.
+
+**Verdict: PASS.**
+
+## Law families
+
+The in-house ZFC/NBG/TG law aggregates register the expected algebraic and membership families for the capabilities actually exposed:
+
+- union;
+- intersection;
+- distributivity;
+- subset;
+- difference;
+- symmetric difference;
+- membership.
+
+Notably, there is no complement law family in these aggregates, consistent with the absence of an absolute universal-set capability.
+
+**Verdict: PASS.**
+
+## Choice audit
+
+The operation instances are `noncomputable` because many concrete sets are named by choosing witnesses from existence/uniqueness theorems. This is ordinary witness extraction from the foundational axioms and derived existence theorems; it should not be classified as a new family-wise use of the Axiom of Choice.
+
+No additional Choice leak was identified in these registrations.
+
+---
+
 # Pre-measure-theory relevance
 
-The set layer is already strong enough to support sigma algebras and ordinary measure-theory set manipulation across both typed and ZF-style backends.
+The set layer is already strong enough to support sigma algebras and ordinary measure-theory set manipulation across typed, Mathlib, ZFC, NBG, and TG-style backends.
 
 The important remaining work is now theorem/API integration rather than basic set correctness:
 
@@ -312,19 +389,19 @@ The important remaining work is now theorem/API integration rather than basic se
 - sigma-algebra closure under countable intersections;
 - generated sigma algebra/Borel bridges;
 - subset-as-order named bridges;
-- measurable preimage theory reusing the canonical relation/set preimage layer where appropriate.
+- measurable preimage theory reusing the canonical relation/function preimage layer.
 
 ---
 
 # Choice audit
 
-No genuine Axiom-of-Choice use was identified in the shared set-interface laws, predicate-set realizations, Mathlib Set adapter, or Mathlib ZFSet countable-operation adapter reviewed here.
+No genuine Axiom-of-Choice use was identified in the shared set-interface laws or in the concrete backend registrations reviewed here.
 
-In particular, constructing `⋃ n, A n` from an already supplied function `A : Nat → ZFSet` is not a selection problem.
+In particular, noncomputably naming a unique/existing union, intersection, empty set, separated set, etc. is witness extraction, not a new family-wise selection principle.
 
 ---
 
-# Final verdict through Review 2
+# Final verdict through Review 3
 
 | Dimension | Verdict |
 |---|---|
@@ -334,11 +411,12 @@ In particular, constructing `⋃ n, A n` from an already supplied function `A : 
 | Indexed/countable families | **PASS** |
 | Empty collection intersection handling | **PASS** |
 | Union/intersection/distributivity laws | **PASS** |
-| Difference/complement laws | **PASS** |
+| Difference/complement capability split | **PASS** |
 | Covers/subcovers | **PASS** |
 | PredicateSet backend | **PASS** |
 | Mathlib `Set` backend | **PASS** |
 | Mathlib `ZFSet` capability restrictions | **PASS** |
+| In-house ZFC/NBG/TG capability restrictions | **PASS** |
 | Choice leakage in reviewed adapters | **NONE** |
 | Pre-measure-theory set foundation | **STRONG** |
 
@@ -346,4 +424,4 @@ In particular, constructing `⋃ n, A n` from an already supplied function `A : 
 
 # Next review chunk
 
-Sample the in-house ZFC/NBG/TG backend registration files to ensure they advertise the same honest capability profiles as Mathlib ZFSet, then continue the non-foundational Choice audit and move outward to function/preimage architecture where it intersects measurable-map theory.
+The backend layer is now sufficiently checked. Continue outward through canonical function maps (products/projections/inclusions/quotients), then use the established function preimage calculus to specify the thin measurable-map layer and product-measurable-space dependencies without duplicating set semantics.
