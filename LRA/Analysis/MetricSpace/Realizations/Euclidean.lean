@@ -39,7 +39,7 @@ theorem mathlibRn_ext {n : ℕ} {x y : MathlibRn n}
 /-- The metric on `MathlibRn n` inherited from the ambient Mathlib metric
 on the coordinate function space `Fin n → ℝ`. -/
 noncomputable def EuclideanRnMetric (n : ℕ) :
-    MetricDefinition mathlibRealModel (MathlibRn n) where
+    MetricDefinition (MathlibRn n) where
   distance x y := dist (coordinates x) (coordinates y)
   positive x y := by
     constructor
@@ -58,7 +58,7 @@ noncomputable def EuclideanRnMetric (n : ℕ) :
 /-- The metric-space definition obtained by appending the Euclidean metric
 to the carrier `Rn mathlibRealModel n`. -/
 noncomputable def EuclideanRnMetricSpaceDefinition (n : ℕ) :
-    MetricSpaceDefinition mathlibRealModel where
+    MetricSpaceDefinition where
   Carrier := MathlibRn n
   metric := EuclideanRnMetric n
 
@@ -66,26 +66,30 @@ noncomputable def EuclideanRnMetricSpaceDefinition (n : ℕ) :
 carrier by adding a metric, while keeping the original Euclidean
 `L_geom`-structure visible as its base. -/
 structure EuclideanRnMetricSpaceModel (real_model : RealModel) (n : ℕ)
-    extends MetricSpaceDefinition real_model where
-  euclideanStructure : TarskiStructure := EuclideanTupleModel real_model n
-  carrier_eq : Carrier = euclideanStructure.Domain
+    where
+  metricSpace : MetricSpaceDefinition
+  euclideanStructure : TarskiStructure
+  carrier_eq : metricSpace.Carrier = euclideanStructure.Domain
 
 /-- Package any metric on the tuple carrier `Rn real_model n` as a metric-space
 realization extending the base Euclidean tuple model. -/
 def euclideanRnMetricSpaceModelOf
     (real_model : RealModel) (n : ℕ)
-    (metric : MetricDefinition real_model (Rn real_model n)) :
+    (metric : MetricDefinition (Rn real_model n)) :
     EuclideanRnMetricSpaceModel real_model n where
-  Carrier := Rn real_model n
-  metric := metric
+  metricSpace := {
+    Carrier := Rn real_model n
+    metric := metric
+  }
+  euclideanStructure := EuclideanTupleModel real_model n
   carrier_eq := rfl
 
 /-- The canonical metric-space realization of the tuple-based Euclidean
 carrier in the Mathlib-real specialization. -/
 noncomputable def canonicalEuclideanRnMetricSpaceModel (n : ℕ) :
     EuclideanRnMetricSpaceModel mathlibRealModel n where
-  Carrier := MathlibRn n
-  metric := EuclideanRnMetric n
+  metricSpace := EuclideanRnMetricSpaceDefinition n
+  euclideanStructure := EuclideanTupleModel mathlibRealModel n
   carrier_eq := rfl
 
 end LRA.Analysis.MetricSpace

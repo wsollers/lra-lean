@@ -42,9 +42,8 @@ def IsConvergentAt
     (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (depth : Nat)
     (value : rationalSystem.FieldModel.Carrier) : Prop :=
-  LRA.NumberSystems.RationalNumbers.ContinuedFractions.
-    FiniteSimpleContinuedFractionEvaluatesTo
-      rationalSystem (FinitePrefix fraction depth) value
+  LRA.NumberSystems.RationalNumbers.ContinuedFractions.FiniteSimpleContinuedFractionEvaluatesTo
+    rationalSystem (FinitePrefix fraction depth) value
 ```
 -/
 def IsConvergentAt
@@ -52,9 +51,8 @@ def IsConvergentAt
     (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (depth : Nat)
     (value : rationalSystem.FieldModel.Carrier) : Prop :=
-  LRA.NumberSystems.RationalNumbers.ContinuedFractions.
-    FiniteSimpleContinuedFractionEvaluatesTo
-      rationalSystem (FinitePrefix fraction depth) value
+  LRA.NumberSystems.RationalNumbers.ContinuedFractions.FiniteSimpleContinuedFractionEvaluatesTo
+    rationalSystem (FinitePrefix fraction depth) value
 
 /-- The convergents of an infinite simple continued fraction converge to a real
 value when, after embedding each rational convergent into the selected real

@@ -30,7 +30,7 @@ def Equivalent
     (first second : EffectiveCauchyApproximation rationalSystem) : Prop :=
   ∀ precision : Nat,
     ∃ index : Nat, ∀ n ≥ index,
-      let difference := first.Approximate n + -second.Approximate n
+      let difference := first.Approximate n + -second.Approximate n;
       -PrecisionRadius rationalSystem precision < difference ∧
         difference < PrecisionRadius rationalSystem precision
 

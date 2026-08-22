@@ -56,8 +56,9 @@ def IsCanonicalSimpleContinuedFraction
     (fraction : FiniteSimpleContinuedFraction integerModel) : Prop :=
   (∀ coefficient ∈ fraction.Tail, 0 < coefficient) ∧
     (fraction.Tail = [] ∨
-      ∃ prefix last,
-        fraction.Tail = prefix ++ [last] ∧ 1 < last)
+      ∃ initialSegment : List integerModel.Carrier,
+      ∃ last : integerModel.Carrier,
+        fraction.Tail = initialSegment ++ [last] ∧ 1 < last)
 ```
 -/
 def IsCanonicalSimpleContinuedFraction
@@ -65,8 +66,9 @@ def IsCanonicalSimpleContinuedFraction
     (fraction : FiniteSimpleContinuedFraction integerModel) : Prop :=
   (∀ coefficient ∈ fraction.Tail, 0 < coefficient) ∧
     (fraction.Tail = [] ∨
-      ∃ prefix last,
-        fraction.Tail = prefix ++ [last] ∧ 1 < last)
+      ∃ initialSegment : List integerModel.Carrier,
+        ∃ last : integerModel.Carrier,
+          fraction.Tail = initialSegment ++ [last] ∧ 1 < last)
 
 /-- An infinite simple continued fraction is proper when every coefficient
 after the head is positive. The head coefficient is unrestricted.

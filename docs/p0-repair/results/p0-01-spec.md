@@ -89,4 +89,4 @@
 
 ## Blockers Or Dependencies
 
-None. The source-of-truth P0 in [LRAReview.md](/F:/repos/lra-lean/LRAReview.md:85) and the open queue entry in [LRAReview.md](/F:/repos/lra-lean/LRAReview.md:470) can be executed directly from this spec.
+No additional P0 dependency. As of 2026-08-22, both `python scripts/validate_structure.py --path LRA/Analysis/Sequences` and `lake build LRAAll` pass again after unrelated baseline repairs, so the source-of-truth P0 in [LRAReview.md](/F:/repos/lra-lean/LRAReview.md:85) and the open queue entry in [LRAReview.md](/F:/repos/lra-lean/LRAReview.md:470) can be executed directly from this spec.

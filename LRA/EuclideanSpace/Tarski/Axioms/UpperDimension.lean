@@ -8,7 +8,7 @@ position is determined by its distances to any `n+1` affinely
 independent points -- the space has dimension at most `n`. Reuses the
 generic, `sorry`-deferred predicates from `Interface.Laws`, for the same
 reason `LowerDimension` does. -/
-axiom UpperDimension (n : ℕ) (p : TarskiPoint) (points : Fin (n + 1) → TarskiPoint)
+axiom UpperDimension (n : Nat) (p : TarskiPoint) (points : Fin (n + 1) → TarskiPoint)
     (independent : AffinelyIndependent TarskiPoint n points) :
     CoincidesOrDeterminedByDistances TarskiPoint n p points
 

@@ -1,5 +1,7 @@
 import Mathlib.Data.Real.Basic
 import Mathlib.Order.Filter.AtTopBot.Basic
+import Mathlib.Topology.Basic
+import Mathlib.Topology.MetricSpace.Basic
 import LRA.Analysis.Limits.Definition
 import LRA.Analysis.Limits.LimitsAtInfinity.Definition
 
@@ -11,6 +13,8 @@ different subsequential limits), and divergence at infinity.
 -/
 
 namespace LRA.Analysis.Limits
+
+open scoped Topology
 
 /-- `f` has a jump at `c` when its one-sided limits both exist but disagree.
 
@@ -119,15 +123,15 @@ Logical form:
 def Oscillates (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   ∃ xs ys : ℕ → ℝ, ApproachesButNotEqual xs A c ∧ ApproachesButNotEqual ys A c ∧
     ∃ L₁ L₂ : ℝ, L₁ ≠ L₂ ∧
-      Filter.Tendsto (f ∘ xs) Filter.atTop (nhds L₁) ∧
-        Filter.Tendsto (f ∘ ys) Filter.atTop (nhds L₂)
+      Filter.Tendsto (f ∘ xs) Filter.atTop (𝓝 L₁) ∧
+        Filter.Tendsto (f ∘ ys) Filter.atTop (𝓝 L₂)
 ```
 -/
 def Oscillates (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   ∃ xs ys : ℕ → ℝ, ApproachesButNotEqual xs A c ∧ ApproachesButNotEqual ys A c ∧
     ∃ L₁ L₂ : ℝ, L₁ ≠ L₂ ∧
-      Filter.Tendsto (f ∘ xs) Filter.atTop (nhds L₁) ∧
-        Filter.Tendsto (f ∘ ys) Filter.atTop (nhds L₂)
+      Filter.Tendsto (f ∘ xs) Filter.atTop (𝓝 L₁) ∧
+        Filter.Tendsto (f ∘ ys) Filter.atTop (𝓝 L₂)
 
 /-- `f` has no limit as `x → +∞` on `X`: the general non-existence predicate for limits at
 infinity.

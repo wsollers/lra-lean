@@ -35,8 +35,16 @@ def EndpointEquivalent
   ∀ tolerance : fieldModel.Carrier,
     0 < tolerance →
       ∃ index : Nat,
-        (first.interval index).lower - (second.interval index).upper < tolerance ∧
-        (second.interval index).lower - (first.interval index).upper < tolerance
+        fieldModel.signature.StrictOrder
+          (fieldModel.signature.add
+            (first.interval index).lower
+            (fieldModel.signature.neg (second.interval index).upper))
+          tolerance ∧
+        fieldModel.signature.StrictOrder
+          (fieldModel.signature.add
+            (second.interval index).lower
+            (fieldModel.signature.neg (first.interval index).upper))
+          tolerance
 
 /-- Symmetric asymptotic overlap is an equivalence relation on shrinking nested
 interval sequences.

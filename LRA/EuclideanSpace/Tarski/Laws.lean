@@ -32,7 +32,7 @@ instance : ParallelLaw TarskiPoint where
 instance : ContinuityLaw TarskiPoint where
   Continuity := Continuity
 
-instance (n : ℕ) : DimensionLaws TarskiPoint n where
+instance (n : Nat) : DimensionLaws TarskiPoint n where
   LowerDimension := LowerDimension n
   UpperDimension := UpperDimension n
 

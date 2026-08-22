@@ -43,7 +43,7 @@ structure EffectiveCauchyApproximation
     ∀ precision firstIndex secondIndex : Nat,
       Modulus precision ≤ firstIndex →
       Modulus precision ≤ secondIndex →
-        let difference := Approximate firstIndex + -Approximate secondIndex
+        let difference := Approximate firstIndex + -Approximate secondIndex;
         -PrecisionRadius rationalSystem precision < difference ∧
           difference < PrecisionRadius rationalSystem precision
 ```
@@ -56,7 +56,7 @@ structure EffectiveCauchyApproximation
     ∀ precision firstIndex secondIndex : Nat,
       Modulus precision ≤ firstIndex →
       Modulus precision ≤ secondIndex →
-        let difference := Approximate firstIndex + -Approximate secondIndex
+        let difference := Approximate firstIndex + -Approximate secondIndex;
         -PrecisionRadius rationalSystem precision < difference ∧
           difference < PrecisionRadius rationalSystem precision
 

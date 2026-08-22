@@ -119,7 +119,7 @@ function Invoke-Build {
     Invoke-Run @(
         'lake', 'build',
         'LRAVolumeI', 'LRAVolumeII', 'LRAVolumeIII',
-        'LRAVolumeIV', 'LRAVolumeVI', 'LRAVolumeVII',
+        'LRAVolumeVII', 'LRAExamples', 'LRAFailures',
         'LRATests'
     )
     Write-Ok "All production and test Lean libraries built successfully"
@@ -139,7 +139,7 @@ function Invoke-BuildAll {
     Invoke-Run @(
         'lake', 'build',
         'LRAVolumeI', 'LRAVolumeII', 'LRAVolumeIII',
-        'LRAVolumeIV', 'LRAVolumeVI', 'LRAVolumeVII'
+        'LRAVolumeVII', 'LRAExamples', 'LRAFailures'
     )
     Write-Ok "Full build successful"
 }

@@ -9,7 +9,7 @@ Reuses the generic, `sorry`-deferred `AffinelyIndependent` from
 `Interface.Laws` (applied at `TarskiPoint`) rather than a
 separately-invented Tarski-specific version, so this axiom is vacuous
 for the same documented reason, not a second independent gap. -/
-axiom LowerDimension (n : ℕ) :
+axiom LowerDimension (n : Nat) :
     ∃ points : Fin (n + 1) → TarskiPoint,
       AffinelyIndependent TarskiPoint n points
 

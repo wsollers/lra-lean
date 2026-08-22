@@ -2,10 +2,13 @@
 -- Irrational numbers relative to a selected rational embedding.
 
 import LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+import LRA.NumberSystems.RealNumbers.Definition
 
 namespace LRA.NumberSystems.RealNumbers.Irrationals
 
 open LRA.NumberSystems.Models
+open LRA.NumberSystems.RationalNumbers
+open LRA.NumberSystems.RealNumbers
 
 /-!
 Lean module: LRA.NumberSystems.RealNumbers.Irrationals
@@ -27,7 +30,7 @@ irrational are rational.
 -/
 
 variable
-    (rational_system : RationalNumberSystem)
+    (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)
     (real_extension : RationalRealExtension rational_system)
 
 /--
@@ -39,10 +42,16 @@ Mathematical statement (Lean): `abbrev RealCarrier`.
 Logical form:
 
 ```lean
-abbrev RealCarrier := real_extension.RealModel.signature.carrier
+abbrev RealCarrier
+    (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)
+    (real_extension : RationalRealExtension rational_system) :=
+  real_extension.RealModel.signature.carrier
 ```
 -/
-abbrev RealCarrier := real_extension.RealModel.signature.carrier
+abbrev RealCarrier
+    (rational_system : RationalNumberSystem)
+    (real_extension : RationalRealExtension rational_system) :=
+  real_extension.RealModel.signature.carrier
 /--
 **[Abbrev — RationalCarrier]**
 
@@ -52,10 +61,14 @@ Mathematical statement (Lean): `abbrev RationalCarrier`.
 Logical form:
 
 ```lean
-abbrev RationalCarrier := rational_system.FieldModel.signature.carrier
+abbrev RationalCarrier
+    (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) :=
+  rational_system.FieldModel.signature.carrier
 ```
 -/
-abbrev RationalCarrier := rational_system.FieldModel.signature.carrier
+abbrev RationalCarrier
+    (rational_system : RationalNumberSystem) :=
+  rational_system.FieldModel.signature.carrier
 
 
 /-- The selected embedding of rationals into the real carrier.
@@ -118,12 +131,16 @@ Mathematical statement (Lean): `abbrev Carrier`.
 Logical form:
 
 ```lean
-abbrev Carrier :=
+abbrev Carrier
+    (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)
+    (real_extension : RationalRealExtension rational_system) :=
   { value : RealCarrier rational_system real_extension //
       IsIrrational rational_system real_extension value }
 ```
 -/
-abbrev Carrier :=
+abbrev Carrier
+    (rational_system : RationalNumberSystem)
+    (real_extension : RationalRealExtension rational_system) :=
   { value : RealCarrier rational_system real_extension //
       IsIrrational rational_system real_extension value }
 
@@ -628,7 +645,9 @@ Mathematical statement (Lean): `structure SquareRootTwoWitness`.
 Logical form:
 
 ```lean
-structure SquareRootTwoWitness where
+structure SquareRootTwoWitness
+    (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)
+    (real_extension : RationalRealExtension rational_system) where
   value : RealCarrier rational_system real_extension
   square_is_two :
     real_extension.RealModel.signature.multiply value value =
@@ -639,7 +658,9 @@ structure SquareRootTwoWitness where
   is_irrational : IsIrrational rational_system real_extension value
 ```
 -/
-structure SquareRootTwoWitness where
+structure SquareRootTwoWitness
+    (rational_system : RationalNumberSystem)
+    (real_extension : RationalRealExtension rational_system) where
   value : RealCarrier rational_system real_extension
   square_is_two :
     real_extension.RealModel.signature.multiply value value =

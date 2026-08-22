@@ -52,22 +52,22 @@ theorem dyadic_subring :
 ```
 -/
 theorem dyadic_subring :
-    IsDyadicRational dyadic_data dyadic_data.rational_model.signature.zero ∧
-    IsDyadicRational dyadic_data dyadic_data.rational_model.signature.one ∧
+    IsDyadicRational dyadic_data dyadic_data.RationalSystem.FieldModel.signature.zero ∧
+    IsDyadicRational dyadic_data dyadic_data.RationalSystem.FieldModel.signature.one ∧
     (∀ first second : Rational dyadic_data,
       IsDyadicRational dyadic_data first →
       IsDyadicRational dyadic_data second →
       IsDyadicRational dyadic_data
-        (dyadic_data.rational_model.signature.add first second)) ∧
+        (dyadic_data.RationalSystem.FieldModel.signature.add first second)) ∧
     (∀ value : Rational dyadic_data,
       IsDyadicRational dyadic_data value →
       IsDyadicRational dyadic_data
-        (dyadic_data.rational_model.signature.neg value)) ∧
+        (dyadic_data.RationalSystem.FieldModel.signature.neg value)) ∧
     (∀ first second : Rational dyadic_data,
       IsDyadicRational dyadic_data first →
       IsDyadicRational dyadic_data second →
       IsDyadicRational dyadic_data
-        (dyadic_data.rational_model.signature.multiply first second)) := by
+        (dyadic_data.RationalSystem.FieldModel.signature.multiply first second)) := by
   sorry
 
 /-- Theorem 1.3: dyadic rationals are dense in Q.
@@ -93,11 +93,11 @@ theorem dyadic_rationals_are_dense
 theorem dyadic_rationals_are_dense
     (first second : Rational dyadic_data)
     (first_lt_second :
-      dyadic_data.rational_model.signature.StrictOrder first second) :
+      dyadic_data.RationalSystem.FieldModel.signature.StrictOrder first second) :
     ∃ dyadic : Rational dyadic_data,
       IsDyadicRational dyadic_data dyadic ∧
-      dyadic_data.rational_model.signature.StrictOrder first dyadic ∧
-      dyadic_data.rational_model.signature.StrictOrder dyadic second := by
+      dyadic_data.RationalSystem.FieldModel.signature.StrictOrder first dyadic ∧
+      dyadic_data.RationalSystem.FieldModel.signature.StrictOrder dyadic second := by
   sorry
 
 end LRA.NumberSystems.RealNumbers.Dyadic

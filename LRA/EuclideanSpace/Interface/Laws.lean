@@ -81,12 +81,12 @@ Logical form:
 
 ```lean
 def AffinelyIndependent [Between Point] [Congruent Point]
-    (n : ℕ) (points : Fin (n + 1) → Point) : Prop :=
+    (n : Nat) (points : Fin (n + 1) → Point) : Prop :=
   sorry
 ```
 -/
 def AffinelyIndependent [Between Point] [Congruent Point]
-    (n : ℕ) (points : Fin (n + 1) → Point) : Prop :=
+    (n : Nat) (points : Fin (n + 1) → Point) : Prop :=
   sorry
 
 /-- A point's position pinned down (up to finitely many candidates) by
@@ -97,18 +97,18 @@ Logical form:
 
 ```lean
 def CoincidesOrDeterminedByDistances [Between Point] [Congruent Point]
-    (n : ℕ) (p : Point) (points : Fin (n + 1) → Point) : Prop :=
+    (n : Nat) (p : Point) (points : Fin (n + 1) → Point) : Prop :=
   sorry
 ```
 -/
 def CoincidesOrDeterminedByDistances [Between Point] [Congruent Point]
-    (n : ℕ) (p : Point) (points : Fin (n + 1) → Point) : Prop :=
+    (n : Nat) (p : Point) (points : Fin (n + 1) → Point) : Prop :=
   sorry
 
 /-- Tarski axioms 8-9: the space has dimension exactly `n`. Vacuous
 until `AffinelyIndependent`/`CoincidesOrDeterminedByDistances` are
 filled in. -/
-class DimensionLaws [Between Point] [Congruent Point] (n : ℕ) : Prop where
+class DimensionLaws [Between Point] [Congruent Point] (n : Nat) : Prop where
   LowerDimension :
     ∃ points : Fin (n + 1) → Point, AffinelyIndependent Point n points
   UpperDimension :

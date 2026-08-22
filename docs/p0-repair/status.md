@@ -7,10 +7,11 @@
 - Source queue: [LRAReview.md](/F:/repos/lra-lean/LRAReview.md:470)
 - Workflow: per-P0 `spec -> verify -> implement` using fresh-context sub-agents when true new Codex tasks are unavailable
 - Success gate: structure validator passes and scoped `lake build` passes; then commit and push on `main`
+- Baseline repair note: `lake build LRAAll` now passes again on 2026-08-22; broad `python scripts/validate_structure.py --path LRA --allow-legacy-construction-modeltheory` still reports unrelated legacy quarantine violations in existing routers.
 
 | P0 | Wave | Status | Last Good Stop | Next Step | Spec | Verify | Implement | Validator | Build | Commit |
 |---|---|---|---|---|---|---|---|---|---|---|
-| p0-01 | 1 | `verify_failed` | 2026-08-22: verifier returned bounded correction against the LRAAll gate assumption | Amend blocker note, then relaunch verifier | 01a02a44-3e73-7d91-bc27-d80f5faf3f5a | 01a02a51-0756-72f1-967b-9aa7b4fa769c | - | LRA/Analysis/Sequences | LRAAll | - |
+| p0-01 | 1 | `verified_ready_to_implement` | 2026-08-22: `python scripts/validate_structure.py --path LRA/Analysis/Sequences` and `lake build LRAAll` both pass after baseline repairs | Launch implement task | 01a02a44-3e73-7d91-bc27-d80f5faf3f5a | 01a02a51-0756-72f1-967b-9aa7b4fa769c | - | LRA/Analysis/Sequences | LRAAll | - |
 | p0-02 | 2 | `not_started` | 2026-08-22: queue materialized, repo even with origin/main, no task launched yet | Launch spec task | - | - | - | - | - | - |
 | p0-03 | 2 | `not_started` | 2026-08-22: queue materialized, repo even with origin/main, no task launched yet | Launch spec task | - | - | - | - | - | - |
 | p0-04 | 2 | `not_started` | 2026-08-22: queue materialized, repo even with origin/main, no task launched yet | Launch spec task | - | - | - | - | - | - |
