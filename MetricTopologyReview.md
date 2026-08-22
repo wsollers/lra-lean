@@ -263,60 +263,152 @@ This bridge should be treated as central mathematical content, not merely implem
 
 ---
 
-# Pre-measure-theory readiness status after this pass
+# Review 4 — interop and realization bridges
 
-## Already mathematically available somewhere in the tree
+## Files reviewed
 
-- correct metric axioms;
-- metric balls;
-- correct topology axioms;
-- real-line neighborhoods/open/closed sets;
-- interior/exterior/boundary points;
-- limit and isolated points;
-- closure laws for open/closed sets.
+- `LRA/Analysis/MetricSpace/Interop/Mathlib.lean`
+- `LRA/Analysis/MetricSpace/Realizations.lean`
+- `LRA/Analysis/MetricSpace/Realizations/Euclidean.lean`
+- `LRA/Topology/PointSetTopology/TopologicalSpace/Interop.lean`
+- `LRA/Topology/PointSetTopology/TopologicalSpace/Interop/Mathlib.lean`
+- `LRA/Topology/PointSetTopology/TopologicalSpace/Construction.lean`
+- `LRA/Topology/PointSetTopology/TopologicalSpace/Construction/UniversalAlgebra.lean`
 
-## Not yet canonical/promoted in the intended generic metric/topology surface
+## Explicit metric ↔ Mathlib metric bridge exists
 
-- metric-open to topology bridge;
-- generic closure/interior/boundary API;
-- generic accumulation/isolated-point API;
-- generic metric sequential convergence;
-- metric completeness;
-- canonical compactness theorem surface;
-- the compactness/sequential compactness/Heine-Borel chain.
+`MetricDefinition.ToMathlibMetricSpace` constructs a Mathlib `MetricSpace` from the project's textbook metric record. The construction uses the textbook distance as `dist`, proves `dist_self`, symmetry, triangle inequality, and identity of indiscernibles.
 
-Thus the mathematics is **partly drafted but not yet organized into a ready canonical study/proof layer**.
+The file also provides:
+
+- the induced Mathlib topological space of a textbook metric;
+- a theorem identifying Mathlib `dist` with the textbook `distance`;
+- `FromMathlibMetric`, converting an existing Mathlib metric space back to a textbook metric record;
+- a compatibility predicate and theorem;
+- a packaged `MetricSpaceDefinition` instance usable directly by Mathlib.
+
+This is excellent architecture. The crucial explicit-metric/Mathlib representation bridge is already present.
+
+**Verdict: PASS.**
+
+## Explicit topology ↔ Mathlib topology bridge exists
+
+`TopologyDefinition.ToMathlibTopologicalSpace` constructs Mathlib's `TopologicalSpace` from the textbook open-set predicate and axioms.
+
+The reverse `FromMathlibTopologicalSpace` is also present, along with:
+
+- pointwise equivalence of the open-set predicates;
+- compatibility predicates/theorems;
+- a direct Mathlib instance for packaged textbook topological spaces.
+
+This is likewise a sound and useful bridge.
+
+**Verdict: PASS.**
+
+## Earlier bridge finding refined
+
+The repository therefore does **not** lack the generic statement "a metric induces a topology" at the implementation/structure level: `MetricDefinition.InducedTopologicalSpace` already exposes that induced topology through Mathlib.
+
+What remains absent from the reviewed metric-open module is the **pedagogical epsilon-ball characterization bridge**:
+
+```text
+U is open in the induced topology
+  iff
+for every x in U there exists ε > 0 with ball(x,ε) ⊆ U.
+```
+
+That theorem is mathematically central because it explains why the topology induced by the metric is exactly the familiar epsilon-ball topology.
+
+Accordingly the earlier finding is refined from "metric -> topology bridge missing" to:
+
+> **the structural bridge exists; the epsilon-ball/open-set characterization and public curriculum connection are missing/not yet promoted.**
+
+**Revised severity: P1 PEDAGOGICAL/API COMPLETENESS, not missing foundational implementation.**
+
+## Euclidean realization
+
+The realization tree includes a concrete Euclidean metric-space model intended to package the tuple-based `R^n` carrier with a metric inherited from Mathlib's metric on coordinate functions. Conceptually this is exactly the right realization layer: generic metric theory should be instantiated by real Euclidean spaces rather than redefined there.
+
+A later Euclidean review should verify that the chosen coordinate-space Mathlib metric is the intended norm/Euclidean metric for the curriculum and that its topology agrees with the intended Euclidean topology.
+
+**Initial architectural verdict: GOOD.**
+
+## Point-set topology construction layer
+
+The current `TopologicalSpace/Construction` aggregate imports only a `UniversalAlgebra` construction file, and that leaf currently contains only a module comment. Thus no substantive topology-construction theory (bases, subbases, generated topology, initial/final topology, etc.) is present in that branch yet.
+
+For a pre-measure-theory target, full universal-algebra/topological construction machinery is not necessary. However, at least **bases** are useful and often important for Borel constructions, countability axioms, and Euclidean topology.
+
+### Recommended minimum
+
+Before measure theory, include:
+
+- basis for a topology;
+- topology generated by a basis;
+- open balls form a basis for a metric topology;
+- countable basis of `Real`/`R^n` using rational centers/radii or rational boxes, if second countability is part of the planned Borel development.
+
+Subbases and initial/final topologies can be postponed unless needed by later chapters.
+
+**Severity: P2/P1 depending on how Borel sets are developed.**
+
+---
+
+# Pre-measure-theory readiness status after Review 4
+
+## Strong/correct foundations already present
+
+- textbook metric axioms;
+- textbook topology axioms;
+- textbook metric -> Mathlib metric conversion;
+- Mathlib metric -> textbook metric conversion;
+- metric -> induced Mathlib topology;
+- textbook topology -> Mathlib topology conversion;
+- Mathlib topology -> textbook topology conversion;
+- concrete Euclidean realization framework;
+- draft concrete-Real open/closed/interior/boundary/limit-point material.
+
+## Still needs promotion or theorem-level connection
+
+- epsilon-ball openness iff openness in the induced metric topology;
+- generic metric closure/interior/boundary and point-classification API;
+- generic metric sequence convergence/Cauchy/completeness;
+- compactness and sequential compactness;
+- Heine-Borel;
+- basis/second-countability material if required by the Borel-set path.
+
+So the underlying architecture is better than the placeholder aggregates initially suggested: **the representation machinery is ready; the curriculum-facing theorem surface is not yet complete.**
 
 ---
 
 # Choice audit
 
-No genuine Axiom-of-Choice use was identified in the definitions or theorem statements reviewed in this pass.
-
-Open-cover compactness can raise choice subtleties in some very general equivalence proofs, but no such theorem was present in the reviewed canonical module, so no choice classification is made yet.
+No genuine Axiom-of-Choice usage was identified in the interop/realization files reviewed here.
 
 ---
 
-# Final verdict through Review 3
+# Final verdict through Review 4
 
 | Dimension | Verdict |
 |---|---|
 | Metric axioms | **PASS** |
 | Topology axioms | **PASS** |
-| Concrete Real open/closed/point-classification mathematics | **PASS** |
-| Generic metric open/closed/closure API | **PLANNED, NOT PROMOTED** |
-| Metric -> topology bridge | **MISSING FROM REVIEWED CANONICAL SURFACE** |
-| Generic metric sequential convergence/completeness | **NOT YET PROMOTED** |
-| Metric compactness | **NOT YET PROMOTED** |
-| Pre-measure-theory readiness | **MATHEMATICAL DRAFT COVERAGE EXISTS, CANONICAL LAYER NOT YET READY** |
+| Textbook metric ↔ Mathlib metric | **PASS** |
+| Metric-induced Mathlib topology | **PASS** |
+| Textbook topology ↔ Mathlib topology | **PASS** |
+| Epsilon-ball openness characterization | **NOT YET FOUND/PROMOTED** |
+| Generic metric point-set topology API | **PLANNED, NOT PROMOTED** |
+| Metric completeness | **NOT YET PROMOTED** |
+| Compactness/Heine-Borel | **NOT YET FOUND IN CANONICAL METRIC SURFACE** |
+| Overall readiness | **ARCHITECTURAL CORE STRONG; PRE-MEASURE-THEORY THEOREM SURFACE INCOMPLETE** |
 
 ---
 
 # Next review chunk
 
-Continue with:
+Review:
 
-1. `MetricSpace/Interop` and `Realizations` to see whether the key representation bridges already exist;
-2. `SetGeometry`, distances/diameter, isometry, and subspace modules;
-3. point-set topology construction/theorem/interop files;
-4. then search the wider `LRA` tree for canonical compactness and Heine-Borel material before declaring those absent.
+1. `SetGeometry`, distances/diameter, isometry, and metric subspaces;
+2. continuity/function modules at the metric/topology boundary;
+3. search the wider `LRA` tree for compactness, Heine-Borel, bases/second countability, and Borel-set prerequisites;
+4. only then decide the actual remaining gap list before moving to measurable spaces/measure theory.
