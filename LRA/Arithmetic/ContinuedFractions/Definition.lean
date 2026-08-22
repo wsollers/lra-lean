@@ -16,13 +16,13 @@ Logical form:
 
 ```lean
 structure FiniteSimpleContinuedFraction
-    (integerModel : IntegerModel.{u}) where
+    (integerModel : DiscretelyOrderedIntegralDomainModel.{u}) where
   Head : integerModel.Carrier
   Tail : List integerModel.Carrier
 ```
 -/
 structure FiniteSimpleContinuedFraction
-    (integerModel : IntegerModel.{u}) where
+    (integerModel : DiscretelyOrderedIntegralDomainModel.{u}) where
   Head : integerModel.Carrier
   Tail : List integerModel.Carrier
 
@@ -33,12 +33,12 @@ Logical form:
 
 ```lean
 def InfiniteSimpleContinuedFraction
-    (integerModel : IntegerModel.{u}) : Type u :=
+    (integerModel : DiscretelyOrderedIntegralDomainModel.{u}) : Type u :=
   Nat → integerModel.Carrier
 ```
 -/
 def InfiniteSimpleContinuedFraction
-    (integerModel : IntegerModel.{u}) : Type u :=
+    (integerModel : DiscretelyOrderedIntegralDomainModel.{u}) : Type u :=
   Nat → integerModel.Carrier
 
 /-- A finite simple continued fraction is canonical when every tail
@@ -52,7 +52,7 @@ Logical form:
 
 ```lean
 def IsCanonicalSimpleContinuedFraction
-    {integerModel : IntegerModel.{u}}
+    {integerModel : DiscretelyOrderedIntegralDomainModel.{u}}
     (fraction : FiniteSimpleContinuedFraction integerModel) : Prop :=
   (∀ coefficient ∈ fraction.Tail, 0 < coefficient) ∧
     (fraction.Tail = [] ∨
@@ -61,7 +61,7 @@ def IsCanonicalSimpleContinuedFraction
 ```
 -/
 def IsCanonicalSimpleContinuedFraction
-    {integerModel : IntegerModel.{u}}
+    {integerModel : DiscretelyOrderedIntegralDomainModel.{u}}
     (fraction : FiniteSimpleContinuedFraction integerModel) : Prop :=
   (∀ coefficient ∈ fraction.Tail, 0 < coefficient) ∧
     (fraction.Tail = [] ∨
@@ -75,13 +75,13 @@ Logical form:
 
 ```lean
 def IsProperInfiniteSimpleContinuedFraction
-    {integerModel : IntegerModel.{u}}
+    {integerModel : DiscretelyOrderedIntegralDomainModel.{u}}
     (fraction : InfiniteSimpleContinuedFraction integerModel) : Prop :=
   ∀ index : Nat, 0 < fraction (index + 1)
 ```
 -/
 def IsProperInfiniteSimpleContinuedFraction
-    {integerModel : IntegerModel.{u}}
+    {integerModel : DiscretelyOrderedIntegralDomainModel.{u}}
     (fraction : InfiniteSimpleContinuedFraction integerModel) : Prop :=
   ∀ index : Nat, 0 < fraction (index + 1)
 
@@ -92,7 +92,7 @@ Logical form:
 
 ```lean
 def IsEventuallyPeriodic
-    {integerModel : IntegerModel.{u}}
+    {integerModel : DiscretelyOrderedIntegralDomainModel.{u}}
     (fraction : InfiniteSimpleContinuedFraction integerModel) : Prop :=
   ∃ start period : Nat,
     period ≠ 0 ∧
@@ -101,7 +101,7 @@ def IsEventuallyPeriodic
 ```
 -/
 def IsEventuallyPeriodic
-    {integerModel : IntegerModel.{u}}
+    {integerModel : DiscretelyOrderedIntegralDomainModel.{u}}
     (fraction : InfiniteSimpleContinuedFraction integerModel) : Prop :=
   ∃ start period : Nat,
     period ≠ 0 ∧

@@ -24,7 +24,7 @@ certificate instances)
 
 The active carrier's instances make it a first-order model of each
 arithmetic language through the generic builders, and a bundled
-`IntegerModel` through `ofCarrier` — no hand-assembled operation
+`DiscretelyOrderedIntegralDomainModel` through `ofCarrier` — no hand-assembled operation
 bundles, no separate law record.
 -/
 
@@ -79,12 +79,12 @@ number-system tower. The certificates travel with the carrier.
 Logical form:
 
 ```lean
-def integerNumberSystemModel : LRA.NumberSystems.Models.IntegerModel :=
-  IntegerModel.ofCarrier Z
+def integerNumberSystemModel : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel :=
+  DiscretelyOrderedIntegralDomainModel.ofCarrier Z
 ```
 -/
-def integerNumberSystemModel : LRA.NumberSystems.Models.IntegerModel :=
-  IntegerModel.ofCarrier Z
+def integerNumberSystemModel : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel :=
+  DiscretelyOrderedIntegralDomainModel.ofCarrier Z
 
 /-- The derived operation bundle of the active integer model, for
 signature-level consumers.

@@ -315,7 +315,7 @@ Separate fraction-field construction from optional gcd/reduced-form enrichment a
 
 # Number-system façade and universal properties
 
-`IntegerModel`, `DenselyOrderedFieldModel`, and `RealModel` are broad structural classes, not categorical names for `Z`, `Q`, `R`.
+`DiscretelyOrderedIntegralDomainModel`, `DenselyOrderedFieldModel`, and `RealModel` are broad structural classes, not categorical names for `Z`, `Q`, `R`.
 
 ### P0 — `RationalsAreCountable`
 

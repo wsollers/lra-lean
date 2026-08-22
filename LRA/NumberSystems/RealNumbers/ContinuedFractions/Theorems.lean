@@ -16,7 +16,7 @@ Logical form:
 theorem ProperInfiniteSimpleContinuedFractionConverges
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
     (realExtension : RealExtension rationalSystem.FieldModel)
-    (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerModel)
+    (fraction : InfiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel)
     (proper : IsProperInfiniteSimpleContinuedFraction fraction) :
     ∃ limit : realExtension.RealModel.Carrier,
       ConvergentsConvergeTo rationalSystem realExtension fraction limit
@@ -25,7 +25,7 @@ theorem ProperInfiniteSimpleContinuedFractionConverges
 theorem ProperInfiniteSimpleContinuedFractionConverges
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
     (realExtension : RealExtension rationalSystem.FieldModel)
-    (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerModel)
+    (fraction : InfiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel)
     (proper : IsProperInfiniteSimpleContinuedFraction fraction) :
     ∃ limit : realExtension.RealModel.Carrier,
       ConvergentsConvergeTo rationalSystem realExtension fraction limit := by
@@ -47,7 +47,7 @@ theorem QuadraticIrrationalIffEventuallyPeriodicContinuedFraction
     (realExtension : RealExtension rationalSystem.FieldModel)
     (value : realExtension.RealModel.Carrier) :
     IsQuadraticIrrational rationalSystem realExtension value ↔
-      ∃ fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerModel,
+      ∃ fraction : InfiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel,
         IsInfiniteSimpleContinuedFractionExpansionOf
           rationalSystem realExtension fraction value ∧
         IsEventuallyPeriodic fraction
@@ -58,7 +58,7 @@ theorem QuadraticIrrationalIffEventuallyPeriodicContinuedFraction
     (realExtension : RealExtension rationalSystem.FieldModel)
     (value : realExtension.RealModel.Carrier) :
     IsQuadraticIrrational rationalSystem realExtension value ↔
-      ∃ fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerModel,
+      ∃ fraction : InfiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel,
         IsInfiniteSimpleContinuedFractionExpansionOf
           rationalSystem realExtension fraction value ∧
         IsEventuallyPeriodic fraction := by

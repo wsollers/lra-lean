@@ -38,7 +38,7 @@ theorem positive_classes_recover_natural_number_model
 /--
 **[Theorem — mendelson_integers_form_ordered_ring]**
 
-The quotient realizes the generic ring-and-order `IntegerModel` interface.
+The quotient realizes the generic ring-and-order `DiscretelyOrderedIntegralDomainModel` interface.
 
 *Proof status:* proof pending
 
@@ -47,13 +47,13 @@ Logical form:
 ```lean
 theorem mendelson_integers_form_ordered_ring
     (positive_data : PositiveNaturalPairData) :
-    ∃ integer_model : LRA.NumberSystems.Models.IntegerModel,
+    ∃ integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel,
       integer_model.signature.carrier = Carrier positive_data
 ```
 -/
 theorem mendelson_integers_form_ordered_ring
     (positive_data : PositiveNaturalPairData) :
-    ∃ integer_model : LRA.NumberSystems.Models.IntegerModel,
+    ∃ integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel,
       integer_model.signature.carrier = Carrier positive_data := by
   sorry
 

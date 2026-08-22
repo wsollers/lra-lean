@@ -19,13 +19,13 @@ Logical form:
 
 ```lean
 structure RationalNumberSystem : Type (u + 1) where
-  IntegerModel : IntegerModel.{u}
+  DiscretelyOrderedIntegralDomainModel : DiscretelyOrderedIntegralDomainModel.{u}
   FieldModel : DenselyOrderedFieldModel.{u}
   IntegerEmbedding :
-    IntegerEmbeddingIntoRational IntegerModel FieldModel
+    IntegerEmbeddingIntoRational DiscretelyOrderedIntegralDomainModel FieldModel
   EveryElementIsIntegerFraction :
     ∀ q : FieldModel.Carrier,
-      ∃ numerator denominator : IntegerModel.Carrier,
+      ∃ numerator denominator : DiscretelyOrderedIntegralDomainModel.Carrier,
         denominator ≠ 0 ∧
         q =
           IntegerEmbedding.ToRational numerator *
@@ -33,13 +33,13 @@ structure RationalNumberSystem : Type (u + 1) where
 ```
 -/
 structure RationalNumberSystem : Type (u + 1) where
-  IntegerModel : IntegerModel.{u}
+  DiscretelyOrderedIntegralDomainModel : DiscretelyOrderedIntegralDomainModel.{u}
   FieldModel : DenselyOrderedFieldModel.{u}
   IntegerEmbedding :
-    IntegerEmbeddingIntoRational IntegerModel FieldModel
+    IntegerEmbeddingIntoRational DiscretelyOrderedIntegralDomainModel FieldModel
   EveryElementIsIntegerFraction :
     ∀ q : FieldModel.Carrier,
-      ∃ numerator denominator : IntegerModel.Carrier,
+      ∃ numerator denominator : DiscretelyOrderedIntegralDomainModel.Carrier,
         denominator ≠ 0 ∧
         q =
           IntegerEmbedding.ToRational numerator *

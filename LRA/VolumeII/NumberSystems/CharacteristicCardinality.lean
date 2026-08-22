@@ -28,7 +28,7 @@ def CharacteristicZero (signature : OrderedRingSignature) : Prop :=
 characteristic zero. This is a structural theorem; the middle model is not
 assumed to be the rational numbers. -/
 theorem IntegerDenselyOrderedFieldRealHaveCharacteristicZero
-    (SelectedIntegerModel : IntegerModel)
+    (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel)
     (SelectedDenselyOrderedFieldModel : DenselyOrderedFieldModel)
     (SelectedRealModel : RealModel) :
     CharacteristicZero SelectedIntegerModel.signature ∧

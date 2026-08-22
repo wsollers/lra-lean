@@ -73,7 +73,7 @@ Logical form:
 
 ```lean
 theorem ComparisonMatrixForZQR
-    (SelectedIntegerModel : IntegerModel)
+    (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel)
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
     (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel) :
     ∃ IntegerLedger RationalLedger RealLedger : SystemLedger,
@@ -84,7 +84,7 @@ theorem ComparisonMatrixForZQR
 -/
 
 theorem ComparisonMatrixForZQR
-    (SelectedIntegerModel : IntegerModel)
+    (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel)
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
     (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel) :
     ∃ IntegerLedger RationalLedger RealLedger : SystemLedger,

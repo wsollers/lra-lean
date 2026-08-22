@@ -27,7 +27,7 @@ Logical form:
 
 ```lean
 structure IntegerAndPositiveNaturalData where
-  integer_model : IntegerModel
+  integer_model : DiscretelyOrderedIntegralDomainModel
   natural_carrier : Type
   one : natural_carrier
   multiplication : natural_carrier → natural_carrier → natural_carrier
@@ -49,7 +49,7 @@ structure IntegerAndPositiveNaturalData where
 ```
 -/
 structure IntegerAndPositiveNaturalData where
-  integer_model : IntegerModel
+  integer_model : DiscretelyOrderedIntegralDomainModel
   natural_carrier : Type
   one : natural_carrier
   multiplication : natural_carrier → natural_carrier → natural_carrier

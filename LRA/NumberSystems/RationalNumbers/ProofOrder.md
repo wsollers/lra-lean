@@ -9,7 +9,7 @@ order they should be discharged. Every item marked `[ ]` is currently
 
 Unlike `NaturalNumbers` (four constructions of one shared `PeanoSystem`
 interface) and `Integers` (five constructions split across
-`IntegerStructure`/`IntegerModel`), `RationalNumbers` has exactly one real
+`IntegerStructure`/`DiscretelyOrderedIntegralDomainModel`), `RationalNumbers` has exactly one real
 construction here: `RationalQuotientFractions`, quotient fractions built
 generically over any `IntegerAndPositiveNaturalData` (an integer model plus
 a positive-natural carrier with a `to_integer` embedding). It realizes

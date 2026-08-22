@@ -43,12 +43,12 @@ signature-level consumers; they are definitionally transparent.
 /-! ## The integer model: a discretely ordered integral domain -/
 
 /--
-`IntegerModel` packages the data and laws for integer model.
+`DiscretelyOrderedIntegralDomainModel` packages the data and laws for integer model.
 
 Logical form:
 
 ```lean
-structure IntegerModel : Type (u + 1) where
+structure DiscretelyOrderedIntegralDomainModel : Type (u + 1) where
   Carrier : Type u
   [addInst : Add Carrier]
   [mulInst : Mul Carrier]
@@ -65,7 +65,7 @@ structure IntegerModel : Type (u + 1) where
   [discreteCert : OrderDiscretenessLaw Carrier]
 ```
 -/
-structure IntegerModel : Type (u + 1) where
+structure DiscretelyOrderedIntegralDomainModel : Type (u + 1) where
   Carrier : Type u
   [addInst : Add Carrier]
   [mulInst : Mul Carrier]
@@ -81,38 +81,38 @@ structure IntegerModel : Type (u + 1) where
   [mulOrderCert : MultiplicationRespectsOrderLaws Carrier]
   [discreteCert : OrderDiscretenessLaw Carrier]
 
-attribute [instance] IntegerModel.addInst IntegerModel.mulInst
-  IntegerModel.negInst IntegerModel.zeroInst IntegerModel.oneInst
-  IntegerModel.ltInst IntegerModel.leInst IntegerModel.domainCert
-  IntegerModel.orderCert IntegerModel.strictCert
-  IntegerModel.addOrderCert IntegerModel.mulOrderCert
-  IntegerModel.discreteCert
+attribute [instance] DiscretelyOrderedIntegralDomainModel.addInst DiscretelyOrderedIntegralDomainModel.mulInst
+  DiscretelyOrderedIntegralDomainModel.negInst DiscretelyOrderedIntegralDomainModel.zeroInst DiscretelyOrderedIntegralDomainModel.oneInst
+  DiscretelyOrderedIntegralDomainModel.ltInst DiscretelyOrderedIntegralDomainModel.leInst DiscretelyOrderedIntegralDomainModel.domainCert
+  DiscretelyOrderedIntegralDomainModel.orderCert DiscretelyOrderedIntegralDomainModel.strictCert
+  DiscretelyOrderedIntegralDomainModel.addOrderCert DiscretelyOrderedIntegralDomainModel.mulOrderCert
+  DiscretelyOrderedIntegralDomainModel.discreteCert
 
 /-- Package any certified carrier as an integer model.
 
 Logical form:
 
 ```lean
-def IntegerModel.ofCarrier (R : Type u)
+def DiscretelyOrderedIntegralDomainModel.ofCarrier (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LT R] [LE R]
     [IntegralDomainLaws R] [LinearOrderLaws R]
     [StrictOrderCompatibilityLaw R]
     [AdditionRespectsOrderLaws R] [MultiplicationRespectsOrderLaws R]
-    [OrderDiscretenessLaw R] : IntegerModel :=
+    [OrderDiscretenessLaw R] : DiscretelyOrderedIntegralDomainModel :=
   { Carrier := R }
 ```
 -/
-def IntegerModel.ofCarrier (R : Type u)
+def DiscretelyOrderedIntegralDomainModel.ofCarrier (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LT R] [LE R]
     [IntegralDomainLaws R] [LinearOrderLaws R]
     [StrictOrderCompatibilityLaw R]
     [AdditionRespectsOrderLaws R] [MultiplicationRespectsOrderLaws R]
-    [OrderDiscretenessLaw R] : IntegerModel :=
+    [OrderDiscretenessLaw R] : DiscretelyOrderedIntegralDomainModel :=
   { Carrier := R }
 
 /-- The derived operation bundle, for the first-order layer and
 signature-level consumers. -/
-def IntegerModel.signature (M : IntegerModel) : OrderedRingSignature where
+def DiscretelyOrderedIntegralDomainModel.signature (M : DiscretelyOrderedIntegralDomainModel) : OrderedRingSignature where
   carrier := M.Carrier
   zero := 0
   one := 1
@@ -253,10 +253,10 @@ def RealModel.signature (M : RealModel) : OrderedFieldSignature :=
 Logical form:
 
 ```lean
-def mathlibIntegerModel : IntegerModel := IntegerModel.ofCarrier Int
+def mathlibIntegerModel : DiscretelyOrderedIntegralDomainModel := DiscretelyOrderedIntegralDomainModel.ofCarrier Int
 ```
 -/
-def mathlibIntegerModel : IntegerModel := IntegerModel.ofCarrier Int
+def mathlibIntegerModel : DiscretelyOrderedIntegralDomainModel := DiscretelyOrderedIntegralDomainModel.ofCarrier Int
 
 /-- The Mathlib rational carrier packaged as a densely ordered field model.
 
@@ -294,7 +294,7 @@ Logical form:
 
 ```lean
 structure IntegerEmbeddingIntoRational
-    (SelectedIntegerModel : IntegerModel)
+    (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel)
     (SelectedDenselyOrderedFieldModel : DenselyOrderedFieldModel) where
   ToRational :
     SelectedIntegerModel.Carrier → SelectedDenselyOrderedFieldModel.Carrier
@@ -317,7 +317,7 @@ structure IntegerEmbeddingIntoRational
 ```
 -/
 structure IntegerEmbeddingIntoRational
-    (SelectedIntegerModel : IntegerModel)
+    (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel)
     (SelectedDenselyOrderedFieldModel : DenselyOrderedFieldModel) where
   ToRational :
     SelectedIntegerModel.Carrier → SelectedDenselyOrderedFieldModel.Carrier
@@ -345,7 +345,7 @@ Logical form:
 
 ```lean
 structure RationalExtension
-    (SelectedIntegerModel : IntegerModel.{u}) where
+    (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel.{u}) where
   DenselyOrderedFieldModel : DenselyOrderedFieldModel.{u}
   IntegerEmbedding :
     IntegerEmbeddingIntoRational SelectedIntegerModel DenselyOrderedFieldModel
@@ -356,7 +356,7 @@ structure RationalExtension
 ```
 -/
 structure RationalExtension
-    (SelectedIntegerModel : IntegerModel.{u}) where
+    (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel.{u}) where
   DenselyOrderedFieldModel : DenselyOrderedFieldModel.{u}
   IntegerEmbedding :
     IntegerEmbeddingIntoRational SelectedIntegerModel DenselyOrderedFieldModel
@@ -445,7 +445,7 @@ structure RealExtension
 
 /-! ## Smoke tests: fluent mixin theorems land on model carriers -/
 
-example (M : IntegerModel) (a b : M.Carrier) : a + b = b + a :=
+example (M : DiscretelyOrderedIntegralDomainModel) (a b : M.Carrier) : a + b = b + a :=
   AddCommutative a b
 
 example (M : DenselyOrderedFieldModel) (a b : M.Carrier) (h : a < b) :

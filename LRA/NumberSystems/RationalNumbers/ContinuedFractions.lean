@@ -31,14 +31,14 @@ Logical form:
 ```lean
 def EmbedIntegerCoefficient
     (rationalSystem : RationalNumberSystem.{u})
-    (coefficient : rationalSystem.IntegerModel.Carrier) :
+    (coefficient : rationalSystem.DiscretelyOrderedIntegralDomainModel.Carrier) :
     rationalSystem.FieldModel.Carrier :=
   rationalSystem.IntegerEmbedding.ToRational coefficient
 ```
 -/
 def EmbedIntegerCoefficient
     (rationalSystem : RationalNumberSystem.{u})
-    (coefficient : rationalSystem.IntegerModel.Carrier) :
+    (coefficient : rationalSystem.DiscretelyOrderedIntegralDomainModel.Carrier) :
     rationalSystem.FieldModel.Carrier :=
   rationalSystem.IntegerEmbedding.ToRational coefficient
 
@@ -55,13 +55,13 @@ Logical form:
 ```lean
 def CoefficientsEvaluateTo
     (rationalSystem : RationalNumberSystem.{u}) :
-    List rationalSystem.IntegerModel.Carrier →
+    List rationalSystem.DiscretelyOrderedIntegralDomainModel.Carrier →
       rationalSystem.FieldModel.Carrier → Prop
 ```
 -/
 def CoefficientsEvaluateTo
     (rationalSystem : RationalNumberSystem.{u}) :
-    List rationalSystem.IntegerModel.Carrier →
+    List rationalSystem.DiscretelyOrderedIntegralDomainModel.Carrier →
       rationalSystem.FieldModel.Carrier → Prop
   | [], _ => False
   | [coefficient], value =>
@@ -82,7 +82,7 @@ Logical form:
 def FiniteSimpleContinuedFractionEvaluatesTo
     (rationalSystem : RationalNumberSystem.{u})
     (fraction :
-      FiniteSimpleContinuedFraction rationalSystem.IntegerModel)
+      FiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel)
     (value : rationalSystem.FieldModel.Carrier) : Prop :=
   CoefficientsEvaluateTo rationalSystem
     (fraction.Head :: fraction.Tail) value
@@ -91,7 +91,7 @@ def FiniteSimpleContinuedFractionEvaluatesTo
 def FiniteSimpleContinuedFractionEvaluatesTo
     (rationalSystem : RationalNumberSystem.{u})
     (fraction :
-      FiniteSimpleContinuedFraction rationalSystem.IntegerModel)
+      FiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel)
     (value : rationalSystem.FieldModel.Carrier) : Prop :=
   CoefficientsEvaluateTo rationalSystem
     (fraction.Head :: fraction.Tail) value
@@ -107,12 +107,12 @@ theorem EveryRationalHasUniqueCanonicalFiniteSimpleContinuedFraction
     (rationalSystem : RationalNumberSystem.{u})
     (value : rationalSystem.FieldModel.Carrier) :
     ∃ fraction :
-        FiniteSimpleContinuedFraction rationalSystem.IntegerModel,
+        FiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel,
       IsCanonicalSimpleContinuedFraction fraction ∧
         FiniteSimpleContinuedFractionEvaluatesTo
           rationalSystem fraction value ∧
         ∀ other :
-            FiniteSimpleContinuedFraction rationalSystem.IntegerModel,
+            FiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel,
           IsCanonicalSimpleContinuedFraction other →
           FiniteSimpleContinuedFractionEvaluatesTo
             rationalSystem other value →
@@ -123,12 +123,12 @@ theorem EveryRationalHasUniqueCanonicalFiniteSimpleContinuedFraction
     (rationalSystem : RationalNumberSystem.{u})
     (value : rationalSystem.FieldModel.Carrier) :
     ∃ fraction :
-        FiniteSimpleContinuedFraction rationalSystem.IntegerModel,
+        FiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel,
       IsCanonicalSimpleContinuedFraction fraction ∧
         FiniteSimpleContinuedFractionEvaluatesTo
           rationalSystem fraction value ∧
         ∀ other :
-            FiniteSimpleContinuedFraction rationalSystem.IntegerModel,
+            FiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel,
           IsCanonicalSimpleContinuedFraction other →
           FiniteSimpleContinuedFractionEvaluatesTo
             rationalSystem other value →

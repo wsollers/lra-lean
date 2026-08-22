@@ -50,7 +50,7 @@ Logical form:
 
 ```lean
 structure AdjacentTowerEmbeddings
-    (SelectedIntegerModel : IntegerModel)
+    (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel)
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
     (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel) : Prop where
   IntegerToRationalPreserves :
@@ -67,7 +67,7 @@ structure AdjacentTowerEmbeddings
 -/
 
 structure AdjacentTowerEmbeddings
-    (SelectedIntegerModel : IntegerModel)
+    (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel)
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
     (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel) : Prop where
   IntegerToRationalPreserves :
@@ -87,7 +87,7 @@ Logical form:
 
 ```lean
 def CompositeIntegerToReal
-    {SelectedIntegerModel : IntegerModel}
+    {SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel}
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
     (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel) :
     SelectedIntegerModel.signature.carrier → SelectedRealExtension.RealModel.signature.carrier :=
@@ -98,7 +98,7 @@ def CompositeIntegerToReal
 -/
 
 def CompositeIntegerToReal
-    {SelectedIntegerModel : IntegerModel}
+    {SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel}
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
     (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel) :
     SelectedIntegerModel.signature.carrier → SelectedRealExtension.RealModel.signature.carrier :=
@@ -112,7 +112,7 @@ Logical form:
 
 ```lean
 theorem CompositeIntegerToRealIsEmbedding
-    {SelectedIntegerModel : IntegerModel}
+    {SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel}
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
     (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel)
     (AdjacentEmbeddings :
@@ -125,7 +125,7 @@ theorem CompositeIntegerToRealIsEmbedding
 -/
 
 theorem CompositeIntegerToRealIsEmbedding
-    {SelectedIntegerModel : IntegerModel}
+    {SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel}
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
     (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel)
     (AdjacentEmbeddings :

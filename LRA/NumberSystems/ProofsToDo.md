@@ -2269,10 +2269,10 @@ Source: ./Integers/Constructions/Tao/Behavior.lean#L26
 Name: tao_integers_form_ordered_ring
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (whole_data : WholeNumberArithmeticForTaoFormalDifferences), ∃ integer_model : LRA.NumberSystems.Models.IntegerModel, integer_model.signature.carrier = Carrier whole_data
+Predicate logic: ∀ (whole_data : WholeNumberArithmeticForTaoFormalDifferences), ∃ integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel, integer_model.signature.carrier = Carrier whole_data
 Predicate logic (unfolded): ∀ (whole_data : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences), Exists fun integer_model => integer_model.signature.carrier = LRA.NumberSystems.Integers.Tao.Carrier whole_data
-Transliterated theorem: (∀ whole_data ∈ WholeNumberArithmeticForTaoFormalDifferences), ∃ integer_model ∈ LRA.NumberSystems.Models.IntegerModel, integer_model.signature.carrier = Carrier whole_data
-Logical form (Lean): (whole_data : WholeNumberArithmeticForTaoFormalDifferences) : ∃ integer_model : LRA.NumberSystems.Models.IntegerModel, integer_model.signature.carrier = Carrier whole_data
+Transliterated theorem: (∀ whole_data ∈ WholeNumberArithmeticForTaoFormalDifferences), ∃ integer_model ∈ LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel, integer_model.signature.carrier = Carrier whole_data
+Logical form (Lean): (whole_data : WholeNumberArithmeticForTaoFormalDifferences) : ∃ integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel, integer_model.signature.carrier = Carrier whole_data
 Source: ./Integers/Constructions/Tao/Instances.lean#L25
 
 
@@ -2346,10 +2346,10 @@ Source: ./Integers/Constructions/Mendelson/Instances.lean#L30
 Name: mendelson_integers_form_ordered_ring
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (positive_data : PositiveNaturalPairData), ∃ integer_model : LRA.NumberSystems.Models.IntegerModel, integer_model.signature.carrier = Carrier positive_data
+Predicate logic: ∀ (positive_data : PositiveNaturalPairData), ∃ integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel, integer_model.signature.carrier = Carrier positive_data
 Predicate logic (unfolded): ∀ (positive_data : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData), Exists fun integer_model => integer_model.signature.carrier = LRA.NumberSystems.Integers.Mendelson.Carrier positive_data
-Transliterated theorem: (∀ positive_data ∈ PositiveNaturalPairData), ∃ integer_model ∈ LRA.NumberSystems.Models.IntegerModel, integer_model.signature.carrier = Carrier positive_data
-Logical form (Lean): (positive_data : PositiveNaturalPairData) : ∃ integer_model : LRA.NumberSystems.Models.IntegerModel, integer_model.signature.carrier = Carrier positive_data
+Transliterated theorem: (∀ positive_data ∈ PositiveNaturalPairData), ∃ integer_model ∈ LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel, integer_model.signature.carrier = Carrier positive_data
+Logical form (Lean): (positive_data : PositiveNaturalPairData) : ∃ integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel, integer_model.signature.carrier = Carrier positive_data
 Source: ./Integers/Constructions/Mendelson/Instances.lean#L54
 
 
@@ -3369,10 +3369,10 @@ Source: ./RationalNumbers/ComparisonModels.lean#L202
 Name: rational_model_exists
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (a : LRA.NumberSystems.Models.IntegerModel), Nonempty LRA.NumberSystems.Models.DenselyOrderedFieldModel
-Predicate logic (unfolded): ∀ (a : LRA.NumberSystems.Models.IntegerModel), Nonempty LRA.NumberSystems.Models.DenselyOrderedFieldModel
-Transliterated theorem: (∀ integer_model ∈ IntegerModel), Nonempty DenselyOrderedFieldModel
-Logical form (Lean): (integer_model : IntegerModel) : Nonempty DenselyOrderedFieldModel
+Predicate logic: ∀ (a : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel), Nonempty LRA.NumberSystems.Models.DenselyOrderedFieldModel
+Predicate logic (unfolded): ∀ (a : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel), Nonempty LRA.NumberSystems.Models.DenselyOrderedFieldModel
+Transliterated theorem: (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), Nonempty DenselyOrderedFieldModel
+Logical form (Lean): (integer_model : DiscretelyOrderedIntegralDomainModel) : Nonempty DenselyOrderedFieldModel
 Source: ./RationalNumbers/ComparisonModels.lean#L224
 
 
@@ -3380,10 +3380,10 @@ Source: ./RationalNumbers/ComparisonModels.lean#L224
 Name: rational_extension_exists
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (integer_model : LRA.NumberSystems.Models.IntegerModel),   Nonempty (LRA.NumberSystems.Models.RationalExtension integer_model)
-Predicate logic (unfolded): ∀ (integer_model : LRA.NumberSystems.Models.IntegerModel), Nonempty (LRA.NumberSystems.Models.RationalExtension integer_model)
-Transliterated theorem: (∀ integer_model ∈ IntegerModel), Nonempty (RationalExtension integer_model)
-Logical form (Lean): (integer_model : IntegerModel) : Nonempty (RationalExtension integer_model)
+Predicate logic: ∀ (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel),   Nonempty (LRA.NumberSystems.Models.RationalExtension integer_model)
+Predicate logic (unfolded): ∀ (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel), Nonempty (LRA.NumberSystems.Models.RationalExtension integer_model)
+Transliterated theorem: (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), Nonempty (RationalExtension integer_model)
+Logical form (Lean): (integer_model : DiscretelyOrderedIntegralDomainModel) : Nonempty (RationalExtension integer_model)
 Source: ./RationalNumbers/ComparisonModels.lean#L255
 
 
@@ -3391,10 +3391,10 @@ Source: ./RationalNumbers/ComparisonModels.lean#L255
 Name: is_not_order_complete
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (integer_model : IntegerModel), ¬ RationalNumbers.is_order_complete (rational_model integer_model)
-Predicate logic (unfolded): ∀ (integer_model : LRA.NumberSystems.Models.IntegerModel), ¬ LRA.NumberSystems.RationalNumbers.is_order_complete (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model)
-Transliterated theorem: (∀ integer_model ∈ IntegerModel), ¬ RationalNumbers.is_order_complete (rational_model integer_model)
-Logical form (Lean): (integer_model : IntegerModel) : ¬ RationalNumbers.is_order_complete (rational_model integer_model)
+Predicate logic: ∀ (integer_model : DiscretelyOrderedIntegralDomainModel), ¬ RationalNumbers.is_order_complete (rational_model integer_model)
+Predicate logic (unfolded): ∀ (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel), ¬ LRA.NumberSystems.RationalNumbers.is_order_complete (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model)
+Transliterated theorem: (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), ¬ RationalNumbers.is_order_complete (rational_model integer_model)
+Logical form (Lean): (integer_model : DiscretelyOrderedIntegralDomainModel) : ¬ RationalNumbers.is_order_complete (rational_model integer_model)
 Source: ./RationalNumbers/ComparisonModels.lean#L289
 
 
@@ -3402,10 +3402,10 @@ Source: ./RationalNumbers/ComparisonModels.lean#L289
 Name: rational_model_exists
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (a : LRA.NumberSystems.Models.IntegerModel), Nonempty LRA.NumberSystems.Models.DenselyOrderedFieldModel
-Predicate logic (unfolded): ∀ (a : LRA.NumberSystems.Models.IntegerModel), Nonempty LRA.NumberSystems.Models.DenselyOrderedFieldModel
-Transliterated theorem: (∀ integer_model ∈ IntegerModel), Nonempty DenselyOrderedFieldModel
-Logical form (Lean): (integer_model : IntegerModel) : Nonempty DenselyOrderedFieldModel
+Predicate logic: ∀ (a : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel), Nonempty LRA.NumberSystems.Models.DenselyOrderedFieldModel
+Predicate logic (unfolded): ∀ (a : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel), Nonempty LRA.NumberSystems.Models.DenselyOrderedFieldModel
+Transliterated theorem: (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), Nonempty DenselyOrderedFieldModel
+Logical form (Lean): (integer_model : DiscretelyOrderedIntegralDomainModel) : Nonempty DenselyOrderedFieldModel
 Source: ./RationalNumbers/ComparisonModels.lean#L333
 
 
@@ -3424,10 +3424,10 @@ Source: ./RationalNumbers/ComparisonModels.lean#L388
 Name: rational_quotient_fractions_equiv_reduced_exists
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (integer_model : LRA.NumberSystems.Models.IntegerModel),   Nonempty     (LRA.NumberSystems.RationalNumbers.ModelIsomorphism       (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model)       (LRA.NumberSystems.RationalNumbers.Reduced.rational_model integer_model))
-Predicate logic (unfolded): ∀ (integer_model : LRA.NumberSystems.Models.IntegerModel), Nonempty (LRA.NumberSystems.RationalNumbers.ModelIsomorphism (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model) (LRA.NumberSystems.RationalNumbers.Reduced.rational_model integer_model))
-Transliterated theorem: (∀ integer_model ∈ IntegerModel), Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (Reduced.rational_model integer_model))
-Logical form (Lean): (integer_model : IntegerModel) : Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (Reduced.rational_model integer_model))
+Predicate logic: ∀ (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel),   Nonempty     (LRA.NumberSystems.RationalNumbers.ModelIsomorphism       (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model)       (LRA.NumberSystems.RationalNumbers.Reduced.rational_model integer_model))
+Predicate logic (unfolded): ∀ (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel), Nonempty (LRA.NumberSystems.RationalNumbers.ModelIsomorphism (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model) (LRA.NumberSystems.RationalNumbers.Reduced.rational_model integer_model))
+Transliterated theorem: (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (Reduced.rational_model integer_model))
+Logical form (Lean): (integer_model : DiscretelyOrderedIntegralDomainModel) : Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (Reduced.rational_model integer_model))
 Source: ./RationalNumbers/ComparisonModels.lean#L528
 
 
@@ -3435,10 +3435,10 @@ Source: ./RationalNumbers/ComparisonModels.lean#L528
 Name: rational_quotient_fractions_and_reduced_are_isomorphic
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (integer_model : LRA.NumberSystems.Models.IntegerModel),   Nonempty     (LRA.NumberSystems.RationalNumbers.ModelIsomorphism       (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model)       (LRA.NumberSystems.RationalNumbers.Reduced.rational_model integer_model))
-Predicate logic (unfolded): ∀ (integer_model : LRA.NumberSystems.Models.IntegerModel), Nonempty (LRA.NumberSystems.RationalNumbers.ModelIsomorphism (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model) (LRA.NumberSystems.RationalNumbers.Reduced.rational_model integer_model))
-Transliterated theorem: (∀ integer_model ∈ IntegerModel), Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (Reduced.rational_model integer_model))
-Logical form (Lean): (integer_model : IntegerModel) : Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (Reduced.rational_model integer_model))
+Predicate logic: ∀ (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel),   Nonempty     (LRA.NumberSystems.RationalNumbers.ModelIsomorphism       (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model)       (LRA.NumberSystems.RationalNumbers.Reduced.rational_model integer_model))
+Predicate logic (unfolded): ∀ (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel), Nonempty (LRA.NumberSystems.RationalNumbers.ModelIsomorphism (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model) (LRA.NumberSystems.RationalNumbers.Reduced.rational_model integer_model))
+Transliterated theorem: (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (Reduced.rational_model integer_model))
+Logical form (Lean): (integer_model : DiscretelyOrderedIntegralDomainModel) : Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (Reduced.rational_model integer_model))
 Source: ./RationalNumbers/ComparisonModels.lean#L570
 
 
@@ -3446,10 +3446,10 @@ Source: ./RationalNumbers/ComparisonModels.lean#L570
 Name: rational_quotient_fractions_equiv_fraction_field_exists
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (integer_model : LRA.NumberSystems.Models.IntegerModel),   Nonempty     (LRA.NumberSystems.RationalNumbers.ModelIsomorphism       (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model)       (LRA.NumberSystems.RationalNumbers.FractionField.rational_model { integer_model := integer_model }))
-Predicate logic (unfolded): ∀ (integer_model : LRA.NumberSystems.Models.IntegerModel), Nonempty (LRA.NumberSystems.RationalNumbers.ModelIsomorphism (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model) (LRA.NumberSystems.RationalNumbers.FractionField.rational_model { integer_model := integer_model }))
-Transliterated theorem: (∀ integer_model ∈ IntegerModel), Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (FractionField.rational_model ⟨integer_model⟩))
-Logical form (Lean): (integer_model : IntegerModel) : Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (FractionField.rational_model ⟨integer_model⟩))
+Predicate logic: ∀ (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel),   Nonempty     (LRA.NumberSystems.RationalNumbers.ModelIsomorphism       (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model)       (LRA.NumberSystems.RationalNumbers.FractionField.rational_model { integer_model := integer_model }))
+Predicate logic (unfolded): ∀ (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel), Nonempty (LRA.NumberSystems.RationalNumbers.ModelIsomorphism (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model) (LRA.NumberSystems.RationalNumbers.FractionField.rational_model { integer_model := integer_model }))
+Transliterated theorem: (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (FractionField.rational_model ⟨integer_model⟩))
+Logical form (Lean): (integer_model : DiscretelyOrderedIntegralDomainModel) : Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (FractionField.rational_model ⟨integer_model⟩))
 Source: ./RationalNumbers/ComparisonModels.lean#L593
 
 
@@ -3457,10 +3457,10 @@ Source: ./RationalNumbers/ComparisonModels.lean#L593
 Name: rational_quotient_fractions_and_fraction_field_are_isomorphic
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (integer_model : LRA.NumberSystems.Models.IntegerModel),   Nonempty     (LRA.NumberSystems.RationalNumbers.ModelIsomorphism       (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model)       (LRA.NumberSystems.RationalNumbers.FractionField.rational_model { integer_model := integer_model }))
-Predicate logic (unfolded): ∀ (integer_model : LRA.NumberSystems.Models.IntegerModel), Nonempty (LRA.NumberSystems.RationalNumbers.ModelIsomorphism (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model) (LRA.NumberSystems.RationalNumbers.FractionField.rational_model { integer_model := integer_model }))
-Transliterated theorem: (∀ integer_model ∈ IntegerModel), Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (FractionField.rational_model ⟨integer_model⟩))
-Logical form (Lean): (integer_model : IntegerModel) : Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (FractionField.rational_model ⟨integer_model⟩))
+Predicate logic: ∀ (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel),   Nonempty     (LRA.NumberSystems.RationalNumbers.ModelIsomorphism       (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model)       (LRA.NumberSystems.RationalNumbers.FractionField.rational_model { integer_model := integer_model }))
+Predicate logic (unfolded): ∀ (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel), Nonempty (LRA.NumberSystems.RationalNumbers.ModelIsomorphism (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model) (LRA.NumberSystems.RationalNumbers.FractionField.rational_model { integer_model := integer_model }))
+Transliterated theorem: (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (FractionField.rational_model ⟨integer_model⟩))
+Logical form (Lean): (integer_model : DiscretelyOrderedIntegralDomainModel) : Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (FractionField.rational_model ⟨integer_model⟩))
 Source: ./RationalNumbers/ComparisonModels.lean#L635
 
 
@@ -4832,10 +4832,10 @@ Source: ./RealNumbers/Constructions/PrimitiveIntervals/Behavior.lean#L123
 Name: archimedean_integer_part
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (integer_model : IntegerModel) (rational_extension : RationalExtension integer_model) (real_extension : RealExtension rational_extension.DenselyOrderedFieldModel) (value : real_extension.RealModel.signature.carrier), ∃ lower upper : integer_model.signature.carrier, real_extension.RealModel.signature.le (real_extension.RationalEmbedding.ToReal (rational_extension.IntegerEmbedding.ToRational lower)) value ∧ real_extension.RealModel.signature.StrictOrder value (real_extension.RationalEmbedding.ToReal (rational_extension.IntegerEmbedding.ToRational upper))
-Predicate logic (unfolded): ∀ (integer_model : LRA.NumberSystems.Models.IntegerModel) (rational_extension : LRA.NumberSystems.Models.RationalExtension integer_model) (real_extension : LRA.NumberSystems.Models.RealExtension rational_extension.DenselyOrderedFieldModel) (value : real_extension.RealModel.signature.carrier), Exists fun lower => Exists fun upper => (real_extension.RealModel.signature.le (real_extension.RationalEmbedding.ToReal (rational_extension.IntegerEmbedding.ToRational lower)) value ∧ real_extension.RealModel.signature.StrictOrder value (real_extension.RationalEmbedding.ToReal (rational_extension.IntegerEmbedding.ToRational upper)))
-Transliterated theorem: (∀ integer_model ∈ IntegerModel ∀ value ∈ real_extension.RealModel.signature.carrier), ∃ lower upper ∈ integer_model.signature.carrier, real_extension.RealModel.signature.le (real_extension.RationalEmbedding.ToReal (rational_extension.IntegerEmbedding.ToRational lower)) value ∧ real_extension.RealModel.signature.StrictOrder value (real_extension.RationalEmbedding.ToReal (rational_extension.IntegerEmbedding.ToRational upper))
-Logical form (Lean): (integer_model : IntegerModel) (rational_extension : RationalExtension integer_model) (real_extension : RealExtension rational_extension.DenselyOrderedFieldModel) (value : real_extension.RealModel.signature.carrier) : ∃ lower upper : integer_model.signature.carrier, real_extension.RealModel.signature.le (real_extension.RationalEmbedding.ToReal (rational_extension.IntegerEmbedding.ToRational lower)) value ∧ real_extension.RealModel.signature.StrictOrder value (real_extension.RationalEmbedding.ToReal (rational_extension.IntegerEmbedding.ToRational upper))
+Predicate logic: ∀ (integer_model : DiscretelyOrderedIntegralDomainModel) (rational_extension : RationalExtension integer_model) (real_extension : RealExtension rational_extension.DenselyOrderedFieldModel) (value : real_extension.RealModel.signature.carrier), ∃ lower upper : integer_model.signature.carrier, real_extension.RealModel.signature.le (real_extension.RationalEmbedding.ToReal (rational_extension.IntegerEmbedding.ToRational lower)) value ∧ real_extension.RealModel.signature.StrictOrder value (real_extension.RationalEmbedding.ToReal (rational_extension.IntegerEmbedding.ToRational upper))
+Predicate logic (unfolded): ∀ (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel) (rational_extension : LRA.NumberSystems.Models.RationalExtension integer_model) (real_extension : LRA.NumberSystems.Models.RealExtension rational_extension.DenselyOrderedFieldModel) (value : real_extension.RealModel.signature.carrier), Exists fun lower => Exists fun upper => (real_extension.RealModel.signature.le (real_extension.RationalEmbedding.ToReal (rational_extension.IntegerEmbedding.ToRational lower)) value ∧ real_extension.RealModel.signature.StrictOrder value (real_extension.RationalEmbedding.ToReal (rational_extension.IntegerEmbedding.ToRational upper)))
+Transliterated theorem: (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel ∀ value ∈ real_extension.RealModel.signature.carrier), ∃ lower upper ∈ integer_model.signature.carrier, real_extension.RealModel.signature.le (real_extension.RationalEmbedding.ToReal (rational_extension.IntegerEmbedding.ToRational lower)) value ∧ real_extension.RealModel.signature.StrictOrder value (real_extension.RationalEmbedding.ToReal (rational_extension.IntegerEmbedding.ToRational upper))
+Logical form (Lean): (integer_model : DiscretelyOrderedIntegralDomainModel) (rational_extension : RationalExtension integer_model) (real_extension : RealExtension rational_extension.DenselyOrderedFieldModel) (value : real_extension.RealModel.signature.carrier) : ∃ lower upper : integer_model.signature.carrier, real_extension.RealModel.signature.le (real_extension.RationalEmbedding.ToReal (rational_extension.IntegerEmbedding.ToRational lower)) value ∧ real_extension.RealModel.signature.StrictOrder value (real_extension.RationalEmbedding.ToReal (rational_extension.IntegerEmbedding.ToRational upper))
 Source: ./RealNumbers/Extensions.lean#L99
 
 
@@ -5173,10 +5173,10 @@ Source: ./RealNumbers/Irrationals.lean#L758
 Name: rational_has_unique_canonical_finite_expansion
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (integer_model : IntegerModel) (rational_model : DenselyOrderedFieldModel) (integer_embedding : IntegerEmbeddingIntoRational integer_model rational_model) (value : rational_model.signature.carrier), ∃ fraction : FiniteSimpleContinuedFraction integer_model, canonical integer_model fraction ∧ FiniteValue integer_model rational_model integer_embedding fraction value ∧ ∀ other : FiniteSimpleContinuedFraction integer_model, canonical integer_model other → FiniteValue integer_model rational_model integer_embedding other value → other = fraction
-Predicate logic (unfolded): ∀ (integer_model : LRA.NumberSystems.Models.IntegerModel) (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (integer_embedding : LRA.NumberSystems.Models.IntegerEmbeddingIntoRational integer_model rational_model) (value : rational_model.signature.carrier), Exists fun fraction => (LRA.NumberSystems.RationalNumbers.ContinuedFractions.canonical integer_model fraction ∧ (LRA.NumberSystems.RationalNumbers.ContinuedFractions.FiniteValue integer_model rational_model integer_embedding fraction value ∧ ∀ (other : LRA.NumberSystems.RationalNumbers.ContinuedFractions.FiniteSimpleContinuedFraction integer_model), LRA.NumberSystems.RationalNumbers.ContinuedFractions.canonical integer_model other → LRA.NumberSystems.RationalNumbers.ContinuedFractions.FiniteValue integer_model rational_model integer_embedding other value → other = fraction))
-Transliterated theorem: (∀ integer_model ∈ IntegerModel ∀ rational_model ∈ DenselyOrderedFieldModel ∀ value ∈ rational_model.signature.carrier), ∃ fraction ∈ FiniteSimpleContinuedFraction integer_model, canonical integer_model fraction ∧ FiniteValue integer_model rational_model integer_embedding fraction value ∧ ∀ other : FiniteSimpleContinuedFraction integer_model, canonical integer_model other → FiniteValue integer_model rational_model integer_embedding other value → other = fraction
-Logical form (Lean): (integer_model : IntegerModel) (rational_model : DenselyOrderedFieldModel) (integer_embedding : IntegerEmbeddingIntoRational integer_model rational_model) (value : rational_model.signature.carrier) : ∃ fraction : FiniteSimpleContinuedFraction integer_model, canonical integer_model fraction ∧ FiniteValue integer_model rational_model integer_embedding fraction value ∧ ∀ other : FiniteSimpleContinuedFraction integer_model, canonical integer_model other → FiniteValue integer_model rational_model integer_embedding other value → other = fraction
+Predicate logic: ∀ (integer_model : DiscretelyOrderedIntegralDomainModel) (rational_model : DenselyOrderedFieldModel) (integer_embedding : IntegerEmbeddingIntoRational integer_model rational_model) (value : rational_model.signature.carrier), ∃ fraction : FiniteSimpleContinuedFraction integer_model, canonical integer_model fraction ∧ FiniteValue integer_model rational_model integer_embedding fraction value ∧ ∀ other : FiniteSimpleContinuedFraction integer_model, canonical integer_model other → FiniteValue integer_model rational_model integer_embedding other value → other = fraction
+Predicate logic (unfolded): ∀ (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel) (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (integer_embedding : LRA.NumberSystems.Models.IntegerEmbeddingIntoRational integer_model rational_model) (value : rational_model.signature.carrier), Exists fun fraction => (LRA.NumberSystems.RationalNumbers.ContinuedFractions.canonical integer_model fraction ∧ (LRA.NumberSystems.RationalNumbers.ContinuedFractions.FiniteValue integer_model rational_model integer_embedding fraction value ∧ ∀ (other : LRA.NumberSystems.RationalNumbers.ContinuedFractions.FiniteSimpleContinuedFraction integer_model), LRA.NumberSystems.RationalNumbers.ContinuedFractions.canonical integer_model other → LRA.NumberSystems.RationalNumbers.ContinuedFractions.FiniteValue integer_model rational_model integer_embedding other value → other = fraction))
+Transliterated theorem: (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel ∀ rational_model ∈ DenselyOrderedFieldModel ∀ value ∈ rational_model.signature.carrier), ∃ fraction ∈ FiniteSimpleContinuedFraction integer_model, canonical integer_model fraction ∧ FiniteValue integer_model rational_model integer_embedding fraction value ∧ ∀ other : FiniteSimpleContinuedFraction integer_model, canonical integer_model other → FiniteValue integer_model rational_model integer_embedding other value → other = fraction
+Logical form (Lean): (integer_model : DiscretelyOrderedIntegralDomainModel) (rational_model : DenselyOrderedFieldModel) (integer_embedding : IntegerEmbeddingIntoRational integer_model rational_model) (value : rational_model.signature.carrier) : ∃ fraction : FiniteSimpleContinuedFraction integer_model, canonical integer_model fraction ∧ FiniteValue integer_model rational_model integer_embedding fraction value ∧ ∀ other : FiniteSimpleContinuedFraction integer_model, canonical integer_model other → FiniteValue integer_model rational_model integer_embedding other value → other = fraction
 Source: ./RationalNumbers/ContinuedFractions.lean#L203
 
 
@@ -5184,10 +5184,10 @@ Source: ./RationalNumbers/ContinuedFractions.lean#L203
 Name: infinite_continued_fraction_converges
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (real_model : LRA.NumberSystems.Models.RealModel) (integer_model : LRA.NumberSystems.Models.IntegerModel)   (a : LRA.NumberSystems.RationalNumbers.ContinuedFractions.InfiniteSimpleContinuedFraction integer_model),   Exists fun value =>     ∀ (neighborhood : real_model.signature.carrier → Prop), neighborhood value → Exists fun index => neighborhood value
-Predicate logic (unfolded): ∀ (real_model : LRA.NumberSystems.Models.RealModel) (integer_model : LRA.NumberSystems.Models.IntegerModel) (a : LRA.NumberSystems.RationalNumbers.ContinuedFractions.InfiniteSimpleContinuedFraction integer_model), Exists fun value => ∀ (neighborhood : real_model.signature.carrier → Prop), neighborhood value → Exists fun index => neighborhood value
-Transliterated theorem: (∀ real_model ∈ RealModel ∀ integer_model ∈ IntegerModel), ∃ value ∈ real_model.signature.carrier, ∀ neighborhood : real_model.signature.carrier → Prop, neighborhood value → ∃ index ∈ Nat, neighborhood value
-Logical form (Lean): (real_model : RealModel) (integer_model : IntegerModel) (fraction : InfiniteSimpleContinuedFraction integer_model) : ∃ value : real_model.signature.carrier, ∀ neighborhood : real_model.signature.carrier → Prop, neighborhood value → ∃ index : Nat, neighborhood value
+Predicate logic: ∀ (real_model : LRA.NumberSystems.Models.RealModel) (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel)   (a : LRA.NumberSystems.RationalNumbers.ContinuedFractions.InfiniteSimpleContinuedFraction integer_model),   Exists fun value =>     ∀ (neighborhood : real_model.signature.carrier → Prop), neighborhood value → Exists fun index => neighborhood value
+Predicate logic (unfolded): ∀ (real_model : LRA.NumberSystems.Models.RealModel) (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel) (a : LRA.NumberSystems.RationalNumbers.ContinuedFractions.InfiniteSimpleContinuedFraction integer_model), Exists fun value => ∀ (neighborhood : real_model.signature.carrier → Prop), neighborhood value → Exists fun index => neighborhood value
+Transliterated theorem: (∀ real_model ∈ RealModel ∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), ∃ value ∈ real_model.signature.carrier, ∀ neighborhood : real_model.signature.carrier → Prop, neighborhood value → ∃ index ∈ Nat, neighborhood value
+Logical form (Lean): (real_model : RealModel) (integer_model : DiscretelyOrderedIntegralDomainModel) (fraction : InfiniteSimpleContinuedFraction integer_model) : ∃ value : real_model.signature.carrier, ∀ neighborhood : real_model.signature.carrier → Prop, neighborhood value → ∃ index : Nat, neighborhood value
 Source: ./RationalNumbers/ContinuedFractions.lean#L238
 
 
@@ -5195,10 +5195,10 @@ Source: ./RationalNumbers/ContinuedFractions.lean#L238
 Name: quadratic_irrational_iff_eventually_periodic
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (real_model : RealModel) (integer_model : IntegerModel) (fraction : InfiniteSimpleContinuedFraction integer_model) (value : real_model.signature.carrier), eventually_periodic fraction ↔ ∃ coefficient_a coefficient_b coefficient_c : real_model.signature.carrier, real_model.signature.add (real_model.signature.add (real_model.signature.multiply coefficient_a (real_model.signature.multiply value value)) (real_model.signature.multiply coefficient_b value)) coefficient_c = real_model.signature.zero
-Predicate logic (unfolded): ∀ (real_model : LRA.NumberSystems.Models.RealModel) (integer_model : LRA.NumberSystems.Models.IntegerModel) (fraction : LRA.NumberSystems.RationalNumbers.ContinuedFractions.InfiniteSimpleContinuedFraction integer_model) (value : real_model.signature.carrier), LRA.NumberSystems.RationalNumbers.ContinuedFractions.eventually_periodic fraction ↔ Exists fun coefficient_a => Exists fun coefficient_b => Exists fun coefficient_c => real_model.signature.add (real_model.signature.add (real_model.signature.multiply coefficient_a (real_model.signature.multiply value value)) (real_model.signature.multiply coefficient_b value)) coefficient_c = real_model.signature.zero
-Transliterated theorem: (∀ real_model ∈ RealModel ∀ integer_model ∈ IntegerModel ∀ value ∈ real_model.signature.carrier), eventually_periodic fraction ↔ ∃ coefficient_a coefficient_b coefficient_c ∈ real_model.signature.carrier, real_model.signature.add (real_model.signature.add (real_model.signature.multiply coefficient_a (real_model.signature.multiply value value)) (real_model.signature.multiply coefficient_b value)) coefficient_c = real_model.signature.zero
-Logical form (Lean): (real_model : RealModel) (integer_model : IntegerModel) (fraction : InfiniteSimpleContinuedFraction integer_model) (value : real_model.signature.carrier) : eventually_periodic fraction ↔ ∃ coefficient_a coefficient_b coefficient_c : real_model.signature.carrier, real_model.signature.add (real_model.signature.add (real_model.signature.multiply coefficient_a (real_model.signature.multiply value value)) (real_model.signature.multiply coefficient_b value)) coefficient_c = real_model.signature.zero
+Predicate logic: ∀ (real_model : RealModel) (integer_model : DiscretelyOrderedIntegralDomainModel) (fraction : InfiniteSimpleContinuedFraction integer_model) (value : real_model.signature.carrier), eventually_periodic fraction ↔ ∃ coefficient_a coefficient_b coefficient_c : real_model.signature.carrier, real_model.signature.add (real_model.signature.add (real_model.signature.multiply coefficient_a (real_model.signature.multiply value value)) (real_model.signature.multiply coefficient_b value)) coefficient_c = real_model.signature.zero
+Predicate logic (unfolded): ∀ (real_model : LRA.NumberSystems.Models.RealModel) (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel) (fraction : LRA.NumberSystems.RationalNumbers.ContinuedFractions.InfiniteSimpleContinuedFraction integer_model) (value : real_model.signature.carrier), LRA.NumberSystems.RationalNumbers.ContinuedFractions.eventually_periodic fraction ↔ Exists fun coefficient_a => Exists fun coefficient_b => Exists fun coefficient_c => real_model.signature.add (real_model.signature.add (real_model.signature.multiply coefficient_a (real_model.signature.multiply value value)) (real_model.signature.multiply coefficient_b value)) coefficient_c = real_model.signature.zero
+Transliterated theorem: (∀ real_model ∈ RealModel ∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel ∀ value ∈ real_model.signature.carrier), eventually_periodic fraction ↔ ∃ coefficient_a coefficient_b coefficient_c ∈ real_model.signature.carrier, real_model.signature.add (real_model.signature.add (real_model.signature.multiply coefficient_a (real_model.signature.multiply value value)) (real_model.signature.multiply coefficient_b value)) coefficient_c = real_model.signature.zero
+Logical form (Lean): (real_model : RealModel) (integer_model : DiscretelyOrderedIntegralDomainModel) (fraction : InfiniteSimpleContinuedFraction integer_model) (value : real_model.signature.carrier) : eventually_periodic fraction ↔ ∃ coefficient_a coefficient_b coefficient_c : real_model.signature.carrier, real_model.signature.add (real_model.signature.add (real_model.signature.multiply coefficient_a (real_model.signature.multiply value value)) (real_model.signature.multiply coefficient_b value)) coefficient_c = real_model.signature.zero
 Source: ./RationalNumbers/ContinuedFractions.lean#L275
 
 

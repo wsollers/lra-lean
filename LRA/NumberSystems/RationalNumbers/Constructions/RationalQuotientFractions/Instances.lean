@@ -43,7 +43,7 @@ noncomputable def RationalQuotientFractionsRealizesRationalNumberSystem
 noncomputable def RationalQuotientFractionsRealizesRationalNumberSystem
     (rational_data : IntegerAndPositiveNaturalData) :
     LRA.NumberSystems.RationalNumbers.RationalNumberSystem where
-  IntegerModel := rational_data.integer_model
+  DiscretelyOrderedIntegralDomainModel := rational_data.integer_model
   FieldModel :=
     RationalQuotientFractionsRealizesDenselyOrderedFieldModel rational_data
   IntegerEmbedding := by

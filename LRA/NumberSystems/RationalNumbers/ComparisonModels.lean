@@ -218,11 +218,11 @@ Logical form:
 
 ```lean
 theorem rational_model_exists
-    (integer_model : IntegerModel) : Nonempty DenselyOrderedFieldModel
+    (integer_model : DiscretelyOrderedIntegralDomainModel) : Nonempty DenselyOrderedFieldModel
 ```
 -/
 theorem rational_model_exists
-    (integer_model : IntegerModel) : Nonempty DenselyOrderedFieldModel := by
+    (integer_model : DiscretelyOrderedIntegralDomainModel) : Nonempty DenselyOrderedFieldModel := by
   sorry
 
 /-- **[Definition — Rational Quotient-Fractions Model]**
@@ -231,12 +231,12 @@ Logical form:
 
 ```lean
 noncomputable def rational_model
-    (integer_model : IntegerModel) : DenselyOrderedFieldModel :=
+    (integer_model : DiscretelyOrderedIntegralDomainModel) : DenselyOrderedFieldModel :=
   Classical.choice (rational_model_exists integer_model)
 ```
 -/
 noncomputable def rational_model
-    (integer_model : IntegerModel) : DenselyOrderedFieldModel :=
+    (integer_model : DiscretelyOrderedIntegralDomainModel) : DenselyOrderedFieldModel :=
   Classical.choice (rational_model_exists integer_model)
 
 
@@ -248,12 +248,12 @@ Logical form:
 
 ```lean
 theorem rational_extension_exists
-    (integer_model : IntegerModel) :
+    (integer_model : DiscretelyOrderedIntegralDomainModel) :
     Nonempty (RationalExtension integer_model)
 ```
 -/
 theorem rational_extension_exists
-    (integer_model : IntegerModel) :
+    (integer_model : DiscretelyOrderedIntegralDomainModel) :
     Nonempty (RationalExtension integer_model) := by
   sorry
 
@@ -263,13 +263,13 @@ Logical form:
 
 ```lean
 noncomputable def rational_extension
-    (integer_model : IntegerModel) :
+    (integer_model : DiscretelyOrderedIntegralDomainModel) :
     RationalExtension integer_model :=
   Classical.choice (rational_extension_exists integer_model)
 ```
 -/
 noncomputable def rational_extension
-    (integer_model : IntegerModel) :
+    (integer_model : DiscretelyOrderedIntegralDomainModel) :
     RationalExtension integer_model :=
   Classical.choice (rational_extension_exists integer_model)
 
@@ -282,12 +282,12 @@ Logical form:
 
 ```lean
 theorem is_not_order_complete
-    (integer_model : IntegerModel) :
+    (integer_model : DiscretelyOrderedIntegralDomainModel) :
     ¬ RationalNumbers.is_order_complete (rational_model integer_model)
 ```
 -/
 theorem is_not_order_complete
-    (integer_model : IntegerModel) :
+    (integer_model : DiscretelyOrderedIntegralDomainModel) :
     ¬ RationalNumbers.is_order_complete (rational_model integer_model) := by
   sorry
 
@@ -327,11 +327,11 @@ Logical form:
 
 ```lean
 theorem rational_model_exists
-    (integer_model : IntegerModel) : Nonempty DenselyOrderedFieldModel
+    (integer_model : DiscretelyOrderedIntegralDomainModel) : Nonempty DenselyOrderedFieldModel
 ```
 -/
 theorem rational_model_exists
-    (integer_model : IntegerModel) : Nonempty DenselyOrderedFieldModel := by
+    (integer_model : DiscretelyOrderedIntegralDomainModel) : Nonempty DenselyOrderedFieldModel := by
   sorry
 
 /-- **[Definition — Reduced-Fraction Rational Model]**
@@ -340,12 +340,12 @@ Logical form:
 
 ```lean
 noncomputable def rational_model
-    (integer_model : IntegerModel) : DenselyOrderedFieldModel :=
+    (integer_model : DiscretelyOrderedIntegralDomainModel) : DenselyOrderedFieldModel :=
   Classical.choice (rational_model_exists integer_model)
 ```
 -/
 noncomputable def rational_model
-    (integer_model : IntegerModel) : DenselyOrderedFieldModel :=
+    (integer_model : DiscretelyOrderedIntegralDomainModel) : DenselyOrderedFieldModel :=
   Classical.choice (rational_model_exists integer_model)
 
 end LRA.NumberSystems.RationalNumbers.Reduced
@@ -366,11 +366,11 @@ Logical form:
 
 ```lean
 structure IntegralDomainFractionFieldData where
-  integer_model : IntegerModel
+  integer_model : DiscretelyOrderedIntegralDomainModel
 ```
 -/
 structure IntegralDomainFractionFieldData where
-  integer_model : IntegerModel
+  integer_model : DiscretelyOrderedIntegralDomainModel
 
 
 /-- **[Theorem — Fraction-Field Rational Model Exists]**
@@ -518,7 +518,7 @@ Logical form:
 
 ```lean
 theorem rational_quotient_fractions_equiv_reduced_exists
-    (integer_model : IntegerModel) :
+    (integer_model : DiscretelyOrderedIntegralDomainModel) :
     Nonempty
       (ModelIsomorphism
         (QuotientFractionsComparison.rational_model integer_model)
@@ -526,7 +526,7 @@ theorem rational_quotient_fractions_equiv_reduced_exists
 ```
 -/
 theorem rational_quotient_fractions_equiv_reduced_exists
-    (integer_model : IntegerModel) :
+    (integer_model : DiscretelyOrderedIntegralDomainModel) :
     Nonempty
       (ModelIsomorphism
         (QuotientFractionsComparison.rational_model integer_model)
@@ -539,7 +539,7 @@ Logical form:
 
 ```lean
 noncomputable def rational_quotient_fractions_equiv_reduced
-    (integer_model : IntegerModel) :
+    (integer_model : DiscretelyOrderedIntegralDomainModel) :
     ModelIsomorphism
       (QuotientFractionsComparison.rational_model integer_model)
       (Reduced.rational_model integer_model) :=
@@ -547,7 +547,7 @@ noncomputable def rational_quotient_fractions_equiv_reduced
 ```
 -/
 noncomputable def rational_quotient_fractions_equiv_reduced
-    (integer_model : IntegerModel) :
+    (integer_model : DiscretelyOrderedIntegralDomainModel) :
     ModelIsomorphism
       (QuotientFractionsComparison.rational_model integer_model)
       (Reduced.rational_model integer_model) :=
@@ -560,7 +560,7 @@ Logical form:
 
 ```lean
 theorem rational_quotient_fractions_and_reduced_are_isomorphic
-    (integer_model : IntegerModel) :
+    (integer_model : DiscretelyOrderedIntegralDomainModel) :
     Nonempty
       (ModelIsomorphism
         (QuotientFractionsComparison.rational_model integer_model)
@@ -568,7 +568,7 @@ theorem rational_quotient_fractions_and_reduced_are_isomorphic
 ```
 -/
 theorem rational_quotient_fractions_and_reduced_are_isomorphic
-    (integer_model : IntegerModel) :
+    (integer_model : DiscretelyOrderedIntegralDomainModel) :
     Nonempty
       (ModelIsomorphism
         (QuotientFractionsComparison.rational_model integer_model)
@@ -583,7 +583,7 @@ Logical form:
 
 ```lean
 theorem rational_quotient_fractions_equiv_fraction_field_exists
-    (integer_model : IntegerModel) :
+    (integer_model : DiscretelyOrderedIntegralDomainModel) :
     Nonempty
       (ModelIsomorphism
         (QuotientFractionsComparison.rational_model integer_model)
@@ -591,7 +591,7 @@ theorem rational_quotient_fractions_equiv_fraction_field_exists
 ```
 -/
 theorem rational_quotient_fractions_equiv_fraction_field_exists
-    (integer_model : IntegerModel) :
+    (integer_model : DiscretelyOrderedIntegralDomainModel) :
     Nonempty
       (ModelIsomorphism
         (QuotientFractionsComparison.rational_model integer_model)
@@ -604,7 +604,7 @@ Logical form:
 
 ```lean
 noncomputable def rational_quotient_fractions_equiv_fraction_field
-    (integer_model : IntegerModel) :
+    (integer_model : DiscretelyOrderedIntegralDomainModel) :
     ModelIsomorphism
       (QuotientFractionsComparison.rational_model integer_model)
       (FractionField.rational_model ⟨integer_model⟩) :=
@@ -612,7 +612,7 @@ noncomputable def rational_quotient_fractions_equiv_fraction_field
 ```
 -/
 noncomputable def rational_quotient_fractions_equiv_fraction_field
-    (integer_model : IntegerModel) :
+    (integer_model : DiscretelyOrderedIntegralDomainModel) :
     ModelIsomorphism
       (QuotientFractionsComparison.rational_model integer_model)
       (FractionField.rational_model ⟨integer_model⟩) :=
@@ -625,7 +625,7 @@ Logical form:
 
 ```lean
 theorem rational_quotient_fractions_and_fraction_field_are_isomorphic
-    (integer_model : IntegerModel) :
+    (integer_model : DiscretelyOrderedIntegralDomainModel) :
     Nonempty
       (ModelIsomorphism
         (QuotientFractionsComparison.rational_model integer_model)
@@ -633,7 +633,7 @@ theorem rational_quotient_fractions_and_fraction_field_are_isomorphic
 ```
 -/
 theorem rational_quotient_fractions_and_fraction_field_are_isomorphic
-    (integer_model : IntegerModel) :
+    (integer_model : DiscretelyOrderedIntegralDomainModel) :
     Nonempty
       (ModelIsomorphism
         (QuotientFractionsComparison.rational_model integer_model)

@@ -692,7 +692,7 @@ Deferred concepts:
 ```text
 NumberSystemTower
 NaturalNumberInterface
-IntegerModel
+DiscretelyOrderedIntegralDomainModel
 DenselyOrderedFieldModel
 RealModel
 CanonicalEmbeddings

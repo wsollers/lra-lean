@@ -62,7 +62,7 @@ Mathlib, full stop, with a decorative import suggesting otherwise. §7.7's
 own words: *"`Arithmetic/` is written against whichever carrier the switch
 selected. It is the natural first consumer to rewrite against interface
 binders, and the test of whether the interface is adequate."* This redesign
-is that rewrite — binding against `IntegerModel`/`DenselyOrderedFieldModel`/`RealModel`
+is that rewrite — binding against `DiscretelyOrderedIntegralDomainModel`/`DenselyOrderedFieldModel`/`RealModel`
 (or the underlying `IntegerAndPositiveNaturalData`-style embedding records
 already used by `RationalQuotientFractions`) as explicit parameters, the
 same way every migrated `NumberSystems` file already does, not against a
@@ -87,7 +87,7 @@ presentation order, not ownership."* Lang's chapter groupings are the
 *reading order*; they are not a reason to keep this content in one place.
 Each topic below is placed by what it's fundamentally **about**, generic
 over an interface parameter wherever the existing migrated systems already
-do that (`DenselyOrderedFieldModel`, `RealModel`, `IntegerModel`, or a plain
+do that (`DenselyOrderedFieldModel`, `RealModel`, `DiscretelyOrderedIntegralDomainModel`, or a plain
 `[CommutativeRingLaws R]`-style mixin the way `AlgebraicIdentities.lean`
 already does it) — never hardcoded to a Mathlib concrete type, and never
 routed through a "switch."

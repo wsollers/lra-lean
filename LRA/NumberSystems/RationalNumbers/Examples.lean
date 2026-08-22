@@ -10,7 +10,7 @@ open LRA.NumberSystems.RationalNumbers.RationalQuotientFractions
 /-!
 Examples showing that `RationalNumberSystem` does not commit the repository to a
 single implementation of the integers. Each section chooses or supplies a
-different `IntegerModel`, supplies quotient-fraction data built over that model,
+different `DiscretelyOrderedIntegralDomainModel`, supplies quotient-fraction data built over that model,
 and obtains a rational number system recording that integer choice.
 -/
 
@@ -49,7 +49,7 @@ theorem MathlibRationalSystemUsesMathlibIntegers
     (rational_data : IntegerAndPositiveNaturalData)
     (usesMathlibIntegers :
       rational_data.integer_model = mathlibIntegerModel) :
-    (MathlibRationalSystem rational_data usesMathlibIntegers).IntegerModel =
+    (MathlibRationalSystem rational_data usesMathlibIntegers).DiscretelyOrderedIntegralDomainModel =
       mathlibIntegerModel
 ```
 -/
@@ -57,7 +57,7 @@ theorem MathlibRationalSystemUsesMathlibIntegers
     (rational_data : IntegerAndPositiveNaturalData)
     (usesMathlibIntegers :
       rational_data.integer_model = mathlibIntegerModel) :
-    (MathlibRationalSystem rational_data usesMathlibIntegers).IntegerModel =
+    (MathlibRationalSystem rational_data usesMathlibIntegers).DiscretelyOrderedIntegralDomainModel =
       mathlibIntegerModel := by
   exact usesMathlibIntegers
 
@@ -67,7 +67,7 @@ section TaoIntegers
 
 open LRA.NumberSystems.Integers
 
-/-- Choose the `IntegerModel` realized by Tao's formal-difference construction.
+/-- Choose the `DiscretelyOrderedIntegralDomainModel` realized by Tao's formal-difference construction.
 This is extraction of one already-proved existential witness, not an invocation
 of the Axiom of Choice.
 
@@ -76,12 +76,12 @@ Logical form:
 ```lean
 noncomputable def TaoIntegerModel
     (whole_data : Tao.WholeNumberArithmeticForTaoFormalDifferences) :
-    IntegerModel
+    DiscretelyOrderedIntegralDomainModel
 ```
 -/
 noncomputable def TaoIntegerModel
     (whole_data : Tao.WholeNumberArithmeticForTaoFormalDifferences) :
-    IntegerModel :=
+    DiscretelyOrderedIntegralDomainModel :=
   Classical.choose (Tao.tao_integers_form_ordered_ring whole_data)
 
 /-- A quotient-fraction rational system built over the integer model realized by
@@ -117,7 +117,7 @@ theorem TaoRationalSystemUsesTaoIntegers
     (rational_data : IntegerAndPositiveNaturalData)
     (usesTaoIntegers :
       rational_data.integer_model = TaoIntegerModel whole_data) :
-    (TaoRationalSystem whole_data rational_data usesTaoIntegers).IntegerModel =
+    (TaoRationalSystem whole_data rational_data usesTaoIntegers).DiscretelyOrderedIntegralDomainModel =
       TaoIntegerModel whole_data
 ```
 -/
@@ -126,7 +126,7 @@ theorem TaoRationalSystemUsesTaoIntegers
     (rational_data : IntegerAndPositiveNaturalData)
     (usesTaoIntegers :
       rational_data.integer_model = TaoIntegerModel whole_data) :
-    (TaoRationalSystem whole_data rational_data usesTaoIntegers).IntegerModel =
+    (TaoRationalSystem whole_data rational_data usesTaoIntegers).DiscretelyOrderedIntegralDomainModel =
       TaoIntegerModel whole_data := by
   exact usesTaoIntegers
 
@@ -136,19 +136,19 @@ section MendelsonIntegers
 
 open LRA.NumberSystems.Integers
 
-/-- Choose the `IntegerModel` realized by Mendelson's ordered-pair construction.
+/-- Choose the `DiscretelyOrderedIntegralDomainModel` realized by Mendelson's ordered-pair construction.
 
 Logical form:
 
 ```lean
 noncomputable def MendelsonIntegerModel
     (positive_data : Mendelson.PositiveNaturalPairData) :
-    IntegerModel
+    DiscretelyOrderedIntegralDomainModel
 ```
 -/
 noncomputable def MendelsonIntegerModel
     (positive_data : Mendelson.PositiveNaturalPairData) :
-    IntegerModel :=
+    DiscretelyOrderedIntegralDomainModel :=
   Classical.choose
     (Mendelson.mendelson_integers_form_ordered_ring positive_data)
 
@@ -186,7 +186,7 @@ theorem MendelsonRationalSystemUsesMendelsonIntegers
     (usesMendelsonIntegers :
       rational_data.integer_model = MendelsonIntegerModel positive_data) :
     (MendelsonRationalSystem positive_data rational_data
-      usesMendelsonIntegers).IntegerModel =
+      usesMendelsonIntegers).DiscretelyOrderedIntegralDomainModel =
         MendelsonIntegerModel positive_data
 ```
 -/
@@ -196,7 +196,7 @@ theorem MendelsonRationalSystemUsesMendelsonIntegers
     (usesMendelsonIntegers :
       rational_data.integer_model = MendelsonIntegerModel positive_data) :
     (MendelsonRationalSystem positive_data rational_data
-      usesMendelsonIntegers).IntegerModel =
+      usesMendelsonIntegers).DiscretelyOrderedIntegralDomainModel =
         MendelsonIntegerModel positive_data := by
   exact usesMendelsonIntegers
 

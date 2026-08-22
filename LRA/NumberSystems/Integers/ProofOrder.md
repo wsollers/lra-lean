@@ -2,7 +2,7 @@
 
 Tracks the proofs needed to land all five integer constructions as working
 realizations of the generic interfaces they each satisfy (`IntegerStructure`
-for successor-first constructions, `LRA.NumberSystems.Models.IntegerModel`
+for successor-first constructions, `LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel`
 for ring-first ones), in the order they should be discharged. Every item
 marked `[ ]` is currently `sorry`; nothing is filled in until it's checked
 off.
@@ -16,9 +16,9 @@ split into two families depending on how they present the carrier:
 | System | Carrier | Interface realized | How discharged |
 |---|---|---|---|
 | `Polish.TwoSidedSuccessor` | `Z` (native `inductive`, zero + positive/negative rays) | `IntegerStructure Z (PredicateSet Z)` | Successor/predecessor laws mostly **proved** (`pred_succ`, `succ_pred`, `twoSidedInduction`, ring/order laws); `aperiodic` and the realization assembly itself are `sorry` |
-| `QuotientOrderedPairs` | `Quotient (representative_setoid whole_data)`, generic over any `WholeNumberArithmeticForQuotientPairs` | `LRA.NumberSystems.Models.IntegerModel` | Quotient operations **proved to exist** (`quotient_addition_exists` etc, via `LRA.UniversalAlgebra.Quotient`); well-definedness and the ring/order laws themselves are `sorry` |
-| `Mendelson` | `Quotient (setoid positive_data)` of positive-natural pairs | `IntegerModel`, plus recovers a `PeanoSystem` model from its positive classes | All `sorry` past the raw definitions |
-| `Tao` | `Quotient (setoid whole_data)` of formal differences `a -- b` | `IntegerModel` | All `sorry` past the raw definitions |
+| `QuotientOrderedPairs` | `Quotient (representative_setoid whole_data)`, generic over any `WholeNumberArithmeticForQuotientPairs` | `LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel` | Quotient operations **proved to exist** (`quotient_addition_exists` etc, via `LRA.UniversalAlgebra.Quotient`); well-definedness and the ring/order laws themselves are `sorry` |
+| `Mendelson` | `Quotient (setoid positive_data)` of positive-natural pairs | `DiscretelyOrderedIntegralDomainModel`, plus recovers a `PeanoSystem` model from its positive classes | All `sorry` past the raw definitions |
+| `Tao` | `Quotient (setoid whole_data)` of formal differences `a -- b` | `DiscretelyOrderedIntegralDomainModel` | All `sorry` past the raw definitions |
 | `Pfefer` | none yet | none yet | Placeholder only (`ConstructionPlan`/`plan`), no mathematics |
 
 `Polish` is the odd one out structurally: it is the only construction that
@@ -26,8 +26,8 @@ defines its own `succ`/`pred` from scratch rather than quotienting pairs of
 whole numbers, so it is the only one that can realize `IntegerStructure`
 directly. The other three (`QuotientOrderedPairs`, `Mendelson`, `Tao`) are
 ring-first: their "successor" is only ever `+ one`, never a primitive
-operation, so they realize `IntegerModel` instead. Reconciling the two
-families — showing every `IntegerModel` with a discrete order also yields an
+operation, so they realize `DiscretelyOrderedIntegralDomainModel` instead. Reconciling the two
+families — showing every `DiscretelyOrderedIntegralDomainModel` with a discrete order also yields an
 `IntegerStructure`, or vice versa — is itself a categoricity-adjacent gap,
 tracked below.
 
@@ -166,7 +166,7 @@ Split from the former single 765-line file.
 - [ ] `Instances.lean` — `positive_classes_recover_natural_number_model`
       (recovers a `PeanoSystem` model — this construction's own realization
       obligation, not a comparison against another integer construction) and
-      `mendelson_integers_form_ordered_ring` (realizes `IntegerModel`), both
+      `mendelson_integers_form_ordered_ring` (realizes `DiscretelyOrderedIntegralDomainModel`), both
       `sorry`, moved unchanged.
 
 **Deleted:** `mendelson_compares_with_quotient_ordered_pairs`. See the
@@ -222,19 +222,19 @@ Judgment call, made explicitly rather than silently: these theorems tried to
 state "construction A and construction B produce the same integers" by
 directly comparing carriers pairwise. That is exactly what "realizes" and
 "satisfies" a shared interface already mean in this migration's
-architecture — every construction proves it realizes `IntegerModel` (or
+architecture — every construction proves it realizes `DiscretelyOrderedIntegralDomainModel` (or
 `IntegerStructure`), and `IntegerStructure.Categoricity`/a still-to-be-written
-`IntegerModel` categoricity theorem is what ties all realizations together
+`DiscretelyOrderedIntegralDomainModel` categoricity theorem is what ties all realizations together
 as "the same," the way `PeanoSystem.Categoricity` does for the naturals.
 Restating that pairwise, per pair of constructions, is the duplication this
 architecture exists to avoid.
 
 **To research before this is fully closed:**
 
-1. Does `LRA.NumberSystems.Models.IntegerModel` need its own categoricity
+1. Does `LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel` need its own categoricity
    theorem (mirroring `PeanoSystem.Categoricity` and
    `IntegerStructure.Categoricity`), so that "QuotientOrderedPairs, Mendelson,
-   and Tao are all the same" follows from each realizing `IntegerModel` plus
+   and Tao are all the same" follows from each realizing `DiscretelyOrderedIntegralDomainModel` plus
    one shared uniqueness proof, rather than needing to be stated at all?
 2. Is `ConstructionModels.lean`'s abstract, from-scratch restatement of
    `Representative`/`equivalent` inside each `Comparison` namespace doing any

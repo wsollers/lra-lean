@@ -25,17 +25,17 @@ Archimedean field extension.
 Logical form:
 
 ```lean
-structure IntegerUniversalProperty (SelectedIntegerModel : IntegerModel.{u}) : Prop where
+structure IntegerUniversalProperty (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel.{u}) : Prop where
   InitialForDiscreteOrderedRings :
-    ∀ target : IntegerModel.{u},
+    ∀ target : DiscretelyOrderedIntegralDomainModel.{u},
       ∃ map : SelectedIntegerModel.signature.carrier → target.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedRing
           SelectedIntegerModel.signature target.signature map
 ```
 -/
-structure IntegerUniversalProperty (SelectedIntegerModel : IntegerModel.{u}) : Prop where
+structure IntegerUniversalProperty (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel.{u}) : Prop where
   InitialForDiscreteOrderedRings :
-    ∀ target : IntegerModel.{u},
+    ∀ target : DiscretelyOrderedIntegralDomainModel.{u},
       ∃ map : SelectedIntegerModel.signature.carrier → target.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedRing
           SelectedIntegerModel.signature target.signature map

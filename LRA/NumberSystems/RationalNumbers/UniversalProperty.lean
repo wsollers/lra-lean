@@ -23,10 +23,10 @@ Logical form:
 theorem FractionFieldUniversalProperty
     (rationalSystem : RationalNumberSystem.{u})
     (target : DenselyOrderedFieldModel.{u})
-    (integerMap : rationalSystem.IntegerModel.Carrier → target.Carrier)
+    (integerMap : rationalSystem.DiscretelyOrderedIntegralDomainModel.Carrier → target.Carrier)
     (integerMapIsEmbedding :
       EmbeddingPreservesOrderedRing
-        rationalSystem.IntegerModel.signature
+        rationalSystem.DiscretelyOrderedIntegralDomainModel.signature
         target.signature.toOrderedRingSignature
         integerMap) :
     ∃! rationalMap : rationalSystem.FieldModel.Carrier → target.Carrier,
@@ -34,7 +34,7 @@ theorem FractionFieldUniversalProperty
           rationalSystem.FieldModel.signature
           target.signature
           rationalMap ∧
-        ∀ integerValue : rationalSystem.IntegerModel.Carrier,
+        ∀ integerValue : rationalSystem.DiscretelyOrderedIntegralDomainModel.Carrier,
           rationalMap
               (rationalSystem.IntegerEmbedding.ToRational integerValue) =
             integerMap integerValue
@@ -43,10 +43,10 @@ theorem FractionFieldUniversalProperty
 theorem FractionFieldUniversalProperty
     (rationalSystem : RationalNumberSystem.{u})
     (target : DenselyOrderedFieldModel.{u})
-    (integerMap : rationalSystem.IntegerModel.Carrier → target.Carrier)
+    (integerMap : rationalSystem.DiscretelyOrderedIntegralDomainModel.Carrier → target.Carrier)
     (integerMapIsEmbedding :
       EmbeddingPreservesOrderedRing
-        rationalSystem.IntegerModel.signature
+        rationalSystem.DiscretelyOrderedIntegralDomainModel.signature
         target.signature.toOrderedRingSignature
         integerMap) :
     ∃! rationalMap : rationalSystem.FieldModel.Carrier → target.Carrier,
@@ -54,7 +54,7 @@ theorem FractionFieldUniversalProperty
           rationalSystem.FieldModel.signature
           target.signature
           rationalMap ∧
-        ∀ integerValue : rationalSystem.IntegerModel.Carrier,
+        ∀ integerValue : rationalSystem.DiscretelyOrderedIntegralDomainModel.Carrier,
           rationalMap
               (rationalSystem.IntegerEmbedding.ToRational integerValue) =
             integerMap integerValue := by

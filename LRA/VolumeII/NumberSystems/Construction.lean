@@ -114,15 +114,15 @@ Logical form:
 
 ```lean
 structure NumberSystemTower where
-  IntegerModel : IntegerModel
-  RationalExtension : RationalExtension IntegerModel
+  DiscretelyOrderedIntegralDomainModel : DiscretelyOrderedIntegralDomainModel
+  RationalExtension : RationalExtension DiscretelyOrderedIntegralDomainModel
   RealExtension :
     RealExtension RationalExtension.DenselyOrderedFieldModel
 ```
 -/
 structure NumberSystemTower where
-  IntegerModel : IntegerModel
-  RationalExtension : RationalExtension IntegerModel
+  DiscretelyOrderedIntegralDomainModel : DiscretelyOrderedIntegralDomainModel
+  RationalExtension : RationalExtension DiscretelyOrderedIntegralDomainModel
   RealExtension :
     RealExtension RationalExtension.DenselyOrderedFieldModel
 
