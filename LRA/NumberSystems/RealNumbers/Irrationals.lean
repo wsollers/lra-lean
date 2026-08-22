@@ -207,6 +207,40 @@ theorem one_is_rational :
       real_extension.RealModel.signature.one := by
   sorry
 
+/-- The canonical rational number two in the selected rational system.
+
+Mathematical statement (Lean): `def rational_two : RationalCarrier rational_system`.
+
+
+Logical form:
+
+```lean
+def rational_two : RationalCarrier rational_system :=
+  rational_system.FieldModel.signature.add
+    rational_system.FieldModel.signature.one
+    rational_system.FieldModel.signature.one
+```
+-/
+def rational_two : RationalCarrier rational_system :=
+  rational_system.FieldModel.signature.add
+    rational_system.FieldModel.signature.one
+    rational_system.FieldModel.signature.one
+
+/-- The embedded real number two in the selected real extension.
+
+Mathematical statement (Lean): `def real_two : RealCarrier rational_system real_extension`.
+
+
+Logical form:
+
+```lean
+def real_two : RealCarrier rational_system real_extension :=
+  embedRational rational_system real_extension (rational_two rational_system)
+```
+-/
+def real_two : RealCarrier rational_system real_extension :=
+  embedRational rational_system real_extension (rational_two rational_system)
+
 /-- Rational real numbers are closed under addition.
 
 Mathematical statement (Lean): `theorem rational_addition_is_rational {first second : RealCarrier rational_system real_extension} (first_is_rational : IsRational rational_system real_extension first) (second_is_rational : IsRational rational_system real_extension second) : IsRational rationa...`.
@@ -651,10 +685,7 @@ structure SquareRootTwoWitness
   value : RealCarrier rational_system real_extension
   square_is_two :
     real_extension.RealModel.signature.multiply value value =
-      embedRational rational_system real_extension
-        (rational_system.FieldModel.signature.add
-          rational_system.FieldModel.signature.one
-          rational_system.FieldModel.signature.one)
+      real_two rational_system real_extension
   is_irrational : IsIrrational rational_system real_extension value
 ```
 -/
@@ -664,10 +695,7 @@ structure SquareRootTwoWitness
   value : RealCarrier rational_system real_extension
   square_is_two :
     real_extension.RealModel.signature.multiply value value =
-      embedRational rational_system real_extension
-        (rational_system.FieldModel.signature.add
-          rational_system.FieldModel.signature.one
-          rational_system.FieldModel.signature.one)
+      real_two rational_system real_extension
   is_irrational : IsIrrational rational_system real_extension value
 
 

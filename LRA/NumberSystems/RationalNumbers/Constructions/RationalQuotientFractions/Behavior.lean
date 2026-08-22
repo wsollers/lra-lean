@@ -39,6 +39,24 @@ def integer_embedding (rational_data : IntegerAndPositiveNaturalData)
     (value : rational_data.integer_system.Model.signature.carrier) : Carrier rational_data :=
   Quotient.mk _ (integer_representative rational_data value)
 
+/-- Definition 4.1: the canonical rational number two.
+
+Logical form:
+
+```lean
+def two (rational_data : IntegerAndPositiveNaturalData) : Carrier rational_data :=
+  integer_embedding rational_data
+    (rational_data.integer_system.Model.signature.add
+      rational_data.integer_system.Model.signature.one
+      rational_data.integer_system.Model.signature.one)
+```
+-/
+def two (rational_data : IntegerAndPositiveNaturalData) : Carrier rational_data :=
+  integer_embedding rational_data
+    (rational_data.integer_system.Model.signature.add
+      rational_data.integer_system.Model.signature.one
+      rational_data.integer_system.Model.signature.one)
+
 
 /-- Theorem 4.2: the integer embedding preserves and reflects ordered-ring structure.
 
@@ -267,18 +285,22 @@ theorem integer_part_bounds (rational_data : IntegerAndPositiveNaturalData) (val
 Logical form:
 
 ```lean
-def square_root_two_cut (rational_data : IntegerAndPositiveNaturalData)
-    (two : Carrier rational_data) : Carrier rational_data → Prop :=
+def square_root_two_cut (rational_data : IntegerAndPositiveNaturalData) :
+    Carrier rational_data → Prop :=
   fun value =>
     strict_order rational_data value (zero rational_data) ∨
-    strict_order rational_data (multiplication rational_data value value) two
+    strict_order rational_data
+      (multiplication rational_data value value)
+      (two rational_data)
 ```
 -/
-def square_root_two_cut (rational_data : IntegerAndPositiveNaturalData)
-    (two : Carrier rational_data) : Carrier rational_data → Prop :=
+def square_root_two_cut (rational_data : IntegerAndPositiveNaturalData) :
+    Carrier rational_data → Prop :=
   fun value =>
     strict_order rational_data value (zero rational_data) ∨
-    strict_order rational_data (multiplication rational_data value value) two
+    strict_order rational_data
+      (multiplication rational_data value value)
+      (two rational_data)
 
 
 /-- Theorem 7.2: the rational square-root cut is nonempty and bounded above.
@@ -288,21 +310,19 @@ def square_root_two_cut (rational_data : IntegerAndPositiveNaturalData)
 Logical form:
 
 ```lean
-theorem square_root_two_cut_nonempty_bounded (rational_data : IntegerAndPositiveNaturalData)
-    (two : Carrier rational_data) :
-    (∃ value, square_root_two_cut rational_data two value) ∧
+ theorem square_root_two_cut_nonempty_bounded (rational_data : IntegerAndPositiveNaturalData) :
+    (∃ value, square_root_two_cut rational_data value) ∧
     (∃ upper,
       ∀ value,
-        square_root_two_cut rational_data two value →
+        square_root_two_cut rational_data value →
         nonstrict_order rational_data value upper)
 ```
 -/
-theorem square_root_two_cut_nonempty_bounded (rational_data : IntegerAndPositiveNaturalData)
-    (two : Carrier rational_data) :
-    (∃ value, square_root_two_cut rational_data two value) ∧
+theorem square_root_two_cut_nonempty_bounded (rational_data : IntegerAndPositiveNaturalData) :
+    (∃ value, square_root_two_cut rational_data value) ∧
     (∃ upper,
       ∀ value,
-        square_root_two_cut rational_data two value →
+        square_root_two_cut rational_data value →
         nonstrict_order rational_data value upper) := by
   sorry
 
@@ -313,12 +333,12 @@ theorem square_root_two_cut_nonempty_bounded (rational_data : IntegerAndPositive
 Logical form:
 
 ```lean
-theorem no_rational_square_root_two (rational_data : IntegerAndPositiveNaturalData) (two : Carrier rational_data) :
-    ¬ ∃ value, multiplication rational_data value value = two
+ theorem no_rational_square_root_two (rational_data : IntegerAndPositiveNaturalData) :
+    ¬ ∃ value, multiplication rational_data value value = two rational_data
 ```
 -/
-theorem no_rational_square_root_two (rational_data : IntegerAndPositiveNaturalData) (two : Carrier rational_data) :
-    ¬ ∃ value, multiplication rational_data value value = two := by
+theorem no_rational_square_root_two (rational_data : IntegerAndPositiveNaturalData) :
+    ¬ ∃ value, multiplication rational_data value value = two rational_data := by
   sorry
 
 /-- Theorem 7.4: the square-root cut has no rational supremum.
@@ -329,27 +349,25 @@ Logical form:
 
 ```lean
 theorem square_root_two_cut_has_no_supremum (rational_data : IntegerAndPositiveNaturalData)
-    (two : Carrier rational_data) :
-    ¬ ∃ supremum,
+    : ¬ ∃ supremum,
       (∀ value,
-        square_root_two_cut rational_data two value →
+        square_root_two_cut rational_data value →
         nonstrict_order rational_data value supremum) ∧
       (∀ upper,
         (∀ value,
-          square_root_two_cut rational_data two value →
+          square_root_two_cut rational_data value →
           nonstrict_order rational_data value upper) →
         nonstrict_order rational_data supremum upper)
 ```
 -/
 theorem square_root_two_cut_has_no_supremum (rational_data : IntegerAndPositiveNaturalData)
-    (two : Carrier rational_data) :
-    ¬ ∃ supremum,
+    : ¬ ∃ supremum,
       (∀ value,
-        square_root_two_cut rational_data two value →
+        square_root_two_cut rational_data value →
         nonstrict_order rational_data value supremum) ∧
       (∀ upper,
         (∀ value,
-          square_root_two_cut rational_data two value →
+          square_root_two_cut rational_data value →
           nonstrict_order rational_data value upper) →
         nonstrict_order rational_data supremum upper) := by
   sorry
