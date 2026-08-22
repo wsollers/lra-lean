@@ -2,7 +2,7 @@
 
 ## Scope
 
-Maintained mathematical review of `LRA.Analysis.Functions`, focusing on the function-theoretic material consumed by continuity, differentiation, and integration: boundedness, extrema, pointwise order, and supremum/infimum constructions.
+Maintained mathematical review of `LRA.Analysis.Functions`, focusing on the function-theoretic material consumed by continuity, differentiation, integration, and the concrete real-line topology bridge: boundedness, extrema, pointwise order, supremum/infimum constructions, and `SubsetsOfR`.
 
 Project-wide rule: `sorry` proof bodies are neutral. Concrete placeholder definitions are not neutral when theorem statements depend on their intended semantics.
 
@@ -15,15 +15,16 @@ Project-wide rule: `sorry` proof bodies are neutral. Concrete placeholder defini
 - `LRA/Analysis/Functions/BoundedFunctions.lean`
 - `LRA/Analysis/Functions/ExtremumPoints.lean`
 - `LRA/Analysis/Functions/PointwiseOrder.lean`
+- `LRA/Analysis/Functions/SubsetsOfR.lean`
 - `LRA/Analysis/Functions/SupInfOfFunctions.lean`
 
 ---
 
 # Active status
 
-`LRA.Analysis.lean` imports `LRA.Analysis.Functions`, and the functions aggregate imports the reviewed modules including `SupInfOfFunctions.lean`.
+`LRA.Analysis.lean` imports `LRA.Analysis.Functions`, and the functions aggregate imports the reviewed modules including `SupInfOfFunctions.lean` and `SubsetsOfR.lean`.
 
-Therefore semantic stubs in this subject are part of the active repository-wide analysis surface.
+Therefore semantic stubs and false statements in this subject are part of the active repository-wide analysis surface.
 
 ---
 
@@ -142,7 +143,80 @@ is not being proved about mathematical suprema at all under the current definiti
 
 ---
 
-# Correct repair and domain semantics
+# Concrete real-line point-set topology in `SubsetsOfR`
+
+The file contains a substantial and mostly correct concrete topology toolkit for `Real`:
+
+- centered and punctured neighborhoods;
+- cluster/adherent/isolated/interior/boundary points;
+- interior, closure, and boundary sets;
+- closed and open sets;
+- closure identities;
+- sequential characterization of closed sets;
+- bounded subsets of `Real`;
+- sequential Heine-Borel;
+- finite sets are closed;
+- eventual/near-point predicates.
+
+The closure, boundary, sequential closedness, boundedness, and Heine-Borel statements reviewed here are mathematically well shaped.
+
+**Verdict: MOSTLY PASS.**
+
+## P0 — `IntervalAllLimitPoints` fails for degenerate intervals
+
+Current theorem:
+
+```text
+(I.OrdConnected) -> forall x in I, IsClusterPointR x I.
+```
+
+Mathlib `Set.OrdConnected` admits singletons. Take
+
+```text
+I = {a}.
+```
+
+Then `I` is `OrdConnected`, but `a` is not a cluster point of `I` because there is no distinct point of `I` in any punctured neighborhood of `a`.
+
+### Required correction
+
+Use at least one of:
+
+- `I.Nontrivial` plus `I.OrdConnected`;
+- an explicit no-isolated-point/nondegenerate interval hypothesis;
+- a project-specific interval predicate whose definition excludes singletons, if that is truly the intended convention.
+
+For the present Mathlib `OrdConnected` formalization, a nontriviality hypothesis is the clean fix.
+
+**Severity: P0 FALSE THEOREM STATEMENT.**
+
+---
+
+# Topology ownership duplication
+
+`SubsetsOfR.lean` is a concrete real-line owner for concepts also appearing in:
+
+1. `LRA.Analysis.StructureOfRealLine.OpenClosedSets`;
+2. generic `LRA.Topology.PointSetTopology`;
+3. portions of generic metric-space set geometry.
+
+This is not automatically wrong—the real-line file can legitimately be an example/specialization chapter—but it should not remain an independent semantic owner for closure, interior, boundary, openness, and closedness.
+
+Recommended direction:
+
+```text
+generic topology definitions/theorems
+       -> metric-induced specialization
+       -> Real specialization / examples
+```
+
+Then the real-line chapter should prove equivalence/identification with the generic notions instead of maintaining parallel definitions indefinitely.
+
+**Severity: P1 OWNERSHIP/PROMOTION ISSUE.**
+
+---
+
+# Correct repair and domain semantics for extrema
 
 The intended definitions should be approximately
 
@@ -189,6 +263,8 @@ No genuine family-wise Axiom-of-Choice dependency was identified in this chunk.
 
 Finite maximum/minimum evaluation over a finite inhabited index type does not require AC.
 
+The theorem `ClusterPointSequential` may, in a proof from the neighborhood definition to an explicit sequence, select one witness from each shrinking neighborhood. As with the analogous limits theorem, this is a potential **countable-choice proof dependency**, not something inferred merely from the theorem statement while its proof is still `sorry`.
+
 ---
 
 # Verdict
@@ -203,15 +279,20 @@ Finite maximum/minimum evaluation over a finite inhabited index type does not re
 | Extremum/LUB-GLB characterization | **PASS** |
 | Function supremum/infimum definitions | **P0 ZERO STUBS** |
 | Pointwise family sup/inf definitions | **P0 ZERO STUBS** |
+| Concrete Real closure/interior/boundary toolkit | **MOSTLY PASS** |
+| `IntervalAllLimitPoints` | **P0 FALSE FOR SINGLETON INTERVALS** |
+| Real topology ownership | **P1 CONSOLIDATION NEEDED** |
 | Totalized `sSup`/`sInf` domain policy | **NEEDS CONSISTENT PROJECT-WIDE RULE** |
-| Choice usage | **NO NEW GENUINE AC IDENTIFIED** |
+| Choice usage | **NO CONFIRMED NEW GENUINE AC; COUNTABLE-CHOICE PROOF WATCHPOINT** |
 
 ---
 
 # Immediate priority fixes
 
 1. replace the four zero extrema stubs with genuine supremum/infimum constructions;
-2. preserve explicit nonempty/bounded hypotheses on real-valued extrema theorems;
-3. audit every theorem in `SupInfOfFunctions.lean` after the definitions are repaired;
-4. establish a project-wide policy for totalized real `sSup`/`sInf` constructions;
-5. only after that use these extrema objects in continuity, integration, or functional-analysis developments.
+2. add nontriviality to `IntervalAllLimitPoints` or use a genuinely nondegenerate interval predicate;
+3. preserve explicit nonempty/bounded hypotheses on real-valued extrema theorems;
+4. audit every theorem in `SupInfOfFunctions.lean` after the definitions are repaired;
+5. consolidate concrete Real topology with the generic topology owner;
+6. establish a project-wide policy for totalized real `sSup`/`sInf` constructions;
+7. only after that use these extrema objects in continuity, integration, or functional-analysis developments.
