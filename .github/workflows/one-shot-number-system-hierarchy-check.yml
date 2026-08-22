@@ -1,0 +1,80 @@
+name: One-shot number-system hierarchy check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-shot-number-system-hierarchy-check.yml'
+
+permissions:
+  contents: write
+  packages: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check stale semantic names
+        shell: bash
+        run: |
+          set -euo pipefail
+          forbidden=(
+            'rationalSystem.DiscretelyOrderedIntegralDomainModel'
+            'rational_data.integer_model'
+            'mathlibIntegerModel'
+            'tao_integers_form_ordered_ring'
+            'mendelson_integers_form_ordered_ring'
+          )
+          for pattern in "${forbidden[@]}"; do
+            if git grep -n "$pattern" -- LRA ':!LRA/NumberSystems/Integers/ProofOrder.md'; then
+              echo "::error::stale hierarchy name: $pattern"
+              exit 1
+            fi
+          done
+          if git grep -n -P '\bIntegerModel\b' -- LRA; then
+            echo '::error::standalone IntegerModel token remains'
+            exit 1
+          fi
+
+      - name: Compute Lean environment image
+        shell: bash
+        run: |
+          env_hash="${{ hashFiles('Dockerfile', 'lean-toolchain', 'lake-manifest.json', 'docker/lakefile.env.lean') }}"
+          image="ghcr.io/${GITHUB_REPOSITORY,,}-lean-build:${env_hash}"
+          echo "LEAN_IMAGE=$image" >> "$GITHUB_ENV"
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pull Lean environment
+        run: docker pull "$LEAN_IMAGE"
+
+      - name: Full LRA build
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker run --rm \
+            -v "${{ github.workspace }}:/workspace" \
+            -w /workspace \
+            "$LEAN_IMAGE" \
+            bash -lc 'rm -f .lake/lakefile.olean .lake/lakefile.olean.trace && lake build LRAAll'
+
+      - name: Remove one-shot workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/one-shot-number-system-hierarchy-check.yml
+          git config user.name 'BoondockTaints'
+          git config user.email 'wsollers@gmail.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'Confirm number-system hierarchy build'
+          git push origin HEAD:main
