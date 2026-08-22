@@ -44,15 +44,15 @@ structure RationalUniversalProperty
     (SelectedIntegerModel : IntegerModel.{u})
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel) : Prop where
   FractionFieldProperty :
-    ∀ target : RationalModel.{u},
+    ∀ target : DenselyOrderedFieldModel.{u},
       ∀ IntegerMap :
         SelectedIntegerModel.signature.carrier → target.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedRing
           SelectedIntegerModel.signature target.signature.toOrderedRingSignature IntegerMap →
         ∃ RationalMap :
-          SelectedRationalExtension.RationalModel.signature.carrier → target.signature.carrier,
+          SelectedRationalExtension.DenselyOrderedFieldModel.signature.carrier → target.signature.carrier,
           CanonicalEmbeddings.EmbeddingPreservesOrderedField
-            SelectedRationalExtension.RationalModel.signature target.signature RationalMap
+            SelectedRationalExtension.DenselyOrderedFieldModel.signature target.signature RationalMap
 ```
 -/
 
@@ -60,15 +60,15 @@ structure RationalUniversalProperty
     (SelectedIntegerModel : IntegerModel.{u})
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel) : Prop where
   FractionFieldProperty :
-    ∀ target : RationalModel.{u},
+    ∀ target : DenselyOrderedFieldModel.{u},
       ∀ IntegerMap :
         SelectedIntegerModel.signature.carrier → target.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedRing
           SelectedIntegerModel.signature target.signature.toOrderedRingSignature IntegerMap →
         ∃ RationalMap :
-          SelectedRationalExtension.RationalModel.signature.carrier → target.signature.carrier,
+          SelectedRationalExtension.DenselyOrderedFieldModel.signature.carrier → target.signature.carrier,
           CanonicalEmbeddings.EmbeddingPreservesOrderedField
-            SelectedRationalExtension.RationalModel.signature target.signature RationalMap
+            SelectedRationalExtension.DenselyOrderedFieldModel.signature target.signature RationalMap
 /--
 `CompleteOrderedFieldCharacterization` exposes this formal declaration.
 
