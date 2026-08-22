@@ -2,7 +2,7 @@
 
 ## Scope
 
-Maintained review of the concrete foundational set-theory realizations (`ZFC`, later `NBG` and `TG`) and the ordered-pair/relation-set layer that connects ordinary set theory to the generic relation/function chapters.
+Maintained review of the concrete foundational set-theory realizations (`ZFC`, `NBG`, and `TG`) and the ordered-pair/relation-set layer that connects ordinary set theory to the generic relation/function chapters.
 
 Special emphasis is placed on the project's requested Choice audit:
 
@@ -72,16 +72,7 @@ in general, since the right side contains cross terms.
 
 `IsTotalOn` separately expresses totality on a chosen domain.
 
-The layer also already defines generic:
-
-- domain;
-- range;
-- image;
-- preimage;
-- fiber;
-- inverse relation;
-- restriction;
-- further relation constructions downstream.
+The layer also already defines generic domain, range, image, preimage, fiber, inverse relation, restriction, and further relation constructions downstream.
 
 This is important for later measurable-function theory: preimage should reuse or bridge to this canonical operation rather than introduce an unrelated semantic notion.
 
@@ -103,18 +94,7 @@ This is important for later measurable-function theory: preimage should reuse or
 
 ## ZFC axiom list
 
-The ZFC aggregate imports the expected primitive assumptions:
-
-- extensionality;
-- empty set;
-- pairing;
-- union;
-- power set;
-- infinity;
-- separation;
-- replacement;
-- foundation;
-- choice.
+The ZFC aggregate imports the expected primitive assumptions: extensionality, empty set, pairing, union, power set, infinity, separation, replacement, foundation, and choice.
 
 This is a recognizable ZFC-style foundation.
 
@@ -169,6 +149,8 @@ If the project also wants an “at most one” predicate, that should be a disti
 
 **Severity: P2 DOCUMENTATION/PREDICATE-READING ERROR.**
 
+The same wording mismatch also occurs in the TG definition file reviewed below and should be corrected consistently across concrete foundations.
+
 ---
 
 # Choice axiom
@@ -183,13 +165,7 @@ This is a standard choice-set formulation of the Axiom of Choice. In ordinary ZF
 
 `ChoiceSetExists` invokes the mathematical Choice axiom to establish an existential choice-set statement.
 
-`TheChoiceSet` then uses
-
-```text
-Classical.choose (ChoiceSetExists ...)
-```
-
-to name one witness.
+`TheChoiceSet` then uses `Classical.choose` to name one witness.
 
 This second step is **witness extraction**, not another independent family-wise Choice principle in the mathematics. The genuine Choice dependency is already the theorem `ChoiceSetExists`/axiom `Choice`.
 
@@ -199,13 +175,7 @@ This second step is **witness extraction**, not another independent family-wise 
 
 # `Classical.choose` elsewhere does not automatically mean AC
 
-For example, `ZFC.Union.TheUnionOver` uses:
-
-```text
-Classical.choose (UnionOverExists A)
-```
-
-after the Union axiom has established existence of one union set.
+For example, `ZFC.Union.TheUnionOver` uses `Classical.choose (UnionOverExists A)` after the Union axiom has established existence of one union set.
 
 Mathematically this is simply naming a witness from one existential statement. It is not the Axiom of Choice over a family.
 
@@ -214,30 +184,160 @@ The same classification should be applied throughout the repository:
 - `Classical.choose` from one proved existential: **witness extraction**;
 - simultaneous selection from an arbitrary family of existential statements: **genuine choice principle**, unless the index/witness structure supplies a canonical least witness or equivalent construction.
 
-This distinction should be kept in the maintained choice audit.
+---
+
+# Review 3 — NBG foundation and Choice boundary
+
+## Files reviewed
+
+- `LRA/Set/NBG/Axioms.lean`
+- `LRA/Set/NBG/Axioms/Choice.lean`
+- `LRA/Set/NBG/Axioms/ClassComprehension.lean`
+- `LRA/Set/NBG/Choice/Theorems.lean`
+
+## NBG axiom inventory
+
+The NBG aggregate includes the ordinary set-theoretic axioms together with class comprehension and set-level Choice.
+
+This is a recognizable NBG-style set/class foundation.
+
+## Choice is set Choice, not Global Choice
+
+The NBG `Choice` axiom has the same choice-set formulation used by ZFC: it concerns a **set** `A` of pairwise-disjoint nonempty sets and produces a set choice set.
+
+That is importantly different from asserting a **global class choice function** on all nonempty sets.
+
+The repository therefore does not silently conflate ordinary NBG + Choice with Global Choice in the reviewed axiom.
+
+**Verdict: GOOD FOUNDATIONAL DISTINCTION.**
+
+`NBG.Choice.TheChoiceSet` again uses `Classical.choose` only after the mathematical Choice axiom proves existence, so it is witness naming rather than an additional Choice principle.
+
+## NBG class comprehension has the same higher-order qualification
+
+`ClassComprehension` takes an arbitrary Lean predicate
+
+```text
+property : NBGSet → Prop
+```
+
+and produces a class containing exactly those sets.
+
+This is a convenient external class-universe interface, but ordinary first-order NBG has a finite class-comprehension axiom scheme/formulation whose syntactic scope is part of the theory. The current Lean statement internalizes comprehension at the meta-level over arbitrary Lean predicates.
+
+As with ZFC Separation/Replacement, this is not a problem for ordinary mathematical use if explicitly intended, but it must be distinguished from a literal object-language/model-theoretic formalization of first-order NBG.
+
+**Severity: P1 FOUNDATIONAL DOCUMENTATION QUALIFICATION.**
 
 ---
 
-# Initial Choice audit table
+# Review 4 — Tarski–Grothendieck foundation
+
+## Files reviewed
+
+- `LRA/Set/TG/Axioms.lean`
+- `LRA/Set/TG/Axioms/Choice.lean`
+- `LRA/Set/TG/Axioms/GrothendieckUniverse.lean`
+- `LRA/Set/TG/Definitions.lean`
+- `LRA/Set/TG/Choice/Theorems.lean`
+- `LRA/Set/TG/GrothendieckUniverse/Theorems.lean`
+
+## TG axiom inventory
+
+TG extends the ZFC-style axiom aggregate with a Grothendieck-universe axiom. This is the expected broad architecture for Tarski–Grothendieck set theory.
+
+The Choice axiom is again the same legitimate set-level Zermelo Choice formulation used in the ZFC and NBG backends.
+
+## Grothendieck-universe axiom: good components
+
+For every set `A`, the axiom produces a set `U` such that:
+
+- `A ∈ U`;
+- `U` is transitive;
+- if `x ∈ U`, a powerset of `x` belongs to `U`;
+- for `I ∈ U`, the image/range of an `I`-indexed Lean family whose values lie in `U` belongs to `U`.
+
+These are all standard Grothendieck-universe-flavored closure requirements.
+
+`TheGrothendieckUniverse` then uses `Classical.choose` merely to name one universe after `GrothendieckUniverseExists A`; this is ordinary witness extraction from the TG universe axiom, not mathematical AC.
+
+## MAJOR — indexed-union closure is not stated
+
+The current universe predicate/axiom closes `U` under the **range set**
+
+```text
+{ family i | i ∈ I }
+```
+
+but does not state that the **union of that family** belongs to `U`:
+
+```text
+⋃ i ∈ I, family i ∈ U.
+```
+
+A standard Grothendieck universe requires closure under indexed unions (equivalently, one of the usual closure systems that implies it). Merely knowing that the range/image of the family is itself an element of `U` does not, from the displayed universe fields alone, imply that the union of that range is an element of `U`.
+
+Transitivity only says that members of members of `U` are themselves elements of `U`; it does not promote an externally constructed union subset of `U` to an **element** of `U`. Ambient existence of the union via the global Union axiom likewise does not establish closure of `U` under that union.
+
+A repository search did not locate a current theorem deriving the missing union-closure property from `IsGrothendieckUniverseFor`.
+
+### Required correction
+
+Add an indexed-union closure clause, e.g. mathematically:
+
+> if `I ∈ U` and `family i ∈ U` for every `i ∈ I`, then there exists `V ∈ U` whose elements are exactly those belonging to some `family i`.
+
+Equivalently, add ordinary union closure `x ∈ U → ⋃x ∈ U` together with the current image/range closure; those two combine to give indexed unions.
+
+Then prove the familiar derived closures: empty set, unordered pairs, singletons, finite tuples/products, ordinary unions, and function images.
+
+**Severity: P0/P1 FOUNDATIONAL DEFINITION DEFECT — CURRENT `IsGrothendieckUniverseFor` IS WEAKER THAN THE STANDARD GROTHENDIECK-UNIVERSE NOTION.**
+
+## Higher-order family parameter qualification
+
+The TG family closure quantifies over an arbitrary Lean function
+
+```text
+family : TGSet → TGSet.
+```
+
+Like Separation/Replacement, this is an external/higher-order convenience rather than a literal first-order object-language formulation. TG is already commonly used metatheoretically, so this may be entirely intentional, but it should be documented.
+
+## `IsFunctionalOn` wording repeats the ZFC mismatch
+
+TG's `IsFunctionalOn` comment again says “at most one output,” while its formula requires an existing unique output for every `x ∈ A`.
+
+Correct the prose to “exactly one output.”
+
+---
+
+# Updated Choice audit table
 
 | Location | Use | Classification |
 |---|---|---|
-| `LRA/Set/ZFC/Axioms/Choice.lean` | Choice set for pairwise-disjoint nonempty family | **Genuine Axiom of Choice** |
-| `LRA/Set/ZFC/Choice/Theorems.lean` / `TheChoiceSet` | `Classical.choose` after `ChoiceSetExists` | **Witness extraction from AC-derived existence** |
-| `LRA/Set/ZFC/Union/Theorems.lean` / `TheUnionOver` | choose the unique/existing union-set witness | **Ordinary witness extraction; not mathematical AC** |
-| `LRA/Cardinality/Properties/Countability/Theorems.lean` / countable sigma of existentially countable fibers | simultaneous choice of counting maps for all fibers | **Genuine family-wise choice outside ZFC tree** |
+| `LRA/Set/ZFC/Axioms/Choice.lean` | choice set for pairwise-disjoint nonempty set-family | **Genuine Axiom of Choice** |
+| `LRA/Set/ZFC/Choice/Theorems.lean` / `TheChoiceSet` | choose witness after AC-derived existence | **Witness extraction from AC-derived existence** |
+| `LRA/Set/ZFC/Union/Theorems.lean` / `TheUnionOver` | choose one union-set witness | **Ordinary witness extraction; not mathematical AC** |
+| `LRA/Set/NBG/Axioms/Choice.lean` | set-level choice set | **Genuine set Choice; not Global Choice** |
+| `LRA/Set/NBG/Choice/Theorems.lean` / `TheChoiceSet` | choose witness after NBG Choice | **Witness extraction from AC-derived existence** |
+| `LRA/Set/TG/Axioms/Choice.lean` | set-level choice set | **Genuine Axiom of Choice** |
+| `LRA/Set/TG/Choice/Theorems.lean` / `TheChoiceSet` | choose witness after TG Choice | **Witness extraction from AC-derived existence** |
+| `LRA/Set/TG/GrothendieckUniverse/Theorems.lean` / `TheGrothendieckUniverse` | choose one universe whose existence is an axiom | **Ordinary witness extraction; not AC** |
+| `LRA/Cardinality/Properties/Countability/Theorems.lean` / `CountableSigmaOfCountableIndexCountableFibers` | simultaneous choice of counting maps for all existentially countable fibers | **Genuine family-wise choice outside foundational Choice trees** |
 
-The NBG/TG choice modules and non-foundational `Classical.choose` sites will be classified in subsequent passes.
+## Important audit principle
+
+A raw occurrence of `Classical.choose` is not enough to classify a theorem as using mathematical AC. Its source existential must be inspected. This review records mathematical dependency, not merely Lean's implementation primitive.
 
 ---
 
 # Choice audit note about search results
 
-Repository code search currently returns some results at an older indexed revision. Such hits are used only to discover candidate files; conclusions must be verified against the current `main` file before being recorded as current behavior.
+Repository code search currently returns some results at an older indexed revision. Such hits are used only to discover candidate files; conclusions are verified against current `main` files before being recorded as current behavior.
 
 ---
 
-# Final verdict through Review 2
+# Final verdict through Review 4
 
 | Dimension | Verdict |
 |---|---|
@@ -245,14 +345,15 @@ Repository code search currently returns some results at an older indexed revisi
 | Cartesian-product mathematics | **PASS** |
 | Relation-as-set vocabulary | **PASS** |
 | ZFC ordinary axiom inventory | **PASS** |
-| Replacement functional statement | **PASS** |
-| `IsFunctionalOn` prose | **NEEDS “EXACTLY ONE,” NOT “AT MOST ONE”** |
-| Separation/Replacement schema encoding | **STRONGER HIGHER-ORDER INTERNALIZATION; DOCUMENT CLEARLY** |
-| Choice axiom | **PASS AS ZFC FOUNDATION** |
-| Choice/witness-extraction distinction | **CLEARLY SEPARABLE** |
+| ZFC/NBG/TG Choice formulations | **PASS, WITH NBG GLOBAL-CHOICE DISTINCTION** |
+| Witness extraction classification | **PASS / CLEAR** |
+| Separation/Replacement/ClassComprehension encoding | **HIGHER-ORDER INTERNALIZATION; DOCUMENT** |
+| `IsFunctionalOn` prose | **NEEDS “EXACTLY ONE”** |
+| TG universe existence architecture | **RIGHT IDEA** |
+| TG universe indexed-union closure | **MISSING — MAJOR FOUNDATIONAL CORRECTION** |
 
 ---
 
 # Next review chunk
 
-Review the current NBG and TG axiom/Choice formulations, then inspect representative concrete ZFC/NBG/TG theorem files to verify that chosen objects use `Classical.choose` only as witness naming unless a genuine family-wise Choice theorem is intentionally being consumed. After that, review the predicate-set/Mathlib realizations and law registration against the canonical interface.
+Review the predicate-set/Mathlib realizations and law registration against the canonical Set interface, then sample ZFC/NBG/TG backend registration files to confirm that each backend advertises only mathematically available capabilities. After that, continue the external Choice audit through non-foundational modules discovered by search.
