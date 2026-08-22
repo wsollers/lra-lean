@@ -1,35 +1,35 @@
 -- LRA/NumberSystems/RealNumbers/Constructions/Dedekind/Instances.lean
--- Registration into the system's interface.
+-- Registration of Dedekind cuts as a real-number construction.
 
+import LRA.NumberSystems.RationalNumbers.Definition
 import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.Behavior
 
 namespace LRA.NumberSystems.RealNumbers.Dedekind
+
 open LRA.NumberSystems.Models
+open LRA.NumberSystems.RationalNumbers
 
-/-!
-New content: the source never registered `Cut rational_model` as an
-instance of `LRA.NumberSystems.Models.RealModel`, the generic
-complete-ordered-field interface this construction realizes. Assembling
-the instance from the (mostly `sorry`) cut-level facts above is itself new
-work under this migration's policy, so it is stated whole, `sorry`, rather
-than composed field-by-field without a toolchain to check the composition.
-Tracked in `RealNumbers/ProofOrder.md`.
--/
+/-- Dedekind cuts over an actual rational number system admit a `RealModel`
+structure on exactly the cut carrier.
 
-variable (rational_model : DenselyOrderedFieldModel)
-
-/-- `Cut rational_model` realizes the generic complete ordered-field
-`RealModel` interface.
+The generic cut definitions may still be studied over a broader dense ordered
+field. The claim that the construction realizes the real-number stage is
+restricted to `RationalNumberSystem`, and the carrier equality prevents an
+unrelated complete ordered field from serving as a detached witness.
 
 Logical form:
 
 ```lean
-noncomputable def DedekindRealizesRealModel :
-    LRA.NumberSystems.Models.RealModel
+theorem DedekindCarrierRealModelExists
+    (rationalSystem : RationalNumberSystem) :
+    ∃ realModel : LRA.NumberSystems.Models.RealModel,
+      realModel.Carrier = Cut rationalSystem.FieldModel
 ```
 -/
-noncomputable def DedekindRealizesRealModel :
-    LRA.NumberSystems.Models.RealModel := by
+theorem DedekindCarrierRealModelExists
+    (rationalSystem : RationalNumberSystem) :
+    ∃ realModel : LRA.NumberSystems.Models.RealModel,
+      realModel.Carrier = Cut rationalSystem.FieldModel := by
   sorry
 
 end LRA.NumberSystems.RealNumbers.Dedekind
