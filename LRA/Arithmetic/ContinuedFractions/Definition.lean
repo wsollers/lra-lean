@@ -68,6 +68,23 @@ def IsCanonicalSimpleContinuedFraction
       ∃ prefix last,
         fraction.Tail = prefix ++ [last] ∧ 1 < last)
 
+/-- An infinite simple continued fraction is proper when every coefficient
+after the head is positive. The head coefficient is unrestricted.
+
+Logical form:
+
+```lean
+def IsProperInfiniteSimpleContinuedFraction
+    {integerModel : IntegerModel.{u}}
+    (fraction : InfiniteSimpleContinuedFraction integerModel) : Prop :=
+  ∀ index : Nat, 0 < fraction (index + 1)
+```
+-/
+def IsProperInfiniteSimpleContinuedFraction
+    {integerModel : IntegerModel.{u}}
+    (fraction : InfiniteSimpleContinuedFraction integerModel) : Prop :=
+  ∀ index : Nat, 0 < fraction (index + 1)
+
 /-- An infinite simple continued fraction is eventually periodic when its
 coefficient sequence repeats with some positive period after some index.
 
