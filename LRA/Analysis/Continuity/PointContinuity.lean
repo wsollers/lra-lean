@@ -167,11 +167,10 @@ theorem DiscontinuityIffNeighborhood (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
   sorry
 
 -- ---------------------------------------------------------------------
--- Taxonomy of discontinuities. Note ISSUES.md #47: the book's own
--- Essential clause is merely "not Removable," which as stated makes
--- Jump ⊆ Essential rather than a disjoint third case. `IsEssential`
--- below is written to match the book's literal (imprecise) definition,
--- so this file records the same gap rather than silently fixing it.
+-- Taxonomy of discontinuities. The book's informal prose blurs the
+-- removable / jump / essential split; the Lean surface below makes the
+-- three cases disjoint by defining "essential" to exclude both removable
+-- and jump discontinuities.
 -- ---------------------------------------------------------------------
 
 /-- One-sided limits both exist (as reals) and agree with each other but
@@ -194,8 +193,8 @@ def IsRemovableDiscontinuity (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
     (∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → |f x - L| < ε) ∧
     f c ≠ L
 
-/-- Both one-sided limits exist (as reals) but disagree with each other,
-or agree with each other but not with `f(c)` — the jump case.
+/-- Both one-sided limits exist (as reals) and disagree with each other
+— the jump case.
 
 Logical form:
 
@@ -204,7 +203,7 @@ def IsJumpDiscontinuity (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   c ∈ A ∧ ∃ L₁ L₂ : ℝ,
     (∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, c - δ < x → x < c → |f x - L₁| < ε) ∧
     (∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → |f x - L₂| < ε) ∧
-    (L₁ ≠ L₂ ∨ f c ≠ L₁)
+    L₁ ≠ L₂
 ```
 -/
 def IsJumpDiscontinuity (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
@@ -213,9 +212,8 @@ def IsJumpDiscontinuity (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
     (∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → |f x - L₂| < ε) ∧
     (L₁ ≠ L₂ ∨ f c ≠ L₁)
 
-/-- `def:types-of-discontinuity-at-a-point`, Essential case: literally
-"not Removable," per ISSUES.md #47 — as stated, this does not exclude
-`IsJumpDiscontinuity`.
+/-- `def:types-of-discontinuity-at-a-point`, Essential case: a
+discontinuity that is neither removable nor a jump.
 
 Logical form:
 
@@ -225,82 +223,102 @@ def IsEssentialDiscontinuity (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
 ```
 -/
 def IsEssentialDiscontinuity (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
-  PointOfDiscontinuity f A c ∧ ¬ IsRemovableDiscontinuity f A c
+  PointOfDiscontinuity f A c ∧
+    ¬ IsRemovableDiscontinuity f A c ∧
+    ¬ IsJumpDiscontinuity f A c
 
-/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ` and `h : IsJumpDiscontinuity f A c`. Then
-`IsEssentialDiscontinuity f A c`.
+/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ` and
+`h : IsJumpDiscontinuity f A c`, then `¬ IsEssentialDiscontinuity f A c`.
 
 Logical form:
 
 ```lean
-theorem JumpSubsetEssential (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
-    (h : IsJumpDiscontinuity f A c) : IsEssentialDiscontinuity f A c
+theorem JumpDiscontinuityNotEssential (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
+    (h : IsJumpDiscontinuity f A c) : ¬ IsEssentialDiscontinuity f A c
 ```
 -/
-theorem JumpSubsetEssential (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
-    (h : IsJumpDiscontinuity f A c) : IsEssentialDiscontinuity f A c := by
+theorem JumpDiscontinuityNotEssential (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
+    (h : IsJumpDiscontinuity f A c) : ¬ IsEssentialDiscontinuity f A c := by
   sorry
 
 -- ---------------------------------------------------------------------
 -- Oscillation (`notes-oscillation.tex`).
 -- ---------------------------------------------------------------------
 
-/-- `def:oscillation-on-a-set`: the diameter of `f`'s image on `A`.
+/-- `def:oscillation-on-a-set`: `ω` is the oscillation of `f` on `A`
+when it is the least upper bound of all pairwise value differences on
+that set.
 
 Logical form:
 
 ```lean
-noncomputable def OscillationOnSet (f : ℝ → ℝ) (A : Set ℝ) : ℝ :=
-  0
+def OscillationOnSet (f : ℝ → ℝ) (A : Set ℝ) (ω : ℝ) : Prop :=
+  0 ≤ ω ∧
+    (∀ x ∈ A, ∀ y ∈ A, |f x - f y| ≤ ω) ∧
+    ∀ b, 0 ≤ b → b < ω -> ∃ x ∈ A, ∃ y ∈ A, b < |f x - f y|
 ```
 -/
-noncomputable def OscillationOnSet (f : ℝ → ℝ) (A : Set ℝ) : ℝ :=
-  0
+def OscillationOnSet (f : ℝ → ℝ) (A : Set ℝ) (ω : ℝ) : Prop :=
+  0 ≤ ω ∧
+    (∀ x ∈ A, ∀ y ∈ A, |f x - f y| ≤ ω) ∧
+    ∀ b, 0 ≤ b → b < ω -> ∃ x ∈ A, ∃ y ∈ A, b < |f x - f y|
 
-/-- `def:oscillation-at-a-point`: the limit, as `δ → 0⁺`, of the
-oscillation on the punctured relative δ-neighbourhood of `c`.
+/-- `def:oscillation-at-a-point`: `ω` is the oscillation of `f` at `c`
+relative to `A` when oscillations on sufficiently small relative
+neighbourhoods are eventually below `ω + ε`, while every smaller bound
+is violated on every sufficiently small neighbourhood.
 
 Logical form:
 
 ```lean
-noncomputable def OscillationAtPoint (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : ℝ :=
-  0
+def OscillationAtPoint (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (ω : ℝ) : Prop :=
+  0 ≤ ω ∧
+    (∀ ε > 0, ∃ δ > 0, ∃ Ω : ℝ,
+      OscillationOnSet f (RelativeNeighborhood A c δ) Ω ∧ Ω < ω + ε) ∧
+    (∀ b, 0 ≤ b → b < ω -> ∀ δ > 0, ∃ Ω : ℝ,
+      OscillationOnSet f (RelativeNeighborhood A c δ) Ω ∧ b < Ω)
 ```
 -/
-noncomputable def OscillationAtPoint (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : ℝ :=
-  0
+def OscillationAtPoint (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (ω : ℝ) : Prop :=
+  0 ≤ ω ∧
+    (∀ ε > 0, ∃ δ > 0, ∃ Ω : ℝ,
+      OscillationOnSet f (RelativeNeighborhood A c δ) Ω ∧ Ω < ω + ε) ∧
+    (∀ b, 0 ≤ b → b < ω -> ∀ δ > 0, ∃ Ω : ℝ,
+      OscillationOnSet f (RelativeNeighborhood A c δ) Ω ∧ b < Ω)
 
 -- `thm:continuity-iff-zero-oscillation`
 /-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ` and `hc : c ∈ A`. Then `ContinuousAtPoint f A c ↔
-OscillationAtPoint f A c = 0`.
+OscillationAtPoint f A c 0`.
 
 Logical form:
 
 ```lean
 theorem ContinuousAtPointIffZeroOscillation (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hc : c ∈ A) :
-    ContinuousAtPoint f A c ↔ OscillationAtPoint f A c = 0
+    ContinuousAtPoint f A c ↔ OscillationAtPoint f A c 0
 ```
 -/
 theorem ContinuousAtPointIffZeroOscillation (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hc : c ∈ A) :
-    ContinuousAtPoint f A c ↔ OscillationAtPoint f A c = 0 := by
+    ContinuousAtPoint f A c ↔ OscillationAtPoint f A c 0 := by
   sorry
 
 /-- Let `A : Set ℝ`. If `f : ℝ → ℝ`. Then `{c ∈ A | PointOfDiscontinuity f A c} = ⋃ n : ℕ, {c ∈ A |
-OscillationAtPoint f A c ≥ 1 / (n + 1 : ℝ)}`.
+∃ ω : ℝ, OscillationAtPoint f A c ω ∧ 1 / (n + 1 : ℝ) ≤ ω}`.
 
 Logical form:
 
 ```lean
 theorem DiscontinuitySetEqUnionOscillationBounded (f : ℝ → ℝ) (A : Set ℝ) :
     {c ∈ A | PointOfDiscontinuity f A c} =
-      ⋃ n : ℕ, {c ∈ A | OscillationAtPoint f A c ≥ 1 / (n + 1 : ℝ)}
+      ⋃ n : ℕ, {c ∈ A | ∃ ω : ℝ,
+        OscillationAtPoint f A c ω ∧ 1 / (n + 1 : ℝ) ≤ ω}
 ```
 -/
 theorem DiscontinuitySetEqUnionOscillationBounded (f : ℝ → ℝ) (A : Set ℝ) :
     {c ∈ A | PointOfDiscontinuity f A c} =
-      ⋃ n : ℕ, {c ∈ A | OscillationAtPoint f A c ≥ 1 / (n + 1 : ℝ)} := by
+      ⋃ n : ℕ, {c ∈ A | ∃ ω : ℝ,
+        OscillationAtPoint f A c ω ∧ 1 / (n + 1 : ℝ) ≤ ω} := by
   sorry
 
 end LRA.Analysis.Continuity

@@ -55,21 +55,27 @@ theorem MonotoneContinuousIffOneSidedLimitsAgree (f : ℝ → ℝ) (I : Set ℝ)
       (∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c < x → x < c + δ → |f x - f c| < ε) := by
   sorry
 
-/-- `def:jump-of-function`: the size of the gap at a discontinuity of a
-monotone function — the difference of right- and left-hand limits.
+/-- `def:jump-of-function`: `J` is the jump size at `c` when it is the
+difference between the right- and left-hand limits.
 
 Logical form:
 
 ```lean
-noncomputable def JumpOf (f : ℝ → ℝ) (I : Set ℝ) (c : ℝ) : ℝ :=
-  0
+def JumpOf (f : ℝ → ℝ) (I : Set ℝ) (c J : ℝ) : Prop :=
+  0 ≤ J ∧ ∃ L₁ L₂ : ℝ,
+    (∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c - δ < x → x < c -> |f x - L₁| < ε) ∧
+    (∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c < x → x < c + δ -> |f x - L₂| < ε) ∧
+    J = L₂ - L₁
 ```
 -/
-noncomputable def JumpOf (f : ℝ → ℝ) (I : Set ℝ) (c : ℝ) : ℝ :=
-  0
+def JumpOf (f : ℝ → ℝ) (I : Set ℝ) (c J : ℝ) : Prop :=
+  0 ≤ J ∧ ∃ L₁ L₂ : ℝ,
+    (∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c - δ < x → x < c -> |f x - L₁| < ε) ∧
+    (∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c < x → x < c + δ -> |f x - L₂| < ε) ∧
+    J = L₂ - L₁
 
 /-- Let `I : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`, `hI : I.OrdConnected`, `hmono : MonotoneOn f I`,
-`hc : c ∈ I`, and `hdisc : PointOfDiscontinuity f I c`. Then `JumpOf f I c > 0`.
+`hc : c ∈ I`, and `hdisc : PointOfDiscontinuity f I c`. Then `∃ J > 0, JumpOf f I c J`.
 
 Logical form:
 
@@ -77,13 +83,13 @@ Logical form:
 theorem MonotoneDiscontinuitiesAreJumps (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c : ℝ) (hc : c ∈ I)
     (hdisc : PointOfDiscontinuity f I c) :
-    JumpOf f I c > 0
+    ∃ J > 0, JumpOf f I c J
 ```
 -/
 theorem MonotoneDiscontinuitiesAreJumps (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c : ℝ) (hc : c ∈ I)
     (hdisc : PointOfDiscontinuity f I c) :
-    JumpOf f I c > 0 := by
+    ∃ J > 0, JumpOf f I c J := by
   sorry
 
 /-- Let `I : Set ℝ` and `c₁ c₂ : ℝ`. If `f : ℝ → ℝ`, `hI : I.OrdConnected`, `hmono : MonotoneOn f
@@ -96,19 +102,21 @@ Logical form:
 theorem JumpIntervalsDisjoint (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c₁ c₂ : ℝ)
     (hc₁ : PointOfDiscontinuity f I c₁) (hc₂ : PointOfDiscontinuity f I c₂)
-    (hne : c₁ ≠ c₂) :
+    (hne : c₁ ≠ c₂) (J₁ J₂ : ℝ)
+    (hj₁ : JumpOf f I c₁ J₁) (hj₂ : JumpOf f I c₂ J₂) :
     Disjoint
-      (Set.Ioc c₁ (c₁ + JumpOf f I c₁))
-      (Set.Ioc c₂ (c₂ + JumpOf f I c₂))
+      (Set.Ioc c₁ (c₁ + J₁))
+      (Set.Ioc c₂ (c₂ + J₂))
 ```
 -/
 theorem JumpIntervalsDisjoint (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hmono : MonotoneOn f I) (c₁ c₂ : ℝ)
     (hc₁ : PointOfDiscontinuity f I c₁) (hc₂ : PointOfDiscontinuity f I c₂)
-    (hne : c₁ ≠ c₂) :
+    (hne : c₁ ≠ c₂) (J₁ J₂ : ℝ)
+    (hj₁ : JumpOf f I c₁ J₁) (hj₂ : JumpOf f I c₂ J₂) :
     Disjoint
-      (Set.Ioc c₁ (c₁ + JumpOf f I c₁))
-      (Set.Ioc c₂ (c₂ + JumpOf f I c₂)) := by
+      (Set.Ioc c₁ (c₁ + J₁))
+      (Set.Ioc c₂ (c₂ + J₂)) := by
   sorry
 
 -- `thm:monotone-discontinuities-countable`
@@ -168,61 +176,80 @@ theorem ContinuousInverseTheorem (f : ℝ → ℝ) (I : Set ℝ)
 -- `notes-limsup-functions.tex`.
 -- ---------------------------------------------------------------------
 
-/-- `def:limsup-liminf-function`.
+/-- `def:limsup-liminf-function`. `L` is a limsup value at `c` when
+values of `f` near `c` are eventually bounded above by `L + ε`, and
+arbitrarily small punctured neighbourhoods still realize values above
+`L - ε`.
 
 Logical form:
 
 ```lean
-noncomputable def LimsupAt (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : ℝ :=
-  0
+def LimsupAt (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) : Prop :=
+  (∀ ε > 0, ∃ δ > 0,
+    ∀ x ∈ A, 0 < |x - c| → |x - c| < δ -> f x < L + ε) ∧
+  (∀ ε > 0, ∀ δ > 0, ∃ x ∈ A,
+    0 < |x - c| ∧ |x - c| < δ ∧ L - ε < f x)
 ```
 -/
-noncomputable def LimsupAt (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : ℝ :=
-  0
+def LimsupAt (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) : Prop :=
+  (∀ ε > 0, ∃ δ > 0,
+    ∀ x ∈ A, 0 < |x - c| → |x - c| < δ -> f x < L + ε) ∧
+  (∀ ε > 0, ∀ δ > 0, ∃ x ∈ A,
+    0 < |x - c| ∧ |x - c| < δ ∧ L - ε < f x)
 
 /--
-`LiminfAt` defines the displayed object for liminf at.
+`LiminfAt` defines the displayed object for liminf at. `L` is a liminf
+value at `c` when values of `f` near `c` are eventually bounded below by
+`L - ε`, and arbitrarily small punctured neighbourhoods still realize
+values below `L + ε`.
 
 Logical form:
 
 ```lean
-noncomputable def LiminfAt (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : ℝ :=
-  0
+def LiminfAt (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) : Prop :=
+  (∀ ε > 0, ∃ δ > 0,
+    ∀ x ∈ A, 0 < |x - c| → |x - c| < δ -> L - ε < f x) ∧
+  (∀ ε > 0, ∀ δ > 0, ∃ x ∈ A,
+    0 < |x - c| ∧ |x - c| < δ ∧ f x < L + ε)
 ```
 -/
-noncomputable def LiminfAt (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : ℝ :=
-  0
+def LiminfAt (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) : Prop :=
+  (∀ ε > 0, ∃ δ > 0,
+    ∀ x ∈ A, 0 < |x - c| → |x - c| < δ -> L - ε < f x) ∧
+  (∀ ε > 0, ∀ δ > 0, ∃ x ∈ A,
+    0 < |x - c| ∧ |x - c| < δ ∧ f x < L + ε)
 
 /-- Let `A : Set ℝ` and `c L : ℝ`. If `f : ℝ → ℝ`. Then `(∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| →
-|x - c| < δ → |f x - L| < ε) ↔ LimsupAt f A c = L ∧ LiminfAt f A c = L`.
+|x - c| < δ → |f x - L| < ε) ↔ LimsupAt f A c L ∧ LiminfAt f A c L`.
 
 Logical form:
 
 ```lean
-theorem TendstoIffLimsupEqLiminf (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) :
+theorem TendstoIffLimsupAndLiminf (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) :
     (∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → |f x - L| < ε) ↔
-      LimsupAt f A c = L ∧ LiminfAt f A c = L
+      LimsupAt f A c L ∧ LiminfAt f A c L
 ```
 -/
-theorem TendstoIffLimsupEqLiminf (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) :
+theorem TendstoIffLimsupAndLiminf (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) :
     (∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → |f x - L| < ε) ↔
-      LimsupAt f A c = L ∧ LiminfAt f A c = L := by
+      LimsupAt f A c L ∧ LiminfAt f A c L := by
   sorry
 
-/-- Let `A : Set ℝ` and `c : ℝ`. If `f : ℝ → ℝ`, `hbdd : BddAbove (f '' A)`, and `hbdd' : BddBelow
-(f '' A)`. Then `LiminfAt f A c ≤ LimsupAt f A c`.
+/-- Let `A : Set ℝ` and `c L₁ L₂ : ℝ`. If `f : ℝ → ℝ`,
+`hInf : LiminfAt f A c L₁`, and `hSup : LimsupAt f A c L₂`, then
+`L₁ ≤ L₂`.
 
 Logical form:
 
 ```lean
-theorem LiminfLeLimsup (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
-    (hbdd : BddAbove (f '' A)) (hbdd' : BddBelow (f '' A)) :
-    LiminfAt f A c ≤ LimsupAt f A c
+theorem LiminfLeLimsup (f : ℝ → ℝ) (A : Set ℝ) (c L₁ L₂ : ℝ)
+    (hInf : LiminfAt f A c L₁) (hSup : LimsupAt f A c L₂) :
+    L₁ ≤ L₂
 ```
 -/
-theorem LiminfLeLimsup (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
-    (hbdd : BddAbove (f '' A)) (hbdd' : BddBelow (f '' A)) :
-    LiminfAt f A c ≤ LimsupAt f A c := by
+theorem LiminfLeLimsup (f : ℝ → ℝ) (A : Set ℝ) (c L₁ L₂ : ℝ)
+    (hInf : LiminfAt f A c L₁) (hSup : LimsupAt f A c L₂) :
+    L₁ ≤ L₂ := by
   sorry
 
 end LRA.Analysis.Continuity
