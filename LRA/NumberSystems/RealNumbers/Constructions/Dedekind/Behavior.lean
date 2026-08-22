@@ -45,7 +45,7 @@ theorem embedded_rationals_are_dense
 
 /-- Theorem 7.2: Archimedean property.
 
-Mathematical statement (Lean): `theorem archimedean_property (natural_carrier : Type) (natural_to_rational : natural_carrier → Rational rational_model) (cut : Cut rational_model) : ∃ natural, strict_order rational_model cut (rational_embedding rational_model (natural_to_rational natural))`.
+Mathematical statement (Lean): `theorem archimedean_property (integer_cofinal : ∀ value : rationalSystem.FieldModel.signature.carrier, ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier, rationalSystem.FieldModel.signature.StrictOrder value (rationalSystem.IntegerEmbedding.ToField integer)) (cut : Cut rationalSystem.FieldModel) : ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier, strict_order rationalSystem.FieldModel cut (rational_embedding rationalSystem.FieldModel (rationalSystem.IntegerEmbedding.ToField integer))`.
 
 *Proof status:* proof pending
 
@@ -54,25 +54,29 @@ Logical form:
 
 ```lean
 theorem archimedean_property
-    (natural_carrier : Type)
-    (natural_to_rational :
-      natural_carrier → Rational rationalSystem.FieldModel)
+    (integer_cofinal :
+      ∀ value : rationalSystem.FieldModel.signature.carrier,
+        ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier,
+          rationalSystem.FieldModel.signature.StrictOrder value
+            (rationalSystem.IntegerEmbedding.ToField integer))
     (cut : Cut rationalSystem.FieldModel) :
-    ∃ natural,
+    ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier,
       strict_order rationalSystem.FieldModel cut
         (rational_embedding rationalSystem.FieldModel
-          (natural_to_rational natural))
+          (rationalSystem.IntegerEmbedding.ToField integer))
 ```
 -/
 theorem archimedean_property
-    (natural_carrier : Type)
-    (natural_to_rational :
-      natural_carrier → Rational rationalSystem.FieldModel)
+    (integer_cofinal :
+      ∀ value : rationalSystem.FieldModel.signature.carrier,
+        ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier,
+          rationalSystem.FieldModel.signature.StrictOrder value
+            (rationalSystem.IntegerEmbedding.ToField integer))
     (cut : Cut rationalSystem.FieldModel) :
-    ∃ natural,
+    ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier,
       strict_order rationalSystem.FieldModel cut
         (rational_embedding rationalSystem.FieldModel
-          (natural_to_rational natural)) := by
+          (rationalSystem.IntegerEmbedding.ToField integer)) := by
   sorry
 
 /-- Proposition expressing the final reference-real summary.
@@ -91,7 +95,11 @@ def ReferenceRealNumberConstruction : Prop :=
       strict_order rationalSystem.FieldModel first
         (rational_embedding rationalSystem.FieldModel rational) ∧
       strict_order rationalSystem.FieldModel
-        (rational_embedding rationalSystem.FieldModel rational) second)
+        (rational_embedding rationalSystem.FieldModel rational) second) ∧
+  (∀ value : rationalSystem.FieldModel.signature.carrier,
+    ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier,
+      rationalSystem.FieldModel.signature.StrictOrder value
+        (rationalSystem.IntegerEmbedding.ToField integer))
 ```
 -/
 def ReferenceRealNumberConstruction : Prop :=
@@ -102,7 +110,11 @@ def ReferenceRealNumberConstruction : Prop :=
       strict_order rationalSystem.FieldModel first
         (rational_embedding rationalSystem.FieldModel rational) ∧
       strict_order rationalSystem.FieldModel
-        (rational_embedding rationalSystem.FieldModel rational) second)
+        (rational_embedding rationalSystem.FieldModel rational) second) ∧
+  (∀ value : rationalSystem.FieldModel.signature.carrier,
+    ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier,
+      rationalSystem.FieldModel.signature.StrictOrder value
+        (rationalSystem.IntegerEmbedding.ToField integer))
 
 
 /-- Theorem 8.1: final reference-real structural summary.
