@@ -5,6 +5,7 @@ P0 title: Rewrite the foundational sequence layer to project-native epsilon/diff
 Repository: `F:/repos/lra-lean`
 Inputs:
 - `docs/p0-repair/prompts/p0-01-spec.md`
+- `docs/p0-repair/results/p0-01-spec.md`
 - the current ledger entry in `docs/p0-repair/ledger.json`
 
 Task:
