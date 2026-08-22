@@ -10,7 +10,7 @@
 
 | P0 | Wave | Status | Last Good Stop | Next Step | Spec | Verify | Implement | Validator | Build | Commit |
 |---|---|---|---|---|---|---|---|---|---|---|
-| p0-01 | 1 | `spec_ready_for_verify` | 2026-08-22: spec output persisted and verifier task launched | Wait for verifier output and persist review result | 01a02a44-3e73-7d91-bc27-d80f5faf3f5a | 01a02a51-0756-72f1-967b-9aa7b4fa769c | - | LRA/Analysis/Sequences | LRAAll | - |
+| p0-01 | 1 | `verify_failed` | 2026-08-22: verifier returned bounded correction against the LRAAll gate assumption | Amend blocker note, then relaunch verifier | 01a02a44-3e73-7d91-bc27-d80f5faf3f5a | 01a02a51-0756-72f1-967b-9aa7b4fa769c | - | LRA/Analysis/Sequences | LRAAll | - |
 | p0-02 | 2 | `not_started` | 2026-08-22: queue materialized, repo even with origin/main, no task launched yet | Launch spec task | - | - | - | - | - | - |
 | p0-03 | 2 | `not_started` | 2026-08-22: queue materialized, repo even with origin/main, no task launched yet | Launch spec task | - | - | - | - | - | - |
 | p0-04 | 2 | `not_started` | 2026-08-22: queue materialized, repo even with origin/main, no task launched yet | Launch spec task | - | - | - | - | - | - |

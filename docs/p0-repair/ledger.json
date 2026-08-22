@@ -29,22 +29,23 @@
       "queue_rank": 1,
       "wave": 1,
       "wave_name": "foundational semantic-owner conflicts",
-      "status": "spec_ready_for_verify",
-      "last_good_stop": "2026-08-22: spec output persisted and verifier task launched",
-      "next_step": "Wait for verifier output and persist review result",
+      "status": "verify_failed",
+      "last_good_stop": "2026-08-22: verifier returned bounded correction against the LRAAll gate assumption",
+      "next_step": "Amend p0-01 spec blocker note for unrelated baseline build failures, then relaunch verifier",
       "validator_path": "LRA/Analysis/Sequences",
       "build_target": "LRAAll",
       "spec_task": "01a02a44-3e73-7d91-bc27-d80f5faf3f5a",
       "verify_task": "01a02a51-0756-72f1-967b-9aa7b4fa769c",
       "implement_task": null,
-      "verification_result": null,
+      "verification_result": "bounded_correction_required",
       "gate_result": null,
       "commit_sha": null,
       "pushed": false,
       "notes": [
         "2026-08-22: launched spec task 01a02a44-3e73-7d91-bc27-d80f5faf3f5a",
         "2026-08-22: persisted p0-01 spec with validator path LRA/Analysis/Sequences and build target LRAAll",
-        "2026-08-22: launched verify task 01a02a51-0756-72f1-967b-9aa7b4fa769c"
+        "2026-08-22: launched verify task 01a02a51-0756-72f1-967b-9aa7b4fa769c",
+        "2026-08-22: verifier reported no additional sequence-local dependency, but LRAAll is currently blocked by unrelated baseline failures including Analysis/Completeness and EuclideanSpace Interface Laws"
       ]
     },
     {
