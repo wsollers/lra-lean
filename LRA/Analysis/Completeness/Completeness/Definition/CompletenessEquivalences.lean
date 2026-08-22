@@ -2,10 +2,16 @@ import Mathlib.Data.Set.Basic
 import Mathlib.Order.Filter.AtTopBot.Basic
 import Mathlib.Topology.UniformSpace.Cauchy
 import LRA.Analysis.Bounds.Extrema.SupremaInfima
+import LRA.Analysis.Completeness.Completeness.Definition.CauchySequencesConverge
 
 /-!
-Order, sequential, and subsequence completeness characterizations paired
-against the least-upper-bound property.
+Order, sequential, and subsequence completeness properties paired against the
+least-upper-bound property.
+
+`CauchySequencesConverge` is imported from its own Mathlib-free definition
+module and is stated in the project's epsilon/difference language. The other
+legacy properties in this file still use Mathlib topology and are tracked for
+later migration to the project-native sequence vocabulary.
 -/
 
 namespace LRA.Analysis.Completeness
@@ -26,18 +32,6 @@ def HasGreatestLowerBoundProperty [Preorder F] : Prop :=
 -/
 def HasGreatestLowerBoundProperty [Preorder F] : Prop :=
   ∀ A : Set F, A.Nonempty → (∃ l, IsLowerBound l A) → ∃ i, IsInfimum i A
-
-/-- Every Cauchy sequence converges.
-
-Logical form:
-
-```lean
-def CauchySequencesConverge [UniformSpace F] : Prop :=
-  ∀ a : ℕ → F, CauchySeq a → ∃ L, Filter.Tendsto a Filter.atTop (nhds L)
-```
--/
-def CauchySequencesConverge [UniformSpace F] : Prop :=
-  ∀ a : ℕ → F, CauchySeq a → ∃ L, Filter.Tendsto a Filter.atTop (nhds L)
 
 /-- Every bounded sequence has a convergent subsequence.
 
