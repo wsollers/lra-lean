@@ -29,16 +29,16 @@
       "queue_rank": 1,
       "wave": 1,
       "wave_name": "foundational semantic-owner conflicts",
-      "status": "verified_ready_to_implement",
-      "last_good_stop": "2026-08-22: validator on LRA/Analysis/Sequences and lake build LRAAll both pass after unrelated baseline repairs",
-      "next_step": "Launch implement task",
+      "status": "done",
+      "last_good_stop": "2026-08-22: native sequence semantics moved into SequenceDefinitions, Mathlib bridges isolated under Interop/Mathlib, validator on LRA/Analysis/Sequences passed, and lake build LRAAll passed after repairing the LiminfLimsup import regression",
+      "next_step": "Launch p0-02 spec task",
       "validator_path": "LRA/Analysis/Sequences",
       "build_target": "LRAAll",
       "spec_task": "01a02a44-3e73-7d91-bc27-d80f5faf3f5a",
       "verify_task": "01a02a51-0756-72f1-967b-9aa7b4fa769c",
-      "implement_task": null,
+      "implement_task": "main-thread",
       "verification_result": "corrected_and_ready",
-      "gate_result": null,
+      "gate_result": "passed",
       "commit_sha": null,
       "pushed": false,
       "notes": [
@@ -47,7 +47,9 @@
         "2026-08-22: launched verify task 01a02a51-0756-72f1-967b-9aa7b4fa769c",
         "2026-08-22: verifier reported no additional sequence-local dependency, but LRAAll is currently blocked by unrelated baseline failures including Analysis/Completeness and EuclideanSpace Interface Laws",
         "2026-08-22: unrelated baseline build failures were repaired; `python scripts/validate_structure.py --path LRA/Analysis/Sequences` and `lake build LRAAll` now both pass again",
-        "2026-08-22: broad `python scripts/validate_structure.py --path LRA --allow-legacy-construction-modeltheory` still reports unrelated legacy quarantine-import violations outside p0-01 scope"
+        "2026-08-22: broad `python scripts/validate_structure.py --path LRA --allow-legacy-construction-modeltheory` still reports unrelated legacy quarantine-import violations outside p0-01 scope",
+        "2026-08-22: implementation completed on the main thread by moving native convergence/divergence ownership into `SequenceDefinitions`, retargeting sequence modules to native predicates, and adding opt-in Mathlib interop modules under `LRA/Analysis/Sequences/Interop/Mathlib`",
+        "2026-08-22: `lake build LRAAll` initially failed in `LRA/Analysis/Sequences/LiminfLimsup` due to missing `sSup`/`sInf` support for `Real`; repaired by adding the current Archimedean real import and rerunning both success gates"
       ]
     },
     {

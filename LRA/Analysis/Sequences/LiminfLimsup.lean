@@ -61,6 +61,7 @@ pull in subadditivity, which is a bigger lift).
 -/
 
 import Mathlib.Order.Basic
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 import LRA.Analysis.Sequences.SequenceDefinitions
 import LRA.Analysis.Sequences.Convergence
 import LRA.Analysis.Sequences.NullConstantSequences

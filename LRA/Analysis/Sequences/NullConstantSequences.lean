@@ -40,17 +40,11 @@ Two minor findings, reported not fixed:
 
 Formalized generic sequence predicates below (`IsConstant`, `IsNull`,
 `IsUltimatelyConstant`, `BoundedAboveSeq`, `BoundedBelowSeq`,
-`BoundedSeq`) scoped to `RealSequence` from `SequenceDefinitions.lean`;
-convergence reuses Mathlib's `Filter.Tendsto _ Filter.atTop (nhds _)`
-rather than inventing a project `ConvergesTo` predicate, matching the
-forward-dependency handling established in the Bounds pass (the project's
-own `def:convergent-sequence` hasn't been read yet — it's the very next
-section, `convergence`).
+`BoundedSeq`) scoped to `RealSequence` from `SequenceDefinitions.lean`.
+All convergence statements now use the native `ConvergesTo` predicate.
 -/
 
 import Mathlib.Order.Basic
-import Mathlib.Topology.Instances.Real.Lemmas
-import Mathlib.Order.Filter.AtTopBot.Basic
 import LRA.Analysis.Sequences.SequenceDefinitions
 
 namespace LRA.Analysis.Sequences
@@ -120,18 +114,18 @@ def BoundedSeq (x : RealSequence) : Prop := ∃ M > 0, ∀ n, |x n| ≤ M
 def BoundedSeq (x : RealSequence) : Prop := ∃ M > 0, ∀ n, |x n| ≤ M
 
 -- `thm:constant-sequence-convergence`
-/-- Let `x : RealSequence` and `c : ℝ`. If `h : IsConstant x c`. Then `Filter.Tendsto x Filter.atTop
-(nhds c)`.
+/-- Let `x : RealSequence` and `c : ℝ`. If `h : IsConstant x c`. Then
+`ConvergesTo x c`.
 
 Logical form:
 
 ```lean
 theorem ConstantSequenceConvergence {x : RealSequence} {c : ℝ}
-    (h : IsConstant x c) : Filter.Tendsto x Filter.atTop (nhds c)
+    (h : IsConstant x c) : ConvergesTo x c
 ```
 -/
 theorem ConstantSequenceConvergence {x : RealSequence} {c : ℝ}
-    (h : IsConstant x c) : Filter.Tendsto x Filter.atTop (nhds c) := by
+    (h : IsConstant x c) : ConvergesTo x c := by
   sorry
 
 -- `thm:zero-sequence-is-null`
@@ -163,35 +157,35 @@ theorem ConstantNullSequence {x : RealSequence} {c : ℝ}
   sorry
 
 -- `thm:difference-from-limit-is-null`
-/-- Let `x : RealSequence` and `L : ℝ`. Then `Filter.Tendsto x Filter.atTop (nhds L) ↔ IsNull (fun n
+/-- Let `x : RealSequence` and `L : ℝ`. Then `ConvergesTo x L ↔ IsNull (fun n
 => x n - L)`.
 
 Logical form:
 
 ```lean
 theorem DifferenceFromLimitIsNull (x : RealSequence) (L : ℝ) :
-    Filter.Tendsto x Filter.atTop (nhds L) ↔ IsNull (fun n => x n - L)
+    ConvergesTo x L ↔ IsNull (fun n => x n - L)
 ```
 -/
 theorem DifferenceFromLimitIsNull (x : RealSequence) (L : ℝ) :
-    Filter.Tendsto x Filter.atTop (nhds L) ↔ IsNull (fun n => x n - L) := by
+    ConvergesTo x L ↔ IsNull (fun n => x n - L) := by
   sorry
 
 -- `thm:ultimately-constant-sequence-convergence`
-/-- Let `x : RealSequence` and `c : ℝ`. If `h : IsUltimatelyConstant x c`. Then `Filter.Tendsto x
-Filter.atTop (nhds c)`.
+/-- Let `x : RealSequence` and `c : ℝ`. If `h : IsUltimatelyConstant x c`.
+Then `ConvergesTo x c`.
 
 Logical form:
 
 ```lean
 theorem UltimatelyConstantSequenceConvergence {x : RealSequence} {c : ℝ}
     (h : IsUltimatelyConstant x c) :
-    Filter.Tendsto x Filter.atTop (nhds c)
+    ConvergesTo x c
 ```
 -/
 theorem UltimatelyConstantSequenceConvergence {x : RealSequence} {c : ℝ}
     (h : IsUltimatelyConstant x c) :
-    Filter.Tendsto x Filter.atTop (nhds c) := by
+    ConvergesTo x c := by
   sorry
 
 -- `thm:constant-implies-ultimately-constant`
@@ -237,22 +231,20 @@ theorem UltimatelyConstantNullSequence {x : RealSequence} {c : ℝ}
   sorry
 
 -- `thm:tail-equality-preserves-convergence`
-/-- Let `x y : RealSequence` and `L : ℝ`. If `h : ∃ N₀ : ℕ, ∀ n ≥ N₀, x n = y n`. Then
-`Filter.Tendsto x Filter.atTop (nhds L) ↔ Filter.Tendsto y Filter.atTop (nhds L)`.
+/-- Let `x y : RealSequence` and `L : ℝ`. If `h : ∃ N₀ : ℕ, ∀ n ≥ N₀, x n = y n`.
+Then `ConvergesTo x L ↔ ConvergesTo y L`.
 
 Logical form:
 
 ```lean
 theorem TailEqualityPreservesConvergence {x y : RealSequence}
     (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, x n = y n) (L : ℝ) :
-    Filter.Tendsto x Filter.atTop (nhds L) ↔
-      Filter.Tendsto y Filter.atTop (nhds L)
+    ConvergesTo x L ↔ ConvergesTo y L
 ```
 -/
 theorem TailEqualityPreservesConvergence {x y : RealSequence}
     (h : ∃ N₀ : ℕ, ∀ n ≥ N₀, x n = y n) (L : ℝ) :
-    Filter.Tendsto x Filter.atTop (nhds L) ↔
-      Filter.Tendsto y Filter.atTop (nhds L) := by
+    ConvergesTo x L ↔ ConvergesTo y L := by
   sorry
 
 -- `thm:eventually-bounded-above-tail-formulation`

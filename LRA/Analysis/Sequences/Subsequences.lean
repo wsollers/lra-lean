@@ -168,20 +168,20 @@ theorem SubsequentialLimitOfConvergentSequence {x : RealSequence}
   sorry
 
 -- `thm:divergence-by-two-subsequential-limits`
-/-- Let `x : RealSequence` and `L K : ℝ`. If `hL : IsSubsequentialLimit x L`, `hK :
-IsSubsequentialLimit x K`, and `hLK : L ≠ K`. Then `¬ ∃ A, ConvergesTo x A`.
+/-- Let `x : RealSequence` and `L K : ℝ`. If `hL : IsSubsequentialLimit x L`,
+`hK : IsSubsequentialLimit x K`, and `hLK : L ≠ K`. Then `IsDivergent x`.
 
 Logical form:
 
 ```lean
 theorem DivergenceByTwoSubsequentialLimits {x : RealSequence}
     {L K : ℝ} (hL : IsSubsequentialLimit x L) (hK : IsSubsequentialLimit x K)
-    (hLK : L ≠ K) : ¬ ∃ A, ConvergesTo x A
+    (hLK : L ≠ K) : IsDivergent x
 ```
 -/
 theorem DivergenceByTwoSubsequentialLimits {x : RealSequence}
     {L K : ℝ} (hL : IsSubsequentialLimit x L) (hK : IsSubsequentialLimit x K)
-    (hLK : L ≠ K) : ¬ ∃ A, ConvergesTo x A := by
+    (hLK : L ≠ K) : IsDivergent x := by
   sorry
 
 -- `thm:boundedness-passes-to-subsequences`

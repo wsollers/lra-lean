@@ -85,30 +85,32 @@ theorem ExampleAlternatingNullSequence :
       ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n / (n + 1)) 0 := by
   sorry
 
-/-- The theorem asserts `BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧ (¬ ∃ L, ConvergesTo (fun n : ℕ =>
-(-1 : ℝ) ^ n) L) ∧ ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n)) 1 ∧ ConvergesTo (fun n : ℕ =>
-(-1 : ℝ) ^ (2 * n + 1)) (-1)`.
+/-- The theorem asserts `BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧
+IsOscillatory (fun n : ℕ => (-1 : ℝ) ^ n) ∧
+ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n)) 1 ∧
+ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n + 1)) (-1)`.
 
 Logical form:
 
 ```lean
 theorem ExampleOscillatingSequence :
     BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧
-      (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧
+      IsOscillatory (fun n : ℕ => (-1 : ℝ) ^ n) ∧
       ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n)) 1 ∧
       ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n + 1)) (-1)
 ```
 -/
 theorem ExampleOscillatingSequence :
     BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧
-      (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧
+      IsOscillatory (fun n : ℕ => (-1 : ℝ) ^ n) ∧
       ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n)) 1 ∧
       ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n + 1)) (-1) := by
   sorry
 
-/-- The theorem asserts `(∀ r : ℝ, |r| < 1 → ConvergesTo (fun n : ℕ => r ^ n) 0) ∧ ConvergesTo (fun
-_ : ℕ => (1 : ℝ) ^ (0 : ℕ)) 1 ∧ (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧ (∀ r : ℝ,
-|r| > 1 → ¬ BoundedSeq (fun n : ℕ => r ^ n))`.
+/-- The theorem asserts `(∀ r : ℝ, |r| < 1 → ConvergesTo (fun n : ℕ => r ^ n) 0) ∧
+ConvergesTo (fun _ : ℕ => (1 : ℝ) ^ (0 : ℕ)) 1 ∧
+IsOscillatory (fun n : ℕ => (-1 : ℝ) ^ n) ∧
+(∀ r : ℝ, |r| > 1 → ¬ BoundedSeq (fun n : ℕ => r ^ n))`.
 
 Logical form:
 
@@ -116,31 +118,31 @@ Logical form:
 theorem ExampleGeometricSequence :
     (∀ r : ℝ, |r| < 1 → ConvergesTo (fun n : ℕ => r ^ n) 0) ∧
       ConvergesTo (fun _ : ℕ => (1 : ℝ) ^ (0 : ℕ)) 1 ∧
-      (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧
+      IsOscillatory (fun n : ℕ => (-1 : ℝ) ^ n) ∧
       (∀ r : ℝ, |r| > 1 → ¬ BoundedSeq (fun n : ℕ => r ^ n))
 ```
 -/
 theorem ExampleGeometricSequence :
     (∀ r : ℝ, |r| < 1 → ConvergesTo (fun n : ℕ => r ^ n) 0) ∧
       ConvergesTo (fun _ : ℕ => (1 : ℝ) ^ (0 : ℕ)) 1 ∧
-      (¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L) ∧
+      IsOscillatory (fun n : ℕ => (-1 : ℝ) ^ n) ∧
       (∀ r : ℝ, |r| > 1 → ¬ BoundedSeq (fun n : ℕ => r ^ n)) := by
   sorry
 
-/-- The theorem asserts `BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧ ¬ ∃ L, ConvergesTo (fun n : ℕ =>
-(-1 : ℝ) ^ n) L`.
+/-- The theorem asserts `BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧
+IsDivergent (fun n : ℕ => (-1 : ℝ) ^ n)`.
 
 Logical form:
 
 ```lean
 theorem ExampleBoundedNotConvergent :
     BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧
-      ¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L
+      IsDivergent (fun n : ℕ => (-1 : ℝ) ^ n)
 ```
 -/
 theorem ExampleBoundedNotConvergent :
     BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧
-      ¬ ∃ L, ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n) L := by
+      IsDivergent (fun n : ℕ => (-1 : ℝ) ^ n) := by
   sorry
 
 /-- The successive differences of the harmonic partial sums converge to zero,

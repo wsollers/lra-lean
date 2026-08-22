@@ -35,15 +35,9 @@ pointing at the `def:m-tail` target. A genuine label-text/target
 mismatch, matching the "infimum-is-monotone-under-inclusion" style
 naming-inconsistency bug found during the Bounds pass. Not fixed here.
 
-Non-bug forward dependency: `thm:unbounded-monotone-divergence` cites
-`def:diverges-to-positive-infinity` / `def:diverges-to-negative-infinity`
-as dependencies, but those aren't formally defined until the `divergence`
-section — several sections later in `notes/index.tex`
-(monotonicity -> subsequences -> divergence). A genuine forward
-reference; formalized below directly via Mathlib's
-`Filter.Tendsto _ Filter.atTop Filter.atTop` /
-`Filter.atBot` rather than waiting for the project's own divergence
-vocabulary, matching the established forward-dependency handling pattern.
+`thm:unbounded-monotone-divergence` depends on the positive- and
+negative-infinity divergence predicates, which are now owned by
+`SequenceDefinitions.lean` and can be used directly here.
 
 `IsIncreasing`/`IsDecreasing`/etc. reused/extended from
 `Monotone`/`Antitone`/`StrictMono`/`StrictAnti` naming conventions but
@@ -54,8 +48,6 @@ being tracked as citable content.
 -/
 
 import Mathlib.Order.Basic
-import Mathlib.Order.Filter.AtTopBot.Basic
-import Mathlib.Topology.Instances.Real.Lemmas
 import LRA.Analysis.Sequences.SequenceDefinitions
 import LRA.Analysis.Sequences.Convergence
 import LRA.Analysis.Sequences.NullConstantSequences
@@ -342,37 +334,37 @@ theorem EventuallyMonotoneConvergenceTheorem {x : RealSequence}
   sorry
 
 -- `thm:unbounded-monotone-divergence`
-/-- Let `x : RealSequence`. If `hinc : IsIncreasing x` and `hunbdd : ¬ BoundedAboveSeq x`. Then
-`Filter.Tendsto x Filter.atTop Filter.atTop`.
+/-- Let `x : RealSequence`. If `hinc : IsIncreasing x` and
+`hunbdd : ¬ BoundedAboveSeq x`. Then `DivergesToPosInf x`.
 
 Logical form:
 
 ```lean
 theorem UnboundedMonotoneDivergencePos {x : RealSequence}
     (hinc : IsIncreasing x) (hunbdd : ¬ BoundedAboveSeq x) :
-    Filter.Tendsto x Filter.atTop Filter.atTop
+    DivergesToPosInf x
 ```
 -/
 theorem UnboundedMonotoneDivergencePos {x : RealSequence}
     (hinc : IsIncreasing x) (hunbdd : ¬ BoundedAboveSeq x) :
-    Filter.Tendsto x Filter.atTop Filter.atTop := by
+    DivergesToPosInf x := by
   sorry
 
 -- `thm:unbounded-monotone-divergence`
-/-- Let `x : RealSequence`. If `hdec : IsDecreasing x` and `hunbdd : ¬ BoundedBelowSeq x`. Then
-`Filter.Tendsto x Filter.atTop Filter.atBot`.
+/-- Let `x : RealSequence`. If `hdec : IsDecreasing x` and
+`hunbdd : ¬ BoundedBelowSeq x`. Then `DivergesToNegInf x`.
 
 Logical form:
 
 ```lean
 theorem UnboundedMonotoneDivergenceNeg {x : RealSequence}
     (hdec : IsDecreasing x) (hunbdd : ¬ BoundedBelowSeq x) :
-    Filter.Tendsto x Filter.atTop Filter.atBot
+    DivergesToNegInf x
 ```
 -/
 theorem UnboundedMonotoneDivergenceNeg {x : RealSequence}
     (hdec : IsDecreasing x) (hunbdd : ¬ BoundedBelowSeq x) :
-    Filter.Tendsto x Filter.atTop Filter.atBot := by
+    DivergesToNegInf x := by
   sorry
 
 -- `thm:algebraic-transformations-preserve-monotonicity`

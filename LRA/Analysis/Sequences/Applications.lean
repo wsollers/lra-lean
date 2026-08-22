@@ -39,7 +39,7 @@ recursive/formula definitions below are shifted by one index throughout
 import Mathlib.Analysis.SpecialFunctions.Sqrt
 import Mathlib.Analysis.SpecialFunctions.Exp
 import Mathlib.Data.Nat.Factorial.Basic
-import Mathlib.Topology.Algebra.Order.Floor
+import Mathlib.Algebra.Order.Floor.Ring
 import LRA.Analysis.Sequences.SequenceDefinitions
 import LRA.Analysis.Sequences.Convergence
 

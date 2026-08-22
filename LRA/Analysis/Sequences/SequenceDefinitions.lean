@@ -19,15 +19,6 @@ no extra structure/predicate to state as a `sorry`-able theorem the way
 type aliases below purely so later files have a citable name matching the
 .tex's own vocabulary.
 
-Finding: `def:real-sequence`'s "Predicate reading" remark is tautological
-and doesn't actually unpack anything — it reads
-`Sequence(x_n, R) := Sequence(x_n, R)`, defining the predicate in terms of
-itself. Every other Predicate-reading remark in this corpus (including
-`def:sequence`'s own, two nodes earlier) unpacks the predicate into its
-actual content (`x : N -> X`); this one should read
-`Sequence(x_n, R) := x : N -> R}`, matching that pattern, but doesn't.
-Minor authoring slip, reported not fixed.
-
 The three unlabeled-as-theorems `exposition` blocks (`ex:constant-sequence`,
 `ex:sequence-reciprocal`, `ex:sequence-natural`) are informal previews that
 use the word "converges"/"divergent" before `def:convergent-sequence` is
@@ -36,23 +27,14 @@ one-section forward reference, not really a bug (common textbook style:
 motivate with examples, then define formally), but noted. Their actual
 mathematical content is correct: the constant sequence converges to `c`
 trivially (`N = 1` works since the tail is identically `c`); `1/n -> 0` via
-the Archimedean property (this reuses `archimedean_reciprocal_form` /
-`archimedean_reciprocal` from the Bounds pass's `ArchimedeanProperty.lean`
-almost verbatim); and `x_n = n` diverges because it's unbounded (correctly
-hedged in the .tex's own prose: "divergence also follows from that theorem
-[every convergent sequence is bounded] once it is established" — a
-theorem not yet reached). Formalized here using Mathlib's own
-`Filter.Tendsto _ Filter.atTop (nhds _)` for convergence and
-`Filter.Tendsto _ Filter.atTop Filter.atTop` for the "grows without bound"
-half of the divergence example, matching the forward-dependency handling
-pattern established in the Bounds pass (`CompletenessEquivalences.lean`,
-`NestedIntervalProperty.lean`) rather than waiting for the project's own
-`def:convergent-sequence` (arriving next file) to be re-read here.
+the Archimedean property; and `x_n = n` diverges because it's unbounded
+(correctly hedged in the .tex's own prose: "divergence also follows from that
+theorem [every convergent sequence is bounded] once it is established" — a
+theorem not yet reached). The foundational sequence layer now owns the native
+epsilon-tail convergence and divergence predicates directly.
 -/
 
-import Mathlib.Order.Basic
-import Mathlib.Topology.Instances.Real.Lemmas
-import Mathlib.Order.Filter.AtTopBot.Basic
+import Mathlib.Data.Real.Basic
 
 namespace LRA.Analysis.Sequences
 
@@ -78,43 +60,102 @@ abbrev RealSequence : Type := ℕ → ℝ
 -/
 abbrev RealSequence : Type := ℕ → ℝ
 
-/-- Let `c : ℝ`. Then the constant sequence with value `c` tends to `c`.
+/-- `def:convergent-sequence`.
+
+Logical form:
+
+```lean
+def ConvergesTo (x : RealSequence) (L : ℝ) : Prop :=
+  ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, abs (x n - L) < ε
+```
+-/
+def ConvergesTo (x : RealSequence) (L : ℝ) : Prop :=
+  ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |x n - L| < ε
+
+/-- `def:divergent-sequence`.
+
+Logical form:
+
+```lean
+def IsDivergent (x : RealSequence) : Prop := ¬ ∃ L : ℝ, ConvergesTo x L
+```
+-/
+def IsDivergent (x : RealSequence) : Prop := ¬ ∃ L : ℝ, ConvergesTo x L
+
+/-- `def:diverges-to-positive-infinity`.
+
+Logical form:
+
+```lean
+def DivergesToPosInf (x : RealSequence) : Prop :=
+  ∀ M : ℝ, ∃ N : ℕ, ∀ n ≥ N, M < x n
+```
+-/
+def DivergesToPosInf (x : RealSequence) : Prop :=
+  ∀ M : ℝ, ∃ N : ℕ, ∀ n ≥ N, M < x n
+
+/-- `def:diverges-to-negative-infinity`.
+
+Logical form:
+
+```lean
+def DivergesToNegInf (x : RealSequence) : Prop :=
+  ∀ M : ℝ, ∃ N : ℕ, ∀ n ≥ N, x n < M
+```
+-/
+def DivergesToNegInf (x : RealSequence) : Prop :=
+  ∀ M : ℝ, ∃ N : ℕ, ∀ n ≥ N, x n < M
+
+/-- `def:oscillatory-sequence`.
+
+Logical form:
+
+```lean
+def IsOscillatory (x : RealSequence) : Prop :=
+  IsDivergent x ∧ ¬ DivergesToPosInf x ∧ ¬ DivergesToNegInf x
+```
+-/
+def IsOscillatory (x : RealSequence) : Prop :=
+  IsDivergent x ∧ ¬ DivergesToPosInf x ∧ ¬ DivergesToNegInf x
+
+/-- Let `c : ℝ`. Then the constant sequence with value `c` converges to `c`.
 
 Logical form:
 
 ```lean
 theorem ConstantSequenceConverges (c : ℝ) :
-    Filter.Tendsto (fun _ : ℕ => c) Filter.atTop (nhds c)
+    ConvergesTo (fun _ : ℕ => c) c
 ```
 -/
 theorem ConstantSequenceConverges (c : ℝ) :
-    Filter.Tendsto (fun _ : ℕ => c) Filter.atTop (nhds c) := by
+    ConvergesTo (fun _ : ℕ => c) c := by
   sorry
 
-/-- The reciprocal sequence `n ↦ 1 / n` tends to `0` along `atTop`.
+/-- The reciprocal sequence `n ↦ 1 / n` converges to `0`.
 
 Logical form:
 
 ```lean
 theorem ReciprocalSequenceConvergesToZero :
-    Filter.Tendsto (fun n : ℕ => 1 / (n : ℝ)) Filter.atTop (nhds 0)
+    ConvergesTo (fun n : ℕ => 1 / (n : ℝ)) 0
 ```
 -/
 theorem ReciprocalSequenceConvergesToZero :
-    Filter.Tendsto (fun n : ℕ => 1 / (n : ℝ)) Filter.atTop (nhds 0) := by
+    ConvergesTo (fun n : ℕ => 1 / (n : ℝ)) 0 := by
   sorry
 
-/-- The natural-number sequence `n ↦ n`, read as a real sequence, tends to`npositive infinity along `atTop`.
+/-- The natural-number sequence `n ↦ n`, read as a real sequence, diverges to
+positive infinity.
 
 Logical form:
 
 ```lean
 theorem NaturalNumberSequenceDiverges :
-    Filter.Tendsto (fun n : ℕ => (n : ℝ)) Filter.atTop Filter.atTop
+    DivergesToPosInf (fun n : ℕ => (n : ℝ))
 ```
 -/
 theorem NaturalNumberSequenceDiverges :
-    Filter.Tendsto (fun n : ℕ => (n : ℝ)) Filter.atTop Filter.atTop := by
+    DivergesToPosInf (fun n : ℕ => (n : ℝ)) := by
   sorry
 
 end LRA.Analysis.Sequences

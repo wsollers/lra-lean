@@ -38,9 +38,8 @@ nodes later, not an accidental duplicate — kept as its own theorem below
 per the project's stated tolerance for practice-value near-duplicates.
 
 All content now cites the project's own `ConvergesTo` (from
-`Convergence.lean`), matching house style now that the real definition
-has been read — no more `Filter.Tendsto` placeholders in this file's
-scope. `Eventually(x_n, P n)` is still not formally defined anywhere in
+`Convergence.lean`), matching house style throughout the core sequence
+layer. `Eventually(x_n, P n)` is still not formally defined anywhere in
 the .tex (forward reference to the upcoming `tails` section); modeled
 directly as `∃ N₀, ∀ n ≥ N₀, P n` inline, matching the same handling used
 in `NullConstantSequences.lean`.
