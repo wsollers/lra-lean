@@ -196,8 +196,21 @@ theorem ImageClassDifferenceOfInjective
         (ImageClass function right) := by
   sorry
 
-/-- Image commutes with indexed intersection when the function is injective. -/
-theorem ImageClassIndexedIntersectionOfInjective {Index : Type w}
+/-- Image commutes with a nonempty indexed intersection when the function is
+injective. The nonempty-index hypothesis is essential: for an empty family the
+source intersection is the universal source class, whose image is only the
+range, while the target empty intersection is the universal target class.
+
+Logical form:
+
+```lean
+theorem ImageClassIndexedIntersectionOfInjective {Index : Type w} [Nonempty Index]
+    (injective : Injective function) (family : Index → SetClass Domain) :
+    ImageClass function (fun input => ∀ index, family index input) =
+      (fun output => ∀ index, ImageClass function (family index) output)
+```
+-/
+theorem ImageClassIndexedIntersectionOfInjective {Index : Type w} [Nonempty Index]
     (injective : Injective function) (family : Index → SetClass Domain) :
     ImageClass function (fun input => ∀ index, family index input) =
       (fun output => ∀ index, ImageClass function (family index) output) := by
