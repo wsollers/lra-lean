@@ -14,6 +14,7 @@ import LRA.AlgebraicStructures
 import LRA.Spaces
 import LRA.Topology
 import LRA.Algebra
+import LRA.Arithmetic
 import LRA.Analysis
 
 import LRA.VolumeI
