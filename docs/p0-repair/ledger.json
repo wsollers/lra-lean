@@ -172,19 +172,24 @@
       "queue_rank": 6,
       "wave": 1,
       "wave_name": "foundational semantic-owner conflicts",
-      "status": "not_started",
-      "last_good_stop": "2026-08-22: queue materialized, repo even with origin/main, no task launched yet",
-      "next_step": "Launch spec task",
-      "validator_path": null,
-      "build_target": null,
-      "spec_task": null,
-      "verify_task": null,
+      "status": "in_progress",
+      "last_good_stop": "2026-08-22: spec and verify are frozen on disk; the exact p0-06 repair scope is bounded to the active integration router and is ready for implementation",
+      "next_step": "Launch implement task",
+      "validator_path": "LRA/Analysis/Integration",
+      "build_target": "LRA.Analysis.Integration",
+      "spec_task": "main-thread",
+      "verify_task": "main-thread",
       "implement_task": null,
-      "verification_result": null,
+      "verification_result": "approved",
       "gate_result": null,
       "commit_sha": null,
       "pushed": false,
-      "notes": []
+      "notes": [
+        "2026-08-22: coordinator audited the active integration router and confirmed live placeholder semantics for `PartitionMesh`, `LowerDarbouxSum`, `UpperDarbouxSum`, `PointOscillation`, and `TotalVariation`",
+        "2026-08-22: the false theorem surfaces were bounded to `dirichlet_not_darboux_integrable`, `hk_strictly_wider_than_lebesgue_witness`, `mcshane_equals_lebesgue`, `hk_strictly_wider_than_mcshane`, and `rs_step_integrator_finite_sum`",
+        "2026-08-22: spec frozen in `docs/p0-repair/results/p0-06-spec.md` with validator path `LRA/Analysis/Integration` and build target `LRA.Analysis.Integration`",
+        "2026-08-22: verifier approved the spec with no prerequisite P0 dependency; `MeshOf` in `LRA/Analysis/Continuity/Gauge.lean` is noted as outside the active integration router and outside this gate"
+      ]
     },
     {
       "id": "p0-07",
