@@ -2,12 +2,12 @@
 -- The pre-carrier: formal fractions with positive denominator, and the
 -- algebraic data required of the integer/positive-natural carriers.
 
+import LRA.NumberSystems.Integers.Definition
 import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
-import LRA.VolumeII.NumberSystems.Models
 
 namespace LRA.NumberSystems.RationalNumbers.RationalQuotientFractions
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Integers
 
 /-!
 Lean module: LRA.NumberSystems.RationalNumbers.RationalQuotientFractions
@@ -20,55 +20,44 @@ file), `Equivalence`, `WellFoundedness`, `Operations`, `WellDefinedness`,
 `Laws`, `Behavior`, `Instances`. See `RationalNumbers/ProofOrder.md`.
 -/
 
-/--
-**[Structure — IntegerAndPositiveNaturalData]**
+/-- Data required to build quotient fractions over an actual integer number
+system and a positive-natural denominator carrier.
 
 Logical form:
 
 ```lean
 structure IntegerAndPositiveNaturalData where
-  integer_model : DiscretelyOrderedIntegralDomainModel
+  integer_system : IntegerNumberSystem
   natural_carrier : Type
   one : natural_carrier
   multiplication : natural_carrier → natural_carrier → natural_carrier
-  to_integer : natural_carrier → integer_model.signature.carrier
+  to_integer : natural_carrier → integer_system.Model.Carrier
   denominator_is_positive :
-    ∀ denominator,
-      integer_model.signature.StrictOrder
-        integer_model.signature.zero
-        (to_integer denominator)
-  one_maps_to_one : to_integer one = integer_model.signature.one
+    ∀ denominator, 0 < to_integer denominator
+  one_maps_to_one : to_integer one = 1
   multiplication_is_preserved :
     ∀ first second,
       to_integer (multiplication first second) =
-        integer_model.signature.multiply
-          (to_integer first)
-          (to_integer second)
-  absolute_numerator : integer_model.signature.carrier → natural_carrier
+        to_integer first * to_integer second
+  absolute_numerator : integer_system.Model.Carrier → natural_carrier
   gcd : natural_carrier → natural_carrier → natural_carrier
 ```
 -/
 structure IntegerAndPositiveNaturalData where
-  integer_model : DiscretelyOrderedIntegralDomainModel
+  integer_system : IntegerNumberSystem
   natural_carrier : Type
   one : natural_carrier
   multiplication : natural_carrier → natural_carrier → natural_carrier
-  to_integer : natural_carrier → integer_model.signature.carrier
+  to_integer : natural_carrier → integer_system.Model.Carrier
   denominator_is_positive :
-    ∀ denominator,
-      integer_model.signature.StrictOrder
-        integer_model.signature.zero
-        (to_integer denominator)
-  one_maps_to_one : to_integer one = integer_model.signature.one
+    ∀ denominator, 0 < to_integer denominator
+  one_maps_to_one : to_integer one = 1
   multiplication_is_preserved :
     ∀ first second,
       to_integer (multiplication first second) =
-        integer_model.signature.multiply
-          (to_integer first)
-          (to_integer second)
-  absolute_numerator : integer_model.signature.carrier → natural_carrier
+        to_integer first * to_integer second
+  absolute_numerator : integer_system.Model.Carrier → natural_carrier
   gcd : natural_carrier → natural_carrier → natural_carrier
-
 
 /-- Definition 1.1: a formal fraction with positive denominator.
 
@@ -76,12 +65,12 @@ Logical form:
 
 ```lean
 structure Representative (rational_data : IntegerAndPositiveNaturalData) where
-  numerator : rational_data.integer_model.signature.carrier
+  numerator : rational_data.integer_system.Model.Carrier
   denominator : rational_data.natural_carrier
 ```
 -/
 structure Representative (rational_data : IntegerAndPositiveNaturalData) where
-  numerator : rational_data.integer_model.signature.carrier
+  numerator : rational_data.integer_system.Model.Carrier
   denominator : rational_data.natural_carrier
 
 end LRA.NumberSystems.RationalNumbers.RationalQuotientFractions
