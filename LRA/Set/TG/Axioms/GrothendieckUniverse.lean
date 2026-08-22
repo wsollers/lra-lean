@@ -14,6 +14,12 @@ axiom GrothendieckUniverse (A : TGSet) :
         (forall i : TGSet, i ∈ I -> family i ∈ U) ->
           exists image : TGSet,
             image ∈ U /\
-            forall y : TGSet, y ∈ image <-> exists i : TGSet, i ∈ I /\ y = family i)
+            forall y : TGSet, y ∈ image <-> exists i : TGSet, i ∈ I /\ y = family i) /\
+    (forall I : TGSet, I ∈ U ->
+      forall family : TGSet -> TGSet,
+        (forall i : TGSet, i ∈ I -> family i ∈ U) ->
+          exists union : TGSet,
+            union ∈ U /\
+            forall x : TGSet, x ∈ union <-> exists i : TGSet, i ∈ I /\ x ∈ family i)
 
 end LRA.Set.TG
