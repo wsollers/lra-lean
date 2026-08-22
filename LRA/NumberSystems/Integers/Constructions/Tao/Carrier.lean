@@ -32,7 +32,8 @@ carrier/law/behavior) is deleted per the research note in
 
 This is exactly the strengthened quotient-ordered-pairs input contract, so any
 Tao realization now inherits translation order reflection as part of its
-whole-number hypotheses.
+whole-number hypotheses. Canonically certified whole-number carriers can be
+packaged through `QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs.ofCarrier`.
 
 Logical form:
 

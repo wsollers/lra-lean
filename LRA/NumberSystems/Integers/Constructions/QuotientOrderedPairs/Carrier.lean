@@ -10,8 +10,13 @@ import LRA.Set.ZFCSet
 import LRA.Set.Model
 import LRA.SetSystems
 import LRA.UniversalAlgebra
+import LRA.AlgebraicStructures
+import LRA.Order
 
 namespace LRA.NumberSystems.Integers.QuotientOrderedPairs
+
+open LRA.AlgebraicStructures
+open LRA.Order
 
 /-!
 Lean module: LRA.NumberSystems.Integers.QuotientOrderedPairs
@@ -143,6 +148,44 @@ structure WholeNumberArithmeticForQuotientPairs where
         (addition first translation)
         (addition second translation) ↔
       nonstrict_order first second
+
+/-- Package a canonically certified whole-number carrier as the shared input
+for formal-difference integer constructions.
+
+This keeps the quotient-pairs, Tao, and Mendelson entry points aligned with
+the repository's native algebra and order certificate surface instead of
+forcing each consumer to restate the same machine fields by hand.
+-/
+def WholeNumberArithmeticForQuotientPairs.ofCarrier
+    (R : Type)
+    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LE R]
+    [CommutativeSemiringLaws R] [PartialOrderLaws R]
+    (addition_cancellative :
+      ∀ first second common : R,
+        first + common = second + common → first = second)
+    (addition_preserves_and_reflects_order :
+      ∀ first second translation : R,
+        first + translation ≤ second + translation ↔
+          first ≤ second) :
+    WholeNumberArithmeticForQuotientPairs where
+  carrier := R
+  zero := 0
+  one := 1
+  addition := (· + ·)
+  multiplication := (· * ·)
+  nonstrict_order := (· ≤ ·)
+  addition_associative := AddAssociative
+  addition_commutative := AddCommutative
+  zero_additive_identity := fun value => ⟨ZeroAdd value, AddZero value⟩
+  addition_cancellative := addition_cancellative
+  multiplication_associative := MulAssociative
+  multiplication_commutative := MulCommutative
+  one_multiplicative_identity := fun value => ⟨OneMul value, MulOne value⟩
+  multiplication_distributes_over_addition := LeftDistributive
+  nonstrict_order_reflexive := LeRefl
+  nonstrict_order_transitive := LeTrans
+  nonstrict_order_antisymmetric := LeAntisymm
+  addition_preserves_and_reflects_order := addition_preserves_and_reflects_order
 
 
 /-- A formal difference `(positive_coordinate, negative_coordinate)`.
