@@ -2,32 +2,37 @@
 -- Registration of canonical binary expansions as a real-number
 -- representation.
 
+import LRA.NumberSystems.RealNumbers.Definition
 import LRA.NumberSystems.RealNumbers.Constructions.Dyadic.Behavior
 
 namespace LRA.NumberSystems.RealNumbers.Dyadic
 
 open LRA.NumberSystems.Models
 
-/-- The canonical signed-binary expansion carrier admits a `RealModel`
-structure on exactly `Expansion`, transported across `BinaryRealBijection` from
-the selected Cauchy-real carrier.
+/-- The canonical signed-binary expansion carrier realizes a carrier-tied
+`RationalRealExtension`, transported across `BinaryRealBijection` from the
+selected Cauchy-real carrier.
 
-The carrier equality prevents a detached realization in which an unrelated
-complete ordered field could witness the theorem.
+The carrier equality forces the selected extension to use `Expansion` itself
+rather than an unrelated complete ordered field.
 
 Logical form:
 
 ```lean
-theorem DyadicExpansionRealModelExists
+theorem DyadicRealizesRationalRealExtension
     (dyadicData : RationalDyadicApproximationData) :
-    ∃ realModel : LRA.NumberSystems.Models.RealModel,
-      realModel.Carrier = Expansion
+    ∃ realExtension :
+        LRA.NumberSystems.RealNumbers.RationalRealExtension
+          dyadicData.RationalSystem,
+      realExtension.RealModel.Carrier = Expansion
 ```
 -/
-theorem DyadicExpansionRealModelExists
+theorem DyadicRealizesRationalRealExtension
     (dyadicData : RationalDyadicApproximationData) :
-    ∃ realModel : LRA.NumberSystems.Models.RealModel,
-      realModel.Carrier = Expansion := by
+    ∃ realExtension :
+        LRA.NumberSystems.RealNumbers.RationalRealExtension
+          dyadicData.RationalSystem,
+      realExtension.RealModel.Carrier = Expansion := by
   sorry
 
 end LRA.NumberSystems.RealNumbers.Dyadic

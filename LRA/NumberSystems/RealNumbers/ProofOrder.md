@@ -53,8 +53,8 @@ declarations, reserving snake_case for pre-existing/legacy content. All
 *moved* declarations below keep their original source names exactly
 (preserving mathematical substance is explicit governance policy); all
 *new* declarations added in this pass (`WellFoundedness.lean` induction
-stubs, `Instances.lean` `RealModel`-realization defs) use PascalCase --
-e.g. `InductionOnRepresentatives`, `CauchyRealizesRealModel` -- unlike the
+stubs, `Instances.lean` realization defs) use PascalCase --
+e.g. `InductionOnRepresentatives`, `CauchyRealizesRationalRealExtension` -- unlike the
 already-merged Rational pass's `induction_on_representatives` (snake_case,
 predates this governance resolution, not retroactively renamed here since
 that's out of scope for the Real migration).
@@ -101,7 +101,7 @@ by `Dyadic`, compared-against by `Cantor` and `PrimitiveIntervals`.
 - [ ] `Behavior.lean` -- placeholder: source states no behavioral
       theorems (density, Archimedean property, etc.) for this
       construction directly.
-- [ ] `Instances.lean` -- new: `CauchyRealizesRealModel`, `sorry`.
+- [ ] `Instances.lean` -- new: `CauchyRealizesRationalRealExtension`, `sorry`.
 
 ---
 
@@ -122,7 +122,7 @@ Split from the former single 206-line file.
       pre-carrier data, equivalence, and one comparison theorem.
 - [ ] `Behavior.lean` -- `cantor_reals_are_isomorphic_to_cauchy_reals`
       (`sorry`), repointed to `LRA.NumberSystems.RealNumbers.Cauchy`.
-- [ ] `Instances.lean` -- new: `CantorRealizesRealModel`, `sorry`.
+- [ ] `Instances.lean` -- new: `CantorRealizesRationalRealExtension`, `sorry`.
 
 ---
 
@@ -164,7 +164,7 @@ structure rather than a raw-representative equivalence relation.
 - [ ] `Behavior.lean` -- `embedded_rationals_are_dense`,
       `archimedean_property`, `ReferenceRealNumberConstruction`/
       `reference_real_number_construction` (final summary) -- all `sorry`.
-- [ ] `Instances.lean` -- new: `DedekindRealizesRealModel`, `sorry`.
+- [ ] `Instances.lean` -- new: `DedekindRealizesRationalRealExtension`, `sorry`.
 
 ---
 
@@ -197,7 +197,7 @@ defined directly.
 - [ ] `Behavior.lean` -- `binary_tail_ambiguity`,
       `canonical_fractional_uniqueness`, `CompleteArchimedeanOrderedField`/
       `complete_archimedean_ordered_field` (final summary) -- all `sorry`.
-- [ ] `Instances.lean` -- new: `DyadicRealizesRealModel`, `sorry`.
+- [ ] `Instances.lean` -- new: `DyadicRealizesRationalRealExtension`, `sorry`.
 
 **Judgment call (dependency-order relocations, both flagged in-file):**
 `fractional_value`/`unsigned_value`/`value` moved from their textual
@@ -220,7 +220,7 @@ Cantor and Cauchy, it imports `Cauchy` and uses it in
 The earlier self-referential field-summary certificate and fake self-comparison
 have been removed. Individual law theorems remain in `Laws.lean`; the
 authoritative real-number certification is the carrier-tied
-`PrimitiveIntervalCarrierRealModelExists` theorem in `Instances.lean`.
+`PrimitiveIntervalsRealizesRationalRealExtension` theorem in `Instances.lean`.
 
 - [x] `Carrier.lean` -- `Rational`, `RationalInterval`, `contains`,
       `subset`, `overlaps`, `width`, `IntervalSequence`, `Representative`,
@@ -258,13 +258,14 @@ authoritative real-number certification is the carrier-tied
       `IsReciprocalInterval`, `reciprocal_exists_uniquely`, `inverse`,
       `LeastUpperBoundProperty`/`least_upper_bound_property` -- all `sorry`
       except raw defs. The former ad-hoc `OrderedFieldStructure` summary was
-      removed in favor of the canonical carrier-tied `RealModel` certificate.
+      removed in favor of the canonical carrier-tied `RationalRealExtension`
+      certificate.
 - [ ] `Behavior.lean` -- `persistent_overlap_iff_endpoint_null` (`sorry`,
       repointed to `LRA.NumberSystems.RealNumbers.Cauchy`),
       `canonical_comparison_isomorphism_exists` (`sorry`, self-referential,
       preserved), `PrimitiveIntervalConstructionOfReals`/
       `primitive_interval_construction_of_reals` (final summary, `sorry`).
-- [ ] `Instances.lean` -- new: `PrimitiveIntervalsRealizesRealModel`, `sorry`.
+- [ ] `Instances.lean` -- new: `PrimitiveIntervalsRealizesRationalRealExtension`, `sorry`.
 
 ---
 

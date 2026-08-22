@@ -38,8 +38,8 @@ theorem CanonicalFractionalUniqueness
 /-!
 Completeness is deliberately not represented by a standalone proposition in
 this package. The construction-level statement is
-`DyadicExpansionRealModelExists` in `Instances.lean`, which ties the
-`RealModel` carrier to `Expansion` itself.
+`DyadicRealizesRationalRealExtension` in `Instances.lean`, which ties the
+selected `RationalRealExtension` and its real carrier to `Expansion` itself.
 -/
 
 end LRA.NumberSystems.RealNumbers.Dyadic
