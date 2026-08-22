@@ -1,23 +1,20 @@
 # LRA Mathematical and Architectural Review
 
-## Scope and purpose
+## Scope
 
-This document consolidates the mathematical and architectural audit previously maintained as a collection of individual `*Review.md` files on the `review/lra-math-audit` branch.
+This is the single maintained review of the `lra-lean` repository. It consolidates the earlier subject-by-subject `*Review.md` files and records current repair status.
 
-The review asked whether the current `LRA/` tree is ready to support sustained proving and mathematical note-taking, with particular emphasis on the foundational spine leading toward real analysis and eventually measure theory. The review deliberately treats `sorry` as neutral: an unfinished proof is not itself a defect. The important distinction throughout is between
+The review asks whether the repository is ready for sustained proving and mathematical note-taking. `sorry` is neutral: an unfinished proof is not itself a defect. The important distinction is between a correct statement with an unfinished proof and a false, vacuous, under-specified, detached, or semantically fake statement/definition.
 
-- a mathematically correct statement whose proof is unfinished; and
-- a false, vacuous, under-specified, detached, or semantically fake statement/definition.
+Axiom use is judged mathematically. ZFC/Choice axioms are legitimate where the corresponding classical mathematics uses them. Ordinary `Classical.choose` extraction of one already-proved witness is not counted as an invocation of the Axiom of Choice.
 
-Axiom use is similarly judged mathematically rather than mechanically. ZFC/Choice axioms are legitimate where the corresponding classical mathematics uses them. Ordinary `Classical.choose` extraction of one already-proved witness is not counted as an invocation of the Axiom of Choice.
-
-Advanced topology, measure theory, functional analysis, and related spaces are still research/buildout areas. Findings there are retained because some are genuine semantic P0s, but incompleteness in those areas is not treated as a failure of the foundational project.
+Advanced topology, measure theory, functional analysis, integration, and related spaces are still research/buildout areas. Findings there are retained when they are genuine semantic P0s, but incompleteness there is not treated as a failure of the foundational project.
 
 ---
 
 # Executive verdict
 
-The repository has a strong foundational architecture. Its best design pattern is:
+The repository has a strong foundational architecture. Its best pattern is
 
 ```text
 machine / operation data
@@ -27,322 +24,192 @@ machine / operation data
 -> structure/model packaging
 ```
 
-This pattern is particularly strong in `LRA.Operation`, `LRA.AlgebraicStructures`, the canonical set interface, complex numbers, Gaussian integers, and substantial parts of order/function theory.
+This pattern is particularly strong in `LRA.Operation`, `LRA.AlgebraicStructures`, the canonical set interface, order/function theory, complex numbers, Gaussian integers, and the Polish integer construction.
 
-The main obstacle to declaring the whole repository proof-ready is not `sorry`. It is a class of semantic defects that Lean accepts because their types are internally consistent:
+The main risks are semantic rather than proof-status risks:
 
-1. literal placeholder definitions such as important quantities defined as `0`;
-2. theorem statements that are vacuous or omit the object they claim to characterize;
-3. construction input records that do not state enough laws to prove the advertised construction theorem;
-4. realization declarations whose result type is detached from the constructed carrier;
-5. names such as `Unique`, `Isomorphism`, or `Converges` whose formal conclusion states something materially weaker;
-6. backend-relative induction/well-foundedness being used where full subset/predicate strength is required;
-7. stale comments claiming active modules are unimported drafts.
+1. literal fake implementations such as important quantities defined as `0`;
+2. vacuous or false theorem statements;
+3. construction input records lacking laws needed by advertised conclusions;
+4. `Realizes...` declarations detached from the constructed carrier;
+5. names saying `Unique`, `Isomorphism`, or `Converges` while the formal statement says less;
+6. backend-relative induction/completeness being used as if every subset were represented;
+7. stale comments saying active modules are unimported drafts;
+8. foundational sequence statements expressed through Mathlib topology/filter machinery instead of the repository's own epsilon language.
 
-The foundational spine is therefore close to being a very strong proving environment, but P0 semantic/coupling defects should be repaired before broad proof replacement is treated as the main task.
+The foundational spine is close to being an excellent proving environment once the P0 queue below is cleared.
 
 ---
 
-# Severity convention
+# Severity
 
-- **P0** — false statement, invalid definition, vacuous specification, broken equivalence/quotient, detached realization, or other issue that can make later mathematics formally certify the wrong thing.
-- **P1** — major architectural/readiness gap, misleading strength/naming, missing bridge, or important pre-measure-theory theorem family.
+- **P0** — false statement, invalid definition, vacuous specification, broken equivalence/quotient, detached realization, or a foundational representation that gives the wrong mathematical semantics.
+- **P1** — major architectural/readiness gap, misleading strength/naming, missing bridge, or important prerequisite theorem family.
 - **P2/P3** — useful educational/API/organizational additions that do not presently threaten correctness.
 
 ---
 
-# 1. Carrier, finiteness, cardinality, and countability
+# Repair status
 
-The canonical carrier/cardinality definitions are mathematically sound:
+## Resolved R1 — reciprocal convergence is not a completeness equivalence
 
-- finite via bijection with `Fin n`;
-- infinite as not finite;
-- countable via injection into `Nat`;
-- countably infinite via bijection with `Nat`;
-- uncountable as not countable.
-
-The convention that finite sets are countable is standard and consistent with the intended Enderton-style development.
-
-Important missing or desirable theorem surface includes:
-
-- uncountable implies infinite;
-- countable plus infinite implies countably infinite;
-- `Nat` is countably infinite;
-- `Fin n` is finite;
-- set-level countability bridges;
-- strict-cardinality law surface.
-
-A duplicate enumeration/surjection-style `Countable` notion remains in the older Volume II number-system layer and should be migrated to the canonical carrier/cardinality vocabulary.
-
-### Choice
-
-`CountableSigmaOfCountableIndexCountableFibers` genuinely selects witnesses across a family and is a real family-wise Choice use outside the ZFC axiom modules. This is the principal non-foundational Choice use found in the audit.
-
----
-
-# 2. Relations
-
-The primitive relation laws are standard and correct:
-
-- reflexive / irreflexive;
-- symmetric / antisymmetric / asymmetric;
-- transitive;
-- connex/total;
-- exact trichotomy;
-- left/right Euclidean;
-- density.
-
-`Connex` is the preferred conceptual name for `forall x y, R x y or R y x`; the bare alias `Total` is valid but should be documented carefully because “total” also occurs in function/relation mapping contexts.
-
-The old Landau review’s major relation gaps have largely been repaired. Current code now has:
-
-- general relation composition;
-- associativity of composition;
-- left/right identity relation laws;
-- converse reversing composition;
-- general reflexive/symmetric/transitive closure directories;
-- a canonical `EquivalenceRelation` owner;
-- both generic `MinimalElement` and `MaximalElement`;
-- the main implication family such as asymmetry -> irreflexivity, irreflexive+transitive -> asymmetric, and asymmetry -> antisymmetry.
-
-`RelationEmbedding` has also been repaired: the canonical morphism predicate now explicitly contains injectivity plus preservation/reflection, while preservation+reflection alone has a distinct name.
-
-### Remaining relation caveats
-
-`Dense` should be used in a strict-order context if the intended idea is “between any related distinct pair lies another point.” For reflexive relations the generic definition can be trivial.
-
-Subset-based `WellFounded` remains backend-relative: if `SetObject` does not represent all subsets, it asserts only that every represented nonempty subset has a minimal element. This is mathematically legitimate but must not be silently identified with Lean’s accessibility-based `WellFounded` or full-subset well-foundedness.
-
-A useful future bridge is an equivalence theorem between the subset-minimal formulation and Lean accessibility under appropriate classical/full-subset hypotheses.
-
----
-
-# 3. Order and bounds
-
-The canonical order hierarchy is strong and mathematically correct:
-
-- preorder;
-- partial order;
-- strict order;
-- linear order;
-- strict linear order;
-- dense order / dense linear order;
-- well-order.
-
-Strict/non-strict conversion is explicitly developed, including the important preorder failure mode showing why
+The old theorem
 
 ```text
-x <= y and x != y
+HasLeastUpperBoundProperty F <-> ArchimedeanReciprocalProperty F
 ```
 
-and
+was false: `ℚ` is Archimedean and has `1/n -> 0`, but lacks the least-upper-bound property.
+
+Repair completed on `main`:
+
+- reciprocal convergence was removed from `StandardCompletenessEquivalences`;
+- `ArchimedeanReciprocalProperty` was generalized from hard-coded `ℝ` to the field carrier;
+- a one-way LUB-to-reciprocal theorem was added;
+- the rational `sqrt 2` cut was retained as a failure-mode definition/witness and theorem showing that `ℚ` lacks LUB completeness.
+
+## Resolved R2 — arbitrary-uniformity Cauchy equivalence removed
+
+The old equivalence between LUB completeness and `CauchySequencesConverge` under an arbitrary Mathlib `UniformSpace` was not mathematically justified. Cauchy behavior depends on the uniformity, not merely the order topology.
+
+Repair completed on `main`:
+
+- the Cauchy spoke was removed from `StandardCompletenessEquivalences`;
+- `CauchySequencesConverge` now has its own import-free definition module;
+- the predicate is expressed directly by epsilon/difference inequalities rather than `Filter.Tendsto`, `nhds`, `CauchySeq`, or a Mathlib uniform space.
+
+This resolves the false equivalence. A later theorem may connect LUB/order completeness to this native Cauchy predicate once the ordered-field/sequence layer has the exact canonical hypotheses needed.
+
+---
+
+# P0 — foundational sequence layer must be rewritten to project-native epsilon semantics
+
+This is a newly elevated repository-wide P0.
+
+The repository already owns the correct epsilon definitions:
 
 ```text
-x <= y and not (y <= x)
+ConvergesTo x L :=
+  forall epsilon > 0, exists N, forall n >= N, |x n - L| < epsilon
+
+IsCauchy x :=
+  forall epsilon > 0, exists N,
+    forall m >= N, forall n >= N, |x m - x n| < epsilon
 ```
 
-need not agree before antisymmetry.
+Nevertheless several foundational sequence files still use Mathlib `Filter.Tendsto`, `Filter.atTop`, `nhds`, or topology imports for theorem statements. The scan found direct filter/topology use in at least:
 
-Bounds are also correctly separated:
+- `LRA/Analysis/Sequences/SequenceDefinitions.lean`;
+- `LRA/Analysis/Sequences/Convergence.lean` (Mathlib remains for `Set.Ioo`/`List.TFAE`, though the canonical convergence predicate itself is epsilon-based);
+- `LRA/Analysis/Sequences/Limits.lean`;
+- `LRA/Analysis/Sequences/Divergence.lean`;
+- `LRA/Analysis/Sequences/Monotonicity.lean`;
+- `LRA/Analysis/Sequences/NullConstantSequences.lean`;
+- `LRA/Analysis/Sequences/Applications.lean` imports topology machinery.
 
-- upper/lower bound;
-- bounded above/below;
-- least/greatest element;
-- minimal/maximal element;
-- supremum/infimum;
-- least-upper-bound / greatest-lower-bound properties.
+`SequenceDefinitions.lean` explicitly documents that its filter statements were temporary forward-dependency placeholders created before the project's own convergence definition was introduced. Those placeholders should no longer be part of the authoritative mathematical surface.
 
-The canonical layer now has explicit `TopElement` and `BottomElement` concepts, addressing an old Landau-review request.
+### Required repair
 
-The principal qualification is again backend-relative completeness: the LUB/GLB properties quantify over represented subsets. That is valid, but the API should avoid a generic bare name `Completeness` where `OrderCompleteness` or an explicitly backend-relative name is clearer.
+1. Make the project-native epsilon predicates (`ConvergesTo`, `IsCauchy`, and native divergence/extended-limit analogues) the semantic owners.
+2. Rewrite sequence theorems in terms of those predicates and explicit quantified inequalities.
+3. Remove Mathlib filter/topology imports from foundational sequence modules where they are used only to state convergence.
+4. If Mathlib interoperability is useful, put it in explicit `Interop/Mathlib` bridge modules proving equivalence between the LRA predicates and Mathlib `Tendsto`/`CauchySeq` in the appropriate standard topology/uniformity.
+5. Revisit completeness, Bolzano-Weierstrass, monotone convergence, null sequences, limsup/liminf, and divergence after the native sequence vocabulary is the only foundational owner.
 
----
-
-# 4. Function layer
-
-The canonical generic function layer is architecturally strong. An ordinary Lean arrow is the primary computational function, with graph/set-theoretic views provided as explicit bridges.
-
-Correctly implemented concepts include:
-
-- graph;
-- image / preimage / fibers;
-- injective / surjective / bijective;
-- restriction / extension;
-- inverse;
-- composition / identity;
-- sections / retractions;
-- product functions;
-- set-theoretic function-triple representation.
-
-The function theorem inventory now includes the Landau-requested bridges:
-
-- kernel relation is an equivalence relation;
-- injective iff kernel relation is identity;
-- image/preimage laws;
-- graph/evaluation correspondence.
-
-### P0 — empty-index image/intersection theorem
-
-A theorem asserting, for an arbitrary index type and merely injective `f`,
-
-```text
-Image f (intersection_i A_i) = intersection_i Image f A_i
-```
-
-is false when the index type is empty and `f` is injective but not surjective. The left side becomes the range of `f`, while the right side becomes the universal codomain.
-
-Fix by requiring a nonempty index type/family, or bijectivity if the empty-index case is intended.
-
-### Ownership
-
-`LRA.Analysis.Functions.AlgebraOfFunctions` independently defines injective/surjective/bijective/inverse predicates even though `LRA.Function` is the canonical owner. Analysis-facing modules should use or bridge the canonical definitions rather than create a second semantic vocabulary.
+This is P0 because two different convergence semantics should not compete in the foundational layer, and because the old arbitrary-uniformity completeness bug was caused directly by importing the Mathlib uniform-space notion into an order-theoretic statement.
 
 ---
 
-# 5. Set interface and set foundations
+# Carrier, finiteness, cardinality
 
-The canonical set architecture is one of the strongest parts of the repository.
+Canonical definitions are sound:
 
-The capability split is excellent:
+- finite = bijection with `Fin n`;
+- infinite = not finite;
+- countable = injection into `Nat`;
+- countably infinite = bijection with `Nat`;
+- uncountable = not countable.
 
-- operation/typeclass = machine/capability;
-- law class = proposition/certificate;
-- downstream theorem requests only the capabilities/laws it actually needs.
+Useful missing theorem surface includes uncountable -> infinite, countable+infinite -> countably infinite, `Nat` countably infinite, `Fin n` finite, and set-level bridges.
 
-The interface correctly distinguishes optional capabilities such as absolute complement/universal set from ZF-style set-object backends that cannot possess them.
+A duplicate older Volume II countability notion should migrate to the canonical cardinality layer.
 
-`HasSeparation` correctly means carve a subset from a supplied ambient set; it is not unrestricted comprehension.
-
-`HasPowerset` is correctly two-level.
-
-Arbitrary Lean-indexed union/intersection is correctly distinguished from countable union/intersection and from union/intersection over an actual represented collection of sets.
-
-The Mathlib `Set` and predicate-set backends form strong full typed profiles. The Mathlib ZF adapter correctly avoids universal set, absolute complement, and arbitrary Lean-Type indexed set operations.
-
-### ZFC/NBG/TG
-
-The ZFC-style axioms are recognizable and mathematically standard in intent: extensionality, empty, pairing, union, powerset, infinity, separation, replacement, foundation, and choice.
-
-A model-theoretic qualification is needed: Separation and Replacement quantify over arbitrary Lean meta-level predicates/relations. They therefore behave like higher-order schemas and should not be described without qualification as literal single first-order ZFC formulas when making metatheoretic claims.
-
-Some Replacement prose says “at most one” although the formula requires exactly one output for every member of the source set; documentation should be corrected.
-
-### P0/P1 — Grothendieck universe definition
-
-The TG `IsGrothendieckUniverseFor` contract has transitivity, powerset closure, and range/image closure but no ordinary union/indexed-union closure. Standard Grothendieck universes require this closure. Range closure plus transitivity does not imply that the union itself is a member of the universe.
-
-This is a foundational-definition defect and should be repaired before the TG layer is treated as a faithful Grothendieck-universe formalization.
-
-### Choice
-
-The ZFC/NBG/TG Choice axioms are genuine AC, as intended. `TheChoiceSet := Classical.choose (...)` is only extraction after the Choice axiom has supplied existence. Selecting a single Infinity witness, union witness, or unique operation witness is not AC.
+**Choice:** `CountableSigmaOfCountableIndexCountableFibers` is a genuine family-wise Choice use outside the foundation axiom modules.
 
 ---
 
-# 6. Set systems and generated sigma algebras
+# Relations, order, and bounds
 
-Ring/algebra/sigma-ring/sigma-algebra definitions are broadly correct.
+The canonical relation law surface is mathematically strong: reflexive, irreflexive, symmetric, antisymmetric, asymmetric, transitive, connex/total, trichotomy, Euclidean properties, density, mapping-shape properties, composition, converse, closures, and equivalence relations.
+
+Old Landau blockers now addressed include relation composition, composition associativity/identity, converse reversal, generic maximal elements, canonical `EquivalenceRelation`, and injective `RelationEmbedding`.
+
+`Dense` should be interpreted carefully outside strict-order contexts because reflexivity can trivialize the between-point reading.
+
+Subset-minimal `WellFounded` is backend-relative. It must not be silently identified with full-subset/accessibility well-foundedness without a representation/fullness hypothesis.
+
+The order hierarchy—preorder, partial order, strict order, linear order, strict linear order, dense order, well-order—is sound. Bounds correctly distinguish upper/lower bound, boundedness, least/greatest, minimal/maximal, supremum/infimum, LUB/GLB properties, top and bottom.
+
+Backend-relative order completeness remains legitimate but should be named/documented explicitly as such.
+
+---
+
+# Functions
+
+The canonical `LRA.Function` layer is strong: arrows are the working representation, with graph/set-theoretic representations as explicit bridges. Image, preimage, fibers, injective/surjective/bijective, inverse, restrictions, products, sections/retractions, and kernel relation are all appropriate.
+
+### P0 — empty-index image/intersection
+
+For arbitrary index type and merely injective `f`, direct image does not commute with an empty indexed intersection unless `f` is surjective. Add nonempty-index assumptions or strengthen to bijectivity.
+
+Analysis-facing duplicate injective/surjective/bijective definitions should defer to `LRA.Function`.
+
+---
+
+# Sets and foundations
+
+The set interface's capability/law split is one of the best parts of the repository. It correctly distinguishes typed/predicate-set universes from ZF-style set-object backends and correctly treats separation as carving a subset from an ambient set rather than unrestricted comprehension.
+
+Mathlib `Set`, predicate sets, ZFSet, ZFCSet, NBGSet, and TGSet profiles are broadly well separated by capability.
+
+### P0/P1 — Grothendieck universe
+
+`IsGrothendieckUniverseFor` lacks ordinary union/indexed-union closure. Transitivity, powerset closure, and image/range closure do not imply that the union belongs to the universe. Add the standard union/indexed-union closure axiom/property.
+
+Separation/Replacement are higher-order Lean schemas; document this when making first-order/model-theoretic claims. Replacement prose should say exactly one output for each source element where that is what the formula states.
+
+---
+
+# Set systems and sigma algebras
 
 ### P0 — generated sigma algebra vacuity
 
-The generic definition
+The generic intersection-of-all-containing-sigma-algebras definition becomes vacuous if no sigma algebra contains the supplied generators. Add an admissibility/nonvacuity condition or require generator subsets of the ambient universe so a containing sigma algebra is constructible.
 
-```text
-A belongs to GeneratedSigmaAlgebra ambient generator
-```
-
-as “A belongs to every sigma algebra on `ambient` that contains the generators” is vacuous when no such containing sigma algebra exists.
-
-A generator may contain a set outside the ambient universe; then the class of containing sigma algebras is empty and every `A` satisfies the universal implication. This makes downstream claims such as “generated members are subsets of the ambient set” false.
-
-Repair by adding an admissibility/nonvacuity hypothesis such as
-
-```text
-GeneratorAdmissible ambient generator :=
-  exists sigma, forall G, generator G -> sigma.IsMember G
-```
-
-or, for typed sets, require each generator set to lie in the ambient universe and construct the full relative powerset as a containing sigma algebra.
-
-This P0 also affects temporary Borel constructions that depend on the generated-sigma-algebra predicate.
+This currently contaminates temporary Borel-generation claims.
 
 ---
 
-# 7. Sequences and completeness
+# Sequence/completeness additional findings
 
-The core definitions of sequences, convergence, subsequences, monotonicity, and Cauchy behavior are mostly sound.
+Beyond the new native-sequence rewrite P0:
 
-### P0 — reciprocal completeness equivalence
-
-A theorem claiming, for an arbitrary Archimedean ordered field `F`,
-
-```text
-LUB property <-> 1/n -> 0
-```
-
-is false. The rationals satisfy the reciprocal sequence property but do not have the least-upper-bound property. Any umbrella theorem `StandardCompletenessEquivalences` containing this reciprocal criterion is likewise false.
-
-Remove the reciprocal criterion from completeness equivalences or weaken the conclusion to an Archimedean statement.
-
-### P0/high — arbitrary uniformity Cauchy equivalence
-
-Order completeness cannot be equivalent to Cauchy completeness under an arbitrary `[UniformSpace F]` merely because an order topology is also present. Cauchy completeness depends on the chosen uniformity.
-
-Require the canonical additive/order-compatible uniformity or specialize to `Real`/a known uniform ordered field setting.
-
-### limsup/liminf totalization issue
-
-Real-valued limsup/liminf are currently built using totalized `sSup`/`sInf` of all tail images without boundedness hypotheses. Unbounded tails make the intended real-valued semantics unsafe. Prefer extended reals (`EReal`) or require tail boundedness for real-valued variants.
+- real-valued limsup/liminf using totalized `sSup`/`sInf` on arbitrary unbounded tails need boundedness hypotheses or extended-real codomain;
+- Bolzano-Weierstrass and monotone-process convergence still use Mathlib topology/filter semantics and should migrate with the sequence rewrite;
+- reciprocal convergence is now correctly treated as an Archimedean consequence rather than a completeness characterization.
 
 ---
 
-# 8. Metric, topology, compactness, and Borel frontier
+# Topology, metric, measure, integration — research phase
 
-The metric/metric-space/ball/topology definitions are sound, and interop with Mathlib is conceptually strong.
+Metric and elementary topology definitions are generally sound. Basis/subbasis/generated topology, countability axioms, separability, subspace/product/quotient topology, and a canonical Borel bridge remain buildout work.
 
-The important foundational theorem still worth making central is the exact equivalence between metric openness and the epsilon-ball criterion.
+Distance-to-set and diameter need honest empty/unbounded semantics (hypotheses or extended values).
 
-Distance-to-set using real `sInf` and diameter using real `sSup` need nonempty/bounded hypotheses or extended-value codomains; otherwise empty/unbounded inputs inherit totalized semantics that do not match the intended mathematical quantity.
+Measure-space definitions are reasonable in outline, but generated sigma algebra must be repaired before Borel/measure construction. Missing buildout includes measurable maps, outer measure, Caratheodory, premeasure extension, completion, Lebesgue measure, and product measure.
 
-The current project-facing topology core lacks a complete basis/subbasis/generated-topology/countability layer. Before a canonical Borel development, useful missing concepts include:
-
-- bases/subbases;
-- first/second countability;
-- separability;
-- subspace/product/quotient topology;
-- topology-owned continuity bridges;
-- a canonical Borel construction after the generated-sigma-algebra P0 is repaired.
-
-These are recorded as research/buildout items rather than foundational failures.
-
----
-
-# 9. Measure-theory frontier
-
-The basic measurable-space definition is standard.
-
-Useful derived measurable-set theorems include closure under universe, finite unions/intersections, differences, countable intersections, symmetric difference, and De Morgan laws.
-
-A project-facing measurable-map layer should be tied to the canonical function preimage:
-
-```text
-MeasurableMap source target f :=
-  forall B, target.IsMeasurable B -> source.IsMeasurable (PreimageClass f B)
-```
-
-with identity, constant, composition, restrictions/subspaces, and product projections.
-
-The basic measure record has the right core shape (`Set X -> ENNReal`, empty=0, countable additivity on pairwise-disjoint measurable sequences), but values on nonmeasurable sets need an explicit semantic policy: measurable-subtype measure, extensionality ignoring nonmeasurable values, or a deliberate Mathlib-style all-set measure semantics.
-
-Major construction layers—outer measure, Caratheodory measurability, premeasure extension, completion, Lebesgue measure, product measure—remain future work.
-
----
-
-# 10. Continuity and real-valued function semantic placeholders
-
-The elementary continuity definitions and many equivalence theorems are correctly shaped. Uniform continuity is also broadly sound.
-
-Several active definitions, however, are literal semantic placeholders and therefore P0:
+Active semantic P0 placeholders remain in continuity/integration and must not be treated as established mathematics:
 
 ```text
 OscillationOnSet := 0
@@ -350,747 +217,328 @@ OscillationAtPoint := 0
 JumpOf := 0
 LimsupAt := 0
 LiminfAt := 0
+MeshOf := 0
+PartitionMesh := 0
+LowerDarbouxSum := 0
+UpperDarbouxSum := 0
+PointOscillation := 0
+TotalVariation := 0
 ```
 
-Theorems later use these quantities as though they were genuine oscillation/jump/limsup/liminf objects. This can turn correct textbook statements into false Lean statements such as requiring `0 > 0`.
-
-The current discontinuity taxonomy also overlaps: the removable case can satisfy the stated jump definition, making a theorem such as `JumpSubsetEssential` false under the current predicates.
-
-`MeshOf := 0` is another semantic stub even though the surrounding gauge-continuity material is otherwise useful.
-
-The real-valued function layer similarly contains fake extrema/family operations:
-
-```text
-FunctionSupremumOnSet := 0
-FunctionInfimumOnSet := 0
-PointwiseSupremumFamily := 0
-PointwiseInfimumFamily := 0
-```
-
-These must be implemented or replaced with honest axiomatized/candidate predicates before downstream theorems are meaningful.
-
-`IntervalAllLimitPoints` is false for singleton order-connected intervals unless an appropriate nondegeneracy/interior hypothesis is added.
+Related false theorem statements include discontinuity taxonomy overlap, a constant-zero Dirichlet example, overgeneral HK strictness, an incorrect McShane/Lebesgue criterion, and Riemann-Stieltjes step-integrator statements whose supplied jump is not tied to the integrator.
 
 ---
 
-# 11. Integration semantic P0s
+# Differentiation and limits
 
-The integration area is research-phase, but several definitions are active semantic blockers rather than merely unfinished proofs.
+The raw relative punctured-limit notion is sound when uniqueness is guarded by accumulation. Differentiation currently has several P0 theorem-surface defects:
 
-Important P0s include:
-
-- `PartitionMesh := 0`;
-- lower/upper Darboux sums defined as `0`;
-- point oscillation for the Lebesgue criterion defined as `0`;
-- `TotalVariation := 0`;
-- a purported Dirichlet example using a constant-zero function;
-- a Henstock-Kurzweil strictness theorem universalized over an arbitrary derivative, with the zero derivative as a counterexample;
-- a McShane=Lebesgue characterization stated using almost-everywhere continuity, which is not the definition of Lebesgue integrability;
-- Riemann-Stieltjes step-integrator claims that accept a supplied jump not formally tied to the integrator.
-
-The main architectural issue is duplicated ownership of partitions/mesh/oscillation across integration modules.
+- derivative uniqueness without accumulation;
+- extremum derivative-zero theorem without interior/two-sided accumulation;
+- inverse derivative theorem missing `g(V) subset U`;
+- Taylor derivative chain not connected to `f`;
+- Peano remainder drops domain;
+- relative derivative compared to ambient differential without sufficient hypotheses;
+- flat-function theorem accepts an arbitrary derivative sequence.
 
 ---
 
-# 12. Limits and differentiation
+# Algebraic structures and Landau spine
 
-The general relative punctured-limit definition is mathematically sound, and uniqueness is correctly guarded by an accumulation hypothesis in the limits layer.
+`LRA.Operation` and `LRA.AlgebraicStructures` are the canonical owners and are architecturally strong. The named hierarchy now includes semigroups, monoids, groups, rings, domains, division rings, fields, ordered structures, complete ordered fields, lattices, bounded/distributive lattices, and Boolean algebras.
 
-The differentiation layer reuses a similar relative derivative notion but several theorem statements omit the hypotheses required for uniqueness or locality.
+Canonical field laws correctly include nontriviality `1 != 0`.
 
-P0 examples:
+Old Landau requests now addressed include relation composition, relation embedding injectivity, top/bottom, relation implication families, named algebraic structures, subtraction as addition of negation, and Boolean algebra.
 
-- derivative uniqueness without requiring the point to be an accumulation point of the domain;
-- necessary derivative-zero condition for a local extremum without requiring an interior/two-sided accumulation condition;
-- inverse derivative theorem missing a condition such as `g(V) subset U`;
-- Taylor theorem with a supplied derivative chain not formally connected to `f`;
-- Peano remainder theorem dropping the stated domain;
-- `DifferentialAndDerivativeAgree` comparing a relative derivative to an ambient differential without sufficient domain assumptions;
-- flat-function theorem accepting an arbitrary derivative sequence.
+Still-open Landau/omnibus items:
 
-These are statement-surface defects rather than proof-status issues.
-
----
-
-# 13. Algebraic structures and Landau spine
-
-The canonical `LRA.Operation` law ownership is strong:
-
-- associativity;
-- commutativity;
-- identities;
-- absorbing elements;
-- cancellation;
-- distributivity;
-- idempotence;
-- absorption;
-- inverses;
-- closure;
-- nilpotence.
-
-The canonical `LRA.AlgebraicStructures` hierarchy is one of the strongest parts of the project. It now includes the named structure layer the old Landau/omnibus documents asked for:
-
-```text
-Magma
-Semigroup
-CommutativeSemigroup
-Monoid
-CommutativeMonoid
-Group / AbelianGroup
-Semiring / CommutativeSemiring
-Ring / CommutativeRing / NontrivialRing
-IntegralDomain
-DivisionRing / Field
-OrderedGroup / LinearlyOrderedGroup
-OrderedSemiring / OrderedRing / LinearlyOrderedRing / OrderedField
-CompleteOrderedField
-Join/MeetSemilattice, Lattice, BoundedLattice, DistributiveLattice
-BooleanAlgebra
-```
-
-Canonical field laws correctly include nontriviality (`1 != 0`) through the division-ring layer. Integral domains correctly combine commutative-ring structure, nontriviality, and no zero divisors.
-
-The older/reference abstract-algebra layer has duplicate or weaker records and should remain orientation/facade material rather than a competing semantic owner. One reference `FieldDefinition` omits `0 != 1`; this does not infect the canonical field hierarchy but should be corrected or clearly demoted.
-
-### Ordered-ring naming nuance
-
-The canonical `OrderedRingLaws` uses only partial-order strength while `LinearlyOrderedRingLaws` carries linearity. This is mathematically legitimate but should remain explicit because many texts use “ordered ring” to mean linear order by default.
-
-### Landau items now addressed
-
-The old `landaureview.md` blockers largely have current canonical solutions:
-
-- relation composition — addressed;
-- injective relation embedding — addressed;
-- maximal-element documentation drift — addressed;
-- canonical `EquivalenceRelation` — addressed;
-- top/bottom elements — addressed;
-- relation implication family — addressed;
-- named algebraic structure layer — addressed;
-- subtraction pinned to addition+negation through `SubtractionCompatibilityLaw` — addressed;
-- Boolean algebra hierarchy — addressed.
-
-### Landau/omnibus items still open
-
-Two old Landau cleanup items remain visible:
-
-1. `OperationPower` still lives under `Operation/Laws/Nilpotent/Definition.lean` rather than a generic power/iteration layer.
-2. `NilpotentElement` is defined using a fixed recursively associated power without requiring associativity, so it is better described as left-associated nilpotence unless standard nilpotence is restricted to associative operations.
-
-The major omnibus chapters still missing as canonical theorem surfaces are:
-
+- `OperationPower` is still housed under nilpotence instead of a generic iteration/power concept;
+- standard `NilpotentElement` should require associativity or be explicitly named left-associated nilpotence;
 - abstract absolute value;
-- generic monoid exponentiation laws;
-- negative/integer exponentiation;
-- floor/ceiling and Archimedean integer-part infrastructure;
-- a fuller generic division theorem layer;
-- the L0-L34 catalogue/crosswalk;
-- a final carrier-tied N/Z/Q/R/C instantiation ledger.
-
-Some ordered structure folders exist but have almost empty `Consequences.lean` files, so “the structure exists” should not be confused with “the omnibus theorem catalogue has been populated.”
-
----
-
-# 14. Peano systems and natural numbers
-
-The generic Peano record is mathematically reasonable as a backend-relative structure: distinguished basepoint, injective successor, base outside the successor image, and subset-based induction.
-
-### P0 — backend strength is insufficient for generic categoricity/recursion
-
-Induction ranges only over the chosen `SetObject` backend. If that backend represents too few subsets, the Peano record does not force a single generated successor chain.
-
-Countermodel: let the backend represent only the universal subset, use carrier `Nat`, distinguished base `0`, and successor `n |-> n+2`. The induction field is automatic, but odd numbers form a disconnected successor chain. Therefore generic categoricity and minimal-recursion completeness do not follow.
-
-Repair by separating:
-
-- represented-subset induction;
-- full predicate induction / a comprehension-adequacy certificate.
-
-Categoricity and full recursion should require the stronger form.
-
-The same defect appears in generic `IntegerStructure` with two-sided induction. A model such as `Z x {0,1}` with successor acting on the integer coordinate has two disconnected chains and defeats categoricity under a universal-only subset backend.
-
-### Naming
-
-The generic field `PeanoSystem.one` is misleading because concrete Presburger and Von Neumann realizations put their distinguished zero into it. Rename to `base`/`initial`, or keep separate zero-based and one-based interfaces.
-
-### Concrete constructions
-
-Presburger is strong: it uses a genuine inductive carrier and `PredicateSet`, giving full predicate induction.
-
-Von Neumann is conceptually strong: it obtains an infinity witness, constructs omega, and uses members of omega as the natural carrier. Its witness extraction is not AC. An explicit adequacy theorem showing arbitrary predicates on `NaturalElement` are representable through Separation would connect it cleanly to full induction.
-
-`WholeNumbers` has a good zero-adjunction carrier (`Option N`) and good canonical certificate destination, but its input `strictOrder` is an arbitrary relation with no laws. The module later claims total/transitive/order-compatible behavior, which is false at this genericity. This is a P0 weak-input-contract problem.
-
----
-
-# 15. Integer constructions and bridges
-
-The Polish/two-sided-successor construction is a strong positive example. It builds a genuine bi-infinite chain, uses a full predicate-set backend, and registers canonical ring/order/successor/discreteness certificates.
-
-The quotient-ordered-pair construction uses the standard formal-difference relation and standard formulas for addition, negation, and multiplication.
-
-### P0 — quotient-pair input contract too weak
-
-The input record lacks enough laws to certify the quotient as the intended ordered integral-domain integer model. Missing requirements include nontriviality, no zero divisors, linear order, multiplicative/order compatibility, discreteness, and crucially order reflection/cancellation under translation.
-
-The representative-order well-definedness theorem is not derivable from mere partial order plus addition preserving order. Translation reflection
-
-```text
-a+c <= b+c <-> a <= b
-```
-
-or equivalent ordered-cancellative structure is needed.
-
-Tao and Mendelson variants reuse this same weak bespoke input, so one canonical stronger adapter would repair all three paths.
-
-No adapter was found from the already-certified WholeNumbers/canonical semiring certificates into this bespoke quotient input. This missing bridge is a major reason the constructor remains under-specified.
-
----
-
-# 16. Rational construction and rational tower
-
-The formal fraction quotient uses the standard cross-multiplication relation and standard raw formulas for addition, multiplication, negation, and order.
-
-### P0 — denominator source not adequate
-
-`IntegerAndPositiveNaturalData` does not require every positive magnitude/nonzero integer to be representable by the denominator carrier. A counterexample denominator carrier `Unit` mapping only to `1` satisfies the displayed conditions but yields only integer-denominator fractions and cannot produce a field.
-
-Require an adequacy theorem such as every nonzero integer magnitude being represented by some positive denominator.
-
-### P0 — gcd/reduced-form layer unsupported
-
-`absolute_numerator` and `gcd` are arbitrary functions with no laws. Consequently reduced-representative existence/uniqueness and lowest-term theorems are not justified.
-
-GCD normalization should be separated from the basic fraction-field construction unless genuine divisibility/gcd laws are supplied.
-
-### P0 — density / Archimedean claims
-
-With the Unit-denominator countermodel, density and natural cofinality fail. These theorems therefore need a stronger source contract.
-
-### P0 — square root of two parameter
-
-The rational irrationality theorem accepts an arbitrary parameter named `two` without requiring `two = 1+1`. Taking `two=0` gives the counterexample `0^2=0`. Define canonical two from the field operations.
-
-### ComparisonModels
-
-The legacy rational comparison layer contains false generic statements: cross-multiplication equivalence is asserted under arbitrary multiplication/denominator maps, and arbitrary binary operations are claimed to respect arbitrary setoids. Treat this file as comparison scaffold, not authoritative mathematics.
-
-### Canonical tower interface
-
-The adjacent-system records are much better. `IntegerEmbeddingIntoRational` and `RationalExtension` correctly require actual structure-preserving embeddings and cofinality. What is missing is a construction adapter that builds these records from the concrete fraction quotient and proves the true fraction-field universal property with uniqueness.
-
----
-
-# 17. Number-system model facade and universal properties
-
-`IntegerModel` is a broad structural class: a discrete ordered integral-domain-style model, not categorically the integers.
-
-`RationalModel` is merely a densely ordered field. It is therefore far broader than `Q`; `Real` also qualifies.
-
-`RealModel` is a complete ordered-field-style model.
-
-### P0 — all RationalModels countable
-
-A theorem `RationalsAreCountable` stated for every `RationalModel` is false because a real model is also a dense ordered field and is uncountable.
-
-### Universal-property statement weakness
-
-The current universal-property records are materially weaker than their names:
-
-- integer “initiality” states existence of a structure-preserving map but not uniqueness;
-- rational “fraction field” states existence of an extension map but not uniqueness;
-- `UniqueUpToOrderedFieldIsomorphism` states only existence of an injective ordered-field embedding, not surjective isomorphism and not uniqueness.
-
-These should be repaired at the statement level before proof work.
-
-### P0 — construction selector detached
-
-A configuration theorem of shape
-
-```text
-NumberSystemTowerExists construction : Nonempty NumberSystemTower
-```
-
-has a result type that does not mention `construction`; the same tower can witness every construction enum. Introduce `RealizesConstruction config tower` or a dependent indexed tower.
-
-### P1/P0 — comparison ledger detached
-
-`SystemLedger` stores bare propositions that are not tied to its `carrier`, so a comparison matrix can choose arbitrary carriers and independently mark properties `True`. If treated as a certificate, it is semantically detached.
-
----
-
-# 18. Real-number constructions
-
-## 18.1 Cross-cutting realization defect
-
-Declarations named like
-
-```text
-DedekindRealizesRealModel
-CauchyRealizesRealModel
-CantorRealizesRealModel
-PrimitiveIntervalsRealizesRealModel
-ComputableRealizesRealModel
-```
-
-return merely `RealModel`. Their types do not require that the returned model’s carrier is the construction carrier or that its operations coincide with the construction operations.
-
-The same pattern appears for quotient integers and rationals.
-
-Preferred pattern:
-
-1. prove canonical law certificates directly on the constructed carrier;
-2. package with `RealModel.ofCarrier ConstructedCarrier` (or integer/rational equivalent);
-3. make the construction carrier/operations definitionally visible in the theorem type.
-
-## 18.2 Source `RationalModel` too broad
-
-Dedekind and PrimitiveIntervals are parameterized by arbitrary `RationalModel`, which may be a non-Archimedean dense ordered field. Such a field cannot order-embed into an Archimedean complete ordered field.
-
-Real constructions should consume either a rational model plus an explicit Archimedean/cofinality certificate or, preferably, an already-constructed `RationalExtension` from the integer tower.
-
-## 18.3 Dedekind cuts
-
-The core cut carrier is strong: nonempty, proper, downward closed, no greatest element; inclusion order and standard cut operations are well shaped.
-
-The main defects are source genericity and a false Archimedean theorem that accepts arbitrary `natural_carrier` and arbitrary `natural_to_rational`. An empty natural carrier makes the existential conclusion impossible.
-
-Dedekind is currently the closest construction to a genuine `RealExtension`: it already has a rational lower-ray embedding and a density theorem, but still needs explicit preservation of all field operations and packaging into the canonical extension record.
-
-## 18.4 Cauchy construction
-
-The quotient-of-Cauchy-sequences idea is standard.
-
-The supplied `RationalMetricData`, however, is too weak and too arbitrary. Its “absolute value” has metric-like axioms but no multiplicative estimate, no order compatibility, and no identification with the ordered-field absolute value. Such a contract can model non-Euclidean/p-adic-like metrics; their completion is not the real line.
-
-The Cauchy subtree also lacks the field/order/completeness theorem surface and a public constant-sequence rational embedding. It is currently a completion-carrier scaffold rather than a completed construction of `R`.
-
-## 18.5 Cantor/nested intervals
-
-The carrier uses nested rational intervals with widths tending to zero, but the proposed equivalence is one-sided and not symmetric.
-
-For constant degenerate sequences `A=[0,0]`, `B=[1,1]`, the relation can hold from A to B because `0-1 < epsilon` for every positive epsilon, while the reverse fails for small epsilon. Thus the claimed setoid/quotient is invalid.
-
-The theorem named as an isomorphism to Cauchy currently asserts only an injection.
-
-## 18.6 Primitive intervals
-
-This is the strongest alternate real-carrier design reviewed. Persistent cross-level overlap of nested shrinking rational intervals is a mathematically natural equivalence candidate; interval addition, negation, and min/max corner product are well designed, and the module correctly recognizes that raw interval multiplication is only subdistributive while the defect should vanish in the shrinking quotient.
-
-Remaining P0s:
-
-- local `OrderedFieldStructure` omits most field laws and contains a tautological distributivity field;
-- source `RationalModel` is too broad;
-- comparison to arbitrary Cauchy metric data is under-specified;
-- a purported canonical comparison theorem is actually the identity self-map on the same carrier;
-- the final summary includes a tautological `equivalent <-> equivalent` clause.
-
-This construction should be the preferred genuine nested-rational-interval construction once its certification layer is repaired. The weaker Cantor construction can then be repaired or consolidated.
-
-## 18.7 Dyadic/binary expansions
-
-This is naturally a representation of an already-constructed real line, not an independent construction: it transports structure across an asserted bijection with the Cauchy carrier.
-
-The syntax cannot represent nonzero magnitudes below one because every nonzero expansion requires a `FiniteNumeral` whose highest digit is one and has no zero integer part. Thus values such as `1/2` and `1/4` are missing.
-
-`RationalDyadicApproximationData` contains many arbitrary functions with insufficient semantic laws, so dyadic subring/density, Cauchy partial sums, and representation-bijection theorems are not derivable at the advertised genericity.
-
-The convention excluding eventually-all-ones binary tails is a legitimate canonical representation convention once evaluation is correctly defined.
-
-## 18.8 Computable reals
-
-The current `EffectiveApproximation.cauchy_effective` is not an effective Cauchy condition: precision does not constrain the difference bound.
-
-The current equivalence relation effectively means “the two approximations agree somewhere” and is not transitive.
-
-Arithmetic closure is tautological and does not relate result approximations to arithmetic.
-
-The carrier contains arbitrary Lean functions `Nat -> rational`; this is not a notion of algorithmic computability, and the resulting carrier is not countable in general.
-
-Even a correctly defined field of computable reals is not a complete `RealModel`: computable reals form a countable dense incomplete ordered field. They should be presented as a proper subfield/contrast chapter, not another full construction of `R`.
-
----
-
-# 19. Rational-to-real extension bridge
-
-The canonical `RealExtension` interface is good: it asks for an actual ordered-field embedding of the rational model and rational cofinality.
-
-No dedicated Dedekind/Cauchy/PrimitiveIntervals bridge currently packages the constructed carrier into this interface.
-
-Recommended tower:
-
-```text
-IntegerModel
--> RationalExtension
--> concrete real construction
--> RealModel.ofCarrier
--> RationalEmbeddingIntoReal
--> RealExtension
-```
-
-This simultaneously fixes source Archimedeanness and carrier coupling.
-
----
-
-# 20. Real-construction comparison/categoricity
-
-The local construction-comparison `ModelIsomorphism` is genuinely bijective and structure preserving. The repository also has a better canonical owner in the first-order logic layer: `LRA.Logic.FirstOrder.ModelIsomorphism` is a model embedding plus surjectivity.
-
-The ordered-field first-order signature contains `+`, `*`, negation, inverse, `0`, `1`, and `<`, so a logical model isomorphism preserves all relevant ordered-field structure.
-
-The problem is that the named Dedekind/Cauchy/Cantor comparison theorems compare detached `RealModel` witnesses, not models definitionally built from the corresponding construction carriers. Therefore they do not yet prove that the actual constructions are isomorphic.
-
-Once each construction is packaged as a real extension/model on its own carrier, generic categoricity should provide the comparison.
-
----
-
-# 21. Derived real layers
-
-The extended-real carrier adjoining `-infinity` and `+infinity` to a real model is conceptually sound; the total order and all-subset supremum target are appropriate.
-
-`PartialOperation` is mis-modeled: one arbitrary binary operation is allowed to agree with either finite addition or finite multiplication on finite inputs, point by point. Partial addition and partial multiplication must be separate operations with explicit undefined/convention cases.
-
-The nonnegative real/extended-nonnegative-real layer is substantially cleaner and correctly treats these as derived subtypes/extensions rather than constructions of `R`. Total addition is appropriate; postponing multiplication until the `0 * infinity` convention is chosen is good design.
-
-Irrationality is correctly defined relative to a selected rational embedding into a real extension.
-
-`ConstructionModels.lean` is a legacy comparison scaffold: its Cauchy predicate is “all sequence terms are equal,” its Cantor conditions are bare propositions, and several comparison results are self-equivalences. It should not be used as the authoritative construction layer.
-
----
-
-# 22. Complex and Gaussian integers
-
-The complex ordered-pair construction is one of the best examples of the intended architecture.
-
-Standard formulas are used for addition, multiplication, conjugation, norm, and inverse. The construction correctly requires only commutative-ring strength for ring laws and upgrades to field inversion only when the base is an ordered field, where `a^2+b^2=0` forces both coordinates to be zero.
-
-The law proofs feed directly into canonical `LRA.AlgebraicStructures` certificates.
-
-### P0 — local polynomial degree representation
-
-The FTA wrapper stores `degree : Nat` and coefficients indexed by `Fin (degree+1)` but does not require the leading coefficient to be nonzero. Therefore `degree != 0` does not imply the represented polynomial is nonconstant. A record may claim degree one while representing a nonzero constant polynomial, making a “nonconstant polynomial has a root” theorem false.
-
-Use Mathlib polynomial representation or enforce a leading-coefficient invariant.
-
-Gaussian integers also follow the canonical certificate architecture cleanly and correctly stop at commutative-ring strength. Their active first-order model is actually tied to `GaussianInteger Z`, unlike the detached real realization wrappers.
-
----
-
-# 23. Continued fractions
-
-The current continued-fraction module is semantic scaffold and needs statement repair before proof work.
-
-P0 issues:
-
-- `FiniteValue` does not encode continued-fraction evaluation; it merely asks for a list of the right length whose head is the supplied value.
-- `canonical` asks for some tail entry greater than one rather than constraining the final coefficient appropriately.
-- `Convergents` lacks denominator recurrence and required initial conditions.
-- `infinite_continued_fraction_converges` does not connect the claimed value to the fraction/convergents; its conclusion is vacuous once a value is chosen.
-- the Lagrange theorem does not connect the value to the fraction and permits all three quadratic coefficients to be zero, making the quadratic equation automatic.
-
----
-
-# 24. Logic: first-order syntax and semantics
-
-The core first-order model and satisfaction semantics are mathematically clean. Equality is interpreted as actual equality; atomic relation/function interpretation, negation, implication, universal quantification, and derived existential semantics have the standard meanings.
-
-Closed-sentence satisfaction is correctly proved assignment-independent.
-
-Substitution is capture-aware: substitution stops under a binder rebinding the target variable, `IsSubstitutable` guards the semantic substitution theorem, and free-variable bounds are already proved.
-
-`IsSubstitutable` is stronger than necessary in some rebinding cases, which can reject harmless substitutions, but this is an API precision issue rather than unsoundness.
-
-### Model embeddings
-
-`ModelEmbedding` correctly preserves functions/constants and preserves/refects atomic relations. It must not be described as automatically preserving all first-order formulas. An embedding such as `Z -> Q` does not preserve existential formulas like `exists x, 2*x=1`.
-
-Correct hierarchy:
-
-```text
-ModelEmbedding -> quantifier-free preservation
-ElementaryEmbedding -> all-formula preservation
-ModelIsomorphism -> all-formula invariance by bijectivity
-```
-
-The repository lacks the explicit term-transport / quantifier-free preservation / elementary-embedding theorem ladder.
-
----
-
-# 25. Proof theory / Takeuti calculus
-
-The generic proof-system abstraction and the LK/LJ rule organization are structurally sensible. LJ is cleanly modeled as an LK-style rule language restricted to single-succedent sequents.
-
-The cut file is honestly scaffold-only; it defines cut shape but does not falsely claim cut elimination.
-
-### P0 — quantifier variable capture
-
-Takeuti syntax distinguishes free and bound variables and quantifier rules use `substFreeByBound`. The substitution descends through existing quantifiers, but the four quantifier rules do not require `BoundVarFresh x body`, even though this predicate exists.
-
-Thus a newly introduced bound-variable name can capture occurrences inside an existing inner binder. This blocks soundness of the first-order quantifier rules.
-
-Repair with a freshness condition or alpha-renaming before abstraction.
-
-### P1 — well-scopedness
-
-Raw atomic formulas can contain `FormulaArg.bound x` without any enclosing binder. No `WellScoped` invariant was found. Add a scoped syntax representation or a `WellScoped` predicate/subtype preserved by every proof rule.
-
-There is currently no Takeuti-specific semantics or translation into the general first-order syntax. The minimum metatheory ladder is therefore:
-
-```text
-repair capture/scoping
--> Takeuti semantics or translation
--> sequent validity
--> rule soundness
--> derivation soundness
--> cut elimination / completeness
-```
-
----
-
-# 26. Second-order/Henkin semantics
-
-The monadic second-order core correctly distinguishes a Henkin `SecondOrderDomain` from the full powerset in its model structure and bound quantifier semantics.
-
-### P0 — free second-order assignments can be inadmissible
-
-`SOAssignment.setAssignment` may assign an arbitrary subset of the first-order domain to a free set variable even if it is not in the Henkin `SecondOrderDomain`. Standard Henkin semantics restricts second-order variable valuations, free or bound, to admissible objects.
-
-Closed sentences are unaffected, but open-formula semantics and formula-level semantic consequence are changed materially.
-
-Use an admissible-valued assignment type or require an admissibility predicate.
-
-### Full vs Henkin Peano/Integer theories
-
-The Peano and Integer second-order theory files quantify induction only over `SecondOrderDomain` but call the result the “full second-order” theory. Under arbitrary Henkin domains this is false terminology and categoricity does not follow.
-
-Add a full-semantics certificate such as
-
-```text
-SecondOrderDomain = Set.univ
-```
-
-or an adequate comprehension condition. Only then invoke familiar full second-order categoricity.
-
-The integer aperiodicity schema quantifies externally over Lean `Nat`; this is a meta-level schema packaged as a Lean proposition, not literally one first-order sentence. Document the distinction.
-
----
-
-# 27. Propositional logic and model-theory readiness
-
-The propositional syntax/evaluation/model semantics are sound. Satisfaction, validity, satisfiability, and semantic consequence have standard definitions.
-
-The source’s proposed bridge from propositional atoms to nullary first-order relation symbols is fully supported by the shared arity-indexed signature infrastructure.
-
-The major missing piece is a syntactic propositional proof calculus connected to this semantic layer, followed by soundness and completeness. This is an excellent first complete metatheory exercise before first-order completeness because it avoids binder/substitution complications.
-
-No canonical project-facing implementation was located for the later first-order model-theory middle layer:
-
-- substructures;
-- generated substructures;
-- elementary embeddings/substructures;
-- elementary equivalence;
-- Tarski-Vaught;
-- types;
-- compactness;
-- Lowenheim-Skolem.
-
-This is a curriculum/readiness frontier, not a correctness defect.
-
----
-
-# 28. Linear/functional analysis frontier
-
-The basic normed-space, Banach, real inner-product, and Hilbert definitions are standard in shape.
-
-The project-facing linear-algebra middle layer is currently sparse: subspaces, span, linear independence, basis, dimension, kernel/range structure, linear equivalence, and quotient-space infrastructure are largely missing.
-
-Before a mature functional-analysis development, high-value bridges include:
-
-- Cauchy-Schwarz;
-- inner product induces norm;
-- norm induces metric;
-- Hilbert implies Banach;
-- finite-dimensional examples and later `l2`.
-
-Arbitrary Hamel-basis existence and arbitrary orthonormal-basis existence are Choice/Zorn-sensitive and should be audited when introduced; finite Gram-Schmidt is not the same issue.
-
-These modules remain research-phase.
-
----
-
-# 29. Repository-wide consistency findings
-
-## Semantic placeholders are more dangerous than `sorry`
-
-A theorem proved by `sorry` has an honest statement. A fake definition changes the meaning of every theorem using it. Therefore the repository should prioritize eliminating semantic fake implementations before reducing proof stubs.
-
-## Existing readiness checker is too narrow
-
-`scripts/check-proof-readiness.py` currently catches theorem conclusions literally `True`, definitions literally `:= True`, and definitions manufactured wholly by `sorry`. It does not catch:
-
-- important definitions `:= 0`;
-- tautologies such as `P <-> P` used as certification fields;
-- theorem parameters disconnected from conclusions;
-- detached `Realizes...` return types;
-- names containing `Unique`, `Isomorphism`, `Converges`, etc. without the corresponding semantic content.
-
-Expanding this checker is one of the highest-leverage maintenance improvements.
-
-## Stale active/inactive headers
-
-Several files say “Draft module; not yet imported by the active root” although aggregate modules import them directly. Examples include continuity and real-valued-function modules. This is not cosmetic: it makes active P0s appear quarantined.
-
-## Duplicate semantic owners
-
-Canonical owners now exist for function properties, relations, operation laws, order structures, cardinality/countability, and logical model isomorphism. Older analysis/reference/model files should be facades/bridges rather than competing definitions.
-
----
-
-# 30. Landau/omnibus cross-check
-
-The old `landaureview.md`, `OMNIBUS-GAP-LIST.md`, and `OMNIBUS-PUNCHLIST.md` are materially stale as status reports because much of the requested spine has since moved into promoted canonical namespaces.
-
-Requirements now substantially addressed include:
-
-- canonical relation property vocabulary;
-- relation composition and basic relational algebra;
-- graph/function calculus;
-- injective relation embeddings;
-- operation law families including cancellation;
-- canonical named algebraic structures;
-- ordered algebra structure bundles;
-- bounded/distributive lattice and Boolean algebra structures;
-- top/bottom elements;
-- subtraction compatibility with addition/negation;
-- function kernel/equivalence bridges.
-
-Still-open omnibus work is concentrated in:
-
-- generic power/exponentiation placement and laws;
-- nilpotence semantics;
-- abstract absolute value;
-- integer exponentiation;
-- floor/ceiling;
-- full ordered-group/ring/field consequence catalogues;
+- monoid/integer exponentiation theorem catalogues;
+- floor/ceiling and integer-part infrastructure;
+- fuller ordered-group/ring/field consequence catalogues;
 - L0-L34 catalogue/crosswalk;
-- carrier-tied number-system instantiation ledger;
-- some cross-layer bridge families (sections/retractions, fiber equivalences, image/preimage Galois connection, semilattice-operation equivalence).
-
-The structural verdict is therefore:
-
-```text
-The Landau spine largely exists.
-The remaining Landau work is theorem/catalogue/bridge completion, not another architectural rewrite.
-```
+- final carrier-tied N/Z/Q/R/C instantiation ledger;
+- section/retraction, fiber, image/preimage Galois, and semilattice-operation bridges.
 
 ---
 
-# 31. Choice audit
+# Peano systems and integer structure
+
+### P0 — backend-relative induction is insufficient for categoricity
+
+Generic Peano and IntegerStructure induction quantifies only over represented subsets. A weak backend can make induction automatic while allowing disconnected successor chains. Categoricity and full recursion require full predicate induction or an explicit representation/comprehension adequacy certificate.
+
+The generic `PeanoSystem.one` field is semantically a basepoint and is used as zero by concrete realizations; rename to `base`/`initial` or maintain explicit zero/one-based interfaces.
+
+Presburger and the Polish integer construction are strong positive examples because they use genuine inductive/full predicate carriers.
+
+`WholeNumbers` has a good zero-adjunction carrier but an arbitrary `strictOrder` input with insufficient laws. Strengthen its order contract.
+
+---
+
+# Integer quotient constructions
+
+Formal differences use the standard equivalence and arithmetic formulas, but the input contract is too weak for the advertised integer model.
+
+### P0
+
+The quotient order is not well-defined from mere partial order plus addition preserving order. Require translation reflection/cancellation such as
+
+```text
+a + c <= b + c <-> a <= b
+```
+
+and enough nontriviality/domain/linear-order/order-compatibility/discreteness laws for the intended target.
+
+Tao/Mendelson variants share this weak input. Build one adapter from canonical whole-number certificates instead of repeating bespoke assumptions.
+
+---
+
+# Rational construction
+
+The cross-multiplication quotient and raw arithmetic formulas are standard, but several input contracts are too weak.
+
+### P0s
+
+- denominator carrier need not represent every positive/nonzero integer magnitude; Unit denominators yield only integer-denominator fractions;
+- `absolute_numerator` and `gcd` have no laws, so reduced-form existence/uniqueness is unsupported;
+- density and Archimedean/cofinality fail in weak denominator models;
+- the `sqrt 2` theorem accepts arbitrary `two`, so `two = 0` is a counterexample;
+- legacy comparison models assert equivalence/operation compatibility under arbitrary data.
+
+Separate fraction-field construction from optional gcd/reduced-form enrichment and consume canonical integer/rational extension interfaces.
+
+---
+
+# Number-system façade and universal properties
+
+`IntegerModel`, `RationalModel`, and `RealModel` are broad structural classes, not categorical names for `Z`, `Q`, `R`.
+
+### P0 — `RationalsAreCountable`
+
+Every `RationalModel` need not be countable: `Real` is a dense ordered field. Restrict countability to the actual rational construction/canonical rational system.
+
+Universal property records are weaker than their names:
+
+- integer initiality lacks uniqueness;
+- rational fraction-field property lacks uniqueness;
+- real `UniqueUpToOrderedFieldIsomorphism` only asserts an embedding, not a bijective unique isomorphism.
+
+Construction-selection theorems whose result type ignores the selected construction are detached. Make the construction/configuration appear in the certified output type.
+
+---
+
+# Real constructions
+
+### P0 — detached realization declarations
+
+Declarations such as `DedekindRealizesRealModel`, `CauchyRealizesRealModel`, `CantorRealizesRealModel`, `PrimitiveIntervalsRealizesRealModel`, and similar integer/rational realizations return only a bare model and do not pin its carrier/operations to the construction.
+
+Repair by proving canonical law certificates on the constructed carrier and packaging with `.ofCarrier` or an equivalent carrier-visible realization structure.
+
+### Source strength
+
+An arbitrary dense ordered `RationalModel` may be non-Archimedean. Dedekind/interval/Cauchy real constructions should consume a rational model plus Archimedean/cofinality data, preferably the canonical `RationalExtension` from the integer tower.
+
+### Dedekind
+
+Core cut definition is good. Repair the arbitrary natural-map Archimedean theorem and package the rational embedding as a true `RealExtension` with preservation of all field operations.
+
+### Cauchy construction
+
+The quotient idea is standard, but `RationalMetricData` is too weak: the supplied absolute value lacks multiplicative/order compatibility and can model non-real completions. Replace it with canonical ordered-field absolute-value/epsilon data and add the missing embedding/field/order/completeness surface.
+
+### Cantor/nested intervals
+
+Current equivalence is one-sided and not symmetric; the setoid is invalid. Repair the equivalence. A theorem named an isomorphism currently gives only an injection.
+
+### Primitive intervals
+
+Strongest interval construction design, but its local `OrderedFieldStructure` omits real field laws and includes tautological fields. Reuse canonical `OrderedFieldLaws`; remove self-comparison/tautologies.
+
+### Dyadic
+
+Treat primarily as a representation theorem after `R`, not an independent construction. Current syntax cannot represent nonzero values below one and data contracts are under-specified.
+
+### Computable reals
+
+Current effective-Cauchy condition is ineffective, equivalence is nontransitive, arithmetic closure is tautological, and arbitrary Lean sequences are not computable objects. Genuine computable reals form a countable dense incomplete ordered field and should not realize the complete `RealModel`.
+
+---
+
+# Complex and Gaussian integers
+
+The ordered-pair complex construction is a strong model of the intended architecture. Gaussian integers correctly stop at commutative-ring strength.
+
+### P0 — polynomial degree
+
+The local polynomial representation carries a declared degree without requiring the leading coefficient to be nonzero. Thus `degree != 0` need not mean nonconstant. Use a canonical polynomial representation or enforce the leading-coefficient invariant before FTA statements.
+
+---
+
+# Continued fractions
+
+Current module is semantic scaffold.
+
+### P0s
+
+- `FiniteValue` does not encode continued-fraction evaluation;
+- canonical form constrains the wrong tail condition;
+- `Convergents` lacks denominator recurrence/initial conditions;
+- infinite convergence theorem does not connect the limit to convergents;
+- Lagrange theorem allows the zero quadratic and does not connect the value to the continued fraction.
+
+Repair statements before proving them.
+
+---
+
+# Logic and model theory
+
+First-order syntax, substitution, models, satisfaction, theory, reduct/expansion, and model isomorphism are generally sound.
+
+A `ModelEmbedding` preserves/refects atomic structure, not arbitrary quantified formulas. Add a separate `ElementaryEmbedding` notion and the theorem ladder:
+
+```text
+term transport
+-> atomic/quantifier-free preservation under embedding
+-> all-formula preservation under elementary embedding
+-> all-formula invariance under isomorphism
+```
+
+Later model-theory infrastructure—substructures, elementary substructures, Tarski-Vaught, types, compactness, Lowenheim-Skolem—is a future curriculum frontier.
+
+### P0 — Takeuti quantifier capture
+
+`substFreeByBound` can capture a replaced occurrence under an existing binder, while quantifier rules do not require the existing `BoundVarFresh`. Add freshness/alpha-renaming.
+
+### P1 — Takeuti well-scopedness
+
+Raw atoms may contain dangling bound variables. Add a scoped syntax invariant or structurally scoped representation before soundness.
+
+### Second order / Henkin
+
+`SecondOrderDomain` correctly models Henkin admissible subsets for bound quantifiers, but free set-variable assignments may currently denote arbitrary subsets. Restrict them to admissible objects.
+
+Peano/Integer second-order theories quantify induction only over the Henkin domain but call themselves full second-order theories. Add a fullness/comprehension certificate before invoking categoricity.
+
+Propositional semantics is clean; a proof calculus plus soundness/completeness would be a good first full metatheory layer.
+
+---
+
+# Choice audit
 
 Confirmed genuine Choice uses:
 
-1. ZFC Choice axiom — intended genuine AC.
-2. NBG set Choice — intended genuine set AC, not Global Choice unless separately stated.
-3. TG Choice — intended genuine AC.
-4. Countable-sigma/countable-fibers theorem in cardinality — genuine family-wise witness selection outside the foundation axiom modules.
+1. ZFC Choice axiom;
+2. NBG set Choice;
+3. TG Choice;
+4. countable-sigma/countable-fibers family-wise witness selection.
 
 Not counted as AC:
 
-- `Classical.choose` naming one witness of an already-proved existential;
-- choosing the unique inverse image of a bijection;
-- selecting one Infinity witness from the Infinity axiom;
-- selecting one Grothendieck-universe witness from a universe axiom;
-- choosing quotient-operation representatives from separately proved existence/uniqueness.
+- `Classical.choose` naming one already-proved witness;
+- unique inverse extraction from a bijection;
+- one Infinity/universe/union witness;
+- quotient-operation witness selection after existence/uniqueness.
 
-Potential future Choice-sensitive areas:
-
-- some reverse sequential criteria if they explicitly select a witness for every natural index;
-- arbitrary Hamel bases;
-- arbitrary Hilbert orthonormal bases;
-- maximality/Zorn arguments;
-- some compactness proofs depending on the chosen proof strategy.
-
-These should be audited from actual proof bodies when implemented.
+Future Choice-sensitive areas include arbitrary Hamel bases, arbitrary Hilbert orthonormal bases, Zorn/maximality arguments, and proof strategies that explicitly make countably/family-wise choices.
 
 ---
 
-# 32. Consolidated P0 queue
+# Repository consistency
 
-The following is the consolidated repair queue. Closely related defects are grouped rather than repeated by file.
+Semantic placeholders are more dangerous than `sorry`: a fake definition changes every theorem using it.
 
-1. Remove the reciprocal-sequence criterion from generic order-completeness equivalences.
-2. Restrict order-completeness <-> Cauchy-completeness to a canonical compatible uniformity.
-3. Fix injective image/intersection theorem for empty index types.
-4. Add nonvacuity/admissibility to generated sigma algebra.
-5. Add union/indexed-union closure to Grothendieck universes.
-6. Replace continuity/function semantic `:= 0` placeholders (oscillation, jumps, limsup/liminf, extrema, family sup/inf, mesh).
-7. Repair discontinuity taxonomy overlap.
-8. Replace integration semantic placeholders (`PartitionMesh`, Darboux sums, point oscillation, total variation).
-9. Repair false HK/McShane/Riemann-Stieltjes strictness/equivalence statements.
-10. Add accumulation/interior/domain hypotheses to differentiation uniqueness/extremum/inverse/Taylor/Peano/differential theorems.
-11. Fix singleton `IntervalAllLimitPoints` claim.
-12. Restrict `RationalsAreCountable` to the actual rational construction/model, not every dense ordered field.
-13. Add uniqueness to integer/rational universal properties and actual bijectivity to real isomorphism characterization.
-14. Couple number-system construction selectors to their selected construction.
-15. Strengthen formal-difference integer input contract, especially translation order reflection.
-16. Build an adapter from canonical whole-number certificates to formal differences.
-17. Strengthen rational denominator adequacy; separate gcd/reduced-form enrichment.
-18. Define canonical two for sqrt-two irrationality.
-19. Replace detached `...Realizes...Model` declarations with carrier-tied packaging.
-20. Require Archimedean/cofinal rational input for real constructions, preferably `RationalExtension`.
-21. Repair Dedekind arbitrary natural-map Archimedean theorem.
-22. Strengthen Cauchy metric data to the canonical order-compatible absolute value and add field/order/completeness laws.
-23. Replace Cantor’s nonsymmetric equivalence.
-24. Upgrade Cantor “isomorphism” from injection to genuine isomorphism.
-25. Complete PrimitiveIntervals ordered-field certificate and remove tautological/self-comparison fields.
-26. Repair Dyadic representation syntax for values in `(0,1)` and strengthen evaluation/scale data contracts.
-27. Redefine computable reals using genuine effective Cauchy control and an actual computability notion; replace nontransitive equivalence and false countability/completeness claims.
-28. Repair continued-fraction evaluation, canonical form, convergents, convergence, and Lagrange theorem statements.
-29. Add full-predicate/comprehension adequacy to generic Peano/Integer categoricity and recursion.
-30. Strengthen WholeNumbers order input contract.
-31. Repair Takeuti bound-variable capture; add well-scopedness.
-32. Restrict Henkin free set-variable assignments to admissible second-order objects.
-33. Distinguish Henkin induction from full second-order Peano/Integer theories.
-34. Repair local complex polynomial representation so declared degree means actual degree.
+`scripts/check-proof-readiness.py` is currently too narrow. It should eventually detect:
+
+- semantic constants such as important `:= 0` definitions;
+- tautological certification fields (`P <-> P`, self-isomorphism used as a comparison theorem);
+- unused/disconnected theorem parameters;
+- `Realizes...` declarations whose result does not mention the constructed carrier;
+- names containing `Unique`, `Isomorphism`, `Converges`, etc. whose type lacks the named content;
+- foundational sequence modules importing `Filter.Tendsto`/topology instead of the native epsilon predicates.
+
+Stale “draft/not imported” comments should be corrected wherever the active aggregate imports the module.
+
+Duplicate semantic owners should be migrated toward the canonical subjects: `LRA.Function`, `LRA.Relation`, `LRA.Operation`, `LRA.Order`, `LRA.Cardinality`, and `LRA.Logic.FirstOrder`.
 
 ---
 
-# 33. Recommended repair order
+# Current open P0 repair queue
 
-For the foundational and number-system spine, the most efficient order is:
+Resolved items are kept in the repair-status section above and removed from this open queue.
+
+1. Rewrite the foundational sequence layer to project-native epsilon/difference semantics and isolate Mathlib filter/topology bridges in interop modules.
+2. Fix injective image/intersection for empty index types.
+3. Add admissibility/nonvacuity to generated sigma algebra.
+4. Add union/indexed-union closure to Grothendieck universes.
+5. Replace continuity/function semantic `:= 0` placeholders and repair discontinuity taxonomy.
+6. Replace integration semantic placeholders and repair false HK/McShane/Riemann-Stieltjes statements.
+7. Add accumulation/interior/domain hypotheses to differentiation uniqueness/extremum/inverse/Taylor/Peano/differential statements.
+8. Fix singleton `IntervalAllLimitPoints`.
+9. Restrict `RationalsAreCountable` to the actual rational system.
+10. Add uniqueness/surjectivity to integer/rational/real universal-property claims.
+11. Couple construction selectors/comparison ledgers to selected carriers.
+12. Strengthen formal-difference integer input laws, especially translation order reflection.
+13. Build canonical whole-number -> formal-difference adapter.
+14. Strengthen rational denominator adequacy; separate gcd/reduced-form enrichment.
+15. Define canonical `two` in sqrt-two irrationality.
+16. Replace detached `...Realizes...Model` with carrier-tied packaging.
+17. Require Archimedean/cofinal rational input for real constructions.
+18. Repair Dedekind arbitrary natural-map theorem.
+19. Strengthen Cauchy real-construction metric/absolute-value data.
+20. Replace Cantor nonsymmetric equivalence and injection-only “isomorphism”.
+21. Complete PrimitiveIntervals ordered-field certificate and remove tautological/self-comparison fields.
+22. Repair Dyadic syntax/data contracts.
+23. Redefine computable reals with genuine computability/effective Cauchy semantics and remove false completeness claim.
+24. Repair continued-fraction evaluation/canonical/convergents/convergence/Lagrange statements.
+25. Add full-predicate/comprehension adequacy to generic Peano/Integer categoricity and recursion.
+26. Strengthen WholeNumbers order input.
+27. Repair Takeuti bound-variable capture and add well-scopedness.
+28. Restrict Henkin free set-variable assignments and distinguish Henkin from full second-order induction.
+29. Repair local complex polynomial degree invariant.
+30. Repair real-valued limsup/liminf empty/unbounded semantics.
+
+---
+
+# Landau/omnibus status
+
+The old `landaureview.md`, `OMNIBUS-GAP-LIST.md`, and `OMNIBUS-PUNCHLIST.md` are materially stale as status reports. The structural Landau spine now largely exists:
 
 ```text
-1. semantic fake definitions / vacuous theorems
-2. backend/fullness assumptions (Peano, IntegerStructure, Henkin)
-3. construction input contracts
-4. carrier-tied realization packaging
-5. universal-property/isomorphism statement strength
-6. real-construction equivalence/field certification
-7. continued fractions and remaining number-system enrichments
-8. stale comments / duplicate owners
-9. expand automated proof-readiness checks
-10. only then make broad sorry-elimination the primary workflow
+relations
+-> functions/morphisms
+-> operation laws
+-> order/bounds/lattices
+-> named algebraic structures
+-> concrete number-system certificates
 ```
 
-Advanced topology, measure, integration, functional analysis, and related spaces can continue as research-phase work in parallel, but active semantic P0 placeholders in those areas should be clearly marked or quarantined so they are not mistaken for established mathematics.
+Remaining Landau work is mostly theorem/catalogue/bridge completion plus the explicit open defects listed above, not another wholesale architecture rewrite.
+
+---
+
+# Recommended repair order
+
+```text
+1. foundational semantic-owner conflicts (sequences; fake definitions)
+2. vacuous/false statements
+3. backend/fullness assumptions
+4. construction input contracts
+5. carrier-tied realization packaging
+6. universal-property/isomorphism strength
+7. real-construction certification/comparison
+8. continued fractions and number-system enrichments
+9. stale comments / duplicate owners
+10. expand automated readiness checks
+11. then make broad sorry-elimination the primary workflow
+```
 
 ---
 
 # Final assessment
 
-The repository is not a failed formalization; it is a strong mathematical architecture with a specific class of correctness hazards that are now well identified.
-
-The best parts already realize the intended Landau-inspired design:
-
-```text
-primitive relations/functions/operations
--> named laws
--> composite structures
--> concrete number systems as certified instances
--> embeddings and comparisons
-```
-
-The canonical set, relation, function, operation, order, and algebraic-structure layers are increasingly coherent. Complex numbers, Gaussian integers, the Polish integer construction, the set capability/law split, and the canonical algebraic law hierarchy are especially good models for how the rest of the construction tree should look.
-
-The next phase should therefore be repair and consolidation rather than another broad architectural expansion. Once the P0 semantic/coupling issues above are cleared, the foundational spine will be well positioned for sustained proof replacement and note-taking, while the more advanced analysis/measure/space areas continue their research buildout.
+The repository is a strong mathematical architecture with a specific, now well-bounded class of correctness hazards. The next phase should be repair and consolidation rather than broad expansion. Once the open P0 queue is cleared, the foundational spine should be well suited to sustained proving and note-taking while the advanced analysis/measure/space subjects continue their research buildout.
