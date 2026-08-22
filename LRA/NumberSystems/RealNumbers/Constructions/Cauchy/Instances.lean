@@ -13,31 +13,31 @@ open LRA.NumberSystems.RationalNumbers
 /-- The Cauchy completion of an actual rational number system realizes a
 carrier-tied `RationalRealExtension`.
 
-The generic carrier and metric definitions remain usable over a broader dense
-ordered field. The stronger conclusion that the completion is *the real-number
-stage* is stated only for a `RationalNumberSystem`, and the carrier equality
-forces the selected real extension to use the actual quotient carrier rather
-than an unrelated complete ordered field.
+The metric input is anchored to that actual `RationalNumberSystem`, not to an
+arbitrary dense ordered field. The stronger conclusion that the completion is
+*the real-number stage* is stated only for a `RationalNumberSystem`, and the
+carrier equality forces the selected real extension to use the actual quotient
+carrier rather than an unrelated complete ordered field.
 
 Logical form:
 
 ```lean
 theorem CauchyRealizesRationalRealExtension
     (rationalSystem : RationalNumberSystem)
-    (absoluteValueData : RationalMetricData rationalSystem.FieldModel) :
+    (absoluteValueData : RationalMetricData rationalSystem) :
     ∃ realExtension :
         LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem,
       realExtension.RealModel.Carrier =
-        Carrier rationalSystem.FieldModel absoluteValueData
+        Carrier rationalSystem absoluteValueData
 ```
 -/
 theorem CauchyRealizesRationalRealExtension
     (rationalSystem : RationalNumberSystem)
-    (absoluteValueData : RationalMetricData rationalSystem.FieldModel) :
+    (absoluteValueData : RationalMetricData rationalSystem) :
     ∃ realExtension :
         LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem,
       realExtension.RealModel.Carrier =
-        Carrier rationalSystem.FieldModel absoluteValueData := by
+        Carrier rationalSystem absoluteValueData := by
   sorry
 
 end LRA.NumberSystems.RealNumbers.Cauchy

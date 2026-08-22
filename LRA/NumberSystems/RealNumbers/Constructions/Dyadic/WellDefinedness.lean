@@ -12,7 +12,7 @@ variable (dyadicData : RationalDyadicApproximationData)
 theorem FractionalPartialSumsAreCauchy
     (digits : FractionalDigits) :
     Cauchy.is_cauchy
-      dyadicData.RationalSystem.FieldModel
+      dyadicData.RationalSystem
       dyadicData.AbsoluteValueData
       (FractionalPartialSum dyadicData digits) := by
   sorry

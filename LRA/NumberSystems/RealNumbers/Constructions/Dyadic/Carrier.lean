@@ -152,29 +152,29 @@ No independent completeness proposition is stored here.
 -/
 structure RationalDyadicApproximationData where
   RationalSystem : RationalNumberSystem.{u}
-  AbsoluteValueData : Cauchy.RationalMetricData RationalSystem.FieldModel
+  AbsoluteValueData : Cauchy.RationalMetricData RationalSystem
   RationalToCauchy :
     RationalSystem.FieldModel.Carrier →
-      Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData
-  CauchyZero : Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData
-  CauchyOne : Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData
+      Cauchy.Carrier RationalSystem AbsoluteValueData
+  CauchyZero : Cauchy.Carrier RationalSystem AbsoluteValueData
+  CauchyOne : Cauchy.Carrier RationalSystem AbsoluteValueData
   CauchyAddition :
-    Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData →
-      Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData →
-      Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData
+    Cauchy.Carrier RationalSystem AbsoluteValueData →
+      Cauchy.Carrier RationalSystem AbsoluteValueData →
+      Cauchy.Carrier RationalSystem AbsoluteValueData
   CauchyNegation :
-    Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData →
-      Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData
+    Cauchy.Carrier RationalSystem AbsoluteValueData →
+      Cauchy.Carrier RationalSystem AbsoluteValueData
   CauchyMultiplication :
-    Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData →
-      Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData →
-      Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData
+    Cauchy.Carrier RationalSystem AbsoluteValueData →
+      Cauchy.Carrier RationalSystem AbsoluteValueData →
+      Cauchy.Carrier RationalSystem AbsoluteValueData
   CauchyInverse :
-    Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData →
-      Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData
+    Cauchy.Carrier RationalSystem AbsoluteValueData →
+      Cauchy.Carrier RationalSystem AbsoluteValueData
   CauchyStrictOrder :
-    Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData →
-      Cauchy.Carrier RationalSystem.FieldModel AbsoluteValueData → Prop
+    Cauchy.Carrier RationalSystem AbsoluteValueData →
+      Cauchy.Carrier RationalSystem AbsoluteValueData → Prop
 
 variable (dyadicData : RationalDyadicApproximationData.{u})
 
@@ -186,7 +186,7 @@ abbrev Integer := dyadicData.RationalSystem.IntegerSystem.Model.Carrier
 
 /-- Cauchy-real carrier used as the semantic target of binary expansions. -/
 abbrev CauchyCarrier :=
-  Cauchy.Carrier dyadicData.RationalSystem.FieldModel dyadicData.AbsoluteValueData
+  Cauchy.Carrier dyadicData.RationalSystem dyadicData.AbsoluteValueData
 
 /-- A rational is dyadic when it has the form `m / 2^n`. -/
 def IsDyadicRational (value : Rational dyadicData) : Prop :=

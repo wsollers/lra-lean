@@ -6,89 +6,90 @@ import LRA.NumberSystems.RealNumbers.Constructions.Cauchy.WellFoundedness
 
 namespace LRA.NumberSystems.RealNumbers.Cauchy
 open LRA.NumberSystems.Models
+open LRA.NumberSystems.RationalNumbers
 
 /-- Pointwise addition of rational-sequence representatives.
 
-Mathematical statement (Lean): `def representative_addition (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) (first second : Representative rational_model absolute_value_data) : Sequence rational_model`.
+Mathematical statement (Lean): `def representative_addition (rationalSystem : RationalNumberSystem) (absolute_value_data : RationalMetricData rationalSystem) (first second : Representative rationalSystem absolute_value_data) : Sequence rationalSystem`.
 
 
 Logical form:
 
 ```lean
 def representative_addition
-    (rational_model : DenselyOrderedFieldModel)
-    (absolute_value_data : RationalMetricData rational_model)
-    (first second : Representative rational_model absolute_value_data) :
-    Sequence rational_model :=
+    (rationalSystem : RationalNumberSystem)
+    (absolute_value_data : RationalMetricData rationalSystem)
+    (first second : Representative rationalSystem absolute_value_data) :
+    Sequence rationalSystem :=
   fun index =>
-    rational_model.signature.add
+    rationalSystem.FieldModel.signature.add
       (first.sequence index)
       (second.sequence index)
 ```
 -/
 def representative_addition
-    (rational_model : DenselyOrderedFieldModel)
-    (absolute_value_data : RationalMetricData rational_model)
-    (first second : Representative rational_model absolute_value_data) :
-    Sequence rational_model :=
+    (rationalSystem : RationalNumberSystem)
+    (absolute_value_data : RationalMetricData rationalSystem)
+    (first second : Representative rationalSystem absolute_value_data) :
+    Sequence rationalSystem :=
   fun index =>
-    rational_model.signature.add
+    rationalSystem.FieldModel.signature.add
       (first.sequence index)
       (second.sequence index)
 
 
 /-- Pointwise negation of a rational-sequence representative.
 
-Mathematical statement (Lean): `def representative_negation (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) (representative : Representative rational_model absolute_value_data) : Sequence rational_model`.
+Mathematical statement (Lean): `def representative_negation (rationalSystem : RationalNumberSystem) (absolute_value_data : RationalMetricData rationalSystem) (representative : Representative rationalSystem absolute_value_data) : Sequence rationalSystem`.
 
 
 Logical form:
 
 ```lean
 def representative_negation
-    (rational_model : DenselyOrderedFieldModel)
-    (absolute_value_data : RationalMetricData rational_model)
-    (representative : Representative rational_model absolute_value_data) :
-    Sequence rational_model :=
+    (rationalSystem : RationalNumberSystem)
+    (absolute_value_data : RationalMetricData rationalSystem)
+    (representative : Representative rationalSystem absolute_value_data) :
+    Sequence rationalSystem :=
   fun index =>
-    rational_model.signature.neg (representative.sequence index)
+    rationalSystem.FieldModel.signature.neg (representative.sequence index)
 ```
 -/
 def representative_negation
-    (rational_model : DenselyOrderedFieldModel)
-    (absolute_value_data : RationalMetricData rational_model)
-    (representative : Representative rational_model absolute_value_data) :
-    Sequence rational_model :=
+    (rationalSystem : RationalNumberSystem)
+    (absolute_value_data : RationalMetricData rationalSystem)
+    (representative : Representative rationalSystem absolute_value_data) :
+    Sequence rationalSystem :=
   fun index =>
-    rational_model.signature.neg (representative.sequence index)
+    rationalSystem.FieldModel.signature.neg (representative.sequence index)
 
 
 /-- Pointwise multiplication of rational-sequence representatives.
 
-Mathematical statement (Lean): `def representative_multiplication (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) (first second : Representative rational_model absolute_value_data) : Sequence rational_model`.
+Mathematical statement (Lean): `def representative_multiplication (rationalSystem : RationalNumberSystem) (absolute_value_data : RationalMetricData rationalSystem) (first second : Representative rationalSystem absolute_value_data) : Sequence rationalSystem`.
 
 
 Logical form:
 
 ```lean
 def representative_multiplication
-    (rational_model : DenselyOrderedFieldModel)
-    (absolute_value_data : RationalMetricData rational_model)
-    (first second : Representative rational_model absolute_value_data) :
-    Sequence rational_model :=
+    (rationalSystem : RationalNumberSystem)
+    (absolute_value_data : RationalMetricData rationalSystem)
+    (first second : Representative rationalSystem absolute_value_data) :
+    Sequence rationalSystem :=
   fun index =>
-    rational_model.signature.multiply
+    rationalSystem.FieldModel.signature.multiply
       (first.sequence index)
       (second.sequence index)
 ```
 -/
 def representative_multiplication
-    (rational_model : DenselyOrderedFieldModel)
-    (absolute_value_data : RationalMetricData rational_model)
-    (first second : Representative rational_model absolute_value_data) :
-    Sequence rational_model :=
+    (rationalSystem : RationalNumberSystem)
+    (absolute_value_data : RationalMetricData rationalSystem)
+    (first second : Representative rationalSystem absolute_value_data) :
+    Sequence rationalSystem :=
   fun index =>
-    rational_model.signature.multiply
+    rationalSystem.FieldModel.signature.multiply
       (first.sequence index)
       (second.sequence index)
 

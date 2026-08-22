@@ -3,12 +3,14 @@
 
 import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals.Laws
 import LRA.NumberSystems.RealNumbers.Constructions.Cauchy
+import LRA.NumberSystems.RationalNumbers.Definition
 
 namespace LRA.NumberSystems.RealNumbers.PrimitiveIntervals
 
 open LRA.NumberSystems.Models
+open LRA.NumberSystems.RationalNumbers
 
-variable (rationalModel : DenselyOrderedFieldModel)
+variable (rationalSystem : RationalNumberSystem)
 
 /-- Persistent cross-level overlap is equivalent to null difference of the
 left-endpoint sequences, relative to the selected rational metric data.
@@ -21,23 +23,23 @@ Logical form:
 
 ```lean
 theorem PersistentOverlapIffEndpointDifferenceIsNull
-    (absoluteValueData : Cauchy.RationalMetricData rationalModel)
-    (first second : Representative rationalModel) :
-    equivalent rationalModel first second ↔
-      Cauchy.is_null rationalModel absoluteValueData
+    (absoluteValueData : Cauchy.RationalMetricData rationalSystem)
+    (first second : Representative rationalSystem.FieldModel) :
+    equivalent rationalSystem.FieldModel first second ↔
+      Cauchy.is_null rationalSystem absoluteValueData
         (fun index =>
-          rationalModel.signature.Subtraction
+          rationalSystem.FieldModel.signature.Subtraction
             (first.interval index).left_endpoint
             (second.interval index).left_endpoint)
 ```
 -/
 theorem PersistentOverlapIffEndpointDifferenceIsNull
-    (absoluteValueData : Cauchy.RationalMetricData rationalModel)
-    (first second : Representative rationalModel) :
-    equivalent rationalModel first second ↔
-      Cauchy.is_null rationalModel absoluteValueData
+    (absoluteValueData : Cauchy.RationalMetricData rationalSystem)
+    (first second : Representative rationalSystem.FieldModel) :
+    equivalent rationalSystem.FieldModel first second ↔
+      Cauchy.is_null rationalSystem absoluteValueData
         (fun index =>
-          rationalModel.signature.Subtraction
+          rationalSystem.FieldModel.signature.Subtraction
             (first.interval index).left_endpoint
             (second.interval index).left_endpoint) := by
   sorry

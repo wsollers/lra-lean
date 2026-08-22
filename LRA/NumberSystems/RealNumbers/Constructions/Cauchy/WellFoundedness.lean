@@ -5,10 +5,11 @@ import LRA.NumberSystems.RealNumbers.Constructions.Cauchy.Equivalence
 
 namespace LRA.NumberSystems.RealNumbers.Cauchy
 open LRA.NumberSystems.Models
+open LRA.NumberSystems.RationalNumbers
 
 /-!
 New content: the source never stated the induction/recursion principle this
-pipeline stage calls for. Every class of `Carrier rational_model
+pipeline stage calls for. Every class of `Carrier rationalSystem
 absolute_value_data` has a representative Cauchy sequence, so a predicate
 holds everywhere once it holds of every representative's image; stated
 here, `sorry`, per this migration's policy of never completing a proof it
@@ -23,23 +24,23 @@ Logical form:
 
 ```lean
 theorem InductionOnRepresentatives
-    (rational_model : DenselyOrderedFieldModel)
-    (absolute_value_data : RationalMetricData rational_model)
-    (motive : Carrier rational_model absolute_value_data → Prop)
+    (rationalSystem : RationalNumberSystem)
+    (absolute_value_data : RationalMetricData rationalSystem)
+    (motive : Carrier rationalSystem absolute_value_data → Prop)
     (onRepresentative :
-      ∀ representative : Representative rational_model absolute_value_data,
+      ∀ representative : Representative rationalSystem absolute_value_data,
         motive (Quotient.mk _ representative)) :
-    ∀ value : Carrier rational_model absolute_value_data, motive value
+    ∀ value : Carrier rationalSystem absolute_value_data, motive value
 ```
 -/
 theorem InductionOnRepresentatives
-    (rational_model : DenselyOrderedFieldModel)
-    (absolute_value_data : RationalMetricData rational_model)
-    (motive : Carrier rational_model absolute_value_data → Prop)
+    (rationalSystem : RationalNumberSystem)
+    (absolute_value_data : RationalMetricData rationalSystem)
+    (motive : Carrier rationalSystem absolute_value_data → Prop)
     (onRepresentative :
-      ∀ representative : Representative rational_model absolute_value_data,
+      ∀ representative : Representative rationalSystem absolute_value_data,
         motive (Quotient.mk _ representative)) :
-    ∀ value : Carrier rational_model absolute_value_data, motive value := by
+    ∀ value : Carrier rationalSystem absolute_value_data, motive value := by
   sorry
 
 end LRA.NumberSystems.RealNumbers.Cauchy

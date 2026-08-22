@@ -81,7 +81,8 @@ graph against how `DenselyOrderedFieldModel` is actually declared.
 Split from the former single 604-line file. Foundational: transported-into
 by `Dyadic`, compared-against by `Cantor` and `PrimitiveIntervals`.
 
-- [x] `Carrier.lean` -- `RationalMetricData`, `Sequence`, `distance`,
+- [x] `Carrier.lean` -- `RationalMetricData` (over an actual
+      `RationalNumberSystem`), `Sequence`, `distance`,
       `is_positive`, `is_cauchy`, `is_null`, `equivalent`, `Representative`,
       written (no proof obligations).
 - [ ] `Equivalence.lean` -- `representative_equivalent`,
@@ -177,7 +178,8 @@ defined directly.
 - [x] `Carrier.lean` -- `Digit`, `FractionalDigits`, `IsBinaryDigitSequence`,
       `IsCanonical`, `CanonicalFraction`, `FiniteNumeral`,
       `UnsignedExpansion`, `Sign`, `Expansion`, `RationalDyadicApproximationData`
-      (bundles a `Cauchy.RationalMetricData` plus transported Cauchy
+      (bundles a `Cauchy.RationalMetricData` over an actual
+      `RationalNumberSystem` plus transported Cauchy
       arithmetic), `Rational`/`CauchyCarrier`, `IsDyadicRational`, written.
 - [ ] `Equivalence.lean` -- `dyadic_subring`, `dyadic_rationals_are_dense`
       (both `sorry`; `binary_tail_ambiguity`/`canonical_fractional_uniqueness`

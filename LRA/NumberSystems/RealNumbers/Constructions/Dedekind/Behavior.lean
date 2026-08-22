@@ -3,11 +3,13 @@
 -- property, and the final reference-real structural summary.
 
 import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.Laws
+import LRA.NumberSystems.RationalNumbers.Definition
 
 namespace LRA.NumberSystems.RealNumbers.Dedekind
 open LRA.NumberSystems.Models
+open LRA.NumberSystems.RationalNumbers
 
-variable (rational_model : DenselyOrderedFieldModel)
+variable (rationalSystem : RationalNumberSystem)
 
 /-- Theorem 7.1: embedded rationals are order-dense.
 
@@ -20,23 +22,25 @@ Logical form:
 
 ```lean
 theorem embedded_rationals_are_dense
-    (first second : Cut rational_model)
-    (first_lt_second : strict_order rational_model first second) :
+    (first second : Cut rationalSystem.FieldModel)
+    (first_lt_second :
+      strict_order rationalSystem.FieldModel first second) :
     ∃ rational,
-      strict_order rational_model first
-        (rational_embedding rational_model rational) ∧
-      strict_order rational_model
-        (rational_embedding rational_model rational) second
+      strict_order rationalSystem.FieldModel first
+        (rational_embedding rationalSystem.FieldModel rational) ∧
+      strict_order rationalSystem.FieldModel
+        (rational_embedding rationalSystem.FieldModel rational) second
 ```
 -/
 theorem embedded_rationals_are_dense
-    (first second : Cut rational_model)
-    (first_lt_second : strict_order rational_model first second) :
+    (first second : Cut rationalSystem.FieldModel)
+    (first_lt_second :
+      strict_order rationalSystem.FieldModel first second) :
     ∃ rational,
-      strict_order rational_model first
-        (rational_embedding rational_model rational) ∧
-      strict_order rational_model
-        (rational_embedding rational_model rational) second := by
+      strict_order rationalSystem.FieldModel first
+        (rational_embedding rationalSystem.FieldModel rational) ∧
+      strict_order rationalSystem.FieldModel
+        (rational_embedding rationalSystem.FieldModel rational) second := by
   sorry
 
 /-- Theorem 7.2: Archimedean property.
@@ -51,21 +55,23 @@ Logical form:
 ```lean
 theorem archimedean_property
     (natural_carrier : Type)
-    (natural_to_rational : natural_carrier → Rational rational_model)
-    (cut : Cut rational_model) :
+    (natural_to_rational :
+      natural_carrier → Rational rationalSystem.FieldModel)
+    (cut : Cut rationalSystem.FieldModel) :
     ∃ natural,
-      strict_order rational_model cut
-        (rational_embedding rational_model
+      strict_order rationalSystem.FieldModel cut
+        (rational_embedding rationalSystem.FieldModel
           (natural_to_rational natural))
 ```
 -/
 theorem archimedean_property
     (natural_carrier : Type)
-    (natural_to_rational : natural_carrier → Rational rational_model)
-    (cut : Cut rational_model) :
+    (natural_to_rational :
+      natural_carrier → Rational rationalSystem.FieldModel)
+    (cut : Cut rationalSystem.FieldModel) :
     ∃ natural,
-      strict_order rational_model cut
-        (rational_embedding rational_model
+      strict_order rationalSystem.FieldModel cut
+        (rational_embedding rationalSystem.FieldModel
           (natural_to_rational natural)) := by
   sorry
 
@@ -78,30 +84,30 @@ Logical form:
 
 ```lean
 def ReferenceRealNumberConstruction : Prop :=
-  CompleteOrderedFieldStructure rational_model ∧
-  (∀ first second : Cut rational_model,
-    strict_order rational_model first second →
+  CompleteOrderedFieldStructure rationalSystem.FieldModel ∧
+  (∀ first second : Cut rationalSystem.FieldModel,
+    strict_order rationalSystem.FieldModel first second →
     ∃ rational,
-      strict_order rational_model first
-        (rational_embedding rational_model rational) ∧
-      strict_order rational_model
-        (rational_embedding rational_model rational) second)
+      strict_order rationalSystem.FieldModel first
+        (rational_embedding rationalSystem.FieldModel rational) ∧
+      strict_order rationalSystem.FieldModel
+        (rational_embedding rationalSystem.FieldModel rational) second)
 ```
 -/
 def ReferenceRealNumberConstruction : Prop :=
-  CompleteOrderedFieldStructure rational_model ∧
-  (∀ first second : Cut rational_model,
-    strict_order rational_model first second →
+  CompleteOrderedFieldStructure rationalSystem.FieldModel ∧
+  (∀ first second : Cut rationalSystem.FieldModel,
+    strict_order rationalSystem.FieldModel first second →
     ∃ rational,
-      strict_order rational_model first
-        (rational_embedding rational_model rational) ∧
-      strict_order rational_model
-        (rational_embedding rational_model rational) second)
+      strict_order rationalSystem.FieldModel first
+        (rational_embedding rationalSystem.FieldModel rational) ∧
+      strict_order rationalSystem.FieldModel
+        (rational_embedding rationalSystem.FieldModel rational) second)
 
 
 /-- Theorem 8.1: final reference-real structural summary.
 
-Mathematical statement (Lean): `theorem reference_real_number_construction : ReferenceRealNumberConstruction rational_model`.
+Mathematical statement (Lean): `theorem reference_real_number_construction : ReferenceRealNumberConstruction rationalSystem`.
 
 *Proof status:* proof pending
 
@@ -110,11 +116,11 @@ Logical form:
 
 ```lean
 theorem reference_real_number_construction :
-    ReferenceRealNumberConstruction rational_model
+    ReferenceRealNumberConstruction rationalSystem
 ```
 -/
 theorem reference_real_number_construction :
-    ReferenceRealNumberConstruction rational_model := by
+    ReferenceRealNumberConstruction rationalSystem := by
   sorry
 
 end LRA.NumberSystems.RealNumbers.Dedekind
