@@ -1,5 +1,5 @@
 -- LRA/VolumeII/NumberSystems/UniversalProperties.lean
--- Universal properties for Z, Q, and R.
+-- Generic model-level universal properties for integers and reals.
 
 import LRA.VolumeII.NumberSystems.CanonicalEmbeddings
 
@@ -12,7 +12,13 @@ Volume II label: universal-properties
 Lean module: LRA.NumberSystems.Models.UniversalProperties
 Source: docs/number-systems/gpt-00c-universal-properties.md
 Verification status: statement-accepted-proof-pending
+
+The rational fraction-field universal property is owned by
+`LRA.NumberSystems.RationalNumbers.UniversalProperty`, because its source must
+be an actual `RationalNumberSystem`, not an arbitrary densely ordered field or
+Archimedean field extension.
 -/
+
 /--
 `IntegerUniversalProperty` exposes this formal declaration.
 
@@ -27,48 +33,13 @@ structure IntegerUniversalProperty (SelectedIntegerModel : IntegerModel.{u}) : P
           SelectedIntegerModel.signature target.signature map
 ```
 -/
-
 structure IntegerUniversalProperty (SelectedIntegerModel : IntegerModel.{u}) : Prop where
   InitialForDiscreteOrderedRings :
     ∀ target : IntegerModel.{u},
       ∃ map : SelectedIntegerModel.signature.carrier → target.signature.carrier,
         CanonicalEmbeddings.EmbeddingPreservesOrderedRing
           SelectedIntegerModel.signature target.signature map
-/--
-`RationalUniversalProperty` exposes this formal declaration.
 
-Logical form:
-
-```lean
-structure RationalUniversalProperty
-    (SelectedIntegerModel : IntegerModel.{u})
-    (SelectedRationalExtension : RationalExtension SelectedIntegerModel) : Prop where
-  FractionFieldProperty :
-    ∀ target : DenselyOrderedFieldModel.{u},
-      ∀ IntegerMap :
-        SelectedIntegerModel.signature.carrier → target.signature.carrier,
-        CanonicalEmbeddings.EmbeddingPreservesOrderedRing
-          SelectedIntegerModel.signature target.signature.toOrderedRingSignature IntegerMap →
-        ∃ RationalMap :
-          SelectedRationalExtension.DenselyOrderedFieldModel.signature.carrier → target.signature.carrier,
-          CanonicalEmbeddings.EmbeddingPreservesOrderedField
-            SelectedRationalExtension.DenselyOrderedFieldModel.signature target.signature RationalMap
-```
--/
-
-structure RationalUniversalProperty
-    (SelectedIntegerModel : IntegerModel.{u})
-    (SelectedRationalExtension : RationalExtension SelectedIntegerModel) : Prop where
-  FractionFieldProperty :
-    ∀ target : DenselyOrderedFieldModel.{u},
-      ∀ IntegerMap :
-        SelectedIntegerModel.signature.carrier → target.signature.carrier,
-        CanonicalEmbeddings.EmbeddingPreservesOrderedRing
-          SelectedIntegerModel.signature target.signature.toOrderedRingSignature IntegerMap →
-        ∃ RationalMap :
-          SelectedRationalExtension.DenselyOrderedFieldModel.signature.carrier → target.signature.carrier,
-          CanonicalEmbeddings.EmbeddingPreservesOrderedField
-            SelectedRationalExtension.DenselyOrderedFieldModel.signature target.signature RationalMap
 /--
 `CompleteOrderedFieldCharacterization` exposes this formal declaration.
 
@@ -83,7 +54,6 @@ structure CompleteOrderedFieldCharacterization (SelectedRealModel : RealModel.{u
           SelectedRealModel.signature other.signature comparison
 ```
 -/
-
 structure CompleteOrderedFieldCharacterization (SelectedRealModel : RealModel.{u}) : Prop where
   UniqueUpToOrderedFieldIsomorphism :
     ∀ other : RealModel.{u},
