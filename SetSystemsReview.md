@@ -8,7 +8,7 @@ Project-wide rules apply: `sorry` is neutral scaffolding; axioms are judged by m
 
 ---
 
-# Review 1 — Ring, algebra, sigma-ring, sigma-algebra hierarchy
+# Review 1 — ring, algebra, sigma-ring, sigma-algebra hierarchy
 
 ## Files reviewed
 
@@ -18,214 +18,227 @@ Project-wide rules apply: `sorry` is neutral scaffolding; axioms are judged by m
 - `LRA/SetSystems/SigmaAlgebra.lean`
 - `LRA/SetSystems/DeltaAlgebra.lean`
 - `LRA/SetSystems/GeneratedSigmaAlgebra.lean`
+- `LRA/SetSystems/Examples.lean`
+- `LRA/Analysis/MeasureTheory/MeasurableSpace/Definition/MeasurableSpace.lean`
 
 ## Generic closure vocabulary
 
-`Closure.lean` provides generic predicates for closure under nullary, unary, binary, indexed, countable, and finite-list operations. These are mathematically straightforward and useful as reusable infrastructure.
+The nullary/unary/binary/indexed/countable/finite closure predicates are straightforward and useful reusable infrastructure.
 
 **Verdict: PASS.**
 
 ## Ring of sets
 
-`RingOfSets ambient` consists of subsets of `ambient`, contains the empty set, and is closed under union, intersection, relative difference, and symmetric difference.
+`RingOfSets ambient` requires members to be subsets of `ambient`, contains the empty set, and is closed under union, intersection, relative difference, and symmetric difference.
 
-This is mathematically a ring of sets, but the axiom set is redundant. Standardly, closure under finite union and relative difference already implies closure under intersection and symmetric difference:
+This is mathematically a ring of sets, but the requirements are nonminimal: finite union + relative difference already derive intersection and symmetric difference.
 
-\[
-A\cap B = A\setminus(A\setminus B),
-\]
+For the project's certification goal, prefer a minimal primitive law basis and derive redundant closure laws as theorems.
 
-and
+**Verdict: CORRECT BUT OVER-SPECIFIED.**
 
-\[
-A\triangle B=(A\setminus B)\cup(B\setminus A).
-\]
+## Algebra, sigma-ring, sigma-algebra
 
-The current structure therefore imposes correct but nonminimal laws.
-
-### Recommendation
-
-If the project wants each named structure to state the **minimal requirements that must be proved** to qualify, reduce the primitive fields to a standard minimal basis and derive the other finite-operation closures as theorems.
-
-This would better serve the stated certification use case: a concrete family should not have to prove redundant axioms independently.
-
-**Severity: P1/P2 STRUCTURAL REDUNDANCY, not mathematical error.**
-
-## Algebra of sets
-
-`AlgebraOfSets ambient` extends `RingOfSets ambient` by requiring the ambient set itself to be a member.
-
-Because the ring already has relative difference, this correctly gives relative-complement closure. The explicit theorem `RelativeComplementIsMember` is appropriate.
-
-This is a standard algebra/field of sets on the ambient universe.
+- `AlgebraOfSets` = ring + ambient member: correct.
+- `SigmaRingOfSets` = ring + countable-union closure: correct.
+- `SigmaAlgebraOfSets` = algebra + countable-union closure: correct.
+- sigma-algebra -> sigma-ring conversion: correct.
 
 **Verdict: PASS.**
 
-## Sigma-ring
+## Missing high-value derived theorem
 
-`SigmaRingOfSets ambient` extends the ring of sets by countable-union closure.
+A sigma algebra should explicitly be proved closed under countable intersections by relative complement + countable union (De Morgan). The separate `DeltaRingOfSets` is a legitimate independent notion, but should not obscure this consequence.
 
-This is standard.
-
-**Verdict: PASS.**
-
-## Sigma-algebra
-
-`SigmaAlgebraOfSets ambient` extends the algebra of sets by countable-union closure.
-
-This is a standard sigma-algebra presentation. Relative complements are supplied by the algebra structure, and countable unions are primitive.
-
-The conversion from sigma-algebra to sigma-ring is mathematically correct.
-
-**Verdict: PASS.**
-
----
-
-# Important missing derived theorem — sigma algebras are closed under countable intersections
-
-The reviewed sigma-algebra structure has countable-union and relative-complement closure, but no current canonical theorem was located stating that a sigma algebra is closed under countable intersections.
-
-This should be an immediate De Morgan consequence:
-
-\[
-\bigcap_{n=0}^{\infty} A_n
-=
-\Omega\setminus\bigcup_{n=0}^{\infty}(\Omega\setminus A_n).
-\]
-
-The repository also defines a separate `DeltaRingOfSets` with countable-intersection closure. That is a legitimate independent set-system notion, but it should not obscure the fact that every sigma algebra automatically has countable-intersection closure.
-
-### Recommendation
-
-Add a theorem such as
+Recommended theorem:
 
 ```text
 SigmaAlgebraOfSets.CountableIntersectionIsMember
 ```
 
-and likely the corresponding closure-under-countable-difference/limsup/liminf set-operation consequences where useful.
-
-This is a high-value theorem before measure theory because countable intersections appear constantly in measurable-set arguments.
-
 **Severity: P1 PRE-MEASURE-THEORY THEOREM GAP.**
 
 ---
 
-# Delta-ring
+# P0 — current generic generated-sigma-algebra construction is false without an admissibility hypothesis
 
-`DeltaRingOfSets ambient` is a ring of sets closed under countable intersections.
+Current definition:
 
-This is mathematically meaningful, though not as universally standard in first measure-theory courses as rings, algebras, sigma-rings, and sigma-algebras.
+```text
+GeneratedSigmaAlgebraCollection ambient generator A :=
+  forall sigma : SigmaAlgebraOfSets ambient,
+    (forall G, generator G -> sigma.IsMember G) -> sigma.IsMember A
+```
 
-It is fine to retain, but it should be accompanied by relationship theorems explaining which standard structures imply which others.
+This is the standard intersection-of-all-containing-sigma-algebras idea **only when there exists at least one sigma algebra on `ambient` containing every generator**.
 
-**Verdict: CORRECT, SECONDARY PRIORITY.**
+The current generic theorem surface does not assume that.
+
+## Concrete counterexample
+
+Use the ordinary Mathlib-set backend.
+
+Let:
+
+```text
+ambient = empty set
+generator G := G = {0}
+```
+
+Every member of any `SigmaAlgebraOfSets ambient` must be a subset of `ambient`, so no such sigma algebra can admit `{0}` as a member.
+
+Therefore for every sigma algebra on the empty ambient, the implication
+
+```text
+(all generators are sigma members) -> sigma.IsMember A
+```
+
+has a false antecedent. Consequently `GeneratedSigmaAlgebraCollection ambient generator A` is vacuously true for **every** set `A`.
+
+But `GeneratedSigmaAlgebraMembersAreSubsets` claims:
+
+```text
+GeneratedSigmaAlgebraCollection ambient generator A -> A ⊆ ambient.
+```
+
+Taking `A = {0}` yields `{0} ⊆ empty`, false.
+
+Thus `GeneratedSigmaAlgebraMembersAreSubsets` is false at the current level of generality, and the structure `GeneratedSigmaAlgebra ambient generator` is not mathematically justified without additional hypotheses.
+
+**Severity: P0 — FALSE GENERIC CONSTRUCTION/THEOREM SURFACE.**
+
+## Required repair
+
+At minimum, generated-sigma-algebra construction must receive an admissibility hypothesis ensuring there is a containing sigma algebra. Two natural interfaces are:
+
+### Option A — explicit containing sigma witness
+
+```text
+(def/theorem parameters)
+(containing : SigmaAlgebraOfSets ambient)
+(containingGenerators : forall G, generator G -> containing.IsMember G)
+```
+
+Then the universal-intersection definition is nonvacuous, and `MembersAreSubsets` follows by instantiating with `containing`.
+
+### Option B — generator-subset hypothesis plus a canonical full sigma algebra
+
+For backends such as `Set X`, require
+
+```text
+forall G, generator G -> G ⊆ ambient
+```
+
+and provide/prove a full relative powerset sigma algebra
+
+```text
+{ A | A ⊆ ambient }.
+```
+
+Then this full sigma algebra witnesses existence of a containing sigma algebra.
+
+Option B is pedagogically attractive for ordinary set backends, but it requires enough set-operation laws to construct the full relative sigma algebra generically. In the present highly abstract `SetObject` interface that existence is **not automatic** merely from the operation classes.
+
+### Recommended abstraction
+
+Define:
+
+```text
+GeneratorAdmissible ambient generator :=
+  exists sigma : SigmaAlgebraOfSets ambient,
+    forall G, generator G -> sigma.IsMember G
+```
+
+and require it for `GeneratedSigmaAlgebra`.
+
+Then prove separately that `forall G, generator G -> G ⊆ ambient` implies admissibility on the ordinary predicate/Mathlib-set backends.
+
+## Consequences for current theorems
+
+Until repaired, the following current declarations are affected:
+
+- `GeneratedSigmaAlgebraMembersAreSubsets` — false in general;
+- `GeneratedSigmaAlgebra` — relies on the false field theorem;
+- `GeneratedSigmaAlgebraContainsGenerator` — logically follows from the universal definition but can coexist with generators lying outside the ambient, exposing the inconsistency with `MembersAreSubsets`;
+- `BorelSigmaAlgebra ambient opens` — inherits the defect unless the supplied opens are known to be ambient subsets and a containing sigma algebra exists.
+
+`GeneratedSigmaAlgebraMinimal` itself has the correct logical direction once a candidate `sigma` admitting generators is explicitly given.
+
+## Correct mathematical interpretation
+
+The generated sigma algebra is the intersection of all sigma algebras on a fixed universe that contain the generating family. A generating family must therefore live inside that universe, and the family of containing sigma algebras must be nonempty.
+
+This requirement should be explicit in the generic backend formulation.
 
 ---
 
-# Generated sigma algebra
+# Borel sigma algebra
 
-`GeneratedSigmaAlgebraCollection ambient generator` defines membership by universal containment:
+The intended idea
 
-> a set belongs iff every sigma algebra containing all generators also contains that set.
+```text
+Borel = sigma(open sets)
+```
 
-This is exactly the standard definition of the sigma algebra generated by a family.
+is correct, but the current temporary
 
-The implementation supplies the expected results:
+```text
+BorelSigmaAlgebra ambient opens := GeneratedSigmaAlgebra ambient opens
+```
 
-- members are subsets of the ambient set;
-- closure laws needed for a sigma algebra;
-- every generator belongs;
-- minimality among sigma algebras containing the generators.
+inherits the P0 issue above.
 
-This is mathematically excellent foundational machinery.
+The eventual topology-owned version should obtain `opens` from an actual topology and prove each open set lies in the ambient carrier; on ordinary `Set X`, the full powerset sigma algebra gives the needed containing witness automatically.
+
+**Verdict: CORRECT IDEA; CURRENT GENERIC IMPLEMENTATION BLOCKED BY GENERATED-SIGMA P0.**
+
+---
+
+# Measurable-space boundary
+
+`MeasurableSpaceDefinitionOn X` uses the standard axioms:
+
+- empty set measurable;
+- complement measurable;
+- countable union measurable.
 
 **Verdict: PASS.**
 
----
+There are two presentations of the same concept that should be bridged explicitly:
 
-# Temporary Borel sigma algebra
+1. generic `LRA.SetSystems.SigmaAlgebraOfSets ambient`;
+2. `MeasurableSpaceDefinitionOn X` over `Set X`.
 
-`BorelSigmaAlgebra ambient opens` is currently defined as the generated sigma algebra of the supplied `opens` predicate.
-
-This is mathematically correct **provided `opens` really denotes the open subsets of the intended topology**.
-
-The source explicitly marks this as a temporary topology-facing specialization and says ownership should move to `Topology/Borel` once topology is standardized.
-
-That is the right architectural direction.
-
-### Recommendation
-
-Eventually replace the raw `opens : SetObject → Prop` parameter in the canonical Borel owner by an actual topology/topological-space object, then derive the open-set predicate from that structure. This prevents accidentally calling an arbitrary generating predicate "Borel."
-
-**Severity: P1 OWNERSHIP/TYPING REFINEMENT, not mathematical error.**
-
----
-
-# Review 2 — measurable-space boundary
-
-## File reviewed
-
-- `LRA/Analysis/MeasureTheory/MeasurableSpace/Definition/MeasurableSpace.lean`
-
-`MeasurableSpaceDefinitionOn X` declares measurable subsets containing the empty set and closed under complements and countable unions.
-
-This is the standard sigma-algebra presentation of a measurable space.
-
-The packaged `MeasurableSpaceDefinition` then pairs a carrier with such a measurable-set structure.
-
-The file explicitly states that this is textbook/reference data and that later proofs should use Mathlib's `MeasurableSpace` API directly. That separation is analogous to the project's metric/topology reference-vs-interop architecture and is reasonable.
-
-**Verdict: PASS.**
-
-### Important relationship to `LRA.SetSystems`
-
-There are now two presentations of essentially the same mathematical concept:
-
-1. `LRA.SetSystems.SigmaAlgebraOfSets ambient` over a generic set-object backend;
-2. `MeasurableSpaceDefinitionOn X` over ordinary Lean predicate sets `Set X`.
-
-These should be linked explicitly rather than allowed to become parallel semantic owners.
-
-### Recommended bridge
-
-For ordinary `Set X`, provide a theorem/construction showing:
-
-```text
-SigmaAlgebraOfSets (Set.univ : Set X)
-    <->
-MeasurableSpaceDefinitionOn X
-```
-
-up to the representational differences in the two records.
-
-Then connect the reference measurable-space record to Mathlib `MeasurableSpace X` through the existing interop tree.
-
-This would produce a clean chain:
-
-```text
-generic set-system sigma algebra
-  -> Set X specialization
-  -> textbook measurable space
-  -> Mathlib MeasurableSpace.
-```
+For ordinary sets, build a clear bridge between a sigma algebra on `Set.univ` and the measurable-space reference record, then bridge that to Mathlib `MeasurableSpace X`.
 
 **Severity: P1 ARCHITECTURAL BRIDGE.**
 
 ---
 
+# Examples
+
+The lower set-system layer already contains useful canonical examples:
+
+- full Mathlib powerset algebra/sigma algebra;
+- `{empty, univ}` algebra;
+- predicate-set analogues.
+
+These should be re-exported by the measurable-space curriculum rather than reimplemented.
+
+Also add one finite nontrivial partition-generated sigma algebra as a pedagogical middle example.
+
+---
+
 # Minimal-law recommendation
 
-The hierarchy should ideally make clear which laws are primitive and which are derived.
-
-A clean textbook/minimal dependency chain is:
+A clean certification hierarchy is:
 
 ```text
-Ring of sets:
-  empty + finite union + difference
+Ring:
+  empty + finite union + relative difference
 
-Algebra of sets:
-  ring + ambient/full set
+Algebra:
+  ring + ambient
 
 Sigma-ring:
   ring + countable union
@@ -234,47 +247,35 @@ Sigma-algebra:
   algebra + countable union
 ```
 
-Then derive:
-
-- finite intersections;
-- symmetric differences;
-- relative complements;
-- countable intersections for sigma algebras;
-- closure under countable disjoint unions;
-- finite unions/intersections as special cases of countable operations.
-
-This better supports the project's goal of stating exactly what a concrete object must prove to satisfy a named law or structure.
+Then derive intersection, symmetric difference, relative complement, countable intersection, and related laws.
 
 ---
 
-# Missing/valuable relationship theorems before measure theory
+# High-value relationship theorems before measure theory
 
-The following should exist somewhere in the canonical set-system layer if not already located later:
+Add or verify:
 
 1. every algebra is a ring;
 2. every sigma-ring is a ring;
-3. every sigma-algebra is an algebra;
-4. every sigma-algebra is a sigma-ring;
-5. every sigma-algebra is a delta-system/ring in the sense of countable-intersection closure;
-6. sigma-algebra closed under countable intersections;
-7. sigma-algebra closed under set limits (`limsup`, `liminf`) of measurable sets;
-8. generated sigma algebra contains exactly the intersection of all containing sigma algebras;
-9. intersection of any family of sigma algebras on the same ambient set is a sigma algebra;
-10. generated sigma algebra monotone in the generator family.
+3. every sigma-algebra is an algebra and sigma-ring;
+4. sigma-algebra closed under countable intersections;
+5. measurable set limsup/liminf closure;
+6. intersection of a **nonempty** family of sigma algebras on the same ambient is a sigma algebra;
+7. generated sigma algebra under an admissibility hypothesis;
+8. monotonicity of generated sigma algebra in generators;
+9. generator criterion for measurable maps.
 
-Items 6–10 are particularly useful for the Borel transition.
+The nonempty qualifier in item 6 is important in a backend without an automatically available top/full sigma algebra.
 
 ---
 
 # Choice audit
 
-No genuine Axiom-of-Choice dependency was identified in the reviewed set-system definitions, generated sigma-algebra construction, or measurable-space reference definition.
-
-Generated sigma-algebra minimality/intersection arguments are purely logical/set-theoretic and do not intrinsically require AC.
+No genuine Axiom-of-Choice dependency is intrinsic to the corrected generated-sigma-algebra intersection construction. The P0 defect is a nonemptiness/admissibility problem, not a Choice problem.
 
 ---
 
-# Final verdict for this chunk
+# Final verdict
 
 | Dimension | Verdict |
 |---|---|
@@ -282,24 +283,16 @@ Generated sigma-algebra minimality/intersection arguments are purely logical/set
 | Algebra of sets | **PASS** |
 | Sigma-ring | **PASS** |
 | Sigma-algebra | **PASS** |
-| Countable-intersection theorem for sigma algebras | **MISSING / NOT LOCATED** |
+| Countable-intersection theorem | **MISSING / P1** |
 | Delta-ring | **CORRECT, SECONDARY** |
-| Generated sigma algebra | **PASS** |
-| Temporary Borel construction | **CORRECT, OWNERSHIP TEMPORARY** |
+| Generated sigma algebra | **P0: MISSING ADMISSIBILITY/NONVACUITY HYPOTHESIS** |
+| Borel temporary construction | **BLOCKED BY GENERATED-SIGMA P0** |
 | Measurable-space reference definition | **PASS** |
-| SetSystems ↔ measurable-space bridge | **NEEDS EXPLICIT CONNECTION** |
-| Readiness to begin measure theory | **STRONG FOUNDATION, A FEW HIGH-VALUE BRIDGES/DERIVED THEOREMS MISSING** |
+| SetSystems <-> measurable-space bridge | **P1** |
+| Choice issue in this chunk | **NONE** |
 
 ---
 
 # Next review chunk
 
-Review the actual measure-theory hierarchy under `LRA/Analysis/MeasureTheory` in small pieces:
-
-1. measurable-space interop and examples;
-2. measurable functions/maps and preimage criteria;
-3. measure/measure-space definitions;
-4. additivity/countable additivity and null-set behavior;
-5. only after that, integration or convergence theorems.
-
-Continue to inventory genuine choice use outside the ZFC-specific development.
+Repair/architect the generated-sigma-algebra dependency conceptually before using it for product/Borel measurable structures. Continue reviewing actual repository code outward, but treat any theorem relying on current `GeneratedSigmaAlgebra` as suspect until this P0 is fixed.
