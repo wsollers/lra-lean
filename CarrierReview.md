@@ -157,42 +157,22 @@ Therefore the graph-based encodings really do recover ordinary injectivity and s
 
 **Verdict: PASS.**
 
-## What is missing
+## Initial gap assessment, resolved by Review 2
 
-The generated `LRA/Carrier/ProofsToDo.md` currently reports no theorem declarations under the Carrier folder. Thus the definitions are sound, but `LRA.Carrier` is not yet a complete mathematical learning layer by itself.
+`LRA/Carrier/ProofsToDo.md` reports no theorem declarations under the Carrier folder. That initially suggested a missing theorem layer. Review 2 showed that several of the expected bridge theorems are already present one layer up in `LRA.Cardinality`, which is a reasonable location because they connect bare-carrier properties through cardinal-comparison machinery.
 
-Before this subject is considered complete for proof development and note-taking, the following elementary facts should exist somewhere in the Carrier/Cardinality boundary, exactly once:
+Already present in `LRA.Cardinality`:
 
-### Core consequences
+- finite implies countable;
+- countably infinite implies countable;
+- countably infinite implies infinite;
+- finiteness invariance under equinumerosity;
+- countability invariance under equinumerosity;
+- downward closure of countability under domination.
 
-1. finite implies countable;
-2. countably infinite implies countable;
-3. countably infinite implies infinite;
-4. uncountable implies infinite;
-5. countable and infinite implies countably infinite;
-6. invariance of finite/countable/countably-infinite under bijection.
+Therefore these are **not repository-wide gaps**.
 
-### Canonical examples
-
-7. `Fin n` is finite;
-8. `Nat` is countably infinite;
-9. optionally, a few tiny canonical carriers such as empty type, unit, and `Bool`, if examples fit the repository's pedagogical style.
-
-These should not automatically be added to `LRA.Carrier`; some may properly belong to `LRA.Cardinality`. The next review chunk will determine ownership before recommending placement.
-
-## Pre-measure-theory importance
-
-For measure theory preparation, later developments should also establish the following standard countability toolkit:
-
-- subsets of countable sets are countable;
-- images of countable sets are countable;
-- finite unions of countable sets are countable;
-- countable unions of countable sets, with precise hypotheses and foundational assumptions made explicit;
-- finite products and standard countable products such as `Nat × Nat`;
-- countability of `Int` and `Rat`;
-- uncountability of `Real`.
-
-The countable-union result deserves special attention in the choice audit because its exact formulation can conceal a choice principle.
+Remaining candidate gaps are tracked after Review 2 rather than assigned prematurely to `LRA.Carrier`.
 
 ## Final verdict for this chunk
 
@@ -202,13 +182,245 @@ The countable-union result deserves special attention in the choice audit becaus
 | Abstraction/ownership | **PASS** |
 | Dependency semantics | **PASS** |
 | Ready to build on definitionally | **YES** |
-| Complete as a learning/theorem layer | **NOT YET** |
 | Immediate redesign required | **NO** |
 
-The definitions are mathematically sound and appropriately located. The principal gap is not correctness but the absence of the elementary theorem layer connecting the notions and supplying canonical examples.
+---
+
+# Review 2 — Basic `LRA.Cardinality`
+
+## Files reviewed
+
+- `LRA/Cardinality/Definition.lean`
+- `LRA/Cardinality/Theorems.lean`
+- `LRA/Cardinality/Properties/Finiteness/Definition.lean`
+- `LRA/Cardinality/Properties/Finiteness/Theorems.lean`
+- `LRA/Cardinality/Properties/Countability/Definition.lean`
+- `LRA/Cardinality/Properties/Countability/Theorems.lean`
+
+This review intentionally stops at the basic comparison, finiteness, and countability layer.
+
+## Core comparison definitions
+
+### `Equinumerous A B`
+
+Defined by existence of a bijection `A → B`.
+
+\[
+A \approx B \iff \exists f:A\to B,\ f\text{ bijective}.
+\]
+
+This is the standard notion of equal cardinality.
+
+**Verdict: CORRECT.**
+
+### `Dominates A B`
+
+Defined by existence of an injection `A → B`.
+
+\[
+A \preceq B \iff \exists f:A\to B,\ f\text{ injective}.
+\]
+
+The project reads this as “`A` is dominated by `B`,” i.e. `|A| ≤ |B|`. The parameter order is therefore correct, though the English verb “dominates” can be read in the opposite direction unless the project convention is remembered.
+
+**Verdict: CORRECT; naming convention should remain explicitly documented.**
+
+### `StrictlyDominates A B`
+
+Defined by
+
+\[
+A \prec B \iff A\preceq B \land A\not\approx B.
+\]
+
+This is a correct strict-cardinality comparison once Cantor–Schröder–Bernstein is available.
+
+**Verdict: CORRECT.**
+
+## Core comparison theorems
+
+The following statements are mathematically correct and form the expected basic algebra of cardinal comparison:
+
+- equinumerosity is reflexive;
+- equinumerosity is symmetric;
+- equinumerosity is transitive;
+- domination is reflexive;
+- domination is transitive;
+- equinumerosity implies domination;
+- Cantor–Schröder–Bernstein: mutual domination implies equinumerosity.
+
+The repository correctly notes that Cantor–Schröder–Bernstein does **not** require the Axiom of Choice.
+
+**Verdict: PASS.**
+
+## Cantor theorem
+
+`CantorTheorem A` states that no map
+
+\[
+f:A\to(A\to\mathrm{Prop})
+\]
+
+is surjective. Interpreting predicates `A → Prop` as subsets of `A`, this is the standard diagonal theorem that no set surjects onto its powerset.
+
+`StrictlyDominatesPowerset A` then packages this together with the singleton injection to obtain
+
+\[
+|A| < |\mathcal P(A)|.
+\]
+
+Both statements are mathematically correct.
+
+**Verdict: PASS.**
+
+## Finiteness and Dedekind finiteness
+
+The `Cardinality.IsFinite` and `Cardinality.IsInfinite` names are aliases of the canonical `Carrier` predicates rather than duplicate definitions. This is good architecture.
+
+### `IsDedekindInfinite`
+
+Defined by existence of an injective but non-surjective self-map:
+
+\[
+\exists f:A\to A,\quad f\text{ injective and not surjective}.
+\]
+
+This is a standard characterization of Dedekind-infinite sets.
+
+### `IsDedekindFinite`
+
+Defined as the negation of Dedekind-infinite.
+
+This is standard.
+
+### Choice comment
+
+The source correctly distinguishes the choice-free implication
+
+\[
+\text{Dedekind-infinite} \Rightarrow \text{infinite}
+\]
+
+and its equivalent contrapositive
+
+\[
+\text{finite} \Rightarrow \text{Dedekind-finite}.
+\]
+
+The source says the converse “needs choice.” This is acceptable as a practical classical-mathematics warning: under the Axiom of Choice every infinite set is Dedekind-infinite. More precisely, the converse is not a theorem of bare ZF and the principle needed for all sets is weaker than full AC, so the comment should not be read as claiming equivalence with the full Axiom of Choice.
+
+No correction to the theorem statements is required.
+
+## Finiteness theorems
+
+The reviewed statements are correct:
+
+- `IsFiniteCongr`: finiteness is invariant under equinumerosity;
+- `NotBothFiniteAndInfinite`;
+- `FiniteImpliesDedekindFinite`;
+- `DedekindInfiniteImpliesInfinite`;
+- `DominatesOfFiniteInfinite`: every finite type injects into every infinite type.
+
+The last statement does not require full AC: only finite selection is involved, which is available in ordinary ZF.
+
+**Verdict: PASS.**
+
+## Countability theorems
+
+The following expected bridge results already exist and are correct:
+
+- `FiniteImpliesCountable`;
+- `CountablyInfiniteImpliesCountable`;
+- `CountablyInfiniteImpliesInfinite`;
+- `IsCountableCongr`;
+- `DominatesCountableIsCountable`.
+
+The downward-closure theorem is especially useful later: if `A` injects into a countable `B`, then `A` is countable.
+
+**Verdict: PASS.**
+
+## Countable union / dependent sum theorem
+
+`CountableSigmaOfCountableIndexCountableFibers` states:
+
+> if the index type is countable and every fiber is countable, then the dependent sum of the fibers is countable.
+
+Mathematically, this is the type-theoretic form of “a countable union of countable sets is countable.”
+
+The theorem is correct **with an appropriate choice principle** because the hypotheses provide
+
+\[
+\forall i,\ \exists f_i : A_i \hookrightarrow \mathbb N,
+\]
+
+while constructing a single injection of the sigma type requires choosing such an `f_i` for all fibers simultaneously.
+
+The source explicitly marks this proof as needing the Axiom of Choice. This is exactly the sort of non-ZFC-local choice dependency that should be visible in the project.
+
+**Verdict: CORRECT; choice dependency appropriately documented.**
+
+## Choice audit — entry 1
+
+| Location | Result | Classification | Comment |
+|---|---|---|---|
+| `LRA/Cardinality/Properties/Countability/Theorems.lean` | `CountableSigmaOfCountableIndexCountableFibers` | **Genuine family-wise choice** | Simultaneously chooses a counting injection/enumeration for each countable fiber. This is not merely extraction of one already-given existential witness. |
+
+This is outside the ZFC-specific tree and should remain documented as a choice-sensitive theorem.
+
+## Remaining basic gaps worth adding before measure theory
+
+The following are not present in the reviewed basic layer and are mathematically useful before measure theory:
+
+1. **Uncountable implies infinite.**
+   This is an immediate consequence of finite implies countable, but worth recording for fluent use and for notes.
+
+2. **Countable and infinite implies countably infinite.**
+   Under the current definition of countable as injection into `Nat`, an infinite countable type should be shown equinumerous with `Nat`. This is the standard theorem that every infinite subset of `Nat` is countably infinite.
+
+3. **`Nat` is countably infinite.**
+   Canonical base example.
+
+4. **`Fin n` is finite.**
+   Canonical base example.
+
+5. **Finite implies Dedekind-finite and Dedekind-infinite implies infinite are present;** a note or theorem should make clear that the reverse implication for arbitrary carriers is choice-sensitive rather than silently assumed later.
+
+6. **Strict-cardinality relation laws.**
+   For a mature comparison API it would be useful to have, if not already elsewhere:
+   - irreflexivity of `StrictlyDominates`;
+   - transitivity of `StrictlyDominates`;
+   - incompatibility of `StrictlyDominates A B` with `Dominates B A`, via Cantor–Schröder–Bernstein.
+
+These are elementary, not research-level additions, and they make later cardinal arguments easier to read.
+
+## Pre-measure-theory toolkit still to locate or add later
+
+The following remain important targets as the audit proceeds; they may already live in set/number-system modules and therefore are not yet declared missing:
+
+- subsets of countable sets are countable;
+- images of countable sets are countable;
+- finite unions of countable sets are countable;
+- countable unions of countable sets, with choice dependence explicit — the sigma theorem supplies the abstract core;
+- `Nat × Nat` countable;
+- finite products of countable sets countable;
+- `Int` countable;
+- `Rat` countable;
+- `Real` uncountable.
+
+## Final verdict for Review 2
+
+| Dimension | Verdict |
+|---|---|
+| Mathematical correctness | **PASS** |
+| Cardinal comparison definitions | **PASS** |
+| Cantor/CSB statements | **PASS** |
+| Carrier/Cardinality ownership | **PASS** |
+| Choice dependency transparency | **PASS, with one explicit external choice-sensitive theorem** |
+| Pre-measure-theory completeness | **GOOD BASE, SOME ELEMENTARY BRIDGES/EXAMPLES STILL NEEDED OR TO BE LOCATED** |
+| Immediate redesign required | **NO** |
 
 ---
 
 # Next review chunk
 
-`LRA.Cardinality`, restricted first to the comparison and naming layer directly consuming `LRA.Carrier`. The purpose is to determine whether the missing Carrier facts already exist there and whether their present ownership is mathematically and architecturally appropriate.
+Continue within `LRA.Cardinality`, but only far enough to locate the standard examples and countability consequences (`Nat`, products, `Int`, `Rat`, `Real`) before deciding whether they are genuinely absent. Do not yet broaden into topology or measure-theory-facing material.
