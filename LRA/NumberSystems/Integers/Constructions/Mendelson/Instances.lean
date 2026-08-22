@@ -1,60 +1,67 @@
 -- LRA/NumberSystems/Integers/Constructions/Mendelson/Instances.lean
--- Registration into the system's interface.
+-- Registration into the system's interfaces.
 
 import LRA.NumberSystems.Integers.Constructions.Mendelson.Behavior
+import LRA.NumberSystems.Integers.Definition
 import LRA.NumberSystems.PeanoSystem.Definition
-import LRA.VolumeII.NumberSystems.Models
 
 namespace LRA.NumberSystems.Integers.Mendelson
 
-/--
-**[Theorem — positive_classes_recover_natural_number_model]**
-
-The positive classes recover a model of the generic `PeanoSystem`
-interface -- this is Mendelson's own realization obligation (§1.6.2), not a
-comparison against another integer construction.
-
-*Proof status:* proof pending
+/-- The positive classes recover a model of the generic `PeanoSystem`
+interface.
 
 Logical form:
 
 ```lean
-theorem positive_classes_recover_natural_number_model
-    (positive_data : PositiveNaturalPairData) :
+theorem PositiveClassesRecoverNaturalNumberModel
+    (positiveData : PositiveNaturalPairData) :
     ∃ (Element : Type) (SetObject : Type)
       (_ : Membership Element SetObject)
       (_ : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject),
       Nonempty Element
 ```
 -/
-theorem positive_classes_recover_natural_number_model
-    (positive_data : PositiveNaturalPairData) :
+theorem PositiveClassesRecoverNaturalNumberModel
+    (positiveData : PositiveNaturalPairData) :
     ∃ (Element : Type) (SetObject : Type)
       (_ : Membership Element SetObject)
       (_ : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject),
       Nonempty Element := by
   sorry
 
-/--
-**[Theorem — mendelson_integers_form_ordered_ring]**
-
-The quotient realizes the generic ring-and-order `DiscretelyOrderedIntegralDomainModel` interface.
-
-*Proof status:* proof pending
+/-- The Mendelson quotient realizes the generic discretely ordered
+integral-domain interface.
 
 Logical form:
 
 ```lean
-theorem mendelson_integers_form_ordered_ring
-    (positive_data : PositiveNaturalPairData) :
-    ∃ integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel,
-      integer_model.signature.carrier = Carrier positive_data
+theorem MendelsonIntegersFormDiscretelyOrderedIntegralDomain
+    (positiveData : PositiveNaturalPairData) :
+    ∃ model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel,
+      model.Carrier = Carrier positiveData
 ```
 -/
-theorem mendelson_integers_form_ordered_ring
-    (positive_data : PositiveNaturalPairData) :
-    ∃ integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel,
-      integer_model.signature.carrier = Carrier positive_data := by
+theorem MendelsonIntegersFormDiscretelyOrderedIntegralDomain
+    (positiveData : PositiveNaturalPairData) :
+    ∃ model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel,
+      model.Carrier = Carrier positiveData := by
+  sorry
+
+/-- The Mendelson construction realizes the actual integer number system.
+
+Logical form:
+
+```lean
+theorem MendelsonRealizesIntegerNumberSystem
+    (positiveData : PositiveNaturalPairData) :
+    ∃ integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem,
+      integerSystem.Model.Carrier = Carrier positiveData
+```
+-/
+theorem MendelsonRealizesIntegerNumberSystem
+    (positiveData : PositiveNaturalPairData) :
+    ∃ integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem,
+      integerSystem.Model.Carrier = Carrier positiveData := by
   sorry
 
 end LRA.NumberSystems.Integers.Mendelson
