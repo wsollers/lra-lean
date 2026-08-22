@@ -182,7 +182,7 @@
       "implement_task": "main-thread",
       "verification_result": "approved",
       "gate_result": "passed",
-      "commit_sha": null,
+      "commit_sha": "de55fb5a",
       "pushed": false,
       "notes": [
         "2026-08-22: coordinator audited the active integration router and confirmed live placeholder semantics for `PartitionMesh`, `LowerDarbouxSum`, `UpperDarbouxSum`, `PointOscillation`, and `TotalVariation`",
@@ -195,7 +195,8 @@
         "2026-08-22: [LRA/Analysis/Integration/RiemannStieltjes/Basic.lean] now defines `TotalVariation` as `sSup (VariationSums α a b)` and ties step-integrator jumps to the actual jump relation of the integrator",
         "2026-08-22: [LRA/Analysis/Integration/HenstockKurzweil/Basic.lean] and [LRA/Analysis/Integration/McShaneIntegral/Basic.lean] no longer expose the unsupported HK-only witness or false McShane/Lebesgue equivalence theorem surfaces",
         "2026-08-22: `python scripts/validate_structure.py --path LRA/Analysis/Integration` passed",
-        "2026-08-22: `lake build LRA.Analysis.Integration` passed"
+        "2026-08-22: `lake build LRA.Analysis.Integration` passed",
+        "2026-08-22: implementation committed as `de55fb5a` (`Repair integration placeholders and close p0-06`) and queued for push on `origin/main`"
       ]
     },
     {
