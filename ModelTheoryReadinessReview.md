@@ -62,7 +62,7 @@ An `ElementaryEmbedding` concept is not currently present in the reviewed model 
 
 # Missing first-order model-theory middle layer
 
-No canonical project-facing layer was located for:
+Repository-wide searches did not locate canonical project-facing definitions/theorems for:
 
 - substructures;
 - generated substructures;
@@ -73,6 +73,8 @@ No canonical project-facing layer was located for:
 - types / realization of types;
 - Tarski-Vaught test.
 
+The `LRA/Logic/Model` tree currently stops, in substance, at model comparison/isomorphism/reduct/expansion plus the separate monadic-Henkin model layer.
+
 These are natural next definitions before Löwenheim-Skolem and more advanced classification/model-theory material.
 
 **Severity: P1/P2 curriculum gap, not a correctness defect.**
@@ -81,13 +83,17 @@ These are natural next definitions before Löwenheim-Skolem and more advanced cl
 
 # Missing metatheorems
 
-No implemented project-facing theorem surface was located for:
+Repository-wide searches did not locate implemented project-facing theorem surfaces for:
 
 - soundness of a first-order proof calculus;
 - completeness theorem;
-- compactness theorem;
+- model-theoretic compactness theorem;
 - upward/downward Löwenheim-Skolem;
 - preservation theorems connecting embeddings/isomorphisms to formula satisfaction.
+
+Occurrences of the word `Compactness` currently found in the repo are analysis/topology material or explanatory comments, not first-order model-theoretic compactness.
+
+The generated `LRA/Logic/ProofsToDo.md` reports the existing Logic theorem inventory as complete, which reinforces that these metatheorems are not merely unfinished `sorry` entries: they have not yet been introduced into the theorem surface.
 
 The Takeuti sequent calculus is currently rule-syntax/scaffold level and has a quantifier-capture defect that must be repaired before soundness work.
 
@@ -118,6 +124,8 @@ first-order syntax / substitution
 
 Substructures / elementary embeddings can be introduced before completeness if desired, but completeness/compactness should be available before the major model-theoretic existence theorems that depend on them.
 
+A particularly useful intermediate target is a propositional soundness/completeness development first: it exercises the proof/semantic architecture without first-order binding complications.
+
 ---
 
 # Henkin versus full second-order layer
@@ -128,6 +136,8 @@ The project has correctly introduced a separate Henkin model notion, but two rep
 2. full second-order models must be distinguished explicitly from arbitrary Henkin models.
 
 Only the full/adequate second-order version should support the familiar categoricity theorem for second-order Peano systems.
+
+The monadic second-order syntax subtree currently contains only the formula datatype. No dedicated free-set-variable, set-variable substitution, closed-second-order-sentence, or alpha-renaming infrastructure was located. These are P1 readiness additions for a mature open-formula Henkin semantics.
 
 ---
 
@@ -151,6 +161,8 @@ Logic.SecondOrderMonadic
 
 For real-number construction comparisons, once concrete carriers are packaged as actual `RealModel.ofCarrier` values, the generic logical `ModelIsomorphism` should be used rather than maintaining detached construction-specific comparison models.
 
+For Peano and IntegerStructure categoricity, the logical model layer should expose exactly whether induction is represented-subset, Henkin, comprehension-adequate, or full-second-order.
+
 ---
 
 # Choice audit
@@ -169,11 +181,12 @@ Later model-theoretic results may use Choice/Zorn depending on proof strategy an
 | first-order satisfaction | **PASS** |
 | model embeddings/isomorphisms | **PASS DEFINITIONS** |
 | embedding all-formula preservation | **MUST NOT BE CLAIMED** |
-| elementary embeddings/substructures | **MISSING** |
-| soundness/completeness | **MISSING / PROOF-SYSTEM BLOCKED FIRST** |
-| compactness | **MISSING** |
-| Löwenheim-Skolem | **MISSING** |
+| elementary embeddings/substructures | **CONFIRMED MISSING** |
+| soundness/completeness | **CONFIRMED MISSING / PROOF-SYSTEM BLOCKED FIRST** |
+| model-theoretic compactness | **CONFIRMED MISSING** |
+| Löwenheim-Skolem / Tarski-Vaught / types | **CONFIRMED MISSING** |
 | Henkin monadic second order | **GOOD CORE, OPEN-VALUATION + FULLNESS REPAIRS NEEDED** |
+| second-order variable bookkeeping | **P1 INCOMPLETE** |
 | advanced model-theory readiness | **FOUNDATION READY; MIDDLE/METATHEORY LAYER NOT YET BUILT** |
 
 ---
@@ -188,4 +201,5 @@ Later model-theoretic results may use Choice/Zorn depending on proof strategy an
 6. repair and prove soundness of the proof calculus;
 7. completeness;
 8. compactness;
-9. Tarski-Vaught and Löwenheim-Skolem.
+9. Tarski-Vaught and Löwenheim-Skolem;
+10. types / realization once the elementary-substructure layer is stable.
