@@ -56,29 +56,19 @@ The reviewed limit theorems are all standard and correct:
 - absolute-value squeeze theorem;
 - every convergent real sequence is bounded.
 
-This is an appropriate core package before topology/measure theory.
-
 **Verdict: PASS.**
 
 ## Monotonicity definitions
 
-The project defines increasing/decreasing sequences by adjacent inequalities:
+The project defines increasing/decreasing sequences by adjacent inequalities `x_n ≤ x_{n+1}` and the corresponding variants.
 
-```text
-x_n ≤ x_{n+1}
-```
-
-and similarly for decreasing/strict variants.
-
-Over `Nat` with the transitive real order this is equivalent to the usual global form `m ≤ n → x_m ≤ x_n`. The adjacent-step formulation is pedagogically natural and proof-friendly.
-
-`IsMonotoneSeq` means increasing or decreasing; eventual variants are similarly standard.
+Over `Nat` with transitivity of the real order this is equivalent to the global formulation `m ≤ n → x_m ≤ x_n`.
 
 **Verdict: CORRECT.**
 
 ### Recommended characterization theorem
 
-For note-taking and interoperability, it would be useful to state explicitly the equivalence between the adjacent-step predicate and Mathlib's global `Monotone`/`Antitone` formulation. This avoids later ambiguity about what "monotone" means.
+Expose explicitly the equivalence between the adjacent-step predicate and Mathlib's global `Monotone`/`Antitone` formulation.
 
 **Severity: P2 API/LEARNING IMPROVEMENT.**
 
@@ -92,76 +82,39 @@ The real-sequence statements are correct:
 - eventual monotonicity plus the relevant bound still implies convergence;
 - increasing unbounded sequences tend to `+∞` and decreasing unbounded sequences to `-∞`.
 
-These are key pre-measure-theory results and are appropriately represented.
-
 **Verdict: PASS.**
 
 ## Subsequences
 
-The definitions are standard:
-
-- a subsequence is selected by a strictly increasing index map `σ : Nat → Nat`;
-- a subsequential limit is the limit of such a selected subsequence;
-- "has a convergent subsequence" means existence of a subsequential limit.
-
-The reviewed theorem surface is strong and correct:
-
-- `k ≤ σ(k)` for strictly increasing index maps;
-- subsequences preserve limits;
-- a convergent sequence has no different subsequential limit;
-- two distinct subsequential limits imply divergence;
-- boundedness and monotonicity pass to subsequences;
-- subsequence-of-subsequence;
-- eventual properties pass to subsequences;
-- a property occurring arbitrarily far out yields a subsequence satisfying it everywhere;
-- subsequential limits respect global bounds;
-- Monotone Subsequence Theorem and Bolzano-Weierstrass are present later in the same file.
+The definitions and the reviewed theorem surface are standard and correct: increasing index maps, preservation of limits, uniqueness of subsequential limits for convergent sequences, two distinct subsequential limits forcing divergence, preservation of bounds/monotonicity, subsequence-of-subsequence, eventual/frequent properties, Monotone Subsequence Theorem, and Bolzano-Weierstrass.
 
 **Verdict: PASS.**
 
 ### Choice audit
 
-`FrequentPropertiesYieldSubsequences` has hypotheses of the form
-
-```text
-∀ N, ∃ n ≥ N, P n.
-```
-
-Although it constructs an infinite sequence of witnesses, this does not need to be classified as a genuine use of the Axiom of Choice: the witnesses are natural numbers, so one can recursively choose the least qualifying index at each stage using the well-ordering of `Nat` (with classical logic if `P` is not decidable).
+`FrequentPropertiesYieldSubsequences` does not require classification as genuine AC. Witnesses are natural-number indices and can be chosen recursively as least qualifying indices using the well-order of `Nat`.
 
 **Choice classification: NO GENUINE AC REQUIRED.**
 
 ## Cauchy sequences
 
-`IsCauchy` is the standard epsilon-tail definition:
-
-```text
-∀ ε > 0, ∃ N, ∀ m,n ≥ N, |x_m-x_n| < ε.
-```
-
-The reviewed theorem family is mathematically correct and particularly complete:
+`IsCauchy` is the standard epsilon-tail definition. The theorem family is strong and correct:
 
 - convergent ⇒ Cauchy;
 - Cauchy ⇒ bounded;
-- Cauchy + convergent subsequence ⇒ full convergence;
-- for real sequences, convergence iff Cauchy;
-- equivalent tail-diameter formulations;
-- Cauchy ⇒ successive differences tend to zero;
-- scalar multiples, sums, differences, linear combinations, products, reciprocal (bounded away from zero), quotient, and absolute value preserve Cauchy-ness.
+- Cauchy + convergent subsequence ⇒ convergent;
+- real convergence iff Cauchy;
+- equivalent tail formulations;
+- Cauchy ⇒ successive differences vanish;
+- scalar/sum/difference/linear-combination/product/reciprocal/quotient/absolute-value closure.
 
-The file correctly treats vanishing successive differences as necessary but **not sufficient** for being Cauchy.
+The file correctly emphasizes that vanishing successive differences are not sufficient for Cauchy-ness.
 
 **Verdict: PASS.**
 
 ## Completeness placement
 
-`CauchyCriterionRealSequences` is correctly specialized to `RealSequence`. This avoids the over-general uniform-space defect found in `AnalysisCompletenessReview.md`: here the equivalence is about the usual real absolute-value metric encoded directly by epsilon inequalities.
-
-This is the right pedagogical statement:
-
-> real sequence converges iff it is Cauchy.
-
-It should remain clearly distinct from generic metric-space completeness.
+`CauchyCriterionRealSequences` is correctly specialized to real sequences and therefore avoids the arbitrary-uniformity defect recorded in `AnalysisCompletenessReview.md`.
 
 **Verdict: PASS.**
 
@@ -169,70 +122,239 @@ It should remain clearly distinct from generic metric-space completeness.
 
 # Important draft/API issue
 
-The reviewed sequence modules state at their heads that they are drafts not imported by the active Volume III root. Thus the mathematics is substantially present, but the repository cannot yet be called "ready for note-taking from the canonical API" on the basis of these files alone.
+These sequence modules are drafts and are not imported by the active Volume III root. The mathematics is substantially present, but a promotion/consolidation pass is still required before this is the canonical proof/note-taking API.
 
-Before promotion, there should be a deliberate consolidation pass so that:
+Before promotion:
 
-1. the epsilon-N vocabulary is the canonical project-facing real-sequence vocabulary;
-2. bridges to `Filter.Tendsto`, Mathlib `Monotone`, `CauchySeq`, etc. are explicit rather than duplicated parallel definitions;
-3. the sequence modules are imported by the intended Analysis/Volume III aggregate;
-4. stale source comments referring to an eventually different "real project" location are removed.
+1. make the epsilon-N vocabulary canonical for real sequences;
+2. add explicit bridges to `Filter.Tendsto`, Mathlib `Monotone`, `CauchySeq`, etc.;
+3. import the final modules from the intended Analysis/Volume III aggregate;
+4. remove stale comments referring to an eventual different "real project" location.
 
-**Severity: P1 INTEGRATION/PROMOTION, not mathematical correctness.**
+**Severity: P1 INTEGRATION/PROMOTION.**
+
+---
+
+# Review 2 — Divergence, cluster values, limsup/liminf, examples
+
+## Files reviewed
+
+- `LRA/Analysis/Sequences/Divergence.lean`
+- `LRA/Analysis/Sequences/ClusterValues.lean`
+- `LRA/Analysis/Sequences/LiminfLimsup.lean`
+- `LRA/Analysis/Sequences/ExamplesCounterexamples.lean`
+
+## Divergence vocabulary
+
+The distinctions are well represented:
+
+- `IsDivergent x := ¬ ∃ L, ConvergesTo x L`;
+- divergence to `+∞`;
+- divergence to `-∞`;
+- oscillatory divergence = divergent but neither one-directional escape.
+
+This is a useful three-way distinction for analysis students. The theorem surface is also correct:
+
+- divergence to either infinity implies ordinary real divergence;
+- two distinct subsequential limits imply divergence;
+- unbounded above/below sequences admit subsequences tending to `+∞`/`-∞`;
+- a bounded divergent real sequence has two distinct subsequential limits.
+
+**Verdict: PASS.**
+
+## Cluster values
+
+The epsilon/frequent-neighborhood definition
+
+```text
+∀ ε > 0, ∀ N, ∃ n ≥ N, |x_n-L| < ε
+```
+
+is a standard sequence cluster-point definition.
+
+The theorem equating it with existence of a subsequence converging to `L` is correct for real sequences.
+
+Bounded sequences having a cluster value and limsup/liminf being extremal cluster values are also standard consequences of Bolzano-Weierstrass.
+
+**Verdict: PASS.**
+
+### Naming issue in source notes
+
+The Lean draft deliberately uses distinct names `IsClusterValueOf` and `IsSubsequentialLimit`, but the source-note predicate readings apparently use the same name for both notions, turning the equivalence statement into a tautological-looking predicate reading. The Lean naming is better and should become the canonical terminology.
+
+**Severity: P2 NOTE-AUTHORING CLEANUP.**
+
+---
+
+# P0/P1 — limsup/liminf definitions are unsafe outside bounded sequences
+
+Current definitions are total:
+
+```lean
+TailSupSeq x n := sSup (x '' {k | n ≤ k})
+TailInfSeq x n := sInf (x '' {k | n ≤ k})
+LimsupSeq x L := ConvergesTo (TailSupSeq x) L
+LiminfSeq x L := ConvergesTo (TailInfSeq x) L
+```
+
+No boundedness hypothesis is part of these definitions.
+
+Mathematically, a real-valued tail supremum exists only when the tail is bounded above, and a real-valued tail infimum only when bounded below. Lean's `sSup`/`sInf` operations are syntactically total, but their meaningful supremum/infimum laws require the relevant boundedness/nonemptiness hypotheses. An arbitrary value returned outside those hypotheses is not a mathematical real supremum.
+
+Thus for an unbounded real sequence, `TailSupSeq` can carry implementation/default behavior rather than the intended mathematical `sup` of the tail. `LimsupSeq` could therefore become an accidental proposition about those totalized values instead of the standard limsup.
+
+## Recommended correction
+
+Choose one of two mathematically clean designs:
+
+### Option A — bounded real sequences
+
+Make boundedness part of the relation:
+
+```text
+LimsupSeq x L := BoundedSeq x ∧ ...
+LiminfSeq x L := BoundedSeq x ∧ ...
+```
+
+or parameterize tail-sup/tail-inf constructions by explicit proof that the relevant bounds exist.
+
+This is sufficient for the current theorem family, whose important results already assume `BoundedSeq`.
+
+### Option B — extended real limsup/liminf
+
+Use `EReal`/extended reals for limsup and liminf. This gives the most general standard theory and handles `+∞` and `-∞` correctly for unbounded sequences.
+
+For preparation for measure theory, Option B has a significant advantage: extended-real liminf/limsup is the natural language of Fatou's lemma and measurable nonnegative functions.
+
+**Severity: P0 if these definitions are promoted as the general real-sequence limsup/liminf API; P1 while still quarantined as draft material.**
+
+## Bounded-sequence limsup/liminf theorem surface
+
+Under the explicit `BoundedSeq` hypotheses used by the main theorems, the mathematical statements are correct:
+
+- tail suprema decrease;
+- tail infima increase;
+- `liminf ≤ limsup`;
+- convergence to `L` iff both liminf and limsup equal `L`;
+- limsup is the largest subsequential limit and liminf the smallest;
+- a strict liminf/limsup gap is equivalent to at least two distinct subsequential limits;
+- eventual order compares limsup and liminf;
+- corresponding squeeze results.
+
+**Verdict: PASS ON THE BOUNDED DOMAIN.**
+
+### Useful missing identities
+
+Before measure theory, it would be useful to add at least:
+
+- `limsup(-x_n) = -liminf(x_n)` and the dual identity;
+- positive-scalar homogeneity;
+- for bounded sequences, standard subadditivity/superadditivity inequalities where appropriate.
+
+The sign-flip identity is particularly valuable because it systematically dualizes limsup and liminf arguments.
+
+**Severity: P2 ADDITION.**
+
+---
+
+# Examples and counterexamples
+
+The example file is generally very good and includes the right basic witnesses:
+
+- constant sequence;
+- reciprocal null sequence;
+- convergent non-monotone alternating sequence;
+- bounded divergent `(-1)^n` with two subsequential limits;
+- geometric sequences in the main regimes;
+- bounded does not imply convergent;
+- harmonic partial sums: successive differences tend to zero while the sequence is unbounded/non-Cauchy.
+
+These examples directly support the failure modes students should know.
+
+**Verdict: STRONG.**
+
+### Minor statement-quality issue: geometric case `r = 1`
+
+The `r=1` clause in `ExampleGeometricSequence` is written as
+
+```lean
+ConvergesTo (fun _ : ℕ => (1 : ℝ) ^ (0 : ℕ)) 1
+```
+
+which is the constant sequence `1`, so the theorem is true. But it does not literally display the geometric sequence `n ↦ 1^n` that the surrounding theorem is meant to classify.
+
+Prefer:
+
+```text
+ConvergesTo (fun n : Nat => (1 : Real)^n) 1.
+```
+
+The two sequences are extensionally equal, so this is not a mathematical error, only a statement/expository mismatch.
+
+**Severity: P3 MINOR CLEANUP.**
+
+---
+
+# Updated pre-measure-theory assessment
+
+The sequence curriculum is already very strong. It contains essentially all of the standard real-sequence material one would want before measure theory:
+
+- epsilon-N convergence;
+- uniqueness/boundedness/order/squeeze;
+- monotone convergence;
+- subsequences and Bolzano-Weierstrass;
+- Cauchy criterion for `R`;
+- divergence modes;
+- cluster values;
+- limsup/liminf;
+- high-quality counterexamples.
+
+The most important mathematical improvement is to make limsup/liminf safe for unbounded sequences—preferably with extended reals if the destination is measure theory.
 
 ---
 
 # Missing/valuable additions before measure theory
 
-The existing coverage is already strong. A few standard additions would improve the learning surface:
-
-1. **Subsequence principle:**
-   `x_n → L` iff every subsequence has a further subsequence converging to `L`.
-   This is a very useful compactness-style convergence test.
-
-2. **Explicit adjacent/global monotonicity equivalences** with Mathlib `Monotone`/`Antitone`.
-
-3. **Cauchy counterexample outside `R`:** a rational Cauchy sequence converging to `√2` in `R` but not in `Q`, to connect sequence completeness directly with the rational LUB gap already present in the completeness subject.
-
-4. **Clear separation among:**
-   - ordinary divergence (`not convergent`),
-   - divergence to `+∞`/`-∞`,
-   - oscillatory divergence.
-   The divergence file will be reviewed next to determine how much of this is already present.
-
-5. **Limsup/liminf and cluster-value relationships**, if the existing dedicated file is mathematically sound; this is useful before measure theory, especially for Fatou-style intuition later, though not strictly required for a first measure course.
+1. **Subsequence principle:** `x_n → L` iff every subsequence has a further subsequence converging to `L`.
+2. **Adjacent/global monotonicity equivalences** with Mathlib `Monotone`/`Antitone`.
+3. **A rational Cauchy incompleteness example** approximating `√2`.
+4. **Extended-real limsup/liminf**, or explicit bounded-domain restrictions.
+5. **Limsup/liminf sign-flip duality**, with basic algebraic inequalities if desired.
 
 ---
 
 # Choice audit
 
-No genuine Axiom-of-Choice dependency was identified in this chunk.
+No genuine Axiom-of-Choice dependency was identified in the reviewed sequence statements.
 
 ---
 
-# Final verdict for Review 1
+# Final verdict through Review 2
 
 | Dimension | Verdict |
 |---|---|
-| Sequence/convergence definitions | **PASS** |
-| Limit theorem surface | **PASS** |
-| Monotonicity and MCT | **PASS** |
-| Subsequences | **PASS** |
-| Real Cauchy criterion | **PASS** |
-| Cauchy algebra | **PASS** |
-| Choice use | **NONE IDENTIFIED** |
-| Mathematical preparation for measure theory | **STRONG** |
+| Core convergence | **PASS** |
+| Monotone convergence | **PASS** |
+| Subsequences/Bolzano-Weierstrass | **PASS** |
+| Cauchy real sequences | **PASS** |
+| Divergence taxonomy | **PASS** |
+| Cluster values | **PASS** |
+| Limsup/liminf bounded theory | **PASS** |
+| General limsup/liminf definitions | **NEEDS DOMAIN/EXTENDED-REAL FIX** |
+| Examples/counterexamples | **STRONG** |
+| Mathematical preparation for measure theory | **VERY STRONG** |
 | Canonical API readiness | **NOT YET — DRAFT/PROMOTION WORK REMAINS** |
 
 ---
 
 # Next review chunk
 
-Review:
+Move to the topology/metric-space boundary that sequence theory will depend on before measure theory. First review only:
 
-- `Divergence.lean`;
-- `ClusterValues.lean`;
-- `LiminfLimsup.lean`;
-- `ExamplesCounterexamples.lean`.
+- metric/distance definitions;
+- open balls and neighborhoods;
+- topology/open/closed definitions;
+- bridges from metric to topology;
+- completeness terminology.
 
-The focus will be on distinctions among divergence modes, correctness of liminf/limsup definitions and inequalities, and whether the standard cluster-value/limsup/liminf relationships needed before measure theory are present.
+The primary goal will be to ensure the project clearly distinguishes order completeness, metric completeness, compactness, and sequential compactness.
