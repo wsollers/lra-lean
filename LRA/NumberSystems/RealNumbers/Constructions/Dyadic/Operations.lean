@@ -7,16 +7,18 @@ namespace LRA.NumberSystems.RealNumbers.Dyadic
 
 variable (dyadicData : RationalDyadicApproximationData)
 
-/-- Rational partial sums of a binary fractional expansion. -/
+/-- Rational partial sums of a binary fractional expansion.
+
+`FractionalPartialSum digits n` is the sum of the first `n` binary fractional
+terms, with digit `k` weighted by `2^{-(k+1)}`.
+-/
 def FractionalPartialSum
-    (digits : FractionalDigits)
-    (bound : Nat) : Rational dyadicData :=
-  dyadicData.finite_sum
-    (fun index =>
-      dyadicData.rational_model.signature.multiply
-        (dyadicData.digit_to_rational (digits index))
-        (dyadicData.rational_model.signature.inv
-          (dyadicData.power_of_two (dyadicData.exponent_of_index index))))
-    bound
+    (digits : FractionalDigits) :
+    Nat → Rational dyadicData
+  | 0 => 0
+  | bound + 1 =>
+      FractionalPartialSum digits bound +
+        DigitValue dyadicData.RationalSystem (digits bound) *
+          (PowerOfTwo dyadicData.RationalSystem (bound + 1))⁻¹
 
 end LRA.NumberSystems.RealNumbers.Dyadic
