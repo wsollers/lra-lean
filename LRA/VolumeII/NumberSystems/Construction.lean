@@ -1,9 +1,14 @@
 -- LRA/VolumeII/NumberSystems/Construction.lean
 -- Construction selectors and coherent number-system tower.
 
+import LRA.NumberSystems.Integers.Definition
+import LRA.NumberSystems.RationalNumbers.Definition
 import LRA.VolumeII.NumberSystems.Models
 
 namespace LRA.NumberSystems.Models
+
+open LRA.NumberSystems.Integers
+open LRA.NumberSystems.RationalNumbers
 
 /-!
 Volume II label: configurable-number-system-construction
@@ -12,54 +17,19 @@ Blueprint label: configurable-number-system-construction
 Verification status: statement-accepted-proof-pending
 -/
 
-/--
-**[Definition — Integer Construction Choice]**
-
-Logical form:
-
-```lean
-inductive IntegerConstruction where
-  | canonical
-  | tao
-  | mendelson
-```
--/
+/-- Supported integer construction choices. -/
 inductive IntegerConstruction where
   | canonical
   | tao
   | mendelson
 
-/--
-**[Definition — Rational Construction Choice]**
-
-Logical form:
-
-```lean
-inductive RationalConstruction where
-  | canonical
-  | reduced
-  | fractionField
-```
--/
+/-- Supported rational construction choices. -/
 inductive RationalConstruction where
   | canonical
   | reduced
   | fractionField
 
-/--
-**[Definition — Real Construction Choice]**
-
-Logical form:
-
-```lean
-inductive RealConstruction where
-  | dedekind
-  | cauchy
-  | cantor
-  | intervalQuotient
-  | dyadic
-```
--/
+/-- Supported real construction choices. -/
 inductive RealConstruction where
   | dedekind
   | cauchy
@@ -67,70 +37,63 @@ inductive RealConstruction where
   | intervalQuotient
   | dyadic
 
-/--
-**[Definition — Number-System Construction Configuration]**
+/-- A configurable choice of constructions for the Z/Q/R tower.
 
 Logical form:
 
 ```lean
 structure NumberSystemConstruction where
-  integer : IntegerConstruction
-  rational : RationalConstruction
-  real : RealConstruction
+  Integer : IntegerConstruction
+  Rational : RationalConstruction
+  Real : RealConstruction
 ```
 -/
 structure NumberSystemConstruction where
-  integer : IntegerConstruction
-  rational : RationalConstruction
-  real : RealConstruction
+  Integer : IntegerConstruction
+  Rational : RationalConstruction
+  Real : RealConstruction
 
-/--
-**[Definition — Canonical Number-System Construction]**
-
-The canonical tower uses the canonical integer quotient, the canonical fraction
+/-- The canonical tower uses the canonical integer quotient, canonical fraction
 quotient, and Dedekind cuts.
 
 Logical form:
 
 ```lean
 def CanonicalConstruction : NumberSystemConstruction where
-  integer := .canonical
-  rational := .canonical
-  real := .dedekind
+  Integer := .canonical
+  Rational := .canonical
+  Real := .dedekind
 ```
 -/
 def CanonicalConstruction : NumberSystemConstruction where
-  integer := .canonical
-  rational := .canonical
-  real := .dedekind
+  Integer := .canonical
+  Rational := .canonical
+  Real := .dedekind
 
-/--
-**[Definition — Number-System Tower]**
+/-- A coherent number-system tower stores actual integer and rational number
+systems, together with a real extension of the selected rational field.
 
-A tower stores an integer model, a rational extension of it, and a real
-extension of the selected densely ordered field model.
+The equality field records that the rational construction was built from the
+same integer system selected by the integer stage.
 
 Logical form:
 
 ```lean
 structure NumberSystemTower where
-  DiscretelyOrderedIntegralDomainModel : DiscretelyOrderedIntegralDomainModel
-  RationalExtension : RationalExtension DiscretelyOrderedIntegralDomainModel
-  RealExtension :
-    RealExtension RationalExtension.DenselyOrderedFieldModel
+  IntegerSystem : IntegerNumberSystem
+  RationalSystem : RationalNumberSystem
+  RationalUsesIntegerSystem : RationalSystem.IntegerSystem = IntegerSystem
+  RealExtension : RealExtension RationalSystem.FieldModel
 ```
 -/
 structure NumberSystemTower where
-  DiscretelyOrderedIntegralDomainModel : DiscretelyOrderedIntegralDomainModel
-  RationalExtension : RationalExtension DiscretelyOrderedIntegralDomainModel
-  RealExtension :
-    RealExtension RationalExtension.DenselyOrderedFieldModel
+  IntegerSystem : IntegerNumberSystem
+  RationalSystem : RationalNumberSystem
+  RationalUsesIntegerSystem : RationalSystem.IntegerSystem = IntegerSystem
+  RealExtension : RealExtension RationalSystem.FieldModel
 
-/--
-**[Theorem — Every Supported Construction Configuration Builds a Tower]**
-
-The statement is intentionally proof-pending. Each branch is discharged by the
-corresponding concrete construction module.
+/-- Every supported construction configuration builds a coherent number-system
+tower.
 
 Logical form:
 
@@ -145,66 +108,23 @@ theorem NumberSystemTowerExists
     Nonempty NumberSystemTower := by
   sorry
 
-/--
-**[Definition — Build a Number-System Tower]**
-
-This noncomputable selector returns the bundled tower for a configuration.
-Different branches may have different carrier types hidden inside the model
-bundles.
-
-Logical form:
-
-```lean
+/-- Build the bundled tower for a construction configuration. -/
 noncomputable def BuildNumberSystemTower
-    (construction : NumberSystemConstruction) :
-    NumberSystemTower :=
-  Classical.choice (NumberSystemTowerExists construction)
-```
--/
-noncomputable def BuildNumberSystemTower
-    (construction : NumberSystemConstruction) :
-    NumberSystemTower :=
+    (construction : NumberSystemConstruction) : NumberSystemTower :=
   Classical.choice (NumberSystemTowerExists construction)
 
-/--
-**[Definition — Default Number-System Tower]**
-
-Logical form:
-
-```lean
-noncomputable def DefaultTower : NumberSystemTower :=
-  BuildNumberSystemTower CanonicalConstruction
-```
--/
+/-- The default number-system tower. -/
 noncomputable def DefaultTower : NumberSystemTower :=
   BuildNumberSystemTower CanonicalConstruction
 
-/--
-**[Proposition — The Default Real Construction Is Dedekind]**
-
-Logical form:
-
-```lean
+/-- The default real construction is Dedekind. -/
 theorem DefaultRealConstructionIsDedekind :
-    CanonicalConstruction.real = RealConstruction.dedekind
-```
--/
-theorem DefaultRealConstructionIsDedekind :
-    CanonicalConstruction.real = RealConstruction.dedekind := by
+    CanonicalConstruction.Real = RealConstruction.dedekind := by
   sorry
 
-/--
-**[Corollary — The Default Tower Uses the Canonical Rational Construction]**
-
-Logical form:
-
-```lean
+/-- The default rational construction is canonical. -/
 theorem DefaultRationalConstructionIsCanonical :
-    CanonicalConstruction.rational = RationalConstruction.canonical
-```
--/
-theorem DefaultRationalConstructionIsCanonical :
-    CanonicalConstruction.rational = RationalConstruction.canonical := by
+    CanonicalConstruction.Rational = RationalConstruction.canonical := by
   sorry
 
 end LRA.NumberSystems.Models
