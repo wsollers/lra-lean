@@ -1,229 +1,91 @@
 -- LRA/NumberSystems/RealNumbers/Constructions/Dyadic/Laws.lean
--- Transported constants, operations, and strict order on `Expansion`,
--- carried across the `binaryRealBijection` from the corresponding Cauchy
--- structure, and the proposition (plus theorem) that the bijection is an
--- ordered-field isomorphism.
+-- Transported constants, operations, and order on binary expansions.
 
 import LRA.NumberSystems.RealNumbers.Constructions.Dyadic.WellDefinedness
 
 namespace LRA.NumberSystems.RealNumbers.Dyadic
 
-variable (dyadic_data : RationalDyadicApproximationData)
+variable (dyadicData : RationalDyadicApproximationData)
 
-/-- Definition 4.1: transported constants and operations.
+/-- Transported additive identity. -/
+noncomputable def Zero : Expansion :=
+  (BinaryRealBijection dyadicData).Inverse dyadicData.cauchy_zero
 
-Mathematical statement (Lean): `noncomputable def zero : Expansion`.
+/-- Transported multiplicative identity. -/
+noncomputable def One : Expansion :=
+  (BinaryRealBijection dyadicData).Inverse dyadicData.cauchy_one
 
+/-- Transported addition. -/
+noncomputable def Addition (first second : Expansion) : Expansion :=
+  (BinaryRealBijection dyadicData).Inverse
+    (dyadicData.cauchy_addition
+      ((BinaryRealBijection dyadicData).Forward first)
+      ((BinaryRealBijection dyadicData).Forward second))
 
-Logical form:
+/-- Transported negation. -/
+noncomputable def Negation (expansion : Expansion) : Expansion :=
+  (BinaryRealBijection dyadicData).Inverse
+    (dyadicData.cauchy_negation
+      ((BinaryRealBijection dyadicData).Forward expansion))
 
-```lean
-noncomputable def zero : Expansion :=
-  (binaryRealBijection dyadic_data).inverse dyadic_data.cauchy_zero
-```
--/
-noncomputable def zero : Expansion :=
-  (binaryRealBijection dyadic_data).inverse dyadic_data.cauchy_zero
+/-- Transported multiplication. -/
+noncomputable def Multiplication (first second : Expansion) : Expansion :=
+  (BinaryRealBijection dyadicData).Inverse
+    (dyadicData.cauchy_multiplication
+      ((BinaryRealBijection dyadicData).Forward first)
+      ((BinaryRealBijection dyadicData).Forward second))
 
-/--
-**[Def — one]**
+/-- Transported inverse. -/
+noncomputable def Inverse (expansion : Expansion) : Expansion :=
+  (BinaryRealBijection dyadicData).Inverse
+    (dyadicData.cauchy_inverse
+      ((BinaryRealBijection dyadicData).Forward expansion))
 
-Mathematical statement (Lean): `noncomputable def one : Expansion`.
+/-- Transported strict order. -/
+def StrictOrder (first second : Expansion) : Prop :=
+  dyadicData.cauchy_strict_order
+    ((BinaryRealBijection dyadicData).Forward first)
+    ((BinaryRealBijection dyadicData).Forward second)
 
-
-Logical form:
-
-```lean
-noncomputable def one : Expansion :=
-  (binaryRealBijection dyadic_data).inverse dyadic_data.cauchy_one
-```
--/
-noncomputable def one : Expansion :=
-  (binaryRealBijection dyadic_data).inverse dyadic_data.cauchy_one
-
-/--
-**[Def — addition]**
-
-Mathematical statement (Lean): `noncomputable def addition (first second : Expansion) : Expansion`.
-
-
-Logical form:
-
-```lean
-noncomputable def addition (first second : Expansion) : Expansion :=
-  (binaryRealBijection dyadic_data).inverse
-    (dyadic_data.cauchy_addition
-      ((binaryRealBijection dyadic_data).forward first)
-      ((binaryRealBijection dyadic_data).forward second))
-```
--/
-noncomputable def addition (first second : Expansion) : Expansion :=
-  (binaryRealBijection dyadic_data).inverse
-    (dyadic_data.cauchy_addition
-      ((binaryRealBijection dyadic_data).forward first)
-      ((binaryRealBijection dyadic_data).forward second))
-
-/--
-**[Def — negation]**
-
-Mathematical statement (Lean): `noncomputable def negation (expansion : Expansion) : Expansion`.
-
-
-Logical form:
-
-```lean
-noncomputable def negation (expansion : Expansion) : Expansion :=
-  (binaryRealBijection dyadic_data).inverse
-    (dyadic_data.cauchy_negation
-      ((binaryRealBijection dyadic_data).forward expansion))
-```
--/
-noncomputable def negation (expansion : Expansion) : Expansion :=
-  (binaryRealBijection dyadic_data).inverse
-    (dyadic_data.cauchy_negation
-      ((binaryRealBijection dyadic_data).forward expansion))
-
-/--
-**[Def — multiplication]**
-
-Mathematical statement (Lean): `noncomputable def multiplication (first second : Expansion) : Expansion`.
-
-
-Logical form:
-
-```lean
-noncomputable def multiplication (first second : Expansion) : Expansion :=
-  (binaryRealBijection dyadic_data).inverse
-    (dyadic_data.cauchy_multiplication
-      ((binaryRealBijection dyadic_data).forward first)
-      ((binaryRealBijection dyadic_data).forward second))
-```
--/
-noncomputable def multiplication (first second : Expansion) : Expansion :=
-  (binaryRealBijection dyadic_data).inverse
-    (dyadic_data.cauchy_multiplication
-      ((binaryRealBijection dyadic_data).forward first)
-      ((binaryRealBijection dyadic_data).forward second))
-
-/--
-**[Def — inverse]**
-
-Mathematical statement (Lean): `noncomputable def inverse (expansion : Expansion) : Expansion`.
-
-
-Logical form:
-
-```lean
-noncomputable def inverse (expansion : Expansion) : Expansion :=
-  (binaryRealBijection dyadic_data).inverse
-    (dyadic_data.cauchy_inverse
-      ((binaryRealBijection dyadic_data).forward expansion))
-```
--/
-noncomputable def inverse (expansion : Expansion) : Expansion :=
-  (binaryRealBijection dyadic_data).inverse
-    (dyadic_data.cauchy_inverse
-      ((binaryRealBijection dyadic_data).forward expansion))
-
-
-/-- Definition 4.1: transported strict order.
-
-Mathematical statement (Lean): `def strict_order (first second : Expansion) : Prop`.
-
-
-Logical form:
-
-```lean
-def strict_order (first second : Expansion) : Prop :=
-  dyadic_data.cauchy_strict_order
-    ((binaryRealBijection dyadic_data).forward first)
-    ((binaryRealBijection dyadic_data).forward second)
-```
--/
-def strict_order (first second : Expansion) : Prop :=
-  dyadic_data.cauchy_strict_order
-    ((binaryRealBijection dyadic_data).forward first)
-    ((binaryRealBijection dyadic_data).forward second)
-
-
-/-- Proposition expressing that V is an ordered-field isomorphism.
-
-Mathematical statement (Lean): `def OrderedFieldIsomorphism : Prop`.
-
-
-Logical form:
-
-```lean
+/-- Proposition expressing that the selected binary/Cauchy-real bijection
+preserves the ordered-field structure. -/
 def OrderedFieldIsomorphism : Prop :=
-  (binaryRealBijection dyadic_data).forward (zero dyadic_data) = dyadic_data.cauchy_zero ∧
-  (binaryRealBijection dyadic_data).forward (one dyadic_data) = dyadic_data.cauchy_one ∧
+  (BinaryRealBijection dyadicData).Forward (Zero dyadicData) =
+      dyadicData.cauchy_zero ∧
+  (BinaryRealBijection dyadicData).Forward (One dyadicData) =
+      dyadicData.cauchy_one ∧
   (∀ first second : Expansion,
-    (binaryRealBijection dyadic_data).forward (addition dyadic_data first second) =
-      dyadic_data.cauchy_addition
-        ((binaryRealBijection dyadic_data).forward first)
-        ((binaryRealBijection dyadic_data).forward second)) ∧
+    (BinaryRealBijection dyadicData).Forward
+        (Addition dyadicData first second) =
+      dyadicData.cauchy_addition
+        ((BinaryRealBijection dyadicData).Forward first)
+        ((BinaryRealBijection dyadicData).Forward second)) ∧
   (∀ expansion : Expansion,
-    (binaryRealBijection dyadic_data).forward (negation dyadic_data expansion) =
-      dyadic_data.cauchy_negation
-        ((binaryRealBijection dyadic_data).forward expansion)) ∧
+    (BinaryRealBijection dyadicData).Forward
+        (Negation dyadicData expansion) =
+      dyadicData.cauchy_negation
+        ((BinaryRealBijection dyadicData).Forward expansion)) ∧
   (∀ first second : Expansion,
-    (binaryRealBijection dyadic_data).forward (multiplication dyadic_data first second) =
-      dyadic_data.cauchy_multiplication
-        ((binaryRealBijection dyadic_data).forward first)
-        ((binaryRealBijection dyadic_data).forward second)) ∧
+    (BinaryRealBijection dyadicData).Forward
+        (Multiplication dyadicData first second) =
+      dyadicData.cauchy_multiplication
+        ((BinaryRealBijection dyadicData).Forward first)
+        ((BinaryRealBijection dyadicData).Forward second)) ∧
   (∀ expansion : Expansion,
-    (binaryRealBijection dyadic_data).forward (inverse dyadic_data expansion) =
-      dyadic_data.cauchy_inverse
-        ((binaryRealBijection dyadic_data).forward expansion)) ∧
+    (BinaryRealBijection dyadicData).Forward
+        (Inverse dyadicData expansion) =
+      dyadicData.cauchy_inverse
+        ((BinaryRealBijection dyadicData).Forward expansion)) ∧
   (∀ first second : Expansion,
-    strict_order dyadic_data first second ↔
-      dyadic_data.cauchy_strict_order
-        ((binaryRealBijection dyadic_data).forward first)
-        ((binaryRealBijection dyadic_data).forward second))
-```
--/
-def OrderedFieldIsomorphism : Prop :=
-  (binaryRealBijection dyadic_data).forward (zero dyadic_data) = dyadic_data.cauchy_zero ∧
-  (binaryRealBijection dyadic_data).forward (one dyadic_data) = dyadic_data.cauchy_one ∧
-  (∀ first second : Expansion,
-    (binaryRealBijection dyadic_data).forward (addition dyadic_data first second) =
-      dyadic_data.cauchy_addition
-        ((binaryRealBijection dyadic_data).forward first)
-        ((binaryRealBijection dyadic_data).forward second)) ∧
-  (∀ expansion : Expansion,
-    (binaryRealBijection dyadic_data).forward (negation dyadic_data expansion) =
-      dyadic_data.cauchy_negation
-        ((binaryRealBijection dyadic_data).forward expansion)) ∧
-  (∀ first second : Expansion,
-    (binaryRealBijection dyadic_data).forward (multiplication dyadic_data first second) =
-      dyadic_data.cauchy_multiplication
-        ((binaryRealBijection dyadic_data).forward first)
-        ((binaryRealBijection dyadic_data).forward second)) ∧
-  (∀ expansion : Expansion,
-    (binaryRealBijection dyadic_data).forward (inverse dyadic_data expansion) =
-      dyadic_data.cauchy_inverse
-        ((binaryRealBijection dyadic_data).forward expansion)) ∧
-  (∀ first second : Expansion,
-    strict_order dyadic_data first second ↔
-      dyadic_data.cauchy_strict_order
-        ((binaryRealBijection dyadic_data).forward first)
-        ((binaryRealBijection dyadic_data).forward second))
+    StrictOrder dyadicData first second ↔
+      dyadicData.cauchy_strict_order
+        ((BinaryRealBijection dyadicData).Forward first)
+        ((BinaryRealBijection dyadicData).Forward second))
 
-
-/-- Theorem 4.2: V is an ordered-field isomorphism.
-
-Mathematical statement (Lean): `theorem ordered_field_isomorphism : OrderedFieldIsomorphism dyadic_data`.
-
-*Proof status:* proof pending
-
-
-Logical form:
-
-```lean
-theorem ordered_field_isomorphism : OrderedFieldIsomorphism dyadic_data
-```
--/
-theorem ordered_field_isomorphism : OrderedFieldIsomorphism dyadic_data := by
+/-- The selected binary/Cauchy-real bijection is an ordered-field
+isomorphism. -/
+theorem OrderedFieldIsomorphismHolds :
+    OrderedFieldIsomorphism dyadicData := by
   sorry
 
 end LRA.NumberSystems.RealNumbers.Dyadic
