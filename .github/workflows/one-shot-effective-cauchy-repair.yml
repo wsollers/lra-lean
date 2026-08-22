@@ -1,0 +1,279 @@
+name: One-shot effective Cauchy representation repair
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-shot-effective-cauchy-repair.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Reclassify and repair the representation
+        shell: bash
+        run: |
+          set -euo pipefail
+          mv LRA/NumberSystems/RealNumbers/Constructions/Computable \
+             LRA/NumberSystems/RealNumbers/Constructions/EffectiveCauchy
+          mv LRA/NumberSystems/RealNumbers/Constructions/Computable.lean \
+             LRA/NumberSystems/RealNumbers/Constructions/EffectiveCauchy.lean
+
+          python - <<'PY'
+          from pathlib import Path
+          roots = [Path('LRA'), Path('docs'), Path('tmp')]
+          for root in roots:
+              if not root.exists():
+                  continue
+              for path in root.rglob('*'):
+                  if not path.is_file() or path.suffix not in {'.lean', '.md', '.tsv', '.json'}:
+                      continue
+                  text = path.read_text(errors='ignore')
+                  new = text.replace(
+                      'RealNumbers.Constructions.Computable',
+                      'RealNumbers.Constructions.EffectiveCauchy')
+                  new = new.replace(
+                      'LRA.NumberSystems.RealNumbers.Computable',
+                      'LRA.NumberSystems.RealNumbers.EffectiveCauchy')
+                  if new != text:
+                      path.write_text(new)
+          PY
+
+          cat > LRA/NumberSystems/RealNumbers/Constructions/EffectiveCauchy/Carrier.lean <<'EOF'
+-- Modulus-tracked rational Cauchy approximations.
+
+import LRA.NumberSystems.RationalNumbers.Definition
+
+namespace LRA.NumberSystems.RealNumbers.EffectiveCauchy
+
+open LRA.NumberSystems.RationalNumbers
+
+universe u
+
+/-- The dyadic precision radius `2⁻ⁿ` in the rational field.
+
+Logical form:
+
+```lean
+def PrecisionRadius
+    (rationalSystem : RationalNumberSystem) : Nat → rationalSystem.FieldModel.Carrier
+  | 0 => 1
+  | n + 1 => PrecisionRadius rationalSystem n * (1 + 1)⁻¹
+```
+-/
+def PrecisionRadius
+    (rationalSystem : RationalNumberSystem.{u}) :
+    Nat → rationalSystem.FieldModel.Carrier
+  | 0 => 1
+  | n + 1 => PrecisionRadius rationalSystem n * (1 + 1)⁻¹
+
+/-- A rational approximation equipped with an explicit modulus proving the
+Cauchy condition at dyadic precision `2⁻ⁿ`.
+
+This is an effective-*form* Cauchy approximation: the data include a modulus,
+but no claim is made that the functions are computable. A genuine computable
+real requires a separate computability notion or program code.
+
+Logical form:
+
+```lean
+structure EffectiveCauchyApproximation
+    (rationalSystem : RationalNumberSystem) where
+  Approximate : Nat → rationalSystem.FieldModel.Carrier
+  Modulus : Nat → Nat
+  CauchyAtPrecision :
+    ∀ precision firstIndex secondIndex : Nat,
+      Modulus precision ≤ firstIndex →
+      Modulus precision ≤ secondIndex →
+        let difference := Approximate firstIndex + -Approximate secondIndex
+        -PrecisionRadius rationalSystem precision < difference ∧
+          difference < PrecisionRadius rationalSystem precision
+```
+-/
+structure EffectiveCauchyApproximation
+    (rationalSystem : RationalNumberSystem.{u}) where
+  Approximate : Nat → rationalSystem.FieldModel.Carrier
+  Modulus : Nat → Nat
+  CauchyAtPrecision :
+    ∀ precision firstIndex secondIndex : Nat,
+      Modulus precision ≤ firstIndex →
+      Modulus precision ≤ secondIndex →
+        let difference := Approximate firstIndex + -Approximate secondIndex
+        -PrecisionRadius rationalSystem precision < difference ∧
+          difference < PrecisionRadius rationalSystem precision
+
+end LRA.NumberSystems.RealNumbers.EffectiveCauchy
+EOF
+
+          cat > LRA/NumberSystems/RealNumbers/Constructions/EffectiveCauchy/Equivalence.lean <<'EOF'
+-- Equality of represented limits for modulus-tracked rational approximations.
+
+import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.Carrier
+
+namespace LRA.NumberSystems.RealNumbers.EffectiveCauchy
+
+open LRA.NumberSystems.RationalNumbers
+
+universe u
+
+/-- Two effective-form Cauchy approximations represent the same limit when
+their pointwise difference eventually lies inside every dyadic precision
+radius.
+
+Logical form:
+
+```lean
+def Equivalent
+    {rationalSystem : RationalNumberSystem}
+    (first second : EffectiveCauchyApproximation rationalSystem) : Prop :=
+  ∀ precision : Nat,
+    ∃ index : Nat, ∀ n ≥ index,
+      let difference := first.Approximate n + -second.Approximate n
+      -PrecisionRadius rationalSystem precision < difference ∧
+        difference < PrecisionRadius rationalSystem precision
+```
+-/
+def Equivalent
+    {rationalSystem : RationalNumberSystem.{u}}
+    (first second : EffectiveCauchyApproximation rationalSystem) : Prop :=
+  ∀ precision : Nat,
+    ∃ index : Nat, ∀ n ≥ index,
+      let difference := first.Approximate n + -second.Approximate n
+      -PrecisionRadius rationalSystem precision < difference ∧
+        difference < PrecisionRadius rationalSystem precision
+
+/-- Equality-of-limit is an equivalence relation on effective-form Cauchy
+approximations. -/
+theorem EquivalentIsEquivalence
+    (rationalSystem : RationalNumberSystem.{u}) :
+    Equivalence (@Equivalent rationalSystem) := by
+  sorry
+
+/-- The setoid identifying approximations that represent the same limit. -/
+def ApproximationSetoid
+    (rationalSystem : RationalNumberSystem.{u}) :
+    Setoid (EffectiveCauchyApproximation rationalSystem) where
+  r := Equivalent
+  iseqv := EquivalentIsEquivalence rationalSystem
+
+/-- Real values represented by modulus-tracked rational Cauchy approximations.
+
+No computability or countability claim is built into this quotient.
+-/
+abbrev EffectiveCauchyReal
+    (rationalSystem : RationalNumberSystem.{u}) :=
+  Quotient (ApproximationSetoid rationalSystem)
+
+end LRA.NumberSystems.RealNumbers.EffectiveCauchy
+EOF
+
+          cat > LRA/NumberSystems/RealNumbers/Constructions/EffectiveCauchy/WellFoundedness.lean <<'EOF'
+import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.Equivalence
+
+namespace LRA.NumberSystems.RealNumbers.EffectiveCauchy
+
+open LRA.NumberSystems.RationalNumbers
+
+universe u
+
+/-- Prove a property of the quotient by proving it for every representative. -/
+theorem InductionOnRepresentatives
+    (rationalSystem : RationalNumberSystem.{u})
+    (motive : EffectiveCauchyReal rationalSystem → Prop)
+    (onRepresentative :
+      ∀ representative : EffectiveCauchyApproximation rationalSystem,
+        motive (Quotient.mk (ApproximationSetoid rationalSystem) representative)) :
+    ∀ value : EffectiveCauchyReal rationalSystem, motive value := by
+  sorry
+
+end LRA.NumberSystems.RealNumbers.EffectiveCauchy
+EOF
+
+          cat > LRA/NumberSystems/RealNumbers/Constructions/EffectiveCauchy/Behavior.lean <<'EOF'
+import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.Laws
+
+namespace LRA.NumberSystems.RealNumbers.EffectiveCauchy
+
+/-!
+This package deliberately makes no countability claim. Its approximation and
+modulus functions are arbitrary Lean functions equipped with mathematical
+modulus laws; no computability predicate or program-code semantics currently
+exists in the repository.
+
+A future `ComputableReals` package should require genuinely computable
+approximation and modulus data and may then prove countability from a countable
+coding of programs.
+-/
+
+end LRA.NumberSystems.RealNumbers.EffectiveCauchy
+EOF
+
+          cat > LRA/NumberSystems/RealNumbers/Constructions/EffectiveCauchy/Instances.lean <<'EOF'
+import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.Behavior
+
+namespace LRA.NumberSystems.RealNumbers.EffectiveCauchy
+
+/-!
+No detached `RealModel` realization is asserted here. The repaired carrier is a
+quotient of modulus-tracked rational Cauchy approximations. Its algebraic,
+order, and completeness certificates must be proved on this actual carrier (or
+transported from the canonical Cauchy construction) before it can be packaged
+as a `RealModel`.
+-/
+
+end LRA.NumberSystems.RealNumbers.EffectiveCauchy
+EOF
+
+          cat > LRA/NumberSystems/RealNumbers/Constructions/EffectiveCauchy.lean <<'EOF'
+import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.Carrier
+import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.Equivalence
+import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.WellFoundedness
+import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.Operations
+import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.WellDefinedness
+import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.Laws
+import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.Behavior
+import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.Instances
+
+/-!
+Canonical import route for modulus-tracked rational Cauchy approximations.
+This package is intentionally not called `Computable`: arbitrary Lean functions
+with a modulus are not, by themselves, computable functions.
+-/
+EOF
+
+          python - <<'PY'
+          from pathlib import Path
+          router = Path('LRA/NumberSystems/RealNumbers/Constructions.lean')
+          text = router.read_text()
+          text = text.replace(
+              'import LRA.NumberSystems.RealNumbers.Constructions.Computable',
+              'import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy')
+          text = text.replace('computable reals', 'modulus-tracked Cauchy approximations')
+          text = text.replace('all six', 'the real constructions')
+          router.write_text(text)
+          PY
+
+          if git grep -n 'Constructions.Computable\|namespace LRA.NumberSystems.RealNumbers.Computable\|ComputableRealizesRealModel\|computable_reals_are_countable' -- LRA; then
+            echo 'Stale computable-real representation claims remain.' >&2
+            exit 1
+          fi
+
+          rm .github/workflows/one-shot-effective-cauchy-repair.yml
+
+      - name: Commit repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'BoondockTaints'
+          git config user.email 'wsollers@gmail.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'Repair effective Cauchy representation'
+          git push origin HEAD:main
