@@ -1,35 +1,34 @@
 -- LRA/NumberSystems/RealNumbers/Constructions/Cantor/Instances.lean
--- Registration into the system's interface.
+-- Registration of the nested-interval quotient as a real-number construction.
 
+import LRA.NumberSystems.RationalNumbers.Definition
 import LRA.NumberSystems.RealNumbers.Constructions.Cantor.Behavior
 
 namespace LRA.NumberSystems.RealNumbers.Cantor
+
 open LRA.NumberSystems.Models
+open LRA.NumberSystems.RationalNumbers
 
-/-!
-New content: the source never registered `Carrier rational_model` as an
-instance of `LRA.NumberSystems.Models.RealModel`, the generic
-complete-ordered-field interface this construction realizes. Assembling
-the instance from the (mostly `sorry`) nested-interval-level facts above is
-itself new work under this migration's policy, so it is stated whole,
-`sorry`, rather than composed field-by-field without a toolchain to check
-the composition. Tracked in `RealNumbers/ProofOrder.md`.
--/
+/-- The Cantor nested-interval quotient over an actual rational number system
+admits a `RealModel` structure on exactly its quotient carrier.
 
-/-- `Carrier rational_model` realizes the generic complete ordered-field
-`RealModel` interface.
+The generic interval and equivalence definitions remain available over a broad
+densely ordered field. The real-number realization is restricted to a genuine
+`RationalNumberSystem`, and the carrier equality rules out detached witnesses.
 
 Logical form:
 
 ```lean
-noncomputable def CantorRealizesRealModel
-    (rational_model : DenselyOrderedFieldModel) :
-    LRA.NumberSystems.Models.RealModel
+theorem CantorCarrierRealModelExists
+    (rationalSystem : RationalNumberSystem) :
+    ∃ realModel : LRA.NumberSystems.Models.RealModel,
+      realModel.Carrier = Carrier rationalSystem.FieldModel
 ```
 -/
-noncomputable def CantorRealizesRealModel
-    (rational_model : DenselyOrderedFieldModel) :
-    LRA.NumberSystems.Models.RealModel := by
+theorem CantorCarrierRealModelExists
+    (rationalSystem : RationalNumberSystem) :
+    ∃ realModel : LRA.NumberSystems.Models.RealModel,
+      realModel.Carrier = Carrier rationalSystem.FieldModel := by
   sorry
 
 end LRA.NumberSystems.RealNumbers.Cantor
