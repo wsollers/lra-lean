@@ -11,7 +11,7 @@
 
 | P0 | Wave | Status | Last Good Stop | Next Step | Spec | Verify | Implement | Validator | Build | Commit |
 |---|---|---|---|---|---|---|---|---|---|---|
-| p0-01 | 1 | `done` | 2026-08-22: native sequence semantics moved into `SequenceDefinitions`, Mathlib bridges isolated under `Interop/Mathlib`, `python scripts/validate_structure.py --path LRA/Analysis/Sequences` passed, and `lake build LRAAll` passed after repairing the `LiminfLimsup` import regression | Launch p0-02 spec task | 01a02a44-3e73-7d91-bc27-d80f5faf3f5a | 01a02a51-0756-72f1-967b-9aa7b4fa769c | `main-thread` | LRA/Analysis/Sequences | LRAAll | `pending current commit` |
+| p0-01 | 1 | `done` | 2026-08-22: native sequence semantics moved into `SequenceDefinitions`, Mathlib bridges isolated under `Interop/Mathlib`, `python scripts/validate_structure.py --path LRA/Analysis/Sequences` passed, and `lake build LRAAll` passed after repairing the `LiminfLimsup` import regression | Launch p0-02 spec task | 01a02a44-3e73-7d91-bc27-d80f5faf3f5a | 01a02a51-0756-72f1-967b-9aa7b4fa769c | `main-thread` | LRA/Analysis/Sequences | LRAAll | `f411e8d1` |
 | p0-02 | 2 | `not_started` | 2026-08-22: queue materialized, repo even with origin/main, no task launched yet | Launch spec task | - | - | - | - | - | - |
 | p0-03 | 2 | `not_started` | 2026-08-22: queue materialized, repo even with origin/main, no task launched yet | Launch spec task | - | - | - | - | - | - |
 | p0-04 | 2 | `not_started` | 2026-08-22: queue materialized, repo even with origin/main, no task launched yet | Launch spec task | - | - | - | - | - | - |
