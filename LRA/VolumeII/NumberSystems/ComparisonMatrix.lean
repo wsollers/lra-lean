@@ -75,7 +75,7 @@ Logical form:
 theorem ComparisonMatrixForZQR
     (SelectedIntegerModel : IntegerModel)
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
-    (SelectedRealExtension : RealExtension SelectedRationalExtension.RationalModel) :
+    (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel) :
     ∃ IntegerLedger RationalLedger RealLedger : SystemLedger,
       IntegerLedger.HasRingOrFieldStructure ∧
         RationalLedger.HasRingOrFieldStructure ∧
@@ -86,7 +86,7 @@ theorem ComparisonMatrixForZQR
 theorem ComparisonMatrixForZQR
     (SelectedIntegerModel : IntegerModel)
     (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
-    (SelectedRealExtension : RealExtension SelectedRationalExtension.RationalModel) :
+    (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel) :
     ∃ IntegerLedger RationalLedger RealLedger : SystemLedger,
       IntegerLedger.HasRingOrFieldStructure ∧
         RationalLedger.HasRingOrFieldStructure ∧
