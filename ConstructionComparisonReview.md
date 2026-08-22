@@ -10,7 +10,7 @@ Project rule: `sorry` proof bodies are neutral. The issue here is whether theore
 
 # Generic `ModelIsomorphism`
 
-The local `ModelIsomorphism first_model second_model` is a genuine bijective ordered-ring isomorphism shape:
+The local number-system `ModelIsomorphism first_model second_model` is a genuine bijective ordered-ring isomorphism shape:
 
 - forward and inverse functions;
 - left/right inverse laws;
@@ -20,13 +20,60 @@ The local `ModelIsomorphism first_model second_model` is a genuine bijective ord
 
 Although negation and inverse preservation are not explicit fields, they are derivable for unital field models from bijectivity plus preservation of the ring operations. This is not a substantive defect.
 
-**Verdict: PASS.**
+**Verdict: mathematically adequate, but not the best canonical owner.**
+
+---
+
+# Canonical logic-level model isomorphism already exists
+
+`LRA.Logic.FirstOrder.ModelEmbedding` already defines the standard structure-preserving embedding of two models of one signature:
+
+```text
+injective domain map
++ preservation of every function symbol
++ preservation of every constant symbol
++ preservation and reflection of every relation symbol.
+```
+
+`LRA.Logic.FirstOrder.ModelIsomorphism` then extends that with surjectivity.
+
+This is the mathematically canonical model-theoretic owner of "isomorphism of structures."
+
+The ordered-field first-order model builder interprets exactly
+
+```text
++, *, -, inverse, 0, 1, <
+```
+
+so a generic first-order `ModelIsomorphism` of the ordered-field models preserves the full ordered-field language. No arithmetic/order information needed for model comparison is lost.
+
+Completeness correctly remains external to the first-order signature; it is a property used to prove categoricity, not an ordinary first-order symbol.
+
+### Ownership recommendation
+
+Use two clearly separated layers:
+
+```text
+algebra-facing OrderedFieldEquiv
+```
+
+if convenient for direct algebra, and
+
+```text
+LRA.Logic.FirstOrder.ModelIsomorphism
+```
+
+for model-theoretic comparison/categoricity.
+
+Avoid a third local `RealNumbers.ModelIsomorphism` unless it is explicitly an adapter between those two notions.
+
+**Severity: P1 duplicate semantic owner, not a mathematical defect.**
 
 ---
 
 # Generic categoricity theorem
 
-`complete_archimedean_ordered_fields_are_uniquely_isomorphic` states existence of a `ModelIsomorphism` between any two `RealModel`s and pointwise uniqueness of its forward map.
+`complete_archimedean_ordered_fields_are_uniquely_isomorphic` states existence of a model isomorphism between any two `RealModel`s and pointwise uniqueness of its forward map.
 
 Given the project definition of `RealModel` as a complete ordered field over all `Set` subsets, this is the correct categoricity target. Completeness implies Archimedeanness, so the theorem name is mathematically appropriate even though Archimedeanness is not separately stored in `RealModel`.
 
@@ -141,6 +188,8 @@ complete_archimedean_ordered_fields_are_uniquely_isomorphic
 
 to obtain all cross-construction equivalences.
 
+For the model-theory-facing statement, convert each certified ordered-field carrier through `BuildOrderedFieldModel` / `orderedFieldFirstOrderModel` and package the comparison with the canonical `LRA.Logic.FirstOrder.ModelIsomorphism`.
+
 If comparison maps should additionally commute with the selected rational embeddings, strengthen the comparison target to an isomorphism of `RealExtension`s over the same rational model, requiring
 
 ```text
@@ -157,11 +206,12 @@ That is the most canonical notion of “the two real constructions give the same
 2. `CauchyRealModel` tied to `Cauchy.Carrier`;
 3. `PrimitiveIntervalsRealModel` tied to its quotient carrier;
 4. corresponding `RealExtension` values with rational embeddings;
-5. generic unique `RealModel` isomorphism;
-6. prove it fixes the embedded rational field / package an extension isomorphism;
-7. derive named pairwise comparison corollaries.
+5. generic unique algebraic ordered-field equivalence;
+6. bridge that equivalence to `LRA.Logic.FirstOrder.ModelIsomorphism`;
+7. prove it fixes the embedded rational field / package an extension isomorphism;
+8. derive named pairwise comparison corollaries.
 
-This avoids maintaining separate large pairwise proofs.
+This avoids maintaining separate large pairwise proofs and avoids another duplicate notion of model isomorphism.
 
 ---
 
@@ -177,7 +227,9 @@ No new genuine Choice dependency was identified.
 
 | Dimension | Verdict |
 |---|---|
-| `ModelIsomorphism` shape | **PASS** |
+| local number-system `ModelIsomorphism` shape | **MATHEMATICALLY ADEQUATE** |
+| canonical logic `ModelIsomorphism` | **PASS / PREFERRED MODEL-THEORY OWNER** |
+| duplicate comparison notion | **P1 CONSOLIDATE** |
 | generic uniqueness of complete ordered fields | **PASS TARGET** |
 | selected comparison `real_model`s | **P0 DETACHED FROM CONSTRUCTIONS** |
 | named Dedekind/Cauchy/etc. pairwise comparisons | **P0 DO NOT FORMALLY COMPARE NAMED CARRIERS** |
