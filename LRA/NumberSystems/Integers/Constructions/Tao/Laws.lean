@@ -6,12 +6,11 @@ namespace LRA.NumberSystems.Integers.Tao
 
 /-!
 The source never broke the ring laws down individually here the way
-`QuotientOrderedPairs.Laws` does -- the aggregate existence claim that the
-quotient forms an ordered ring is `Instances.tao_integers_form_ordered_ring`
-instead, since it is a registration into `LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel`
-rather than a standalone law. Breaking it into per-law lemmas matching
-`QuotientOrderedPairs.Laws`'s shape is tracked as a gap in
-`Integers/ProofOrder.md`.
+`QuotientOrderedPairs.Laws` does. The aggregate structural realization is
+`Instances.TaoIntegersFormDiscretelyOrderedIntegralDomain`; the stronger
+integer-specific realization is `Instances.TaoRealizesIntegerNumberSystem`.
+Breaking the structural certificate into per-law lemmas matching
+`QuotientOrderedPairs.Laws`'s shape is tracked in `Integers/ProofOrder.md`.
 -/
 
 end LRA.NumberSystems.Integers.Tao
