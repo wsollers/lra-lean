@@ -1,5 +1,5 @@
 -- LRA/VolumeII/NumberSystems/UniversalProperties.lean
--- Generic model-level universal properties for integers and reals.
+-- Generic model-level universal properties for reals.
 
 import LRA.VolumeII.NumberSystems.CanonicalEmbeddings
 
@@ -13,40 +13,20 @@ Lean module: LRA.NumberSystems.Models.UniversalProperties
 Source: docs/number-systems/gpt-00c-universal-properties.md
 Verification status: statement-accepted-proof-pending
 
-The rational fraction-field universal property is owned by
-`LRA.NumberSystems.RationalNumbers.UniversalProperty`, because its source must
-be an actual `RationalNumberSystem`, not an arbitrary densely ordered field or
-Archimedean field extension.
+Integer initiality is owned by `LRA.NumberSystems.Integers.UniversalProperty`,
+because its source must be an actual `IntegerNumberSystem`, not an arbitrary
+discretely ordered integral domain. The rational fraction-field universal
+property is similarly owned by
+`LRA.NumberSystems.RationalNumbers.UniversalProperty`.
 -/
 
-/--
-`IntegerUniversalProperty` exposes this formal declaration.
+/-- Complete ordered fields are unique up to ordered-field isomorphism.
 
 Logical form:
 
 ```lean
-structure IntegerUniversalProperty (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel.{u}) : Prop where
-  InitialForDiscreteOrderedRings :
-    ∀ target : DiscretelyOrderedIntegralDomainModel.{u},
-      ∃ map : SelectedIntegerModel.signature.carrier → target.signature.carrier,
-        CanonicalEmbeddings.EmbeddingPreservesOrderedRing
-          SelectedIntegerModel.signature target.signature map
-```
--/
-structure IntegerUniversalProperty (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel.{u}) : Prop where
-  InitialForDiscreteOrderedRings :
-    ∀ target : DiscretelyOrderedIntegralDomainModel.{u},
-      ∃ map : SelectedIntegerModel.signature.carrier → target.signature.carrier,
-        CanonicalEmbeddings.EmbeddingPreservesOrderedRing
-          SelectedIntegerModel.signature target.signature map
-
-/--
-`CompleteOrderedFieldCharacterization` exposes this formal declaration.
-
-Logical form:
-
-```lean
-structure CompleteOrderedFieldCharacterization (SelectedRealModel : RealModel.{u}) : Prop where
+structure CompleteOrderedFieldCharacterization
+    (SelectedRealModel : RealModel.{u}) : Prop where
   UniqueUpToOrderedFieldIsomorphism :
     ∀ other : RealModel.{u},
       ∃ comparison : SelectedRealModel.signature.carrier → other.signature.carrier,
@@ -54,7 +34,8 @@ structure CompleteOrderedFieldCharacterization (SelectedRealModel : RealModel.{u
           SelectedRealModel.signature other.signature comparison
 ```
 -/
-structure CompleteOrderedFieldCharacterization (SelectedRealModel : RealModel.{u}) : Prop where
+structure CompleteOrderedFieldCharacterization
+    (SelectedRealModel : RealModel.{u}) : Prop where
   UniqueUpToOrderedFieldIsomorphism :
     ∀ other : RealModel.{u},
       ∃ comparison : SelectedRealModel.signature.carrier → other.signature.carrier,
