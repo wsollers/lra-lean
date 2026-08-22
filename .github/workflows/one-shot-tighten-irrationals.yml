@@ -1,0 +1,54 @@
+name: One-shot irrational semantics repair
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-shot-tighten-irrationals.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Tighten Irrationals to RationalNumberSystem
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('LRA/NumberSystems/RealNumbers/Irrationals.lean')
+          s = p.read_text()
+          s = s.replace('import LRA.VolumeII.NumberSystems.Models',
+                        'import LRA.NumberSystems.RationalNumbers.RationalNumberSystem')
+          s = s.replace('a rational model into\nits real extension',
+                        'a rational number system into\nits real extension')
+          s = s.replace('(rational_model : DenselyOrderedFieldModel)',
+                        '(rational_system : RationalNumberSystem)')
+          s = s.replace('rational_model', 'rational_system')
+          s = s.replace('RealExtension rational_system)',
+                        'RealExtension rational_system.FieldModel)')
+          s = s.replace('rational_system.signature',
+                        'rational_system.FieldModel.signature')
+          p.write_text(s)
+
+          if 'DenselyOrderedFieldModel' in s or 'rational_model' in s:
+              raise SystemExit('stale generic rational-model terminology remains')
+
+          workflow = Path('.github/workflows/one-shot-tighten-irrationals.yml')
+          workflow.unlink()
+
+      - name: Commit semantic repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'BoondockTaints'
+          git config user.email 'wsollers@gmail.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'Require RationalNumberSystem for irrationality'
+          git push origin HEAD:main
