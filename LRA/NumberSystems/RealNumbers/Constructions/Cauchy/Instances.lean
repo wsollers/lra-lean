@@ -1,37 +1,40 @@
 -- LRA/NumberSystems/RealNumbers/Constructions/Cauchy/Instances.lean
--- Registration into the system's interface.
+-- Registration of the Cauchy completion as a real-number construction.
 
+import LRA.NumberSystems.RationalNumbers.Definition
 import LRA.NumberSystems.RealNumbers.Constructions.Cauchy.Behavior
 
 namespace LRA.NumberSystems.RealNumbers.Cauchy
+
 open LRA.NumberSystems.Models
+open LRA.NumberSystems.RationalNumbers
 
-/-!
-New content: the source never registered `Carrier rational_model
-absolute_value_data` as an instance of `LRA.NumberSystems.Models.RealModel`,
-the generic complete-ordered-field interface this construction realizes.
-Assembling the instance from the (mostly `sorry`) representative-level
-facts above is itself new work under this migration's policy, so it is
-stated whole, `sorry`, rather than composed field-by-field without a
-toolchain to check the composition. Tracked in `RealNumbers/ProofOrder.md`.
--/
+/-- The Cauchy completion of an actual rational number system admits a
+`RealModel` structure on exactly its quotient carrier.
 
-/-- `Carrier rational_model absolute_value_data` realizes the generic
-complete ordered-field `RealModel` interface.
+The generic carrier and metric definitions remain usable over a broader dense
+ordered field. The stronger conclusion that the completion is *the real-number
+stage* is stated only for a `RationalNumberSystem`, and the carrier equality
+prevents the former detached-realization defect in which an unrelated
+`RealModel` could witness the theorem.
 
 Logical form:
 
 ```lean
-noncomputable def CauchyRealizesRealModel
-    (rational_model : DenselyOrderedFieldModel)
-    (absolute_value_data : RationalMetricData rational_model) :
-    LRA.NumberSystems.Models.RealModel
+theorem CauchyCarrierRealModelExists
+    (rationalSystem : RationalNumberSystem)
+    (absoluteValueData : RationalMetricData rationalSystem.FieldModel) :
+    ∃ realModel : LRA.NumberSystems.Models.RealModel,
+      realModel.Carrier =
+        Carrier rationalSystem.FieldModel absoluteValueData
 ```
 -/
-noncomputable def CauchyRealizesRealModel
-    (rational_model : DenselyOrderedFieldModel)
-    (absolute_value_data : RationalMetricData rational_model) :
-    LRA.NumberSystems.Models.RealModel := by
+theorem CauchyCarrierRealModelExists
+    (rationalSystem : RationalNumberSystem)
+    (absoluteValueData : RationalMetricData rationalSystem.FieldModel) :
+    ∃ realModel : LRA.NumberSystems.Models.RealModel,
+      realModel.Carrier =
+        Carrier rationalSystem.FieldModel absoluteValueData := by
   sorry
 
 end LRA.NumberSystems.RealNumbers.Cauchy
