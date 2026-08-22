@@ -217,6 +217,31 @@ and prove it is an ordered-field embedding for the canonical order-compatible ab
 
 ---
 
+# Mathlib interop does not currently supply the missing bridge
+
+The current real-number Mathlib interop directory contains only
+
+```text
+Interop/Mathlib/Extended.lean
+Interop/Mathlib/NonNegative.lean.
+```
+
+There is no reviewed construction interop for
+
+```text
+Dedekind
+Cauchy
+PrimitiveIntervals
+```
+
+that identifies the construction carrier with Mathlib `Real`, proves an ordered-field equivalence, or builds `RealExtension`.
+
+Therefore the missing carrier-tied realization/extension layer is not merely located elsewhere under interop; it is genuinely absent from the current real-construction theorem surface.
+
+**Severity: P1 interop/readiness gap.**
+
+---
+
 # Detached realization declarations
 
 The following declarations all have the same specification weakness:
@@ -300,4 +325,5 @@ Using `Classical.choose` to select a single constructed model from a proven exis
 4. add rational cofinality/density;
 5. build `RationalEmbeddingIntoReal` records;
 6. build construction-tied `RealModel.ofCarrier` values;
-7. finally package true `RealExtension` values for Dedekind, PrimitiveIntervals, and Cauchy.
+7. finally package true `RealExtension` values for Dedekind, PrimitiveIntervals, and Cauchy;
+8. add Mathlib equivalence/round-trip interop only after the construction-local bridge is mathematically explicit.
