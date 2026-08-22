@@ -2,7 +2,7 @@
 
 ## Scope
 
-Maintained mathematical review of `LRA.Function`, especially the arrow/graph architecture, composition/inverses, image/preimage calculus, the set-theoretic representation bridge, and the theorem surface needed later for measurable maps.
+Maintained mathematical review of `LRA.Function`, especially the arrow/graph architecture, composition/inverses, image/preimage calculus, the set-theoretic representation bridge, canonical maps, and the theorem surface needed later for measurable maps.
 
 Project-wide rules apply: `sorry` is neutral scaffolding; genuine mathematical Choice is distinguished from proof-assistant witness extraction.
 
@@ -183,6 +183,58 @@ without making either representation definitionally replace the other.
 
 ---
 
+# Review 3 — canonical product maps and structural map surface
+
+## Files reviewed
+
+- `LRA/Function/Canonical.lean`
+- `LRA/Function/Canonical/Identity.*`
+- `LRA/Function/Operations/Product/Definition.lean`
+- `LRA/Function/Operations/Product/Theorems.lean`
+- `LRA/Function/Structures.lean`
+
+## Product-domain and product-valued functions
+
+The product operation layer correctly provides:
+
+- product-domain functions `(A × B) -> C`;
+- curried binary functions `A -> B -> C`;
+- `Curry` and `Uncurry`;
+- first projection `A × B -> A`;
+- second projection `A × B -> B`;
+- pairing/product of maps with common source `X -> A` and `X -> B` into `X -> A × B`.
+
+The theorem surface correctly proves the curry/uncurry round trips and the two projection identities for paired maps.
+
+**Verdict: PASS.**
+
+These are exactly the canonical arrow-level maps later needed for product topologies and product measurable spaces.
+
+## Canonical-map namespace is currently narrow
+
+`LRA.Function.Canonical` currently appears to expose only the identity family. The following common canonical maps were not located in the current canonical tree:
+
+- subtype/subset inclusion;
+- diagonal `x ↦ (x,x)`;
+- swap map `(x,y) ↦ (y,x)`;
+- associator maps for products;
+- quotient projection;
+- canonical injection into sums/products where later subjects need them.
+
+These are not defects in elementary function theory. However, they are useful reusable objects for the later topology and measure layers, especially when proving measurability/continuity once and reusing it.
+
+**Priority: P2 generally; P1 for projections/inclusions once product/subspace measurable spaces are developed.**
+
+## Quotient-style maps
+
+The function calculus already has kernel equivalence relations and a theorem named `KernelQuotientProjectionWellDefined`, expressing constancy of the original function on kernel-equivalent inputs. What is not yet visible in the reviewed canonical-map surface is an actual quotient carrier/projection arrow packaged as a reusable construction.
+
+For the present real-analysis/measure-theory trajectory this can wait. It becomes more important for quotient topology, quotient measurable spaces, algebraic quotient constructions, and first-isomorphism-style theorems.
+
+**Priority: P2 LATER.**
+
+---
+
 # Measurable-map reuse plan
 
 The future measurable-map layer should build directly on this function/set calculus:
@@ -209,6 +261,15 @@ The SetSystems-generated-sigma-algebra layer can then supply a generator theorem
 
 This would be particularly useful for Borel measurability and avoids a duplicate preimage implementation in MeasureTheory.
 
+For product measurable spaces, reuse:
+
+- `FirstProjection`;
+- `SecondProjection`;
+- `Product left right`;
+- existing composition and preimage laws.
+
+A clean later theorem family should state that the product measurable structure is the smallest one making both projections measurable, followed by the universal property that a paired map is measurable iff its two components are measurable.
+
 ---
 
 # Choice audit
@@ -218,6 +279,8 @@ No new genuine family-wise AC dependency was identified in this chunk.
 `BijectiveHasTwoSidedInverse` may require Lean-level classical witness extraction to construct an arrow from Prop-level existence, but mathematically the inverse is unique and this is not an independent use of the Axiom of Choice.
 
 The set-theoretic representation theorem likewise contains no inherent family-wise choice principle: all encodings and the ambient graph container are explicit inputs.
+
+The product/canonical map constructions are explicit and choice-free.
 
 ---
 
@@ -232,6 +295,8 @@ The set-theoretic representation theorem likewise contains no inherent family-wi
 | Boolean/countable preimage laws | **PASS** |
 | Set-theoretic function triple | **PASS** |
 | Typed/set-theoretic representation bridge | **PASS** |
+| Product/projection function layer | **PASS** |
+| Canonical inclusions/quotient projections | **SPARSE / LATER ADDITIONS** |
 | `ImageClassIndexedIntersectionOfInjective` | **P0 FALSE FOR EMPTY INDEX TYPE** |
 | Choice usage | **NO NEW GENUINE AC IDENTIFIED** |
 | Readiness to support measurable maps | **STRONG DEPENDENCY LAYER; MEASURETHEORY BRIDGE STILL MISSING** |
@@ -240,4 +305,4 @@ The set-theoretic representation theorem likewise contains no inherent family-wi
 
 # Next review chunk
 
-Review the missing measurable-map layer against this established preimage API. The goal should be to add only measure-theoretic structure preservation, not a second image/preimage calculus.
+Use this established function surface to audit or specify the missing measurable-map and product-measurable-space layer. The goal should be a thin structure-preservation layer over existing preimage/composition/product maps, not a second function/set calculus.
