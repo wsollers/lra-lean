@@ -20,10 +20,16 @@ Project-wide rules apply: `sorry` is neutral scaffolding; missing theorem surfac
 - `LRA/Analysis/FunctionalAnalysis.lean`
 - `LRA/Analysis/NormedLinearSpace.lean`
 - `LRA/Analysis/NormedLinearSpace/Definition/NormedLinearSpace.lean`
+- `LRA/Analysis/NormedLinearSpace/Construction/UniversalAlgebra.lean`
+- `LRA/Analysis/NormedLinearSpace/Realizations/Canonical.lean`
 - `LRA/Analysis/BanachSpace/Definition/BanachSpace.lean`
+- `LRA/Analysis/BanachSpace/Interop/ToMathlib.lean`
+- `LRA/Analysis/BanachSpace/Interop/FromMathlib.lean`
 - `LRA/Analysis/InnerProductSpace/Definition/InnerProductSpace.lean`
 - `LRA/Analysis/InnerProductSpace/Construction/UniversalAlgebra.lean`
 - `LRA/Analysis/HilbertSpace/Definition/HilbertSpace.lean`
+- `LRA/Analysis/HilbertSpace/Interop/ToMathlib.lean`
+- `LRA/Analysis/HilbertSpace/Interop/FromMathlib.lean`
 
 ---
 
@@ -162,6 +168,83 @@ and prove the Hilbert Cauchy/convergence predicates agree with the Banach predic
 
 ---
 
+# Review 2 — construction, realization, and interop surfaces
+
+## Normed linear spaces
+
+The current normed-linear-space construction and canonical-realization files are placeholders only. In particular, there is no current project-facing construction proving that a norm induces a metric
+
+```text
+d(x,y) = norm(x-y),
+```
+
+nor a canonical realization such as `Real^n` with a familiar norm.
+
+This leaves an important dependency edge implicit:
+
+```text
+vector space + norm
+    -> metric space
+    -> topology
+    -> convergence/Cauchy notions.
+```
+
+The project already has a strong generic metric-space layer, so this should be a bridge, not a second metric theory.
+
+**Severity: P1 ARCHITECTURAL BRIDGE.**
+
+## Banach interop
+
+`BanachSpace/Interop/ToMathlib.lean` and `FromMathlib.lean` are route comments only. There is no implemented conversion between the reference Banach record and Mathlib's normed-space plus `CompleteSpace` structure.
+
+Likewise the construction/examples/realizations surfaces are still scaffold-heavy.
+
+Therefore the current Banach layer is suitable as textbook/reference data but not yet as a strong proof-facing abstraction.
+
+**Severity: P1.**
+
+## Hilbert interop
+
+The Hilbert interop tree likewise contains `ToMathlib` / `FromMathlib` placeholders rather than actual conversions. No canonical realization was located in this pass.
+
+This means the current reference Hilbert structure has no theorem-level path to:
+
+- a project normed-linear-space structure;
+- a project Banach-space structure;
+- Mathlib's `InnerProductSpace` + `CompleteSpace` APIs.
+
+**Severity: P1.**
+
+---
+
+# Recommended bridge ladder
+
+A coherent implementation order is:
+
+```text
+NormedLinearSpaceDefinition
+  -> induced MetricDefinition
+  -> induced TopologyDefinition / Mathlib topology
+  -> norm convergence iff metric convergence
+  -> norm Cauchy iff metric Cauchy
+
+RealInnerProductSpaceDefinition
+  -> Cauchy-Schwarz
+  -> induced NormedLinearSpaceDefinition
+
+BanachSpaceDefinition
+  -> complete induced metric
+  -> Mathlib CompleteSpace bridge
+
+RealHilbertSpaceDefinition
+  -> induced BanachSpaceDefinition
+  -> Mathlib complete inner-product-space bridge.
+```
+
+Every step should have compatibility theorems, not merely instances.
+
+---
+
 # High-value inner-product theorems before Hilbert theory
 
 Add at least:
@@ -190,7 +273,7 @@ Riesz representation can wait until continuous linear functionals have a canonic
 
 The source comments explicitly say these are reference definitions and later formal proofs should use Mathlib's normed/inner-product/complete-space APIs.
 
-That is a reasonable architecture, but unlike the metric/topology layer, no strong round-trip/compatibility theorem surface was located in this pass.
+That is a reasonable architecture, but unlike the metric/topology layer, the current round-trip/compatibility theorem surface is not implemented.
 
 Recommended bridges:
 
@@ -209,16 +292,17 @@ with pointwise norm/inner-product equality theorems.
 
 # Examples needed early
 
-For learning, include canonical examples:
+For learning, include canonical examples in this order:
 
-- `Real^n` with Euclidean norm;
-- `Real^n` with standard inner product;
-- finite-dimensional spaces are Banach;
-- `l^2` / square-summable sequences as the first infinite-dimensional Hilbert example later;
-- a normed space that is not complete, e.g. a dense proper subspace such as polynomials under a suitable norm or finite-support sequences under an `l^2` norm;
-- a Banach space whose norm is not induced by an inner product, to separate Banach from Hilbert.
+1. `Real^n` with the Euclidean norm;
+2. `Real^n` with standard inner product;
+3. finite-dimensional spaces are Banach;
+4. `C([a,b])` with the sup norm as an important Banach example;
+5. finite-support sequences as an incomplete normed subspace under an `l^2`-type norm;
+6. `l^2` / square-summable sequences as the first infinite-dimensional Hilbert example;
+7. a Banach space whose norm is not induced by an inner product, such as `l^1` or `C([a,b])` with sup norm.
 
-The last distinction is especially valuable: not every Banach space is Hilbert.
+For the pre-measure-theory learning path, items 1–4 are enough. `L^p` spaces should wait until measure and Lebesgue integration are established.
 
 ---
 
@@ -237,9 +321,9 @@ Useful explicit separators:
 
 # Choice audit
 
-No genuine family-wise Axiom-of-Choice dependency was identified in the reviewed definitions.
+No genuine family-wise Axiom-of-Choice dependency was identified in the reviewed definitions, construction placeholders, or interop placeholders.
 
-Later statements involving existence of Hamel bases would be strongly Choice-sensitive and should be audited separately. Orthonormal-basis existence in arbitrary Hilbert spaces also invokes substantial choice/Zorn-style reasoning; finite orthonormal families and explicit `l^2` bases do not.
+Later statements involving existence of Hamel bases are strongly Choice-sensitive and should be audited separately. Orthonormal-basis existence in arbitrary Hilbert spaces also invokes substantial choice/Zorn-style reasoning; finite orthonormal families, Gram-Schmidt on an explicitly finite/listed family, and the canonical standard basis of `l^2` do not.
 
 ---
 
@@ -248,13 +332,16 @@ Later statements involving existence of Hamel bases would be strongly Choice-sen
 | Dimension | Verdict |
 |---|---|
 | Normed linear-space axioms | **PASS** |
+| Norm -> metric bridge | **MISSING / P1** |
+| Normed-space canonical realizations | **SCAFFOLD ONLY** |
 | Banach completeness definition | **PASS** |
+| Banach interop | **PLACEHOLDER / P1** |
 | Real inner-product axioms | **PASS** |
 | Real Hilbert definition | **PASS IN CORE IDEA** |
 | Cauchy–Schwarz | **NOT LOCATED / P1** |
 | Inner product -> norm construction | **NOT LOCATED / P1** |
 | Hilbert -> Banach bridge | **NOT LOCATED / P1** |
-| Mathlib interop | **NEEDS BUILDOUT** |
+| Hilbert interop | **PLACEHOLDER / P1** |
 | Canonical examples | **NEEDS BUILDOUT** |
 | Choice usage | **NO CURRENT AC; FUTURE BASIS EXISTENCE IS CHOICE-SENSITIVE** |
 
@@ -262,12 +349,13 @@ Later statements involving existence of Hamel bases would be strongly Choice-sen
 
 # Immediate implementation order
 
-1. prove Cauchy–Schwarz from `RealInnerProductSpaceDefinition`;
-2. construct/prove the induced norm axioms;
-3. bridge inner-product spaces to normed linear spaces;
-4. bridge Hilbert spaces to Banach spaces;
-5. add Mathlib compatibility conversions;
-6. add `Real^n` examples;
-7. add closed-subspace completeness;
-8. add first infinite-dimensional examples and Banach-vs-Hilbert separator;
-9. only then build projection/Riesz/operator theory.
+1. derive norm elementary laws and the induced metric;
+2. bridge norm convergence/Cauchy to the metric-space layer;
+3. prove Cauchy–Schwarz from `RealInnerProductSpaceDefinition`;
+4. construct/prove the induced norm axioms;
+5. bridge inner-product spaces to normed linear spaces;
+6. bridge Hilbert spaces to Banach spaces;
+7. add Mathlib compatibility conversions;
+8. add `Real^n`, `C([a,b])`, and a simple incomplete normed-space example;
+9. add `l^2` after the sequence/function-space prerequisites are ready;
+10. only then build projection/Riesz/operator theory.
