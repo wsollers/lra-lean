@@ -16,7 +16,7 @@ Moved from `LRA.VolumeII.RealNumbers.Extensions`, content unchanged. This is
 a top-level, system-wide file (like Rational's `ComparisonModels.lean`), not
 part of any single construction's §1.6.1 pipeline: it builds derived theory
 (integer powers, nth roots, categoricity) atop any already-existing
-`RealModel`/`RealExtension`, rather than constructing the reals itself.
+`RealModel`/`CofinalRealExtension`, rather than constructing the reals itself.
 -/
 
 open LRA.NumberSystems.Models
@@ -72,7 +72,7 @@ def is_nth_root
 /--
 **[Theorem — archimedean_integer_part]**
 
-Mathematical statement (Lean): `theorem archimedean_integer_part (integer_model : DiscretelyOrderedIntegralDomainModel) (rational_extension : RationalExtension integer_model) (real_extension : RealExtension rational_extension.DenselyOrderedFieldModel) (value : real_extension.RealModel.signature.carrier) : ∃ lower upper :...`.
+Mathematical statement (Lean): `theorem archimedean_integer_part (integer_model : DiscretelyOrderedIntegralDomainModel) (rational_extension : ArchimedeanDenseOrderedFieldExtension integer_model) (real_extension : CofinalRealExtension rational_extension.DenselyOrderedFieldModel) (value : real_extension.RealModel.signature.carrier) : ∃ lower upper :...`.
 
 *Proof status:* proof pending
 
@@ -82,34 +82,34 @@ Logical form:
 ```lean
 theorem archimedean_integer_part
     (integer_model : DiscretelyOrderedIntegralDomainModel)
-    (rational_extension : RationalExtension integer_model)
-    (real_extension : RealExtension rational_extension.DenselyOrderedFieldModel)
+    (rational_extension : ArchimedeanDenseOrderedFieldExtension integer_model)
+    (real_extension : CofinalRealExtension rational_extension.DenselyOrderedFieldModel)
     (value : real_extension.RealModel.signature.carrier) :
     ∃ lower upper : integer_model.signature.carrier,
       real_extension.RealModel.signature.le
-        (real_extension.RationalEmbedding.ToReal
-          (rational_extension.IntegerEmbedding.ToRational lower))
+        (real_extension.DenseOrderedFieldEmbedding.ToReal
+          (rational_extension.IntegerEmbedding.ToField lower))
         value ∧
       real_extension.RealModel.signature.StrictOrder
         value
-        (real_extension.RationalEmbedding.ToReal
-          (rational_extension.IntegerEmbedding.ToRational upper))
+        (real_extension.DenseOrderedFieldEmbedding.ToReal
+          (rational_extension.IntegerEmbedding.ToField upper))
 ```
 -/
 theorem archimedean_integer_part
     (integer_model : DiscretelyOrderedIntegralDomainModel)
-    (rational_extension : RationalExtension integer_model)
-    (real_extension : RealExtension rational_extension.DenselyOrderedFieldModel)
+    (rational_extension : ArchimedeanDenseOrderedFieldExtension integer_model)
+    (real_extension : CofinalRealExtension rational_extension.DenselyOrderedFieldModel)
     (value : real_extension.RealModel.signature.carrier) :
     ∃ lower upper : integer_model.signature.carrier,
       real_extension.RealModel.signature.le
-        (real_extension.RationalEmbedding.ToReal
-          (rational_extension.IntegerEmbedding.ToRational lower))
+        (real_extension.DenseOrderedFieldEmbedding.ToReal
+          (rational_extension.IntegerEmbedding.ToField lower))
         value ∧
       real_extension.RealModel.signature.StrictOrder
         value
-        (real_extension.RationalEmbedding.ToReal
-          (rational_extension.IntegerEmbedding.ToRational upper)) := by
+        (real_extension.DenseOrderedFieldEmbedding.ToReal
+          (rational_extension.IntegerEmbedding.ToField upper)) := by
   sorry
 
 /--

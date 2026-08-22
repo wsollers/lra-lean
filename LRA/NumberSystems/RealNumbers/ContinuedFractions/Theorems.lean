@@ -15,7 +15,7 @@ Logical form:
 ```lean
 theorem ProperInfiniteSimpleContinuedFractionConverges
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
-    (realExtension : RealExtension rationalSystem.FieldModel)
+    (realExtension : CofinalRealExtension rationalSystem.FieldModel)
     (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (proper : IsProperInfiniteSimpleContinuedFraction fraction) :
     ∃ limit : realExtension.RealModel.Carrier,
@@ -24,7 +24,7 @@ theorem ProperInfiniteSimpleContinuedFractionConverges
 -/
 theorem ProperInfiniteSimpleContinuedFractionConverges
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
-    (realExtension : RealExtension rationalSystem.FieldModel)
+    (realExtension : CofinalRealExtension rationalSystem.FieldModel)
     (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (proper : IsProperInfiniteSimpleContinuedFraction fraction) :
     ∃ limit : realExtension.RealModel.Carrier,
@@ -39,7 +39,7 @@ Logical form:
 ```lean
 theorem QuadraticIrrationalIffEventuallyPeriodicContinuedFraction
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
-    (realExtension : RealExtension rationalSystem.FieldModel)
+    (realExtension : CofinalRealExtension rationalSystem.FieldModel)
     (value : realExtension.RealModel.Carrier) :
     IsQuadraticIrrational rationalSystem realExtension value ↔
       ∃ fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model,
@@ -50,7 +50,7 @@ theorem QuadraticIrrationalIffEventuallyPeriodicContinuedFraction
 -/
 theorem QuadraticIrrationalIffEventuallyPeriodicContinuedFraction
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
-    (realExtension : RealExtension rationalSystem.FieldModel)
+    (realExtension : CofinalRealExtension rationalSystem.FieldModel)
     (value : realExtension.RealModel.Carrier) :
     IsQuadraticIrrational rationalSystem realExtension value ↔
       ∃ fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model,

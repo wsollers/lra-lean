@@ -15,7 +15,7 @@ Verification status: definitions complete; theorem proofs pending
 Moved from `LRA.VolumeII.RealNumbers.Irrationals`, content unchanged. This
 is a top-level, system-wide file, not part of any single construction's
 §1.6.1 pipeline: it builds derived theory atop any already-existing
-`RealExtension`, rather than constructing the reals itself.
+`CofinalRealExtension`, rather than constructing the reals itself.
 `LRA.NumberSystems.RationalNumbers.ContinuedFractions` (formerly deferred
 at `LRA.VolumeII.RationalNumbers.ContinuedFractions` pending this file's
 move -- see `RationalNumbers/ProofOrder.md`) imports this module.
@@ -28,7 +28,7 @@ irrational are rational.
 
 variable
     (rational_system : RationalNumberSystem)
-    (real_extension : RealExtension rational_system.FieldModel)
+    (real_extension : CofinalRealExtension rational_system.FieldModel)
 
 /--
 **[Abbrev — RealCarrier]**
@@ -68,12 +68,12 @@ Logical form:
 ```lean
 def embedRational (value : RationalCarrier rational_system) :
     RealCarrier rational_system real_extension :=
-  real_extension.RationalEmbedding.ToReal value
+  real_extension.DenseOrderedFieldEmbedding.ToReal value
 ```
 -/
 def embedRational (value : RationalCarrier rational_system) :
     RealCarrier rational_system real_extension :=
-  real_extension.RationalEmbedding.ToReal value
+  real_extension.DenseOrderedFieldEmbedding.ToReal value
 
 
 /-- A real number is rational when it lies in the image of the selected embedding.

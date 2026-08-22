@@ -9,7 +9,7 @@ density theorems and their order-theoretic corollaries live in
 `Density/Theorems.lean`; the intersection failure mode lives in
 `Density/Failures.lean`. Rational/irrational arithmetic-closure facts were
 dropped rather than migrated: they duplicate the generic theorems already
-proven over an abstract `DenselyOrderedFieldModel`/`RealExtension` in
+proven over an abstract `DenselyOrderedFieldModel`/`CofinalRealExtension` in
 `LRA.NumberSystems.RealNumbers.Irrationals`, and the concrete Mathlib `ℚ`/`ℝ`
 case follows directly from `Rat.cast_add` and friends.
 -/

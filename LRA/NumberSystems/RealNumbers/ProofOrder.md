@@ -11,7 +11,7 @@ Unlike `RationalNumbers` (one construction), `RealNumbers` has **six**
 constructions, migrated from six former `LRA.VolumeII.RealNumbers/*.lean`
 files (plus a large `ConstructionModels.lean` of alternate-model existence
 claims, and four top-level auxiliary files that build derived theory atop
-any `RealModel`/`RealExtension` rather than constructing the reals
+any `RealModel`/`CofinalRealExtension` rather than constructing the reals
 themselves):
 
 - `Cauchy` -- Cauchy sequences of rationals modulo null-difference
@@ -308,7 +308,7 @@ already on record for `RationalNumbers/ComparisonModels.lean`): this file
 defines four *abstract* namespaces (`DedekindCuts`, `CauchySequences`,
 `CantorNestedIntervals`, `PrimitiveIntervalQuotient` -- notably omitting
 `Dyadic`) each only asserting `Nonempty RealModel`/`Nonempty
-(RealExtension _)` existence, plus five pairwise `ModelIsomorphism`
+(CofinalRealExtension _)` existence, plus five pairwise `ModelIsomorphism`
 theorems comparing `DedekindCuts` against each of the other three plus a
 `DyadicExpansions` namespace that otherwise only appears here. None of
 these four/five abstract namespaces is tied back by name to the six real
@@ -327,7 +327,7 @@ categoricity theorem would already give, is open.
 (only `Extended`'s and `IntervalArithmetic`'s imports of `Extensions`
 needed repointing). Each builds derived theory (the extended real line,
 integer powers/nth roots/categoricity, interval arithmetic, irrationality)
-atop an already-existing `RealModel`/`RealExtension` parameter, rather
+atop an already-existing `RealModel`/`CofinalRealExtension` parameter, rather
 than constructing the reals itself -- analogous in role to Rational's
 `ContinuedFractions.lean` (itself deferred pending this pass, now moved to
 `LRA.NumberSystems.RationalNumbers.ContinuedFractions` with its

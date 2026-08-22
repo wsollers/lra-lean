@@ -114,14 +114,14 @@ Working branch: `codex/volume-i-restructure`.
 | `Algebra.Models.RationalLaws.order_is_dense` | `Algebra.Models.RationalLaws.OrderIsDense` | PascalCase public field |
 | `Algebra.Models.RealLaws.rational_like_laws` | `Algebra.Models.RealLaws.RationalLikeLaws` | PascalCase public field |
 | `Algebra.Models.RealLaws.least_upper_bound_property` | `Algebra.Models.RealLaws.LeastUpperBoundProperty` | PascalCase public field |
-| `Algebra.Models.IntegerEmbeddingIntoRational.to_rational` | `Algebra.Models.IntegerEmbeddingIntoRational.ToRational` | PascalCase public field |
-| `Algebra.Models.RationalExtension.rational_model` | `Algebra.Models.RationalExtension.DenselyOrderedFieldModel` | PascalCase public field |
-| `Algebra.Models.RationalExtension.integer_embedding` | `Algebra.Models.RationalExtension.IntegerEmbedding` | PascalCase public field |
-| `Algebra.Models.RationalExtension.archimedean_property` | `Algebra.Models.RationalExtension.ArchimedeanProperty` | PascalCase public field |
-| `Algebra.Models.RationalEmbeddingIntoReal.to_real` | `Algebra.Models.RationalEmbeddingIntoReal.ToReal` | PascalCase public field |
-| `Algebra.Models.RealExtension.real_model` | `Algebra.Models.RealExtension.RealModel` | PascalCase public field |
-| `Algebra.Models.RealExtension.rational_embedding` | `Algebra.Models.RealExtension.RationalEmbedding` | PascalCase public field |
-| `Algebra.Models.RealExtension.rational_embedding_is_cofinal` | `Algebra.Models.RealExtension.RationalEmbeddingIsCofinal` | PascalCase public field |
+| `Algebra.Models.OrderedRingEmbeddingIntoDenseOrderedField.to_rational` | `Algebra.Models.OrderedRingEmbeddingIntoDenseOrderedField.ToField` | PascalCase public field |
+| `Algebra.Models.ArchimedeanDenseOrderedFieldExtension.rational_model` | `Algebra.Models.ArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel` | PascalCase public field |
+| `Algebra.Models.ArchimedeanDenseOrderedFieldExtension.integer_embedding` | `Algebra.Models.ArchimedeanDenseOrderedFieldExtension.IntegerEmbedding` | PascalCase public field |
+| `Algebra.Models.ArchimedeanDenseOrderedFieldExtension.archimedean_property` | `Algebra.Models.ArchimedeanDenseOrderedFieldExtension.ArchimedeanProperty` | PascalCase public field |
+| `Algebra.Models.DenseOrderedFieldEmbeddingIntoReal.to_real` | `Algebra.Models.DenseOrderedFieldEmbeddingIntoReal.ToReal` | PascalCase public field |
+| `Algebra.Models.CofinalRealExtension.real_model` | `Algebra.Models.CofinalRealExtension.RealModel` | PascalCase public field |
+| `Algebra.Models.CofinalRealExtension.rational_embedding` | `Algebra.Models.CofinalRealExtension.DenseOrderedFieldEmbedding` | PascalCase public field |
+| `Algebra.Models.CofinalRealExtension.rational_embedding_is_cofinal` | `Algebra.Models.CofinalRealExtension.DenseOrderedFieldEmbeddingIsCofinal` | PascalCase public field |
 | `Algebra.Models.CanonicalEmbeddings.*.preserves_*` | `Algebra.Models.CanonicalEmbeddings.*.Preserves*` | PascalCase public fields |
 | `Algebra.Models.ComparisonMatrix.*_structure` | `Algebra.Models.ComparisonMatrix.*Structure` | PascalCase public fields |
 | `Algebra.Models.UniversalProperties.*_property` | `Algebra.Models.UniversalProperties.*Property` | PascalCase public fields |
@@ -129,7 +129,7 @@ Working branch: `codex/volume-i-restructure`.
 | `left_identity_law` / `right_identity_law` | `LeftIdentityLaw` / `RightIdentityLaw` | PascalCase local hypotheses |
 | `first_identity_law` / `second_identity_law` | `FirstIdentityLaw` / `SecondIdentityLaw` | PascalCase local hypotheses |
 | `integer_model` / `rational_model` / `real_model` | `SelectedIntegerModel` / `SelectedDenselyOrderedFieldModel` / `SelectedRealModel` | PascalCase local binders |
-| `rational_extension` / `real_extension` | `SelectedRationalExtension` / `SelectedRealExtension` | PascalCase local binders |
+| `rational_extension` / `real_extension` | `SelectedArchimedeanDenseOrderedFieldExtension` / `SelectedCofinalRealExtension` | PascalCase local binders |
 | `upper_bound` | `UpperBound` | PascalCase local mathematical object |
 | `source_*` / `target_*` | `Source*` / `Target*` | PascalCase local structure parameters |
 | `*_map`, `*_value`, `*_ledger` | `*Map`, `*Value`, `*Ledger` | PascalCase local mathematical objects |

@@ -74,8 +74,8 @@ Logical form:
 ```lean
 theorem ComparisonMatrixForZQR
     (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel)
-    (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
-    (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel) :
+    (SelectedArchimedeanDenseOrderedFieldExtension : ArchimedeanDenseOrderedFieldExtension SelectedIntegerModel)
+    (SelectedCofinalRealExtension : CofinalRealExtension SelectedArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel) :
     ∃ IntegerLedger RationalLedger RealLedger : SystemLedger,
       IntegerLedger.HasRingOrFieldStructure ∧
         RationalLedger.HasRingOrFieldStructure ∧
@@ -85,8 +85,8 @@ theorem ComparisonMatrixForZQR
 
 theorem ComparisonMatrixForZQR
     (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel)
-    (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
-    (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel) :
+    (SelectedArchimedeanDenseOrderedFieldExtension : ArchimedeanDenseOrderedFieldExtension SelectedIntegerModel)
+    (SelectedCofinalRealExtension : CofinalRealExtension SelectedArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel) :
     ∃ IntegerLedger RationalLedger RealLedger : SystemLedger,
       IntegerLedger.HasRingOrFieldStructure ∧
         RationalLedger.HasRingOrFieldStructure ∧

@@ -15,7 +15,7 @@ Canonical import route for the real-number system. Moved from
 `Extensions`, `Extended`, `NonNegative`, `IntervalArithmetic`, `Irrationals`,
 and `ContinuedFractions` are top-level, system-wide files, not part of any
 single construction's §1.6.1 pipeline: each builds derived theory atop an
-already-existing `RealModel`/`RealExtension`. See `RealNumbers/ProofOrder.md`.
+already-existing `RealModel`/`CofinalRealExtension`. See `RealNumbers/ProofOrder.md`.
 
 `NonNegative`'s Mathlib bridge theorems live at
 `RealNumbers/Interop/Mathlib/{Extended,NonNegative}.lean`, deliberately

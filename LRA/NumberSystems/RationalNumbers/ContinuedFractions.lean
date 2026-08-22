@@ -27,14 +27,14 @@ def EmbedIntegerCoefficient
     (rationalSystem : RationalNumberSystem.{u})
     (coefficient : rationalSystem.IntegerSystem.Model.Carrier) :
     rationalSystem.FieldModel.Carrier :=
-  rationalSystem.IntegerEmbedding.ToRational coefficient
+  rationalSystem.IntegerEmbedding.ToField coefficient
 ```
 -/
 def EmbedIntegerCoefficient
     (rationalSystem : RationalNumberSystem.{u})
     (coefficient : rationalSystem.IntegerSystem.Model.Carrier) :
     rationalSystem.FieldModel.Carrier :=
-  rationalSystem.IntegerEmbedding.ToRational coefficient
+  rationalSystem.IntegerEmbedding.ToField coefficient
 
 /-- Recursive evaluation relation for a nonempty list of continued-fraction
 coefficients.

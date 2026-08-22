@@ -114,7 +114,7 @@ noncomputable def real_model
 
 /-- **[Theorem — Dedekind Real Extension Exists]**
 
-Mathematical statement (Lean): `theorem real_extension_exists (rational_model : DenselyOrderedFieldModel) : Nonempty (RealExtension rational_model)`.
+Mathematical statement (Lean): `theorem real_extension_exists (rational_model : DenselyOrderedFieldModel) : Nonempty (CofinalRealExtension rational_model)`.
 
 *Proof status:* proof pending
 
@@ -124,17 +124,17 @@ Logical form:
 ```lean
 theorem real_extension_exists
     (rational_model : DenselyOrderedFieldModel) :
-    Nonempty (RealExtension rational_model)
+    Nonempty (CofinalRealExtension rational_model)
 ```
 -/
 theorem real_extension_exists
     (rational_model : DenselyOrderedFieldModel) :
-    Nonempty (RealExtension rational_model) := by
+    Nonempty (CofinalRealExtension rational_model) := by
   sorry
 
 /-- **[Definition — Dedekind Real Extension]**
 
-Mathematical statement (Lean): `noncomputable def real_extension (rational_model : DenselyOrderedFieldModel) : RealExtension rational_model`.
+Mathematical statement (Lean): `noncomputable def real_extension (rational_model : DenselyOrderedFieldModel) : CofinalRealExtension rational_model`.
 
 
 Logical form:
@@ -142,13 +142,13 @@ Logical form:
 ```lean
 noncomputable def real_extension
     (rational_model : DenselyOrderedFieldModel) :
-    RealExtension rational_model :=
+    CofinalRealExtension rational_model :=
   Classical.choice (real_extension_exists rational_model)
 ```
 -/
 noncomputable def real_extension
     (rational_model : DenselyOrderedFieldModel) :
-    RealExtension rational_model :=
+    CofinalRealExtension rational_model :=
   Classical.choice (real_extension_exists rational_model)
 
 /--
@@ -329,7 +329,7 @@ noncomputable def real_model
 
 /-- **[Theorem — Cauchy-Sequence Real Extension Exists]**
 
-Mathematical statement (Lean): `theorem real_extension_exists (rational_model : DenselyOrderedFieldModel) : Nonempty (RealExtension rational_model)`.
+Mathematical statement (Lean): `theorem real_extension_exists (rational_model : DenselyOrderedFieldModel) : Nonempty (CofinalRealExtension rational_model)`.
 
 *Proof status:* proof pending
 
@@ -339,17 +339,17 @@ Logical form:
 ```lean
 theorem real_extension_exists
     (rational_model : DenselyOrderedFieldModel) :
-    Nonempty (RealExtension rational_model)
+    Nonempty (CofinalRealExtension rational_model)
 ```
 -/
 theorem real_extension_exists
     (rational_model : DenselyOrderedFieldModel) :
-    Nonempty (RealExtension rational_model) := by
+    Nonempty (CofinalRealExtension rational_model) := by
   sorry
 
 /-- **[Definition — Cauchy-Sequence Real Extension]**
 
-Mathematical statement (Lean): `noncomputable def real_extension (rational_model : DenselyOrderedFieldModel) : RealExtension rational_model`.
+Mathematical statement (Lean): `noncomputable def real_extension (rational_model : DenselyOrderedFieldModel) : CofinalRealExtension rational_model`.
 
 
 Logical form:
@@ -357,13 +357,13 @@ Logical form:
 ```lean
 noncomputable def real_extension
     (rational_model : DenselyOrderedFieldModel) :
-    RealExtension rational_model :=
+    CofinalRealExtension rational_model :=
   Classical.choice (real_extension_exists rational_model)
 ```
 -/
 noncomputable def real_extension
     (rational_model : DenselyOrderedFieldModel) :
-    RealExtension rational_model :=
+    CofinalRealExtension rational_model :=
   Classical.choice (real_extension_exists rational_model)
 
 end LRA.NumberSystems.RealNumbers.CauchySequences

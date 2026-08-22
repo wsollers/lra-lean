@@ -31,7 +31,7 @@ theorem FractionFieldUniversalProperty
           rationalSystem.FieldModel.signature target.signature rationalMap ∧
         ∀ integerValue : rationalSystem.IntegerSystem.Model.Carrier,
           rationalMap
-              (rationalSystem.IntegerEmbedding.ToRational integerValue) =
+              (rationalSystem.IntegerEmbedding.ToField integerValue) =
             integerMap integerValue
 ```
 -/
@@ -49,7 +49,7 @@ theorem FractionFieldUniversalProperty
           rationalSystem.FieldModel.signature target.signature rationalMap ∧
         ∀ integerValue : rationalSystem.IntegerSystem.Model.Carrier,
           rationalMap
-              (rationalSystem.IntegerEmbedding.ToRational integerValue) =
+              (rationalSystem.IntegerEmbedding.ToField integerValue) =
             integerMap integerValue := by
   sorry
 

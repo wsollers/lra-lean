@@ -65,7 +65,7 @@ Logical form:
 ```lean
 def ConvergentsConvergeTo
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
-    (realExtension : RealExtension rationalSystem.FieldModel)
+    (realExtension : CofinalRealExtension rationalSystem.FieldModel)
     (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (limit : realExtension.RealModel.Carrier) : Prop :=
   ∀ epsilon : realExtension.RealModel.Carrier,
@@ -73,13 +73,13 @@ def ConvergentsConvergeTo
       ∃ N : Nat, ∀ depth : Nat, N ≤ depth →
         ∃ convergent : rationalSystem.FieldModel.Carrier,
           IsConvergentAt rationalSystem fraction depth convergent ∧
-          -epsilon ≤ realExtension.RationalEmbedding.ToReal convergent + -limit ∧
-          realExtension.RationalEmbedding.ToReal convergent + -limit ≤ epsilon
+          -epsilon ≤ realExtension.DenseOrderedFieldEmbedding.ToReal convergent + -limit ∧
+          realExtension.DenseOrderedFieldEmbedding.ToReal convergent + -limit ≤ epsilon
 ```
 -/
 def ConvergentsConvergeTo
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
-    (realExtension : RealExtension rationalSystem.FieldModel)
+    (realExtension : CofinalRealExtension rationalSystem.FieldModel)
     (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (limit : realExtension.RealModel.Carrier) : Prop :=
   ∀ epsilon : realExtension.RealModel.Carrier,
@@ -87,8 +87,8 @@ def ConvergentsConvergeTo
       ∃ N : Nat, ∀ depth : Nat, N ≤ depth →
         ∃ convergent : rationalSystem.FieldModel.Carrier,
           IsConvergentAt rationalSystem fraction depth convergent ∧
-          -epsilon ≤ realExtension.RationalEmbedding.ToReal convergent + -limit ∧
-          realExtension.RationalEmbedding.ToReal convergent + -limit ≤ epsilon
+          -epsilon ≤ realExtension.DenseOrderedFieldEmbedding.ToReal convergent + -limit ∧
+          realExtension.DenseOrderedFieldEmbedding.ToReal convergent + -limit ≤ epsilon
 
 /-- A proper infinite simple continued fraction is an expansion of a real value
 when its rational convergents converge to that value.
@@ -98,7 +98,7 @@ Logical form:
 ```lean
 def IsInfiniteSimpleContinuedFractionExpansionOf
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
-    (realExtension : RealExtension rationalSystem.FieldModel)
+    (realExtension : CofinalRealExtension rationalSystem.FieldModel)
     (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (value : realExtension.RealModel.Carrier) : Prop :=
   IsProperInfiniteSimpleContinuedFraction fraction ∧
@@ -107,7 +107,7 @@ def IsInfiniteSimpleContinuedFractionExpansionOf
 -/
 def IsInfiniteSimpleContinuedFractionExpansionOf
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
-    (realExtension : RealExtension rationalSystem.FieldModel)
+    (realExtension : CofinalRealExtension rationalSystem.FieldModel)
     (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (value : realExtension.RealModel.Carrier) : Prop :=
   IsProperInfiniteSimpleContinuedFraction fraction ∧
@@ -122,30 +122,30 @@ Logical form:
 ```lean
 def IsQuadraticIrrational
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
-    (realExtension : RealExtension rationalSystem.FieldModel)
+    (realExtension : CofinalRealExtension rationalSystem.FieldModel)
     (value : realExtension.RealModel.Carrier) : Prop :=
   LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational
       rationalSystem realExtension value ∧
     ∃ a b c : rationalSystem.IntegerSystem.Model.Carrier,
       a ≠ 0 ∧
         let embedInteger := fun z =>
-          realExtension.RationalEmbedding.ToReal
-            (rationalSystem.IntegerEmbedding.ToRational z)
+          realExtension.DenseOrderedFieldEmbedding.ToReal
+            (rationalSystem.IntegerEmbedding.ToField z)
         embedInteger a * (value * value) +
             embedInteger b * value + embedInteger c = 0
 ```
 -/
 def IsQuadraticIrrational
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
-    (realExtension : RealExtension rationalSystem.FieldModel)
+    (realExtension : CofinalRealExtension rationalSystem.FieldModel)
     (value : realExtension.RealModel.Carrier) : Prop :=
   LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational
       rationalSystem realExtension value ∧
     ∃ a b c : rationalSystem.IntegerSystem.Model.Carrier,
       a ≠ 0 ∧
         let embedInteger := fun z =>
-          realExtension.RationalEmbedding.ToReal
-            (rationalSystem.IntegerEmbedding.ToRational z)
+          realExtension.DenseOrderedFieldEmbedding.ToReal
+            (rationalSystem.IntegerEmbedding.ToField z)
         embedInteger a * (value * value) +
             embedInteger b * value + embedInteger c = 0
 

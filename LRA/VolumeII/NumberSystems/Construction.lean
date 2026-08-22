@@ -83,14 +83,14 @@ structure NumberSystemTower where
   IntegerSystem : IntegerNumberSystem
   RationalSystem : RationalNumberSystem
   RationalUsesIntegerSystem : RationalSystem.IntegerSystem = IntegerSystem
-  RealExtension : RealExtension RationalSystem.FieldModel
+  CofinalRealExtension : CofinalRealExtension RationalSystem.FieldModel
 ```
 -/
 structure NumberSystemTower where
   IntegerSystem : IntegerNumberSystem
   RationalSystem : RationalNumberSystem
   RationalUsesIntegerSystem : RationalSystem.IntegerSystem = IntegerSystem
-  RealExtension : RealExtension RationalSystem.FieldModel
+  CofinalRealExtension : CofinalRealExtension RationalSystem.FieldModel
 
 /-- Every supported construction configuration builds a coherent number-system
 tower.

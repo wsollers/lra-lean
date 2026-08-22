@@ -249,12 +249,12 @@ Logical form:
 ```lean
 theorem rational_extension_exists
     (integer_model : DiscretelyOrderedIntegralDomainModel) :
-    Nonempty (RationalExtension integer_model)
+    Nonempty (ArchimedeanDenseOrderedFieldExtension integer_model)
 ```
 -/
 theorem rational_extension_exists
     (integer_model : DiscretelyOrderedIntegralDomainModel) :
-    Nonempty (RationalExtension integer_model) := by
+    Nonempty (ArchimedeanDenseOrderedFieldExtension integer_model) := by
   sorry
 
 /-- **[Definition — Rational Quotient-Fractions Extension]**
@@ -264,13 +264,13 @@ Logical form:
 ```lean
 noncomputable def rational_extension
     (integer_model : DiscretelyOrderedIntegralDomainModel) :
-    RationalExtension integer_model :=
+    ArchimedeanDenseOrderedFieldExtension integer_model :=
   Classical.choice (rational_extension_exists integer_model)
 ```
 -/
 noncomputable def rational_extension
     (integer_model : DiscretelyOrderedIntegralDomainModel) :
-    RationalExtension integer_model :=
+    ArchimedeanDenseOrderedFieldExtension integer_model :=
   Classical.choice (rational_extension_exists integer_model)
 
 

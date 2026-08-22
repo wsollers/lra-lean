@@ -51,35 +51,35 @@ Logical form:
 ```lean
 structure AdjacentTowerEmbeddings
     (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel)
-    (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
-    (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel) : Prop where
-  IntegerToRationalPreserves :
+    (SelectedArchimedeanDenseOrderedFieldExtension : ArchimedeanDenseOrderedFieldExtension SelectedIntegerModel)
+    (SelectedCofinalRealExtension : CofinalRealExtension SelectedArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel) : Prop where
+  IntegerToFieldPreserves :
     EmbeddingPreservesOrderedRing
       SelectedIntegerModel.signature
-      SelectedRationalExtension.DenselyOrderedFieldModel.signature.toOrderedRingSignature
-      SelectedRationalExtension.IntegerEmbedding.ToRational
+      SelectedArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel.signature.toOrderedRingSignature
+      SelectedArchimedeanDenseOrderedFieldExtension.IntegerEmbedding.ToField
   RationalToRealPreserves :
     EmbeddingPreservesOrderedField
-      SelectedRationalExtension.DenselyOrderedFieldModel.signature
-      SelectedRealExtension.RealModel.signature
-      SelectedRealExtension.RationalEmbedding.ToReal
+      SelectedArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel.signature
+      SelectedCofinalRealExtension.RealModel.signature
+      SelectedCofinalRealExtension.DenseOrderedFieldEmbedding.ToReal
 ```
 -/
 
 structure AdjacentTowerEmbeddings
     (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel)
-    (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
-    (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel) : Prop where
-  IntegerToRationalPreserves :
+    (SelectedArchimedeanDenseOrderedFieldExtension : ArchimedeanDenseOrderedFieldExtension SelectedIntegerModel)
+    (SelectedCofinalRealExtension : CofinalRealExtension SelectedArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel) : Prop where
+  IntegerToFieldPreserves :
     EmbeddingPreservesOrderedRing
       SelectedIntegerModel.signature
-      SelectedRationalExtension.DenselyOrderedFieldModel.signature.toOrderedRingSignature
-      SelectedRationalExtension.IntegerEmbedding.ToRational
+      SelectedArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel.signature.toOrderedRingSignature
+      SelectedArchimedeanDenseOrderedFieldExtension.IntegerEmbedding.ToField
   RationalToRealPreserves :
     EmbeddingPreservesOrderedField
-      SelectedRationalExtension.DenselyOrderedFieldModel.signature
-      SelectedRealExtension.RealModel.signature
-      SelectedRealExtension.RationalEmbedding.ToReal
+      SelectedArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel.signature
+      SelectedCofinalRealExtension.RealModel.signature
+      SelectedCofinalRealExtension.DenseOrderedFieldEmbedding.ToReal
 /--
 `CompositeIntegerToReal` exposes this formal declaration.
 
@@ -88,23 +88,23 @@ Logical form:
 ```lean
 def CompositeIntegerToReal
     {SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel}
-    (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
-    (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel) :
-    SelectedIntegerModel.signature.carrier → SelectedRealExtension.RealModel.signature.carrier :=
+    (SelectedArchimedeanDenseOrderedFieldExtension : ArchimedeanDenseOrderedFieldExtension SelectedIntegerModel)
+    (SelectedCofinalRealExtension : CofinalRealExtension SelectedArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel) :
+    SelectedIntegerModel.signature.carrier → SelectedCofinalRealExtension.RealModel.signature.carrier :=
   fun value =>
-    SelectedRealExtension.RationalEmbedding.ToReal
-      (SelectedRationalExtension.IntegerEmbedding.ToRational value)
+    SelectedCofinalRealExtension.DenseOrderedFieldEmbedding.ToReal
+      (SelectedArchimedeanDenseOrderedFieldExtension.IntegerEmbedding.ToField value)
 ```
 -/
 
 def CompositeIntegerToReal
     {SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel}
-    (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
-    (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel) :
-    SelectedIntegerModel.signature.carrier → SelectedRealExtension.RealModel.signature.carrier :=
+    (SelectedArchimedeanDenseOrderedFieldExtension : ArchimedeanDenseOrderedFieldExtension SelectedIntegerModel)
+    (SelectedCofinalRealExtension : CofinalRealExtension SelectedArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel) :
+    SelectedIntegerModel.signature.carrier → SelectedCofinalRealExtension.RealModel.signature.carrier :=
   fun value =>
-    SelectedRealExtension.RationalEmbedding.ToReal
-      (SelectedRationalExtension.IntegerEmbedding.ToRational value)
+    SelectedCofinalRealExtension.DenseOrderedFieldEmbedding.ToReal
+      (SelectedArchimedeanDenseOrderedFieldExtension.IntegerEmbedding.ToField value)
 /--
 `CompositeIntegerToRealIsEmbedding` exposes this formal declaration.
 
@@ -113,27 +113,27 @@ Logical form:
 ```lean
 theorem CompositeIntegerToRealIsEmbedding
     {SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel}
-    (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
-    (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel)
+    (SelectedArchimedeanDenseOrderedFieldExtension : ArchimedeanDenseOrderedFieldExtension SelectedIntegerModel)
+    (SelectedCofinalRealExtension : CofinalRealExtension SelectedArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel)
     (AdjacentEmbeddings :
-      AdjacentTowerEmbeddings SelectedIntegerModel SelectedRationalExtension SelectedRealExtension) :
+      AdjacentTowerEmbeddings SelectedIntegerModel SelectedArchimedeanDenseOrderedFieldExtension SelectedCofinalRealExtension) :
     EmbeddingPreservesOrderedRing
       SelectedIntegerModel.signature
-      SelectedRealExtension.RealModel.signature.toOrderedRingSignature
-      (CompositeIntegerToReal SelectedRationalExtension SelectedRealExtension)
+      SelectedCofinalRealExtension.RealModel.signature.toOrderedRingSignature
+      (CompositeIntegerToReal SelectedArchimedeanDenseOrderedFieldExtension SelectedCofinalRealExtension)
 ```
 -/
 
 theorem CompositeIntegerToRealIsEmbedding
     {SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel}
-    (SelectedRationalExtension : RationalExtension SelectedIntegerModel)
-    (SelectedRealExtension : RealExtension SelectedRationalExtension.DenselyOrderedFieldModel)
+    (SelectedArchimedeanDenseOrderedFieldExtension : ArchimedeanDenseOrderedFieldExtension SelectedIntegerModel)
+    (SelectedCofinalRealExtension : CofinalRealExtension SelectedArchimedeanDenseOrderedFieldExtension.DenselyOrderedFieldModel)
     (AdjacentEmbeddings :
-      AdjacentTowerEmbeddings SelectedIntegerModel SelectedRationalExtension SelectedRealExtension) :
+      AdjacentTowerEmbeddings SelectedIntegerModel SelectedArchimedeanDenseOrderedFieldExtension SelectedCofinalRealExtension) :
     EmbeddingPreservesOrderedRing
       SelectedIntegerModel.signature
-      SelectedRealExtension.RealModel.signature.toOrderedRingSignature
-      (CompositeIntegerToReal SelectedRationalExtension SelectedRealExtension) := by
+      SelectedCofinalRealExtension.RealModel.signature.toOrderedRingSignature
+      (CompositeIntegerToReal SelectedArchimedeanDenseOrderedFieldExtension SelectedCofinalRealExtension) := by
   sorry
 
 end LRA.NumberSystems.Models.CanonicalEmbeddings

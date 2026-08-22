@@ -696,8 +696,8 @@ DiscretelyOrderedIntegralDomainModel
 DenselyOrderedFieldModel
 RealModel
 CanonicalEmbeddings
-IntegerEmbeddingIntoRational
-RationalEmbeddingIntoReal
+OrderedRingEmbeddingIntoDenseOrderedField
+DenseOrderedFieldEmbeddingIntoReal
 PreservationOfOperations
 PreservationOfOrder
 Characteristic

@@ -24,27 +24,27 @@ structure RationalNumberSystem : Type (u + 1) where
   IntegerSystem : IntegerNumberSystem.{u}
   FieldModel : DenselyOrderedFieldModel.{u}
   IntegerEmbedding :
-    IntegerEmbeddingIntoRational IntegerSystem.Model FieldModel
+    OrderedRingEmbeddingIntoDenseOrderedField IntegerSystem.Model FieldModel
   EveryElementIsIntegerFraction :
     ∀ q : FieldModel.Carrier,
       ∃ numerator denominator : IntegerSystem.Model.Carrier,
         denominator ≠ 0 ∧
         q =
-          IntegerEmbedding.ToRational numerator *
-            (IntegerEmbedding.ToRational denominator)⁻¹
+          IntegerEmbedding.ToField numerator *
+            (IntegerEmbedding.ToField denominator)⁻¹
 ```
 -/
 structure RationalNumberSystem : Type (u + 1) where
   IntegerSystem : IntegerNumberSystem.{u}
   FieldModel : DenselyOrderedFieldModel.{u}
   IntegerEmbedding :
-    IntegerEmbeddingIntoRational IntegerSystem.Model FieldModel
+    OrderedRingEmbeddingIntoDenseOrderedField IntegerSystem.Model FieldModel
   EveryElementIsIntegerFraction :
     ∀ q : FieldModel.Carrier,
       ∃ numerator denominator : IntegerSystem.Model.Carrier,
         denominator ≠ 0 ∧
         q =
-          IntegerEmbedding.ToRational numerator *
-            (IntegerEmbedding.ToRational denominator)⁻¹
+          IntegerEmbedding.ToField numerator *
+            (IntegerEmbedding.ToField denominator)⁻¹
 
 end LRA.NumberSystems.RationalNumbers

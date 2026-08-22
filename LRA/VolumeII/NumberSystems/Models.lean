@@ -288,55 +288,55 @@ Archimedean/cofinality clauses record how each system sits inside the
 next. -/
 
 /--
-`IntegerEmbeddingIntoRational` packages the data and laws for integer embedding into rational.
+`OrderedRingEmbeddingIntoDenseOrderedField` packages the data and laws for integer embedding into rational.
 
 Logical form:
 
 ```lean
-structure IntegerEmbeddingIntoRational
+structure OrderedRingEmbeddingIntoDenseOrderedField
     (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel)
     (SelectedDenselyOrderedFieldModel : DenselyOrderedFieldModel) where
-  ToRational :
+  ToField :
     SelectedIntegerModel.Carrier → SelectedDenselyOrderedFieldModel.Carrier
   injective :
     ∀ first second,
-      ToRational first = ToRational second → first = second
-  PreservesZero : ToRational 0 = 0
-  PreservesOne : ToRational 1 = 1
+      ToField first = ToField second → first = second
+  PreservesZero : ToField 0 = 0
+  PreservesOne : ToField 1 = 1
   PreservesAddition :
     ∀ first second,
-      ToRational (first + second) = ToRational first + ToRational second
+      ToField (first + second) = ToField first + ToField second
   PreservesNegation :
-    ∀ value, ToRational (-value) = -(ToRational value)
+    ∀ value, ToField (-value) = -(ToField value)
   PreservesMultiplication :
     ∀ first second,
-      ToRational (first * second) = ToRational first * ToRational second
+      ToField (first * second) = ToField first * ToField second
   PreservesAndReflectsOrder :
     ∀ first second,
-      ToRational first ≤ ToRational second ↔ first ≤ second
+      ToField first ≤ ToField second ↔ first ≤ second
 ```
 -/
-structure IntegerEmbeddingIntoRational
+structure OrderedRingEmbeddingIntoDenseOrderedField
     (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel)
     (SelectedDenselyOrderedFieldModel : DenselyOrderedFieldModel) where
-  ToRational :
+  ToField :
     SelectedIntegerModel.Carrier → SelectedDenselyOrderedFieldModel.Carrier
   injective :
     ∀ first second,
-      ToRational first = ToRational second → first = second
-  PreservesZero : ToRational 0 = 0
-  PreservesOne : ToRational 1 = 1
+      ToField first = ToField second → first = second
+  PreservesZero : ToField 0 = 0
+  PreservesOne : ToField 1 = 1
   PreservesAddition :
     ∀ first second,
-      ToRational (first + second) = ToRational first + ToRational second
+      ToField (first + second) = ToField first + ToField second
   PreservesNegation :
-    ∀ value, ToRational (-value) = -(ToRational value)
+    ∀ value, ToField (-value) = -(ToField value)
   PreservesMultiplication :
     ∀ first second,
-      ToRational (first * second) = ToRational first * ToRational second
+      ToField (first * second) = ToField first * ToField second
   PreservesAndReflectsOrder :
     ∀ first second,
-      ToRational first ≤ ToRational second ↔ first ≤ second
+      ToField first ≤ ToField second ↔ first ≤ second
 
 /-- A rational extension of an integer model: a densely ordered field model
 together with an embedding whose image is cofinal (the Archimedean property).
@@ -344,34 +344,34 @@ together with an embedding whose image is cofinal (the Archimedean property).
 Logical form:
 
 ```lean
-structure RationalExtension
+structure ArchimedeanDenseOrderedFieldExtension
     (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel.{u}) where
   DenselyOrderedFieldModel : DenselyOrderedFieldModel.{u}
   IntegerEmbedding :
-    IntegerEmbeddingIntoRational SelectedIntegerModel DenselyOrderedFieldModel
+    OrderedRingEmbeddingIntoDenseOrderedField SelectedIntegerModel DenselyOrderedFieldModel
   ArchimedeanProperty :
     ∀ RationalValue : DenselyOrderedFieldModel.Carrier,
       ∃ IntegerValue : SelectedIntegerModel.Carrier,
-        RationalValue < IntegerEmbedding.ToRational IntegerValue
+        RationalValue < IntegerEmbedding.ToField IntegerValue
 ```
 -/
-structure RationalExtension
+structure ArchimedeanDenseOrderedFieldExtension
     (SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel.{u}) where
   DenselyOrderedFieldModel : DenselyOrderedFieldModel.{u}
   IntegerEmbedding :
-    IntegerEmbeddingIntoRational SelectedIntegerModel DenselyOrderedFieldModel
+    OrderedRingEmbeddingIntoDenseOrderedField SelectedIntegerModel DenselyOrderedFieldModel
   ArchimedeanProperty :
     ∀ RationalValue : DenselyOrderedFieldModel.Carrier,
       ∃ IntegerValue : SelectedIntegerModel.Carrier,
-        RationalValue < IntegerEmbedding.ToRational IntegerValue
+        RationalValue < IntegerEmbedding.ToField IntegerValue
 
 /--
-`RationalEmbeddingIntoReal` packages the data and laws for rational embedding into real.
+`DenseOrderedFieldEmbeddingIntoReal` packages the data and laws for rational embedding into real.
 
 Logical form:
 
 ```lean
-structure RationalEmbeddingIntoReal
+structure DenseOrderedFieldEmbeddingIntoReal
     (SelectedDenselyOrderedFieldModel : DenselyOrderedFieldModel)
     (SelectedRealModel : RealModel) where
   ToReal :
@@ -394,7 +394,7 @@ structure RationalEmbeddingIntoReal
     ∀ first second, ToReal first ≤ ToReal second ↔ first ≤ second
 ```
 -/
-structure RationalEmbeddingIntoReal
+structure DenseOrderedFieldEmbeddingIntoReal
     (SelectedDenselyOrderedFieldModel : DenselyOrderedFieldModel)
     (SelectedRealModel : RealModel) where
   ToReal :
@@ -422,26 +422,26 @@ with an embedding whose image is cofinal.
 Logical form:
 
 ```lean
-structure RealExtension
+structure CofinalRealExtension
     (SelectedDenselyOrderedFieldModel : DenselyOrderedFieldModel.{u}) where
   RealModel : RealModel.{u}
-  RationalEmbedding :
-    RationalEmbeddingIntoReal SelectedDenselyOrderedFieldModel RealModel
-  RationalEmbeddingIsCofinal :
+  DenseOrderedFieldEmbedding :
+    DenseOrderedFieldEmbeddingIntoReal SelectedDenselyOrderedFieldModel RealModel
+  DenseOrderedFieldEmbeddingIsCofinal :
     ∀ RealValue : RealModel.Carrier,
       ∃ RationalValue : SelectedDenselyOrderedFieldModel.Carrier,
-        RealValue < RationalEmbedding.ToReal RationalValue
+        RealValue < DenseOrderedFieldEmbedding.ToReal RationalValue
 ```
 -/
-structure RealExtension
+structure CofinalRealExtension
     (SelectedDenselyOrderedFieldModel : DenselyOrderedFieldModel.{u}) where
   RealModel : RealModel.{u}
-  RationalEmbedding :
-    RationalEmbeddingIntoReal SelectedDenselyOrderedFieldModel RealModel
-  RationalEmbeddingIsCofinal :
+  DenseOrderedFieldEmbedding :
+    DenseOrderedFieldEmbeddingIntoReal SelectedDenselyOrderedFieldModel RealModel
+  DenseOrderedFieldEmbeddingIsCofinal :
     ∀ RealValue : RealModel.Carrier,
       ∃ RationalValue : SelectedDenselyOrderedFieldModel.Carrier,
-        RealValue < RationalEmbedding.ToReal RationalValue
+        RealValue < DenseOrderedFieldEmbedding.ToReal RationalValue
 
 /-! ## Smoke tests: fluent mixin theorems land on model carriers -/
 
