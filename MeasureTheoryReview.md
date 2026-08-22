@@ -2,17 +2,15 @@
 
 ## Scope
 
-Maintained mathematical review of `LRA.Analysis.MeasureTheory`, beginning with measurable spaces, algebra/sigma-algebra ownership, measurable-map prerequisites, and the basic measure/measure-space reference definitions.
+Maintained mathematical review of `LRA.Analysis.MeasureTheory`, measurable-space prerequisites, the function/preimage dependency layer, and the basic measure-space reference definitions.
 
-Project-wide review rules apply: `sorry` is neutral scaffolding; legitimate axioms are not penalized; genuine choice use outside dedicated foundational developments is tracked separately; the target is a mathematically correct, coherent learning/proof surface rather than research-level exhaustiveness.
+Project-wide rules apply: `sorry` is neutral scaffolding; legitimate axioms are not penalized; genuine mathematical Choice is distinguished from witness extraction.
 
 ---
 
-# Review 1 — measurable spaces, sigma-algebra ownership, and basic measure spaces
+# Current measure-theory skeleton
 
-## Canonical import architecture
-
-`LRA.Analysis.MeasureTheory.lean` currently imports the three foundational subjects:
+`LRA.Analysis.MeasureTheory.lean` currently imports:
 
 - measurable spaces;
 - measure spaces;
@@ -20,160 +18,179 @@ Project-wide review rules apply: `sorry` is neutral scaffolding; legitimate axio
 
 This is a reasonable early skeleton, not yet a full measure-theory curriculum.
 
-**Verdict: GOOD EARLY SUBJECT SKELETON.**
+The MeasureTheory algebra layer correctly aliases the canonical `LRA.SetSystems` structures instead of redefining ring/algebra/sigma-ring/sigma-algebra notions.
 
-## Algebra/sigma-algebra ownership
+**Verdict: GOOD OWNERSHIP.**
 
-The MeasureTheory algebra-of-sets layer aliases the canonical `LRA.SetSystems` structures rather than redefining ring/algebra/sigma-ring/sigma-algebra concepts.
+---
 
-**Verdict: PASS — EXCELLENT OWNERSHIP.**
+# Measurable-space definition
 
-## Measurable-space definition
-
-`MeasurableSpaceDefinitionOn X` gives the standard sigma-algebra presentation:
+`MeasurableSpaceDefinitionOn X` is standard:
 
 1. empty set measurable;
-2. complement closure;
-3. countable-union closure.
+2. complements measurable;
+3. countable unions measurable.
 
 **Verdict: PASS.**
 
-Useful derived theorem surface still needed:
+Still expose the standard derived closure laws:
 
-- universal set measurable;
+- universal set;
 - finite union/intersection;
 - difference;
 - countable intersection;
-- De Morgan laws for measurable families;
-- symmetric difference.
-
-The abstract `SetSystems` layer should be reused where possible.
+- symmetric difference;
+- countable De Morgan laws.
 
 ---
 
 # P1 — measurable-space interop is scaffold-only
 
-`MeasurableSpace/Interop/ToMathlib.lean` and `FromMathlib.lean` currently contain route comments only.
+`MeasurableSpace/Interop/ToMathlib.lean` and `FromMathlib.lean` are currently only route comments.
 
 Required bridge:
 
-1. textbook measurable-space record -> Mathlib `MeasurableSpace`;
+1. textbook record -> Mathlib `MeasurableSpace`;
 2. reverse conversion;
-3. pointwise equivalence of project `IsMeasurable` and Mathlib `MeasurableSet`;
-4. round-trip/compatibility theorems.
+3. equivalence of project `IsMeasurable` and Mathlib `MeasurableSet`;
+4. compatibility/round-trip theorems.
 
-**Severity: P1 ARCHITECTURAL/PROOF-READINESS GAP.**
+**Severity: P1.**
 
 ---
 
-# P1 — measurable maps are missing, but the required preimage calculus already exists
+# Measurable maps should be a thin layer over `LRA.Function`
 
-No project-facing measurable-map/function layer was located in the current MeasureTheory tree.
+The function review established that the full preimage calculus already exists:
 
-However, the dependency review of `LRA.Function` materially changes how this should be built.
+- `PreimageClass`;
+- union/empty/monotonicity;
+- arbitrary/countable union;
+- intersection/difference/complement/symmetric difference for functions;
+- arbitrary/countable intersection;
+- universal class;
+- composition and identity preimages.
 
-`LRA.Function` already owns:
+Therefore MeasureTheory should not introduce another preimage operation.
 
-- `PreimageClass function target`;
-- preimage of union;
-- preimage of empty;
-- preimage monotonicity;
-- preimage of arbitrary/countable union;
-- for functions, preimage of intersection/difference/complement/symmetric difference;
-- preimage of arbitrary/countable intersection;
-- preimage of universal class;
-- preimage under composition;
-- identity preimage.
-
-Therefore MeasureTheory should **not** introduce a second preimage operation.
-
-## Recommended definition
-
-At the project-facing level, measurability should be only the preservation predicate:
+Recommended project-facing definition:
 
 ```text
-f : X -> Y is measurable
-iff
-for every measurable target set B in Y,
-PreimageClass f B is measurable in X.
+MeasurableMap sourceSigma targetSigma f :=
+  forall B, targetSigma.IsMeasurable B ->
+    sourceSigma.IsMeasurable (PreimageClass f B)
 ```
 
-For a Mathlib-facing proof layer, bridge this immediately to Mathlib's `Measurable f` once measurable-space interop exists.
-
-## Immediate theorem family
-
-Using the existing preimage calculus, add:
+Then prove:
 
 - identity measurable;
-- constant functions measurable;
-- composition of measurable maps measurable;
-- measurable maps preserve complements by preimage;
-- measurable maps preserve countable unions/intersections by preimage;
-- restriction/subspace measurable maps where the measurable-space construction supports them.
+- constant maps measurable;
+- composition measurable;
+- restrictions/inclusions measurable when the corresponding measurable-space constructions are available;
+- product projections measurable once product measurable spaces exist.
 
-The composition theorem should reuse the existing preimage-under-composition theorem rather than restating set algebra.
-
-**Severity: P1 MEASURE-THEORY FOUNDATION GAP, but dependencies are already strong.**
+**Severity: P1 MISSING LAYER; DEPENDENCIES ARE ALREADY STRONG.**
 
 ---
 
-# Generated-sigma-algebra criterion for measurability
+# P0 dependency correction — current `GeneratedSigmaAlgebra` is not sound generically
 
-`LRA.SetSystems.GeneratedSigmaAlgebra` already gives the smallest sigma algebra containing a generator family.
+An earlier version of this review treated `LRA.SetSystems.GeneratedSigmaAlgebra` as a correct dependency. The deeper SetSystems audit found a counterexample; that earlier verdict is superseded.
 
-A high-value theorem should connect this directly to measurable maps:
+Current membership definition quantifies over all sigma algebras on `ambient` that admit every generator. If **no** such sigma algebra exists, the condition is vacuously true for every set.
 
-> If the target measurable space is generated by a family `G`, and the preimage of every generator in `G` is measurable in the source, then the function is measurable.
-
-Conceptually the proof is:
-
-1. collect target sets whose preimages are measurable;
-2. use preimage preservation of empty/complement/countable union to show that collection is a sigma algebra;
-3. show it contains every generator;
-4. invoke generated-sigma-algebra minimality.
-
-This theorem is the correct bridge for later Borel measurability: one can check preimages of a generating basis/interval family instead of arbitrary Borel sets.
-
-**Priority: P1/P2, highly valuable before Borel measure theory.**
-
----
-
-# Continuous => Borel measurable
-
-Once the topology -> Borel bridge is present, the natural theorem is:
-
-> a continuous map between topological spaces is measurable for the Borel sigma algebras.
-
-The proof should route through inverse images of open sets plus the generated-sigma-algebra criterion above.
-
-This theorem is a central payoff of the intended progression
+Example on ordinary `Set Nat`:
 
 ```text
-metric -> topology -> Borel sigma algebra -> measurable map.
+ambient = empty set
+generator G := G = {0}
 ```
 
-It should not depend on integration theory.
+No sigma algebra on the empty ambient can contain `{0}`, since every sigma member must be a subset of the ambient. Hence the universal implication defining generated membership is vacuous for every `A`. The current theorem `GeneratedSigmaAlgebraMembersAreSubsets` would then assert every `A ⊆ empty`, false.
+
+**Severity: P0 in `SetSystemsReview.md`.**
+
+## Consequence for measurable-map generator criteria
+
+The desired theorem
+
+> preimages of all generators measurable => map measurable for the generated sigma algebra
+
+is still mathematically important, but it must wait for a corrected generated-sigma construction with an explicit admissibility/nonvacuity hypothesis.
+
+Recommended generic premise:
+
+```text
+GeneratorAdmissible ambient generator :=
+  exists sigma : SigmaAlgebraOfSets ambient,
+    forall G, generator G -> sigma.IsMember G
+```
+
+On ordinary `Set X`, this can be derived from the fact that all generators are subsets of the ambient, using the full relative powerset sigma algebra.
 
 ---
 
-# Measurable-space examples/failures/constructions
+# Borel construction is currently blocked by that P0
 
-The MeasureTheory examples/failures/construction/realization files are mostly placeholders.
+The intended idea
 
-Useful sigma-algebra examples already exist in `SetSystems`:
+```text
+Borel = sigma(open sets)
+```
 
-- full powerset;
-- `{empty, universal}`.
+is correct.
 
-These should be re-exported rather than reimplemented.
+But the temporary
 
-Also add a finite nontrivial partition-generated sigma algebra as a pedagogical middle example.
+```text
+BorelSigmaAlgebra ambient opens := GeneratedSigmaAlgebra ambient opens
+```
+
+inherits the current generated-sigma defect.
+
+The eventual topology-owned Borel layer should:
+
+1. obtain open sets from an actual topology;
+2. prove they lie inside the intended ambient carrier;
+3. establish an admissible containing sigma algebra;
+4. form the generated sigma algebra;
+5. bridge it to Mathlib `BorelSpace`/`MeasurableSpace`.
+
+Only after this correction should the project prove the generated-family measurable-map criterion and `continuous -> Borel measurable`.
+
+---
+
+# Product/subspace measurable-space roadmap
+
+The reviewed function layer already provides:
+
+- first projection `X × Y -> X`;
+- second projection `X × Y -> Y`;
+- pairing `z ↦ (f z, g z)`;
+- composition;
+- canonical preimage calculus.
+
+So the future product measurable structure should be characterized as the smallest measurable structure making both projections measurable.
+
+Then expose the universal property:
+
+```text
+Product f g is measurable
+  iff f is measurable and g is measurable
+```
+
+under the appropriate product measurable structure.
+
+For subspaces, define the induced measurable structure by preimages under the inclusion map and prove the inclusion measurable.
+
+The current `LRA.Function.Canonical` tree is sparse beyond identity; named subset inclusions and quotient projections would be useful reusable maps but are not mathematical blockers for the first product-space implementation.
 
 ---
 
 # Basic measure definition
 
-`MeasureDefinition X measurableSets` uses
+`MeasureDefinition X measurableSets` has the correct core ideas:
 
 ```text
 measure : Set X -> ENNReal
@@ -181,29 +198,27 @@ measure empty = 0
 countable additivity on pairwise-disjoint measurable sequences.
 ```
 
-The core idea and codomain are correct.
+## P1 — nonmeasurable-set values are unconstrained
 
-## P1 — values on nonmeasurable sets are unconstrained
-
-The function is defined on all subsets while the axioms constrain only measurable sets. Therefore two records may represent the same textbook measure on the sigma algebra while differing arbitrarily outside it.
+The field is defined on all subsets while the axioms constrain measurable sets only. Two records can therefore encode the same textbook measure on the sigma algebra but differ arbitrarily outside it.
 
 Recommended resolution:
 
 1. measure on the subtype of measurable sets; or
-2. explicit equivalence/extensionality ignoring nonmeasurable values; or
-3. bridge decisively to Mathlib `Measure`, whose all-set semantics are fixed.
+2. explicit extensional equivalence ignoring nonmeasurable values; or
+3. decisive bridge to Mathlib `Measure`, whose all-set semantics are fixed.
 
 **Severity: P1 SEMANTIC/API ISSUE.**
 
-The explicit hypothesis that the countable union is measurable is redundant because measurable spaces are already closed under countable unions.
+The extra hypothesis asserting that the union of a measurable sequence is measurable is redundant by the measurable-space axioms.
 
-**Severity: P2 REDUNDANCY.**
+**Severity: P2.**
 
 ---
 
 # Basic measure consequences needed before integration
 
-Add at least:
+Add:
 
 - finite additivity;
 - monotonicity;
@@ -217,18 +232,16 @@ Add at least:
 
 ---
 
-# Examples and constructions
+# Examples and construction path
 
-`SetSystems` already supplies basic sigma-algebra examples, but project-facing measure examples were not located.
+Sigma-algebra examples already exist in `SetSystems` and should be re-exported.
 
-Before integration add:
+Project-facing measure examples still needed early:
 
 - Dirac measure;
 - counting measure.
 
-Lebesgue measure should follow only after Borel/Lebesgue measurable sets and extension machinery.
-
-The eventual constructive route should be:
+Lebesgue measure should come later through the standard conceptual route:
 
 1. premeasure;
 2. outer measure;
@@ -236,71 +249,49 @@ The eventual constructive route should be:
 4. extension theorem;
 5. completion;
 6. Lebesgue measure;
-7. product measure later.
-
----
-
-# Borel integration point
-
-The current abstract definition
-
-```text
-BorelSigmaAlgebra ambient opens := GeneratedSigmaAlgebra ambient opens
-```
-
-has the right idea, but ownership should eventually move to topology/Borel as its own source comment already anticipates.
-
-Required public bridge:
-
-```text
-TopologyDefinition / Mathlib TopologicalSpace
-        -> open sets
-        -> GeneratedSigmaAlgebra
-        -> Borel measurable space
-        -> Mathlib BorelSpace / MeasurableSpace.
-```
-
-For `Real`, a later countable-generator theorem using rational intervals is highly desirable.
+7. product measure.
 
 ---
 
 # Choice audit
 
-No genuine Axiom-of-Choice dependency was identified in the measurable-space, measurable-map architecture, or basic measure definitions reviewed here.
+No genuine family-wise Choice dependency was identified in the measurable-space or measurable-map architecture reviewed here.
 
-The existing preimage calculus requires no representative selection. Extension theorems and later regularity/product constructions should be audited individually when reached.
+The generated-sigma P0 is an admissibility/nonvacuity problem, not a Choice problem.
 
 ---
 
-# Readiness verdict
+# Current readiness verdict
 
 | Dimension | Verdict |
 |---|---|
 | Sigma-algebra ownership | **PASS** |
 | Measurable-space definition | **PASS** |
-| Derived sigma-algebra closure surface | **NEEDS BUILDOUT** |
+| Derived measurable-set closure | **NEEDS BUILDOUT** |
 | Measurable-space <-> Mathlib interop | **P1 PLACEHOLDER** |
-| Function preimage dependency layer | **PASS — STRONG** |
-| Measurable-map preservation layer | **MISSING / P1** |
-| Generated-sigma measurability criterion | **MISSING, HIGH VALUE** |
-| Topology -> Borel -> measurability bridge | **MISSING / P1** |
+| Function/preimage dependency layer | **PASS — STRONG** |
+| Measurable-map layer | **MISSING / P1** |
+| Generated sigma algebra dependency | **P0 — MUST FIX FIRST** |
+| Borel construction | **CORRECT IDEA, CURRENTLY BLOCKED BY P0** |
+| Product/subspace measurable spaces | **NOT YET BUILT** |
 | Basic measure axiom | **CORE IDEA PASS** |
-| Nonmeasurable-set semantics | **P1** |
+| Nonmeasurable-set measure semantics | **P1** |
 | Dirac/counting examples | **MISSING / P1** |
 | Ready for integration | **NO** |
 
 ---
 
-# Immediate priority order before integration
+# Immediate priority order
 
-1. fix the P0 function indexed-intersection theorem recorded in `FunctionReview.md`;
-2. complete measurable-space <-> Mathlib interop;
-3. add the thin measurable-map predicate over canonical `LRA.Function.PreimageClass`;
-4. prove identity/composition/constant-map measurability;
-5. prove measurability from preimages of generated-sigma-algebra generators;
-6. connect topology/open sets -> Borel sigma algebra -> measurable space;
-7. prove continuous -> Borel measurable;
-8. add countable-intersection and standard sigma-algebra closure consequences;
-9. resolve measure semantics outside measurable sets / complete Mathlib measure interop;
-10. add basic measure consequences and Dirac/counting examples;
-11. only then begin integration/simple functions.
+1. fix `GeneratedSigmaAlgebra` admissibility/nonvacuity P0;
+2. fix the function empty-index intersection P0 in `FunctionReview.md`;
+3. complete measurable-space <-> Mathlib interop;
+4. add the thin measurable-map predicate over canonical `PreimageClass`;
+5. prove identity/composition/constant measurability;
+6. build product and subspace measurable structures using canonical projections/inclusions;
+7. after generated-sigma repair, add generator measurability criterion;
+8. connect topology -> Borel sigma algebra -> measurable space;
+9. prove continuous -> Borel measurable;
+10. resolve measure semantics/interop and add basic measure consequences;
+11. add Dirac/counting examples;
+12. only then begin integration/simple functions.
