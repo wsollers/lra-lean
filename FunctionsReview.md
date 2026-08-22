@@ -2,29 +2,84 @@
 
 ## Scope
 
-Maintained mathematical review of `LRA.Analysis.Functions`, focusing on the function-theoretic material consumed by continuity, differentiation, integration, and the concrete real-line topology bridge: boundedness, extrema, pointwise order, supremum/infimum constructions, and `SubsetsOfR`.
+Maintained mathematical review of `LRA.Analysis.Functions`, focusing on the function-theoretic material consumed by continuity, differentiation, and integration: algebra of functions, boundedness, extrema, pointwise order, monotonicity, linear combinations, supremum/infimum constructions, and the concrete real-line subset toolkit.
 
 Project-wide rule: `sorry` proof bodies are neutral. Concrete placeholder definitions are not neutral when theorem statements depend on their intended semantics.
 
 ---
 
-# Files reviewed
+# Active status
 
-- `LRA/Analysis.lean`
-- `LRA/Analysis/Functions.lean`
-- `LRA/Analysis/Functions/BoundedFunctions.lean`
-- `LRA/Analysis/Functions/ExtremumPoints.lean`
-- `LRA/Analysis/Functions/PointwiseOrder.lean`
-- `LRA/Analysis/Functions/SubsetsOfR.lean`
-- `LRA/Analysis/Functions/SupInfOfFunctions.lean`
+`LRA.Analysis.lean` imports `LRA.Analysis.Functions`, and the functions aggregate imports all reviewed modules including `SupInfOfFunctions.lean` and `SubsetsOfR.lean`.
+
+Several source headers still say these drafts are “not yet imported by the active Volume III root.” That is stale relative to the current aggregate import graph and should be corrected so semantic defects are not mistaken for quarantined drafts.
 
 ---
 
-# Active status
+# Algebra of functions
 
-`LRA.Analysis.lean` imports `LRA.Analysis.Functions`, and the functions aggregate imports the reviewed modules including `SupInfOfFunctions.lean` and `SubsetsOfR.lean`.
+`AlgebraOfFunctions.lean` states mathematically correct facts:
 
-Therefore semantic stubs and false statements in this subject are part of the active repository-wide analysis surface.
+- composition preserves injectivity;
+- composition preserves surjectivity;
+- composition preserves bijectivity;
+- a bijection has a bijective inverse;
+- preimage commutes with union, intersection, and complement.
+
+**Verdict: MATHEMATICALLY PASS.**
+
+## P1/P2 duplicate semantic ownership
+
+The file locally introduces:
+
+- `IsInjectiveOn`;
+- `IsSurjectiveOn`;
+- `IsBijectiveOn`;
+- `IsInverseFunctionOf`.
+
+The canonical `LRA.Function` subject already owns injective/surjective/bijective and left/right/two-sided inverse vocabulary, with a stronger graph/preimage calculus.
+
+Recommendation: retain these names only as explicit aliases/bridges to the canonical owner, or migrate this chapter to `LRA.Function` vocabulary. Do not maintain two independent definitions for the same arrow-level concepts.
+
+**Severity: P1/P2 OWNERSHIP/INTEROP, not mathematical error.**
+
+The source-note corruption described in the file header—misplaced interpretation/predicate/negation blocks—is documentation damage rather than a theorem-statement defect.
+
+---
+
+# Linear combinations
+
+`LinearCombo`, closure under linear combinations, bounded linear combinations, `IsRealLinearRule`, the additivity/homogeneity test, and basic consequences are all correctly stated.
+
+This is good scaffolding for later derivative/integral linearity.
+
+**Verdict: PASS.**
+
+A later consolidation could phrase the class of functions as an actual subspace when the functional-analysis layer is mature, but the current elementary explicit predicate is pedagogically useful.
+
+---
+
+# Monotone and constant functions
+
+The definitions of increasing/decreasing, strict variants, monotone, and constant functions are standard.
+
+Reviewed laws are correct:
+
+- strict monotonicity implies weak monotonicity;
+- negation reverses monotonicity;
+- positive scalar multiplication preserves direction;
+- weak monotonicity need not be strict;
+- constant iff both increasing and decreasing;
+- constant functions are bounded and monotone;
+- sums preserve common monotonic direction;
+- products preserve monotonic direction under nonnegativity hypotheses;
+- strict monotonicity implies injectivity on the displayed set;
+- restriction preserves monotonicity;
+- composition has the expected four direction combinations.
+
+**Verdict: PASS.**
+
+These concrete real-valued predicates overlap with Mathlib `MonotoneOn`/`StrictMonoOn` and with the relation/order subjects. Explicit bridge theorems would reduce translation friction in later chapters.
 
 ---
 
@@ -51,8 +106,6 @@ The reviewed consequences are also correct:
 - bounded functions are closed under the standard finite algebraic operations.
 
 **Verdict: PASS.**
-
-The file header itself records a duplicated theorem/corollary and duplicated failure-mode prose in the source notes. These are organizational redundancies, not mathematical defects.
 
 ---
 
@@ -107,141 +160,86 @@ The file header says these are intended to be `sSup`/`sInf` constructions, but t
 
 This is not a harmless proof placeholder. Substantive theorem statements depend on these definitions.
 
-## Immediate counterexample: pointwise supremum evaluation
+## Immediate counterexample
 
-For a one-element finite index type and a family with
-
-```text
-f alpha x = 1,
-```
-
-`PointwiseSupremumFamily f x` is definitionally `0`.
-
-But `PointwiseSupremumEvaluation` asserts that there exists an index `alpha` with
-
-```text
-PointwiseSupremumFamily f x = f alpha x.
-```
-
-This becomes `0 = 1`, false.
-
-The analogous pointwise-infimum theorem fails for the same reason.
-
-## Function supremum/infimum laws are likewise semantically corrupted
-
-Any theorem identifying or algebraically transforming the supremum/infimum values is unreliable while both functions are fixed to zero.
-
-For example, the intended identity
-
-```text
-sup(-f) = -inf(f)
-```
-
-is not being proved about mathematical suprema at all under the current definitions.
+For a one-element finite index type with `f alpha x = 1`, `PointwiseSupremumFamily f x` is definitionally `0`, while `PointwiseSupremumEvaluation` asserts it equals `f alpha x = 1`.
 
 **Severity: P0 ACTIVE SEMANTIC STUB CLUSTER.**
 
----
+## Correct repair/domain policy
 
-# Concrete real-line point-set topology in `SubsetsOfR`
-
-The file contains a substantial and mostly correct concrete topology toolkit for `Real`:
-
-- centered and punctured neighborhoods;
-- cluster/adherent/isolated/interior/boundary points;
-- interior, closure, and boundary sets;
-- closed and open sets;
-- closure identities;
-- sequential characterization of closed sets;
-- bounded subsets of `Real`;
-- sequential Heine-Borel;
-- finite sets are closed;
-- eventual/near-point predicates.
-
-The closure, boundary, sequential closedness, boundedness, and Heine-Borel statements reviewed here are mathematically well shaped.
-
-**Verdict: MOSTLY PASS.**
-
-## P0 — `IntervalAllLimitPoints` fails for degenerate intervals
-
-Current theorem:
-
-```text
-(I.OrdConnected) -> forall x in I, IsClusterPointR x I.
-```
-
-Mathlib `Set.OrdConnected` admits singletons. Take
-
-```text
-I = {a}.
-```
-
-Then `I` is `OrdConnected`, but `a` is not a cluster point of `I` because there is no distinct point of `I` in any punctured neighborhood of `a`.
-
-### Required correction
-
-Use at least one of:
-
-- `I.Nontrivial` plus `I.OrdConnected`;
-- an explicit no-isolated-point/nondegenerate interval hypothesis;
-- a project-specific interval predicate whose definition excludes singletons, if that is truly the intended convention.
-
-For the present Mathlib `OrdConnected` formalization, a nontriviality hypothesis is the clean fix.
-
-**Severity: P0 FALSE THEOREM STATEMENT.**
-
----
-
-# Topology ownership duplication
-
-`SubsetsOfR.lean` is a concrete real-line owner for concepts also appearing in:
-
-1. `LRA.Analysis.StructureOfRealLine.OpenClosedSets`;
-2. generic `LRA.Topology.PointSetTopology`;
-3. portions of generic metric-space set geometry.
-
-This is not automatically wrong—the real-line file can legitimately be an example/specialization chapter—but it should not remain an independent semantic owner for closure, interior, boundary, openness, and closedness.
-
-Recommended direction:
-
-```text
-generic topology definitions/theorems
-       -> metric-induced specialization
-       -> Real specialization / examples
-```
-
-Then the real-line chapter should prove equivalence/identification with the generic notions instead of maintaining parallel definitions indefinitely.
-
-**Severity: P1 OWNERSHIP/PROMOTION ISSUE.**
-
----
-
-# Correct repair and domain semantics for extrema
-
-The intended definitions should be approximately
+Intended real-valued forms are approximately
 
 ```text
 FunctionSupremumOnSet f A = sSup (f '' A)
 FunctionInfimumOnSet f A = sInf (f '' A)
 ```
 
-with the important caveat already identified elsewhere in the audit:
-real-valued `sSup`/`sInf` are totalized outside the mathematically proper bounded/nonempty domain.
-
-Therefore choose one of two public designs:
-
-1. retain raw total definitions but make every mathematically meaningful theorem carry explicit nonempty/bounded hypotheses; or
-2. package finite real supremum/infimum with hypotheses, and use an extended-real codomain for genuinely total constructions.
-
-For this real-valued function chapter, option 1 is reasonable because most existing theorem statements already carry the relevant hypotheses.
-
-For pointwise supremum/infimum of arbitrary families, the same domain question matters even more. Finite inhabited families are safe in `Real`; arbitrary families require boundedness hypotheses or an extended codomain.
+but real `sSup`/`sInf` are totalized outside the mathematically meaningful nonempty/bounded domain. Preserve explicit domain hypotheses on all theorems, or use an extended-real codomain where infinity is natural.
 
 ---
 
-# Architecture recommendation
+# Concrete real-line subset topology
 
-There are now several parallel real `sSup`/`sInf`-style constructions in the repository:
+`SubsetsOfR.lean` contains a substantial correct concrete-`Real` toolkit:
+
+- centered and punctured neighborhoods;
+- cluster/adherent/isolated/interior/boundary points;
+- interior, closure, and boundary sets;
+- closed/open characterizations;
+- closure as smallest closed superset;
+- boundary as closure minus interior;
+- sequential characterization of closed sets;
+- real boundedness;
+- sequential Heine–Borel;
+- finite sets are closed;
+- “true near” predicates.
+
+**General verdict: MATHEMATICALLY STRONG.**
+
+## P0 — `IntervalAllLimitPoints`
+
+Current theorem is essentially
+
+```text
+I.OrdConnected -> forall x in I, x is a cluster point of I.
+```
+
+This is false because Mathlib `Set.OrdConnected` admits singleton sets. For `I = {a}`, the only point `a` is not a cluster point: there is no distinct member of `I` in any punctured neighborhood.
+
+Required repair: add `I.Nontrivial`, require a second point in the relevant direction, or use a deliberately stronger nondegenerate interval predicate.
+
+**Severity: P0 FALSE THEOREM STATEMENT.**
+
+---
+
+# P1 — topology ownership consolidation
+
+The repository currently has at least three presentations of overlapping real-line topology material:
+
+1. `LRA.Analysis.Functions.SubsetsOfR`;
+2. `LRA.Analysis.StructureOfRealLine.OpenClosedSets` / `Compactness`;
+3. generic `LRA.Topology.PointSetTopology` plus metric-induced topology.
+
+The concrete presentations are largely mathematically correct, but they should become specialization/example layers over one canonical generic owner rather than independent semantic APIs.
+
+Recommended direction:
+
+```text
+generic metric/topology owner
+        ↓ specialize to Real
+concrete epsilon/interval theorems
+        ↓
+Functions / StructureOfRealLine chapter-facing aliases/examples
+```
+
+This preserves the textbook viewpoints while preventing closure/open/closed/compactness concepts from drifting apart.
+
+---
+
+# Cross-project real extrema policy
+
+There are now several real `sSup`/`sInf`-style constructions in the repository:
 
 - function supremum/infimum;
 - sequence limsup/liminf;
@@ -249,21 +247,19 @@ There are now several parallel real `sSup`/`sInf`-style constructions in the rep
 - point-to-set distance via `sInf`;
 - Darboux upper/lower values eventually.
 
-The repeated defects suggest a common policy should be written once:
+A common policy should be stated once:
 
-> **Real-valued extrema are only mathematically meaningful under their nonempty/bounded domain hypotheses; total Lean definitions must not be mistaken for total mathematical notions.**
+> Real-valued extrema are mathematically meaningful only under their appropriate nonempty/bounded hypotheses; total Lean definitions must not be mistaken for total mathematical notions.
 
-Where infinity is a natural value (diameter, limsup/liminf, measure-theory asymptotics), prefer extended reals.
+Where infinity is natural, prefer extended reals.
 
 ---
 
 # Choice audit
 
-No genuine family-wise Axiom-of-Choice dependency was identified in this chunk.
+No new genuine family-wise Axiom-of-Choice dependency was identified in this chunk.
 
-Finite maximum/minimum evaluation over a finite inhabited index type does not require AC.
-
-The theorem `ClusterPointSequential` may, in a proof from the neighborhood definition to an explicit sequence, select one witness from each shrinking neighborhood. As with the analogous limits theorem, this is a potential **countable-choice proof dependency**, not something inferred merely from the theorem statement while its proof is still `sorry`.
+Finite maximum/minimum evaluation does not require AC. The existence of an inverse to a bijection is unique-choice/witness extraction rather than arbitrary family-wise AC, as recorded in `FunctionReview.md`.
 
 ---
 
@@ -271,28 +267,27 @@ The theorem `ClusterPointSequential` may, in a proof from the neighborhood defin
 
 | Dimension | Verdict |
 |---|---|
-| Bounded-function definitions | **PASS** |
-| Bounded-function algebra | **PASS** |
+| Algebra/composition facts | **PASS** |
+| Duplicate injective/surjective/inverse vocabulary | **P1/P2 OWNERSHIP** |
+| Linear combinations/real-linear rule | **PASS** |
+| Monotone/constant function theory | **PASS** |
+| Bounded-function theory | **PASS** |
 | Pointwise order | **PASS** |
-| Quotient/order failure mode | **PASS — USEFUL** |
 | Extremum point definitions | **PASS** |
-| Extremum/LUB-GLB characterization | **PASS** |
 | Function supremum/infimum definitions | **P0 ZERO STUBS** |
 | Pointwise family sup/inf definitions | **P0 ZERO STUBS** |
-| Concrete Real closure/interior/boundary toolkit | **MOSTLY PASS** |
-| `IntervalAllLimitPoints` | **P0 FALSE FOR SINGLETON INTERVALS** |
-| Real topology ownership | **P1 CONSOLIDATION NEEDED** |
-| Totalized `sSup`/`sInf` domain policy | **NEEDS CONSISTENT PROJECT-WIDE RULE** |
-| Choice usage | **NO CONFIRMED NEW GENUINE AC; COUNTABLE-CHOICE PROOF WATCHPOINT** |
+| Concrete real-line topology | **MOSTLY PASS** |
+| `IntervalAllLimitPoints` | **P0 SINGLETON COUNTEREXAMPLE** |
+| Topology semantic ownership | **P1 CONSOLIDATION** |
+| Choice usage | **NO NEW GENUINE AC IDENTIFIED** |
 
 ---
 
 # Immediate priority fixes
 
 1. replace the four zero extrema stubs with genuine supremum/infimum constructions;
-2. add nontriviality to `IntervalAllLimitPoints` or use a genuinely nondegenerate interval predicate;
-3. preserve explicit nonempty/bounded hypotheses on real-valued extrema theorems;
-4. audit every theorem in `SupInfOfFunctions.lean` after the definitions are repaired;
-5. consolidate concrete Real topology with the generic topology owner;
-6. establish a project-wide policy for totalized real `sSup`/`sInf` constructions;
-7. only after that use these extrema objects in continuity, integration, or functional-analysis developments.
+2. fix `IntervalAllLimitPoints` with a nondegeneracy condition;
+3. migrate/bridge duplicate arrow predicates to canonical `LRA.Function`;
+4. consolidate concrete real topology as specialization of generic topology/metric APIs;
+5. preserve explicit nonempty/bounded hypotheses on real-valued extrema;
+6. update stale “not imported by active root” headers to reflect the current import graph.
