@@ -39,7 +39,7 @@ Logical form:
 ```lean
 def IsConvergentAt
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
-    (fraction : InfiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel)
+    (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (depth : Nat)
     (value : rationalSystem.FieldModel.Carrier) : Prop :=
   LRA.NumberSystems.RationalNumbers.ContinuedFractions.
@@ -49,7 +49,7 @@ def IsConvergentAt
 -/
 def IsConvergentAt
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
-    (fraction : InfiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel)
+    (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (depth : Nat)
     (value : rationalSystem.FieldModel.Carrier) : Prop :=
   LRA.NumberSystems.RationalNumbers.ContinuedFractions.
@@ -66,30 +66,28 @@ Logical form:
 def ConvergentsConvergeTo
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
     (realExtension : RealExtension rationalSystem.FieldModel)
-    (fraction : InfiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel)
+    (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (limit : realExtension.RealModel.Carrier) : Prop :=
   ∀ epsilon : realExtension.RealModel.Carrier,
     0 < epsilon →
       ∃ N : Nat, ∀ depth : Nat, N ≤ depth →
         ∃ convergent : rationalSystem.FieldModel.Carrier,
           IsConvergentAt rationalSystem fraction depth convergent ∧
-          -epsilon ≤
-              realExtension.RationalEmbedding.ToReal convergent + -limit ∧
+          -epsilon ≤ realExtension.RationalEmbedding.ToReal convergent + -limit ∧
           realExtension.RationalEmbedding.ToReal convergent + -limit ≤ epsilon
 ```
 -/
 def ConvergentsConvergeTo
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
     (realExtension : RealExtension rationalSystem.FieldModel)
-    (fraction : InfiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel)
+    (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (limit : realExtension.RealModel.Carrier) : Prop :=
   ∀ epsilon : realExtension.RealModel.Carrier,
     0 < epsilon →
       ∃ N : Nat, ∀ depth : Nat, N ≤ depth →
         ∃ convergent : rationalSystem.FieldModel.Carrier,
           IsConvergentAt rationalSystem fraction depth convergent ∧
-          -epsilon ≤
-              realExtension.RationalEmbedding.ToReal convergent + -limit ∧
+          -epsilon ≤ realExtension.RationalEmbedding.ToReal convergent + -limit ∧
           realExtension.RationalEmbedding.ToReal convergent + -limit ≤ epsilon
 
 /-- A proper infinite simple continued fraction is an expansion of a real value
@@ -101,7 +99,7 @@ Logical form:
 def IsInfiniteSimpleContinuedFractionExpansionOf
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
     (realExtension : RealExtension rationalSystem.FieldModel)
-    (fraction : InfiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel)
+    (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (value : realExtension.RealModel.Carrier) : Prop :=
   IsProperInfiniteSimpleContinuedFraction fraction ∧
     ConvergentsConvergeTo rationalSystem realExtension fraction value
@@ -110,7 +108,7 @@ def IsInfiniteSimpleContinuedFractionExpansionOf
 def IsInfiniteSimpleContinuedFractionExpansionOf
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
     (realExtension : RealExtension rationalSystem.FieldModel)
-    (fraction : InfiniteSimpleContinuedFraction rationalSystem.DiscretelyOrderedIntegralDomainModel)
+    (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (value : realExtension.RealModel.Carrier) : Prop :=
   IsProperInfiniteSimpleContinuedFraction fraction ∧
     ConvergentsConvergeTo rationalSystem realExtension fraction value
@@ -128,7 +126,7 @@ def IsQuadraticIrrational
     (value : realExtension.RealModel.Carrier) : Prop :=
   LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational
       rationalSystem realExtension value ∧
-    ∃ a b c : rationalSystem.DiscretelyOrderedIntegralDomainModel.Carrier,
+    ∃ a b c : rationalSystem.IntegerSystem.Model.Carrier,
       a ≠ 0 ∧
         let embedInteger := fun z =>
           realExtension.RationalEmbedding.ToReal
@@ -143,7 +141,7 @@ def IsQuadraticIrrational
     (value : realExtension.RealModel.Carrier) : Prop :=
   LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational
       rationalSystem realExtension value ∧
-    ∃ a b c : rationalSystem.DiscretelyOrderedIntegralDomainModel.Carrier,
+    ∃ a b c : rationalSystem.IntegerSystem.Model.Carrier,
       a ≠ 0 ∧
         let embedInteger := fun z =>
           realExtension.RationalEmbedding.ToReal
