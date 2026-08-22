@@ -183,7 +183,7 @@
       "verification_result": "approved",
       "gate_result": "passed",
       "commit_sha": "de55fb5a",
-      "pushed": false,
+      "pushed": true,
       "notes": [
         "2026-08-22: coordinator audited the active integration router and confirmed live placeholder semantics for `PartitionMesh`, `LowerDarbouxSum`, `UpperDarbouxSum`, `PointOscillation`, and `TotalVariation`",
         "2026-08-22: the false theorem surfaces were bounded to `dirichlet_not_darboux_integrable`, `hk_strictly_wider_than_lebesgue_witness`, `mcshane_equals_lebesgue`, `hk_strictly_wider_than_mcshane`, and `rs_step_integrator_finite_sum`",
@@ -196,7 +196,8 @@
         "2026-08-22: [LRA/Analysis/Integration/HenstockKurzweil/Basic.lean] and [LRA/Analysis/Integration/McShaneIntegral/Basic.lean] no longer expose the unsupported HK-only witness or false McShane/Lebesgue equivalence theorem surfaces",
         "2026-08-22: `python scripts/validate_structure.py --path LRA/Analysis/Integration` passed",
         "2026-08-22: `lake build LRA.Analysis.Integration` passed",
-        "2026-08-22: implementation committed as `de55fb5a` (`Repair integration placeholders and close p0-06`) and queued for push on `origin/main`"
+        "2026-08-22: implementation committed as `de55fb5a` (`Repair integration placeholders and close p0-06`)",
+        "2026-08-22: checkpoint metadata committed as `43261fca` and pushed on `origin/main`"
       ]
     },
     {
