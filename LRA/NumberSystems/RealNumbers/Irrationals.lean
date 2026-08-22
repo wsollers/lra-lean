@@ -28,7 +28,7 @@ irrational are rational.
 
 variable
     (rational_system : RationalNumberSystem)
-    (real_extension : CofinalRealExtension rational_system.FieldModel)
+    (real_extension : RationalRealExtension rational_system)
 
 /--
 **[Abbrev — RealCarrier]**

@@ -65,7 +65,7 @@ Logical form:
 ```lean
 def ConvergentsConvergeTo
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
-    (realExtension : CofinalRealExtension rationalSystem.FieldModel)
+    (realExtension : RationalRealExtension rationalSystem)
     (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (limit : realExtension.RealModel.Carrier) : Prop :=
   ∀ epsilon : realExtension.RealModel.Carrier,
@@ -79,7 +79,7 @@ def ConvergentsConvergeTo
 -/
 def ConvergentsConvergeTo
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
-    (realExtension : CofinalRealExtension rationalSystem.FieldModel)
+    (realExtension : RationalRealExtension rationalSystem)
     (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (limit : realExtension.RealModel.Carrier) : Prop :=
   ∀ epsilon : realExtension.RealModel.Carrier,
@@ -98,7 +98,7 @@ Logical form:
 ```lean
 def IsInfiniteSimpleContinuedFractionExpansionOf
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
-    (realExtension : CofinalRealExtension rationalSystem.FieldModel)
+    (realExtension : RationalRealExtension rationalSystem)
     (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (value : realExtension.RealModel.Carrier) : Prop :=
   IsProperInfiniteSimpleContinuedFraction fraction ∧
@@ -107,7 +107,7 @@ def IsInfiniteSimpleContinuedFractionExpansionOf
 -/
 def IsInfiniteSimpleContinuedFractionExpansionOf
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
-    (realExtension : CofinalRealExtension rationalSystem.FieldModel)
+    (realExtension : RationalRealExtension rationalSystem)
     (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model)
     (value : realExtension.RealModel.Carrier) : Prop :=
   IsProperInfiniteSimpleContinuedFraction fraction ∧
@@ -122,7 +122,7 @@ Logical form:
 ```lean
 def IsQuadraticIrrational
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
-    (realExtension : CofinalRealExtension rationalSystem.FieldModel)
+    (realExtension : RationalRealExtension rationalSystem)
     (value : realExtension.RealModel.Carrier) : Prop :=
   LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational
       rationalSystem realExtension value ∧
@@ -137,7 +137,7 @@ def IsQuadraticIrrational
 -/
 def IsQuadraticIrrational
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u})
-    (realExtension : CofinalRealExtension rationalSystem.FieldModel)
+    (realExtension : RationalRealExtension rationalSystem)
     (value : realExtension.RealModel.Carrier) : Prop :=
   LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational
       rationalSystem realExtension value ∧
