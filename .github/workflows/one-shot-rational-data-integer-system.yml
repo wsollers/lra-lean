@@ -1,0 +1,51 @@
+name: One-shot rational-data integer-system migration
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/one-shot-rational-data-integer-system.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rewrite quotient-fraction integer projections
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import pathlib
+          root = pathlib.Path('LRA/NumberSystems/RationalNumbers/Constructions/RationalQuotientFractions')
+          for path in root.rglob('*'):
+              if path.is_file() and path.suffix in {'.lean', '.md'}:
+                  text = path.read_text()
+                  new = text.replace('rational_data.integer_model', 'rational_data.integer_system.Model')
+                  if new != text:
+                      path.write_text(new)
+          PY
+
+          if git grep -n 'rational_data.integer_model' -- LRA/NumberSystems/RationalNumbers/Constructions/RationalQuotientFractions; then
+            echo 'Old rational_data.integer_model projections remain.' >&2
+            exit 1
+          fi
+
+          rm .github/workflows/one-shot-rational-data-integer-system.yml
+
+      - name: Commit migration
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'BoondockTaints'
+          git config user.email 'wsollers@gmail.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'Use integer systems in quotient fractions'
+          git push origin HEAD:main
