@@ -2,7 +2,7 @@
 
 ## Scope
 
-Maintained mathematical review of `LRA.Function`, especially the arrow/graph architecture, composition/inverses, image/preimage calculus, and the theorem surface needed later for measurable maps.
+Maintained mathematical review of `LRA.Function`, especially the arrow/graph architecture, composition/inverses, image/preimage calculus, the set-theoretic representation bridge, and the theorem surface needed later for measurable maps.
 
 Project-wide rules apply: `sorry` is neutral scaffolding; genuine mathematical Choice is distinguished from proof-assistant witness extraction.
 
@@ -22,6 +22,9 @@ Project-wide rules apply: `sorry` is neutral scaffolding; genuine mathematical C
 - `LRA/Function/Calculus.lean`
 - `LRA/Function/Calculus/Classes/Definition.lean`
 - `LRA/Function/Calculus/Classes/Theorems.lean`
+- `LRA/Function/SetTheoretic.lean`
+- `LRA/Function/SetTheoretic/Definition.lean`
+- `LRA/Function/SetTheoretic/Relationships.lean`
 - dependency: `LRA/Set/Interface/RelationLaws.lean`
 
 ## Function presentation
@@ -139,6 +142,47 @@ The `Nat`-indexed countable-intersection theorem does not have this defect becau
 
 ---
 
+# Review 2 — set-theoretic function representation
+
+## Set-theoretic relation/function triples
+
+`SetTheoreticRelationTriple` and `SetTheoreticFunctionTriple` separate raw domain/codomain/graph data from the predicates certifying that the graph has the intended type-theoretic meaning.
+
+`IsSetTheoreticFunction` requires:
+
+1. every graph member is an ordered pair with coordinates in the displayed domain/codomain;
+2. every displayed-domain input has an output in the displayed codomain;
+3. outputs are unique for each input.
+
+That is the correct set-theoretic representation of a total function between displayed sets.
+
+**Verdict: PASS.**
+
+## Typed arrow -> set-theoretic graph bridge
+
+`TypedFunctionGraphRepresentation` reifies an ordinary typed arrow into a set-theoretic function, relative to:
+
+- encodings of domain and codomain values;
+- an exact displayed domain encoding;
+- a codomain encoding covering every output;
+- an ambient set of ordered pairs containing every graph pair.
+
+This is a good theorem boundary. It does not introduce coercions or competing function meanings; it explicitly states the hypotheses required to realize a typed function inside a set backend.
+
+**Verdict: PASS — GOOD ONE-WAY REPRESENTATION BRIDGE.**
+
+The architecture therefore supports both pedagogical views:
+
+```text
+function as arrow
+        ↓ Graph / representation
+function as set of ordered pairs
+```
+
+without making either representation definitionally replace the other.
+
+---
+
 # Measurable-map reuse plan
 
 The future measurable-map layer should build directly on this function/set calculus:
@@ -152,13 +196,18 @@ Measurable f :=
 Then the first theorems should follow from the already-existing preimage laws:
 
 - identity measurable;
-- composition measurable, using `PreimageOfCompositionOf` / the class-level specialization;
+- composition measurable, using preimage-under-composition;
 - constant maps measurable;
 - inverse image of complement is complement;
 - inverse image of countable union is countable union;
+- inverse image of countable intersection is countable intersection;
 - hence inverse image of every sigma-algebra-generated expression remains measurable.
 
-This avoids a duplicate preimage implementation in MeasureTheory.
+The SetSystems-generated-sigma-algebra layer can then supply a generator theorem of the form:
+
+> if preimages of all generators are measurable, then the map is measurable with respect to the generated sigma algebra.
+
+This would be particularly useful for Borel measurability and avoids a duplicate preimage implementation in MeasureTheory.
 
 ---
 
@@ -167,6 +216,8 @@ This avoids a duplicate preimage implementation in MeasureTheory.
 No new genuine family-wise AC dependency was identified in this chunk.
 
 `BijectiveHasTwoSidedInverse` may require Lean-level classical witness extraction to construct an arrow from Prop-level existence, but mathematically the inverse is unique and this is not an independent use of the Axiom of Choice.
+
+The set-theoretic representation theorem likewise contains no inherent family-wise choice principle: all encodings and the ambient graph container are explicit inputs.
 
 ---
 
@@ -179,6 +230,8 @@ No new genuine family-wise AC dependency was identified in this chunk.
 | Inverse definitions/theorems | **PASS** |
 | Image/preimage ownership | **PASS — STRONG** |
 | Boolean/countable preimage laws | **PASS** |
+| Set-theoretic function triple | **PASS** |
+| Typed/set-theoretic representation bridge | **PASS** |
 | `ImageClassIndexedIntersectionOfInjective` | **P0 FALSE FOR EMPTY INDEX TYPE** |
 | Choice usage | **NO NEW GENUINE AC IDENTIFIED** |
 | Readiness to support measurable maps | **STRONG DEPENDENCY LAYER; MEASURETHEORY BRIDGE STILL MISSING** |
@@ -187,4 +240,4 @@ No new genuine family-wise AC dependency was identified in this chunk.
 
 # Next review chunk
 
-Review remaining function structures/set-theoretic bridge and then use this established calculus to design/review the missing measurable-map layer without duplicating image/preimage semantics.
+Review the missing measurable-map layer against this established preimage API. The goal should be to add only measure-theoretic structure preservation, not a second image/preimage calculus.
