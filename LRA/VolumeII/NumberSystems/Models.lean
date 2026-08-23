@@ -1,6 +1,7 @@
 -- LRA/VolumeII/NumberSystems/Models.lean
 -- Thin number-system model packages for Z, Q, and R.
 
+import Mathlib.Analysis.SpecialFunctions.Sqrt
 import LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory.Model
 import LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.Model
 import LRA.AlgebraicStructures
@@ -196,10 +197,33 @@ def DenselyOrderedFieldModel.signature (M : DenselyOrderedFieldModel) : OrderedF
   le := (· ≤ ·)
   StrictOrder := (· < ·)
 
+/-! ## Square roots
+
+A named operation, kept separate from `OrderedFieldLaws`: no ordered field
+has square roots for every nonnegative element (`ℚ` does not), so `Sqrt`
+is packaged as its own data class plus a `SqrtLaws` certificate rather
+than folded into the field laws.
+`LRA.AlgebraicStructures.CompleteOrderedField.Laws.Consequences` proves
+such a `sqrt` function is always available for a complete ordered field's
+carrier (`SquareRootExists`); `RealModel` records one chosen witness as
+data so downstream geometry (`Length` in `LRA.EuclideanSpace`) has an
+actual function, not just an existence statement. -/
+
+/-- The square-root operation on a carrier. -/
+class Sqrt (R : Type u) where
+  sqrt : R → R
+
+/-- The defining laws of `Sqrt.sqrt`: nonnegative, and squares back to the
+input on nonnegative input. -/
+class SqrtLaws (R : Type u) [Mul R] [LE R] [OfNat R 0] [Sqrt R] : Prop where
+  sqrt_nonneg : ∀ x : R, 0 ≤ Sqrt.sqrt x
+  sqrt_mul_self_of_nonneg : ∀ x : R, 0 ≤ x → Sqrt.sqrt x * Sqrt.sqrt x = x
+
 /-! ## The real model: a complete densely ordered field -/
 
 /-- A real model is a densely ordered field model whose order is complete
-relative to the classical subset backend `Set Carrier`.
+relative to the classical subset backend `Set Carrier`, together with a
+chosen square-root operation.
 
 Logical form:
 
@@ -207,13 +231,17 @@ Logical form:
 structure RealModel extends DenselyOrderedFieldModel where
   [completeCert :
     OrderCompletenessLaws Carrier (Set Carrier)]
+  [sqrtInst : Sqrt Carrier]
+  [sqrtCert : SqrtLaws Carrier]
 ```
 -/
 structure RealModel extends DenselyOrderedFieldModel where
   [completeCert :
     OrderCompletenessLaws Carrier (Set Carrier)]
+  [sqrtInst : Sqrt Carrier]
+  [sqrtCert : SqrtLaws Carrier]
 
-attribute [instance] RealModel.completeCert
+attribute [instance] RealModel.completeCert RealModel.sqrtInst RealModel.sqrtCert
 
 /-- Package any certified carrier as a real model.
 
@@ -223,14 +251,16 @@ Logical form:
 def RealModel.ofCarrier (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R]
     [OrderedFieldLaws R] [StrictOrderCompatibilityLaw R]
-    [DenseOrderLaw R] [OrderCompletenessLaws R (Set R)] : RealModel :=
+    [DenseOrderLaw R] [OrderCompletenessLaws R (Set R)]
+    [Sqrt R] [SqrtLaws R] : RealModel :=
   { Carrier := R }
 ```
 -/
 def RealModel.ofCarrier (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R]
     [OrderedFieldLaws R] [StrictOrderCompatibilityLaw R]
-    [DenseOrderLaw R] [OrderCompletenessLaws R (Set R)] : RealModel :=
+    [DenseOrderLaw R] [OrderCompletenessLaws R (Set R)]
+    [Sqrt R] [SqrtLaws R] : RealModel :=
   { Carrier := R }
 
 /-- The derived operation bundle.
@@ -269,6 +299,16 @@ def mathlibDenselyOrderedFieldModel : DenselyOrderedFieldModel :=
 -/
 def mathlibDenselyOrderedFieldModel : DenselyOrderedFieldModel :=
   DenselyOrderedFieldModel.ofCarrier Rat
+
+/-- Mathlib's own `Real.sqrt` packaged as this layer's `Sqrt` operation. -/
+noncomputable instance : Sqrt Real := ⟨Real.sqrt⟩
+
+/-- `Real.sqrt`'s nonnegativity and squaring-back lemmas packaged as
+`SqrtLaws`. -/
+instance : SqrtLaws Real where
+  sqrt_nonneg := Real.sqrt_nonneg
+  sqrt_mul_self_of_nonneg := fun _ hx => by
+    sorry
 
 /--
 `mathlibRealModel` defines the displayed object for mathlib real model.
