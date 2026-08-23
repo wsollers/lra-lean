@@ -185,3 +185,120 @@ extended to look, not silent failures of an existing rule.
    work above. ISS-013 (`Logic/Model`) needs a one-time governance
    clarification, not code changes, and can happen at any point independent
    of the rest of this list.
+
+---
+
+## 7. NumberSystems: settled target architecture
+
+This section is the working spec for bringing `NumberSystems` into structural
+compliance. Scope is explicitly **organization and placement only** — no new
+mathematical content (e.g. finite/modular algebraic structures) is in scope
+for this pass; see NS-007 below for why that was deliberately deferred.
+
+### 7.1 Three-tier composition
+
+`PurposeAndArchitecture.md`'s NumberSystems three-layer rule and
+`ExternalInterfaces.md`'s generic `Interface`/`ModelTheory`/`UniversalAlgebra`/
+`Realizations` decision table compose as follows — confirmed against the
+`PeanoSystem` and `IntegerStructure` subjects, which already implement this
+shape and serve as the working templates:
+
+```text
+NumberSystems/Interface/
+  ModelTheory/{LStructure,Theory,Model}.lean   generic cross-system model wrappers
+                                                (recreated content of the deleted
+                                                VolumeII/NumberSystems/Models.lean;
+                                                composes AlgebraicStructures
+                                                interfaces, does not restate them)
+
+NumberSystems/<System>/Interface/               one per system
+  Signature/Definition.lean
+  ModelTheory/{LStructure,Theory,Model}.lean     specializes the generic model to
+                                                  this system and cites the
+                                                  system's strongest
+                                                  AlgebraicStructures target
+
+NumberSystems/<System>/Constructions/<Construction>/
+  Carrier.lean … Laws.lean … Behavior.lean
+  Instances.lean                                 the realizes proof: this
+                                                  construction's carrier +
+                                                  operations satisfy both the
+                                                  system's own Model and the
+                                                  underlying AlgebraicStructures
+                                                  typeclass
+```
+
+There is no separate `Realizations/` folder in `NumberSystems` — unlike
+`Analysis`/`Topology`, `Constructions/<Construction>/` plays that role, with
+`Instances.lean` carrying the actual satisfaction proof.
+
+### 7.2 Strongest-structure target per system
+
+| System | Strongest `AlgebraicStructures` target | Target has `Interface/ModelTheory`? | System has its own `Interface/`? |
+|---|---|---|---|
+| `PeanoSystem` | none — pre-structural (iterator/recursion foundation, no subtraction); stays `NumberSystems`-native | n/a | ✅ |
+| `NaturalNumbers` | `CommutativeSemiring` (no subtraction, so not `DiscreteInteger`) | ❌ | ❌ |
+| `IntegerStructure` | (abstract integer axioms, own foundation) | n/a | ✅ |
+| `Integers` | `DiscreteInteger` | ❌ | ❌ |
+| `RationalNumbers` | `OrderedField`, plus `Order.Density.DenseLinearOrder` | ✅ | ❌ |
+| `RealNumbers` | `CompleteOrderedField`, plus Archimedean once relocated (§7.3) | ✅ | ❌ |
+| `ComplexNumbers` | `Field` (not ordered) | ✅ | ❌ |
+| `GaussianIntegers` | `IntegralDomain` (not ordered, not a field) | ✅ | ❌ |
+| `ExtendedReal` | doesn't fit the ring/field ladder (±∞ have no inverses); closer to `Order/Lattices/CompleteLattice` | n/a | ❌ |
+
+`Dense` needs no new work — already correctly generic at `Relation` and
+specialized at `Order/Density/{DenseOrder,DenseLinearOrder}`, per the
+one-definition-multiple-specializations rule.
+
+### 7.3 Archimedean must move before RealNumbers can cite it honestly
+
+`Archimedean` currently exists only under `Analysis/Completeness/
+ArchimedeanProperty/`. `Analysis` sits **after** `NumberSystems` in
+`PurposeAndArchitecture.md`'s dependency chain (`... → AlgebraicStructures /
+UniversalAlgebra / NumberSystems → EuclideanSpace → Analysis / Topology /
+LinearAlgebra`), so `NumberSystems` can never import it without violating
+"lower layers must not import higher layers." No live import violation exists
+today only because the deleted `Models.lean` worked around the gap by
+re-deriving Archimedean-ness locally as `ArchimedeanDenseOrderedFieldExtension`
+— a duplicate-definition smell forced by the misplacement, not a deliberate
+design choice. Archimedean is fundamentally an ordered-group/ordered-field
+property and belongs at `Order` (alongside `Order/Density/`) or
+`AlgebraicStructures/OrderedField/Laws/`; `Analysis/Completeness/
+ArchimedeanProperty` should become a thin re-export or fold away once the
+lower-layer definition exists.
+
+### 7.4 Issue rows added by this discussion
+
+| issue_id | category | severity | path | evidence | proposed_solution | requires_move | requires_import_rewire | requires_validator_change | notes |
+|---|---|---|---|---|---|---|---|---|---|
+| NS-001 | numbersystems-architecture-drift | high | `LRA/AlgebraicStructures/DiscreteInteger/` | Has `Definition`/`Laws`/`Theorems`/`Characterizations`/`Consequences`/`Relationships`/`Examples` but no `Interface/` at all, unlike `OrderedField`/`Field`/`IntegralDomain`/`CompleteOrderedField` | Add `Interface/Signature/Definition.lean` and `Interface/ModelTheory/{LStructure,Theory,Model}.lean`, using `OrderedField` as the template | false | false | false | Prerequisite for `NumberSystems/Integers/Interface/ModelTheory` to cite it honestly |
+| NS-002 | numbersystems-architecture-drift | high | `LRA/AlgebraicStructures/CommutativeSemiring/` | Same gap as NS-001 — `CommutativeSemiring` is ℕ's correct target (no subtraction) but has no `Interface/` | Add the same `Interface/Signature` + `Interface/ModelTheory` triplet | false | false | false | Prerequisite for `NumberSystems/NaturalNumbers` — resolves "does DiscreteInteger leave ℕ out" (yes, correctly; ℕ needs this target instead) |
+| NS-003 | numbersystems-architecture-drift | medium | `LRA/Analysis/Completeness/ArchimedeanProperty/` | Only existing definition of Archimedean-ness sits in `Analysis`, one layer after `NumberSystems`/`AlgebraicStructures` in the documented dependency chain; deleted `Models.lean` worked around this by locally reinventing `ArchimedeanDenseOrderedFieldExtension` | Define Archimedean at `Order/` (peer to `Order/Density/`) or `AlgebraicStructures/OrderedField/Laws/`; re-point `Analysis/Completeness/ArchimedeanProperty` to the lower-layer definition or fold it away | true | true | false | Prerequisite for `NumberSystems/RealNumbers/Interface/ModelTheory/Model.lean` to cite Archimedean-ness without reinventing it |
+| NS-004 | numbersystems-architecture-drift | high | `LRA/NumberSystems/{NaturalNumbers,Integers,RationalNumbers,RealNumbers,ComplexNumbers,GaussianIntegers}/` | None of these six systems has its own `Interface/{Signature,ModelTheory}/`, unlike `PeanoSystem` and `IntegerStructure` which already do | Add per-system `Interface/Signature/Definition.lean` and `Interface/ModelTheory/{LStructure,Theory,Model}.lean` to each, following the `PeanoSystem`/`IntegerStructure` template, each citing the strongest-structure target from §7.2 | true | true | false | The core structural work of "getting NumberSystems settled"; four of the six (`RationalNumbers`,`RealNumbers`,`ComplexNumbers`,`GaussianIntegers`) can absorb their existing legacy `Construction/Model.lean` (singular) into this new location — see NS-005 |
+| NS-005 | modeltheory-placement | medium | `LRA/NumberSystems/{RationalNumbers,RealNumbers,ComplexNumbers,GaussianIntegers}/Construction/Model.lean` | Each of these four systems already has a singular `Construction/Model.lean` (imported by `<System>/Construction.lean`) — the same content `Interface/ModelTheory/Model.lean` is for, filed under the legacy name; not previously listed in `docs/interface-model-standardization-inventory.md` because that survey didn't look inside `NumberSystems/` | Fold into the new `<System>/Interface/ModelTheory/Model.lean` from NS-004 rather than migrating separately | true | true | false | Same Family-B pattern as `Set/Model` (ISS-009) and `EuclideanSpace/Model` (ISS-010), found independently inside `NumberSystems` |
+| NS-006 | validator-gap | low | `LRA/AlgebraicStructures/BooleanAlgebra/` | Has the full concept-file-role set but no `Interface/ModelTheory`, same gap pattern as NS-001/NS-002 | No action required for the NumberSystems pass — noted only because it was found while checking whether finite-valued algebraic structures (e.g. finite Boolean algebras) have a base to build on; they would need this first | false | false | false | Out of scope until finite/modular work is scheduled (see NS-007) |
+| NS-007 | legacy-top-level-subject | low | `LRA/Carrier/Finiteness/Definition.lean` vs `LRA/Cardinality/Properties/Finiteness/Definition.lean` | Both independently define `IsFinite`/`IsInfinite`, each with 3 live importers; `Carrier` is one of `PurposeAndArchitecture.md`'s named transitional folders, `Cardinality` is the canonical owner of finite/infinite behavior | Out of scope for the NumberSystems structural pass — deliberately deferred; flagged so future finite/modular algebraic-structure work (composing e.g. `Field` + a finiteness hypothesis, never a new `FiniteField` structure) doesn't build on whichever `IsFinite` happens to get picked first | true | true | false | Confirms there is currently zero finite-valued/modular content anywhere in the repo (`Modular`, `Zmod`, `FiniteField`, `FiniteGroup` all return no matches) — not a gap in this pass's scope, just recorded for later |
+
+### 7.5 Scoped punch list — NumberSystems structure and organization only
+
+In dependency order, excluding all new mathematical content:
+
+1. Restore compilation: ISS-001 → ISS-007 (the 25 dangling `Volume*` imports),
+   in the order already given in §6.
+2. NS-001, NS-002: add `Interface/ModelTheory` to `DiscreteInteger` and
+   `CommutativeSemiring` (unblocks `Integers` and `NaturalNumbers` below).
+3. NS-003: relocate Archimedean to `Order` (unblocks `RealNumbers` below).
+4. Recreate `NumberSystems/Interface/ModelTheory/` (ISS-008), composing the
+   now-complete `AlgebraicStructures` targets rather than restating them.
+5. NS-004 + NS-005 together, one system at a time: add
+   `<System>/Interface/{Signature,ModelTheory}/` and fold in the legacy
+   `Construction/Model.lean` where present. Suggested order —
+   `RationalNumbers` first (target already fully ready, no prerequisite
+   work), then `ComplexNumbers` and `GaussianIntegers` (also fully ready),
+   then `RealNumbers` (needs NS-003 first), then `Integers` (needs NS-001
+   first), then `NaturalNumbers` (needs NS-002 first).
+6. Confirm each `Constructions/<Construction>/Instances.lean` proves
+   realization against both the new system-level `Model` and the underlying
+   `AlgebraicStructures` typeclass; fill in any that don't yet.
+
+NS-006 and NS-007 are recorded but intentionally left out of this list.
