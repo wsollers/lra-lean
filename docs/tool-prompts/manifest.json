@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "generated_by": "codex",
+  "generated_on": "2026-08-23",
+  "repository": "lra-lean",
+  "base_context": {
+    "do_not_build": true,
+    "do_not_run_validators": true,
+    "no_compat_shims": true,
+    "authority_documents": [
+      "PurposeAndArchitecture.md",
+      "DESIGN.md",
+      "docs/interface-model-standardization-inventory.md"
+    ]
+  },
+  "prompts": [
+    {
+      "id": "validator-plugin-structure",
+      "path": "docs/tool-prompts/validator-plugin-structure.md",
+      "title": "Create structure validator plugin",
+      "purpose": "Create a validator plugin that enforces documented repository structure with an explicit allowlist and machine-readable output."
+    },
+    {
+      "id": "structure-issues-audit",
+      "path": "docs/tool-prompts/structure-issues-audit.md",
+      "title": "Audit current structure issues",
+      "purpose": "Identify current structure violations and propose architecture-correct fixes without building."
+    },
+    {
+      "id": "comment-wipe-regenerate-script",
+      "path": "docs/tool-prompts/comment-wipe-regenerate-script.md",
+      "title": "Create comment wipe and regenerate script",
+      "purpose": "Create a script that removes generated theorem comments and repopulates them deterministically."
+    },
+    {
+      "id": "volume-aggregator-repopulation",
+      "path": "docs/tool-prompts/volume-aggregator-repopulation.md",
+      "title": "Repopulate volume aggregators from LaTeX TOC",
+      "purpose": "Regenerate root volume aggregator Lean files from the LaTeX table of contents order."
+    }
+  ]
+}
