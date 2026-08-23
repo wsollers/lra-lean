@@ -7,7 +7,10 @@ import LRA.NumberSystems.RealNumbers.NonNegative
 import LRA.NumberSystems.RealNumbers.IntervalArithmetic
 import LRA.NumberSystems.RealNumbers.Irrationals
 import LRA.NumberSystems.RealNumbers.ContinuedFractions
-import LRA.NumberSystems.RealNumbers.Construction
+import LRA.NumberSystems.RealNumbers.Interface.Signature.Definition
+import LRA.NumberSystems.RealNumbers.Interface.ModelTheory.LStructure
+import LRA.NumberSystems.RealNumbers.Interface.ModelTheory.Theory
+import LRA.NumberSystems.RealNumbers.Interface.ModelTheory.Model
 
    
                                                              

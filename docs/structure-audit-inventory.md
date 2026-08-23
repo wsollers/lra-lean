@@ -724,9 +724,56 @@ All three verified with the same static import-resolution check (0 broken
 imports, checked after each system) and confirmed zero remaining references
 to each legacy `<System>.Construction` path. Not built.
 
-Remaining, in the order §7.5 gives: `RealNumbers` (needs the Archimedean
-reconciliation flagged in §11/§13), `Integers` (target is `IntegralDomain` +
-`Order`-owned laws directly, per the NS-001 correction in §9 — not
-`DiscreteInteger`), `NaturalNumbers` (target `CommutativeSemiring`, no
-existing `Construction/Model.lean` to fold in — genuinely new wiring, not a
-migration).
+## 15. Step 5 complete: all six remaining systems
+
+**`RealNumbers`** (target `OrderedField`, via the generic layer's `RealModel`):
+turned out not to need the Archimedean reconciliation flagged in §11/§13
+first — `RealNumbers/Construction/Model.lean`'s actual content
+(`realNumbersModel : (real_model : RealModel) → ...`) only wraps
+`RealModel.signature` into an `OrderedField`-shaped model; it never touches
+the `ArchimedeanDenseOrderedFieldExtension`/`CofinalRealExtension` fields
+that reconciliation is about. Migrated the same contained way as
+`RationalNumbers`/`ComplexNumbers`. The reconciliation itself is still open,
+unblocked by this move, and not required for it.
+
+**`Integers`** (target: `IntegralDomain` + `Order`-owned laws directly, per
+the NS-001 correction in §9 — not `DiscreteInteger`): no legacy
+`Construction/Model.lean` existed to fold in (only `RationalNumbers`,
+`RealNumbers`, `ComplexNumbers`, `GaussianIntegers` had that pattern). Built
+fresh, but not new mathematics — `NumberSystems/Interface/ModelTheory/
+LStructure.lean`'s `DiscretelyOrderedIntegralDomainModel` is already exactly
+the generic model `Integers` needs (confirmed: its `.signature` method
+returns `OrderedRingSignature`, matching `BuildOrderedRingModel`'s parameter
+type exactly), so `Integers/Interface/ModelTheory/LStructure.lean` is a thin
+specialization — `integersModel (integer_model : DiscretelyOrderedIntegralDomainModel)
+:= BuildOrderedRingModel integer_model.signature` — the same compositional
+shape as `RationalNumbers`/`RealNumbers`, just over `OrderedRing` instead of
+`OrderedField`.
+
+**`NaturalNumbers`** (target `CommutativeSemiring`, built in Step 2): the one
+system with genuinely new wiring rather than a migration — no legacy
+`Construction/Model.lean`, and (confirmed in §9) its four constructions
+instantiate no `AlgebraicStructures` typeclass at all yet, so there was
+nothing to fold in or reconcile against. Unlike `Integers`/`RationalNumbers`/
+`RealNumbers`, there's no `NumberSystems`-generic bundle to specialize either
+(none was needed — semirings don't carry the order-compatibility complexity
+that motivated `DiscretelyOrderedIntegralDomainModel`/`DenselyOrderedFieldModel`
+in the first place), so `NaturalNumbers/Interface/ModelTheory/LStructure.lean`
+specializes `AlgebraicStructures.CommutativeSemiringConceptSignature`
+directly.
+
+**Result: all 8 `NumberSystems` subjects that belong on the ring/field ladder
+now have `Interface/{Signature,ModelTheory}`** (`PeanoSystem`,
+`IntegerStructure` were already compliant; the other 6 were built across
+Step 5). `ExtendedReal` remains the sole, correctly deliberate exception —
+confirmed in §7.2 as not fitting the ladder at all (±∞ have no inverses;
+closer to `Order/Lattices/CompleteLattice`), unaddressed by design, not an
+oversight.
+
+Verified with the same static import-resolution check after every system (0
+broken imports across 3,884 import lines by the end — the largest total
+this audit has checked, reflecting the ~24 new files this step added) and
+manual namespace/`end` balance on every new file. Not built — no `lake
+build` or validator gate run, per the standing constraint; a real build is
+the only way to confirm the recreated/composed model constructors actually
+elaborate, and remains outside this session.
