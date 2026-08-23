@@ -6,4 +6,4 @@ import LRA.Set.TGSet.Laws.Difference
 import LRA.Set.TGSet.Laws.SymmetricDifference
 import LRA.Set.TGSet.Laws.Membership
 
-/-! Generic Set-interface law certificates satisfied by the in-house TGSet realization. -/
+                                                                                          

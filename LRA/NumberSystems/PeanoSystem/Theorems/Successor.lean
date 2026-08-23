@@ -8,72 +8,72 @@ variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 
 
-/--
-**[Theorem - Successor Is Injective]**
+   
+                                      
 
-The successor operation of a Peano system is injective.
+                                                       
 
-Mathematical statement (Lean): `theorem SuccessorInjective`.
+                                                            
 
 
-Logical form:
+             
 
-```lean
-theorem SuccessorInjective
-    (ps : PeanoSystem Element SetObject) :
-    forall first second : Element,
-      ps.successor first = ps.successor second -> first = second
-```
--/
+       
+                          
+                                          
+                                  
+                                                                
+   
+  
 theorem SuccessorInjective
     (ps : PeanoSystem Element SetObject) :
     forall first second : Element,
       ps.successor first = ps.successor second -> first = second := by
   sorry
 
-/--
-**[Theorem - One Is Not a Successor]**
+   
+                                      
 
-The distinguished element of a Peano system is not the successor of any
-element.
+                                                                       
+        
 
-Mathematical statement (Lean): `theorem OneIsNotSuccessor`.
+                                                           
 
 
-Logical form:
+             
 
-```lean
-theorem OneIsNotSuccessor
-    (ps : PeanoSystem Element SetObject) :
-    forall element : Element,
-      ps.successor element ≠ ps.one
-```
--/
+       
+                         
+                                          
+                             
+                                   
+   
+  
 theorem OneIsNotSuccessor
     (ps : PeanoSystem Element SetObject) :
     forall element : Element,
       ps.successor element ≠ ps.one := by
   sorry
 
-/--
-**[Theorem - Successor Preserves Inequality]**
+   
+                                              
 
-If two elements of a Peano system are unequal, then their successors are
-unequal.
+                                                                        
+        
 
-Mathematical statement (Lean): `theorem SuccessorPreservesInequality`.
+                                                                      
 
 
-Logical form:
+             
 
-```lean
-theorem SuccessorPreservesInequality
-    (ps : PeanoSystem Element SetObject)
-    (first_element second_element : Element)
-    (elements_not_equal : first_element ≠ second_element) :
-    ps.successor first_element ≠ ps.successor second_element
-```
--/
+       
+                                    
+                                        
+                                            
+                                                           
+                                                            
+   
+  
 theorem SuccessorPreservesInequality
     (ps : PeanoSystem Element SetObject)
     (first_element second_element : Element)
@@ -81,49 +81,49 @@ theorem SuccessorPreservesInequality
     ps.successor first_element ≠ ps.successor second_element := by
   sorry
 
-/--
-**[Theorem - Successor Inequality Reflection]**
+   
+                                               
 
-If two successors are unequal, then their predecessors are unequal.
+                                                                   
 
-Mathematical statement (Lean): `theorem SuccessorInequalityReflection`.
+                                                                       
 
 
-Logical form:
+             
 
-```lean
-theorem SuccessorInequalityReflection
-    (ps : PeanoSystem Element SetObject)
-    (first second : Element) :
-    ps.successor first ≠ ps.successor second -> first ≠ second
-```
--/
+       
+                                     
+                                        
+                              
+                                                              
+   
+  
 theorem SuccessorInequalityReflection
     (ps : PeanoSystem Element SetObject)
     (first second : Element) :
     ps.successor first ≠ ps.successor second -> first ≠ second := by
   sorry
 
-/--
-**[Theorem - Every Element Is Either One or a Successor]**
+   
+                                                          
 
-Every element of a Peano system is either the distinguished element or the
-successor of some element of the system.
+                                                                          
+                                        
 
-Mathematical statement (Lean): `theorem EveryElementIsOneOrASuccessor`.
+                                                                       
 
 
-Logical form:
+             
 
-```lean
-theorem EveryElementIsOneOrASuccessor
-    (ps : PeanoSystem Element SetObject) :
-    forall element : Element,
-      element = ps.one \/
-        exists predecessor : Element,
-          ps.successor predecessor = element
-```
--/
+       
+                                     
+                                          
+                             
+                         
+                                     
+                                            
+   
+  
 theorem EveryElementIsOneOrASuccessor
     (ps : PeanoSystem Element SetObject) :
     forall element : Element,
@@ -132,49 +132,49 @@ theorem EveryElementIsOneOrASuccessor
           ps.successor predecessor = element := by
   sorry
 
-/--
-**[Theorem - Successor Is Not Self]**
+   
+                                     
 
-No element of a Peano system is equal to its own successor.
+                                                           
 
-Mathematical statement (Lean): `theorem NoObjectIsItsOwnSuccessor`.
+                                                                   
 
 
-Logical form:
+             
 
-```lean
-theorem NoObjectIsItsOwnSuccessor
-    (ps : PeanoSystem Element SetObject) :
-    forall element : Element,
-      ps.successor element ≠ element
-```
--/
+       
+                                 
+                                          
+                             
+                                    
+   
+  
 theorem NoObjectIsItsOwnSuccessor
     (ps : PeanoSystem Element SetObject) :
     forall element : Element,
       ps.successor element ≠ element := by
   sorry
 
-/--
-**[Theorem - One Is the Unique Non-Successor]**
+   
+                                               
 
-An element of a Peano system is not a successor of any element if and only if it
-is the distinguished element.
+                                                                                
+                             
 
-Mathematical statement (Lean): `theorem OneIsUniqueNonSuccessor`.
+                                                                 
 
 
-Logical form:
+             
 
-```lean
-theorem OneIsUniqueNonSuccessor
-    (ps : PeanoSystem Element SetObject)
-    (element : Element) :
-    (forall predecessor : Element,
-      ps.successor predecessor ≠ element) <->
-    element = ps.one
-```
--/
+       
+                               
+                                        
+                         
+                                  
+                                             
+                    
+   
+  
 theorem OneIsUniqueNonSuccessor
     (ps : PeanoSystem Element SetObject)
     (element : Element) :
@@ -183,15 +183,15 @@ theorem OneIsUniqueNonSuccessor
     element = ps.one := by
   sorry
 
-/--
-`OneIsTheUniqueNonSuccessor` abbreviates the displayed type or object for one is the unique non successor.
+   
+                                                                                                          
 
-Logical form:
+             
 
-```lean
-abbrev OneIsTheUniqueNonSuccessor := @OneIsUniqueNonSuccessor
-```
--/
+       
+                                                             
+   
+  
 abbrev OneIsTheUniqueNonSuccessor := @OneIsUniqueNonSuccessor
 
 end LRA.NumberSystems.PeanoSystem

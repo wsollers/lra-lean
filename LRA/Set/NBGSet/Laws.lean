@@ -6,4 +6,4 @@ import LRA.Set.NBGSet.Laws.Difference
 import LRA.Set.NBGSet.Laws.SymmetricDifference
 import LRA.Set.NBGSet.Laws.Membership
 
-/-! Generic Set-interface law certificates satisfied by the in-house NBGSet realization. -/
+                                                                                           

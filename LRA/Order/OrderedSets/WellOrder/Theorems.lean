@@ -6,7 +6,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- Every nonempty represented subset of a well-order has a least element. -/
+                                                                             
 theorem WellOrderingPrinciple
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -17,7 +17,7 @@ theorem WellOrderingPrinciple
     exists leastElement, LeastElement nonStrictRelation subset leastElement := by
   sorry
 
-/-- Every element that has a strict successor in a well-order has a least such successor. -/
+                                                                                            
 theorem WellOrderHasImmediateSuccessor
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]

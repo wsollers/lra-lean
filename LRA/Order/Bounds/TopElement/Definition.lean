@@ -11,7 +11,7 @@ variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 variable [LRA.Set.HasUniversal SetObject]
 
-/-- A top element is the greatest element of the full carrier represented by the universal set. -/
+                                                                                                  
 def TopElement
     (relation : LRA.Relation.Endorelation Element)
     (top : Element) : Prop :=

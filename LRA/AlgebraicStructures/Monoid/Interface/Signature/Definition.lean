@@ -2,11 +2,11 @@ import LRA.AlgebraicStructures.Semigroup.Interface.Signature.Definition
 
 namespace LRA.AlgebraicStructures.Monoid.Interface.Signature
 
-/-!
-First-order signature for monoids.
+   
+                                  
 
-This extends the semigroup vocabulary by one distinguished identity constant.
--/
+                                                                             
+  
 
 abbrev MonoidFunctionSymbol :=
   LRA.AlgebraicStructures.Semigroup.Interface.Signature.SemigroupFunctionSymbol

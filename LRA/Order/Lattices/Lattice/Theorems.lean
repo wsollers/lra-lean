@@ -4,7 +4,7 @@ namespace LRA.Order
 
 universe u
 
-/-- Every pair in a lattice has a join. -/
+                                          
 theorem LatticeHasJoin
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
@@ -13,7 +13,7 @@ theorem LatticeHasJoin
     exists join, Join relation left right join := by
   sorry
 
-/-- Every pair in a lattice has a meet. -/
+                                          
 theorem LatticeHasMeet
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
@@ -22,7 +22,7 @@ theorem LatticeHasMeet
     exists meet, Meet relation left right meet := by
   sorry
 
-/-- Connecting lemma: `right` is the join of `left` and `right` exactly when `left ≤ right`. -/
+                                                                                               
 theorem JoinEqualsRightIffRelated
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
@@ -31,7 +31,7 @@ theorem JoinEqualsRightIffRelated
     Join relation left right right ↔ relation left right := by
   sorry
 
-/-- Dual connecting lemma for meets. -/
+                                       
 theorem MeetEqualsLeftIffRelated
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
@@ -40,7 +40,7 @@ theorem MeetEqualsLeftIffRelated
     Meet relation left right left ↔ relation left right := by
   sorry
 
-/-- Order-theoretic absorption: meeting an element with its join returns it. -/
+                                                                               
 theorem MeetWithJoinAbsorbs
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
@@ -51,7 +51,7 @@ theorem MeetWithJoinAbsorbs
     meet = left := by
   sorry
 
-/-- Dual order-theoretic absorption. -/
+                                       
 theorem JoinWithMeetAbsorbs
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
@@ -62,7 +62,7 @@ theorem JoinWithMeetAbsorbs
     join = left := by
   sorry
 
-/-- One distributive inequality holds in every lattice. -/
+                                                          
 theorem JoinOfMeetsRelatedToMeetWithJoin
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
@@ -76,7 +76,7 @@ theorem JoinOfMeetsRelatedToMeetWithJoin
     relation joinOfMeets aMeetBJoinC := by
   sorry
 
-/-- The dual distributive inequality holds in every lattice. -/
+                                                               
 theorem JoinWithMeetRelatedToMeetOfJoins
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}

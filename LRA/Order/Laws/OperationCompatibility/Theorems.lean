@@ -4,9 +4,9 @@ namespace LRA.Order
 
 universe u
 
-/-!
-Central theorems about order-operation compatibility belong here.
--/
+   
+                                                                 
+  
 
 theorem LeftTranslationPreservesRelation.apply {Carrier : Type u}
     {relation : Carrier -> Carrier -> Prop}

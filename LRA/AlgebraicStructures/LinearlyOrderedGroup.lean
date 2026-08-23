@@ -4,4 +4,4 @@ import LRA.AlgebraicStructures.LinearlyOrderedGroup.Characterizations
 import LRA.AlgebraicStructures.LinearlyOrderedGroup.Consequences
 import LRA.AlgebraicStructures.LinearlyOrderedGroup.Relationships
 
-/-! Canonical import route for linearly ordered groups. -/
+                                                          

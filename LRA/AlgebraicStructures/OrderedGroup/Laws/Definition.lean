@@ -5,9 +5,9 @@ namespace LRA.AlgebraicStructures
 
 universe u
 
-/-! Ordered group law certificates. -/
+                                      
 
-/-- Multiplicative translations preserve the displayed non-strict order. -/
+                                                                           
 class MultiplicativeOrderCompatibilityLaws (R : Type u)
     [Mul R] [LE R] : Prop where
   MulLeMulLeft :
@@ -17,7 +17,7 @@ class MultiplicativeOrderCompatibilityLaws (R : Type u)
     LRA.Order.RightTranslationPreservesRelation
       (fun a b : R => a <= b) (fun a b : R => a * b)
 
-/-- Ordered group laws. -/
+                          
 class abbrev OrderedGroupLaws (R : Type u)
     [Mul R] [Inv R] [OfNat R 1] [LE R] : Prop :=
   GroupLaws R, LRA.Order.PartialOrderLaws R,

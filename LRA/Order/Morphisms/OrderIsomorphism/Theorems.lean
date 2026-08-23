@@ -16,7 +16,7 @@ namespace LRA.Order
 
 universe u v w
 
-/-- Order isomorphisms preserve every existing binary join. -/
+                                                              
 theorem OrderIsomorphismPreservesJoin
     {Alpha : Type u} {Beta : Type v}
     {sourceRelation : LRA.Relation.Endorelation Alpha}
@@ -29,7 +29,7 @@ theorem OrderIsomorphismPreservesJoin
     Join targetRelation (forward left) (forward right) (forward join) := by
   sorry
 
-/-- Order isomorphisms preserve every existing binary meet. -/
+                                                              
 theorem OrderIsomorphismPreservesMeet
     {Alpha : Type u} {Beta : Type v}
     {sourceRelation : LRA.Relation.Endorelation Alpha}
@@ -42,7 +42,7 @@ theorem OrderIsomorphismPreservesMeet
     Meet targetRelation (forward left) (forward right) (forward meet) := by
   sorry
 
-/-- Swapping the maps of an order isomorphism gives its inverse isomorphism. -/
+                                                                               
 theorem OrderIsomorphismInverse
     {Alpha : Type u} {Beta : Type v}
     {sourceRelation : LRA.Relation.Endorelation Alpha}
@@ -53,7 +53,7 @@ theorem OrderIsomorphismInverse
     OrderIsomorphism targetRelation sourceRelation inverse forward := by
   sorry
 
-/-- Order isomorphisms compose. -/
+                                  
 theorem OrderIsomorphismComp
     {Alpha : Type u} {Beta : Type v} {Gamma : Type w}
     {sourceRelation : LRA.Relation.Endorelation Alpha}
@@ -82,7 +82,7 @@ variable {sourceRelation : LRA.Relation.Endorelation Alpha}
 variable {targetRelation : LRA.Relation.Endorelation Beta}
 variable {map : Alpha → Beta}
 
-/-- An order isomorphism carries an upper bound to an upper bound of the image. -/
+                                                                                  
 theorem OrderIsomorphismPreservesUpperBound
     (subset : SourceSet) (imageSet : TargetSet)
     (representsImage :
@@ -95,7 +95,7 @@ theorem OrderIsomorphismPreservesUpperBound
     : UpperBound targetRelation imageSet (map bound) := by
   sorry
 
-/-- An order isomorphism carries a lower bound to a lower bound of the image. -/
+                                                                                
 theorem OrderIsomorphismPreservesLowerBound
     (subset : SourceSet) (imageSet : TargetSet)
     (representsImage :
@@ -108,7 +108,7 @@ theorem OrderIsomorphismPreservesLowerBound
     : LowerBound targetRelation imageSet (map bound) := by
   sorry
 
-/-- An order isomorphism carries a supremum to a supremum of the image. -/
+                                                                          
 theorem OrderIsomorphismPreservesSupremum
     (subset : SourceSet) (imageSet : TargetSet)
     (representsImage :
@@ -121,7 +121,7 @@ theorem OrderIsomorphismPreservesSupremum
     : Supremum targetRelation imageSet (map supremum) := by
   sorry
 
-/-- An order isomorphism carries an infimum to an infimum of the image. -/
+                                                                          
 theorem OrderIsomorphismPreservesInfimum
     (subset : SourceSet) (imageSet : TargetSet)
     (representsImage :
@@ -134,7 +134,7 @@ theorem OrderIsomorphismPreservesInfimum
     : Infimum targetRelation imageSet (map infimum) := by
   sorry
 
-/-- An order isomorphism onto the converse order carries a supremum to an infimum. -/
+                                                                                     
 theorem OrderIsomorphismToConverseSendsSupremumToInfimum
     (subset : SourceSet) (imageSet : TargetSet)
     (representsImage :
@@ -147,7 +147,7 @@ theorem OrderIsomorphismToConverseSendsSupremumToInfimum
     : Infimum targetRelation imageSet (map supremum) := by
   sorry
 
-/-- An order isomorphism onto the converse order carries an infimum to a supremum. -/
+                                                                                     
 theorem OrderIsomorphismToConverseSendsInfimumToSupremum
     (subset : SourceSet) (imageSet : TargetSet)
     (representsImage :

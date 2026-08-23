@@ -3,7 +3,7 @@ import LRA.Set.Interface.Union
 
 namespace LRA.Set.ZFCSet
 
-/-! Union-law certificate for the concrete ZFCSet backend. -/
+                                                             
 
 theorem UnionCommutative : ∀ A B : Set, A ∪ B = B ∪ A := by
   sorry

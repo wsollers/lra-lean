@@ -11,7 +11,7 @@ variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 variable [LRA.Set.HasUniversal SetObject]
 
-/-- A bottom element is the least element of the full carrier represented by the universal set. -/
+                                                                                                  
 def BottomElement
     (relation : LRA.Relation.Endorelation Element)
     (bottom : Element) : Prop :=

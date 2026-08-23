@@ -3,23 +3,23 @@ import Mathlib.Order.SetNotation
 import Mathlib.Order.SymmDiff
 import LRA.Set.Interface.Operations
 
-/-!
-Mathlib's `Set Alpha` registered as an LRA set backend.
+   
+                                                       
 
-Pure redirection: Mathlib already registers `Set Alpha` against Lean
-core's notation classes (`Union`, `Inter`, `HasSubset`,
-`EmptyCollection`, `Singleton`, `Insert`, `SDiff`, `Membership`), so the
-only work here is registering the project's own capability classes
-(`HasComplement`, `HasUniversal`, `HasSymmDiff`, `HasSeparation`,
-`HasPowerset`) against Mathlib's corresponding operations. Like `LRASet`
--- its hand-built sibling -- this backend has an ambient carrier type,
-so it supports the full capability set including complement and
-universal set.
+                                                                    
+                                                       
+                                                                        
+                                                                  
+                                                                 
+                                                                        
+                                                                      
+                                                               
+              
 
-Operations are referenced by name (`Compl.compl`, `Set.univ`, ...)
-rather than by token, because Mathlib's `ᶜ`/`∆` notations coexist with
-this project's scoped ones inside this namespace.
--/
+                                                                  
+                                                                      
+                                                 
+  
 
 namespace LRA.Set.MathlibPredicateSet
 
@@ -27,12 +27,12 @@ universe u
 
 variable {Alpha : Type u}
 
-/-- This Mathlib version elaborates `A ⊆ B` for `Set` to `LE.le` via the
-`@[use_set_notation_for_order]` mechanism and registers no core
-`HasSubset` instance at all. The project's interface states its laws
-against core `HasSubset`, so the adapter supplies the bridge --
-definitionally `Set.Subset`, so every Mathlib `⊆`/`≤` lemma applies
-unchanged. -/
+                                                                        
+                                                               
+                                                                    
+                                                               
+                                                                   
+             
 instance : _root_.HasSubset (_root_.Set Alpha) where
   Subset := fun A B => A ≤ B
 

@@ -3,7 +3,7 @@ import LRA.Set.Interface.Intersection
 
 namespace LRA.Set.ZFCSet
 
-/-! Intersection-law certificate for the concrete ZFCSet backend. -/
+                                                                    
 
 theorem IntersectionCommutative : ∀ A B : Set, A ∩ B = B ∩ A := by
   sorry

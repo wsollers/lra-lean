@@ -3,7 +3,7 @@ import LRA.Set.Interface.Difference
 
 namespace LRA.Set.TGSet
 
-/-! Difference-law certificate for the concrete TGSet backend. -/
+                                                                 
 
 theorem DifferenceMonotoneLeft :
     forall A1 A2 B : Set, A1 ⊆ A2 -> A1 \ B ⊆ A2 \ B := by

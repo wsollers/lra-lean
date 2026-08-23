@@ -4,7 +4,7 @@ namespace LRA.Order
 
 universe u
 
-/-- Every cover pair is related by the underlying strict relation. -/
+                                                                     
 theorem CoverRelationImpliesStrictRelation
     {Alpha : Type u}
     {strictRelation : LRA.Relation.Endorelation Alpha}
@@ -13,10 +13,10 @@ theorem CoverRelationImpliesStrictRelation
     strictRelation lower upper := by
   sorry
 
-/-!
-For finite posets, the order is the reflexive-transitive closure of its cover
-relation. That theorem is deferred until the planned finite-carrier interface
-is available.
--/
+   
+                                                                             
+                                                                             
+             
+  
 
 end LRA.Order

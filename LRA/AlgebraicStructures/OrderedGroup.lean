@@ -8,4 +8,4 @@ import LRA.AlgebraicStructures.OrderedGroup.Characterizations
 import LRA.AlgebraicStructures.OrderedGroup.Consequences
 import LRA.AlgebraicStructures.OrderedGroup.Relationships
 
-/-! Canonical import route for ordered groups. -/
+                                                 

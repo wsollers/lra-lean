@@ -7,8 +7,8 @@ import LRA.NumberSystems.Integers.Constructions.Tao.Laws
 import LRA.NumberSystems.Integers.Constructions.Tao.Behavior
 import LRA.NumberSystems.Integers.Constructions.Tao.Instances
 
-/-!
-Construction modules for Tao's formal-difference integer construction.
-Moved from `LRA.VolumeII.Integers.Tao` and split into the §1.6.1 pipeline.
-See `Integers/ProofOrder.md`.
--/
+   
+                                                                      
+                                                                          
+                             
+  

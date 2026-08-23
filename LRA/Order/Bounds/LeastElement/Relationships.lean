@@ -9,7 +9,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- In an antisymmetric relation, every least element is minimal. -/
+                                                                    
 theorem LeastElementIsMinimal
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -20,7 +20,7 @@ theorem LeastElementIsMinimal
     MinimalElement (StrictPart relation) subset least := by
   sorry
 
-/-- A least element is the unique minimal element of its represented subset. -/
+                                                                               
 theorem LeastElementIsUniqueMinimalElement
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -32,7 +32,7 @@ theorem LeastElementIsUniqueMinimalElement
     minimal = least := by
   sorry
 
-/-- In a linear order, every minimal element is least. -/
+                                                         
 theorem MinimalElementIsLeastInLinearOrder
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -43,7 +43,7 @@ theorem MinimalElementIsLeastInLinearOrder
     LeastElement relation subset minimal := by
   sorry
 
-/-- A least element is an infimum. -/
+                                     
 theorem LeastElementIsInfimum
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -53,7 +53,7 @@ theorem LeastElementIsInfimum
     Infimum relation subset least := by
   sorry
 
-/-- Being least is equivalent to being an infimum that belongs to the subset. -/
+                                                                                
 theorem LeastElementIffInfimumAndMembership
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]

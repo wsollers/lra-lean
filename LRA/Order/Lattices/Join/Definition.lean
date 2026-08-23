@@ -4,7 +4,7 @@ namespace LRA.Order
 
 universe u
 
-/-- A join of two elements is their least upper bound. -/
+                                                         
 def Join {alpha : Type u}
     (relation : LRA.Relation.Endorelation alpha)
     (left right join : alpha) : Prop :=

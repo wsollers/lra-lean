@@ -10,9 +10,9 @@ import LRA.Order
 import LRA.UniversalAlgebra
 import LRA.AlgebraicStructures
 
-/-!
-Volume I in curricular order.
+   
+                             
 
-This is an aggregator, not a subject: it owns nothing and exists to reproduce
-the reading order of the volume over subjects that own their own declarations.
--/
+                                                                             
+                                                                              
+  

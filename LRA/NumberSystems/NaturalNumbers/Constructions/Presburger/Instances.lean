@@ -2,15 +2,15 @@ import LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.Operations
 import LRA.Logic.Language.FirstOrder.Signature
 import LRA.Logic.Model.Model
 
-/-!
-The first-order Presburger signature (`{0, S, +, <}`) and the model
-obligation it carries -- moved, unchanged in substance, from
-`LRA.VolumeII.PeanoSystems.Presburger.{Presburger,Operations.Addition}`
-when that generic tree was collapsed into this construction.
+   
+                                                                   
+                                                            
+                                                                       
+                                                            
 
-Per §1.6.1, a construction discharges its model obligation once, here, by
-exhibiting the `LRA.Logic.FirstOrder.Model`; nothing downstream restates it.
--/
+                                                                         
+                                                                            
+  
 
 namespace LRA.NumberSystems.NaturalNumbers.Constructions.Presburger
 
@@ -44,8 +44,8 @@ def PresburgerSignature : LRA.Logic.Signature where
   Relations := PresburgerRelations
   Constants := PresburgerConstantSymbol
 
-/-- A generic `PresburgerModel` exhibits an `LRA.Logic.FirstOrder.Model` of
-`PresburgerSignature`, discharging this construction's model obligation. -/
+                                                                           
+                                                                           
 noncomputable def PresburgerModel.toFirstOrderModel
     (model : PresburgerModel Element SetObject) :
     LRA.Logic.FirstOrder.Model PresburgerSignature where

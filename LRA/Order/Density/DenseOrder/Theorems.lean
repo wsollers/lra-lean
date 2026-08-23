@@ -7,7 +7,7 @@ namespace LRA.Order
 
 universe u
 
-/-- For a partial order, density of its strict part is exactly dense order. -/
+                                                                              
 theorem DenseOrderOfStrictPartIffDense
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
@@ -16,7 +16,7 @@ theorem DenseOrderOfStrictPartIffDense
       LRA.Relation.Dense (StrictPart relation) := by
   sorry
 
-/-- A dense strict order has no cover pairs and hence no Hasse edges. -/
+                                                                        
 theorem DenseOrderHasNoCovers
     {Alpha : Type u}
     {strictRelation : LRA.Relation.Endorelation Alpha}

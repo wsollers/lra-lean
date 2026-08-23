@@ -4,7 +4,7 @@ namespace LRA.Identity
 
 universe u
 
-/-- Predicates, relations, and binary operations automatically respect equality. -/
+                                                                                   
 theorem CongruenceWithRespectToEqualityIsAutomatic {Carrier : Type u}
     {left left' right right' : Carrier}
     (LeftsAreEqual : left = left')
@@ -16,7 +16,7 @@ theorem CongruenceWithRespectToEqualityIsAutomatic {Carrier : Type u}
         operation left right = operation left' right') := by
   sorry
 
-/-- Public congruence theorem for equality. -/
+                                              
 theorem EqualityCongruence {Carrier : Type u}
     {Left LeftPrime Right RightPrime : Carrier}
     (LeftCoordinatesEqual : Left = LeftPrime)

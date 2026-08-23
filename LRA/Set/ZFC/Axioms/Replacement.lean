@@ -2,7 +2,7 @@ import LRA.Set.ZFCSet.Primitives
 
 namespace LRA.Set.ZFC
 
-/-- Replacement schema, represented by a Lean relation parameter. -/
+                                                                    
 axiom Replacement (relation : ZFCSet → ZFCSet → Prop) (A : ZFCSet) :
   (∀ x : ZFCSet, x ∈ A →
     ∃ y : ZFCSet, relation x y ∧

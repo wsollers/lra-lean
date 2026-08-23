@@ -4,7 +4,7 @@ namespace LRA.Order
 
 universe u
 
-/-- A meet-semilattice is a partial order in which every pair has a meet. -/
+                                                                            
 def MeetSemilattice
     {Alpha : Type u}
     (relation : LRA.Relation.Endorelation Alpha) : Prop :=

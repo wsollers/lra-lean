@@ -4,7 +4,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- The coordinatewise product of two relations. -/
+                                                   
 def ProductRelation
     {Alpha : Type u} {Beta : Type v}
     (leftRelation : LRA.Relation.Endorelation Alpha)

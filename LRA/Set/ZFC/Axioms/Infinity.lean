@@ -2,7 +2,7 @@ import LRA.Set.ZFCSet.Primitives
 
 namespace LRA.Set.ZFC
 
-/-- An inductive set exists. -/
+                               
 axiom Infinity :
   ∃ A : ZFCSet,
     (∃ empty : ZFCSet, empty ∈ A ∧ ∀ w : ZFCSet, w ∉ empty) ∧

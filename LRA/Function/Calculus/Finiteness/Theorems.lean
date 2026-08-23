@@ -6,7 +6,7 @@ namespace LRA.Function
 open LRA.Set
 universe u v
 
-/-- Image finiteness is finiteness of the class of attained values. -/
+                                                                      
 theorem FiniteImageIffEnumerable {Domain : Type u} {Codomain : Type v}
     (function : LRA.Function Domain Codomain)
     (source : SetClass Domain) :
@@ -16,7 +16,7 @@ theorem FiniteImageIffEnumerable {Domain : Type u} {Codomain : Type v}
           source input ∧ function input = output) := by
   sorry
 
-/-- Range finiteness is image finiteness over the universal source class. -/
+                                                                            
 theorem FiniteRangeIffFiniteImageOfUniversal {Domain : Type u} {Codomain : Type v}
     (function : LRA.Function Domain Codomain) :
     FiniteRange function ↔

@@ -11,7 +11,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- Antisymmetry makes an infimum unique. -/
+                                            
 theorem InfimumUnique
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -23,7 +23,7 @@ theorem InfimumUnique
     first = second := by
   sorry
 
-/-- In a reflexive relation, an element is an infimum of its represented singleton. -/
+                                                                                      
 theorem InfimumOfSingleton
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject] [Singleton Element SetObject]
@@ -36,7 +36,7 @@ theorem InfimumOfSingleton
     Infimum relation ({element} : SetObject) element := by
   sorry
 
-/-- An infimum is a lower bound of the represented subset. -/
+                                                             
 theorem InfimumIsLowerBound
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -46,7 +46,7 @@ theorem InfimumIsLowerBound
     LowerBound relation subset infimum := by
   sorry
 
-/-- Every lower bound of a represented subset lies below its infimum. -/
+                                                                        
 theorem EveryLowerBoundRelatedToInfimum
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -57,7 +57,7 @@ theorem EveryLowerBoundRelatedToInfimum
     relation bound infimum := by
   sorry
 
-/-- Once an infimum exists, lower bounds are exactly the elements below it. -/
+                                                                              
 theorem LowerBoundIffRelatedToInfimum
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -68,7 +68,7 @@ theorem LowerBoundIffRelatedToInfimum
     LowerBound relation subset bound ↔ relation bound infimum := by
   sorry
 
-/-- Infima are antitone under inclusion of represented subsets. -/
+                                                                  
 theorem InfimumMonotoneUnderInclusion
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -80,12 +80,12 @@ theorem InfimumMonotoneUnderInclusion
     relation largerInfimum smallerInfimum := by
   sorry
 
-/-- Pointwise domination of one represented subset by another compares their infima.
+                                                                                    
 
-Dualizes `SupremaCompareUnderPointwiseDomination`: the hypothesis is
-domination under the *converse* relation, since "every element of
-`leftSubset` has some smaller element of `rightSubset`" is exactly
-`Dominated (LRA.Relation.Converse relation) leftSubset rightSubset`. -/
+                                                                    
+                                                                 
+                                                                  
+                                                                       
 theorem InfimaCompareUnderPointwiseDomination
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -100,7 +100,7 @@ theorem InfimaCompareUnderPointwiseDomination
     relation rightInfimum leftInfimum := by
   sorry
 
-/-- An infimum that belongs to its subset is its least element. -/
+                                                                  
 theorem InfimumInSubsetIsLeastElement
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -115,7 +115,7 @@ open scoped LRA.Set
 
 
 
-/-- The meet of two existing infima is the infimum of their union. -/
+                                                                     
 theorem InfimumOfUnion
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -132,7 +132,7 @@ theorem InfimumOfUnion
     Infimum relation (leftSubset ∪ rightSubset) unionInfimum := by
   sorry
 
-/-- The infimum of either containing operand is below the infimum of their intersection. -/
+                                                                                           
 theorem ContainingInfimumRelatedToInfimumOfIntersection
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -147,7 +147,7 @@ theorem ContainingInfimumRelatedToInfimumOfIntersection
     relation containingInfimum intersectionInfimum := by
   sorry
 
-/-- The infimum of a set is below the infimum of each relative difference. -/
+                                                                             
 theorem ContainingInfimumRelatedToInfimumOfDifference
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -161,7 +161,7 @@ theorem ContainingInfimumRelatedToInfimumOfDifference
     relation subsetInfimum differenceInfimum := by
   sorry
 
-/-- The infimum of a union is below the infimum of its symmetric difference. -/
+                                                                               
 theorem UnionInfimumRelatedToInfimumOfSymmetricDifference
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject]
@@ -177,7 +177,7 @@ theorem UnionInfimumRelatedToInfimumOfSymmetricDifference
     relation unionInfimum differenceInfimum := by
   sorry
 
-/-- Infima of all family members assemble into the infimum of the indexed union under a greatest-common-lower-bound hypothesis. -/
+                                                                                                                                  
 theorem InfimumOfIndexedUnion
     {Element : Type u} {SetObject : Type v} {Index : Type w}
     [Membership Element SetObject]

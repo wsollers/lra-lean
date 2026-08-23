@@ -5,7 +5,7 @@ import LRA.Set.Interface.Families
 
 namespace LRA.Set.ZFCSet
 
-/-! Membership-law certificates for the concrete ZFCSet backend. -/
+                                                                   
 
 theorem SubsetIffAllMembers :
     ∀ A B : Set, A ⊆ B ↔ ∀ x : Set, x ∈ A → x ∈ B := by

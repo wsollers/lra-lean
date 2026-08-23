@@ -6,7 +6,7 @@ open LRA.Set
 
 universe u v
 
-/-- A partition determines the relation of belonging to a common block. -/
+                                                                          
 def EquivalenceFromPartition
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -15,8 +15,8 @@ def EquivalenceFromPartition
     ∃ index,
       first ∈ partition.Block index ∧ second ∈ partition.Block index
 
-/-- The partition into equivalence classes recovers the original relation on
-the represented carrier. -/
+                                                                            
+                           
 theorem FundamentalTheoremOfEquivalenceRelations
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject] [HasSeparation Element SetObject]

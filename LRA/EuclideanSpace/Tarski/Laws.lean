@@ -1,13 +1,13 @@
 import LRA.EuclideanSpace.Tarski.Axioms
 import LRA.EuclideanSpace.Interface.Laws
 
-/-!
-Proof that the in-house `TarskiPoint` realization satisfies the generic
-`Interface` law-classes -- the same role `LRA.Set.ZFCSet.Laws` plays for
-`ZFCSet` against `LRA.Set.Interface`. Since `TarskiPoint`'s axioms were
-stated in exactly the shape the generic classes expect, every instance
-here is a direct reference to its matching axiom, not a fresh proof.
--/
+   
+                                                                       
+                                                                        
+                                                                       
+                                                                      
+                                                                    
+  
 
 namespace LRA.EuclideanSpace
 

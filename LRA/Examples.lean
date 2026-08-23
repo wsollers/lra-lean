@@ -8,4 +8,4 @@ import LRA.Analysis.MeasureTheory.MeasureSpace.Examples
 import LRA.Algebra.LinearAlgebra.VectorSpace.Examples
 import LRA.Topology.PointSetTopology.TopologicalSpace.Examples
 
-/-! Opt-in aggregate import for examples. -/
+                                            

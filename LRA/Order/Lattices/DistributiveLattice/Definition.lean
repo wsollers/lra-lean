@@ -4,7 +4,7 @@ namespace LRA.Order
 
 universe u
 
-/-- A distributive lattice is a lattice whose existing joins and meets satisfy both distributive equalities. -/
+                                                                                                               
 def DistributiveLattice
     {Alpha : Type u}
     (relation : LRA.Relation.Endorelation Alpha) : Prop :=

@@ -5,7 +5,7 @@ namespace LRA.AlgebraicStructures.CompleteOrderedField.Interface.ModelTheory
 
 universe u
 
-/-! `L`-structure reducts of native complete ordered-field data. -/
+                                                                   
 
 open LRA.AlgebraicStructures.CompleteOrderedField.Interface.Signature
 

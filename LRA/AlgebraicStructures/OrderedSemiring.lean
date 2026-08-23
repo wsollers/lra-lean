@@ -8,4 +8,4 @@ import LRA.AlgebraicStructures.OrderedSemiring.Characterizations
 import LRA.AlgebraicStructures.OrderedSemiring.Consequences
 import LRA.AlgebraicStructures.OrderedSemiring.Relationships
 
-/-! Canonical import route for ordered semirings. -/
+                                                    

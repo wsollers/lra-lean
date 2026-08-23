@@ -8,4 +8,4 @@ import LRA.AlgebraicStructures.CompleteOrderedField.Characterizations
 import LRA.AlgebraicStructures.CompleteOrderedField.Consequences
 import LRA.AlgebraicStructures.CompleteOrderedField.Relationships
 
-/-! Canonical import route for complete ordered fields. -/
+                                                          

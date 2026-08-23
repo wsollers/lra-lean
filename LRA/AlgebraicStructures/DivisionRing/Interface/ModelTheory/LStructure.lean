@@ -6,7 +6,7 @@ namespace LRA.AlgebraicStructures.DivisionRing.Interface.ModelTheory
 
 universe u
 
-/-! Law-free `L`-structure builders for the first-order division-ring language. -/
+                                                                                  
 
 open LRA.AlgebraicStructures.DivisionRing.Interface.Signature
 

@@ -1,6 +1,6 @@
--- LRA/NumberSystems/RealNumbers/Constructions/Dedekind/Behavior.lean
--- Behavioral theorems: density of the embedded rationals, the Archimedean
--- property, and the final reference-real structural summary.
+                                                                     
+                                                                          
+                                                             
 
 import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.Laws
 import LRA.NumberSystems.RationalNumbers.Definition
@@ -11,27 +11,27 @@ open LRA.NumberSystems.RationalNumbers
 
 variable (rationalSystem : RationalNumberSystem)
 
-/-- Theorem 7.1: embedded rationals are order-dense.
+                                                    
 
-Mathematical statement (Lean): `theorem embedded_rationals_are_dense (first second : Cut rational_model) (first_lt_second : strict_order rational_model first second) : ∃ rational, strict_order rational_model first (rational_embedding rational_model rational) ∧ strict_order rational_model...`.
+                                                                                                                                                                                                                                                                                                     
 
-*Proof status:* proof pending
+                             
 
 
-Logical form:
+             
 
-```lean
-theorem embedded_rationals_are_dense
-    (first second : Cut rationalSystem.FieldModel)
-    (first_lt_second :
-      strict_order rationalSystem.FieldModel first second) :
-    ∃ rational,
-      strict_order rationalSystem.FieldModel first
-        (rational_embedding rationalSystem.FieldModel rational) ∧
-      strict_order rationalSystem.FieldModel
-        (rational_embedding rationalSystem.FieldModel rational) second
-```
--/
+       
+                                    
+                                                  
+                      
+                                                            
+               
+                                                  
+                                                                 
+                                            
+                                                                      
+   
+  
 theorem embedded_rationals_are_dense
     (first second : Cut rationalSystem.FieldModel)
     (first_lt_second :
@@ -43,29 +43,29 @@ theorem embedded_rationals_are_dense
         (rational_embedding rationalSystem.FieldModel rational) second := by
   sorry
 
-/-- Theorem 7.2: Archimedean property.
+                                      
 
-Mathematical statement (Lean): `theorem archimedean_property (integer_cofinal : ∀ value : rationalSystem.FieldModel.signature.carrier, ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier, rationalSystem.FieldModel.signature.StrictOrder value (rationalSystem.IntegerEmbedding.ToField integer)) (cut : Cut rationalSystem.FieldModel) : ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier, strict_order rationalSystem.FieldModel cut (rational_embedding rationalSystem.FieldModel (rationalSystem.IntegerEmbedding.ToField integer))`.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 
-*Proof status:* proof pending
+                             
 
 
-Logical form:
+             
 
-```lean
-theorem archimedean_property
-    (integer_cofinal :
-      ∀ value : rationalSystem.FieldModel.signature.carrier,
-        ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier,
-          rationalSystem.FieldModel.signature.StrictOrder value
-            (rationalSystem.IntegerEmbedding.ToField integer))
-    (cut : Cut rationalSystem.FieldModel) :
-    ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier,
-      strict_order rationalSystem.FieldModel cut
-        (rational_embedding rationalSystem.FieldModel
-          (rationalSystem.IntegerEmbedding.ToField integer))
-```
--/
+       
+                            
+                      
+                                                            
+                                                                         
+                                                               
+                                                              
+                                           
+                                                                     
+                                                
+                                                     
+                                                            
+   
+  
 theorem archimedean_property
     (integer_cofinal :
       ∀ value : rationalSystem.FieldModel.signature.carrier,
@@ -79,14 +79,29 @@ theorem archimedean_property
           (rationalSystem.IntegerEmbedding.ToField integer)) := by
   sorry
 
-/-- Proposition expressing the final reference-real summary.
+                                                            
 
-Mathematical statement (Lean): `def ReferenceRealNumberConstruction : Prop`.
+                                                                            
 
 
-Logical form:
+             
 
-```lean
+       
+                                             
+                                                           
+                                                  
+                                                         
+               
+                                                  
+                                                                 
+                                            
+                                                                         
+                                                         
+                                                                     
+                                                           
+                                                          
+   
+  
 def ReferenceRealNumberConstruction : Prop :=
   CompleteOrderedFieldStructure rationalSystem.FieldModel ∧
   (∀ first second : Cut rationalSystem.FieldModel,
@@ -100,37 +115,22 @@ def ReferenceRealNumberConstruction : Prop :=
     ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier,
       rationalSystem.FieldModel.signature.StrictOrder value
         (rationalSystem.IntegerEmbedding.ToField integer))
-```
--/
-def ReferenceRealNumberConstruction : Prop :=
-  CompleteOrderedFieldStructure rationalSystem.FieldModel ∧
-  (∀ first second : Cut rationalSystem.FieldModel,
-    strict_order rationalSystem.FieldModel first second →
-    ∃ rational,
-      strict_order rationalSystem.FieldModel first
-        (rational_embedding rationalSystem.FieldModel rational) ∧
-      strict_order rationalSystem.FieldModel
-        (rational_embedding rationalSystem.FieldModel rational) second) ∧
-  (∀ value : rationalSystem.FieldModel.signature.carrier,
-    ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier,
-      rationalSystem.FieldModel.signature.StrictOrder value
-        (rationalSystem.IntegerEmbedding.ToField integer))
 
 
-/-- Theorem 8.1: final reference-real structural summary.
+                                                         
 
-Mathematical statement (Lean): `theorem reference_real_number_construction : ReferenceRealNumberConstruction rationalSystem`.
+                                                                                                                             
 
-*Proof status:* proof pending
+                             
 
 
-Logical form:
+             
 
-```lean
-theorem reference_real_number_construction :
-    ReferenceRealNumberConstruction rationalSystem
-```
--/
+       
+                                            
+                                                  
+   
+  
 theorem reference_real_number_construction :
     ReferenceRealNumberConstruction rationalSystem := by
   sorry

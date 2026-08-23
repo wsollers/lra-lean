@@ -7,21 +7,21 @@ namespace LRA.Operation
 
 universe u
 
-/-- Divisibility induced by a multiplication-like operation. -/
+                                                               
 def Divides {Alpha : Type u}
     (multiplication : BinaryOperation Alpha) :
     LRA.Relation.Endorelation Alpha :=
   fun divisor dividend =>
     exists witness, dividend = multiplication divisor witness
 
-/-- Divisibility equivalence: each element divides the other. -/
+                                                                
 def AssociatedByDivisibility {Alpha : Type u}
     (multiplication : BinaryOperation Alpha) :
     LRA.Relation.Endorelation Alpha :=
   fun first second =>
     Divides multiplication first second /\ Divides multiplication second first
 
-/-- A monoid-like operation induces a divisibility preorder. -/
+                                                               
 theorem DivisibilityPreorder
     {Alpha : Type u}
     {multiplication : BinaryOperation Alpha}

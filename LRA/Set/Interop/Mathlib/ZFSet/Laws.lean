@@ -2,30 +2,30 @@ import Mathlib.Tactic.Tauto
 import LRA.Set.Interop.Mathlib.ZFSet.Instances
 import LRA.Set.Interface
 
-/-!
-Certificate registrations for the `MathlibZFSet` backend.
+   
+                                                         
 
-Everything Enderton registers, `ZFSet` registers -- and nothing more: no
-complement family, no universal-membership family, because ZFC has no
-universal set. Where Mathlib states the fact directly
-(`ZFSet.mem_union`, `ZFSet.mem_sep`, `ZFSet.mem_powerset`,
-`ZFSet.subset_def`, the `PartialOrder` structure), the field dispatches
-to it; the algebraic families, which Mathlib leaves as exercises in the
-membership lemmas, are discharged by short `ext`/`simp`/`tauto` bridges
-over those same lemmas. Nothing here is `sorry`.
--/
+                                                                        
+                                                                     
+                                                     
+                                                          
+                                                                       
+                                                                       
+                                                                       
+                                                
+  
 
 namespace LRA.Set.MathlibZFSet
 
-/-- Membership characterization of the derived symmetric difference.
+                                                                    
 
-Logical form:
+             
 
-```lean
-theorem mem_symmetricDifference {A B z : ZFSet} :
-    z ∈ SymmetricDifference A B ↔ (z ∈ A ∧ z ∉ B) ∨ (z ∈ B ∧ z ∉ A)
-```
--/
+       
+                                                 
+                                                                   
+   
+  
 theorem mem_symmetricDifference {A B z : ZFSet} :
     z ∈ SymmetricDifference A B ↔ (z ∈ A ∧ z ∉ B) ∨ (z ∈ B ∧ z ∉ A) := by
   sorry
@@ -157,126 +157,126 @@ instance : DifferenceLaws ZFSet where
     ZFSet.ext fun z => by
       simp [ZFSet.mem_inter, ZFSet.mem_sdiff, ZFSet.notMem_empty] <;> tauto
 
-/-! Symmetric-difference laws, stated over the raw `SymmetricDifference`
-operation so the `ext`/`simp` bridges see through it; the certificate
-fields below pick them up definitionally through `HasSymmDiff`. -/
+                                                                        
+                                                                     
+                                                                  
 
-/--
-`symmetricDifference_eq_union_sdiff_inter` states symmetric difference eq union sdiff inter.
+   
+                                                                                            
 
-Logical form:
+             
 
-```lean
-theorem symmetricDifference_eq_union_sdiff_inter :
-    ∀ A B : ZFSet,
-      SymmetricDifference A B = (A ∪ B) \ (A ∩ B)
-```
--/
+       
+                                                  
+                  
+                                                 
+   
+  
 theorem symmetricDifference_eq_union_sdiff_inter :
     ∀ A B : ZFSet,
       SymmetricDifference A B = (A ∪ B) \ (A ∩ B) := by
   sorry
 
-/--
-`symmetricDifference_comm` states symmetric difference comm.
+   
+                                                            
 
-Logical form:
+             
 
-```lean
-theorem symmetricDifference_comm :
-    ∀ A B : ZFSet,
-      SymmetricDifference A B = SymmetricDifference B A
-```
--/
+       
+                                  
+                  
+                                                       
+   
+  
 theorem symmetricDifference_comm :
     ∀ A B : ZFSet,
       SymmetricDifference A B = SymmetricDifference B A := by
   sorry
 
-/--
-`symmetricDifference_assoc` states symmetric difference assoc.
+   
+                                                              
 
-Logical form:
+             
 
-```lean
-theorem symmetricDifference_assoc :
-    ∀ A B C : ZFSet,
-      SymmetricDifference (SymmetricDifference A B) C =
-        SymmetricDifference A (SymmetricDifference B C)
-```
--/
+       
+                                   
+                    
+                                                       
+                                                       
+   
+  
 theorem symmetricDifference_assoc :
     ∀ A B C : ZFSet,
       SymmetricDifference (SymmetricDifference A B) C =
         SymmetricDifference A (SymmetricDifference B C) := by
   sorry
 
-/--
-`symmetricDifference_empty` states symmetric difference empty.
+   
+                                                              
 
-Logical form:
+             
 
-```lean
-theorem symmetricDifference_empty :
-    ∀ A : ZFSet, SymmetricDifference A (∅ : ZFSet) = A
-```
--/
+       
+                                   
+                                                      
+   
+  
 theorem symmetricDifference_empty :
     ∀ A : ZFSet, SymmetricDifference A (∅ : ZFSet) = A := by
   sorry
 
-/--
-`empty_symmetricDifference` states empty symmetric difference.
+   
+                                                              
 
-Logical form:
+             
 
-```lean
-theorem empty_symmetricDifference :
-    ∀ A : ZFSet, SymmetricDifference (∅ : ZFSet) A = A
-```
--/
+       
+                                   
+                                                      
+   
+  
 theorem empty_symmetricDifference :
     ∀ A : ZFSet, SymmetricDifference (∅ : ZFSet) A = A := by
   sorry
 
-/--
-`symmetricDifference_self` states symmetric difference self.
+   
+                                                            
 
-Logical form:
+             
 
-```lean
-theorem symmetricDifference_self :
-    ∀ A : ZFSet, SymmetricDifference A A = (∅ : ZFSet)
-```
--/
+       
+                                  
+                                                      
+   
+  
 theorem symmetricDifference_self :
     ∀ A : ZFSet, SymmetricDifference A A = (∅ : ZFSet) := by
   sorry
 
-/--
-`symmetricDifference_eq_empty_iff` states symmetric difference eq empty iff.
+   
+                                                                            
 
-Logical form:
+             
 
-```lean
-theorem symmetricDifference_eq_empty_iff :
-    ∀ A B : ZFSet, SymmetricDifference A B = (∅ : ZFSet) ↔ A = B
-```
--/
+       
+                                          
+                                                                
+   
+  
 theorem symmetricDifference_eq_empty_iff :
     ∀ A B : ZFSet, SymmetricDifference A B = (∅ : ZFSet) ↔ A = B := by
   sorry
 
-/--
-`symmetricDifference_subset_union` states symmetric difference subset union.
+   
+                                                                            
 
-Logical form:
+             
 
-```lean
-theorem symmetricDifference_subset_union :
-    ∀ A B : ZFSet, SymmetricDifference A B ⊆ A ∪ B
-```
--/
+       
+                                          
+                                                  
+   
+  
 theorem symmetricDifference_subset_union :
     ∀ A B : ZFSet, SymmetricDifference A B ⊆ A ∪ B := by
   sorry
@@ -293,44 +293,44 @@ instance : SymmDiffLaws ZFSet where
   SymmetricDifferenceEqEmptyIff := symmetricDifference_eq_empty_iff
   SymmetricDifferenceSubsetUnion := symmetricDifference_subset_union
 
-/--
-`mem_countableUnion` states mem countable union.
+   
+                                                
 
-Logical form:
+             
 
-```lean
-theorem mem_countableUnion {family : Nat → ZFSet} {x : ZFSet} :
-    x ∈ CountableUnion family ↔ ∃ index, x ∈ family index
-```
--/
+       
+                                                               
+                                                         
+   
+  
 theorem mem_countableUnion {family : Nat → ZFSet} {x : ZFSet} :
     x ∈ CountableUnion family ↔ ∃ index, x ∈ family index := by
   sorry
 
-/--
-`mem_countableIntersection` states mem countable intersection.
+   
+                                                              
 
-Logical form:
+             
 
-```lean
-theorem mem_countableIntersection {family : Nat → ZFSet} {x : ZFSet} :
-    x ∈ CountableIntersection family ↔ ∀ index, x ∈ family index
-```
--/
+       
+                                                                      
+                                                                
+   
+  
 theorem mem_countableIntersection {family : Nat → ZFSet} {x : ZFSet} :
     x ∈ CountableIntersection family ↔ ∀ index, x ∈ family index := by
   sorry
 
-/-- Registration: collection union/intersection readings, straight from
-`ZFSet.mem_sUnion` and the nonemptiness-conditioned `ZFSet.mem_sInter` --
-the certificate's conditioned shape matches Mathlib's exactly. -/
+                                                                       
+                                                                         
+                                                                 
 instance : CollectionMembershipLaws ZFSet ZFSet ZFSet where
   CollectionUnionMembership := fun _ _ => ZFSet.mem_sUnion
   CollectionIntersectionMembership := fun _ _ h => ZFSet.mem_sInter h
 
-/-- Registration: countable readings via Replacement (`range`). The
-intersection is unconditional because the range of a `Nat`-indexed family
-is never empty. No arbitrary-index certificate: class-sized families. -/
+                                                                   
+                                                                         
+                                                                        
 instance : CountableMembershipLaws ZFSet ZFSet where
   CountableUnionMembership := fun _ _ => mem_countableUnion
   CountableIntersectionMembership := fun _ _ => mem_countableIntersection

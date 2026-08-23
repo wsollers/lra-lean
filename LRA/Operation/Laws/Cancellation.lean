@@ -4,4 +4,4 @@ import LRA.Operation.Laws.Cancellation.Relationships
 import LRA.Operation.Laws.Cancellation.Consequences
 import LRA.Operation.Laws.Cancellation.FailureModes
 
-/-! Canonical Cancellation operation-law family. -/
+                                                   

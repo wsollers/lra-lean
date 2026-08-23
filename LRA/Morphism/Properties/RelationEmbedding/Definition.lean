@@ -6,7 +6,7 @@ namespace LRA.Morphism
 
 universe u v
 
-/-- A function both preserves and reflects a displayed relation. -/
+                                                                   
 def PreservesAndReflectsRelation {Source : Type u} {Target : Type v}
     (function : Source → Target)
     (sourceRelation : LRA.Relation.Endorelation Source)
@@ -14,8 +14,8 @@ def PreservesAndReflectsRelation {Source : Type u} {Target : Type v}
   PreservesRelation function sourceRelation targetRelation ∧
     ReflectsRelation function sourceRelation targetRelation
 
-/-- A relation embedding is an injective function that preserves and reflects
-the displayed relation. -/
+                                                                             
+                          
 def RelationEmbedding {Source : Type u} {Target : Type v}
     (function : Source → Target)
     (sourceRelation : LRA.Relation.Endorelation Source)

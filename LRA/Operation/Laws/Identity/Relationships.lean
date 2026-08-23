@@ -6,7 +6,7 @@ open LRA.Operation
 
 universe u
 
-/-- A left identity and a right identity for the same operation coincide. -/
+                                                                            
 theorem LeftRightIdentitiesCoincide {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {leftIdentity rightIdentity : Carrier}
@@ -15,7 +15,7 @@ theorem LeftRightIdentitiesCoincide {Carrier : Type u}
     leftIdentity = rightIdentity := by
   sorry
 
-/-- A two-sided identity for a binary operation is unique. -/
+                                                             
 theorem TwoSidedIdentityUnique {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {firstIdentity secondIdentity : Carrier}

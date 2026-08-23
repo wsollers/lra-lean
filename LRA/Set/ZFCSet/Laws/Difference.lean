@@ -3,7 +3,7 @@ import LRA.Set.Interface.Difference
 
 namespace LRA.Set.ZFCSet
 
-/-! Difference-law certificate for the concrete ZFCSet backend. -/
+                                                                  
 
 theorem DifferenceMonotoneLeft :
     ∀ A₁ A₂ B : Set, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B := by

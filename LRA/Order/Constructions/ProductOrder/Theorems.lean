@@ -5,7 +5,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- The product of two partial orders is a partial order. -/
+                                                            
 theorem ProductOfPartialOrdersIsPartialOrder
     {Alpha : Type u} {Beta : Type v}
     {leftRelation : LRA.Relation.Endorelation Alpha}

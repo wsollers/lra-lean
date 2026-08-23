@@ -10,7 +10,7 @@ variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 variable (natural_data : NaturalArithmeticForWholeNumbers Element SetObject)
 
-/-- The natural embedding preserves successor, arithmetic, and order. -/
+                                                                        
 theorem natural_embedding_preserves_structure :
     (∀ value,
       naturalEmbedding natural_data (natural_data.model.successor value) =

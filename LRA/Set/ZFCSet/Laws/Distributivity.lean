@@ -3,7 +3,7 @@ import LRA.Set.Interface.Distributivity
 
 namespace LRA.Set.ZFCSet
 
-/-! Distributivity and absorption certificate for the concrete ZFCSet backend. -/
+                                                                                 
 
 theorem IntersectionDistributesOverUnion :
     ∀ A B C : Set, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) := by

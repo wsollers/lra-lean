@@ -5,7 +5,7 @@ namespace LRA.Order
 
 universe u
 
-/-- Lattice laws: every pair has a join and a meet. -/
+                                                      
 def Lattice {alpha : Type u}
     (relation : LRA.Relation.Endorelation alpha) : Prop :=
   PartialOrder relation /\

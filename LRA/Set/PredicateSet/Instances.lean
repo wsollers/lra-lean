@@ -1,11 +1,11 @@
 import LRA.Set.PredicateSet.Operations
 import LRA.Set.Interface.Operations
 
-/-!
-The canonical `PredicateSet` realization registered against the generic Set
-operation capabilities. These instances supply notation and capability data;
-law certificates are provided separately under `PredicateSet/Laws`.
--/
+   
+                                                                           
+                                                                            
+                                                                   
+  
 
 namespace LRA.Set.PredicateSet
 

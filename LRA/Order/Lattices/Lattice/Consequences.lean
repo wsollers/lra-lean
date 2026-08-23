@@ -12,27 +12,27 @@ open LRA.Operation
 
 universe u
 
-/--
-A binary operation is a join operation for an order when it chooses a join for
-each ordered pair.
--/
+   
+                                                                              
+                  
+  
 def IsJoinOperation {Carrier : Type u}
     (relation : LRA.Relation.Endorelation Carrier)
     (joinOperation : BinaryEndoOperation Carrier) : Prop :=
   forall left right,
     Join relation left right (joinOperation left right)
 
-/--
-A binary operation is a meet operation for an order when it chooses a meet for
-each ordered pair.
--/
+   
+                                                                              
+                  
+  
 def IsMeetOperation {Carrier : Type u}
     (relation : LRA.Relation.Endorelation Carrier)
     (meetOperation : BinaryEndoOperation Carrier) : Prop :=
   forall left right,
     Meet relation left right (meetOperation left right)
 
-/-- A chosen join operation in a partial order is commutative. -/
+                                                                 
 theorem JoinOperationCommutative
     {Carrier : Type u}
     {relation : LRA.Relation.Endorelation Carrier}
@@ -42,7 +42,7 @@ theorem JoinOperationCommutative
     LRA.Operation.Laws.Commutative.Commutative joinOperation := by
   sorry
 
-/-- A chosen meet operation in a partial order is commutative. -/
+                                                                 
 theorem MeetOperationCommutative
     {Carrier : Type u}
     {relation : LRA.Relation.Endorelation Carrier}
@@ -52,7 +52,7 @@ theorem MeetOperationCommutative
     LRA.Operation.Laws.Commutative.Commutative meetOperation := by
   sorry
 
-/-- A chosen join operation in a partial order is idempotent. -/
+                                                                
 theorem JoinOperationIdempotent
     {Carrier : Type u}
     {relation : LRA.Relation.Endorelation Carrier}
@@ -62,7 +62,7 @@ theorem JoinOperationIdempotent
     LRA.Operation.Laws.Idempotent.Idempotent joinOperation := by
   sorry
 
-/-- A chosen meet operation in a partial order is idempotent. -/
+                                                                
 theorem MeetOperationIdempotent
     {Carrier : Type u}
     {relation : LRA.Relation.Endorelation Carrier}
@@ -72,7 +72,7 @@ theorem MeetOperationIdempotent
     LRA.Operation.Laws.Idempotent.Idempotent meetOperation := by
   sorry
 
-/-- A chosen join operation in a partial order is associative. -/
+                                                                 
 theorem JoinOperationAssociative
     {Carrier : Type u}
     {relation : LRA.Relation.Endorelation Carrier}
@@ -82,7 +82,7 @@ theorem JoinOperationAssociative
     LRA.Operation.Laws.Associative.Associative joinOperation := by
   sorry
 
-/-- A chosen meet operation in a partial order is associative. -/
+                                                                 
 theorem MeetOperationAssociative
     {Carrier : Type u}
     {relation : LRA.Relation.Endorelation Carrier}
@@ -92,7 +92,7 @@ theorem MeetOperationAssociative
     LRA.Operation.Laws.Associative.Associative meetOperation := by
   sorry
 
-/-- Chosen lattice join and meet satisfy the join-over-meet absorption law. -/
+                                                                              
 theorem JoinMeetOperationAbsorption
     {Carrier : Type u}
     {relation : LRA.Relation.Endorelation Carrier}
@@ -104,7 +104,7 @@ theorem JoinMeetOperationAbsorption
       joinOperation meetOperation := by
   sorry
 
-/-- Chosen lattice meet and join satisfy the meet-over-join absorption law. -/
+                                                                              
 theorem MeetJoinOperationAbsorption
     {Carrier : Type u}
     {relation : LRA.Relation.Endorelation Carrier}
@@ -116,7 +116,7 @@ theorem MeetJoinOperationAbsorption
       meetOperation joinOperation := by
   sorry
 
-/-- Chosen lattice join and meet satisfy mutual absorption. -/
+                                                              
 theorem JoinMeetOperationMutualAbsorption
     {Carrier : Type u}
     {relation : LRA.Relation.Endorelation Carrier}

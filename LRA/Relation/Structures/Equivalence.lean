@@ -5,4 +5,4 @@ import LRA.Relation.Structures.Equivalence.Partition
 import LRA.Relation.Structures.Equivalence.QuotientSet
 import LRA.Relation.Structures.Equivalence.FundamentalTheorem
 
-/-! Canonical equivalence-relation structure and its class/partition/quotient theory. -/
+                                                                                        

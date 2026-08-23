@@ -2,9 +2,9 @@ import LRA.EuclideanSpace.Tarski.Primitives
 
 namespace LRA.EuclideanSpace
 
-/-- Tarski axiom 5 (five-segment axiom): the "SAS"-flavored rigidity
-axiom -- two triples of collinear points related the same way by four
-matching congruences force the fifth congruence (`zu ≡ z'u'`) as well. -/
+                                                                    
+                                                                     
+                                                                         
 axiom FiveSegment (x y z x' y' z' u u' : TarskiPoint)
     (xNeY : x ≠ y)
     (bxyz : TarskiBetween x y z) (bxyz' : TarskiBetween x' y' z')

@@ -4,11 +4,11 @@ namespace LRA.AlgebraicStructures
 
 universe u
 
-/-!
-Distributivity certificates for semiring-style structures.
--/
+   
+                                                          
+  
 
-/-- Multiplication distributes over addition. -/
+                                                
 class DistributiveLaws (R : Type u) [Add R] [Mul R] : Prop where
   LeftDistributive :
     LRA.Operation.Laws.Distributive.LeftDistributive
@@ -21,11 +21,11 @@ section Wrappers
 
 variable {R : Type u} [Add R] [Mul R] [DistributiveLaws R]
 
-/-- Multiplication distributes over addition from the left. -/
+                                                              
 theorem LeftDistributive : ∀ a b c : R, a * (b + c) = a * b + a * c := by
   sorry
 
-/-- Multiplication distributes over addition from the right. -/
+                                                               
 theorem RightDistributive : ∀ a b c : R, (a + b) * c = a * c + b * c := by
   sorry
 

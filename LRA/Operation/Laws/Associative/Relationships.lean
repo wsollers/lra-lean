@@ -6,7 +6,7 @@ open LRA.Operation
 
 universe u
 
-/-- Associativity explains parenthesis movement, not operand exchange. -/
+                                                                         
 theorem Associative.preserves_left_nested_shape {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     (law : Associative operation)

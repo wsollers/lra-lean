@@ -4,4 +4,4 @@ import LRA.AlgebraicStructures.CommutativeSemiring.Laws.Characterizations
 import LRA.AlgebraicStructures.CommutativeSemiring.Laws.Consequences
 import LRA.AlgebraicStructures.CommutativeSemiring.Laws.Relationships
 
-/-! Canonical import route for commutative-semiring law certificates. -/
+                                                                        

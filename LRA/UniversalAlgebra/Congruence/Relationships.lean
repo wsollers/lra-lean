@@ -6,7 +6,7 @@ open LRA.Operation
 
 universe u
 
-/-- Binary congruence supplies left-side congruence when the relation is reflexive. -/
+                                                                                      
 theorem BinaryOperationCongruence.left {Carrier : Type u}
     {relation : LRA.Relation.Endorelation Carrier}
     {operation : BinaryEndoOperation Carrier}
@@ -17,7 +17,7 @@ theorem BinaryOperationCongruence.left {Carrier : Type u}
         relation (operation left₁ right) (operation left₂ right) := by
   sorry
 
-/-- Binary congruence supplies right-side congruence when the relation is reflexive. -/
+                                                                                       
 theorem BinaryOperationCongruence.right {Carrier : Type u}
     {relation : LRA.Relation.Endorelation Carrier}
     {operation : BinaryEndoOperation Carrier}

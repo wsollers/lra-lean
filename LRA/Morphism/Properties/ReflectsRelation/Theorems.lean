@@ -4,7 +4,7 @@ namespace LRA.Morphism
 
 universe u v
 
-/-- Apply relation reflection to a related pair of values. -/
+                                                             
 theorem ReflectsRelation.apply {Source : Type u} {Target : Type v}
     {function : Source → Target}
     {sourceRelation : LRA.Relation.Endorelation Source}

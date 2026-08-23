@@ -6,7 +6,7 @@ namespace LRA.Order
 
 universe u
 
-/-- Reversing an adjoined-equality relation gives greater-than-or-equal. -/
+                                                                           
 theorem GreaterThanOrEqualIsConverseOfLessThanOrEqual
     {Alpha : Type u}
     (strictRelation : LRA.Relation.Endorelation Alpha) :

@@ -4,7 +4,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- The strict lexicographic relation on a product. -/
+                                                      
 def LexicographicRelation
     {Alpha : Type u} {Beta : Type v}
     (leftRelation : LRA.Relation.Endorelation Alpha)

@@ -9,4 +9,4 @@ import LRA.Set.ZFC.Axioms.Replacement
 import LRA.Set.ZFC.Axioms.Foundation
 import LRA.Set.ZFC.Axioms.Choice
 
-/-! Primitive ZFC assumptions for the in-house `ZFCSet` universe. -/
+                                                                    

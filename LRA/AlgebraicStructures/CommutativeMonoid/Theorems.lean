@@ -2,11 +2,11 @@ import LRA.AlgebraicStructures.CommutativeMonoid.Laws.Definition
 
 namespace LRA.AlgebraicStructures
 
-/-!
-CommutativeMonoid Theorems module.
+   
+                                  
 
-This file is reserved for theorems whose natural owner is the named
-algebraic structure CommutativeMonoid. It intentionally contains no placeholder theorems.
--/
+                                                                   
+                                                                                         
+  
 
 end LRA.AlgebraicStructures

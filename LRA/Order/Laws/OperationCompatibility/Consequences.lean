@@ -6,11 +6,11 @@ namespace LRA.Order
 
 universe u
 
-/-!
-Consequences of order-operation compatibility laws belong here.
--/
+   
+                                                               
+  
 
-/-- Left-translation preservation is monotonicity of every left translation. -/
+                                                                               
 theorem LeftTranslationPreservesRelationIffMonotoneTranslations
     {Carrier : Type u}
     (relation : Carrier -> Carrier -> Prop)
@@ -21,7 +21,7 @@ theorem LeftTranslationPreservesRelationIffMonotoneTranslations
           (fun value => operation fixed value) := by
   sorry
 
-/-- Right-translation preservation is monotonicity of every right translation. -/
+                                                                                 
 theorem RightTranslationPreservesRelationIffMonotoneTranslations
     {Carrier : Type u}
     (relation : Carrier -> Carrier -> Prop)
@@ -32,7 +32,7 @@ theorem RightTranslationPreservesRelationIffMonotoneTranslations
           (fun value => operation value fixed) := by
   sorry
 
-/-- Coordinatewise preservation gives left translations when the relation is reflexive. -/
+                                                                                          
 theorem CoordinatewisePreservesRelation.left_translation
     {Carrier : Type u}
     {relation : Carrier -> Carrier -> Prop}
@@ -43,7 +43,7 @@ theorem CoordinatewisePreservesRelation.left_translation
     LeftTranslationPreservesRelation relation operation := by
   sorry
 
-/-- Coordinatewise preservation gives right translations when the relation is reflexive. -/
+                                                                                           
 theorem CoordinatewisePreservesRelation.right_translation
     {Carrier : Type u}
     {relation : Carrier -> Carrier -> Prop}

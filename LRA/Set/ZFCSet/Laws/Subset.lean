@@ -3,7 +3,7 @@ import LRA.Set.Interface.Subset
 
 namespace LRA.Set.ZFCSet
 
-/-! Subset-law certificate for the concrete ZFCSet backend. -/
+                                                              
 
 theorem SubsetReflexive : ∀ A : Set, A ⊆ A := by
   sorry

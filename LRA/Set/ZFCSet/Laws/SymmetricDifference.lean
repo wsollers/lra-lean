@@ -3,7 +3,7 @@ import LRA.Set.Interface.SymmetricDifference
 
 namespace LRA.Set.ZFCSet
 
-/-! Symmetric-difference law certificate for the concrete ZFCSet backend. -/
+                                                                            
 
 theorem SymmetricDifferenceAsUnionDifferences :
     ∀ A B : Set, A ∆ B = (A \ B) ∪ (B \ A) := by

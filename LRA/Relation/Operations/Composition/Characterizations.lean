@@ -5,7 +5,7 @@ namespace LRA.Relation
 
 universe u
 
-/-- Transitivity is equivalent to containing the relation's square. -/
+                                                                      
 theorem Transitive.iff_square_included
     {Alpha : Type u}
     (relation : Endorelation Alpha) :

@@ -4,7 +4,7 @@ namespace LRA.Relation
 
 universe u v
 
-/-- Asymmetry implies irreflexivity. -/
+                                       
 theorem Asymmetric.implies_irreflexive
     {Alpha : Type u}
     {relation : Endorelation Alpha}
@@ -12,7 +12,7 @@ theorem Asymmetric.implies_irreflexive
     Irreflexive relation := by
   sorry
 
-/-- An irreflexive transitive relation is asymmetric. -/
+                                                        
 theorem Irreflexive.transitive_implies_asymmetric
     {Alpha : Type u}
     {relation : Endorelation Alpha}
@@ -21,7 +21,7 @@ theorem Irreflexive.transitive_implies_asymmetric
     Asymmetric relation := by
   sorry
 
-/-- Asymmetry implies antisymmetry. -/
+                                      
 theorem Asymmetric.implies_antisymmetric
     {Alpha : Type u}
     {relation : Endorelation Alpha}
@@ -29,10 +29,10 @@ theorem Asymmetric.implies_antisymmetric
     Antisymmetric relation := by
   sorry
 
-/--
-A relation that is both symmetric and antisymmetric can only relate equal
-elements.
--/
+   
+                                                                         
+         
+  
 theorem Symmetric.antisymmetric_related_implies_equal
     {Alpha : Type u}
     {relation : Endorelation Alpha}
@@ -43,7 +43,7 @@ theorem Symmetric.antisymmetric_related_implies_equal
     left = right := by
   sorry
 
-/-- A reflexive relation cannot be asymmetric at a displayed element. -/
+                                                                        
 theorem Reflexive.asymmetric_contradiction_at
     {Alpha : Type u}
     {relation : Endorelation Alpha}

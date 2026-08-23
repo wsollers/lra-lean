@@ -6,7 +6,7 @@ namespace LRA.Order
 
 universe u
 
-/-- Antisymmetry makes a binary meet unique. -/
+                                               
 theorem MeetUnique
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
@@ -17,7 +17,7 @@ theorem MeetUnique
     first = second := by
   sorry
 
-/-- The order of the two inputs does not affect the meet predicate. -/
+                                                                      
 theorem MeetCommutes
     {Alpha : Type u}
     (relation : LRA.Relation.Endorelation Alpha)
@@ -25,7 +25,7 @@ theorem MeetCommutes
     Meet relation left right meet ↔ Meet relation right left meet := by
   sorry
 
-/-- Reflexivity makes an element the meet of itself with itself. -/
+                                                                   
 theorem MeetIdempotent
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
@@ -34,7 +34,7 @@ theorem MeetIdempotent
     Meet relation element element element := by
   sorry
 
-/-- Whenever the displayed meets exist in a partial order, the two associations agree. -/
+                                                                                         
 theorem MeetAssociative
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}

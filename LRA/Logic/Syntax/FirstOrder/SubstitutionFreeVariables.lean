@@ -3,26 +3,26 @@ import LRA.Logic.Syntax.FirstOrder.Substitute
 
 namespace LRA.Logic.FirstOrder
 
-/-!
-Free-variable bounds for substitution.
+   
+                                      
 
-Substitution can only keep variables already present in the original syntax
-or introduce variables from the replacement term.
--/
+                                                                           
+                                                 
+  
 
-/--
-`freeVariablesInTerm_substituteInTerm_subset` states free variables in term substitute in term subset.
+   
+                                                                                                      
 
-Logical form:
+             
 
-```lean
-theorem freeVariablesInTerm_substituteInTerm_subset
-    {S : Signature} {Variable : Type} [DecidableEq Variable]
-    (replacedVariable : Variable) (replacementTerm originalTerm : Term S Variable) :
-    freeVariablesInTerm (substituteInTerm replacedVariable replacementTerm originalTerm) ⊆
-      freeVariablesInTerm originalTerm ∪ freeVariablesInTerm replacementTerm
-```
--/
+       
+                                                   
+                                                            
+                                                                                    
+                                                                                          
+                                                                            
+   
+  
 theorem freeVariablesInTerm_substituteInTerm_subset
     {S : Signature} {Variable : Type} [DecidableEq Variable]
     (replacedVariable : Variable) (replacementTerm originalTerm : Term S Variable) :
@@ -56,20 +56,20 @@ theorem freeVariablesInTerm_substituteInTerm_subset
       · exact Or.inl ⟨argumentIndex, candidateVariableInOriginalArgument⟩
       · exact Or.inr candidateVariableInReplacementTerm
 
-/--
-`freeVariables_substitute_subset` states free variables substitute subset.
+   
+                                                                          
 
-Logical form:
+             
 
-```lean
-theorem freeVariables_substitute_subset
-    {S : Signature} {Variable : Type} [DecidableEq Variable]
-    (replacedVariable : Variable) (replacementTerm : Term S Variable)
-    (formula : Formula S Variable) :
-    freeVariables (substitute replacedVariable replacementTerm formula) ⊆
-      freeVariables formula ∪ freeVariablesInTerm replacementTerm
-```
--/
+       
+                                       
+                                                            
+                                                                     
+                                    
+                                                                         
+                                                                 
+   
+  
 theorem freeVariables_substitute_subset
     {S : Signature} {Variable : Type} [DecidableEq Variable]
     (replacedVariable : Variable) (replacementTerm : Term S Variable)

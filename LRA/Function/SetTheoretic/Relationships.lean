@@ -8,7 +8,7 @@ open LRA.Set
 
 universe u v w x y z
 
-/-- The graph of a set-theoretic function triple is single-valued. -/
+                                                                     
 theorem SingleValuedOfIsSetTheoreticFunction
     {DomainElement CodomainElement Pair : Type u}
     {DomainObject : Type v} {CodomainObject : Type w}
@@ -27,7 +27,7 @@ theorem SingleValuedOfIsSetTheoreticFunction
     IsSingleValued DomainElement CodomainElement triple.graph := by
   sorry
 
-/-- The graph of a bundled set-theoretic function is single-valued. -/
+                                                                      
 theorem BundledSingleValued
     {DomainElement CodomainElement Pair : Type u}
     {DomainObject : Type v} {CodomainObject : Type w}
@@ -42,9 +42,9 @@ theorem BundledSingleValued
     IsSingleValued DomainElement CodomainElement function.triple.graph := by
   sorry
 
-/-- A typed function with explicit coordinate encodings and an ambient pair set
-has a set-theoretic function representation whose graph evaluates to the encoded
-function. -/
+                                                                               
+                                                                                
+            
 theorem TypedFunctionGraphRepresentation
     {Domain : Type y} {Codomain : Type z}
     {DomainElement CodomainElement Pair : Type u}

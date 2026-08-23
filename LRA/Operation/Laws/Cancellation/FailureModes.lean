@@ -6,17 +6,17 @@ open LRA.Operation
 
 universe u
 
-/-- Failure of left cancellation for a binary endo-operation. -/
+                                                                
 def FailsLeftCancellative {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier) : Prop :=
   Not (LeftCancellative operation)
 
-/-- Failure of right cancellation for a binary endo-operation. -/
+                                                                 
 def FailsRightCancellative {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier) : Prop :=
   Not (RightCancellative operation)
 
-/-- Natural-number multiplication as a concrete cancellation failure. -/
+                                                                        
 def NaturalMultiplication : BinaryEndoOperation Nat :=
   fun left right => left * right
 
@@ -29,13 +29,13 @@ theorem NaturalMultiplicationFailsRightCancellative :
     FailsRightCancellative NaturalMultiplication := by
   sorry
 
-/-- Failure of left-regularity for a fixed element. -/
+                                                      
 def FailsLeftRegular {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier)
     (fixed : Carrier) : Prop :=
   Not (LeftRegular operation fixed)
 
-/-- Failure of right-regularity for a fixed element. -/
+                                                       
 def FailsRightRegular {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier)
     (fixed : Carrier) : Prop :=

@@ -8,7 +8,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- Infima in the converse relation are suprema in the original relation. -/
+                                                                            
 theorem InfimumOfConverseIffSupremum
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -18,7 +18,7 @@ theorem InfimumOfConverseIffSupremum
       Supremum relation subset candidate := by
   sorry
 
-/-- A candidate is the infimum of the empty set exactly when it is a top element. -/
+                                                                                    
 theorem InfimumOfEmptyIffTop
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -31,7 +31,7 @@ theorem InfimumOfEmptyIffTop
       forall element, relation element candidate := by
   sorry
 
-/-- An infimum is equivalently the supremum of the represented set of lower bounds. -/
+                                                                                      
 theorem InfimumIffSupremumOfLowerBounds
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]

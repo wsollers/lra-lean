@@ -30,15 +30,15 @@ theorem discreteScratchMetricTriangle
           if y = z then 0 else 1 := by
   sorry
 
-/-- The discrete metric on any type of points with decidable equality.
+                                                                      
 
-Logical form:
+             
 
-```lean
-∀ x y : Point,
-  (discreteScratchMetric Point).distance x y = if x = y then 0 else 1
-```
--/
+       
+              
+                                                                     
+   
+  
 def discreteScratchMetric (Point : Type u) [DecidableEq Point] : ScratchMetric Point where
   distance x y := if x = y then 0 else 1
   distance_nonnegative := discreteScratchMetricNonnegative Point
@@ -46,15 +46,15 @@ def discreteScratchMetric (Point : Type u) [DecidableEq Point] : ScratchMetric P
   distance_symmetric := discreteScratchMetricSymmetric Point
   distance_triangle := discreteScratchMetricTriangle Point
 
-/-- Any type with decidable equality equipped with the discrete metric.
+                                                                       
 
-Logical form:
+             
 
-```lean
-def discreteScratchMetricSpace (Point : Type u) [DecidableEq Point] : ScratchMetricSpace Point where
-  metric := discreteScratchMetric Point
-```
--/
+       
+                                                                                                    
+                                       
+   
+  
 def discreteScratchMetricSpace (Point : Type u) [DecidableEq Point] : ScratchMetricSpace Point where
   metric := discreteScratchMetric Point
 

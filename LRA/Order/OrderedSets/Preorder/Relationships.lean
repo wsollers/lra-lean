@@ -6,8 +6,8 @@ namespace LRA.Order.OrderedSets.Preorder
 
 universe u
 
-/-- The preorder-compatible strict part relates `left` to `right` when `left` is
-below `right`, but `right` is not below `left`. -/
+                                                                                
+                                                  
 def StrictPartByNotConverse
     {Carrier : Type u}
     (preorder : PreorderRelation Carrier) :
@@ -15,7 +15,7 @@ def StrictPartByNotConverse
   fun left right =>
     preorder.relation left right /\ Not (preorder.relation right left)
 
-/-- Two elements of a preorder are equivalent when each is related to the other. -/
+                                                                                   
 def PreorderEquivalence
     {Carrier : Type u}
     (preorder : PreorderRelation Carrier) :
@@ -23,27 +23,27 @@ def PreorderEquivalence
   fun left right =>
     preorder.relation left right /\ preorder.relation right left
 
-/-- Mutual reachability in a preorder is an equivalence relation. -/
+                                                                    
 theorem PreorderEquivalenceIsEquivalence
     {Carrier : Type u}
     (preorder : PreorderRelation Carrier) :
     LRA.Relation.EquivalenceRelation (PreorderEquivalence preorder) := by
   sorry
 
-/-- The setoid obtained by identifying mutually related preorder elements. -/
+                                                                             
 def PreorderSetoid
     {Carrier : Type u}
     (preorder : PreorderRelation Carrier) : Setoid Carrier := by
   refine { r := PreorderEquivalence preorder, iseqv := ?_ }
   sorry
 
-/-- The quotient carrier that forces antisymmetry in a preorder. -/
+                                                                   
 abbrev PreorderQuotient
     {Carrier : Type u}
     (preorder : PreorderRelation Carrier) : Type u :=
   Quotient (PreorderSetoid preorder)
 
-/-- The preorder relation induced on equivalence classes. -/
+                                                            
 def PreorderQuotientRelation
     {Carrier : Type u}
     (preorder : PreorderRelation Carrier) :
@@ -56,7 +56,7 @@ def PreorderQuotientRelation
       apply propext
       sorry)
 
-/-- Quotienting a preorder by mutual reachability produces a partial order. -/
+                                                                              
 theorem PreorderQuotientRelationIsPartialOrder
     {Carrier : Type u}
     (preorder : PreorderRelation Carrier) :

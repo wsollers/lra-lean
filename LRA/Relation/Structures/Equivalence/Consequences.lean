@@ -4,7 +4,7 @@ namespace LRA.Relation
 
 universe u v
 
-/-- An equivalence relation is reflexive. -/
+                                            
 theorem EquivalenceRelation.reflexive
     {Alpha : Type u}
     {relation : Endorelation Alpha}
@@ -12,7 +12,7 @@ theorem EquivalenceRelation.reflexive
     Reflexive relation := by
   sorry
 
-/-- An equivalence relation is symmetric. -/
+                                            
 theorem EquivalenceRelation.symmetric
     {Alpha : Type u}
     {relation : Endorelation Alpha}
@@ -20,7 +20,7 @@ theorem EquivalenceRelation.symmetric
     Symmetric relation := by
   sorry
 
-/-- An equivalence relation is transitive. -/
+                                             
 theorem EquivalenceRelation.transitive
     {Alpha : Type u}
     {relation : Endorelation Alpha}

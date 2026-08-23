@@ -6,7 +6,7 @@ namespace LRA.AlgebraicStructures.Monoid.Interface.ModelTheory
 
 universe u
 
-/-! Law-free `L`-structure builders for the first-order monoid language. -/
+                                                                           
 
 open LRA.AlgebraicStructures.Monoid.Interface.Signature
 

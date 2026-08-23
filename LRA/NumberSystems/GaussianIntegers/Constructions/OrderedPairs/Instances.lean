@@ -1,6 +1,6 @@
--- LRA/NumberSystems/GaussianIntegers/Constructions/OrderedPairs/Instances.lean
--- Registration into the Volume I algebraic-structure typeclasses, plus a
--- smoke test showing the instances resolve at a concrete carrier.
+                                                                               
+                                                                         
+                                                                  
 
 import LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.Behavior
 
@@ -47,7 +47,7 @@ instance : SubtractionCompatibilityLaw (GaussianInteger R) :=
 
 end Certificates
 
-/-! ## Smoke test: the generic construction over Mathlib's `Int` -/
+                                                                   
 
 example : CommutativeRingLaws (GaussianInteger Int) := inferInstance
 

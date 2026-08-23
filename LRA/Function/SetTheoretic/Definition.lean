@@ -7,7 +7,7 @@ open LRA.Set
 
 universe u v w x
 
-/-- Raw domain/codomain/graph data for a set-theoretic function convention. -/
+                                                                              
 structure SetTheoreticFunctionTriple
     (DomainObject : Type v) (CodomainObject : Type w)
     (GraphObject : Type x) where
@@ -15,7 +15,7 @@ structure SetTheoreticFunctionTriple
   codomain : CodomainObject
   graph : GraphObject
 
-/-- Raw left-domain/right-domain/graph data for a set-theoretic relation convention. -/
+                                                                                       
 structure SetTheoreticRelationTriple
     (LeftDomainObject : Type v) (RightDomainObject : Type w)
     (GraphObject : Type x) where
@@ -23,7 +23,7 @@ structure SetTheoreticRelationTriple
   rightDomain : RightDomainObject
   graph : GraphObject
 
-/-- Every member of a set-theoretic relation graph is a typed ordered pair. -/
+                                                                              
 def IsSetTheoreticRelation
     {LeftElement RightElement Pair : Type u}
     {LeftDomainObject : Type v} {RightDomainObject : Type w}
@@ -39,7 +39,7 @@ def IsSetTheoreticRelation
       member = OrderedPair left right ∧
       left ∈ triple.leftDomain ∧ right ∈ triple.rightDomain
 
-/-- A set-theoretic relation bundled with its graph-typing condition. -/
+                                                                        
 structure SetTheoreticRelation
     (LeftElement RightElement Pair : Type u)
     (LeftDomainObject : Type v) (RightDomainObject : Type w)
@@ -52,8 +52,8 @@ structure SetTheoreticRelation
     LeftDomainObject RightDomainObject GraphObject
   isRelation : IsSetTheoreticRelation triple
 
-/-- A raw set-theoretic triple represents a function when its graph is typed,
-left-total on the displayed domain, and right-unique. -/
+                                                                             
+                                                        
 def IsSetTheoreticFunction
     {DomainElement CodomainElement Pair : Type u}
     {DomainObject : Type v} {CodomainObject : Type w}
@@ -76,7 +76,7 @@ def IsSetTheoreticFunction
     Relates triple.graph input secondOutput →
     firstOutput = secondOutput)
 
-/-- A set-theoretic function bundled with its defining conditions. -/
+                                                                     
 structure SetTheoreticFunction
     (DomainElement CodomainElement Pair : Type u)
     (DomainObject : Type v) (CodomainObject : Type w)

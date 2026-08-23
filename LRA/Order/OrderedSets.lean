@@ -26,4 +26,4 @@ import LRA.Order.OrderedSets.WellOrder.Definition
 import LRA.Order.OrderedSets.WellOrder.Relationships
 import LRA.Order.OrderedSets.WellOrder.Theorems
 
-/-! Canonical foundational ordered-set hierarchy. -/
+                                                    

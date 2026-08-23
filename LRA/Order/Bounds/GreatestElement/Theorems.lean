@@ -6,7 +6,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- Antisymmetry makes a greatest element unique. -/
+                                                    
 theorem GreatestElementUnique
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -22,7 +22,7 @@ open scoped LRA.Set
 
 
 
-/-- A greatest element remains greatest in an intersection that retains it. -/
+                                                                              
 theorem GreatestElementRetainedByIntersection
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -36,7 +36,7 @@ theorem GreatestElementRetainedByIntersection
     GreatestElement relation (subset ∩ retainedBy) greatest := by
   sorry
 
-/-- A greatest element remains greatest after a deletion that does not remove it. -/
+                                                                                    
 theorem GreatestElementRetainedByDifference
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -50,7 +50,7 @@ theorem GreatestElementRetainedByDifference
     GreatestElement relation (subset \ removed) greatest := by
   sorry
 
-/-- A greatest element of the union remains greatest in a symmetric difference that retains it. -/
+                                                                                                  
 theorem GreatestElementRetainedBySymmetricDifference
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject]
@@ -65,7 +65,7 @@ theorem GreatestElementRetainedBySymmetricDifference
     GreatestElement relation (leftSubset ∆ rightSubset) greatest := by
   sorry
 
-/-- A greatest element of one operand that bounds the other is greatest in the union. -/
+                                                                                        
 theorem GreatestElementOfUnion
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]

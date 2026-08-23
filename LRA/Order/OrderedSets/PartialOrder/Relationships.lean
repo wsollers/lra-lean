@@ -8,14 +8,14 @@ namespace LRA.Order.OrderedSets.PartialOrder
 
 universe u
 
-/-- The strict part of a non-strict partial order. -/
+                                                     
 def StrictPart
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
     LRA.Order.OrderedSets.OrderRelation Carrier :=
   LRA.Order.StrictPart order.relation
 
-/-- The strict part unfolds to non-strict comparison plus inequality. -/
+                                                                        
 theorem StrictPartIff
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier)
@@ -24,7 +24,7 @@ theorem StrictPartIff
       order.relation left right /\ left ≠ right := by
   sorry
 
-/-- The strict part agrees with non-strict comparison plus failure of converse comparison. -/
+                                                                                             
 theorem StrictPartIffNotConverse
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier)
@@ -33,14 +33,14 @@ theorem StrictPartIffNotConverse
       order.relation left right /\ Not (order.relation right left) := by
   sorry
 
-/-- The strict part relation of a non-strict partial order satisfies the strict-order laws. -/
+                                                                                              
 theorem StrictPartRelationIsStrictOrder
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
     LRA.Order.StrictOrder (StrictPart order) := by
   sorry
 
-/-- The strict part bundled as a strict order. -/
+                                                 
 def StrictPartAsStrictOrder
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
@@ -48,14 +48,14 @@ def StrictPartAsStrictOrder
   relation := StrictPart order
   relationIsStrictOrder := StrictPartRelationIsStrictOrder order
 
-/-- The strict part of a non-strict partial order is a strict order. -/
+                                                                       
 theorem StrictPartIsStrictOrder
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
     LRA.Order.StrictOrder (StrictPart order) := by
   sorry
 
-/-- The converse relation of a non-strict partial order satisfies the partial-order laws. -/
+                                                                                            
 theorem DualRelationIsPartialOrder
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
@@ -63,7 +63,7 @@ theorem DualRelationIsPartialOrder
       (LRA.Relation.Converse order.relation) := by
   sorry
 
-/-- The dual of a non-strict partial order reverses the comparison relation. -/
+                                                                               
 def Dual
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :
@@ -71,7 +71,7 @@ def Dual
   relation := LRA.Relation.Converse order.relation
   relationIsPartialOrder := DualRelationIsPartialOrder order
 
-/-- The dual relation of a partial order is again a partial order. -/
+                                                                     
 theorem DualIsPartialOrder
     {Carrier : Type u}
     (order : NonStrictPartialOrder Carrier) :

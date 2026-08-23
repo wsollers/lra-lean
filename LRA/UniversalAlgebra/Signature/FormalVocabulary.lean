@@ -7,8 +7,8 @@ import LRA.UniversalAlgebra.Signature.FormalVocabulary.Notation
 
 namespace LRA.UniversalAlgebra.Signature
 
-/-!
-Home for operation, relation, constant, arity, and notation vocabulary.
--/
+   
+                                                                       
+  
 
 end LRA.UniversalAlgebra.Signature

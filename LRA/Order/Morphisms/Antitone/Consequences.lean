@@ -5,7 +5,7 @@ namespace LRA.Order
 
 universe u v w
 
-/-- The composite of two antitone maps is monotone. -/
+                                                      
 theorem Antitone.comp_antitone_is_monotone
     {Alpha : Type u} {Beta : Type v} {Gamma : Type w}
     {sourceRelation : LRA.Relation.Endorelation Alpha}

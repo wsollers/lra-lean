@@ -8,4 +8,4 @@ import LRA.AlgebraicStructures.IntegralDomain.Characterizations
 import LRA.AlgebraicStructures.IntegralDomain.Consequences
 import LRA.AlgebraicStructures.IntegralDomain.Relationships
 
-/-! Canonical import route for integral domains. -/
+                                                   

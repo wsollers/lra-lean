@@ -3,7 +3,7 @@ import LRA.Set.Interface.Subset
 
 namespace LRA.Set.TGSet
 
-/-! Subset-law certificate for the concrete TGSet backend. -/
+                                                             
 
 theorem SubsetReflexive : forall A : Set, A ⊆ A := by
   sorry

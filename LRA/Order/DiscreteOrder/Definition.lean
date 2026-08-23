@@ -2,13 +2,13 @@ namespace LRA.Order
 
 universe u
 
-/-!
-Native discreteness law certificates over Lean's `LT`, `Add`, and `1`
-machines.
+   
+                                                                     
+         
 
-This certificate captures the integer-style statement that nothing lies
-strictly between `a` and `a + 1`.
--/
+                                                                       
+                                 
+  
 
 class OrderDiscretenessLaw (R : Type u)
     [LT R] [Add R] [OfNat R 1] : Prop where

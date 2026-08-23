@@ -8,4 +8,4 @@ import LRA.AlgebraicStructures.Field.Characterizations
 import LRA.AlgebraicStructures.Field.Consequences
 import LRA.AlgebraicStructures.Field.Relationships
 
-/-! Canonical import route for fields. -/
+                                         

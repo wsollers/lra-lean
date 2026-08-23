@@ -1,6 +1,6 @@
--- LRA/NumberSystems/RealNumbers/Constructions/Cauchy/Operations.lean
--- Pointwise addition, negation, and multiplication of Cauchy-sequence
--- representatives -- all defined on representatives.
+                                                                     
+                                                                      
+                                                     
 
 import LRA.NumberSystems.RealNumbers.Constructions.Cauchy.WellFoundedness
 
@@ -8,14 +8,25 @@ namespace LRA.NumberSystems.RealNumbers.Cauchy
 open LRA.NumberSystems.Models
 open LRA.NumberSystems.RationalNumbers
 
-/-- Pointwise addition of rational-sequence representatives.
+                                                            
 
-Mathematical statement (Lean): `def representative_addition (rationalSystem : RationalNumberSystem) (absolute_value_data : RationalMetricData rationalSystem) (first second : Representative rationalSystem absolute_value_data) : Sequence rationalSystem`.
+                                                                                                                                                                                                                                                            
 
 
-Logical form:
+             
 
-```lean
+       
+                           
+                                           
+                                                             
+                                                                        
+                              
+              
+                                           
+                            
+                             
+   
+  
 def representative_addition
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem)
@@ -25,36 +36,25 @@ def representative_addition
     rationalSystem.FieldModel.signature.add
       (first.sequence index)
       (second.sequence index)
-```
--/
-def representative_addition
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem)
-    (first second : Representative rationalSystem absolute_value_data) :
-    Sequence rationalSystem :=
-  fun index =>
-    rationalSystem.FieldModel.signature.add
-      (first.sequence index)
-      (second.sequence index)
 
 
-/-- Pointwise negation of a rational-sequence representative.
+                                                             
 
-Mathematical statement (Lean): `def representative_negation (rationalSystem : RationalNumberSystem) (absolute_value_data : RationalMetricData rationalSystem) (representative : Representative rationalSystem absolute_value_data) : Sequence rationalSystem`.
+                                                                                                                                                                                                                                                              
 
 
-Logical form:
+             
 
-```lean
-def representative_negation
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem)
-    (representative : Representative rationalSystem absolute_value_data) :
-    Sequence rationalSystem :=
-  fun index =>
-    rationalSystem.FieldModel.signature.neg (representative.sequence index)
-```
--/
+       
+                           
+                                           
+                                                             
+                                                                          
+                              
+              
+                                                                           
+   
+  
 def representative_negation
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem)
@@ -64,25 +64,25 @@ def representative_negation
     rationalSystem.FieldModel.signature.neg (representative.sequence index)
 
 
-/-- Pointwise multiplication of rational-sequence representatives.
+                                                                  
 
-Mathematical statement (Lean): `def representative_multiplication (rationalSystem : RationalNumberSystem) (absolute_value_data : RationalMetricData rationalSystem) (first second : Representative rationalSystem absolute_value_data) : Sequence rationalSystem`.
+                                                                                                                                                                                                                                                                  
 
 
-Logical form:
+             
 
-```lean
-def representative_multiplication
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem)
-    (first second : Representative rationalSystem absolute_value_data) :
-    Sequence rationalSystem :=
-  fun index =>
-    rationalSystem.FieldModel.signature.multiply
-      (first.sequence index)
-      (second.sequence index)
-```
--/
+       
+                                 
+                                           
+                                                             
+                                                                        
+                              
+              
+                                                
+                            
+                             
+   
+  
 def representative_multiplication
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem)

@@ -1,6 +1,6 @@
--- LRA/NumberSystems/ComplexNumbers/Constructions/OrderedPairs/Instances.lean
--- Registration into the Volume I algebraic-structure typeclasses, plus
--- smoke tests showing the instances resolve at concrete carriers.
+                                                                             
+                                                                       
+                                                                  
 
 import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.Behavior
 
@@ -60,7 +60,7 @@ instance : MultiplicativeInverseLaws (ComplexNumber R) :=
 
 end FieldCertificates
 
-/-! ## Smoke tests: the two worlds meet -/
+                                          
 
 example : CommutativeRingLaws (ComplexNumber Int) := inferInstance
 example : FieldLaws (ComplexNumber Rat) := inferInstance

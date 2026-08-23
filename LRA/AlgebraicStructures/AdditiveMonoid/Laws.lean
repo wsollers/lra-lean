@@ -4,4 +4,4 @@ import LRA.AlgebraicStructures.AdditiveMonoid.Laws.Characterizations
 import LRA.AlgebraicStructures.AdditiveMonoid.Laws.Consequences
 import LRA.AlgebraicStructures.AdditiveMonoid.Laws.Relationships
 
-/-! Canonical import route for additive monoid law certificates. -/
+                                                                   

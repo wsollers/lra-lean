@@ -4,7 +4,7 @@ namespace LRA.Morphism
 
 universe u v
 
-/-- A function reflects a relation when related values came from related inputs. -/
+                                                                                   
 def ReflectsRelation {Source : Type u} {Target : Type v}
     (function : Source → Target)
     (sourceRelation : LRA.Relation.Endorelation Source)

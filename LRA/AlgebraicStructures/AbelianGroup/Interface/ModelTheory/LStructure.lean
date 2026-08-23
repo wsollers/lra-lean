@@ -6,7 +6,7 @@ namespace LRA.AlgebraicStructures.AbelianGroup.Interface.ModelTheory
 
 universe u
 
-/-! Law-free `L`-structure builders for the first-order abelian-group language. -/
+                                                                                  
 
 open LRA.AlgebraicStructures.AbelianGroup.Interface.Signature
 

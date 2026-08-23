@@ -6,7 +6,7 @@ namespace LRA.Order
 
 universe u
 
-/-- Antisymmetry makes a binary join unique. -/
+                                               
 theorem JoinUnique
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
@@ -17,7 +17,7 @@ theorem JoinUnique
     first = second := by
   sorry
 
-/-- The order of the two inputs does not affect the join predicate. -/
+                                                                      
 theorem JoinCommutes
     {Alpha : Type u}
     (relation : LRA.Relation.Endorelation Alpha)
@@ -25,7 +25,7 @@ theorem JoinCommutes
     Join relation left right join ↔ Join relation right left join := by
   sorry
 
-/-- Reflexivity makes an element the join of itself with itself. -/
+                                                                   
 theorem JoinIdempotent
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
@@ -34,7 +34,7 @@ theorem JoinIdempotent
     Join relation element element element := by
   sorry
 
-/-- Whenever the displayed joins exist in a partial order, the two associations agree. -/
+                                                                                         
 theorem JoinAssociative
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}

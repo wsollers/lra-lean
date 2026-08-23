@@ -4,4 +4,4 @@ import LRA.Relation.Structures.Equivalence
 import LRA.Relation.Structures.PartialFunction
 import LRA.Relation.Structures.Equivalence.Consequences
 
-/-! Canonical named relation structures. -/
+                                           

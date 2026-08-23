@@ -4,7 +4,7 @@ namespace LRA.Order
 
 universe u
 
-/-- Every pair in a meet-semilattice has a meet. -/
+                                                   
 theorem MeetSemilatticeHasMeet
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}

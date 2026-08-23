@@ -3,7 +3,7 @@ import LRA.Set.Interface.Distributivity
 
 namespace LRA.Set.TGSet
 
-/-! Distributivity-law certificate for the concrete TGSet backend. -/
+                                                                     
 
 theorem IntersectionDistributesOverUnion :
     forall A B C : Set, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) := by

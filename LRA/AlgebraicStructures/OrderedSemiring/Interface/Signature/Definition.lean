@@ -2,12 +2,12 @@ import LRA.Logic.Model.Model
 
 namespace LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature
 
-/-!
-First-order signature for ordered semirings.
+   
+                                            
 
-This file owns the ordinary first-order ordered-semiring vocabulary: constants
-`0`, `1`, binary addition and multiplication, and the strict order relation.
--/
+                                                                              
+                                                                            
+  
 
 inductive OrderedSemiringFunctionSymbol where
   | add

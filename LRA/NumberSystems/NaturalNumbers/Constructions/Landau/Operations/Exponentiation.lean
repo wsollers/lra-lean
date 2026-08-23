@@ -11,13 +11,13 @@ variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 
 
-/--
-**[Definition - Exponentiation on N]**
+   
+                                      
 
-Exponentiation on a one-based Peano system is the binary iterator whose value
-at the distinguished element of the second coordinate is the base, and whose
-successor step multiplies by the base.
--/
+                                                                             
+                                                                            
+                                      
+  
 noncomputable def LandauExponentiation
     (model : PeanoSystem Element SetObject) :
     Element -> Element -> Element :=
@@ -29,7 +29,7 @@ noncomputable def LandauExponentiation
       (fun base => base)
       (fun base value => LandauMultiplication model value base))
 
-/-- `LandauExponentiationClauses` states landau exponentiation clauses. -/
+                                                                          
 theorem LandauExponentiationClauses
     (model : PeanoSystem Element SetObject) :
     BinaryIteratorOperationClauses
@@ -41,7 +41,7 @@ theorem LandauExponentiationClauses
       (LandauExponentiation model) := by
   sorry
 
-/-- `LandauExponentiationWellDefined` states landau exponentiation well defined. -/
+                                                                                   
 theorem LandauExponentiationWellDefined
     (model : PeanoSystem Element SetObject) :
     exists exponentiation : Element -> Element -> Element,
@@ -63,14 +63,14 @@ theorem LandauExponentiationWellDefined
         otherExponentiation = exponentiation := by
   sorry
 
-/-- `LandauExponentiationWithOne` states landau exponentiation with one. -/
+                                                                           
 theorem LandauExponentiationWithOne
     (model : PeanoSystem Element SetObject)
     (base : Element) :
     LandauExponentiation model base model.one = base := by
   sorry
 
-/-- `LandauExponentiationSuccessorOnRight` states landau exponentiation successor on right. -/
+                                                                                              
 theorem LandauExponentiationSuccessorOnRight
     (model : PeanoSystem Element SetObject)
     (base exponent : Element) :

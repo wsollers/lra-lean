@@ -6,7 +6,7 @@ open LRA.Operation
 
 universe u
 
-/-- Idempotence says every element is fixed by combining it with itself. -/
+                                                                           
 theorem Idempotent.fixed_by_self_operation {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     (law : Idempotent operation)

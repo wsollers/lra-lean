@@ -5,7 +5,7 @@ namespace LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory
 
 universe u
 
-/-! Law-free `L`-structure builders for the first-order commutative-ring language. -/
+                                                                                     
 
 open LRA.AlgebraicStructures.CommutativeRing.Interface.Signature
 

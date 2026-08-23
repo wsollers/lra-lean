@@ -6,7 +6,7 @@ open LRA.Operation
 
 universe u
 
-/-- Apply a left-identity law to an element. -/
+                                               
 theorem LeftIdentity.apply {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity : Carrier}
@@ -15,7 +15,7 @@ theorem LeftIdentity.apply {Carrier : Type u}
     operation identity element = element := by
   sorry
 
-/-- Apply a right-identity law to an element. -/
+                                                
 theorem RightIdentity.apply {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity : Carrier}
@@ -24,7 +24,7 @@ theorem RightIdentity.apply {Carrier : Type u}
     operation element identity = element := by
   sorry
 
-/-- A two-sided identity supplies a left identity. -/
+                                                     
 theorem TwoSidedIdentity.left {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity : Carrier}
@@ -32,7 +32,7 @@ theorem TwoSidedIdentity.left {Carrier : Type u}
     LeftIdentity operation identity := by
   sorry
 
-/-- A two-sided identity supplies a right identity. -/
+                                                      
 theorem TwoSidedIdentity.right {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity : Carrier}
@@ -40,7 +40,7 @@ theorem TwoSidedIdentity.right {Carrier : Type u}
     RightIdentity operation identity := by
   sorry
 
-/-- Left and right identity laws assemble into a two-sided identity law. -/
+                                                                           
 theorem TwoSidedIdentity.of_left_right {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity : Carrier}

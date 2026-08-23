@@ -18,4 +18,4 @@ import LRA.Order.Lattices.Lattice.Consequences
 import LRA.Order.Lattices.Lattice.Relationships
 import LRA.Order.Lattices.Meet.Relationships
 
-/-! Canonical lattice vocabulary, structural hierarchy, and theorem surface. -/
+                                                                               

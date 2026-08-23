@@ -7,14 +7,14 @@ namespace LRA.AlgebraicStructures.OrderedGroup.Interface.ModelTheory
 
 universe u
 
-/-! Law-free `L`-structure builders for the first-order ordered-group language. -/
+                                                                                  
 
 open LRA.AlgebraicStructures.OrderedGroup.Interface.Signature
 
-/-- An ordered-group model needs the group signature plus its two order
-relations; unlike `Group`, `Monoid`, and `AbelianGroup`'s own ModelBuilder
-structs, this one is not a duplicate of the algebraic signature — it
-genuinely adds data the algebraic signature does not carry. -/
+                                                                       
+                                                                          
+                                                                    
+                                                              
 structure OrderedGroupSignature extends LRA.AlgebraicStructures.GroupConceptSignature where
   StrictOrder : LRA.Relation.Endorelation carrier
   NonstrictOrder : LRA.Relation.Endorelation carrier

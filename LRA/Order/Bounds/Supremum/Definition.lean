@@ -7,7 +7,7 @@ universe u v
 variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 
-/-- A supremum, or least upper bound, of a subset. -/
+                                                     
 def Supremum
     (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject)

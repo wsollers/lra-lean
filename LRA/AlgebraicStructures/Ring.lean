@@ -8,4 +8,4 @@ import LRA.AlgebraicStructures.Ring.Characterizations
 import LRA.AlgebraicStructures.Ring.Consequences
 import LRA.AlgebraicStructures.Ring.Relationships
 
-/-! Canonical import route for rings. -/
+                                        

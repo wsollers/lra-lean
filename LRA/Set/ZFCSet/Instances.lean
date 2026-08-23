@@ -2,14 +2,14 @@ import LRA.Set.ZFCSet.Definition
 import LRA.Set.ZFC.Public
 import LRA.Set.Interface.Operations
 
-/-!
-The concrete `ZFCSet` realization registered against the generic Set interface.
+   
+                                                                               
 
-All operation-backed instances are noncomputable because they are chosen
-witnesses of ZFC existence-and-uniqueness results. Absolute complement and a
-universal set are intentionally absent: they are not operations of the
-single-sorted ZFC universe.
--/
+                                                                        
+                                                                            
+                                                                      
+                           
+  
 
 namespace LRA.Set.ZFCSet
 

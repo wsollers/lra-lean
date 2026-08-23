@@ -2,10 +2,10 @@ import LRA.Logic.Model.Model
 
 namespace LRA.NumberSystems.Arithmetic.Model
 
-/-!
-First-order arithmetic-ring vocabulary used by concrete Volume II
-constructions that expose only `0`, `1`, addition, and multiplication.
--/
+   
+                                                                 
+                                                                      
+  
 
 inductive ArithmeticRingFunctionSymbol where
   | add

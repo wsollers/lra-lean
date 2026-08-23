@@ -4,7 +4,7 @@ namespace LRA.Morphism
 
 universe u v
 
-/-- Apply relation preservation to a related pair. -/
+                                                     
 theorem PreservesRelation.apply {Source : Type u} {Target : Type v}
     {function : Source → Target}
     {sourceRelation : LRA.Relation.Endorelation Source}

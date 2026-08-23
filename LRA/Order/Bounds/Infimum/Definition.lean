@@ -7,7 +7,7 @@ universe u v
 variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 
-/-- An infimum, or greatest lower bound, of a subset. -/
+                                                        
 def Infimum
     (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject)

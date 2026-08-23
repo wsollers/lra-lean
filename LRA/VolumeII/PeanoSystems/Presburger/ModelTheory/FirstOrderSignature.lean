@@ -6,9 +6,9 @@ namespace LRA.NumberSystems.PeanoSystems.Presburger.ModelTheory
 
 universe u
 
-/-!
-First-order additive ordered vocabulary underlying Presburger arithmetic.
--/
+   
+                                                                         
+  
 
 inductive AdditiveOrderedFunctionSymbol where
   | add

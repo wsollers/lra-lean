@@ -2,7 +2,7 @@ import LRA.Set.TGSet.Primitives
 
 namespace LRA.Set.TG
 
-/-- An inductive set exists. -/
+                               
 axiom Infinity :
   exists A : TGSet,
     (exists empty : TGSet, empty ∈ A /\ forall w : TGSet, w ∉ empty) /\

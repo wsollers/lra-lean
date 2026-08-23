@@ -4,7 +4,7 @@ namespace LRA.Morphism
 
 universe u v
 
-/-- Apply unary-operation preservation at an element. -/
+                                                        
 theorem PreservesUnaryOperation.apply {Source : Type u} {Target : Type v}
     {function : Source → Target}
     {sourceOperation : LRA.Operation.UnaryEndoOperation Source}

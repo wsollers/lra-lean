@@ -22,7 +22,7 @@ variable [UniversalMembershipLaws Element SetObject]
 variable [ExtensionalityLaw Element SetObject]
 variable [SubsetLaws SetObject]
 
-/-- Membership in the represented upper-bound set is exactly the upper-bound predicate. -/
+                                                                                          
 theorem UpperBoundsMembership
     (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject) (bound : Element) :
@@ -30,7 +30,7 @@ theorem UpperBoundsMembership
       UpperBound relation subset bound := by
   sorry
 
-/-- Membership in the represented lower-bound set is exactly the lower-bound predicate. -/
+                                                                                          
 theorem LowerBoundsMembership
     (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject) (bound : Element) :
@@ -38,7 +38,7 @@ theorem LowerBoundsMembership
       LowerBound relation subset bound := by
   sorry
 
-/-- Enlarging a represented subset can only shrink its set of upper bounds. -/
+                                                                              
 theorem UpperBoundsAntitoneUnderInclusion
     {relation : LRA.Relation.Endorelation Element}
     {smaller larger : SetObject}
@@ -46,7 +46,7 @@ theorem UpperBoundsAntitoneUnderInclusion
     UpperBounds relation larger ⊆ UpperBounds relation smaller := by
   sorry
 
-/-- Enlarging a represented subset can only shrink its set of lower bounds. -/
+                                                                              
 theorem LowerBoundsAntitoneUnderInclusion
     {relation : LRA.Relation.Endorelation Element}
     {smaller larger : SetObject}
@@ -54,14 +54,14 @@ theorem LowerBoundsAntitoneUnderInclusion
     LowerBounds relation larger ⊆ LowerBounds relation smaller := by
   sorry
 
-/-- Every element vacuously bounds the empty represented subset above. -/
+                                                                         
 theorem UpperBoundsOfEmpty
     (relation : LRA.Relation.Endorelation Element) :
     UpperBounds relation (∅ : SetObject) =
       (HasUniversal.universal : SetObject) := by
   sorry
 
-/-- Every element vacuously bounds the empty represented subset below. -/
+                                                                         
 theorem LowerBoundsOfEmpty
     (relation : LRA.Relation.Endorelation Element) :
     LowerBounds relation (∅ : SetObject) =

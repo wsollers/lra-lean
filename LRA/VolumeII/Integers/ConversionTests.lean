@@ -1,5 +1,5 @@
--- LRA/VolumeII/Integers/ConversionTests.lean
--- Smoke tests for active integer conversion utilities.
+                                             
+                                                       
 
 import LRA.VolumeII.Integers.Conversion
 
@@ -8,15 +8,15 @@ namespace LRA.NumberSystems.Integers.ConversionTests
 open LRA.AlgebraicStructures
 open Conversion
 
-/-!
-Volume II label: integers-conversion-tests
-Lean module: LRA.NumberSystems.Integers.ConversionTests
-Verification status: checked smoke tests for conversion utilities
+   
+                                          
+                                                       
+                                                                 
 
-These tests are intentionally definitional where possible. They protect
-the client-facing construction API from accidental changes while the
-construction proofs remain pending.
--/
+                                                                       
+                                                                    
+                                   
+  
 
 example : ofNat 0 = (0 : Z) := rfl
 

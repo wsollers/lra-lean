@@ -6,7 +6,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- Antisymmetry makes a least element unique. -/
+                                                 
 theorem LeastElementUnique
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -22,7 +22,7 @@ open scoped LRA.Set
 
 
 
-/-- A least element remains least in an intersection that retains it. -/
+                                                                        
 theorem LeastElementRetainedByIntersection
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -36,7 +36,7 @@ theorem LeastElementRetainedByIntersection
     LeastElement relation (subset ∩ retainedBy) least := by
   sorry
 
-/-- A least element remains least after a deletion that does not remove it. -/
+                                                                              
 theorem LeastElementRetainedByDifference
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -50,7 +50,7 @@ theorem LeastElementRetainedByDifference
     LeastElement relation (subset \ removed) least := by
   sorry
 
-/-- A least element of the union remains least in a symmetric difference that retains it. -/
+                                                                                            
 theorem LeastElementRetainedBySymmetricDifference
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject]
@@ -65,7 +65,7 @@ theorem LeastElementRetainedBySymmetricDifference
     LeastElement relation (leftSubset ∆ rightSubset) least := by
   sorry
 
-/-- A least element of one operand that bounds the other is least in the union. -/
+                                                                                  
 theorem LeastElementOfUnion
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]

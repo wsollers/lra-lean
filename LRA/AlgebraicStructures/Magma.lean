@@ -4,4 +4,4 @@ import LRA.AlgebraicStructures.Magma.Characterizations
 import LRA.AlgebraicStructures.Magma.Consequences
 import LRA.AlgebraicStructures.Magma.Relationships
 
-/-! Canonical import route for magmas. -/
+                                         

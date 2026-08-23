@@ -4,13 +4,13 @@ import Mathlib.Tactic.Tauto
 import LRA.Set.Interop.Mathlib.PredicateSet.Instances
 import LRA.Set.Interface
 
-/-!
-Certificate registrations for the `MathlibPredicateSet` backend: every law
-family and every membership family, each field dispatching to Mathlib's
-own lemma for `Set` (or to a one-line `ext`/`simp` bridge where Mathlib
-states the fact in a different shape). Nothing here is `sorry` -- this
-backend's whole point is that Mathlib has already done the proving.
--/
+   
+                                                                          
+                                                                       
+                                                                       
+                                                                      
+                                                                   
+  
 
 namespace LRA.Set.MathlibPredicateSet
 

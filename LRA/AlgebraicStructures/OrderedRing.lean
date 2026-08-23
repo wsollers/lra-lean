@@ -8,4 +8,4 @@ import LRA.AlgebraicStructures.OrderedRing.Characterizations
 import LRA.AlgebraicStructures.OrderedRing.Consequences
 import LRA.AlgebraicStructures.OrderedRing.Relationships
 
-/-! Canonical import route for ordered rings. -/
+                                                

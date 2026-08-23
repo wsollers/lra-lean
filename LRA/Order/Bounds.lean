@@ -40,7 +40,7 @@ import LRA.Order.Bounds.LowerBound.Relationships
 import LRA.Order.Bounds.Supremum.Relationships
 import LRA.Order.Bounds.UpperBound.Relationships
 
-/-!
-Canonical foundational bounds vocabulary, theorem surface, and backend-relative
-order completeness certificate.
--/
+   
+                                                                               
+                               
+  

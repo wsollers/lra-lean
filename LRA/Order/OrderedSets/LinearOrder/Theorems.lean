@@ -4,7 +4,7 @@ namespace LRA.Order
 
 universe u
 
-/-- A total relation is reflexive. -/
+                                     
 theorem TotalImpliesReflexive
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
@@ -12,7 +12,7 @@ theorem TotalImpliesReflexive
     LRA.Relation.Reflexive relation := by
   sorry
 
-/-- Every linear order is a partial order. -/
+                                             
 theorem LinearOrderIsPartialOrder
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
@@ -20,7 +20,7 @@ theorem LinearOrderIsPartialOrder
     PartialOrder relation := by
   sorry
 
-/-- Every linear order is total. -/
+                                   
 theorem LinearOrderIsTotal
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}

@@ -2,11 +2,11 @@ import LRA.AlgebraicStructures.Monoid.Interface.Signature.Definition
 
 namespace LRA.AlgebraicStructures.Group.Interface.Signature
 
-/-!
-First-order signature for multiplicative groups.
+   
+                                                
 
-This extends the monoid vocabulary by unary inverse.
--/
+                                                    
+  
 
 inductive GroupFunctionSymbol where
   | mul

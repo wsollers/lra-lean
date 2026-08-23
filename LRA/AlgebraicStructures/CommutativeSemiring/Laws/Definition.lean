@@ -5,11 +5,11 @@ namespace LRA.AlgebraicStructures
 
 universe u
 
-/-!
-Commutative semiring law certificates.
--/
+   
+                                      
+  
 
-/-- Commutative semiring laws. -/
+                                 
 class abbrev CommutativeSemiringLaws (R : Type u)
     [Add R] [Mul R] [OfNat R 0] [OfNat R 1] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,

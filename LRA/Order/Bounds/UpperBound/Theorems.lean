@@ -8,7 +8,7 @@ open scoped LRA.Set
 
 universe u v w
 
-/-- Every element is vacuously an upper bound of the empty represented subset. -/
+                                                                                 
 theorem UpperBoundOfEmpty
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -20,7 +20,7 @@ theorem UpperBoundOfEmpty
     UpperBound relation (∅ : SetObject) bound := by
   sorry
 
-/-- A bound of a larger represented subset bounds every subcollection. -/
+                                                                         
 theorem UpperBoundOfSubcollection
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -31,7 +31,7 @@ theorem UpperBoundOfSubcollection
     UpperBound relation smaller bound := by
   sorry
 
-/-- A common upper bound of two represented subsets bounds their union. -/
+                                                                          
 theorem UpperBoundOfUnion
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -45,7 +45,7 @@ theorem UpperBoundOfUnion
     UpperBound relation (leftSubset ∪ rightSubset) bound := by
   sorry
 
-/-- An element is an upper bound of a union iff it bounds each constituent subset. -/
+                                                                                     
 theorem UpperBoundOfUnionIff
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -59,7 +59,7 @@ theorem UpperBoundOfUnionIff
         UpperBound relation rightSubset bound := by
   sorry
 
-/-- An upper bound of either set is an upper bound of their intersection. -/
+                                                                            
 theorem UpperBoundOfIntersection
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -74,7 +74,7 @@ theorem UpperBoundOfIntersection
     UpperBound relation (leftSubset ∩ rightSubset) bound := by
   sorry
 
-/-- Every upper bound of a set bounds each represented relative difference. -/
+                                                                              
 theorem UpperBoundOfDifference
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -87,7 +87,7 @@ theorem UpperBoundOfDifference
     UpperBound relation (subset \ removed) bound := by
   sorry
 
-/-- A common upper bound of two sets bounds their symmetric difference. -/
+                                                                          
 theorem UpperBoundOfSymmetricDifference
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -103,7 +103,7 @@ theorem UpperBoundOfSymmetricDifference
     UpperBound relation (leftSubset ∆ rightSubset) bound := by
   sorry
 
-/-- An element bounds an indexed union above iff it bounds every member above. -/
+                                                                                 
 theorem UpperBoundOfIndexedUnionIff
     {Element : Type u} {SetObject : Type v} {Index : Type w}
     [Membership Element SetObject]
@@ -116,7 +116,7 @@ theorem UpperBoundOfIndexedUnionIff
       forall index, UpperBound relation (family index) bound := by
   sorry
 
-/-- An upper bound of any selected family member bounds the indexed intersection. -/
+                                                                                    
 theorem UpperBoundOfIndexedIntersection
     {Element : Type u} {SetObject : Type v} {Index : Type w}
     [Membership Element SetObject]

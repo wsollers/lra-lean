@@ -8,4 +8,4 @@ import LRA.AlgebraicStructures.Group.Characterizations
 import LRA.AlgebraicStructures.Group.Consequences
 import LRA.AlgebraicStructures.Group.Relationships
 
-/-! Canonical import route for multiplicative groups. -/
+                                                        

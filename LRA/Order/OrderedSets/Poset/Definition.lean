@@ -4,7 +4,7 @@ namespace LRA.Order
 
 universe u
 
-/-- A poset is a carrier equipped with a non-strict partial order. -/
+                                                                     
 structure Poset where
   Carrier : Type u
   NonStrictOrder : LRA.Relation.Endorelation Carrier

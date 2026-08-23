@@ -5,7 +5,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- The lexicographic product of strict linear orders is strict linear. -/
+                                                                          
 theorem LexicographicProductIsStrictLinearOrder
     {Alpha : Type u} {Beta : Type v}
     {leftRelation : LRA.Relation.Endorelation Alpha}

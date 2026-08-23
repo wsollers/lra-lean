@@ -8,9 +8,9 @@ open LRA.Logic
 
 universe u
 
-/-! Semantic models of the pure theory of equality. -/
+                                                      
 
-/-- The first-order model induced by an equality structure. -/
+                                                              
 def EqualityStructure.toFirstOrderModel
     (equalityStructure : EqualityStructure.{u}) :
     FirstOrder.Model pureEqualitySignature where
@@ -22,7 +22,7 @@ def EqualityStructure.toFirstOrderModel
   interpretRelation := fun relationSymbol => Empty.elim relationSymbol
   interpretConstant := Empty.elim
 
-/-- The canonical equality structure on any nonempty carrier. -/
+                                                                
 def canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :
     EqualityStructure where
   Carrier := Carrier
@@ -32,7 +32,7 @@ def canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :
     intro left right
     rfl
 
-/-- In every equality structure, interpreted equality is exactly identity. -/
+                                                                             
 theorem EqualityStructure.interpretsEqualityAsIdentity
     (equalityStructure : EqualityStructure.{u})
     (left right : equalityStructure.Carrier) :

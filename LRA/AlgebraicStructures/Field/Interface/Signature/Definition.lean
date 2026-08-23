@@ -2,12 +2,12 @@ import LRA.AlgebraicStructures.DivisionRing.Interface.Signature.Definition
 
 namespace LRA.AlgebraicStructures.Field.Interface.Signature
 
-/-!
-First-order signature for fields.
+   
+                                 
 
-Fields use the division-ring first-order vocabulary; fieldhood adds
-commutativity as a law, not a new symbol.
--/
+                                                                   
+                                         
+  
 
 abbrev FieldFunctionSymbol :=
   LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFunctionSymbol

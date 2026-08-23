@@ -2,12 +2,12 @@ import LRA.Logic.Model.Model
 
 namespace LRA.AlgebraicStructures.Semigroup.Interface.Signature
 
-/-!
-First-order signature for semigroups.
+   
+                                     
 
-The semigroup language has one binary multiplication symbol and no constants
-or relation symbols.
--/
+                                                                            
+                    
+  
 
 inductive SemigroupFunctionSymbol where
   | mul

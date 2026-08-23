@@ -1,7 +1,7 @@
 import LRA.Set.NBGSet.Primitives
 import LRA.Identity.ExistenceAndUniqueness
 
-/-! Canonical predicates used by the NBG set/class-theory development. -/
+                                                                         
 
 namespace LRA.Set.NBG
 
@@ -45,11 +45,11 @@ def IsChoiceSetFor (A choiceSet : Set) : Prop :=
       (x ∈ B /\ x ∈ choiceSet) /\
       forall other : Set, (other ∈ B /\ other ∈ choiceSet) -> other = x
 
-/-- `C` is the class extension cut out by `property`. -/
+                                                        
 def IsClassComprehension (property : Set -> Prop) (C : Class) : Prop :=
   forall x : Set, x ∈ C <-> property x
 
-/-- `C` is the class represented by the set `A`. -/
+                                                   
 def IsClassOfSet (A : Set) (C : Class) : Prop :=
   forall x : Set, x ∈ C <-> x ∈ A
 

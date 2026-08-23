@@ -8,7 +8,7 @@ open scoped LRA.Set
 
 universe u v w
 
-/-- Every element is vacuously a lower bound of the empty represented subset. -/
+                                                                                
 theorem LowerBoundOfEmpty
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -20,7 +20,7 @@ theorem LowerBoundOfEmpty
     LowerBound relation (∅ : SetObject) bound := by
   sorry
 
-/-- A lower bound of a larger represented subset bounds every subcollection. -/
+                                                                               
 theorem LowerBoundOfSubcollection
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -31,7 +31,7 @@ theorem LowerBoundOfSubcollection
     LowerBound relation smaller bound := by
   sorry
 
-/-- A common lower bound of two represented subsets bounds their union. -/
+                                                                          
 theorem LowerBoundOfUnion
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -45,7 +45,7 @@ theorem LowerBoundOfUnion
     LowerBound relation (leftSubset ∪ rightSubset) bound := by
   sorry
 
-/-- A lower bound of a union bounds each constituent subset. -/
+                                                               
 theorem LowerBoundOfUnionIff
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -59,7 +59,7 @@ theorem LowerBoundOfUnionIff
         LowerBound relation rightSubset bound := by
   sorry
 
-/-- A lower bound of either set is a lower bound of their intersection. -/
+                                                                          
 theorem LowerBoundOfIntersection
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -74,7 +74,7 @@ theorem LowerBoundOfIntersection
     LowerBound relation (leftSubset ∩ rightSubset) bound := by
   sorry
 
-/-- Every lower bound of a set bounds each represented relative difference. -/
+                                                                              
 theorem LowerBoundOfDifference
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -87,7 +87,7 @@ theorem LowerBoundOfDifference
     LowerBound relation (subset \ removed) bound := by
   sorry
 
-/-- A common lower bound of two sets bounds their symmetric difference. -/
+                                                                          
 theorem LowerBoundOfSymmetricDifference
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -103,7 +103,7 @@ theorem LowerBoundOfSymmetricDifference
     LowerBound relation (leftSubset ∆ rightSubset) bound := by
   sorry
 
-/-- An element bounds an indexed union below iff it bounds every member below. -/
+                                                                                 
 theorem LowerBoundOfIndexedUnionIff
     {Element : Type u} {SetObject : Type v} {Index : Type w}
     [Membership Element SetObject]
@@ -116,7 +116,7 @@ theorem LowerBoundOfIndexedUnionIff
       forall index, LowerBound relation (family index) bound := by
   sorry
 
-/-- A lower bound of any selected family member bounds the indexed intersection. -/
+                                                                                   
 theorem LowerBoundOfIndexedIntersection
     {Element : Type u} {SetObject : Type v} {Index : Type w}
     [Membership Element SetObject]

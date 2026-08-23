@@ -6,7 +6,7 @@ open LRA.Operation
 
 universe u
 
-/-- Apply an associativity law to three elements. -/
+                                                    
 theorem Associative.apply {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     (law : Associative operation)
@@ -15,7 +15,7 @@ theorem Associative.apply {Carrier : Type u}
       operation first (operation second third) := by
   sorry
 
-/-- Move one pair of parentheses from the left to the right. -/
+                                                               
 theorem Associative.reassociate_left {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     (law : Associative operation)
@@ -24,7 +24,7 @@ theorem Associative.reassociate_left {Carrier : Type u}
       operation first (operation second third) := by
   sorry
 
-/-- Move one pair of parentheses from the right to the left. -/
+                                                               
 theorem Associative.reassociate_right {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     (law : Associative operation)
@@ -33,7 +33,7 @@ theorem Associative.reassociate_right {Carrier : Type u}
       operation (operation first second) third := by
   sorry
 
-/-- Reassociate four entries from fully left-associated to fully right-associated form. -/
+                                                                                          
 theorem Associative.four_left {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     (law : Associative operation)
@@ -42,7 +42,7 @@ theorem Associative.four_left {Carrier : Type u}
       operation first (operation second (operation third fourth)) := by
   sorry
 
-/-- Reassociate four entries from fully right-associated to fully left-associated form. -/
+                                                                                          
 theorem Associative.four_right {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     (law : Associative operation)

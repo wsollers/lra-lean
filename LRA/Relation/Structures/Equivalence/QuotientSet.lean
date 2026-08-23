@@ -18,7 +18,7 @@ section WithPowerset
 
 variable [HasPowerset SetObject Collection]
 
-/-- `quotient` is the quotient set of `ambient` by `relation`. -/
+                                                                 
 def IsQuotientSetOf
     (quotient : Collection)
     (ambient : SetObject)
@@ -34,7 +34,7 @@ section WithCollectionSeparation
 
 variable [HasSeparation SetObject Collection]
 
-/-- The quotient collection of equivalence classes. -/
+                                                      
 def QuotientSet
     (ambient : SetObject)
     (relation : Endorelation Element) : Collection :=
@@ -94,14 +94,14 @@ end Laws
 end WithCollectionSeparation
 end WithPowerset
 
-/-- The canonical projection to equivalence classes. -/
+                                                       
 def QuotientProjection
     (ambient : SetObject)
     (relation : Endorelation Element) :
     Element -> SetObject :=
   fun element => EquivalenceClass ambient relation element
 
-/-- Collection-facing synonym for the quotient projection. -/
+                                                             
 def QuotientClassElement
     (ambient : SetObject)
     (relation : Endorelation Element) :

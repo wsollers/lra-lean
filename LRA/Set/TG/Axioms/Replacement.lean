@@ -2,7 +2,7 @@ import LRA.Set.TGSet.Primitives
 
 namespace LRA.Set.TG
 
-/-- Replacement schema, represented by a Lean relation parameter. -/
+                                                                    
 axiom Replacement (relation : TGSet -> TGSet -> Prop) (A : TGSet) :
   (forall x : TGSet, x ∈ A ->
     exists y : TGSet, relation x y /\

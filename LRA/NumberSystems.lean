@@ -3,14 +3,14 @@ import LRA.NumberSystems.NaturalNumbers
 import LRA.VolumeII
 import LRA.VolumeIII.RealNumbers
 
-/-!
-Canonical import route for constructed number systems.
+   
+                                                      
 
-`PeanoSystem` is the generic axiomatic layer §1.6.10 places beside the
-per-system interfaces; it selects no construction and is not itself one of
-the constructed number systems below. `NaturalNumbers` is the first
-constructed system, realizing `PeanoSystem` via three constructions
-(`VonNeumann`, `Presburger`, `Landau`) that differ in backend and in
-whether the Peano axioms are postulated or derived — see
-`LRA/NumberSystems/NaturalNumbers/ProofOrder.md`.
--/
+                                                                      
+                                                                          
+                                                                   
+                                                                   
+                                                                    
+                                                        
+                                                 
+  

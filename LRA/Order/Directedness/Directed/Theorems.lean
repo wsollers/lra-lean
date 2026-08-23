@@ -9,7 +9,7 @@ namespace LRA.Order
 
 universe u v w x y
 
-/-- A maximal element of a directed subset of a partial order is greatest. -/
+                                                                             
 theorem MaximalElementOfDirectedSubsetIsGreatest
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -22,7 +22,7 @@ theorem MaximalElementOfDirectedSubsetIsGreatest
     GreatestElement relation subset maximal := by
   sorry
 
-/-- The coordinatewise product of two directed represented subsets is directed. -/
+                                                                                  
 theorem ProductOfDirectedSubsetsIsDirected
     {Alpha : Type u} {Beta : Type v}
     {LeftSet : Type w} {RightSet : Type x} {ProductSet : Type y}

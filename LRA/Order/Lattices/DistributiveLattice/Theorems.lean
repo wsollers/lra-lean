@@ -4,7 +4,7 @@ namespace LRA.Order
 
 universe u
 
-/-- Every distributive lattice is a lattice. -/
+                                               
 theorem DistributiveLatticeIsLattice
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
@@ -12,7 +12,7 @@ theorem DistributiveLatticeIsLattice
     Lattice relation := by
   sorry
 
-/-- Join distributes over meet in a distributive lattice. -/
+                                                            
 theorem JoinDistributesOverMeet
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}
@@ -26,7 +26,7 @@ theorem JoinDistributesOverMeet
     leftSide = rightSide := by
   sorry
 
-/-- Meet distributes over join in a distributive lattice. -/
+                                                            
 theorem MeetDistributesOverJoin
     {Alpha : Type u}
     {relation : LRA.Relation.Endorelation Alpha}

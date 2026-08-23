@@ -3,7 +3,7 @@ import LRA.AlgebraicStructures.OrderedRing.Definition
 
 namespace LRA.AlgebraicStructures
 
-/-- A linearly ordered ring has the ordered-ring algebraic signature. -/
+                                                                        
 abbrev LinearlyOrderedRingConceptSignature :=
   OrderedRingConceptSignature
 

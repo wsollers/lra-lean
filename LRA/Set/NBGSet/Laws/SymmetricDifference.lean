@@ -3,7 +3,7 @@ import LRA.Set.Interface.SymmetricDifference
 
 namespace LRA.Set.NBGSet
 
-/-! Symmetric-difference law certificate for the concrete NBGSet backend. -/
+                                                                            
 
 theorem SymmetricDifferenceAsUnionDifferences :
     forall A B : Set, A ∆ B = (A \ B) ∪ (B \ A) := by

@@ -5,7 +5,7 @@ namespace LRA.AlgebraicStructures
 
 universe u
 
-/-- Algebraic Boolean-algebra laws for explicit operations. -/
+                                                              
 def BooleanAlgebraLaws {Carrier : Type u}
     (join meet : LRA.Operation.BinaryEndoOperation Carrier)
     (complement : LRA.Operation.UnaryEndoOperation Carrier)

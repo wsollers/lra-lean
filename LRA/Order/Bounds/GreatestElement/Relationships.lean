@@ -9,7 +9,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- In an antisymmetric relation, every greatest element is maximal. -/
+                                                                       
 theorem GreatestElementIsMaximal
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -20,7 +20,7 @@ theorem GreatestElementIsMaximal
     MaximalElement (StrictPart relation) subset greatest := by
   sorry
 
-/-- A greatest element is the unique maximal element of its represented subset. -/
+                                                                                  
 theorem GreatestElementIsUniqueMaximalElement
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -32,7 +32,7 @@ theorem GreatestElementIsUniqueMaximalElement
     maximal = greatest := by
   sorry
 
-/-- In a linear order, every maximal element is greatest. -/
+                                                            
 theorem MaximalElementIsGreatestInLinearOrder
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -43,7 +43,7 @@ theorem MaximalElementIsGreatestInLinearOrder
     GreatestElement relation subset maximal := by
   sorry
 
-/-- A greatest element is a supremum. -/
+                                        
 theorem GreatestElementIsSupremum
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -53,7 +53,7 @@ theorem GreatestElementIsSupremum
     Supremum relation subset greatest := by
   sorry
 
-/-- Being greatest is equivalent to being a supremum that belongs to the subset. -/
+                                                                                   
 theorem GreatestElementIffSupremumAndMembership
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]

@@ -7,6 +7,6 @@ import LRA.Analysis.Integration.HenstockKurzweil
 import LRA.Analysis.Integration.McShaneIntegral
 import LRA.Analysis.Integration.RiemannStieltjes
 
-/-!
-Aggregate import for Volume III analysis integration modules.
--/
+   
+                                                             
+  

@@ -5,7 +5,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- Every nonempty bounded-below backend subset has an infimum. -/
+                                                                  
 def GreatestLowerBoundProperty
     {Element : Type u} (SetObject : Type v)
     [Membership Element SetObject]

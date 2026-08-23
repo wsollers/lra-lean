@@ -5,11 +5,11 @@ namespace LRA.AlgebraicStructures
 
 universe u
 
-/-!
-Ring law certificates.
--/
+   
+                      
+  
 
-/-- Ring laws. -/
+                 
 class abbrev RingLaws (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,

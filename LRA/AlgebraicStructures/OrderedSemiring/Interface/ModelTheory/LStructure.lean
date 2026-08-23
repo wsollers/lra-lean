@@ -7,19 +7,19 @@ namespace LRA.AlgebraicStructures.OrderedSemiring.Interface.ModelTheory
 
 universe u
 
-/-!
-`L`-structure builders for the ordered-semiring first-order signature.
+   
+                                                                      
 
-Law certificates are intentionally separate: these builders only interpret the
-non-logical vocabulary of the language.
--/
+                                                                              
+                                       
+  
 
 open LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature
 
-/-- An ordered-semiring model needs the semiring signature plus its strict
-order relation; the non-strict order is already carried by
-`OrderedSemiringConceptSignature.le`, so only the strict relation is new
-data here, the same shape `OrderedGroup`'s own ModelBuilder took. -/
+                                                                          
+                                                          
+                                                                        
+                                                                    
 structure OrderedSemiringSignature extends
     LRA.AlgebraicStructures.OrderedSemiringConceptSignature where
   StrictOrder : LRA.Relation.Endorelation carrier

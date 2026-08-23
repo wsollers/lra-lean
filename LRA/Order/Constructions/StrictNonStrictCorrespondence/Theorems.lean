@@ -6,7 +6,7 @@ namespace LRA.Order
 
 universe u
 
-/-- Strict orders induce partial orders by adjoining equality. -/
+                                                                 
 theorem StrictOrderInducesPartialOrder
     {Alpha : Type u}
     {strictRelation : LRA.Relation.Endorelation Alpha}
@@ -14,7 +14,7 @@ theorem StrictOrderInducesPartialOrder
     PartialOrder (NonStrictFromStrict strictRelation) := by
   sorry
 
-/-- Partial orders induce strict orders by removing equality. -/
+                                                                
 theorem PartialOrderInducesStrictOrder
     {Alpha : Type u}
     {nonStrictRelation : LRA.Relation.Endorelation Alpha}
@@ -22,7 +22,7 @@ theorem PartialOrderInducesStrictOrder
     StrictOrder (StrictFromNonStrict nonStrictRelation) := by
   sorry
 
-/-- Strict linear orders induce linear orders by adjoining equality. -/
+                                                                       
 theorem StrictLinearOrderInducesLinearOrder
     {Alpha : Type u}
     {strictRelation : LRA.Relation.Endorelation Alpha}
@@ -30,7 +30,7 @@ theorem StrictLinearOrderInducesLinearOrder
     LinearOrder (NonStrictFromStrict strictRelation) := by
   sorry
 
-/-- Removing equality after adjoining it recovers an irreflexive relation. -/
+                                                                             
 theorem StrictNonStrictInverseCorrespondence
     {Alpha : Type u}
     {strictRelation : LRA.Relation.Endorelation Alpha}
@@ -38,7 +38,7 @@ theorem StrictNonStrictInverseCorrespondence
     StrictFromNonStrict (NonStrictFromStrict strictRelation) = strictRelation := by
   sorry
 
-/-- Adjoining equality to the strict part recovers a reflexive relation. -/
+                                                                           
 theorem NonStrictStrictInverseCorrespondence
     {Alpha : Type u}
     {nonStrictRelation : LRA.Relation.Endorelation Alpha}
@@ -46,12 +46,12 @@ theorem NonStrictStrictInverseCorrespondence
     NonStrictFromStrict (StrictFromNonStrict nonStrictRelation) = nonStrictRelation := by
   sorry
 
-/-- Converting a poset to strict form and back recovers it. -/
+                                                              
 theorem PosetOfStrictPosetOfPoset (poset : Poset) :
     PosetOfStrictPoset (StrictPosetOfPoset poset) = poset := by
   sorry
 
-/-- Converting a strict poset to non-strict form and back recovers it. -/
+                                                                         
 theorem StrictPosetOfPosetOfStrictPoset (strictPoset : StrictPoset) :
     StrictPosetOfPoset (PosetOfStrictPoset strictPoset) = strictPoset := by
   sorry

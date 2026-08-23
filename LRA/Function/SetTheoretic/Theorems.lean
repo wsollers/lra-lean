@@ -6,8 +6,8 @@ open LRA.Set
 
 universe u v w x
 
-/-- Every graph member of a bundled set-theoretic relation has coordinates in
-its displayed domains. -/
+                                                                             
+                         
 theorem RelationGraphMemberCoordinates
     {LeftElement RightElement Pair : Type u}
     {LeftDomainObject : Type v} {RightDomainObject : Type w}
@@ -26,8 +26,8 @@ theorem RelationGraphMemberCoordinates
       right ∈ relation.triple.rightDomain := by
   sorry
 
-/-- Every member of the displayed domain of a set-theoretic function has an
-encoded value in its displayed codomain. -/
+                                                                           
+                                           
 theorem EvaluationExists
     {DomainElement CodomainElement Pair : Type u}
     {DomainObject : Type v} {CodomainObject : Type w}
@@ -45,7 +45,7 @@ theorem EvaluationExists
       Relates setFunction.triple.graph input output := by
   sorry
 
-/-- Evaluation in the graph of a set-theoretic function is unique. -/
+                                                                     
 theorem EvaluationUnique
     {DomainElement CodomainElement Pair : Type u}
     {DomainObject : Type v} {CodomainObject : Type w}
@@ -63,8 +63,8 @@ theorem EvaluationUnique
     firstOutput = secondOutput := by
   sorry
 
-/-- Two bundled set-theoretic functions are equal when their displayed domains,
-codomains, and graphs are equal. -/
+                                                                               
+                                   
 @[ext] theorem SetTheoreticFunctionExt
     {DomainElement CodomainElement Pair : Type u}
     {DomainObject : Type v} {CodomainObject : Type w}

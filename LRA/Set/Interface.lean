@@ -15,10 +15,10 @@ import LRA.Set.Interface.Difference
 import LRA.Set.Interface.SymmetricDifference
 import LRA.Set.Interface.Complement
 
-/-!
-Canonical backend-agnostic Set interface.
+   
+                                         
 
-This layer owns shared set-operation capabilities, law certificates, and generic
-theorems. Concrete set realizations register operation instances and the law
-certificates they satisfy. No concrete set ontology is selected here.
--/
+                                                                                
+                                                                            
+                                                                     
+  

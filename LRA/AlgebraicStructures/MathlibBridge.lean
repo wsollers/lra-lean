@@ -15,22 +15,22 @@ open LRA.Order
 
 universe u
 
-/-!
-The Mathlib bridge: generic instances deriving this layer's certificates
-from Mathlib's algebra classes.
+   
+                                                                        
+                               
 
-One instance per certificate, stated at the weakest Mathlib class that
-supplies the law -- so certification flows to *every* Mathlib carrier at
-once (`ℕ`, `ℤ`, `ℚ`, `ℝ`, `ℂ`, `ZMod p`, polynomial rings, ...), rather
-than per-carrier adapter files. The bridge points one direction only:
-Mathlib classes imply project certificates. The reverse (assembling
-Mathlib's bundled data classes from mixins) would be a `def`, not an
-instance, and is deliberately not provided -- nothing in this repo
-should *depend* on constructing Mathlib structures.
+                                                                      
+                                                                        
+                                                                       
+                                                                     
+                                                                   
+                                                                    
+                                                                  
+                                                   
 
-Zero `sorry`, by design: this file is dispatch, like the Mathlib set
-backends.
--/
+                                                                    
+         
+  
 
 instance {R : Type u} [AddSemigroup R] : AdditiveSemigroupLaws R where
   AddAssociative := add_assoc
@@ -83,12 +83,12 @@ instance {R : Type u} [Distrib R] : DistributiveLaws R where
   LeftDistributive := fun a b c => left_distrib a b c
   RightDistributive := fun a b c => right_distrib a b c
 
-/-!
-Shortcut instances at the bundle level. The mixin bridges above already
-make every bundle *derivable*, but instance search through the
-`class abbrev` conjunctions re-walks Mathlib's hierarchy per component;
-these one-hop shortcuts keep synthesis instant at use sites.
--/
+   
+                                                                       
+                                                              
+                                                                       
+                                                            
+  
 
 instance {R : Type u} [Semiring R] : SemiringLaws R := ⟨⟩
 
@@ -105,10 +105,10 @@ instance {R : Type u} [Field R] : FieldLaws R := ⟨⟩
 instance {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] :
     OrderedFieldLaws R := ⟨⟩
 
-/-!
-Certified carriers, as compile-time checks that the bridge composes all
-the way up the bundles.
--/
+   
+                                                                       
+                       
+  
 
 example : CommutativeSemiringLaws Nat := inferInstance
 example : CommutativeRingLaws Int := inferInstance

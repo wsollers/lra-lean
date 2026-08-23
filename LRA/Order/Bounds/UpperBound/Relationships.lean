@@ -6,7 +6,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- Upper bounds in the converse relation are lower bounds in the original. -/
+                                                                              
 theorem UpperBoundOfConverseIffLowerBound
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]

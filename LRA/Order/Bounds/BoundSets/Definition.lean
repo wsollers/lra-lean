@@ -14,7 +14,7 @@ variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 variable [HasSeparation Element SetObject] [HasUniversal SetObject]
 
-/-- The represented set of all upper bounds of a represented subset. -/
+                                                                       
 def UpperBounds
     (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject) : SetObject :=
@@ -22,7 +22,7 @@ def UpperBounds
     (HasUniversal.universal : SetObject)
     (UpperBound relation subset)
 
-/-- The represented set of all lower bounds of a represented subset. -/
+                                                                       
 def LowerBounds
     (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject) : SetObject :=
@@ -30,13 +30,13 @@ def LowerBounds
     (HasUniversal.universal : SetObject)
     (LowerBound relation subset)
 
-/-- Lower bounds of all upper bounds. -/
+                                        
 def LowerUpperClosure
     (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject) : SetObject :=
   LowerBounds relation (UpperBounds relation subset)
 
-/-- Upper bounds of all lower bounds. -/
+                                        
 def UpperLowerClosure
     (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject) : SetObject :=

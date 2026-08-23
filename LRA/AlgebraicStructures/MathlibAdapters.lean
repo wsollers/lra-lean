@@ -1,5 +1,5 @@
--- LRA/VolumeI/AlgebraicStructures/MathlibAdapters.lean
--- Reverse adapters: assemble Mathlib's bundled classes from certificates.
+                                                       
+                                                                          
 
 import Mathlib.Algebra.Field.Defs
 import LRA.AlgebraicStructures.CommutativeRing.Laws.Definition
@@ -10,44 +10,44 @@ namespace LRA.AlgebraicStructures
 
 universe u
 
-/-!
-Reverse adapters: project certificates → Mathlib bundled classes.
+   
+                                                                 
 
-The forward bridge (`MathlibBridge.lean`) certifies every Mathlib
-carrier automatically. These adapters point the other way: a *project*
-carrier whose certificates are proved can borrow Mathlib's bundled
-classes — and with them `ring`, `linarith`, and the whole lemma
-library.
+                                                                 
+                                                                      
+                                                                  
+                                                               
+        
 
-They are **`def`s, never instances**, for two reasons. Automatic
-instances here would loop with the forward bridge (certificate ↔
-bundled class, forever). And a Mathlib structure assembled over
-sorry-backed certificates should be a *deliberate* act at the use
-site, not something instance search performs silently. Opt in locally:
+                                                                
+                                                                
+                                                               
+                                                                 
+                                                                      
 
-```
-letI : CommRing Z := toMathlibCommRing Z
-example (a b : Z) : (a + b) * (a + b) = a*a + 2*(a*b) + b*b := by ring
-```
+   
+                                        
+                                                                      
+   
 
-Mathlib's `Ring` bundles `natCast`/`intCast`/`nsmul`/`zsmul`/`npow`
-data; the adapters take the default implementations (`Nat.unaryCast`,
-`nsmulRec`, ...), which is exactly right for a carrier that never
-declared its own casts.
--/
+                                                                   
+                                                                     
+                                                                 
+                       
+  
 
-/-- Assemble Mathlib's `CommRing` from the project certificates.
+                                                                
 
-Logical form:
+             
 
-```lean
-def toMathlibCommRing (R : Type u)
-    [Add R] [Mul R] [Neg R] [Sub R] [OfNat R 0] [OfNat R 1]
-    [CommutativeRingLaws R] [SubtractionCompatibilityLaw R] :
-    CommRing R where
-  add
-```
--/
+       
+                                  
+                                                           
+                                                             
+                    
+     
+   
+  
 @[reducible] def toMathlibCommRing (R : Type u)
     [Add R] [Mul R] [Neg R] [Sub R] [OfNat R 0] [OfNat R 1]
     [CommutativeRingLaws R] [SubtractionCompatibilityLaw R] :
@@ -76,18 +76,18 @@ def toMathlibCommRing (R : Type u)
   npow := npowRec
   mul_comm := MulCommutative
 
-/-- Assemble Mathlib's `Field` from the project certificates.
+                                                             
 
-Logical form:
+             
 
-```lean
-noncomputable def toMathlibField (R : Type u)
-    [Add R] [Mul R] [Neg R] [Sub R] [Inv R] [Div R]
-    [OfNat R 0] [OfNat R 1]
-    [FieldLaws R] [SubtractionCompatibilityLaw R]
-    [DivisionCompatibilityLaw R] : Field R
-```
--/
+       
+                                             
+                                                   
+                           
+                                                 
+                                          
+   
+  
 @[reducible] noncomputable def toMathlibField (R : Type u)
     [Add R] [Mul R] [Neg R] [Sub R] [Inv R] [Div R]
     [OfNat R 0] [OfNat R 1]
@@ -108,10 +108,10 @@ noncomputable def toMathlibField (R : Type u)
     nnqsmul := _
     qsmul := _ }
 
-/-! ## Smoke test: Mathlib automation on a certificate-carrying carrier
+                                                                       
 
-The adapters must at minimum assemble for a Mathlib carrier's own
-certificates (round trip through the forward bridge). -/
+                                                                 
+                                                        
 
 example : CommRing Int := toMathlibCommRing Int
 noncomputable example : Field Rat := toMathlibField Rat

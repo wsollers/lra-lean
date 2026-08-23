@@ -8,7 +8,7 @@ variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 variable (natural_data : NaturalArithmeticForWholeNumbers Element SetObject)
 
-/-- Addition forms a commutative cancellative monoid. -/
+                                                        
 theorem additive_structure :
     (∀ first second third,
       addition natural_data (addition natural_data first second) third =
@@ -23,7 +23,7 @@ theorem additive_structure :
       first = second) := by
   sorry
 
-/-- Multiplication and addition form a nontrivial commutative semiring without zero divisors. -/
+                                                                                                
 theorem semiring_structure :
     zero natural_data ≠ one natural_data ∧
     (∀ first second third,
@@ -47,7 +47,7 @@ theorem semiring_structure :
       first = zero natural_data ∨ second = zero natural_data) := by
   sorry
 
-/-- The whole-number order is discrete, total, and compatible with arithmetic. -/
+                                                                                 
 theorem ordered_semiring_structure :
     (∀ value, nonstrictOrder natural_data (zero natural_data) value) ∧
     (∀ first second,
@@ -69,13 +69,13 @@ theorem ordered_semiring_structure :
           (multiplication natural_data second positive))) := by
   sorry
 
-/-- The lifted non-strict order is reflexive. -/
+                                                
 theorem nonstrict_order_refl :
     ∀ value, nonstrictOrder natural_data value value := by
   intro value
   exact Or.inr rfl
 
-/-- The lifted non-strict order is transitive. -/
+                                                 
 theorem nonstrict_order_trans :
     ∀ first second third,
       nonstrictOrder natural_data first second →
@@ -83,7 +83,7 @@ theorem nonstrict_order_trans :
       nonstrictOrder natural_data first third := by
   sorry
 
-/-- The lifted non-strict order is antisymmetric. -/
+                                                    
 theorem nonstrict_order_antisymm :
     ∀ first second,
       nonstrictOrder natural_data first second →
@@ -91,14 +91,14 @@ theorem nonstrict_order_antisymm :
       first = second := by
   sorry
 
-/-- The lifted non-strict order is total. -/
+                                            
 theorem nonstrict_order_total :
     ∀ first second,
       nonstrictOrder natural_data first second ∨
         nonstrictOrder natural_data second first := by
   sorry
 
-/-- Addition preserves the lifted non-strict order. -/
+                                                      
 theorem addition_preserves_nonstrict_order :
     ∀ first second translation,
       nonstrictOrder natural_data first second →
@@ -107,7 +107,7 @@ theorem addition_preserves_nonstrict_order :
           (addition natural_data second translation) := by
   sorry
 
-/-- Addition preserves and reflects the lifted non-strict order. -/
+                                                                   
 theorem addition_preserves_and_reflects_nonstrict_order :
     ∀ first second translation,
       nonstrictOrder natural_data
@@ -116,8 +116,8 @@ theorem addition_preserves_and_reflects_nonstrict_order :
       nonstrictOrder natural_data first second := by
   sorry
 
-/-- Multiplication by a nonnegative whole number preserves the lifted
-non-strict order. -/
+                                                                     
+                    
 theorem multiplication_preserves_nonstrict_order :
     ∀ first second positive,
       nonstrictOrder natural_data (zero natural_data) positive →
@@ -127,7 +127,7 @@ theorem multiplication_preserves_nonstrict_order :
           (multiplication natural_data second positive) := by
   sorry
 
-/-- Every nonempty whole-number subset has a least element. -/
+                                                              
 theorem well_ordering
     (subset : Carrier natural_data → Prop)
     (nonempty : ∃ value, subset value) :

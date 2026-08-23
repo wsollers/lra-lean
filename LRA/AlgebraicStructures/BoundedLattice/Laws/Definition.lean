@@ -5,7 +5,7 @@ namespace LRA.AlgebraicStructures
 
 universe u
 
-/-- Algebraic bounded-lattice laws for explicit join, meet, bottom, and top. -/
+                                                                               
 def BoundedLatticeLaws {Carrier : Type u}
     (join meet : LRA.Operation.BinaryEndoOperation Carrier)
     (bottom top : Carrier) : Prop :=

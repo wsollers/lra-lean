@@ -7,6 +7,6 @@ import LRA.Logic.Proof.System.Takeuti.LK
 import LRA.Logic.Proof.System.Takeuti.LJ
 import LRA.Logic.Proof.System.Takeuti.Cut
 
-/-!
-Aggregate import for Takeuti-style first-order sequent calculi.
--/
+   
+                                                               
+  

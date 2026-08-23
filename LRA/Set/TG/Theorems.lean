@@ -15,4 +15,4 @@ import LRA.Set.TG.SymmetricDifference.Theorems
 import LRA.Set.TG.IntersectionOver.Theorems
 import LRA.Set.TG.OrderedPair.Theorems
 
-/-! Primitive TG consequences and derived set constructions. -/
+                                                               

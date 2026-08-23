@@ -6,19 +6,19 @@ import LRA.NumberSystems.RationalNumbers.Construction
 import LRA.NumberSystems.RationalNumbers.ContinuedFractions
 import LRA.NumberSystems.RationalNumbers.UniversalProperty
 
-/-!
-Canonical import route for the rational-number system.
+   
+                                                      
 
-`RationalNumberSystem` records an actual `IntegerNumberSystem`, an underlying
-densely ordered field, the integer embedding, and fraction generation.
-`Examples.lean` is intentionally opt-in and demonstrates constructing rational
-systems over different integer realizations.
+                                                                             
+                                                                      
+                                                                              
+                                            
 
-`RationalNumberSystemIsCountable` is derived in `Theorems.lean`. The
-fraction-field universal property is derived in `UniversalProperty.lean`; it is
-not stored as a second independent certificate.
+                                                                    
+                                                                               
+                                               
 
-The arithmetic syntax of continued fractions is owned by
-`LRA.Arithmetic.ContinuedFractions`; this subject module owns only the rational
-interpretation and finite rational expansion theorem.
--/
+                                                        
+                                                                               
+                                                     
+  

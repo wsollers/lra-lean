@@ -4,4 +4,4 @@ import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Laws.Characterizatio
 import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Laws.Consequences
 import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Laws.Relationships
 
-/-! Canonical import route for additive commutative semigroup law certificates. -/
+                                                                                  

@@ -2,7 +2,7 @@ import LRA.Order.OrderedSets.PartialOrder.NonStrict
 
 namespace LRA.Order.OrderedSets.PartialOrder
 
-/-- The relation in a partial order is reflexive. -/
+                                                    
 theorem PartialOrderIsReflexive
     {Carrier : Type u}
     (relation : LRA.Order.OrderedSets.OrderRelation Carrier)
@@ -10,7 +10,7 @@ theorem PartialOrderIsReflexive
     LRA.Relation.Reflexive relation := by
   sorry
 
-/-- The relation in a partial order is antisymmetric. -/
+                                                        
 theorem PartialOrderIsAntisymmetric
     {Carrier : Type u}
     (relation : LRA.Order.OrderedSets.OrderRelation Carrier)
@@ -18,7 +18,7 @@ theorem PartialOrderIsAntisymmetric
     LRA.Relation.Antisymmetric relation := by
   sorry
 
-/-- The relation in a partial order is transitive. -/
+                                                     
 theorem PartialOrderIsTransitive
     {Carrier : Type u}
     (relation : LRA.Order.OrderedSets.OrderRelation Carrier)
@@ -26,21 +26,21 @@ theorem PartialOrderIsTransitive
     LRA.Relation.Transitive relation := by
   sorry
 
-/-- The relation packaged by a partial-order relation is reflexive. -/
+                                                                      
 theorem PartialOrderRelationIsReflexive
     {Carrier : Type u}
     (order : PartialOrderRelation Carrier) :
     LRA.Relation.Reflexive order.relation := by
   sorry
 
-/-- The relation packaged by a partial-order relation is antisymmetric. -/
+                                                                          
 theorem PartialOrderRelationIsAntisymmetric
     {Carrier : Type u}
     (order : PartialOrderRelation Carrier) :
     LRA.Relation.Antisymmetric order.relation := by
   sorry
 
-/-- The relation packaged by a partial-order relation is transitive. -/
+                                                                       
 theorem PartialOrderRelationIsTransitive
     {Carrier : Type u}
     (order : PartialOrderRelation Carrier) :

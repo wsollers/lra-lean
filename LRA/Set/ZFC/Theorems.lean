@@ -14,4 +14,4 @@ import LRA.Set.ZFC.Infinity.Theorems
 import LRA.Set.ZFC.Foundation.Theorems
 import LRA.Set.ZFC.Choice.Theorems
 
-/-! Derived ZFC theory, retained under legacy theorem names during namespace migration. -/
+                                                                                          

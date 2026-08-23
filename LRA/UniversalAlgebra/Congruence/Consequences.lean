@@ -6,16 +6,16 @@ namespace LRA.UniversalAlgebra.Congruence
 open LRA.Operation
 open scoped LRA.Set
 
-/-!
-Consequences of operation congruence with respect to arbitrary relations.
--/
+   
+                                                                         
+  
 
 universe u v
 
-/--
-Unary operation congruence is exactly the well-definedness condition needed
-to pass from representatives to quotient classes.
--/
+   
+                                                                           
+                                                 
+  
 theorem UnaryOperationRelationRequirements.quotient_projection_respects_operation
     {Carrier : Type u} {SetObject : Type v}
     [Membership Carrier SetObject]
@@ -33,10 +33,10 @@ theorem UnaryOperationRelationRequirements.quotient_projection_respects_operatio
       LRA.Relation.QuotientProjection ambient relation (operation right) := by
   sorry
 
-/--
-Binary operation congruence is exactly the well-definedness condition needed
-to pass from pairs of representatives to quotient classes.
--/
+   
+                                                                            
+                                                          
+  
 theorem BinaryOperationRelationRequirements.quotient_projection_respects_operation
     {Carrier : Type u} {SetObject : Type v}
     [Membership Carrier SetObject]

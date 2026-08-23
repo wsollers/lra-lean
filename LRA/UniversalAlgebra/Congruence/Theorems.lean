@@ -6,7 +6,7 @@ open LRA.Operation
 
 universe u
 
-/-- Apply unary operation congruence. -/
+                                        
 theorem UnaryOperationCongruence.apply {Carrier : Type u}
     {relation : LRA.Relation.Endorelation Carrier}
     {operation : UnaryEndoOperation Carrier}
@@ -16,7 +16,7 @@ theorem UnaryOperationCongruence.apply {Carrier : Type u}
     relation (operation left) (operation right) := by
   sorry
 
-/-- Apply binary operation congruence. -/
+                                         
 theorem BinaryOperationCongruence.apply {Carrier : Type u}
     {relation : LRA.Relation.Endorelation Carrier}
     {operation : BinaryEndoOperation Carrier}
@@ -27,7 +27,7 @@ theorem BinaryOperationCongruence.apply {Carrier : Type u}
     relation (operation left₁ right₁) (operation left₂ right₂) := by
   sorry
 
-/-- Project the equivalence-relation component from unary operation requirements. -/
+                                                                                    
 theorem UnaryOperationRelationRequirements.relation_is_equivalence {Carrier : Type u}
     {relation : LRA.Relation.Endorelation Carrier}
     {operation : UnaryEndoOperation Carrier}
@@ -35,7 +35,7 @@ theorem UnaryOperationRelationRequirements.relation_is_equivalence {Carrier : Ty
     LRA.Relation.EquivalenceRelation relation := by
   sorry
 
-/-- Project the congruence component from unary operation requirements. -/
+                                                                          
 theorem UnaryOperationRelationRequirements.operation_congruence {Carrier : Type u}
     {relation : LRA.Relation.Endorelation Carrier}
     {operation : UnaryEndoOperation Carrier}
@@ -43,7 +43,7 @@ theorem UnaryOperationRelationRequirements.operation_congruence {Carrier : Type 
     UnaryOperationCongruence relation operation := by
   sorry
 
-/-- Project the equivalence-relation component from binary operation requirements. -/
+                                                                                     
 theorem BinaryOperationRelationRequirements.relation_is_equivalence {Carrier : Type u}
     {relation : LRA.Relation.Endorelation Carrier}
     {operation : BinaryEndoOperation Carrier}
@@ -51,7 +51,7 @@ theorem BinaryOperationRelationRequirements.relation_is_equivalence {Carrier : T
     LRA.Relation.EquivalenceRelation relation := by
   sorry
 
-/-- Project the congruence component from binary operation requirements. -/
+                                                                           
 theorem BinaryOperationRelationRequirements.operation_congruence {Carrier : Type u}
     {relation : LRA.Relation.Endorelation Carrier}
     {operation : BinaryEndoOperation Carrier}

@@ -13,7 +13,7 @@ variable [EmptyCollection SetObject] [HasSubset SetObject]
 variable [HasSymmDiff SetObject]
 variable [HasCountableIntersection SetObject]
 
-/-- A delta-ring of sets: a ring of sets closed under countable intersections. -/
+                                                                                 
 structure DeltaRingOfSets (ambient : SetObject) extends
     RingOfSets ambient where
   CountableIntersectionIsMember :

@@ -2,12 +2,12 @@ import LRA.Logic.Model.Model
 
 namespace LRA.AlgebraicStructures.Ring.Interface.Signature
 
-/-!
-First-order signature for rings.
+   
+                                
 
-The ring language has constants `0` and `1`, binary addition and
-multiplication, and unary negation.
--/
+                                                                
+                                   
+  
 
 inductive RingFunctionSymbol where
   | add

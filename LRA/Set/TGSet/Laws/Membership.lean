@@ -5,7 +5,7 @@ import LRA.Set.Interface.Families
 
 namespace LRA.Set.TGSet
 
-/-! Membership-law certificates for the concrete TGSet backend. -/
+                                                                  
 
 theorem SubsetIffAllMembers :
     forall A B : Set, A ⊆ B <-> forall x : Set, x ∈ A -> x ∈ B := by

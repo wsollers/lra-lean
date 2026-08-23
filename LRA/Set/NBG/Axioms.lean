@@ -10,4 +10,4 @@ import LRA.Set.NBG.Axioms.Foundation
 import LRA.Set.NBG.Axioms.Choice
 import LRA.Set.NBG.Axioms.ClassComprehension
 
-/-! Primitive NBG assumptions for the in-house `NBGSet`/`NBGClass` universe. -/
+                                                                               

@@ -10,4 +10,4 @@ import LRA.Operation.Laws.Nilpotent
 import LRA.Operation.Laws.Inverse
 import LRA.Operation.Laws.Closure
 
-/-! Canonical operation-law families. -/
+                                        

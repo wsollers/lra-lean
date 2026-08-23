@@ -5,7 +5,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- Every nonempty bounded-above backend subset has a supremum. -/
+                                                                  
 def LeastUpperBoundProperty
     {Element : Type u} (SetObject : Type v)
     [Membership Element SetObject]

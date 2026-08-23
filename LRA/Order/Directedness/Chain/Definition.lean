@@ -4,8 +4,8 @@ namespace LRA.Order
 
 universe u v
 
-/-- A chain is a subset whose elements are pairwise comparable. The empty
-subset is a chain under this convention. -/
+                                                                         
+                                           
 def Chain
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]

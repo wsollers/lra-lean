@@ -4,7 +4,7 @@ namespace LRA.Morphism
 
 universe u v
 
-/-- A function preserves a unary operation. -/
+                                              
 def PreservesUnaryOperation {Source : Type u} {Target : Type v}
     (function : Source → Target)
     (sourceOperation : LRA.Operation.UnaryEndoOperation Source)

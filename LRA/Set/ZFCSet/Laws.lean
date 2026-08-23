@@ -6,4 +6,4 @@ import LRA.Set.ZFCSet.Laws.Difference
 import LRA.Set.ZFCSet.Laws.SymmetricDifference
 import LRA.Set.ZFCSet.Laws.Membership
 
-/-! Generic Set-interface law certificates satisfied by the in-house ZFCSet realization. -/
+                                                                                           

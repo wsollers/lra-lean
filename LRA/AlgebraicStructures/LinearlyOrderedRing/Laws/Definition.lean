@@ -4,7 +4,7 @@ namespace LRA.AlgebraicStructures
 
 universe u
 
-/-- Linearly ordered ring laws. -/
+                                  
 class abbrev LinearlyOrderedRingLaws (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LE R] : Prop :=
   RingLaws R, LRA.Order.LinearOrderLaws R,

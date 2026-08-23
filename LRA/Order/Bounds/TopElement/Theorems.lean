@@ -13,7 +13,7 @@ variable [LRA.Set.HasUniversal SetObject]
 variable [LRA.Set.HasComplement SetObject]
 variable [LRA.Set.UniversalMembershipLaws Element SetObject]
 
-/-- A top element is exactly an element every carrier element is related to. -/
+                                                                               
 theorem TopElementIffEveryRelationTo
     {relation : LRA.Relation.Endorelation Element}
     {top : Element} :

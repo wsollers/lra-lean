@@ -13,6 +13,6 @@ import LRA.Analysis.Sequences.ClusterValues
 import LRA.Analysis.Sequences.Divergence
 import LRA.Analysis.Sequences.Applications
 
-/-!
-Aggregate import for core Volume III sequence modules.
--/
+   
+                                                      
+  

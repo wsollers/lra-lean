@@ -1,5 +1,5 @@
--- LRA/VolumeII/Arithmetic/Examples.lean
--- Small executable checks for the arithmetic section.
+                                        
+                                                      
 
 import LRA.VolumeII.Arithmetic.AlgebraicIdentities
 import LRA.VolumeII.Arithmetic.Parity

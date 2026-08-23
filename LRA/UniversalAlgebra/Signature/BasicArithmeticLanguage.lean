@@ -6,9 +6,9 @@ import LRA.UniversalAlgebra.Signature.BasicArithmeticLanguage.DerivedRelationNot
 
 namespace LRA.UniversalAlgebra.Signature
 
-/-!
-Home for the familiar arithmetic token pool, separated into primitive symbols
-and derived notation previews.
--/
+   
+                                                                             
+                              
+  
 
 end LRA.UniversalAlgebra.Signature

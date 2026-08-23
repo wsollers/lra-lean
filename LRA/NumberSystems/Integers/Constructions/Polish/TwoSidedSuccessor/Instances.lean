@@ -1,5 +1,5 @@
--- LRA/NumberSystems/Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean
--- Machine and certificate instances for the two-sided successor integers.
+                                                                                   
+                                                                          
 
 import LRA.AlgebraicStructures
 import LRA.NumberSystems.Integers.Constructions.Polish.TwoSidedSuccessor.Behavior
@@ -11,28 +11,28 @@ namespace LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor
 open LRA.AlgebraicStructures
 open LRA.Order
 
-/-!
-Volume II label: integers-polish-instances
-Lean module: LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Instances
-Verification status: ring/successor certificates checked by delegation;
-order certificates carry stated `sorry` gaps (see below)
+   
+                                          
+                                                                          
+                                                                       
+                                                        
 
-This module registers `TwoSidedSuccessor.Z` as a carrier in the Volume I
-algebraic-structures layer, replacing the retired bundled
-`IntegerStructure`/`IntegerLaws` interface. Machines first (`OfNat`,
-`Sub`, `HasSuccessor`, `HasPredecessor` -- `Add`, `Neg`, `Mul`, `LT`,
-`LE` are registered where the operations are defined), then one
-certificate instance per law family, each field delegating to the
-theorem already proved in `TwoSidedSuccessor`/`LandauWorkup`.
+                                                                        
+                                                         
+                                                                    
+                                                                     
+                                                               
+                                                                 
+                                                             
 
-Proving queue (certificates without a proved Polish lemma):
-`LeTrans`, `LeTotal`, `LtIffLeNotLe`, `AddLeAddLeft`, `AddLeAddRight`,
-`MulNonneg`, `SuccAperiodic` — each one step from an existing strict
-(`<`) lemma via `le_iff` — plus `OneNeZero` (constructor disjointness),
-`EqZeroOfMulEqZero`, and `NoStrictBetweenAddOne`.
--/
+                                                           
+                                                                      
+                                                                    
+                                                                       
+                                                 
+  
 
-/-! ## Machines -/
+                  
 
 instance : OfNat Z 0 := ⟨Z.zero⟩
 
@@ -44,21 +44,22 @@ instance : HasSuccessor Z := ⟨succ⟩
 
 instance : HasPredecessor Z := ⟨pred⟩
 
-/-! ## Additive certificates -/
+                               
 
 instance : AdditiveSemigroupLaws Z := ⟨add_assoc⟩
 
 instance : AdditiveCommutativeLaws Z := ⟨add_comm⟩
 
-instance : AdditiveIdentityLaws Z := by
-  sorry
+theorem z_sub_eq_add_neg (firstInteger secondInteger : Z) :
+    firstInteger - secondInteger = firstInteger + -secondInteger := rfl
 
-instance : AdditiveInverseLaws Z := by
-  sorry
+instance : AdditiveIdentityLaws Z := ⟨zero_add, add_zero⟩
 
-instance : SubtractionCompatibilityLaw Z := ⟨fun _ _ => rfl⟩
+instance : AdditiveInverseLaws Z := ⟨neg_add_self, add_neg_self⟩
 
-/-! ## Multiplicative certificates -/
+instance : SubtractionCompatibilityLaw Z := ⟨z_sub_eq_add_neg⟩
+
+                                     
 
 instance : MultiplicativeSemigroupLaws Z := ⟨mul_assoc⟩
 
@@ -66,59 +67,112 @@ instance : MultiplicativeCommutativeLaws Z := ⟨mul_comm⟩
 
 instance : MultiplicativeIdentityLaws Z := ⟨one_mul, mul_pos_succZero⟩
 
-instance : ZeroAbsorbingLaws Z := by
+theorem z_mul_zero (integer : Z) : integer * Z.zero = Z.zero := by
   sorry
+
+instance : ZeroAbsorbingLaws Z := ⟨zero_mul, z_mul_zero⟩
 
 instance : DistributiveLaws Z := ⟨distrib_left, distrib_right⟩
 
-instance : NontrivialityLaw Z where
-  OneNeZero := by sorry
+theorem z_one_ne_zero : (one : Z) ≠ Z.zero := by
+  sorry
 
-instance : NoZeroDivisorsLaw Z where
-  EqZeroOfMulEqZero := by sorry
+instance : NontrivialityLaw Z := ⟨z_one_ne_zero⟩
 
-/-! ## Order certificates -/
+theorem z_eq_zero_of_mul_eq_zero (firstInteger secondInteger : Z) :
+    firstInteger * secondInteger = Z.zero ->
+      firstInteger = Z.zero ∨ secondInteger = Z.zero := by
+  sorry
 
-instance : PartialOrderLaws Z where
-  LeRefl := le_refl
-  LeAntisymm := fun _ _ firstLeSecond secondLeFirst =>
-    le_antisymm firstLeSecond secondLeFirst
-  LeTrans := by sorry
+instance : NoZeroDivisorsLaw Z := ⟨z_eq_zero_of_mul_eq_zero⟩
 
-instance : TotalOrderLaw Z where
-  LeTotal := by sorry
+                            
 
-instance : StrictOrderCompatibilityLaw Z where
-  LtIffLeNotLe := by sorry
+theorem z_le_trans (firstInteger secondInteger thirdInteger : Z) :
+    firstInteger ≤ secondInteger ->
+      secondInteger ≤ thirdInteger -> firstInteger ≤ thirdInteger := by
+  sorry
 
-instance : AdditionRespectsOrderLaws Z where
-  AddLeAddLeft := by sorry
-  AddLeAddRight := by sorry
+theorem z_le_antisymm (firstInteger secondInteger : Z) :
+    firstInteger ≤ secondInteger ->
+      secondInteger ≤ firstInteger -> firstInteger = secondInteger := by
+  intro firstLeSecond secondLeFirst
+  exact le_antisymm firstLeSecond secondLeFirst
 
-instance : MultiplicationRespectsOrderLaws Z where
-  MulNonneg := by sorry
+instance : PartialOrderLaws Z := ⟨le_refl, z_le_antisymm, z_le_trans⟩
 
-instance : OrderDiscretenessLaw Z where
-  NoStrictBetweenAddOne := by sorry
+theorem z_le_total (firstInteger secondInteger : Z) :
+    firstInteger ≤ secondInteger ∨ secondInteger ≤ firstInteger := by
+  sorry
 
-/-! ## Discreteness certificates -/
+instance : TotalOrderLaw Z := ⟨z_le_total⟩
 
-instance : SuccessorLaws Z where
-  PredSucc := pred_succ
-  SuccPred := succ_pred
-  SuccInjective := fun _ _ successorEquality => succ_injective successorEquality
-  PredInjective := fun _ _ predecessorEquality => pred_injective predecessorEquality
+theorem z_lt_iff_le_not_le (firstInteger secondInteger : Z) :
+    firstInteger < secondInteger ↔
+      firstInteger ≤ secondInteger ∧ ¬ secondInteger ≤ firstInteger := by
+  sorry
 
-instance : SuccessorAdditionLaw Z :=
-  ⟨fun integer => (add_one integer).symm⟩
+instance : StrictOrderCompatibilityLaw Z := ⟨z_lt_iff_le_not_le⟩
+
+theorem z_add_le_add_left (firstInteger secondInteger : Z) :
+    firstInteger ≤ secondInteger -> ∀ translation : Z,
+      translation + firstInteger ≤ translation + secondInteger := by
+  sorry
+
+theorem z_add_le_add_right (firstInteger secondInteger : Z) :
+    firstInteger ≤ secondInteger -> ∀ translation : Z,
+      firstInteger + translation ≤ secondInteger + translation := by
+  sorry
+
+instance : AdditionRespectsOrderLaws Z := ⟨z_add_le_add_left, z_add_le_add_right⟩
+
+theorem z_mul_nonneg (firstInteger secondInteger : Z) :
+    Z.zero ≤ firstInteger -> Z.zero ≤ secondInteger -> Z.zero ≤ firstInteger * secondInteger := by
+  sorry
+
+instance : MultiplicationRespectsOrderLaws Z := ⟨z_mul_nonneg⟩
+
+theorem z_no_strict_between_add_one (integer : Z) :
+    ¬ ∃ middle : Z, integer < middle ∧ middle < integer + 1 := by
+  sorry
+
+instance : OrderDiscretenessLaw Z := ⟨z_no_strict_between_add_one⟩
+
+                                   
+
+theorem z_succ_injective (firstInteger secondInteger : Z) :
+    Succ firstInteger = Succ secondInteger -> firstInteger = secondInteger := by
+  intro successorEquality
+  exact succ_injective successorEquality
+
+theorem z_pred_injective (firstInteger secondInteger : Z) :
+    Pred firstInteger = Pred secondInteger -> firstInteger = secondInteger := by
+  intro predecessorEquality
+  exact pred_injective predecessorEquality
+
+instance : SuccessorLaws Z := ⟨pred_succ, succ_pred, z_succ_injective, z_pred_injective⟩
+
+theorem z_succ_eq_add_one (integer : Z) : succ integer = integer + one := by
+  exact (add_one integer).symm
+
+instance : SuccessorAdditionLaw Z := ⟨z_succ_eq_add_one⟩
 
 instance : SuccessorMultiplicationLaws Z := ⟨mul_succ, mul_pred⟩
 
-instance : DiscretenessLaw Z where
-  SuccAperiodic := by sorry
-  TwoSidedInduction := by sorry
+theorem z_succ_aperiodic (iterationCount : Nat) :
+    0 < iterationCount -> SuccIterate iterationCount (0 : Z) ≠ 0 := by
+  sorry
 
-/-! ## Smoke tests: bundles synthesize from the leaf certificates -/
+theorem z_two_sided_induction (motive : Z → Prop) :
+    motive 0 ->
+      (∀ integer, motive integer -> motive (Succ integer)) ->
+      (∀ integer, motive integer -> motive (Pred integer)) ->
+      ∀ integer, motive integer := by
+  sorry
+
+instance : DiscretenessLaw Z := ⟨z_succ_aperiodic, z_two_sided_induction⟩
+
+                                                                    
 
 example : CommutativeRingLaws Z := inferInstance
 example : RingLaws Z := inferInstance
@@ -130,21 +184,46 @@ example (a b : Z) : a * Succ b = a * b + a := MulSucc a b
 example (a b c : Z) : a * (b + c) = a * b + a * c := LeftDistributive a b c
 example (a : Z) : a - a = a + -a := SubEqAddNeg a a
 
-/-! ## Realization: registration into the generic `IntegerStructure` interface
+theorem polish_integer_structure_induction
+    (subset : LRA.Set.PredicateSet Z) :
+    Z.zero ∈ subset ->
+      (∀ element : Z, element ∈ subset -> succ element ∈ subset) ->
+      (∀ element : Z, element ∈ subset -> pred element ∈ subset) ->
+      ∀ element : Z, element ∈ subset := by
+  intro zeroInSubset successorClosed predecessorClosed
+  exact z_two_sided_induction (fun element => element ∈ subset)
+    zeroInSubset successorClosed predecessorClosed
 
-Per §1.6, layer 3's `Instances.lean` also registers into the generic
-interface a construction realizes, not only into `LRA.AlgebraicStructures`.
-Every field below already has a proved (or, for `aperiodic`, stated-`sorry`
-above) component lemma; the *assembly* into this record is new work under
-this migration's "state, never complete, new proof obligations" policy, so
-the whole definition is `sorry` rather than composed field-by-field without
-a toolchain to check the composition. Tracked in `Integers/ProofOrder.md`.
--/
-
-/-- `TwoSidedSuccessor.Z` realizes the generic `IntegerStructure` interface,
-backed by `PredicateSet Z` for the induction clause's subset quantifier. -/
-noncomputable def PolishRealizesIntegerStructure :
-    LRA.NumberSystems.IntegerStructure.IntegerStructure Z (LRA.Set.PredicateSet Z) := by
+theorem polish_integer_structure_aperiodic :
+    ∀ iterations : Nat, 0 < iterations ->
+      LRA.NumberSystems.IntegerStructure.iterate succ iterations Z.zero ≠ Z.zero := by
   sorry
+
+                                                                              
+
+                                                                    
+                                                                           
+                                                                           
+                                                                         
+                                                                          
+                                                                           
+                                                                          
+  
+
+                                                                            
+                                                                           
+noncomputable def PolishRealizesIntegerStructure :
+    LRA.NumberSystems.IntegerStructure.IntegerStructure Z (LRA.Set.PredicateSet Z) where
+  zero := Z.zero
+  one := one
+  negativeOne := -one
+  successor := succ
+  predecessor := pred
+  predecessor_successor := pred_succ
+  successor_predecessor := succ_pred
+  successor_zero := succ_zero_eq_one
+  predecessor_zero := pred_zero_eq_neg_one
+  aperiodic := polish_integer_structure_aperiodic
+  induction := polish_integer_structure_induction
 
 end LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor

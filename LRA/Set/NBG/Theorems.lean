@@ -15,4 +15,4 @@ import LRA.Set.NBG.SymmetricDifference.Theorems
 import LRA.Set.NBG.IntersectionOver.Theorems
 import LRA.Set.NBG.OrderedPair.Theorems
 
-/-! Primitive NBG consequences and derived set/class constructions. -/
+                                                                      

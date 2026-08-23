@@ -6,7 +6,7 @@ namespace LRA.Order
 
 universe u
 
-/-- Meets for the converse relation are joins for the original relation. -/
+                                                                           
 theorem MeetOfConverseIffJoin
     {Alpha : Type u}
     (relation : LRA.Relation.Endorelation Alpha)

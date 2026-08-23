@@ -2,7 +2,7 @@ import LRA.Set.TGSet.Primitives
 
 namespace LRA.Set.TG
 
-/-- Zermelo choice for pairwise-disjoint families of nonempty sets. -/
+                                                                      
 axiom Choice (A : TGSet) :
   (forall B : TGSet, B ∈ A -> exists x : TGSet, x ∈ B) ->
   (forall B C : TGSet,

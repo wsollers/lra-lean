@@ -5,7 +5,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- The greatest-lower-bound property gives a unique infimum in an antisymmetric relation. -/
+                                                                                             
 theorem GreatestLowerBoundPropertyGivesUniqueInfimum
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]

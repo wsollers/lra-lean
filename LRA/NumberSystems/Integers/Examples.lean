@@ -6,17 +6,21 @@ namespace LRA.NumberSystems.Integers.Examples
 open LRA.NumberSystems.Models
 open LRA.NumberSystems.Integers
 
-/-- Mathlib's `Int` carrier realizes the actual integer number system.
+theorem mathlib_every_element_is_integer_numeral :
+    ∀ value : mathlibDiscretelyOrderedIntegralDomainModel.Carrier,
+      ∃ integer : Int, IntegerNumeral mathlibDiscretelyOrderedIntegralDomainModel integer = value := by
+  sorry
 
-Logical form:
+                                                                      
 
-```lean
-noncomputable def MathlibIntegerNumberSystem : IntegerNumberSystem
-```
--/
+             
+
+       
+                                                                  
+   
+  
 noncomputable def MathlibIntegerNumberSystem : IntegerNumberSystem where
   Model := mathlibDiscretelyOrderedIntegralDomainModel
-  EveryElementIsIntegerNumeral := by
-    sorry
+  EveryElementIsIntegerNumeral := mathlib_every_element_is_integer_numeral
 
 end LRA.NumberSystems.Integers.Examples

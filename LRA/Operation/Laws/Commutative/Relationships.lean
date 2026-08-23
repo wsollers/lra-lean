@@ -8,7 +8,7 @@ open LRA.Operation
 
 universe u
 
-/-- For a commutative operation, a left identity is also a right identity. -/
+                                                                             
 theorem Commutative.left_identity_to_right_identity {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity : Carrier}
@@ -17,7 +17,7 @@ theorem Commutative.left_identity_to_right_identity {Carrier : Type u}
     LRA.Operation.Laws.Identity.RightIdentity operation identity := by
   sorry
 
-/-- For a commutative operation, a right identity is also a left identity. -/
+                                                                             
 theorem Commutative.right_identity_to_left_identity {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {identity : Carrier}
@@ -26,7 +26,7 @@ theorem Commutative.right_identity_to_left_identity {Carrier : Type u}
     LRA.Operation.Laws.Identity.LeftIdentity operation identity := by
   sorry
 
-/-- For a commutative operation, a left absorbing element is also right absorbing. -/
+                                                                                     
 theorem Commutative.left_absorbing_to_right_absorbing {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {absorber : Carrier}
@@ -35,7 +35,7 @@ theorem Commutative.left_absorbing_to_right_absorbing {Carrier : Type u}
     LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber := by
   sorry
 
-/-- For a commutative operation, a right absorbing element is also left absorbing. -/
+                                                                                     
 theorem Commutative.right_absorbing_to_left_absorbing {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {absorber : Carrier}

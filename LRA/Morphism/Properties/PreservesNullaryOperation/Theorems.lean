@@ -4,7 +4,7 @@ namespace LRA.Morphism
 
 universe u v
 
-/-- Apply nullary-operation preservation. -/
+                                            
 theorem PreservesNullaryOperation.apply {Source : Type u} {Target : Type v}
     {function : Source → Target}
     {sourceElement : LRA.Operation.NullaryOperation Source}

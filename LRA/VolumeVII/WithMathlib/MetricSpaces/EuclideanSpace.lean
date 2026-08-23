@@ -7,79 +7,79 @@ import Mathlib.Tactic.Ring
 
 namespace LRA.Interop.Mathlib
 
-/-- The two-dimensional Euclidean coordinate space, using Mathlib's Euclidean
-space construction with index type `Fin 2`.
+                                                                             
+                                           
 
-Logical form:
+             
 
-```lean
+       
+                               
+                          
+   
+  
 abbrev cartesianSpace : Type :=
   EuclideanSpace ℝ (Fin 2)
-```
--/
-abbrev cartesianSpace : Type :=
-  EuclideanSpace ℝ (Fin 2)
 
-/-- The origin in two-dimensional Euclidean coordinate space.
+                                                             
 
-Logical form:
+             
 
-```lean
-noncomputable def cartesianOrigin : cartesianSpace :=
-  (EuclideanSpace.equiv (Fin 2) ℝ).symm ![0, 0]
-```
--/
+       
+                                                     
+                                               
+   
+  
 noncomputable def cartesianOrigin : cartesianSpace :=
   (EuclideanSpace.equiv (Fin 2) ℝ).symm ![0, 0]
 
-/-- The point `(1, 1)` in two-dimensional Euclidean coordinate space.
+                                                                     
 
-Logical form:
+             
 
-```lean
+       
+                                                     
+                                               
+   
+  
 noncomputable def cartesianOneOne : cartesianSpace :=
   (EuclideanSpace.equiv (Fin 2) ℝ).symm ![1, 1]
-```
--/
-noncomputable def cartesianOneOne : cartesianSpace :=
-  (EuclideanSpace.equiv (Fin 2) ℝ).symm ![1, 1]
 
-/-- In `ℝ²` with Mathlib's Euclidean `L²` metric, the distance from `(0, 0)` to
-`(1, 1)` is `sqrt 2`.
+                                                                               
+                     
 
-Logical form:
+             
 
-```lean
-lemma dist_cartesianOrigin_cartesianOneOne :
-    dist cartesianOrigin cartesianOneOne = Real.sqrt 2
-```
--/
+       
+                                            
+                                                      
+   
+  
 lemma dist_cartesianOrigin_cartesianOneOne :
     dist cartesianOrigin cartesianOneOne = Real.sqrt 2 := by
   sorry
 
-/-- Convert a point of `ℝ × ℝ` into Mathlib's two-dimensional Euclidean space.
+                                                                              
 
-Logical form:
+             
 
-```lean
+       
+                                                               
+                                                   
+   
+  
 noncomputable def toE (p : ℝ × ℝ) : EuclideanSpace ℝ (Fin 2) :=
   (EuclideanSpace.equiv (Fin 2) ℝ).symm ![p.1, p.2]
-```
--/
-noncomputable def toE (p : ℝ × ℝ) : EuclideanSpace ℝ (Fin 2) :=
-  (EuclideanSpace.equiv (Fin 2) ℝ).symm ![p.1, p.2]
 
-/-- Our coordinate formula agrees with Mathlib's Euclidean distance after
-converting `ℝ × ℝ` into `EuclideanSpace ℝ (Fin 2)`.
+                                                                         
+                                                   
 
-Logical form:
+             
 
-```lean
-lemma distance_eq_euclidean (p q : ℝ × ℝ) :
-    Real.sqrt ((p.1 - q.1) ^ 2 + (p.2 - q.2) ^ 2) = dist (toE p) (toE q)
-```
--/
+       
+                                           
+                                                                        
+   
+  
 lemma distance_eq_euclidean (p q : ℝ × ℝ) :
     Real.sqrt ((p.1 - q.1) ^ 2 + (p.2 - q.2) ^ 2) = dist (toE p) (toE q) := by
   sorry
@@ -90,15 +90,15 @@ namespace LRA.Internal
 
 open LRA.Interop.Mathlib
 
-/-- The usual Euclidean metric on the real plane.
+                                                 
 
-Logical form:
+             
 
-```lean
-noncomputable def realPlaneScratchEuclideanMetric : ScratchMetric (Real × Real) where
-  distance p q
-```
--/
+       
+                                                                                     
+              
+   
+  
 noncomputable def realPlaneScratchEuclideanMetric : ScratchMetric (Real × Real) where
   distance p q :=
     Real.sqrt ((p.1 - q.1) ^ 2 + (p.2 - q.2) ^ 2)
@@ -110,7 +110,7 @@ noncomputable def realPlaneScratchEuclideanMetric : ScratchMetric (Real × Real)
   distance_eq_zero_iff_equal := by
     intro p q
     constructor
-    -- =>
+         
     · intro hypothesis
       have h_nonneg : 0 ≤ (p.1 - q.1) ^ 2 + (p.2 - q.2) ^ 2 := by positivity
       rw [Real.sqrt_eq_zero h_nonneg] at hypothesis
@@ -119,7 +119,7 @@ noncomputable def realPlaneScratchEuclideanMetric : ScratchMetric (Real × Real)
         rwa [sq_eq_zero_iff, sub_eq_zero] at h_sq
       · have h_sq : (p.2 - q.2) ^ 2 = 0 := by nlinarith
         rwa [sq_eq_zero_iff, sub_eq_zero] at h_sq
-    -- <=
+         
     · intro hypothesis
       rw [hypothesis]
       ring_nf
@@ -135,15 +135,15 @@ noncomputable def realPlaneScratchEuclideanMetric : ScratchMetric (Real × Real)
     rw [distance_eq_euclidean, distance_eq_euclidean, distance_eq_euclidean]
     exact dist_triangle (toE x) (toE y) (toE z)
 
-/-- The real plane equipped with the usual Euclidean metric.
+                                                            
 
-Logical form:
+             
 
-```lean
-noncomputable def realPlaneScratchMetricSpace : ScratchMetricSpace (Real × Real) where
-  metric := realPlaneScratchEuclideanMetric
-```
--/
+       
+                                                                                      
+                                           
+   
+  
 noncomputable def realPlaneScratchMetricSpace : ScratchMetricSpace (Real × Real) where
   metric := realPlaneScratchEuclideanMetric
 

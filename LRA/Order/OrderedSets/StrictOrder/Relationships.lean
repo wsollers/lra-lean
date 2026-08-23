@@ -6,14 +6,14 @@ namespace LRA.Order.OrderedSets.StrictOrder
 
 universe u
 
-/-- The reflexive closure of a strict order. -/
+                                               
 def ReflexiveClosure
     {Carrier : Type u}
     (order : StrictOrderRelation Carrier) :
     LRA.Order.OrderedSets.OrderRelation Carrier :=
   LRA.Order.LessThanOrEqual order.relation
 
-/-- The reflexive closure unfolds to strict comparison or equality. -/
+                                                                      
 theorem ReflexiveClosureIff
     {Carrier : Type u}
     (order : StrictOrderRelation Carrier)
@@ -22,14 +22,14 @@ theorem ReflexiveClosureIff
       order.relation left right \/ left = right := by
   sorry
 
-/-- The reflexive closure relation of a strict order satisfies the partial-order laws. -/
+                                                                                         
 theorem ReflexiveClosureRelationIsPartialOrder
     {Carrier : Type u}
     (order : StrictOrderRelation Carrier) :
     LRA.Order.PartialOrder (ReflexiveClosure order) := by
   sorry
 
-/-- The reflexive closure of a strict order bundled as a non-strict partial order. -/
+                                                                                     
 def ReflexiveClosureAsPartialOrder
     {Carrier : Type u}
     (order : StrictOrderRelation Carrier) :
@@ -37,14 +37,14 @@ def ReflexiveClosureAsPartialOrder
   relation := ReflexiveClosure order
   relationIsPartialOrder := ReflexiveClosureRelationIsPartialOrder order
 
-/-- The reflexive closure of a strict order satisfies the partial-order laws. -/
+                                                                                
 theorem ReflexiveClosureIsPartialOrder
     {Carrier : Type u}
     (order : StrictOrderRelation Carrier) :
     LRA.Order.PartialOrder (ReflexiveClosure order) := by
   sorry
 
-/-- Taking reflexive closure and then strict part returns the original strict relation. -/
+                                                                                          
 theorem StrictPartOfReflexiveClosureIff
     {Carrier : Type u}
     (order : StrictOrderRelation Carrier)
@@ -54,7 +54,7 @@ theorem StrictPartOfReflexiveClosureIff
       order.relation left right := by
   sorry
 
-/-- Taking strict part and then reflexive closure returns the original non-strict relation. -/
+                                                                                              
 theorem ReflexiveClosureOfStrictPartIff
     {Carrier : Type u}
     (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder

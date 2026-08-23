@@ -7,19 +7,19 @@ namespace LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory
 
 universe u
 
-/-!
-`L`-structure builders for the first-order ordered-ring language.
+   
+                                                                 
 
-The signature here is a law-free operation/relation bundle. Order and ring laws
-remain separate certificates under `Order` and `AlgebraicStructures`.
--/
+                                                                               
+                                                                     
+  
 
 open LRA.AlgebraicStructures.OrderedRing.Interface.Signature
 
-/-- An ordered-ring model needs the ring signature plus its strict order
-relation; the non-strict order is already carried by
-`OrderedRingConceptSignature.le`, the same shape `OrderedGroup` and
-`OrderedSemiring`'s own ModelBuilders took. -/
+                                                                        
+                                                    
+                                                                   
+                                              
 structure OrderedRingSignature extends
     LRA.AlgebraicStructures.OrderedRingConceptSignature where
   StrictOrder : LRA.Relation.Endorelation carrier

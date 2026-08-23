@@ -4,4 +4,4 @@ import LRA.AlgebraicStructures.JoinSemilattice.Characterizations
 import LRA.AlgebraicStructures.JoinSemilattice.Consequences
 import LRA.AlgebraicStructures.JoinSemilattice.Relationships
 
-/-! Canonical import route for join semilattices. -/
+                                                    

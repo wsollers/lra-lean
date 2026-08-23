@@ -6,7 +6,7 @@ open LRA.Operation
 
 universe u
 
-/-- Associativity of a binary endo-operation. -/
+                                                
 def Associative {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier) : Prop :=
   ∀ first second third,

@@ -14,9 +14,9 @@ import LRA.UniversalAlgebra.Quotient.All
 import LRA.UniversalAlgebra.KernelCongruence.All
 import LRA.UniversalAlgebra.UniversalProperties
 
-/-!
-Aggregate import for universal-algebra machinery: formal signatures,
-interpreted operation bundles, logic-backed algebras, homomorphisms,
-embeddings, isomorphisms, subalgebras, products, quotients, congruence
-kernels, and universal properties.
--/
+   
+                                                                    
+                                                                    
+                                                                      
+                                  
+  

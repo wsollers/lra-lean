@@ -8,12 +8,12 @@ import LRA.Order.Morphisms.OrderIsomorphism.Definition
 import LRA.Order.Morphisms.OrderIsomorphism.Theorems
 import LRA.Order.Morphisms.Antitone.Consequences
 
-/-!
-Canonical order-specific morphisms: monotone and antitone functions, order
-embeddings, and order isomorphisms.
+   
+                                                                          
+                                   
 
-Each is a specialization of a `LRA.Morphism` primitive rather than a fresh
-statement of the preservation quantifier. Set-image and set-preimage transport
-results are not owned here; they belong to the function calculus that owns
-image and preimage.
--/
+                                                                          
+                                                                              
+                                                                          
+                   
+  

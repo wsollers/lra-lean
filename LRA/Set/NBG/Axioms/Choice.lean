@@ -2,7 +2,7 @@ import LRA.Set.NBGSet.Primitives
 
 namespace LRA.Set.NBG
 
-/-- Zermelo choice for pairwise-disjoint families of nonempty sets. -/
+                                                                      
 axiom Choice (A : NBGSet) :
   (forall B : NBGSet, B ∈ A -> exists x : NBGSet, x ∈ B) ->
   (forall B C : NBGSet,

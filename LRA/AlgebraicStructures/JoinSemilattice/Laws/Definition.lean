@@ -6,7 +6,7 @@ namespace LRA.AlgebraicStructures
 
 universe u
 
-/-- Algebraic join-semilattice laws for an explicit join operation. -/
+                                                                      
 def JoinSemilatticeLaws {Carrier : Type u}
     (join : LRA.Operation.BinaryEndoOperation Carrier) : Prop :=
   LRA.Operation.Laws.Associative.Associative join /\

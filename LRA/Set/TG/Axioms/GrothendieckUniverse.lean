@@ -2,7 +2,7 @@ import LRA.Set.TGSet.Primitives
 
 namespace LRA.Set.TG
 
-/-- Tarski-Grothendieck universe axiom, represented by a universe predicate. -/
+                                                                               
 axiom GrothendieckUniverse (A : TGSet) :
   exists U : TGSet,
     A ∈ U /\

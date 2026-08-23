@@ -2,7 +2,7 @@ import LRA.AlgebraicStructures.Ring.Interface.Signature.Definition
 
 namespace LRA.AlgebraicStructures.CommutativeRing.Interface.Signature
 
-/-! Commutative rings use the ordinary ring first-order vocabulary. -/
+                                                                      
 
 abbrev CommutativeRingFunctionSymbol :=
   LRA.AlgebraicStructures.Ring.Interface.Signature.RingFunctionSymbol

@@ -13,7 +13,7 @@ variable [EmptyCollection SetObject] [HasSubset SetObject]
 variable [HasSymmDiff SetObject]
 variable [HasCountableUnion SetObject]
 
-/-- A sigma-ring of sets: a ring of sets closed under countable unions. -/
+                                                                          
 structure SigmaRingOfSets (ambient : SetObject) extends
     RingOfSets ambient where
   CountableUnionIsMember :
@@ -21,7 +21,7 @@ structure SigmaRingOfSets (ambient : SetObject) extends
       (∀ index, IsMember (family index)) →
         IsMember (HasCountableUnion.countableUnion family)
 
-/-- A sigma-algebra of sets: an algebra of sets closed under countable unions. -/
+                                                                                 
 structure SigmaAlgebraOfSets (ambient : SetObject) extends
     AlgebraOfSets ambient where
   CountableUnionIsMember :
@@ -29,7 +29,7 @@ structure SigmaAlgebraOfSets (ambient : SetObject) extends
       (∀ index, IsMember (family index)) →
         IsMember (HasCountableUnion.countableUnion family)
 
-/-- Every sigma-algebra of sets is a sigma-ring of sets. -/
+                                                           
 def SigmaAlgebraOfSets.toSigmaRingOfSets {ambient : SetObject}
     (sigma : SigmaAlgebraOfSets ambient) : SigmaRingOfSets ambient where
   toRingOfSets := sigma.toRingOfSets

@@ -3,29 +3,29 @@ import LRA.Logic.Syntax.FirstOrder.Sentence
 
 namespace LRA.Logic.FirstOrder
 
-/-!
-Semantics of closed first-order formulas.
+   
+                                         
 
-Closed formulas have no free variables, so their satisfaction value is
-independent of the assignment used to interpret variables.
--/
+                                                                      
+                                                          
+  
 
-/-- Satisfaction of a closed formula is independent of the chosen
-assignment.
+                                                                 
+           
 
-Logical form:
+             
 
-```lean
-theorem satisfies_iff_of_isClosedFormula
-    {S : Signature} {Variable : Type} [DecidableEq Variable]
-    (M : Model S)
-    {leftAssignment rightAssignment : Variable -> M.Domain}
-    (formula : Formula S Variable)
-    (closedFormula : IsClosedFormula formula) :
-    Satisfies M leftAssignment formula ↔
-      Satisfies M rightAssignment formula
-```
--/
+       
+                                        
+                                                            
+                 
+                                                           
+                                  
+                                               
+                                        
+                                         
+   
+  
 theorem satisfies_iff_of_isClosedFormula
     {S : Signature} {Variable : Type} [DecidableEq Variable]
     (M : Model S)
@@ -39,21 +39,21 @@ theorem satisfies_iff_of_isClosedFormula
   rw [closedFormula] at candidateVariableIsFree
   simp at candidateVariableIsFree
 
-/-- Satisfaction of the underlying formula of a sentence is independent of
-the chosen assignment.
+                                                                          
+                      
 
-Logical form:
+             
 
-```lean
-theorem satisfies_sentence_iff
-    {S : Signature} {Variable : Type} [DecidableEq Variable]
-    (M : Model S)
-    {leftAssignment rightAssignment : Variable -> M.Domain}
-    (sentence : Sentence S Variable) :
-    Satisfies M leftAssignment sentence.val ↔
-      Satisfies M rightAssignment sentence.val
-```
--/
+       
+                              
+                                                            
+                 
+                                                           
+                                      
+                                             
+                                              
+   
+  
 theorem satisfies_sentence_iff
     {S : Signature} {Variable : Type} [DecidableEq Variable]
     (M : Model S)

@@ -4,12 +4,12 @@ namespace LRA.Relation
 
 universe u v
 
-/--
-**[Theorem — MinimalElementPrinciple]**
+   
+                                       
 
-Every nonempty represented subset of a well-founded relation has a minimal
-element.
--/
+                                                                          
+        
+  
 theorem MinimalElementPrinciple
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]

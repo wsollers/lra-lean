@@ -2,7 +2,7 @@ import LRA.Order.OrderedSets.StrictOrder.Characterizations
 
 namespace LRA.Order.OrderedSets.StrictOrder
 
-/-- A strict order never relates an element to itself. -/
+                                                         
 theorem StrictOrderDoesNotRelateSelf
     {Carrier : Type u}
     (order : StrictOrderRelation Carrier)
@@ -10,7 +10,7 @@ theorem StrictOrderDoesNotRelateSelf
     Not (order.relation element element) := by
   sorry
 
-/-- A strict order has no two-element cycle. -/
+                                               
 theorem StrictOrderHasNoTwoElementCycles
     {Carrier : Type u}
     (order : StrictOrderRelation Carrier)

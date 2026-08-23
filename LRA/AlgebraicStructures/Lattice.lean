@@ -4,4 +4,4 @@ import LRA.AlgebraicStructures.Lattice.Characterizations
 import LRA.AlgebraicStructures.Lattice.Consequences
 import LRA.AlgebraicStructures.Lattice.Relationships
 
-/-! Canonical import route for lattices. -/
+                                           

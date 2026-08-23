@@ -9,6 +9,6 @@ import LRA.Analysis.Differentiation.OneSidedDerivatives
 import LRA.Analysis.Differentiation.SecantTangent
 import LRA.Analysis.Differentiation.TaylorExpansion
 
-/-!
-Aggregate import for Volume III differentiation modules.
--/
+   
+                                                        
+  

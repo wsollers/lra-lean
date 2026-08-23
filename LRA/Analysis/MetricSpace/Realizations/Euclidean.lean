@@ -9,23 +9,23 @@ open LRA.EuclideanSpace
 
 universe u
 
-/-!
-Euclidean realization of the metric-space interface.
+   
+                                                    
 
-This file packages the tuple-based Euclidean carrier `Rn` with a named metric,
-separating the concrete Euclidean backend from the generic metric-space
-interface.
--/
+                                                                              
+                                                                       
+          
+  
 
-/-- The `n`-dimensional Euclidean tuple carrier specialized to Mathlib's
-`ℝ`-backed real model, so its coordinates land in actual Lean reals. -/
+                                                                        
+                                                                       
 abbrev MathlibRn (n : ℕ) := Rn mathlibRealModel n
 
-/-- Read a model Euclidean point as its coordinate function `Fin n → ℝ`. -/
+                                                                           
 abbrev coordinates {n : ℕ} (point : MathlibRn n) : Fin n → ℝ :=
   point.coord
 
-/-- Extensionality for the `mathlibRealModel` Euclidean tuple carrier. -/
+                                                                         
 theorem mathlibRn_ext {n : ℕ} {x y : MathlibRn n}
     (h : ∀ i : Fin n, coordinates x i = coordinates y i) : x = y := by
   cases x with
@@ -36,8 +36,8 @@ theorem mathlibRn_ext {n : ℕ} {x y : MathlibRn n}
       cases hfun
       rfl
 
-/-- The metric on `MathlibRn n` inherited from the ambient Mathlib metric
-on the coordinate function space `Fin n → ℝ`. -/
+                                                                         
+                                                
 noncomputable def EuclideanRnMetric (n : ℕ) :
     MetricDefinition (MathlibRn n) where
   distance x y := dist (coordinates x) (coordinates y)
@@ -55,24 +55,24 @@ noncomputable def EuclideanRnMetric (n : ℕ) :
   symmetric x y := dist_comm (coordinates x) (coordinates y)
   triangle x y z := dist_triangle (coordinates x) (coordinates y) (coordinates z)
 
-/-- The metric-space definition obtained by appending the Euclidean metric
-to the carrier `Rn mathlibRealModel n`. -/
+                                                                          
+                                          
 noncomputable def EuclideanRnMetricSpaceDefinition (n : ℕ) :
     MetricSpaceDefinition where
   Carrier := MathlibRn n
   metric := EuclideanRnMetric n
 
-/-- A metric-space realization that extends the tuple-based Euclidean `Rn`
-carrier by adding a metric, while keeping the original Euclidean
-`L_geom`-structure visible as its base. -/
+                                                                          
+                                                                
+                                          
 structure EuclideanRnMetricSpaceModel (real_model : RealModel) (n : ℕ)
     where
   metricSpace : MetricSpaceDefinition
   euclideanStructure : TarskiStructure
   carrier_eq : metricSpace.Carrier = euclideanStructure.Domain
 
-/-- Package any metric on the tuple carrier `Rn real_model n` as a metric-space
-realization extending the base Euclidean tuple model. -/
+                                                                               
+                                                        
 def euclideanRnMetricSpaceModelOf
     (real_model : RealModel) (n : ℕ)
     (metric : MetricDefinition (Rn real_model n)) :
@@ -84,8 +84,8 @@ def euclideanRnMetricSpaceModelOf
   euclideanStructure := EuclideanTupleModel real_model n
   carrier_eq := rfl
 
-/-- The canonical metric-space realization of the tuple-based Euclidean
-carrier in the Mathlib-real specialization. -/
+                                                                       
+                                              
 noncomputable def canonicalEuclideanRnMetricSpaceModel (n : ℕ) :
     EuclideanRnMetricSpaceModel mathlibRealModel n where
   metricSpace := EuclideanRnMetricSpaceDefinition n

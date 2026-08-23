@@ -5,11 +5,11 @@ namespace LRA.AlgebraicStructures
 
 universe u
 
-/-!
-Commutative monoid law certificates.
--/
+   
+                                    
+  
 
-/-- Commutative monoid laws. -/
+                               
 class abbrev CommutativeMonoidLaws (R : Type u) [Mul R] [OfNat R 1] : Prop :=
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
   MultiplicativeCommutativeLaws R

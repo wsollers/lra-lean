@@ -4,7 +4,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- An order isomorphism consists of inverse maps whose forward map preserves and reflects order. -/
+                                                                                                    
 def OrderIsomorphism
     {Alpha : Type u} {Beta : Type v}
     (sourceRelation : LRA.Relation.Endorelation Alpha)

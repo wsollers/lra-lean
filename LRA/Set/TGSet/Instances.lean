@@ -2,9 +2,9 @@ import LRA.Set.TGSet.Definition
 import LRA.Set.TG.Public
 import LRA.Set.Interface.Operations
 
-/-!
-The concrete `TGSet` realization registered against the generic Set interface.
--/
+   
+                                                                              
+  
 
 namespace LRA.Set.TGSet
 

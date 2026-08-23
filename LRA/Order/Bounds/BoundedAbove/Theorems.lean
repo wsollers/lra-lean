@@ -9,7 +9,7 @@ open scoped LRA.Set
 
 universe u v
 
-/-- Every represented subcollection of a bounded-above set is bounded above. -/
+                                                                               
 theorem BoundedAboveOfSubcollection
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -20,7 +20,7 @@ theorem BoundedAboveOfSubcollection
     BoundedAbove relation smaller := by
   sorry
 
-/-- In a transitive total order, a union is bounded above exactly when both pieces are. -/
+                                                                                          
 theorem UnionBoundedAboveIffPiecesBoundedAbove
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -36,7 +36,7 @@ theorem UnionBoundedAboveIffPiecesBoundedAbove
         BoundedAbove relation rightSubset := by
   sorry
 
-/-- An intersection is bounded above whenever either constituent is. -/
+                                                                       
 theorem IntersectionBoundedAbove
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -51,7 +51,7 @@ theorem IntersectionBoundedAbove
     BoundedAbove relation (leftSubset ∩ rightSubset) := by
   sorry
 
-/-- A relative difference inherits boundedness above from its left operand. -/
+                                                                              
 theorem DifferenceBoundedAbove
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -64,7 +64,7 @@ theorem DifferenceBoundedAbove
     BoundedAbove relation (subset \ removed) := by
   sorry
 
-/-- A symmetric difference is bounded above when both operands are. -/
+                                                                      
 theorem SymmetricDifferenceBoundedAbove
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]

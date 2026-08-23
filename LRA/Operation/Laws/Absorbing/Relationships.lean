@@ -6,7 +6,7 @@ open LRA.Operation
 
 universe u
 
-/-- A left absorber and a right absorber for the same operation coincide. -/
+                                                                            
 theorem LeftRightAbsorbersCoincide {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {leftAbsorber rightAbsorber : Carrier}
@@ -15,7 +15,7 @@ theorem LeftRightAbsorbersCoincide {Carrier : Type u}
     leftAbsorber = rightAbsorber := by
   sorry
 
-/-- A two-sided absorbing element for a binary operation is unique. -/
+                                                                      
 theorem TwoSidedAbsorbingUnique {Carrier : Type u}
     {operation : BinaryEndoOperation Carrier}
     {firstAbsorber secondAbsorber : Carrier}

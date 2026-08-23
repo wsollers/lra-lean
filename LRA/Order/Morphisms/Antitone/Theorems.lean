@@ -15,7 +15,7 @@ namespace LRA.Order
 
 universe u v w
 
-/-- Composing two antitone maps produces a monotone map. -/
+                                                           
 theorem AntitoneCompAntitoneIsMonotone
     {Alpha : Type u} {Beta : Type v} {Gamma : Type w}
     {sourceRelation : LRA.Relation.Endorelation Alpha}
@@ -28,7 +28,7 @@ theorem AntitoneCompAntitoneIsMonotone
       (fun element => secondMap (firstMap element)) := by
   sorry
 
-/-- An antitone map followed by a monotone map is antitone. -/
+                                                              
 theorem AntitoneThenMonotoneIsAntitone
     {Alpha : Type u} {Beta : Type v} {Gamma : Type w}
     {sourceRelation : LRA.Relation.Endorelation Alpha}
@@ -41,7 +41,7 @@ theorem AntitoneThenMonotoneIsAntitone
       (fun element => secondMap (firstMap element)) := by
   sorry
 
-/-- A monotone map followed by an antitone map is antitone. -/
+                                                              
 theorem MonotoneThenAntitoneIsAntitone
     {Alpha : Type u} {Beta : Type v} {Gamma : Type w}
     {sourceRelation : LRA.Relation.Endorelation Alpha}
@@ -64,7 +64,7 @@ variable {sourceRelation : LRA.Relation.Endorelation Alpha}
 variable {targetRelation : LRA.Relation.Endorelation Beta}
 variable {map : Alpha → Beta}
 
-/-- An antitone map sends an upper bound to a lower bound of the image. -/
+                                                                          
 theorem AntitoneSendsUpperBoundToImageLowerBound
     (subset : SourceSet) (imageSet : TargetSet)
     (representsImage :
@@ -75,7 +75,7 @@ theorem AntitoneSendsUpperBoundToImageLowerBound
     : LowerBound targetRelation imageSet (map bound) := by
   sorry
 
-/-- An antitone map sends a lower bound to an upper bound of the image. -/
+                                                                          
 theorem AntitoneSendsLowerBoundToImageUpperBound
     (subset : SourceSet) (imageSet : TargetSet)
     (representsImage :
@@ -86,7 +86,7 @@ theorem AntitoneSendsLowerBoundToImageUpperBound
     : UpperBound targetRelation imageSet (map bound) := by
   sorry
 
-/-- The image of the source upper bounds lies in the lower bounds of the image. -/
+                                                                                  
 theorem AntitoneImageUpperBoundsIntoLowerBounds
     (subset : SourceSet) (imageSet : TargetSet)
     (representsImage :
@@ -99,7 +99,7 @@ theorem AntitoneImageUpperBoundsIntoLowerBounds
     : LowerBound targetRelation imageSet output := by
   sorry
 
-/-- Source upper bounds lie in the preimage of the image lower bounds. -/
+                                                                         
 theorem AntitoneUpperBoundsPreimageLowerBoundsContainment
     (subset : SourceSet) (imageSet : TargetSet)
     (representsImage :
@@ -111,7 +111,7 @@ theorem AntitoneUpperBoundsPreimageLowerBoundsContainment
       (fun output => LowerBound targetRelation imageSet output) bound := by
   sorry
 
-/-- The image of the source lower bounds lies in the upper bounds of the image. -/
+                                                                                  
 theorem AntitoneImageLowerBoundsIntoUpperBounds
     (subset : SourceSet) (imageSet : TargetSet)
     (representsImage :
@@ -124,7 +124,7 @@ theorem AntitoneImageLowerBoundsIntoUpperBounds
     : UpperBound targetRelation imageSet output := by
   sorry
 
-/-- Source lower bounds lie in the preimage of the image upper bounds. -/
+                                                                         
 theorem AntitoneLowerBoundsPreimageUpperBoundsContainment
     (subset : SourceSet) (imageSet : TargetSet)
     (representsImage :

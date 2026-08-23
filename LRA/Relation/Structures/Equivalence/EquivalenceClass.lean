@@ -13,7 +13,7 @@ section EquivalenceClasses
 variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 
-/-- `classSet` is the equivalence class of `representative` in `ambient`. -/
+                                                                            
 def IsEquivalenceClassOf
     (classSet ambient : SetObject)
     (relation : Endorelation Element)
@@ -26,7 +26,7 @@ section WithSeparation
 
 variable [HasSeparation Element SetObject]
 
-/-- The equivalence class of a representative with respect to a relation. -/
+                                                                            
 def EquivalenceClass
     (ambient : SetObject)
     (relation : Endorelation Element)

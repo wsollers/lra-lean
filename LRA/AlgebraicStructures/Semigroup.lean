@@ -8,4 +8,4 @@ import LRA.AlgebraicStructures.Semigroup.Characterizations
 import LRA.AlgebraicStructures.Semigroup.Consequences
 import LRA.AlgebraicStructures.Semigroup.Relationships
 
-/-! Canonical import route for semigroups. -/
+                                             

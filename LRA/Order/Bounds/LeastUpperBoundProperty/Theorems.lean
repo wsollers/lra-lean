@@ -5,7 +5,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- The least-upper-bound property gives a unique supremum in an antisymmetric relation. -/
+                                                                                           
 theorem LeastUpperBoundPropertyGivesUniqueSupremum
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]

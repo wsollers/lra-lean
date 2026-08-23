@@ -6,7 +6,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- Maximal elements for the converse are minimal elements for the original. -/
+                                                                               
 theorem MaximalElementOfConverseIffMinimalElement
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]

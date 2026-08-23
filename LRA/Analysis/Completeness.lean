@@ -9,6 +9,6 @@ import LRA.Analysis.Completeness.CompletenessEquivalences
 import LRA.Analysis.Completeness.Equivalence
 import LRA.Analysis.Completeness.CompletenessAdditions
 
-/-!
-Aggregate import for Volume III completeness modules.
--/
+   
+                                                     
+  

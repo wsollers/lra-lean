@@ -14,14 +14,14 @@ namespace LRA.Order
 
 universe u v w
 
-/-- The identity map is monotone. -/
+                                    
 theorem MonotoneIdentity
     {Alpha : Type u}
     (relation : LRA.Relation.Endorelation Alpha) :
     Monotone relation relation (fun element => element) := by
   sorry
 
-/-- Monotone maps compose. -/
+                             
 theorem MonotoneComp
     {Alpha : Type u} {Beta : Type v} {Gamma : Type w}
     {sourceRelation : LRA.Relation.Endorelation Alpha}
@@ -43,7 +43,7 @@ variable {sourceRelation : LRA.Relation.Endorelation Alpha}
 variable {targetRelation : LRA.Relation.Endorelation Beta}
 variable {map : Alpha → Beta}
 
-/-- A monotone map sends an upper bound to an upper bound of the image. -/
+                                                                          
 theorem MonotoneSendsUpperBoundToImageUpperBound
     (subset : SourceSet) (imageSet : TargetSet)
     (representsImage :
@@ -54,7 +54,7 @@ theorem MonotoneSendsUpperBoundToImageUpperBound
     : UpperBound targetRelation imageSet (map bound) := by
   sorry
 
-/-- A monotone map sends a lower bound to a lower bound of the image. -/
+                                                                        
 theorem MonotoneSendsLowerBoundToImageLowerBound
     (subset : SourceSet) (imageSet : TargetSet)
     (representsImage :
@@ -65,7 +65,7 @@ theorem MonotoneSendsLowerBoundToImageLowerBound
     : LowerBound targetRelation imageSet (map bound) := by
   sorry
 
-/-- The image of the source upper bounds lies in the upper bounds of the image. -/
+                                                                                  
 theorem MonotoneImageUpperBoundsContainment
     (subset : SourceSet) (imageSet : TargetSet)
     (representsImage :
@@ -78,7 +78,7 @@ theorem MonotoneImageUpperBoundsContainment
     : UpperBound targetRelation imageSet output := by
   sorry
 
-/-- Source upper bounds lie in the preimage of the image upper bounds. -/
+                                                                         
 theorem MonotoneUpperBoundsPreimageContainment
     (subset : SourceSet) (imageSet : TargetSet)
     (representsImage :
@@ -90,7 +90,7 @@ theorem MonotoneUpperBoundsPreimageContainment
       (fun output => UpperBound targetRelation imageSet output) bound := by
   sorry
 
-/-- The image of the source lower bounds lies in the lower bounds of the image. -/
+                                                                                  
 theorem MonotoneImageLowerBoundsContainment
     (subset : SourceSet) (imageSet : TargetSet)
     (representsImage :
@@ -103,7 +103,7 @@ theorem MonotoneImageLowerBoundsContainment
     : LowerBound targetRelation imageSet output := by
   sorry
 
-/-- Source lower bounds lie in the preimage of the image lower bounds. -/
+                                                                         
 theorem MonotoneLowerBoundsPreimageContainment
     (subset : SourceSet) (imageSet : TargetSet)
     (representsImage :

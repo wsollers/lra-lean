@@ -4,7 +4,7 @@ namespace LRA.Morphism
 
 universe u v
 
-/-- Apply binary-operation preservation at a pair of elements. -/
+                                                                 
 theorem PreservesBinaryOperation.apply {Source : Type u} {Target : Type v}
     {function : Source → Target}
     {sourceOperation : LRA.Operation.BinaryEndoOperation Source}

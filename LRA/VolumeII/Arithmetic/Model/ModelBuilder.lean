@@ -5,10 +5,10 @@ namespace LRA.NumberSystems.Arithmetic.Model
 
 universe u
 
-/-!
-Model builders for the first-order arithmetic-ring language used by concrete
-Volume II number-system constructions.
--/
+   
+                                                                            
+                                      
+  
 
 structure ArithmeticRingSignature where
   carrier : Type u

@@ -2,12 +2,12 @@ import LRA.Logic.Model.Model
 
 namespace LRA.AlgebraicStructures.AbelianGroup.Interface.Signature
 
-/-!
-First-order signature for abelian groups in additive notation.
+   
+                                                              
 
-The abelian-group language has binary addition, unary negation, and the
-distinguished zero constant. Commutativity is a law, not a symbol.
--/
+                                                                       
+                                                                  
+  
 
 inductive AbelianGroupFunctionSymbol where
   | add

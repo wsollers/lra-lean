@@ -6,7 +6,7 @@ namespace LRA.AlgebraicStructures.Semigroup.Interface.ModelTheory
 
 universe u
 
-/-! Law-free `L`-structure builders for the first-order semigroup language. -/
+                                                                              
 
 open LRA.AlgebraicStructures.Semigroup.Interface.Signature
 

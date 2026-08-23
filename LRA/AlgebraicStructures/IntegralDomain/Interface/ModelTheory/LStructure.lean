@@ -5,7 +5,7 @@ namespace LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory
 
 universe u
 
-/-! Law-free `L`-structure builders for the first-order integral-domain language. -/
+                                                                                    
 
 open LRA.AlgebraicStructures.IntegralDomain.Interface.Signature
 

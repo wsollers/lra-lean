@@ -8,7 +8,7 @@ open LRA.Set
 
 universe u v
 
-/-- A complete lattice over a generic set backend with an empty set has bottom and top elements. -/
+                                                                                                   
 theorem CompleteLatticeHasBottomAndTop
     {Element : Type u}
     {SetObject : Type v}
@@ -22,11 +22,11 @@ theorem CompleteLatticeHasBottomAndTop
       (exists top, forall element, relation element top) := by
   sorry
 
-/--
-For a generic set backend with universal-set and separation capabilities, a
-partial order with suprema for all represented subsets is a complete lattice;
-infima arise as suprema of represented sets of lower bounds.
--/
+   
+                                                                           
+                                                                             
+                                                            
+  
 theorem AllSupremaImplyCompleteLattice
     {Element : Type u}
     {SetObject : Type v}
@@ -43,7 +43,7 @@ theorem AllSupremaImplyCompleteLattice
     CompleteLattice SetObject relation := by
   sorry
 
-/-- Dually, infima for all represented subsets determine a complete lattice. -/
+                                                                               
 theorem AllInfimaImplyCompleteLattice
     {Element : Type u}
     {SetObject : Type v}
@@ -60,7 +60,7 @@ theorem AllInfimaImplyCompleteLattice
     CompleteLattice SetObject relation := by
   sorry
 
-/-- A complete lattice over a backend that represents pairs is a lattice. -/
+                                                                            
 theorem CompleteLatticeIsLattice
     {Element : Type u}
     {SetObject : Type v}

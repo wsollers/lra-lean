@@ -4,4 +4,4 @@ import LRA.Operation.Laws.Distributive.Relationships
 import LRA.Operation.Laws.Distributive.Consequences
 import LRA.Operation.Laws.Distributive.FailureModes
 
-/-! Canonical Distributive operation-law concept family. -/
+                                                           

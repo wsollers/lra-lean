@@ -6,13 +6,13 @@ namespace LRA.AlgebraicStructures.Field.Interface.ModelTheory
 
 universe u
 
-/-!
-`L`-structure builders for the first-order field language.
+   
+                                                          
 
-The operation bundle is law-free. Field laws are certified by
-`AlgebraicStructures/Field/Laws`, while this module only interprets the
-first-order symbols on a carrier.
--/
+                                                             
+                                                                       
+                                 
+  
 
 open LRA.AlgebraicStructures.Field.Interface.Signature
 

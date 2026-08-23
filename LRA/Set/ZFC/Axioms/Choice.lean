@@ -2,7 +2,7 @@ import LRA.Set.ZFCSet.Primitives
 
 namespace LRA.Set.ZFC
 
-/-- Zermelo choice for pairwise-disjoint families of nonempty sets. -/
+                                                                      
 axiom Choice (A : ZFCSet) :
   (∀ B : ZFCSet, B ∈ A → ∃ x : ZFCSet, x ∈ B) →
   (∀ B C : ZFCSet,

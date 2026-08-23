@@ -3,7 +3,7 @@ import LRA.Set.Interface.Intersection
 
 namespace LRA.Set.TGSet
 
-/-! Intersection-law certificate for the concrete TGSet backend. -/
+                                                                   
 
 theorem IntersectionCommutative : forall A B : Set, A ∩ B = B ∩ A := by
   sorry

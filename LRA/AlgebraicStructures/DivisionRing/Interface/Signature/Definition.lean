@@ -2,12 +2,12 @@ import LRA.Logic.Model.Model
 
 namespace LRA.AlgebraicStructures.DivisionRing.Interface.Signature
 
-/-!
-First-order signature for division rings.
+   
+                                         
 
-The division-ring language has constants `0` and `1`, binary addition and
-multiplication, unary negation, and totalized unary inverse.
--/
+                                                                         
+                                                            
+  
 
 inductive DivisionRingFunctionSymbol where
   | add

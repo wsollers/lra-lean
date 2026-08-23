@@ -6,7 +6,7 @@ open LRA.NumberSystems.RationalNumbers
 
 universe u
 
-/-- Prove a property of the quotient by proving it for every representative. -/
+                                                                               
 theorem InductionOnRepresentatives
     (rationalSystem : RationalNumberSystem.{u})
     (motive : EffectiveCauchyReal rationalSystem → Prop)

@@ -3,7 +3,7 @@ import LRA.Set.TG.Definitions
 
 namespace LRA.Set.TG
 
-/-- There exists an inductive set. -/
+                                     
 theorem InductiveSetExists : exists A : Set, IsInductiveSet A := by
   sorry
 

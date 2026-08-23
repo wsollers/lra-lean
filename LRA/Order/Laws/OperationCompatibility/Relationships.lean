@@ -5,10 +5,10 @@ namespace LRA.Order
 
 universe u
 
-/-!
-Relationships between order-operation compatibility and other order or
-operation concepts belong here.
--/
+   
+                                                                      
+                               
+  
 
 theorem Commutative.left_preservation_to_right_preservation {Carrier : Type u}
     {relation : Carrier -> Carrier -> Prop}

@@ -1,16 +1,16 @@
 import LRA.Set.ZFC.Axioms.Choice
 import LRA.Set.ZFC.Definitions
 
-/-!
-Existence of a choice set, and one chosen witness.
+   
+                                                  
 
-Choice does not pin down a unique object, so there is no uniqueness theorem.
--/
+                                                                            
+  
 
 namespace LRA.Set.ZFC
 
-/-- If every member of `A` is nonempty and the members of `A` are pairwise
-disjoint, there exists a choice set for `A`. -/
+                                                                          
+                                               
 theorem ChoiceSetExists
     (A : Set)
     (membersNonempty : ∀ B : Set, B ∈ A → ∃ x : Set, x ∈ B)
@@ -19,7 +19,7 @@ theorem ChoiceSetExists
     ∃ choiceSet : Set, IsChoiceSetFor A choiceSet := by
   sorry
 
-/-- A choice set for `A`, chosen after its existence has been established. -/
+                                                                             
 noncomputable def TheChoiceSet
     (A : Set)
     (membersNonempty : ∀ B : Set, B ∈ A → ∃ x : Set, x ∈ B)
@@ -28,7 +28,7 @@ noncomputable def TheChoiceSet
     Set :=
   Classical.choose (ChoiceSetExists A membersNonempty membersPairwiseDisjoint)
 
-/-- The chosen choice set really is a choice set for `A`. -/
+                                                            
 theorem TheChoiceSetIsChoiceSetFor
     (A : Set)
     (membersNonempty : ∀ B : Set, B ∈ A → ∃ x : Set, x ∈ B)

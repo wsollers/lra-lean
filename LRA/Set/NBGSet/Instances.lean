@@ -2,9 +2,9 @@ import LRA.Set.NBGSet.Definition
 import LRA.Set.NBG.Public
 import LRA.Set.Interface.Operations
 
-/-!
-The concrete `NBGSet` realization registered against the generic Set interface.
--/
+   
+                                                                               
+  
 
 namespace LRA.Set.NBGSet
 

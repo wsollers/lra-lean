@@ -4,7 +4,7 @@ namespace LRA.Morphism
 
 universe u v
 
-/-- Failure of relation reflection by a function. -/
+                                                    
 def FailsReflectsRelation {Source : Type u} {Target : Type v}
     (function : Source → Target)
     (sourceRelation : LRA.Relation.Endorelation Source)

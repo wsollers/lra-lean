@@ -2,12 +2,12 @@ import LRA.AlgebraicStructures.Group.Interface.Signature.Definition
 
 namespace LRA.AlgebraicStructures.OrderedGroup.Interface.Signature
 
-/-!
-First-order signature for ordered groups.
+   
+                                         
 
-The ordered-group language enriches the multiplicative group language with
-one binary strict-order relation.
--/
+                                                                          
+                                 
+  
 
 abbrev OrderedGroupFunctionSymbol :=
   LRA.AlgebraicStructures.Group.Interface.Signature.GroupFunctionSymbol

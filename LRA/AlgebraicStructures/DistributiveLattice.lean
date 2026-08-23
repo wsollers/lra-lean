@@ -4,4 +4,4 @@ import LRA.AlgebraicStructures.DistributiveLattice.Characterizations
 import LRA.AlgebraicStructures.DistributiveLattice.Consequences
 import LRA.AlgebraicStructures.DistributiveLattice.Relationships
 
-/-! Canonical import route for distributive lattices. -/
+                                                        

@@ -6,7 +6,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- A complete lattice is a partial order in which every represented subset has a supremum and an infimum. -/
+                                                                                                             
 def CompleteLattice
     {Element : Type u} (SetObject : Type v)
     [Membership Element SetObject]

@@ -5,7 +5,7 @@ namespace LRA.Function
 
 universe u
 
-/-- The identity function on a carrier. -/
+                                          
 def IdentityFunction (Carrier : Type u) : Endofunction Carrier :=
   fun input => input
 

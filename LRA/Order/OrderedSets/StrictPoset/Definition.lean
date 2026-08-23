@@ -4,7 +4,7 @@ namespace LRA.Order
 
 universe u
 
-/-- A strict poset is a carrier equipped with a strict order. -/
+                                                                
 structure StrictPoset where
   Carrier : Type u
   StrictRelation : LRA.Relation.Endorelation Carrier

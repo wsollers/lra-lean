@@ -4,4 +4,4 @@ import LRA.AlgebraicStructures.Semiring.Characterizations
 import LRA.AlgebraicStructures.Semiring.Consequences
 import LRA.AlgebraicStructures.Semiring.Relationships
 
-/-! Canonical import route for semirings. -/
+                                            

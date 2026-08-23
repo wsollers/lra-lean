@@ -6,20 +6,20 @@ namespace LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory
 
 universe u
 
-/-!
-`L`-structure builders for the first-order ordered-field language.
--/
+   
+                                                                  
+  
 
 open LRA.AlgebraicStructures.OrderedField.Interface.Signature
 
-/-- An ordered-field model extends the ordered-ring signature with
-totalized inverse. Kept on the `OrderedRingSignature` lineage (rather than
-`OrderedFieldConceptSignature`, whose parent is `Field`, not `Ring`) so
-that the existing `.toOrderedRingSignature` projection downstream
-consumers rely on (comparing across the integer/rational/real tower)
-keeps working; the field is renamed `inv` to match
-`OrderedFieldConceptSignature.inv`'s spelling, but the two structures are
-not literally the same type. -/
+                                                                  
+                                                                          
+                                                                       
+                                                                 
+                                                                    
+                                                  
+                                                                         
+                               
 structure OrderedFieldSignature extends
     LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory.OrderedRingSignature where
   inv : LRA.Operation.UnaryOperation carrier

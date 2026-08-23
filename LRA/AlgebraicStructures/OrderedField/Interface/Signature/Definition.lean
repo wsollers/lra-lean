@@ -2,12 +2,12 @@ import LRA.AlgebraicStructures.Field.Interface.Signature.Definition
 
 namespace LRA.AlgebraicStructures.OrderedField.Interface.Signature
 
-/-!
-First-order signature for ordered fields.
+   
+                                         
 
-The operation vocabulary is exactly the field operation vocabulary; the
-ordered-field language enriches it by one binary strict-order relation.
--/
+                                                                       
+                                                                       
+  
 
 abbrev OrderedFieldFunctionSymbol :=
   LRA.AlgebraicStructures.Field.Interface.Signature.FieldFunctionSymbol

@@ -4,7 +4,7 @@ namespace LRA.Order
 
 universe u
 
-/-- Native total-order law certificate over Lean's `LE` machine. -/
+                                                                   
 class TotalOrderLaw (R : Type u) [LE R] : Prop where
   LeTotal : forall a b : R, a <= b \/ b <= a
 

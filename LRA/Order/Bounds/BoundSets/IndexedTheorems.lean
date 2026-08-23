@@ -23,7 +23,7 @@ variable [IndexedMembershipLaws Element SetObject]
 variable [ExtensionalityLaw Element SetObject]
 variable [SubsetLaws SetObject]
 
-/-- The upper bounds of an indexed union are the indexed intersection of the upper-bound sets. -/
+                                                                                                 
 theorem UpperBoundsOfIndexedUnion
     {Index : Type w}
     (relation : LRA.Relation.Endorelation Element)
@@ -33,7 +33,7 @@ theorem UpperBoundsOfIndexedUnion
         (fun index => UpperBounds relation (family index)) := by
   sorry
 
-/-- The lower bounds of an indexed union are the indexed intersection of the lower-bound sets. -/
+                                                                                                 
 theorem LowerBoundsOfIndexedUnion
     {Index : Type w}
     (relation : LRA.Relation.Endorelation Element)
@@ -43,7 +43,7 @@ theorem LowerBoundsOfIndexedUnion
         (fun index => LowerBounds relation (family index)) := by
   sorry
 
-/-- The indexed union of upper-bound sets is contained in the upper bounds of the indexed intersection. -/
+                                                                                                          
 theorem IndexedUnionOfUpperBoundsContainedInUpperBoundsOfIntersection
     {Index : Type w}
     (relation : LRA.Relation.Endorelation Element)
@@ -54,7 +54,7 @@ theorem IndexedUnionOfUpperBoundsContainedInUpperBoundsOfIntersection
         (HasIndexedIntersection.indexedIntersection family) := by
   sorry
 
-/-- The indexed union of lower-bound sets is contained in the lower bounds of the indexed intersection. -/
+                                                                                                          
 theorem IndexedUnionOfLowerBoundsContainedInLowerBoundsOfIntersection
     {Index : Type w}
     (relation : LRA.Relation.Endorelation Element)

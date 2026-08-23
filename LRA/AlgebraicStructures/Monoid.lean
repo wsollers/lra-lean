@@ -8,4 +8,4 @@ import LRA.AlgebraicStructures.Monoid.Characterizations
 import LRA.AlgebraicStructures.Monoid.Consequences
 import LRA.AlgebraicStructures.Monoid.Relationships
 
-/-! Canonical import route for monoids. -/
+                                          

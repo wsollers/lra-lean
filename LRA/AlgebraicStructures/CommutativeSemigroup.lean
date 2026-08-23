@@ -4,4 +4,4 @@ import LRA.AlgebraicStructures.CommutativeSemigroup.Characterizations
 import LRA.AlgebraicStructures.CommutativeSemigroup.Consequences
 import LRA.AlgebraicStructures.CommutativeSemigroup.Relationships
 
-/-! Canonical import route for commutative semigroups. -/
+                                                         

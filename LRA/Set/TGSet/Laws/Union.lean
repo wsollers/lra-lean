@@ -3,7 +3,7 @@ import LRA.Set.Interface.Union
 
 namespace LRA.Set.TGSet
 
-/-! Union-law certificate for the concrete TGSet backend. -/
+                                                            
 
 theorem UnionCommutative : forall A B : Set, A ∪ B = B ∪ A := by
   sorry

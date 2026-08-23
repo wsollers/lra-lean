@@ -4,7 +4,7 @@ namespace LRA.Morphism
 
 universe u v
 
-/-- A function preserves a binary operation. -/
+                                               
 def PreservesBinaryOperation {Source : Type u} {Target : Type v}
     (function : Source → Target)
     (sourceOperation : LRA.Operation.BinaryEndoOperation Source)

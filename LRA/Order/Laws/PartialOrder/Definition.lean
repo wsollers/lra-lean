@@ -1,15 +1,15 @@
 namespace LRA.Order
 
-/-!
-The relation-level `LRA.Order.PartialOrder` concept remains the mathematical
-source of truth for arbitrary endorelations. `PartialOrderLaws` is the native
-certificate surface used by concrete carriers and named algebraic structures
-whose order relation is supplied by Lean's `LE`.
--/
+   
+                                                                            
+                                                                             
+                                                                            
+                                                
+  
 
 universe u
 
-/-- Native partial-order law certificate over Lean's `LE` machine. -/
+                                                                     
 class PartialOrderLaws (R : Type u) [LE R] : Prop where
   LeRefl : forall a : R, a <= a
   LeAntisymm : forall a b : R, a <= b -> b <= a -> a = b

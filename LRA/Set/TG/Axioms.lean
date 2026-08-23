@@ -10,4 +10,4 @@ import LRA.Set.TG.Axioms.Foundation
 import LRA.Set.TG.Axioms.Choice
 import LRA.Set.TG.Axioms.GrothendieckUniverse
 
-/-! Primitive TG assumptions for the in-house `TGSet` universe. -/
+                                                                  

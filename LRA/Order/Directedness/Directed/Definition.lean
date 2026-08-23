@@ -4,8 +4,8 @@ namespace LRA.Order
 
 universe u v
 
-/-- A directed subset is nonempty and every pair of its elements has an upper
-bound within the subset. The nonemptiness convention follows Davey--Priestley. -/
+                                                                             
+                                                                                 
 def Directed
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]

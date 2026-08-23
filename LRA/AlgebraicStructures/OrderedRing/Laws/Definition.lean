@@ -7,11 +7,11 @@ open LRA.Order
 
 universe u
 
-/-!
-Ordered ring law certificates.
--/
+   
+                              
+  
 
-/-- Ordered ring laws with a partial order. -/
+                                              
 class abbrev OrderedRingLaws (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LE R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,

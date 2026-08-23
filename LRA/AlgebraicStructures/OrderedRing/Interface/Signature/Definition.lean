@@ -2,13 +2,13 @@ import LRA.Logic.Model.Model
 
 namespace LRA.AlgebraicStructures.OrderedRing.Interface.Signature
 
-/-!
-First-order signature for ordered rings.
+   
+                                        
 
-This file owns the ordinary first-order ordered-ring vocabulary: constants
-`0`, `1`, binary addition and multiplication, unary negation, and the strict
-order relation.
--/
+                                                                          
+                                                                            
+               
+  
 
 inductive OrderedRingFunctionSymbol where
   | add

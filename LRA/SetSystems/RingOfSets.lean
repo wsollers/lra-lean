@@ -13,8 +13,8 @@ variable [Union SetObject] [Inter SetObject] [SDiff SetObject]
 variable [EmptyCollection SetObject] [HasSubset SetObject]
 variable [HasSymmDiff SetObject]
 
-/-- A ring of sets on `ambient`: a collection of subsets of `ambient`,
-containing the empty set and closed under the finite set operations. -/
+                                                                      
+                                                                       
 structure RingOfSets (ambient : SetObject) where
   IsMember : SetObject → Prop
   MembersAreSubsets : ∀ A, IsMember A → A ⊆ ambient

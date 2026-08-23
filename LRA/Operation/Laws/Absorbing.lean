@@ -4,4 +4,4 @@ import LRA.Operation.Laws.Absorbing.Relationships
 import LRA.Operation.Laws.Absorbing.Consequences
 import LRA.Operation.Laws.Absorbing.FailureModes
 
-/-! Canonical Absorbing operation-law concept family. -/
+                                                        

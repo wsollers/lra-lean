@@ -10,7 +10,7 @@ namespace LRA.Order
 
 universe u v
 
-/-- Antisymmetry makes a supremum unique. -/
+                                            
 theorem SupremumUnique
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -22,7 +22,7 @@ theorem SupremumUnique
     first = second := by
   sorry
 
-/-- In a reflexive relation, an element is a supremum of its represented singleton. -/
+                                                                                      
 theorem SupremumOfSingleton
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject] [Singleton Element SetObject]
@@ -35,7 +35,7 @@ theorem SupremumOfSingleton
     Supremum relation ({element} : SetObject) element := by
   sorry
 
-/-- A supremum is an upper bound of the represented subset. -/
+                                                              
 theorem SupremumIsUpperBound
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -45,7 +45,7 @@ theorem SupremumIsUpperBound
     UpperBound relation subset supremum := by
   sorry
 
-/-- A supremum lies below every upper bound of the represented subset. -/
+                                                                         
 theorem SupremumRelatedToEveryUpperBound
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -56,7 +56,7 @@ theorem SupremumRelatedToEveryUpperBound
     relation supremum bound := by
   sorry
 
-/-- Once a supremum exists, upper bounds are exactly the elements above it. -/
+                                                                              
 theorem UpperBoundIffSupremumRelated
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -67,7 +67,7 @@ theorem UpperBoundIffSupremumRelated
     UpperBound relation subset bound ↔ relation supremum bound := by
   sorry
 
-/-- Suprema are monotone under inclusion of represented subsets. -/
+                                                                   
 theorem SupremumMonotoneUnderInclusion
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -81,7 +81,7 @@ theorem SupremumMonotoneUnderInclusion
     relation smallerSupremum largerSupremum := by
   sorry
 
-/-- Pointwise domination of one represented subset by another compares their suprema. -/
+                                                                                        
 theorem SupremaCompareUnderPointwiseDomination
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -97,7 +97,7 @@ theorem SupremaCompareUnderPointwiseDomination
     relation leftSupremum rightSupremum := by
   sorry
 
-/-- A supremum that belongs to its subset is its greatest element. -/
+                                                                     
 theorem SupremumInSubsetIsGreatestElement
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -112,7 +112,7 @@ open scoped LRA.Set
 
 
 
-/-- The join of two existing suprema is the supremum of their union. -/
+                                                                       
 theorem SupremumOfUnion
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -129,7 +129,7 @@ theorem SupremumOfUnion
     Supremum relation (leftSubset ∪ rightSubset) unionSupremum := by
   sorry
 
-/-- The supremum of an intersection is below the supremum of either containing operand. -/
+                                                                                          
 theorem SupremumOfIntersectionRelatedToContainingSupremum
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -144,7 +144,7 @@ theorem SupremumOfIntersectionRelatedToContainingSupremum
     relation intersectionSupremum containingSupremum := by
   sorry
 
-/-- The supremum of a relative difference is below the supremum of its left operand. -/
+                                                                                       
 theorem SupremumOfDifferenceRelatedToContainingSupremum
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
@@ -158,7 +158,7 @@ theorem SupremumOfDifferenceRelatedToContainingSupremum
     relation differenceSupremum subsetSupremum := by
   sorry
 
-/-- The supremum of a symmetric difference is below the supremum of the union. -/
+                                                                                 
 theorem SupremumOfSymmetricDifferenceRelatedToUnionSupremum
     {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject]
@@ -174,7 +174,7 @@ theorem SupremumOfSymmetricDifferenceRelatedToUnionSupremum
     relation differenceSupremum unionSupremum := by
   sorry
 
-/-- Suprema of all family members assemble into the supremum of the indexed union under a least-common-upper-bound hypothesis. -/
+                                                                                                                                 
 theorem SupremumOfIndexedUnion
     {Element : Type u} {SetObject : Type v} {Index : Type w}
     [Membership Element SetObject]

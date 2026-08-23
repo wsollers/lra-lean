@@ -4,4 +4,4 @@ import LRA.Operation.Laws.Associative.Theorems
 import LRA.Operation.Laws.Associative.Consequences
 import LRA.Operation.Laws.Associative.FailureModes
 
-/-! Canonical Associative operation-law concept. -/
+                                                   
