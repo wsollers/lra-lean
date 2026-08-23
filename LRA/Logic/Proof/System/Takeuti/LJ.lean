@@ -17,7 +17,7 @@ Logical form:
 ```lean
 def LJRule {L : Alphabet} [DecidableEq L.FreeVar]
     (uppers : List (Judgement L)) (lower : Judgement L) : Prop :=
-  Rule uppers lower /\
+  ScopedRule uppers lower /\
     lower.IsIntuitionistic /\
     forall upper, upper ∈ uppers -> upper.IsIntuitionistic
 ```
@@ -37,7 +37,7 @@ Logical form:
 def LJ (L : Alphabet) [DecidableEq L.FreeVar] :
     LRA.Logic.Proof.System.ProofSystem where
   Judgement := Judgement L
-  IsInitial := fun J => IsInitial J /\ J.IsIntuitionistic
+  IsInitial := fun J => IsInitial J /\ J.WellScoped /\ J.IsIntuitionistic
   Rule := LJRule
 ```
 -/

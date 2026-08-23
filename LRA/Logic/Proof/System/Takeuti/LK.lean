@@ -16,8 +16,8 @@ Logical form:
 def LK (L : Alphabet) [DecidableEq L.FreeVar] :
     LRA.Logic.Proof.System.ProofSystem where
   Judgement := Judgement L
-  IsInitial := IsInitial
-  Rule := Rule
+  IsInitial := fun J => IsInitial J /\ J.WellScoped
+  Rule := ScopedRule
 ```
 -/
 def LK (L : Alphabet) [DecidableEq L.FreeVar] :

@@ -23,6 +23,54 @@ inductive Formula (L : Alphabet) : Type
   | impl : Formula L -> Formula L -> Formula L
   | all : L.BoundVar -> Formula L -> Formula L
   | ex : L.BoundVar -> Formula L -> Formula L
+
+/--
+`Formula.WellScopedIn` defines the displayed object for well scoped in.
+
+Logical form:
+
+```lean
+def Formula.WellScopedIn {L : Alphabet} (scope : List L.BoundVar) :
+    Formula L -> Prop
+  | Formula.atom _ args => ∀ i, FormulaArg.WellScopedIn scope (args i)
+  | Formula.neg A => Formula.WellScopedIn scope A
+  | Formula.conj A B =>
+      Formula.WellScopedIn scope A ∧ Formula.WellScopedIn scope B
+  | Formula.disj A B =>
+      Formula.WellScopedIn scope A ∧ Formula.WellScopedIn scope B
+  | Formula.impl A B =>
+      Formula.WellScopedIn scope A ∧ Formula.WellScopedIn scope B
+  | Formula.all x A => Formula.WellScopedIn (x :: scope) A
+  | Formula.ex x A => Formula.WellScopedIn (x :: scope) A
+```
+-/
+def Formula.WellScopedIn {L : Alphabet} (scope : List L.BoundVar) :
+    Formula L -> Prop
+  | Formula.atom _ args => ∀ i, FormulaArg.WellScopedIn scope (args i)
+  | Formula.neg A => Formula.WellScopedIn scope A
+  | Formula.conj A B =>
+      Formula.WellScopedIn scope A /\ Formula.WellScopedIn scope B
+  | Formula.disj A B =>
+      Formula.WellScopedIn scope A /\ Formula.WellScopedIn scope B
+  | Formula.impl A B =>
+      Formula.WellScopedIn scope A /\ Formula.WellScopedIn scope B
+  | Formula.all x A => Formula.WellScopedIn (x :: scope) A
+  | Formula.ex x A => Formula.WellScopedIn (x :: scope) A
+
+/--
+`Formula.WellScoped` is the top-level well-scopedness condition for raw
+Takeuti formulas: every bound variable occurrence must be introduced by an
+enclosing quantifier.
+
+Logical form:
+
+```lean
+def Formula.WellScoped {L : Alphabet} (A : Formula L) : Prop :=
+  Formula.WellScopedIn [] A
+```
+-/
+def Formula.WellScoped {L : Alphabet} (A : Formula L) : Prop :=
+  Formula.WellScopedIn [] A
 ```
 -/
 inductive Formula (L : Alphabet) : Type

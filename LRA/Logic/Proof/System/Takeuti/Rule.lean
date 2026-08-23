@@ -66,12 +66,14 @@ inductive Rule {L : Alphabet} [DecidableEq L.FreeVar] :
       Rule [⟨A :: Γ, Δ ++ [B]⟩] ⟨Γ, Δ ++ [Formula.impl A B]⟩
   | allLeft
       (body : Formula L) (a : L.FreeVar) (x : L.BoundVar) (t : Term L)
-      (Γ Δ : List (Formula L)) :
+      (Γ Δ : List (Formula L))
+      (hFresh : body.BoundVarFresh x) :
       Rule [⟨body.substFreeByTerm a t :: Γ, Δ⟩]
         ⟨Formula.all x (body.substFreeByBound a x) :: Γ, Δ⟩
   | allRight
       (body : Formula L) (a : L.FreeVar) (x : L.BoundVar)
       (Γ Δ : List (Formula L))
+      (hFresh : body.BoundVarFresh x)
       (hEigen : Not (Judgement.FreeVarOccurs a
         ⟨Γ, Δ ++ [Formula.all x (body.substFreeByBound a x)]⟩)) :
       Rule [⟨Γ, Δ ++ [body]⟩]
@@ -79,15 +81,38 @@ inductive Rule {L : Alphabet} [DecidableEq L.FreeVar] :
   | exLeft
       (body : Formula L) (a : L.FreeVar) (x : L.BoundVar)
       (Γ Δ : List (Formula L))
+      (hFresh : body.BoundVarFresh x)
       (hEigen : Not (Judgement.FreeVarOccurs a
         ⟨Formula.ex x (body.substFreeByBound a x) :: Γ, Δ⟩)) :
       Rule [⟨body :: Γ, Δ⟩]
         ⟨Formula.ex x (body.substFreeByBound a x) :: Γ, Δ⟩
   | exRight
       (body : Formula L) (a : L.FreeVar) (x : L.BoundVar) (t : Term L)
-      (Γ Δ : List (Formula L)) :
+      (Γ Δ : List (Formula L))
+      (hFresh : body.BoundVarFresh x) :
       Rule [⟨Γ, Δ ++ [body.substFreeByTerm a t]⟩]
         ⟨Γ, Δ ++ [Formula.ex x (body.substFreeByBound a x)]⟩
+
+/--
+`ScopedRule` strengthens the raw Takeuti rule shapes with the global syntax
+invariant needed for soundness: every upper sequent and the lower sequent must
+already be well-scoped.
+
+Logical form:
+
+```lean
+def ScopedRule {L : Alphabet} [DecidableEq L.FreeVar]
+    (uppers : List (Judgement L)) (lower : Judgement L) : Prop :=
+  Rule uppers lower ∧
+    lower.WellScoped ∧
+    ∀ upper, upper ∈ uppers → upper.WellScoped
+```
+-/
+def ScopedRule {L : Alphabet} [DecidableEq L.FreeVar]
+    (uppers : List (Judgement L)) (lower : Judgement L) : Prop :=
+  Rule uppers lower /\
+    lower.WellScoped /\
+    ∀ upper, upper ∈ uppers -> upper.WellScoped
 ```
 -/
 inductive Rule {L : Alphabet} [DecidableEq L.FreeVar] :

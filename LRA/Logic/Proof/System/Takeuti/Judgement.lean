@@ -28,6 +28,21 @@ Logical form:
 
 ```lean
 abbrev Sequent := Judgement
+
+/--
+`Judgement.WellScoped` defines the displayed object for well scoped.
+
+Logical form:
+
+```lean
+def Judgement.WellScoped {L : Alphabet} (J : Judgement L) : Prop :=
+  (∀ A, A ∈ J.antecedent → A.WellScoped) ∧
+    ∀ A, A ∈ J.succedent → A.WellScoped
+```
+-/
+def Judgement.WellScoped {L : Alphabet} (J : Judgement L) : Prop :=
+  (∀ A, A ∈ J.antecedent -> A.WellScoped) /\
+    ∀ A, A ∈ J.succedent -> A.WellScoped
 ```
 -/
 abbrev Sequent := Judgement

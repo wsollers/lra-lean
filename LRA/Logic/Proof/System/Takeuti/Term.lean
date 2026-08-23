@@ -39,6 +39,25 @@ inductive FormulaArg (L : Alphabet) : Type
   | free : L.FreeVar -> FormulaArg L
   | bound : L.BoundVar -> FormulaArg L
   | func : {n : Nat} -> L.FunctionSymbol n -> (Fin n -> FormulaArg L) -> FormulaArg L
+
+/--
+`FormulaArg.WellScopedIn` defines the displayed object for well scoped in.
+
+Logical form:
+
+```lean
+def FormulaArg.WellScopedIn {L : Alphabet} (scope : List L.BoundVar) :
+    FormulaArg L -> Prop
+  | FormulaArg.free _ => True
+  | FormulaArg.bound x => x ∈ scope
+  | FormulaArg.func _ args => ∀ i, FormulaArg.WellScopedIn scope (args i)
+```
+-/
+def FormulaArg.WellScopedIn {L : Alphabet} (scope : List L.BoundVar) :
+    FormulaArg L -> Prop
+  | FormulaArg.free _ => True
+  | FormulaArg.bound x => x ∈ scope
+  | FormulaArg.func _ args => ∀ i, FormulaArg.WellScopedIn scope (args i)
 ```
 -/
 inductive FormulaArg (L : Alphabet) : Type
