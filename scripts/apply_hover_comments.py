@@ -3,6 +3,8 @@
 
 By default this script is conservative: only JSON entries with
 `"status": "reviewed"` are applied.  Use `--drafts` for local experiments.
+Existing attached declaration doc comments are wiped before regenerated
+comments are inserted, so stale prose cannot survive a regeneration pass.
 """
 
 from __future__ import annotations
@@ -71,11 +73,9 @@ def apply_to_file(path: Path, entries: list[dict[str, Any]], check_only: bool) -
         if declaration is None:
             raise RuntimeError(f"{entry_id} not found")
         comment = normalized_comment(entry["generated_comment"])
-        if declaration.doc is None:
-            replacement = comment
-            edits.append((declaration.start, declaration.start, replacement))
-        else:
-            edits.append((declaration.doc.start, declaration.doc.end, comment.rstrip()))
+        if declaration.doc is not None:
+            edits.append((declaration.doc.start, declaration.doc.end, ""))
+        edits.append((declaration.start, declaration.start, comment))
 
     new_text = text
     for start, end, replacement in sorted(edits, reverse=True):
