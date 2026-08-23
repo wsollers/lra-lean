@@ -1,7 +1,7 @@
-import LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.WellFoundedness
+import LRA.NumberSystems.WholeNumbers.Constructions.Landau.WellFoundedness
 import LRA.NumberSystems.NaturalNumbers.Constructions.Landau.Operations
 
-namespace LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers
+namespace LRA.NumberSystems.WholeNumbers.Constructions.Landau
 
 open LRA.NumberSystems.NaturalNumbers.Constructions.Landau
 
@@ -25,4 +25,4 @@ noncomputable def multiplication : Carrier natural_data → Carrier natural_data
   | some left, some right =>
       some (LandauMultiplication natural_data.model left right)
 
-end LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers
+end LRA.NumberSystems.WholeNumbers.Constructions.Landau

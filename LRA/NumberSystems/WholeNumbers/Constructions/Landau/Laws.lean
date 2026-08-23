@@ -1,6 +1,6 @@
-import LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Operations
+import LRA.NumberSystems.WholeNumbers.Constructions.Landau.Operations
 
-namespace LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers
+namespace LRA.NumberSystems.WholeNumbers.Constructions.Landau
 
 universe u v
 
@@ -137,4 +137,4 @@ theorem well_ordering
       ∀ value, subset value → nonstrictOrder natural_data least value := by
   sorry
 
-end LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers
+end LRA.NumberSystems.WholeNumbers.Constructions.Landau

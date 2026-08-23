@@ -1,7 +1,7 @@
-import LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier
+import LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier
 import LRA.Set.PredicateSet.Definition
 
-namespace LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers
+namespace LRA.NumberSystems.WholeNumbers.Constructions.Landau
 
 open LRA.Set
 
@@ -67,4 +67,4 @@ def WholeNumbersPeanoSystem :
   successor_injective := successor_is_injective natural_data
   induction := induction_from_zero natural_data
 
-end LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers
+end LRA.NumberSystems.WholeNumbers.Constructions.Landau

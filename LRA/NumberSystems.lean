@@ -5,6 +5,7 @@ import LRA.NumberSystems.Interface.ModelTheory.CanonicalEmbeddings
 import LRA.NumberSystems.Interface.ModelTheory.UniversalProperties
 import LRA.NumberSystems.PeanoSystem
 import LRA.NumberSystems.NaturalNumbers
+import LRA.NumberSystems.WholeNumbers
 import LRA.NumberSystems.IntegerStructure
 import LRA.NumberSystems.Integers
 import LRA.NumberSystems.RationalNumbers

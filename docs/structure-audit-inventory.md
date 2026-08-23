@@ -777,3 +777,87 @@ manual namespace/`end` balance on every new file. Not built — no `lake
 build` or validator gate run, per the standing constraint; a real build is
 the only way to confirm the recreated/composed model constructors actually
 elaborate, and remains outside this session.
+
+---
+
+## 16. `WholeNumbers` added as its own `NumberSystems` subject
+
+User request: add `W` (whole numbers, `N ∪ {0}`) as its own system, so
+0-specific properties can be developed there while everything else leverages
+the existing 1-based `N`.
+
+**First confirmed the premise.** `NaturalNumbers/Constructions/Landau/
+Carrier.lean` is purely axiomatic — `axiom LandauElement`, `axiom LandauOne`,
+`axiom LandauSuccessor` — no zero axiom anywhere, and `PeanoSystem`'s own
+base-element field is literally named `one : Element`, matching the Landau
+tradition `DESIGN.md` cites. **Confirmed: the foundational 1-based
+`NaturalNumbers` does not have 0.**
+
+**Then found this repository already has exactly what was being asked
+for — just filed in the wrong place.** `NumberSystems/NaturalNumbers/
+Constructions/WholeNumbers/` existed, nested as if it were merely another
+way to construct ℕ itself (a sibling of `Landau`/`VonNeumann`/`Presburger`,
+all of which *are* constructions of ℕ). It isn't that: `Carrier.lean` builds
+`W := Option N` (`zero := none`, `naturalEmbedding value := some value`),
+lifting Landau's successor/addition/multiplication across the extra element
+— a construction of a different, larger system that *depends on*
+`NaturalNumbers`, misplaced one directory too deep, the same
+misplaced-by-one-layer pattern this audit keeps finding elsewhere (just
+vertically instead of by subject layer this time). `Instances.lean` already
+proves substantial content: `CommutativeSemiringLaws` and the stronger
+`OrderedSemiringLaws` (a few `sorry`s remain, but the shape and most proofs
+are real).
+
+**Moved, not rebuilt.** `NumberSystems/NaturalNumbers/Constructions/
+WholeNumbers/*` → `NumberSystems/WholeNumbers/Constructions/Landau/*`
+(renamed from the construction-name-under-`NaturalNumbers` to the
+system-name-with-a-`Landau`-flavored-construction, since it specifically
+builds on `NaturalNumbers`'s `Landau` construction and other constructions
+of `W` — e.g. one over `VonNeumann` — could exist as siblings later). All 7
+files (`Carrier`, `Equivalence` (empty — `W` isn't a quotient construction,
+so it never needed one), `WellFoundedness`, `Operations`, `Laws`,
+`Behavior`, `Instances`) moved with only the namespace and self-referential
+imports rewritten (`LRA.NumberSystems.NaturalNumbers.Constructions.
+WholeNumbers` → `LRA.NumberSystems.WholeNumbers.Constructions.Landau`); the
+still-valid reference to `NaturalNumbers.Constructions.Landau.Operations`
+(the actual N construction it builds on) was left untouched. No external
+consumers existed outside its own family, so this was fully contained.
+
+**Given `Instances.lean` already proves `OrderedSemiringLaws`** (strictly
+stronger than `CommutativeSemiringLaws`), `AlgebraicStructures.
+OrderedSemiring` — confirmed to already have full `Interface/ModelTheory`
+(`BuildOrderedSemiringModel`, `orderedSemiringFirstOrderModel`) — is `W`'s
+correct target, not `CommutativeSemiring`. Built
+`WholeNumbers/Interface/Signature/Definition.lean` (re-export of
+`OrderedSemiring`'s) and `WholeNumbers/Interface/ModelTheory/
+{LStructure,Theory,Model}.lean`; `wholeNumbersModel` `letI`s in the six
+typeclass instances `Instances.lean` already registers as plain `def`s
+(`zeroOn`/`oneOn`/`addOn`/`mulOn`/`ltOn`/`leOn` — not registered as
+`instance`s, so they must be brought into scope explicitly, the same way
+`Instances.lean` itself does internally) before calling
+`orderedSemiringFirstOrderModel`, rather than inventing a new construction
+path.
+
+Wired `WholeNumbers` into `NumberSystems.lean` as a peer of `NaturalNumbers`
+(between it and `IntegerStructure`, matching the ℕ → W → ℤ progression), and
+dropped the old import from `NaturalNumbers/Constructions.lean`.
+
+**This surfaces a real correction to the already-committed §15 work, flagged
+here rather than silently fixed:** `Instances.lean`'s proof confirms
+mathematically that `CommutativeSemiring` — the target §15 assigned to
+`NumberSystems/NaturalNumbers/Interface/ModelTheory` — cannot actually be
+realized by 1-based `NaturalNumbers` itself (a semiring requires an additive
+identity; 1-based `N` has none). It's realized by `WholeNumbers`, as just
+built. `NaturalNumbers/Interface/ModelTheory` still exists as scaffolding
+(no instance was ever registered against it, so nothing currently claims a
+false theorem), but no instance ever *can* satisfy it as currently targeted.
+Whether to retarget or remove it — and if retargeted, there is no existing
+`AdditiveCommutativeSemigroup + CommutativeMonoid + Distributive`-without-zero
+bundle in `AlgebraicStructures` to point it at, so a correct fix may require
+new `AlgebraicStructures` infrastructure, not just a rewire — is left as an
+open decision rather than acted on unilaterally, since it touches previously
+committed work outside what was asked for this turn.
+
+Verified with the same static import-resolution check (0 broken across
+3,897 import lines) and manual namespace/`end` balance across every new and
+moved file. Not built.

@@ -1,6 +1,6 @@
-import LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Operations
+import LRA.NumberSystems.WholeNumbers.Constructions.Landau.Operations
 
-namespace LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers
+namespace LRA.NumberSystems.WholeNumbers.Constructions.Landau
 
 open LRA.NumberSystems.NaturalNumbers.Constructions.Landau
 
@@ -40,4 +40,4 @@ theorem natural_embedding_preserves_structure :
         natural_data.strictOrder first second) := by
   sorry
 
-end LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers
+end LRA.NumberSystems.WholeNumbers.Constructions.Landau

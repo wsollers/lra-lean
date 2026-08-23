@@ -3,7 +3,7 @@
 
 import LRA.NumberSystems.NaturalNumbers.Constructions.Landau.Operations
 
-namespace LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers
+namespace LRA.NumberSystems.WholeNumbers.Constructions.Landau
 
 universe u v
 
@@ -95,4 +95,4 @@ def strictOrder : Carrier natural_data → Carrier natural_data → Prop
 def nonstrictOrder (left right : Carrier natural_data) : Prop :=
   strictOrder natural_data left right ∨ left = right
 
-end LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers
+end LRA.NumberSystems.WholeNumbers.Constructions.Landau

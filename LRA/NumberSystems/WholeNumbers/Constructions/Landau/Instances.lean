@@ -3,10 +3,10 @@
 
 import LRA.AlgebraicStructures
 import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs.Carrier
-import LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Laws
-import LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Behavior
+import LRA.NumberSystems.WholeNumbers.Constructions.Landau.Laws
+import LRA.NumberSystems.WholeNumbers.Constructions.Landau.Behavior
 
-namespace LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers
+namespace LRA.NumberSystems.WholeNumbers.Constructions.Landau
 
 open LRA.AlgebraicStructures
 open LRA.Order
@@ -224,4 +224,4 @@ example (a b : Carrier natural_data) : True := by
   have commuted : a + b = b + a := AddCommutative a b
   trivial
 
-end LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers
+end LRA.NumberSystems.WholeNumbers.Constructions.Landau
