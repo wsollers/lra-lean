@@ -123,7 +123,8 @@ Split from the former single 206-line file.
       source defines no arithmetic operations on `Carrier` at all, only
       pre-carrier data, equivalence, and one comparison theorem.
 - [ ] `Behavior.lean` -- `cantor_reals_are_isomorphic_to_cauchy_reals`
-      (`sorry`), repointed to `LRA.NumberSystems.RealNumbers.Cauchy`.
+      (`sorry`, now a bijective comparison surface), repointed to
+      `LRA.NumberSystems.RealNumbers.Cauchy`.
 - [ ] `Instances.lean` -- new: `CantorRealizesRationalRealExtension`, `sorry`.
 
 ---
