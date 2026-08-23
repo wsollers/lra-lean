@@ -92,14 +92,34 @@ the user made for Integer would not be the same decision.
 
 ---
 
-## Deferred: `ContinuedFractions.lean`
+## Top-level continued fractions
 
-Left at `LRA.VolumeII.RationalNumbers.ContinuedFractions` (not moved).
-It imports `LRA.VolumeII.RealNumbers.Irrationals` -- a forward dependency
-on the Real system, which has not yet been migrated per the embedding-chain
-order (§7.7 step 4: "...whole, integer, rational, real, ..."). Its own
-import of `RationalQuotientFractions` was repointed to the new location so
-it keeps building; the file itself moves once Real is promoted.
+Continued-fraction theory is no longer deferred under the old `VolumeII`
+path.
+
+The current owner split is:
+
+- `LRA.Arithmetic.ContinuedFractions` owns the generic arithmetic objects and
+  predicates: `FiniteSimpleContinuedFraction`,
+  `InfiniteSimpleContinuedFraction`,
+  `IsCanonicalSimpleContinuedFraction`,
+  `IsProperInfiniteSimpleContinuedFraction`, and `IsEventuallyPeriodic`.
+- `LRA.NumberSystems.RationalNumbers.ContinuedFractions` owns the rational
+  interpretation of finite continued fractions through
+  `EmbedIntegerCoefficient`, `CoefficientsEvaluateTo`,
+  `FiniteSimpleContinuedFractionEvaluatesTo`, and
+  `EveryRationalHasUniqueCanonicalFiniteSimpleContinuedFraction`.
+- `LRA.NumberSystems.RealNumbers.ContinuedFractions.Definition` and
+  `.Theorems` own the real-number layer:
+  `FinitePrefix`, `IsConvergentAt`, `ConvergentsConvergeTo`,
+  `IsInfiniteSimpleContinuedFractionExpansionOf`,
+  `IsQuadraticIrrational`,
+  `ProperInfiniteSimpleContinuedFractionConverges`, and
+  `QuadraticIrrationalIffEventuallyPeriodicContinuedFraction`.
+
+This keeps the finite rational expansion theorem with the rational-number
+system, while the infinite convergence and Lagrange theorem surfaces live with
+the real-number system where irrationality and real limits are already owned.
 
 ---
 
