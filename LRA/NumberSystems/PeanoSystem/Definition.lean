@@ -86,6 +86,33 @@ structure PeanoSystem (Element : Type u) (SetObject : Type v)
       forall element : Element,
         element ∈ subset
 
+/--
+**[Definition - Predicate-Set Comprehension Adequacy for a Peano-System Backend]**
+
+An adequacy certificate packages an explicit representation of every Lean
+predicate on the carrier by a backend `SetObject`, together with exact
+membership reflection.
+
+Logical form:
+
+```lean
+structure PredicateSetComprehensionAdequacy
+    (Element : Type u) (SetObject : Type v)
+    [Membership Element SetObject] where
+  Represent : Set Element -> SetObject
+  MembershipIff :
+    forall (predicate : Set Element) (element : Element),
+      element ∈ Represent predicate ↔ predicate element
+```
+-/
+structure PredicateSetComprehensionAdequacy
+    (Element : Type u) (SetObject : Type v)
+    [Membership Element SetObject] where
+  Represent : Set Element -> SetObject
+  MembershipIff :
+    forall (predicate : Set Element) (element : Element),
+      element ∈ Represent predicate ↔ predicate element
+
 section
 
 variable {Element : Type u} {SetObject : Type v}
@@ -153,6 +180,69 @@ def InductiveSubsetOfPeanoSystem
     (subset : SetObject) : Prop :=
   ps.one ∈ subset /\
     SuccessorClosedSubset ps subset
+
+/--
+**[Definition - Full Predicate Induction for a Peano System]**
+
+Full predicate induction quantifies over every Lean predicate on the carrier,
+not only over subsets already represented by the backend `SetObject`.
+
+Logical form:
+
+```lean
+def FullPredicateInduction
+    (ps : PeanoSystem Element SetObject) : Prop :=
+  forall predicate : Set Element,
+    predicate ps.one ->
+    (forall element : Element,
+      predicate element ->
+      predicate (ps.successor element)) ->
+    forall element : Element,
+      predicate element
+```
+-/
+def FullPredicateInduction
+    (ps : PeanoSystem Element SetObject) : Prop :=
+  forall predicate : Set Element,
+    predicate ps.one ->
+    (forall element : Element,
+      predicate element ->
+      predicate (ps.successor element)) ->
+    forall element : Element,
+      predicate element
+
+/--
+**[Theorem - Comprehension Adequacy Implies Full Predicate Induction]**
+
+If every Lean predicate is represented by a backend subset, then the bundled
+backend-relative induction axiom upgrades to full predicate induction.
+
+Logical form:
+
+```lean
+theorem FullPredicateInductionOfComprehensionAdequacy
+    (ps : PeanoSystem Element SetObject)
+    (adequacy : PredicateSetComprehensionAdequacy Element SetObject) :
+    FullPredicateInduction ps
+```
+-/
+theorem FullPredicateInductionOfComprehensionAdequacy
+    (ps : PeanoSystem Element SetObject)
+    (adequacy : PredicateSetComprehensionAdequacy Element SetObject) :
+    FullPredicateInduction ps := by
+  intro predicate baseCase successorStep element
+  have representedBase : ps.one ∈ adequacy.Represent predicate :=
+    (adequacy.MembershipIff predicate ps.one).2 baseCase
+  have representedStep :
+      forall candidate : Element,
+        candidate ∈ adequacy.Represent predicate ->
+        ps.successor candidate ∈ adequacy.Represent predicate := by
+    intro candidate hCandidate
+    exact (adequacy.MembershipIff predicate (ps.successor candidate)).2
+      (successorStep candidate
+        ((adequacy.MembershipIff predicate candidate).1 hCandidate))
+  exact (adequacy.MembershipIff predicate element).1
+    (ps.induction (adequacy.Represent predicate) representedBase representedStep element)
 
 end
 

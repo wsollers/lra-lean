@@ -209,10 +209,12 @@ theorem MinimalIteratorRelationComplete
 -/
 theorem MinimalIteratorRelationComplete
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (data : IteratorData ps) :
     forall element : Element,
       exists value : data.Target,
         MinimalIteratorRelation ps data element value := by
+  let _ := fullInduction
   sorry
 
 /--
@@ -239,12 +241,14 @@ theorem MinimalIteratorRelationDeterministic
 -/
 theorem MinimalIteratorRelationDeterministic
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (data : IteratorData ps) :
     forall element : Element,
       forall first_value second_value : data.Target,
         MinimalIteratorRelation ps data element first_value ->
         MinimalIteratorRelation ps data element second_value ->
         first_value = second_value := by
+  let _ := fullInduction
   sorry
 
 /--
@@ -265,12 +269,14 @@ theorem ForcedValuesAreUnique
 -/
 theorem ForcedValuesAreUnique
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (data : IteratorData ps) :
     forall element : Element,
       forall first_value second_value : data.Target,
         MinimalIteratorRelation ps data element first_value ->
         MinimalIteratorRelation ps data element second_value ->
         first_value = second_value := by
+  let _ := fullInduction
   sorry
 
 /--
@@ -287,6 +293,7 @@ Logical form:
 ```lean
 theorem ExistenceOfIteratorFunction
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (target : Type w)
     (initial_value : target)
     (step_rule : target -> target) :
@@ -301,6 +308,7 @@ theorem ExistenceOfIteratorFunction
 -/
 theorem ExistenceOfIteratorFunction
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (target : Type w)
     (initial_value : target)
     (step_rule : target -> target) :
@@ -311,6 +319,7 @@ theorem ExistenceOfIteratorFunction
         initial_value
         step_rule
         iterator_function := by
+  let _ := fullInduction
   sorry
 
 /--
@@ -326,6 +335,7 @@ Logical form:
 ```lean
 theorem UniquenessOfIteratorFunctions
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (target : Type w)
     (initial_value : target)
     (step_rule : target -> target)
@@ -337,6 +347,7 @@ theorem UniquenessOfIteratorFunctions
 -/
 theorem UniquenessOfIteratorFunctions
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (target : Type w)
     (initial_value : target)
     (step_rule : target -> target)
@@ -344,6 +355,7 @@ theorem UniquenessOfIteratorFunctions
     IteratorFunctionClauses ps target initial_value step_rule first_iterator ->
       IteratorFunctionClauses ps target initial_value step_rule second_iterator ->
       first_iterator = second_iterator := by
+  let _ := fullInduction
   sorry
 
 /--
@@ -359,6 +371,7 @@ Logical form:
 ```lean
 theorem IteratorFunctionWellDefined
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (target : Type w)
     (initial_value : target)
     (step_rule : target -> target) :
@@ -381,6 +394,7 @@ theorem IteratorFunctionWellDefined
 -/
 theorem IteratorFunctionWellDefined
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (target : Type w)
     (initial_value : target)
     (step_rule : target -> target) :
@@ -399,6 +413,7 @@ theorem IteratorFunctionWellDefined
           step_rule
           other_iterator ->
         other_iterator = iterator_function := by
+  let _ := fullInduction
   sorry
 
 /--
@@ -415,6 +430,7 @@ Logical form:
 ```lean
 noncomputable def IteratorGeneratedFunction
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (target : Type w)
     (initial_value : target)
     (step_rule : target -> target) :
@@ -422,6 +438,7 @@ noncomputable def IteratorGeneratedFunction
   Classical.choose
     (ExistenceOfIteratorFunction
       ps
+      fullInduction
       target
       initial_value
       step_rule)
@@ -429,6 +446,7 @@ noncomputable def IteratorGeneratedFunction
 -/
 noncomputable def IteratorGeneratedFunction
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (target : Type w)
     (initial_value : target)
     (step_rule : target -> target) :
@@ -436,6 +454,7 @@ noncomputable def IteratorGeneratedFunction
   Classical.choose
     (ExistenceOfIteratorFunction
       ps
+      fullInduction
       target
       initial_value
       step_rule)
@@ -462,10 +481,11 @@ theorem IteratorBaseValue
 -/
 theorem IteratorBaseValue
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (target : Type w)
     (initial_value : target)
     (step_rule : target -> target) :
-    IteratorGeneratedFunction ps target initial_value step_rule ps.one = initial_value := by
+    IteratorGeneratedFunction ps fullInduction target initial_value step_rule ps.one = initial_value := by
   sorry
 
 /--
@@ -491,12 +511,13 @@ theorem IteratorSuccessorStep
 -/
 theorem IteratorSuccessorStep
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (target : Type w)
     (initial_value : target)
     (step_rule : target -> target)
     (element : Element) :
-    IteratorGeneratedFunction ps target initial_value step_rule (ps.successor element) =
-      step_rule (IteratorGeneratedFunction ps target initial_value step_rule element) := by
+    IteratorGeneratedFunction ps fullInduction target initial_value step_rule (ps.successor element) =
+      step_rule (IteratorGeneratedFunction ps fullInduction target initial_value step_rule element) := by
   sorry
 
 /--
@@ -507,16 +528,18 @@ Logical form:
 ```lean
 noncomputable def IterationOfASelfMap
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (initial_value : Element)
     (step_rule : Element -> Element) : Element -> Element :=
-  IteratorGeneratedFunction ps Element initial_value step_rule
+  IteratorGeneratedFunction ps fullInduction Element initial_value step_rule
 ```
 -/
 noncomputable def IterationOfASelfMap
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (initial_value : Element)
     (step_rule : Element -> Element) : Element -> Element :=
-  IteratorGeneratedFunction ps Element initial_value step_rule
+  IteratorGeneratedFunction ps fullInduction Element initial_value step_rule
 
 /--
 **[Theorem - Peano Iterator Theorem]**
@@ -533,6 +556,7 @@ Logical form:
 ```lean
 theorem PeanoIteratorTheorem
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (target : Type w)
     (initial_value : target)
     (step_rule : target -> target) :
@@ -555,6 +579,7 @@ theorem PeanoIteratorTheorem
 -/
 theorem PeanoIteratorTheorem
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (target : Type w)
     (initial_value : target)
     (step_rule : target -> target) :
@@ -573,6 +598,7 @@ theorem PeanoIteratorTheorem
           step_rule
           other_iterator ->
         other_iterator = iterator_function := by
+  let _ := fullInduction
   sorry
 
 /--
@@ -646,6 +672,7 @@ Logical form:
 ```lean
 theorem UniquenessOfGeneralRecursiveFunctions
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (target : Type w)
     (initial_value : target)
     (step_rule : StageDependentStepRule ps target)
@@ -659,6 +686,7 @@ theorem UniquenessOfGeneralRecursiveFunctions
 -/
 theorem UniquenessOfGeneralRecursiveFunctions
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (target : Type w)
     (initial_value : target)
     (step_rule : StageDependentStepRule ps target)
@@ -668,6 +696,7 @@ theorem UniquenessOfGeneralRecursiveFunctions
     GeneralRecursiveFunctionClauses
       ps target initial_value step_rule second_recursive_function ->
     first_recursive_function = second_recursive_function := by
+  let _ := fullInduction
   sorry
 
 /--
@@ -688,12 +717,14 @@ theorem GeneralRecursionByStateEncoding
 -/
 theorem GeneralRecursionByStateEncoding
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (target : Type w)
     (initial_value : target)
     (step_rule : StageDependentStepRule ps target) :
     exists recursive_function : Element -> target,
       GeneralRecursiveFunctionClauses
         ps target initial_value step_rule recursive_function := by
+  let _ := fullInduction
   sorry
 
 /--
@@ -704,6 +735,7 @@ Logical form:
 ```lean
 theorem GeneralRecursionTheoremForPeanoSystem
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (target : Type w)
     (initial_value : target)
     (step_rule : StageDependentStepRule ps target) :
@@ -718,6 +750,7 @@ theorem GeneralRecursionTheoremForPeanoSystem
 -/
 theorem GeneralRecursionTheoremForPeanoSystem
     (ps : PeanoSystem Element SetObject)
+    (fullInduction : FullPredicateInduction ps)
     (target : Type w)
     (initial_value : target)
     (step_rule : StageDependentStepRule ps target) :
@@ -728,6 +761,7 @@ theorem GeneralRecursionTheoremForPeanoSystem
         GeneralRecursiveFunctionClauses
           ps target initial_value step_rule other_recursive_function ->
         other_recursive_function = recursive_function := by
+  let _ := fullInduction
   sorry
 
 end LRA.NumberSystems.PeanoSystem.Recursion

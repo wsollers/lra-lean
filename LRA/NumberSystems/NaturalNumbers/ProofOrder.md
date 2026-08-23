@@ -24,8 +24,11 @@ actually built, and how its three law fields (`one_not_successor`,
 All four end up as values of the same `PeanoSystem Element SetObject` type,
 just for different `Element`/`SetObject` choices. That's why
 `PeanoSystem.Categoricity.UniquenessOfPeanoSystemsUpToIsomorphism` matters:
-it's the one proof that ties all four together as "the same" natural
-numbers, rather than four unrelated claims that happen to share a name.
+once a construction supplies full predicate induction (either directly or via
+an explicit `PredicateSetComprehensionAdequacy` witness upgrading the backend
+subset axiom to full predicate induction), it is the one proof that ties all
+four together as "the same" natural numbers, rather than four unrelated
+claims that happen to share a name.
 
 `WholeNumbers` was originally a separate `LRA.VolumeII.WholeNumbers` system
 in the embedding chain ("naturals, whole, integer, rational, ..."); reading

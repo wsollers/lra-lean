@@ -63,7 +63,10 @@ from `0` returns to `0`, and two-sided induction. Mirrors
       — any two integer structures are isomorphic via the canonical map
       `0 ↦ 0`, `Sⁿ 0 ↦ Sⁿ 0`, `Pⁿ 0 ↦ Pⁿ 0`. Mirrors
       `PeanoSystem.Categoricity.UniquenessOfPeanoSystemsUpToIsomorphism`
-      (itself still `sorry`).
+      (itself still `sorry`). Both generic categoricity statements now
+      explicitly require full predicate induction, either supplied directly or
+      derived from a backend `PredicateSetComprehensionAdequacy` witness,
+      rather than relying on backend-relative subset induction alone.
 - [x] `IntegerStructure.Bundled` — the original, self-contained (non-generic,
       `carrier`-bundled) presentation, moved unchanged from
       `Polish.DiscreteIntegerStructure`: `iterate`, `Injective`/`Surjective`/

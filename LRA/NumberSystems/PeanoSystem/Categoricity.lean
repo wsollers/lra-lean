@@ -8,10 +8,11 @@ variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 
 /--
-**[Theorem - Uniqueness of Peano Systems up to Isomorphism]**
+**[Theorem - Uniqueness of Fully Adequate Peano Systems up to Isomorphism]**
 
-Any two Peano systems are isomorphic: there is a bijection between their
-carriers that fixes the distinguished element and commutes with successor.
+Any two Peano systems equipped with full predicate induction are isomorphic:
+there is a bijection between their carriers that fixes the distinguished
+element and commutes with successor.
 
 This is the uniqueness-up-to-isomorphism theorem §1.6.3 needs, proved here
 for the Peano case specifically, per §1.6.10 -- `NumberSystems/Theory/` cites
@@ -28,7 +29,9 @@ theorem UniquenessOfPeanoSystemsUpToIsomorphism
     {SecondElement : Type u} {SecondSetObject : Type v}
     [Membership SecondElement SecondSetObject]
     (first : PeanoSystem Element SetObject)
+    (firstFullInduction : FullPredicateInduction first)
     (second : PeanoSystem SecondElement SecondSetObject) :
+    FullPredicateInduction second ->
     exists forward : Element -> SecondElement,
       exists backward : SecondElement -> Element,
         forward first.one = second.one /\
@@ -47,7 +50,9 @@ theorem UniquenessOfPeanoSystemsUpToIsomorphism
     {SecondElement : Type u} {SecondSetObject : Type v}
     [Membership SecondElement SecondSetObject]
     (first : PeanoSystem Element SetObject)
+    (firstFullInduction : FullPredicateInduction first)
     (second : PeanoSystem SecondElement SecondSetObject) :
+    FullPredicateInduction second ->
     exists forward : Element -> SecondElement,
       exists backward : SecondElement -> Element,
         forward first.one = second.one /\
@@ -60,6 +65,9 @@ theorem UniquenessOfPeanoSystemsUpToIsomorphism
             first.successor (backward element)) /\
         (forall element : Element, backward (forward element) = element) /\
         (forall element : SecondElement, forward (backward element) = element) := by
+  intro secondFullInduction
+  let _ := firstFullInduction
+  let _ := secondFullInduction
   sorry
 
 end LRA.NumberSystems.PeanoSystem

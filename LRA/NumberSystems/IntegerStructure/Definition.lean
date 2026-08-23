@@ -114,6 +114,33 @@ structure IntegerStructure (Element : Type u) (SetObject : Type v)
       (forall element : Element, element ∈ subset -> predecessor element ∈ subset) ->
       forall element : Element, element ∈ subset
 
+/--
+**[Definition - Predicate-Set Comprehension Adequacy for an Integer-Structure Backend]**
+
+An adequacy certificate packages an explicit representation of every Lean
+predicate on the carrier by a backend `SetObject`, together with exact
+membership reflection.
+
+Logical form:
+
+```lean
+structure PredicateSetComprehensionAdequacy
+    (Element : Type u) (SetObject : Type v)
+    [Membership Element SetObject] where
+  Represent : Set Element -> SetObject
+  MembershipIff :
+    forall (predicate : Set Element) (element : Element),
+      element ∈ Represent predicate ↔ predicate element
+```
+-/
+structure PredicateSetComprehensionAdequacy
+    (Element : Type u) (SetObject : Type v)
+    [Membership Element SetObject] where
+  Represent : Set Element -> SetObject
+  MembershipIff :
+    forall (predicate : Set Element) (element : Element),
+      element ∈ Represent predicate ↔ predicate element
+
 section
 
 variable {Element : Type u} {SetObject : Type v}
@@ -132,6 +159,89 @@ def InductiveSubsetOfIntegerStructure
     (is : IntegerStructure Element SetObject)
     (subset : SetObject) : Prop :=
   is.zero ∈ subset /\ TwoSidedClosedSubset is subset
+
+/--
+**[Definition - Full Two-Sided Predicate Induction for an Integer Structure]**
+
+Full two-sided induction quantifies over every Lean predicate on the carrier,
+not only over subsets already represented by the backend `SetObject`.
+
+Logical form:
+
+```lean
+def FullTwoSidedPredicateInduction
+    (is : IntegerStructure Element SetObject) : Prop :=
+  forall predicate : Set Element,
+    predicate is.zero ->
+    (forall element : Element,
+      predicate element ->
+      predicate (is.successor element)) ->
+    (forall element : Element,
+      predicate element ->
+      predicate (is.predecessor element)) ->
+    forall element : Element,
+      predicate element
+```
+-/
+def FullTwoSidedPredicateInduction
+    (is : IntegerStructure Element SetObject) : Prop :=
+  forall predicate : Set Element,
+    predicate is.zero ->
+    (forall element : Element,
+      predicate element ->
+      predicate (is.successor element)) ->
+    (forall element : Element,
+      predicate element ->
+      predicate (is.predecessor element)) ->
+    forall element : Element,
+      predicate element
+
+/--
+**[Theorem - Comprehension Adequacy Implies Full Two-Sided Predicate Induction]**
+
+If every Lean predicate is represented by a backend subset, then the bundled
+backend-relative two-sided induction axiom upgrades to full predicate
+induction.
+
+Logical form:
+
+```lean
+theorem FullTwoSidedPredicateInductionOfComprehensionAdequacy
+    (is : IntegerStructure Element SetObject)
+    (adequacy : PredicateSetComprehensionAdequacy Element SetObject) :
+    FullTwoSidedPredicateInduction is
+```
+-/
+theorem FullTwoSidedPredicateInductionOfComprehensionAdequacy
+    (is : IntegerStructure Element SetObject)
+    (adequacy : PredicateSetComprehensionAdequacy Element SetObject) :
+    FullTwoSidedPredicateInduction is := by
+  intro predicate baseCase successorStep predecessorStep element
+  have representedBase : is.zero ∈ adequacy.Represent predicate :=
+    (adequacy.MembershipIff predicate is.zero).2 baseCase
+  have representedSuccessor :
+      forall candidate : Element,
+        candidate ∈ adequacy.Represent predicate ->
+        is.successor candidate ∈ adequacy.Represent predicate := by
+    intro candidate hCandidate
+    exact (adequacy.MembershipIff predicate (is.successor candidate)).2
+      (successorStep candidate
+        ((adequacy.MembershipIff predicate candidate).1 hCandidate))
+  have representedPredecessor :
+      forall candidate : Element,
+        candidate ∈ adequacy.Represent predicate ->
+        is.predecessor candidate ∈ adequacy.Represent predicate := by
+    intro candidate hCandidate
+    exact (adequacy.MembershipIff predicate (is.predecessor candidate)).2
+      (predecessorStep candidate
+        ((adequacy.MembershipIff predicate candidate).1 hCandidate))
+  exact (adequacy.MembershipIff predicate element).1
+    (is.induction
+      (adequacy.Represent predicate)
+      representedBase
+      representedSuccessor
+      representedPredecessor
+      element)
 
 end
 
