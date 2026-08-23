@@ -17,6 +17,8 @@ abbrev N_Presburger :=
 
 abbrev N := N_Landau
 
+abbrev N_0 := N_VonNeumann
+
 abbrev Z_Polish :=
   LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 

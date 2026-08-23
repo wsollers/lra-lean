@@ -971,29 +971,46 @@ proves:
   in Step 5; re-exported here rather than redefined), `GaussianInt :=
   GaussianInt_OrderedPairs`
 
-**Checked, and explicitly not built: `N_0` and everything downstream of it.**
-`WholeNumbers`'s carrier (`N_0`, per standard notation for "ℕ including 0")
-is `Carrier natural_data`, parametrized over a `NaturalArithmeticForWholeNumbers`
+**`N_0` corrected, not blocked.** Initially assumed `N_0` had to mean
+`WholeNumbers`'s `Option`-over-`Landau` carrier specifically, which really is
+blocked (see below). User corrected this: `VonNeumann`'s construction is
+*already* zero-based — von Neumann ordinals start at `∅ = 0` by
+construction, and `VonNeumann/Carrier.lean` already has `NaturalZero`/
+`NaturalSuccessor` built in. So `N_0 := N_VonNeumann` — already a ground
+type, already aliased, zero new content, not the blocked case at all.
+
+One nuance worth being precise about: this does **not** unblock
+`Integers.QuotientOrderedPairs`/`.Tao`/`.Mendelson` below.
+`WholeNumberArithmeticForQuotientPairs` and its siblings are coded
+specifically against `WholeNumbers`'s `Landau`-based machinery
+(`LandauAddition`/`LandauMultiplication`), not `VonNeumann` — having a
+0-based carrier available under a different construction doesn't supply what
+those three specifically need. `WholeNumbers`'s own carrier remains genuinely
+blocked for the reason below.
+
+**Checked, and explicitly not built: `WholeNumbers`'s own carrier (via
+`Landau`) and everything downstream of it.** Its carrier is `Carrier
+natural_data`, parametrized over a `NaturalArithmeticForWholeNumbers`
 witness — order relation, trichotomy, transitivity, and compatibility with
-`+`/`×`, all proven over `Landau`. **No such witness exists anywhere in the
-repository** (confirmed by grep), and **`Landau` itself has no order relation
-defined at all** — not even a bare `<`. Grounding `N_0` into an actual type
-is therefore new mathematical content (defining `<` on axiomatic Landau
-numbers and proving it total, transitive, and compatible with the proven
+`+`/`×`, all proven over `Landau` specifically. **No such witness exists
+anywhere in the repository** (confirmed by grep), and **`Landau` itself has
+no order relation defined at all** — not even a bare `<`. Grounding it is
+therefore new mathematical content (defining `<` on axiomatic Landau numbers
+and proving it total, transitive, and compatible with the proven
 `LandauAddition`/`LandauMultiplication`), not an aliasing task, even though
 the repo's own placeholder-first convention (`sorry` for accepted-but-unproved
 statements) would make a stubbed version consistent with house style. Left
 for the user to direct rather than assumed.
 
 This blocks three more, transitively: `Integers.QuotientOrderedPairs`,
-`.Tao`, and `.Mendelson` all build ℤ as pairs of *whole* numbers (needing
-`WholeNumberArithmeticForQuotientPairs`/similar, themselves needing `N_0`),
-unlike `Polish`, which builds ℤ directly from `Landau` via a two-sided
-successor and was already ground. Also checked and found similarly
-parametrized, not attempted: `RationalNumbers`'s and `RealNumbers`'s six
-constructions all need a `DenselyOrderedFieldModel`/rational-field witness
-first; `ComplexNumbers.Interface.ModelTheory.complexNumbersModel` needs a
-base field carrier (its only existing ground instantiation,
+`.Tao`, and `.Mendelson` all build ℤ as pairs of *whole* numbers via this
+specific `Landau`-based `WholeNumbers` machinery (unlike `Polish`, which
+builds ℤ directly from `Landau` via a two-sided successor and was already
+ground). Also checked and found similarly parametrized, not attempted:
+`RationalNumbers`'s and `RealNumbers`'s six constructions all need a
+`DenselyOrderedFieldModel`/rational-field witness first;
+`ComplexNumbers.Interface.ModelTheory.complexNumbersModel` needs a base
+field carrier (its only existing ground instantiation,
 `complexNumbersOverMathlibReals`, is over Mathlib's `Real`, not an
 LRA-native real).
 
