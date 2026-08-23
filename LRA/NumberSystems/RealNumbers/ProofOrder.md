@@ -32,18 +32,24 @@ themselves):
   one theorem (`PersistentOverlapIffEndpointDifferenceIsNull`) -- preserved
   as a real PrimitiveIntervals/Cauchy comparison rather than the former fake
   self-comparison surface.
-- `Computable` -- computable reals via effective rational approximations
-  with a modulus function; the smallest and most self-contained
-  construction (no cross-construction dependency).
+- `EffectiveCauchy` -- modulus-tracked rational Cauchy approximations modulo
+  equality of represented limits; intentionally not called `Computable`
+  because arbitrary Lean functions with a modulus are not, by themselves,
+  computable functions.
 
-Each realizes `LRA.NumberSystems.Models.RealModel` via its own
-`Instances.lean`, all `sorry`. Cross-construction pairwise comparisons
-(`ModelIsomorphism` theorems between Dedekind and each of the other four
--- Cantor, Cauchy, PrimitiveIntervals-as-`PrimitiveIntervalQuotient`, and
-Dyadic-as-`DyadicExpansions`) live separately in `ConstructionModels.lean`,
-as thinner abstract-existence claims rather than ties back to the six real
-constructions above -- see that section below, mirroring the open research
-question already on record for Rational's `ComparisonModels.lean`.
+The five classical construction packages (`Cauchy`, `Cantor`, `Dedekind`,
+`Dyadic`, `PrimitiveIntervals`) each target a carrier-tied
+`RationalRealExtension` / `RealModel` registration via `Instances.lean`, all
+currently `sorry`. `EffectiveCauchy` intentionally does not: its `Instances`
+file records the absence of any detached `RealModel` realization for the
+current effective-form quotient package. Cross-construction pairwise
+comparisons (`ModelIsomorphism` theorems between Dedekind and each of the
+other four classical constructions -- Cantor, Cauchy,
+PrimitiveIntervals-as-`PrimitiveIntervalQuotient`, and
+Dyadic-as-`DyadicExpansions`) live separately in `ConstructionModels.lean`, as
+thinner abstract-existence claims rather than ties back to the six
+construction packages above -- see that section below, mirroring the open
+research question already on record for Rational's `ComparisonModels.lean`.
 
 ### Naming: PascalCase for new content
 
@@ -287,26 +293,33 @@ authoritative real-number certification is the carrier-tied
 
 ---
 
-# Part F -- Computable
+# Part F -- EffectiveCauchy
 
 Split from the former single 150-line file, the smallest and only
 construction with no cross-construction dependency.
 
-- [x] `Carrier.lean` -- `EffectiveApproximation`, `ComputableReal`, written.
-- [x] `Equivalence.lean` -- `equivalent`, written (no equivalence-relation
-      proof added: `ComputableReal` wraps a single `EffectiveApproximation`
-      directly, not a `Setoid`/`Quotient` construction, so there is no
-      quotient-carrier gap analogous to the other five constructions'
-      `WellFoundedness.lean` stubs to fill here).
-- [ ] `WellFoundedness.lean` -- placeholder: `ComputableReal` is a
-      one-field structure with direct `.approximation` access, not a
-      quotient, so no induction-on-representatives principle applies.
-- [ ] `Operations.lean`/`WellDefinedness.lean`/`Laws.lean` -- placeholders:
-      source never defines concrete arithmetic on `ComputableReal`, only
-      asserts closure via the theorem in `Behavior.lean`.
-- [ ] `Behavior.lean` -- `computable_reals_closed_under_arithmetic`,
-      `computable_reals_are_countable` -- both `sorry`.
-- [ ] `Instances.lean` -- new: `ComputableRealizesRealModel`, `sorry`.
+- [x] `Carrier.lean` -- `PrecisionRadius`,
+      `EffectiveCauchyApproximation`, written. The file explicitly notes that
+      modulus data alone do not make the approximations computable programs.
+- [ ] `Equivalence.lean` -- `Equivalent`,
+      `EquivalentIsEquivalence` (`sorry`), `ApproximationSetoid`,
+      `EffectiveCauchyReal` (the quotient carrier), written.
+- [ ] `WellFoundedness.lean` -- `InductionOnRepresentatives`, `sorry`
+      (the quotient does have a representative-induction stage, unlike the
+      former non-quotient wrapper).
+- [x] `Operations.lean` -- placeholder note only: arithmetic operations are
+      intentionally withheld until representative-level operations and
+      equivalence preservation are proved, avoiding the former tautological
+      closure theorem.
+- [x] `WellDefinedness.lean`/`Laws.lean` -- placeholder notes only: no
+      quotient operations or algebraic/order laws are exported before genuine
+      well-definedness proofs exist.
+- [x] `Behavior.lean` -- explanatory note only: no countability theorem is
+      asserted, because the current owner surface has effective-form Cauchy
+      data but no computability predicate or program-code semantics.
+- [x] `Instances.lean` -- explanatory note only: no detached
+      `RealModel` realization is asserted for the current effective-form
+      quotient package.
 
 ---
 
