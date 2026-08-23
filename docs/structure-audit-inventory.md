@@ -445,3 +445,56 @@ unconnected), so unlike `DiscreteInteger`, nothing here contradicts
 `CommutativeSemiring` as the eventual target; it remains a forward-looking
 build (for `NumberSystems/NaturalNumbers/Interface/ModelTheory` in Step 5),
 not yet a confirmed-in-use one.
+
+---
+
+## 10. Step 3 status: NS-003 done, scope corrected
+
+**The framing in §7.3/NS-003 overstated what was broken.** Reading the actual
+content of `Analysis/Completeness/ArchimedeanProperty/Definition/
+ArchimedeanProperty.lean` before touching anything showed it is not a
+reusable generic predicate at all: it is a single concrete, unfinished
+(`sorry`) theorem stated directly over Mathlib's `ℝ`
+(`theorem ArchimedeanProperty {x y : ℝ} ... : ∃ n : ℕ, (n : ℝ) * x > y`),
+importing four Mathlib modules. There was never a generic Archimedean
+predicate to relocate — `Analysis`'s version and the shape
+`NumberSystems/Models.lean` needs are different formulations entirely, so
+"relocating" the existing file would not have produced something
+`NumberSystems` could use. What was actually missing was a **new**, generic,
+Mathlib-free predicate at the `Order` layer — this was new infrastructure to
+build, not a relocation of existing content, and (unlike NS-001) nothing was
+currently broken or blocking: `NumberSystems/Models.lean`'s
+`ArchimedeanDenseOrderedFieldExtension` (recreated in Step 1) already carries
+its own inline, working formulation of Archimedean-ness (integers are
+cofinal in the field, via an explicit embedding) and compiles fine as-is.
+This step is forward-looking groundwork for Step 5, not a fix.
+
+Added `LRA/Order/Archimedean/Definition.lean` (registered via a new
+`LRA/Order/Archimedean.lean` router, imported from `LRA/Order.lean` alongside
+the sibling `Density`/`DiscreteOrder` routers — same wiring pattern both
+follow). Matches `Order/DiscreteOrder/Definition.lean`'s exact template (a
+single-file concept, flat `namespace LRA.Order` per `Order`'s house
+convention — note `Order`, unlike `AlgebraicStructures`/`NumberSystems`,
+does **not** mirror its full folder path in the namespace): a `class
+ArchimedeanLaw (R) [Add R] [LT R] [OfNat R 0]` plus a `section Wrappers`
+restating the field as a standalone theorem (`sorry`, per the repo's
+placeholder-first convention for accepted-but-unproved statements). The
+property is phrased via a small local `IteratedSelfSum` helper (n-fold
+self-addition) rather than a natural-number cast, keeping the typeclass
+requirements minimal — matching `OrderDiscretenessLaw`'s own minimalism
+rather than introducing new general-purpose cast machinery.
+
+**Deliberately not done, to keep this step's blast radius contained:**
+reconciling `Order.ArchimedeanLaw` with either
+`NumberSystems/Models.lean`'s cofinal-embedding formulation or
+`Analysis/Completeness/ArchimedeanProperty`'s Mathlib-`ℝ` theorem. Both are
+mathematically related to the new predicate but not trivially the same
+statement, and neither currently blocks anything — reconciling all three is
+real mathematical work, better done deliberately in Step 5 when
+`NumberSystems/RealNumbers/Interface/ModelTheory` is actually being built and
+can decide which formulation is canonical with the full context in view,
+rather than folded into a structural-placement step.
+
+Verified with the same static import-resolution check (0 broken imports,
+before and after) and manual namespace/`end`/`section` inspection. Not
+built.
