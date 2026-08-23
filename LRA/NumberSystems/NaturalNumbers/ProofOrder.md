@@ -19,7 +19,7 @@ actually built, and how its three law fields (`one_not_successor`,
 | `VonNeumann` | `{x : LRA.Set.ZFCSet // x ∈ Omega}` / `LRA.Set.ZFCSet` | **Proved as theorems**, from `LRA.Set.ZFC`'s axioms (Pairing, Union, Empty Set, Infinity, Separation, Foundation) |
 | `Landau` | a bare postulated `LandauElement` / `PredicateSet LandauElement` | **Postulated directly as axioms**, mirroring how `LRA.Set.ZFCSet` itself is postulated (`axiom ZFCSet : Type`) |
 | `Presburger` | a fresh inductive `PresburgerElement` / `PredicateSet PresburgerElement` | **Proved as theorems**, free via the inductive type's own generated recursor/injectivity/no-confusion — see §8 |
-| `WholeNumbers` | `Option Element` / `PredicateSet (Option Element)`, generic over any one-based `model : PeanoSystem Element SetObject` | **Proved as theorems**, by adjoining a new zero (`none`) to whatever one-based system is passed in — see Part D |
+| `WholeNumbers` | `Option Element` / `PredicateSet (Option Element)`, generic over any one-based `NaturalArithmeticForWholeNumbers` package whose order is explicitly tied to the carried arithmetic | **Proved as theorems**, by adjoining a new zero (`none`) to whatever one-based system and certified order package is passed in — see Part D |
 
 All four end up as values of the same `PeanoSystem Element SetObject` type,
 just for different `Element`/`SetObject` choices. That's why
@@ -259,12 +259,18 @@ actually calls.
 ## 13. Carrier and basic structure (`Carrier.lean`) — written, flagged
 
 - [x] `NaturalArithmeticForWholeNumbers`, `Carrier := Option Element`,
-      `zero`, `one`, `naturalEmbedding`, `successor` — moved unchanged.
+      `zero`, `one`, `naturalEmbedding`, `successor` — moved, then
+      strengthened so the input `strictOrder` is no longer arbitrary: it now
+      carries the trichotomy/transitivity and Landau-addition/multiplication
+      compatibility needed by the later whole-number order claims.
 - [x] `strictOrder`/`nonstrictOrder` — moved here from the source file's own
       "Operations" section, *not* to `Operations.lean`: `strong_induction`
       (§14) needs `strictOrder` and §1.6.1's pipeline order is Carrier before
       WellFoundedness before Operations, so the order relation has to be
-      carrier-level content here, ahead of where it originally sat.
+      carrier-level content here, ahead of where it originally sat. The live
+      P0-26 repair also makes that input order explicit enough to support the
+      quotient-pairs integer bridge, rather than letting `WholeNumbers`
+      quantify over an unrelated arbitrary relation.
 
 ## 14. Peano properties and induction (`WellFoundedness.lean`, depends on §13) — written
 
@@ -295,7 +301,9 @@ actually calls.
 
 ## 17. Instances (`Instances.lean`, depends on §16) — written
 
-- [x] `zeroOn`/`oneOn`/`succOn`/`addOn`/`mulOn`/`ltOn`/`leOn` and the nine
-      certificate builders (`additiveSemigroupLawsOn`, ...,
-      `distributiveLawsOn`) — moved unchanged from `Builders.lean`, matching
-      §1.6.1's role for typeclass-instance registration.
+- [x] `zeroOn`/`oneOn`/`succOn`/`addOn`/`mulOn`/`ltOn`/`leOn` and the
+      semiring/order certificate builders — moved, then extended so the
+      whole-number owner now exposes `PartialOrderLaws`,
+      `AdditionRespectsOrderLaws`, `MultiplicationRespectsOrderLaws`, and a
+      canonical `quotientOrderedPairsInput` adapter into
+      `Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs`.

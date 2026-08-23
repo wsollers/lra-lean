@@ -18,6 +18,8 @@ namespace LRA.NumberSystems.Integers.QuotientOrderedPairs
 open LRA.AlgebraicStructures
 open LRA.Order
 
+universe u
+
 /-!
 Lean module: LRA.NumberSystems.Integers.QuotientOrderedPairs
 Verification status: definitions complete; proofs pending
@@ -43,7 +45,7 @@ Logical form:
 
 ```lean
 structure WholeNumberArithmeticForQuotientPairs where
-  carrier : Type
+  carrier : Type u
   zero : carrier
   one : carrier
   addition : carrier → carrier → carrier
@@ -97,7 +99,7 @@ structure WholeNumberArithmeticForQuotientPairs where
 ```
 -/
 structure WholeNumberArithmeticForQuotientPairs where
-  carrier : Type
+  carrier : Type u
   zero : carrier
   one : carrier
   addition : carrier → carrier → carrier
@@ -157,7 +159,7 @@ the repository's native algebra and order certificate surface instead of
 forcing each consumer to restate the same machine fields by hand.
 -/
 def WholeNumberArithmeticForQuotientPairs.ofCarrier
-    (R : Type)
+    (R : Type u)
     [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LE R]
     [CommutativeSemiringLaws R] [PartialOrderLaws R]
     (addition_cancellative :

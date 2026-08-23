@@ -2,12 +2,14 @@
 -- Def-level machine and certificate builders for the whole-number carrier.
 
 import LRA.AlgebraicStructures
+import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs.Carrier
 import LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Laws
 import LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Behavior
 
 namespace LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers
 
 open LRA.AlgebraicStructures
+open LRA.Order
 
 universe u v
 
@@ -133,6 +135,86 @@ noncomputable def distributiveLawsOn :
     (addOn natural_data) (mulOn natural_data)
     (semiring_structure natural_data).2.2.2.2.2.1
     (by sorry)
+
+/-- `commutativeSemiringLawsOn` packages the whole-number arithmetic
+certificates into the repository's canonical semiring bundle. -/
+noncomputable def commutativeSemiringLawsOn :
+    @CommutativeSemiringLaws (Carrier natural_data)
+      (addOn natural_data) (mulOn natural_data)
+      (zeroOn natural_data) (oneOn natural_data) := by
+  letI := additiveSemigroupLawsOn natural_data
+  letI := additiveIdentityLawsOn natural_data
+  letI := additiveCommutativeLawsOn natural_data
+  letI := multiplicativeSemigroupLawsOn natural_data
+  letI := multiplicativeIdentityLawsOn natural_data
+  letI := multiplicativeCommutativeLawsOn natural_data
+  letI := zeroAbsorbingLawsOn natural_data
+  letI := distributiveLawsOn natural_data
+  infer_instance
+
+/-- `partialOrderLawsOn` packages the lifted non-strict order as a partial
+order certificate. -/
+noncomputable def partialOrderLawsOn :
+    @PartialOrderLaws (Carrier natural_data) (leOn natural_data) :=
+  @PartialOrderLaws.mk (Carrier natural_data) (leOn natural_data)
+    (nonstrict_order_refl natural_data)
+    (nonstrict_order_antisymm natural_data)
+    (nonstrict_order_trans natural_data)
+
+/-- `totalOrderLawOn` packages totality of the lifted non-strict order. -/
+noncomputable def totalOrderLawOn :
+    @TotalOrderLaw (Carrier natural_data) (leOn natural_data) :=
+  @TotalOrderLaw.mk (Carrier natural_data) (leOn natural_data)
+    (nonstrict_order_total natural_data)
+
+/-- `additionRespectsOrderLawsOn` packages addition compatibility with the
+lifted non-strict order. -/
+noncomputable def additionRespectsOrderLawsOn :
+    @AdditionRespectsOrderLaws (Carrier natural_data)
+      (addOn natural_data) (leOn natural_data) :=
+  @AdditionRespectsOrderLaws.mk (Carrier natural_data)
+    (addOn natural_data) (leOn natural_data)
+    (by sorry)
+    (by sorry)
+
+/-- `multiplicationRespectsOrderLawsOn` packages nonnegative-right-factor
+order compatibility for the whole-number multiplication. -/
+noncomputable def multiplicationRespectsOrderLawsOn :
+    @MultiplicationRespectsOrderLaws (Carrier natural_data)
+      (mulOn natural_data) (leOn natural_data) (zeroOn natural_data) :=
+  @MultiplicationRespectsOrderLaws.mk (Carrier natural_data)
+    (mulOn natural_data) (leOn natural_data) (zeroOn natural_data)
+    (by sorry)
+
+/-- `orderedSemiringLawsOn` packages the whole-number arithmetic and order
+certificates into the repository's canonical ordered-semiring bundle. -/
+noncomputable def orderedSemiringLawsOn :
+    @OrderedSemiringLaws (Carrier natural_data)
+      (addOn natural_data) (mulOn natural_data)
+      (zeroOn natural_data) (oneOn natural_data) (leOn natural_data) := by
+  letI := commutativeSemiringLawsOn natural_data
+  letI := partialOrderLawsOn natural_data
+  letI := totalOrderLawOn natural_data
+  letI := additionRespectsOrderLawsOn natural_data
+  letI := multiplicationRespectsOrderLawsOn natural_data
+  infer_instance
+
+/-- Canonical adapter from the repaired whole-number owner surface into the
+shared quotient-pairs integer input contract. -/
+noncomputable def quotientOrderedPairsInput :
+    LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs := by
+  letI := zeroOn natural_data
+  letI := oneOn natural_data
+  letI := addOn natural_data
+  letI := mulOn natural_data
+  letI := leOn natural_data
+  letI := commutativeSemiringLawsOn natural_data
+  letI := partialOrderLawsOn natural_data
+  exact
+    LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs.ofCarrier
+      (Carrier natural_data)
+      (by sorry)
+      (by sorry)
 
 /-! ## Smoke test: local activation -/
 

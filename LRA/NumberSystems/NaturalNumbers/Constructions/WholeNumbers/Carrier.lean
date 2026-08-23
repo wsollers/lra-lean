@@ -1,7 +1,7 @@
 -- LRA/NumberSystems/NaturalNumbers/Constructions/WholeNumbers/Carrier.lean
 -- Construction of whole numbers by adjoining zero to the active natural-number carrier.
 
-import LRA.NumberSystems.PeanoSystem.Definition
+import LRA.NumberSystems.NaturalNumbers.Constructions.Landau.Operations
 
 namespace LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers
 
@@ -24,12 +24,43 @@ not hard-committed to `LandauElement` specifically, since nothing here
 requires it.
 -/
 
-/-- Arithmetic data already constructed on the one-based natural carrier. -/
+/-- Arithmetic data already constructed on the one-based natural carrier.
+
+The whole-number construction now treats the input order as part of the
+arithmetic contract rather than as an arbitrary extra relation: later
+whole-number order statements and the quotient-pairs integer input adapter
+need the one-based order to be total, transitive, and compatible with the
+Landau arithmetic already attached to `model`.
+-/
 structure NaturalArithmeticForWholeNumbers
     (Element : Type u) (SetObject : Type v)
     [Membership Element SetObject] where
   model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject
   strictOrder : Element → Element → Prop
+  strictOrder_trichotomous :
+    ∀ first second,
+      strictOrder first second ∨ first = second ∨ strictOrder second first
+  strictOrder_transitive :
+    ∀ first second third,
+      strictOrder first second →
+      strictOrder second third →
+      strictOrder first third
+  addition_preserves_and_reflects_strictOrder :
+    ∀ first second translation,
+      strictOrder first second ↔
+        strictOrder
+          (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition
+            model first translation)
+          (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition
+            model second translation)
+  multiplication_preserves_and_reflects_strictOrder :
+    ∀ first second factor,
+      strictOrder first second ↔
+        strictOrder
+          (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication
+            model first factor)
+          (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication
+            model second factor)
 
 variable (natural_data : NaturalArithmeticForWholeNumbers Element SetObject)
 
