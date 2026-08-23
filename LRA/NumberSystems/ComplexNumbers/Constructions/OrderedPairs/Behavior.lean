@@ -105,26 +105,30 @@ end EmbeddingTheorems
 Logical form:
 
 ```lean
-structure Polynomial (R : Type u) where
+structure Polynomial (R : Type u) [OfNat R 0] where
   degree : Nat
   coefficient : Fin (degree + 1) → ComplexNumber R
+  leading_coefficient_nonzero :
+    degree ≠ 0 → coefficient ⟨degree, Nat.lt_succ_self degree⟩ ≠ 0
 ```
 -/
-structure Polynomial (R : Type u) where
+structure Polynomial (R : Type u) [OfNat R 0] where
   degree : Nat
   coefficient : Fin (degree + 1) → ComplexNumber R
+  leading_coefficient_nonzero :
+    degree ≠ 0 → coefficient ⟨degree, Nat.lt_succ_self degree⟩ ≠ 0
 
 /-- Polynomial evaluation.
 
 Logical form:
 
 ```lean
-def Polynomial.evaluate [Add R] [Mul R]
+def Polynomial.evaluate [OfNat R 0] [Add R] [Mul R]
     (polynomial : Polynomial R)
     (input : ComplexNumber R) : ComplexNumber R
 ```
 -/
-def Polynomial.evaluate [Add R] [Mul R]
+def Polynomial.evaluate [OfNat R 0] [Add R] [Mul R]
     (polynomial : Polynomial R)
     (input : ComplexNumber R) : ComplexNumber R :=
   sorry
@@ -134,11 +138,11 @@ def Polynomial.evaluate [Add R] [Mul R]
 Logical form:
 
 ```lean
-def Polynomial.nonconstant (polynomial : Polynomial R) : Prop :=
+def Polynomial.nonconstant [OfNat R 0] (polynomial : Polynomial R) : Prop :=
   polynomial.degree ≠ 0
 ```
 -/
-def Polynomial.nonconstant (polynomial : Polynomial R) : Prop :=
+def Polynomial.nonconstant [OfNat R 0] (polynomial : Polynomial R) : Prop :=
   polynomial.degree ≠ 0
 
 /--
@@ -163,9 +167,9 @@ theorem algebraic_closure_obligation
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LE R]
     [OrderedFieldLaws R] [OrderCompletenessLaws R (Set R)]
     (polynomial : Polynomial R)
-    (polynomial_nonconstant : polynomial.nonconstant) :
+    (polynomial_nonconstant : Polynomial.nonconstant polynomial) :
     ∃ root : ComplexNumber R,
-      polynomial.evaluate root = (0 : ComplexNumber R) := by
+      Polynomial.evaluate polynomial root = (0 : ComplexNumber R) := by
   sorry
 
 end LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs

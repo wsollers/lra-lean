@@ -65,8 +65,10 @@ repo's no-stacked-namespaces convention. No declaration name changed.
       `of_real_is_injective`) and the polynomial/algebraic-closure
       section (`Polynomial`, `Polynomial.evaluate`,
       `Polynomial.nonconstant`, `algebraic_closure_obligation`) -- all
-      `sorry` (`Polynomial.evaluate`'s body is `sorry` directly, not
-      `by sorry`, matching the source), moved unchanged.
+      `sorry`, but the local polynomial carrier now includes the missing
+      leading-coefficient invariant so `degree ≠ 0` really does mean the
+      polynomial is nonconstant (`Polynomial.evaluate`'s body is `sorry`
+      directly, not `by sorry`, matching the source).
 - [x] `Instances.lean` -- the ring and field certificate `instance`
       declarations (already genuine, non-`sorry` instances wrapping the
       `sorry`-stated theorems above -- this is valid Lean, not something
