@@ -7,14 +7,10 @@ universe u v
 variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 
-def Coinitial
+def DenseSubset
     (relation : LRA.Relation.Endorelation Element)
     (subset : SetObject) : Prop :=
-  forall point, exists element, element ∈ subset /\ relation element point
-
-def DenseBelow
-    (relation : LRA.Relation.Endorelation Element)
-    (subset : SetObject) : Prop :=
-  Coinitial relation subset
+  forall x y, relation x y ->
+    exists d, d ∈ subset /\ relation x d /\ relation d y
 
 end LRA.Order

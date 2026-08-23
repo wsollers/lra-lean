@@ -581,3 +581,41 @@ is wanted (or whether both are, under different names).
 
 Verified with the same static import-resolution check (0 broken imports)
 and manual namespace/`end`/`section` inspection. Not built.
+
+---
+
+## 12. `DenseAbove`/`DenseBelow`/`DenseSubset` resolved
+
+Follow-up to §11's open question, given a precise reference definition for
+all three (order-dense subset, dense-below/coinitial, dense-above/cofinal).
+Two of the three turned out to already exist under different names; the
+third had the same misplaced-under-`Analysis` pattern as Archimedean:
+
+- **Dense Above** (`∀ p, ∃ d ∈ D, p ≤ d`) is exactly `Order.Cofinal`, just
+  parametrized generically over the relation rather than hardcoding `≤` —
+  matches `UpperBound`/`LowerBound`'s own style, and the reference definition
+  itself names them as synonyms. Added `Order.DenseAbove := Cofinal` as a
+  named alias in the same file (`Order/Bounds/Cofinal/Definition.lean`).
+- **Dense Below** (`∀ p, ∃ d ∈ D, d ≤ p`) is exactly `Order.Coinitial` the
+  same way. Added `Order.DenseBelow := Coinitial` as an alias
+  (`Order/Bounds/Coinitial/Definition.lean`).
+- **Order-Dense** (`∀ x < y, ∃ d ∈ D, x < d < y` — a subset D densely filling
+  the whole order; not the same as §7.3/§11's self-referential `open_above`
+  case, which is about a set's relationship to *itself*, not to the ambient
+  order) already exists as
+  `LRA.Analysis.Completeness.Density.IsOrderDenseSubset` — the same
+  statement, word for word — but Mathlib-dependent (`Preorder`, `Set`) and
+  filed under `Analysis`, the same layer-inversion problem Archimedean had
+  relative to `NumberSystems`. Added the Mathlib-free version at
+  `LRA/Order/Density/DenseSubset/Definition.lean`
+  (`DenseSubset relation subset := ∀ x y, relation x y → ∃ d ∈ subset,
+  relation x d ∧ relation d y`), matching `Cofinal`/`Coinitial`'s
+  `[Membership Element SetObject]` generic shape, registered via
+  `Order/Density.lean` alongside `DenseOrder`/`DenseLinearOrder`.
+
+Reconciling `Analysis.Completeness.Density.IsOrderDenseSubset` with the new
+`Order.DenseSubset` (repoint the former to the latter, or fold it away) is
+left open the same way the Archimedean-in-`Analysis` reconciliation was —
+real work, not done here to keep this addition's blast radius contained.
+Verified with the same static import-resolution check (0 broken imports) and
+manual namespace/`end` inspection. Not built.
