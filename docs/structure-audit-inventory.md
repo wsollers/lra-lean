@@ -937,3 +937,65 @@ most worth an actual `lake build` before considering it final, given the
 untested multi-field `ConceptSignature` extension and the two brand-new
 `Cancellation`-wrapping typeclasses; neither has any prior instance proving
 it's inhabited or that the field names line up exactly as intended.
+
+---
+
+## 18. `NumberSystems/Carriers/` — named ground-type aliases
+
+User request: a single place giving `N`, `N_0`, `N_Landau`, etc. easy
+names to reference from examples and failures, rather than fully-qualifying
+`LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z` every time — closing
+the gap flagged back in §8, where the deleted `Integers/Implementation.lean`
+alias (`abbrev Z := Polish.TwoSidedSuccessor.Z`) was not reintroduced on
+purpose, deferred to exactly this kind of work.
+
+One design choice was checked with the user before building anything, since
+it would have shaped every downstream file: what the *bare* name (`N`, `Z`)
+should resolve to. Confirmed: a concrete default (`N := N_Landau`), matching
+the deleted alias's own precedent, not a universally-quantified parameter or
+an existence-witness abstraction.
+
+**Added `LRA/NumberSystems/Carriers/Definition.lean`** with every carrier
+that is a genuine ground type — requires no external parameter, no
+constructed witness, nothing beyond what its own construction already
+proves:
+
+- `N_Landau`, `N_VonNeumann`, `N_Presburger` (all three of `NaturalNumbers`'s
+  ground-type constructions — `Presburger.PresburgerElement` is an
+  `inductive`, `VonNeumann.NaturalElement` is a ZFC-ordinal subtype, `Landau.
+  LandauElement` is axiomatic), `N := N_Landau`
+- `Z_Polish` (`Integers.Polish.TwoSidedSuccessor.Z`, an `inductive`), `Z :=
+  Z_Polish`
+- `GaussianInt_OrderedPairs` (`GaussianInteger Z_Polish` — already existed
+  as `GaussianIntegers.Interface.ModelTheory.ActiveGaussianInteger`, built
+  in Step 5; re-exported here rather than redefined), `GaussianInt :=
+  GaussianInt_OrderedPairs`
+
+**Checked, and explicitly not built: `N_0` and everything downstream of it.**
+`WholeNumbers`'s carrier (`N_0`, per standard notation for "ℕ including 0")
+is `Carrier natural_data`, parametrized over a `NaturalArithmeticForWholeNumbers`
+witness — order relation, trichotomy, transitivity, and compatibility with
+`+`/`×`, all proven over `Landau`. **No such witness exists anywhere in the
+repository** (confirmed by grep), and **`Landau` itself has no order relation
+defined at all** — not even a bare `<`. Grounding `N_0` into an actual type
+is therefore new mathematical content (defining `<` on axiomatic Landau
+numbers and proving it total, transitive, and compatible with the proven
+`LandauAddition`/`LandauMultiplication`), not an aliasing task, even though
+the repo's own placeholder-first convention (`sorry` for accepted-but-unproved
+statements) would make a stubbed version consistent with house style. Left
+for the user to direct rather than assumed.
+
+This blocks three more, transitively: `Integers.QuotientOrderedPairs`,
+`.Tao`, and `.Mendelson` all build ℤ as pairs of *whole* numbers (needing
+`WholeNumberArithmeticForQuotientPairs`/similar, themselves needing `N_0`),
+unlike `Polish`, which builds ℤ directly from `Landau` via a two-sided
+successor and was already ground. Also checked and found similarly
+parametrized, not attempted: `RationalNumbers`'s and `RealNumbers`'s six
+constructions all need a `DenselyOrderedFieldModel`/rational-field witness
+first; `ComplexNumbers.Interface.ModelTheory.complexNumbersModel` needs a
+base field carrier (its only existing ground instantiation,
+`complexNumbersOverMathlibReals`, is over Mathlib's `Real`, not an
+LRA-native real).
+
+Verified with the same static import-resolution check (0 broken imports)
+and manual namespace/`end` balance. Not built.
