@@ -1089,3 +1089,42 @@ Verified with the same static import-resolution check (0 broken imports)
 and manual namespace/`end` balance. Not built — everything downstream of the
 four new `sorry`'d order theorems is only as sound as those theorems turn
 out to be once actually proved; nothing here claims otherwise.
+
+## 20. `Z_Tao` and `Z_Mendelson` — correction: no new witness type needed
+
+§19 assumed `Z_Tao` and `Z_Mendelson` would each need their own
+construction-specific input type, distinct from
+`WholeNumberArithmeticForQuotientPairs`, still to be worked out. Checking
+`Integers/Constructions/Tao/Carrier.lean` and
+`Integers/Constructions/Mendelson/Carrier.lean` directly shows that
+assumption was wrong:
+
+```
+abbrev WholeNumberArithmeticForTaoFormalDifferences :=
+  QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs   -- Tao/Carrier.lean
+
+abbrev PositiveNaturalPairData :=
+  QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs   -- Mendelson/Carrier.lean
+```
+
+Both are plain `abbrev`s for the exact same type `Z_QuotientOrderedPairs`
+(§19) is already grounded on. No new witness construction was required —
+`landauWholeNumberArithmeticForQuotientPairs` grounds all three ℤ
+constructions directly:
+
+- `Z_Tao := Integers.Tao.Carrier landauWholeNumberArithmeticForQuotientPairs`
+- `Z_Mendelson := Integers.Mendelson.Carrier
+  landauWholeNumberArithmeticForQuotientPairs`
+
+Both added to `NumberSystems/Carriers/Witnesses.lean`, importing
+`Integers.Constructions.Tao` and `Integers.Constructions.Mendelson`.
+
+With this, all four non-Polish ℤ constructions the repo defines
+(`QuotientOrderedPairs`, `Tao`, `Mendelson`, and `Polish` itself as `Z`)
+have ground carriers under `NumberSystems.Carriers`. Nothing else in this
+section needed building — it was a two-line wiring fix once the mistaken
+assumption in §19 was checked against the actual files instead of repeated.
+
+Verified with the same static import-resolution check (0 broken imports
+across 3897 import statements) and manual namespace/`end` balance on
+`Witnesses.lean`. Not built.

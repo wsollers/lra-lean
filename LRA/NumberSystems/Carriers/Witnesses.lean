@@ -1,6 +1,8 @@
 import LRA.NumberSystems.Carriers.Definition
 import LRA.NumberSystems.WholeNumbers.Constructions.Landau
 import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs
+import LRA.NumberSystems.Integers.Constructions.Tao
+import LRA.NumberSystems.Integers.Constructions.Mendelson
 
 namespace LRA.NumberSystems.Carriers
 
@@ -30,6 +32,23 @@ noncomputable def landauWholeNumberArithmeticForQuotientPairs :
 
 abbrev Z_QuotientOrderedPairs :=
   LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier
+    landauWholeNumberArithmeticForQuotientPairs
+
+/-!
+`Tao.WholeNumberArithmeticForTaoFormalDifferences` and
+`Mendelson.PositiveNaturalPairData` are both plain `abbrev`s for
+`QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs`
+(see `Integers/Constructions/Tao/Carrier.lean` and
+`Integers/Constructions/Mendelson/Carrier.lean`), so the same
+`landauWholeNumberArithmeticForQuotientPairs` witness grounds them too.
+-/
+
+abbrev Z_Tao :=
+  LRA.NumberSystems.Integers.Tao.Carrier
+    landauWholeNumberArithmeticForQuotientPairs
+
+abbrev Z_Mendelson :=
+  LRA.NumberSystems.Integers.Mendelson.Carrier
     landauWholeNumberArithmeticForQuotientPairs
 
 end LRA.NumberSystems.Carriers
