@@ -899,19 +899,27 @@
       "queue_rank": 30,
       "wave": 1,
       "wave_name": "foundational semantic-owner conflicts",
-      "status": "not_started",
-      "last_good_stop": "2026-08-23: queue advanced after p0-29 closeout; repo even with origin/main before the next task launch",
-      "next_step": "Launch spec task",
-      "validator_path": null,
-      "build_target": null,
-      "spec_task": null,
-      "verify_task": null,
-      "implement_task": null,
-      "verification_result": null,
-      "gate_result": null,
-      "commit_sha": null,
-      "pushed": false,
-      "notes": []
+      "status": "done",
+      "last_good_stop": "2026-08-23: repaired the draft real-valued limsup/liminf owner surface by requiring one-sided boundedness at `TailSupSeq` and `TailInfSeq`, packaging those witnesses inside `LimsupSeq` and `LiminfSeq`, retargeting the direct `OrderLimits` well-definedness theorem, and both scoped gates passed",
+      "next_step": "Queue complete",
+      "validator_path": "LRA/Analysis/Sequences",
+      "build_target": "LRA.Analysis.Sequences",
+      "spec_task": "main-thread",
+      "verify_task": "main-thread",
+      "implement_task": "main-thread",
+      "verification_result": "approved",
+      "gate_result": "passed",
+      "commit_sha": "ea3951ba",
+      "pushed": true,
+      "notes": [
+        "2026-08-23: persisted bounded p0-30 spec in `docs/p0-repair/results/p0-30-spec.md`; the review note required the draft real-valued limsup/liminf owner to stop relying on totalized `sSup` / `sInf` semantics for arbitrary tails",
+        "2026-08-23: persisted p0-30 verification in `docs/p0-repair/results/p0-30-verify.md`; verifier approved the bounded one-sided-boundedness repair scope with no correction list",
+        "2026-08-23: strengthened `LRA/Analysis/Sequences/LiminfLimsup.lean` so `TailSupSeq` requires `BoundedAboveSeq`, `TailInfSeq` requires `BoundedBelowSeq`, and the exported `LimsupSeq` / `LiminfSeq` relations package those witnesses existentially",
+        "2026-08-23: retargeted `LRA/Analysis/Sequences/OrderLimits.lean` so the direct tail-supremum / tail-infimum convergence theorem only refers to the repaired well-defined owner surface",
+        "2026-08-23: `python scripts/validate_structure.py --path LRA/Analysis/Sequences` passed",
+        "2026-08-23: `lake build LRA.Analysis.Sequences` passed",
+        "2026-08-23: implementation committed as `ea3951ba` (`Repair limsup and liminf sequence semantics`) and pushed on `origin/main`"
+      ]
     }
   ]
 }
