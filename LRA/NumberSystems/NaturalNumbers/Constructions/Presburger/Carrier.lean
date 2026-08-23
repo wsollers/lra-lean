@@ -62,20 +62,10 @@ theorem PresburgerInductionPrinciple :
       PresburgerElement.zero ∈ subset →
       (∀ n : PresburgerElement, n ∈ subset → PresburgerElement.succ n ∈ subset) →
       ∀ n : PresburgerElement, n ∈ subset := by
+
+                                                                          
+                               
   sorry
-
-   
-                                                                    
-                                                                        
-                                                                           
-                                                           
-                                                                        
-                                                               
-                                                                       
-                                                         
-  
-
-universe u v
 
                                                                         
                                 

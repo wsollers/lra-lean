@@ -88,7 +88,21 @@ theorem IntegerNumeralIsSurjective
     ∀ value : integerSystem.Model.Carrier,
       ∃ integer : Int,
         IntegerNumeral integerSystem.Model integer = value := by
-  exact integerSystem.EveryElementIsIntegerNumeral
+
+                                                                    
+           
+
+             
+
+       
+                                  
+                                               
+                                          
+                      
+                                                          
+   
+  
+  sorry
 
                                                                           
        

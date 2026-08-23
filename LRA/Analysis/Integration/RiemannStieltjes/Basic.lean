@@ -76,11 +76,20 @@ noncomputable def TotalVariation (α : ℝ → ℝ) (a b : ℝ) : ℝ := sSup (V
                                                                     
    
   
-theorem monotone_bounded_variation (α : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
+theorem MonotoneBoundedVariation (α : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
     (hmono : MonotoneOn α (Set.Icc a b)) : HasBoundedVariation α a b := by
-  sorry
 
-variable {f α β : ℝ → ℝ} {a b : ℝ}
+                                                                                                
+                            
+
+             
+
+       
+                                                                      
+                                                                    
+   
+  
+  sorry
 
                                      
                                                                                                      

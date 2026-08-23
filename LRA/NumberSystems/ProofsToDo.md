@@ -9,7 +9,7 @@ keep source order, because Lean forbids forward references, so source order is
 already a valid topological order. Working this list top to bottom, no entry
 depends on anything not yet proved above it.
 
-**Inventory:** 479 entries across 87 module(s) (47 completed, 432 sorry), 16 of which are an `instance` law rather than a `theorem`/`lemma`.
+**Inventory:** 541 entries across 105 module(s) (69 completed, 472 sorry), 22 of which are an `instance` law rather than a `theorem`/`lemma`.
 
 Name: ext
 Kind: Theorem
@@ -300,11 +300,11 @@ Source: ./ComplexNumbers/Constructions/OrderedPairs/Behavior.lean#L95
 Name: algebraic_closure_obligation
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LE R] [OrderedFieldLaws R] [OrderCompletenessLaws R (Set R)] (polynomial : Polynomial R) (polynomial_nonconstant : polynomial.nonconstant), ∃ root : ComplexNumber R, polynomial.evaluate root = (0 : ComplexNumber R)
+Predicate logic: ∀ [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LE R] [OrderedFieldLaws R] [OrderCompletenessLaws R (Set R)] (polynomial : Polynomial R) (polynomial_nonconstant : Polynomial.nonconstant polynomial), ∃ root : ComplexNumber R, Polynomial.evaluate polynomial root = (0 : ComplexNumber R)
 Predicate logic (unfolded): ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : Inv R] [inst_4 : OfNat R 0] [inst_5 : OfNat R 1] [inst_6 : LE R], (LRA.AlgebraicStructures.OrderedFieldLaws R ∧ LRA.Order.OrderCompletenessLaws R (Set R)) → ∀ (polynomial : LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.Polynomial R), polynomial.nonconstant → Exists fun root => polynomial.evaluate root = 0
-Transliterated theorem: (∀ polynomial_nonconstant ∈ polynomial.nonconstant), ∃ root ∈ ComplexNumber R, polynomial.evaluate root = 0 ∈ ComplexNumber R
-Logical form (Lean): [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LE R] [OrderedFieldLaws R] [OrderCompletenessLaws R (Set R)] (polynomial : Polynomial R) (polynomial_nonconstant : polynomial.nonconstant) : ∃ root : ComplexNumber R, polynomial.evaluate root = (0 : ComplexNumber R)
-Source: ./ComplexNumbers/Constructions/OrderedPairs/Behavior.lean#L162
+Transliterated theorem: ∃ root ∈ ComplexNumber R, Polynomial.evaluate polynomial root = 0 ∈ ComplexNumber R
+Logical form (Lean): [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LE R] [OrderedFieldLaws R] [OrderCompletenessLaws R (Set R)] (polynomial : Polynomial R) (polynomial_nonconstant : Polynomial.nonconstant polynomial) : ∃ root : ComplexNumber R, Polynomial.evaluate polynomial root = (0 : ComplexNumber R)
+Source: ./ComplexNumbers/Constructions/OrderedPairs/Behavior.lean#L166
 
 
 
@@ -777,7 +777,7 @@ Predicate logic: ∀ (n : Nat) (x : S.carrier), iterate S.pred n (iterate S.succ
 Predicate logic (unfolded): ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Nat) (x : S.carrier), LRA.NumberSystems.IntegerStructure.Bundled.iterate S.pred n (LRA.NumberSystems.IntegerStructure.Bundled.iterate S.succ n x) = x
 Transliterated theorem: (∀ n ∈ Nat ∀ x ∈ S.carrier), iterate S.pred n (iterate S.succ n x) = x
 Logical form (Lean): (n : Nat) (x : S.carrier) : iterate S.pred n (iterate S.succ n x) = x
-Source: ./IntegerStructure/Bundled.lean#L215
+Source: ./IntegerStructure/Bundled.lean#L217
 
 
 
@@ -788,7 +788,7 @@ Predicate logic: ∀ (n : Nat) (x : S.carrier), iterate S.succ n (iterate S.pred
 Predicate logic (unfolded): ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Nat) (x : S.carrier), LRA.NumberSystems.IntegerStructure.Bundled.iterate S.succ n (LRA.NumberSystems.IntegerStructure.Bundled.iterate S.pred n x) = x
 Transliterated theorem: (∀ n ∈ Nat ∀ x ∈ S.carrier), iterate S.succ n (iterate S.pred n x) = x
 Logical form (Lean): (n : Nat) (x : S.carrier) : iterate S.succ n (iterate S.pred n x) = x
-Source: ./IntegerStructure/Bundled.lean#L229
+Source: ./IntegerStructure/Bundled.lean#L241
 
 
 
@@ -799,7 +799,7 @@ Predicate logic: ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStru
 Predicate logic (unfolded): ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Nat), instLTNat.lt 0 n → Ne (LRA.NumberSystems.IntegerStructure.Bundled.iterate S.pred n S.zero) S.zero
 Transliterated theorem: (∀ n ∈ Nat), (0 < n) → iterate S.pred n S.zero ≠ S.zero
 Logical form (Lean): (n : Nat) (h : 0 < n) : iterate S.pred n S.zero ≠ S.zero
-Source: ./IntegerStructure/Bundled.lean#L243
+Source: ./IntegerStructure/Bundled.lean#L255
 
 
 
@@ -810,7 +810,7 @@ Predicate logic: ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStru
 Predicate logic (unfolded): ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Nat), Function.Injective (LRA.NumberSystems.IntegerStructure.Bundled.iterate S.succ n)
 Transliterated theorem: (∀ n ∈ Nat), _root_.Function.Injective (iterate S.succ n)
 Logical form (Lean): (n : Nat) : _root_.Function.Injective (iterate S.succ n)
-Source: ./IntegerStructure/Bundled.lean#L256
+Source: ./IntegerStructure/Bundled.lean#L268
 
 
 
@@ -821,7 +821,7 @@ Predicate logic: ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStru
 Predicate logic (unfolded): ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Nat), Function.Injective (LRA.NumberSystems.IntegerStructure.Bundled.iterate S.pred n)
 Transliterated theorem: (∀ n ∈ Nat), _root_.Function.Injective (iterate S.pred n)
 Logical form (Lean): (n : Nat) : _root_.Function.Injective (iterate S.pred n)
-Source: ./IntegerStructure/Bundled.lean#L269
+Source: ./IntegerStructure/Bundled.lean#L281
 
 
 
@@ -832,7 +832,7 @@ Predicate logic: ∀ (m n : Nat) (h : iterate S.succ m S.zero = iterate S.succ n
 Predicate logic (unfolded): ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (m n : Nat), LRA.NumberSystems.IntegerStructure.Bundled.iterate S.succ m S.zero = LRA.NumberSystems.IntegerStructure.Bundled.iterate S.succ n S.zero → m = n
 Transliterated theorem: (∀ m n ∈ Nat), (iterate S.succ m S.zero = iterate S.succ n S.zero) → m = n
 Logical form (Lean): (m n : Nat) (h : iterate S.succ m S.zero = iterate S.succ n S.zero) : m = n
-Source: ./IntegerStructure/Bundled.lean#L285
+Source: ./IntegerStructure/Bundled.lean#L297
 
 
 
@@ -843,7 +843,7 @@ Predicate logic: ∀ (m n : Nat) (h : iterate S.pred m S.zero = iterate S.pred n
 Predicate logic (unfolded): ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (m n : Nat), LRA.NumberSystems.IntegerStructure.Bundled.iterate S.pred m S.zero = LRA.NumberSystems.IntegerStructure.Bundled.iterate S.pred n S.zero → m = n
 Transliterated theorem: (∀ m n ∈ Nat), (iterate S.pred m S.zero = iterate S.pred n S.zero) → m = n
 Logical form (Lean): (m n : Nat) (h : iterate S.pred m S.zero = iterate S.pred n S.zero) : m = n
-Source: ./IntegerStructure/Bundled.lean#L303
+Source: ./IntegerStructure/Bundled.lean#L315
 
 
 
@@ -854,7 +854,7 @@ Predicate logic: ∀ (m n : Nat) (h : iterate S.succ m S.zero = iterate S.pred (
 Predicate logic (unfolded): ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (m n : Nat), LRA.NumberSystems.IntegerStructure.Bundled.iterate S.succ m S.zero = LRA.NumberSystems.IntegerStructure.Bundled.iterate S.pred (instHAdd.hAdd n 1) S.zero → False
 Transliterated theorem: (∀ m n ∈ Nat), (iterate S.succ m S.zero = iterate S.pred (n + 1) S.zero) → False
 Logical form (Lean): (m n : Nat) (h : iterate S.succ m S.zero = iterate S.pred (n + 1) S.zero) : False
-Source: ./IntegerStructure/Bundled.lean#L321
+Source: ./IntegerStructure/Bundled.lean#L333
 
 
 
@@ -865,7 +865,7 @@ Predicate logic: ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStru
 Predicate logic (unfolded): ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure), Function.Injective S.rep
 Transliterated theorem: _root_.Function.Injective S.rep
 Logical form (Lean): : _root_.Function.Injective S.rep
-Source: ./IntegerStructure/Bundled.lean#L336
+Source: ./IntegerStructure/Bundled.lean#L348
 
 
 
@@ -876,7 +876,7 @@ Predicate logic: ∀ (n : Int), S.rep (n + 1) = S.succ (S.rep n)
 Predicate logic (unfolded): ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Int), S.rep (instHAdd.hAdd n 1) = S.succ (S.rep n)
 Transliterated theorem: (∀ n ∈ Int), S.rep (n + 1) = S.succ (S.rep n)
 Logical form (Lean): (n : Int) : S.rep (n + 1) = S.succ (S.rep n)
-Source: ./IntegerStructure/Bundled.lean#L348
+Source: ./IntegerStructure/Bundled.lean#L360
 
 
 
@@ -887,7 +887,7 @@ Predicate logic: ∀ (n : Int), S.rep (n - 1) = S.pred (S.rep n)
 Predicate logic (unfolded): ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Int), S.rep (instHSub.hSub n 1) = S.pred (S.rep n)
 Transliterated theorem: (∀ n ∈ Int), S.rep (n - 1) = S.pred (S.rep n)
 Logical form (Lean): (n : Int) : S.rep (n - 1) = S.pred (S.rep n)
-Source: ./IntegerStructure/Bundled.lean#L360
+Source: ./IntegerStructure/Bundled.lean#L372
 
 
 
@@ -898,7 +898,7 @@ Predicate logic: ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStru
 Predicate logic (unfolded): ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure), Function.Surjective S.rep
 Transliterated theorem: _root_.Function.Surjective S.rep
 Logical form (Lean): : _root_.Function.Surjective S.rep
-Source: ./IntegerStructure/Bundled.lean#L372
+Source: ./IntegerStructure/Bundled.lean#L384
 
 
 
@@ -909,7 +909,7 @@ Predicate logic: _root_.Function.Injective S.rep ∧ _root_.Function.Surjective 
 Predicate logic (unfolded): ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure), (Function.Injective S.rep ∧ Function.Surjective S.rep)
 Transliterated theorem: _root_.Function.Injective S.rep ∧ _root_.Function.Surjective S.rep
 Logical form (Lean): : _root_.Function.Injective S.rep ∧ _root_.Function.Surjective S.rep
-Source: ./IntegerStructure/Bundled.lean#L384
+Source: ./IntegerStructure/Bundled.lean#L396
 
 
 
@@ -920,18 +920,29 @@ Predicate logic: (_root_.Function.Injective S.rep ∧ _root_.Function.Surjective
 Predicate logic (unfolded): ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure), ((Function.Injective S.rep ∧ Function.Surjective S.rep) ∧ (S.rep 0 = S.zero ∧ ∀ (n : Int), S.rep (instHAdd.hAdd n 1) = S.succ (S.rep n)))
 Transliterated theorem: (_root_.Function.Injective S.rep ∧ _root_.Function.Surjective S.rep) ∧ S.rep 0 = S.zero ∧ ∀ n : Int, S.rep (n + 1) = S.succ (S.rep n)
 Logical form (Lean): : (_root_.Function.Injective S.rep ∧ _root_.Function.Surjective S.rep) ∧ S.rep 0 = S.zero ∧ ∀ n : Int, S.rep (n + 1) = S.succ (S.rep n)
-Source: ./IntegerStructure/Bundled.lean#L400
+Source: ./IntegerStructure/Bundled.lean#L412
+
+
+
+Name: FullTwoSidedPredicateInductionOfComprehensionAdequacy
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (is : LRA.NumberSystems.IntegerStructure.IntegerStructure Element SetObject)   (a : LRA.NumberSystems.IntegerStructure.PredicateSetComprehensionAdequacy Element SetObject),   LRA.NumberSystems.IntegerStructure.FullTwoSidedPredicateInduction is
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (is : LRA.NumberSystems.IntegerStructure.IntegerStructure Element SetObject) (a : LRA.NumberSystems.IntegerStructure.PredicateSetComprehensionAdequacy Element SetObject), LRA.NumberSystems.IntegerStructure.FullTwoSidedPredicateInduction is
+Transliterated theorem: FullTwoSidedPredicateInduction is
+Logical form (Lean): (is : IntegerStructure Element SetObject) (adequacy : PredicateSetComprehensionAdequacy Element SetObject) : FullTwoSidedPredicateInduction is
+Source: ./IntegerStructure/Definition.lean#L215
 
 
 
 Name: UniquenessOfIntegerStructuresUpToIsomorphism
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {SecondElement : Type u} {SecondSetObject : Type v} [Membership SecondElement SecondSetObject] (first : IntegerStructure Element SetObject) (second : IntegerStructure SecondElement SecondSetObject), exists forward : Element -> SecondElement, exists backward : SecondElement -> Element, forward first.zero = second.zero /\ backward second.zero = first.zero /\ (forall element : Element, forward (first.successor element) = second.successor (forward element)) /\ (forall element : Element, forward (first.predecessor element) = second.predecessor (forward element)) /\ (forall element : SecondElement, backward (second.successor element) = first.successor (backward element)) /\ (forall element : SecondElement, backward (second.predecessor element) = first.predecessor (backward element)) /\ (forall element : Element, backward (forward element) = element) /\ (forall element : SecondElement, forward (backward element) = element)
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {SecondElement : Type u} {SecondSetObject : Type v} [inst_1 : Membership SecondElement SecondSetObject] (first : LRA.NumberSystems.IntegerStructure.IntegerStructure Element SetObject) (second : LRA.NumberSystems.IntegerStructure.IntegerStructure SecondElement SecondSetObject), Exists fun forward => Exists fun backward => (forward first.zero = second.zero ∧ (backward second.zero = first.zero ∧ (∀ (element : Element), forward (first.successor element) = second.successor (forward element) ∧ (∀ (element : Element), forward (first.predecessor element) = second.predecessor (forward element) ∧ (∀ (element : SecondElement), backward (second.successor element) = first.successor (backward element) ∧ (∀ (element : SecondElement), backward (second.predecessor element) = first.predecessor (backward element) ∧ (∀ (element : Element), backward (forward element) = element ∧ ∀ (element : SecondElement), forward (backward element) = element)))))))
-Transliterated theorem: exists forward : Element -> SecondElement, exists backward : SecondElement -> Element, forward first.zero = second.zero ∧ backward second.zero = first.zero ∧ forall element ∈ Element, forward (first.successor element = second.successor (forward element)) ∧ forall element ∈ Element, forward (first.predecessor element = second.predecessor (forward element)) ∧ forall element ∈ SecondElement, backward (second.successor element = first.successor (backward element)) ∧ forall element ∈ SecondElement, backward (second.predecessor element = first.predecessor (backward element)) ∧ forall element ∈ Element, backward (forward element = element) ∧ forall element ∈ SecondElement, forward (backward element = element)
-Logical form (Lean): {SecondElement : Type u} {SecondSetObject : Type v} [Membership SecondElement SecondSetObject] (first : IntegerStructure Element SetObject) (second : IntegerStructure SecondElement SecondSetObject) : exists forward : Element -> SecondElement, exists backward : SecondElement -> Element, forward first.zero = second.zero /\ backward second.zero = first.zero /\ (forall element : Element, forward (first.successor element) = second.successor (forward element)) /\ (forall element : Element, forward (first.predecessor element) = second.predecessor (forward element)) /\ (forall element : SecondElement, backward (second.successor element) = first.successor (backward element)) /\ (forall element : SecondElement, backward (second.predecessor element) = first.predecessor (backward element)) /\ (forall element : Element, backward (forward element) = element) /\ (forall element : SecondElement, forward (backward element) = element)
-Source: ./IntegerStructure/Categoricity.lean#L53
+Predicate logic: ∀ {SecondElement : Type u} {SecondSetObject : Type v} [Membership SecondElement SecondSetObject] (first : IntegerStructure Element SetObject) (firstFullInduction : FullTwoSidedPredicateInduction first) (second : IntegerStructure SecondElement SecondSetObject), FullTwoSidedPredicateInduction second -> exists forward : Element -> SecondElement, exists backward : SecondElement -> Element, forward first.zero = second.zero /\ backward second.zero = first.zero /\ (forall element : Element, forward (first.successor element) = second.successor (forward element)) /\ (forall element : Element, forward (first.predecessor element) = second.predecessor (forward element)) /\ (forall element : SecondElement, backward (second.successor element) = first.successor (backward element)) /\ (forall element : SecondElement, backward (second.predecessor element) = first.predecessor (backward element)) /\ (forall element : Element, backward (forward element) = element) /\ (forall element : SecondElement, forward (backward element) = element)
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {SecondElement : Type u} {SecondSetObject : Type v} [inst_1 : Membership SecondElement SecondSetObject] (first : LRA.NumberSystems.IntegerStructure.IntegerStructure Element SetObject), LRA.NumberSystems.IntegerStructure.FullTwoSidedPredicateInduction first → ∀ (second : LRA.NumberSystems.IntegerStructure.IntegerStructure SecondElement SecondSetObject), LRA.NumberSystems.IntegerStructure.FullTwoSidedPredicateInduction second → Exists fun forward => Exists fun backward => (forward first.zero = second.zero ∧ (backward second.zero = first.zero ∧ (∀ (element : Element), forward (first.successor element) = second.successor (forward element) ∧ (∀ (element : Element), forward (first.predecessor element) = second.predecessor (forward element) ∧ (∀ (element : SecondElement), backward (second.successor element) = first.successor (backward element) ∧ (∀ (element : SecondElement), backward (second.predecessor element) = first.predecessor (backward element) ∧ (∀ (element : Element), backward (forward element) = element ∧ ∀ (element : SecondElement), forward (backward element) = element)))))))
+Transliterated theorem: FullTwoSidedPredicateInduction second -> exists forward : Element -> SecondElement, exists backward : SecondElement -> Element, forward first.zero = second.zero ∧ backward second.zero = first.zero ∧ forall element ∈ Element, forward (first.successor element = second.successor (forward element)) ∧ forall element ∈ Element, forward (first.predecessor element = second.predecessor (forward element)) ∧ forall element ∈ SecondElement, backward (second.successor element = first.successor (backward element)) ∧ forall element ∈ SecondElement, backward (second.predecessor element = first.predecessor (backward element)) ∧ forall element ∈ Element, backward (forward element = element) ∧ forall element ∈ SecondElement, forward (backward element = element)
+Logical form (Lean): {SecondElement : Type u} {SecondSetObject : Type v} [Membership SecondElement SecondSetObject] (first : IntegerStructure Element SetObject) (firstFullInduction : FullTwoSidedPredicateInduction first) (second : IntegerStructure SecondElement SecondSetObject) : FullTwoSidedPredicateInduction second -> exists forward : Element -> SecondElement, exists backward : SecondElement -> Element, forward first.zero = second.zero /\ backward second.zero = first.zero /\ (forall element : Element, forward (first.successor element) = second.successor (forward element)) /\ (forall element : Element, forward (first.predecessor element) = second.predecessor (forward element)) /\ (forall element : SecondElement, backward (second.successor element) = first.successor (backward element)) /\ (forall element : SecondElement, backward (second.predecessor element) = first.predecessor (backward element)) /\ (forall element : Element, backward (forward element) = element) /\ (forall element : SecondElement, forward (backward element) = element)
+Source: ./IntegerStructure/Categoricity.lean#L56
 
 
 
@@ -1727,6 +1738,215 @@ Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Behavior.lean#L28
 
 
 
+Name: z_sub_eq_add_neg
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (firstInteger secondInteger : Z), firstInteger - secondInteger = firstInteger + -secondInteger
+Predicate logic (unfolded): ∀ (firstInteger secondInteger : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHSub.hSub firstInteger secondInteger = instHAdd.hAdd firstInteger (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg secondInteger)
+Transliterated theorem: (∀ firstInteger secondInteger ∈ Z), firstInteger - secondInteger = firstInteger + -secondInteger
+Logical form (Lean): (firstInteger secondInteger : Z) : firstInteger - secondInteger = firstInteger + -secondInteger
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L53
+
+
+
+Name: z_mul_zero
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (integer : Z), integer * Z.zero = Z.zero
+Predicate logic (unfolded): ∀ (integer : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.hMul integer LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
+Transliterated theorem: (∀ integer ∈ Z), integer * Z.zero = Z.zero
+Logical form (Lean): (integer : Z) : integer * Z.zero = Z.zero
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L72
+
+
+
+Name: z_one_ne_zero
+Kind: Theorem
+State: Sorry
+Predicate logic: Ne LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.one LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
+Predicate logic (unfolded): Ne LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.one LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
+Transliterated theorem: one ∈ Z ≠ Z.zero
+Logical form (Lean): : (one : Z) ≠ Z.zero
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L79
+
+
+
+Name: z_eq_zero_of_mul_eq_zero
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (firstInteger secondInteger : Z), firstInteger * secondInteger = Z.zero -> firstInteger = Z.zero ∨ secondInteger = Z.zero
+Predicate logic (unfolded): ∀ (firstInteger secondInteger : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.hMul firstInteger secondInteger = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero → Or (firstInteger = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) (secondInteger = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero)
+Transliterated theorem: (∀ firstInteger secondInteger ∈ Z), firstInteger * secondInteger = Z.zero -> firstInteger = Z.zero ∨ secondInteger = Z.zero
+Logical form (Lean): (firstInteger secondInteger : Z) : firstInteger * secondInteger = Z.zero -> firstInteger = Z.zero ∨ secondInteger = Z.zero
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L84
+
+
+
+Name: z_le_trans
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (firstInteger secondInteger thirdInteger : Z), firstInteger ≤ secondInteger -> secondInteger ≤ thirdInteger -> firstInteger ≤ thirdInteger
+Predicate logic (unfolded): ∀ (firstInteger secondInteger thirdInteger : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le firstInteger secondInteger ∧ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le secondInteger thirdInteger) → LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le firstInteger thirdInteger
+Transliterated theorem: (∀ firstInteger secondInteger thirdInteger ∈ Z), firstInteger ≤ secondInteger -> secondInteger ≤ thirdInteger -> firstInteger ≤ thirdInteger
+Logical form (Lean): (firstInteger secondInteger thirdInteger : Z) : firstInteger ≤ secondInteger -> secondInteger ≤ thirdInteger -> firstInteger ≤ thirdInteger
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L93
+
+
+
+Name: z_le_antisymm
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (firstInteger secondInteger : Z), firstInteger ≤ secondInteger -> secondInteger ≤ firstInteger -> firstInteger = secondInteger
+Predicate logic (unfolded): ∀ (firstInteger secondInteger : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le firstInteger secondInteger ∧ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le secondInteger firstInteger) → firstInteger = secondInteger
+Transliterated theorem: (∀ firstInteger secondInteger ∈ Z), firstInteger ≤ secondInteger -> secondInteger ≤ firstInteger -> firstInteger = secondInteger
+Logical form (Lean): (firstInteger secondInteger : Z) : firstInteger ≤ secondInteger -> secondInteger ≤ firstInteger -> firstInteger = secondInteger
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L98
+
+
+
+Name: z_le_total
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (firstInteger secondInteger : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z),   Or (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le firstInteger secondInteger)     (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le secondInteger firstInteger)
+Predicate logic (unfolded): ∀ (firstInteger secondInteger : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), Or (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le firstInteger secondInteger) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le secondInteger firstInteger)
+Transliterated theorem: (∀ firstInteger secondInteger ∈ Z), firstInteger ≤ secondInteger ∨ secondInteger ≤ firstInteger
+Logical form (Lean): (firstInteger secondInteger : Z) : firstInteger ≤ secondInteger ∨ secondInteger ≤ firstInteger
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L106
+
+
+
+Name: z_lt_iff_le_not_le
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (firstInteger secondInteger : Z), firstInteger < secondInteger ↔ firstInteger ≤ secondInteger ∧ ¬ secondInteger ≤ firstInteger
+Predicate logic (unfolded): ∀ (firstInteger secondInteger : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt firstInteger secondInteger ↔ (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le firstInteger secondInteger ∧ ¬ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le secondInteger firstInteger)
+Transliterated theorem: (∀ firstInteger secondInteger ∈ Z), firstInteger < secondInteger ↔ firstInteger ≤ secondInteger ∧ ¬ secondInteger ≤ firstInteger
+Logical form (Lean): (firstInteger secondInteger : Z) : firstInteger < secondInteger ↔ firstInteger ≤ secondInteger ∧ ¬ secondInteger ≤ firstInteger
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L112
+
+
+
+Name: z_add_le_add_left
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (firstInteger secondInteger : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z),   LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le firstInteger secondInteger →     ∀ (translation : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z),       LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le (instHAdd.hAdd translation firstInteger)         (instHAdd.hAdd translation secondInteger)
+Predicate logic (unfolded): ∀ (firstInteger secondInteger : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le firstInteger secondInteger → ∀ (translation : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le (instHAdd.hAdd translation firstInteger) (instHAdd.hAdd translation secondInteger)
+Transliterated theorem: (∀ firstInteger secondInteger ∈ Z), firstInteger ≤ secondInteger -> ∀ translation : Z, translation + firstInteger ≤ translation + secondInteger
+Logical form (Lean): (firstInteger secondInteger : Z) : firstInteger ≤ secondInteger -> ∀ translation : Z, translation + firstInteger ≤ translation + secondInteger
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L119
+
+
+
+Name: z_add_le_add_right
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (firstInteger secondInteger : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z),   LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le firstInteger secondInteger →     ∀ (translation : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z),       LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le (instHAdd.hAdd firstInteger translation)         (instHAdd.hAdd secondInteger translation)
+Predicate logic (unfolded): ∀ (firstInteger secondInteger : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le firstInteger secondInteger → ∀ (translation : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le (instHAdd.hAdd firstInteger translation) (instHAdd.hAdd secondInteger translation)
+Transliterated theorem: (∀ firstInteger secondInteger ∈ Z), firstInteger ≤ secondInteger -> ∀ translation : Z, firstInteger + translation ≤ secondInteger + translation
+Logical form (Lean): (firstInteger secondInteger : Z) : firstInteger ≤ secondInteger -> ∀ translation : Z, firstInteger + translation ≤ secondInteger + translation
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L124
+
+
+
+Name: z_mul_nonneg
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (firstInteger secondInteger : Z), Z.zero ≤ firstInteger -> Z.zero ≤ secondInteger -> Z.zero ≤ firstInteger * secondInteger
+Predicate logic (unfolded): ∀ (firstInteger secondInteger : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero firstInteger ∧ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero secondInteger) → LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero (instHMul.hMul firstInteger secondInteger)
+Transliterated theorem: (∀ firstInteger secondInteger ∈ Z), Z.zero ≤ firstInteger -> Z.zero ≤ secondInteger -> Z.zero ≤ firstInteger * secondInteger
+Logical form (Lean): (firstInteger secondInteger : Z) : Z.zero ≤ firstInteger -> Z.zero ≤ secondInteger -> Z.zero ≤ firstInteger * secondInteger
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L131
+
+
+
+Name: z_no_strict_between_add_one
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (integer : Z), ¬ ∃ middle : Z, integer < middle ∧ middle < integer + 1
+Predicate logic (unfolded): ∀ (integer : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), ¬ Exists fun middle => (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt integer middle ∧ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt middle (instHAdd.hAdd integer 1))
+Transliterated theorem: (∀ integer ∈ Z), ¬ ∃ middle ∈ Z, integer < middle ∧ middle < integer + 1
+Logical form (Lean): (integer : Z) : ¬ ∃ middle : Z, integer < middle ∧ middle < integer + 1
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L137
+
+
+
+Name: z_succ_injective
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (firstInteger secondInteger : Z), Succ firstInteger = Succ secondInteger -> firstInteger = secondInteger
+Predicate logic (unfolded): ∀ (firstInteger secondInteger : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.AlgebraicStructures.Succ firstInteger = LRA.AlgebraicStructures.Succ secondInteger → firstInteger = secondInteger
+Transliterated theorem: (∀ firstInteger secondInteger ∈ Z), Succ firstInteger = Succ secondInteger -> firstInteger = secondInteger
+Logical form (Lean): (firstInteger secondInteger : Z) : Succ firstInteger = Succ secondInteger -> firstInteger = secondInteger
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L145
+
+
+
+Name: z_pred_injective
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (firstInteger secondInteger : Z), Pred firstInteger = Pred secondInteger -> firstInteger = secondInteger
+Predicate logic (unfolded): ∀ (firstInteger secondInteger : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.AlgebraicStructures.Pred firstInteger = LRA.AlgebraicStructures.Pred secondInteger → firstInteger = secondInteger
+Transliterated theorem: (∀ firstInteger secondInteger ∈ Z), Pred firstInteger = Pred secondInteger -> firstInteger = secondInteger
+Logical form (Lean): (firstInteger secondInteger : Z) : Pred firstInteger = Pred secondInteger -> firstInteger = secondInteger
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L152
+
+
+
+Name: z_succ_eq_add_one
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (integer : Z), succ integer = integer + one
+Predicate logic (unfolded): ∀ (integer : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ integer = instHAdd.hAdd integer LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.one
+Transliterated theorem: (∀ integer ∈ Z), succ integer = integer + one
+Logical form (Lean): (integer : Z) : succ integer = integer + one
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L159
+
+
+
+Name: z_succ_aperiodic
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (iterationCount : Nat), instLTNat.lt 0 iterationCount → Ne (LRA.AlgebraicStructures.SuccIterate iterationCount 0) 0
+Predicate logic (unfolded): ∀ (iterationCount : Nat), instLTNat.lt 0 iterationCount → Ne (LRA.AlgebraicStructures.SuccIterate iterationCount 0) 0
+Transliterated theorem: (∀ iterationCount ∈ Nat), 0 < iterationCount -> SuccIterate iterationCount 0 ∈ Z ≠ 0
+Logical form (Lean): (iterationCount : Nat) : 0 < iterationCount -> SuccIterate iterationCount (0 : Z) ≠ 0
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L168
+
+
+
+Name: z_two_sided_induction
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (motive : Z → Prop), motive 0 -> (∀ integer, motive integer -> motive (Succ integer)) -> (∀ integer, motive integer -> motive (Pred integer)) -> ∀ integer, motive integer
+Predicate logic (unfolded): ∀ (motive : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z → Prop), (motive 0 ∧ (∀ (integer : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), motive integer → motive (LRA.AlgebraicStructures.Succ integer) ∧ ∀ (integer : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), motive integer → motive (LRA.AlgebraicStructures.Pred integer))) → ∀ (integer : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), motive integer
+Transliterated theorem: (Z → Prop) → motive 0 -> (∀ integer, motive integer -> motive (Succ integer)) -> (∀ integer, motive integer -> motive (Pred integer)) -> ∀ integer, motive integer
+Logical form (Lean): (motive : Z → Prop) : motive 0 -> (∀ integer, motive integer -> motive (Succ integer)) -> (∀ integer, motive integer -> motive (Pred integer)) -> ∀ integer, motive integer
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L172
+
+
+
+Name: polish_integer_structure_induction
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : LRA.Set.PredicateSet Z), Z.zero ∈ subset -> (∀ element : Z, element ∈ subset -> succ element ∈ subset) -> (∀ element : Z, element ∈ subset -> pred element ∈ subset) -> ∀ element : Z, element ∈ subset
+Predicate logic (unfolded): ∀ (subset : LRA.Set.PredicateSet LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), (LRA.Set.instMembershipPredicateSet.mem subset LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero ∧ (∀ (element : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.Set.instMembershipPredicateSet.mem subset element → LRA.Set.instMembershipPredicateSet.mem subset (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ element) ∧ ∀ (element : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.Set.instMembershipPredicateSet.mem subset element → LRA.Set.instMembershipPredicateSet.mem subset (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred element))) → ∀ (element : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.Set.instMembershipPredicateSet.mem subset element
+Transliterated theorem: Z.zero ∈ subset -> ∀ element ∈ Z, element ∈ subset -> succ element ∈ subset -> ∀ element ∈ Z, element ∈ subset -> pred element ∈ subset -> ∀ element : Z, element ∈ subset
+Logical form (Lean): (subset : LRA.Set.PredicateSet Z) : Z.zero ∈ subset -> (∀ element : Z, element ∈ subset -> succ element ∈ subset) -> (∀ element : Z, element ∈ subset -> pred element ∈ subset) -> ∀ element : Z, element ∈ subset
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L193
+
+
+
+Name: polish_integer_structure_aperiodic
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (iterations : Nat),   instLTNat.lt 0 iterations →     Ne       (LRA.NumberSystems.IntegerStructure.iterate LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ iterations         LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero)       LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
+Predicate logic (unfolded): ∀ (iterations : Nat), instLTNat.lt 0 iterations → Ne (LRA.NumberSystems.IntegerStructure.iterate LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ iterations LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
+Transliterated theorem: ∀ iterations : Nat, 0 < iterations -> LRA.NumberSystems.IntegerStructure.iterate succ iterations Z.zero ≠ Z.zero
+Logical form (Lean): : ∀ iterations : Nat, 0 < iterations -> LRA.NumberSystems.IntegerStructure.iterate succ iterations Z.zero ≠ Z.zero
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean#L202
+
+
+
 Name: instMultiplicativeIdentityLawsZ
 Kind: Theorem
 State: Completed
@@ -1751,7 +1971,7 @@ Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean
 
 Name: instOrderDiscretenessLawZ
 Kind: Theorem
-State: Sorry
+State: Completed
 Predicate logic: LRA.Order.OrderDiscretenessLaw LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Predicate logic (unfolded): LRA.Order.OrderDiscretenessLaw LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Transliterated theorem: (signature unavailable)
@@ -1795,7 +2015,7 @@ Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean
 
 Name: instNoZeroDivisorsLawZ
 Kind: Theorem
-State: Sorry
+State: Completed
 Predicate logic: LRA.AlgebraicStructures.NoZeroDivisorsLaw LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Predicate logic (unfolded): LRA.AlgebraicStructures.NoZeroDivisorsLaw LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Transliterated theorem: (signature unavailable)
@@ -1806,7 +2026,7 @@ Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean
 
 Name: instAdditionRespectsOrderLawsZ
 Kind: Theorem
-State: Sorry
+State: Completed
 Predicate logic: LRA.Order.AdditionRespectsOrderLaws LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Predicate logic (unfolded): LRA.Order.AdditionRespectsOrderLaws LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Transliterated theorem: (signature unavailable)
@@ -1817,7 +2037,7 @@ Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean
 
 Name: instAdditiveIdentityLawsZ
 Kind: Theorem
-State: Sorry
+State: Completed
 Predicate logic: LRA.AlgebraicStructures.AdditiveIdentityLaws LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Predicate logic (unfolded): LRA.AlgebraicStructures.AdditiveIdentityLaws LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Transliterated theorem: (signature unavailable)
@@ -1828,7 +2048,7 @@ Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean
 
 Name: instNontrivialityLawZ
 Kind: Theorem
-State: Sorry
+State: Completed
 Predicate logic: LRA.AlgebraicStructures.NontrivialityLaw LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Predicate logic (unfolded): LRA.AlgebraicStructures.NontrivialityLaw LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Transliterated theorem: (signature unavailable)
@@ -1837,20 +2057,9 @@ Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean
 
 
 
-Name: instStrictOrderCompatibilityLawZ
-Kind: Theorem
-State: Sorry
-Predicate logic: LRA.Order.StrictOrderCompatibilityLaw LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
-Predicate logic (unfolded): LRA.Order.StrictOrderCompatibilityLaw LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
-Transliterated theorem: (signature unavailable)
-Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean
-
-
-
 Name: instDiscretenessLawZ
 Kind: Theorem
-State: Sorry
+State: Completed
 Predicate logic: LRA.AlgebraicStructures.DiscretenessLaw LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Predicate logic (unfolded): LRA.AlgebraicStructures.DiscretenessLaw LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Transliterated theorem: (signature unavailable)
@@ -1859,9 +2068,20 @@ Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean
 
 
 
+Name: instStrictOrderCompatibilityLawZ
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Order.StrictOrderCompatibilityLaw LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
+Predicate logic (unfolded): LRA.Order.StrictOrderCompatibilityLaw LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean
+
+
+
 Name: instPartialOrderLawsZ
 Kind: Theorem
-State: Sorry
+State: Completed
 Predicate logic: LRA.Order.PartialOrderLaws LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Predicate logic (unfolded): LRA.Order.PartialOrderLaws LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Transliterated theorem: (signature unavailable)
@@ -1883,7 +2103,7 @@ Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean
 
 Name: instTotalOrderLawZ
 Kind: Theorem
-State: Sorry
+State: Completed
 Predicate logic: LRA.Order.TotalOrderLaw LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Predicate logic (unfolded): LRA.Order.TotalOrderLaw LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Transliterated theorem: (signature unavailable)
@@ -1927,7 +2147,7 @@ Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean
 
 Name: instZeroAbsorbingLawsZ
 Kind: Theorem
-State: Sorry
+State: Completed
 Predicate logic: LRA.AlgebraicStructures.ZeroAbsorbingLaws LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Predicate logic (unfolded): LRA.AlgebraicStructures.ZeroAbsorbingLaws LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Transliterated theorem: (signature unavailable)
@@ -1938,7 +2158,7 @@ Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean
 
 Name: instAdditiveInverseLawsZ
 Kind: Theorem
-State: Sorry
+State: Completed
 Predicate logic: LRA.AlgebraicStructures.AdditiveInverseLaws LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Predicate logic (unfolded): LRA.AlgebraicStructures.AdditiveInverseLaws LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Transliterated theorem: (signature unavailable)
@@ -1949,7 +2169,7 @@ Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean
 
 Name: instMultiplicationRespectsOrderLawsZ
 Kind: Theorem
-State: Sorry
+State: Completed
 Predicate logic: LRA.Order.MultiplicationRespectsOrderLaws LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Predicate logic (unfolded): LRA.Order.MultiplicationRespectsOrderLaws LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Transliterated theorem: (signature unavailable)
@@ -1960,7 +2180,7 @@ Source: ./Integers/Constructions/Polish/TwoSidedSuccessor/Instances.lean
 
 Name: instSuccessorAdditionLawZ
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: LRA.AlgebraicStructures.SuccessorAdditionLaw LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Predicate logic (unfolded): LRA.AlgebraicStructures.SuccessorAdditionLaw LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 Transliterated theorem: (signature unavailable)
@@ -2156,6 +2376,105 @@ Source: ./Integers/Constructions/QuotientOrderedPairs/Behavior.lean#L37
 
 
 
+Name: quotient_addition_spec
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ (whole_data : WholeNumberArithmeticForQuotientPairs), ∀ first second, quotient_addition whole_data (Quotient.mk _ first) (Quotient.mk _ second) = Quotient.mk _ (representative_addition whole_data first second)
+Predicate logic (unfolded): ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs) (first second : LRA.NumberSystems.Integers.QuotientOrderedPairs.Representative whole_data), LRA.NumberSystems.Integers.QuotientOrderedPairs.quotient_addition whole_data (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) first) (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) second) = Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_addition whole_data first second)
+Transliterated theorem: (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), ∀ first second, quotient_addition whole_data (Quotient.mk _ first) (Quotient.mk _ second) = Quotient.mk _ (representative_addition whole_data first second)
+Logical form (Lean): (whole_data : WholeNumberArithmeticForQuotientPairs) : ∀ first second, quotient_addition whole_data (Quotient.mk _ first) (Quotient.mk _ second) = Quotient.mk _ (representative_addition whole_data first second)
+Source: ./Integers/Constructions/QuotientOrderedPairs/Instances.lean#L18
+
+
+
+Name: quotient_multiplication_spec
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ (whole_data : WholeNumberArithmeticForQuotientPairs), ∀ first second, quotient_multiplication whole_data (Quotient.mk _ first) (Quotient.mk _ second) = Quotient.mk _ (representative_multiplication whole_data first second)
+Predicate logic (unfolded): ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs) (first second : LRA.NumberSystems.Integers.QuotientOrderedPairs.Representative whole_data), LRA.NumberSystems.Integers.QuotientOrderedPairs.quotient_multiplication whole_data (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) first) (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) second) = Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_multiplication whole_data first second)
+Transliterated theorem: (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), ∀ first second, quotient_multiplication whole_data (Quotient.mk _ first) (Quotient.mk _ second) = Quotient.mk _ (representative_multiplication whole_data first second)
+Logical form (Lean): (whole_data : WholeNumberArithmeticForQuotientPairs) : ∀ first second, quotient_multiplication whole_data (Quotient.mk _ first) (Quotient.mk _ second) = Quotient.mk _ (representative_multiplication whole_data first second)
+Source: ./Integers/Constructions/QuotientOrderedPairs/Instances.lean#L31
+
+
+
+Name: quotient_nonstrict_order_spec
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ (whole_data : WholeNumberArithmeticForQuotientPairs), ∀ first second, quotient_nonstrict_order whole_data (Quotient.mk _ first) (Quotient.mk _ second) ↔ representative_nonstrict_order whole_data first second
+Predicate logic (unfolded): ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs) (first second : LRA.NumberSystems.Integers.QuotientOrderedPairs.Representative whole_data), LRA.NumberSystems.Integers.QuotientOrderedPairs.quotient_nonstrict_order whole_data (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) first) (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) second) ↔ LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_nonstrict_order whole_data first second
+Transliterated theorem: (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), ∀ first second, quotient_nonstrict_order whole_data (Quotient.mk _ first) (Quotient.mk _ second) ↔ representative_nonstrict_order whole_data first second
+Logical form (Lean): (whole_data : WholeNumberArithmeticForQuotientPairs) : ∀ first second, quotient_nonstrict_order whole_data (Quotient.mk _ first) (Quotient.mk _ second) ↔ representative_nonstrict_order whole_data first second
+Source: ./Integers/Constructions/QuotientOrderedPairs/Instances.lean#L54
+
+
+
+Name: quotient_domain_cert
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs),   LRA.AlgebraicStructures.IntegralDomainLaws (LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier whole_data)
+Predicate logic (unfolded): ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs), LRA.AlgebraicStructures.IntegralDomainLaws (LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier whole_data)
+Transliterated theorem: (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), IntegralDomainLaws (Carrier whole_data)
+Logical form (Lean): (whole_data : WholeNumberArithmeticForQuotientPairs) : IntegralDomainLaws (Carrier whole_data)
+Source: ./Integers/Constructions/QuotientOrderedPairs/Instances.lean#L95
+
+
+
+Name: quotient_linear_order_cert
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs),   LRA.Order.LinearOrderLaws (LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier whole_data)
+Predicate logic (unfolded): ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs), LRA.Order.LinearOrderLaws (LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier whole_data)
+Transliterated theorem: (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), LinearOrderLaws (Carrier whole_data)
+Logical form (Lean): (whole_data : WholeNumberArithmeticForQuotientPairs) : LinearOrderLaws (Carrier whole_data)
+Source: ./Integers/Constructions/QuotientOrderedPairs/Instances.lean#L100
+
+
+
+Name: quotient_strict_order_cert
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs),   LRA.Order.StrictOrderCompatibilityLaw (LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier whole_data)
+Predicate logic (unfolded): ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs), LRA.Order.StrictOrderCompatibilityLaw (LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier whole_data)
+Transliterated theorem: (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), StrictOrderCompatibilityLaw (Carrier whole_data)
+Logical form (Lean): (whole_data : WholeNumberArithmeticForQuotientPairs) : StrictOrderCompatibilityLaw (Carrier whole_data)
+Source: ./Integers/Constructions/QuotientOrderedPairs/Instances.lean#L105
+
+
+
+Name: quotient_addition_order_cert
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs),   LRA.Order.AdditionRespectsOrderLaws (LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier whole_data)
+Predicate logic (unfolded): ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs), LRA.Order.AdditionRespectsOrderLaws (LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier whole_data)
+Transliterated theorem: (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), AdditionRespectsOrderLaws (Carrier whole_data)
+Logical form (Lean): (whole_data : WholeNumberArithmeticForQuotientPairs) : AdditionRespectsOrderLaws (Carrier whole_data)
+Source: ./Integers/Constructions/QuotientOrderedPairs/Instances.lean#L110
+
+
+
+Name: quotient_multiplication_order_cert
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs),   LRA.Order.MultiplicationRespectsOrderLaws (LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier whole_data)
+Predicate logic (unfolded): ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs), LRA.Order.MultiplicationRespectsOrderLaws (LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier whole_data)
+Transliterated theorem: (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), MultiplicationRespectsOrderLaws (Carrier whole_data)
+Logical form (Lean): (whole_data : WholeNumberArithmeticForQuotientPairs) : MultiplicationRespectsOrderLaws (Carrier whole_data)
+Source: ./Integers/Constructions/QuotientOrderedPairs/Instances.lean#L115
+
+
+
+Name: quotient_discrete_order_cert
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs),   LRA.Order.OrderDiscretenessLaw (LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier whole_data)
+Predicate logic (unfolded): ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs), LRA.Order.OrderDiscretenessLaw (LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier whole_data)
+Transliterated theorem: (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), OrderDiscretenessLaw (Carrier whole_data)
+Logical form (Lean): (whole_data : WholeNumberArithmeticForQuotientPairs) : OrderDiscretenessLaw (Carrier whole_data)
+Source: ./Integers/Constructions/QuotientOrderedPairs/Instances.lean#L120
+
+
+
 Name: equivalent_is_equivalence_relation
 Kind: Theorem
 State: Sorry
@@ -2266,14 +2585,80 @@ Source: ./Integers/Constructions/Tao/Behavior.lean#L26
 
 
 
-Name: tao_integers_form_ordered_ring
+Name: IntegerNumeralIsSurjective
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ (integerSystem : IntegerNumberSystem.{u}), ∀ value : integerSystem.Model.Carrier, ∃ integer : Int, IntegerNumeral integerSystem.Model integer = value
+Predicate logic (unfolded): ∀ (integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem) (value : integerSystem.Model.Carrier), Exists fun integer => LRA.NumberSystems.Integers.IntegerNumeral integerSystem.Model integer = value
+Transliterated theorem: ∀ value : integerSystem.Model.Carrier, ∃ integer ∈ Int, IntegerNumeral integerSystem.Model integer = value
+Logical form (Lean): (integerSystem : IntegerNumberSystem.{u}) : ∀ value : integerSystem.Model.Carrier, ∃ integer : Int, IntegerNumeral integerSystem.Model integer = value
+Source: ./Integers/Definition.lean#L86
+
+
+
+Name: IntegerNumeralIsInjective
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (whole_data : WholeNumberArithmeticForTaoFormalDifferences), ∃ integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel, integer_model.signature.carrier = Carrier whole_data
-Predicate logic (unfolded): ∀ (whole_data : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences), Exists fun integer_model => integer_model.signature.carrier = LRA.NumberSystems.Integers.Tao.Carrier whole_data
-Transliterated theorem: (∀ whole_data ∈ WholeNumberArithmeticForTaoFormalDifferences), ∃ integer_model ∈ LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel, integer_model.signature.carrier = Carrier whole_data
-Logical form (Lean): (whole_data : WholeNumberArithmeticForTaoFormalDifferences) : ∃ integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel, integer_model.signature.carrier = Carrier whole_data
-Source: ./Integers/Constructions/Tao/Instances.lean#L25
+Predicate logic: ∀ (integerSystem : IntegerNumberSystem.{u}), ∀ first second : Int, IntegerNumeral integerSystem.Model first = IntegerNumeral integerSystem.Model second → first = second
+Predicate logic (unfolded): ∀ (integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem) (first second : Int), LRA.NumberSystems.Integers.IntegerNumeral integerSystem.Model first = LRA.NumberSystems.Integers.IntegerNumeral integerSystem.Model second → first = second
+Transliterated theorem: ∀ first second : Int, IntegerNumeral integerSystem.Model first = IntegerNumeral integerSystem.Model second → first = second
+Logical form (Lean): (integerSystem : IntegerNumberSystem.{u}) : ∀ first second : Int, IntegerNumeral integerSystem.Model first = IntegerNumeral integerSystem.Model second → first = second
+Source: ./Integers/Definition.lean#L124
+
+
+
+Name: TaoIntegersFormDiscretelyOrderedIntegralDomain
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (wholeData : WholeNumberArithmeticForTaoFormalDifferences), ∃ model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel, model.Carrier = Carrier wholeData
+Predicate logic (unfolded): ∀ (wholeData : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences), Exists fun model => model.Carrier = LRA.NumberSystems.Integers.Tao.Carrier wholeData
+Transliterated theorem: (∀ wholeData ∈ WholeNumberArithmeticForTaoFormalDifferences), ∃ model ∈ LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel, model.Carrier = Carrier wholeData
+Logical form (Lean): (wholeData : WholeNumberArithmeticForTaoFormalDifferences) : ∃ model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel, model.Carrier = Carrier wholeData
+Source: ./Integers/Constructions/Tao/Instances.lean#L21
+
+
+
+Name: TaoRealizesIntegerNumberSystem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (wholeData : WholeNumberArithmeticForTaoFormalDifferences), ∃ integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem, integerSystem.Model.Carrier = Carrier wholeData
+Predicate logic (unfolded): ∀ (wholeData : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences), Exists fun integerSystem => integerSystem.Model.Carrier = LRA.NumberSystems.Integers.Tao.Carrier wholeData
+Transliterated theorem: (∀ wholeData ∈ WholeNumberArithmeticForTaoFormalDifferences), ∃ integerSystem ∈ LRA.NumberSystems.Integers.IntegerNumberSystem, integerSystem.Model.Carrier = Carrier wholeData
+Logical form (Lean): (wholeData : WholeNumberArithmeticForTaoFormalDifferences) : ∃ integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem, integerSystem.Model.Carrier = Carrier wholeData
+Source: ./Integers/Constructions/Tao/Instances.lean#L39
+
+
+
+Name: mathlib_every_element_is_integer_numeral
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ value : mathlibDiscretelyOrderedIntegralDomainModel.Carrier, ∃ integer : Int, IntegerNumeral mathlibDiscretelyOrderedIntegralDomainModel integer = value
+Predicate logic (unfolded): ∀ (value : LRA.NumberSystems.Models.mathlibDiscretelyOrderedIntegralDomainModel.Carrier), Exists fun integer => LRA.NumberSystems.Integers.IntegerNumeral LRA.NumberSystems.Models.mathlibDiscretelyOrderedIntegralDomainModel integer = value
+Transliterated theorem: ∀ value : mathlibDiscretelyOrderedIntegralDomainModel.Carrier, ∃ integer ∈ Int, IntegerNumeral mathlibDiscretelyOrderedIntegralDomainModel integer = value
+Logical form (Lean): : ∀ value : mathlibDiscretelyOrderedIntegralDomainModel.Carrier, ∃ integer : Int, IntegerNumeral mathlibDiscretelyOrderedIntegralDomainModel integer = value
+Source: ./Integers/Examples.lean#L9
+
+
+
+Name: IntegerNumberSystemIsCountable
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem), LRA.Carrier.IsCountable integerSystem.Model.Carrier
+Predicate logic (unfolded): ∀ (integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem), LRA.Carrier.IsCountable integerSystem.Model.Carrier
+Transliterated theorem: LRA.Carrier.IsCountable integerSystem.Model.Carrier
+Logical form (Lean): (integerSystem : IntegerNumberSystem.{u}) : LRA.Carrier.IsCountable integerSystem.Model.Carrier
+Source: ./Integers/Theorems.lean#L23
+
+
+
+Name: IntegerInitiality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem)   (target : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel),   ExistsUnique fun map =>     LRA.NumberSystems.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedRing integerSystem.Model.signature       target.signature map
+Predicate logic (unfolded): ∀ (integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem) (target : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel), ExistsUnique fun map => LRA.NumberSystems.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedRing integerSystem.Model.signature target.signature map
+Transliterated theorem: ∃! map : integerSystem.Model.Carrier → target.Carrier, EmbeddingPreservesOrderedRing integerSystem.Model.signature target.signature map
+Logical form (Lean): (integerSystem : IntegerNumberSystem.{u}) (target : DiscretelyOrderedIntegralDomainModel.{u}) : ∃! map : integerSystem.Model.Carrier → target.Carrier, EmbeddingPreservesOrderedRing integerSystem.Model.signature target.signature map
+Source: ./Integers/UniversalProperty.lean#L28
 
 
 
@@ -2332,25 +2717,47 @@ Source: ./NaturalNumbers/Constructions/VonNeumann/Carrier.lean#L62
 
 
 
-Name: positive_classes_recover_natural_number_model
+Name: FullPredicateInductionOfComprehensionAdequacy
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject)   (a : LRA.NumberSystems.PeanoSystem.PredicateSetComprehensionAdequacy Element SetObject),   LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (a : LRA.NumberSystems.PeanoSystem.PredicateSetComprehensionAdequacy Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps
+Transliterated theorem: FullPredicateInduction ps
+Logical form (Lean): (ps : PeanoSystem Element SetObject) (adequacy : PredicateSetComprehensionAdequacy Element SetObject) : FullPredicateInduction ps
+Source: ./PeanoSystem/Definition.lean#L229
+
+
+
+Name: PositiveClassesRecoverNaturalNumberModel
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ (a : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData),   Exists fun Element => Exists fun SetObject => Exists fun x => Exists fun x => Nonempty Element
 Predicate logic (unfolded): ∀ (a : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData), Exists fun Element => Exists fun SetObject => Exists fun x => Exists fun x => Nonempty Element
-Transliterated theorem: (∀ positive_data ∈ PositiveNaturalPairData), ∃ Element ∈ Type SetObject ∈ Type _ ∈ Membership Element SetObject _ ∈ LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject, Nonempty Element
-Logical form (Lean): (positive_data : PositiveNaturalPairData) : ∃ (Element : Type) (SetObject : Type) (_ : Membership Element SetObject) (_ : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), Nonempty Element
-Source: ./Integers/Constructions/Mendelson/Instances.lean#L30
+Transliterated theorem: (∀ positiveData ∈ PositiveNaturalPairData), ∃ Element ∈ Type SetObject ∈ Type _ ∈ Membership Element SetObject _ ∈ LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject, Nonempty Element
+Logical form (Lean): (positiveData : PositiveNaturalPairData) : ∃ (Element : Type) (SetObject : Type) (_ : Membership Element SetObject) (_ : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), Nonempty Element
+Source: ./Integers/Constructions/Mendelson/Instances.lean#L24
 
 
 
-Name: mendelson_integers_form_ordered_ring
+Name: MendelsonIntegersFormDiscretelyOrderedIntegralDomain
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (positive_data : PositiveNaturalPairData), ∃ integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel, integer_model.signature.carrier = Carrier positive_data
-Predicate logic (unfolded): ∀ (positive_data : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData), Exists fun integer_model => integer_model.signature.carrier = LRA.NumberSystems.Integers.Mendelson.Carrier positive_data
-Transliterated theorem: (∀ positive_data ∈ PositiveNaturalPairData), ∃ integer_model ∈ LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel, integer_model.signature.carrier = Carrier positive_data
-Logical form (Lean): (positive_data : PositiveNaturalPairData) : ∃ integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel, integer_model.signature.carrier = Carrier positive_data
-Source: ./Integers/Constructions/Mendelson/Instances.lean#L54
+Predicate logic: ∀ (positiveData : PositiveNaturalPairData), ∃ model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel, model.Carrier = Carrier positiveData
+Predicate logic (unfolded): ∀ (positiveData : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData), Exists fun model => model.Carrier = LRA.NumberSystems.Integers.Mendelson.Carrier positiveData
+Transliterated theorem: (∀ positiveData ∈ PositiveNaturalPairData), ∃ model ∈ LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel, model.Carrier = Carrier positiveData
+Logical form (Lean): (positiveData : PositiveNaturalPairData) : ∃ model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel, model.Carrier = Carrier positiveData
+Source: ./Integers/Constructions/Mendelson/Instances.lean#L44
+
+
+
+Name: MendelsonRealizesIntegerNumberSystem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (positiveData : PositiveNaturalPairData), ∃ integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem, integerSystem.Model.Carrier = Carrier positiveData
+Predicate logic (unfolded): ∀ (positiveData : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData), Exists fun integerSystem => integerSystem.Model.Carrier = LRA.NumberSystems.Integers.Mendelson.Carrier positiveData
+Transliterated theorem: (∀ positiveData ∈ PositiveNaturalPairData), ∃ integerSystem ∈ LRA.NumberSystems.Integers.IntegerNumberSystem, integerSystem.Model.Carrier = Carrier positiveData
+Logical form (Lean): (positiveData : PositiveNaturalPairData) : ∃ integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem, integerSystem.Model.Carrier = Carrier positiveData
+Source: ./Integers/Constructions/Mendelson/Instances.lean#L61
 
 
 
@@ -2420,69 +2827,14 @@ Source: ./NaturalNumbers/Constructions/VonNeumann/WellFoundedness.lean#L39
 
 
 
-Name: basic_decomposition
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ (value : Carrier natural_data), ((value = zero natural_data) ∨ (∃ natural, value = naturalEmbedding natural_data natural)) ∧ ¬ ((value = zero natural_data) ∧ (∃ natural, value = naturalEmbedding natural_data natural)) ∧ (∀ first second, value = naturalEmbedding natural_data first → value = naturalEmbedding natural_data second → first = second)
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject) (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), (Or (value = LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.zero natural_data) (Exists fun natural => value = LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.naturalEmbedding natural_data natural) ∧ (¬ (value = LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.zero natural_data ∧ Exists fun natural => value = LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.naturalEmbedding natural_data natural) ∧ ∀ (first second : Element), value = LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.naturalEmbedding natural_data first → value = LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.naturalEmbedding natural_data second → first = second))
-Transliterated theorem: ((value = zero natural_data) ∨ (∃ natural, value = naturalEmbedding natural_data natural)) ∧ ¬ ((value = zero natural_data) ∧ (∃ natural, value = naturalEmbedding natural_data natural)) ∧ (∀ first second, value = naturalEmbedding natural_data first → value = naturalEmbedding natural_data second → first = second)
-Logical form (Lean): (value : Carrier natural_data) : ((value = zero natural_data) ∨ (∃ natural, value = naturalEmbedding natural_data natural)) ∧ ¬ ((value = zero natural_data) ∧ (∃ natural, value = naturalEmbedding natural_data natural)) ∧ (∀ first second, value = naturalEmbedding natural_data first → value = naturalEmbedding natural_data second → first = second)
-Source: ./NaturalNumbers/Constructions/WholeNumbers/WellFoundedness.lean#L15
-
-
-
-Name: zero_is_not_successor
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (natural_data :     LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject)   (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data),   Ne (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.successor natural_data value)     (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.zero natural_data)
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject) (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), Ne (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.successor natural_data value) (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.zero natural_data)
-Transliterated theorem: successor natural_data value ≠ zero natural_data
-Logical form (Lean): (value : Carrier natural_data) : successor natural_data value ≠ zero natural_data
-Source: ./NaturalNumbers/Constructions/WholeNumbers/WellFoundedness.lean#L27
-
-
-
-Name: successor_is_injective
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ first second, successor natural_data first = successor natural_data second → first = second
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject) (first second : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.successor natural_data first = LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.successor natural_data second → first = second
-Transliterated theorem: ∀ first second, successor natural_data first = successor natural_data second → first = second
-Logical form (Lean): : ∀ first second, successor natural_data first = successor natural_data second → first = second
-Source: ./NaturalNumbers/Constructions/WholeNumbers/WellFoundedness.lean#L32
-
-
-
-Name: induction_from_zero
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ (predicate : Carrier natural_data → Prop) (zero_case : predicate (zero natural_data)) (successor_case : ∀ value, predicate value → predicate (successor natural_data value)), ∀ value, predicate value
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject) (predicate : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data → Prop), (predicate (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.zero natural_data) ∧ ∀ (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), predicate value → predicate (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.successor natural_data value)) → ∀ (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), predicate value
-Transliterated theorem: (Carrier natural_data → Prop ∧ ∀ value, predicate value → predicate (successor natural_data value)) → ∀ value, predicate value
-Logical form (Lean): (predicate : Carrier natural_data → Prop) (zero_case : predicate (zero natural_data)) (successor_case : ∀ value, predicate value → predicate (successor natural_data value)) : ∀ value, predicate value
-Source: ./NaturalNumbers/Constructions/WholeNumbers/WellFoundedness.lean#L38
-
-
-
-Name: strong_induction
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (natural_data :     LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject)   (predicate : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data → Prop),   (∀ (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data),       (∀ (smaller : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data),           LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.strictOrder natural_data smaller value →             predicate smaller) →         predicate value) →     ∀ (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), predicate value
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject) (predicate : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data → Prop), (∀ (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), (∀ (smaller : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.strictOrder natural_data smaller value → predicate smaller) → predicate value) → ∀ (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), predicate value
-Transliterated theorem: (Carrier natural_data → Prop ∧ ∀ value, (∀ smaller, strictOrder natural_data smaller value → predicate smaller) → predicate value) → ∀ value, predicate value
-Logical form (Lean): (predicate : Carrier natural_data → Prop) (step : ∀ value, (∀ smaller, strictOrder natural_data smaller value → predicate smaller) → predicate value) : ∀ value, predicate value
-Source: ./NaturalNumbers/Constructions/WholeNumbers/WellFoundedness.lean#L46
-
-
-
 Name: UniquenessOfPeanoSystemsUpToIsomorphism
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {SecondElement : Type u} {SecondSetObject : Type v} [Membership SecondElement SecondSetObject] (first : PeanoSystem Element SetObject) (second : PeanoSystem SecondElement SecondSetObject), exists forward : Element -> SecondElement, exists backward : SecondElement -> Element, forward first.one = second.one /\ backward second.one = first.one /\ (forall element : Element, forward (first.successor element) = second.successor (forward element)) /\ (forall element : SecondElement, backward (second.successor element) = first.successor (backward element)) /\ (forall element : Element, backward (forward element) = element) /\ (forall element : SecondElement, forward (backward element) = element)
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {SecondElement : Type u} {SecondSetObject : Type v} [inst_1 : Membership SecondElement SecondSetObject] (first : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (second : LRA.NumberSystems.PeanoSystem.PeanoSystem SecondElement SecondSetObject), Exists fun forward => Exists fun backward => (forward first.one = second.one ∧ (backward second.one = first.one ∧ (∀ (element : Element), forward (first.successor element) = second.successor (forward element) ∧ (∀ (element : SecondElement), backward (second.successor element) = first.successor (backward element) ∧ (∀ (element : Element), backward (forward element) = element ∧ ∀ (element : SecondElement), forward (backward element) = element)))))
-Transliterated theorem: exists forward : Element -> SecondElement, exists backward : SecondElement -> Element, forward first.one = second.one ∧ backward second.one = first.one ∧ forall element ∈ Element, forward (first.successor element = second.successor (forward element)) ∧ forall element ∈ SecondElement, backward (second.successor element = first.successor (backward element)) ∧ forall element ∈ Element, backward (forward element = element) ∧ forall element ∈ SecondElement, forward (backward element = element)
-Logical form (Lean): {SecondElement : Type u} {SecondSetObject : Type v} [Membership SecondElement SecondSetObject] (first : PeanoSystem Element SetObject) (second : PeanoSystem SecondElement SecondSetObject) : exists forward : Element -> SecondElement, exists backward : SecondElement -> Element, forward first.one = second.one /\ backward second.one = first.one /\ (forall element : Element, forward (first.successor element) = second.successor (forward element)) /\ (forall element : SecondElement, backward (second.successor element) = first.successor (backward element)) /\ (forall element : Element, backward (forward element) = element) /\ (forall element : SecondElement, forward (backward element) = element)
-Source: ./PeanoSystem/Categoricity.lean#L46
+Predicate logic: ∀ {SecondElement : Type u} {SecondSetObject : Type v} [Membership SecondElement SecondSetObject] (first : PeanoSystem Element SetObject) (firstFullInduction : FullPredicateInduction first) (second : PeanoSystem SecondElement SecondSetObject), FullPredicateInduction second -> exists forward : Element -> SecondElement, exists backward : SecondElement -> Element, forward first.one = second.one /\ backward second.one = first.one /\ (forall element : Element, forward (first.successor element) = second.successor (forward element)) /\ (forall element : SecondElement, backward (second.successor element) = first.successor (backward element)) /\ (forall element : Element, backward (forward element) = element) /\ (forall element : SecondElement, forward (backward element) = element)
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {SecondElement : Type u} {SecondSetObject : Type v} [inst_1 : Membership SecondElement SecondSetObject] (first : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction first → ∀ (second : LRA.NumberSystems.PeanoSystem.PeanoSystem SecondElement SecondSetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction second → Exists fun forward => Exists fun backward => (forward first.one = second.one ∧ (backward second.one = first.one ∧ (∀ (element : Element), forward (first.successor element) = second.successor (forward element) ∧ (∀ (element : SecondElement), backward (second.successor element) = first.successor (backward element) ∧ (∀ (element : Element), backward (forward element) = element ∧ ∀ (element : SecondElement), forward (backward element) = element)))))
+Transliterated theorem: FullPredicateInduction second -> exists forward : Element -> SecondElement, exists backward : SecondElement -> Element, forward first.one = second.one ∧ backward second.one = first.one ∧ forall element ∈ Element, forward (first.successor element = second.successor (forward element)) ∧ forall element ∈ SecondElement, backward (second.successor element = first.successor (backward element)) ∧ forall element ∈ Element, backward (forward element = element) ∧ forall element ∈ SecondElement, forward (backward element = element)
+Logical form (Lean): {SecondElement : Type u} {SecondSetObject : Type v} [Membership SecondElement SecondSetObject] (first : PeanoSystem Element SetObject) (firstFullInduction : FullPredicateInduction first) (second : PeanoSystem SecondElement SecondSetObject) : FullPredicateInduction second -> exists forward : Element -> SecondElement, exists backward : SecondElement -> Element, forward first.one = second.one /\ backward second.one = first.one /\ (forall element : Element, forward (first.successor element) = second.successor (forward element)) /\ (forall element : SecondElement, backward (second.successor element) = first.successor (backward element)) /\ (forall element : Element, backward (forward element) = element) /\ (forall element : SecondElement, forward (backward element) = element)
+Source: ./PeanoSystem/Categoricity.lean#L49
 
 
 
@@ -2577,10 +2929,10 @@ Source: ./PeanoSystem/Recursion/Iterator.lean#L185
 Name: MinimalIteratorRelationComplete
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject)   (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (element : Element),   Exists fun value => LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data element value
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (element : Element), Exists fun value => LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data element value
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject),   LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps →     ∀ (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (element : Element),       Exists fun value => LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data element value
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (element : Element), Exists fun value => LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data element value
 Transliterated theorem: forall element : Element, exists value : data.Target, MinimalIteratorRelation ps data element value
-Logical form (Lean): (ps : PeanoSystem Element SetObject) (data : IteratorData ps) : forall element : Element, exists value : data.Target, MinimalIteratorRelation ps data element value
+Logical form (Lean): (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (data : IteratorData ps) : forall element : Element, exists value : data.Target, MinimalIteratorRelation ps data element value
 Source: ./PeanoSystem/Recursion/Iterator.lean#L210
 
 
@@ -2588,121 +2940,121 @@ Source: ./PeanoSystem/Recursion/Iterator.lean#L210
 Name: MinimalIteratorRelationDeterministic
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (ps : PeanoSystem Element SetObject) (data : IteratorData ps), forall element : Element, forall first_value second_value : data.Target, MinimalIteratorRelation ps data element first_value -> MinimalIteratorRelation ps data element second_value -> first_value = second_value
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (element : Element) (first_value second_value : data.Target), (LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data element first_value ∧ LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data element second_value) → first_value = second_value
+Predicate logic: ∀ (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (data : IteratorData ps), forall element : Element, forall first_value second_value : data.Target, MinimalIteratorRelation ps data element first_value -> MinimalIteratorRelation ps data element second_value -> first_value = second_value
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (element : Element) (first_value second_value : data.Target), (LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data element first_value ∧ LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data element second_value) → first_value = second_value
 Transliterated theorem: forall element : Element, forall first_value second_value : data.Target, MinimalIteratorRelation ps data element first_value -> MinimalIteratorRelation ps data element second_value -> first_value = second_value
-Logical form (Lean): (ps : PeanoSystem Element SetObject) (data : IteratorData ps) : forall element : Element, forall first_value second_value : data.Target, MinimalIteratorRelation ps data element first_value -> MinimalIteratorRelation ps data element second_value -> first_value = second_value
-Source: ./PeanoSystem/Recursion/Iterator.lean#L240
+Logical form (Lean): (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (data : IteratorData ps) : forall element : Element, forall first_value second_value : data.Target, MinimalIteratorRelation ps data element first_value -> MinimalIteratorRelation ps data element second_value -> first_value = second_value
+Source: ./PeanoSystem/Recursion/Iterator.lean#L261
 
 
 
 Name: ForcedValuesAreUnique
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (ps : PeanoSystem Element SetObject) (data : IteratorData ps), forall element : Element, forall first_value second_value : data.Target, MinimalIteratorRelation ps data element first_value -> MinimalIteratorRelation ps data element second_value -> first_value = second_value
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (element : Element) (first_value second_value : data.Target), (LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data element first_value ∧ LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data element second_value) → first_value = second_value
+Predicate logic: ∀ (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (data : IteratorData ps), forall element : Element, forall first_value second_value : data.Target, MinimalIteratorRelation ps data element first_value -> MinimalIteratorRelation ps data element second_value -> first_value = second_value
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (element : Element) (first_value second_value : data.Target), (LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data element first_value ∧ LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data element second_value) → first_value = second_value
 Transliterated theorem: forall element : Element, forall first_value second_value : data.Target, MinimalIteratorRelation ps data element first_value -> MinimalIteratorRelation ps data element second_value -> first_value = second_value
-Logical form (Lean): (ps : PeanoSystem Element SetObject) (data : IteratorData ps) : forall element : Element, forall first_value second_value : data.Target, MinimalIteratorRelation ps data element first_value -> MinimalIteratorRelation ps data element second_value -> first_value = second_value
-Source: ./PeanoSystem/Recursion/Iterator.lean#L266
+Logical form (Lean): (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (data : IteratorData ps) : forall element : Element, forall first_value second_value : data.Target, MinimalIteratorRelation ps data element first_value -> MinimalIteratorRelation ps data element second_value -> first_value = second_value
+Source: ./PeanoSystem/Recursion/Iterator.lean#L311
 
 
 
 Name: ExistenceOfIteratorFunction
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target)   (step_rule : target → target),   Exists fun iterator_function =>     LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule iterator_function
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target → target), Exists fun iterator_function => LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule iterator_function
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject),   LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps →     ∀ (target : Type w) (initial_value : target) (step_rule : target → target),       Exists fun iterator_function =>         LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule           iterator_function
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (target : Type w) (initial_value : target) (step_rule : target → target), Exists fun iterator_function => LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule iterator_function
 Transliterated theorem: (∀ initial_value ∈ target), exists iterator_function : Element -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function
-Logical form (Lean): (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target -> target) : exists iterator_function : Element -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function
-Source: ./PeanoSystem/Recursion/Iterator.lean#L302
+Logical form (Lean): (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : target -> target) : exists iterator_function : Element -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function
+Source: ./PeanoSystem/Recursion/Iterator.lean#L366
 
 
 
 Name: UniquenessOfIteratorFunctions
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target -> target) (first_iterator second_iterator : Element -> target), IteratorFunctionClauses ps target initial_value step_rule first_iterator -> IteratorFunctionClauses ps target initial_value step_rule second_iterator -> first_iterator = second_iterator
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target → target) (first_iterator second_iterator : Element → target), (LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule first_iterator ∧ LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule second_iterator) → first_iterator = second_iterator
+Predicate logic: ∀ (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : target -> target) (first_iterator second_iterator : Element -> target), IteratorFunctionClauses ps target initial_value step_rule first_iterator -> IteratorFunctionClauses ps target initial_value step_rule second_iterator -> first_iterator = second_iterator
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (target : Type w) (initial_value : target) (step_rule : target → target) (first_iterator second_iterator : Element → target), (LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule first_iterator ∧ LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule second_iterator) → first_iterator = second_iterator
 Transliterated theorem: (∀ initial_value ∈ target), IteratorFunctionClauses ps target initial_value step_rule first_iterator -> IteratorFunctionClauses ps target initial_value step_rule second_iterator -> first_iterator = second_iterator
-Logical form (Lean): (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target -> target) (first_iterator second_iterator : Element -> target) : IteratorFunctionClauses ps target initial_value step_rule first_iterator -> IteratorFunctionClauses ps target initial_value step_rule second_iterator -> first_iterator = second_iterator
-Source: ./PeanoSystem/Recursion/Iterator.lean#L338
+Logical form (Lean): (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : target -> target) (first_iterator second_iterator : Element -> target) : IteratorFunctionClauses ps target initial_value step_rule first_iterator -> IteratorFunctionClauses ps target initial_value step_rule second_iterator -> first_iterator = second_iterator
+Source: ./PeanoSystem/Recursion/Iterator.lean#L432
 
 
 
 Name: IteratorFunctionWellDefined
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target -> target), exists iterator_function : Element -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function /\ forall other_iterator : Element -> target, IteratorFunctionClauses ps target initial_value step_rule other_iterator -> other_iterator = iterator_function
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target → target), Exists fun iterator_function => (LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule iterator_function ∧ ∀ (other_iterator : Element → target), LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule other_iterator → other_iterator = iterator_function)
+Predicate logic: ∀ (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : target -> target), exists iterator_function : Element -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function /\ forall other_iterator : Element -> target, IteratorFunctionClauses ps target initial_value step_rule other_iterator -> other_iterator = iterator_function
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (target : Type w) (initial_value : target) (step_rule : target → target), Exists fun iterator_function => (LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule iterator_function ∧ ∀ (other_iterator : Element → target), LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule other_iterator → other_iterator = iterator_function)
 Transliterated theorem: (∀ initial_value ∈ target), exists iterator_function : Element -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function ∧ forall other_iterator : Element -> target, IteratorFunctionClauses ps target initial_value step_rule other_iterator -> other_iterator = iterator_function
-Logical form (Lean): (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target -> target) : exists iterator_function : Element -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function /\ forall other_iterator : Element -> target, IteratorFunctionClauses ps target initial_value step_rule other_iterator -> other_iterator = iterator_function
-Source: ./PeanoSystem/Recursion/Iterator.lean#L382
+Logical form (Lean): (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : target -> target) : exists iterator_function : Element -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function /\ forall other_iterator : Element -> target, IteratorFunctionClauses ps target initial_value step_rule other_iterator -> other_iterator = iterator_function
+Source: ./PeanoSystem/Recursion/Iterator.lean#L502
 
 
 
 Name: IteratorBaseValue
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target -> target), IteratorGeneratedFunction ps target initial_value step_rule ps.one = initial_value
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target → target), LRA.NumberSystems.PeanoSystem.Recursion.IteratorGeneratedFunction ps target initial_value step_rule ps.one = initial_value
-Transliterated theorem: (∀ initial_value ∈ target), IteratorGeneratedFunction ps target initial_value step_rule ps.one = initial_value
-Logical form (Lean): (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target -> target) : IteratorGeneratedFunction ps target initial_value step_rule ps.one = initial_value
-Source: ./PeanoSystem/Recursion/Iterator.lean#L463
+Predicate logic: ∀ (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : target -> target), IteratorGeneratedFunction ps fullInduction target initial_value step_rule ps.one = initial_value
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (fullInduction : LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : target → target), LRA.NumberSystems.PeanoSystem.Recursion.IteratorGeneratedFunction ps fullInduction target initial_value step_rule ps.one = initial_value
+Transliterated theorem: (∀ initial_value ∈ target), IteratorGeneratedFunction ps fullInduction target initial_value step_rule ps.one = initial_value
+Logical form (Lean): (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : target -> target) : IteratorGeneratedFunction ps fullInduction target initial_value step_rule ps.one = initial_value
+Source: ./PeanoSystem/Recursion/Iterator.lean#L623
 
 
 
 Name: IteratorSuccessorStep
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target -> target) (element : Element), IteratorGeneratedFunction ps target initial_value step_rule (ps.successor element) = step_rule (IteratorGeneratedFunction ps target initial_value step_rule element)
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target → target) (element : Element), LRA.NumberSystems.PeanoSystem.Recursion.IteratorGeneratedFunction ps target initial_value step_rule (ps.successor element) = step_rule (LRA.NumberSystems.PeanoSystem.Recursion.IteratorGeneratedFunction ps target initial_value step_rule element)
-Transliterated theorem: (∀ initial_value ∈ target ∀ x ∈ Element), IteratorGeneratedFunction ps target initial_value step_rule (ps.successor x) = step_rule (IteratorGeneratedFunction ps target initial_value step_rule x)
-Logical form (Lean): (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target -> target) (element : Element) : IteratorGeneratedFunction ps target initial_value step_rule (ps.successor element) = step_rule (IteratorGeneratedFunction ps target initial_value step_rule element)
-Source: ./PeanoSystem/Recursion/Iterator.lean#L492
+Predicate logic: ∀ (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : target -> target) (element : Element), IteratorGeneratedFunction ps fullInduction target initial_value step_rule (ps.successor element) = step_rule (IteratorGeneratedFunction ps fullInduction target initial_value step_rule element)
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (fullInduction : LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : target → target) (element : Element), LRA.NumberSystems.PeanoSystem.Recursion.IteratorGeneratedFunction ps fullInduction target initial_value step_rule (ps.successor element) = step_rule (LRA.NumberSystems.PeanoSystem.Recursion.IteratorGeneratedFunction ps fullInduction target initial_value step_rule element)
+Transliterated theorem: (∀ initial_value ∈ target ∀ x ∈ Element), IteratorGeneratedFunction ps fullInduction target initial_value step_rule (ps.successor x) = step_rule (IteratorGeneratedFunction ps fullInduction target initial_value step_rule x)
+Logical form (Lean): (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : target -> target) (element : Element) : IteratorGeneratedFunction ps fullInduction target initial_value step_rule (ps.successor element) = step_rule (IteratorGeneratedFunction ps fullInduction target initial_value step_rule element)
+Source: ./PeanoSystem/Recursion/Iterator.lean#L653
 
 
 
 Name: PeanoIteratorTheorem
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target -> target), exists iterator_function : Element -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function /\ forall other_iterator : Element -> target, IteratorFunctionClauses ps target initial_value step_rule other_iterator -> other_iterator = iterator_function
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target → target), Exists fun iterator_function => (LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule iterator_function ∧ ∀ (other_iterator : Element → target), LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule other_iterator → other_iterator = iterator_function)
+Predicate logic: ∀ (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : target -> target), exists iterator_function : Element -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function /\ forall other_iterator : Element -> target, IteratorFunctionClauses ps target initial_value step_rule other_iterator -> other_iterator = iterator_function
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (target : Type w) (initial_value : target) (step_rule : target → target), Exists fun iterator_function => (LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule iterator_function ∧ ∀ (other_iterator : Element → target), LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule other_iterator → other_iterator = iterator_function)
 Transliterated theorem: (∀ initial_value ∈ target), exists iterator_function : Element -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function ∧ forall other_iterator : Element -> target, IteratorFunctionClauses ps target initial_value step_rule other_iterator -> other_iterator = iterator_function
-Logical form (Lean): (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target -> target) : exists iterator_function : Element -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function /\ forall other_iterator : Element -> target, IteratorFunctionClauses ps target initial_value step_rule other_iterator -> other_iterator = iterator_function
-Source: ./PeanoSystem/Recursion/Iterator.lean#L556
+Logical form (Lean): (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : target -> target) : exists iterator_function : Element -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function /\ forall other_iterator : Element -> target, IteratorFunctionClauses ps target initial_value step_rule other_iterator -> other_iterator = iterator_function
+Source: ./PeanoSystem/Recursion/Iterator.lean#L721
 
 
 
 Name: UniquenessOfGeneralRecursiveFunctions
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : StageDependentStepRule ps target) (first_recursive_function second_recursive_function : Element -> target), GeneralRecursiveFunctionClauses ps target initial_value step_rule first_recursive_function -> GeneralRecursiveFunctionClauses ps target initial_value step_rule second_recursive_function -> first_recursive_function = second_recursive_function
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : LRA.NumberSystems.PeanoSystem.Recursion.StageDependentStepRule ps target) (first_recursive_function second_recursive_function : Element → target), (LRA.NumberSystems.PeanoSystem.Recursion.GeneralRecursiveFunctionClauses ps target initial_value step_rule first_recursive_function ∧ LRA.NumberSystems.PeanoSystem.Recursion.GeneralRecursiveFunctionClauses ps target initial_value step_rule second_recursive_function) → first_recursive_function = second_recursive_function
+Predicate logic: ∀ (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : StageDependentStepRule ps target) (first_recursive_function second_recursive_function : Element -> target), GeneralRecursiveFunctionClauses ps target initial_value step_rule first_recursive_function -> GeneralRecursiveFunctionClauses ps target initial_value step_rule second_recursive_function -> first_recursive_function = second_recursive_function
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (target : Type w) (initial_value : target) (step_rule : LRA.NumberSystems.PeanoSystem.Recursion.StageDependentStepRule ps target) (first_recursive_function second_recursive_function : Element → target), (LRA.NumberSystems.PeanoSystem.Recursion.GeneralRecursiveFunctionClauses ps target initial_value step_rule first_recursive_function ∧ LRA.NumberSystems.PeanoSystem.Recursion.GeneralRecursiveFunctionClauses ps target initial_value step_rule second_recursive_function) → first_recursive_function = second_recursive_function
 Transliterated theorem: (∀ initial_value ∈ target), GeneralRecursiveFunctionClauses ps target initial_value step_rule first_recursive_function -> GeneralRecursiveFunctionClauses ps target initial_value step_rule second_recursive_function -> first_recursive_function = second_recursive_function
-Logical form (Lean): (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : StageDependentStepRule ps target) (first_recursive_function second_recursive_function : Element -> target) : GeneralRecursiveFunctionClauses ps target initial_value step_rule first_recursive_function -> GeneralRecursiveFunctionClauses ps target initial_value step_rule second_recursive_function -> first_recursive_function = second_recursive_function
-Source: ./PeanoSystem/Recursion/Iterator.lean#L660
+Logical form (Lean): (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : StageDependentStepRule ps target) (first_recursive_function second_recursive_function : Element -> target) : GeneralRecursiveFunctionClauses ps target initial_value step_rule first_recursive_function -> GeneralRecursiveFunctionClauses ps target initial_value step_rule second_recursive_function -> first_recursive_function = second_recursive_function
+Source: ./PeanoSystem/Recursion/Iterator.lean#L864
 
 
 
 Name: GeneralRecursionByStateEncoding
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target)   (step_rule : LRA.NumberSystems.PeanoSystem.Recursion.StageDependentStepRule ps target),   Exists fun recursive_function =>     LRA.NumberSystems.PeanoSystem.Recursion.GeneralRecursiveFunctionClauses ps target initial_value step_rule       recursive_function
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : LRA.NumberSystems.PeanoSystem.Recursion.StageDependentStepRule ps target), Exists fun recursive_function => LRA.NumberSystems.PeanoSystem.Recursion.GeneralRecursiveFunctionClauses ps target initial_value step_rule recursive_function
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject),   LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps →     ∀ (target : Type w) (initial_value : target)       (step_rule : LRA.NumberSystems.PeanoSystem.Recursion.StageDependentStepRule ps target),       Exists fun recursive_function =>         LRA.NumberSystems.PeanoSystem.Recursion.GeneralRecursiveFunctionClauses ps target initial_value step_rule           recursive_function
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (target : Type w) (initial_value : target) (step_rule : LRA.NumberSystems.PeanoSystem.Recursion.StageDependentStepRule ps target), Exists fun recursive_function => LRA.NumberSystems.PeanoSystem.Recursion.GeneralRecursiveFunctionClauses ps target initial_value step_rule recursive_function
 Transliterated theorem: (∀ initial_value ∈ target), exists recursive_function : Element -> target, GeneralRecursiveFunctionClauses ps target initial_value step_rule recursive_function
-Logical form (Lean): (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : StageDependentStepRule ps target) : exists recursive_function : Element -> target, GeneralRecursiveFunctionClauses ps target initial_value step_rule recursive_function
-Source: ./PeanoSystem/Recursion/Iterator.lean#L689
+Logical form (Lean): (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : StageDependentStepRule ps target) : exists recursive_function : Element -> target, GeneralRecursiveFunctionClauses ps target initial_value step_rule recursive_function
+Source: ./PeanoSystem/Recursion/Iterator.lean#L915
 
 
 
 Name: GeneralRecursionTheoremForPeanoSystem
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : StageDependentStepRule ps target), exists recursive_function : Element -> target, GeneralRecursiveFunctionClauses ps target initial_value step_rule recursive_function /\ forall other_recursive_function : Element -> target, GeneralRecursiveFunctionClauses ps target initial_value step_rule other_recursive_function -> other_recursive_function = recursive_function
-Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : LRA.NumberSystems.PeanoSystem.Recursion.StageDependentStepRule ps target), Exists fun recursive_function => (LRA.NumberSystems.PeanoSystem.Recursion.GeneralRecursiveFunctionClauses ps target initial_value step_rule recursive_function ∧ ∀ (other_recursive_function : Element → target), LRA.NumberSystems.PeanoSystem.Recursion.GeneralRecursiveFunctionClauses ps target initial_value step_rule other_recursive_function → other_recursive_function = recursive_function)
+Predicate logic: ∀ (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : StageDependentStepRule ps target), exists recursive_function : Element -> target, GeneralRecursiveFunctionClauses ps target initial_value step_rule recursive_function /\ forall other_recursive_function : Element -> target, GeneralRecursiveFunctionClauses ps target initial_value step_rule other_recursive_function -> other_recursive_function = recursive_function
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (target : Type w) (initial_value : target) (step_rule : LRA.NumberSystems.PeanoSystem.Recursion.StageDependentStepRule ps target), Exists fun recursive_function => (LRA.NumberSystems.PeanoSystem.Recursion.GeneralRecursiveFunctionClauses ps target initial_value step_rule recursive_function ∧ ∀ (other_recursive_function : Element → target), LRA.NumberSystems.PeanoSystem.Recursion.GeneralRecursiveFunctionClauses ps target initial_value step_rule other_recursive_function → other_recursive_function = recursive_function)
 Transliterated theorem: (∀ initial_value ∈ target), exists recursive_function : Element -> target, GeneralRecursiveFunctionClauses ps target initial_value step_rule recursive_function ∧ forall other_recursive_function : Element -> target, GeneralRecursiveFunctionClauses ps target initial_value step_rule other_recursive_function -> other_recursive_function = recursive_function
-Logical form (Lean): (ps : PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : StageDependentStepRule ps target) : exists recursive_function : Element -> target, GeneralRecursiveFunctionClauses ps target initial_value step_rule recursive_function /\ forall other_recursive_function : Element -> target, GeneralRecursiveFunctionClauses ps target initial_value step_rule other_recursive_function -> other_recursive_function = recursive_function
-Source: ./PeanoSystem/Recursion/Iterator.lean#L719
+Logical form (Lean): (ps : PeanoSystem Element SetObject) (fullInduction : FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : StageDependentStepRule ps target) : exists recursive_function : Element -> target, GeneralRecursiveFunctionClauses ps target initial_value step_rule recursive_function /\ forall other_recursive_function : Element -> target, GeneralRecursiveFunctionClauses ps target initial_value step_rule other_recursive_function -> other_recursive_function = recursive_function
+Source: ./PeanoSystem/Recursion/Iterator.lean#L964
 
 
 
@@ -3025,6 +3377,61 @@ Source: ./NaturalNumbers/Constructions/Presburger/Operations.lean#L50
 
 
 
+Name: basic_decomposition
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (value : Carrier natural_data), ((value = zero natural_data) ∨ (∃ natural, value = naturalEmbedding natural_data natural)) ∧ ¬ ((value = zero natural_data) ∧ (∃ natural, value = naturalEmbedding natural_data natural)) ∧ (∀ first second, value = naturalEmbedding natural_data first → value = naturalEmbedding natural_data second → first = second)
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject) (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), (Or (value = LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.zero natural_data) (Exists fun natural => value = LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.naturalEmbedding natural_data natural) ∧ (¬ (value = LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.zero natural_data ∧ Exists fun natural => value = LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.naturalEmbedding natural_data natural) ∧ ∀ (first second : Element), value = LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.naturalEmbedding natural_data first → value = LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.naturalEmbedding natural_data second → first = second))
+Transliterated theorem: ((value = zero natural_data) ∨ (∃ natural, value = naturalEmbedding natural_data natural)) ∧ ¬ ((value = zero natural_data) ∧ (∃ natural, value = naturalEmbedding natural_data natural)) ∧ (∀ first second, value = naturalEmbedding natural_data first → value = naturalEmbedding natural_data second → first = second)
+Logical form (Lean): (value : Carrier natural_data) : ((value = zero natural_data) ∨ (∃ natural, value = naturalEmbedding natural_data natural)) ∧ ¬ ((value = zero natural_data) ∧ (∃ natural, value = naturalEmbedding natural_data natural)) ∧ (∀ first second, value = naturalEmbedding natural_data first → value = naturalEmbedding natural_data second → first = second)
+Source: ./NaturalNumbers/Constructions/WholeNumbers/WellFoundedness.lean#L15
+
+
+
+Name: zero_is_not_successor
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (natural_data :     LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject)   (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data),   Ne (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.successor natural_data value)     (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.zero natural_data)
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject) (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), Ne (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.successor natural_data value) (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.zero natural_data)
+Transliterated theorem: successor natural_data value ≠ zero natural_data
+Logical form (Lean): (value : Carrier natural_data) : successor natural_data value ≠ zero natural_data
+Source: ./NaturalNumbers/Constructions/WholeNumbers/WellFoundedness.lean#L27
+
+
+
+Name: successor_is_injective
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ first second, successor natural_data first = successor natural_data second → first = second
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject) (first second : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.successor natural_data first = LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.successor natural_data second → first = second
+Transliterated theorem: ∀ first second, successor natural_data first = successor natural_data second → first = second
+Logical form (Lean): : ∀ first second, successor natural_data first = successor natural_data second → first = second
+Source: ./NaturalNumbers/Constructions/WholeNumbers/WellFoundedness.lean#L32
+
+
+
+Name: induction_from_zero
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (predicate : Carrier natural_data → Prop) (zero_case : predicate (zero natural_data)) (successor_case : ∀ value, predicate value → predicate (successor natural_data value)), ∀ value, predicate value
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject) (predicate : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data → Prop), (predicate (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.zero natural_data) ∧ ∀ (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), predicate value → predicate (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.successor natural_data value)) → ∀ (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), predicate value
+Transliterated theorem: (Carrier natural_data → Prop ∧ ∀ value, predicate value → predicate (successor natural_data value)) → ∀ value, predicate value
+Logical form (Lean): (predicate : Carrier natural_data → Prop) (zero_case : predicate (zero natural_data)) (successor_case : ∀ value, predicate value → predicate (successor natural_data value)) : ∀ value, predicate value
+Source: ./NaturalNumbers/Constructions/WholeNumbers/WellFoundedness.lean#L38
+
+
+
+Name: strong_induction
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (natural_data :     LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject)   (predicate : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data → Prop),   (∀ (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data),       (∀ (smaller : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data),           LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.strictOrder natural_data smaller value →             predicate smaller) →         predicate value) →     ∀ (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), predicate value
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject) (predicate : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data → Prop), (∀ (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), (∀ (smaller : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.strictOrder natural_data smaller value → predicate smaller) → predicate value) → ∀ (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), predicate value
+Transliterated theorem: (Carrier natural_data → Prop ∧ ∀ value, (∀ smaller, strictOrder natural_data smaller value → predicate smaller) → predicate value) → ∀ value, predicate value
+Logical form (Lean): (predicate : Carrier natural_data → Prop) (step : ∀ value, (∀ smaller, strictOrder natural_data smaller value → predicate smaller) → predicate value) : ∀ value, predicate value
+Source: ./NaturalNumbers/Constructions/WholeNumbers/WellFoundedness.lean#L46
+
+
+
 Name: natural_embedding_preserves_structure
 Kind: Theorem
 State: Sorry
@@ -3069,6 +3476,83 @@ Source: ./NaturalNumbers/Constructions/WholeNumbers/Laws.lean#L51
 
 
 
+Name: nonstrict_order_refl
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (natural_data :     LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject)   (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data),   LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data value value
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject) (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data value value
+Transliterated theorem: ∀ value, nonstrictOrder natural_data value value
+Logical form (Lean): : ∀ value, nonstrictOrder natural_data value value
+Source: ./NaturalNumbers/Constructions/WholeNumbers/Laws.lean#L73
+
+
+
+Name: nonstrict_order_trans
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ first second third, nonstrictOrder natural_data first second → nonstrictOrder natural_data second third → nonstrictOrder natural_data first third
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject) (first second third : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data first second ∧ LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data second third) → LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data first third
+Transliterated theorem: ∀ first second third, nonstrictOrder natural_data first second → nonstrictOrder natural_data second third → nonstrictOrder natural_data first third
+Logical form (Lean): : ∀ first second third, nonstrictOrder natural_data first second → nonstrictOrder natural_data second third → nonstrictOrder natural_data first third
+Source: ./NaturalNumbers/Constructions/WholeNumbers/Laws.lean#L80
+
+
+
+Name: nonstrict_order_antisymm
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ first second, nonstrictOrder natural_data first second → nonstrictOrder natural_data second first → first = second
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject) (first second : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data first second ∧ LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data second first) → first = second
+Transliterated theorem: ∀ first second, nonstrictOrder natural_data first second → nonstrictOrder natural_data second first → first = second
+Logical form (Lean): : ∀ first second, nonstrictOrder natural_data first second → nonstrictOrder natural_data second first → first = second
+Source: ./NaturalNumbers/Constructions/WholeNumbers/Laws.lean#L88
+
+
+
+Name: nonstrict_order_total
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (natural_data :     LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject)   (first second : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data),   Or (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data first second)     (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data second first)
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject) (first second : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), Or (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data first second) (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data second first)
+Transliterated theorem: ∀ first second, nonstrictOrder natural_data first second ∨ nonstrictOrder natural_data second first
+Logical form (Lean): : ∀ first second, nonstrictOrder natural_data first second ∨ nonstrictOrder natural_data second first
+Source: ./NaturalNumbers/Constructions/WholeNumbers/Laws.lean#L96
+
+
+
+Name: addition_preserves_nonstrict_order
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (natural_data :     LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject)   (first second translation : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data),   LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data first second →     LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data       (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.addition natural_data first translation)       (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.addition natural_data second translation)
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject) (first second translation : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data first second → LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.addition natural_data first translation) (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.addition natural_data second translation)
+Transliterated theorem: ∀ first second translation, nonstrictOrder natural_data first second → nonstrictOrder natural_data (addition natural_data first translation) (addition natural_data second translation)
+Logical form (Lean): : ∀ first second translation, nonstrictOrder natural_data first second → nonstrictOrder natural_data (addition natural_data first translation) (addition natural_data second translation)
+Source: ./NaturalNumbers/Constructions/WholeNumbers/Laws.lean#L103
+
+
+
+Name: addition_preserves_and_reflects_nonstrict_order
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ first second translation, nonstrictOrder natural_data (addition natural_data first translation) (addition natural_data second translation) ↔ nonstrictOrder natural_data first second
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject) (first second translation : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.addition natural_data first translation) (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.addition natural_data second translation) ↔ LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data first second
+Transliterated theorem: ∀ first second translation, nonstrictOrder natural_data (addition natural_data first translation) (addition natural_data second translation) ↔ nonstrictOrder natural_data first second
+Logical form (Lean): : ∀ first second translation, nonstrictOrder natural_data (addition natural_data first translation) (addition natural_data second translation) ↔ nonstrictOrder natural_data first second
+Source: ./NaturalNumbers/Constructions/WholeNumbers/Laws.lean#L112
+
+
+
+Name: multiplication_preserves_nonstrict_order
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ first second positive, nonstrictOrder natural_data (zero natural_data) positive → nonstrictOrder natural_data first second → nonstrictOrder natural_data (multiplication natural_data first positive) (multiplication natural_data second positive)
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject) (first second positive : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.zero natural_data) positive ∧ LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data first second) → LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.multiplication natural_data first positive) (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.multiplication natural_data second positive)
+Transliterated theorem: ∀ first second positive, nonstrictOrder natural_data (zero natural_data) positive → nonstrictOrder natural_data first second → nonstrictOrder natural_data (multiplication natural_data first positive) (multiplication natural_data second positive)
+Logical form (Lean): : ∀ first second positive, nonstrictOrder natural_data (zero natural_data) positive → nonstrictOrder natural_data first second → nonstrictOrder natural_data (multiplication natural_data first positive) (multiplication natural_data second positive)
+Source: ./NaturalNumbers/Constructions/WholeNumbers/Laws.lean#L122
+
+
+
 Name: well_ordering
 Kind: Theorem
 State: Sorry
@@ -3076,7 +3560,29 @@ Predicate logic: ∀ (subset : Carrier natural_data → Prop) (nonempty : ∃ va
 Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject) (subset : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data → Prop), (Exists fun value => subset value) → Exists fun least => (subset least ∧ ∀ (value : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data), subset value → LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.nonstrictOrder natural_data least value)
 Transliterated theorem: (Carrier natural_data → Prop ∧ ∃ value, subset value) → ∃ least, subset least ∧ ∀ value, subset value → nonstrictOrder natural_data least value
 Logical form (Lean): (subset : Carrier natural_data → Prop) (nonempty : ∃ value, subset value) : ∃ least, subset least ∧ ∀ value, subset value → nonstrictOrder natural_data least value
-Source: ./NaturalNumbers/Constructions/WholeNumbers/Laws.lean#L73
+Source: ./NaturalNumbers/Constructions/WholeNumbers/Laws.lean#L132
+
+
+
+Name: orderedSemiringLawsOn
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (natural_data :     LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject),   LRA.AlgebraicStructures.OrderedSemiringLaws     (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data)
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject), LRA.AlgebraicStructures.OrderedSemiringLaws (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NaturalNumbers/Constructions/WholeNumbers/Instances.lean
+
+
+
+Name: additionRespectsOrderLawsOn
+Kind: Instance
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (natural_data :     LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject),   LRA.Order.AdditionRespectsOrderLaws (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data)
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject), LRA.Order.AdditionRespectsOrderLaws (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NaturalNumbers/Constructions/WholeNumbers/Instances.lean
 
 
 
@@ -3091,11 +3597,33 @@ Source: ./NaturalNumbers/Constructions/WholeNumbers/Instances.lean
 
 
 
+Name: partialOrderLawsOn
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (natural_data :     LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject),   LRA.Order.PartialOrderLaws (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data)
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject), LRA.Order.PartialOrderLaws (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NaturalNumbers/Constructions/WholeNumbers/Instances.lean
+
+
+
 Name: multiplicativeCommutativeLawsOn
 Kind: Instance
 State: Completed
 Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (natural_data :     LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject),   LRA.AlgebraicStructures.MultiplicativeCommutativeLaws     (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data)
 Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject), LRA.AlgebraicStructures.MultiplicativeCommutativeLaws (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NaturalNumbers/Constructions/WholeNumbers/Instances.lean
+
+
+
+Name: multiplicationRespectsOrderLawsOn
+Kind: Instance
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (natural_data :     LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject),   LRA.Order.MultiplicationRespectsOrderLaws     (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data)
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject), LRA.Order.MultiplicationRespectsOrderLaws (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./NaturalNumbers/Constructions/WholeNumbers/Instances.lean
@@ -3157,11 +3685,33 @@ Source: ./NaturalNumbers/Constructions/WholeNumbers/Instances.lean
 
 
 
+Name: totalOrderLawOn
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (natural_data :     LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject),   LRA.Order.TotalOrderLaw (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data)
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject), LRA.Order.TotalOrderLaw (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NaturalNumbers/Constructions/WholeNumbers/Instances.lean
+
+
+
 Name: nontrivialityLawOn
 Kind: Instance
 State: Completed
 Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (natural_data :     LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject),   LRA.AlgebraicStructures.NontrivialityLaw     (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data)
 Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject), LRA.AlgebraicStructures.NontrivialityLaw (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./NaturalNumbers/Constructions/WholeNumbers/Instances.lean
+
+
+
+Name: commutativeSemiringLawsOn
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (natural_data :     LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject),   LRA.AlgebraicStructures.CommutativeSemiringLaws     (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data)
+Predicate logic (unfolded): ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.NaturalArithmeticForWholeNumbers Element SetObject), LRA.AlgebraicStructures.CommutativeSemiringLaws (LRA.NumberSystems.NaturalNumbers.Constructions.WholeNumbers.Carrier natural_data)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./NaturalNumbers/Constructions/WholeNumbers/Instances.lean
@@ -3369,7 +3919,7 @@ Source: ./RationalNumbers/ComparisonModels.lean#L202
 Name: rational_model_exists
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (a : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel), Nonempty LRA.NumberSystems.Models.DenselyOrderedFieldModel
+Predicate logic: ∀ (a : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel),   Nonempty LRA.NumberSystems.Models.DenselyOrderedFieldModel
 Predicate logic (unfolded): ∀ (a : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel), Nonempty LRA.NumberSystems.Models.DenselyOrderedFieldModel
 Transliterated theorem: (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), Nonempty DenselyOrderedFieldModel
 Logical form (Lean): (integer_model : DiscretelyOrderedIntegralDomainModel) : Nonempty DenselyOrderedFieldModel
@@ -3402,7 +3952,7 @@ Source: ./RationalNumbers/ComparisonModels.lean#L289
 Name: rational_model_exists
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (a : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel), Nonempty LRA.NumberSystems.Models.DenselyOrderedFieldModel
+Predicate logic: ∀ (a : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel),   Nonempty LRA.NumberSystems.Models.DenselyOrderedFieldModel
 Predicate logic (unfolded): ∀ (a : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel), Nonempty LRA.NumberSystems.Models.DenselyOrderedFieldModel
 Transliterated theorem: (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), Nonempty DenselyOrderedFieldModel
 Logical form (Lean): (integer_model : DiscretelyOrderedIntegralDomainModel) : Nonempty DenselyOrderedFieldModel
@@ -3611,44 +4161,44 @@ Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Laws.lean#L319
 Name: integer_embedding_properties
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_data : IntegerAndPositiveNaturalData), (∀ first second, integer_embedding rational_data first = integer_embedding rational_data second → first = second) ∧ integer_embedding rational_data rational_data.integer_model.signature.zero = zero rational_data ∧ integer_embedding rational_data rational_data.integer_model.signature.one = one rational_data ∧ (∀ first second, integer_embedding rational_data (rational_data.integer_model.signature.add first second) = addition rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧ (∀ first second, integer_embedding rational_data (rational_data.integer_model.signature.multiply first second) = multiplication rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧ (∀ first second, strict_order rational_data (integer_embedding rational_data first) (integer_embedding rational_data second) ↔ rational_data.integer_model.signature.StrictOrder first second)
-Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), (∀ (first second : rational_data.integer_model.signature.carrier), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data first = LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data second → first = second ∧ (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data rational_data.integer_model.signature.zero = LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.zero rational_data ∧ (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data rational_data.integer_model.signature.one = LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.one rational_data ∧ (∀ (first second : rational_data.integer_model.signature.carrier), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data (rational_data.integer_model.signature.add first second) = LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.addition rational_data (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data first) (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data second) ∧ (∀ (first second : rational_data.integer_model.signature.carrier), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data (rational_data.integer_model.signature.multiply first second) = LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.multiplication rational_data (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data first) (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data second) ∧ ∀ (first second : rational_data.integer_model.signature.carrier), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.strict_order rational_data (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data first) (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data second) ↔ rational_data.integer_model.signature.StrictOrder first second)))))
-Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), (∀ first second, integer_embedding rational_data first = integer_embedding rational_data second → first = second) ∧ integer_embedding rational_data rational_data.integer_model.signature.zero = zero rational_data ∧ integer_embedding rational_data rational_data.integer_model.signature.one = one rational_data ∧ (∀ first second, integer_embedding rational_data (rational_data.integer_model.signature.add first second) = addition rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧ (∀ first second, integer_embedding rational_data (rational_data.integer_model.signature.multiply first second) = multiplication rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧ (∀ first second, strict_order rational_data (integer_embedding rational_data first) (integer_embedding rational_data second) ↔ rational_data.integer_model.signature.StrictOrder first second)
-Logical form (Lean): (rational_data : IntegerAndPositiveNaturalData) : (∀ first second, integer_embedding rational_data first = integer_embedding rational_data second → first = second) ∧ integer_embedding rational_data rational_data.integer_model.signature.zero = zero rational_data ∧ integer_embedding rational_data rational_data.integer_model.signature.one = one rational_data ∧ (∀ first second, integer_embedding rational_data (rational_data.integer_model.signature.add first second) = addition rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧ (∀ first second, integer_embedding rational_data (rational_data.integer_model.signature.multiply first second) = multiplication rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧ (∀ first second, strict_order rational_data (integer_embedding rational_data first) (integer_embedding rational_data second) ↔ rational_data.integer_model.signature.StrictOrder first second)
-Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L68
+Predicate logic: ∀ (rational_data : IntegerAndPositiveNaturalData), (∀ first second, integer_embedding rational_data first = integer_embedding rational_data second → first = second) ∧ integer_embedding rational_data rational_data.integer_system.Model.signature.zero = zero rational_data ∧ integer_embedding rational_data rational_data.integer_system.Model.signature.one = one rational_data ∧ (∀ first second, integer_embedding rational_data (rational_data.integer_system.Model.signature.add first second) = addition rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧ (∀ first second, integer_embedding rational_data (rational_data.integer_system.Model.signature.multiply first second) = multiplication rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧ (∀ first second, strict_order rational_data (integer_embedding rational_data first) (integer_embedding rational_data second) ↔ rational_data.integer_system.Model.signature.StrictOrder first second)
+Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), (∀ (first second : rational_data.integer_system.Model.signature.carrier), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data first = LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data second → first = second ∧ (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data rational_data.integer_system.Model.signature.zero = LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.zero rational_data ∧ (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data rational_data.integer_system.Model.signature.one = LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.one rational_data ∧ (∀ (first second : rational_data.integer_system.Model.signature.carrier), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data (rational_data.integer_system.Model.signature.add first second) = LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.addition rational_data (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data first) (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data second) ∧ (∀ (first second : rational_data.integer_system.Model.signature.carrier), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data (rational_data.integer_system.Model.signature.multiply first second) = LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.multiplication rational_data (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data first) (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data second) ∧ ∀ (first second : rational_data.integer_system.Model.signature.carrier), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.strict_order rational_data (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data first) (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data second) ↔ rational_data.integer_system.Model.signature.StrictOrder first second)))))
+Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), (∀ first second, integer_embedding rational_data first = integer_embedding rational_data second → first = second) ∧ integer_embedding rational_data rational_data.integer_system.Model.signature.zero = zero rational_data ∧ integer_embedding rational_data rational_data.integer_system.Model.signature.one = one rational_data ∧ (∀ first second, integer_embedding rational_data (rational_data.integer_system.Model.signature.add first second) = addition rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧ (∀ first second, integer_embedding rational_data (rational_data.integer_system.Model.signature.multiply first second) = multiplication rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧ (∀ first second, strict_order rational_data (integer_embedding rational_data first) (integer_embedding rational_data second) ↔ rational_data.integer_system.Model.signature.StrictOrder first second)
+Logical form (Lean): (rational_data : IntegerAndPositiveNaturalData) : (∀ first second, integer_embedding rational_data first = integer_embedding rational_data second → first = second) ∧ integer_embedding rational_data rational_data.integer_system.Model.signature.zero = zero rational_data ∧ integer_embedding rational_data rational_data.integer_system.Model.signature.one = one rational_data ∧ (∀ first second, integer_embedding rational_data (rational_data.integer_system.Model.signature.add first second) = addition rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧ (∀ first second, integer_embedding rational_data (rational_data.integer_system.Model.signature.multiply first second) = multiplication rational_data (integer_embedding rational_data first) (integer_embedding rational_data second)) ∧ (∀ first second, strict_order rational_data (integer_embedding rational_data first) (integer_embedding rational_data second) ↔ rational_data.integer_system.Model.signature.StrictOrder first second)
+Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L86
 
 
 
 Name: reduced_representative_exists
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_data : IntegerAndPositiveNaturalData) (value : Carrier rational_data), ∃ representative : Representative rational_data, IsReduced rational_data representative ∧ Quotient.mk _ representative = value
-Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (value : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data), Exists fun representative => (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IsReduced rational_data representative ∧ Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) representative = value)
-Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), ∃ representative ∈ Representative rational_data, IsReduced rational_data representative ∧ Quotient.mk _ representative = value
-Logical form (Lean): (rational_data : IntegerAndPositiveNaturalData) (value : Carrier rational_data) : ∃ representative : Representative rational_data, IsReduced rational_data representative ∧ Quotient.mk _ representative = value
-Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L115
+Predicate logic: ∀ (rational_data : IntegerAndPositiveNaturalReductionData) (value : Carrier rational_data.toIntegerAndPositiveNaturalData), ∃ representative : Representative rational_data.toIntegerAndPositiveNaturalData, IsReduced rational_data representative ∧ Quotient.mk _ representative = value
+Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalReductionData) (value : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data.toIntegerAndPositiveNaturalData), Exists fun representative => (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IsReduced rational_data representative ∧ Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data.toIntegerAndPositiveNaturalData) representative = value)
+Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalReductionData), ∃ representative ∈ Representative rational_data.toIntegerAndPositiveNaturalData, IsReduced rational_data representative ∧ Quotient.mk _ representative = value
+Logical form (Lean): (rational_data : IntegerAndPositiveNaturalReductionData) (value : Carrier rational_data.toIntegerAndPositiveNaturalData) : ∃ representative : Representative rational_data.toIntegerAndPositiveNaturalData, IsReduced rational_data representative ∧ Quotient.mk _ representative = value
+Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L143
 
 
 
 Name: reduced_representative_unique
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_data : IntegerAndPositiveNaturalData) (first second : Representative rational_data) (first_reduced : IsReduced rational_data first) (second_reduced : IsReduced rational_data second) (same_value : Quotient.mk (representative_setoid rational_data) first = Quotient.mk (representative_setoid rational_data) second), first.numerator = second.numerator ∧ first.denominator = second.denominator
-Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (first second : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IsReduced rational_data first ∧ (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IsReduced rational_data second ∧ Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) first = Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) second)) → (first.numerator = second.numerator ∧ first.denominator = second.denominator)
-Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), (IsReduced rational_data first ∧ IsReduced rational_data second ∧ Quotient.mk (representative_setoid rational_data) first = Quotient.mk (representative_setoid rational_data) second) → first.numerator = second.numerator ∧ first.denominator = second.denominator
-Logical form (Lean): (rational_data : IntegerAndPositiveNaturalData) (first second : Representative rational_data) (first_reduced : IsReduced rational_data first) (second_reduced : IsReduced rational_data second) (same_value : Quotient.mk (representative_setoid rational_data) first = Quotient.mk (representative_setoid rational_data) second) : first.numerator = second.numerator ∧ first.denominator = second.denominator
-Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L137
+Predicate logic: ∀ (rational_data : IntegerAndPositiveNaturalReductionData) (first second : Representative rational_data.toIntegerAndPositiveNaturalData) (first_reduced : IsReduced rational_data first) (second_reduced : IsReduced rational_data second) (same_value : Quotient.mk (representative_setoid rational_data.toIntegerAndPositiveNaturalData) first = Quotient.mk (representative_setoid rational_data.toIntegerAndPositiveNaturalData) second), first.numerator = second.numerator ∧ first.denominator = second.denominator
+Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalReductionData) (first second : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data.toIntegerAndPositiveNaturalData), (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IsReduced rational_data first ∧ (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IsReduced rational_data second ∧ Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data.toIntegerAndPositiveNaturalData) first = Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data.toIntegerAndPositiveNaturalData) second)) → (first.numerator = second.numerator ∧ first.denominator = second.denominator)
+Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalReductionData), (IsReduced rational_data first ∧ IsReduced rational_data second ∧ Quotient.mk (representative_setoid rational_data.toIntegerAndPositiveNaturalData) first = Quotient.mk (representative_setoid rational_data.toIntegerAndPositiveNaturalData) second) → first.numerator = second.numerator ∧ first.denominator = second.denominator
+Logical form (Lean): (rational_data : IntegerAndPositiveNaturalReductionData) (first second : Representative rational_data.toIntegerAndPositiveNaturalData) (first_reduced : IsReduced rational_data first) (second_reduced : IsReduced rational_data second) (same_value : Quotient.mk (representative_setoid rational_data.toIntegerAndPositiveNaturalData) first = Quotient.mk (representative_setoid rational_data.toIntegerAndPositiveNaturalData) second) : first.numerator = second.numerator ∧ first.denominator = second.denominator
+Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L171
 
 
 
 Name: unique_lowest_term_form
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_data : IntegerAndPositiveNaturalData) (value : Carrier rational_data), ∃ representative : Representative rational_data, IsReduced rational_data representative ∧ Quotient.mk _ representative = value ∧ ∀ other : Representative rational_data, IsReduced rational_data other → Quotient.mk _ other = value → other.numerator = representative.numerator ∧ other.denominator = representative.denominator
-Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (value : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data), Exists fun representative => (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IsReduced rational_data representative ∧ (Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) representative = value ∧ ∀ (other : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IsReduced rational_data other → Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) other = value → (other.numerator = representative.numerator ∧ other.denominator = representative.denominator)))
-Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), ∃ representative ∈ Representative rational_data, IsReduced rational_data representative ∧ Quotient.mk _ representative = value ∧ ∀ other : Representative rational_data, IsReduced rational_data other → Quotient.mk _ other = value → other.numerator = representative.numerator ∧ other.denominator = representative.denominator
-Logical form (Lean): (rational_data : IntegerAndPositiveNaturalData) (value : Carrier rational_data) : ∃ representative : Representative rational_data, IsReduced rational_data representative ∧ Quotient.mk _ representative = value ∧ ∀ other : Representative rational_data, IsReduced rational_data other → Quotient.mk _ other = value → other.numerator = representative.numerator ∧ other.denominator = representative.denominator
-Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L165
+Predicate logic: ∀ (rational_data : IntegerAndPositiveNaturalReductionData) (value : Carrier rational_data.toIntegerAndPositiveNaturalData), ∃ representative : Representative rational_data.toIntegerAndPositiveNaturalData, IsReduced rational_data representative ∧ Quotient.mk _ representative = value ∧ ∀ other : Representative rational_data.toIntegerAndPositiveNaturalData, IsReduced rational_data other → Quotient.mk _ other = value → other.numerator = representative.numerator ∧ other.denominator = representative.denominator
+Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalReductionData) (value : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data.toIntegerAndPositiveNaturalData), Exists fun representative => (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IsReduced rational_data representative ∧ (Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data.toIntegerAndPositiveNaturalData) representative = value ∧ ∀ (other : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data.toIntegerAndPositiveNaturalData), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IsReduced rational_data other → Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data.toIntegerAndPositiveNaturalData) other = value → (other.numerator = representative.numerator ∧ other.denominator = representative.denominator)))
+Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalReductionData), ∃ representative ∈ Representative rational_data.toIntegerAndPositiveNaturalData, IsReduced rational_data representative ∧ Quotient.mk _ representative = value ∧ ∀ other : Representative rational_data.toIntegerAndPositiveNaturalData, IsReduced rational_data other → Quotient.mk _ other = value → other.numerator = representative.numerator ∧ other.denominator = representative.denominator
+Logical form (Lean): (rational_data : IntegerAndPositiveNaturalReductionData) (value : Carrier rational_data.toIntegerAndPositiveNaturalData) : ∃ representative : Representative rational_data.toIntegerAndPositiveNaturalData, IsReduced rational_data representative ∧ Quotient.mk _ representative = value ∧ ∀ other : Representative rational_data.toIntegerAndPositiveNaturalData, IsReduced rational_data other → Quotient.mk _ other = value → other.numerator = representative.numerator ∧ other.denominator = representative.denominator
+Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L205
 
 
 
@@ -3659,7 +4209,7 @@ Predicate logic: ∀ (rational_data : IntegerAndPositiveNaturalData) (first seco
 Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (first second : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.strict_order rational_data first second → Exists fun middle => (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.strict_order rational_data first middle ∧ LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.strict_order rational_data middle second)
 Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), ∃ middle, strict_order rational_data first middle ∧ strict_order rational_data middle second
 Logical form (Lean): (rational_data : IntegerAndPositiveNaturalData) (first second : Carrier rational_data) (first_lt_second : strict_order rational_data first second) : ∃ middle, strict_order rational_data first middle ∧ strict_order rational_data middle second
-Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L190
+Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L232
 
 
 
@@ -3670,51 +4220,51 @@ Predicate logic: ∀ (rational_data : LRA.NumberSystems.RationalNumbers.Rational
 Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (value : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data), Exists fun natural => LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.strict_order rational_data value (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data (rational_data.to_integer natural))
 Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), ∃ natural ∈ rational_data.natural_carrier, strict_order rational_data value (integer_embedding rational_data (rational_data.to_integer natural))
 Logical form (Lean): (rational_data : IntegerAndPositiveNaturalData) (value : Carrier rational_data) : ∃ natural : rational_data.natural_carrier, strict_order rational_data value (integer_embedding rational_data (rational_data.to_integer natural))
-Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L210
+Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L252
 
 
 
 Name: integer_part_bounds
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_data : IntegerAndPositiveNaturalData) (value : Carrier rational_data), ∃ integer : rational_data.integer_model.signature.carrier, nonstrict_order rational_data (integer_embedding rational_data integer) value ∧ strict_order rational_data value (integer_embedding rational_data (rational_data.integer_model.signature.add integer rational_data.integer_model.signature.one))
-Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (value : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data), Exists fun integer => (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.nonstrict_order rational_data (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data integer) value ∧ LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.strict_order rational_data value (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data (rational_data.integer_model.signature.add integer rational_data.integer_model.signature.one)))
-Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), ∃ integer ∈ rational_data.integer_model.signature.carrier, nonstrict_order rational_data (integer_embedding rational_data integer) value ∧ strict_order rational_data value (integer_embedding rational_data (rational_data.integer_model.signature.add integer rational_data.integer_model.signature.one))
-Logical form (Lean): (rational_data : IntegerAndPositiveNaturalData) (value : Carrier rational_data) : ∃ integer : rational_data.integer_model.signature.carrier, nonstrict_order rational_data (integer_embedding rational_data integer) value ∧ strict_order rational_data value (integer_embedding rational_data (rational_data.integer_model.signature.add integer rational_data.integer_model.signature.one))
-Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L232
+Predicate logic: ∀ (rational_data : IntegerAndPositiveNaturalData) (value : Carrier rational_data), ∃ integer : rational_data.integer_system.Model.signature.carrier, nonstrict_order rational_data (integer_embedding rational_data integer) value ∧ strict_order rational_data value (integer_embedding rational_data (rational_data.integer_system.Model.signature.add integer rational_data.integer_system.Model.signature.one))
+Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (value : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data), Exists fun integer => (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.nonstrict_order rational_data (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data integer) value ∧ LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.strict_order rational_data value (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rational_data (rational_data.integer_system.Model.signature.add integer rational_data.integer_system.Model.signature.one)))
+Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), ∃ integer ∈ rational_data.integer_system.Model.signature.carrier, nonstrict_order rational_data (integer_embedding rational_data integer) value ∧ strict_order rational_data value (integer_embedding rational_data (rational_data.integer_system.Model.signature.add integer rational_data.integer_system.Model.signature.one))
+Logical form (Lean): (rational_data : IntegerAndPositiveNaturalData) (value : Carrier rational_data) : ∃ integer : rational_data.integer_system.Model.signature.carrier, nonstrict_order rational_data (integer_embedding rational_data integer) value ∧ strict_order rational_data value (integer_embedding rational_data (rational_data.integer_system.Model.signature.add integer rational_data.integer_system.Model.signature.one))
+Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L274
 
 
 
 Name: square_root_two_cut_nonempty_bounded
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_data : IntegerAndPositiveNaturalData) (two : Carrier rational_data), (∃ value, square_root_two_cut rational_data two value) ∧ (∃ upper, ∀ value, square_root_two_cut rational_data two value → nonstrict_order rational_data value upper)
-Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (two : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data), (Exists fun value => LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.square_root_two_cut rational_data two value ∧ Exists fun upper => ∀ (value : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.square_root_two_cut rational_data two value → LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.nonstrict_order rational_data value upper)
-Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), (∃ value, square_root_two_cut rational_data two value) ∧ (∃ upper, ∀ value, square_root_two_cut rational_data two value → nonstrict_order rational_data value upper)
-Logical form (Lean): (rational_data : IntegerAndPositiveNaturalData) (two : Carrier rational_data) : (∃ value, square_root_two_cut rational_data two value) ∧ (∃ upper, ∀ value, square_root_two_cut rational_data two value → nonstrict_order rational_data value upper)
-Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L276
+Predicate logic: ∀ (rational_data : IntegerAndPositiveNaturalData), (∃ value, square_root_two_cut rational_data value) ∧ (∃ upper, ∀ value, square_root_two_cut rational_data value → nonstrict_order rational_data value upper)
+Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), (Exists fun value => LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.square_root_two_cut rational_data value ∧ Exists fun upper => ∀ (value : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.square_root_two_cut rational_data value → LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.nonstrict_order rational_data value upper)
+Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), (∃ value, square_root_two_cut rational_data value) ∧ (∃ upper, ∀ value, square_root_two_cut rational_data value → nonstrict_order rational_data value upper)
+Logical form (Lean): (rational_data : IntegerAndPositiveNaturalData) : (∃ value, square_root_two_cut rational_data value) ∧ (∃ upper, ∀ value, square_root_two_cut rational_data value → nonstrict_order rational_data value upper)
+Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L321
 
 
 
 Name: no_rational_square_root_two
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_data : IntegerAndPositiveNaturalData) (two : Carrier rational_data), ¬ ∃ value, multiplication rational_data value value = two
-Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (two : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data), ¬ Exists fun value => LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.multiplication rational_data value value = two
-Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), ¬ ∃ value, multiplication rational_data value value = two
-Logical form (Lean): (rational_data : IntegerAndPositiveNaturalData) (two : Carrier rational_data) : ¬ ∃ value, multiplication rational_data value value = two
-Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L296
+Predicate logic: ∀ (rational_data : IntegerAndPositiveNaturalData), ¬ ∃ value, multiplication rational_data value value = two rational_data
+Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), ¬ Exists fun value => LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.multiplication rational_data value value = LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.two rational_data
+Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), ¬ ∃ value, multiplication rational_data value value = two rational_data
+Logical form (Lean): (rational_data : IntegerAndPositiveNaturalData) : ¬ ∃ value, multiplication rational_data value value = two rational_data
+Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L340
 
 
 
 Name: square_root_two_cut_has_no_supremum
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_data : IntegerAndPositiveNaturalData) (two : Carrier rational_data), ¬ ∃ supremum, (∀ value, square_root_two_cut rational_data two value → nonstrict_order rational_data value supremum) ∧ (∀ upper, (∀ value, square_root_two_cut rational_data two value → nonstrict_order rational_data value upper) → nonstrict_order rational_data supremum upper)
-Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (two : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data), ¬ Exists fun supremum => (∀ (value : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.square_root_two_cut rational_data two value → LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.nonstrict_order rational_data value supremum ∧ ∀ (upper : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data), (∀ (value : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.square_root_two_cut rational_data two value → LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.nonstrict_order rational_data value upper) → LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.nonstrict_order rational_data supremum upper)
-Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), ¬ ∃ supremum, (∀ value, square_root_two_cut rational_data two value → nonstrict_order rational_data value supremum) ∧ (∀ upper, (∀ value, square_root_two_cut rational_data two value → nonstrict_order rational_data value upper) → nonstrict_order rational_data supremum upper)
-Logical form (Lean): (rational_data : IntegerAndPositiveNaturalData) (two : Carrier rational_data) : ¬ ∃ supremum, (∀ value, square_root_two_cut rational_data two value → nonstrict_order rational_data value supremum) ∧ (∀ upper, (∀ value, square_root_two_cut rational_data two value → nonstrict_order rational_data value upper) → nonstrict_order rational_data supremum upper)
-Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L320
+Predicate logic: ∀ (rational_data : IntegerAndPositiveNaturalData), ¬ ∃ supremum, (∀ value, square_root_two_cut rational_data value → nonstrict_order rational_data value supremum) ∧ (∀ upper, (∀ value, square_root_two_cut rational_data value → nonstrict_order rational_data value upper) → nonstrict_order rational_data supremum upper)
+Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), ¬ Exists fun supremum => (∀ (value : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.square_root_two_cut rational_data value → LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.nonstrict_order rational_data value supremum ∧ ∀ (upper : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data), (∀ (value : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.square_root_two_cut rational_data value → LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.nonstrict_order rational_data value upper) → LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.nonstrict_order rational_data supremum upper)
+Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), ¬ ∃ supremum, (∀ value, square_root_two_cut rational_data value → nonstrict_order rational_data value supremum) ∧ (∀ upper, (∀ value, square_root_two_cut rational_data value → nonstrict_order rational_data value upper) → nonstrict_order rational_data supremum upper)
+Logical form (Lean): (rational_data : IntegerAndPositiveNaturalData) : ¬ ∃ supremum, (∀ value, square_root_two_cut rational_data value → nonstrict_order rational_data value supremum) ∧ (∀ upper, (∀ value, square_root_two_cut rational_data value → nonstrict_order rational_data value upper) → nonstrict_order rational_data supremum upper)
+Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L363
 
 
 
@@ -3725,7 +4275,7 @@ Predicate logic: ∀ (rational_data : LRA.NumberSystems.RationalNumbers.Rational
 Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.NotOrderComplete rational_data
 Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), NotOrderComplete rational_data
 Logical form (Lean): (rational_data : IntegerAndPositiveNaturalData) : NotOrderComplete rational_data
-Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L372
+Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L414
 
 
 
@@ -3736,7 +4286,139 @@ Predicate logic: ∀ (rational_data : LRA.NumberSystems.RationalNumbers.Rational
 Predicate logic (unfolded): ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.StructureOfTheRationals rational_data
 Transliterated theorem: (∀ rational_data ∈ IntegerAndPositiveNaturalData), StructureOfTheRationals rational_data
 Logical form (Lean): (rational_data : IntegerAndPositiveNaturalData) : StructureOfTheRationals rational_data
-Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L409
+Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Behavior.lean#L451
+
+
+
+Name: RationalFieldCert
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData),   LRA.AlgebraicStructures.OrderedFieldLaws     (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rationalData)
+Predicate logic (unfolded): ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), LRA.AlgebraicStructures.OrderedFieldLaws (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rationalData)
+Transliterated theorem: (∀ rationalData ∈ IntegerAndPositiveNaturalData), OrderedFieldLaws (Carrier rationalData)
+Logical form (Lean): (rationalData : IntegerAndPositiveNaturalData) : OrderedFieldLaws (Carrier rationalData)
+Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Instances.lean#L56
+
+
+
+Name: RationalStrictOrderCert
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData),   LRA.Order.StrictOrderCompatibilityLaw     (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rationalData)
+Predicate logic (unfolded): ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), LRA.Order.StrictOrderCompatibilityLaw (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rationalData)
+Transliterated theorem: (∀ rationalData ∈ IntegerAndPositiveNaturalData), StrictOrderCompatibilityLaw (Carrier rationalData)
+Logical form (Lean): (rationalData : IntegerAndPositiveNaturalData) : StrictOrderCompatibilityLaw (Carrier rationalData)
+Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Instances.lean#L61
+
+
+
+Name: RationalDenseOrderCert
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData),   LRA.Order.DenseOrderLaw (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rationalData)
+Predicate logic (unfolded): ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), LRA.Order.DenseOrderLaw (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rationalData)
+Transliterated theorem: (∀ rationalData ∈ IntegerAndPositiveNaturalData), DenseOrderLaw (Carrier rationalData)
+Logical form (Lean): (rationalData : IntegerAndPositiveNaturalData) : DenseOrderLaw (Carrier rationalData)
+Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Instances.lean#L66
+
+
+
+Name: RationalIntegerEmbeddingPreservesNegation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (rationalData : IntegerAndPositiveNaturalData), ∀ value : rationalData.integer_system.Model.Carrier, integer_embedding rationalData (-value) = -(integer_embedding rationalData value)
+Predicate logic (unfolded): ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (value : rationalData.integer_system.Model.Carrier), LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rationalData (rationalData.integer_system.Model.negInst.neg value) = (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.rationalCarrierNeg rationalData).neg (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rationalData value)
+Transliterated theorem: (∀ rationalData ∈ IntegerAndPositiveNaturalData), ∀ value : rationalData.integer_system.Model.Carrier, integer_embedding rationalData (-value) = -(integer_embedding rationalData value)
+Logical form (Lean): (rationalData : IntegerAndPositiveNaturalData) : ∀ value : rationalData.integer_system.Model.Carrier, integer_embedding rationalData (-value) = -(integer_embedding rationalData value)
+Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Instances.lean#L104
+
+
+
+Name: RationalIntegerEmbeddingPreservesOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (rationalData : IntegerAndPositiveNaturalData), ∀ first second : rationalData.integer_system.Model.Carrier, integer_embedding rationalData first ≤ integer_embedding rationalData second ↔ first ≤ second
+Predicate logic (unfolded): ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (first second : rationalData.integer_system.Model.Carrier), (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.rationalCarrierLE rationalData).le (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rationalData first) (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.integer_embedding rationalData second) ↔ rationalData.integer_system.Model.leInst.le first second
+Transliterated theorem: (∀ rationalData ∈ IntegerAndPositiveNaturalData), ∀ first second : rationalData.integer_system.Model.Carrier, integer_embedding rationalData first ≤ integer_embedding rationalData second ↔ first ≤ second
+Logical form (Lean): (rationalData : IntegerAndPositiveNaturalData) : ∀ first second : rationalData.integer_system.Model.Carrier, integer_embedding rationalData first ≤ integer_embedding rationalData second ↔ first ≤ second
+Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Instances.lean#L110
+
+
+
+Name: RationalEveryElementIsIntegerFraction
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (rationalData : IntegerAndPositiveNaturalData), ∀ q : (RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData).Carrier, ∃ numerator denominator : rationalData.integer_system.Model.Carrier, denominator ≠ 0 ∧ q = (RationalIntegerEmbedding rationalData).ToField numerator * ((RationalIntegerEmbedding rationalData).ToField denominator)⁻¹
+Predicate logic (unfolded): ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (q : (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData).Carrier), Exists fun numerator => Exists fun denominator => (Ne denominator 0 ∧ q = instHMul.hMul ((LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalIntegerEmbedding rationalData).ToField numerator) ((LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData).invInst.inv ((LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalIntegerEmbedding rationalData).ToField denominator)))
+Transliterated theorem: (∀ rationalData ∈ IntegerAndPositiveNaturalData), ∀ q : (RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData).Carrier, ∃ numerator denominator ∈ rationalData.integer_system.Model.Carrier, denominator ≠ 0 ∧ q = (RationalIntegerEmbedding rationalData).ToField numerator * ((RationalIntegerEmbedding rationalData).ToField denominator)⁻¹
+Logical form (Lean): (rationalData : IntegerAndPositiveNaturalData) : ∀ q : (RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData).Carrier, ∃ numerator denominator : rationalData.integer_system.Model.Carrier, denominator ≠ 0 ∧ q = (RationalIntegerEmbedding rationalData).ToField numerator * ((RationalIntegerEmbedding rationalData).ToField denominator)⁻¹
+Source: ./RationalNumbers/Constructions/RationalQuotientFractions/Instances.lean#L131
+
+
+
+Name: EveryRationalHasUniqueCanonicalFiniteSimpleContinuedFraction
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (rationalSystem : RationalNumberSystem.{u}) (value : rationalSystem.FieldModel.Carrier), ∃ fraction : FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model, IsCanonicalSimpleContinuedFraction fraction ∧ FiniteSimpleContinuedFractionEvaluatesTo rationalSystem fraction value ∧ ∀ other : FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model, IsCanonicalSimpleContinuedFraction other → FiniteSimpleContinuedFractionEvaluatesTo rationalSystem other value → other = fraction
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (value : rationalSystem.FieldModel.Carrier), Exists fun fraction => (LRA.Arithmetic.ContinuedFractions.IsCanonicalSimpleContinuedFraction fraction ∧ (LRA.NumberSystems.RationalNumbers.ContinuedFractions.FiniteSimpleContinuedFractionEvaluatesTo rationalSystem fraction value ∧ ∀ (other : LRA.Arithmetic.ContinuedFractions.FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model), LRA.Arithmetic.ContinuedFractions.IsCanonicalSimpleContinuedFraction other → LRA.NumberSystems.RationalNumbers.ContinuedFractions.FiniteSimpleContinuedFractionEvaluatesTo rationalSystem other value → other = fraction))
+Transliterated theorem: (∀ value ∈ rationalSystem.FieldModel.Carrier), ∃ fraction ∈ FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model, IsCanonicalSimpleContinuedFraction fraction ∧ FiniteSimpleContinuedFractionEvaluatesTo rationalSystem fraction value ∧ ∀ other : FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model, IsCanonicalSimpleContinuedFraction other → FiniteSimpleContinuedFractionEvaluatesTo rationalSystem other value → other = fraction
+Logical form (Lean): (rationalSystem : RationalNumberSystem.{u}) (value : rationalSystem.FieldModel.Carrier) : ∃ fraction : FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model, IsCanonicalSimpleContinuedFraction fraction ∧ FiniteSimpleContinuedFractionEvaluatesTo rationalSystem fraction value ∧ ∀ other : FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model, IsCanonicalSimpleContinuedFraction other → FiniteSimpleContinuedFractionEvaluatesTo rationalSystem other value → other = fraction
+Source: ./RationalNumbers/ContinuedFractions.lean#L115
+
+
+
+Name: MathlibRationalSystemUsesMathlibIntegers
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ (rationalData : IntegerAndPositiveNaturalData) (usesMathlibIntegers : rationalData.integer_system = LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem), (MathlibRationalSystem rationalData usesMathlibIntegers).IntegerSystem = LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem
+Predicate logic (unfolded): ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (usesMathlibIntegers : rationalData.integer_system = LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem), LRA.NumberSystems.RationalNumbers.Examples.MathlibRationalSystem rationalData usesMathlibIntegers = .IntegerSystem LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem
+Transliterated theorem: (∀ rationalData ∈ IntegerAndPositiveNaturalData), (rationalData.integer_system = LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem) → (MathlibRationalSystem rationalData usesMathlibIntegers).IntegerSystem = LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem
+Logical form (Lean): (rationalData : IntegerAndPositiveNaturalData) (usesMathlibIntegers : rationalData.integer_system = LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem) : (MathlibRationalSystem rationalData usesMathlibIntegers).IntegerSystem = LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem
+Source: ./RationalNumbers/Examples.lean#L55
+
+
+
+Name: TaoRationalSystemUsesTaoIntegers
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ (wholeData : Tao.WholeNumberArithmeticForTaoFormalDifferences) (rationalData : IntegerAndPositiveNaturalData) (usesTaoIntegers : rationalData.integer_system = TaoIntegerNumberSystem wholeData), (TaoRationalSystem wholeData rationalData usesTaoIntegers).IntegerSystem = TaoIntegerNumberSystem wholeData
+Predicate logic (unfolded): ∀ (wholeData : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences) (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (usesTaoIntegers : rationalData.integer_system = LRA.NumberSystems.RationalNumbers.Examples.TaoIntegerNumberSystem wholeData), LRA.NumberSystems.RationalNumbers.Examples.TaoRationalSystem wholeData rationalData usesTaoIntegers = .IntegerSystem (LRA.NumberSystems.RationalNumbers.Examples.TaoIntegerNumberSystem wholeData)
+Transliterated theorem: (∀ wholeData ∈ Tao.WholeNumberArithmeticForTaoFormalDifferences ∀ rationalData ∈ IntegerAndPositiveNaturalData), (rationalData.integer_system = TaoIntegerNumberSystem wholeData) → (TaoRationalSystem wholeData rationalData usesTaoIntegers).IntegerSystem = TaoIntegerNumberSystem wholeData
+Logical form (Lean): (wholeData : Tao.WholeNumberArithmeticForTaoFormalDifferences) (rationalData : IntegerAndPositiveNaturalData) (usesTaoIntegers : rationalData.integer_system = TaoIntegerNumberSystem wholeData) : (TaoRationalSystem wholeData rationalData usesTaoIntegers).IntegerSystem = TaoIntegerNumberSystem wholeData
+Source: ./RationalNumbers/Examples.lean#L136
+
+
+
+Name: MendelsonRationalSystemUsesMendelsonIntegers
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ (positiveData : Mendelson.PositiveNaturalPairData) (rationalData : IntegerAndPositiveNaturalData) (usesMendelsonIntegers : rationalData.integer_system = MendelsonIntegerNumberSystem positiveData), (MendelsonRationalSystem positiveData rationalData usesMendelsonIntegers).IntegerSystem = MendelsonIntegerNumberSystem positiveData
+Predicate logic (unfolded): ∀ (positiveData : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData) (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (usesMendelsonIntegers : rationalData.integer_system = LRA.NumberSystems.RationalNumbers.Examples.MendelsonIntegerNumberSystem positiveData), LRA.NumberSystems.RationalNumbers.Examples.MendelsonRationalSystem positiveData rationalData usesMendelsonIntegers = .IntegerSystem (LRA.NumberSystems.RationalNumbers.Examples.MendelsonIntegerNumberSystem positiveData)
+Transliterated theorem: (∀ positiveData ∈ Mendelson.PositiveNaturalPairData ∀ rationalData ∈ IntegerAndPositiveNaturalData), (rationalData.integer_system = MendelsonIntegerNumberSystem positiveData) → (MendelsonRationalSystem positiveData rationalData usesMendelsonIntegers).IntegerSystem = MendelsonIntegerNumberSystem positiveData
+Logical form (Lean): (positiveData : Mendelson.PositiveNaturalPairData) (rationalData : IntegerAndPositiveNaturalData) (usesMendelsonIntegers : rationalData.integer_system = MendelsonIntegerNumberSystem positiveData) : (MendelsonRationalSystem positiveData rationalData usesMendelsonIntegers).IntegerSystem = MendelsonIntegerNumberSystem positiveData
+Source: ./RationalNumbers/Examples.lean#L217
+
+
+
+Name: RationalNumberSystemIsCountable
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem),   LRA.Carrier.IsCountable rationalSystem.FieldModel.Carrier
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.Carrier.IsCountable rationalSystem.FieldModel.Carrier
+Transliterated theorem: LRA.Carrier.IsCountable rationalSystem.FieldModel.Carrier
+Logical form (Lean): (rationalSystem : RationalNumberSystem.{u}) : LRA.Carrier.IsCountable rationalSystem.FieldModel.Carrier
+Source: ./RationalNumbers/Theorems.lean#L23
+
+
+
+Name: FractionFieldUniversalProperty
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (rationalSystem : RationalNumberSystem.{u}) (target : DenselyOrderedFieldModel.{u}) (integerMap : rationalSystem.IntegerSystem.Model.Carrier → target.Carrier) (integerMapIsEmbedding : EmbeddingPreservesOrderedRing rationalSystem.IntegerSystem.Model.signature target.signature.toOrderedRingSignature integerMap), ∃! rationalMap : rationalSystem.FieldModel.Carrier → target.Carrier, EmbeddingPreservesOrderedField rationalSystem.FieldModel.signature target.signature rationalMap ∧ ∀ integerValue : rationalSystem.IntegerSystem.Model.Carrier, rationalMap (rationalSystem.IntegerEmbedding.ToField integerValue) = integerMap integerValue
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (target : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (integerMap : rationalSystem.IntegerSystem.Model.Carrier → target.Carrier), LRA.NumberSystems.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedRing rationalSystem.IntegerSystem.Model.signature target.signature.toOrderedRingSignature integerMap → ExistsUnique fun rationalMap => (LRA.NumberSystems.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField rationalSystem.FieldModel.signature target.signature rationalMap ∧ ∀ (integerValue : rationalSystem.IntegerSystem.Model.Carrier), rationalMap (rationalSystem.IntegerEmbedding.ToField integerValue) = integerMap integerValue)
+Transliterated theorem: (rationalSystem.IntegerSystem.Model.Carrier → target.Carrier) → ∃! rationalMap : rationalSystem.FieldModel.Carrier → target.Carrier, EmbeddingPreservesOrderedField rationalSystem.FieldModel.signature target.signature rationalMap ∧ ∀ integerValue : rationalSystem.IntegerSystem.Model.Carrier, rationalMap (rationalSystem.IntegerEmbedding.ToField integerValue) = integerMap integerValue
+Logical form (Lean): (rationalSystem : RationalNumberSystem.{u}) (target : DenselyOrderedFieldModel.{u}) (integerMap : rationalSystem.IntegerSystem.Model.Carrier → target.Carrier) (integerMapIsEmbedding : EmbeddingPreservesOrderedRing rationalSystem.IntegerSystem.Model.signature target.signature.toOrderedRingSignature integerMap) : ∃! rationalMap : rationalSystem.FieldModel.Carrier → target.Carrier, EmbeddingPreservesOrderedField rationalSystem.FieldModel.signature target.signature rationalMap ∧ ∀ integerValue : rationalSystem.IntegerSystem.Model.Carrier, rationalMap (rationalSystem.IntegerEmbedding.ToField integerValue) = integerMap integerValue
+Source: ./RationalNumbers/UniversalProperty.lean#L38
 
 
 
@@ -4004,22 +4686,22 @@ Source: ./RealNumbers/ConstructionModels.lean#L1202
 
 
 
-Name: endpoint_equivalent_is_equivalence
+Name: EndpointEquivalentIsEquivalence
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel),   Equivalence (LRA.NumberSystems.RealNumbers.Cantor.endpoint_equivalent rational_model)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel), Equivalence (LRA.NumberSystems.RealNumbers.Cantor.endpoint_equivalent rational_model)
-Transliterated theorem: (∀ rational_model ∈ DenselyOrderedFieldModel), Equivalence (endpoint_equivalent rational_model)
-Logical form (Lean): (rational_model : DenselyOrderedFieldModel) : Equivalence (endpoint_equivalent rational_model)
-Source: ./RealNumbers/Constructions/Cantor/Equivalence.lean#L61
+Predicate logic: ∀ (fieldModel : LRA.NumberSystems.Models.DenselyOrderedFieldModel),   Equivalence (LRA.NumberSystems.RealNumbers.Cantor.EndpointEquivalent fieldModel)
+Predicate logic (unfolded): ∀ (fieldModel : LRA.NumberSystems.Models.DenselyOrderedFieldModel), Equivalence (LRA.NumberSystems.RealNumbers.Cantor.EndpointEquivalent fieldModel)
+Transliterated theorem: (∀ fieldModel ∈ DenselyOrderedFieldModel), Equivalence (EndpointEquivalent fieldModel)
+Logical form (Lean): (fieldModel : DenselyOrderedFieldModel) : Equivalence (EndpointEquivalent fieldModel)
+Source: ./RealNumbers/Constructions/Cantor/Equivalence.lean#L64
 
 
 
 Name: InductionOnRepresentatives
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel)   (motive : LRA.NumberSystems.RealNumbers.Cantor.Carrier rational_model → Prop),   (∀ (representative : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence rational_model),       motive (Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.setoid rational_model) representative)) →     ∀ (value : LRA.NumberSystems.RealNumbers.Cantor.Carrier rational_model), motive value
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (motive : LRA.NumberSystems.RealNumbers.Cantor.Carrier rational_model → Prop), (∀ (representative : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence rational_model), motive (Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.setoid rational_model) representative)) → ∀ (value : LRA.NumberSystems.RealNumbers.Cantor.Carrier rational_model), motive value
+Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel)   (motive : LRA.NumberSystems.RealNumbers.Cantor.Carrier rational_model → Prop),   (∀ (representative : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence rational_model),       motive (Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid rational_model) representative)) →     ∀ (value : LRA.NumberSystems.RealNumbers.Cantor.Carrier rational_model), motive value
+Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (motive : LRA.NumberSystems.RealNumbers.Cantor.Carrier rational_model → Prop), (∀ (representative : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence rational_model), motive (Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid rational_model) representative)) → ∀ (value : LRA.NumberSystems.RealNumbers.Cantor.Carrier rational_model), motive value
 Transliterated theorem: (∀ rational_model ∈ DenselyOrderedFieldModel), (Carrier rational_model → Prop ∧ ∀ representative : NestedIntervalSequence rational_model, motive (Quotient.mk _ representative)) → ∀ value : Carrier rational_model, motive value
 Logical form (Lean): (rational_model : DenselyOrderedFieldModel) (motive : Carrier rational_model → Prop) (onRepresentative : ∀ representative : NestedIntervalSequence rational_model, motive (Quotient.mk _ representative)) : ∀ value : Carrier rational_model, motive value
 Source: ./RealNumbers/Constructions/Cantor/WellFoundedness.lean#L34
@@ -4029,110 +4711,77 @@ Source: ./RealNumbers/Constructions/Cantor/WellFoundedness.lean#L34
 Name: representative_equivalent_is_equivalence
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel)   (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rational_model),   Equivalence (LRA.NumberSystems.RealNumbers.Cauchy.representative_equivalent rational_model absolute_value_data)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rational_model), Equivalence (LRA.NumberSystems.RealNumbers.Cauchy.representative_equivalent rational_model absolute_value_data)
-Transliterated theorem: (∀ rational_model ∈ DenselyOrderedFieldModel), Equivalence (representative_equivalent rational_model absolute_value_data)
-Logical form (Lean): (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) : Equivalence (representative_equivalent rational_model absolute_value_data)
-Source: ./RealNumbers/Constructions/Cauchy/Equivalence.lean#L50
+Predicate logic: ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)   (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem),   Equivalence (LRA.NumberSystems.RealNumbers.Cauchy.representative_equivalent rationalSystem absolute_value_data)
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), Equivalence (LRA.NumberSystems.RealNumbers.Cauchy.representative_equivalent rationalSystem absolute_value_data)
+Transliterated theorem: (∀ rationalSystem ∈ RationalNumberSystem), Equivalence (representative_equivalent rationalSystem absolute_value_data)
+Logical form (Lean): (rationalSystem : RationalNumberSystem) (absolute_value_data : RationalMetricData rationalSystem) : Equivalence (representative_equivalent rationalSystem absolute_value_data)
+Source: ./RealNumbers/Constructions/Cauchy/Equivalence.lean#L51
 
 
 
 Name: InductionOnRepresentatives
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel)   (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rational_model)   (motive : LRA.NumberSystems.RealNumbers.Cauchy.Carrier rational_model absolute_value_data → Prop),   (∀ (representative : LRA.NumberSystems.RealNumbers.Cauchy.Representative rational_model absolute_value_data),       motive         (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rational_model absolute_value_data)           representative)) →     ∀ (value : LRA.NumberSystems.RealNumbers.Cauchy.Carrier rational_model absolute_value_data), motive value
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rational_model) (motive : LRA.NumberSystems.RealNumbers.Cauchy.Carrier rational_model absolute_value_data → Prop), (∀ (representative : LRA.NumberSystems.RealNumbers.Cauchy.Representative rational_model absolute_value_data), motive (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rational_model absolute_value_data) representative)) → ∀ (value : LRA.NumberSystems.RealNumbers.Cauchy.Carrier rational_model absolute_value_data), motive value
-Transliterated theorem: (∀ rational_model ∈ DenselyOrderedFieldModel), (Carrier rational_model absolute_value_data → Prop ∧ ∀ representative : Representative rational_model absolute_value_data, motive (Quotient.mk _ representative)) → ∀ value : Carrier rational_model absolute_value_data, motive value
-Logical form (Lean): (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) (motive : Carrier rational_model absolute_value_data → Prop) (onRepresentative : ∀ representative : Representative rational_model absolute_value_data, motive (Quotient.mk _ representative)) : ∀ value : Carrier rational_model absolute_value_data, motive value
-Source: ./RealNumbers/Constructions/Cauchy/WellFoundedness.lean#L35
+Predicate logic: ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)   (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem)   (motive : LRA.NumberSystems.RealNumbers.Cauchy.Carrier rationalSystem absolute_value_data → Prop),   (∀ (representative : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data),       motive         (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data)           representative)) →     ∀ (value : LRA.NumberSystems.RealNumbers.Cauchy.Carrier rationalSystem absolute_value_data), motive value
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (motive : LRA.NumberSystems.RealNumbers.Cauchy.Carrier rationalSystem absolute_value_data → Prop), (∀ (representative : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), motive (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) representative)) → ∀ (value : LRA.NumberSystems.RealNumbers.Cauchy.Carrier rationalSystem absolute_value_data), motive value
+Transliterated theorem: (∀ rationalSystem ∈ RationalNumberSystem), (Carrier rationalSystem absolute_value_data → Prop ∧ ∀ representative : Representative rationalSystem absolute_value_data, motive (Quotient.mk _ representative)) → ∀ value : Carrier rationalSystem absolute_value_data, motive value
+Logical form (Lean): (rationalSystem : RationalNumberSystem) (absolute_value_data : RationalMetricData rationalSystem) (motive : Carrier rationalSystem absolute_value_data → Prop) (onRepresentative : ∀ representative : Representative rationalSystem absolute_value_data, motive (Quotient.mk _ representative)) : ∀ value : Carrier rationalSystem absolute_value_data, motive value
+Source: ./RealNumbers/Constructions/Cauchy/WellFoundedness.lean#L36
 
 
 
 Name: representative_addition_is_cauchy
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel)   (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rational_model)   (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rational_model absolute_value_data),   LRA.NumberSystems.RealNumbers.Cauchy.is_cauchy rational_model absolute_value_data     (LRA.NumberSystems.RealNumbers.Cauchy.representative_addition rational_model absolute_value_data first second)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rational_model) (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rational_model absolute_value_data), LRA.NumberSystems.RealNumbers.Cauchy.is_cauchy rational_model absolute_value_data (LRA.NumberSystems.RealNumbers.Cauchy.representative_addition rational_model absolute_value_data first second)
-Transliterated theorem: (∀ rational_model ∈ DenselyOrderedFieldModel), is_cauchy rational_model absolute_value_data (representative_addition rational_model absolute_value_data first second)
-Logical form (Lean): (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) (first second : Representative rational_model absolute_value_data) : is_cauchy rational_model absolute_value_data (representative_addition rational_model absolute_value_data first second)
-Source: ./RealNumbers/Constructions/Cauchy/WellDefinedness.lean#L28
+Predicate logic: ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)   (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem)   (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data),   LRA.NumberSystems.RealNumbers.Cauchy.is_cauchy rationalSystem absolute_value_data     (LRA.NumberSystems.RealNumbers.Cauchy.representative_addition rationalSystem absolute_value_data first second)
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), LRA.NumberSystems.RealNumbers.Cauchy.is_cauchy rationalSystem absolute_value_data (LRA.NumberSystems.RealNumbers.Cauchy.representative_addition rationalSystem absolute_value_data first second)
+Transliterated theorem: (∀ rationalSystem ∈ RationalNumberSystem), is_cauchy rationalSystem absolute_value_data (representative_addition rationalSystem absolute_value_data first second)
+Logical form (Lean): (rationalSystem : RationalNumberSystem) (absolute_value_data : RationalMetricData rationalSystem) (first second : Representative rationalSystem absolute_value_data) : is_cauchy rationalSystem absolute_value_data (representative_addition rationalSystem absolute_value_data first second)
+Source: ./RealNumbers/Constructions/Cauchy/WellDefinedness.lean#L29
 
 
 
 Name: representative_negation_is_cauchy
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel)   (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rational_model)   (representative : LRA.NumberSystems.RealNumbers.Cauchy.Representative rational_model absolute_value_data),   LRA.NumberSystems.RealNumbers.Cauchy.is_cauchy rational_model absolute_value_data     (LRA.NumberSystems.RealNumbers.Cauchy.representative_negation rational_model absolute_value_data representative)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rational_model) (representative : LRA.NumberSystems.RealNumbers.Cauchy.Representative rational_model absolute_value_data), LRA.NumberSystems.RealNumbers.Cauchy.is_cauchy rational_model absolute_value_data (LRA.NumberSystems.RealNumbers.Cauchy.representative_negation rational_model absolute_value_data representative)
-Transliterated theorem: (∀ rational_model ∈ DenselyOrderedFieldModel), is_cauchy rational_model absolute_value_data (representative_negation rational_model absolute_value_data representative)
-Logical form (Lean): (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) (representative : Representative rational_model absolute_value_data) : is_cauchy rational_model absolute_value_data (representative_negation rational_model absolute_value_data representative)
-Source: ./RealNumbers/Constructions/Cauchy/WellDefinedness.lean#L54
+Predicate logic: ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)   (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem)   (representative : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data),   LRA.NumberSystems.RealNumbers.Cauchy.is_cauchy rationalSystem absolute_value_data     (LRA.NumberSystems.RealNumbers.Cauchy.representative_negation rationalSystem absolute_value_data representative)
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (representative : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), LRA.NumberSystems.RealNumbers.Cauchy.is_cauchy rationalSystem absolute_value_data (LRA.NumberSystems.RealNumbers.Cauchy.representative_negation rationalSystem absolute_value_data representative)
+Transliterated theorem: (∀ rationalSystem ∈ RationalNumberSystem), is_cauchy rationalSystem absolute_value_data (representative_negation rationalSystem absolute_value_data representative)
+Logical form (Lean): (rationalSystem : RationalNumberSystem) (absolute_value_data : RationalMetricData rationalSystem) (representative : Representative rationalSystem absolute_value_data) : is_cauchy rationalSystem absolute_value_data (representative_negation rationalSystem absolute_value_data representative)
+Source: ./RealNumbers/Constructions/Cauchy/WellDefinedness.lean#L55
 
 
 
 Name: representative_multiplication_is_cauchy
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel)   (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rational_model)   (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rational_model absolute_value_data),   LRA.NumberSystems.RealNumbers.Cauchy.is_cauchy rational_model absolute_value_data     (LRA.NumberSystems.RealNumbers.Cauchy.representative_multiplication rational_model absolute_value_data first second)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rational_model) (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rational_model absolute_value_data), LRA.NumberSystems.RealNumbers.Cauchy.is_cauchy rational_model absolute_value_data (LRA.NumberSystems.RealNumbers.Cauchy.representative_multiplication rational_model absolute_value_data first second)
-Transliterated theorem: (∀ rational_model ∈ DenselyOrderedFieldModel), is_cauchy rational_model absolute_value_data (representative_multiplication rational_model absolute_value_data first second)
-Logical form (Lean): (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) (first second : Representative rational_model absolute_value_data) : is_cauchy rational_model absolute_value_data (representative_multiplication rational_model absolute_value_data first second)
-Source: ./RealNumbers/Constructions/Cauchy/WellDefinedness.lean#L80
+Predicate logic: ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)   (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem)   (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data),   LRA.NumberSystems.RealNumbers.Cauchy.is_cauchy rationalSystem absolute_value_data     (LRA.NumberSystems.RealNumbers.Cauchy.representative_multiplication rationalSystem absolute_value_data first second)
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), LRA.NumberSystems.RealNumbers.Cauchy.is_cauchy rationalSystem absolute_value_data (LRA.NumberSystems.RealNumbers.Cauchy.representative_multiplication rationalSystem absolute_value_data first second)
+Transliterated theorem: (∀ rationalSystem ∈ RationalNumberSystem), is_cauchy rationalSystem absolute_value_data (representative_multiplication rationalSystem absolute_value_data first second)
+Logical form (Lean): (rationalSystem : RationalNumberSystem) (absolute_value_data : RationalMetricData rationalSystem) (first second : Representative rationalSystem absolute_value_data) : is_cauchy rationalSystem absolute_value_data (representative_multiplication rationalSystem absolute_value_data first second)
+Source: ./RealNumbers/Constructions/Cauchy/WellDefinedness.lean#L81
 
 
 
 Name: representative_addition_respects_equivalence
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel)   (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rational_model),   LRA.UniversalAlgebra.Quotient.binary_operation_respects     (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rational_model absolute_value_data) fun first second =>     {       sequence :=         LRA.NumberSystems.RealNumbers.Cauchy.representative_addition rational_model absolute_value_data first second,       sequence_is_cauchy := ⋯ }
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rational_model), LRA.UniversalAlgebra.Quotient.binary_operation_respects (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rational_model absolute_value_data) fun first second => { sequence := LRA.NumberSystems.RealNumbers.Cauchy.representative_addition rational_model absolute_value_data first second, sequence_is_cauchy := ⋯ }
-Transliterated theorem: (∀ rational_model ∈ DenselyOrderedFieldModel), LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid rational_model absolute_value_data) (fun first second => ⟨representative_addition rational_model absolute_value_data first second, representative_addition_is_cauchy rational_model absolute_value_data first second⟩)
-Logical form (Lean): (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) : LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid rational_model absolute_value_data) (fun first second => ⟨representative_addition rational_model absolute_value_data first second, representative_addition_is_cauchy rational_model absolute_value_data first second⟩)
-Source: ./RealNumbers/Constructions/Cauchy/WellDefinedness.lean#L109
+Predicate logic: ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)   (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem),   LRA.UniversalAlgebra.Quotient.binary_operation_respects     (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) fun first second =>     {       sequence :=         LRA.NumberSystems.RealNumbers.Cauchy.representative_addition rationalSystem absolute_value_data first second,       sequence_is_cauchy := ⋯ }
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), LRA.UniversalAlgebra.Quotient.binary_operation_respects (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) fun first second => { sequence := LRA.NumberSystems.RealNumbers.Cauchy.representative_addition rationalSystem absolute_value_data first second, sequence_is_cauchy := ⋯ }
+Transliterated theorem: (∀ rationalSystem ∈ RationalNumberSystem), LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid rationalSystem absolute_value_data) (fun first second => ⟨representative_addition rationalSystem absolute_value_data first second, representative_addition_is_cauchy rationalSystem absolute_value_data first second⟩)
+Logical form (Lean): (rationalSystem : RationalNumberSystem) (absolute_value_data : RationalMetricData rationalSystem) : LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid rationalSystem absolute_value_data) (fun first second => ⟨representative_addition rationalSystem absolute_value_data first second, representative_addition_is_cauchy rationalSystem absolute_value_data first second⟩)
+Source: ./RealNumbers/Constructions/Cauchy/WellDefinedness.lean#L110
 
 
 
 Name: representative_multiplication_respects_equivalence
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel)   (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rational_model),   LRA.UniversalAlgebra.Quotient.binary_operation_respects     (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rational_model absolute_value_data) fun first second =>     {       sequence :=         LRA.NumberSystems.RealNumbers.Cauchy.representative_multiplication rational_model absolute_value_data first           second,       sequence_is_cauchy := ⋯ }
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rational_model), LRA.UniversalAlgebra.Quotient.binary_operation_respects (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rational_model absolute_value_data) fun first second => { sequence := LRA.NumberSystems.RealNumbers.Cauchy.representative_multiplication rational_model absolute_value_data first second, sequence_is_cauchy := ⋯ }
-Transliterated theorem: (∀ rational_model ∈ DenselyOrderedFieldModel), LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid rational_model absolute_value_data) (fun first second => ⟨representative_multiplication rational_model absolute_value_data first second, representative_multiplication_is_cauchy rational_model absolute_value_data first second⟩)
-Logical form (Lean): (rational_model : DenselyOrderedFieldModel) (absolute_value_data : RationalMetricData rational_model) : LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid rational_model absolute_value_data) (fun first second => ⟨representative_multiplication rational_model absolute_value_data first second, representative_multiplication_is_cauchy rational_model absolute_value_data first second⟩)
-Source: ./RealNumbers/Constructions/Cauchy/WellDefinedness.lean#L141
-
-
-
-Name: cantor_reals_are_isomorphic_to_cauchy_reals
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ (rational_model : DenselyOrderedFieldModel) (metric_data : Cauchy.RationalMetricData rational_model), ∃ comparison : Carrier rational_model → Cauchy.Carrier rational_model metric_data, ∀ first second, comparison first = comparison second → first = second
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (metric_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rational_model), Exists fun comparison => ∀ (first second : LRA.NumberSystems.RealNumbers.Cantor.Carrier rational_model), comparison first = comparison second → first = second
-Transliterated theorem: (∀ rational_model ∈ DenselyOrderedFieldModel), ∃ comparison ∈ Carrier rational_model → Cauchy.Carrier rational_model metric_data, ∀ first second, comparison first = comparison second → first = second
-Logical form (Lean): (rational_model : DenselyOrderedFieldModel) (metric_data : Cauchy.RationalMetricData rational_model) : ∃ comparison : Carrier rational_model → Cauchy.Carrier rational_model metric_data, ∀ first second, comparison first = comparison second → first = second
-Source: ./RealNumbers/Constructions/Cantor/Behavior.lean#L31
-
-
-
-Name: computable_reals_closed_under_arithmetic
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ (rational_model : DenselyOrderedFieldModel), ∃ add mul neg : ComputableReal rational_model → ComputableReal rational_model → ComputableReal rational_model, ∀ first second, equivalent (add first second).approximation (add first second).approximation ∧ equivalent (mul first second).approximation (mul first second).approximation ∧ equivalent (neg first second).approximation (neg first second).approximation
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel), Exists fun add => Exists fun mul => Exists fun neg => ∀ (first second : LRA.NumberSystems.RealNumbers.Computable.ComputableReal rational_model), (LRA.NumberSystems.RealNumbers.Computable.equivalent (add first second).approximation (add first second).approximation ∧ (LRA.NumberSystems.RealNumbers.Computable.equivalent (mul first second).approximation (mul first second).approximation ∧ LRA.NumberSystems.RealNumbers.Computable.equivalent (neg first second).approximation (neg first second).approximation))
-Transliterated theorem: (∀ rational_model ∈ DenselyOrderedFieldModel), ∃ add mul neg ∈ ComputableReal rational_model → ComputableReal rational_model → ComputableReal rational_model, ∀ first second, equivalent (add first second).approximation (add first second).approximation ∧ equivalent (mul first second).approximation (mul first second).approximation ∧ equivalent (neg first second).approximation (neg first second).approximation
-Logical form (Lean): (rational_model : DenselyOrderedFieldModel) : ∃ add mul neg : ComputableReal rational_model → ComputableReal rational_model → ComputableReal rational_model, ∀ first second, equivalent (add first second).approximation (add first second).approximation ∧ equivalent (mul first second).approximation (mul first second).approximation ∧ equivalent (neg first second).approximation (neg first second).approximation
-Source: ./RealNumbers/Constructions/Computable/Behavior.lean#L29
-
-
-
-Name: computable_reals_are_countable
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ (rational_model : DenselyOrderedFieldModel), ∃ enumerate : Nat → ComputableReal rational_model, ∀ value : ComputableReal rational_model, ∃ index : Nat, enumerate index = value
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel), Exists fun enumerate => ∀ (value : LRA.NumberSystems.RealNumbers.Computable.ComputableReal rational_model), Exists fun index => enumerate index = value
-Transliterated theorem: (∀ rational_model ∈ DenselyOrderedFieldModel), ∃ enumerate ∈ Nat → ComputableReal rational_model, ∀ value : ComputableReal rational_model, ∃ index ∈ Nat, enumerate index = value
-Logical form (Lean): (rational_model : DenselyOrderedFieldModel) : ∃ enumerate : Nat → ComputableReal rational_model, ∀ value : ComputableReal rational_model, ∃ index : Nat, enumerate index = value
-Source: ./RealNumbers/Constructions/Computable/Behavior.lean#L56
+Predicate logic: ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)   (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem),   LRA.UniversalAlgebra.Quotient.binary_operation_respects     (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) fun first second =>     {       sequence :=         LRA.NumberSystems.RealNumbers.Cauchy.representative_multiplication rationalSystem absolute_value_data first           second,       sequence_is_cauchy := ⋯ }
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), LRA.UniversalAlgebra.Quotient.binary_operation_respects (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) fun first second => { sequence := LRA.NumberSystems.RealNumbers.Cauchy.representative_multiplication rationalSystem absolute_value_data first second, sequence_is_cauchy := ⋯ }
+Transliterated theorem: (∀ rationalSystem ∈ RationalNumberSystem), LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid rationalSystem absolute_value_data) (fun first second => ⟨representative_multiplication rationalSystem absolute_value_data first second, representative_multiplication_is_cauchy rationalSystem absolute_value_data first second⟩)
+Logical form (Lean): (rationalSystem : RationalNumberSystem) (absolute_value_data : RationalMetricData rationalSystem) : LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid rationalSystem absolute_value_data) (fun first second => ⟨representative_multiplication rationalSystem absolute_value_data first second, representative_multiplication_is_cauchy rationalSystem absolute_value_data first second⟩)
+Source: ./RealNumbers/Constructions/Cauchy/WellDefinedness.lean#L142
 
 
 
@@ -4370,154 +5019,55 @@ Source: ./RealNumbers/Constructions/Dedekind/Laws.lean#L355
 Name: embedded_rationals_are_dense
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (first second : Cut rational_model) (first_lt_second : strict_order rational_model first second), ∃ rational, strict_order rational_model first (rational_embedding rational_model rational) ∧ strict_order rational_model (rational_embedding rational_model rational) second
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (first second : LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model), LRA.NumberSystems.RealNumbers.Dedekind.strict_order rational_model first second → Exists fun rational => (LRA.NumberSystems.RealNumbers.Dedekind.strict_order rational_model first (LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rational_model rational) ∧ LRA.NumberSystems.RealNumbers.Dedekind.strict_order rational_model (LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rational_model rational) second)
-Transliterated theorem: ∃ rational, strict_order rational_model first (rational_embedding rational_model rational) ∧ strict_order rational_model (rational_embedding rational_model rational) second
-Logical form (Lean): (first second : Cut rational_model) (first_lt_second : strict_order rational_model first second) : ∃ rational, strict_order rational_model first (rational_embedding rational_model rational) ∧ strict_order rational_model (rational_embedding rational_model rational) second
-Source: ./RealNumbers/Constructions/Dedekind/Behavior.lean#L32
+Predicate logic: ∀ (first second : Cut rationalSystem.FieldModel) (first_lt_second : strict_order rationalSystem.FieldModel first second), ∃ rational, strict_order rationalSystem.FieldModel first (rational_embedding rationalSystem.FieldModel rational) ∧ strict_order rationalSystem.FieldModel (rational_embedding rationalSystem.FieldModel rational) second
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (first second : LRA.NumberSystems.RealNumbers.Dedekind.Cut rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.strict_order rationalSystem.FieldModel first second → Exists fun rational => (LRA.NumberSystems.RealNumbers.Dedekind.strict_order rationalSystem.FieldModel first (LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rationalSystem.FieldModel rational) ∧ LRA.NumberSystems.RealNumbers.Dedekind.strict_order rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rationalSystem.FieldModel rational) second)
+Transliterated theorem: ∃ rational, strict_order rationalSystem.FieldModel first (rational_embedding rationalSystem.FieldModel rational) ∧ strict_order rationalSystem.FieldModel (rational_embedding rationalSystem.FieldModel rational) second
+Logical form (Lean): (first second : Cut rationalSystem.FieldModel) (first_lt_second : strict_order rationalSystem.FieldModel first second) : ∃ rational, strict_order rationalSystem.FieldModel first (rational_embedding rationalSystem.FieldModel rational) ∧ strict_order rationalSystem.FieldModel (rational_embedding rationalSystem.FieldModel rational) second
+Source: ./RealNumbers/Constructions/Dedekind/Behavior.lean#L35
 
 
 
 Name: archimedean_property
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (natural_carrier : Type)   (natural_to_rational : natural_carrier → LRA.NumberSystems.RealNumbers.Dedekind.Rational rational_model)   (cut : LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model),   Exists fun natural =>     LRA.NumberSystems.RealNumbers.Dedekind.strict_order rational_model cut       (LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rational_model (natural_to_rational natural))
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (natural_carrier : Type) (natural_to_rational : natural_carrier → LRA.NumberSystems.RealNumbers.Dedekind.Rational rational_model) (cut : LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model), Exists fun natural => LRA.NumberSystems.RealNumbers.Dedekind.strict_order rational_model cut (LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rational_model (natural_to_rational natural))
-Transliterated theorem: (natural_carrier → Rational rational_model) → ∃ natural, strict_order rational_model cut (rational_embedding rational_model (natural_to_rational natural))
-Logical form (Lean): (natural_carrier : Type) (natural_to_rational : natural_carrier → Rational rational_model) (cut : Cut rational_model) : ∃ natural, strict_order rational_model cut (rational_embedding rational_model (natural_to_rational natural))
-Source: ./RealNumbers/Constructions/Dedekind/Behavior.lean#L62
+Predicate logic: ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem),   (∀ (value : rationalSystem.FieldModel.signature.carrier),       Exists fun integer =>         rationalSystem.FieldModel.signature.StrictOrder value (rationalSystem.IntegerEmbedding.ToField integer)) →     ∀ (cut : LRA.NumberSystems.RealNumbers.Dedekind.Cut rationalSystem.FieldModel),       Exists fun integer =>         LRA.NumberSystems.RealNumbers.Dedekind.strict_order rationalSystem.FieldModel cut           (LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rationalSystem.FieldModel             (rationalSystem.IntegerEmbedding.ToField integer))
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), (∀ (value : rationalSystem.FieldModel.signature.carrier), Exists fun integer => rationalSystem.FieldModel.signature.StrictOrder value (rationalSystem.IntegerEmbedding.ToField integer)) → ∀ (cut : LRA.NumberSystems.RealNumbers.Dedekind.Cut rationalSystem.FieldModel), Exists fun integer => LRA.NumberSystems.RealNumbers.Dedekind.strict_order rationalSystem.FieldModel cut (LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rationalSystem.FieldModel (rationalSystem.IntegerEmbedding.ToField integer))
+Transliterated theorem: (∀ value : rationalSystem.FieldModel.signature.carrier, ∃ integer ∈ rationalSystem.IntegerSystem.Model.signature.carrier, rationalSystem.FieldModel.signature.StrictOrder value (rationalSystem.IntegerEmbedding.ToField integer)) → ∃ integer ∈ rationalSystem.IntegerSystem.Model.signature.carrier, strict_order rationalSystem.FieldModel cut (rational_embedding rationalSystem.FieldModel (rationalSystem.IntegerEmbedding.ToField integer))
+Logical form (Lean): (integer_cofinal : ∀ value : rationalSystem.FieldModel.signature.carrier, ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier, rationalSystem.FieldModel.signature.StrictOrder value (rationalSystem.IntegerEmbedding.ToField integer)) (cut : Cut rationalSystem.FieldModel) : ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier, strict_order rationalSystem.FieldModel cut (rational_embedding rationalSystem.FieldModel (rationalSystem.IntegerEmbedding.ToField integer))
+Source: ./RealNumbers/Constructions/Dedekind/Behavior.lean#L69
 
 
 
 Name: reference_real_number_construction
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel),   LRA.NumberSystems.RealNumbers.Dedekind.ReferenceRealNumberConstruction rational_model
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel), LRA.NumberSystems.RealNumbers.Dedekind.ReferenceRealNumberConstruction rational_model
-Transliterated theorem: ReferenceRealNumberConstruction rational_model
-Logical form (Lean): : ReferenceRealNumberConstruction rational_model
-Source: ./RealNumbers/Constructions/Dedekind/Behavior.lean#L116
+Predicate logic: ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem),   LRA.NumberSystems.RealNumbers.Dedekind.ReferenceRealNumberConstruction rationalSystem
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.NumberSystems.RealNumbers.Dedekind.ReferenceRealNumberConstruction rationalSystem
+Transliterated theorem: ReferenceRealNumberConstruction rationalSystem
+Logical form (Lean): : ReferenceRealNumberConstruction rationalSystem
+Source: ./RealNumbers/Constructions/Dedekind/Behavior.lean#L134
 
 
 
-Name: dyadic_subring
+Name: EquivalentIsEquivalence
 Kind: Theorem
 State: Sorry
-Predicate logic: IsDyadicRational dyadic_data dyadic_data.rational_model.signature.zero ∧ IsDyadicRational dyadic_data dyadic_data.rational_model.signature.one ∧ (∀ first second : Rational dyadic_data, IsDyadicRational dyadic_data first → IsDyadicRational dyadic_data second → IsDyadicRational dyadic_data (dyadic_data.rational_model.signature.add first second)) ∧ (∀ value : Rational dyadic_data, IsDyadicRational dyadic_data value → IsDyadicRational dyadic_data (dyadic_data.rational_model.signature.neg value)) ∧ (∀ first second : Rational dyadic_data, IsDyadicRational dyadic_data first → IsDyadicRational dyadic_data second → IsDyadicRational dyadic_data (dyadic_data.rational_model.signature.multiply first second))
-Predicate logic (unfolded): ∀ (dyadic_data : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), (LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data dyadic_data.rational_model.signature.zero ∧ (LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data dyadic_data.rational_model.signature.one ∧ (∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Rational dyadic_data), LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data first → LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data second → LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data (dyadic_data.rational_model.signature.add first second) ∧ (∀ (value : LRA.NumberSystems.RealNumbers.Dyadic.Rational dyadic_data), LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data value → LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data (dyadic_data.rational_model.signature.neg value) ∧ ∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Rational dyadic_data), LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data first → LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data second → LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data (dyadic_data.rational_model.signature.multiply first second)))))
-Transliterated theorem: IsDyadicRational dyadic_data dyadic_data.rational_model.signature.zero ∧ IsDyadicRational dyadic_data dyadic_data.rational_model.signature.one ∧ ∀ first second ∈ Rational dyadic_data, IsDyadicRational dyadic_data first → IsDyadicRational dyadic_data second → IsDyadicRational dyadic_data (dyadic_data.rational_model.signature.add first second) ∧ ∀ value ∈ Rational dyadic_data, IsDyadicRational dyadic_data value → IsDyadicRational dyadic_data (dyadic_data.rational_model.signature.neg value) ∧ ∀ first second ∈ Rational dyadic_data, IsDyadicRational dyadic_data first → IsDyadicRational dyadic_data second → IsDyadicRational dyadic_data (dyadic_data.rational_model.signature.multiply first second)
-Logical form (Lean): : IsDyadicRational dyadic_data dyadic_data.rational_model.signature.zero ∧ IsDyadicRational dyadic_data dyadic_data.rational_model.signature.one ∧ (∀ first second : Rational dyadic_data, IsDyadicRational dyadic_data first → IsDyadicRational dyadic_data second → IsDyadicRational dyadic_data (dyadic_data.rational_model.signature.add first second)) ∧ (∀ value : Rational dyadic_data, IsDyadicRational dyadic_data value → IsDyadicRational dyadic_data (dyadic_data.rational_model.signature.neg value)) ∧ (∀ first second : Rational dyadic_data, IsDyadicRational dyadic_data first → IsDyadicRational dyadic_data second → IsDyadicRational dyadic_data (dyadic_data.rational_model.signature.multiply first second))
-Source: ./RealNumbers/Constructions/Dyadic/Equivalence.lean#L54
+Predicate logic: ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem),   Equivalence LRA.NumberSystems.RealNumbers.EffectiveCauchy.Equivalent
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), Equivalence LRA.NumberSystems.RealNumbers.EffectiveCauchy.Equivalent
+Transliterated theorem: Equivalence (@Equivalent rationalSystem)
+Logical form (Lean): (rationalSystem : RationalNumberSystem.{u}) : Equivalence (@Equivalent rationalSystem)
+Source: ./RealNumbers/Constructions/EffectiveCauchy/Equivalence.lean#L39
 
 
 
-Name: dyadic_rationals_are_dense
+Name: InductionOnRepresentatives
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (first second : Rational dyadic_data) (first_lt_second : dyadic_data.rational_model.signature.StrictOrder first second), ∃ dyadic : Rational dyadic_data, IsDyadicRational dyadic_data dyadic ∧ dyadic_data.rational_model.signature.StrictOrder first dyadic ∧ dyadic_data.rational_model.signature.StrictOrder dyadic second
-Predicate logic (unfolded): ∀ (dyadic_data : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (first second : LRA.NumberSystems.RealNumbers.Dyadic.Rational dyadic_data), dyadic_data.rational_model.signature.StrictOrder first second → Exists fun dyadic => (LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data dyadic ∧ (dyadic_data.rational_model.signature.StrictOrder first dyadic ∧ dyadic_data.rational_model.signature.StrictOrder dyadic second))
-Transliterated theorem: ∃ dyadic ∈ Rational dyadic_data, IsDyadicRational dyadic_data dyadic ∧ dyadic_data.rational_model.signature.StrictOrder first dyadic ∧ dyadic_data.rational_model.signature.StrictOrder dyadic second
-Logical form (Lean): (first second : Rational dyadic_data) (first_lt_second : dyadic_data.rational_model.signature.StrictOrder first second) : ∃ dyadic : Rational dyadic_data, IsDyadicRational dyadic_data dyadic ∧ dyadic_data.rational_model.signature.StrictOrder first dyadic ∧ dyadic_data.rational_model.signature.StrictOrder dyadic second
-Source: ./RealNumbers/Constructions/Dyadic/Equivalence.lean#L93
-
-
-
-Name: fractional_partial_sums_are_cauchy
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ (dyadic_data : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData)   (digits : LRA.NumberSystems.RealNumbers.Dyadic.FractionalDigits),   LRA.NumberSystems.RealNumbers.Cauchy.is_cauchy dyadic_data.rational_model dyadic_data.absolute_value_data     (LRA.NumberSystems.RealNumbers.Dyadic.fractional_partial_sum dyadic_data digits)
-Predicate logic (unfolded): ∀ (dyadic_data : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (digits : LRA.NumberSystems.RealNumbers.Dyadic.FractionalDigits), LRA.NumberSystems.RealNumbers.Cauchy.is_cauchy dyadic_data.rational_model dyadic_data.absolute_value_data (LRA.NumberSystems.RealNumbers.Dyadic.fractional_partial_sum dyadic_data digits)
-Transliterated theorem: (∀ digits ∈ FractionalDigits), Cauchy.is_cauchy dyadic_data.rational_model dyadic_data.absolute_value_data (fractional_partial_sum dyadic_data digits)
-Logical form (Lean): (digits : FractionalDigits) : Cauchy.is_cauchy dyadic_data.rational_model dyadic_data.absolute_value_data (fractional_partial_sum dyadic_data digits)
-Source: ./RealNumbers/Constructions/Dyadic/WellDefinedness.lean#L41
-
-
-
-Name: representation_exists
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ (real_value : CauchyCarrier dyadic_data), ∃ expansion : Expansion, value dyadic_data expansion = real_value
-Predicate logic (unfolded): ∀ (dyadic_data : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (real_value : LRA.NumberSystems.RealNumbers.Dyadic.CauchyCarrier dyadic_data), Exists fun expansion => LRA.NumberSystems.RealNumbers.Dyadic.value dyadic_data expansion = real_value
-Transliterated theorem: ∃ expansion ∈ Expansion, value dyadic_data expansion = real_value
-Logical form (Lean): (real_value : CauchyCarrier dyadic_data) : ∃ expansion : Expansion, value dyadic_data expansion = real_value
-Source: ./RealNumbers/Constructions/Dyadic/WellDefinedness.lean#L135
-
-
-
-Name: value_is_injective
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ first second : Expansion, value dyadic_data first = value dyadic_data second → first = second
-Predicate logic (unfolded): ∀ (dyadic_data : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), LRA.NumberSystems.RealNumbers.Dyadic.value dyadic_data first = LRA.NumberSystems.RealNumbers.Dyadic.value dyadic_data second → first = second
-Transliterated theorem: ∀ first second : Expansion, value dyadic_data first = value dyadic_data second → first = second
-Logical form (Lean): : ∀ first second : Expansion, value dyadic_data first = value dyadic_data second → first = second
-Source: ./RealNumbers/Constructions/Dyadic/WellDefinedness.lean#L156
-
-
-
-Name: value_is_bijective
-Kind: Theorem
-State: Sorry
-Predicate logic: (∀ real_value : CauchyCarrier dyadic_data, ∃ expansion : Expansion, value dyadic_data expansion = real_value) ∧ (∀ first second : Expansion, value dyadic_data first = value dyadic_data second → first = second)
-Predicate logic (unfolded): ∀ (dyadic_data : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), (∀ (real_value : LRA.NumberSystems.RealNumbers.Dyadic.CauchyCarrier dyadic_data), Exists fun expansion => LRA.NumberSystems.RealNumbers.Dyadic.value dyadic_data expansion = real_value ∧ ∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), LRA.NumberSystems.RealNumbers.Dyadic.value dyadic_data first = LRA.NumberSystems.RealNumbers.Dyadic.value dyadic_data second → first = second)
-Transliterated theorem: ∀ real_value ∈ CauchyCarrier dyadic_data, ∃ expansion ∈ Expansion, value dyadic_data expansion = real_value ∧ ∀ first second ∈ Expansion, value dyadic_data first = value dyadic_data second → first = second
-Logical form (Lean): : (∀ real_value : CauchyCarrier dyadic_data, ∃ expansion : Expansion, value dyadic_data expansion = real_value) ∧ (∀ first second : Expansion, value dyadic_data first = value dyadic_data second → first = second)
-Source: ./RealNumbers/Constructions/Dyadic/WellDefinedness.lean#L179
-
-
-
-Name: binary_real_bijection_exists
-Kind: Theorem
-State: Sorry
-Predicate logic: ∃ bridge : Bijection Expansion (CauchyCarrier dyadic_data), ∀ expansion : Expansion, bridge.forward expansion = value dyadic_data expansion
-Predicate logic (unfolded): ∀ (dyadic_data : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), Exists fun bridge => ∀ (expansion : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), bridge.forward expansion = LRA.NumberSystems.RealNumbers.Dyadic.value dyadic_data expansion
-Transliterated theorem: ∃ bridge ∈ Bijection Expansion (CauchyCarrier dyadic_data), ∀ expansion : Expansion, bridge.forward expansion = value dyadic_data expansion
-Logical form (Lean): : ∃ bridge : Bijection Expansion (CauchyCarrier dyadic_data), ∀ expansion : Expansion, bridge.forward expansion = value dyadic_data expansion
-Source: ./RealNumbers/Constructions/Dyadic/WellDefinedness.lean#L225
-
-
-
-Name: ordered_field_isomorphism
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ (dyadic_data : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData),   LRA.NumberSystems.RealNumbers.Dyadic.OrderedFieldIsomorphism dyadic_data
-Predicate logic (unfolded): ∀ (dyadic_data : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), LRA.NumberSystems.RealNumbers.Dyadic.OrderedFieldIsomorphism dyadic_data
-Transliterated theorem: OrderedFieldIsomorphism dyadic_data
-Logical form (Lean): : OrderedFieldIsomorphism dyadic_data
-Source: ./RealNumbers/Constructions/Dyadic/Laws.lean#L226
-
-
-
-Name: binary_tail_ambiguity
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ (digits : FractionalDigits) (eventually_one : ∃ threshold, ∀ index, threshold ≤ index → digits index = Digit.one), ∃ terminating : CanonicalFraction, fractional_value dyadic_data terminating = Quotient.mk _ ⟨fractional_partial_sum dyadic_data digits, fractional_partial_sums_are_cauchy dyadic_data digits⟩ ∧ ∀ other : CanonicalFraction, fractional_value dyadic_data other = Quotient.mk _ ⟨fractional_partial_sum dyadic_data digits, fractional_partial_sums_are_cauchy dyadic_data digits⟩ → other = terminating
-Predicate logic (unfolded): ∀ (dyadic_data : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (digits : LRA.NumberSystems.RealNumbers.Dyadic.FractionalDigits), (Exists fun threshold => ∀ (index : Nat), instLENat.le threshold index → digits index = LRA.NumberSystems.RealNumbers.Dyadic.Digit.one) → Exists fun terminating => (LRA.NumberSystems.RealNumbers.Dyadic.fractional_value dyadic_data terminating = Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid dyadic_data.rational_model dyadic_data.absolute_value_data) { sequence := LRA.NumberSystems.RealNumbers.Dyadic.fractional_partial_sum dyadic_data digits, sequence_is_cauchy := ⋯ } ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Dyadic.CanonicalFraction), LRA.NumberSystems.RealNumbers.Dyadic.fractional_value dyadic_data other = Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid dyadic_data.rational_model dyadic_data.absolute_value_data) { sequence := LRA.NumberSystems.RealNumbers.Dyadic.fractional_partial_sum dyadic_data digits, sequence_is_cauchy := ⋯ } → other = terminating)
-Transliterated theorem: (∀ digits ∈ FractionalDigits), (∃ threshold, ∀ index, threshold ≤ index → digits index = Digit.one) → ∃ terminating ∈ CanonicalFraction, fractional_value dyadic_data terminating = Quotient.mk _ ⟨fractional_partial_sum dyadic_data digits, fractional_partial_sums_are_cauchy dyadic_data digits⟩ ∧ ∀ other : CanonicalFraction, fractional_value dyadic_data other = Quotient.mk _ ⟨fractional_partial_sum dyadic_data digits, fractional_partial_sums_are_cauchy dyadic_data digits⟩ → other = terminating
-Logical form (Lean): (digits : FractionalDigits) (eventually_one : ∃ threshold, ∀ index, threshold ≤ index → digits index = Digit.one) : ∃ terminating : CanonicalFraction, fractional_value dyadic_data terminating = Quotient.mk _ ⟨fractional_partial_sum dyadic_data digits, fractional_partial_sums_are_cauchy dyadic_data digits⟩ ∧ ∀ other : CanonicalFraction, fractional_value dyadic_data other = Quotient.mk _ ⟨fractional_partial_sum dyadic_data digits, fractional_partial_sums_are_cauchy dyadic_data digits⟩ → other = terminating
-Source: ./RealNumbers/Constructions/Dyadic/Behavior.lean#L58
-
-
-
-Name: canonical_fractional_uniqueness
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ (first second : CanonicalFraction), fractional_value dyadic_data first = fractional_value dyadic_data second ↔ first = second
-Predicate logic (unfolded): ∀ (dyadic_data : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (first second : LRA.NumberSystems.RealNumbers.Dyadic.CanonicalFraction), LRA.NumberSystems.RealNumbers.Dyadic.fractional_value dyadic_data first = LRA.NumberSystems.RealNumbers.Dyadic.fractional_value dyadic_data second ↔ first = second
-Transliterated theorem: (∀ first second ∈ CanonicalFraction), fractional_value dyadic_data first = fractional_value dyadic_data second ↔ first = second
-Logical form (Lean): (first second : CanonicalFraction) : fractional_value dyadic_data first = fractional_value dyadic_data second ↔ first = second
-Source: ./RealNumbers/Constructions/Dyadic/Behavior.lean#L93
-
-
-
-Name: complete_archimedean_ordered_field
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ (dyadic_data : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData),   LRA.NumberSystems.RealNumbers.Dyadic.CompleteArchimedeanOrderedField dyadic_data
-Predicate logic (unfolded): ∀ (dyadic_data : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), LRA.NumberSystems.RealNumbers.Dyadic.CompleteArchimedeanOrderedField dyadic_data
-Transliterated theorem: CompleteArchimedeanOrderedField dyadic_data
-Logical form (Lean): : CompleteArchimedeanOrderedField dyadic_data
-Source: ./RealNumbers/Constructions/Dyadic/Behavior.lean#L131
+Predicate logic: ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)   (motive : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal rationalSystem → Prop),   (∀ (representative : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem),       motive         (Quotient.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem)           representative)) →     ∀ (value : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal rationalSystem), motive value
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (motive : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal rationalSystem → Prop), (∀ (representative : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem), motive (Quotient.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) representative)) → ∀ (value : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal rationalSystem), motive value
+Transliterated theorem: (EffectiveCauchyReal rationalSystem → Prop ∧ ∀ representative : EffectiveCauchyApproximation rationalSystem, motive (Quotient.mk (ApproximationSetoid rationalSystem) representative)) → ∀ value : EffectiveCauchyReal rationalSystem, motive value
+Logical form (Lean): (rationalSystem : RationalNumberSystem.{u}) (motive : EffectiveCauchyReal rationalSystem → Prop) (onRepresentative : ∀ representative : EffectiveCauchyApproximation rationalSystem, motive (Quotient.mk (ApproximationSetoid rationalSystem) representative)) : ∀ value : EffectiveCauchyReal rationalSystem, motive value
+Source: ./RealNumbers/Constructions/EffectiveCauchy/WellFoundedness.lean#L10
 
 
 
@@ -4774,17 +5324,6 @@ Source: ./RealNumbers/Constructions/PrimitiveIntervals/Laws.lean#L346
 
 
 
-Name: ordered_field_structure
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel),   LRA.NumberSystems.RealNumbers.PrimitiveIntervals.OrderedFieldStructure rational_model
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel), LRA.NumberSystems.RealNumbers.PrimitiveIntervals.OrderedFieldStructure rational_model
-Transliterated theorem: OrderedFieldStructure rational_model
-Logical form (Lean): : OrderedFieldStructure rational_model
-Source: ./RealNumbers/Constructions/PrimitiveIntervals/Laws.lean#L419
-
-
-
 Name: least_upper_bound_property
 Kind: Theorem
 State: Sorry
@@ -4792,40 +5331,194 @@ Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFi
 Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel), LRA.NumberSystems.RealNumbers.PrimitiveIntervals.LeastUpperBoundProperty rational_model
 Transliterated theorem: LeastUpperBoundProperty rational_model
 Logical form (Lean): : LeastUpperBoundProperty rational_model
-Source: ./RealNumbers/Constructions/PrimitiveIntervals/Laws.lean#L479
+Source: ./RealNumbers/Constructions/PrimitiveIntervals/Laws.lean#L435
 
 
 
-Name: persistent_overlap_iff_endpoint_null
+Name: CauchyRealizesRationalRealExtension
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (absolute_value_data : Cauchy.RationalMetricData rational_model) (first second : Representative rational_model), equivalent rational_model first second ↔ Cauchy.is_null rational_model absolute_value_data (fun index => rational_model.signature.Subtraction (first.interval index).left_endpoint (second.interval index).left_endpoint)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rational_model) (first second : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Representative rational_model), LRA.NumberSystems.RealNumbers.PrimitiveIntervals.equivalent rational_model first second ↔ LRA.NumberSystems.RealNumbers.Cauchy.is_null rational_model absolute_value_data fun index => rational_model.signature.Subtraction (first.interval index).left_endpoint (second.interval index).left_endpoint
-Transliterated theorem: equivalent rational_model first second ↔ Cauchy.is_null rational_model absolute_value_data (fun index => rational_model.signature.Subtraction (first.interval index).left_endpoint (second.interval index).left_endpoint)
-Logical form (Lean): (absolute_value_data : Cauchy.RationalMetricData rational_model) (first second : Representative rational_model) : equivalent rational_model first second ↔ Cauchy.is_null rational_model absolute_value_data (fun index => rational_model.signature.Subtraction (first.interval index).left_endpoint (second.interval index).left_endpoint)
-Source: ./RealNumbers/Constructions/PrimitiveIntervals/Behavior.lean#L48
+Predicate logic: ∀ (rationalSystem : RationalNumberSystem) (absoluteValueData : RationalMetricData rationalSystem), ∃ realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem, realExtension.RealModel.Carrier = Carrier rationalSystem absoluteValueData
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absoluteValueData : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), Exists fun realExtension => realExtension.RealModel.Carrier = LRA.NumberSystems.RealNumbers.Cauchy.Carrier rationalSystem absoluteValueData
+Transliterated theorem: (∀ rationalSystem ∈ RationalNumberSystem), ∃ realExtension ∈ LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem, realExtension.RealModel.Carrier = Carrier rationalSystem absoluteValueData
+Logical form (Lean): (rationalSystem : RationalNumberSystem) (absoluteValueData : RationalMetricData rationalSystem) : ∃ realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem, realExtension.RealModel.Carrier = Carrier rationalSystem absoluteValueData
+Source: ./RealNumbers/Constructions/Cauchy/Instances.lean#L36
 
 
 
-Name: canonical_comparison_isomorphism_exists
+Name: cantor_reals_are_isomorphic_to_cauchy_reals
 Kind: Theorem
 State: Sorry
-Predicate logic: ∃ comparison : Carrier rational_model → Carrier rational_model, (∀ value, comparison value = value) ∧ (∀ rational, comparison (rational_embedding rational_model rational) = rational_embedding rational_model rational)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel), Exists fun comparison => (∀ (value : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Carrier rational_model), comparison value = value ∧ ∀ (rational : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Rational rational_model), comparison (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.rational_embedding rational_model rational) = LRA.NumberSystems.RealNumbers.PrimitiveIntervals.rational_embedding rational_model rational)
-Transliterated theorem: ∃ comparison ∈ Carrier rational_model → Carrier rational_model, (∀ value, comparison value = value) ∧ (∀ rational, comparison (rational_embedding rational_model rational) = rational_embedding rational_model rational)
-Logical form (Lean): : ∃ comparison : Carrier rational_model → Carrier rational_model, (∀ value, comparison value = value) ∧ (∀ rational, comparison (rational_embedding rational_model rational) = rational_embedding rational_model rational)
-Source: ./RealNumbers/Constructions/PrimitiveIntervals/Behavior.lean#L77
+Predicate logic: ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)   (metric_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem),   Exists fun comparison => LRA.Function.Bijective comparison
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (metric_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), Exists fun comparison => LRA.Function.Bijective comparison
+Transliterated theorem: (∀ rationalSystem ∈ RationalNumberSystem), ∃ comparison ∈ Carrier rationalSystem.FieldModel → Cauchy.Carrier rationalSystem metric_data, LRA.Function.Bijective comparison
+Logical form (Lean): (rationalSystem : RationalNumberSystem) (metric_data : Cauchy.RationalMetricData rationalSystem) : ∃ comparison : Carrier rationalSystem.FieldModel → Cauchy.Carrier rationalSystem metric_data, LRA.Function.Bijective comparison
+Source: ./RealNumbers/Constructions/Cantor/Behavior.lean#L34
 
 
 
-Name: primitive_interval_construction_of_reals
+Name: CantorRealizesRationalRealExtension
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel),   LRA.NumberSystems.RealNumbers.PrimitiveIntervals.PrimitiveIntervalConstructionOfReals rational_model
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel), LRA.NumberSystems.RealNumbers.PrimitiveIntervals.PrimitiveIntervalConstructionOfReals rational_model
-Transliterated theorem: PrimitiveIntervalConstructionOfReals rational_model
-Logical form (Lean): : PrimitiveIntervalConstructionOfReals rational_model
-Source: ./RealNumbers/Constructions/PrimitiveIntervals/Behavior.lean#L123
+Predicate logic: ∀ (rationalSystem : RationalNumberSystem), ∃ realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem, realExtension.RealModel.Carrier = Carrier rationalSystem.FieldModel
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), Exists fun realExtension => realExtension.RealModel.Carrier = LRA.NumberSystems.RealNumbers.Cantor.Carrier rationalSystem.FieldModel
+Transliterated theorem: (∀ rationalSystem ∈ RationalNumberSystem), ∃ realExtension ∈ LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem, realExtension.RealModel.Carrier = Carrier rationalSystem.FieldModel
+Logical form (Lean): (rationalSystem : RationalNumberSystem) : ∃ realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem, realExtension.RealModel.Carrier = Carrier rationalSystem.FieldModel
+Source: ./RealNumbers/Constructions/Cantor/Instances.lean#L31
+
+
+
+Name: DedekindRealizesRationalRealExtension
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (rationalSystem : RationalNumberSystem), ∃ realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem, realExtension.RealModel.Carrier = Cut rationalSystem.FieldModel
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), Exists fun realExtension => realExtension.RealModel.Carrier = LRA.NumberSystems.RealNumbers.Dedekind.Cut rationalSystem.FieldModel
+Transliterated theorem: (∀ rationalSystem ∈ RationalNumberSystem), ∃ realExtension ∈ LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem, realExtension.RealModel.Carrier = Cut rationalSystem.FieldModel
+Logical form (Lean): (rationalSystem : RationalNumberSystem) : ∃ realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem, realExtension.RealModel.Carrier = Cut rationalSystem.FieldModel
+Source: ./RealNumbers/Constructions/Dedekind/Instances.lean#L31
+
+
+
+Name: dyadic_subring
+Kind: Theorem
+State: Sorry
+Predicate logic: IsDyadicRational dyadic_data dyadic_data.RationalSystem.FieldModel.signature.zero ∧ IsDyadicRational dyadic_data dyadic_data.RationalSystem.FieldModel.signature.one ∧ (∀ first second : Rational dyadic_data, IsDyadicRational dyadic_data first → IsDyadicRational dyadic_data second → IsDyadicRational dyadic_data (dyadic_data.RationalSystem.FieldModel.signature.add first second)) ∧ (∀ value : Rational dyadic_data, IsDyadicRational dyadic_data value → IsDyadicRational dyadic_data (dyadic_data.RationalSystem.FieldModel.signature.neg value)) ∧ (∀ first second : Rational dyadic_data, IsDyadicRational dyadic_data first → IsDyadicRational dyadic_data second → IsDyadicRational dyadic_data (dyadic_data.RationalSystem.FieldModel.signature.multiply first second))
+Predicate logic (unfolded): ∀ (dyadic_data : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), (LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data dyadic_data.RationalSystem.FieldModel.signature.zero ∧ (LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data dyadic_data.RationalSystem.FieldModel.signature.one ∧ (∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Rational dyadic_data), LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data first → LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data second → LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data (dyadic_data.RationalSystem.FieldModel.signature.add first second) ∧ (∀ (value : LRA.NumberSystems.RealNumbers.Dyadic.Rational dyadic_data), LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data value → LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data (dyadic_data.RationalSystem.FieldModel.signature.neg value) ∧ ∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Rational dyadic_data), LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data first → LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data second → LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data (dyadic_data.RationalSystem.FieldModel.signature.multiply first second)))))
+Transliterated theorem: IsDyadicRational dyadic_data dyadic_data.RationalSystem.FieldModel.signature.zero ∧ IsDyadicRational dyadic_data dyadic_data.RationalSystem.FieldModel.signature.one ∧ ∀ first second ∈ Rational dyadic_data, IsDyadicRational dyadic_data first → IsDyadicRational dyadic_data second → IsDyadicRational dyadic_data (dyadic_data.RationalSystem.FieldModel.signature.add first second) ∧ ∀ value ∈ Rational dyadic_data, IsDyadicRational dyadic_data value → IsDyadicRational dyadic_data (dyadic_data.RationalSystem.FieldModel.signature.neg value) ∧ ∀ first second ∈ Rational dyadic_data, IsDyadicRational dyadic_data first → IsDyadicRational dyadic_data second → IsDyadicRational dyadic_data (dyadic_data.RationalSystem.FieldModel.signature.multiply first second)
+Logical form (Lean): : IsDyadicRational dyadic_data dyadic_data.RationalSystem.FieldModel.signature.zero ∧ IsDyadicRational dyadic_data dyadic_data.RationalSystem.FieldModel.signature.one ∧ (∀ first second : Rational dyadic_data, IsDyadicRational dyadic_data first → IsDyadicRational dyadic_data second → IsDyadicRational dyadic_data (dyadic_data.RationalSystem.FieldModel.signature.add first second)) ∧ (∀ value : Rational dyadic_data, IsDyadicRational dyadic_data value → IsDyadicRational dyadic_data (dyadic_data.RationalSystem.FieldModel.signature.neg value)) ∧ (∀ first second : Rational dyadic_data, IsDyadicRational dyadic_data first → IsDyadicRational dyadic_data second → IsDyadicRational dyadic_data (dyadic_data.RationalSystem.FieldModel.signature.multiply first second))
+Source: ./RealNumbers/Constructions/Dyadic/Equivalence.lean#L54
+
+
+
+Name: dyadic_rationals_are_dense
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (first second : Rational dyadic_data) (first_lt_second : dyadic_data.RationalSystem.FieldModel.signature.StrictOrder first second), ∃ dyadic : Rational dyadic_data, IsDyadicRational dyadic_data dyadic ∧ dyadic_data.RationalSystem.FieldModel.signature.StrictOrder first dyadic ∧ dyadic_data.RationalSystem.FieldModel.signature.StrictOrder dyadic second
+Predicate logic (unfolded): ∀ (dyadic_data : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (first second : LRA.NumberSystems.RealNumbers.Dyadic.Rational dyadic_data), dyadic_data.RationalSystem.FieldModel.signature.StrictOrder first second → Exists fun dyadic => (LRA.NumberSystems.RealNumbers.Dyadic.IsDyadicRational dyadic_data dyadic ∧ (dyadic_data.RationalSystem.FieldModel.signature.StrictOrder first dyadic ∧ dyadic_data.RationalSystem.FieldModel.signature.StrictOrder dyadic second))
+Transliterated theorem: ∃ dyadic ∈ Rational dyadic_data, IsDyadicRational dyadic_data dyadic ∧ dyadic_data.RationalSystem.FieldModel.signature.StrictOrder first dyadic ∧ dyadic_data.RationalSystem.FieldModel.signature.StrictOrder dyadic second
+Logical form (Lean): (first second : Rational dyadic_data) (first_lt_second : dyadic_data.RationalSystem.FieldModel.signature.StrictOrder first second) : ∃ dyadic : Rational dyadic_data, IsDyadicRational dyadic_data dyadic ∧ dyadic_data.RationalSystem.FieldModel.signature.StrictOrder first dyadic ∧ dyadic_data.RationalSystem.FieldModel.signature.StrictOrder dyadic second
+Source: ./RealNumbers/Constructions/Dyadic/Equivalence.lean#L93
+
+
+
+Name: FractionalPartialSumsAreCauchy
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData)   (digits : LRA.NumberSystems.RealNumbers.Dyadic.FractionalDigits),   LRA.NumberSystems.RealNumbers.Cauchy.is_cauchy dyadicData.RationalSystem dyadicData.AbsoluteValueData     (LRA.NumberSystems.RealNumbers.Dyadic.FractionalPartialSum dyadicData digits)
+Predicate logic (unfolded): ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (digits : LRA.NumberSystems.RealNumbers.Dyadic.FractionalDigits), LRA.NumberSystems.RealNumbers.Cauchy.is_cauchy dyadicData.RationalSystem dyadicData.AbsoluteValueData (LRA.NumberSystems.RealNumbers.Dyadic.FractionalPartialSum dyadicData digits)
+Transliterated theorem: (∀ digits ∈ FractionalDigits), Cauchy.is_cauchy dyadicData.RationalSystem dyadicData.AbsoluteValueData (FractionalPartialSum dyadicData digits)
+Logical form (Lean): (digits : FractionalDigits) : Cauchy.is_cauchy dyadicData.RationalSystem dyadicData.AbsoluteValueData (FractionalPartialSum dyadicData digits)
+Source: ./RealNumbers/Constructions/Dyadic/WellDefinedness.lean#L12
+
+
+
+Name: RepresentationExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (realValue : CauchyCarrier dyadicData), ∃ expansion : Expansion, Value dyadicData expansion = realValue
+Predicate logic (unfolded): ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (realValue : LRA.NumberSystems.RealNumbers.Dyadic.CauchyCarrier dyadicData), Exists fun expansion => LRA.NumberSystems.RealNumbers.Dyadic.Value dyadicData expansion = realValue
+Transliterated theorem: ∃ expansion ∈ Expansion, Value dyadicData expansion = realValue
+Logical form (Lean): (realValue : CauchyCarrier dyadicData) : ∃ expansion : Expansion, Value dyadicData expansion = realValue
+Source: ./RealNumbers/Constructions/Dyadic/WellDefinedness.lean#L51
+
+
+
+Name: ValueIsInjective
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ first second : Expansion, Value dyadicData first = Value dyadicData second → first = second
+Predicate logic (unfolded): ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), LRA.NumberSystems.RealNumbers.Dyadic.Value dyadicData first = LRA.NumberSystems.RealNumbers.Dyadic.Value dyadicData second → first = second
+Transliterated theorem: ∀ first second : Expansion, Value dyadicData first = Value dyadicData second → first = second
+Logical form (Lean): : ∀ first second : Expansion, Value dyadicData first = Value dyadicData second → first = second
+Source: ./RealNumbers/Constructions/Dyadic/WellDefinedness.lean#L58
+
+
+
+Name: ValueIsBijective
+Kind: Theorem
+State: Sorry
+Predicate logic: (∀ realValue : CauchyCarrier dyadicData, ∃ expansion : Expansion, Value dyadicData expansion = realValue) ∧ (∀ first second : Expansion, Value dyadicData first = Value dyadicData second → first = second)
+Predicate logic (unfolded): ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), (∀ (realValue : LRA.NumberSystems.RealNumbers.Dyadic.CauchyCarrier dyadicData), Exists fun expansion => LRA.NumberSystems.RealNumbers.Dyadic.Value dyadicData expansion = realValue ∧ ∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), LRA.NumberSystems.RealNumbers.Dyadic.Value dyadicData first = LRA.NumberSystems.RealNumbers.Dyadic.Value dyadicData second → first = second)
+Transliterated theorem: ∀ realValue ∈ CauchyCarrier dyadicData, ∃ expansion ∈ Expansion, Value dyadicData expansion = realValue ∧ ∀ first second ∈ Expansion, Value dyadicData first = Value dyadicData second → first = second
+Logical form (Lean): : (∀ realValue : CauchyCarrier dyadicData, ∃ expansion : Expansion, Value dyadicData expansion = realValue) ∧ (∀ first second : Expansion, Value dyadicData first = Value dyadicData second → first = second)
+Source: ./RealNumbers/Constructions/Dyadic/WellDefinedness.lean#L64
+
+
+
+Name: BinaryRealBijectionExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∃ bridge : Bijection Expansion (CauchyCarrier dyadicData), ∀ expansion : Expansion, bridge.Forward expansion = Value dyadicData expansion
+Predicate logic (unfolded): ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), Exists fun bridge => ∀ (expansion : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), bridge.Forward expansion = LRA.NumberSystems.RealNumbers.Dyadic.Value dyadicData expansion
+Transliterated theorem: ∃ bridge ∈ Bijection Expansion (CauchyCarrier dyadicData), ∀ expansion : Expansion, bridge.Forward expansion = Value dyadicData expansion
+Logical form (Lean): : ∃ bridge : Bijection Expansion (CauchyCarrier dyadicData), ∀ expansion : Expansion, bridge.Forward expansion = Value dyadicData expansion
+Source: ./RealNumbers/Constructions/Dyadic/WellDefinedness.lean#L81
+
+
+
+Name: OrderedFieldIsomorphismHolds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData),   LRA.NumberSystems.RealNumbers.Dyadic.OrderedFieldIsomorphism dyadicData
+Predicate logic (unfolded): ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), LRA.NumberSystems.RealNumbers.Dyadic.OrderedFieldIsomorphism dyadicData
+Transliterated theorem: OrderedFieldIsomorphism dyadicData
+Logical form (Lean): : OrderedFieldIsomorphism dyadicData
+Source: ./RealNumbers/Constructions/Dyadic/Laws.lean#L87
+
+
+
+Name: BinaryTailAmbiguity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (digits : FractionalDigits) (eventuallyOne : ∃ threshold, ∀ index, threshold ≤ index → digits index = Digit.one), ∃ terminating : CanonicalFraction, FractionalValue dyadicData terminating = Quotient.mk _ ⟨FractionalPartialSum dyadicData digits, FractionalPartialSumsAreCauchy dyadicData digits⟩ ∧ ∀ other : CanonicalFraction, FractionalValue dyadicData other = Quotient.mk _ ⟨FractionalPartialSum dyadicData digits, FractionalPartialSumsAreCauchy dyadicData digits⟩ → other = terminating
+Predicate logic (unfolded): ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (digits : LRA.NumberSystems.RealNumbers.Dyadic.FractionalDigits), (Exists fun threshold => ∀ (index : Nat), instLENat.le threshold index → digits index = LRA.NumberSystems.RealNumbers.Dyadic.Digit.one) → Exists fun terminating => (LRA.NumberSystems.RealNumbers.Dyadic.FractionalValue dyadicData terminating = Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid dyadicData.RationalSystem dyadicData.AbsoluteValueData) { sequence := LRA.NumberSystems.RealNumbers.Dyadic.FractionalPartialSum dyadicData digits, sequence_is_cauchy := ⋯ } ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Dyadic.CanonicalFraction), LRA.NumberSystems.RealNumbers.Dyadic.FractionalValue dyadicData other = Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid dyadicData.RationalSystem dyadicData.AbsoluteValueData) { sequence := LRA.NumberSystems.RealNumbers.Dyadic.FractionalPartialSum dyadicData digits, sequence_is_cauchy := ⋯ } → other = terminating)
+Transliterated theorem: (∀ digits ∈ FractionalDigits), (∃ threshold, ∀ index, threshold ≤ index → digits index = Digit.one) → ∃ terminating ∈ CanonicalFraction, FractionalValue dyadicData terminating = Quotient.mk _ ⟨FractionalPartialSum dyadicData digits, FractionalPartialSumsAreCauchy dyadicData digits⟩ ∧ ∀ other : CanonicalFraction, FractionalValue dyadicData other = Quotient.mk _ ⟨FractionalPartialSum dyadicData digits, FractionalPartialSumsAreCauchy dyadicData digits⟩ → other = terminating
+Logical form (Lean): (digits : FractionalDigits) (eventuallyOne : ∃ threshold, ∀ index, threshold ≤ index → digits index = Digit.one) : ∃ terminating : CanonicalFraction, FractionalValue dyadicData terminating = Quotient.mk _ ⟨FractionalPartialSum dyadicData digits, FractionalPartialSumsAreCauchy dyadicData digits⟩ ∧ ∀ other : CanonicalFraction, FractionalValue dyadicData other = Quotient.mk _ ⟨FractionalPartialSum dyadicData digits, FractionalPartialSumsAreCauchy dyadicData digits⟩ → other = terminating
+Source: ./RealNumbers/Constructions/Dyadic/Behavior.lean#L12
+
+
+
+Name: CanonicalFractionalUniqueness
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (first second : CanonicalFraction), FractionalValue dyadicData first = FractionalValue dyadicData second ↔ first = second
+Predicate logic (unfolded): ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (first second : LRA.NumberSystems.RealNumbers.Dyadic.CanonicalFraction), LRA.NumberSystems.RealNumbers.Dyadic.FractionalValue dyadicData first = LRA.NumberSystems.RealNumbers.Dyadic.FractionalValue dyadicData second ↔ first = second
+Transliterated theorem: (∀ first second ∈ CanonicalFraction), FractionalValue dyadicData first = FractionalValue dyadicData second ↔ first = second
+Logical form (Lean): (first second : CanonicalFraction) : FractionalValue dyadicData first = FractionalValue dyadicData second ↔ first = second
+Source: ./RealNumbers/Constructions/Dyadic/Behavior.lean#L32
+
+
+
+Name: DyadicRealizesRationalRealExtension
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (dyadicData : RationalDyadicApproximationData), ∃ realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension dyadicData.RationalSystem, realExtension.RealModel.Carrier = Expansion
+Predicate logic (unfolded): ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), Exists fun realExtension => realExtension.RealModel.Carrier = LRA.NumberSystems.RealNumbers.Dyadic.Expansion
+Transliterated theorem: (∀ dyadicData ∈ RationalDyadicApproximationData), ∃ realExtension ∈ LRA.NumberSystems.RealNumbers.RationalRealExtension dyadicData.RationalSystem, realExtension.RealModel.Carrier = Expansion
+Logical form (Lean): (dyadicData : RationalDyadicApproximationData) : ∃ realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension dyadicData.RationalSystem, realExtension.RealModel.Carrier = Expansion
+Source: ./RealNumbers/Constructions/Dyadic/Instances.lean#L30
+
+
+
+Name: PersistentOverlapIffEndpointDifferenceIsNull
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (absoluteValueData : Cauchy.RationalMetricData rationalSystem) (first second : Representative rationalSystem.FieldModel), equivalent rationalSystem.FieldModel first second ↔ Cauchy.is_null rationalSystem absoluteValueData (fun index => rationalSystem.FieldModel.signature.Subtraction (first.interval index).left_endpoint (second.interval index).left_endpoint)
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absoluteValueData : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (first second : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Representative rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.PrimitiveIntervals.equivalent rationalSystem.FieldModel first second ↔ LRA.NumberSystems.RealNumbers.Cauchy.is_null rationalSystem absoluteValueData fun index => rationalSystem.FieldModel.signature.Subtraction (first.interval index).left_endpoint (second.interval index).left_endpoint
+Transliterated theorem: equivalent rationalSystem.FieldModel first second ↔ Cauchy.is_null rationalSystem absoluteValueData (fun index => rationalSystem.FieldModel.signature.Subtraction (first.interval index).left_endpoint (second.interval index).left_endpoint)
+Logical form (Lean): (absoluteValueData : Cauchy.RationalMetricData rationalSystem) (first second : Representative rationalSystem.FieldModel) : equivalent rationalSystem.FieldModel first second ↔ Cauchy.is_null rationalSystem absoluteValueData (fun index => rationalSystem.FieldModel.signature.Subtraction (first.interval index).left_endpoint (second.interval index).left_endpoint)
+Source: ./RealNumbers/Constructions/PrimitiveIntervals/Behavior.lean#L36
+
+
+
+Name: PrimitiveIntervalsRealizesRationalRealExtension
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (rationalSystem : RationalNumberSystem), ∃ realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem, realExtension.RealModel.Carrier = Carrier rationalSystem.FieldModel
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), Exists fun realExtension => realExtension.RealModel.Carrier = LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Carrier rationalSystem.FieldModel
+Transliterated theorem: (∀ rationalSystem ∈ RationalNumberSystem), ∃ realExtension ∈ LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem, realExtension.RealModel.Carrier = Carrier rationalSystem.FieldModel
+Logical form (Lean): (rationalSystem : RationalNumberSystem) : ∃ realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem, realExtension.RealModel.Carrier = Carrier rationalSystem.FieldModel
+Source: ./RealNumbers/Constructions/PrimitiveIntervals/Instances.lean#L32
 
 
 
@@ -4854,11 +5547,11 @@ Source: ./RealNumbers/Extensions.lean#L138
 Name: complete_archimedean_ordered_field_unique
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (first : LRA.NumberSystems.Models.RealModel) (second : LRA.NumberSystems.Models.RealModel),   Exists fun comparison =>     LRA.NumberSystems.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField first.signature second.signature       comparison
-Predicate logic (unfolded): ∀ (first : LRA.NumberSystems.Models.RealModel) (second : LRA.NumberSystems.Models.RealModel), Exists fun comparison => LRA.NumberSystems.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField first.signature second.signature comparison
-Transliterated theorem: (∀ first second ∈ RealModel), ∃ comparison ∈ first.signature.carrier → second.signature.carrier, LRA.NumberSystems.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField first.signature second.signature comparison
-Logical form (Lean): (first second : RealModel) : ∃ comparison : first.signature.carrier → second.signature.carrier, LRA.NumberSystems.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField first.signature second.signature comparison
-Source: ./RealNumbers/Extensions.lean#L168
+Predicate logic: ∀ (first second : RealModel), ∃! comparison : first.signature.carrier → second.signature.carrier, LRA.NumberSystems.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField first.signature second.signature comparison ∧ LRA.Function.Surjective comparison
+Predicate logic (unfolded): ∀ (first : LRA.NumberSystems.Models.RealModel) (second : LRA.NumberSystems.Models.RealModel), ExistsUnique fun comparison => (LRA.NumberSystems.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField first.signature second.signature comparison ∧ LRA.Function.Surjective comparison)
+Transliterated theorem: (∀ first second ∈ RealModel), ∃! comparison : first.signature.carrier → second.signature.carrier, LRA.NumberSystems.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField first.signature second.signature comparison ∧ LRA.Function.Surjective comparison
+Logical form (Lean): (first second : RealModel) : ∃! comparison : first.signature.carrier → second.signature.carrier, LRA.NumberSystems.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField first.signature second.signature comparison ∧ LRA.Function.Surjective comparison
+Source: ./RealNumbers/Extensions.lean#L169
 
 
 
@@ -4920,286 +5613,275 @@ Source: ./RealNumbers/IntervalArithmetic.lean#L242
 Name: embedded_rational_is_rational
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel)   (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model)   (value : LRA.NumberSystems.RealNumbers.Irrationals.RationalCarrier rational_model),   LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension     (LRA.NumberSystems.RealNumbers.Irrationals.embedRational rational_model real_extension value)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) (value : LRA.NumberSystems.RealNumbers.Irrationals.RationalCarrier rational_model), LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension (LRA.NumberSystems.RealNumbers.Irrationals.embedRational rational_model real_extension value)
-Transliterated theorem: IsRational rational_model real_extension (embedRational rational_model real_extension value)
-Logical form (Lean): (value : RationalCarrier rational_model) : IsRational rational_model real_extension (embedRational rational_model real_extension value)
-Source: ./RealNumbers/Irrationals.lean#L147
+Predicate logic: ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)   (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system)   (value : LRA.NumberSystems.RealNumbers.Irrationals.RationalCarrier rational_system),   LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension     (LRA.NumberSystems.RealNumbers.Irrationals.embedRational rational_system real_extension value)
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) (value : LRA.NumberSystems.RealNumbers.Irrationals.RationalCarrier rational_system), LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (LRA.NumberSystems.RealNumbers.Irrationals.embedRational rational_system real_extension value)
+Transliterated theorem: IsRational rational_system real_extension (embedRational rational_system real_extension value)
+Logical form (Lean): (value : RationalCarrier rational_system) : IsRational rational_system real_extension (embedRational rational_system real_extension value)
+Source: ./RealNumbers/Irrationals.lean#L164
 
 
 
 Name: zero_is_rational
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel)   (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model),   LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension     real_extension.RealModel.signature.zero
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model), LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension real_extension.RealModel.signature.zero
-Transliterated theorem: IsRational rational_model real_extension real_extension.RealModel.signature.zero
-Logical form (Lean): : IsRational rational_model real_extension real_extension.RealModel.signature.zero
-Source: ./RealNumbers/Irrationals.lean#L168
+Predicate logic: ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)   (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system),   LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension     real_extension.RealModel.signature.zero
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system), LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension real_extension.RealModel.signature.zero
+Transliterated theorem: IsRational rational_system real_extension real_extension.RealModel.signature.zero
+Logical form (Lean): : IsRational rational_system real_extension real_extension.RealModel.signature.zero
+Source: ./RealNumbers/Irrationals.lean#L185
 
 
 
 Name: one_is_rational
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel)   (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model),   LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension     real_extension.RealModel.signature.one
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model), LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension real_extension.RealModel.signature.one
-Transliterated theorem: IsRational rational_model real_extension real_extension.RealModel.signature.one
-Logical form (Lean): : IsRational rational_model real_extension real_extension.RealModel.signature.one
-Source: ./RealNumbers/Irrationals.lean#L188
+Predicate logic: ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)   (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system),   LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension     real_extension.RealModel.signature.one
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system), LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension real_extension.RealModel.signature.one
+Transliterated theorem: IsRational rational_system real_extension real_extension.RealModel.signature.one
+Logical form (Lean): : IsRational rational_system real_extension real_extension.RealModel.signature.one
+Source: ./RealNumbers/Irrationals.lean#L205
 
 
 
 Name: rational_addition_is_rational
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {first second : RealCarrier rational_model real_extension} (first_is_rational : IsRational rational_model real_extension first) (second_is_rational : IsRational rational_model real_extension second), IsRational rational_model real_extension (real_extension.RealModel.signature.add first second)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) {first second : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension first ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension second) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension (real_extension.RealModel.signature.add first second)
-Transliterated theorem: (IsRational rational_model real_extension first ∧ IsRational rational_model real_extension second) → IsRational rational_model real_extension (real_extension.RealModel.signature.add first second)
-Logical form (Lean): {first second : RealCarrier rational_model real_extension} (first_is_rational : IsRational rational_model real_extension first) (second_is_rational : IsRational rational_model real_extension second) : IsRational rational_model real_extension (real_extension.RealModel.signature.add first second)
-Source: ./RealNumbers/Irrationals.lean#L211
+Predicate logic: ∀ {first second : RealCarrier rational_system real_extension} (first_is_rational : IsRational rational_system real_extension first) (second_is_rational : IsRational rational_system real_extension second), IsRational rational_system real_extension (real_extension.RealModel.signature.add first second)
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {first second : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension first ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension second) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.add first second)
+Transliterated theorem: (IsRational rational_system real_extension first ∧ IsRational rational_system real_extension second) → IsRational rational_system real_extension (real_extension.RealModel.signature.add first second)
+Logical form (Lean): {first second : RealCarrier rational_system real_extension} (first_is_rational : IsRational rational_system real_extension first) (second_is_rational : IsRational rational_system real_extension second) : IsRational rational_system real_extension (real_extension.RealModel.signature.add first second)
+Source: ./RealNumbers/Irrationals.lean#L262
 
 
 
 Name: rational_negation_is_rational
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel)   (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model)   {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension},   LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension value →     LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension       (real_extension.RealModel.signature.neg value)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension value → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension (real_extension.RealModel.signature.neg value)
-Transliterated theorem: (IsRational rational_model real_extension value) → IsRational rational_model real_extension (real_extension.RealModel.signature.neg value)
-Logical form (Lean): {value : RealCarrier rational_model real_extension} (value_is_rational : IsRational rational_model real_extension value) : IsRational rational_model real_extension (real_extension.RealModel.signature.neg value)
-Source: ./RealNumbers/Irrationals.lean#L236
+Predicate logic: ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)   (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system)   {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension},   LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension value →     LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension       (real_extension.RealModel.signature.neg value)
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension value → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.neg value)
+Transliterated theorem: (IsRational rational_system real_extension value) → IsRational rational_system real_extension (real_extension.RealModel.signature.neg value)
+Logical form (Lean): {value : RealCarrier rational_system real_extension} (value_is_rational : IsRational rational_system real_extension value) : IsRational rational_system real_extension (real_extension.RealModel.signature.neg value)
+Source: ./RealNumbers/Irrationals.lean#L287
 
 
 
 Name: rational_subtraction_is_rational
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {first second : RealCarrier rational_model real_extension} (first_is_rational : IsRational rational_model real_extension first) (second_is_rational : IsRational rational_model real_extension second), IsRational rational_model real_extension (real_extension.RealModel.signature.Subtraction first second)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) {first second : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension first ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension second) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension (real_extension.RealModel.signature.Subtraction first second)
-Transliterated theorem: (IsRational rational_model real_extension first ∧ IsRational rational_model real_extension second) → IsRational rational_model real_extension (real_extension.RealModel.signature.Subtraction first second)
-Logical form (Lean): {first second : RealCarrier rational_model real_extension} (first_is_rational : IsRational rational_model real_extension first) (second_is_rational : IsRational rational_model real_extension second) : IsRational rational_model real_extension (real_extension.RealModel.signature.Subtraction first second)
-Source: ./RealNumbers/Irrationals.lean#L261
+Predicate logic: ∀ {first second : RealCarrier rational_system real_extension} (first_is_rational : IsRational rational_system real_extension first) (second_is_rational : IsRational rational_system real_extension second), IsRational rational_system real_extension (real_extension.RealModel.signature.Subtraction first second)
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {first second : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension first ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension second) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.Subtraction first second)
+Transliterated theorem: (IsRational rational_system real_extension first ∧ IsRational rational_system real_extension second) → IsRational rational_system real_extension (real_extension.RealModel.signature.Subtraction first second)
+Logical form (Lean): {first second : RealCarrier rational_system real_extension} (first_is_rational : IsRational rational_system real_extension first) (second_is_rational : IsRational rational_system real_extension second) : IsRational rational_system real_extension (real_extension.RealModel.signature.Subtraction first second)
+Source: ./RealNumbers/Irrationals.lean#L312
 
 
 
 Name: rational_multiplication_is_rational
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {first second : RealCarrier rational_model real_extension} (first_is_rational : IsRational rational_model real_extension first) (second_is_rational : IsRational rational_model real_extension second), IsRational rational_model real_extension (real_extension.RealModel.signature.multiply first second)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) {first second : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension first ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension second) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension (real_extension.RealModel.signature.multiply first second)
-Transliterated theorem: (IsRational rational_model real_extension first ∧ IsRational rational_model real_extension second) → IsRational rational_model real_extension (real_extension.RealModel.signature.multiply first second)
-Logical form (Lean): {first second : RealCarrier rational_model real_extension} (first_is_rational : IsRational rational_model real_extension first) (second_is_rational : IsRational rational_model real_extension second) : IsRational rational_model real_extension (real_extension.RealModel.signature.multiply first second)
-Source: ./RealNumbers/Irrationals.lean#L287
+Predicate logic: ∀ {first second : RealCarrier rational_system real_extension} (first_is_rational : IsRational rational_system real_extension first) (second_is_rational : IsRational rational_system real_extension second), IsRational rational_system real_extension (real_extension.RealModel.signature.multiply first second)
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {first second : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension first ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension second) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.multiply first second)
+Transliterated theorem: (IsRational rational_system real_extension first ∧ IsRational rational_system real_extension second) → IsRational rational_system real_extension (real_extension.RealModel.signature.multiply first second)
+Logical form (Lean): {first second : RealCarrier rational_system real_extension} (first_is_rational : IsRational rational_system real_extension first) (second_is_rational : IsRational rational_system real_extension second) : IsRational rational_system real_extension (real_extension.RealModel.signature.multiply first second)
+Source: ./RealNumbers/Irrationals.lean#L338
 
 
 
 Name: rational_inverse_is_rational
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {value : RealCarrier rational_model real_extension} (value_is_rational : IsRational rational_model real_extension value) (value_is_nonzero : value ≠ real_extension.RealModel.signature.zero), IsRational rational_model real_extension (real_extension.RealModel.signature.inv value)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension value ∧ Ne value real_extension.RealModel.signature.zero) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension (real_extension.RealModel.signature.inv value)
-Transliterated theorem: (IsRational rational_model real_extension value) → IsRational rational_model real_extension (real_extension.RealModel.signature.inv value)
-Logical form (Lean): {value : RealCarrier rational_model real_extension} (value_is_rational : IsRational rational_model real_extension value) (value_is_nonzero : value ≠ real_extension.RealModel.signature.zero) : IsRational rational_model real_extension (real_extension.RealModel.signature.inv value)
-Source: ./RealNumbers/Irrationals.lean#L313
+Predicate logic: ∀ {value : RealCarrier rational_system real_extension} (value_is_rational : IsRational rational_system real_extension value) (value_is_nonzero : value ≠ real_extension.RealModel.signature.zero), IsRational rational_system real_extension (real_extension.RealModel.signature.inv value)
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension value ∧ Ne value real_extension.RealModel.signature.zero) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.inv value)
+Transliterated theorem: (IsRational rational_system real_extension value) → IsRational rational_system real_extension (real_extension.RealModel.signature.inv value)
+Logical form (Lean): {value : RealCarrier rational_system real_extension} (value_is_rational : IsRational rational_system real_extension value) (value_is_nonzero : value ≠ real_extension.RealModel.signature.zero) : IsRational rational_system real_extension (real_extension.RealModel.signature.inv value)
+Source: ./RealNumbers/Irrationals.lean#L364
 
 
 
 Name: rational_division_is_rational
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {numerator denominator : RealCarrier rational_model real_extension} (numerator_is_rational : IsRational rational_model real_extension numerator) (denominator_is_rational : IsRational rational_model real_extension denominator) (denominator_is_nonzero : denominator ≠ real_extension.RealModel.signature.zero), IsRational rational_model real_extension (real_extension.RealModel.signature.multiply numerator (real_extension.RealModel.signature.inv denominator))
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) {numerator denominator : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension numerator ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension denominator ∧ Ne denominator real_extension.RealModel.signature.zero)) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension (real_extension.RealModel.signature.multiply numerator (real_extension.RealModel.signature.inv denominator))
-Transliterated theorem: (IsRational rational_model real_extension numerator ∧ IsRational rational_model real_extension denominator) → IsRational rational_model real_extension (real_extension.RealModel.signature.multiply numerator (real_extension.RealModel.signature.inv denominator))
-Logical form (Lean): {numerator denominator : RealCarrier rational_model real_extension} (numerator_is_rational : IsRational rational_model real_extension numerator) (denominator_is_rational : IsRational rational_model real_extension denominator) (denominator_is_nonzero : denominator ≠ real_extension.RealModel.signature.zero) : IsRational rational_model real_extension (real_extension.RealModel.signature.multiply numerator (real_extension.RealModel.signature.inv denominator))
-Source: ./RealNumbers/Irrationals.lean#L342
+Predicate logic: ∀ {numerator denominator : RealCarrier rational_system real_extension} (numerator_is_rational : IsRational rational_system real_extension numerator) (denominator_is_rational : IsRational rational_system real_extension denominator) (denominator_is_nonzero : denominator ≠ real_extension.RealModel.signature.zero), IsRational rational_system real_extension (real_extension.RealModel.signature.multiply numerator (real_extension.RealModel.signature.inv denominator))
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {numerator denominator : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension numerator ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension denominator ∧ Ne denominator real_extension.RealModel.signature.zero)) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.multiply numerator (real_extension.RealModel.signature.inv denominator))
+Transliterated theorem: (IsRational rational_system real_extension numerator ∧ IsRational rational_system real_extension denominator) → IsRational rational_system real_extension (real_extension.RealModel.signature.multiply numerator (real_extension.RealModel.signature.inv denominator))
+Logical form (Lean): {numerator denominator : RealCarrier rational_system real_extension} (numerator_is_rational : IsRational rational_system real_extension numerator) (denominator_is_rational : IsRational rational_system real_extension denominator) (denominator_is_nonzero : denominator ≠ real_extension.RealModel.signature.zero) : IsRational rational_system real_extension (real_extension.RealModel.signature.multiply numerator (real_extension.RealModel.signature.inv denominator))
+Source: ./RealNumbers/Irrationals.lean#L393
 
 
 
 Name: negation_is_irrational
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel)   (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model)   {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension},   LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension value →     LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension       (real_extension.RealModel.signature.neg value)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension value → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension (real_extension.RealModel.signature.neg value)
-Transliterated theorem: (IsIrrational rational_model real_extension value) → IsIrrational rational_model real_extension (real_extension.RealModel.signature.neg value)
-Logical form (Lean): {value : RealCarrier rational_model real_extension} (value_is_irrational : IsIrrational rational_model real_extension value) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.neg value)
-Source: ./RealNumbers/Irrationals.lean#L370
+Predicate logic: ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)   (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system)   {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension},   LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension value →     LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension       (real_extension.RealModel.signature.neg value)
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension value → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension (real_extension.RealModel.signature.neg value)
+Transliterated theorem: (IsIrrational rational_system real_extension value) → IsIrrational rational_system real_extension (real_extension.RealModel.signature.neg value)
+Logical form (Lean): {value : RealCarrier rational_system real_extension} (value_is_irrational : IsIrrational rational_system real_extension value) : IsIrrational rational_system real_extension (real_extension.RealModel.signature.neg value)
+Source: ./RealNumbers/Irrationals.lean#L421
 
 
 
 Name: rational_add_irrational_is_irrational
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {rational_value irrational_value : RealCarrier rational_model real_extension} (rational_is_rational : IsRational rational_model real_extension rational_value) (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value), IsIrrational rational_model real_extension (real_extension.RealModel.signature.add rational_value irrational_value)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) {rational_value irrational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension rational_value ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension irrational_value) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension (real_extension.RealModel.signature.add rational_value irrational_value)
-Transliterated theorem: (IsRational rational_model real_extension rational_value ∧ IsIrrational rational_model real_extension irrational_value) → IsIrrational rational_model real_extension (real_extension.RealModel.signature.add rational_value irrational_value)
-Logical form (Lean): {rational_value irrational_value : RealCarrier rational_model real_extension} (rational_is_rational : IsRational rational_model real_extension rational_value) (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.add rational_value irrational_value)
-Source: ./RealNumbers/Irrationals.lean#L395
+Predicate logic: ∀ {rational_value irrational_value : RealCarrier rational_system real_extension} (rational_is_rational : IsRational rational_system real_extension rational_value) (irrational_is_irrational : IsIrrational rational_system real_extension irrational_value), IsIrrational rational_system real_extension (real_extension.RealModel.signature.add rational_value irrational_value)
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {rational_value irrational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension rational_value ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension irrational_value) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension (real_extension.RealModel.signature.add rational_value irrational_value)
+Transliterated theorem: (IsRational rational_system real_extension rational_value ∧ IsIrrational rational_system real_extension irrational_value) → IsIrrational rational_system real_extension (real_extension.RealModel.signature.add rational_value irrational_value)
+Logical form (Lean): {rational_value irrational_value : RealCarrier rational_system real_extension} (rational_is_rational : IsRational rational_system real_extension rational_value) (irrational_is_irrational : IsIrrational rational_system real_extension irrational_value) : IsIrrational rational_system real_extension (real_extension.RealModel.signature.add rational_value irrational_value)
+Source: ./RealNumbers/Irrationals.lean#L446
 
 
 
 Name: irrational_add_rational_is_irrational
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational rational_model real_extension rational_value), IsIrrational rational_model real_extension (real_extension.RealModel.signature.add irrational_value rational_value)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) {irrational_value rational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension irrational_value ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension rational_value) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension (real_extension.RealModel.signature.add irrational_value rational_value)
-Transliterated theorem: (IsIrrational rational_model real_extension irrational_value ∧ IsRational rational_model real_extension rational_value) → IsIrrational rational_model real_extension (real_extension.RealModel.signature.add irrational_value rational_value)
-Logical form (Lean): {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational rational_model real_extension rational_value) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.add irrational_value rational_value)
-Source: ./RealNumbers/Irrationals.lean#L421
+Predicate logic: ∀ {irrational_value rational_value : RealCarrier rational_system real_extension} (irrational_is_irrational : IsIrrational rational_system real_extension irrational_value) (rational_is_rational : IsRational rational_system real_extension rational_value), IsIrrational rational_system real_extension (real_extension.RealModel.signature.add irrational_value rational_value)
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {irrational_value rational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension irrational_value ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension rational_value) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension (real_extension.RealModel.signature.add irrational_value rational_value)
+Transliterated theorem: (IsIrrational rational_system real_extension irrational_value ∧ IsRational rational_system real_extension rational_value) → IsIrrational rational_system real_extension (real_extension.RealModel.signature.add irrational_value rational_value)
+Logical form (Lean): {irrational_value rational_value : RealCarrier rational_system real_extension} (irrational_is_irrational : IsIrrational rational_system real_extension irrational_value) (rational_is_rational : IsRational rational_system real_extension rational_value) : IsIrrational rational_system real_extension (real_extension.RealModel.signature.add irrational_value rational_value)
+Source: ./RealNumbers/Irrationals.lean#L472
 
 
 
 Name: rational_sub_irrational_is_irrational
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {rational_value irrational_value : RealCarrier rational_model real_extension} (rational_is_rational : IsRational rational_model real_extension rational_value) (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value), IsIrrational rational_model real_extension (real_extension.RealModel.signature.Subtraction rational_value irrational_value)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) {rational_value irrational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension rational_value ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension irrational_value) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension (real_extension.RealModel.signature.Subtraction rational_value irrational_value)
-Transliterated theorem: (IsRational rational_model real_extension rational_value ∧ IsIrrational rational_model real_extension irrational_value) → IsIrrational rational_model real_extension (real_extension.RealModel.signature.Subtraction rational_value irrational_value)
-Logical form (Lean): {rational_value irrational_value : RealCarrier rational_model real_extension} (rational_is_rational : IsRational rational_model real_extension rational_value) (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.Subtraction rational_value irrational_value)
-Source: ./RealNumbers/Irrationals.lean#L447
+Predicate logic: ∀ {rational_value irrational_value : RealCarrier rational_system real_extension} (rational_is_rational : IsRational rational_system real_extension rational_value) (irrational_is_irrational : IsIrrational rational_system real_extension irrational_value), IsIrrational rational_system real_extension (real_extension.RealModel.signature.Subtraction rational_value irrational_value)
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {rational_value irrational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension rational_value ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension irrational_value) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension (real_extension.RealModel.signature.Subtraction rational_value irrational_value)
+Transliterated theorem: (IsRational rational_system real_extension rational_value ∧ IsIrrational rational_system real_extension irrational_value) → IsIrrational rational_system real_extension (real_extension.RealModel.signature.Subtraction rational_value irrational_value)
+Logical form (Lean): {rational_value irrational_value : RealCarrier rational_system real_extension} (rational_is_rational : IsRational rational_system real_extension rational_value) (irrational_is_irrational : IsIrrational rational_system real_extension irrational_value) : IsIrrational rational_system real_extension (real_extension.RealModel.signature.Subtraction rational_value irrational_value)
+Source: ./RealNumbers/Irrationals.lean#L498
 
 
 
 Name: irrational_sub_rational_is_irrational
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational rational_model real_extension rational_value), IsIrrational rational_model real_extension (real_extension.RealModel.signature.Subtraction irrational_value rational_value)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) {irrational_value rational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension irrational_value ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension rational_value) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension (real_extension.RealModel.signature.Subtraction irrational_value rational_value)
-Transliterated theorem: (IsIrrational rational_model real_extension irrational_value ∧ IsRational rational_model real_extension rational_value) → IsIrrational rational_model real_extension (real_extension.RealModel.signature.Subtraction irrational_value rational_value)
-Logical form (Lean): {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational rational_model real_extension rational_value) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.Subtraction irrational_value rational_value)
-Source: ./RealNumbers/Irrationals.lean#L473
+Predicate logic: ∀ {irrational_value rational_value : RealCarrier rational_system real_extension} (irrational_is_irrational : IsIrrational rational_system real_extension irrational_value) (rational_is_rational : IsRational rational_system real_extension rational_value), IsIrrational rational_system real_extension (real_extension.RealModel.signature.Subtraction irrational_value rational_value)
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {irrational_value rational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension irrational_value ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension rational_value) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension (real_extension.RealModel.signature.Subtraction irrational_value rational_value)
+Transliterated theorem: (IsIrrational rational_system real_extension irrational_value ∧ IsRational rational_system real_extension rational_value) → IsIrrational rational_system real_extension (real_extension.RealModel.signature.Subtraction irrational_value rational_value)
+Logical form (Lean): {irrational_value rational_value : RealCarrier rational_system real_extension} (irrational_is_irrational : IsIrrational rational_system real_extension irrational_value) (rational_is_rational : IsRational rational_system real_extension rational_value) : IsIrrational rational_system real_extension (real_extension.RealModel.signature.Subtraction irrational_value rational_value)
+Source: ./RealNumbers/Irrationals.lean#L524
 
 
 
 Name: nonzero_rational_mul_irrational_is_irrational
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {rational_value irrational_value : RealCarrier rational_model real_extension} (rational_is_rational : IsRational rational_model real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value), IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply rational_value irrational_value)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) {rational_value irrational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension rational_value ∧ (Ne rational_value real_extension.RealModel.signature.zero ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension irrational_value)) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply rational_value irrational_value)
-Transliterated theorem: (IsRational rational_model real_extension rational_value ∧ IsIrrational rational_model real_extension irrational_value) → IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply rational_value irrational_value)
-Logical form (Lean): {rational_value irrational_value : RealCarrier rational_model real_extension} (rational_is_rational : IsRational rational_model real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply rational_value irrational_value)
-Source: ./RealNumbers/Irrationals.lean#L500
+Predicate logic: ∀ {rational_value irrational_value : RealCarrier rational_system real_extension} (rational_is_rational : IsRational rational_system real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) (irrational_is_irrational : IsIrrational rational_system real_extension irrational_value), IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply rational_value irrational_value)
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {rational_value irrational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension rational_value ∧ (Ne rational_value real_extension.RealModel.signature.zero ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension irrational_value)) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply rational_value irrational_value)
+Transliterated theorem: (IsRational rational_system real_extension rational_value ∧ IsIrrational rational_system real_extension irrational_value) → IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply rational_value irrational_value)
+Logical form (Lean): {rational_value irrational_value : RealCarrier rational_system real_extension} (rational_is_rational : IsRational rational_system real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) (irrational_is_irrational : IsIrrational rational_system real_extension irrational_value) : IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply rational_value irrational_value)
+Source: ./RealNumbers/Irrationals.lean#L551
 
 
 
 Name: irrational_mul_nonzero_rational_is_irrational
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational rational_model real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero), IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply irrational_value rational_value)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) {irrational_value rational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension irrational_value ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension rational_value ∧ Ne rational_value real_extension.RealModel.signature.zero)) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply irrational_value rational_value)
-Transliterated theorem: (IsIrrational rational_model real_extension irrational_value ∧ IsRational rational_model real_extension rational_value) → IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply irrational_value rational_value)
-Logical form (Lean): {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational rational_model real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply irrational_value rational_value)
-Source: ./RealNumbers/Irrationals.lean#L528
+Predicate logic: ∀ {irrational_value rational_value : RealCarrier rational_system real_extension} (irrational_is_irrational : IsIrrational rational_system real_extension irrational_value) (rational_is_rational : IsRational rational_system real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero), IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply irrational_value rational_value)
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {irrational_value rational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension irrational_value ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension rational_value ∧ Ne rational_value real_extension.RealModel.signature.zero)) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply irrational_value rational_value)
+Transliterated theorem: (IsIrrational rational_system real_extension irrational_value ∧ IsRational rational_system real_extension rational_value) → IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply irrational_value rational_value)
+Logical form (Lean): {irrational_value rational_value : RealCarrier rational_system real_extension} (irrational_is_irrational : IsIrrational rational_system real_extension irrational_value) (rational_is_rational : IsRational rational_system real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) : IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply irrational_value rational_value)
+Source: ./RealNumbers/Irrationals.lean#L579
 
 
 
 Name: irrational_div_nonzero_rational_is_irrational
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational rational_model real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero), IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply irrational_value (real_extension.RealModel.signature.inv rational_value))
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) {irrational_value rational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension irrational_value ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension rational_value ∧ Ne rational_value real_extension.RealModel.signature.zero)) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply irrational_value (real_extension.RealModel.signature.inv rational_value))
-Transliterated theorem: (IsIrrational rational_model real_extension irrational_value ∧ IsRational rational_model real_extension rational_value) → IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply irrational_value (real_extension.RealModel.signature.inv rational_value))
-Logical form (Lean): {irrational_value rational_value : RealCarrier rational_model real_extension} (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) (rational_is_rational : IsRational rational_model real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply irrational_value (real_extension.RealModel.signature.inv rational_value))
-Source: ./RealNumbers/Irrationals.lean#L558
+Predicate logic: ∀ {irrational_value rational_value : RealCarrier rational_system real_extension} (irrational_is_irrational : IsIrrational rational_system real_extension irrational_value) (rational_is_rational : IsRational rational_system real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero), IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply irrational_value (real_extension.RealModel.signature.inv rational_value))
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {irrational_value rational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension irrational_value ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension rational_value ∧ Ne rational_value real_extension.RealModel.signature.zero)) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply irrational_value (real_extension.RealModel.signature.inv rational_value))
+Transliterated theorem: (IsIrrational rational_system real_extension irrational_value ∧ IsRational rational_system real_extension rational_value) → IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply irrational_value (real_extension.RealModel.signature.inv rational_value))
+Logical form (Lean): {irrational_value rational_value : RealCarrier rational_system real_extension} (irrational_is_irrational : IsIrrational rational_system real_extension irrational_value) (rational_is_rational : IsRational rational_system real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) : IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply irrational_value (real_extension.RealModel.signature.inv rational_value))
+Source: ./RealNumbers/Irrationals.lean#L609
 
 
 
 Name: nonzero_rational_div_irrational_is_irrational
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {rational_value irrational_value : RealCarrier rational_model real_extension} (rational_is_rational : IsRational rational_model real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value), IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply rational_value (real_extension.RealModel.signature.inv irrational_value))
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) {rational_value irrational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension rational_value ∧ (Ne rational_value real_extension.RealModel.signature.zero ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension irrational_value)) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply rational_value (real_extension.RealModel.signature.inv irrational_value))
-Transliterated theorem: (IsRational rational_model real_extension rational_value ∧ IsIrrational rational_model real_extension irrational_value) → IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply rational_value (real_extension.RealModel.signature.inv irrational_value))
-Logical form (Lean): {rational_value irrational_value : RealCarrier rational_model real_extension} (rational_is_rational : IsRational rational_model real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) (irrational_is_irrational : IsIrrational rational_model real_extension irrational_value) : IsIrrational rational_model real_extension (real_extension.RealModel.signature.multiply rational_value (real_extension.RealModel.signature.inv irrational_value))
-Source: ./RealNumbers/Irrationals.lean#L590
+Predicate logic: ∀ {rational_value irrational_value : RealCarrier rational_system real_extension} (rational_is_rational : IsRational rational_system real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) (irrational_is_irrational : IsIrrational rational_system real_extension irrational_value), IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply rational_value (real_extension.RealModel.signature.inv irrational_value))
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {rational_value irrational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension rational_value ∧ (Ne rational_value real_extension.RealModel.signature.zero ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension irrational_value)) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply rational_value (real_extension.RealModel.signature.inv irrational_value))
+Transliterated theorem: (IsRational rational_system real_extension rational_value ∧ IsIrrational rational_system real_extension irrational_value) → IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply rational_value (real_extension.RealModel.signature.inv irrational_value))
+Logical form (Lean): {rational_value irrational_value : RealCarrier rational_system real_extension} (rational_is_rational : IsRational rational_system real_extension rational_value) (rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero) (irrational_is_irrational : IsIrrational rational_system real_extension irrational_value) : IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply rational_value (real_extension.RealModel.signature.inv irrational_value))
+Source: ./RealNumbers/Irrationals.lean#L641
 
 
 
 Name: irrational_is_nonzero
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel)   (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model)   {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension},   LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension value →     Ne value real_extension.RealModel.signature.zero
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_model real_extension}, LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension value → Ne value real_extension.RealModel.signature.zero
-Transliterated theorem: (IsIrrational rational_model real_extension value) → value ≠ real_extension.RealModel.signature.zero
-Logical form (Lean): {value : RealCarrier rational_model real_extension} (value_is_irrational : IsIrrational rational_model real_extension value) : value ≠ real_extension.RealModel.signature.zero
-Source: ./RealNumbers/Irrationals.lean#L617
+Predicate logic: ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)   (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system)   {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension},   LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension value →     Ne value real_extension.RealModel.signature.zero
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension value → Ne value real_extension.RealModel.signature.zero
+Transliterated theorem: (IsIrrational rational_system real_extension value) → value ≠ real_extension.RealModel.signature.zero
+Logical form (Lean): {value : RealCarrier rational_system real_extension} (value_is_irrational : IsIrrational rational_system real_extension value) : value ≠ real_extension.RealModel.signature.zero
+Source: ./RealNumbers/Irrationals.lean#L668
 
 
 
 Name: irrationals_not_closed_under_addition
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (witness : SquareRootTwoWitness rational_model real_extension), ∃ first second : RealCarrier rational_model real_extension, IsIrrational rational_model real_extension first ∧ IsIrrational rational_model real_extension second ∧ IsRational rational_model real_extension (real_extension.RealModel.signature.add first second)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) (a : LRA.NumberSystems.RealNumbers.Irrationals.SquareRootTwoWitness rational_model real_extension), Exists fun first => Exists fun second => (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension first ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension second ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension (real_extension.RealModel.signature.add first second)))
-Transliterated theorem: ∃ first second ∈ RealCarrier rational_model real_extension, IsIrrational rational_model real_extension first ∧ IsIrrational rational_model real_extension second ∧ IsRational rational_model real_extension (real_extension.RealModel.signature.add first second)
-Logical form (Lean): (witness : SquareRootTwoWitness rational_model real_extension) : ∃ first second : RealCarrier rational_model real_extension, IsIrrational rational_model real_extension first ∧ IsIrrational rational_model real_extension second ∧ IsRational rational_model real_extension (real_extension.RealModel.signature.add first second)
-Source: ./RealNumbers/Irrationals.lean#L672
+Predicate logic: ∀ (witness : SquareRootTwoWitness rational_system real_extension), ∃ first second : RealCarrier rational_system real_extension, IsIrrational rational_system real_extension first ∧ IsIrrational rational_system real_extension second ∧ IsRational rational_system real_extension (real_extension.RealModel.signature.add first second)
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) (a : LRA.NumberSystems.RealNumbers.Irrationals.SquareRootTwoWitness rational_system real_extension), Exists fun first => Exists fun second => (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension first ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension second ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.add first second)))
+Transliterated theorem: ∃ first second ∈ RealCarrier rational_system real_extension, IsIrrational rational_system real_extension first ∧ IsIrrational rational_system real_extension second ∧ IsRational rational_system real_extension (real_extension.RealModel.signature.add first second)
+Logical form (Lean): (witness : SquareRootTwoWitness rational_system real_extension) : ∃ first second : RealCarrier rational_system real_extension, IsIrrational rational_system real_extension first ∧ IsIrrational rational_system real_extension second ∧ IsRational rational_system real_extension (real_extension.RealModel.signature.add first second)
+Source: ./RealNumbers/Irrationals.lean#L721
 
 
 
 Name: irrationals_not_closed_under_subtraction
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (witness : SquareRootTwoWitness rational_model real_extension), ∃ first second : RealCarrier rational_model real_extension, IsIrrational rational_model real_extension first ∧ IsIrrational rational_model real_extension second ∧ IsRational rational_model real_extension (real_extension.RealModel.signature.Subtraction first second)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) (a : LRA.NumberSystems.RealNumbers.Irrationals.SquareRootTwoWitness rational_model real_extension), Exists fun first => Exists fun second => (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension first ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension second ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension (real_extension.RealModel.signature.Subtraction first second)))
-Transliterated theorem: ∃ first second ∈ RealCarrier rational_model real_extension, IsIrrational rational_model real_extension first ∧ IsIrrational rational_model real_extension second ∧ IsRational rational_model real_extension (real_extension.RealModel.signature.Subtraction first second)
-Logical form (Lean): (witness : SquareRootTwoWitness rational_model real_extension) : ∃ first second : RealCarrier rational_model real_extension, IsIrrational rational_model real_extension first ∧ IsIrrational rational_model real_extension second ∧ IsRational rational_model real_extension (real_extension.RealModel.signature.Subtraction first second)
-Source: ./RealNumbers/Irrationals.lean#L700
+Predicate logic: ∀ (witness : SquareRootTwoWitness rational_system real_extension), ∃ first second : RealCarrier rational_system real_extension, IsIrrational rational_system real_extension first ∧ IsIrrational rational_system real_extension second ∧ IsRational rational_system real_extension (real_extension.RealModel.signature.Subtraction first second)
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) (a : LRA.NumberSystems.RealNumbers.Irrationals.SquareRootTwoWitness rational_system real_extension), Exists fun first => Exists fun second => (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension first ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension second ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.Subtraction first second)))
+Transliterated theorem: ∃ first second ∈ RealCarrier rational_system real_extension, IsIrrational rational_system real_extension first ∧ IsIrrational rational_system real_extension second ∧ IsRational rational_system real_extension (real_extension.RealModel.signature.Subtraction first second)
+Logical form (Lean): (witness : SquareRootTwoWitness rational_system real_extension) : ∃ first second : RealCarrier rational_system real_extension, IsIrrational rational_system real_extension first ∧ IsIrrational rational_system real_extension second ∧ IsRational rational_system real_extension (real_extension.RealModel.signature.Subtraction first second)
+Source: ./RealNumbers/Irrationals.lean#L749
 
 
 
 Name: irrationals_not_closed_under_multiplication
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (witness : SquareRootTwoWitness rational_model real_extension), ∃ first second : RealCarrier rational_model real_extension, IsIrrational rational_model real_extension first ∧ IsIrrational rational_model real_extension second ∧ IsRational rational_model real_extension (real_extension.RealModel.signature.multiply first second)
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) (a : LRA.NumberSystems.RealNumbers.Irrationals.SquareRootTwoWitness rational_model real_extension), Exists fun first => Exists fun second => (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension first ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension second ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension (real_extension.RealModel.signature.multiply first second)))
-Transliterated theorem: ∃ first second ∈ RealCarrier rational_model real_extension, IsIrrational rational_model real_extension first ∧ IsIrrational rational_model real_extension second ∧ IsRational rational_model real_extension (real_extension.RealModel.signature.multiply first second)
-Logical form (Lean): (witness : SquareRootTwoWitness rational_model real_extension) : ∃ first second : RealCarrier rational_model real_extension, IsIrrational rational_model real_extension first ∧ IsIrrational rational_model real_extension second ∧ IsRational rational_model real_extension (real_extension.RealModel.signature.multiply first second)
-Source: ./RealNumbers/Irrationals.lean#L728
+Predicate logic: ∀ (witness : SquareRootTwoWitness rational_system real_extension), ∃ first second : RealCarrier rational_system real_extension, IsIrrational rational_system real_extension first ∧ IsIrrational rational_system real_extension second ∧ IsRational rational_system real_extension (real_extension.RealModel.signature.multiply first second)
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) (a : LRA.NumberSystems.RealNumbers.Irrationals.SquareRootTwoWitness rational_system real_extension), Exists fun first => Exists fun second => (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension first ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension second ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.multiply first second)))
+Transliterated theorem: ∃ first second ∈ RealCarrier rational_system real_extension, IsIrrational rational_system real_extension first ∧ IsIrrational rational_system real_extension second ∧ IsRational rational_system real_extension (real_extension.RealModel.signature.multiply first second)
+Logical form (Lean): (witness : SquareRootTwoWitness rational_system real_extension) : ∃ first second : RealCarrier rational_system real_extension, IsIrrational rational_system real_extension first ∧ IsIrrational rational_system real_extension second ∧ IsRational rational_system real_extension (real_extension.RealModel.signature.multiply first second)
+Source: ./RealNumbers/Irrationals.lean#L777
 
 
 
 Name: irrationals_not_closed_under_division
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (witness : SquareRootTwoWitness rational_model real_extension), ∃ first second : RealCarrier rational_model real_extension, IsIrrational rational_model real_extension first ∧ IsIrrational rational_model real_extension second ∧ IsRational rational_model real_extension (real_extension.RealModel.signature.multiply first (real_extension.RealModel.signature.inv second))
-Predicate logic (unfolded): ∀ (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (real_extension : LRA.NumberSystems.Models.CofinalRealExtension rational_model) (a : LRA.NumberSystems.RealNumbers.Irrationals.SquareRootTwoWitness rational_model real_extension), Exists fun first => Exists fun second => (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension first ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_model real_extension second ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_model real_extension (real_extension.RealModel.signature.multiply first (real_extension.RealModel.signature.inv second))))
-Transliterated theorem: ∃ first second ∈ RealCarrier rational_model real_extension, IsIrrational rational_model real_extension first ∧ IsIrrational rational_model real_extension second ∧ IsRational rational_model real_extension (real_extension.RealModel.signature.multiply first (real_extension.RealModel.signature.inv second))
-Logical form (Lean): (witness : SquareRootTwoWitness rational_model real_extension) : ∃ first second : RealCarrier rational_model real_extension, IsIrrational rational_model real_extension first ∧ IsIrrational rational_model real_extension second ∧ IsRational rational_model real_extension (real_extension.RealModel.signature.multiply first (real_extension.RealModel.signature.inv second))
-Source: ./RealNumbers/Irrationals.lean#L758
+Predicate logic: ∀ (witness : SquareRootTwoWitness rational_system real_extension), ∃ first second : RealCarrier rational_system real_extension, IsIrrational rational_system real_extension first ∧ IsIrrational rational_system real_extension second ∧ IsRational rational_system real_extension (real_extension.RealModel.signature.multiply first (real_extension.RealModel.signature.inv second))
+Predicate logic (unfolded): ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) (a : LRA.NumberSystems.RealNumbers.Irrationals.SquareRootTwoWitness rational_system real_extension), Exists fun first => Exists fun second => (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension first ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension second ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.multiply first (real_extension.RealModel.signature.inv second))))
+Transliterated theorem: ∃ first second ∈ RealCarrier rational_system real_extension, IsIrrational rational_system real_extension first ∧ IsIrrational rational_system real_extension second ∧ IsRational rational_system real_extension (real_extension.RealModel.signature.multiply first (real_extension.RealModel.signature.inv second))
+Logical form (Lean): (witness : SquareRootTwoWitness rational_system real_extension) : ∃ first second : RealCarrier rational_system real_extension, IsIrrational rational_system real_extension first ∧ IsIrrational rational_system real_extension second ∧ IsRational rational_system real_extension (real_extension.RealModel.signature.multiply first (real_extension.RealModel.signature.inv second))
+Source: ./RealNumbers/Irrationals.lean#L807
 
 
 
-Name: rational_has_unique_canonical_finite_expansion
+Name: ProperInfiniteSimpleContinuedFractionConverges
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (integer_model : DiscretelyOrderedIntegralDomainModel) (rational_model : DenselyOrderedFieldModel) (integer_embedding : OrderedRingEmbeddingIntoDenseOrderedField integer_model rational_model) (value : rational_model.signature.carrier), ∃ fraction : FiniteSimpleContinuedFraction integer_model, canonical integer_model fraction ∧ FiniteValue integer_model rational_model integer_embedding fraction value ∧ ∀ other : FiniteSimpleContinuedFraction integer_model, canonical integer_model other → FiniteValue integer_model rational_model integer_embedding other value → other = fraction
-Predicate logic (unfolded): ∀ (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel) (rational_model : LRA.NumberSystems.Models.DenselyOrderedFieldModel) (integer_embedding : LRA.NumberSystems.Models.OrderedRingEmbeddingIntoDenseOrderedField integer_model rational_model) (value : rational_model.signature.carrier), Exists fun fraction => (LRA.NumberSystems.RationalNumbers.ContinuedFractions.canonical integer_model fraction ∧ (LRA.NumberSystems.RationalNumbers.ContinuedFractions.FiniteValue integer_model rational_model integer_embedding fraction value ∧ ∀ (other : LRA.NumberSystems.RationalNumbers.ContinuedFractions.FiniteSimpleContinuedFraction integer_model), LRA.NumberSystems.RationalNumbers.ContinuedFractions.canonical integer_model other → LRA.NumberSystems.RationalNumbers.ContinuedFractions.FiniteValue integer_model rational_model integer_embedding other value → other = fraction))
-Transliterated theorem: (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel ∀ rational_model ∈ DenselyOrderedFieldModel ∀ value ∈ rational_model.signature.carrier), ∃ fraction ∈ FiniteSimpleContinuedFraction integer_model, canonical integer_model fraction ∧ FiniteValue integer_model rational_model integer_embedding fraction value ∧ ∀ other : FiniteSimpleContinuedFraction integer_model, canonical integer_model other → FiniteValue integer_model rational_model integer_embedding other value → other = fraction
-Logical form (Lean): (integer_model : DiscretelyOrderedIntegralDomainModel) (rational_model : DenselyOrderedFieldModel) (integer_embedding : OrderedRingEmbeddingIntoDenseOrderedField integer_model rational_model) (value : rational_model.signature.carrier) : ∃ fraction : FiniteSimpleContinuedFraction integer_model, canonical integer_model fraction ∧ FiniteValue integer_model rational_model integer_embedding fraction value ∧ ∀ other : FiniteSimpleContinuedFraction integer_model, canonical integer_model other → FiniteValue integer_model rational_model integer_embedding other value → other = fraction
-Source: ./RationalNumbers/ContinuedFractions.lean#L203
+Predicate logic: ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)   (realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem)   (fraction : LRA.Arithmetic.ContinuedFractions.InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model),   LRA.Arithmetic.ContinuedFractions.IsProperInfiniteSimpleContinuedFraction fraction →     Exists fun limit =>       LRA.NumberSystems.RealNumbers.ContinuedFractions.ConvergentsConvergeTo rationalSystem realExtension fraction limit
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem) (fraction : LRA.Arithmetic.ContinuedFractions.InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model), LRA.Arithmetic.ContinuedFractions.IsProperInfiniteSimpleContinuedFraction fraction → Exists fun limit => LRA.NumberSystems.RealNumbers.ContinuedFractions.ConvergentsConvergeTo rationalSystem realExtension fraction limit
+Transliterated theorem: (IsProperInfiniteSimpleContinuedFraction fraction) → ∃ limit ∈ realExtension.RealModel.Carrier, ConvergentsConvergeTo rationalSystem realExtension fraction limit
+Logical form (Lean): (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u}) (realExtension : RationalRealExtension rationalSystem) (fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model) (proper : IsProperInfiniteSimpleContinuedFraction fraction) : ∃ limit : realExtension.RealModel.Carrier, ConvergentsConvergeTo rationalSystem realExtension fraction limit
+Source: ./RealNumbers/ContinuedFractions/Theorems.lean#L25
 
 
 
-Name: infinite_continued_fraction_converges
+Name: QuadraticIrrationalIffEventuallyPeriodicContinuedFraction
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (real_model : LRA.NumberSystems.Models.RealModel) (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel)   (a : LRA.NumberSystems.RationalNumbers.ContinuedFractions.InfiniteSimpleContinuedFraction integer_model),   Exists fun value =>     ∀ (neighborhood : real_model.signature.carrier → Prop), neighborhood value → Exists fun index => neighborhood value
-Predicate logic (unfolded): ∀ (real_model : LRA.NumberSystems.Models.RealModel) (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel) (a : LRA.NumberSystems.RationalNumbers.ContinuedFractions.InfiniteSimpleContinuedFraction integer_model), Exists fun value => ∀ (neighborhood : real_model.signature.carrier → Prop), neighborhood value → Exists fun index => neighborhood value
-Transliterated theorem: (∀ real_model ∈ RealModel ∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), ∃ value ∈ real_model.signature.carrier, ∀ neighborhood : real_model.signature.carrier → Prop, neighborhood value → ∃ index ∈ Nat, neighborhood value
-Logical form (Lean): (real_model : RealModel) (integer_model : DiscretelyOrderedIntegralDomainModel) (fraction : InfiniteSimpleContinuedFraction integer_model) : ∃ value : real_model.signature.carrier, ∀ neighborhood : real_model.signature.carrier → Prop, neighborhood value → ∃ index : Nat, neighborhood value
-Source: ./RationalNumbers/ContinuedFractions.lean#L238
-
-
-
-Name: quadratic_irrational_iff_eventually_periodic
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ (real_model : RealModel) (integer_model : DiscretelyOrderedIntegralDomainModel) (fraction : InfiniteSimpleContinuedFraction integer_model) (value : real_model.signature.carrier), eventually_periodic fraction ↔ ∃ coefficient_a coefficient_b coefficient_c : real_model.signature.carrier, real_model.signature.add (real_model.signature.add (real_model.signature.multiply coefficient_a (real_model.signature.multiply value value)) (real_model.signature.multiply coefficient_b value)) coefficient_c = real_model.signature.zero
-Predicate logic (unfolded): ∀ (real_model : LRA.NumberSystems.Models.RealModel) (integer_model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel) (fraction : LRA.NumberSystems.RationalNumbers.ContinuedFractions.InfiniteSimpleContinuedFraction integer_model) (value : real_model.signature.carrier), LRA.NumberSystems.RationalNumbers.ContinuedFractions.eventually_periodic fraction ↔ Exists fun coefficient_a => Exists fun coefficient_b => Exists fun coefficient_c => real_model.signature.add (real_model.signature.add (real_model.signature.multiply coefficient_a (real_model.signature.multiply value value)) (real_model.signature.multiply coefficient_b value)) coefficient_c = real_model.signature.zero
-Transliterated theorem: (∀ real_model ∈ RealModel ∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel ∀ value ∈ real_model.signature.carrier), eventually_periodic fraction ↔ ∃ coefficient_a coefficient_b coefficient_c ∈ real_model.signature.carrier, real_model.signature.add (real_model.signature.add (real_model.signature.multiply coefficient_a (real_model.signature.multiply value value)) (real_model.signature.multiply coefficient_b value)) coefficient_c = real_model.signature.zero
-Logical form (Lean): (real_model : RealModel) (integer_model : DiscretelyOrderedIntegralDomainModel) (fraction : InfiniteSimpleContinuedFraction integer_model) (value : real_model.signature.carrier) : eventually_periodic fraction ↔ ∃ coefficient_a coefficient_b coefficient_c : real_model.signature.carrier, real_model.signature.add (real_model.signature.add (real_model.signature.multiply coefficient_a (real_model.signature.multiply value value)) (real_model.signature.multiply coefficient_b value)) coefficient_c = real_model.signature.zero
-Source: ./RationalNumbers/ContinuedFractions.lean#L275
+Predicate logic: ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u}) (realExtension : RationalRealExtension rationalSystem) (value : realExtension.RealModel.Carrier), IsQuadraticIrrational rationalSystem realExtension value ↔ ∃ fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model, IsInfiniteSimpleContinuedFractionExpansionOf rationalSystem realExtension fraction value ∧ IsEventuallyPeriodic fraction
+Predicate logic (unfolded): ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem) (value : realExtension.RealModel.Carrier), LRA.NumberSystems.RealNumbers.ContinuedFractions.IsQuadraticIrrational rationalSystem realExtension value ↔ Exists fun fraction => (LRA.NumberSystems.RealNumbers.ContinuedFractions.IsInfiniteSimpleContinuedFractionExpansionOf rationalSystem realExtension fraction value ∧ LRA.Arithmetic.ContinuedFractions.IsEventuallyPeriodic fraction)
+Transliterated theorem: (∀ value ∈ realExtension.RealModel.Carrier), IsQuadraticIrrational rationalSystem realExtension value ↔ ∃ fraction ∈ InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model, IsInfiniteSimpleContinuedFractionExpansionOf rationalSystem realExtension fraction value ∧ IsEventuallyPeriodic fraction
+Logical form (Lean): (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u}) (realExtension : RationalRealExtension rationalSystem) (value : realExtension.RealModel.Carrier) : IsQuadraticIrrational rationalSystem realExtension value ↔ ∃ fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model, IsInfiniteSimpleContinuedFractionExpansionOf rationalSystem realExtension fraction value ∧ IsEventuallyPeriodic fraction
+Source: ./RealNumbers/ContinuedFractions/Theorems.lean#L51
 
 
 

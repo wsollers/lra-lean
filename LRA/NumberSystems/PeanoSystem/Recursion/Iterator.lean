@@ -214,7 +214,26 @@ theorem MinimalIteratorRelationComplete
     forall element : Element,
       exists value : data.Target,
         MinimalIteratorRelation ps data element value := by
-  let _ := fullInduction
+
+   
+                                                             
+
+                                                                    
+
+                                                                                                                                                                                                                                             
+
+
+             
+
+       
+                                       
+                                        
+                              
+                             
+                                 
+                                                     
+   
+  
   sorry
 
    
@@ -248,7 +267,29 @@ theorem MinimalIteratorRelationDeterministic
         MinimalIteratorRelation ps data element first_value ->
         MinimalIteratorRelation ps data element second_value ->
         first_value = second_value := by
-  let _ := fullInduction
+
+   
+                                                            
+
+                                                                             
+               
+
+                                                                                                                                                                                                                                                                                                                                                                 
+
+
+             
+
+       
+                                            
+                                        
+                              
+                             
+                                                    
+                                                              
+                                                               
+                                  
+   
+  
   sorry
 
    
@@ -276,7 +317,23 @@ theorem ForcedValuesAreUnique
         MinimalIteratorRelation ps data element first_value ->
         MinimalIteratorRelation ps data element second_value ->
         first_value = second_value := by
-  let _ := fullInduction
+
+   
+                                                        
+
+             
+
+       
+                             
+                                        
+                              
+                             
+                                                    
+                                                              
+                                                               
+                                  
+   
+  
   sorry
 
    
@@ -319,7 +376,34 @@ theorem ExistenceOfIteratorFunction
         initial_value
         step_rule
         iterator_function := by
-  let _ := fullInduction
+
+   
+                                                 
+
+                                                                             
+                                         
+
+                                                                                                                                                                                                                                                                                                                
+
+
+             
+
+       
+                                   
+                                        
+                                               
+                     
+                            
+                                    
+                                                 
+                             
+          
+              
+                     
+                 
+                         
+   
+  
   sorry
 
    
@@ -355,7 +439,30 @@ theorem UniquenessOfIteratorFunctions
     IteratorFunctionClauses ps target initial_value step_rule first_iterator ->
       IteratorFunctionClauses ps target initial_value step_rule second_iterator ->
       first_iterator = second_iterator := by
-  let _ := fullInduction
+
+   
+                                                
+
+                                                                          
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                       
+
+
+             
+
+       
+                                     
+                                        
+                                               
+                     
+                            
+                                  
+                                                          
+                                                                               
+                                                                                  
+                                      
+   
+  
   sorry
 
    
@@ -413,7 +520,41 @@ theorem IteratorFunctionWellDefined
           step_rule
           other_iterator ->
         other_iterator = iterator_function := by
-  let _ := fullInduction
+
+   
+                                                  
+
+                                                       
+
+                                                                     
+
+
+             
+
+       
+                                   
+                                        
+                                               
+                     
+                            
+                                    
+                                                 
+                             
+          
+              
+                     
+                 
+                            
+                                                
+                               
+            
+                
+                       
+                   
+                           
+                                          
+   
+  
   sorry
 
    
@@ -598,7 +739,43 @@ theorem PeanoIteratorTheorem
           step_rule
           other_iterator ->
         other_iterator = iterator_function := by
-  let _ := fullInduction
+
+   
+                                      
+
+                                                                             
+                                                                              
+      
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+
+
+             
+
+       
+                            
+                                        
+                                               
+                     
+                            
+                                    
+                                                 
+                             
+          
+              
+                     
+                 
+                            
+                                                
+                               
+            
+                
+                       
+                   
+                           
+                                          
+   
+  
   sorry
 
    
@@ -696,7 +873,27 @@ theorem UniquenessOfGeneralRecursiveFunctions
     GeneralRecursiveFunctionClauses
       ps target initial_value step_rule second_recursive_function ->
     first_recursive_function = second_recursive_function := by
-  let _ := fullInduction
+
+   
+                                                                                         
+
+             
+
+       
+                                             
+                                        
+                                               
+                     
+                            
+                                                  
+                                                                              
+                                   
+                                                                   
+                                   
+                                                                    
+                                                        
+   
+  
   sorry
 
    
@@ -724,7 +921,23 @@ theorem GeneralRecursionByStateEncoding
     exists recursive_function : Element -> target,
       GeneralRecursiveFunctionClauses
         ps target initial_value step_rule recursive_function := by
-  let _ := fullInduction
+
+   
+                                                                             
+
+             
+
+       
+                                       
+                                        
+                     
+                            
+                                                    
+                                                  
+                                     
+                                                            
+   
+  
   sorry
 
    
@@ -761,7 +974,28 @@ theorem GeneralRecursionTheoremForPeanoSystem
         GeneralRecursiveFunctionClauses
           ps target initial_value step_rule other_recursive_function ->
         other_recursive_function = recursive_function := by
-  let _ := fullInduction
+
+   
+                                                                                          
+
+             
+
+       
+                                             
+                                        
+                                               
+                     
+                            
+                                                    
+                                                  
+                                     
+                                                               
+                                                          
+                                       
+                                                                       
+                                                     
+   
+  
   sorry
 
 end LRA.NumberSystems.PeanoSystem.Recursion

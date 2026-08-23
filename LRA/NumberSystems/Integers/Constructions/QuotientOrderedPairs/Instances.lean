@@ -19,8 +19,9 @@ theorem quotient_addition_spec
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     ∀ first second,
       quotient_addition whole_data (Quotient.mk _ first) (Quotient.mk _ second) =
-        Quotient.mk _ (representative_addition whole_data first second) :=
-  Classical.choose_spec (quotient_addition_exists whole_data)
+        Quotient.mk _ (representative_addition whole_data first second) := by
+
+  sorry
 
 noncomputable def quotient_multiplication
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
@@ -31,8 +32,9 @@ theorem quotient_multiplication_spec
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     ∀ first second,
       quotient_multiplication whole_data (Quotient.mk _ first) (Quotient.mk _ second) =
-        Quotient.mk _ (representative_multiplication whole_data first second) :=
-  Classical.choose_spec (quotient_multiplication_exists whole_data)
+        Quotient.mk _ (representative_multiplication whole_data first second) := by
+
+  sorry
 
 noncomputable def quotient_negation
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
@@ -53,8 +55,9 @@ theorem quotient_nonstrict_order_spec
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     ∀ first second,
       quotient_nonstrict_order whole_data (Quotient.mk _ first) (Quotient.mk _ second) ↔
-        representative_nonstrict_order whole_data first second :=
-  Classical.choose_spec (quotient_order_exists whole_data)
+        representative_nonstrict_order whole_data first second := by
+
+  sorry
 
 def quotient_strict_order
     (whole_data : WholeNumberArithmeticForQuotientPairs)

@@ -95,7 +95,7 @@ Predicate logic: LRA.Logic.Language.Notation.LogicalEqualitySymbols.IsBinary LRA
 Predicate logic (unfolded): LRA.Logic.Language.Notation.LogicalEqualitySymbols.IsBinary LRA.Logic.Language.Notation.LogicalEquality.eq
 Transliterated theorem: LRA.Logic.Language.Notation.LogicalEqualitySymbols.IsBinary .eq
 Logical form (Lean): : LRA.Logic.Language.Notation.LogicalEqualitySymbols.IsBinary .eq
-Source: ./Model/LStructure.lean#L29
+Source: ./Interface/ModelTheory/LStructure.lean#L29
 
 
 
@@ -304,7 +304,7 @@ Predicate logic: ∀ (Carrier : Type u), LRA.Identity.EqualityTheory Carrier
 Predicate logic (unfolded): ∀ (Carrier : Type u), LRA.Identity.EqualityTheory Carrier
 Transliterated theorem: EqualityTheory Carrier
 Logical form (Lean): (Carrier : Type u) : EqualityTheory Carrier
-Source: ./Model/Theory.lean#L22
+Source: ./Interface/ModelTheory/Theory.lean#L22
 
 
 
@@ -315,7 +315,7 @@ Predicate logic: ∀ (equalityStructure : EqualityStructure.{u}) (left right : e
 Predicate logic (unfolded): ∀ (equalityStructure : LRA.Identity.EqualityStructure) (left right : equalityStructure.Carrier), equalityStructure.equalityInterpretation left right ↔ left = right
 Transliterated theorem: (∀ left right ∈ equalityStructure.Carrier), equalityStructure.equalityInterpretation left right ↔ left = right
 Logical form (Lean): (equalityStructure : EqualityStructure.{u}) (left right : equalityStructure.Carrier) : equalityStructure.equalityInterpretation left right ↔ left = right
-Source: ./Model/Model.lean#L36
+Source: ./Interface/ModelTheory/Model.lean#L36
 
 
 

@@ -35,8 +35,6 @@ theorem MonotoneComp
 
 open LRA.Set
 
-
-
 variable {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
 variable [Membership Alpha SourceSet] [Membership Beta TargetSet]
 variable {sourceRelation : LRA.Relation.Endorelation Alpha}

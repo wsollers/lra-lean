@@ -78,9 +78,50 @@ theorem UniquenessOfIntegerStructuresUpToIsomorphism
             first.predecessor (backward element)) /\
         (forall element : Element, backward (forward element) = element) /\
         (forall element : SecondElement, forward (backward element) = element) := by
-  intro secondFullInduction
-  let _ := firstFullInduction
-  let _ := secondFullInduction
+
+   
+                                                                                 
+
+                                                                               
+                                                                           
+                                                                         
+                                                                       
+                                                           
+                                                                          
+                           
+
+                                                                                      
+
+             
+
+       
+                                                    
+                                                       
+                                              
+                                                
+                                                               
+                                                               
+                                            
+                                              
+                                                 
+                                           
+                                            
+                                  
+                                             
+                                                  
+                                  
+                                               
+                                                    
+                                        
+                                               
+                                                  
+                                        
+                                                 
+                                                    
+                                                                           
+                                                                              
+   
+  
   sorry
 
 end LRA.NumberSystems.IntegerStructure

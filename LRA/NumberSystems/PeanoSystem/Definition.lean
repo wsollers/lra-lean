@@ -230,19 +230,23 @@ theorem FullPredicateInductionOfComprehensionAdequacy
     (ps : PeanoSystem Element SetObject)
     (adequacy : PredicateSetComprehensionAdequacy Element SetObject) :
     FullPredicateInduction ps := by
-  intro predicate baseCase successorStep element
-  have representedBase : ps.one ∈ adequacy.Represent predicate :=
-    (adequacy.MembershipIff predicate ps.one).2 baseCase
-  have representedStep :
-      forall candidate : Element,
-        candidate ∈ adequacy.Represent predicate ->
-        ps.successor candidate ∈ adequacy.Represent predicate := by
-    intro candidate hCandidate
-    exact (adequacy.MembershipIff predicate (ps.successor candidate)).2
-      (successorStep candidate
-        ((adequacy.MembershipIff predicate candidate).1 hCandidate))
-  exact (adequacy.MembershipIff predicate element).1
-    (ps.induction (adequacy.Represent predicate) representedBase representedStep element)
+
+   
+                                                                       
+
+                                                                            
+                                                                      
+
+             
+
+       
+                                                     
+                                        
+                                                                      
+                             
+   
+  
+  sorry
 
 end
 

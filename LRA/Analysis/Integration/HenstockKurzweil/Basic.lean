@@ -91,11 +91,21 @@ def IsHKIntegrable (f : ℝ → ℝ) (a b : ℝ) : Prop := ∃ L, HasHKIntegral 
                                                            
    
   
-theorem cousins_lemma (a b : ℝ) (hab : a ≤ b) (δ : ℝ → ℝ) (hδ : IsGaugeOn a b δ) :
+theorem CousinsLemma (a b : ℝ) (hab : a ≤ b) (δ : ℝ → ℝ) (hδ : IsGaugeOn a b δ) :
     ∃ P : TaggedPartitionIntegration a b, IsHKDeltaFine P δ := by
-  sorry
 
-variable {f : ℝ → ℝ} {a b : ℝ}
+               
+                                                                                         
+                                                   
+
+             
+
+       
+                                                                                  
+                                                           
+   
+  
+  sorry
 
                                                  
                                                                                                   

@@ -9,6 +9,398 @@ keep source order, because Lean forbids forward references, so source order is
 already a valid topological order. Working this list top to bottom, no entry
 depends on anything not yet proved above it.
 
-**Inventory:** 0 entries across 0 module(s) (0 completed, 0 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
+**Inventory:** 36 entries across 4 module(s) (14 completed, 22 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
 
-No theorem declarations found under this folder yet.
+Name: MathlibCongruenceReflexivity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {n : Nat} (x y : LRA.EuclideanSpace.MathlibPoint n), LRA.EuclideanSpace.instCongruentMathlibPoint.congruent x y y x
+Predicate logic (unfolded): ∀ {n : Nat} (x y : LRA.EuclideanSpace.MathlibPoint n), LRA.EuclideanSpace.instCongruentMathlibPoint.congruent x y y x
+Transliterated theorem: congruent x y y x
+Logical form (Lean): (x y : MathlibPoint n) : congruent x y y x
+Source: ./MathlibPoint/Laws.lean#L21
+
+
+
+Name: MathlibCongruenceTransitivity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x y z w u v : MathlibPoint n) (xyCongZw : congruent x y z w) (xyCongUv : congruent x y u v), congruent z w u v
+Predicate logic (unfolded): ∀ {n : Nat} (x y z w u v : LRA.EuclideanSpace.MathlibPoint n), (LRA.EuclideanSpace.instCongruentMathlibPoint.congruent x y z w ∧ LRA.EuclideanSpace.instCongruentMathlibPoint.congruent x y u v) → LRA.EuclideanSpace.instCongruentMathlibPoint.congruent z w u v
+Transliterated theorem: congruent z w u v
+Logical form (Lean): (x y z w u v : MathlibPoint n) (xyCongZw : congruent x y z w) (xyCongUv : congruent x y u v) : congruent z w u v
+Source: ./MathlibPoint/Laws.lean#L27
+
+
+
+Name: MathlibCongruenceIdentity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x y z : MathlibPoint n) (xyCongZz : congruent x y z z), x = y
+Predicate logic (unfolded): ∀ {n : Nat} (x y z : LRA.EuclideanSpace.MathlibPoint n), LRA.EuclideanSpace.instCongruentMathlibPoint.congruent x y z z → x = y
+Transliterated theorem: x = y
+Logical form (Lean): (x y z : MathlibPoint n) (xyCongZz : congruent x y z z) : x = y
+Source: ./MathlibPoint/Laws.lean#L34
+
+
+
+Name: MathlibSegmentConstruction
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x y a b : MathlibPoint n), ∃ z : MathlibPoint n, between x y z ∧ congruent y z a b
+Predicate logic (unfolded): ∀ {n : Nat} (x y a b : LRA.EuclideanSpace.MathlibPoint n), Exists fun z => (LRA.EuclideanSpace.instBetweenMathlibPoint.between x y z ∧ LRA.EuclideanSpace.instCongruentMathlibPoint.congruent y z a b)
+Transliterated theorem: ∃ z ∈ MathlibPoint n, between x y z ∧ congruent y z a b
+Logical form (Lean): (x y a b : MathlibPoint n) : ∃ z : MathlibPoint n, between x y z ∧ congruent y z a b
+Source: ./MathlibPoint/Laws.lean#L40
+
+
+
+Name: MathlibFiveSegment
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x y z x' y' z' u u' : MathlibPoint n) (xNeY : x ≠ y) (bxyz : between x y z) (bxyz' : between x' y' z') (xyCongXy' : congruent x y x' y') (yzCongYz' : congruent y z y' z') (xuCongXu' : congruent x u x' u') (yuCongYu' : congruent y u y' u'), congruent z u z' u'
+Predicate logic (unfolded): ∀ {n : Nat} (x y z x' y' z' u u' : LRA.EuclideanSpace.MathlibPoint n), (Ne x y ∧ (LRA.EuclideanSpace.instBetweenMathlibPoint.between x y z ∧ (LRA.EuclideanSpace.instBetweenMathlibPoint.between x' y' z' ∧ (LRA.EuclideanSpace.instCongruentMathlibPoint.congruent x y x' y' ∧ (LRA.EuclideanSpace.instCongruentMathlibPoint.congruent y z y' z' ∧ (LRA.EuclideanSpace.instCongruentMathlibPoint.congruent x u x' u' ∧ LRA.EuclideanSpace.instCongruentMathlibPoint.congruent y u y' u')))))) → LRA.EuclideanSpace.instCongruentMathlibPoint.congruent z u z' u'
+Transliterated theorem: congruent z u z' u'
+Logical form (Lean): (x y z x' y' z' u u' : MathlibPoint n) (xNeY : x ≠ y) (bxyz : between x y z) (bxyz' : between x' y' z') (xyCongXy' : congruent x y x' y') (yzCongYz' : congruent y z y' z') (xuCongXu' : congruent x u x' u') (yuCongYu' : congruent y u y' u') : congruent z u z' u'
+Source: ./MathlibPoint/Laws.lean#L45
+
+
+
+Name: MathlibBetweennessIdentity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x y : MathlibPoint n) (bxyx : between x y x), x = y
+Predicate logic (unfolded): ∀ {n : Nat} (x y : LRA.EuclideanSpace.MathlibPoint n), LRA.EuclideanSpace.instBetweenMathlibPoint.between x y x → x = y
+Transliterated theorem: x = y
+Logical form (Lean): (x y : MathlibPoint n) (bxyx : between x y x) : x = y
+Source: ./MathlibPoint/Laws.lean#L54
+
+
+
+Name: MathlibInnerPasch
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (u v p q z : MathlibPoint n) (bupv : between u p v) (bpqz : between p q z), ∃ x : MathlibPoint n, between u x z ∧ between q x v
+Predicate logic (unfolded): ∀ {n : Nat} (u v p q z : LRA.EuclideanSpace.MathlibPoint n), (LRA.EuclideanSpace.instBetweenMathlibPoint.between u p v ∧ LRA.EuclideanSpace.instBetweenMathlibPoint.between p q z) → Exists fun x => (LRA.EuclideanSpace.instBetweenMathlibPoint.between u x z ∧ LRA.EuclideanSpace.instBetweenMathlibPoint.between q x v)
+Transliterated theorem: ∃ x ∈ MathlibPoint n, between u x z ∧ between q x v
+Logical form (Lean): (u v p q z : MathlibPoint n) (bupv : between u p v) (bpqz : between p q z) : ∃ x : MathlibPoint n, between u x z ∧ between q x v
+Source: ./MathlibPoint/Laws.lean#L60
+
+
+
+Name: MathlibPlayfair
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c d t : MathlibPoint n) (badt : between a d t) (bbdc : between b d c) (aNeD : a ≠ d), ∃ x y : MathlibPoint n, between a b x ∧ between a c y ∧ between x t y
+Predicate logic (unfolded): ∀ {n : Nat} (a b c d t : LRA.EuclideanSpace.MathlibPoint n), (LRA.EuclideanSpace.instBetweenMathlibPoint.between a d t ∧ (LRA.EuclideanSpace.instBetweenMathlibPoint.between b d c ∧ Ne a d)) → Exists fun x => Exists fun y => (LRA.EuclideanSpace.instBetweenMathlibPoint.between a b x ∧ (LRA.EuclideanSpace.instBetweenMathlibPoint.between a c y ∧ LRA.EuclideanSpace.instBetweenMathlibPoint.between x t y))
+Transliterated theorem: ∃ x y ∈ MathlibPoint n, between a b x ∧ between a c y ∧ between x t y
+Logical form (Lean): (a b c d t : MathlibPoint n) (badt : between a d t) (bbdc : between b d c) (aNeD : a ≠ d) : ∃ x y : MathlibPoint n, between a b x ∧ between a c y ∧ between x t y
+Source: ./MathlibPoint/Laws.lean#L67
+
+
+
+Name: MathlibContinuity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {n : Nat} (φ ψ : LRA.EuclideanSpace.MathlibPoint n → Prop),   (Exists fun a =>       ∀ (x y : LRA.EuclideanSpace.MathlibPoint n),         φ x → ψ y → LRA.EuclideanSpace.instBetweenMathlibPoint.between a x y) →     Exists fun b =>       ∀ (x y : LRA.EuclideanSpace.MathlibPoint n), φ x → ψ y → LRA.EuclideanSpace.instBetweenMathlibPoint.between x b y
+Predicate logic (unfolded): ∀ {n : Nat} (φ ψ : LRA.EuclideanSpace.MathlibPoint n → Prop), (Exists fun a => ∀ (x y : LRA.EuclideanSpace.MathlibPoint n), φ x → ψ y → LRA.EuclideanSpace.instBetweenMathlibPoint.between a x y) → Exists fun b => ∀ (x y : LRA.EuclideanSpace.MathlibPoint n), φ x → ψ y → LRA.EuclideanSpace.instBetweenMathlibPoint.between x b y
+Transliterated theorem: (∃ a ∈ MathlibPoint n, ∀ x y, φ x → ψ y → between a x y) → ∃ b ∈ MathlibPoint n, ∀ x y, φ x → ψ y → between x b y
+Logical form (Lean): (φ ψ : MathlibPoint n → Prop) (separated : ∃ a : MathlibPoint n, ∀ x y, φ x → ψ y → between a x y) : ∃ b : MathlibPoint n, ∀ x y, φ x → ψ y → between x b y
+Source: ./MathlibPoint/Laws.lean#L74
+
+
+
+Name: instBetweennessLawsMathlibPoint
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {n : Nat}, LRA.EuclideanSpace.BetweennessLaws (LRA.EuclideanSpace.MathlibPoint n)
+Predicate logic (unfolded): ∀ {n : Nat}, LRA.EuclideanSpace.BetweennessLaws (LRA.EuclideanSpace.MathlibPoint n)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./MathlibPoint/Laws.lean
+
+
+
+Name: instContinuityLawMathlibPoint
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {n : Nat}, LRA.EuclideanSpace.ContinuityLaw (LRA.EuclideanSpace.MathlibPoint n)
+Predicate logic (unfolded): ∀ {n : Nat}, LRA.EuclideanSpace.ContinuityLaw (LRA.EuclideanSpace.MathlibPoint n)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./MathlibPoint/Laws.lean
+
+
+
+Name: instFiveSegmentLawMathlibPoint
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {n : Nat}, LRA.EuclideanSpace.FiveSegmentLaw (LRA.EuclideanSpace.MathlibPoint n)
+Predicate logic (unfolded): ∀ {n : Nat}, LRA.EuclideanSpace.FiveSegmentLaw (LRA.EuclideanSpace.MathlibPoint n)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./MathlibPoint/Laws.lean
+
+
+
+Name: instParallelLawMathlibPoint
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {n : Nat}, LRA.EuclideanSpace.ParallelLaw (LRA.EuclideanSpace.MathlibPoint n)
+Predicate logic (unfolded): ∀ {n : Nat}, LRA.EuclideanSpace.ParallelLaw (LRA.EuclideanSpace.MathlibPoint n)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./MathlibPoint/Laws.lean
+
+
+
+Name: instSegmentConstructionLawMathlibPoint
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {n : Nat}, LRA.EuclideanSpace.SegmentConstructionLaw (LRA.EuclideanSpace.MathlibPoint n)
+Predicate logic (unfolded): ∀ {n : Nat}, LRA.EuclideanSpace.SegmentConstructionLaw (LRA.EuclideanSpace.MathlibPoint n)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./MathlibPoint/Laws.lean
+
+
+
+Name: instCongruenceLawsMathlibPoint
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {n : Nat}, LRA.EuclideanSpace.CongruenceLaws (LRA.EuclideanSpace.MathlibPoint n)
+Predicate logic (unfolded): ∀ {n : Nat}, LRA.EuclideanSpace.CongruenceLaws (LRA.EuclideanSpace.MathlibPoint n)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./MathlibPoint/Laws.lean
+
+
+
+Name: instNonemptyRn
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ (real_model : LRA.NumberSystems.Models.RealModel) (n : Nat), Nonempty (LRA.EuclideanSpace.Rn real_model n)
+Predicate logic (unfolded): ∀ (real_model : LRA.NumberSystems.Models.RealModel) (n : Nat), Nonempty (LRA.EuclideanSpace.Rn real_model n)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Model/EuclideanN.lean
+
+
+
+Name: RealLineDistanceNonneg
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : Real), GE.ge (LRA.EuclideanSpace.RealLineDistance a b) 0
+Predicate logic (unfolded): ∀ (a b : Real), GE.ge (LRA.EuclideanSpace.RealLineDistance a b) 0
+Transliterated theorem: RealLineDistance a b ≥ 0
+Logical form (Lean): (a b : ℝ) : RealLineDistance a b ≥ 0
+Source: ./RealLine/Theorems/RealLine.lean#L19
+
+
+
+Name: RealLineDistanceSelf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : ℝ), RealLineDistance a a = 0
+Predicate logic (unfolded): ∀ (a : Real), LRA.EuclideanSpace.RealLineDistance a a = 0
+Transliterated theorem: RealLineDistance a a = 0
+Logical form (Lean): (a : ℝ) : RealLineDistance a a = 0
+Source: ./RealLine/Theorems/RealLine.lean#L30
+
+
+
+Name: RealLineDistanceSymm
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ), RealLineDistance a b = RealLineDistance b a
+Predicate logic (unfolded): ∀ (a b : Real), LRA.EuclideanSpace.RealLineDistance a b = LRA.EuclideanSpace.RealLineDistance b a
+Transliterated theorem: RealLineDistance a b = RealLineDistance b a
+Logical form (Lean): (a b : ℝ) : RealLineDistance a b = RealLineDistance b a
+Source: ./RealLine/Theorems/RealLine.lean#L42
+
+
+
+Name: RealLineDistanceEqZeroIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ), RealLineDistance a b = 0 ↔ a = b
+Predicate logic (unfolded): ∀ (a b : Real), LRA.EuclideanSpace.RealLineDistance a b = 0 ↔ a = b
+Transliterated theorem: RealLineDistance a b = 0 ↔ a = b
+Logical form (Lean): (a b : ℝ) : RealLineDistance a b = 0 ↔ a = b
+Source: ./RealLine/Theorems/RealLine.lean#L58
+
+
+
+Name: RealLineDistanceTriangleInequality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b c : Real),   Real.instLE.le (LRA.EuclideanSpace.RealLineDistance a c)     (instHAdd.hAdd (LRA.EuclideanSpace.RealLineDistance a b) (LRA.EuclideanSpace.RealLineDistance b c))
+Predicate logic (unfolded): ∀ (a b c : Real), Real.instLE.le (LRA.EuclideanSpace.RealLineDistance a c) (instHAdd.hAdd (LRA.EuclideanSpace.RealLineDistance a b) (LRA.EuclideanSpace.RealLineDistance b c))
+Transliterated theorem: RealLineDistance a c ≤ RealLineDistance a b + RealLineDistance b c
+Logical form (Lean): (a b c : ℝ) : RealLineDistance a c ≤ RealLineDistance a b + RealLineDistance b c
+Source: ./RealLine/Theorems/RealLine.lean#L72
+
+
+
+Name: OpenIntervalNonemptyIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : ℝ), (OpenInterval a b).Nonempty ↔ a < b
+Predicate logic (unfolded): ∀ (a b : Real), LRA.EuclideanSpace.OpenInterval a b ↔ .Nonempty(Real.instLT.lt a b)
+Transliterated theorem: (OpenInterval a b).Nonempty ↔ a < b
+Logical form (Lean): (a b : ℝ) : (OpenInterval a b).Nonempty ↔ a < b
+Source: ./RealLine/Theorems/RealLine.lean#L88
+
+
+
+Name: OpenIntervalSubsetClosedInterval
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : Real), Set.instLE.le (LRA.EuclideanSpace.OpenInterval a b) (LRA.EuclideanSpace.ClosedInterval a b)
+Predicate logic (unfolded): ∀ (a b : Real), Set.instLE.le (LRA.EuclideanSpace.OpenInterval a b) (LRA.EuclideanSpace.ClosedInterval a b)
+Transliterated theorem: OpenInterval a b ⊆ ClosedInterval a b
+Logical form (Lean): (a b : ℝ) : OpenInterval a b ⊆ ClosedInterval a b
+Source: ./RealLine/Theorems/RealLine.lean#L101
+
+
+
+Name: TranslateMapsOpenIntervalToOpenInterval
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (c a b : ℝ), (Translate1 c) '' (OpenInterval a b) = OpenInterval (a + c) (b + c)
+Predicate logic (unfolded): ∀ (c a b : Real), Set.image (LRA.EuclideanSpace.Translate1 c) (LRA.EuclideanSpace.OpenInterval a b) = LRA.EuclideanSpace.OpenInterval (instHAdd.hAdd a c) (instHAdd.hAdd b c)
+Transliterated theorem: (Translate1 c) '' (OpenInterval a b) = OpenInterval (a + c) (b + c)
+Logical form (Lean): (c a b : ℝ) : (Translate1 c) '' (OpenInterval a b) = OpenInterval (a + c) (b + c)
+Source: ./RealLine/Theorems/RealLine.lean#L115
+
+
+
+Name: TranslateMapsClosedIntervalToClosedInterval
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (c a b : ℝ), (Translate1 c) '' (ClosedInterval a b) = ClosedInterval (a + c) (b + c)
+Predicate logic (unfolded): ∀ (c a b : Real), Set.image (LRA.EuclideanSpace.Translate1 c) (LRA.EuclideanSpace.ClosedInterval a b) = LRA.EuclideanSpace.ClosedInterval (instHAdd.hAdd a c) (instHAdd.hAdd b c)
+Transliterated theorem: (Translate1 c) '' (ClosedInterval a b) = ClosedInterval (a + c) (b + c)
+Logical form (Lean): (c a b : ℝ) : (Translate1 c) '' (ClosedInterval a b) = ClosedInterval (a + c) (b + c)
+Source: ./RealLine/Theorems/RealLine.lean#L129
+
+
+
+Name: PositiveDilateMapsOpenIntervalToOpenInterval
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {k : ℝ} (a b : ℝ) (positiveScale : 0 < k), (Dilate1 k) '' (OpenInterval a b) = OpenInterval (k * a) (k * b)
+Predicate logic (unfolded): ∀ {k : Real} (a b : Real), Real.instLT.lt 0 k → Set.image (LRA.EuclideanSpace.Dilate1 k) (LRA.EuclideanSpace.OpenInterval a b) = LRA.EuclideanSpace.OpenInterval (instHMul.hMul k a) (instHMul.hMul k b)
+Transliterated theorem: (0 < k) → (Dilate1 k) '' (OpenInterval a b) = OpenInterval (k * a) (k * b)
+Logical form (Lean): {k : ℝ} (a b : ℝ) (positiveScale : 0 < k) : (Dilate1 k) '' (OpenInterval a b) = OpenInterval (k * a) (k * b)
+Source: ./RealLine/Theorems/RealLine.lean#L145
+
+
+
+Name: NegativeDilateReversesOpenInterval
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {k : ℝ} (a b : ℝ) (negativeScale : k < 0), (Dilate1 k) '' (OpenInterval a b) = OpenInterval (k * b) (k * a)
+Predicate logic (unfolded): ∀ {k : Real} (a b : Real), Real.instLT.lt k 0 → Set.image (LRA.EuclideanSpace.Dilate1 k) (LRA.EuclideanSpace.OpenInterval a b) = LRA.EuclideanSpace.OpenInterval (instHMul.hMul k b) (instHMul.hMul k a)
+Transliterated theorem: (k < 0) → (Dilate1 k) '' (OpenInterval a b) = OpenInterval (k * b) (k * a)
+Logical form (Lean): {k : ℝ} (a b : ℝ) (negativeScale : k < 0) : (Dilate1 k) '' (OpenInterval a b) = OpenInterval (k * b) (k * a)
+Source: ./RealLine/Theorems/RealLine.lean#L162
+
+
+
+Name: TranslateDistanceInvariant
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (c a b : ℝ), RealLineDistance (Translate1 c a) (Translate1 c b) = RealLineDistance a b
+Predicate logic (unfolded): ∀ (c a b : Real), LRA.EuclideanSpace.RealLineDistance (LRA.EuclideanSpace.Translate1 c a) (LRA.EuclideanSpace.Translate1 c b) = LRA.EuclideanSpace.RealLineDistance a b
+Transliterated theorem: RealLineDistance (Translate1 c a) (Translate1 c b) = RealLineDistance a b
+Logical form (Lean): (c a b : ℝ) : RealLineDistance (Translate1 c a) (Translate1 c b) = RealLineDistance a b
+Source: ./RealLine/Theorems/RealLine.lean#L177
+
+
+
+Name: DilateScalesDistance
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (k a b : ℝ), RealLineDistance (Dilate1 k a) (Dilate1 k b) = (RealLineDistance 0 k) * RealLineDistance a b
+Predicate logic (unfolded): ∀ (k a b : Real), LRA.EuclideanSpace.RealLineDistance (LRA.EuclideanSpace.Dilate1 k a) (LRA.EuclideanSpace.Dilate1 k b) = instHMul.hMul (LRA.EuclideanSpace.RealLineDistance 0 k) (LRA.EuclideanSpace.RealLineDistance a b)
+Transliterated theorem: RealLineDistance (Dilate1 k a) (Dilate1 k b) = (RealLineDistance 0 k) * RealLineDistance a b
+Logical form (Lean): (k a b : ℝ) : RealLineDistance (Dilate1 k a) (Dilate1 k b) = (RealLineDistance 0 k) * RealLineDistance a b
+Source: ./RealLine/Theorems/RealLine.lean#L195
+
+
+
+Name: instFiveSegmentLawTarskiPoint
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.EuclideanSpace.FiveSegmentLaw LRA.EuclideanSpace.TarskiPoint
+Predicate logic (unfolded): LRA.EuclideanSpace.FiveSegmentLaw LRA.EuclideanSpace.TarskiPoint
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Tarski/Laws.lean
+
+
+
+Name: instBetweennessLawsTarskiPoint
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.EuclideanSpace.BetweennessLaws LRA.EuclideanSpace.TarskiPoint
+Predicate logic (unfolded): LRA.EuclideanSpace.BetweennessLaws LRA.EuclideanSpace.TarskiPoint
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Tarski/Laws.lean
+
+
+
+Name: instSegmentConstructionLawTarskiPoint
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.EuclideanSpace.SegmentConstructionLaw LRA.EuclideanSpace.TarskiPoint
+Predicate logic (unfolded): LRA.EuclideanSpace.SegmentConstructionLaw LRA.EuclideanSpace.TarskiPoint
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Tarski/Laws.lean
+
+
+
+Name: instCongruenceLawsTarskiPoint
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.EuclideanSpace.CongruenceLaws LRA.EuclideanSpace.TarskiPoint
+Predicate logic (unfolded): LRA.EuclideanSpace.CongruenceLaws LRA.EuclideanSpace.TarskiPoint
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Tarski/Laws.lean
+
+
+
+Name: instParallelLawTarskiPoint
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.EuclideanSpace.ParallelLaw LRA.EuclideanSpace.TarskiPoint
+Predicate logic (unfolded): LRA.EuclideanSpace.ParallelLaw LRA.EuclideanSpace.TarskiPoint
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Tarski/Laws.lean
+
+
+
+Name: instContinuityLawTarskiPoint
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.EuclideanSpace.ContinuityLaw LRA.EuclideanSpace.TarskiPoint
+Predicate logic (unfolded): LRA.EuclideanSpace.ContinuityLaw LRA.EuclideanSpace.TarskiPoint
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Tarski/Laws.lean
+
+
+
+Name: instDimensionLawsTarskiPoint
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ (n : Nat), LRA.EuclideanSpace.DimensionLaws LRA.EuclideanSpace.TarskiPoint n
+Predicate logic (unfolded): ∀ (n : Nat), LRA.EuclideanSpace.DimensionLaws LRA.EuclideanSpace.TarskiPoint n
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Tarski/Laws.lean

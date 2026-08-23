@@ -216,6 +216,16 @@ attribute [simp] rep_zero
   
 theorem pred_iterate_succ_iterate (n : Nat) (x : S.carrier) :
     iterate S.pred n (iterate S.succ n x) = x := by
+
+   
+                           
+
+             
+
+       
+                                   
+   
+  
   sorry
 
    

@@ -59,7 +59,22 @@ theorem MathlibRationalSystemUsesMathlibIntegers
         LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem) :
     (MathlibRationalSystem rationalData usesMathlibIntegers).IntegerSystem =
       LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem := by
-  exact usesMathlibIntegers
+
+                                                                              
+
+             
+
+       
+                                                
+                                                  
+                          
+                                   
+                                                                         
+                                                                            
+                                                                    
+   
+  
+  sorry
 
 end MathlibIntegers
 
@@ -125,7 +140,23 @@ theorem TaoRationalSystemUsesTaoIntegers
       rationalData.integer_system = TaoIntegerNumberSystem wholeData) :
     (TaoRationalSystem wholeData rationalData usesTaoIntegers).IntegerSystem =
       TaoIntegerNumberSystem wholeData := by
-  exact usesTaoIntegers
+
+                                                                               
+                        
+
+             
+
+       
+                                        
+                                                                  
+                                                  
+                      
+                                                                       
+                                                                              
+                                      
+   
+  
+  sorry
 
 end TaoIntegers
 
@@ -191,7 +222,24 @@ theorem MendelsonRationalSystemUsesMendelsonIntegers
     (MendelsonRationalSystem positiveData rationalData
       usesMendelsonIntegers).IntegerSystem =
         MendelsonIntegerNumberSystem positiveData := by
-  exact usesMendelsonIntegers
+
+                                                                            
+                                       
+
+             
+
+       
+                                                    
+                                                      
+                                                  
+                            
+                                                                                
+                                                      
+                                            
+                                                 
+   
+  
+  sorry
 
 end MendelsonIntegers
 

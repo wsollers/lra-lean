@@ -231,34 +231,7 @@ theorem InverseFunctionDerivative (f g fD1 : ℝ → ℝ) (U V : Set ℝ)
     ∀ y ∈ V, Derivative (1 / fD1 (g y)) g V y := by
   sorry
 
-                                                                        
-                                         
-                                                                        
-
 open LRA.Analysis.Limits in
-                                
-                                                                                        
-                                                                                              
-                                                                                               
-                                                                                             
-                                                                                               
-                                                                                          
-                                                      
-
-             
-
-       
-                                                                  
-                                                                
-                                                                
-                                                                          
-                                                                                     
-                                                                                  
-                                                                   
-                                                                          
-                                                       
-   
-  
 theorem LhopitalZeroOverZero (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     (hf : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x)
     (hg : ∀ x ∈ Set.Ioo a b, IsDifferentiable g (Set.Ioo a b) x)
@@ -271,29 +244,6 @@ theorem LhopitalZeroOverZero (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b)
   sorry
 
 open LRA.Analysis.Limits in
-                                        
-                                                                                        
-                                                                                              
-                                                                                               
-                                                                                            
-                                                                                               
-                                                                                                
-                                   
-
-             
-
-       
-                                                                          
-                                                                
-                                                                
-                                                                          
-                                                                        
-                                                                                  
-                                                                   
-                                                                          
-                                                       
-   
-  
 theorem LhopitalInfinityOverInfinity (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     (hf : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x)
     (hg : ∀ x ∈ Set.Ioo a b, IsDifferentiable g (Set.Ioo a b) x)

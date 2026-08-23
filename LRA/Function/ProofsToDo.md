@@ -9,7 +9,7 @@ keep source order, because Lean forbids forward references, so source order is
 already a valid topological order. Working this list top to bottom, no entry
 depends on anything not yet proved above it.
 
-**Inventory:** 102 entries across 13 module(s) (1 completed, 101 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
+**Inventory:** 103 entries across 14 module(s) (1 completed, 102 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
 
 Name: GraphRelatesValue
 Kind: Theorem
@@ -151,6 +151,17 @@ Predicate logic (unfolded): ∀ {Domain : Type u} {LeftCodomain : Type v} {Right
 Transliterated theorem: (∀ input ∈ Domain), SecondProjection LeftCodomain RightCodomain (Product left right input) = right input
 Logical form (Lean): {Domain : Type u} {LeftCodomain : Type v} {RightCodomain : Type w} (left : LRA.Function Domain LeftCodomain) (right : LRA.Function Domain RightCodomain) (input : Domain) : SecondProjection LeftCodomain RightCodomain (Product left right input) = right input
 Source: ./Operations/Product/Theorems.lean#L32
+
+
+
+Name: SomeEmbeddingRealizesEmptyIndexedIntersectionImageFailure
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Function.EmptyIndexedIntersectionImageFailure fun n => Option.some n
+Predicate logic (unfolded): LRA.Function.EmptyIndexedIntersectionImageFailure fun n => Option.some n
+Transliterated theorem: EmptyIndexedIntersectionImageFailure fun n ∈ Nat => some n
+Logical form (Lean): : EmptyIndexedIntersectionImageFailure (fun n : Nat => some n)
+Source: ./Calculus/Classes/FailureModes.lean#L99
 
 
 
@@ -377,11 +388,11 @@ Source: ./Calculus/Classes/Theorems.lean#L192
 Name: ImageClassIndexedIntersectionOfInjective
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {Index : Type w} (injective : Injective function) (family : Index → SetClass Domain), ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
-Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) {Index : Type w}, function.Injective → ∀ (family : Index → LRA.Set.SetClass Domain), function.ImageClass fun input => ∀ (index : Index), family index input = funoutput => ∀ (index : Index), function.ImageClass (family index) output
+Predicate logic: ∀ {Index : Type w} [Nonempty Index] (injective : Injective function) (family : Index → SetClass Domain), ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
+Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) {Index : Type w}, (Nonempty Index ∧ function.Injective) → ∀ (family : Index → LRA.Set.SetClass Domain), function.ImageClass fun input => ∀ (index : Index), family index input = funoutput => ∀ (index : Index), function.ImageClass (family index) output
 Transliterated theorem: (Index → SetClass Domain) → ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
-Logical form (Lean): {Index : Type w} (injective : Injective function) (family : Index → SetClass Domain) : ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
-Source: ./Calculus/Classes/Theorems.lean#L200
+Logical form (Lean): {Index : Type w} [Nonempty Index] (injective : Injective function) (family : Index → SetClass Domain) : ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
+Source: ./Calculus/Classes/Theorems.lean#L213
 
 
 
@@ -392,7 +403,7 @@ Predicate logic: ∀ (injective : Injective function) (family : Nat → SetClass
 Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective → ∀ (family : Nat → LRA.Set.SetClass Domain), function.ImageClass fun input => ∀ (index : Nat), family index input = funoutput => ∀ (index : Nat), function.ImageClass (family index) output
 Transliterated theorem: (Nat → SetClass Domain) → ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
 Logical form (Lean): (injective : Injective function) (family : Nat → SetClass Domain) : ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
-Source: ./Calculus/Classes/Theorems.lean#L207
+Source: ./Calculus/Classes/Theorems.lean#L220
 
 
 
@@ -403,7 +414,7 @@ Predicate logic: ∀ (injective : Injective function) (source : SetClass Domain)
 Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective → ∀ (source : LRA.Set.SetClass Domain) (output : Codomain) (firstInput secondInput : Domain), ((source firstInput ∧ function firstInput = output) ∧ (source secondInput ∧ function secondInput = output)) → firstInput = secondInput
 Transliterated theorem: (∀ output ∈ Codomain ∀ firstInput secondInput ∈ Domain), (source firstInput ∧ function firstInput = output ∧ source secondInput ∧ function secondInput = output) → firstInput = secondInput
 Logical form (Lean): (injective : Injective function) (source : SetClass Domain) (output : Codomain) (firstInput secondInput : Domain) (firstWitness : source firstInput ∧ function firstInput = output) (secondWitness : source secondInput ∧ function secondInput = output) : firstInput = secondInput
-Source: ./Calculus/Classes/Theorems.lean#L214
+Source: ./Calculus/Classes/Theorems.lean#L227
 
 
 
@@ -414,7 +425,7 @@ Predicate logic: ∀ (injective : Injective function) (source : SetClass Domain)
 Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective → ∀ (source : LRA.Set.SetClass Domain), function.PreimageClass (function.ImageClass source) = source
 Transliterated theorem: PreimageClass function (ImageClass function source) = source
 Logical form (Lean): (injective : Injective function) (source : SetClass Domain) : PreimageClass function (ImageClass function source) = source
-Source: ./Calculus/Classes/Theorems.lean#L223
+Source: ./Calculus/Classes/Theorems.lean#L236
 
 
 
@@ -425,7 +436,7 @@ Predicate logic: ∀ (surjective : Surjective function) (target : SetClass Codom
 Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Surjective → ∀ (target : LRA.Set.SetClass Codomain), function.ImageClass (function.PreimageClass target) = target
 Transliterated theorem: ImageClass function (PreimageClass function target) = target
 Logical form (Lean): (surjective : Surjective function) (target : SetClass Codomain) : ImageClass function (PreimageClass function target) = target
-Source: ./Calculus/Classes/Theorems.lean#L229
+Source: ./Calculus/Classes/Theorems.lean#L242
 
 
 
@@ -436,7 +447,7 @@ Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Funct
 Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), (∀ (output : Codomain), function.ImageClass LRA.Set.SetClass.Universal output) → function.Surjective
 Transliterated theorem: (∀ output : Codomain, ImageClass function SetClass.Universal ∈ SetClass Domain output) → Surjective function
 Logical form (Lean): (covers : ∀ output : Codomain, ImageClass function (SetClass.Universal : SetClass Domain) output) : Surjective function
-Source: ./Calculus/Classes/Theorems.lean#L236
+Source: ./Calculus/Classes/Theorems.lean#L249
 
 
 
@@ -447,7 +458,7 @@ Predicate logic: ∀ (representative input : Domain), FiberClass function (funct
 Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (representative input : Domain), function.FiberClass (function representative) input ↔ function.KernelRelation input representative
 Transliterated theorem: (∀ representative input ∈ Domain), FiberClass function (function representative) input ↔ KernelRelation function input representative
 Logical form (Lean): (representative input : Domain) : FiberClass function (function representative) input ↔ KernelRelation function input representative
-Source: ./Calculus/Classes/Theorems.lean#L251
+Source: ./Calculus/Classes/Theorems.lean#L264
 
 
 
@@ -458,7 +469,7 @@ Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Funct
 Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain), LRA.Function.SaturatedBy (function.FiberClass output) function
 Transliterated theorem: (∀ output ∈ Codomain), SaturatedBy (FiberClass function output) function
 Logical form (Lean): (output : Codomain) : SaturatedBy (FiberClass function output) function
-Source: ./Calculus/Classes/Theorems.lean#L258
+Source: ./Calculus/Classes/Theorems.lean#L271
 
 
 
@@ -469,7 +480,7 @@ Predicate logic: ∀ (representative : Domain), FiberClass function (function re
 Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (representative : Domain), function.FiberClass (function representative) = funinput => function.KernelRelation input representative
 Transliterated theorem: (∀ representative ∈ Domain), FiberClass function (function representative) = (fun input => KernelRelation function input representative)
 Logical form (Lean): (representative : Domain) : FiberClass function (function representative) = (fun input => KernelRelation function input representative)
-Source: ./Calculus/Classes/Theorems.lean#L267
+Source: ./Calculus/Classes/Theorems.lean#L280
 
 
 
@@ -480,7 +491,7 @@ Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Funct
 Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (representative : Domain), function.KernelClassMapsTo (function.FiberClass (function representative)) (function representative)
 Transliterated theorem: (∀ representative ∈ Domain), KernelClassMapsTo function (FiberClass function (function representative)) (function representative)
 Logical form (Lean): (representative : Domain) : KernelClassMapsTo function (FiberClass function (function representative)) (function representative)
-Source: ./Calculus/Classes/Theorems.lean#L279
+Source: ./Calculus/Classes/Theorems.lean#L292
 
 
 
@@ -491,7 +502,7 @@ Predicate logic: ∀ (classOfInputs : SetClass Domain) (firstOutput secondOutput
 Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (classOfInputs : LRA.Set.SetClass Domain) (firstOutput secondOutput : Codomain), (Exists fun input => classOfInputs input ∧ (function.KernelClassMapsTo classOfInputs firstOutput ∧ function.KernelClassMapsTo classOfInputs secondOutput)) → firstOutput = secondOutput
 Transliterated theorem: (∀ firstOutput secondOutput ∈ Codomain), (∃ input, classOfInputs input) → firstOutput = secondOutput
 Logical form (Lean): (classOfInputs : SetClass Domain) (firstOutput secondOutput : Codomain) (inhabited : ∃ input, classOfInputs input) (firstMapsTo : KernelClassMapsTo function classOfInputs firstOutput) (secondMapsTo : KernelClassMapsTo function classOfInputs secondOutput) : firstOutput = secondOutput
-Source: ./Calculus/Classes/Theorems.lean#L286
+Source: ./Calculus/Classes/Theorems.lean#L299
 
 
 
@@ -502,7 +513,7 @@ Predicate logic: ∀ (output : Codomain) (inRange : RangeClass function output),
 Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain), function.RangeClass output → Exists fun classOfInputs => (Exists fun input => classOfInputs input ∧ function.KernelClassMapsTo classOfInputs output)
 Transliterated theorem: (∀ output ∈ Codomain), ∃ classOfInputs ∈ SetClass Domain, (∃ input, classOfInputs input) ∧ KernelClassMapsTo function classOfInputs output
 Logical form (Lean): (output : Codomain) (inRange : RangeClass function output) : ∃ classOfInputs : SetClass Domain, (∃ input, classOfInputs input) ∧ KernelClassMapsTo function classOfInputs output
-Source: ./Calculus/Classes/Theorems.lean#L295
+Source: ./Calculus/Classes/Theorems.lean#L308
 
 
 
@@ -513,7 +524,7 @@ Predicate logic: ∀ (leftInput rightInput : Domain) (kernelRelated : KernelRela
 Predicate logic (unfolded): ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (leftInput rightInput : Domain), function.KernelRelation leftInput rightInput → function leftInput = function rightInput
 Transliterated theorem: (∀ leftInput rightInput ∈ Domain), function leftInput = function rightInput
 Logical form (Lean): (leftInput rightInput : Domain) (kernelRelated : KernelRelation function leftInput rightInput) : function leftInput = function rightInput
-Source: ./Calculus/Classes/Theorems.lean#L303
+Source: ./Calculus/Classes/Theorems.lean#L316
 
 
 

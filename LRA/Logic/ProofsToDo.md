@@ -674,19 +674,19 @@ Source: ./Syntax/FirstOrder/SubstitutionFreeVariables.lean#L73
 Name: richModel_satisfies_henkinTestFormula
 Kind: Theorem
 State: Completed
-Predicate logic: LRA.Logic.SecondOrderMonadic.SOSatisfies LRA.Logic.SecondOrderMonadic.richModel   { elementAssignment := LRA.Logic.SecondOrderMonadic.testElementAssignment,     setAssignment := fun x => Set.instEmptyCollection.emptyCollection }   LRA.Logic.SecondOrderMonadic.henkinTestFormula
-Predicate logic (unfolded): LRA.Logic.SecondOrderMonadic.SOSatisfies LRA.Logic.SecondOrderMonadic.richModel { elementAssignment := LRA.Logic.SecondOrderMonadic.testElementAssignment, setAssignment := fun x => Set.instEmptyCollection.emptyCollection } LRA.Logic.SecondOrderMonadic.henkinTestFormula
-Transliterated theorem: SOSatisfies richModel ⟨testElementAssignment, fun _ => ∅⟩ henkinTestFormula
-Logical form (Lean): : SOSatisfies richModel ⟨testElementAssignment, fun _ => ∅⟩ henkinTestFormula
-Source: ./Semantics/SecondOrderMonadic/Examples.lean#L161
+Predicate logic: LRA.Logic.SecondOrderMonadic.SOSatisfies LRA.Logic.SecondOrderMonadic.richModel   (LRA.Logic.SecondOrderMonadic.SOAssignment.mk LRA.Logic.SecondOrderMonadic.testElementAssignment fun x =>     Set.instEmptyCollection.emptyCollection)   LRA.Logic.SecondOrderMonadic.henkinTestFormula
+Predicate logic (unfolded): LRA.Logic.SecondOrderMonadic.SOSatisfies LRA.Logic.SecondOrderMonadic.richModel (LRA.Logic.SecondOrderMonadic.SOAssignment.mk LRA.Logic.SecondOrderMonadic.testElementAssignment fun x => Set.instEmptyCollection.emptyCollection) LRA.Logic.SecondOrderMonadic.henkinTestFormula
+Transliterated theorem: SOSatisfies richModel richAssignment henkinTestFormula
+Logical form (Lean): : SOSatisfies richModel richAssignment henkinTestFormula
+Source: ./Semantics/SecondOrderMonadic/Examples.lean#L179
 
 
 
 Name: poorModel_not_satisfies_henkinTestFormula
 Kind: Theorem
 State: Completed
-Predicate logic: ¬ SOSatisfies poorModel ⟨testElementAssignment, fun _ => ∅⟩ henkinTestFormula
-Predicate logic (unfolded): ¬ LRA.Logic.SecondOrderMonadic.SOSatisfies LRA.Logic.SecondOrderMonadic.poorModel { elementAssignment := LRA.Logic.SecondOrderMonadic.testElementAssignment, setAssignment := fun x => Set.instEmptyCollection.emptyCollection } LRA.Logic.SecondOrderMonadic.henkinTestFormula
-Transliterated theorem: ¬ SOSatisfies poorModel ⟨testElementAssignment, fun _ => ∅⟩ henkinTestFormula
-Logical form (Lean): : ¬ SOSatisfies poorModel ⟨testElementAssignment, fun _ => ∅⟩ henkinTestFormula
-Source: ./Semantics/SecondOrderMonadic/Examples.lean#L192
+Predicate logic: ¬ SOSatisfies poorModel poorAssignment henkinTestFormula
+Predicate logic (unfolded): ¬ LRA.Logic.SecondOrderMonadic.SOSatisfies LRA.Logic.SecondOrderMonadic.poorModel (LRA.Logic.SecondOrderMonadic.SOAssignment.mk LRA.Logic.SecondOrderMonadic.testElementAssignment fun x => Set.instEmptyCollection.emptyCollection) LRA.Logic.SecondOrderMonadic.henkinTestFormula
+Transliterated theorem: ¬ SOSatisfies poorModel poorAssignment henkinTestFormula
+Logical form (Lean): : ¬ SOSatisfies poorModel poorAssignment henkinTestFormula
+Source: ./Semantics/SecondOrderMonadic/Examples.lean#L211

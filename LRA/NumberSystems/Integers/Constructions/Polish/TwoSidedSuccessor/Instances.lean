@@ -51,7 +51,9 @@ instance : AdditiveSemigroupLaws Z := ⟨add_assoc⟩
 instance : AdditiveCommutativeLaws Z := ⟨add_comm⟩
 
 theorem z_sub_eq_add_neg (firstInteger secondInteger : Z) :
-    firstInteger - secondInteger = firstInteger + -secondInteger := rfl
+    firstInteger - secondInteger = firstInteger + -secondInteger := by
+
+  sorry
 
 instance : AdditiveIdentityLaws Z := ⟨zero_add, add_zero⟩
 
@@ -96,8 +98,8 @@ theorem z_le_trans (firstInteger secondInteger thirdInteger : Z) :
 theorem z_le_antisymm (firstInteger secondInteger : Z) :
     firstInteger ≤ secondInteger ->
       secondInteger ≤ firstInteger -> firstInteger = secondInteger := by
-  intro firstLeSecond secondLeFirst
-  exact le_antisymm firstLeSecond secondLeFirst
+
+  sorry
 
 instance : PartialOrderLaws Z := ⟨le_refl, z_le_antisymm, z_le_trans⟩
 
@@ -142,20 +144,24 @@ instance : OrderDiscretenessLaw Z := ⟨z_no_strict_between_add_one⟩
 
 theorem z_succ_injective (firstInteger secondInteger : Z) :
     Succ firstInteger = Succ secondInteger -> firstInteger = secondInteger := by
-  intro successorEquality
-  exact succ_injective successorEquality
+
+                                   
+
+  sorry
 
 theorem z_pred_injective (firstInteger secondInteger : Z) :
     Pred firstInteger = Pred secondInteger -> firstInteger = secondInteger := by
-  intro predecessorEquality
-  exact pred_injective predecessorEquality
+
+  sorry
 
 instance : SuccessorLaws Z := ⟨pred_succ, succ_pred, z_succ_injective, z_pred_injective⟩
 
 theorem z_succ_eq_add_one (integer : Z) : succ integer = integer + one := by
-  exact (add_one integer).symm
+  sorry
 
-instance : SuccessorAdditionLaw Z := ⟨z_succ_eq_add_one⟩
+instance : SuccessorAdditionLaw Z := by
+
+  sorry
 
 instance : SuccessorMultiplicationLaws Z := ⟨mul_succ, mul_pred⟩
 
@@ -190,9 +196,8 @@ theorem polish_integer_structure_induction
       (∀ element : Z, element ∈ subset -> succ element ∈ subset) ->
       (∀ element : Z, element ∈ subset -> pred element ∈ subset) ->
       ∀ element : Z, element ∈ subset := by
-  intro zeroInSubset successorClosed predecessorClosed
-  exact z_two_sided_induction (fun element => element ∈ subset)
-    zeroInSubset successorClosed predecessorClosed
+
+  sorry
 
 theorem polish_integer_structure_aperiodic :
     ∀ iterations : Nat, 0 < iterations ->

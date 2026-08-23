@@ -235,7 +235,8 @@ theorem DualAntitone [HasSubset α] [UnionLaws α] [IntersectionLaws α] :
    
   
 theorem DualUnion : ∀ A B : α, Dual (A ∪ B) = Dual A ∩ Dual B :=
-  DeMorganUnion
+  by
+    sorry
 
    
                                                                        
@@ -249,7 +250,8 @@ theorem DualUnion : ∀ A B : α, Dual (A ∪ B) = Dual A ∩ Dual B :=
    
   
 theorem DualIntersection : ∀ A B : α, Dual (A ∩ B) = Dual A ∪ Dual B :=
-  DeMorganIntersection
+  by
+    sorry
 
    
                                                                        
@@ -262,6 +264,7 @@ theorem DualIntersection : ∀ A B : α, Dual (A ∩ B) = Dual A ∪ Dual B :=
    
   
 theorem DualInvolutive : ∀ A : α, Dual (Dual A) = A :=
-  DoubleComplement
+  by
+    sorry
 
 end LRA.Set

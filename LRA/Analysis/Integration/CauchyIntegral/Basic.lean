@@ -71,11 +71,19 @@ def IsCauchyIntegrable (f : ℝ → ℝ) (a b : ℝ) : Prop := ∃ L, HasCauchyI
                                                     
    
   
-theorem cauchy_integral_constant (a b c : ℝ) (hab : a ≤ b) :
+theorem CauchyIntegralConstant (a b c : ℝ) (hab : a ≤ b) :
     HasCauchyIntegral (fun _ => c) a b (c * (b - a)) := by
-  sorry
 
-variable {f g : ℝ → ℝ} {a b : ℝ}
+                                                                                               
+
+             
+
+       
+                                                            
+                                                    
+   
+  
+  sorry
 
                                   
                                                                                                     

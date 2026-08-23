@@ -216,32 +216,24 @@ theorem FullTwoSidedPredicateInductionOfComprehensionAdequacy
     (is : IntegerStructure Element SetObject)
     (adequacy : PredicateSetComprehensionAdequacy Element SetObject) :
     FullTwoSidedPredicateInduction is := by
-  intro predicate baseCase successorStep predecessorStep element
-  have representedBase : is.zero ∈ adequacy.Represent predicate :=
-    (adequacy.MembershipIff predicate is.zero).2 baseCase
-  have representedSuccessor :
-      forall candidate : Element,
-        candidate ∈ adequacy.Represent predicate ->
-        is.successor candidate ∈ adequacy.Represent predicate := by
-    intro candidate hCandidate
-    exact (adequacy.MembershipIff predicate (is.successor candidate)).2
-      (successorStep candidate
-        ((adequacy.MembershipIff predicate candidate).1 hCandidate))
-  have representedPredecessor :
-      forall candidate : Element,
-        candidate ∈ adequacy.Represent predicate ->
-        is.predecessor candidate ∈ adequacy.Represent predicate := by
-    intro candidate hCandidate
-    exact (adequacy.MembershipIff predicate (is.predecessor candidate)).2
-      (predecessorStep candidate
-        ((adequacy.MembershipIff predicate candidate).1 hCandidate))
-  exact (adequacy.MembershipIff predicate element).1
-    (is.induction
-      (adequacy.Represent predicate)
-      representedBase
-      representedSuccessor
-      representedPredecessor
-      element)
+
+   
+                                                                                 
+
+                                                                            
+                                                                     
+          
+
+             
+
+       
+                                                             
+                                             
+                                                                      
+                                     
+   
+  
+  sorry
 
 end
 

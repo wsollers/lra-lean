@@ -9,7 +9,7 @@ keep source order, because Lean forbids forward references, so source order is
 already a valid topological order. Working this list top to bottom, no entry
 depends on anything not yet proved above it.
 
-**Inventory:** 612 entries across 105 module(s) (86 completed, 526 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
+**Inventory:** 617 entries across 105 module(s) (86 completed, 531 sorry), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
 
 Name: DifferenceMonotoneLeft
 Kind: Theorem
@@ -253,113 +253,124 @@ Source: ./Interface/Intersection.lean#L130
 
 
 
-Name: DoubleComplement
+Name: MembershipSymbolIsBinary
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ A : α, Aᶜᶜ = A
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), inst.complement (inst.complement A) = A
-Transliterated theorem: ∀ A : α, Aᶜᶜ = A
-Logical form (Lean): : ∀ A : α, Aᶜᶜ = A
-Source: ./Interface/Complement.lean#L74
+Predicate logic: LRA.Set.ModelTheory.MembershipSignature.IsBinaryRelationSymbol LRA.Set.ModelTheory.MembershipRelationSymbol.mem
+Predicate logic (unfolded): LRA.Set.ModelTheory.MembershipSignature.IsBinaryRelationSymbol LRA.Set.ModelTheory.MembershipRelationSymbol.mem
+Transliterated theorem: MembershipSignature.IsBinaryRelationSymbol .mem
+Logical form (Lean): : MembershipSignature.IsBinaryRelationSymbol .mem
+Source: ./Interface/ModelTheory/LStructure.lean#L58
 
 
 
-Name: ComplementEmpty
+Name: extensionalityIsClosed
 Kind: Theorem
 State: Sorry
-Predicate logic: (∅ : α)ᶜ = (𝒰 : α)
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → inst.complement inst_5.emptyCollection = inst_1.universal
-Transliterated theorem: ∅ ∈ αᶜ = 𝒰 ∈ α
-Logical form (Lean): : (∅ : α)ᶜ = (𝒰 : α)
-Source: ./Interface/Complement.lean#L86
+Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.extensionalityFormula
+Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.extensionalityFormula
+Transliterated theorem: IsClosedFormula extensionalityFormula
+Logical form (Lean): : IsClosedFormula extensionalityFormula
+Source: ./Interface/ModelTheory/Theory.lean#L293
 
 
 
-Name: ComplementUniversal
+Name: emptySetIsClosed
 Kind: Theorem
 State: Sorry
-Predicate logic: (𝒰 : α)ᶜ = (∅ : α)
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → inst.complement inst_1.universal = inst_5.emptyCollection
-Transliterated theorem: 𝒰 ∈ αᶜ = ∅ ∈ α
-Logical form (Lean): : (𝒰 : α)ᶜ = (∅ : α)
-Source: ./Interface/Complement.lean#L98
+Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.emptySetFormula
+Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.emptySetFormula
+Transliterated theorem: IsClosedFormula emptySetFormula
+Logical form (Lean): : IsClosedFormula emptySetFormula
+Source: ./Interface/ModelTheory/Theory.lean#L305
 
 
 
-Name: UnionComplement
+Name: pairingIsClosed
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ A : α, A ∪ Aᶜ = (𝒰 : α)
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), A ∪ inst.complement A = inst_1.universal
-Transliterated theorem: ∀ A : α, A ∪ Aᶜ = 𝒰 ∈ α
-Logical form (Lean): : ∀ A : α, A ∪ Aᶜ = (𝒰 : α)
-Source: ./Interface/Complement.lean#L110
+Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.pairingFormula
+Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.pairingFormula
+Transliterated theorem: IsClosedFormula pairingFormula
+Logical form (Lean): : IsClosedFormula pairingFormula
+Source: ./Interface/ModelTheory/Theory.lean#L317
 
 
 
-Name: IntersectionComplement
+Name: unionIsClosed
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ A : α, A ∩ Aᶜ = (∅ : α)
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection
-Transliterated theorem: ∀ A : α, A ∩ Aᶜ = ∅ ∈ α
-Logical form (Lean): : ∀ A : α, A ∩ Aᶜ = (∅ : α)
-Source: ./Interface/Complement.lean#L122
+Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.unionFormula
+Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.unionFormula
+Transliterated theorem: IsClosedFormula unionFormula
+Logical form (Lean): : IsClosedFormula unionFormula
+Source: ./Interface/ModelTheory/Theory.lean#L329
 
 
 
-Name: DeMorganUnion
+Name: powerSetIsClosed
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B
-Transliterated theorem: ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
-Logical form (Lean): : ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
-Source: ./Interface/Complement.lean#L134
+Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.powerSetFormula
+Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.powerSetFormula
+Transliterated theorem: IsClosedFormula powerSetFormula
+Logical form (Lean): : IsClosedFormula powerSetFormula
+Source: ./Interface/ModelTheory/Theory.lean#L341
 
 
 
-Name: DeMorganIntersection
+Name: infinityIsClosed
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B
-Transliterated theorem: ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
-Logical form (Lean): : ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
-Source: ./Interface/Complement.lean#L146
+Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.infinityFormula
+Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.infinityFormula
+Transliterated theorem: IsClosedFormula infinityFormula
+Logical form (Lean): : IsClosedFormula infinityFormula
+Source: ./Interface/ModelTheory/Theory.lean#L353
 
 
 
-Name: DifferenceAsIntersectionComplement
+Name: foundationIsClosed
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ A B : α, A \ B = A ∩ Bᶜ
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), A \ B = A ∩ inst.complement B
-Transliterated theorem: ∀ A B : α, A \ B = A ∩ Bᶜ
-Logical form (Lean): : ∀ A B : α, A \ B = A ∩ Bᶜ
-Source: ./Interface/Complement.lean#L159
+Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.foundationFormula
+Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.foundationFormula
+Transliterated theorem: IsClosedFormula foundationFormula
+Logical form (Lean): : IsClosedFormula foundationFormula
+Source: ./Interface/ModelTheory/Theory.lean#L365
 
 
 
-Name: DifferenceUniversal
+Name: choiceIsClosed
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ A : α, A \ (𝒰 : α) = (∅ : α)
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection
-Transliterated theorem: ∀ A : α, A \ 𝒰 ∈ α = ∅ ∈ α
-Logical form (Lean): : ∀ A : α, A \ (𝒰 : α) = (∅ : α)
-Source: ./Interface/Complement.lean#L172
+Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.choiceFormula
+Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.choiceFormula
+Transliterated theorem: IsClosedFormula choiceFormula
+Logical form (Lean): : IsClosedFormula choiceFormula
+Source: ./Interface/ModelTheory/Theory.lean#L377
 
 
 
-Name: UniversalDifference
+Name: satisfiesIffF
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ A : α, (𝒰 : α) \ A = Aᶜ
-Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), inst_1.universal \ A = inst.complement A
-Transliterated theorem: ∀ A : α, 𝒰 ∈ α \ A = Aᶜ
-Logical form (Lean): : ∀ A : α, (𝒰 : α) \ A = Aᶜ
-Source: ./Interface/Complement.lean#L184
+Predicate logic: ∀ {M : Model MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : Formula MembershipSignature Nat}, Satisfies M assignment (iffF φ ψ) ↔ (Satisfies M assignment φ ↔ Satisfies M assignment ψ)
+Predicate logic (unfolded): ∀ {M : LRA.Logic.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat}, LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Set.ModelTheory.iffF φ ψ) ↔ LRA.Logic.FirstOrder.Satisfies M assignment φ ↔ LRA.Logic.FirstOrder.Satisfies M assignment ψ
+Transliterated theorem: Satisfies M assignment (iffF φ ψ) ↔ (Satisfies M assignment φ ↔ Satisfies M assignment ψ)
+Logical form (Lean): {M : Model MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : Formula MembershipSignature Nat} : Satisfies M assignment (iffF φ ψ) ↔ (Satisfies M assignment φ ↔ Satisfies M assignment ψ)
+Source: ./Interface/ModelTheory/Theory.lean#L546
+
+
+
+Name: satisfiesOrF
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {M : Model MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : Formula MembershipSignature Nat}, Satisfies M assignment (orF φ ψ) ↔ (Satisfies M assignment φ ∨ Satisfies M assignment ψ)
+Predicate logic (unfolded): ∀ {M : LRA.Logic.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat}, LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Set.ModelTheory.orF φ ψ) ↔ Or (LRA.Logic.FirstOrder.Satisfies M assignment φ) (LRA.Logic.FirstOrder.Satisfies M assignment ψ)
+Transliterated theorem: Satisfies M assignment (orF φ ψ) ↔ (Satisfies M assignment φ ∨ Satisfies M assignment ψ)
+Logical form (Lean): {M : Model MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : Formula MembershipSignature Nat} : Satisfies M assignment (orF φ ψ) ↔ (Satisfies M assignment φ ∨ Satisfies M assignment ψ)
+Source: ./Interface/ModelTheory/Theory.lean#L565
 
 
 
@@ -1397,6 +1408,160 @@ Source: ./Interface/Union.lean#L139
 
 
 
+Name: DoubleComplement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A : α, Aᶜᶜ = A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), inst.complement (inst.complement A) = A
+Transliterated theorem: ∀ A : α, Aᶜᶜ = A
+Logical form (Lean): : ∀ A : α, Aᶜᶜ = A
+Source: ./Interface/Complement.lean#L76
+
+
+
+Name: ComplementEmpty
+Kind: Theorem
+State: Sorry
+Predicate logic: (∅ : α)ᶜ = (𝒰 : α)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → inst.complement inst_5.emptyCollection = inst_1.universal
+Transliterated theorem: ∅ ∈ αᶜ = 𝒰 ∈ α
+Logical form (Lean): : (∅ : α)ᶜ = (𝒰 : α)
+Source: ./Interface/Complement.lean#L88
+
+
+
+Name: ComplementUniversal
+Kind: Theorem
+State: Sorry
+Predicate logic: (𝒰 : α)ᶜ = (∅ : α)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → inst.complement inst_1.universal = inst_5.emptyCollection
+Transliterated theorem: 𝒰 ∈ αᶜ = ∅ ∈ α
+Logical form (Lean): : (𝒰 : α)ᶜ = (∅ : α)
+Source: ./Interface/Complement.lean#L100
+
+
+
+Name: UnionComplement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A : α, A ∪ Aᶜ = (𝒰 : α)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), A ∪ inst.complement A = inst_1.universal
+Transliterated theorem: ∀ A : α, A ∪ Aᶜ = 𝒰 ∈ α
+Logical form (Lean): : ∀ A : α, A ∪ Aᶜ = (𝒰 : α)
+Source: ./Interface/Complement.lean#L112
+
+
+
+Name: IntersectionComplement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A : α, A ∩ Aᶜ = (∅ : α)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection
+Transliterated theorem: ∀ A : α, A ∩ Aᶜ = ∅ ∈ α
+Logical form (Lean): : ∀ A : α, A ∩ Aᶜ = (∅ : α)
+Source: ./Interface/Complement.lean#L124
+
+
+
+Name: DeMorganUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B
+Transliterated theorem: ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
+Logical form (Lean): : ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
+Source: ./Interface/Complement.lean#L136
+
+
+
+Name: DeMorganIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B
+Transliterated theorem: ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
+Logical form (Lean): : ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
+Source: ./Interface/Complement.lean#L148
+
+
+
+Name: DifferenceAsIntersectionComplement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A B : α, A \ B = A ∩ Bᶜ
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), A \ B = A ∩ inst.complement B
+Transliterated theorem: ∀ A B : α, A \ B = A ∩ Bᶜ
+Logical form (Lean): : ∀ A B : α, A \ B = A ∩ Bᶜ
+Source: ./Interface/Complement.lean#L161
+
+
+
+Name: DifferenceUniversal
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A : α, A \ (𝒰 : α) = (∅ : α)
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection
+Transliterated theorem: ∀ A : α, A \ 𝒰 ∈ α = ∅ ∈ α
+Logical form (Lean): : ∀ A : α, A \ (𝒰 : α) = (∅ : α)
+Source: ./Interface/Complement.lean#L174
+
+
+
+Name: UniversalDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A : α, (𝒰 : α) \ A = Aᶜ
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), inst_1.universal \ A = inst.complement A
+Transliterated theorem: ∀ A : α, 𝒰 ∈ α \ A = Aᶜ
+Logical form (Lean): : ∀ A : α, (𝒰 : α) \ A = Aᶜ
+Source: ./Interface/Complement.lean#L186
+
+
+
+Name: DualAntitone
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [HasSubset α] [UnionLaws α] [IntersectionLaws α], ∀ A B : α, A ⊆ B ↔ Dual B ⊆ Dual A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ [inst_6 : HasSubset α], (LRA.Set.UnionLaws α ∧ LRA.Set.IntersectionLaws α) → ∀ (A B : α), inst_6.Subset A B ↔ inst_6.Subset (LRA.Set.Dual B) (LRA.Set.Dual A)
+Transliterated theorem: ∀ A B : α, A ⊆ B ↔ Dual B ⊆ Dual A
+Logical form (Lean): [HasSubset α] [UnionLaws α] [IntersectionLaws α] : ∀ A B : α, A ⊆ B ↔ Dual B ⊆ Dual A
+Source: ./Interface/Complement.lean#L223
+
+
+
+Name: DualUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A B : α, Dual (A ∪ B) = Dual A ∩ Dual B
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), LRA.Set.Dual (A ∪ B) = LRA.Set.Dual A ∩ LRA.Set.Dual B
+Transliterated theorem: ∀ A B : α, Dual (A ∪ B) = Dual A ∩ Dual B
+Logical form (Lean): : ∀ A B : α, Dual (A ∪ B) = Dual A ∩ Dual B
+Source: ./Interface/Complement.lean#L237
+
+
+
+Name: DualIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A B : α, Dual (A ∩ B) = Dual A ∪ Dual B
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), LRA.Set.Dual (A ∩ B) = LRA.Set.Dual A ∪ LRA.Set.Dual B
+Transliterated theorem: ∀ A B : α, Dual (A ∩ B) = Dual A ∪ Dual B
+Logical form (Lean): : ∀ A B : α, Dual (A ∩ B) = Dual A ∪ Dual B
+Source: ./Interface/Complement.lean#L252
+
+
+
+Name: DualInvolutive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ A : α, Dual (Dual A) = A
+Predicate logic (unfolded): ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), LRA.Set.Dual (LRA.Set.Dual A) = A
+Transliterated theorem: ∀ A : α, Dual (Dual A) = A
+Logical form (Lean): : ∀ A : α, Dual (Dual A) = A
+Source: ./Interface/Complement.lean#L266
+
+
+
 Name: instSymmDiffMembershipLawsSet
 Kind: Theorem
 State: Completed
@@ -1933,127 +2098,6 @@ Predicate logic (unfolded): ∀ (f : ZFSet → ZFSet) [inst : ZFSet.Definable₁
 Transliterated theorem: (∀ over ∈ ZFSet), (ZFSet → ZFSet) → IsFunctionalSet ZFSet ZFSet (ZFSet.map f over)
 Logical form (Lean): (f : ZFSet → ZFSet) [ZFSet.Definable₁ f] (over : ZFSet) : IsFunctionalSet ZFSet ZFSet (ZFSet.map f over)
 Source: ./Interop/Mathlib/ZFSet/FunctionSets.lean#L181
-
-
-
-Name: MembershipSymbolIsBinary
-Kind: Theorem
-State: Sorry
-Predicate logic: LRA.Set.ModelTheory.MembershipSignature.IsBinaryRelationSymbol LRA.Set.ModelTheory.MembershipRelationSymbol.mem
-Predicate logic (unfolded): LRA.Set.ModelTheory.MembershipSignature.IsBinaryRelationSymbol LRA.Set.ModelTheory.MembershipRelationSymbol.mem
-Transliterated theorem: MembershipSignature.IsBinaryRelationSymbol .mem
-Logical form (Lean): : MembershipSignature.IsBinaryRelationSymbol .mem
-Source: ./Model/LStructure.lean#L58
-
-
-
-Name: extensionalityIsClosed
-Kind: Theorem
-State: Sorry
-Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.extensionalityFormula
-Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.extensionalityFormula
-Transliterated theorem: IsClosedFormula extensionalityFormula
-Logical form (Lean): : IsClosedFormula extensionalityFormula
-Source: ./Model/Theory.lean#L293
-
-
-
-Name: emptySetIsClosed
-Kind: Theorem
-State: Sorry
-Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.emptySetFormula
-Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.emptySetFormula
-Transliterated theorem: IsClosedFormula emptySetFormula
-Logical form (Lean): : IsClosedFormula emptySetFormula
-Source: ./Model/Theory.lean#L305
-
-
-
-Name: pairingIsClosed
-Kind: Theorem
-State: Sorry
-Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.pairingFormula
-Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.pairingFormula
-Transliterated theorem: IsClosedFormula pairingFormula
-Logical form (Lean): : IsClosedFormula pairingFormula
-Source: ./Model/Theory.lean#L317
-
-
-
-Name: unionIsClosed
-Kind: Theorem
-State: Sorry
-Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.unionFormula
-Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.unionFormula
-Transliterated theorem: IsClosedFormula unionFormula
-Logical form (Lean): : IsClosedFormula unionFormula
-Source: ./Model/Theory.lean#L329
-
-
-
-Name: powerSetIsClosed
-Kind: Theorem
-State: Sorry
-Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.powerSetFormula
-Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.powerSetFormula
-Transliterated theorem: IsClosedFormula powerSetFormula
-Logical form (Lean): : IsClosedFormula powerSetFormula
-Source: ./Model/Theory.lean#L341
-
-
-
-Name: infinityIsClosed
-Kind: Theorem
-State: Sorry
-Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.infinityFormula
-Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.infinityFormula
-Transliterated theorem: IsClosedFormula infinityFormula
-Logical form (Lean): : IsClosedFormula infinityFormula
-Source: ./Model/Theory.lean#L353
-
-
-
-Name: foundationIsClosed
-Kind: Theorem
-State: Sorry
-Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.foundationFormula
-Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.foundationFormula
-Transliterated theorem: IsClosedFormula foundationFormula
-Logical form (Lean): : IsClosedFormula foundationFormula
-Source: ./Model/Theory.lean#L365
-
-
-
-Name: choiceIsClosed
-Kind: Theorem
-State: Sorry
-Predicate logic: LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.choiceFormula
-Predicate logic (unfolded): LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.ModelTheory.choiceFormula
-Transliterated theorem: IsClosedFormula choiceFormula
-Logical form (Lean): : IsClosedFormula choiceFormula
-Source: ./Model/Theory.lean#L377
-
-
-
-Name: satisfiesIffF
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {M : Model MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : Formula MembershipSignature Nat}, Satisfies M assignment (iffF φ ψ) ↔ (Satisfies M assignment φ ↔ Satisfies M assignment ψ)
-Predicate logic (unfolded): ∀ {M : LRA.Logic.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat}, LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Set.ModelTheory.iffF φ ψ) ↔ LRA.Logic.FirstOrder.Satisfies M assignment φ ↔ LRA.Logic.FirstOrder.Satisfies M assignment ψ
-Transliterated theorem: Satisfies M assignment (iffF φ ψ) ↔ (Satisfies M assignment φ ↔ Satisfies M assignment ψ)
-Logical form (Lean): {M : Model MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : Formula MembershipSignature Nat} : Satisfies M assignment (iffF φ ψ) ↔ (Satisfies M assignment φ ↔ Satisfies M assignment ψ)
-Source: ./Model/Theory.lean#L546
-
-
-
-Name: satisfiesOrF
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {M : Model MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : Formula MembershipSignature Nat}, Satisfies M assignment (orF φ ψ) ↔ (Satisfies M assignment φ ∨ Satisfies M assignment ψ)
-Predicate logic (unfolded): ∀ {M : LRA.Logic.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat}, LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Set.ModelTheory.orF φ ψ) ↔ Or (LRA.Logic.FirstOrder.Satisfies M assignment φ) (LRA.Logic.FirstOrder.Satisfies M assignment ψ)
-Transliterated theorem: Satisfies M assignment (orF φ ψ) ↔ (Satisfies M assignment φ ∨ Satisfies M assignment ψ)
-Logical form (Lean): {M : Model MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : Formula MembershipSignature Nat} : Satisfies M assignment (orF φ ψ) ↔ (Satisfies M assignment φ ∨ Satisfies M assignment ψ)
-Source: ./Model/Theory.lean#L565
 
 
 
@@ -4474,6 +4518,17 @@ Predicate logic (unfolded): ∀ (A : LRA.Set.TG.Set), LRA.Set.TG.IsGrothendieckU
 Transliterated theorem: (∀ A ∈ Set), IsGrothendieckUniverseFor A (TheGrothendieckUniverse A)
 Logical form (Lean): (A : Set) : IsGrothendieckUniverseFor A (TheGrothendieckUniverse A)
 Source: ./TG/GrothendieckUniverse/Theorems.lean#L16
+
+
+
+Name: GrothendieckUniverseClosedUnderUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {A U X : Set} (universeHypothesis : IsGrothendieckUniverseFor A U) (XInUniverse : X ∈ U), exists union : Set, union ∈ U /\ IsUnionOf X union
+Predicate logic (unfolded): ∀ {A U X : LRA.Set.TG.Set}, (LRA.Set.TG.IsGrothendieckUniverseFor A U ∧ LRA.Set.instMembershipTGSet.mem U X) → Exists fun union => (LRA.Set.instMembershipTGSet.mem U union ∧ LRA.Set.TG.IsUnionOf X union)
+Transliterated theorem: (IsGrothendieckUniverseFor A U ∧ X ∈ U) → exists union : Set, union ∈ U ∧ IsUnionOf X union
+Logical form (Lean): {A U X : Set} (universeHypothesis : IsGrothendieckUniverseFor A U) (XInUniverse : X ∈ U) : exists union : Set, union ∈ U /\ IsUnionOf X union
+Source: ./TG/GrothendieckUniverse/Theorems.lean#L37
 
 
 

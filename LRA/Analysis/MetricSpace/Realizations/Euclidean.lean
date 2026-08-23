@@ -26,15 +26,9 @@ abbrev coordinates {n : ℕ} (point : MathlibRn n) : Fin n → ℝ :=
   point.coord
 
                                                                          
-theorem mathlibRn_ext {n : ℕ} {x y : MathlibRn n}
+theorem MathlibRnExt {n : ℕ} {x y : MathlibRn n}
     (h : ∀ i : Fin n, coordinates x i = coordinates y i) : x = y := by
-  cases x with
-  | mk xcoord =>
-    cases y with
-    | mk ycoord =>
-      have hfun : xcoord = ycoord := funext h
-      cases hfun
-      rfl
+  sorry
 
                                                                          
                                                 
@@ -46,7 +40,7 @@ noncomputable def EuclideanRnMetric (n : ℕ) :
     · exact dist_nonneg
     · constructor
       · intro hxy
-        apply mathlibRn_ext
+        apply MathlibRnExt
         exact fun i => by
           exact congrFun (dist_eq_zero.mp hxy) i
       · intro hxy

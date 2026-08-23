@@ -72,8 +72,9 @@ theorem ordered_semiring_structure :
                                                 
 theorem nonstrict_order_refl :
     ∀ value, nonstrictOrder natural_data value value := by
-  intro value
-  exact Or.inr rfl
+
+                                                
+  sorry
 
                                                  
 theorem nonstrict_order_trans :
