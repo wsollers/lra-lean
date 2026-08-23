@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22",
+  "generated_at": "2026-08-23",
   "repo": "F:/repos/lra-lean",
   "branch": "main",
   "origin_sync": {
@@ -683,19 +683,27 @@
       "queue_rank": 23,
       "wave": 5,
       "wave_name": "real-construction certification tail",
-      "status": "not_started",
-      "last_good_stop": "2026-08-22: queue materialized, repo even with origin/main, no task launched yet",
-      "next_step": "Launch spec task",
-      "validator_path": null,
-      "build_target": null,
-      "spec_task": null,
-      "verify_task": null,
-      "implement_task": null,
-      "verification_result": null,
-      "gate_result": null,
-      "commit_sha": null,
-      "pushed": false,
-      "notes": []
+      "status": "done",
+      "last_good_stop": "2026-08-23: audited current main, confirmed the active EffectiveCauchy owner code already carried the repaired semantics without detached RealModel/countability claims, aligned the authoritative proof-order notes to that live surface, and both scoped gates passed",
+      "next_step": "Launch p0-24 spec task",
+      "validator_path": "LRA/NumberSystems/RealNumbers",
+      "build_target": "LRA.NumberSystems.RealNumbers",
+      "spec_task": "main-thread",
+      "verify_task": "main-thread",
+      "implement_task": "main-thread",
+      "verification_result": "approved",
+      "gate_result": "passed",
+      "commit_sha": "76aed430",
+      "pushed": true,
+      "notes": [
+        "2026-08-23: persisted bounded p0-23 spec in `docs/p0-repair/results/p0-23-spec.md`; current main already carried the repaired EffectiveCauchy owner semantics, so the remaining defect was authoritative documentation drift",
+        "2026-08-23: persisted p0-23 verification in `docs/p0-repair/results/p0-23-verify.md`; verifier approved the documentation-only repair scope with no bounded correction list",
+        "2026-08-23: audited the live EffectiveCauchy owner surface and confirmed the repaired package already exposes modulus-tracked rational Cauchy data, a quotient by `Equivalent`, and no detached `RealModel`/countability closure claims",
+        "2026-08-23: updated `LRA/NumberSystems/RealNumbers/ProofOrder.md` so the backend summary and Part F describe `EffectiveCauchyApproximation`, `ApproximationSetoid`, `EffectiveCauchyReal`, and the current non-realization status accurately instead of the retired `Computable` surface",
+        "2026-08-23: `python scripts/validate_structure.py --path LRA/NumberSystems/RealNumbers` passed",
+        "2026-08-23: `lake build LRA.NumberSystems.RealNumbers` passed",
+        "2026-08-23: implementation committed as `76aed430` (`Align EffectiveCauchy proof-order notes`) and pushed on `origin/main`"
+      ]
     },
     {
       "id": "p0-24",
