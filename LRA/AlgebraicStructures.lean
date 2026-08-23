@@ -3,6 +3,7 @@ import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup
 import LRA.AlgebraicStructures.AdditiveGroup
 import LRA.AlgebraicStructures.AdditiveMonoid
 import LRA.AlgebraicStructures.AdditiveSemigroup
+import LRA.AlgebraicStructures.Archimedean
 import LRA.AlgebraicStructures.BooleanAlgebra
 import LRA.AlgebraicStructures.BoundedLattice
 import LRA.AlgebraicStructures.CommutativeMonoid

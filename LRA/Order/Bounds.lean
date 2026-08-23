@@ -6,6 +6,8 @@ import LRA.Order.Bounds.BoundedAbove.Definition
 import LRA.Order.Bounds.BoundedAbove.Theorems
 import LRA.Order.Bounds.BoundedBelow.Definition
 import LRA.Order.Bounds.BoundedBelow.Theorems
+import LRA.Order.Bounds.Cofinal.Definition
+import LRA.Order.Bounds.Coinitial.Definition
 import LRA.Order.Bounds.Bounded.Definition
 import LRA.Order.Bounds.Bounded.Theorems
 import LRA.Order.Bounds.BoundSets.Definition

@@ -498,3 +498,86 @@ rather than folded into a structural-placement step.
 Verified with the same static import-resolution check (0 broken imports,
 before and after) and manual namespace/`end`/`section` inspection. Not
 built.
+
+---
+
+## 11. Step 3 redone: `Order.ArchimedeanLaw` removed, real cofinality-based design
+
+**§10's `Order.ArchimedeanLaw` was itself wrong, on the same axis it had just
+corrected.** It lived under `Order/` but was not actually order-theoretic: it
+depended on `[Add R]` and hand-rolled a `IteratedSelfSum` repeated-addition
+helper, exactly the kind of algebra-in-the-order-folder mixing that
+`Order/DiscreteOrder`'s `OrderDiscretenessLaw` (its own template) already
+does — copying that template reproduced its flaw instead of the actually-pure
+alternative that also exists in this repo
+(`Order/Relation/{Adjacent,CoverRelation,UpperCover,LowerCover}`, which
+express "immediate successor" with no arithmetic at all). Caught and
+corrected in-session rather than found later.
+
+**The fix composes downward instead of restating.** `Order/Bounds/` already
+has `UpperBound`/`BoundedAbove` and their exact duals `LowerBound`/
+`BoundedBelow`, all purely relational (`(relation : Endorelation Element)
+(subset : SetObject) [Membership Element SetObject]`, no algebra). What was
+missing was **cofinality** — "no single point bounds this subset" — which is
+the actual order-theoretic content of "Archimedean." Two new files complete
+the dual pair:
+
+- `LRA/Order/Bounds/Cofinal/Definition.lean`:
+  `Cofinal relation subset := ∀ point, ∃ element ∈ subset, relation point element`
+- `LRA/Order/Bounds/Coinitial/Definition.lean`: the order-dual, built the
+  same way against `LowerBound`'s direction.
+
+Both are direct positive existentials, matching `LRA.Relation.Dense`'s own
+style, deliberately **not** phrased as `¬BoundedAbove`/`¬BoundedBelow` — that
+equivalence needs extra hypotheses (order totality/trichotomy) the repo's own
+`semantic-artifact-record.md` convention flags as exactly the kind of thing
+that must be named (`normalization_requires`) rather than silently assumed,
+and neither predicate needed the detour to be useful.
+
+This wasn't a coincidental convenience: `NumberSystems/Models.lean`
+(restored in Step 1) already has **two independent, hand-rolled inline
+cofinality statements** — `ArchimedeanDenseOrderedFieldExtension`'s
+`ArchimedeanProperty` field and `CofinalRealExtension`'s
+`DenseOrderedFieldEmbeddingIsCofinal` field, both shaped
+`∀ point, ∃ element, point < embedding element` — the exact duplicate-surface
+problem `PurposeAndArchitecture.md`'s "one definition, multiple
+specializations" rule exists to prevent. `Cofinal` is the missing shared
+name for both; reconciling those two fields to cite it is left for Step 5
+(not done now, to keep this step's blast radius contained), but the
+duplication is now named rather than silent.
+
+**`ArchimedeanLaw` moved to `AlgebraicStructures/Archimedean/Definition.lean`**,
+built by composing `Order.Cofinal` with the algebra needed to generate the
+one subset the pure order layer can't supply on its own (repeated addition —
+`IteratedSelfSum`, moved here from the deleted `Order/Archimedean/
+Definition.lean` since it's algebra, not order): `ArchimedeanLaw R := ∀ x,
+0 < x → Order.Cofinal (· < ·) (Multiples x)`, where `Multiples x` is the
+predicate-set of `x`'s iterated self-sums, expressed via
+`LRA.Set.PredicateSet` (the repo's own predicate-as-set implementation, kept
+Mathlib-free like every other law file in this ladder). Wired in as a new
+top-level `AlgebraicStructures` entry (`Archimedean.lean` router, registered
+in `AlgebraicStructures.lean`), matching the flat single-concept-file shape
+of `Order/DiscreteOrder` rather than a full named-structure concept folder,
+since — like `OrderDiscretenessLaw` — it adds no new carrier data, only a
+law.
+
+This directly enables what was asked for: number-system constructions will
+need to **prove** `ArchimedeanLaw` the same way `TwoSidedSuccessor/
+Instances.lean` already proves `OrderedRingLaws`/`IntegralDomainLaws`/
+`OrderDiscretenessLaw` today (`instance : OrderDiscretenessLaw Z :=
+⟨z_no_strict_between_add_one⟩`) — no such instance exists yet for
+`ArchimedeanLaw` anywhere; registering them for `RationalNumbers`/
+`RealNumbers` is Step 5 work, not done here.
+
+**Deliberately not done: `DenseAbove`/`DenseBelow`.** The only existing
+precedent in the repo — `LraReal`'s `open_above` field and
+`ConstructionModels.lean`'s `downward_closed` — is a **self-referential**
+condition ("this set has no greatest element within itself"), not the
+standard order-theory sense ("this set accumulates arbitrarily close to an
+external point"). Those are genuinely different predicates that happen to
+share a name; building the wrong one would be a third false start on this
+exact territory in one session. Left open pending a decision on which sense
+is wanted (or whether both are, under different names).
+
+Verified with the same static import-resolution check (0 broken imports)
+and manual namespace/`end`/`section` inspection. Not built.

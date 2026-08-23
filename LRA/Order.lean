@@ -5,7 +5,6 @@ import LRA.Order.Density
 import LRA.Order.Directedness
 import LRA.Order.Lattices
 import LRA.Order.DiscreteOrder
-import LRA.Order.Archimedean
 import LRA.Order.Constructions
 import LRA.Order.Morphisms
 import LRA.Order.Laws
