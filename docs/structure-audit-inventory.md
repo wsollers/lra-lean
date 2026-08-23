@@ -1016,3 +1016,76 @@ LRA-native real).
 
 Verified with the same static import-resolution check (0 broken imports)
 and manual namespace/`end` balance. Not built.
+
+---
+
+## 19. Order on `Landau`, unblocking `N_0_Landau` and `Z_QuotientOrderedPairs`
+
+User: "landau should have the order on it. that's proven in the grundlagen" —
+correcting the reluctance in §18 to add order-on-`Landau` as risky new
+content. It isn't: Landau's Grundlagen der Analysis is exactly the source
+this repo already cites (`DESIGN.md`'s "Preferred sources" list), and the
+standard order construction (`x < y :↔ ∃z, x+z=y`) is textbook, not novel.
+
+**Checked what already existed before writing anything**, and found the
+scope much smaller than expected: `Landau/WellFoundedness.lean` already has
+all five Peano axioms (`LandauBaseNotSuccessor`, `LandauSuccessorInjective`,
+`LandauInduction`, alongside the two from `Carrier.lean`) packaged into a
+full `LandauPeanoSystem : PeanoSystem LandauElement (PredicateSet
+LandauElement)`. And `LandauAddition`/`LandauMultiplication`
+(`Landau/Operations/*.lean`) are **already generic over any** `(model :
+PeanoSystem Element SetObject)`, not `LandauElement`-specific — matching
+`DESIGN.md`'s "prove once, reuse everywhere" recursion-architecture
+principle. So order needed to be added the same way, generic over any
+`PeanoSystem`, not hand-rolled for `LandauElement`.
+
+**Added `LRA/NumberSystems/NaturalNumbers/Constructions/Landau/Laws.lean`**
+— the `Laws.lean` role in the Construction Pipeline
+(`PurposeAndArchitecture.md`: "Algebraic, order, or structural laws
+satisfied by the operations"), a role `Landau` didn't have yet.
+`LandauLessThan model x y := ∃ z, LandauAddition model x z = y`, with the
+citation in its doc comment, plus the two theorems `NaturalArithmeticFor
+WholeNumbers` actually needs (`strictOrder_trichotomous`,
+`strictOrder_transitive`) and the two order-compatibility theorems
+(addition, multiplication) — all `sorry`'d, matching every other theorem in
+`Landau/Operations/*.lean` (`LandauAdditionIsAssociative`,
+`LandauAdditionIsCommutative`, etc. are *all* already `sorry`'d; this adds
+statements at the same rigor level already established there, not a
+weaker or stronger standard). One quiet fact worth naming: the
+multiplication-compatibility law holds *unconditionally* (no "factor > 0"
+side-condition) only because `LandauElement` has no zero — every element is
+positive by construction, so the usual caveat vanishes for 1-based ℕ
+specifically.
+
+**Built the concrete witness and extended two carriers**, in
+`NumberSystems/Carriers/Witnesses.lean` (new file, since these are
+constructed instances rather than pure aliases like `Definition.lean`):
+
+- `landauNaturalArithmeticForWholeNumbers : NaturalArithmeticForWholeNumbers
+  LandauElement (PredicateSet LandauElement)`, filling all five fields from
+  `LandauPeanoSystem` and the four new `Landau/Laws.lean` theorems.
+- `N_0_Landau := WholeNumbers.Constructions.Landau.Carrier
+  landauNaturalArithmeticForWholeNumbers` — the genuinely-blocked carrier
+  from §18, now grounded. (`N_0` itself stays `N_VonNeumann`, per the
+  earlier correction — this is the *other*, `Landau`-based whole-number
+  carrier, now also available under its own name.)
+- Chased one link further: `WholeNumbers/Constructions/Landau/Instances.lean`
+  already has `quotientOrderedPairsInput`, taking exactly a
+  `NaturalArithmeticForWholeNumbers` and producing a
+  `WholeNumberArithmeticForQuotientPairs` (with its own two pre-existing
+  `sorry`s). Calling it with the new witness grounds
+  `Z_QuotientOrderedPairs := Integers.QuotientOrderedPairs.Carrier
+  landauWholeNumberArithmeticForQuotientPairs` — one of the three
+  transitively-blocked ℤ constructions from §18, now also available.
+
+**Not done: `Z_Tao`, `Z_Mendelson`.** Same blocker, same fix shape (each
+needs its own construction-specific input built from
+`landauNaturalArithmeticForWholeNumbers` — `WholeNumberArithmeticForTaoFormal
+Differences` and `PositiveNaturalPairData` respectively, neither yet
+checked for its exact required shape), but kept out of this pass rather than
+let the chain sprawl further in one turn.
+
+Verified with the same static import-resolution check (0 broken imports)
+and manual namespace/`end` balance. Not built — everything downstream of the
+four new `sorry`'d order theorems is only as sound as those theorems turn
+out to be once actually proved; nothing here claims otherwise.
