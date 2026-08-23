@@ -26,13 +26,13 @@ variable {R : Type u}
 
                                             
 theorem ZeroAdd [Add R] [OfNat R 0] [AdditiveIdentityLaws R] :
-    ∀ a : R, 0 + a = a := by
-  sorry
+    ∀ a : R, 0 + a = a :=
+  AdditiveIdentityLaws.ZeroAdd
 
                                              
 theorem AddZero [Add R] [OfNat R 0] [AdditiveIdentityLaws R] :
-    ∀ a : R, a + 0 = a := by
-  sorry
+    ∀ a : R, a + 0 = a :=
+  AdditiveIdentityLaws.AddZero
 
 end Wrappers
 

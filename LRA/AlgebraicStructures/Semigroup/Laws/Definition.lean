@@ -19,8 +19,8 @@ variable {R : Type u}
 
                                      
 theorem MulAssociative [Mul R] [MultiplicativeSemigroupLaws R] :
-    ∀ a b c : R, (a * b) * c = a * (b * c) := by
-  sorry
+    ∀ a b c : R, (a * b) * c = a * (b * c) :=
+  MultiplicativeSemigroupLaws.MulAssociative
 
 end Wrappers
 

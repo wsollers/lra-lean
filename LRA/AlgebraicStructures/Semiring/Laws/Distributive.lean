@@ -23,11 +23,11 @@ variable {R : Type u} [Add R] [Mul R] [DistributiveLaws R]
 
                                                               
 theorem LeftDistributive : ∀ a b c : R, a * (b + c) = a * b + a * c := by
-  sorry
+  exact DistributiveLaws.LeftDistributive
 
                                                                
 theorem RightDistributive : ∀ a b c : R, (a + b) * c = a * c + b * c := by
-  sorry
+  exact DistributiveLaws.RightDistributive
 
 end Wrappers
 

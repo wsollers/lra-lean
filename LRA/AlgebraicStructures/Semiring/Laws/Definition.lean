@@ -33,13 +33,13 @@ variable {R : Type u}
 
                                                
 theorem ZeroMul [Mul R] [OfNat R 0] [ZeroAbsorbingLaws R] :
-    ∀ a : R, 0 * a = 0 := by
-  sorry
+    ∀ a : R, 0 * a = 0 :=
+  ZeroAbsorbingLaws.ZeroMul
 
                                                 
 theorem MulZero [Mul R] [OfNat R 0] [ZeroAbsorbingLaws R] :
-    ∀ a : R, a * 0 = 0 := by
-  sorry
+    ∀ a : R, a * 0 = 0 :=
+  ZeroAbsorbingLaws.MulZero
 
 end Wrappers
 

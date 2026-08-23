@@ -10,253 +10,11 @@ because Lean forbids forward references, so source order is already a valid
 local topological order. Working this list top to bottom, no entry depends on
 anything not yet proved above it anywhere else in the audited scope.
 
-**Inventory:** 2860 entries across 554 module(s) (263 completed, 2597 sorry), 22 of which are an `instance` law rather than a `theorem`/`lemma`.
-
-Name: AddCommutative
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Add R] [AdditiveCommutativeLaws R], ∀ a b : R, a + b = b + a
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Add R], LRA.AlgebraicStructures.AdditiveCommutativeLaws R → ∀ (a b : R), instHAdd.hAdd a b = instHAdd.hAdd b a
-Transliterated theorem: ∀ a b : R, a + b = b + a
-Logical form (Lean): [Add R] [AdditiveCommutativeLaws R] : ∀ a b : R, a + b = b + a
-Source: ./AlgebraicStructures/AdditiveCommutativeSemigroup/Laws/Definition.lean#L21
-
-
-
-Name: AddAssociative
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Add R] [AdditiveSemigroupLaws R], ∀ a b c : R, (a + b) + c = a + (b + c)
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Add R], LRA.AlgebraicStructures.AdditiveSemigroupLaws R → ∀ (a b c : R), instHAdd.hAdd (instHAdd.hAdd a b) c = instHAdd.hAdd a (instHAdd.hAdd b c)
-Transliterated theorem: ∀ a b c : R, (a + b) + c = a + (b + c)
-Logical form (Lean): [Add R] [AdditiveSemigroupLaws R] : ∀ a b c : R, (a + b) + c = a + (b + c)
-Source: ./AlgebraicStructures/AdditiveSemigroup/Laws/Definition.lean#L25
-
-
-
-Name: ZeroAdd
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Add R] [OfNat R 0] [AdditiveIdentityLaws R], ∀ a : R, 0 + a = a
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Add R] [inst_1 : OfNat R 0], LRA.AlgebraicStructures.AdditiveIdentityLaws R → ∀ (a : R), instHAdd.hAdd 0 a = a
-Transliterated theorem: ∀ a : R, 0 + a = a
-Logical form (Lean): [Add R] [OfNat R 0] [AdditiveIdentityLaws R] : ∀ a : R, 0 + a = a
-Source: ./AlgebraicStructures/AdditiveMonoid/Laws/Definition.lean#L28
-
-
-
-Name: AddZero
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Add R] [OfNat R 0] [AdditiveIdentityLaws R], ∀ a : R, a + 0 = a
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Add R] [inst_1 : OfNat R 0], LRA.AlgebraicStructures.AdditiveIdentityLaws R → ∀ (a : R), instHAdd.hAdd a 0 = a
-Transliterated theorem: ∀ a : R, a + 0 = a
-Logical form (Lean): [Add R] [OfNat R 0] [AdditiveIdentityLaws R] : ∀ a : R, a + 0 = a
-Source: ./AlgebraicStructures/AdditiveMonoid/Laws/Definition.lean#L33
-
-
-
-Name: NegAddCancel
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Add R] [Neg R] [OfNat R 0] [AdditiveInverseLaws R], ∀ a : R, -a + a = 0
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Add R] [inst_1 : Neg R] [inst_2 : OfNat R 0], LRA.AlgebraicStructures.AdditiveInverseLaws R → ∀ (a : R), instHAdd.hAdd (inst_1.neg a) a = 0
-Transliterated theorem: ∀ a : R, -a + a = 0
-Logical form (Lean): [Add R] [Neg R] [OfNat R 0] [AdditiveInverseLaws R] : ∀ a : R, -a + a = 0
-Source: ./AlgebraicStructures/AdditiveGroup/Laws/Definition.lean#L37
-
-
-
-Name: AddNegCancel
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Add R] [Neg R] [OfNat R 0] [AdditiveInverseLaws R], ∀ a : R, a + -a = 0
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Add R] [inst_1 : Neg R] [inst_2 : OfNat R 0], LRA.AlgebraicStructures.AdditiveInverseLaws R → ∀ (a : R), instHAdd.hAdd a (inst_1.neg a) = 0
-Transliterated theorem: ∀ a : R, a + -a = 0
-Logical form (Lean): [Add R] [Neg R] [OfNat R 0] [AdditiveInverseLaws R] : ∀ a : R, a + -a = 0
-Source: ./AlgebraicStructures/AdditiveGroup/Laws/Definition.lean#L43
-
-
-
-Name: SubEqAddNeg
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Sub R] [Add R] [Neg R] [SubtractionCompatibilityLaw R], ∀ a b : R, a - b = a + -b
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Sub R] [inst_1 : Add R] [inst_2 : Neg R], LRA.AlgebraicStructures.SubtractionCompatibilityLaw R → ∀ (a b : R), instHSub.hSub a b = instHAdd.hAdd a (inst_2.neg b)
-Transliterated theorem: ∀ a b : R, a - b = a + -b
-Logical form (Lean): [Sub R] [Add R] [Neg R] [SubtractionCompatibilityLaw R] : ∀ a b : R, a - b = a + -b
-Source: ./AlgebraicStructures/AdditiveGroup/Laws/Definition.lean#L49
-
-
-
-Name: MulCommutative
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Mul R] [MultiplicativeCommutativeLaws R], ∀ a b : R, a * b = b * a
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Mul R], LRA.AlgebraicStructures.MultiplicativeCommutativeLaws R → ∀ (a b : R), instHMul.hMul a b = instHMul.hMul b a
-Transliterated theorem: ∀ a b : R, a * b = b * a
-Logical form (Lean): [Mul R] [MultiplicativeCommutativeLaws R] : ∀ a b : R, a * b = b * a
-Source: ./AlgebraicStructures/CommutativeSemigroup/Laws/Definition.lean#L21
-
-
-
-Name: PredSucc
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R], ∀ a : R, Pred (Succ a) = a
-Predicate logic (unfolded): ∀ {R : Type u} [inst : LRA.AlgebraicStructures.HasSuccessor R] [inst_1 : LRA.AlgebraicStructures.HasPredecessor R], LRA.AlgebraicStructures.SuccessorLaws R → ∀ (a : R), LRA.AlgebraicStructures.Pred (LRA.AlgebraicStructures.Succ a) = a
-Transliterated theorem: ∀ a : R, Pred (Succ a) = a
-Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R] : ∀ a : R, Pred (Succ a) = a
-Source: ./AlgebraicStructures/DiscreteInteger/Laws/Definition.lean#L65
-
-
-
-Name: SuccPred
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R], ∀ a : R, Succ (Pred a) = a
-Predicate logic (unfolded): ∀ {R : Type u} [inst : LRA.AlgebraicStructures.HasSuccessor R] [inst_1 : LRA.AlgebraicStructures.HasPredecessor R], LRA.AlgebraicStructures.SuccessorLaws R → ∀ (a : R), LRA.AlgebraicStructures.Succ (LRA.AlgebraicStructures.Pred a) = a
-Transliterated theorem: ∀ a : R, Succ (Pred a) = a
-Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R] : ∀ a : R, Succ (Pred a) = a
-Source: ./AlgebraicStructures/DiscreteInteger/Laws/Definition.lean#L70
-
-
-
-Name: SuccInjective
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R], ∀ a b : R, Succ a = Succ b → a = b
-Predicate logic (unfolded): ∀ {R : Type u} [inst : LRA.AlgebraicStructures.HasSuccessor R] [inst_1 : LRA.AlgebraicStructures.HasPredecessor R], LRA.AlgebraicStructures.SuccessorLaws R → ∀ (a b : R), LRA.AlgebraicStructures.Succ a = LRA.AlgebraicStructures.Succ b → a = b
-Transliterated theorem: ∀ a b : R, Succ a = Succ b → a = b
-Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R] : ∀ a b : R, Succ a = Succ b → a = b
-Source: ./AlgebraicStructures/DiscreteInteger/Laws/Definition.lean#L75
-
-
-
-Name: PredInjective
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R], ∀ a b : R, Pred a = Pred b → a = b
-Predicate logic (unfolded): ∀ {R : Type u} [inst : LRA.AlgebraicStructures.HasSuccessor R] [inst_1 : LRA.AlgebraicStructures.HasPredecessor R], LRA.AlgebraicStructures.SuccessorLaws R → ∀ (a b : R), LRA.AlgebraicStructures.Pred a = LRA.AlgebraicStructures.Pred b → a = b
-Transliterated theorem: ∀ a b : R, Pred a = Pred b → a = b
-Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R] : ∀ a b : R, Pred a = Pred b → a = b
-Source: ./AlgebraicStructures/DiscreteInteger/Laws/Definition.lean#L81
-
-
-
-Name: SuccEqAddOne
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [HasSuccessor R] [Add R] [OfNat R 1] [SuccessorAdditionLaw R], ∀ a : R, Succ a = a + 1
-Predicate logic (unfolded): ∀ {R : Type u} [inst : LRA.AlgebraicStructures.HasSuccessor R] [inst_1 : Add R] [inst_2 : OfNat R 1], LRA.AlgebraicStructures.SuccessorAdditionLaw R → ∀ (a : R), LRA.AlgebraicStructures.Succ a = instHAdd.hAdd a 1
-Transliterated theorem: ∀ a : R, Succ a = a + 1
-Logical form (Lean): [HasSuccessor R] [Add R] [OfNat R 1] [SuccessorAdditionLaw R] : ∀ a : R, Succ a = a + 1
-Source: ./AlgebraicStructures/DiscreteInteger/Laws/Definition.lean#L87
-
-
-
-Name: MulSucc
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [HasSuccessor R] [HasPredecessor R] [Add R] [Mul R] [Neg R] [SuccessorMultiplicationLaws R], ∀ a b : R, a * Succ b = a * b + a
-Predicate logic (unfolded): ∀ {R : Type u} [inst : LRA.AlgebraicStructures.HasSuccessor R] [inst_1 : LRA.AlgebraicStructures.HasPredecessor R] [inst_2 : Add R] [inst_3 : Mul R] [inst_4 : Neg R], LRA.AlgebraicStructures.SuccessorMultiplicationLaws R → ∀ (a b : R), instHMul.hMul a (LRA.AlgebraicStructures.Succ b) = instHAdd.hAdd (instHMul.hMul a b) a
-Transliterated theorem: ∀ a b : R, a * Succ b = a * b + a
-Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [Add R] [Mul R] [Neg R] [SuccessorMultiplicationLaws R] : ∀ a b : R, a * Succ b = a * b + a
-Source: ./AlgebraicStructures/DiscreteInteger/Laws/Definition.lean#L93
-
-
-
-Name: MulPred
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [HasSuccessor R] [HasPredecessor R] [Add R] [Mul R] [Neg R] [SuccessorMultiplicationLaws R], ∀ a b : R, a * Pred b = a * b + -a
-Predicate logic (unfolded): ∀ {R : Type u} [inst : LRA.AlgebraicStructures.HasSuccessor R] [inst_1 : LRA.AlgebraicStructures.HasPredecessor R] [inst_2 : Add R] [inst_3 : Mul R] [inst_4 : Neg R], LRA.AlgebraicStructures.SuccessorMultiplicationLaws R → ∀ (a b : R), instHMul.hMul a (LRA.AlgebraicStructures.Pred b) = instHAdd.hAdd (instHMul.hMul a b) (inst_4.neg a)
-Transliterated theorem: ∀ a b : R, a * Pred b = a * b + -a
-Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [Add R] [Mul R] [Neg R] [SuccessorMultiplicationLaws R] : ∀ a b : R, a * Pred b = a * b + -a
-Source: ./AlgebraicStructures/DiscreteInteger/Laws/Definition.lean#L99
-
-
-
-Name: SuccAperiodic
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {R : Type u} [inst : LRA.AlgebraicStructures.HasSuccessor R] [inst_1 : LRA.AlgebraicStructures.HasPredecessor R]   [inst_2 : OfNat R 0],   LRA.AlgebraicStructures.DiscretenessLaw R →     ∀ (n : Nat), instLTNat.lt 0 n → Ne (LRA.AlgebraicStructures.SuccIterate n 0) 0
-Predicate logic (unfolded): ∀ {R : Type u} [inst : LRA.AlgebraicStructures.HasSuccessor R] [inst_1 : LRA.AlgebraicStructures.HasPredecessor R] [inst_2 : OfNat R 0], LRA.AlgebraicStructures.DiscretenessLaw R → ∀ (n : Nat), instLTNat.lt 0 n → Ne (LRA.AlgebraicStructures.SuccIterate n 0) 0
-Transliterated theorem: ∀ n : Nat, 0 < n → SuccIterate n 0 ∈ R ≠ 0
-Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [OfNat R 0] [DiscretenessLaw R] : ∀ n : Nat, 0 < n → SuccIterate n (0 : R) ≠ 0
-Source: ./AlgebraicStructures/DiscreteInteger/Laws/Definition.lean#L105
-
-
-
-Name: TwoSidedInduction
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [HasSuccessor R] [HasPredecessor R] [OfNat R 0] [DiscretenessLaw R], ∀ (motive : R → Prop), motive 0 → (∀ a, motive a → motive (Succ a)) → (∀ a, motive a → motive (Pred a)) → ∀ a, motive a
-Predicate logic (unfolded): ∀ {R : Type u} [inst : LRA.AlgebraicStructures.HasSuccessor R] [inst_1 : LRA.AlgebraicStructures.HasPredecessor R] [inst_2 : OfNat R 0], LRA.AlgebraicStructures.DiscretenessLaw R → ∀ (motive : R → Prop), (motive 0 ∧ (∀ (a : R), motive a → motive (LRA.AlgebraicStructures.Succ a) ∧ ∀ (a : R), motive a → motive (LRA.AlgebraicStructures.Pred a))) → ∀ (a : R), motive a
-Transliterated theorem: ∀ motive ∈ R → Prop, motive 0 → (∀ a, motive a → motive (Succ a)) → (∀ a, motive a → motive (Pred a)) → ∀ a, motive a
-Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [OfNat R 0] [DiscretenessLaw R] : ∀ (motive : R → Prop), motive 0 → (∀ a, motive a → motive (Succ a)) → (∀ a, motive a → motive (Pred a)) → ∀ a, motive a
-Source: ./AlgebraicStructures/DiscreteInteger/Laws/Definition.lean#L111
-
-
-
-Name: MulAssociative
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Mul R] [MultiplicativeSemigroupLaws R], ∀ a b c : R, (a * b) * c = a * (b * c)
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Mul R], LRA.AlgebraicStructures.MultiplicativeSemigroupLaws R → ∀ (a b c : R), instHMul.hMul (instHMul.hMul a b) c = instHMul.hMul a (instHMul.hMul b c)
-Transliterated theorem: ∀ a b c : R, (a * b) * c = a * (b * c)
-Logical form (Lean): [Mul R] [MultiplicativeSemigroupLaws R] : ∀ a b c : R, (a * b) * c = a * (b * c)
-Source: ./AlgebraicStructures/Semigroup/Laws/Definition.lean#L21
-
-
-
-Name: OneMul
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Mul R] [OfNat R 1] [MultiplicativeIdentityLaws R], ∀ a : R, 1 * a = a
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Mul R] [inst_1 : OfNat R 1], LRA.AlgebraicStructures.MultiplicativeIdentityLaws R → ∀ (a : R), instHMul.hMul 1 a = a
-Transliterated theorem: ∀ a : R, 1 * a = a
-Logical form (Lean): [Mul R] [OfNat R 1] [MultiplicativeIdentityLaws R] : ∀ a : R, 1 * a = a
-Source: ./AlgebraicStructures/Monoid/Laws/Definition.lean#L28
-
-
-
-Name: MulOne
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Mul R] [OfNat R 1] [MultiplicativeIdentityLaws R], ∀ a : R, a * 1 = a
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Mul R] [inst_1 : OfNat R 1], LRA.AlgebraicStructures.MultiplicativeIdentityLaws R → ∀ (a : R), instHMul.hMul a 1 = a
-Transliterated theorem: ∀ a : R, a * 1 = a
-Logical form (Lean): [Mul R] [OfNat R 1] [MultiplicativeIdentityLaws R] : ∀ a : R, a * 1 = a
-Source: ./AlgebraicStructures/Monoid/Laws/Definition.lean#L33
-
-
-
-Name: InvMulCancel
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Mul R] [Inv R] [OfNat R 1] [MultiplicativeGroupInverseLaws R], ∀ a : R, a⁻¹ * a = 1
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Mul R] [inst_1 : Inv R] [inst_2 : OfNat R 1], LRA.AlgebraicStructures.MultiplicativeGroupInverseLaws R → ∀ (a : R), instHMul.hMul (inst_1.inv a) a = 1
-Transliterated theorem: ∀ a : R, a⁻¹ * a = 1
-Logical form (Lean): [Mul R] [Inv R] [OfNat R 1] [MultiplicativeGroupInverseLaws R] : ∀ a : R, a⁻¹ * a = 1
-Source: ./AlgebraicStructures/Group/Laws/Definition.lean#L31
-
-
-
-Name: MulInvCancelGroup
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Mul R] [Inv R] [OfNat R 1] [MultiplicativeGroupInverseLaws R], ∀ a : R, a * a⁻¹ = 1
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Mul R] [inst_1 : Inv R] [inst_2 : OfNat R 1], LRA.AlgebraicStructures.MultiplicativeGroupInverseLaws R → ∀ (a : R), instHMul.hMul a (inst_1.inv a) = 1
-Transliterated theorem: ∀ a : R, a * a⁻¹ = 1
-Logical form (Lean): [Mul R] [Inv R] [OfNat R 1] [MultiplicativeGroupInverseLaws R] : ∀ a : R, a * a⁻¹ = 1
-Source: ./AlgebraicStructures/Group/Laws/Definition.lean#L37
-
-
+**Inventory:** 2831 entries across 541 module(s) (261 completed, 2570 sorry), 22 of which are an `instance` law rather than a `theorem`/`lemma`.
 
 Name: LeftDistributive
 Kind: Theorem
-State: Sorry
+State: Completed
 Predicate logic: ∀ a b c : R, a * (b + c) = a * b + a * c
 Predicate logic (unfolded): ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R], LRA.AlgebraicStructures.DistributiveLaws R → ∀ (a b c : R), instHMul.hMul a (instHAdd.hAdd b c) = instHAdd.hAdd (instHMul.hMul a b) (instHMul.hMul a c)
 Transliterated theorem: ∀ a b c : R, a * (b + c) = a * b + a * c
@@ -267,89 +25,12 @@ Source: ./AlgebraicStructures/Semiring/Laws/Distributive.lean#L25
 
 Name: RightDistributive
 Kind: Theorem
-State: Sorry
+State: Completed
 Predicate logic: ∀ a b c : R, (a + b) * c = a * c + b * c
 Predicate logic (unfolded): ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R], LRA.AlgebraicStructures.DistributiveLaws R → ∀ (a b c : R), instHMul.hMul (instHAdd.hAdd a b) c = instHAdd.hAdd (instHMul.hMul a c) (instHMul.hMul b c)
 Transliterated theorem: ∀ a b c : R, (a + b) * c = a * c + b * c
 Logical form (Lean): : ∀ a b c : R, (a + b) * c = a * c + b * c
 Source: ./AlgebraicStructures/Semiring/Laws/Distributive.lean#L29
-
-
-
-Name: ZeroMul
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Mul R] [OfNat R 0] [ZeroAbsorbingLaws R], ∀ a : R, 0 * a = 0
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Mul R] [inst_1 : OfNat R 0], LRA.AlgebraicStructures.ZeroAbsorbingLaws R → ∀ (a : R), instHMul.hMul 0 a = 0
-Transliterated theorem: ∀ a : R, 0 * a = 0
-Logical form (Lean): [Mul R] [OfNat R 0] [ZeroAbsorbingLaws R] : ∀ a : R, 0 * a = 0
-Source: ./AlgebraicStructures/Semiring/Laws/Definition.lean#L35
-
-
-
-Name: MulZero
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Mul R] [OfNat R 0] [ZeroAbsorbingLaws R], ∀ a : R, a * 0 = 0
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Mul R] [inst_1 : OfNat R 0], LRA.AlgebraicStructures.ZeroAbsorbingLaws R → ∀ (a : R), instHMul.hMul a 0 = 0
-Transliterated theorem: ∀ a : R, a * 0 = 0
-Logical form (Lean): [Mul R] [OfNat R 0] [ZeroAbsorbingLaws R] : ∀ a : R, a * 0 = 0
-Source: ./AlgebraicStructures/Semiring/Laws/Definition.lean#L40
-
-
-
-Name: OneNeZero
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {R : Type u} [inst : OfNat R 0] [inst_1 : OfNat R 1], LRA.AlgebraicStructures.NontrivialityLaw R → Ne 1 0
-Predicate logic (unfolded): ∀ {R : Type u} [inst : OfNat R 0] [inst_1 : OfNat R 1], LRA.AlgebraicStructures.NontrivialityLaw R → Ne 1 0
-Transliterated theorem: 1 ∈ R ≠ 0
-Logical form (Lean): [OfNat R 0] [OfNat R 1] [NontrivialityLaw R] : (1 : R) ≠ 0
-Source: ./AlgebraicStructures/NontrivialRing/Laws/Definition.lean#L23
-
-
-
-Name: MulInvCancel
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Mul R] [Inv R] [OfNat R 0] [OfNat R 1] [MultiplicativeInverseLaws R], ∀ a : R, a ≠ 0 → a * a⁻¹ = 1
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Mul R] [inst_1 : Inv R] [inst_2 : OfNat R 0] [inst_3 : OfNat R 1], LRA.AlgebraicStructures.MultiplicativeInverseLaws R → ∀ (a : R), Ne a 0 → instHMul.hMul a (inst_1.inv a) = 1
-Transliterated theorem: ∀ a : R, a ≠ 0 → a * a⁻¹ = 1
-Logical form (Lean): [Mul R] [Inv R] [OfNat R 0] [OfNat R 1] [MultiplicativeInverseLaws R] : ∀ a : R, a ≠ 0 → a * a⁻¹ = 1
-Source: ./AlgebraicStructures/DivisionRing/Laws/Definition.lean#L38
-
-
-
-Name: InvZero
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Mul R] [Inv R] [OfNat R 0] [OfNat R 1] [MultiplicativeInverseLaws R], (0 : R)⁻¹ = 0
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Mul R] [inst_1 : Inv R] [inst_2 : OfNat R 0] [inst_3 : OfNat R 1], LRA.AlgebraicStructures.MultiplicativeInverseLaws R → inst_1.inv 0 = 0
-Transliterated theorem: 0 ∈ R⁻¹ = 0
-Logical form (Lean): [Mul R] [Inv R] [OfNat R 0] [OfNat R 1] [MultiplicativeInverseLaws R] : (0 : R)⁻¹ = 0
-Source: ./AlgebraicStructures/DivisionRing/Laws/Definition.lean#L44
-
-
-
-Name: DivEqMulInv
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Div R] [Mul R] [Inv R] [DivisionCompatibilityLaw R], ∀ a b : R, a / b = a * b⁻¹
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Div R] [inst_1 : Mul R] [inst_2 : Inv R], LRA.AlgebraicStructures.DivisionCompatibilityLaw R → ∀ (a b : R), instHDiv.hDiv a b = instHMul.hMul a (inst_2.inv b)
-Transliterated theorem: ∀ a b : R, a / b = a * b⁻¹
-Logical form (Lean): [Div R] [Mul R] [Inv R] [DivisionCompatibilityLaw R] : ∀ a b : R, a / b = a * b⁻¹
-Source: ./AlgebraicStructures/DivisionRing/Laws/Definition.lean#L50
-
-
-
-Name: EqZeroOfMulEqZero
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Mul R] [OfNat R 0] [NoZeroDivisorsLaw R], ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0
-Predicate logic (unfolded): ∀ {R : Type u} [inst : Mul R] [inst_1 : OfNat R 0], LRA.AlgebraicStructures.NoZeroDivisorsLaw R → ∀ (a b : R), instHMul.hMul a b = 0 → Or (a = 0)(b = 0)
-Transliterated theorem: ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0
-Logical form (Lean): [Mul R] [OfNat R 0] [NoZeroDivisorsLaw R] : ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0
-Source: ./AlgebraicStructures/IntegralDomain/Laws/Definition.lean#L24
 
 
 
@@ -14028,7 +13709,7 @@ Source: ./NumberSystems/Integers/Constructions/QuotientOrderedPairs/Behavior.lea
 
 Name: quotient_addition_spec
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (whole_data : WholeNumberArithmeticForQuotientPairs), ∀ first second, quotient_addition whole_data (Quotient.mk _ first) (Quotient.mk _ second) = Quotient.mk _ (representative_addition whole_data first second)
 Predicate logic (unfolded): ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs) (first second : LRA.NumberSystems.Integers.QuotientOrderedPairs.Representative whole_data), LRA.NumberSystems.Integers.QuotientOrderedPairs.quotient_addition whole_data (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) first) (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) second) = Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_addition whole_data first second)
 Transliterated theorem: (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), ∀ first second, quotient_addition whole_data (Quotient.mk _ first) (Quotient.mk _ second) = Quotient.mk _ (representative_addition whole_data first second)
@@ -14039,7 +13720,7 @@ Source: ./NumberSystems/Integers/Constructions/QuotientOrderedPairs/Instances.le
 
 Name: quotient_multiplication_spec
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (whole_data : WholeNumberArithmeticForQuotientPairs), ∀ first second, quotient_multiplication whole_data (Quotient.mk _ first) (Quotient.mk _ second) = Quotient.mk _ (representative_multiplication whole_data first second)
 Predicate logic (unfolded): ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs) (first second : LRA.NumberSystems.Integers.QuotientOrderedPairs.Representative whole_data), LRA.NumberSystems.Integers.QuotientOrderedPairs.quotient_multiplication whole_data (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) first) (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) second) = Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_multiplication whole_data first second)
 Transliterated theorem: (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), ∀ first second, quotient_multiplication whole_data (Quotient.mk _ first) (Quotient.mk _ second) = Quotient.mk _ (representative_multiplication whole_data first second)
@@ -14050,7 +13731,7 @@ Source: ./NumberSystems/Integers/Constructions/QuotientOrderedPairs/Instances.le
 
 Name: quotient_nonstrict_order_spec
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (whole_data : WholeNumberArithmeticForQuotientPairs), ∀ first second, quotient_nonstrict_order whole_data (Quotient.mk _ first) (Quotient.mk _ second) ↔ representative_nonstrict_order whole_data first second
 Predicate logic (unfolded): ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs) (first second : LRA.NumberSystems.Integers.QuotientOrderedPairs.Representative whole_data), LRA.NumberSystems.Integers.QuotientOrderedPairs.quotient_nonstrict_order whole_data (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) first) (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) second) ↔ LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_nonstrict_order whole_data first second
 Transliterated theorem: (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), ∀ first second, quotient_nonstrict_order whole_data (Quotient.mk _ first) (Quotient.mk _ second) ↔ representative_nonstrict_order whole_data first second
@@ -14237,7 +13918,7 @@ Source: ./NumberSystems/Integers/Constructions/Tao/Behavior.lean#L26
 
 Name: IntegerNumeralIsSurjective
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (integerSystem : IntegerNumberSystem.{u}), ∀ value : integerSystem.Model.Carrier, ∃ integer : Int, IntegerNumeral integerSystem.Model integer = value
 Predicate logic (unfolded): ∀ (integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem) (value : integerSystem.Model.Carrier), Exists fun integer => LRA.NumberSystems.Integers.IntegerNumeral integerSystem.Model integer = value
 Transliterated theorem: ∀ value : integerSystem.Model.Carrier, ∃ integer ∈ Int, IntegerNumeral integerSystem.Model integer = value

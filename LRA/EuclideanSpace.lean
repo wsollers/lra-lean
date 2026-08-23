@@ -1,4 +1,6 @@
+import LRA.EuclideanSpace.Definition
 import LRA.EuclideanSpace.Interface
+import LRA.EuclideanSpace.CoordinateSystems
 import LRA.EuclideanSpace.Model
 import LRA.EuclideanSpace.Tarski
 import LRA.EuclideanSpace.MathlibPoint

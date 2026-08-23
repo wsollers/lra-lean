@@ -36,20 +36,20 @@ variable {R : Type u}
                                                
 theorem NegAddCancel [Add R] [Neg R] [OfNat R 0]
     [AdditiveInverseLaws R] :
-    ∀ a : R, -a + a = 0 := by
-  sorry
+    ∀ a : R, -a + a = 0 :=
+  AdditiveInverseLaws.NegAddCancel
 
                                                 
 theorem AddNegCancel [Add R] [Neg R] [OfNat R 0]
     [AdditiveInverseLaws R] :
-    ∀ a : R, a + -a = 0 := by
-  sorry
+    ∀ a : R, a + -a = 0 :=
+  AdditiveInverseLaws.AddNegCancel
 
                                                
 theorem SubEqAddNeg [Sub R] [Add R] [Neg R]
     [SubtractionCompatibilityLaw R] :
-    ∀ a b : R, a - b = a + -b := by
-  sorry
+    ∀ a b : R, a - b = a + -b :=
+  SubtractionCompatibilityLaw.SubEqAddNeg
 
 end Wrappers
 

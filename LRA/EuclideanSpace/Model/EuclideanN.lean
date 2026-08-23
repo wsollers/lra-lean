@@ -1,4 +1,5 @@
-import LRA.NumberSystems.RealNumbers.ConstructionModels
+import LRA.EuclideanSpace.CoordinateSystems
+import LRA.EuclideanSpace.Definition
 import LRA.EuclideanSpace.Interface.ModelTheory.Model
 import LRA.EuclideanSpace.Interface.Relations
 
@@ -8,22 +9,34 @@ open LRA.NumberSystems.Models
 
 universe u
 
-   
-                                                                   
-                                                                      
-                                                   
-  
-
-                                                          
 abbrev RealCoordinate (real_model : RealModel) : Type u := real_model.Carrier
+
+abbrev Coordinates (real_model : RealModel) (n : ℕ) : Type u :=
+  CoordinateTuple real_model n
 
                                                                         
                                              
 structure EuclideanPoint (real_model : RealModel) (n : ℕ) where
-  coord : Fin n → RealCoordinate real_model
+  coord : Coordinates real_model n
 
                                                     
 abbrev Rn (real_model : RealModel) (n : ℕ) := EuclideanPoint real_model n
+
+def euclideanSpace (real_model : RealModel) (n : ℕ) : EuclideanSpaceDefinition where
+  Carrier := Rn real_model n
+
+def origin (real_model : RealModel) (n : ℕ) : Rn real_model n :=
+  { coord := OriginCoordinates real_model n }
+
+def pointOfCoordinates (real_model : RealModel) (n : ℕ) :
+    Coordinates real_model n → Rn real_model n :=
+  fun coordinates => { coord := coordinates }
+
+def standardCoordinateSystem (real_model : RealModel) (n : ℕ) :
+    CoordinateSystemDefinition (euclideanSpace real_model n) real_model n where
+  origin := origin real_model n
+  coordinates := fun point => point.coord
+  pointOf := pointOfCoordinates real_model n
 
                                                                               
 def getX {real_model : RealModel} {n : ℕ} (hn : 1 ≤ n)
@@ -53,7 +66,7 @@ def sumFin {n : ℕ} {R : Type u} [Add R] [OfNat R 0] (f : Fin n → R) : R :=
   | m + 1 => f (Fin.last m) + sumFin (fun i => f (Fin.castSucc i))
 
 instance (real_model : RealModel) (n : ℕ) : Nonempty (Rn real_model n) :=
-  ⟨{ coord := fun _ => 0 }⟩
+  ⟨origin real_model n⟩
 
                                                            
 instance (real_model : RealModel) (n : ℕ) : Between (Rn real_model n) where

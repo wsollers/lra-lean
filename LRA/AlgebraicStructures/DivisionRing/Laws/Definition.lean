@@ -37,20 +37,20 @@ variable {R : Type u}
                                                       
 theorem MulInvCancel [Mul R] [Inv R] [OfNat R 0] [OfNat R 1]
     [MultiplicativeInverseLaws R] :
-    ∀ a : R, a ≠ 0 → a * a⁻¹ = 1 := by
-  sorry
+    ∀ a : R, a ≠ 0 → a * a⁻¹ = 1 :=
+  MultiplicativeInverseLaws.MulInvCancel
 
                                                   
 theorem InvZero [Mul R] [Inv R] [OfNat R 0] [OfNat R 1]
     [MultiplicativeInverseLaws R] :
-    (0 : R)⁻¹ = 0 := by
-  sorry
+    (0 : R)⁻¹ = 0 :=
+  MultiplicativeInverseLaws.InvZero
 
                                                  
 theorem DivEqMulInv [Div R] [Mul R] [Inv R]
     [DivisionCompatibilityLaw R] :
-    ∀ a b : R, a / b = a * b⁻¹ := by
-  sorry
+    ∀ a b : R, a / b = a * b⁻¹ :=
+  DivisionCompatibilityLaw.DivEqMulInv
 
 end Wrappers
 

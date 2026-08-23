@@ -26,13 +26,13 @@ variable {R : Type u}
 
                                                  
 theorem OneMul [Mul R] [OfNat R 1] [MultiplicativeIdentityLaws R] :
-    ∀ a : R, 1 * a = a := by
-  sorry
+    ∀ a : R, 1 * a = a :=
+  MultiplicativeIdentityLaws.OneMul
 
                                                   
 theorem MulOne [Mul R] [OfNat R 1] [MultiplicativeIdentityLaws R] :
-    ∀ a : R, a * 1 = a := by
-  sorry
+    ∀ a : R, a * 1 = a :=
+  MultiplicativeIdentityLaws.MulOne
 
 end Wrappers
 

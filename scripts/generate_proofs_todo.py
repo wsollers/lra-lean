@@ -592,6 +592,7 @@ class SourceTheorem:
     kind: str  # "theorem" or "instance"
     line: int
     signature_lean: str
+    body_lean: str
     predicate_logic_fallback: str
     transliterated_theorem: str
 
@@ -625,6 +626,9 @@ def scan_source_module(path: Path, folder_module_prefix: str) -> SourceModule:
         next_start = matches[index + 1].start() if index + 1 < len(matches) else len(masked)
         declaration_text = masked[match.start() : next_start]
         signature = extract_signature(declaration_text, match.end() - match.start())
+        assigns = top_level_occurrences(declaration_text, ":=")
+        body = declaration_text[assigns[0] + len(":=") :].strip() if assigns else ""
+        body = re.sub(r"\s+", " ", body).strip()
         fallback = render_predicate_logic_from_signature(signature)
         transliterated = transliterate_signature(signature)
         line = masked.count("\n", 0, match.start()) + 1
@@ -634,6 +638,7 @@ def scan_source_module(path: Path, folder_module_prefix: str) -> SourceModule:
                 kind=kind,
                 line=line,
                 signature_lean=signature,
+                body_lean=body,
                 predicate_logic_fallback=fallback,
                 transliterated_theorem=transliterated,
             )
@@ -743,6 +748,25 @@ def display_kind(kind: str) -> str:
     return "Instance" if kind == "instance" else "Theorem"
 
 
+PROJECTION_WRAPPER_BODY_RE = re.compile(
+    r"^(?:by\s+)?(?:exact\s+)?[A-Z][A-Za-z0-9_]*\.[A-Za-z0-9_'.]+(?:\s+end\b.*)?$"
+)
+
+
+def is_trivial_projection_wrapper(mod: SourceModule, theorem: SourceTheorem) -> bool:
+    """True for law-wrapper theorems that merely project an existing class field.
+
+    These are convenience accessors such as `AddCommutative := 
+    AdditiveCommutativeLaws.AddCommutative`, not standalone proof obligations.
+    They should not appear as primary work items in `ProofsToDo.md`.
+    """
+    if theorem.kind != "theorem":
+        return False
+    if not mod.relative_path.endswith("/Laws/Definition.lean"):
+        return False
+    return bool(PROJECTION_WRAPPER_BODY_RE.fullmatch(theorem.body_lean))
+
+
 def resolve_unfolded(row: CompiledTheorem, uncurried_predicate: str) -> str:
     """The 'Predicate logic (unfolded)' text for one compiled row.
 
@@ -772,8 +796,15 @@ def reconcile(
         for row in compiled_by_module.get(mod.module, []):
             queues[short_name(row.fq_name)].append(row)
 
+        filtered_projection_names = {
+            theorem.name.rpartition(".")[2]
+            for theorem in mod.theorems
+            if is_trivial_projection_wrapper(mod, theorem)
+        }
         entries: list[Entry] = []
         for theorem in mod.theorems:
+            if is_trivial_projection_wrapper(mod, theorem):
+                continue
             # A declaration written as `theorem Foo.bar ...` (dot notation,
             # declaring `bar` inside namespace `Foo` regardless of any
             # currently-open `namespace` block) has a source-visible name
@@ -815,6 +846,8 @@ def reconcile(
         # topologically safe placement even without a known source line.
         for name, remaining in queues.items():
             for row in remaining:
+                if row.kind == "theorem" and name in filtered_projection_names:
+                    continue
                 if row.kind == "instance":
                     note = (
                         "reported by the Lean dumper as an instance but not found by source scan "

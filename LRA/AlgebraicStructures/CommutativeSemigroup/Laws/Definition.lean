@@ -19,8 +19,8 @@ variable {R : Type u}
 
                                      
 theorem MulCommutative [Mul R] [MultiplicativeCommutativeLaws R] :
-    ∀ a b : R, a * b = b * a := by
-  sorry
+    ∀ a b : R, a * b = b * a :=
+  MultiplicativeCommutativeLaws.MulCommutative
 
 end Wrappers
 

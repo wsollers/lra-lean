@@ -22,8 +22,8 @@ variable {R : Type u}
 
                                                   
 theorem EqZeroOfMulEqZero [Mul R] [OfNat R 0] [NoZeroDivisorsLaw R] :
-    ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0 := by
-  sorry
+    ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0 :=
+  NoZeroDivisorsLaw.EqZeroOfMulEqZero
 
 end Wrappers
 

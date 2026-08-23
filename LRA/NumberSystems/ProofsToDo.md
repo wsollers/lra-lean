@@ -9,7 +9,7 @@ keep source order, because Lean forbids forward references, so source order is
 already a valid topological order. Working this list top to bottom, no entry
 depends on anything not yet proved above it.
 
-**Inventory:** 541 entries across 105 module(s) (69 completed, 472 sorry), 22 of which are an `instance` law rather than a `theorem`/`lemma`.
+**Inventory:** 541 entries across 105 module(s) (65 completed, 476 sorry), 22 of which are an `instance` law rather than a `theorem`/`lemma`.
 
 Name: ext
 Kind: Theorem
@@ -2378,7 +2378,7 @@ Source: ./Integers/Constructions/QuotientOrderedPairs/Behavior.lean#L37
 
 Name: quotient_addition_spec
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (whole_data : WholeNumberArithmeticForQuotientPairs), ∀ first second, quotient_addition whole_data (Quotient.mk _ first) (Quotient.mk _ second) = Quotient.mk _ (representative_addition whole_data first second)
 Predicate logic (unfolded): ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs) (first second : LRA.NumberSystems.Integers.QuotientOrderedPairs.Representative whole_data), LRA.NumberSystems.Integers.QuotientOrderedPairs.quotient_addition whole_data (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) first) (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) second) = Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_addition whole_data first second)
 Transliterated theorem: (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), ∀ first second, quotient_addition whole_data (Quotient.mk _ first) (Quotient.mk _ second) = Quotient.mk _ (representative_addition whole_data first second)
@@ -2389,7 +2389,7 @@ Source: ./Integers/Constructions/QuotientOrderedPairs/Instances.lean#L18
 
 Name: quotient_multiplication_spec
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (whole_data : WholeNumberArithmeticForQuotientPairs), ∀ first second, quotient_multiplication whole_data (Quotient.mk _ first) (Quotient.mk _ second) = Quotient.mk _ (representative_multiplication whole_data first second)
 Predicate logic (unfolded): ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs) (first second : LRA.NumberSystems.Integers.QuotientOrderedPairs.Representative whole_data), LRA.NumberSystems.Integers.QuotientOrderedPairs.quotient_multiplication whole_data (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) first) (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) second) = Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_multiplication whole_data first second)
 Transliterated theorem: (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), ∀ first second, quotient_multiplication whole_data (Quotient.mk _ first) (Quotient.mk _ second) = Quotient.mk _ (representative_multiplication whole_data first second)
@@ -2400,7 +2400,7 @@ Source: ./Integers/Constructions/QuotientOrderedPairs/Instances.lean#L31
 
 Name: quotient_nonstrict_order_spec
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (whole_data : WholeNumberArithmeticForQuotientPairs), ∀ first second, quotient_nonstrict_order whole_data (Quotient.mk _ first) (Quotient.mk _ second) ↔ representative_nonstrict_order whole_data first second
 Predicate logic (unfolded): ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs) (first second : LRA.NumberSystems.Integers.QuotientOrderedPairs.Representative whole_data), LRA.NumberSystems.Integers.QuotientOrderedPairs.quotient_nonstrict_order whole_data (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) first) (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) second) ↔ LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_nonstrict_order whole_data first second
 Transliterated theorem: (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), ∀ first second, quotient_nonstrict_order whole_data (Quotient.mk _ first) (Quotient.mk _ second) ↔ representative_nonstrict_order whole_data first second
@@ -2587,7 +2587,7 @@ Source: ./Integers/Constructions/Tao/Behavior.lean#L26
 
 Name: IntegerNumeralIsSurjective
 Kind: Theorem
-State: Completed
+State: Sorry
 Predicate logic: ∀ (integerSystem : IntegerNumberSystem.{u}), ∀ value : integerSystem.Model.Carrier, ∃ integer : Int, IntegerNumeral integerSystem.Model integer = value
 Predicate logic (unfolded): ∀ (integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem) (value : integerSystem.Model.Carrier), Exists fun integer => LRA.NumberSystems.Integers.IntegerNumeral integerSystem.Model integer = value
 Transliterated theorem: ∀ value : integerSystem.Model.Carrier, ∃ integer ∈ Int, IntegerNumeral integerSystem.Model integer = value

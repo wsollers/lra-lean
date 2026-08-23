@@ -30,14 +30,14 @@ variable {R : Type u}
                                                     
 theorem InvMulCancel [Mul R] [Inv R] [OfNat R 1]
     [MultiplicativeGroupInverseLaws R] :
-    ∀ a : R, a⁻¹ * a = 1 := by
-  sorry
+    ∀ a : R, a⁻¹ * a = 1 :=
+  MultiplicativeGroupInverseLaws.InvMulCancel
 
                                                      
 theorem MulInvCancelGroup [Mul R] [Inv R] [OfNat R 1]
     [MultiplicativeGroupInverseLaws R] :
-    ∀ a : R, a * a⁻¹ = 1 := by
-  sorry
+    ∀ a : R, a * a⁻¹ = 1 :=
+  MultiplicativeGroupInverseLaws.MulInvCancel
 
 end Wrappers
 
