@@ -4,7 +4,7 @@
 import LRA.AlgebraicStructures
 import LRA.NumberSystems.RationalNumbers.Constructions.RationalQuotientFractions.Behavior
 import LRA.NumberSystems.RationalNumbers.Definition
-import LRA.VolumeII.NumberSystems.Models
+import LRA.NumberSystems.Models
 
 namespace LRA.NumberSystems.RationalNumbers.RationalQuotientFractions
 

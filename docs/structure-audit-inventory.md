@@ -302,3 +302,83 @@ In dependency order, excluding all new mathematical content:
    `AlgebraicStructures` typeclass; fill in any that don't yet.
 
 NS-006 and NS-007 are recorded but intentionally left out of this list.
+
+---
+
+## 8. Step 1 status: broken imports fixed (ISS-001 → ISS-007)
+
+All 25 dangling imports are resolved. Re-running the same static
+import-resolution check used to produce §2 (every `import LRA....` line
+checked against the filesystem) now returns zero broken targets across 3,806
+import lines. 20 existing files had their import lines rewired; 8 new files
+were created; no `lakefile.lean` changes were needed (`LRAAll`'s
+`.andSubmodules` glob already covers new files under `LRA/`).
+
+**One deliberate deviation from the plan in §4/§7**, discovered during the
+work: `open LRA.NumberSystems.Models` is used far more widely than the 17
+files with a *direct* broken import of it — **57 files** across
+`NumberSystems`, `EuclideanSpace`, and `Analysis/MetricSpace` reference that
+namespace, most of them transitively (importing a file that imports `Models`,
+not `Models` itself). Renaming the namespace to `Interface.ModelTheory` now
+(as ISS-008/NS-004 originally proposed) would have required touching all 57,
+turning a "restore compilation" change into a repo-wide rename with a blast
+radius reaching outside `NumberSystems` entirely — exactly what Step 1 was
+supposed to avoid. Instead, the content was recreated **preserving its
+original namespace** (`LRA.NumberSystems.Models`) at a path that mirrors it
+exactly: `LRA/NumberSystems/Models.lean` plus
+`LRA/NumberSystems/Models/{CanonicalEmbeddings,UniversalProperties}.lean` for
+the two namespace-nested pieces. This fixes every import with zero changes to
+any of the 57 `open` sites. The proper split into
+`NumberSystems/Interface/ModelTheory/{LStructure,Theory,Model}.lean` (ISS-008)
+is unchanged as a goal — it now happens deliberately in Step 4/5, informed by
+the real 57-consumer footprint just discovered, rather than being bundled
+into the import fix.
+
+Files created:
+
+- `LRA/NumberSystems/Models.lean` — recreated verbatim from the deleted
+  `VolumeII/NumberSystems/Models.lean` (its own imports were never touched by
+  the deletion, so no internal changes were needed beyond the file's location)
+- `LRA/NumberSystems/Models/CanonicalEmbeddings.lean`,
+  `LRA/NumberSystems/Models/UniversalProperties.lean` — same treatment
+- `LRA/NumberSystems/Arithmetic/Model/{FirstOrderSignature,Theory,ModelBuilder,All}.lean`
+  — recreated verbatim from the deleted `VolumeII/Arithmetic/Model/*`
+  (ISS-004), de-`Volume`-ed
+- `LRA/NumberSystems/RealNumbers/LraReal.lean` — recreated from the deleted
+  `VolumeIII/RealNumbers/LraReal.lean` (ISS-006). **The deleted file itself
+  had a pre-existing bug**: it ended with an unclosed
+  `namespace LRA.NumberSystems.RealNumbers` (confirmed via `git show` — 39
+  lines, no matching `end`), independently consistent with
+  `LRA/Analysis/Bounds/Examples.lean`'s import of it having been dead code
+  (never referenced in that file's body) even before deletion. The missing
+  `end` was added; no other content changed. `LRA/Analysis/Bounds/Examples.lean`
+  had the dead import deleted outright rather than repointed. The open
+  question from §4 (recreate the concrete cut type vs. repoint to the generic
+  `Dedekind` construction) was resolved in favor of recreation, since it
+  requires no design work and is consistent with every other fix in this
+  step; reconciling `LraReal` with the generic Dedekind construction remains
+  open for the `RealNumbers` work in Step 5.
+
+Files rewired (import path only, no namespace/content changes):
+`LRA/Arithmetic/ContinuedFractions/Definition.lean`,
+`LRA/Interop/Mathlib.lean` (import deleted outright — target already
+superseded by `Analysis/MetricSpace/Interop/Mathlib.lean`, nothing else
+imports the file),
+`LRA/NumberSystems/GaussianIntegers/Construction/Model.lean` (also repointed
+its `LRA.NumberSystems.Integers.Z` references to the fully-qualified
+`LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z`, since the
+convenience alias that used to provide the short name was itself deleted
+(`VolumeII/Integers/Implementation.lean`); deciding whether to reintroduce
+such an alias — and where — is left for Step 5, not invented here),
+plus the 17 files listed against ISS-001, the 2 against ISS-002, and the 1
+against ISS-003 in §4.
+
+Not yet done, and not part of Step 1: nothing was built (`lake build` was not
+run, per the standing repo constraint) and no validator gate was executed —
+verification here is limited to the same static import-resolution method used
+throughout this audit, plus manual inspection (namespace/`end` balance, no
+remaining `Volume*` references in touched files). A Lean build is the only
+way to confirm the recreated files still elaborate correctly against the
+current `AlgebraicStructures`/`Order`/`Logic`/`Operation` state; that
+verification is outside this session's constraints and should happen before
+this work is considered final.

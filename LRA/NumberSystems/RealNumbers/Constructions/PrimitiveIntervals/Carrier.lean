@@ -4,7 +4,7 @@
                                                               
 
 import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
-import LRA.VolumeII.NumberSystems.Models
+import LRA.NumberSystems.Models
 
 namespace LRA.NumberSystems.RealNumbers.PrimitiveIntervals
 

@@ -3,7 +3,7 @@
 
 import LRA.AlgebraicStructures
 import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs.Behavior
-import LRA.VolumeII.NumberSystems.Models
+import LRA.NumberSystems.Models
 
 namespace LRA.NumberSystems.Integers.QuotientOrderedPairs
 

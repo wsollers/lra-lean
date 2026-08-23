@@ -1,7 +1,7 @@
                                                         
                                                                
 
-import LRA.VolumeII.NumberSystems.Models
+import LRA.NumberSystems.Models
 import LRA.AlgebraicStructures.OrderedField.Interface.Signature.Definition
 import LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.Model
 

@@ -2,8 +2,8 @@
                                                                   
                                         
 
-import LRA.VolumeII.Arithmetic.Model.All
-import LRA.VolumeII.Integers.Construction
+import LRA.NumberSystems.Arithmetic.Model.All
+import LRA.NumberSystems.Integers.Constructions.Polish
 import LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs
 
 namespace LRA.NumberSystems.GaussianIntegers.Construction
@@ -40,7 +40,7 @@ universe u
                                                                             
    
   
-abbrev ActiveGaussianInteger := GaussianInteger LRA.NumberSystems.Integers.Z
+abbrev ActiveGaussianInteger := GaussianInteger LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 
                                                                      
                                 
@@ -71,7 +71,7 @@ def gaussianArithmeticRingModel (R : Type u)
   
 def GaussianArithmeticRingModel :
     LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
-  gaussianArithmeticRingModel LRA.NumberSystems.Integers.Z
+  gaussianArithmeticRingModel LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 
                                                                        
 

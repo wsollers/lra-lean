@@ -1,7 +1,7 @@
                                                 
                                                               
 
-import LRA.VolumeII.NumberSystems.UniversalProperties
+import LRA.NumberSystems.Models.UniversalProperties
 
 namespace LRA.NumberSystems.RealNumbers.Extensions
 open LRA.NumberSystems.Models

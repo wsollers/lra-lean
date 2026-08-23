@@ -1,5 +1,5 @@
 import LRA.NumberSystems.Integers.Definition
-import LRA.VolumeII.NumberSystems.Models
+import LRA.NumberSystems.Models
 
 namespace LRA.NumberSystems.Integers.Examples
 

@@ -4,7 +4,7 @@
 
 import Mathlib.Data.EReal.Basic
 import LRA.NumberSystems.RealNumbers.Extended
-import LRA.VolumeII.NumberSystems.Models
+import LRA.NumberSystems.Models
 
 namespace LRA.NumberSystems.RealNumbers.Interop.Mathlib
 

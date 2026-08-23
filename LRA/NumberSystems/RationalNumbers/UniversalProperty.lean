@@ -1,5 +1,5 @@
 import LRA.NumberSystems.RationalNumbers.Definition
-import LRA.VolumeII.NumberSystems.CanonicalEmbeddings
+import LRA.NumberSystems.Models.CanonicalEmbeddings
 
 namespace LRA.NumberSystems.RationalNumbers
 
