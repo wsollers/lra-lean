@@ -2,6 +2,7 @@
 -- Canonical binary expansions and the data needed to interpret them.
 
 import LRA.NumberSystems.RationalNumbers.Definition
+import LRA.NumberSystems.RealNumbers.Definition
 import LRA.NumberSystems.RealNumbers.Constructions.Cauchy
 
 namespace LRA.NumberSystems.RealNumbers.Dyadic
@@ -147,36 +148,20 @@ existing Cauchy-real construction.
 
 The arithmetic source is an actual rational number system, and its Cauchy input
 now includes the stronger ordered-field absolute-value and epsilon-splitting
-surface. The remaining fields are only the Cauchy-carrier transport operations
-that the current Cauchy construction has not yet exposed canonically as
-reusable quotient operations. No independent completeness proposition is stored
-here.
+surface. The Dyadic semantics are not allowed to choose arbitrary Cauchy-carrier
+operations: instead they are derived from a selected carrier-tied
+`RationalRealExtension` whose real carrier is explicitly identified with the
+corresponding Cauchy quotient carrier. No independent completeness proposition
+is stored here.
 -/
 structure RationalDyadicApproximationData where
   RationalSystem : RationalNumberSystem.{u}
   AbsoluteValueData : Cauchy.RationalMetricData RationalSystem
-  RationalToCauchy :
-    RationalSystem.FieldModel.Carrier →
+  CauchyRealExtension :
+    LRA.NumberSystems.RealNumbers.RationalRealExtension RationalSystem
+  CauchyCarrierEq :
+    CauchyRealExtension.RealModel.Carrier =
       Cauchy.Carrier RationalSystem AbsoluteValueData
-  CauchyZero : Cauchy.Carrier RationalSystem AbsoluteValueData
-  CauchyOne : Cauchy.Carrier RationalSystem AbsoluteValueData
-  CauchyAddition :
-    Cauchy.Carrier RationalSystem AbsoluteValueData →
-      Cauchy.Carrier RationalSystem AbsoluteValueData →
-      Cauchy.Carrier RationalSystem AbsoluteValueData
-  CauchyNegation :
-    Cauchy.Carrier RationalSystem AbsoluteValueData →
-      Cauchy.Carrier RationalSystem AbsoluteValueData
-  CauchyMultiplication :
-    Cauchy.Carrier RationalSystem AbsoluteValueData →
-      Cauchy.Carrier RationalSystem AbsoluteValueData →
-      Cauchy.Carrier RationalSystem AbsoluteValueData
-  CauchyInverse :
-    Cauchy.Carrier RationalSystem AbsoluteValueData →
-      Cauchy.Carrier RationalSystem AbsoluteValueData
-  CauchyStrictOrder :
-    Cauchy.Carrier RationalSystem AbsoluteValueData →
-      Cauchy.Carrier RationalSystem AbsoluteValueData → Prop
 
 variable (dyadicData : RationalDyadicApproximationData.{u})
 
@@ -189,6 +174,98 @@ abbrev Integer := dyadicData.RationalSystem.IntegerSystem.Model.Carrier
 /-- Cauchy-real carrier used as the semantic target of binary expansions. -/
 abbrev CauchyCarrier :=
   Cauchy.Carrier dyadicData.RationalSystem dyadicData.AbsoluteValueData
+
+/-- Real carrier selected to interpret the Dyadic representation. -/
+abbrev RationalDyadicApproximationData.SelectedRealCarrier
+    (dyadicData : RationalDyadicApproximationData.{u}) :=
+  dyadicData.CauchyRealExtension.RealModel.Carrier
+
+/-- Transport a selected real-carrier value into the identified Cauchy carrier. -/
+def RationalDyadicApproximationData.ToCauchyCarrier
+    (dyadicData : RationalDyadicApproximationData.{u}) :
+    dyadicData.SelectedRealCarrier → CauchyCarrier dyadicData :=
+  cast dyadicData.CauchyCarrierEq
+
+/-- Transport an identified Cauchy-carrier value back to the selected real
+carrier. -/
+def RationalDyadicApproximationData.FromCauchyCarrier
+    (dyadicData : RationalDyadicApproximationData.{u}) :
+    CauchyCarrier dyadicData → dyadicData.SelectedRealCarrier :=
+  cast dyadicData.CauchyCarrierEq.symm
+
+/-- Rational values embed into the Cauchy carrier through the selected
+carrier-tied real extension. -/
+def RationalDyadicApproximationData.RationalToCauchy
+    (dyadicData : RationalDyadicApproximationData.{u}) :
+    Rational dyadicData → CauchyCarrier dyadicData :=
+  fun value =>
+    dyadicData.ToCauchyCarrier
+      (LRA.NumberSystems.RealNumbers.RationalRealExtension.EmbedRational
+        dyadicData.CauchyRealExtension value)
+
+/-- Zero in the Cauchy carrier, transported from the selected real extension. -/
+def RationalDyadicApproximationData.CauchyZero
+    (dyadicData : RationalDyadicApproximationData.{u}) :
+    CauchyCarrier dyadicData :=
+  dyadicData.ToCauchyCarrier (0 : dyadicData.SelectedRealCarrier)
+
+/-- One in the Cauchy carrier, transported from the selected real extension. -/
+def RationalDyadicApproximationData.CauchyOne
+    (dyadicData : RationalDyadicApproximationData.{u}) :
+    CauchyCarrier dyadicData :=
+  dyadicData.ToCauchyCarrier (1 : dyadicData.SelectedRealCarrier)
+
+/-- Addition on the Cauchy carrier, transported from the selected real
+extension. -/
+def RationalDyadicApproximationData.CauchyAddition
+    (dyadicData : RationalDyadicApproximationData.{u}) :
+    CauchyCarrier dyadicData →
+      CauchyCarrier dyadicData →
+      CauchyCarrier dyadicData :=
+  fun first second =>
+    dyadicData.ToCauchyCarrier
+      (dyadicData.FromCauchyCarrier first +
+        dyadicData.FromCauchyCarrier second)
+
+/-- Negation on the Cauchy carrier, transported from the selected real
+extension. -/
+def RationalDyadicApproximationData.CauchyNegation
+    (dyadicData : RationalDyadicApproximationData.{u}) :
+    CauchyCarrier dyadicData →
+      CauchyCarrier dyadicData :=
+  fun value =>
+    dyadicData.ToCauchyCarrier (-dyadicData.FromCauchyCarrier value)
+
+/-- Multiplication on the Cauchy carrier, transported from the selected real
+extension. -/
+def RationalDyadicApproximationData.CauchyMultiplication
+    (dyadicData : RationalDyadicApproximationData.{u}) :
+    CauchyCarrier dyadicData →
+      CauchyCarrier dyadicData →
+      CauchyCarrier dyadicData :=
+  fun first second =>
+    dyadicData.ToCauchyCarrier
+      (dyadicData.FromCauchyCarrier first *
+        dyadicData.FromCauchyCarrier second)
+
+/-- Inversion on the Cauchy carrier, transported from the selected real
+extension. -/
+def RationalDyadicApproximationData.CauchyInverse
+    (dyadicData : RationalDyadicApproximationData.{u}) :
+    CauchyCarrier dyadicData →
+      CauchyCarrier dyadicData :=
+  fun value =>
+    dyadicData.ToCauchyCarrier (dyadicData.FromCauchyCarrier value)⁻¹
+
+/-- Strict order on the Cauchy carrier, transported from the selected real
+extension. -/
+def RationalDyadicApproximationData.CauchyStrictOrder
+    (dyadicData : RationalDyadicApproximationData.{u}) :
+    CauchyCarrier dyadicData →
+      CauchyCarrier dyadicData → Prop :=
+  fun first second =>
+    dyadicData.FromCauchyCarrier first <
+      dyadicData.FromCauchyCarrier second
 
 /-- A rational is dyadic when it has the form `m / 2^n`. -/
 def IsDyadicRational (value : Rational dyadicData) : Prop :=

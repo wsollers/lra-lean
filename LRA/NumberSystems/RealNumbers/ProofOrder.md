@@ -178,12 +178,18 @@ Split from the former single 995-line file. Genuinely depends on `Cauchy`:
 arithmetic is *transported* through a bijection to `Cauchy.Carrier`, not
 defined directly.
 
-- [x] `Carrier.lean` -- `Digit`, `FractionalDigits`, `IsBinaryDigitSequence`,
-      `IsCanonical`, `CanonicalFraction`, `FiniteNumeral`,
-      `UnsignedExpansion`, `Sign`, `Expansion`, `RationalDyadicApproximationData`
-      (bundles a `Cauchy.RationalMetricData` over an actual
-      `RationalNumberSystem` plus transported Cauchy
-      arithmetic), `Rational`/`CauchyCarrier`, `IsDyadicRational`, written.
+- [x] `Carrier.lean` -- `Digit`, `FractionalDigits`,
+      `IsBinaryDigitSequence`, `IsCanonicalFractionalDigits`,
+      `CanonicalFraction`, `PositiveBinaryNumeral`,
+      `WholeBinaryNumeral`, `UnsignedExpansion`,
+      `NonzeroUnsignedExpansion`, `Sign`, `Expansion`,
+      `RationalDyadicApproximationData` (bundles a
+      `Cauchy.RationalMetricData` over an actual `RationalNumberSystem`
+      together with a selected carrier-tied
+      `RationalRealExtension` whose real carrier is identified with the
+      Cauchy quotient carrier, from which the semantic Cauchy constants,
+      operations, inverse, and order are transported), `Rational` /
+      `CauchyCarrier`, `IsDyadicRational`, written.
 - [ ] `Equivalence.lean` -- `dyadic_subring`, `dyadic_rationals_are_dense`
       (both `sorry`; `binary_tail_ambiguity`/`canonical_fractional_uniqueness`
       relocated to `Behavior.lean` -- see judgment call below).
@@ -200,9 +206,11 @@ defined directly.
       `multiplication`/`inverse`/`strict_order` (via the bijection),
       `OrderedFieldIsomorphism`/`ordered_field_isomorphism` (`sorry`).
 - [ ] `Behavior.lean` -- `binary_tail_ambiguity`,
-      `canonical_fractional_uniqueness`, `CompleteArchimedeanOrderedField`/
-      `complete_archimedean_ordered_field` (final summary) -- all `sorry`.
-- [ ] `Instances.lean` -- new: `DyadicRealizesRationalRealExtension`, `sorry`.
+      `canonical_fractional_uniqueness` -- both `sorry`. The former standalone
+      completeness summary has been removed; the construction-level
+      real-number statement now lives in `Instances.lean`.
+- [ ] `Instances.lean` -- `DyadicRealizesRationalRealExtension` (`sorry`),
+      the carrier-tied real-number certificate for `Expansion`.
 
 **Judgment call (dependency-order relocations, both flagged in-file):**
 `fractional_value`/`unsigned_value`/`value` moved from their textual
