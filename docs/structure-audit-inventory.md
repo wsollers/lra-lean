@@ -682,3 +682,51 @@ ModelTheory/LStructure.lean`'s `ArchimedeanDenseOrderedFieldExtension`/
 `CofinalRealExtension` fields with the now-available `Order.Cofinal`/
 `AlgebraicStructures.ArchimedeanLaw`, and building the per-system
 `NumberSystems/<System>/Interface/{Signature,ModelTheory}/` layer (Step 5).
+
+---
+
+## 14. Step 5 in progress: per-system `Interface/` layer
+
+Following §7.5's suggested order — the three systems whose target was
+already fully ready, no prerequisite work needed. Each got the same
+treatment: `Interface/Signature/Definition.lean` (a pure re-export of the
+strongest-structure target's signature, matching how
+`OrderedField.Interface.Signature` re-exports `Field`'s — confirmed by
+reading `OrderedField`'s own `LStructure.lean`, which opens *its own*
+`Interface.Signature` rather than reaching into `Field`'s directly, and
+fixed to match once noticed) plus `Interface/ModelTheory/{LStructure,Theory,
+Model}.lean`, with the legacy `<System>/Construction/Model.lean` folded into
+the new `LStructure.lean` and deleted, and `<System>.lean` rewired.
+
+- **`RationalNumbers`** (target `OrderedField`): `Construction/Model.lean`'s
+  `rationalNumbersModel` moved in unchanged. No external consumers of the
+  legacy path existed (only `RationalNumbers.lean`'s own wiring), so this
+  was a fully contained move.
+- **`ComplexNumbers`** (target `Field`): `Construction/Model.lean`'s
+  `complexNumbersModel`/`complexNumbersOverMathlibReals` moved in unchanged.
+  Same contained-move shape.
+- **`GaussianIntegers`** (target: nominally `IntegralDomain` per §7.2, but
+  **the actual restored content doesn't use `IntegralDomain` at all** —
+  `gaussianArithmeticRingModel` composes the small
+  `NumberSystems.Arithmetic.Model.ArithmeticRingFirstOrderSignature`
+  (`add`/`mul`/`zero`/`one` only, no `neg`) instead, confirmed by reading the
+  content before moving it rather than assuming §7.2's table. Migrated
+  faithfully as-is — `Interface/Signature` re-exports from
+  `NumberSystems.Arithmetic.Model`, not `AlgebraicStructures.IntegralDomain`
+  — rather than silently "fixing" this to match the table, which would be
+  new mathematical work (strengthening the model to capture full ring
+  structure including negation) disguised as a structural move. Flagged
+  here instead: `GaussianIntegers` does not yet compose `IntegralDomain`'s
+  `Interface/ModelTheory` the way §7.2 anticipated; doing so is separate,
+  undone work.
+
+All three verified with the same static import-resolution check (0 broken
+imports, checked after each system) and confirmed zero remaining references
+to each legacy `<System>.Construction` path. Not built.
+
+Remaining, in the order §7.5 gives: `RealNumbers` (needs the Archimedean
+reconciliation flagged in §11/§13), `Integers` (target is `IntegralDomain` +
+`Order`-owned laws directly, per the NS-001 correction in §9 — not
+`DiscreteInteger`), `NaturalNumbers` (target `CommutativeSemiring`, no
+existing `Construction/Model.lean` to fold in — genuinely new wiring, not a
+migration).
