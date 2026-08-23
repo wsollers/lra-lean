@@ -145,10 +145,12 @@ def PositiveBinaryNumeralValue
 /-- Data still needed to interpret canonical binary expansions through the
 existing Cauchy-real construction.
 
-The arithmetic source is an actual rational number system. The remaining
-fields are only the Cauchy-carrier transport operations that the current Cauchy
-construction has not yet exposed canonically as reusable quotient operations.
-No independent completeness proposition is stored here.
+The arithmetic source is an actual rational number system, and its Cauchy input
+now includes the stronger ordered-field absolute-value and epsilon-splitting
+surface. The remaining fields are only the Cauchy-carrier transport operations
+that the current Cauchy construction has not yet exposed canonically as
+reusable quotient operations. No independent completeness proposition is stored
+here.
 -/
 structure RationalDyadicApproximationData where
   RationalSystem : RationalNumberSystem.{u}

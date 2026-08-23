@@ -14,7 +14,9 @@ open LRA.NumberSystems.RationalNumbers
 carrier-tied `RationalRealExtension`.
 
 The metric input is anchored to that actual `RationalNumberSystem`, not to an
-arbitrary dense ordered field. The stronger conclusion that the completion is
+arbitrary dense ordered field, and now carries the stronger ordered-field
+absolute-value and epsilon-splitting surface rather than only a weak
+triangle-inequality package. The stronger conclusion that the completion is
 *the real-number stage* is stated only for a `RationalNumberSystem`, and the
 carrier equality forces the selected real extension to use the actual quotient
 carrier rather than an unrelated complete ordered field.

@@ -82,7 +82,8 @@ Split from the former single 604-line file. Foundational: transported-into
 by `Dyadic`, compared-against by `Cantor` and `PrimitiveIntervals`.
 
 - [x] `Carrier.lean` -- `RationalMetricData` (over an actual
-      `RationalNumberSystem`), `Sequence`, `distance`,
+      `RationalNumberSystem`, with ordered-field absolute-value and
+      epsilon-splitting data), `Sequence`, `distance`,
       `is_positive`, `is_cauchy`, `is_null`, `equivalent`, `Representative`,
       written (no proof obligations).
 - [ ] `Equivalence.lean` -- `representative_equivalent`,

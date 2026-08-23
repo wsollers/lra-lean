@@ -24,7 +24,8 @@ the whole pipeline); split per §1.6.1 into `Carrier` (this file),
 -/
 
 
-/-- Absolute-value data required to state the rational Cauchy condition.
+/-- Ordered-field absolute-value and epsilon data required to state the
+rational Cauchy condition.
 
 Mathematical statement (Lean): `structure RationalMetricData (rationalSystem : RationalNumberSystem)`.
 
@@ -60,6 +61,28 @@ structure RationalMetricData (rationalSystem : RationalNumberSystem) where
     ∀ value,
       absolute_value value = rationalSystem.FieldModel.signature.zero ↔
         value = rationalSystem.FieldModel.signature.zero
+  absolute_value_multiplication :
+    ∀ first second,
+      absolute_value
+        (rationalSystem.FieldModel.signature.multiply first second) =
+          rationalSystem.FieldModel.signature.multiply
+            (absolute_value first)
+            (absolute_value second)
+  absolute_value_self_or_neg :
+    ∀ value,
+      absolute_value value = value ∨
+        absolute_value value =
+          rationalSystem.FieldModel.signature.neg value
+  epsilon_split :
+    ∀ epsilon,
+      rationalSystem.FieldModel.signature.StrictOrder
+        rationalSystem.FieldModel.signature.zero epsilon →
+      ∃ smaller,
+        rationalSystem.FieldModel.signature.StrictOrder
+          rationalSystem.FieldModel.signature.zero smaller ∧
+        rationalSystem.FieldModel.signature.le
+          (rationalSystem.FieldModel.signature.add smaller smaller)
+          epsilon
 ```
 -/
 structure RationalMetricData (rationalSystem : RationalNumberSystem) where
@@ -90,6 +113,28 @@ structure RationalMetricData (rationalSystem : RationalNumberSystem) where
     ∀ value,
       absolute_value value = rationalSystem.FieldModel.signature.zero ↔
         value = rationalSystem.FieldModel.signature.zero
+  absolute_value_multiplication :
+    ∀ first second,
+      absolute_value
+        (rationalSystem.FieldModel.signature.multiply first second) =
+          rationalSystem.FieldModel.signature.multiply
+            (absolute_value first)
+            (absolute_value second)
+  absolute_value_self_or_neg :
+    ∀ value,
+      absolute_value value = value ∨
+        absolute_value value =
+          rationalSystem.FieldModel.signature.neg value
+  epsilon_split :
+    ∀ epsilon,
+      rationalSystem.FieldModel.signature.StrictOrder
+        rationalSystem.FieldModel.signature.zero epsilon →
+      ∃ smaller,
+        rationalSystem.FieldModel.signature.StrictOrder
+          rationalSystem.FieldModel.signature.zero smaller ∧
+        rationalSystem.FieldModel.signature.le
+          (rationalSystem.FieldModel.signature.add smaller smaller)
+          epsilon
 
 
 /-- A rational sequence is a function from the natural numbers to the rational carrier.
