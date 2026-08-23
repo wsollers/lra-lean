@@ -4,13 +4,13 @@
 import LRA.AlgebraicStructures
 import LRA.NumberSystems.RationalNumbers.Constructions.RationalQuotientFractions.Behavior
 import LRA.NumberSystems.RationalNumbers.Definition
-import LRA.NumberSystems.Models
+import LRA.NumberSystems.Interface.ModelTheory.Model
 
 namespace LRA.NumberSystems.RationalNumbers.RationalQuotientFractions
 
 open LRA.AlgebraicStructures
 open LRA.Order
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
 noncomputable instance rationalCarrierAdd
     (rationalData : IntegerAndPositiveNaturalData) :
@@ -87,7 +87,7 @@ theorem RationalDenseOrderCert
   
 noncomputable def RationalQuotientFractionsRealizesDenselyOrderedFieldModel
     (rationalData : IntegerAndPositiveNaturalData) :
-    LRA.NumberSystems.Models.DenselyOrderedFieldModel where
+    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
   Carrier := Carrier rationalData
   addInst := rationalCarrierAdd rationalData
   mulInst := rationalCarrierMul rationalData

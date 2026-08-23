@@ -8,7 +8,7 @@
 import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals.Carrier
 
 namespace LRA.NumberSystems.RealNumbers.PrimitiveIntervals
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
 variable (rational_model : DenselyOrderedFieldModel)
 

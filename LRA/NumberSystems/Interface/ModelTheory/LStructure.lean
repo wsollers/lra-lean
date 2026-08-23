@@ -5,7 +5,7 @@ import LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory.Model
 import LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.Model
 import LRA.AlgebraicStructures
 import LRA.Order
-namespace LRA.NumberSystems.Models
+namespace LRA.NumberSystems.Interface.ModelTheory
 
 open LRA.AlgebraicStructures
 open LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory
@@ -460,4 +460,4 @@ example (M : RealModel) :
 example (a b : mathlibDiscretelyOrderedIntegralDomainModel.Carrier) : a * b = b * a :=
   MulCommutative a b
 
-end LRA.NumberSystems.Models
+end LRA.NumberSystems.Interface.ModelTheory

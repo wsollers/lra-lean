@@ -2,7 +2,7 @@ import LRA.NumberSystems.RealNumbers.ContinuedFractions.Definition
 
 namespace LRA.NumberSystems.RealNumbers.ContinuedFractions
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 open LRA.Arithmetic.ContinuedFractions
 
 universe u

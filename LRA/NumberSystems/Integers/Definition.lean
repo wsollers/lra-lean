@@ -1,8 +1,8 @@
-import LRA.NumberSystems.Models
+import LRA.NumberSystems.Interface.ModelTheory.Model
 
 namespace LRA.NumberSystems.Integers
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
 universe u
 

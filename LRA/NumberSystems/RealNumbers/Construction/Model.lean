@@ -1,13 +1,13 @@
                                                         
                                                                
 
-import LRA.NumberSystems.Models
+import LRA.NumberSystems.Interface.ModelTheory.Model
 import LRA.AlgebraicStructures.OrderedField.Interface.Signature.Definition
 import LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.Model
 
 namespace LRA.NumberSystems.RealNumbers
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 open LRA.AlgebraicStructures.OrderedField.Interface.Signature
 open LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory
 

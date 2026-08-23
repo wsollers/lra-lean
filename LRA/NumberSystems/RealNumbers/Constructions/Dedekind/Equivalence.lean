@@ -8,7 +8,7 @@
 import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.Carrier
 
 namespace LRA.NumberSystems.RealNumbers.Dedekind
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
 variable (rational_model : DenselyOrderedFieldModel)
 

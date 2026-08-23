@@ -7,7 +7,7 @@ import LRA.NumberSystems.RealNumbers.Constructions.Cauchy.Behavior
 
 namespace LRA.NumberSystems.RealNumbers.Cauchy
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 open LRA.NumberSystems.RationalNumbers
 
                                                                         

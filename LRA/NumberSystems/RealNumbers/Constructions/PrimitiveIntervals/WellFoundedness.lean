@@ -4,7 +4,7 @@
 import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals.Equivalence
 
 namespace LRA.NumberSystems.RealNumbers.PrimitiveIntervals
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
    
                                                                            

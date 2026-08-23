@@ -4,7 +4,7 @@
 import LRA.NumberSystems.RealNumbers.Constructions.Cauchy.Equivalence
 
 namespace LRA.NumberSystems.RealNumbers.Cauchy
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 open LRA.NumberSystems.RationalNumbers
 
    

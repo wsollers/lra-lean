@@ -5,7 +5,7 @@ import LRA.NumberSystems.RealNumbers.Constructions.Cantor.Carrier
 
 namespace LRA.NumberSystems.RealNumbers.Cantor
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
                                                                           
                                                                               

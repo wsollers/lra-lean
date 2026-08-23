@@ -5,7 +5,7 @@
 import LRA.NumberSystems.RealNumbers.Extended
 
 namespace LRA.NumberSystems.RealNumbers.NonNegative
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 open LRA.NumberSystems.RealNumbers.Extended
 
    

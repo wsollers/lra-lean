@@ -4,7 +4,7 @@
 import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.Equivalence
 
 namespace LRA.NumberSystems.RealNumbers.Dedekind
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
    
                                                                          

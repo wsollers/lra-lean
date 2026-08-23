@@ -1,10 +1,10 @@
                                                 
                                                               
 
-import LRA.NumberSystems.Models.UniversalProperties
+import LRA.NumberSystems.Interface.ModelTheory.UniversalProperties
 
 namespace LRA.NumberSystems.RealNumbers.Extensions
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
    
                                         
@@ -19,7 +19,7 @@ open LRA.NumberSystems.Models
                                                                               
   
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
    
                          
@@ -169,7 +169,7 @@ theorem nth_root_exists_for_nonnegative_reals
 theorem complete_archimedean_ordered_field_unique
     (first second : RealModel) :
     ∃! comparison : first.signature.carrier → second.signature.carrier,
-      LRA.NumberSystems.Models.CanonicalEmbeddings.EmbeddingPreservesOrderedField
+      LRA.NumberSystems.Interface.ModelTheory.CanonicalEmbeddings.EmbeddingPreservesOrderedField
         first.signature second.signature comparison ∧
       LRA.Function.Surjective comparison := by
   sorry

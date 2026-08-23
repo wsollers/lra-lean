@@ -3,7 +3,7 @@
 
 import LRA.AlgebraicStructures
 import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs.Behavior
-import LRA.NumberSystems.Models
+import LRA.NumberSystems.Interface.ModelTheory.Model
 
 namespace LRA.NumberSystems.Integers.QuotientOrderedPairs
 
@@ -137,7 +137,7 @@ theorem quotient_discrete_order_cert
                                                                
 noncomputable def QuotientOrderedPairsRealizesIntegerModel
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
-    LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel where
+    LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel where
   Carrier := Carrier whole_data
   addInst := quotientCarrierAdd whole_data
   mulInst := quotientCarrierMul whole_data

@@ -619,3 +619,66 @@ left open the same way the Archimedean-in-`Analysis` reconciliation was —
 real work, not done here to keep this addition's blast radius contained.
 Verified with the same static import-resolution check (0 broken imports) and
 manual namespace/`end` inspection. Not built.
+
+---
+
+## 13. Step 4 done: `NumberSystems/Interface/ModelTheory/` migration
+
+This is the migration §8 deferred: `NumberSystems/Models.lean` (the
+`LRA.NumberSystems.Models` namespace, path-mirrored to stay compilable at
+minimum disruption in Step 1) is now at its architecturally intended home,
+`NumberSystems/Interface/ModelTheory/`, matching the `PeanoSystem`/
+`IntegerStructure` template exactly:
+
+```text
+NumberSystems/Interface/ModelTheory/
+  LStructure.lean          <- full content, unchanged except namespace
+  Theory.lean               <- stub, matches every existing example in the repo
+  Model.lean                <- aggregator stub, matches every existing example
+  CanonicalEmbeddings.lean  <- was Models/CanonicalEmbeddings.lean
+  UniversalProperties.lean  <- was Models/UniversalProperties.lean
+```
+
+No content changed — `LStructure.lean` is `Models.lean`'s exact prior content
+(`DiscretelyOrderedIntegralDomainModel`, `DenselyOrderedFieldModel`,
+`RealModel`, and the rest) with only the namespace rewritten from
+`LRA.NumberSystems.Models` to `LRA.NumberSystems.Interface.ModelTheory`;
+`Theory.lean`/`Model.lean` are stubs because that's what `Theory.lean`/
+`Model.lean` are in every other example already in this repo
+(`OrderedRing`, `Ring`, `PeanoSystem`, `IntegerStructure` all have empty
+`Theory.lean` — no first-order theory has actually been axiomatized as Lean
+terms anywhere yet — and a near-empty aggregating `Model.lean`), so building
+richer stubs here would be inventing a convention the rest of the repo
+doesn't follow, not completing one.
+
+**The 57-file blast radius flagged in §8 is now paid down, not avoided.**
+Every reference was rewired in one pass: 18 `import LRA.NumberSystems.Models`
+lines → `import LRA.NumberSystems.Interface.ModelTheory.Model`, 57
+`open LRA.NumberSystems.Models` lines → `open LRA.NumberSystems.Interface.
+ModelTheory`, 4 direct imports of `Models.CanonicalEmbeddings`/
+`.UniversalProperties` repointed, and 9 files' qualified
+`LRA.NumberSystems.Models.X` references rewritten to
+`LRA.NumberSystems.Interface.ModelTheory.X` (`CanonicalEmbeddings`/
+`UniversalProperties` substrings handled before the general prefix, in one
+ordered `sed` pass, to avoid double-rewriting). 63 files touched in total,
+spanning `NumberSystems`, `EuclideanSpace`, and `Analysis/MetricSpace` exactly
+as §8 predicted. `NumberSystems.lean` now imports the new `Interface.
+ModelTheory.*` files directly, matching how `PeanoSystem.lean`/
+`IntegerStructure.lean` import their own (no intermediate `Interface.lean`/
+`Interface/ModelTheory.lean` router files exist in either template, so none
+were added here either — consumers import the leaf files directly, same as
+those two).
+
+Verified three ways: a full static import-resolution check (0 broken across
+3,838 import lines, same method used throughout this audit), an exhaustive
+grep confirming zero remaining references to `LRA.NumberSystems.Models`
+anywhere in the repo, and manual namespace/`end` balance plus spot-checks of
+rewired consumer files in `NumberSystems`, `EuclideanSpace`, and
+`AlgebraicStructures`-facing qualified references. Not built — no `lake
+build` or validator gate run, per the standing constraint.
+
+Still open, unchanged from §8/§11: reconciling `NumberSystems/Interface/
+ModelTheory/LStructure.lean`'s `ArchimedeanDenseOrderedFieldExtension`/
+`CofinalRealExtension` fields with the now-available `Order.Cofinal`/
+`AlgebraicStructures.ArchimedeanLaw`, and building the per-system
+`NumberSystems/<System>/Interface/{Signature,ModelTheory}/` layer (Step 5).

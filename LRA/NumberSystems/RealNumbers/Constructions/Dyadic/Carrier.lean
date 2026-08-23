@@ -7,7 +7,7 @@ import LRA.NumberSystems.RealNumbers.Constructions.Cauchy
 
 namespace LRA.NumberSystems.RealNumbers.Dyadic
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 open LRA.NumberSystems.RationalNumbers
 
 universe u

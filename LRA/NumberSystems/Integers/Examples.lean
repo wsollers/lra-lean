@@ -1,9 +1,9 @@
 import LRA.NumberSystems.Integers.Definition
-import LRA.NumberSystems.Models
+import LRA.NumberSystems.Interface.ModelTheory.Model
 
 namespace LRA.NumberSystems.Integers.Examples
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 open LRA.NumberSystems.Integers
 
 theorem mathlib_every_element_is_integer_numeral :

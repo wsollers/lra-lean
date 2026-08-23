@@ -8,7 +8,7 @@ import LRA.Function.Properties.Definition
 import LRA.NumberSystems.RationalNumbers.Definition
 
 namespace LRA.NumberSystems.RealNumbers.Cantor
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 open LRA.NumberSystems.RationalNumbers
 
    

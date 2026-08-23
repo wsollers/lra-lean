@@ -2,12 +2,12 @@
                                                       
 
 import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
-import LRA.NumberSystems.Models
+import LRA.NumberSystems.Interface.ModelTheory.Model
 import LRA.NumberSystems.RationalNumbers.Constructions.RationalQuotientFractions
 
 namespace LRA.NumberSystems.RealNumbers
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
    
                                              
@@ -29,7 +29,7 @@ open LRA.NumberSystems.Models
 
 end LRA.NumberSystems.RealNumbers
 namespace LRA.NumberSystems.RealNumbers.DedekindCuts
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
 
                                    
@@ -208,11 +208,11 @@ theorem reals_are_complete
 
 end LRA.NumberSystems.RealNumbers.DedekindCuts
 namespace LRA.NumberSystems.RealNumbers
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
 end LRA.NumberSystems.RealNumbers
 namespace LRA.NumberSystems.RealNumbers.CauchySequences
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
    
                     
@@ -368,11 +368,11 @@ noncomputable def real_extension
 
 end LRA.NumberSystems.RealNumbers.CauchySequences
 namespace LRA.NumberSystems.RealNumbers
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
 end LRA.NumberSystems.RealNumbers
 namespace LRA.NumberSystems.RealNumbers.CantorNestedIntervals
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
    
                                   
@@ -463,11 +463,11 @@ theorem endpoint_sequences_determine_cauchy_class
 
 end LRA.NumberSystems.RealNumbers.CantorNestedIntervals
 namespace LRA.NumberSystems.RealNumbers
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
 end LRA.NumberSystems.RealNumbers
 namespace LRA.NumberSystems.RealNumbers.PrimitiveIntervalQuotient
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
    
                                   
@@ -680,11 +680,11 @@ noncomputable def real_model
 
 end LRA.NumberSystems.RealNumbers.PrimitiveIntervalQuotient
 namespace LRA.NumberSystems.RealNumbers
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
 end LRA.NumberSystems.RealNumbers
 namespace LRA.NumberSystems.RealNumbers.DyadicExpansions
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
    
                            
@@ -784,7 +784,7 @@ noncomputable def real_model
 
 end LRA.NumberSystems.RealNumbers.DyadicExpansions
 namespace LRA.NumberSystems.RealNumbers
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
    
                                   

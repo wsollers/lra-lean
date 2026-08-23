@@ -5,11 +5,11 @@
 
 import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.NumberSystems.RationalNumbers.Definition
-import LRA.NumberSystems.Models
+import LRA.NumberSystems.Interface.ModelTheory.Model
 
 namespace LRA.NumberSystems.RealNumbers.Cauchy
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 open LRA.NumberSystems.RationalNumbers
 
    

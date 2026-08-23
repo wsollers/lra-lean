@@ -4,7 +4,7 @@ import LRA.EuclideanSpace.Model.EuclideanN
 
 namespace LRA.Analysis.MetricSpace
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 open LRA.EuclideanSpace
 
 universe u

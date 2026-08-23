@@ -7,7 +7,7 @@ import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.Behavior
 
 namespace LRA.NumberSystems.RealNumbers.Dedekind
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 open LRA.NumberSystems.RationalNumbers
 
                                                                               

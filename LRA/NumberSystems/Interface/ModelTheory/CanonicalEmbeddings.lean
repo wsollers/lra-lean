@@ -1,9 +1,9 @@
                                                       
                                                                    
 
-import LRA.NumberSystems.Models
+import LRA.NumberSystems.Interface.ModelTheory.LStructure
 
-namespace LRA.NumberSystems.Models.CanonicalEmbeddings
+namespace LRA.NumberSystems.Interface.ModelTheory.CanonicalEmbeddings
 
 open LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory
 open LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory
@@ -136,4 +136,4 @@ theorem CompositeIntegerToRealIsEmbedding
       (CompositeIntegerToReal SelectedArchimedeanDenseOrderedFieldExtension SelectedCofinalRealExtension) := by
   sorry
 
-end LRA.NumberSystems.Models.CanonicalEmbeddings
+end LRA.NumberSystems.Interface.ModelTheory.CanonicalEmbeddings

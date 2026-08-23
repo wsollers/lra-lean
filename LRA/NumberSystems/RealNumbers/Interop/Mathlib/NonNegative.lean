@@ -5,11 +5,11 @@
 import Mathlib.Data.NNReal.Basic
 import Mathlib.Data.ENNReal.Basic
 import LRA.NumberSystems.RealNumbers.NonNegative
-import LRA.NumberSystems.Models
+import LRA.NumberSystems.Interface.ModelTheory.Model
 
 namespace LRA.NumberSystems.RealNumbers.Interop.Mathlib
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 open LRA.NumberSystems.RealNumbers.NonNegative
 
    

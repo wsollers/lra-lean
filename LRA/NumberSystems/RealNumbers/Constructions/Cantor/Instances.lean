@@ -7,7 +7,7 @@ import LRA.NumberSystems.RealNumbers.Constructions.Cantor.Behavior
 
 namespace LRA.NumberSystems.RealNumbers.Cantor
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 open LRA.NumberSystems.RationalNumbers
 
                                                                              
