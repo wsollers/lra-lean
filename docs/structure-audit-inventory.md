@@ -382,3 +382,66 @@ way to confirm the recreated files still elaborate correctly against the
 current `AlgebraicStructures`/`Order`/`Logic`/`Operation` state; that
 verification is outside this session's constraints and should happen before
 this work is considered final.
+
+---
+
+## 9. Step 2 status: NS-001 corrected, NS-002 done
+
+**NS-001 was a misdiagnosis, corrected rather than implemented as written.**
+Building `AlgebraicStructures/DiscreteInteger/Interface/ModelTheory` was
+proposed on the assumption that `Integers` realizes `DiscreteInteger`. Tracing
+actual usage before writing anything showed this is wrong:
+
+- `DiscreteInteger`'s own laws (`HasSuccessor`/`HasPredecessor`/
+  `SuccessorLaws`/`DiscretenessLaw`, all in
+  `DiscreteInteger/Laws/Definition.lean`) are a successor/predecessor-based
+  notion of discreteness, and they're already live — consumed by
+  `NumberSystems/IntegerStructure/Interface/ModelTheory/LStructure.lean`
+  (which already has full `Interface/ModelTheory`) and by
+  `NumberSystems/PeanoSystem/Interface/ModelTheory/LStructure.lean`, plus two
+  `NaturalNumbers` construction files.
+- `NumberSystems/Models.lean`'s `DiscretelyOrderedIntegralDomainModel` (the
+  struct `Integers` actually needs) uses a completely different, *order-based*
+  notion of discreteness — `OrderDiscretenessLaw`, defined at
+  `LRA/Order/DiscreteOrder/Definition.lean` — composed together with
+  `IntegralDomainLaws`, `LinearOrderLaws`, `StrictOrderCompatibilityLaw`,
+  `AdditionRespectsOrderLaws`, and `MultiplicationRespectsOrderLaws`. None of
+  this touches `AlgebraicStructures.DiscreteInteger` at all. The two live
+  `Integers` constructions (`Polish/TwoSidedSuccessor`,
+  `QuotientOrderedPairs`) instantiate exactly this combination already.
+- `IntegralDomain/Interface/ModelTheory/{LStructure,Theory,Model}.lean` — the
+  one piece of that combination that lives under `AlgebraicStructures` and
+  could plausibly have been missing — already exists with real content, not a
+  stub.
+
+Net effect: **no `AlgebraicStructures` work was needed to unblock
+`NumberSystems/Integers`.** `DiscreteInteger` still lacks its own
+`Interface/ModelTheory` (that finding from §7.2/NS-001 was accurate as a
+standalone observation), but it is not a `NumberSystems` prerequisite, so
+building it is out of scope for "get NumberSystems settled" and was not done.
+If `DiscreteInteger` gets its own `Interface/ModelTheory` in the future for
+its own sake, `Ring/Interface/ModelTheory` (below) is the closer template
+than `OrderedField`, since neither has an order relation.
+
+**NS-002 is done.** `AlgebraicStructures/CommutativeSemiring` had no
+`Interface/` at all, and neither did its parent, `Semiring` — so both needed
+building, in that order. Both now have the full triplet
+(`Interface/Signature/Definition.lean`,
+`Interface/ModelTheory/{LStructure,Theory,Model}.lean`), built from the
+`Ring/Interface/ModelTheory` template (the closest existing example: same
+`add`/`mul`/`zero`/`one` shape, minus `neg`) for `Semiring`, and from the
+`Field extends DivisionRing`-style pure-reexport pattern for
+`CommutativeSemiring extends Semiring` (commutativity is a `Prop`-level law,
+not new signature data, so `CommutativeSemiring`'s signature is a verbatim
+reuse of `Semiring`'s rather than an extension). Verified with the same
+static import-resolution check (0 broken imports across the whole repo,
+before and after) and manual namespace/`end` balance inspection; not built,
+per the standing constraint.
+
+`NumberSystems/NaturalNumbers`'s four constructions (`Landau`, `WholeNumbers`,
+`VonNeumann`, `Presburger`) currently instantiate no `AlgebraicStructures`
+typeclass at all (checked directly — no contradiction like NS-001's, just
+unconnected), so unlike `DiscreteInteger`, nothing here contradicts
+`CommutativeSemiring` as the eventual target; it remains a forward-looking
+build (for `NumberSystems/NaturalNumbers/Interface/ModelTheory` in Step 5),
+not yet a confirmed-in-use one.
