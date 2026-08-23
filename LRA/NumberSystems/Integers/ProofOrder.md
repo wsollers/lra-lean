@@ -57,8 +57,9 @@ from `0` returns to `0`, and two-sided induction. Mirrors
 - [ ] `IntegerStructure.Interface.ModelTheory.Model` — strict
       structure/theory/model packaging is present, but the bridge lemma
       ("every `IntegerStructure Element SetObject` yields a `HenkinModel`
-      satisfying `IntegerStructureTheory`/`IntegerStructureAxioms`") is not
-      yet stated.
+      satisfying `IntegerStructureHenkinTheory`
+      / `IntegerStructureTheory` / `IntegerStructureAxioms`") is not yet
+      stated.
 - [ ] `IntegerStructure.Categoricity.UniquenessOfIntegerStructuresUpToIsomorphism`
       — any two integer structures are isomorphic via the canonical map
       `0 ↦ 0`, `Sⁿ 0 ↦ Sⁿ 0`, `Pⁿ 0 ↦ Pⁿ 0`. Mirrors

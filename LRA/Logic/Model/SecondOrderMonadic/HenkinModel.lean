@@ -53,4 +53,18 @@ structure HenkinModel (S : Signature) extends FirstOrder.Model S where
 structure HenkinModel (S : Signature) extends FirstOrder.Model S where
   SecondOrderDomain : Set (Set Domain)
 
+/-- `HasFullSecondOrderSemantics` records when a Henkin model's chosen
+second-order domain is actually the full powerset, so its monadic
+second-order quantifiers coincide with full second-order semantics.
+
+Logical form:
+
+```lean
+def HasFullSecondOrderSemantics {S : Signature} (M : HenkinModel S) : Prop :=
+  ∀ subset : Set M.Domain, subset ∈ M.SecondOrderDomain
+```
+-/
+def HasFullSecondOrderSemantics {S : Signature} (M : HenkinModel S) : Prop :=
+  ∀ subset : Set M.Domain, subset ∈ M.SecondOrderDomain
+
 end LRA.Logic.SecondOrderMonadic

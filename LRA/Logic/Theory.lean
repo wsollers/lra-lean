@@ -141,7 +141,7 @@ abbrev FormulaTheory (S : Signature) (Variable SetVariable : Type) :=
   Set (SOFormula S Variable SetVariable)
 
 /-- The class of Henkin models satisfying every formula in a second-order
-formula theory, under every second-order assignment.
+formula theory, under every admissible second-order assignment.
 
 Logical form:
 

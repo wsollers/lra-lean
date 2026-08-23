@@ -23,10 +23,11 @@ the two new cases are:
     Henkin restriction takes effect), `φ` holds under the assignment
     updated to send `X` to `Y`.
 
-This is the only place `M.SecondOrderDomain` is actually consulted. Full
-semantics would instead quantify over all of `Set M.Domain`; deliberately
-avoided here per the standard caution against full second-order semantics
-(no complete proof system; compactness and Löwenheim-Skolem both fail).
+Together with `SOAssignment`'s admissibility field, this keeps *both* free
+and bound set variables inside `M.SecondOrderDomain`. Full semantics would
+instead quantify over all of `Set M.Domain`; deliberately avoided here per
+the standard caution against full second-order semantics (no complete proof
+system; compactness and Löwenheim-Skolem both fail).
 -/
 
 /-- The second-order satisfaction relation: `M`, under the second-order
@@ -57,9 +58,9 @@ def SOSatisfies
   | .setMember X t =>
       FirstOrder.evaluateTerm M.toModel assignment.elementAssignment t ∈ assignment.setAssignment X
   | .forallSet X φ =>
-      ∀ Y ∈ M.SecondOrderDomain,
+      ∀ Y, ∀ hY : Y ∈ M.SecondOrderDomain,
         SOSatisfies M
-          { assignment with setAssignment := updateAssignment assignment.setAssignment X Y }
+          (assignment.updateSetAssignment X Y hY)
           φ
 ```
 -/
@@ -85,9 +86,9 @@ def SOSatisfies
   | .setMember X t =>
       FirstOrder.evaluateTerm M.toModel assignment.elementAssignment t ∈ assignment.setAssignment X
   | .forallSet X φ =>
-      ∀ Y ∈ M.SecondOrderDomain,
+      ∀ Y, ∀ hY : Y ∈ M.SecondOrderDomain,
         SOSatisfies M
-          { assignment with setAssignment := updateAssignment assignment.setAssignment X Y }
+          (assignment.updateSetAssignment X Y hY)
           φ
 
 end LRA.Logic.SecondOrderMonadic

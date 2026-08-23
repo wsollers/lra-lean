@@ -59,16 +59,22 @@ def IntegerInductionAxiom
       M.interpretFunction .predecessor (fun _ => element) ∈ subset) ->
     ∀ element : M.Domain, element ∈ subset
 
-/-- The full second-order integer-structure theory, all read off one
-`HenkinModel`. -/
-def IntegerStructureTheory
+/-- The Henkin second-order integer-structure theory, all read off one
+`HenkinModel`. Full second-order semantics would require the extra
+certificate `HasFullSecondOrderSemantics`. -/
+def IntegerStructureHenkinTheory
     (M : LRA.Logic.SecondOrderMonadic.HenkinModel IntegerFirstOrderSignature) : Prop :=
   IntegerInverseAxiom M.toModel /\
   IntegerBaseNeighboursAxiom M.toModel /\
   IntegerAperiodicAxiom M.toModel /\
   IntegerInductionAxiom M
 
-/-- Backward-compatible name for the full second-order integer theory. -/
-abbrev IntegerStructureAxioms := IntegerStructureTheory
+/-- Backward-compatible name for the active Henkin second-order integer
+theory surface. -/
+abbrev IntegerStructureTheory := IntegerStructureHenkinTheory
+
+/-- Backward-compatible alias for the active Henkin second-order integer
+axiom surface. -/
+abbrev IntegerStructureAxioms := IntegerStructureHenkinTheory
 
 end LRA.NumberSystems.IntegerStructure.Interface.ModelTheory

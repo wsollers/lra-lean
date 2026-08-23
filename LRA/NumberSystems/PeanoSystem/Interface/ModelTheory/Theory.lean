@@ -45,15 +45,21 @@ def PeanoInductionAxiom
       M.interpretFunction .successor (fun _ => element) ∈ subset) ->
     ∀ element : M.Domain, element ∈ subset
 
-/-- The full second-order Peano theory: base, successor, and induction,
-all read off one `HenkinModel`. -/
-def PeanoTheory
+/-- The Henkin second-order Peano theory: base, successor, and induction,
+all read off one `HenkinModel`. Full second-order semantics would require
+the extra certificate `HasFullSecondOrderSemantics`. -/
+def PeanoHenkinTheory
     (M : LRA.Logic.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature) : Prop :=
   PeanoBaseNotSuccessorAxiom M.toModel /\
   PeanoSuccessorInjectiveAxiom M.toModel /\
   PeanoInductionAxiom M
 
-/-- Backward-compatible name for the full second-order Peano theory. -/
-abbrev PeanoAxioms := PeanoTheory
+/-- Backward-compatible name for the active Henkin second-order Peano
+theory surface. -/
+abbrev PeanoTheory := PeanoHenkinTheory
+
+/-- Backward-compatible alias for the active Henkin second-order Peano
+axiom surface. -/
+abbrev PeanoAxioms := PeanoHenkinTheory
 
 end LRA.NumberSystems.PeanoSystem.Interface.ModelTheory

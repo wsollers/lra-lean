@@ -93,6 +93,24 @@ Logical form:
 def testElementAssignment : Nat -> Bool
   | 0 => true
   | _ => false
+
+/-- The default admissible set assignment for `richModel`, sending every
+free set variable to `∅`. -/
+def richAssignment : SOAssignment richModel Nat Nat where
+  elementAssignment := testElementAssignment
+  setAssignment := fun _ => ∅
+  setAssignment_admissible := by
+    intro _
+    exact Or.inl rfl
+
+/-- The default admissible set assignment for `poorModel`, sending every
+free set variable to `∅`. -/
+def poorAssignment : SOAssignment poorModel Nat Nat where
+  elementAssignment := testElementAssignment
+  setAssignment := fun _ => ∅
+  setAssignment_admissible := by
+    intro _
+    exact Or.inl rfl
 ```
 -/
 def testElementAssignment : Nat -> Bool
@@ -160,10 +178,11 @@ theorem richModel_satisfies_henkinTestFormula :
 -/
 theorem richModel_satisfies_henkinTestFormula :
     SOSatisfies richModel
-      ⟨testElementAssignment, fun _ => ∅⟩
+      richAssignment
       henkinTestFormula := by
   simp only [henkinTestFormula, SOFormula.existsSet, SOFormula.and, SOSatisfies,
-    FirstOrder.evaluateTerm, updateAssignment, richModel, testElementAssignment]
+    FirstOrder.evaluateTerm, updateAssignment, richModel, richAssignment,
+    testElementAssignment]
   intro h
   have h' := h {true} (by
     exact Or.inr (Or.inl rfl))
@@ -191,10 +210,11 @@ theorem poorModel_not_satisfies_henkinTestFormula :
 -/
 theorem poorModel_not_satisfies_henkinTestFormula :
     ¬ SOSatisfies poorModel
-        ⟨testElementAssignment, fun _ => ∅⟩
+        poorAssignment
         henkinTestFormula := by
   simp only [henkinTestFormula, SOFormula.existsSet, SOFormula.and, SOSatisfies,
-    FirstOrder.evaluateTerm, updateAssignment, poorModel, testElementAssignment]
+    FirstOrder.evaluateTerm, updateAssignment, poorModel, poorAssignment,
+    testElementAssignment]
   rw [Classical.not_not]
   intro Y hY
   rw [Classical.not_not]

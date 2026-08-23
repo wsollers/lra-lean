@@ -1,4 +1,5 @@
 import LRA.Logic.Model.SecondOrderMonadic.HenkinModel
+import LRA.Logic.Semantics.Assignment
 
 namespace LRA.Logic.SecondOrderMonadic
 
@@ -7,24 +8,20 @@ Second-order assignments.
 
 Satisfying an `SOFormula` needs two independent assignments: an ordinary
 first-order one (`Variable -> M.Domain`, exactly what `Satisfies` already
-needed), and a new second-order one (`SetVariable -> Set M.Domain`), giving
-a current denotation to every set variable the formula might mention.
+needed), and a new second-order one assigning each free set variable a
+*Henkin-admissible* subset of `M.Domain`.
 
-The second-order assignment is deliberately *unconstrained* -- it may send
-a `SetVariable` to any subset of `M.Domain` whatsoever, not only to subsets
-already present in `M.SecondOrderDomain`. The Henkin restriction is not
-baked into the assignment's type; it is enforced entirely at the point of
-quantification, in `SOSatisfies`'s `forallSet`/`existsSet` cases, which
-only ever *range over* `M.SecondOrderDomain` when picking a new value to
-assign. This mirrors exactly how `Satisfies`'s `∀v` case ranges over
-`M.Domain` directly (not some subtype of it), with the quantifier itself
-doing the restricting rather than the assignment's type.
+This admissibility restriction is load-bearing. Under Henkin semantics,
+free set variables should range over the same chosen family
+`M.SecondOrderDomain` that bound set quantifiers range over; otherwise the
+surface silently mixes "Henkin for bound variables" with "full powerset for
+free variables". The assignment therefore records not only the denotation
+`setAssignment X`, but also a proof that each such denotation lies in
+`M.SecondOrderDomain`.
 
-Updating a second-order assignment at one set variable reuses
-`updateAssignment` unchanged: `Set M.Domain` is, like any other type, a
-legitimate instantiation of `updateAssignment`'s generic `Domain`
-parameter, so no second, near-duplicate "update a set assignment" function
-is needed.
+Updating a second-order assignment at one set variable still reuses
+`updateAssignment` for the underlying function. The only extra work is to
+thread the proof that the newly assigned set is Henkin-admissible.
 -/
 
 /-- A second-order assignment over a Henkin model `M`: an element
@@ -44,5 +41,41 @@ structure SOAssignment
     {S : Signature} (M : HenkinModel S) (Variable SetVariable : Type) where
   elementAssignment : Variable -> M.Domain
   setAssignment : SetVariable -> Set M.Domain
+  setAssignment_admissible :
+    ∀ setVariable : SetVariable, setAssignment setVariable ∈ M.SecondOrderDomain
+
+/-- Update a Henkin second-order assignment at one set variable, preserving
+the invariant that every free set-variable denotation lies in the chosen
+second-order domain.
+
+Logical form:
+
+```lean
+def SOAssignment.updateSetAssignment
+    {S : Signature} {Variable SetVariable : Type} [DecidableEq SetVariable]
+    {M : HenkinModel S}
+    (assignment : SOAssignment M Variable SetVariable)
+    (variable : SetVariable) (subset : Set M.Domain)
+    (subset_admissible : subset ∈ M.SecondOrderDomain) :
+    SOAssignment M Variable SetVariable
+```
+-/
+def SOAssignment.updateSetAssignment
+    {S : Signature} {Variable SetVariable : Type} [DecidableEq SetVariable]
+    {M : HenkinModel S}
+    (assignment : SOAssignment M Variable SetVariable)
+    (targetVariable : SetVariable) (subset : Set M.Domain)
+    (subset_admissible : subset ∈ M.SecondOrderDomain) :
+    SOAssignment M Variable SetVariable where
+  elementAssignment := assignment.elementAssignment
+  setAssignment := updateAssignment assignment.setAssignment targetVariable subset
+  setAssignment_admissible := by
+    intro other
+    by_cases h : other = targetVariable
+    · subst h
+      simp [updateAssignment]
+      exact subset_admissible
+    · simp [updateAssignment, h]
+      exact assignment.setAssignment_admissible other
 
 end LRA.Logic.SecondOrderMonadic
