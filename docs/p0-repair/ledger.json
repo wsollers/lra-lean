@@ -597,7 +597,7 @@
       "wave": 2,
       "wave_name": "vacuous and false theorem surface",
       "status": "done",
-      "last_good_stop": "2026-08-22: confirmed the active Cantor endpoint-equivalence/setoid layer was already symmetric on `main`; strengthened `cantor_reals_are_isomorphic_to_cauchy_reals` from an injective-only comparison surface to a bijective comparison in `Cantor/Behavior.lean`; aligned the directly affected proof-order note; and the scoped gates on LRA/NumberSystems/RealNumbers and LRA.NumberSystems.RealNumbers passed",
+      "last_good_stop": "2026-08-23: confirmed the active Cantor endpoint-equivalence/setoid layer was already symmetric on `main`; strengthened `cantor_reals_are_isomorphic_to_cauchy_reals` from an injective-only comparison surface to a bijective comparison in `Cantor/Behavior.lean`; aligned the directly affected proof-order note; and the scoped gates on LRA/NumberSystems/RealNumbers and LRA.NumberSystems.RealNumbers passed",
       "next_step": "Launch p0-21 spec task",
       "validator_path": "LRA/NumberSystems/RealNumbers",
       "build_target": "LRA.NumberSystems.RealNumbers",
@@ -609,13 +609,13 @@
       "commit_sha": "95f801b6",
       "pushed": true,
       "notes": [
-        "2026-08-22: spec frozen in `docs/p0-repair/results/p0-20-spec.md` with validator path `LRA/NumberSystems/RealNumbers` and build target `LRA.NumberSystems.RealNumbers`",
-        "2026-08-22: verifier approved the bounded Cantor behavior-only repair in `docs/p0-repair/results/p0-20-verify.md`, confirming the active endpoint-equivalence/setoid layer was already repaired on `main`",
-        "2026-08-22: [LRA/NumberSystems/RealNumbers/Constructions/Cantor/Behavior.lean] now imports `LRA.Function.Properties.Definition` and strengthens `cantor_reals_are_isomorphic_to_cauchy_reals` to return `LRA.Function.Bijective comparison`",
-        "2026-08-22: [LRA/NumberSystems/RealNumbers/ProofOrder.md] now describes the Cantor/Cauchy behavior theorem as a bijective comparison surface",
-        "2026-08-22: `python scripts/validate_structure.py --path LRA/NumberSystems/RealNumbers` passed",
-        "2026-08-22: `lake build LRA.NumberSystems.RealNumbers` passed",
-        "2026-08-22: implementation committed as `95f801b6` (`Strengthen Cantor isomorphism theorem surface`) and pushed on `origin/main`"
+        "2026-08-23: spec frozen in `docs/p0-repair/results/p0-20-spec.md` with validator path `LRA/NumberSystems/RealNumbers` and build target `LRA.NumberSystems.RealNumbers`",
+        "2026-08-23: verifier approved the bounded Cantor behavior-only repair in `docs/p0-repair/results/p0-20-verify.md`, confirming the active endpoint-equivalence/setoid layer was already repaired on `main`",
+        "2026-08-23: [LRA/NumberSystems/RealNumbers/Constructions/Cantor/Behavior.lean] now imports `LRA.Function.Properties.Definition` and strengthens `cantor_reals_are_isomorphic_to_cauchy_reals` to return `LRA.Function.Bijective comparison`",
+        "2026-08-23: [LRA/NumberSystems/RealNumbers/ProofOrder.md] now describes the Cantor/Cauchy behavior theorem as a bijective comparison surface",
+        "2026-08-23: `python scripts/validate_structure.py --path LRA/NumberSystems/RealNumbers` passed",
+        "2026-08-23: `lake build LRA.NumberSystems.RealNumbers` passed",
+        "2026-08-23: implementation committed as `95f801b6` (`Strengthen Cantor isomorphism theorem surface`) and pushed on `origin/main`"
       ]
     },
     {

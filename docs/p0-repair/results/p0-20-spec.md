@@ -5,7 +5,7 @@
 - Spec task id: `main-thread`
 - Validator path: `LRA/NumberSystems/RealNumbers`
 - Build target: `LRA.NumberSystems.RealNumbers`
-- Last good stop: spec frozen on disk and ready for implementation
+- Last good stop: `2026-08-23`: spec frozen on disk and ready for implementation
 
 ## Brief Summary
 
