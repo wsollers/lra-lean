@@ -25,7 +25,7 @@ Migration note: the source module doc comment (reproduced verbatim below)
 claims this construction is "definitionally independent of the Cantor and
 Cauchy real constructions." That claim is preserved as written even though
 the source file itself imports `LRA.VolumeII.RealNumbers.Cauchy` and
-references it in `persistent_overlap_iff_endpoint_null` (moved to
+references it in `PersistentOverlapIffEndpointDifferenceIsNull` (moved to
 `Behavior.lean`, repointed to the migrated Cauchy construction). This
 migration's policy is to move content unchanged rather than silently "fix"
 an inconsistent source, so the apparent contradiction is flagged here

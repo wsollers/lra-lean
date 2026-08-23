@@ -29,8 +29,9 @@ themselves):
 - `PrimitiveIntervals` -- nested rational intervals under "persistent
   cross-level overlap" equivalence; despite its own doc comment claiming
   independence from Cauchy and Cantor, it imports `Cauchy` and uses it in
-  one theorem (`persistent_overlap_iff_endpoint_null`) -- preserved as-is,
-  not "fixed", per this migration's content-preservation policy.
+  one theorem (`PersistentOverlapIffEndpointDifferenceIsNull`) -- preserved
+  as a real PrimitiveIntervals/Cauchy comparison rather than the former fake
+  self-comparison surface.
 - `Computable` -- computable reals via effective rational approximations
   with a modulus function; the smallest and most self-contained
   construction (no cross-construction dependency).
@@ -220,7 +221,7 @@ depend on `fractional_value`).
 Split from the former single 1676-line file, the largest of the six.
 Despite its own doc comment claiming "definitional independence" from
 Cantor and Cauchy, it imports `Cauchy` and uses it in
-`persistent_overlap_iff_endpoint_null` -- preserved verbatim, not "fixed".
+`PersistentOverlapIffEndpointDifferenceIsNull`.
 The earlier self-referential field-summary certificate and fake self-comparison
 have been removed. Individual law theorems remain in `Laws.lean`; the
 authoritative real-number certification is the carrier-tied
@@ -264,12 +265,17 @@ authoritative real-number certification is the carrier-tied
       except raw defs. The former ad-hoc `OrderedFieldStructure` summary was
       removed in favor of the canonical carrier-tied `RationalRealExtension`
       certificate.
-- [ ] `Behavior.lean` -- `persistent_overlap_iff_endpoint_null` (`sorry`,
-      repointed to `LRA.NumberSystems.RealNumbers.Cauchy`),
-      `canonical_comparison_isomorphism_exists` (`sorry`, self-referential,
-      preserved), `PrimitiveIntervalConstructionOfReals`/
-      `primitive_interval_construction_of_reals` (final summary, `sorry`).
-- [ ] `Instances.lean` -- new: `PrimitiveIntervalsRealizesRationalRealExtension`, `sorry`.
+- [ ] `Behavior.lean` --
+      `PersistentOverlapIffEndpointDifferenceIsNull` (`sorry`, repointed to
+      `LRA.NumberSystems.RealNumbers.Cauchy` as a genuine comparison theorem).
+      The former `canonical_comparison_isomorphism_exists` self-comparison and
+      `PrimitiveIntervalConstructionOfReals` /
+      `primitive_interval_construction_of_reals` tautological summary have
+      been removed.
+- [ ] `Instances.lean` --
+      `PrimitiveIntervalsRealizesRationalRealExtension` (`sorry`), the
+      carrier-tied real-number certificate for the primitive-interval
+      quotient.
 
 ---
 
