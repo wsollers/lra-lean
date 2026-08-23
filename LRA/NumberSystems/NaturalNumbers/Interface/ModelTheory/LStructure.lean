@@ -1,14 +1,14 @@
 import LRA.NumberSystems.NaturalNumbers.Interface.Signature.Definition
-import LRA.AlgebraicStructures.CommutativeSemiring.Interface.ModelTheory.Model
+import LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.ModelTheory.Model
 
 namespace LRA.NumberSystems.NaturalNumbers.Interface.ModelTheory
 
 open LRA.NumberSystems.NaturalNumbers.Interface.Signature
-open LRA.AlgebraicStructures.CommutativeSemiring.Interface.ModelTheory
+open LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.ModelTheory
 
 def naturalNumbersModel
-    (natural_model : LRA.AlgebraicStructures.CommutativeSemiringConceptSignature) :
+    (natural_model : LRA.AlgebraicStructures.CommutativeSemiringWithoutZeroConceptSignature) :
     LRA.Logic.FirstOrder.Model NaturalNumbersFirstOrderSignature :=
-  BuildCommutativeSemiringModel natural_model
+  BuildCommutativeSemiringWithoutZeroModel natural_model
 
 end LRA.NumberSystems.NaturalNumbers.Interface.ModelTheory

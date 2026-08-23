@@ -861,3 +861,79 @@ committed work outside what was asked for this turn.
 Verified with the same static import-resolution check (0 broken across
 3,897 import lines) and manual namespace/`end` balance across every new and
 moved file. Not built.
+
+---
+
+## 17. The §16 correction acted on: `CommutativeSemiringWithoutZero`
+
+User supplied the precise classification: under standard `+`/`×`, 1-based
+`N_{>0}` is a *cancellative commutative semiring without an additive
+identity* (a "commutative hemiring"/"rig without zero") — commutative
+semigroup under `+` (associative, commutative, cancellative, **no**
+identity), commutative monoid under `×` (has identity `1`, cancellative),
+distributive, no zero. This is the missing target flagged in §16.
+
+**Checked what could be reused before building anything new.**
+`AlgebraicStructures.AdditiveCommutativeSemigroupConceptSignature` and
+`AdditiveSemigroupConceptSignature` already have no zero requirement (both
+reduce to `LRA.UniversalAlgebra.InterpretedOperationBundles.
+AdditiveOperationBundle`, which is exactly `carrier` + `add`, nothing else).
+`Operation/Laws/Cancellation/Definition.lean` already has generic
+`LeftCancellative`/`RightCancellative`/`TwoSidedCancellative` predicates
+(confirming `PurposeAndArchitecture.md`'s own top-level subject table, which
+names "cancellation" as one of `Operation`'s core concerns) — but no
+`AlgebraicStructures`-level wrapper class composing them existed yet
+(`grep -rln "CancellationLaw\|Cancellative" LRA/AlgebraicStructures` was
+empty before this).
+
+**Added `AlgebraicStructures/CommutativeSemiringWithoutZero/`**, matching
+every existing sibling's file shape:
+
+- `Laws/Definition.lean`: two new wrapper classes,
+  `AdditiveCancellativeLaws`/`MultiplicativeCancellativeLaws`, each a thin
+  `class` around `Operation.Laws.Cancellation.TwoSidedCancellative` (the
+  same pattern `ZeroAbsorbingLaws` uses to wrap `Operation.Laws.Absorbing` —
+  defined directly inside the structure that needs them, not manufactured as
+  their own top-level `AlgebraicStructures` folders, since neither is a
+  named structure in its own right). Combined into `class abbrev
+  CommutativeSemiringWithoutZeroLaws` — `CommutativeSemiringLaws`'s exact
+  law list minus `AdditiveIdentityLaws`/`ZeroAbsorbingLaws` (both require
+  `OfNat R 0`), plus the two new cancellative laws.
+- `Definition.lean`: `CommutativeSemiringWithoutZeroConceptSignature extends
+  AdditiveOperationBundle where multiply; one` — extends the zero-free
+  additive bundle directly and adds `multiply`/`one` as new fields, matching
+  the single-`extends`-plus-new-fields shape every existing `ConceptSignature`
+  in this repo uses (`DiscreteIntegerConceptSignature extends
+  RingConceptSignature where succ; pred` is the closest precedent). No
+  structure in this repo extends two bundles at once — considered it
+  (`extends AdditiveOperationBundle, MultiplicativeOperationBundle`) and
+  deliberately didn't introduce the first case, since it can't be verified
+  without a build the way the proven single-`extends` pattern can be trusted
+  by precedent.
+- `Interface/Signature/Definition.lean` + `Interface/ModelTheory/
+  {LStructure,Theory,Model}.lean`: built fresh (not a re-export — this
+  signature genuinely differs from every existing one, having no `zero`
+  constant symbol at all), following `Ring`'s template exactly.
+  `domainNonempty := ⟨signature.one⟩` rather than `⟨signature.zero⟩`,
+  correctly reflecting that nonemptiness comes from `1`, not `0`.
+
+**Retargeted `NumberSystems/NaturalNumbers/Interface/{Signature,
+ModelTheory}`** from `CommutativeSemiring` to this new structure, fixing the
+§16 correction rather than leaving it flagged. `WholeNumbers` (§16, built
+against `OrderedSemiring`, which does need zero) is unaffected — it
+correctly has zero and was never touched.
+
+**Also fixed while in the area**: `Semiring.lean` and `CommutativeSemiring.
+lean` (the top-level subject routers) never imported their own `Interface/`
+files — an oversight from Step 2 that meant their `Interface/ModelTheory`
+content, while it existed and compiled standalone, was unreachable
+transitively from `AlgebraicStructures.lean`. Added the same four `Interface`
+imports both `RationalNumbers.lean`-style system routers already carry.
+
+Verified with the same static import-resolution check (0 broken across
+3,928 import lines) and manual namespace/`end`/`section` balance on every
+new and changed file. Not built — this is the one addition in this session
+most worth an actual `lake build` before considering it final, given the
+untested multi-field `ConceptSignature` extension and the two brand-new
+`Cancellation`-wrapping typeclasses; neither has any prior instance proving
+it's inhabited or that the field names line up exactly as intended.

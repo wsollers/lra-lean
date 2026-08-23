@@ -10,6 +10,7 @@ import LRA.AlgebraicStructures.CommutativeMonoid
 import LRA.AlgebraicStructures.CommutativeRing
 import LRA.AlgebraicStructures.CommutativeSemigroup
 import LRA.AlgebraicStructures.CommutativeSemiring
+import LRA.AlgebraicStructures.CommutativeSemiringWithoutZero
 import LRA.AlgebraicStructures.CompleteOrderedField
 import LRA.AlgebraicStructures.DiscreteInteger
 import LRA.AlgebraicStructures.DistributiveLattice
