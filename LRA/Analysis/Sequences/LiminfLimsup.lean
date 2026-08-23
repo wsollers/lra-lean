@@ -75,11 +75,13 @@ namespace LRA.Analysis.Sequences
 Logical form:
 
 ```lean
-noncomputable def TailSupSeq (x : RealSequence) : RealSequence :=
-  fun n => sSup (x '' {k : ℕ | n ≤ k})
+noncomputable def TailSupSeq (x : RealSequence) (h : BoundedAboveSeq x) : RealSequence :=
+  by
+    let _ := h
+    exact fun n => sSup (x '' {k : ℕ | n ≤ k})
 ```
 -/
-noncomputable def TailSupSeq (x : RealSequence) : RealSequence :=
+noncomputable def TailSupSeq (x : RealSequence) (h : BoundedAboveSeq x) : RealSequence :=
   fun n => sSup (x '' {k : ℕ | n ≤ k})
 
 /-- `def:tail-infimum-sequence`.
@@ -87,11 +89,13 @@ noncomputable def TailSupSeq (x : RealSequence) : RealSequence :=
 Logical form:
 
 ```lean
-noncomputable def TailInfSeq (x : RealSequence) : RealSequence :=
-  fun n => sInf (x '' {k : ℕ | n ≤ k})
+noncomputable def TailInfSeq (x : RealSequence) (h : BoundedBelowSeq x) : RealSequence :=
+  by
+    let _ := h
+    exact fun n => sInf (x '' {k : ℕ | n ≤ k})
 ```
 -/
-noncomputable def TailInfSeq (x : RealSequence) : RealSequence :=
+noncomputable def TailInfSeq (x : RealSequence) (h : BoundedBelowSeq x) : RealSequence :=
   fun n => sInf (x '' {k : ℕ | n ≤ k})
 
 /-- `def:limsup-sequence`. A relation, not a partial function — matching
@@ -100,47 +104,51 @@ the project's own house style for `ConvergesTo` itself.
 Logical form:
 
 ```lean
-def LimsupSeq (x : RealSequence) (L : ℝ) : Prop := ConvergesTo (TailSupSeq x) L
+def LimsupSeq (x : RealSequence) (L : ℝ) : Prop :=
+  ∃ h : BoundedAboveSeq x, ConvergesTo (TailSupSeq x h) L
 ```
 -/
-def LimsupSeq (x : RealSequence) (L : ℝ) : Prop := ConvergesTo (TailSupSeq x) L
+def LimsupSeq (x : RealSequence) (L : ℝ) : Prop :=
+  ∃ h : BoundedAboveSeq x, ConvergesTo (TailSupSeq x h) L
 
 /-- `def:liminf-sequence`.
 
 Logical form:
 
 ```lean
-def LiminfSeq (x : RealSequence) (L : ℝ) : Prop := ConvergesTo (TailInfSeq x) L
+def LiminfSeq (x : RealSequence) (L : ℝ) : Prop :=
+  ∃ h : BoundedBelowSeq x, ConvergesTo (TailInfSeq x h) L
 ```
 -/
-def LiminfSeq (x : RealSequence) (L : ℝ) : Prop := ConvergesTo (TailInfSeq x) L
+def LiminfSeq (x : RealSequence) (L : ℝ) : Prop :=
+  ∃ h : BoundedBelowSeq x, ConvergesTo (TailInfSeq x h) L
 
 -- `thm:tail-suprema-are-decreasing`
-/-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `IsDecreasing (TailSupSeq x)`.
+/-- Let `x : RealSequence`. If `h : BoundedAboveSeq x`. Then `IsDecreasing (TailSupSeq x h)`.
 
 Logical form:
 
 ```lean
-theorem TailSupremaAreDecreasing {x : RealSequence} (h : BoundedSeq x) :
-    IsDecreasing (TailSupSeq x)
+theorem TailSupremaAreDecreasing {x : RealSequence} (h : BoundedAboveSeq x) :
+    IsDecreasing (TailSupSeq x h)
 ```
 -/
-theorem TailSupremaAreDecreasing {x : RealSequence} (h : BoundedSeq x) :
-    IsDecreasing (TailSupSeq x) := by
+theorem TailSupremaAreDecreasing {x : RealSequence} (h : BoundedAboveSeq x) :
+    IsDecreasing (TailSupSeq x h) := by
   sorry
 
 -- `thm:tail-infima-are-increasing`
-/-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `IsIncreasing (TailInfSeq x)`.
+/-- Let `x : RealSequence`. If `h : BoundedBelowSeq x`. Then `IsIncreasing (TailInfSeq x h)`.
 
 Logical form:
 
 ```lean
-theorem TailInfimaAreIncreasing {x : RealSequence} (h : BoundedSeq x) :
-    IsIncreasing (TailInfSeq x)
+theorem TailInfimaAreIncreasing {x : RealSequence} (h : BoundedBelowSeq x) :
+    IsIncreasing (TailInfSeq x h)
 ```
 -/
-theorem TailInfimaAreIncreasing {x : RealSequence} (h : BoundedSeq x) :
-    IsIncreasing (TailInfSeq x) := by
+theorem TailInfimaAreIncreasing {x : RealSequence} (h : BoundedBelowSeq x) :
+    IsIncreasing (TailInfSeq x h) := by
   sorry
 
 -- `thm:liminf-below-limsup`

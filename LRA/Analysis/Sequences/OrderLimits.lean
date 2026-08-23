@@ -75,20 +75,20 @@ theorem DecreasingSequenceLimitAsInfimum {x : RealSequence} {I : ℝ}
   sorry
 
 -- `thm:tail-suprema-infima-converge`
-/-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then `(∃ S : ℝ, ConvergesTo (TailSupSeq x) S) ∧
-(∃ I : ℝ, ConvergesTo (TailInfSeq x) I)`.
+/-- Let `x : RealSequence`. If `h : BoundedSeq x`. Then the one-sided bounded tail-supremum and
+tail-infimum sequences are both well-defined and both converge.
 
 Logical form:
 
 ```lean
 theorem TailSupremaInfimaConverge {x : RealSequence} (h : BoundedSeq x) :
-    (∃ S : ℝ, ConvergesTo (TailSupSeq x) S) ∧
-      (∃ I : ℝ, ConvergesTo (TailInfSeq x) I)
+    (∃ hSup : BoundedAboveSeq x, ∃ S : ℝ, ConvergesTo (TailSupSeq x hSup) S) ∧
+      (∃ hInf : BoundedBelowSeq x, ∃ I : ℝ, ConvergesTo (TailInfSeq x hInf) I)
 ```
 -/
 theorem TailSupremaInfimaConverge {x : RealSequence} (h : BoundedSeq x) :
-    (∃ S : ℝ, ConvergesTo (TailSupSeq x) S) ∧
-      (∃ I : ℝ, ConvergesTo (TailInfSeq x) I) := by
+    (∃ hSup : BoundedAboveSeq x, ∃ S : ℝ, ConvergesTo (TailSupSeq x hSup) S) ∧
+      (∃ hInf : BoundedBelowSeq x, ∃ I : ℝ, ConvergesTo (TailInfSeq x hInf) I) := by
   sorry
 
 -- `thm:bounded-sequence-limsup-liminf`
