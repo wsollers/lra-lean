@@ -3,11 +3,3 @@ import LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.Equivalence
 import LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.WellFoundedness
 import LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.Operations
 import LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.Instances
-
-   
-                                                                     
-                                                                   
-                                                                       
-                                                                       
-                                                     
-  

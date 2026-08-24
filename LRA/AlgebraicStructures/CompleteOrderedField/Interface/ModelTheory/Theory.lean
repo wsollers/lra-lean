@@ -2,12 +2,4 @@ import LRA.AlgebraicStructures.CompleteOrderedField.Interface.Signature.Definiti
 
 namespace LRA.AlgebraicStructures.CompleteOrderedField.Interface.ModelTheory
 
-   
-                                                                         
-              
-
-                                                                              
-              
-  
-
 end LRA.AlgebraicStructures.CompleteOrderedField.Interface.ModelTheory

@@ -1,6 +1,3 @@
-                                                                     
-                                                                          
-                                                             
 
 import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.Laws
 import LRA.NumberSystems.RationalNumbers.Definition
@@ -11,27 +8,50 @@ open LRA.NumberSystems.RationalNumbers
 
 variable (rationalSystem : RationalNumberSystem)
 
-                                                    
+/--
+`embedded_rationals_are_dense` TODO
 
-                                                                                                                                                                                                                                                                                                     
+Predicate logic:
 
-                             
+  ∃ rational, strict_order rationalSystem.FieldModel first (rational_embedding rationalSystem.FieldModel rational) ∧ strict_order rationalSystem.FieldModel (rational_embedding rationalSystem.FieldModel rational) second
 
+Predicate logic (unfolded):
 
-             
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (first second : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), (∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), first.1 value → second.1 value ∧ first = second → False) → Exists fun rational => ((∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), first.1 value → (LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rationalSystem.FieldModel rational).1 value ∧ first = ⟨fun candidate => rationalSystem.FieldModel.signature.toOrderedRingSignature.2 candidate rational, ⋯⟩ → False) ∧ (∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), (LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rationalSystem.FieldModel rational).1 value → second.1 value ∧ ⟨fun candidate => rationalSystem.FieldModel.signature.toOrderedRingSignature.2 candidate rational, ⋯⟩ = second → False))
 
-       
-                                    
-                                                  
-                      
-                                                            
-               
-                                                  
-                                                                 
-                                            
-                                                                      
-   
-  
+Logical form (Lean):
+
+```lean
+theorem embedded_rationals_are_dense
+    (first second : Cut rationalSystem.FieldModel)
+    (first_lt_second :
+      strict_order rationalSystem.FieldModel first second) :
+    ∃ rational,
+      strict_order rationalSystem.FieldModel first
+        (rational_embedding rationalSystem.FieldModel rational) ∧
+      strict_order rationalSystem.FieldModel
+        (rational_embedding rationalSystem.FieldModel rational) second
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: constructor, cases, rcases, use
+
+-/
 theorem embedded_rationals_are_dense
     (first second : Cut rationalSystem.FieldModel)
     (first_lt_second :
@@ -43,29 +63,52 @@ theorem embedded_rationals_are_dense
         (rational_embedding rationalSystem.FieldModel rational) second := by
   sorry
 
-                                      
+/--
+`archimedean_property` TODO
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+Predicate logic:
 
-                             
+  (∀ value : rationalSystem.FieldModel.signature.carrier, ∃ integer ∈ rationalSystem.IntegerSystem.Model.signature.carrier, rationalSystem.FieldModel.signature.StrictOrder value (rationalSystem.IntegerEmbedding.ToField integer)) → ∃ integer ∈ rationalSystem.IntegerSystem.Model.signature.carrier, strict_order rationalSystem.FieldModel cut (rational_embedding rationalSystem.FieldModel (rationalSystem.IntegerEmbedding.ToField integer))
 
+Predicate logic (unfolded):
 
-             
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), (∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), Exists fun integer => rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value (rationalSystem.IntegerEmbedding.1 integer)) → ∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), Exists fun integer => (∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), cut.1 value → (LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rationalSystem.FieldModel (rationalSystem.IntegerEmbedding.ToField integer)).1 value ∧ cut = ⟨fun candidate => rationalSystem.FieldModel.signature.toOrderedRingSignature.2 candidate (rationalSystem.IntegerEmbedding.ToField integer), ⋯⟩ → False)
 
-       
-                            
-                      
-                                                            
-                                                                         
-                                                               
-                                                              
-                                           
-                                                                     
-                                                
-                                                     
-                                                            
-   
-  
+Logical form (Lean):
+
+```lean
+theorem archimedean_property
+    (integer_cofinal :
+      ∀ value : rationalSystem.FieldModel.signature.carrier,
+        ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier,
+          rationalSystem.FieldModel.signature.StrictOrder value
+            (rationalSystem.IntegerEmbedding.ToField integer))
+    (cut : Cut rationalSystem.FieldModel) :
+    ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier,
+      strict_order rationalSystem.FieldModel cut
+        (rational_embedding rationalSystem.FieldModel
+          (rationalSystem.IntegerEmbedding.ToField integer))
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, use, rcases
+
+-/
 theorem archimedean_property
     (integer_cofinal :
       ∀ value : rationalSystem.FieldModel.signature.carrier,
@@ -79,29 +122,54 @@ theorem archimedean_property
           (rationalSystem.IntegerEmbedding.ToField integer)) := by
   sorry
 
-                                                            
+/--
+`ReferenceRealNumberConstruction` TODO
 
-                                                                            
+Predicate logic:
 
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), (LRA.NumberSystems.RealNumbers.Dedekind.CompleteOrderedFieldStructure rationalSystem.FieldModel ∧ (∀ (first second : LRA.NumberSystems.RealNumbers.Dedekind.Cut rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.strict_order rationalSystem.FieldModel first second → Exists fun rational => (LRA.NumberSystems.RealNumbers.Dedekind.strict_order rationalSystem.FieldModel first (LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rationalSystem.FieldModel rational) ∧ LRA.NumberSystems.RealNumbers.Dedekind.strict_order rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rationalSystem.FieldModel rational) second) ∧ ∀ (value : rationalSystem.FieldModel.signature.carrier), Exists fun integer => rationalSystem.FieldModel.signature.StrictOrder value (rationalSystem.IntegerEmbedding.ToField integer)))
 
-             
+Predicate logic (unfolded):
 
-       
-                                             
-                                                           
-                                                  
-                                                         
-               
-                                                  
-                                                                 
-                                            
-                                                                         
-                                                         
-                                                                     
-                                                           
-                                                          
-   
-  
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), (((((∀ (first second third : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => ¬ lower_set value ∧ (∀ (upper : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel) (lower : rationalSystem.FieldModel.signature.carrier), lower_set upper → rationalSystem.FieldModel.signature.StrictOrder lower upper → lower_set lower ∧ ∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.StrictOrder value greater))))), ⟨fun value => Exists fun left => Exists fun right => (LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.addition rationalSystem.FieldModel first second) left ∧ (LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel third right ∧ value = rationalSystem.FieldModel.signature.add left right)), ⋯⟩ = ⟨fun value => Exists fun left => Exists fun right => (LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel first left ∧ (LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.addition rationalSystem.FieldModel second third) right ∧ value = rationalSystem.FieldModel.signature.add left right)), ⋯⟩ ∧ (∀ (first second : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => ¬ lower_set value ∧ (∀ (upper : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel) (lower : rationalSystem.FieldModel.signature.carrier), lower_set upper → rationalSystem.FieldModel.signature.StrictOrder lower upper → lower_set lower ∧ ∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.StrictOrder value greater))))), ⟨fun value => Exists fun left => Exists fun right => (LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel first left ∧ (LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel second right ∧ value = rationalSystem.FieldModel.signature.add left right)), ⋯⟩ = ⟨fun value => Exists fun left => Exists fun right => (LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel second left ∧ (LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel first right ∧ value = rationalSystem.FieldModel.signature.add left right)), ⋯⟩ ∧ (∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => ¬ lower_set value ∧ (∀ (upper : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel) (lower : rationalSystem.FieldModel.signature.carrier), lower_set upper → rationalSystem.FieldModel.signature.StrictOrder lower upper → lower_set lower ∧ ∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.StrictOrder value greater))))), (⟨fun value => Exists fun left => Exists fun right => (LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.zero rationalSystem.FieldModel) left ∧ (LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel cut right ∧ value = rationalSystem.FieldModel.signature.add left right)), ⋯⟩ = cut ∧ ⟨fun value => Exists fun left => Exists fun right => (LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel cut left ∧ (LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.zero rationalSystem.FieldModel) right ∧ value = rationalSystem.FieldModel.signature.add left right)), ⋯⟩ = cut) ∧ ∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => ¬ lower_set value ∧ (∀ (upper : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel) (lower : rationalSystem.FieldModel.signature.carrier), lower_set upper → rationalSystem.FieldModel.signature.StrictOrder lower upper → lower_set lower ∧ ∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.StrictOrder value greater))))), (⟨fun value => Exists fun left => Exists fun right => (LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel cut left ∧ (LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.negation rationalSystem.FieldModel cut) right ∧ value = rationalSystem.FieldModel.signature.add left right)), ⋯⟩ = ⟨LRA.NumberSystems.RealNumbers.Dedekind.rational_lower_ray rationalSystem.FieldModel rationalSystem.FieldModel.signature.zero, ⋯⟩ ∧ ⟨fun value => Exists fun left => Exists fun right => (LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.negation rationalSystem.FieldModel cut) left ∧ (LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel cut right ∧ value = rationalSystem.FieldModel.signature.add left right)), ⋯⟩ = ⟨LRA.NumberSystems.RealNumbers.Dedekind.rational_lower_ray rationalSystem.FieldModel rationalSystem.FieldModel.signature.zero, ⋯⟩)))) ∧ ((∀ (first second third : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => ¬ lower_set value ∧ (∀ (upper : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel) (lower : rationalSystem.FieldModel.signature.carrier), lower_set upper → rationalSystem.FieldModel.signature.StrictOrder lower upper → lower_set lower ∧ ∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.StrictOrder value greater))))), Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Dedekind.IsProduct rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.multiplication rationalSystem.FieldModel first second) third x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Dedekind.Cut rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.IsProduct rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.multiplication rationalSystem.FieldModel first second) third other → other = x)) ⋯ = .val (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Dedekind.IsProduct rationalSystem.FieldModel first (LRA.NumberSystems.RealNumbers.Dedekind.multiplication rationalSystem.FieldModel second third) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Dedekind.Cut rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.IsProduct rationalSystem.FieldModel first (LRA.NumberSystems.RealNumbers.Dedekind.multiplication rationalSystem.FieldModel second third) other → other = x)) ⋯).val ∧ (∀ (first second : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => ¬ lower_set value ∧ (∀ (upper : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel) (lower : rationalSystem.FieldModel.signature.carrier), lower_set upper → rationalSystem.FieldModel.signature.StrictOrder lower upper → lower_set lower ∧ ∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.StrictOrder value greater))))), Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Dedekind.IsProduct rationalSystem.FieldModel first second x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Dedekind.Cut rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.IsProduct rationalSystem.FieldModel first second other → other = x)) ⋯ = .val (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Dedekind.IsProduct rationalSystem.FieldModel second first x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Dedekind.Cut rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.IsProduct rationalSystem.FieldModel second first other → other = x)) ⋯).val ∧ (∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => ¬ lower_set value ∧ (∀ (upper : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel) (lower : rationalSystem.FieldModel.signature.carrier), lower_set upper → rationalSystem.FieldModel.signature.StrictOrder lower upper → lower_set lower ∧ ∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.StrictOrder value greater))))), (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Dedekind.IsProduct rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.one rationalSystem.FieldModel) cut x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Dedekind.Cut rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.IsProduct rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.one rationalSystem.FieldModel) cut other → other = x)) ⋯ = .val cut ∧ Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Dedekind.IsProduct rationalSystem.FieldModel cut (LRA.NumberSystems.RealNumbers.Dedekind.one rationalSystem.FieldModel) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Dedekind.Cut rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.IsProduct rationalSystem.FieldModel cut (LRA.NumberSystems.RealNumbers.Dedekind.one rationalSystem.FieldModel) other → other = x)) ⋯ = .val cut) ∧ ∀ (first second third : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => ¬ lower_set value ∧ (∀ (upper : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel) (lower : rationalSystem.FieldModel.signature.carrier), lower_set upper → rationalSystem.FieldModel.signature.StrictOrder lower upper → lower_set lower ∧ ∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.StrictOrder value greater))))), Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Dedekind.IsProduct rationalSystem.FieldModel first (LRA.NumberSystems.RealNumbers.Dedekind.addition rationalSystem.FieldModel second third) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Dedekind.Cut rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.IsProduct rationalSystem.FieldModel first (LRA.NumberSystems.RealNumbers.Dedekind.addition rationalSystem.FieldModel second third) other → other = x)) ⋯ = .val ⟨fun value => Exists fun left => Exists fun right => (LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.multiplication rationalSystem.FieldModel first second) left ∧ (LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.multiplication rationalSystem.FieldModel first third) right ∧ value = rationalSystem.FieldModel.signature.add left right)), ⋯⟩))) ∧ ∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper : rationalSystem.FieldModel.signature.carrier) (lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.carrier), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), (cut = LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rationalSystem.FieldModel rationalSystem.FieldModel.signature.zero → False) → Exists fun reciprocal => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Dedekind.IsProduct rationalSystem.FieldModel cut reciprocal x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Dedekind.Cut rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.IsProduct rationalSystem.FieldModel cut reciprocal other → other = x)) ⋯ = .val ⟨LRA.NumberSystems.RealNumbers.Dedekind.rational_lower_ray rationalSystem.FieldModel rationalSystem.FieldModel.signature.one, ⋯⟩ ∧ Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Dedekind.IsProduct rationalSystem.FieldModel reciprocal cut x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Dedekind.Cut rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.IsProduct rationalSystem.FieldModel reciprocal cut other → other = x)) ⋯ = .val ⟨LRA.NumberSystems.RealNumbers.Dedekind.rational_lower_ray rationalSystem.FieldModel rationalSystem.FieldModel.signature.one, ⋯⟩))) ∧ ((∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper : rationalSystem.FieldModel.signature.carrier) (lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.carrier), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), (∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel cut value → LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel cut value ∧ ¬ cut = cut) → False ∧ (∀ (first second third : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper : rationalSystem.FieldModel.signature.carrier) (lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.carrier), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), (∀ (value : rationalSystem.FieldModel.signature.carrier), first.val value → second.val value ∧ first = second → False) → (∀ (value : rationalSystem.FieldModel.signature.carrier), second.val value → third.val value ∧ second = third → False) → (∀ (value : rationalSystem.FieldModel.signature.carrier), first.val value → third.val value ∧ first = third → False) ∧ ∀ (first second : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper : rationalSystem.FieldModel.signature.carrier) (lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.carrier), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), (first = second → False) → Or ((∀ (value : rationalSystem.FieldModel.signature.carrier), first.val value → second.val value ∧ first = second → False)) ((∀ (value : rationalSystem.FieldModel.signature.carrier), second.val value → first.val value ∧ second = first → False)))) ∧ (∀ (first second translation : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), (∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), first.1 value → second.1 value ∧ first = second → False) → (∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), (LRA.NumberSystems.RealNumbers.Dedekind.addition rationalSystem.FieldModel first translation).1 value → (LRA.NumberSystems.RealNumbers.Dedekind.addition rationalSystem.FieldModel second translation).1 value ∧ ⟨LRA.NumberSystems.RealNumbers.Dedekind.addition_lower_set rationalSystem.FieldModel first translation, ⋯⟩ = ⟨LRA.NumberSystems.RealNumbers.Dedekind.addition_lower_set rationalSystem.FieldModel second translation, ⋯⟩ → False) ∧ ∀ (first second : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), (∀ (value : rationalSystem.FieldModel.signature.carrier), (LRA.NumberSystems.RealNumbers.Dedekind.zero rationalSystem.FieldModel).val value → first.val value ∧ LRA.NumberSystems.RealNumbers.Dedekind.zero rationalSystem.FieldModel = first → False) → (∀ (value : rationalSystem.FieldModel.signature.carrier), (LRA.NumberSystems.RealNumbers.Dedekind.zero rationalSystem.FieldModel).val value → second.val value ∧ LRA.NumberSystems.RealNumbers.Dedekind.zero rationalSystem.FieldModel = second → False) → (∀ (value : rationalSystem.FieldModel.signature.carrier), (LRA.NumberSystems.RealNumbers.Dedekind.zero rationalSystem.FieldModel).val value → (LRA.NumberSystems.RealNumbers.Dedekind.multiplication rationalSystem.FieldModel first second).val value ∧ LRA.NumberSystems.RealNumbers.Dedekind.zero rationalSystem.FieldModel = LRA.NumberSystems.RealNumbers.Dedekind.multiplication rationalSystem.FieldModel first second → False)))) ∧ ∀ (family : (Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))) → Prop), (Exists fun cut => family cut) → (Exists fun upper => ∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), family cut → ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), cut.1 value → upper.1 value) → Exists fun supremum => (∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), family cut → ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), cut.1 value → supremum.1 value ∧ ∀ (upper : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), (∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), family cut → ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), cut.1 value → upper.1 value) → ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), supremum.1 value → upper.1 value)) ∧ (∀ (first second : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), (∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), first.1 value → second.1 value ∧ first = second → False) → Exists fun rational => ((∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), first.1 value → (LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rationalSystem.FieldModel rational).1 value ∧ first = ⟨fun candidate => rationalSystem.FieldModel.signature.toOrderedRingSignature.2 candidate rational, ⋯⟩ → False) ∧ (∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), (LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rationalSystem.FieldModel rational).1 value → second.1 value ∧ ⟨fun candidate => rationalSystem.FieldModel.signature.toOrderedRingSignature.2 candidate rational, ⋯⟩ = second → False)) ∧ ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), Exists fun integer => rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value (rationalSystem.IntegerEmbedding.1 integer)))
+
+Logical form (Lean):
+
+```lean
+def ReferenceRealNumberConstruction : Prop :=
+  CompleteOrderedFieldStructure rationalSystem.FieldModel ∧
+  (∀ first second : Cut rationalSystem.FieldModel,
+    strict_order rationalSystem.FieldModel first second →
+    ∃ rational,
+      strict_order rationalSystem.FieldModel first
+        (rational_embedding rationalSystem.FieldModel rational) ∧
+      strict_order rationalSystem.FieldModel
+        (rational_embedding rationalSystem.FieldModel rational) second) ∧
+  (∀ value : rationalSystem.FieldModel.signature.carrier,
+    ∃ integer : rationalSystem.IntegerSystem.Model.signature.carrier,
+      rationalSystem.FieldModel.signature.StrictOrder value
+        (rationalSystem.IntegerEmbedding.ToField integer))
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, constructor, cases, rcases, use, unfold
+
+-/
 def ReferenceRealNumberConstruction : Prop :=
   CompleteOrderedFieldStructure rationalSystem.FieldModel ∧
   (∀ first second : Cut rationalSystem.FieldModel,
@@ -116,21 +184,43 @@ def ReferenceRealNumberConstruction : Prop :=
       rationalSystem.FieldModel.signature.StrictOrder value
         (rationalSystem.IntegerEmbedding.ToField integer))
 
+/--
+`reference_real_number_construction` TODO
 
-                                                         
+Predicate logic:
 
-                                                                                                                             
+  ReferenceRealNumberConstruction rationalSystem
 
-                             
+Predicate logic (unfolded):
 
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), (((((∀ (first second third : Subtype fun lower_set => LRA.NumberSystems.RealNumbers.Dedekind.IsCut rationalSystem.FieldModel lower_set), ⟨LRA.NumberSystems.RealNumbers.Dedekind.addition_lower_set rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.addition rationalSystem.FieldModel first second) third, ⋯⟩ = ⟨LRA.NumberSystems.RealNumbers.Dedekind.addition_lower_set rationalSystem.FieldModel first (LRA.NumberSystems.RealNumbers.Dedekind.addition rationalSystem.FieldModel second third), ⋯⟩ ∧ (∀ (first second : Subtype fun lower_set => LRA.NumberSystems.RealNumbers.Dedekind.IsCut rationalSystem.FieldModel lower_set), ⟨LRA.NumberSystems.RealNumbers.Dedekind.addition_lower_set rationalSystem.FieldModel first second, ⋯⟩ = ⟨LRA.NumberSystems.RealNumbers.Dedekind.addition_lower_set rationalSystem.FieldModel second first, ⋯⟩ ∧ (∀ (cut : Subtype fun lower_set => LRA.NumberSystems.RealNumbers.Dedekind.IsCut rationalSystem.FieldModel lower_set), (⟨LRA.NumberSystems.RealNumbers.Dedekind.addition_lower_set rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.zero rationalSystem.FieldModel) cut, ⋯⟩ = cut ∧ ⟨LRA.NumberSystems.RealNumbers.Dedekind.addition_lower_set rationalSystem.FieldModel cut (LRA.NumberSystems.RealNumbers.Dedekind.zero rationalSystem.FieldModel), ⋯⟩ = cut) ∧ ∀ (cut : Subtype fun lower_set => LRA.NumberSystems.RealNumbers.Dedekind.IsCut rationalSystem.FieldModel lower_set), (⟨LRA.NumberSystems.RealNumbers.Dedekind.addition_lower_set rationalSystem.FieldModel cut (LRA.NumberSystems.RealNumbers.Dedekind.negation rationalSystem.FieldModel cut), ⋯⟩ = LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rationalSystem.FieldModel rationalSystem.FieldModel.signature.zero ∧ ⟨LRA.NumberSystems.RealNumbers.Dedekind.addition_lower_set rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.negation rationalSystem.FieldModel cut) cut, ⋯⟩ = LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rationalSystem.FieldModel rationalSystem.FieldModel.signature.zero)))) ∧ ((∀ (first second third : Subtype fun lower_set => LRA.NumberSystems.RealNumbers.Dedekind.IsCut rationalSystem.FieldModel lower_set), Classical.choose ⋯ = Classical.choose ⋯ ∧ (∀ (first second : Subtype fun lower_set => LRA.NumberSystems.RealNumbers.Dedekind.IsCut rationalSystem.FieldModel lower_set), Classical.choose ⋯ = Classical.choose ⋯ ∧ (∀ (cut : Subtype fun lower_set => LRA.NumberSystems.RealNumbers.Dedekind.IsCut rationalSystem.FieldModel lower_set), (Classical.choose ⋯ = cut ∧ Classical.choose ⋯ = cut) ∧ ∀ (first second third : Subtype fun lower_set => LRA.NumberSystems.RealNumbers.Dedekind.IsCut rationalSystem.FieldModel lower_set), Classical.choose ⋯ = ⟨LRA.NumberSystems.RealNumbers.Dedekind.addition_lower_set rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.multiplication rationalSystem.FieldModel first second) (LRA.NumberSystems.RealNumbers.Dedekind.multiplication rationalSystem.FieldModel first third), ⋯⟩))) ∧ ∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => ¬ lower_set value ∧ (∀ (upper : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel) (lower : rationalSystem.FieldModel.signature.carrier), lower_set upper → rationalSystem.FieldModel.signature.StrictOrder lower upper → lower_set lower ∧ ∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.StrictOrder value greater))))), (cut = LRA.NumberSystems.RealNumbers.Dedekind.zero rationalSystem.FieldModel → False) → Exists fun reciprocal => (Classical.choose ⋯ = LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rationalSystem.FieldModel rationalSystem.FieldModel.signature.one ∧ Classical.choose ⋯ = LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rationalSystem.FieldModel rationalSystem.FieldModel.signature.one))) ∧ ((∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => ¬ lower_set value ∧ (∀ (upper : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel) (lower : rationalSystem.FieldModel.signature.carrier), lower_set upper → rationalSystem.FieldModel.signature.StrictOrder lower upper → lower_set lower ∧ ∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.StrictOrder value greater))))), (LRA.NumberSystems.RealNumbers.Dedekind.nonstrict_order rationalSystem.FieldModel cut cut ∧ Ne cut cut) → False ∧ (∀ (first second third : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => ¬ lower_set value ∧ (∀ (upper : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel) (lower : rationalSystem.FieldModel.signature.carrier), lower_set upper → rationalSystem.FieldModel.signature.StrictOrder lower upper → lower_set lower ∧ ∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.StrictOrder value greater))))), (∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel first value → LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel second value ∧ ¬ first = second) → (∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel second value → LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel third value ∧ ¬ second = third) → (∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel first value → LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel third value ∧ ¬ first = third) ∧ ∀ (first second : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => ¬ lower_set value ∧ (∀ (upper : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel) (lower : rationalSystem.FieldModel.signature.carrier), lower_set upper → rationalSystem.FieldModel.signature.StrictOrder lower upper → lower_set lower ∧ ∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.StrictOrder value greater))))), (first = second → False) → Or ((∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel first value → LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel second value ∧ ¬ first = second)) ((∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel second value → LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel first value ∧ ¬ second = first)))) ∧ (∀ (first second translation : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper : rationalSystem.FieldModel.signature.carrier) (lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.carrier), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), (∀ (value : rationalSystem.FieldModel.signature.carrier), first.val value → second.val value ∧ first = second → False) → (∀ (value : rationalSystem.FieldModel.signature.carrier), (LRA.NumberSystems.RealNumbers.Dedekind.addition rationalSystem.FieldModel first translation).val value → (LRA.NumberSystems.RealNumbers.Dedekind.addition rationalSystem.FieldModel second translation).val value ∧ LRA.NumberSystems.RealNumbers.Dedekind.addition rationalSystem.FieldModel first translation = LRA.NumberSystems.RealNumbers.Dedekind.addition rationalSystem.FieldModel second translation → False) ∧ ∀ (first second : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper : rationalSystem.FieldModel.signature.carrier) (lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.carrier), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), (∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.zero rationalSystem.FieldModel) value → LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel first value ∧ ¬ LRA.NumberSystems.RealNumbers.Dedekind.zero rationalSystem.FieldModel = first) → (∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.zero rationalSystem.FieldModel) value → LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel second value ∧ ¬ LRA.NumberSystems.RealNumbers.Dedekind.zero rationalSystem.FieldModel = second) → (∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rationalSystem.FieldModel), LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.zero rationalSystem.FieldModel) value → LRA.NumberSystems.RealNumbers.Dedekind.contains rationalSystem.FieldModel (LRA.NumberSystems.RealNumbers.Dedekind.multiplication rationalSystem.FieldModel first second) value ∧ ¬ LRA.NumberSystems.RealNumbers.Dedekind.zero rationalSystem.FieldModel = LRA.NumberSystems.RealNumbers.Dedekind.multiplication rationalSystem.FieldModel first second)))) ∧ ∀ (family : (Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper : rationalSystem.FieldModel.signature.carrier) (lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.carrier), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))) → Prop), (Exists fun cut => family cut) → (Exists fun upper => ∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper : rationalSystem.FieldModel.signature.carrier) (lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.carrier), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), family cut → ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), cut.1 value → upper.1 value) → Exists fun supremum => (∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper : rationalSystem.FieldModel.signature.carrier) (lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.carrier), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), family cut → ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), cut.1 value → supremum.1 value ∧ ∀ (upper : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper : rationalSystem.FieldModel.signature.carrier) (lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.carrier), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), (∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper : rationalSystem.FieldModel.signature.carrier) (lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.carrier), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), family cut → ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), cut.1 value → upper.1 value) → ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), supremum.1 value → upper.1 value)) ∧ (∀ (first second : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))), (∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), first.1 value → second.1 value ∧ first = second → False) → Exists fun rational => ((∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), first.1 value → (LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rationalSystem.FieldModel rational).1 value ∧ first = ⟨fun candidate => rationalSystem.FieldModel.signature.StrictOrder candidate rational, ⋯⟩ → False) ∧ (∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), (LRA.NumberSystems.RealNumbers.Dedekind.rational_embedding rationalSystem.FieldModel rational).1 value → second.1 value ∧ ⟨fun candidate => rationalSystem.FieldModel.signature.StrictOrder candidate rational, ⋯⟩ = second → False)) ∧ ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), Exists fun integer => rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value (rationalSystem.IntegerEmbedding.1 integer)))
 
-             
+Logical form (Lean):
 
-       
-                                            
-                                                  
-   
-  
+```lean
+theorem reference_real_number_construction :
+    ReferenceRealNumberConstruction rationalSystem
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem reference_real_number_construction :
     ReferenceRealNumberConstruction rationalSystem := by
   sorry

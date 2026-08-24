@@ -3,6 +3,4 @@ import LRA.AlgebraicStructures.OrderedGroup.Interface.ModelTheory.LStructure
 
 namespace LRA.AlgebraicStructures.OrderedGroup.Interface.ModelTheory
 
-                                                         
-
 end LRA.AlgebraicStructures.OrderedGroup.Interface.ModelTheory

@@ -4,65 +4,51 @@ namespace LRA.Logic.FirstOrder
 
 universe u
 
-   
-                                   
+/--
+`Model` TODO
 
-                                                          
-                                                                         
-                                                                          
-                                                               
-                                          
+Predicate logic:
 
-                                                                     
-                                                                         
-                                                                        
-                                                                     
-                                                                            
-                                                                      
-                                                                              
-            
+  structure Model (S : Signature) where
+  Domain : Type u
+  domainNonempty : Nonempty Domain
+  interpretEquality : Domain -> Domain -> Prop
 
-                                                                        
-                                                                             
-                                                          
+Predicate logic (unfolded):
 
-                                                                         
-                                                                      
-                                                                       
-                                                                     
-                                                                      
-                                                                       
-                                                                        
-                                                                   
-                                                                     
-                                                                 
+  structure Model (S : Signature) where
+  Domain : Type u
+  domainNonempty : Nonempty Domain
+  interpretEquality : Domain -> Domain -> Prop (source fallback; no compiled unfold data available)
 
-                                                                      
-                                                                          
-                                                                       
-  
+Logical form (Lean):
 
-                                                                          
-                                                                           
-                                                                             
-                                                                         
+```lean
+structure Model (S : Signature) where
+  Domain : Type u
+  domainNonempty : Nonempty Domain
+  interpretEquality : Domain -> Domain -> Prop
+```
 
-                                                                            
-                                                                           
-                                                                         
-                                                                         
-                                                                  
-                                         
+Type-theoretic form:
 
-             
+  TODO
 
-       
-                                     
-                 
-                                  
-                                              
-   
-  
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 structure Model (S : Signature) where
   Domain : Type u
   domainNonempty : Nonempty Domain
@@ -78,10 +64,6 @@ structure Model (S : Signature) where
   interpretConstant :
     S.Constants -> Domain
 
-                                                                           
-                                                                 
-                                                                             
-                                  
 instance {S : Signature} (M : Model S) : Nonempty M.Domain :=
   M.domainNonempty
 

@@ -6,9 +6,4 @@ import LRA.UniversalAlgebra.Signature.BasicArithmeticLanguage.DerivedRelationNot
 
 namespace LRA.UniversalAlgebra.Signature
 
-   
-                                                                             
-                              
-  
-
 end LRA.UniversalAlgebra.Signature

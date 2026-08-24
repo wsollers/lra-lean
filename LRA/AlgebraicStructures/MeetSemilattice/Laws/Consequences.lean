@@ -2,11 +2,4 @@ import LRA.AlgebraicStructures.MeetSemilattice.Laws.Definition
 
 namespace LRA.AlgebraicStructures.MeetSemilattice
 
-   
-                                                 
-
-                                                                        
-                                               
-  
-
 end LRA.AlgebraicStructures.MeetSemilattice

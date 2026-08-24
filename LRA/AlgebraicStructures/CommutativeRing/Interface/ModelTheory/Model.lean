@@ -3,6 +3,4 @@ import LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.LStructure
 
 namespace LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory
 
-                                                            
-
 end LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory

@@ -1,2 +1,1 @@
 import LRA.Analysis.InnerProductSpace.Definition.InnerProductSpace
-

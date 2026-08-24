@@ -6,9 +6,3 @@ import LRA.NumberSystems.RealNumbers.Constructions.Cauchy.WellDefinedness
 import LRA.NumberSystems.RealNumbers.Constructions.Cauchy.Laws
 import LRA.NumberSystems.RealNumbers.Constructions.Cauchy.Behavior
 import LRA.NumberSystems.RealNumbers.Constructions.Cauchy.Instances
-
-   
-                                                                         
-                                                                           
-                                                                    
-  

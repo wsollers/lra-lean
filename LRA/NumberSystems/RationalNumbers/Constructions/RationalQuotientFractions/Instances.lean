@@ -1,5 +1,3 @@
-                                                                                           
-                                             
 
 import LRA.AlgebraicStructures
 import LRA.NumberSystems.RationalNumbers.Constructions.RationalQuotientFractions.Behavior
@@ -24,6 +22,48 @@ noncomputable instance rationalCarrierNeg
     (rationalData : IntegerAndPositiveNaturalData) :
     Neg (Carrier rationalData) := ⟨negation rationalData⟩
 
+/--
+`quotient_inverse` TODO
+
+Predicate logic:
+
+  noncomputable def quotient_inverse
+    (rationalData : IntegerAndPositiveNaturalData) :
+    Carrier rationalData → Carrier rationalData
+
+Predicate logic (unfolded):
+
+  noncomputable def quotient_inverse
+    (rationalData : IntegerAndPositiveNaturalData) :
+    Carrier rationalData → Carrier rationalData (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def quotient_inverse
+    (rationalData : IntegerAndPositiveNaturalData) :
+    Carrier rationalData → Carrier rationalData
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
+-/
 noncomputable def quotient_inverse
     (rationalData : IntegerAndPositiveNaturalData) :
     Carrier rationalData → Carrier rationalData := by
@@ -53,38 +93,180 @@ noncomputable instance rationalCarrierLE
     (rationalData : IntegerAndPositiveNaturalData) :
     LE (Carrier rationalData) := ⟨nonstrict_order rationalData⟩
 
+/--
+`RationalFieldCert` TODO
+
+Predicate logic:
+
+  (∀ rationalData ∈ IntegerAndPositiveNaturalData), OrderedFieldLaws (Carrier rationalData)
+
+Predicate logic (unfolded):
+
+  ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), LRA.AlgebraicStructures.OrderedFieldLaws (Quot (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rationalData).1)
+
+Logical form (Lean):
+
+```lean
+theorem RationalFieldCert
+    (rationalData : IntegerAndPositiveNaturalData) :
+    OrderedFieldLaws (Carrier rationalData)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem RationalFieldCert
     (rationalData : IntegerAndPositiveNaturalData) :
     OrderedFieldLaws (Carrier rationalData) := by
   sorry
 
+/--
+`RationalStrictOrderCert` TODO
+
+Predicate logic:
+
+  (∀ rationalData ∈ IntegerAndPositiveNaturalData), StrictOrderCompatibilityLaw (Carrier rationalData)
+
+Predicate logic (unfolded):
+
+  ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), LRA.Order.StrictOrderCompatibilityLaw (Quot (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rationalData).1)
+
+Logical form (Lean):
+
+```lean
+theorem RationalStrictOrderCert
+    (rationalData : IntegerAndPositiveNaturalData) :
+    StrictOrderCompatibilityLaw (Carrier rationalData)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem RationalStrictOrderCert
     (rationalData : IntegerAndPositiveNaturalData) :
     StrictOrderCompatibilityLaw (Carrier rationalData) := by
   sorry
 
+/--
+`RationalDenseOrderCert` TODO
+
+Predicate logic:
+
+  (∀ rationalData ∈ IntegerAndPositiveNaturalData), DenseOrderLaw (Carrier rationalData)
+
+Predicate logic (unfolded):
+
+  ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), LRA.Order.DenseOrderLaw (Quot (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rationalData).1)
+
+Logical form (Lean):
+
+```lean
+theorem RationalDenseOrderCert
+    (rationalData : IntegerAndPositiveNaturalData) :
+    DenseOrderLaw (Carrier rationalData)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem RationalDenseOrderCert
     (rationalData : IntegerAndPositiveNaturalData) :
     DenseOrderLaw (Carrier rationalData) := by
   sorry
 
-   
-                                                                              
-                                                                           
-                                                                                
-                                                           
-  
+/--
+`RationalQuotientFractionsRealizesDenselyOrderedFieldModel` TODO
 
-                                                                            
+Predicate logic:
 
-             
+  noncomputable def RationalQuotientFractionsRealizesDenselyOrderedFieldModel
+    (rationalData : IntegerAndPositiveNaturalData) :
+    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
+  Carrier
 
-       
-                                                                           
-                                                    
-                                                     
-   
-  
+Predicate logic (unfolded):
+
+  noncomputable def RationalQuotientFractionsRealizesDenselyOrderedFieldModel
+    (rationalData : IntegerAndPositiveNaturalData) :
+    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
+  Carrier (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def RationalQuotientFractionsRealizesDenselyOrderedFieldModel
+    (rationalData : IntegerAndPositiveNaturalData) :
+    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
+  Carrier
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def RationalQuotientFractionsRealizesDenselyOrderedFieldModel
     (rationalData : IntegerAndPositiveNaturalData) :
     LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
@@ -101,12 +283,91 @@ noncomputable def RationalQuotientFractionsRealizesDenselyOrderedFieldModel
   strictCert := RationalStrictOrderCert rationalData
   denseCert := RationalDenseOrderCert rationalData
 
+/--
+`RationalIntegerEmbeddingPreservesNegation` TODO
+
+Predicate logic:
+
+  (∀ rationalData ∈ IntegerAndPositiveNaturalData), ∀ value : rationalData.integer_system.Model.Carrier, integer_embedding rationalData (-value) = -(integer_embedding rationalData value)
+
+Predicate logic (unfolded):
+
+  ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (value : rationalData.integer_system.Model.1), Quot.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rationalData).1 { numerator := rationalData.integer_system.Model.negInst.1 value, denominator := rationalData.3 } = (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.rationalCarrierNeg rationalData).1 (Quot.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rationalData).1 { numerator := value, denominator := rationalData.3 })
+
+Logical form (Lean):
+
+```lean
+theorem RationalIntegerEmbeddingPreservesNegation
+    (rationalData : IntegerAndPositiveNaturalData) :
+    ∀ value : rationalData.integer_system.Model.Carrier,
+      integer_embedding rationalData (-value) = -(integer_embedding rationalData value)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 theorem RationalIntegerEmbeddingPreservesNegation
     (rationalData : IntegerAndPositiveNaturalData) :
     ∀ value : rationalData.integer_system.Model.Carrier,
       integer_embedding rationalData (-value) = -(integer_embedding rationalData value) := by
   sorry
 
+/--
+`RationalIntegerEmbeddingPreservesOrder` TODO
+
+Predicate logic:
+
+  (∀ rationalData ∈ IntegerAndPositiveNaturalData), ∀ first second : rationalData.integer_system.Model.Carrier, integer_embedding rationalData first ≤ integer_embedding rationalData second ↔ first ≤ second
+
+Predicate logic (unfolded):
+
+  ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (first second : rationalData.integer_system.Model.1), (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.rationalCarrierLE rationalData).1 (Quot.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rationalData).1 { numerator := first, denominator := rationalData.3 }) (Quot.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rationalData).1 { numerator := second, denominator := rationalData.3 }) ↔ rationalData.integer_system.Model.leInst.1 first second
+
+Logical form (Lean):
+
+```lean
+theorem RationalIntegerEmbeddingPreservesOrder
+    (rationalData : IntegerAndPositiveNaturalData) :
+    ∀ first second : rationalData.integer_system.Model.Carrier,
+      integer_embedding rationalData first ≤ integer_embedding rationalData second ↔
+        first ≤ second
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, constructor, .mp, .mpr
+
+-/
 theorem RationalIntegerEmbeddingPreservesOrder
     (rationalData : IntegerAndPositiveNaturalData) :
     ∀ first second : rationalData.integer_system.Model.Carrier,
@@ -114,6 +375,78 @@ theorem RationalIntegerEmbeddingPreservesOrder
         first ≤ second := by
   sorry
 
+/--
+`RationalIntegerEmbedding` TODO
+
+Predicate logic:
+
+  noncomputable def RationalIntegerEmbedding
+    (rationalData : IntegerAndPositiveNaturalData) :
+    OrderedRingEmbeddingIntoDenseOrderedField
+      rationalData.integer_system.Model
+      (RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData) where
+  ToField := integer_embedding rationalData
+  injective := (integer_embedding_properties rationalData).1
+  PreservesZero := (integer_embedding_properties rationalData).2.1
+  PreservesOne := (integer_embedding_properties rationalData).2.2.1
+  PreservesAddition := (integer_embedding_properties rationalData).2.2.2.1
+  PreservesNegation := RationalIntegerEmbeddingPreservesNegation rationalData
+  PreservesMultiplication := (integer_embedding_properties rationalData).2.2.2.2.1
+  PreservesAndReflectsOrder := RationalIntegerEmbeddingPreservesOrder rationalData
+
+Predicate logic (unfolded):
+
+  noncomputable def RationalIntegerEmbedding
+    (rationalData : IntegerAndPositiveNaturalData) :
+    OrderedRingEmbeddingIntoDenseOrderedField
+      rationalData.integer_system.Model
+      (RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData) where
+  ToField := integer_embedding rationalData
+  injective := (integer_embedding_properties rationalData).1
+  PreservesZero := (integer_embedding_properties rationalData).2.1
+  PreservesOne := (integer_embedding_properties rationalData).2.2.1
+  PreservesAddition := (integer_embedding_properties rationalData).2.2.2.1
+  PreservesNegation := RationalIntegerEmbeddingPreservesNegation rationalData
+  PreservesMultiplication := (integer_embedding_properties rationalData).2.2.2.2.1
+  PreservesAndReflectsOrder := RationalIntegerEmbeddingPreservesOrder rationalData (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def RationalIntegerEmbedding
+    (rationalData : IntegerAndPositiveNaturalData) :
+    OrderedRingEmbeddingIntoDenseOrderedField
+      rationalData.integer_system.Model
+      (RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData) where
+  ToField := integer_embedding rationalData
+  injective := (integer_embedding_properties rationalData).1
+  PreservesZero := (integer_embedding_properties rationalData).2.1
+  PreservesOne := (integer_embedding_properties rationalData).2.2.1
+  PreservesAddition := (integer_embedding_properties rationalData).2.2.2.1
+  PreservesNegation := RationalIntegerEmbeddingPreservesNegation rationalData
+  PreservesMultiplication := (integer_embedding_properties rationalData).2.2.2.2.1
+  PreservesAndReflectsOrder := RationalIntegerEmbeddingPreservesOrder rationalData
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def RationalIntegerEmbedding
     (rationalData : IntegerAndPositiveNaturalData) :
     OrderedRingEmbeddingIntoDenseOrderedField
@@ -128,6 +461,49 @@ noncomputable def RationalIntegerEmbedding
   PreservesMultiplication := (integer_embedding_properties rationalData).2.2.2.2.1
   PreservesAndReflectsOrder := RationalIntegerEmbeddingPreservesOrder rationalData
 
+/--
+`RationalEveryElementIsIntegerFraction` TODO
+
+Predicate logic:
+
+  (∀ rationalData ∈ IntegerAndPositiveNaturalData), ∀ q : (RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData).Carrier, ∃ numerator denominator ∈ rationalData.integer_system.Model.Carrier, denominator ≠ 0 ∧ q = (RationalIntegerEmbedding rationalData).ToField numerator * ((RationalIntegerEmbedding rationalData).ToField denominator)⁻¹
+
+Predicate logic (unfolded):
+
+  ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (q : (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData).1), Exists fun numerator => Exists fun denominator => (denominator = rationalData.integer_system.Model.zeroInst.1 → False ∧ q = instHMul.1 ((LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalIntegerEmbedding rationalData).1 numerator) ((LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData).invInst.1 ((LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalIntegerEmbedding rationalData).1 denominator)))
+
+Logical form (Lean):
+
+```lean
+theorem RationalEveryElementIsIntegerFraction
+    (rationalData : IntegerAndPositiveNaturalData) :
+    ∀ q : (RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData).Carrier,
+      ∃ numerator denominator : rationalData.integer_system.Model.Carrier,
+        denominator ≠ 0 ∧
+        q =
+          (RationalIntegerEmbedding rationalData).ToField numerator *
+            ((RationalIntegerEmbedding rationalData).ToField denominator)⁻¹
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, constructor, cases, rcases, use
+
+-/
 theorem RationalEveryElementIsIntegerFraction
     (rationalData : IntegerAndPositiveNaturalData) :
     ∀ q : (RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData).Carrier,
@@ -138,17 +514,63 @@ theorem RationalEveryElementIsIntegerFraction
             ((RationalIntegerEmbedding rationalData).ToField denominator)⁻¹ := by
   sorry
 
-                                                                               
-                                                                      
+/--
+`RationalQuotientFractionsRealizesRationalNumberSystem` TODO
 
-             
+Predicate logic:
 
-       
-                                                                       
-                                                    
-                                                          
-   
-  
+  noncomputable def RationalQuotientFractionsRealizesRationalNumberSystem
+    (rationalData : IntegerAndPositiveNaturalData) :
+    LRA.NumberSystems.RationalNumbers.RationalNumberSystem where
+  IntegerSystem := rationalData.integer_system
+  FieldModel :=
+    RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData
+  IntegerEmbedding := RationalIntegerEmbedding rationalData
+  EveryElementIsIntegerFraction := RationalEveryElementIsIntegerFraction rationalData
+
+Predicate logic (unfolded):
+
+  noncomputable def RationalQuotientFractionsRealizesRationalNumberSystem
+    (rationalData : IntegerAndPositiveNaturalData) :
+    LRA.NumberSystems.RationalNumbers.RationalNumberSystem where
+  IntegerSystem := rationalData.integer_system
+  FieldModel :=
+    RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData
+  IntegerEmbedding := RationalIntegerEmbedding rationalData
+  EveryElementIsIntegerFraction := RationalEveryElementIsIntegerFraction rationalData (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def RationalQuotientFractionsRealizesRationalNumberSystem
+    (rationalData : IntegerAndPositiveNaturalData) :
+    LRA.NumberSystems.RationalNumbers.RationalNumberSystem where
+  IntegerSystem := rationalData.integer_system
+  FieldModel :=
+    RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData
+  IntegerEmbedding := RationalIntegerEmbedding rationalData
+  EveryElementIsIntegerFraction := RationalEveryElementIsIntegerFraction rationalData
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def RationalQuotientFractionsRealizesRationalNumberSystem
     (rationalData : IntegerAndPositiveNaturalData) :
     LRA.NumberSystems.RationalNumbers.RationalNumberSystem where

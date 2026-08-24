@@ -8,5 +8,3 @@ import LRA.Set.ZFC.Axioms.Separation
 import LRA.Set.ZFC.Axioms.Replacement
 import LRA.Set.ZFC.Axioms.Foundation
 import LRA.Set.ZFC.Axioms.Choice
-
-                                                                    

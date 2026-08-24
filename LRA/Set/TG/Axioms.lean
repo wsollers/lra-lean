@@ -9,5 +9,3 @@ import LRA.Set.TG.Axioms.Replacement
 import LRA.Set.TG.Axioms.Foundation
 import LRA.Set.TG.Axioms.Choice
 import LRA.Set.TG.Axioms.GrothendieckUniverse
-
-                                                                  

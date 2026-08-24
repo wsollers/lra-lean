@@ -1,4 +1,2 @@
 import LRA.Analysis.MetricSpace.Construction.UniversalAlgebra
 import LRA.Analysis.MetricSpace.Construction.ModelTheory
-
-                                                

@@ -1,11 +1,9 @@
 import LRA.AlgebraicStructures.OrderedField.Definition
+import LRA.AlgebraicStructures.OrderedField.Theorems
+import LRA.AlgebraicStructures.OrderedField.Characterizations
+import LRA.AlgebraicStructures.OrderedField.Consequences
 import LRA.AlgebraicStructures.OrderedField.Interface.Signature.Definition
 import LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.LStructure
 import LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.Theory
 import LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.Model
-import LRA.AlgebraicStructures.OrderedField.Theorems
-import LRA.AlgebraicStructures.OrderedField.Characterizations
-import LRA.AlgebraicStructures.OrderedField.Consequences
 import LRA.AlgebraicStructures.OrderedField.Relationships
-
-                                                 

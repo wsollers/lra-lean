@@ -1,6 +1,3 @@
-                                                                             
-                                                                       
-                                                                  
 
 import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.Behavior
 
@@ -59,8 +56,6 @@ instance : MultiplicativeInverseLaws (ComplexNumber R) :=
   ⟨mul_inv_cancel_complex, inv_zero_complex⟩
 
 end FieldCertificates
-
-                                          
 
 example : CommutativeRingLaws (ComplexNumber Int) := inferInstance
 example : FieldLaws (ComplexNumber Rat) := inferInstance

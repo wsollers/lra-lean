@@ -1,4 +1,2 @@
 import LRA.AlgebraicStructures.LinearlyOrderedRing.Laws.Definition
 import LRA.AlgebraicStructures.LinearlyOrderedRing.Laws.Consequences
-
-                                                                         

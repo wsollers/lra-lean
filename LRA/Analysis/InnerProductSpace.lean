@@ -1,9 +1,3 @@
-import LRA.Analysis.InnerProductSpace.Construction
 import LRA.Analysis.InnerProductSpace.Definition
+import LRA.Analysis.InnerProductSpace.Construction
 import LRA.Analysis.InnerProductSpace.Realizations
-
-   
-                     
-
-                                                                
-  

@@ -2,9 +2,4 @@ import LRA.AlgebraicStructures.OrderedGroup.Interface.Signature.Definition
 
 namespace LRA.AlgebraicStructures.OrderedGroup.Interface.ModelTheory
 
-   
-                                                                             
-                                            
-  
-
 end LRA.AlgebraicStructures.OrderedGroup.Interface.ModelTheory

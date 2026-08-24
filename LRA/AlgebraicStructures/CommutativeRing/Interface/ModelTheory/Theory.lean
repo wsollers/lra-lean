@@ -2,6 +2,4 @@ import LRA.AlgebraicStructures.CommutativeRing.Interface.Signature.Definition
 
 namespace LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory
 
-                                                                                          
-
 end LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory

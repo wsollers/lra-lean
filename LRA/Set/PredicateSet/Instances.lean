@@ -1,12 +1,6 @@
 import LRA.Set.PredicateSet.Operations
 import LRA.Set.Interface.Operations
 
-   
-                                                                           
-                                                                            
-                                                                   
-  
-
 namespace LRA.Set.PredicateSet
 
 universe u

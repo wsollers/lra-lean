@@ -16,6 +16,72 @@ namespace LRA.NumberSystems.Carriers
 open LRA.NumberSystems.NaturalNumbers.Constructions.Landau
 open LRA.Set
 
+/--
+`landauNaturalArithmeticForWholeNumbers` TODO
+
+Predicate logic:
+
+  noncomputable def landauNaturalArithmeticForWholeNumbers :
+    LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers
+      LandauElement (PredicateSet LandauElement) where
+  model := LandauPeanoSystem
+  strictOrder := LandauLessThan LandauPeanoSystem
+  strictOrder_trichotomous := LandauLessThanTrichotomous LandauPeanoSystem
+  strictOrder_transitive := LandauLessThanTransitive LandauPeanoSystem
+  addition_preserves_and_reflects_strictOrder :=
+    LandauAdditionPreservesAndReflectsLandauLessThan LandauPeanoSystem
+  multiplication_preserves_and_reflects_strictOrder :=
+    LandauMultiplicationPreservesAndReflectsLandauLessThan LandauPeanoSystem
+
+Predicate logic (unfolded):
+
+  noncomputable def landauNaturalArithmeticForWholeNumbers :
+    LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers
+      LandauElement (PredicateSet LandauElement) where
+  model := LandauPeanoSystem
+  strictOrder := LandauLessThan LandauPeanoSystem
+  strictOrder_trichotomous := LandauLessThanTrichotomous LandauPeanoSystem
+  strictOrder_transitive := LandauLessThanTransitive LandauPeanoSystem
+  addition_preserves_and_reflects_strictOrder :=
+    LandauAdditionPreservesAndReflectsLandauLessThan LandauPeanoSystem
+  multiplication_preserves_and_reflects_strictOrder :=
+    LandauMultiplicationPreservesAndReflectsLandauLessThan LandauPeanoSystem (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def landauNaturalArithmeticForWholeNumbers :
+    LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers
+      LandauElement (PredicateSet LandauElement) where
+  model := LandauPeanoSystem
+  strictOrder := LandauLessThan LandauPeanoSystem
+  strictOrder_trichotomous := LandauLessThanTrichotomous LandauPeanoSystem
+  strictOrder_transitive := LandauLessThanTransitive LandauPeanoSystem
+  addition_preserves_and_reflects_strictOrder :=
+    LandauAdditionPreservesAndReflectsLandauLessThan LandauPeanoSystem
+  multiplication_preserves_and_reflects_strictOrder :=
+    LandauMultiplicationPreservesAndReflectsLandauLessThan LandauPeanoSystem
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def landauNaturalArithmeticForWholeNumbers :
     LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers
       LandauElement (PredicateSet LandauElement) where
@@ -28,15 +94,144 @@ noncomputable def landauNaturalArithmeticForWholeNumbers :
   multiplication_preserves_and_reflects_strictOrder :=
     LandauMultiplicationPreservesAndReflectsLandauLessThan LandauPeanoSystem
 
+/--
+`N_0_Landau` TODO
+
+Predicate logic:
+
+  abbrev N_0_Landau :=
+  LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier
+    landauNaturalArithmeticForWholeNumbers
+
+Predicate logic (unfolded):
+
+  abbrev N_0_Landau :=
+  LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier
+    landauNaturalArithmeticForWholeNumbers (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev N_0_Landau :=
+  LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier
+    landauNaturalArithmeticForWholeNumbers
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev N_0_Landau :=
   LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier
     landauNaturalArithmeticForWholeNumbers
 
+/--
+`landauWholeNumberArithmeticForQuotientPairs` TODO
+
+Predicate logic:
+
+  noncomputable def landauWholeNumberArithmeticForQuotientPairs :
+    LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs :=
+  LRA.NumberSystems.WholeNumbers.Constructions.Landau.quotientOrderedPairsInput
+    landauNaturalArithmeticForWholeNumbers
+
+Predicate logic (unfolded):
+
+  noncomputable def landauWholeNumberArithmeticForQuotientPairs :
+    LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs :=
+  LRA.NumberSystems.WholeNumbers.Constructions.Landau.quotientOrderedPairsInput
+    landauNaturalArithmeticForWholeNumbers (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def landauWholeNumberArithmeticForQuotientPairs :
+    LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs :=
+  LRA.NumberSystems.WholeNumbers.Constructions.Landau.quotientOrderedPairsInput
+    landauNaturalArithmeticForWholeNumbers
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def landauWholeNumberArithmeticForQuotientPairs :
     LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs :=
   LRA.NumberSystems.WholeNumbers.Constructions.Landau.quotientOrderedPairsInput
     landauNaturalArithmeticForWholeNumbers
 
+/--
+`Z_QuotientOrderedPairs` TODO
+
+Predicate logic:
+
+  abbrev Z_QuotientOrderedPairs :=
+  LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier
+    landauWholeNumberArithmeticForQuotientPairs
+
+Predicate logic (unfolded):
+
+  abbrev Z_QuotientOrderedPairs :=
+  LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier
+    landauWholeNumberArithmeticForQuotientPairs (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev Z_QuotientOrderedPairs :=
+  LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier
+    landauWholeNumberArithmeticForQuotientPairs
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev Z_QuotientOrderedPairs :=
   LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier
     landauWholeNumberArithmeticForQuotientPairs
@@ -50,10 +245,94 @@ abbrev Z_QuotientOrderedPairs :=
 `landauWholeNumberArithmeticForQuotientPairs` witness grounds them too.
 -/
 
+/--
+`Z_Tao` TODO
+
+Predicate logic:
+
+  abbrev Z_Tao :=
+  LRA.NumberSystems.Integers.Tao.Carrier
+    landauWholeNumberArithmeticForQuotientPairs
+
+Predicate logic (unfolded):
+
+  abbrev Z_Tao :=
+  LRA.NumberSystems.Integers.Tao.Carrier
+    landauWholeNumberArithmeticForQuotientPairs (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev Z_Tao :=
+  LRA.NumberSystems.Integers.Tao.Carrier
+    landauWholeNumberArithmeticForQuotientPairs
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev Z_Tao :=
   LRA.NumberSystems.Integers.Tao.Carrier
     landauWholeNumberArithmeticForQuotientPairs
 
+/--
+`Z_Mendelson` TODO
+
+Predicate logic:
+
+  abbrev Z_Mendelson :=
+  LRA.NumberSystems.Integers.Mendelson.Carrier
+    landauWholeNumberArithmeticForQuotientPairs
+
+Predicate logic (unfolded):
+
+  abbrev Z_Mendelson :=
+  LRA.NumberSystems.Integers.Mendelson.Carrier
+    landauWholeNumberArithmeticForQuotientPairs (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev Z_Mendelson :=
+  LRA.NumberSystems.Integers.Mendelson.Carrier
+    landauWholeNumberArithmeticForQuotientPairs
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev Z_Mendelson :=
   LRA.NumberSystems.Integers.Mendelson.Carrier
     landauWholeNumberArithmeticForQuotientPairs
@@ -73,15 +352,107 @@ opaque model isn't expressible — `QuotientOrderedPairs` is the only ℤ
 construction usable here.)
 -/
 
+/--
+`landauIntegerNumberSystem` TODO
+
+Predicate logic:
+
+  noncomputable def landauIntegerNumberSystem :
+    LRA.NumberSystems.Integers.IntegerNumberSystem :=
+  LRA.NumberSystems.Integers.QuotientOrderedPairs.QuotientOrderedPairsRealizesIntegerNumberSystem
+    landauWholeNumberArithmeticForQuotientPairs
+
+Predicate logic (unfolded):
+
+  noncomputable def landauIntegerNumberSystem :
+    LRA.NumberSystems.Integers.IntegerNumberSystem :=
+  LRA.NumberSystems.Integers.QuotientOrderedPairs.QuotientOrderedPairsRealizesIntegerNumberSystem
+    landauWholeNumberArithmeticForQuotientPairs (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def landauIntegerNumberSystem :
+    LRA.NumberSystems.Integers.IntegerNumberSystem :=
+  LRA.NumberSystems.Integers.QuotientOrderedPairs.QuotientOrderedPairsRealizesIntegerNumberSystem
+    landauWholeNumberArithmeticForQuotientPairs
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def landauIntegerNumberSystem :
     LRA.NumberSystems.Integers.IntegerNumberSystem :=
   LRA.NumberSystems.Integers.QuotientOrderedPairs.QuotientOrderedPairsRealizesIntegerNumberSystem
     landauWholeNumberArithmeticForQuotientPairs
 
-/-- The positive naturals embed into the integers by going through the
-whole-number carrier (`some : LandauElement → Option LandauElement`) and
-then the whole-number-to-integer embedding already built for
-`QuotientOrderedPairs`. -/
+/--
+`landauNaturalToInteger` TODO
+
+Predicate logic:
+
+  noncomputable def landauNaturalToInteger (value : LandauElement) :
+    landauIntegerNumberSystem.Model.Carrier :=
+  LRA.NumberSystems.Integers.QuotientOrderedPairs.embed
+    landauWholeNumberArithmeticForQuotientPairs
+    (LRA.NumberSystems.WholeNumbers.Constructions.Landau.naturalEmbedding
+      landauNaturalArithmeticForWholeNumbers value)
+
+Predicate logic (unfolded):
+
+  noncomputable def landauNaturalToInteger (value : LandauElement) :
+    landauIntegerNumberSystem.Model.Carrier :=
+  LRA.NumberSystems.Integers.QuotientOrderedPairs.embed
+    landauWholeNumberArithmeticForQuotientPairs
+    (LRA.NumberSystems.WholeNumbers.Constructions.Landau.naturalEmbedding
+      landauNaturalArithmeticForWholeNumbers value) (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def landauNaturalToInteger (value : LandauElement) :
+    landauIntegerNumberSystem.Model.Carrier :=
+  LRA.NumberSystems.Integers.QuotientOrderedPairs.embed
+    landauWholeNumberArithmeticForQuotientPairs
+    (LRA.NumberSystems.WholeNumbers.Constructions.Landau.naturalEmbedding
+      landauNaturalArithmeticForWholeNumbers value)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def landauNaturalToInteger (value : LandauElement) :
     landauIntegerNumberSystem.Model.Carrier :=
   LRA.NumberSystems.Integers.QuotientOrderedPairs.embed
@@ -89,11 +460,89 @@ noncomputable def landauNaturalToInteger (value : LandauElement) :
     (LRA.NumberSystems.WholeNumbers.Constructions.Landau.naturalEmbedding
       landauNaturalArithmeticForWholeNumbers value)
 
+/--
+`landauNaturalToIntegerIsPositive` TODO
+
+Predicate logic:
+
+  ∀ denominator : LandauElement, 0 < landauNaturalToInteger denominator
+
+Predicate logic (unfolded):
+
+  ∀ (denominator : LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement), LRA.NumberSystems.Carriers.landauIntegerNumberSystem.Model.ltInst.1 LRA.NumberSystems.Carriers.landauIntegerNumberSystem.Model.zeroInst.1 (Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid LRA.NumberSystems.Carriers.landauWholeNumberArithmeticForQuotientPairs).1 { positive_coordinate := Option.some denominator, negative_coordinate := LRA.NumberSystems.Carriers.landauWholeNumberArithmeticForQuotientPairs.2 })
+
+Logical form (Lean):
+
+```lean
+theorem landauNaturalToIntegerIsPositive :
+    ∀ denominator : LandauElement,
+      0 < landauNaturalToInteger denominator
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 theorem landauNaturalToIntegerIsPositive :
     ∀ denominator : LandauElement,
       0 < landauNaturalToInteger denominator := by
   sorry
 
+/--
+`landauEveryPositiveIntegerHasLandauDenominator` TODO
+
+Predicate logic:
+
+  ∀ integer : landauIntegerNumberSystem.Model.Carrier, 0 < integer → ∃ denominator ∈ LandauElement, landauNaturalToInteger denominator = integer
+
+Predicate logic (unfolded):
+
+  ∀ (integer : LRA.NumberSystems.Carriers.landauIntegerNumberSystem.Model.1), LRA.NumberSystems.Carriers.landauIntegerNumberSystem.Model.ltInst.1 LRA.NumberSystems.Carriers.landauIntegerNumberSystem.Model.zeroInst.1 integer → Exists fun denominator => Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid LRA.NumberSystems.Carriers.landauWholeNumberArithmeticForQuotientPairs).1 { positive_coordinate := Option.some denominator, negative_coordinate := LRA.NumberSystems.Carriers.landauWholeNumberArithmeticForQuotientPairs.2 } = integer
+
+Logical form (Lean):
+
+```lean
+theorem landauEveryPositiveIntegerHasLandauDenominator :
+    ∀ integer : landauIntegerNumberSystem.Model.Carrier,
+      0 < integer →
+      ∃ denominator : LandauElement,
+        landauNaturalToInteger denominator = integer
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, use, rcases
+
+-/
 theorem landauEveryPositiveIntegerHasLandauDenominator :
     ∀ integer : landauIntegerNumberSystem.Model.Carrier,
       0 < integer →
@@ -101,16 +550,158 @@ theorem landauEveryPositiveIntegerHasLandauDenominator :
         landauNaturalToInteger denominator = integer := by
   sorry
 
+/--
+`landauNaturalToIntegerOneMapsToOne` TODO
+
+Predicate logic:
+
+  landauNaturalToInteger LandauPeanoSystem.one = 1
+
+Predicate logic (unfolded):
+
+  Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid LRA.NumberSystems.Carriers.landauWholeNumberArithmeticForQuotientPairs).1 { positive_coordinate := Option.some LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauPeanoSystem.1, negative_coordinate := LRA.NumberSystems.Carriers.landauWholeNumberArithmeticForQuotientPairs.2 } = LRA.NumberSystems.Carriers.landauIntegerNumberSystem.Model.oneInst.1
+
+Logical form (Lean):
+
+```lean
+theorem landauNaturalToIntegerOneMapsToOne :
+    landauNaturalToInteger LandauPeanoSystem.one = 1
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem landauNaturalToIntegerOneMapsToOne :
     landauNaturalToInteger LandauPeanoSystem.one = 1 := by
   sorry
 
+/--
+`landauNaturalToIntegerPreservesMultiplication` TODO
+
+Predicate logic:
+
+  ∀ first second : LandauElement, landauNaturalToInteger (LandauMultiplication LandauPeanoSystem first second) = landauNaturalToInteger first * landauNaturalToInteger second
+
+Predicate logic (unfolded):
+
+  ∀ (first second : LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement), Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid LRA.NumberSystems.Carriers.landauWholeNumberArithmeticForQuotientPairs).1 { positive_coordinate := Option.some ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauPeanoSystem LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauPeanoSystem value left) ⋯).val first second), negative_coordinate := LRA.NumberSystems.Carriers.landauWholeNumberArithmeticForQuotientPairs.2 } = instHMul.1 (Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid LRA.NumberSystems.Carriers.landauWholeNumberArithmeticForQuotientPairs).1 { positive_coordinate := Option.some first, negative_coordinate := LRA.NumberSystems.Carriers.landauWholeNumberArithmeticForQuotientPairs.2 }) (Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid LRA.NumberSystems.Carriers.landauWholeNumberArithmeticForQuotientPairs).1 { positive_coordinate := Option.some second, negative_coordinate := LRA.NumberSystems.Carriers.landauWholeNumberArithmeticForQuotientPairs.2 })
+
+Logical form (Lean):
+
+```lean
+theorem landauNaturalToIntegerPreservesMultiplication :
+    ∀ first second : LandauElement,
+      landauNaturalToInteger (LandauMultiplication LandauPeanoSystem first second) =
+        landauNaturalToInteger first * landauNaturalToInteger second
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 theorem landauNaturalToIntegerPreservesMultiplication :
     ∀ first second : LandauElement,
       landauNaturalToInteger (LandauMultiplication LandauPeanoSystem first second) =
         landauNaturalToInteger first * landauNaturalToInteger second := by
   sorry
 
+/--
+`landauIntegerAndPositiveNaturalData` TODO
+
+Predicate logic:
+
+  noncomputable def landauIntegerAndPositiveNaturalData :
+    LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData where
+  integer_system := landauIntegerNumberSystem
+  natural_carrier := LandauElement
+  one := LandauPeanoSystem.one
+  multiplication := LandauMultiplication LandauPeanoSystem
+  to_integer := landauNaturalToInteger
+  denominator_is_positive := landauNaturalToIntegerIsPositive
+  every_positive_integer_has_denominator := landauEveryPositiveIntegerHasLandauDenominator
+  one_maps_to_one := landauNaturalToIntegerOneMapsToOne
+  multiplication_is_preserved := landauNaturalToIntegerPreservesMultiplication
+
+Predicate logic (unfolded):
+
+  noncomputable def landauIntegerAndPositiveNaturalData :
+    LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData where
+  integer_system := landauIntegerNumberSystem
+  natural_carrier := LandauElement
+  one := LandauPeanoSystem.one
+  multiplication := LandauMultiplication LandauPeanoSystem
+  to_integer := landauNaturalToInteger
+  denominator_is_positive := landauNaturalToIntegerIsPositive
+  every_positive_integer_has_denominator := landauEveryPositiveIntegerHasLandauDenominator
+  one_maps_to_one := landauNaturalToIntegerOneMapsToOne
+  multiplication_is_preserved := landauNaturalToIntegerPreservesMultiplication (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def landauIntegerAndPositiveNaturalData :
+    LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData where
+  integer_system := landauIntegerNumberSystem
+  natural_carrier := LandauElement
+  one := LandauPeanoSystem.one
+  multiplication := LandauMultiplication LandauPeanoSystem
+  to_integer := landauNaturalToInteger
+  denominator_is_positive := landauNaturalToIntegerIsPositive
+  every_positive_integer_has_denominator := landauEveryPositiveIntegerHasLandauDenominator
+  one_maps_to_one := landauNaturalToIntegerOneMapsToOne
+  multiplication_is_preserved := landauNaturalToIntegerPreservesMultiplication
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def landauIntegerAndPositiveNaturalData :
     LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData where
   integer_system := landauIntegerNumberSystem
@@ -123,10 +714,88 @@ noncomputable def landauIntegerAndPositiveNaturalData :
   one_maps_to_one := landauNaturalToIntegerOneMapsToOne
   multiplication_is_preserved := landauNaturalToIntegerPreservesMultiplication
 
+/--
+`Q_RationalQuotientFractions` TODO
+
+Predicate logic:
+
+  abbrev Q_RationalQuotientFractions :=
+  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier
+    landauIntegerAndPositiveNaturalData
+
+Predicate logic (unfolded):
+
+  abbrev Q_RationalQuotientFractions :=
+  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier
+    landauIntegerAndPositiveNaturalData (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev Q_RationalQuotientFractions :=
+  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier
+    landauIntegerAndPositiveNaturalData
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev Q_RationalQuotientFractions :=
   LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier
     landauIntegerAndPositiveNaturalData
 
+/--
+`Q` TODO
+
+Predicate logic:
+
+  abbrev Q := Q_RationalQuotientFractions
+
+Predicate logic (unfolded):
+
+  abbrev Q := Q_RationalQuotientFractions (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev Q := Q_RationalQuotientFractions
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev Q := Q_RationalQuotientFractions
 
 /-!
@@ -142,28 +811,319 @@ needs a fully realized `RationalRealExtension` on top of that and is
 deferred — see the audit doc.)
 -/
 
+/--
+`landauDenselyOrderedFieldModel` TODO
+
+Predicate logic:
+
+  noncomputable def landauDenselyOrderedFieldModel :
+    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel :=
+  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesDenselyOrderedFieldModel
+    landauIntegerAndPositiveNaturalData
+
+Predicate logic (unfolded):
+
+  noncomputable def landauDenselyOrderedFieldModel :
+    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel :=
+  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesDenselyOrderedFieldModel
+    landauIntegerAndPositiveNaturalData (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def landauDenselyOrderedFieldModel :
+    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel :=
+  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesDenselyOrderedFieldModel
+    landauIntegerAndPositiveNaturalData
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def landauDenselyOrderedFieldModel :
     LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel :=
   LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesDenselyOrderedFieldModel
     landauIntegerAndPositiveNaturalData
 
+/--
+`R_Cantor` TODO
+
+Predicate logic:
+
+  abbrev R_Cantor :=
+  LRA.NumberSystems.RealNumbers.Cantor.Carrier landauDenselyOrderedFieldModel
+
+Predicate logic (unfolded):
+
+  abbrev R_Cantor :=
+  LRA.NumberSystems.RealNumbers.Cantor.Carrier landauDenselyOrderedFieldModel (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev R_Cantor :=
+  LRA.NumberSystems.RealNumbers.Cantor.Carrier landauDenselyOrderedFieldModel
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev R_Cantor :=
   LRA.NumberSystems.RealNumbers.Cantor.Carrier landauDenselyOrderedFieldModel
 
+/--
+`landauCantorRealModel` TODO
+
+Predicate logic:
+
+  noncomputable def landauCantorRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.Cantor.CantorRealizesRealModel landauDenselyOrderedFieldModel
+
+Predicate logic (unfolded):
+
+  noncomputable def landauCantorRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.Cantor.CantorRealizesRealModel landauDenselyOrderedFieldModel (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def landauCantorRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.Cantor.CantorRealizesRealModel landauDenselyOrderedFieldModel
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def landauCantorRealModel :
     LRA.NumberSystems.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.Cantor.CantorRealizesRealModel landauDenselyOrderedFieldModel
 
+/--
+`R_Dedekind` TODO
+
+Predicate logic:
+
+  abbrev R_Dedekind :=
+  LRA.NumberSystems.RealNumbers.Dedekind.Cut landauDenselyOrderedFieldModel
+
+Predicate logic (unfolded):
+
+  abbrev R_Dedekind :=
+  LRA.NumberSystems.RealNumbers.Dedekind.Cut landauDenselyOrderedFieldModel (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev R_Dedekind :=
+  LRA.NumberSystems.RealNumbers.Dedekind.Cut landauDenselyOrderedFieldModel
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev R_Dedekind :=
   LRA.NumberSystems.RealNumbers.Dedekind.Cut landauDenselyOrderedFieldModel
 
+/--
+`landauDedekindRealModel` TODO
+
+Predicate logic:
+
+  noncomputable def landauDedekindRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.Dedekind.DedekindRealizesRealModel landauDenselyOrderedFieldModel
+
+Predicate logic (unfolded):
+
+  noncomputable def landauDedekindRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.Dedekind.DedekindRealizesRealModel landauDenselyOrderedFieldModel (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def landauDedekindRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.Dedekind.DedekindRealizesRealModel landauDenselyOrderedFieldModel
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def landauDedekindRealModel :
     LRA.NumberSystems.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.Dedekind.DedekindRealizesRealModel landauDenselyOrderedFieldModel
 
+/--
+`R_PrimitiveIntervals` TODO
+
+Predicate logic:
+
+  abbrev R_PrimitiveIntervals :=
+  LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Carrier landauDenselyOrderedFieldModel
+
+Predicate logic (unfolded):
+
+  abbrev R_PrimitiveIntervals :=
+  LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Carrier landauDenselyOrderedFieldModel (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev R_PrimitiveIntervals :=
+  LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Carrier landauDenselyOrderedFieldModel
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev R_PrimitiveIntervals :=
   LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Carrier landauDenselyOrderedFieldModel
 
+/--
+`landauPrimitiveIntervalsRealModel` TODO
+
+Predicate logic:
+
+  noncomputable def landauPrimitiveIntervalsRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.PrimitiveIntervals.PrimitiveIntervalsRealizesRealModel
+    landauDenselyOrderedFieldModel
+
+Predicate logic (unfolded):
+
+  noncomputable def landauPrimitiveIntervalsRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.PrimitiveIntervals.PrimitiveIntervalsRealizesRealModel
+    landauDenselyOrderedFieldModel (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def landauPrimitiveIntervalsRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.PrimitiveIntervals.PrimitiveIntervalsRealizesRealModel
+    landauDenselyOrderedFieldModel
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def landauPrimitiveIntervalsRealModel :
     LRA.NumberSystems.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.PrimitiveIntervals.PrimitiveIntervalsRealizesRealModel
@@ -175,15 +1135,147 @@ metric/embedding data), which `RationalQuotientFractionsRealizesRationalNumberSy
 already builds generically.
 -/
 
+/--
+`landauRationalNumberSystem` TODO
+
+Predicate logic:
+
+  noncomputable def landauRationalNumberSystem :
+    LRA.NumberSystems.RationalNumbers.RationalNumberSystem :=
+  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesRationalNumberSystem
+    landauIntegerAndPositiveNaturalData
+
+Predicate logic (unfolded):
+
+  noncomputable def landauRationalNumberSystem :
+    LRA.NumberSystems.RationalNumbers.RationalNumberSystem :=
+  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesRationalNumberSystem
+    landauIntegerAndPositiveNaturalData (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def landauRationalNumberSystem :
+    LRA.NumberSystems.RationalNumbers.RationalNumberSystem :=
+  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesRationalNumberSystem
+    landauIntegerAndPositiveNaturalData
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def landauRationalNumberSystem :
     LRA.NumberSystems.RationalNumbers.RationalNumberSystem :=
   LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesRationalNumberSystem
     landauIntegerAndPositiveNaturalData
 
+/--
+`R_EffectiveCauchy` TODO
+
+Predicate logic:
+
+  abbrev R_EffectiveCauchy :=
+  LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal
+    landauRationalNumberSystem
+
+Predicate logic (unfolded):
+
+  abbrev R_EffectiveCauchy :=
+  LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal
+    landauRationalNumberSystem (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev R_EffectiveCauchy :=
+  LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal
+    landauRationalNumberSystem
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev R_EffectiveCauchy :=
   LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal
     landauRationalNumberSystem
 
+/--
+`landauEffectiveCauchyRealModel` TODO
+
+Predicate logic:
+
+  noncomputable def landauEffectiveCauchyRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyRealizesRealModel
+    landauRationalNumberSystem
+
+Predicate logic (unfolded):
+
+  noncomputable def landauEffectiveCauchyRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyRealizesRealModel
+    landauRationalNumberSystem (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def landauEffectiveCauchyRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyRealizesRealModel
+    landauRationalNumberSystem
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def landauEffectiveCauchyRealModel :
     LRA.NumberSystems.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyRealizesRealModel
@@ -201,6 +1293,61 @@ just the textbook properties of `|·|` on an ordered field.
 -/
 
 open Classical in
+
+/--
+`landauRationalAbsoluteValue` TODO
+
+Predicate logic:
+
+  noncomputable def landauRationalAbsoluteValue
+    (value : landauRationalNumberSystem.FieldModel.signature.carrier) :
+    landauRationalNumberSystem.FieldModel.signature.carrier :=
+  if landauRationalNumberSystem.FieldModel.signature.le
+      landauRationalNumberSystem.FieldModel.signature.zero value
+  then value
+  else landauRationalNumberSystem.FieldModel.signature.neg value
+
+Predicate logic (unfolded):
+
+  noncomputable def landauRationalAbsoluteValue
+    (value : landauRationalNumberSystem.FieldModel.signature.carrier) :
+    landauRationalNumberSystem.FieldModel.signature.carrier :=
+  if landauRationalNumberSystem.FieldModel.signature.le
+      landauRationalNumberSystem.FieldModel.signature.zero value
+  then value
+  else landauRationalNumberSystem.FieldModel.signature.neg value (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def landauRationalAbsoluteValue
+    (value : landauRationalNumberSystem.FieldModel.signature.carrier) :
+    landauRationalNumberSystem.FieldModel.signature.carrier :=
+  if landauRationalNumberSystem.FieldModel.signature.le
+      landauRationalNumberSystem.FieldModel.signature.zero value
+  then value
+  else landauRationalNumberSystem.FieldModel.signature.neg value
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def landauRationalAbsoluteValue
     (value : landauRationalNumberSystem.FieldModel.signature.carrier) :
     landauRationalNumberSystem.FieldModel.signature.carrier :=
@@ -209,11 +1356,89 @@ noncomputable def landauRationalAbsoluteValue
   then value
   else landauRationalNumberSystem.FieldModel.signature.neg value
 
+/--
+`landauRationalAbsoluteValueZero` TODO
+
+Predicate logic:
+
+  landauRationalAbsoluteValue landauRationalNumberSystem.FieldModel.signature.zero = landauRationalNumberSystem.FieldModel.signature.zero
+
+Predicate logic (unfolded):
+
+  Decidable.rec (fun h => (fun x => LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toRingConceptSignature.2 LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toZeroOneBundle.2) h) (fun h => (fun x => LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toZeroOneBundle.2) h) (Classical.choice ⋯) = LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toZeroOneBundle.2
+
+Logical form (Lean):
+
+```lean
+theorem landauRationalAbsoluteValueZero :
+    landauRationalAbsoluteValue landauRationalNumberSystem.FieldModel.signature.zero =
+      landauRationalNumberSystem.FieldModel.signature.zero
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem landauRationalAbsoluteValueZero :
     landauRationalAbsoluteValue landauRationalNumberSystem.FieldModel.signature.zero =
       landauRationalNumberSystem.FieldModel.signature.zero := by
   sorry
 
+/--
+`landauRationalAbsoluteValueNegation` TODO
+
+Predicate logic:
+
+  ∀ value : landauRationalNumberSystem.FieldModel.signature.carrier, landauRationalAbsoluteValue (landauRationalNumberSystem.FieldModel.signature.neg value) = landauRationalAbsoluteValue value
+
+Predicate logic (unfolded):
+
+  ∀ (value : LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toCarrierBundle.1), Decidable.rec (fun h => (fun x => LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toRingConceptSignature.2 (LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toRingConceptSignature.2 value)) h) (fun h => (fun x => LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toRingConceptSignature.2 value) h) (Classical.choice ⋯) = Decidable.rec (fun h => (fun x => LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toRingConceptSignature.2 value) h) (fun h => (fun x => value) h) (Classical.choice ⋯)
+
+Logical form (Lean):
+
+```lean
+theorem landauRationalAbsoluteValueNegation :
+    ∀ value : landauRationalNumberSystem.FieldModel.signature.carrier,
+      landauRationalAbsoluteValue
+          (landauRationalNumberSystem.FieldModel.signature.neg value) =
+        landauRationalAbsoluteValue value
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 theorem landauRationalAbsoluteValueNegation :
     ∀ value : landauRationalNumberSystem.FieldModel.signature.carrier,
       landauRationalAbsoluteValue
@@ -221,6 +1446,49 @@ theorem landauRationalAbsoluteValueNegation :
         landauRationalAbsoluteValue value := by
   sorry
 
+/--
+`landauRationalTriangleInequality` TODO
+
+Predicate logic:
+
+  ∀ first second : landauRationalNumberSystem.FieldModel.signature.carrier, landauRationalNumberSystem.FieldModel.signature.le (landauRationalAbsoluteValue (landauRationalNumberSystem.FieldModel.signature.add first second)) (landauRationalNumberSystem.FieldModel.signature.add (landauRationalAbsoluteValue first) (landauRationalAbsoluteValue second))
+
+Predicate logic (unfolded):
+
+  ∀ (first second : LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toCarrierBundle.1), LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toOrderedRingConceptSignature.2 (Decidable.rec (fun h => (fun x => LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toRingConceptSignature.2 (LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toBooleanRingOperationBundle.2 first second)) h) (fun h => (fun x => LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toBooleanRingOperationBundle.2 first second) h) (Classical.choice ⋯)) (LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toBooleanRingOperationBundle.2 (Decidable.rec (fun h => (fun x => LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toRingConceptSignature.2 first) h) (fun h => (fun x => first) h) (Classical.choice ⋯)) (Decidable.rec (fun h => (fun x => LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toRingConceptSignature.2 second) h) (fun h => (fun x => second) h) (Classical.choice ⋯)))
+
+Logical form (Lean):
+
+```lean
+theorem landauRationalTriangleInequality :
+    ∀ first second : landauRationalNumberSystem.FieldModel.signature.carrier,
+      landauRationalNumberSystem.FieldModel.signature.le
+        (landauRationalAbsoluteValue
+          (landauRationalNumberSystem.FieldModel.signature.add first second))
+        (landauRationalNumberSystem.FieldModel.signature.add
+          (landauRationalAbsoluteValue first)
+          (landauRationalAbsoluteValue second))
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 theorem landauRationalTriangleInequality :
     ∀ first second : landauRationalNumberSystem.FieldModel.signature.carrier,
       landauRationalNumberSystem.FieldModel.signature.le
@@ -231,6 +1499,46 @@ theorem landauRationalTriangleInequality :
           (landauRationalAbsoluteValue second)) := by
   sorry
 
+/--
+`landauRationalAbsoluteValueNonnegative` TODO
+
+Predicate logic:
+
+  ∀ value : landauRationalNumberSystem.FieldModel.signature.carrier, landauRationalNumberSystem.FieldModel.signature.le landauRationalNumberSystem.FieldModel.signature.zero (landauRationalAbsoluteValue value)
+
+Predicate logic (unfolded):
+
+  ∀ (value : LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toCarrierBundle.1), LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toOrderedRingConceptSignature.2 LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toZeroOneBundle.2 (Decidable.rec (fun h => (fun x => LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toRingConceptSignature.2 value) h) (fun h => (fun x => value) h) (Classical.choice ⋯))
+
+Logical form (Lean):
+
+```lean
+theorem landauRationalAbsoluteValueNonnegative :
+    ∀ value : landauRationalNumberSystem.FieldModel.signature.carrier,
+      landauRationalNumberSystem.FieldModel.signature.le
+        landauRationalNumberSystem.FieldModel.signature.zero
+        (landauRationalAbsoluteValue value)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 theorem landauRationalAbsoluteValueNonnegative :
     ∀ value : landauRationalNumberSystem.FieldModel.signature.carrier,
       landauRationalNumberSystem.FieldModel.signature.le
@@ -238,6 +1546,46 @@ theorem landauRationalAbsoluteValueNonnegative :
         (landauRationalAbsoluteValue value) := by
   sorry
 
+/--
+`landauRationalAbsoluteValueEqZeroIff` TODO
+
+Predicate logic:
+
+  ∀ value : landauRationalNumberSystem.FieldModel.signature.carrier, landauRationalAbsoluteValue value = landauRationalNumberSystem.FieldModel.signature.zero ↔ value = landauRationalNumberSystem.FieldModel.signature.zero
+
+Predicate logic (unfolded):
+
+  ∀ (value : LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toCarrierBundle.1), Decidable.rec (fun h => (fun x => LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toRingConceptSignature.2 value) h) (fun h => (fun x => value) h) (Classical.choice ⋯) = LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toZeroOneBundle.2 ↔ value = LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toZeroOneBundle.2
+
+Logical form (Lean):
+
+```lean
+theorem landauRationalAbsoluteValueEqZeroIff :
+    ∀ value : landauRationalNumberSystem.FieldModel.signature.carrier,
+      landauRationalAbsoluteValue value =
+          landauRationalNumberSystem.FieldModel.signature.zero ↔
+        value = landauRationalNumberSystem.FieldModel.signature.zero
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, constructor, .mp, .mpr
+
+-/
 theorem landauRationalAbsoluteValueEqZeroIff :
     ∀ value : landauRationalNumberSystem.FieldModel.signature.carrier,
       landauRationalAbsoluteValue value =
@@ -245,6 +1593,48 @@ theorem landauRationalAbsoluteValueEqZeroIff :
         value = landauRationalNumberSystem.FieldModel.signature.zero := by
   sorry
 
+/--
+`landauRationalAbsoluteValueMultiplication` TODO
+
+Predicate logic:
+
+  ∀ first second : landauRationalNumberSystem.FieldModel.signature.carrier, landauRationalAbsoluteValue (landauRationalNumberSystem.FieldModel.signature.multiply first second) = landauRationalNumberSystem.FieldModel.signature.multiply (landauRationalAbsoluteValue first) (landauRationalAbsoluteValue second)
+
+Predicate logic (unfolded):
+
+  ∀ (first second : LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toCarrierBundle.1), Decidable.rec (fun h => (fun x => LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toRingConceptSignature.2 (LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toBooleanRingOperationBundle.3 first second)) h) (fun h => (fun x => LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toBooleanRingOperationBundle.3 first second) h) (Classical.choice ⋯) = LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toBooleanRingOperationBundle.3 (Decidable.rec (fun h => (fun x => LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toRingConceptSignature.2 first) h) (fun h => (fun x => first) h) (Classical.choice ⋯)) (Decidable.rec (fun h => (fun x => LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toRingConceptSignature.2 second) h) (fun h => (fun x => second) h) (Classical.choice ⋯))
+
+Logical form (Lean):
+
+```lean
+theorem landauRationalAbsoluteValueMultiplication :
+    ∀ first second : landauRationalNumberSystem.FieldModel.signature.carrier,
+      landauRationalAbsoluteValue
+          (landauRationalNumberSystem.FieldModel.signature.multiply first second) =
+        landauRationalNumberSystem.FieldModel.signature.multiply
+          (landauRationalAbsoluteValue first)
+          (landauRationalAbsoluteValue second)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 theorem landauRationalAbsoluteValueMultiplication :
     ∀ first second : landauRationalNumberSystem.FieldModel.signature.carrier,
       landauRationalAbsoluteValue
@@ -254,6 +1644,46 @@ theorem landauRationalAbsoluteValueMultiplication :
           (landauRationalAbsoluteValue second) := by
   sorry
 
+/--
+`landauRationalAbsoluteValueSelfOrNeg` TODO
+
+Predicate logic:
+
+  ∀ value : landauRationalNumberSystem.FieldModel.signature.carrier, landauRationalAbsoluteValue value = value ∨ landauRationalAbsoluteValue value = landauRationalNumberSystem.FieldModel.signature.neg value
+
+Predicate logic (unfolded):
+
+  ∀ (value : LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toCarrierBundle.1), Or (Decidable.rec (fun h => (fun x => LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toRingConceptSignature.2 value) h) (fun h => (fun x => value) h) (Classical.choice ⋯) = value) (Decidable.rec (fun h => (fun x => LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toRingConceptSignature.2 value) h) (fun h => (fun x => value) h) (Classical.choice ⋯) = LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toRingConceptSignature.2 value)
+
+Logical form (Lean):
+
+```lean
+theorem landauRationalAbsoluteValueSelfOrNeg :
+    ∀ value : landauRationalNumberSystem.FieldModel.signature.carrier,
+      landauRationalAbsoluteValue value = value ∨
+        landauRationalAbsoluteValue value =
+          landauRationalNumberSystem.FieldModel.signature.neg value
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, Or.inl, Or.inr, cases, rcases
+
+-/
 theorem landauRationalAbsoluteValueSelfOrNeg :
     ∀ value : landauRationalNumberSystem.FieldModel.signature.carrier,
       landauRationalAbsoluteValue value = value ∨
@@ -261,6 +1691,51 @@ theorem landauRationalAbsoluteValueSelfOrNeg :
           landauRationalNumberSystem.FieldModel.signature.neg value := by
   sorry
 
+/--
+`landauRationalEpsilonSplit` TODO
+
+Predicate logic:
+
+  ∀ epsilon : landauRationalNumberSystem.FieldModel.signature.carrier, landauRationalNumberSystem.FieldModel.signature.StrictOrder landauRationalNumberSystem.FieldModel.signature.zero epsilon → ∃ smaller, landauRationalNumberSystem.FieldModel.signature.StrictOrder landauRationalNumberSystem.FieldModel.signature.zero smaller ∧ landauRationalNumberSystem.FieldModel.signature.le (landauRationalNumberSystem.FieldModel.signature.add smaller smaller) epsilon
+
+Predicate logic (unfolded):
+
+  ∀ (epsilon : LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toCarrierBundle.1), LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toOrderedRingSignature.2 LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toZeroOneBundle.2 epsilon → Exists fun smaller => (LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toOrderedRingSignature.2 LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toZeroOneBundle.2 smaller ∧ LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toOrderedRingConceptSignature.2 (LRA.NumberSystems.Carriers.landauRationalNumberSystem.FieldModel.signature.toBooleanRingOperationBundle.2 smaller smaller) epsilon)
+
+Logical form (Lean):
+
+```lean
+theorem landauRationalEpsilonSplit :
+    ∀ epsilon : landauRationalNumberSystem.FieldModel.signature.carrier,
+      landauRationalNumberSystem.FieldModel.signature.StrictOrder
+        landauRationalNumberSystem.FieldModel.signature.zero epsilon →
+      ∃ smaller,
+        landauRationalNumberSystem.FieldModel.signature.StrictOrder
+          landauRationalNumberSystem.FieldModel.signature.zero smaller ∧
+        landauRationalNumberSystem.FieldModel.signature.le
+          (landauRationalNumberSystem.FieldModel.signature.add smaller smaller)
+          epsilon
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, constructor, cases, rcases, use
+
+-/
 theorem landauRationalEpsilonSplit :
     ∀ epsilon : landauRationalNumberSystem.FieldModel.signature.carrier,
       landauRationalNumberSystem.FieldModel.signature.StrictOrder
@@ -273,6 +1748,72 @@ theorem landauRationalEpsilonSplit :
           epsilon := by
   sorry
 
+/--
+`landauRationalMetricData` TODO
+
+Predicate logic:
+
+  noncomputable def landauRationalMetricData :
+    LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData landauRationalNumberSystem where
+  absolute_value := landauRationalAbsoluteValue
+  absolute_value_zero := landauRationalAbsoluteValueZero
+  absolute_value_negation := landauRationalAbsoluteValueNegation
+  triangle_inequality := landauRationalTriangleInequality
+  absolute_value_nonnegative := landauRationalAbsoluteValueNonnegative
+  absolute_value_eq_zero_iff := landauRationalAbsoluteValueEqZeroIff
+  absolute_value_multiplication := landauRationalAbsoluteValueMultiplication
+  absolute_value_self_or_neg := landauRationalAbsoluteValueSelfOrNeg
+  epsilon_split := landauRationalEpsilonSplit
+
+Predicate logic (unfolded):
+
+  noncomputable def landauRationalMetricData :
+    LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData landauRationalNumberSystem where
+  absolute_value := landauRationalAbsoluteValue
+  absolute_value_zero := landauRationalAbsoluteValueZero
+  absolute_value_negation := landauRationalAbsoluteValueNegation
+  triangle_inequality := landauRationalTriangleInequality
+  absolute_value_nonnegative := landauRationalAbsoluteValueNonnegative
+  absolute_value_eq_zero_iff := landauRationalAbsoluteValueEqZeroIff
+  absolute_value_multiplication := landauRationalAbsoluteValueMultiplication
+  absolute_value_self_or_neg := landauRationalAbsoluteValueSelfOrNeg
+  epsilon_split := landauRationalEpsilonSplit (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def landauRationalMetricData :
+    LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData landauRationalNumberSystem where
+  absolute_value := landauRationalAbsoluteValue
+  absolute_value_zero := landauRationalAbsoluteValueZero
+  absolute_value_negation := landauRationalAbsoluteValueNegation
+  triangle_inequality := landauRationalTriangleInequality
+  absolute_value_nonnegative := landauRationalAbsoluteValueNonnegative
+  absolute_value_eq_zero_iff := landauRationalAbsoluteValueEqZeroIff
+  absolute_value_multiplication := landauRationalAbsoluteValueMultiplication
+  absolute_value_self_or_neg := landauRationalAbsoluteValueSelfOrNeg
+  epsilon_split := landauRationalEpsilonSplit
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def landauRationalMetricData :
     LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData landauRationalNumberSystem where
   absolute_value := landauRationalAbsoluteValue
@@ -285,15 +1826,138 @@ noncomputable def landauRationalMetricData :
   absolute_value_self_or_neg := landauRationalAbsoluteValueSelfOrNeg
   epsilon_split := landauRationalEpsilonSplit
 
+/--
+`R_Cauchy` TODO
+
+Predicate logic:
+
+  abbrev R_Cauchy :=
+  LRA.NumberSystems.RealNumbers.Cauchy.Carrier
+    landauRationalNumberSystem landauRationalMetricData
+
+Predicate logic (unfolded):
+
+  abbrev R_Cauchy :=
+  LRA.NumberSystems.RealNumbers.Cauchy.Carrier
+    landauRationalNumberSystem landauRationalMetricData (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev R_Cauchy :=
+  LRA.NumberSystems.RealNumbers.Cauchy.Carrier
+    landauRationalNumberSystem landauRationalMetricData
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev R_Cauchy :=
   LRA.NumberSystems.RealNumbers.Cauchy.Carrier
     landauRationalNumberSystem landauRationalMetricData
 
+/--
+`landauCauchyRealModel` TODO
+
+Predicate logic:
+
+  noncomputable def landauCauchyRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.Cauchy.CauchyRealizesRealModel
+    landauRationalNumberSystem landauRationalMetricData
+
+Predicate logic (unfolded):
+
+  noncomputable def landauCauchyRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.Cauchy.CauchyRealizesRealModel
+    landauRationalNumberSystem landauRationalMetricData (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def landauCauchyRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.Cauchy.CauchyRealizesRealModel
+    landauRationalNumberSystem landauRationalMetricData
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def landauCauchyRealModel :
     LRA.NumberSystems.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.Cauchy.CauchyRealizesRealModel
     landauRationalNumberSystem landauRationalMetricData
 
+/--
+`R` TODO
+
+Predicate logic:
+
+  abbrev R := R_Cauchy
+
+Predicate logic (unfolded):
+
+  abbrev R := R_Cauchy (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev R := R_Cauchy
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev R := R_Cauchy
 
 /-!
@@ -304,50 +1968,93 @@ embedding of ℚ into it, so the `RationalDyadicApproximationData` witness
 `RealNumbers` construction had any of this — is buildable now.
 -/
 
+/--
+`landauRationalRealExtension` TODO
+
+Predicate logic:
+
+  noncomputable def landauRationalRealExtension :
+    LRA.NumberSystems.RealNumbers.RationalRealExtension landauRationalNumberSystem :=
+  LRA.NumberSystems.RealNumbers.Cauchy.CauchyRationalRealExtension
+    landauRationalNumberSystem landauRationalMetricData
+
+Predicate logic (unfolded):
+
+  noncomputable def landauRationalRealExtension :
+    LRA.NumberSystems.RealNumbers.RationalRealExtension landauRationalNumberSystem :=
+  LRA.NumberSystems.RealNumbers.Cauchy.CauchyRationalRealExtension
+    landauRationalNumberSystem landauRationalMetricData (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def landauRationalRealExtension :
+    LRA.NumberSystems.RealNumbers.RationalRealExtension landauRationalNumberSystem :=
+  LRA.NumberSystems.RealNumbers.Cauchy.CauchyRationalRealExtension
+    landauRationalNumberSystem landauRationalMetricData
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def landauRationalRealExtension :
     LRA.NumberSystems.RealNumbers.RationalRealExtension landauRationalNumberSystem :=
   LRA.NumberSystems.RealNumbers.Cauchy.CauchyRationalRealExtension
     landauRationalNumberSystem landauRationalMetricData
 
-/-- `landauRationalRealExtension.RealModel` is `CauchyRealizesRealModel
-landauRationalNumberSystem landauRationalMetricData`, whose `Carrier`
-field was set directly to `Cauchy.Carrier landauRationalNumberSystem
-landauRationalMetricData` (`R_Cauchy` above) — no `Classical.choose` sits
-on that particular projection path, so this holds by `rfl`. Checked by
-hand, not by `lake build`. -/
+/--
+`landauCauchyCarrierEq` TODO
+
+Predicate logic:
+
+  landauRationalRealExtension.RealModel.Carrier = R_Cauchy
+
+Predicate logic (unfolded):
+
+  LRA.NumberSystems.Carriers.landauRationalRealExtension.RealModel.toDenselyOrderedFieldModel.1 = LRA.NumberSystems.Carriers.R_Cauchy
+
+Logical form (Lean):
+
+```lean
+theorem landauCauchyCarrierEq :
+    landauRationalRealExtension.RealModel.Carrier = R_Cauchy
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem landauCauchyCarrierEq :
     landauRationalRealExtension.RealModel.Carrier = R_Cauchy :=
-  rfl
-
-noncomputable def landauRationalDyadicApproximationData :
-    LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData where
-  RationalSystem := landauRationalNumberSystem
-  AbsoluteValueData := landauRationalMetricData
-  CauchyRealExtension := landauRationalRealExtension
-  CauchyCarrierEq := landauCauchyCarrierEq
-
-/-!
-`C` itself is kept generic over `R` in `Carriers/Definition.lean` — it's
-already the generic interface, not a fixed construction needing one
-canonical witness. What's worth naming concretely here are example
-instantiations for use in examples/counterexamples.
-`Q_RationalQuotientFractions` already has every instance `C` needs
-(`rationalCarrierAdd`, `rationalCarrierMul`, `rationalCarrierNeg`,
-`rationalCarrierInv`, `rationalCarrierZero`, `rationalCarrierOne`, §21),
-so `C Q_RationalQuotientFractions` type-checks directly and gives the
-Gaussian rationals ℚ(i) — named as such, not as "the" complex numbers.
-
-The gap noted here originally — no LRA-native `R` had arithmetic
-instances (§23) — is closed as of §26–§28: `R_Cauchy` now has
-`quotientCarrierAdd`/`_Mul`/`_Neg`/`_Inv`/`_Zero`/`_One` registered as
-genuine global instances (`Cauchy/Instances.lean`), so `C R_Cauchy`
-type-checks the same way `C Q_RationalQuotientFractions` does — this is
-a genuine LRA-native ℂ (ℝ(i), via the `Cauchy` construction), not a
-stand-in.
--/
-
-abbrev C_Q_OrderedPairs := C Q_RationalQuotientFractions
-
-abbrev C_R_Cauchy := C R_Cauchy
-
-end LRA.NumberSystems.Carriers
+  sorry

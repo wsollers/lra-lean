@@ -6,9 +6,3 @@ import LRA.NumberSystems.Integers.Constructions.Mendelson.WellDefinedness
 import LRA.NumberSystems.Integers.Constructions.Mendelson.Laws
 import LRA.NumberSystems.Integers.Constructions.Mendelson.Behavior
 import LRA.NumberSystems.Integers.Constructions.Mendelson.Instances
-
-   
-                                                                        
-                                                                      
-                                       
-  

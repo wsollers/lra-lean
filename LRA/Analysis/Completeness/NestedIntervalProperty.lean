@@ -1,11 +1,2 @@
 import LRA.Analysis.Completeness.NestedIntervalProperty.Definition
 import LRA.Analysis.Completeness.NestedIntervalProperty.Theorems
-
-   
-                                                                       
-                                                                                  
-                                                                           
-                                             
-                                                                            
-                                                                        
-  

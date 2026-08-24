@@ -1,11 +1,9 @@
 import LRA.AlgebraicStructures.IntegralDomain.Definition
+import LRA.AlgebraicStructures.IntegralDomain.Theorems
+import LRA.AlgebraicStructures.IntegralDomain.Characterizations
+import LRA.AlgebraicStructures.IntegralDomain.Consequences
 import LRA.AlgebraicStructures.IntegralDomain.Interface.Signature.Definition
 import LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory.LStructure
 import LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory.Theory
 import LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory.Model
-import LRA.AlgebraicStructures.IntegralDomain.Theorems
-import LRA.AlgebraicStructures.IntegralDomain.Characterizations
-import LRA.AlgebraicStructures.IntegralDomain.Consequences
 import LRA.AlgebraicStructures.IntegralDomain.Relationships
-
-                                                   

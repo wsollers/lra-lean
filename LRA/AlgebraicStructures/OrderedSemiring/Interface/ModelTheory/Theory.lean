@@ -2,9 +2,4 @@ import LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.Definition
 
 namespace LRA.AlgebraicStructures.OrderedSemiring.Interface.ModelTheory
 
-   
-                                                                            
-                          
-  
-
 end LRA.AlgebraicStructures.OrderedSemiring.Interface.ModelTheory

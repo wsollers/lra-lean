@@ -1,9 +1,1 @@
 import LRA.Arithmetic.ContinuedFractions
-
-   
-                              
-
-                                                                              
-                                                                          
-                                                         
-  

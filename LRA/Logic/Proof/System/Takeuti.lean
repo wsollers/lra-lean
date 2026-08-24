@@ -6,7 +6,3 @@ import LRA.Logic.Proof.System.Takeuti.Rule
 import LRA.Logic.Proof.System.Takeuti.LK
 import LRA.Logic.Proof.System.Takeuti.LJ
 import LRA.Logic.Proof.System.Takeuti.Cut
-
-   
-                                                               
-  

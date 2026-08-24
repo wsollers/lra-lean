@@ -1,11 +1,2 @@
 import LRA.Analysis.Completeness.Completeness.Definition.CompletenessProcesses
 import LRA.Analysis.Completeness.Completeness.Theorems.CompletenessProcesses
-
-   
-                                                             
-                                                                           
-                                           
-                                                                        
-                            
-                                                                
-  

@@ -3,19 +3,51 @@ import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.Boolean
 
 namespace LRA.Logic.ModelTheory.BooleanAlgebras
 
-                                                                             
-                                                                             
-                                                                        
+/--
+`BuildBooleanAlgebraModel` TODO
 
-             
+Predicate logic:
 
-       
-                            
-                                                  
-                                                                      
-        
-   
-  
+  def BuildBooleanAlgebraModel
+    (signature : BooleanAlgebraConceptSignature) :
+    LRA.Logic.FirstOrder.Model BooleanAlgebraFirstOrderSignature where
+  Domain
+
+Predicate logic (unfolded):
+
+  def BuildBooleanAlgebraModel
+    (signature : BooleanAlgebraConceptSignature) :
+    LRA.Logic.FirstOrder.Model BooleanAlgebraFirstOrderSignature where
+  Domain (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+def BuildBooleanAlgebraModel
+    (signature : BooleanAlgebraConceptSignature) :
+    LRA.Logic.FirstOrder.Model BooleanAlgebraFirstOrderSignature where
+  Domain
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 def BuildBooleanAlgebraModel
     (signature : BooleanAlgebraConceptSignature) :
     LRA.Logic.FirstOrder.Model BooleanAlgebraFirstOrderSignature where

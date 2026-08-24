@@ -3,36 +3,12 @@ import Mathlib.Order.SetNotation
 import Mathlib.Order.SymmDiff
 import LRA.Set.Interface.Operations
 
-   
-                                                       
-
-                                                                    
-                                                       
-                                                                        
-                                                                  
-                                                                 
-                                                                        
-                                                                      
-                                                               
-              
-
-                                                                  
-                                                                      
-                                                 
-  
-
 namespace LRA.Set.MathlibPredicateSet
 
 universe u
 
 variable {Alpha : Type u}
 
-                                                                        
-                                                               
-                                                                    
-                                                               
-                                                                   
-             
 instance : _root_.HasSubset (_root_.Set Alpha) where
   Subset := fun A B => A ≤ B
 

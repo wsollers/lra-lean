@@ -3,55 +3,66 @@ import LRA.Logic.Model.Comparison.SignatureEmbedding
 
 namespace LRA.Logic.FirstOrder
 
-   
-           
+/--
+`Model.expand` TODO
 
-                                                                       
-                                                                           
-                                                                          
-                                                                       
-                                                                          
-                                                                       
-                                           
+Predicate logic:
 
-                                                                         
-                                                                         
-                                                                   
-                                                                        
-                                                                        
+  def Model.expand
+    {S S' : Signature} (e : SignatureEmbedding S S') (M : Model S)
+    (newFunctions :
+      (f' : S'.FunctionSymbol) -> (Fin (S'.functionArity f') -> M.Domain) -> M.Domain)
+    (newRelations :
+      (r' : S'.RelationSymbol) -> (Fin (S'.relationArity r') -> M.Domain) -> Prop)
+    (newConstants : S'.Constants -> M.Domain) :
+    Model S' where
+  Domain
 
-                                                                 
-                                                                  
-                                                        
-                                                                    
-                                                                
-                                                                         
-                                                                        
-                                                            
-                                                                        
-                               
-  
+Predicate logic (unfolded):
 
-                                                                         
-                                                                          
-                                                                     
-                                                                      
-                                                                  
+  def Model.expand
+    {S S' : Signature} (e : SignatureEmbedding S S') (M : Model S)
+    (newFunctions :
+      (f' : S'.FunctionSymbol) -> (Fin (S'.functionArity f') -> M.Domain) -> M.Domain)
+    (newRelations :
+      (r' : S'.RelationSymbol) -> (Fin (S'.relationArity r') -> M.Domain) -> Prop)
+    (newConstants : S'.Constants -> M.Domain) :
+    Model S' where
+  Domain (source fallback; no compiled unfold data available)
 
-             
+Logical form (Lean):
 
-       
-                
-                                                                  
-                   
-                                                                                      
-                   
-                                                                                  
-                                               
-                  
-        
-   
-  
+```lean
+def Model.expand
+    {S S' : Signature} (e : SignatureEmbedding S S') (M : Model S)
+    (newFunctions :
+      (f' : S'.FunctionSymbol) -> (Fin (S'.functionArity f') -> M.Domain) -> M.Domain)
+    (newRelations :
+      (r' : S'.RelationSymbol) -> (Fin (S'.relationArity r') -> M.Domain) -> Prop)
+    (newConstants : S'.Constants -> M.Domain) :
+    Model S' where
+  Domain
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
+-/
 def Model.expand
     {S S' : Signature} (e : SignatureEmbedding S S') (M : Model S)
     (newFunctions :

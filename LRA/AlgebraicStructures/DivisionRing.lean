@@ -1,12 +1,10 @@
 import LRA.AlgebraicStructures.DivisionRing.Definition
+import LRA.AlgebraicStructures.DivisionRing.Laws
+import LRA.AlgebraicStructures.DivisionRing.Theorems
+import LRA.AlgebraicStructures.DivisionRing.Characterizations
+import LRA.AlgebraicStructures.DivisionRing.Consequences
 import LRA.AlgebraicStructures.DivisionRing.Interface.Signature.Definition
 import LRA.AlgebraicStructures.DivisionRing.Interface.ModelTheory.LStructure
 import LRA.AlgebraicStructures.DivisionRing.Interface.ModelTheory.Theory
 import LRA.AlgebraicStructures.DivisionRing.Interface.ModelTheory.Model
-import LRA.AlgebraicStructures.DivisionRing.Theorems
-import LRA.AlgebraicStructures.DivisionRing.Characterizations
-import LRA.AlgebraicStructures.DivisionRing.Consequences
 import LRA.AlgebraicStructures.DivisionRing.Relationships
-import LRA.AlgebraicStructures.DivisionRing.Laws
-
-                                                 

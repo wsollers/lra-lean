@@ -3,20 +3,51 @@ import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.SetRing
 
 namespace LRA.Logic.ModelTheory.SetRings
 
-                                                                       
-                                                                            
-                                                                               
-                 
+/--
+`BuildSetRingModel` TODO
 
-             
+Predicate logic:
 
-       
-                     
-                                           
-                                                               
-        
-   
-  
+  def BuildSetRingModel
+    (signature : SetRingConceptSignature) :
+    LRA.Logic.FirstOrder.Model SetRingFirstOrderSignature where
+  Domain
+
+Predicate logic (unfolded):
+
+  def BuildSetRingModel
+    (signature : SetRingConceptSignature) :
+    LRA.Logic.FirstOrder.Model SetRingFirstOrderSignature where
+  Domain (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+def BuildSetRingModel
+    (signature : SetRingConceptSignature) :
+    LRA.Logic.FirstOrder.Model SetRingFirstOrderSignature where
+  Domain
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 def BuildSetRingModel
     (signature : SetRingConceptSignature) :
     LRA.Logic.FirstOrder.Model SetRingFirstOrderSignature where

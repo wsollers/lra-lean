@@ -9,6 +9,43 @@ universe u
 
 variable {Alpha : Type u}
 
+/--
+`NotMemberOfEmpty` TODO
+
+Predicate logic:
+
+  ∀ x : Alpha, x ∉ ∅ ∈ LRA.Set.PredicateSet Alpha
+
+Predicate logic (unfolded):
+
+  ∀ {Alpha : Type u} (x : Alpha), LRA.Set.instMembershipPredicateSet.1 LRA.Set.PredicateSet.instEmptyCollection.1 x → False
+
+Logical form (Lean):
+
+```lean
+theorem NotMemberOfEmpty :
+    ∀ x : Alpha, x ∉ (∅ : LRA.Set.PredicateSet Alpha)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 theorem NotMemberOfEmpty :
     ∀ x : Alpha, x ∉ (∅ : LRA.Set.PredicateSet Alpha) := by
   sorry

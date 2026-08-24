@@ -13,22 +13,3 @@ import LRA.Morphism.Properties.PreservesBinaryOperation.Theorems
 import LRA.Morphism.Properties.OperationEmbedding.Definition
 import LRA.Morphism.Properties.OperationEmbedding.Theorems
 import LRA.Morphism.Properties.StructuralEmbedding.Definition
-
-   
-                                                                          
-                                                    
-
-                                                                           
-                                           
-
-                                                              
-                                                         
-                                                  
-                                                                               
-
-                                                                             
-                                                                  
-                                                                                 
-                                                                             
-                                                                  
-  

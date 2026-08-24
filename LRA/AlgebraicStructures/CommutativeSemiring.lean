@@ -1,11 +1,9 @@
 import LRA.AlgebraicStructures.CommutativeSemiring.Definition
+import LRA.AlgebraicStructures.CommutativeSemiring.Theorems
+import LRA.AlgebraicStructures.CommutativeSemiring.Characterizations
+import LRA.AlgebraicStructures.CommutativeSemiring.Consequences
 import LRA.AlgebraicStructures.CommutativeSemiring.Interface.Signature.Definition
 import LRA.AlgebraicStructures.CommutativeSemiring.Interface.ModelTheory.LStructure
 import LRA.AlgebraicStructures.CommutativeSemiring.Interface.ModelTheory.Theory
 import LRA.AlgebraicStructures.CommutativeSemiring.Interface.ModelTheory.Model
-import LRA.AlgebraicStructures.CommutativeSemiring.Theorems
-import LRA.AlgebraicStructures.CommutativeSemiring.Characterizations
-import LRA.AlgebraicStructures.CommutativeSemiring.Consequences
 import LRA.AlgebraicStructures.CommutativeSemiring.Relationships
-
-                                                        

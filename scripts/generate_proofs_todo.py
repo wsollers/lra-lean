@@ -103,7 +103,8 @@ EXCLUDED_PREFIX = "Volume"
 
 PROOF_KEYWORDS = ("theorem", "lemma", "proposition", "corollary")
 INSTANCE_KEYWORD = "instance"
-ALL_KEYWORDS = PROOF_KEYWORDS + (INSTANCE_KEYWORD,)
+AXIOM_KEYWORD = "axiom"
+ALL_KEYWORDS = PROOF_KEYWORDS + (INSTANCE_KEYWORD, AXIOM_KEYWORD)
 
 # The keyword itself is captured (group 1) so `scan_source_module` can tell a
 # `theorem`/`lemma`/... declaration apart from an `instance` declaration --
@@ -589,7 +590,7 @@ def transliterate_signature(signature: str) -> str:
 @dataclass
 class SourceTheorem:
     name: str
-    kind: str  # "theorem" or "instance"
+    kind: str  # proof keyword, "instance", or "axiom"
     line: int
     signature_lean: str
     body_lean: str
@@ -613,7 +614,7 @@ def module_path(module: str) -> Path:
     return REPO_ROOT / (module.replace(".", "/") + ".lean")
 
 
-def scan_source_module(path: Path, folder_module_prefix: str) -> SourceModule:
+def scan_source_module(path: Path, import_scope_prefix: str) -> SourceModule:
     source = path.read_text(encoding="utf-8")
     masked = mask_comments(source)
 
@@ -622,7 +623,7 @@ def scan_source_module(path: Path, folder_module_prefix: str) -> SourceModule:
     for index, match in enumerate(matches):
         keyword = match.group(1)
         name = match.group(2) or match.group(3)
-        kind = "instance" if keyword == INSTANCE_KEYWORD else "theorem"
+        kind = keyword
         next_start = matches[index + 1].start() if index + 1 < len(matches) else len(masked)
         declaration_text = masked[match.start() : next_start]
         signature = extract_signature(declaration_text, match.end() - match.start())
@@ -647,7 +648,7 @@ def scan_source_module(path: Path, folder_module_prefix: str) -> SourceModule:
     imports = tuple(
         m.group(1)
         for m in re.finditer(
-            rf"(?m)^import\s+({re.escape(folder_module_prefix)}(?:\.[\w.]+)?)\s*$", source
+            rf"(?m)^import\s+({re.escape(import_scope_prefix)}(?:\.[\w.]+)?)\s*$", source
         )
     )
 
@@ -668,7 +669,7 @@ def scan_source_module(path: Path, folder_module_prefix: str) -> SourceModule:
 class CompiledTheorem:
     fq_name: str
     module: str
-    kind: str  # "theorem" or "instance"
+    kind: str  # "theorem", "instance", or "axiom"
     uses_sorry: bool | None  # None only in --offline mode
     pretty_type_uncurried: str  # "" if Lean's pretty printer failed for this row
     pretty_type_unfolded: str  # "" if unfolding/pretty-printing failed
@@ -734,7 +735,7 @@ def synthesize_offline(modules: list[SourceModule]) -> dict[str, list[CompiledTh
 @dataclass
 class Entry:
     name: str
-    kind: str  # "Theorem" or "Instance", for display
+    kind: str  # display label for declaration kind
     state: str
     predicate_logic: str
     predicate_logic_unfolded: str
@@ -745,7 +746,21 @@ class Entry:
 
 
 def display_kind(kind: str) -> str:
-    return "Instance" if kind == "instance" else "Theorem"
+    if kind == "instance":
+        return "Instance"
+    if kind == "axiom":
+        return "Axiom"
+    if kind == "lemma":
+        return "Lemma"
+    if kind == "proposition":
+        return "Proposition"
+    if kind == "corollary":
+        return "Corollary"
+    return "Theorem"
+
+
+def is_proof_family_kind(kind: str) -> bool:
+    return kind in PROOF_KEYWORDS
 
 
 PROJECTION_WRAPPER_BODY_RE = re.compile(
@@ -760,7 +775,7 @@ def is_trivial_projection_wrapper(mod: SourceModule, theorem: SourceTheorem) -> 
     AdditiveCommutativeLaws.AddCommutative`, not standalone proof obligations.
     They should not appear as primary work items in `ProofsToDo.md`.
     """
-    if theorem.kind != "theorem":
+    if not is_proof_family_kind(theorem.kind):
         return False
     if not mod.relative_path.endswith("/Laws/Definition.lean"):
         return False
@@ -819,7 +834,9 @@ def reconcile(
                     "scan but not reported by the Lean dumper (skipped, not compiled?)"
                 )
                 continue
-            if row.uses_sorry is None:
+            if row.kind == "axiom":
+                state = "Axiom"
+            elif row.uses_sorry is None:
                 state = "Unknown (offline preview)"
             else:
                 state = "Sorry" if row.uses_sorry else "Completed"
@@ -827,7 +844,7 @@ def reconcile(
             entries.append(
                 Entry(
                     name=theorem.name,
-                    kind=display_kind(row.kind),
+                    kind=display_kind(theorem.kind if row.kind != "axiom" else row.kind),
                     state=state,
                     predicate_logic=predicate,
                     predicate_logic_unfolded=resolve_unfolded(row, predicate),
@@ -846,7 +863,7 @@ def reconcile(
         # topologically safe placement even without a known source line.
         for name, remaining in queues.items():
             for row in remaining:
-                if row.kind == "theorem" and name in filtered_projection_names:
+                if is_proof_family_kind(row.kind) and name in filtered_projection_names:
                     continue
                 if row.kind == "instance":
                     note = (
@@ -854,13 +871,20 @@ def reconcile(
                         "(expected for an anonymous `instance : ... := ...` with no written name; "
                         "appended at end of file's block)"
                     )
+                elif row.kind == "axiom":
+                    note = (
+                        "reported by the Lean dumper as an axiom but not found by source scan "
+                        "(appended at end of file's block)"
+                    )
                 else:
                     note = (
                         "reported by the Lean dumper but not found by source scan "
                         "(appended at end of file's block)"
                     )
                 warnings.append(f"{mod.relative_path}: '{name}' {note}")
-                if row.uses_sorry is None:
+                if row.kind == "axiom":
+                    state = "Axiom"
+                elif row.uses_sorry is None:
                     state = "Unknown (offline preview)"
                 else:
                     state = "Sorry" if row.uses_sorry else "Completed"
@@ -926,6 +950,46 @@ def topological_modules(modules: list[SourceModule]) -> list[SourceModule]:
     return ordered
 
 
+def recursive_barrel_modules(
+    modules: list[SourceModule],
+    barrel_module: str,
+) -> list[SourceModule] | None:
+    """Prefer the natural recursive Lean import order rooted at a folder barrel.
+
+    When ``LRA/<Folder>.lean`` exists, that file is the closest thing the
+    current tree has to a subject-level "what Lean presents first" ordering.
+    We therefore walk its local imports in written order, recursively, emit
+    imported modules before the importer, and only *afterwards* append any
+    in-scope modules the barrel never reaches. Those leftovers are still
+    important inventory, but they should not displace the main proving path.
+    """
+    by_name = {mod.module: mod for mod in modules}
+    root = by_name.get(barrel_module)
+    if root is None:
+        return None
+
+    ordered: list[SourceModule] = []
+    visited: set[str] = set()
+
+    def visit(module_name: str) -> None:
+        if module_name in visited:
+            return
+        mod = by_name.get(module_name)
+        if mod is None:
+            return
+        visited.add(module_name)
+        for imported in mod.local_imports:
+            visit(imported)
+        ordered.append(mod)
+
+    visit(barrel_module)
+
+    remaining = [mod for mod in modules if mod.module not in visited]
+    if remaining:
+        ordered.extend(topological_modules(remaining))
+    return ordered
+
+
 # ---------------------------------------------------------------------------
 # Folder discovery + rendering
 # ---------------------------------------------------------------------------
@@ -946,8 +1010,8 @@ def folder_module_prefix(folder: Path) -> str:
     return f"LRA.{folder.name}"
 
 
-def in_scope_source_modules(folder: Path) -> list[SourceModule]:
-    prefix = folder_module_prefix(folder)
+def in_scope_source_modules(folder: Path, import_scope_prefix: str | None = None) -> list[SourceModule]:
+    prefix = import_scope_prefix or folder_module_prefix(folder)
     paths = sorted(folder.rglob("*.lean"))
     return [scan_source_module(path, prefix) for path in paths]
 
@@ -966,6 +1030,8 @@ def render_scope(
     )
     sorry_count = sum(1 for _, entries in ordered for e in entries if e.state == "Sorry")
     instance_count = sum(1 for _, entries in ordered for e in entries if e.kind == "Instance")
+    axiom_count = sum(1 for _, entries in ordered for e in entries if e.kind == "Axiom")
+    unknown_count = total - completed - sorry_count - axiom_count
     module_count = sum(1 for _, entries in ordered if entries)
 
     lines = [f"# {title}", ""]
@@ -984,63 +1050,110 @@ def render_scope(
     ]
     if globally_sorted:
         lines += [
-            "Proofs are listed in dependency order across the entire audited `LRA/` tree.",
-            "Files are ordered by the global import graph of all in-scope modules; within a",
-            "file, entries (theorems, lemmas, and `instance` laws alike) keep source order,",
-            "because Lean forbids forward references, so source order is already a valid",
-            "local topological order. Working this list top to bottom, no entry depends on",
-            "anything not yet proved above it anywhere else in the audited scope.",
+            "This file is a fresh repo-wide inventory plus an open-proof work queue.",
+            "The open queue uses the global import graph of all audited `LRA/` modules, and",
+            "within each file it keeps source order because Lean forbids forward references.",
+            "That gives a conservative repo-local work sequence, but it is **not** a",
+            "theorem-level semantic dependency graph across unrelated subjects.",
         ]
     else:
         lines += [
-            "Proofs are listed in dependency order. Files are ordered by this folder's own",
-            "import graph; within a file, entries (theorems, lemmas, and `instance` laws alike)",
-            "keep source order, because Lean forbids forward references, so source order is",
-            "already a valid topological order. Working this list top to bottom, no entry",
-            "depends on anything not yet proved above it.",
+            "This file is a fresh folder inventory plus an open-proof work queue.",
+            "When `LRA/<Folder>.lean` exists, the open queue follows that barrel file's",
+            "recursive import order; otherwise it falls back to this folder's module import",
+            "graph. Within each file it keeps source order because Lean forbids forward",
+            "references. That gives a conservative repo-local work sequence, but it is",
+            "**not** a theorem-level semantic dependency graph across unrelated topics in",
+            "the folder.",
         ]
     lines += [
         "",
         f"**Inventory:** {total} entr{'y' if total == 1 else 'ies'} across {module_count} "
         f"module(s) ({completed} completed, {sorry_count} sorry"
         + (
-            f", {total - completed - sorry_count} unknown"
+            f", {unknown_count} unknown"
             if offline
             else ""
         )
-        + f"), {instance_count} of which {'is' if instance_count == 1 else 'are'} an "
+        + f", {axiom_count} axiomatic assumption{'s' if axiom_count != 1 else ''}), "
+        f"{instance_count} of which {'is' if instance_count == 1 else 'are'} an "
         "`instance` law rather than a `theorem`/`lemma`.",
         "",
     ]
 
-    blocks: list[str] = []
-    for mod, entries in ordered:
-        for entry in entries:
-            abs_path = REPO_ROOT / entry.source_relative_path
-            try:
-                rel = abs_path.relative_to(base_dir).as_posix()
-            except ValueError:
-                rel = os.path.relpath(abs_path, base_dir).replace(os.sep, "/")
-            source = f"./{rel}" + (f"#L{entry.source_line}" if entry.source_line is not None else "")
-            blocks.append(
-                "\n".join(
-                    [
-                        f"Name: {entry.name}",
-                        f"Kind: {entry.kind}",
-                        f"State: {entry.state}",
-                        f"Predicate logic: {entry.predicate_logic}",
-                        f"Predicate logic (unfolded): {entry.predicate_logic_unfolded}",
-                        f"Transliterated theorem: {entry.transliterated_theorem}",
-                        f"Logical form (Lean): {entry.logical_form_lean}",
-                        f"Source: {source}",
-                    ]
-                )
-            )
+    def entry_block(entry: Entry) -> str:
+        abs_path = REPO_ROOT / entry.source_relative_path
+        try:
+            rel = abs_path.relative_to(base_dir).as_posix()
+        except ValueError:
+            rel = os.path.relpath(abs_path, base_dir).replace(os.sep, "/")
+        source = f"./{rel}" + (f"#L{entry.source_line}" if entry.source_line is not None else "")
+        return "\n".join(
+            [
+                f"Name: {entry.name}",
+                f"Kind: {entry.kind}",
+                f"State: {entry.state}",
+                f"Predicate logic: {entry.predicate_logic}",
+                f"Predicate logic (unfolded): {entry.predicate_logic_unfolded}",
+                f"Transliterated theorem: {entry.transliterated_theorem}",
+                f"Logical form (Lean): {entry.logical_form_lean}",
+                f"Source: {source}",
+            ]
+        )
 
-    if not blocks:
-        lines.append("No theorem declarations found under this folder yet.")
+    open_blocks: list[str] = []
+    completed_blocks: list[str] = []
+    axiom_blocks: list[str] = []
+    for _mod, entries in ordered:
+        for entry in entries:
+            block = entry_block(entry)
+            if entry.state == "Axiom":
+                axiom_blocks.append(block)
+            elif entry.state == "Completed":
+                completed_blocks.append(block)
+            else:
+                open_blocks.append(block)
+
+    if not open_blocks and not completed_blocks and not axiom_blocks:
+        lines.append("No proof or axiom declarations found under this scope yet.")
     else:
-        lines.append("\n\n\n\n".join(blocks))
+        lines += [
+            "## Open Work Queue",
+            "",
+            "Unfinished entries (`Sorry`, or `Unknown` in offline preview) are listed first so",
+            "this section can be used as the actual proof queue.",
+            "",
+        ]
+        if open_blocks:
+            lines.append("\n\n\n\n".join(open_blocks))
+        else:
+            lines.append("No unfinished theorem declarations are currently present in this scope.")
+
+        lines += [
+            "",
+            "## Axioms / Assumptions",
+            "",
+            "Declarations written as `axiom` are recorded here for audit context, but they are",
+            "excluded from the active proof queue because there is no proof obligation to discharge.",
+            "",
+        ]
+        if axiom_blocks:
+            lines.append("\n\n\n\n".join(axiom_blocks))
+        else:
+            lines.append("No axiomatic assumptions are currently present in this scope.")
+
+        lines += [
+            "",
+            "## Completed Inventory",
+            "",
+            "Completed entries are retained below for full-fresh regeneration and audit context,",
+            "but they are not part of the active proof queue.",
+            "",
+        ]
+        if completed_blocks:
+            lines.append("\n\n\n\n".join(completed_blocks))
+        else:
+            lines.append("No completed theorem declarations are currently present in this scope.")
 
     return "\n".join(lines).rstrip() + "\n"
 
@@ -1074,6 +1187,7 @@ def include_compiled_only_modules(
     source_modules: list[SourceModule],
     compiled_by_module: dict[str, list[CompiledTheorem]],
     prefixes: list[str],
+    import_scope_prefix: str,
 ) -> list[SourceModule]:
     known = {mod.module for mod in source_modules}
     for module in compiled_by_module:
@@ -1082,14 +1196,18 @@ def include_compiled_only_modules(
         if any(module == prefix or module.startswith(prefix + ".") for prefix in prefixes):
             path = module_path(module)
             if path.exists():
-                source_modules.append(scan_source_module(path, "LRA"))
+                source_modules.append(scan_source_module(path, import_scope_prefix))
     return source_modules
 
 
 def process_folder(folder: Path, tsv_by_module: dict[str, list[CompiledTheorem]] | None, offline: bool) -> tuple[str, list[str]]:
     source_modules = in_scope_source_modules(folder)
+    barrel_path = REPO_ROOT / "LRA" / f"{folder.name}.lean"
+    barrel_module = folder_module_prefix(folder)
+    if barrel_path.exists() and all(mod.module != barrel_module for mod in source_modules):
+        source_modules.append(scan_source_module(barrel_path, barrel_module))
 
-    prefix = folder_module_prefix(folder)
+    prefix = barrel_module
     if offline:
         compiled_by_module = synthesize_offline(source_modules)
     else:
@@ -1098,9 +1216,13 @@ def process_folder(folder: Path, tsv_by_module: dict[str, list[CompiledTheorem]]
         # scanning never walked (e.g. the folder's own router file, which
         # lives at LRA/<Folder>.lean, a sibling of LRA/<Folder>/, not inside
         # it). Include them so nothing compiled is silently excluded.
-        source_modules = include_compiled_only_modules(source_modules, compiled_by_module, [prefix])
+        source_modules = include_compiled_only_modules(
+            source_modules, compiled_by_module, [prefix], prefix
+        )
 
-    ordered_modules = topological_modules(source_modules)
+    ordered_modules = recursive_barrel_modules(source_modules, barrel_module)
+    if ordered_modules is None:
+        ordered_modules = topological_modules(source_modules)
     ordered, warnings = reconcile(ordered_modules, compiled_by_module)
     return render_folder(folder, ordered, offline), warnings
 
@@ -1113,13 +1235,18 @@ def process_global(
     prefixes = [folder_module_prefix(folder) for folder in folders]
     source_modules: list[SourceModule] = []
     for folder in folders:
-        source_modules.extend(in_scope_source_modules(folder))
+        # The global checklist needs the full audited `LRA` import graph, not
+        # just same-folder edges, or cross-folder dependencies disappear from
+        # the topological order.
+        source_modules.extend(in_scope_source_modules(folder, "LRA"))
 
     if offline:
         compiled_by_module = synthesize_offline(source_modules)
     else:
         compiled_by_module = compiled_rows_for_prefixes(prefixes, tsv_by_module, offline)
-        source_modules = include_compiled_only_modules(source_modules, compiled_by_module, prefixes)
+        source_modules = include_compiled_only_modules(
+            source_modules, compiled_by_module, prefixes, "LRA"
+        )
 
     ordered_modules = topological_modules(source_modules)
     ordered, warnings = reconcile(ordered_modules, compiled_by_module)

@@ -1,4 +1,2 @@
 import LRA.UniversalAlgebra.Satisfaction.Definition
 import LRA.UniversalAlgebra.Satisfaction.Consequences
-
-                                                                      

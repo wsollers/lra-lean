@@ -3,6 +3,4 @@ import LRA.AlgebraicStructures.DivisionRing.Interface.ModelTheory.LStructure
 
 namespace LRA.AlgebraicStructures.DivisionRing.Interface.ModelTheory
 
-                                                         
-
 end LRA.AlgebraicStructures.DivisionRing.Interface.ModelTheory

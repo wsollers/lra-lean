@@ -7,8 +7,4 @@ import LRA.UniversalAlgebra.Signature.FormalVocabulary.Notation
 
 namespace LRA.UniversalAlgebra.Signature
 
-   
-                                                                       
-  
-
 end LRA.UniversalAlgebra.Signature

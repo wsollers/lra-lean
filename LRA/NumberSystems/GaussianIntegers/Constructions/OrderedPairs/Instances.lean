@@ -1,6 +1,3 @@
-                                                                               
-                                                                         
-                                                                  
 
 import LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.Behavior
 
@@ -46,8 +43,6 @@ instance : SubtractionCompatibilityLaw (GaussianInteger R) :=
   ⟨fun _ _ => rfl⟩
 
 end Certificates
-
-                                                                   
 
 example : CommutativeRingLaws (GaussianInteger Int) := inferInstance
 

@@ -1,13 +1,2 @@
 import LRA.UniversalAlgebra.Signature.FormalVocabulary
 import LRA.UniversalAlgebra.Signature.BasicArithmeticLanguage
-
-   
-                                                         
-
-                                                                     
-                                            
-                                                         
-                                                     
-                                                                
-                                               
-  

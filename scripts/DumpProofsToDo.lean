@@ -2,14 +2,16 @@ import Lean
 
 /-!
 Dump every compiled `theorem`/`lemma`-kind declaration under `LRA`, plus
-every `Prop`-valued `instance` declaration (the repository's "laws" pattern:
+every true `axiom` declaration, plus every `Prop`-valued `instance`
+declaration (the repository's "laws" pattern:
 `instance : AdditiveIdentityLaws R := ⟨…⟩` is a proof obligation exactly
 like a `theorem`, just spelled with the `instance` keyword so it also
 participates in typeclass search), to a TSV for
 `scripts/generate_proofs_todo.py` to turn into per-folder `ProofsToDo.md`
 checklists.
 
-A **`kind`** column (`theorem` or `instance`) distinguishes the two on each
+A **`kind`** column (`theorem`, `instance`, or `axiom`) distinguishes the
+three on each
 row, since `generate_proofs_todo.py`'s source scanner looks for different
 keywords (and an anonymous `instance : C ... := …` has no name in source at
 all — the Lean compiler synthesizes one — so it can never be matched to a
@@ -184,32 +186,17 @@ where
       Meta.mkAppM ``And #[p, rest]
 
 /--
-Custom definitions this repository is comfortable expanding into their raw
-`∀ ∃ ∧ ∨ ¬ =` form for the "Raw / Unfolded" predicate-logic column.
-Deliberately small and specific to the pedagogically load-bearing
-predicates in each subject rather than exhaustive — expanding *everything*
-eventually walks down into `Eq`, `LE.le`, numeric literals, and typeclass
-machinery, which is noise, not insight. Grow this list name by name as
-particular theorems would benefit, rather than widening the rule that
-drives it (see `unfoldAllowed`'s doc comment for why "unfold everything" is
-not just unnecessary but actively worse).
+Definitions explicitly *not* unfolded into the "Raw / Unfolded"
+predicate-logic column.
 
-Seeded here with the `LRA.Order.Bounds.*` vocabulary visible from
-`LRA/Order/Bounds.lean`'s own import list; extend for other subjects as you
-use this on them.
+The default policy is now to unfold everything reachable and only carve
+things back out here if they cause rendering failures or obviously
+pedagogically-worse output. Start empty; add blockers reactively.
 -/
-def unfoldAllowList : List Name := [
-  `LRA.Order.UpperBound, `LRA.Order.LowerBound,
-  `LRA.Order.BoundedAbove, `LRA.Order.BoundedBelow, `LRA.Order.Bounded,
-  `LRA.Order.Supremum, `LRA.Order.Infimum,
-  `LRA.Order.GreatestElement, `LRA.Order.LeastElement,
-  `LRA.Order.MaximalElement, `LRA.Order.MinimalElement,
-  `LRA.Order.TopElement, `LRA.Order.BottomElement,
-  `LRA.Order.LeastUpperBoundProperty, `LRA.Order.GreatestLowerBoundProperty
-]
+def unfoldDenyList : List Name := []
 
-private def isAllowedToUnfold (n : Name) : Bool :=
-  unfoldAllowList.contains n
+private def isDeniedFromUnfolding (n : Name) : Bool :=
+  unfoldDenyList.contains n
 
 /--
 True iff `s` is `<prefix><digits>` for one of Lean's own numbered
@@ -283,32 +270,25 @@ private def isGenerated (env : Environment) (name : Name) : Bool :=
     "_private".isPrefixOf name.toString
 
 /--
-Classifies one `.defnInfo` declaration (`name`, with declared `type`)
-independently along two axes, each reported as `some true`/`some false`, or
-`none` if the underlying API call itself threw. The two checks are
-deliberately kept independent (neither gates the other) rather than
-composed into one boolean, after a first real run against this repository
-gated `Meta.isProp` behind `Meta.isInstance` and got a suspicious "zero
-instances found out of 2343 `.defnInfo` declarations, zero errors either
-way" — meaning `Meta.isInstance` was confidently, silently wrong about
-*something* (either its name/semantics were misremembered, or this
-particular query against a freshly-`importModules`-loaded environment
-doesn't see the instance-attribute extension the way elaboration-time code
-does), with no way to tell why from a single collapsed boolean. Reporting
-both independently, and capturing a row whenever `isProp` alone says
-`true` (see `main`), decouples "is this worth a `ProofsToDo.md` entry" —
-which only needs `Prop`-valued, i.e. `Meta.isProp` — from "is this
-registered for typeclass search" — which is what `Meta.isInstance` (if it
-is even doing what its name suggests) actually answers, and which this
-repository's own convention of proving "laws" *only* via `instance`
-declarations (never a bare `Prop`-valued `def`) makes redundant here in
-practice: a `Prop`-valued `.defnInfo` under `LRA` is, by this repository's
-own convention, an `instance` law, whether or not `Meta.isInstance` agrees.
+True when a `.defnInfo` declaration's *codomain* is `Prop`, even if the full
+declared type is a function ending in `Prop` rather than bare `Prop`.
+
+This widens the previous `Meta.isProp type` check just enough to include
+authored law bundles such as
+`def BooleanAlgebraLaws ... : Prop := ...`, whose full type is
+`∀ ..., Prop` and therefore not itself proposition-valued. We telescope over
+all binders, inspect the resulting codomain, and keep the same `Option Bool`
+shape so callers can still distinguish `false` from a thrown `Meta` query.
 -/
 private def classifyDefn (env : Environment) (type : Expr) : IO (Option Bool) := do
   let ctx : Core.Context := { fileName := "DumpProofsToDo", fileMap := default }
   try
-    let (r, _) ← ((Meta.isProp type).run' : CoreM Bool).toIO ctx { env := env }
+    let (r, _) ← ((do
+      let result ← Meta.forallTelescopeReducing type fun _ body => do
+        let reduced ← Meta.whnf body
+        pure <| reduced.isProp
+      pure result
+    ).run' : CoreM Bool).toIO ctx { env := env }
     pure (some r)
   catch _ =>
     pure none
@@ -344,13 +324,11 @@ private def discoveredLraImports : IO (Array Import) := do
   pure <| sortedModules.map fun module => { module := module }
 
 /--
-Recursively delta-unfolds every application of an allow-listed definition
-anywhere inside `e`, repeating up to `fuel` times per position so an
-unfolded definition that itself mentions another allow-listed definition
-also gets expanded. Anything not on `unfoldAllowList` is left exactly as
-written, but its *arguments* are still visited, since an allow-listed
-predicate can appear nested inside a non-allow-listed one (e.g.
-`And (IsUpperBound r A) Q`).
+Recursively delta-unfolds every application of a definition not present in
+`unfoldDenyList`, repeating up to `fuel` times per position so an unfolded
+definition that itself mentions another unfoldable definition also gets
+expanded. Denied definitions are left exactly as written, but their
+arguments are still visited, so nested unfoldable predicates still open up.
 
 This exists instead of a one-line call to `Lean.Meta.transform` because
 that combinator's exact signature in this Lean version was not recalled
@@ -382,7 +360,7 @@ private partial def unfoldAllowed (fuel : Nat) (e : Expr) : MetaM Expr := do
       let fn := e.getAppFn
       let args := e.getAppArgs
       if let .const name _ := fn then
-        if isAllowedToUnfold name then
+        if !(isDeniedFromUnfolding name) then
           match ← Meta.unfoldDefinition? e with
           | some unfolded => unfoldAllowed fuel unfolded.headBeta
           | none =>
@@ -446,11 +424,28 @@ private def computeFolRenderings (env : Environment) (type : Expr) :
   catch _ =>
     pure (plain, plain, plain, "error:unavailable")
 
+/--
+For a `def` whose codomain is `Prop`, reconstruct the authored proposition by
+applying the definition body to the telescope of its binders, then rebuilding
+those binders as outer `∀`s around the resulting proposition body.
+
+Example:
+`def BooleanAlgebraLaws (join meet ...) : Prop := P join meet /\ Q join meet`
+should render as `∀ join meet ..., P join meet /\ Q join meet`, not merely as
+`∀ join meet ..., Prop`.
+-/
+private def propositionExprOfDefn (type value : Expr) : MetaM Expr := do
+  Meta.forallTelescopeReducing type fun fvars _ => do
+    let applied := mkAppN value fvars
+    let body ← Meta.whnf applied.headBeta
+    Meta.mkForallFVars fvars body
+
 unsafe def main : IO Unit := do
   let env ← importModules (← discoveredLraImports) {} (trustLevel := 0)
   let mut rows : Array String := #[]
   let mut theoremCount := 0
   let mut instanceCount := 0
+  let mut axiomCount := 0
   let mut defnInfoCount := 0
   let mut propTrueCount := 0
   let mut propFalseCount := 0
@@ -478,6 +473,18 @@ unsafe def main : IO Unit := do
             clean unfolded,
             status
           ]
+        else if let .axiomInfo ax := info then
+          let (_plain, uncurried, unfolded, status) ← computeFolRenderings env ax.type
+          axiomCount := axiomCount + 1
+          rows := rows.push <| String.intercalate "\t" [
+            clean name.toString,
+            clean renderedModule,
+            "axiom",
+            "false",
+            clean uncurried,
+            clean unfolded,
+            status
+          ]
         else if let .defnInfo defn := info then
           defnInfoCount := defnInfoCount + 1
           let isPropResult ← classifyDefn env defn.type
@@ -487,7 +494,15 @@ unsafe def main : IO Unit := do
           | some true =>
             propTrueCount := propTrueCount + 1
             let sorryUsed := usesSorry defn.value
-            let (_plain, uncurried, unfolded, status) ← computeFolRenderings env defn.type
+            let ctx : Core.Context := { fileName := "DumpProofsToDo", fileMap := default }
+            let renderExpr ←
+              try
+                let (expr, _) ←
+                  (propositionExprOfDefn defn.type defn.value).toIO ctx { env := env }
+                pure expr
+              catch _ =>
+                pure defn.type
+            let (_plain, uncurried, unfolded, status) ← computeFolRenderings env renderExpr
             instanceCount := instanceCount + 1
             rows := rows.push <| String.intercalate "\t" [
               clean name.toString,
@@ -502,6 +517,6 @@ unsafe def main : IO Unit := do
   IO.FS.writeFile "build/proofs-todo-environment.tsv" <|
     "fq_name\tmodule\tkind\tuses_sorry\tpretty_type_uncurried\tpretty_type_unfolded\tunfold_status\n" ++
       String.intercalate "\n" rows.toList ++ "\n"
-  IO.println s!"wrote {rows.size} declarations ({theoremCount} theorem, {instanceCount} instance)"
+  IO.println s!"wrote {rows.size} declarations ({theoremCount} theorem, {instanceCount} instance, {axiomCount} axiom)"
   IO.println s!"defnInfo scanned (post-noise-filter): {defnInfoCount}"
   IO.println s!"  Meta.isProp:      true={propTrueCount} (captured as instance rows) false={propFalseCount} error={propErrorCount}"

@@ -1,4 +1,2 @@
 import LRA.AlgebraicStructures.LinearlyOrderedGroup.Laws.Definition
 import LRA.AlgebraicStructures.LinearlyOrderedGroup.Laws.Consequences
-
-                                                                          

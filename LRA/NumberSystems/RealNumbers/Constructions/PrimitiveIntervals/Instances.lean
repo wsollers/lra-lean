@@ -1,6 +1,3 @@
-                                                                                
-                                                                   
-                
 
 import LRA.AlgebraicStructures
 import LRA.NumberSystems.RationalNumbers.Definition
@@ -28,6 +25,58 @@ same `0⁻¹ := 0` way as `Dedekind`'s.
 -/
 
 open Classical in
+
+/--
+`totalInverse` TODO
+
+Predicate logic:
+
+  noncomputable def totalInverse
+    (rational_model : DenselyOrderedFieldModel)
+    (value : Carrier rational_model) : Carrier rational_model :=
+  if value_nonzero : value ≠ zero rational_model
+  then inverse rational_model value value_nonzero
+  else zero rational_model
+
+Predicate logic (unfolded):
+
+  noncomputable def totalInverse
+    (rational_model : DenselyOrderedFieldModel)
+    (value : Carrier rational_model) : Carrier rational_model :=
+  if value_nonzero : value ≠ zero rational_model
+  then inverse rational_model value value_nonzero
+  else zero rational_model (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def totalInverse
+    (rational_model : DenselyOrderedFieldModel)
+    (value : Carrier rational_model) : Carrier rational_model :=
+  if value_nonzero : value ≠ zero rational_model
+  then inverse rational_model value value_nonzero
+  else zero rational_model
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def totalInverse
     (rational_model : DenselyOrderedFieldModel)
     (value : Carrier rational_model) : Carrier rational_model :=
@@ -56,6 +105,45 @@ noncomputable instance CarrierOne (rational_model : DenselyOrderedFieldModel) :
 noncomputable instance CarrierLT (rational_model : DenselyOrderedFieldModel) :
     LT (Carrier rational_model) := ⟨strict_order rational_model⟩
 
+/--
+`nonstrict_order` TODO
+
+Predicate logic:
+
+  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (first second : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Carrier rational_model), Or (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.strict_order rational_model first second) (first = second)
+
+Predicate logic (unfolded):
+
+  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (first second : Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1), Or ((Classical.indefiniteDescription (fun x => ∀ (first_representative second_representative : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Representative rational_model), x (Quotient.mk (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model) first_representative) (Quotient.mk (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model) second_representative) ↔ LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_strict_order rational_model first_representative second_representative) ⋯).1 first second) (first = second)
+
+Logical form (Lean):
+
+```lean
+def nonstrict_order
+    (rational_model : DenselyOrderedFieldModel)
+    (first second : Carrier rational_model) : Prop :=
+  strict_order rational_model first second ∨ first = second
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: Or.inl, Or.inr, cases, rcases, unfold
+
+-/
 def nonstrict_order
     (rational_model : DenselyOrderedFieldModel)
     (first second : Carrier rational_model) : Prop :=
@@ -64,26 +152,223 @@ def nonstrict_order
 noncomputable instance CarrierLE (rational_model : DenselyOrderedFieldModel) :
     LE (Carrier rational_model) := ⟨nonstrict_order rational_model⟩
 
+/--
+`carrier_field_cert` TODO
+
+Predicate logic:
+
+  (∀ rational_model ∈ DenselyOrderedFieldModel), OrderedFieldLaws (Carrier rational_model)
+
+Predicate logic (unfolded):
+
+  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), LRA.AlgebraicStructures.OrderedFieldLaws (Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1)
+
+Logical form (Lean):
+
+```lean
+theorem carrier_field_cert
+    (rational_model : DenselyOrderedFieldModel) :
+    OrderedFieldLaws (Carrier rational_model)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem carrier_field_cert
     (rational_model : DenselyOrderedFieldModel) :
     OrderedFieldLaws (Carrier rational_model) := by
   sorry
 
+/--
+`carrier_strict_order_cert` TODO
+
+Predicate logic:
+
+  (∀ rational_model ∈ DenselyOrderedFieldModel), StrictOrderCompatibilityLaw (Carrier rational_model)
+
+Predicate logic (unfolded):
+
+  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), LRA.Order.StrictOrderCompatibilityLaw (Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1)
+
+Logical form (Lean):
+
+```lean
+theorem carrier_strict_order_cert
+    (rational_model : DenselyOrderedFieldModel) :
+    StrictOrderCompatibilityLaw (Carrier rational_model)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem carrier_strict_order_cert
     (rational_model : DenselyOrderedFieldModel) :
     StrictOrderCompatibilityLaw (Carrier rational_model) := by
   sorry
 
+/--
+`carrier_dense_order_cert` TODO
+
+Predicate logic:
+
+  (∀ rational_model ∈ DenselyOrderedFieldModel), DenseOrderLaw (Carrier rational_model)
+
+Predicate logic (unfolded):
+
+  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), LRA.Order.DenseOrderLaw (Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1)
+
+Logical form (Lean):
+
+```lean
+theorem carrier_dense_order_cert
+    (rational_model : DenselyOrderedFieldModel) :
+    DenseOrderLaw (Carrier rational_model)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem carrier_dense_order_cert
     (rational_model : DenselyOrderedFieldModel) :
     DenseOrderLaw (Carrier rational_model) := by
   sorry
 
+/--
+`carrier_completeness_cert` TODO
+
+Predicate logic:
+
+  (∀ rational_model ∈ DenselyOrderedFieldModel), OrderCompletenessLaws (Carrier rational_model) (Set (Carrier rational_model))
+
+Predicate logic (unfolded):
+
+  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), LRA.Order.OrderCompletenessLaws (Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1) (Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1 → Prop)
+
+Logical form (Lean):
+
+```lean
+theorem carrier_completeness_cert
+    (rational_model : DenselyOrderedFieldModel) :
+    OrderCompletenessLaws (Carrier rational_model) (Set (Carrier rational_model))
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem carrier_completeness_cert
     (rational_model : DenselyOrderedFieldModel) :
     OrderCompletenessLaws (Carrier rational_model) (Set (Carrier rational_model)) := by
   sorry
 
+/--
+`PrimitiveIntervalsRealizesDenselyOrderedFieldModel` TODO
+
+Predicate logic:
+
+  noncomputable def PrimitiveIntervalsRealizesDenselyOrderedFieldModel
+    (rational_model : DenselyOrderedFieldModel) :
+    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
+  Carrier
+
+Predicate logic (unfolded):
+
+  noncomputable def PrimitiveIntervalsRealizesDenselyOrderedFieldModel
+    (rational_model : DenselyOrderedFieldModel) :
+    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
+  Carrier (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def PrimitiveIntervalsRealizesDenselyOrderedFieldModel
+    (rational_model : DenselyOrderedFieldModel) :
+    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
+  Carrier
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def PrimitiveIntervalsRealizesDenselyOrderedFieldModel
     (rational_model : DenselyOrderedFieldModel) :
     LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
@@ -100,6 +385,51 @@ noncomputable def PrimitiveIntervalsRealizesDenselyOrderedFieldModel
   strictCert := carrier_strict_order_cert rational_model
   denseCert := carrier_dense_order_cert rational_model
 
+/--
+`PrimitiveIntervalsRealizesRealModel` TODO
+
+Predicate logic:
+
+  noncomputable def PrimitiveIntervalsRealizesRealModel
+    (rational_model : DenselyOrderedFieldModel) :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel where
+  Carrier
+
+Predicate logic (unfolded):
+
+  noncomputable def PrimitiveIntervalsRealizesRealModel
+    (rational_model : DenselyOrderedFieldModel) :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel where
+  Carrier (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def PrimitiveIntervalsRealizesRealModel
+    (rational_model : DenselyOrderedFieldModel) :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel where
+  Carrier
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def PrimitiveIntervalsRealizesRealModel
     (rational_model : DenselyOrderedFieldModel) :
     LRA.NumberSystems.Interface.ModelTheory.RealModel where
@@ -117,24 +447,46 @@ noncomputable def PrimitiveIntervalsRealizesRealModel
   denseCert := carrier_dense_order_cert rational_model
   completeCert := carrier_completeness_cert rational_model
 
-                                                                             
-                                                
+/--
+`PrimitiveIntervalsRealizesRationalRealExtension` TODO
 
-                                                                          
-                                                                             
-                                                                          
-                                                                            
+Predicate logic:
 
-             
+  (∀ rationalSystem ∈ RationalNumberSystem), ∃ realExtension ∈ LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem, realExtension.RealModel.Carrier = Carrier rationalSystem.FieldModel
 
-       
-                                                       
-                                             
-                     
-                                                                           
-                                                                         
-   
-  
+Predicate logic (unfolded):
+
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), Exists fun realExtension => realExtension.RealModel.toDenselyOrderedFieldModel.1 = Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rationalSystem.FieldModel).1
+
+Logical form (Lean):
+
+```lean
+theorem PrimitiveIntervalsRealizesRationalRealExtension
+    (rationalSystem : RationalNumberSystem) :
+    ∃ realExtension :
+        LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem,
+      realExtension.RealModel.Carrier = Carrier rationalSystem.FieldModel
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: use, rcases
+
+-/
 theorem PrimitiveIntervalsRealizesRationalRealExtension
     (rationalSystem : RationalNumberSystem) :
     ∃ realExtension :

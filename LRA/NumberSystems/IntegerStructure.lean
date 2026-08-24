@@ -5,24 +5,3 @@ import LRA.NumberSystems.IntegerStructure.Interface.ModelTheory.Theory
 import LRA.NumberSystems.IntegerStructure.Interface.ModelTheory.Model
 import LRA.NumberSystems.IntegerStructure.Categoricity
 import LRA.NumberSystems.IntegerStructure.Bundled
-
-   
-                                                                         
-
-                                                                           
-                                                                            
-                                                                   
-                                                                   
-                                                                        
-                                                                        
-                                                                          
-
-                                                                       
-                                                                          
-                                                                     
-                                                                    
-                                                                        
-                                                 
-                                                                      
-                                            
-  

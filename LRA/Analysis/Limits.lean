@@ -7,23 +7,3 @@ import LRA.Analysis.Limits.LimitsAtInfinity
 import LRA.Analysis.Limits.Divergence
 import LRA.Analysis.Limits.Asymptotes
 import LRA.Analysis.Limits.IndeterminateForms
-
-   
-                                                                         
-                                                                       
-                                                                          
-                                                                       
-                                                                   
-                                                                       
-                                                                          
-                                                          
-                                                                          
-                                                                        
-
-                                                                  
-                                                                      
-                                                                       
-                                                                           
-                                          
-                                                                
-  

@@ -1,14 +1,6 @@
 import LRA.EuclideanSpace.Tarski.Axioms
 import LRA.EuclideanSpace.Interface.Laws
 
-   
-                                                                       
-                                                                        
-                                                                       
-                                                                      
-                                                                    
-  
-
 namespace LRA.EuclideanSpace
 
 instance : CongruenceLaws TarskiPoint where

@@ -2,11 +2,4 @@ import LRA.AlgebraicStructures.LinearlyOrderedGroup.Laws.Definition
 
 namespace LRA.AlgebraicStructures.LinearlyOrderedGroup
 
-   
-                                                       
-
-                                                                        
-                                                     
-  
-
 end LRA.AlgebraicStructures.LinearlyOrderedGroup

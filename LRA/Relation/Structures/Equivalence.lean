@@ -4,5 +4,3 @@ import LRA.Relation.Structures.Equivalence.EquivalenceClass
 import LRA.Relation.Structures.Equivalence.Partition
 import LRA.Relation.Structures.Equivalence.QuotientSet
 import LRA.Relation.Structures.Equivalence.FundamentalTheorem
-
-                                                                                        

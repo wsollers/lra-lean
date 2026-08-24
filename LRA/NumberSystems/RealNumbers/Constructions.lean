@@ -4,21 +4,3 @@ import LRA.NumberSystems.RealNumbers.Constructions.Dedekind
 import LRA.NumberSystems.RealNumbers.Constructions.Dyadic
 import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals
 import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy
-
-   
-                                                                         
-                                                                              
-                                                                     
-                                                                    
-                                                                             
-               
-
-                                                                        
-                                                                    
-                                                                             
-                             
-
-                                                                            
-                                                                      
-                                    
-  

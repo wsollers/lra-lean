@@ -9,5 +9,3 @@ import LRA.Set.NBG.Axioms.Replacement
 import LRA.Set.NBG.Axioms.Foundation
 import LRA.Set.NBG.Axioms.Choice
 import LRA.Set.NBG.Axioms.ClassComprehension
-
-                                                                               

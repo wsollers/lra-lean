@@ -2,6 +2,4 @@ import LRA.AlgebraicStructures.AbelianGroup.Interface.Signature.Definition
 
 namespace LRA.AlgebraicStructures.AbelianGroup.Interface.ModelTheory
 
-                                                             
-
 end LRA.AlgebraicStructures.AbelianGroup.Interface.ModelTheory

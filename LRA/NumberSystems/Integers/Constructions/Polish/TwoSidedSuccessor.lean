@@ -6,10 +6,3 @@ import LRA.NumberSystems.Integers.Constructions.Polish.TwoSidedSuccessor.WellDef
 import LRA.NumberSystems.Integers.Constructions.Polish.TwoSidedSuccessor.Laws
 import LRA.NumberSystems.Integers.Constructions.Polish.TwoSidedSuccessor.Behavior
 import LRA.NumberSystems.Integers.Constructions.Polish.TwoSidedSuccessor.Instances
-
-   
-                                                                      
-                                                      
-                                                                         
-                                                                 
-  

@@ -14,17 +14,3 @@ import LRA.Order.Relation.CoverRelation.Theorems
 import LRA.Order.Relation.UpperCover.Definition
 import LRA.Order.Relation.LowerCover.Definition
 import LRA.Order.Relation.Adjacent.Definition
-
-   
-                        
-
-                                                                              
-                                                                              
-                                                                          
-
-                                                                         
-                                                                      
-
-                                                                                
-                                                                           
-  

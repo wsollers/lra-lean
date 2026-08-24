@@ -2,11 +2,4 @@ import LRA.AlgebraicStructures.DistributiveLattice.Laws.Definition
 
 namespace LRA.AlgebraicStructures.DistributiveLattice
 
-   
-                                                     
-
-                                                                        
-                                                               
-  
-
 end LRA.AlgebraicStructures.DistributiveLattice

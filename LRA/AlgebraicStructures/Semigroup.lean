@@ -1,11 +1,9 @@
 import LRA.AlgebraicStructures.Semigroup.Definition
+import LRA.AlgebraicStructures.Semigroup.Theorems
+import LRA.AlgebraicStructures.Semigroup.Characterizations
+import LRA.AlgebraicStructures.Semigroup.Consequences
 import LRA.AlgebraicStructures.Semigroup.Interface.Signature.Definition
 import LRA.AlgebraicStructures.Semigroup.Interface.ModelTheory.LStructure
 import LRA.AlgebraicStructures.Semigroup.Interface.ModelTheory.Theory
 import LRA.AlgebraicStructures.Semigroup.Interface.ModelTheory.Model
-import LRA.AlgebraicStructures.Semigroup.Theorems
-import LRA.AlgebraicStructures.Semigroup.Characterizations
-import LRA.AlgebraicStructures.Semigroup.Consequences
 import LRA.AlgebraicStructures.Semigroup.Relationships
-
-                                             

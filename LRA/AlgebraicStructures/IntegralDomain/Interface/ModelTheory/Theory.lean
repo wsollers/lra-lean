@@ -2,6 +2,4 @@ import LRA.AlgebraicStructures.IntegralDomain.Interface.Signature.Definition
 
 namespace LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory
 
-                                                                                                     
-
 end LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory

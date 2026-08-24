@@ -1,8 +1,6 @@
 import LRA.AlgebraicStructures.BoundedLattice.Definition
+import LRA.AlgebraicStructures.BoundedLattice.Laws
 import LRA.AlgebraicStructures.BoundedLattice.Theorems
 import LRA.AlgebraicStructures.BoundedLattice.Characterizations
 import LRA.AlgebraicStructures.BoundedLattice.Consequences
 import LRA.AlgebraicStructures.BoundedLattice.Relationships
-import LRA.AlgebraicStructures.BoundedLattice.Laws
-
-                                                   

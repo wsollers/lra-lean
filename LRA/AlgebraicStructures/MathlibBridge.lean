@@ -15,23 +15,6 @@ open LRA.Order
 
 universe u
 
-   
-                                                                        
-                               
-
-                                                                      
-                                                                        
-                                                                       
-                                                                     
-                                                                   
-                                                                    
-                                                                  
-                                                   
-
-                                                                    
-         
-  
-
 instance {R : Type u} [AddSemigroup R] : AdditiveSemigroupLaws R where
   AddAssociative := add_assoc
 
@@ -83,13 +66,6 @@ instance {R : Type u} [Distrib R] : DistributiveLaws R where
   LeftDistributive := fun a b c => left_distrib a b c
   RightDistributive := fun a b c => right_distrib a b c
 
-   
-                                                                       
-                                                              
-                                                                       
-                                                            
-  
-
 instance {R : Type u} [Semiring R] : SemiringLaws R := ⟨⟩
 
 instance {R : Type u} [CommSemiring R] : CommutativeSemiringLaws R := ⟨⟩
@@ -104,11 +80,6 @@ instance {R : Type u} [Field R] : FieldLaws R := ⟨⟩
 
 instance {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] :
     OrderedFieldLaws R := ⟨⟩
-
-   
-                                                                       
-                       
-  
 
 example : CommutativeSemiringLaws Nat := inferInstance
 example : CommutativeRingLaws Int := inferInstance

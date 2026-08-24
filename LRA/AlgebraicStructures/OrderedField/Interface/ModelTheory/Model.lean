@@ -3,6 +3,4 @@ import LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.LStructure
 
 namespace LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory
 
-                                                         
-
 end LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory

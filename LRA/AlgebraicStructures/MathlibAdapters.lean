@@ -1,5 +1,3 @@
-                                                       
-                                                                          
 
 import Mathlib.Algebra.Field.Defs
 import LRA.AlgebraicStructures.CommutativeRing.Laws.Definition
@@ -10,44 +8,54 @@ namespace LRA.AlgebraicStructures
 
 universe u
 
-   
-                                                                 
+/--
+`toMathlibCommRing` TODO
 
-                                                                 
-                                                                      
-                                                                  
-                                                               
-        
+Predicate logic:
 
-                                                                
-                                                                
-                                                               
-                                                                 
-                                                                      
+  def toMathlibCommRing (R : Type u)
+    [Add R] [Mul R] [Neg R] [Sub R] [OfNat R 0] [OfNat R 1]
+    [CommutativeRingLaws R] [SubtractionCompatibilityLaw R] :
+    CommRing R where
+  add
 
-   
-                                        
-                                                                      
-   
+Predicate logic (unfolded):
 
-                                                                   
-                                                                     
-                                                                 
-                       
-  
+  def toMathlibCommRing (R : Type u)
+    [Add R] [Mul R] [Neg R] [Sub R] [OfNat R 0] [OfNat R 1]
+    [CommutativeRingLaws R] [SubtractionCompatibilityLaw R] :
+    CommRing R where
+  add (source fallback; no compiled unfold data available)
 
-                                                                
+Logical form (Lean):
 
-             
+```lean
+def toMathlibCommRing (R : Type u)
+    [Add R] [Mul R] [Neg R] [Sub R] [OfNat R 0] [OfNat R 1]
+    [CommutativeRingLaws R] [SubtractionCompatibilityLaw R] :
+    CommRing R where
+  add
+```
 
-       
-                                  
-                                                           
-                                                             
-                    
-     
-   
-  
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 @[reducible] def toMathlibCommRing (R : Type u)
     [Add R] [Mul R] [Neg R] [Sub R] [OfNat R 0] [OfNat R 1]
     [CommutativeRingLaws R] [SubtractionCompatibilityLaw R] :
@@ -76,18 +84,54 @@ universe u
   npow := npowRec
   mul_comm := MulCommutative
 
-                                                             
+/--
+`toMathlibField` TODO
 
-             
+Predicate logic:
 
-       
-                                             
-                                                   
-                           
-                                                 
-                                          
-   
-  
+  noncomputable def toMathlibField (R : Type u)
+    [Add R] [Mul R] [Neg R] [Sub R] [Inv R] [Div R]
+    [OfNat R 0] [OfNat R 1]
+    [FieldLaws R] [SubtractionCompatibilityLaw R]
+    [DivisionCompatibilityLaw R] : Field R
+
+Predicate logic (unfolded):
+
+  noncomputable def toMathlibField (R : Type u)
+    [Add R] [Mul R] [Neg R] [Sub R] [Inv R] [Div R]
+    [OfNat R 0] [OfNat R 1]
+    [FieldLaws R] [SubtractionCompatibilityLaw R]
+    [DivisionCompatibilityLaw R] : Field R (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def toMathlibField (R : Type u)
+    [Add R] [Mul R] [Neg R] [Sub R] [Inv R] [Div R]
+    [OfNat R 0] [OfNat R 1]
+    [FieldLaws R] [SubtractionCompatibilityLaw R]
+    [DivisionCompatibilityLaw R] : Field R
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 @[reducible] noncomputable def toMathlibField (R : Type u)
     [Add R] [Mul R] [Neg R] [Sub R] [Inv R] [Div R]
     [OfNat R 0] [OfNat R 1]
@@ -107,11 +151,6 @@ universe u
     inv_zero := inverse_of_zero
     nnqsmul := _
     qsmul := _ }
-
-                                                                       
-
-                                                                 
-                                                        
 
 example : CommRing Int := toMathlibCommRing Int
 noncomputable example : Field Rat := toMathlibField Rat

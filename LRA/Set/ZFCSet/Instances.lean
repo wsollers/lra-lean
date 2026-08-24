@@ -2,15 +2,6 @@ import LRA.Set.ZFCSet.Definition
 import LRA.Set.ZFC.Public
 import LRA.Set.Interface.Operations
 
-   
-                                                                               
-
-                                                                        
-                                                                            
-                                                                      
-                           
-  
-
 namespace LRA.Set.ZFCSet
 
 noncomputable instance : _root_.Union LRA.Set.ZFCSet where

@@ -1,8 +1,3 @@
-                                                                                     
-                                                                           
-                                                                      
-                                                                        
-                                                          
 
 import LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.Operations
 

@@ -1,10 +1,1 @@
 import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs
-
-   
-                                                                     
-                                                                      
-                                                                       
-                                                                       
-                                                                     
-                                                
-  

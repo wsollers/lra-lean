@@ -1,6 +1,1 @@
 import LRA.Analysis.Completeness.Completeness.Theorems.OrderSeparation
-
-   
-                                                                       
-                                                                       
-  

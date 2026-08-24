@@ -5,10 +5,3 @@ import LRA.NumberSystems.WholeNumbers.Constructions.Landau.Operations
 import LRA.NumberSystems.WholeNumbers.Constructions.Landau.Laws
 import LRA.NumberSystems.WholeNumbers.Constructions.Landau.Behavior
 import LRA.NumberSystems.WholeNumbers.Constructions.Landau.Instances
-
-   
-                                                                          
-                                                                    
-                                             
-                                                 
-  

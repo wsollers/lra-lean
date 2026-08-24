@@ -3,19 +3,51 @@ import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.SetAlge
 
 namespace LRA.Logic.ModelTheory.SetAlgebras
 
-                                                                             
-                                                                            
-                                                                          
+/--
+`BuildSetAlgebraModel` TODO
 
-             
+Predicate logic:
 
-       
-                        
-                                              
-                                                                  
-        
-   
-  
+  def BuildSetAlgebraModel
+    (signature : SetAlgebraConceptSignature) :
+    LRA.Logic.FirstOrder.Model SetAlgebraFirstOrderSignature where
+  Domain
+
+Predicate logic (unfolded):
+
+  def BuildSetAlgebraModel
+    (signature : SetAlgebraConceptSignature) :
+    LRA.Logic.FirstOrder.Model SetAlgebraFirstOrderSignature where
+  Domain (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+def BuildSetAlgebraModel
+    (signature : SetAlgebraConceptSignature) :
+    LRA.Logic.FirstOrder.Model SetAlgebraFirstOrderSignature where
+  Domain
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 def BuildSetAlgebraModel
     (signature : SetAlgebraConceptSignature) :
     LRA.Logic.FirstOrder.Model SetAlgebraFirstOrderSignature where

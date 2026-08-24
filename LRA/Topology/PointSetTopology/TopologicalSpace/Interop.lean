@@ -1,6 +1,6 @@
 import LRA.Topology.PointSetTopology.TopologicalSpace.Definition.Topology
 import LRA.Topology.PointSetTopology.TopologicalSpace.Definition.TopologicalSpace
-import LRA.Topology.PointSetTopology.TopologicalSpace.Interop.FromMathlib
 import LRA.Topology.PointSetTopology.TopologicalSpace.Interop.Mathlib
-import LRA.Topology.PointSetTopology.TopologicalSpace.Interop.Switch
 import LRA.Topology.PointSetTopology.TopologicalSpace.Interop.ToMathlib
+import LRA.Topology.PointSetTopology.TopologicalSpace.Interop.FromMathlib
+import LRA.Topology.PointSetTopology.TopologicalSpace.Interop.Switch

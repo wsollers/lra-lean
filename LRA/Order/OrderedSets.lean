@@ -5,25 +5,23 @@ import LRA.Order.OrderedSets.Preorder.Relationships
 import LRA.Order.OrderedSets.PartialOrder.Definition
 import LRA.Order.OrderedSets.PartialOrder.NonStrict
 import LRA.Order.OrderedSets.PartialOrder.Characterizations
+import LRA.Order.OrderedSets.PartialOrder.Theorems
 import LRA.Order.OrderedSets.PartialOrder.Relationships
+import LRA.Order.OrderedSets.Poset.Definition
+import LRA.Order.OrderedSets.Poset.Characterizations
+import LRA.Order.OrderedSets.Poset.Relationships
+import LRA.Order.OrderedSets.Poset.Theorems
 import LRA.Order.OrderedSets.LinearOrder.Definition
 import LRA.Order.OrderedSets.LinearOrder.Theorems
 import LRA.Order.OrderedSets.StrictOrder.Definition
 import LRA.Order.OrderedSets.StrictOrder.Characterizations
 import LRA.Order.OrderedSets.StrictOrder.Theorems
 import LRA.Order.OrderedSets.StrictOrder.Relationships
-import LRA.Order.OrderedSets.StrictLinearOrder.Definition
-import LRA.Order.OrderedSets.StrictLinearOrder.Theorems
-import LRA.Order.OrderedSets.Poset.Definition
 import LRA.Order.OrderedSets.StrictPoset.Definition
-import LRA.Order.OrderedSets.PartialOrder.Theorems
-import LRA.Order.OrderedSets.Poset.Characterizations
-import LRA.Order.OrderedSets.Poset.Relationships
-import LRA.Order.OrderedSets.Poset.Theorems
 import LRA.Order.OrderedSets.StrictPoset.Characterizations
 import LRA.Order.OrderedSets.StrictPoset.Theorems
+import LRA.Order.OrderedSets.StrictLinearOrder.Definition
+import LRA.Order.OrderedSets.StrictLinearOrder.Theorems
 import LRA.Order.OrderedSets.WellOrder.Definition
 import LRA.Order.OrderedSets.WellOrder.Relationships
 import LRA.Order.OrderedSets.WellOrder.Theorems
-
-                                                    

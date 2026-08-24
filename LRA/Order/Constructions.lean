@@ -4,5 +4,3 @@ import LRA.Order.Constructions.LexicographicOrder.Definition
 import LRA.Order.Constructions.LexicographicOrder.Theorems
 import LRA.Order.Constructions.StrictNonStrictCorrespondence.Definition
 import LRA.Order.Constructions.StrictNonStrictCorrespondence.Theorems
-
-                                                                           

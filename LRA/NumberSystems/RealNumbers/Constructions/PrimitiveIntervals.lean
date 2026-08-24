@@ -6,10 +6,3 @@ import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals.WellDefine
 import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals.Laws
 import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals.Behavior
 import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals.Instances
-
-   
-                                                                 
-                                                                                   
-                                                                       
-                                                                
-  

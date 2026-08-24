@@ -1,4 +1,2 @@
 import LRA.AlgebraicStructures.DivisionRing.Laws.Definition
 import LRA.AlgebraicStructures.DivisionRing.Laws.Consequences
-
-                                                                 

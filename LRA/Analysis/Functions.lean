@@ -8,7 +8,3 @@ import LRA.Analysis.Functions.PointwiseOperationsRelations
 import LRA.Analysis.Functions.PointwiseOrder
 import LRA.Analysis.Functions.SubsetsOfR
 import LRA.Analysis.Functions.SupInfOfFunctions
-
-   
-                                                             
-  

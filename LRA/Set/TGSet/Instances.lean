@@ -2,10 +2,6 @@ import LRA.Set.TGSet.Definition
 import LRA.Set.TG.Public
 import LRA.Set.Interface.Operations
 
-   
-                                                                              
-  
-
 namespace LRA.Set.TGSet
 
 noncomputable instance : _root_.Union LRA.Set.TGSet where

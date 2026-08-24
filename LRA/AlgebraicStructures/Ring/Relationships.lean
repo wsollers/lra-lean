@@ -3,13 +3,4 @@ import LRA.AlgebraicStructures.Ring.Interface.ModelTheory.Model
 
 namespace LRA.AlgebraicStructures
 
-   
-                          
-
-                                                                        
-                                                                    
-                                                            
-                                                  
-  
-
 end LRA.AlgebraicStructures

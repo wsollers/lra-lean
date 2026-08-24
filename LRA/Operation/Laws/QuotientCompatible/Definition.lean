@@ -3,48 +3,79 @@ import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
 namespace LRA.Operation.Laws.QuotientCompatible
 
 /--
-**[Operation.Laws.QuotientCompatible — a proper binary operation]**
+`BinaryOperationIsProper` TODO
 
-Many constructions in this repository build a carrier by quotienting a
-`Representative` type (e.g. `RealNumbers.Cauchy.Representative`,
-`Integers.QuotientOrderedPairs.Representative`). Their raw operations
-read two representatives and produce a value in some possibly-larger
-`Raw` type (e.g. `Cauchy`'s `representative_addition : Representative →
-Representative → Sequence`, where `Sequence` is bigger than
-`Representative` — not every sequence is Cauchy); `toRaw` is the
-projection back down (`Representative.sequence`), and `invariant` is
-exactly the predicate that carves `Representative` out of `Raw`
-(`is_cauchy`). Constructions with no such refinement at all (raw
-operation already lands back in `Representative`) are the degenerate
-case `Raw := Representative`, `toRaw := id`, `invariant := fun _ =>
-True`.
+Predicate logic:
 
-Before `rawOperation` can be pushed down to the quotient, three
-independent facts must be established — the three fields below, each
-corresponding to a proof obligation this repository's
-`WellDefinedness.lean`/`Laws.lean` files already state ad hoc,
-per-construction, under ad hoc names:
+  structure BinaryOperationIsProper
+    {Representative : Type} {Raw : Type}
+    (invariant : Raw → Prop)
+    (toRaw : Representative → Raw)
+    (rawOperation : Representative → Representative → Raw)
+    (setoid : Setoid Representative)
+    (operation : Representative → Representative → Representative) : Prop where
+  closed :
+    ∀ first second : Representative, invariant (rawOperation first second)
+  matches_raw :
+    ∀ first second : Representative,
+      toRaw (operation first second) = rawOperation first second
+  respects :
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid operation
 
-- `closed` ("well-founded"): the raw operation's result always satisfies
-  the invariant — e.g. the sum of two Cauchy sequences is itself Cauchy.
-- `matches_raw`: the named `operation` on `Representative` actually
-  computes what `rawOperation` computes, once projected back down —
-  ties `operation` to its intended mathematical definition rather than
-  leaving it an unmoored total function that merely happens to type
-  check. (When `operation` is built directly from `rawOperation` and
-  `closed` — the usual case — this is `rfl`.)
-- `respects` ("well-defined"): `operation` doesn't depend on which
-  representative was picked from each equivalence class.
+Predicate logic (unfolded):
 
-Given all three, `induced_operation_exists` below gives existence of the
-induced quotient operation for free, and `induced_operation_unique`
-gives its uniqueness for free — neither needs a fourth field, both are
-immediate consequences of `respects` alone (existence via
-`LRA.UniversalAlgebra.Quotient.induced_binary_operation_exists`,
-uniqueness via `Quotient.ind`). So `BinaryOperationIsProper` bundling
-`closed`/`matches_raw`/`respects` is exactly "this operation is proper":
-exists, unique, well-defined, well-founded, all in one named predicate a
-concrete construction proves once per operation.
+  structure BinaryOperationIsProper
+    {Representative : Type} {Raw : Type}
+    (invariant : Raw → Prop)
+    (toRaw : Representative → Raw)
+    (rawOperation : Representative → Representative → Raw)
+    (setoid : Setoid Representative)
+    (operation : Representative → Representative → Representative) : Prop where
+  closed :
+    ∀ first second : Representative, invariant (rawOperation first second)
+  matches_raw :
+    ∀ first second : Representative,
+      toRaw (operation first second) = rawOperation first second
+  respects :
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid operation (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure BinaryOperationIsProper
+    {Representative : Type} {Raw : Type}
+    (invariant : Raw → Prop)
+    (toRaw : Representative → Raw)
+    (rawOperation : Representative → Representative → Raw)
+    (setoid : Setoid Representative)
+    (operation : Representative → Representative → Representative) : Prop where
+  closed :
+    ∀ first second : Representative, invariant (rawOperation first second)
+  matches_raw :
+    ∀ first second : Representative,
+      toRaw (operation first second) = rawOperation first second
+  respects :
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid operation
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
 -/
 structure BinaryOperationIsProper
     {Representative : Type} {Raw : Type}
@@ -61,6 +92,55 @@ structure BinaryOperationIsProper
   respects :
     LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid operation
 
+/--
+`BinaryOperationIsProper.induced_operation_exists` TODO
+
+Predicate logic:
+
+  ∃ quotient_operation ∈ Quotient setoid → Quotient setoid → Quotient setoid, ∀ first second : Representative, quotient_operation (Quotient.mk setoid first) (Quotient.mk setoid second) = Quotient.mk setoid (operation first second)
+
+Predicate logic (unfolded):
+
+  ∀ {Representative Raw : Type} {invariant : Raw → Prop} {toRaw : Representative → Raw} {rawOperation : Representative → Representative → Raw} {setoid : Setoid Representative} {operation : Representative → Representative → Representative}, LRA.Operation.Laws.QuotientCompatible.BinaryOperationIsProper invariant toRaw rawOperation setoid operation → Exists fun quotient_operation => ∀ (first second : Representative), quotient_operation (Quot.mk setoid.1 first) (Quot.mk setoid.1 second) = Quot.mk setoid.1 (operation first second)
+
+Logical form (Lean):
+
+```lean
+theorem BinaryOperationIsProper.induced_operation_exists
+    {Representative : Type} {Raw : Type}
+    {invariant : Raw → Prop} {toRaw : Representative → Raw}
+    {rawOperation : Representative → Representative → Raw}
+    {setoid : Setoid Representative}
+    {operation : Representative → Representative → Representative}
+    (proper :
+      BinaryOperationIsProper invariant toRaw rawOperation setoid operation) :
+    ∃ quotient_operation :
+        Quotient setoid → Quotient setoid → Quotient setoid,
+      ∀ first second : Representative,
+        quotient_operation
+            (Quotient.mk setoid first) (Quotient.mk setoid second) =
+          Quotient.mk setoid (operation first second)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, use, rcases
+
+-/
 theorem BinaryOperationIsProper.induced_operation_exists
     {Representative : Type} {Raw : Type}
     {invariant : Raw → Prop} {toRaw : Representative → Raw}
@@ -75,17 +155,63 @@ theorem BinaryOperationIsProper.induced_operation_exists
         quotient_operation
             (Quotient.mk setoid first) (Quotient.mk setoid second) =
           Quotient.mk setoid (operation first second) :=
-  LRA.UniversalAlgebra.Quotient.induced_binary_operation_exists
-    setoid operation proper.respects
+  sorry
 
 /--
-Uniqueness of the induced quotient operation. Mechanically routine
-(`funext` plus `Quotient.ind` in both arguments, then rewriting both
-specs) — not attempted as a real proof here since this codebase is
-audited statically only (no `lake build` available to verify a tactic
-block actually closes the goal), so it's left `sorry`'d like every other
-theorem in this pass, even though the underlying fact is free once
-`induced_operation_exists`'s witness is unfolded.
+`BinaryOperationIsProper.induced_operation_unique` TODO
+
+Predicate logic:
+
+  (∀ first second : Representative, first_candidate (Quotient.mk setoid first) (Quotient.mk setoid second) = Quotient.mk setoid (operation first second) ∧ ∀ first second : Representative, second_candidate (Quotient.mk setoid first) (Quotient.mk setoid second) = Quotient.mk setoid (operation first second)) → first_candidate = second_candidate
+
+Predicate logic (unfolded):
+
+  ∀ {Representative Raw : Type} {invariant : Raw → Prop} {toRaw : Representative → Raw} {rawOperation : Representative → Representative → Raw} {setoid : Setoid Representative} {operation : Representative → Representative → Representative}, LRA.Operation.Laws.QuotientCompatible.BinaryOperationIsProper invariant toRaw rawOperation setoid operation → ∀ (first_candidate second_candidate : Quot setoid.1 → Quot setoid.1 → Quot setoid.1), (∀ (first second : Representative), first_candidate (Quot.mk setoid.1 first) (Quot.mk setoid.1 second) = Quot.mk setoid.1 (operation first second) ∧ ∀ (first second : Representative), second_candidate (Quot.mk setoid.1 first) (Quot.mk setoid.1 second) = Quot.mk setoid.1 (operation first second)) → first_candidate = second_candidate
+
+Logical form (Lean):
+
+```lean
+theorem BinaryOperationIsProper.induced_operation_unique
+    {Representative : Type} {Raw : Type}
+    {invariant : Raw → Prop} {toRaw : Representative → Raw}
+    {rawOperation : Representative → Representative → Raw}
+    {setoid : Setoid Representative}
+    {operation : Representative → Representative → Representative}
+    (_proper :
+      BinaryOperationIsProper invariant toRaw rawOperation setoid operation)
+    (first_candidate second_candidate :
+      Quotient setoid → Quotient setoid → Quotient setoid)
+    (first_candidate_spec :
+      ∀ first second : Representative,
+        first_candidate
+            (Quotient.mk setoid first) (Quotient.mk setoid second) =
+          Quotient.mk setoid (operation first second))
+    (second_candidate_spec :
+      ∀ first second : Representative,
+        second_candidate
+            (Quotient.mk setoid first) (Quotient.mk setoid second) =
+          Quotient.mk setoid (operation first second)) :
+    first_candidate = second_candidate
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
 -/
 theorem BinaryOperationIsProper.induced_operation_unique
     {Representative : Type} {Raw : Type}
@@ -111,14 +237,73 @@ theorem BinaryOperationIsProper.induced_operation_unique
   sorry
 
 /--
-**[Operation.Laws.QuotientCompatible — a proper unary operation]**
+`UnaryOperationIsProper` TODO
 
-The unary counterpart of `BinaryOperationIsProper`. Unlike the binary
-case, the induced quotient operation doesn't need an existence lemma at
-all — `Quotient.lift` gives it directly and constructively once
-`respects` holds, so `inducedOperation` below is a plain `def`, not a
-`sorry`'d existence theorem; its uniqueness is `Quotient.lift`'s own
-definitional uniqueness, needing no separate statement.
+Predicate logic:
+
+  structure UnaryOperationIsProper
+    {Representative : Type} {Raw : Type}
+    (invariant : Raw → Prop)
+    (toRaw : Representative → Raw)
+    (rawOperation : Representative → Raw)
+    (setoid : Setoid Representative)
+    (operation : Representative → Representative) : Prop where
+  closed : ∀ value : Representative, invariant (rawOperation value)
+  matches_raw :
+    ∀ value : Representative, toRaw (operation value) = rawOperation value
+  respects :
+    LRA.UniversalAlgebra.Quotient.unary_operation_respects setoid operation
+
+Predicate logic (unfolded):
+
+  structure UnaryOperationIsProper
+    {Representative : Type} {Raw : Type}
+    (invariant : Raw → Prop)
+    (toRaw : Representative → Raw)
+    (rawOperation : Representative → Raw)
+    (setoid : Setoid Representative)
+    (operation : Representative → Representative) : Prop where
+  closed : ∀ value : Representative, invariant (rawOperation value)
+  matches_raw :
+    ∀ value : Representative, toRaw (operation value) = rawOperation value
+  respects :
+    LRA.UniversalAlgebra.Quotient.unary_operation_respects setoid operation (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure UnaryOperationIsProper
+    {Representative : Type} {Raw : Type}
+    (invariant : Raw → Prop)
+    (toRaw : Representative → Raw)
+    (rawOperation : Representative → Raw)
+    (setoid : Setoid Representative)
+    (operation : Representative → Representative) : Prop where
+  closed : ∀ value : Representative, invariant (rawOperation value)
+  matches_raw :
+    ∀ value : Representative, toRaw (operation value) = rawOperation value
+  respects :
+    LRA.UniversalAlgebra.Quotient.unary_operation_respects setoid operation
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
 -/
 structure UnaryOperationIsProper
     {Representative : Type} {Raw : Type}
@@ -133,6 +318,66 @@ structure UnaryOperationIsProper
   respects :
     LRA.UniversalAlgebra.Quotient.unary_operation_respects setoid operation
 
+/--
+`UnaryOperationIsProper.inducedOperation` TODO
+
+Predicate logic:
+
+  def UnaryOperationIsProper.inducedOperation
+    {Representative : Type} {Raw : Type}
+    {invariant : Raw → Prop} {toRaw : Representative → Raw}
+    {rawOperation : Representative → Raw} {setoid : Setoid Representative}
+    {operation : Representative → Representative}
+    (proper : UnaryOperationIsProper invariant toRaw rawOperation setoid operation) :
+    Quotient setoid → Quotient setoid :=
+  Quotient.lift (fun value => Quotient.mk setoid (operation value))
+    (fun first second related => Quotient.sound (proper.respects first second related))
+
+Predicate logic (unfolded):
+
+  def UnaryOperationIsProper.inducedOperation
+    {Representative : Type} {Raw : Type}
+    {invariant : Raw → Prop} {toRaw : Representative → Raw}
+    {rawOperation : Representative → Raw} {setoid : Setoid Representative}
+    {operation : Representative → Representative}
+    (proper : UnaryOperationIsProper invariant toRaw rawOperation setoid operation) :
+    Quotient setoid → Quotient setoid :=
+  Quotient.lift (fun value => Quotient.mk setoid (operation value))
+    (fun first second related => Quotient.sound (proper.respects first second related)) (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+def UnaryOperationIsProper.inducedOperation
+    {Representative : Type} {Raw : Type}
+    {invariant : Raw → Prop} {toRaw : Representative → Raw}
+    {rawOperation : Representative → Raw} {setoid : Setoid Representative}
+    {operation : Representative → Representative}
+    (proper : UnaryOperationIsProper invariant toRaw rawOperation setoid operation) :
+    Quotient setoid → Quotient setoid :=
+  Quotient.lift (fun value => Quotient.mk setoid (operation value))
+    (fun first second related => Quotient.sound (proper.respects first second related))
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
+-/
 def UnaryOperationIsProper.inducedOperation
     {Representative : Type} {Raw : Type}
     {invariant : Raw → Prop} {toRaw : Representative → Raw}
@@ -144,18 +389,52 @@ def UnaryOperationIsProper.inducedOperation
     (fun first second related => Quotient.sound (proper.respects first second related))
 
 /--
-**[Operation.Laws.QuotientCompatible — a proper relation]**
+`RelationIsProper` TODO
 
-The relation counterpart of `BinaryOperationIsProper`/`UnaryOperationIsProper`.
-A relation needs no `closed`/`matches_raw` fields at all — it's already
-`Prop`-valued and homogeneous on `Representative`, so there's no larger
-`Raw` type to reconstruct back down from; `respects` (well-defined) is the
-entire obligation, and existence of the induced quotient relation follows
-immediately via
-`LRA.UniversalAlgebra.Quotient.induced_relation_exists`. Uniqueness needs
-no separate statement either: `Iff`-valued quotient relations are
-determined pointwise the same way the induced operations are, by
-`Quotient.ind`.
+Predicate logic:
+
+  structure RelationIsProper
+    {Representative : Type}
+    (setoid : Setoid Representative)
+    (relation : Representative → Representative → Prop) : Prop where
+  respects : LRA.UniversalAlgebra.Quotient.relation_respects setoid relation
+
+Predicate logic (unfolded):
+
+  structure RelationIsProper
+    {Representative : Type}
+    (setoid : Setoid Representative)
+    (relation : Representative → Representative → Prop) : Prop where
+  respects : LRA.UniversalAlgebra.Quotient.relation_respects setoid relation (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure RelationIsProper
+    {Representative : Type}
+    (setoid : Setoid Representative)
+    (relation : Representative → Representative → Prop) : Prop where
+  respects : LRA.UniversalAlgebra.Quotient.relation_respects setoid relation
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
 -/
 structure RelationIsProper
     {Representative : Type}
@@ -163,6 +442,50 @@ structure RelationIsProper
     (relation : Representative → Representative → Prop) : Prop where
   respects : LRA.UniversalAlgebra.Quotient.relation_respects setoid relation
 
+/--
+`RelationIsProper.induced_relation_exists` TODO
+
+Predicate logic:
+
+  ∃ quotient_relation ∈ Quotient setoid → Quotient setoid → Prop, ∀ first second : Representative, quotient_relation (Quotient.mk setoid first) (Quotient.mk setoid second) ↔ relation first second
+
+Predicate logic (unfolded):
+
+  ∀ {Representative : Type} {setoid : Setoid Representative} {relation : Representative → Representative → Prop}, LRA.Operation.Laws.QuotientCompatible.RelationIsProper setoid relation → Exists fun quotient_relation => ∀ (first second : Representative), quotient_relation (Quot.mk setoid.1 first) (Quot.mk setoid.1 second) ↔ relation first second
+
+Logical form (Lean):
+
+```lean
+theorem RelationIsProper.induced_relation_exists
+    {Representative : Type} {setoid : Setoid Representative}
+    {relation : Representative → Representative → Prop}
+    (proper : RelationIsProper setoid relation) :
+    ∃ quotient_relation : Quotient setoid → Quotient setoid → Prop,
+      ∀ first second : Representative,
+        quotient_relation
+            (Quotient.mk setoid first) (Quotient.mk setoid second) ↔
+          relation first second
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, constructor, .mp, .mpr, use, rcases
+
+-/
 theorem RelationIsProper.induced_relation_exists
     {Representative : Type} {setoid : Setoid Representative}
     {relation : Representative → Representative → Prop}
@@ -172,6 +495,4 @@ theorem RelationIsProper.induced_relation_exists
         quotient_relation
             (Quotient.mk setoid first) (Quotient.mk setoid second) ↔
           relation first second :=
-  LRA.UniversalAlgebra.Quotient.induced_relation_exists setoid relation proper.respects
-
-end LRA.Operation.Laws.QuotientCompatible
+  sorry

@@ -2,11 +2,4 @@ import LRA.UniversalAlgebra.KernelCongruence.KernelRelation.Definition
 
 namespace LRA.UniversalAlgebra.KernelCongruence.KernelRelation
 
-   
-                                  
-
-                                                                        
-                                                 
-  
-
 end LRA.UniversalAlgebra.KernelCongruence.KernelRelation

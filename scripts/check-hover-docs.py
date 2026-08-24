@@ -330,7 +330,7 @@ def fix_file(path: Path) -> tuple[int, int]:
     for start, end, replacement in sorted(edits, reverse=True):
         text = text[:start] + replacement + text[end:]
     if edits or spacing_changed:
-        path.write_text(text, encoding="utf-8", newline="")
+        path.write_text(text, encoding="utf-8", newline="\n")
     return missing_doc, missing_logical
 
 

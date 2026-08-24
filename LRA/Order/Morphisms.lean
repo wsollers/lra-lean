@@ -7,13 +7,3 @@ import LRA.Order.Morphisms.OrderEmbedding.Theorems
 import LRA.Order.Morphisms.OrderIsomorphism.Definition
 import LRA.Order.Morphisms.OrderIsomorphism.Theorems
 import LRA.Order.Morphisms.Antitone.Consequences
-
-   
-                                                                          
-                                   
-
-                                                                          
-                                                                              
-                                                                          
-                   
-  

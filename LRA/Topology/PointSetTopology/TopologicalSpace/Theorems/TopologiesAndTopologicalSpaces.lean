@@ -1,8 +1,1 @@
 import LRA.Topology.PointSetTopology.TopologicalSpace.Theorems.TopologicalSpace
-
-   
-                                  
-
-                                                                      
-                                     
-  

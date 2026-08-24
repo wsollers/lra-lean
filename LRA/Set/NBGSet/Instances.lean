@@ -2,10 +2,6 @@ import LRA.Set.NBGSet.Definition
 import LRA.Set.NBG.Public
 import LRA.Set.Interface.Operations
 
-   
-                                                                               
-  
-
 namespace LRA.Set.NBGSet
 
 noncomputable instance : _root_.Union LRA.Set.NBGSet where

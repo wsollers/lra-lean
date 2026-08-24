@@ -1,8 +1,6 @@
 import LRA.AlgebraicStructures.Lattice.Definition
+import LRA.AlgebraicStructures.Lattice.Laws
 import LRA.AlgebraicStructures.Lattice.Theorems
 import LRA.AlgebraicStructures.Lattice.Characterizations
 import LRA.AlgebraicStructures.Lattice.Consequences
 import LRA.AlgebraicStructures.Lattice.Relationships
-import LRA.AlgebraicStructures.Lattice.Laws
-
-                                           

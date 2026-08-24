@@ -4,14 +4,6 @@ import Mathlib.Tactic.Tauto
 import LRA.Set.Interop.Mathlib.PredicateSet.Instances
 import LRA.Set.Interface
 
-   
-                                                                          
-                                                                       
-                                                                       
-                                                                      
-                                                                   
-  
-
 namespace LRA.Set.MathlibPredicateSet
 
 universe u

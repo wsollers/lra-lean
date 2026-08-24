@@ -1,7 +1,3 @@
-                                                                                
-                                                                    
-                                                                    
-                        
 
 import LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.WellFoundedness
 
@@ -27,28 +23,90 @@ instance [Add R] [Mul R] [Neg R] : Mul (GaussianInteger R) :=
      first.realPart * second.imaginaryPart +
        first.imaginaryPart * second.realPart⟩⟩
 
-                                              
+/--
+`conjugation` TODO
 
-             
+Predicate logic:
 
-       
-                                                                          
-                                        
-   
-  
+  def conjugation [Neg R] (value : GaussianInteger R) : GaussianInteger R :=
+  ⟨value.realPart, -value.imaginaryPart⟩
+
+Predicate logic (unfolded):
+
+  def conjugation [Neg R] (value : GaussianInteger R) : GaussianInteger R :=
+  ⟨value.realPart, -value.imaginaryPart⟩ (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+def conjugation [Neg R] (value : GaussianInteger R) : GaussianInteger R :=
+  ⟨value.realPart, -value.imaginaryPart⟩
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 def conjugation [Neg R] (value : GaussianInteger R) : GaussianInteger R :=
   ⟨value.realPart, -value.imaginaryPart⟩
 
-                                                                
+/--
+`normSquared` TODO
 
-             
+Predicate logic:
 
-       
-                                                                  
-                                   
-                                             
-   
-  
+  def normSquared [Add R] [Mul R] (value : GaussianInteger R) : R :=
+  value.realPart * value.realPart +
+    value.imaginaryPart * value.imaginaryPart
+
+Predicate logic (unfolded):
+
+  def normSquared [Add R] [Mul R] (value : GaussianInteger R) : R :=
+  value.realPart * value.realPart +
+    value.imaginaryPart * value.imaginaryPart (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+def normSquared [Add R] [Mul R] (value : GaussianInteger R) : R :=
+  value.realPart * value.realPart +
+    value.imaginaryPart * value.imaginaryPart
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 def normSquared [Add R] [Mul R] (value : GaussianInteger R) : R :=
   value.realPart * value.realPart +
     value.imaginaryPart * value.imaginaryPart

@@ -5,6 +5,43 @@ import LRA.Set.Interface.Families
 
 namespace LRA.Set.NBGSet
 
+/--
+`SubsetIffAllMembers` TODO
+
+Predicate logic:
+
+  forall A B : Set, A ⊆ B <-> forall x : Set, x ∈ A -> x ∈ B
+
+Predicate logic (unfolded):
+
+  ∀ (A B : LRA.Set.NBGSet.Set), LRA.Set.NBGSet.instHasSubset.1 A B ↔ ∀ (x : LRA.Set.NBGSet.Set), LRA.Set.instMembershipNBGSet.1 A x → LRA.Set.instMembershipNBGSet.1 B x
+
+Logical form (Lean):
+
+```lean
+theorem SubsetIffAllMembers :
+    forall A B : Set, A ⊆ B <-> forall x : Set, x ∈ A -> x ∈ B
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, constructor, .mp, .mpr
+
+-/
 theorem SubsetIffAllMembers :
     forall A B : Set, A ⊆ B <-> forall x : Set, x ∈ A -> x ∈ B := by
   sorry

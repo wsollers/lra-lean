@@ -6,10 +6,3 @@ import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs.WellDefined
 import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs.Laws
 import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs.Behavior
 import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs.Instances
-
-   
-                                                                          
-                                                                        
-                                                                      
-                         
-  

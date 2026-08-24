@@ -1,9 +1,3 @@
 import LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Carrier
 import LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Equivalence
 import LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.WellFoundedness
-
-   
-                                                                      
-                                                                                             
-                                                                       
-  

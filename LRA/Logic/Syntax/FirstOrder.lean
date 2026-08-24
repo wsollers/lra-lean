@@ -8,12 +8,3 @@ import LRA.Logic.Syntax.FirstOrder.Substitute
 import LRA.Logic.Syntax.FirstOrder.SubstitutionFreeVariables
 import LRA.Logic.Syntax.FirstOrder.Subformula
 import LRA.Logic.Syntax.FirstOrder.Sentence
-
-   
-                                                                     
-                                                                     
-                                                                         
-                                                                      
-                                                          
-                                                
-  

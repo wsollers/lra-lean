@@ -1,14 +1,2 @@
 import LRA.Analysis.Completeness.Completeness.Definition.CompletenessAdditions
 import LRA.Analysis.Completeness.Completeness.Theorems.CompletenessAdditions
-
-   
-                                                                           
-                                                                               
-                                                                 
-                                     
-                                                                            
-                             
-                                                                
-
-                                          
-  

@@ -3,8 +3,3 @@ import LRA.NumberSystems.ComplexNumbers.Interface.Signature.Definition
 import LRA.NumberSystems.ComplexNumbers.Interface.ModelTheory.LStructure
 import LRA.NumberSystems.ComplexNumbers.Interface.ModelTheory.Theory
 import LRA.NumberSystems.ComplexNumbers.Interface.ModelTheory.Model
-
-   
-                                                                
-                                       
-  

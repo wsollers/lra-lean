@@ -10,27 +10,366 @@ namespace LRA.NumberSystems.Carriers
 
 universe u
 
+/--
+`N_Landau` TODO
+
+Predicate logic:
+
+  abbrev N_Landau :=
+  LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement
+
+Predicate logic (unfolded):
+
+  abbrev N_Landau :=
+  LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev N_Landau :=
+  LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev N_Landau :=
   LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement
 
+/--
+`N_VonNeumann` TODO
+
+Predicate logic:
+
+  abbrev N_VonNeumann :=
+  LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalElement
+
+Predicate logic (unfolded):
+
+  abbrev N_VonNeumann :=
+  LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalElement (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev N_VonNeumann :=
+  LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalElement
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev N_VonNeumann :=
   LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalElement
 
+/--
+`N_Presburger` TODO
+
+Predicate logic:
+
+  abbrev N_Presburger :=
+  LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement
+
+Predicate logic (unfolded):
+
+  abbrev N_Presburger :=
+  LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev N_Presburger :=
+  LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev N_Presburger :=
   LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement
 
+/--
+`N` TODO
+
+Predicate logic:
+
+  abbrev N := N_Landau
+
+Predicate logic (unfolded):
+
+  abbrev N := N_Landau (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev N := N_Landau
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev N := N_Landau
 
+/--
+`N_0` TODO
+
+Predicate logic:
+
+  abbrev N_0 := N_VonNeumann
+
+Predicate logic (unfolded):
+
+  abbrev N_0 := N_VonNeumann (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev N_0 := N_VonNeumann
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev N_0 := N_VonNeumann
 
+/--
+`Z_Polish` TODO
+
+Predicate logic:
+
+  abbrev Z_Polish :=
+  LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
+
+Predicate logic (unfolded):
+
+  abbrev Z_Polish :=
+  LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev Z_Polish :=
+  LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev Z_Polish :=
   LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 
+/--
+`Z` TODO
+
+Predicate logic:
+
+  abbrev Z := Z_Polish
+
+Predicate logic (unfolded):
+
+  abbrev Z := Z_Polish (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev Z := Z_Polish
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev Z := Z_Polish
 
+/--
+`GaussianInt_OrderedPairs` TODO
+
+Predicate logic:
+
+  abbrev GaussianInt_OrderedPairs :=
+  LRA.NumberSystems.GaussianIntegers.Interface.ModelTheory.ActiveGaussianInteger
+
+Predicate logic (unfolded):
+
+  abbrev GaussianInt_OrderedPairs :=
+  LRA.NumberSystems.GaussianIntegers.Interface.ModelTheory.ActiveGaussianInteger (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev GaussianInt_OrderedPairs :=
+  LRA.NumberSystems.GaussianIntegers.Interface.ModelTheory.ActiveGaussianInteger
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev GaussianInt_OrderedPairs :=
   LRA.NumberSystems.GaussianIntegers.Interface.ModelTheory.ActiveGaussianInteger
 
+/--
+`GaussianInt` TODO
+
+Predicate logic:
+
+  abbrev GaussianInt := GaussianInt_OrderedPairs
+
+Predicate logic (unfolded):
+
+  abbrev GaussianInt := GaussianInt_OrderedPairs (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev GaussianInt := GaussianInt_OrderedPairs
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev GaussianInt := GaussianInt_OrderedPairs
 
 /-!
@@ -46,6 +385,45 @@ a canonical choice to default to. Concrete instantiations (e.g. over
 `Q_RationalQuotientFractions`) live in `Carriers/Witnesses.lean`.
 -/
 
+/--
+`C` TODO
+
+Predicate logic:
+
+  abbrev C (R : Type u) :=
+  LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.ComplexNumber R
+
+Predicate logic (unfolded):
+
+  abbrev C (R : Type u) :=
+  LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.ComplexNumber R (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev C (R : Type u) :=
+  LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.ComplexNumber R
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev C (R : Type u) :=
   LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.ComplexNumber R
 
@@ -63,6 +441,45 @@ isomorphism with `Cauchy.Carrier`) that needs a
 — see `Carriers/Witnesses.lean` for why.
 -/
 
+/--
+`R_Dyadic` TODO
+
+Predicate logic:
+
+  abbrev R_Dyadic :=
+  LRA.NumberSystems.RealNumbers.Dyadic.Expansion
+
+Predicate logic (unfolded):
+
+  abbrev R_Dyadic :=
+  LRA.NumberSystems.RealNumbers.Dyadic.Expansion (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev R_Dyadic :=
+  LRA.NumberSystems.RealNumbers.Dyadic.Expansion
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev R_Dyadic :=
   LRA.NumberSystems.RealNumbers.Dyadic.Expansion
 

@@ -1,9 +1,3 @@
-   
-                                  
-
-                                                                           
-                                                            
-  
 
 namespace LRA.Analysis.MetricSpace
 

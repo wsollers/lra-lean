@@ -6,12 +6,3 @@ import LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.WellDefined
 import LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.Laws
 import LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.Behavior
 import LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.Instances
-
-   
-                                                                        
-                                                                    
-                                                                  
-                                                                     
-                                                                      
-                                                               
-  

@@ -1,17 +1,15 @@
 import LRA.Set.ZFC.Extensionality.Theorems
 import LRA.Set.ZFC.EmptySet.Theorems
 import LRA.Set.ZFC.Pairing.Theorems
-import LRA.Set.ZFC.OrderedPair.Theorems
 import LRA.Set.ZFC.Union.Theorems
 import LRA.Set.ZFC.PowerSet.Theorems
+import LRA.Set.ZFC.Infinity.Theorems
 import LRA.Set.ZFC.Separation.Theorems
+import LRA.Set.ZFC.OrderedPair.Theorems
+import LRA.Set.ZFC.Replacement.Theorems
+import LRA.Set.ZFC.Foundation.Theorems
+import LRA.Set.ZFC.Choice.Theorems
 import LRA.Set.ZFC.RelativeComplement.Theorems
 import LRA.Set.ZFC.Intersection.Theorems
 import LRA.Set.ZFC.SymmetricDifference.Theorems
 import LRA.Set.ZFC.IntersectionOver.Theorems
-import LRA.Set.ZFC.Replacement.Theorems
-import LRA.Set.ZFC.Infinity.Theorems
-import LRA.Set.ZFC.Foundation.Theorems
-import LRA.Set.ZFC.Choice.Theorems
-
-                                                                                          
