@@ -133,6 +133,76 @@ upgrade to that one" facts. Core `Definition`, `Theorems`,
 `Characterizations`, `Consequences`, `Relationships`, and routers must not
 depend on examples or failures.
 
+## Aggregator Standard
+
+The repository uses three standard aggregate surfaces at the root and at each
+active curricular volume:
+
+| Aggregate | Role |
+|---|---|
+| `Core` | Subject or volume mathematics excluding examples and failures. |
+| `ExamplesFailures` | Opt-in examples, counterexamples, and failure modes. |
+| `All` | Maximal aggregate importing both `Core` and `ExamplesFailures`. |
+
+At repository scope this means:
+
+```text
+LRA.Core
+LRA.ExamplesFailures
+LRA.All
+LRA
+```
+
+`LRA` remains a backward-compatible alias of `LRA.All`.
+
+At volume scope the same split is used, but the files are flat rather than
+nested:
+
+```text
+LRA.VolumeICore
+LRA.VolumeIExamplesFailures
+LRA.VolumeIAll
+LRA.VolumeI
+```
+
+and similarly for `VolumeII`, `VolumeIII`, and `VolumeVII`.
+
+When a durable mathematical subject is not yet assigned to a numbered volume,
+the same flat pattern may be used with a provisional `VolumeTBD` slice:
+
+```text
+LRA.VolumeTBDCore
+LRA.VolumeTBDExamplesFailures
+LRA.VolumeTBDAll
+LRA.VolumeTBD
+```
+
+The flat naming is required on Windows because a file like `LRA/VolumeI.lean`
+cannot coexist with a sibling `LRA/VolumeI/` directory containing `Core.lean`
+or `All.lean`.
+
+The maintenance rule is:
+
+1. Add the declaration to its canonical subject owner.
+2. Add the subject router to the appropriate `Volume*Core` file if it is core.
+3. Add the opt-in surface to the appropriate `Volume*ExamplesFailures` file if
+   it is example/failure material.
+4. Let `Volume*All`, `LRA.ExamplesFailures`, and `LRA.All` pick it up through
+   the standard aggregate chain.
+
+Repository-level aggregators should not bypass the volume chain by importing
+individual subject routers directly. `LRA.Core` should import only
+`Volume*Core`; `LRA.ExamplesFailures` should import only
+`Volume*ExamplesFailures`; `LRA.All` should be assembled from the standard root
+aggregates rather than subject-owned routers.
+
+`VolumeTBD` is the temporary exception that keeps unassigned mathematical
+subjects inside the volume-driven chain until the LaTeX volume plan is updated.
+
+`Core` remains the preferred import for reusable mathematical development.
+`ExamplesFailures` remains quarantine-only. `All` is for convenience,
+exploration, and maximal coverage imports.
+
 This keeps the theory reusable. The core subject proves what always holds; the
 example and failure layers demonstrate the boundary of those theorems.
 

@@ -1,15 +1,8 @@
-import LRA.Logic
-import LRA.Set
-import LRA.Relation
-import LRA.Function
-import LRA.Order
-import LRA.SetSystems
-import LRA.Cardinality
-import LRA.EuclideanSpace
+import LRA.VolumeIAll
 
-   
-                             
+/-!
+Backward-compatible Volume I aggregate.
 
-                                                                             
-                                                                              
-  
+Prefer `LRA.VolumeICore` or `LRA.VolumeIExamplesFailures` when you want an
+explicit split. `LRA.VolumeI` remains the maximal Volume I surface.
+-/

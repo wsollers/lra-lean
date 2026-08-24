@@ -7,5 +7,6 @@ import LRA.AlgebraicStructures.DivisionRing.Theorems
 import LRA.AlgebraicStructures.DivisionRing.Characterizations
 import LRA.AlgebraicStructures.DivisionRing.Consequences
 import LRA.AlgebraicStructures.DivisionRing.Relationships
+import LRA.AlgebraicStructures.DivisionRing.Laws
 
                                                  

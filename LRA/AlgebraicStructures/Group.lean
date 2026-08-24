@@ -7,5 +7,6 @@ import LRA.AlgebraicStructures.Group.Theorems
 import LRA.AlgebraicStructures.Group.Characterizations
 import LRA.AlgebraicStructures.Group.Consequences
 import LRA.AlgebraicStructures.Group.Relationships
+import LRA.AlgebraicStructures.Group.Laws
 
                                                         

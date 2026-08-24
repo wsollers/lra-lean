@@ -3,5 +3,6 @@ import LRA.AlgebraicStructures.NontrivialRing.Theorems
 import LRA.AlgebraicStructures.NontrivialRing.Characterizations
 import LRA.AlgebraicStructures.NontrivialRing.Consequences
 import LRA.AlgebraicStructures.NontrivialRing.Relationships
+import LRA.AlgebraicStructures.NontrivialRing.Laws
 
                                                    

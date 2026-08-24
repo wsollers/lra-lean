@@ -7,5 +7,6 @@ import LRA.AlgebraicStructures.OrderedGroup.Theorems
 import LRA.AlgebraicStructures.OrderedGroup.Characterizations
 import LRA.AlgebraicStructures.OrderedGroup.Consequences
 import LRA.AlgebraicStructures.OrderedGroup.Relationships
+import LRA.AlgebraicStructures.OrderedGroup.Laws
 
                                                  

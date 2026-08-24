@@ -4,14 +4,14 @@
 
 | Item | Value |
 |---|---|
-| Revision | `fb59b14f5c2134e1e2860f4f96d824af74dc8c21` |
+| Revision | `f717ca923b41de28617655cfe4a24f0b2371e232` |
 | Branch | `main` |
 | Inventory | `9,718` compiled-environment rows |
-| SHA-256 | `156c4a50db3abf924d6ebffc237734d6eff97808bc972651145e1b7ddaee46e6` |
+| SHA-256 | `848f69a1ccc1d552c261dec61ec15447f84a722c2ed4ea2264b12de8ab0032aa` |
 | Generator | `scripts/DumpNamespaceEnvironment.lean` then `scripts/generate_namespace_inventory.py` |
 | Source-only findings | `0` (parser candidates; see reconciliation note) |
-| Exact duplicate names | `25` |
-| Case-insensitive collisions | `28` |
+| Exact duplicate names | `29` |
+| Case-insensitive collisions | `32` |
 
 ## Final architecture
 
@@ -22,14 +22,13 @@ Durable public declarations use semantic owners below `LRA`: `Algebra`,
 paths remain under `LRA/Volume*`; they no longer determine declaration names.
 `LRA.Internal` contains explicitly non-API orienting and scratch material.
 
-Immediate-root environment counts: `Algebra` 2254, `Analysis` 1388, `Identity` 81, `Internal` 78, `Interop` 25, `LinearAlgebra` 64, `Logic` 1423, `Map` 421, `NumberSystems` 2092, `Order` 527, `Relation` 89, `Set` 1111, `Topology` 81.
+Immediate-root environment counts: `Algebra` 119, `AlgebraicStructures` 531, `Analysis` 1388, `Identity` 81, `Internal` 78, `Interop` 25, `LinearAlgebra` 64, `Logic` 1423, `Map` 355, `NumberSystems` 2092, `Operation` 141, `Order` 527, `Relation` 100, `Set` 1111, `Topology` 81, `UniversalAlgebra` 1518.
 
 ## Evidence classification
 
-- `authored`: 3,894
 - `generated_companion`: 956
 - `generated_constructor`: 437
-- `generated_or_elaborated`: 3,198
+- `generated_or_elaborated`: 7,092
 - `generated_projection`: 837
 - `generated_recursor`: 312
 - `private_implementation`: 84
@@ -91,4 +90,4 @@ smoke test in `test/LRA/SemanticImportsSmoke.lean`.
 The TSV is sorted by full name and emitted with LF line endings. Run the two
 generator commands twice; byte-identical SHA-256 values are required. Exact
 duplicates are impossible in a Lean environment and are checked again here.
-Case-insensitive collisions: `lra.identity.pureequalitylanguage`, `lra.internal.mathematicalspaces.mathematicalspacedefinition.hasstructure`, `lra.logic.firstorder.evaluateterm.eq_1`, `lra.logic.firstorder.evaluateterm.eq_2`, `lra.logic.firstorder.evaluateterm.eq_3`, `lra.logic.firstorder.evaluateterm.eq_def`, `lra.logic.firstorder.freevariables.eq_1`, `lra.logic.firstorder.freevariables.eq_2`, `lra.logic.firstorder.freevariables.eq_3`, `lra.logic.firstorder.freevariables.eq_4`, `lra.logic.firstorder.freevariables.eq_5`, `lra.logic.firstorder.freevariables.eq_def`, `lra.logic.firstorder.freevariablesinterm.eq_1`, `lra.logic.firstorder.freevariablesinterm.eq_2`, `lra.logic.firstorder.freevariablesinterm.eq_3`, `lra.logic.firstorder.freevariablesinterm.eq_def`, `lra.logic.firstorder.substitute.eq_1`, `lra.logic.firstorder.substitute.eq_2`, `lra.logic.firstorder.substitute.eq_3`, `lra.logic.firstorder.substitute.eq_4`, `lra.logic.firstorder.substitute.eq_5`, `lra.logic.firstorder.substitute.eq_def`, `lra.logic.firstorder.substituteinterm.eq_1`, `lra.logic.firstorder.substituteinterm.eq_2`, `lra.logic.firstorder.substituteinterm.eq_3`, `lra.logic.firstorder.substituteinterm.eq_def`, `lra.logic.updateassignment.congr_simp`, `lra.numbersystems.gaussianintegers.gaussianinteger.gaussianarithmeticringmodel`.
+Case-insensitive collisions: `lra.identity.pureequalitylanguage`, `lra.internal.mathematicalspaces.mathematicalspacedefinition.hasstructure`, `lra.logic.firstorder.evaluateterm.eq_1`, `lra.logic.firstorder.evaluateterm.eq_2`, `lra.logic.firstorder.evaluateterm.eq_3`, `lra.logic.firstorder.evaluateterm.eq_def`, `lra.logic.firstorder.freevariables.eq_1`, `lra.logic.firstorder.freevariables.eq_2`, `lra.logic.firstorder.freevariables.eq_3`, `lra.logic.firstorder.freevariables.eq_4`, `lra.logic.firstorder.freevariables.eq_5`, `lra.logic.firstorder.freevariables.eq_def`, `lra.logic.firstorder.freevariablesinterm.eq_1`, `lra.logic.firstorder.freevariablesinterm.eq_2`, `lra.logic.firstorder.freevariablesinterm.eq_3`, `lra.logic.firstorder.freevariablesinterm.eq_def`, `lra.logic.firstorder.substitute.eq_1`, `lra.logic.firstorder.substitute.eq_2`, `lra.logic.firstorder.substitute.eq_3`, `lra.logic.firstorder.substitute.eq_4`, `lra.logic.firstorder.substitute.eq_5`, `lra.logic.firstorder.substitute.eq_def`, `lra.logic.firstorder.substituteinterm.eq_1`, `lra.logic.firstorder.substituteinterm.eq_2`, `lra.logic.firstorder.substituteinterm.eq_3`, `lra.logic.firstorder.substituteinterm.eq_def`, `lra.logic.updateassignment.congr_simp`, `lra.numbersystems.gaussianintegers.gaussianinteger.gaussianarithmeticringmodel`, `lra.operation.binaryoperation`, `lra.operation.externalbinaryoperation`, `lra.operation.nullaryoperation`, `lra.operation.unaryoperation`.

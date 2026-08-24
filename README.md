@@ -10,9 +10,55 @@ This repo was extracted from `Learning-Real-Analysis/lean/`.
 lakefile.lean       — Lake build configuration
 lean-toolchain      — Lean 4 version pin
 LRA/                — Lean source modules
-  VolumeI/
-  VolumeII/
 ```
+
+## Aggregators
+
+Repository-level aggregators are standardized as:
+
+```text
+LRA.Core                — imports only volume `*Core` aggregators
+LRA.ExamplesFailures    — imports only volume `*ExamplesFailures` aggregators
+LRA.All                 — maximal aggregate from the standard root chain
+LRA                     — backward-compatible alias of LRA.All
+```
+
+Active curricular volume slices follow the same flat naming convention:
+
+```text
+LRA.VolumeICore
+LRA.VolumeIExamplesFailures
+LRA.VolumeIAll
+LRA.VolumeI
+
+LRA.VolumeIICore
+LRA.VolumeIIExamplesFailures
+LRA.VolumeIIAll
+LRA.VolumeII
+
+LRA.VolumeIIICore
+LRA.VolumeIIIExamplesFailures
+LRA.VolumeIIIAll
+LRA.VolumeIII
+
+LRA.VolumeVIICore
+LRA.VolumeVIIExamplesFailures
+LRA.VolumeVIIAll
+LRA.VolumeVII
+
+LRA.VolumeTBDCore
+LRA.VolumeTBDExamplesFailures
+LRA.VolumeTBDAll
+LRA.VolumeTBD
+```
+
+`VolumeTBD` is the provisional holding slice for mathematical subject routers
+that are not yet assigned to a numbered volume while the LaTeX volume structure
+is being reworked.
+
+The flat names are intentional: on Windows, `LRA/VolumeI.lean` cannot coexist
+with a sibling `LRA/VolumeI/` directory that would hold `Core.lean` or
+`All.lean`.
 
 ## Building
 
