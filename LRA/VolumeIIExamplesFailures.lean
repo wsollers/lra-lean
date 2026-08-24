@@ -1,9 +1,11 @@
 import LRA.Operation.Examples
 import LRA.Operation.FailureModes
 import LRA.NumberSystems.RationalNumbers.Examples
+import LRA.NumberSystems.RealNumbers.Interop.Mathlib.Extended
+import LRA.NumberSystems.RealNumbers.Interop.Mathlib.NonNegative
 
 /-!
 Volume II examples/failures aggregate.
 
-Add opt-in examples and failure-mode surfaces for the Volume II slice here.
+Topic-local examples, failures, and interop routers for the Volume II slice.
 -/

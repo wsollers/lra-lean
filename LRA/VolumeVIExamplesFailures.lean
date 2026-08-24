@@ -51,6 +51,8 @@ import LRA.AlgebraicStructures.Semigroup.Examples
 import LRA.AlgebraicStructures.Semigroup.Laws.Examples
 import LRA.AlgebraicStructures.Semiring.Examples
 import LRA.AlgebraicStructures.Semiring.Laws.Examples
+import LRA.Order.Interop.AlgebraicLattice
+import LRA.Order.Interop.Mathlib
 import LRA.Order.Examples
 import LRA.Order.FailureModes
 import LRA.Algebra.LinearAlgebra.VectorSpace.Examples
@@ -61,6 +63,6 @@ import LRA.Algebra.LinearAlgebra.VectorSpace.Interop.ToMathlib
 /-!
 Volume VI examples/failures aggregate.
 
-Topic-local example, failure, and law-example routers inherit the parent
-topic's volume placement.
+Topic-local example, failure, interop, and law-example routers inherit the
+parent topic's volume placement.
 -/

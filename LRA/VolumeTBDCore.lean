@@ -1,5 +1,6 @@
+import LRA.Analysis
 import LRA.Carrier
-import LRA.Morphism
+import LRA.Interop.Mathlib
 import LRA.UniversalAlgebra
 import LRA.AlgebraicStructures
 import LRA.Spaces

@@ -35,7 +35,9 @@ import LRA.AlgebraicStructures.Semigroup.Laws
 import LRA.AlgebraicStructures.Semiring.Laws
 import LRA.AlgebraicStructures.Semiring.Laws.Distributive
 import LRA.Algebra.LinearAlgebra
+import LRA.Algebra.LinearAlgebra.VectorSpace.Construction
 import LRA.Order
+import LRA.Order.Relation.GreaterThan.Relationships
 
 /-!
 Volume VI core aggregate.

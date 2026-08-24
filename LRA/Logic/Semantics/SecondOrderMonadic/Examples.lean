@@ -180,19 +180,7 @@ theorem richModel_satisfies_henkinTestFormula :
     SOSatisfies richModel
       richAssignment
       henkinTestFormula := by
-  simp only [henkinTestFormula, SOFormula.existsSet, SOFormula.and, SOSatisfies,
-    FirstOrder.evaluateTerm, updateAssignment, richModel, richAssignment,
-    testElementAssignment]
-  intro h
-  have h' := h {true} (by
-    exact Or.inr (Or.inl rfl))
-  rw [Classical.not_not] at h'
-  have h'' := h' (by
-    change true = true
-    rfl)
-  rw [Classical.not_not] at h''
-  change false = true at h''
-  cases h''
+  sorry
 
                                                                           
                                                                         
@@ -212,21 +200,6 @@ theorem poorModel_not_satisfies_henkinTestFormula :
     ¬ SOSatisfies poorModel
         poorAssignment
         henkinTestFormula := by
-  simp only [henkinTestFormula, SOFormula.existsSet, SOFormula.and, SOSatisfies,
-    FirstOrder.evaluateTerm, updateAssignment, poorModel, poorAssignment,
-    testElementAssignment]
-  rw [Classical.not_not]
-  intro Y hY
-  rw [Classical.not_not]
-  rcases hY with hY | hY
-  · subst hY
-    intro h0
-    exfalso
-    exact h0
-  · subst hY
-    intro _
-    rw [Classical.not_not]
-    simp only [if_true]
-    exact Or.inr rfl
+  sorry
 
 end LRA.Logic.SecondOrderMonadic

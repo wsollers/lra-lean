@@ -1,3 +1,4 @@
+import LRA.Topology.PointSetTopology.TopologicalSpace.Construction
 import LRA.Topology.PointSetTopology.TopologicalSpace.Interop
 import LRA.Topology.PointSetTopology.TopologicalSpace.Realizations
 import LRA.Topology.PointSetTopology.TopologicalSpace.Theorems

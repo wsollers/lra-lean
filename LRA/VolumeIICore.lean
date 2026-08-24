@@ -8,6 +8,7 @@ import LRA.NumberSystems.IntegerStructure
 import LRA.NumberSystems.Integers
 import LRA.NumberSystems.RationalNumbers
 import LRA.NumberSystems.RealNumbers
+import LRA.NumberSystems.RealNumbers.LraReal
 import LRA.NumberSystems.ComplexNumbers
 import LRA.NumberSystems.GaussianIntegers
 import LRA.Arithmetic

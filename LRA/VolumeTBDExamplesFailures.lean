@@ -1,6 +1,7 @@
+import LRA.UniversalAlgebra.Congruence.AllWithExamples
+
 /-!
 Provisional volume examples/failures aggregate.
 
-This file is intentionally empty for now. Add only opt-in example or failure
-surfaces that belong to the provisional `VolumeTBD` slice.
+This slice holds opt-in example and failure surfaces for provisional topics.
 -/
