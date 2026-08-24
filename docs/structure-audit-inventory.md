@@ -1272,3 +1272,58 @@ across 3904 import statements) and manual namespace/`end` balance on
 `Carriers/Witnesses.lean`. Not built — as with every `sorry`'d law in this
 audit, everything grounded here is only as sound as those `sorry`s turn
 out to be once actually discharged.
+
+## 23. `C_OrderedPairs` — grounded over `Q`, not ℝ (structural gap found)
+
+`ComplexNumbers`'s only construction, `OrderedPairs.ComplexNumber R`, is
+fully generic over any `R` — `ComplexNumbers/Constructions/OrderedPairs/
+Operations.lean` gives `Add`/`Neg`/`Sub`/`Mul`/`Inv`/`OfNat` on
+`ComplexNumber R` purely from the matching raw instances on `R`, no law
+certificates required. So in principle grounding it is just "pick an `R`
+that already has those instances."
+
+The natural target is a genuine LRA-native ℝ. Checked all five
+`RealNumbers` carriers grounded in §22 for whether any of them actually
+carry `Add`/`Mul`/`Neg`/`Inv`/`OfNat` *instances* — none do, anywhere in
+this codebase. Each construction only proves an existence-style "realizes
+a `DenselyOrderedFieldModel`" theorem
+(`{Cantor,Cauchy,Dedekind,PrimitiveIntervals}RealizesRationalRealExtension`)
+via `Classical.choose` over an *opaque* model — the exact same
+non-constructive shape that made `Tao`/`Mendelson` unusable as
+`IntegerNumberSystem`s in §21, and `Dyadic` unbuildable in §22. This is a
+newly-identified, real gap: none of the `RealNumbers` constructions are
+usable as arithmetic types today, only as bare carrier types. Installing
+concrete instances on one (e.g. on `Cauchy`, mirroring how
+`QuotientOrderedPairs/Instances.lean` built `quotientCarrierAdd` etc. via
+`induced_binary_operation_exists` in
+`UniversalAlgebra/Quotient/RepresentativeCompatibility.lean`, applied to
+`Cauchy`'s already-existing `representative_addition`/
+`representative_addition_respects_equivalence`) is real new work, not
+wiring — flagged here as a natural next step for a `RealNumbers` pass,
+not folded into this one as a scope-creeping side effect.
+
+`Q_RationalQuotientFractions`, by contrast, already has every needed
+instance (`rationalCarrierAdd`, `rationalCarrierMul`, `rationalCarrierNeg`,
+`rationalCarrierInv`, `rationalCarrierZero`, `rationalCarrierOne`, §21),
+so it's the best available concrete LRA-native witness today:
+
+- `C_OrderedPairs := ComplexNumber Q_RationalQuotientFractions`
+- `C := C_OrderedPairs`
+
+This grounds the Gaussian rationals ℚ(i), **not** ℂ in the traditional
+ℝ-based sense — noting that plainly rather than presenting it as "the"
+complex numbers. (The repo's existing `ComplexNumbers/Interface/
+ModelTheory/LStructure.lean` already has a `complexNumbersModel Real`
+grounding, but that's Mathlib's `Real`, not an LRA-native construction —
+consistent with the gap just found.)
+
+Verified with the same static import-resolution check (0 broken imports
+across 3905 import statements) and manual namespace/`end` balance on
+`Carriers/Witnesses.lean`. Not built.
+
+**Summary of open items across this whole `NumberSystems.Carriers` effort
+(§18–§23):** `Dyadic` (needs a concrete `Cauchy` `RationalRealExtension`
+realization); genuine LRA-native `R`/`C` (needs concrete arithmetic
+instances on a `RealNumbers` carrier — the gap found here); and
+discharging the substantial and growing pile of `sorry`'d laws
+underpinning everything grounded so far.
