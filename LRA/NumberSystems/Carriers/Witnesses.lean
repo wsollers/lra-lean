@@ -274,6 +274,36 @@ abbrev R_Cauchy :=
 abbrev R := R_Cauchy
 
 /-!
+`Cauchy` now has a full concrete `RealModel` (arithmetic instances, order,
+and law certificates — all `sorry`'d, but present) and a concrete
+embedding of ℚ into it, so the `RationalDyadicApproximationData` witness
+`Dyadic` needed (§22, §24) — genuinely blocked at the time, since no
+`RealNumbers` construction had any of this — is buildable now.
+-/
+
+noncomputable def landauRationalRealExtension :
+    LRA.NumberSystems.RealNumbers.RationalRealExtension landauRationalNumberSystem :=
+  LRA.NumberSystems.RealNumbers.Cauchy.CauchyRationalRealExtension
+    landauRationalNumberSystem landauRationalMetricData
+
+/-- `landauRationalRealExtension.RealModel` is `CauchyRealizesRealModel
+landauRationalNumberSystem landauRationalMetricData`, whose `Carrier`
+field was set directly to `Cauchy.Carrier landauRationalNumberSystem
+landauRationalMetricData` (`R_Cauchy` above) — no `Classical.choose` sits
+on that particular projection path, so this holds by `rfl`. Checked by
+hand, not by `lake build`. -/
+theorem landauCauchyCarrierEq :
+    landauRationalRealExtension.RealModel.Carrier = R_Cauchy :=
+  rfl
+
+noncomputable def landauRationalDyadicApproximationData :
+    LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData where
+  RationalSystem := landauRationalNumberSystem
+  AbsoluteValueData := landauRationalMetricData
+  CauchyRealExtension := landauRationalRealExtension
+  CauchyCarrierEq := landauCauchyCarrierEq
+
+/-!
 `C` itself is kept generic over `R` in `Carriers/Definition.lean` — it's
 already the generic interface, not a fixed construction needing one
 canonical witness. What's worth naming concretely here is one example

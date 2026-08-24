@@ -1573,4 +1573,92 @@ not built — `CauchyRealizesRealModel` supplies the `RealModel` that
 chain would need, but the embedding-from-ℚ and cofinality pieces on top
 of it are separate, not-yet-attempted work.
 
-Proceeding next to the same treatment for `Dedekind`.
+## 27. `Dedekind` and `PrimitiveIntervals` completed; `Dyadic` fully unblocked
+
+Continuing §26's directive across the remaining `RealNumbers`
+constructions. `Dedekind` and `PrimitiveIntervals` turned out to need
+far less than `Cauchy` did — both are already almost entirely
+mathematically specified (`sorry`'d), just never wired into typeclass
+instances.
+
+**`Dedekind`** is a subtype (`Cut := {lower_set // IsCut lower_set}`),
+not a quotient, so none of `Operation.Laws.QuotientCompatible` applies —
+`addition`/`negation`/`multiplication`/`zero`/`one`/`strict_order`/
+`nonstrict_order` were already total functions directly on `Cut`
+(`WellDefinedness.lean`/`Equivalence.lean`), and the file already had
+`OrderedFieldStructure`/`CompleteOrderedFieldStructure` — a **complete**,
+`sorry`'d statement of Dedekind completeness via `LeastUpperBoundProperty`
+(`Laws.lean`) — the most developed of the six constructions by far.
+`inverse` is partial (needs `cut ≠ zero`); total-ized the standard way
+(`0⁻¹ := 0`, `open Classical in` for the guard). Added to
+`Dedekind/Instances.lean`: `Add`/`Mul`/`Neg`/`Inv`/`OfNat 0`/`OfNat 1`/
+`LT`/`LE` instances built directly from the existing functions (no
+`Classical.choose` needed anywhere — `multiplication`/`inverse`
+themselves already used it internally, but the *instances* wrapping them
+don't need another layer of it); four fresh `sorry`'d law-certificate
+theorems; `DedekindRealizesDenselyOrderedFieldModel` and
+`DedekindRealizesRealModel`, concrete builders matching every other
+`*RealizesRealModel` in this pass.
+
+**`PrimitiveIntervals`** is a quotient (nested rational intervals, like
+`Cantor`), but was *already fully lifted*: `addition`/`negation`/
+`multiplication`/`strict_order` in `WellDefinedness.lean` are already
+`Carrier → Carrier → Carrier`/`Carrier → Carrier → Prop` (each built via
+`Classical.choose` over `induced_binary_operation_exists`/
+`induced_relation_exists`, done by whoever wrote this construction
+before this audit), `zero`/`one` in `Operations.lean` are already
+`Carrier`-typed, and `Laws.lean` already has `strict_total_order`,
+`order_compatibility`, `quotient_distributivity`, and — again — a
+**complete**, `sorry`'d `least_upper_bound_property`. So, like Dedekind,
+none of `QuotientCompatible` was needed (the lifting was already done);
+`inverse` is partial the same way and total-ized the same way. Added the
+same instance/cert/model-builder shape to
+`PrimitiveIntervals/Instances.lean`:
+`PrimitiveIntervalsRealizesDenselyOrderedFieldModel`,
+`PrimitiveIntervalsRealizesRealModel`.
+
+**Unblocking `Dyadic`.** With `Cauchy` now a full `RealModel` (§26),
+added the one remaining piece: a concrete embedding of ℚ into it.
+`Cauchy/Laws.lean` gained `constant_sequence`/`constant_sequence_is_cauchy`
+(generalizing the existing `zero_sequence`/`one_sequence`) and
+`rational_embedding` (matching `Dedekind.rational_embedding`'s naming).
+`Cauchy/Instances.lean` gained `quotient_rational_embedding`, then
+`CauchyRationalEmbedding : DenseOrderedFieldEmbeddingIntoReal
+rationalSystem.FieldModel (CauchyRealizesRealModel ...)` — all eight
+proof fields (`injective`, `PreservesZero`, ..., `PreservesAndReflectsOrder`)
+`sorry`'d *inline* inside the structure literal rather than as
+separately-stated named theorems, specifically to avoid the risk of a
+hand-restated theorem's `0`/`1`/`+`/`*`/`⁻¹`/`≤` drifting from what
+instance resolution actually infers for the structure's own field type —
+`by sorry` inline always closes exactly the goal the structure demands.
+Then `CauchyRealizesCofinalRealExtension` (cofinality itself `sorry`'d)
+and `CauchyRationalRealExtension : RationalRealExtension rationalSystem`
+— a genuinely **concrete** value this time, distinct from the
+pre-existing `CauchyRealizesRationalRealExtension` *existence* theorem
+(left untouched).
+
+In `Carriers/Witnesses.lean`: `landauRationalRealExtension` (built from
+the above), and `landauCauchyCarrierEq : landauRationalRealExtension.
+RealModel.Carrier = R_Cauchy := rfl` — genuinely `rfl`, not `sorry`,
+because `CauchyRealizesRealModel`'s `Carrier` field was set directly to
+`Cauchy.Carrier ...` with no `Classical.choose` on that specific
+projection path. Assembled into
+`landauRationalDyadicApproximationData : RationalDyadicApproximationData`
+— the witness `Dyadic`'s entire theory (`Value`, `IsDyadicRational`,
+`OrderedFieldIsomorphismHolds`) needed and, as of §24, could not get.
+`Dyadic` is now fully unblocked; giving `Expansion` (`R_Dyadic`) its own
+typeclass instances by composing through this witness and
+`BinaryRealBijection` is the natural next step, not yet done.
+
+Verified with the same static import-resolution check (0 broken imports
+across 3914 import statements) and manual namespace/`end` balance on all
+new/modified files (`Dedekind/Instances.lean`,
+`PrimitiveIntervals/Instances.lean`, `Cauchy/Laws.lean`,
+`Cauchy/Instances.lean`, `Carriers/Witnesses.lean`). Not built — the
+`rfl` claim above and every inline `matches_raw`/field-shape claim
+elsewhere in this section were checked by hand against the relevant
+structures' field types, not by the compiler.
+
+Proceeding next to `Dyadic`'s own instance wiring, then `Cantor` and
+`EffectiveCauchy` (the two genuinely empty constructions, needing raw
+mathematical content built from scratch rather than just wiring).

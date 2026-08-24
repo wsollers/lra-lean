@@ -194,6 +194,60 @@ noncomputable def CauchyRealizesRealModel
   denseCert := quotient_dense_order_cert rationalSystem absolute_value_data
   completeCert := quotient_completeness_cert rationalSystem absolute_value_data
 
+noncomputable def quotient_rational_embedding
+    (rationalSystem : RationalNumberSystem)
+    (absolute_value_data : RationalMetricData rationalSystem)
+    (value : rationalSystem.FieldModel.signature.carrier) :
+    Carrier rationalSystem absolute_value_data :=
+  Quotient.mk _ (rational_embedding rationalSystem absolute_value_data value)
+
+/-- The concrete embedding of ℚ into `CauchyRealizesRealModel`, as a
+`DenseOrderedFieldEmbeddingIntoReal`. Every proof field is `sorry`'d
+inline (rather than as separately-stated named theorems) so each goal is
+exactly what the structure's own field type demands — no risk of a
+hand-restated theorem drifting from what instance resolution actually
+infers for `0`/`1`/`+`/`*`/`⁻¹`/`≤` on either side. -/
+noncomputable def CauchyRationalEmbedding
+    (rationalSystem : RationalNumberSystem)
+    (absolute_value_data : RationalMetricData rationalSystem) :
+    LRA.NumberSystems.Interface.ModelTheory.DenseOrderedFieldEmbeddingIntoReal
+      rationalSystem.FieldModel
+      (CauchyRealizesRealModel rationalSystem absolute_value_data) where
+  ToReal := quotient_rational_embedding rationalSystem absolute_value_data
+  injective := by sorry
+  PreservesZero := by sorry
+  PreservesOne := by sorry
+  PreservesAddition := by sorry
+  PreservesNegation := by sorry
+  PreservesMultiplication := by sorry
+  PreservesInverse := by sorry
+  PreservesAndReflectsOrder := by sorry
+
+noncomputable def CauchyRealizesCofinalRealExtension
+    (rationalSystem : RationalNumberSystem)
+    (absolute_value_data : RationalMetricData rationalSystem) :
+    LRA.NumberSystems.Interface.ModelTheory.CofinalRealExtension
+      rationalSystem.FieldModel where
+  RealModel := CauchyRealizesRealModel rationalSystem absolute_value_data
+  DenseOrderedFieldEmbedding := CauchyRationalEmbedding rationalSystem absolute_value_data
+  DenseOrderedFieldEmbeddingIsCofinal := by sorry
+
+/-- The concrete `RationalRealExtension` witness `Dyadic` needs
+(`RationalDyadicApproximationData.CauchyRealExtension`) — unlike the
+pre-existing `CauchyRealizesRationalRealExtension` above, this is a
+direct value, not an existence claim, so `.RealModel.Carrier` is
+definitionally `Carrier rationalSystem absolute_value_data` (checked by
+hand, not `lake build` — see `Carriers/Witnesses.lean`). -/
+noncomputable def CauchyRationalRealExtension
+    (rationalSystem : RationalNumberSystem)
+    (absolute_value_data : RationalMetricData rationalSystem) :
+    LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem where
+  RealModel := CauchyRealizesRealModel rationalSystem absolute_value_data
+  DenseOrderedFieldEmbedding := CauchyRationalEmbedding rationalSystem absolute_value_data
+  DenseOrderedFieldEmbeddingIsCofinal :=
+    (CauchyRealizesCofinalRealExtension
+      rationalSystem absolute_value_data).DenseOrderedFieldEmbeddingIsCofinal
+
                                                                         
                                      
 

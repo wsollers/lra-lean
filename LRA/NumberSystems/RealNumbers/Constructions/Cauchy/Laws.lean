@@ -149,6 +149,32 @@ theorem inverse_is_proper
   respects :=
     representative_inverse_respects_equivalence rationalSystem absolute_value_data
 
+/-- The constant sequence at a fixed rational value — trivially Cauchy;
+generalizes `zero_sequence`/`one_sequence` below and is the raw content of
+the embedding of ℚ into the Cauchy reals (`rational_embedding`). -/
+def constant_sequence
+    (rationalSystem : RationalNumberSystem)
+    (value : rationalSystem.FieldModel.signature.carrier) : Sequence rationalSystem :=
+  fun _ => value
+
+theorem constant_sequence_is_cauchy
+    (rationalSystem : RationalNumberSystem)
+    (absolute_value_data : RationalMetricData rationalSystem)
+    (value : rationalSystem.FieldModel.signature.carrier) :
+    is_cauchy rationalSystem absolute_value_data
+      (constant_sequence rationalSystem value) := by
+  sorry
+
+/-- The embedding of ℚ into the Cauchy reals at the representative level,
+matching `Dedekind.rational_embedding`'s naming. -/
+noncomputable def rational_embedding
+    (rationalSystem : RationalNumberSystem)
+    (absolute_value_data : RationalMetricData rationalSystem)
+    (value : rationalSystem.FieldModel.signature.carrier) :
+    Representative rationalSystem absolute_value_data :=
+  ⟨constant_sequence rationalSystem value,
+    constant_sequence_is_cauchy rationalSystem absolute_value_data value⟩
+
 /-- The constant-zero sequence — trivially Cauchy (`sorry`'d rather than
 proved, per this pass's static-only verification policy). -/
 def zero_sequence (rationalSystem : RationalNumberSystem) : Sequence rationalSystem :=
