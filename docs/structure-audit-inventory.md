@@ -1863,3 +1863,83 @@ in particular the `GaussianIntegers` fix is the riskiest of the three
 (a real signature swap, not just a bridging theorem or a defeq-preserving
 repoint), and its correctness rests on the instance-availability chain
 traced above rather than a compiler check.
+
+## 31. Post-merge CI break, and the missing bi-invariant composition theorem
+
+Two follow-ups after PR #18 landed on `main`.
+
+**CI break.** The "Lean Standardization Build" job (which builds a
+foundational slice: `LRALogic`, `LRAIdentity`, `LRASetCore`,
+`LRAStandardizedFoundations`) failed on `main` immediately after the
+merge, and had been green on the commit immediately before it — a
+genuine regression from this session's own work, not a pre-existing
+break. Root cause: `Operation/Laws/QuotientCompatible/Definition.lean`
+(§25) declared `universe u v` and typed `Representative`/`Raw` as
+`Type u`/`Type v`, genuinely universe-polymorphic — but every lemma it
+calls into (`binary_operation_respects`, `induced_binary_operation_exists`,
+`unary_operation_respects`, `relation_respects`, `induced_relation_exists`,
+in `UniversalAlgebra/Quotient/RepresentativeCompatibility.lean`) is
+hardcoded to `{Carrier : Type}` — universe `0`, not polymorphic. Every
+`respects`/`induced_*` field asked Lean to unify `Type u` with `Type 0`
+for a genuinely-generalized `u`, which fails to elaborate. Fixed
+(PR #19, merged) by dropping the polymorphism — `Representative`/`Raw`
+are plain `Type` throughout, matching the fixed-universe-0 constraint
+already imposed by what the file calls into. Every concrete
+instantiation built this session (`Cauchy`, `Cantor`, `EffectiveCauchy`'s
+representative types) was already at universe `0` regardless, so nothing
+needed downstream was lost. CI passed on the fix branch before merging.
+This is the first real (compiler-checked, not just statically-audited)
+verification anything in this whole pass has had — worth noting since
+it caught something the static import-resolution/namespace-balance
+checks used throughout §1–§30 structurally cannot catch (universe
+mismatches aren't a broken-import or unbalanced-`end` problem).
+
+**Missing bi-invariant composition theorem.** Separately, prompted by a
+question about whether left/right-invariance of relations under
+operations was properly named and generalized anywhere in this repo:
+it already was, and better than a first Mathlib-style sketch suggested
+— `Order/Laws/OperationCompatibility/Definition.lean` already had
+`LeftTranslationPreservesRelation`/`RightTranslationPreservesRelation`,
+generic over the operation itself (not needing separate `Add`/`Mul`/
+`SMul` variants), and `CoordinatewisePreservesRelation`
+(`r left₁ left₂ → r right₁ right₂ → r (op left₁ right₁) (op left₂
+right₂)`) — which *is* the bi-invariance bundle already, word-for-word
+matching the classic "bi-invariant relations allow 2-variable
+composition" fact, no new predicate needed.
+`Consequences.lean` already had the forward direction
+(`CoordinatewisePreservesRelation.left_translation`/`.right_translation`,
+Coordinatewise ⟹ Left, Right, given reflexivity) but not the reverse —
+Left + Right + transitivity ⟹ Coordinatewise, the actual composition
+theorem. Added `CoordinatewisePreservesRelation.of_left_and_right_translation`
+to `Relationships.lean` (`[Trans relation relation relation]` +
+both translation laws ⟹ `CoordinatewisePreservesRelation`), `sorry`'d.
+
+Also checked (and partly retracted) an initial claim that both
+`AdditionRespectsOrderLaws` and `MultiplicationRespectsOrderLaws` (the
+two existing typeclasses in the same file) reinvent the generic
+predicates ad hoc. Only half true: `AdditionRespectsOrderLaws`'s
+`AddLeAddLeft`/`AddLeAddRight` genuinely are
+`LeftTranslationPreservesRelation`/`RightTranslationPreservesRelation`
+restated with the argument order changed; `MultiplicationRespectsOrderLaws`'s
+`MulNonneg` is a closure/positivity law ("product of nonnegatives is
+nonnegative"), not a translation-invariance statement, so it doesn't
+correspond to the generic predicates at all and needed no reconciling.
+Added `AdditionRespectsOrderLaws.to_left_translation`/`.to_right_translation`
+bridging theorems (`sorry`'d) rather than restructuring the class's
+field types — `AddLeAddLeft`/`AddLeAddRight` already have an established
+call signature used throughout this codebase, and the generic
+predicates put the "fixed" argument in a different position, so
+reordering them in place would be a real (if mechanical) breaking
+change to every call site.
+
+Verified with the same static import-resolution check (0 broken imports
+across 3920 import statements) and manual namespace/`end` balance on
+`Relationships.lean`. Not built in this pass — but see the CI-break
+note above: this specific family
+(`LeftTranslationPreservesRelation`/`RightTranslationPreservesRelation`/
+`CoordinatewisePreservesRelation`) is consistently universe-polymorphic
+throughout its own `Definition.lean`, and `Trans` (Lean 4 core) is
+itself universe-polymorphic, so the new theorem doesn't call into
+anything with the fixed-`Type`-0 constraint that caused the
+`QuotientCompatible` break — checked specifically to avoid repeating
+that mistake.
