@@ -329,18 +329,25 @@ noncomputable def landauRationalDyadicApproximationData :
 /-!
 `C` itself is kept generic over `R` in `Carriers/Definition.lean` — it's
 already the generic interface, not a fixed construction needing one
-canonical witness. What's worth naming concretely here is one example
-instantiation for use in examples/counterexamples.
+canonical witness. What's worth naming concretely here are example
+instantiations for use in examples/counterexamples.
 `Q_RationalQuotientFractions` already has every instance `C` needs
 (`rationalCarrierAdd`, `rationalCarrierMul`, `rationalCarrierNeg`,
 `rationalCarrierInv`, `rationalCarrierZero`, `rationalCarrierOne`, §21),
 so `C Q_RationalQuotientFractions` type-checks directly and gives the
 Gaussian rationals ℚ(i) — named as such, not as "the" complex numbers.
-(A genuine `C` over an LRA-native ℝ awaits `RealNumbers` gaining
-arithmetic instances — none of the five carriers grounded in §22 have
-any; see §23.)
+
+The gap noted here originally — no LRA-native `R` had arithmetic
+instances (§23) — is closed as of §26–§28: `R_Cauchy` now has
+`quotientCarrierAdd`/`_Mul`/`_Neg`/`_Inv`/`_Zero`/`_One` registered as
+genuine global instances (`Cauchy/Instances.lean`), so `C R_Cauchy`
+type-checks the same way `C Q_RationalQuotientFractions` does — this is
+a genuine LRA-native ℂ (ℝ(i), via the `Cauchy` construction), not a
+stand-in.
 -/
 
 abbrev C_Q_OrderedPairs := C Q_RationalQuotientFractions
+
+abbrev C_R_Cauchy := C R_Cauchy
 
 end LRA.NumberSystems.Carriers

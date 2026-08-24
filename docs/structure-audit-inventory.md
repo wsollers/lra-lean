@@ -1745,3 +1745,35 @@ new/modified files (`Cantor/{Operations,WellDefinedness,Laws,Instances}.lean`,
 `Carriers/Witnesses.lean`). Not built — as throughout §25–§28, every
 `rfl`/`trivial`/direct-reuse claim was checked by hand against the
 relevant structure's field types, not by the compiler.
+
+## 29. `C_R_Cauchy` — the ComplexNumbers gap from §23 is now actually closed
+
+§23 flagged, and §28's summary claimed to close, a gap: no LRA-native
+`RealNumbers` carrier had `Add`/`Mul`/`Neg`/`Inv`/`OfNat` *instances*, so
+`ComplexNumbers.OrderedPairs.ComplexNumber R` could only be grounded over
+`Q_RationalQuotientFractions` (Gaussian rationals), not a genuine
+LRA-native ℝ. Checked that claim rather than taking it on faith:
+`Cauchy/Instances.lean`'s `quotientCarrierAdd`/`quotientCarrierMul`/
+`quotientCarrierNeg`/`quotientCarrierInv`/`quotientCarrierZero`/
+`quotientCarrierOne` (§26) are registered as genuine global `instance`s,
+not merely fields buried inside the `CauchyRealizesRealModel` structure
+literal — so they're available to typeclass search for *any* use of
+`R_Cauchy`, including `ComplexNumber R_Cauchy`, exactly the way
+`Q_RationalQuotientFractions`'s instances already were for `C
+Q_RationalQuotientFractions` (§23). Added:
+
+- `C_R_Cauchy := C R_Cauchy`
+
+A genuine LRA-native ℂ (ℝ(i), grounded via the `Cauchy` real-number
+construction), sitting alongside `C_Q_OrderedPairs` (ℚ(i)) in
+`Carriers/Witnesses.lean` rather than replacing it — both are legitimate,
+differently-grounded example instantiations of the same generic `C`.
+
+Verified with the same static import-resolution check (0 broken imports
+across 3919 import statements) and manual namespace/`end` balance on
+`Carriers/Witnesses.lean`. Not built — `C R_Cauchy`'s instance
+resolution (does typeclass search actually find `quotientCarrierAdd
+landauRationalNumberSystem landauRationalMetricData` for the goal `Add
+R_Cauchy`?) is inferred from how the `attribute`-registered instances
+and the existing `C_Q_OrderedPairs` precedent are shaped, not confirmed
+by the compiler.
