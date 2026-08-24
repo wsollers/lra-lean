@@ -1321,9 +1321,35 @@ Verified with the same static import-resolution check (0 broken imports
 across 3905 import statements) and manual namespace/`end` balance on
 `Carriers/Witnesses.lean`. Not built.
 
+**Correction (same pass, caught in review):** the write-up above defaulted
+`C := C_OrderedPairs := ComplexNumber Q_RationalQuotientFractions` —
+collapsing `ComplexNumbers` into the same "one concrete ground carrier"
+mold used for `N`/`Z`/`Q`/`R`. That mold doesn't fit here.
+`NaturalNumbers`/`Integers`/`RationalNumbers`/`RealNumbers` each have a
+*fixed* construction that needs a witness (proof obligations) to produce
+one canonical carrier; `ComplexNumbers.OrderedPairs.ComplexNumber R`, by
+contrast, is already generic over an arbitrary base type `R` — it *is*
+the generic interface, not a construction awaiting one witness. Picking
+`Q` and presenting it as "the" default `C` manufactured a canonical
+choice (ℚ(i)) that doesn't actually exist for this subject.
+
+Fixed by moving `C` itself into `Carriers/Definition.lean` (the
+*generic*-interface file, alongside where it belongs) as a parametrized
+`abbrev C (R : Type u) := ComplexNumber R` — no default, no concrete
+witness baked in. Any `R` satisfying the operations' instance
+requirements (`Add`/`Mul`/`Neg`/`Inv`/`OfNat`, picked up automatically
+from `R` itself) works. The old `C_OrderedPairs`/`C := C_OrderedPairs`
+pair in `Witnesses.lean` is replaced with a single honestly-named
+concrete example, `C_Q_OrderedPairs := C Q_RationalQuotientFractions`
+(Gaussian rationals, named as such — not defaulted to as "the" `C`).
+
+Re-verified after the fix: 0 broken imports across 3906 import
+statements, manual namespace/`end` balance on both
+`Carriers/Definition.lean` and `Carriers/Witnesses.lean`. Not built.
+
 **Summary of open items across this whole `NumberSystems.Carriers` effort
 (§18–§23):** `Dyadic` (needs a concrete `Cauchy` `RationalRealExtension`
-realization); genuine LRA-native `R`/`C` (needs concrete arithmetic
-instances on a `RealNumbers` carrier — the gap found here); and
-discharging the substantial and growing pile of `sorry`'d laws
-underpinning everything grounded so far.
+realization); a genuine LRA-native `R` instantiation of `C` (needs
+concrete arithmetic instances on a `RealNumbers` carrier — the gap found
+in §23); and discharging the substantial and growing pile of `sorry`'d
+laws underpinning everything grounded so far.

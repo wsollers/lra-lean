@@ -3,8 +3,11 @@ import LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann
 import LRA.NumberSystems.NaturalNumbers.Constructions.Presburger
 import LRA.NumberSystems.Integers.Constructions.Polish
 import LRA.NumberSystems.GaussianIntegers.Interface.ModelTheory.LStructure
+import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs
 
 namespace LRA.NumberSystems.Carriers
+
+universe u
 
 abbrev N_Landau :=
   LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement
@@ -28,5 +31,21 @@ abbrev GaussianInt_OrderedPairs :=
   LRA.NumberSystems.GaussianIntegers.Interface.ModelTheory.ActiveGaussianInteger
 
 abbrev GaussianInt := GaussianInt_OrderedPairs
+
+/-!
+`ComplexNumbers`'s only construction, `OrderedPairs.ComplexNumber R`, is
+already generic over any base type `R` — it's the generic interface
+itself, not a fixed construction that needs one canonical witness the way
+`NaturalNumbers`/`Integers`/`RationalNumbers`/`RealNumbers` do. Its
+`Add`/`Mul`/`Neg`/`Inv`/`OfNat` instances are picked up automatically from
+whatever instances `R` itself carries (`ComplexNumbers/Constructions/
+OrderedPairs/Operations.lean`), so `C` is kept generic here rather than
+defaulted to one concrete `R` — unlike `N`/`Z`/`GaussianInt`, there isn't
+a canonical choice to default to. Concrete instantiations (e.g. over
+`Q_RationalQuotientFractions`) live in `Carriers/Witnesses.lean`.
+-/
+
+abbrev C (R : Type u) :=
+  LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.ComplexNumber R
 
 end LRA.NumberSystems.Carriers

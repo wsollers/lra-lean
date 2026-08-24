@@ -274,41 +274,20 @@ abbrev R_Cauchy :=
 abbrev R := R_Cauchy
 
 /-!
-`ComplexNumbers`'s only construction, `OrderedPairs.ComplexNumber R`, is
-generic over *any* `R` — its `Add`/`Neg`/`Sub`/`Mul`/`Inv`/`OfNat`
-instances only need the matching raw instances on `R`
-(`Operations.lean`: `instance [Add R] : Add (ComplexNumber R)`, etc.),
-no law certificates required.
-
-The natural target is a genuine LRA-native ℝ, but none of the five
-grounded `RealNumbers` carriers (§22) have `Add`/`Mul`/`Neg`/`Inv`/`OfNat`
-*instances* installed on them anywhere in this codebase — each
-construction only proves an existence-style "realizes a
-`DenselyOrderedFieldModel`" theorem
-(`{Cantor,Cauchy,Dedekind,PrimitiveIntervals}RealizesRationalRealExtension`),
-via `Classical.choose` over an *opaque* model, the same non-constructive
-shape that made `Tao`/`Mendelson` unusable as `IntegerNumberSystem`s in
-§21. Installing concrete instances on a real carrier (mirroring what
-`QuotientOrderedPairs/Instances.lean` did for `Z`, e.g. via
-`induced_binary_operation_exists` in
-`UniversalAlgebra/Quotient/RepresentativeCompatibility.lean`) is real new
-work, not wiring, and is a natural next step for `RealNumbers` rather
-than `ComplexNumbers` — flagging it here rather than quietly doing it as
-a side effect of this task.
-
-`Q_RationalQuotientFractions`, by contrast, already has all the needed
-*instances* (`rationalCarrierAdd`, `rationalCarrierMul`,
-`rationalCarrierNeg`, `rationalCarrierInv`, `rationalCarrierZero`,
-`rationalCarrierOne`, §21), so it's the best available concrete LRA-native
-witness today. Grounding `ComplexNumber` on it gives the Gaussian
-rationals ℚ(i), not ℂ in the traditional ℝ-based sense — noted rather
-than silently presented as "the" complex numbers.
+`C` itself is kept generic over `R` in `Carriers/Definition.lean` — it's
+already the generic interface, not a fixed construction needing one
+canonical witness. What's worth naming concretely here is one example
+instantiation for use in examples/counterexamples.
+`Q_RationalQuotientFractions` already has every instance `C` needs
+(`rationalCarrierAdd`, `rationalCarrierMul`, `rationalCarrierNeg`,
+`rationalCarrierInv`, `rationalCarrierZero`, `rationalCarrierOne`, §21),
+so `C Q_RationalQuotientFractions` type-checks directly and gives the
+Gaussian rationals ℚ(i) — named as such, not as "the" complex numbers.
+(A genuine `C` over an LRA-native ℝ awaits `RealNumbers` gaining
+arithmetic instances — none of the five carriers grounded in §22 have
+any; see §23.)
 -/
 
-abbrev C_OrderedPairs :=
-  LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.ComplexNumber
-    Q_RationalQuotientFractions
-
-abbrev C := C_OrderedPairs
+abbrev C_Q_OrderedPairs := C Q_RationalQuotientFractions
 
 end LRA.NumberSystems.Carriers
