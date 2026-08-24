@@ -145,4 +145,35 @@ def UnaryOperationIsProper.inducedOperation
   Quotient.lift (fun value => Quotient.mk setoid (operation value))
     (fun first second related => Quotient.sound (proper.respects first second related))
 
+/--
+**[Operation.Laws.QuotientCompatible — a proper relation]**
+
+The relation counterpart of `BinaryOperationIsProper`/`UnaryOperationIsProper`.
+A relation needs no `closed`/`matches_raw` fields at all — it's already
+`Prop`-valued and homogeneous on `Representative`, so there's no larger
+`Raw` type to reconstruct back down from; `respects` (well-defined) is the
+entire obligation, and existence of the induced quotient relation follows
+immediately via
+`LRA.UniversalAlgebra.Quotient.induced_relation_exists`. Uniqueness needs
+no separate statement either: `Iff`-valued quotient relations are
+determined pointwise the same way the induced operations are, by
+`Quotient.ind`.
+-/
+structure RelationIsProper
+    {Representative : Type u}
+    (setoid : Setoid Representative)
+    (relation : Representative → Representative → Prop) : Prop where
+  respects : LRA.UniversalAlgebra.Quotient.relation_respects setoid relation
+
+theorem RelationIsProper.induced_relation_exists
+    {Representative : Type u} {setoid : Setoid Representative}
+    {relation : Representative → Representative → Prop}
+    (proper : RelationIsProper setoid relation) :
+    ∃ quotient_relation : Quotient setoid → Quotient setoid → Prop,
+      ∀ first second : Representative,
+        quotient_relation
+            (Quotient.mk setoid first) (Quotient.mk setoid second) ↔
+          relation first second :=
+  LRA.UniversalAlgebra.Quotient.induced_relation_exists setoid relation proper.respects
+
 end LRA.Operation.Laws.QuotientCompatible

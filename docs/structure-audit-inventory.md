@@ -1494,3 +1494,83 @@ across 3911 import statements) and manual namespace/`end` balance on all
 new/modified files. Not built — in particular, the `rfl`/direct-reuse
 claims above (`matches_raw`, `respects`) are checked by hand against the
 structures' field types, not by the compiler.
+
+## 26. `Cauchy` completed to a full concrete `RealModel`
+
+Directed to finish what §25 started: give `Cauchy` every theorem it needs
+to be "a proper concrete type," `sorry`'d where needed, then move on to
+the other five `RealNumbers` constructions the same way.
+
+Added a fourth generic piece to `Operation.Laws.QuotientCompatible`:
+`RelationIsProper` (relation counterpart of `BinaryOperationIsProper`) —
+simpler than the operation case, since a `Prop`-valued relation has no
+`Raw`/closure step to reconstruct through; `respects` is the entire
+obligation, and `induced_relation_exists` follows immediately from the
+repo's existing `induced_relation_exists` lemma.
+
+In `Cauchy/Laws.lean`, extending §25's `addition`/`negation`/`multiplication`:
+
+- `representative_inverse` (pointwise reciprocal, zero-guarded by
+  convention — the standard treatment for a value not bounded away from
+  zero, matching `RationalQuotientFractions/Instances.lean`'s
+  `quotient_inverse`) plus `inverse_is_proper`, same zero-`sorry` shape
+  as the other three operations.
+- `zero`/`one` (constant sequences, each with a `sorry`'d — genuinely
+  trivial, but unverified here — `is_cauchy` proof).
+- `representative_strict_order` — Cauchy's order relation, which
+  (checked in §25) had never been defined in this codebase at all:
+  `first < second` iff eventually separated by a fixed positive
+  rational margin (Tao, *Analysis I*, Ch. 5). Trichotomy, transitivity,
+  addition-compatibility, and respects-equivalence, all `sorry`'d;
+  `strict_order_is_proper : RelationIsProper ...` assembled from the
+  last of those.
+
+In `Cauchy/Instances.lean` (previously only the one existence theorem
+from §22/§23), following `QuotientOrderedPairs/Instances.lean`'s
+established shape exactly: `Classical.choose` over each `_is_proper`
+value's `induced_operation_exists`/`induced_relation_exists` for
+addition, multiplication, and the strict order (with `_spec`
+companions, `sorry`'d — matching `QuotientOrderedPairs`'s own choice to
+`sorry` those rather than derive them from `Classical.choose_spec`);
+`negation`/`inverse` lifted directly via `inducedOperation` (no
+`Classical.choose`, no `sorry`, fully constructive); nonstrict order
+derived from strict (`a ≤ b := a < b ∨ a = b`). `Add`/`Mul`/`Neg`/`Inv`/
+`OfNat 0`/`OfNat 1`/`LT`/`LE` instances installed on `Carrier
+rationalSystem absolute_value_data` from those. Four law-certificate
+theorems (`OrderedFieldLaws`, `StrictOrderCompatibilityLaw`,
+`DenseOrderLaw`, `OrderCompletenessLaws` — the last being genuine
+completeness, the hardest fact in the whole construction), all `sorry`'d.
+Assembled into two concrete builders:
+
+- `CauchyRealizesDenselyOrderedFieldModel (rationalSystem)
+  (absolute_value_data) : DenselyOrderedFieldModel`
+- `CauchyRealizesRealModel (rationalSystem) (absolute_value_data) :
+  RealModel`
+
+Both concrete (not existence-quantified), matching the standard this
+audit has held to for every "realizes a model" builder since §21's
+`QuotientOrderedPairsRealizesIntegerNumberSystem`. With `landauRationalNumberSystem`
+already grounded (§22), `CauchyRealizesRealModel landauRationalNumberSystem
+landauRationalMetricData` gives a concrete, arithmetic-bearing LRA-native
+real number model for the first time in this codebase — the exact gap
+identified in §23 as blocking a genuine LRA-native `C`, closed for the
+`Cauchy` construction specifically. (`R_Cauchy`/`R` in
+`Carriers/Witnesses.lean` still name the bare *carrier type*; wiring the
+new `CauchyRealizesRealModel` witness into `Carriers/Witnesses.lean` so
+`C`/other consumers can actually use it is a natural, cheap follow-up
+not yet done in this pass.)
+
+Verified with the same static import-resolution check (0 broken imports
+across 3912 import statements) and manual namespace/`end` balance on all
+new/modified files (`Operation/Laws/QuotientCompatible/Definition.lean`,
+`Cauchy/Laws.lean`, `Cauchy/Instances.lean`). Not built.
+
+**Remaining for `Cauchy`:** none of the newly-added `sorry`s were
+discharged (that was never in scope for this static-audit pass); the
+`DenseOrderedFieldEmbeddingIntoReal`/`CofinalRealExtension`/
+`RationalRealExtension` chain needed to unblock `Dyadic` (§24) is still
+not built — `CauchyRealizesRealModel` supplies the `RealModel` that
+chain would need, but the embedding-from-ℚ and cofinality pieces on top
+of it are separate, not-yet-attempted work.
+
+Proceeding next to the same treatment for `Dedekind`.
