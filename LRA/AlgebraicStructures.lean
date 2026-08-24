@@ -3,12 +3,14 @@ import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup
 import LRA.AlgebraicStructures.AdditiveGroup
 import LRA.AlgebraicStructures.AdditiveMonoid
 import LRA.AlgebraicStructures.AdditiveSemigroup
+import LRA.AlgebraicStructures.Archimedean
 import LRA.AlgebraicStructures.BooleanAlgebra
 import LRA.AlgebraicStructures.BoundedLattice
 import LRA.AlgebraicStructures.CommutativeMonoid
 import LRA.AlgebraicStructures.CommutativeRing
 import LRA.AlgebraicStructures.CommutativeSemigroup
 import LRA.AlgebraicStructures.CommutativeSemiring
+import LRA.AlgebraicStructures.CommutativeSemiringWithoutZero
 import LRA.AlgebraicStructures.CompleteOrderedField
 import LRA.AlgebraicStructures.DiscreteInteger
 import LRA.AlgebraicStructures.DistributiveLattice

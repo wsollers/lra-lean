@@ -20,7 +20,7 @@ namespace LRA.NumberSystems.Integers.Tao
   
 theorem TaoIntegersFormDiscretelyOrderedIntegralDomain
     (wholeData : WholeNumberArithmeticForTaoFormalDifferences) :
-    ∃ model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel,
+    ∃ model : LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel,
       model.Carrier = Carrier wholeData := by
   sorry
 

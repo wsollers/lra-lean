@@ -1,0 +1,6 @@
+import LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.ModelTheory.Theory
+import LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.ModelTheory.LStructure
+
+namespace LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.ModelTheory
+
+end LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.ModelTheory

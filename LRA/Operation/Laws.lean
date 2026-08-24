@@ -9,5 +9,6 @@ import LRA.Operation.Laws.Absorption
 import LRA.Operation.Laws.Nilpotent
 import LRA.Operation.Laws.Inverse
 import LRA.Operation.Laws.Closure
+import LRA.Operation.Laws.QuotientCompatible
 
                                         

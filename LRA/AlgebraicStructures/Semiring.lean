@@ -1,4 +1,8 @@
 import LRA.AlgebraicStructures.Semiring.Definition
+import LRA.AlgebraicStructures.Semiring.Interface.Signature.Definition
+import LRA.AlgebraicStructures.Semiring.Interface.ModelTheory.LStructure
+import LRA.AlgebraicStructures.Semiring.Interface.ModelTheory.Theory
+import LRA.AlgebraicStructures.Semiring.Interface.ModelTheory.Model
 import LRA.AlgebraicStructures.Semiring.Theorems
 import LRA.AlgebraicStructures.Semiring.Characterizations
 import LRA.AlgebraicStructures.Semiring.Consequences

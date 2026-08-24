@@ -2,7 +2,7 @@ import LRA.EuclideanSpace.Model.CartesianPlane
 
 namespace LRA.EuclideanSpace
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
                                                                              
 abbrev R3 (real_model : RealModel) := Rn real_model 3

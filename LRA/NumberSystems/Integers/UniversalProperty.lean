@@ -1,10 +1,10 @@
 import LRA.NumberSystems.Integers.Definition
-import LRA.VolumeII.NumberSystems.CanonicalEmbeddings
+import LRA.NumberSystems.Interface.ModelTheory.CanonicalEmbeddings
 
 namespace LRA.NumberSystems.Integers
 
-open LRA.NumberSystems.Models
-open LRA.NumberSystems.Models.CanonicalEmbeddings
+open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Interface.ModelTheory.CanonicalEmbeddings
 
 universe u
 

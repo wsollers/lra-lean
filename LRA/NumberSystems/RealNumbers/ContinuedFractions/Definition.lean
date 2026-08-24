@@ -4,7 +4,7 @@ import LRA.NumberSystems.RealNumbers.Irrationals
 
 namespace LRA.NumberSystems.RealNumbers.ContinuedFractions
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 open LRA.Arithmetic.ContinuedFractions
 
 universe u

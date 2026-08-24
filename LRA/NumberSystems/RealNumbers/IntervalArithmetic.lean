@@ -4,7 +4,7 @@
 import LRA.NumberSystems.RealNumbers.Extensions
 
 namespace LRA.NumberSystems.RealNumbers.IntervalArithmetic
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
    
                                                
@@ -17,7 +17,7 @@ open LRA.NumberSystems.Models
                                                                         
   
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
    
                           

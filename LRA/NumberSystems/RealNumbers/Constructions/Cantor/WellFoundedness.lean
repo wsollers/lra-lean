@@ -4,7 +4,7 @@
 import LRA.NumberSystems.RealNumbers.Constructions.Cantor.Equivalence
 
 namespace LRA.NumberSystems.RealNumbers.Cantor
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
    
                                                                            

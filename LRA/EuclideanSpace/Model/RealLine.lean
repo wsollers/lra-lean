@@ -2,7 +2,7 @@ import LRA.EuclideanSpace.Model.EuclideanN
 
 namespace LRA.EuclideanSpace
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
                                                                      
 abbrev R1 (real_model : RealModel) := Rn real_model 1

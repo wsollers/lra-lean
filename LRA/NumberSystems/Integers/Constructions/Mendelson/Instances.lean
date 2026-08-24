@@ -43,7 +43,7 @@ theorem PositiveClassesRecoverNaturalNumberModel
   
 theorem MendelsonIntegersFormDiscretelyOrderedIntegralDomain
     (positiveData : PositiveNaturalPairData) :
-    ∃ model : LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel,
+    ∃ model : LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel,
       model.Carrier = Carrier positiveData := by
   sorry
 

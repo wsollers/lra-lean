@@ -6,7 +6,7 @@ import LRA.NumberSystems.RealNumbers.Definition
 
 namespace LRA.NumberSystems.RealNumbers.Irrationals
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 open LRA.NumberSystems.RationalNumbers
 open LRA.NumberSystems.RealNumbers
 

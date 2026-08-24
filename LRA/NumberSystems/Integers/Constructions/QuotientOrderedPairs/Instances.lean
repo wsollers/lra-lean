@@ -3,7 +3,8 @@
 
 import LRA.AlgebraicStructures
 import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs.Behavior
-import LRA.VolumeII.NumberSystems.Models
+import LRA.NumberSystems.Interface.ModelTheory.Model
+import LRA.NumberSystems.Integers.Definition
 
 namespace LRA.NumberSystems.Integers.QuotientOrderedPairs
 
@@ -137,7 +138,7 @@ theorem quotient_discrete_order_cert
                                                                
 noncomputable def QuotientOrderedPairsRealizesIntegerModel
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
-    LRA.NumberSystems.Models.DiscretelyOrderedIntegralDomainModel where
+    LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel where
   Carrier := Carrier whole_data
   addInst := quotientCarrierAdd whole_data
   mulInst := quotientCarrierMul whole_data
@@ -152,5 +153,19 @@ noncomputable def QuotientOrderedPairsRealizesIntegerModel
   addOrderCert := quotient_addition_order_cert whole_data
   mulOrderCert := quotient_multiplication_order_cert whole_data
   discreteCert := quotient_discrete_order_cert whole_data
+
+theorem quotient_every_element_is_integer_numeral
+    (whole_data : WholeNumberArithmeticForQuotientPairs) :
+    ∀ value : Carrier whole_data,
+      ∃ integer : Int,
+        LRA.NumberSystems.Integers.IntegerNumeral
+          (QuotientOrderedPairsRealizesIntegerModel whole_data) integer = value := by
+  sorry
+
+noncomputable def QuotientOrderedPairsRealizesIntegerNumberSystem
+    (whole_data : WholeNumberArithmeticForQuotientPairs) :
+    LRA.NumberSystems.Integers.IntegerNumberSystem where
+  Model := QuotientOrderedPairsRealizesIntegerModel whole_data
+  EveryElementIsIntegerNumeral := quotient_every_element_is_integer_numeral whole_data
 
 end LRA.NumberSystems.Integers.QuotientOrderedPairs

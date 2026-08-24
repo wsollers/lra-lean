@@ -5,7 +5,7 @@
 import LRA.NumberSystems.RealNumbers.Constructions.Cauchy.Operations
 
 namespace LRA.NumberSystems.RealNumbers.Cauchy
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 open LRA.NumberSystems.RationalNumbers
 
                                                      
@@ -148,6 +148,21 @@ theorem representative_multiplication_respects_equivalence
         ⟨representative_multiplication rationalSystem absolute_value_data first second,
           representative_multiplication_is_cauchy
             rationalSystem absolute_value_data first second⟩) := by
+  sorry
+
+/--
+The previously-missing counterpart to `representative_addition_respects_equivalence`
+and `representative_multiplication_respects_equivalence` — `negation` never had
+this stated at all. -/
+theorem representative_negation_respects_equivalence
+    (rationalSystem : RationalNumberSystem)
+    (absolute_value_data : RationalMetricData rationalSystem) :
+    LRA.UniversalAlgebra.Quotient.unary_operation_respects
+      (representative_setoid rationalSystem absolute_value_data)
+      (fun representative =>
+        ⟨representative_negation rationalSystem absolute_value_data representative,
+          representative_negation_is_cauchy
+            rationalSystem absolute_value_data representative⟩) := by
   sorry
 
 end LRA.NumberSystems.RealNumbers.Cauchy

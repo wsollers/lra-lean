@@ -1,0 +1,23 @@
+import LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.Definition
+
+namespace LRA.NumberSystems.NaturalNumbers.Interface.Signature
+
+abbrev NaturalNumbersFunctionSymbol :=
+  LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFunctionSymbol
+
+abbrev NaturalNumbersRelationSymbol :=
+  LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroRelationSymbol
+
+abbrev NaturalNumbersConstantSymbol :=
+  LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroConstantSymbol
+
+def NaturalNumbersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
+  LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFirstOrderFunctions
+
+def NaturalNumbersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
+  LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFirstOrderRelations
+
+def NaturalNumbersFirstOrderSignature : LRA.Logic.Signature :=
+  LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFirstOrderSignature
+
+end LRA.NumberSystems.NaturalNumbers.Interface.Signature

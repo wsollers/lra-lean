@@ -2,11 +2,11 @@
                                                           
 
 import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
-import LRA.VolumeII.NumberSystems.Models
+import LRA.NumberSystems.Interface.ModelTheory.Model
 
 namespace LRA.NumberSystems.RationalNumbers
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
    
                                                  
@@ -71,7 +71,7 @@ def is_order_complete (rational_model : DenselyOrderedFieldModel) : Prop :=
 
 end LRA.NumberSystems.RationalNumbers
 namespace LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
    
                                                              
@@ -293,11 +293,11 @@ theorem is_not_order_complete
 
 end LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison
 namespace LRA.NumberSystems.RationalNumbers
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
 end LRA.NumberSystems.RationalNumbers
 namespace LRA.NumberSystems.RationalNumbers.Reduced
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
 
                                                       
@@ -350,11 +350,11 @@ noncomputable def rational_model
 
 end LRA.NumberSystems.RationalNumbers.Reduced
 namespace LRA.NumberSystems.RationalNumbers
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
 end LRA.NumberSystems.RationalNumbers
 namespace LRA.NumberSystems.RationalNumbers.FractionField
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
    
                                                       
@@ -408,7 +408,7 @@ noncomputable def rational_model
 
 end LRA.NumberSystems.RationalNumbers.FractionField
 namespace LRA.NumberSystems.RationalNumbers
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
 
                                                       

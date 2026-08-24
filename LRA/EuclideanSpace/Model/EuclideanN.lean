@@ -5,7 +5,7 @@ import LRA.EuclideanSpace.Interface.Relations
 
 namespace LRA.EuclideanSpace
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 
 universe u
 

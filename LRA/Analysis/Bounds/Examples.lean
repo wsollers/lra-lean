@@ -3,7 +3,6 @@
 
 import Mathlib.Tactic
 import LRA.Analysis.Bounds.Bounds
-import LRA.VolumeIII.RealNumbers.LraReal
 
 namespace LRA.Analysis.Bounds.Examples
 

@@ -1,0 +1,353 @@
+import LRA.NumberSystems.Carriers.Definition
+import LRA.NumberSystems.WholeNumbers.Constructions.Landau
+import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs
+import LRA.NumberSystems.Integers.Constructions.Tao
+import LRA.NumberSystems.Integers.Constructions.Mendelson
+import LRA.NumberSystems.RationalNumbers.Constructions.RationalQuotientFractions
+import LRA.NumberSystems.RealNumbers.Constructions.Cantor
+import LRA.NumberSystems.RealNumbers.Constructions.Dedekind
+import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals
+import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy
+import LRA.NumberSystems.RealNumbers.Constructions.Cauchy
+import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs
+
+namespace LRA.NumberSystems.Carriers
+
+open LRA.NumberSystems.NaturalNumbers.Constructions.Landau
+open LRA.Set
+
+noncomputable def landauNaturalArithmeticForWholeNumbers :
+    LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers
+      LandauElement (PredicateSet LandauElement) where
+  model := LandauPeanoSystem
+  strictOrder := LandauLessThan LandauPeanoSystem
+  strictOrder_trichotomous := LandauLessThanTrichotomous LandauPeanoSystem
+  strictOrder_transitive := LandauLessThanTransitive LandauPeanoSystem
+  addition_preserves_and_reflects_strictOrder :=
+    LandauAdditionPreservesAndReflectsLandauLessThan LandauPeanoSystem
+  multiplication_preserves_and_reflects_strictOrder :=
+    LandauMultiplicationPreservesAndReflectsLandauLessThan LandauPeanoSystem
+
+abbrev N_0_Landau :=
+  LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier
+    landauNaturalArithmeticForWholeNumbers
+
+noncomputable def landauWholeNumberArithmeticForQuotientPairs :
+    LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs :=
+  LRA.NumberSystems.WholeNumbers.Constructions.Landau.quotientOrderedPairsInput
+    landauNaturalArithmeticForWholeNumbers
+
+abbrev Z_QuotientOrderedPairs :=
+  LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier
+    landauWholeNumberArithmeticForQuotientPairs
+
+/-!
+`Tao.WholeNumberArithmeticForTaoFormalDifferences` and
+`Mendelson.PositiveNaturalPairData` are both plain `abbrev`s for
+`QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs`
+(see `Integers/Constructions/Tao/Carrier.lean` and
+`Integers/Constructions/Mendelson/Carrier.lean`), so the same
+`landauWholeNumberArithmeticForQuotientPairs` witness grounds them too.
+-/
+
+abbrev Z_Tao :=
+  LRA.NumberSystems.Integers.Tao.Carrier
+    landauWholeNumberArithmeticForQuotientPairs
+
+abbrev Z_Mendelson :=
+  LRA.NumberSystems.Integers.Mendelson.Carrier
+    landauWholeNumberArithmeticForQuotientPairs
+
+/-!
+`RationalQuotientFractions` needs an `IntegerNumberSystem`, not just a bare
+`DiscretelyOrderedIntegralDomainModel` — the extra field is
+`EveryElementIsIntegerNumeral`. `QuotientOrderedPairs/Instances.lean`
+already had a concrete (non-`Classical.choose`) model builder
+(`QuotientOrderedPairsRealizesIntegerModel`); it only needed that one
+extra field wrapped around it, added there as
+`QuotientOrderedPairsRealizesIntegerNumberSystem`. (`Tao` and `Mendelson`
+only have *existence* theorems for `IntegerNumberSystem`
+(`TaoRealizesIntegerNumberSystem`/`MendelsonRealizesIntegerNumberSystem`),
+so a concrete natural-number embedding into their `Classical.choose`d,
+opaque model isn't expressible — `QuotientOrderedPairs` is the only ℤ
+construction usable here.)
+-/
+
+noncomputable def landauIntegerNumberSystem :
+    LRA.NumberSystems.Integers.IntegerNumberSystem :=
+  LRA.NumberSystems.Integers.QuotientOrderedPairs.QuotientOrderedPairsRealizesIntegerNumberSystem
+    landauWholeNumberArithmeticForQuotientPairs
+
+/-- The positive naturals embed into the integers by going through the
+whole-number carrier (`some : LandauElement → Option LandauElement`) and
+then the whole-number-to-integer embedding already built for
+`QuotientOrderedPairs`. -/
+noncomputable def landauNaturalToInteger (value : LandauElement) :
+    landauIntegerNumberSystem.Model.Carrier :=
+  LRA.NumberSystems.Integers.QuotientOrderedPairs.embed
+    landauWholeNumberArithmeticForQuotientPairs
+    (LRA.NumberSystems.WholeNumbers.Constructions.Landau.naturalEmbedding
+      landauNaturalArithmeticForWholeNumbers value)
+
+theorem landauNaturalToIntegerIsPositive :
+    ∀ denominator : LandauElement,
+      0 < landauNaturalToInteger denominator := by
+  sorry
+
+theorem landauEveryPositiveIntegerHasLandauDenominator :
+    ∀ integer : landauIntegerNumberSystem.Model.Carrier,
+      0 < integer →
+      ∃ denominator : LandauElement,
+        landauNaturalToInteger denominator = integer := by
+  sorry
+
+theorem landauNaturalToIntegerOneMapsToOne :
+    landauNaturalToInteger LandauPeanoSystem.one = 1 := by
+  sorry
+
+theorem landauNaturalToIntegerPreservesMultiplication :
+    ∀ first second : LandauElement,
+      landauNaturalToInteger (LandauMultiplication LandauPeanoSystem first second) =
+        landauNaturalToInteger first * landauNaturalToInteger second := by
+  sorry
+
+noncomputable def landauIntegerAndPositiveNaturalData :
+    LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData where
+  integer_system := landauIntegerNumberSystem
+  natural_carrier := LandauElement
+  one := LandauPeanoSystem.one
+  multiplication := LandauMultiplication LandauPeanoSystem
+  to_integer := landauNaturalToInteger
+  denominator_is_positive := landauNaturalToIntegerIsPositive
+  every_positive_integer_has_denominator := landauEveryPositiveIntegerHasLandauDenominator
+  one_maps_to_one := landauNaturalToIntegerOneMapsToOne
+  multiplication_is_preserved := landauNaturalToIntegerPreservesMultiplication
+
+abbrev Q_RationalQuotientFractions :=
+  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier
+    landauIntegerAndPositiveNaturalData
+
+abbrev Q := Q_RationalQuotientFractions
+
+/-!
+Three of `RealNumbers`'s six constructions (`Cantor`, `Dedekind`,
+`PrimitiveIntervals`) need nothing beyond a bare
+`DenselyOrderedFieldModel` — no separate `RationalMetricData`/
+`RationalDyadicApproximationData`-style extra witness. That model is
+exactly what `RationalQuotientFractions/Instances.lean` already builds
+generically from any `IntegerAndPositiveNaturalData`, so
+`landauIntegerAndPositiveNaturalData` grounds all three directly.
+(`Cauchy` and `EffectiveCauchy` need a bit more — see below. `Dyadic`
+needs a fully realized `RationalRealExtension` on top of that and is
+deferred — see the audit doc.)
+-/
+
+noncomputable def landauDenselyOrderedFieldModel :
+    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel :=
+  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesDenselyOrderedFieldModel
+    landauIntegerAndPositiveNaturalData
+
+abbrev R_Cantor :=
+  LRA.NumberSystems.RealNumbers.Cantor.Carrier landauDenselyOrderedFieldModel
+
+noncomputable def landauCantorRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.Cantor.CantorRealizesRealModel landauDenselyOrderedFieldModel
+
+abbrev R_Dedekind :=
+  LRA.NumberSystems.RealNumbers.Dedekind.Cut landauDenselyOrderedFieldModel
+
+noncomputable def landauDedekindRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.Dedekind.DedekindRealizesRealModel landauDenselyOrderedFieldModel
+
+abbrev R_PrimitiveIntervals :=
+  LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Carrier landauDenselyOrderedFieldModel
+
+noncomputable def landauPrimitiveIntervalsRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.PrimitiveIntervals.PrimitiveIntervalsRealizesRealModel
+    landauDenselyOrderedFieldModel
+
+/-!
+`EffectiveCauchy` needs only a bare `RationalNumberSystem` (no extra
+metric/embedding data), which `RationalQuotientFractionsRealizesRationalNumberSystem`
+already builds generically.
+-/
+
+noncomputable def landauRationalNumberSystem :
+    LRA.NumberSystems.RationalNumbers.RationalNumberSystem :=
+  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesRationalNumberSystem
+    landauIntegerAndPositiveNaturalData
+
+abbrev R_EffectiveCauchy :=
+  LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal
+    landauRationalNumberSystem
+
+noncomputable def landauEffectiveCauchyRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyRealizesRealModel
+    landauRationalNumberSystem
+
+/-!
+`Cauchy` additionally needs a `RationalMetricData` witness — an absolute
+value on the rational field plus its standard properties. Define
+`landauRationalAbsoluteValue` as the usual `if 0 ≤ x then x else -x` (via
+classical choice for decidability, matching this repo's existing use of
+`Classical.choose`/`classical` elsewhere) and leave the nine standard
+absolute-value facts `sorry`'d, consistent with every other law
+certificate grounded so far — none of them are new mathematical claims,
+just the textbook properties of `|·|` on an ordered field.
+-/
+
+open Classical in
+noncomputable def landauRationalAbsoluteValue
+    (value : landauRationalNumberSystem.FieldModel.signature.carrier) :
+    landauRationalNumberSystem.FieldModel.signature.carrier :=
+  if landauRationalNumberSystem.FieldModel.signature.le
+      landauRationalNumberSystem.FieldModel.signature.zero value
+  then value
+  else landauRationalNumberSystem.FieldModel.signature.neg value
+
+theorem landauRationalAbsoluteValueZero :
+    landauRationalAbsoluteValue landauRationalNumberSystem.FieldModel.signature.zero =
+      landauRationalNumberSystem.FieldModel.signature.zero := by
+  sorry
+
+theorem landauRationalAbsoluteValueNegation :
+    ∀ value : landauRationalNumberSystem.FieldModel.signature.carrier,
+      landauRationalAbsoluteValue
+          (landauRationalNumberSystem.FieldModel.signature.neg value) =
+        landauRationalAbsoluteValue value := by
+  sorry
+
+theorem landauRationalTriangleInequality :
+    ∀ first second : landauRationalNumberSystem.FieldModel.signature.carrier,
+      landauRationalNumberSystem.FieldModel.signature.le
+        (landauRationalAbsoluteValue
+          (landauRationalNumberSystem.FieldModel.signature.add first second))
+        (landauRationalNumberSystem.FieldModel.signature.add
+          (landauRationalAbsoluteValue first)
+          (landauRationalAbsoluteValue second)) := by
+  sorry
+
+theorem landauRationalAbsoluteValueNonnegative :
+    ∀ value : landauRationalNumberSystem.FieldModel.signature.carrier,
+      landauRationalNumberSystem.FieldModel.signature.le
+        landauRationalNumberSystem.FieldModel.signature.zero
+        (landauRationalAbsoluteValue value) := by
+  sorry
+
+theorem landauRationalAbsoluteValueEqZeroIff :
+    ∀ value : landauRationalNumberSystem.FieldModel.signature.carrier,
+      landauRationalAbsoluteValue value =
+          landauRationalNumberSystem.FieldModel.signature.zero ↔
+        value = landauRationalNumberSystem.FieldModel.signature.zero := by
+  sorry
+
+theorem landauRationalAbsoluteValueMultiplication :
+    ∀ first second : landauRationalNumberSystem.FieldModel.signature.carrier,
+      landauRationalAbsoluteValue
+          (landauRationalNumberSystem.FieldModel.signature.multiply first second) =
+        landauRationalNumberSystem.FieldModel.signature.multiply
+          (landauRationalAbsoluteValue first)
+          (landauRationalAbsoluteValue second) := by
+  sorry
+
+theorem landauRationalAbsoluteValueSelfOrNeg :
+    ∀ value : landauRationalNumberSystem.FieldModel.signature.carrier,
+      landauRationalAbsoluteValue value = value ∨
+        landauRationalAbsoluteValue value =
+          landauRationalNumberSystem.FieldModel.signature.neg value := by
+  sorry
+
+theorem landauRationalEpsilonSplit :
+    ∀ epsilon : landauRationalNumberSystem.FieldModel.signature.carrier,
+      landauRationalNumberSystem.FieldModel.signature.StrictOrder
+        landauRationalNumberSystem.FieldModel.signature.zero epsilon →
+      ∃ smaller,
+        landauRationalNumberSystem.FieldModel.signature.StrictOrder
+          landauRationalNumberSystem.FieldModel.signature.zero smaller ∧
+        landauRationalNumberSystem.FieldModel.signature.le
+          (landauRationalNumberSystem.FieldModel.signature.add smaller smaller)
+          epsilon := by
+  sorry
+
+noncomputable def landauRationalMetricData :
+    LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData landauRationalNumberSystem where
+  absolute_value := landauRationalAbsoluteValue
+  absolute_value_zero := landauRationalAbsoluteValueZero
+  absolute_value_negation := landauRationalAbsoluteValueNegation
+  triangle_inequality := landauRationalTriangleInequality
+  absolute_value_nonnegative := landauRationalAbsoluteValueNonnegative
+  absolute_value_eq_zero_iff := landauRationalAbsoluteValueEqZeroIff
+  absolute_value_multiplication := landauRationalAbsoluteValueMultiplication
+  absolute_value_self_or_neg := landauRationalAbsoluteValueSelfOrNeg
+  epsilon_split := landauRationalEpsilonSplit
+
+abbrev R_Cauchy :=
+  LRA.NumberSystems.RealNumbers.Cauchy.Carrier
+    landauRationalNumberSystem landauRationalMetricData
+
+noncomputable def landauCauchyRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.Cauchy.CauchyRealizesRealModel
+    landauRationalNumberSystem landauRationalMetricData
+
+abbrev R := R_Cauchy
+
+/-!
+`Cauchy` now has a full concrete `RealModel` (arithmetic instances, order,
+and law certificates — all `sorry`'d, but present) and a concrete
+embedding of ℚ into it, so the `RationalDyadicApproximationData` witness
+`Dyadic` needed (§22, §24) — genuinely blocked at the time, since no
+`RealNumbers` construction had any of this — is buildable now.
+-/
+
+noncomputable def landauRationalRealExtension :
+    LRA.NumberSystems.RealNumbers.RationalRealExtension landauRationalNumberSystem :=
+  LRA.NumberSystems.RealNumbers.Cauchy.CauchyRationalRealExtension
+    landauRationalNumberSystem landauRationalMetricData
+
+/-- `landauRationalRealExtension.RealModel` is `CauchyRealizesRealModel
+landauRationalNumberSystem landauRationalMetricData`, whose `Carrier`
+field was set directly to `Cauchy.Carrier landauRationalNumberSystem
+landauRationalMetricData` (`R_Cauchy` above) — no `Classical.choose` sits
+on that particular projection path, so this holds by `rfl`. Checked by
+hand, not by `lake build`. -/
+theorem landauCauchyCarrierEq :
+    landauRationalRealExtension.RealModel.Carrier = R_Cauchy :=
+  rfl
+
+noncomputable def landauRationalDyadicApproximationData :
+    LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData where
+  RationalSystem := landauRationalNumberSystem
+  AbsoluteValueData := landauRationalMetricData
+  CauchyRealExtension := landauRationalRealExtension
+  CauchyCarrierEq := landauCauchyCarrierEq
+
+/-!
+`C` itself is kept generic over `R` in `Carriers/Definition.lean` — it's
+already the generic interface, not a fixed construction needing one
+canonical witness. What's worth naming concretely here are example
+instantiations for use in examples/counterexamples.
+`Q_RationalQuotientFractions` already has every instance `C` needs
+(`rationalCarrierAdd`, `rationalCarrierMul`, `rationalCarrierNeg`,
+`rationalCarrierInv`, `rationalCarrierZero`, `rationalCarrierOne`, §21),
+so `C Q_RationalQuotientFractions` type-checks directly and gives the
+Gaussian rationals ℚ(i) — named as such, not as "the" complex numbers.
+
+The gap noted here originally — no LRA-native `R` had arithmetic
+instances (§23) — is closed as of §26–§28: `R_Cauchy` now has
+`quotientCarrierAdd`/`_Mul`/`_Neg`/`_Inv`/`_Zero`/`_One` registered as
+genuine global instances (`Cauchy/Instances.lean`), so `C R_Cauchy`
+type-checks the same way `C Q_RationalQuotientFractions` does — this is
+a genuine LRA-native ℂ (ℝ(i), via the `Cauchy` construction), not a
+stand-in.
+-/
+
+abbrev C_Q_OrderedPairs := C Q_RationalQuotientFractions
+
+abbrev C_R_Cauchy := C R_Cauchy
+
+end LRA.NumberSystems.Carriers

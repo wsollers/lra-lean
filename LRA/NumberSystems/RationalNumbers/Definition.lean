@@ -1,9 +1,9 @@
 import LRA.NumberSystems.Integers.Definition
-import LRA.VolumeII.NumberSystems.Models
+import LRA.NumberSystems.Interface.ModelTheory.Model
 
 namespace LRA.NumberSystems.RationalNumbers
 
-open LRA.NumberSystems.Models
+open LRA.NumberSystems.Interface.ModelTheory
 open LRA.NumberSystems.Integers
 
 universe u
