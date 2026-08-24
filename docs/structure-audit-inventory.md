@@ -1777,3 +1777,89 @@ landauRationalNumberSystem landauRationalMetricData` for the goal `Add
 R_Cauchy`?) is inferred from how the `attribute`-registered instances
 and the existing `C_Q_OrderedPairs` precedent are shaped, not confirmed
 by the compiler.
+
+## 30. Three architectural reconciliations closed
+
+Three duplicate/layer-inverted concepts had been flagged during the
+early structural pass (§7–§15) and explicitly left open. Closed all
+three.
+
+**`Order.DenseSubset` vs. `Analysis.Completeness.Density.IsOrderDenseSubset`.**
+The latter (`∀ x y, x < y → ∃ d ∈ D, x < d ∧ d < y`, hardcoded to `<` via
+`Preorder`, Mathlib-`Set`-based) was a word-for-word duplicate of the
+former (generic over the relation and `[Membership Element SetObject]`,
+Mathlib-free), filed one layer after `Order` for no reason other than
+history. Checked its only consumers first (`Theorems/Density.lean`,
+`Failures/Density.lean` — both already `import LRA.Order.Density` for
+an unrelated theorem, no other importers anywhere). Repointed:
+
+```
+def IsOrderDenseSubset {S : Type*} [Preorder S] (D : Set S) : Prop :=
+  LRA.Order.DenseSubset (· < · : S → S → Prop) D
+```
+
+Definitionally the same statement as before (`Order.DenseSubset`
+unfolds to exactly `∀ x y, x < y → ∃ d, d ∈ D ∧ x < d ∧ d < y`), so every
+existing theorem stated in terms of `IsOrderDenseSubset`
+(`IsOrderDenseSubsetMonotone`, `_Union`, `_UnivIffDenseOrderLaw`, the
+rational/irrational density results) needed no changes.
+
+**`ArchimedeanDenseOrderedFieldExtension.ArchimedeanProperty` vs.
+`AlgebraicStructures.ArchimedeanLaw`.** These are *not* the same
+proposition, just classically equivalent — the former says every field
+element is bounded by some embedded integer; the latter (built later in
+this session, §3 of the original punch list) says the multiples of any
+positive element are order-cofinal. Redefining either in terms of the
+other would risk breaking the three existing consumers
+(`RealNumbers/Extensions.lean`, `Interface/ModelTheory/
+CanonicalEmbeddings.lean`, `RationalNumbers/ComparisonModels.lean`), and
+`ArchimedeanLaw` alone doesn't carry the integer-model/embedding data
+needed to reconstruct the other direction. Added a one-directional
+`sorry`'d bridging theorem instead, right after the structure definition
+in `LStructure.lean`:
+
+```
+theorem ArchimedeanDenseOrderedFieldExtensionImpliesArchimedeanLaw
+    (extension : ArchimedeanDenseOrderedFieldExtension SelectedIntegerModel) :
+    ArchimedeanLaw extension.DenselyOrderedFieldModel.Carrier
+```
+
+**`GaussianIntegers` didn't compose `IntegralDomain`'s `ModelTheory`.**
+The real fix, not just a documentation update: `GaussianIntegers`'
+first-order language (`NumberSystems.Arithmetic.Model.
+ArithmeticRingFirstOrderSignature`) only had `add`/`mul` symbols — a rig,
+not a ring, despite the name — so no first-order statement in that
+language could even mention negation, though the *model* (`GaussianInteger
+R`) always had a real `Neg` instance once `R` did
+(`Constructions/OrderedPairs/Operations.lean`). Checked blast radius
+first: exactly four files reference anything `ArithmeticRing`-shaped,
+two of which are `GaussianIntegers`' own signature/model files. Rather
+than patch the ad hoc signature in place (add a `neg` constructor,
+update the interpreter), repointed to the canonical machinery that
+already exists and already has `neg` —
+`AlgebraicStructures.IntegralDomain.Interface.ModelTheory.
+integralDomainFirstOrderModel`/`IntegralDomainFirstOrderSignature`
+(itself `Ring`'s `add`/`mul`/`neg` signature under two layers of
+`abbrev`) — the same canonical model `Integers` itself already uses via
+`DiscretelyOrderedIntegralDomainModel`. `GaussianIntegers/Interface/
+Signature/Definition.lean` and `.../ModelTheory/LStructure.lean` updated
+accordingly; `gaussianArithmeticRingModel` now calls
+`integralDomainFirstOrderModel (GaussianInteger R)` directly. Confirmed
+`Z` (`Integers.Polish.TwoSidedSuccessor.Z`, the concrete `R` used by
+`ActiveGaussianInteger`) has real `Add`/`Mul`/`Neg`/`OfNat 0`/`OfNat 1`
+instances (`Polish/TwoSidedSuccessor/Operations.lean`), so the whole
+chain should type-check without any new `sorry`. The old
+`NumberSystems/Arithmetic/Model/*` files are now unused (no remaining
+non-comment references) but left in place rather than deleted, since
+nothing requires removing them and deletion wasn't asked for.
+
+Verified with the same static import-resolution check (0 broken imports
+across 3920 import statements) and manual namespace/`end` balance on all
+five modified files (`Analysis/Completeness/Density/Definition/
+Density.lean`, `NumberSystems/Interface/ModelTheory/LStructure.lean`,
+`GaussianIntegers/Interface/Signature/Definition.lean`,
+`GaussianIntegers/Interface/ModelTheory/LStructure.lean`). Not built —
+in particular the `GaussianIntegers` fix is the riskiest of the three
+(a real signature swap, not just a bridging theorem or a defeq-preserving
+repoint), and its correctness rests on the instance-availability chain
+traced above rather than a compiler check.

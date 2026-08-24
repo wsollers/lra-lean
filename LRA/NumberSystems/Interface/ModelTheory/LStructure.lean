@@ -365,7 +365,28 @@ structure ArchimedeanDenseOrderedFieldExtension
       ∃ IntegerValue : SelectedIntegerModel.Carrier,
         RationalValue < IntegerEmbedding.ToField IntegerValue
 
-   
+/--
+Reconciles this structure's `ArchimedeanProperty` (every field element is
+bounded by some embedded integer) with the generic, standalone
+`AlgebraicStructures.ArchimedeanLaw` (the multiples of any positive
+element are order-cofinal) added later than this structure — the two are
+classically equivalent but not literally the same proposition, so this
+is a bridging theorem rather than a redefinition of either (which would
+risk breaking `RealNumbers/Extensions.lean`,
+`Interface/ModelTheory/CanonicalEmbeddings.lean`, and
+`RationalNumbers/ComparisonModels.lean`, all of which already construct
+or consume `ArchimedeanDenseOrderedFieldExtension` as-is). Only the
+forward direction is stated: `ArchimedeanLaw` alone doesn't carry the
+integer model/embedding data needed to reconstruct an
+`ArchimedeanDenseOrderedFieldExtension`.
+-/
+theorem ArchimedeanDenseOrderedFieldExtensionImpliesArchimedeanLaw
+    {SelectedIntegerModel : DiscretelyOrderedIntegralDomainModel.{u}}
+    (extension : ArchimedeanDenseOrderedFieldExtension SelectedIntegerModel) :
+    LRA.AlgebraicStructures.ArchimedeanLaw extension.DenselyOrderedFieldModel.Carrier := by
+  sorry
+
+
                                                                                                  
 
              
