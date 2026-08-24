@@ -1204,7 +1204,71 @@ built — soundness of everything grounded here is only as good as the
 `sorry`'d order laws (§19) and the new `sorry`'d obligations above, once
 those are actually discharged.
 
-**Not yet done: `RealNumbers`.** All six constructions
-(`Cantor`, `Cauchy`, `Dedekind`, `Dyadic`, `EffectiveCauchy`,
-`PrimitiveIntervals`) still need their witness shapes checked before any
-grounding is attempted — deferred to keep this pass scoped to one system.
+## 22. `RealNumbers` — five of six constructions grounded
+
+Checked what each of the six constructions actually needs as an input
+witness (`Carrier.lean` in each):
+
+| Construction | Witness needed | Verdict |
+|---|---|---|
+| `Cantor` | `DenselyOrderedFieldModel` | ground carrier is `Cantor.Carrier fieldModel` |
+| `Dedekind` | `DenselyOrderedFieldModel` | ground carrier is `Dedekind.Cut rational_model` (a `Cut` subtype, no further quotient) |
+| `PrimitiveIntervals` | `DenselyOrderedFieldModel` | ground carrier is `PrimitiveIntervals.Carrier rational_model` |
+| `EffectiveCauchy` | `RationalNumberSystem` | ground carrier is `EffectiveCauchy.EffectiveCauchyReal rationalSystem` |
+| `Cauchy` | `RationalNumberSystem` + `Cauchy.RationalMetricData rationalSystem` | ground carrier is `Cauchy.Carrier rationalSystem metricData` |
+| `Dyadic` | `RationalDyadicApproximationData`, which itself demands a *fully realized* `RationalRealExtension` (not just existence) on top of `Cauchy.RationalMetricData` | **not grounded — see below** |
+
+The first four needed nothing beyond what §21 already produced:
+`RationalQuotientFractions/Instances.lean` generically builds both a
+`DenselyOrderedFieldModel`
+(`RationalQuotientFractionsRealizesDenselyOrderedFieldModel`) and a
+`RationalNumberSystem`
+(`RationalQuotientFractionsRealizesRationalNumberSystem`) from any
+`IntegerAndPositiveNaturalData`, so `landauIntegerAndPositiveNaturalData`
+grounds all four directly:
+
+- `R_Cantor := Cantor.Carrier landauDenselyOrderedFieldModel`
+- `R_Dedekind := Dedekind.Cut landauDenselyOrderedFieldModel`
+- `R_PrimitiveIntervals := PrimitiveIntervals.Carrier landauDenselyOrderedFieldModel`
+- `R_EffectiveCauchy := EffectiveCauchy.EffectiveCauchyReal landauRationalNumberSystem`
+
+`Cauchy` needed one more piece: `Cauchy.RationalMetricData rationalSystem`
+is an absolute-value structure (9 fields: the value function plus
+`absolute_value_zero`, `_negation`, `triangle_inequality`,
+`_nonnegative`, `_eq_zero_iff`, `_multiplication`, `_self_or_neg`,
+`epsilon_split`) — all textbook `|·|` facts on an ordered field, nothing
+construction-specific. Defined `landauRationalAbsoluteValue` as the
+standard `if 0 ≤ x then x else -x` (via `open Classical in` for
+decidability, the same pattern this repo already uses elsewhere via
+`Classical.choose`), and left the nine properties as named `sorry`'d
+theorems, matching the accepted-statement convention used throughout
+this pass. Assembled as `landauRationalMetricData`, grounding:
+
+- `R_Cauchy := Cauchy.Carrier landauRationalNumberSystem landauRationalMetricData`
+
+`R := R_Cauchy` was picked as the generic default alias (matching `N`,
+`Z`, `Q`) — Cauchy sequences are the standard textbook/Mathlib-canonical
+real-number construction, so this follows the same "concrete default"
+choice the user made earlier for `N`/`Z`, but it's a judgment call on my
+part rather than something requested; flagging it here rather than
+deciding silently.
+
+**Not done: `Dyadic`.** `RationalDyadicApproximationData` requires a
+`CauchyRealExtension : RationalRealExtension RationalSystem` field together
+with a proof (`CauchyCarrierEq`) that its `RealModel.Carrier` equals
+`Cauchy.Carrier RationalSystem AbsoluteValueData` — i.e. it needs `Cauchy`
+to already be packaged as a concrete realization of `RationalRealExtension`,
+not just a bare carrier type. Checked `Cauchy/Instances.lean` and
+`RealNumbers/Definition.lean` for such a builder: only found existence-style
+theorems in that vein elsewhere in this codebase (the same
+`Classical.choose`-opacity problem noted for `Tao`/`Mendelson` in §21) — no
+concrete `RationalRealExtension` builder for `Cauchy` currently exists to
+call. Building one is real new work (packaging `Cauchy.Carrier` with a
+`RealModel`, embeddings, and their law certificates), not wiring, so it's
+left out of this pass rather than rushed.
+
+Verified with the same static import-resolution check (0 broken imports
+across 3904 import statements) and manual namespace/`end` balance on
+`Carriers/Witnesses.lean`. Not built — as with every `sorry`'d law in this
+audit, everything grounded here is only as sound as those `sorry`s turn
+out to be once actually discharged.
