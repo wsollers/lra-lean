@@ -150,11 +150,24 @@ noncomputable def landauDenselyOrderedFieldModel :
 abbrev R_Cantor :=
   LRA.NumberSystems.RealNumbers.Cantor.Carrier landauDenselyOrderedFieldModel
 
+noncomputable def landauCantorRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.Cantor.CantorRealizesRealModel landauDenselyOrderedFieldModel
+
 abbrev R_Dedekind :=
   LRA.NumberSystems.RealNumbers.Dedekind.Cut landauDenselyOrderedFieldModel
 
+noncomputable def landauDedekindRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.Dedekind.DedekindRealizesRealModel landauDenselyOrderedFieldModel
+
 abbrev R_PrimitiveIntervals :=
   LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Carrier landauDenselyOrderedFieldModel
+
+noncomputable def landauPrimitiveIntervalsRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.PrimitiveIntervals.PrimitiveIntervalsRealizesRealModel
+    landauDenselyOrderedFieldModel
 
 /-!
 `EffectiveCauchy` needs only a bare `RationalNumberSystem` (no extra
@@ -169,6 +182,11 @@ noncomputable def landauRationalNumberSystem :
 
 abbrev R_EffectiveCauchy :=
   LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal
+    landauRationalNumberSystem
+
+noncomputable def landauEffectiveCauchyRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyRealizesRealModel
     landauRationalNumberSystem
 
 /-!
@@ -269,6 +287,11 @@ noncomputable def landauRationalMetricData :
 
 abbrev R_Cauchy :=
   LRA.NumberSystems.RealNumbers.Cauchy.Carrier
+    landauRationalNumberSystem landauRationalMetricData
+
+noncomputable def landauCauchyRealModel :
+    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+  LRA.NumberSystems.RealNumbers.Cauchy.CauchyRealizesRealModel
     landauRationalNumberSystem landauRationalMetricData
 
 abbrev R := R_Cauchy

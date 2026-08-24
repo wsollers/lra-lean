@@ -1659,6 +1659,89 @@ new/modified files (`Dedekind/Instances.lean`,
 elsewhere in this section were checked by hand against the relevant
 structures' field types, not by the compiler.
 
-Proceeding next to `Dyadic`'s own instance wiring, then `Cantor` and
-`EffectiveCauchy` (the two genuinely empty constructions, needing raw
-mathematical content built from scratch rather than just wiring).
+## 28. `Dyadic` needs no new instances; `Cantor` and `EffectiveCauchy` built from scratch — all six `RealNumbers` constructions now complete
+
+**`Dyadic`.** Checked whether `Expansion` should get `Add`/`Mul`/...
+instances the way the other five did. It shouldn't: `Dyadic.Laws.lean`'s
+`Addition`/`Multiplication`/`Negation`/`Inverse`/`Zero`/`One`/`StrictOrder`
+already take an explicit `dyadicData` witness parameter rather than being
+wrapped in typeclass instances — the same shape as `LandauAddition`
+taking an explicit `PeanoSystem` parameter, never an `Add LandauElement`
+instance, because `Expansion` (like `LandauElement`) is witness-independent
+*as a type* while its arithmetic genuinely needs a witness to be pinned
+down. Forcing that into a global `instance : Add Expansion` would need
+one canonical witness — architecturally the same mismatch flagged for
+`ComplexNumbers`' `C` two commits ago. So nothing new was needed here:
+§27 already supplied the witness (`landauRationalDyadicApproximationData`)
+that makes `Dyadic.OrderedFieldIsomorphismHolds landauRationalDyadicApproximationData`
+concretely usable.
+
+**`Cantor`** (nested rational-interval sequences) and **`EffectiveCauchy`**
+(approximations with an explicit convergence modulus) were the two
+genuinely empty constructions — `Operations.lean`/`WellDefinedness.lean`
+had zero declarations in either. Built both from scratch, reusing
+`Operation.Laws.QuotientCompatible` throughout:
+
+- **`Cantor`**: `IsEndpointSum`/`IsEndpointNegation`/`IsCornerProduct`/
+  `IsEndpointProduct` (interval arithmetic via corner products, mirroring
+  `PrimitiveIntervals.IsCornerProduct`/`IsIntervalProduct` exactly — same
+  underlying math, different carrier), each with a `sorry`'d
+  exists-uniquely theorem and a `Classical.choose`-built operation
+  (`Operations.lean`/`WellDefinedness.lean`). `IsNestedAndShrinking`
+  bundles `NestedIntervalSequence`'s two proof obligations into one
+  predicate usable as `QuotientCompatible`'s `invariant`. `addition`/
+  `negation`/`multiplication` promoted the same way as `Cauchy`'s
+  (`Laws.lean`), each with an `_is_proper` instance (`closed`/`respects`
+  reusing the already-`sorry`'d closure/exists-uniquely content,
+  `matches_raw` always `rfl`). `constant_interval`/`rational_embedding`/
+  `zero`/`one`, and `representative_strict_order` ("eventually strictly
+  to the left of"), `sorry`'d and wrapped in `RelationIsProper`.
+  `Instances.lean`: the same `Classical.choose`-over-`induced_operation_exists`
+  lift as `Cauchy`, a `sorry`'d exists-uniquely reciprocal at the
+  `Carrier` level (total-ized `0⁻¹ := 0`), four law certs,
+  `CantorRealizesDenselyOrderedFieldModel`/`CantorRealizesRealModel`.
+
+- **`EffectiveCauchy`**: `EffectiveCauchyApproximation` needed no
+  raw/promoted split at all — like `Dedekind.Cut`, its
+  `Approximate`/`Modulus` fields let `representative_addition`/
+  `_negation`/`_multiplication` be built directly (`Operations.lean`),
+  each a `sorry`'d `CauchyAtPrecision` proof away from being total.
+  `QuotientCompatible` still applies, in the degenerate case documented
+  in its own definition (`Raw := Representative`, `toRaw := id`,
+  `invariant := fun _ => True`) — `closed` is `trivial` and `matches_raw`
+  is `rfl` throughout (`WellDefinedness.lean`). `rational_embedding`/
+  `zero`/`one` (needing zero precision — `Modulus := fun _ => 0`) and
+  `representative_strict_order` (separated by a fixed `PrecisionRadius`
+  from some index on) in `Laws.lean`. `Instances.lean`: same lift/cert/
+  model-builder shape as every other construction in this section —
+  `EffectiveCauchyRealizesDenselyOrderedFieldModel`/
+  `EffectiveCauchyRealizesRealModel`.
+
+Wired `landauCantorRealModel`/`landauDedekindRealModel`/
+`landauPrimitiveIntervalsRealModel`/`landauEffectiveCauchyRealModel`/
+`landauCauchyRealModel` into `Carriers/Witnesses.lean` alongside the
+existing bare-carrier `R_*` abbrevs, so every one of the six
+constructions now has both a named ground carrier *and* a concrete,
+arithmetic-bearing `RealModel` witness available in one place.
+
+**This closes out the `RealNumbers` arithmetic-instances gap identified
+in §23 across all six constructions.** Every one now has: raw operations
+that exist (stated, `sorry`'d where not free), are well-founded (closure/
+`IsNestedAndShrinking`/`CauchyAtPrecision`, `sorry`'d), are well-defined
+(respects-equivalence, `sorry`'d) and — via `QuotientCompatible` — exist
+and are unique on the quotient for free/mechanically; concrete
+`Add`/`Mul`/`Neg`/`Inv`/`OfNat`/`LT`/`LE` instances; four `sorry`'d law
+certificates; and a concrete `RealModel` builder. None of this discharges
+any of the underlying `sorry`s — every one of the roughly 30 new `sorry`s
+added across §26–§28 states a real, standard, sourced mathematical fact
+(interval-corner products, effective-Cauchy moduli, Dedekind-style
+completeness, etc.) left for future work, matching this whole audit's
+static-only, `sorry`-for-accepted-statements convention throughout.
+
+Verified with the same static import-resolution check (0 broken imports
+across 3919 import statements) and manual namespace/`end` balance on all
+new/modified files (`Cantor/{Operations,WellDefinedness,Laws,Instances}.lean`,
+`EffectiveCauchy/{Operations,WellDefinedness,Laws,Instances}.lean`,
+`Carriers/Witnesses.lean`). Not built — as throughout §25–§28, every
+`rfl`/`trivial`/direct-reuse claim was checked by hand against the
+relevant structure's field types, not by the compiler.
