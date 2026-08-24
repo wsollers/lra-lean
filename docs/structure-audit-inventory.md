@@ -1397,3 +1397,100 @@ across 3907 import statements) and manual namespace/`end` balance on
 LRA-native `R` instantiation of `C`, and blocks `Dyadic`'s theory —
 found in §23, scoped in §24); and discharging the substantial and
 growing pile of `sorry`'d laws underpinning everything grounded so far.
+
+## 25. `Operation.Laws.QuotientCompatible` — generic exists/unique/well-defined/well-founded interface, retrofitted onto Cauchy
+
+Follow-up to a correction during §23/§24's write-up: asked to re-check
+whether "no `RealNumbers` construction has ops that exist, are
+well-founded, are well-defined, are unique" was actually true. It
+wasn't, as a blanket claim — `Cauchy` has raw ops
+(`representative_addition`/`_negation`/`_multiplication`, concrete
+defs) plus closure proofs (`_is_cauchy`, `sorry`'d) plus
+respects-equivalence proofs (`_respects_equivalence`, `sorry`'d, though
+**missing entirely for negation** — a real, specific gap); `Dedekind`
+and `PrimitiveIntervals` are substantially further along, including
+`sorry`'d exists-uniquely theorems (`product_exists_uniquely`,
+`reciprocal_exists_uniquely`) and, for `Dedekind`, an actual
+supremum/completeness construction (`family_union_is_supremum`); only
+`Cantor` and `EffectiveCauchy` are genuinely empty. What's uniformly
+missing across all six is the final step: lifting those `sorry`'d
+per-construction facts into actual `Add`/`Mul`/`Neg`/... **instances**
+on the carrier type — no `RealNumbers` construction's `Instances.lean`
+declares a single `instance`.
+
+Given that, built the generic interface requested: **`Operation.Laws.QuotientCompatible`**
+(`Operation/Laws/QuotientCompatible/Definition.lean`, new law family,
+registered in `Operation/Laws.lean`), two structures —
+`BinaryOperationIsProper`/`UnaryOperationIsProper` — each bundling
+exactly three fields per operation:
+
+- `closed` ("well-founded"): the raw operation's result always satisfies
+  the invariant carving the representative type out of a larger raw type
+  (e.g. sum of two Cauchy sequences is itself Cauchy).
+- `matches_raw`: the named promoted operation actually computes what the
+  raw operation computes, once projected back down — ties it to its
+  intended definition instead of leaving it an unmoored total function.
+- `respects` ("well-defined"): doesn't depend on which representative was
+  picked from an equivalence class.
+
+"Exists" and "unique" are deliberately *not* separate fields — both are
+free consequences of `respects` alone:
+`BinaryOperationIsProper.induced_operation_exists` is a direct
+application of the already-existing (`sorry`'d)
+`UniversalAlgebra.Quotient.induced_binary_operation_exists`;
+`BinaryOperationIsProper.induced_operation_unique` is `sorry`'d here
+(mechanically routine — `funext` + `Quotient.ind` twice — but not
+attempted as a real tactic proof given no `lake build` to verify it
+against); the unary case doesn't even need an existence lemma —
+`UnaryOperationIsProper.inducedOperation` is a plain, fully constructive
+`def` via `Quotient.lift`, no `sorry` at all. Naming follows this
+repo's existing convention: PascalCase for the generic
+`Operation.Laws.*` classes, snake_case with no construction-name prefix
+for per-construction usage (matching `product_exists_uniquely`, not
+inventing `DedekindCutAdditionExists`-style names — the namespace
+already disambiguates).
+
+Degenerate case check: for constructions with no invariant at all (e.g.
+`QuotientOrderedPairs`, where the raw representative-level operation
+already lands back in `Representative`), the predicate specializes
+cleanly to `Raw := Representative`, `toRaw := id`,
+`invariant := fun _ => True` — nothing forces an irrelevant obligation
+onto that simpler case.
+
+Retrofitted onto `Cauchy` as the first concrete example, in a new
+`Cauchy/Laws.lean` (previously an empty placeholder file):
+
+- Named promoted operations `addition`/`negation`/`multiplication` on
+  `Representative`, each the same anonymous-constructor expression
+  already used inline inside the pre-existing `_respects_equivalence`
+  theorems, now given a name.
+- `addition_is_proper`/`negation_is_proper`/`multiplication_is_proper`,
+  each an instance of `BinaryOperationIsProper`/`UnaryOperationIsProper`
+  built with **zero new `sorry`s**: `closed` and `respects` are direct
+  references to the already-`sorry`'d theorems in `WellDefinedness.lean`
+  (reused, not duplicated), and `matches_raw` is `rfl` in all three cases
+  (true by definition, since the promoted operations are built directly
+  from the raw operation plus its closure proof).
+- Added the one theorem this surfaced as missing:
+  `representative_negation_respects_equivalence` in
+  `Cauchy/WellDefinedness.lean` — negation had a closure proof
+  (`_is_cauchy`) but, unlike addition and multiplication, no
+  respects-equivalence proof at all until now (`sorry`'d, matching its
+  siblings).
+
+This doesn't yet close the `RealNumbers` arithmetic-instances gap itself
+— `Cauchy/Instances.lean` still declares no `Add`/`Mul`/`Neg` instance —
+but `addition_is_proper` etc. now hand that step exactly the
+`induced_operation_exists`/`inducedOperation` witnesses it needs, so the
+remaining work is genuinely mechanical (`Classical.choose` over
+`induced_operation_exists`, matching `QuotientOrderedPairs/Instances.lean`'s
+own pattern) rather than requiring new mathematical content. `Dedekind`
+and `PrimitiveIntervals` are natural next candidates for the same
+retrofit, given how much of their own `sorry`'d content already fits
+this shape.
+
+Verified with the same static import-resolution check (0 broken imports
+across 3911 import statements) and manual namespace/`end` balance on all
+new/modified files. Not built — in particular, the `rfl`/direct-reuse
+claims above (`matches_raw`, `respects`) are checked by hand against the
+structures' field types, not by the compiler.
