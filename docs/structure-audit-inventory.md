@@ -1128,3 +1128,83 @@ assumption in §19 was checked against the actual files instead of repeated.
 Verified with the same static import-resolution check (0 broken imports
 across 3897 import statements) and manual namespace/`end` balance on
 `Witnesses.lean`. Not built.
+
+## 21. `Q_RationalQuotientFractions` — grounded via a new `QuotientOrderedPairs`-based `IntegerNumberSystem`
+
+`RationalNumbers`'s only construction, `RationalQuotientFractions`, needs a
+witness of `IntegerAndPositiveNaturalData`
+(`RationalQuotientFractions/Carrier.lean`):
+
+```
+structure IntegerAndPositiveNaturalData where
+  integer_system : IntegerNumberSystem
+  natural_carrier : Type
+  one : natural_carrier
+  multiplication : natural_carrier → natural_carrier → natural_carrier
+  to_integer : natural_carrier → integer_system.Model.Carrier
+  denominator_is_positive : ∀ denominator, 0 < to_integer denominator
+  every_positive_integer_has_denominator : ...
+  one_maps_to_one : to_integer one = 1
+  multiplication_is_preserved : ...
+```
+
+This is a heavier ask than anything grounded so far: `integer_system`
+must be a full `IntegerNumberSystem` — a `DiscretelyOrderedIntegralDomainModel`
+(real `Add`/`Mul`/`Neg`/`OfNat 0`/`OfNat 1`/`LT`/`LE` *instances* plus law
+certificates) *plus* `EveryElementIsIntegerNumeral`. Checked all four ℤ
+constructions for what they actually offer:
+
+- `Tao`/`Mendelson` only have **existence** theorems
+  (`TaoRealizesIntegerNumberSystem`, `MendelsonRealizesIntegerNumberSystem`
+  in `Integers/Constructions/{Tao,Mendelson}/Instances.lean`) — `∃
+  integerSystem, integerSystem.Model.Carrier = Carrier wholeData`, obtained
+  via `Classical.choose`. The resulting model is opaque: there is no way to
+  write a concrete `to_integer : natural_carrier → integer_system.Model.Carrier`
+  against it, since nothing is known about *which* element of that model
+  any given natural maps to. Not usable here.
+- `QuotientOrderedPairs/Instances.lean` already had a fully concrete model
+  builder, `QuotientOrderedPairsRealizesIntegerModel`, built directly from
+  the same `Add`/`Mul`/`Neg`/`0`/`1`/`<`/`≤` instances installed on
+  `Carrier whole_data` (`quotientCarrierAdd`, `quotientCarrierMul`, etc.).
+  It only lacked `EveryElementIsIntegerNumeral` to become a full
+  `IntegerNumberSystem`. Added that as a new `sorry`'d theorem
+  (`quotient_every_element_is_integer_numeral`) and wrapped it into
+  `QuotientOrderedPairsRealizesIntegerNumberSystem`, in the same file.
+
+With a concrete integer system available, the natural-number embedding
+composes two pieces already built: `some : LandauElement → Option
+LandauElement` (`WholeNumbers.Constructions.Landau.naturalEmbedding`, §19)
+followed by the whole-number-to-integer `embed` already defined in
+`QuotientOrderedPairs/Operations.lean`. `landauNaturalToInteger` in
+`Carriers/Witnesses.lean` is exactly that composite, and the four
+remaining `IntegerAndPositiveNaturalData` proof obligations are stated
+against it and left `sorry`'d
+(`landauNaturalToIntegerIsPositive`,
+`landauEveryPositiveIntegerHasLandauDenominator`,
+`landauNaturalToIntegerOneMapsToOne`,
+`landauNaturalToIntegerPreservesMultiplication`), matching this repo's
+accepted-statement convention — no new axioms.
+
+Assembled as `landauIntegerAndPositiveNaturalData`, grounding:
+
+- `Q_RationalQuotientFractions := RationalQuotientFractions.Carrier
+  landauIntegerAndPositiveNaturalData`
+- `Q := Q_RationalQuotientFractions` (generic default alias, matching `N`
+  and `Z`)
+
+`RationalQuotientFractions/Instances.lean` was already fully generic over
+`IntegerAndPositiveNaturalData` (`RationalQuotientFractionsRealizesRationalNumberSystem`,
+etc.) — nothing needed changing there.
+
+Verified with the same static import-resolution check (0 broken imports
+across 3899 import statements) and manual namespace/`end` balance on both
+modified files (`Carriers/Witnesses.lean`,
+`Integers/Constructions/QuotientOrderedPairs/Instances.lean`). Not
+built — soundness of everything grounded here is only as good as the
+`sorry`'d order laws (§19) and the new `sorry`'d obligations above, once
+those are actually discharged.
+
+**Not yet done: `RealNumbers`.** All six constructions
+(`Cantor`, `Cauchy`, `Dedekind`, `Dyadic`, `EffectiveCauchy`,
+`PrimitiveIntervals`) still need their witness shapes checked before any
+grounding is attempted — deferred to keep this pass scoped to one system.
