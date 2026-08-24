@@ -4,6 +4,7 @@ import LRA.NumberSystems.NaturalNumbers.Constructions.Presburger
 import LRA.NumberSystems.Integers.Constructions.Polish
 import LRA.NumberSystems.GaussianIntegers.Interface.ModelTheory.LStructure
 import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs
+import LRA.NumberSystems.RealNumbers.Constructions.Dyadic
 
 namespace LRA.NumberSystems.Carriers
 
@@ -47,5 +48,22 @@ a canonical choice to default to. Concrete instantiations (e.g. over
 
 abbrev C (R : Type u) :=
   LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.ComplexNumber R
+
+/-!
+Unlike the other five `RealNumbers` constructions grounded in
+`Carriers/Witnesses.lean`, `Dyadic`'s ground carrier needs no witness at
+all: `Dyadic.Expansion` (signed binary expansions — `zero`, or a sign
+plus a `NonzeroUnsignedExpansion` built from a finite `WholeBinaryNumeral`
+integer part and an infinite canonical `CanonicalFraction` fractional
+part) is a self-contained `inductive`, entirely independent of any
+`RationalNumberSystem` parameter. It's the theory *around* `Expansion`
+(relating it back to `Q`/Cauchy reals — arithmetic, order, the
+isomorphism with `Cauchy.Carrier`) that needs a
+`RationalDyadicApproximationData` witness, and that witness is not built
+— see `Carriers/Witnesses.lean` for why.
+-/
+
+abbrev R_Dyadic :=
+  LRA.NumberSystems.RealNumbers.Dyadic.Expansion
 
 end LRA.NumberSystems.Carriers

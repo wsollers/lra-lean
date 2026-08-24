@@ -1347,9 +1347,53 @@ Re-verified after the fix: 0 broken imports across 3906 import
 statements, manual namespace/`end` balance on both
 `Carriers/Definition.lean` and `Carriers/Witnesses.lean`. Not built.
 
+## 24. `R_Dyadic` — the ground carrier needed no witness after all (§22 over-scoped the blocker)
+
+§22 marked `Dyadic` as blocked because `RationalDyadicApproximationData`
+(the witness its *theory* — `Value`, `IsDyadicRational`, the isomorphism
+with Cauchy reals — is stated against) requires a concrete `Cauchy`
+`RationalRealExtension` realization that doesn't exist. True, but that
+theory is not the same thing as the *carrier type* — and checking
+`Dyadic/Carrier.lean` past where §22's investigation stopped (line ~157)
+turns up `inductive Expansion where | zero | nonzero (Sign) (Magnitude :
+NonzeroUnsignedExpansion)` at line 105: a **self-contained** type (signed
+binary expansions — a finite `WholeBinaryNumeral` integer part plus an
+infinite canonical, non-eventually-all-1s `CanonicalFraction` fractional
+part), with no `RationalDyadicApproximationData` parameter anywhere in
+its definition. Every other definition in that file that *does* take
+`dyadicData` (`Value`, `WholeNumeralValue`, `IsDyadicRational`, ...)
+only relates `Expansion` back to the rationals/Cauchy reals — it doesn't
+gate the type's existence.
+
+So the ground carrier was available all along, no witness needed —
+exactly like `N_Landau`/`Z_Polish`/`N_VonNeumann`:
+
+- `R_Dyadic := Dyadic.Expansion`
+
+Added to `Carriers/Definition.lean` (not `Witnesses.lean` — it needs no
+witness, matching where the other no-witness carriers already live).
+
+**Still not done, and still genuinely blocked:** the theory connecting
+`Expansion` back to the rest of `RealNumbers` (its arithmetic, its order,
+its isomorphism with `Cauchy.Carrier`) requires the same missing
+infrastructure identified in §23 — none of the `RealNumbers`
+constructions have concrete `Add`/`Mul`/`Neg`/`Inv`/`OfNat`/`LE`
+instances or a completeness proof installed on their own carrier, and
+`Cauchy`'s `Laws.lean`/`Behavior.lean` don't even have an order relation
+defined yet (checked: both files are empty). Building
+`RationalDyadicApproximationData` means building that whole chain first
+(an order relation on Cauchy sequences, arithmetic instances via
+`induced_binary_operation_exists`, an `OrderCompletenessLaws` cert, a
+`DenseOrderedFieldEmbeddingIntoReal` from ℚ, and a cofinality proof) —
+real new mathematical infrastructure comparable in size to everything
+grounded in §18–§23 combined, not a wiring task. Left for its own pass.
+
+Verified with the same static import-resolution check (0 broken imports
+across 3907 import statements) and manual namespace/`end` balance on
+`Carriers/Definition.lean`. Not built.
+
 **Summary of open items across this whole `NumberSystems.Carriers` effort
-(§18–§23):** `Dyadic` (needs a concrete `Cauchy` `RationalRealExtension`
-realization); a genuine LRA-native `R` instantiation of `C` (needs
-concrete arithmetic instances on a `RealNumbers` carrier — the gap found
-in §23); and discharging the substantial and growing pile of `sorry`'d
-laws underpinning everything grounded so far.
+(§18–§24):** the `RealNumbers` arithmetic-instances gap (blocks a genuine
+LRA-native `R` instantiation of `C`, and blocks `Dyadic`'s theory —
+found in §23, scoped in §24); and discharging the substantial and
+growing pile of `sorry`'d laws underpinning everything grounded so far.
