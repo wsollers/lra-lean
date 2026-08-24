@@ -2,8 +2,6 @@ import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
 
 namespace LRA.Operation.Laws.QuotientCompatible
 
-universe u v
-
 /--
 **[Operation.Laws.QuotientCompatible — a proper binary operation]**
 
@@ -49,7 +47,7 @@ exists, unique, well-defined, well-founded, all in one named predicate a
 concrete construction proves once per operation.
 -/
 structure BinaryOperationIsProper
-    {Representative : Type u} {Raw : Type v}
+    {Representative : Type} {Raw : Type}
     (invariant : Raw → Prop)
     (toRaw : Representative → Raw)
     (rawOperation : Representative → Representative → Raw)
@@ -64,7 +62,7 @@ structure BinaryOperationIsProper
     LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid operation
 
 theorem BinaryOperationIsProper.induced_operation_exists
-    {Representative : Type u} {Raw : Type v}
+    {Representative : Type} {Raw : Type}
     {invariant : Raw → Prop} {toRaw : Representative → Raw}
     {rawOperation : Representative → Representative → Raw}
     {setoid : Setoid Representative}
@@ -90,7 +88,7 @@ theorem in this pass, even though the underlying fact is free once
 `induced_operation_exists`'s witness is unfolded.
 -/
 theorem BinaryOperationIsProper.induced_operation_unique
-    {Representative : Type u} {Raw : Type v}
+    {Representative : Type} {Raw : Type}
     {invariant : Raw → Prop} {toRaw : Representative → Raw}
     {rawOperation : Representative → Representative → Raw}
     {setoid : Setoid Representative}
@@ -123,7 +121,7 @@ all — `Quotient.lift` gives it directly and constructively once
 definitional uniqueness, needing no separate statement.
 -/
 structure UnaryOperationIsProper
-    {Representative : Type u} {Raw : Type v}
+    {Representative : Type} {Raw : Type}
     (invariant : Raw → Prop)
     (toRaw : Representative → Raw)
     (rawOperation : Representative → Raw)
@@ -136,7 +134,7 @@ structure UnaryOperationIsProper
     LRA.UniversalAlgebra.Quotient.unary_operation_respects setoid operation
 
 def UnaryOperationIsProper.inducedOperation
-    {Representative : Type u} {Raw : Type v}
+    {Representative : Type} {Raw : Type}
     {invariant : Raw → Prop} {toRaw : Representative → Raw}
     {rawOperation : Representative → Raw} {setoid : Setoid Representative}
     {operation : Representative → Representative}
@@ -160,13 +158,13 @@ determined pointwise the same way the induced operations are, by
 `Quotient.ind`.
 -/
 structure RelationIsProper
-    {Representative : Type u}
+    {Representative : Type}
     (setoid : Setoid Representative)
     (relation : Representative → Representative → Prop) : Prop where
   respects : LRA.UniversalAlgebra.Quotient.relation_respects setoid relation
 
 theorem RelationIsProper.induced_relation_exists
-    {Representative : Type u} {setoid : Setoid Representative}
+    {Representative : Type} {setoid : Setoid Representative}
     {relation : Representative → Representative → Prop}
     (proper : RelationIsProper setoid relation) :
     ∃ quotient_relation : Quotient setoid → Quotient setoid → Prop,
