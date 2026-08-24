@@ -38,10 +38,10 @@ def quotient_nonstrict_order
     (first second : Carrier fieldModel) : Prop :=
   quotient_strict_order fieldModel first second ∨ first = second
 
-def quotient_zero (fieldModel : DenselyOrderedFieldModel) : Carrier fieldModel :=
+noncomputable def quotient_zero (fieldModel : DenselyOrderedFieldModel) : Carrier fieldModel :=
   Quotient.mk _ (zero fieldModel)
 
-def quotient_one (fieldModel : DenselyOrderedFieldModel) : Carrier fieldModel :=
+noncomputable def quotient_one (fieldModel : DenselyOrderedFieldModel) : Carrier fieldModel :=
   Quotient.mk _ (one fieldModel)
 
 noncomputable instance CarrierAdd (fieldModel : DenselyOrderedFieldModel) :

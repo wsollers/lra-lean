@@ -36,10 +36,10 @@ def quotient_nonstrict_order
     (first second : EffectiveCauchyReal rationalSystem) : Prop :=
   quotient_strict_order rationalSystem first second ∨ first = second
 
-def quotient_zero (rationalSystem : RationalNumberSystem) : EffectiveCauchyReal rationalSystem :=
+noncomputable def quotient_zero (rationalSystem : RationalNumberSystem) : EffectiveCauchyReal rationalSystem :=
   Quotient.mk _ (zero rationalSystem)
 
-def quotient_one (rationalSystem : RationalNumberSystem) : EffectiveCauchyReal rationalSystem :=
+noncomputable def quotient_one (rationalSystem : RationalNumberSystem) : EffectiveCauchyReal rationalSystem :=
   Quotient.mk _ (one rationalSystem)
 
 noncomputable instance CarrierAdd (rationalSystem : RationalNumberSystem) :
