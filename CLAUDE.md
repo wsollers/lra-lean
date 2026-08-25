@@ -2,7 +2,13 @@
 GENERATED POINTER WRAPPER — DO NOT EDIT BY HAND.
 
 Source repo: wsollers/lra-governance
-Canonical overlay: capabilities/overlays/lra-lean.md
+Source revision: unknown
+Source documents:
+- capabilities/manifest.yaml
+- docs/governance/agent-instruction-policy.md
+- docs/architecture/generated-file-policy.md
+- docs/governance/repo-overlays/lra-lean.md
+Canonical overlay: docs/governance/repo-overlays/lra-lean.md
 
 Regenerate from lra-governance.
 Emergency downstream edits must be ported upstream before regeneration.
@@ -15,10 +21,10 @@ Emergency downstream edits must be ported upstream before regeneration.
 This repository uses canonical LRA governance by pointer, not by copied rules.
 
 Repository: `lra-lean`
-Canonical repo overlay: `capabilities/overlays/lra-lean.md`
+Canonical repo overlay: `docs/governance/repo-overlays/lra-lean.md`
 Canonical route resolver:
-`python <governance-root>/scripts/govpy.py capabilities/resolve.py --repo lra-lean --task "<user task>" --root <repo-root>`
-Human route index (lazy reference only): `capabilities/task-index.md`
+`python <governance-root>/capabilities/resolve.py --repo lra-lean --task "<user task>" --root <repo-root>`
+Human route index (lazy reference only): `docs/agent-task-index.md`
 
 Resolve canonical governance in this order:
 

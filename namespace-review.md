@@ -4,7 +4,7 @@
 
 | Item | Value |
 |---|---|
-| Revision | `f717ca923b41de28617655cfe4a24f0b2371e232` |
+| Revision | `ff6d9925f308100d680e04852b8b143ebb8b40f6` |
 | Branch | `main` |
 | Inventory | `9,718` compiled-environment rows |
 | SHA-256 | `848f69a1ccc1d552c261dec61ec15447f84a722c2ed4ea2264b12de8ab0032aa` |

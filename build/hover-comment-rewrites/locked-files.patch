@@ -1,0 +1,2726 @@
+*** Begin Patch
+*** Update File: LRA/EuclideanSpace/Model/CartesianPlane.lean
+@@
+ import LRA.EuclideanSpace.Model.RealLine
+ 
+ namespace LRA.EuclideanSpace
+ 
+ open LRA.NumberSystems.Interface.ModelTheory
+ 
+                                                                      
+ 
+ 
+ 
+ /--
+ `R2` TODO
+ 
++Predicate logic:
++
++  abbrev R2 (real_model : RealModel) := Rn real_model 2
++
++Predicate logic (unfolded):
++
++  abbrev R2 (real_model : RealModel) := Rn real_model 2
++
++Logical form (Lean):
++
++```lean
++abbrev R2 (real_model : RealModel) := Rn real_model 2
++```
++
+ Type-theoretic form:
+ 
+   TODO
+ 
+ Proof use:
+ 
+   TODO
+ 
+ After unfold / common proof state:
+ 
+   TODO
+ 
+ Common confusions:
+ 
+   TODO
+ 
+ Related proof moves: unfold
+ 
+-Formal statement:
++-/
+ 
+-```lean
++
+ abbrev R2 (real_model : RealModel) := Rn real_model 2
+-```
+--/
+-
+-abbrev R2 (real_model : RealModel) := Rn real_model 2
+ 
+                                                             
+ 
+ 
+ 
+ /--
+ `ClosedRectangle` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
+-
+-Proof use:
+-
+-  TODO
+-
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: constructor, cases, rcases, unfold
+-
+-Formal statement:
+-
+-```lean
+-def ClosedRectangle (real_model : RealModel)
++  def ClosedRectangle (real_model : RealModel)
+     (left right bottom top : RealCoordinate real_model) : Set (R2 real_model) :=
+   { point |
+       left ≤ getX (by decide) point ∧ getX (by decide) point ≤ right ∧
+       bottom ≤ getY (by decide) point ∧ getY (by decide) point ≤ top }
+-```
+--/
+ 
++Predicate logic (unfolded):
++
+-def ClosedRectangle (real_model : RealModel)
++  def ClosedRectangle (real_model : RealModel)
+     (left right bottom top : RealCoordinate real_model) : Set (R2 real_model) :=
+   { point |
+       left ≤ getX (by decide) point ∧ getX (by decide) point ≤ right ∧
+       bottom ≤ getY (by decide) point ∧ getY (by decide) point ≤ top }
+ 
++Logical form (Lean):
++
++```lean
++def ClosedRectangle (real_model : RealModel)
++    (left right bottom top : RealCoordinate real_model) : Set (R2 real_model) :=
++  { point |
++      left ≤ getX (by decide) point ∧ getX (by decide) point ≤ right ∧
++      bottom ≤ getY (by decide) point ∧ getY (by decide) point ≤ top }
++```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: constructor, cases, rcases, unfold
++
++-/
++
++
++def ClosedRectangle (real_model : RealModel)
++    (left right bottom top : RealCoordinate real_model) : Set (R2 real_model) :=
++  { point |
++      left ≤ getX (by decide) point ∧ getX (by decide) point ≤ right ∧
++      bottom ≤ getY (by decide) point ∧ getY (by decide) point ≤ top }
++
+                                                           
+ 
+ 
+ 
+ /--
+ `OpenRectangle` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
+-
+-Proof use:
+-
+-  TODO
+-
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: constructor, cases, rcases, unfold
+-
+-Formal statement:
+-
+-```lean
+-def OpenRectangle (real_model : RealModel)
++  def OpenRectangle (real_model : RealModel)
+     (left right bottom top : RealCoordinate real_model) : Set (R2 real_model) :=
+   { point |
+       left < getX (by decide) point ∧ getX (by decide) point < right ∧
+       bottom < getY (by decide) point ∧ getY (by decide) point < top }
+-```
+--/
+ 
++Predicate logic (unfolded):
++
+-def OpenRectangle (real_model : RealModel)
++  def OpenRectangle (real_model : RealModel)
+     (left right bottom top : RealCoordinate real_model) : Set (R2 real_model) :=
+   { point |
+       left < getX (by decide) point ∧ getX (by decide) point < right ∧
+       bottom < getY (by decide) point ∧ getY (by decide) point < top }
+ 
++Logical form (Lean):
++
++```lean
++def OpenRectangle (real_model : RealModel)
++    (left right bottom top : RealCoordinate real_model) : Set (R2 real_model) :=
++  { point |
++      left < getX (by decide) point ∧ getX (by decide) point < right ∧
++      bottom < getY (by decide) point ∧ getY (by decide) point < top }
++```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: constructor, cases, rcases, unfold
++
++-/
++
++
++def OpenRectangle (real_model : RealModel)
++    (left right bottom top : RealCoordinate real_model) : Set (R2 real_model) :=
++  { point |
++      left < getX (by decide) point ∧ getX (by decide) point < right ∧
++      bottom < getY (by decide) point ∧ getY (by decide) point < top }
++
+                                                                     
+ 
+ 
+ 
+ /--
+ `Circle` TODO
+ 
++Predicate logic:
++
++  def Circle (real_model : RealModel)
++    (center : R2 real_model) (radiusSq : RealCoordinate real_model) :
++    Set (R2 real_model) :=
++  { point | squaredDistance real_model point center = radiusSq }
++
++Predicate logic (unfolded):
++
++  def Circle (real_model : RealModel)
++    (center : R2 real_model) (radiusSq : RealCoordinate real_model) :
++    Set (R2 real_model) :=
++  { point | squaredDistance real_model point center = radiusSq }
++
++Logical form (Lean):
++
++```lean
++def Circle (real_model : RealModel)
++    (center : R2 real_model) (radiusSq : RealCoordinate real_model) :
++    Set (R2 real_model) :=
++  { point | squaredDistance real_model point center = radiusSq }
++```
++
+ Type-theoretic form:
+ 
+   TODO
+ 
+ Proof use:
+ 
+   TODO
+ 
+ After unfold / common proof state:
+ 
+   TODO
+ 
+ Common confusions:
+ 
+   TODO
+ 
+ Related proof moves: unfold
+ 
+-Formal statement:
++-/
+ 
+-```lean
++
+ def Circle (real_model : RealModel)
+     (center : R2 real_model) (radiusSq : RealCoordinate real_model) :
+     Set (R2 real_model) :=
+   { point | squaredDistance real_model point center = radiusSq }
+-```
+--/
+-
+-def Circle (real_model : RealModel)
+-    (center : R2 real_model) (radiusSq : RealCoordinate real_model) :
+-    Set (R2 real_model) :=
+-  { point | squaredDistance real_model point center = radiusSq }
+ 
+                                                                   
+ 
+ 
+ 
+ /--
+ `Disk` TODO
+ 
++Predicate logic:
++
++  def Disk (real_model : RealModel)
++    (center : R2 real_model) (radiusSq : RealCoordinate real_model) :
++    Set (R2 real_model) :=
++  { point | squaredDistance real_model point center ≤ radiusSq }
++
++Predicate logic (unfolded):
++
++  def Disk (real_model : RealModel)
++    (center : R2 real_model) (radiusSq : RealCoordinate real_model) :
++    Set (R2 real_model) :=
++  { point | squaredDistance real_model point center ≤ radiusSq }
++
++Logical form (Lean):
++
++```lean
++def Disk (real_model : RealModel)
++    (center : R2 real_model) (radiusSq : RealCoordinate real_model) :
++    Set (R2 real_model) :=
++  { point | squaredDistance real_model point center ≤ radiusSq }
++```
++
+ Type-theoretic form:
+ 
+   TODO
+ 
+ Proof use:
+ 
+   TODO
+ 
+ After unfold / common proof state:
+ 
+   TODO
+ 
+ Common confusions:
+ 
+   TODO
+ 
+ Related proof moves: unfold
+ 
+-Formal statement:
++-/
+ 
+-```lean
++
+ def Disk (real_model : RealModel)
+     (center : R2 real_model) (radiusSq : RealCoordinate real_model) :
+     Set (R2 real_model) :=
+   { point | squaredDistance real_model point center ≤ radiusSq }
+-```
+--/
+-
+-def Disk (real_model : RealModel)
+-    (center : R2 real_model) (radiusSq : RealCoordinate real_model) :
+-    Set (R2 real_model) :=
+-  { point | squaredDistance real_model point center ≤ radiusSq }
+ 
+                                                                     
+ 
+ 
+ 
+ /--
+ `GraphOf` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def GraphOf (real_model : RealModel)
++    (f : RealCoordinate real_model → RealCoordinate real_model) :
++    Set (R2 real_model) :=
++  { point | getY (by decide) point = f (getX (by decide) point) }
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def GraphOf (real_model : RealModel)
++    (f : RealCoordinate real_model → RealCoordinate real_model) :
++    Set (R2 real_model) :=
++  { point | getY (by decide) point = f (getX (by decide) point) }
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: intro, unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def GraphOf (real_model : RealModel)
+     (f : RealCoordinate real_model → RealCoordinate real_model) :
+     Set (R2 real_model) :=
+   { point | getY (by decide) point = f (getX (by decide) point) }
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: intro, unfold
++
+ -/
++
+ 
+ def GraphOf (real_model : RealModel)
+     (f : RealCoordinate real_model → RealCoordinate real_model) :
+     Set (R2 real_model) :=
+   { point | getY (by decide) point = f (getX (by decide) point) }
+ 
+                                                                      
+ 
+ 
+ 
+ /--
+ `CartesianPlaneModel` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def CartesianPlaneModel (real_model : RealModel) :
++    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
++  EuclideanTupleModel real_model 2
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def CartesianPlaneModel (real_model : RealModel) :
++    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
++  EuclideanTupleModel real_model 2
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def CartesianPlaneModel (real_model : RealModel) :
+     LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+   EuclideanTupleModel real_model 2
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ def CartesianPlaneModel (real_model : RealModel) :
+     LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+   EuclideanTupleModel real_model 2
+ 
+ end LRA.EuclideanSpace
+*** Update File: LRA/EuclideanSpace/Model/Euclidean3Space.lean
+@@
+ import LRA.EuclideanSpace.Model.CartesianPlane
+ 
+ namespace LRA.EuclideanSpace
+ 
+ open LRA.NumberSystems.Interface.ModelTheory
+ 
+                                                                              
+ 
+ 
+ 
+ /--
+ `R3` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  abbrev R3 (real_model : RealModel) := Rn real_model 3
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  abbrev R3 (real_model : RealModel) := Rn real_model 3
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ abbrev R3 (real_model : RealModel) := Rn real_model 3
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ abbrev R3 (real_model : RealModel) := Rn real_model 3
+ 
+                                                                       
+ 
+ 
+ 
+ /--
+ `ClosedBox` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
+-
+-Proof use:
+-
+-  TODO
+-
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: constructor, cases, rcases, unfold
+-
+-Formal statement:
+-
+-```lean
+-def ClosedBox (real_model : RealModel)
++  def ClosedBox (real_model : RealModel)
+     (left right front back bottom top : RealCoordinate real_model) :
+     Set (R3 real_model) :=
+   { point |
+       left ≤ getX (by decide) point ∧ getX (by decide) point ≤ right ∧
+       front ≤ getY (by decide) point ∧ getY (by decide) point ≤ back ∧
+       bottom ≤ getZ (by decide) point ∧ getZ (by decide) point ≤ top }
+-```
+--/
+ 
++Predicate logic (unfolded):
++
+-def ClosedBox (real_model : RealModel)
++  def ClosedBox (real_model : RealModel)
+     (left right front back bottom top : RealCoordinate real_model) :
+     Set (R3 real_model) :=
+   { point |
+       left ≤ getX (by decide) point ∧ getX (by decide) point ≤ right ∧
+       front ≤ getY (by decide) point ∧ getY (by decide) point ≤ back ∧
+       bottom ≤ getZ (by decide) point ∧ getZ (by decide) point ≤ top }
+ 
++Logical form (Lean):
++
++```lean
++def ClosedBox (real_model : RealModel)
++    (left right front back bottom top : RealCoordinate real_model) :
++    Set (R3 real_model) :=
++  { point |
++      left ≤ getX (by decide) point ∧ getX (by decide) point ≤ right ∧
++      front ≤ getY (by decide) point ∧ getY (by decide) point ≤ back ∧
++      bottom ≤ getZ (by decide) point ∧ getZ (by decide) point ≤ top }
++```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: constructor, cases, rcases, unfold
++
++-/
++
++
++def ClosedBox (real_model : RealModel)
++    (left right front back bottom top : RealCoordinate real_model) :
++    Set (R3 real_model) :=
++  { point |
++      left ≤ getX (by decide) point ∧ getX (by decide) point ≤ right ∧
++      front ≤ getY (by decide) point ∧ getY (by decide) point ≤ back ∧
++      bottom ≤ getZ (by decide) point ∧ getZ (by decide) point ≤ top }
++
+                                                                     
+ 
+ 
+ 
+ /--
+ `Sphere` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def Sphere (real_model : RealModel)
++    (center : R3 real_model) (radiusSq : RealCoordinate real_model) :
++    Set (R3 real_model) :=
++  { point | squaredDistance real_model point center = radiusSq }
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def Sphere (real_model : RealModel)
++    (center : R3 real_model) (radiusSq : RealCoordinate real_model) :
++    Set (R3 real_model) :=
++  { point | squaredDistance real_model point center = radiusSq }
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def Sphere (real_model : RealModel)
+     (center : R3 real_model) (radiusSq : RealCoordinate real_model) :
+     Set (R3 real_model) :=
+   { point | squaredDistance real_model point center = radiusSq }
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ def Sphere (real_model : RealModel)
+     (center : R3 real_model) (radiusSq : RealCoordinate real_model) :
+     Set (R3 real_model) :=
+   { point | squaredDistance real_model point center = radiusSq }
+ 
+                                                                         
+ 
+ 
+ 
+ /--
+ `Ball` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def Ball (real_model : RealModel)
++    (center : R3 real_model) (radiusSq : RealCoordinate real_model) :
++    Set (R3 real_model) :=
++  { point | squaredDistance real_model point center ≤ radiusSq }
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def Ball (real_model : RealModel)
++    (center : R3 real_model) (radiusSq : RealCoordinate real_model) :
++    Set (R3 real_model) :=
++  { point | squaredDistance real_model point center ≤ radiusSq }
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def Ball (real_model : RealModel)
+     (center : R3 real_model) (radiusSq : RealCoordinate real_model) :
+     Set (R3 real_model) :=
+   { point | squaredDistance real_model point center ≤ radiusSq }
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ def Ball (real_model : RealModel)
+     (center : R3 real_model) (radiusSq : RealCoordinate real_model) :
+     Set (R3 real_model) :=
+   { point | squaredDistance real_model point center ≤ radiusSq }
+ 
+                                     
+ 
+ 
+ 
+ /--
+ `Plane` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
+-
+-Proof use:
+-
+-  TODO
+-
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+-
+-```lean
+-def Plane (real_model : RealModel)
++  def Plane (real_model : RealModel)
+     (a b c d : RealCoordinate real_model) : Set (R3 real_model) :=
+   { point |
+       a * getX (by decide) point +
+       b * getY (by decide) point +
+       c * getZ (by decide) point = d }
+-```
+--/
+ 
++Predicate logic (unfolded):
++
+-def Plane (real_model : RealModel)
++  def Plane (real_model : RealModel)
+     (a b c d : RealCoordinate real_model) : Set (R3 real_model) :=
+   { point |
+       a * getX (by decide) point +
+       b * getY (by decide) point +
+       c * getZ (by decide) point = d }
+ 
++Logical form (Lean):
++
++```lean
++def Plane (real_model : RealModel)
++    (a b c d : RealCoordinate real_model) : Set (R3 real_model) :=
++  { point |
++      a * getX (by decide) point +
++      b * getY (by decide) point +
++      c * getZ (by decide) point = d }
++```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
++-/
++
++
++def Plane (real_model : RealModel)
++    (a b c d : RealCoordinate real_model) : Set (R3 real_model) :=
++  { point |
++      a * getX (by decide) point +
++      b * getY (by decide) point +
++      c * getZ (by decide) point = d }
++
+                                                              
+ 
+ 
+ 
+ /--
+ `Euclidean3SpaceModel` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def Euclidean3SpaceModel (real_model : RealModel) :
++    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
++  EuclideanTupleModel real_model 3
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def Euclidean3SpaceModel (real_model : RealModel) :
++    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
++  EuclideanTupleModel real_model 3
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def Euclidean3SpaceModel (real_model : RealModel) :
+     LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+   EuclideanTupleModel real_model 3
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ def Euclidean3SpaceModel (real_model : RealModel) :
+     LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+   EuclideanTupleModel real_model 3
+ 
+ end LRA.EuclideanSpace
+*** Update File: LRA/EuclideanSpace/Model/Euclidean4Space.lean
+@@
+ import LRA.EuclideanSpace.Model.Euclidean3Space
+ 
+ namespace LRA.EuclideanSpace
+ 
+ open LRA.NumberSystems.Interface.ModelTheory
+ 
+                                                                             
+ 
+ 
+ 
+ /--
+ `R4` TODO
+ 
++Predicate logic:
++
++  abbrev R4 (real_model : RealModel) := Rn real_model 4
++
++Predicate logic (unfolded):
++
++  abbrev R4 (real_model : RealModel) := Rn real_model 4
++
++Logical form (Lean):
++
++```lean
++abbrev R4 (real_model : RealModel) := Rn real_model 4
++```
++
+ Type-theoretic form:
+ 
+   TODO
+ 
+ Proof use:
+ 
+   TODO
+ 
+ After unfold / common proof state:
+ 
+   TODO
+ 
+ Common confusions:
+ 
+   TODO
+ 
+ Related proof moves: unfold
+ 
+-Formal statement:
++-/
+ 
+-```lean
++
+ abbrev R4 (real_model : RealModel) := Rn real_model 4
+-```
+--/
+-
+-abbrev R4 (real_model : RealModel) := Rn real_model 4
+ 
+                                     
+ 
+ 
+ 
+ /--
+ `ClosedHyperbox4` TODO
+ 
++Predicate logic:
++
++  def ClosedHyperbox4 (real_model : RealModel)
++    (xmin xmax ymin ymax zmin zmax wmin wmax : RealCoordinate real_model) :
++    Set (R4 real_model) :=
++  { point |
++      xmin ≤ getX (by decide) point ∧ getX (by decide) point ≤ xmax ∧
++      ymin ≤ getY (by decide) point ∧ getY (by decide) point ≤ ymax ∧
++      zmin ≤ getZ (by decide) point ∧ getZ (by decide) point ≤ zmax ∧
++      wmin ≤ getW (by decide) point ∧ getW (by decide) point ≤ wmax }
++
++Predicate logic (unfolded):
++
++  def ClosedHyperbox4 (real_model : RealModel)
++    (xmin xmax ymin ymax zmin zmax wmin wmax : RealCoordinate real_model) :
++    Set (R4 real_model) :=
++  { point |
++      xmin ≤ getX (by decide) point ∧ getX (by decide) point ≤ xmax ∧
++      ymin ≤ getY (by decide) point ∧ getY (by decide) point ≤ ymax ∧
++      zmin ≤ getZ (by decide) point ∧ getZ (by decide) point ≤ zmax ∧
++      wmin ≤ getW (by decide) point ∧ getW (by decide) point ≤ wmax }
++
++Logical form (Lean):
++
++```lean
++def ClosedHyperbox4 (real_model : RealModel)
++    (xmin xmax ymin ymax zmin zmax wmin wmax : RealCoordinate real_model) :
++    Set (R4 real_model) :=
++  { point |
++      xmin ≤ getX (by decide) point ∧ getX (by decide) point ≤ xmax ∧
++      ymin ≤ getY (by decide) point ∧ getY (by decide) point ≤ ymax ∧
++      zmin ≤ getZ (by decide) point ∧ getZ (by decide) point ≤ zmax ∧
++      wmin ≤ getW (by decide) point ∧ getW (by decide) point ≤ wmax }
++```
++
+ Type-theoretic form:
+ 
+   TODO
+ 
+ Proof use:
+ 
+   TODO
+ 
+ After unfold / common proof state:
+ 
+   TODO
+ 
+ Common confusions:
+ 
+   TODO
+ 
+ Related proof moves: constructor, cases, rcases, unfold
+ 
+-Formal statement:
++-/
+ 
+-```lean
++
+ def ClosedHyperbox4 (real_model : RealModel)
+     (xmin xmax ymin ymax zmin zmax wmin wmax : RealCoordinate real_model) :
+     Set (R4 real_model) :=
+   { point |
+       xmin ≤ getX (by decide) point ∧ getX (by decide) point ≤ xmax ∧
+       ymin ≤ getY (by decide) point ∧ getY (by decide) point ≤ ymax ∧
+       zmin ≤ getZ (by decide) point ∧ getZ (by decide) point ≤ zmax ∧
+       wmin ≤ getW (by decide) point ∧ getW (by decide) point ≤ wmax }
+-```
+--/
+-
+-def ClosedHyperbox4 (real_model : RealModel)
+-    (xmin xmax ymin ymax zmin zmax wmin wmax : RealCoordinate real_model) :
+-    Set (R4 real_model) :=
+-  { point |
+-      xmin ≤ getX (by decide) point ∧ getX (by decide) point ≤ xmax ∧
+-      ymin ≤ getY (by decide) point ∧ getY (by decide) point ≤ ymax ∧
+-      zmin ≤ getZ (by decide) point ∧ getZ (by decide) point ≤ zmax ∧
+-      wmin ≤ getW (by decide) point ∧ getW (by decide) point ≤ wmax }
+ 
+                                                              
+ 
+ 
+ 
+ /--
+ `Sphere4` TODO
+ 
++Predicate logic:
++
++  def Sphere4 (real_model : RealModel)
++    (center : R4 real_model) (radiusSq : RealCoordinate real_model) :
++    Set (R4 real_model) :=
++  { point | squaredDistance real_model point center = radiusSq }
++
++Predicate logic (unfolded):
++
++  def Sphere4 (real_model : RealModel)
++    (center : R4 real_model) (radiusSq : RealCoordinate real_model) :
++    Set (R4 real_model) :=
++  { point | squaredDistance real_model point center = radiusSq }
++
++Logical form (Lean):
++
++```lean
++def Sphere4 (real_model : RealModel)
++    (center : R4 real_model) (radiusSq : RealCoordinate real_model) :
++    Set (R4 real_model) :=
++  { point | squaredDistance real_model point center = radiusSq }
++```
++
+ Type-theoretic form:
+ 
+   TODO
+ 
+ Proof use:
+ 
+   TODO
+ 
+ After unfold / common proof state:
+ 
+   TODO
+ 
+ Common confusions:
+ 
+   TODO
+ 
+ Related proof moves: unfold
+ 
+-Formal statement:
++-/
+ 
+-```lean
++
+ def Sphere4 (real_model : RealModel)
+     (center : R4 real_model) (radiusSq : RealCoordinate real_model) :
+     Set (R4 real_model) :=
+   { point | squaredDistance real_model point center = radiusSq }
+-```
+--/
+-
+-def Sphere4 (real_model : RealModel)
+-    (center : R4 real_model) (radiusSq : RealCoordinate real_model) :
+-    Set (R4 real_model) :=
+-  { point | squaredDistance real_model point center = radiusSq }
+ 
+                                                             
+ 
+ 
+ 
+ /--
+ `Euclidean4SpaceModel` TODO
+ 
++Predicate logic:
++
++  def Euclidean4SpaceModel (real_model : RealModel) :
++    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
++  EuclideanTupleModel real_model 4
++
++Predicate logic (unfolded):
++
++  def Euclidean4SpaceModel (real_model : RealModel) :
++    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
++  EuclideanTupleModel real_model 4
++
++Logical form (Lean):
++
++```lean
++def Euclidean4SpaceModel (real_model : RealModel) :
++    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
++  EuclideanTupleModel real_model 4
++```
++
+ Type-theoretic form:
+ 
+   TODO
+ 
+ Proof use:
+ 
+   TODO
+ 
+ After unfold / common proof state:
+ 
+   TODO
+ 
+ Common confusions:
+ 
+   TODO
+ 
+ Related proof moves: unfold
+ 
+-Formal statement:
++-/
+ 
+-```lean
++
+ def Euclidean4SpaceModel (real_model : RealModel) :
+     LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+   EuclideanTupleModel real_model 4
+-```
+--/
+-
+-def Euclidean4SpaceModel (real_model : RealModel) :
+-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+-  EuclideanTupleModel real_model 4
+ 
+ end LRA.EuclideanSpace
+*** Update File: LRA/EuclideanSpace/Model/EuclideanN.lean
+@@
+ import LRA.EuclideanSpace.CoordinateSystems
+ import LRA.EuclideanSpace.Definition
+ import LRA.EuclideanSpace.Interface.ModelTheory.Model
+ import LRA.EuclideanSpace.Interface.Relations
+ 
+ namespace LRA.EuclideanSpace
+ 
+ open LRA.NumberSystems.Interface.ModelTheory
+ 
+ universe u
+ 
+ 
+ 
+ 
+ /--
+ `RealCoordinate` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  abbrev RealCoordinate (real_model : RealModel) : Type u := real_model.Carrier
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  abbrev RealCoordinate (real_model : RealModel) : Type u := real_model.Carrier
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ abbrev RealCoordinate (real_model : RealModel) : Type u := real_model.Carrier
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ abbrev RealCoordinate (real_model : RealModel) : Type u := real_model.Carrier
+ 
+ 
+ 
+ 
+ /--
+ `Coordinates` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  abbrev Coordinates (real_model : RealModel) (n : ℕ) : Type u :=
++  CoordinateTuple real_model n
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  abbrev Coordinates (real_model : RealModel) (n : ℕ) : Type u :=
++  CoordinateTuple real_model n
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ abbrev Coordinates (real_model : RealModel) (n : ℕ) : Type u :=
+   CoordinateTuple real_model n
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ abbrev Coordinates (real_model : RealModel) (n : ℕ) : Type u :=
+   CoordinateTuple real_model n
+ 
+                                                                         
+                                              
+ 
+ 
+ 
+ /--
+ `EuclideanPoint` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  structure EuclideanPoint (real_model : RealModel) (n : ℕ) where
++  coord : Coordinates real_model n
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  structure EuclideanPoint (real_model : RealModel) (n : ℕ) where
++  coord : Coordinates real_model n
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: TODO
+-
+-Formal statement:
+ 
+ ```lean
+ structure EuclideanPoint (real_model : RealModel) (n : ℕ) where
+   coord : Coordinates real_model n
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: TODO
++
+ -/
++
+ 
+ structure EuclideanPoint (real_model : RealModel) (n : ℕ) where
+   coord : Coordinates real_model n
+ 
+                                                     
+ 
+ 
+ 
+ /--
+ `Rn` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  abbrev Rn (real_model : RealModel) (n : ℕ) := EuclideanPoint real_model n
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  abbrev Rn (real_model : RealModel) (n : ℕ) := EuclideanPoint real_model n
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ abbrev Rn (real_model : RealModel) (n : ℕ) := EuclideanPoint real_model n
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ abbrev Rn (real_model : RealModel) (n : ℕ) := EuclideanPoint real_model n
+ 
+ 
+ 
+ 
+ /--
+ `euclideanSpace` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def euclideanSpace (real_model : RealModel) (n : ℕ) : EuclideanSpaceDefinition where
++  Carrier := Rn real_model n
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def euclideanSpace (real_model : RealModel) (n : ℕ) : EuclideanSpaceDefinition where
++  Carrier := Rn real_model n
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def euclideanSpace (real_model : RealModel) (n : ℕ) : EuclideanSpaceDefinition where
+   Carrier := Rn real_model n
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ def euclideanSpace (real_model : RealModel) (n : ℕ) : EuclideanSpaceDefinition where
+   Carrier := Rn real_model n
+ 
+ 
+ 
+ 
+ /--
+ `origin` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def origin (real_model : RealModel) (n : ℕ) : Rn real_model n :=
++  { coord := OriginCoordinates real_model n }
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def origin (real_model : RealModel) (n : ℕ) : Rn real_model n :=
++  { coord := OriginCoordinates real_model n }
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def origin (real_model : RealModel) (n : ℕ) : Rn real_model n :=
+   { coord := OriginCoordinates real_model n }
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ def origin (real_model : RealModel) (n : ℕ) : Rn real_model n :=
+   { coord := OriginCoordinates real_model n }
+ 
+ 
+ 
+ 
+ /--
+ `pointOfCoordinates` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def pointOfCoordinates (real_model : RealModel) (n : ℕ) :
++    Coordinates real_model n → Rn real_model n :=
++  fun coordinates => { coord := coordinates }
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def pointOfCoordinates (real_model : RealModel) (n : ℕ) :
++    Coordinates real_model n → Rn real_model n :=
++  fun coordinates => { coord := coordinates }
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: intro, unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def pointOfCoordinates (real_model : RealModel) (n : ℕ) :
+     Coordinates real_model n → Rn real_model n :=
+   fun coordinates => { coord := coordinates }
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: intro, unfold
++
+ -/
++
+ 
+ def pointOfCoordinates (real_model : RealModel) (n : ℕ) :
+     Coordinates real_model n → Rn real_model n :=
+   fun coordinates => { coord := coordinates }
+ 
+ 
+ 
+ 
+ /--
+ `standardCoordinateSystem` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def standardCoordinateSystem (real_model : RealModel) (n : ℕ) :
++    CoordinateSystemDefinition (euclideanSpace real_model n) real_model n where
++  origin := origin real_model n
++  coordinates := fun point => point.coord
++  pointOf := pointOfCoordinates real_model n
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def standardCoordinateSystem (real_model : RealModel) (n : ℕ) :
++    CoordinateSystemDefinition (euclideanSpace real_model n) real_model n where
++  origin := origin real_model n
++  coordinates := fun point => point.coord
++  pointOf := pointOfCoordinates real_model n
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def standardCoordinateSystem (real_model : RealModel) (n : ℕ) :
+     CoordinateSystemDefinition (euclideanSpace real_model n) real_model n where
+   origin := origin real_model n
+   coordinates := fun point => point.coord
+   pointOf := pointOfCoordinates real_model n
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ def standardCoordinateSystem (real_model : RealModel) (n : ℕ) :
+     CoordinateSystemDefinition (euclideanSpace real_model n) real_model n where
+   origin := origin real_model n
+   coordinates := fun point => point.coord
+   pointOf := pointOfCoordinates real_model n
+ 
+                                                                               
+ 
+ 
+ 
+ /--
+ `getX` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def getX {real_model : RealModel} {n : ℕ} (hn : 1 ≤ n)
++    (point : Rn real_model n) : RealCoordinate real_model :=
++  point.coord ⟨0, Nat.lt_of_lt_of_le (by decide) hn⟩
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def getX {real_model : RealModel} {n : ℕ} (hn : 1 ≤ n)
++    (point : Rn real_model n) : RealCoordinate real_model :=
++  point.coord ⟨0, Nat.lt_of_lt_of_le (by decide) hn⟩
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def getX {real_model : RealModel} {n : ℕ} (hn : 1 ≤ n)
+     (point : Rn real_model n) : RealCoordinate real_model :=
+   point.coord ⟨0, Nat.lt_of_lt_of_le (by decide) hn⟩
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ def getX {real_model : RealModel} {n : ℕ} (hn : 1 ≤ n)
+     (point : Rn real_model n) : RealCoordinate real_model :=
+   point.coord ⟨0, Nat.lt_of_lt_of_le (by decide) hn⟩
+ 
+                                                                            
+ 
+ 
+ 
+ /--
+ `getY` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def getY {real_model : RealModel} {n : ℕ} (hn : 2 ≤ n)
++    (point : Rn real_model n) : RealCoordinate real_model :=
++  point.coord ⟨1, Nat.lt_of_lt_of_le (by decide) hn⟩
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def getY {real_model : RealModel} {n : ℕ} (hn : 2 ≤ n)
++    (point : Rn real_model n) : RealCoordinate real_model :=
++  point.coord ⟨1, Nat.lt_of_lt_of_le (by decide) hn⟩
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def getY {real_model : RealModel} {n : ℕ} (hn : 2 ≤ n)
+     (point : Rn real_model n) : RealCoordinate real_model :=
+   point.coord ⟨1, Nat.lt_of_lt_of_le (by decide) hn⟩
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ def getY {real_model : RealModel} {n : ℕ} (hn : 2 ≤ n)
+     (point : Rn real_model n) : RealCoordinate real_model :=
+   point.coord ⟨1, Nat.lt_of_lt_of_le (by decide) hn⟩
+ 
+                                                                           
+ 
+ 
+ 
+ /--
+ `getZ` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def getZ {real_model : RealModel} {n : ℕ} (hn : 3 ≤ n)
++    (point : Rn real_model n) : RealCoordinate real_model :=
++  point.coord ⟨2, Nat.lt_of_lt_of_le (by decide) hn⟩
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def getZ {real_model : RealModel} {n : ℕ} (hn : 3 ≤ n)
++    (point : Rn real_model n) : RealCoordinate real_model :=
++  point.coord ⟨2, Nat.lt_of_lt_of_le (by decide) hn⟩
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def getZ {real_model : RealModel} {n : ℕ} (hn : 3 ≤ n)
+     (point : Rn real_model n) : RealCoordinate real_model :=
+   point.coord ⟨2, Nat.lt_of_lt_of_le (by decide) hn⟩
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ def getZ {real_model : RealModel} {n : ℕ} (hn : 3 ≤ n)
+     (point : Rn real_model n) : RealCoordinate real_model :=
+   point.coord ⟨2, Nat.lt_of_lt_of_le (by decide) hn⟩
+ 
+                                                                            
+ 
+ 
+ 
+ /--
+ `getW` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def getW {real_model : RealModel} {n : ℕ} (hn : 4 ≤ n)
++    (point : Rn real_model n) : RealCoordinate real_model :=
++  point.coord ⟨3, Nat.lt_of_lt_of_le (by decide) hn⟩
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def getW {real_model : RealModel} {n : ℕ} (hn : 4 ≤ n)
++    (point : Rn real_model n) : RealCoordinate real_model :=
++  point.coord ⟨3, Nat.lt_of_lt_of_le (by decide) hn⟩
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def getW {real_model : RealModel} {n : ℕ} (hn : 4 ≤ n)
+     (point : Rn real_model n) : RealCoordinate real_model :=
+   point.coord ⟨3, Nat.lt_of_lt_of_le (by decide) hn⟩
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ def getW {real_model : RealModel} {n : ℕ} (hn : 4 ≤ n)
+     (point : Rn real_model n) : RealCoordinate real_model :=
+   point.coord ⟨3, Nat.lt_of_lt_of_le (by decide) hn⟩
+ 
+                                                                    
+                             
+ 
+ 
+ 
+ /--
+ `sumFin` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def sumFin {n : ℕ} {R : Type u} [Add R] [OfNat R 0] (f : Fin n → R) : R :=
++  match n with
++  | 0 => 0
++  | m + 1 => f (Fin.last m) + sumFin (fun i => f (Fin.castSucc i))
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def sumFin {n : ℕ} {R : Type u} [Add R] [OfNat R 0] (f : Fin n → R) : R :=
++  match n with
++  | 0 => 0
++  | m + 1 => f (Fin.last m) + sumFin (fun i => f (Fin.castSucc i))
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: intro, unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def sumFin {n : ℕ} {R : Type u} [Add R] [OfNat R 0] (f : Fin n → R) : R :=
+   match n with
+   | 0 => 0
+   | m + 1 => f (Fin.last m) + sumFin (fun i => f (Fin.castSucc i))
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: intro, unfold
++
+ -/
++
+ 
+ def sumFin {n : ℕ} {R : Type u} [Add R] [OfNat R 0] (f : Fin n → R) : R :=
+   match n with
+   | 0 => 0
+   | m + 1 => f (Fin.last m) + sumFin (fun i => f (Fin.castSucc i))
+ 
+ instance (real_model : RealModel) (n : ℕ) : Nonempty (Rn real_model n) :=
+   ⟨origin real_model n⟩
+ 
+                                                            
+ instance (real_model : RealModel) (n : ℕ) : Between (Rn real_model n) where
+   between x y z :=
+     ∃ t : RealCoordinate real_model, 0 ≤ t ∧ t ≤ 1 ∧
+       ∀ i : Fin n, y.coord i = (1 + -t) * x.coord i + t * z.coord i
+ 
+                                                                            
+ 
+ 
+ 
+ /--
+ `squaredDistance` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def squaredDistance (real_model : RealModel) {n : ℕ}
++    (x y : Rn real_model n) : RealCoordinate real_model :=
++  sumFin (fun i =>
++    let delta := x.coord i + -(y.coord i)
++    delta * delta)
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def squaredDistance (real_model : RealModel) {n : ℕ}
++    (x y : Rn real_model n) : RealCoordinate real_model :=
++  sumFin (fun i =>
++    let delta := x.coord i + -(y.coord i)
++    delta * delta)
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def squaredDistance (real_model : RealModel) {n : ℕ}
+     (x y : Rn real_model n) : RealCoordinate real_model :=
+   sumFin (fun i =>
+     let delta := x.coord i + -(y.coord i)
+     delta * delta)
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ def squaredDistance (real_model : RealModel) {n : ℕ}
+     (x y : Rn real_model n) : RealCoordinate real_model :=
+   sumFin (fun i =>
+     let delta := x.coord i + -(y.coord i)
+     delta * delta)
+ 
+                                                            
+ instance (real_model : RealModel) (n : ℕ) : Congruent (Rn real_model n) where
+   congruent x y z w :=
+     squaredDistance real_model x y = squaredDistance real_model z w
+ 
+                                                                        
+ 
+ 
+ 
+ /--
+ `EuclideanTupleModel` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def EuclideanTupleModel (real_model : RealModel) (n : ℕ) :
++    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
++  BuildTarskiModel
++    (Point := Rn real_model n)
++    (between := fun x y z => between x y z)
++    (congruent := fun x y z w => congruent x y z w)
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def EuclideanTupleModel (real_model : RealModel) (n : ℕ) :
++    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
++  BuildTarskiModel
++    (Point := Rn real_model n)
++    (between := fun x y z => between x y z)
++    (congruent := fun x y z w => congruent x y z w)
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def EuclideanTupleModel (real_model : RealModel) (n : ℕ) :
+     LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+   BuildTarskiModel
+     (Point := Rn real_model n)
+     (between := fun x y z => between x y z)
+     (congruent := fun x y z w => congruent x y z w)
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ def EuclideanTupleModel (real_model : RealModel) (n : ℕ) :
+     LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+   BuildTarskiModel
+     (Point := Rn real_model n)
+     (between := fun x y z => between x y z)
+     (congruent := fun x y z w => congruent x y z w)
+ 
+ end LRA.EuclideanSpace
+*** Update File: LRA/EuclideanSpace/Model/RealLine.lean
+@@
+ import LRA.EuclideanSpace.Model.EuclideanN
+ 
+ namespace LRA.EuclideanSpace
+ 
+ open LRA.NumberSystems.Interface.ModelTheory
+ 
+                                                                      
+ 
+ 
+ 
+ /--
+ `R1` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  abbrev R1 (real_model : RealModel) := Rn real_model 1
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  abbrev R1 (real_model : RealModel) := Rn real_model 1
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ abbrev R1 (real_model : RealModel) := Rn real_model 1
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ abbrev R1 (real_model : RealModel) := Rn real_model 1
+ 
+                                                               
+ 
+ 
+ 
+ /--
+ `getX1` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def getX1 (point : R1 real_model) : RealCoordinate real_model :=
++  point.coord ⟨0, by decide⟩
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def getX1 (point : R1 real_model) : RealCoordinate real_model :=
++  point.coord ⟨0, by decide⟩
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def getX1 (point : R1 real_model) : RealCoordinate real_model :=
+   point.coord ⟨0, by decide⟩
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ def getX1 (point : R1 real_model) : RealCoordinate real_model :=
+   point.coord ⟨0, by decide⟩
+ 
+                                                          
+ 
+ 
+ 
+ /--
+ `OpenIntervalM` TODO
+ 
++Predicate logic:
++
++  def OpenIntervalM (real_model : RealModel)
++    (a b : RealCoordinate real_model) : Set (R1 real_model) :=
++  { point | a < getX1 point ∧ getX1 point < b }
++
++Predicate logic (unfolded):
++
++  def OpenIntervalM (real_model : RealModel)
++    (a b : RealCoordinate real_model) : Set (R1 real_model) :=
++  { point | a < getX1 point ∧ getX1 point < b }
++
++Logical form (Lean):
++
++```lean
++def OpenIntervalM (real_model : RealModel)
++    (a b : RealCoordinate real_model) : Set (R1 real_model) :=
++  { point | a < getX1 point ∧ getX1 point < b }
++```
++
+ Type-theoretic form:
+ 
+   TODO
+ 
+ Proof use:
+ 
+   TODO
+ 
+ After unfold / common proof state:
+ 
+   TODO
+ 
+ Common confusions:
+ 
+   TODO
+ 
+ Related proof moves: constructor, cases, rcases, unfold
+ 
+-Formal statement:
++-/
+ 
+-```lean
++
+ def OpenIntervalM (real_model : RealModel)
+     (a b : RealCoordinate real_model) : Set (R1 real_model) :=
+   { point | a < getX1 point ∧ getX1 point < b }
+-```
+--/
+-
+-def OpenIntervalM (real_model : RealModel)
+-    (a b : RealCoordinate real_model) : Set (R1 real_model) :=
+-  { point | a < getX1 point ∧ getX1 point < b }
+ 
+                                                            
+ 
+ 
+ 
+ /--
+ `ClosedIntervalM` TODO
+ 
++Predicate logic:
++
++  def ClosedIntervalM (real_model : RealModel)
++    (a b : RealCoordinate real_model) : Set (R1 real_model) :=
++  { point | a ≤ getX1 point ∧ getX1 point ≤ b }
++
++Predicate logic (unfolded):
++
++  def ClosedIntervalM (real_model : RealModel)
++    (a b : RealCoordinate real_model) : Set (R1 real_model) :=
++  { point | a ≤ getX1 point ∧ getX1 point ≤ b }
++
++Logical form (Lean):
++
++```lean
++def ClosedIntervalM (real_model : RealModel)
++    (a b : RealCoordinate real_model) : Set (R1 real_model) :=
++  { point | a ≤ getX1 point ∧ getX1 point ≤ b }
++```
++
+ Type-theoretic form:
+ 
+   TODO
+ 
+ Proof use:
+ 
+   TODO
+ 
+ After unfold / common proof state:
+ 
+   TODO
+ 
+ Common confusions:
+ 
+   TODO
+ 
+ Related proof moves: constructor, cases, rcases, unfold
+ 
+-Formal statement:
++-/
+ 
+-```lean
++
+ def ClosedIntervalM (real_model : RealModel)
+     (a b : RealCoordinate real_model) : Set (R1 real_model) :=
+   { point | a ≤ getX1 point ∧ getX1 point ≤ b }
+-```
+--/
+-
+-def ClosedIntervalM (real_model : RealModel)
+-    (a b : RealCoordinate real_model) : Set (R1 real_model) :=
+-  { point | a ≤ getX1 point ∧ getX1 point ≤ b }
+ 
+                                                           
+ 
+ 
+ 
+ /--
+ `OpenRayAboveM` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def OpenRayAboveM (real_model : RealModel)
++    (a : RealCoordinate real_model) : Set (R1 real_model) :=
++  { point | a < getX1 point }
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def OpenRayAboveM (real_model : RealModel)
++    (a : RealCoordinate real_model) : Set (R1 real_model) :=
++  { point | a < getX1 point }
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def OpenRayAboveM (real_model : RealModel)
+     (a : RealCoordinate real_model) : Set (R1 real_model) :=
+   { point | a < getX1 point }
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ def OpenRayAboveM (real_model : RealModel)
+     (a : RealCoordinate real_model) : Set (R1 real_model) :=
+   { point | a < getX1 point }
+ 
+                                                           
+ 
+ 
+ 
+ /--
+ `OpenRayBelowM` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def OpenRayBelowM (real_model : RealModel)
++    (b : RealCoordinate real_model) : Set (R1 real_model) :=
++  { point | getX1 point < b }
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def OpenRayBelowM (real_model : RealModel)
++    (b : RealCoordinate real_model) : Set (R1 real_model) :=
++  { point | getX1 point < b }
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def OpenRayBelowM (real_model : RealModel)
+     (b : RealCoordinate real_model) : Set (R1 real_model) :=
+   { point | getX1 point < b }
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ def OpenRayBelowM (real_model : RealModel)
+     (b : RealCoordinate real_model) : Set (R1 real_model) :=
+   { point | getX1 point < b }
+ 
+                                                                      
+ 
+ 
+ 
+ /--
+ `RealLineModel` TODO
+ 
+-Type-theoretic form:
++Predicate logic:
+ 
+-  TODO
++  def RealLineModel (real_model : RealModel) :
++    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
++  EuclideanTupleModel real_model 1
+ 
+-Proof use:
++Predicate logic (unfolded):
+ 
+-  TODO
++  def RealLineModel (real_model : RealModel) :
++    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
++  EuclideanTupleModel real_model 1
+ 
++Logical form (Lean):
+-After unfold / common proof state:
+-
+-  TODO
+-
+-Common confusions:
+-
+-  TODO
+-
+-Related proof moves: unfold
+-
+-Formal statement:
+ 
+ ```lean
+ def RealLineModel (real_model : RealModel) :
+     LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+   EuclideanTupleModel real_model 1
+ ```
++
++Type-theoretic form:
++
++  TODO
++
++Proof use:
++
++  TODO
++
++After unfold / common proof state:
++
++  TODO
++
++Common confusions:
++
++  TODO
++
++Related proof moves: unfold
++
+ -/
++
+ 
+ def RealLineModel (real_model : RealModel) :
+     LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+   EuclideanTupleModel real_model 1
+ 
+ end LRA.EuclideanSpace
+*** Update File: LRA/EuclideanSpace/Model.lean
+@@
+ import LRA.EuclideanSpace.Model.EuclideanN
+ import LRA.EuclideanSpace.Model.RealLine
+ import LRA.EuclideanSpace.Model.CartesianPlane
+ import LRA.EuclideanSpace.Model.Euclidean3Space
+ import LRA.EuclideanSpace.Model.Euclidean4Space
+ 
+    
+                                                                  
+ 
+                                                                        
+                                       
+ 
+                              
+                              
+                                            
+                                               
+ 
+                                                                     
+                                                                        
+   
+*** End Patch
