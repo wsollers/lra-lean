@@ -90,6 +90,7 @@ import csv
 import os
 import re
 import sys
+import textwrap
 from collections import defaultdict, deque
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -343,28 +344,55 @@ def split_compiled_arg(text: str) -> tuple[str, str] | None:
 
 
 def compiled_atom_to_notation(name: str, args: list[str]) -> str | None:
+    def wrap_if_compound(expr: str) -> str:
+        expr = expr.strip()
+        if expr.startswith("(") and expr.endswith(")"):
+            return expr
+        if any(token in expr for token in ("∀", "∃", "→", "↔", "∧", "∨")):
+            return f"({expr})"
+        return expr
+
     rendered = [humanize_compiled_logic(arg) for arg in args]
     if name == "And" and len(rendered) == 2:
-        return f"({rendered[0]} ∧ {rendered[1]})"
+        return f"({wrap_if_compound(rendered[0])} ∧ {wrap_if_compound(rendered[1])})"
     if name == "Not" and len(rendered) == 1:
         return f"¬ {rendered[0]}"
     if name == "Eq" and len(rendered) == 2:
         return f"{rendered[0]} = {rendered[1]}"
     if name == "Iff" and len(rendered) == 2:
         return f"{rendered[0]} ↔ {rendered[1]}"
+    if re.fullmatch(r"(?:inst(?:_\d+)?|[A-Za-z0-9_.]+toLE)\.1", name) and len(rendered) == 2:
+        return f"{rendered[0]} ≤ {rendered[1]}"
+    if re.fullmatch(r"[A-Za-z0-9_.]+toLT\.1", name) and len(rendered) == 2:
+        return f"{rendered[0]} < {rendered[1]}"
+    if re.fullmatch(r"(?:Set\.)?instMembership(?:\.(?:1|mem))?", name) and len(rendered) == 2:
+        return f"{rendered[1]} ∈ {rendered[0]}"
     if re.fullmatch(r"inst(?:_\d+)?\.mem", name) and len(rendered) == 2:
         return f"{rendered[1]} ∈ {rendered[0]}"
+    if re.fullmatch(r"(?:Set\.)?instSDiff(?:\.(?:1|sdiff))?", name) and len(rendered) == 2:
+        return f"{rendered[0]} \\ {rendered[1]}"
     if re.fullmatch(r"inst(?:_\d+)?\.sdiff", name) and len(rendered) == 2:
         return f"{rendered[0]} \\ {rendered[1]}"
+    if re.fullmatch(r"(?:Set\.)?instUnion(?:\.(?:1|union))?", name) and len(rendered) == 2:
+        return f"{rendered[0]} ∪ {rendered[1]}"
     if re.fullmatch(r"inst(?:_\d+)?\.union", name) and len(rendered) == 2:
         return f"{rendered[0]} ∪ {rendered[1]}"
+    if re.fullmatch(r"(?:Set\.)?instInter(?:\.(?:1|inter))?", name) and len(rendered) == 2:
+        return f"{rendered[0]} ∩ {rendered[1]}"
     if re.fullmatch(r"inst(?:_\d+)?\.inter", name) and len(rendered) == 2:
         return f"{rendered[0]} ∩ {rendered[1]}"
     return None
 
 
 def rewrite_compiled_prefix_at(text: str, start: int) -> tuple[str, int] | None:
-    match = re.match(r"(And|Not|Eq|Iff|inst(?:_\d+)?\.(?:mem|sdiff|union|inter))\b", text[start:])
+    match = re.match(
+        r"(And|Not|Eq|Iff|(?:inst(?:_\d+)?|[A-Za-z0-9_.]+toLE)\.1|[A-Za-z0-9_.]+toLT\.1|"
+        r"(?:Set\.)?instMembership(?:\.(?:1|mem))?|inst(?:_\d+)?\.mem|"
+        r"(?:Set\.)?instSDiff(?:\.(?:1|sdiff))?|inst(?:_\d+)?\.sdiff|"
+        r"(?:Set\.)?instUnion(?:\.(?:1|union))?|inst(?:_\d+)?\.union|"
+        r"(?:Set\.)?instInter(?:\.(?:1|inter))?|inst(?:_\d+)?\.inter)\b",
+        text[start:],
+    )
     if not match:
         return None
     name = match.group(1)
@@ -423,6 +451,21 @@ class BinderGroup:
     content: str
 
 
+@dataclass
+class FormalEnvironment:
+    ambient_types: list[str]
+    ambient_symbols: list[str]
+    objects: list[str]
+    hypotheses: list[str]
+
+
+@dataclass
+class StructuredStatement:
+    ambient: str
+    objects: list[str]
+    prove: str
+
+
 def split_binder_groups(text: str) -> list[BinderGroup]:
     groups: list[BinderGroup] = []
     index = 0
@@ -449,6 +492,143 @@ def split_binder_groups(text: str) -> list[BinderGroup]:
         else:
             break
     return groups
+
+
+def first_top_level_comma(text: str) -> int | None:
+    depth = 0
+    for index, char in enumerate(text):
+        if char in BRACKET_OPEN:
+            depth += 1
+        elif char in BRACKET_CLOSE:
+            depth = max(0, depth - 1)
+        elif char == "," and depth == 0:
+            return index
+    return None
+
+
+def normalize_typeclass_expr(content: str) -> str:
+    colon = first_top_level_colon(content)
+    if colon is not None:
+        return content[colon + 1 :].strip()
+    return content.strip()
+
+
+def ambient_symbol_for_typeclass(class_expr: str) -> str | None:
+    normalized = class_expr.strip()
+    symbol_map = {
+        "LE": "≤",
+        "LT": "<",
+        "Preorder": "≤",
+        "PartialOrder": "≤",
+        "LinearOrder": "≤",
+        "Membership": "∈",
+    }
+    head = normalized.split(None, 1)[0] if normalized else ""
+    return symbol_map.get(head)
+
+
+def ambient_candidates_from_object_type(binder_type: str) -> list[str]:
+    normalized = binder_type.strip()
+    candidates: list[str] = []
+    direct_types = ("ℝ", "ℕ", "ℤ", "ℚ", "ℂ", "Real", "Nat", "Int", "Rat", "Complex")
+    if normalized in direct_types:
+        candidates.append(normalized)
+    set_match = re.fullmatch(r"Set\s+(.+)", normalized)
+    if set_match:
+        inner = set_match.group(1).strip()
+        if inner in direct_types:
+            candidates.append(inner)
+    for piece in (part.strip() for part in normalized.split("→")):
+        if piece in direct_types:
+            candidates.append(piece)
+    return list(dict.fromkeys(candidates))
+
+
+def extract_formal_environment(signature: str) -> FormalEnvironment:
+    colon = first_top_level_colon(signature)
+    binder_text = signature[:colon].strip() if colon is not None else signature.strip()
+    groups = split_binder_groups(binder_text)
+    ambient_types: list[str] = []
+    ambient_symbols: list[str] = []
+    objects: list[str] = []
+    hypotheses: list[str] = []
+
+    for group in groups:
+        if group.opener == "[":
+            class_expr = normalize_typeclass_expr(group.content)
+            symbol = ambient_symbol_for_typeclass(class_expr)
+            if symbol and symbol not in ambient_symbols:
+                ambient_symbols.append(symbol)
+            continue
+        split = split_binder_content(group.content)
+        if split is None:
+            continue
+        names, binder_type = split
+        if binder_type.startswith("Type"):
+            for name in names:
+                if name not in ambient_types:
+                    ambient_types.append(name)
+            continue
+        if group.opener == "(" and is_proposition_shaped(binder_type):
+            hypotheses.append(f"{' '.join(names)} : {binder_type}")
+            continue
+        objects.append(f"{' '.join(names)} : {binder_type}")
+        if not ambient_types:
+            for candidate in ambient_candidates_from_object_type(binder_type):
+                if candidate not in ambient_types:
+                    ambient_types.append(candidate)
+
+    return FormalEnvironment(
+        ambient_types=ambient_types,
+        ambient_symbols=ambient_symbols,
+        objects=objects,
+        hypotheses=hypotheses,
+    )
+
+
+def format_ambient(environment: FormalEnvironment) -> str:
+    pieces = environment.ambient_types + environment.ambient_symbols
+    if not pieces:
+        return "(implicit ambient)"
+    return f"({', '.join(pieces)})"
+
+
+def strip_forall_prefix(statement: str) -> str:
+    text = statement.strip()
+    if not text.startswith("∀"):
+        return text
+    comma = first_top_level_comma(text)
+    if comma is None:
+        return text
+    return text[comma + 1 :].strip()
+
+
+def render_structured_statement(signature: str, unfolded_body: str) -> StructuredStatement:
+    environment = extract_formal_environment(signature)
+    return StructuredStatement(
+        ambient=format_ambient(environment),
+        objects=environment.objects,
+        prove=unfolded_body.strip(),
+    )
+
+
+def format_structured_statement(statement: StructuredStatement) -> str:
+    lines = [
+        "Ambient",
+        f"  {statement.ambient}",
+        "Objects",
+    ]
+    if statement.objects:
+        lines.extend(f"  {obj}" for obj in statement.objects)
+    else:
+        lines.append("  (none)")
+    lines.extend(
+        [
+            "Prove",
+            f"  {statement.prove}",
+        ]
+    )
+    return "\n".join(lines)
 
 
 def split_binder_content(content: str) -> tuple[list[str], str] | None:
@@ -592,6 +772,7 @@ class SourceTheorem:
     name: str
     kind: str  # proof keyword, "instance", or "axiom"
     line: int
+    context_signature: str
     signature_lean: str
     body_lean: str
     predicate_logic_fallback: str
@@ -614,6 +795,18 @@ def module_path(module: str) -> Path:
     return REPO_ROOT / (module.replace(".", "/") + ".lean")
 
 
+VARIABLE_DECL_RE = re.compile(r"(?m)^[ \t]*variables?\s+([^\n]+)$")
+
+
+def context_signature_before(source_prefix: str) -> str:
+    raw_groups = split_binder_groups(
+        " ".join(match.group(1).strip() for match in VARIABLE_DECL_RE.finditer(source_prefix))
+    )
+    if not raw_groups:
+        return ""
+    return " ".join(f"{group.opener}{group.content}{CLOSE_OF_OPEN[group.opener]}" for group in raw_groups)
+
+
 def scan_source_module(path: Path, import_scope_prefix: str) -> SourceModule:
     source = path.read_text(encoding="utf-8")
     masked = mask_comments(source)
@@ -626,6 +819,7 @@ def scan_source_module(path: Path, import_scope_prefix: str) -> SourceModule:
         kind = keyword
         next_start = matches[index + 1].start() if index + 1 < len(matches) else len(masked)
         declaration_text = masked[match.start() : next_start]
+        context_signature = context_signature_before(masked[: match.start()])
         signature = extract_signature(declaration_text, match.end() - match.start())
         assigns = top_level_occurrences(declaration_text, ":=")
         body = declaration_text[assigns[0] + len(":=") :].strip() if assigns else ""
@@ -638,6 +832,7 @@ def scan_source_module(path: Path, import_scope_prefix: str) -> SourceModule:
                 name=name,
                 kind=kind,
                 line=line,
+                context_signature=context_signature,
                 signature_lean=signature,
                 body_lean=body,
                 predicate_logic_fallback=fallback,
@@ -800,6 +995,21 @@ def resolve_unfolded(row: CompiledTheorem, uncurried_predicate: str) -> str:
     return humanize_compiled_logic(unfolded) if unfolded else uncurried_predicate
 
 
+def render_unfolded_statement(signature: str, row: CompiledTheorem, uncurried_predicate: str) -> str:
+    unfolded = resolve_unfolded(row, uncurried_predicate)
+    if row.uses_sorry is None or row.unfold_status.startswith("error:"):
+        return unfolded
+    prove = strip_forall_prefix(unfolded)
+    structured = render_structured_statement(signature, prove)
+    return format_structured_statement(structured)
+
+
+def theorem_environment_signature(theorem: SourceTheorem) -> str:
+    if theorem.context_signature:
+        return f"{theorem.context_signature} {theorem.signature_lean}"
+    return theorem.signature_lean
+
+
 def reconcile(
     modules: list[SourceModule], compiled_by_module: dict[str, list[CompiledTheorem]]
 ) -> tuple[list[tuple[SourceModule, list[Entry]]], list[str]]:
@@ -847,7 +1057,9 @@ def reconcile(
                     kind=display_kind(theorem.kind if row.kind != "axiom" else row.kind),
                     state=state,
                     predicate_logic=predicate,
-                    predicate_logic_unfolded=resolve_unfolded(row, predicate),
+                    predicate_logic_unfolded=render_unfolded_statement(
+                        theorem_environment_signature(theorem), row, predicate
+                    ),
                     transliterated_theorem=theorem.transliterated_theorem,
                     logical_form_lean=theorem.signature_lean,
                     source_relative_path=mod.relative_path,
@@ -895,7 +1107,9 @@ def reconcile(
                         kind=display_kind(row.kind),
                         state=state,
                         predicate_logic=predicate,
-                        predicate_logic_unfolded=resolve_unfolded(row, predicate),
+                        predicate_logic_unfolded=render_unfolded_statement(
+                            "(signature unavailable)", row, predicate
+                        ),
                         transliterated_theorem="(signature unavailable)",
                         logical_form_lean="(signature unavailable -- not found by source scan)",
                         source_relative_path=mod.relative_path,
@@ -1079,7 +1293,12 @@ def render_scope(
         f"{instance_count} of which {'is' if instance_count == 1 else 'are'} an "
         "`instance` law rather than a `theorem`/`lemma`.",
         "",
-    ]
+    ] 
+
+    def render_field(label: str, value: str) -> list[str]:
+        if "\n" not in value:
+            return [f"{label}: {value}"]
+        return [f"{label}:", textwrap.indent(value, "  ")]
 
     def entry_block(entry: Entry) -> str:
         abs_path = REPO_ROOT / entry.source_relative_path
@@ -1088,18 +1307,17 @@ def render_scope(
         except ValueError:
             rel = os.path.relpath(abs_path, base_dir).replace(os.sep, "/")
         source = f"./{rel}" + (f"#L{entry.source_line}" if entry.source_line is not None else "")
-        return "\n".join(
-            [
-                f"Name: {entry.name}",
-                f"Kind: {entry.kind}",
-                f"State: {entry.state}",
-                f"Predicate logic: {entry.predicate_logic}",
-                f"Predicate logic (unfolded): {entry.predicate_logic_unfolded}",
-                f"Transliterated theorem: {entry.transliterated_theorem}",
-                f"Logical form (Lean): {entry.logical_form_lean}",
-                f"Source: {source}",
-            ]
-        )
+        lines = [
+            f"Name: {entry.name}",
+            f"Kind: {entry.kind}",
+            f"State: {entry.state}",
+        ]
+        lines.extend(render_field("Predicate logic", entry.predicate_logic))
+        lines.extend(render_field("Predicate logic (unfolded)", entry.predicate_logic_unfolded))
+        lines.extend(render_field("Transliterated theorem", entry.transliterated_theorem))
+        lines.extend(render_field("Logical form (Lean)", entry.logical_form_lean))
+        lines.append(f"Source: {source}")
+        return "\n".join(lines)
 
     open_blocks: list[str] = []
     completed_blocks: list[str] = []

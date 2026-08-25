@@ -16,7 +16,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : LE S] {A B : S → Prop} {u : S}, (∀ (x : S), Set.instMembership.1 A x → inst.1 x u ∧ ∀ (x : S), Set.instMembership.1 B x → inst.1 x u) → ∀ (x : S), Set.instMembership.1 (Set.instUnion.1 A B) x → inst.1 x u
+  ∀ {S : Type u_1} [inst : LE S] {A B : S → Prop} {u : S}, ((∀ (x : S), Set.instMembership.1 A x → inst.1 x u) ∧ (∀ (x : S), Set.instMembership.1 B x → inst.1 x u)) → ∀ (x : S), Set.instMembership.1 (Set.instUnion.1 A B) x → inst.1 x u
 
 Logical form (Lean):
 

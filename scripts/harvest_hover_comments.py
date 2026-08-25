@@ -216,6 +216,7 @@ def predicate_logic_fields(
     module_name: str,
     declaration_name: str,
     fallback: str,
+    signature_lean: str,
 ) -> tuple[str, str]:
     row = compiled_row_for(COMPILED_ROWS, module_name, declaration_name)
     if row is None:
@@ -233,8 +234,17 @@ def predicate_logic_fields(
             predicate,
             f"{predicate} (compiled unfold unavailable; showing predicate logic)",
         )
+    compiled_row = PROOFS_TODO.CompiledTheorem(
+        fq_name=row.get("fq_name", f"{module_name}.{declaration_name}"),
+        module=row.get("module", module_name),
+        kind=row.get("kind", "theorem").strip() or "theorem",
+        uses_sorry=(row.get("uses_sorry", "").strip().lower() == "true"),
+        pretty_type_uncurried=row.get("pretty_type_uncurried", ""),
+        pretty_type_unfolded=unfolded_raw,
+        unfold_status=row.get("unfold_status", ""),
+    )
     predicate_unfolded = normalize_text_block(
-        PROOFS_TODO.humanize_compiled_logic(unfolded_raw or predicate)
+        PROOFS_TODO.render_unfolded_statement(signature_lean, compiled_row, predicate)
     )
     return predicate, predicate_unfolded
 
@@ -257,6 +267,9 @@ def suggested_moves(connectives: list[str], kind: str) -> list[str]:
 
 
 def comment_template(entry: HoverCommentEntry) -> str:
+    def indent_block(text: str, prefix: str = "  ") -> str:
+        return "\n".join(f"{prefix}{line}" if line else prefix.rstrip() for line in text.splitlines())
+
     if entry.meaning.startswith(f"`{entry.name}`"):
         meaning_line = entry.meaning
     else:
@@ -270,9 +283,9 @@ def comment_template(entry: HoverCommentEntry) -> str:
         "/--\n"
         f"{meaning_line}\n\n"
         "Predicate logic:\n\n"
-        f"  {entry.predicate_logic}\n\n"
+        f"{indent_block(entry.predicate_logic)}\n\n"
         "Predicate logic (unfolded):\n\n"
-        f"  {entry.predicate_logic_unfolded}\n\n"
+        f"{indent_block(entry.predicate_logic_unfolded)}\n\n"
         "Logical form (Lean):\n\n"
         "```lean\n"
         f"{entry.formal_statement}\n"
@@ -319,6 +332,9 @@ def entry_for(path: Path, declaration: Any) -> HoverCommentEntry:
         module_name_for_path(path),
         declaration.name,
         formal_statement,
+        PROOFS_TODO.theorem_environment_signature(source_theorem)
+        if source_theorem is not None
+        else formal_statement,
     )
     if source_theorem is not None and declaration.kind in {"theorem", "lemma", "proposition", "corollary", "axiom"}:
         transliterated = normalize_text_block(source_theorem.transliterated_theorem)

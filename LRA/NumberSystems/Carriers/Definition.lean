@@ -1,3 +1,5 @@
+import Mathlib.Data.Complex.Basic
+import Mathlib.Data.Real.Basic
 import LRA.NumberSystems.NaturalNumbers.Constructions.Landau
 import LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann
 import LRA.NumberSystems.NaturalNumbers.Constructions.Presburger
@@ -174,6 +176,10 @@ Related proof moves: unfold
 -/
 abbrev N := N_Landau
 
+abbrev N_LRA := N
+
+abbrev N_Mathlib := Nat
+
 /--
 `N_0` TODO
 
@@ -211,6 +217,8 @@ Related proof moves: unfold
 
 -/
 abbrev N_0 := N_VonNeumann
+
+abbrev W_Mathlib := Nat
 
 /--
 `Z_Polish` TODO
@@ -291,6 +299,14 @@ Related proof moves: unfold
 
 -/
 abbrev Z := Z_Polish
+
+abbrev Z_LRA := Z
+
+abbrev Z_Mathlib := Int
+
+abbrev Q_Mathlib := Rat
+
+abbrev R_Mathlib := Real
 
 /--
 `GaussianInt_OrderedPairs` TODO
@@ -426,6 +442,8 @@ Related proof moves: unfold
 -/
 abbrev C (R : Type u) :=
   LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.ComplexNumber R
+
+abbrev C_Mathlib := ℂ
 
 /-!
 Unlike the other five `RealNumbers` constructions grounded in

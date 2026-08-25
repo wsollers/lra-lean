@@ -140,6 +140,10 @@ abbrev N_0_Landau :=
   LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier
     landauNaturalArithmeticForWholeNumbers
 
+abbrev W_LRA := N_0_Landau
+
+abbrev W := W_LRA
+
 /--
 `landauWholeNumberArithmeticForQuotientPairs` TODO
 
@@ -797,6 +801,8 @@ Related proof moves: unfold
 
 -/
 abbrev Q := Q_RationalQuotientFractions
+
+abbrev Q_LRA := Q
 
 /-!
 Three of `RealNumbers`'s six constructions (`Cantor`, `Dedekind`,
@@ -1959,6 +1965,10 @@ Related proof moves: unfold
 
 -/
 abbrev R := R_Cauchy
+
+abbrev R_LRA := R
+
+abbrev C_LRA := C R_LRA
 
 /-!
 `Cauchy` now has a full concrete `RealModel` (arithmetic instances, order,
