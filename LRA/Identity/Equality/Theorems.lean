@@ -50,7 +50,9 @@ Related proof moves: TODO
 theorem EqualitySymmetry {Carrier : Type u} {left right : Carrier}
     (ObjectsAreEqual : left = right) :
     right = left := by
-  sorry
+  symm
+  exact ObjectsAreEqual
+
 
 /--
 `EqualityTransitivity` TODO
@@ -95,7 +97,11 @@ theorem EqualityTransitivity {Carrier : Type u} {first second third : Carrier}
     (FirstEqualsSecond : first = second)
     (SecondEqualsThird : second = third) :
     first = third := by
-  sorry
+  -- Goal: ⊢ third = first
+  symm
+  have secondEqualsFirst := FirstEqualsSecond.symm
+  exact (LeibnizLaw SecondEqualsThird (fun x => x = first)).mp secondEqualsFirst
+
 
 /--
 `EqualityRelationIsReflexive` TODO
@@ -136,7 +142,11 @@ Related proof moves: TODO
 -/
 theorem EqualityRelationIsReflexive (Carrier : Type u) :
     LRA.Relation.Reflexive (EqualityRelation Carrier) := by
-  sorry
+  intro x
+  rfl
+
+
+
 
 /--
 `EqualityRelationIsSymmetric` TODO
@@ -177,7 +187,12 @@ Related proof moves: TODO
 -/
 theorem EqualityRelationIsSymmetric (Carrier : Type u) :
     LRA.Relation.Symmetric (EqualityRelation Carrier) := by
-  sorry
+  intro x
+  intro z
+  intro hypo
+  have zEqualsX := hypo.symm
+  exact zEqualsX
+
 
 /--
 `EqualityRelationIsTransitive` TODO
@@ -218,7 +233,12 @@ Related proof moves: TODO
 -/
 theorem EqualityRelationIsTransitive (Carrier : Type u) :
     LRA.Relation.Transitive (EqualityRelation Carrier) := by
-  sorry
+  intro x
+  intro y
+  intro z
+  intro xEqualsY
+  intro yEqualsZ
+  exact xEqualsY.trans yEqualsZ
 
 /--
 `EqualityRelationIsEquivalence` TODO
@@ -259,7 +279,11 @@ Related proof moves: TODO
 -/
 theorem EqualityRelationIsEquivalence (Carrier : Type u) :
     LRA.Relation.EquivalenceRelation (EqualityRelation Carrier) := by
-  sorry
+  constructor
+  · exact EqualityRelationIsReflexive Carrier
+  · constructor
+    · exact EqualityRelationIsSymmetric Carrier
+    · exact EqualityRelationIsTransitive Carrier
 
 /--
 `EqualityIsEquivalenceRelation` TODO
@@ -300,6 +324,26 @@ Related proof moves: TODO
 -/
 theorem EqualityIsEquivalenceRelation (Carrier : Type u) :
     LRA.Relation.EquivalenceRelation (EqualityRelation Carrier) := by
-  sorry
+  constructor
+  . -- left
+    intro x
+    rfl
+  . -- right
+    constructor
+    . -- right.left
+      intro x
+      intro y
+      intro xEqualsY
+      exact xEqualsY.symm
+    . -- right.right
+      intro x
+      intro y
+      intro z
+      intro xEqualsY
+      intro yEqualsZ
+      have yEqualsX := xEqualsY.symm
+      exact (LeibnizLaw yEqualsX (fun w => w = z)).mp yEqualsZ
+
+
 
 end LRA.Identity
