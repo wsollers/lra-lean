@@ -1,29 +1,30 @@
-import LRA.Set.PredicateSet.Laws
+import LRA.Set.Constructions.TypeSet.Laws
 import LRA.AlgebraicStructures.CommutativeRing.Laws.Definition
 
 namespace LRA.Set.Interop.AlgebraicRing
 
 open LRA.Set
-open LRA.Set.PredicateSet
+open LRA.Set.Constructions
+open LRA.Set.Constructions.TypeSet
 open LRA.AlgebraicStructures
 
 universe u
 
 variable {Alpha : Type u}
 
-scoped instance : Add (PredicateSet Alpha) where
+scoped instance : Add (TypeSet Alpha) where
   add := SymmetricDifference
 
-scoped instance : Mul (PredicateSet Alpha) where
+scoped instance : Mul (TypeSet Alpha) where
   mul := Intersection
 
-scoped instance : OfNat (PredicateSet Alpha) 0 where
+scoped instance : OfNat (TypeSet Alpha) 0 where
   ofNat := Empty Alpha
 
-scoped instance : OfNat (PredicateSet Alpha) 1 where
+scoped instance : OfNat (TypeSet Alpha) 1 where
   ofNat := Universal Alpha
 
-scoped instance : Neg (PredicateSet Alpha) where
+scoped instance : Neg (TypeSet Alpha) where
   neg := id
 
 /--
@@ -31,7 +32,7 @@ scoped instance : Neg (PredicateSet Alpha) where
 
 Predicate logic:
 
-  ∀ A : PredicateSet Alpha, 1 * A = A
+  ∀ A : TypeSet Alpha, 1 * A = A
 
 Predicate logic (unfolded):
 
@@ -40,7 +41,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-theorem UniversalIntersection : ∀ A : PredicateSet Alpha, 1 * A = A
+theorem UniversalIntersection : ∀ A : TypeSet Alpha, 1 * A = A
 ```
 
 Type-theoretic form:
@@ -62,7 +63,7 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem UniversalIntersection : ∀ A : PredicateSet Alpha, 1 * A = A := by
+theorem UniversalIntersection : ∀ A : TypeSet Alpha, 1 * A = A := by
   sorry
 
 /--
@@ -70,7 +71,7 @@ theorem UniversalIntersection : ∀ A : PredicateSet Alpha, 1 * A = A := by
 
 Predicate logic:
 
-  ∀ A : PredicateSet Alpha, A * 1 = A
+  ∀ A : TypeSet Alpha, A * 1 = A
 
 Predicate logic (unfolded):
 
@@ -79,7 +80,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-theorem IntersectionUniversal : ∀ A : PredicateSet Alpha, A * 1 = A
+theorem IntersectionUniversal : ∀ A : TypeSet Alpha, A * 1 = A
 ```
 
 Type-theoretic form:
@@ -101,7 +102,7 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem IntersectionUniversal : ∀ A : PredicateSet Alpha, A * 1 = A := by
+theorem IntersectionUniversal : ∀ A : TypeSet Alpha, A * 1 = A := by
   sorry
 
 /--
@@ -109,7 +110,7 @@ theorem IntersectionUniversal : ∀ A : PredicateSet Alpha, A * 1 = A := by
 
 Predicate logic:
 
-  ∀ A B C : PredicateSet Alpha, A * (B + C) = A * B + A * C
+  ∀ A B C : TypeSet Alpha, A * (B + C) = A * B + A * C
 
 Predicate logic (unfolded):
 
@@ -119,7 +120,7 @@ Logical form (Lean):
 
 ```lean
 theorem IntersectionDistributesOverSymmetricDifference :
-    ∀ A B C : PredicateSet Alpha, A * (B + C) = A * B + A * C
+    ∀ A B C : TypeSet Alpha, A * (B + C) = A * B + A * C
 ```
 
 Type-theoretic form:
@@ -142,7 +143,7 @@ Related proof moves: intro
 
 -/
 theorem IntersectionDistributesOverSymmetricDifference :
-    ∀ A B C : PredicateSet Alpha, A * (B + C) = A * B + A * C := by
+    ∀ A B C : TypeSet Alpha, A * (B + C) = A * B + A * C := by
   sorry
 
 /--
@@ -150,7 +151,7 @@ theorem IntersectionDistributesOverSymmetricDifference :
 
 Predicate logic:
 
-  ∀ A B C : PredicateSet Alpha, (A + B) * C = A * C + B * C
+  ∀ A B C : TypeSet Alpha, (A + B) * C = A * C + B * C
 
 Predicate logic (unfolded):
 
@@ -160,7 +161,7 @@ Logical form (Lean):
 
 ```lean
 theorem SymmetricDifferenceIntersectionDistributes :
-    ∀ A B C : PredicateSet Alpha, (A + B) * C = A * C + B * C
+    ∀ A B C : TypeSet Alpha, (A + B) * C = A * C + B * C
 ```
 
 Type-theoretic form:
@@ -183,48 +184,48 @@ Related proof moves: intro
 
 -/
 theorem SymmetricDifferenceIntersectionDistributes :
-    ∀ A B C : PredicateSet Alpha, (A + B) * C = A * C + B * C := by
+    ∀ A B C : TypeSet Alpha, (A + B) * C = A * C + B * C := by
   sorry
 
-scoped instance : AdditiveSemigroupLaws (PredicateSet Alpha) := by
+scoped instance : AdditiveSemigroupLaws (TypeSet Alpha) := by
   sorry
 
-scoped instance : AdditiveCommutativeLaws (PredicateSet Alpha) := by
+scoped instance : AdditiveCommutativeLaws (TypeSet Alpha) := by
   sorry
 
-scoped instance : AdditiveIdentityLaws (PredicateSet Alpha) := by
+scoped instance : AdditiveIdentityLaws (TypeSet Alpha) := by
   sorry
 
-scoped instance : AdditiveInverseLaws (PredicateSet Alpha) := by
+scoped instance : AdditiveInverseLaws (TypeSet Alpha) := by
   sorry
 
-scoped instance : MultiplicativeSemigroupLaws (PredicateSet Alpha) := by
+scoped instance : MultiplicativeSemigroupLaws (TypeSet Alpha) := by
   sorry
 
-scoped instance : MultiplicativeCommutativeLaws (PredicateSet Alpha) := by
+scoped instance : MultiplicativeCommutativeLaws (TypeSet Alpha) := by
   sorry
 
-scoped instance : MultiplicativeIdentityLaws (PredicateSet Alpha) := by
+scoped instance : MultiplicativeIdentityLaws (TypeSet Alpha) := by
   sorry
 
-scoped instance : ZeroAbsorbingLaws (PredicateSet Alpha) := by
+scoped instance : ZeroAbsorbingLaws (TypeSet Alpha) := by
   sorry
 
-scoped instance : DistributiveLaws (PredicateSet Alpha) := by
+scoped instance : DistributiveLaws (TypeSet Alpha) := by
   sorry
 
-example (A B : PredicateSet Alpha) : A + B = B + A :=
+example (A B : TypeSet Alpha) : A + B = B + A :=
   AddCommutative A B
 
-example (A B C : PredicateSet Alpha) : (A + B) + C = A + (B + C) :=
+example (A B C : TypeSet Alpha) : (A + B) + C = A + (B + C) :=
   AddAssociative A B C
 
-example (A B C : PredicateSet Alpha) : (A + B) * C = A * C + B * C :=
+example (A B C : TypeSet Alpha) : (A + B) * C = A * C + B * C :=
   RightDistributive A B C
 
-example (A : PredicateSet Alpha) : A + A = 0 :=
+example (A : TypeSet Alpha) : A + A = 0 :=
   AddNegCancel A
 
-example : CommutativeRingLaws (PredicateSet Alpha) := inferInstance
+example : CommutativeRingLaws (TypeSet Alpha) := inferInstance
 
 end LRA.Set.Interop.AlgebraicRing

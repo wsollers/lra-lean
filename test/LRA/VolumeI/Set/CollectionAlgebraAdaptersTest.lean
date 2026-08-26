@@ -1,12 +1,12 @@
 import LRA.Set
-import LRA.Set.PredicateSet
-import LRA.Set.ZFC
-import LRA.Set.ZFCSet
+import LRA.Set.Constructions.TypeSet
+import LRA.Set.Constructions.ZFCSet.Axioms
+import LRA.Set.Constructions.ZFCSet
 import LRA.Set.Model
 import LRA.SetSystems
 import LRA.SetSystems.Examples
-import LRA.Set.Interop.Mathlib.PredicateSet
-import LRA.Set.Interop.Mathlib.ZFSet
+import LRA.Set.Constructions.Mathlib.PredicateSet
+import LRA.Set.Constructions.Mathlib.ZFSet
 
 /-!
 Smoke tests for the set-backend architecture.
@@ -23,9 +23,9 @@ namespace LRA.Tests.VolumeI.Set.CollectionAlgebraAdapters
 open LRA.Set
 
 -- Generic theorems resolve at all four backends from argument types.
-example (A B : LRA.Set.ZFCSet) : A ∪ B = B ∪ A :=
+example (A B : LRA.Set.Constructions.ZFCSet) : A ∪ B = B ∪ A :=
   UnionCommutative A B
-example (A B : PredicateSet Nat) : A ∪ B = B ∪ A :=
+example (A B : TypeSet Nat) : A ∪ B = B ∪ A :=
   UnionCommutative A B
 example (A B : _root_.Set Nat) : A ∪ B = B ∪ A :=
   UnionCommutative A B
@@ -39,7 +39,7 @@ example (A B : _root_.Set Nat) (x : Nat) : x ∈ A \ B ↔ x ∈ A ∧ x ∉ B :
   DifferenceMembership A B x
 
 -- Complement family exists exactly where an ambient carrier does.
-example (A : PredicateSet Nat) :
+example (A : TypeSet Nat) :
     A ∪ HasComplement.complement A = HasUniversal.universal :=
   UnionComplement A
 example (A : _root_.Set Nat) :
@@ -55,13 +55,13 @@ example (Point : Type) :
   LRA.SetSystems.Instantiations.activeSigmaAlgebra Point
 example (Point : Type) :
     LRA.SetSystems.AlgebraOfSets
-      (LRA.Set.PredicateSet.Universal Point) :=
+      (LRA.Set.Constructions.TypeSet.Universal Point) :=
   LRA.SetSystems.Instantiations.lraSetAlgebra Point
 
 -- Collection ops resolve at every backend; Covers is generic.
 example (C : ZFSet) (T : ZFSet) : Prop := LRA.Set.Covers C T
-example (C : LRA.Set.PredicateSet (LRA.Set.PredicateSet Nat))
-    (T : LRA.Set.PredicateSet Nat) : Prop :=
+example (C : LRA.Set.Constructions.TypeSet (LRA.Set.Constructions.TypeSet Nat))
+    (T : LRA.Set.Constructions.TypeSet Nat) : Prop :=
   LRA.Set.Covers C T
 example (A B : ZFSet) (x : ZFSet) (h : ∃ C : ZFSet, C ∈ A) :
     x ∈ LRA.Set.HasCollectionIntersection.collectionIntersection A ↔

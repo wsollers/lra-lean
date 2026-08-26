@@ -1,6 +1,8 @@
-import LRA.Set.PredicateSet.Definition
+import LRA.Set.Constructions.TypeSet.Definition
 
 namespace LRA.NumberSystems.NaturalNumbers.Constructions.Landau
+
+open LRA.Set.Constructions
 
 /--
 `LandauElement` TODO

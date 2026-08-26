@@ -1,11 +1,5 @@
-import LRA.Set.ZFC
-import LRA.Set.ZFCSet
-import LRA.Set.NBG
-import LRA.Set.NBGSet
-import LRA.Set.TG
-import LRA.Set.TGSet
 import LRA.Set.Interface
 import LRA.Set.Model
-import LRA.Set.PredicateSet
+import LRA.Set.Constructions
 import LRA.Set.SetClass
 import LRA.Set.Interop

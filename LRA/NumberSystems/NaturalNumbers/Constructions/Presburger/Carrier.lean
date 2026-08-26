@@ -1,9 +1,10 @@
-import LRA.Set.PredicateSet.Definition
+import LRA.Set.Constructions.TypeSet.Definition
 import LRA.NumberSystems.PeanoSystem.Definition
 
 namespace LRA.NumberSystems.NaturalNumbers.Constructions.Presburger
 
 open LRA.Set
+open LRA.Set.Constructions
 
 /--
 `PresburgerElement` TODO
@@ -184,7 +185,7 @@ theorem PresburgerSuccessorInjective :
 
 Predicate logic:
 
-  ∀ subset : PredicateSet PresburgerElement, PresburgerElement.zero ∈ subset → ∀ n ∈ PresburgerElement, n ∈ subset → PresburgerElement.succ n ∈ subset → ∀ n : PresburgerElement, n ∈ subset
+  ∀ subset : TypeSet PresburgerElement, PresburgerElement.zero ∈ subset → ∀ n ∈ PresburgerElement, n ∈ subset → PresburgerElement.succ n ∈ subset → ∀ n : PresburgerElement, n ∈ subset
 
 Predicate logic (unfolded):
 
@@ -194,7 +195,7 @@ Logical form (Lean):
 
 ```lean
 theorem PresburgerInductionPrinciple :
-    ∀ subset : PredicateSet PresburgerElement,
+    ∀ subset : TypeSet PresburgerElement,
       PresburgerElement.zero ∈ subset →
       (∀ n : PresburgerElement, n ∈ subset → PresburgerElement.succ n ∈ subset) →
       ∀ n : PresburgerElement, n ∈ subset
@@ -220,7 +221,7 @@ Related proof moves: intro
 
 -/
 theorem PresburgerInductionPrinciple :
-    ∀ subset : PredicateSet PresburgerElement,
+    ∀ subset : TypeSet PresburgerElement,
       PresburgerElement.zero ∈ subset →
       (∀ n : PresburgerElement, n ∈ subset → PresburgerElement.succ n ∈ subset) →
       ∀ n : PresburgerElement, n ∈ subset := by

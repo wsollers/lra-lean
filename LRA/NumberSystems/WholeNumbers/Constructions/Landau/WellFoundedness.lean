@@ -1,9 +1,10 @@
 import LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier
-import LRA.Set.PredicateSet.Definition
+import LRA.Set.Constructions.TypeSet.Definition
 
 namespace LRA.NumberSystems.WholeNumbers.Constructions.Landau
 
 open LRA.Set
+open LRA.Set.Constructions
 
 universe u v
 
@@ -255,7 +256,7 @@ Predicate logic:
 
   def WholeNumbersPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
-      (Carrier natural_data) (PredicateSet (Carrier natural_data)) where
+      (Carrier natural_data) (TypeSet (Carrier natural_data)) where
   one := zero natural_data
   successor := successor natural_data
   one_not_successor := zero_is_not_successor natural_data
@@ -266,7 +267,7 @@ Predicate logic (unfolded):
 
   def WholeNumbersPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
-      (Carrier natural_data) (PredicateSet (Carrier natural_data)) where
+      (Carrier natural_data) (TypeSet (Carrier natural_data)) where
   one := zero natural_data
   successor := successor natural_data
   one_not_successor := zero_is_not_successor natural_data
@@ -278,7 +279,7 @@ Logical form (Lean):
 ```lean
 def WholeNumbersPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
-      (Carrier natural_data) (PredicateSet (Carrier natural_data)) where
+      (Carrier natural_data) (TypeSet (Carrier natural_data)) where
   one := zero natural_data
   successor := successor natural_data
   one_not_successor := zero_is_not_successor natural_data
@@ -307,7 +308,7 @@ Related proof moves: unfold
 -/
 def WholeNumbersPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
-      (Carrier natural_data) (PredicateSet (Carrier natural_data)) where
+      (Carrier natural_data) (TypeSet (Carrier natural_data)) where
   one := zero natural_data
   successor := successor natural_data
   one_not_successor := zero_is_not_successor natural_data

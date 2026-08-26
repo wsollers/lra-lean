@@ -1,26 +1,26 @@
-import LRA.Set.ZFC
+import LRA.Set.Constructions.ZFCSet.Axioms
 
 namespace LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann
 
-open LRA.Set.ZFC
+open LRA.Set.Constructions.ZFCSet.Axioms
 
 /--
 `TheInfinityWitness` TODO
 
 Predicate logic:
 
-  noncomputable def TheInfinityWitness : LRA.Set.ZFCSet :=
+  noncomputable def TheInfinityWitness : LRA.Set.Constructions.ZFCSet :=
   Classical.choose Infinity
 
 Predicate logic (unfolded):
 
-  noncomputable def TheInfinityWitness : LRA.Set.ZFCSet :=
+  noncomputable def TheInfinityWitness : LRA.Set.Constructions.ZFCSet :=
   Classical.choose Infinity (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
-noncomputable def TheInfinityWitness : LRA.Set.ZFCSet :=
+noncomputable def TheInfinityWitness : LRA.Set.Constructions.ZFCSet :=
   Classical.choose Infinity
 ```
 
@@ -43,7 +43,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-noncomputable def TheInfinityWitness : LRA.Set.ZFCSet :=
+noncomputable def TheInfinityWitness : LRA.Set.Constructions.ZFCSet :=
   Classical.choose Infinity
 
 /--
@@ -55,7 +55,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  (Exists fun empty => (LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.TheInfinityWitness empty ∧ ∀ (x : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.1 empty x → False) ∧ ∀ (x : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.TheInfinityWitness x → Exists fun successor => (LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.TheInfinityWitness successor ∧ ∀ (w : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.1 successor w ↔ Or (LRA.Set.instMembershipZFCSet.1 x w) (w = x)))
+  (Exists fun empty => (LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.TheInfinityWitness empty ∧ ∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.instMembershipZFCSet.1 empty x → False) ∧ ∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.TheInfinityWitness x → Exists fun successor => (LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.TheInfinityWitness successor ∧ ∀ (w : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.instMembershipZFCSet.1 successor w ↔ Or (LRA.Set.instMembershipZFCSet.1 x w) (w = x)))
 
 Logical form (Lean):
 
@@ -92,18 +92,18 @@ theorem TheInfinityWitnessIsInductiveSet :
 
 Predicate logic:
 
-  noncomputable def VonNeumannSuccessor (x : LRA.Set.ZFCSet) : LRA.Set.ZFCSet :=
+  noncomputable def VonNeumannSuccessor (x : LRA.Set.Constructions.ZFCSet) : LRA.Set.Constructions.ZFCSet :=
   TheUnion x (TheSingleton x)
 
 Predicate logic (unfolded):
 
-  noncomputable def VonNeumannSuccessor (x : LRA.Set.ZFCSet) : LRA.Set.ZFCSet :=
+  noncomputable def VonNeumannSuccessor (x : LRA.Set.Constructions.ZFCSet) : LRA.Set.Constructions.ZFCSet :=
   TheUnion x (TheSingleton x) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
-noncomputable def VonNeumannSuccessor (x : LRA.Set.ZFCSet) : LRA.Set.ZFCSet :=
+noncomputable def VonNeumannSuccessor (x : LRA.Set.Constructions.ZFCSet) : LRA.Set.Constructions.ZFCSet :=
   TheUnion x (TheSingleton x)
 ```
 
@@ -126,7 +126,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-noncomputable def VonNeumannSuccessor (x : LRA.Set.ZFCSet) : LRA.Set.ZFCSet :=
+noncomputable def VonNeumannSuccessor (x : LRA.Set.Constructions.ZFCSet) : LRA.Set.Constructions.ZFCSet :=
   TheUnion x (TheSingleton x)
 
 /--
@@ -134,16 +134,16 @@ noncomputable def VonNeumannSuccessor (x : LRA.Set.ZFCSet) : LRA.Set.ZFCSet :=
 
 Predicate logic:
 
-  (∀ x ∈ LRA.Set.ZFCSet), IsSuccessorOf x (VonNeumannSuccessor x)
+  (∀ x ∈ LRA.Set.Constructions.ZFCSet), IsSuccessorOf x (VonNeumannSuccessor x)
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Set.ZFCSet) (w : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.1 (Classical.indefiniteDescription (LRA.Set.ZFC.IsUnionOf (LRA.Set.ZFC.PairSet x (LRA.Set.ZFC.TheSingleton x))) ⋯).val w ↔ Or (LRA.Set.instMembershipZFCSet.1 x w) (w = x)
+  ∀ (x : LRA.Set.Constructions.ZFCSet) (w : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.instMembershipZFCSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.ZFCSet.Axioms.IsUnionOf (LRA.Set.Constructions.ZFCSet.Axioms.PairSet x (LRA.Set.Constructions.ZFCSet.Axioms.TheSingleton x))) ⋯).val w ↔ Or (LRA.Set.instMembershipZFCSet.1 x w) (w = x)
 
 Logical form (Lean):
 
 ```lean
-theorem VonNeumannSuccessorIsSuccessorOf (x : LRA.Set.ZFCSet) :
+theorem VonNeumannSuccessorIsSuccessorOf (x : LRA.Set.Constructions.ZFCSet) :
     IsSuccessorOf x (VonNeumannSuccessor x)
 ```
 
@@ -166,7 +166,7 @@ Common confusions:
 Related proof moves: TODO
 
 -/
-theorem VonNeumannSuccessorIsSuccessorOf (x : LRA.Set.ZFCSet) :
+theorem VonNeumannSuccessorIsSuccessorOf (x : LRA.Set.Constructions.ZFCSet) :
     IsSuccessorOf x (VonNeumannSuccessor x) := by
   sorry
 
@@ -175,22 +175,22 @@ theorem VonNeumannSuccessorIsSuccessorOf (x : LRA.Set.ZFCSet) :
 
 Predicate logic:
 
-  noncomputable def Omega : LRA.Set.ZFCSet :=
+  noncomputable def Omega : LRA.Set.Constructions.ZFCSet :=
   TheSeparatedSubset TheInfinityWitness
-    (fun x => ∀ B : LRA.Set.ZFCSet, IsInductiveSet B → Subset B TheInfinityWitness → x ∈ B)
+    (fun x => ∀ B : LRA.Set.Constructions.ZFCSet, IsInductiveSet B → Subset B TheInfinityWitness → x ∈ B)
 
 Predicate logic (unfolded):
 
-  noncomputable def Omega : LRA.Set.ZFCSet :=
+  noncomputable def Omega : LRA.Set.Constructions.ZFCSet :=
   TheSeparatedSubset TheInfinityWitness
-    (fun x => ∀ B : LRA.Set.ZFCSet, IsInductiveSet B → Subset B TheInfinityWitness → x ∈ B) (source fallback; no compiled unfold data available)
+    (fun x => ∀ B : LRA.Set.Constructions.ZFCSet, IsInductiveSet B → Subset B TheInfinityWitness → x ∈ B) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
-noncomputable def Omega : LRA.Set.ZFCSet :=
+noncomputable def Omega : LRA.Set.Constructions.ZFCSet :=
   TheSeparatedSubset TheInfinityWitness
-    (fun x => ∀ B : LRA.Set.ZFCSet, IsInductiveSet B → Subset B TheInfinityWitness → x ∈ B)
+    (fun x => ∀ B : LRA.Set.Constructions.ZFCSet, IsInductiveSet B → Subset B TheInfinityWitness → x ∈ B)
 ```
 
 Type-theoretic form:
@@ -212,9 +212,9 @@ Common confusions:
 Related proof moves: intro, unfold
 
 -/
-noncomputable def Omega : LRA.Set.ZFCSet :=
+noncomputable def Omega : LRA.Set.Constructions.ZFCSet :=
   TheSeparatedSubset TheInfinityWitness
-    (fun x => ∀ B : LRA.Set.ZFCSet, IsInductiveSet B → Subset B TheInfinityWitness → x ∈ B)
+    (fun x => ∀ B : LRA.Set.Constructions.ZFCSet, IsInductiveSet B → Subset B TheInfinityWitness → x ∈ B)
 
 /--
 `OmegaIsInductiveSet` TODO
@@ -225,7 +225,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  (Exists fun empty => (LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega empty ∧ ∀ (x : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.1 empty x → False) ∧ ∀ (x : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega x → Exists fun successor => (LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega successor ∧ ∀ (w : LRA.Set.ZFC.Set), LRA.Set.instMembershipZFCSet.1 successor w ↔ Or (LRA.Set.instMembershipZFCSet.1 x w) (w = x)))
+  (Exists fun empty => (LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega empty ∧ ∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.instMembershipZFCSet.1 empty x → False) ∧ ∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega x → Exists fun successor => (LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega successor ∧ ∀ (w : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.instMembershipZFCSet.1 successor w ↔ Or (LRA.Set.instMembershipZFCSet.1 x w) (w = x)))
 
 Logical form (Lean):
 
@@ -264,7 +264,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega LRA.Set.ZFC.TheEmptySet
+  LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega LRA.Set.Constructions.ZFCSet.Axioms.TheEmptySet
 
 Logical form (Lean):
 
@@ -299,17 +299,17 @@ theorem TheEmptySetInOmega : TheEmptySet ∈ Omega := by
 
 Predicate logic:
 
-  ∀ x : LRA.Set.ZFCSet, x ∈ Omega → VonNeumannSuccessor x ∈ Omega
+  ∀ x : LRA.Set.Constructions.ZFCSet, x ∈ Omega → VonNeumannSuccessor x ∈ Omega
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Set.ZFCSet), LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega x → LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega (Classical.indefiniteDescription (LRA.Set.ZFC.IsUnionOf (LRA.Set.ZFC.PairSet x (LRA.Set.ZFC.TheSingleton x))) ⋯).1
+  ∀ (x : LRA.Set.Constructions.ZFCSet), LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega x → LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega (Classical.indefiniteDescription (LRA.Set.Constructions.ZFCSet.Axioms.IsUnionOf (LRA.Set.Constructions.ZFCSet.Axioms.PairSet x (LRA.Set.Constructions.ZFCSet.Axioms.TheSingleton x))) ⋯).1
 
 Logical form (Lean):
 
 ```lean
 theorem OmegaClosedUnderSuccessor :
-    ∀ x : LRA.Set.ZFCSet, x ∈ Omega → VonNeumannSuccessor x ∈ Omega
+    ∀ x : LRA.Set.Constructions.ZFCSet, x ∈ Omega → VonNeumannSuccessor x ∈ Omega
 ```
 
 Type-theoretic form:
@@ -332,7 +332,7 @@ Related proof moves: intro
 
 -/
 theorem OmegaClosedUnderSuccessor :
-    ∀ x : LRA.Set.ZFCSet, x ∈ Omega → VonNeumannSuccessor x ∈ Omega := by
+    ∀ x : LRA.Set.Constructions.ZFCSet, x ∈ Omega → VonNeumannSuccessor x ∈ Omega := by
   sorry
 
 /--
@@ -340,16 +340,16 @@ theorem OmegaClosedUnderSuccessor :
 
 Predicate logic:
 
-  def NaturalElement : Type := {x : LRA.Set.ZFCSet // x ∈ Omega}
+  def NaturalElement : Type := {x : LRA.Set.Constructions.ZFCSet // x ∈ Omega}
 
 Predicate logic (unfolded):
 
-  def NaturalElement : Type := {x : LRA.Set.ZFCSet // x ∈ Omega} (source fallback; no compiled unfold data available)
+  def NaturalElement : Type := {x : LRA.Set.Constructions.ZFCSet // x ∈ Omega} (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
-def NaturalElement : Type := {x : LRA.Set.ZFCSet // x ∈ Omega}
+def NaturalElement : Type := {x : LRA.Set.Constructions.ZFCSet // x ∈ Omega}
 ```
 
 Type-theoretic form:
@@ -371,9 +371,9 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-def NaturalElement : Type := {x : LRA.Set.ZFCSet // x ∈ Omega}
+def NaturalElement : Type := {x : LRA.Set.Constructions.ZFCSet // x ∈ Omega}
 
-instance (priority := high) : Membership NaturalElement LRA.Set.ZFCSet where
+instance (priority := high) : Membership NaturalElement LRA.Set.Constructions.ZFCSet where
   mem containingSet element := element.val ∈ containingSet
 
 /--

@@ -1,9 +1,9 @@
 import Mathlib.Data.Set.Basic
-import LRA.Set.Interop.Mathlib.PredicateSet.Instances
+import LRA.Set.Constructions.Mathlib.PredicateSet.Instances
 import LRA.Set
-import LRA.Set.PredicateSet
-import LRA.Set.ZFC
-import LRA.Set.ZFCSet
+import LRA.Set.Constructions.TypeSet
+import LRA.Set.Constructions.ZFCSet.Axioms
+import LRA.Set.Constructions.ZFCSet
 import LRA.Set.Model
 import LRA.SetSystems.AlgebraOfSets
 import LRA.SetSystems.SigmaAlgebra
@@ -822,18 +822,18 @@ def activeSigmaAlgebra (Point : Type) :
 
 Predicate logic:
 
-  ∀ A : LRA.Set.PredicateSet Point, True → A ⊆ LRA.Set.PredicateSet.Universal Point
+  ∀ A : LRA.Set.Constructions.TypeSet Point, True → A ⊆ LRA.Set.Constructions.TypeSet.Universal Point
 
 Predicate logic (unfolded):
 
-  ∀ (Point : Type) (A : Point → Prop), True → LRA.Set.PredicateSet.instHasSubset.1 A fun x => True
+  ∀ (Point : Type) (A : Point → Prop), True → LRA.Set.Constructions.TypeSet.instHasSubset.1 A fun x => True
 
 Logical form (Lean):
 
 ```lean
 theorem lraSetAlgebraMembersAreSubsets (Point : Type) :
-    ∀ A : LRA.Set.PredicateSet Point, True →
-      A ⊆ LRA.Set.PredicateSet.Universal Point
+    ∀ A : LRA.Set.Constructions.TypeSet Point, True →
+      A ⊆ LRA.Set.Constructions.TypeSet.Universal Point
 ```
 
 Type-theoretic form:
@@ -856,8 +856,8 @@ Related proof moves: intro
 
 -/
 theorem lraSetAlgebraMembersAreSubsets (Point : Type) :
-    ∀ A : LRA.Set.PredicateSet Point, True →
-      A ⊆ LRA.Set.PredicateSet.Universal Point := by
+    ∀ A : LRA.Set.Constructions.TypeSet Point, True →
+      A ⊆ LRA.Set.Constructions.TypeSet.Universal Point := by
   sorry
 
 /--
@@ -865,17 +865,17 @@ theorem lraSetAlgebraMembersAreSubsets (Point : Type) :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.PredicateSet Point, True → True → True
+  ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
 
 Predicate logic (unfolded):
 
-  ∀ (Point : Type) (A B : LRA.Set.PredicateSet Point), True → True → True (compiled unfold unavailable; showing predicate logic)
+  ∀ (Point : Type) (A B : LRA.Set.Constructions.TypeSet Point), True → True → True (compiled unfold unavailable; showing predicate logic)
 
 Logical form (Lean):
 
 ```lean
 theorem lraSetAlgebraUnionIsMember (Point : Type) :
-    ∀ A B : LRA.Set.PredicateSet Point, True → True → True
+    ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
 ```
 
 Type-theoretic form:
@@ -898,7 +898,7 @@ Related proof moves: intro
 
 -/
 theorem lraSetAlgebraUnionIsMember (Point : Type) :
-    ∀ A B : LRA.Set.PredicateSet Point, True → True → True := by
+    ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True := by
   sorry
 
 /--
@@ -906,17 +906,17 @@ theorem lraSetAlgebraUnionIsMember (Point : Type) :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.PredicateSet Point, True → True → True
+  ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
 
 Predicate logic (unfolded):
 
-  ∀ (Point : Type) (A B : LRA.Set.PredicateSet Point), True → True → True (compiled unfold unavailable; showing predicate logic)
+  ∀ (Point : Type) (A B : LRA.Set.Constructions.TypeSet Point), True → True → True (compiled unfold unavailable; showing predicate logic)
 
 Logical form (Lean):
 
 ```lean
 theorem lraSetAlgebraIntersectionIsMember (Point : Type) :
-    ∀ A B : LRA.Set.PredicateSet Point, True → True → True
+    ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
 ```
 
 Type-theoretic form:
@@ -939,7 +939,7 @@ Related proof moves: intro
 
 -/
 theorem lraSetAlgebraIntersectionIsMember (Point : Type) :
-    ∀ A B : LRA.Set.PredicateSet Point, True → True → True := by
+    ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True := by
   sorry
 
 /--
@@ -947,17 +947,17 @@ theorem lraSetAlgebraIntersectionIsMember (Point : Type) :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.PredicateSet Point, True → True → True
+  ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
 
 Predicate logic (unfolded):
 
-  ∀ (Point : Type) (A B : LRA.Set.PredicateSet Point), True → True → True (compiled unfold unavailable; showing predicate logic)
+  ∀ (Point : Type) (A B : LRA.Set.Constructions.TypeSet Point), True → True → True (compiled unfold unavailable; showing predicate logic)
 
 Logical form (Lean):
 
 ```lean
 theorem lraSetAlgebraDifferenceIsMember (Point : Type) :
-    ∀ A B : LRA.Set.PredicateSet Point, True → True → True
+    ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
 ```
 
 Type-theoretic form:
@@ -980,7 +980,7 @@ Related proof moves: intro
 
 -/
 theorem lraSetAlgebraDifferenceIsMember (Point : Type) :
-    ∀ A B : LRA.Set.PredicateSet Point, True → True → True := by
+    ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True := by
   sorry
 
 /--
@@ -988,17 +988,17 @@ theorem lraSetAlgebraDifferenceIsMember (Point : Type) :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.PredicateSet Point, True → True → True
+  ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
 
 Predicate logic (unfolded):
 
-  ∀ (Point : Type) (A B : LRA.Set.PredicateSet Point), True → True → True (compiled unfold unavailable; showing predicate logic)
+  ∀ (Point : Type) (A B : LRA.Set.Constructions.TypeSet Point), True → True → True (compiled unfold unavailable; showing predicate logic)
 
 Logical form (Lean):
 
 ```lean
 theorem lraSetAlgebraSymmetricDifferenceIsMember (Point : Type) :
-    ∀ A B : LRA.Set.PredicateSet Point, True → True → True
+    ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
 ```
 
 Type-theoretic form:
@@ -1021,7 +1021,7 @@ Related proof moves: intro
 
 -/
 theorem lraSetAlgebraSymmetricDifferenceIsMember (Point : Type) :
-    ∀ A B : LRA.Set.PredicateSet Point, True → True → True := by
+    ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True := by
   sorry
 
 /--
@@ -1030,7 +1030,7 @@ theorem lraSetAlgebraSymmetricDifferenceIsMember (Point : Type) :
 Predicate logic:
 
   def lraSetAlgebra (Point : Type) :
-    AlgebraOfSets (LRA.Set.PredicateSet.Universal Point) where
+    AlgebraOfSets (LRA.Set.Constructions.TypeSet.Universal Point) where
   IsMember := fun _ => True
   MembersAreSubsets := lraSetAlgebraMembersAreSubsets Point
   EmptyIsMember := trivial
@@ -1043,7 +1043,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   def lraSetAlgebra (Point : Type) :
-    AlgebraOfSets (LRA.Set.PredicateSet.Universal Point) where
+    AlgebraOfSets (LRA.Set.Constructions.TypeSet.Universal Point) where
   IsMember := fun _ => True
   MembersAreSubsets := lraSetAlgebraMembersAreSubsets Point
   EmptyIsMember := trivial
@@ -1057,7 +1057,7 @@ Logical form (Lean):
 
 ```lean
 def lraSetAlgebra (Point : Type) :
-    AlgebraOfSets (LRA.Set.PredicateSet.Universal Point) where
+    AlgebraOfSets (LRA.Set.Constructions.TypeSet.Universal Point) where
   IsMember := fun _ => True
   MembersAreSubsets := lraSetAlgebraMembersAreSubsets Point
   EmptyIsMember := trivial
@@ -1088,7 +1088,7 @@ Related proof moves: unfold
 
 -/
 def lraSetAlgebra (Point : Type) :
-    AlgebraOfSets (LRA.Set.PredicateSet.Universal Point) where
+    AlgebraOfSets (LRA.Set.Constructions.TypeSet.Universal Point) where
   IsMember := fun _ => True
   MembersAreSubsets := lraSetAlgebraMembersAreSubsets Point
   EmptyIsMember := trivial

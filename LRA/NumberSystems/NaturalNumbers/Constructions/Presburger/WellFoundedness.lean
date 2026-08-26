@@ -4,6 +4,7 @@ import LRA.NumberSystems.PeanoSystem.Definition
 namespace LRA.NumberSystems.NaturalNumbers.Constructions.Presburger
 
 open LRA.Set
+open LRA.Set.Constructions
 
 /--
 `PresburgerPeanoSystem` TODO
@@ -12,7 +13,7 @@ Predicate logic:
 
   def PresburgerPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
-      PresburgerElement (PredicateSet PresburgerElement) where
+      PresburgerElement (TypeSet PresburgerElement) where
   one := PresburgerElement.zero
   successor := PresburgerElement.succ
   one_not_successor := PresburgerZeroIsNotSuccessor
@@ -23,7 +24,7 @@ Predicate logic (unfolded):
 
   def PresburgerPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
-      PresburgerElement (PredicateSet PresburgerElement) where
+      PresburgerElement (TypeSet PresburgerElement) where
   one := PresburgerElement.zero
   successor := PresburgerElement.succ
   one_not_successor := PresburgerZeroIsNotSuccessor
@@ -35,7 +36,7 @@ Logical form (Lean):
 ```lean
 def PresburgerPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
-      PresburgerElement (PredicateSet PresburgerElement) where
+      PresburgerElement (TypeSet PresburgerElement) where
   one := PresburgerElement.zero
   successor := PresburgerElement.succ
   one_not_successor := PresburgerZeroIsNotSuccessor
@@ -64,7 +65,7 @@ Related proof moves: unfold
 -/
 def PresburgerPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
-      PresburgerElement (PredicateSet PresburgerElement) where
+      PresburgerElement (TypeSet PresburgerElement) where
   one := PresburgerElement.zero
   successor := PresburgerElement.succ
   one_not_successor := PresburgerZeroIsNotSuccessor

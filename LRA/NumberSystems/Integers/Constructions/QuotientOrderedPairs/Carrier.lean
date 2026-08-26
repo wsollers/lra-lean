@@ -1,9 +1,9 @@
 
 import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.Set
-import LRA.Set.PredicateSet
-import LRA.Set.ZFC
-import LRA.Set.ZFCSet
+import LRA.Set.Constructions.TypeSet
+import LRA.Set.Constructions.ZFCSet.Axioms
+import LRA.Set.Constructions.ZFCSet
 import LRA.Set.Model
 import LRA.SetSystems
 import LRA.UniversalAlgebra

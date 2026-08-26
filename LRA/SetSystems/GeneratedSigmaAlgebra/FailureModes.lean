@@ -1,9 +1,10 @@
-import LRA.Set.PredicateSet.Instances
+import LRA.Set.Constructions.TypeSet.Instances
 import LRA.SetSystems.GeneratedSigmaAlgebra
 
 namespace LRA.SetSystems
 
 open LRA.Set
+open LRA.Set.Constructions
 
 universe u v
 
@@ -117,7 +118,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-def EmptyNatAmbient : PredicateSet Nat := fun _ => False
+def EmptyNatAmbient : TypeSet Nat := fun _ => False
 ```
 
 Type-theoretic form:
@@ -139,7 +140,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-def EmptyNatAmbient : PredicateSet Nat := fun _ => False
+def EmptyNatAmbient : TypeSet Nat := fun _ => False
 
 /--
 `ZeroSingleton` TODO
@@ -155,7 +156,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-def ZeroSingleton : PredicateSet Nat := fun n => n = 0
+def ZeroSingleton : TypeSet Nat := fun n => n = 0
 ```
 
 Type-theoretic form:
@@ -177,14 +178,14 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-def ZeroSingleton : PredicateSet Nat := fun n => n = 0
+def ZeroSingleton : TypeSet Nat := fun n => n = 0
 
 /--
 `ZeroSingletonGenerator` TODO
 
 Predicate logic:
 
-  ∀ (candidate : LRA.Set.PredicateSet Nat), candidate = LRA.SetSystems.ZeroSingleton
+  ∀ (candidate : LRA.Set.Constructions.TypeSet Nat), candidate = LRA.SetSystems.ZeroSingleton
 
 Predicate logic (unfolded):
 
@@ -193,7 +194,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-def ZeroSingletonGenerator (candidate : PredicateSet Nat) : Prop :=
+def ZeroSingletonGenerator (candidate : TypeSet Nat) : Prop :=
   candidate = ZeroSingleton
 ```
 
@@ -216,7 +217,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-def ZeroSingletonGenerator (candidate : PredicateSet Nat) : Prop :=
+def ZeroSingletonGenerator (candidate : TypeSet Nat) : Prop :=
   candidate = ZeroSingleton
 
 /--
@@ -269,7 +270,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets LRA.SetSystems.EmptyNatAmbient), (∀ (G : Nat → Prop), G = LRA.SetSystems.ZeroSingleton → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 LRA.SetSystems.ZeroSingleton ∧ LRA.Set.PredicateSet.instHasSubset.1 LRA.SetSystems.ZeroSingleton LRA.SetSystems.EmptyNatAmbient → False)
+  (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets LRA.SetSystems.EmptyNatAmbient), (∀ (G : Nat → Prop), G = LRA.SetSystems.ZeroSingleton → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 LRA.SetSystems.ZeroSingleton ∧ LRA.Set.Constructions.TypeSet.instHasSubset.1 LRA.SetSystems.ZeroSingleton LRA.SetSystems.EmptyNatAmbient → False)
 
 Logical form (Lean):
 

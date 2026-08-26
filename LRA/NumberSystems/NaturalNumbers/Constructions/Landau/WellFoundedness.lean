@@ -4,6 +4,7 @@ import LRA.NumberSystems.PeanoSystem.Definition
 namespace LRA.NumberSystems.NaturalNumbers.Constructions.Landau
 
 open LRA.Set
+open LRA.Set.Constructions
 
 /--
 `LandauBaseNotSuccessor` TODO
@@ -92,7 +93,7 @@ axiom LandauSuccessorInjective :
 
 Predicate logic:
 
-  ∀ subset : PredicateSet LandauElement, LandauOne ∈ subset → ∀ element ∈ LandauElement, element ∈ subset → LandauSuccessor element ∈ subset → ∀ element : LandauElement, element ∈ subset noncomputable def LandauPeanoSystem : LRA.NumberSystems.PeanoSystem.PeanoSystem LandauElement (PredicateSet LandauElement) where one
+  ∀ subset : TypeSet LandauElement, LandauOne ∈ subset → ∀ element ∈ LandauElement, element ∈ subset → LandauSuccessor element ∈ subset → ∀ element : LandauElement, element ∈ subset noncomputable def LandauPeanoSystem : LRA.NumberSystems.PeanoSystem.PeanoSystem LandauElement (TypeSet LandauElement) where one
 
 Predicate logic (unfolded):
 
@@ -102,7 +103,7 @@ Logical form (Lean):
 
 ```lean
 axiom LandauInduction :
-    ∀ subset : PredicateSet LandauElement,
+    ∀ subset : TypeSet LandauElement,
       LandauOne ∈ subset →
       (∀ element : LandauElement, element ∈ subset → LandauSuccessor element ∈ subset) →
       ∀ element : LandauElement, element ∈ subset
@@ -128,7 +129,7 @@ Related proof moves: intro
 
 -/
 axiom LandauInduction :
-    ∀ subset : PredicateSet LandauElement,
+    ∀ subset : TypeSet LandauElement,
       LandauOne ∈ subset →
       (∀ element : LandauElement, element ∈ subset → LandauSuccessor element ∈ subset) →
       ∀ element : LandauElement, element ∈ subset
@@ -140,7 +141,7 @@ Predicate logic:
 
   noncomputable def LandauPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
-      LandauElement (PredicateSet LandauElement) where
+      LandauElement (TypeSet LandauElement) where
   one := LandauOne
   successor := LandauSuccessor
   one_not_successor := LandauBaseNotSuccessor
@@ -151,7 +152,7 @@ Predicate logic (unfolded):
 
   noncomputable def LandauPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
-      LandauElement (PredicateSet LandauElement) where
+      LandauElement (TypeSet LandauElement) where
   one := LandauOne
   successor := LandauSuccessor
   one_not_successor := LandauBaseNotSuccessor
@@ -163,7 +164,7 @@ Logical form (Lean):
 ```lean
 noncomputable def LandauPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
-      LandauElement (PredicateSet LandauElement) where
+      LandauElement (TypeSet LandauElement) where
   one := LandauOne
   successor := LandauSuccessor
   one_not_successor := LandauBaseNotSuccessor
@@ -192,7 +193,7 @@ Related proof moves: unfold
 -/
 noncomputable def LandauPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
-      LandauElement (PredicateSet LandauElement) where
+      LandauElement (TypeSet LandauElement) where
   one := LandauOne
   successor := LandauSuccessor
   one_not_successor := LandauBaseNotSuccessor
