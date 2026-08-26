@@ -1,4 +1,4 @@
-import LRA.Identity.Uniqueness
+import LRA.Identity.Constructions.Leibniz.Definitions.Uniqueness
 
 namespace LRA.Identity
 

@@ -1,5 +1,5 @@
-import LRA.Identity.Axioms
-import LRA.Identity.Equality
+import LRA.Identity.Constructions.Leibniz.Axioms
+import LRA.Identity.Constructions.Leibniz.Definitions.Equality
 
 namespace LRA.Identity
 

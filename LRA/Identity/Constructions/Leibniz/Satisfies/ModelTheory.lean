@@ -1,4 +1,4 @@
-import LRA.Identity.Axioms
+import LRA.Identity.Constructions.Leibniz.Axioms
 import LRA.Identity.Interface.ModelTheory.Theory
 
 namespace LRA.Identity

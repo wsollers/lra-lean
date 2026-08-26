@@ -1,4 +1,4 @@
-import LRA.Identity.Substitution
+import LRA.Identity.Constructions.Leibniz.Consequences.Substitution
 
 namespace LRA.Identity
 

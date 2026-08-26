@@ -1,6 +1,6 @@
-import LRA.Identity.Axioms
-import LRA.Identity.Equality
-import LRA.Identity.Substitution
+import LRA.Identity.Constructions.Leibniz.Axioms
+import LRA.Identity.Constructions.Leibniz.Consequences.Equality
+import LRA.Identity.Constructions.Leibniz.Consequences.Substitution
 
 namespace LRA.Identity
 

@@ -1,5 +1,5 @@
 import LRA.Relation.Structures.Equivalence.Definition
-import LRA.Identity.ExistenceAndUniqueness
+import LRA.Identity.Constructions.Leibniz.Definitions.ExistenceAndUniqueness
 import LRA.Set.Interface.Membership
 
 namespace LRA.Relation

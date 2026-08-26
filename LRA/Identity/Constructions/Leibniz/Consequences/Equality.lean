@@ -1,9 +1,9 @@
-import LRA.Identity.Axioms
+import LRA.Identity.Constructions.Leibniz.Axioms
 import LRA.Relation.Definition
 import LRA.Relation.Properties.Definition
 import LRA.Relation.Canonical.IdentityRelation.Definition
 import LRA.Relation.Structures.Definition
-import LRA.Identity.Equality.Definition
+import LRA.Identity.Constructions.Leibniz.Definitions.Equality
 
 namespace LRA.Identity
 

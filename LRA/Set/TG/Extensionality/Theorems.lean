@@ -1,4 +1,4 @@
-import LRA.Identity.Axioms
+import LRA.Identity.Constructions.Leibniz.Axioms
 import LRA.Set.TG.Axioms.Extensionality
 
 namespace LRA.Set.TG

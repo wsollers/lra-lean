@@ -1,4 +1,4 @@
-import LRA.Identity.Equality
+import LRA.Identity.Constructions.Leibniz.Definitions.Equality
 import LRA.Identity.Interop.FromMathlib
 import LRA.Identity.Interop.ToMathlib
 

@@ -1,8 +1,8 @@
 import LRA.Identity.Interface.ModelTheory.LStructure
-import LRA.Identity.Axioms
-import LRA.Identity.Distinctness
-import LRA.Identity.Uniqueness
-import LRA.Identity.ExistenceAndUniqueness
+import LRA.Identity.Constructions.Leibniz.Axioms
+import LRA.Identity.Constructions.Leibniz.Definitions.Distinctness
+import LRA.Identity.Constructions.Leibniz.Definitions.Uniqueness
+import LRA.Identity.Constructions.Leibniz.Definitions.ExistenceAndUniqueness
 
 namespace LRA.Identity
 

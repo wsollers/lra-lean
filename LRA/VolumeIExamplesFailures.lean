@@ -5,7 +5,7 @@ import LRA.Function.Examples.FailureModes
 import LRA.Function.Operations.Composition.FailureModes
 import LRA.Function.Operations.Inverse.FailureModes
 import LRA.Function.Properties.FailureModes
-import LRA.Identity.Interop.Lean
+import LRA.Identity.Interop.FromMathlib
 import LRA.Logic.Semantics.Examples
 import LRA.Logic.Semantics.SecondOrderMonadic.Examples
 import LRA.Morphism.Properties.OperationEmbedding.FailureModes
