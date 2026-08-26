@@ -1,81 +1,15 @@
 import LRA.Set.Constructions.NBGSet.Primitives
 
-namespace LRA.Set.Constructions.NBGSet
+namespace LRA.Set.Constructions.NBG
 
-/--
-`Set` TODO
+open LRA.Set.Constructions
 
-Predicate logic:
+abbrev Set := NBGSet
 
-  abbrev Set := LRA.Set.Constructions.NBGSet
+abbrev Class := NBGClass
 
-Predicate logic (unfolded):
+axiom ClassOfSet : Set → Class
 
-  abbrev Set := LRA.Set.Constructions.NBGSet (source fallback; no compiled unfold data available)
+axiom OrderedPair : Set → Set → Set
 
-Logical form (Lean):
-
-```lean
-abbrev Set := LRA.Set.Constructions.NBGSet
-```
-
-Type-theoretic form:
-
-  TODO
-
-Proof use:
-
-  TODO
-
-After unfold / common proof state:
-
-  TODO
-
-Common confusions:
-
-  TODO
-
-Related proof moves: unfold
-
--/
-abbrev Set := LRA.Set.Constructions.NBGSet
-
-/--
-`Class` TODO
-
-Predicate logic:
-
-  abbrev Class := LRA.Set.Constructions.NBGClass
-
-Predicate logic (unfolded):
-
-  abbrev Class := LRA.Set.Constructions.NBGClass (source fallback; no compiled unfold data available)
-
-Logical form (Lean):
-
-```lean
-abbrev Class := LRA.Set.Constructions.NBGClass
-```
-
-Type-theoretic form:
-
-  TODO
-
-Proof use:
-
-  TODO
-
-After unfold / common proof state:
-
-  TODO
-
-Common confusions:
-
-  TODO
-
-Related proof moves: unfold
-
--/
-abbrev Class := LRA.Set.Constructions.NBGClass
-
-end LRA.Set.Constructions.NBGSet
+end LRA.Set.Constructions.NBG

@@ -47,27 +47,28 @@ theorem SubsetIffAllMembers :
   sorry
 
 instance : ExtensionalityLaw Set Set where
-  SetExtensionality := fun {A B} h => LRA.Set.Constructions.TG.SetExtensionality A B h
+  SetExtensionality := fun {A B} h => LRA.Set.Constructions.TGSet.SetExtensionality A B h
 
 instance : MembershipLaws Set Set where
-  EmptyMembership := LRA.Set.Constructions.TG.TheEmptySetIsEmpty
-  UnionMembership := LRA.Set.Constructions.TG.TheUnionMembership
-  IntersectionMembership := LRA.Set.Constructions.TG.TheIntersectionMembership
-  DifferenceMembership := LRA.Set.Constructions.TG.TheRelativeComplementMembership
+  EmptyMembership := LRA.Set.Constructions.TGSet.TheEmptySetIsEmpty
+  UnionMembership := LRA.Set.Constructions.TGSet.TheUnionMembership
+  IntersectionMembership := LRA.Set.Constructions.TGSet.TheIntersectionMembership
+  DifferenceMembership := LRA.Set.Constructions.TGSet.TheRelativeComplementMembership
   SubsetIffAllMembers := SubsetIffAllMembers
 
 instance : SeparationLaws Set Set where
-  SeparationMembership := LRA.Set.Constructions.TG.TheSeparatedSubsetIsSeparatedSubset
+  SeparationMembership := LRA.Set.Constructions.TGSet.TheSeparatedSubsetIsSeparatedSubset
 
 instance : SymmDiffMembershipLaws Set Set where
-  SymmetricDifferenceMembership := LRA.Set.Constructions.TG.TheSymmetricDifferenceMembership
+  SymmetricDifferenceMembership := LRA.Set.Constructions.TGSet.TheSymmetricDifferenceMembership
 
 instance : PowersetMembershipLaws Set Set where
-  PowersetMembership := LRA.Set.Constructions.TG.ThePowerSetIsPowerSetOf
+  PowersetMembership := LRA.Set.Constructions.TGSet.ThePowerSetIsPowerSetOf
 
 instance : CollectionMembershipLaws Set Set Set where
-  CollectionUnionMembership := fun C x => LRA.Set.Constructions.TG.TheUnionOverIsUnionOf C x
+  CollectionUnionMembership := fun C x => LRA.Set.Constructions.TGSet.TheUnionOverIsUnionOf C x
   CollectionIntersectionMembership := fun C x h =>
-    LRA.Set.Constructions.TG.TheIntersectionOverMembership C x h
+    LRA.Set.Constructions.TGSet.TheIntersectionOverMembership C x h
 
 end LRA.Set.Constructions.TGSet
+

@@ -1,6 +1,10 @@
 import LRA.Set.Constructions.TGSet.Axioms
 import LRA.Set.Constructions.TGSet.Primitives
 import LRA.Set.Constructions.TGSet.Definition
+import LRA.Set.Constructions.TGSet.Definitions
+import LRA.Set.Constructions.TGSet.Theorems
+import LRA.Set.Constructions.TGSet.Public
 import LRA.Set.Constructions.TGSet.Instances
 import LRA.Set.Constructions.TGSet.Laws
+import LRA.Set.Constructions.TGSet.Interface
 import LRA.Set.Constructions.TGSet.ModelTheory

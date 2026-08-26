@@ -1,1 +1,1 @@
-import LRA.Set.Constructions.GrothendieckUniverse.ModelTheory.StandardTransitive
+import LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory.Model

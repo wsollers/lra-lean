@@ -1,96 +1,95 @@
 import LRA.Set.Constructions.NBGSet.Axioms.Definitions
-import LRA.Set.Constructions.NBGSet.Axioms.Theorems
 
-namespace LRA.Set.Constructions.NBGSet.Axioms
+namespace LRA.Set.Constructions.NBG.Axioms
 
-/--
-`SetExtensionality` TODO
-
-Predicate logic:
-
-  (∀ A B ∈ LRA.Set.Constructions.NBGSet), (forall x : LRA.Set.Constructions.NBGSet, x ∈ A <-> x ∈ B) → A = B
-
-Predicate logic (unfolded):
-
-  ∀ (A B : LRA.Set.Constructions.NBGSet), (∀ (x : LRA.Set.Constructions.NBGSet), LRA.Set.instMembershipNBGSet.1 A x ↔ LRA.Set.instMembershipNBGSet.1 B x) → A = B
-
-Logical form (Lean):
-
-```lean
-theorem SetExtensionality
-    (A B : LRA.Set.Constructions.NBGSet)
-    (sameMembers : forall x : LRA.Set.Constructions.NBGSet, x ∈ A <-> x ∈ B) :
+axiom SetExtensionality
+    (A B : Set)
+    (sameMembers : ∀ x : Set, x ∈ A ↔ x ∈ B) :
     A = B
-```
 
-Type-theoretic form:
-
-  TODO
-
-Proof use:
-
-  TODO
-
-After unfold / common proof state:
-
-  TODO
-
-Common confusions:
-
-  TODO
-
-Related proof moves: intro, constructor, .mp, .mpr
-
--/
-theorem SetExtensionality
-    (A B : LRA.Set.Constructions.NBGSet)
-    (sameMembers : forall x : LRA.Set.Constructions.NBGSet, x ∈ A <-> x ∈ B) :
-    A = B := by
-  sorry
-
-/--
-`ClassExtensionalityTheorem` TODO
-
-Predicate logic:
-
-  (∀ A B ∈ LRA.Set.Constructions.NBGClass), (forall x : LRA.Set.Constructions.NBGSet, x ∈ A <-> x ∈ B) → A = B
-
-Predicate logic (unfolded):
-
-  ∀ (A B : LRA.Set.Constructions.NBGClass), (∀ (x : LRA.Set.Constructions.NBGSet), LRA.Set.instMembershipNBGSetNBGClass.1 A x ↔ LRA.Set.instMembershipNBGSetNBGClass.1 B x) → A = B
-
-Logical form (Lean):
-
-```lean
-theorem ClassExtensionalityTheorem
-    (A B : LRA.Set.Constructions.NBGClass)
-    (sameMembers : forall x : LRA.Set.Constructions.NBGSet, x ∈ A <-> x ∈ B) :
+axiom ClassExtensionalityTheorem
+    (A B : Class)
+    (sameMembers : ∀ x : Set, x ∈ A ↔ x ∈ B) :
     A = B
-```
 
-Type-theoretic form:
+axiom ClassOfSetMembership
+    (A x : Set) :
+    x ∈ ClassOfSet A ↔ x ∈ A
 
-  TODO
+axiom ClassComprehensionExists
+    (property : Set → Prop) :
+    ∃ C : Class, IsClassComprehension property C
 
-Proof use:
+axiom EmptySetExists : ∃ A : Set, IsEmptySet A
 
-  TODO
+noncomputable def TheEmptySet : Set :=
+  Classical.choose EmptySetExists
 
-After unfold / common proof state:
+theorem TheEmptySetIsEmpty : IsEmptySet TheEmptySet :=
+  Classical.choose_spec EmptySetExists
 
-  TODO
+axiom PairSetExists
+    (x y : Set) :
+    ∃ P : Set, IsPairSet x y P
 
-Common confusions:
+axiom UnionOverExists
+    (A : Set) :
+    ∃ U : Set, IsUnionOf A U
 
-  TODO
+axiom PowerSetOfExists
+    (A : Set) :
+    ∃ P : Set, IsPowerSetOf A P
 
-Related proof moves: intro, constructor, .mp, .mpr
+axiom InductiveSetExists : ∃ A : Set, IsInductiveSet A
 
--/
-theorem ClassExtensionalityTheorem
-    (A B : LRA.Set.Constructions.NBGClass)
-    (sameMembers : forall x : LRA.Set.Constructions.NBGSet, x ∈ A <-> x ∈ B) :
-    A = B := by
-  sorry
+axiom ClassRegularityWitnessExists
+    (X : Class)
+    (nonempty : ∃ x : Set, x ∈ X) :
+    ∃ y : Set, y ∈ X ∧ ∀ z : Set, z ∈ y → z ∉ X
 
-end LRA.Set.Constructions.NBGSet.Axioms
+axiom UniversalClassExists : ∃ V : Class, IsUniversalClass V
+
+axiom ElementhoodClassExists : ∃ E : Class, IsElementhoodClass E
+
+axiom IntersectionClassExists
+    (X Y : Class) :
+    ∃ Z : Class, IsIntersectionClass X Y Z
+
+axiom ComplementClassExists
+    (X : Class) :
+    ∃ Z : Class, IsComplementClass X Z
+
+axiom DomainClassExists
+    (X : Class) :
+    ∃ D : Class, IsDomainClass X D
+
+axiom CartesianExtensionClassExists
+    (X : Class) :
+    ∃ Z : Class, IsCartesianExtensionClass X Z
+
+axiom PermutationClassExists
+    (X : Class) :
+    ∃ Z : Class, IsPermutationClass X Z
+
+axiom TranspositionClassExists
+    (X : Class) :
+    ∃ Z : Class, IsTranspositionClass X Z
+
+axiom ReplacementImageExists
+    (A : Set)
+    (relation : Set → Set → Prop)
+    (functional : IsFunctionalOn A relation) :
+    ∃ B : Set, IsReplacementImageOf A relation B
+
+axiom FoundationWitnessExists
+    (A : Set)
+    (nonempty : ∃ w : Set, w ∈ A) :
+    ∃ x : Set, IsFoundationWitness A x
+
+axiom GlobalChoiceClassExists : ∃ G : Class, IsGlobalChoiceClass G
+
+theorem ClassOfSetIsSetClass (A : Set) : IsSetClass A (ClassOfSet A) := by
+  intro x
+  exact ClassOfSetMembership A x
+
+end LRA.Set.Constructions.NBG.Axioms

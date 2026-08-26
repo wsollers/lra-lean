@@ -1,11 +1,12 @@
-import LRA.Set.Constructions.TG.Axioms.Extensionality
-import LRA.Set.Constructions.TG.Axioms.EmptySet
-import LRA.Set.Constructions.TG.Axioms.Pairing
-import LRA.Set.Constructions.TG.Axioms.Union
-import LRA.Set.Constructions.TG.Axioms.PowerSet
-import LRA.Set.Constructions.TG.Axioms.Infinity
-import LRA.Set.Constructions.TG.Axioms.Separation
-import LRA.Set.Constructions.TG.Axioms.Replacement
-import LRA.Set.Constructions.TG.Axioms.Foundation
-import LRA.Set.Constructions.TG.Axioms.Choice
-import LRA.Set.Constructions.TG.Axioms.GrothendieckUniverse
+import LRA.Set.Constructions.TGSet.Axioms.Extensionality
+import LRA.Set.Constructions.TGSet.Axioms.EmptySet
+import LRA.Set.Constructions.TGSet.Axioms.Pairing
+import LRA.Set.Constructions.TGSet.Axioms.Union
+import LRA.Set.Constructions.TGSet.Axioms.PowerSet
+import LRA.Set.Constructions.TGSet.Axioms.Infinity
+import LRA.Set.Constructions.TGSet.Axioms.Separation
+import LRA.Set.Constructions.TGSet.Axioms.Replacement
+import LRA.Set.Constructions.TGSet.Axioms.Foundation
+import LRA.Set.Constructions.TGSet.Axioms.Choice
+import LRA.Set.Constructions.TGSet.Axioms.GrothendieckUniverse
+

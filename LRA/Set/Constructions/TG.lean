@@ -1,2 +1,1 @@
-import LRA.Set.Constructions.TG.Axioms
-import LRA.Set.Constructions.TG.Public
+import LRA.Set.Constructions.TGSet.Public
