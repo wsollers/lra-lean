@@ -46,11 +46,12 @@ CHECK_ROOTS = (
 
 # `LRA/Logic` carries the same exemption `LRA/VolumeI/Logic` did before the
 # promotion: its model and semantics layers are stated against Mathlib
-# structures.  The Mathlib set backends and the order interoperability leaves
-# moved under `Interop/`, which `ALLOWED_DIR_PARTS` already covers, so they no
-# longer need to be named here.
+# structures.  The Mathlib set backends now live under the explicit quarantine
+# tree `LRA/Set/Constructions/Mathlib`, while the order interoperability leaves
+# remain under `Interop/`.
 ALLOWED_PREFIXES = [
     pathlib.PurePosixPath("LRA/Logic"),
+    pathlib.PurePosixPath("LRA/Set/Constructions/Mathlib"),
     pathlib.PurePosixPath("LRA/VolumeII/BasicArithmetic"),
     pathlib.PurePosixPath("LRA/VolumeII/Switches/NumberSystems.lean"),
     pathlib.PurePosixPath("LRA/VolumeII/Switches/Sets/BackendEnvironment.lean"),
@@ -70,6 +71,7 @@ ALLOWED_FILENAMES = {
 ALLOWED_DIR_PARTS = {
     "Examples",
     "FailureModes",
+    "Mathlib",
     "MathlibAdapters",
     "MathlibBridge",
     "Interoperability",
@@ -79,6 +81,7 @@ ALLOWED_DIR_PARTS = {
 CORE_AGGREGATE_ROOTS = [ROOT / "LRA" / subject for subject in FOUNDATIONAL_SUBJECTS]
 
 QUARANTINED_IMPORT_MARKERS = (
+    ".Constructions.Mathlib",
     ".Examples",
     ".FailureModes",
     ".MathlibAdapters",

@@ -1,5 +1,5 @@
 
-import LRA.Set.Model.Theory
+import LRA.Set.Interface.ModelTheory.Theory
 import Mathlib.SetTheory.ZFC.Basic
 
 namespace LRA.Set.ModelTheory

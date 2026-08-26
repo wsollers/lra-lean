@@ -1,4 +1,4 @@
-import LRA.Set.Model.Theory
+import LRA.Set.Interface.ModelTheory.Theory
 import LRA.Logic.Semantics.Satisfaction
 import LRA.Set.Constructions.GrothendieckUniverse.Theorems
 
