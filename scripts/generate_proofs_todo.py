@@ -530,7 +530,23 @@ def ambient_symbol_for_typeclass(class_expr: str) -> str | None:
 def ambient_candidates_from_object_type(binder_type: str) -> list[str]:
     normalized = binder_type.strip()
     candidates: list[str] = []
-    direct_types = ("ℝ", "ℕ", "ℤ", "ℚ", "ℂ", "Real", "Nat", "Int", "Rat", "Complex")
+    direct_types = (
+        "ℝ",
+        "ℕ",
+        "ℤ",
+        "ℚ",
+        "ℂ",
+        "R",
+        "N",
+        "Z",
+        "Q",
+        "C",
+        "Real",
+        "Nat",
+        "Int",
+        "Rat",
+        "Complex",
+    )
     if normalized in direct_types:
         candidates.append(normalized)
     set_match = re.fullmatch(r"Set\s+(.+)", normalized)
@@ -668,11 +684,26 @@ def is_simple_domain_type(binder_type: str) -> bool:
 
 
 def is_proposition_shaped(binder_type: str) -> bool:
+    normalized = binder_type.strip()
+    if re.fullmatch(r".+\s→\s.+", normalized):
+        pieces = [piece.strip() for piece in normalized.split("→")]
+        if pieces and all(piece and not is_proposition_shaped(piece) for piece in pieces):
+            return False
     return bool(
-        binder_type.startswith(("∀", "∃"))
-        or any(token in binder_type for token in ("→", "↔", "\\/", "/\\", " = ", " ∈ ", " < ", " ≤ "))
-        or re.match(r"(?:Is|Has|No|Non|Exists|Forall)[A-Z]\w*(?:\s|$)", binder_type)
+        normalized.startswith(("∀", "∃"))
+        or any(token in normalized for token in ("→", "↔", "\\/", "/\\", " = ", " ∈ ", " < ", " ≤ "))
+        or re.match(r"(?:Is|Has|No|Non|Exists|Forall)[A-Z]\w*(?:\s|$)", normalized)
     )
+
+
+def should_preserve_theorem_level_prove(unfolded: str, uncurried_predicate: str) -> bool:
+    unfolded_text = unfolded.strip()
+    predicate_text = uncurried_predicate.strip()
+    if not unfolded_text or not predicate_text:
+        return False
+    if "↔" in predicate_text and "↔" in unfolded_text:
+        return True
+    return False
 
 
 def transliterate_inner_quantifiers(expr: str) -> str:
@@ -999,7 +1030,10 @@ def render_unfolded_statement(signature: str, row: CompiledTheorem, uncurried_pr
     unfolded = resolve_unfolded(row, uncurried_predicate)
     if row.uses_sorry is None or row.unfold_status.startswith("error:"):
         return unfolded
-    prove = strip_forall_prefix(unfolded)
+    if should_preserve_theorem_level_prove(unfolded, uncurried_predicate):
+        prove = strip_forall_prefix(uncurried_predicate)
+    else:
+        prove = strip_forall_prefix(unfolded)
     structured = render_structured_statement(signature, prove)
     return format_structured_statement(structured)
 

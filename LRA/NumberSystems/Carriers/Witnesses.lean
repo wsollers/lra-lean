@@ -23,7 +23,7 @@ Predicate logic:
 
   noncomputable def landauNaturalArithmeticForWholeNumbers :
     LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers
-      LandauElement (PredicateSet LandauElement) where
+      LandauElement (TypeSet LandauElement) where
   model := LandauPeanoSystem
   strictOrder := LandauLessThan LandauPeanoSystem
   strictOrder_trichotomous := LandauLessThanTrichotomous LandauPeanoSystem
@@ -37,7 +37,7 @@ Predicate logic (unfolded):
 
   noncomputable def landauNaturalArithmeticForWholeNumbers :
     LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers
-      LandauElement (PredicateSet LandauElement) where
+      LandauElement (TypeSet LandauElement) where
   model := LandauPeanoSystem
   strictOrder := LandauLessThan LandauPeanoSystem
   strictOrder_trichotomous := LandauLessThanTrichotomous LandauPeanoSystem
@@ -52,7 +52,7 @@ Logical form (Lean):
 ```lean
 noncomputable def landauNaturalArithmeticForWholeNumbers :
     LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers
-      LandauElement (PredicateSet LandauElement) where
+      LandauElement (TypeSet LandauElement) where
   model := LandauPeanoSystem
   strictOrder := LandauLessThan LandauPeanoSystem
   strictOrder_trichotomous := LandauLessThanTrichotomous LandauPeanoSystem
@@ -84,7 +84,7 @@ Related proof moves: unfold
 -/
 noncomputable def landauNaturalArithmeticForWholeNumbers :
     LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers
-      LandauElement (PredicateSet LandauElement) where
+      LandauElement (TypeSet LandauElement) where
   model := LandauPeanoSystem
   strictOrder := LandauLessThan LandauPeanoSystem
   strictOrder_trichotomous := LandauLessThanTrichotomous LandauPeanoSystem

@@ -25,7 +25,7 @@ Build gate for the quarantined leaves of `LRA.Morphism`, `LRA.Function`,
 
 The `Interop` groups are Mathlib-facing, so no core router may import them
 (§6). That left them reachable from no Lake target at all, which is how a
-malformed import in `LRA.Set.Interop.Mathlib.EndertonModel` survived several
+malformed import in `LRA.Set.Constructions.ZFCSet.ModelTheory.Enderton` survived several
 phases without ever failing a build. §2.7 requires every module to be
 reachable from some target; this is that target.
 

@@ -1,12 +1,8 @@
 
-import LRA.NumberSystems.RealNumbers
-import LRA.NumberSystems.Carriers
 import LRA.Analysis.Limits
 import LRA.Analysis.Continuity.PointContinuity
 
 namespace LRA.Analysis.Differentiation
-
-open LRA.NumberSystems.Carriers
 
 /--
 `Derivative` TODO
@@ -22,8 +18,8 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-def Derivative (D : R) (f : R → R) (A : Set R) (c : R) : Prop :=
-  ∀ ε > 0, ∃ δ > 0, ∀ h : R, c + h ∈ A → 0 < |h| → |h| < δ →
+def Derivative (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
+  ∀ ε > 0, ∃ δ > 0, ∀ h : ℝ, c + h ∈ A → 0 < |h| → |h| < δ →
     |(f (c + h) - f c) / h - D| < ε
 ```
 
@@ -64,8 +60,8 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-def ZorichDerivative (D : R) (f : R → R) (A : Set R) (c : R) : Prop :=
-  ∃ α : R → R,
+def ZorichDerivative (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
+  ∃ α : ℝ → ℝ,
     LRA.Analysis.Limits.TendsTo α A c 0 ∧
       ∀ x ∈ A, f x = f c + D * (x - c) + α x * (x - c)
 ```
@@ -108,7 +104,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-def IsDifferentiable (f : R → R) (A : Set R) (c : R) : Prop :=
+def IsDifferentiable (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
   ∃ D, Derivative D f A c
 ```
 
@@ -148,8 +144,8 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-def DerivativeNeighborhood (D : R) (f : R → R) (A : Set R) (c : R) : Prop :=
-  ∀ ε > 0, ∃ U : Set R, (∃ δ > 0, U = LRA.Analysis.Continuity.RelativeNeighborhood A c δ) ∧
+def DerivativeNeighborhood (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
+  ∀ ε > 0, ∃ U : Set ℝ, (∃ δ > 0, U = LRA.Analysis.Continuity.RelativeNeighborhood A c δ) ∧
     ∀ x ∈ U, x ≠ c → |(f x - f c) / (x - c) - D| < ε
 ```
 
@@ -172,8 +168,8 @@ Common confusions:
 Related proof moves: intro, constructor, cases, rcases, use, unfold
 
 -/
-def DerivativeNeighborhood (D : R) (f : R → R) (A : Set R) (c : R) : Prop :=
-  ∀ ε > 0, ∃ U : Set R, (∃ δ > 0, U = LRA.Analysis.Continuity.RelativeNeighborhood A c δ) ∧
+def DerivativeNeighborhood (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
+  ∀ ε > 0, ∃ U : Set ℝ, (∃ δ > 0, U = LRA.Analysis.Continuity.RelativeNeighborhood A c δ) ∧
     ∀ x ∈ U, x ≠ c → |(f x - f c) / (x - c) - D| < ε
 
 /--
@@ -190,10 +186,10 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-def DerivativeSequential (D : R) (f : R → R) (A : Set R) (c : R) : Prop :=
-  ∀ xs : N → R, (∀ n, xs n ∈ A) → (∀ n, xs n ≠ c) →
-    (∀ ε > 0, ∃ N : N, ∀ n ≥ N, |xs n - c| < ε) →
-    ∀ ε > 0, ∃ N : N, ∀ n ≥ N, |(f (xs n) - f c) / (xs n - c) - D| < ε
+def DerivativeSequential (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
+  ∀ xs : ℕ → ℝ, (∀ n, xs n ∈ A) → (∀ n, xs n ≠ c) →
+    (∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |xs n - c| < ε) →
+    ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |(f (xs n) - f c) / (xs n - c) - D| < ε
 ```
 
 Type-theoretic form:
@@ -215,10 +211,10 @@ Common confusions:
 Related proof moves: intro, use, rcases, unfold
 
 -/
-def DerivativeSequential (D : R) (f : R → R) (A : Set R) (c : R) : Prop :=
-  ∀ xs : N → R, (∀ n, xs n ∈ A) → (∀ n, xs n ≠ c) →
-    (∀ ε > 0, ∃ N : N, ∀ n ≥ N, |xs n - c| < ε) →
-    ∀ ε > 0, ∃ N : N, ∀ n ≥ N, |(f (xs n) - f c) / (xs n - c) - D| < ε
+def DerivativeSequential (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
+  ∀ xs : ℕ → ℝ, (∀ n, xs n ∈ A) → (∀ n, xs n ≠ c) →
+    (∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |xs n - c| < ε) →
+    ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |(f (xs n) - f c) / (xs n - c) - D| < ε
 
 /--
 `DerivativeEquivalence` TODO
@@ -257,7 +253,7 @@ Common confusions:
 Related proof moves: intro, constructor, .mp, .mpr, cases, rcases
 
 -/
-theorem DerivativeEquivalence (D : R) (f : R → R) (A : Set R) (c : R) :
+theorem DerivativeEquivalence (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     Derivative D f A c ↔ DerivativeNeighborhood D f A c ∧ DerivativeSequential D f A c := by
   sorry
 
@@ -300,7 +296,7 @@ Common confusions:
 Related proof moves: intro, constructor, .mp, .mpr, use, rcases
 
 -/
-theorem DerivativeHFormEquivalence (D : R) (f : R → R) (A : Set R) (c : R) :
+theorem DerivativeHFormEquivalence (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     Derivative D f A c ↔
       (∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ →
         |(f x - f c) / (x - c) - D| < ε) := by
@@ -344,7 +340,7 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem DifferentiableImpliesContinuous (f : R → R) (A : Set R) (c : R)
+theorem DifferentiableImpliesContinuous (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (h : IsDifferentiable f A c) :
     LRA.Analysis.Continuity.ContinuousAtPoint f A c := by
   sorry
@@ -387,8 +383,8 @@ Common confusions:
 Related proof moves: intro, use, rcases
 
 -/
-theorem DerivativeUnique (f : R → R) (A : Set R) (c D₁ D₂ : R)
-    (hacc : ∃ xs : N → R, LRA.Analysis.Limits.ApproachesButNotEqual xs A c)
+theorem DerivativeUnique (f : ℝ → ℝ) (A : Set ℝ) (c D₁ D₂ : ℝ)
+    (hacc : ∃ xs : ℕ → ℝ, LRA.Analysis.Limits.ApproachesButNotEqual xs A c)
     (h₁ : Derivative D₁ f A c) (h₂ : Derivative D₂ f A c) : D₁ = D₂ := by
   sorry
 

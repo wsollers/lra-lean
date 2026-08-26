@@ -1,5 +1,5 @@
 import LRA.Order
-import LRA.Set.Interop.Mathlib.PredicateSet
+import LRA.Set.Constructions.Mathlib.PredicateSet
 
 universe u v w x
 

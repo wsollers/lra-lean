@@ -1,12 +1,7 @@
-import LRA.Set.Constructions.ZFCSet.Axioms.Axioms.EmptySet
-import LRA.Set.Constructions.ZFCSet.Axioms.Definitions
+import LRA.Set.Constructions.ZFCSet.Axioms.EmptySet.Existence
 import LRA.Set.Constructions.ZFCSet.Axioms.Extensionality.Theorems
 
 namespace LRA.Set.Constructions.ZFCSet.Axioms
-
-theorem EmptySetExists :
-    ∃ A : Set, IsEmptySet A := by
-  sorry
 
 theorem EmptySetIsUnique
     {A B : Set}
@@ -24,19 +19,6 @@ theorem EmptySetsAreEqual
 
 theorem EmptySetExistsAndIsUnique :
     ExistsAndUnique IsEmptySet := by
-  sorry
-
-noncomputable def TheEmptySet : Set :=
-  Classical.choose EmptySetExists
-
-theorem TheEmptySetIsEmpty :
-    IsEmptySet TheEmptySet := by
-  sorry
-
-theorem EveryEmptySetEqualsTheEmptySet
-    {A : Set}
-    (AIsEmpty : IsEmptySet A) :
-    A = TheEmptySet := by
   sorry
 
 end LRA.Set.Constructions.ZFCSet.Axioms

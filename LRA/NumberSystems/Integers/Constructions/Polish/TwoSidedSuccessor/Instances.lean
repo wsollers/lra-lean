@@ -2,7 +2,7 @@
 import LRA.AlgebraicStructures
 import LRA.NumberSystems.Integers.Constructions.Polish.TwoSidedSuccessor.Behavior
 import LRA.NumberSystems.IntegerStructure
-import LRA.Set.PredicateSet
+import LRA.Set.Constructions.TypeSet
 
 namespace LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor
 
@@ -803,7 +803,7 @@ Logical form (Lean):
 
 ```lean
 theorem polish_integer_structure_induction
-    (subset : LRA.Set.PredicateSet Z) :
+    (subset : LRA.Set.Constructions.TypeSet Z) :
     Z.zero ∈ subset ->
       (∀ element : Z, element ∈ subset -> succ element ∈ subset) ->
       (∀ element : Z, element ∈ subset -> pred element ∈ subset) ->
@@ -830,7 +830,7 @@ Related proof moves: intro
 
 -/
 theorem polish_integer_structure_induction
-    (subset : LRA.Set.PredicateSet Z) :
+    (subset : LRA.Set.Constructions.TypeSet Z) :
     Z.zero ∈ subset ->
       (∀ element : Z, element ∈ subset -> succ element ∈ subset) ->
       (∀ element : Z, element ∈ subset -> pred element ∈ subset) ->
@@ -887,7 +887,7 @@ theorem polish_integer_structure_aperiodic :
 Predicate logic:
 
   noncomputable def PolishRealizesIntegerStructure :
-    LRA.NumberSystems.IntegerStructure.IntegerStructure Z (LRA.Set.PredicateSet Z) where
+    LRA.NumberSystems.IntegerStructure.IntegerStructure Z (LRA.Set.Constructions.TypeSet Z) where
   zero := Z.zero
   one := one
   negativeOne := -one
@@ -903,7 +903,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   noncomputable def PolishRealizesIntegerStructure :
-    LRA.NumberSystems.IntegerStructure.IntegerStructure Z (LRA.Set.PredicateSet Z) where
+    LRA.NumberSystems.IntegerStructure.IntegerStructure Z (LRA.Set.Constructions.TypeSet Z) where
   zero := Z.zero
   one := one
   negativeOne := -one
@@ -920,7 +920,7 @@ Logical form (Lean):
 
 ```lean
 noncomputable def PolishRealizesIntegerStructure :
-    LRA.NumberSystems.IntegerStructure.IntegerStructure Z (LRA.Set.PredicateSet Z) where
+    LRA.NumberSystems.IntegerStructure.IntegerStructure Z (LRA.Set.Constructions.TypeSet Z) where
   zero := Z.zero
   one := one
   negativeOne := -one
@@ -954,7 +954,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def PolishRealizesIntegerStructure :
-    LRA.NumberSystems.IntegerStructure.IntegerStructure Z (LRA.Set.PredicateSet Z) where
+    LRA.NumberSystems.IntegerStructure.IntegerStructure Z (LRA.Set.Constructions.TypeSet Z) where
   zero := Z.zero
   one := one
   negativeOne := -one

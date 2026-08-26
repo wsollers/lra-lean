@@ -1,5 +1,5 @@
 import LRA.Order.Bounds.Cofinal.Definition
-import LRA.Set.PredicateSet.Definition
+import LRA.Set.Constructions.TypeSet.Definition
 
 namespace LRA.AlgebraicStructures
 
@@ -65,7 +65,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-def Multiples {R : Type u} [Add R] (x : R) : LRA.Set.PredicateSet R :=
+def Multiples {R : Type u} [Add R] (x : R) : LRA.Set.Constructions.TypeSet R :=
   fun y => exists n : Nat, y = IteratedSelfSum n x
 ```
 
@@ -88,7 +88,7 @@ Common confusions:
 Related proof moves: use, rcases, unfold
 
 -/
-def Multiples {R : Type u} [Add R] (x : R) : LRA.Set.PredicateSet R :=
+def Multiples {R : Type u} [Add R] (x : R) : LRA.Set.Constructions.TypeSet R :=
   fun y => exists n : Nat, y = IteratedSelfSum n x
 
 /--

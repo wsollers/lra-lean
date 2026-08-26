@@ -189,14 +189,44 @@ where
 Definitions explicitly *not* unfolded into the "Raw / Unfolded"
 predicate-logic column.
 
-The default policy is now to unfold everything reachable and only carve
-things back out here if they cause rendering failures or obviously
-pedagogically-worse output. Start empty; add blockers reactively.
+We still want custom mathematical predicates to open up, but we do **not**
+want the unfold step to chase built-in number carriers or routine
+computational operators into implementation artifacts. In practice that
+means keeping the standard scalar worlds (`Real`, `Nat`, `Int`, `Rat`,
+`Complex`) opaque, together with arithmetic / order / absolute-value style
+machinery that would otherwise turn simple expressions like `x - c`,
+`|x - c|`, `c + h`, or `max a b` into low-level class-projection noise.
 -/
-def unfoldDenyList : List Name := []
+def unfoldDenyList : List String := [
+  "Real",
+  "Nat",
+  "Int",
+  "Rat",
+  "Complex",
+  "OfNat.ofNat",
+  "Neg.neg",
+  "Add.add",
+  "Sub.sub",
+  "Mul.mul",
+  "Div.div",
+  "HAdd.hAdd",
+  "HSub.hSub",
+  "HMul.hMul",
+  "HDiv.hDiv",
+  "LT.lt",
+  "LE.le",
+  "abs",
+  "max",
+  "min",
+  "SemilatticeSup.toMax",
+  "SemilatticeInf.toMin",
+  "SubtractionMonoid.toSubNegZeroMonoid",
+  "SubNegZeroMonoid.toNegZeroClass",
+  "NegZeroClass.toNeg"
+]
 
 private def isDeniedFromUnfolding (n : Name) : Bool :=
-  unfoldDenyList.contains n
+  unfoldDenyList.contains n.toString
 
 /--
 True iff `s` is `<prefix><digits>` for one of Lean's own numbered

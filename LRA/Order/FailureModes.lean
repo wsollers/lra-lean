@@ -1,7 +1,7 @@
 import LRA.Order
 import LRA.Order.Examples
 import LRA.Relation.Properties.Definition
-import LRA.Set.Interop.Mathlib.PredicateSet
+import LRA.Set.Constructions.Mathlib.PredicateSet
 import Mathlib.Data.Int.Order.Basic
 import Mathlib.Data.Rat.Defs
 import Mathlib.Data.Real.Basic

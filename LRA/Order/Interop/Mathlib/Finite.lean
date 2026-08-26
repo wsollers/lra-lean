@@ -7,7 +7,7 @@ import LRA.Order.Lattices.Lattice.Definition
 import LRA.Order.OrderedSets.PartialOrder.Definition
 import LRA.Order.OrderedSets.WellOrder.Definition
 import LRA.Order.Relation.StrictPart.Definition
-import LRA.Set.Interop.Mathlib.PredicateSet
+import LRA.Set.Constructions.Mathlib.PredicateSet
 import Mathlib.Data.Finite.Defs
 import Mathlib.Data.Set.Finite.Basic
 
