@@ -6,7 +6,19 @@ universe u
 
 theorem NativeEqualitySatisfiesEqualityTheory (Carrier : Type u) :
     EqualityTheory Carrier := by
-  sorry
+  constructor
+  . -- reflivity
+    intro arbitrary
+    exact
+
+    sorry
+  . --leibniz
+    intro x
+    intro y
+    intro hypothesis
+    intro arbitaryProperty
+    rw [hypothesis]
+
 
 theorem MathlibEqualitySatisfiesEqualityTheory (Carrier : Type u) :
     EqualityTheory Carrier :=

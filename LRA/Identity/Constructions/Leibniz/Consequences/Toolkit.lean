@@ -45,7 +45,7 @@ Related proof moves: TODO
 -/
 theorem EqualityReasoningByReflexivity {Carrier : Type u} (x : Carrier) :
     x = x := by
-  sorry
+  rfl
 
 /--
 `EqualityReasoningBySymmetry` TODO
@@ -88,7 +88,8 @@ Related proof moves: TODO
 theorem EqualityReasoningBySymmetry {Carrier : Type u} {x y : Carrier}
     (EqualityProof : x = y) :
     y = x := by
-  sorry
+  symm
+  exact EqualityProof
 
 /--
 `EqualityReasoningByTransitivity` TODO
@@ -133,7 +134,8 @@ theorem EqualityReasoningByTransitivity {Carrier : Type u} {x y z : Carrier}
     (FirstEquality : x = y)
     (SecondEquality : y = z) :
     x = z := by
-  sorry
+  rw [FirstEquality.symm] at SecondEquality
+  exact SecondEquality
 
 /--
 `RewritePropertyByEquality` TODO
@@ -178,7 +180,8 @@ theorem RewritePropertyByEquality {Carrier : Type u} {x y : Carrier}
     (EqualityProof : x = y)
     (Property : Carrier -> Prop) :
     Property x ↔ Property y := by
-  sorry
+  rw [EqualityProof]
+
 
 /--
 `RewriteFunctionByEquality` TODO
@@ -225,7 +228,7 @@ theorem RewriteFunctionByEquality {Domain : Type u} {Codomain : Type v}
     (EqualityProof : x = y)
     (function : Domain -> Codomain) :
     function x = function y := by
-  sorry
+  rw [EqualityProof.symm]
 
 /--
 `RewriteRelationLeftByEquality` TODO
@@ -272,6 +275,7 @@ theorem RewriteRelationLeftByEquality {Carrier : Type u}
     (EqualityProof : x = y)
     (relation : Carrier -> Carrier -> Prop) :
     relation x z ↔ relation y z := by
-  sorry
+  rw [EqualityProof.symm]
+
 
 end LRA.Identity
