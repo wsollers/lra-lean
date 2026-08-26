@@ -1,1 +1,1 @@
-import LRA.Identity.Congruence.Theorems
+import LRA.Identity.Constructions.Leibniz.Consequences.Congruence

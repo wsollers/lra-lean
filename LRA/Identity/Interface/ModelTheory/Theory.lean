@@ -67,47 +67,6 @@ structure EqualityTheory (Carrier : Type u) : Prop where
         ∀ property : Carrier -> Prop, property x ↔ property y
 
 /--
-`NativeEqualitySatisfiesEqualityTheory` TODO
-
-Predicate logic:
-
-  EqualityTheory Carrier
-
-Predicate logic (unfolded):
-
-  ∀ (Carrier : Type u), LRA.Identity.EqualityTheory Carrier
-
-Logical form (Lean):
-
-```lean
-theorem NativeEqualitySatisfiesEqualityTheory (Carrier : Type u) :
-    EqualityTheory Carrier
-```
-
-Type-theoretic form:
-
-  TODO
-
-Proof use:
-
-  TODO
-
-After unfold / common proof state:
-
-  TODO
-
-Common confusions:
-
-  TODO
-
-Related proof moves: TODO
-
--/
-theorem NativeEqualitySatisfiesEqualityTheory (Carrier : Type u) :
-    EqualityTheory Carrier := by
-  sorry
-
-/--
 `Exists` TODO
 
 Predicate logic:

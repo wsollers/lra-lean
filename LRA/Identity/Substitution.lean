@@ -1,1 +1,1 @@
-import LRA.Identity.Substitution.Theorems
+import LRA.Identity.Constructions.Leibniz.Consequences.Substitution

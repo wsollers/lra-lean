@@ -1,2 +1,1 @@
-import LRA.Identity.Axioms.Reflexivity
-import LRA.Identity.Axioms.Leibniz
+import LRA.Identity.Constructions.Leibniz.Axioms

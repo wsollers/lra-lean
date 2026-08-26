@@ -1,2 +1,2 @@
-import LRA.Identity.Equality.Definition
-import LRA.Identity.Equality.Theorems
+import LRA.Identity.Constructions.Leibniz.Definitions.Equality
+import LRA.Identity.Constructions.Leibniz.Consequences.Equality
