@@ -3,11 +3,12 @@ import LRA.Set.Constructions.NBGSet.Interface.UniversalAlgebra.Signature
 namespace LRA.Set.Constructions.NBG.Interface.UniversalAlgebra
 
 structure SupportsPureRelationalClassification : Prop where
-  pureSignatureHasMembershipRelation :
-    PureRelationalNBGSignature.RelationSymbol = PureMembershipRelationSymbol
+  everyRelationSymbolIsMembership :
+    ∀ relation : PureRelationalNBGSignature.RelationSymbol,
+      relation = PureMembershipRelationSymbol.mem
 
-structure SupportsNullOperationClassification : Prop where
-  pureRelationalBaseHasNoOperations :
+structure SupportsPositiveRelationArityClassification : Prop where
+  everyRelationHasPositiveArity :
     ∀ relation : PureRelationalNBGSignature.RelationSymbol,
       PureRelationalNBGSignature.relationArity relation > 0
 
@@ -30,14 +31,50 @@ structure RelationalSubstructure
 
 structure SupportsFunctionalConservativeExpansion : Prop where
   expandedSignatureHasUniversalClass :
-    ExpandedClassAlgebraicSignature.ConstantSymbol = ExpandedClassConstantSymbol
+    ∃ constant : ExpandedClassAlgebraicSignature.ConstantSymbol,
+      constant = ExpandedClassConstantSymbol.universalClass
   expandedSignatureHasIntersection :
-    ExpandedClassAlgebraicSignature.OperationSymbol = ExpandedClassOperationSymbol
+    ∃ operation : ExpandedClassAlgebraicSignature.OperationSymbol,
+      operation = ExpandedClassOperationSymbol.intersection ∧
+        ExpandedClassAlgebraicSignature.arity operation = 2
 
 def UniversalAlgebraClassification : Prop :=
   SupportsPureRelationalClassification ∧
-  SupportsNullOperationClassification ∧
+  SupportsPositiveRelationArityClassification ∧
   SupportsPureSignatureNonVarietyClassification ∧
   SupportsFunctionalConservativeExpansion
+
+theorem pureRelationalNBGSupportsPureRelationalClassification :
+    SupportsPureRelationalClassification := by
+  constructor
+  intro relation
+  cases relation
+  rfl
+
+theorem pureRelationalNBGSupportsPositiveRelationArityClassification :
+    SupportsPositiveRelationArityClassification := by
+  constructor
+  intro relation
+  cases relation
+  decide
+
+theorem pureRelationalNBGSupportsPureSignatureNonVarietyClassification :
+    SupportsPureSignatureNonVarietyClassification := by
+  exact ⟨rfl⟩
+
+theorem expandedClassSignatureSupportsFunctionalConservativeExpansion :
+    SupportsFunctionalConservativeExpansion := by
+  constructor
+  · exact ⟨.universalClass, rfl⟩
+  · exact ⟨.intersection, rfl, rfl⟩
+
+theorem nbgUniversalAlgebraClassification :
+    UniversalAlgebraClassification := by
+  exact ⟨
+    pureRelationalNBGSupportsPureRelationalClassification,
+    pureRelationalNBGSupportsPositiveRelationArityClassification,
+    pureRelationalNBGSupportsPureSignatureNonVarietyClassification,
+    expandedClassSignatureSupportsFunctionalConservativeExpansion
+  ⟩
 
 end LRA.Set.Constructions.NBG.Interface.UniversalAlgebra

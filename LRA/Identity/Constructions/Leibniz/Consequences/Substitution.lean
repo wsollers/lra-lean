@@ -48,7 +48,8 @@ theorem LeibnizSubstitution {Carrier : Type u} {Left Right : Carrier}
     (ObjectsAreIdentical : Left = Right)
     (Property : Carrier -> Prop) :
     Property Left ↔ Property Right := by
-  sorry
+  rw [ObjectsAreIdentical]
+
 
 /--
 `EqualitySubstitution` TODO
@@ -93,7 +94,7 @@ theorem EqualitySubstitution {Carrier : Type u} {left right : Carrier}
     (ObjectsAreEqual : left = right)
     (formula : Carrier -> Prop) :
     formula left ↔ formula right := by
-  sorry
+  rw [ObjectsAreEqual]
 
 /--
 `SubstitutionPreservesPredicates` TODO
@@ -140,7 +141,7 @@ theorem SubstitutionPreservesPredicates {Carrier : Type u}
     (ObjectsAreEqual : left = right)
     (predicate : Carrier -> Prop) :
     predicate left ↔ predicate right := by
-  sorry
+  rw [ObjectsAreEqual]
 
 /--
 `SubstitutionPreservesRelationsLeft` TODO
@@ -187,7 +188,8 @@ theorem SubstitutionPreservesRelationsLeft {Carrier : Type u}
     (ObjectsAreEqual : left = right)
     (relation : Carrier -> Carrier -> Prop) :
     relation left fixed ↔ relation right fixed := by
-  sorry
+  rw [ObjectsAreEqual]
+
 
 /--
 `SubstitutionPreservesRelationsRight` TODO
@@ -234,7 +236,7 @@ theorem SubstitutionPreservesRelationsRight {Carrier : Type u}
     (ObjectsAreEqual : left = right)
     (relation : Carrier -> Carrier -> Prop) :
     relation fixed left ↔ relation fixed right := by
-  sorry
+  rw [ObjectsAreEqual]
 
 /--
 `SubstitutionPreservesRelations` TODO
@@ -283,7 +285,8 @@ theorem SubstitutionPreservesRelations {Carrier : Type u}
     (RightsAreEqual : right = right')
     (relation : Carrier -> Carrier -> Prop) :
     relation left right ↔ relation left' right' := by
-  sorry
+  rw [LeftsAreEqual]
+  rw [RightsAreEqual]
 
 /--
 `SubstitutionPreservesFunctions` TODO
@@ -330,7 +333,7 @@ theorem SubstitutionPreservesFunctions {Domain : Type u} {Codomain : Type v}
     (ObjectsAreEqual : left = right)
     (function : Domain -> Codomain) :
     function left = function right := by
-  sorry
+  rw [ObjectsAreEqual]
 
 /--
 `SubstitutionPreservesOperationsLeft` TODO
@@ -377,7 +380,7 @@ theorem SubstitutionPreservesOperationsLeft {Carrier : Type u}
     (LeftsAreEqual : left = left')
     (operation : Carrier -> Carrier -> Carrier) :
     operation left right = operation left' right := by
-  sorry
+  rw [LeftsAreEqual]
 
 /--
 `SubstitutionPreservesOperationsRight` TODO
@@ -424,7 +427,7 @@ theorem SubstitutionPreservesOperationsRight {Carrier : Type u}
     (RightsAreEqual : right = right')
     (operation : Carrier -> Carrier -> Carrier) :
     operation left right = operation left right' := by
-  sorry
+  rw [RightsAreEqual]
 
 /--
 `SubstitutionPreservesOperations` TODO
@@ -473,6 +476,7 @@ theorem SubstitutionPreservesOperations {Carrier : Type u}
     (RightsAreEqual : right = right')
     (operation : Carrier -> Carrier -> Carrier) :
     operation left right = operation left' right' := by
-  sorry
+  rw [RightsAreEqual]
+  rw [LeftsAreEqual]
 
 end LRA.Identity

@@ -73,8 +73,13 @@ abbrev SatisfiesSingleSortedFormula
   Satisfies (toFirstOrderModel M) assignment formula
 
 structure IsNormalClassModel (M : SingleSortedClassStructure) : Prop where
-  equalityIsDefinitional :
-    ∀ X Y : M.carrier, (X = Y) ↔ (X = Y)
+  membershipInterpretationAgrees :
+    ∀ X Y : M.carrier,
+      (toFirstOrderModel M).interpretRelation .mem
+        (fun
+          | ⟨0, _⟩ => X
+          | ⟨1, _⟩ => Y) ↔
+        M.membership X Y
 
 def IsTransitiveSetModel (M : TwoSortedClassStructure) : Prop :=
   ∀ {x y z : M.setCarrier},
@@ -94,5 +99,12 @@ def toSingleSortedClassStructure
     exact ⟨M.classOfSet witness⟩
   membership := fun X Y =>
     ∃ x : M.setCarrier, X = M.classOfSet x ∧ M.classMembership x Y
+
+theorem singleSortedClassStructureIsNormal
+    (M : SingleSortedClassStructure) :
+    IsNormalClassModel M := by
+  constructor
+  intro X Y
+  rfl
 
 end LRA.Set.Constructions.NBG.Interface.ModelTheory
