@@ -2,7 +2,6 @@ import LRA.Set
 import LRA.Set.Constructions.TypeSet
 import LRA.Set.Constructions.ZFCSet.Axioms
 import LRA.Set.Constructions.ZFCSet
-import LRA.Set.Model
 import LRA.SetSystems
 import LRA.SetSystems.Examples
 import LRA.Set.Constructions.Mathlib.PredicateSet
@@ -21,6 +20,7 @@ and that the resurrected algebra-of-sets signatures instantiate.
 namespace LRA.Tests.VolumeI.Set.CollectionAlgebraAdapters
 
 open LRA.Set
+open LRA.Set.Constructions
 
 -- Generic theorems resolve at all four backends from argument types.
 example (A B : LRA.Set.Constructions.ZFCSet) : A ∪ B = B ∪ A :=

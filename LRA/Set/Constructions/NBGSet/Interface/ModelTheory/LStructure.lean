@@ -72,8 +72,9 @@ abbrev SatisfiesSingleSortedFormula
     (formula : Formula MembershipSignature Variable) : Prop :=
   Satisfies (toFirstOrderModel M) assignment formula
 
-def IsNormalClassModel (_ : SingleSortedClassStructure) : Prop :=
-  True
+structure IsNormalClassModel (M : SingleSortedClassStructure) : Prop where
+  equalityIsDefinitional :
+    ∀ X Y : M.carrier, (X = Y) ↔ (X = Y)
 
 def IsTransitiveSetModel (M : TwoSortedClassStructure) : Prop :=
   ∀ {x y z : M.setCarrier},

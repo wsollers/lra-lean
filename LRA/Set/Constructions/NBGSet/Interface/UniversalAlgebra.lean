@@ -2,14 +2,18 @@ import LRA.Set.Constructions.NBGSet.Interface.UniversalAlgebra.Signature
 
 namespace LRA.Set.Constructions.NBG.Interface.UniversalAlgebra
 
-def SupportsPureRelationalClassification : Prop :=
-  True
+structure SupportsPureRelationalClassification : Prop where
+  pureSignatureHasMembershipRelation :
+    PureRelationalNBGSignature.RelationSymbol = PureMembershipRelationSymbol
 
-def SupportsNullOperationClassification : Prop :=
-  True
+structure SupportsNullOperationClassification : Prop where
+  pureRelationalBaseHasNoOperations :
+    ∀ relation : PureRelationalNBGSignature.RelationSymbol,
+      PureRelationalNBGSignature.relationArity relation > 0
 
-def SupportsPureSignatureNonVarietyClassification : Prop :=
-  True
+structure SupportsPureSignatureNonVarietyClassification : Prop where
+  pureBaseHasBinaryMembership :
+    PureRelationalNBGSignature.relationArity PureMembershipRelationSymbol.mem = 2
 
 structure RelationalHomomorphism
     (CarrierA CarrierB : Type)
@@ -24,8 +28,11 @@ structure RelationalSubstructure
   carrier : Carrier → Prop
   carrierNonempty : ∃ X : Carrier, carrier X
 
-def SupportsFunctionalConservativeExpansion : Prop :=
-  True
+structure SupportsFunctionalConservativeExpansion : Prop where
+  expandedSignatureHasUniversalClass :
+    ExpandedClassAlgebraicSignature.ConstantSymbol = ExpandedClassConstantSymbol
+  expandedSignatureHasIntersection :
+    ExpandedClassAlgebraicSignature.OperationSymbol = ExpandedClassOperationSymbol
 
 def UniversalAlgebraClassification : Prop :=
   SupportsPureRelationalClassification ∧

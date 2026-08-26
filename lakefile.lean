@@ -33,7 +33,6 @@ lean_lib LRAStandardizedFoundations where
     `LRA.Set.PredicateSet,
     `LRA.Set.ZFCSet,
     `LRA.Set.ZFC,
-    `LRA.Set.Model,
     `LRA.SetSystems,
     `LRA.Relation,
     `LRA.Function,

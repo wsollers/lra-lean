@@ -30,8 +30,9 @@ inductive FiniteNBGAxiomName where
 def SupportsSingleSortedPresentation : Prop :=
   ∀ A x : SetObject, x ∈ LRA.Set.Constructions.NBG.ClassOfSet A ↔ x ∈ A
 
-def SupportsTwoSortedPresentation : Prop :=
-  True
+structure SupportsTwoSortedPresentation : Prop where
+  classOfSetMembership :
+    ∀ A x : SetObject, x ∈ LRA.Set.Constructions.NBG.ClassOfSet A ↔ x ∈ A
 
 def SupportsClassExtensionality : Prop :=
   ∀ X Y : ClassObject,
@@ -126,7 +127,7 @@ theorem nbgSupportsSingleSortedPresentation : SupportsSingleSortedPresentation :
   ClassOfSetMembership
 
 theorem nbgSupportsTwoSortedPresentation : SupportsTwoSortedPresentation := by
-  trivial
+  exact ⟨ClassOfSetMembership⟩
 
 theorem nbgSupportsClassExtensionality : SupportsClassExtensionality :=
   ClassExtensionalityTheorem

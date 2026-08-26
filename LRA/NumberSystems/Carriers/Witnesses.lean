@@ -15,6 +15,7 @@ namespace LRA.NumberSystems.Carriers
 
 open LRA.NumberSystems.NaturalNumbers.Constructions.Landau
 open LRA.Set
+open LRA.Set.Constructions
 
 /--
 `landauNaturalArithmeticForWholeNumbers` TODO
