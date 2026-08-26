@@ -3,7 +3,7 @@ import LRA.Set
 import LRA.Set.Constructions.TypeSet
 import LRA.Set.Constructions.ZFCSet.Axioms
 import LRA.Set.Constructions.ZFCSet
-import LRA.Set.Model
+import LRA.Set.Interface.ModelTheory
 import LRA.SetSystems
 
 namespace LRA.NumberSystems.IntegerStructure
