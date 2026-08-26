@@ -1,3 +1,4 @@
+import LRA.Set.Constructions.GrothendieckUniverse.Definitions
 import LRA.Set.Constructions.TG.Axioms.GrothendieckUniverse
 import LRA.Set.Constructions.TG.Definitions
 
@@ -174,6 +175,11 @@ theorem GrothendieckUniverseClosedUnderUnion
     (XInUniverse : X ∈ U) :
     exists union : Set,
       union ∈ U /\ IsUnionOf X union := by
+  sorry
+
+theorem GrothendieckUniverseExistsAsGenericUniverse (A : Set) :
+    ∃ U : Set,
+      LRA.Set.Constructions.GrothendieckUniverse.IsGrothendieckUniverseFor A U := by
   sorry
 
 end LRA.Set.Constructions.TG
