@@ -14,4 +14,3 @@ import LRA.Set.Interface.SymmetricDifference
 import LRA.Set.Interface.RelationLaws
 import LRA.Set.Interface.CartesianProductLaws
 import LRA.Set.Interface.Distributivity
-import LRA.Set.Interface.ModelTheory
