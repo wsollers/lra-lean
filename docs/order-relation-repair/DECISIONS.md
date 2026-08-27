@@ -128,3 +128,27 @@ building any subject's `Constructions/`/`ModelTheory` content from scratch,
 grep for existing content under `LRA/Order/Interop/`, `LRA/AlgebraicStructures/`,
 and `LRA/UniversalAlgebra/` first — this tree has a real history of things
 already existing under an unexpected name.
+
+## R11 — Every axiomatic-set provider must register its own `HasPairing` instance
+
+Every axiomatic-set `Set` provider must register its own
+`instance (priority := high) : HasPairing <Carrier> <Carrier> <Carrier>`
+using that provider's real pairing construction, so generic `OrderedPair`
+does not silently fall back to `Prod`. Predicate-backed providers
+(`LRA.Predicate`, `Mathlib.Predicate`) are the documented exception: they
+have no same-carrier pairing object (elements and collections are different
+types by construction, so `Prod` on the element type is the *correct*
+representation, not a fallback needing an excuse — see the "predicate sets
+don't need a self-encoded pair" discussion in this coordinator's originating
+conversation), and intentionally rely on the generic instance, as noted in
+`LRA/Set/Interop/Providers/LRA/Predicate.lean` and
+`LRA/Set/Interop/Providers/Mathlib/Predicate.lean`.
+
+Fixed 2026-08-27: `NBGSet` was missing its own `HasPairing` instance despite
+already having a real native pair (`LRA.Set.Constructions.NBG.OrderedPair`)
+— generic code building a relation over `NBGSet` was silently getting
+Mathlib's `Prod` instead. `LRA/Set/Constructions/NBGSet/Instances.lean` now
+registers `instance (priority := high) : HasPairing Set Set Set :=
+⟨OrderedPair⟩`. All four axiomatic-set providers (ZFC, TG, NBG, Mathlib ZF)
+now have their own instance; verify this stays true whenever a new provider
+is added.
