@@ -1,5 +1,5 @@
-import LRA.AlgebraicStructures.Group.Definition
-import LRA.AlgebraicStructures.Group.Interface.Signature.Definition
+import LRA.AlgebraicStructures.Group.Interface.Definitions.ConceptSignature
+import LRA.AlgebraicStructures.Group.Interface.Definitions.Signature
 import LRA.Operation
 
 namespace LRA.AlgebraicStructures.Group.Interface.ModelTheory

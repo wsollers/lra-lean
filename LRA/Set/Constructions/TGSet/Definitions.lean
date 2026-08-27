@@ -1,33 +1,42 @@
 import LRA.Set.Constructions.TGSet.Definition
-import LRA.Identity.Constructions.Leibniz.Definitions.ExistenceAndUniqueness
+import LRA.Identity.Interface.Definitions.Witnesses
+import LRA.Identity.Constructions.Mathlib
 
 namespace LRA.Set.Constructions.TGSet
+
+open scoped LRA.Identity.Construction.Mathlib
 
 /--
 `ExistsAndUnique` TODO
 
 Predicate logic:
 
-  ∀ (property : LRA.Set.Constructions.TGSet.Set → Prop), (Exists fun witness => property witness ∧ LRA.Identity.Unique property)
+  ∀ (property : LRA.Set.Constructions.TGSet.Set → Prop),
+    LRA.Identity.ExactlyOne property
 
 Predicate logic (unfolded):
 
-  ∀ (property : LRA.Set.Constructions.TGSet.Set → Prop), (Exists fun witness => property witness ∧ ∀ (left right : LRA.Set.Constructions.TGSet.Set), property left → property right → left = right)
+  ∀ (property : LRA.Set.Constructions.TGSet.Set → Prop),
+    (∃ witness, property witness) ∧
+      ∀ (left right : LRA.Set.Constructions.TGSet.Set),
+        property left → property right → left = right
 
 Logical form (Lean):
 
 ```lean
 abbrev ExistsAndUnique (property : Set -> Prop) : Prop :=
-  LRA.Identity.ExistsAndUnique property
+  LRA.Identity.ExactlyOne property
 ```
 
 Type-theoretic form:
 
-  TODO
+  Compatibility alias for older TG set-theory files. The primary Identity
+  vocabulary is `LRA.Identity.ExactlyOne`.
 
 Proof use:
 
-  TODO
+  The local alias keeps the old set-theory surface name, but the underlying
+  Identity concept is `ExactlyOne := HasWitness ∧ AtMostOne`.
 
 After unfold / common proof state:
 
@@ -41,7 +50,7 @@ Related proof moves: intro, unfold
 
 -/
 abbrev ExistsAndUnique (property : Set -> Prop) : Prop :=
-  LRA.Identity.ExistsAndUnique property
+  LRA.Identity.ExactlyOne property
 
 /--
 `IsEmptySet` TODO

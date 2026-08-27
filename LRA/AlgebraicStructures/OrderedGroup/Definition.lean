@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures.OrderedGroup.Laws.Definition
-import LRA.AlgebraicStructures.Group.Definition
+import LRA.AlgebraicStructures.Group.Interface.Definitions.ConceptSignature
 
 namespace LRA.AlgebraicStructures
 

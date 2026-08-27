@@ -42,6 +42,9 @@ def TypeSet (Alpha : Type u) := Alpha → Prop
 
 variable {Alpha : Type u}
 
+instance : Nonempty (TypeSet Alpha) :=
+  ⟨fun _ => False⟩
+
 instance : Membership Alpha (TypeSet Alpha) where
   mem containingSet element := containingSet element
 

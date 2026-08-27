@@ -115,20 +115,20 @@ class DivisionCompatibilityLaw (R : Type u)
 Predicate logic:
 
   class abbrev DivisionRingLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   RingLaws R, NontrivialityLaw R, MultiplicativeInverseLaws R
 
 Predicate logic (unfolded):
 
   class abbrev DivisionRingLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   RingLaws R, NontrivialityLaw R, MultiplicativeInverseLaws R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 class abbrev DivisionRingLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   RingLaws R, NontrivialityLaw R, MultiplicativeInverseLaws R
 ```
 
@@ -152,7 +152,7 @@ Related proof moves: TODO
 
 -/
 class abbrev DivisionRingLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   RingLaws R, NontrivialityLaw R, MultiplicativeInverseLaws R
 
 section Wrappers

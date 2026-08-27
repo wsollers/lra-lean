@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.CommutativeSemigroup.Laws.Definition
+import LRA.AlgebraicStructures.CommutativeSemigroup.Interface.Laws.Definition
 import LRA.AlgebraicStructures.Semiring.Laws.Definition
 
 namespace LRA.AlgebraicStructures
@@ -11,7 +11,7 @@ universe u
 Predicate logic:
 
   class abbrev CommutativeSemiringLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
   AdditiveCommutativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
@@ -21,7 +21,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   class abbrev CommutativeSemiringLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
   AdditiveCommutativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
@@ -32,7 +32,7 @@ Logical form (Lean):
 
 ```lean
 class abbrev CommutativeSemiringLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
   AdditiveCommutativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
@@ -60,7 +60,7 @@ Related proof moves: TODO
 
 -/
 class abbrev CommutativeSemiringLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
   AdditiveCommutativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,

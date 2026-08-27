@@ -1,5 +1,3 @@
-import LRA.AlgebraicStructures.MeetSemilattice.Definition
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.MeetSemilattice.Examples.IntersectionSemilattice
+import LRA.AlgebraicStructures.MeetSemilattice.Examples.RealsUnderMin
+import LRA.AlgebraicStructures.MeetSemilattice.Examples.GcdOnNaturals

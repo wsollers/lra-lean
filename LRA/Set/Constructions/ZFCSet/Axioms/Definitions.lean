@@ -1,7 +1,10 @@
 import LRA.Set.Constructions.ZFCSet.Primitives
-import LRA.Identity.Constructions.Leibniz.Definitions.ExistenceAndUniqueness
+import LRA.Identity.Interface.Definitions.Witnesses
+import LRA.Identity.Constructions.Mathlib
 
 namespace LRA.Set.Constructions.ZFCSet.Axioms
+
+open scoped LRA.Identity.Construction.Mathlib
 
 /--
 `Set` TODO
@@ -46,26 +49,32 @@ abbrev Set := LRA.Set.Constructions.ZFCSet
 
 Predicate logic:
 
-  ∀ (property : LRA.Set.Constructions.ZFCSet.Axioms.Set → Prop), (Exists fun witness => property witness ∧ LRA.Identity.Unique property)
+  ∀ (property : LRA.Set.Constructions.ZFCSet.Axioms.Set → Prop),
+    LRA.Identity.ExactlyOne property
 
 Predicate logic (unfolded):
 
-  ∀ (property : LRA.Set.Constructions.ZFCSet.Axioms.Set → Prop), (Exists fun witness => property witness ∧ ∀ (left right : LRA.Set.Constructions.ZFCSet.Axioms.Set), property left → property right → left = right)
+  ∀ (property : LRA.Set.Constructions.ZFCSet.Axioms.Set → Prop),
+    (∃ witness, property witness) ∧
+      ∀ (left right : LRA.Set.Constructions.ZFCSet.Axioms.Set),
+        property left → property right → left = right
 
 Logical form (Lean):
 
 ```lean
 abbrev ExistsAndUnique (property : Set → Prop) : Prop :=
-  LRA.Identity.ExistsAndUnique property
+  LRA.Identity.ExactlyOne property
 ```
 
 Type-theoretic form:
 
-  TODO
+  Compatibility alias for older ZFC set-theory files. The primary Identity
+  vocabulary is `LRA.Identity.ExactlyOne`.
 
 Proof use:
 
-  TODO
+  The local alias preserves the old set-theory surface name, but the underlying
+  Identity concept is `ExactlyOne := HasWitness ∧ AtMostOne`.
 
 After unfold / common proof state:
 
@@ -79,7 +88,7 @@ Related proof moves: intro, unfold
 
 -/
 abbrev ExistsAndUnique (property : Set → Prop) : Prop :=
-  LRA.Identity.ExistsAndUnique property
+  LRA.Identity.ExactlyOne property
 
 /--
 `IsEmptySet` TODO

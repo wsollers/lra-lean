@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Group.Laws.Definition
+import LRA.AlgebraicStructures.Group.Interface.Laws.Definition
 import LRA.Order.Laws.PartialOrder.Definition
 import LRA.Order.Laws.OperationCompatibility.Definition
 namespace LRA.AlgebraicStructures
@@ -77,14 +77,14 @@ class MultiplicativeOrderCompatibilityLaws (R : Type u)
 Predicate logic:
 
   class abbrev OrderedGroupLaws (R : Type u)
-    [Mul R] [Inv R] [OfNat R 1] [LE R] : Prop :=
+    [Mul R] [Inv R] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
   GroupLaws R, LRA.Order.PartialOrderLaws R,
   MultiplicativeOrderCompatibilityLaws R
 
 Predicate logic (unfolded):
 
   class abbrev OrderedGroupLaws (R : Type u)
-    [Mul R] [Inv R] [OfNat R 1] [LE R] : Prop :=
+    [Mul R] [Inv R] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
   GroupLaws R, LRA.Order.PartialOrderLaws R,
   MultiplicativeOrderCompatibilityLaws R (source fallback; no compiled unfold data available)
 
@@ -92,7 +92,7 @@ Logical form (Lean):
 
 ```lean
 class abbrev OrderedGroupLaws (R : Type u)
-    [Mul R] [Inv R] [OfNat R 1] [LE R] : Prop :=
+    [Mul R] [Inv R] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
   GroupLaws R, LRA.Order.PartialOrderLaws R,
   MultiplicativeOrderCompatibilityLaws R
 ```
@@ -117,7 +117,7 @@ Related proof moves: TODO
 
 -/
 class abbrev OrderedGroupLaws (R : Type u)
-    [Mul R] [Inv R] [OfNat R 1] [LE R] : Prop :=
+    [Mul R] [Inv R] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
   GroupLaws R, LRA.Order.PartialOrderLaws R,
   MultiplicativeOrderCompatibilityLaws R
 

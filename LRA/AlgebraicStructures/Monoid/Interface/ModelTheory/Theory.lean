@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Monoid.Interface.Signature.Definition
+import LRA.AlgebraicStructures.Monoid.Interface.Definitions.Signature
 
 namespace LRA.AlgebraicStructures.Monoid.Interface.ModelTheory
 

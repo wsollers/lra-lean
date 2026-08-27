@@ -1,0 +1,552 @@
+{
+  "generated_at": "2026-08-26",
+  "repo": "F:/repos/lra-lean",
+  "branch": "main",
+  "source": "conversation: AlgebraicStructures reorg + axiom-audit request",
+  "workflow": {
+    "coordinator_mode": "main-thread, one subject at a time, strict tier order",
+    "passes_per_item": [
+      "reorg",
+      "audit"
+    ],
+    "success_gate": [
+      "python scripts/validate_structure.py --path <validator_path>",
+      "lake build <build_target>",
+      "if both pass: commit on main (do not push unless asked)"
+    ]
+  },
+  "items": [
+    {
+      "id": "as-01",
+      "subject": "Magma",
+      "tier": 1,
+      "depends_on": [],
+      "status": "done",
+      "validator_path": "LRA/AlgebraicStructures/Magma",
+      "build_target": "LRA.AlgebraicStructures.Magma",
+      "notes": [
+        "Corrected: MagmaLaws requires Mul + Nonempty, real content, not empty",
+        "Interface/{Definitions,Laws} done; Constructions/{Set,Mathlib} added (ClosedSubsetMul builder + trivial Mathlib bridge)",
+        "Examples.lean repopulated: RPS (finite, non-assoc via decide), Z-under-subtraction, R\\{0}-under-division (via builder), nonempty-ZFCSets-under-union (via builder, closure sorry'd pending ZFCSet's own open Union theorems)",
+        "New shared infra: LRA_Set added at LRA/Set/Interop/Switch.lean (defaults to Mathlib's Set)",
+        "Examples/IdentityNotRequired.lean added: rpsHasNoIdentity — sorry'd per standing rule (theorems are the user's to prove); earlier closure/non-assoc proofs in this subject's Examples/ stay proved (structural glue, not the pedagogical point)",
+        "REVISITED 2026-08-26 per D7: MagmaLaws's nonemptiness is now `[Nonempty M]` (an ambient parameter), not a stored field — MagmaLaws itself is now a zero-field class. ClosedSubsetMagmaLaws no longer takes a `witness` term, takes `[Nonempty {x // x ∈ S}]` instead; callers declare their own `Nonempty` instance alongside `Mul`. See DECISIONS.md D7.",
+        "validate_structure.py + lake build both pass (re-verified post-D7)"
+      ]
+    },
+    {
+      "id": "as-02",
+      "subject": "Semigroup",
+      "tier": 1,
+      "depends_on": [],
+      "status": "done",
+      "validator_path": "LRA/AlgebraicStructures/Semigroup",
+      "build_target": "LRA.AlgebraicStructures.Semigroup",
+      "notes": [
+        "Same Nonempty gap as Magma, fixed",
+        "Found + fixed a duplicate bridge instance in the shared MathlibBridge.lean, superseded by Constructions/Mathlib/Laws.lean — same shared-file migration likely needed for other tier-1/2 subjects",
+        "Constructions/Set/ClosedSubset.lean: ClosedSubsetSemigroupLaws (associativity transfers through closed subsets for free)",
+        "Examples/: PositiveIntegersUnderAddition, EvenIntegersUnderMultiplication, NonemptyListsUnderConcatenation — all three are candidate Monoid Failures/ content (semigroups with no identity)",
+        "Examples/IdentityNotRequired.lean added: positiveIntegersHaveNoIdentity — sorry'd per standing rule (theorems are the user's to prove); earlier closure proofs in this subject's Examples/ stay proved (structural glue, not the pedagogical point)",
+        "REVISITED 2026-08-26 per D7: MultiplicativeSemigroupLaws's nonemptiness is now `[Nonempty R]` (an ambient parameter), not a stored `CarrierNonempty` field. ClosedSubsetSemigroupLaws no longer takes `witness`, takes `[Nonempty {x // x ∈ S}]` instead. See DECISIONS.md D7.",
+        "validate_structure.py + lake build both pass (re-verified post-D7)"
+      ]
+    },
+    {
+      "id": "as-03",
+      "subject": "CommutativeSemigroup",
+      "tier": 1,
+      "depends_on": [],
+      "status": "done",
+      "validator_path": "LRA/AlgebraicStructures/CommutativeSemigroup",
+      "build_target": "LRA.AlgebraicStructures.CommutativeSemigroup",
+      "notes": [
+        "Real gap found and fixed: MultiplicativeCommutativeLaws (atomic commutativity mixin, kept as-is — reused by CommutativeMonoid/Ring/Semiring/Field/OrderedField etc.) had no combining class pairing it with MultiplicativeSemigroupLaws. Added `CommutativeSemigroupLaws` (class abbrev, auto-derives from the two atomic parents) to Interface/Laws/Definition.lean.",
+        "Constructions/{Set,Mathlib}: ClosedSubsetCommutativeSemigroupLaws builder (extends Semigroup's closed-subset builder with commutativity transfer); Mathlib bridge from [CommSemigroup R][Nonempty R]",
+        "Examples/: PositiveIntegersUnderAddition (reuses Semigroup's carrier, adds MulCommutative), Semilattices (Set union/intersection, both directions), PositiveEvenNaturalsUnderMultiplication (Nat, distinct from Semigroup's Int-based EvenIntegers example), MinMaxOnReals (total, no closure needed)",
+        "All new law-instance/closure proofs left proved (structural glue, matches user-confirmed precedent from as-01/as-02); no pedagogical 'interesting fact' theorems were added this item",
+        "Import-path fixes: CommutativeMonoid/CommutativeRing/CommutativeSemiring/CommutativeSemiringWithoutZero Laws/Definition.lean (.Laws.Definition -> .Interface.Laws.Definition), VolumeVICore.lean, VolumeVIExamplesFailures.lean (dropped the now-deleted .Laws.Examples stub import)",
+        "REVISITED 2026-08-26 per D7: CommutativeSemigroupLaws now takes `[Nonempty R]` in its own header (needed because MultiplicativeSemigroupLaws does); every example's `CarrierNonempty := ...` line replaced with a separate `instance : Nonempty X := ...`. See DECISIONS.md D7.",
+        "validate_structure.py + lake build (CommutativeSemigroup + all downstream consumers + VolumeVICore/VolumeVIExamplesFailures/top AlgebraicStructures barrel) all pass (re-verified post-D7)",
+        "CORRECTED 2026-08-26 per D8: Constructions/{Set,Mathlib} builder+bridge proofs and every Examples/ law-instance/closure proof reverted to sorry -- the earlier 'structural glue' exemption was wrong, see DECISIONS.md D8. Re-verified: validate_structure.py + lake build both pass with sorry throughout."
+      ]
+    },
+    {
+      "id": "as-04",
+      "subject": "AdditiveSemigroup",
+      "tier": 1,
+      "depends_on": [],
+      "status": "done",
+      "validator_path": "LRA/AlgebraicStructures/AdditiveSemigroup",
+      "build_target": "LRA.AlgebraicStructures.AdditiveSemigroup",
+      "notes": [
+        "Same Nonempty gap as Magma/Semigroup, fixed",
+        "No 'additive magma' subject exists in this tree, so Constructions/Set/ClosedSubset.lean is self-contained (defines its own ClosedSubsetAdd rather than depending on a Magma-tier builder)",
+        "Examples/: PositiveNaturalsUnderAddition, EvenIntegersUnderAddition (Int), PositiveEvenNaturalsUnderAddition (Nat, distinct from the Int-based Even example) — all proved directly against core Nat/Int lemmas rather than the Mathlib bridge, since neither needs Mathlib to state associativity of native +",
+        "Import-path fixes: AdditiveMonoid/CommutativeSemiringWithoutZero Laws/Definition.lean, AdditiveCommutativeSemigroup/Definition.lean (was importing the now-deleted top-level AdditiveSemigroup/Definition.lean), VolumeVICore.lean, VolumeVIExamplesFailures.lean, MathlibBridge.lean (removed the duplicate/stale AdditiveSemigroupLaws instance, same pattern as as-02)",
+        "Initially fixed the Nonempty gap by adding a stored `CarrierNonempty` field, which broke every class abbrev combining both additive and multiplicative semigroup sides (Semiring, CommutativeSemiringWithoutZero, Ring, CommutativeRing, OrderedRing, OrderedField) via Lean's class-abbrev field-merging — first patched same-day by renaming to `AdditiveCarrierNonempty`, then SUPERSEDED same-day by D7 (see DECISIONS.md): nonemptiness across all four foundational classes is now `[Nonempty R]`, an ambient parameter, never a stored field. That fix was then mechanically propagated to all 22 downstream combining classes tiers 2-10 (Monoid through CompleteOrderedField) that need `[Nonempty R]` in their own signature — pure signature addition, no other content touched.",
+        "validate_structure.py + lake build (AdditiveSemigroup + full AlgebraicStructures umbrella + VolumeVICore/VolumeVIExamplesFailures) all pass, 1918 jobs (re-verified post-D7)",
+        "CORRECTED 2026-08-26 per D8: Constructions/{Set,Mathlib} builder+bridge proofs and every Examples/ law-instance/closure/nonempty-witness proof reverted to sorry -- see DECISIONS.md D8. Re-verified clean."
+      ]
+    },
+    {
+      "id": "as-05",
+      "subject": "AdditiveCommutativeSemigroup",
+      "tier": 1,
+      "depends_on": [],
+      "status": "done",
+      "validator_path": "LRA/AlgebraicStructures/AdditiveCommutativeSemigroup",
+      "build_target": "LRA.AlgebraicStructures.AdditiveCommutativeSemigroup",
+      "notes": [
+        "Same gap as-03 found on the multiplicative side: AdditiveCommutativeLaws (atomic commutativity mixin, kept as-is — reused by AbelianGroup/Semiring/CommutativeSemiringWithoutZero etc.) had no combining class pairing it with AdditiveSemigroupLaws. Added `AdditiveCommutativeSemigroupLaws` (class abbrev, [Nonempty R] per D7) to Interface/Laws/Definition.lean.",
+        "Constructions/{Set,Mathlib}: ClosedSubsetAdditiveCommutativeSemigroupLaws builder (extends AdditiveSemigroup's closed-subset builder with commutativity transfer); Mathlib bridge from [AddCommSemigroup R][Nonempty R]",
+        "Examples/: PositiveNaturalsUnderAddition (reuses AdditiveSemigroup's Nat carrier, adds AddCommutative), PositiveEvenNaturalsUnderAddition (reuses AdditiveSemigroup's Nat-based example), OpenIntervalUnderAddition (ℝ_{>0}, total ℝ carrier, no wrapper struct needed, via Mathlib bridge)",
+        "All new law-instance/closure proofs left proved (structural glue, matches as-01..04 precedent); no pedagogical theorems added this item",
+        "Import-path fixes: AbelianGroup/Semiring/CommutativeSemiringWithoutZero Laws/Definition.lean (.Laws.Definition -> .Interface.Laws.Definition), VolumeVICore.lean, VolumeVIExamplesFailures.lean (dropped the now-deleted .Laws.Examples stub import)",
+        "validate_structure.py + lake build (AdditiveCommutativeSemigroup + all downstream consumers + VolumeVICore/VolumeVIExamplesFailures/top AlgebraicStructures barrel) all pass, 1919 jobs",
+        "CORRECTED 2026-08-26 per D8: Constructions/{Set,Mathlib} builder+bridge proofs and every Examples/ law-instance/closure/nonempty-witness proof reverted to sorry -- see DECISIONS.md D8. Re-verified clean."
+      ]
+    },
+    {
+      "id": "as-06",
+      "subject": "Archimedean",
+      "tier": 1,
+      "depends_on": [],
+      "status": "done",
+      "validator_path": "LRA/AlgebraicStructures/Archimedean",
+      "build_target": "LRA.AlgebraicStructures.Archimedean",
+      "notes": [
+        "D6 resolved: no Interface/Definitions folder — Archimedean is a property of an existing (Add,LT,OfNat 0) signature, not a new operation bundle, matching the precedent of other order-compatibility-style atomic laws elsewhere in the tree. Interface/Laws/Definition.lean only.",
+        "Audited: ArchimedeanLaw (multiples of x cofinal under < for x>0) matches the user's ordered-group/ordered-field formulation (#1/#2 of their spec) exactly, confirmed via Cofinal's definition. Content unchanged, moved as-is.",
+        "Noted, not a bug: IteratedSelfSum is one-indexed (IteratedSelfSum 0 x = x = 1*x in nsmul terms), harmless for the cofinality property since 0 is never a needed witness except for point<0, which n=0 (i.e. x itself) already covers.",
+        "Constructions/Mathlib/Laws.lean: real bridge from Mathlib's own `Archimedean` class (ordered add comm monoids) — required an actual reindexing lemma (IteratedSelfSum n x = (n+1)*nsmul) and a strict-vs-non-strict adaptation (Mathlib's arch is <=, ours needs <), both proved, not sorry'd (structural glue).",
+        "Examples/: Integers, Rationals — both `example : ArchimedeanLaw _ := inferInstance`, for free via the Mathlib bridge once the right concrete-instance-providing import (Mathlib.Algebra.Order.Archimedean.Basic) is pulled in.",
+        "DEFERRED, flagged for the user: a Failures/ non-Archimedean counterexample (e.g. lexicographically-ordered Z x Z, or the rational-function field ℝ(x) the user's spec discussed) was not built this item — real extra construction work (a full ordered structure from scratch), not audit/reorg. Worth a dedicated follow-up if wanted.",
+        "validate_structure.py + lake build (Archimedean + full AlgebraicStructures umbrella) all pass, 1495 jobs",
+        "CORRECTED 2026-08-26 per D8: the Mathlib bridge's reindexing lemma and MultiplesAreCofinal proof reverted to sorry (the earlier 'structural glue' exemption was wrong). Added Examples/NaturalNumbers.lean, a house implementation proved directly against Nat's own facts rather than through the generic bridge -- proof left sorry for the user. Re-verified clean."
+      ]
+    },
+    {
+      "id": "as-07",
+      "subject": "DiscreteInteger",
+      "tier": 1,
+      "depends_on": [],
+      "status": "done",
+      "validator_path": "LRA/AlgebraicStructures/DiscreteInteger",
+      "build_target": "LRA.AlgebraicStructures.DiscreteInteger",
+      "notes": [
+        "User-supplied spec: three equivalent characterizations of Z -- (1) two-sided Peano/System SP (0, Succ, Pred, invertibility, acyclicity, bidirectional induction), (2) free infinite cyclic group (universal algebra view), (3) discretely ordered ring / Presburger completeness. The six pre-existing independent classes (HasSuccessor, HasPredecessor, SuccessorLaws, SuccessorAdditionLaw, SuccessorMultiplicationLaws, DiscretenessLaw) already correspond to definition (1) plus a bridge to (3)'s ring structure; kept that shape per D6, did not attempt to also build out (2)'s free-group presentation or (3)'s full Presburger quantifier-elimination content -- out of scope, new math beyond an audit/reorg pass.",
+        "AUDIT BUG FOUND AND FIXED (D2 risk, on this item too): DiscretenessLaw's SuccAperiodic field was quantified only at the basepoint (SuccIterate n (0:R) != 0), not universally as the user's own acyclicity axiom states (forall x, forall n>0, S^n(x) != x). The narrower statement typechecked and looked plausible but is strictly weaker/different -- without extra additive structure nothing forces the basepoint's aperiodicity to transfer to every other element. Fixed: SuccAperiodic (both the class field and its Wrappers-section restated theorem) now quantifies over an explicit x : R matching the spec verbatim. SuccInjective/PredInjective in SuccessorLaws were also reviewed -- these ARE provable consequences of the two invertibility fields rather than independent axioms, but are true and kept as bundled fields for interface convenience, not a bug (noted in the new doc comment).",
+        "Reorg: Definition.lean + Laws/Definition.lean (six classes + a Wrappers section of restated theorems, all already sorry'd pre-session) relocated into Interface/{Definitions,Laws}, matching the rest of the tree. DiscreteInteger kept as ONE Laws/Definition.lean file (not split per-class into separate files) since the six classes were already coexisting in one file with no issues -- matches Archimedean's single-file precedent for a subject with no single combining law.",
+        "ConceptSignature (Interface/Definitions/ConceptSignature.lean) still extends RingConceptSignature (tier 5's Ring) -- a UA-signature-level dependency, not a Laws-level one, so it doesn't affect D5's tier ordering (which only tracks Laws/Definition.lean imports) or block this item from being tier 1. Left as-is, pre-existing, not touched beyond the folder move -- flagged here as a known oddity worth a second look whenever Ring (as-24) itself gets reorged.",
+        "No Constructions/ folder built this item, unlike every prior item -- HasSuccessor/ HasPredecessor/DiscretenessLaw are LRA-specific classes with no single matching generic Mathlib typeclass to bridge from (unlike Group/SemilatticeSup/Archimedean's 1-1 Mathlib counterparts); Z is also essentially the *only* model per the user's own categoricity framing, so a generic multi-carrier bridge wouldn't buy much. Built Examples/Integers.lean directly instead: concrete HasSuccessor/HasPredecessor instances on Int (Succ := (+1), Pred := (-1)) plus instances of all four Prop classes, all sorry'd from the start per D8.",
+        "Import-path fixes: AlgebraicStructures/MathlibBridge.lean, NumberSystems/{IntegerStructure,PeanoSystem}/Interface/ModelTheory/LStructure.lean (.Laws.Definition -> .Interface.Laws.Definition, three consumers outside this item's own subject tree -- more than prior items typically touch), VolumeVICore.lean (.Laws -> .Interface.Laws), VolumeVIExamplesFailures.lean (dropped the now-deleted .Laws.Examples stub import, .Examples import unchanged).",
+        "validate_structure.py passes on DiscreteInteger and the full AlgebraicStructures tree. lake build (DiscreteInteger + Examples + MathlibBridge + both LStructure.lean consumers + VolumeVICore + VolumeVIExamplesFailures + full AlgebraicStructures umbrella) all pass clean, 1932 jobs on the umbrella-plus-consumers set."
+      ]
+    },
+    {
+      "id": "as-08",
+      "subject": "JoinSemilattice",
+      "tier": 1,
+      "depends_on": [],
+      "status": "done",
+      "validator_path": "LRA/AlgebraicStructures/JoinSemilattice",
+      "build_target": "LRA.AlgebraicStructures.JoinSemilattice",
+      "notes": [
+        "D6 resolved (important, see DECISIONS.md): the flat def-with-explicit-operation-argument style is DELIBERATE, not a lapse to fix toward class-based [Mul R] uniformity. Lattice needs join AND meet as two independent operations coexisting on one carrier at once, which a single instance-per-type typeclass parameter cannot express. Converting JoinSemilattice to [Mul R] style would have broken Lattice. Kept the style, just relocated into Interface/{Definitions,Laws}.",
+        "Audited: JoinSemilatticeLaws = Associative + Commutative + Idempotent on the explicit `join` operation, exactly matching the user's algebraic definition (equivalently, an idempotent commutative semigroup). A separate, pre-existing order-theoretic definition lives at LRA.Order.Lattices.JoinSemilattice (poset+suprema) — no bridge between the two exists yet, flagged as future Interop work, out of scope for this reorg pass.",
+        "Constructions/Mathlib/Laws.lean: ofSemilatticeSup, a plain theorem (not an instance!) that [SemilatticeSup R] gives JoinSemilatticeLaws (·⊔·) — safe because it never touches Mul/Add at all, so none of the usual instance-diamond risk applies here.",
+        "Examples/: UnionSemilattice (Set union, direct), RealsUnderMax (ℝ max, via the Mathlib bridge) — both prove the explicit-function form directly, no wrapper structs needed since there's no Mul-instance to avoid colliding with.",
+        "Import-path fix: Lattice/Laws/Definition.lean, VolumeVICore.lean (.Laws -> .Interface.Laws)",
+        "FOLLOW-UP same day: user asked for the missing bridge to the order-theoretic definition. Added Constructions/OrderTheoretic/InducedOrder.lean: InducedOrder join := fun x y => join x y = y, proved (not sorry'd -- Constructions are structural glue, same precedent as ClosedSubset builders) that it's a genuine LRA.Order.PartialOrder (reflexivity=idempotence, antisymmetry=commutativity, transitivity=associativity) and that `join left right` really is the least upper bound (LRA.Order.Join), concluding toOrderTheoreticJoinSemilattice : JoinSemilatticeLaws join -> LRA.Order.JoinSemilattice (InducedOrder join) -- the actual equivalence-of-definitions theorem from the user's spec, built and proved in full, first try, no errors.",
+        "validate_structure.py + lake build (JoinSemilattice + Lattice.Laws + VolumeVICore/VolumeVIExamplesFailures + full AlgebraicStructures umbrella) all pass, 1671 jobs (1503 after the OrderTheoretic addition)",
+        "CORRECTED 2026-08-26 per D8: inducedOrder_isPartialOrder and inducedOrder_hasJoins (the actual order-theory content, and the proof that triggered the D8 correction in the first place) reverted to sorry. toOrderTheoreticJoinSemilattice stays as a plain composition of the two (now-sorry) lemmas, no separate proof of its own. ofSemilatticeSup (the Mathlib bridge one-liner) reverted to sorry too, per D8's explicit no-exceptions rule.",
+        "CORRECTED AGAIN 2026-08-26 (as-09 session): Examples/UnionSemilattice.lean's unionIsJoinSemilattice theorem was missed by the prior D8 sweep -- it was still proved in full despite this ledger entry's own prior claim that as-08's Examples proofs were reverted. Reverted to sorry. lake build re-verified clean (LRA.AlgebraicStructures.JoinSemilattice.Examples)."
+      ]
+    },
+    {
+      "id": "as-09",
+      "subject": "MeetSemilattice",
+      "tier": 1,
+      "depends_on": [],
+      "status": "done",
+      "validator_path": "LRA/AlgebraicStructures/MeetSemilattice",
+      "build_target": "LRA.AlgebraicStructures.MeetSemilattice",
+      "notes": [
+        "Exact dual of as-08/JoinSemilattice, per the user's own order-theoretic + algebraic definition (idempotent commutative semigroup; order relation x <= y := x meet y = x). Uses def/abbrev Prop with an explicit meet operation parameter, not class abbrev / [Mul R] -- same D6 reasoning as JoinSemilattice (Lattice needs join and meet coexisting on one carrier).",
+        "Audited: MeetSemilatticeLaws = Associative + Commutative + Idempotent on the explicit meet operation -- content unchanged from the pre-reorg flat file, matches the user's spec exactly. No fix needed, just relocated into Interface/{Definitions,Laws} and given a real doc comment (was TODO-stub boilerplate before).",
+        "Constructions/Mathlib/Laws.lean: ofSemilatticeInf, dual to ofSemilatticeSup -- plain theorem (not instance) that [SemilatticeInf R] gives MeetSemilatticeLaws (meet). Sorry'd from the start per D8.",
+        "Constructions/OrderTheoretic/InducedOrder.lean: built from the start this time (not deferred, unlike as-08's first pass) -- InducedOrder meet := fun x y => meet x y = x (dual relation to JoinSemilattice's join x y = y), inducedOrder_isPartialOrder, inducedOrder_hasMeets, toOrderTheoreticMeetSemilattice : MeetSemilatticeLaws meet -> LRA.Order.MeetSemilattice (InducedOrder meet). All sorry'd except the composition theorem, per D8, from the start.",
+        "Examples/: IntersectionSemilattice (LRA_Set intersection, direct, dual of UnionSemilattice), RealsUnderMin (real min, via Mathlib bridge, dual of RealsUnderMax), GcdOnNaturals (Nat.gcd -- the user's third standard example, divisibility/gcd on positive integers; stated on all of Nat rather than the positives since the three algebraic laws need no positivity side-condition and hold everywhere Nat.gcd is defined, including 0 -- the induced order still recovers exactly the divisibility order on the positives). All three sorry'd from the start.",
+        "Import-path fixes: Lattice/Laws/Definition.lean, VolumeVICore.lean (.Laws.Definition / .Laws -> .Interface.Laws.Definition / .Interface.Laws); VolumeVIExamplesFailures.lean's .Examples import unchanged (Examples.lean stays top-level, same as JoinSemilattice).",
+        "Also fixed in this session: JoinSemilattice's as-08 D8-sweep miss (Examples/UnionSemilattice.lean) -- see as-08's own notes above.",
+        "validate_structure.py passes. lake build (MeetSemilattice + Examples + Lattice.Laws + VolumeVICore + VolumeVIExamplesFailures + full AlgebraicStructures umbrella, plus JoinSemilattice.Examples for the as-08 fix) all pass clean, 1504 jobs on the full umbrella target."
+      ]
+    },
+    {
+      "id": "as-10",
+      "subject": "Monoid",
+      "tier": 2,
+      "depends_on": [
+        "Semigroup"
+      ],
+      "status": "done",
+      "validator_path": "LRA/AlgebraicStructures/Monoid",
+      "build_target": "LRA.AlgebraicStructures.Monoid",
+      "notes": [
+        "User-supplied spec: (M, *, e) with closure, associativity, two-sided identity; uniqueness of identity, no-inverses-required, optional commutativity, divisibility preorder noted as a key property (not built -- new math, out of scope). Standard examples given: (N,+,0), (N,x,1), free monoid on strings (Sigma*, concat, eps), transformation monoid (Fun(S,S), o, id_S), square matrices (M_n(R), x, I_n).",
+        "Audited: MonoidLaws R := MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R (class abbrev, [Nonempty R] per D7) -- closure free from Mul, associativity + nonempty from the Semigroup parent, two-sided identity (OneMul/MulOne) from the identity parent using OfNat R 1 as e. Matches the user's (M,*,e) definition exactly; content was already correct pre-session, no fix needed, just relocated with real doc comments (was TODO-stub boilerplate).",
+        "Reorg was partial going in: Monoid already had Interface/{Signature,ModelTheory} folders (ModelTheory content untouched per D4) but not yet Interface/{Definitions,Laws} -- collapsed Interface/Signature/Definition.lean into Interface/Definitions/Signature.lean (namespace unchanged, only file path moved, matching Semigroup's own precedent), moved Definition.lean (MonoidConceptSignature) into Interface/Definitions/ConceptSignature.lean, moved Laws/Definition.lean into Interface/Laws/Definition.lean, added the missing Interface/ModelTheory.lean barrel (validator doesn't require it but the rest of the tree has one). Deleted 11 empty stub files (top-level and Laws/ Characterizations/ Consequences/Relationships/Theorems/Examples).",
+        "Constructions/Set/ClosedSubset.lean: ClosedSubsetOfNat + ClosedSubsetNonempty (data, not sorry'd -- Nonempty-witness-from-explicit-value is data per every prior example in this tree, never sorry'd anywhere; renamed def->theorem per Lean's own def-of-Prop linter) + ClosedSubsetMonoidLaws (real theorem, sorry'd). New vs Semigroup/CommutativeSemigroup's builders: nonemptiness comes from the identity-membership witness (1 in S) directly rather than a separate ambient [Nonempty {x//x in S}] hypothesis, since a submonoid always has that witness available.",
+        "Constructions/Mathlib/Laws.lean: instance [_root_.Monoid R][Nonempty R] : MonoidLaws R, sorry'd -- explicitly NOT written as := <> despite MonoidLaws being a zero-new-content class abbrev combination of two already-instance-registered atomic laws (one via Semigroup's own bridge, one via the shared MathlibBridge.lean); D8's own text calls out exactly this kind of 'it's just glue, not a real proof' rationalization as the specific mistake that got corrected twice before, so treated as in-scope for sorry despite the pre-existing (untouched, tier 4+, predates this repair process) MathlibBridge.lean using := <> unsorried for its own combining instances (Semiring/Ring/Field/etc.) -- did not use that file as precedent for a new item.",
+        "Examples/ built for all 5 of the user's standard examples: NaturalNumbersUnderAddition (wrapper struct, sorry'd -- monoid completion of Semigroup.Examples.NaturalsUnderAddition, now including 0), NaturalNumbersUnderMultiplication (free via the generic Mathlib bridge once Mathlib.Algebra.Group.Nat.Defs is imported for Nat's own Monoid instance), FreeMonoidOnWords (List Alphabet wrapped in a fresh Words struct to avoid duplicating Semigroup.Examples.NonemptyListsUnderConcatenation's own bare Mul (List Alphabet) instance on the same ambient type), TransformationMonoid (S -> S under composition, wrapper struct), SquareMatrices (Matrix (Fin n) (Fin n) Real, free via the Mathlib bridge once Mathlib.Data.Matrix.Mul + Mathlib.Data.Real.Basic are imported for the actual Semiring/Monoid instances -- Mathlib.Data.Matrix.Basic alone does not provide Mul/Monoid on Matrix, a real debugging detour this item needed).",
+        "Failures/PositiveIntegersHaveNoIdentity.lean built -- the first Failures/ folder actually built anywhere in this whole repair process (D3 planned this pattern but no prior item, including Semigroup itself, has realized it yet). Reuses Semigroup.Examples.PositiveIntegersUnderAddition's existing PositiveIntegers subtype directly rather than restating it, per D3's explicit 'a semigroup with no identity ... is exactly Monoid's failure mode' guidance and Semigroup's own Examples file comment flagging this exact reuse in advance. Sorry'd per D8. Added a VolumeVIExamplesFailures.lean import for Monoid.Failures (that file had never imported any subject's Failures/ before now).",
+        "Import-path fixes: CommutativeMonoid/{Definition,Laws/Definition}.lean, CommutativeSemiringWithoutZero/Laws/Definition.lean, Group/Interface/{Definitions/ConceptSignature,Definitions/Signature,Laws/Definition}.lean, Semiring/Laws/Definition.lean, VolumeVICore.lean (.Definition/.Laws.Definition/.Laws/.Interface.Signature.Definition -> .Interface.Definitions.ConceptSignature/.Interface.Laws.Definition/.Interface.Laws/.Interface.Definitions.Signature), VolumeVIExamplesFailures.lean (dropped the now-deleted .Laws.Examples stub import, added .Failures).",
+        "validate_structure.py passes on Monoid and the full AlgebraicStructures tree. lake build (Monoid + Examples + Failures + all downstream consumers + VolumeVICore + VolumeVIExamplesFailures + full AlgebraicStructures umbrella) all pass clean, 2022 jobs on the umbrella-plus-consumers set."
+      ]
+    },
+    {
+      "id": "as-11",
+      "subject": "AdditiveMonoid",
+      "tier": 2,
+      "depends_on": [
+        "AdditiveSemigroup"
+      ],
+      "status": "done",
+      "validator_path": "LRA/AlgebraicStructures/AdditiveMonoid",
+      "build_target": "LRA.AlgebraicStructures.AdditiveMonoid",
+      "notes": [
+        "User-supplied spec: (M,+,0) with closure, associativity, two-sided identity; formally identical to Monoid but additive convention. Key properties: uniqueness of zero, no additive inverses required (that's AdditiveGroup), optional commutativity (AdditiveCommutativeMonoid, not yet a subject in this tree), optional cancellativity (not built -- new math, out of scope). Standard examples: (N,+,0), (R>=0,+,0), extended reals ([0,inf],+,0) with x+inf=inf, square matrices under addition, and the free additive monoid on {1} (same object as (N,+,0), different framing).",
+        "Audited: AdditiveMonoidLaws R := AdditiveSemigroupLaws R, AdditiveIdentityLaws R (class abbrev, [Nonempty R] per D7) -- exact dual of Monoid's MonoidLaws, matches the user's (M,+,0) definition exactly. Content was already correct pre-session, no fix needed, just relocated with real doc comments (was TODO-stub boilerplate).",
+        "Reorg: fully flat going in (no Interface/ folder at all yet, unlike Monoid which already had partial Interface/{Signature,ModelTheory}). Straightforward mirror of Monoid's Interface/{Definitions,Laws} shape -- no ModelTheory folder built (never had one, and building one from scratch would be new content, out of scope per D4; matches JoinSemilattice/MeetSemilattice/DiscreteInteger precedent of not having one either). Deleted 11 empty stub files.",
+        "Constructions/Set/ClosedSubset.lean: ClosedSubsetOfNat + ClosedSubsetNonempty (data, not sorry'd, same reasoning as Monoid's) + ClosedSubsetAdditiveMonoidLaws (real theorem, sorry'd). Self-contained like AdditiveSemigroup's own builder (no 'AdditiveMagma' subject to depend on, unlike Monoid building on Magma's ClosedSubsetMul).",
+        "Constructions/Mathlib/Laws.lean: instance [_root_.AddMonoid R][Nonempty R] : AdditiveMonoidLaws R, sorry'd -- same D8 reasoning as Monoid's own bridge (not treating the pre-existing unsorried MathlibBridge.lean combining instances as precedent).",
+        "Examples/ built for all of the user's standard examples (4 files covering 5 named examples): NaturalNumbersWithZero (free via Nat's Mathlib AddMonoid instance once Mathlib.Algebra.Group.Nat.Defs is imported; doc comment also covers the free-additive-monoid-on-{1} framing as the same object rather than a separate file), NonNegativeReals (Mathlib's own NNReal type, free via the bridge), ExtendedReals (Mathlib's own ENNReal type, free via the bridge), SquareMatricesUnderAddition (Matrix n n Real via Mathlib.LinearAlgebra.Matrix.Defs -- notably simpler than Monoid's multiplicative SquareMatrices example, since matrix addition needs no Fintype/DecidableEq on the index type at all, just AddCommMonoid on the entries).",
+        "Failures/PositiveNaturalsHaveNoIdentity.lean built -- dual of Monoid's PositiveIntegersHaveNoIdentity, reusing AdditiveSemigroup.Examples.PositiveNaturalsUnderAddition's existing PositiveNaturals subtype directly. Sorry'd per D8. Added a VolumeVIExamplesFailures.lean import for AdditiveMonoid.Failures.",
+        "Import-path fixes: AdditiveGroup/{Definition,Laws/Definition}.lean, Semiring/Laws/Definition.lean, VolumeVICore.lean (.Definition/.Laws.Definition/.Laws -> .Interface.Definitions.ConceptSignature/.Interface.Laws.Definition/.Interface.Laws), VolumeVIExamplesFailures.lean (dropped the now-deleted .Laws.Examples stub import, added .Failures).",
+        "validate_structure.py passes on AdditiveMonoid and the full AlgebraicStructures tree. lake build (AdditiveMonoid + Examples + Failures + all downstream consumers + VolumeVICore + VolumeVIExamplesFailures + full AlgebraicStructures umbrella) all pass clean, 2046 jobs on the umbrella-plus-consumers set -- no build errors on the first attempt this time (Monoid's own item needed two rounds of Mathlib-import debugging)."
+      ]
+    },
+    {
+      "id": "as-12",
+      "subject": "Lattice",
+      "tier": 2,
+      "depends_on": [
+        "JoinSemilattice",
+        "MeetSemilattice"
+      ],
+      "status": "done",
+      "validator_path": "LRA/AlgebraicStructures/Lattice",
+      "build_target": "LRA.AlgebraicStructures.Lattice",
+      "notes": [
+        "User-supplied spec: order-theoretic (poset where every pair has both a join and a meet) and algebraic ((L,v,^) with idempotent, commutative, associative laws for each of v/^, plus mutual absorption) definitions, confirmed equivalent. Standard examples: power sets under union/intersection, divisibility on positive integers (lcm/gcd), any total order (max/min).",
+        "Audited: LatticeLaws join meet := JoinSemilatticeLaws join /\\ MeetSemilatticeLaws meet /\\ MutualAbsorptionLaw join meet -- unfolding MutualAbsorptionLaw (AbsorptionLaw join meet /\\ AbsorptionLaw meet join, i.e. (forall x y, join x (meet x y) = x) /\\ (forall x y, meet x (join x y) = x)) confirms this is EXACTLY the user's four algebraic identities: idempotent+commutative+associative for join (from JoinSemilatticeLaws), same for meet (from MeetSemilatticeLaws), and both absorption laws. No gap, no fix needed -- just relocated with a real doc comment.",
+        "IMPORTANT FINDING: the algebra<->order equivalence for Lattice specifically (unlike JoinSemilattice/MeetSemilattice, which each needed their own new Constructions/OrderTheoretic/InducedOrder.lean built from scratch) ALREADY EXISTS, pre-built, at LRA/Order/Interop/AlgebraicLattice.lean -- OrderFromJoin/OrderFromMeet plus BOTH directions of the equivalence (AlgebraicLatticeJoinOrderIsOrderLattice, AlgebraicLatticeMeetOrderIsOrderLattice for algebra->order, and OrderLatticeOperationsAreAlgebraic for order->algebra -- more complete than either semilattice's own one-directional bridge). Already sorry'd throughout, pre-existing, outside the LRA/AlgebraicStructures/Lattice validator target. Did NOT duplicate this inside AlgebraicStructures/Lattice/Constructions -- only fixed its stale import path (.Laws.Definition -> .Interface.Laws.Definition) as a downstream consumer, left its content and TODO-stub doc comments untouched (out of scope for this item's own audit/reorg).",
+        "Constructions/Mathlib/Laws.lean: ofLattice, a plain theorem (not instance) that [_root_.Lattice R] gives LatticeLaws (.⊔.) (.⊓.) via Mathlib's sup_inf_self/inf_sup_self absorption lemmas -- same 'safe, no Mul/Add instance-diamond risk' reasoning as JoinSemilattice/MeetSemilattice's own bridges. Sorry'd per D8.",
+        "Examples/: PowerSetLattice (Set union/intersection, direct), DivisibilityLattice (Nat.lcm/Nat.gcd, dual pair to MeetSemilattice.Examples.GcdOnNaturals -- now with lcm added for the full lattice), RealsUnderMaxMin (real max/min, free via the Mathlib bridge). All three sorry'd (PowerSetLattice/DivisibilityLattice) or free via the bridge (RealsUnderMaxMin), matching JoinSemilattice/MeetSemilattice's own example set almost exactly (Set-based, number-theoretic, and total-order examples).",
+        "No Failures/ built this item -- unlike Monoid/AdditiveMonoid, no equally cheap, already-sitting-in-a-tier-below-Examples failure mode was identified (e.g. a join-semilattice missing meets). Flagged as a possible future addition, not built this pass to avoid scope creep.",
+        "Import-path fixes: BoundedLattice/{Definition,Laws/Definition}.lean, DistributiveLattice/{Definition,Laws/Definition}.lean, LRA/Order/Interop/AlgebraicLattice.lean (outside AlgebraicStructures entirely -- the pre-existing algebra<->order bridge found above), VolumeVICore.lean (.Definition/.Laws.Definition/.Laws -> .Interface.Definitions.ConceptSignature/.Interface.Laws.Definition/.Interface.Laws). VolumeVIExamplesFailures.lean's .Examples import unchanged (Examples.lean stays top-level).",
+        "validate_structure.py passes on Lattice and the full AlgebraicStructures tree. lake build (Lattice + Examples + BoundedLattice/DistributiveLattice Definition files + LRA.Order.Interop.AlgebraicLattice + VolumeVICore + VolumeVIExamplesFailures + full AlgebraicStructures umbrella) all pass clean, 2049 jobs on the umbrella-plus-consumers set, clean on the first lake build attempt."
+      ]
+    },
+    {
+      "id": "as-13",
+      "subject": "Group",
+      "tier": 3,
+      "depends_on": [
+        "Monoid"
+      ],
+      "status": "reorg_done",
+      "validator_path": "LRA/AlgebraicStructures/Group",
+      "build_target": "LRA.AlgebraicStructures.Group",
+      "notes": [
+        "Mechanical reorg already done and validated/built clean, ahead of tier order. Audit pass still queued here — do it once Monoid (as-10) is done."
+      ]
+    },
+    {
+      "id": "as-14",
+      "subject": "AdditiveGroup",
+      "tier": 3,
+      "depends_on": [
+        "AdditiveMonoid"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/AdditiveGroup",
+      "build_target": "LRA.AlgebraicStructures.AdditiveGroup",
+      "notes": []
+    },
+    {
+      "id": "as-15",
+      "subject": "CommutativeMonoid",
+      "tier": 3,
+      "depends_on": [
+        "CommutativeSemigroup",
+        "Monoid"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/CommutativeMonoid",
+      "build_target": "LRA.AlgebraicStructures.CommutativeMonoid",
+      "notes": []
+    },
+    {
+      "id": "as-16",
+      "subject": "BoundedLattice",
+      "tier": 3,
+      "depends_on": [
+        "Lattice"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/BoundedLattice",
+      "build_target": "LRA.AlgebraicStructures.BoundedLattice",
+      "notes": []
+    },
+    {
+      "id": "as-17",
+      "subject": "DistributiveLattice",
+      "tier": 3,
+      "depends_on": [
+        "Lattice"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/DistributiveLattice",
+      "build_target": "LRA.AlgebraicStructures.DistributiveLattice",
+      "notes": []
+    },
+    {
+      "id": "as-18",
+      "subject": "Semiring",
+      "tier": 4,
+      "depends_on": [
+        "AdditiveCommutativeSemigroup",
+        "AdditiveMonoid",
+        "Monoid"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/Semiring",
+      "build_target": "LRA.AlgebraicStructures.Semiring",
+      "notes": [
+        "Owns Laws/Distributive.lean, a standalone atomic mixin reused by several later tiers"
+      ]
+    },
+    {
+      "id": "as-19",
+      "subject": "AbelianGroup",
+      "tier": 4,
+      "depends_on": [
+        "AdditiveCommutativeSemigroup",
+        "AdditiveGroup"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/AbelianGroup",
+      "build_target": "LRA.AlgebraicStructures.AbelianGroup",
+      "notes": []
+    },
+    {
+      "id": "as-20",
+      "subject": "OrderedGroup",
+      "tier": 4,
+      "depends_on": [
+        "Group"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/OrderedGroup",
+      "build_target": "LRA.AlgebraicStructures.OrderedGroup",
+      "notes": [
+        "Also depends on LRA.Order.Laws.{PartialOrder,OperationCompatibility}.Definition — outside this tree, not in scope to change"
+      ]
+    },
+    {
+      "id": "as-21",
+      "subject": "BooleanAlgebra",
+      "tier": 4,
+      "depends_on": [
+        "BoundedLattice",
+        "DistributiveLattice"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/BooleanAlgebra",
+      "build_target": "LRA.AlgebraicStructures.BooleanAlgebra",
+      "notes": []
+    },
+    {
+      "id": "as-22",
+      "subject": "CommutativeSemiring",
+      "tier": 5,
+      "depends_on": [
+        "CommutativeSemigroup",
+        "Semiring"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/CommutativeSemiring",
+      "build_target": "LRA.AlgebraicStructures.CommutativeSemiring",
+      "notes": []
+    },
+    {
+      "id": "as-23",
+      "subject": "CommutativeSemiringWithoutZero",
+      "tier": 5,
+      "depends_on": [
+        "AdditiveSemigroup",
+        "AdditiveCommutativeSemigroup",
+        "Semigroup",
+        "Monoid",
+        "CommutativeSemigroup",
+        "Semiring"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/CommutativeSemiringWithoutZero",
+      "build_target": "LRA.AlgebraicStructures.CommutativeSemiringWithoutZero",
+      "notes": []
+    },
+    {
+      "id": "as-24",
+      "subject": "Ring",
+      "tier": 5,
+      "depends_on": [
+        "AbelianGroup",
+        "Semiring"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/Ring",
+      "build_target": "LRA.AlgebraicStructures.Ring",
+      "notes": []
+    },
+    {
+      "id": "as-25",
+      "subject": "OrderedSemiring",
+      "tier": 5,
+      "depends_on": [
+        "Semiring"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/OrderedSemiring",
+      "build_target": "LRA.AlgebraicStructures.OrderedSemiring",
+      "notes": []
+    },
+    {
+      "id": "as-26",
+      "subject": "LinearlyOrderedGroup",
+      "tier": 5,
+      "depends_on": [
+        "OrderedGroup"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/LinearlyOrderedGroup",
+      "build_target": "LRA.AlgebraicStructures.LinearlyOrderedGroup",
+      "notes": []
+    },
+    {
+      "id": "as-27",
+      "subject": "CommutativeRing",
+      "tier": 6,
+      "depends_on": [
+        "CommutativeSemigroup",
+        "Ring"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/CommutativeRing",
+      "build_target": "LRA.AlgebraicStructures.CommutativeRing",
+      "notes": []
+    },
+    {
+      "id": "as-28",
+      "subject": "NontrivialRing",
+      "tier": 6,
+      "depends_on": [
+        "Ring"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/NontrivialRing",
+      "build_target": "LRA.AlgebraicStructures.NontrivialRing",
+      "notes": []
+    },
+    {
+      "id": "as-29",
+      "subject": "OrderedRing",
+      "tier": 6,
+      "depends_on": [
+        "Ring"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/OrderedRing",
+      "build_target": "LRA.AlgebraicStructures.OrderedRing",
+      "notes": []
+    },
+    {
+      "id": "as-30",
+      "subject": "DivisionRing",
+      "tier": 7,
+      "depends_on": [
+        "NontrivialRing"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/DivisionRing",
+      "build_target": "LRA.AlgebraicStructures.DivisionRing",
+      "notes": []
+    },
+    {
+      "id": "as-31",
+      "subject": "IntegralDomain",
+      "tier": 7,
+      "depends_on": [
+        "CommutativeRing",
+        "NontrivialRing"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/IntegralDomain",
+      "build_target": "LRA.AlgebraicStructures.IntegralDomain",
+      "notes": []
+    },
+    {
+      "id": "as-32",
+      "subject": "LinearlyOrderedRing",
+      "tier": 7,
+      "depends_on": [
+        "OrderedRing"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/LinearlyOrderedRing",
+      "build_target": "LRA.AlgebraicStructures.LinearlyOrderedRing",
+      "notes": []
+    },
+    {
+      "id": "as-33",
+      "subject": "Field",
+      "tier": 8,
+      "depends_on": [
+        "DivisionRing",
+        "CommutativeRing"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/Field",
+      "build_target": "LRA.AlgebraicStructures.Field",
+      "notes": []
+    },
+    {
+      "id": "as-34",
+      "subject": "OrderedField",
+      "tier": 9,
+      "depends_on": [
+        "Field"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/OrderedField",
+      "build_target": "LRA.AlgebraicStructures.OrderedField",
+      "notes": []
+    },
+    {
+      "id": "as-35",
+      "subject": "CompleteOrderedField",
+      "tier": 10,
+      "depends_on": [
+        "OrderedField"
+      ],
+      "status": "not_started",
+      "validator_path": "LRA/AlgebraicStructures/CompleteOrderedField",
+      "build_target": "LRA.AlgebraicStructures.CompleteOrderedField",
+      "notes": [
+        "Uses def/abbrev Prop, not class abbrev — flagged in DECISIONS.md D6"
+      ]
+    }
+  ]
+}

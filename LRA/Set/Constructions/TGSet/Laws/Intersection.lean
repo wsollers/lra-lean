@@ -1,5 +1,5 @@
 import LRA.Set.Constructions.TGSet.Instances
-import LRA.Set.Interface.Intersection
+import LRA.Set.Interface.Laws.Intersection
 
 namespace LRA.Set.Constructions.TGSet
 

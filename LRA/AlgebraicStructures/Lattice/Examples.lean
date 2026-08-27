@@ -1,5 +1,3 @@
-import LRA.AlgebraicStructures.Lattice.Definition
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.Lattice.Examples.PowerSetLattice
+import LRA.AlgebraicStructures.Lattice.Examples.DivisibilityLattice
+import LRA.AlgebraicStructures.Lattice.Examples.RealsUnderMaxMin

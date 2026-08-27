@@ -1,5 +1,3 @@
-import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples.PositiveNaturalsUnderAddition
+import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples.PositiveEvenNaturalsUnderAddition
+import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples.OpenIntervalUnderAddition

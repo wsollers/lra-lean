@@ -1,5 +1,5 @@
 import LRA.Order.Bounds.TopElement.Definition
-import LRA.Set.Interface.Membership
+import LRA.Set.Interface.Laws.Membership
 
 namespace LRA.Order
 

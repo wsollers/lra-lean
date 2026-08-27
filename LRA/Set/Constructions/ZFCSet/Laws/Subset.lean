@@ -1,5 +1,5 @@
 import LRA.Set.Constructions.ZFCSet.Instances
-import LRA.Set.Interface.Subset
+import LRA.Set.Interface.Laws.Subset
 
 namespace LRA.Set.Constructions.ZFCSet
 

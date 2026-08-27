@@ -1,7 +1,7 @@
 import Mathlib.Data.Set.Basic
 import Mathlib.Order.SetNotation
 import Mathlib.Order.SymmDiff
-import LRA.Set.Interface.Operations
+import LRA.Set.Interface.Definitions.Operations
 
 namespace LRA.Set.MathlibPredicateSet
 

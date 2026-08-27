@@ -1,5 +1,5 @@
 import LRA.Order.Bounds.BoundSets.Theorems
-import LRA.Set.Interface.Indexed
+import LRA.Set.Interface.Laws.Indexed
 
 namespace LRA.Order
 

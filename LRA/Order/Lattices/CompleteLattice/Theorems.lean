@@ -1,4 +1,4 @@
-import LRA.Set.Interface.Membership
+import LRA.Set.Interface.Laws.Membership
 import LRA.Order.Lattices.CompleteLattice.Definition
 import LRA.Order.Lattices.Lattice.Definition
 

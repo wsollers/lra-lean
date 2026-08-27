@@ -1,6 +1,6 @@
 import LRA.Order.Bounds.BoundedBelow.Definition
 import LRA.Order.Bounds.LowerBound.Theorems
-import LRA.Set.Interface.Membership
+import LRA.Set.Interface.Laws.Membership
 import LRA.Relation.Properties.Definition
 
 namespace LRA.Order

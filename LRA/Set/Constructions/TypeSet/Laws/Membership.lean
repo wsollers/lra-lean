@@ -1,7 +1,7 @@
 import LRA.Set.Constructions.TypeSet.Instances
-import LRA.Set.Interface.Membership
-import LRA.Set.Interface.Indexed
-import LRA.Set.Interface.Families
+import LRA.Set.Interface.Laws.Membership
+import LRA.Set.Interface.Laws.Indexed
+import LRA.Set.Interface.Laws.Families
 
 namespace LRA.Set.Constructions.TypeSet
 

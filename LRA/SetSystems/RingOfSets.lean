@@ -1,4 +1,4 @@
-import LRA.Set.Interface.Operations
+import LRA.Set.Interface.Definitions.Operations
 import LRA.SetSystems.Closure
 
 namespace LRA.SetSystems

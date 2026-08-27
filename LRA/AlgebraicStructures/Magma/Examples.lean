@@ -1,5 +1,5 @@
-import LRA.AlgebraicStructures.Magma
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.Magma.Examples.RockPaperScissors
+import LRA.AlgebraicStructures.Magma.Examples.IntegersUnderSubtraction
+import LRA.AlgebraicStructures.Magma.Examples.NonzeroRealsUnderDivision
+import LRA.AlgebraicStructures.Magma.Examples.NonemptyZFCSetsUnderUnion
+import LRA.AlgebraicStructures.Magma.Examples.IdentityNotRequired

@@ -1,5 +1,2 @@
-import LRA.AlgebraicStructures.JoinSemilattice.Definition
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.JoinSemilattice.Examples.UnionSemilattice
+import LRA.AlgebraicStructures.JoinSemilattice.Examples.RealsUnderMax

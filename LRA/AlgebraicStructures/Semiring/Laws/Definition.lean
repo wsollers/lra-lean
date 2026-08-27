@@ -1,6 +1,6 @@
-import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Laws.Definition
-import LRA.AlgebraicStructures.AdditiveMonoid.Laws.Definition
-import LRA.AlgebraicStructures.Monoid.Laws.Definition
+import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Interface.Laws.Definition
+import LRA.AlgebraicStructures.AdditiveMonoid.Interface.Laws.Definition
+import LRA.AlgebraicStructures.Monoid.Interface.Laws.Definition
 import LRA.AlgebraicStructures.Semiring.Laws.Distributive
 import LRA.Operation
 
@@ -68,7 +68,7 @@ class ZeroAbsorbingLaws (R : Type u) [Mul R] [OfNat R 0] : Prop where
 Predicate logic:
 
   class abbrev SemiringLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
   AdditiveCommutativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
@@ -77,7 +77,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   class abbrev SemiringLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
   AdditiveCommutativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
@@ -87,7 +87,7 @@ Logical form (Lean):
 
 ```lean
 class abbrev SemiringLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
   AdditiveCommutativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
@@ -114,7 +114,7 @@ Related proof moves: TODO
 
 -/
 class abbrev SemiringLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
   AdditiveCommutativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,

@@ -1,5 +1,5 @@
-import LRA.AlgebraicStructures.Monoid.Definition
-import LRA.AlgebraicStructures.Monoid.Interface.Signature.Definition
+import LRA.AlgebraicStructures.Monoid.Interface.Definitions.ConceptSignature
+import LRA.AlgebraicStructures.Monoid.Interface.Definitions.Signature
 import LRA.Operation
 
 namespace LRA.AlgebraicStructures.Monoid.Interface.ModelTheory

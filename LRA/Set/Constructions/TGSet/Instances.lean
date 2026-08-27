@@ -1,6 +1,6 @@
 import LRA.Set.Constructions.TGSet.Definition
 import LRA.Set.Constructions.TGSet.Public
-import LRA.Set.Interface.Operations
+import LRA.Set.Interface.Definitions.Operations
 
 namespace LRA.Set.Constructions.TGSet
 

@@ -13,7 +13,7 @@ universe u
 Predicate logic:
 
   class abbrev OrderedRingLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LE R] : Prop :=
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
   AdditiveInverseLaws R, AdditiveCommutativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
@@ -24,7 +24,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   class abbrev OrderedRingLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LE R] : Prop :=
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
   AdditiveInverseLaws R, AdditiveCommutativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
@@ -36,7 +36,7 @@ Logical form (Lean):
 
 ```lean
 class abbrev OrderedRingLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LE R] : Prop :=
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
   AdditiveInverseLaws R, AdditiveCommutativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
@@ -65,7 +65,7 @@ Related proof moves: TODO
 
 -/
 class abbrev OrderedRingLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LE R] : Prop :=
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
   AdditiveInverseLaws R, AdditiveCommutativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,

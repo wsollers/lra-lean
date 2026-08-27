@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Lattice.Laws.Definition
+import LRA.AlgebraicStructures.Lattice.Interface.Laws.Definition
 import LRA.Operation
 
 namespace LRA.AlgebraicStructures

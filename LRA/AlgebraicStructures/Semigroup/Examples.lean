@@ -1,5 +1,4 @@
-import LRA.AlgebraicStructures.Semigroup
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegersUnderAddition
+import LRA.AlgebraicStructures.Semigroup.Examples.EvenIntegersUnderMultiplication
+import LRA.AlgebraicStructures.Semigroup.Examples.NonemptyListsUnderConcatenation
+import LRA.AlgebraicStructures.Semigroup.Examples.IdentityNotRequired

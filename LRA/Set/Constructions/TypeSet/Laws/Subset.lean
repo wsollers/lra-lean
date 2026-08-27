@@ -1,5 +1,5 @@
 import LRA.Set.Constructions.TypeSet.Instances
-import LRA.Set.Interface.Subset
+import LRA.Set.Interface.Laws.Subset
 
 namespace LRA.Set.Constructions.TypeSet
 

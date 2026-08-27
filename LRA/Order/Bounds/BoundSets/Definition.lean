@@ -1,6 +1,6 @@
 import LRA.Order.Bounds.LowerBound.Definition
 import LRA.Order.Bounds.UpperBound.Definition
-import LRA.Set.Interface.Operations
+import LRA.Set.Interface.Definitions.Operations
 
 namespace LRA.Order
 

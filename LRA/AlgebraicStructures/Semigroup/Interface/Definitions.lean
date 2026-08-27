@@ -1,0 +1,2 @@
+import LRA.AlgebraicStructures.Semigroup.Interface.Definitions.Signature
+import LRA.AlgebraicStructures.Semigroup.Interface.Definitions.ConceptSignature
