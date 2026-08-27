@@ -10,7 +10,4 @@ noncomputable instance (priority := high) :
     HasPairing ZFSet ZFSet ZFSet :=
   ⟨ZFSet.pair⟩
 
-instance : PairingLaws ZFSet ZFSet ZFSet :=
-  ⟨fun _ _ _ _ => ZFSet.pair_inj⟩
-
 end LRA.Set.MathlibZFSet

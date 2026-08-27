@@ -124,9 +124,4 @@ theorem SetEqualityIffMutualSubset :
     ∀ A B : Set, A = B ↔ A ⊆ B ∧ B ⊆ A := by
   sorry
 
-instance : SubsetLaws Set where
-  SubsetReflexive := SubsetReflexive
-  SubsetTransitive := SubsetTransitive
-  SetEqualityIffMutualSubset := SetEqualityIffMutualSubset
-
 end LRA.Set.Constructions.ZFCSet

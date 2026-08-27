@@ -425,17 +425,4 @@ theorem UniversalDifference :
       (𝒰 : LRA.Set.Constructions.TypeSet Alpha) \ A = Aᶜ := by
   sorry
 
-instance : ComplementLaws (LRA.Set.Constructions.TypeSet Alpha) where
-  DoubleComplement := LRA.Set.Constructions.TypeSet.DoubleComplement
-  ComplementEmpty := LRA.Set.Constructions.TypeSet.ComplementEmpty
-  ComplementUniversal := LRA.Set.Constructions.TypeSet.ComplementUniversal
-  UnionComplement := LRA.Set.Constructions.TypeSet.UnionComplement
-  IntersectionComplement := LRA.Set.Constructions.TypeSet.IntersectionComplement
-  DeMorganUnion := LRA.Set.Constructions.TypeSet.DeMorganUnion
-  DeMorganIntersection := LRA.Set.Constructions.TypeSet.DeMorganIntersection
-  DifferenceAsIntersectionComplement :=
-    LRA.Set.Constructions.TypeSet.DifferenceAsIntersectionComplement
-  DifferenceUniversal := LRA.Set.Constructions.TypeSet.DifferenceUniversal
-  UniversalDifference := LRA.Set.Constructions.TypeSet.UniversalDifference
-
 end LRA.Set.Constructions.TypeSet

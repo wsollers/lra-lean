@@ -300,13 +300,4 @@ theorem SubsetIffUnionEqRight :
     ∀ A B : LRA.Set.Constructions.TypeSet Alpha, A ⊆ B ↔ A ∪ B = B := by
   sorry
 
-instance : UnionLaws (LRA.Set.Constructions.TypeSet Alpha) where
-  UnionCommutative := LRA.Set.Constructions.TypeSet.UnionCommutative
-  UnionAssociative := LRA.Set.Constructions.TypeSet.UnionAssociative
-  EmptyUnion := LRA.Set.Constructions.TypeSet.EmptyUnion
-  UnionEmpty := LRA.Set.Constructions.TypeSet.UnionEmpty
-  UnionIdempotent := LRA.Set.Constructions.TypeSet.UnionIdempotent
-  UnionMonotone := LRA.Set.Constructions.TypeSet.UnionMonotone
-  SubsetIffUnionEqRight := LRA.Set.Constructions.TypeSet.SubsetIffUnionEqRight
-
 end LRA.Set.Constructions.TypeSet

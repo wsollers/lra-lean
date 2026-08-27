@@ -300,14 +300,4 @@ theorem SubsetIffIntersectionEqLeft :
     ∀ A B : LRA.Set.Constructions.TypeSet Alpha, A ⊆ B ↔ A ∩ B = A := by
   sorry
 
-instance : IntersectionLaws (LRA.Set.Constructions.TypeSet Alpha) where
-  IntersectionCommutative := LRA.Set.Constructions.TypeSet.IntersectionCommutative
-  IntersectionAssociative := LRA.Set.Constructions.TypeSet.IntersectionAssociative
-  EmptyIntersection := LRA.Set.Constructions.TypeSet.EmptyIntersection
-  IntersectionEmpty := LRA.Set.Constructions.TypeSet.IntersectionEmpty
-  IntersectionIdempotent := LRA.Set.Constructions.TypeSet.IntersectionIdempotent
-  IntersectionMonotone := LRA.Set.Constructions.TypeSet.IntersectionMonotone
-  SubsetIffIntersectionEqLeft :=
-    LRA.Set.Constructions.TypeSet.SubsetIffIntersectionEqLeft
-
 end LRA.Set.Constructions.TypeSet

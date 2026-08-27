@@ -478,19 +478,4 @@ theorem DifferenceDisjointRight :
       (A \ B) ∩ B = (∅ : LRA.Set.Constructions.TypeSet Alpha) := by
   sorry
 
-instance : DifferenceLaws (LRA.Set.Constructions.TypeSet Alpha) where
-  DifferenceMonotoneLeft := LRA.Set.Constructions.TypeSet.DifferenceMonotoneLeft
-  DifferenceAntitoneRight := LRA.Set.Constructions.TypeSet.DifferenceAntitoneRight
-  DifferenceEmpty := LRA.Set.Constructions.TypeSet.DifferenceEmpty
-  EmptyDifference := LRA.Set.Constructions.TypeSet.EmptyDifference
-  DifferenceSelf := LRA.Set.Constructions.TypeSet.DifferenceSelf
-  DifferenceUnion := LRA.Set.Constructions.TypeSet.DifferenceUnion
-  DifferenceIntersection := LRA.Set.Constructions.TypeSet.DifferenceIntersection
-  UnionDifferenceDistributes :=
-    LRA.Set.Constructions.TypeSet.UnionDifferenceDistributes
-  IntersectionDifferenceDistributes :=
-    LRA.Set.Constructions.TypeSet.IntersectionDifferenceDistributes
-  DifferenceSubsetLeft := LRA.Set.Constructions.TypeSet.DifferenceSubsetLeft
-  DifferenceDisjointRight := LRA.Set.Constructions.TypeSet.DifferenceDisjointRight
-
 end LRA.Set.Constructions.TypeSet

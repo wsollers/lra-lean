@@ -178,9 +178,5 @@ theorem KuratowskiPairInjective
 noncomputable instance (priority := high) : HasPairing Set Set Set :=
   ⟨KuratowskiPair⟩
 
-instance : PairingLaws Set Set Set :=
-  ⟨fun firstLeft secondLeft firstRight secondRight =>
-    KuratowskiPairInjective firstLeft secondLeft firstRight secondRight⟩
-
 end LRA.Set.Constructions.TGSet
 

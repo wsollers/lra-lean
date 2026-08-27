@@ -282,13 +282,4 @@ theorem SubsetIffIntersectionEqLeft :
     ∀ A B : Set, A ⊆ B ↔ A ∩ B = A := by
   sorry
 
-instance : IntersectionLaws Set where
-  IntersectionCommutative := IntersectionCommutative
-  IntersectionAssociative := IntersectionAssociative
-  EmptyIntersection := EmptyIntersection
-  IntersectionEmpty := IntersectionEmpty
-  IntersectionIdempotent := IntersectionIdempotent
-  IntersectionMonotone := IntersectionMonotone
-  SubsetIffIntersectionEqLeft := SubsetIffIntersectionEqLeft
-
 end LRA.Set.Constructions.ZFCSet
