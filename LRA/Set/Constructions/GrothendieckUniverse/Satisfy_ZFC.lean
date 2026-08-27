@@ -1,13 +1,20 @@
-import LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.Theory
-import LRA.Logic.Semantics.Satisfaction
+import LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory.Theory
+import LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory.Model
 import LRA.Set.Constructions.GrothendieckUniverse.Theorems
+import LRA.Logic.Semantics.Satisfaction
 
-namespace LRA.Set.ModelTheory
+/-!
+Every Grothendieck universe `U` in a host `S` is an internal model of
+ZFCSet's exported ZFC theory. Parametric over the host; TGSet instantiates it.
+-/
+
+namespace LRA.Set.Constructions.GrothendieckUniverse
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
-open LRA.Set.Constructions.GrothendieckUniverse
+open LRA.Set.ModelTheory
 open LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
+open LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory
 
 universe u
 
@@ -46,6 +53,28 @@ noncomputable def CanonicalGrothendieckUniverseMembershipModel
     A
     (TheGrothendieckUniverse A)
     (TheGrothendieckUniverseIsGrothendieckUniverseFor A)
+
+theorem grothendieckUniverseModelIsStandardTransitive
+    {SetObject : Type u}
+    [Membership SetObject SetObject]
+    (A U : SetObject)
+    (universeHypothesis : IsGrothendieckUniverseFor A U) :
+    IsStandardTransitiveMembershipStructure (toUniverseLStructure A U universeHypothesis) :=
+  universeStructureIsStandardTransitive (toUniverseLStructure A U universeHypothesis)
+
+abbrev HasCumulativeHierarchyClassification
+    {SetObject : Type u}
+    [Membership SetObject SetObject]
+    (A U : SetObject)
+    (universeHypothesis : IsGrothendieckUniverseFor A U) : Prop :=
+  GrothendieckUniverseMembershipModel A U universeHypothesis ∈ ModelsOfFormulaTheory ZFCTheory
+
+abbrev SupportsTGUniverseTower
+    (SetObject : Type u)
+    [Membership SetObject SetObject]
+    [GrothendieckUniverseAxiom SetObject] : Prop :=
+  ∀ A : SetObject,
+    CanonicalGrothendieckUniverseMembershipModel A ∈ ModelsOfFormulaTheory ZFCTheory
 
 theorem grothendieckUniverseSatisfiesExtensionality
     {SetObject : Type u}
@@ -189,4 +218,28 @@ theorem canonicalGrothendieckUniverseModelsZFC
       ModelsOfFormulaTheory ZFCTheory := by
   sorry
 
-end LRA.Set.ModelTheory
+theorem grothendieckUniverseHasCumulativeHierarchyClassification
+    {SetObject : Type u}
+    [Membership SetObject SetObject]
+    (A U : SetObject)
+    (universeHypothesis : IsGrothendieckUniverseFor A U) :
+    HasCumulativeHierarchyClassification A U universeHypothesis :=
+  grothendieckUniverseModelsZFC A U universeHypothesis
+
+theorem grothendieckUniverseSupportsTGExpansion
+    (SetObject : Type u)
+    [Membership SetObject SetObject]
+    [GrothendieckUniverseAxiom SetObject] :
+    SupportsTGExpansion SetObject := by
+  show GrothendieckUniverseAxiom SetObject
+  exact inferInstance
+
+theorem grothendieckUniverseSupportsTGUniverseTower
+    (SetObject : Type u)
+    [Membership SetObject SetObject]
+    [GrothendieckUniverseAxiom SetObject] :
+    SupportsTGUniverseTower SetObject := by
+  intro A
+  exact canonicalGrothendieckUniverseModelsZFC A
+
+end LRA.Set.Constructions.GrothendieckUniverse

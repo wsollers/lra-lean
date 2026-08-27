@@ -4,4 +4,4 @@ import LRA.Set.Constructions.NBGSet.Definition
 import LRA.Set.Constructions.NBGSet.Instances
 import LRA.Set.Constructions.NBGSet.Laws
 import LRA.Set.Constructions.NBGSet.Interface
-import LRA.Set.Constructions.NBGSet.ModelTheory
+import LRA.Set.Constructions.NBGSet.Satisfy_NBG

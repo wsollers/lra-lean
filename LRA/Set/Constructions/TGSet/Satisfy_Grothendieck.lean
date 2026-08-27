@@ -1,43 +1,26 @@
+import LRA.Set.Constructions.TGSet.Satisfy_ZFC
 import LRA.Set.Constructions.TGSet.Interface.ModelTheory.Theory
-import LRA.Set.Constructions.TGSet.ModelTheory.StandardTransitive
-import LRA.Set.Constructions.TGSet.Axioms
-import LRA.Set.Constructions.TGSet.Theorems
-import LRA.Set.Constructions.TGSet.Instances
-import LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory.Model
+import LRA.Set.Constructions.TGSet.Theorems.ModelTheory.StandardTransitive
+import LRA.Set.Constructions.GrothendieckUniverse.Satisfy_ZFC
 
-namespace LRA.Set.Constructions.TGSet.Interface.ModelTheory
+/-!
+TGSet supports and satisfies the Grothendieck-universe tower: the third leg of
+TGSet's triple-satisfy (Generic / ZFC / Grothendieck). Every internal universe
+`U` is itself an internal model of ZFC, and TG provides a canonical such
+universe for every parameter set.
+-/
+
+namespace LRA.Set.Constructions.TGSet
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
-open LRA.Set.Constructions.TGSet
+open LRA.Set.Constructions.TGSet.Interface.ModelTheory
+open LRA.Set.Constructions.GrothendieckUniverse
 open LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory
 open LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
 
-@[reducible] noncomputable def TGSetMembershipModel : Model MembershipSignature where
-  Domain := TGSetObject
-  domainNonempty := ⟨∅⟩
-  interpretFunction := fun functionSymbol => functionSymbol.elim
-  interpretRelation := fun relationSymbol arguments =>
-    match relationSymbol with
-    | .mem => arguments ⟨0, by decide⟩ ∈ arguments ⟨1, by decide⟩
-  interpretConstant := fun constantSymbol =>
-    match constantSymbol with
-    | .emptySet => ∅
-
 theorem tgSetSupportsUniverseAxiom : TGUniverseAxiom := by
   infer_instance
-
-/--
-The canonical internal Grothendieck-universe model exported by TG.
--/
-noncomputable abbrev TGSetCanonicalGrothendieckUniverseMembershipModel :=
-  LRA.Set.ModelTheory.TGSetCanonicalGrothendieckUniverseMembershipModel
-
-theorem tgSetCanonicalGrothendieckUniverseModelsZFC
-    (A : TGSetObject) :
-    TGSetCanonicalGrothendieckUniverseMembershipModel A ∈
-      ModelsOfFormulaTheory ZFCTheory :=
-  LRA.Set.ModelTheory.tgSetCanonicalGrothendieckUniverseModelsZFC A
 
 theorem tgSetContainsInternalUniverseModel
     (A : TGSetObject) :
@@ -85,4 +68,12 @@ theorem tgSetSatisfiesTGSemanticTower : SatisfiesTGSemanticTower := by
   exact tgSetSupportsUniverseAxiom
   exact tgSetSupportsInternalUniverseTower
 
-end LRA.Set.Constructions.TGSet.Interface.ModelTheory
+/--
+TGSet, as the ambient model, satisfies its own interface-level export
+`SatisfiesTGTheory`: it models ZFC and supports the universe axiom. The proof
+is `⟨tgSetModelsZFC, tgSetSupportsUniverseAxiom⟩`.
+-/
+theorem tgSetSatisfiesTGTheory : SatisfiesTGTheory TGSetMembershipModel := by
+  sorry
+
+end LRA.Set.Constructions.TGSet

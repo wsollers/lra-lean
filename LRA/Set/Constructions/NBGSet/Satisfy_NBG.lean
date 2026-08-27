@@ -1,9 +1,12 @@
 import LRA.Set.Constructions.NBGSet.Interface.ModelTheory.Theory
 import LRA.Set.Constructions.NBGSet.Interface.ModelTheory.LStructure
 
-namespace LRA.Set.Constructions.NBG.Interface.ModelTheory
+/-! NBG satisfies its own exported NBG theory. -/
+
+namespace LRA.Set.Constructions.NBG
 
 open LRA.Set.Constructions.NBG.Axioms
+open LRA.Set.Constructions.NBG.Interface.ModelTheory
 
 noncomputable def AmbientTwoSortedClassStructure : TwoSortedClassStructure where
   setCarrier := LRA.Set.Constructions.NBGSet
@@ -109,4 +112,4 @@ theorem ambientStructureSatisfiesNBG :
     SatisfiesNBG :=
   nbgSatisfiesNBG
 
-end LRA.Set.Constructions.NBG.Interface.ModelTheory
+end LRA.Set.Constructions.NBG
