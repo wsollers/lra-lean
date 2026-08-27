@@ -1,9 +1,11 @@
 import LRA.Relation.Structures.Equivalence.Partition
-import LRA.Identity.Constructions.Leibniz.Definitions.ExistenceAndUniqueness
+import LRA.Identity.Interface.Definitions.Witnesses
+import LRA.Identity.Constructions.Mathlib
 
 namespace LRA.Relation
 
 open LRA.Set
+open scoped LRA.Identity.Construction.Mathlib
 
 universe u v w
 
@@ -205,7 +207,8 @@ theorem QuotientSetExists
 
 Predicate logic:
 
-  (∀ A ∈ U), LRA.Identity.Unique fun quotient ∈ Collection => IsQuotientSetOf quotient A relation
+  (∀ A ∈ U), LRA.Identity.AtMostOne fun quotient ∈ Collection =>
+    IsQuotientSetOf quotient A relation
 
 Predicate logic (unfolded):
 
@@ -217,7 +220,7 @@ Logical form (Lean):
 theorem QuotientSetUnique
     (ambient : SetObject)
     (relation : Endorelation Element) :
-    LRA.Identity.Unique
+    LRA.Identity.AtMostOne
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation)
 ```
@@ -244,7 +247,7 @@ Related proof moves: TODO
 theorem QuotientSetUnique
     (ambient : SetObject)
     (relation : Endorelation Element) :
-    LRA.Identity.Unique
+    LRA.Identity.AtMostOne
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation) := by
   sorry
@@ -254,7 +257,8 @@ theorem QuotientSetUnique
 
 Predicate logic:
 
-  (∀ A ∈ U), LRA.Identity.ExistsAndUnique fun quotient ∈ Collection => IsQuotientSetOf quotient A relation
+  (∀ A ∈ U), LRA.Identity.ExactlyOne fun quotient ∈ Collection =>
+    IsQuotientSetOf quotient A relation
 
 Predicate logic (unfolded):
 
@@ -266,7 +270,7 @@ Logical form (Lean):
 theorem QuotientSetExistsAndUnique
     (ambient : SetObject)
     (relation : Endorelation Element) :
-    LRA.Identity.ExistsAndUnique
+    LRA.Identity.ExactlyOne
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation)
 ```
@@ -293,7 +297,7 @@ Related proof moves: TODO
 theorem QuotientSetExistsAndUnique
     (ambient : SetObject)
     (relation : Endorelation Element) :
-    LRA.Identity.ExistsAndUnique
+    LRA.Identity.ExactlyOne
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation) := by
   sorry

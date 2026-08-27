@@ -1,6 +1,7 @@
 import LRA.Function.SetTheoretic.Theorems
 import LRA.Function.Definition
-import LRA.Set.Interface.RelationSets
+import LRA.Set.Interface.Definitions.RelationSets
+import LRA.Set.Interface.Laws.Pairing
 
 namespace LRA.Function.SetTheoretic
 

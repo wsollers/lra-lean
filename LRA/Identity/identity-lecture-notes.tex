@@ -1,0 +1,882 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{fontspec}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{fvextra}
+\usepackage{titlesec}
+
+\setmainfont{Latin Modern Roman}
+\setmonofont{Latin Modern Mono}[Scale=MatchLowercase]
+\newfontfamily\leanfont{seguisym.ttf}[Path=C:/Windows/Fonts/]
+
+\definecolor{HeadingBlue}{HTML}{1F3A5F}
+\definecolor{FrameGray}{HTML}{CBD5E0}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=HeadingBlue,
+  urlcolor=HeadingBlue,
+  pdftitle={Identity Lecture Notes},
+  pdfauthor={Codex}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\footnotesize\bfseries LRA Identity Lecture Notes}
+\rhead{\footnotesize\bfseries August 27, 2026}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+
+\titleformat{\section}{\Large\bfseries\color{HeadingBlue}}{\thesection}{0.75em}{}
+\titleformat{\subsection}{\large\bfseries\color{HeadingBlue}}{\thesubsection}{0.75em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{0.6em}{}
+
+\DefineVerbatimEnvironment{leanblock}{Verbatim}{
+  fontsize=\small,
+  formatcom=\leanfont,
+  breaklines=true,
+  breakanywhere=true,
+  frame=single,
+  rulecolor=\color{FrameGray},
+  framesep=3mm,
+  baselinestretch=1,
+  numbers=left,
+  numbersep=6pt,
+  xleftmargin=6mm,
+  samepage=false
+}
+
+\newcommand{\leaninline}[1]{\texttt{#1}}
+\newcommand{\diag}[1]{\Delta_{#1}}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE \textbf{Identity, Equality, Equivalence, and Congruence} \par}
+  \vspace{0.2em}
+  {\LARGE \ttfamily in LRA/Identity \par}
+  \vspace{0.75em}
+  {\large Lecture notes following the current Lean development in proof order\par}
+  \vspace{0.5em}
+  {\normalsize Generated from the refactored \texttt{LRA/Identity} sources on August 27, 2026\par}
+\end{center}
+
+\tableofcontents
+\newpage
+
+\section{Historical Orientation}
+
+Identity is one of the oldest topics in logic because it controls when two descriptions count as descriptions of one object rather than two. Classical logic emphasizes self-sameness: a thing is itself. Leibniz sharpened the point by making identity operational: if two things are identical, then every property of one is a property of the other. That formulation is stronger than a slogan about sameness. It explains why equality drives proof.
+
+Modern formal systems inherit both themes. Reflexivity says every object stands in the identity relation to itself. Substitution says identity licenses replacement in predicates, relations, and operations. The current \leaninline{LRA/Identity} subtree is built around this second point. It isolates the identity interface, derives its consequences, and then develops the mathematics of distinctness, existence, nonexistence, exact uniqueness, congruence, quotienting, and diagonality from that base.
+
+The fundamental question running through these notes is not merely how to write an equality symbol. It is what makes two objects count as the same object for the purposes of mathematics. A formal identity relation earns that title only if it makes all mathematically meaningful distinctions collapse when the relation holds. That is why substitution is central. If a relation holds between \(x\) and \(y\), but some property can still distinguish \(x\) from \(y\), then the relation is too weak to deserve the name identity.
+
+\section{How the Refactored Development Is Organized}
+
+The current design has one generic interface and two constructions.
+
+\begin{itemize}[leftmargin=1.5em]
+\item The generic interface exposes one relation symbol, \leaninline{Ident}, together with reflexivity and Leibniz transport.
+\item The native construction interprets \leaninline{Ident} as Lean's built-in equality \leaninline{Eq}.
+\item The axiomatic construction introduces a separate relation symbol \leaninline{Ax\_IdentityRelation} and postulates reflexivity and Leibniz transport for that relation.
+\end{itemize}
+
+This corrects the older architecture. An axiomatic identity theory must introduce its own relation symbol. If the axioms are written directly about Lean's \leaninline{=}, then the supposed axiomatic backend is not a second backend at all. It is merely a re-assertion of facts about the native one. The refactor fixes that by making the interface generic first and the constructions secondary.
+
+That architectural correction matters mathematically as well as technically. Identity, equality, equivalence, and congruence are related notions, but they are not interchangeable. Identity is the strongest notion in view here: if it holds, every admissible property and every well-formed construction must respect it. An equivalence relation may group objects into classes, but it need not be fine enough to force complete indiscernibility. A congruence relation is an equivalence relation that is additionally stable under operations. The current design lets these distinctions remain visible instead of collapsing them prematurely.
+
+\section{The Generic Identity Interface}
+
+\subsection{The Core Class}
+
+\begin{leanblock}
+class IdentityRelation (Carrier : Type u) where
+  Ident : Carrier -> Carrier -> Prop
+  IdentReflexive : forall x : Carrier, Ident x x
+  IdentLeibniz : forall {x y : Carrier}, Ident x y ->
+    forall Property : Carrier -> Prop, Property x -> Property y
+\end{leanblock}
+
+This is the entire primitive API. The relation \leaninline{Ident} is the only equality-like symbol that downstream code should mention.
+
+\begin{itemize}[leftmargin=1.5em]
+\item \leaninline{IdentReflexive} says every object is identical to itself.
+\item \leaninline{IdentLeibniz} says identity transports truth of predicates.
+\end{itemize}
+
+The one-way form of \leaninline{IdentLeibniz} is deliberate. It uses the weakest hypothesis needed at the interface level. Symmetry and the reverse direction of transport are not assumed; they are derived later. That is good axiom discipline.
+
+This single transport rule already explains why identity is structurally important. A predicate \(P : C \to \mathrm{Prop}\) can encode membership in a subset, a side condition in a theorem, the graph of a function, a relational property with parameters fixed, or the claim that an element equals a chosen object. So one transport axiom becomes the source of many congruence theorems.
+
+This also answers the question of what makes two objects identical in the present development. It is not appearance, naming, or the route by which the objects were constructed. What matters is that the identity relation forces all admissible predicates to treat the two objects as interchangeable. Identity is therefore not a decorative label attached after the fact. It is the formal content of substitutability.
+
+\section{Derived Vocabulary for Distinctness and Witnesses}
+
+\subsection{Distinctness}
+
+\begin{leanblock}
+def Distinct {Carrier : Type u} [IdentityRelation Carrier]
+    (left right : Carrier) : Prop :=
+  not Ident left right
+\end{leanblock}
+
+Distinctness is simply the negation of identity. It is how the development expresses genuine multiplicity. If two names refer to objects that collapse under \leaninline{Ident}, then they are not genuinely different witnesses. If they do not collapse, they are distinct.
+
+This is an important point about counting and about proof. Mathematics often introduces several symbols before it knows whether they denote genuinely different objects. Distinctness is the statement that the apparent plurality is real. Without it, two witnesses may still be only notational variants of one underlying object.
+
+\subsection{Existence and Nonexistence}
+
+\begin{leanblock}
+def HasWitness {Carrier : Type u} (P : Carrier -> Prop) : Prop :=
+  exists x, P x
+
+def HasNoWitness {Carrier : Type u} (P : Carrier -> Prop) : Prop :=
+  not exists x, P x
+\end{leanblock}
+
+\leaninline{HasWitness} and \leaninline{HasNoWitness} isolate the two basic existence states of a predicate. A property may be realized, or it may be realized nowhere.
+
+The negative notion is not optional. Mathematics constantly uses nonexistence claims: no least upper bound with a certain extra property, no witness satisfying incompatible conditions, no element in a specified intersection, no distinct representative in a uniqueness argument. The definition \leaninline{HasNoWitness} makes this absence explicit.
+
+Existence by itself does not settle identity questions. A predicate may have one witness, many witnesses that are all identical, or many witnesses that are genuinely distinct. Conversely, a uniqueness-style claim does not by itself provide existence. This is why the development separates witness existence from witness collapse and then recombines them only when exact uniqueness is needed.
+
+\subsection{At Most One, Failure of At Most One, Exactly One}
+
+\begin{leanblock}
+def AtMostOne (P : Carrier -> Prop) : Prop :=
+  forall left right, P left -> P right -> Ident left right
+
+def NotAtMostOne (P : Carrier -> Prop) : Prop :=
+  exists left right, P left /\ P right /\ Distinct left right
+
+def ExactlyOne (P : Carrier -> Prop) : Prop :=
+  HasWitness P /\ AtMostOne P
+\end{leanblock}
+
+These are the refactored witness notions.
+
+\begin{itemize}[leftmargin=1.5em]
+\item \leaninline{AtMostOne P} says any two witnesses of \(P\) coincide under identity.
+\item \leaninline{NotAtMostOne P} says there are two witnesses that remain distinct.
+\item \leaninline{ExactlyOne P} means a witness exists and any two witnesses collapse.
+\end{itemize}
+
+This is the right factorization of exact uniqueness. Equality does the collapsing work. Existence supplies the witness. The old surface names \leaninline{Unique} and \leaninline{ExistsAndUnique} pointed in this direction, but the current names state the logic more precisely.
+
+This is also where the connection with distinctness becomes sharp. To refute \leaninline{AtMostOne P}, one must do more than produce two terms satisfying \(P\). One must produce two \emph{distinct} witnesses. So identity and distinctness together govern the arithmetic of witnesses: when many candidates really amount to one, when one candidate really exists, and when multiplicity is genuine rather than verbal.
+
+\subsection{Cardinality Bounds}
+
+\begin{leanblock}
+def AtLeastTwo (Carrier : Type u) [IdentityRelation Carrier] : Prop :=
+  exists x y : Carrier, Distinct x y
+
+def AtMostTwo (Carrier : Type u) [IdentityRelation Carrier] : Prop :=
+  forall x y z : Carrier, Ident x y \/ Ident y z \/ Ident x z
+\end{leanblock}
+
+These definitions show how equality and counting are linked. To prove that a carrier has at least two points, it is not enough to write down two terms; one must prove they are distinct. To prove that a carrier has at most two points, one must show that every triple forces a collapse.
+
+This is one of the central themes of the file: equality is what turns raw plurality into actual cardinality information.
+
+Stated another way, equality partitions the space of candidates into collapse classes. Distinctness says two objects lie in different classes. At-most-one says all witnesses of a predicate lie in one class. At-least-two says the carrier has at least two classes. Cardinality language is therefore already identity language in disguise.
+
+\section{The First Theorems: Symmetry, Transitivity, and Two-Way Leibniz}
+
+\subsection{Symmetry}
+
+\begin{leanblock}
+theorem IdentSymmetric {x y : Carrier} (h : Ident x y) : Ident y x :=
+  IdentLeibniz h (fun z => Ident z x) (IdentReflexive x)
+\end{leanblock}
+
+The proof is a direct application of Leibniz transport. Choose the predicate
+\[
+P(z) := \mathrm{Ident}(z,x).
+\]
+Reflexivity gives \(P(x)\). Transport along \(h : \mathrm{Ident}(x,y)\) yields \(P(y)\), which is exactly \(\mathrm{Ident}(y,x)\).
+
+This is the first important structural point: symmetry is not primitive. It is derived from reflexivity plus Leibniz transport.
+
+That fact is worth emphasizing because it shows how much content the substitution principle carries. Once a relation supports self-identity and transport of properties, the directionality of the relation disappears. Identity cannot point one way only.
+
+\subsection{Transitivity}
+
+\begin{leanblock}
+theorem IdentTransitive {x y z : Carrier}
+    (hxy : Ident x y) (hyz : Ident y z) :
+    Ident x z :=
+  IdentLeibniz hyz (fun w => Ident x w) hxy
+\end{leanblock}
+
+Again the proof is driven by a carefully chosen predicate,
+\[
+P(w) := \mathrm{Ident}(x,w).
+\]
+The hypothesis \(hxy\) says \(P(y)\). Leibniz transport along \(hyz\) sends that truth to \(P(z)\), namely \(\mathrm{Ident}(x,z)\).
+
+This is a clean illustration of how transport proofs work: one writes the target theorem as the transported instance of an appropriate predicate.
+
+Together, symmetry and transitivity show that identity is already an equivalence relation in substance before that phrase is ever introduced explicitly. Reflexivity keeps every object fixed to itself, symmetry removes directional bias, and transitivity lets chains of identifications collapse into a single identification.
+
+\subsection{Two-Way Leibniz}
+
+\begin{leanblock}
+theorem IdentLeibnizIff {x y : Carrier} (h : Ident x y)
+    (Property : Carrier -> Prop) : Property x <-> Property y :=
+  <| IdentLeibniz h Property,
+     IdentLeibniz (IdentSymmetric h) Property
+\end{leanblock}
+
+Once symmetry has been derived, Leibniz transport becomes biconditional. Identical objects satisfy exactly the same predicates. This is the formal recovery of the full indiscernibility principle.
+
+This theorem is one of the key conceptual bridges in the file. It turns identity from a relation one can mention into a relation whose entire mathematical effect is clear. If \(x\) and \(y\) are identical, then no admissible property can tell them apart. That is exactly what it means for replacement in proofs to be legitimate.
+
+\section{Congruence Consequences}
+
+\subsection{Functions}
+
+\begin{leanblock}
+theorem IdentPreservesFunctions {Codomain : Type u} [IdentityRelation Codomain]
+    {x y : Carrier} (h : Ident x y) (f : Carrier -> Codomain) :
+    Ident (f x) (f y) :=
+  IdentLeibniz h (fun w => Ident (f x) (f w)) (IdentReflexive (f x))
+\end{leanblock}
+
+This says identity is respected across functions. If inputs are identical, outputs are identical. That is congruence for functions.
+
+This matters far beyond toy examples. Evaluations, embeddings, projections, term interpretations, semantic maps, and algebraic operations all depend on this principle.
+
+One useful way to read the theorem is this: functions do not create distinction from identity. If the input difference has already collapsed, the output difference must collapse as well. So identity is stable under construction.
+
+\subsection{Relations}
+
+\begin{leanblock}
+theorem IdentPreservesRelations {x x' y y' : Carrier}
+    (hx : Ident x x') (hy : Ident y y') (R : Carrier -> Carrier -> Prop) :
+    R x y <-> R x' y' := by
+  constructor
+  . intro hR
+    exact IdentLeibniz hy (fun w => R x' w)
+      (IdentLeibniz hx (fun w => R w y) hR)
+  . intro hR
+    exact IdentLeibniz (IdentSymmetric hy) (fun w => R x w)
+      (IdentLeibniz (IdentSymmetric hx) (fun w => R w y') hR)
+\end{leanblock}
+
+This is congruence for binary relations. Replacing either argument by an identical one preserves the truth value of the relation.
+
+Several important special cases sit inside this theorem.
+
+\begin{itemize}[leftmargin=1.5em]
+\item A unary predicate is a relation with one slot already fixed by context.
+\item Membership statements are relation statements.
+\item Order, divisibility, incidence, and graph relations are all covered by the same pattern.
+\end{itemize}
+
+So when the notes speak about congruence of predicates, relations, and objects, this is the underlying mechanism. Identity is invisible to any well-formed relational test.
+
+This is the clearest formal expression of substitutability. If one occurrence of an object in a statement is replaced by an identical occurrence, the statement does not change truth value. If both coordinates are replaced by identical coordinates, the same remains true. That is why identity is stronger than a generic equivalence relation. The relation is not merely grouping objects; it is preserving every admissible test on them.
+
+\subsection{Operations}
+
+\begin{leanblock}
+theorem IdentPreservesOperations {x x' y y' : Carrier}
+    (hx : Ident x x') (hy : Ident y y') (op : Carrier -> Carrier -> Carrier) :
+    Ident (op x y) (op x' y') :=
+  IdentTransitive
+    (IdentPreservesFunctions hx (fun w => op w y))
+    (IdentPreservesFunctions hy (fun w => op x' w))
+\end{leanblock}
+
+This is congruence for binary operations. First replace the left input, then the right input, then compose the two steps by transitivity.
+
+This is the algebraic form of substitution. In ordinary mathematics one writes it constantly without comment:
+\[
+x = x', \quad y = y' \quad \Longrightarrow \quad x \ast y = x' \ast y'.
+\]
+The theorem isolates the principle once and for all.
+
+This is also the first place where the word congruence is naturally felt rather than merely defined. Congruence is identity or equivalence behaving well with respect to operations. For objects, it means equal inputs give equal outputs. For predicates, it means truth is preserved under replacement. For relations, it means related coordinates can be replaced by identical ones without changing the statement. The common core is structural compatibility with substitution.
+
+\section{Theorems About Distinctness and Witnesses}
+
+\subsection{Distinctness}
+
+\begin{leanblock}
+theorem DistinctIrreflexive (x : Carrier) : not Distinct x x :=
+  fun h => h (IdentReflexive x)
+
+theorem DistinctSymmetric {x y : Carrier} (h : Distinct x y) : Distinct y x :=
+  fun hyx => h (IdentSymmetric hyx)
+\end{leanblock}
+
+Distinctness behaves as it should. No object is distinct from itself, and if \(x\) is distinct from \(y\), then \(y\) is distinct from \(x\).
+
+These laws confirm that distinctness is not an unrelated primitive. It inherits its shape entirely from identity. Wherever identity becomes stronger or weaker, distinctness changes as its exact negation.
+
+\subsection{Nonexistence Implies Failure of Existence}
+
+\begin{leanblock}
+theorem HasNoWitnessNotHasWitness {Carrier : Type u} {P : Carrier -> Prop}
+    (h : HasNoWitness P) : not HasWitness P :=
+  h
+\end{leanblock}
+
+This theorem is definitional, but it is conceptually useful. Once nonexistence has been given its own name, the later development can speak about witness structure with clearer local statements.
+
+Nonexistence also interacts with exact uniqueness in a clean way. A predicate with no witness cannot have exactly one witness. A predicate with exactly one witness cannot have no witness. So witness theory naturally breaks into three layers: existence, collapse, and negation of either.
+
+\subsection{Exactly One Excludes Two Distinct Witnesses}
+
+\begin{leanblock}
+theorem ExactlyOneNotAtLeastTwoWitnesses
+    {Carrier : Type u} [IdentityRelation Carrier]
+    {P : Carrier -> Prop} (h : ExactlyOne P) : not NotAtMostOne P :=
+  fun
+    | Exists.intro l
+        (Exists.intro r (And.intro hl (And.intro hr hd))) =>
+          hd (h.2 l r hl hr)
+\end{leanblock}
+
+This theorem makes the witness logic explicit. Exact uniqueness rules out the possibility of two genuinely different witnesses. It therefore connects all of the previously introduced notions:
+
+\begin{itemize}[leftmargin=1.5em]
+\item \leaninline{HasWitness} provides existence.
+\item \leaninline{AtMostOne} provides collapse under identity.
+\item \leaninline{Distinct} expresses failure to collapse.
+\item \leaninline{NotAtMostOne} packages the existence of two distinct witnesses.
+\end{itemize}
+
+This is one of the most useful conceptual packets in the whole development. Exact uniqueness is not mysterious. It is the interaction of existence with identity. Failure of uniqueness is not mysterious either. It is the presence of distinct witnesses. The theorem simply states that these two situations are incompatible.
+
+\section{The Diagonal Bridge}
+
+\subsection{The Collapse Theorem}
+
+\begin{leanblock}
+theorem IdentIsDiagonal {Carrier : Type u} [IdentityRelation Carrier]
+    (x y : Carrier) : Ident x y <-> x = y :=
+  <| (fun h => IdentLeibniz h (fun z => x = z) rfl),
+     (fun h => h ▸ IdentReflexive x)
+\end{leanblock}
+
+This theorem is the turning point of the entire development. Any relation satisfying the generic interface is forced to agree with Lean equality.
+
+The forward direction uses the predicate
+\[
+P(z) := (x = z).
+\]
+Since \(P(x)\) holds by reflexivity of Lean equality, Leibniz transport sends it across \(\mathrm{Ident}(x,y)\) and yields \(x = y\).
+
+The reverse direction rewrites \(\mathrm{Ident}(x,x)\) along the equation \(x = y\). So the interface does not merely resemble equality. It collapses to equality.
+
+This explains why the generic interface is compatible with Lean and Mathlib interoperation. Once \leaninline{Ident} is shown to be diagonal, the generic theory is not floating beside native equality. It is provably the same relation, reached through a more disciplined interface.
+
+\subsection{Diagonality, the Cartesian Product, and Partitions}
+
+For a carrier \(C\), the Cartesian product \(C \times C\) is the space of ordered pairs \((x,y)\). Inside it sits the diagonal subset
+\[
+\diag{C} := \{(x,y) \in C \times C \mid x = y\}.
+\]
+
+The predicate
+\[
+\mathrm{EqualityDiagonal}(x,y) \iff (x = y)
+\]
+is the characteristic predicate of this subset. So to say that identity is diagonal is to say that the true pairs are exactly the pairs on \(\diag{C}\).
+
+This has immediate partition consequences. Any equivalence relation partitions a carrier into equivalence classes. Equality partitions into singleton classes, because
+\[
+[x]_= = \{y \in C \mid y = x\} = \{x\}.
+\]
+So equality is the finest possible equivalence relation: it identifies no two genuinely different points.
+
+This is exactly where identity, equality, equivalence, and partitioning meet. An arbitrary equivalence relation can produce large classes. It says its members are equivalent for some purpose. Identity does something stricter. Its classes are singletons, so equivalence has collapsed all the way down to literal sameness. Congruence sits between these viewpoints: it says an equivalence relation is sufficiently stable under operations to support quotient constructions.
+
+\section{The Axiomatic Construction}
+
+\subsection{A New Relation Symbol}
+
+\begin{leanblock}
+axiom Ax_IdentityRelation {Carrier : Type u} : Carrier -> Carrier -> Prop
+\end{leanblock}
+
+This is the critical architectural move. The axiomatic backend introduces its own relation symbol rather than talking directly about Lean's \leaninline{=}.
+
+\subsection{Reflexivity Axiom}
+
+\begin{leanblock}
+axiom Ax_EqualityReflexivity {Carrier : Type u} (x : Carrier) :
+    Ax_IdentityRelation x x
+\end{leanblock}
+
+\subsection{Leibniz Axiom}
+
+\begin{leanblock}
+axiom Ax_LeibnizLaw {Carrier : Type u} {x y : Carrier}
+    (h : Ax_IdentityRelation x y) (Property : Carrier -> Prop) :
+    Property x -> Property y
+\end{leanblock}
+
+These are the honest axioms of the axiomatic backend. They are about the newly introduced relation, not about Lean equality itself.
+
+\subsection{Packaging the Axioms as an Instance}
+
+\begin{leanblock}
+noncomputable scoped instance instIdentityRelation (Carrier : Type u) :
+    LRA.Identity.IdentityRelation Carrier where
+  Ident := Ax_IdentityRelation
+  IdentReflexive := Ax_EqualityReflexivity
+  IdentLeibniz := Ax_LeibnizLaw
+\end{leanblock}
+
+Once the axioms are packaged as an \leaninline{IdentityRelation} instance, the entire generic theorem layer becomes available automatically. No separate copy of theorems is needed.
+
+That is mathematically the right outcome. The axioms are not meant to spawn a disconnected theory. They are meant to feed the same logical engine as the native backend so that symmetry, transitivity, congruence, witness results, and the diagonal collapse are proved once and then inherited.
+
+\section{The Native Mathlib Construction}
+
+\begin{leanblock}
+scoped instance instIdentityRelation (Carrier : Type u) :
+    LRA.Identity.IdentityRelation Carrier where
+  Ident := Eq
+  IdentReflexive := fun _ => rfl
+  IdentLeibniz := fun h _ hp => h ▸ hp
+\end{leanblock}
+
+This construction is axiom-free. It interprets the generic interface directly by Lean equality.
+
+The contrast with the axiomatic backend is important.
+
+\begin{itemize}[leftmargin=1.5em]
+\item The Mathlib backend starts at the diagonal.
+\item The axiomatic backend starts from a postulated relation and reaches the diagonal by theorem.
+\end{itemize}
+
+So the axiomatic backend is not a permanently different notion of equality. It is a separately introduced relation that full Leibniz transport forces to be actual equality.
+
+This is why the native and axiomatic presentations are better understood as two routes into one theory rather than as rival notions of equality. One route starts from the kernel's own equality. The other starts from a postulated relation satisfying the identity axioms. The diagonal theorem shows that both routes meet.
+
+\section{Interop Adapters}
+
+\subsection{From Ident to Lean Equality}
+
+\begin{leanblock}
+theorem toEq {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier}
+    (h : Ident x y) : x = y :=
+  (IdentIsDiagonal x y).mp h
+\end{leanblock}
+
+\subsection{From Lean Equality to Ident}
+
+\begin{leanblock}
+theorem ofEq {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier}
+    (h : x = y) : Ident x y :=
+  (IdentIsDiagonal x y).mpr h
+\end{leanblock}
+
+These two lemmas are the interop layer. Code written generically against \leaninline{Ident} can enter the world of Lean equality through \leaninline{toEq}. Code proved with Lean equality can re-enter the generic interface through \leaninline{ofEq}.
+
+That is the correct interoperability mechanism. No backend switch object is needed. No duplicate semantic layer is needed. The bridge is theorem-based and explicit.
+
+This matters downstream because generic theorems can be used in native Lean proofs, and native Lean facts can be imported back into the generic interface without inventing wrappers that obscure the mathematics. The bridge works because identity has already been shown to coincide with equality.
+
+\section{Universal Algebra Infrastructure}
+
+\subsection{Signatures}
+
+\begin{leanblock}
+structure AlgebraicSignature where
+  OperationSymbol : Type u
+  arity : OperationSymbol -> Nat
+  ConstantSymbol : Type v
+\end{leanblock}
+
+An algebraic signature specifies which operation symbols and constant symbols exist.
+
+\subsection{Structures}
+
+\begin{leanblock}
+structure AlgebraicStructure (signature : AlgebraicSignature.{v, w}) where
+  Carrier : Type u
+  carrierNonempty : Nonempty Carrier
+  interpretOperation :
+    (symbol : signature.OperationSymbol) ->
+      (Fin (signature.arity symbol) -> Carrier) -> Carrier
+  interpretConstant : signature.ConstantSymbol -> Carrier
+\end{leanblock}
+
+This packages a carrier together with interpretations of the signature symbols.
+
+\subsection{Abstract Relation Laws}
+
+\begin{leanblock}
+def RelationReflexive {Carrier : Type u}
+    (relation : Carrier -> Carrier -> Prop) : Prop :=
+  forall x, relation x x
+
+def RelationSymmetric {Carrier : Type u}
+    (relation : Carrier -> Carrier -> Prop) : Prop :=
+  forall {x y}, relation x y -> relation y x
+
+def RelationTransitive {Carrier : Type u}
+    (relation : Carrier -> Carrier -> Prop) : Prop :=
+  forall {x y z}, relation x y -> relation y z -> relation x z
+\end{leanblock}
+
+These are generic relation properties. Equality satisfies them by the earlier theorem layer, but universal algebra needs them stated abstractly so that arbitrary congruence relations can also be discussed.
+
+\subsection{Operation Compatibility}
+
+\begin{leanblock}
+def OperationCompatible
+    {signature : AlgebraicSignature.{v, w}}
+    (structure_ : AlgebraicStructure signature)
+    (relation : structure_.Carrier -> structure_.Carrier -> Prop) : Prop :=
+  forall (symbol : signature.OperationSymbol)
+    (left right : Fin (signature.arity symbol) -> structure_.Carrier),
+      (forall index, relation (left index) (right index)) ->
+        relation
+          (structure_.interpretOperation symbol left)
+          (structure_.interpretOperation symbol right)
+\end{leanblock}
+
+This is the formal meaning of congruence across operations. Pointwise related inputs must produce related outputs.
+
+\subsection{Congruence}
+
+\begin{leanblock}
+structure IsCongruence
+    {signature : AlgebraicSignature.{v, w}}
+    (structure_ : AlgebraicStructure signature)
+    (relation : structure_.Carrier -> structure_.Carrier -> Prop) : Prop where
+  reflexive : RelationReflexive relation
+  symmetric : RelationSymmetric relation
+  transitive : RelationTransitive relation
+  operationCompatible : OperationCompatible structure_ relation
+\end{leanblock}
+
+A congruence is therefore an equivalence relation that also respects the interpreted operations. This is exactly the condition required for quotient operations to be well-defined.
+
+This definition marks the exact difference between equivalence and congruence. Equivalence groups objects into classes. Congruence says those classes are algebraically stable. Without congruence, a quotient may exist as a bare partition, but operations on representatives need not descend consistently to the quotient.
+
+\subsection{Pointwise Equality of Tuples}
+
+\begin{leanblock}
+theorem IndexedOperationCongruence
+    {Index : Type u} {Carrier : Type v} {Codomain : Type w}
+    (operation : (Index -> Carrier) -> Codomain)
+    {left right : Index -> Carrier}
+    (argumentsEqual : forall index, left index = right index) :
+    operation left = operation right := by
+  have h : left = right := by
+    funext index
+    exact argumentsEqual index
+  rw [h]
+\end{leanblock}
+
+This theorem is extensionality for indexed operations. If two input tuples are pointwise equal, then any operation on tuples produces equal results.
+
+\subsection{Interpreted Operations Respect Pointwise Equality}
+
+\begin{leanblock}
+theorem AlgebraicStructure.interpretOperationCongruence
+    {signature : AlgebraicSignature.{v, w}}
+    (structure_ : AlgebraicStructure.{u} signature)
+    (symbol : signature.OperationSymbol)
+    {left right : Fin (signature.arity symbol) -> structure_.Carrier}
+    (argumentsEqual : forall index, left index = right index) :
+    structure_.interpretOperation symbol left =
+      structure_.interpretOperation symbol right := by
+  have h : left = right := by
+    funext index
+    exact argumentsEqual index
+  rw [h]
+\end{leanblock}
+
+This is the signature-aware form used in the identity congruence theorem.
+
+\subsection{Quotients}
+
+\begin{leanblock}
+def CongruenceQuotient
+    {signature : AlgebraicSignature.{v, w}}
+    (structure_ : AlgebraicStructure signature)
+    (relation : structure_.Carrier -> structure_.Carrier -> Prop) : Type u :=
+  Quot relation
+\end{leanblock}
+
+The quotient construction replaces each equivalence class by one point.
+
+\subsection{Identity Is a Congruence}
+
+\begin{leanblock}
+theorem IdentIsCongruence
+    {signature : AlgebraicSignature.{v, w}}
+    (structure_ : AlgebraicStructure.{u} signature)
+    [IdentityRelation structure_.Carrier] :
+    IsCongruence structure_ Ident := by
+  constructor
+  . exact IdentReflexive
+  . intro x y hxy
+    exact IdentSymmetric hxy
+  . intro x y z hxy hyz
+    exact IdentTransitive hxy hyz
+  . intro symbol lhs rhs hypo
+    exact Interop.ofEq
+      (structure_.interpretOperationCongruence symbol
+        (fun i => Interop.toEq (hypo i)))
+\end{leanblock}
+
+This theorem says that identity is always a congruence. That matters because quotienting by identity is the benchmark trivial quotient: the classes are already singletons.
+
+So identity is not merely one more congruence relation among many. It is the limiting case in which congruence classes are as small as they can be. Every other congruence can be compared against it as a coarser form of collapse.
+
+\subsection{Quotienting by Identity}
+
+\begin{leanblock}
+def quotientByIdentToCarrier
+    {signature : AlgebraicSignature.{v, w}}
+    (structure_ : AlgebraicStructure.{u} signature)
+    [IdentityRelation structure_.Carrier] :
+    CongruenceQuotient structure_ Ident -> structure_.Carrier :=
+  Quot.lift id (fun _ _ h => Interop.toEq h)
+\end{leanblock}
+
+\begin{leanblock}
+theorem quotientByIdentToCarrier_leftInverse
+    {signature : AlgebraicSignature.{v, w}}
+    (structure_ : AlgebraicStructure.{u} signature)
+    [IdentityRelation structure_.Carrier]
+    (element : structure_.Carrier) :
+    quotientByIdentToCarrier structure_ (Quot.mk _ element) = element :=
+  rfl
+\end{leanblock}
+
+\begin{leanblock}
+theorem quotientByIdentToCarrier_rightInverse
+    {signature : AlgebraicSignature.{v, w}}
+    (structure_ : AlgebraicStructure.{u} signature)
+    [IdentityRelation structure_.Carrier]
+    (classOf : CongruenceQuotient structure_ Ident) :
+    Quot.mk _ (quotientByIdentToCarrier structure_ classOf) = classOf :=
+  Quot.inductionOn classOf (fun _ => rfl)
+\end{leanblock}
+
+These theorems formalize the statement that quotienting by identity changes nothing essential. Passing to identity classes and returning to representatives gives the original object back.
+
+\section{Model Theory}
+
+\subsection{Identity Theories with Admissibility}
+
+\begin{leanblock}
+structure IdentityTheory {Carrier : Type u}
+    (Admissible : (Carrier -> Prop) -> Prop)
+    (R : Carrier -> Carrier -> Prop) : Prop where
+  reflexive : forall x, R x x
+  leibniz :
+    forall x y, R x y ->
+      forall P : Carrier -> Prop, Admissible P -> P x -> P y
+
+abbrev FullLeibniz (Carrier : Type u) : (Carrier -> Prop) -> Prop :=
+  fun _ => True
+\end{leanblock}
+
+This is the model-theoretic abstraction of the interface. The key addition is the admissibility predicate. Instead of fixing transport across all predicates forever, the theory can specify which predicates are allowed.
+
+For the current collapse theorem, admissibility is \leaninline{FullLeibniz}, so every predicate is allowed. In a later first-order development, admissibility can be restricted to definable predicates of a language. That is exactly where nontrivial congruence models would live before quotient normalization.
+
+\subsection{Pure Equality Language}
+
+\begin{leanblock}
+def pureEqualitySignature : Signature where
+  Functions := <| Empty, Empty.elim
+  Relations := <| Empty, Empty.elim
+  Constants := Empty
+
+abbrev PureEqualityLanguage := FirstOrderLanguage
+
+def pureEqualityLanguage : PureEqualityLanguage :=
+  pureEqualitySignature
+
+abbrev EqualityLogicalSymbol := LRA.Logic.Language.Notation.LogicalEquality
+\end{leanblock}
+
+This language contains no nonlogical symbols. Only equality remains.
+
+\subsection{The Diagonal Predicate}
+
+\begin{leanblock}
+def EqualityDiagonal (Carrier : Type u) : Carrier -> Carrier -> Prop :=
+  fun left right => left = right
+\end{leanblock}
+
+This is the predicate form of the diagonal subset of \(C \times C\).
+
+\subsection{Equality Structures}
+
+\begin{leanblock}
+structure EqualityStructure where
+  Carrier : Type u
+  carrierNonempty : Nonempty Carrier
+  equalityInterpretation : Carrier -> Carrier -> Prop
+  satisfiesIdentityTheory :
+    IdentityTheory (FullLeibniz Carrier) equalityInterpretation
+\end{leanblock}
+
+An equality structure is a carrier equipped with an interpreted equality relation that satisfies the full identity theory.
+
+The important point is what is not built into the structure. Diagonality is not a field. It is proved later from the theory. That is the right order of dependence.
+
+\subsection{From Theory to Interface}
+
+\begin{leanblock}
+abbrev IdentityRelation.ofIdentityTheory {Carrier : Type u}
+    {R : Carrier -> Carrier -> Prop}
+    (h : IdentityTheory (FullLeibniz Carrier) R) : IdentityRelation Carrier where
+  Ident := R
+  IdentReflexive := h.reflexive
+  IdentLeibniz := fun hxy P hp => h.leibniz _ _ hxy P trivial hp
+\end{leanblock}
+
+This produces an \leaninline{IdentityRelation} instance from a full identity theory.
+
+\subsection{From Interface to Theory}
+
+\begin{leanblock}
+theorem IdentityRelation.satisfiesIdentityTheory (Carrier : Type u)
+    [IdentityRelation Carrier] :
+    IdentityTheory (FullLeibniz Carrier) (Ident : Carrier -> Carrier -> Prop) where
+  reflexive := IdentReflexive
+  leibniz := fun _ _ hxy P _ hp => IdentLeibniz hxy P hp
+\end{leanblock}
+
+This is the converse packaging direction. The interface and the full theory line up exactly.
+
+\subsection{Every Equality Structure Is Diagonal}
+
+\begin{leanblock}
+theorem EqualityStructure.isDiagonal (S : EqualityStructure.{u}) :
+    forall left right,
+      S.equalityInterpretation left right <->
+        EqualityDiagonal S.Carrier left right :=
+  fun left right =>
+    @IdentIsDiagonal S.Carrier
+      (IdentityRelation.ofIdentityTheory S.satisfiesIdentityTheory) left right
+\end{leanblock}
+
+This is the model-theoretic collapse theorem. A relation satisfying full Leibniz on a carrier must be the diagonal relation on that carrier.
+
+That result pinpoints the strength of unrestricted substitutability. If every predicate is admissible, then no proper enlargement of the diagonal can survive. Any such enlargement would identify two objects that some equality-sensitive predicate could distinguish. Full Leibniz forbids that.
+
+\subsection{Building Equality Structures from Reflexivity and Leibniz}
+
+\begin{leanblock}
+def EqualityStructure.ofReflexiveLeibnizRelation
+    (Carrier : Type u) [Nonempty Carrier] {R : Carrier -> Carrier -> Prop}
+    (reflexive : forall x, R x x)
+    (leibniz : forall x y, R x y -> forall P : Carrier -> Prop, P x -> P y) :
+    EqualityStructure.{u} where
+  Carrier := Carrier
+  carrierNonempty := inferInstance
+  equalityInterpretation := R
+  satisfiesIdentityTheory := <|
+    reflexive,
+    fun x y h P _ => leibniz x y h P
+\end{leanblock}
+
+This constructor packages raw reflexivity and Leibniz data into an equality structure. The previous theorem then yields diagonality.
+
+\subsection{First-Order Models}
+
+\begin{leanblock}
+def EqualityStructure.toFirstOrderModel
+    (S : EqualityStructure.{u}) :
+    FirstOrder.Model pureEqualitySignature where
+  Domain := S.Carrier
+  domainNonempty := S.carrierNonempty
+  interpretEquality := S.equalityInterpretation
+  equalityIsDiagonal := S.isDiagonal
+  interpretFunction := fun functionSymbol => Empty.elim functionSymbol
+  interpretRelation := fun relationSymbol => Empty.elim relationSymbol
+  interpretConstant := Empty.elim
+\end{leanblock}
+
+This turns an equality structure into a first-order model of the pure equality language.
+
+\subsection{Canonical Equality Structure}
+
+\begin{leanblock}
+def canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :
+    EqualityStructure where
+  Carrier := Carrier
+  carrierNonempty := inferInstance
+  equalityInterpretation := EqualityDiagonal Carrier
+  satisfiesIdentityTheory :=
+    <| (fun _ => rfl),
+       (fun _ _ h _ _ hp => h ▸ hp)
+\end{leanblock}
+
+This is the standard model in which equality is interpreted by actual equality.
+
+\section{Audit and Backend Separation}
+
+\subsection{The Axiomatic Backend Collapses to Equality}
+
+\begin{leanblock}
+theorem axiomaticIsEq {Carrier : Type u} (x y : Carrier) :
+    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y <-> x = y :=
+  @IdentIsDiagonal Carrier
+    (LRA.Identity.Construction.Axiomatic.instIdentityRelation Carrier) x y
+\end{leanblock}
+
+This theorem is the concrete certificate that the axiomatic backend is provably diagonal.
+
+\subsection{The Oracle Check}
+
+\begin{leanblock}
+#print axioms IdentIsDiagonal
+#print axioms LRA.Identity.Construction.Mathlib.instIdentityRelation
+#print axioms axiomaticIsEq
+\end{leanblock}
+
+The intended reading is precise.
+
+\begin{itemize}[leftmargin=1.5em]
+\item \leaninline{IdentIsDiagonal} is theorem-level and axiom-free.
+\item The Mathlib instance is axiom-free.
+\item \leaninline{axiomaticIsEq} depends exactly on \leaninline{Ax\_IdentityRelation}, \leaninline{Ax\_EqualityReflexivity}, and \leaninline{Ax\_LeibnizLaw}.
+\end{itemize}
+
+So the generic theorem layer is shared, the native backend is kernel-clean, and the axiomatic backend records only the dependencies it really introduces.
+
+This is exactly the certification one wants from the split. Native equality stays native. The axiomatic route is honest about its three axioms. The theorem layer in between is shared mathematics rather than duplicated implementation.
+
+\section{Synthesis}
+
+The current \leaninline{LRA/Identity} subtree now has a coherent mathematical architecture.
+
+\begin{enumerate}[leftmargin=1.5em]
+\item It starts with a generic identity relation rather than hard-wiring Lean equality into the interface.
+\item It derives symmetry, transitivity, and full Leibniz equivalence from a minimal primitive basis.
+\item It develops witness logic in a way that makes the role of identity explicit: existence, nonexistence, at-most-one, failure of at-most-one, and exact uniqueness.
+\item It proves congruence across predicates, relations, functions, and operations.
+\item It shows that full Leibniz transport forces diagonality, so identity partitions a carrier into singleton blocks.
+\item It provides both an axiomatic construction and a native construction, with theorem-based interoperation between them.
+\end{enumerate}
+
+The central consequence is that full Leibniz transport is extremely strong. Once a relation preserves every admissible predicate and admissibility is unrestricted, the relation cannot remain a loose equivalence or coarse congruence. It collapses to actual equality. That explains why exact uniqueness is a collapse statement, why distinctness is the language of genuine multiplicity, why equality gives the finest partition, and why quotienting by identity is trivial.
+
+It also identifies the correct next step for a broader model theory. If admissibility is later restricted to definable predicates rather than all predicates, then proper congruence relations can survive at the semantic level before normalization. The current refactor isolates exactly where that restriction belongs.
+
+The broader conceptual picture is now sharper. Identity is the source notion. Equality is the diagonal realization of that source notion. Equivalence is the more general pattern of partitioning a carrier into classes. Congruence is the version of equivalence that is compatible with structure. Distinctness, existence, nonexistence, at-most-one, and exact uniqueness are downstream logical instruments for measuring how many genuinely different witnesses remain once identity has done its collapsing work. The notes are most useful when those interconnections stay visible, because the individual theorems are then seen not as isolated facts, but as consequences of one governing idea: objects that are identical are interchangeable everywhere mathematics is allowed to look.
+
+\end{document}

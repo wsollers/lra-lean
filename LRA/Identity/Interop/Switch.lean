@@ -1,4 +1,4 @@
-import LRA.Identity.Constructions.Leibniz.Definitions.Equality
+import LRA.Identity.Interface.Definitions.Equality
 import LRA.Identity.Interop.FromMathlib
 import LRA.Identity.Interop.ToMathlib
 
@@ -6,6 +6,13 @@ namespace LRA.Identity
 
 universe u
 
+/-- `LRA_Identity` (and `SelectIdentityRelation`) are for code that wants to
+stay parametric over which equality construction it commits to. Both
+backends below are definitionally `fun a b => a = b`, so most downstream
+consumers don't need the switch at all — they can depend on
+`Interface.Definitions`/`Interface.Laws` directly. Set theory is the
+motivating counterexample: it deliberately routes its notion of set equality
+through `LRA_Identity` rather than bare `=`. -/
 inductive IdentityBackend where
   | leibniz
   | mathlib

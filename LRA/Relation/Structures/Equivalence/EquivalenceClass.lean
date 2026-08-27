@@ -1,10 +1,12 @@
 import LRA.Relation.Structures.Equivalence.Definition
-import LRA.Identity.Constructions.Leibniz.Definitions.ExistenceAndUniqueness
-import LRA.Set.Interface.Membership
+import LRA.Identity.Interface.Definitions.Witnesses
+import LRA.Identity.Constructions.Mathlib
+import LRA.Set.Interface.Laws.Membership
 
 namespace LRA.Relation
 
 open LRA.Set
+open scoped LRA.Identity.Construction.Mathlib
 
 universe u v
 
@@ -184,7 +186,8 @@ theorem EquivalenceClassExists
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x ∈ Element), LRA.Identity.Unique fun classSet ∈ SetObject => IsEquivalenceClassOf classSet A relation x
+  (∀ A ∈ U ∀ x ∈ Element), LRA.Identity.AtMostOne fun classSet ∈ SetObject =>
+    IsEquivalenceClassOf classSet A relation x
 
 Predicate logic (unfolded):
 
@@ -197,7 +200,7 @@ theorem EquivalenceClassUnique
     (ambient : SetObject)
     (relation : Endorelation Element)
     (representative : Element) :
-    LRA.Identity.Unique
+    LRA.Identity.AtMostOne
       (fun classSet : SetObject =>
         IsEquivalenceClassOf classSet ambient relation representative)
 ```
@@ -225,7 +228,7 @@ theorem EquivalenceClassUnique
     (ambient : SetObject)
     (relation : Endorelation Element)
     (representative : Element) :
-    LRA.Identity.Unique
+    LRA.Identity.AtMostOne
       (fun classSet : SetObject =>
         IsEquivalenceClassOf classSet ambient relation representative) := by
   sorry
@@ -235,7 +238,8 @@ theorem EquivalenceClassUnique
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x ∈ Element), LRA.Identity.ExistsAndUnique fun classSet ∈ SetObject => IsEquivalenceClassOf classSet A relation x
+  (∀ A ∈ U ∀ x ∈ Element), LRA.Identity.ExactlyOne fun classSet ∈ SetObject =>
+    IsEquivalenceClassOf classSet A relation x
 
 Predicate logic (unfolded):
 
@@ -248,7 +252,7 @@ theorem EquivalenceClassExistsAndUnique
     (ambient : SetObject)
     (relation : Endorelation Element)
     (representative : Element) :
-    LRA.Identity.ExistsAndUnique
+    LRA.Identity.ExactlyOne
       (fun classSet : SetObject =>
         IsEquivalenceClassOf classSet ambient relation representative)
 ```
@@ -276,7 +280,7 @@ theorem EquivalenceClassExistsAndUnique
     (ambient : SetObject)
     (relation : Endorelation Element)
     (representative : Element) :
-    LRA.Identity.ExistsAndUnique
+    LRA.Identity.ExactlyOne
       (fun classSet : SetObject =>
         IsEquivalenceClassOf classSet ambient relation representative) := by
   sorry

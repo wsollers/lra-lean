@@ -9,9 +9,8 @@ theorem NativeEqualitySatisfiesEqualityTheory (Carrier : Type u) :
   constructor
   . -- reflivity
     intro arbitrary
-    exact
+    rfl
 
-    sorry
   . --leibniz
     intro x
     intro y
