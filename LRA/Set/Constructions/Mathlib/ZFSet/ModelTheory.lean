@@ -1,11 +1,12 @@
 
-import LRA.Set.Interface.ModelTheory.Theory
+import LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.Theory
 import Mathlib.SetTheory.ZFC.Basic
 
 namespace LRA.Set.ModelTheory
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
+open LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
 
 /--
 `ZFSetMembershipModel` TODO

@@ -1,5 +1,6 @@
 import LRA.Set.Constructions.GrothendieckUniverse.ModelTheory
 import LRA.Set.Constructions.TGSet.Theorems
+import LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.Theory
 
 namespace LRA.Set.Constructions.TGSet
 
@@ -15,6 +16,7 @@ namespace LRA.Set.ModelTheory
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
+open LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
 
 @[reducible] noncomputable def TGSetCanonicalGrothendieckUniverseMembershipModel
     (A : LRA.Set.Constructions.TGSet) :

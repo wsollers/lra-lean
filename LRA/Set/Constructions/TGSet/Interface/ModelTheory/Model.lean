@@ -11,6 +11,7 @@ open LRA.Logic
 open LRA.Logic.FirstOrder
 open LRA.Set.Constructions.TGSet
 open LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory
+open LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
 
 @[reducible] noncomputable def TGSetMembershipModel : Model MembershipSignature where
   Domain := TGSetObject

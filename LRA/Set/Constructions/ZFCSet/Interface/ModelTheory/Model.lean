@@ -7,6 +7,7 @@ namespace LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
+open LRA.Set.ModelTheory
 
 @[reducible] noncomputable def ZFCSetMembershipModel : Model MembershipSignature where
   Domain := LRA.Set.Constructions.ZFCSet

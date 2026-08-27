@@ -1,4 +1,4 @@
-import LRA.Set.Interface.ModelTheory.Theory
+import LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.Theory
 import LRA.Logic.Semantics.Satisfaction
 import LRA.Set.Constructions.GrothendieckUniverse.Theorems
 
@@ -7,6 +7,7 @@ namespace LRA.Set.ModelTheory
 open LRA.Logic
 open LRA.Logic.FirstOrder
 open LRA.Set.Constructions.GrothendieckUniverse
+open LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
 
 universe u
 

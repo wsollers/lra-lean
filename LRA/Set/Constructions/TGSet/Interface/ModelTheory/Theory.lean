@@ -1,26 +1,36 @@
-import LRA.Set.Constructions.TGSet.Interface.ModelTheory.LStructure
-import LRA.Set.Interface.ModelTheory.Theory
+import LRA.Set.Interface.ModelTheory.LStructure
+import LRA.Set.Constructions.TGSet.Definition
+import LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory.LStructure
+import LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.Theory
 import LRA.Set.Constructions.GrothendieckUniverse.Axioms
 import LRA.Set.Constructions.GrothendieckUniverse.Definitions
+
+/-!
+TGSet's model-theory interface: the TG carrier as an `L_∈`-structure, plus
+TGSet's actual export over ZFCSet's theory — the TG universe axiom and its
+associated internal-universe predicate.
+-/
 
 namespace LRA.Set.Constructions.TGSet.Interface.ModelTheory
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
+open LRA.Set.ModelTheory
+open LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
 
-abbrev extensionalityFormula := LRA.Set.ModelTheory.extensionalityFormula
-abbrev emptySetFormula := LRA.Set.ModelTheory.emptySetFormula
-abbrev pairingFormula := LRA.Set.ModelTheory.pairingFormula
-abbrev unionFormula := LRA.Set.ModelTheory.unionFormula
-abbrev powerSetFormula := LRA.Set.ModelTheory.powerSetFormula
-abbrev infinityFormula := LRA.Set.ModelTheory.infinityFormula
-abbrev foundationFormula := LRA.Set.ModelTheory.foundationFormula
-abbrev choiceFormula := LRA.Set.ModelTheory.choiceFormula
-abbrev SeparationHygienic := LRA.Set.ModelTheory.SeparationHygienic
-abbrev separationInstance := LRA.Set.ModelTheory.separationInstance
-abbrev ReplacementHygienic := LRA.Set.ModelTheory.ReplacementHygienic
-abbrev replacementInstance := LRA.Set.ModelTheory.replacementInstance
-abbrev ZFCTheory := LRA.Set.ModelTheory.ZFCTheory
+abbrev PureMembershipSignature :=
+  LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory.PureMembershipSignature
+
+abbrev TGSetObject := LRA.Set.Constructions.TGSet
+
+/--
+The ambient `L_∈`-structure for TG set theory uses the TG carrier with the
+standard membership relation.
+-/
+abbrev TGAmbientLStructure := TGSetObject
+
+abbrev InternalUniverseLStructure :=
+  LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory.UniverseLStructure
 
 /--
 The TG-specific universe axiom: every set is contained in some Grothendieck

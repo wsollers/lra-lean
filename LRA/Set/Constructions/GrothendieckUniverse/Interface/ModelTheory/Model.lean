@@ -5,6 +5,7 @@ namespace LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
+open LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
 
 universe u
 
