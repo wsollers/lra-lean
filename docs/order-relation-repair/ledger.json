@@ -1,0 +1,252 @@
+{
+  "generated_at": "2026-08-27",
+  "repo": "lra-lean",
+  "branch": "main",
+  "source": "conversation: LRA/Order restructure request, redirected to LRA/Relation-first after relation-as-set correction",
+  "sibling_coordinator": "docs/algebraic-structures-repair (separate ledger, by explicit choice, mirrors this one's shape)",
+  "workflow": {
+    "coordinator_mode": "main-thread, one subject at a time, strict tier order",
+    "passes_per_item": [
+      "reorg",
+      "build"
+    ],
+    "success_gate": [
+      "python scripts/validate_structure.py --path <validator_path>",
+      "lake build <build_target>",
+      "if both pass: commit on main (do not push unless asked)"
+    ]
+  },
+  "items": [
+    {
+      "id": "or-01",
+      "subject": "Relation",
+      "tier": 1,
+      "depends_on": [],
+      "status": "not_started",
+      "validator_path": "LRA/Relation",
+      "build_target": "LRA.Relation",
+      "notes": [
+        "The foundational item. Builds SetRelation: a genuine set of ordered pairs over LRA.Set.Interop.Providers.LRA.ZFC.ZFCSet, via HasPairing/OrderedPair + CartesianProductOf + HasSeparation (LRA/Set/Interface/CartesianProduct.lean; LRA/Set/Constructions/ZFCSet/Axioms/OrderedPair/Theorems.lean).",
+        "Second construction: Mathlib's own Set (Carrier x Carrier) -- NOT Rel (Mathlib's Rel is `alpha -> beta -> Prop`, same predicate shape as Endorelation, not a second genuinely-different representation).",
+        "Bridge theorem both directions: a SetRelation induces an Endorelation (fun x y => (x,y) in R), so existing predicate-shaped downstream code has a way to get one out.",
+        "See README.md's 'pushes past' note and DECISIONS.md R3 -- this is deliberately beyond the ambient-LRA_Set convention used elsewhere in the repo, not a regression to it.",
+        "Nothing in Order starts until this is done and reported back."
+      ]
+    },
+    {
+      "id": "Combinators",
+      "subject": "Order/Constructions -> Interface/Combinators rename",
+      "tier": 1,
+      "depends_on": [],
+      "status": "not_started",
+      "validator_path": "LRA/Order",
+      "build_target": "LRA.Order",
+      "notes": [
+        "Pure mechanical rename, no math dependency -- can run in parallel with or-01.",
+        "LRA/Order/Constructions/{LexicographicOrder,ProductOrder,StrictNonStrictCorrespondence} -> LRA/Order/Interface/Combinators/{...}",
+        "Delete Order/Constructions.lean; fold its 3 imports into new Interface/Combinators.lean barrel.",
+        "Fix the one real external import: Order/Directedness/Directed/Theorems.lean (LRA.Order.Constructions.ProductOrder.Definition -> LRA.Order.Interface.Combinators.ProductOrder.Definition).",
+        "grep -rn 'Order\\.Constructions\\.' LRA afterward should return nothing outside the new tree.",
+        "See DECISIONS.md R7."
+      ]
+    },
+    {
+      "id": "or-02",
+      "subject": "Preorder",
+      "tier": 2,
+      "depends_on": ["or-01"],
+      "status": "not_started",
+      "validator_path": "LRA/Order/Interface/OrderedSets/Preorder",
+      "build_target": "LRA.Order",
+      "notes": ["Existing generic def: Order/OrderedSets/Preorder/Definition.lean. Relational signature {<=}."]
+    },
+    {
+      "id": "or-03",
+      "subject": "PartialOrder / Poset",
+      "tier": 2,
+      "depends_on": ["or-01"],
+      "status": "not_started",
+      "validator_path": "LRA/Order/Interface/OrderedSets/Poset",
+      "build_target": "LRA.Order",
+      "notes": [
+        "Existing generic defs: Order/OrderedSets/{PartialOrder,Poset}/Definition.lean, Order/Laws/PartialOrder/Definition.lean (co-locate per R1/D3, not a separate sibling Laws/ folder).",
+        "Full model-theoretic writeup for this one already reviewed in the source conversation: L_<=, L-structure, T_Poset (reflexivity/antisymmetry/transitivity sentences), definability layer (Comp/Incomp/Cover/Minimal/Maximal/Bottom/Top/IsSup), substructure/homomorphism/embedding/isomorphism -- all in scope. Classification section (completeness/categoricity/stability/QE/finite-model-property) explicitly excluded, see README."
+      ]
+    },
+    {
+      "id": "or-04",
+      "subject": "StrictOrder / StrictPoset",
+      "tier": 2,
+      "depends_on": ["or-01"],
+      "status": "not_started",
+      "validator_path": "LRA/Order/Interface/OrderedSets/StrictPoset",
+      "build_target": "LRA.Order",
+      "notes": ["Existing generic defs: Order/OrderedSets/{StrictOrder,StrictPoset}/Definition.lean, Order/Laws/StrictOrderCompatibility/Definition.lean. Relational signature {<}."]
+    },
+    {
+      "id": "or-05",
+      "subject": "JoinSemilattice (order-theoretic)",
+      "tier": 2,
+      "depends_on": ["or-01"],
+      "status": "not_started",
+      "validator_path": "LRA/Order/Interface/Lattices/JoinSemilattice",
+      "build_target": "LRA.Order",
+      "notes": [
+        "Order/Lattices/JoinSemilattice/Definition.lean -- this is the order-relational Lattice family under LRA/Order, distinct from AlgebraicStructures' operations-based JoinSemilattice (as-08, already done in the sibling coordinator, with its own Constructions/OrderTheoretic/InducedOrder.lean bridge -- check that before building anything new here, per DECISIONS.md R10."
+      ]
+    },
+    {
+      "id": "or-06",
+      "subject": "MeetSemilattice (order-theoretic)",
+      "tier": 2,
+      "depends_on": ["or-01"],
+      "status": "not_started",
+      "validator_path": "LRA/Order/Interface/Lattices/MeetSemilattice",
+      "build_target": "LRA.Order",
+      "notes": ["Dual of or-05. Check as-09 (sibling coordinator) first, per R10."]
+    },
+    {
+      "id": "or-07",
+      "subject": "LinearOrder",
+      "tier": 3,
+      "depends_on": ["or-03"],
+      "status": "not_started",
+      "validator_path": "LRA/Order/Interface/OrderedSets/LinearOrder",
+      "build_target": "LRA.Order",
+      "notes": ["Existing: Order/OrderedSets/LinearOrder/Definition.lean, Order/Laws/LinearOrder/Definition.lean. Poset + totality sentence."]
+    },
+    {
+      "id": "or-08",
+      "subject": "StrictLinearOrder",
+      "tier": 3,
+      "depends_on": ["or-04"],
+      "status": "not_started",
+      "validator_path": "LRA/Order/Interface/OrderedSets/StrictLinearOrder",
+      "build_target": "LRA.Order",
+      "notes": ["Existing: Order/OrderedSets/StrictLinearOrder/Definition.lean. StrictPoset + trichotomy sentence."]
+    },
+    {
+      "id": "or-09",
+      "subject": "Lattice",
+      "tier": 3,
+      "depends_on": ["or-05", "or-06"],
+      "status": "not_started",
+      "validator_path": "LRA/Order/Interface/Lattices/Lattice",
+      "build_target": "LRA.Order",
+      "notes": [
+        "Existing: Order/Lattices/Lattice/Definition.lean. Algebraic {v,^} AND relational {<=} signatures, prove equivalent per the definitional-equivalence writeup reviewed in the source conversation.",
+        "R10: check as-12 (sibling coordinator, done) -- algebra<->order equivalence already exists, more complete than either semilattice's own bridge, at LRA/Order/Interop/AlgebraicLattice.lean (moves to Constructions/AlgebraicStructures/ per R1). Do not duplicate."
+      ]
+    },
+    {
+      "id": "or-10",
+      "subject": "WellOrder + Ax_WellOrdered",
+      "tier": 4,
+      "depends_on": ["or-07"],
+      "status": "not_started",
+      "validator_path": "LRA/Order/Interface/OrderedSets/WellOrder",
+      "build_target": "LRA.Order",
+      "notes": [
+        "Existing: Order/OrderedSets/WellOrder/Definition.lean. LinearOrder + every nonempty subset has a least element.",
+        "Ax_WellOrdered attaches here once the ModelTheory exists -- see DECISIONS.md R4 for the naming exception. Statement shape: every carrier with a generic-Set membership structure admits some relation that well-orders it, asserted as a primitive axiom (classically equivalent to Choice, not derived from it).",
+        "Follow-on, not required for or-10 itself: a theorem (not a second axiom) showing Ax_WellOrdered restricted to the ZFC provider follows from ZFCSet's existing choiceFormula axiom."
+      ]
+    },
+    {
+      "id": "or-11",
+      "subject": "DenseOrder / DenseLinearOrder",
+      "tier": 4,
+      "depends_on": ["or-07"],
+      "status": "not_started",
+      "validator_path": "LRA/Order/Interface/Density",
+      "build_target": "LRA.Order",
+      "notes": ["Existing: Order/Density/*/Definition.lean. LinearOrder + density sentence."]
+    },
+    {
+      "id": "or-12",
+      "subject": "DiscreteOrder",
+      "tier": 4,
+      "depends_on": ["or-04"],
+      "status": "not_started",
+      "validator_path": "LRA/Order/Interface/DiscreteOrder",
+      "build_target": "LRA.Order",
+      "notes": ["Existing: Order/DiscreteOrder/Definition.lean. StrictOrder + discreteness sentence."]
+    },
+    {
+      "id": "or-13",
+      "subject": "BoundedLattice",
+      "tier": 4,
+      "depends_on": ["or-09"],
+      "status": "not_started",
+      "validator_path": "LRA/Order/Interface/Lattices/BoundedLattice",
+      "build_target": "LRA.Order",
+      "notes": [
+        "Algebraic {v,^,0,1}. Reuse LRA/AlgebraicStructures/BoundedLattice/Definition.lean -- do not duplicate.",
+        "R10: check as-16 (sibling coordinator) status before building."
+      ]
+    },
+    {
+      "id": "or-14",
+      "subject": "DistributiveLattice",
+      "tier": 4,
+      "depends_on": ["or-09"],
+      "status": "not_started",
+      "validator_path": "LRA/Order/Interface/Lattices/DistributiveLattice",
+      "build_target": "LRA.Order",
+      "notes": ["Existing: Order/Lattices/DistributiveLattice/Definition.lean. Algebraic {v,^} + distributive sentence. R10: check as-17 (sibling coordinator)."]
+    },
+    {
+      "id": "or-15",
+      "subject": "CompleteLattice",
+      "tier": 4,
+      "depends_on": ["or-09", "or-01"],
+      "status": "not_started",
+      "validator_path": "LRA/Order/Interface/Lattices/CompleteLattice",
+      "build_target": "LRA.Order",
+      "notes": ["Existing: Order/Lattices/CompleteLattice/Definition.lean. Relational {<=} + Membership -- arbitrary-subset join/meet, not just binary, needs or-01's Relation/Set machinery directly."]
+    },
+    {
+      "id": "or-16",
+      "subject": "UniversalAlgebra wiring for Lattice family",
+      "tier": 5,
+      "depends_on": ["or-09"],
+      "status": "not_started",
+      "validator_path": "LRA/Order/Interface/Lattices/Lattice",
+      "build_target": "LRA.Order",
+      "notes": ["Wire LatticeLaws/BoundedLattice/BooleanAlgebra into LRA.UniversalAlgebra's actual Signature/Algebra/Satisfaction framework. See DECISIONS.md R9 -- LRA.UniversalAlgebra, not LRA.Identity's copy."]
+    },
+    {
+      "id": "or-17",
+      "subject": "Bounds (definability layer)",
+      "tier": 5,
+      "depends_on": ["or-03", "or-09"],
+      "status": "not_started",
+      "validator_path": "LRA/Order/Interface/Bounds",
+      "build_target": "LRA.Order",
+      "notes": ["UpperBound/LowerBound/Supremum/Infimum/GreatestElement/LeastElement/MaximalElement/MinimalElement/TopElement/BottomElement/Bounded*/Cofinal/Coinitial. Definable formulas riding on Poset/Lattice's language, not a new signature. See DECISIONS.md R8."]
+    },
+    {
+      "id": "or-18",
+      "subject": "Morphisms",
+      "tier": 5,
+      "depends_on": ["or-03"],
+      "status": "not_started",
+      "validator_path": "LRA/Order/Interface/Morphisms",
+      "build_target": "LRA.Order",
+      "notes": ["Monotone/Antitone/OrderEmbedding/OrderIsomorphism -- properties of maps between two models of the same theory, not a new signature. See DECISIONS.md R8."]
+    },
+    {
+      "id": "or-19",
+      "subject": "Order's own Relation/ (RelationProperties) + Directedness",
+      "tier": 5,
+      "depends_on": ["or-03"],
+      "status": "not_started",
+      "validator_path": "LRA/Order/Interface/RelationProperties",
+      "build_target": "LRA.Order",
+      "notes": [
+        "Order/Relation/* (Comparable/CoverRelation/Adjacent/UpperCover/LowerCover/...) -- consider renaming to Interface/RelationProperties/ to avoid sitting next to the top-level LRA/Relation restructured in or-01 under a confusingly identical short name.",
+        "Directedness/* (Directed/Chain) folds in here too. Definability layer, not a new signature. See DECISIONS.md R8."
+      ]
+    }
+  ]
+}
