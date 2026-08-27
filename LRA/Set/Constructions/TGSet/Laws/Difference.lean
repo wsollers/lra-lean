@@ -446,17 +446,4 @@ theorem DifferenceDisjointRight :
     forall A B : Set, (A \ B) ∩ B = (∅ : Set) := by
   sorry
 
-instance : DifferenceLaws Set where
-  DifferenceMonotoneLeft := DifferenceMonotoneLeft
-  DifferenceAntitoneRight := DifferenceAntitoneRight
-  DifferenceEmpty := DifferenceEmpty
-  EmptyDifference := EmptyDifference
-  DifferenceSelf := DifferenceSelf
-  DifferenceUnion := DifferenceUnion
-  DifferenceIntersection := DifferenceIntersection
-  UnionDifferenceDistributes := UnionDifferenceDistributes
-  IntersectionDifferenceDistributes := IntersectionDifferenceDistributes
-  DifferenceSubsetLeft := DifferenceSubsetLeft
-  DifferenceDisjointRight := DifferenceDisjointRight
-
 end LRA.Set.Constructions.TGSet

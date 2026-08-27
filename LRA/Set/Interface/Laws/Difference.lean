@@ -150,8 +150,8 @@ Related proof moves: intro
 
 -/
 theorem DifferenceMonotoneLeft :
-    ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B := by
-  sorry
+    ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B :=
+  DifferenceLaws.DifferenceMonotoneLeft
 
 /--
 `DifferenceAntitoneRight` TODO
@@ -191,8 +191,8 @@ Related proof moves: intro
 
 -/
 theorem DifferenceAntitoneRight :
-    ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁ := by
-  sorry
+    ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁ :=
+  DifferenceLaws.DifferenceAntitoneRight
 
 /--
 `DifferenceEmpty` TODO
@@ -230,8 +230,8 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem DifferenceEmpty : ∀ A : α, A \ (∅ : α) = A := by
-  sorry
+theorem DifferenceEmpty : ∀ A : α, A \ (∅ : α) = A :=
+  DifferenceLaws.DifferenceEmpty
 
 /--
 `EmptyDifference` TODO
@@ -269,8 +269,8 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem EmptyDifference : ∀ A : α, (∅ : α) \ A = (∅ : α) := by
-  sorry
+theorem EmptyDifference : ∀ A : α, (∅ : α) \ A = (∅ : α) :=
+  DifferenceLaws.EmptyDifference
 
 /--
 `DifferenceSelf` TODO
@@ -308,8 +308,8 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem DifferenceSelf : ∀ A : α, A \ A = (∅ : α) := by
-  sorry
+theorem DifferenceSelf : ∀ A : α, A \ A = (∅ : α) :=
+  DifferenceLaws.DifferenceSelf
 
 /--
 `DifferenceUnion` TODO
@@ -349,8 +349,8 @@ Related proof moves: intro
 
 -/
 theorem DifferenceUnion :
-    ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C) := by
-  sorry
+    ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C) :=
+  DifferenceLaws.DifferenceUnion
 
 /--
 `DifferenceIntersection` TODO
@@ -390,8 +390,8 @@ Related proof moves: intro
 
 -/
 theorem DifferenceIntersection :
-    ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C) := by
-  sorry
+    ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C) :=
+  DifferenceLaws.DifferenceIntersection
 
 /--
 `UnionDifferenceDistributes` TODO
@@ -431,8 +431,8 @@ Related proof moves: intro
 
 -/
 theorem UnionDifferenceDistributes :
-    ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C) := by
-  sorry
+    ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C) :=
+  DifferenceLaws.UnionDifferenceDistributes
 
 /--
 `IntersectionDifferenceDistributes` TODO
@@ -472,8 +472,8 @@ Related proof moves: intro
 
 -/
 theorem IntersectionDifferenceDistributes :
-    ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C) := by
-  sorry
+    ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C) :=
+  DifferenceLaws.IntersectionDifferenceDistributes
 
 /--
 `DifferenceSubsetLeft` TODO
@@ -511,8 +511,8 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem DifferenceSubsetLeft : ∀ A B : α, A \ B ⊆ A := by
-  sorry
+theorem DifferenceSubsetLeft : ∀ A B : α, A \ B ⊆ A :=
+  DifferenceLaws.DifferenceSubsetLeft
 
 /--
 `DifferenceDisjointRight` TODO
@@ -552,7 +552,7 @@ Related proof moves: intro
 
 -/
 theorem DifferenceDisjointRight :
-    ∀ A B : α, (A \ B) ∩ B = (∅ : α) := by
-  sorry
+    ∀ A B : α, (A \ B) ∩ B = (∅ : α) :=
+  DifferenceLaws.DifferenceDisjointRight
 
 end LRA.Set

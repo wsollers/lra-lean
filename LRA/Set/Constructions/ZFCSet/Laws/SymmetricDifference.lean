@@ -366,16 +366,4 @@ theorem SymmetricDifferenceSubsetUnion :
     ∀ A B : Set, A ∆ B ⊆ A ∪ B := by
   sorry
 
-instance : SymmDiffLaws Set where
-  SymmetricDifferenceAsUnionDifferences := SymmetricDifferenceAsUnionDifferences
-  SymmetricDifferenceAsUnionDifferenceIntersection :=
-    SymmetricDifferenceAsUnionDifferenceIntersection
-  SymmetricDifferenceCommutative := SymmetricDifferenceCommutative
-  SymmetricDifferenceAssociative := SymmetricDifferenceAssociative
-  SymmetricDifferenceEmpty := SymmetricDifferenceEmpty
-  EmptySymmetricDifference := EmptySymmetricDifference
-  SymmetricDifferenceSelf := SymmetricDifferenceSelf
-  SymmetricDifferenceEqEmptyIff := SymmetricDifferenceEqEmptyIff
-  SymmetricDifferenceSubsetUnion := SymmetricDifferenceSubsetUnion
-
 end LRA.Set.Constructions.ZFCSet

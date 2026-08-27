@@ -175,14 +175,4 @@ theorem AbsorptionIntersectionUnion :
     ∀ A B : LRA.Set.Constructions.TypeSet Alpha, A ∩ (A ∪ B) = A := by
   sorry
 
-instance : DistributivityLaws (LRA.Set.Constructions.TypeSet Alpha) where
-  IntersectionDistributesOverUnion :=
-    LRA.Set.Constructions.TypeSet.IntersectionDistributesOverUnion
-  UnionDistributesOverIntersection :=
-    LRA.Set.Constructions.TypeSet.UnionDistributesOverIntersection
-  AbsorptionUnionIntersection :=
-    LRA.Set.Constructions.TypeSet.AbsorptionUnionIntersection
-  AbsorptionIntersectionUnion :=
-    LRA.Set.Constructions.TypeSet.AbsorptionIntersectionUnion
-
 end LRA.Set.Constructions.TypeSet

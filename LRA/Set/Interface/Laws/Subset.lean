@@ -90,8 +90,8 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem SubsetReflexive : ∀ A : α, A ⊆ A := by
-  sorry
+theorem SubsetReflexive : ∀ A : α, A ⊆ A :=
+  SubsetLaws.SubsetReflexive
 
 /--
 `SubsetTransitive` TODO
@@ -129,8 +129,8 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem SubsetTransitive : ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C := by
-  sorry
+theorem SubsetTransitive : ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C :=
+  SubsetLaws.SubsetTransitive
 
 /--
 `SetEqualityIffMutualSubset` TODO
@@ -168,7 +168,7 @@ Common confusions:
 Related proof moves: intro, constructor, .mp, .mpr, cases, rcases
 
 -/
-theorem SetEqualityIffMutualSubset : ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A := by
-  sorry
+theorem SetEqualityIffMutualSubset : ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A :=
+  SubsetLaws.SetEqualityIffMutualSubset
 
 end LRA.Set

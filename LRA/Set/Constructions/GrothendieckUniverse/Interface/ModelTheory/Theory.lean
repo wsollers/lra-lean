@@ -1,25 +1,15 @@
 import LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory.LStructure
-import LRA.Set.Interface.ModelTheory.Theory
+import LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.Theory
 import LRA.Set.Constructions.GrothendieckUniverse.Axioms
 
 namespace LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
+open LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
 
-abbrev extensionalityFormula := LRA.Set.ModelTheory.extensionalityFormula
-abbrev emptySetFormula := LRA.Set.ModelTheory.emptySetFormula
-abbrev pairingFormula := LRA.Set.ModelTheory.pairingFormula
-abbrev unionFormula := LRA.Set.ModelTheory.unionFormula
-abbrev powerSetFormula := LRA.Set.ModelTheory.powerSetFormula
-abbrev infinityFormula := LRA.Set.ModelTheory.infinityFormula
-abbrev foundationFormula := LRA.Set.ModelTheory.foundationFormula
-abbrev choiceFormula := LRA.Set.ModelTheory.choiceFormula
-abbrev SeparationHygienic := LRA.Set.ModelTheory.SeparationHygienic
-abbrev separationInstance := LRA.Set.ModelTheory.separationInstance
-abbrev ReplacementHygienic := LRA.Set.ModelTheory.ReplacementHygienic
-abbrev replacementInstance := LRA.Set.ModelTheory.replacementInstance
-abbrev ZFCTheory := LRA.Set.ModelTheory.ZFCTheory
+universe u
+
 abbrev TGUniverseAxiom := LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseAxiom
 
 def RelativizedAssignment

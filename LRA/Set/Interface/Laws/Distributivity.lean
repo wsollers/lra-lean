@@ -104,8 +104,8 @@ Related proof moves: intro
 
 -/
 theorem IntersectionDistributesOverUnion :
-    ∀ A B C : α, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) := by
-  sorry
+    ∀ A B C : α, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) :=
+  DistributivityLaws.IntersectionDistributesOverUnion
 
 /--
 `UnionDistributesOverIntersection` TODO
@@ -145,8 +145,8 @@ Related proof moves: intro
 
 -/
 theorem UnionDistributesOverIntersection :
-    ∀ A B C : α, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C) := by
-  sorry
+    ∀ A B C : α, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C) :=
+  DistributivityLaws.UnionDistributesOverIntersection
 
 /--
 `AbsorptionUnionIntersection` TODO
@@ -184,8 +184,8 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem AbsorptionUnionIntersection : ∀ A B : α, A ∪ (A ∩ B) = A := by
-  sorry
+theorem AbsorptionUnionIntersection : ∀ A B : α, A ∪ (A ∩ B) = A :=
+  DistributivityLaws.AbsorptionUnionIntersection
 
 /--
 `AbsorptionIntersectionUnion` TODO
@@ -223,7 +223,7 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem AbsorptionIntersectionUnion : ∀ A B : α, A ∩ (A ∪ B) = A := by
-  sorry
+theorem AbsorptionIntersectionUnion : ∀ A B : α, A ∩ (A ∪ B) = A :=
+  DistributivityLaws.AbsorptionIntersectionUnion
 
 end LRA.Set

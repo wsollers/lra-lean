@@ -3,5 +3,7 @@ import LRA.Set.Constructions.ZFCSet.Primitives
 import LRA.Set.Constructions.ZFCSet.Definition
 import LRA.Set.Constructions.ZFCSet.Instances
 import LRA.Set.Constructions.ZFCSet.Laws
+import LRA.Set.Constructions.ZFCSet.Satisfy_Generic
 import LRA.Set.Constructions.ZFCSet.Interface
-import LRA.Set.Constructions.ZFCSet.ModelTheory
+import LRA.Set.Constructions.ZFCSet.Satisfy_ZFC
+import LRA.Set.Constructions.ZFCSet.Satisfy_ZFCAlgebra

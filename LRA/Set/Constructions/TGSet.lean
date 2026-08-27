@@ -6,5 +6,8 @@ import LRA.Set.Constructions.TGSet.Theorems
 import LRA.Set.Constructions.TGSet.Public
 import LRA.Set.Constructions.TGSet.Instances
 import LRA.Set.Constructions.TGSet.Laws
+import LRA.Set.Constructions.TGSet.Satisfy_Generic
 import LRA.Set.Constructions.TGSet.Interface
-import LRA.Set.Constructions.TGSet.ModelTheory
+import LRA.Set.Constructions.TGSet.Satisfy_ZFC
+import LRA.Set.Constructions.TGSet.Satisfy_Grothendieck
+import LRA.Set.Constructions.TGSet.Satisfy_ZFCAlgebra

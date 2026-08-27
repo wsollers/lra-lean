@@ -3,10 +3,14 @@ import LRA.Set.Constructions.ZFCSet.Instances
 import LRA.Set.Constructions.ZFCSet.Axioms.Axioms
 import LRA.Logic.Semantics.Satisfaction
 
-namespace LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
+/-! ZFCSet satisfies its own exported ZFC theory. -/
+
+namespace LRA.Set.Constructions.ZFCSet
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
+open LRA.Set.ModelTheory
+open LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
 
 @[reducible] noncomputable def ZFCSetMembershipModel : Model MembershipSignature where
   Domain := LRA.Set.Constructions.ZFCSet
@@ -90,19 +94,4 @@ theorem zfcSetModelsZFC :
     ZFCSetMembershipModel ∈ ModelsOfFormulaTheory ZFCTheory := by
   sorry
 
-noncomputable abbrev EndertonMembershipModel := ZFCSetMembershipModel
-abbrev endertonInterpretsMem := zfcSetInterpretsMem
-abbrev endertonInterpretsEmpty := zfcSetInterpretsEmpty
-abbrev endertonSatisfiesExtensionality := zfcSetSatisfiesExtensionality
-abbrev endertonSatisfiesEmptySet := zfcSetSatisfiesEmptySet
-abbrev endertonSatisfiesPairing := zfcSetSatisfiesPairing
-abbrev endertonSatisfiesUnion := zfcSetSatisfiesUnion
-abbrev endertonSatisfiesPowerSet := zfcSetSatisfiesPowerSet
-abbrev endertonSatisfiesInfinity := zfcSetSatisfiesInfinity
-abbrev endertonSatisfiesFoundation := zfcSetSatisfiesFoundation
-abbrev endertonSatisfiesChoice := zfcSetSatisfiesChoice
-abbrev endertonSatisfiesSeparation := zfcSetSatisfiesSeparation
-abbrev endertonSatisfiesReplacement := zfcSetSatisfiesReplacement
-abbrev endertonModelsZFC := zfcSetModelsZFC
-
-end LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
+end LRA.Set.Constructions.ZFCSet

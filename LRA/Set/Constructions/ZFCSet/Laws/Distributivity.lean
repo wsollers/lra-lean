@@ -167,10 +167,4 @@ theorem AbsorptionIntersectionUnion :
     ∀ A B : Set, A ∩ (A ∪ B) = A := by
   sorry
 
-instance : DistributivityLaws Set where
-  IntersectionDistributesOverUnion := IntersectionDistributesOverUnion
-  UnionDistributesOverIntersection := UnionDistributesOverIntersection
-  AbsorptionUnionIntersection := AbsorptionUnionIntersection
-  AbsorptionIntersectionUnion := AbsorptionIntersectionUnion
-
 end LRA.Set.Constructions.ZFCSet

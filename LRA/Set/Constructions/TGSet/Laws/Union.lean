@@ -282,13 +282,4 @@ theorem SubsetIffUnionEqRight :
     forall A B : Set, A ⊆ B <-> A ∪ B = B := by
   sorry
 
-instance : UnionLaws Set where
-  UnionCommutative := UnionCommutative
-  UnionAssociative := UnionAssociative
-  EmptyUnion := EmptyUnion
-  UnionEmpty := UnionEmpty
-  UnionIdempotent := UnionIdempotent
-  UnionMonotone := UnionMonotone
-  SubsetIffUnionEqRight := SubsetIffUnionEqRight
-
 end LRA.Set.Constructions.TGSet

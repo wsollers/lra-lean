@@ -50,47 +50,4 @@ theorem NotMemberOfEmpty :
     ∀ x : Alpha, x ∉ (∅ : LRA.Set.Constructions.TypeSet Alpha) := by
   sorry
 
-instance : ExtensionalityLaw Alpha (LRA.Set.Constructions.TypeSet Alpha) where
-  SetExtensionality := LRA.Set.Constructions.TypeSetExtensionality
-
-instance : MembershipLaws Alpha (LRA.Set.Constructions.TypeSet Alpha) where
-  EmptyMembership := NotMemberOfEmpty
-  UnionMembership := UnionMembership
-  IntersectionMembership := IntersectionMembership
-  DifferenceMembership := DifferenceMembership
-  SubsetIffAllMembers := SubsetIff
-
-instance : SeparationLaws Alpha (LRA.Set.Constructions.TypeSet Alpha) where
-  SeparationMembership := SeparationMembership
-
-instance : UniversalMembershipLaws Alpha (LRA.Set.Constructions.TypeSet Alpha) where
-  UniversalMembership := UniversalMembership
-  ComplementMembership := ComplementMembership
-
-instance : SymmDiffMembershipLaws Alpha (LRA.Set.Constructions.TypeSet Alpha) where
-  SymmetricDifferenceMembership := SymmetricDifferenceMembership
-
-instance : PowersetMembershipLaws
-    (LRA.Set.Constructions.TypeSet Alpha)
-    (LRA.Set.Constructions.TypeSet (LRA.Set.Constructions.TypeSet Alpha)) where
-  PowersetMembership := PowerSetMembership
-
-instance : IndexedMembershipLaws Alpha (LRA.Set.Constructions.TypeSet Alpha) where
-  IndexedUnionMembership := fun family x => IndexedUnionMembership family x
-  IndexedIntersectionMembership := fun family x =>
-    IndexedIntersectionMembership family x
-
-instance : CountableMembershipLaws Alpha (LRA.Set.Constructions.TypeSet Alpha) where
-  CountableUnionMembership := fun family x => IndexedUnionMembership family x
-  CountableIntersectionMembership := fun family x =>
-    IndexedIntersectionMembership family x
-
-instance : CollectionMembershipLaws
-    Alpha
-    (LRA.Set.Constructions.TypeSet Alpha)
-    (LRA.Set.Constructions.TypeSet (LRA.Set.Constructions.TypeSet Alpha)) where
-  CollectionUnionMembership := fun C x => CollectionUnionMembership C x
-  CollectionIntersectionMembership := fun C x _ =>
-    CollectionIntersectionMembership C x
-
 end LRA.Set.Constructions.TypeSet

@@ -386,24 +386,4 @@ theorem SymmetricDifferenceSubsetUnion :
     ∀ A B : LRA.Set.Constructions.TypeSet Alpha, A ∆ B ⊆ A ∪ B := by
   sorry
 
-instance : SymmDiffLaws (LRA.Set.Constructions.TypeSet Alpha) where
-  SymmetricDifferenceAsUnionDifferences :=
-    LRA.Set.Constructions.TypeSet.SymmetricDifferenceAsUnionDifferences
-  SymmetricDifferenceAsUnionDifferenceIntersection :=
-    LRA.Set.Constructions.TypeSet.SymmetricDifferenceAsUnionDifferenceIntersection
-  SymmetricDifferenceCommutative :=
-    LRA.Set.Constructions.TypeSet.SymmetricDifferenceCommutative
-  SymmetricDifferenceAssociative :=
-    LRA.Set.Constructions.TypeSet.SymmetricDifferenceAssociative
-  SymmetricDifferenceEmpty :=
-    LRA.Set.Constructions.TypeSet.SymmetricDifferenceEmpty
-  EmptySymmetricDifference :=
-    LRA.Set.Constructions.TypeSet.EmptySymmetricDifference
-  SymmetricDifferenceSelf :=
-    LRA.Set.Constructions.TypeSet.SymmetricDifferenceSelf
-  SymmetricDifferenceEqEmptyIff :=
-    LRA.Set.Constructions.TypeSet.SymmetricDifferenceEqEmptyIff
-  SymmetricDifferenceSubsetUnion :=
-    LRA.Set.Constructions.TypeSet.SymmetricDifferenceSubsetUnion
-
 end LRA.Set.Constructions.TypeSet

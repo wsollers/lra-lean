@@ -8,10 +8,6 @@ axiom NBGSetMembership : NBGSet → NBGSet → Prop
 
 axiom NBGClassMembership : NBGSet → NBGClass → Prop
 
-axiom NBGClassOfSet : NBGSet → NBGClass
-
-axiom NBGOrderedPair : NBGSet → NBGSet → NBGSet
-
 instance : Membership NBGSet NBGSet where
   mem containingSet element := NBGSetMembership element containingSet
 

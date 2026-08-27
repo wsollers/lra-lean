@@ -130,10 +130,4 @@ theorem SetEqualityIffMutualSubset :
     ∀ A B : LRA.Set.Constructions.TypeSet Alpha, A = B ↔ A ⊆ B ∧ B ⊆ A := by
   sorry
 
-instance : SubsetLaws (LRA.Set.Constructions.TypeSet Alpha) where
-  SubsetReflexive := LRA.Set.Constructions.TypeSet.SubsetReflexive
-  SubsetTransitive := LRA.Set.Constructions.TypeSet.SubsetTransitive
-  SetEqualityIffMutualSubset :=
-    LRA.Set.Constructions.TypeSet.SetEqualityIffMutualSubset
-
 end LRA.Set.Constructions.TypeSet

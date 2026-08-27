@@ -46,28 +46,4 @@ theorem SubsetIffAllMembers :
     ∀ A B : Set, A ⊆ B ↔ ∀ x : Set, x ∈ A → x ∈ B := by
   sorry
 
-instance : ExtensionalityLaw Set Set where
-  SetExtensionality := fun {A B} h => LRA.Set.Constructions.ZFCSet.Axioms.SetExtensionality A B h
-
-instance : MembershipLaws Set Set where
-  EmptyMembership := LRA.Set.Constructions.ZFCSet.Axioms.TheEmptySetIsEmpty
-  UnionMembership := LRA.Set.Constructions.ZFCSet.Axioms.TheUnionMembership
-  IntersectionMembership := LRA.Set.Constructions.ZFCSet.Axioms.TheIntersectionMembership
-  DifferenceMembership := LRA.Set.Constructions.ZFCSet.Axioms.TheRelativeComplementMembership
-  SubsetIffAllMembers := SubsetIffAllMembers
-
-instance : SeparationLaws Set Set where
-  SeparationMembership := LRA.Set.Constructions.ZFCSet.Axioms.TheSeparatedSubsetIsSeparatedSubset
-
-instance : SymmDiffMembershipLaws Set Set where
-  SymmetricDifferenceMembership := LRA.Set.Constructions.ZFCSet.Axioms.TheSymmetricDifferenceMembership
-
-instance : PowersetMembershipLaws Set Set where
-  PowersetMembership := LRA.Set.Constructions.ZFCSet.Axioms.ThePowerSetIsPowerSetOf
-
-instance : CollectionMembershipLaws Set Set Set where
-  CollectionUnionMembership := fun C x => LRA.Set.Constructions.ZFCSet.Axioms.TheUnionOverIsUnionOf C x
-  CollectionIntersectionMembership := fun C x h =>
-    LRA.Set.Constructions.ZFCSet.Axioms.TheIntersectionOverMembership C x h
-
 end LRA.Set.Constructions.ZFCSet
