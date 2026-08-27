@@ -8,6 +8,6 @@
 
 ## Architectural use
 
-`LRA.Relation` owns generic relation vocabulary and calculus: canonical relations, relation properties, relation operations, closure constructions, relation-valued and class-valued calculus, and named relation structures such as equivalence, partial equivalence, and tolerance relations.
+`LRA.Relation` owns generic relation vocabulary and calculus: canonical relations, common classes of binary relations, relation operations, closure constructions, relation-valued and class-valued calculus, and named relation structures such as equivalence, partial equivalence, and tolerance relations.
 
-Downstream subjects specialize this theory rather than redefining it. In particular, `Function` specializes relational domain/range/image/preimage/fiber results under totality and functionality, while `Order` owns order structures built from relation properties.
+Downstream subjects specialize this theory rather than redefining it. In particular, `Function` treats functions as function-like relations with extra laws, while `Order` owns order structures built from relation properties.
