@@ -1,5 +1,5 @@
 import LRA.Set.Constructions.ZFCSet.Instances
-import LRA.Set.Interface.Difference
+import LRA.Set.Interface.Laws.Difference
 
 namespace LRA.Set.Constructions.ZFCSet
 

@@ -1,26 +1,13 @@
-import LRA.Identity.Interface.ModelTheory.Theory
+import LRA.Identity.Interface.Definitions.IdentityRelation
 
-namespace LRA.Identity
+namespace LRA.Identity.Construction.Mathlib
 
 universe u
 
-theorem NativeEqualitySatisfiesEqualityTheory (Carrier : Type u) :
-    EqualityTheory Carrier := by
-  constructor
-  . -- reflivity
-    intro arbitrary
-    rfl
+scoped instance instIdentityRelation (Carrier : Type u) :
+    LRA.Identity.IdentityRelation Carrier where
+  Ident := Eq
+  IdentReflexive := fun _ => rfl
+  IdentLeibniz := fun h _ hp => h ▸ hp
 
-  . --leibniz
-    intro x
-    intro y
-    intro hypothesis
-    intro arbitaryProperty
-    rw [hypothesis]
-
-
-theorem MathlibEqualitySatisfiesEqualityTheory (Carrier : Type u) :
-    EqualityTheory Carrier :=
-  NativeEqualitySatisfiesEqualityTheory Carrier
-
-end LRA.Identity
+end LRA.Identity.Construction.Mathlib

@@ -1,6 +1,6 @@
 import LRA.Set.Constructions.ZFCSet.Definition
 import LRA.Set.Constructions.ZFCSet.Axioms.Public
-import LRA.Set.Interface.Operations
+import LRA.Set.Interface.Definitions.Operations
 
 namespace LRA.Set.Constructions.ZFCSet
 

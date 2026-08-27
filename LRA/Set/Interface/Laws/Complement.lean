@@ -1,6 +1,6 @@
-import LRA.Set.Interface.Operations
-import LRA.Set.Interface.Union
-import LRA.Set.Interface.Intersection
+import LRA.Set.Interface.Definitions.Operations
+import LRA.Set.Interface.Laws.Union
+import LRA.Set.Interface.Laws.Intersection
 
 namespace LRA.Set
 

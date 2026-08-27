@@ -1,6 +1,6 @@
 import LRA.Order.Bounds.LeastElement.Definition
 import LRA.Relation.Properties.Definition
-import LRA.Set.Interface.Membership
+import LRA.Set.Interface.Laws.Membership
 
 namespace LRA.Order
 

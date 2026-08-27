@@ -2,11 +2,13 @@ namespace LRA.Identity
 
 universe u
 
-structure EqualityTheory (Carrier : Type u) : Prop where
-  reflexivity : ∀ x : Carrier, x = x
-  leibniz :
-    ∀ x y : Carrier,
-      x = y ->
-        ∀ property : Carrier -> Prop, property x ↔ property y
+structure IdentityTheory {Carrier : Type u}
+    (Admissible : (Carrier → Prop) → Prop)
+    (R : Carrier → Carrier → Prop) : Prop where
+  reflexive : ∀ x, R x x
+  leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, Admissible P → P x → P y
+
+abbrev FullLeibniz (Carrier : Type u) : (Carrier → Prop) → Prop :=
+  fun _ => True
 
 end LRA.Identity

@@ -1,5 +1,5 @@
 import LRA.Order.Bounds.GreatestElement.Definition
-import LRA.Set.Interface.Operations
+import LRA.Set.Interface.Definitions.Operations
 
 namespace LRA.Order
 

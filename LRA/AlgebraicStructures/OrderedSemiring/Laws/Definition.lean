@@ -13,7 +13,7 @@ universe u
 Predicate logic:
 
   class abbrev OrderedSemiringLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LE R] : Prop :=
+    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
   SemiringLaws R,
   LinearOrderLaws R,
   AdditionRespectsOrderLaws R, MultiplicationRespectsOrderLaws R
@@ -21,7 +21,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   class abbrev OrderedSemiringLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LE R] : Prop :=
+    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
   SemiringLaws R,
   LinearOrderLaws R,
   AdditionRespectsOrderLaws R, MultiplicationRespectsOrderLaws R (source fallback; no compiled unfold data available)
@@ -30,7 +30,7 @@ Logical form (Lean):
 
 ```lean
 class abbrev OrderedSemiringLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LE R] : Prop :=
+    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
   SemiringLaws R,
   LinearOrderLaws R,
   AdditionRespectsOrderLaws R, MultiplicationRespectsOrderLaws R
@@ -56,7 +56,7 @@ Related proof moves: TODO
 
 -/
 class abbrev OrderedSemiringLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LE R] : Prop :=
+    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
   SemiringLaws R,
   LinearOrderLaws R,
   AdditionRespectsOrderLaws R, MultiplicationRespectsOrderLaws R

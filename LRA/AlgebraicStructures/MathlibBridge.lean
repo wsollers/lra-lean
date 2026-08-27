@@ -3,9 +3,11 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Data.Real.Archimedean
 import Mathlib.Data.Complex.Basic
 import Mathlib.Data.Rat.Defs
+import LRA.AlgebraicStructures.Semigroup.Constructions.Mathlib.Laws
+import LRA.AlgebraicStructures.AdditiveSemigroup.Constructions.Mathlib.Laws
 import LRA.AlgebraicStructures.CommutativeSemiring.Laws.Definition
 import LRA.AlgebraicStructures.CompleteOrderedField.Laws.Definition
-import LRA.AlgebraicStructures.DiscreteInteger.Laws.Definition
+import LRA.AlgebraicStructures.DiscreteInteger.Interface.Laws.Definition
 import LRA.AlgebraicStructures.IntegralDomain.Laws.Definition
 import LRA.Order.Interop.Mathlib.Certificates
 
@@ -15,8 +17,11 @@ open LRA.Order
 
 universe u
 
-instance {R : Type u} [AddSemigroup R] : AdditiveSemigroupLaws R where
-  AddAssociative := add_assoc
+-- `AdditiveSemigroupLaws` bridge moved to
+-- `AdditiveSemigroup/Constructions/Mathlib/Laws.lean` (per-structure Constructions,
+-- not this shared file) as part of the AdditiveSemigroup reorg. Nonemptiness is now
+-- an ambient `[Nonempty R]` parameter of `AdditiveSemigroupLaws` itself (not a stored
+-- field), which this file's callers don't need to know about directly.
 
 instance {R : Type u} [AddCommMagma R] : AdditiveCommutativeLaws R where
   AddCommutative := add_comm
@@ -33,8 +38,11 @@ instance {R : Type u} [SubtractionMonoid R] :
     SubtractionCompatibilityLaw R where
   SubEqAddNeg := sub_eq_add_neg
 
-instance {R : Type u} [Semigroup R] : MultiplicativeSemigroupLaws R where
-  MulAssociative := mul_assoc
+-- `MultiplicativeSemigroupLaws` bridge moved to
+-- `Semigroup/Constructions/Mathlib/Laws.lean` (per-structure Constructions, not this
+-- shared file) as part of the Semigroup reorg. Nonemptiness is now an ambient
+-- `[Nonempty R]` parameter of `MultiplicativeSemigroupLaws` itself (not a stored
+-- field), which this file's callers don't need to know about directly.
 
 instance {R : Type u} [CommMagma R] : MultiplicativeCommutativeLaws R where
   MulCommutative := mul_comm

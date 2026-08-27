@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.AdditiveSemigroup.Laws.Definition
+import LRA.AlgebraicStructures.AdditiveSemigroup.Interface.Laws.Definition
 import LRA.Operation
 
 namespace LRA.AlgebraicStructures
@@ -64,18 +64,18 @@ class AdditiveIdentityLaws (R : Type u) [Add R] [OfNat R 0] : Prop where
 
 Predicate logic:
 
-  class abbrev AdditiveMonoidLaws (R : Type u) [Add R] [OfNat R 0] : Prop :=
+  class abbrev AdditiveMonoidLaws (R : Type u) [Add R] [OfNat R 0] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R
 
 Predicate logic (unfolded):
 
-  class abbrev AdditiveMonoidLaws (R : Type u) [Add R] [OfNat R 0] : Prop :=
+  class abbrev AdditiveMonoidLaws (R : Type u) [Add R] [OfNat R 0] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
-class abbrev AdditiveMonoidLaws (R : Type u) [Add R] [OfNat R 0] : Prop :=
+class abbrev AdditiveMonoidLaws (R : Type u) [Add R] [OfNat R 0] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R
 ```
 
@@ -98,7 +98,7 @@ Common confusions:
 Related proof moves: TODO
 
 -/
-class abbrev AdditiveMonoidLaws (R : Type u) [Add R] [OfNat R 0] : Prop :=
+class abbrev AdditiveMonoidLaws (R : Type u) [Add R] [OfNat R 0] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R
 
 section Wrappers

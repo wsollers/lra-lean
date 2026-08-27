@@ -1,6 +1,6 @@
-
-import LRA.Set.Interface.RelationSets
-import LRA.Set.Interface.Membership
+import LRA.Set.Interface.Definitions.RelationSets
+import LRA.Set.Interface.Laws.Membership
+import LRA.Set.Interface.Laws.Pairing
 
 namespace LRA.Set
 
@@ -2218,6 +2218,14 @@ theorem PreimageOfSingletonIsFiberOf
   sorry
 
 end CompositionAndIdentity
+
+theorem AppliedToRelates {Left Right Pair : Type u}
+    {RelationObject : Type v}
+    [HasPairing Left Right Pair] [Membership Pair RelationObject]
+    (relation : RelationObject) (input : Left)
+    (hits : ∃ output : Right, Relates relation input output) :
+    Relates relation input (AppliedTo relation input hits) := by
+  sorry
 
 end RelationLaws
 

@@ -1,5 +1,5 @@
-import LRA.AlgebraicStructures.Semigroup.Definition
-import LRA.AlgebraicStructures.Semigroup.Interface.Signature.Definition
+import LRA.AlgebraicStructures.Semigroup.Interface.Definitions.ConceptSignature
+import LRA.AlgebraicStructures.Semigroup.Interface.Definitions.Signature
 import LRA.Operation
 
 namespace LRA.AlgebraicStructures.Semigroup.Interface.ModelTheory

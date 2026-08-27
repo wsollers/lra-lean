@@ -14,7 +14,11 @@ theorem IndexedOperationCongruence
     {left right : Index → Carrier}
     (argumentsEqual : ∀ index, left index = right index) :
     operation left = operation right := by
-  sorry
+  have h : left = right := by
+    funext index
+    exact argumentsEqual index
+  rw [h]
+
 
 theorem AlgebraicStructure.interpretOperationCongruence
     {signature : AlgebraicSignature.{v, w}}
@@ -24,6 +28,10 @@ theorem AlgebraicStructure.interpretOperationCongruence
     (argumentsEqual : ∀ index, left index = right index) :
     structure_.interpretOperation symbol left =
       structure_.interpretOperation symbol right := by
-  sorry
+  have h : left = right := by
+    funext index
+    exact argumentsEqual index
+  rw [h]
+
 
 end LRA.Identity

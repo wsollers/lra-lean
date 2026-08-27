@@ -1,5 +1,2 @@
-import LRA.AlgebraicStructures.CommutativeSemigroup.Definition
-import LRA.AlgebraicStructures.CommutativeSemigroup.Theorems
-import LRA.AlgebraicStructures.CommutativeSemigroup.Characterizations
-import LRA.AlgebraicStructures.CommutativeSemigroup.Consequences
-import LRA.AlgebraicStructures.CommutativeSemigroup.Relationships
+import LRA.AlgebraicStructures.CommutativeSemigroup.Interface
+import LRA.AlgebraicStructures.CommutativeSemigroup.Constructions

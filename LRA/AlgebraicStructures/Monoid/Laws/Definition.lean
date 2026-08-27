@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Semigroup.Laws.Definition
+import LRA.AlgebraicStructures.Semigroup.Interface.Laws.Definition
 import LRA.Operation
 
 namespace LRA.AlgebraicStructures
@@ -64,18 +64,18 @@ class MultiplicativeIdentityLaws (R : Type u) [Mul R] [OfNat R 1] : Prop where
 
 Predicate logic:
 
-  class abbrev MonoidLaws (R : Type u) [Mul R] [OfNat R 1] : Prop :=
+  class abbrev MonoidLaws (R : Type u) [Mul R] [OfNat R 1] [Nonempty R] : Prop :=
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R
 
 Predicate logic (unfolded):
 
-  class abbrev MonoidLaws (R : Type u) [Mul R] [OfNat R 1] : Prop :=
+  class abbrev MonoidLaws (R : Type u) [Mul R] [OfNat R 1] [Nonempty R] : Prop :=
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
-class abbrev MonoidLaws (R : Type u) [Mul R] [OfNat R 1] : Prop :=
+class abbrev MonoidLaws (R : Type u) [Mul R] [OfNat R 1] [Nonempty R] : Prop :=
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R
 ```
 
@@ -98,7 +98,7 @@ Common confusions:
 Related proof moves: TODO
 
 -/
-class abbrev MonoidLaws (R : Type u) [Mul R] [OfNat R 1] : Prop :=
+class abbrev MonoidLaws (R : Type u) [Mul R] [OfNat R 1] [Nonempty R] : Prop :=
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R
 
 section Wrappers

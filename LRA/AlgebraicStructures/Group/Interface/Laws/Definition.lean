@@ -77,14 +77,14 @@ class MultiplicativeGroupInverseLaws (R : Type u)
 Predicate logic:
 
   class abbrev GroupLaws (R : Type u)
-    [Mul R] [Inv R] [OfNat R 1] : Prop :=
+    [Mul R] [Inv R] [OfNat R 1] [Nonempty R] : Prop :=
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
   MultiplicativeGroupInverseLaws R
 
 Predicate logic (unfolded):
 
   class abbrev GroupLaws (R : Type u)
-    [Mul R] [Inv R] [OfNat R 1] : Prop :=
+    [Mul R] [Inv R] [OfNat R 1] [Nonempty R] : Prop :=
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
   MultiplicativeGroupInverseLaws R (source fallback; no compiled unfold data available)
 
@@ -92,7 +92,7 @@ Logical form (Lean):
 
 ```lean
 class abbrev GroupLaws (R : Type u)
-    [Mul R] [Inv R] [OfNat R 1] : Prop :=
+    [Mul R] [Inv R] [OfNat R 1] [Nonempty R] : Prop :=
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
   MultiplicativeGroupInverseLaws R
 ```
@@ -117,7 +117,7 @@ Related proof moves: TODO
 
 -/
 class abbrev GroupLaws (R : Type u)
-    [Mul R] [Inv R] [OfNat R 1] : Prop :=
+    [Mul R] [Inv R] [OfNat R 1] [Nonempty R] : Prop :=
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
   MultiplicativeGroupInverseLaws R
 

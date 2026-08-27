@@ -1,8 +1,8 @@
-import LRA.AlgebraicStructures.AdditiveSemigroup.Laws.Definition
-import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Laws.Definition
-import LRA.AlgebraicStructures.Semigroup.Laws.Definition
+import LRA.AlgebraicStructures.AdditiveSemigroup.Interface.Laws.Definition
+import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Interface.Laws.Definition
+import LRA.AlgebraicStructures.Semigroup.Interface.Laws.Definition
 import LRA.AlgebraicStructures.Monoid.Laws.Definition
-import LRA.AlgebraicStructures.CommutativeSemigroup.Laws.Definition
+import LRA.AlgebraicStructures.CommutativeSemigroup.Interface.Laws.Definition
 import LRA.AlgebraicStructures.Semiring.Laws.Distributive
 import LRA.Operation.Laws.Cancellation.Definition
 
@@ -108,7 +108,7 @@ class MultiplicativeCancellativeLaws (R : Type u) [Mul R] : Prop where
 Predicate logic:
 
   class abbrev CommutativeSemiringWithoutZeroLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [OfNat R 1] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveCommutativeLaws R, AdditiveCancellativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
   MultiplicativeCommutativeLaws R, MultiplicativeCancellativeLaws R,
@@ -117,7 +117,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   class abbrev CommutativeSemiringWithoutZeroLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [OfNat R 1] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveCommutativeLaws R, AdditiveCancellativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
   MultiplicativeCommutativeLaws R, MultiplicativeCancellativeLaws R,
@@ -127,7 +127,7 @@ Logical form (Lean):
 
 ```lean
 class abbrev CommutativeSemiringWithoutZeroLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [OfNat R 1] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveCommutativeLaws R, AdditiveCancellativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
   MultiplicativeCommutativeLaws R, MultiplicativeCancellativeLaws R,
@@ -154,7 +154,7 @@ Related proof moves: TODO
 
 -/
 class abbrev CommutativeSemiringWithoutZeroLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [OfNat R 1] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveCommutativeLaws R, AdditiveCancellativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
   MultiplicativeCommutativeLaws R, MultiplicativeCancellativeLaws R,

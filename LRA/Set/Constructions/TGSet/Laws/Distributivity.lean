@@ -1,5 +1,5 @@
 import LRA.Set.Constructions.TGSet.Instances
-import LRA.Set.Interface.Distributivity
+import LRA.Set.Interface.Laws.Distributivity
 
 namespace LRA.Set.Constructions.TGSet
 

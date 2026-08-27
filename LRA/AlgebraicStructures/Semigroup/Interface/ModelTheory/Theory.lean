@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Semigroup.Interface.Signature.Definition
+import LRA.AlgebraicStructures.Semigroup.Interface.Definitions.Signature
 
 namespace LRA.AlgebraicStructures.Semigroup.Interface.ModelTheory
 

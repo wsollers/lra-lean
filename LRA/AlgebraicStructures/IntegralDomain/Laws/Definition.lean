@@ -53,20 +53,20 @@ class NoZeroDivisorsLaw (R : Type u) [Mul R] [OfNat R 0] : Prop where
 Predicate logic:
 
   class abbrev IntegralDomainLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   CommutativeRingLaws R, NontrivialityLaw R, NoZeroDivisorsLaw R
 
 Predicate logic (unfolded):
 
   class abbrev IntegralDomainLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   CommutativeRingLaws R, NontrivialityLaw R, NoZeroDivisorsLaw R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 class abbrev IntegralDomainLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   CommutativeRingLaws R, NontrivialityLaw R, NoZeroDivisorsLaw R
 ```
 
@@ -90,7 +90,7 @@ Related proof moves: TODO
 
 -/
 class abbrev IntegralDomainLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   CommutativeRingLaws R, NontrivialityLaw R, NoZeroDivisorsLaw R
 
 section Wrappers

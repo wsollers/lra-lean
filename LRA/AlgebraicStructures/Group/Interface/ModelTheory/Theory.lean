@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Group.Interface.Signature.Definition
+import LRA.AlgebraicStructures.Group.Interface.Definitions.Signature
 
 namespace LRA.AlgebraicStructures.Group.Interface.ModelTheory
 

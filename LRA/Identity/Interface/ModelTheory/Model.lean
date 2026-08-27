@@ -1,4 +1,4 @@
-import LRA.Identity.Interface.ModelTheory.LStructure
+import LRA.Identity.Theorems.ModelTheory
 import LRA.Logic.Model.Model
 
 namespace LRA.Identity
@@ -8,12 +8,12 @@ open LRA.Logic
 universe u
 
 def EqualityStructure.toFirstOrderModel
-    (equalityStructure : EqualityStructure.{u}) :
+    (S : EqualityStructure.{u}) :
     FirstOrder.Model pureEqualitySignature where
-  Domain := equalityStructure.Carrier
-  domainNonempty := equalityStructure.carrierNonempty
-  interpretEquality := equalityStructure.equalityInterpretation
-  equalityIsDiagonal := equalityStructure.equalityIsDiagonal
+  Domain := S.Carrier
+  domainNonempty := S.carrierNonempty
+  interpretEquality := S.equalityInterpretation
+  equalityIsDiagonal := S.isDiagonal
   interpretFunction := fun functionSymbol => Empty.elim functionSymbol
   interpretRelation := fun relationSymbol => Empty.elim relationSymbol
   interpretConstant := Empty.elim
@@ -23,8 +23,7 @@ def canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :
   Carrier := Carrier
   carrierNonempty := inferInstance
   equalityInterpretation := EqualityDiagonal Carrier
-  equalityIsDiagonal := by
-    intro left right
-    rfl
+  satisfiesIdentityTheory :=
+    ⟨fun _ => rfl, fun _ _ h _ _ hp => h ▸ hp⟩
 
 end LRA.Identity

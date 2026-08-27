@@ -1,5 +1,6 @@
 import LRA.Logic.Language.FirstOrder.Signature
 import LRA.Logic.Language.Notation.LogicalSymbols
+import LRA.Identity.Interface.ModelTheory.Theory
 
 namespace LRA.Identity
 
@@ -26,8 +27,7 @@ structure EqualityStructure where
   Carrier : Type u
   carrierNonempty : Nonempty Carrier
   equalityInterpretation : Carrier -> Carrier -> Prop
-  equalityIsDiagonal :
-    ∀ left right,
-      equalityInterpretation left right ↔ EqualityDiagonal Carrier left right
+  satisfiesIdentityTheory :
+    IdentityTheory (FullLeibniz Carrier) equalityInterpretation
 
 end LRA.Identity

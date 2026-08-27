@@ -1,7 +1,6 @@
 import LRA.Logic
 import LRA.Identity
 import LRA.Identity.Interface.ModelTheory.Model
-import LRA.Identity.Constructions.Leibniz.Consequences.Toolkit
 import LRA.Meta.DeclarationKeywords
 import LRA.Set
 import LRA.Relation

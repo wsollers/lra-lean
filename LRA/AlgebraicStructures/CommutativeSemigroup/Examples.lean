@@ -1,5 +1,4 @@
-import LRA.AlgebraicStructures.CommutativeSemigroup
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveIntegersUnderAddition
+import LRA.AlgebraicStructures.CommutativeSemigroup.Examples.Semilattices
+import LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturalsUnderMultiplication
+import LRA.AlgebraicStructures.CommutativeSemigroup.Examples.MinMaxOnReals

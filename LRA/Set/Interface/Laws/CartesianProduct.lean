@@ -1,7 +1,8 @@
 
-import LRA.Set.Interface.CartesianProduct
-import LRA.Set.Interface.RelationSets
-import LRA.Set.Interface.Membership
+import LRA.Set.Interface.Definitions.CartesianProduct
+import LRA.Set.Interface.Definitions.RelationSets
+import LRA.Set.Interface.Laws.Membership
+import LRA.Set.Interface.Laws.Pairing
 
 namespace LRA.Set
 

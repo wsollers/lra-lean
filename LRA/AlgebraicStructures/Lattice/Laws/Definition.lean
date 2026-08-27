@@ -1,5 +1,5 @@
-import LRA.AlgebraicStructures.JoinSemilattice.Laws.Definition
-import LRA.AlgebraicStructures.MeetSemilattice.Laws.Definition
+import LRA.AlgebraicStructures.JoinSemilattice.Interface.Laws.Definition
+import LRA.AlgebraicStructures.MeetSemilattice.Interface.Laws.Definition
 import LRA.Operation
 
 namespace LRA.AlgebraicStructures

@@ -1,4 +1,3 @@
-import LRA.AlgebraicStructures.Magma.Laws.Definition
 import LRA.UniversalAlgebra.InterpretedOperationBundles
 
 namespace LRA.AlgebraicStructures

@@ -1,5 +1,5 @@
 import LRA.Set.Constructions.ZFCSet.Instances
-import LRA.Set.Interface.Distributivity
+import LRA.Set.Interface.Laws.Distributivity
 
 namespace LRA.Set.Constructions.ZFCSet
 

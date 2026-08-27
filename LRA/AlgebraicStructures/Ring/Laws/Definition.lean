@@ -11,7 +11,7 @@ universe u
 Predicate logic:
 
   class abbrev RingLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
   AdditiveInverseLaws R, AdditiveCommutativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
@@ -20,7 +20,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   class abbrev RingLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
   AdditiveInverseLaws R, AdditiveCommutativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
@@ -30,7 +30,7 @@ Logical form (Lean):
 
 ```lean
 class abbrev RingLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
   AdditiveInverseLaws R, AdditiveCommutativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
@@ -57,7 +57,7 @@ Related proof moves: TODO
 
 -/
 class abbrev RingLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
   AdditiveInverseLaws R, AdditiveCommutativeLaws R,
   MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,

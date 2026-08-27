@@ -4,8 +4,8 @@ import LRA.Relation.Properties.Definition
 import LRA.Relation.Operations.Converse.Definition
 import LRA.Order.Lattices.Meet.Definition
 import LRA.Order.Relation.Dominated.Definition
-import LRA.Set.Interface.Membership
-import LRA.Set.Interface.Indexed
+import LRA.Set.Interface.Laws.Membership
+import LRA.Set.Interface.Laws.Indexed
 
 namespace LRA.Order
 

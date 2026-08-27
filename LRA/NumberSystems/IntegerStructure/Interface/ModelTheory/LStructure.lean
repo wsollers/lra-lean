@@ -1,7 +1,7 @@
 
 import LRA.NumberSystems.IntegerStructure.Interface.Signature.Definition
 import LRA.Operation
-import LRA.AlgebraicStructures.DiscreteInteger.Laws.Definition
+import LRA.AlgebraicStructures.DiscreteInteger.Interface.Laws.Definition
 
 namespace LRA.NumberSystems.IntegerStructure.Interface.ModelTheory
 

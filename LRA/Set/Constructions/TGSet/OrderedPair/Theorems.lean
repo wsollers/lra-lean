@@ -1,5 +1,6 @@
 import LRA.Set.Constructions.TGSet.Pairing.Theorems
-import LRA.Set.Interface.Pairing
+import LRA.Set.Interface.Definitions.Pairing
+import LRA.Set.Interface.Laws.Pairing
 
 namespace LRA.Set.Constructions.TGSet
 

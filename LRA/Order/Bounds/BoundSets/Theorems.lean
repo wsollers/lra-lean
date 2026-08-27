@@ -1,6 +1,6 @@
 import LRA.Order.Bounds.BoundSets.Definition
-import LRA.Set.Interface.Membership
-import LRA.Set.Interface.Subset
+import LRA.Set.Interface.Laws.Membership
+import LRA.Set.Interface.Laws.Subset
 
 namespace LRA.Order
 

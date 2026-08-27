@@ -52,20 +52,20 @@ class NontrivialityLaw (R : Type u) [OfNat R 0] [OfNat R 1] : Prop where
 Predicate logic:
 
   class abbrev NontrivialRingLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   RingLaws R, NontrivialityLaw R
 
 Predicate logic (unfolded):
 
   class abbrev NontrivialRingLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   RingLaws R, NontrivialityLaw R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 class abbrev NontrivialRingLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   RingLaws R, NontrivialityLaw R
 ```
 
@@ -89,7 +89,7 @@ Related proof moves: TODO
 
 -/
 class abbrev NontrivialRingLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] : Prop :=
+    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
   RingLaws R, NontrivialityLaw R
 
 section Wrappers

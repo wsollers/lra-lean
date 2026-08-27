@@ -1,6 +1,6 @@
 import LRA.Order.Bounds.UpperBound.Definition
-import LRA.Set.Interface.Indexed
-import LRA.Set.Interface.Membership
+import LRA.Set.Interface.Laws.Indexed
+import LRA.Set.Interface.Laws.Membership
 
 namespace LRA.Order
 

@@ -1,2 +1,0 @@
-import LRA.AlgebraicStructures.JoinSemilattice.Laws.Definition
-import LRA.AlgebraicStructures.JoinSemilattice.Laws.Consequences

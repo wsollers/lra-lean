@@ -1,1 +1,2 @@
-import LRA.AlgebraicStructures.Archimedean.Definition
+import LRA.AlgebraicStructures.Archimedean.Interface
+import LRA.AlgebraicStructures.Archimedean.Constructions

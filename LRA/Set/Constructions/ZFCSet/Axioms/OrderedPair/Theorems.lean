@@ -1,5 +1,6 @@
 import LRA.Set.Constructions.ZFCSet.Axioms.Pairing.Theorems
-import LRA.Set.Interface.Pairing
+import LRA.Set.Interface.Definitions.Pairing
+import LRA.Set.Interface.Laws.Pairing
 
 namespace LRA.Set.Constructions.ZFCSet.Axioms
 

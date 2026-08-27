@@ -1,7 +1,7 @@
 
 import Mathlib.SetTheory.ZFC.Basic
 import LRA.Set.Constructions.Mathlib.ZFSet.Pairing
-import LRA.Set.Interface.RelationSets
+import LRA.Set.Interface.Definitions.RelationSets
 
 namespace LRA.Set.MathlibZFSet
 

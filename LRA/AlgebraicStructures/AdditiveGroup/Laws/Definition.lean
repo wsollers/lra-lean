@@ -123,20 +123,20 @@ class SubtractionCompatibilityLaw (R : Type u)
 Predicate logic:
 
   class abbrev AdditiveGroupLaws (R : Type u)
-    [Add R] [Neg R] [OfNat R 0] : Prop :=
+    [Add R] [Neg R] [OfNat R 0] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R, AdditiveInverseLaws R
 
 Predicate logic (unfolded):
 
   class abbrev AdditiveGroupLaws (R : Type u)
-    [Add R] [Neg R] [OfNat R 0] : Prop :=
+    [Add R] [Neg R] [OfNat R 0] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R, AdditiveInverseLaws R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 class abbrev AdditiveGroupLaws (R : Type u)
-    [Add R] [Neg R] [OfNat R 0] : Prop :=
+    [Add R] [Neg R] [OfNat R 0] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R, AdditiveInverseLaws R
 ```
 
@@ -160,7 +160,7 @@ Related proof moves: TODO
 
 -/
 class abbrev AdditiveGroupLaws (R : Type u)
-    [Add R] [Neg R] [OfNat R 0] : Prop :=
+    [Add R] [Neg R] [OfNat R 0] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R, AdditiveInverseLaws R
 
 section Wrappers

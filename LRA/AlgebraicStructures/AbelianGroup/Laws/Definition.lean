@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Laws.Definition
+import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Interface.Laws.Definition
 import LRA.AlgebraicStructures.AdditiveGroup.Laws.Definition
 
 namespace LRA.AlgebraicStructures
@@ -11,14 +11,14 @@ universe u
 Predicate logic:
 
   class abbrev AbelianGroupLaws (R : Type u)
-    [Add R] [Neg R] [OfNat R 0] : Prop :=
+    [Add R] [Neg R] [OfNat R 0] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R, AdditiveInverseLaws R,
   AdditiveCommutativeLaws R
 
 Predicate logic (unfolded):
 
   class abbrev AbelianGroupLaws (R : Type u)
-    [Add R] [Neg R] [OfNat R 0] : Prop :=
+    [Add R] [Neg R] [OfNat R 0] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R, AdditiveInverseLaws R,
   AdditiveCommutativeLaws R (source fallback; no compiled unfold data available)
 
@@ -26,7 +26,7 @@ Logical form (Lean):
 
 ```lean
 class abbrev AbelianGroupLaws (R : Type u)
-    [Add R] [Neg R] [OfNat R 0] : Prop :=
+    [Add R] [Neg R] [OfNat R 0] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R, AdditiveInverseLaws R,
   AdditiveCommutativeLaws R
 ```
@@ -51,7 +51,7 @@ Related proof moves: TODO
 
 -/
 class abbrev AbelianGroupLaws (R : Type u)
-    [Add R] [Neg R] [OfNat R 0] : Prop :=
+    [Add R] [Neg R] [OfNat R 0] [Nonempty R] : Prop :=
   AdditiveSemigroupLaws R, AdditiveIdentityLaws R, AdditiveInverseLaws R,
   AdditiveCommutativeLaws R
 
