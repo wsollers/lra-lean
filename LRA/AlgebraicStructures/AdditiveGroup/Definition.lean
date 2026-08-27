@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures.AdditiveGroup.Laws.Definition
-import LRA.AlgebraicStructures.AdditiveMonoid.Definition
+import LRA.AlgebraicStructures.AdditiveMonoid.Interface.Definitions.ConceptSignature
 
 namespace LRA.AlgebraicStructures
 

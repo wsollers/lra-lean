@@ -1,5 +1,4 @@
-import LRA.AlgebraicStructures.AdditiveMonoid
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.AdditiveMonoid.Examples.NaturalNumbersWithZero
+import LRA.AlgebraicStructures.AdditiveMonoid.Examples.NonNegativeReals
+import LRA.AlgebraicStructures.AdditiveMonoid.Examples.ExtendedReals
+import LRA.AlgebraicStructures.AdditiveMonoid.Examples.SquareMatricesUnderAddition

@@ -1,5 +1,5 @@
-import LRA.AlgebraicStructures.Monoid
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.Monoid.Examples.NaturalNumbersUnderAddition
+import LRA.AlgebraicStructures.Monoid.Examples.NaturalNumbersUnderMultiplication
+import LRA.AlgebraicStructures.Monoid.Examples.FreeMonoidOnWords
+import LRA.AlgebraicStructures.Monoid.Examples.TransformationMonoid
+import LRA.AlgebraicStructures.Monoid.Examples.SquareMatrices

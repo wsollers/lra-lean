@@ -1,6 +1,6 @@
 import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Interface.Laws.Definition
-import LRA.AlgebraicStructures.AdditiveMonoid.Laws.Definition
-import LRA.AlgebraicStructures.Monoid.Laws.Definition
+import LRA.AlgebraicStructures.AdditiveMonoid.Interface.Laws.Definition
+import LRA.AlgebraicStructures.Monoid.Interface.Laws.Definition
 import LRA.AlgebraicStructures.Semiring.Laws.Distributive
 import LRA.Operation
 

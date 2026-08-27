@@ -151,7 +151,7 @@ Related proof moves: intro
 -/
 theorem DifferenceMonotoneLeft :
     ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B :=
-  DifferenceLaws.DifferenceMonotoneLeft
+  sorry
 
 /--
 `DifferenceAntitoneRight` TODO
@@ -192,7 +192,7 @@ Related proof moves: intro
 -/
 theorem DifferenceAntitoneRight :
     ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁ :=
-  DifferenceLaws.DifferenceAntitoneRight
+  sorry
 
 /--
 `DifferenceEmpty` TODO
@@ -231,7 +231,7 @@ Related proof moves: intro
 
 -/
 theorem DifferenceEmpty : ∀ A : α, A \ (∅ : α) = A :=
-  DifferenceLaws.DifferenceEmpty
+  sorry
 
 /--
 `EmptyDifference` TODO
@@ -270,7 +270,7 @@ Related proof moves: intro
 
 -/
 theorem EmptyDifference : ∀ A : α, (∅ : α) \ A = (∅ : α) :=
-  DifferenceLaws.EmptyDifference
+  sorry
 
 /--
 `DifferenceSelf` TODO
@@ -309,7 +309,7 @@ Related proof moves: intro
 
 -/
 theorem DifferenceSelf : ∀ A : α, A \ A = (∅ : α) :=
-  DifferenceLaws.DifferenceSelf
+  sorry
 
 /--
 `DifferenceUnion` TODO
@@ -350,7 +350,7 @@ Related proof moves: intro
 -/
 theorem DifferenceUnion :
     ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C) :=
-  DifferenceLaws.DifferenceUnion
+  sorry
 
 /--
 `DifferenceIntersection` TODO
@@ -391,7 +391,7 @@ Related proof moves: intro
 -/
 theorem DifferenceIntersection :
     ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C) :=
-  DifferenceLaws.DifferenceIntersection
+  sorry
 
 /--
 `UnionDifferenceDistributes` TODO
@@ -432,7 +432,7 @@ Related proof moves: intro
 -/
 theorem UnionDifferenceDistributes :
     ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C) :=
-  DifferenceLaws.UnionDifferenceDistributes
+  sorry
 
 /--
 `IntersectionDifferenceDistributes` TODO
@@ -473,7 +473,7 @@ Related proof moves: intro
 -/
 theorem IntersectionDifferenceDistributes :
     ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C) :=
-  DifferenceLaws.IntersectionDifferenceDistributes
+  sorry
 
 /--
 `DifferenceSubsetLeft` TODO
@@ -512,7 +512,7 @@ Related proof moves: intro
 
 -/
 theorem DifferenceSubsetLeft : ∀ A B : α, A \ B ⊆ A :=
-  DifferenceLaws.DifferenceSubsetLeft
+  sorry
 
 /--
 `DifferenceDisjointRight` TODO
@@ -553,6 +553,8 @@ Related proof moves: intro
 -/
 theorem DifferenceDisjointRight :
     ∀ A B : α, (A \ B) ∩ B = (∅ : α) :=
-  DifferenceLaws.DifferenceDisjointRight
+  sorry
 
 end LRA.Set
+
+

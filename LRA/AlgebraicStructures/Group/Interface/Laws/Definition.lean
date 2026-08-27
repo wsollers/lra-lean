@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Monoid.Laws.Definition
+import LRA.AlgebraicStructures.Monoid.Interface.Laws.Definition
 import LRA.Operation
 
 namespace LRA.AlgebraicStructures

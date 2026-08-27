@@ -146,7 +146,7 @@ Related proof moves: intro
 -/
 theorem SymmetricDifferenceAsUnionDifferences :
     ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A) :=
-  SymmDiffLaws.SymmetricDifferenceAsUnionDifferences
+  sorry
 
 /--
 `SymmetricDifferenceAsUnionDifferenceIntersection` TODO
@@ -187,7 +187,7 @@ Related proof moves: intro
 -/
 theorem SymmetricDifferenceAsUnionDifferenceIntersection :
     ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B) :=
-  SymmDiffLaws.SymmetricDifferenceAsUnionDifferenceIntersection
+  sorry
 
 /--
 `SymmetricDifferenceCommutative` TODO
@@ -226,7 +226,7 @@ Related proof moves: intro
 
 -/
 theorem SymmetricDifferenceCommutative : ∀ A B : α, A ∆ B = B ∆ A :=
-  SymmDiffLaws.SymmetricDifferenceCommutative
+  sorry
 
 /--
 `SymmetricDifferenceAssociative` TODO
@@ -267,7 +267,7 @@ Related proof moves: intro
 -/
 theorem SymmetricDifferenceAssociative :
     ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C) :=
-  SymmDiffLaws.SymmetricDifferenceAssociative
+  sorry
 
 /--
 `SymmetricDifferenceEmpty` TODO
@@ -306,7 +306,7 @@ Related proof moves: intro
 
 -/
 theorem SymmetricDifferenceEmpty : ∀ A : α, A ∆ (∅ : α) = A :=
-  SymmDiffLaws.SymmetricDifferenceEmpty
+  sorry
 
 /--
 `EmptySymmetricDifference` TODO
@@ -345,7 +345,7 @@ Related proof moves: intro
 
 -/
 theorem EmptySymmetricDifference : ∀ A : α, (∅ : α) ∆ A = A :=
-  SymmDiffLaws.EmptySymmetricDifference
+  sorry
 
 /--
 `SymmetricDifferenceSelf` TODO
@@ -384,7 +384,7 @@ Related proof moves: intro
 
 -/
 theorem SymmetricDifferenceSelf : ∀ A : α, A ∆ A = (∅ : α) :=
-  SymmDiffLaws.SymmetricDifferenceSelf
+  sorry
 
 /--
 `SymmetricDifferenceEqEmptyIff` TODO
@@ -425,7 +425,7 @@ Related proof moves: intro, constructor, .mp, .mpr
 -/
 theorem SymmetricDifferenceEqEmptyIff :
     ∀ A B : α, A ∆ B = (∅ : α) ↔ A = B :=
-  SymmDiffLaws.SymmetricDifferenceEqEmptyIff
+  sorry
 
 /--
 `SymmetricDifferenceSubsetUnion` TODO
@@ -464,6 +464,8 @@ Related proof moves: intro
 
 -/
 theorem SymmetricDifferenceSubsetUnion : ∀ A B : α, A ∆ B ⊆ A ∪ B :=
-  SymmDiffLaws.SymmetricDifferenceSubsetUnion
+  sorry
 
 end LRA.Set
+
+

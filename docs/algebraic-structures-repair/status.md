@@ -20,9 +20,9 @@
 | as-07 | 1 | DiscreteInteger | **done** | — | Six independent classes kept per D6 (no combining XLaws). Audit found and fixed a real bug: DiscretenessLaw's acyclicity axiom was only checked at the basepoint 0, not universally as the user's spec states — same D2 "silently wrong axiom" risk as Magma's as-01 correction. Example: ℤ (the essentially-unique model per the spec's own categoricity remarks). No Constructions/ built — no generic Mathlib typeclass matches this subject's classes 1-1. |
 | as-08 | 1 | JoinSemilattice | **done** | — | D6 resolved: explicit-operation-argument style is deliberate (Lattice needs join+meet coexisting on one carrier, incompatible with [Mul R] style) — kept, not converted. Examples: Set union, ℝ max (via Mathlib SemilatticeSup bridge). Constructions/OrderTheoretic/InducedOrder.lean added: the algebraic definition induces a genuine order-theoretic join-semilattice (x≤y := x∨y=y), the equivalence-of-definitions theorem the user asked for. All proofs sorry'd per D8, including a missed one (`unionIsJoinSemilattice`) caught and fixed 2026-08-26 during the as-09 session. |
 | as-09 | 1 | MeetSemilattice | **done** | — | Exact dual of as-08: explicit-operation-argument style, same D6 reasoning. Examples: Set intersection, ℝ min (via Mathlib SemilatticeInf bridge), ℕ under gcd (the user's third standard example). Constructions/OrderTheoretic/InducedOrder.lean built from the start (x≤y := x∧y=x). All proofs sorry'd from the start per D8. |
-| as-10 | 2 | Monoid | not_started | Semigroup | |
-| as-11 | 2 | AdditiveMonoid | not_started | AdditiveSemigroup | |
-| as-12 | 2 | Lattice | not_started | JoinSemilattice, MeetSemilattice | |
+| as-10 | 2 | Monoid | **done** | Semigroup | Audit found the existing `MonoidLaws` (combining `MultiplicativeSemigroupLaws`+`MultiplicativeIdentityLaws`) already matched the user's `(M,*,e)` spec exactly — no fix needed. Built all 5 of the user's standard examples plus this process's first-ever `Failures/` folder (positive integers under addition, reusing Semigroup's own example per D3's plan). |
+| as-11 | 2 | AdditiveMonoid | **done** | AdditiveSemigroup | Exact dual of as-10/Monoid, audit confirmed correct as-is. Examples: `(ℕ,+,0)` (doubles as the free-additive-monoid-on-{1} example), `NNReal`, `ENNReal`, square matrices under addition (simpler than Monoid's multiplicative version — no Fintype/DecidableEq needed). Failures/ dual built too (positive naturals, no identity). First item this whole process to build clean on the first `lake build` attempt. |
+| as-12 | 2 | Lattice | **done** | JoinSemilattice, MeetSemilattice | Audited correct as-is (JoinSemilatticeLaws + MeetSemilatticeLaws + MutualAbsorptionLaw = exactly the user's 4 identities). Important finding: the algebra↔order equivalence already exists pre-built at `LRA/Order/Interop/AlgebraicLattice.lean` (both directions, more complete than either semilattice's own bridge) — did not duplicate it inside `AlgebraicStructures/Lattice`, just fixed its import path. |
 | as-13 | 3 | Group | **reorg_done** | Monoid | mechanical reorg done ahead of order; audit pass still queued |
 | as-14 | 3 | AdditiveGroup | not_started | AdditiveMonoid | |
 | as-15 | 3 | CommutativeMonoid | not_started | CommutativeSemigroup, Monoid | |
@@ -69,19 +69,34 @@ reverted retroactively. Everything proved in as-03 through as-06 and as-08's
 Constructions/Examples *was* reverted to `sorry` on 2026-08-26 to match this rule —
 see each item's ledger notes for exactly what changed.
 
-**Next step:** Tier 1 is now fully done (as-01 through as-09, all nine items). Tier 2
-(Monoid, AdditiveMonoid, Lattice) is unblocked — Monoid needs Semigroup (done),
-AdditiveMonoid needs AdditiveSemigroup (done), Lattice needs
-JoinSemilattice+MeetSemilattice (both done). `Group` (as-13, tier 3) already has its
-mechanical reorg done ahead of order; its audit pass is still queued for once Monoid
-is done. Nonemptiness on any new atomic `<X>Laws` class must be `[Nonempty R]`, never
-a stored field, per D7. Open items: a non-Archimedean `Failures/` example was deferred
-from as-06 (see its ledger notes). Both JoinSemilattice and MeetSemilattice have their
-order-theoretic bridge built (`Constructions/OrderTheoretic/InducedOrder.lean`, sorry'd
-per D8). DiscreteInteger (as-07) surfaced a real D2-class audit bug (acyclicity checked
-only at the basepoint instead of universally) — fixed; see its ledger notes. As-08 also
-needed a follow-up correction this session (`Examples/UnionSemilattice.lean` had one
-theorem the original D8 sweep missed, left fully proved) — fixed, `sorry`'d, re-verified
-clean. Worth a close read of any subject's Examples/Constructions files before trusting
-a "done" status's D8 compliance claim at face value, since this is now a repeat miss
-(see DECISIONS.md D8's own text about repeat corrections).
+**Next step:** Tiers 1 and 2 are both fully done (as-01 through as-12). Tier 3 is next:
+Group's audit pass (as-13, mechanical reorg already done ahead of order, unblocked since
+Monoid is done), AdditiveGroup (as-14, needs AdditiveMonoid, done), CommutativeMonoid
+(as-15, needs CommutativeSemigroup+Monoid, both done), BoundedLattice (as-16, needs
+Lattice, done), DistributiveLattice (as-17, needs Lattice, done) — all five are now
+unblocked, order among them doesn't matter. Worth noting for `BoundedLattice`/
+`DistributiveLattice`/`BooleanAlgebra`'s own audits: check whether they need their own
+order-theoretic bridge or whether (like `Lattice` just did) one already exists somewhere
+under `LRA/Order/Interop/` or `LRA/Order/Lattices/` before building a new one from
+scratch — worth checking before assuming JoinSemilattice/MeetSemilattice's
+build-it-yourself pattern is still the right move. Nonemptiness on any new atomic `<X>Laws` class must be
+`[Nonempty R]`, never a stored field, per D7. Monoid (as-10) built this whole process's
+first-ever `Failures/` folder (D3 planned the pattern from the start — "a semigroup with
+no identity is exactly Monoid's failure mode" — but no prior item, including Semigroup
+itself, had actually built one yet); future subjects with an obvious tier-below failure
+mode should follow that same reuse pattern rather than restating content. Open items: a
+non-Archimedean `Failures/` example was deferred from as-06 (see its ledger notes). Both
+JoinSemilattice and MeetSemilattice have their order-theoretic bridge built
+(`Constructions/OrderTheoretic/InducedOrder.lean`, sorry'd per D8). DiscreteInteger
+(as-07) surfaced a real D2-class audit bug (acyclicity checked only at the basepoint
+instead of universally) — fixed; see its ledger notes. As-08 also needed a follow-up
+correction this session (`Examples/UnionSemilattice.lean` had one theorem the original D8
+sweep missed, left fully proved) — fixed, `sorry`'d, re-verified clean. Worth a close read
+of any subject's Examples/Constructions files before trusting a "done" status's D8
+compliance claim at face value, since this is now a repeat miss (see DECISIONS.md D8's own
+text about repeat corrections). Also worth noting for future Mathlib-bridge work: the
+pre-existing, untouched (tier 4+, predates this repair process) `MathlibBridge.lean` uses
+unsorried `:= ⟨⟩` for its own class-abbrev combining instances (Semiring/Ring/Field/etc.)
+— do NOT treat that file as precedent when building a *new* item's own combining bridge;
+Monoid's own bridge was sorry'd despite being an equally "trivial" combination, per D8's
+explicit no-exceptions text.

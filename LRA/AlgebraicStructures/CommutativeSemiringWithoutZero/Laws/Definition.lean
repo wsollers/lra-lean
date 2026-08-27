@@ -1,7 +1,7 @@
 import LRA.AlgebraicStructures.AdditiveSemigroup.Interface.Laws.Definition
 import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Interface.Laws.Definition
 import LRA.AlgebraicStructures.Semigroup.Interface.Laws.Definition
-import LRA.AlgebraicStructures.Monoid.Laws.Definition
+import LRA.AlgebraicStructures.Monoid.Interface.Laws.Definition
 import LRA.AlgebraicStructures.CommutativeSemigroup.Interface.Laws.Definition
 import LRA.AlgebraicStructures.Semiring.Laws.Distributive
 import LRA.Operation.Laws.Cancellation.Definition

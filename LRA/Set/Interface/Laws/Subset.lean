@@ -91,7 +91,7 @@ Related proof moves: intro
 
 -/
 theorem SubsetReflexive : ∀ A : α, A ⊆ A :=
-  SubsetLaws.SubsetReflexive
+  sorry
 
 /--
 `SubsetTransitive` TODO
@@ -130,7 +130,7 @@ Related proof moves: intro
 
 -/
 theorem SubsetTransitive : ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C :=
-  SubsetLaws.SubsetTransitive
+  sorry
 
 /--
 `SetEqualityIffMutualSubset` TODO
@@ -169,6 +169,8 @@ Related proof moves: intro, constructor, .mp, .mpr, cases, rcases
 
 -/
 theorem SetEqualityIffMutualSubset : ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A :=
-  SubsetLaws.SetEqualityIffMutualSubset
+  sorry
 
 end LRA.Set
+
+

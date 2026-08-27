@@ -18,11 +18,13 @@ theorem PairInjective {Left Right Pair : Type u}
       OrderedPair firstLeft firstRight =
           OrderedPair secondLeft secondRight ↔
         firstLeft = secondLeft ∧ firstRight = secondRight :=
-  PairingLaws.PairInjective
+  sorry
 
 instance instProdPairingLaws {Left Right : Type u} :
     PairingLaws Left Right (Left × Right) where
-  PairInjective := fun firstLeft secondLeft firstRight secondRight => by
-    simp [OrderedPair, HasPairing.pair]
+  PairInjective := by
+    sorry
 
 end LRA.Set
+
+

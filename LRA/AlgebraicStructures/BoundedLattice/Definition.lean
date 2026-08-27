@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures.BoundedLattice.Laws.Definition
-import LRA.AlgebraicStructures.Lattice.Definition
+import LRA.AlgebraicStructures.Lattice.Interface.Definitions.ConceptSignature
 
 namespace LRA.AlgebraicStructures
 

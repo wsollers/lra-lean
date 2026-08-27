@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures.CommutativeMonoid.Laws.Definition
-import LRA.AlgebraicStructures.Monoid.Definition
+import LRA.AlgebraicStructures.Monoid.Interface.Definitions.ConceptSignature
 
 namespace LRA.AlgebraicStructures
 

@@ -4,7 +4,7 @@ import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples
 import LRA.AlgebraicStructures.AdditiveGroup.Examples
 import LRA.AlgebraicStructures.AdditiveGroup.Laws.Examples
 import LRA.AlgebraicStructures.AdditiveMonoid.Examples
-import LRA.AlgebraicStructures.AdditiveMonoid.Laws.Examples
+import LRA.AlgebraicStructures.AdditiveMonoid.Failures
 import LRA.AlgebraicStructures.AdditiveSemigroup.Examples
 import LRA.AlgebraicStructures.BooleanAlgebra.Examples
 import LRA.AlgebraicStructures.BoundedLattice.Examples
@@ -31,7 +31,7 @@ import LRA.AlgebraicStructures.LinearlyOrderedRing.Examples
 import LRA.AlgebraicStructures.Magma.Examples
 import LRA.AlgebraicStructures.MeetSemilattice.Examples
 import LRA.AlgebraicStructures.Monoid.Examples
-import LRA.AlgebraicStructures.Monoid.Laws.Examples
+import LRA.AlgebraicStructures.Monoid.Failures
 import LRA.AlgebraicStructures.NontrivialRing.Examples
 import LRA.AlgebraicStructures.OrderedField.Examples
 import LRA.AlgebraicStructures.OrderedField.Laws.Examples

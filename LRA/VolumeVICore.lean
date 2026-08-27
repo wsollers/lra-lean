@@ -2,7 +2,7 @@ import LRA.AlgebraicStructures
 import LRA.AlgebraicStructures.AbelianGroup.Laws
 import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Interface.Laws
 import LRA.AlgebraicStructures.AdditiveGroup.Laws
-import LRA.AlgebraicStructures.AdditiveMonoid.Laws
+import LRA.AlgebraicStructures.AdditiveMonoid.Interface.Laws
 import LRA.AlgebraicStructures.AdditiveSemigroup.Interface.Laws
 import LRA.AlgebraicStructures.BooleanAlgebra.Laws
 import LRA.AlgebraicStructures.BoundedLattice.Laws
@@ -19,12 +19,12 @@ import LRA.AlgebraicStructures.Field.Laws
 import LRA.AlgebraicStructures.Group.Interface.Laws
 import LRA.AlgebraicStructures.IntegralDomain.Laws
 import LRA.AlgebraicStructures.JoinSemilattice.Interface.Laws
-import LRA.AlgebraicStructures.Lattice.Laws
+import LRA.AlgebraicStructures.Lattice.Interface.Laws
 import LRA.AlgebraicStructures.LinearlyOrderedGroup.Laws
 import LRA.AlgebraicStructures.LinearlyOrderedRing.Laws
 import LRA.AlgebraicStructures.Magma.Interface.Laws
 import LRA.AlgebraicStructures.MeetSemilattice.Interface.Laws
-import LRA.AlgebraicStructures.Monoid.Laws
+import LRA.AlgebraicStructures.Monoid.Interface.Laws
 import LRA.AlgebraicStructures.NontrivialRing.Laws
 import LRA.AlgebraicStructures.OrderedField.Laws
 import LRA.AlgebraicStructures.OrderedGroup.Laws

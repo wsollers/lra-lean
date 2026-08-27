@@ -1,9 +1,2 @@
-import LRA.AlgebraicStructures.Monoid.Definition
-import LRA.AlgebraicStructures.Monoid.Theorems
-import LRA.AlgebraicStructures.Monoid.Characterizations
-import LRA.AlgebraicStructures.Monoid.Consequences
-import LRA.AlgebraicStructures.Monoid.Interface.Signature.Definition
-import LRA.AlgebraicStructures.Monoid.Interface.ModelTheory.LStructure
-import LRA.AlgebraicStructures.Monoid.Interface.ModelTheory.Theory
-import LRA.AlgebraicStructures.Monoid.Interface.ModelTheory.Model
-import LRA.AlgebraicStructures.Monoid.Relationships
+import LRA.AlgebraicStructures.Monoid.Interface
+import LRA.AlgebraicStructures.Monoid.Constructions
