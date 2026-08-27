@@ -203,8 +203,8 @@ theorem PairInjective {Left Right Pair : Type u}
     ∀ (firstLeft secondLeft : Left) (firstRight secondRight : Right),
       OrderedPair firstLeft firstRight =
           OrderedPair secondLeft secondRight ↔
-        firstLeft = secondLeft ∧ firstRight = secondRight := by
-  sorry
+        firstLeft = secondLeft ∧ firstRight = secondRight :=
+  PairingLaws.PairInjective
 
 instance instProdPairing {Left Right : Type u} :
     HasPairing Left Right (Left × Right) :=

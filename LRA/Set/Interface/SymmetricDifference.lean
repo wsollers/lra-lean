@@ -145,8 +145,8 @@ Related proof moves: intro
 
 -/
 theorem SymmetricDifferenceAsUnionDifferences :
-    ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A) := by
-  sorry
+    ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A) :=
+  SymmDiffLaws.SymmetricDifferenceAsUnionDifferences
 
 /--
 `SymmetricDifferenceAsUnionDifferenceIntersection` TODO
@@ -186,8 +186,8 @@ Related proof moves: intro
 
 -/
 theorem SymmetricDifferenceAsUnionDifferenceIntersection :
-    ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B) := by
-  sorry
+    ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B) :=
+  SymmDiffLaws.SymmetricDifferenceAsUnionDifferenceIntersection
 
 /--
 `SymmetricDifferenceCommutative` TODO
@@ -225,8 +225,8 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem SymmetricDifferenceCommutative : ∀ A B : α, A ∆ B = B ∆ A := by
-  sorry
+theorem SymmetricDifferenceCommutative : ∀ A B : α, A ∆ B = B ∆ A :=
+  SymmDiffLaws.SymmetricDifferenceCommutative
 
 /--
 `SymmetricDifferenceAssociative` TODO
@@ -266,8 +266,8 @@ Related proof moves: intro
 
 -/
 theorem SymmetricDifferenceAssociative :
-    ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C) := by
-  sorry
+    ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C) :=
+  SymmDiffLaws.SymmetricDifferenceAssociative
 
 /--
 `SymmetricDifferenceEmpty` TODO
@@ -305,8 +305,8 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem SymmetricDifferenceEmpty : ∀ A : α, A ∆ (∅ : α) = A := by
-  sorry
+theorem SymmetricDifferenceEmpty : ∀ A : α, A ∆ (∅ : α) = A :=
+  SymmDiffLaws.SymmetricDifferenceEmpty
 
 /--
 `EmptySymmetricDifference` TODO
@@ -344,8 +344,8 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem EmptySymmetricDifference : ∀ A : α, (∅ : α) ∆ A = A := by
-  sorry
+theorem EmptySymmetricDifference : ∀ A : α, (∅ : α) ∆ A = A :=
+  SymmDiffLaws.EmptySymmetricDifference
 
 /--
 `SymmetricDifferenceSelf` TODO
@@ -383,8 +383,8 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem SymmetricDifferenceSelf : ∀ A : α, A ∆ A = (∅ : α) := by
-  sorry
+theorem SymmetricDifferenceSelf : ∀ A : α, A ∆ A = (∅ : α) :=
+  SymmDiffLaws.SymmetricDifferenceSelf
 
 /--
 `SymmetricDifferenceEqEmptyIff` TODO
@@ -424,8 +424,8 @@ Related proof moves: intro, constructor, .mp, .mpr
 
 -/
 theorem SymmetricDifferenceEqEmptyIff :
-    ∀ A B : α, A ∆ B = (∅ : α) ↔ A = B := by
-  sorry
+    ∀ A B : α, A ∆ B = (∅ : α) ↔ A = B :=
+  SymmDiffLaws.SymmetricDifferenceEqEmptyIff
 
 /--
 `SymmetricDifferenceSubsetUnion` TODO
@@ -463,7 +463,7 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem SymmetricDifferenceSubsetUnion : ∀ A B : α, A ∆ B ⊆ A ∪ B := by
-  sorry
+theorem SymmetricDifferenceSubsetUnion : ∀ A B : α, A ∆ B ⊆ A ∪ B :=
+  SymmDiffLaws.SymmetricDifferenceSubsetUnion
 
 end LRA.Set
