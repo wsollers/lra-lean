@@ -6,3 +6,4 @@ import LRA.Set.Constructions.ZFCSet.Laws
 import LRA.Set.Constructions.ZFCSet.Satisfy_Generic
 import LRA.Set.Constructions.ZFCSet.Interface
 import LRA.Set.Constructions.ZFCSet.Satisfy_ZFC
+import LRA.Set.Constructions.ZFCSet.Satisfy_ZFCAlgebra

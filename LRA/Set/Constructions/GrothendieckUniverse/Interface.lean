@@ -1,2 +1,1 @@
 import LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory
-import LRA.Set.Constructions.GrothendieckUniverse.Interface.UniversalAlgebra

@@ -10,3 +10,4 @@ import LRA.Set.Constructions.TGSet.Satisfy_Generic
 import LRA.Set.Constructions.TGSet.Interface
 import LRA.Set.Constructions.TGSet.Satisfy_ZFC
 import LRA.Set.Constructions.TGSet.Satisfy_Grothendieck
+import LRA.Set.Constructions.TGSet.Satisfy_ZFCAlgebra
