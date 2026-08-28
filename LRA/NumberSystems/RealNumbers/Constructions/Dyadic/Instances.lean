@@ -1,5 +1,5 @@
 
-import LRA.NumberSystems.RealNumbers.Definition
+import LRA.NumberSystems.RealNumbers.Interface.Definition
 import LRA.NumberSystems.RealNumbers.Constructions.Dyadic.Behavior
 
 namespace LRA.NumberSystems.RealNumbers.Dyadic

@@ -1,1 +1,1 @@
-import LRA.Relation.Structures.Equivalence.Definition
+import LRA.Relation.Interface.Structures.Definition

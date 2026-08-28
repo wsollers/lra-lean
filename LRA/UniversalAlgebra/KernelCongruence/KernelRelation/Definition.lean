@@ -1,5 +1,5 @@
 import LRA.UniversalAlgebra.Homomorphism.Definition
-import LRA.Relation.Structures
+import LRA.Relation.Interface.Structures
 
 namespace LRA.UniversalAlgebra
 

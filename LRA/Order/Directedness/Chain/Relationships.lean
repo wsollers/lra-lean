@@ -1,6 +1,6 @@
 import LRA.Order.Directedness.Chain.Definition
 import LRA.Order.Directedness.Directed.Definition
-import LRA.Relation.Properties.Definition
+import LRA.Relation.Interface.Laws.Definition
 
 namespace LRA.Order
 

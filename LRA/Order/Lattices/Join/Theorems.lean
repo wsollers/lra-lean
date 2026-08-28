@@ -1,5 +1,5 @@
 import LRA.Order.Lattices.Join.Definition
-import LRA.Relation.Properties.Definition
+import LRA.Relation.Interface.Laws.Definition
 import LRA.Order.OrderedSets.PartialOrder.Definition
 
 namespace LRA.Order

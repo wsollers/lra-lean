@@ -1,1 +1,1 @@
-import LRA.Relation.Definition
+import LRA.Relation.Interface.Definitions.Core

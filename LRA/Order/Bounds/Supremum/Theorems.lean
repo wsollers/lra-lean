@@ -1,6 +1,6 @@
 import LRA.Order.Bounds.Supremum.Definition
 import LRA.Order.Bounds.GreatestElement.Definition
-import LRA.Relation.Properties.Definition
+import LRA.Relation.Interface.Laws.Definition
 import LRA.Order.Lattices.Join.Definition
 import LRA.Order.Relation.Dominated.Definition
 import LRA.Set.Interface.Laws.Membership

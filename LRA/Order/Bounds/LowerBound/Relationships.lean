@@ -1,4 +1,4 @@
-import LRA.Relation.Operations.Converse.Definition
+import LRA.Relation.Interface.Operations.Converse.Definition
 import LRA.Order.Bounds.LowerBound.Definition
 import LRA.Order.Bounds.UpperBound.Definition
 

@@ -1,5 +1,5 @@
 import LRA.Function.Definition
-import LRA.Relation.Calculus.Classes.Definition
+import LRA.Relation.Interface.Calculus.Classes.Definition
 
 namespace LRA.Function
 

@@ -1,5 +1,5 @@
 import LRA.Function.Definition
-import LRA.Relation.Operations.Composition.Definition
+import LRA.Relation.Interface.Operations.Composition.Definition
 
 namespace LRA.Function
 

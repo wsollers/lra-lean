@@ -1,6 +1,6 @@
 import LRA.Function.Definition
 import LRA.Function.Properties.Definition
-import LRA.Relation.Operations.Converse.Definition
+import LRA.Relation.Interface.Operations.Converse.Definition
 import LRA.Set.SetClass.Definition
 
 namespace LRA.Function

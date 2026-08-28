@@ -1,1 +1,1 @@
-import LRA.Relation.Canonical.UniversalRelation.Definition
+import LRA.Relation.Interface.Canonical.UniversalRelation.Definition

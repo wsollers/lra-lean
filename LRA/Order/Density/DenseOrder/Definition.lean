@@ -1,5 +1,5 @@
 import LRA.Order.OrderedSets.StrictOrder.Definition
-import LRA.Relation.Properties.Definition
+import LRA.Relation.Interface.Laws.Definition
 
 namespace LRA.Order
 

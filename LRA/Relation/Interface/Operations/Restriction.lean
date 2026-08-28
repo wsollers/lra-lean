@@ -1,1 +1,1 @@
-import LRA.Relation.Calculus.Restriction.Definition
+import LRA.Relation.Interface.Operations.Restriction.Definition

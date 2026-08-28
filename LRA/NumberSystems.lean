@@ -1,3 +1,7 @@
+import LRA.NumberSystems.Interface
+import LRA.NumberSystems.Constructions
+import LRA.NumberSystems.Interop
+import LRA.NumberSystems.Examples
 import LRA.NumberSystems.PeanoSystem
 import LRA.NumberSystems.NaturalNumbers
 import LRA.NumberSystems.WholeNumbers
@@ -7,10 +11,5 @@ import LRA.NumberSystems.RationalNumbers
 import LRA.NumberSystems.RealNumbers
 import LRA.NumberSystems.GaussianIntegers
 import LRA.NumberSystems.ComplexNumbers
-import LRA.NumberSystems.Interface.ModelTheory.LStructure
-import LRA.NumberSystems.Interface.ModelTheory.Theory
-import LRA.NumberSystems.Interface.ModelTheory.Model
-import LRA.NumberSystems.Interface.ModelTheory.CanonicalEmbeddings
-import LRA.NumberSystems.Interface.ModelTheory.UniversalProperties
 import LRA.NumberSystems.Carriers
 import LRA.NumberSystems.Arithmetic.Model.All

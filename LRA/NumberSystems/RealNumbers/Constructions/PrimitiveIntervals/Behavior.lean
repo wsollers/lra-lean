@@ -1,7 +1,7 @@
 
 import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals.Laws
 import LRA.NumberSystems.RealNumbers.Constructions.Cauchy
-import LRA.NumberSystems.RationalNumbers.Definition
+import LRA.NumberSystems.RationalNumbers.Interface.Definition
 
 namespace LRA.NumberSystems.RealNumbers.PrimitiveIntervals
 

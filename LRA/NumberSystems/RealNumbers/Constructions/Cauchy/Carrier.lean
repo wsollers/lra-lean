@@ -1,6 +1,6 @@
 
 import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
-import LRA.NumberSystems.RationalNumbers.Definition
+import LRA.NumberSystems.RationalNumbers.Interface.Definition
 import LRA.NumberSystems.Interface.ModelTheory.Model
 
 namespace LRA.NumberSystems.RealNumbers.Cauchy

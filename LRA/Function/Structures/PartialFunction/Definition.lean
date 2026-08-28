@@ -1,5 +1,5 @@
 import LRA.Function.Definition
-import LRA.Relation.Structures.PartialFunction.Definition
+import LRA.Relation.Interface.Structures.PartialFunction.Definition
 
 namespace LRA.Function
 

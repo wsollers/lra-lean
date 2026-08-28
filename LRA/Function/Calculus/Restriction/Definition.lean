@@ -1,5 +1,5 @@
 import LRA.Function.Definition
-import LRA.Relation.Calculus.Restriction.Definition
+import LRA.Relation.Interface.Operations.Restriction.Definition
 import LRA.Set.SetClass.Definition
 
 namespace LRA.Function

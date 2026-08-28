@@ -1,2 +1,2 @@
-import LRA.Relation.Properties.Definition
-import LRA.Relation.Properties.Consequences
+import LRA.Relation.Interface.Laws.Definition
+import LRA.Relation.Interface.Laws.Consequences

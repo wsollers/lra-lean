@@ -1,5 +1,4 @@
-import LRA.AlgebraicStructures.AdditiveGroup
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.AdditiveGroup.Examples.IntegersUnderAddition
+import LRA.AlgebraicStructures.AdditiveGroup.Examples.RealVectorSpace
+import LRA.AlgebraicStructures.AdditiveGroup.Examples.MatricesUnderAddition
+import LRA.AlgebraicStructures.AdditiveGroup.Examples.IntegersModuloN

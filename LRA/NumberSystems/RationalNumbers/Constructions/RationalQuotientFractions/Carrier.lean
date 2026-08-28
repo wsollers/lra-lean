@@ -1,5 +1,5 @@
 
-import LRA.NumberSystems.Integers.Definition
+import LRA.NumberSystems.Integers.Interface.Definition
 import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
 
 namespace LRA.NumberSystems.RationalNumbers.RationalQuotientFractions

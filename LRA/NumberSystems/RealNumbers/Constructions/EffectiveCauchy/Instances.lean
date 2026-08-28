@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures
-import LRA.NumberSystems.RealNumbers.Definition
+import LRA.NumberSystems.RealNumbers.Interface.Definition
 import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.Behavior
 
 namespace LRA.NumberSystems.RealNumbers.EffectiveCauchy

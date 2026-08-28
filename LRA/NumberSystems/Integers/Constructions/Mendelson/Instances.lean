@@ -1,6 +1,6 @@
 
 import LRA.NumberSystems.Integers.Constructions.Mendelson.Behavior
-import LRA.NumberSystems.Integers.Definition
+import LRA.NumberSystems.Integers.Interface.Definition
 import LRA.NumberSystems.PeanoSystem.Definition
 
 namespace LRA.NumberSystems.Integers.Mendelson

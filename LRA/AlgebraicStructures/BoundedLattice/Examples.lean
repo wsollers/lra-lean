@@ -1,5 +1,3 @@
-import LRA.AlgebraicStructures.BoundedLattice.Definition
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.BoundedLattice.Examples.PowerSetLattice
+import LRA.AlgebraicStructures.BoundedLattice.Examples.DivisorLattice
+import LRA.AlgebraicStructures.BoundedLattice.Examples.ExtendedReals

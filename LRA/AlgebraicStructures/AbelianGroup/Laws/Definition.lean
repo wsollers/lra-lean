@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Interface.Laws.Definition
-import LRA.AlgebraicStructures.AdditiveGroup.Laws.Definition
+import LRA.AlgebraicStructures.AdditiveGroup.Interface.Laws.Definition
 
 namespace LRA.AlgebraicStructures
 

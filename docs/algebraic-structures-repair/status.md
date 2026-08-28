@@ -23,11 +23,11 @@
 | as-10 | 2 | Monoid | **done** | Semigroup | Audit found the existing `MonoidLaws` (combining `MultiplicativeSemigroupLaws`+`MultiplicativeIdentityLaws`) already matched the user's `(M,*,e)` spec exactly — no fix needed. Built all 5 of the user's standard examples plus this process's first-ever `Failures/` folder (positive integers under addition, reusing Semigroup's own example per D3's plan). |
 | as-11 | 2 | AdditiveMonoid | **done** | AdditiveSemigroup | Exact dual of as-10/Monoid, audit confirmed correct as-is. Examples: `(ℕ,+,0)` (doubles as the free-additive-monoid-on-{1} example), `NNReal`, `ENNReal`, square matrices under addition (simpler than Monoid's multiplicative version — no Fintype/DecidableEq needed). Failures/ dual built too (positive naturals, no identity). First item this whole process to build clean on the first `lake build` attempt. |
 | as-12 | 2 | Lattice | **done** | JoinSemilattice, MeetSemilattice | Audited correct as-is (JoinSemilatticeLaws + MeetSemilatticeLaws + MutualAbsorptionLaw = exactly the user's 4 identities). Important finding: the algebra↔order equivalence already exists pre-built at `LRA/Order/Interop/AlgebraicLattice.lean` (both directions, more complete than either semilattice's own bridge) — did not duplicate it inside `AlgebraicStructures/Lattice`, just fixed its import path. |
-| as-13 | 3 | Group | **reorg_done** | Monoid | mechanical reorg done ahead of order; audit pass still queued |
-| as-14 | 3 | AdditiveGroup | not_started | AdditiveMonoid | |
-| as-15 | 3 | CommutativeMonoid | not_started | CommutativeSemigroup, Monoid | |
-| as-16 | 3 | BoundedLattice | not_started | Lattice | |
-| as-17 | 3 | DistributiveLattice | not_started | Lattice | |
+| as-13 | 3 | Group | **done** | Monoid | Audit confirmed `GroupLaws` matches the user's 4 axioms exactly (no bug). Caught and fixed a real bug in my own new `ClosedSubsetGroupLaws` builder — it wrongly required `[GroupLaws A]` on the ambient, which fails for the most natural example (nonzero reals under ×, where ℝ is only a monoid). Examples: ℤ, ℝ\{0} (via the fixed builder), Sym(S), GL_n(ℝ). |
+| as-14 | 3 | AdditiveGroup | **done** | AdditiveMonoid | Exact dual of Group (as-13), audited correct as-is. Applied Group's own ambient-hypothesis lesson from the start this time (closed-subset builder needs only `[AdditiveMonoidLaws A]`, not `[AdditiveGroupLaws A]`) — no build failure needed to catch it. All 4 examples free via Mathlib bridges, no wrapper structs needed (unlike Group's own item). |
+| as-15 | 3 | CommutativeMonoid | **done** | CommutativeSemigroup, Monoid | Audited correct as-is. Examples: `(ℕ,+,0)` (reuses Monoid's carrier), `(ℕ,×,1)`, power set under union, Booleans under conjunction — the last a genuine find, free via Mathlib's existing `BooleanRing Bool` instance rather than built from scratch. Clean on the first `lake build` attempt. |
+| as-16 | 3 | BoundedLattice | **done** | Lattice | Checked `LRA/Order/` per user request — unlike `Lattice`'s own equivalence, no order-theoretic `BoundedLattice` or algebra↔order bridge exists anywhere yet; flagged as an explicit open item rather than built (no equivalence-of-definitions section was given this time). Audited: only half of each bound's conditions is stated as an axiom, verified by hand that the other halves are provable consequences (not a gap). Examples: power set, divisor lattice of `n` (fresh construction), extended reals. |
+| as-17 | 3 | DistributiveLattice | **done** | Lattice | Checked `LRA/Order/` again — unlike `BoundedLattice`, the order-theoretic definition (`LRA.Order.Lattices.DistributiveLattice`) already exists, but (like `BoundedLattice`) no algebra↔order bridge does; flagged as an open item. Audited: states both distributive identities as separate conjuncts even though the user's spec notes they're equivalent — confirmed deliberate non-minimal redundancy, not a bug. Examples: power sets, divisor lattice, chains — down-set lattices skipped for scope (needs a from-scratch poset construction). Clean on the first `lake build` attempt. |
 | as-18 | 4 | Semiring | not_started | AdditiveCommutativeSemigroup, AdditiveMonoid, Monoid | owns Laws/Distributive.lean |
 | as-19 | 4 | AbelianGroup | not_started | AdditiveCommutativeSemigroup, AdditiveGroup | |
 | as-20 | 4 | OrderedGroup | not_started | Group | |
@@ -69,17 +69,31 @@ reverted retroactively. Everything proved in as-03 through as-06 and as-08's
 Constructions/Examples *was* reverted to `sorry` on 2026-08-26 to match this rule —
 see each item's ledger notes for exactly what changed.
 
-**Next step:** Tiers 1 and 2 are both fully done (as-01 through as-12). Tier 3 is next:
-Group's audit pass (as-13, mechanical reorg already done ahead of order, unblocked since
-Monoid is done), AdditiveGroup (as-14, needs AdditiveMonoid, done), CommutativeMonoid
-(as-15, needs CommutativeSemigroup+Monoid, both done), BoundedLattice (as-16, needs
-Lattice, done), DistributiveLattice (as-17, needs Lattice, done) — all five are now
-unblocked, order among them doesn't matter. Worth noting for `BoundedLattice`/
-`DistributiveLattice`/`BooleanAlgebra`'s own audits: check whether they need their own
-order-theoretic bridge or whether (like `Lattice` just did) one already exists somewhere
-under `LRA/Order/Interop/` or `LRA/Order/Lattices/` before building a new one from
-scratch — worth checking before assuming JoinSemilattice/MeetSemilattice's
-build-it-yourself pattern is still the right move. Nonemptiness on any new atomic `<X>Laws` class must be
+**Next step:** Tiers 1, 2, and 3 are all fully done (as-01 through as-17). Tier 4 is now
+unblocked: Semiring (as-18, needs AdditiveCommutativeSemigroup+AdditiveMonoid+Monoid, all
+done), AbelianGroup (as-19, needs AdditiveCommutativeSemigroup+AdditiveGroup, both done),
+OrderedGroup (as-20, needs Group, done — also depends on LRA.Order.Laws.{PartialOrder,
+OperationCompatibility}, outside this tree, not in scope to change), BooleanAlgebra
+(as-21, needs BoundedLattice+DistributiveLattice, both done) — all four unblocked, order
+among them doesn't matter.
+
+**Open items, order-theoretic bridges (as-16, as-17):** neither `BoundedLattice` nor
+`DistributiveLattice` has an algebra↔order bridge, unlike `Lattice`'s own (found pre-built
+at `LRA/Order/Interop/AlgebraicLattice.lean`). `BoundedLattice`'s order-theoretic
+*definition* doesn't exist either (would need building from `LRA/Order/Bounds/`'s
+`TopElement`/`BottomElement`); `DistributiveLattice`'s order-theoretic definition DOES
+already exist (`LRA.Order.Lattices.DistributiveLattice`, already `sorry`'d) — only the
+bridge connecting it to the algebraic side is missing. Neither was built since the user's
+own messages for those two items didn't include an explicit equivalence-of-definitions
+derivation the way `JoinSemilattice`/`MeetSemilattice`/`Lattice`'s did. Worth checking the
+same way for `BooleanAlgebra` before assuming its own order-theoretic side is already
+covered or needs building from scratch — this pattern (check `LRA/Order/` first) has paid
+off three times running now. Also worth checking existing Mathlib instances before
+building a from-scratch example — `CommutativeMonoid`'s Boolean-conjunction example
+turned out to be free via Mathlib's pre-existing `BooleanRing Bool` instance rather than
+needing new work. `DistributiveLattice`'s down-set-lattice example (one of the user's 4
+standard examples) was also skipped for scope — a genuine from-scratch poset/down-set
+construction, more substantial than reuse-driven examples elsewhere. Nonemptiness on any new atomic `<X>Laws` class must be
 `[Nonempty R]`, never a stored field, per D7. Monoid (as-10) built this whole process's
 first-ever `Failures/` folder (D3 planned the pattern from the start — "a semigroup with
 no identity is exactly Monoid's failure mode" — but no prior item, including Semigroup

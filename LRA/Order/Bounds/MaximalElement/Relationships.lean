@@ -1,6 +1,6 @@
 import LRA.Order.Bounds.MaximalElement.Definition
 import LRA.Order.Bounds.MinimalElement.Definition
-import LRA.Relation.Operations.Converse.Definition
+import LRA.Relation.Interface.Operations.Converse.Definition
 
 namespace LRA.Order
 

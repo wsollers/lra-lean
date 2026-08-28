@@ -1,6 +1,6 @@
 import LRA.Operation.Examples
 import LRA.Operation.FailureModes
-import LRA.NumberSystems.RationalNumbers.Examples
+import LRA.NumberSystems.RationalNumbers.Examples.NumberSystems
 import LRA.NumberSystems.RealNumbers.Interop.Mathlib.Extended
 import LRA.NumberSystems.RealNumbers.Interop.Mathlib.NonNegative
 

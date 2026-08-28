@@ -134,6 +134,13 @@ def succOn : HasSuccessor (Carrier natural_data) :=
   ⟨successor natural_data⟩
 
 /--
+`nonemptyOn` packages the distinguished `one` element as the witness required
+by semigroup-strength and stronger bundled interfaces.
+-/
+def nonemptyOn : Nonempty (Carrier natural_data) :=
+  ⟨one natural_data⟩
+
+/--
 `addOn` TODO
 
 Predicate logic:
@@ -313,10 +320,13 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-noncomputable def additiveSemigroupLawsOn :
-    @AdditiveSemigroupLaws (Carrier natural_data) (addOn natural_data) :=
-  @AdditiveSemigroupLaws.mk (Carrier natural_data) (addOn natural_data)
-    (additive_structure natural_data).1
+theorem additiveSemigroupLawsOn :
+    let _ : Add (Carrier natural_data) := addOn natural_data
+    let _ : Nonempty (Carrier natural_data) := nonemptyOn natural_data
+    AdditiveSemigroupLaws (Carrier natural_data) := by
+  letI : Add (Carrier natural_data) := addOn natural_data
+  letI : Nonempty (Carrier natural_data) := nonemptyOn natural_data
+  exact ⟨(additive_structure natural_data).1⟩
 ```
 
 Type-theoretic form:
@@ -338,10 +348,14 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-noncomputable def additiveSemigroupLawsOn :
-    @AdditiveSemigroupLaws (Carrier natural_data) (addOn natural_data) :=
-  @AdditiveSemigroupLaws.mk (Carrier natural_data) (addOn natural_data)
-    (additive_structure natural_data).1
+theorem additiveSemigroupLawsOn
+    (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
+    let _ : Add (Carrier natural_data) := addOn natural_data
+    let _ : Nonempty (Carrier natural_data) := nonemptyOn natural_data
+    AdditiveSemigroupLaws (Carrier natural_data) := by
+  letI : Add (Carrier natural_data) := addOn natural_data
+  letI : Nonempty (Carrier natural_data) := nonemptyOn natural_data
+  exact ⟨(additive_structure natural_data).1⟩
 
 /--
 `additiveCommutativeLawsOn` TODO
@@ -475,10 +489,13 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-noncomputable def multiplicativeSemigroupLawsOn :
-    @MultiplicativeSemigroupLaws (Carrier natural_data) (mulOn natural_data) :=
-  @MultiplicativeSemigroupLaws.mk (Carrier natural_data) (mulOn natural_data)
-    (semiring_structure natural_data).2.1
+theorem multiplicativeSemigroupLawsOn :
+    let _ : Mul (Carrier natural_data) := mulOn natural_data
+    let _ : Nonempty (Carrier natural_data) := nonemptyOn natural_data
+    MultiplicativeSemigroupLaws (Carrier natural_data) := by
+  letI : Mul (Carrier natural_data) := mulOn natural_data
+  letI : Nonempty (Carrier natural_data) := nonemptyOn natural_data
+  exact ⟨(semiring_structure natural_data).2.1⟩
 ```
 
 Type-theoretic form:
@@ -500,10 +517,14 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-noncomputable def multiplicativeSemigroupLawsOn :
-    @MultiplicativeSemigroupLaws (Carrier natural_data) (mulOn natural_data) :=
-  @MultiplicativeSemigroupLaws.mk (Carrier natural_data) (mulOn natural_data)
-    (semiring_structure natural_data).2.1
+theorem multiplicativeSemigroupLawsOn
+    (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
+    let _ : Mul (Carrier natural_data) := mulOn natural_data
+    let _ : Nonempty (Carrier natural_data) := nonemptyOn natural_data
+    MultiplicativeSemigroupLaws (Carrier natural_data) := by
+  letI : Mul (Carrier natural_data) := mulOn natural_data
+  letI : Nonempty (Carrier natural_data) := nonemptyOn natural_data
+  exact ⟨(semiring_structure natural_data).2.1⟩
 
 /--
 `multiplicativeCommutativeLawsOn` TODO
@@ -902,10 +923,18 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-noncomputable def commutativeSemiringLawsOn :
-    @CommutativeSemiringLaws (Carrier natural_data)
-      (addOn natural_data) (mulOn natural_data)
-      (zeroOn natural_data) (oneOn natural_data) := by
+theorem commutativeSemiringLawsOn :
+    let _ : Add (Carrier natural_data) := addOn natural_data
+    let _ : Mul (Carrier natural_data) := mulOn natural_data
+    let _ : OfNat (Carrier natural_data) 0 := zeroOn natural_data
+    let _ : OfNat (Carrier natural_data) 1 := oneOn natural_data
+    let _ : Nonempty (Carrier natural_data) := nonemptyOn natural_data
+    CommutativeSemiringLaws (Carrier natural_data) := by
+  letI : Add (Carrier natural_data) := addOn natural_data
+  letI : Mul (Carrier natural_data) := mulOn natural_data
+  letI : OfNat (Carrier natural_data) 0 := zeroOn natural_data
+  letI : OfNat (Carrier natural_data) 1 := oneOn natural_data
+  letI : Nonempty (Carrier natural_data) := nonemptyOn natural_data
   letI := additiveSemigroupLawsOn natural_data
   letI := additiveIdentityLawsOn natural_data
   letI := additiveCommutativeLawsOn natural_data
@@ -1189,10 +1218,20 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-noncomputable def orderedSemiringLawsOn :
-    @OrderedSemiringLaws (Carrier natural_data)
-      (addOn natural_data) (mulOn natural_data)
-      (zeroOn natural_data) (oneOn natural_data) (leOn natural_data) := by
+theorem orderedSemiringLawsOn :
+    let _ : Add (Carrier natural_data) := addOn natural_data
+    let _ : Mul (Carrier natural_data) := mulOn natural_data
+    let _ : OfNat (Carrier natural_data) 0 := zeroOn natural_data
+    let _ : OfNat (Carrier natural_data) 1 := oneOn natural_data
+    let _ : LE (Carrier natural_data) := leOn natural_data
+    let _ : Nonempty (Carrier natural_data) := nonemptyOn natural_data
+    OrderedSemiringLaws (Carrier natural_data) := by
+  letI : Add (Carrier natural_data) := addOn natural_data
+  letI : Mul (Carrier natural_data) := mulOn natural_data
+  letI : OfNat (Carrier natural_data) 0 := zeroOn natural_data
+  letI : OfNat (Carrier natural_data) 1 := oneOn natural_data
+  letI : LE (Carrier natural_data) := leOn natural_data
+  letI : Nonempty (Carrier natural_data) := nonemptyOn natural_data
   letI := commutativeSemiringLawsOn natural_data
   letI := partialOrderLawsOn natural_data
   letI := totalOrderLawOn natural_data
@@ -1246,6 +1285,7 @@ noncomputable def quotientOrderedPairsInput :
   letI := addOn natural_data
   letI := mulOn natural_data
   letI := leOn natural_data
+  letI := nonemptyOn natural_data
   letI := commutativeSemiringLawsOn natural_data
   letI := partialOrderLawsOn natural_data
   exact
@@ -1256,6 +1296,7 @@ noncomputable def quotientOrderedPairsInput :
 
 example (a b : Carrier natural_data) : True := by
   letI := addOn natural_data
+  letI := nonemptyOn natural_data
   letI := additiveCommutativeLawsOn natural_data
   have commuted : a + b = b + a := AddCommutative a b
   trivial

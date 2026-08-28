@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures.AbelianGroup.Laws.Definition
-import LRA.AlgebraicStructures.AdditiveGroup.Definition
+import LRA.AlgebraicStructures.AdditiveGroup.Interface.Definitions.ConceptSignature
 
 namespace LRA.AlgebraicStructures
 

@@ -1,4 +1,4 @@
-import LRA.Relation.Operations.Converse.Definition
+import LRA.Relation.Interface.Operations.Converse.Definition
 import LRA.Order.Lattices.Join.Relationships
 import LRA.Order.Lattices.Meet.Relationships
 import LRA.Order.Lattices.JoinSemilattice.Definition

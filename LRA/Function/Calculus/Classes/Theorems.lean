@@ -1,7 +1,7 @@
 import LRA.Function.Calculus.Classes.Definition
 import LRA.Function.Properties.Definition
-import LRA.Relation.Structures.Definition
-import LRA.Relation.Canonical.IdentityRelation.Definition
+import LRA.Relation.Interface.Structures.Definition
+import LRA.Relation.Interface.Canonical.IdentityRelation.Definition
 import LRA.Set.SetClass.Operations
 
 namespace LRA.Function

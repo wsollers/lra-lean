@@ -1,5 +1,5 @@
 import LRA.Order.Morphisms.OrderEmbedding.Definition
-import LRA.Relation.Properties.Definition
+import LRA.Relation.Interface.Laws.Definition
 import LRA.Order.Bounds.BoundSets.Theorems
 import LRA.Order.Bounds.GreatestElement.Definition
 import LRA.Order.Bounds.LeastElement.Definition
@@ -9,7 +9,7 @@ import LRA.Order.Bounds.UpperBound.Definition
 import LRA.Order.Bounds.LowerBound.Definition
 import LRA.Function.Calculus.Classes.Definition
 import LRA.Set.SetClass.Representation
-import LRA.Relation.Operations.Converse.Definition
+import LRA.Relation.Interface.Operations.Converse.Definition
 
 namespace LRA.Order
 

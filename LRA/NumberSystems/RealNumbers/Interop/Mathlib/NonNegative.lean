@@ -1,7 +1,7 @@
 
 import Mathlib.Data.NNReal.Basic
 import Mathlib.Data.ENNReal.Basic
-import LRA.NumberSystems.RealNumbers.NonNegative
+import LRA.NumberSystems.RealNumbers.Interop.NonNegative
 import LRA.NumberSystems.Interface.ModelTheory.Model
 
 namespace LRA.NumberSystems.RealNumbers.Interop.Mathlib

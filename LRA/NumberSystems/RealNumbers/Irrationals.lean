@@ -1,6 +1,6 @@
 
 import LRA.NumberSystems.RationalNumbers.RationalNumberSystem
-import LRA.NumberSystems.RealNumbers.Definition
+import LRA.NumberSystems.RealNumbers.Interface.Definition
 
 namespace LRA.NumberSystems.RealNumbers.Irrationals
 

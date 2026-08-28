@@ -1,5 +1,5 @@
 import LRA.Morphism.Properties.PreservesRelation.Definition
-import LRA.Relation.Operations.Converse.Definition
+import LRA.Relation.Interface.Operations.Converse.Definition
 
 namespace LRA.Order
 

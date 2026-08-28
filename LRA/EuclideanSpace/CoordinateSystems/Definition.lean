@@ -1,5 +1,5 @@
 import LRA.EuclideanSpace.Definition
-import LRA.NumberSystems.RealNumbers.ConstructionModels
+import LRA.NumberSystems.RealNumbers.Interop.ConstructionModels
 
 namespace LRA.EuclideanSpace
 

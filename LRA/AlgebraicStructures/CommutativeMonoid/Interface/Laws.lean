@@ -1,0 +1,1 @@
+import LRA.AlgebraicStructures.CommutativeMonoid.Interface.Laws.Definition

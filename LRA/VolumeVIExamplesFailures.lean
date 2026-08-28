@@ -2,14 +2,12 @@ import LRA.AlgebraicStructures.AbelianGroup.Examples
 import LRA.AlgebraicStructures.AbelianGroup.Laws.Examples
 import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples
 import LRA.AlgebraicStructures.AdditiveGroup.Examples
-import LRA.AlgebraicStructures.AdditiveGroup.Laws.Examples
 import LRA.AlgebraicStructures.AdditiveMonoid.Examples
 import LRA.AlgebraicStructures.AdditiveMonoid.Failures
 import LRA.AlgebraicStructures.AdditiveSemigroup.Examples
 import LRA.AlgebraicStructures.BooleanAlgebra.Examples
 import LRA.AlgebraicStructures.BoundedLattice.Examples
 import LRA.AlgebraicStructures.CommutativeMonoid.Examples
-import LRA.AlgebraicStructures.CommutativeMonoid.Laws.Examples
 import LRA.AlgebraicStructures.CommutativeRing.Examples
 import LRA.AlgebraicStructures.CommutativeRing.Laws.Examples
 import LRA.AlgebraicStructures.CommutativeSemigroup.Examples
@@ -22,6 +20,7 @@ import LRA.AlgebraicStructures.DistributiveLattice.Examples
 import LRA.AlgebraicStructures.DivisionRing.Examples
 import LRA.AlgebraicStructures.Field.Examples
 import LRA.AlgebraicStructures.Field.Laws.Examples
+import LRA.AlgebraicStructures.Group.Examples
 import LRA.AlgebraicStructures.IntegralDomain.Examples
 import LRA.AlgebraicStructures.IntegralDomain.Laws.Examples
 import LRA.AlgebraicStructures.JoinSemilattice.Examples

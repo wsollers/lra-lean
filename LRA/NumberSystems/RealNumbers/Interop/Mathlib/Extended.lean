@@ -1,6 +1,6 @@
 
 import Mathlib.Data.EReal.Basic
-import LRA.NumberSystems.RealNumbers.Extended
+import LRA.NumberSystems.RealNumbers.Interop.Extended
 import LRA.NumberSystems.Interface.ModelTheory.Model
 
 namespace LRA.NumberSystems.RealNumbers.Interop.Mathlib

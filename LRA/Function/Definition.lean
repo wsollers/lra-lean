@@ -1,5 +1,5 @@
-import LRA.Relation.Definition
-import LRA.Relation.Properties.Definition
+import LRA.Relation.Interface.Definitions
+import LRA.Relation.Interface.Laws.Definition
 
 namespace LRA
 

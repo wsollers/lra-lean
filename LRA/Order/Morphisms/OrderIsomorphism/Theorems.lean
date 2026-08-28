@@ -10,7 +10,7 @@ import LRA.Order.Bounds.UpperBound.Definition
 import LRA.Order.Bounds.LowerBound.Definition
 import LRA.Function.Calculus.Classes.Definition
 import LRA.Set.SetClass.Representation
-import LRA.Relation.Operations.Converse.Definition
+import LRA.Relation.Interface.Operations.Converse.Definition
 
 namespace LRA.Order
 

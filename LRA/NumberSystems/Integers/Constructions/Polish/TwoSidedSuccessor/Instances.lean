@@ -730,6 +730,14 @@ theorem z_succ_aperiodic (iterationCount : Nat) :
   sorry
 
 /--
+`z_succ_aperiodic_all` is the bundled discreteness witness in the shape
+required by `DiscretenessLaw`.
+-/
+theorem z_succ_aperiodic_all (integer : Z) (iterationCount : Nat) :
+    0 < iterationCount -> SuccIterate iterationCount integer ≠ integer := by
+  sorry
+
+/--
 `z_two_sided_induction` TODO
 
 Predicate logic:
@@ -776,7 +784,7 @@ theorem z_two_sided_induction (motive : Z → Prop) :
       ∀ integer, motive integer := by
   sorry
 
-instance : DiscretenessLaw Z := ⟨z_succ_aperiodic, z_two_sided_induction⟩
+instance : DiscretenessLaw Z := ⟨z_succ_aperiodic_all, z_two_sided_induction⟩
 
 example : CommutativeRingLaws Z := inferInstance
 example : RingLaws Z := inferInstance

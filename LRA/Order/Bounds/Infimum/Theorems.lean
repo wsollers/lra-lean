@@ -1,7 +1,7 @@
 import LRA.Order.Bounds.Infimum.Definition
 import LRA.Order.Bounds.LeastElement.Definition
-import LRA.Relation.Properties.Definition
-import LRA.Relation.Operations.Converse.Definition
+import LRA.Relation.Interface.Laws.Definition
+import LRA.Relation.Interface.Operations.Converse.Definition
 import LRA.Order.Lattices.Meet.Definition
 import LRA.Order.Relation.Dominated.Definition
 import LRA.Set.Interface.Laws.Membership

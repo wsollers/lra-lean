@@ -1,9 +1,9 @@
-import LRA.Relation.Operations.Converse.Definition
+import LRA.Relation.Interface.Operations.Converse.Definition
 import LRA.Order.Bounds.Infimum.Definition
 import LRA.Order.Bounds.Supremum.Definition
 import LRA.Order.Bounds.BoundSets.Definition
 import LRA.Set.Interface.Laws.Membership
-import LRA.Relation.Properties.Definition
+import LRA.Relation.Interface.Laws.Definition
 
 namespace LRA.Order
 

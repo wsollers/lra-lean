@@ -1,6 +1,6 @@
 import LRA.Order.Laws.OperationCompatibility.Definition
 import LRA.Order.Morphisms.Monotone.Definition
-import LRA.Relation.Properties.Definition
+import LRA.Relation.Interface.Laws.Definition
 
 namespace LRA.Order
 

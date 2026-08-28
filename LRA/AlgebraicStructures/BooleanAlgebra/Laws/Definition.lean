@@ -1,5 +1,5 @@
-import LRA.AlgebraicStructures.BoundedLattice.Laws.Definition
-import LRA.AlgebraicStructures.DistributiveLattice.Laws.Definition
+import LRA.AlgebraicStructures.BoundedLattice.Interface.Laws.Definition
+import LRA.AlgebraicStructures.DistributiveLattice.Interface.Laws.Definition
 
 namespace LRA.AlgebraicStructures
 

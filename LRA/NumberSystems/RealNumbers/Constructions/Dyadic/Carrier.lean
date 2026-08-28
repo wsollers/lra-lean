@@ -1,6 +1,6 @@
 
-import LRA.NumberSystems.RationalNumbers.Definition
-import LRA.NumberSystems.RealNumbers.Definition
+import LRA.NumberSystems.RationalNumbers.Interface.Definition
+import LRA.NumberSystems.RealNumbers.Interface.Definition
 import LRA.NumberSystems.RealNumbers.Constructions.Cauchy
 
 namespace LRA.NumberSystems.RealNumbers.Dyadic

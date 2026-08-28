@@ -1,5 +1,5 @@
 import LRA.Function.Definition
-import LRA.Relation.Canonical.IdentityRelation.Definition
+import LRA.Relation.Interface.Canonical.IdentityRelation.Definition
 
 namespace LRA.Function
 

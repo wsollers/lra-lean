@@ -102,6 +102,14 @@ def LandauSuccOn (model : PeanoSystem Element SetObject) :
   ⟨model.successor⟩
 
 /--
+`LandauNonemptyOn` packages the distinguished `one` element as the witness
+needed by bundled semigroup-style interfaces.
+-/
+def LandauNonemptyOn (model : PeanoSystem Element SetObject) :
+    Nonempty Element :=
+  ⟨model.one⟩
+
+/--
 `LandauAddOn` TODO
 
 Predicate logic:
@@ -217,8 +225,8 @@ Logical form (Lean):
 ```lean
 noncomputable def LandauAdditiveSemigroupLawsOn
     (model : PeanoSystem Element SetObject) :
-    @AdditiveSemigroupLaws Element (LandauAddOn model) :=
-  @AdditiveSemigroupLaws.mk Element (LandauAddOn model)
+    @AdditiveSemigroupLaws Element (LandauAddOn model) (LandauNonemptyOn model) :=
+  @AdditiveSemigroupLaws.mk Element (LandauAddOn model) (LandauNonemptyOn model)
     (LandauAdditionIsAssociative model)
 ```
 
@@ -241,11 +249,14 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-noncomputable def LandauAdditiveSemigroupLawsOn
+theorem LandauAdditiveSemigroupLawsOn
     (model : PeanoSystem Element SetObject) :
-    @AdditiveSemigroupLaws Element (LandauAddOn model) :=
-  @AdditiveSemigroupLaws.mk Element (LandauAddOn model)
-    (LandauAdditionIsAssociative model)
+    let _ : Add Element := LandauAddOn model
+    let _ : Nonempty Element := LandauNonemptyOn model
+    AdditiveSemigroupLaws Element := by
+  letI : Add Element := LandauAddOn model
+  letI : Nonempty Element := LandauNonemptyOn model
+  exact ⟨LandauAdditionIsAssociative model⟩
 
 /--
 `LandauAdditiveCommutativeLawsOn` TODO
@@ -325,8 +336,8 @@ Logical form (Lean):
 ```lean
 noncomputable def LandauMultiplicativeSemigroupLawsOn
     (model : PeanoSystem Element SetObject) :
-    @MultiplicativeSemigroupLaws Element (LandauMulOn model) :=
-  @MultiplicativeSemigroupLaws.mk Element (LandauMulOn model)
+    @MultiplicativeSemigroupLaws Element (LandauMulOn model) (LandauNonemptyOn model) :=
+  @MultiplicativeSemigroupLaws.mk Element (LandauMulOn model) (LandauNonemptyOn model)
     (LandauMultiplicationIsAssociative model)
 ```
 
@@ -349,11 +360,14 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-noncomputable def LandauMultiplicativeSemigroupLawsOn
+theorem LandauMultiplicativeSemigroupLawsOn
     (model : PeanoSystem Element SetObject) :
-    @MultiplicativeSemigroupLaws Element (LandauMulOn model) :=
-  @MultiplicativeSemigroupLaws.mk Element (LandauMulOn model)
-    (LandauMultiplicationIsAssociative model)
+    let _ : Mul Element := LandauMulOn model
+    let _ : Nonempty Element := LandauNonemptyOn model
+    MultiplicativeSemigroupLaws Element := by
+  letI : Mul Element := LandauMulOn model
+  letI : Nonempty Element := LandauNonemptyOn model
+  exact ⟨LandauMultiplicationIsAssociative model⟩
 
 /--
 `LandauMultiplicativeCommutativeLawsOn` TODO
@@ -469,6 +483,7 @@ noncomputable def LandauDistributiveLawsOn
 
 example (model : PeanoSystem Element SetObject) (a b c : Element) : True := by
   letI := LandauAddOn model
+  letI := LandauNonemptyOn model
   letI := LandauAdditiveSemigroupLawsOn model
   letI := LandauAdditiveCommutativeLawsOn model
   have associated : (a + b) + c = a + (b + c) := AddAssociative a b c

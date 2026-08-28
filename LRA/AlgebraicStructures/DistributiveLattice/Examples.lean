@@ -1,5 +1,3 @@
-import LRA.AlgebraicStructures.DistributiveLattice.Definition
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.DistributiveLattice.Examples.PowerSetLattice
+import LRA.AlgebraicStructures.DistributiveLattice.Examples.DivisorLattice
+import LRA.AlgebraicStructures.DistributiveLattice.Examples.ChainsAreDistributive

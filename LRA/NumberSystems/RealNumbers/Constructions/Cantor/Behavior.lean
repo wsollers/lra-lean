@@ -2,7 +2,7 @@
 import LRA.NumberSystems.RealNumbers.Constructions.Cantor.Laws
 import LRA.NumberSystems.RealNumbers.Constructions.Cauchy
 import LRA.Function.Properties.Definition
-import LRA.NumberSystems.RationalNumbers.Definition
+import LRA.NumberSystems.RationalNumbers.Interface.Definition
 
 namespace LRA.NumberSystems.RealNumbers.Cantor
 open LRA.NumberSystems.Interface.ModelTheory

@@ -1,5 +1,5 @@
 
-import LRA.NumberSystems.RationalNumbers.Definition
+import LRA.NumberSystems.RationalNumbers.Interface.Definition
 
 namespace LRA.NumberSystems.RealNumbers.EffectiveCauchy
 

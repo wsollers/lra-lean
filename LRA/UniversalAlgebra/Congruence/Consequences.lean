@@ -1,5 +1,5 @@
 import LRA.UniversalAlgebra.Congruence.Theorems
-import LRA.Relation.Structures.Equivalence.QuotientSet
+import LRA.Relation.Interface.Structures.Equivalence.QuotientSet
 
 namespace LRA.UniversalAlgebra.Congruence
 

@@ -1,1 +1,1 @@
-import LRA.Relation.Canonical.DiversityRelation.Definition
+import LRA.Relation.Interface.Canonical.DiversityRelation.Definition

@@ -1,6 +1,6 @@
 
 import LRA.NumberSystems.Integers.Constructions.Tao.Behavior
-import LRA.NumberSystems.Integers.Definition
+import LRA.NumberSystems.Integers.Interface.Definition
 
 namespace LRA.NumberSystems.Integers.Tao
 

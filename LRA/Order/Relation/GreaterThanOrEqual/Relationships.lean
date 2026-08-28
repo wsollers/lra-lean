@@ -1,4 +1,4 @@
-import LRA.Relation.Operations.Converse.Definition
+import LRA.Relation.Interface.Operations.Converse.Definition
 import LRA.Order.Relation.GreaterThanOrEqual.Definition
 import LRA.Order.Relation.LessThanOrEqual.Definition
 

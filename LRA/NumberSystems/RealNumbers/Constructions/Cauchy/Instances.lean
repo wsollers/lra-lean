@@ -1,7 +1,7 @@
 
 import LRA.AlgebraicStructures
-import LRA.NumberSystems.RationalNumbers.Definition
-import LRA.NumberSystems.RealNumbers.Definition
+import LRA.NumberSystems.RationalNumbers.Interface.Definition
+import LRA.NumberSystems.RealNumbers.Interface.Definition
 import LRA.NumberSystems.RealNumbers.Constructions.Cauchy.Behavior
 
 namespace LRA.NumberSystems.RealNumbers.Cauchy

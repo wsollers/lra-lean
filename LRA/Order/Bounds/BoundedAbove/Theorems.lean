@@ -1,7 +1,7 @@
 import LRA.Order.Bounds.BoundedAbove.Definition
 import LRA.Order.Bounds.UpperBound.Theorems
 import LRA.Set.Interface.Laws.Membership
-import LRA.Relation.Properties.Definition
+import LRA.Relation.Interface.Laws.Definition
 
 namespace LRA.Order
 

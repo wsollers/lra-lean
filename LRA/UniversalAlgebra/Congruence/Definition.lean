@@ -1,5 +1,5 @@
 import LRA.Operation
-import LRA.Relation.Structures.Definition
+import LRA.Relation.Interface.Structures.Definition
 
 namespace LRA.UniversalAlgebra.Congruence
 

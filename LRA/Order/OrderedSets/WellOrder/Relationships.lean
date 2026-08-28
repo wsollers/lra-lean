@@ -1,6 +1,6 @@
 import LRA.Order.OrderedSets.WellOrder.Definition
 import LRA.Order.Relation.StrictPart.Definition
-import LRA.Relation.Properties.WellFounded
+import LRA.Relation.Interface.Laws.WellFounded
 
 namespace LRA.Order
 

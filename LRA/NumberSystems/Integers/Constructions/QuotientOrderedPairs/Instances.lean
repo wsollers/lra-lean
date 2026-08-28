@@ -2,7 +2,7 @@
 import LRA.AlgebraicStructures
 import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs.Behavior
 import LRA.NumberSystems.Interface.ModelTheory.Model
-import LRA.NumberSystems.Integers.Definition
+import LRA.NumberSystems.Integers.Interface.Definition
 
 namespace LRA.NumberSystems.Integers.QuotientOrderedPairs
 

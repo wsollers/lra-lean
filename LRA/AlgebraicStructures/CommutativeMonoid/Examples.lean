@@ -1,5 +1,4 @@
-import LRA.AlgebraicStructures.CommutativeMonoid
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.CommutativeMonoid.Examples.NaturalNumbersUnderAddition
+import LRA.AlgebraicStructures.CommutativeMonoid.Examples.NaturalNumbersUnderMultiplication
+import LRA.AlgebraicStructures.CommutativeMonoid.Examples.PowerSetUnderUnion
+import LRA.AlgebraicStructures.CommutativeMonoid.Examples.BooleanConjunction

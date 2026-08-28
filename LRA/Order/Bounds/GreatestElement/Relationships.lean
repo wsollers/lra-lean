@@ -3,7 +3,7 @@ import LRA.Order.Bounds.MaximalElement.Definition
 import LRA.Order.Bounds.Supremum.Definition
 import LRA.Order.Relation.StrictPart.Definition
 import LRA.Order.OrderedSets.LinearOrder.Definition
-import LRA.Relation.Properties.Definition
+import LRA.Relation.Interface.Laws.Definition
 
 namespace LRA.Order
 

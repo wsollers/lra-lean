@@ -1,6 +1,6 @@
 
 import LRA.Arithmetic.ContinuedFractions
-import LRA.NumberSystems.RationalNumbers.Definition
+import LRA.NumberSystems.RationalNumbers.Interface.Definition
 
 namespace LRA.NumberSystems.RationalNumbers.ContinuedFractions
 
